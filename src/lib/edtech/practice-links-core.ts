@@ -150,6 +150,23 @@ export function spacedReviewHref(
   return `${ROUTES.questionBank}?${qs.toString()}`;
 }
 
+/** Mastery Engine Today set — NCLEX Skill Cell queue in the existing player. */
+export function todayPracticeHref(
+  examSlug: ExamSlug = "nclex",
+  count: 20 | 40 | 60 = 40,
+  fieldIdOverride?: string
+): string {
+  const fieldId = fieldIdOverride ?? EXAM_CATALOG[examSlug].fieldId;
+  const qs = new URLSearchParams({
+    field: fieldId,
+    mode: "bank",
+    style: "today",
+    count: String(count),
+    autostart: "1",
+  });
+  return `${ROUTES.questionBank}?${qs.toString()}`;
+}
+
 export function top500Href(examSlug: ExamSlug): string {
   return `${ROUTES.drugs300}?exam=${examSlug}`;
 }

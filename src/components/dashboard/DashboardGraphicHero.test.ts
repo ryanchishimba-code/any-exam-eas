@@ -5,7 +5,7 @@ import {
 } from "@/components/dashboard/DashboardGraphicHero";
 
 describe("resolveDashboardNextAction", () => {
-  it("prioritizes spaced review when due", () => {
+  it("uses Today as the primary CTA for NCLEX when Mastery Engine is on", () => {
     const action = resolveDashboardNextAction({
       examSlug: "nclex",
       examName: "NCLEX-RN",
@@ -16,29 +16,44 @@ describe("resolveDashboardNextAction", () => {
       },
       hasRecent: true,
     });
-    expect(action.label).toContain("Review 12 due");
-    expect(action.href).toContain("style=adaptive");
+    expect(action.label).toBe("Today");
+    expect(action.href).toContain("style=today");
     expect(action.href).toContain("field=nursing");
   });
 
-  it("opens the weak topic bank — not spaced review — when nothing is due", () => {
+  it("uses Today as the primary CTA for NAPLEX when Mastery Engine is on", () => {
+    const action = resolveDashboardNextAction({
+      examSlug: "naplex",
+      examName: "NAPLEX",
+      dueCount: 12,
+      topWeakTopic: {
+        name: "Cardiology",
+        href: weakTopicPracticeHref("naplex", "cardiology", "pharmacy"),
+      },
+      hasRecent: true,
+      practiceFieldId: "pharmacy",
+    });
+    expect(action.label).toBe("Today");
+    expect(action.href).toContain("style=today");
+    expect(action.href).toContain("field=pharmacy");
+  });
+
+  it("still opens weak-topic practice for non-mastery exams", () => {
     const topicHref = weakTopicPracticeHref(
-      "nclex",
-      "physiological-adaptation",
-      "nursing",
+      "pance",
+      "cardiology",
+      "pance",
       15
     );
     const action = resolveDashboardNextAction({
-      examSlug: "nclex",
-      examName: "NCLEX-RN",
+      examSlug: "pance",
+      examName: "PANCE",
       dueCount: 0,
-      topWeakTopic: { name: "Physiological Adaptation", href: topicHref },
+      topWeakTopic: { name: "Cardiology", href: topicHref },
       hasRecent: true,
     });
-    expect(action.label).toBe("Strengthen Physiological Adaptation");
+    expect(action.label).toBe("Strengthen Cardiology");
     expect(action.href).toBe(topicHref);
-    expect(action.href).toContain("subjectId=physiological-adaptation");
-    expect(action.href).not.toContain("style=review");
   });
 
   it("scopes USMLE practice to the user's step field", () => {

@@ -38,6 +38,7 @@ const bodySchema = z.object({
   durationMs: z.number().int().min(0).optional(),
   selectedAnswer: z.string().optional(),
   sessionId: z.string().optional(),
+  studyMode: z.string().optional(),
 });
 
 export async function POST(req: Request) {
@@ -61,6 +62,7 @@ export async function POST(req: Request) {
       selectedAnswer: body.selectedAnswer,
       sessionId: body.sessionId,
       fieldId,
+      studyMode: body.studyMode,
     });
 
     return NextResponse.json({

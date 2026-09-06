@@ -43,6 +43,8 @@ import {
 import { formatHms } from "@/lib/full-exam/config";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { StudyThisTopicButton } from "./StudyThisTopicButton";
+import { MasteryMissAttachments } from "./MasteryMissAttachments";
+import { MasteryDeepDiveBeats } from "./MasteryDeepDiveBeats";
 import { resolveStudyLinksFromQuestion } from "@/lib/library/question-study-links";
 import { Flag, AlertTriangle } from "lucide-react";
 import { studyUi } from "@/lib/study/study-ui";
@@ -51,6 +53,27 @@ import {
   buildReportContext,
 } from "./ReportQuestionDialog";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
+import { naplexDomainByNumber } from "@/lib/pharmacy/naplex-outline-2025";
+import type { MasteryItemTags } from "@/lib/engine/mastery/types";
+
+function masteryTagsFromStudyQuestion(q: StudyQuestion): MasteryItemTags {
+  const tags = q.tags ?? [];
+  const naplexRaw = tags.find((t) => t.startsWith("naplexDomain:"))?.slice("naplexDomain:".length);
+  const naplexNum = Number(naplexRaw);
+  return {
+    clientNeeds: tags.find((t) => t.startsWith("cn:"))?.slice(3),
+    cjmmFunction: tags.find((t) => t.startsWith("cjmm:"))?.slice(5) as MasteryItemTags["cjmmFunction"],
+    drugIds: tags.filter((t) => t.startsWith("drug:")).map((t) => t.slice(5)),
+    anatomyId: tags.find((t) => t.startsWith("anatomy:"))?.slice(8),
+    labFlags: tags.filter((t) => t.startsWith("lab:")).map((t) => t.slice(4)),
+    calcFlags: tags.filter((t) => t.startsWith("calc:")).map((t) => t.slice(5)),
+    naplexDomain:
+      naplexNum >= 1 && naplexNum <= 5 ? (naplexNum as 1 | 2 | 3 | 4 | 5) : null,
+    naplexSubtopic: tags
+      .find((t) => t.startsWith("naplexSubtopic:"))
+      ?.slice("naplexSubtopic:".length),
+  };
+}
 
 type Props = {
   field: string;
@@ -238,6 +261,7 @@ export function StudySessionPlayer({
           durationMs,
           selectedAnswer: choices.join(", "),
           sessionId: sessionState.sessionId,
+          studyMode: sessionState.mode,
         }),
       });
       if (res.ok) {
@@ -249,7 +273,7 @@ export function StudySessionPlayer({
         if (data.remediation) setRemediation(data.remediation);
       }
     },
-    [sessionState.sessionId]
+    [sessionState.sessionId, sessionState.mode]
   );
 
   const revealAnswer = useCallback(
@@ -550,8 +574,13 @@ export function StudySessionPlayer({
   const selectionReasoning =
     sessionState.adaptiveMeta?.questionReasoning?.[String(current.id)] ??
     sessionState.adaptiveMeta?.sessionRationale;
-  const examSlug = examSlugFromFieldId(field) ?? "nclex";
+  const examSlug = examSlugFromFieldId(normalizeFieldId(field)) ?? "nclex";
   const studyLinks = resolveStudyLinksFromQuestion(examSlug, current);
+  const masteryTags = masteryTagsFromStudyQuestion(current);
+  const naplexDomainChip =
+    examSlug === "naplex" && masteryTags.naplexDomain
+      ? naplexDomainByNumber(masteryTags.naplexDomain)
+      : null;
   const isFlagged = flaggedIds.has(String(current.id));
   const reportContext = buildReportContext({
     fieldId: normalizeFieldId(current.field ?? field),
@@ -647,6 +676,13 @@ export function StudySessionPlayer({
               {isFlagged ? "Flagged" : "Flag for review"}
             </button>
           </div>
+          {naplexDomainChip ? (
+            <p className="mb-3">
+              <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-800 dark:text-emerald-200">
+                Domain {naplexDomainChip.domain}: {naplexDomainChip.label}
+              </span>
+            </p>
+          ) : null}
           <QuestionRenderer
             question={current}
             selected={selected}
@@ -734,6 +770,17 @@ export function StudySessionPlayer({
                 examSlug={examSlug}
                 missed={answer.correct !== true}
                 flagged={isFlagged}
+              />
+              <MasteryMissAttachments
+                missed={answer.correct !== true}
+                examSlug={examSlug}
+                tags={masteryTags}
+              />
+              <MasteryDeepDiveBeats
+                question={current}
+                missed={answer.correct !== true}
+                examSlug={examSlug}
+                calcFlags={masteryTags.calcFlags}
               />
               <ExplanationPanel
                 key={current.id}

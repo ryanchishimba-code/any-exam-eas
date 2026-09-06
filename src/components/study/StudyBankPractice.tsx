@@ -860,9 +860,78 @@ export function StudyBankPractice({
 
       const useAdaptive = bankStyle === "adaptive" || bankStyle === "weak_areas";
       const useReviewIncorrect = bankStyle === "review_incorrect";
-      const effectiveSubjectId = subjectId || subjects[0]?.id || "";
-      if (!effectiveSubjectId) {
+      const useToday = bankStyle === "today";
+      const effectiveSubjectId = subjectId || subjects[0]?.id || MIXED_SUBJECT_ID || "";
+      if (!useToday && !effectiveSubjectId) {
         throw new Error("Choose a topic before starting practice.");
+      }
+
+      if (useToday) {
+        const todayExamSlug =
+          fieldId === "pharmacy" || examSlugFromFieldId(fieldId) === "naplex"
+            ? "naplex"
+            : "nclex";
+        const res = await fetch("/api/study/today", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            size: limit === 20 || limit === 60 ? limit : 40,
+            examSlug: todayExamSlug,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
+          throw new Error(
+            studyLimitMessage(data) || data.error || "Could not build Today set"
+          );
+        }
+        type TodayQ = {
+          id: string;
+          stem: string;
+          options: string[];
+          correctAnswers: string[];
+          explanation: string;
+          subjectId?: string;
+          bankItemId?: string;
+          type?: string;
+          vignette?: string;
+          tags?: string[];
+        };
+        const prepared = (data.questions as TodayQ[] | undefined) ?? [];
+        if (prepared.length === 0) {
+          throw new Error("No questions available for Today yet.");
+        }
+        const raw: RawQuestionInput[] = prepared.map((q, i) => ({
+          id: i + 1,
+          question: q.stem,
+          options: q.options,
+          correctAnswer: (q.correctAnswers ?? []).join(", "),
+          explanation: q.explanation,
+          field,
+          subjectId: q.subjectId ?? MIXED_SUBJECT_ID,
+          bankItemId: q.bankItemId ?? q.id,
+          type: q.type,
+          vignette: q.vignette,
+          tags: q.tags,
+        }));
+        setAdaptiveMeta({
+          sessionRationale:
+            todayExamSlug === "naplex"
+              ? `NAPLEX Today — ${raw.length} items weighted to the 2025 Content Outline (Domain 3 heaviest).`
+              : `Today’s Mastery set — ${raw.length} items across your Skill Cells.`,
+          questionReasoning: Object.fromEntries(
+            raw.map((q) => [
+              String(q.id),
+              todayExamSlug === "naplex"
+                ? "Queued by NAPLEX Mastery Engine for today’s focus."
+                : "Queued by Mastery Engine for today’s focus.",
+            ])
+          ),
+        });
+        if (isStale()) return;
+        setQuestions(raw);
+        return;
       }
 
       if (useReviewIncorrect) {
@@ -1040,11 +1109,11 @@ export function StudyBankPractice({
 
   useEffect(() => {
     if (!autostartRequested || autostartAttempted.current || questions || loading) return;
-    if (!isTimedExam && !subjectId) return;
+    if (!isTimedExam && !subjectId && bankStyle !== "today") return;
     autostartAttempted.current = true;
     document.getElementById("practice-launcher")?.scrollIntoView({ behavior: "smooth", block: "start" });
     void start();
-  }, [autostartRequested, isTimedExam, subjectId, questions, loading]);
+  }, [autostartRequested, isTimedExam, subjectId, bankStyle, questions, loading]);
 
   const bankSessionValidation = useMemo(
     () =>

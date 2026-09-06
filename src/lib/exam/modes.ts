@@ -72,7 +72,8 @@ export type QuestionBankStyle =
   | "standard"
   | "adaptive"
   | "weak_areas"
-  | "review_incorrect";
+  | "review_incorrect"
+  | "today";
 
 export function parseQuestionBankPace(value: string | null | undefined): QuestionBankPace {
   return value === "timed" ? "timed" : "untimed";
@@ -82,7 +83,8 @@ export function parseQuestionBankStyle(value: string | null | undefined): Questi
   if (
     value === "adaptive" ||
     value === "weak_areas" ||
-    value === "review_incorrect"
+    value === "review_incorrect" ||
+    value === "today"
   ) {
     return value;
   }

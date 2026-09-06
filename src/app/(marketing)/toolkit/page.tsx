@@ -11,6 +11,8 @@ import { examMarketingPath } from "@/lib/seo/exam-config";
 import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { TOOLKIT_EXAMS } from "@/lib/toolkit/exam-breakdowns";
 import { ToolkitStudyGuides } from "@/components/toolkit/ToolkitStudyGuides";
+import { ToolkitNclexMasterySection } from "@/components/toolkit/ToolkitNclexMasterySection";
+import { ToolkitNaplexMasterySection } from "@/components/toolkit/ToolkitNaplexMasterySection";
 import { buildToolkitHubJsonLd, buildToolkitHubMetadata } from "@/lib/seo/marketing-metadata";
 
 export const revalidate = 86400;
@@ -211,6 +213,9 @@ export default function ToolkitPage() {
             </ul>
           </div>
         </section>
+
+        <ToolkitNclexMasterySection />
+        <ToolkitNaplexMasterySection />
 
         <ToolkitStudyGuides />
 

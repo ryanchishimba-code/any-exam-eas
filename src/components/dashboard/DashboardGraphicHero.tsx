@@ -6,6 +6,7 @@ import {
   practiceTopicHref,
   questionBankHref,
   spacedReviewHref,
+  todayPracticeHref,
 } from "@/lib/edtech/practice-links-core";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import type { PracticeReadinessSummary } from "@/lib/learning/honest-readiness";
@@ -13,6 +14,7 @@ import { domainTilesFromReadiness } from "@/lib/study/domain-map";
 import { ROUTES } from "@/lib/routes";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
+import { isTodayEngineEnabled } from "@/lib/engine/mastery/feature-flag";
 
 type NextAction = {
   label: string;
@@ -44,6 +46,13 @@ export function resolveDashboardNextAction({
   /** Canonical bank field (USMLE step-aware). */
   practiceFieldId?: string;
 }): NextAction {
+  if (examSlug === "nclex" && isTodayEngineEnabled()) {
+    return {
+      label: "Today",
+      href: todayPracticeHref("nclex", 40, practiceFieldId),
+      status: "Your Mastery set is ready",
+    };
+  }
   if (dueCount > 0) {
     const count = Math.min(25, Math.max(10, dueCount));
     return {
@@ -97,6 +106,7 @@ export function DashboardGraphicHero({
   hasRecent,
   studyLocked = false,
   practiceFieldId,
+  masteryMapTiles,
 }: {
   examSlug: ExamSlug;
   examName: string;
@@ -109,6 +119,7 @@ export function DashboardGraphicHero({
   hasRecent: boolean;
   studyLocked?: boolean;
   practiceFieldId?: string;
+  masteryMapTiles?: import("@/components/dashboard/DomainMap").DomainMapTile[] | null;
 }) {
   const action = studyLocked
     ? {
@@ -126,7 +137,12 @@ export function DashboardGraphicHero({
       });
 
   const bandLabel = readinessSummary?.bandLabel ?? "Practice";
-  const tiles = readinessSummary ? domainTilesFromReadiness(readinessSummary) : [];
+  const tiles =
+    masteryMapTiles && masteryMapTiles.length > 0
+      ? masteryMapTiles
+      : readinessSummary
+        ? domainTilesFromReadiness(readinessSummary)
+        : [];
 
   return (
     <section

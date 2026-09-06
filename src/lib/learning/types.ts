@@ -20,6 +20,8 @@ export type AttemptInput = {
   selectedAnswer?: string;
   sessionId?: string;
   fieldId: string;
+  /** practice | tutor | timed | adaptive | … — drives Mastery cell tutor vs timed windows. */
+  studyMode?: string;
 };
 
 export type MistakeAnalysis = {

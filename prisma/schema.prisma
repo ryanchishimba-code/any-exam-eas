@@ -73,6 +73,7 @@ model User {
   socialShares       SocialShare[]
   legalConsent       UserLegalConsent?
   blogPosts          BlogPost[]
+  userCellStates     UserCellState[]
 }
 
 model Account {
@@ -374,6 +375,10 @@ model QuestionBankItem {
   taskCategory    String?
   /// Specific blueprint high-yield topic (e.g. ACS, sepsis) for Deep Dive / analytics.
   blueprintTopic  String?
+  /// NCLEX Client Needs category id (Mastery Engine / 2026 blueprint).
+  clientNeeds     String?
+  /// NCSBN CJMM function for NGN clinical judgment items.
+  cjmmFunction    String?
   /// AANP FNP patient lifespan band (newborn, infant, toddler, child, adolescent, young-adult, middle-adult, older-adult).
   patientAgeGroup String?
   /// AI model + pipeline version (e.g. gpt-4o-mini-pance-v1).
@@ -1124,6 +1129,30 @@ model QuestionMastery {
   @@unique([userId, questionKey])
   @@index([userId, fieldId, nextDue])
   @@index([userId, nextDue])
+}
+
+/// Mastery Engine — per-user Skill Cell state (exam + system + topic).
+model UserCellState {
+  id               String    @id @default(cuid())
+  userId           String
+  examSlug         String
+  /// exam:system:topic
+  cellKey          String
+  systemKey        String
+  topicKey         String
+  /// unseen | primed | learning | shaky | stable | exam_ready
+  state            String    @default("unseen")
+  itemsAnswered    Int       @default(0)
+  recentTutorJson  String    @default("[]")
+  recentTimedJson  String    @default("[]")
+  lastSessionAt    DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, examSlug, cellKey])
+  @@index([userId, examSlug, state])
+  @@index([userId, examSlug, systemKey])
 }
 
 /// Persisted study session state (resume across devices when synced).

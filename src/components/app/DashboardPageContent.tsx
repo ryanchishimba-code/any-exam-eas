@@ -14,7 +14,12 @@ import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { MasteryReadinessStrip } from "@/components/dashboard/MasteryReadinessStrip";
+import { NaplexMasteryPanel } from "@/components/dashboard/NaplexMasteryPanel";
+import type { MasteryRollup } from "@/lib/engine/mastery/types";
+import type { DomainMapTile } from "@/components/dashboard/DomainMap";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
+import { isTodayEngineNaplexEnabled } from "@/lib/engine/mastery/feature-flag";
 
 const DashboardExamCountdown = dynamic(
   () =>
@@ -57,6 +62,8 @@ export function DashboardPageContent({
   upgrade,
   hasPremiumAccess = true,
   practiceFieldId,
+  masteryRollup = null,
+  masteryMapTiles = null,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -71,18 +78,28 @@ export function DashboardPageContent({
   hasPremiumAccess?: boolean;
   /** Canonical bank field (USMLE step-aware). */
   practiceFieldId?: string;
+  masteryRollup?: MasteryRollup | null;
+  masteryMapTiles?: DomainMapTile[] | null;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
   const isNewUser = stats.questionsAnswered === 0 && !showRecent;
   const studyLocked = !hasPremiumAccess;
   const readinessSummary = roadmap ? buildPracticeReadinessSummary(roadmap) : null;
-  const categoriesLabel = examSlug === "nclex" ? "Your NCLEX domains" : "Your blueprint";
+  const categoriesLabel =
+    examSlug === "nclex"
+      ? "Your NCLEX domains"
+      : examSlug === "naplex"
+        ? "Your NAPLEX domains"
+        : "Your blueprint";
   const categoriesHint =
     examSlug === "nclex"
       ? "Official Client Needs · ranked by need · tap to practice"
-      : "Official exam blueprint · ranked by need · tap to practice";
+      : examSlug === "naplex"
+        ? "NABP 2025 Content Outline · Domain 3 is 40% · tap Today"
+        : "Official exam blueprint · ranked by need · tap to practice";
   const fieldId = practiceFieldId ?? exam.fieldId;
+  const showNaplexPanel = examSlug === "naplex" && isTodayEngineNaplexEnabled();
 
   return (
     <div className={dbUi.page}>
@@ -110,7 +127,14 @@ export function DashboardPageContent({
         hasRecent={showRecent}
         studyLocked={studyLocked}
         practiceFieldId={fieldId}
+        masteryMapTiles={masteryMapTiles}
       />
+
+      {masteryRollup ? (
+        <MasteryReadinessStrip rollup={masteryRollup} />
+      ) : null}
+
+      {showNaplexPanel ? <NaplexMasteryPanel /> : null}
 
       {!isNewUser ? (
         <DashboardWeakTopicChips

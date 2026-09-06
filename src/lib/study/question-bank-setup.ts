@@ -133,8 +133,12 @@ export function validateQuestionBankSession(params: {
 }): QuestionBankSessionValidation {
   const { subjectId, questionCount, subjectCounts, bankStyle, taskCategory } = params;
 
-  if (!subjectId) {
+  if (!subjectId && bankStyle !== "today") {
     return { ok: false, message: "Choose a topic before starting." };
+  }
+
+  if (bankStyle === "today") {
+    return { ok: true };
   }
 
   if (taskCategory && bankStyle !== "standard") {
@@ -147,7 +151,8 @@ export function validateQuestionBankSession(params: {
   if (
     isMixedSubjectId(subjectId) &&
     bankStyle !== "standard" &&
-    bankStyle !== "review_incorrect"
+    bankStyle !== "review_incorrect" &&
+    bankStyle !== "today"
   ) {
     return {
       ok: false,

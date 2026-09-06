@@ -69,7 +69,7 @@ async function DashboardContent({
   );
 
   // Wave 2: secondary panels — degrade instead of blanking the whole dashboard.
-  const [roadmap, metadata, usage] = await Promise.all([
+  const [roadmap, metadata, usage, mastery] = await Promise.all([
     settled(
       getExamRoadmapData(userId, examSlug, {
         usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
@@ -79,6 +79,23 @@ async function DashboardContent({
     ),
     settled(getUserEdtechMetadata(userId), null, "metadata"),
     settled(getStudyUsageSnapshot(access), null, "usage"),
+    examSlug === "nclex"
+      ? settled(
+          import("@/lib/engine/mastery/dashboard").then((m) =>
+            m.loadNclexMasteryDashboard(userId)
+          ),
+          null,
+          "mastery"
+        )
+      : examSlug === "naplex"
+        ? settled(
+            import("@/lib/engine/mastery/dashboard").then((m) =>
+              m.loadNaplexMasteryDashboard(userId)
+            ),
+            null,
+            "mastery"
+          )
+        : Promise.resolve(null),
   ]);
 
   const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;
@@ -107,6 +124,8 @@ async function DashboardContent({
       hasPremiumAccess={access.hasPremiumAccess}
       upgrade={usage ? resolveDashboardUpgradeContext(access, usage) : null}
       practiceFieldId={fieldId}
+      masteryRollup={mastery?.rollup ?? null}
+      masteryMapTiles={mastery?.mapTiles ?? null}
     />
   );
 }
