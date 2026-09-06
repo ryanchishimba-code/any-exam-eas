@@ -49,13 +49,15 @@ export function TrialWelcomeScreen({
   if (showVerifyPrompt) {
     return (
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
-        className="mx-auto w-full max-w-xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
+        className="fixed inset-0 z-[80] overflow-y-auto bg-[var(--color-bg,var(--color-surface))] px-4 py-10 sm:py-14"
       >
-        <VerifyEmailPrompt email={userEmail} required={verifyRequired} />
+        <div className="mx-auto w-full max-w-xl">
+          <VerifyEmailPrompt email={userEmail} required={verifyRequired} />
+        </div>
       </motion.div>
     );
   }

@@ -58,7 +58,7 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
     const verifyParam = searchParams.get("verify") === "1";
     const pending = peekTrialWelcomePending();
 
-    if (!welcomeParam && !pending) return;
+    if (!welcomeParam && !pending && !verifyParam) return;
 
     setVisible(true);
     if (verifyParam) setShowVerifyPrompt(true);
@@ -71,7 +71,7 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
     const welcomeParam = searchParams.get("welcome") === "trial";
     const verifyParam = searchParams.get("verify") === "1";
     const pending = peekTrialWelcomePending();
-    if (!welcomeParam && !pending && !visible) return;
+    if (!welcomeParam && !pending && !verifyParam && !visible) return;
 
     validated.current = true;
 
@@ -91,11 +91,8 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
       if (unverified) {
         setShowVerifyPrompt(true);
         setVerifyRequired(sub?.blockReason === "email_unverified");
-      }
-
-      if (sub?.blockReason === "email_unverified") {
         setVisible(true);
-        return;
+        if (sub?.blockReason === "email_unverified") return;
       }
 
       if (sub?.status !== "trialing" || !sub.hasAccess) {
@@ -105,7 +102,7 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
 
       setDaysRemaining(sub.daysRemaining ?? pending?.daysRemaining ?? 14);
       if (typeof sub.trialDays === "number") setTrialDays(sub.trialDays);
-      setVisible(true);
+      if (!unverified) setVisible(true);
 
       if (welcomeParam) {
         analytics.trialStarted({ plan_type: "trial" }, { persist: false });

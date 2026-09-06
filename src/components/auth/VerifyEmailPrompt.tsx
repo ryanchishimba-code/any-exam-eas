@@ -7,6 +7,11 @@ import { maskEmail } from "@/lib/client/returning-user";
 import { PLATFORM_EXAM_LIST_MIDDOT } from "@/lib/landing/content";
 import { formatMonthlyPrice } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
+import {
+  VERIFY_EMAIL_CHECK_LABEL,
+  VERIFY_EMAIL_HEADLINE,
+  VERIFY_EMAIL_NEXT_STEP,
+} from "@/lib/auth/verify-email-copy";
 import { cn } from "@/lib/utils";
 
 type VerifyEmailPromptProps = {
@@ -100,7 +105,7 @@ export function VerifyEmailPrompt({
         id="verify-email-heading"
         className="relative mt-5 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)]"
       >
-        Ready to start your exam prep
+        {VERIFY_EMAIL_HEADLINE}
       </h2>
 
       <div
@@ -108,14 +113,14 @@ export function VerifyEmailPrompt({
         role="status"
       >
         <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-teal-700 dark:text-teal-300">
-          Check your email
+          {VERIFY_EMAIL_CHECK_LABEL}
         </p>
         <p className="mt-1.5 text-[15px] font-medium leading-snug text-[var(--color-ink)]">
           Please look for the verification link we sent to{" "}
           <span className="font-semibold text-teal-800 dark:text-teal-200">{displayEmail}</span>.
         </p>
         <p className="mt-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-          Open that email, verify, then come back here.
+          {VERIFY_EMAIL_NEXT_STEP}
         </p>
         <div className="mt-4 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
           <button

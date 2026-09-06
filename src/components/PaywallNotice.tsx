@@ -2,6 +2,11 @@ import Link from "next/link";
 import { Button } from "./ui/Button";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import {
+  VERIFY_EMAIL_CHECK_LABEL,
+  VERIFY_EMAIL_HEADLINE,
+  VERIFY_EMAIL_NEXT_STEP,
+} from "@/lib/auth/verify-email-copy";
+import {
   formatTrialEntryPrice,
   formatTrialLabel,
   formatTrialPlanDetail,
@@ -19,18 +24,22 @@ export function PaywallNotice({
   return (
     <div className="apple-bento mb-10 border-[var(--color-accent)]/20 bg-[var(--color-accent)]/5 text-center">
       <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
-        {isSuspended ? "Account suspended" : isVerify ? "Almost there" : "Subscription required"}
+        {isSuspended
+          ? "Account suspended"
+          : isVerify
+            ? VERIFY_EMAIL_CHECK_LABEL
+            : "Subscription required"}
       </p>
       <h2 className="mt-2 text-xl font-semibold tracking-tight text-[var(--color-ink)]">
         {isSuspended
           ? "Contact support to restore access"
           : isVerify
-            ? "Ready to start your exam prep"
+            ? VERIFY_EMAIL_HEADLINE
             : "Unlock the full exam prep platform"}
       </h2>
       {isVerify ? (
         <p className="mx-auto mt-3 max-w-md text-sm text-[var(--color-ink-muted)]">
-          Please look for the verification link in your email, then return here to continue.
+          {VERIFY_EMAIL_NEXT_STEP}
         </p>
       ) : null}
       {!isSuspended && !isVerify && (
