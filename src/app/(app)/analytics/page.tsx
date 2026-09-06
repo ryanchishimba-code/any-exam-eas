@@ -22,9 +22,17 @@ export const maxDuration = 60;
 
 function AnalyticsSkeleton() {
   return (
-    <div className={studyUi.page}>
-      <Skeleton className="h-12 w-64 rounded-xl" />
-      <Skeleton className="mt-6 h-80 w-full rounded-[28px]" />
+    <div className={studyUi.page} aria-busy="true" aria-label="Loading analytics">
+      <div className="space-y-2">
+        <Skeleton className="h-3 w-24 rounded-full" />
+        <Skeleton className="h-9 w-48 max-w-full rounded-xl" />
+      </div>
+      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+        <Skeleton className="h-24 rounded-2xl" />
+        <Skeleton className="h-24 rounded-2xl" />
+        <Skeleton className="h-24 rounded-2xl" />
+      </div>
+      <Skeleton className="mt-4 h-80 w-full rounded-[28px]" />
     </div>
   );
 }

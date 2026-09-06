@@ -63,8 +63,18 @@ export function EndActivityControl({
   const handleConfirm = useCallback(async () => {
     setSaving(true);
     setError(null);
+    let timeoutId: number | undefined;
     try {
-      const summary = await onConfirm();
+      const SAVE_TIMEOUT_MS = 12_000;
+      const summary = await Promise.race([
+        onConfirm(),
+        new Promise<never>((_, reject) => {
+          timeoutId = window.setTimeout(
+            () => reject(new Error("Save is taking too long. Check your connection and try again.")),
+            SAVE_TIMEOUT_MS
+          );
+        }),
+      ]);
       setOpen(false);
       if (summary) {
         storeActivitySessionSummary(summary);
@@ -75,6 +85,7 @@ export function EndActivityControl({
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not save progress. Please try again.");
     } finally {
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
       setSaving(false);
     }
   }, [onConfirm, redirectTo, router]);

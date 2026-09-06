@@ -9,6 +9,7 @@ export async function buildTopicWeakness(
   const since = new Date();
   since.setUTCDate(since.getUTCDate() - days);
 
+  // Cap rows so heavy users don't pull 90 days of attempts into memory on every adaptive start.
   const attempts = await prisma.questionAttempt.findMany({
     where: {
       userId,
@@ -20,6 +21,8 @@ export async function buildTopicWeakness(
       tagsJson: true,
       subjectId: true,
     },
+    orderBy: { createdAt: "desc" },
+    take: 2_500,
   });
 
   const byTag = new Map<string, { attempts: number; misses: number }>();

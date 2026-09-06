@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { requireStudyApi } from "@/lib/api-access";
+import { respondDbUnavailable } from "@/lib/api-db-error";
+import {
+  enforceQuestionBankFieldAccess,
+  resolveQuestionBankFieldId,
+} from "@/lib/edtech/question-bank-scope";
 import { getFieldSubject } from "@/lib/field-subjects";
-import { getFieldMeta } from "@/lib/fields";
 import { gatherTopicBankSessionPool } from "@/lib/exam-prep/topic-bank-practice";
+import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 import { runAdaptiveSelection } from "@/lib/core/prisma-adapter";
 import {
   topicPerformanceFromWeakness,
@@ -17,10 +23,11 @@ import {
   assertExamSessionReady,
   assessExamSessionQuality,
 } from "@/lib/questions/finalize-exam-session";
-import {
-  bankItemToSessionRaw,
-} from "@/lib/exam-prep/prepare-bank-session";
 import { resolveQuestionBankSessionCount } from "@/lib/study/question-bank-setup";
+import {
+  checkStudyQuestionUsage,
+  recordStudyQuestionsServed,
+} from "@/lib/study/usage-limits";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -85,25 +92,17 @@ function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQu
 }
 
 export async function POST(req: Request) {
-  const { requireStudyApi } = await import("@/lib/api-access");
   const premium = await requireStudyApi();
   if (!premium.ok) return premium.response;
 
   try {
     const body = bodySchema.parse(await req.json());
     const requestedCount = resolveQuestionBankSessionCount(body.count);
-    const { resolveQuestionBankFieldId, enforceQuestionBankFieldAccess } = await import(
-      "@/lib/edtech/question-bank-scope"
-    );
     const fieldId = resolveQuestionBankFieldId(body.field);
 
     const access = await enforceQuestionBankFieldAccess(premium.userId, body.field);
     if (!access.ok) return access.response;
 
-    const {
-      checkStudyQuestionUsage,
-      recordStudyQuestionsServed,
-    } = await import("@/lib/study/usage-limits");
     const usageCheck = await checkStudyQuestionUsage({
       userId: premium.userId,
       access: premium.access,
@@ -125,27 +124,27 @@ export async function POST(req: Request) {
     }
 
     const sessionCount = resolveQuestionBankSessionCount(usageCheck.allowedCount);
-
     const subjectId = body.subjectId;
-
-    let topicPerformance: TopicPerformance[] = body.topicPerformance ?? [];
-
-    if (topicPerformance.length === 0) {
-      const weakness = await buildTopicWeakness(premium.userId, fieldId);
-      topicPerformance = topicPerformanceFromWeakness(weakness);
-    }
-
     const subject = getFieldSubject(body.field, subjectId);
     if (!subject) {
       return NextResponse.json({ error: "Unknown subject for this field." }, { status: 400 });
     }
 
-    const items = await gatherTopicBankSessionPool({
-      fieldId,
-      subjectId,
-      sessionLimit: sessionCount,
-      taskCategory: body.taskCategory,
-    });
+    const clientTopicPerformance = body.topicPerformance ?? [];
+
+    // Weakness history and bank sampling are independent — run together.
+    const [topicPerformance, items] = await Promise.all([
+      clientTopicPerformance.length > 0
+        ? Promise.resolve(clientTopicPerformance as TopicPerformance[])
+        : buildTopicWeakness(premium.userId, fieldId).then(topicPerformanceFromWeakness),
+      gatherTopicBankSessionPool({
+        fieldId,
+        subjectId,
+        sessionLimit: sessionCount,
+        taskCategory: body.taskCategory,
+        poolMode: "selection",
+      }),
+    ]);
 
     if (items.length < sessionCount) {
       return NextResponse.json(
@@ -245,7 +244,6 @@ export async function POST(req: Request) {
     if (e instanceof Error && e.message.includes("Not enough")) {
       return NextResponse.json({ error: e.message, code: "SESSION_UNAVAILABLE" }, { status: 503 });
     }
-    const { respondDbUnavailable } = await import("@/lib/api-db-error");
     const dbResponse = respondDbUnavailable(e);
     if (dbResponse) return dbResponse;
     return NextResponse.json({ error: "Invalid adaptive session request." }, { status: 400 });

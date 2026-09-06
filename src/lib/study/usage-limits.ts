@@ -24,6 +24,27 @@ export {
 
 export const STUDY_USAGE_ACTION = "study_questions_served";
 
+export type StudyUsageSnapshot = {
+  plan: StudyUsagePlan;
+  limits: StudyUsageLimits;
+  usedToday: number;
+  remainingToday: number | null;
+  usedTrialTotal: number | null;
+  remainingTrialTotal: number | null;
+  mockExamsThisMonth: number;
+  usedTrialMocks: number | null;
+  remainingTrialMocks: number | null;
+  usedTrialFullAdaptive: number | null;
+  remainingTrialFullAdaptive: number | null;
+};
+
+/** Short isolate cache so banner + gate calls share one snapshot. */
+const SNAPSHOT_CACHE_TTL_MS = 8_000;
+const snapshotCache = new Map<
+  string,
+  { expires: number; value: StudyUsageSnapshot }
+>();
+
 function dayStartUtc(): Date {
   const d = new Date();
   return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 0, 0, 0, 0));
@@ -48,31 +69,50 @@ function sumServedFromLogs(
   }, 0);
 }
 
+/** Aggregate served counts in SQL instead of fetching every ActivityLog row. */
+async function sumQuestionsServedSince(userId: string, since: Date): Promise<number> {
+  try {
+    const rows = await prisma.$queryRaw<Array<{ total: bigint | number | null }>>`
+      SELECT COALESCE(SUM(
+        CASE
+          WHEN metadata IS NULL OR BTRIM(metadata) = '' THEN 0
+          ELSE COALESCE((metadata::json->>'count')::int, 0)
+        END
+      ), 0) AS total
+      FROM "ActivityLog"
+      WHERE "userId" = ${userId}
+        AND action = ${STUDY_USAGE_ACTION}
+        AND "createdAt" >= ${since}
+    `;
+    return Number(rows[0]?.total ?? 0);
+  } catch {
+    const logs = await prisma.activityLog.findMany({
+      where: {
+        userId,
+        action: STUDY_USAGE_ACTION,
+        createdAt: { gte: since },
+      },
+      select: { metadata: true },
+    });
+    return sumServedFromLogs(logs);
+  }
+}
+
 export async function countQuestionsServedToday(userId: string): Promise<number> {
-  const logs = await prisma.activityLog.findMany({
-    where: {
-      userId,
-      action: STUDY_USAGE_ACTION,
-      createdAt: { gte: dayStartUtc() },
-    },
-    select: { metadata: true },
-  });
-  return sumServedFromLogs(logs);
+  return sumQuestionsServedSince(userId, dayStartUtc());
 }
 
 export async function countQuestionsServedSince(
   userId: string,
   since: Date
 ): Promise<number> {
-  const logs = await prisma.activityLog.findMany({
-    where: {
-      userId,
-      action: STUDY_USAGE_ACTION,
-      createdAt: { gte: since },
-    },
-    select: { metadata: true },
-  });
-  return sumServedFromLogs(logs);
+  return sumQuestionsServedSince(userId, since);
+}
+
+function invalidateUsageSnapshotCache(userId: string): void {
+  for (const key of snapshotCache.keys()) {
+    if (key.startsWith(`${userId}:`)) snapshotCache.delete(key);
+  }
 }
 
 async function freePeriodStart(userId: string): Promise<Date> {
@@ -127,39 +167,50 @@ export async function countTrialMocks(userId: string): Promise<number> {
 
 export async function countTrialFullAdaptiveExams(userId: string): Promise<number> {
   const since = await trialPeriodStart(userId);
-  const sessions = await prisma.examSession.findMany({
-    where: {
-      userId,
-      createdAt: { gte: since },
-    },
-    select: { analysis: true },
-  });
+  try {
+    return await prisma.examSession.count({
+      where: {
+        userId,
+        createdAt: { gte: since },
+        analysis: {
+          path: ["sessionConfig", "lengthPreset"],
+          equals: "full",
+        },
+      },
+    });
+  } catch {
+    const sessions = await prisma.examSession.findMany({
+      where: {
+        userId,
+        createdAt: { gte: since },
+      },
+      select: { analysis: true },
+    });
 
-  return sessions.filter((session) => {
-    const analysis = session.analysis as { sessionConfig?: { lengthPreset?: string } } | null;
-    return analysis?.sessionConfig?.lengthPreset === "full";
-  }).length;
+    return sessions.filter((session) => {
+      const analysis = session.analysis as {
+        sessionConfig?: { lengthPreset?: string };
+      } | null;
+      return analysis?.sessionConfig?.lengthPreset === "full";
+    }).length;
+  }
 }
 
-export type StudyUsageSnapshot = {
-  plan: StudyUsagePlan;
-  limits: StudyUsageLimits;
-  usedToday: number;
-  remainingToday: number | null;
-  usedTrialTotal: number | null;
-  remainingTrialTotal: number | null;
-  mockExamsThisMonth: number;
-  usedTrialMocks: number | null;
-  remainingTrialMocks: number | null;
-  usedTrialFullAdaptive: number | null;
-  remainingTrialFullAdaptive: number | null;
+export type StudyUsageSnapshotOptions = {
+  /**
+   * When false, skip mock / full-adaptive counters (question gates don't need them).
+   * Default true for the usage API banner.
+   */
+  includeMockCounters?: boolean;
 };
 
 export async function getStudyUsageSnapshot(
-  access: UserAccess
+  access: UserAccess,
+  options?: StudyUsageSnapshotOptions
 ): Promise<StudyUsageSnapshot> {
   const plan = resolveStudyUsagePlan(access);
   const limits = STUDY_USAGE_LIMITS[plan];
+  const includeMockCounters = options?.includeMockCounters !== false;
 
   if (!planHasQuestionAccessLimits(plan)) {
     return {
@@ -177,49 +228,70 @@ export async function getStudyUsageSnapshot(
     };
   }
 
-  const usedToday = await countQuestionsServedToday(access.userId);
+  const cacheKey = `${access.userId}:${plan}:${includeMockCounters ? "full" : "lite"}`;
+  const cached = snapshotCache.get(cacheKey);
+  if (cached && cached.expires > Date.now()) {
+    return cached.value;
+  }
+
+  const needsLifetime =
+    (plan === "trial" || plan === "free") && limits.trialLifetimeQuestions != null;
+  const needsTrialMocks =
+    includeMockCounters && plan === "trial" && limits.trialMockAllowance != null;
+  const needsFullAdaptive =
+    includeMockCounters &&
+    plan === "trial" &&
+    limits.trialFullAdaptiveAllowance != null;
+
+  const [
+    usedToday,
+    usedTrialTotal,
+    usedTrialMocks,
+    usedTrialFullAdaptive,
+    mockExamsThisMonth,
+  ] = await Promise.all([
+    countQuestionsServedToday(access.userId),
+    needsLifetime
+      ? lifetimeUsagePeriodStart(access.userId, plan).then((since) =>
+          countQuestionsServedSince(access.userId, since)
+        )
+      : Promise.resolve(null as number | null),
+    needsTrialMocks
+      ? countTrialMocks(access.userId)
+      : Promise.resolve(null as number | null),
+    needsFullAdaptive
+      ? countTrialFullAdaptiveExams(access.userId)
+      : Promise.resolve(null as number | null),
+    includeMockCounters
+      ? countMockExamsThisMonth(access.userId)
+      : Promise.resolve(0),
+  ]);
+
   const remainingToday =
     limits.dailyQuestions == null
       ? null
       : Math.max(0, limits.dailyQuestions - usedToday);
 
-  let usedTrialTotal: number | null = null;
-  let remainingTrialTotal: number | null = null;
-  if (
-    (plan === "trial" || plan === "free") &&
-    limits.trialLifetimeQuestions != null
-  ) {
-    const since = await lifetimeUsagePeriodStart(access.userId, plan);
-    usedTrialTotal = await countQuestionsServedSince(access.userId, since);
-    remainingTrialTotal = Math.max(0, limits.trialLifetimeQuestions - usedTrialTotal);
-  }
+  const remainingTrialTotal =
+    usedTrialTotal != null && limits.trialLifetimeQuestions != null
+      ? Math.max(0, limits.trialLifetimeQuestions - usedTrialTotal)
+      : null;
 
-  let usedTrialMocks: number | null = null;
-  let remainingTrialMocks: number | null = null;
-  if (plan === "trial" && limits.trialMockAllowance != null) {
-    usedTrialMocks = await countTrialMocks(access.userId);
-    remainingTrialMocks = Math.max(0, limits.trialMockAllowance - usedTrialMocks);
-  }
+  const remainingTrialMocks =
+    usedTrialMocks != null && limits.trialMockAllowance != null
+      ? Math.max(0, limits.trialMockAllowance - usedTrialMocks)
+      : null;
 
-  let usedTrialFullAdaptive: number | null = null;
-  let remainingTrialFullAdaptive: number | null = null;
-  if (plan === "trial" && limits.trialFullAdaptiveAllowance != null) {
-    usedTrialFullAdaptive = await countTrialFullAdaptiveExams(access.userId);
-    remainingTrialFullAdaptive = Math.max(
-      0,
-      limits.trialFullAdaptiveAllowance - usedTrialFullAdaptive
-    );
-  }
+  const remainingTrialFullAdaptive =
+    usedTrialFullAdaptive != null && limits.trialFullAdaptiveAllowance != null
+      ? Math.max(0, limits.trialFullAdaptiveAllowance - usedTrialFullAdaptive)
+      : null;
 
-  const mockExamsThisMonth = planHasQuestionAccessLimits(plan)
-    ? await countMockExamsThisMonth(access.userId)
-    : 0;
-
-  return {
+  const snapshot: StudyUsageSnapshot = {
     plan,
     limits,
-    usedToday: planHasQuestionAccessLimits(plan) ? usedToday : 0,
-    remainingToday: planHasQuestionAccessLimits(plan) ? remainingToday : null,
+    usedToday,
+    remainingToday,
     usedTrialTotal,
     remainingTrialTotal,
     mockExamsThisMonth,
@@ -228,6 +300,13 @@ export async function getStudyUsageSnapshot(
     usedTrialFullAdaptive,
     remainingTrialFullAdaptive,
   };
+
+  snapshotCache.set(cacheKey, {
+    expires: Date.now() + SNAPSHOT_CACHE_TTL_MS,
+    value: snapshot,
+  });
+
+  return snapshot;
 }
 
 export type StudyUsageCheckInput = {
@@ -263,7 +342,12 @@ export async function checkStudyQuestionUsage(
 ): Promise<StudyUsageCheckResult> {
   const plan = resolveStudyUsagePlan(input.access);
   const limits = STUDY_USAGE_LIMITS[plan];
-  const snapshot = await getStudyUsageSnapshot(input.access);
+  const needMockCounters = Boolean(
+    input.shortMock || input.fullLengthMock || input.fullAdaptiveMock
+  );
+  const snapshot = await getStudyUsageSnapshot(input.access, {
+    includeMockCounters: needMockCounters,
+  });
   const timed = input.timedExam ?? false;
 
   if (input.adaptive && !limits.allowAdaptive) {
@@ -513,6 +597,7 @@ export async function recordStudyQuestionsServed(
 ): Promise<void> {
   if (count <= 0) return;
   if (plan && !planHasQuestionAccessLimits(plan)) return;
+  invalidateUsageSnapshotCache(userId);
   await logActivity({
     userId,
     action: STUDY_USAGE_ACTION,

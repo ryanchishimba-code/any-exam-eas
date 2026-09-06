@@ -22,6 +22,7 @@ import {
 } from "@/lib/full-exam/launch-modes";
 import { resolveSmartExamSelection } from "@/lib/full-exam/smart-exam-selection";
 import { loadBankItemsByIds } from "@/lib/full-exam/load-bank-items-by-ids";
+import { loadFullExamSessionQuestionsPayload } from "@/lib/full-exam/load-session-questions";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -91,11 +92,22 @@ export async function POST(req: Request) {
     });
 
     if (smart.resumeSessionId) {
+      // Prefetch questions into the start response so Continue Learning paints instantly.
+      const loaded = await loadFullExamSessionQuestionsPayload(
+        premium.userId,
+        smart.resumeSessionId
+      );
       return NextResponse.json({
         sessionId: smart.resumeSessionId,
         redirectUrl: fullExamSessionHref(examSlug, smart.resumeSessionId),
         resumed: true,
         launchMode,
+        ...(loaded.ok
+          ? {
+              questions: loaded.payload.questions,
+              bankItemIds: loaded.payload.bankItemIds,
+            }
+          : {}),
       });
     }
 

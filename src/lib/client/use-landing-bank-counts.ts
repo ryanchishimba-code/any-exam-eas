@@ -19,12 +19,22 @@ export function useLandingBankCounts(initial: LandingBankCountsDisplay): Landing
       .then((response) => (response.ok ? response.json() : null))
       .then((data: BankCountsApiResponse | null) => {
         if (cancelled || !data || data.degraded || data.error) return;
-        setBankCounts({
-          totalLabel: data.totalLabel,
-          totalQuestionsLabel: data.totalQuestionsLabel,
-          totalServed: data.totalServed,
-          exams: data.exams,
-          degraded: false,
+        setBankCounts((prev) => {
+          // Skip re-render when live totals match the published floor (no flicker).
+          if (
+            prev.totalLabel === data.totalLabel &&
+            prev.totalQuestionsLabel === data.totalQuestionsLabel &&
+            prev.totalServed === data.totalServed
+          ) {
+            return prev;
+          }
+          return {
+            totalLabel: data.totalLabel,
+            totalQuestionsLabel: data.totalQuestionsLabel,
+            totalServed: data.totalServed,
+            exams: data.exams,
+            degraded: false,
+          };
         });
       })
       .catch(() => {

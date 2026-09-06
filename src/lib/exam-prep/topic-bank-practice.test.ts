@@ -137,6 +137,12 @@ describe("topic bank practice helpers", () => {
   it("requests a large enough sample pool for 100Q sessions", () => {
     expect(resolveTopicBankSampleCount(100)).toBeGreaterThanOrEqual(500);
   });
+
+  it("uses a smaller pool for adaptive selection", () => {
+    expect(resolveTopicBankSampleCount(25, "selection")).toBe(75);
+    expect(resolveTopicBankSampleCount(10, "selection")).toBe(48);
+    expect(resolveTopicBankSampleCount(50, "selection")).toBe(120);
+  });
 });
 
 describe("topic bank practice — all exams", () => {

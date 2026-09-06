@@ -1,23 +1,14 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { getExamSession } from "@/lib/exam-sessions/service";
 import { requirePremiumApi } from "@/lib/api-access";
 import { respondDbUnavailable } from "@/lib/api-db-error";
-import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
-import { filterBankRowsForPracticeField } from "@/lib/edtech/exam-item-scope";
-import { resolveCanonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
-import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
-import type { FullExamSessionConfig } from "@/types/full-exam";
+import { resolveCanonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
+import { getExamSession } from "@/lib/exam-sessions/service";
+import { loadFullExamSessionQuestionsPayload } from "@/lib/full-exam/load-session-questions";
 
 export const runtime = "nodejs";
 export const maxDuration = 120;
-
-type SessionAnalysis = {
-  sessionConfig?: FullExamSessionConfig;
-  prefetchedQuestionIds?: string[];
-};
 
 export async function GET(
   _req: Request,
@@ -73,52 +64,15 @@ export async function GET(
       );
     }
 
-    const analysis = (session.analysis ?? {}) as SessionAnalysis;
-    const config = analysis.sessionConfig;
-    const ids = analysis.prefetchedQuestionIds ?? [];
-    const limit = config?.questionCount ?? session.questionCount;
-
-    if (!resolvedFieldId || !limit || ids.length === 0) {
+    const loaded = await loadFullExamSessionQuestionsPayload(premium.userId, sessionId);
+    if (!loaded.ok) {
       return NextResponse.json(
-        { error: "Session questions are not prefetched.", code: "SESSION_QUESTIONS_MISSING" },
-        { status: 404 }
+        { error: loaded.error, code: loaded.code },
+        { status: loaded.status }
       );
     }
 
-    const rows = filterBankRowsForPracticeField(
-      await prisma.questionBankItem.findMany({
-        where: { id: { in: ids } },
-      }),
-      resolvedFieldId
-    );
-    const byId = new Map(rows.map((row) => [row.id, row]));
-    const items = ids
-      .map((id) => {
-        const row = byId.get(id);
-        return row ? enrichBankItemFromRow(row) : null;
-      })
-      .filter((item): item is NonNullable<typeof item> => item != null);
-
-    if (items.length < limit) {
-      return NextResponse.json(
-        { error: "Stored session questions are unavailable.", code: "SESSION_QUESTIONS_MISSING" },
-        { status: 503 }
-      );
-    }
-
-    const clientPayload = preparedTimedExamItemsForClient(
-      resolvedFieldId,
-      resolvedFieldId,
-      items,
-      limit
-    );
-
-    return NextResponse.json({
-      fieldId: resolvedFieldId,
-      questions: clientPayload.questions,
-      bankItemIds: clientPayload.bankItemIds,
-      requested: limit,
-    });
+    return NextResponse.json(loaded.payload);
   } catch (e) {
     const dbResponse = respondDbUnavailable(e);
     if (dbResponse) return dbResponse;

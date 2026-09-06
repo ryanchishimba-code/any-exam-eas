@@ -25,7 +25,14 @@ export function supportsTopicBankPractice(fieldId: string): boolean {
 }
 
 /** DB pull size — large enough to survive runtime gates without template-stem collapse. */
-export function resolveTopicBankSampleCount(limit: number): number {
+export function resolveTopicBankSampleCount(
+  limit: number,
+  mode: "session" | "selection" = "session"
+): number {
+  if (mode === "selection") {
+    // Adaptive/selection only needs a modest ranked pool, not a full session oversample.
+    return Math.min(120, Math.max(limit * 3, 48));
+  }
   return Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(limit * 6, 80));
 }
 
@@ -516,9 +523,18 @@ export async function gatherTopicBankSessionPool(params: {
   panceTopic?: string;
   aanpFnpTopic?: string;
   nptePtTopic?: string;
+  /**
+   * `selection` = smaller pool for adaptive ranking (faster).
+   * Default `session` keeps exact-count session oversampling.
+   */
+  poolMode?: "session" | "selection";
 }): Promise<BankItem[]> {
-  const poolTarget = resolveTopicBankSampleCount(params.sessionLimit);
-  const minVetted = Math.min(poolTarget, params.sessionLimit + 40);
+  const poolMode = params.poolMode ?? "session";
+  const poolTarget = resolveTopicBankSampleCount(params.sessionLimit, poolMode);
+  const minVetted =
+    poolMode === "selection"
+      ? params.sessionLimit
+      : Math.min(poolTarget, params.sessionLimit + 40);
   const blueprintTopics = params.blueprintTopics?.filter(Boolean);
 
   const seen = new Set<string>();

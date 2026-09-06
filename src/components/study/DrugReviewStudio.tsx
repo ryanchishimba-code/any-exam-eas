@@ -24,6 +24,7 @@ import { getDrugSearchHitById, type DrugSearchHit } from "@/lib/drugs300/search"
 import { useFdaDrugSearchIndex } from "@/hooks/useFdaDrugSearchIndex";
 import { EndActivityControl } from "./EndActivityControl";
 import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
+import { DrugReviewStudioSkeleton } from "./DrugReviewStudioSkeleton";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 
@@ -102,19 +103,40 @@ export function DrugReviewStudio() {
     setError("");
     setCardsError("");
     try {
-      const progressRes = await fetch("/api/drugs300/progress");
-      const progressData = await progressRes.json();
+      // Parallel: progress + due cards so the flashcard paints sooner above the fold.
+      const dueParams = new URLSearchParams({ class: activeClass });
+      if (activeClass === "all") dueParams.set("limit", "50");
+
+      const [progressRes, dueRes] = await Promise.all([
+        fetch("/api/drugs300/progress"),
+        fetch(`/api/drugs300/due?${dueParams.toString()}`),
+      ]);
+      const [progressData, dueData] = await Promise.all([
+        progressRes.json(),
+        dueRes.json(),
+      ]);
+
       if (!progressRes.ok) {
         throw new Error(progressData.error ?? progressData.message ?? "Failed to load progress");
       }
       setDashboard(progressData);
-      await loadCards(activeClass, progressData.classProgress);
+
+      if (!dueRes.ok) {
+        setCardsError(dueData.error ?? dueData.message ?? "Failed to load cards");
+        setCards([]);
+      } else {
+        setCards(dueData.cards ?? []);
+        setIndex(0);
+        setFlipped(false);
+        setMnemonic(null);
+        setCardsError("");
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : "Error loading drug review");
     } finally {
       setLoading(false);
     }
-  }, [activeClass, loadCards]);
+  }, [activeClass]);
 
   useEffect(() => {
     void load();
@@ -203,12 +225,7 @@ export function DrugReviewStudio() {
   }
 
   if (loading) {
-    return (
-      <div className="mt-8 space-y-4">
-        <div className="aee-drugs-skeleton h-32 rounded-2xl" />
-        <div className="aee-drugs-skeleton h-[420px] rounded-3xl" />
-      </div>
-    );
+    return <DrugReviewStudioSkeleton />;
   }
 
   if (!dashboard) {

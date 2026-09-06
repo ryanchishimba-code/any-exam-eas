@@ -83,7 +83,16 @@ export function ExamLaunchActions({
     { at: 35, label: "Working on it — almost ready…" },
     { at: 60, label: "Still working on it — hang tight…" },
   ];
-  const startProgress = useLongRunningProgress(pending, { steps: startSteps });
+  const continueSteps = [
+    { at: 0, label: "Resuming your exam…" },
+    { at: 25, label: "Loading your saved progress…" },
+  ];
+  const startProgress = useLongRunningProgress(pending, {
+    steps:
+      pendingMode === "continue_learning" && canContinue
+        ? continueSteps
+        : startSteps,
+  });
 
   const start = useCallback(
     async (launchMode: FullExamLaunchMode) => {
@@ -109,6 +118,7 @@ export function ExamLaunchActions({
           sessionId?: string;
           redirectUrl?: string;
           error?: string;
+          resumed?: boolean;
           questions?: ExamQuestion[];
           bankItemIds?: string[];
         };
@@ -132,6 +142,11 @@ export function ExamLaunchActions({
             questions: data.questions,
             bankItemIds: data.bankItemIds,
           });
+        }
+        // Resume already has answers on the server — navigate immediately.
+        if (data.resumed) {
+          router.replace(href);
+          return;
         }
         router.prefetch(href);
         router.push(href);

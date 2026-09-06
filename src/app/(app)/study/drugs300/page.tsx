@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
 import { getCachedSession } from "@/lib/auth/session";
-import { Skeleton } from "@/components/ui/skeleton";
+import { DrugReviewStudioSkeleton } from "@/components/study/DrugReviewStudioSkeleton";
 import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { studyUi } from "@/lib/study/study-ui";
@@ -19,13 +19,7 @@ export const maxDuration = 60;
 const DrugReviewStudio = dynamic(
   () => import("@/components/study/DrugReviewStudio").then((m) => m.DrugReviewStudio),
   {
-    loading: () => (
-      <div className="mt-6 space-y-4">
-        <Skeleton className="h-12 rounded-2xl" />
-        <Skeleton className="h-32 rounded-2xl" />
-        <Skeleton className="h-[420px] rounded-3xl" />
-      </div>
-    ),
+    loading: () => <DrugReviewStudioSkeleton />,
   }
 );
 

@@ -16,8 +16,13 @@ export const maxDuration = 60;
 
 function ExamSessionSkeleton() {
   return (
-    <div className="mx-auto w-full max-w-4xl space-y-4 px-4 py-6">
-      <Skeleton className="h-8 w-48" />
+    <div
+      className="mx-auto w-full max-w-4xl space-y-4 px-4 py-6"
+      aria-busy="true"
+      aria-label="Loading exam session"
+    >
+      <Skeleton className="h-3 w-28 rounded-full" />
+      <Skeleton className="h-8 w-48 rounded-xl" />
       <Skeleton className="h-[70vh] w-full rounded-2xl" />
     </div>
   );

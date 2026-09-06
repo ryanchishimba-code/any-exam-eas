@@ -53,24 +53,41 @@ export async function loadWeaknessScores(
   fieldId: string,
   tags: string[]
 ): Promise<Map<string, number>> {
+  const uniqueTags = [...new Set(tags.map((t) => t.toLowerCase()).filter(Boolean))];
+  if (uniqueTags.length === 0) return new Map();
+
+  const conceptKeys = uniqueTags.flatMap((tag) => [
+    tag,
+    `tag:${tag}`,
+    `subject:${tag}`,
+  ]);
+
   const masteries = await prisma.conceptMastery.findMany({
-    where: { userId, fieldId },
+    where: {
+      userId,
+      fieldId,
+      conceptKey: { in: conceptKeys },
+    },
   });
 
+  const byKey = new Map(
+    masteries.map((m) => [m.conceptKey.toLowerCase(), m] as const)
+  );
+
   const map = new Map<string, number>();
-  for (const tag of tags) {
-    const key = tag.toLowerCase();
-    const concept = masteries.find(
-      (m) =>
-        m.conceptKey.toLowerCase() === key ||
-        m.conceptKey.toLowerCase() === `tag:${key}` ||
-        m.conceptKey.toLowerCase() === `subject:${key}`
-    );
+  for (const tag of uniqueTags) {
+    const concept =
+      byKey.get(tag) ??
+      byKey.get(`tag:${tag}`) ??
+      byKey.get(`subject:${tag}`);
     if (concept && concept.attempts > 0) {
       const missRate = 1 - concept.correct / concept.attempts;
-      map.set(key, Math.min(1, missRate * 0.7 + (100 - concept.masteryScore) / 100 * 0.3));
+      map.set(
+        tag,
+        Math.min(1, missRate * 0.7 + ((100 - concept.masteryScore) / 100) * 0.3)
+      );
     } else {
-      map.set(key, 0.25);
+      map.set(tag, 0.25);
     }
   }
   return map;
