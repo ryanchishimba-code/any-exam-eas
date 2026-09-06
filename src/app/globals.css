@@ -710,7 +710,7 @@ body {
     --db-ready-strong-text: #5eead4;
     --db-ready-review-text: #fcd34d;
     --db-ready-focus-text: #c7d2fe;
-    --db-ready-track: color-mix(in srgb, var(--color-border) 80%, #1e293b);
+    --db-ready-track: color-mix(in srgb, #94a3b8 28%, #0b1220);
   }
 }
 
@@ -724,7 +724,7 @@ body {
   --db-ready-strong-text: #5eead4;
   --db-ready-review-text: #fcd34d;
   --db-ready-focus-text: #c7d2fe;
-  --db-ready-track: color-mix(in srgb, var(--color-border) 80%, #1e293b);
+  --db-ready-track: color-mix(in srgb, #94a3b8 28%, #0b1220);
 }
 
 .dashboard-ui::before {

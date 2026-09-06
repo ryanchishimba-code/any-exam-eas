@@ -312,6 +312,7 @@ export function StudyBankPractice({
   const autostartAttempted = useRef(false);
   const zeroPoolFallbackAppliedRef = useRef(false);
   const fetchGenerationRef = useRef(0);
+  const examScopeSeenRef = useRef<string | null>(null);
   const [examSwitching, setExamSwitching] = useState(false);
   const topicReturnTo = useMemo(
     () => parsePracticeReturn(searchParams),
@@ -347,8 +348,18 @@ export function StudyBankPractice({
   useExamFieldSessionReset(examScopeKey, resetPracticeSession);
 
   useEffect(() => {
-    setExamSwitching(true);
-  }, [examScopeKey]);
+    const prev = examScopeSeenRef.current;
+    examScopeSeenRef.current = examScopeKey;
+    // First paint with server-seeded counts: keep the launcher visible.
+    if (prev === null && initialSubjectCounts) {
+      setExamSwitching(false);
+      return;
+    }
+    // Real exam/field change after mount: show switching skeleton briefly.
+    if (prev !== null && prev !== examScopeKey) {
+      setExamSwitching(true);
+    }
+  }, [examScopeKey, initialSubjectCounts]);
 
   const {
     data: subjectCounts = null,

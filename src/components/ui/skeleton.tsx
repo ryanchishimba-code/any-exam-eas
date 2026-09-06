@@ -7,7 +7,7 @@ export function Skeleton({
   return (
     <div
       className={cn(
-        "animate-pulse rounded-lg bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100",
+        "animate-pulse rounded-lg bg-[color-mix(in_srgb,var(--color-ink)_8%,var(--color-surface))]",
         className
       )}
       aria-hidden

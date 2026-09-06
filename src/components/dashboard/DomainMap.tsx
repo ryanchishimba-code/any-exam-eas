@@ -104,7 +104,7 @@ export function DomainMap({
   return (
     <div className={cn("space-y-3", className)}>
       <ul
-        className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] font-medium text-[var(--color-ink-muted)]"
+        className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-medium text-[var(--color-ink)]/75"
         aria-label="Readiness legend"
       >
         {(
@@ -115,7 +115,7 @@ export function DomainMap({
           ] as const
         ).map(([key, label]) => (
           <li key={key} className="inline-flex items-center gap-1.5">
-            <span className={cn("h-2 w-2 rounded-full", STATUS_DOT[key])} aria-hidden />
+            <span className={cn("h-2.5 w-2.5 rounded-full", STATUS_DOT[key])} aria-hidden />
             {label}
           </li>
         ))}
@@ -135,8 +135,8 @@ export function DomainMap({
           return (
             <li
               key={tile.id}
-              style={{ animationDelay: `${Math.min(index, 10) * 35}ms` }}
-              className="apple-animate-in"
+              style={{ animationDelay: `${Math.min(index, 10) * 25}ms` }}
+              className="motion-safe:apple-animate-in"
             >
               <Link
                 href={tile.practiceHref}
@@ -161,7 +161,7 @@ export function DomainMap({
                     >
                       {name}
                     </span>
-                    <span className="shrink-0 rounded-full bg-[var(--color-border)]/35 px-1.5 py-0.5 text-[10px] font-semibold tabular-nums text-[var(--color-ink-muted)]">
+                    <span className="shrink-0 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-1.5 py-0.5 text-[10px] font-semibold tabular-nums text-[var(--color-ink)]">
                       {tile.weightPct}%
                     </span>
                     {tile.highlighted ? (
@@ -173,8 +173,8 @@ export function DomainMap({
 
                   <div
                     className={cn(
-                      "mt-1.5 h-2.5 overflow-hidden rounded-full bg-[var(--db-ready-track)]",
-                      isFull && "h-3 mt-2"
+                      "mt-1.5 h-3 overflow-hidden rounded-full bg-[var(--db-ready-track)]",
+                      isFull && "h-3.5 mt-2"
                     )}
                     role="presentation"
                   >
@@ -206,7 +206,7 @@ export function DomainMap({
                   </span>
                   <span
                     className={cn(
-                      "text-[10px] font-semibold uppercase tracking-wide",
+                      "text-[11px] font-semibold uppercase tracking-wide",
                       STATUS_TEXT[tile.status]
                     )}
                   >

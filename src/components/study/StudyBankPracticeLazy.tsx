@@ -1,25 +1,13 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useEffect, type ComponentProps } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
+import { StudyBankPractice } from "./StudyBankPractice";
 
-function StudyBankPracticeSkeleton() {
-  return (
-    <div className="question-bank-ui mx-auto w-full min-w-0 max-w-5xl space-y-5 pb-10">
-      <Skeleton className="h-28 w-full rounded-2xl" />
-      <Skeleton className="h-10 w-48 rounded-xl" />
-      <Skeleton className="h-64 w-full rounded-2xl" />
-      <Skeleton className="h-40 w-full rounded-2xl" />
-    </div>
-  );
-}
-
-const StudyBankPractice = dynamic(
-  () => import("./StudyBankPractice").then((m) => m.StudyBankPractice),
-  { loading: () => <StudyBankPracticeSkeleton /> }
-);
-
+/**
+ * Thin wrapper around StudyBankPractice.
+ * Static import keeps the hub in the main bundle so first paint is the real UI
+ * (not an empty dynamic() chunk wait). Session player stays code-split inside.
+ */
 export function StudyBankPracticeLazy(
   props: ComponentProps<typeof StudyBankPractice>
 ) {
