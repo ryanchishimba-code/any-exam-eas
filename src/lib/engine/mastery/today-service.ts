@@ -23,6 +23,7 @@ import {
   naplexDomainById,
   naplexDomainByNumber,
 } from "@/lib/pharmacy/naplex-outline-2025";
+import { isNaplexPriorityDrug } from "@/lib/pharmacy/naplex-priority-drugs";
 
 function distanceBelowBar(
   state: SessionCandidate["cellState"],
@@ -300,6 +301,9 @@ export async function buildNaplexTodayForUser(input: {
           snap.recentTutor.length
         : null;
 
+    const priorityDrug = (tags.drugIds ?? []).some((id) => isNaplexPriorityDrug(id));
+    const below = distanceBelowBar(snap.state, tutorAcc);
+
     candidates.push({
       questionId: item.id,
       bankItemId: item.id,
@@ -309,9 +313,12 @@ export async function buildNaplexTodayForUser(input: {
         cellDef?.blueprintWeight ??
         naplexDomainById(systemKey)?.blueprintWeight ??
         40,
-      distanceBelowBar: distanceBelowBar(snap.state, tutorAcc),
+      distanceBelowBar: priorityDrug ? Math.min(1, below + 0.12) : below,
       cellState: snap.state,
-      highYield: (item.qualityScore ?? 0) >= 0.75 || Boolean(tags.primerCardId),
+      highYield:
+        (item.qualityScore ?? 0) >= 0.75 ||
+        Boolean(tags.primerCardId) ||
+        priorityDrug,
       dueForSpacing: dueKeys.has(item.id),
       tags: {
         ...tags,
