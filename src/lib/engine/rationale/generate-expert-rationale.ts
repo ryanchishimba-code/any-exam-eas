@@ -246,7 +246,9 @@ async function generateExpertRationaleWithPrompts(
 
       if (!quality.ok && attempt < maxRetries) continue;
 
-      const assembled = assembleExpertRationale(withVisuals);
+      const assembled = assembleExpertRationale(withVisuals, {
+        board: board === "usmle" ? "usmle" : "nclex",
+      });
       return {
         structured: withVisuals,
         assembled,
@@ -310,7 +312,7 @@ function augmentExpertVisualBlocks(expert: ExpertStructuredRationale): ExpertStr
   if (expert.stepByStepReasoning.length >= 3 && !blocks.some((b) => b.kind === "flow")) {
     blocks.push({
       kind: "flow",
-      title: "Clinical judgment pathway",
+      title: "Clinical reasoning pathway",
       steps: expert.stepByStepReasoning,
     });
   }

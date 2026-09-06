@@ -79,6 +79,14 @@ describe("expert rationale assembly", () => {
     expect(out.expert).toBe(SAMPLE);
   });
 
+  it("uses USMLE clinical labels when assembling for usmle board", () => {
+    const out = assembleExpertRationale(SAMPLE, { board: "usmle" });
+    expect(out.explanation).toContain("## Educational objective");
+    expect(out.explanation).toContain("## Clinical reasoning pathway");
+    expect(out.explanation).toContain("## Real-world clinical application");
+    expect(out.explanation).not.toContain("## Real-world nursing application");
+  });
+
   it("parses expert JSON for UI display", () => {
     const assembled = assembleExpertRationale(SAMPLE);
     const parsed = parseExpertRationaleForDisplay(SAMPLE);

@@ -10,6 +10,7 @@ import type { ExpertStructuredRationale } from "@/lib/engine/rationale/expert-ra
 import { cleanOptionText } from "@/lib/question-format";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { RationaleVisualPanel } from "./RationaleVisualPanel";
+import { isUsmleField } from "./UsmleFormats";
 import { cn } from "@/lib/utils";
 import {
   Beaker,
@@ -83,12 +84,18 @@ function ExpertSection({
   );
 }
 
-function CoreRationaleBody({ parsed }: { parsed: ParsedRationaleDisplay }) {
+function CoreRationaleBody({
+  parsed,
+  hideHeadline = false,
+}: {
+  parsed: ParsedRationaleDisplay;
+  hideHeadline?: boolean;
+}) {
   const conceptBullets = parsed.conceptBullets ?? [];
   const wrongOptions = parsed.wrongOptions ?? [];
   return (
     <>
-      {parsed.whyCorrectHeadline && (
+      {!hideHeadline && parsed.whyCorrectHeadline && (
         <p className="text-sm leading-relaxed text-[var(--color-ink)]">
           {renderInlineBold(parsed.whyCorrectHeadline)}
         </p>
@@ -162,6 +169,7 @@ export function ExpertRationalePanel({
   }, [expertRationale, question.explanation]);
 
   const showExpertToggle = parsed.isExpert || Boolean(expertRationale);
+  const usmle = isUsmleField(question.field ?? "");
 
   if (!parsed.isStructured && !expertRationale) {
     return (
@@ -200,15 +208,35 @@ export function ExpertRationalePanel({
       ) : null}
 
       {parsed.visualBlocks.length > 0 ? (
-        <RationaleVisualPanel blocks={parsed.visualBlocks} />
+        <div className="space-y-1.5">
+          <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            {usmle ? "Labs & clinical pathways" : "Visual aids"}
+          </p>
+          <RationaleVisualPanel blocks={parsed.visualBlocks} />
+        </div>
       ) : null}
 
-      <CoreRationaleBody parsed={parsed} />
+      {usmle && parsed.whyCorrectHeadline ? (
+        <div className="rounded-xl border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/5 px-3 py-2.5">
+          <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent)]">
+            Educational objective
+          </p>
+          <p className="mt-1 text-sm font-medium leading-relaxed text-[var(--color-ink)]">
+            {renderInlineBold(parsed.whyCorrectHeadline)}
+          </p>
+        </div>
+      ) : null}
+
+      <CoreRationaleBody parsed={parsed} hideHeadline={usmle} />
 
       {depth === "expert" && parsed.isExpert ? (
         <div className="space-y-3 border-t border-[var(--color-border)]/40 pt-3">
           {parsed.stepByStepReasoning.length > 0 ? (
-            <ExpertSection title="Step-by-step reasoning" icon={ListOrdered} defaultOpen>
+            <ExpertSection
+              title={usmle ? "Clinical reasoning pathway" : "Step-by-step reasoning"}
+              icon={ListOrdered}
+              defaultOpen
+            >
               <ol className="list-decimal space-y-2 pl-4 text-sm leading-relaxed text-[var(--color-ink-muted)]">
                 {parsed.stepByStepReasoning.map((step) => (
                   <li key={step}>{renderInlineBold(step)}</li>
@@ -262,7 +290,11 @@ export function ExpertRationalePanel({
           ) : null}
 
           {parsed.realWorldApplication ? (
-            <ExpertSection title="Real-world nursing application" icon={Stethoscope} defaultOpen={false}>
+            <ExpertSection
+              title={usmle ? "Real-world clinical application" : "Real-world nursing application"}
+              icon={Stethoscope}
+              defaultOpen={false}
+            >
               <p className="text-sm leading-relaxed text-[var(--color-ink)]">{parsed.realWorldApplication}</p>
             </ExpertSection>
           ) : null}

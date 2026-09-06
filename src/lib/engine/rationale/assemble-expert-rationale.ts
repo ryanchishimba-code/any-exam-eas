@@ -1,5 +1,5 @@
 /**
- * Assemble expert NCLEX rationales into storage + display formats.
+ * Assemble expert rationales into storage + display formats (NCLEX + USMLE).
  */
 import type { ExpertStructuredRationale } from "./expert-rationale-types";
 import { assembleStructuredRationale, type AssembledRationale } from "./assemble-rationale";
@@ -10,6 +10,8 @@ export type AssembledExpertRationale = AssembledRationale & {
   concisePreview: string;
 };
 
+export type ExpertAssembleBoard = "nclex" | "usmle" | "generic";
+
 function section(title: string, body: string): string {
   if (!body.trim()) return "";
   return `## ${title}\n\n${body.trim()}`;
@@ -19,8 +21,22 @@ function bulletList(items: string[]): string {
   return items.map((i) => (i.startsWith("•") ? i : `• ${i}`)).join("\n");
 }
 
+function realWorldSectionTitle(board: ExpertAssembleBoard): string {
+  if (board === "usmle") return "Real-world clinical application";
+  if (board === "nclex") return "Real-world nursing application";
+  return "Real-world application";
+}
+
+function reasoningSectionTitle(board: ExpertAssembleBoard): string {
+  return board === "usmle" ? "Clinical reasoning pathway" : "Step-by-step reasoning";
+}
+
 /** Full markdown explanation with all expert sections. */
-export function assembleExpertRationale(expert: ExpertStructuredRationale): AssembledExpertRationale {
+export function assembleExpertRationale(
+  expert: ExpertStructuredRationale,
+  opts?: { board?: ExpertAssembleBoard }
+): AssembledExpertRationale {
+  const board = opts?.board ?? "nclex";
   const base = assembleStructuredRationale(expert);
 
   const stepsBlock =
@@ -29,7 +45,8 @@ export function assembleExpertRationale(expert: ExpertStructuredRationale): Asse
       : "";
 
   const expertSections = [
-    section("Step-by-step reasoning", stepsBlock),
+    board === "usmle" ? section("Educational objective", expert.whyCorrect.headline) : "",
+    section(reasoningSectionTitle(board), stepsBlock),
     section("Clinical pearl", expert.clinicalPearl),
     expert.pharmacologyTieIn?.trim()
       ? section("Pharmacology tie-in", expert.pharmacologyTieIn)
@@ -44,7 +61,7 @@ export function assembleExpertRationale(expert: ExpertStructuredRationale): Asse
       ? section("Next step in care", expert.nextStepInCare)
       : "",
     section("Test-taking tip", expert.testTakingTip),
-    section("Real-world nursing application", expert.realWorldApplication),
+    section(realWorldSectionTitle(board), expert.realWorldApplication),
     expert.layeredDepth
       ? section(
           "Layered depth",

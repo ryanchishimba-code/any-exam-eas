@@ -53,8 +53,16 @@ npm run db:enrich-board-expert -- --field usmle-step-2 --serve-only --limit 100 
 
 Report: `artifacts/board-expert-rationale-report.json`
 
-On generate (optional): set `RATIONALE_ENRICH_ON_GENERATE=1` so new USMLE items call `maybeEnrichExpertBankItemRationale`.
+**On generate:** set `RATIONALE_ENRICH_ON_GENERATE=1` so new USMLE full-exam pipeline items call `maybeEnrichExpertBankItemRationale` (wired in `generation-pipeline.ts`).
 
+## UI labels (USMLE vs NCLEX)
+
+| Section | USMLE | NCLEX |
+|---------|-------|-------|
+| Objective | Educational objective | (headline in why-correct) |
+| Reasoning | Clinical reasoning pathway | Step-by-step reasoning |
+| Real-world | Real-world clinical application | Real-world nursing application |
+| Visuals | Labs & clinical pathways | Visual aids |
 ## Persist shape (no Prisma migration)
 
 - `generationMeta.expertRationale` — full expert JSON

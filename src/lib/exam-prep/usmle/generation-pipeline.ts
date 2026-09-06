@@ -16,6 +16,9 @@ import {
 import { VIGNETTE_REQUIREMENTS } from "@/lib/engine/prompts/vignette";
 import { UNIVERSAL_EXAM_SYSTEM } from "@/lib/engine/prompts/base";
 import { examQuestionToBankItem } from "@/lib/engine/curation/exam-to-bank";
+import { maybeEnrichExpertBankItemRationale } from "@/lib/engine/rationale/generate-expert-rationale";
+import { attachVisualRationaleToItem } from "@/lib/engine/rationale/enrich-visual-rationale";
+import type { UsmleFieldId } from "./steps";
 import {
   dedupeBatchItems,
   filterBatchByDiversity,
@@ -572,7 +575,22 @@ export async function generateUsmleFullExam(params: {
     .map((s) => acceptedBySlot.get(s.slotIndex))
     .filter((item): item is BankItem => item != null);
 
-  const acceptedCount = allItems.length;
+  const fieldId: UsmleFieldId =
+    stepLevel === "step1"
+      ? "usmle-step-1"
+      : stepLevel === "step3"
+        ? "usmle-step-3"
+        : "usmle-step-2";
+
+  // Optional attending-tier enrich when RATIONALE_ENRICH_ON_GENERATE=1 (mirrors NCLEX).
+  const enrichedItems: BankItem[] = [];
+  for (const item of allItems) {
+    enrichedItems.push(
+      attachVisualRationaleToItem(await maybeEnrichExpertBankItemRationale(item, fieldId))
+    );
+  }
+
+  const acceptedCount = enrichedItems.length;
   const allPassed = acceptedCount === questionCount;
 
   return {
@@ -583,7 +601,7 @@ export async function generateUsmleFullExam(params: {
     blueprintSummary: summarizeExamBlueprint(slots),
     formatSummary: summarizeExamFormats(slots),
     taskSummary: summarizeExamTasks(slots),
-    items: allItems,
+    items: enrichedItems,
     qaReport: {
       accepted: acceptedCount,
       rejected: totalRejected,
