@@ -46,16 +46,16 @@ export function TrialWelcomeScreen({
   const elapsed = Math.max(0, Math.min(trialDays, trialDays - daysRemaining));
   const progressPct = Math.round((elapsed / trialDays) * 100);
 
-  if (showVerifyPrompt && verifyRequired) {
+  if (showVerifyPrompt) {
     return (
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8 }}
         transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
-        className="mx-auto w-full max-w-lg"
+        className="mx-auto w-full max-w-xl"
       >
-        <VerifyEmailPrompt email={userEmail} required />
+        <VerifyEmailPrompt email={userEmail} required={verifyRequired} />
       </motion.div>
     );
   }
@@ -71,12 +71,6 @@ export function TrialWelcomeScreen({
     >
       <div className="aee-trial-dashboard-glow" aria-hidden />
 
-      {showVerifyPrompt ? (
-        <div className="relative mb-5">
-          <VerifyEmailPrompt email={userEmail} />
-        </div>
-      ) : null}
-
       <div className="aee-trial-dashboard-header">
         <span className="aee-trial-dashboard-badge">
           <Sparkles className="h-3.5 w-3.5" aria-hidden />
@@ -86,9 +80,7 @@ export function TrialWelcomeScreen({
           {name ? `Welcome, ${name}` : "Welcome"}
         </h2>
         <p className="aee-trial-dashboard-lead">
-          {showVerifyPrompt
-            ? "After you verify, you’re all set to start studying."
-            : "Your trial is active — practice exams, drug review, and analytics are ready when you are."}
+          Your study tools are ready — practice exams, drug review, and analytics when you are.
         </p>
       </div>
 

@@ -21,7 +21,7 @@ export function AccessBlockedNotice({
   }
 
   return (
-    <div className="mx-auto mt-10 w-full max-w-lg px-4">
+    <div className="mx-auto mt-10 w-full max-w-xl px-4">
       <VerifyEmailPrompt email={email} required />
     </div>
   );

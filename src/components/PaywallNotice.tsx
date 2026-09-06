@@ -19,15 +19,20 @@ export function PaywallNotice({
   return (
     <div className="apple-bento mb-10 border-[var(--color-accent)]/20 bg-[var(--color-accent)]/5 text-center">
       <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
-        {isSuspended ? "Account suspended" : isVerify ? "Verify your email" : "Subscription required"}
+        {isSuspended ? "Account suspended" : isVerify ? "Almost there" : "Subscription required"}
       </p>
       <h2 className="mt-2 text-xl font-semibold tracking-tight text-[var(--color-ink)]">
         {isSuspended
           ? "Contact support to restore access"
           : isVerify
-            ? "Check your inbox to verify your email"
+            ? "Ready to start your exam prep"
             : "Unlock the full exam prep platform"}
       </h2>
+      {isVerify ? (
+        <p className="mx-auto mt-3 max-w-md text-sm text-[var(--color-ink-muted)]">
+          Please look for the verification link in your email, then return here to continue.
+        </p>
+      ) : null}
       {!isSuspended && !isVerify && (
         <>
           <p className="mx-auto mt-3 max-w-md text-sm text-[var(--color-ink-muted)]">

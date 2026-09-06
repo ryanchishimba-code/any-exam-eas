@@ -173,14 +173,15 @@ export async function sendVerificationEmail({
       body: JSON.stringify({
         from,
         to: [to],
-        subject: "Verify your Any Exam Easy email",
+        subject: "Ready to start your exam prep — verify your email",
         html: `
-          <p>Thanks for signing up. Please verify your email.</p>
+          <p>Ready to start your exam prep?</p>
+          <p>Please verify your email so we can keep your progress safe:</p>
           <p><a href="${verifyUrl}">Verify email address</a></p>
           <p>This link expires in 48 hours.</p>
           <p style="color:#666;font-size:12px">${verifyUrl}</p>
         `,
-        text: `Thanks for signing up. Please verify your email:\n${verifyUrl}\n\nThis link expires in 48 hours.`,
+        text: `Ready to start your exam prep?\n\nPlease verify your email:\n${verifyUrl}\n\nThis link expires in 48 hours.`,
       }),
     });
 
