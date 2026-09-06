@@ -3,7 +3,7 @@ import { summarizeBillingCycle } from "@/lib/crm/billing-cycle";
 import { summarizeConsentForList } from "@/lib/legal/consent-record";
 
 describe("summarizeBillingCycle", () => {
-  it("shows rebill countdown for active subscriptions", () => {
+  it("labels active subscriptions as paid members with renew date", () => {
     const end = new Date();
     end.setUTCDate(end.getUTCDate() + 10);
     const summary = summarizeBillingCycle({
@@ -16,8 +16,27 @@ describe("summarizeBillingCycle", () => {
       compAccessUntil: null,
     });
     expect(summary.urgency).toBe("soon");
-    expect(summary.label).toMatch(/Rebill in 10d/);
+    expect(summary.label).toBe("Paid member");
+    expect(summary.detail).toMatch(/Yearly · renews/);
+    expect(summary.detail).toMatch(/\(10d\)/);
     expect(summary.renewsAt).toBe(end.toISOString());
+  });
+
+  it("labels trials with expiry date", () => {
+    const end = new Date();
+    end.setUTCDate(end.getUTCDate() + 4);
+    const summary = summarizeBillingCycle({
+      status: "trialing",
+      plan: "trial",
+      planInterval: null,
+      trialEndsAt: end,
+      currentPeriodEnd: null,
+      canceledAt: null,
+      compAccessUntil: null,
+    });
+    expect(summary.urgency).toBe("trial");
+    expect(summary.label).toBe("On trial · 4d left");
+    expect(summary.detail).toMatch(/^Expires /);
   });
 
   it("flags past due subscriptions", () => {

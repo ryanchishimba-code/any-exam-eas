@@ -137,7 +137,7 @@ export default function UserSearch({ showAdminColumns = false }: { showAdminColu
 
       {adminColumns ? (
         <p className="text-xs text-black/45">
-          Admin columns: consent vault &amp; rebill countdown — visible to administrators only.
+          Admin columns: consent vault &amp; membership (trial / paid) — visible to administrators only.
         </p>
       ) : null}
 
@@ -156,7 +156,7 @@ export default function UserSearch({ showAdminColumns = false }: { showAdminColu
                 {adminColumns ? (
                   <>
                     <th className="px-3 py-2 text-left font-semibold">Consent</th>
-                    <th className="px-3 py-2 text-left font-semibold">Rebill cycle</th>
+                    <th className="px-3 py-2 text-left font-semibold">Membership</th>
                   </>
                 ) : null}
                 <th className="px-3 py-2 text-left font-semibold">Last active</th>

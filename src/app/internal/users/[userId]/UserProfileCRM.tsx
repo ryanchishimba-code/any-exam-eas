@@ -199,18 +199,28 @@ export default function UserProfileCRM({
         <div className="rounded-xl border border-black/10 bg-white p-4">
           <h2 className="text-sm font-semibold">Subscription</h2>
           <div className="mt-3 text-sm text-black/70">
-            <div>Status: {profile.subscription?.status ?? "—"}</div>
-            <div className="mt-1">
-              Trial ends:{" "}
-              {profile.subscription?.trialEndsAt
-                ? new Date(profile.subscription.trialEndsAt).toLocaleDateString()
-                : "—"}
-            </div>
-            <div className="mt-1">
-              Period end:{" "}
-              {profile.subscription?.currentPeriodEnd
-                ? new Date(profile.subscription.currentPeriodEnd).toLocaleDateString()
-                : "—"}
+            <p className="text-base font-semibold tracking-tight text-black/90">{billing.label}</p>
+            <p className="mt-1 text-sm text-black/65">{billing.detail}</p>
+            <div className="mt-3 space-y-1 border-t border-black/5 pt-3 text-xs text-black/55">
+              <div>
+                Status:{" "}
+                <span className="font-medium text-black/80">
+                  {profile.subscription?.status ?? "—"}
+                </span>
+                {profile.subscription?.plan ? ` · ${profile.subscription.plan}` : ""}
+              </div>
+              <div>
+                Trial ends:{" "}
+                {profile.subscription?.trialEndsAt
+                  ? new Date(profile.subscription.trialEndsAt).toLocaleDateString()
+                  : "—"}
+              </div>
+              <div>
+                Period end:{" "}
+                {profile.subscription?.currentPeriodEnd
+                  ? new Date(profile.subscription.currentPeriodEnd).toLocaleDateString()
+                  : "—"}
+              </div>
             </div>
           </div>
         </div>
@@ -252,7 +262,7 @@ export default function UserProfileCRM({
           <div className="rounded-xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/70 to-white p-4">
             <div className="flex items-center gap-2">
               <RefreshCw className="h-4 w-4 text-emerald-800" aria-hidden />
-              <h2 className="text-sm font-semibold">Rebill cycle</h2>
+              <h2 className="text-sm font-semibold">Membership</h2>
             </div>
             <p className="mt-2 text-lg font-semibold tracking-tight text-emerald-950">{billing.label}</p>
             <p className="mt-1 text-sm text-black/65">{billing.detail}</p>

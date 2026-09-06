@@ -79,8 +79,8 @@ export function summarizeBillingCycle(sub: SubscriptionRow | null | undefined): 
       planInterval: sub.planInterval,
       renewsAt: sub.trialEndsAt.toISOString(),
       daysUntil: days,
-      label: days <= 0 ? "Trial ended" : `Trial · ${days}d left`,
-      detail: `Converts ${formatShortDate(sub.trialEndsAt)} unless canceled`,
+      label: days <= 0 ? "Trial ended" : `On trial · ${days}d left`,
+      detail: `Expires ${formatShortDate(sub.trialEndsAt)}`,
       urgency,
     };
   }
@@ -99,13 +99,41 @@ export function summarizeBillingCycle(sub: SubscriptionRow | null | undefined): 
       daysUntil: days,
       label: canceled
         ? `Access until ${formatShortDate(sub.currentPeriodEnd)}`
-        : days <= 0
-          ? "Renews today"
-          : `Rebill in ${days}d`,
+        : "Paid member",
       detail: canceled
         ? `Canceled · ${intervalLabel(sub.planInterval)} plan`
-        : `${intervalLabel(sub.planInterval)} · next charge ${formatShortDate(sub.currentPeriodEnd)}`,
+        : days <= 0
+          ? `${intervalLabel(sub.planInterval)} · renews today`
+          : `${intervalLabel(sub.planInterval)} · renews ${formatShortDate(sub.currentPeriodEnd)} (${days}d)`,
       urgency: canceled ? "none" : urgency,
+    };
+  }
+
+  if (sub.status === "active") {
+    return {
+      status: sub.status,
+      planInterval: sub.planInterval,
+      renewsAt: null,
+      daysUntil: null,
+      label: "Paid member",
+      detail: sub.planInterval
+        ? `${intervalLabel(sub.planInterval)} plan · renew date unavailable`
+        : "Active paid subscription",
+      urgency: "calm",
+    };
+  }
+
+  if (sub.status === "trialing") {
+    return {
+      status: sub.status,
+      planInterval: sub.planInterval,
+      renewsAt: sub.trialEndsAt?.toISOString() ?? null,
+      daysUntil: null,
+      label: "On trial",
+      detail: sub.trialEndsAt
+        ? `Expires ${formatShortDate(sub.trialEndsAt)}`
+        : "Trial end date unavailable",
+      urgency: "trial",
     };
   }
 
