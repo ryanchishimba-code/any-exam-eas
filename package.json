@@ -202,6 +202,8 @@
     "db:attach-usmle-figures:dry": "npx tsx scripts/attach-usmle-figures.ts --dry-run --limit 100",
     "db:attach-nclex-figures": "bash scripts/run-with-node.sh npx tsx scripts/attach-nclex-figures.ts",
     "db:attach-nclex-figures:dry": "npx tsx scripts/attach-nclex-figures.ts --dry-run --limit 100",
+    "db:attach-naplex-figures": "bash scripts/run-with-node.sh npx tsx scripts/attach-naplex-figures.ts",
+    "db:attach-naplex-figures:dry": "npx tsx scripts/attach-naplex-figures.ts --dry-run --limit 100",
     "db:repair-figure-media": "bash scripts/run-with-node.sh npx tsx scripts/repair-figure-media.ts",
     "db:repair-figure-media:dry": "npx tsx scripts/repair-figure-media.ts --dry-run --limit 200",
     "db:audit-figure-media": "bash scripts/run-with-node.sh npx tsx scripts/audit-figure-media-fit.ts",

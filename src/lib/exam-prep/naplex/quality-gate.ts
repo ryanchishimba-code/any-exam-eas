@@ -8,6 +8,7 @@ import {
   isNaplexBestQuality,
 } from "../naplex-quality-gate";
 import { naplexBankItemIsServeReady } from "../naplex-serve-gate";
+import { normalizeNaplexExhibitPayload } from "./normalize-exhibit";
 
 export type NaplexFullExamQcReport = {
   ok: boolean;
@@ -18,6 +19,11 @@ export type NaplexFullExamQcReport = {
 
 const NAPLEX_2026_PREFIX = "naplex-2026-";
 
+/** Normalize exhibits/figures then score (used by generation ingest). */
+export function normalizeNaplexFullExamItem(item: BankItem): BankItem {
+  return normalizeNaplexExhibitPayload(item);
+}
+
 export function assessNaplexFullExamItem(
   item: BankItem,
   index: number
@@ -25,7 +31,7 @@ export function assessNaplexFullExamItem(
   const issues: string[] = [];
   const subjectId = item.subjectId ?? "pharmacology";
   const polished = polishNaplexBankItem(item, subjectId, subjectId, index);
-  const normalized = polished.item;
+  const normalized = normalizeNaplexFullExamItem(polished.item);
 
   const verdict = assessNaplexItemQuality(normalized, { source: "ai-curated" });
   if (verdict.tier === "reject") {

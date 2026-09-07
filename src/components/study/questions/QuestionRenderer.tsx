@@ -23,8 +23,8 @@ import { MpjeQuestionDisplay } from "@/components/mpje/MpjeQuestionDisplay";
 import {
   ConstructedResponseInput,
   DragDropMatch,
-  ExhibitTable,
   NaplexCaseVignette,
+  NaplexExhibitBlock,
 } from "./NaplexFormats";
 import {
   AbstractBlock,
@@ -137,9 +137,11 @@ export const QuestionRenderer = memo(function QuestionRenderer({
         question.field === "nclex-rn" ||
         question.field === "nclex-pn" ? (
         <NclexExhibitBlock question={question} />
+      ) : question.field === "pharmacy" ? (
+        <NaplexExhibitBlock question={question} />
       ) : (
         (question.ngnFormat === "exhibit" || question.ngnPayload?.kind === "exhibit") && (
-          <ExhibitTable question={question} />
+          <NaplexExhibitBlock question={question} />
         )
       )}
 

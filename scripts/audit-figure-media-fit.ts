@@ -1,5 +1,5 @@
 /**
- * Audit NCLEX/USMLE figure catalog + bank attachment quality.
+ * Audit NCLEX/USMLE/NAPLEX figure catalog + bank attachment quality.
  * Prints JSON summary to stdout.
  */
 import { loadEnvFiles, ensureDatabaseUrlEnv } from "./resolve-database-url.mjs";
@@ -8,9 +8,17 @@ ensureDatabaseUrlEnv();
 
 import { writeFileSync, mkdirSync } from "node:fs";
 import { PrismaClient } from "@prisma/client";
-import { NCLEX_FIGURE_CATALOG, NCLEX_FIGURE_CONTENT_KEYWORDS } from "../src/lib/exam-prep/nclex/figure-assets";
+import {
+  NCLEX_FIGURE_CATALOG,
+  NCLEX_FIGURE_CONTENT_KEYWORDS,
+  findApprovedNclexFiguresForTopic,
+} from "../src/lib/exam-prep/nclex/figure-assets";
+import {
+  NAPLEX_FIGURE_CATALOG,
+  NAPLEX_FIGURE_CONTENT_KEYWORDS,
+  findApprovedNaplexFiguresForTopic,
+} from "../src/lib/exam-prep/naplex/figure-assets";
 import { USMLE_FIGURE_CATALOG, USMLE_FIGURE_CONTENT_KEYWORDS } from "../src/lib/exam-prep/usmle/figure-assets";
-import { findApprovedNclexFiguresForTopic } from "../src/lib/exam-prep/nclex/figure-assets";
 
 function decodeSvg(dataUri: string): string {
   return decodeURIComponent(dataUri.replace(/^data:image\/svg\+xml;charset=utf-8,/, ""));
@@ -28,7 +36,10 @@ function keywordScore(text: string, keywords: string[]): number {
 const FIGURE_FIT: Record<string, string[]> = {
   ...NCLEX_FIGURE_CONTENT_KEYWORDS,
   ...USMLE_FIGURE_CONTENT_KEYWORDS,
+  ...NAPLEX_FIGURE_CONTENT_KEYWORDS,
 };
+
+const ALL_CATALOG = [...NCLEX_FIGURE_CATALOG, ...USMLE_FIGURE_CATALOG, ...NAPLEX_FIGURE_CATALOG];
 
 type Sample = {
   figureId: string;
@@ -40,30 +51,18 @@ type Sample = {
   fitOk: boolean;
 };
 
-async function main() {
-  mkdirSync("tmp-figure-audit", { recursive: true });
-
-  const catalogIssues: string[] = [];
-  for (const fig of [...NCLEX_FIGURE_CATALOG, ...USMLE_FIGURE_CATALOG]) {
-    if (fig.reviewStatus !== "approved") catalogIssues.push(`${fig.id}: not approved`);
-    if (!fig.url.startsWith("data:image/svg+xml")) catalogIssues.push(`${fig.id}: not svg data uri`);
-    if (!fig.alt || fig.alt.length < 8) catalogIssues.push(`${fig.id}: weak alt`);
-    if (!fig.topics?.length) catalogIssues.push(`${fig.id}: no topics`);
-    const svg = decodeSvg(fig.url);
-    if (!svg.includes("<svg")) catalogIssues.push(`${fig.id}: invalid svg`);
-    writeFileSync(`tmp-figure-audit/${fig.id}.svg`, svg);
-  }
-
-  const prisma = new PrismaClient();
-  const figureIds = NCLEX_FIGURE_CATALOG.map((f) => f.id);
-  const samples: Sample[] = [];
-  const counts: Record<string, { total: number; fitOk: number; fitBad: number }> = {};
-
+async function auditField(
+  prisma: PrismaClient,
+  fieldId: string,
+  figureIds: string[],
+  samples: Sample[],
+  counts: Record<string, { total: number; fitOk: number; fitBad: number }>
+) {
   for (const figId of figureIds) {
-    counts[figId] = { total: 0, fitOk: 0, fitBad: 0 };
+    counts[figId] ??= { total: 0, fitOk: 0, fitBad: 0 };
     const rows = await prisma.questionBankItem.findMany({
       where: {
-        fieldId: "nursing",
+        fieldId,
         active: true,
         options: { contains: figId },
       },
@@ -73,7 +72,6 @@ async function main() {
         scenario: true,
         question: true,
         blueprintTopic: true,
-        options: true,
       },
     });
 
@@ -81,9 +79,7 @@ async function main() {
       const text = `${row.scenario ?? ""}\n${row.question ?? ""}`;
       const keys = FIGURE_FIT[figId] ?? [];
       const fitScore = keywordScore(text, keys);
-      // Require at least 1 strong clinical keyword for fit (MAR/med is looser)
-      const min = figId === "nclex-mar-high-alert" ? 1 : 1;
-      const fitOk = fitScore >= min;
+      const fitOk = fitScore >= 1;
       counts[figId]!.total += 1;
       if (fitOk) counts[figId]!.fitOk += 1;
       else counts[figId]!.fitBad += 1;
@@ -101,30 +97,61 @@ async function main() {
       }
     }
   }
+}
 
-  // Topic lookup sanity: known good/bad topic strings
+async function main() {
+  mkdirSync("tmp-figure-audit", { recursive: true });
+
+  const catalogIssues: string[] = [];
+  for (const fig of ALL_CATALOG) {
+    if (fig.reviewStatus !== "approved") catalogIssues.push(`${fig.id}: not approved`);
+    if (!fig.url.startsWith("data:image/svg+xml")) catalogIssues.push(`${fig.id}: not svg data uri`);
+    if (!fig.alt || fig.alt.length < 8) catalogIssues.push(`${fig.id}: weak alt`);
+    if (!fig.topics?.length) catalogIssues.push(`${fig.id}: no topics`);
+    const svg = decodeSvg(fig.url);
+    if (!svg.includes("<svg")) catalogIssues.push(`${fig.id}: invalid svg`);
+    writeFileSync(`tmp-figure-audit/${fig.id}.svg`, svg);
+  }
+
+  const prisma = new PrismaClient();
+  const samples: Sample[] = [];
+  const counts: Record<string, { total: number; fitOk: number; fitBad: number }> = {};
+
+  await auditField(
+    prisma,
+    "nursing",
+    NCLEX_FIGURE_CATALOG.map((f) => f.id),
+    samples,
+    counts
+  );
+  await auditField(
+    prisma,
+    "pharmacy",
+    NAPLEX_FIGURE_CATALOG.map((f) => f.id),
+    samples,
+    counts
+  );
+
   const topicChecks = [
-    { topic: "labor-fetal-monitoring", expect: "nclex-fetal-late-decels" },
-    { topic: "endocrine-meds", expect: "nclex-insulin-timing" },
-    { topic: "medication-error-prevention", expect: "nclex-mar-high-alert" },
-    { topic: "cardiac-emergencies", expect: "nclex-ecg-vt-schematic" },
-    { topic: "pressure-injury-staging", expect: "nclex-pressure-injury-stages" },
-    { topic: "ppe-donning-doffing", expect: "nclex-ppe-donning" },
-    { topic: "immunizations", expectId: null as string | null },
+    { topic: "labor-fetal-monitoring", expect: "nclex-fetal-late-decels", via: "nclex" as const },
+    { topic: "asthma-copd-inhalers", expect: "naplex-inhaler-mdi-steps", via: "naplex" as const },
+    { topic: "tdm-monitoring", expect: "naplex-vanco-tdm-pathway", via: "naplex" as const },
+    { topic: "calculations-creatinine-clearance", expect: "naplex-crcl-formula", via: "naplex" as const },
+    { topic: "immunizations", expect: null, via: "naplex" as const },
   ].map((c) => {
-    const found = findApprovedNclexFiguresForTopic(c.topic).map((f) => f.id);
+    const found =
+      c.via === "nclex"
+        ? findApprovedNclexFiguresForTopic(c.topic).map((f) => f.id)
+        : findApprovedNaplexFiguresForTopic(c.topic).map((f) => f.id);
     return {
       topic: c.topic,
       found,
-      ok:
-        "expect" in c && c.expect
-          ? found.includes(c.expect)
-          : found.length === 0,
+      ok: c.expect ? found.includes(c.expect) : found.length === 0,
     };
   });
 
   const summary = {
-    catalogCount: NCLEX_FIGURE_CATALOG.length + USMLE_FIGURE_CATALOG.length,
+    catalogCount: ALL_CATALOG.length,
     catalogIssues,
     attachmentCounts: counts,
     topicChecks,

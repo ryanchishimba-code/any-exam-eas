@@ -1,10 +1,10 @@
-#!/usr/bin/env node
 /**
- * Re-normalize NCLEX (+ optional USMLE) figure media: prune misfits, keep content-fitting attaches.
+ * Re-normalize NCLEX / USMLE / NAPLEX figure media: prune misfits, keep purpose-fitting attaches.
  *
  * Usage:
  *   npm run db:repair-figure-media -- --field nursing --limit 5000
- *   npm run db:repair-figure-media -- --field usmle --limit 2000 --dry-run
+ *   npm run db:repair-figure-media -- --field pharmacy --limit 2000 --dry-run
+ *   npm run db:repair-figure-media -- --field all
  */
 import { loadEnvFiles, ensureDatabaseUrlEnv } from "./resolve-database-url.mjs";
 
@@ -17,6 +17,7 @@ import {
   serializeBankOptions,
 } from "../src/lib/mpje/parse-bank-options";
 import { normalizeNclexExhibitPayload } from "../src/lib/exam-prep/nclex/normalize-exhibit";
+import { normalizeNaplexExhibitPayload } from "../src/lib/exam-prep/naplex/normalize-exhibit";
 import { normalizeUsmleFullExamItem } from "../src/lib/exam-prep/usmle/quality-gate";
 import { attachVisualRationaleToItem } from "../src/lib/engine/rationale/enrich-visual-rationale";
 
@@ -27,12 +28,12 @@ function parseArgs() {
   const args = process.argv.slice(2);
   let limit = 0;
   let dryRun = false;
-  let field: "nursing" | "usmle" | "all" = "nursing";
+  let field: "nursing" | "usmle" | "pharmacy" | "all" = "nursing";
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--limit" && args[i + 1]) limit = parseInt(args[++i]!, 10);
     else if (args[i] === "--dry-run") dryRun = true;
     else if (args[i] === "--field" && args[i + 1]) {
-      field = args[++i]! as "nursing" | "usmle" | "all";
+      field = args[++i]! as "nursing" | "usmle" | "pharmacy" | "all";
     }
   }
   return { limit, dryRun, field };
@@ -43,6 +44,12 @@ function mediaIds(ngn: Record<string, unknown> | undefined): string[] {
   return (ngn.media as { id?: string }[])
     .map((m) => m?.id)
     .filter((id): id is string => Boolean(id));
+}
+
+function normalizeForField(fieldId: string, item: ReturnType<typeof enrichBankItemFromRow>) {
+  if (fieldId === "nursing") return normalizeNclexExhibitPayload(item);
+  if (fieldId === "pharmacy") return normalizeNaplexExhibitPayload(item);
+  return normalizeUsmleFullExamItem(item);
 }
 
 async function repairFields(fieldIds: string[], limit: number, dryRun: boolean) {
@@ -70,10 +77,7 @@ async function repairFields(fieldIds: string[], limit: number, dryRun: boolean) 
       scanned++;
       const item = enrichBankItemFromRow(row);
       const before = mediaIds(item.ngnPayload).sort().join(",");
-      const next =
-        row.fieldId === "nursing"
-          ? normalizeNclexExhibitPayload(item)
-          : normalizeUsmleFullExamItem(item);
+      const next = normalizeForField(row.fieldId, item);
       const afterIds = mediaIds(next.ngnPayload);
       const after = afterIds.sort().join(",");
       if (before === after) {
@@ -124,6 +128,9 @@ async function main() {
   }
   if (field === "usmle" || field === "all") {
     await repairFields(["usmle-step-1", "usmle-step-2", "usmle-step-3"], limit, dryRun);
+  }
+  if (field === "pharmacy" || field === "all") {
+    await repairFields(["pharmacy"], limit, dryRun);
   }
 }
 

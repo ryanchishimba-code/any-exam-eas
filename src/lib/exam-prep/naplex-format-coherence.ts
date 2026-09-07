@@ -10,6 +10,7 @@ import {
 } from "./naplex-answer-align";
 import { resolveNaplexStem, resolveNaplexVignette } from "./naplex-bank-audit";
 import { repairClinicalNumericMismatch } from "./naplex-clinical-numeric-repair";
+import { normalizeNaplexExhibitPayload } from "./naplex/normalize-exhibit";
 
 export type NaplexFormatIssue = {
   code:
@@ -3469,9 +3470,9 @@ export function itemHasFormatCoherenceIssue(item: BankItem): boolean {
   );
 }
 
-/** Full prep pipeline for serve/timed exams: format repair then answer alignment. */
+/** Full prep pipeline for serve/timed exams: format repair then answer alignment + exhibits. */
 export function prepareNaplexBankItem(item: BankItem): BankItem {
   const formatFixed = fixNaplexFormatCoherence(item);
   const aligned = alignNaplexBankItemAnswers(formatFixed.item);
-  return aligned.item;
+  return normalizeNaplexExhibitPayload(aligned.item);
 }
