@@ -48,11 +48,22 @@ describe("NAPLEX figure catalog", () => {
   it("attaches CrCl formula when Cockcroft calculation is tested", () => {
     expect(
       selectNaplexFigureForItem({
-        vignette: "72 yo woman, 60 kg, SCr 1.4 mg/dL. Calculate creatinine clearance.",
+        vignette: "72 yo woman, 60 kg, SCr 1.4 mg/dL.",
         question: "What is the estimated CrCl using Cockcroft-Gault?",
         blueprintTopic: "calculations-creatinine-clearance",
       })?.id
     ).toBe("naplex-crcl-formula");
+  });
+
+  it("does not attach CrCl formula when stem only cites a CrCl value for DOAC dosing", () => {
+    expect(
+      selectNaplexFigureForItem({
+        vignette:
+          "A 58-year-old with atrial fibrillation is prescribed rivaroxaban. He has a CrCl of 45 mL/min.",
+        question: "What is the most appropriate action regarding the rivaroxaban prescription?",
+        blueprintTopic: "anticoagulation",
+      })
+    ).toBeUndefined();
   });
 
   it("attaches without overwriting constructed kind", () => {
@@ -108,8 +119,8 @@ describe("normalizeNaplexExhibitPayload", () => {
   it("prunes misfit media and keeps constructed kind when normalizing labs", () => {
     const item = {
       subjectId: "pharmacology",
-      vignette: "Calculate creatinine clearance with Cockcroft-Gault for renal dosing.",
-      question: "What is the estimated CrCl?",
+      vignette: "72 yo woman, wt 60 kg, SCr 1.8 mg/dL. Use Cockcroft-Gault.",
+      question: "Calculate the CrCl for renal dosing.",
       options: [],
       correctAnswer: "45",
       explanation: "test",
