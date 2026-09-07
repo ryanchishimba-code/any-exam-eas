@@ -1,7 +1,7 @@
 /**
  * Minimal markdown → HTML for study guide ingest.
- * Intentionally small — headings, paragraphs, lists, images, blockquotes,
- * tables (simple), inline code/bold/italic. Does not invent clinical content.
+ * Headings (h1–h6), paragraphs, ul/ol, images, blockquotes, tables,
+ * inline code/bold/italic. Does not invent clinical content.
  */
 
 function escapeHtml(s: string): string {
@@ -20,24 +20,24 @@ function slugify(text: string): string {
     .slice(0, 80);
 }
 
-function inlineFormat(text: string): string {
+function inlineFormatPlain(text: string): string {
   let s = escapeHtml(text);
-  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt, src) => {
-    const a = String(alt);
-    const u = String(src).trim();
-    return `<img src="${escapeHtml(u)}" alt="${a}" loading="lazy" />`;
-  });
-  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, label, href) => {
-    return `<a href="${escapeHtml(String(href).trim())}" rel="noopener noreferrer">${inlineFormatPlain(String(label))}</a>`;
-  });
   s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
   s = s.replace(/\*(.+?)\*/g, "<em>$1</em>");
   s = s.replace(/`(.+?)`/g, "<code>$1</code>");
   return s;
 }
 
-function inlineFormatPlain(text: string): string {
+function inlineFormat(text: string): string {
   let s = escapeHtml(text);
+  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt, src) => {
+    const a = escapeHtml(String(alt));
+    const u = escapeHtml(String(src).trim());
+    return `<img src="${u}" alt="${a}" loading="eager" decoding="async" />`;
+  });
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, label, href) => {
+    return `<a href="${escapeHtml(String(href).trim())}" rel="noopener noreferrer">${inlineFormatPlain(String(label))}</a>`;
+  });
   s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
   s = s.replace(/\*(.+?)\*/g, "<em>$1</em>");
   s = s.replace(/`(.+?)`/g, "<code>$1</code>");
@@ -58,12 +58,17 @@ export function markdownToSimpleHtml(md: string): string {
   const out: string[] = [];
   let i = 0;
   let inUl = false;
+  let inOl = false;
   let inBq = false;
 
-  const closeUl = () => {
+  const closeLists = () => {
     if (inUl) {
       out.push("</ul>");
       inUl = false;
+    }
+    if (inOl) {
+      out.push("</ol>");
+      inOl = false;
     }
   };
   const closeBq = () => {
@@ -78,15 +83,14 @@ export function markdownToSimpleHtml(md: string): string {
     const trimmed = line.trim();
 
     if (!trimmed) {
-      closeUl();
+      closeLists();
       closeBq();
       i += 1;
       continue;
     }
 
-    // Fenced code skip (keep as pre)
     if (trimmed.startsWith("```")) {
-      closeUl();
+      closeLists();
       closeBq();
       const code: string[] = [];
       i += 1;
@@ -99,22 +103,20 @@ export function markdownToSimpleHtml(md: string): string {
       continue;
     }
 
-    // Horizontal rule
     if (/^(-{3,}|\*{3,}|_{3,})$/.test(trimmed)) {
-      closeUl();
+      closeLists();
       closeBq();
       out.push("<hr />");
       i += 1;
       continue;
     }
 
-    // Table
     if (
       trimmed.includes("|") &&
       i + 1 < lines.length &&
       isTableSeparator(lines[i + 1] ?? "")
     ) {
-      closeUl();
+      closeLists();
       closeBq();
       const header = parseTableRow(trimmed);
       i += 2;
@@ -135,15 +137,14 @@ export function markdownToSimpleHtml(md: string): string {
       continue;
     }
 
-    // Standalone image line → figure (not a bare paragraph)
     const onlyImg = /^!\[([^\]]*)\]\(([^)]+)\)$/.exec(trimmed);
     if (onlyImg) {
-      closeUl();
+      closeLists();
       closeBq();
       const alt = onlyImg[1] ?? "";
       const src = String(onlyImg[2] ?? "").trim();
       out.push(
-        `<figure class="sg-figure"><img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />` +
+        `<figure class="sg-figure"><img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="eager" decoding="async" />` +
           (alt ? `<figcaption>${escapeHtml(alt)}</figcaption>` : "") +
           `</figure>`
       );
@@ -151,9 +152,9 @@ export function markdownToSimpleHtml(md: string): string {
       continue;
     }
 
-    const heading = /^(#{1,3})\s+(.+)$/.exec(trimmed);
+    const heading = /^(#{1,6})\s+(.+)$/.exec(trimmed);
     if (heading) {
-      closeUl();
+      closeLists();
       closeBq();
       const level = heading[1]!.length;
       const title = heading[2]!.trim();
@@ -164,7 +165,7 @@ export function markdownToSimpleHtml(md: string): string {
     }
 
     if (/^>\s?/.test(trimmed)) {
-      closeUl();
+      closeLists();
       if (!inBq) {
         out.push("<blockquote>");
         inBq = true;
@@ -176,6 +177,10 @@ export function markdownToSimpleHtml(md: string): string {
 
     if (/^[-*]\s+/.test(trimmed)) {
       closeBq();
+      if (inOl) {
+        out.push("</ol>");
+        inOl = false;
+      }
       if (!inUl) {
         out.push("<ul>");
         inUl = true;
@@ -185,13 +190,28 @@ export function markdownToSimpleHtml(md: string): string {
       continue;
     }
 
-    closeUl();
+    if (/^\d+\.\s+/.test(trimmed)) {
+      closeBq();
+      if (inUl) {
+        out.push("</ul>");
+        inUl = false;
+      }
+      if (!inOl) {
+        out.push("<ol>");
+        inOl = true;
+      }
+      out.push(`<li>${inlineFormat(trimmed.replace(/^\d+\.\s+/, ""))}</li>`);
+      i += 1;
+      continue;
+    }
+
+    closeLists();
     closeBq();
     out.push(`<p>${inlineFormat(trimmed)}</p>`);
     i += 1;
   }
 
-  closeUl();
+  closeLists();
   closeBq();
   return out.join("");
 }

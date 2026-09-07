@@ -16,6 +16,7 @@ export const MINIMAL_CHROME_PREFIXES = [
   "/auth/login",
   "/signup",
   "/checkout",
+  "/nclex/study-guide",
 ] as const;
 
 export function isAppShellRoute(pathname: string): boolean {
