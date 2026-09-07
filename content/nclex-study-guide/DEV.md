@@ -28,20 +28,11 @@ Open:
 
 Highlights / bookmarks / notes / progress **require sign-in** (FK to `User`). Anonymous users can still read; save actions return 401.
 
-## Where to paste the manuscript
+## Manuscript source
 
-**This folder:** `content/nclex-study-guide/`
-
-Expected format (see README.md):
-
-```markdown
-# Guide Title
-## Chapter 1 — Title
-### Section
-body…
-```
-
-Then:
+Paste-ready archive dropped as numbered chapters `00`–`16` in this folder
+(from `anyexameasy-nclex-book-paste-ready.tar.gz`). Visuals: `visuals/` +
+`public/nclex-study-guide/visuals/`.
 
 ```bash
 npm run ingest:nclex-guide

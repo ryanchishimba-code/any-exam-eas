@@ -1,32 +1,34 @@
 # NCLEX Study Guide — manuscript drop folder
 
-Paste the **full manuscript** here as one or more `.md` files.
+Manuscript is loaded from the paste-ready book archive (`anyexameasy-nclex-book-paste-ready.tar.gz`).
 
-## Expected format
+## Files that ingest
 
-```markdown
-# Guide Title
+Only numbered chapters:
 
-## Chapter 1 — Chapter title pending
-
-### Section label
-Body pending.
-
-## Chapter 2 — Next chapter title
-Body pending.
+```
+00-front-matter.md … 16-back-matter.md
 ```
 
-Rules:
-- Split chapters on lines matching `## Chapter …`
-- Do **not** invent clinical content in this repo — only paste the real manuscript
-- After pasting, run:
+Run:
 
 ```bash
-npx tsx scripts/ingest-nclex-guide.ts
+npm run ingest:nclex-guide
 ```
 
-The ingest script upserts `sg_chapters` from these files. It never fabricates text.
+Image paths `visuals/…` are rewritten to `/nclex-study-guide/visuals/…` (files live in `public/nclex-study-guide/visuals/` and are mirrored here).
 
-## Placeholder
+## Do not ingest (reference only)
 
-`00-manuscript-pending.md` is a stub so the reader can render before the real book arrives.
+- `README.md`, `DEV.md`, `CURSOR-DROP-IN.md`, `VISUALS-NEEDED.md`
+- `_PASTE-READY-FULL-BOOK.md` (full assembled book — optional; chapters above are the source of truth)
+
+## Expected chapter format
+
+```markdown
+# Chapter N — Title
+
+### Section
+body markdown…
+![caption](visuals/example.png)
+```

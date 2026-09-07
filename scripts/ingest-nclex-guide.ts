@@ -1,10 +1,15 @@
 #!/usr/bin/env npx tsx
 /**
  * Ingest NCLEX Study Guide markdown from /content/nclex-study-guide.
- * Splits on "## Chapter" headings and upserts sg_chapters.
+ *
+ * Preferred layout (paste-ready book): one file per chapter
+ *   00-front-matter.md, 01-exam-strategy.md, …
+ * Each file’s first `# …` heading is the chapter title.
+ *
+ * Also supports a single file split on `## Chapter …` / `# Chapter …`.
  * Does NOT fabricate clinical text.
  *
- * Usage: npx tsx scripts/ingest-nclex-guide.ts
+ * Usage: npm run ingest:nclex-guide
  */
 
 import fs from "node:fs";
@@ -15,41 +20,96 @@ import { markdownToSimpleHtml } from "../src/lib/nclex-study-guide/markdown";
 const CONTENT_DIR = path.join(process.cwd(), "content", "nclex-study-guide");
 const GUIDE_ID = "sg_guide_nclex_rn_placeholder";
 
+/** Numbered chapter files only — skip README, DEV, PASTE-READY, etc. */
+const CHAPTER_FILE_RE = /^\d{2}-.+\.md$/i;
+
+const SKIP_NAMES = new Set([
+  "readme.md",
+  "dev.md",
+  "cursor-drop-in.md",
+  "visuals-needed.md",
+  "book.md",
+  "_paste-ready-full-book.md",
+  "paste-ready-anyexameasy-nclex-book.md",
+]);
+
 function slugify(title: string): string {
-  return title
-    .toLowerCase()
-    .replace(/^chapter\s+\d+\s*[—–-]\s*/i, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "")
-    .slice(0, 80) || "chapter";
+  return (
+    title
+      .toLowerCase()
+      .replace(/^chapter\s+\d+\s*[—–-]\s*/i, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 80) || "chapter"
+  );
 }
 
-function parseChapters(md: string): Array<{
+function slugFromFilename(file: string): string {
+  const base = file.replace(/\.md$/i, "");
+  const withoutNum = base.replace(/^\d{2}-/, "");
+  return withoutNum.replace(/[^a-z0-9]+/gi, "-").toLowerCase().replace(/^-|-$/g, "") || slugify(base);
+}
+
+/** Rewrite relative visuals/… paths to the public URL used by the reader. */
+function rewriteVisualPaths(md: string): string {
+  return md.replace(
+    /(!\[[^\]]*\]\()(?:\.\/)?visuals\//g,
+    "$1/nclex-study-guide/visuals/"
+  );
+}
+
+function firstH1(md: string): string | null {
+  const m = /^#\s+(.+)$/m.exec(md);
+  return m?.[1]?.trim() ?? null;
+}
+
+function firstH2(md: string): string | null {
+  const m = /^##\s+(.+)$/m.exec(md);
+  return m?.[1]?.trim() ?? null;
+}
+
+function parseFileAsChapter(
+  file: string,
+  md: string
+): { slug: string; title: string; sectionLabel: string; bodyMd: string } {
+  const normalized = rewriteVisualPaths(md.replace(/\r\n/g, "\n").trim());
+  const h1 = firstH1(normalized);
+  const title =
+    (h1 ?? file.replace(/\.md$/i, ""))
+      .replace(/^Chapter\s+\d+\s*[—–-]\s*/i, "")
+      .trim() || "Chapter title pending";
+  return {
+    slug: slugFromFilename(file),
+    title,
+    sectionLabel: firstH2(normalized) ?? "",
+    bodyMd: normalized || "Body pending.",
+  };
+}
+
+/**
+ * Split a multi-chapter markdown blob on `# Chapter` or `## Chapter` headings.
+ */
+function parseMultiChapterBlob(md: string): Array<{
   title: string;
   sectionLabel: string;
   bodyMd: string;
+  slug?: string;
 }> {
-  const normalized = md.replace(/\r\n/g, "\n");
-  // Drop leading # Guide Title block before first ## Chapter
-  const chapterSplit = normalized.split(/^##\s+/m).slice(1);
-  if (chapterSplit.length === 0) {
-    return [
-      {
-        title: "Manuscript pending",
-        sectionLabel: "Placeholder",
-        bodyMd: normalized.trim() || "Body pending.",
-      },
-    ];
+  const normalized = rewriteVisualPaths(md.replace(/\r\n/g, "\n"));
+  const parts = normalized.split(/^(?=#{1,2}\s+Chapter\s+)/m).filter((p) => p.trim());
+  const chapterParts = parts.filter((p) => /^#{1,2}\s+Chapter\s+/m.test(p));
+  if (chapterParts.length === 0) {
+    return [];
   }
-
-  return chapterSplit.map((chunk) => {
-    const lines = chunk.split("\n");
-    const titleLine = (lines[0] ?? "Chapter title pending").trim();
+  return chapterParts.map((chunk) => {
+    const lines = chunk.trim().split("\n");
+    const titleLine = (lines[0] ?? "Chapter title pending")
+      .replace(/^#{1,2}\s+/, "")
+      .trim();
     const rest = lines.slice(1).join("\n").trim() || "Body pending.";
-    const sectionMatch = /^###\s+(.+)$/m.exec(rest);
     return {
       title: titleLine.replace(/^Chapter\s+\d+\s*[—–-]\s*/i, "").trim() || titleLine,
-      sectionLabel: sectionMatch?.[1]?.trim() ?? "",
+      sectionLabel: firstH2(rest) ?? "",
       bodyMd: `# ${titleLine}\n\n${rest}`,
     };
   });
@@ -61,12 +121,15 @@ async function main() {
     process.exit(1);
   }
 
-  const files = fs
+  const allMd = fs
     .readdirSync(CONTENT_DIR)
-    .filter((f) => f.endsWith(".md") && f.toLowerCase() !== "readme.md")
+    .filter((f) => f.endsWith(".md") && !SKIP_NAMES.has(f.toLowerCase()))
     .sort();
 
-  if (files.length === 0) {
+  const numbered = allMd.filter((f) => CHAPTER_FILE_RE.test(f));
+  const other = allMd.filter((f) => !CHAPTER_FILE_RE.test(f));
+
+  if (numbered.length === 0 && other.length === 0) {
     console.error("No .md manuscript files found.");
     process.exit(1);
   }
@@ -76,47 +139,92 @@ async function main() {
     create: {
       id: GUIDE_ID,
       examTrack: "rn",
-      title: "NCLEX-RN Study Guide",
+      title: "AnyExamEasy NCLEX Reference Book",
       edition: "1",
-      version: "0.1.0",
+      version: "1.0.0",
       publishedAt: new Date(),
     },
-    update: { updatedAt: new Date() },
+    update: {
+      title: "AnyExamEasy NCLEX Reference Book",
+      version: "1.0.0",
+      publishedAt: new Date(),
+      updatedAt: new Date(),
+    },
   });
 
+  const seenSlugs: string[] = [];
   let sortOrder = 0;
-  for (const file of files) {
-    const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf8");
-    const chapters = parseChapters(raw);
-    for (const ch of chapters) {
-      sortOrder += 1;
-      const slug = slugify(ch.title);
-      const bodyHtml = markdownToSimpleHtml(ch.bodyMd);
-      await prisma.sgChapter.upsert({
-        where: { guideId_slug: { guideId: GUIDE_ID, slug } },
-        create: {
-          guideId: GUIDE_ID,
-          slug,
-          sortOrder,
+
+  const upsertChapter = async (ch: {
+    slug: string;
+    title: string;
+    sectionLabel: string;
+    bodyMd: string;
+  }) => {
+    sortOrder += 1;
+    const bodyHtml = markdownToSimpleHtml(ch.bodyMd);
+    const minutes = Math.max(5, Math.round(ch.bodyMd.length / 1200));
+    await prisma.sgChapter.upsert({
+      where: { guideId_slug: { guideId: GUIDE_ID, slug: ch.slug } },
+      create: {
+        guideId: GUIDE_ID,
+        slug: ch.slug,
+        sortOrder,
+        title: ch.title,
+        sectionLabel: ch.sectionLabel,
+        estimatedMinutes: minutes,
+        bodyMd: ch.bodyMd,
+        bodyHtml,
+      },
+      update: {
+        sortOrder,
+        title: ch.title,
+        sectionLabel: ch.sectionLabel,
+        estimatedMinutes: minutes,
+        bodyMd: ch.bodyMd,
+        bodyHtml,
+      },
+    });
+    seenSlugs.push(ch.slug);
+    console.log(`Upserted chapter ${sortOrder}: ${ch.slug} — ${ch.title}`);
+  };
+
+  if (numbered.length > 0) {
+    for (const file of numbered) {
+      const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf8");
+      await upsertChapter(parseFileAsChapter(file, raw));
+    }
+  } else {
+    for (const file of other) {
+      const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf8");
+      const chapters = parseMultiChapterBlob(raw);
+      if (chapters.length === 0) {
+        await upsertChapter(parseFileAsChapter(file, raw));
+        continue;
+      }
+      for (const ch of chapters) {
+        await upsertChapter({
+          slug: slugify(ch.title),
           title: ch.title,
           sectionLabel: ch.sectionLabel,
-          estimatedMinutes: 5,
           bodyMd: ch.bodyMd,
-          bodyHtml,
-        },
-        update: {
-          sortOrder,
-          title: ch.title,
-          sectionLabel: ch.sectionLabel,
-          bodyMd: ch.bodyMd,
-          bodyHtml,
-        },
-      });
-      console.log(`Upserted chapter ${sortOrder}: ${slug}`);
+        });
+      }
     }
   }
 
-  console.log(`Done. ${sortOrder} chapter(s) from ${files.length} file(s).`);
+  // Drop placeholder / removed chapters so TOC matches manuscript.
+  const removed = await prisma.sgChapter.deleteMany({
+    where: {
+      guideId: GUIDE_ID,
+      slug: { notIn: seenSlugs },
+    },
+  });
+  if (removed.count > 0) {
+    console.log(`Removed ${removed.count} obsolete chapter(s).`);
+  }
+
+  console.log(`Done. ${sortOrder} chapter(s) ingested.`);
 }
 
 main()

@@ -32,27 +32,14 @@ npm run dev
 
 Highlights / bookmarks / notes / progress **require sign-in** (FK to `User`). Anonymous users can still read chapters; save actions return 401 with a sign-in hint.
 
-## Where to paste the manuscript
+## Manuscript source
 
-Drop `.md` files here:
-
-```
-content/nclex-study-guide/
-```
-
-Expected format (see `content/nclex-study-guide/README.md`):
-
-```markdown
-# Guide Title
-## Chapter 1 — Title
-### Section
-body…
-```
-
-Then ingest (does **not** invent text):
+Numbered chapters `00`–`16` live in `content/nclex-study-guide/` (from the
+paste-ready tar). Cover/visuals also under `public/nclex-study-guide/visuals/`.
 
 ```bash
-npx tsx scripts/ingest-nclex-guide.ts
+npx prisma migrate deploy
+npm run ingest:nclex-guide
 ```
 
 ## Files you should not touch for manuscript work

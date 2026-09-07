@@ -24,11 +24,55 @@
   padding-left: 1.25em;
   list-style: disc;
 }
+.sg-prose blockquote {
+  margin: 0 0 1em;
+  padding: 0.65em 0.9em;
+  border-left: 3px solid #2ec4b6;
+  background: rgba(46, 196, 182, 0.08);
+  border-radius: 0 0.5em 0.5em 0;
+}
+.sg-prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1em auto;
+  border-radius: 0.75rem;
+}
+.sg-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1em;
+  font-size: 0.92em;
+}
+.sg-prose th,
+.sg-prose td {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0.4em 0.55em;
+  text-align: left;
+  vertical-align: top;
+}
+.sg-prose th {
+  font-weight: 650;
+  background: rgba(0, 0, 0, 0.04);
+}
+.sg-prose hr {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  margin: 1.5em 0;
+}
 .sg-prose code {
   font-size: 0.9em;
   padding: 0.1em 0.35em;
   border-radius: 0.25em;
   background: rgba(0, 0, 0, 0.06);
+}
+.sg-prose pre {
+  overflow-x: auto;
+  padding: 0.75em 1em;
+  margin: 0 0 1em;
+  border-radius: 0.5em;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 0.88em;
 }
 .sg-search-hit {
   background: #2ec4b6;
