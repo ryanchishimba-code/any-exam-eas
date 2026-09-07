@@ -9,7 +9,10 @@ import { DashboardPageContent } from "@/components/app/DashboardPageContent";
 import { AccessBlockedNotice } from "@/components/AccessBlockedNotice";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { resolveCanonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
+import {
+  canonicalPracticeFieldId,
+  fieldIdForExamSlug,
+} from "@/lib/edtech/question-bank-scope";
 import { getUserEdtechMetadata, getExamTestDate } from "@/lib/edtech/user-metadata";
 import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
@@ -58,14 +61,22 @@ async function DashboardContent({
   access: UserAccess;
   examSlug: ExamSlug;
 }) {
-  // USMLE-aware field so stats, weak topics, and roadmap match the question bank.
-  const fieldId = await resolveCanonicalPracticeFieldId(userId, examSlug);
+  // Kick metadata early so non-USMLE wave-1 work overlaps the preference read;
+  // USMLE still awaits it for the step-aware field id (React-cached within the request).
+  const metadataPromise = getUserEdtechMetadata(userId);
+  const fieldId =
+    examSlug === "usmle"
+      ? canonicalPracticeFieldId(
+          "usmle",
+          (await settled(metadataPromise, {}, "metadata")).usmleFieldId
+        )
+      : fieldIdForExamSlug(examSlug);
 
   // Wave 1: core study state (keep concurrency low — Prisma connection_limit=1 on Vercel).
   const [stats, dashboard] = await runPageDb(() =>
     Promise.all([
       getExamScopedStats(userId, examSlug, fieldId),
-      getStudentDashboardData(userId, [fieldId]),
+      getStudentDashboardData(userId, [fieldId], { skipAccuracyTrend: true }),
     ])
   );
 
@@ -78,7 +89,7 @@ async function DashboardContent({
       null,
       "roadmap"
     ),
-    settled(getUserEdtechMetadata(userId), null, "metadata"),
+    settled(metadataPromise, null, "metadata"),
     settled(getStudyUsageSnapshot(access), null, "usage"),
     examSlug === "nclex"
       ? settled(
@@ -151,7 +162,11 @@ export default async function DashboardPage() {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.dashboard)}`);
   }
 
-  const access = await runPageDb(() => requireAppPage(ROUTES.dashboard));
+  // Access + exam pref in parallel (session/pref are React-cached with layout).
+  const [access, pref] = await Promise.all([
+    runPageDb(() => requireAppPage(ROUTES.dashboard)),
+    runPageDb(() => getUserExamPreference(session.user.id)),
+  ]);
 
   if (access.blockReason === "email_unverified") {
     return (
@@ -159,7 +174,6 @@ export default async function DashboardPage() {
     );
   }
 
-  const pref = await runPageDb(() => getUserExamPreference(session.user.id));
   if (!pref) redirect(ROUTES.selectExam);
 
   return (

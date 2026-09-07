@@ -4,6 +4,7 @@ import { isPostgresDatabaseUrl, resolveDatabaseUrl } from "@/lib/database-url";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { getLearningProfileSnapshot } from "./profile-service";
+import { applyRetentionDecay, computeReadinessScore } from "./mastery";
 import { CACHE_TTL, cacheGetOrSet, cacheKey, CACHE_STALE } from "@/lib/cache";
 import type { AnatomyStructureLink } from "@/lib/anatomy/topic-links";
 import {
@@ -317,13 +318,15 @@ export async function getStudentWeakTopics(
 
 export async function getStudentDashboardData(
   userId: string,
-  fieldIds: FieldScope = null
+  fieldIds: FieldScope = null,
+  opts?: { skipAccuracyTrend?: boolean }
 ): Promise<StudentDashboardData> {
   const scopeKey = fieldIds?.length ? fieldIds.join(",") : "all";
+  const trendKey = opts?.skipAccuracyTrend ? "no-trend" : "trend";
   return cacheGetOrSet(
-    cacheKey(["student-dashboard-v3", userId, scopeKey]),
+    cacheKey(["student-dashboard-v3", userId, scopeKey, trendKey]),
     CACHE_TTL.learningDashboard,
-    () => loadStudentDashboardData(userId, fieldIds),
+    () => loadStudentDashboardData(userId, fieldIds, opts),
     { staleTtlMs: CACHE_STALE.learningDashboard }
   );
 }
@@ -392,7 +395,8 @@ export async function getLibraryHubStats(
  */
 async function loadStudentDashboardData(
   userId: string,
-  fieldIds: FieldScope = null
+  fieldIds: FieldScope = null,
+  opts?: { skipAccuracyTrend?: boolean }
 ): Promise<StudentDashboardData> {
   const scoped = Boolean(fieldIds && fieldIds.length > 0);
   const attemptScope = fieldWhere(fieldIds);
@@ -400,12 +404,29 @@ async function loadStudentDashboardData(
 
   const [profile, trend, masteries, completedRecords, attemptGroups, spacedReview] =
     await Promise.all([
-    getLearningProfileSnapshot(userId),
-    getAccuracyTrend(userId, fieldIds),
+    // Slim profile — avoid loading every ConceptMastery row (weak topics load below).
+    prisma.learningProfile.findUnique({
+      where: { userId },
+      select: { readinessScore: true, studyStreakDays: true },
+    }),
+    opts?.skipAccuracyTrend
+      ? Promise.resolve([] as Awaited<ReturnType<typeof getAccuracyTrend>>)
+      : getAccuracyTrend(userId, fieldIds),
+    // Scoped: load full field masteries once for readiness + weak topics.
+    // Global: only the weakest slice (readiness comes from LearningProfile).
     prisma.conceptMastery.findMany({
       where: { userId, ...fieldWhere(fieldIds) },
       orderBy: { masteryScore: "asc" },
-      take: WEAK_TOPIC_FETCH,
+      select: {
+        conceptKey: true,
+        fieldId: true,
+        masteryScore: true,
+        attempts: true,
+        retentionStrength: true,
+        confidenceReliability: true,
+        lastAttemptAt: true,
+      },
+      ...(scoped ? {} : { take: WEAK_TOPIC_FETCH }),
     }),
     prisma.progressRecord.findMany({
       where: {
@@ -487,28 +508,30 @@ async function loadStudentDashboardData(
   const overallAccuracy =
     totalAttempts > 0 ? Math.round((correctCount / totalAttempts) * 100) : null;
 
-  const trendDelta = computeTrendDelta(trend);
+  const trendDelta = opts?.skipAccuracyTrend ? null : computeTrendDelta(trend);
 
-  // Readiness for a scoped view is the mean of the in-scope per-field readiness
-  // values (falls back to the global score when the field has no data yet).
+  // Scoped readiness uses the same formula as LearningProfile (field-filtered).
   const scopedReadiness = (() => {
-    if (!scoped) return profile.readinessScore;
-    const scores = profile.fieldReadiness
-      .filter((f) => fieldIds!.includes(f.fieldId))
-      .map((f) => f.score);
-    if (scores.length === 0) return 0;
-    return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+    if (!scoped) return Math.round(profile?.readinessScore ?? 0);
+    return computeReadinessScore(
+      masteries.map((m) => ({
+        masteryScore: applyRetentionDecay(m.masteryScore, m.lastAttemptAt),
+        retentionStrength: m.retentionStrength,
+        confidenceReliability: m.confidenceReliability,
+        attempts: m.attempts,
+      }))
+    );
   })();
 
   return {
     headline: {
       readinessScore: scopedReadiness,
-      studyStreakDays: profile.studyStreakDays,
+      studyStreakDays: profile?.studyStreakDays ?? 0,
       overallAccuracy,
       totalAttempts,
       trendDelta,
       motivationalMessage: buildMotivationalMessage(
-        profile.studyStreakDays,
+        profile?.studyStreakDays ?? 0,
         trendDelta,
         overallAccuracy
       ),

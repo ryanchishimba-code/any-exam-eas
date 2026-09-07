@@ -200,14 +200,15 @@ export function cacheKey(parts: (string | number | undefined | null)[]): string 
 export const CACHE_TTL = {
   researchBrief: 60 * 60 * 1000, // 1h — Tavily + synthesis
   subjectCatalog: 30 * 60 * 1000, // 30m — topic counts change infrequently post-sync
-  learningDashboard: 30 * 1000, // 30s per user
+  /** Soft-nav / revisit hits; still short enough for progress freshness. */
+  learningDashboard: 90 * 1000, // 90s per user
   // Keep short — multi-instance L1 cannot see other isolates' invalidations until expiry.
   examPreference: 5 * 1000, // 5s per user
   userAccess: 60 * 1000, // 60s per user — dedupes requirePremiumPage + nav
   referenceBrief: 2 * 60 * 60 * 1000, // 2h — AI + OER synthesis per user/exam
   subscriptionStatus: 60 * 1000, // 60s per user — dedupes nav + home fetches
   questionBankSlice: 10 * 60 * 1000, // 10m
-  examScopedStats: 30 * 1000, // 30s per user/exam — dashboard header stats
+  examScopedStats: 90 * 1000, // 90s per user/exam — dashboard header stats
 } as const;
 
 /** Stale windows for resilient L1 reads when Neon is briefly unavailable (not Redis freshness). */
@@ -237,10 +238,13 @@ export async function invalidateExamPreferenceCacheAsync(userId: string): Promis
 
 /** Drop per-user dashboard / weak-topic caches when the selected exam changes. */
 export function invalidateLearningDashboardCache(userId: string): void {
-  const dashboardPrefix = cacheKey(["student-dashboard", userId]);
-  cacheDeleteMatching(`${dashboardPrefix}:`);
+  // Keys use student-dashboard-v3 — keep both prefixes for older L1 entries.
+  cacheDeleteMatching(`${cacheKey(["student-dashboard-v3", userId])}:`);
+  cacheDeleteMatching(`${cacheKey(["student-dashboard", userId])}:`);
+  cacheDeleteMatching(`${cacheKey(["weak-topics-v3", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["weak-topics", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["library-hub-stats", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-scoped-stats", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-roadmap", userId])}:`);
+  cacheDeleteMatching(`${cacheKey(["mastery-dashboard", userId])}:`);
 }

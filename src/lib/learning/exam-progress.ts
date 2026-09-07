@@ -60,25 +60,14 @@ function attemptKey(row: {
   return null;
 }
 
-/** Serve-bank counts per subject for a field (same filter as topic practice). */
-export async function countServeBankBySubject(
-  fieldId: string
-): Promise<Map<string, number>> {
-  const { getSubjectServedCounts } = await import("@/lib/question-bank-db");
-  const counts = await getSubjectServedCounts(fieldId);
-  return new Map(Object.entries(counts));
-}
-
-/** Distinct bank items / keys the user has attempted, by subject. */
-export async function countUserSeenBySubject(
-  userId: string,
-  fieldId: string
-): Promise<Map<string, number>> {
-  const rows = await prisma.questionAttempt.findMany({
-    where: { userId, fieldId },
-    select: { subjectId: true, bankItemId: true, questionKey: true },
-  });
-
+/** Derive distinct seen counts by subject from an already-loaded attempt list. */
+export function countSeenBySubjectFromAttempts(
+  rows: Array<{
+    subjectId?: string | null;
+    bankItemId?: string | null;
+    questionKey?: string | null;
+  }>
+): Map<string, number> {
   const perSubject = new Map<string, Set<string>>();
   for (const row of rows) {
     if (!row.subjectId) continue;
@@ -96,6 +85,37 @@ export async function countUserSeenBySubject(
   return map;
 }
 
+/** Serve-bank counts per subject for a field (same filter as topic practice). */
+export async function countServeBankBySubject(
+  fieldId: string
+): Promise<Map<string, number>> {
+  const { CACHE_STALE, CACHE_TTL, cacheGetOrSet, cacheKey } = await import(
+    "@/lib/cache"
+  );
+  const counts = await cacheGetOrSet(
+    cacheKey(["subject-served-counts", fieldId]),
+    CACHE_TTL.subjectCatalog,
+    async () => {
+      const { getSubjectServedCounts } = await import("@/lib/question-bank-db");
+      return getSubjectServedCounts(fieldId);
+    },
+    { staleTtlMs: CACHE_STALE.subjectCatalog }
+  );
+  return new Map(Object.entries(counts));
+}
+
+/** Distinct bank items / keys the user has attempted, by subject. */
+export async function countUserSeenBySubject(
+  userId: string,
+  fieldId: string
+): Promise<Map<string, number>> {
+  const rows = await prisma.questionAttempt.findMany({
+    where: { userId, fieldId },
+    select: { subjectId: true, bankItemId: true, questionKey: true },
+  });
+  return countSeenBySubjectFromAttempts(rows);
+}
+
 export async function getUserPushStats(
   userId: string,
   examSlug: ExamSlug,
@@ -103,18 +123,19 @@ export async function getUserPushStats(
 ): Promise<UserPushStats> {
   const fieldId = resolveProgressFieldId(examSlug, options?.fieldId);
 
-  const [serveBySubject, seenBySubject, attempts] = await Promise.all([
+  const [serveBySubject, attempts] = await Promise.all([
     countServeBankBySubject(fieldId),
-    countUserSeenBySubject(userId, fieldId),
     prisma.questionAttempt.findMany({
       where: { userId, fieldId },
       select: {
         correct: true,
+        subjectId: true,
         bankItemId: true,
         questionKey: true,
       },
     }),
   ]);
+  const seenBySubject = countSeenBySubjectFromAttempts(attempts);
 
   let pushesAvailable = 0;
   for (const n of serveBySubject.values()) pushesAvailable += n;

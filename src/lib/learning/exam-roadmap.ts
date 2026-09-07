@@ -44,8 +44,8 @@ import {
 import { prisma } from "@/lib/prisma";
 import {
   computeCoveragePct,
+  countSeenBySubjectFromAttempts,
   countServeBankBySubject,
-  countUserSeenBySubject,
   getUserExamHistory,
   sumCategoryPushCoverage,
 } from "@/lib/learning/exam-progress";
@@ -419,26 +419,24 @@ async function loadExamRoadmapData(
   if (!blueprint) return null;
 
   // One attempt scan for subject aggregates + push stats (avoid a second full table read).
-  const [attempts, masteries, serveBySubject, seenBySubject, history] =
-    await Promise.all([
-      prisma.questionAttempt.findMany({
-        where: { userId, fieldId },
-        select: {
-          subjectId: true,
-          correct: true,
-          bankItemId: true,
-          questionKey: true,
-        },
-      }),
-      prisma.conceptMastery.findMany({
-        where: { userId, fieldId },
-        select: { conceptKey: true, masteryScore: true },
-      }),
-      countServeBankBySubject(fieldId),
-      countUserSeenBySubject(userId, fieldId),
-      getUserExamHistory(userId, examSlug, { fieldId }),
-    ]);
-
+  const [attempts, masteries, serveBySubject, history] = await Promise.all([
+    prisma.questionAttempt.findMany({
+      where: { userId, fieldId },
+      select: {
+        subjectId: true,
+        correct: true,
+        bankItemId: true,
+        questionKey: true,
+      },
+    }),
+    prisma.conceptMastery.findMany({
+      where: { userId, fieldId },
+      select: { conceptKey: true, masteryScore: true },
+    }),
+    countServeBankBySubject(fieldId),
+    getUserExamHistory(userId, examSlug, { fieldId }),
+  ]);
+  const seenBySubject = countSeenBySubjectFromAttempts(attempts);
   const attemptMap = aggregateAttemptsBySubject(attempts);
   const masteryMap = new Map(
     masteries.map((m) => [m.conceptKey, m.masteryScore] as const)

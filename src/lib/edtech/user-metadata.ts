@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import type { MpjeVariant } from "@/lib/mpje/config";
 import { isMpjeUsJurisdiction } from "@/lib/mpje/us-jurisdictions";
@@ -21,7 +22,7 @@ function parseMetadata(raw: string | null | undefined): UserEdtechMetadata {
   }
 }
 
-export async function getUserEdtechMetadata(userId: string): Promise<UserEdtechMetadata> {
+async function readUserEdtechMetadataFromDb(userId: string): Promise<UserEdtechMetadata> {
   try {
     const row = await prisma.userPreference.findUnique({ where: { userId } });
     return parseMetadata(row?.metadata);
@@ -30,11 +31,17 @@ export async function getUserEdtechMetadata(userId: string): Promise<UserEdtechM
   }
 }
 
+/** Per-request dedupe — dashboard resolves USMLE field + test date from one read. */
+export const getUserEdtechMetadata = cache(async (userId: string): Promise<UserEdtechMetadata> => {
+  return readUserEdtechMetadataFromDb(userId);
+});
+
 export async function setUserEdtechMetadata(
   userId: string,
   patch: Partial<UserEdtechMetadata>
 ): Promise<UserEdtechMetadata> {
-  const current = await getUserEdtechMetadata(userId);
+  // Bypass React cache so writers merge against the latest DB row.
+  const current = await readUserEdtechMetadataFromDb(userId);
   const next: UserEdtechMetadata = { ...current, ...patch };
 
   if (next.mpjeStateCode && !isMpjeUsJurisdiction(next.mpjeStateCode)) {

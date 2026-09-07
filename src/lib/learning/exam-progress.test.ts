@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { computeCoveragePct, sumCategoryPushCoverage } from "./exam-progress";
+import {
+  computeCoveragePct,
+  countSeenBySubjectFromAttempts,
+  sumCategoryPushCoverage,
+} from "./exam-progress";
 
 describe("exam progress coverage", () => {
   it("computes coverage percent capped at 100", () => {
@@ -19,5 +23,18 @@ describe("exam progress coverage", () => {
       pushesAvailable: 50,
       pushCoveragePct: 30,
     });
+  });
+
+  it("derives distinct seen counts from an attempt list", () => {
+    const seen = countSeenBySubjectFromAttempts([
+      { subjectId: "cardio", bankItemId: "q1" },
+      { subjectId: "cardio", bankItemId: "q1" },
+      { subjectId: "cardio", bankItemId: "q2" },
+      { subjectId: "pulm", questionKey: "p1" },
+      { subjectId: null, bankItemId: "ignored" },
+    ]);
+    expect(seen.get("cardio")).toBe(2);
+    expect(seen.get("pulm")).toBe(1);
+    expect(seen.size).toBe(2);
   });
 });

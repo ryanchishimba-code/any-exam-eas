@@ -26,7 +26,8 @@ const nextConfig: NextConfig = {
     // Single-threaded compile on Vercel avoids OOM SIGKILL during large app builds.
     ...(onVercel ? { cpus: 1, workerThreads: false, webpackMemoryOptimizations: true } : {}),
     staleTimes: {
-      dynamic: 30,
+      // Soft-nav client cache for dynamic RSC — aligns with ~90s server dashboard TTL.
+      dynamic: 45,
       // Dev: avoid client router serving a 5‑minute-old static homepage shell.
       static: isProd ? 300 : 0,
     },
