@@ -4,7 +4,7 @@
 
 ![Fetal heart decelerations pattern guide](visuals/fetal-heart-decels.png)
 
-![PPH uterine atony algorithm](visuals/ppH-atony-algorithm.png)
+![PPH uterine atony algorithm](visuals/pph-atony-algorithm.png)
 
 ![Newborn thermoregulation](visuals/newborn-thermoregulation.png)
 

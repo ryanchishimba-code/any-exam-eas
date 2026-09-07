@@ -561,6 +561,19 @@ export function StudyGuideReader({ guideId, guideTitle, chapters, chapter }: Pro
             <div
               className="sg-prose"
               dangerouslySetInnerHTML={{ __html: filteredHtml }}
+              ref={(node) => {
+                if (!node) return;
+                node.querySelectorAll("img").forEach((img) => {
+                  if (img.dataset.sgBound) return;
+                  img.dataset.sgBound = "1";
+                  img.addEventListener("error", () => {
+                    const note = document.createElement("p");
+                    note.className = "sg-img-missing";
+                    note.textContent = `Figure unavailable: ${img.getAttribute("alt") || img.getAttribute("src") || "image"}`;
+                    img.replaceWith(note);
+                  });
+                });
+              }}
             />
           </article>
 

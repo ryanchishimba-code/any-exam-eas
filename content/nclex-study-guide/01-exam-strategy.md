@@ -46,9 +46,7 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 
 #### Six clinical judgment steps (CJMM / NCJMM)
 
-![NGN bow-tie template](visuals/bow-tie-ngn-example.png)
-
-![Maslow pyramid for NCLEX priority](visuals/maslow-pyramid-nclex.png)
+![Six CJMM clinical judgment steps](visuals/cjmm-six-steps.png)
 
 1. **Recognize cues** — What data matters?  
 2. **Analyze cues** — What does it mean?  
@@ -58,6 +56,8 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 6. **Evaluate outcomes** — Did it work? What next?
 
 #### Common NGN item flavors
+
+![NGN bow-tie template](visuals/bow-tie-ngn-example.png)
 
 - Extended multiple response / **SATA**  
 - **Matrix / grid**  
@@ -101,6 +101,8 @@ Urgent safety > nice-to-have teaching > routine tasks.
 
 ### 2) ABCs (+ “D” when relevant)
 
+![Priority ABCs framework](visuals/priority-abcs.png)
+
 1. **Airway**  
 2. **Breathing**  
 3. **Circulation**  
@@ -109,6 +111,8 @@ Urgent safety > nice-to-have teaching > routine tasks.
 **Exception awareness:** In some disaster/triage or specific protocols, priorities shift — but for classic bedside NCLEX stems, ABCs still win often.
 
 ### 3) Maslow (when ABCs don’t settle it)
+
+![Maslow pyramid for NCLEX priority](visuals/maslow-pyramid-nclex.png)
 
 Physiological needs → safety → love/belonging → esteem → self-actualization.
 

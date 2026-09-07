@@ -135,6 +135,22 @@ export function markdownToSimpleHtml(md: string): string {
       continue;
     }
 
+    // Standalone image line → figure (not a bare paragraph)
+    const onlyImg = /^!\[([^\]]*)\]\(([^)]+)\)$/.exec(trimmed);
+    if (onlyImg) {
+      closeUl();
+      closeBq();
+      const alt = onlyImg[1] ?? "";
+      const src = String(onlyImg[2] ?? "").trim();
+      out.push(
+        `<figure class="sg-figure"><img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" />` +
+          (alt ? `<figcaption>${escapeHtml(alt)}</figcaption>` : "") +
+          `</figure>`
+      );
+      i += 1;
+      continue;
+    }
+
     const heading = /^(#{1,3})\s+(.+)$/.exec(trimmed);
     if (heading) {
       closeUl();

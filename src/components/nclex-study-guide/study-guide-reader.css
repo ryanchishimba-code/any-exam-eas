@@ -38,6 +38,29 @@
   margin: 1em auto;
   border-radius: 0.75rem;
 }
+.sg-prose .sg-figure {
+  margin: 1.25em 0 1.5em;
+  padding: 0;
+}
+.sg-prose .sg-figure img {
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+.sg-prose .sg-figure figcaption {
+  margin-top: 0.45em;
+  text-align: center;
+  font-size: 0.82em;
+  opacity: 0.7;
+}
+.sg-prose .sg-img-missing {
+  margin: 1em 0;
+  padding: 0.75em 1em;
+  border: 1px dashed rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  font-size: 0.85em;
+  opacity: 0.75;
+}
 .sg-prose table {
   width: 100%;
   border-collapse: collapse;
