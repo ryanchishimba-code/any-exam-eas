@@ -174,14 +174,27 @@ export function selectUsmleFigureForItem(item: {
   tags?: string[] | null;
   ngnPayload?: Record<string, unknown> | null;
 }): UsmleFigureRef | undefined {
+  const fitting = USMLE_FIGURE_CATALOG.filter(
+    (f) => f.reviewStatus === "approved" && usmleFigureFitsItem(f, item)
+  );
+  if (!fitting.length) return undefined;
+
   const topic =
     item.blueprintTopic ??
     (typeof item.ngnPayload?.blueprintTopic === "string"
       ? item.ngnPayload.blueprintTopic
-      : null);
-  const byTopic = findApprovedFiguresForTopic(topic);
-  const pool = byTopic.length ? byTopic : USMLE_FIGURE_CATALOG.filter((f) => f.reviewStatus === "approved");
-  return pool.find((f) => usmleFigureFitsItem(f, item));
+      : null) ??
+    "";
+  const t = topic.trim().toLowerCase();
+  const slug = t.replace(/\s+/g, "-");
+
+  fitting.sort((a, b) => {
+    const score = (f: UsmleFigureRef) =>
+      f.topics.some((x) => t === x || slug === x || t.includes(x) || x.includes(t)) ? 1 : 0;
+    return score(b) - score(a);
+  });
+
+  return fitting[0];
 }
 
 /** Attach first matching approved figure into ngnPayload.media (idempotent by id). */
@@ -194,4 +207,27 @@ export function attachFigureRefToNgn(
     ...next,
     kind: next.kind ?? "exhibit",
   };
+}
+
+/** Drop USMLE catalog media that no longer fits the stem (keep non-catalog / CDN assets). */
+export function pruneMisfitUsmleMedia(
+  ngn: Record<string, unknown>,
+  item: {
+    vignette?: string | null;
+    scenario?: string | null;
+    question?: string | null;
+  }
+): Record<string, unknown> {
+  if (!Array.isArray(ngn.media)) return ngn;
+  const catalogIds = new Set(USMLE_FIGURE_CATALOG.map((f) => f.id));
+  const media = (ngn.media as UsmleFigureRef[]).filter((m) => {
+    if (!m?.id || !catalogIds.has(m.id)) return true;
+    return usmleFigureFitsItem(m, item);
+  });
+  if (media.length === (ngn.media as unknown[]).length) return ngn;
+  if (!media.length) {
+    const { media: _drop, ...rest } = ngn;
+    return rest;
+  }
+  return { ...ngn, media };
 }

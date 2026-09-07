@@ -13,10 +13,6 @@ import { bankItemHasValidSpineTags } from "./spine-lock";
 import { resolveOrganSystemId } from "./content-spine";
 import { isUsmleOrganSystemId } from "./official-content-model";
 import { normalizeUsmleExhibitPayload } from "./normalize-exhibit";
-import {
-  attachFigureRefToNgn,
-  selectUsmleFigureForItem,
-} from "./figure-assets";
 
 export type UsmleFullExamQcReport = {
   ok: boolean;
@@ -91,17 +87,12 @@ export function normalizeUsmleFullExamItem(item: BankItem, slotMeta?: {
   }
 
   // World-class exhibits: normalize findings/labTable → renderable table + attach SVG figures.
-  let withExhibit = normalizeUsmleExhibitPayload({ ...normalized, tags, ngnPayload: ngn });
-  const selected = selectUsmleFigureForItem(withExhibit);
-  if (selected) {
-    const nextNgn = attachFigureRefToNgn(
-      { ...(withExhibit.ngnPayload ?? {}) },
-      selected
-    );
-    withExhibit = {
+  // prune + select happen inside normalizeUsmleExhibitPayload.
+  const withExhibit = normalizeUsmleExhibitPayload({ ...normalized, tags, ngnPayload: ngn });
+  if (withExhibit.ngnPayload?.media && Array.isArray(withExhibit.ngnPayload.media)) {
+    return {
       ...withExhibit,
-      itemType: withExhibit.itemType === "biostats" ? "biostats" : "exhibit",
-      ngnPayload: nextNgn,
+      itemType: withExhibit.itemType === "biostats" ? "biostats" : withExhibit.itemType ?? "exhibit",
     };
   }
 

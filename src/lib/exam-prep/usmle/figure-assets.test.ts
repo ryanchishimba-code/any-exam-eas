@@ -47,6 +47,62 @@ describe("USMLE figure catalog", () => {
     ).toBe("ecg-anterior-stemi-schematic");
   });
 
+  it("selects AFib figure by content even when topic is ACS", async () => {
+    const { selectUsmleFigureForItem } = await import("./figure-assets");
+    expect(
+      selectUsmleFigureForItem({
+        blueprintTopic: "acs-management",
+        question:
+          "A 62-year-old woman with atrial fibrillation presents with sudden right-sided weakness. Next step?",
+      })?.id
+    ).toBe("ecg-afib-schematic");
+  });
+
+  it("prunes misfit STEMI media from stroke stems", async () => {
+    const { normalizeUsmleExhibitPayload } = await import("./normalize-exhibit");
+    const next = normalizeUsmleExhibitPayload({
+      subjectId: "internal-medicine",
+      question:
+        "A 62-year-old woman presents with sudden right-sided weakness and slurred speech. Atrial fibrillation, not anticoagulated. Next step?",
+      options: ["A", "B", "C", "D"],
+      correctAnswer: "A",
+      explanation: "test explanation long enough",
+      itemType: "exhibit",
+      blueprintTopic: "acs-management",
+      ngnPayload: {
+        kind: "exhibit",
+        media: [
+          {
+            id: "ecg-anterior-stemi-schematic",
+            kind: "ecg",
+            url: "data:image/svg+xml,x",
+            alt: "STEMI",
+            reviewStatus: "approved",
+            topics: [],
+            license: "x",
+            sourceNote: "x",
+            organSystem: "x",
+          },
+          {
+            id: "pathway-acs-initial",
+            kind: "pathway",
+            url: "data:image/svg+xml,y",
+            alt: "ACS",
+            reviewStatus: "approved",
+            topics: [],
+            license: "x",
+            sourceNote: "x",
+            organSystem: "x",
+          },
+        ],
+      },
+    } as import("@/lib/question-bank").BankItem);
+    const ids = ((next.ngnPayload?.media as { id: string }[]) ?? []).map((m) => m.id);
+    expect(ids).toContain("ecg-afib-schematic");
+    expect(ids).not.toContain("ecg-anterior-stemi-schematic");
+    expect(ids).not.toContain("pathway-acs-initial");
+  });
+
   it("finds pneumothorax schematic", () => {
     const figs = findApprovedFiguresForTopic("pneumothorax");
     expect(figs[0]?.id).toBe("cxr-ptx-schematic");
