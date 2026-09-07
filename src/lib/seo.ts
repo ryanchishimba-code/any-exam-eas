@@ -50,7 +50,8 @@ export function getSiteUrl(): string {
   return PRODUCTION_SITE_URL;
 }
 
-export const DEFAULT_OG_IMAGE_PATH = "/images/og-share.jpg";
+/** Versioned filename so Facebook/LinkedIn re-scrape instead of keeping a stale preview. */
+export const DEFAULT_OG_IMAGE_PATH = "/images/og-share-v2.jpg";
 export const DEFAULT_OG_IMAGE_WIDTH = 1200;
 export const DEFAULT_OG_IMAGE_HEIGHT = 630;
 
@@ -263,7 +264,8 @@ export function buildHomeJsonLd() {
  * Performance tips (also configure in Vercel):
  * - Set NEXT_PUBLIC_SITE_URL for correct canonical/OG URLs
  * - Enable Vercel Speed Insights + Image Optimization
- * - og-share.jpg: 1200×630 social card; keep under ~200KB JPEG
+ * - og-share-v2.jpg: 1200×630 social card; keep under ~200KB JPEG
+ *   Bump the filename (v3, v4…) when the creative changes so social caches refresh.
  * - hero.jpg: on-page hero only; keep under 150KB WebP/JPEG
  * - Use `next/dynamic` for below-the-fold client sections (see page.tsx)
  */
