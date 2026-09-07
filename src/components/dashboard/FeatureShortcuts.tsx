@@ -6,6 +6,7 @@ import type { CSSProperties } from "react";
 import {
   ArrowRight,
   BarChart3,
+  BookMarked,
   ClipboardList,
   Pill,
   Stethoscope,
@@ -72,7 +73,17 @@ export const premiumFeatures = [
 
 function featuresForUser(examSlug: ExamSlug | null, prefLoading: boolean): FeatureItem[] {
   if (examSlug) {
-    return [practiceFeatureForExam(examSlug), ...SHARED_FEATURES];
+    const features = [practiceFeatureForExam(examSlug), ...SHARED_FEATURES];
+    if (examSlug === "nclex") {
+      features.splice(1, 0, {
+        href: ROUTES.nclexStudyGuide,
+        label: "NCLEX Study Guide",
+        description: "Book reader with highlights & notes",
+        icon: BookMarked,
+        accent: "#2ec4b6",
+      });
+    }
+    return features;
   }
   if (prefLoading) return [];
   return [

@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import {
   BarChart3,
   Bone,
+  BookMarked,
   Clock,
   FileText,
   LayoutGrid,
@@ -35,6 +36,8 @@ type NavItem = {
   icon: LucideIcon;
   exact?: boolean;
   clinicalOnly?: boolean;
+  /** Shown only when the active exam is NCLEX. */
+  nclexOnly?: boolean;
 };
 
 type NavSection = {
@@ -67,6 +70,13 @@ const NAV_SECTIONS: NavSection[] = [
     id: "study-tools",
     label: "Study Tools",
     items: [
+      {
+        id: "study-guide",
+        href: ROUTES.nclexStudyGuide,
+        label: "Study Guide",
+        icon: BookMarked,
+        nclexOnly: true,
+      },
       {
         id: "high-yield",
         href: ROUTES.highYieldTopics,
@@ -214,7 +224,11 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
       NAV_SECTIONS.map((section) => ({
         ...section,
         items: section.items
-          .filter((item) => !item.clinicalOnly || clinical)
+          .filter((item) => {
+            if (item.clinicalOnly && !clinical) return false;
+            if (item.nclexOnly && examSlug !== "nclex") return false;
+            return true;
+          })
           .map((item) => ({
             ...item,
             href: resolveHref(item, examSlug),

@@ -17,6 +17,7 @@ export const metadata = buildToolkitHubMetadata();
 /**
  * Real in-product / marketing routes used below (verified against ROUTES + examMarketingPath):
  * - Exam hubs: /usmle /nclex /naplex /pance /aanp-fnp /npte-pt
+ * - NCLEX Study Guide: /nclex/study-guide
  * - Lab values & calculators: /library#hub-calculators
  * - Top 509 drugs: /study/drugs300
  * - Anatomy Explorer: /anatomy
@@ -35,6 +36,11 @@ const EXAM_CARDS: { key: ExamSeoKey; label: string }[] = [
 ];
 
 const IN_PRODUCT_LINKS = [
+  {
+    href: ROUTES.nclexStudyGuide,
+    title: "NCLEX Study Guide",
+    body: "Book-style reader with highlights, bookmarks, and notes.",
+  },
   {
     href: `${ROUTES.library}#hub-calculators`,
     title: "Lab values & calculators",
