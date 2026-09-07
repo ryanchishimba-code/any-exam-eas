@@ -2,74 +2,71 @@ import { describe, expect, it, vi } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import { gatherTimedExamBankItems } from "./timed-exam-sampling";
 
-vi.mock("@/lib/question-bank-db", () => ({
-  QUESTION_BANK_SAMPLE_MAX_PULL: 500,
-  sampleQuestionBankItemsForField: vi.fn(),
-  shuffleBankItems: <T,>(items: T[]) => items,
-  dedupeBankItemsById: <T extends { id?: string }>(items: T[]) => items,
-  bankItemDedupeKey: (item: BankItem) =>
-    item.id?.trim() || `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`,
+vi.mock("@/lib/exam-prep/gather-progressive-bank-pool", () => ({
+  gatherProgressiveBankPool: vi.fn(),
 }));
 
-import { sampleQuestionBankItemsForField } from "@/lib/question-bank-db";
+vi.mock("@/lib/exam-prep/usmle/progressive-exam-fill", () => ({
+  gatherUsmleTimedExamBankItems: vi.fn(),
+}));
 
-function item(id: string, pass: boolean): BankItem {
+import { gatherProgressiveBankPool } from "@/lib/exam-prep/gather-progressive-bank-pool";
+import { gatherUsmleTimedExamBankItems } from "@/lib/exam-prep/usmle/progressive-exam-fill";
+
+function item(id: string): BankItem {
   return {
     id,
     subjectId: "med-surg",
     question: `Question ${id}?`,
     options: ["A", "B", "C", "D"],
     correctAnswer: "A",
-    explanation: "Rationale.",
-    tags: pass ? ["pass"] : ["fail"],
+    explanation: "Rationale long enough for board serve quality checks.",
+    tags: ["pass"],
   };
 }
 
 describe("gatherTimedExamBankItems", () => {
-  it("accumulates vetted rows across multiple pulls until the limit is met", async () => {
-    const mockSample = vi.mocked(sampleQuestionBankItemsForField);
-    mockSample
-      .mockResolvedValueOnce([
-        item("1", true),
-        item("2", false),
-        item("3", true),
-        item("4", false),
-      ])
-      .mockResolvedValueOnce([
-        item("1", true),
-        item("5", true),
-        item("6", true),
-        item("7", true),
-      ]);
-
-    const result = await gatherTimedExamBankItems({
-      fieldId: "nursing",
-      limit: 5,
-      filterFn: (row) => row.tags?.includes("pass") ?? false,
-      initialSampleCount: 4,
-    });
-
-    expect(result).toHaveLength(5);
-    expect(mockSample).toHaveBeenCalledTimes(2);
-  });
-
-  it("uses relaxed gate when strict pool cannot fill the exam", async () => {
-    const mockSample = vi.mocked(sampleQuestionBankItemsForField);
-    mockSample.mockResolvedValue([
-      item("1", true),
-      item("2", false),
-      item("3", false),
-      item("4", false),
+  it("uses progressive pool with full ladder for non-USMLE fields", async () => {
+    const mockGather = vi.mocked(gatherProgressiveBankPool);
+    mockGather.mockResolvedValue([
+      item("1"),
+      item("2"),
+      item("3"),
+      item("4"),
+      item("5"),
     ]);
 
     const result = await gatherTimedExamBankItems({
       fieldId: "nursing",
-      limit: 3,
-      filterFn: (row) => row.tags?.includes("pass") ?? false,
-      relaxedFilterFn: () => true,
+      limit: 5,
+      filterFn: () => true,
       initialSampleCount: 4,
     });
 
-    expect(result.length).toBeGreaterThanOrEqual(3);
+    expect(result).toHaveLength(5);
+    expect(mockGather).toHaveBeenCalledWith(
+      expect.objectContaining({
+        fieldId: "nursing",
+        limit: 5,
+        maxTierIndex: expect.any(Number),
+      })
+    );
+    const call = mockGather.mock.calls[0]![0]!;
+    expect(call.maxTierIndex).toBeGreaterThan(0);
+  });
+
+  it("delegates USMLE fields to progressive USMLE gather", async () => {
+    const mockUsmle = vi.mocked(gatherUsmleTimedExamBankItems);
+    mockUsmle.mockResolvedValue([item("u1"), item("u2"), item("u3")]);
+
+    const result = await gatherTimedExamBankItems({
+      fieldId: "usmle-step-2",
+      limit: 3,
+      filterFn: () => true,
+      initialSampleCount: 4,
+    });
+
+    expect(result).toHaveLength(3);
+    expect(mockUsmle).toHaveBeenCalled();
   });
 });

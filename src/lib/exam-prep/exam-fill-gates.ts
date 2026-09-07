@@ -11,6 +11,7 @@ import {
   nclexItemPassesBestExamGate,
   nclexItemPassesRelaxedExamGate,
   nclexItemPassesStructuralTimedGate,
+  nclexItemPassesTimedExamGate,
 } from "./nclex-serve-gate";
 import {
   nptePtItemPassesRelaxedExamGate,
@@ -19,6 +20,7 @@ import {
 } from "./npte-pt-serve-gate";
 import {
   usmleBankItemIsExamFillReady,
+  usmleBankItemIsServeReady,
   usmleBankItemPassesBasicTimedGate,
   usmleBankItemPassesMinimalTimedGate,
   usmleBankItemPassesStructuralGate,
@@ -65,6 +67,7 @@ export function timedExamGatherLadderForField(fieldId: string): GatherGateTier[]
   if (fieldId === "nursing") {
     return [
       { id: "best", filter: nclexItemPassesBestExamGate },
+      { id: "serve", filter: nclexItemPassesTimedExamGate },
       { id: "structural", filter: nclexItemPassesStructuralTimedGate },
       { id: "relaxed", filter: nclexItemPassesRelaxedExamGate },
       { id: "minimal", filter: nclexItemPassesMinimalExamGate },
@@ -88,6 +91,14 @@ export function timedExamGatherLadderForField(fieldId: string): GatherGateTier[]
   }
   if (fieldId.startsWith("usmle") || fieldId === "pance" || fieldId === "aanp-fnp") {
     return [
+      {
+        id: "serve",
+        filter: (item) => usmleBankItemIsServeReady(item, fieldId),
+      },
+      {
+        id: "exam_fill",
+        filter: (item) => usmleBankItemIsExamFillReady(item, fieldId),
+      },
       {
         id: "structural",
         filter: (item) => usmleBankItemPassesStructuralGate(item, fieldId),

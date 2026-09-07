@@ -63,7 +63,7 @@ export async function gatherUsmleTimedExamBankItems(params: {
     maxTierIndex: ladder.length - 1,
     initialSampleCount: params.initialSampleCount,
     stateCode: params.stateCode,
-    maxRoundsPerTier: params.maxRoundsPerTier ?? 1,
+    maxRoundsPerTier: params.maxRoundsPerTier ?? 2,
   });
 }
 

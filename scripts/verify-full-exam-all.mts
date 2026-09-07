@@ -124,6 +124,8 @@ async function assembleFullExam(
         items,
         limit,
         poolLimit: items.length,
+        // Progressive gather already applied field gates — don't cull again to underfill.
+        skipRuntimeGate: true,
       });
 
       const rawInputs = items.map((item, i) => ({
@@ -133,7 +135,9 @@ async function assembleFullExam(
         bankItemId: item.id,
       }));
 
-      const { prepared, quality } = finalizeExamSessionQuestions(rawInputs, limit);
+      const { prepared, quality } = finalizeExamSessionQuestions(rawInputs, limit, {
+        fieldId,
+      });
       assertExamSessionReady(quality, fieldId);
 
       const returned = prepared.length;
@@ -210,6 +214,7 @@ async function main() {
           items,
           limit,
           poolLimit: items.length,
+          skipRuntimeGate: true,
         });
         const rawInputs = items.map((item, i) => ({
           ...bankItemToSessionRaw(step.fieldId, step.fieldId, item.subjectId ?? "__mixed__", item, i),
@@ -217,7 +222,9 @@ async function main() {
           subjectId: item.subjectId ?? "__mixed__",
           bankItemId: item.id,
         }));
-        const { prepared, quality } = finalizeExamSessionQuestions(rawInputs, limit);
+        const { prepared, quality } = finalizeExamSessionQuestions(rawInputs, limit, {
+          fieldId: step.fieldId,
+        });
         assertExamSessionReady(quality, step.fieldId);
         const activeInBank = await countActiveQuestions(step.fieldId);
         console.log(

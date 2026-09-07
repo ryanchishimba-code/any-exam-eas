@@ -1,26 +1,16 @@
 import type { BankItem } from "@/lib/question-bank";
 import { dedupeBankItemsById } from "@/lib/question-bank-db";
-import { serveQaPassedBankItems } from "@/lib/exam-prep/serve-qa-passed";
 import { gatherProgressiveBankPool } from "@/lib/exam-prep/gather-progressive-bank-pool";
 import { timedExamGatherLadderForField } from "@/lib/exam-prep/exam-fill-gates";
 import { gatherUsmleTimedExamBankItems } from "@/lib/exam-prep/usmle/progressive-exam-fill";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
-import { LONG_SESSION_CLINICAL_DEDUPE_MAX } from "@/lib/questions/spread-session-order";
-import {
-  resolveProgressivePoolLimit,
-  resolveProgressivePullSize,
-} from "@/lib/exam-prep/progressive-exam-relaxation";
+import { resolveProgressivePoolLimit } from "@/lib/exam-prep/progressive-exam-relaxation";
 
 export type TimedExamFilterFn = (item: BankItem) => boolean;
 
 /** @deprecated Use resolveProgressivePoolLimit from progressive-exam-relaxation. */
 function resolveTimedExamPoolTarget(limit: number): number {
   return resolveProgressivePoolLimit(limit);
-}
-
-/** @deprecated Use resolveProgressivePullSize from progressive-exam-relaxation. */
-function resolveTimedExamPullSize(limit: number, poolTarget: number): number {
-  return resolveProgressivePullSize(limit, poolTarget);
 }
 
 /**
@@ -48,9 +38,11 @@ export async function gatherTimedExamBankItems(params: {
 
   const { fieldId, limit, relaxedFilterFn } = params;
   const ladder = timedExamGatherLadderForField(fieldId);
+  // Always escalate through the field ladder so timed exams can fill.
+  // Optional relaxedFilterFn only caps how far we relax (legacy callers).
   const maxTierIndex = relaxedFilterFn
     ? Math.min(ladder.length - 1, Math.max(1, ladder.length - 2))
-    : 0;
+    : Math.max(0, ladder.length - 1);
 
   const gathered = await gatherProgressiveBankPool({
     fieldId,
@@ -58,15 +50,13 @@ export async function gatherTimedExamBankItems(params: {
     maxTierIndex,
     initialSampleCount: params.initialSampleCount,
     stateCode: params.stateCode,
+    maxRoundsPerTier: params.maxRoundsPerTier ?? 2,
   });
 
-  const longExam = limit >= LONG_SESSION_CLINICAL_DEDUPE_MAX;
   const poolTarget = resolveTimedExamPoolTarget(limit);
+  const exportSize = Math.max(limit, poolTarget);
 
-  if (longExam) {
-    return dedupeBankItemsById(gathered).slice(0, Math.max(limit, poolTarget));
-  }
-
-  const exportSize = Math.min(gathered.length, poolTarget);
-  return serveQaPassedBankItems(gathered, exportSize);
+  // Keep the progressive pool intact for session finalize — clinical similarity
+  // dedupe belongs in finalize, not here (it was underfilling 49/50 exams).
+  return dedupeBankItemsById(gathered).slice(0, exportSize);
 }
