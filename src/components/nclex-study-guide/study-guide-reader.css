@@ -1,0 +1,56 @@
+/* NCLEX Study Guide reader — print + prose (scoped via .sg-reader) */
+
+.sg-prose h1 {
+  font-size: 1.75em;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.75em;
+}
+.sg-prose h2 {
+  font-size: 1.25em;
+  font-weight: 700;
+  margin: 1.4em 0 0.5em;
+}
+.sg-prose h3 {
+  font-size: 1.05em;
+  font-weight: 650;
+  margin: 1.2em 0 0.4em;
+}
+.sg-prose p {
+  margin: 0 0 0.9em;
+}
+.sg-prose ul {
+  margin: 0 0 0.9em;
+  padding-left: 1.25em;
+  list-style: disc;
+}
+.sg-prose code {
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.25em;
+  background: rgba(0, 0, 0, 0.06);
+}
+.sg-search-hit {
+  background: #2ec4b6;
+  color: #0b1c2c;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+@media print {
+  .sg-reader > header,
+  .sg-reader aside,
+  .sg-reader nav[aria-label="Chapter navigation"],
+  .sg-reader [role="progressbar"] {
+    display: none !important;
+  }
+  .sg-paper {
+    box-shadow: none !important;
+    max-width: none !important;
+    overflow: visible !important;
+    background: white !important;
+    color: black !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+}

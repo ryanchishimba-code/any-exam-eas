@@ -74,6 +74,10 @@ model User {
   legalConsent       UserLegalConsent?
   blogPosts          BlogPost[]
   userCellStates     UserCellState[]
+  sgHighlights       SgHighlight[]
+  sgBookmarks        SgBookmark[]
+  sgNotes            SgNote[]
+  sgReadingProgress  SgReadingProgress[]
 }
 
 model Account {
@@ -1506,4 +1510,116 @@ model BlogPost {
   @@index([category, published])
   @@index([deletedAt, updatedAt])
   @@index([authorId])
+}
+
+/// NCLEX Study Guide — book/PDF-style reader (not QBank, not blog).
+model SgGuide {
+  id          String    @id @default(cuid())
+  examTrack   String // rn | pn
+  title       String
+  edition     String    @default("1")
+  version     String    @default("0.1.0")
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  chapters SgChapter[]
+  progress SgReadingProgress[]
+
+  @@index([examTrack])
+  @@map("sg_guides")
+}
+
+model SgChapter {
+  id               String   @id @default(cuid())
+  guideId          String
+  slug             String
+  sortOrder        Int
+  title            String
+  sectionLabel     String   @default("")
+  estimatedMinutes Int      @default(5)
+  bodyMd           String   @default("")
+  bodyHtml         String   @default("")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  guide     SgGuide             @relation(fields: [guideId], references: [id], onDelete: Cascade)
+  highlights SgHighlight[]
+  bookmarks  SgBookmark[]
+  notes      SgNote[]
+  progress   SgReadingProgress[]
+
+  @@unique([guideId, slug])
+  @@index([guideId, sortOrder])
+  @@map("sg_chapters")
+}
+
+model SgHighlight {
+  id           String   @id @default(cuid())
+  userId       String
+  chapterId    String
+  startOffset  Int
+  endOffset    Int
+  selectedText String
+  color        String   @default("yellow") // yellow | teal | gold | rose | lavender
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chapter SgChapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  notes   SgNote[]
+
+  @@unique([userId, chapterId, startOffset, endOffset])
+  @@index([userId, chapterId])
+  @@map("sg_highlights")
+}
+
+model SgBookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  chapterId String
+  anchorId  String
+  label     String   @default("")
+  scrollPct Float    @default(0)
+  createdAt DateTime @default(now())
+
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chapter SgChapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, chapterId, anchorId])
+  @@index([userId, chapterId])
+  @@map("sg_bookmarks")
+}
+
+model SgNote {
+  id          String   @id @default(cuid())
+  userId      String
+  chapterId   String
+  highlightId String?
+  body        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chapter   SgChapter    @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  highlight SgHighlight? @relation(fields: [highlightId], references: [id], onDelete: SetNull)
+
+  @@index([userId, chapterId])
+  @@map("sg_notes")
+}
+
+model SgReadingProgress {
+  userId     String
+  guideId    String
+  chapterId  String
+  scrollPct  Float    @default(0)
+  lastReadAt DateTime @default(now())
+
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  guide   SgGuide   @relation(fields: [guideId], references: [id], onDelete: Cascade)
+  chapter SgChapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@id([userId, guideId])
+  @@index([userId, chapterId])
+  @@map("sg_reading_progress")
 }

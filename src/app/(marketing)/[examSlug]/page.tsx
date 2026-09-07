@@ -23,7 +23,10 @@ const STATIC_SLUGS = [
 ];
 
 export function generateStaticParams() {
-  return STATIC_SLUGS.map((examSlug) => ({ examSlug }));
+  // `/nclex` is owned by the product hub at `src/app/nclex` (Study Guide entry).
+  return STATIC_SLUGS.filter((examSlug) => examSlug !== "nclex").map((examSlug) => ({
+    examSlug,
+  }));
 }
 
 export async function generateMetadata({ params }: Props) {
