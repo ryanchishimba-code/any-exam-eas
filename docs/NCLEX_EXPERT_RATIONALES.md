@@ -93,6 +93,8 @@ See `NCLEX_EXPERT_RATIONALE_JSON_SCHEMA` in `nclex-expert-rationale.ts`.
 
 Required sections: `stepByStepReasoning`, `clinicalPearl`, `highYieldFacts`, `commonPitfalls`, `testTakingTip`, `realWorldApplication`, plus full `whyIncorrect` for every distractor.
 
+**Figures / media path:** [`docs/NCLEX_WORLD_CLASS_FIGURES.md`](NCLEX_WORLD_CLASS_FIGURES.md)
+
 ## Quality gates
 
 - Existing `validateStructuredRationale()` — all wrong options covered, min lengths

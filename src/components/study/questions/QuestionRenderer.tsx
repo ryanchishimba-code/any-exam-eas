@@ -35,6 +35,7 @@ import {
   UsmleExhibitBlock,
   isUsmleField,
 } from "./UsmleFormats";
+import { NclexExhibitBlock } from "./NclexFormats";
 import { QuestionRelatedLinks } from "./QuestionRelatedLinks";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { useUserAccess } from "@/lib/client/use-user-access";
@@ -132,6 +133,10 @@ export const QuestionRenderer = memo(function QuestionRenderer({
 
       {isUsmleField(question.field) ? (
         <UsmleExhibitBlock question={question} />
+      ) : question.field === "nursing" ||
+        question.field === "nclex-rn" ||
+        question.field === "nclex-pn" ? (
+        <NclexExhibitBlock question={question} />
       ) : (
         (question.ngnFormat === "exhibit" || question.ngnPayload?.kind === "exhibit") && (
           <ExhibitTable question={question} />

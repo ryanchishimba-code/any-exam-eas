@@ -1,21 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import type { UsmleFigureRef } from "@/lib/exam-prep/usmle/figure-assets";
+import type { ExhibitFigureRef } from "@/lib/exam-prep/exhibit-figure";
+import { getApprovedNclexFigureById } from "@/lib/exam-prep/nclex/figure-assets";
+import { getApprovedFigureById } from "@/lib/exam-prep/usmle/figure-assets";
 import { cn } from "@/lib/utils";
 import { Maximize2, X } from "lucide-react";
 
 type Props = {
-  figures: UsmleFigureRef[];
+  figures: ExhibitFigureRef[];
   className?: string;
 };
+
+/** Prefer live catalog SVG by id so redesigned assets show without re-backfill. */
+function hydrateFigure(fig: ExhibitFigureRef): ExhibitFigureRef {
+  if (fig.id.startsWith("nclex-")) {
+    return getApprovedNclexFigureById(fig.id) ?? fig;
+  }
+  return getApprovedFigureById(fig.id) ?? fig;
+}
 
 /**
  * Board-style stem figure viewer — zoomable educational exhibits (SVG or CDN).
  */
 export function ExhibitMedia({ figures, className }: Props) {
-  const approved = figures.filter((f) => f.reviewStatus === "approved");
-  const [lightbox, setLightbox] = useState<UsmleFigureRef | null>(null);
+  const approved = figures
+    .filter((f) => f.reviewStatus === "approved")
+    .map(hydrateFigure);
+  const [lightbox, setLightbox] = useState<ExhibitFigureRef | null>(null);
   if (!approved.length) return null;
 
   return (

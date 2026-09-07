@@ -15,7 +15,7 @@ import { isUsmleOrganSystemId } from "./official-content-model";
 import { normalizeUsmleExhibitPayload } from "./normalize-exhibit";
 import {
   attachFigureRefToNgn,
-  findApprovedFiguresForTopic,
+  selectUsmleFigureForItem,
 } from "./figure-assets";
 
 export type UsmleFullExamQcReport = {
@@ -92,16 +92,11 @@ export function normalizeUsmleFullExamItem(item: BankItem, slotMeta?: {
 
   // World-class exhibits: normalize findings/labTable → renderable table + attach SVG figures.
   let withExhibit = normalizeUsmleExhibitPayload({ ...normalized, tags, ngnPayload: ngn });
-  const topic =
-    slotMeta?.blueprintTopic ??
-    (typeof withExhibit.ngnPayload?.blueprintTopic === "string"
-      ? withExhibit.ngnPayload.blueprintTopic
-      : null);
-  const figures = findApprovedFiguresForTopic(topic, system);
-  if (figures[0]) {
+  const selected = selectUsmleFigureForItem(withExhibit);
+  if (selected) {
     const nextNgn = attachFigureRefToNgn(
       { ...(withExhibit.ngnPayload ?? {}) },
-      figures[0]
+      selected
     );
     withExhibit = {
       ...withExhibit,

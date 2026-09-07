@@ -28,6 +28,7 @@ import {
 import { buildNclex2026TopicCatalogBlock, labelForNclex2026TopicSlug } from "./blueprint-topics-2026";
 import { assessNclexFullExamItem, nclexFullExamItemPasses } from "./quality-gate";
 import { repairGeneratedNclexNgnItem } from "../repair-generated-nclex-ngn";
+import { normalizeNclexExhibitPayload } from "./normalize-exhibit";
 import { maybeEnrichExpertBankItemRationale } from "@/lib/engine/rationale/generate-expert-rationale";
 import { attachVisualRationaleToItem } from "@/lib/engine/rationale/enrich-visual-rationale";
 import type {
@@ -508,9 +509,11 @@ async function generateChunk(params: {
     }
 
     try {
-      let item = repairGeneratedNclexNgnItem(
-        normalizeGeneratedExplanation(
-          slotToBankItem(exam, slot, params.batchId, params.examNumber, 0)
+      let item = normalizeNclexExhibitPayload(
+        repairGeneratedNclexNgnItem(
+          normalizeGeneratedExplanation(
+            slotToBankItem(exam, slot, params.batchId, params.examNumber, 0)
+          )
         )
       );
       const globalIndex = slot.slotIndex;
@@ -518,16 +521,18 @@ async function generateChunk(params: {
 
       if (!qc.ok) {
         // Second repair pass after assessment mutates nothing — rebuild from slot type hints.
-        item = repairGeneratedNclexNgnItem({
-          ...item,
-          itemType: plannedType,
-          ngnPayload: {
-            ...(item.ngnPayload && typeof item.ngnPayload === "object"
-              ? (item.ngnPayload as Record<string, unknown>)
-              : {}),
-            kind: slot.ngnFormat ?? plannedType,
-          },
-        });
+        item = normalizeNclexExhibitPayload(
+          repairGeneratedNclexNgnItem({
+            ...item,
+            itemType: plannedType,
+            ngnPayload: {
+              ...(item.ngnPayload && typeof item.ngnPayload === "object"
+                ? (item.ngnPayload as Record<string, unknown>)
+                : {}),
+              kind: slot.ngnFormat ?? plannedType,
+            },
+          })
+        );
         qc = assessNclexFullExamItem(item, globalIndex);
       }
 

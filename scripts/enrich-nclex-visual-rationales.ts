@@ -30,16 +30,34 @@ function parseArgs() {
   return { limit, dryRun };
 }
 
-function hasVisualBlocks(meta: unknown): boolean {
-  if (!meta || typeof meta !== "object") return false;
+function readVisualBlocks(meta: unknown): unknown[] {
+  if (!meta || typeof meta !== "object") return [];
   const m = meta as Record<string, unknown>;
   const expert = m[EXPERT_RATIONALE_META_KEY];
   if (expert && typeof expert === "object") {
     const vb = (expert as { visualBlocks?: unknown[] }).visualBlocks;
-    if (Array.isArray(vb) && vb.length > 0) return true;
+    if (Array.isArray(vb)) return vb;
   }
   const standalone = m.visualRationale;
-  return Array.isArray(standalone) && standalone.length > 0;
+  return Array.isArray(standalone) ? standalone : [];
+}
+
+function hasVisualBlocks(meta: unknown): boolean {
+  return readVisualBlocks(meta).length > 0;
+}
+
+function hasImageVisualBlock(meta: unknown): boolean {
+  return readVisualBlocks(meta).some(
+    (b) => b && typeof b === "object" && (b as { kind?: string }).kind === "image"
+  );
+}
+
+function hasApprovedStemMedia(item: ReturnType<typeof enrichBankItemFromRow>): boolean {
+  const media = item.ngnPayload?.media;
+  if (!Array.isArray(media)) return false;
+  return media.some(
+    (m) => m && typeof m === "object" && (m as { reviewStatus?: string }).reviewStatus === "approved"
+  );
 }
 
 async function main() {
@@ -79,12 +97,16 @@ async function main() {
 
     for (const row of rows) {
       scanned++;
-      if (hasVisualBlocks(row.generationMeta)) {
+      const item = enrichBankItemFromRow(row);
+      // Skip only when visuals exist AND stem media (if any) already has an image block.
+      if (
+        hasVisualBlocks(row.generationMeta) &&
+        !(hasApprovedStemMedia(item) && !hasImageVisualBlock(row.generationMeta))
+      ) {
         skipped++;
         continue;
       }
 
-      const item = enrichBankItemFromRow(row);
       const enriched = attachVisualRationaleToItem(item);
       const meta =
         typeof enriched.ngnPayload?.generationMeta === "object"

@@ -17,9 +17,34 @@ describe("USMLE figure catalog", () => {
     }
   });
 
-  it("finds STEMI figure by topic slug", () => {
+  it("finds STEMI figure by topic slug and content gate prefers STEMI stems", () => {
     const figs = findApprovedFiguresForTopic("acute-coronary-syndrome", "cardiovascular");
     expect(figs.some((f) => f.id === "ecg-anterior-stemi-schematic")).toBe(true);
+  });
+
+  it("selectUsmleFigureForItem requires content keywords", async () => {
+    const { selectUsmleFigureForItem } = await import("./figure-assets");
+    expect(
+      selectUsmleFigureForItem({
+        blueprintTopic: "acute-coronary-syndrome",
+        vignette: "Patient with reflux after spicy food.",
+        question: "Next step?",
+      })
+    ).toBeUndefined();
+    expect(
+      selectUsmleFigureForItem({
+        blueprintTopic: "acute-coronary-syndrome",
+        vignette: "Crushing chest pain; troponin pending. ECG pending.",
+        question: "Next step in management?",
+      })
+    ).toBeUndefined();
+    expect(
+      selectUsmleFigureForItem({
+        blueprintTopic: "acute-coronary-syndrome",
+        vignette: "Crushing chest pain with ST elevation in V2–V4 and rising troponin.",
+        question: "Next step in management?",
+      })?.id
+    ).toBe("ecg-anterior-stemi-schematic");
   });
 
   it("finds pneumothorax schematic", () => {

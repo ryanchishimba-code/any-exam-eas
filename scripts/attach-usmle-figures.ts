@@ -21,13 +21,15 @@ import {
 import { normalizeUsmleExhibitPayload } from "../src/lib/exam-prep/usmle/normalize-exhibit";
 import {
   attachFigureRefToNgn,
-  findApprovedFiguresForTopic,
+  selectUsmleFigureForItem,
+  USMLE_FIGURE_CATALOG,
   type UsmleFigureRef,
 } from "../src/lib/exam-prep/usmle/figure-assets";
 
 const prisma = new PrismaClient();
 const BATCH = 150;
 const USMLE_FIELDS = ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const;
+const USMLE_FIGURE_IDS = new Set(USMLE_FIGURE_CATALOG.map((f) => f.id));
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -121,25 +123,31 @@ async function main() {
         }
       }
 
-      const organ =
-        item.blueprintDomain ??
-        (typeof item.ngnPayload?.blueprintSystem === "string"
-          ? item.ngnPayload.blueprintSystem
-          : null);
-
       let next = normalizeUsmleExhibitPayload(item);
-      const figures = findApprovedFiguresForTopic(topic, organ);
+      const selected = selectUsmleFigureForItem(next);
       const already = hasApprovedMedia(next.ngnPayload);
       let didAttach = false;
 
-      if (figures[0] && (!already || force)) {
-        const ngn = attachFigureRefToNgn({ ...(next.ngnPayload ?? {}) }, figures[0]);
+      // Drop prior media when re-attaching with content gate (repair path uses --force).
+      if (selected && (!already || force)) {
+        const baseNgn = { ...(next.ngnPayload ?? {}) };
+        if (force) delete (baseNgn as { media?: unknown }).media;
+        const ngn = attachFigureRefToNgn(baseNgn, selected);
         next = {
           ...next,
           itemType: next.itemType === "biostats" ? "biostats" : "exhibit",
           ngnPayload: ngn,
         };
         didAttach = true;
+      } else if (already && !selected) {
+        // Strip misfit catalog media when stem no longer qualifies.
+        const media = ((next.ngnPayload?.media as UsmleFigureRef[]) ?? []).filter(
+          (m) => !USMLE_FIGURE_IDS.has(m.id)
+        );
+        const ngn = { ...(next.ngnPayload ?? {}) };
+        if (media.length) ngn.media = media;
+        else delete ngn.media;
+        next = { ...next, ngnPayload: ngn };
       }
 
       const tableNow = hasRenderableTable(next.ngnPayload);

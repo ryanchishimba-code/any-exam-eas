@@ -17,6 +17,7 @@ import { repairGeneratedNclexNgnItem } from "../repair-generated-nclex-ngn";
 import { assessNclexCuratedSeedItem } from "../nclex-curated-seeds-quality";
 import { nclexBankItemIsBestReady } from "../nclex-serve-gate";
 import type { EnrichedBankItem } from "../seed-helpers";
+import { normalizeNclexExhibitPayload } from "./normalize-exhibit";
 
 function hasStructuredDistractorBlock(item: BankItem): boolean {
   return hasNclexDistractorRationales(item);
@@ -54,7 +55,7 @@ export function assessNclexNgnGenerationItem(
   index: number
 ): NclexFullExamQcReport {
   // Re-apply payload repair in case upstream normalize stripped structured fields.
-  item = repairGeneratedNclexNgnItem(item);
+  item = normalizeNclexExhibitPayload(repairGeneratedNclexNgnItem(item));
   const issues: string[] = [];
   const verdict = assessNclexItemQuality(item, { source: "ai-curated" });
 
@@ -123,6 +124,7 @@ export function assessNclexFullExamItem(
   item: BankItem,
   index: number
 ): NclexFullExamQcReport {
+  item = normalizeNclexExhibitPayload(item);
   if (
     isNclexNgnGenerationType(item.itemType) ||
     Boolean(
