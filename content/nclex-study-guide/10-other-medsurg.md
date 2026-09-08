@@ -2,11 +2,11 @@
 
 > **Study aid only.** Oncologic emergencies and burn fluid formulas are facility/protocol-driven — verify. Not a procedural manual.
 
-![Compartment syndrome six Ps](visuals/compartment-six-ps.png)
+![Compartment syndrome six Ps](visuals/compartment-six-ps.jpg)
 
-![Neutropenic precautions](visuals/neutropenic-precautions.png)
+![Neutropenic precautions](visuals/neutropenic-precautions.jpg)
 
-![Burn rule of nines adult](visuals/burn-rule-of-nines.png)
+![Burn rule of nines adult](visuals/burn-rule-of-nines.svg)
 
 ---
 
@@ -133,7 +133,7 @@ Fever + neutropenia = urgent antibiotics pathway. Chemo = PPE + extravasation kn
 ### Pressure injury staging (review)
 
 - **Stage 1:** non-blanchable erythema, intact skin.  
-- **Stage 2:** partial-thickness; blister/abrasion themes.  
+- **Stage 2:** partial-thickness loss with exposed viable pink/red dermis; intact or ruptured serum-filled blister. Does **not** include skin tears, burns, abrasions, or moisture-associated skin damage.  
 - **Stage 3:** full-thickness skin loss; fat may show; no exposed bone/tendon/muscle.  
 - **Stage 4:** exposed bone/tendon/muscle.  
 - **Unstageable:** base obscured by eschar/slough.  
@@ -215,6 +215,80 @@ Focus on **immunity down → opportunistic risk up**: pneumonia themes (includin
 HIV nursing = adherence + infection vigilance + dignity + standard precautions; CD4/viral load trends matter.
 
 ---
+
+
+---
+
+## Clinical judgment vignettes — immune, MSK, sensory, integument
+
+### Vignette A — Compartment syndrome
+
+**Stem:** Casted tibia; pain out of proportion, pain on passive stretch, paresthesia.
+
+**First:** Notify provider NOW — loosen dressings per protocol, keep limb at heart level themes — don’t elevate high or ice blindly if it worsens arterial flow; fasciotomy pathway.
+
+### Vignette B — Neutropenic fever
+
+**Stem:** ANC 400; T 38.5°C; “feels fine.”
+
+**First:** Cultures + prompt Abx pathway; protective precautions — don’t wait for “looks sick.”
+
+### Vignette C — Burn fluid & airway
+
+**Stem:** Facial burns, singed nasal hairs, hoarse voice.
+
+**First:** Airway — early intubation themes before swelling closes airway; then fluid resuscitation per Parkland-style orders, rule of nines estimate, hypothermia prevention, infection control.
+
+### Immune / oncology hooks
+
+- Radiation skin care; chemo nadir timing; mucositis; tumor lysis (K⁺/phos/uric acid) monitoring.  
+- Anaphylaxis to chemo/abx: epi IM, airway.  
+- Graft-vs-host themes high-level post-transplant.
+
+### MSK / cast / traction
+
+- Neurovascular 6 Ps: pain, pressure, paralysis, paresthesia, pallor, pulselessness.  
+- Fat embolism after long-bone fracture: petechiae, dyspnea, confusion.  
+- Osteomyelitis: fever + bone pain; long Abx.  
+- Amputation: phantom pain real; hemorrhage watch; contracture prevention (prone themes for AKA).
+
+### Sensory
+
+- Cataract post-op: no ↑IOP (no bending/lifting/straining); shield.  
+- Glaucoma: sudden pain/halos = angle-closure emergency.  
+- Retinal detachment: curtain/floaters — urgent.  
+- Meniere: safety with vertigo; fall risk.  
+- Hearing aid care; speak facing client.
+
+### Integument / burns / wounds
+
+- Staging pressure injuries; never massage a reddened bony prominence.  
+- Stevens-Johnson / TEN: stop offending drug; airway/fluid/skin like burn care themes.  
+- Cellulitis vs abscess; MRSA contact precautions as indicated.
+
+### Extra concept checks
+
+**Q7.** Pain out of proportion after cast — priority?  
+A. Extra blanket  
+B. Notify provider for compartment evaluation now  
+C. Ambulate to increase circulation only  
+D. Ignore if pulses still present (pulselessness is late)  
+
+**Answer: B.** Pulselessness is late — act on pain/stretch pain early.
+
+
+
+### Medication highlights — other med-surg
+
+| Theme | Hook |
+| --- | --- |
+| Allopurinol / colchicine | Gout; hydration; interactions |
+| Bisphosphonates | Sit upright after PO; jaw osteonecrosis rare teaching |
+| Methotrexate | Folate; infection; liver; pregnancy avoid |
+| Biologics / immunosuppressants | Infection risk; TB screen themes |
+| Eyedrops | Punctal occlusion; wait between drops |
+| Silver sulfadiazine / burn topicals | Allergy/sulfa; wound assessment |
+
 
 ## Concept check
 

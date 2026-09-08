@@ -42,7 +42,7 @@ Prioritized diagram list (catalog). Drop PNGs into `visuals/` matching filenames
 | 21 | `shock-types-overview.png` | 04 | Four tiles: hypo/cardio/distributive/obstructive with one-line mechanism |
 | 22 | `addison-vs-cushing.png` | 07 | Silhouette comparison: thin hyperpigmented hypotensive vs cushingoid features |
 | 23 | `av-fistula-arm-rules.png` | 08 | Arm graphic: no BP/sticks; thrill/bruit check icons |
-| 24 | `ppH-atony-algorithm.png` | 11 | Boggy fundus → massage → empty bladder → uterotonics → escalate |
+| 24 | `pph-atony-algorithm.png` | 11 | Boggy fundus → massage → empty bladder → uterotonics → escalate |
 | 25 | `insulin-peak-timeline.png` | 14 | Simple timeline bars for rapid/regular/NPH/long with hypo-risk shading |
 
 ---

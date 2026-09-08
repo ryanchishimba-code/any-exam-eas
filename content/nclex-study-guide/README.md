@@ -1,6 +1,6 @@
 # NCLEX Study Guide — manuscript drop folder
 
-Manuscript is loaded from the paste-ready book archive (`anyexameasy-nclex-book-paste-ready.tar.gz`).
+Manuscript is loaded from the complete book archive (`NCLEX-Complete-Package-with-Visuals.tar.gz`, Enhanced edition).
 
 ## Files that ingest
 
@@ -16,7 +16,7 @@ Run:
 npm run ingest:nclex-guide
 ```
 
-Image paths `visuals/…` are rewritten to `/nclex-study-guide/visuals/…` (files live in `public/nclex-study-guide/visuals/` and are mirrored here).
+Image paths `visuals/…` are rewritten to `/nclex-study-guide/visuals/…` (files live in `public/nclex-study-guide/visuals/` and are mirrored here). Figures are `.jpg` in the Enhanced edition; keep filenames lowercase for case-sensitive deploys.
 
 ## Do not ingest (reference only)
 

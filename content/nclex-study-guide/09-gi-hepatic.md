@@ -2,7 +2,7 @@
 
 > **Study aid only.** GI bleed and liver failure management follow facility protocols — verify. Not endoscopic procedure guidance.
 
-![GI bleed ABC priority flow](visuals/gi-bleed-abc-flow.png)
+![GI bleed ABC priority flow](visuals/gi-bleed-abc-flow.jpg)
 
 ---
 
@@ -310,6 +310,45 @@ Aspiration during tube feed; TPN bag with precipitates/cracks; fever in TPN clie
 Enteral: HOB up + placement check. TPN: sterile + glucose + don’t stop cold.
 
 ---
+
+
+---
+
+## Additional clinical judgment vignettes — GI/hepatic
+
+### Vignette A — Variceal bleed
+
+**Stem:** Alcoholic cirrhosis; hematemesis; HR 130; BP 88/50.
+
+**First:** ABCs, large-bore IVs, notify, type & cross, NPO, prepare octreotide/endoscopy pathway per orders — don’t give PO lactulose first while exsanguinating.
+
+### Vignette B — Pancreatitis pain + hypovolemia
+
+NPO, IV fluids, pain control, glucose/Ca²⁺ watch, ARDS/tetany red flags.
+
+### Vignette C — Hepatic encephalopathy
+
+New confusion + ↑ammonia context: safety, lactulose as ordered (titrate to stools per orders), infection hunt, no sedatives casually.
+
+### Extra comparison
+
+| Problem | Classic cue | First nursing vibe |
+| --- | --- | --- |
+| Appendicitis | RLQ, rebound, fever | NPO, surgery prep; sudden relief may = rupture |
+| Peritonitis | Board-like abdomen, toxic | Fluids, Abx, surgery pathway |
+| SBO | Distention, tinkling, bilious vomit | NPO, NG as ordered, fluids |
+| Dumping | Post-gastrectomy postprandial crash | Small meals, separate fluids, lie down themes |
+
+### Extra concept checks
+
+**Q7.** Black tarry stools + coffee-ground emesis — priority mindset?  
+A. Encourage high-fiber snack first  
+B. ABCs, VS, IV access, notify — GI bleed until proven otherwise  
+C. Discharge with OTC iron only  
+D. Force ambulation without assessment  
+
+**Answer: B.**
+
 
 ## Concept check
 

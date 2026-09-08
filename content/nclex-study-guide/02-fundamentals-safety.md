@@ -2,9 +2,9 @@
 
 > **Study aid only.** Verify isolation, med rights, and facility protocols with current CDC-aligned practice and your instructors. Not clinical protocol.
 
-![Isolation precautions matrix](visuals/isolation-ppe-matrix.png)
+![Isolation precautions matrix](visuals/isolation-ppe-matrix.jpg)
 
-![Fire safety RACE and PASS](visuals/race-pass-fire.png)
+![Fire safety RACE and PASS](visuals/race-pass-fire.jpg)
 
 ---
 
@@ -50,8 +50,9 @@ Infection control interrupts the chain of infection (infectious agent → reserv
 | --- | --- | --- |
 | Standard | Everyone | Hand hygiene |
 | Contact | C. diff, MRSA* | Gown + gloves |
-| Droplet | Flu, N. meningitidis, many respiratory | Mask within close range |
-| Airborne | TB, measles, varicella | **N95** + airborne/negative-pressure room when indicated |
+| Droplet | Flu, N. meningitidis, many respiratory | Surgical mask **donned on room entry**; private room preferred; mask client for transport |
+| Airborne | TB, measles | **N95** (fit-tested) + airborne infection isolation room (negative pressure, door closed) |
+| Airborne **+ Contact** | Varicella, disseminated zoster | N95 + airborne room **+ gown and gloves** |
 
 \*Follow current facility/CDC-aligned practice.
 
@@ -198,7 +199,7 @@ RACE/PASS are classic. Disaster triage ≠ everyday ED prioritization.
 
 ### Concept
 
-Pressure + shear + moisture → tissue ischemia. Staging I–IV (+ unstageable, DTPI). Prevention is cheaper than treatment — and it’s a core safety quality metric.
+Pressure + shear + moisture → tissue ischemia. Staging 1–4 (+ unstageable, deep tissue pressure injury). Prevention is cheaper than treatment — and it’s a core safety quality metric.
 
 ### Priority actions
 
@@ -209,7 +210,7 @@ Pressure + shear + moisture → tissue ischemia. Staging I–IV (+ unstageable, 
 
 ### Remember this
 
-Red non-blanching over bone = stage 1 at minimum — intervene. Don’t stage what you can’t see (eschar = unstageable until debrided per protocol).
+Red non-blanching over bone = stage 1 at minimum — intervene. Don’t stage what you can’t see (slough/eschar obscuring the base = unstageable). Do **not** remove stable, dry, adherent eschar on a heel or ischemic limb — it is protective; debridement only when ordered for unstable or infected wounds.
 
 ---
 
@@ -231,6 +232,95 @@ Pain is real and deserves treatment; opioids still require RR/sedation monitorin
 Treat pain and protect the airway. Sedation precedes respiratory arrest — watch the trend.
 
 
+
+
+---
+
+## Clinical judgment vignette 1 — Wrong isolation
+
+**Stem:** Client coughing blood-tinged sputum, night sweats, weight loss; parked in double room; nurse about to use surgical mask only.
+
+**What to do first:** Move toward airborne precautions pathway (N95 + airborne/negative-pressure room as indicated), mask client for transport, notify infection prevention/provider — don’t wait for “confirmed culture” if suspicion is high per protocol.
+
+**Why:** Airborne exposure risk starts now. NCLEX rewards early correct isolation.
+
+---
+
+## Clinical judgment vignette 2 — Fall + toileting
+
+**Stem:** Confused elderly client on antihypertensives and zolpidem; repeatedly trying to climb out “to pee”; bed alarm sounding; UAP asks for soft restraints “so we can finish med pass.”
+
+**What to do first:** Toilet now, bed low, non-skid footwear, closer observation/rounding, consider sitter or room near desk per policy — **restraints last**, not convenience during med pass.
+
+**Why:** Toileting urgency is a top fall driver. Least restrictive alternatives first.
+
+---
+
+## Topic I — Neutropenic & protective environment themes
+
+### Concept
+
+Low ANC → infection risk from the environment and the client’s own flora. Fever in neutropenia is an emergency pathway (cultures + prompt antibiotics as ordered).
+
+### Priority actions
+
+- Hand hygiene meticulously; limit visitors; no fresh flowers/plants per policy; safe food practices (follow facility neutropenic diet rules — they vary).  
+- Avoid rectal temps, IM injections when possible if platelets also low.  
+- Private room themes; HEPA/protective environments when indicated for profound neutropenia.  
+- Teach client to report fever, sore throat, new cough immediately.
+
+### Red flag
+
+> **Red flag:** Neutropenic client with T 38.3°C (100.9°F) — don’t “recheck in 4 hours and hope.” Escalate per febrile neutropenia pathway.
+
+---
+
+## Topic J — Blood transfusion safety (fundamentals lens)
+
+### Priority actions
+
+1. Informed consent / type & crossmatch as ordered.  
+2. Two-nurse ID check at bedside per policy — unit to client.  
+3. Baseline VS; stay for first 15 minutes (or per policy); compatible NS only for priming/flush themes.  
+4. Reaction: **stop transfusion**, maintain IV with NS per protocol, notify provider/blood bank, save tubing/bag, VS, treat per reaction type (allergic, febrile, hemolytic, TACO/TRALI themes).
+
+### Red flag
+
+> **Red flag:** Flank pain, fever, hypotension early in transfusion → stop; possible acute hemolytic reaction (ABO mismatch energy).
+
+---
+
+## Topic K — Body mechanics, transfers, and device safety
+
+- Wide base, lift with legs, don’t twist; use lift equipment — nurses’ backs matter and client falls during transfers are common stems.  
+- Bed to chair: non-skid footwear, lock brakes, gait belt as policy, stand on weak side themes as taught.  
+- Wheelchair: footrests, brakes when transferring.  
+- SCDs/TEDs: correct size; not on limbs with active DVT per typical practice; skin checks.
+
+---
+
+## Topic L — Sensory / seizure / aspiration environmental safety
+
+- Seizure pads, suction, O₂ ready when indicated.  
+- Aspiration: HOB↑ for meals, thicken only as ordered, chin tuck as taught by SLP.  
+- Sensory deficits: call light in reach of functional side; explain before touch; night lights.  
+- Suicide precautions environmental search when ordered (see psych chapter).
+
+---
+
+## Medication highlights tied to fundamentals safety
+
+| Theme | Safety hook |
+| --- | --- |
+| Antibiotics | Allergy; culture timing; C. diff diarrhea reporting |
+| Opioids | RR/sedation; naloxone; fall risk |
+| Antihypertensives / diuretics | Orthostatics → falls |
+| Anticoagulants | Bleed + fall = disaster; teaching |
+| Sedative-hypnotics | Fall risk; confusion in elderly |
+| Chemo | Spill kits; PPE; double-check |
+
+---
+
 ## Concept check
 
 **Q1.** A client with suspected pulmonary TB is admitted. Which action is highest priority?  
@@ -251,11 +341,32 @@ B. Notify the provider to return and complete informed consent discussion
 C. Have the UAP witness and sign  
 D. Cancel surgery without communication  
 
+**Q4.** During packed RBC transfusion, client develops fever, flank pain, and hypotension 10 minutes in. First action?  
+A. Slow the rate and reassure  
+B. Stop the transfusion, keep IV line open with NS per protocol, notify provider/blood bank  
+C. Give next unit faster to “get through it”  
+D. Ignore if only “a little” flank pain  
+
+**Q5.** Neutropenic client reports feeling cold; T 38.4°C. Priority theme?  
+A. Extra blanket only; reassess tomorrow  
+B. Febrile neutropenia pathway — notify, cultures as ordered, prompt antibiotics as ordered  
+C. Send to gift shop for flowers to cheer up  
+D. Rectal temp to confirm twice  
+
+**Q6.** Best restraint practice statement?  
+A. Restrain first so med pass is faster  
+B. Least restrictive alternatives first; order, checks, toileting, documentation of behavior/alternatives  
+C. Vest restraint without assessment forever  
+D. Tie to side rails tightly for safety  
+
 #### Answers
 
 **Q1: A.** Airborne isolation protects staff/others immediately.  
 **Q2: B.** C. diff spores need soap and water.  
-**Q3: B.** Provider obtains informed consent; nurse advocates for unanswered questions.
+**Q3: B.** Provider obtains informed consent; nurse advocates for unanswered questions.  
+**Q4: B.** Stop transfusion first — possible acute reaction.  
+**Q5: B.** Fever + neutropenia = emergency pathway.  
+**Q6: B.** Least restrictive + legal/clinical process.
 
 ---
 
@@ -266,4 +377,6 @@ D. Cancel surgery without communication
 - Falls: toileting + environment; restraints last resort.  
 - Med rights + allergy + high-alert double-checks.  
 - Consent = provider informs; nurse witnesses/advocates.  
-- RACE/PASS; incident reports = factual QI tools.
+- RACE/PASS; incident reports = factual QI tools.  
+- Neutropenic fever and transfusion reactions = act now.  
+- Pressure injury prevention is a safety metric, not “optional comfort.”

@@ -2,7 +2,7 @@
 
 > **Study aid only.** Crisis and suicide protocols follow facility and local law. Duty-to-warn and reporting rules vary by jurisdiction — know concepts and verify locally. Not psychotherapy.
 
-![Therapeutic communication keep-kill](visuals/therapeutic-communication.png)
+![Therapeutic communication keep-kill](visuals/therapeutic-communication.jpg)
 
 ---
 
@@ -122,7 +122,7 @@ Panic: stay with them. Depression: always screen suicide. PTSD: safety + choice 
 ### Borderline personality themes
 
 Intense relationships, fear of abandonment, impulsivity, self-harm risk, **splitting** (staff as all-good/all-bad).  
-**Nurse:** consistent limits across shifts; team communication so splitting fails; validate feelings without reinforcing unsafe behavior; safety contracts + observation for self-harm; avoid over-involvement or punitive coldness.
+**Nurse:** consistent limits across shifts; team communication so splitting fails; validate feelings without reinforcing unsafe behavior; collaborative **safety planning** (not no-harm contracts) + observation level matched to self-harm risk; avoid over-involvement or punitive coldness.
 
 ### Antisocial personality themes
 
@@ -139,7 +139,7 @@ Consistency + boundaries + safety. Don’t take splitting personally — communi
 
 ### Alcohol / sedative-hypnotic withdrawal
 
-Can cause seizures, DTs (autonomic hyperactivity, hallucinations, confusion) — **medically dangerous**. **CIWA**-guided benzodiazepines as ordered (score drives dosing themes); thiamine before glucose themes in alcoholics; seizure precautions; quiet safe environment; fall risk; fluids/electrolytes; aspiration precautions if vomiting.
+Can cause seizures, DTs (autonomic hyperactivity, hallucinations, confusion) — **medically dangerous**. **CIWA**-guided benzodiazepines as ordered (score drives dosing themes); thiamine before glucose in clients with alcohol use disorder; seizure precautions; quiet safe environment; fall risk; fluids/electrolytes; aspiration precautions if vomiting.
 
 ### Opioid withdrawal vs overdose
 
@@ -160,7 +160,7 @@ Alcohol/benzo withdrawal can kill — CIWA + benzos + thiamine concepts. Opioid 
 
 ### Lithium toxicity cues
 
-Early: nausea, vomiting, diarrhea, fine tremor worsening, polyuria/polydipsia themes. Progressing: coarse tremor, ataxia, confusion, seizures.  
+Therapeutic **0.6–1.2 mEq/L** (maintenance); **> 1.5 mEq/L = toxic**, > 2.0 mEq/L = emergency. Draw a trough ~12 h after the last dose. Early: nausea, vomiting, diarrhea, fine tremor worsening, polyuria/polydipsia themes. Progressing: coarse tremor, ataxia, confusion, seizures.  
 **Actions:** hold lithium, notify provider, levels/labs as ordered; hydrate; teach steady salt/fluid intake (sudden low Na⁺/dehydration raises toxicity risk); NSAID/diuretic interaction awareness themes; avoid dehydration in heat/illness.
 
 ### MAOI diet / tyramine
@@ -245,6 +245,68 @@ Anorexia: restriction, low weight, bradycardia, refeeding syndrome risk when nut
 Refeeding can be medically dangerous — electrolytes. Eating disorders are medical + psych.
 
 ---
+
+
+---
+
+## Clinical judgment vignettes — psychosocial integrity
+
+### Vignette A — Suicidal client with means
+
+**Stem:** Client says “I have pills at home and a plan tonight”; currently on unit.
+
+**First:** One-to-one safety, environmental search, remove means, notify provider — don’t leave alone to “finish group.”
+
+### Vignette B — Therapeutic communication
+
+**Stem:** Client crying after stillbirth; visitor says “You’re young — you’ll have another.”
+
+**Nurse response vibe:** Sit, presence, “This is devastating — I’m here,” allow grief — kill false reassurance and “why” questions.
+
+### Vignette C — NMS vs serotonin syndrome (sorting)
+
+| | NMS | Serotonin syndrome |
+| --- | --- | --- |
+| Typical trigger | Antipsychotics | Serotonergic stacks |
+| Tone | Lead-pipe rigidity | Hyperreflexia/clonus |
+| Action | Stop drug, cool, ICU support, notify | Stop serotonergic agents, support, notify |
+
+### Crisis & abuse
+
+- Mandated reporting for child/elder/vulnerable adult abuse per law.  
+- Intimate partner: private interview, safety plan resources, don’t force leaving.  
+- Aggression: maintain distance, calm voice, exit path, call help — don’t block.
+
+### Addiction / withdrawal
+
+- Alcohol: CIWA; benzos as ordered; seizure/DT risk; thiamine.  
+- Opioid: COWS; clonidine/buprenorphine pathways as ordered; naloxone teaching.  
+- Don’t moralize — treat withdrawal as medical.
+
+### Extra concept checks
+
+**Q7.** Best response to “I’m a burden; my family would be better without me”?  
+A. “Don’t say that.”  
+B. Explore intent/plan/means; ensure safety; stay with client  
+C. Joke to lighten mood  
+D. Leave to get paperwork  
+
+**Answer: B.**
+
+
+
+### Medication highlights — psych
+
+| Class | Hook |
+| --- | --- |
+| SSRI | Onset weeks; serotonin syndrome; black-box youth themes awareness |
+| Lithium | Levels; Na/fluid; toxicity tremor/GI/ataxia |
+| Valproate | Liver; platelets; pregnancy harm |
+| Lamotrigine | Slow titration; rash/SJS |
+| Clozapine | ANC monitoring; myocarditis rare; agranulocytosis |
+| Stimulants | Appetite/sleep; diversion |
+| Disulfiram / naltrexone / acamprosate | Alcohol use disorder supports — verify indications |
+
 
 ## Concept check
 

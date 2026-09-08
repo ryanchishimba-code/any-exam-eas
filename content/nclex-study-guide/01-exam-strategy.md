@@ -2,7 +2,7 @@
 
 > **Study aid only.** Strategy framing for the 2026 Next Gen NCLEX. Confirm current rules in the official NCSBN test plan and Candidate Bulletin. Not affiliated with NCSBN.
 
-![CAT and NGN overview diagram](visuals/cat-ngn-overview.png)
+![CAT and NGN overview diagram](visuals/cat-ngn-overview.jpg)
 
 ---
 
@@ -46,7 +46,11 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 
 #### Six clinical judgment steps (CJMM / NCJMM)
 
-![Six CJMM clinical judgment steps](visuals/cjmm-six-steps.png)
+![Six clinical judgment steps](visuals/cjmm-six-steps.jpg)
+
+![NGN bow-tie template](visuals/bow-tie-ngn-example.jpg)
+
+![Maslow pyramid for NCLEX priority](visuals/maslow-pyramid-nclex.jpg)
 
 1. **Recognize cues** — What data matters?  
 2. **Analyze cues** — What does it mean?  
@@ -57,8 +61,6 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 
 #### Common NGN item flavors
 
-![NGN bow-tie template](visuals/bow-tie-ngn-example.png)
-
 - Extended multiple response / **SATA**  
 - **Matrix / grid**  
 - **Bow-tie** (condition ↔ actions ↔ monitors)  
@@ -68,6 +70,24 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 - Cloze / drop-down  
 
 **Remember this:** NGN rewards *thinking like a nurse*, not trivia dump. Practice the *steps*, not just the labels.
+
+### Stronger NGN clinical judgment drill (Enhanced edition)
+
+Treat every unfolding case like a mini shift report:
+
+1. **Scan for kill-me-now cues** (airway, SpO₂ trend, BP crash, suicidal means, Mag RR↓, silent chest).  
+2. **Name the priority hypothesis** in one line (“flash pulmonary edema,” “PPH atony,” “stroke — NPO”).  
+3. **Choose the first action that protects life/safety**, not the most educational or most complete workup.  
+4. **Pick monitoring parameters that match the action** (after diuretic → UOP/K⁺/crackles/weight; after tPA → neuro checks/bleed).  
+5. **Evaluate** whether the client improved; if not, escalate — NGN rewards reassessment.
+
+**Matrix/SATA mindset:** each row/option is independently true/false — don’t use “process of elimination for the whole set” as if only one can be right.  
+**Trend items:** ask what changed and what that change *means for urgency*.  
+**Bow-tie:** condition ↔ actions ↔ monitors — practice even on multiple-choice stems.
+
+**Honest caveat:** Item formats evolve; this book trains *judgment*, not a claim of official NCSBN item replicas.
+
+
 
 ### Client Needs (how content is organized)
 
@@ -101,8 +121,6 @@ Urgent safety > nice-to-have teaching > routine tasks.
 
 ### 2) ABCs (+ “D” when relevant)
 
-![Priority ABCs framework](visuals/priority-abcs.png)
-
 1. **Airway**  
 2. **Breathing**  
 3. **Circulation**  
@@ -111,8 +129,6 @@ Urgent safety > nice-to-have teaching > routine tasks.
 **Exception awareness:** In some disaster/triage or specific protocols, priorities shift — but for classic bedside NCLEX stems, ABCs still win often.
 
 ### 3) Maslow (when ABCs don’t settle it)
-
-![Maslow pyramid for NCLEX priority](visuals/maslow-pyramid-nclex.png)
 
 Physiological needs → safety → love/belonging → esteem → self-actualization.
 
@@ -158,7 +174,7 @@ Physiological needs → safety → love/belonging → esteem → self-actualizat
 
 **Remember this:** You can delegate a **task**, not the **accountability**. If the client is unstable or the outcome is unpredictable, keep it.
 
-![Prioritization decision tree](visuals/priority-decision-tree.png)
+![Prioritization decision tree](visuals/priority-decision-tree.jpg)
 
 ---
 
@@ -302,7 +318,7 @@ Practice % is **not** an official NCLEX score. Trends matter: rising rationale u
 
 ### After
 - [ ] Don’t torture yourself reconstructing every item  
-- [ ] Official results come through your nursing regulatory body; Quick Results may be available ~48 hours in some jurisdictions (not a license)  
+- [ ] Official results come through your nursing regulatory body; Quick Results may be available about **two business days** after testing in participating jurisdictions (unofficial; not a license)  
 
 ---
 

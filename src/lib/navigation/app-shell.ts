@@ -8,6 +8,7 @@ export const APP_SHELL_PREFIXES = [
   "/anatomy",
   "/settings",
   "/study/drugs300",
+  "/nclex/study-guide",
 ] as const;
 
 export const MINIMAL_CHROME_PREFIXES = [
@@ -16,7 +17,6 @@ export const MINIMAL_CHROME_PREFIXES = [
   "/auth/login",
   "/signup",
   "/checkout",
-  "/nclex/study-guide",
 ] as const;
 
 export function isAppShellRoute(pathname: string): boolean {
@@ -41,6 +41,19 @@ export function isFullExamSessionRoute(pathname: string): boolean {
   if (parts[0] !== "full-exam") return false;
   if (parts.length === 3) return true;
   return parts.length === 4 && parts[3] === "results";
+}
+
+/** Study Guide chapter reader — owns its own TOC and fills the viewport. */
+export function isStudyGuideReaderRoute(pathname: string): boolean {
+  return pathname.startsWith("/nclex/study-guide/");
+}
+
+/**
+ * Routes that keep the top nav but surrender the sidebar, page padding, and
+ * mobile tab bar because the page is a full-viewport experience of its own.
+ */
+export function isImmersiveAppRoute(pathname: string): boolean {
+  return isFullExamSessionRoute(pathname) || isStudyGuideReaderRoute(pathname);
 }
 
 /** Question bank + full-exam launcher — primary exam cannot be changed from chrome or URL. */

@@ -1,4 +1,4 @@
-![AnyExamEasy NCLEX Reference Book cover](visuals/nclex-book-cover.png)
+![AnyExamEasy NCLEX Reference Book cover](visuals/nclex-book-cover.jpg)
 
 # AnyExamEasy NCLEX Reference Book
 
@@ -6,7 +6,8 @@
 
 **For:** NCLEX-RN and NCLEX-PN candidates  
 **From:** [AnyExamEasy](https://anyexameasy.com)  
-**Edition framing:** 2026 CAT / NGN
+**Edition framing:** 2026 CAT / NGN  
+**Edition:** Enhanced (clinical judgment deepened — vignettes, red flags, concept checks)
 
 ---
 
@@ -20,7 +21,9 @@ This book is a **study aid for exam preparation**. It is **not**:
 
 **Always verify** labs, medication details, isolation practices, and scope-of-practice rules with current official sources, your instructors, and your nursing regulatory body. Reference ranges and protocols vary by lab and facility. When uncertain, stay directional and confirm before clinical use.
 
-AnyExamEasy does **not** guarantee exam results, licensure, or employment. We are **independent** and not affiliated with NCSBN, Pearson VUE, or other exam owners. Exam names are trademarks of their owners.
+Portions of this material are **AI-generated** and may contain errors, omissions, or outdated information. Verify critical facts against authoritative textbooks, course materials, and official exam prep resources before relying on them.
+
+Any Exam Easy does **not** guarantee exam results, licensure, or employment. We are **independent** and not affiliated with, endorsed by, or sponsored by NCSBN, Pearson VUE, or other exam owners. NCLEX®, NCLEX-RN®, and NCLEX-PN® are registered trademarks of the National Council of State Boards of Nursing, Inc.
 
 ---
 
@@ -82,10 +85,6 @@ Download the **official test plan** for the exam you are taking from [ncsbn.org]
 ### Part III — Pocket & Close
 - Chapter 15 — Quick Reference & Final Sprint  
 - Chapter 16 — FAQ, CTA & Legal  
-
-### Supporting files
-- `VISUALS-NEEDED.md` — diagrams to generate  
-- `BOOK.md` — full assembled master  
 
 ---
 

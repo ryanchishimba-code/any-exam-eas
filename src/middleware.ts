@@ -52,5 +52,7 @@ export const config = {
     "/anatomy/:path*",
     "/full-exam",
     "/full-exam/:path*",
+    "/nclex/study-guide",
+    "/nclex/study-guide/:path*",
   ],
 };

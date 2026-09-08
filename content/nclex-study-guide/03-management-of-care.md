@@ -2,7 +2,7 @@
 
 > **Study aid only.** Scope and assignment rules vary by state and facility. Verify with your nursing regulatory body. PN candidates: think Coordinated Care.
 
-![Delegation rights framework](visuals/delegation-five-rights.png)
+![Delegation rights framework](visuals/delegation-five-rights.jpg)
 
 ---
 
@@ -232,6 +232,68 @@ Walking wounded are often tagged green first to clear the scene. This is **not**
 Disaster = utilitarian sorting. Everyday care = sickest salvageable individual first. Know which frame the stem is using.
 
 ---
+
+
+---
+
+## Enhanced NGN frames — prioritization & delegation
+
+### Clinical judgment vignette A — Who first?
+
+**Stem:** Four clients call at once: (1) post-op day 1 with pain 6/10 stable VS; (2) new confusion + SpO₂ 88% on 2 L; (3) wants discharge paperwork; (4) needs PRN stool softener.
+
+**What to do first:** See client (2) — airway/breathing + acute mental status change. Delegate comfort meds/stable pain reassessment only after ABC threat is handled; paperwork last.
+
+**Why:** Unexpected hypoxia + confusion outranks expected pain and administrative tasks.
+
+### Clinical judgment vignette B — Unsafe float assignment
+
+**Stem:** Charge assigns float med-surg RN (no ICU orientation) to continuous insulin drip and arterial line client.
+
+**What to do first:** State competency limit clearly; request buddy, education, or reassignment — don’t silently accept and “Google it.”
+
+**Why:** Assignment safety is Management of Care. Client harm from incompetence is preventable.
+
+### Clinical judgment vignette C — Chain of command
+
+**Stem:** Provider orders morphine 30 mg IV push for opioid-naïve frail elder; after clarify, provider says “just give it.”
+
+**What to do first:** Hold, notify charge/supervisor, continue chain of command per policy — document facts.
+
+**Why:** Nonmaleficence > hierarchy theater.
+
+### Prioritization comparison table
+
+| Cue cluster | Priority vibe | Often wrong distractor |
+| --- | --- | --- |
+| New stridor / can’t speak | Airway now | Detailed pain history first |
+| Chest pain + hypotension | Circulation/ACS pathway | Ambulate to calm anxiety |
+| Suicidal with plan + means | Safety — remove means | Long group therapy first |
+| Stable chronic pain | Lower unless ABC unstable | Jumping above hypoxia |
+| Teaching need on stable client | Plan after acute threats | Skipping ABC for education |
+
+### Delegation sharpeners
+
+- RN: unstable, initial assessment, initial teaching, care planning, IVP per policy, triage judgment.  
+- LPN/LVN: stable predictable, reinforce teaching, many meds per scope, wound care per scope.  
+- UAP: ADLs, VS on stable, I&O, positioning, transport stable.  
+- Never delegate what you haven’t assessed when instability is possible.
+
+### Extra concept checks (NGN-flavored)
+
+**Q7.** Which task is appropriate to delegate to UAP?  
+A. Evaluating whether crackles improved after diuretic  
+B. Assisting stable client to chair with gait belt after RN assessment  
+C. Initial teaching on warfarin diet  
+D. Titration of nitroglycerin drip  
+
+**Q8.** Mass casualty START-style stem: walking wounded vs apnea corrected with airway vs unsurvivable injuries — NCLEX wants recognition that **disaster triage differs** from everyday “sickest first.” Read the stem for “disaster/mass casualty” language before answering.
+
+#### Answers addendum
+
+**Q7: B.** Stable ADL assist fits UAP.  
+**Q8:** Follow disaster protocol cues in the stem — expectant categories can exist.
+
 
 ## Concept check
 

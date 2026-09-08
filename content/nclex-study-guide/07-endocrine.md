@@ -2,9 +2,9 @@
 
 > **Study aid only.** Glucose targets and insulin protocols vary. Verify with current ADA-aligned teaching and facility policy. Not dosing advice for real patients.
 
-![DKA vs HHS comparison](visuals/dka-vs-hhs.png)
+![Glucose emergencies — hypoglycemia vs DKA vs HHS](visuals/glucose-emergencies.jpg)
 
-![Addison vs Cushing comparison](visuals/addison-vs-cushing.png)
+![Addison vs Cushing comparison](visuals/addison-vs-cushing.jpg)
 
 ---
 
@@ -44,7 +44,7 @@ Don’t memorize contested debates — know that **nighttime checks** guide the 
 
 **Hypoglycemia (conscious, can swallow):** 15-15 rule concept — ~15 g fast carb, recheck ~15 min, repeat as needed; then protein/complex carb per protocol.  
 **Unconscious / NPO:** glucagon IM/SQ or IV dextrose per orders — protect airway.  
-**DKA/HHS:** ABCs; IV fluids first themes; insulin infusion per protocol; **monitor K⁺** (total body K⁺ depleted even if serum looks normal/high initially); treat precipitating cause; NPO; frequent labs/neuro checks.
+**DKA/HHS:** ABCs; IV fluids first themes; **check K⁺ before starting insulin — hold insulin and replace potassium first if K⁺ < 3.3 mEq/L** (insulin drives K⁺ intracellularly); insulin infusion per protocol once K⁺ is adequate; continue replacement as ordered once urine output is established (total body K⁺ depleted even if serum looks normal/high initially); add dextrose to fluids as glucose approaches ~200–250 mg/dL so the drip can keep closing the gap; treat precipitating cause; NPO; frequent labs/neuro checks.
 
 ### Medications (high-yield)
 
@@ -203,6 +203,73 @@ Triggers for SIADH themes: CNS injury, small-cell lung cancer, some meds. DI: he
 SIADH = soaked (low Na⁺). DI = high UOP dilute urine. Pituitary post-op → watch UOP and CSF leak cues.
 
 ---
+
+
+---
+
+## Clinical judgment vignettes — endocrine deepening
+
+### Vignette A — Hypoglycemia at the desk
+
+**Stem:** T1D client diaphoretic, shaky, BG 54, can swallow.
+
+**First:** 15 g fast carb (glucose tabs/juice per protocol), recheck ~15 min, then complex snack if meal distant — don’t give insulin “because lunch tray is late.”
+
+### Vignette B — DKA vs HHS sorting
+
+**Stem:** BG 620; one client young with Kussmaul + ketones + pH 7.1; another older with BG 900, profound dehydration, minimal ketones.
+
+**Action theme:** Both need ABCs + fluids per protocol; DKA emphasizes insulin + K⁺ vigilance with acidosis; HHS emphasizes profound fluid resuscitation and osmolarity — don’t memorize cookbook doses; know the pattern differences.
+
+### Vignette C — Post-thyroidectomy
+
+**Stem:** Neck swelling, stridor, anxiety after thyroidectomy.
+
+**First:** Airway emergency — elevate HOB, O₂, call surgeon/rapid response, trach kit readiness per protocol — not “ice collar and wait.”
+
+### Teaching expansion — sick days & feet
+
+- Sick days: never stop insulin blindly; check BG/ketones; sip fluids; call if vomiting/persistent highs.  
+- Feet: daily inspection, closed shoes, podiatry for nails if neuropathy, report nonhealing ulcers.  
+- Steroid teaching: taper; infection risk; glucose rise; medical ID for adrenal insufficiency.
+
+### Extra concept checks
+
+**Q7.** Somogyi vs dawn — which statement is correct?  
+A. Both are treated by blindly increasing night insulin without data  
+B. Nocturnal checks help distinguish hypo rebound (Somogyi) vs dawn phenomenon  
+C. Ignore 0300 glucoses  
+D. Stop all basal insulin forever  
+
+**Answer: B.**
+
+
+
+---
+
+## Topic deepening — thyroid, adrenal, SIADH/DI tables
+
+| Disorder | Glucose/BP/Na vibe | Nurse hooks |
+| --- | --- | --- |
+| DKA | High glucose, ketones, acidosis | Fluids, insulin protocol, K⁺ |
+| HHS | Very high glucose, hyperosmolar | Fluids heavy, insulin, neuro |
+| Addison | Low Na, high K, low BP, crisis shock | Steroids, fluids, sugar |
+| Cushing | High glucose, infection risk, thin skin | Taper teaching, glucose, skin |
+| SIADH | Low Na, concentrated urine | Fluid restrict as ordered, seizure precautions |
+| DI | High Na risk, huge UOP, dilute urine | Replace fluids, desmopressin as ordered |
+| Hypothyroid / myxedema | Bradycardia, hypothermia, coma risk | Warm, airway, hormone as ordered — no rush warm extremes |
+| Thyroid storm | Fever, tachy, delirium | Cooling, airway, ordered antithyroid/beta-blocker themes |
+
+### Red flags callout
+
+> **Red flag:** Adrenal crisis — refractory shock + hyponatremia/hyperkalemia history of steroid stop.  
+> **Red flag:** Post-op thyroid — stridor/hematoma.  
+> **Red flag:** Na⁺ falling fast in SIADH — seizure risk; correct carefully per protocol (over-rapid Na rise also dangerous).
+
+### Medication highlights
+
+Insulin peaks; metformin hold around contrast per protocol; levothyroxine AM empty stomach; hydrocortisone stress dosing teaching for Addison; desmopressin for DI; methimazole/PTU liver/agranulocytosis teaching themes.
+
 
 ## Concept check
 

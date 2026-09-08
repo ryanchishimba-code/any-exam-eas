@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { StudyGuideReader } from "@/components/nclex-study-guide/StudyGuideReader";
+import { getCachedSession } from "@/lib/auth/session";
 import {
   DEFAULT_NCLEX_GUIDE_ID,
   getChapterBySlug,
   getGuideToc,
   getPublishedGuide,
 } from "@/lib/nclex-study-guide";
+import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
 export const dynamic = "force-dynamic";
@@ -24,6 +26,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StudyGuideChapterPage({ params }: Props) {
   const { chapterSlug } = await params;
+
+  const callbackPath = `${ROUTES.nclexStudyGuide}/${chapterSlug}`;
+  const session = await getCachedSession();
+  if (!session?.user?.id) {
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
+  }
+  await requirePremiumPage(ROUTES.nclexStudyGuide);
 
   let guide;
   let toc;

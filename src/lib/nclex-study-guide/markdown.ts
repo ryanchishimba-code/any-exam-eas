@@ -185,7 +185,16 @@ export function markdownToSimpleHtml(md: string): string {
         out.push("<ul>");
         inUl = true;
       }
-      out.push(`<li>${inlineFormat(trimmed.replace(/^[-*]\s+/, ""))}</li>`);
+      const item = trimmed.replace(/^[-*]\s+/, "");
+      const task = /^\[([ xX])\]\s+(.*)$/.exec(item);
+      if (task) {
+        const checked = task[1]!.toLowerCase() === "x";
+        out.push(
+          `<li class="sg-task" data-checked="${checked ? "1" : "0"}">${inlineFormat(task[2] ?? "")}</li>`
+        );
+      } else {
+        out.push(`<li>${inlineFormat(item)}</li>`);
+      }
       i += 1;
       continue;
     }

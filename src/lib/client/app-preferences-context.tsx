@@ -68,6 +68,12 @@ export function AppPreferencesProvider({
   }, [initialExamSlug]);
 
   useEffect(() => {
+    // `useSession` reports "loading" until it resolves. Treating that as signed
+    // out discards the slug the server already resolved, and the authenticated
+    // pass below returns early without restoring it — leaving the app stuck on
+    // "Select exam" with exam-scoped nav hidden.
+    if (status === "loading") return;
+
     if (status !== "authenticated") {
       setExamSlugState(null);
       setMpjeStateCode(null);
@@ -76,6 +82,7 @@ export function AppPreferencesProvider({
     }
 
     if (initialExamSlug) {
+      setExamSlugState((prev) => prev ?? initialExamSlug);
       setLoading(false);
       return;
     }
@@ -123,6 +130,7 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
 
   useEffect(() => {
     if (!active) return;
+    if (status === "loading") return;
     if (status !== "authenticated") {
       setLoading(false);
       setExamSlugState(null);

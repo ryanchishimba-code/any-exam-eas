@@ -34,25 +34,34 @@ export async function getChapterBySlug(
   guideId: string,
   slug: string
 ): Promise<SgChapterDto | null> {
-  const chapters = await prisma.sgChapter.findMany({
-    where: { guideId },
-    orderBy: { sortOrder: "asc" },
-  });
-  const idx = chapters.findIndex((c) => c.slug === slug);
-  if (idx < 0) return null;
-  const chapter = chapters[idx]!;
+  // Only the slug ordering is needed for prev/next — selecting the whole row
+  // here would pull every chapter body on every request.
+  const [ordering, chapter] = await Promise.all([
+    prisma.sgChapter.findMany({
+      where: { guideId },
+      orderBy: { sortOrder: "asc" },
+      select: { slug: true },
+    }),
+    prisma.sgChapter.findUnique({
+      where: { guideId_slug: { guideId, slug } },
+      select: {
+        id: true,
+        guideId: true,
+        slug: true,
+        title: true,
+        sectionLabel: true,
+        sortOrder: true,
+        estimatedMinutes: true,
+        bodyHtml: true,
+      },
+    }),
+  ]);
+  if (!chapter) return null;
+  const idx = ordering.findIndex((c) => c.slug === slug);
   return {
-    id: chapter.id,
-    guideId: chapter.guideId,
-    slug: chapter.slug,
-    title: chapter.title,
-    sectionLabel: chapter.sectionLabel,
-    sortOrder: chapter.sortOrder,
-    estimatedMinutes: chapter.estimatedMinutes,
-    bodyMd: chapter.bodyMd,
-    bodyHtml: chapter.bodyHtml,
-    prevSlug: chapters[idx - 1]?.slug ?? null,
-    nextSlug: chapters[idx + 1]?.slug ?? null,
+    ...chapter,
+    prevSlug: ordering[idx - 1]?.slug ?? null,
+    nextSlug: ordering[idx + 1]?.slug ?? null,
   };
 }
 

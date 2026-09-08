@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 760" width="1100" height="760" role="img" aria-labelledby="abgTitle abgDesc">
+  <title id="abgTitle">ABG Interpretation Ladder</title>
+  <desc id="abgDesc">Three-step method for interpreting arterial blood gases. Step one, read the pH for direction. Step two, carbon dioxide moving opposite to pH indicates a primary respiratory disorder, while bicarbonate moving with the pH indicates a primary metabolic disorder. Step three, the other value shifts to compensate.</desc>
+  <style>
+    .bg      { fill: #ffffff; }
+    .ink     { fill: #0f2e42; }
+    .teal    { fill: #0d7f8c; }
+    .muted   { fill: #4a6a7b; }
+    .white   { fill: #ffffff; }
+    .panel   { fill: #f2f8f9; }
+    .navy    { fill: #0f2e42; }
+    .amber   { fill: #fdf5e6; }
+    .card    { fill: #ffffff; stroke: #cfe0e5; stroke-width: 1.5; }
+    .hair    { stroke: #cfe0e5; stroke-width: 1.5; fill: none; }
+    text     { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    .h1      { font-size: 31px; font-weight: 700; }
+    .step    { font-size: 15px; font-weight: 700; letter-spacing: 1.2px; }
+    .stepno  { font-size: 34px; font-weight: 700; }
+    .lead    { font-size: 19px; font-weight: 700; }
+    .body    { font-size: 14px; }
+    .small   { font-size: 12.5px; }
+    .tiny    { font-size: 11.5px; }
+    .hdr     { font-size: 13px; font-weight: 700; letter-spacing: 0.8px; }
+    .val     { font-size: 15px; font-weight: 700; }
+    .footer  { font-size: 15px; font-weight: 600; }
+</style>
+
+  <rect class="bg" width="1100" height="760"/>
+
+  <text class="h1 ink" x="550" y="48" text-anchor="middle">ABG Interpretation Ladder</text>
+  <line class="hair" x1="310" y1="66" x2="790" y2="66"/>
+
+  <rect class="teal" x="46" y="92" width="13" height="536" rx="6"/>
+  <rect class="teal" x="132" y="92" width="13" height="536" rx="6"/>
+  <rect class="navy" x="40" y="214" width="111" height="13" rx="6"/>
+  <rect class="navy" x="40" y="392" width="111" height="13" rx="6"/>
+
+  <!-- STEP 1 -->
+  <text class="step ink" x="95" y="130" text-anchor="middle">STEP</text>
+  <text class="stepno ink" x="95" y="170" text-anchor="middle">1</text>
+
+  <rect class="card" x="172" y="94" width="888" height="106" rx="10"/>
+  <text class="lead teal" x="196" y="126">Read the pH</text>
+  <text class="body muted" x="196" y="150">Gives the direction of the</text>
+  <text class="body muted" x="196" y="170">disturbance, not the cause.</text>
+
+  <rect class="navy" x="516" y="110" width="172" height="30" rx="5"/>
+  <rect class="teal" x="694" y="110" width="172" height="30" rx="5"/>
+  <rect class="navy" x="872" y="110" width="172" height="30" rx="5"/>
+  <text class="hdr white" x="602" y="130" text-anchor="middle">ACIDEMIA</text>
+  <text class="hdr white" x="780" y="130" text-anchor="middle">NORMAL</text>
+  <text class="hdr white" x="958" y="130" text-anchor="middle">ALKALEMIA</text>
+
+  <rect class="panel" x="516" y="140" width="172" height="48"/>
+  <rect class="panel" x="694" y="140" width="172" height="48"/>
+  <rect class="panel" x="872" y="140" width="172" height="48"/>
+  <text class="val ink" x="602" y="163" text-anchor="middle">pH &lt; 7.35</text>
+  <text class="val ink" x="780" y="163" text-anchor="middle">pH 7.35 &#8211; 7.45</text>
+  <text class="val ink" x="958" y="163" text-anchor="middle">pH &gt; 7.45</text>
+  <text class="small muted" x="602" y="181" text-anchor="middle">Acidic &#8595;</text>
+  <text class="small muted" x="780" y="181" text-anchor="middle">Balanced &#8596;</text>
+  <text class="small muted" x="958" y="181" text-anchor="middle">Alkaline &#8593;</text>
+
+  <!-- STEP 2 -->
+  <text class="step ink" x="95" y="304" text-anchor="middle">STEP</text>
+  <text class="stepno ink" x="95" y="344" text-anchor="middle">2</text>
+
+  <rect class="card" x="172" y="216" width="888" height="164" rx="10"/>
+  <text class="lead teal" x="196" y="248">Find the cause</text>
+  <text class="body muted" x="196" y="272">Compare each value against</text>
+  <text class="body muted" x="196" y="292">the direction of the pH.</text>
+
+  <rect class="navy" x="470" y="232" width="284" height="30" rx="5"/>
+  <rect class="teal" x="762" y="232" width="284" height="30" rx="5"/>
+  <text class="hdr white" x="612" y="252" text-anchor="middle">RESPIRATORY &#8212; CO&#8322;</text>
+  <text class="hdr white" x="904" y="252" text-anchor="middle">METABOLIC &#8212; HCO&#8322;&#8315;</text>
+
+  <rect class="panel" x="470" y="262" width="284" height="100"/>
+  <rect class="panel" x="762" y="262" width="284" height="100"/>
+  <text class="small muted" x="612" y="283" text-anchor="middle">Normal 35 &#8211; 45 mmHg</text>
+  <text class="small muted" x="904" y="283" text-anchor="middle">Normal 22 &#8211; 26 mEq/L</text>
+
+  <text class="body ink" x="612" y="313" text-anchor="middle">If CO&#8322; moves <tspan font-weight="700" fill="#b3402c">OPPOSITE</tspan> to</text>
+  <text class="body ink" x="612" y="332" text-anchor="middle">the pH &#8594;</text>
+  <text class="val teal" x="612" y="353" text-anchor="middle">Primary Respiratory</text>
+
+  <text class="body ink" x="904" y="313" text-anchor="middle">If HCO&#8322;&#8315; moves <tspan font-weight="700" fill="#0d7f8c">WITH</tspan></text>
+  <text class="body ink" x="904" y="332" text-anchor="middle">the pH &#8594;</text>
+  <text class="val teal" x="904" y="353" text-anchor="middle">Primary Metabolic</text>
+
+  <!-- STEP 3 -->
+  <text class="step ink" x="95" y="482" text-anchor="middle">STEP</text>
+  <text class="stepno ink" x="95" y="522" text-anchor="middle">3</text>
+
+  <rect class="card" x="172" y="396" width="888" height="164" rx="10"/>
+  <text class="lead teal" x="196" y="428">Check compensation</text>
+  <text class="body muted" x="196" y="452">The other value shifts to</text>
+  <text class="body muted" x="196" y="472">pull the pH back toward normal.</text>
+
+  <rect class="navy" x="424" y="412" width="308" height="28" rx="5"/>
+  <rect class="teal" x="740" y="412" width="306" height="28" rx="5"/>
+  <text class="hdr white" x="578" y="431" text-anchor="middle">PRIMARY RESPIRATORY</text>
+  <text class="hdr white" x="893" y="431" text-anchor="middle">PRIMARY METABOLIC</text>
+
+  <rect class="panel" x="424" y="440" width="150" height="102"/>
+  <rect class="panel" x="582" y="440" width="150" height="102"/>
+  <rect class="panel" x="740" y="440" width="149" height="102"/>
+  <rect class="panel" x="897" y="440" width="149" height="102"/>
+
+  <text class="val ink" x="499" y="466" text-anchor="middle">&#8593; CO&#8322;</text>
+  <text class="tiny muted" x="499" y="486" text-anchor="middle">Respiratory acidosis</text>
+  <text class="tiny muted" x="499" y="514" text-anchor="middle">Kidneys retain</text>
+  <text class="small ink" x="499" y="532" text-anchor="middle" font-weight="700">HCO&#8322;&#8315; &#8593;</text>
+
+  <text class="val ink" x="657" y="466" text-anchor="middle">&#8595; CO&#8322;</text>
+  <text class="tiny muted" x="657" y="486" text-anchor="middle">Respiratory alkalosis</text>
+  <text class="tiny muted" x="657" y="514" text-anchor="middle">Kidneys excrete</text>
+  <text class="small ink" x="657" y="532" text-anchor="middle" font-weight="700">HCO&#8322;&#8315; &#8595;</text>
+
+  <text class="val ink" x="814" y="466" text-anchor="middle">&#8595; HCO&#8322;&#8315;</text>
+  <text class="tiny muted" x="814" y="486" text-anchor="middle">Metabolic acidosis</text>
+  <text class="tiny muted" x="814" y="514" text-anchor="middle">Lungs blow off</text>
+  <text class="small ink" x="814" y="532" text-anchor="middle" font-weight="700">CO&#8322; &#8595;</text>
+
+  <text class="val ink" x="971" y="466" text-anchor="middle">&#8593; HCO&#8322;&#8315;</text>
+  <text class="tiny muted" x="971" y="486" text-anchor="middle">Metabolic alkalosis</text>
+  <text class="tiny muted" x="971" y="514" text-anchor="middle">Lungs retain</text>
+  <text class="small ink" x="971" y="532" text-anchor="middle" font-weight="700">CO&#8322; &#8593;</text>
+
+  <rect class="panel" x="172" y="578" width="888" height="56" rx="8"/>
+  <text class="hdr teal" x="196" y="601">REMEMBER &#8212; ROME</text>
+  <text class="small ink" x="196" y="622"><tspan font-weight="700">R</tspan>espiratory <tspan font-weight="700">O</tspan>pposite, <tspan font-weight="700">M</tspan>etabolic <tspan font-weight="700">E</tspan>qual</text>
+  <text class="small muted" x="470" y="601">pH gives direction. CO&#8322; vs HCO&#8322;&#8315; gives the cause.</text>
+  <text class="small muted" x="470" y="622">pH back in range with both values abnormal = fully compensated.</text>
+
+  <rect class="navy" x="0" y="686" width="1100" height="74"/>
+  <text class="footer white" x="550" y="730" text-anchor="middle">Study aid &#8212; AnyExam<tspan fill="#5ec8d4">Easy</tspan></text>
+</svg>

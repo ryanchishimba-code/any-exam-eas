@@ -2,11 +2,11 @@
 
 > **Study aid only.** Exact lab reference ranges vary by laboratory. Know direction and urgency; verify local ranges. Not a dialysis prescription guide.
 
-![Electrolyte imbalance cue map](visuals/electrolyte-imbalance-map.png)
+![Electrolyte imbalance cue map](visuals/electrolyte-imbalance-map.jpg)
 
-![AV fistula arm rules](visuals/av-fistula-arm-rules.png)
+![AV fistula arm rules](visuals/av-fistula-arm-rules.jpg)
 
-![Acid-base common causes](visuals/acid-base-common-causes.png)
+![Acid-base common causes](visuals/acid-base-common-causes.jpg)
 
 ---
 
@@ -255,6 +255,60 @@ Two-nurse check, baseline VS, stay first 15 minutes themes — follow facility.
 Match fluid tonicity to the problem. Infiltration ≠ extravasation (vesicants escalate). Transfusion reaction → **stop first**, NS, notify, save bag.
 
 ---
+
+
+---
+
+## Clinical judgment vignettes — renal & fluids
+
+### Vignette A — Hyperkalemia with ECG changes
+
+**Stem:** K⁺ 6.8, peaked T waves, client weak.
+
+**First:** Cardiac monitor, notify provider, anticipate calcium (membrane protection), insulin+glucose, beta-agonist, binders, dialysis prep as ordered — don’t send ambulating to vending machine.
+
+### Vignette B — Fluid volume overload vs deficit
+
+Sort cues: crackles/JVD/weight↑ vs dry mucosa/tachycardia/oliguria. Wrong fluids kill.
+
+### Vignette C — AV fistula
+
+No BP/sticks on fistula arm; thrill/bruit checks; report steal syndrome pain/cool hand; hold meds pre-dialysis as ordered.
+
+### Extra teaching
+
+- CKD diet themes: often Na/K/phos/protein individualized — teach the *client’s* prescription, not a generic internet diet.  
+- Post-streptococcal GN and nephrotic vs nephritic pattern recognition at high level.  
+- UTI → pyelo: flank pain/fever escalate; elderly may show confusion.
+
+### Extra concept check
+
+**Q7.** Client post-dialysis dizzy, BP 80/50. Priority?  
+A. Rapid independent ambulation  
+B. Support ABCs, supine with legs elevated (avoid Trendelenburg), reduce or stop ultrafiltration and give a normal saline bolus per protocol, notify, hold further antihypertensives as ordered  
+C. Large free-water oral challenge immediately always  
+D. Ignore — expected forever  
+
+**Answer: B.**
+
+
+
+---
+
+## Electrolyte “action first” pocket
+
+| Electrolyte | Danger cue | First nursing energy |
+| --- | --- | --- |
+| High K⁺ | Peaked T, weakness | Monitor + emergent protocol |
+| Low K⁺ | Dysrhythmia, dig toxicity risk | Replace per orders; watch Mag |
+| Low Na⁺ | Confusion, seizure | Safety; careful correction |
+| Low Ca²⁺/Mg²⁺ | Tetany, laryngospasm themes | Airway readiness; replace |
+| High Mg²⁺ | ↓reflexes, ↓RR | Stop Mg sources; Ca gluconate themes |
+
+### Acid-base nursing link
+
+Treat cause: COPD retention → ventilation support; DKA → fluids/insulin; vomiting alkalosis → volume/electrolytes; hyperventilation alkalosis → coach breathing when anxiety-driven (after ruling out PE/hypoxia causes).
+
 
 ## Concept check
 

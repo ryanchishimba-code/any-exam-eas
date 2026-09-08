@@ -44,8 +44,8 @@ export default function NclexHubPage() {
                 Study Guide
               </p>
               <p className="mt-1 text-sm text-white/65">
-                Book-style reader with highlights, bookmarks, notes, and progress. Manuscript
-                pending.
+                All 16 chapters with clinical figures, in a book-style reader with highlights,
+                bookmarks, notes, and saved progress.
               </p>
             </Link>
           </li>

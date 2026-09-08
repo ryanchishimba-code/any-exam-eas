@@ -4,7 +4,7 @@ import {
   startTransition,
   useCallback,
   useEffect,
-  useEffectEvent,
+  useInsertionEffect,
   useMemo,
   useRef,
   useState,
@@ -71,6 +71,23 @@ const COLOR_SWATCH: Record<SgHighlightColor, string> = {
 
 const DRAWER_KEY = "sg-drawer-open";
 const PROGRESS_FLUSH_MS = 2000;
+
+/**
+ * Callback with a stable identity that always sees the latest render's values.
+ *
+ * Stands in for React's `useEffectEvent`, which needs React >= 19.2 while this
+ * package allows ^19.0.0, and which may only be called from inside effects —
+ * these callbacks also run from event handlers.
+ */
+function useStableCallback<A extends unknown[], R>(fn: (...args: A) => R) {
+  const ref = useRef(fn);
+  // Insertion effects run before layout and passive effects, so the ref is
+  // already current by the time any effect calls through it.
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args: A) => ref.current(...args), []);
+}
 
 type Props = {
   guideId: string;
@@ -152,7 +169,7 @@ export function StudyGuideReader({
       scrollPctRef.current = 0;
     }
   }, [initialChapter]);
-  const persistDrawer = useEffectEvent((open: boolean) => {
+  const persistDrawer = useStableCallback((open: boolean) => {
     try {
       localStorage.setItem(DRAWER_KEY, open ? "1" : "0");
     } catch {
@@ -181,7 +198,7 @@ export function StudyGuideReader({
     void loadAnnotations(chapter.id);
   }, [chapter.id, loadAnnotations]);
 
-  const restoreScroll = useEffectEvent(async (ch: SgChapterDto) => {
+  const restoreScroll = useStableCallback(async (ch: SgChapterDto) => {
     const applyPct = (pct: number) => {
       const el = paperRef.current;
       if (!el) return;
@@ -227,7 +244,7 @@ export function StudyGuideReader({
     void restoreScroll(chapter);
   }, [chapter.id, restoreScroll]);
 
-  const flushProgress = useEffectEvent(() => {
+  const flushProgress = useStableCallback(() => {
     const pct = scrollPctRef.current;
     const chapterId = chapterRef.current.id;
     try {
@@ -539,7 +556,7 @@ export function StudyGuideReader({
 
   return (
     <div
-      className="sg-reader flex h-[100dvh] flex-col"
+      className="sg-reader flex h-[calc(100dvh-var(--nav-height))] flex-col"
       style={{ background: "#0b1c2c", color: "#e8eef4" }}
     >
       <header className="flex shrink-0 items-center gap-3 border-b border-white/10 px-3 py-2 sm:px-4">
@@ -864,6 +881,29 @@ export function StudyGuideReader({
               <span />
             )}
           </nav>
+
+          {/* The global site footer is suppressed on reader routes, so the
+              study-aid disclaimer and legal links live here instead. */}
+          <div className="shrink-0 border-t border-white/10 px-3 py-2.5 text-[10px] leading-relaxed text-white/40 sm:px-4">
+            <p>
+              Study aid only — not medical advice or a substitute for your nursing
+              program, facility policy, or official board documents. Portions are
+              AI-generated; verify against authoritative sources before clinical use.
+              NCLEX® is a registered trademark of NCSBN. Not affiliated with or
+              endorsed by NCSBN.{" "}
+              <Link href="/legal/disclaimer" className="underline hover:text-white/70">
+                Disclaimers
+              </Link>
+              {" · "}
+              <Link href="/legal/terms" className="underline hover:text-white/70">
+                Terms
+              </Link>
+              {" · "}
+              <Link href="/legal/privacy" className="underline hover:text-white/70">
+                Privacy
+              </Link>
+            </p>
+          </div>
         </main>
 
         {/* RIGHT drawer */}

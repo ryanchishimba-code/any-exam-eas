@@ -37,6 +37,26 @@
 .sg-prose ol {
   list-style: decimal;
 }
+.sg-prose li.sg-task {
+  list-style: none;
+  margin-left: -1.25em;
+  padding-left: 1.6em;
+  position: relative;
+}
+.sg-prose li.sg-task::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 0.85em;
+  height: 0.85em;
+  border: 1.5px solid rgba(0, 0, 0, 0.35);
+  border-radius: 0.2em;
+}
+.sg-prose li.sg-task[data-checked="1"]::before {
+  border-color: #2ec4b6;
+  background: #2ec4b6;
+}
 .sg-prose blockquote {
   margin: 0 0 1em;
   padding: 0.65em 0.9em;

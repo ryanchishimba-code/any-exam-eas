@@ -24,9 +24,10 @@ export type SgTocChapter = {
   estimatedMinutes: number;
 };
 
+/** Chapter as sent to the reader. Raw markdown is deliberately excluded — the
+ *  client renders `bodyHtml`, and shipping both roughly doubles the payload. */
 export type SgChapterDto = SgTocChapter & {
   guideId: string;
-  bodyMd: string;
   bodyHtml: string;
   prevSlug: string | null;
   nextSlug: string | null;
