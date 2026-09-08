@@ -562,11 +562,13 @@ export function StudyGuideReader({
       <header className="flex shrink-0 items-center gap-3 border-b border-white/10 px-3 py-2 sm:px-4">
         <Link
           href={ROUTES.nclexHub}
-          className="text-xs font-semibold text-[#2ec4b6] hover:underline"
+          aria-label="Back to NCLEX study hub"
+          className="flex shrink-0 items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs font-semibold text-[#2ec4b6] transition-colors hover:bg-white/10 hover:text-white"
         >
-          NCLEX hub
+          <ChevronLeft className="h-3.5 w-3.5" aria-hidden />
+          <span className="hidden sm:inline">Study hub</span>
+          <span className="sm:hidden">Hub</span>
         </Link>
-        <span className="text-white/30">/</span>
         <p className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">
           {guideTitle}
           {navPending ? <span className="ml-2 text-[10px] font-normal text-white/40">…</span> : null}
