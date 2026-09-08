@@ -9,6 +9,7 @@ import {
   getGuideToc,
   getPublishedGuide,
 } from "@/lib/nclex-study-guide";
+import { withDbRetry } from "@/lib/nclex-study-guide/with-db-retry";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
@@ -37,16 +38,21 @@ export default async function StudyGuideChapterPage({ params }: Props) {
   // fallback. `unstable_rethrow` lets the login and paywall redirects through —
   // catching them here would hand the book to anyone during a blip.
   try {
-    const session = await getCachedSession();
-    if (!session?.user?.id) {
-      redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
-    }
-    await requirePremiumPage(ROUTES.nclexStudyGuide);
+    ({ guide, toc, chapter } = await withDbRetry(async () => {
+      const session = await getCachedSession();
+      if (!session?.user?.id) {
+        redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
+      }
+      await requirePremiumPage(ROUTES.nclexStudyGuide);
 
-    guide = await getPublishedGuide("rn");
-    const guideId = guide?.id ?? DEFAULT_NCLEX_GUIDE_ID;
-    toc = await getGuideToc(guideId);
-    chapter = await getChapterBySlug(guideId, chapterSlug);
+      const loadedGuide = await getPublishedGuide("rn");
+      const guideId = loadedGuide?.id ?? DEFAULT_NCLEX_GUIDE_ID;
+      return {
+        guide: loadedGuide,
+        toc: await getGuideToc(guideId),
+        chapter: await getChapterBySlug(guideId, chapterSlug),
+      };
+    }));
   } catch (e) {
     unstable_rethrow(e);
     console.error("[nclex/study-guide]", e);

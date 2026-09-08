@@ -6,6 +6,7 @@ import {
   getGuideToc,
   getPublishedGuide,
 } from "@/lib/nclex-study-guide";
+import { withDbRetry } from "@/lib/nclex-study-guide/with-db-retry";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
@@ -18,16 +19,18 @@ export default async function StudyGuideIndexPage() {
   // Access check and table of contents share one fallback; `unstable_rethrow`
   // keeps the login and paywall redirects working.
   try {
-    const session = await getCachedSession();
-    if (!session?.user?.id) {
-      redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.nclexStudyGuide)}`);
-    }
-    await requirePremiumPage(ROUTES.nclexStudyGuide);
+    first = await withDbRetry(async () => {
+      const session = await getCachedSession();
+      if (!session?.user?.id) {
+        redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.nclexStudyGuide)}`);
+      }
+      await requirePremiumPage(ROUTES.nclexStudyGuide);
 
-    const guide = await getPublishedGuide("rn");
-    const guideId = guide?.id ?? DEFAULT_NCLEX_GUIDE_ID;
-    const toc = await getGuideToc(guideId);
-    first = toc[0]?.slug ?? "manuscript-pending";
+      const guide = await getPublishedGuide("rn");
+      const guideId = guide?.id ?? DEFAULT_NCLEX_GUIDE_ID;
+      const toc = await getGuideToc(guideId);
+      return toc[0]?.slug ?? "manuscript-pending";
+    });
   } catch (e) {
     unstable_rethrow(e);
     console.error("[nclex/study-guide] index", e);
