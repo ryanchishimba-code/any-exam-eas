@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { getChapterRelatedTopics } from "./related-topics";
 import type { SgChapterDto, SgTocChapter } from "./types";
 
 export const DEFAULT_NCLEX_GUIDE_ID = "sg_guide_nclex_rn_placeholder";
@@ -62,6 +63,9 @@ export async function getChapterBySlug(
     ...chapter,
     prevSlug: ordering[idx - 1]?.slug ?? null,
     nextSlug: ordering[idx + 1]?.slug ?? null,
+    // Resolved here so the SSR page and the chapter API agree without either
+    // pulling the topic seeds into the client bundle.
+    relatedTopics: getChapterRelatedTopics(chapter.slug),
   };
 }
 

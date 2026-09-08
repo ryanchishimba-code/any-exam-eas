@@ -919,6 +919,42 @@ export function StudyGuideReader({
                     className="sg-prose"
                     dangerouslySetInnerHTML={{ __html: filteredHtml }}
                   />
+                  {chapter.relatedTopics.length > 0 ? (
+                    <section className="sg-deeper" aria-labelledby="sg-deeper-heading">
+                      <h2 id="sg-deeper-heading" className="sg-deeper__title">
+                        Go deeper on this chapter
+                      </h2>
+                      <p className="sg-deeper__intro">
+                        Related topics with a full review, Library cards, or anatomy to explore.
+                      </p>
+                      <ul className="sg-deeper__list">
+                        {chapter.relatedTopics.map((t) => (
+                          <li key={t.slug} className="sg-deeper__item">
+                            <p className="sg-deeper__topic">{t.title}</p>
+                            {t.summary ? <p className="sg-deeper__summary">{t.summary}</p> : null}
+                            <div className="sg-deeper__links">
+                              {t.deepDiveHref ? (
+                                <Link className="sg-deeper__link" href={t.deepDiveHref}>
+                                  Deep dive
+                                </Link>
+                              ) : null}
+                              {t.libraryHref ? (
+                                <Link className="sg-deeper__link" href={t.libraryHref}>
+                                  Library
+                                  {t.libraryCardCount > 0 ? ` (${t.libraryCardCount})` : ""}
+                                </Link>
+                              ) : null}
+                              {t.anatomyHref ? (
+                                <Link className="sg-deeper__link" href={t.anatomyHref}>
+                                  Anatomy{t.anatomyLabel ? `: ${t.anatomyLabel}` : ""}
+                                </Link>
+                              ) : null}
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  ) : null}
                 </motion.div>
               </AnimatePresence>
             </article>

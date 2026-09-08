@@ -81,11 +81,10 @@ export function LibraryHubClient({
     });
   }, [examSlug]);
 
-  useEffect(() => {
-    setTab("home");
-    setQuery("");
-    setSelected(null);
-  }, [examSlug]);
+  // No reset-on-examSlug effect here: both call sites render this component with
+  // `key={examSlug}`, so switching exams already remounts it. The effect also ran
+  // on mount, which cleared the query seeded from `topicKey` and made every
+  // `libraryTopicHref` deep link land on an unfiltered hub.
 
   const openCard = useCallback(
     (card: MemoryCard) => {

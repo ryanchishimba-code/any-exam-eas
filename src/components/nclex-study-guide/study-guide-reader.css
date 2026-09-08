@@ -64,6 +64,83 @@
   background: rgba(46, 196, 182, 0.08);
   border-radius: 0 0.5em 0.5em 0;
 }
+/* End-of-chapter bridge into High-Yield, Library, and Anatomy. Sits on the light
+   "paper", so it uses the darker teal for contrast rather than the chrome accent. */
+.sg-deeper {
+  margin-top: 2.5em;
+  padding-top: 1.25em;
+  border-top: 1px solid rgba(11, 28, 44, 0.14);
+}
+.sg-deeper__title {
+  margin: 0 0 0.25em;
+  font-size: 1.05em;
+  font-weight: 700;
+}
+.sg-deeper__intro {
+  margin: 0 0 0.9em;
+  font-size: 0.82em;
+  opacity: 0.65;
+}
+.sg-deeper__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6em;
+}
+.sg-deeper__item {
+  padding: 0.7em 0.85em;
+  border: 1px solid rgba(11, 28, 44, 0.12);
+  border-radius: 0.6em;
+  background: rgba(46, 196, 182, 0.06);
+}
+.sg-deeper__topic {
+  margin: 0;
+  font-size: 0.92em;
+  font-weight: 650;
+}
+.sg-deeper__summary {
+  margin: 0.2em 0 0;
+  font-size: 0.8em;
+  line-height: 1.45;
+  opacity: 0.7;
+  /* Teaser only — the destination carries the full text, and unclamped summaries
+     push the block past 600px on chapters with four related topics. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.sg-deeper__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin-top: 0.55em;
+}
+.sg-deeper__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35em 0.7em;
+  border: 1px solid rgba(11, 28, 44, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  font-size: 0.78em;
+  font-weight: 650;
+  color: #0f766e;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+.sg-deeper__link:hover {
+  background: #0f766e;
+  border-color: #0f766e;
+  color: #fff;
+}
+@media print {
+  .sg-deeper {
+    display: none;
+  }
+}
+
 .sg-prose img {
   display: block !important;
   width: 100%;

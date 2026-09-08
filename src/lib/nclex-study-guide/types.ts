@@ -24,6 +24,20 @@ export type SgTocChapter = {
   estimatedMinutes: number;
 };
 
+/** A deep dive reachable from a chapter. Each href is only present when there is
+ *  real content behind it, so the reader can render whatever it is given. */
+export type SgRelatedTopic = {
+  slug: string;
+  title: string;
+  summary?: string;
+  /** High-Yield review module. Absent for topics the hub cannot display. */
+  deepDiveHref?: string;
+  libraryHref?: string;
+  libraryCardCount: number;
+  anatomyHref?: string;
+  anatomyLabel?: string;
+};
+
 /** Chapter as sent to the reader. Raw markdown is deliberately excluded — the
  *  client renders `bodyHtml`, and shipping both roughly doubles the payload. */
 export type SgChapterDto = SgTocChapter & {
@@ -31,6 +45,7 @@ export type SgChapterDto = SgTocChapter & {
   bodyHtml: string;
   prevSlug: string | null;
   nextSlug: string | null;
+  relatedTopics: SgRelatedTopic[];
 };
 
 export type SgReaderPrefs = {
