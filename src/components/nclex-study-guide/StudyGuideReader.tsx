@@ -191,6 +191,26 @@ export function StudyGuideReader({
     }
   }, [isDesktop]);
 
+  /**
+   * Write the reading position to the DOM directly, bypassing React.
+   *
+   * Must stay declared above its first use: the effects below name it in their
+   * dependency arrays, which are evaluated during render, so a later `const`
+   * would be in the temporal dead zone and throw on every render.
+   */
+  const paintProgress = useStableCallback((pct: number) => {
+    scrollPctRef.current = pct;
+    if (progressFillRef.current) progressFillRef.current.style.width = `${pct}%`;
+    progressBarRef.current?.setAttribute("aria-valuenow", String(Math.round(pct)));
+    // Don't overwrite the scrubber while the user is dragging it.
+    if (scrubberRef.current && !scrubbingRef.current) {
+      scrubberRef.current.value = String(pct);
+    }
+    const tier = pct > 90 ? 2 : pct > 0 ? 1 : 0;
+    // Returning the same value makes React bail out without re-rendering.
+    setProgressTier((prev) => (prev === tier ? prev : tier));
+  });
+
   // Sync if the server page remounts with a different slug (rare).
   useEffect(() => {
     seedChapterCache(initialChapter);
@@ -229,20 +249,6 @@ export function StudyGuideReader({
   useEffect(() => {
     void loadAnnotations(chapter.id);
   }, [chapter.id, loadAnnotations]);
-
-  /** Write the reading position to the DOM directly, bypassing React. */
-  const paintProgress = useStableCallback((pct: number) => {
-    scrollPctRef.current = pct;
-    if (progressFillRef.current) progressFillRef.current.style.width = `${pct}%`;
-    progressBarRef.current?.setAttribute("aria-valuenow", String(Math.round(pct)));
-    // Don't overwrite the scrubber while the user is dragging it.
-    if (scrubberRef.current && !scrubbingRef.current) {
-      scrubberRef.current.value = String(pct);
-    }
-    const tier = pct > 90 ? 2 : pct > 0 ? 1 : 0;
-    // Returning the same value makes React bail out without re-rendering.
-    setProgressTier((prev) => (prev === tier ? prev : tier));
-  });
 
   const restoreScroll = useStableCallback(async (ch: SgChapterDto) => {
     const applyPct = (pct: number) => {
