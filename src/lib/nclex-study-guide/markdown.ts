@@ -53,7 +53,28 @@ function parseTableRow(line: string): string[] {
   return trimmed.split("|").map((c) => c.trim());
 }
 
-export function markdownToSimpleHtml(md: string): string {
+export type MarkdownImageSize = { width: number; height: number };
+
+export type MarkdownOptions = {
+  /**
+   * Intrinsic size for an image `src`. When supplied, `width`/`height` are
+   * stamped onto the tag so the browser reserves the right box before the file
+   * loads — without it, every figure reflows the chapter as it decodes.
+   */
+  imageSize?: (src: string) => MarkdownImageSize | undefined;
+};
+
+/** Stamp intrinsic dimensions onto emitted <img> tags in a single pass. */
+function applyImageSizes(html: string, imageSize?: MarkdownOptions["imageSize"]): string {
+  if (!imageSize) return html;
+  return html.replace(/<img\s+([^>]*?)src="([^"]+)"([^>]*?)\/>/g, (match, pre, src, post) => {
+    const size = imageSize(String(src));
+    if (!size) return match;
+    return `<img ${pre}src="${src}"${post} width="${size.width}" height="${size.height}" class="sg-img--sized" />`;
+  });
+}
+
+export function markdownToSimpleHtml(md: string, opts?: MarkdownOptions): string {
   const lines = md.replace(/\r\n/g, "\n").split("\n");
   const out: string[] = [];
   let i = 0;
@@ -222,5 +243,5 @@ export function markdownToSimpleHtml(md: string): string {
 
   closeLists();
   closeBq();
-  return out.join("");
+  return applyImageSizes(out.join(""), opts?.imageSize);
 }

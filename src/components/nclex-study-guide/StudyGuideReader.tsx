@@ -72,6 +72,8 @@ const COLOR_SWATCH: Record<SgHighlightColor, string> = {
 
 const DRAWER_KEY = "sg-drawer-open";
 const PROGRESS_FLUSH_MS = 2000;
+/** Throttle for the synchronous localStorage progress write during scroll. */
+const PROGRESS_LOCAL_MS = 1000;
 
 /** Tailwind `lg`. Below this the drawer overlays the page instead of splitting the row. */
 const DESKTOP_QUERY = "(min-width: 1024px)";
@@ -137,6 +139,12 @@ export function StudyGuideReader({
   const paperRef = useRef<HTMLElement>(null);
   const tocActiveRef = useRef<HTMLButtonElement | null>(null);
   const scrollPctRef = useRef(0);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const progressFillRef = useRef<HTMLDivElement>(null);
+  const scrubberRef = useRef<HTMLInputElement>(null);
+  const scrubbingRef = useRef(false);
+  const localWriteAtRef = useRef(0);
+  const flushTimerRef = useRef<number | null>(null);
   const navLockRef = useRef(false);
   const chapterRef = useRef(initialChapter);
 
@@ -163,7 +171,10 @@ export function StudyGuideReader({
   } | null>(null);
   const [noteDraft, setNoteDraft] = useState("");
   const [authHint, setAuthHint] = useState<string | null>(null);
-  const [scrollPct, setScrollPct] = useState(0);
+  // The reading position is painted straight to the DOM (see `paintProgress`).
+  // React only tracks the coarse tier the TOC dot needs, so scrolling no longer
+  // re-renders the chapter, the 17-item TOC, and the drawer on every frame.
+  const [progressTier, setProgressTier] = useState(0);
 
   // Drawer collapsed by default; remember preference. The saved preference is
   // desktop-only — restoring it under `lg` would leave a phone showing a 288px
@@ -187,10 +198,9 @@ export function StudyGuideReader({
       setChapter(initialChapter);
       setSearch("");
       setSelectionInfo(null);
-      setScrollPct(0);
-      scrollPctRef.current = 0;
+      paintProgress(0);
     }
-  }, [initialChapter]);
+  }, [initialChapter, paintProgress]);
   const persistDrawer = useStableCallback((open: boolean) => {
     try {
       localStorage.setItem(DRAWER_KEY, open ? "1" : "0");
@@ -220,6 +230,20 @@ export function StudyGuideReader({
     void loadAnnotations(chapter.id);
   }, [chapter.id, loadAnnotations]);
 
+  /** Write the reading position to the DOM directly, bypassing React. */
+  const paintProgress = useStableCallback((pct: number) => {
+    scrollPctRef.current = pct;
+    if (progressFillRef.current) progressFillRef.current.style.width = `${pct}%`;
+    progressBarRef.current?.setAttribute("aria-valuenow", String(Math.round(pct)));
+    // Don't overwrite the scrubber while the user is dragging it.
+    if (scrubberRef.current && !scrubbingRef.current) {
+      scrubberRef.current.value = String(pct);
+    }
+    const tier = pct > 90 ? 2 : pct > 0 ? 1 : 0;
+    // Returning the same value makes React bail out without re-rendering.
+    setProgressTier((prev) => (prev === tier ? prev : tier));
+  });
+
   const restoreScroll = useStableCallback(async (ch: SgChapterDto) => {
     const applyPct = (pct: number) => {
       const el = paperRef.current;
@@ -227,12 +251,10 @@ export function StudyGuideReader({
       const max = el.scrollHeight - el.clientHeight;
       if (max > 0 && pct > 0) {
         el.scrollTop = (pct / 100) * max;
-        scrollPctRef.current = pct;
-        setScrollPct(pct);
+        paintProgress(pct);
       } else {
         el.scrollTop = 0;
-        scrollPctRef.current = 0;
-        setScrollPct(0);
+        paintProgress(0);
       }
     };
 
@@ -299,23 +321,35 @@ export function StudyGuideReader({
         ticking = false;
         const max = el.scrollHeight - el.clientHeight;
         const pct = max > 0 ? (el.scrollTop / max) * 100 : 0;
-        scrollPctRef.current = pct;
-        setScrollPct(pct);
+        paintProgress(pct);
+
+        // localStorage.setItem is synchronous — running it on every frame
+        // stalls the main thread and shows up as scroll stutter.
+        const now = Date.now();
+        if (now - localWriteAtRef.current < PROGRESS_LOCAL_MS) return;
+        localWriteAtRef.current = now;
         try {
           localStorage.setItem(`sg-progress:${guideId}:${chapter.id}`, String(pct));
         } catch {
           /* ignore */
         }
+        if (flushTimerRef.current != null) window.clearTimeout(flushTimerRef.current);
+        flushTimerRef.current = window.setTimeout(() => {
+          flushTimerRef.current = null;
+          flushProgress();
+        }, PROGRESS_FLUSH_MS);
       });
     };
     el.addEventListener("scroll", onScroll, { passive: true });
     return () => el.removeEventListener("scroll", onScroll);
-  }, [chapter.id, guideId]);
+  }, [chapter.id, guideId, paintProgress, flushProgress]);
 
-  useEffect(() => {
-    const t = window.setTimeout(() => flushProgress(), PROGRESS_FLUSH_MS);
-    return () => window.clearTimeout(t);
-  }, [scrollPct, chapter.id, flushProgress]);
+  useEffect(
+    () => () => {
+      if (flushTimerRef.current != null) window.clearTimeout(flushTimerRef.current);
+    },
+    []
+  );
 
   useEffect(() => {
     const onHide = () => {
@@ -352,8 +386,7 @@ export function StudyGuideReader({
           setSearch("");
           setSelectionInfo(null);
           setNoteDraft("");
-          setScrollPct(0);
-          scrollPctRef.current = 0;
+          paintProgress(0);
         });
         const url = `${ROUTES.nclexStudyGuide}/${slug}`;
         if (historyMode === "push") {
@@ -589,7 +622,7 @@ export function StudyGuideReader({
         <ul className="space-y-1">
           {chapters.map((c) => {
             const active = c.slug === chapter.slug;
-            const tickPct = active ? scrollPct : 0;
+            const tier = active ? progressTier : 0;
             const bookmarked = active && bookmarks.length > 0;
             return (
               <li key={c.id}>
@@ -620,9 +653,9 @@ export function StudyGuideReader({
                     className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-200"
                     style={{
                       background:
-                        tickPct > 90
+                        tier === 2
                           ? "#2ec4b6"
-                          : tickPct > 0
+                          : tier === 1
                             ? "rgba(46,196,182,0.45)"
                             : "rgba(255,255,255,0.25)",
                     }}
@@ -756,17 +789,15 @@ export function StudyGuideReader({
       </header>
 
       <div
+        ref={progressBarRef}
         className="h-0.5 w-full bg-white/10"
         role="progressbar"
-        aria-valuenow={Math.round(scrollPct)}
+        aria-valuenow={0}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label="Reading progress"
       >
-        <div
-          className="sg-progress-fill h-full bg-[#2ec4b6]"
-          style={{ width: `${scrollPct}%` }}
-        />
+        <div ref={progressFillRef} className="sg-progress-fill h-full bg-[#2ec4b6]" />
       </div>
 
       <div className="relative flex min-h-0 flex-1">
@@ -961,13 +992,25 @@ export function StudyGuideReader({
 
             {/* Edge scrubber */}
             <div className="sg-scrubber" aria-hidden={false}>
+              {/* Uncontrolled: the scroll handler writes `value` on the node so a
+                  60Hz position update doesn't re-render the reader. */}
               <input
+                ref={scrubberRef}
                 type="range"
                 min={0}
                 max={100}
                 step={0.5}
-                value={scrollPct}
+                defaultValue={0}
                 aria-label="Seek in chapter"
+                onPointerDown={() => {
+                  scrubbingRef.current = true;
+                }}
+                onPointerUp={() => {
+                  scrubbingRef.current = false;
+                }}
+                onPointerCancel={() => {
+                  scrubbingRef.current = false;
+                }}
                 onChange={(e) => seekToPct(Number(e.target.value))}
               />
             </div>

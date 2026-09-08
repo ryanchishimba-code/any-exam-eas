@@ -146,12 +146,17 @@
   width: 100%;
   max-width: 100%;
   height: auto !important;
-  min-height: 8rem;
   margin: 1em auto;
   border-radius: 0.75rem;
   object-fit: contain;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.08);
+}
+/* Figures carrying width/height derive an aspect-ratio, so the browser reserves
+   the correct box before the file decodes. Only unsized figures need a floor to
+   stop them collapsing to nothing and then shoving the chapter down on load. */
+.sg-prose img:not(.sg-img--sized) {
+  min-height: 8rem;
 }
 .sg-prose .sg-figure {
   display: block;

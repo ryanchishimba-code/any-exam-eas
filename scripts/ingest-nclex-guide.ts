@@ -15,10 +15,31 @@
 import fs from "node:fs";
 import path from "node:path";
 import { prisma } from "../src/lib/prisma";
-import { markdownToSimpleHtml } from "../src/lib/nclex-study-guide/markdown";
+import { markdownToSimpleHtml, type MarkdownImageSize } from "../src/lib/nclex-study-guide/markdown";
+import { readImageSize } from "../src/lib/nclex-study-guide/image-dimensions";
 
 const CONTENT_DIR = path.join(process.cwd(), "content", "nclex-study-guide");
+const PUBLIC_DIR = path.join(process.cwd(), "public");
 const GUIDE_ID = "sg_guide_nclex_rn_placeholder";
+
+/**
+ * Intrinsic sizes for the figures, cached per run. Stamping width/height onto
+ * each <img> is what stops chapters reflowing (and visibly juddering) as their
+ * images decode during a scroll.
+ */
+const sizeCache = new Map<string, MarkdownImageSize | undefined>();
+const missingSizes = new Set<string>();
+
+function imageSizeForSrc(src: string): MarkdownImageSize | undefined {
+  if (sizeCache.has(src)) return sizeCache.get(src);
+  // Reader srcs are absolute public URLs, e.g. /nclex-study-guide/visuals/x.jpg
+  const size = src.startsWith("/")
+    ? readImageSize(path.join(PUBLIC_DIR, src))
+    : undefined;
+  if (!size) missingSizes.add(src);
+  sizeCache.set(src, size);
+  return size;
+}
 
 /** Numbered chapter files only — skip README, DEV, PASTE-READY, etc. */
 const CHAPTER_FILE_RE = /^\d{2}-.+\.md$/i;
@@ -162,7 +183,7 @@ async function main() {
     bodyMd: string;
   }) => {
     sortOrder += 1;
-    const bodyHtml = markdownToSimpleHtml(ch.bodyMd);
+    const bodyHtml = markdownToSimpleHtml(ch.bodyMd, { imageSize: imageSizeForSrc });
     const minutes = Math.max(5, Math.round(ch.bodyMd.length / 1200));
     await prisma.sgChapter.upsert({
       where: { guideId_slug: { guideId: GUIDE_ID, slug: ch.slug } },
@@ -222,6 +243,14 @@ async function main() {
   });
   if (removed.count > 0) {
     console.log(`Removed ${removed.count} obsolete chapter(s).`);
+  }
+
+  const sized = [...sizeCache.values()].filter(Boolean).length;
+  console.log(`Figures sized: ${sized}/${sizeCache.size}.`);
+  if (missingSizes.size > 0) {
+    // Unsized figures still render, they just reflow on load — worth knowing.
+    console.warn(`No dimensions for ${missingSizes.size} figure(s):`);
+    for (const src of missingSizes) console.warn(`  ${src}`);
   }
 
   console.log(`Done. ${sortOrder} chapter(s) ingested.`);
