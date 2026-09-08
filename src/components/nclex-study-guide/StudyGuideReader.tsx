@@ -646,7 +646,7 @@ export function StudyGuideReader({
       className="sg-reader flex h-[calc(100dvh-var(--nav-height))] flex-col"
       style={{ background: "#0b1c2c", color: "#e8eef4" }}
     >
-      <header className="flex shrink-0 items-center gap-3 border-b border-white/10 px-3 py-2 sm:px-4">
+      <header className="flex shrink-0 items-center gap-2 border-b border-white/10 px-3 py-2 sm:gap-3 sm:px-4">
         <button
           type="button"
           onClick={() => setTocOpen(true)}
@@ -655,16 +655,18 @@ export function StudyGuideReader({
           className="flex shrink-0 items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1.5 text-xs font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white lg:hidden"
         >
           <List className="h-3.5 w-3.5" aria-hidden />
-          Contents
+          {/* Icon-only on the narrowest phones so the header can't overflow. */}
+          <span className="hidden min-[400px]:inline">Contents</span>
         </button>
+        {/* The reader collapses the app sidebar, so the way out goes to the dashboard
+            rather than the NCLEX hub — that's where study nav is fully available. */}
         <Link
-          href={ROUTES.nclexHub}
-          aria-label="Back to NCLEX study hub"
+          href={ROUTES.dashboard}
+          aria-label="Back to dashboard"
           className="flex shrink-0 items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs font-semibold text-[#2ec4b6] transition-colors hover:bg-white/10 hover:text-white"
         >
           <ChevronLeft className="h-3.5 w-3.5" aria-hidden />
-          <span className="hidden sm:inline">Study hub</span>
-          <span className="sm:hidden">Hub</span>
+          Dashboard
         </Link>
         {/* The book title truncates to noise on a phone; the chapter heading carries context there. */}
         <p className="hidden min-w-0 flex-1 truncate text-sm font-semibold tracking-tight sm:block">
