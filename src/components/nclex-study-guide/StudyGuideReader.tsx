@@ -16,6 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Highlighter,
+  List,
   NotebookPen,
   PanelRightClose,
   PanelRightOpen,
@@ -72,6 +73,21 @@ const COLOR_SWATCH: Record<SgHighlightColor, string> = {
 const DRAWER_KEY = "sg-drawer-open";
 const PROGRESS_FLUSH_MS = 2000;
 
+/** Tailwind `lg`. Below this the drawer overlays the page instead of splitting the row. */
+const DESKTOP_QUERY = "(min-width: 1024px)";
+
+function useIsDesktop(): boolean {
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    const mq = window.matchMedia(DESKTOP_QUERY);
+    const sync = () => setIsDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+  return isDesktop;
+}
+
 /**
  * Callback with a stable identity that always sees the latest render's values.
  *
@@ -117,6 +133,7 @@ export function StudyGuideReader({
   chapter: initialChapter,
 }: Props) {
   const reduceMotion = useReducedMotion();
+  const isDesktop = useIsDesktop();
   const paperRef = useRef<HTMLElement>(null);
   const tocActiveRef = useRef<HTMLButtonElement | null>(null);
   const scrollPctRef = useRef(0);
@@ -127,6 +144,7 @@ export function StudyGuideReader({
   chapterRef.current = chapter;
   const [navPending, setNavPending] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [tocOpen, setTocOpen] = useState(false);
   const [drawerTab, setDrawerTab] = useState<"highlights" | "bookmarks" | "notes">("highlights");
   const [prefs, setPrefs] = useState<SgReaderPrefs>({
     fontSize: "md",
@@ -147,16 +165,20 @@ export function StudyGuideReader({
   const [authHint, setAuthHint] = useState<string | null>(null);
   const [scrollPct, setScrollPct] = useState(0);
 
-  // Drawer collapsed by default; remember preference. Prefer closed on smaller screens.
+  // Drawer collapsed by default; remember preference. The saved preference is
+  // desktop-only — restoring it under `lg` would leave a phone showing a 288px
+  // panel beside a sliver of text.
   useEffect(() => {
+    if (!isDesktop) {
+      setDrawerOpen(false);
+      return;
+    }
     try {
-      const raw = localStorage.getItem(DRAWER_KEY);
-      if (raw === "1") setDrawerOpen(true);
-      else setDrawerOpen(false);
+      setDrawerOpen(localStorage.getItem(DRAWER_KEY) === "1");
     } catch {
       setDrawerOpen(false);
     }
-  }, []);
+  }, [isDesktop]);
 
   // Sync if the server page remounts with a different slug (rare).
   useEffect(() => {
@@ -500,6 +522,10 @@ export function StudyGuideReader({
       if (e.key === "]" || e.key === "\\") {
         toggleDrawer(!drawerOpen);
       }
+      if (e.key === "Escape") {
+        setTocOpen(false);
+        if (drawerOpen) toggleDrawer(false);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -554,12 +580,83 @@ export function StudyGuideReader({
         exit: { opacity: 0, y: -8 },
       };
 
+  const tocContent = (
+    <>
+      <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/45">
+        Contents
+      </p>
+      <nav aria-label="Chapter list">
+        <ul className="space-y-1">
+          {chapters.map((c) => {
+            const active = c.slug === chapter.slug;
+            const tickPct = active ? scrollPct : 0;
+            const bookmarked = active && bookmarks.length > 0;
+            return (
+              <li key={c.id}>
+                {c.sectionLabel ? (
+                  <p className="mb-0.5 mt-2 text-[10px] font-semibold uppercase tracking-wide text-[#2ec4b6]">
+                    {c.sectionLabel}
+                  </p>
+                ) : null}
+                <button
+                  type="button"
+                  ref={active ? tocActiveRef : undefined}
+                  aria-current={active ? "page" : undefined}
+                  onMouseEnter={() => prefetchChapter(c.slug)}
+                  onFocus={() => prefetchChapter(c.slug)}
+                  onClick={() => {
+                    setTocOpen(false);
+                    void goToSlug(c.slug);
+                  }}
+                  className={cn(
+                    // Roomier rows on touch, where this is the only chapter picker.
+                    "flex w-full items-start gap-1.5 rounded-lg px-2 py-2.5 text-left text-[12px] leading-snug transition-colors duration-150 lg:py-1.5",
+                    active
+                      ? "bg-[#2ec4b6]/15 font-semibold text-[#2ec4b6]"
+                      : "text-white/75 hover:bg-white/5 hover:text-white"
+                  )}
+                >
+                  <span
+                    className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-200"
+                    style={{
+                      background:
+                        tickPct > 90
+                          ? "#2ec4b6"
+                          : tickPct > 0
+                            ? "rgba(46,196,182,0.45)"
+                            : "rgba(255,255,255,0.25)",
+                    }}
+                    aria-hidden
+                  />
+                  <span className="min-w-0 flex-1">{c.title}</span>
+                  {bookmarked ? (
+                    <Bookmark className="mt-0.5 h-3 w-3 shrink-0 text-[#2ec4b6]" aria-hidden />
+                  ) : null}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </>
+  );
+
   return (
     <div
       className="sg-reader flex h-[calc(100dvh-var(--nav-height))] flex-col"
       style={{ background: "#0b1c2c", color: "#e8eef4" }}
     >
       <header className="flex shrink-0 items-center gap-3 border-b border-white/10 px-3 py-2 sm:px-4">
+        <button
+          type="button"
+          onClick={() => setTocOpen(true)}
+          aria-label="Open contents"
+          aria-expanded={tocOpen}
+          className="flex shrink-0 items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1.5 text-xs font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white lg:hidden"
+        >
+          <List className="h-3.5 w-3.5" aria-hidden />
+          Contents
+        </button>
         <Link
           href={ROUTES.nclexHub}
           aria-label="Back to NCLEX study hub"
@@ -569,15 +666,23 @@ export function StudyGuideReader({
           <span className="hidden sm:inline">Study hub</span>
           <span className="sm:hidden">Hub</span>
         </Link>
-        <p className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">
+        {/* The book title truncates to noise on a phone; the chapter heading carries context there. */}
+        <p className="hidden min-w-0 flex-1 truncate text-sm font-semibold tracking-tight sm:block">
           {guideTitle}
           {navPending ? <span className="ml-2 text-[10px] font-normal text-white/40">…</span> : null}
         </p>
-        <div className="hidden items-center gap-1 sm:flex">
+        <div className="flex-1 sm:hidden" aria-hidden />
+        {navPending ? (
+          <span className="text-[10px] text-white/40 sm:hidden" aria-hidden>
+            …
+          </span>
+        ) : null}
+        <div className="flex items-center gap-1">
           <label className="sr-only" htmlFor="sg-font">
             Font size
           </label>
-          <Type className="h-3.5 w-3.5 text-white/50" aria-hidden />
+          <Type className="hidden h-3.5 w-3.5 text-white/50 sm:block" aria-hidden />
+          {/* Text size stays reachable on phones; the finer controls are desktop-only. */}
           <select
             id="sg-font"
             className="rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs"
@@ -595,7 +700,7 @@ export function StudyGuideReader({
             <option value="xl">A++</option>
           </select>
           <select
-            className="rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs"
+            className="hidden rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs sm:block"
             value={prefs.lineHeight}
             onChange={(e) =>
               setPrefs((p) => ({
@@ -610,7 +715,7 @@ export function StudyGuideReader({
             <option value="relaxed">Relaxed</option>
           </select>
           <select
-            className="rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs"
+            className="hidden rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs sm:block"
             value={prefs.theme}
             onChange={(e) =>
               setPrefs((p) => ({
@@ -662,62 +767,38 @@ export function StudyGuideReader({
         />
       </div>
 
-      <div className="flex min-h-0 flex-1">
-        {/* LEFT TOC */}
+      <div className="relative flex min-h-0 flex-1">
+        {/* LEFT TOC — a fixed rail on desktop, a slide-over sheet on touch. Visibility is
+            CSS-driven so the server markup already matches the viewport (no hydration flash). */}
         <aside className="sg-toc hidden w-56 shrink-0 overflow-y-auto border-r border-white/10 p-3 lg:block xl:w-64">
-          <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/45">
-            Contents
-          </p>
-          <nav aria-label="Chapter list">
-            <ul className="space-y-1">
-              {chapters.map((c) => {
-                const active = c.slug === chapter.slug;
-                const tickPct = active ? scrollPct : 0;
-                const bookmarked = active && bookmarks.length > 0;
-                return (
-                  <li key={c.id}>
-                    {c.sectionLabel ? (
-                      <p className="mb-0.5 mt-2 text-[10px] font-semibold uppercase tracking-wide text-[#2ec4b6]">
-                        {c.sectionLabel}
-                      </p>
-                    ) : null}
-                    <button
-                      type="button"
-                      ref={active ? tocActiveRef : undefined}
-                      aria-current={active ? "page" : undefined}
-                      onMouseEnter={() => prefetchChapter(c.slug)}
-                      onFocus={() => prefetchChapter(c.slug)}
-                      onClick={() => void goToSlug(c.slug)}
-                      className={cn(
-                        "flex w-full items-start gap-1.5 rounded-lg px-2 py-1.5 text-left text-[12px] leading-snug transition-colors duration-150",
-                        active
-                          ? "bg-[#2ec4b6]/15 font-semibold text-[#2ec4b6]"
-                          : "text-white/75 hover:bg-white/5 hover:text-white"
-                      )}
-                    >
-                      <span
-                        className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full transition-colors duration-200"
-                        style={{
-                          background:
-                            tickPct > 90
-                              ? "#2ec4b6"
-                              : tickPct > 0
-                                ? "rgba(46,196,182,0.45)"
-                                : "rgba(255,255,255,0.25)",
-                        }}
-                        aria-hidden
-                      />
-                      <span className="min-w-0 flex-1">{c.title}</span>
-                      {bookmarked ? (
-                        <Bookmark className="mt-0.5 h-3 w-3 shrink-0 text-[#2ec4b6]" aria-hidden />
-                      ) : null}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+          {tocContent}
         </aside>
+        <AnimatePresence initial={false}>
+          {tocOpen ? (
+            <>
+              <motion.button
+                key="toc-scrim"
+                type="button"
+                aria-label="Close contents"
+                onClick={() => setTocOpen(false)}
+                initial={reduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={reduceMotion ? undefined : { opacity: 0 }}
+                className="absolute inset-0 z-20 bg-black/60 lg:hidden"
+              />
+              <motion.aside
+                key="toc"
+                initial={reduceMotion ? false : { x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={reduceMotion ? undefined : { x: "-100%" }}
+                transition={{ type: "spring", stiffness: 380, damping: 36, mass: 0.8 }}
+                className="sg-toc absolute inset-y-0 left-0 z-30 w-[min(85vw,320px)] overflow-y-auto border-r border-white/10 bg-[#0b1c2c] p-3 shadow-2xl lg:hidden"
+              >
+                {tocContent}
+              </motion.aside>
+            </>
+          ) : null}
+        </AnimatePresence>
 
         {/* CENTER paper */}
         <main className="relative flex min-w-0 flex-1 flex-col">
@@ -870,7 +951,9 @@ export function StudyGuideReader({
             ) : (
               <span />
             )}
-            <span className="text-[11px] text-white/40">j / k · b bookmark · h highlight</span>
+            <span className="hidden text-[11px] text-white/40 sm:inline">
+              j / k · b bookmark · h highlight
+            </span>
             {chapter.nextSlug ? (
               <button
                 type="button"
@@ -912,15 +995,33 @@ export function StudyGuideReader({
         {/* RIGHT drawer */}
         <AnimatePresence initial={false}>
           {drawerOpen ? (
+            <>
+              {isDesktop ? null : (
+                <motion.button
+                  key="drawer-scrim"
+                  type="button"
+                  aria-label="Close drawer"
+                  onClick={() => toggleDrawer(false)}
+                  initial={reduceMotion ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={reduceMotion ? undefined : { opacity: 0 }}
+                  className="absolute inset-0 z-20 bg-black/60"
+                />
+              )}
             <motion.aside
               key="drawer"
-              initial={reduceMotion ? false : { width: 0, opacity: 0 }}
-              animate={{ width: 288, opacity: 1 }}
-              exit={reduceMotion ? undefined : { width: 0, opacity: 0 }}
+              initial={reduceMotion ? false : isDesktop ? { width: 0, opacity: 0 } : { x: "100%" }}
+              animate={isDesktop ? { width: 288, opacity: 1 } : { x: 0 }}
+              exit={reduceMotion ? undefined : isDesktop ? { width: 0, opacity: 0 } : { x: "100%" }}
               transition={{ type: "spring", stiffness: 380, damping: 36, mass: 0.8 }}
-              className="flex shrink-0 flex-col overflow-hidden border-l border-white/10 bg-[#091620]"
+              className={cn(
+                "flex flex-col overflow-hidden border-l border-white/10 bg-[#091620]",
+                isDesktop
+                  ? "shrink-0"
+                  : "absolute inset-y-0 right-0 z-30 w-[min(85vw,320px)] shadow-2xl"
+              )}
             >
-              <div className="flex w-72 flex-1 flex-col">
+              <div className={cn("flex flex-1 flex-col", isDesktop ? "w-72" : "w-full")}>
                 <div className="flex border-b border-white/10 text-xs">
                   {(
                     [
@@ -1032,6 +1133,7 @@ export function StudyGuideReader({
                 </p>
               </div>
             </motion.aside>
+            </>
           ) : null}
         </AnimatePresence>
       </div>
