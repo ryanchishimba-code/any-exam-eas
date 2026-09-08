@@ -682,6 +682,7 @@ export function StudyGuideReader({
                     <button
                       type="button"
                       ref={active ? tocActiveRef : undefined}
+                      aria-current={active ? "page" : undefined}
                       onMouseEnter={() => prefetchChapter(c.slug)}
                       onFocus={() => prefetchChapter(c.slug)}
                       onClick={() => void goToSlug(c.slug)}
