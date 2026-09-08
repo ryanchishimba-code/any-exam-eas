@@ -1,4 +1,5 @@
-import { redirect } from "next/navigation";
+import { redirect, unstable_rethrow } from "next/navigation";
+import { StudyGuideUnavailable } from "@/components/nclex-study-guide/StudyGuideUnavailable";
 import { getCachedSession } from "@/lib/auth/session";
 import {
   DEFAULT_NCLEX_GUIDE_ID,
@@ -12,20 +13,26 @@ export const dynamic = "force-dynamic";
 
 /** /nclex/study-guide → first chapter (or placeholder slug). */
 export default async function StudyGuideIndexPage() {
-  const session = await getCachedSession();
-  if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.nclexStudyGuide)}`);
-  }
-  await requirePremiumPage(ROUTES.nclexStudyGuide);
-
   let first = "manuscript-pending";
+
+  // Access check and table of contents share one fallback; `unstable_rethrow`
+  // keeps the login and paywall redirects working.
   try {
+    const session = await getCachedSession();
+    if (!session?.user?.id) {
+      redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.nclexStudyGuide)}`);
+    }
+    await requirePremiumPage(ROUTES.nclexStudyGuide);
+
     const guide = await getPublishedGuide("rn");
     const guideId = guide?.id ?? DEFAULT_NCLEX_GUIDE_ID;
     const toc = await getGuideToc(guideId);
     first = toc[0]?.slug ?? "manuscript-pending";
-  } catch {
-    // DB / Prisma client not ready — still redirect to seed slug
+  } catch (e) {
+    unstable_rethrow(e);
+    console.error("[nclex/study-guide] index", e);
+    return <StudyGuideUnavailable />;
   }
+
   redirect(`${ROUTES.nclexStudyGuide}/${first}`);
 }

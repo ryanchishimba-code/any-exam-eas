@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound, redirect, unstable_rethrow } from "next/navigation";
 import { StudyGuideReader } from "@/components/nclex-study-guide/StudyGuideReader";
+import { StudyGuideUnavailable } from "@/components/nclex-study-guide/StudyGuideUnavailable";
 import { getCachedSession } from "@/lib/auth/session";
 import {
   DEFAULT_NCLEX_GUIDE_ID,
@@ -28,38 +28,29 @@ export default async function StudyGuideChapterPage({ params }: Props) {
   const { chapterSlug } = await params;
 
   const callbackPath = `${ROUTES.nclexStudyGuide}/${chapterSlug}`;
-  const session = await getCachedSession();
-  if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
-  }
-  await requirePremiumPage(ROUTES.nclexStudyGuide);
 
   let guide;
   let toc;
   let chapter;
 
+  // The access check queries the database too, so it shares the content's
+  // fallback. `unstable_rethrow` lets the login and paywall redirects through —
+  // catching them here would hand the book to anyone during a blip.
   try {
+    const session = await getCachedSession();
+    if (!session?.user?.id) {
+      redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
+    }
+    await requirePremiumPage(ROUTES.nclexStudyGuide);
+
     guide = await getPublishedGuide("rn");
     const guideId = guide?.id ?? DEFAULT_NCLEX_GUIDE_ID;
     toc = await getGuideToc(guideId);
     chapter = await getChapterBySlug(guideId, chapterSlug);
   } catch (e) {
+    unstable_rethrow(e);
     console.error("[nclex/study-guide]", e);
-    return (
-      <main
-        className="flex min-h-[100dvh] flex-col items-center justify-center gap-4 px-6 text-center"
-        style={{ background: "#0b1c2c", color: "#e8eef4" }}
-      >
-        <h1 className="text-2xl font-bold">Study Guide database not ready</h1>
-        <p className="max-w-md text-sm text-white/65">
-          Run the Prisma migration for <code>sg_*</code> tables, then reload. See{" "}
-          <code>DEV.md</code> in the study-guide module.
-        </p>
-        <Link href={ROUTES.nclexHub} className="text-sm font-semibold" style={{ color: "#2ec4b6" }}>
-          ← NCLEX hub
-        </Link>
-      </main>
-    );
+    return <StudyGuideUnavailable />;
   }
 
   if (!chapter) notFound();
