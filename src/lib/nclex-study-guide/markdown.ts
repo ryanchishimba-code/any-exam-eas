@@ -64,13 +64,28 @@ export type MarkdownOptions = {
   imageSize?: (src: string) => MarkdownImageSize | undefined;
 };
 
-/** Stamp intrinsic dimensions onto emitted <img> tags in a single pass. */
-function applyImageSizes(html: string, imageSize?: MarkdownOptions["imageSize"]): string {
-  if (!imageSize) return html;
-  return html.replace(/<img\s+([^>]*?)src="([^"]+)"([^>]*?)\/>/g, (match, pre, src, post) => {
-    const size = imageSize(String(src));
-    if (!size) return match;
-    return `<img ${pre}src="${src}"${post} width="${size.width}" height="${size.height}" class="sg-img--sized" />`;
+/**
+ * One pass over the emitted <img> tags: stamp intrinsic dimensions, and hand
+ * every figure after the first to the lazy loader.
+ */
+function finalizeImages(html: string, imageSize?: MarkdownOptions["imageSize"]): string {
+  let seen = 0;
+  return html.replace(/<img\s+[^>]*?src="([^"]+)"[^>]*?\/>/g, (match, src: string) => {
+    seen += 1;
+
+    // Only the lead figure is worth blocking on. Eager-loading the rest makes a
+    // six-figure chapter fetch and decode everything at once, which competes
+    // with the main thread exactly when the reader starts scrolling.
+    let tag = seen === 1 ? match : match.replace('loading="eager"', 'loading="lazy"');
+
+    const size = imageSize?.(src);
+    if (size) {
+      tag = tag.replace(
+        /\s*\/>$/,
+        ` width="${size.width}" height="${size.height}" class="sg-img--sized" />`
+      );
+    }
+    return tag;
   });
 }
 
@@ -243,5 +258,5 @@ export function markdownToSimpleHtml(md: string, opts?: MarkdownOptions): string
 
   closeLists();
   closeBq();
-  return applyImageSizes(out.join(""), opts?.imageSize);
+  return finalizeImages(out.join(""), opts?.imageSize);
 }
