@@ -31,6 +31,9 @@ loadtests/k6/reports/*
 # local generation / pipeline artifacts
 /artifacts/
 
+# scratch output from local audits (figure previews, one-off reports)
+/tmp-*
+
 *.pem
 
 # debug
