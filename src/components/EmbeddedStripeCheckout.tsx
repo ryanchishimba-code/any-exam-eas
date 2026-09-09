@@ -11,6 +11,11 @@ import { CheckoutStepIndicator } from "@/components/checkout/CheckoutStepIndicat
 import { loadCheckoutDiscount } from "@/lib/client/checkout-discount";
 import type { BillingInterval } from "@/lib/billing-config";
 import { parseBillingInterval, BILLING_POLICY_SHORT } from "@/lib/billing-plans";
+import {
+  isPaymentModeChoiceEnabled,
+  parsePaymentMode,
+  type PaymentMode,
+} from "@/lib/billing-payment-mode";
 import type { DiscountValidation } from "@/lib/discount/types";
 import { formatUsd, hasDiscount } from "@/lib/promo-pricing";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
@@ -36,6 +41,10 @@ export function EmbeddedStripeCheckout() {
     const raw = searchParams.get("interval");
     return raw ? parseBillingInterval(raw) : "monthly";
   }, [searchParams]);
+  const paymentMode = useMemo(
+    () => parsePaymentMode(searchParams.get("mode")),
+    [searchParams]
+  );
   const initialPromo = searchParams.get("promo") ?? "";
   const reactivating = searchParams.get("reactivate") === "1";
 
@@ -43,10 +52,12 @@ export function EmbeddedStripeCheckout() {
   const [selectedPlan, setSelectedPlan] = useState<SignupPlan>(plan);
   const [selectedTier, setSelectedTier] = useState<SubscriptionTier>(tier);
   const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(interval);
+  const [selectedPaymentMode, setSelectedPaymentMode] = useState<PaymentMode>(paymentMode);
   const [appliedDiscount, setAppliedDiscount] = useState<DiscountValidation | null>(null);
   const [publishableKey, setPublishableKey] = useState<string | null>(null);
   const [configured, setConfigured] = useState(true);
   const [allIntervalsConfigured, setAllIntervalsConfigured] = useState(true);
+  const [oneTimeAvailable, setOneTimeAvailable] = useState(false);
   const [missingKeys, setMissingKeys] = useState<string[]>([]);
   const [error, setError] = useState("");
   const [upgradeBusy, setUpgradeBusy] = useState(false);
@@ -57,7 +68,8 @@ export function EmbeddedStripeCheckout() {
     setSelectedPlan(plan);
     setSelectedTier(tier);
     setSelectedInterval(interval);
-  }, [plan, tier, interval]);
+    setSelectedPaymentMode(paymentMode);
+  }, [plan, tier, interval, paymentMode]);
 
   useEffect(() => {
     const stored = loadCheckoutDiscount(selectedPlan);
@@ -70,6 +82,7 @@ export function EmbeddedStripeCheckout() {
       .then((data) => {
         setConfigured(data.configured);
         setAllIntervalsConfigured(data.allIntervalsConfigured !== false);
+        setOneTimeAvailable(data.oneTimePaymentsAvailable === true);
         setPublishableKey(data.publishableKey);
         if (Array.isArray(data.missing)) setMissingKeys(data.missing);
       })
@@ -93,6 +106,7 @@ export function EmbeddedStripeCheckout() {
         plan: selectedPlan,
         tier: selectedTier,
         interval: selectedInterval,
+        paymentMode: selectedPaymentMode,
         promoCode: promoCode || undefined,
         reactivate: reactivating || undefined,
       }),
@@ -117,6 +131,7 @@ export function EmbeddedStripeCheckout() {
     selectedPlan,
     selectedTier,
     selectedInterval,
+    selectedPaymentMode,
     promoCode,
     checkoutKey,
     reactivating,
@@ -127,12 +142,15 @@ export function EmbeddedStripeCheckout() {
     discount: DiscountValidation | null,
     nextPlan: SignupPlan,
     nextTier: SubscriptionTier,
-    nextInterval: BillingInterval
+    nextInterval: BillingInterval,
+    nextPaymentMode: PaymentMode
   ) {
     setSelectedPlan(nextPlan);
     setSelectedTier(nextTier);
     setSelectedInterval(nextInterval);
+    setSelectedPaymentMode(nextPaymentMode);
     const qs = new URLSearchParams({ plan: nextPlan, tier: nextTier, interval: nextInterval });
+    if (isPaymentModeChoiceEnabled()) qs.set("mode", nextPaymentMode);
     if (discount?.code) qs.set("promo", discount.code);
     if (reactivating) qs.set("reactivate", "1");
     const returnPath = searchParams.get("return");
@@ -154,6 +172,7 @@ export function EmbeddedStripeCheckout() {
             plan: nextPlan,
             tier: nextTier,
             interval: nextInterval,
+            paymentMode: nextPaymentMode,
             promoCode: discount?.valid ? discount.code : undefined,
             reactivate: reactivating || undefined,
           }),
@@ -228,6 +247,8 @@ export function EmbeddedStripeCheckout() {
           initialPlan={plan}
           initialTier={tier}
           initialInterval={interval}
+          initialPaymentMode={paymentMode}
+          oneTimeAvailable={oneTimeAvailable}
           initialPromo={initialPromo}
           onContinue={handleContinueToPayment}
           continueBusy={upgradeBusy}

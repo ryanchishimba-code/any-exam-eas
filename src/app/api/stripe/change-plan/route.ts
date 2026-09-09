@@ -48,6 +48,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: message }, { status: 503 });
   }
 
+  // Pay-once has nothing to reschedule — the paid window runs to accessEndsAt,
+  // and the next purchase is where a different interval gets chosen.
+  if (sub?.purchaseType === "one_time") {
+    return NextResponse.json(
+      {
+        error:
+          "You bought a one-time pass, so there is no renewal to change. Pick a different length the next time you buy.",
+        code: "ONE_TIME_PURCHASE",
+      },
+      { status: 400 }
+    );
+  }
+
   if (!sub?.stripeSubscriptionId) {
     await prisma.subscription.update({
       where: { userId: guard.userId },

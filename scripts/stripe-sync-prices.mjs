@@ -27,6 +27,7 @@ const TIERS = {
     monthlyUsd: Number(process.env.PRO_MONTHLY_PRICE_USD ?? process.env.MONTHLY_PRICE_USD ?? "27.99"),
     yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "235.12"),
     envPrefix: "STRIPE_PRO_PRICE_ID",
+    oneTimeEnvPrefix: "STRIPE_PRO_ONETIME_PRICE_ID",
     legacyKeys: {
       monthly: "STRIPE_PRICE_ID",
       quarterly: "STRIPE_PRICE_ID_QUARTERLY",
@@ -135,6 +136,55 @@ async function syncPrice(stripe, productId, tierKey, spec, envContent) {
   return { envContent, changed: true };
 }
 
+/**
+ * One-time twin of each recurring price — same amount, no `recurring` block, so
+ * Stripe charges once and never renews.
+ */
+async function syncOneTimePrice(stripe, productId, tierKey, spec, envContent) {
+  const tier = TIERS[tierKey];
+  const envKey = `${tier.oneTimeEnvPrefix}_${spec.suffix}`;
+  const expectedUsd = intervalTotalUsd(tierKey, spec);
+  const expectedCents = Math.round(expectedUsd * 100);
+  const existingId = getEnvValue(envContent, envKey);
+
+  if (existingId.startsWith("price_")) {
+    const existing = await stripe.prices.retrieve(existingId);
+    if (
+      (existing.unit_amount ?? 0) === expectedCents &&
+      existing.active &&
+      !existing.recurring
+    ) {
+      console.log(
+        `✓ ${tierKey} ${spec.label} (one-time): ${existingId} ($${expectedUsd.toFixed(2)})`
+      );
+      return { envContent, changed: false };
+    }
+    if (existing.active) {
+      await stripe.prices.update(existingId, { active: false });
+      console.log(`– Deactivated ${tierKey} ${spec.label} (one-time) ${existingId}`);
+    }
+  }
+
+  const price = await stripe.prices.create({
+    product: productId,
+    currency: "usd",
+    unit_amount: expectedCents,
+    nickname: `${tier.productName} — ${spec.label} (one-time)`,
+    metadata: {
+      tier: tierKey,
+      interval: spec.interval,
+      purchase_type: "one_time",
+      access_months: String(spec.months),
+    },
+  });
+
+  envContent = setEnvValue(envContent, envKey, price.id);
+  console.log(
+    `✓ ${tierKey} ${spec.label} (one-time): $${expectedUsd.toFixed(2)} → ${envKey}=${price.id}`
+  );
+  return { envContent, changed: true };
+}
+
 async function main() {
   let envContent = loadEnvFile();
   const secret =
@@ -168,6 +218,10 @@ async function main() {
       const result = await syncPrice(stripe, productId, tierKey, spec, envContent);
       envContent = result.envContent;
       anyChanged = anyChanged || result.changed;
+
+      const oneTime = await syncOneTimePrice(stripe, productId, tierKey, spec, envContent);
+      envContent = oneTime.envContent;
+      anyChanged = anyChanged || oneTime.changed;
     }
   }
 

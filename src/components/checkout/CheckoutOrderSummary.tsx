@@ -12,6 +12,12 @@ import {
   intervalSavingsUsd,
 } from "@/lib/billing-plans";
 import type { DiscountValidation } from "@/lib/discount/types";
+import {
+  DEFAULT_PAYMENT_MODE,
+  ONE_TIME_POLICY_SHORT,
+  oneTimeSummaryLabel,
+  type PaymentMode,
+} from "@/lib/billing-payment-mode";
 import { cn } from "@/lib/utils";
 
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
@@ -22,6 +28,7 @@ type CheckoutOrderSummaryProps = {
   planLabel: string;
   interval?: BillingInterval;
   tier?: SubscriptionTier;
+  paymentMode?: PaymentMode;
   className?: string;
   sticky?: boolean;
 };
@@ -32,6 +39,7 @@ export function CheckoutOrderSummary({
   planLabel,
   interval = "monthly",
   tier = "pro",
+  paymentMode = DEFAULT_PAYMENT_MODE,
   className,
   sticky = false,
 }: CheckoutOrderSummaryProps) {
@@ -39,6 +47,7 @@ export function CheckoutOrderSummary({
   const planTier = getBillingPlanTier(tier, interval);
   const listPrice = intervalListPriceUsd(tier, interval);
   const planSavings = intervalSavingsUsd(tier, interval);
+  const oneTime = paymentMode === "manual";
 
   return (
     <section
@@ -58,7 +67,9 @@ export function CheckoutOrderSummary({
 
       <div className="space-y-3 px-5 py-4">
         <div className="flex justify-between gap-4 text-sm">
-          <span className="text-[var(--color-ink-muted)]">{pricing.primary.label}</span>
+          <span className="text-[var(--color-ink-muted)]">
+            {oneTime ? oneTimeSummaryLabel(tier, interval) : pricing.primary.label}
+          </span>
           <span className="tabular-nums font-medium text-[var(--color-ink)]">
             {discounted && (
               <span className="mr-1.5 font-normal text-[var(--color-ink-muted)] line-through">
@@ -69,7 +80,7 @@ export function CheckoutOrderSummary({
           </span>
         </div>
 
-        {pricing.recurring && planTier.savingsPercent > 0 && (
+        {!oneTime && pricing.recurring && planTier.savingsPercent > 0 && (
           <div className="rounded-xl border border-emerald-100 bg-emerald-50/50 px-3 py-3 text-sm">
             <div className="flex justify-between gap-3">
               <span className="text-[var(--color-ink-muted)]">List price</span>
@@ -99,7 +110,7 @@ export function CheckoutOrderSummary({
           </div>
         )}
 
-        {pricing.recurring && planTier.savingsPercent === 0 && (
+        {!oneTime && pricing.recurring && planTier.savingsPercent === 0 && (
           <div className="flex justify-between gap-4 text-sm">
             <span className="text-[var(--color-ink-muted)]">{pricing.recurring.label}</span>
             <span className="tabular-nums font-medium text-[var(--color-ink)]">
@@ -129,7 +140,7 @@ export function CheckoutOrderSummary({
         </div>
 
         <p className="text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-          {BILLING_POLICY_SHORT}
+          {oneTime ? ONE_TIME_POLICY_SHORT : BILLING_POLICY_SHORT}
         </p>
       </div>
     </section>

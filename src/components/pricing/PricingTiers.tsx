@@ -13,6 +13,11 @@ import {
   getBillingPlanTier,
 } from "@/lib/billing-plans";
 import {
+  DEFAULT_PAYMENT_MODE,
+  isPaymentModeChoiceEnabled,
+  type PaymentMode,
+} from "@/lib/billing-payment-mode";
+import {
   formatTrialCtaLabel,
   formatTrialCtaSubline,
   formatTrialLabel,
@@ -23,6 +28,7 @@ import {
   TRIAL_STUDY_LIMITS,
 } from "@/lib/subscription-tiers";
 import { BillingIntervalPicker } from "@/components/pricing/BillingIntervalPicker";
+import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
 import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
 import { PricingGuarantees } from "@/components/pricing/PricingGuarantees";
 import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
@@ -49,11 +55,17 @@ const INTERVALS: BillingInterval[] = ["monthly", "quarterly", "semiannual", "yea
 function TrialUpgradePricing({
   interval,
   onIntervalChange,
+  paymentMode,
+  onPaymentModeChange,
+  showPaymentMode,
   daysRemaining,
   className,
 }: {
   interval: BillingInterval;
   onIntervalChange: (interval: BillingInterval) => void;
+  paymentMode: PaymentMode;
+  onPaymentModeChange: (mode: PaymentMode) => void;
+  showPaymentMode: boolean;
   daysRemaining: number | null;
   className?: string;
 }) {
@@ -64,6 +76,7 @@ function TrialUpgradePricing({
       tier: "pro",
       interval,
     });
+    if (showPaymentMode) params.set("mode", paymentMode);
     return `/checkout?${params.toString()}`;
   })();
 
@@ -115,11 +128,28 @@ function TrialUpgradePricing({
           <UpgradeIntervalChoice value={interval} onChange={onIntervalChange} tier="pro" />
         </div>
 
+        {showPaymentMode && (
+          <div className="mt-5 border-t border-black/[0.05] pt-5">
+            <PaymentModeToggle
+              value={paymentMode}
+              onChange={onPaymentModeChange}
+              interval={interval}
+              variant="card"
+            />
+          </div>
+        )}
+
         <Button
           href={checkoutHref}
           className="mt-6 w-full"
           variant="primary"
-          onClick={() => analytics.planSelected(`pro_${interval}`, { tier: "pro", interval })}
+          onClick={() =>
+            analytics.planSelected(`pro_${interval}`, {
+              tier: "pro",
+              interval,
+              ...(showPaymentMode ? { paymentMode } : {}),
+            })
+          }
         >
           Continue to checkout
         </Button>
@@ -143,7 +173,10 @@ function TrialUpgradePricing({
 export function PricingTiers({ className }: PricingTiersProps) {
   const { data: session } = useSession();
   const [interval, setInterval] = useState<BillingInterval>("monthly");
+  const [paymentMode, setPaymentMode] = useState<PaymentMode>(DEFAULT_PAYMENT_MODE);
   const [access, setAccess] = useState<AccessInfo | null>(null);
+  const [oneTimeAvailable, setOneTimeAvailable] = useState(false);
+  const showPaymentMode = isPaymentModeChoiceEnabled() && oneTimeAvailable;
 
   useEffect(() => {
     if (!session?.user) {
@@ -160,8 +193,21 @@ export function PricingTiers({ className }: PricingTiersProps) {
     analytics.pricingViewed("/pricing");
   }, []);
 
+  // Never advertise pay-once unless Stripe actually has one-time prices for it.
+  useEffect(() => {
+    if (!isPaymentModeChoiceEnabled()) return;
+    fetch("/api/stripe/config")
+      .then((r) => r.json())
+      .then((data) => setOneTimeAvailable(data?.oneTimePaymentsAvailable === true))
+      .catch(() => {});
+  }, []);
+
   function handlePlanSelected(billingInterval: BillingInterval) {
-    analytics.planSelected(`pro_${billingInterval}`, { tier: "pro", interval: billingInterval });
+    // Trial CTA — no payment mode is chosen yet.
+    analytics.planSelected(`pro_${billingInterval}`, {
+      tier: "pro",
+      interval: billingInterval,
+    });
   }
 
   const upgradingFromTrial =
@@ -202,6 +248,9 @@ export function PricingTiers({ className }: PricingTiersProps) {
       <TrialUpgradePricing
         interval={interval}
         onIntervalChange={setInterval}
+        paymentMode={paymentMode}
+        onPaymentModeChange={setPaymentMode}
+        showPaymentMode={showPaymentMode}
         daysRemaining={access?.daysRemaining ?? null}
         className={className}
       />
@@ -301,6 +350,12 @@ export function PricingTiers({ className }: PricingTiersProps) {
             )}
           </div>
 
+          {/*
+            No auto-pay / pay-once choice here on purpose: this card's CTA starts
+            the free trial, so offering it would imply a purchase decision that
+            has not happened yet. It appears on the trial-upgrade card and at
+            checkout, where money actually moves.
+          */}
           <Button
             href={checkoutHref()}
             className="mt-6 w-full"

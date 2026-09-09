@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { TRIAL_DAYS, type BillingInterval } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { resolveStoredTier, type SubscriptionFeature, tierHasFeature } from "@/lib/subscription-features";
+import { oneTimeAccessActive } from "@/lib/billing/one-time-purchase";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 
 export type SubscriptionAccessStatus =
@@ -45,6 +46,14 @@ export function normalizeSubscriptionForRead(
     subscription.trialEndsAt <= new Date()
   ) {
     return { ...subscription, status: "trial_expired" };
+  }
+  // A lapsed pay-once window has no Stripe event to flip it, so expire on read.
+  if (
+    subscription.purchaseType === "one_time" &&
+    subscription.status === "active" &&
+    !oneTimeAccessActive(subscription)
+  ) {
+    return { ...subscription, status: "inactive" };
   }
   return subscription;
 }
@@ -109,11 +118,13 @@ export function evaluateSubscriptionAccess(
   const compAccessValid = Boolean(
     subscription.compAccessUntil && new Date(subscription.compAccessUntil) > new Date()
   );
+  const oneTimeValid = oneTimeAccessActive(subscription);
 
   if (subscription.status === "active") {
-    // Durable "active" must be backed by a Stripe subscription or valid comp grant.
-    // Prevents orphan/test-mode rows from unlocking premium after trial.
-    if (!hasStripeSubscription && !compAccessValid) {
+    // Durable "active" must be backed by a Stripe subscription, a paid pay-once
+    // window, or a valid comp grant. Prevents orphan/test-mode rows from
+    // unlocking premium after trial.
+    if (!hasStripeSubscription && !compAccessValid && !oneTimeValid) {
       return {
         hasAccess: false,
         hasFreeAccess: false,
@@ -131,8 +142,12 @@ export function evaluateSubscriptionAccess(
       status: "active",
       ...meta,
       trialEndsAt,
-      daysRemaining: null,
-      canStartCheckout: false,
+      // Pay-once access lapses on a known date, so surface the countdown.
+      daysRemaining: oneTimeValid
+        ? daysUntil(new Date(subscription.accessEndsAt!))
+        : null,
+      // Nothing renews a pay-once window — let them buy more time before it ends.
+      canStartCheckout: oneTimeValid,
       needsPaymentMethod: false,
     };
   }

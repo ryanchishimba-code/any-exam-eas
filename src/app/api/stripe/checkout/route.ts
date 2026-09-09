@@ -10,8 +10,12 @@ import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { isStripeConfigured } from "@/lib/payments";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { parseBillingInterval } from "@/lib/billing-plans";
+import {
+  isPaymentModeChoiceEnabled,
+  parsePaymentMode,
+} from "@/lib/billing-payment-mode";
 import { requireSessionGuard } from "@/lib/session-guard";
-import { requireStripePriceId } from "@/lib/stripe-prices";
+import { requireOneTimeStripePriceId, requireStripePriceId } from "@/lib/stripe-prices";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { ROUTES } from "@/lib/routes";
 
@@ -48,12 +52,27 @@ export async function POST(req: Request) {
   let plan = body?.plan === "trial" ? ("trial" as const) : ("subscribe" as const);
   const tier = parseSubscriptionTier(body?.tier ?? sub?.planTier);
   const interval = parseBillingInterval(body?.interval ?? sub?.planInterval);
+  // Pay-once is only honored when the choice is live and the user is buying, not trialing.
+  const paymentMode =
+    isPaymentModeChoiceEnabled() && plan === "subscribe"
+      ? parsePaymentMode(body?.paymentMode)
+      : ("auto" as const);
+  const oneTime = paymentMode === "manual";
 
   if (access.hasAccess && access.status === "active") {
-    return NextResponse.json(
-      { error: "You already have an active subscription. Change your plan in Settings." },
-      { status: 400 }
-    );
+    // A pay-once window can be topped up early; it stacks onto the remaining time.
+    const extendingOneTime = oneTime && sub?.purchaseType === "one_time";
+    if (!extendingOneTime) {
+      return NextResponse.json(
+        {
+          error:
+            sub?.purchaseType === "one_time"
+              ? "You already have access. Choose “Pay once” to add more time, or manage billing in Settings."
+              : "You already have an active subscription. Change your plan in Settings.",
+        },
+        { status: 400 }
+      );
+    }
   }
 
   if (access.status === "past_due") {
@@ -90,17 +109,25 @@ export async function POST(req: Request) {
   }
 
   try {
-    requireStripePriceId(tier, interval);
     const { stripe: stripeClient } = await import("@/lib/stripe");
-    if (stripeClient) {
-      const { assertStripePriceMatchesConfig } = await import("@/lib/stripe-prices");
-      await assertStripePriceMatchesConfig(stripeClient, tier, interval);
+    const prices = await import("@/lib/stripe-prices");
+    if (oneTime) {
+      requireOneTimeStripePriceId(tier, interval);
+      if (stripeClient) {
+        await prices.assertOneTimeStripePriceMatchesConfig(stripeClient, tier, interval);
+      }
+    } else {
+      requireStripePriceId(tier, interval);
+      if (stripeClient) {
+        await prices.assertStripePriceMatchesConfig(stripeClient, tier, interval);
+      }
     }
   } catch (e) {
     const message = e instanceof Error ? e.message : "Billing price not configured";
     console.error("[stripe/checkout] price config failed", {
       tier,
       interval,
+      paymentMode,
       message,
     });
     return NextResponse.json({ error: message }, { status: 503 });
@@ -136,7 +163,8 @@ export async function POST(req: Request) {
   }
 
   // First-time Pro monthly: 20% off the first paid invoice (skipped when a promo coupon is already applied).
-  if (!stripeCouponId) {
+  // Not offered on pay-once: the coupon is scoped to a recurring first invoice.
+  if (!stripeCouponId && !oneTime) {
     const {
       shouldApplyFirstMonthDiscount,
       resolveFirstMonthCouponId,
@@ -157,8 +185,10 @@ export async function POST(req: Request) {
   }
 
   // Mid-trial upgrade with Stripe sub + card on file: end trial now and start billing.
+  // Pay-once skips this — converting the trial would leave a renewing subscription.
   if (
     plan === "subscribe" &&
+    !oneTime &&
     access.status === "trialing" &&
     isUsableStripeSubscriptionId(sub?.stripeSubscriptionId)
   ) {
@@ -198,6 +228,7 @@ export async function POST(req: Request) {
     plan,
     tier,
     interval,
+    paymentMode,
     stripeCouponId,
     promoCode,
     successUrl: embedded

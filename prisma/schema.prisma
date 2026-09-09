@@ -264,6 +264,12 @@ model Subscription {
   plan                 String?  // trial | subscribe
   planTier             String   @default("pro") // basic | pro
   planInterval         String   @default("yearly") // monthly | quarterly | semiannual | yearly
+  /// subscription = auto-renewing Stripe sub | one_time = paid once, never renews
+  purchaseType         String   @default("subscription")
+  /// One-time purchases only: hard access expiry, since no Stripe subscription renews it.
+  accessEndsAt         DateTime?
+  /// Stripe PaymentIntent behind the latest one-time purchase — dedupes webhook replays.
+  stripePaymentIntentId String? @unique
   trialEndsAt          DateTime?
   currentPeriodEnd     DateTime?
   gracePeriodEndsAt    DateTime?
@@ -278,6 +284,8 @@ model Subscription {
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
   user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([purchaseType, accessEndsAt])
 }
 
 /// Immutable signup consent snapshot — terms, privacy, and age attestation at registration.

@@ -17,6 +17,10 @@ import { EVENT_TYPES } from "@/lib/analytics/types";
 import { recordTrialUsed } from "@/lib/trial-eligibility";
 import { sendPaymentFailedEmail } from "@/lib/email/billing-emails";
 import { invalidateSubscriptionStatusCache } from "@/lib/cache";
+import {
+  applyOneTimePurchase,
+  revokeOneTimePurchase,
+} from "@/lib/billing/one-time-purchase";
 
 export const runtime = "nodejs";
 
@@ -55,6 +59,62 @@ export async function POST(req: Request) {
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
       const userId = session.metadata?.userId;
+
+      // Pay-once purchase: there is no Stripe subscription to read, so grant a
+      // fixed access window instead of the recurring path below.
+      if (userId && session.mode === "payment") {
+        const paymentIntentId =
+          typeof session.payment_intent === "string"
+            ? session.payment_intent
+            : session.payment_intent?.id;
+
+        if (session.payment_status !== "paid" || !paymentIntentId || !session.customer) {
+          console.warn("[stripe/webhook] one-time checkout not payable", {
+            userId,
+            paymentStatus: session.payment_status,
+            hasPaymentIntent: Boolean(paymentIntentId),
+          });
+          break;
+        }
+
+        const tier = parseSubscriptionTier(session.metadata?.tier);
+        const interval = parseBillingInterval(session.metadata?.interval);
+        const result = await applyOneTimePurchase({
+          userId,
+          tier,
+          interval,
+          stripeCustomerId: String(session.customer),
+          stripePaymentIntentId: paymentIntentId,
+        });
+
+        if (!result.applied) {
+          console.info("[stripe/webhook] one-time purchase already applied", {
+            userId,
+            paymentIntentId,
+          });
+          break;
+        }
+
+        invalidateSubscriptionStatusCache(userId);
+        trackEvent({
+          userId,
+          eventType: EVENT_TYPES.BILLING_CHECKOUT,
+          category: "billing",
+          metadata: {
+            purchaseType: "one_time",
+            interval,
+            accessEndsAt: result.accessEndsAt.toISOString(),
+            livemode: event.livemode,
+          },
+        });
+
+        const oneTimePromo = session.metadata?.promoCode?.trim();
+        if (oneTimePromo) {
+          void import("@/lib/promo").then((m) => m.redeemPromoCode(userId, oneTimePromo));
+        }
+        break;
+      }
+
       const subscriptionId =
         typeof session.subscription === "string"
           ? session.subscription
@@ -222,6 +282,43 @@ export async function POST(req: Request) {
           await applySubscriptionFromStripe(userId, stripeSub, customerId);
           invalidateSubscriptionStatusCache(userId);
         }
+      }
+      break;
+    }
+    // Pay-once purchases have no subscription to cancel, so a refund or a lost
+    // dispute is the only signal that access should end.
+    case "charge.refunded":
+    case "charge.dispute.closed": {
+      const charge =
+        event.type === "charge.refunded"
+          ? (event.data.object as Stripe.Charge)
+          : ((event.data.object as Stripe.Dispute).charge as Stripe.Charge | string);
+      const chargeObj =
+        typeof charge === "string" ? await stripe.charges.retrieve(charge) : charge;
+
+      if (event.type === "charge.dispute.closed") {
+        const dispute = event.data.object as Stripe.Dispute;
+        if (dispute.status !== "lost") break;
+      } else if (!chargeObj.refunded) {
+        // Partial refund — leave the access window alone.
+        break;
+      }
+
+      const paymentIntentId =
+        typeof chargeObj.payment_intent === "string"
+          ? chargeObj.payment_intent
+          : chargeObj.payment_intent?.id;
+      if (!paymentIntentId) break;
+
+      const revokedUserId = await revokeOneTimePurchase(paymentIntentId);
+      if (revokedUserId) {
+        invalidateSubscriptionStatusCache(revokedUserId);
+        trackEvent({
+          userId: revokedUserId,
+          eventType: EVENT_TYPES.BILLING_SUBSCRIPTION_UPDATED,
+          category: "billing",
+          metadata: { purchaseType: "one_time", event: event.type, revoked: true },
+        });
       }
       break;
     }

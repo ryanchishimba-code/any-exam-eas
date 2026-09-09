@@ -7,7 +7,12 @@ import {
 } from "@/lib/billing-config";
 import { parseBillingInterval, intervalTotalUsd } from "@/lib/billing-plans";
 import { CHECKOUT_PAYMENT_METHOD_TYPES } from "@/lib/payments";
-import { intervalFromPriceId, requireStripePriceId } from "@/lib/stripe-prices";
+import {
+  intervalFromPriceId,
+  requireOneTimeStripePriceId,
+  requireStripePriceId,
+} from "@/lib/stripe-prices";
+import type { PaymentMode } from "@/lib/billing-payment-mode";
 import {
   stripeUnixToDate,
   subscriptionCurrentPeriodEnd,
@@ -55,9 +60,78 @@ type CheckoutBaseParams = {
   stripeCouponId?: string | null;
   /** App promo code string — stored in metadata and redeemed after successful checkout */
   promoCode?: string | null;
+  /** auto = recurring subscription; manual = charge once, no renewal. */
+  paymentMode?: PaymentMode;
   /** @deprecated App DB trial end sync — Stripe sets trial via trial_period_days at checkout. */
   trialEndUnix?: number;
 };
+
+/** Fields shared by both session shapes so the webhook can read them uniformly. */
+function sessionMetadata(
+  params: CheckoutBaseParams,
+  tier: SubscriptionTier,
+  interval: BillingInterval,
+  purchaseType: "subscription" | "one_time"
+) {
+  return {
+    userId: params.userId,
+    plan: params.plan ?? "subscribe",
+    tier,
+    interval,
+    purchaseType,
+    ...(params.promoCode?.trim()
+      ? { promoCode: params.promoCode.trim().toUpperCase() }
+      : {}),
+  };
+}
+
+/**
+ * Pay-once checkout: a single charge for the same amount and the same length of
+ * access as the matching subscription interval.
+ *
+ * No `subscription_data` and no trial — there is nothing to renew, so access is
+ * granted for INTERVAL_MONTHS from the payment and then simply lapses.
+ */
+function buildOneTimeSessionParams(params: CheckoutBaseParams) {
+  const tier = parseSubscriptionTier(params.tier);
+  const interval = params.interval ?? "monthly";
+
+  return {
+    mode: "payment" as const,
+    customer: params.stripeCustomerId ?? undefined,
+    customer_email: params.stripeCustomerId ? undefined : params.customerEmail,
+    ...(params.stripeCouponId
+      ? { discounts: [{ coupon: params.stripeCouponId }] }
+      : {}),
+    line_items: [
+      { price: requireOneTimeStripePriceId(tier, interval), quantity: 1 },
+    ],
+    metadata: sessionMetadata(params, tier, interval, "one_time"),
+    payment_intent_data: {
+      metadata: sessionMetadata(params, tier, interval, "one_time"),
+    },
+    payment_method_types: [...CHECKOUT_PAYMENT_METHOD_TYPES],
+    payment_method_options: {
+      card: {
+        request_three_d_secure: "automatic" as const,
+      },
+    },
+    billing_address_collection: "auto" as const,
+    customer_update: params.stripeCustomerId
+      ? ({ address: "auto" as const, name: "auto" as const })
+      : undefined,
+    // Save the card so a manual renewal is one click, but never charge it on a schedule.
+    saved_payment_method_options: {
+      payment_method_save: "enabled" as const,
+    },
+  };
+}
+
+function buildSessionParams(params: CheckoutBaseParams) {
+  return params.paymentMode === "manual"
+    ? buildOneTimeSessionParams(params)
+    : buildSubscriptionSessionParams(params);
+}
 
 function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
   const isTrialPlan = params.plan === "trial";
@@ -101,15 +175,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
       : {}),
     line_items: lineItems,
     subscription_data: subscriptionData,
-    metadata: {
-      userId: params.userId,
-      plan: params.plan ?? "subscribe",
-      tier,
-      interval,
-      ...(params.promoCode?.trim()
-        ? { promoCode: params.promoCode.trim().toUpperCase() }
-        : {}),
-    },
+    metadata: sessionMetadata(params, tier, interval, "subscription"),
     ...(isTrialPlan || params.plan === "subscribe"
       ? { payment_method_collection: "always" as const }
       : {}),
@@ -137,7 +203,7 @@ export async function createCheckoutSession(params: CheckoutBaseParams) {
   }
 
   return stripe.checkout.sessions.create({
-    ...buildSubscriptionSessionParams(params),
+    ...buildSessionParams(params),
     success_url: params.successUrl,
     cancel_url: params.cancelUrl,
   });
@@ -150,7 +216,7 @@ export async function createEmbeddedCheckoutSession(params: CheckoutBaseParams) 
   }
 
   return stripe.checkout.sessions.create({
-    ...buildSubscriptionSessionParams(params),
+    ...buildSessionParams(params),
     ui_mode: "embedded",
     return_url: params.successUrl,
   });

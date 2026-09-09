@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import type { Subscription } from "@prisma/client";
-import { evaluateSubscriptionAccess } from "@/lib/subscription-access";
+import {
+  evaluateSubscriptionAccess,
+  normalizeSubscriptionForRead,
+} from "@/lib/subscription-access";
 
 function sub(partial: Partial<Subscription>): Subscription {
   return {
@@ -20,6 +23,9 @@ function sub(partial: Partial<Subscription>): Subscription {
     trialReminderForEndsAt: null,
     billingReminderForPeriodEnd: null,
     welcomeEmailSentAt: null,
+    purchaseType: "subscription",
+    accessEndsAt: null,
+    stripePaymentIntentId: null,
     createdAt: new Date(),
     updatedAt: new Date(),
     ...partial,
@@ -79,5 +85,47 @@ describe("evaluateSubscriptionAccess", () => {
   it("denies past_due and canceled", () => {
     expect(evaluateSubscriptionAccess(sub({ status: "past_due" })).hasAccess).toBe(false);
     expect(evaluateSubscriptionAccess(sub({ status: "canceled" })).hasAccess).toBe(false);
+  });
+
+  describe("one-time purchases", () => {
+    const oneTime = (accessEndsAt: Date | null) =>
+      sub({
+        status: "active",
+        purchaseType: "one_time",
+        accessEndsAt,
+        stripeCustomerId: "cus_live_123",
+        stripePaymentIntentId: "pi_live_123",
+      });
+
+    it("grants premium without a Stripe subscription while the window is open", () => {
+      const access = evaluateSubscriptionAccess(
+        oneTime(new Date(Date.now() + 10 * 86400000))
+      );
+      expect(access.hasAccess).toBe(true);
+      expect(access.status).toBe("active");
+      expect(access.needsPaymentMethod).toBe(false);
+      // Nothing renews it, so buying more time must stay available.
+      expect(access.canStartCheckout).toBe(true);
+      expect(access.daysRemaining).toBe(10);
+    });
+
+    it("denies premium once the window lapses", () => {
+      const access = evaluateSubscriptionAccess(oneTime(new Date(Date.now() - 86400000)));
+      expect(access.hasAccess).toBe(false);
+      expect(access.status).toBe("inactive");
+      expect(access.canStartCheckout).toBe(true);
+    });
+
+    it("denies an active one-time row with no access window", () => {
+      expect(evaluateSubscriptionAccess(oneTime(null)).hasAccess).toBe(false);
+    });
+
+    it("expires a lapsed window on read, since no Stripe event will", () => {
+      const lapsed = normalizeSubscriptionForRead(oneTime(new Date(Date.now() - 1000)));
+      expect(lapsed?.status).toBe("inactive");
+
+      const open = normalizeSubscriptionForRead(oneTime(new Date(Date.now() + 86400000)));
+      expect(open?.status).toBe("active");
+    });
   });
 });

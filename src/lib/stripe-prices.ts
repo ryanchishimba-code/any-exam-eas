@@ -20,6 +20,24 @@ export const STRIPE_PRICE_ENV_KEYS: Record<
   },
 };
 
+/**
+ * Env var for each one-time (non-recurring) Stripe Price.
+ *
+ * Same amount as the recurring price for the interval — the only difference is
+ * that Stripe never charges again, so the learner renews manually.
+ */
+export const STRIPE_ONETIME_PRICE_ENV_KEYS: Record<
+  SubscriptionTier,
+  Record<BillingInterval, string>
+> = {
+  pro: {
+    monthly: "STRIPE_PRO_ONETIME_PRICE_ID_MONTHLY",
+    quarterly: "STRIPE_PRO_ONETIME_PRICE_ID_QUARTERLY",
+    semiannual: "STRIPE_PRO_ONETIME_PRICE_ID_SEMIANNUAL",
+    yearly: "STRIPE_PRO_ONETIME_PRICE_ID_YEARLY",
+  },
+};
+
 /** Legacy env var fallback (pre-tier migration — maps to Pro). */
 const LEGACY_STRIPE_PRICE_ENV_KEYS: Record<BillingInterval, string> = {
   monthly: "STRIPE_PRICE_ID",
@@ -62,6 +80,91 @@ export async function assertStripePriceMatchesConfig(
       `${envKey} (${priceId}) charges $${(actualCents / 100).toFixed(2)} but config expects $${(expectedCents / 100).toFixed(2)} for ${tier}/${interval}. Run \`npm run stripe:sync-prices\` and redeploy.`
     );
   }
+}
+
+export function getOneTimeStripePriceId(
+  tier: SubscriptionTier,
+  interval: BillingInterval
+): string | undefined {
+  const value = process.env[STRIPE_ONETIME_PRICE_ENV_KEYS[tier][interval]]?.trim();
+  return value?.startsWith("price_") ? value : undefined;
+}
+
+export function isOneTimePriceConfigured(
+  tier: SubscriptionTier,
+  interval: BillingInterval
+): boolean {
+  return Boolean(getOneTimeStripePriceId(tier, interval));
+}
+
+/** Gates the pay-once option — every Pro interval needs a one-time price. */
+export function areOneTimePricesConfigured(tier: SubscriptionTier = "pro"): boolean {
+  const intervals = Object.keys(STRIPE_ONETIME_PRICE_ENV_KEYS[tier]) as BillingInterval[];
+  return intervals.every((i) => isOneTimePriceConfigured(tier, i));
+}
+
+export function getMissingOneTimePriceEnvKeys(tier: SubscriptionTier = "pro"): string[] {
+  const intervals = Object.keys(STRIPE_ONETIME_PRICE_ENV_KEYS[tier]) as BillingInterval[];
+  return intervals
+    .filter((i) => !isOneTimePriceConfigured(tier, i))
+    .map((i) => STRIPE_ONETIME_PRICE_ENV_KEYS[tier][i]);
+}
+
+export function requireOneTimeStripePriceId(
+  tier: SubscriptionTier,
+  interval: BillingInterval
+): string {
+  const priceId = getOneTimeStripePriceId(tier, interval);
+  if (priceId) return priceId;
+
+  const envKey = STRIPE_ONETIME_PRICE_ENV_KEYS[tier][interval];
+  const amount = expectedIntervalUsd(tier, interval);
+  throw new Error(
+    `${envKey} is not set ($${amount.toFixed(2)} one-time for ${INTERVAL_MONTHS[interval]} mo of access). Run \`npm run stripe:sync-prices\` to create it.`
+  );
+}
+
+/**
+ * Verify the one-time price charges the configured amount and is genuinely
+ * non-recurring — a price with `recurring` set would silently auto-renew.
+ */
+export async function assertOneTimeStripePriceMatchesConfig(
+  stripe: import("stripe").default,
+  tier: SubscriptionTier,
+  interval: BillingInterval
+): Promise<void> {
+  const priceId = requireOneTimeStripePriceId(tier, interval);
+  const envKey = STRIPE_ONETIME_PRICE_ENV_KEYS[tier][interval];
+  const price = await stripe.prices.retrieve(priceId);
+
+  if (price.recurring) {
+    throw new Error(
+      `${envKey} (${priceId}) is a recurring price. Pay-once checkout requires a one-time price — run \`npm run stripe:sync-prices\`.`
+    );
+  }
+
+  const expectedCents = expectedIntervalCents(tier, interval);
+  const actualCents = price.unit_amount ?? 0;
+  if (actualCents !== expectedCents) {
+    throw new Error(
+      `${envKey} (${priceId}) charges $${(actualCents / 100).toFixed(2)} but config expects $${(expectedCents / 100).toFixed(2)} for ${tier}/${interval}. Run \`npm run stripe:sync-prices\` and redeploy.`
+    );
+  }
+}
+
+/** Reverse lookup for webhooks — which interval a one-time price belongs to. */
+export function oneTimeIntervalFromPriceId(priceId: string): {
+  tier: SubscriptionTier;
+  interval: BillingInterval;
+} | null {
+  for (const interval of Object.keys(
+    STRIPE_ONETIME_PRICE_ENV_KEYS.pro
+  ) as BillingInterval[]) {
+    if (getOneTimeStripePriceId("pro", interval) === priceId) {
+      return { tier: "pro", interval };
+    }
+  }
+  return null;
 }
 
 /** Stripe recurring shape for each billing interval. */

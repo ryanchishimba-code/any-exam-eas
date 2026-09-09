@@ -93,8 +93,10 @@ export const analytics = {
   pricingViewed: (path?: string) =>
     trackConversion(CONVERSION_EVENTS.PRICING_VIEWED, { path: path ?? window.location.pathname }),
 
-  planSelected: (plan_type: string, extra?: { interval?: string; tier?: string }) =>
-    trackConversion(CONVERSION_EVENTS.PLAN_SELECTED, { plan_type, ...extra }),
+  planSelected: (
+    plan_type: string,
+    extra?: { interval?: string; tier?: string; paymentMode?: string }
+  ) => trackConversion(CONVERSION_EVENTS.PLAN_SELECTED, { plan_type, ...extra }),
 
   trialStarted: (
     props?: ConversionProperties["trial_started"],
