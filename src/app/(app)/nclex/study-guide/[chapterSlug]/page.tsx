@@ -41,21 +41,26 @@ export default async function StudyGuideChapterPage({ params }: Props) {
   // The access check queries the database too, so it shares the content's
   // fallback. `unstable_rethrow` lets the login and paywall redirects through —
   // catching them here would hand the book to anyone during a blip.
+  //
+  // Access stays outside `withDbRetry`: the Prisma client already retries every
+  // statement, so nesting a second retry around the checks multiplied the worst
+  // case instead of improving it.
   try {
-    ({ guide, toc, chapter } = await withDbRetry(async () => {
-      const session = await getCachedSession();
-      if (!session?.user?.id) {
-        redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
-      }
-      await requirePremiumPage(CONFIG.routeBase);
+    const session = await getCachedSession();
+    if (!session?.user?.id) {
+      redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
+    }
+    await requirePremiumPage(CONFIG.routeBase);
 
+    ({ guide, toc, chapter } = await withDbRetry(async () => {
       const loadedGuide = await getPublishedGuide(EXAM);
       const guideId = loadedGuide?.id ?? CONFIG.guideId;
-      return {
-        guide: loadedGuide,
-        toc: await getGuideToc(guideId),
-        chapter: await getChapterBySlug(guideId, chapterSlug, EXAM),
-      };
+      // Independent once the guide id is known.
+      const [loadedToc, loadedChapter] = await Promise.all([
+        getGuideToc(guideId),
+        getChapterBySlug(guideId, chapterSlug, EXAM),
+      ]);
+      return { guide: loadedGuide, toc: loadedToc, chapter: loadedChapter };
     }));
   } catch (e) {
     unstable_rethrow(e);

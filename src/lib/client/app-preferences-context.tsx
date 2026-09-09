@@ -24,6 +24,71 @@ export type AppPreferences = {
 
 const AppPreferencesContext = createContext<AppPreferences | null>(null);
 
+type PreferencePayload = {
+  examSlug: ExamSlug | null;
+  mpjeStateCode: string | null;
+};
+
+/**
+ * `Navigation` renders as a sibling of `{children}` in the root layout, so it sits
+ * outside the `(app)` provider and every consumer there falls back to its own fetch.
+ * GlobalExamSwitcher and AvatarDropdown mount in the same commit, which made two
+ * identical requests per page load. Coalesce them the way user-access-context does.
+ */
+let cachedPreference: PreferencePayload | null = null;
+let inflightPreference: Promise<PreferencePayload | null> | null = null;
+
+if (typeof window !== "undefined") {
+  window.addEventListener("aee:clear-access-cache", () => {
+    cachedPreference = null;
+    inflightPreference = null;
+  });
+}
+
+function readPreferencePayload(data: {
+  examSlug?: string | null;
+  mpjeStateCode?: string | null;
+}): PreferencePayload {
+  return {
+    examSlug: data.examSlug && isExamSlug(data.examSlug) ? data.examSlug : null,
+    mpjeStateCode: data.mpjeStateCode ?? null,
+  };
+}
+
+/** `null` means the server declined (e.g. 401) — callers keep their current slug. */
+async function fetchPreferenceOnce(): Promise<PreferencePayload | null> {
+  const res = await fetch("/api/user/exam-preference", { cache: "no-store" });
+  if (!res.ok) return null;
+  return readPreferencePayload(await res.json());
+}
+
+/** Shared across provider and fallback consumers; `force` bypasses the cache after a save. */
+async function fetchPreference(force = false): Promise<PreferencePayload | null> {
+  if (force) {
+    cachedPreference = null;
+    inflightPreference = null;
+  } else if (cachedPreference) {
+    return cachedPreference;
+  }
+
+  if (inflightPreference) return inflightPreference;
+
+  const pending = fetchPreferenceOnce()
+    .then((value) => {
+      // Only a real payload is worth caching; a declined read stays retryable.
+      if (value) cachedPreference = value;
+      if (inflightPreference === pending) inflightPreference = null;
+      return value;
+    })
+    .catch((err) => {
+      if (inflightPreference === pending) inflightPreference = null;
+      throw err;
+    });
+
+  inflightPreference = pending;
+  return pending;
+}
+
 type ProviderProps = {
   initialExamSlug?: ExamSlug | null;
   children: ReactNode;
@@ -42,16 +107,12 @@ export function AppPreferencesProvider({
     setExamSlugState(slug);
   }, []);
 
-  const refresh = useCallback(async () => {
+  const load = useCallback(async (force: boolean) => {
     try {
-      const res = await fetch("/api/user/exam-preference", { cache: "no-store" });
-      if (!res.ok) return;
-      const data = (await res.json()) as {
-        examSlug?: string | null;
-        mpjeStateCode?: string | null;
-      };
-      setExamSlugState(data.examSlug && isExamSlug(data.examSlug) ? data.examSlug : null);
-      setMpjeStateCode(data.mpjeStateCode ?? null);
+      const payload = await fetchPreference(force);
+      if (!payload) return;
+      setExamSlugState(payload.examSlug);
+      setMpjeStateCode(payload.mpjeStateCode);
     } catch {
       setExamSlugState(null);
       setMpjeStateCode(null);
@@ -59,6 +120,9 @@ export function AppPreferencesProvider({
       setLoading(false);
     }
   }, []);
+
+  // Callers refresh after saving a new exam, so never serve them a stale slug.
+  const refresh = useCallback(() => load(true), [load]);
 
   // Sync from server layout props only when they actually change to a new value.
   // Avoid clobbering an optimistic setExamSlug during soft refresh races.
@@ -87,8 +151,8 @@ export function AppPreferencesProvider({
       return;
     }
 
-    void refresh();
-  }, [status, initialExamSlug, refresh]);
+    void load(false);
+  }, [status, initialExamSlug, load]);
 
   const value = useMemo(
     () => ({ examSlug, mpjeStateCode, loading, refresh, setExamSlug }),
@@ -110,16 +174,12 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
     setExamSlugState(slug);
   }, []);
 
-  const refresh = useCallback(async () => {
+  const load = useCallback(async (force: boolean) => {
     try {
-      const res = await fetch("/api/user/exam-preference", { cache: "no-store" });
-      if (!res.ok) return;
-      const data = (await res.json()) as {
-        examSlug?: string | null;
-        mpjeStateCode?: string | null;
-      };
-      setExamSlugState(data.examSlug && isExamSlug(data.examSlug) ? data.examSlug : null);
-      setMpjeStateCode(data.mpjeStateCode ?? null);
+      const payload = await fetchPreference(force);
+      if (!payload) return;
+      setExamSlugState(payload.examSlug);
+      setMpjeStateCode(payload.mpjeStateCode);
     } catch {
       setExamSlugState(null);
       setMpjeStateCode(null);
@@ -127,6 +187,8 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
       setLoading(false);
     }
   }, []);
+
+  const refresh = useCallback(() => load(true), [load]);
 
   useEffect(() => {
     if (!active) return;
@@ -137,8 +199,8 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
       setMpjeStateCode(null);
       return;
     }
-    void refresh();
-  }, [active, status, refresh]);
+    void load(false);
+  }, [active, status, load]);
 
   return { examSlug, mpjeStateCode, loading, refresh, setExamSlug };
 }

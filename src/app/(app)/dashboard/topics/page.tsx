@@ -83,12 +83,16 @@ export default async function HighYieldTopicsPage({
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.highYieldTopics)}`);
   }
 
-  await requirePremiumPage(ROUTES.highYieldTopics);
+  // Independent — the preference read never consults the access result. The Pro
+  // check stays sequential so the premium paywall still wins when both apply.
+  const [, pref] = await Promise.all([
+    requirePremiumPage(ROUTES.highYieldTopics),
+    getUserExamPreference(session.user.id),
+  ]);
   if (deepDive) {
     await requireProFeaturePage("deep_dive_modules", ROUTES.highYieldTopics);
   }
 
-  const pref = await getUserExamPreference(session.user.id);
   if (!pref) redirect(ROUTES.selectExam);
 
   if (exam && isExamSlug(exam) && exam !== pref.examSlug) {

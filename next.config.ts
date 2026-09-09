@@ -34,6 +34,7 @@ const nextConfig: NextConfig = {
     optimizePackageImports: [
       "lucide-react",
       "framer-motion",
+      "recharts",
       "@react-three/drei",
       "@react-three/fiber",
       "three",

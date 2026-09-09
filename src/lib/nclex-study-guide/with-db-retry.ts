@@ -4,10 +4,13 @@ import { unstable_rethrow } from "next/navigation";
  * Run a database-backed page load, retrying once on failure.
  *
  * Neon scales to zero, so the first connection after an idle period — or right
- * after a deploy, when every serverless instance is cold — can time out. The
- * study guide pages make five sequential round trips, and any one of them
- * failing replaces the whole book with an error screen. One retry turns that
- * cold start into a marginally slower render instead.
+ * after a deploy, when every serverless instance is cold — can time out. Losing
+ * any one of the content reads replaces the whole book with an error screen, so
+ * one retry turns that cold start into a marginally slower render instead.
+ *
+ * Wrap only the content reads. The access checks run ahead of this on purpose:
+ * the Prisma client retries each statement already, and nesting retries around
+ * the checks multiplied the worst-case wait rather than adding resilience.
  *
  * `unstable_rethrow` runs before the retry so Next's control-flow throws
  * (`redirect`, `notFound`) pass straight through. Without it, the login and

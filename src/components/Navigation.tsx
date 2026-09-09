@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { LogIn, LogOut, Menu, Shield, X } from "lucide-react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
-import { AvatarDropdown } from "@/components/navigation/AvatarDropdown";
 import { AdminNavLink } from "@/components/navigation/AdminNavLink";
 import { ExamsDropdown } from "@/components/navigation/ExamsDropdown";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
@@ -20,6 +20,15 @@ import { ROUTES, EXAM_NAV_ITEMS } from "@/lib/routes";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { formatTrialCtaLabel } from "@/lib/site";
+
+// Only signed-in visitors ever see this, and it needs framer-motion for its
+// menu. Importing it statically put that dependency in the entry chunk for
+// anonymous traffic on the static marketing pages. The nav already renders a
+// skeleton until auth resolves, so there is nothing to server-render here.
+const AvatarDropdown = dynamic(
+  () => import("@/components/navigation/AvatarDropdown").then((m) => m.AvatarDropdown),
+  { ssr: false }
+);
 
 type NavLink = { href: string; label: string };
 

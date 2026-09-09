@@ -360,6 +360,10 @@ model ProgressRecord {
   metadata   String?
   createdAt  DateTime @default(now())
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  /// Dashboard reads completed exam scores newest-first; without this the table
+  /// had no index at all, so every load scanned and sorted every user's rows.
+  @@index([userId, entityType, completed, createdAt])
 }
 
 /// Stratified exam bank (medicine, nursing, pharmacy, MPJE) — synced from seed sources on a schedule.
@@ -439,6 +443,11 @@ model QuestionBankItem {
   @@index([fieldId, blueprintDomain, patientAgeGroup, active])
   @@index([fieldId, clusterId])
   @@index([fieldId, keepRecommendation, qualityScore])
+  /// Random-sample id probes (see question-bank/random-sample.ts) filter on the
+  /// serve gate then order by id. Trailing id keeps that an ordered index scan
+  /// instead of sorting every matching row in the field.
+  @@index([fieldId, active, qaPassed, id])
+  @@index([fieldId, subjectId, active, qaPassed, id])
   naplexFullExamLinks NaplexFullPracticeExamQuestion[]
   usmleFullExamLinks  UsmleFullPracticeExamQuestion[]
   nclexFullExamLinks  NclexFullPracticeExamQuestion[]

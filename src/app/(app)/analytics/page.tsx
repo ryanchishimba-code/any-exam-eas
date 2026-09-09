@@ -69,8 +69,11 @@ export default async function AnalyticsPage() {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.analytics)}`);
   }
 
-  await requirePremiumPage(ROUTES.analytics);
-  const pref = await getUserExamPreference(session.user.id);
+  // Independent — the preference read never consults the access result.
+  const [, pref] = await Promise.all([
+    requirePremiumPage(ROUTES.analytics),
+    getUserExamPreference(session.user.id),
+  ]);
   if (!pref) redirect(ROUTES.selectExam);
 
   return (

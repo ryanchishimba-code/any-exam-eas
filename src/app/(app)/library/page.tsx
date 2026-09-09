@@ -104,9 +104,11 @@ export default async function LibraryPage({ searchParams }: PageProps) {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.library)}`);
   }
 
-  await requirePremiumPage(ROUTES.library);
-
-  const pref = await getUserExamPreference(session.user.id);
+  // Independent — the preference read never consults the access result.
+  const [, pref] = await Promise.all([
+    requirePremiumPage(ROUTES.library),
+    getUserExamPreference(session.user.id),
+  ]);
   if (!pref) redirect(ROUTES.selectExam);
 
   const examSlug = (examOverride ?? pref.examSlug) as ExamSlug;

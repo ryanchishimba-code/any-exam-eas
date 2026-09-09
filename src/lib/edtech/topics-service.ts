@@ -1,3 +1,4 @@
+import { cacheGetOrSetDeduped, cacheKey, CACHE_TTL } from "@/lib/cache";
 import { prisma } from "@/lib/prisma";
 import { getHighYieldTopics as getStaticTopics } from "@/lib/edtech/seeds";
 import {
@@ -11,8 +12,26 @@ import { enrichUsmleTopics } from "@/lib/exam-prep/usmle/topic-registry";
 import type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 
-/** Upsert flagship review-module rows so progress FKs stay valid after code deploys. */
+/**
+ * Upsert flagship review-module rows so progress FKs stay valid after code deploys.
+ *
+ * These rows are code-owned seed data, so they only change when a deploy ships new
+ * REVIEW_MODULE_TOPICS. Running the loop per render meant 31 serialized writes (nclex
+ * and usmle) on every /dashboard/topics view, which with connection_limit=1 on Vercel
+ * cannot overlap. Dedupe across instances the same way ensureAllBoardExams does.
+ */
 async function syncReviewModuleTopics(examSlug: ExamSlug): Promise<void> {
+  await cacheGetOrSetDeduped(
+    cacheKey(["review-module-topics", "synced", examSlug]),
+    CACHE_TTL.subjectCatalog,
+    async () => {
+      await upsertReviewModuleTopics(examSlug);
+      return true;
+    }
+  );
+}
+
+async function upsertReviewModuleTopics(examSlug: ExamSlug): Promise<void> {
   const modules = REVIEW_MODULE_TOPICS.filter((t) => t.examSlug === examSlug);
   if (modules.length === 0) return;
 

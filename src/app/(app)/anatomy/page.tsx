@@ -86,12 +86,14 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
   }
 
   await redirectMpjeFromClinicalRoutes(session.user.id);
-  await requirePremiumPage(ROUTES.anatomy);
 
-  if (!examOverride) {
-    const pref = await getUserExamPreference(session.user.id);
-    if (!pref) redirect(ROUTES.selectExam);
-  }
+  // Independent — the preference read never consults the access result.
+  const [, pref] = await Promise.all([
+    requirePremiumPage(ROUTES.anatomy),
+    examOverride ? Promise.resolve(null) : getUserExamPreference(session.user.id),
+  ]);
+
+  if (!examOverride && !pref) redirect(ROUTES.selectExam);
 
   return (
     <div className="w-full space-y-4">

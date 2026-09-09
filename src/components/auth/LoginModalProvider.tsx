@@ -9,9 +9,17 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { DEFAULT_AUTH_CALLBACK, sanitizeCallbackUrl } from "@/lib/client/auth-routes";
-import { LoginModal } from "./LoginModal";
+
+// This provider wraps every route, so a static import put the modal's
+// framer-motion dependency in the shared entry chunk for visitors who never
+// open it. Load on first open instead, then keep it mounted so AnimatePresence
+// can still play the exit animation.
+const LoginModal = dynamic(() => import("./LoginModal").then((m) => m.LoginModal), {
+  ssr: false,
+});
 
 type LoginModalContextValue = {
   open: boolean;
@@ -25,10 +33,12 @@ const LoginModalContext = createContext<LoginModalContextValue | null>(null);
 export function LoginModalProvider({ children }: { children: ReactNode }) {
   const searchParams = useSearchParams();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [callbackUrl, setCallbackUrl] = useState(DEFAULT_AUTH_CALLBACK);
 
   const openLoginModal = useCallback((url = DEFAULT_AUTH_CALLBACK) => {
     setCallbackUrl(url);
+    setMounted(true);
     setOpen(true);
   }, []);
 
@@ -52,11 +62,13 @@ export function LoginModalProvider({ children }: { children: ReactNode }) {
   return (
     <LoginModalContext.Provider value={value}>
       {children}
-      <LoginModal
-        open={open}
-        onClose={closeLoginModal}
-        callbackUrl={callbackUrl}
-      />
+      {mounted ? (
+        <LoginModal
+          open={open}
+          onClose={closeLoginModal}
+          callbackUrl={callbackUrl}
+        />
+      ) : null}
     </LoginModalContext.Provider>
   );
 }

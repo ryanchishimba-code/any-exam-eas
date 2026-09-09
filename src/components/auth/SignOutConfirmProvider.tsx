@@ -9,8 +9,16 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { SignOutConfirmDialog } from "@/components/auth/SignOutConfirmDialog";
+import dynamic from "next/dynamic";
 import { signOutAndCleanup, type SignOutOptions } from "@/lib/client/sign-out";
+
+// Mounted on every route, so a static import shipped framer-motion in the
+// shared entry chunk for a dialog most visitors never see. Load it when sign-out
+// is first requested, then keep it mounted for the exit animation.
+const SignOutConfirmDialog = dynamic(
+  () => import("@/components/auth/SignOutConfirmDialog").then((m) => m.SignOutConfirmDialog),
+  { ssr: false }
+);
 
 type SignOutConfirmContextValue = {
   signingOut: boolean;
@@ -23,11 +31,13 @@ const DEFAULT_OPTIONS: SignOutOptions = { callbackUrl: "/", redirect: true };
 
 export function SignOutConfirmProvider({ children }: { children: ReactNode }) {
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
   const optionsRef = useRef<SignOutOptions>(DEFAULT_OPTIONS);
 
   const requestSignOut = useCallback((options?: SignOutOptions) => {
     optionsRef.current = { ...DEFAULT_OPTIONS, ...options };
+    setMounted(true);
     setConfirmOpen(true);
   }, []);
 
@@ -54,12 +64,14 @@ export function SignOutConfirmProvider({ children }: { children: ReactNode }) {
   return (
     <SignOutConfirmContext.Provider value={value}>
       {children}
-      <SignOutConfirmDialog
-        open={confirmOpen}
-        loading={signingOut}
-        onCancel={cancelSignOut}
-        onConfirm={() => void confirmSignOut()}
-      />
+      {mounted ? (
+        <SignOutConfirmDialog
+          open={confirmOpen}
+          loading={signingOut}
+          onCancel={cancelSignOut}
+          onConfirm={() => void confirmSignOut()}
+        />
+      ) : null}
     </SignOutConfirmContext.Provider>
   );
 }
