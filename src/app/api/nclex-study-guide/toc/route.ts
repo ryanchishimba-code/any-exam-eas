@@ -4,12 +4,18 @@ import {
   getPublishedGuide,
 } from "@/lib/nclex-study-guide";
 import { isStudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
+import { requirePremiumApi } from "@/lib/api-access";
 
 export const runtime = "nodejs";
 
 /** GET /api/nclex-study-guide/toc?exam=nclex */
 export async function GET(req: Request) {
   try {
+    // Gated to match the reader pages; this used to expose the book's
+    // structure (and, via the chapter route, its full text) to anyone.
+    const access = await requirePremiumApi(req);
+    if (!access.ok) return access.response;
+
     // No fallback to the NCLEX guide on an unknown exam: silently serving the
     // wrong book is worse than a 404, and the client always knows its exam.
     const requested = new URL(req.url).searchParams.get("exam") ?? "nclex";
