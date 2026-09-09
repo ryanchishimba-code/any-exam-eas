@@ -41,4 +41,17 @@ describe("app-shell routes", () => {
     expect(hideMarketingChrome("/nclex/study-guide/cardiac")).toBe(true);
     expect(isAppShellRoute("/nclex")).toBe(false);
   });
+
+  it("treats every exam's reader the same, not just NCLEX", () => {
+    // Derived from the guide registry, so a new book gets immersive chrome
+    // without another prefix to remember here.
+    expect(isStudyGuideReaderRoute("/naplex/study-guide/cardiology")).toBe(true);
+    expect(isStudyGuideReaderRoute("/naplex/study-guide")).toBe(false);
+    expect(isImmersiveAppRoute("/naplex/study-guide/cardiology")).toBe(true);
+    expect(isAppShellRoute("/naplex/study-guide/cardiology")).toBe(true);
+    expect(hideMarketingChrome("/naplex/study-guide/cardiology")).toBe(true);
+
+    // An exam without a book must not pick up reader chrome.
+    expect(isStudyGuideReaderRoute("/usmle/study-guide/anything")).toBe(false);
+  });
 });

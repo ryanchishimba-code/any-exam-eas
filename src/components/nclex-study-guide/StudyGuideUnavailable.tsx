@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { ROUTES } from "@/lib/routes";
+import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
 
 /**
  * Shown when the Study Guide cannot be reached — a Neon wake, a dropped
  * connection, or (locally) missing `sg_*` tables. Deliberately calmer than the
  * app error boundary, since the usual cause clears on its own.
  */
-export function StudyGuideUnavailable() {
+export function StudyGuideUnavailable({ exam }: { exam: StudyGuideExam }) {
+  const config = STUDY_GUIDES[exam];
   return (
     <main
       className="flex min-h-[60dvh] flex-col items-center justify-center gap-4 px-6 text-center"
@@ -19,17 +20,17 @@ export function StudyGuideUnavailable() {
       </p>
       <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
         <Link
-          href={ROUTES.nclexStudyGuide}
+          href={config.routeBase}
           className="rounded-full px-5 py-2.5 text-sm font-semibold text-[#0b1c2c]"
           style={{ background: "#2ec4b6" }}
         >
           Try again
         </Link>
         <Link
-          href={ROUTES.nclexHub}
+          href={config.hubHref}
           className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white/80"
         >
-          NCLEX hub
+          {config.legal.examName} hub
         </Link>
       </div>
       {process.env.NODE_ENV === "development" ? (

@@ -30,6 +30,7 @@ import {
   prefetchChapter,
   seedChapterCache,
 } from "@/lib/nclex-study-guide/client-cache";
+import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
 import type {
   SgChapterDto,
   SgHighlightColor,
@@ -108,6 +109,7 @@ function useStableCallback<A extends unknown[], R>(fn: (...args: A) => R) {
 }
 
 type Props = {
+  exam: StudyGuideExam;
   guideId: string;
   guideTitle: string;
   chapters: SgTocChapter[];
@@ -129,11 +131,13 @@ function bindImageErrors(node: HTMLElement | null) {
 }
 
 export function StudyGuideReader({
+  exam,
   guideId,
   guideTitle,
   chapters,
   chapter: initialChapter,
 }: Props) {
+  const config = STUDY_GUIDES[exam];
   const reduceMotion = useReducedMotion();
   const isDesktop = useIsDesktop();
   const paperRef = useRef<HTMLElement>(null);
@@ -213,7 +217,7 @@ export function StudyGuideReader({
 
   // Sync if the server page remounts with a different slug (rare).
   useEffect(() => {
-    seedChapterCache(initialChapter);
+    seedChapterCache(exam, initialChapter);
     if (initialChapter.slug !== chapterRef.current.slug) {
       setChapter(initialChapter);
       setSearch("");
@@ -371,8 +375,8 @@ export function StudyGuideReader({
 
   // Prefetch neighbors whenever chapter changes.
   useEffect(() => {
-    prefetchChapter(chapter.prevSlug);
-    prefetchChapter(chapter.nextSlug);
+    prefetchChapter(exam, chapter.prevSlug);
+    prefetchChapter(exam, chapter.nextSlug);
   }, [chapter.nextSlug, chapter.prevSlug]);
 
   useEffect(() => {
@@ -386,7 +390,7 @@ export function StudyGuideReader({
       setNavPending(true);
       flushProgress();
       try {
-        const next = getCachedChapter(slug) ?? (await fetchChapter(slug));
+        const next = getCachedChapter(exam, slug) ?? (await fetchChapter(exam, slug));
         startTransition(() => {
           setChapter(next);
           setSearch("");
@@ -394,15 +398,15 @@ export function StudyGuideReader({
           setNoteDraft("");
           paintProgress(0);
         });
-        const url = `${ROUTES.nclexStudyGuide}/${slug}`;
+        const url = `${config.routeBase}/${slug}`;
         if (historyMode === "push") {
           window.history.pushState({ sgChapter: slug }, "", url);
         } else if (historyMode === "replace") {
           window.history.replaceState({ sgChapter: slug }, "", url);
         }
-        document.title = `${next.title} — NCLEX Study Guide`;
-        prefetchChapter(next.prevSlug);
-        prefetchChapter(next.nextSlug);
+        document.title = `${next.title} — ${guideTitle}`;
+        prefetchChapter(exam, next.prevSlug);
+        prefetchChapter(exam, next.nextSlug);
       } catch {
         setAuthHint("Could not load that chapter. Try again.");
       } finally {
@@ -641,8 +645,8 @@ export function StudyGuideReader({
                   type="button"
                   ref={active ? tocActiveRef : undefined}
                   aria-current={active ? "page" : undefined}
-                  onMouseEnter={() => prefetchChapter(c.slug)}
-                  onFocus={() => prefetchChapter(c.slug)}
+                  onMouseEnter={() => prefetchChapter(exam, c.slug)}
+                  onFocus={() => prefetchChapter(exam, c.slug)}
                   onClick={() => {
                     setTocOpen(false);
                     void goToSlug(c.slug);
@@ -848,7 +852,7 @@ export function StudyGuideReader({
               className="sg-edge-nav sg-edge-nav--prev"
               aria-label="Previous chapter"
               title="Previous (k)"
-              onMouseEnter={() => prefetchChapter(chapter.prevSlug)}
+              onMouseEnter={() => prefetchChapter(exam, chapter.prevSlug)}
               onClick={() => void goToSlug(chapter.prevSlug!)}
             >
               <ChevronLeft className="h-5 w-5" />
@@ -860,7 +864,7 @@ export function StudyGuideReader({
               className="sg-edge-nav sg-edge-nav--next"
               aria-label="Next chapter"
               title="Next (j)"
-              onMouseEnter={() => prefetchChapter(chapter.nextSlug)}
+              onMouseEnter={() => prefetchChapter(exam, chapter.nextSlug)}
               onClick={() => void goToSlug(chapter.nextSlug!)}
             >
               <ChevronRight className="h-5 w-5" />
@@ -1029,7 +1033,7 @@ export function StudyGuideReader({
             {chapter.prevSlug ? (
               <button
                 type="button"
-                onMouseEnter={() => prefetchChapter(chapter.prevSlug)}
+                onMouseEnter={() => prefetchChapter(exam, chapter.prevSlug)}
                 onClick={() => void goToSlug(chapter.prevSlug!)}
                 className="inline-flex items-center gap-1 text-xs font-semibold text-[#2ec4b6] transition-opacity hover:opacity-80"
               >
@@ -1044,7 +1048,7 @@ export function StudyGuideReader({
             {chapter.nextSlug ? (
               <button
                 type="button"
-                onMouseEnter={() => prefetchChapter(chapter.nextSlug)}
+                onMouseEnter={() => prefetchChapter(exam, chapter.nextSlug)}
                 onClick={() => void goToSlug(chapter.nextSlug!)}
                 className="inline-flex items-center gap-1 text-xs font-semibold text-[#2ec4b6] transition-opacity hover:opacity-80"
               >
@@ -1059,11 +1063,12 @@ export function StudyGuideReader({
               study-aid disclaimer and legal links live here instead. */}
           <div className="shrink-0 border-t border-white/10 px-3 py-2.5 text-[10px] leading-relaxed text-white/40 sm:px-4">
             <p>
-              Study aid only — not medical advice or a substitute for your nursing
-              program, facility policy, or official board documents. Portions are
-              AI-generated; verify against authoritative sources before clinical use.
-              NCLEX® is a registered trademark of NCSBN. Not affiliated with or
-              endorsed by NCSBN.{" "}
+              Study aid only — not medical advice or a substitute for your{" "}
+              {config.legal.programNoun}, facility policy, or official board documents.
+              Portions are AI-generated; verify against authoritative sources before
+              clinical use. {config.legal.examName}® is a registered trademark of{" "}
+              {config.legal.owner}. Not affiliated with or endorsed by{" "}
+              {config.legal.owner}.{" "}
               <Link href="/legal/disclaimer" className="underline hover:text-white/70">
                 Disclaimers
               </Link>

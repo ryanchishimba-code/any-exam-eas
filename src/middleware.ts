@@ -54,5 +54,7 @@ export const config = {
     "/full-exam/:path*",
     "/nclex/study-guide",
     "/nclex/study-guide/:path*",
+    "/naplex/study-guide",
+    "/naplex/study-guide/:path*",
   ],
 };

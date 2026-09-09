@@ -59,12 +59,17 @@ describe("figure emission", () => {
 });
 
 describe("shipped visual assets", () => {
-  it("exposes readable dimensions for every file in the visuals folder", () => {
-    const dir = path.join(process.cwd(), "public", "nclex-study-guide", "visuals");
-    const files = readdirSync(dir).filter((f) => /\.(jpe?g|svg)$/i.test(f));
-    expect(files.length).toBeGreaterThan(0);
+  // Every guide's figures must be measurable at ingest, or that book goes back
+  // to reflowing mid-scroll. Covers each exam so a new one cannot skip the check.
+  it.each(["nclex-study-guide", "naplex-study-guide"])(
+    "exposes readable dimensions for every figure in %s",
+    (guideDir) => {
+      const dir = path.join(process.cwd(), "public", guideDir, "visuals");
+      const files = readdirSync(dir).filter((f) => /\.(jpe?g|svg)$/i.test(f));
+      expect(files.length).toBeGreaterThan(0);
 
-    const unreadable = files.filter((f) => !readImageSize(path.join(dir, f)));
-    expect(unreadable).toEqual([]);
-  });
+      const unreadable = files.filter((f) => !readImageSize(path.join(dir, f)));
+      expect(unreadable).toEqual([]);
+    }
+  );
 });

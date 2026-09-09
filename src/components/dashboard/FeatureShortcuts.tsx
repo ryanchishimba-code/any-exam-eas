@@ -15,6 +15,7 @@ import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { questionBankHref } from "@/lib/edtech/practice-links-core";
+import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -74,10 +75,12 @@ export const premiumFeatures = [
 function featuresForUser(examSlug: ExamSlug | null, prefLoading: boolean): FeatureItem[] {
   if (examSlug) {
     const features = [practiceFeatureForExam(examSlug), ...SHARED_FEATURES];
-    if (examSlug === "nclex") {
+    // Every exam that ships a book gets the shortcut, not just NCLEX.
+    const guide = getStudyGuideConfig(examSlug);
+    if (guide) {
       features.splice(1, 0, {
-        href: ROUTES.nclexStudyGuide,
-        label: "NCLEX Study Guide",
+        href: guide.routeBase,
+        label: `${guide.legal.examName} Study Guide`,
         description: "Book reader with highlights & notes",
         icon: BookMarked,
         accent: "#2ec4b6",

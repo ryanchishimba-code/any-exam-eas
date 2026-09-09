@@ -1515,7 +1515,11 @@ model BlogPost {
 /// NCLEX Study Guide — book/PDF-style reader (not QBank, not blog).
 model SgGuide {
   id          String    @id @default(cuid())
-  examTrack   String // rn | pn
+  /// Which exam this book belongs to: nclex | naplex | …
+  /// Kept separate from examTrack so one exam's ingest can never delete
+  /// another's chapters — ingest prunes unseen chapters scoped by guide.
+  examSlug    String    @default("nclex")
+  examTrack   String // NCLEX: rn | pn. Exams without tracks use "std".
   title       String
   edition     String    @default("1")
   version     String    @default("0.1.0")
@@ -1526,6 +1530,9 @@ model SgGuide {
   chapters SgChapter[]
   progress SgReadingProgress[]
 
+  // Deliberately not unique: `edition`/`version` plus the publishedAt ordering
+  // in getPublishedGuide exist so a draft can coexist with a published guide.
+  @@index([examSlug, examTrack])
   @@index([examTrack])
   @@map("sg_guides")
 }

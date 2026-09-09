@@ -26,6 +26,10 @@ import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { anatomyHref, questionBankHref } from "@/lib/edtech/practice-links-core";
 import { STUDY_NAV_COLOR } from "@/lib/layout/nav-motion";
 import { isExamPracticeLockedRoute } from "@/lib/navigation/app-shell";
+import {
+  STUDY_GUIDE_EXAMS,
+  getStudyGuideConfig,
+} from "@/lib/nclex-study-guide/guide-registry";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -36,8 +40,12 @@ type NavItem = {
   icon: LucideIcon;
   exact?: boolean;
   clinicalOnly?: boolean;
-  /** Shown only when the active exam is NCLEX. */
-  nclexOnly?: boolean;
+  /**
+   * Exams whose learners see this item. Omit to show for every exam.
+   * A list rather than a boolean so a feature can launch per exam — the
+   * study guide now ships for both NCLEX and NAPLEX.
+   */
+  exams?: readonly string[];
 };
 
 type NavSection = {
@@ -72,10 +80,10 @@ const NAV_SECTIONS: NavSection[] = [
     items: [
       {
         id: "study-guide",
-        href: ROUTES.nclexStudyGuide,
+        href: "__study_guide__",
         label: "Study Guide",
         icon: BookMarked,
-        nclexOnly: true,
+        exams: STUDY_GUIDE_EXAMS,
       },
       {
         id: "high-yield",
@@ -142,6 +150,10 @@ function resolveHref(item: NavItem, examSlug: string | null | undefined): string
   }
   if (item.href === "__anatomy__") {
     return examSlug ? anatomyHref(examSlug) : ROUTES.anatomy;
+  }
+  if (item.href === "__study_guide__") {
+    const config = examSlug ? getStudyGuideConfig(examSlug) : undefined;
+    return config?.routeBase ?? ROUTES.nclexStudyGuide;
   }
   return item.href;
 }
@@ -226,7 +238,9 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
         items: section.items
           .filter((item) => {
             if (item.clinicalOnly && !clinical) return false;
-            if (item.nclexOnly && examSlug !== "nclex") return false;
+            // Without a resolved exam the item cannot be shown to apply, and
+            // linking anyway would open a book the learner has no access to.
+            if (item.exams && !(examSlug && item.exams.includes(examSlug))) return false;
             return true;
           })
           .map((item) => ({

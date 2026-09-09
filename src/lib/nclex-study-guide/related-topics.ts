@@ -3,6 +3,7 @@ import { anatomyHref } from "@/lib/edtech/practice-links-core";
 import { getHighYieldTopic } from "@/lib/edtech/seeds";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import { getTopicSlugsForChapter } from "./chapter-topics";
+import type { StudyGuideExam } from "./guide-registry";
 import type { SgRelatedTopic } from "./types";
 
 function humanize(slug: string): string {
@@ -14,12 +15,15 @@ function humanize(slug: string): string {
  * `exam-topic-bridge`. Topics with nothing on the other side are dropped, so the
  * reader only ever offers a link that actually leads somewhere.
  */
-export function getChapterRelatedTopics(chapterSlug: string): SgRelatedTopic[] {
+export function getChapterRelatedTopics(
+  exam: StudyGuideExam,
+  chapterSlug: string
+): SgRelatedTopic[] {
   const related: SgRelatedTopic[] = [];
 
-  for (const slug of getTopicSlugsForChapter(chapterSlug)) {
-    const links = getExamTopicStudyLinks("nclex", slug);
-    const topic = getHighYieldTopic("nclex", links.topicKey);
+  for (const slug of getTopicSlugsForChapter(exam, chapterSlug)) {
+    const links = getExamTopicStudyLinks(exam, slug);
+    const topic = getHighYieldTopic(exam, links.topicKey);
 
     // `deepDiveHref` is only set for review-module topics. The eight NCLEX
     // topics without a module (burns-trauma, heme-oncology, ...) exist in the
@@ -48,7 +52,7 @@ export function getChapterRelatedTopics(chapterSlug: string): SgRelatedTopic[] {
       deepDiveHref: links.deepDiveHref,
       libraryHref,
       libraryCardCount: links.memoryCardIds.length,
-      anatomyHref: structure ? anatomyHref("nclex", structure.id) : undefined,
+      anatomyHref: structure ? anatomyHref(exam, structure.id) : undefined,
       anatomyLabel: structure?.name,
     });
   }

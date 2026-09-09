@@ -3,6 +3,7 @@ import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { formatTrialCtaLabel, SITE_NAME } from "@/lib/site";
+import { STUDY_GUIDES } from "@/lib/nclex-study-guide/guide-registry";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { getArticlesForExam } from "@/lib/seo/resources-content";
@@ -17,7 +18,7 @@ export const metadata = buildToolkitHubMetadata();
 /**
  * Real in-product / marketing routes used below (verified against ROUTES + examMarketingPath):
  * - Exam hubs: /usmle /nclex /naplex /pance /aanp-fnp /npte-pt
- * - NCLEX Study Guide: /nclex/study-guide
+ * - Study Guides: /nclex/study-guide /naplex/study-guide
  * - Lab values & calculators: /library#hub-calculators
  * - Top 509 drugs: /study/drugs300
  * - Anatomy Explorer: /anatomy
@@ -37,9 +38,14 @@ const EXAM_CARDS: { key: ExamSeoKey; label: string }[] = [
 
 const IN_PRODUCT_LINKS = [
   {
-    href: ROUTES.nclexStudyGuide,
+    href: STUDY_GUIDES.nclex.routeBase,
     title: "NCLEX Study Guide",
     body: "Book-style reader with highlights, bookmarks, and notes.",
+  },
+  {
+    href: STUDY_GUIDES.naplex.routeBase,
+    title: "NAPLEX Study Guide",
+    body: "Pharmacotherapy book reader with highlights, bookmarks, and notes.",
   },
   {
     href: `${ROUTES.library}#hub-calculators`,

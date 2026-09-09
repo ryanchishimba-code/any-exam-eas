@@ -1,3 +1,8 @@
+import { studyGuideRouteBases } from "@/lib/nclex-study-guide/guide-registry";
+
+/** Derived from the guide registry so reader chrome cannot drift per exam. */
+const STUDY_GUIDE_ROUTE_BASES = studyGuideRouteBases();
+
 /** Routes that use the focused app shell (top nav + sidebar / mobile bottom bar). */
 export const APP_SHELL_PREFIXES = [
   "/dashboard",
@@ -9,6 +14,7 @@ export const APP_SHELL_PREFIXES = [
   "/settings",
   "/study/drugs300",
   "/nclex/study-guide",
+  "/naplex/study-guide",
 ] as const;
 
 export const MINIMAL_CHROME_PREFIXES = [
@@ -43,9 +49,12 @@ export function isFullExamSessionRoute(pathname: string): boolean {
   return parts.length === 4 && parts[3] === "results";
 }
 
-/** Study Guide chapter reader — owns its own TOC and fills the viewport. */
+/**
+ * Study Guide chapter reader — owns its own TOC and fills the viewport.
+ * Matches every exam's book, so a new guide gets immersive chrome for free.
+ */
 export function isStudyGuideReaderRoute(pathname: string): boolean {
-  return pathname.startsWith("/nclex/study-guide/");
+  return STUDY_GUIDE_ROUTE_BASES.some((base) => pathname.startsWith(`${base}/`));
 }
 
 /**

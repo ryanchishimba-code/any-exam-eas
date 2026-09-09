@@ -3,21 +3,30 @@ import {
   getChapterBySlug,
   getPublishedGuide,
 } from "@/lib/nclex-study-guide";
+import { isStudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
 
 export const runtime = "nodejs";
 
 type Ctx = { params: Promise<{ slug: string }> };
 
-/** GET /api/nclex-study-guide/chapters/[slug] */
+/** GET /api/nclex-study-guide/chapters/[slug]?exam=nclex */
 export async function GET(req: Request, ctx: Ctx) {
   try {
     const { slug } = await ctx.params;
-    const track = new URL(req.url).searchParams.get("track") === "pn" ? "pn" : "rn";
-    const guide = (await getPublishedGuide(track)) ?? (await getPublishedGuide("rn"));
+    // Chapter slugs collide across books, so an unknown exam must 404 rather
+    // than fall back — otherwise /chapters/endocrine returns the wrong book's.
+    const requested = new URL(req.url).searchParams.get("exam") ?? "nclex";
+    if (!isStudyGuideExam(requested)) {
+      return NextResponse.json(
+        { error: `No study guide for exam "${requested}".`, code: "SG_EXAM_UNKNOWN" },
+        { status: 404 }
+      );
+    }
+    const guide = await getPublishedGuide(requested);
     if (!guide) {
       return NextResponse.json({ error: "Guide missing." }, { status: 404 });
     }
-    const chapter = await getChapterBySlug(guide.id, slug);
+    const chapter = await getChapterBySlug(guide.id, slug, requested);
     if (!chapter) {
       return NextResponse.json({ error: "Chapter not found." }, { status: 404 });
     }

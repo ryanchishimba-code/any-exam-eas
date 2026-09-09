@@ -17,10 +17,32 @@ import path from "node:path";
 import { prisma } from "../src/lib/prisma";
 import { markdownToSimpleHtml, type MarkdownImageSize } from "../src/lib/nclex-study-guide/markdown";
 import { readImageSize } from "../src/lib/nclex-study-guide/image-dimensions";
+import {
+  STUDY_GUIDES,
+  STUDY_GUIDE_EXAMS,
+  isStudyGuideExam,
+} from "../src/lib/nclex-study-guide/guide-registry";
 
-const CONTENT_DIR = path.join(process.cwd(), "content", "nclex-study-guide");
+/**
+ * Which book to ingest. Defaults to NCLEX so the original
+ * `npm run ingest:nclex-guide` keeps working unchanged.
+ *
+ *   npx tsx scripts/ingest-nclex-guide.ts --exam=naplex
+ */
+const examArg =
+  process.argv.slice(2).find((a) => a.startsWith("--exam="))?.split("=")[1] ?? "nclex";
+
+if (!isStudyGuideExam(examArg)) {
+  console.error(
+    `Unknown exam "${examArg}". Known: ${STUDY_GUIDE_EXAMS.join(", ")}.`
+  );
+  process.exit(1);
+}
+
+const CONFIG = STUDY_GUIDES[examArg];
+const CONTENT_DIR = path.join(process.cwd(), "content", CONFIG.contentDir);
 const PUBLIC_DIR = path.join(process.cwd(), "public");
-const GUIDE_ID = "sg_guide_nclex_rn_placeholder";
+const GUIDE_ID = CONFIG.guideId;
 
 /**
  * Intrinsic sizes for the figures, cached per run. Stamping width/height onto
@@ -50,9 +72,11 @@ const SKIP_NAMES = new Set([
   "cursor-drop-in.md",
   "visuals-needed.md",
   "book.md",
-  "_paste-ready-full-book.md",
-  "paste-ready-anyexameasy-nclex-book.md",
+  "improvements.md",
 ]);
+
+/** Aggregate duplicates of the whole book — they would double every chapter. */
+const SKIP_RE = /^_?paste-ready/i;
 
 function slugify(title: string): string {
   return (
@@ -75,7 +99,7 @@ function slugFromFilename(file: string): string {
 function rewriteVisualPaths(md: string): string {
   return md.replace(
     /(!\[[^\]]*\]\()(?:\.\/)?visuals\//g,
-    "$1/nclex-study-guide/visuals/"
+    `$1${CONFIG.visualsPrefix}`
   );
 }
 
@@ -144,7 +168,10 @@ async function main() {
 
   const allMd = fs
     .readdirSync(CONTENT_DIR)
-    .filter((f) => f.endsWith(".md") && !SKIP_NAMES.has(f.toLowerCase()))
+    .filter(
+      (f) =>
+        f.endsWith(".md") && !SKIP_NAMES.has(f.toLowerCase()) && !SKIP_RE.test(f)
+    )
     .sort();
 
   const numbered = allMd.filter((f) => CHAPTER_FILE_RE.test(f));
@@ -159,14 +186,17 @@ async function main() {
     where: { id: GUIDE_ID },
     create: {
       id: GUIDE_ID,
-      examTrack: "rn",
-      title: "AnyExamEasy NCLEX Reference Book",
+      examSlug: CONFIG.exam,
+      examTrack: CONFIG.track,
+      title: CONFIG.bookTitle,
       edition: "1",
       version: "1.0.0",
       publishedAt: new Date(),
     },
     update: {
-      title: "AnyExamEasy NCLEX Reference Book",
+      examSlug: CONFIG.exam,
+      examTrack: CONFIG.track,
+      title: CONFIG.bookTitle,
       version: "1.0.0",
       publishedAt: new Date(),
       updatedAt: new Date(),

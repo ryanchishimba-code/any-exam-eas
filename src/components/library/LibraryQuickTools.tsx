@@ -25,6 +25,7 @@ import {
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { libUi } from "@/lib/library/library-ui";
+import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -46,16 +47,10 @@ type Tool = {
 export function LibraryQuickTools({ examSlug }: { examSlug: ExamSlug }) {
   const fieldId = EXAM_CATALOG[examSlug].fieldId;
   const clinical = hasClinicalStudyTools(examSlug);
+  // Shown for any exam with a book, so NAPLEX is not left out.
+  const guide = getStudyGuideConfig(examSlug);
   const tools: Tool[] = [
-    ...(examSlug === "nclex"
-      ? [
-          {
-            label: "Study Guide",
-            href: ROUTES.nclexStudyGuide,
-            icon: BookOpen,
-          },
-        ]
-      : []),
+    ...(guide ? [{ label: "Study Guide", href: guide.routeBase, icon: BookOpen }] : []),
     ...(clinical
       ? [
           { label: "Top 500 Drugs", href: top500Href(examSlug), icon: Layers },

@@ -79,11 +79,15 @@ afterEach(() => {
   vi.clearAllMocks();
 });
 
-const renderReader = (chapter = makeChapter()) =>
+const renderReader = (
+  chapter = makeChapter(),
+  exam: "nclex" | "naplex" = "nclex"
+) =>
   render(
     <StudyGuideReader
+      exam={exam}
       guideId="g1"
-      guideTitle="NCLEX-RN Study Guide"
+      guideTitle={exam === "naplex" ? "NAPLEX Study Guide" : "NCLEX-RN Study Guide"}
       chapters={CHAPTERS}
       chapter={chapter}
     />
@@ -122,6 +126,23 @@ describe("StudyGuideReader", () => {
     renderReader();
     const current = screen.getAllByRole("button", { current: "page" });
     expect(current.length).toBeGreaterThan(0);
+  });
+
+  it("shows the NCSBN trademark notice for the NCLEX book", () => {
+    renderReader();
+    const notice = screen.getByText(/registered trademark of/i);
+    expect(notice).toHaveTextContent("NCSBN");
+    expect(notice).toHaveTextContent("nursing program");
+  });
+
+  it("swaps the disclaimer to NABP for the NAPLEX book", () => {
+    // The footer is the only place the trademark appears, and attributing
+    // NAPLEX to NCSBN would be a legal error, not a copy nit.
+    renderReader(makeChapter(), "naplex");
+    const notice = screen.getByText(/registered trademark of/i);
+    expect(notice).toHaveTextContent("NABP");
+    expect(notice).not.toHaveTextContent("NCSBN");
+    expect(notice).toHaveTextContent("pharmacy program");
   });
 
   it("hides the Go deeper block when a chapter has no related topics", () => {
