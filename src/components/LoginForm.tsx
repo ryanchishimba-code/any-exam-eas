@@ -57,6 +57,7 @@ export function LoginForm() {
         email,
         name: session.user?.name,
         method: "email",
+        sessionRouting: session.user,
       });
       setRedirectMessage(
         result.isPremium
@@ -64,7 +65,7 @@ export function LoginForm() {
           : "Welcome back! Opening your Study Hub…"
       );
     })();
-  }, [callbackUrl, router, session?.user?.email, session?.user?.name, status]);
+  }, [callbackUrl, router, session, status]);
 
   if (status === "authenticated") {
     return (

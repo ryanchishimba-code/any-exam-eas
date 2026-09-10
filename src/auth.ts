@@ -14,10 +14,24 @@ import {
   scheduleOAuthLoginTouch,
 } from "@/lib/auth/login-side-effects";
 import {
+  loadLoginRoutingSnapshot,
+  type LoginRoutingSnapshot,
+} from "@/lib/auth/login-routing-snapshot";
+import {
   checkAndRecordAccountIp,
 } from "@/lib/account-ip-limit";
 import { formatDisplayName } from "@/lib/display-name";
 import { DbUnavailableError, isTransientDbError } from "@/lib/db-resilience";
+import type { JWT } from "next-auth/jwt";
+
+function applyLoginRoutingToToken(token: JWT, routing: LoginRoutingSnapshot): void {
+  token.hasAccess = routing.hasAccess;
+  token.hasAppAccess = routing.hasAppAccess;
+  token.subscriptionStatus = routing.status;
+  token.trialDaysRemaining = routing.daysRemaining;
+  token.examSlug = routing.examSlug;
+  token.reactivation = routing.reactivation;
+}
 
 class DatabaseUnavailable extends CredentialsSignin {
   code = "database_unavailable";
@@ -110,13 +124,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const req = request as Request | undefined;
         const role = user.role ?? "user";
 
-        const ipCheck = await checkAndRecordAccountIp(
-          user.id,
-          role,
-          req,
-          undefined,
-          user.email
-        );
+        const [ipCheck, loginRouting] = await Promise.all([
+          checkAndRecordAccountIp(user.id, role, req, undefined, user.email),
+          loadLoginRoutingSnapshot(user.id, user.email),
+        ]);
         if (!ipCheck.ok) throw new TooManyIpAddresses();
 
         scheduleCredentialsLoginSideEffects(user.id, role, req);
@@ -130,6 +141,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           name: formatDisplayName(user.name) ?? user.name,
           role,
           rememberMe,
+          loginRouting,
         };
         } catch (err) {
           if (err instanceof DbUnavailableError || isTransientDbError(err)) {
@@ -161,16 +173,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           user.id = linked.id;
           (user as { role?: string }).role = linked.role;
 
-          const ipCheck = await checkAndRecordAccountIp(
-            linked.id,
-            linked.role,
-            undefined,
-            undefined,
-            user.email
-          );
+          const [ipCheck, loginRouting] = await Promise.all([
+            checkAndRecordAccountIp(
+              linked.id,
+              linked.role,
+              undefined,
+              undefined,
+              user.email
+            ),
+            loadLoginRoutingSnapshot(linked.id, user.email),
+          ]);
           if (!ipCheck.ok) {
             return `/login?error=${ipCheck.reason}`;
           }
+          user.loginRouting = loginRouting;
           scheduleOAuthLoginTouch(linked.id);
         } catch (e) {
           if (e instanceof OAuthLinkBlockedError || e instanceof OAuthAccountDisabledError) {
@@ -187,10 +203,29 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async jwt({ token, user, account }) {
       if (user?.id) {
         token.id = user.id;
-        token.role = (user as { role?: string }).role ?? "user";
-        const remember = (user as { rememberMe?: boolean }).rememberMe === true;
+        token.role = user.role ?? "user";
+        const remember = user.rememberMe === true;
         const maxAge = remember ? SESSION_MONTH_SEC : SESSION_DAY_SEC;
         token.exp = Math.floor(Date.now() / 1000) + maxAge;
+
+        if (user.loginRouting) {
+          applyLoginRoutingToToken(token, user.loginRouting);
+        } else {
+          // Credentials always attach loginRouting; OAuth should too via signIn.
+          // Soft-fill once if missing so post-login still avoids status APIs.
+          try {
+            const routing = await loadLoginRoutingSnapshot(
+              user.id,
+              user.email
+            );
+            applyLoginRoutingToToken(token, routing);
+          } catch (error) {
+            console.warn(
+              "[auth/jwt] login routing snapshot unavailable:",
+              error instanceof Error ? error.message : error
+            );
+          }
+        }
       } else if (
         (account?.provider === "google" ||
           account?.provider === "apple" ||
@@ -206,6 +241,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if (dbUser) {
             token.id = dbUser.id;
             token.role = dbUser.role;
+            const routing = await loadLoginRoutingSnapshot(
+              dbUser.id,
+              String(token.email)
+            );
+            applyLoginRoutingToToken(token, routing);
           }
         } catch (error) {
           console.warn(
@@ -224,6 +264,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.role = (token.role as string) ?? "user";
         if (session.user.name) {
           session.user.name = formatDisplayName(session.user.name) ?? session.user.name;
+        }
+        if (typeof token.hasAccess === "boolean") {
+          session.user.hasAccess = token.hasAccess;
+        }
+        if (typeof token.hasAppAccess === "boolean") {
+          session.user.hasAppAccess = token.hasAppAccess;
+        }
+        if (token.subscriptionStatus != null) {
+          session.user.subscriptionStatus = token.subscriptionStatus;
+        }
+        if (token.trialDaysRemaining !== undefined) {
+          session.user.trialDaysRemaining = token.trialDaysRemaining ?? null;
+        }
+        if (token.examSlug !== undefined) {
+          session.user.examSlug = token.examSlug ?? null;
+        }
+        if (token.reactivation !== undefined) {
+          session.user.reactivation = token.reactivation ?? null;
         }
       }
       return session;

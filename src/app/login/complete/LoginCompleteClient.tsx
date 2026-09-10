@@ -36,6 +36,7 @@ export function LoginCompleteClient() {
         email,
         name: session.user?.name,
         method: "google",
+        sessionRouting: session.user,
       });
       setMessage(
         result.isPremium
@@ -43,7 +44,7 @@ export function LoginCompleteClient() {
           : "Welcome back! Almost there…"
       );
     })();
-  }, [callbackUrl, router, session?.user?.email, session?.user?.name, status]);
+  }, [callbackUrl, router, session, status]);
 
   return (
     <div

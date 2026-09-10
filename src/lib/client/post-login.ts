@@ -8,6 +8,7 @@ import { resolvePostLoginDestination as resolveDestination } from "@/lib/client/
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { markTrialWelcomePending } from "@/lib/client/trial-welcome";
 import { ROUTES } from "@/lib/routes";
+import type { LoginReactivationSnapshot } from "@/lib/auth/login-routing-snapshot";
 
 export type ClientSubscriptionStatus = {
   hasAccess?: boolean;
@@ -19,22 +20,26 @@ export type ClientSubscriptionStatus = {
   trialDays?: number;
   emailVerified?: boolean;
   blockReason?: string | null;
-  reactivation?: {
-    method: "checkout" | "update_payment";
-    checkoutPath?: string;
-    settingsPath?: string;
-    message?: string;
-    checkoutPlan?: "trial" | "subscribe";
-    trialAvailable?: boolean;
-  } | null;
+  reactivation?: LoginReactivationSnapshot | null;
 };
 
-const POST_LOGIN_FETCH_TIMEOUT_MS = 2_500;
+/** Optional routing hints already on the JWT/session after authorize. */
+export type SessionLoginRouting = {
+  hasAccess?: boolean;
+  hasAppAccess?: boolean;
+  subscriptionStatus?: string;
+  trialDaysRemaining?: number | null;
+  examSlug?: string | null;
+  reactivation?: LoginReactivationSnapshot | null;
+};
+
+const SESSION_FETCH_TIMEOUT_MS = 800;
+const BACKGROUND_FETCH_TIMEOUT_MS = 4_000;
 
 async function fetchWithTimeout(
   input: RequestInfo | URL,
   init?: RequestInit,
-  timeoutMs = POST_LOGIN_FETCH_TIMEOUT_MS
+  timeoutMs = SESSION_FETCH_TIMEOUT_MS
 ): Promise<Response | null> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -47,10 +52,17 @@ async function fetchWithTimeout(
   }
 }
 
+/**
+ * Used by TrialWelcomeHost and billing UI — not on the login navigation critical path.
+ */
 export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatus | null> {
   const attempts = 2;
   for (let attempt = 0; attempt < attempts; attempt++) {
-    const statusRes = await fetchWithTimeout("/api/subscription/status?lite=1");
+    const statusRes = await fetchWithTimeout(
+      "/api/subscription/status?lite=1",
+      undefined,
+      2_500
+    );
     if (!statusRes) {
       await new Promise((resolve) => setTimeout(resolve, 80 * (attempt + 1)));
       continue;
@@ -72,12 +84,36 @@ export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatu
   return null;
 }
 
-async function fetchExamSlug(): Promise<string | null> {
-  const res = await fetchWithTimeout("/api/user/exam-preference");
-  if (!res || !res.ok) return null;
+export function statusFromSessionRouting(
+  routing: SessionLoginRouting | null | undefined
+): { status: ClientSubscriptionStatus; examSlug: string | null } | null {
+  if (!routing) return null;
+  if (typeof routing.hasAccess !== "boolean" && typeof routing.hasAppAccess !== "boolean") {
+    return null;
+  }
+  return {
+    status: {
+      hasAccess: routing.hasAccess,
+      hasAppAccess: routing.hasAppAccess,
+      status: routing.subscriptionStatus,
+      daysRemaining: routing.trialDaysRemaining ?? null,
+      reactivation: routing.reactivation ?? null,
+    },
+    examSlug: routing.examSlug ?? null,
+  };
+}
+
+/** Best-effort: read JWT session once (no Prisma) for smart post-login routing. */
+async function readSessionRouting(): Promise<SessionLoginRouting | null> {
   try {
-    const data = (await res.json()) as { examSlug?: string | null };
-    return data.examSlug ?? null;
+    const { getSession } = await import("next-auth/react");
+    const sessionPromise = getSession();
+    const timedOut = new Promise<null>((resolve) => {
+      setTimeout(() => resolve(null), SESSION_FETCH_TIMEOUT_MS);
+    });
+    const session = await Promise.race([sessionPromise, timedOut]);
+    if (!session?.user) return null;
+    return session.user;
   } catch {
     return null;
   }
@@ -97,7 +133,7 @@ function rememberAccountNameInBackground(email: string, method: LoginMethod, kno
 
   void (async () => {
     try {
-      const meRes = await fetchWithTimeout("/api/me", undefined, 4_000);
+      const meRes = await fetchWithTimeout("/api/me", undefined, BACKGROUND_FETCH_TIMEOUT_MS);
       if (!meRes?.ok) return;
       const data = (await meRes.json()) as { user?: { name?: string | null } };
       const name = data.user?.name?.trim();
@@ -118,8 +154,7 @@ export async function resolvePostLoginDestination(
   status: ClientSubscriptionStatus | null,
   examSlug?: string | null
 ): Promise<string> {
-  const slug = examSlug === undefined ? await fetchExamSlug() : examSlug;
-  return resolveDestination(callbackUrl, status, slug);
+  return resolveDestination(callbackUrl, status, examSlug ?? null);
 }
 
 export type CompleteLoginResult = {
@@ -130,9 +165,10 @@ export type CompleteLoginResult = {
 let loginFlowInFlight: Promise<CompleteLoginResult> | null = null;
 
 /**
- * After credentials/OAuth succeed, resolve where to go and hard-navigate.
- * Keeps the critical path to subscription + exam preference only — name/session
- * polling used to add multi-second delays on cold Neon.
+ * After credentials/OAuth succeed, navigate immediately.
+ * Prefer JWT session routing fields (folded in at authorize) — never wait on
+ * /api/subscription/status or /api/user/exam-preference. If the session snapshot
+ * is missing, go to a safe default; destination pages gate billing/exam.
  */
 export async function completeLoginFlow(params: {
   router: AppRouterInstance;
@@ -140,13 +176,14 @@ export async function completeLoginFlow(params: {
   email: string;
   name?: string | null;
   method: LoginMethod;
+  /** When the caller already has useSession data, skip getSession. */
+  sessionRouting?: SessionLoginRouting | null;
 }): Promise<CompleteLoginResult> {
   if (loginFlowInFlight) return loginFlowInFlight;
 
   loginFlowInFlight = (async () => {
     const safeCallback = sanitizeCallbackUrl(params.callbackUrl);
 
-    // Persist email/method immediately; name upgrades in the background.
     saveReturningUserHint({
       email: params.email,
       name: params.name?.trim() || undefined,
@@ -154,10 +191,12 @@ export async function completeLoginFlow(params: {
     });
     rememberAccountNameInBackground(params.email, params.method, params.name);
 
-    const [status, examSlug] = await Promise.all([
-      fetchSubscriptionStatus(),
-      fetchExamSlug(),
-    ]);
+    const fromParams = statusFromSessionRouting(params.sessionRouting);
+    const fromSession =
+      fromParams ?? statusFromSessionRouting(await readSessionRouting());
+
+    const status = fromSession?.status ?? null;
+    const examSlug = fromSession?.examSlug ?? null;
 
     let destination = resolveDestination(safeCallback, status, examSlug);
 
@@ -172,7 +211,6 @@ export async function completeLoginFlow(params: {
       }
     }
 
-    // If routing APIs timed out, still leave login — dashboard/middleware will gate.
     if (!destination) destination = ROUTES.dashboard;
 
     // Hard navigation avoids soft-nav races (modal close on `/`, refresh on /login)
