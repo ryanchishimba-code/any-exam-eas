@@ -1,35 +1,31 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe-js";
-import { loadStripe, type Stripe } from "@stripe/stripe-js";
-import { PaymentMethodsList } from "./PaymentMethodsList";
+import { useEffect, useMemo, useState } from "react";
 import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
 import { CheckoutReview } from "@/components/checkout/CheckoutReview";
 import { CheckoutStepIndicator } from "@/components/checkout/CheckoutStepIndicator";
+import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { loadCheckoutDiscount } from "@/lib/client/checkout-discount";
 import type { BillingInterval } from "@/lib/billing-config";
-import { parseBillingInterval, BILLING_POLICY_SHORT } from "@/lib/billing-plans";
+import { parseBillingInterval } from "@/lib/billing-plans";
 import {
   isPaymentModeChoiceEnabled,
   parsePaymentMode,
   type PaymentMode,
 } from "@/lib/billing-payment-mode";
 import type { DiscountValidation } from "@/lib/discount/types";
-import { formatUsd, hasDiscount } from "@/lib/promo-pricing";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { SignupPlan } from "@/lib/validators/auth";
 
-let stripePromise: Promise<Stripe | null> | null = null;
-
-function getStripe(publishableKey: string) {
-  if (!stripePromise) {
-    stripePromise = loadStripe(publishableKey);
-  }
-  return stripePromise;
-}
-
+/**
+ * Plan review stays on-site; payment opens Stripe-hosted Checkout.
+ *
+ * Embedded Checkout only shows Apple Pay on Safari 17+ / iOS 17+ and requires
+ * live Payment Method Domain registration. Hosted Checkout surfaces Apple Pay
+ * (and Google Pay) whenever the shopper's device supports them, which is what
+ * "easy checkout" needs.
+ */
 export function EmbeddedStripeCheckout() {
   const searchParams = useSearchParams();
   const plan: SignupPlan = searchParams.get("plan") === "trial" ? "trial" : "subscribe";
@@ -48,21 +44,17 @@ export function EmbeddedStripeCheckout() {
   const initialPromo = searchParams.get("promo") ?? "";
   const reactivating = searchParams.get("reactivate") === "1";
 
-  const [phase, setPhase] = useState<"review" | "payment">("review");
   const [selectedPlan, setSelectedPlan] = useState<SignupPlan>(plan);
   const [selectedTier, setSelectedTier] = useState<SubscriptionTier>(tier);
   const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(interval);
   const [selectedPaymentMode, setSelectedPaymentMode] = useState<PaymentMode>(paymentMode);
   const [appliedDiscount, setAppliedDiscount] = useState<DiscountValidation | null>(null);
-  const [publishableKey, setPublishableKey] = useState<string | null>(null);
   const [configured, setConfigured] = useState(true);
   const [allIntervalsConfigured, setAllIntervalsConfigured] = useState(true);
   const [oneTimeAvailable, setOneTimeAvailable] = useState(false);
   const [missingKeys, setMissingKeys] = useState<string[]>([]);
   const [error, setError] = useState("");
   const [upgradeBusy, setUpgradeBusy] = useState(false);
-  const [checkoutKey, setCheckoutKey] = useState(0);
-  const [prefetchedClientSecret, setPrefetchedClientSecret] = useState<string | null>(null);
 
   useEffect(() => {
     setSelectedPlan(plan);
@@ -83,60 +75,10 @@ export function EmbeddedStripeCheckout() {
         setConfigured(data.configured);
         setAllIntervalsConfigured(data.allIntervalsConfigured !== false);
         setOneTimeAvailable(data.oneTimePaymentsAvailable === true);
-        setPublishableKey(data.publishableKey);
         if (Array.isArray(data.missing)) setMissingKeys(data.missing);
       })
       .catch(() => setError("Could not load payment configuration."));
   }, []);
-
-  const promoCode = appliedDiscount?.valid ? appliedDiscount.code : "";
-
-  const fetchClientSecret = useCallback(async () => {
-    if (prefetchedClientSecret) {
-      const secret = prefetchedClientSecret;
-      setPrefetchedClientSecret(null);
-      return secret;
-    }
-
-    const res = await fetch("/api/stripe/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        embedded: true,
-        plan: selectedPlan,
-        tier: selectedTier,
-        interval: selectedInterval,
-        paymentMode: selectedPaymentMode,
-        promoCode: promoCode || undefined,
-        reactivate: reactivating || undefined,
-      }),
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      throw new Error(
-        typeof data.error === "string"
-          ? data.error
-          : "Could not start checkout. Check Stripe keys and restart the server."
-      );
-    }
-    if (data.upgraded && typeof data.redirectTo === "string") {
-      window.location.assign(data.redirectTo);
-      return new Promise<string>(() => {});
-    }
-    if (!data.clientSecret) {
-      throw new Error("Checkout did not return a client secret.");
-    }
-    return data.clientSecret as string;
-  }, [
-    selectedPlan,
-    selectedTier,
-    selectedInterval,
-    selectedPaymentMode,
-    promoCode,
-    checkoutKey,
-    reactivating,
-    prefetchedClientSecret,
-  ]);
 
   async function handleContinueToPayment(
     discount: DiscountValidation | null,
@@ -158,59 +100,47 @@ export function EmbeddedStripeCheckout() {
     window.history.replaceState(null, "", `/checkout?${qs.toString()}`);
     setAppliedDiscount(discount);
     setError("");
+    setUpgradeBusy(true);
 
-    // Subscribe upgrades: attempt mid-trial convert first (ends trial + bills card on file).
-    // No-payment trials and converts without a card fall through to embedded Checkout.
-    if (nextPlan === "subscribe") {
-      setUpgradeBusy(true);
-      try {
-        const res = await fetch("/api/stripe/checkout", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            embedded: true,
-            plan: nextPlan,
-            tier: nextTier,
-            interval: nextInterval,
-            paymentMode: nextPaymentMode,
-            promoCode: discount?.valid ? discount.code : undefined,
-            reactivate: reactivating || undefined,
-          }),
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok) {
-          setError(
-            typeof data.error === "string"
-              ? data.error
-              : "Could not start upgrade. Try again or open Settings → Billing."
-          );
-          return;
-        }
-        if (data.upgraded && typeof data.redirectTo === "string") {
-          window.location.assign(data.redirectTo);
-          return;
-        }
-        if (typeof data.clientSecret === "string") {
-          setPrefetchedClientSecret(data.clientSecret);
-          setCheckoutKey((k) => k + 1);
-          setPhase("payment");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-          return;
-        }
-        setError("Could not start checkout.");
+    try {
+      // Hosted Checkout (no `embedded`) — Apple Pay / Google Pay show when the
+      // device supports them. Mid-trial converts with a card on file still
+      // short-circuit to dashboard via `upgraded`.
+      const res = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          plan: nextPlan,
+          tier: nextTier,
+          interval: nextInterval,
+          paymentMode: nextPaymentMode,
+          promoCode: discount?.valid ? discount.code : undefined,
+          reactivate: reactivating || undefined,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setError(
+          typeof data.error === "string"
+            ? data.error
+            : "Could not start checkout. Try again or open Settings → Billing."
+        );
         return;
-      } catch {
-        setError("Could not start upgrade. Check your connection and try again.");
-        return;
-      } finally {
-        setUpgradeBusy(false);
       }
+      if (data.upgraded && typeof data.redirectTo === "string") {
+        window.location.assign(data.redirectTo);
+        return;
+      }
+      if (typeof data.url === "string") {
+        window.location.assign(data.url);
+        return;
+      }
+      setError("Could not start checkout.");
+    } catch {
+      setError("Could not start checkout. Check your connection and try again.");
+    } finally {
+      setUpgradeBusy(false);
     }
-
-    setPrefetchedClientSecret(null);
-    setCheckoutKey((k) => k + 1);
-    setPhase("payment");
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   if (!configured) {
@@ -231,77 +161,36 @@ export function EmbeddedStripeCheckout() {
     );
   }
 
-  if (phase === "review") {
-    return (
-      <div>
-        <CheckoutStepIndicator step="review" mode={plan === "subscribe" ? "upgrade" : "default"} />
-        {!allIntervalsConfigured && missingKeys.length > 0 && (
-          <StatusMessage variant="warning" className="mb-6">
-            Some billing intervals are missing Stripe prices ({missingKeys.join(", ")}). Run{" "}
-            <code className="rounded bg-black/5 px-1">npm run stripe:setup</code> before testing
-            all plans.
-          </StatusMessage>
-        )}
-        {error ? <InlineError className="mb-4">{error}</InlineError> : null}
-        <CheckoutReview
-          initialPlan={plan}
-          initialTier={tier}
-          initialInterval={interval}
-          initialPaymentMode={paymentMode}
-          oneTimeAvailable={oneTimeAvailable}
-          initialPromo={initialPromo}
-          onContinue={handleContinueToPayment}
-          continueBusy={upgradeBusy}
-        />
-      </div>
-    );
-  }
-
-  if (!publishableKey) {
-    return <p className="text-sm text-[var(--color-ink-muted)]">Loading secure checkout…</p>;
-  }
-
-  const pricing = appliedDiscount?.valid ? appliedDiscount.pricing : undefined;
-  const showDiscount = pricing && hasDiscount(pricing) && appliedDiscount?.code;
-
   return (
-    <div className="mx-auto max-w-lg space-y-6">
-      <CheckoutStepIndicator step="payment" mode={selectedPlan === "subscribe" ? "upgrade" : "default"} />
-
-      <button
-        type="button"
-        onClick={() => {
-          setPhase("review");
-          setPrefetchedClientSecret(null);
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
-        className="text-sm font-medium text-[var(--color-accent)] hover:underline"
-      >
-        ← Edit plan
-      </button>
-
-      {showDiscount && pricing && (
-        <div className="rounded-2xl border border-emerald-200/70 bg-emerald-50/50 px-4 py-3 text-sm">
-          <p className="font-semibold text-emerald-900">
-            {appliedDiscount.code} applied · save {pricing.formattedSavings}
-          </p>
-        </div>
+    <div>
+      <CheckoutStepIndicator
+        step="review"
+        mode={plan === "subscribe" ? "upgrade" : "default"}
+      />
+      {!allIntervalsConfigured && missingKeys.length > 0 && (
+        <StatusMessage variant="warning" className="mb-6">
+          Some billing intervals are missing Stripe prices ({missingKeys.join(", ")}). Run{" "}
+          <code className="rounded bg-black/5 px-1">npm run stripe:setup</code> before testing
+          all plans.
+        </StatusMessage>
       )}
-
-      <PaymentMethodsList compact />
-      <div className="overflow-hidden rounded-[24px] border border-black/[0.08] bg-white shadow-[var(--shadow-apple-sm)]">
-        <EmbeddedCheckoutProvider
-          key={checkoutKey}
-          stripe={getStripe(publishableKey)}
-          options={{ fetchClientSecret }}
-        >
-          <EmbeddedCheckout />
-        </EmbeddedCheckoutProvider>
+      {error ? <InlineError className="mb-4">{error}</InlineError> : null}
+      <CheckoutReview
+        initialPlan={plan}
+        initialTier={tier}
+        initialInterval={interval}
+        initialPaymentMode={paymentMode}
+        oneTimeAvailable={oneTimeAvailable}
+        initialPromo={initialPromo}
+        onContinue={handleContinueToPayment}
+        continueBusy={upgradeBusy}
+      />
+      <div className="mx-auto mt-6 max-w-lg space-y-2">
+        <PaymentMethodBadges className="justify-center" size="sm" />
+        <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
+          Apple Pay &amp; Google Pay appear on Stripe Checkout when your device supports them.
+        </p>
       </div>
-      <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-        Encrypted by Stripe · Card · Link · Apple Pay & Google Pay when available ·{" "}
-        {BILLING_POLICY_SHORT}
-      </p>
     </div>
   );
 }

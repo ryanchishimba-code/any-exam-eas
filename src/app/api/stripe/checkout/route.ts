@@ -231,10 +231,11 @@ export async function POST(req: Request) {
     paymentMode,
     stripeCouponId,
     promoCode,
-    successUrl: embedded
-      ? `${origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`
-      : `${origin}${ROUTES.dashboard}?checkout=success`,
-    cancelUrl: embedded ? `${origin}/checkout?cancelled=1` : `${origin}/pricing?checkout=cancelled`,
+    successUrl: `${origin}${ROUTES.dashboard}?checkout=success`,
+    // Hosted Checkout cancel should return to plan review, not the marketing page.
+    cancelUrl: `${origin}/checkout?cancelled=1&plan=${plan}&tier=${tier}&interval=${interval}${
+      paymentMode === "manual" ? "&mode=manual" : ""
+    }${reactivating ? "&reactivate=1" : ""}`,
   };
 
   try {
@@ -251,6 +252,7 @@ export async function POST(req: Request) {
         promo: promoValidation,
         tier,
         interval,
+        paymentMode,
       });
     }
 
@@ -260,6 +262,7 @@ export async function POST(req: Request) {
       promo: promoValidation,
       tier,
       interval,
+      paymentMode,
     });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Checkout failed";
