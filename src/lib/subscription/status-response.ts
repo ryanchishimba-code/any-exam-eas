@@ -82,6 +82,8 @@ export async function buildFullSubscriptionStatus(
       planInterval: true,
       trialEndsAt: true,
       stripeSubscriptionId: true,
+      purchaseType: true,
+      accessEndsAt: true,
     },
   });
 
@@ -156,6 +158,8 @@ export async function buildFullSubscriptionStatus(
         ? formatPlanUsd(nextRecurringUsd)
         : null,
     hasStripeSubscription: Boolean(sub?.stripeSubscriptionId),
+    purchaseType: sub?.purchaseType ?? "subscription",
+    accessEndsAt: sub?.accessEndsAt?.toISOString() ?? null,
     trialEndsAt:
       sub?.trialEndsAt?.toISOString() ?? subscription.trialEndsAt?.toISOString() ?? null,
     trialDays: TRIAL_DAYS,

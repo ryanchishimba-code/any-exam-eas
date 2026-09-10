@@ -4,18 +4,11 @@ import { BadgePercent } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
 import type { PromoPricing } from "@/lib/promo-pricing";
 import { formatUsd, hasDiscount } from "@/lib/promo-pricing";
-import {
-  BILLING_POLICY_SHORT,
-  formatPlanUsd,
-  getBillingPlanTier,
-  intervalListPriceUsd,
-  intervalSavingsUsd,
-} from "@/lib/billing-plans";
+import { renewalTermsLine } from "@/lib/billing-plans";
 import type { DiscountValidation } from "@/lib/discount/types";
 import {
   DEFAULT_PAYMENT_MODE,
   ONE_TIME_POLICY_SHORT,
-  oneTimeSummaryLabel,
   type PaymentMode,
 } from "@/lib/billing-payment-mode";
 import { cn } from "@/lib/utils";
@@ -25,7 +18,6 @@ import type { SubscriptionTier } from "@/lib/subscription-tiers";
 type CheckoutOrderSummaryProps = {
   pricing: PromoPricing;
   discount: DiscountValidation | null;
-  planLabel: string;
   interval?: BillingInterval;
   tier?: SubscriptionTier;
   paymentMode?: PaymentMode;
@@ -36,7 +28,6 @@ type CheckoutOrderSummaryProps = {
 export function CheckoutOrderSummary({
   pricing,
   discount,
-  planLabel,
   interval = "monthly",
   tier = "pro",
   paymentMode = DEFAULT_PAYMENT_MODE,
@@ -44,105 +35,55 @@ export function CheckoutOrderSummary({
   sticky = false,
 }: CheckoutOrderSummaryProps) {
   const discounted = discount?.valid && hasDiscount(pricing);
-  const planTier = getBillingPlanTier(tier, interval);
-  const listPrice = intervalListPriceUsd(tier, interval);
-  const planSavings = intervalSavingsUsd(tier, interval);
   const oneTime = paymentMode === "manual";
+  const isFree = pricing.primary.discounted === 0;
+
+  /*
+   * One line of terms, not a stack of them. The interval selector already
+   * carries the price and savings, so repeating them here only added noise —
+   * what is left is the part a buyer cannot infer: what happens next.
+   */
+  const terms = isFree
+    ? "5-day free trial · no card required"
+    : oneTime
+      ? ONE_TIME_POLICY_SHORT
+      : renewalTermsLine(tier, interval);
 
   return (
     <section
       className={cn(
-        "overflow-hidden rounded-[24px] border border-black/[0.06] bg-white shadow-[var(--shadow-apple-sm)]",
+        "rounded-[20px] border border-black/[0.06] bg-white px-5 py-4 shadow-[var(--shadow-apple-sm)]",
         sticky && "lg:sticky lg:top-24",
         className
       )}
       aria-label="Order summary"
     >
-      <div className="border-b border-black/[0.05] px-5 py-4">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-          Summary
-        </p>
-        <p className="mt-1 text-sm font-medium text-[var(--color-ink)]">{planLabel}</p>
-      </div>
-
-      <div className="space-y-3 px-5 py-4">
-        <div className="flex justify-between gap-4 text-sm">
-          <span className="text-[var(--color-ink-muted)]">
-            {oneTime ? oneTimeSummaryLabel(tier, interval) : pricing.primary.label}
-          </span>
-          <span className="tabular-nums font-medium text-[var(--color-ink)]">
-            {discounted && (
-              <span className="mr-1.5 font-normal text-[var(--color-ink-muted)] line-through">
-                {formatUsd(pricing.primary.original)}
-              </span>
-            )}
-            {formatUsd(pricing.primary.discounted)}
-          </span>
-        </div>
-
-        {!oneTime && pricing.recurring && planTier.savingsPercent > 0 && (
-          <div className="rounded-xl border border-emerald-100 bg-emerald-50/50 px-3 py-3 text-sm">
-            <div className="flex justify-between gap-3">
-              <span className="text-[var(--color-ink-muted)]">List price</span>
-              <span className="tabular-nums text-[var(--color-ink-muted)] line-through">
-                {formatPlanUsd(listPrice)}
-              </span>
-            </div>
-            <div className="mt-1.5 flex justify-between gap-3 font-medium">
-              <span className="text-[var(--color-ink)]">Your price</span>
-              <span className="tabular-nums text-[var(--color-ink)]">
-                {discounted && pricing.recurring.original !== pricing.recurring.discounted ? (
-                  <>
-                    <span className="mr-1.5 font-normal text-[var(--color-ink-muted)] line-through">
-                      {formatUsd(pricing.recurring.original)}
-                    </span>
-                    {formatUsd(pricing.recurring.discounted)}
-                  </>
-                ) : (
-                  formatUsd(pricing.recurring.discounted)
-                )}
-              </span>
-            </div>
-            <p className="mt-2 text-xs font-semibold text-emerald-800">
-              Save {formatPlanUsd(planSavings)} ({planTier.savingsPercent}%) ·{" "}
-              {formatPlanUsd(planTier.monthlyEquivalentUsd)}/mo equiv.
-            </p>
-          </div>
-        )}
-
-        {!oneTime && pricing.recurring && planTier.savingsPercent === 0 && (
-          <div className="flex justify-between gap-4 text-sm">
-            <span className="text-[var(--color-ink-muted)]">{pricing.recurring.label}</span>
-            <span className="tabular-nums font-medium text-[var(--color-ink)]">
-              {formatUsd(pricing.recurring.discounted)}
+      <div className="flex items-end justify-between gap-4">
+        <span className="text-sm font-semibold text-[var(--color-ink)]">Due today</span>
+        <p
+          className="text-3xl font-semibold tabular-nums tracking-tight text-[var(--color-ink)]"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {discounted && (
+            <span className="mr-2 text-lg font-normal text-[var(--color-ink-muted)] line-through">
+              {formatUsd(pricing.primary.original)}
             </span>
-          </div>
-        )}
-
-        {discounted && (
-          <p className="inline-flex items-center gap-1 rounded-lg bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-800">
-            <BadgePercent className="h-3.5 w-3.5" aria-hidden />
-            {discount?.code} · save {pricing.formattedSavings}
-          </p>
-        )}
-
-        <div className="border-t border-black/[0.05] pt-4">
-          <div className="flex items-end justify-between gap-4">
-            <span className="text-sm font-semibold text-[var(--color-ink)]">Due today</span>
-            <p
-              className="text-3xl font-semibold tabular-nums tracking-tight text-[var(--color-ink)]"
-              aria-live="polite"
-              aria-atomic="true"
-            >
-              {formatUsd(pricing.primary.discounted)}
-            </p>
-          </div>
-        </div>
-
-        <p className="text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-          {oneTime ? ONE_TIME_POLICY_SHORT : BILLING_POLICY_SHORT}
+          )}
+          {formatUsd(pricing.primary.discounted)}
         </p>
       </div>
+
+      {discounted && (
+        <p className="mt-2 inline-flex items-center gap-1 rounded-lg bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-800">
+          <BadgePercent className="h-3.5 w-3.5" aria-hidden />
+          {discount?.code} · save {pricing.formattedSavings}
+        </p>
+      )}
+
+      <p className="mt-2 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+        {terms}
+      </p>
     </section>
   );
 }

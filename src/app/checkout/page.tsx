@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { EmbeddedStripeCheckout } from "@/components/EmbeddedStripeCheckout";
 import { PageShell } from "@/components/PageShell";
-import { CheckoutLiveCounts } from "@/components/checkout/CheckoutLiveCounts";
-import { formatTrialCheckoutDescription, TRIAL_CTA_LABEL } from "@/lib/site";
+import { TRIAL_CTA_LABEL } from "@/lib/site";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 
 export const metadata = {
   title: "Checkout — Any Exam Easy",
@@ -44,7 +44,8 @@ export default async function CheckoutPage({
 
   return (
     <PageShell
-      eyebrow={isReactivate ? "Reactivate" : isUpgrade ? "Upgrade" : "Checkout"}
+      // "Upgrade" above "Upgrade to Pro" said the word twice.
+      eyebrow={isReactivate ? "Reactivate" : undefined}
       title={
         isReactivate
           ? isTrial
@@ -56,14 +57,14 @@ export default async function CheckoutPage({
       }
       description={
         isReactivate
-          ? "Pick your plan and enter payment — full access restores automatically once payment is received."
+          ? "Full access restores as soon as payment is received."
           : isUpgrade
-            ? "Upgrade anytime before your trial ends. Start with monthly — or pick annual to save. Billing starts when you confirm."
-            : formatTrialCheckoutDescription()
+            ? undefined
+            : `${TRIAL_DAYS} days free · $0 today`
       }
       maxWidth="max-w-2xl"
+      compact
     >
-      {!isUpgrade && <CheckoutLiveCounts />}
       <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
         <EmbeddedStripeCheckout />
       </Suspense>

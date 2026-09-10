@@ -7,6 +7,7 @@ export function PageShell({
   children,
   align = "left",
   maxWidth = "max-w-3xl",
+  compact = false,
 }: {
   title: string;
   description?: string;
@@ -14,6 +15,8 @@ export function PageShell({
   children?: ReactNode;
   align?: "left" | "center";
   maxWidth?: string;
+  /** Transactional pages — a marketing-sized hero pushes the form off-screen. */
+  compact?: boolean;
   /** @deprecated — all pages use the same clean Apple layout */
   variant?: "default" | "premium";
 }) {
@@ -21,7 +24,7 @@ export function PageShell({
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
       <div
-        className={`mx-auto px-6 pb-24 pt-[var(--page-top)] ${maxWidth} ${
+        className={`mx-auto px-6 ${compact ? "pb-12 pt-[calc(var(--page-top)-0.75rem)]" : "pb-24 pt-[var(--page-top)]"} ${maxWidth} ${
           centered ? "text-center" : ""
         }`}
       >
@@ -30,7 +33,15 @@ export function PageShell({
             {eyebrow}
           </p>
         )}
-        <h1 className="apple-display">{title}</h1>
+        <h1
+          className={
+            compact
+              ? "text-3xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-4xl"
+              : "apple-display"
+          }
+        >
+          {title}
+        </h1>
         {description && (
           <p className={`apple-subhead mt-5 max-w-xl ${centered ? "mx-auto" : ""}`}>
             {description}

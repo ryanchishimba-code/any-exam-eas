@@ -37,6 +37,21 @@ export const BILLING_GUARANTEE_POINTS = [
 export const BILLING_POLICY_SHORT =
   "Cancel anytime. Payments are non-refundable — access continues through the end of your paid period.";
 
+/**
+ * The whole auto-renewal disclosure in one line: amount, cadence, and how it
+ * stops. Auto-renewal law wants those stated before the charge, so this is the
+ * one piece of policy copy that stays on a simplified checkout.
+ */
+export function renewalTermsLine(
+  tier: SubscriptionTier,
+  interval: BillingInterval
+): string {
+  const plan = getBillingPlanTier(tier, interval);
+  const cadence =
+    plan.months === 1 ? "month" : plan.months === 12 ? "year" : `${plan.months} months`;
+  return `Renews at ${formatPlanUsd(plan.totalUsd)}/${cadence} until you cancel. Non-refundable.`;
+}
+
 export const BILLING_TRIAL_DISCLOSURE =
   "No payment required to start · 5-day trial with full Pro access (500 practice questions) · Upgrade anytime for unlimited access";
 
