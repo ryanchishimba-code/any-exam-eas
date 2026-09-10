@@ -6,7 +6,6 @@ import {
   type BillingInterval,
 } from "@/lib/billing-config";
 import { parseBillingInterval, intervalTotalUsd } from "@/lib/billing-plans";
-import { CHECKOUT_PAYMENT_METHOD_TYPES } from "@/lib/payments";
 import {
   intervalFromPriceId,
   requireOneTimeStripePriceId,
@@ -110,7 +109,8 @@ function buildOneTimeSessionParams(params: CheckoutBaseParams) {
     payment_intent_data: {
       metadata: sessionMetadata(params, tier, interval, "one_time"),
     },
-    payment_method_types: [...CHECKOUT_PAYMENT_METHOD_TYPES],
+    // Omit payment_method_types so Stripe Dashboard dynamic methods apply —
+    // hardcoding ["card","link"] was blocking Apple Pay / Google Pay wallets.
     payment_method_options: {
       card: {
         request_three_d_secure: "automatic" as const,
@@ -179,7 +179,8 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     ...(isTrialPlan || params.plan === "subscribe"
       ? { payment_method_collection: "always" as const }
       : {}),
-    payment_method_types: [...CHECKOUT_PAYMENT_METHOD_TYPES],
+    // Omit payment_method_types so Stripe Dashboard dynamic methods apply —
+    // hardcoding ["card","link"] was blocking Apple Pay / Google Pay wallets.
     payment_method_options: {
       card: {
         request_three_d_secure: "automatic" as const,

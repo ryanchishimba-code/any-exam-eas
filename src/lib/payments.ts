@@ -1,9 +1,12 @@
 import { isIntervalPriceConfigured, isProFullyConfigured } from "@/lib/stripe-prices";
 
-/** Payment methods enabled in Stripe Checkout (card includes Apple Pay / Google Pay wallets). */
-export const CHECKOUT_PAYMENT_METHOD_TYPES = ["card", "link"] as const;
+/**
+ * Checkout Sessions omit `payment_method_types` so Stripe Dashboard dynamic
+ * payment methods apply. Apple Pay and Google Pay ride on `card` and only
+ * appear when the domain is verified and the shopper's device supports them.
+ */
 
-/** Supported payment rails surfaced in Stripe Checkout (enable in Stripe Dashboard). */
+/** Supported payment rails surfaced in marketing / checkout trust UI. */
 export const PAYMENT_METHODS = [
   {
     id: "card",
