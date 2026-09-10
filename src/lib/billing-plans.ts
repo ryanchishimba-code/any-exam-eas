@@ -37,6 +37,9 @@ export const BILLING_GUARANTEE_POINTS = [
 export const BILLING_POLICY_SHORT =
   "Cancel anytime. Payments are non-refundable — access continues through the end of your paid period.";
 
+/** Short reassurance used as a prominent line on pricing and checkout. */
+export const CANCEL_ANYTIME_LABEL = "Cancel anytime";
+
 /**
  * The whole auto-renewal disclosure in one line: amount, cadence, and how it
  * stops. Auto-renewal law wants those stated before the charge, so this is the
@@ -49,7 +52,7 @@ export function renewalTermsLine(
   const plan = getBillingPlanTier(tier, interval);
   const cadence =
     plan.months === 1 ? "month" : plan.months === 12 ? "year" : `${plan.months} months`;
-  return `Renews at ${formatPlanUsd(plan.totalUsd)}/${cadence} until you cancel. Non-refundable.`;
+  return `Renews at ${formatPlanUsd(plan.totalUsd)}/${cadence}. Non-refundable.`;
 }
 
 export const BILLING_TRIAL_DISCLOSURE =

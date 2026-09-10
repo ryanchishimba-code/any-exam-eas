@@ -1,10 +1,10 @@
 "use client";
 
-import { BadgePercent } from "lucide-react";
+import { BadgePercent, Check } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
 import type { PromoPricing } from "@/lib/promo-pricing";
 import { formatUsd, hasDiscount } from "@/lib/promo-pricing";
-import { renewalTermsLine } from "@/lib/billing-plans";
+import { CANCEL_ANYTIME_LABEL, renewalTermsLine } from "@/lib/billing-plans";
 import type { DiscountValidation } from "@/lib/discount/types";
 import {
   DEFAULT_PAYMENT_MODE,
@@ -81,7 +81,18 @@ export function CheckoutOrderSummary({
         </p>
       )}
 
-      <p className="mt-2 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+      {!oneTime && (
+        <p className="mt-3 flex items-center gap-1.5 text-sm font-semibold text-[var(--color-ink)]">
+          <Check
+            className="h-4 w-4 shrink-0 text-[var(--color-accent)]"
+            aria-hidden
+            strokeWidth={2.5}
+          />
+          {CANCEL_ANYTIME_LABEL}
+        </p>
+      )}
+
+      <p className="mt-1.5 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
         {terms}
       </p>
     </section>

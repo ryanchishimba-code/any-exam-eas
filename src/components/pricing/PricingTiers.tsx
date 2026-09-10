@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import type { BillingInterval } from "@/lib/billing-config";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
-  BILLING_POLICY_SHORT,
   formatPlanUsd,
   getBillingPlanTier,
   renewalTermsLine,
@@ -19,6 +18,7 @@ import {
 } from "@/lib/billing-payment-mode";
 import { formatTrialCtaLabel } from "@/lib/site";
 import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
+import { CancelAnytimeNote } from "@/components/pricing/CancelAnytimeNote";
 import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { Button } from "@/components/ui/Button";
@@ -177,12 +177,16 @@ export function PricingTiers({ className }: PricingTiersProps) {
         {isUpgrade ? "Continue to checkout" : formatTrialCtaLabel()}
       </Button>
 
+      <CancelAnytimeNote
+        hidden={Boolean(isUpgrade && showPaymentMode && paymentMode === "manual")}
+      />
+
       <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
         {isUpgrade
           ? showPaymentMode && paymentMode === "manual"
             ? ONE_TIME_POLICY_SHORT
             : renewalTermsLine("pro", interval)
-          : `${TRIAL_DAYS}-day free trial · no card required. ${BILLING_POLICY_SHORT}`}
+          : `${TRIAL_DAYS}-day free trial · no card required. Payments are non-refundable.`}
       </p>
 
       <PaymentMethodBadges className="justify-center" size="sm" />

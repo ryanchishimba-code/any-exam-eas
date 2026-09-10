@@ -17,6 +17,7 @@ import {
   saveCheckoutDiscount,
 } from "@/lib/client/checkout-discount";
 import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
+import { CancelAnytimeNote } from "@/components/pricing/CancelAnytimeNote";
 import { CheckoutOrderSummary } from "@/components/checkout/CheckoutOrderSummary";
 import { CheckoutDiscountSection } from "@/components/checkout/CheckoutDiscountSection";
 import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
@@ -172,6 +173,9 @@ export function CheckoutReview({
             : formatCheckoutContinueCta(plan, tier, interval)}
         {!continueBusy ? <ArrowRight className="h-4 w-4" aria-hidden /> : null}
       </Button>
+      {/* Summary already shows Cancel anytime for paid plans; keep it under the
+          CTA on the trial path so the reassurance sits next to the action. */}
+      <CancelAnytimeNote hidden={isUpgrade} />
       <PaymentMethodBadges className="justify-center" size="sm" />
       <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
         Secured by Stripe
