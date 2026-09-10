@@ -130,9 +130,46 @@ const NAPLEX_CHAPTER_TOPICS: ChapterTopicMap = {
   "back-matter": [],
 };
 
+/**
+ * AANP FNP mapping — domain / lifespan / system high-yield modules that exist
+ * in `AANP_FNP_HIGH_YIELD_TOPICS`. Navigational chapters stay empty on purpose.
+ */
+const AANP_FNP_CHAPTER_TOPICS: ChapterTopicMap = {
+  "front-matter": [],
+  "exam-strategy": [],
+  "clinical-reasoning": ["aanp-assess-domain", "aanp-diagnose-domain"],
+  "health-promotion-screening": ["aanp-plan-domain", "aanp-assess-domain"],
+  cardiology: ["aanp-system-cardiovascular"],
+  pulmonary: ["aanp-system-pulmonary"],
+  endocrine: ["aanp-system-endocrine"],
+  "gi-hepatic": ["aanp-system-gastrointestinal"],
+  // No dedicated renal system module — UTI/GU themes live under ID; Evaluate covers monitoring.
+  "renal-gu": ["aanp-system-infectious-disease", "aanp-evaluate-domain"],
+  "womens-health": ["aanp-system-womens-health"],
+  "pediatrics-lifespan": [
+    "aanp-pediatrics-high-yield",
+    "aanp-geriatrics-high-yield",
+    "aanp-system-pediatrics",
+    "aanp-system-geriatrics",
+  ],
+  "psych-neuro": [
+    "aanp-system-psychiatry-behavioral",
+    "aanp-system-neurology",
+  ],
+  "msk-derm": ["aanp-system-musculoskeletal", "aanp-system-dermatology-ent"],
+  "ent-eyes-heme-id": [
+    "aanp-system-dermatology-ent",
+    "aanp-system-infectious-disease",
+  ],
+  "pharmacology-prescribing": ["aanp-plan-domain", "aanp-evaluate-domain"],
+  "quick-reference": ["sig-code-abbreviations", "aanp-evaluate-domain"],
+  "back-matter": [],
+};
+
 export const CHAPTER_TOPICS_BY_EXAM: Record<StudyGuideExam, ChapterTopicMap> = {
   nclex: NCLEX_CHAPTER_TOPICS,
   naplex: NAPLEX_CHAPTER_TOPICS,
+  "aanp-fnp": AANP_FNP_CHAPTER_TOPICS,
 };
 
 export function getTopicSlugsForChapter(

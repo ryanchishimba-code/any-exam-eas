@@ -42,11 +42,26 @@ npm run db:rebalance-aanp-fnp
 - [x] Prep hub panel + `/api/questions?aanpFnpPreset=`
 - [x] 4-week study plan
 - [x] Docs: expert rationales + this sprint
-- [ ] Optional FNP study-guide MVP (defer until bank ≥6K + rationales dense)
+- [x] FNP study-guide MVP (Wave 4)
 
 ```bash
 # Smoke: open /prep/aanp-fnp → Question Bank → Featured presets
 # Or: /question-bank?field=aanp-fnp&mode=bank&aanpFnpPreset=assess-domain-block&count=25&autostart=1
+```
+
+---
+
+## Wave 4 — FNP Study Guide MVP ✅ (code)
+
+- [x] Register `aanp-fnp` in study-guide registry (`/aanp-fnp/study-guide`)
+- [x] Routes + premium/middleware/app-shell wiring
+- [x] **Full Pablo manuscript** drop-in (`00`–`16` + 57 visuals)
+- [x] Prep hub + Toolkit links; sidebar Study Guide for FNP learners
+- [x] Chapter → high-yield topic map + tests
+
+```bash
+npm run ingest:aanp-fnp-guide
+# Smoke: /aanp-fnp/study-guide (premium) or Study Tools → Study Guide with exam=aanp-fnp
 ```
 
 ---
@@ -60,6 +75,7 @@ npm run db:rebalance-aanp-fnp
 | 6K+ blueprint-balanced bank | Ops — run to-target |
 | SATA + lab formats | Code ✅ |
 | FNP study presets + 4-week plan | Code ✅ |
+| FNP study-guide MVP | Code ✅ · run ingest |
 | Docs / ops parity with NCLEX | Code ✅ |
 
 **Still out of scope:** full video course, licensed clinical photo libraries, APEA-style predictor pass probability.

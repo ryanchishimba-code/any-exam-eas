@@ -39,7 +39,14 @@ export function AanpFnpStudyPresetsPanel({ examSlug }: Props) {
         </h2>
         <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
           Domain blocks, lifespan drills, pharm, preventive care, SATA, and a timed full mock —
-          packaged like top FNP QBanks.
+          packaged like top FNP QBanks.{" "}
+          <Link
+            href="/aanp-fnp/study-guide"
+            className="font-medium text-[var(--color-accent)] underline-offset-2 hover:underline"
+          >
+            Open the FNP Study Guide
+          </Link>
+          .
         </p>
       </section>
 

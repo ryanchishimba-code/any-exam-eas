@@ -73,6 +73,13 @@ describe("Study Guide in Study Tools", () => {
     expect(link).toHaveAttribute("href", "/nclex/study-guide");
   });
 
+  it("shows for an AANP FNP learner and points at the FNP book", () => {
+    renderFor("aanp-fnp");
+    const link = studyGuideLink();
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute("href", "/aanp-fnp/study-guide");
+  });
+
   it("stays under the Study Tools heading", () => {
     renderFor("naplex");
     expect(screen.getByText(/study tools/i)).toBeInTheDocument();

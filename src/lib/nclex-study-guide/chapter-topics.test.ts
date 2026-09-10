@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { NCLEX_TOPIC_REGISTRY } from "@/lib/exam-prep/nclex/topic-registry";
 import { NAPLEX_TOPIC_REGISTRY } from "@/lib/exam-prep/naplex/topic-registry";
+import { getHighYieldTopics } from "@/lib/edtech/seeds";
 import { CHAPTER_TOPICS_BY_EXAM, getTopicSlugsForChapter } from "./chapter-topics";
 import { getChapterRelatedTopics } from "./related-topics";
 
@@ -207,5 +208,67 @@ describe("NAPLEX chapter → topic map", () => {
     expect(topics.map((t) => t.slug)).toContain("calculations-workshop");
     // The nursing equivalent must never leak in through a shared chapter name.
     expect(topics.map((t) => t.slug)).not.toContain("dosage-calculations");
+  });
+});
+
+/** AANP FNP chapters from content/aanp-fnp-study-guide (slugFromFilename). */
+const AANP_FNP_CHAPTER_SLUGS = [
+  "front-matter",
+  "exam-strategy",
+  "clinical-reasoning",
+  "health-promotion-screening",
+  "cardiology",
+  "pulmonary",
+  "endocrine",
+  "gi-hepatic",
+  "renal-gu",
+  "womens-health",
+  "pediatrics-lifespan",
+  "psych-neuro",
+  "msk-derm",
+  "ent-eyes-heme-id",
+  "pharmacology-prescribing",
+  "quick-reference",
+  "back-matter",
+];
+
+describe("AANP FNP chapter → topic map", () => {
+  it("only references topics that exist in the AANP FNP high-yield seeds", () => {
+    const known = new Set(getHighYieldTopics("aanp-fnp").map((t) => t.slug));
+    const unknown: string[] = [];
+    for (const [chapter, slugs] of Object.entries(CHAPTER_TOPICS_BY_EXAM["aanp-fnp"])) {
+      for (const slug of slugs) {
+        if (!known.has(slug)) unknown.push(`${chapter} → ${slug}`);
+      }
+    }
+    expect(unknown).toEqual([]);
+  });
+
+  it("covers every chapter the ingest produces", () => {
+    expect(Object.keys(CHAPTER_TOPICS_BY_EXAM["aanp-fnp"]).sort()).toEqual(
+      [...AANP_FNP_CHAPTER_SLUGS].sort()
+    );
+  });
+
+  it("does not repeat a topic within one chapter", () => {
+    for (const [chapter, slugs] of Object.entries(CHAPTER_TOPICS_BY_EXAM["aanp-fnp"])) {
+      expect(new Set(slugs).size, `${chapter} has duplicates`).toBe(slugs.length);
+    }
+  });
+
+  it("returns no topics for navigational chapters", () => {
+    expect(getTopicSlugsForChapter("aanp-fnp", "front-matter")).toEqual([]);
+    expect(getTopicSlugsForChapter("aanp-fnp", "exam-strategy")).toEqual([]);
+    expect(getTopicSlugsForChapter("aanp-fnp", "back-matter")).toEqual([]);
+  });
+
+  it("never emits a related-topic entry without a usable link", () => {
+    for (const chapter of AANP_FNP_CHAPTER_SLUGS) {
+      for (const t of getChapterRelatedTopics("aanp-fnp", chapter)) {
+        const hasLink = Boolean(t.deepDiveHref || t.libraryHref || t.anatomyHref);
+        expect(hasLink, `${chapter} → ${t.slug} has no link`).toBe(true);
+        expect(t.title.trim()).not.toBe("");
+      }
+    }
   });
 });

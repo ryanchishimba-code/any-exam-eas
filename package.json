@@ -53,6 +53,7 @@
     "db:seed-edtech": "npx tsx scripts/seed-edtech.ts",
     "ingest:nclex-guide": "npx tsx scripts/ingest-nclex-guide.ts",
     "ingest:naplex-guide": "npx tsx scripts/ingest-nclex-guide.ts --exam=naplex",
+    "ingest:aanp-fnp-guide": "npx tsx scripts/ingest-nclex-guide.ts --exam=aanp-fnp",
     "seed": "npm run db:seed-edtech && npm run db:seed-user",
     "db:export-top300": "node node_modules/tsx/dist/cli.mjs scripts/export-top300-json.mjs",
     "db:build-fda-reference": "node scripts/build-fda-drug-reference.mjs",

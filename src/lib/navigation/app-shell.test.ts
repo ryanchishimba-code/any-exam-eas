@@ -50,6 +50,8 @@ describe("app-shell routes", () => {
     expect(isImmersiveAppRoute("/naplex/study-guide/cardiology")).toBe(true);
     expect(isAppShellRoute("/naplex/study-guide/cardiology")).toBe(true);
     expect(hideMarketingChrome("/naplex/study-guide/cardiology")).toBe(true);
+    expect(isStudyGuideReaderRoute("/aanp-fnp/study-guide/exam-strategy")).toBe(true);
+    expect(isAppShellRoute("/aanp-fnp/study-guide")).toBe(true);
 
     // An exam without a book must not pick up reader chrome.
     expect(isStudyGuideReaderRoute("/usmle/study-guide/anything")).toBe(false);

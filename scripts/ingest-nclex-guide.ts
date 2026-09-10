@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 /**
- * Ingest NCLEX Study Guide markdown from /content/nclex-study-guide.
+ * Ingest Study Guide markdown from /content/<exam>-study-guide.
  *
  * Preferred layout (paste-ready book): one file per chapter
  *   00-front-matter.md, 01-exam-strategy.md, …
@@ -9,7 +9,10 @@
  * Also supports a single file split on `## Chapter …` / `# Chapter …`.
  * Does NOT fabricate clinical text.
  *
- * Usage: npm run ingest:nclex-guide
+ * Usage:
+ *   npm run ingest:nclex-guide
+ *   npm run ingest:naplex-guide
+ *   npm run ingest:aanp-fnp-guide
  */
 
 import fs from "node:fs";
