@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowRight, Lock } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
 import type { DiscountValidation } from "@/lib/discount/types";
 import {
@@ -20,6 +20,7 @@ import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
 import { CheckoutOrderSummary } from "@/components/checkout/CheckoutOrderSummary";
 import { CheckoutDiscountSection } from "@/components/checkout/CheckoutDiscountSection";
 import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
+import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { formatCheckoutContinueCta } from "@/lib/site";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { SignupPlan } from "@/lib/validators/auth";
@@ -171,10 +172,8 @@ export function CheckoutReview({
             : formatCheckoutContinueCta(plan, tier, interval)}
         {!continueBusy ? <ArrowRight className="h-4 w-4" aria-hidden /> : null}
       </Button>
-      {/* Terms live in the order summary now — repeating them under the button
-          said the same thing a third time. */}
-      <p className="flex items-center justify-center gap-1.5 text-[0.6875rem] text-[var(--color-ink-muted)]">
-        <Lock className="h-3.5 w-3.5" aria-hidden />
+      <PaymentMethodBadges className="justify-center" size="sm" />
+      <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
         Secured by Stripe
       </p>
     </div>

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { Lock } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
@@ -21,6 +20,7 @@ import {
 import { formatTrialCtaLabel } from "@/lib/site";
 import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
 import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
+import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { Button } from "@/components/ui/Button";
 import { analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -185,8 +185,8 @@ export function PricingTiers({ className }: PricingTiersProps) {
           : `${TRIAL_DAYS}-day free trial · no card required. ${BILLING_POLICY_SHORT}`}
       </p>
 
-      <p className="flex items-center justify-center gap-1.5 text-[0.6875rem] text-[var(--color-ink-muted)]">
-        <Lock className="h-3.5 w-3.5" aria-hidden />
+      <PaymentMethodBadges className="justify-center" size="sm" />
+      <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
         Secured by Stripe
       </p>
 
