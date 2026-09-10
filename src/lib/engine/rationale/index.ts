@@ -40,6 +40,7 @@ export {
   EXPERT_RATIONALE_META_KEY,
   EXPERT_RATIONALE_VERSION,
   USMLE_EXPERT_RATIONALE_VERSION,
+  AANP_FNP_EXPERT_RATIONALE_VERSION,
   readExpertRationaleFromMeta,
   type ExpertStructuredRationale,
   type LayeredDepth,
@@ -56,6 +57,7 @@ export {
 export {
   generateExpertNclexRationale,
   generateExpertUsmleRationale,
+  generateExpertAanpFnpRationale,
   generateExpertRationaleForField,
   maybeEnrichExpertBankItemRationale,
   type GenerateExpertRationaleResult,
@@ -79,3 +81,9 @@ export {
   resolveUsmleExpertStepTone,
   USMLE_EXPERT_RATIONALE_JSON_SCHEMA,
 } from "../prompts/usmle-expert-rationale";
+
+export {
+  buildAanpFnpExpertSystemPrompt,
+  buildAanpFnpExpertUserPrompt,
+  AANP_FNP_EXPERT_RATIONALE_JSON_SCHEMA,
+} from "../prompts/aanp-fnp-expert-rationale";

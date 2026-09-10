@@ -1,9 +1,10 @@
 /**
- * Re-normalize NCLEX / USMLE / NAPLEX figure media: prune misfits, keep purpose-fitting attaches.
+ * Re-normalize NCLEX / USMLE / NAPLEX / AANP FNP figure media: prune misfits, keep purpose-fitting attaches.
  *
  * Usage:
  *   npm run db:repair-figure-media -- --field nursing --limit 5000
  *   npm run db:repair-figure-media -- --field pharmacy --limit 2000 --dry-run
+ *   npm run db:repair-figure-media -- --field aanp-fnp --limit 5000
  *   npm run db:repair-figure-media -- --field all
  */
 import { loadEnvFiles, ensureDatabaseUrlEnv } from "./resolve-database-url.mjs";
@@ -18,6 +19,7 @@ import {
 } from "../src/lib/mpje/parse-bank-options";
 import { normalizeNclexExhibitPayload } from "../src/lib/exam-prep/nclex/normalize-exhibit";
 import { normalizeNaplexExhibitPayload } from "../src/lib/exam-prep/naplex/normalize-exhibit";
+import { normalizeAanpFnpExhibitPayload } from "../src/lib/exam-prep/aanp-fnp/normalize-exhibit";
 import { normalizeUsmleFullExamItem } from "../src/lib/exam-prep/usmle/quality-gate";
 import { attachVisualRationaleToItem } from "../src/lib/engine/rationale/enrich-visual-rationale";
 
@@ -28,12 +30,12 @@ function parseArgs() {
   const args = process.argv.slice(2);
   let limit = 0;
   let dryRun = false;
-  let field: "nursing" | "usmle" | "pharmacy" | "all" = "nursing";
+  let field: "nursing" | "usmle" | "pharmacy" | "aanp-fnp" | "all" = "nursing";
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--limit" && args[i + 1]) limit = parseInt(args[++i]!, 10);
     else if (args[i] === "--dry-run") dryRun = true;
     else if (args[i] === "--field" && args[i + 1]) {
-      field = args[++i]! as "nursing" | "usmle" | "pharmacy" | "all";
+      field = args[++i]! as "nursing" | "usmle" | "pharmacy" | "aanp-fnp" | "all";
     }
   }
   return { limit, dryRun, field };
@@ -49,6 +51,7 @@ function mediaIds(ngn: Record<string, unknown> | undefined): string[] {
 function normalizeForField(fieldId: string, item: ReturnType<typeof enrichBankItemFromRow>) {
   if (fieldId === "nursing") return normalizeNclexExhibitPayload(item);
   if (fieldId === "pharmacy") return normalizeNaplexExhibitPayload(item);
+  if (fieldId === "aanp-fnp") return normalizeAanpFnpExhibitPayload(item);
   return normalizeUsmleFullExamItem(item);
 }
 
@@ -131,6 +134,9 @@ async function main() {
   }
   if (field === "pharmacy" || field === "all") {
     await repairFields(["pharmacy"], limit, dryRun);
+  }
+  if (field === "aanp-fnp" || field === "all") {
+    await repairFields(["aanp-fnp"], limit, dryRun);
   }
 }
 

@@ -9,3 +9,5 @@ export * from "./vignette-repair";
 export * from "./variant-pipeline";
 export * from "./generation-pipeline";
 export * from "./study-links";
+export * from "./figure-assets";
+export * from "./normalize-exhibit";

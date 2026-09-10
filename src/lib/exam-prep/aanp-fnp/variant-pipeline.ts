@@ -12,6 +12,9 @@ import { splitUsmleBankItem } from "../usmle-clinical-gate";
 import { runAanpFnpHybridGate } from "./hybrid-gate";
 import { dedupeBatchItems } from "./batch-diversity";
 import { attachAanpFnpStudyLinks } from "./study-links";
+import { normalizeAanpFnpExhibitPayload } from "./normalize-exhibit";
+import { attachVisualRationaleToItem } from "@/lib/engine/rationale/enrich-visual-rationale";
+import { maybeEnrichExpertBankItemRationale } from "@/lib/engine/rationale/generate-expert-rationale";
 import {
   buildVariantGenerationUserPrompt,
   summarizeAanpFnpGateFailures,
@@ -236,7 +239,10 @@ export async function generateAanpFnpVariant(params: {
 
     const gated = await runAanpFnpHybridGate(item, { source: "generated", useAiRepair: true });
     if (gated.ingestReady) {
-      return gated.item;
+      let next = normalizeAanpFnpExhibitPayload(gated.item);
+      next = attachVisualRationaleToItem(next);
+      next = await maybeEnrichExpertBankItemRationale(next, "aanp-fnp");
+      return next;
     }
 
     retryFeedback = summarizeAanpFnpGateFailures(gated.item);

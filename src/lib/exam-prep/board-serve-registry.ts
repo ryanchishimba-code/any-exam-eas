@@ -15,6 +15,7 @@ import { usmleBankItemIsServeReady } from "./usmle-clinical-gate";
 import { isUsmleField } from "./usmle-bank-bridge";
 import { isPanceBestQuality } from "./pance/quality-gate";
 import { isAanpFnpBestQuality } from "./aanp-fnp/quality-gate";
+import { prepareAanpFnpBankItem } from "./aanp-fnp/normalize-exhibit";
 import { isNptePtBestQuality } from "./npte-pt/quality-gate";
 import { USMLE_FIELD_IDS } from "./usmle/steps";
 import { EXAM_FIELD_IDS } from "@/lib/subjects/field-ids";
@@ -150,6 +151,7 @@ export function bankItemIsBoardBestQuality(
 export function prepareBoardBankItem(fieldId: string, item: BankItem): BankItem {
   if (fieldId === "nursing") return prepareNclexBankItem(item);
   if (fieldId === "pharmacy") return prepareNaplexBankItem(item);
+  if (fieldId === "aanp-fnp") return prepareAanpFnpBankItem(item);
   return item;
 }
 

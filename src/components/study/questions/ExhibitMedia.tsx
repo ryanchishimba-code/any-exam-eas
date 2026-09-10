@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { ExhibitFigureRef } from "@/lib/exam-prep/exhibit-figure";
 import { getApprovedNclexFigureById } from "@/lib/exam-prep/nclex/figure-assets";
 import { getApprovedNaplexFigureById } from "@/lib/exam-prep/naplex/figure-assets";
+import { getApprovedAanpFnpFigureById } from "@/lib/exam-prep/aanp-fnp/figure-assets";
 import { getApprovedFigureById } from "@/lib/exam-prep/usmle/figure-assets";
 import { cn } from "@/lib/utils";
 import { Maximize2, X } from "lucide-react";
@@ -15,6 +16,9 @@ type Props = {
 
 /** Prefer live catalog SVG by id so redesigned assets show without re-backfill. */
 function hydrateFigure(fig: ExhibitFigureRef): ExhibitFigureRef {
+  if (fig.id.startsWith("aanp-")) {
+    return getApprovedAanpFnpFigureById(fig.id) ?? fig;
+  }
   if (fig.id.startsWith("naplex-")) {
     return getApprovedNaplexFigureById(fig.id) ?? fig;
   }

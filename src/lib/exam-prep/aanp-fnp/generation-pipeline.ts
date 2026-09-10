@@ -23,6 +23,9 @@ import { runAanpFnpHybridGate } from "./hybrid-gate";
 import { stemFormatForIndex, planAanpFnpGenerationSlots } from "./blueprint-quota";
 import { buildAanpFnp2026TopicCatalogBlock } from "./blueprint-topics-2026";
 import { attachAanpFnpStudyLinks } from "./study-links";
+import { normalizeAanpFnpExhibitPayload } from "./normalize-exhibit";
+import { attachVisualRationaleToItem } from "@/lib/engine/rationale/enrich-visual-rationale";
+import { maybeEnrichExpertBankItemRationale } from "@/lib/engine/rationale/generate-expert-rationale";
 import type { AanpFnpGenerationMeta, AanpFnpGenerationSlot } from "./types";
 import {
   AANP_FNP_GENERATION_CHUNK_SIZE,
@@ -257,6 +260,9 @@ export async function generateAanpFnpChunk(params: {
       continue;
     }
     item = gated.item;
+    item = normalizeAanpFnpExhibitPayload(item);
+    item = attachVisualRationaleToItem(item);
+    item = await maybeEnrichExpertBankItemRationale(item, "aanp-fnp");
     bankItems.push({
       ...item,
       difficulty: slot.difficulty,

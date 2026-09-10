@@ -36,6 +36,7 @@ import {
   isUsmleField,
 } from "./UsmleFormats";
 import { NclexExhibitBlock } from "./NclexFormats";
+import { AanpFnpExhibitBlock } from "./AanpFnpFormats";
 import { QuestionRelatedLinks } from "./QuestionRelatedLinks";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { useUserAccess } from "@/lib/client/use-user-access";
@@ -139,6 +140,8 @@ export const QuestionRenderer = memo(function QuestionRenderer({
         <NclexExhibitBlock question={question} />
       ) : question.field === "pharmacy" ? (
         <NaplexExhibitBlock question={question} />
+      ) : question.field === "aanp-fnp" ? (
+        <AanpFnpExhibitBlock question={question} />
       ) : (
         (question.ngnFormat === "exhibit" || question.ngnPayload?.kind === "exhibit") && (
           <NaplexExhibitBlock question={question} />

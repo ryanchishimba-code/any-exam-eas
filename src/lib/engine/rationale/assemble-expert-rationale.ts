@@ -10,7 +10,7 @@ export type AssembledExpertRationale = AssembledRationale & {
   concisePreview: string;
 };
 
-export type ExpertAssembleBoard = "nclex" | "usmle" | "generic";
+export type ExpertAssembleBoard = "nclex" | "usmle" | "aanp-fnp" | "generic";
 
 function section(title: string, body: string): string {
   if (!body.trim()) return "";
@@ -24,11 +24,14 @@ function bulletList(items: string[]): string {
 function realWorldSectionTitle(board: ExpertAssembleBoard): string {
   if (board === "usmle") return "Real-world clinical application";
   if (board === "nclex") return "Real-world nursing application";
+  if (board === "aanp-fnp") return "Real-world NP practice";
   return "Real-world application";
 }
 
 function reasoningSectionTitle(board: ExpertAssembleBoard): string {
-  return board === "usmle" ? "Clinical reasoning pathway" : "Step-by-step reasoning";
+  if (board === "usmle") return "Clinical reasoning pathway";
+  if (board === "aanp-fnp") return "NP clinical pathway (Assess → Diagnose → Plan → Evaluate)";
+  return "Step-by-step reasoning";
 }
 
 /** Full markdown explanation with all expert sections. */

@@ -1,5 +1,5 @@
 /**
- * Generate UWorld-caliber expert rationales (NCLEX + USMLE) via OpenAI.
+ * Generate UWorld-caliber expert rationales (NCLEX + USMLE + AANP FNP) via OpenAI.
  */
 import { z } from "zod";
 import { getOpenAiClient } from "@/lib/openai-client";
@@ -11,6 +11,10 @@ import {
   buildUsmleExpertSystemPrompt,
   buildUsmleExpertUserPrompt,
 } from "../prompts/usmle-expert-rationale";
+import {
+  buildAanpFnpExpertSystemPrompt,
+  buildAanpFnpExpertUserPrompt,
+} from "../prompts/aanp-fnp-expert-rationale";
 import type { RationaleGenerationInput } from "../prompts/rationale-generation";
 import { validateStructuredRationale, matchRationaleOptionToBank } from "./validate-rationale";
 import {
@@ -21,6 +25,7 @@ import { attachVisualRationaleToItem } from "./enrich-visual-rationale";
 import type { VisualRationaleBlock } from "./visual-rationale-types";
 import type { ExpertStructuredRationale } from "./expert-rationale-types";
 import {
+  AANP_FNP_EXPERT_RATIONALE_VERSION,
   EXPERT_RATIONALE_META_KEY,
   EXPERT_RATIONALE_VERSION,
   USMLE_EXPERT_RATIONALE_VERSION,
@@ -173,7 +178,32 @@ function alignWhyIncorrectOptions<T extends { whyIncorrect: Array<{ option: stri
   };
 }
 
-type ExpertBoard = "nclex" | "usmle";
+type ExpertBoard = "nclex" | "usmle" | "aanp-fnp";
+
+function expertBoardPrompts(board: ExpertBoard, input: RationaleGenerationInput) {
+  if (board === "usmle") {
+    return {
+      system: buildUsmleExpertSystemPrompt(input.fieldId),
+      user: buildUsmleExpertUserPrompt(input),
+      version: USMLE_EXPERT_RATIONALE_VERSION,
+      logTag: "generate-expert-usmle",
+    };
+  }
+  if (board === "aanp-fnp") {
+    return {
+      system: buildAanpFnpExpertSystemPrompt(),
+      user: buildAanpFnpExpertUserPrompt(input),
+      version: AANP_FNP_EXPERT_RATIONALE_VERSION,
+      logTag: "generate-expert-aanp-fnp",
+    };
+  }
+  return {
+    system: buildNclexExpertSystemPrompt(),
+    user: buildNclexExpertUserPrompt(input),
+    version: EXPERT_RATIONALE_VERSION,
+    logTag: "generate-expert-rationale",
+  };
+}
 
 async function generateExpertRationaleWithPrompts(
   input: RationaleGenerationInput,
@@ -183,17 +213,7 @@ async function generateExpertRationaleWithPrompts(
   if (!openai) return null;
 
   const maxRetries = opts?.maxRetries ?? 2;
-  const system =
-    board === "usmle"
-      ? buildUsmleExpertSystemPrompt(input.fieldId)
-      : buildNclexExpertSystemPrompt();
-  const user =
-    board === "usmle"
-      ? buildUsmleExpertUserPrompt(input)
-      : buildNclexExpertUserPrompt(input);
-  const version =
-    board === "usmle" ? USMLE_EXPERT_RATIONALE_VERSION : EXPERT_RATIONALE_VERSION;
-  const logTag = board === "usmle" ? "generate-expert-usmle" : "generate-expert-rationale";
+  const { system, user, version, logTag } = expertBoardPrompts(board, input);
 
   let lastError: unknown;
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -257,7 +277,7 @@ async function generateExpertRationaleWithPrompts(
       if (!quality.ok && attempt < maxRetries) continue;
 
       const assembled = assembleExpertRationale(withVisuals, {
-        board: board === "usmle" ? "usmle" : "nclex",
+        board: board === "usmle" ? "usmle" : board === "aanp-fnp" ? "aanp-fnp" : "nclex",
       });
       return {
         structured: withVisuals,
@@ -301,7 +321,14 @@ export async function generateExpertUsmleRationale(
   return generateExpertRationaleWithPrompts(input, "usmle", opts);
 }
 
-/** Route expert generation by bank field (nursing → NCLEX, usmle-step-* → USMLE). */
+export async function generateExpertAanpFnpRationale(
+  input: RationaleGenerationInput,
+  opts?: { maxRetries?: number; temperature?: number }
+): Promise<GenerateExpertRationaleResult | null> {
+  return generateExpertRationaleWithPrompts(input, "aanp-fnp", opts);
+}
+
+/** Route expert generation by bank field (nursing → NCLEX, usmle-step-* → USMLE, aanp-fnp → FNP). */
 export async function generateExpertRationaleForField(
   fieldId: string,
   input: RationaleGenerationInput,
@@ -312,6 +339,9 @@ export async function generateExpertRationaleForField(
   }
   if (isNclexField(fieldId) || fieldId === "nursing") {
     return generateExpertNclexRationale(input, opts);
+  }
+  if (fieldId === "aanp-fnp" || input.fieldId === "aanp-fnp") {
+    return generateExpertAanpFnpRationale({ ...input, fieldId: "aanp-fnp" }, opts);
   }
   return null;
 }
@@ -336,14 +366,18 @@ function finalizeEnrichedItem(
   return attachVisualRationaleToItem(item);
 }
 
-/** Expert-tier enrich when RATIONALE_ENRICH_ON_GENERATE=1 (NCLEX + USMLE). */
+/** Expert-tier enrich when RATIONALE_ENRICH_ON_GENERATE=1 (NCLEX + USMLE + AANP FNP). */
 export async function maybeEnrichExpertBankItemRationale(
   item: import("@/lib/question-bank").BankItem,
   fieldId: string
 ): Promise<import("@/lib/question-bank").BankItem> {
   if (process.env.RATIONALE_ENRICH_ON_GENERATE !== "1") return finalizeEnrichedItem(item);
 
-  const useExpert = fieldId === "nursing" || isNclexField(fieldId) || isUsmleFieldId(fieldId);
+  const useExpert =
+    fieldId === "nursing" ||
+    isNclexField(fieldId) ||
+    isUsmleFieldId(fieldId) ||
+    fieldId === "aanp-fnp";
   if (!useExpert) {
     const { maybeEnrichBankItemRationale } = await import("./generate-rationale");
     return maybeEnrichBankItemRationale(item, fieldId);

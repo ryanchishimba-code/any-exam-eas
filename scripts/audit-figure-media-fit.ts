@@ -18,6 +18,11 @@ import {
   NAPLEX_FIGURE_CONTENT_KEYWORDS,
   findApprovedNaplexFiguresForTopic,
 } from "../src/lib/exam-prep/naplex/figure-assets";
+import {
+  AANP_FNP_FIGURE_CATALOG,
+  AANP_FNP_FIGURE_CONTENT_KEYWORDS,
+  findApprovedAanpFnpFiguresForTopic,
+} from "../src/lib/exam-prep/aanp-fnp/figure-assets";
 import { USMLE_FIGURE_CATALOG, USMLE_FIGURE_CONTENT_KEYWORDS } from "../src/lib/exam-prep/usmle/figure-assets";
 
 function decodeSvg(dataUri: string): string {
@@ -37,9 +42,15 @@ const FIGURE_FIT: Record<string, string[]> = {
   ...NCLEX_FIGURE_CONTENT_KEYWORDS,
   ...USMLE_FIGURE_CONTENT_KEYWORDS,
   ...NAPLEX_FIGURE_CONTENT_KEYWORDS,
+  ...AANP_FNP_FIGURE_CONTENT_KEYWORDS,
 };
 
-const ALL_CATALOG = [...NCLEX_FIGURE_CATALOG, ...USMLE_FIGURE_CATALOG, ...NAPLEX_FIGURE_CATALOG];
+const ALL_CATALOG = [
+  ...NCLEX_FIGURE_CATALOG,
+  ...USMLE_FIGURE_CATALOG,
+  ...NAPLEX_FIGURE_CATALOG,
+  ...AANP_FNP_FIGURE_CATALOG,
+];
 
 type Sample = {
   figureId: string;
@@ -131,6 +142,13 @@ async function main() {
     samples,
     counts
   );
+  await auditField(
+    prisma,
+    "aanp-fnp",
+    AANP_FNP_FIGURE_CATALOG.map((f) => f.id),
+    samples,
+    counts
+  );
 
   const topicChecks = [
     { topic: "labor-fetal-monitoring", expect: "nclex-fetal-late-decels", via: "nclex" as const },
@@ -138,11 +156,19 @@ async function main() {
     { topic: "tdm-monitoring", expect: "naplex-vanco-tdm-pathway", via: "naplex" as const },
     { topic: "calculations-creatinine-clearance", expect: "naplex-crcl-formula", via: "naplex" as const },
     { topic: "immunizations", expect: null, via: "naplex" as const },
+    {
+      topic: "atrial-fibrillation-anticoagulation",
+      expect: "aanp-ecg-afib",
+      via: "aanp" as const,
+    },
+    { topic: "skin-cancer-detection", expect: "aanp-derm-abcde", via: "aanp" as const },
   ].map((c) => {
     const found =
       c.via === "nclex"
         ? findApprovedNclexFiguresForTopic(c.topic).map((f) => f.id)
-        : findApprovedNaplexFiguresForTopic(c.topic).map((f) => f.id);
+        : c.via === "aanp"
+          ? findApprovedAanpFnpFiguresForTopic(c.topic).map((f) => f.id)
+          : findApprovedNaplexFiguresForTopic(c.topic).map((f) => f.id);
     return {
       topic: c.topic,
       found,

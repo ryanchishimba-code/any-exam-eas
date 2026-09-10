@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /**
- * Bulk-upgrade board exam rationales — expert tier for NCLEX + USMLE, structured for others.
+ * Bulk-upgrade board exam rationales — expert tier for NCLEX + USMLE + AANP FNP, structured for others.
  *
  * Usage:
  *   npm run db:enrich-board-expert -- --field nursing --limit 200
  *   npm run db:enrich-board-expert -- --field usmle-step-2 --serve-only --limit 200
+ *   npm run db:enrich-board-expert -- --field aanp-fnp --serve-only --limit 500
  *   npm run db:enrich-board-expert -- --field pance --serve-only --limit 500
  *   npm run db:enrich-board-expert -- --field all --serve-only --limit 100
  *
@@ -190,7 +191,11 @@ async function enrichField(
         continue;
       }
 
-      const useExpertPath = fieldId === "nursing" || isNclexField(fieldId) || isUsmleFieldId(fieldId);
+      const useExpertPath =
+        fieldId === "nursing" ||
+        isNclexField(fieldId) ||
+        isUsmleFieldId(fieldId) ||
+        fieldId === "aanp-fnp";
 
       if (useExpertPath) {
         const result = await generateExpertRationaleForField(

@@ -18,6 +18,7 @@ import {
   prepareUsmleItemsForSession,
   usmleBankItemIsServeReady,
 } from "./usmle-clinical-gate";
+import { prepareAanpFnpBankItem } from "./aanp-fnp/normalize-exhibit";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 const CLINICAL_FIELD_IDS = new Set(["pance", "aanp-fnp", "npte-pt"]);
@@ -36,6 +37,11 @@ export function filterBankItemsForServe(fieldId: string, items: BankItem[]): Ban
     return scoped
       .map((item) => prepareNaplexBankItem(item))
       .filter((item) => naplexBankItemIsServeReady(item, { source: item.source ?? null }));
+  }
+  if (fieldId === "aanp-fnp") {
+    return scoped
+      .map((item) => prepareAanpFnpBankItem(item))
+      .filter((item) => usmleBankItemIsServeReady(item, fieldId));
   }
   if (isClinicalVignetteField(fieldId)) {
     return scoped.filter((item) => usmleBankItemIsServeReady(item, fieldId));
@@ -90,6 +96,10 @@ export function prepareBankItemsForSession(params: {
   }
   if (fieldId === "pharmacy") {
     return prepareNaplexItemsForSession({ items, fieldId, field, limit: cap });
+  }
+  if (fieldId === "aanp-fnp") {
+    const prepared = items.map((item) => prepareAanpFnpBankItem(item));
+    return prepareUsmleItemsForSession({ items: prepared, fieldId, field, limit: cap });
   }
   if (isClinicalVignetteField(fieldId)) {
     return prepareUsmleItemsForSession({ items, fieldId, field, limit: cap });
