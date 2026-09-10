@@ -12,8 +12,12 @@ import {
 } from "./naplex-serve-gate";
 import { isUsmleField } from "./usmle-bank-bridge";
 import { usmleBankItemIsServeReady } from "./usmle-clinical-gate";
+import {
+  aanpFnpBankItemIsServeReady,
+  prepareAanpFnpBankItem,
+} from "./aanp-fnp-serve-gate";
 
-const CLINICAL_FIELD_IDS = new Set(["pance", "aanp-fnp", "npte-pt"]);
+const CLINICAL_FIELD_IDS = new Set(["pance", "npte-pt"]);
 
 /** True when a bank row meets the same bar enforced at serve time. */
 export function bankItemPassesIngestGate(
@@ -39,6 +43,13 @@ export function bankItemPassesIngestGate(
   if (fieldId === "pharmacy") {
     const prepared = prepareNaplexBankItem(item);
     return naplexBankItemIsServeReady(prepared, {
+      source: source ?? prepared.source ?? null,
+    });
+  }
+
+  if (fieldId === "aanp-fnp") {
+    const prepared = prepareAanpFnpBankItem(item);
+    return aanpFnpBankItemIsServeReady(prepared, {
       source: source ?? prepared.source ?? null,
     });
   }

@@ -18,7 +18,12 @@ import {
   prepareUsmleItemsForSession,
   usmleBankItemIsServeReady,
 } from "./usmle-clinical-gate";
-import { prepareAanpFnpBankItem } from "./aanp-fnp/normalize-exhibit";
+import {
+  aanpFnpBankItemIsServeReady,
+  prepareAanpFnpBankItem,
+  prepareAanpFnpItemsForSession,
+} from "./aanp-fnp-serve-gate";
+import { bankItemToAanpFnpRaw } from "./aanp-fnp-bank-bridge";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 const CLINICAL_FIELD_IDS = new Set(["pance", "aanp-fnp", "npte-pt"]);
@@ -41,7 +46,7 @@ export function filterBankItemsForServe(fieldId: string, items: BankItem[]): Ban
   if (fieldId === "aanp-fnp") {
     return scoped
       .map((item) => prepareAanpFnpBankItem(item))
-      .filter((item) => usmleBankItemIsServeReady(item, fieldId));
+      .filter((item) => aanpFnpBankItemIsServeReady(item, { source: item.source ?? null }));
   }
   if (isClinicalVignetteField(fieldId)) {
     return scoped.filter((item) => usmleBankItemIsServeReady(item, fieldId));
@@ -98,8 +103,7 @@ export function prepareBankItemsForSession(params: {
     return prepareNaplexItemsForSession({ items, fieldId, field, limit: cap });
   }
   if (fieldId === "aanp-fnp") {
-    const prepared = items.map((item) => prepareAanpFnpBankItem(item));
-    return prepareUsmleItemsForSession({ items: prepared, fieldId, field, limit: cap });
+    return prepareAanpFnpItemsForSession({ items, limit: cap });
   }
   if (isClinicalVignetteField(fieldId)) {
     return prepareUsmleItemsForSession({ items, fieldId, field, limit: cap });
@@ -123,6 +127,9 @@ export function bankItemToSessionRaw(
   }
   if (fieldId === "pharmacy") {
     return bankItemToNaplexRaw(enriched, index, { field, subjectId });
+  }
+  if (fieldId === "aanp-fnp") {
+    return bankItemToAanpFnpRaw(enriched, index, { field: fieldId, subjectId });
   }
   if (isClinicalVignetteField(fieldId) || isUsmleField(fieldId)) {
     return bankItemToUsmleRaw(enriched, index, { field: fieldId, subjectId });

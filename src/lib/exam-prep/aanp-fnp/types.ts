@@ -77,7 +77,16 @@ export type AanpFnpGenerationSlot = {
   patientAgeGroup: AanpFnpPatientAgeGroupId;
   blueprintTopic: string;
   difficulty: number;
+  /** MCQ (default) or FNP-native multi-select — not NCLEX NGN. */
+  questionFormat?: AanpFnpQuestionFormat;
 };
+
+/** Item formats supported in AANP FNP generation (no NGN bow-tie/matrix). */
+export type AanpFnpQuestionFormat = "mcq" | "select_all";
+
+/** Target share of select-all items in new generation (~12%). */
+export const AANP_FNP_SELECT_ALL_MIX = 0.12;
+
 
 export type AanpFnpGenerationMeta = {
   batchId: string;

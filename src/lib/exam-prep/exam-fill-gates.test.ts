@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import { timedExamGatePairForField } from "./exam-fill-gates";
-import { nclexItemPassesStructuralTimedGate, nclexItemPassesTimedExamGate } from "./nclex-serve-gate";
+import { nclexItemPassesBestExamGate, nclexItemPassesStructuralTimedGate, nclexItemPassesTimedExamGate } from "./nclex-serve-gate";
+import { aanpFnpItemPassesStructuralTimedGate } from "./aanp-fnp-serve-gate";
 import { usmleBankItemPassesStructuralGate } from "./usmle-clinical-gate";
 import * as usmleQaEditor from "./usmle-qa-editor";
 
@@ -45,10 +46,11 @@ describe("timedExamGatePairForField", () => {
     const nursing = timedExamGatePairForField("nursing");
     const aanp = timedExamGatePairForField("aanp-fnp");
 
-    expect(nursing.strict).toBe(nclexItemPassesStructuralTimedGate);
+    expect(nursing.strict).toBe(nclexItemPassesBestExamGate);
     expect(nursing.relaxed).toBeDefined();
-    expect(aanp.strict(usmleRow())).toBe(true);
+    expect(aanp.strict).toBe(aanpFnpItemPassesStructuralTimedGate);
     expect(aanp.relaxed).toBeDefined();
+    expect(aanp.strict(usmleRow({ subjectId: "cardiovascular" }))).toBe(true);
   });
 
   it("structural NCLEX gate accepts qaPassed rows that fail full serve audit", () => {

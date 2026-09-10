@@ -15,11 +15,15 @@ import { usmleBankItemIsServeReady } from "./usmle-clinical-gate";
 import { isUsmleField } from "./usmle-bank-bridge";
 import { isPanceBestQuality } from "./pance/quality-gate";
 import { isAanpFnpBestQuality } from "./aanp-fnp/quality-gate";
-import { prepareAanpFnpBankItem } from "./aanp-fnp/normalize-exhibit";
+import {
+  aanpFnpBankItemIsServeReady,
+  prepareAanpFnpBankItem,
+} from "./aanp-fnp-serve-gate";
 import { isNptePtBestQuality } from "./npte-pt/quality-gate";
 import { USMLE_FIELD_IDS } from "./usmle/steps";
 import { EXAM_FIELD_IDS } from "@/lib/subjects/field-ids";
 import { correctAnswerMatchesOption } from "./naplex-answer-align";
+import { parseSelectAllCorrectAnswers } from "@/lib/question-format";
 
 /** All board exams with dedicated quality pipelines. */
 export const BOARD_FIELD_IDS = [
@@ -112,7 +116,10 @@ export function bankItemIsBoardServeReady(
   if (fieldId === "pharmacy") {
     return isNaplexBestQuality(prepareNaplexBankItem(item), { source });
   }
-  if (isUsmleField(fieldId) || fieldId === "pance" || fieldId === "aanp-fnp" || fieldId === "npte-pt") {
+  if (fieldId === "aanp-fnp") {
+    return aanpFnpBankItemIsServeReady(item, { source });
+  }
+  if (isUsmleField(fieldId) || fieldId === "pance" || fieldId === "npte-pt") {
     return usmleBankItemIsServeReady(item, fieldId);
   }
   return auditBankItem(item, fieldId).ok;
@@ -177,6 +184,13 @@ function answerMatchesOptions(fieldId: string, item: BankItem): boolean {
 
   if (fieldId === "pharmacy") {
     return correctAnswerMatchesOption(item.options, answer, item.itemType ?? "mcq");
+  }
+
+  if (fieldId === "aanp-fnp") {
+    const type = item.itemType ?? "vignette";
+    if (type === "select_all" || type === "sata") {
+      return parseSelectAllCorrectAnswers(item.options, answer).length >= 2;
+    }
   }
 
   return item.options.some((o) => o.trim() === answer);

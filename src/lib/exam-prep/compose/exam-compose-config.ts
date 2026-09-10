@@ -16,6 +16,10 @@ import {
   prepareNaplexBankItem,
 } from "@/lib/exam-prep/naplex-serve-gate";
 import { nptePtItemPassesTimedExamGate } from "@/lib/exam-prep/npte-pt-serve-gate";
+import {
+  aanpFnpItemPassesTimedExamGate,
+  prepareAanpFnpBankItem,
+} from "@/lib/exam-prep/aanp-fnp-serve-gate";
 import { usmleBankItemIsServeReady } from "@/lib/exam-prep/usmle-clinical-gate";
 
 export type ExamComposeConfig = {
@@ -71,7 +75,8 @@ const CONFIGS: Record<string, ExamComposeConfig> = {
     examName: "AANP FNP",
     boardReference: "AANPCB FNP Test Content Outline — patient age groups + domains",
     minutesPerItem: 1.2,
-    gate: usmleGate("aanp-fnp"),
+    gate: aanpFnpItemPassesTimedExamGate,
+    prepareItem: prepareAanpFnpBankItem,
   },
   "npte-pt": {
     slug: "npte-pt",

@@ -14,12 +14,14 @@ import type {
   AanpFnpDomainQuotaRow,
   AanpFnpGenerationSlot,
   AanpFnpPatientAgeGroupId,
+  AanpFnpQuestionFormat,
 } from "./types";
 import {
   AANP_FNP_AGE_GROUP_LABELS,
   AANP_FNP_AGE_GROUP_WEIGHTS,
   AANP_FNP_DOMAIN_LABELS,
   AANP_FNP_DOMAIN_WEIGHTS,
+  AANP_FNP_SELECT_ALL_MIX,
   AANP_FNP_TARGET_TOTAL,
 } from "./types";
 import { AANP_FNP_2026_TOPIC_GROUPS } from "./blueprint-topics-2026";
@@ -190,6 +192,28 @@ const STEM_FORMATS = [
   "most appropriate physical exam finding to assess next",
 ] as const;
 
+const SATA_STEM_FORMATS = [
+  "select all interventions that are appropriate",
+  "which findings support this diagnosis (select all that apply)",
+  "which counseling points should the NP include (select all)",
+  "which medications require monitoring labs (select all that apply)",
+  "which red-flag features warrant urgent referral (select all)",
+] as const;
+
+/** ~12% of new slots are FNP-native select-all (not NCLEX NGN). */
+export function questionFormatForIndex(index: number): AanpFnpQuestionFormat {
+  // Stable mix without floating RNG: every Nth slot.
+  const every = Math.max(2, Math.round(1 / AANP_FNP_SELECT_ALL_MIX));
+  return index % every === 0 ? "select_all" : "mcq";
+}
+
+export function formatInstructionsForAanp(format: AanpFnpQuestionFormat): string {
+  if (format === "select_all") {
+    return "Multiple response — 5–6 options, 2–4 correct; correctAnswer comma-separated exact option texts; stem must say select all that apply";
+  }
+  return "Multiple choice — exactly 4 unique options; single best answer";
+}
+
 function pickDomainForSlot(index: number, deficits: Record<string, number>): AanpFnpDomainId {
   const sorted = [...DOMAIN_IDS].sort(
     (a, b) => (deficits[b] ?? getAanpFnpDomainTarget(b)) - (deficits[a] ?? getAanpFnpDomainTarget(a))
@@ -231,6 +255,7 @@ export function planAanpFnpGenerationSlots(params: {
     const clinicalSystem = pickClinicalSystem(idx, seed);
     const blueprintTopic = pickAanpFnp2026BlueprintTopic(clinicalSystem, idx, seed);
     const difficulty = 2 + (idx % 4);
+    const questionFormat = questionFormatForIndex(idx);
 
     slots.push({
       blueprintDomain,
@@ -238,6 +263,7 @@ export function planAanpFnpGenerationSlots(params: {
       patientAgeGroup,
       blueprintTopic,
       difficulty,
+      questionFormat,
     });
   }
 
@@ -264,6 +290,12 @@ export function assessAanpFnpBlueprintAlignment(
   return { aligned, deviations };
 }
 
-export function stemFormatForIndex(index: number): string {
+export function stemFormatForIndex(
+  index: number,
+  questionFormat: AanpFnpQuestionFormat = "mcq"
+): string {
+  if (questionFormat === "select_all") {
+    return SATA_STEM_FORMATS[index % SATA_STEM_FORMATS.length]!;
+  }
   return STEM_FORMATS[index % STEM_FORMATS.length]!;
 }

@@ -53,4 +53,21 @@ npm run db:enrich-board-expert -- --field aanp-fnp --serve-only --limit 500
 
 1. Expand catalog (murmur timing, vaccine schedule card, Beers deprescribing)
 2. License real derm/otoscopy photos where allowed
-3. Wave 2: SATA-style FNP formats + 6K serve-ready push
+3. Wave 2: SATA-style FNP formats + dedicated serve-gate + 6K generate-to-target — **in progress / shipped in code**
+
+## Wave 2 ops (formats + volume)
+
+```bash
+# Fill toward 6K (hybrid AI + procedural when key present)
+npm run db:generate-aanp-fnp-to-target -- --target 6000 --mode hybrid
+npm run db:generate-aanp-fnp-to-target:dry
+
+# Blueprint rebalance if domains drift
+npm run db:rebalance-aanp-fnp
+
+# After new SATA/lab items
+npm run db:attach-aanp-fnp-figures -- --limit 2000
+npm run db:enrich-aanp-fnp-visual-rationales -- --limit 2000
+```
+
+New generation targets ~12% `select_all` (FNP-native multi-select, not NCLEX NGN). Serve path uses `aanp-fnp-serve-gate` + `bankItemToAanpFnpRaw` so SATA does not collapse to MCQ.

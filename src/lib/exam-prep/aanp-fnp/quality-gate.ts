@@ -78,6 +78,25 @@ export function assessAanpFnpBankItem(
     issues.push("Question stem too short.");
   }
 
+  const itemType = item.itemType ?? "vignette";
+  if (itemType === "select_all" || itemType === "sata") {
+    const parts = (item.correctAnswer.includes("|||")
+      ? item.correctAnswer.split("|||")
+      : item.correctAnswer.split(",")
+    )
+      .map((p) => p.trim())
+      .filter(Boolean);
+    const matched = parts.filter((p) => item.options.includes(p));
+    if (matched.length < 2) {
+      flags.push("select_all_answer");
+      issues.push("Select-all items need at least 2 correct options matching the option list.");
+    }
+    if (item.options.length < 5) {
+      flags.push("select_all_options");
+      issues.push("Select-all items should have 5–6 options.");
+    }
+  }
+
   const difficultyRating = item.difficulty ?? 3;
   let qcScore = 100;
   if (!serveReady) qcScore -= 40;
@@ -85,13 +104,18 @@ export function assessAanpFnpBankItem(
   if (flags.includes("short_vignette")) qcScore -= 15;
   if (flags.includes("invalid_domain")) qcScore -= 10;
   if (flags.includes("invalid_age_group")) qcScore -= 5;
+  if (flags.includes("select_all_answer")) qcScore -= 30;
+  if (flags.includes("select_all_options")) qcScore -= 10;
   qcScore = Math.max(0, qcScore);
 
+  const passSelectAll = !flags.includes("select_all_answer");
+  const finalServeReady = serveReady && passSelectAll;
+
   const reviewStatus: AanpFnpReviewStatus =
-    qcScore >= 80 && serveReady ? "approved" : qcScore >= 50 ? "flagged" : "rejected";
+    qcScore >= 80 && finalServeReady ? "approved" : qcScore >= 50 ? "flagged" : "rejected";
 
   return {
-    serveReady,
+    serveReady: finalServeReady,
     blueprintAligned,
     difficultyRating,
     qcScore,

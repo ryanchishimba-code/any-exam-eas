@@ -19,6 +19,12 @@ import {
   nptePtItemPassesTimedExamGate,
 } from "./npte-pt-serve-gate";
 import {
+  aanpFnpItemPassesRelaxedExamGate,
+  aanpFnpItemPassesStructuralTimedGate,
+  aanpFnpItemPassesTimedExamGate,
+  prepareAanpFnpBankItem,
+} from "./aanp-fnp-serve-gate";
+import {
   usmleBankItemIsExamFillReady,
   usmleBankItemIsServeReady,
   usmleBankItemPassesBasicTimedGate,
@@ -59,6 +65,14 @@ function nptePtItemPassesMinimalExamGate(item: BankItem): boolean {
   return Boolean(item.question?.trim());
 }
 
+function aanpFnpItemPassesMinimalExamGate(item: BankItem): boolean {
+  const prepared = prepareAanpFnpBankItem(item);
+  if ((prepared.options?.length ?? 0) < 4) return false;
+  const answer = prepared.correctAnswer?.trim() ?? "";
+  if (!answer) return false;
+  return Boolean(prepared.question?.trim());
+}
+
 /**
  * Ordered gather-gate ladder for progressive bank pulls.
  * Each tier adds items that pass a lower editorial bar until the pool fills.
@@ -89,7 +103,15 @@ export function timedExamGatherLadderForField(fieldId: string): GatherGateTier[]
       { id: "minimal", filter: nptePtItemPassesMinimalExamGate },
     ];
   }
-  if (fieldId.startsWith("usmle") || fieldId === "pance" || fieldId === "aanp-fnp") {
+  if (fieldId === "aanp-fnp") {
+    return [
+      { id: "structural", filter: aanpFnpItemPassesStructuralTimedGate },
+      { id: "serve", filter: aanpFnpItemPassesTimedExamGate },
+      { id: "relaxed", filter: aanpFnpItemPassesRelaxedExamGate },
+      { id: "minimal", filter: aanpFnpItemPassesMinimalExamGate },
+    ];
+  }
+  if (fieldId.startsWith("usmle") || fieldId === "pance") {
     return [
       {
         id: "serve",
@@ -137,10 +159,15 @@ export function timedExamGatePairForField(fieldId: string): TimedExamGatePair {
       relaxed: nptePtItemPassesRelaxedExamGate,
     };
   }
+  if (fieldId === "aanp-fnp") {
+    return {
+      strict: aanpFnpItemPassesStructuralTimedGate,
+      relaxed: aanpFnpItemPassesRelaxedExamGate,
+    };
+  }
   if (
     fieldId.startsWith("usmle") ||
-    fieldId === "pance" ||
-    fieldId === "aanp-fnp"
+    fieldId === "pance"
   ) {
     return {
       strict: (item) => usmleBankItemPassesStructuralGate(item, fieldId),

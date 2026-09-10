@@ -20,13 +20,13 @@ import {
   dedupeBatchItems,
 } from "./batch-diversity";
 import { runAanpFnpHybridGate } from "./hybrid-gate";
-import { stemFormatForIndex, planAanpFnpGenerationSlots } from "./blueprint-quota";
+import { stemFormatForIndex, planAanpFnpGenerationSlots, formatInstructionsForAanp } from "./blueprint-quota";
 import { buildAanpFnp2026TopicCatalogBlock } from "./blueprint-topics-2026";
 import { attachAanpFnpStudyLinks } from "./study-links";
 import { normalizeAanpFnpExhibitPayload } from "./normalize-exhibit";
 import { attachVisualRationaleToItem } from "@/lib/engine/rationale/enrich-visual-rationale";
 import { maybeEnrichExpertBankItemRationale } from "@/lib/engine/rationale/generate-expert-rationale";
-import type { AanpFnpGenerationMeta, AanpFnpGenerationSlot } from "./types";
+import type { AanpFnpGenerationMeta, AanpFnpGenerationSlot, AanpFnpQuestionFormat } from "./types";
 import {
   AANP_FNP_GENERATION_CHUNK_SIZE,
   AANP_FNP_GENERATION_CONCURRENCY,
@@ -72,14 +72,57 @@ export type AanpFnpGenerationResult = {
   diversityIssues: number;
 };
 
+function resolveQuestionFormat(slot: AanpFnpGenerationSlot): AanpFnpQuestionFormat {
+  return slot.questionFormat ?? "mcq";
+}
+
+function resolveItemType(format: AanpFnpQuestionFormat): string {
+  return format === "select_all" ? "select_all" : "vignette";
+}
+
+/** Normalize select-all correctAnswer to ||| multi-keys matching options. */
+export function normalizeAanpFnpSpecialFormats(
+  item: BankItem,
+  slot: AanpFnpGenerationSlot
+): BankItem {
+  const format = resolveQuestionFormat(slot);
+  if (format !== "select_all" || item.options.length < 4) return item;
+
+  const parts = (item.correctAnswer.includes("|||")
+    ? item.correctAnswer.split("|||")
+    : item.correctAnswer.split(",")
+  )
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  const matched = parts.filter((p) => item.options.includes(p));
+  if (matched.length >= 2) {
+    return { ...item, correctAnswer: matched.join("|||"), itemType: "select_all" };
+  }
+
+  // Fall back: keep first two options that are NOT listed as distractors.
+  const wrong = new Set(Object.keys(item.distractorRationale ?? {}));
+  const inferred = item.options.filter((o) => !wrong.has(o));
+  if (inferred.length >= 2) {
+    return {
+      ...item,
+      correctAnswer: inferred.slice(0, Math.min(3, inferred.length)).join("|||"),
+      itemType: "select_all",
+    };
+  }
+
+  return { ...item, itemType: "select_all" };
+}
+
 function buildSlotPrompt(
   slots: AanpFnpGenerationSlot[],
   patternBlock: string,
   exemplarBlock: string
 ): string {
   const slotLines = slots.map((s, i) => {
-    const stemHint = stemFormatForIndex(i);
-    return `${i + 1}. Domain: ${s.blueprintDomain} | System: ${s.clinicalSystem} | Age group: ${s.patientAgeGroup} | Topic: ${s.blueprintTopic} | Difficulty: ${s.difficulty}/5 | Format: ${stemHint}`;
+    const format = resolveQuestionFormat(s);
+    const stemHint = stemFormatForIndex(i, format);
+    return `${i + 1}. Domain: ${s.blueprintDomain} | System: ${s.clinicalSystem} | Age group: ${s.patientAgeGroup} | Topic: ${s.blueprintTopic} | Difficulty: ${s.difficulty}/5 | Stem: ${stemHint} | Item format: ${format} — ${formatInstructionsForAanp(format)}`;
   });
 
   return `Generate exactly ${slots.length} original AANP FNP-C practice questions.
@@ -104,9 +147,9 @@ ${slotLines.join("\n")}
 Return JSON: { "questions": [ ... ] }
 Each question object:
 - vignette (2–4 sentences: demographics, CC, history, exam, labs/imaging appropriate to age group)
-- question (lead-in stem only, ending with ?)
-- options (exactly 4 unique strings, no A/B/C/D prefix)
-- correctAnswer (must match one option exactly)
+- question (lead-in stem only, ending with ?; for select_all explicitly say "Select all that apply")
+- options (mcq: exactly 4; select_all: 5–6 unique strings, no A/B/C/D prefix)
+- correctAnswer (mcq: one option exactly; select_all: 2–4 correct options comma-separated, exact text)
 - explanation (detailed teaching rationale)
 - clinicalReasoning (Assess → Diagnose → Plan → Evaluate chain)
 - distractorRationale (object mapping each WRONG option to why it fails)
@@ -115,6 +158,7 @@ Each question object:
 - patientAgeGroup (age group slug from slot)
 - blueprintTopic (specific topic from slot)
 - difficulty (1–5)
+- chartData (optional but preferred when labs/vitals drive the answer): { "kind": "lab_table", "title": string, "rows": [{ "label", "value", "reference"?, "abnormal"? }] } OR { "kind": "findings", "rows": [["Finding","Value"], ...] }
 - tags (array including "aanp-fnp-generated", "AANP-FNP-2024", domain, age group, clinical system)
 - references (array of { label, url? } guideline citations when applicable)`;
 }
@@ -131,6 +175,8 @@ function slotToBankItem(
   slotIndex: number,
   qcScore: number
 ): BankItem {
+  const format = resolveQuestionFormat(slot);
+  const itemType = resolveItemType(format);
   const meta: AanpFnpGenerationMeta = {
     batchId,
     slotIndex,
@@ -154,23 +200,32 @@ function slotToBankItem(
       slot.clinicalSystem,
       slot.patientAgeGroup,
       slot.blueprintTopic.toLowerCase().replace(/\s+/g, "-"),
+      format === "select_all" ? "select-all" : "mcq",
       `batch-${batchId}`,
     ],
     source: "generated",
   });
 
-  return {
+  const chartData =
+    exam.chartData && typeof exam.chartData === "object"
+      ? (exam.chartData as Record<string, unknown>)
+      : {};
+
+  let item: BankItem = {
     ...base,
-    itemType: "vignette",
+    itemType,
     patientAgeGroup: slot.patientAgeGroup,
     blueprintTopic: slot.blueprintTopic,
     ngnPayload: attachAanpFnpStudyLinks(
       {
         ...base.ngnPayload,
+        ...chartData,
+        kind: format === "select_all" ? "select_all" : base.ngnPayload?.kind ?? "vignette",
         clinicalSystem: slot.clinicalSystem,
         patientAgeGroup: slot.patientAgeGroup,
         blueprintTopic: slot.blueprintTopic,
         blueprintDomain: slot.blueprintDomain,
+        questionFormat: format,
         generationMeta: meta,
       },
       {
@@ -190,6 +245,9 @@ function slotToBankItem(
       }
     ),
   };
+
+  item = normalizeAanpFnpSpecialFormats(item, slot);
+  return item;
 }
 
 export async function generateAanpFnpChunk(params: {
