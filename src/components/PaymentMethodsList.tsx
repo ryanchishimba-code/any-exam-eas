@@ -7,7 +7,6 @@ const icons: Record<string, ReactNode> = {
   card: <CreditCard className="h-5 w-5" aria-hidden />,
   apple_pay: <Smartphone className="h-5 w-5" aria-hidden />,
   google_pay: <Smartphone className="h-5 w-5" aria-hidden />,
-  link: <CreditCard className="h-5 w-5" aria-hidden />,
 };
 
 export function PaymentMethodsList({ compact = false }: { compact?: boolean }) {
@@ -15,7 +14,7 @@ export function PaymentMethodsList({ compact = false }: { compact?: boolean }) {
     return (
       <div className="space-y-3 text-center">
         <p className="text-xs text-[var(--color-ink-muted)]">
-          Pay with card, Link, Apple Pay, or Google Pay — processed securely by Stripe.
+          Pay with card, Apple Pay, or Google Pay — processed securely by Stripe.
         </p>
         <PaymentMethodBadges className="justify-center" size="sm" />
       </div>

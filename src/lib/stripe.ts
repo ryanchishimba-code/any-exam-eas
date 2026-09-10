@@ -109,8 +109,9 @@ function buildOneTimeSessionParams(params: CheckoutBaseParams) {
     payment_intent_data: {
       metadata: sessionMetadata(params, tier, interval, "one_time"),
     },
-    // Omit payment_method_types so Stripe Dashboard dynamic methods apply —
-    // hardcoding ["card","link"] was blocking Apple Pay / Google Pay wallets.
+    // Card only — Apple Pay / Google Pay still ride on `card`. Do not include
+    // `link` (or BNPL extras); shoppers should see wallet + card entry, not Link.
+    payment_method_types: ["card"],
     payment_method_options: {
       card: {
         request_three_d_secure: "automatic" as const,
@@ -179,8 +180,9 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     ...(isTrialPlan || params.plan === "subscribe"
       ? { payment_method_collection: "always" as const }
       : {}),
-    // Omit payment_method_types so Stripe Dashboard dynamic methods apply —
-    // hardcoding ["card","link"] was blocking Apple Pay / Google Pay wallets.
+    // Card only — Apple Pay / Google Pay still ride on `card`. Do not include
+    // `link` (or BNPL extras); shoppers should see wallet + card entry, not Link.
+    payment_method_types: ["card"],
     payment_method_options: {
       card: {
         request_three_d_secure: "automatic" as const,
@@ -197,7 +199,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
   };
 }
 
-/** Hosted Stripe Checkout (redirect) — dynamic payment methods from Dashboard. */
+/** Hosted Stripe Checkout (redirect) — card + wallets; Link excluded. */
 export async function createCheckoutSession(params: CheckoutBaseParams) {
   if (!stripe) {
     throw new Error("Stripe is not configured. Add STRIPE_SECRET_KEY and STRIPE_PRICE_ID.");

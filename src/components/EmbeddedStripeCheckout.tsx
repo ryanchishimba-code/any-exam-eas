@@ -188,7 +188,7 @@ export function EmbeddedStripeCheckout() {
       <div className="mx-auto mt-6 max-w-lg space-y-2">
         <PaymentMethodBadges className="justify-center" size="sm" />
         <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
-          Apple Pay &amp; Google Pay appear on Stripe Checkout when your device supports them.
+          Card, Apple Pay, or Google Pay — wallets show when your device supports them.
         </p>
       </div>
     </div>
