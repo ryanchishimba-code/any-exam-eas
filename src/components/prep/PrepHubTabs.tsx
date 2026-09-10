@@ -11,6 +11,7 @@ import { timedExamHref, questionBankHref } from "@/lib/study-hub/config";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { NclexStudyPresetsPanel } from "@/components/prep/NclexStudyPresetsPanel";
+import { AanpFnpStudyPresetsPanel } from "@/components/prep/AanpFnpStudyPresetsPanel";
 
 const TABS = [
   { id: "bank", label: "Question Bank" },
@@ -109,6 +110,9 @@ export function PrepHubTabs({
                 </p>
                 <Button href={questionBankHref(exam.fieldId)}>Open question bank</Button>
                 {exam.slug === "nclex" ? <NclexStudyPresetsPanel examSlug="nclex" /> : null}
+                {exam.slug === "aanp-fnp" ? (
+                  <AanpFnpStudyPresetsPanel examSlug="aanp-fnp" />
+                ) : null}
               </>
             )}
           </div>

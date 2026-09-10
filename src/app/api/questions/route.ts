@@ -66,12 +66,14 @@ export async function GET(req: Request) {
 
   const nclexLength = parseNclexTimedVariant(searchParams.get("nclexLength"));
   const nclexPresetEarly = searchParams.get("nclexPreset")?.trim();
+  const aanpFnpPresetEarly = searchParams.get("aanpFnpPreset")?.trim();
   const mixed =
     timedExam ||
     searchParams.get("scope") === "field" ||
     subjectId === MIXED_SUBJECT_ID ||
     searchParams.get("mixed") === "1" ||
-    (requestedFieldId === "nursing" && Boolean(nclexPresetEarly));
+    (requestedFieldId === "nursing" && Boolean(nclexPresetEarly)) ||
+    (requestedFieldId === "aanp-fnp" && Boolean(aanpFnpPresetEarly));
 
   const maxLimit = timedExam ? MAX_TIMED_LIMIT : MAX_BANK_LIMIT;
   const requestedCountParam = Number(searchParams.get("limit") ?? searchParams.get("count"));
@@ -135,6 +137,7 @@ export async function GET(req: Request) {
     : undefined;
 
   const nclexPresetParam = searchParams.get("nclexPreset")?.trim() || undefined;
+  const aanpFnpPresetParam = searchParams.get("aanpFnpPreset")?.trim() || undefined;
   const difficultyTier = searchParams.get("difficultyTier")?.trim() || undefined;
   const blueprintTopicsParam = searchParams.get("blueprintTopics")?.trim();
   const blueprintTopics = blueprintTopicsParam
@@ -158,6 +161,23 @@ export async function GET(req: Request) {
     if (!nclexPresetConfig) {
       return NextResponse.json(
         { error: `Unknown NCLEX preset: ${nclexPresetParam}`, code: "INVALID_NCLEX_PRESET" },
+        { status: 400 }
+      );
+    }
+  }
+
+  let aanpFnpPresetConfig: Awaited<
+    ReturnType<(typeof import("@/lib/exam-prep/aanp-fnp/study-presets"))["getAanpFnpStudyPreset"]>
+  > | undefined;
+  if (fieldId === "aanp-fnp" && aanpFnpPresetParam) {
+    const { getAanpFnpStudyPreset } = await import("@/lib/exam-prep/aanp-fnp/study-presets");
+    aanpFnpPresetConfig = getAanpFnpStudyPreset(aanpFnpPresetParam);
+    if (!aanpFnpPresetConfig) {
+      return NextResponse.json(
+        {
+          error: `Unknown AANP FNP preset: ${aanpFnpPresetParam}`,
+          code: "INVALID_AANP_FNP_PRESET",
+        },
         { status: 400 }
       );
     }
@@ -202,7 +222,9 @@ export async function GET(req: Request) {
   });
   const presetSampleCount = nclexPresetConfig
     ? Math.min(400, Math.max(sampleCount, nclexPresetConfig.count * 4, 80))
-    : sampleCount;
+    : aanpFnpPresetConfig
+      ? Math.min(400, Math.max(sampleCount, aanpFnpPresetConfig.count * 4, 80))
+      : sampleCount;
 
   let items: BankItem[];
   let preAssembledTimed = false;
@@ -324,6 +346,13 @@ export async function GET(req: Request) {
         { strict: true }
       )
     ).slice(0, limit);
+  } else if (fieldId === "aanp-fnp" && bankPractice && aanpFnpPresetConfig) {
+    const { filterItemsForAanpFnpPreset, shuffleBankItems } = await import(
+      "@/lib/exam-prep/aanp-fnp/session-preset-filters"
+    );
+    items = shuffleBankItems(
+      filterItemsForAanpFnpPreset(items, aanpFnpPresetConfig, { strict: bankPractice })
+    ).slice(0, Math.min(limit, aanpFnpPresetConfig.count));
   } else if (
     fieldId === "pharmacy" &&
     bankPractice &&

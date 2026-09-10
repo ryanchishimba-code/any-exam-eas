@@ -71,3 +71,9 @@ npm run db:enrich-aanp-fnp-visual-rationales -- --limit 2000
 ```
 
 New generation targets ~12% `select_all` (FNP-native multi-select, not NCLEX NGN). Serve path uses `aanp-fnp-serve-gate` + `bankItemToAanpFnpRaw` so SATA does not collapse to MCQ.
+
+## Related
+
+- Expert rationales: [`AANP_FNP_EXPERT_RATIONALES.md`](AANP_FNP_EXPERT_RATIONALES.md)
+- Sprint checklist: [`AANP_FNP_WORLD_CLASS_SPRINT.md`](AANP_FNP_WORLD_CLASS_SPRINT.md)
+- Study presets: `/prep/aanp-fnp` Question Bank tab · `aanpFnpPreset` query param
