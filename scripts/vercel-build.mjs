@@ -1,14 +1,10 @@
 import { spawnSync } from "node:child_process";
 import { ensureDatabaseUrl, shouldRunMigrations } from "./prisma-env.mjs";
 
-/**
- * Vercel standard builders have ~8GB RAM total. Raising the Node heap to 6GB
- * caused a container SIGKILL (no room for webpack/OS). Stay at 4GB so the
- * process can grow past the old 3GB heap OOM without starving the builder.
- */
+/** Vercel builders have ~8GB RAM; leave headroom for webpack workers (SIGKILL = OOM). */
 function ensureBuildHeap() {
   if (process.env.NODE_OPTIONS?.includes("max-old-space-size")) return;
-  const extra = process.env.VERCEL ? "--max-old-space-size=4096" : "--max-old-space-size=8192";
+  const extra = process.env.VERCEL ? "--max-old-space-size=3072" : "--max-old-space-size=8192";
   process.env.NODE_OPTIONS = [process.env.NODE_OPTIONS, extra].filter(Boolean).join(" ").trim();
 }
 

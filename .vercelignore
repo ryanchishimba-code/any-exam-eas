@@ -1,9 +1,18 @@
 .tools
 artifacts
 
-# Authoring/source manuscripts are ingested offline into Neon. Runtime serves
-# chapters from the DB and figures from public/*-study-guide. Skipping these
-# on Vercel shrinks the upload and keeps the build container under the OOM line.
+# Authoring manuscripts are ingested offline into Neon. Runtime serves chapters
+# from the DB and figures from public/*-study-guide — skip uploading sources.
 content/nclex-study-guide/
 content/naplex-study-guide/
 content/aanp-fnp-study-guide/
+
+# Local-only junk (never needed on Vercel).
+prisma/dev.db
+prisma/dev.db-shm
+prisma/dev.db-wal
+.next
+playwright-report
+tmp
+tmp-*
+*.tsbuildinfo
