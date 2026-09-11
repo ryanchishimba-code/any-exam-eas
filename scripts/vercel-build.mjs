@@ -2,13 +2,13 @@ import { spawnSync } from "node:child_process";
 import { ensureDatabaseUrl, shouldRunMigrations } from "./prisma-env.mjs";
 
 /**
- * Vercel builders have ~8GB RAM. 3072 was enough for NCLEX/NAPLEX, but the
- * AANP FNP Wave 4 manuscript + figures OOM'd the production build at ~2.9GB.
- * Prefer 6144 and still leave headroom for webpack workers.
+ * Vercel standard builders have ~8GB RAM total. Raising the Node heap to 6GB
+ * caused a container SIGKILL (no room for webpack/OS). Stay at 4GB so the
+ * process can grow past the old 3GB heap OOM without starving the builder.
  */
 function ensureBuildHeap() {
   if (process.env.NODE_OPTIONS?.includes("max-old-space-size")) return;
-  const extra = process.env.VERCEL ? "--max-old-space-size=6144" : "--max-old-space-size=8192";
+  const extra = process.env.VERCEL ? "--max-old-space-size=4096" : "--max-old-space-size=8192";
   process.env.NODE_OPTIONS = [process.env.NODE_OPTIONS, extra].filter(Boolean).join(" ").trim();
 }
 
