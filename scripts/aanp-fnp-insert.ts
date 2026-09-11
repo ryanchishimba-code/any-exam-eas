@@ -39,6 +39,16 @@ export async function insertAanpFnpGeneratedItems(
       (generationMeta as { reviewStatus?: string } | null)?.reviewStatus ??
       (ingestReady ? "approved" : "rejected");
 
+    // Preserve FNP-native select_all (~12% of AI slots). Hardcoding vignette
+    // wiped SATA from the live bank even when generation produced it.
+    const rawType = (item.itemType ?? "vignette").toLowerCase();
+    const itemType =
+      rawType === "select_all" || rawType === "sata"
+        ? "select_all"
+        : rawType === "mcq"
+          ? "vignette"
+          : item.itemType ?? "vignette";
+
     await prisma.questionBankItem.create({
       data: {
         fieldId: "aanp-fnp",
@@ -52,7 +62,7 @@ export async function insertAanpFnpGeneratedItems(
         generationVersion: AANP_FNP_GENERATION_VERSION,
         reviewStatus,
         generationMeta: generationMeta ?? undefined,
-        itemType: "vignette",
+        itemType,
         question: item.question,
         options: serializeBankOptions(item),
         correctAnswer: item.correctAnswer,
