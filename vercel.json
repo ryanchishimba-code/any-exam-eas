@@ -1,6 +1,6 @@
 {
   "buildCommand": "npm run vercel-build",
-  "installCommand": "npm ci",
+  "installCommand": "npm ci && rm -rf .next/cache",
   "crons": [
     {
       "path": "/api/cron/db-keepalive",
