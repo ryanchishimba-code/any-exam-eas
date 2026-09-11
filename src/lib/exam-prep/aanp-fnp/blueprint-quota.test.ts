@@ -4,6 +4,7 @@ import {
   computeAanpFnpAgeGroupQuotas,
   computeAanpFnpClinicalSystemQuotas,
   computeAanpFnpDomainQuotas,
+  planAanpFnpGenerationSlots,
 } from "./blueprint-quota";
 import { AANP_FNP_TARGET_TOTAL } from "./types";
 
@@ -44,5 +45,27 @@ describe("AANP FNP blueprint quotas", () => {
     const cv = quotas.find((q) => q.system === "cardiovascular");
     const derm = quotas.find((q) => q.system === "dermatology-ent");
     expect(cv!.targetCount).toBeGreaterThan(derm!.targetCount);
+  });
+
+  it("skips zero-deficit Evaluate and overfilled pediatric ages", () => {
+    const slots = planAanpFnpGenerationSlots({
+      count: 40,
+      domainDeficits: { assess: 20, diagnose: 15, plan: 5, evaluate: 0 },
+      ageGroupDeficits: {
+        newborn: 0,
+        infant: 0,
+        toddler: 0,
+        child: 0,
+        adolescent: 0,
+        "young-adult": 10,
+        "middle-adult": 15,
+        "older-adult": 20,
+      },
+    });
+    expect(slots.every((s) => s.blueprintDomain !== "evaluate")).toBe(true);
+    expect(slots.some((s) => s.blueprintDomain === "assess")).toBe(true);
+    const peds = new Set(["newborn", "infant", "toddler", "child", "adolescent"]);
+    expect(slots.every((s) => !peds.has(s.patientAgeGroup))).toBe(true);
+    expect(slots.filter((s) => s.patientAgeGroup === "older-adult").length).toBeGreaterThan(0);
   });
 });

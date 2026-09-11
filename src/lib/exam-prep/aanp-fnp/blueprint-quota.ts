@@ -214,30 +214,40 @@ export function formatInstructionsForAanp(format: AanpFnpQuestionFormat): string
   return "Multiple choice — exactly 4 unique options; single best answer";
 }
 
-function pickDomainForSlot(index: number, deficits: Record<string, number>): AanpFnpDomainId {
-  const sorted = [...DOMAIN_IDS].sort(
-    (a, b) => (deficits[b] ?? getAanpFnpDomainTarget(b)) - (deficits[a] ?? getAanpFnpDomainTarget(a))
-  );
-  return sorted[index % sorted.length]!;
-}
-
-function pickAgeGroupForSlot(index: number, deficits: Record<string, number>): AanpFnpPatientAgeGroupId {
-  const sorted = [...AGE_GROUP_IDS].sort((a, b) => {
-    const weightA = AANP_FNP_AGE_GROUP_WEIGHTS[a];
-    const weightB = AANP_FNP_AGE_GROUP_WEIGHTS[b];
-    const deficitA = deficits[a] ?? Math.round(AANP_FNP_TARGET_TOTAL * weightA);
-    const deficitB = deficits[b] ?? Math.round(AANP_FNP_TARGET_TOTAL * weightB);
-    return deficitB - deficitA;
-  });
-  return sorted[index % sorted.length]!;
+/**
+ * Pick the category with the largest remaining deficit (> 0).
+ * Never assigns zero-deficit categories (stops Evaluate / pediatric overfill).
+ * Fallback only when every category is already at/above target.
+ */
+function pickDeficitCategory<T extends string>(
+  ids: readonly T[],
+  remaining: Record<string, number>,
+  fallbackIds: readonly T[]
+): T {
+  const under = ids
+    .filter((id) => (remaining[id] ?? 0) > 0)
+    .sort((a, b) => (remaining[b] ?? 0) - (remaining[a] ?? 0));
+  if (under.length > 0) return under[0]!;
+  return fallbackIds[0] ?? ids[0]!;
 }
 
 function pickClinicalSystem(index: number, seed = 0): AanpFnpClinicalSystemId {
   return pickAanpFnp2026ClinicalSystem(index, seed);
 }
 
+/** Domains that are safe fallbacks when the bank is already at quota everywhere. */
+const DOMAIN_FALLBACK: AanpFnpDomainId[] = ["assess", "diagnose", "plan"];
+
+/** Adult lifespan bands — preferred fallback when peds bands are already overfilled. */
+const AGE_FALLBACK: AanpFnpPatientAgeGroupId[] = [
+  "older-adult",
+  "middle-adult",
+  "young-adult",
+];
+
 /**
  * Build generation slots prioritizing domains and age groups with the largest deficit.
+ * Mutates working deficit copies so a batch does not keep rotating into overfilled buckets.
  */
 export function planAanpFnpGenerationSlots(params: {
   count: number;
@@ -248,10 +258,23 @@ export function planAanpFnpGenerationSlots(params: {
   const { count, domainDeficits, ageGroupDeficits = {}, seed = 0 } = params;
   const slots: AanpFnpGenerationSlot[] = [];
 
+  const domainRemaining: Record<string, number> = {};
+  for (const id of DOMAIN_IDS) {
+    domainRemaining[id] = Math.max(0, domainDeficits[id] ?? 0);
+  }
+  const ageRemaining: Record<string, number> = {};
+  for (const id of AGE_GROUP_IDS) {
+    ageRemaining[id] = Math.max(0, ageGroupDeficits[id] ?? 0);
+  }
+
   for (let i = 0; i < count; i++) {
     const idx = i + seed;
-    const blueprintDomain = pickDomainForSlot(idx, domainDeficits);
-    const patientAgeGroup = pickAgeGroupForSlot(idx, ageGroupDeficits);
+    const blueprintDomain = pickDeficitCategory(DOMAIN_IDS, domainRemaining, DOMAIN_FALLBACK);
+    domainRemaining[blueprintDomain] = Math.max(0, (domainRemaining[blueprintDomain] ?? 0) - 1);
+
+    const patientAgeGroup = pickDeficitCategory(AGE_GROUP_IDS, ageRemaining, AGE_FALLBACK);
+    ageRemaining[patientAgeGroup] = Math.max(0, (ageRemaining[patientAgeGroup] ?? 0) - 1);
+
     const clinicalSystem = pickClinicalSystem(idx, seed);
     const blueprintTopic = pickAanpFnp2026BlueprintTopic(clinicalSystem, idx, seed);
     const difficulty = 2 + (idx % 4);
