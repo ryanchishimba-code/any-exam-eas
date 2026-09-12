@@ -145,6 +145,27 @@ describe("StudyGuideReader", () => {
     expect(notice).toHaveTextContent("pharmacy program");
   });
 
+  it("shows a trial CTA and hides persistence controls in guest preview", () => {
+    render(
+      <StudyGuideReader
+        exam="nclex"
+        guideId="g1"
+        guideTitle="NCLEX-RN Study Guide"
+        chapters={CHAPTERS}
+        chapter={makeChapter()}
+        guestPreview
+      />
+    );
+    expect(screen.getByText(/Afterload is resistance/)).toBeInTheDocument();
+    expect(screen.getByText(/Want bookmarks \+ 500-question free trial/i)).toBeInTheDocument();
+    expect(screen.queryByTitle(/Highlight selection/i)).not.toBeInTheDocument();
+    expect(screen.queryByTitle(/Bookmark \(b\)/i)).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /back to free guides/i })).toHaveAttribute(
+      "href",
+      "/free-guides"
+    );
+  });
+
   it("hides the Go deeper block when a chapter has no related topics", () => {
     renderReader();
     expect(screen.queryByText(/Go deeper on this chapter/i)).not.toBeInTheDocument();

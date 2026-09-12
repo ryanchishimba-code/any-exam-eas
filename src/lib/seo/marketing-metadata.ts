@@ -106,7 +106,7 @@ export function buildFreeGuidesMetadata(): Metadata {
 export function buildToolkitHubMetadata(): Metadata {
   const title = "Board Exam Toolkit — Official Links & Study Tools";
   const description =
-    "Toolkit directory for six boards: official blueprints, lab values & calculators, Top 509 drugs, Anatomy Explorer, Blueprint Roadmaps, and exam guides.";
+    "Toolkit directory for six boards: official blueprints, lab values & calculators, Top 500 drugs, Anatomy Explorer, Blueprint Roadmaps, and exam guides.";
   const path = "/toolkit";
   return {
     ...baseOpenGraph(title, description, path, { absoluteTitle: true }),
@@ -116,7 +116,7 @@ export function buildToolkitHubMetadata(): Metadata {
       "NAPLEX content outline",
       "USMLE official resources",
       "lab values calculators",
-      "Top 509 drugs",
+      "Top 500 drugs",
       "Anatomy Explorer",
       "blueprint roadmap",
       "NCLEX study resources",

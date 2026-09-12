@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
-import { notFound, redirect, unstable_rethrow } from "next/navigation";
+import { notFound, unstable_rethrow } from "next/navigation";
 import { StudyGuideReader } from "@/components/nclex-study-guide/StudyGuideReader";
 import { StudyGuideUnavailable } from "@/components/nclex-study-guide/StudyGuideUnavailable";
 import { getCachedSession } from "@/lib/auth/session";
-import {
-  getChapterBySlug,
-  getGuideToc,
-  getPublishedGuide,
-} from "@/lib/nclex-study-guide";
 import { STUDY_GUIDES } from "@/lib/nclex-study-guide/guide-registry";
-import { withDbRetry } from "@/lib/nclex-study-guide/with-db-retry";
-import { requirePremiumPage } from "@/lib/require-premium-page";
-import { ROUTES } from "@/lib/routes";
+import { loadPublishedGuideChapter } from "@/lib/nclex-study-guide/load-published";
 
 export const dynamic = "force-dynamic";
 
-/** This route folder is the AANP FNP book; NCLEX/NAPLEX have their own folders. */
 const EXAM = "aanp-fnp" as const;
 const CONFIG = STUDY_GUIDES[EXAM];
 
@@ -31,29 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StudyGuideChapterPage({ params }: Props) {
   const { chapterSlug } = await params;
-
-  const callbackPath = `${CONFIG.routeBase}/${chapterSlug}`;
+  const session = await getCachedSession();
 
   let guide;
   let toc;
   let chapter;
 
   try {
-    const session = await getCachedSession();
-    if (!session?.user?.id) {
-      redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
-    }
-    await requirePremiumPage(CONFIG.routeBase);
-
-    ({ guide, toc, chapter } = await withDbRetry(async () => {
-      const loadedGuide = await getPublishedGuide(EXAM);
-      const guideId = loadedGuide?.id ?? CONFIG.guideId;
-      const [loadedToc, loadedChapter] = await Promise.all([
-        getGuideToc(guideId),
-        getChapterBySlug(guideId, chapterSlug, EXAM),
-      ]);
-      return { guide: loadedGuide, toc: loadedToc, chapter: loadedChapter };
-    }));
+    ({ guide, toc, chapter } = await loadPublishedGuideChapter(EXAM, chapterSlug));
   } catch (e) {
     unstable_rethrow(e);
     console.error(`[${EXAM}/study-guide]`, e);
@@ -69,6 +46,7 @@ export default async function StudyGuideChapterPage({ params }: Props) {
       guideTitle={guide?.title ?? CONFIG.title}
       chapters={toc ?? []}
       chapter={chapter}
+      guestPreview={!session?.user?.id}
     />
   );
 }

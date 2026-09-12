@@ -2,6 +2,12 @@ import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { appBaseUrl } from "@/lib/email/config";
 import { MAX_BLOG_POSTS } from "@/lib/blog/limits";
+import {
+  publicBlogAuthorName,
+  publicBlogBody,
+  publicBlogExcerpt,
+  publicBlogTitle,
+} from "@/lib/blog/public-copy";
 
 export const BLOG_CACHE_TAG = "blog-posts";
 
@@ -52,15 +58,15 @@ function toCard(row: {
 }): PublicBlogPostCard {
   return {
     id: row.id,
-    title: row.title,
+    title: publicBlogTitle(row.title),
     slug: row.slug,
-    excerpt: row.excerpt,
+    excerpt: publicBlogExcerpt(row.excerpt),
     coverImage: publicCoverImageUrl(row.slug, row.coverImage),
     category: row.category,
     tags: row.tags,
     readTime: row.readTime,
     publishedAt: row.publishedAt?.toISOString() ?? null,
-    authorName: row.author?.name ?? null,
+    authorName: publicBlogAuthorName(row.author?.name),
   };
 }
 
@@ -127,10 +133,12 @@ const getPublishedBlogPostBySlugCached = unstable_cache(
     if (!row) return null;
     return {
       ...toCard(row),
-      content: row.content,
+      content: publicBlogBody(row.content),
       views: row.views,
-      metaTitle: row.metaTitle,
-      metaDescription: row.metaDescription,
+      metaTitle: row.metaTitle ? publicBlogTitle(row.metaTitle) : null,
+      metaDescription: row.metaDescription
+        ? publicBlogExcerpt(row.metaDescription)
+        : null,
       authorImage: row.author?.image ?? null,
     };
   },

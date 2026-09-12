@@ -110,7 +110,7 @@ export function DrugSearchPreview({ drug, onClose }: Props) {
         <div className="mt-5 space-y-4">
           <p className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">
             Reference-only entry from FDA Drugs@FDA. Flashcards, mnemonics, and spaced repetition
-            stay on the curated Top 509 deck.
+            stay on the curated Top 500 deck.
           </p>
 
           <div className="grid gap-4 sm:grid-cols-2">

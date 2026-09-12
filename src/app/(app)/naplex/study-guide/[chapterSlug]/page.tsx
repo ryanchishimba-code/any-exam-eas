@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
-import { notFound, redirect, unstable_rethrow } from "next/navigation";
+import { notFound, unstable_rethrow } from "next/navigation";
 import { StudyGuideReader } from "@/components/nclex-study-guide/StudyGuideReader";
 import { StudyGuideUnavailable } from "@/components/nclex-study-guide/StudyGuideUnavailable";
 import { getCachedSession } from "@/lib/auth/session";
-import {
-  getChapterBySlug,
-  getGuideToc,
-  getPublishedGuide,
-} from "@/lib/nclex-study-guide";
 import { STUDY_GUIDES } from "@/lib/nclex-study-guide/guide-registry";
-import { withDbRetry } from "@/lib/nclex-study-guide/with-db-retry";
-import { requirePremiumPage } from "@/lib/require-premium-page";
-import { ROUTES } from "@/lib/routes";
+import { loadPublishedGuideChapter } from "@/lib/nclex-study-guide/load-published";
 
 export const dynamic = "force-dynamic";
 
-/** This route folder is the NAPLEX book; NCLEX has its own under /nclex. */
 const EXAM = "naplex" as const;
 const CONFIG = STUDY_GUIDES[EXAM];
 
@@ -31,37 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StudyGuideChapterPage({ params }: Props) {
   const { chapterSlug } = await params;
-
-  const callbackPath = `${CONFIG.routeBase}/${chapterSlug}`;
+  const session = await getCachedSession();
 
   let guide;
   let toc;
   let chapter;
 
-  // The access check queries the database too, so it shares the content's
-  // fallback. `unstable_rethrow` lets the login and paywall redirects through —
-  // catching them here would hand the book to anyone during a blip.
-  //
-  // Access stays outside `withDbRetry`: the Prisma client already retries every
-  // statement, so nesting a second retry around the checks multiplied the worst
-  // case instead of improving it.
   try {
-    const session = await getCachedSession();
-    if (!session?.user?.id) {
-      redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
-    }
-    await requirePremiumPage(CONFIG.routeBase);
-
-    ({ guide, toc, chapter } = await withDbRetry(async () => {
-      const loadedGuide = await getPublishedGuide(EXAM);
-      const guideId = loadedGuide?.id ?? CONFIG.guideId;
-      // Independent once the guide id is known.
-      const [loadedToc, loadedChapter] = await Promise.all([
-        getGuideToc(guideId),
-        getChapterBySlug(guideId, chapterSlug, EXAM),
-      ]);
-      return { guide: loadedGuide, toc: loadedToc, chapter: loadedChapter };
-    }));
+    ({ guide, toc, chapter } = await loadPublishedGuideChapter(EXAM, chapterSlug));
   } catch (e) {
     unstable_rethrow(e);
     console.error(`[${EXAM}/study-guide]`, e);
@@ -77,6 +46,7 @@ export default async function StudyGuideChapterPage({ params }: Props) {
       guideTitle={guide?.title ?? CONFIG.title}
       chapters={toc ?? []}
       chapter={chapter}
+      guestPreview={!session?.user?.id}
     />
   );
 }

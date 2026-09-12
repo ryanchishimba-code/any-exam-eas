@@ -98,7 +98,7 @@ export function ToolkitNaplexMasterySection() {
         <div>
           <h3 className="text-sm font-semibold text-[var(--color-ink)]">Priority drugs</h3>
           <p className="mt-1 text-[11px] text-[var(--color-ink-muted)]">
-            Filtered against the Top 509 catalog for NAPLEX Today overweight — renal/hepatic
+            Filtered against the Top 500 catalog for NAPLEX Today overweight — renal/hepatic
             adjust, interaction, hold, and antidote when on the card.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
@@ -109,7 +109,7 @@ export function ToolkitNaplexMasterySection() {
             href={`${ROUTES.drugs300}?exam=naplex`}
             className="mt-3 inline-block text-sm font-semibold text-[var(--color-accent)] hover:underline"
           >
-            Open Top 509 (NAPLEX filter) →
+            Open Top 500 (NAPLEX filter) →
           </Link>
         </div>
       </div>

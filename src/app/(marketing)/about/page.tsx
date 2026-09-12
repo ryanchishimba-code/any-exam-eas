@@ -9,23 +9,16 @@ import { examMarketingPath } from "@/lib/seo/exam-config";
 import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import {
-  buildLandingBankCountsDisplay,
-  getCachedQuestionBankCounts,
-} from "@/lib/marketing/question-bank-counts";
+  formatExactServeReadyQuestions,
+  getPublishedQuestionStats,
+} from "@/lib/marketing/bank-stats";
 
 export const revalidate = 3600;
 
-export async function generateMetadata() {
-  try {
-    const snapshot = await getCachedQuestionBankCounts();
-    const display = buildLandingBankCountsDisplay(snapshot);
-    if (!snapshot.degraded && display.totalServed > 0) {
-      return buildAboutMetadata(display.totalQuestionsLabel);
-    }
-  } catch {
-    /* static fallback */
-  }
-  return buildAboutMetadata();
+export function generateMetadata() {
+  return buildAboutMetadata(
+    formatExactServeReadyQuestions(getPublishedQuestionStats().totalPublished)
+  );
 }
 
 const EXAM_HUB_LINKS = [
@@ -70,9 +63,9 @@ const OFFICIAL_PREP_DOCS = [
   },
 ] as const;
 
-export default async function AboutPage() {
-  const snapshot = await getCachedQuestionBankCounts();
-  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+export default function AboutPage() {
+  const published = getPublishedQuestionStats();
+  const totalQuestionsLabel = formatExactServeReadyQuestions(published.totalPublished);
 
   return (
     <>
@@ -110,7 +103,7 @@ export default async function AboutPage() {
             </div>
 
             <p className="mt-8 text-sm font-medium text-[var(--color-ink-muted)]">
-              {bankCounts.totalQuestionsLabel} · from {formatMonthlyPrice("pro")}/mo after trial
+              {totalQuestionsLabel} · from {formatMonthlyPrice("pro")}/mo after trial
             </p>
           </div>
         </section>

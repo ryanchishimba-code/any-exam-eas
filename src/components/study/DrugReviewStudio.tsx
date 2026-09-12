@@ -27,6 +27,13 @@ import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
 import { DrugReviewStudioSkeleton } from "./DrugReviewStudioSkeleton";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
+import { GuestTrialBanner } from "@/components/marketing/GuestTrialBanner";
+import {
+  buildOfflineDrugReviewDashboard,
+  buildOfflineDueDrugCards,
+} from "@/lib/drugs300/offline-fallback";
+import { GUEST_DRUG_PREVIEW_LIMIT } from "@/lib/guest-preview";
+import { TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 
 const GRADES: ReviewGrade[] = [0, 1, 2, 3];
 
@@ -50,10 +57,14 @@ function drugClassFromParams(params: URLSearchParams): DrugClassId {
   return "all";
 }
 
-export function DrugReviewStudio() {
+export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: boolean }) {
   const searchParams = useSearchParams();
-  const [dashboard, setDashboard] = useState<DrugReviewDashboard | null>(null);
-  const [cards, setCards] = useState<DrugCardDto[]>([]);
+  const [dashboard, setDashboard] = useState<DrugReviewDashboard | null>(() =>
+    guestPreview ? buildOfflineDrugReviewDashboard() : null
+  );
+  const [cards, setCards] = useState<DrugCardDto[]>(() =>
+    guestPreview ? buildOfflineDueDrugCards(GUEST_DRUG_PREVIEW_LIMIT) : []
+  );
   const [activeClass, setActiveClass] = useState<DrugClassId>(() =>
     drugClassFromParams(searchParams)
   );
@@ -61,7 +72,7 @@ export function DrugReviewStudio() {
   const [flipped, setFlipped] = useState(false);
   const [mnemonic, setMnemonic] = useState<string | null>(null);
   const [mnemonicLoading, setMnemonicLoading] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!guestPreview);
   const [cardsLoading, setCardsLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -76,6 +87,14 @@ export function DrugReviewStudio() {
     setCardsLoading(true);
     setCardsError("");
     try {
+      if (guestPreview) {
+        const limit = classId === "all" ? GUEST_DRUG_PREVIEW_LIMIT : 12;
+        setCards(buildOfflineDueDrugCards(limit, classId));
+        setIndex(0);
+        setFlipped(false);
+        setMnemonic(null);
+        return;
+      }
       const classMeta = classProgress?.find((c) => c.id === classId);
       const params = new URLSearchParams({ class: classId });
       if (classId === "all") {
@@ -96,9 +115,15 @@ export function DrugReviewStudio() {
     } finally {
       setCardsLoading(false);
     }
-  }, []);
+  }, [guestPreview]);
 
   const load = useCallback(async () => {
+    if (guestPreview) {
+      setDashboard(buildOfflineDrugReviewDashboard());
+      setCards(buildOfflineDueDrugCards(GUEST_DRUG_PREVIEW_LIMIT, activeClass));
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     setError("");
     setCardsError("");
@@ -117,6 +142,12 @@ export function DrugReviewStudio() {
       ]);
 
       if (!progressRes.ok) {
+        if (progressRes.status === 401) {
+          setDashboard(buildOfflineDrugReviewDashboard());
+          setCards(buildOfflineDueDrugCards(GUEST_DRUG_PREVIEW_LIMIT, activeClass));
+          setCardsError("");
+          return;
+        }
         throw new Error(progressData.error ?? progressData.message ?? "Failed to load progress");
       }
       setDashboard(progressData);
@@ -136,7 +167,7 @@ export function DrugReviewStudio() {
     } finally {
       setLoading(false);
     }
-  }, [activeClass]);
+  }, [activeClass, guestPreview]);
 
   useEffect(() => {
     void load();
@@ -157,6 +188,10 @@ export function DrugReviewStudio() {
     if (classId === activeClass) return;
     setActiveClass(classId);
     setCardsError("");
+    if (guestPreview) {
+      await loadCards(classId, dashboard?.classProgress);
+      return;
+    }
     const progressRes = await fetch("/api/drugs300/progress");
     const progressData = await progressRes.json();
     if (progressRes.ok) setDashboard(progressData);
@@ -242,13 +277,20 @@ export function DrugReviewStudio() {
     activeClass !== "all" && activeClassStats
       ? activeClassStats.total
       : stats.total;
-  const cardLabel =
-    cards.length > 0 && cards.length < cardTotal
+  const cardLabel = guestPreview
+    ? `Preview card ${index + 1} of ${cards.length} (${TOP_500_DRUGS_COUNT} in the full deck)`
+    : cards.length > 0 && cards.length < cardTotal
       ? `Card ${index + 1} of ${cards.length} (${cardTotal} in ${activeClassStats?.shortLabel ?? "deck"})`
       : `Card ${index + 1} of ${cards.length}`;
 
   return (
     <div className="mt-6 space-y-6">
+      {guestPreview ? (
+        <p className="text-sm text-slate-600">
+          Guest preview — {GUEST_DRUG_PREVIEW_LIMIT} cards from the Top {TOP_500_DRUGS_COUNT} deck.
+          Start a trial for the full library and spaced-repetition progress.
+        </p>
+      ) : null}
       {dashboard.resetApplied && (
         <div className="rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-900">
           <RefreshCw className="mr-2 inline h-4 w-4" aria-hidden />
@@ -388,30 +430,34 @@ export function DrugReviewStudio() {
                 className="top-[calc(var(--nav-height)+4.25rem)]"
                 actions={
                   <>
-                    <Link
-                      href={STUDY_HUB_PATH}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-teal-300/80 bg-teal-50 px-3 py-1.5 text-xs font-semibold text-teal-900 transition hover:bg-teal-100"
-                    >
-                      <LayoutGrid className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                      <span className="hidden sm:inline">Study Hub</span>
-                      <span className="sm:hidden">Hub</span>
-                    </Link>
-                    <EndActivityControl
-                      kind="activity"
-                      variant="teal"
-                      onConfirm={async (): Promise<ActivitySessionSummary> => {
-                        /* Graded cards persist via /api/drugs300/review on each grade */
-                        return {
-                          title: "Top 500 Drugs",
-                          activityType: "drugs",
-                          reviewed: stats.reviewed,
-                          mastered: stats.mastered,
-                          total: stats.total,
-                          progressPct: stats.progressPct,
-                          endedEarly: true,
-                        };
-                      }}
-                    />
+                    {guestPreview ? null : (
+                      <>
+                        <Link
+                          href={STUDY_HUB_PATH}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-teal-300/80 bg-teal-50 px-3 py-1.5 text-xs font-semibold text-teal-900 transition hover:bg-teal-100"
+                        >
+                          <LayoutGrid className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                          <span className="hidden sm:inline">Study Hub</span>
+                          <span className="sm:hidden">Hub</span>
+                        </Link>
+                        <EndActivityControl
+                          kind="activity"
+                          variant="teal"
+                          onConfirm={async (): Promise<ActivitySessionSummary> => {
+                            /* Graded cards persist via /api/drugs300/review on each grade */
+                            return {
+                              title: "Top 500 Drugs",
+                              activityType: "drugs",
+                              reviewed: stats.reviewed,
+                              mastered: stats.mastered,
+                              total: stats.total,
+                              progressPct: stats.progressPct,
+                              endedEarly: true,
+                            };
+                          }}
+                        />
+                      </>
+                    )}
                   </>
                 }
               >
@@ -436,7 +482,10 @@ export function DrugReviewStudio() {
                 flipped={flipped}
                 onFlip={() => setFlipped((f) => !f)}
                 mnemonic={mnemonic}
-                onGenerateMnemonic={() => void fetchMnemonic()}
+                onGenerateMnemonic={() => {
+                  if (guestPreview) return;
+                  void fetchMnemonic();
+                }}
                 mnemonicLoading={mnemonicLoading}
               />
 
@@ -480,7 +529,11 @@ export function DrugReviewStudio() {
                 </button>
               </div>
 
-              {flipped && (
+              {flipped && guestPreview ? (
+                <GuestTrialBanner className="mx-auto max-w-lg" />
+              ) : null}
+
+              {flipped && !guestPreview ? (
                 <div className="mx-auto max-w-lg space-y-3">
                   <p className="text-center text-xs font-semibold uppercase tracking-wider text-slate-500">
                     Spaced repetition — how well did you know it?
@@ -503,7 +556,7 @@ export function DrugReviewStudio() {
                     Again → review soon · Easy → longer interval
                   </p>
                 </div>
-              )}
+              ) : null}
 
               {!flipped && (
                 <div className="mx-auto max-w-lg">

@@ -68,7 +68,7 @@ export function ToolkitNclexMasterySection() {
         <div>
           <h3 className="text-sm font-semibold text-[var(--color-ink)]">Priority drugs</h3>
           <p className="mt-1 text-[11px] text-[var(--color-ink-muted)]">
-            Filtered against the Top 509 catalog for NCLEX Today overweight.
+            Filtered against the Top 500 catalog for NCLEX Today overweight.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
             {drugPreview.map((d) => d.replace(/-/g, " ")).join(", ")}
@@ -78,7 +78,7 @@ export function ToolkitNclexMasterySection() {
             href={`${ROUTES.drugs300}?exam=nclex`}
             className="mt-3 inline-block text-sm font-semibold text-[var(--color-accent)] hover:underline"
           >
-            Open Top 509 →
+            Open Top 500 →
           </Link>
         </div>
       </div>
