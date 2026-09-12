@@ -221,7 +221,7 @@ export function buildHomeJsonLd() {
           availability: "https://schema.org/InStock",
           url: absoluteUrl("/signup?plan=trial&tier=pro"),
           priceValidUntil: `${new Date().getFullYear()}-12-31`,
-          description: `${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day money-back guarantee`,
+          description: `${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment`,
         },
       },
       {

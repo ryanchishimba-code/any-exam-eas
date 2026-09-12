@@ -13,6 +13,7 @@ export const SEO_LIVE_STATS = {
   topDrugsLabel: DRUGS_DECK_MARKETING_TITLE,
   clinicianYears: "12+",
   trialDays: 5,
+  /** Support window for quality issues — not a money-back refund. */
   moneyBackDays: 30,
 } as const;
 

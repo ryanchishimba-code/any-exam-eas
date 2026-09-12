@@ -377,7 +377,7 @@ export function buildPricingJsonLd() {
           priceCurrency: "USD",
           availability: "https://schema.org/InStock",
           url: absoluteUrl("/signup?plan=trial&tier=pro"),
-          description: `${TRIAL_DAYS}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day money-back guarantee · ${formatTrialQuestionLimit()}`,
+          description: `${TRIAL_DAYS}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment · ${formatTrialQuestionLimit()}`,
         },
       },
       {

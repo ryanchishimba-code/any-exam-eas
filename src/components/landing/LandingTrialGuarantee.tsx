@@ -97,19 +97,19 @@ export function LandingTrialGuarantee() {
         <div className="mt-8 flex flex-col items-center gap-2 rounded-2xl border border-[color-mix(in_srgb,var(--color-accent)_25%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_7%,var(--color-surface-elevated))] px-6 py-5 text-center sm:flex-row sm:justify-between sm:text-left">
           <div>
             <p className="text-sm font-bold text-[var(--color-ink)]">
-              30-Day Satisfaction Commitment
+              30-Day Quality Commitment
             </p>
             <p className="mt-0.5 text-xs leading-relaxed text-[var(--color-ink-muted)]">
-              If the quality of any question or explanation falls short of your
-              expectations, email us at{" "}
+              If a question or explanation falls short, email{" "}
               <a
                 href={`mailto:${LEGAL_ENTITY.supportEmail}`}
                 className="font-semibold text-[var(--color-ink)] underline underline-offset-2 transition hover:text-[var(--color-accent)]"
               >
                 {LEGAL_ENTITY.supportEmail}
               </a>{" "}
-              within 30 days and we&apos;ll make it right. We stand behind every
-              item on the platform.
+              within 30 days and we&apos;ll fix the item or walk you through it.
+              This is support — not a refund. Paid charges stay non-refundable
+              except where the law requires otherwise.
             </p>
           </div>
           <Link

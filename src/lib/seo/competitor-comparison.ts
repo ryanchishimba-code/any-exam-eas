@@ -167,8 +167,8 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
     competitor: "Limited demo or paid upfront",
   },
   {
-    feature: "Money-back guarantee",
-    anyExamEasy: `${SEO_LIVE_STATS.moneyBackDays}-day guarantee`,
+    feature: "Quality commitment",
+    anyExamEasy: `${SEO_LIVE_STATS.moneyBackDays}-day support window (not a refund)`,
     competitor: "Rare on QBank-only plans",
   },
 ];

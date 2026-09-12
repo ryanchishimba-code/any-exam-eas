@@ -221,3 +221,24 @@ export function bowTieSelectionValid(
   const monitorCount = selected.filter((s) => layout.monitors.includes(s)).length;
   return actionCount === 1 && monitorCount === layout.monitorPickCount;
 }
+
+/** Toggle one bow-tie choice while keeping one action and N monitors. */
+export function toggleBowTieSelection(
+  prev: string[],
+  option: string,
+  layout: BowTieLayout
+): string[] {
+  if (prev.includes(option)) return prev.filter((o) => o !== option);
+  if (layout.actions.includes(option)) {
+    return [...prev.filter((o) => !layout.actions.includes(o)), option];
+  }
+  if (layout.monitors.includes(option)) {
+    const monitors = prev.filter((o) => layout.monitors.includes(o));
+    const next =
+      monitors.length >= layout.monitorPickCount
+        ? prev.filter((o) => o !== monitors[0])
+        : prev;
+    return [...next, option];
+  }
+  return [...prev, option];
+}
