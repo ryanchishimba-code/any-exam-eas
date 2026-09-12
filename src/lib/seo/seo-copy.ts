@@ -66,12 +66,12 @@ export function seoPlatformPitch(totalLabel?: string): string {
   return `${seoQuestionBankPhrase(totalLabel)}, adaptive Blueprint Roadmaps, Deep Dive modules, and Full Exam simulations — built by licensed clinicians (${SEO_LIVE_STATS.clinicianYears} years combined).`;
 }
 
-/** Homepage H1 — six-board system promise (not a single-exam pitch). */
-export const SEO_HOME_H1 = "One study system. Six boards.";
+/** Homepage H1 — default NCLEX job; six-board system lives in the subhead. */
+export const SEO_HOME_H1 = "NCLEX prep that feels like the real exam.";
 export const SEO_HOME_H1_ACCENT = "";
 
 /** Homepage subline template; inject live question total when available. */
 export function seoHomeHeroSubline(totalLabel?: string): string {
   const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
-  return `${count} QA-gated questions, Blueprint Roadmaps, and full-length mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — clinician-built, not bulk filler.`;
+  return `${count} questions across six boards — NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — with Blueprint Roadmaps and full-length mocks.`;
 }

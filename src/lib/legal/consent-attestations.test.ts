@@ -17,8 +17,16 @@ describe("consent attestations", () => {
 
   it("includes summary lines for signup UI", () => {
     const lines = getSignupConsentSummaryLines();
-    expect(lines.length).toBeGreaterThanOrEqual(3);
-    expect(lines.some((l) => /not affiliated/i.test(l))).toBe(true);
+    expect(lines.length).toBeGreaterThanOrEqual(1);
+    expect(lines.some((l) => /original study material/i.test(l))).toBe(true);
+    expect(lines.some((l) => /not official board items/i.test(l))).toBe(true);
+    expect(lines.join(" ")).not.toMatch(/AI-generated|may contain errors/i);
+  });
+
+  it("keeps full AI-risk language on the stored attestation, not the signup checkbox", () => {
+    const stored = getSignupConsentAttestations().join(" ");
+    expect(stored).toMatch(/AI-generated/i);
+    expect(stored).toMatch(/may contain errors/i);
   });
 
   it("uses a stable attestation version id", () => {

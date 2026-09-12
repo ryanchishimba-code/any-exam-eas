@@ -88,6 +88,21 @@ export function buildResourcesHubMetadata(): Metadata {
   return buildToolkitHubMetadata();
 }
 
+export function buildFreeGuidesMetadata(): Metadata {
+  const title = "Free Study Guides & Board Tools";
+  const description = `Free NCLEX, NAPLEX and FNP study guides plus toolkit drugs, anatomy, and six board hubs. Start a ${SEO_LIVE_STATS.trialDays}-day no-card trial with ${SEO_LIVE_STATS.questionCount} live questions.`;
+  return {
+    ...baseOpenGraph(title, description, "/free-guides", { absoluteTitle: true }),
+    keywords: [
+      "free NCLEX study guide",
+      "free NAPLEX study guide",
+      "free FNP study guide",
+      "board exam toolkit",
+      "free NCLEX practice",
+    ],
+  };
+}
+
 export function buildToolkitHubMetadata(): Metadata {
   const title = "Board Exam Toolkit — Official Links & Study Tools";
   const description =
@@ -124,7 +139,7 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
 
 export function buildPricingMetadata(): Metadata {
   const title = "Pricing — 6 Board Exams, One Pro Plan";
-  const description = `One Pro plan for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmaps & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day free trial — no card required.`;
+  const description = `One Pro plan: ${SEO_LIVE_STATS.questionCount} questions for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmaps & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`;
   return {
     ...baseOpenGraph(title, description, "/pricing", { absoluteTitle: true }),
     keywords: [

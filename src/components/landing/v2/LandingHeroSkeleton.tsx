@@ -5,13 +5,13 @@ import {
   LANDING_HERO_HEADLINE,
   LANDING_HERO_SUBLINE_BODY,
   LANDING_TRIAL_HREF,
+  formatHeroTotalCountLine,
 } from "@/lib/landing/content";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
 /** Lightweight hero shell shown while the flagship landing bundle loads client-side. */
 export function LandingHeroSkeleton({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
-  const nclexCount =
-    bankCounts.exams?.find((e) => e.slug === "nclex")?.countLabel ?? bankCounts.totalLabel;
+  const totalCountLine = formatHeroTotalCountLine(bankCounts.totalLabel);
 
   return (
     <section
@@ -27,8 +27,8 @@ export function LandingHeroSkeleton({ bankCounts }: { bankCounts: LandingBankCou
           <h1 id="hero-heading" className="aee-hero-beat__headline">
             {LANDING_HERO_HEADLINE}
           </h1>
-          {nclexCount ? (
-            <p className="aee-hero-beat__countline">{nclexCount} serve-ready questions in this bank</p>
+          {totalCountLine ? (
+            <p className="aee-hero-beat__countline">{totalCountLine}</p>
           ) : null}
           <p className="aee-hero-beat__subline">{LANDING_HERO_SUBLINE_BODY}</p>
           <div className="aee-hero-beat__actions">

@@ -7,7 +7,7 @@ type Props = {
   className?: string;
 };
 
-/** Site-wide bottom strip — support contact and staff admin login, kept separate from main nav. */
+/** Site-wide bottom strip — support contact, kept separate from main nav. */
 export function SiteBottomBar({ className }: Props) {
   const mailto = `mailto:${LEGAL_ENTITY.supportEmail}?subject=${encodeURIComponent("Any Exam Easy — Contact")}`;
 
@@ -41,12 +41,6 @@ export function SiteBottomBar({ className }: Props) {
           {LEGAL_ENTITY.supportEmail}
         </a>
       </p>
-      <Link
-        href={ROUTES.admin.login}
-        className="text-[12px] font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
-      >
-        Admin login
-      </Link>
     </div>
   );
 }

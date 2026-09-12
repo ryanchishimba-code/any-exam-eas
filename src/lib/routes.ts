@@ -2,14 +2,19 @@ import type { ExamSlug } from "@/lib/exams/catalog";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import type { ExamSlug as EdtechExamSlug } from "@/types/edtech";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import {
+  formatExactServeReadyCount,
+  getPublishedQuestionStats,
+} from "@/lib/marketing/bank-stats";
 
-/** Nav stat labels — mirrors FALLBACK_QUESTION_COUNTS in bank-stats.ts (avoids import cycle). */
+const PUBLISHED_STATS = getPublishedQuestionStats();
 const EXAM_NAV_STATS = {
-  nursing: "8,327",
-  usmle: "17,488",
-  pharmacy: "10,332",
-  aanpFnp: "4,781",
-  nptePt: "4,240",
+  nursing: formatExactServeReadyCount(PUBLISHED_STATS.perBoard.nclex),
+  usmle: formatExactServeReadyCount(PUBLISHED_STATS.perBoard.usmle),
+  pharmacy: formatExactServeReadyCount(PUBLISHED_STATS.perBoard.naplex),
+  pance: formatExactServeReadyCount(PUBLISHED_STATS.perBoard.pance),
+  aanpFnp: formatExactServeReadyCount(PUBLISHED_STATS.perBoard["aanp-fnp"]),
+  nptePt: formatExactServeReadyCount(PUBLISHED_STATS.perBoard["npte-pt"]),
 } as const;
 
 /** Canonical app routes — use these in nav, links, and redirects. */
@@ -36,6 +41,7 @@ export const ROUTES = {
   /** Legacy hub URL — use `toolkit`; individual articles remain at `/resources/[slug]`. */
   resources: "/toolkit",
   toolkit: "/toolkit",
+  freeGuides: "/free-guides",
   blog: "/blog",
   about: "/about",
   compare: "/compare",
@@ -114,7 +120,7 @@ export const EXAM_NAV_ITEMS: {
     href: "/pance",
     fieldId: "pance",
     practiceHref: "/practice/pance",
-    stat: "300Q blueprint",
+    stat: `${EXAM_NAV_STATS.pance} items`,
   },
   {
     slug: "aanp-fnp",

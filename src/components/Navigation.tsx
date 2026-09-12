@@ -161,6 +161,7 @@ export function Navigation() {
         <BrandLogo
           href={brandHref}
           variant="nav"
+          onDark={navOnHero}
           linkClassName="aee-nav-brand"
           /* Never compete with homepage hero LCP for preload bandwidth. */
           priority={pathname !== "/"}

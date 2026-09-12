@@ -67,7 +67,7 @@ export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCou
             </p>
             {questionCountLabel ? (
               <p className="mt-4 text-base font-semibold text-[var(--color-ink-muted)]">
-                {questionCountLabel} serve-ready questions · one plan for six boards
+                {questionCountLabel} {config.shortName} questions live · one plan for six boards
               </p>
             ) : null}
 

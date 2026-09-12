@@ -1,6 +1,5 @@
 "use client";
 
-import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import { getSignupConsentSummaryLines } from "@/lib/legal/consent-attestations";
 import Link from "next/link";
 
@@ -17,6 +16,8 @@ export function LegalCheckboxGroup({
   onTermsChange,
   onAgeChange,
 }: Props) {
+  const summaryLine = getSignupConsentSummaryLines()[0];
+
   return (
     <div className="space-y-4 rounded-2xl bg-[var(--color-surface)] p-4 text-sm">
       <label className="flex cursor-pointer gap-3">
@@ -27,9 +28,7 @@ export function LegalCheckboxGroup({
           className="mt-1"
           required
         />
-        <span>
-          I confirm I am at least 18 years old. {LEGAL_DISCLAIMERS.ageRequirement}
-        </span>
+        <span>I confirm I am at least 18 years old.</span>
       </label>
       <label className="flex cursor-pointer gap-3">
         <input
@@ -50,18 +49,12 @@ export function LegalCheckboxGroup({
           </Link>
           , and{" "}
           <Link href="/legal/disclaimer" className="text-[var(--color-accent)] underline">
-            Educational Disclaimer
+            Educational Disclaimers
           </Link>
-          . I understand and agree that:
-          <ul className="mt-2 list-disc space-y-1 pl-4 text-[var(--color-ink-muted)]">
-            {getSignupConsentSummaryLines().map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-          <p className="mt-2">
-            Billing terms include auto-renewal and non-refundable payments as described in the Terms.{" "}
-            {LEGAL_DISCLAIMERS.userResponsibility}
-          </p>
+          .
+          {summaryLine ? (
+            <p className="mt-2 text-[var(--color-ink-muted)]">{summaryLine}</p>
+          ) : null}
         </div>
       </label>
     </div>
