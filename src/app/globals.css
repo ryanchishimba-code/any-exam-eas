@@ -1766,7 +1766,7 @@ body {
 }
 
 .aee-nav--on-hero .aee-nav-brand {
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .aee-nav-inner {

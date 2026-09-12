@@ -66,16 +66,60 @@ export const TOTAL_QUESTION_BANK_TARGET = EXAM_FIELD_IDS.reduce(
   0
 );
 
+export const PUBLISHED_BOARD_SLUGS = [
+  "nclex",
+  "usmle",
+  "naplex",
+  "pance",
+  "aanp-fnp",
+  "npte-pt",
+] as const;
+
+export type PublishedBoardSlug = (typeof PUBLISHED_BOARD_SLUGS)[number];
+
+const PUBLISHED_BOARD_FIELD_IDS: Record<PublishedBoardSlug, string> = {
+  nclex: "nursing",
+  usmle: "usmle",
+  naplex: "pharmacy",
+  pance: "pance",
+  "aanp-fnp": "aanp-fnp",
+  "npte-pt": "npte-pt",
+};
+
+export type PublishedQuestionStats = {
+  /** Sum of published serve-ready floors across the six live boards. */
+  totalPublished: number;
+  perBoard: Record<PublishedBoardSlug, number>;
+};
+
+/**
+ * Offline published floors for every live board. Prefer live
+ * `getCachedQuestionBankCounts()` on SSR pages; use this when the DB
+ * is unavailable so hero / title / pricing cannot drift apart.
+ */
+export function getPublishedQuestionStats(): PublishedQuestionStats {
+  const perBoard = Object.fromEntries(
+    PUBLISHED_BOARD_SLUGS.map((slug) => [
+      slug,
+      publishedQuestionCountForField(PUBLISHED_BOARD_FIELD_IDS[slug]),
+    ])
+  ) as Record<PublishedBoardSlug, number>;
+
+  return {
+    totalPublished: PUBLISHED_BOARD_SLUGS.reduce((sum, slug) => sum + perBoard[slug], 0),
+    perBoard,
+  };
+}
+
 /**
  * Curated, QA-gated published bank size — the single source of truth for every
  * user-facing total (hero, exam wheel, stats band, share, checkout).
  *
- * Keep this in sync with live serve-ready counts from `/api/marketing/bank-counts`
- * so the static hero never flashes a higher offline floor then drops after hydrate.
- * Never set it to the aspirational `TOTAL_QUESTION_BANK_TARGET`.
+ * Derived from per-board published floors — never the aspirational
+ * `TOTAL_QUESTION_BANK_TARGET`. Keep floors in sync with live serve-ready
+ * counts from `/api/marketing/bank-counts`.
  */
-/** Floors sum of per-field published counts — bump when serve-ready banks grow. */
-export const PUBLISHED_QUESTION_BANK_TOTAL = 47_969;
+export const PUBLISHED_QUESTION_BANK_TOTAL = getPublishedQuestionStats().totalPublished;
 
 /** Offline fallback when live DB counts are unavailable — exact serve-ready floors. */
 /** Offline fallback labels — use live counts from `/api/marketing/bank-counts` in UI. */

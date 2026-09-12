@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  getPublishedQuestionStats,
   MARKETING_QUESTION_COUNTS,
   PUBLISHED_QUESTION_BANK_TOTAL,
   TOTAL_QUESTION_BANK_TARGET,
@@ -25,14 +26,12 @@ describe("marketing bank stats", () => {
   });
 
   it("keeps per-field floors summing to the published total", () => {
-    const sum =
-      Number(MARKETING_QUESTION_COUNTS.usmle.replace(/,/g, "")) +
-      Number(MARKETING_QUESTION_COUNTS.nursing.replace(/,/g, "")) +
-      Number(MARKETING_QUESTION_COUNTS.pharmacy.replace(/,/g, "")) +
-      Number(MARKETING_QUESTION_COUNTS.pance.replace(/,/g, "")) +
-      Number(MARKETING_QUESTION_COUNTS.aanpFnp.replace(/,/g, "")) +
-      Number(MARKETING_QUESTION_COUNTS.nptePt.replace(/,/g, ""));
+    const stats = getPublishedQuestionStats();
+    const sum = Object.values(stats.perBoard).reduce((acc, n) => acc + n, 0);
     expect(sum).toBe(PUBLISHED_QUESTION_BANK_TOTAL);
+    expect(stats.totalPublished).toBe(PUBLISHED_QUESTION_BANK_TOTAL);
+    expect(stats.perBoard.nclex).toBe(8327);
+    expect(stats.perBoard.usmle).toBe(17_488);
   });
 
   it("formats offline fallback labels as exact serve-ready counts", () => {

@@ -28,13 +28,12 @@ export function getSignupConsentAttestations(): string[] {
   ];
 }
 
-/** Short labels for signup UI — full text is stored on the consent record at registration. */
+/**
+ * Short labels for signup UI — full legal coverage (including AI-risk language)
+ * stays on `/legal/disclaimer` and in `getSignupConsentAttestations()`.
+ */
 export function getSignupConsentSummaryLines(): string[] {
-  const { productName, companyName } = LEGAL_ENTITY;
   return [
-    `Study content is created by ${companyName} (${productName}) — an independent provider not affiliated with NCLEX®, USMLE®, NAPLEX®, PANCE®, or other licensing boards.`,
-    "Questions and mock exams are original study material — not actual official board exam items.",
-    "I will use additional textbooks, courses, and official prep resources as needed to prepare for my exam.",
-    "AI-generated content may contain errors; I am responsible for verifying facts before relying on them.",
+    "Original study material · not official board items · independent of NCSBN, NBME, NABP, and other exam boards.",
   ];
 }

@@ -146,7 +146,7 @@ export const LANDING_PRICING_FEATURES = [
   "Library, Memory Cards & timed full exams",
 ] as const;
 
-export const LANDING_HERO_EYEBROW = "AnyExamEasy";
+export const LANDING_HERO_EYEBROW = "NCLEX prep";
 
 /** Primary signup destination — Pro monthly is the default conversion path. */
 export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=monthly&tier=pro";
@@ -167,21 +167,21 @@ export function landingTrialHrefForExam(examSlug?: string): string {
   return `${LANDING_TRIAL_HREF}&exam=${encodeURIComponent(examSlug)}`;
 }
 
-/** Primary hero headline — six boards, one system (single H1; exam pills do not change it). */
-export const LANDING_HERO_HEADLINE = "One study system. Six boards.";
+/** Primary hero headline — default NCLEX job; chips swap the exam-specific line. */
+export const LANDING_HERO_HEADLINE = "NCLEX prep that feels like the real exam.";
 
 /** Accent line under the primary headline — empty when the full headline is in LANDING_HERO_HEADLINE. */
 export const LANDING_HERO_HEADLINE_ACCENT = "";
 
-/** Hero sub-headline — one clear line; exam list lives in chips. */
+/** Hero sub-headline — six-board truth + offer; exam list lives in chips. */
 export const LANDING_HERO_SUBLINE_BODY =
-  "Clinician-built practice for every board — one login across six exams.";
+  `One login · six boards · ${monthly()}/mo after a ${TRIAL_DAYS}-day no-card trial.`;
 
 export function formatFlagshipHeroSubline(_totalLabel?: string): string {
   return LANDING_HERO_SUBLINE_BODY;
 }
 
-/** Exam-specific headlines for marketing pages (homepage H1 stays fixed). */
+/** Exam-specific headlines for marketing pages and homepage chip swaps. */
 export const EXAM_MARKETING_HERO_HEADLINES: Record<string, string> = {
   nclex: "NCLEX prep that feels like the real exam.",
   usmle: "USMLE vignettes built for Step-day reasoning.",
@@ -191,8 +191,26 @@ export const EXAM_MARKETING_HERO_HEADLINES: Record<string, string> = {
   "npte-pt": "NPTE-PT scenarios for clinical decisions.",
 };
 
-/** Homepage always uses the six-board H1. */
-export function formatExamHeroHeadline(_examSlug?: string): string {
+const HERO_EXAM_EYEBROWS: Record<string, string> = {
+  nclex: "NCLEX prep",
+  usmle: "USMLE prep",
+  naplex: "NAPLEX prep",
+  pance: "PANCE prep",
+  "aanp-fnp": "AANP FNP prep",
+  "npte-pt": "NPTE-PT prep",
+};
+
+/** Homepage default is NCLEX; chips swap the exam-specific eyebrow. */
+export function formatExamHeroEyebrow(examSlug?: string): string {
+  if (examSlug && HERO_EXAM_EYEBROWS[examSlug]) return HERO_EXAM_EYEBROWS[examSlug];
+  return LANDING_HERO_EYEBROW;
+}
+
+/** Homepage default is NCLEX; chips swap the exam-specific H1. */
+export function formatExamHeroHeadline(examSlug?: string): string {
+  if (examSlug && EXAM_MARKETING_HERO_HEADLINES[examSlug]) {
+    return EXAM_MARKETING_HERO_HEADLINES[examSlug];
+  }
   return LANDING_HERO_HEADLINE;
 }
 
@@ -204,12 +222,33 @@ export function formatExamHeroSubline(
   return LANDING_HERO_SUBLINE_BODY;
 }
 
-/** Per-exam bank size line under the H1 when a chip is selected. */
-export function formatExamHeroCountLine(countLabel?: string): string | null {
-  const count = countLabel?.trim();
+/**
+ * Six-board total — must match title/meta/pricing. Never an unlabeled
+ * single-board count.
+ */
+export function formatHeroTotalCountLine(totalLabel?: string): string | null {
+  const count = totalLabel?.trim();
   if (!count) return null;
-  if (/question/i.test(count)) return count;
-  return `${count} serve-ready questions in this bank`;
+  if (/across six boards/i.test(count)) return count;
+  const numeric = count.replace(/\s*serve-ready questions$/i, "").trim();
+  return `${numeric} questions across six boards`;
+}
+
+/** Labeled per-board count (exam hubs / optional chip context). */
+export function formatExamLiveCountLine(
+  examLabel?: string,
+  countLabel?: string
+): string | null {
+  const count = countLabel?.trim();
+  const exam = examLabel?.trim();
+  if (!count || !exam) return null;
+  const numeric = count.replace(/\s*serve-ready questions$/i, "").trim();
+  return `${numeric} ${exam} questions live`;
+}
+
+/** @deprecated Use formatHeroTotalCountLine — unlabeled per-bank lines caused title/hero mismatch. */
+export function formatExamHeroCountLine(countLabel?: string): string | null {
+  return formatHeroTotalCountLine(countLabel);
 }
 
 /** Short reassurance directly under the primary hero CTA. */

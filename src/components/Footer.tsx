@@ -20,6 +20,7 @@ const MARKETING_EXAM_LINKS = [
 ];
 
 const STUDY_GUIDE_LINKS = [
+  { href: ROUTES.freeGuides, label: "Free guides" },
   { href: "/compare", label: "Compare vs competitors" },
   { href: "/resources/uworld-alternative-multi-exam-prep-2026", label: "UWorld alternative guide" },
   { href: "/resources/nclex-vs-uworld-comparison-2026", label: "NCLEX vs UWorld" },
@@ -66,7 +67,6 @@ export function Footer() {
           { href: ROUTES.auth.signup, label: "Sign up" },
           { href: ROUTES.feedback, label: "Feedback" },
         ]),
-    { href: ROUTES.admin.login, label: "Admin login" },
   ];
 
   return (

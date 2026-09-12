@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * LandingHeroV2 — six-board H1 + exam pills + interactive free-question widget.
+ * LandingHeroV2 — NCLEX-first H1 + six-board offer + exam pills + sample widget.
  */
 
 import { useMemo } from "react";
@@ -12,10 +12,10 @@ import { LandingHeroPractice } from "@/components/landing/v2/LandingSamplePracti
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
-  LANDING_HERO_EYEBROW,
-  LANDING_HERO_HEADLINE,
   LANDING_HERO_SUBLINE_BODY,
-  formatExamHeroCountLine,
+  formatExamHeroEyebrow,
+  formatExamHeroHeadline,
+  formatHeroTotalCountLine,
 } from "@/lib/landing/content";
 import { analytics } from "@/lib/analytics";
 import { useTrialCtaTarget } from "@/lib/client/use-trial-cta-target";
@@ -36,10 +36,12 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
   const { selectedExam, trialHref } = useLandingExamSelection();
   const trialCta = useTrialCtaTarget(trialHref);
 
-  const examCountLine = useMemo(() => {
-    const row = bankCounts.exams?.find((e) => e.slug === selectedExam);
-    return formatExamHeroCountLine(row?.questionsLabel ?? row?.countLabel);
-  }, [bankCounts.exams, selectedExam]);
+  const totalCountLine = useMemo(
+    () => formatHeroTotalCountLine(bankCounts.totalLabel),
+    [bankCounts.totalLabel]
+  );
+  const headline = formatExamHeroHeadline(selectedExam);
+  const eyebrow = formatExamHeroEyebrow(selectedExam);
 
   return (
     <section
@@ -52,17 +54,17 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
 
       <div className="aee-hero-beat__shell">
         <div className="aee-hero-beat__copy">
-          <p className="aee-hero-beat__brand">{LANDING_HERO_EYEBROW}</p>
+          <p className="aee-hero-beat__brand">{eyebrow}</p>
 
           <h1 id="hero-heading" className="aee-hero-beat__headline">
-            {LANDING_HERO_HEADLINE}
+            {headline}
           </h1>
 
           <p className="aee-hero-beat__subline">{LANDING_HERO_SUBLINE_BODY}</p>
 
-          {examCountLine ? (
+          {totalCountLine ? (
             <p className="aee-hero-beat__countline" aria-live="polite">
-              {examCountLine}
+              {totalCountLine}
             </p>
           ) : null}
 

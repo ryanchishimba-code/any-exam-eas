@@ -9,7 +9,7 @@ const SLUG_TO_FIELD: Record<ExamRouteSlug, keyof typeof FALLBACK_QUESTION_COUNTS
   nclex: "nursing",
   usmle: "usmle",
   naplex: "pharmacy",
-  pance: null,
+  pance: "pance",
   "aanp-fnp": "aanpFnp",
   "npte-pt": "nptePt",
 };
@@ -27,7 +27,6 @@ export function examNavStatLabel(
   if (fallbackKey && fallbackKey !== null) {
     return `${FALLBACK_QUESTION_COUNTS[fallbackKey]} items`;
   }
-  if (slug === "pance") return "300Q blueprint";
   return "Board-style items";
 }
 

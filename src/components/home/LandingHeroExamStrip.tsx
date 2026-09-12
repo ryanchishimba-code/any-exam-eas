@@ -76,6 +76,12 @@ export function LandingHeroExamStrip({
               aria-current={isSelected ? "true" : undefined}
               onClick={(e) => {
                 if (selectable) {
+                  // Keep in-page sample switching, but don't block the exam= deep link
+                  // (open in new tab / crawlers). Left-click still selects.
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
+                    analytics.ctaClicked(`exam_chip_${exam.slug}`, "hero");
+                    return;
+                  }
                   e.preventDefault();
                   setSelectedExam(exam.slug as ExamSlug);
                   analytics.ctaClicked(`exam_chip_${exam.slug}`, "hero");

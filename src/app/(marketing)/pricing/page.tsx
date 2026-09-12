@@ -5,6 +5,8 @@ import { PricingQueryNotices } from "@/components/pricing/PricingQueryNotices";
 import { PageShell } from "@/components/PageShell";
 import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-metadata";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import { formatMonthlyPrice } from "@/lib/site";
 
 export const metadata = buildPricingMetadata();
 export const revalidate = 3600;
@@ -15,7 +17,7 @@ export default async function PricingPage() {
       <JsonLdScript data={buildPricingJsonLd()} />
       <PageShell
         title="Pro"
-        description="All 6 boards. One plan."
+        description={`${FALLBACK_QUESTION_COUNTS.total} questions across six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`}
         align="center"
         maxWidth="max-w-lg"
         compact

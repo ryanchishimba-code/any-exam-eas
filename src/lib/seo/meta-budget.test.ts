@@ -8,6 +8,7 @@ import {
   buildPricingMetadata,
   buildResourceArticleMetadata,
   buildToolkitHubMetadata,
+  buildFreeGuidesMetadata,
 } from "@/lib/seo/marketing-metadata";
 import { EXAM_SEO_CONFIG, EXAM_SEO_KEYS } from "@/lib/seo/exam-config";
 import { RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
@@ -79,6 +80,7 @@ describe("public marketing metadata budgets", () => {
     { label: "home", meta: buildHomeMetadata() },
     { label: "about", meta: buildAboutMetadata() },
     { label: "toolkit", meta: buildToolkitHubMetadata() },
+    { label: "free-guides", meta: buildFreeGuidesMetadata() },
     { label: "pricing", meta: buildPricingMetadata() },
     { label: "compare", meta: buildCompareMetadata() },
     ...EXAM_SEO_KEYS.map((key) => ({

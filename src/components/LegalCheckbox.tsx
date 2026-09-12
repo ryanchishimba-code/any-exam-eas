@@ -8,7 +8,7 @@ export function LegalCheckbox({
   checked: boolean;
   onChange: (v: boolean) => void;
 }) {
-  const summaryLines = getSignupConsentSummaryLines();
+  const summaryLine = getSignupConsentSummaryLines()[0];
 
   return (
     <label className="flex cursor-pointer gap-3 text-left text-xs leading-relaxed text-[var(--color-ink-muted)]">
@@ -35,14 +35,9 @@ export function LegalCheckbox({
           </a>
           .
         </span>
-        <span className="block font-medium text-[var(--color-ink)]">
-          I understand and agree that:
-        </span>
-        <ul className="list-disc space-y-1 pl-4">
-          {summaryLines.map((line) => (
-            <li key={line}>{line}</li>
-          ))}
-        </ul>
+        {summaryLine ? (
+          <span className="block text-[11px] text-[var(--color-ink-muted)]">{summaryLine}</span>
+        ) : null}
         <span className="block text-[11px] text-[var(--color-ink-muted)]">
           {LEGAL_ENTITY.productName} does not guarantee exam passage, licensure, or certification.
           Subscription terms include auto-renewal as described in the Terms.
