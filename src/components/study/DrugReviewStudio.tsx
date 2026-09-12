@@ -298,12 +298,12 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
         </div>
       )}
 
-      {dashboard.offline && (
+      {dashboard.offline && !guestPreview ? (
         <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
           Study progress is temporarily offline — flashcards still load from the curated Top 500
           deck. Grades will save once the database reconnects.
         </div>
-      )}
+      ) : null}
 
       <div className="space-y-4">
         <DrugSearch onSelect={handleDrugSelect} portaled={false} />
@@ -312,7 +312,8 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
         )}
       </div>
 
-      {/* Cycle overview */}
+      {/* Cycle overview — logged-in only; guests should not see 0/509 SRS stats */}
+      {guestPreview ? null : (
       <div className="aee-drugs-progress-card rounded-2xl border border-teal-100 bg-gradient-to-br from-teal-50/90 via-white to-cyan-50/60 p-5 sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
@@ -338,6 +339,7 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
           />
         </div>
       </div>
+      )}
 
       {(error || cardsError) && <InlineError>{error || cardsError}</InlineError>}
 
@@ -353,6 +355,7 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
               classes={classProgress}
               activeClass={activeClass}
               onSelect={(id) => void selectClass(id)}
+              hideCounts={guestPreview}
             />
           </div>
         </aside>
@@ -368,6 +371,7 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
               classes={classProgress}
               activeClass={activeClass}
               onSelect={(id) => void selectClass(id)}
+              hideCounts={guestPreview}
             />
           </div>
 
@@ -381,6 +385,8 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
               <span className="text-sm font-semibold text-slate-900">
                 {activeClassStats.label}
               </span>
+              {guestPreview ? null : (
+              <>
               <span className="text-sm text-slate-500">
                 {activeClassStats.mastered}/{activeClassStats.total} mastered ·{" "}
                 {activeClassStats.due} due
@@ -394,6 +400,8 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
                   }}
                 />
               </div>
+              </>
+              )}
             </div>
           )}
 

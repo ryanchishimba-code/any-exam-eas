@@ -6,9 +6,11 @@ type Props = {
   classes: DrugClassProgress[];
   activeClass: DrugClassId;
   onSelect: (id: DrugClassId) => void;
+  /** Hide SRS counts so guest marketing does not show catalog 509 vs Top 500. */
+  hideCounts?: boolean;
 };
 
-export function DrugClassFilter({ classes, activeClass, onSelect }: Props) {
+export function DrugClassFilter({ classes, activeClass, onSelect, hideCounts = false }: Props) {
   return (
     <nav aria-label="Filter by drug class" className="space-y-1">
       {classes.map((cls) => {
@@ -39,10 +41,14 @@ export function DrugClassFilter({ classes, activeClass, onSelect }: Props) {
                   {cls.shortLabel}
                 </span>
               </div>
-              <span className="shrink-0 text-xs tabular-nums text-slate-500">
-                {cls.mastered}/{cls.total}
-              </span>
+              {hideCounts ? null : (
+                <span className="shrink-0 text-xs tabular-nums text-slate-500">
+                  {cls.mastered}/{cls.total}
+                </span>
+              )}
             </div>
+            {hideCounts ? null : (
+              <>
             <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200/80">
               <div
                 className="h-full rounded-full transition-all duration-500"
@@ -54,6 +60,8 @@ export function DrugClassFilter({ classes, activeClass, onSelect }: Props) {
                 {cls.due} due now
               </p>
             )}
+              </>
+            )}
           </button>
         );
       })}
@@ -62,7 +70,12 @@ export function DrugClassFilter({ classes, activeClass, onSelect }: Props) {
 }
 
 /** Horizontal pill strip for narrow viewports. */
-export function DrugClassFilterPills({ classes, activeClass, onSelect }: Props) {
+export function DrugClassFilterPills({
+  classes,
+  activeClass,
+  onSelect,
+  hideCounts = false,
+}: Props) {
   return (
     <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {classes.map((cls) => {
@@ -84,9 +97,11 @@ export function DrugClassFilterPills({ classes, activeClass, onSelect }: Props) 
               aria-hidden
             />
             {cls.shortLabel}
+            {hideCounts ? null : (
             <span className={active ? "text-teal-100" : "text-slate-400"}>
               {cls.progressPct}%
             </span>
+            )}
           </button>
         );
       })}
