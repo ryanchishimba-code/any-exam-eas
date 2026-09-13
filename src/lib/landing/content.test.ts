@@ -4,11 +4,16 @@ import {
   LANDING_HERO_SUBLINE_BODY,
   formatExamHeroEyebrow,
   formatExamHeroHeadline,
+  formatExamHeroTrialOffer,
   formatExamLiveCountLine,
   formatHeroTotalCountLine,
   landingTrialHrefForExam,
 } from "./content";
-import { FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import {
+  FALLBACK_QUESTION_COUNTS,
+  formatExactServeReadyCount,
+  getPublishedQuestionStats,
+} from "@/lib/marketing/bank-stats";
 
 describe("homepage hero copy", () => {
   it("defaults to an NCLEX-specific job with a six-board offer subline", () => {
@@ -32,7 +37,20 @@ describe("homepage hero copy", () => {
   });
 
   it("keeps exam= deep links on board chips", () => {
-    expect(landingTrialHrefForExam("nclex")).toContain("exam=nclex");
+    expect(landingTrialHrefForExam("nclex")).toBe(
+      "/signup?plan=trial&interval=monthly&tier=pro&exam=nclex"
+    );
     expect(landingTrialHrefForExam("naplex")).toContain("exam=naplex");
+  });
+
+  it("labels the NCLEX published-floor count for exam-hub marketing", () => {
+    const published = getPublishedQuestionStats();
+    expect(
+      formatExamLiveCountLine(
+        "NCLEX",
+        formatExactServeReadyCount(published.perBoard.nclex)
+      )
+    ).toBe("8,327 NCLEX questions live");
+    expect(formatExamHeroTrialOffer()).toBe("5-day free trial · no card · then $27.99/mo");
   });
 });

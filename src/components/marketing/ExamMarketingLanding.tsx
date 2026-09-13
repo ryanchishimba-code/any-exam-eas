@@ -35,6 +35,8 @@ type Props = {
   usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
   /** Optional product band after the hero (study guide, practice, etc.). */
   extraAfterHero?: ReactNode;
+  /** Replace the default single-column hero (used by /nclex conversion ATF). */
+  hero?: ReactNode;
 };
 
 export function ExamMarketingLanding({
@@ -42,6 +44,7 @@ export function ExamMarketingLanding({
   questionCountLabel,
   usmleStepCounts,
   extraAfterHero,
+  hero,
 }: Props) {
   const config = getExamSeoConfig(examKey);
   const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
@@ -50,6 +53,7 @@ export function ExamMarketingLanding({
 
   return (
     <div className="aee-exam-marketing">
+      {hero ?? (
       <section className="aee-exam-marketing__hero border-b border-[var(--color-border)]/40">
         <div className="mx-auto max-w-5xl px-5 pb-16 pt-[var(--page-top)] sm:px-6 sm:pb-20">
           <nav aria-label="Breadcrumb" className="text-sm text-[var(--color-ink-muted)]">
@@ -115,6 +119,7 @@ export function ExamMarketingLanding({
           </header>
         </div>
       </section>
+      )}
 
       {extraAfterHero}
 
