@@ -1791,6 +1791,18 @@ body {
   transition: opacity 0.2s;
 }
 
+.aee-nav-wordmark {
+  min-height: 2rem;
+}
+
+.aee-nav-brand img {
+  height: 2.5rem;
+  width: auto;
+  max-width: 11rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
 .aee-nav-brand:hover {
   opacity: 0.75;
 }

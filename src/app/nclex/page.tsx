@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ExamMarketingLanding } from "@/components/marketing/ExamMarketingLanding";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { landingTrialHrefForExam } from "@/lib/landing/content";
+import { NclexMarketingHero } from "@/components/marketing/NclexMarketingHero";
 import {
-  buildLandingBankCountsDisplay,
-  getCachedQuestionBankCounts,
-} from "@/lib/marketing/question-bank-counts";
+  formatExamLiveCountLine,
+  landingTrialHrefForExam,
+} from "@/lib/landing/content";
 import { formatExactServeReadyCount, getPublishedQuestionStats } from "@/lib/marketing/bank-stats";
 import { ROUTES } from "@/lib/routes";
 import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata";
@@ -40,11 +40,11 @@ const PRODUCT_LINKS = [
 ] as const;
 
 export default async function NclexHubPage() {
-  const bankCounts = buildLandingBankCountsDisplay(await getCachedQuestionBankCounts());
   const published = getPublishedQuestionStats();
-  const questionCountLabel =
-    bankCounts.exams.find((row) => row.slug === "nclex")?.countLabel ??
-    formatExactServeReadyCount(published.perBoard.nclex);
+  const questionCountLabel = formatExactServeReadyCount(published.perBoard.nclex);
+  const questionCountLine =
+    formatExamLiveCountLine("NCLEX", questionCountLabel) ??
+    `${questionCountLabel} NCLEX questions`;
 
   return (
     <>
@@ -52,6 +52,7 @@ export default async function NclexHubPage() {
       <ExamMarketingLanding
         examKey="nclex"
         questionCountLabel={questionCountLabel}
+        hero={<NclexMarketingHero questionCountLine={questionCountLine} />}
         extraAfterHero={
           <section className="border-b border-[var(--color-border)]/40 py-14">
             <div className="mx-auto max-w-5xl px-5 sm:px-6">

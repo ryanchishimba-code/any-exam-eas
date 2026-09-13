@@ -17,7 +17,7 @@ import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { ROUTES, EXAM_NAV_ITEMS } from "@/lib/routes";
-import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { LANDING_TRIAL_HREF, landingTrialHrefForExam } from "@/lib/landing/content";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { formatTrialCtaLabel } from "@/lib/site";
 
@@ -133,7 +133,9 @@ export function Navigation() {
     pathname.startsWith("/question-bank") ||
     pathname.startsWith("/full-exam");
 
-  const onDarkHero = !isAuthenticated && pathname === "/";
+  const onDarkHero = !isAuthenticated && (pathname === "/" || pathname === "/nclex");
+  const guestTrialHref =
+    pathname === "/nclex" ? landingTrialHrefForExam("nclex") : LANDING_TRIAL_HREF;
   const [heroScrolled, setHeroScrolled] = useState(false);
 
   useEffect(() => {
@@ -220,7 +222,7 @@ export function Navigation() {
                 <LogIn className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden />
                 <span className="max-[380px]:hidden">Sign in</span>
               </LoginModalTrigger>
-              <Link href={LANDING_TRIAL_HREF} className="aee-nav-cta text-[0.8125rem] max-[380px]:px-3">
+              <Link href={guestTrialHref} className="aee-nav-cta text-[0.8125rem] max-[380px]:px-3">
                 {formatTrialCtaLabel()}
               </Link>
             </div>
@@ -292,7 +294,7 @@ export function Navigation() {
                     Sign in
                   </LoginModalTrigger>
                   <Link
-                    href={LANDING_TRIAL_HREF}
+                    href={guestTrialHref}
                     className="aee-nav-cta block py-3 text-center text-sm"
                     onClick={closeMobile}
                   >

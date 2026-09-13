@@ -254,6 +254,12 @@ export function formatExamHeroCountLine(countLabel?: string): string | null {
 /** Short reassurance directly under the primary hero CTA. */
 export const LANDING_HERO_CTA_DISCLOSURE =
   `No card · ${monthly()}/mo after trial · ${TRIAL_DAYS}-day trial`;
+
+/** Campus / exam-hub ATF offer — louder than the homepage meta whisper. */
+export function formatExamHeroTrialOffer(): string {
+  return `${TRIAL_DAYS}-day free trial · no card · then ${monthly()}/mo`;
+}
+
 /** Longer trial detail for pricing / final CTA (not the hero ATF). */
 export const LANDING_TRIAL_DETAIL =
   `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · No payment required · Upgrade anytime`;
