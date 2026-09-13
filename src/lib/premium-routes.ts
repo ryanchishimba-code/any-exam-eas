@@ -1,3 +1,5 @@
+import { isGuestPreviewPage } from "@/lib/guest-preview";
+
 /** Edge-safe premium route list (no Prisma). */
 export const PREMIUM_PAGE_PREFIXES = [
   "/dashboard",
@@ -22,6 +24,7 @@ export const PREMIUM_PAGE_PREFIXES = [
 ] as const;
 
 export function isPremiumPage(path: string): boolean {
+  if (isGuestPreviewPage(path)) return false;
   return PREMIUM_PAGE_PREFIXES.some(
     (p) => path === p || path.startsWith(`${p}/`)
   );

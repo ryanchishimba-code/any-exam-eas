@@ -2,11 +2,11 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getCachedSession } from "@/lib/auth/session";
 import { AnatomyExplorerClient } from "@/components/anatomy/AnatomyExplorerClient";
+import { GuestTrialBanner } from "@/components/marketing/GuestTrialBanner";
 import { Skeleton } from "@/components/ui/skeleton";
 import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { loadMemoryCards } from "@/lib/library/memory-cards";
-import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -31,20 +31,27 @@ async function AnatomyCatalogContent({
   userId,
   examOverride,
   initialStructureId,
+  guestPreview,
 }: {
-  userId: string;
+  userId?: string;
   examOverride?: ExamSlug;
   initialStructureId?: string;
+  guestPreview: boolean;
 }) {
-  const { examSlug, cards } = await loadMemoryCards(userId, examOverride);
+  const { examSlug, cards } = userId
+    ? await loadMemoryCards(userId, examOverride)
+    : { examSlug: examOverride ?? ("nclex" as ExamSlug), cards: [] };
 
   return (
-    <AnatomyExplorerClient
-      examSlug={examSlug}
-      memoryCards={cards}
-      initialStructureId={initialStructureId}
-      initialSurfaceId="none"
-    />
+    <>
+      {guestPreview ? <GuestTrialBanner examSlug={examSlug} /> : null}
+      <AnatomyExplorerClient
+        examSlug={examSlug}
+        memoryCards={cards}
+        initialStructureId={initialStructureId}
+        initialSurfaceId="none"
+      />
+    </>
   );
 }
 
@@ -58,19 +65,15 @@ export default async function AnatomyCatalogPage({ searchParams }: PageProps) {
   const initialStructureId = params.structure?.trim() || undefined;
 
   const session = await getCachedSession();
-  if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.anatomyCatalog)}`);
+  const guestPreview = !session?.user?.id;
+
+  if (session?.user?.id) {
+    await redirectMpjeFromClinicalRoutes(session.user.id);
+    if (!examOverride) {
+      const pref = await getUserExamPreference(session.user.id);
+      if (!pref) redirect(ROUTES.selectExam);
+    }
   }
-
-  await redirectMpjeFromClinicalRoutes(session.user.id);
-
-  // Independent — the preference read never consults the access result.
-  const [, pref] = await Promise.all([
-    requirePremiumPage(ROUTES.anatomy),
-    examOverride ? Promise.resolve(null) : getUserExamPreference(session.user.id),
-  ]);
-
-  if (!examOverride && !pref) redirect(ROUTES.selectExam);
 
   return (
     <div className="space-y-4">
@@ -83,9 +86,10 @@ export default async function AnatomyCatalogPage({ searchParams }: PageProps) {
 
       <Suspense fallback={<AnatomySkeleton />}>
         <AnatomyCatalogContent
-          userId={session.user.id}
+          userId={session?.user?.id}
           examOverride={examOverride}
           initialStructureId={initialStructureId}
+          guestPreview={guestPreview}
         />
       </Suspense>
     </div>

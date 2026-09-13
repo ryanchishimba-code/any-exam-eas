@@ -12,7 +12,12 @@ import {
 } from "@/lib/questions/session-engine";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
-import { bowTieSelectionValid, parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
+import {
+  bowTieSelectionValid,
+  parseBowTieLayout,
+  parseMatrixKey,
+  toggleBowTieSelection,
+} from "@/lib/questions/ngn-structures";
 import { persistSessionLocally } from "@/lib/questions/storage";
 import { saveStudySessionRemote } from "@/lib/client/save-study-session";
 import { EndActivityControl } from "./EndActivityControl";
@@ -411,22 +416,7 @@ export function StudySessionPlayer({
     }
     if (current.type === "bow_tie") {
       const layout = parseBowTieLayout(current);
-      setSelected((prev) => {
-        if (prev.includes(option)) return prev.filter((o) => o !== option);
-        if (layout.actions.includes(option)) {
-          const next = prev.filter((o) => !layout.actions.includes(o));
-          return [...next, option];
-        }
-        if (layout.monitors.includes(option)) {
-          let next = prev.filter((o) => !layout.monitors.includes(o));
-          const monitors = prev.filter((o) => layout.monitors.includes(o));
-          if (monitors.length >= layout.monitorPickCount) {
-            next = prev.filter((o) => o !== monitors[0]);
-          }
-          return [...next, option];
-        }
-        return [...prev, option];
-      });
+      setSelected((prev) => toggleBowTieSelection(prev, option, layout));
       return;
     }
     setSelected([option]);

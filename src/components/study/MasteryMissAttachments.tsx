@@ -13,7 +13,7 @@ import type { MasteryItemTags } from "@/lib/engine/mastery/types";
 import type { ExamSlug } from "@/types/edtech";
 
 /**
- * In-pane attachments on miss — Top 509 / Anatomy / Labs / Calc patterns
+ * In-pane attachments on miss — Top 500 / Anatomy / Labs / Calc patterns
  * without navigating away. Domain chip shown for NAPLEX even before miss.
  */
 export function MasteryMissAttachments({
@@ -96,7 +96,7 @@ export function MasteryMissAttachments({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Top 509: {slug.replace(/-/g, " ")}
+                Top 500: {slug.replace(/-/g, " ")}
               </Link>
             </li>
           ))}

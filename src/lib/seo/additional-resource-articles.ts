@@ -98,7 +98,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           },
           {
             feature: "Free trial",
-            anyExamEasy: `${SEO_LIVE_STATS.trialDays}-day trial · ${SEO_LIVE_STATS.moneyBackDays}-day guarantee`,
+            anyExamEasy: `${SEO_LIVE_STATS.trialDays}-day trial · ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment`,
             typicalQbank: "Limited demo or paid-only",
           },
         ],
@@ -418,7 +418,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
         bullets: [
           "You need NCLEX plus another board (USMLE, NAPLEX, PANCE, FNP, or NPTE).",
           "You want Roadmaps, Deep Dives, and Full Exams in one workflow.",
-          `${SEO_LIVE_STATS.trialDays}-day free trial and ${SEO_LIVE_STATS.moneyBackDays}-day guarantee reduce upfront risk.`,
+          `${SEO_LIVE_STATS.trialDays}-day free trial and a ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment reduce upfront risk.`,
         ],
       },
       {

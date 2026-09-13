@@ -25,7 +25,6 @@ import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { ExamSlug } from "@/types/edtech";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import {
-  defaultBirthDatePreview,
   defaultExamDatePreview,
   eighteenYearsAgoIso,
   oldestBirthDateIso,
@@ -63,7 +62,7 @@ export function SignupForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [dob, setDob] = useState(() => defaultBirthDatePreview());
+  const [dob, setDob] = useState("");
   const [examSlug, setExamSlug] = useState<ExamSlug | "">(initialExam);
   const [testDate, setTestDate] = useState("");
   const [showTestDate, setShowTestDate] = useState(false);

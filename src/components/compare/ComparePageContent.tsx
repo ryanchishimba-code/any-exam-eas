@@ -111,14 +111,16 @@ export function ComparePageContent() {
         </div>
         <div className="rounded-2xl border border-[var(--color-border)] p-5">
           <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            Multi-exam savings
+            vs stacking three QBanks
           </p>
           <p className="mt-2 text-3xl font-black text-emerald-600 dark:text-emerald-400">
-            ~{savings}%
+            Lower list price
           </p>
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            vs UWorld stack over 3 months ({formatUsd(AEE_MONTHLY * 3)} vs{" "}
-            {formatUsd(UWORLD_THREE_EXAM_MIN)})
+            3 months of Pro ({formatUsd(AEE_MONTHLY * 3)}) vs public UWorld
+            shortest-tier NCLEX + Step 2 CK + NAPLEX ({formatUsd(UWORLD_THREE_EXAM_MIN)},
+            Jul 2026 listings). About {savings}% less at those list prices — competitor
+            prices change.
           </p>
         </div>
       </section>
@@ -211,7 +213,7 @@ export function ComparePageContent() {
           {[
             "You need more than one board exam on the same timeline (RN + NP, PharmD + side cert, Step 1 + Step 2).",
             "You want Blueprint Roadmaps, Deep Dives, and Full Exams — not QBank-only prep.",
-            `${formatTrialLabel()} with ${SEO_LIVE_STATS.moneyBackDays}-day money-back reduces risk vs paid-upfront bundles.`,
+            `${formatTrialLabel()} plus a ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment (support, not a refund) vs paid-upfront bundles.`,
             `${SEO_LIVE_STATS.questionCount}+ questions across six exams beats stacking separate subscriptions.`,
           ].map((item) => (
             <li key={item} className="flex gap-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">

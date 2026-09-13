@@ -11,7 +11,12 @@ import { analytics } from "@/lib/analytics";
 import { NGN_DEMO_QUESTIONS } from "@/lib/demo/ngn-samples";
 import { examQuestionToStudy, isAnswerCorrect } from "@/lib/questions/prepare";
 import type { StudyQuestion } from "@/lib/questions/types";
-import { bowTieSelectionValid, parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
+import {
+  bowTieSelectionValid,
+  parseBowTieLayout,
+  parseMatrixKey,
+  toggleBowTieSelection,
+} from "@/lib/questions/ngn-structures";
 import {
   ExplanationPanel,
   QuestionRenderer,
@@ -72,21 +77,7 @@ export function NgnInteractiveDemo({
     }
     if (question.type === "bow_tie") {
       const layout = parseBowTieLayout(question);
-      setSelected((prev) => {
-        if (prev.includes(option)) return prev.filter((o) => o !== option);
-        if (layout.actions.includes(option)) {
-          return [...prev.filter((o) => !layout.actions.includes(o)), option];
-        }
-        if (layout.monitors.includes(option)) {
-          const monitors = prev.filter((o) => layout.monitors.includes(o));
-          const base =
-            monitors.length >= layout.monitorPickCount
-              ? prev.filter((o) => o !== monitors[0])
-              : prev;
-          return [...base.filter((o) => !layout.monitors.includes(o)), option];
-        }
-        return [...prev, option];
-      });
+      setSelected((prev) => toggleBowTieSelection(prev, option, layout));
       return;
     }
     setSelected([option]);
@@ -158,16 +149,25 @@ export function NgnInteractiveDemo({
                 <div className="mt-6 space-y-4">
                   <AnswerFeedbackLabel correct={correct === true} />
                   <ExplanationPanel question={question} />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSelected([]);
-                      setRevealed(false);
-                    }}
-                    className="text-sm font-medium text-[var(--color-accent)] hover:underline"
-                  >
-                    Try again
-                  </button>
+                  <div className="flex flex-wrap items-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelected([]);
+                        setRevealed(false);
+                      }}
+                      className="text-sm font-medium text-[var(--color-accent)] hover:underline"
+                    >
+                      Try again
+                    </button>
+                    <Link
+                      href={trialHref}
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-ink)] hover:text-[var(--color-accent)]"
+                    >
+                      {formatTrialCtaLabel()}
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                    </Link>
+                  </div>
                 </div>
               )}
             </motion.div>

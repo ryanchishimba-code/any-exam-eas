@@ -4,6 +4,7 @@ import { LandingCta } from "@/components/landing/LandingCta";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { formatTrialCtaLabel, SITE_NAME } from "@/lib/site";
 import { STUDY_GUIDES } from "@/lib/nclex-study-guide/guide-registry";
+import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { getArticlesForExam } from "@/lib/seo/resources-content";
@@ -20,7 +21,7 @@ export const metadata = buildToolkitHubMetadata();
  * - Exam hubs: /usmle /nclex /naplex /pance /aanp-fnp /npte-pt
  * - Study Guides: /nclex/study-guide /naplex/study-guide /aanp-fnp/study-guide
  * - Lab values & calculators: /library#hub-calculators
- * - Top 509 drugs: /study/drugs300
+ * - Top 500 drugs: /study/drugs300
  * - Anatomy Explorer: /anatomy
  * - Blueprint Roadmaps (Study Hub): /dashboard
  * - Compare guides: /compare
@@ -59,7 +60,7 @@ const IN_PRODUCT_LINKS = [
   },
   {
     href: ROUTES.drugs300,
-    title: "Top 509 drugs",
+    title: DRUGS_DECK_MARKETING_TITLE,
     body: "High-yield drug cards for board prep.",
   },
   {
@@ -127,7 +128,7 @@ export default function ToolkitPage() {
               Tools for the board in front of you.
             </h1>
             <p className="apple-subhead mx-auto mt-6 max-w-xl text-[var(--color-ink)]">
-              Official blueprints, lab values, Top 509 drugs, Anatomy Explorer, and exam guides. One
+              Official blueprints, lab values, Top 500 drugs, Anatomy Explorer, and exam guides. One
               login for six boards.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

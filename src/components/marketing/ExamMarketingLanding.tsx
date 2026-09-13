@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import {
@@ -32,9 +33,16 @@ type Props = {
   questionCountLabel?: string;
   /** Per-step serve-ready counts for the USMLE step picker (SSR). */
   usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
+  /** Optional product band after the hero (study guide, practice, etc.). */
+  extraAfterHero?: ReactNode;
 };
 
-export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCounts }: Props) {
+export function ExamMarketingLanding({
+  examKey,
+  questionCountLabel,
+  usmleStepCounts,
+  extraAfterHero,
+}: Props) {
   const config = getExamSeoConfig(examKey);
   const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
   const isUsmle = examKey === "usmle";
@@ -107,6 +115,8 @@ export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCou
           </header>
         </div>
       </section>
+
+      {extraAfterHero}
 
       {isUsmle && (
         <section className="border-b border-[var(--color-border)]/40 py-14">

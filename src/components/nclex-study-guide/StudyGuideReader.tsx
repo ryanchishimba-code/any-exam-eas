@@ -38,6 +38,7 @@ import type {
   SgTocChapter,
 } from "@/lib/nclex-study-guide/types";
 import { SG_HIGHLIGHT_COLORS } from "@/lib/nclex-study-guide/types";
+import { GuestTrialBanner } from "@/components/marketing/GuestTrialBanner";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import "./study-guide-reader.css";
@@ -114,6 +115,8 @@ type Props = {
   guideTitle: string;
   chapters: SgTocChapter[];
   chapter: SgChapterDto;
+  /** Read-only guest preview — no bookmark/note persistence. */
+  guestPreview?: boolean;
 };
 
 function bindImageErrors(node: HTMLElement | null) {
@@ -136,6 +139,7 @@ export function StudyGuideReader({
   guideTitle,
   chapters,
   chapter: initialChapter,
+  guestPreview = false,
 }: Props) {
   const config = STUDY_GUIDES[exam];
   const reduceMotion = useReducedMotion();
@@ -251,8 +255,9 @@ export function StudyGuideReader({
   }, []);
 
   useEffect(() => {
+    if (guestPreview) return;
     void loadAnnotations(chapter.id);
-  }, [chapter.id, loadAnnotations]);
+  }, [chapter.id, guestPreview, loadAnnotations]);
 
   const restoreScroll = useStableCallback(async (ch: SgChapterDto) => {
     const applyPct = (pct: number) => {
@@ -306,6 +311,7 @@ export function StudyGuideReader({
     } catch {
       /* ignore */
     }
+    if (guestPreview) return;
     void fetch("/api/nclex-study-guide/progress", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -557,8 +563,8 @@ export function StudyGuideReader({
         e.preventDefault();
         void goToSlug(ch.prevSlug);
       }
-      if (e.key === "b") void saveBookmark();
-      if (e.key === "h") {
+      if (!guestPreview && e.key === "b") void saveBookmark();
+      if (!guestPreview && e.key === "h") {
         captureSelection();
         void saveHighlight();
       }
@@ -575,6 +581,7 @@ export function StudyGuideReader({
   }, [
     captureSelection,
     drawerOpen,
+    guestPreview,
     goToSlug,
     saveBookmark,
     saveHighlight,
@@ -704,12 +711,12 @@ export function StudyGuideReader({
         {/* The reader collapses the app sidebar, so the way out goes to the dashboard
             rather than the NCLEX hub — that's where study nav is fully available. */}
         <Link
-          href={ROUTES.dashboard}
-          aria-label="Back to dashboard"
+          href={guestPreview ? ROUTES.freeGuides : ROUTES.dashboard}
+          aria-label={guestPreview ? "Back to free guides" : "Back to dashboard"}
           className="flex shrink-0 items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs font-semibold text-[#2ec4b6] transition-colors hover:bg-white/10 hover:text-white"
         >
           <ChevronLeft className="h-3.5 w-3.5" aria-hidden />
-          Dashboard
+          {guestPreview ? "Guides" : "Dashboard"}
         </Link>
         {/* The book title truncates to noise on a phone; the chapter heading carries context there. */}
         <p className="hidden min-w-0 flex-1 truncate text-sm font-semibold tracking-tight sm:block">
@@ -881,30 +888,40 @@ export function StudyGuideReader({
                 className="w-full rounded-lg border border-white/15 bg-white/5 py-1.5 pl-8 pr-3 text-xs outline-none placeholder:text-white/35 focus:border-[#2ec4b6]/50"
               />
             </div>
-            <button
-              type="button"
-              onClick={() => {
-                captureSelection();
-                void saveHighlight();
-              }}
-              className="inline-flex items-center gap-1 rounded-lg border border-white/15 px-2 py-1.5 text-xs transition-colors hover:bg-white/5"
-              title="Highlight selection (h)"
-            >
-              <Highlighter className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Highlight</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => void saveBookmark()}
-              className="inline-flex items-center gap-1 rounded-lg border border-white/15 px-2 py-1.5 text-xs transition-colors hover:bg-white/5"
-              title="Bookmark (b)"
-            >
-              <Bookmark className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Bookmark</span>
-            </button>
+            {guestPreview ? null : (
+              <>
+                <button
+                  type="button"
+                  onClick={() => {
+                    captureSelection();
+                    void saveHighlight();
+                  }}
+                  className="inline-flex items-center gap-1 rounded-lg border border-white/15 px-2 py-1.5 text-xs transition-colors hover:bg-white/5"
+                  title="Highlight selection (h)"
+                >
+                  <Highlighter className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">Highlight</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void saveBookmark()}
+                  className="inline-flex items-center gap-1 rounded-lg border border-white/15 px-2 py-1.5 text-xs transition-colors hover:bg-white/5"
+                  title="Bookmark (b)"
+                >
+                  <Bookmark className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">Bookmark</span>
+                </button>
+              </>
+            )}
           </div>
 
-          {selectionInfo ? (
+          {guestPreview ? (
+            <div className="border-b border-white/10 px-3 py-3 sm:px-4">
+              <GuestTrialBanner examSlug={exam === "aanp-fnp" ? "aanp-fnp" : exam} compact />
+            </div>
+          ) : null}
+
+          {selectionInfo && !guestPreview ? (
             <div className="flex flex-wrap items-center gap-2 border-b border-white/10 bg-black/20 px-3 py-2 text-xs">
               <span className="text-white/60">Highlight color:</span>
               {SG_HIGHLIGHT_COLORS.map((c) => (

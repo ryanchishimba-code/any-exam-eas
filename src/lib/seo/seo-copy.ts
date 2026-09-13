@@ -2,15 +2,18 @@
 import {
   FALLBACK_QUESTION_COUNTS,
   PUBLISHED_QUESTION_BANK_TOTAL,
+  TOP_500_DRUGS_COUNT,
+  DRUGS_DECK_MARKETING_TITLE,
 } from "@/lib/marketing/bank-stats";
 
 export const SEO_LIVE_STATS = {
   questionCount: FALLBACK_QUESTION_COUNTS.total,
   questionCountRaw: PUBLISHED_QUESTION_BANK_TOTAL,
-  topDrugsCount: 509,
-  topDrugsLabel: "Top 500 Drugs",
+  topDrugsCount: TOP_500_DRUGS_COUNT,
+  topDrugsLabel: DRUGS_DECK_MARKETING_TITLE,
   clinicianYears: "12+",
   trialDays: 5,
+  /** Support window for quality issues — not a money-back refund. */
   moneyBackDays: 30,
 } as const;
 

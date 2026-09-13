@@ -48,6 +48,8 @@ export const config = {
     "/analytics",
     "/library",
     "/library/:path*",
+    // Anatomy + study guides + /study/drugs300 stay in the matcher so
+    // authorized() can allow guest preview without opening /dashboard.
     "/anatomy",
     "/anatomy/:path*",
     "/full-exam",

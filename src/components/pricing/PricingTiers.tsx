@@ -186,7 +186,7 @@ export function PricingTiers({ className }: PricingTiersProps) {
           ? showPaymentMode && paymentMode === "manual"
             ? ONE_TIME_POLICY_SHORT
             : renewalTermsLine("pro", interval)
-          : `${TRIAL_DAYS}-day free trial · no card required. Payments are non-refundable.`}
+          : `${TRIAL_DAYS}-day free trial · no card required. Payments are non-refundable (except where required by law). Quality issues: contact support within 30 days — we will make the item right.`}
       </p>
 
       <PaymentMethodBadges className="justify-center" size="sm" />
