@@ -19,6 +19,8 @@ test.describe("Landing page", () => {
     ).toBeVisible();
     await expect(page.getByRole("link", { name: /pricing/i }).first()).toBeVisible();
     await expect(page.getByRole("navigation", { name: /main navigation/i })).toBeVisible();
+    await expect(page.getByText(/prisca m\.|gerard n\./i)).toHaveCount(0);
+    await expect(page.getByRole("heading", { name: /roadmap\. deep dive\. sample ngn/i })).toBeVisible();
     await expect(
       page.getByRole("navigation", { name: /main navigation/i }).locator('a[href="/pricing"]')
     ).toHaveCount(1);

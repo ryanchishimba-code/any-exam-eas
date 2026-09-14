@@ -11,10 +11,10 @@ import { LandingHeroExamStrip } from "@/components/home/LandingHeroExamStrip";
 import { LandingHeroPractice } from "@/components/landing/v2/LandingSamplePractice";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
 import {
-  LANDING_HERO_CTA_DISCLOSURE,
   LANDING_HERO_SUBLINE_BODY,
   formatExamHeroEyebrow,
   formatExamHeroHeadline,
+  formatExamHeroTrialOffer,
   formatHeroTotalCountLine,
 } from "@/lib/landing/content";
 import { analytics } from "@/lib/analytics";
@@ -121,7 +121,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             )}
           </div>
 
-          <p className="aee-hero-beat__meta aee-hero-beat__meta--quiet">{LANDING_HERO_CTA_DISCLOSURE}</p>
+          <p className="aee-hero-beat__meta">{formatExamHeroTrialOffer()}</p>
         </div>
 
         <div className="aee-hero-beat__visual aee-hero-beat__visual--practice">

@@ -17,7 +17,7 @@ export function LandingStatsStrip({ bankCounts }: { bankCounts: LandingBankCount
 
   return (
     <section
-      className="aee-hero-handoff border-b border-[var(--color-border)] bg-[var(--color-bg)] py-12 sm:py-14"
+      className="aee-hero-handoff border-b border-[var(--color-border)] bg-[var(--color-bg)] py-8 sm:py-10"
       aria-label="Platform stats"
     >
       <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 px-5 sm:grid-cols-3 sm:gap-8 sm:px-6">

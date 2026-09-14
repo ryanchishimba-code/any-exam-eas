@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
@@ -6,8 +7,8 @@ import { ROUTES } from "@/lib/routes";
 import { formatMonthlyPrice, formatTrialCtaLabel, formatTrialLabel, SITE_NAME } from "@/lib/site";
 import { buildAboutMetadata, buildAboutJsonLd } from "@/lib/seo/marketing-metadata";
 import { examMarketingPath } from "@/lib/seo/exam-config";
-import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { COMPANY_PUBLIC, FOUNDER_PUBLIC } from "@/lib/marketing/company";
 import {
   formatExactServeReadyQuestions,
   getPublishedQuestionStats,
@@ -83,11 +84,11 @@ export default function AboutPage() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-xl text-balance text-[clamp(1.125rem,2.2vw,1.375rem)] leading-relaxed text-[var(--color-ink)]">
-              Clinician-built banks. Same QA gate. One Pro plan — not six logins.
+              Blueprint-aligned banks. Same QA gate. One Pro plan — not six logins.
             </p>
             <p className="mx-auto mt-4 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-ink-muted)]">
               <MapPin className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
-              Built in Texas · {SEO_LIVE_STATS.clinicianYears} years combined clinical experience
+              Built in {FOUNDER_PUBLIC.location} · {COMPANY_PUBLIC.legalName}
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -151,8 +152,8 @@ export default function AboutPage() {
               Read the board&apos;s document. We do not replace it.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-[var(--color-ink-muted)]">
-              Licensed clinicians write and review every item. Official outlines govern the sitting —
-              we prepare you for them.
+              Official outlines govern the sitting — we prepare you for them. Items map to those
+              blueprints and only ship after a QA gate.
             </p>
             <ul className="mt-10 space-y-4" role="list">
               {OFFICIAL_PREP_DOCS.map((doc) => (
@@ -179,7 +180,59 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* 4. Six boards + value */}
+        {/* 4. Who builds this */}
+        <section
+          className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-[var(--landing-section-py,4rem)]"
+          aria-labelledby="about-builder-heading"
+        >
+          <div className="mx-auto max-w-3xl">
+            <h2
+              id="about-builder-heading"
+              className="text-[clamp(2rem,4.5vw,3rem)] font-bold leading-tight tracking-tight text-[var(--color-ink)]"
+            >
+              Who builds {SITE_NAME}
+            </h2>
+            <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-start">
+              <div className="relative h-60 w-40 shrink-0 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg)] shadow-[var(--shadow-apple-sm)]">
+                {FOUNDER_PUBLIC.photoSrc ? (
+                  <Image
+                    src={FOUNDER_PUBLIC.photoSrc}
+                    alt={FOUNDER_PUBLIC.photoAlt}
+                    width={FOUNDER_PUBLIC.photoWidth}
+                    height={FOUNDER_PUBLIC.photoHeight}
+                    className="h-full w-full object-cover object-top"
+                    sizes="160px"
+                  />
+                ) : (
+                  <>
+                    <span
+                      className="flex h-full w-full items-center justify-center text-2xl font-bold tracking-tight text-[var(--color-accent)]"
+                      aria-hidden
+                    >
+                      {FOUNDER_PUBLIC.initials}
+                    </span>
+                    <span className="sr-only">Founder photo coming soon</span>
+                  </>
+                )}
+              </div>
+              <div>
+                <p className="text-xl font-bold tracking-tight text-[var(--color-ink)]">
+                  {FOUNDER_PUBLIC.name}
+                </p>
+                <p className="mt-1 text-sm font-semibold text-[var(--color-accent)]">
+                  {FOUNDER_PUBLIC.role}
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
+                  {FOUNDER_PUBLIC.name} builds {COMPANY_PUBLIC.productName} at{" "}
+                  {COMPANY_PUBLIC.legalName}. A full bio and credentials will be published here when
+                  they are ready — we do not invent degrees or licenses.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Six boards + value */}
         <section
           className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-[var(--landing-section-py,4rem)]"
           aria-labelledby="about-boards-heading"

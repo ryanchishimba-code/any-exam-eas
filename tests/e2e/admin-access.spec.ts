@@ -56,7 +56,7 @@ test.describe("Admin testimonial management (admin session)", () => {
 
     const unique = `E2E Tester ${Date.now()}`;
     await page.getByRole("button", { name: /add testimonial/i }).click();
-    await page.getByPlaceholder("Prisca M.").fill(unique);
+    await page.getByPlaceholder("Student name").fill(unique);
     await page.getByPlaceholder("NCLEX-RN").fill("USMLE Step 1");
     await page
       .getByPlaceholder(/I passed on my first try/i)

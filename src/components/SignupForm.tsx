@@ -330,24 +330,40 @@ export function SignupForm({
       <fieldset className="space-y-4" disabled={loading}>
         <legend className="apple-label">Account</legend>
         <div className="grid gap-4 sm:grid-cols-2">
-          <input
-            required
-            autoComplete="given-name"
-            placeholder="First name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            className="apple-input"
-          />
-          <input
-            required
-            autoComplete="family-name"
-            placeholder="Last name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            className="apple-input"
-          />
+          <div>
+            <label htmlFor="signup-first-name" className="sr-only">
+              First name
+            </label>
+            <input
+              id="signup-first-name"
+              required
+              autoComplete="given-name"
+              placeholder="First name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="apple-input"
+            />
+          </div>
+          <div>
+            <label htmlFor="signup-last-name" className="sr-only">
+              Last name
+            </label>
+            <input
+              id="signup-last-name"
+              required
+              autoComplete="family-name"
+              placeholder="Last name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="apple-input"
+            />
+          </div>
         </div>
+        <label htmlFor="signup-email" className="sr-only">
+          Email
+        </label>
         <input
+          id="signup-email"
           required
           type="text"
           inputMode="email"
@@ -366,7 +382,11 @@ export function SignupForm({
         />
         <div>
           <div className="relative">
+            <label htmlFor="signup-password" className="sr-only">
+              Password
+            </label>
             <input
+              id="signup-password"
               required
               type={showPassword ? "text" : "password"}
               minLength={10}
@@ -457,7 +477,11 @@ export function SignupForm({
             <p className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
               We&apos;ll open your dashboard to this exam. You can switch anytime later.
             </p>
-            <div className="mt-1 grid gap-2 sm:grid-cols-2">
+            <div
+              className="mt-1 grid gap-2 sm:grid-cols-2"
+              role="radiogroup"
+              aria-label="Exam you are preparing for"
+            >
               {EXAM_SLUGS.map((slug) => {
                 const exam = EXAM_CATALOG[slug];
                 const selected = examSlug === slug;
@@ -468,7 +492,7 @@ export function SignupForm({
                     role="radio"
                     aria-checked={selected}
                     onClick={() => setExamSlug(slug)}
-                    className={`flex items-center justify-between gap-2 rounded-2xl border px-4 py-3 text-left transition-all duration-200 ${
+                    className={`flex items-center justify-between gap-2 rounded-2xl border px-4 py-3 text-left transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)] ${
                       selected
                         ? "border-[var(--color-accent)] bg-[var(--color-accent)]/[0.06] ring-2 ring-[var(--color-accent)]/15"
                         : "border-black/[0.08] bg-[var(--color-surface-elevated)] hover:border-black/[0.12]"

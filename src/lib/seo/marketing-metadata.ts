@@ -228,7 +228,7 @@ export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
       "NCLEX practice questions",
       "USMLE question bank",
       "affordable board exam prep",
-      "clinician-curated question bank",
+      "QA-gated question bank",
       "one subscription six exams",
       "blueprint roadmap board prep",
       "deep dive exam review",

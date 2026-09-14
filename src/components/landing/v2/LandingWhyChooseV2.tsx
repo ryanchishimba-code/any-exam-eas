@@ -4,13 +4,14 @@
  * LandingWhyChooseV2 — the persuasion block.
  *
  * Value cards → a three-way comparison (AnyExamEasy vs UWorld vs AMBOSS) →
- * honest stat band + illustrative testimonials. Comparison data is defined here
+ * honest stat band + product facts (no invented quotes). Comparison data is defined here
  * (self-contained) and reflects publicly advertised competitor positioning.
  */
 
 import { Check, Minus } from "lucide-react";
 import { Reveal } from "@/components/landing/v2/Reveal";
-import { LANDING_SUCCESS_STORIES, LANDING_UNIQUE_FEATURES } from "@/lib/landing/content";
+import { LANDING_UNIQUE_FEATURES } from "@/lib/landing/content";
+import { MarketingHonestProof } from "@/components/marketing/MarketingHonestProof";
 import {
   buildLandingSocialProofStats,
   type LandingBankCountsDisplay,
@@ -86,7 +87,6 @@ export function LandingWhyChooseV2({
 }: {
   bankCounts: LandingBankCountsDisplay;
 }) {
-  const testimonials = LANDING_SUCCESS_STORIES.slice(0, 3);
   const socialProofStats = buildLandingSocialProofStats(bankCounts);
 
   return (
@@ -213,38 +213,9 @@ export function LandingWhyChooseV2({
             ))}
           </ul>
 
-          {/* Testimonials */}
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.05}>
-                <figure className="flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)]">
-                  <figcaption className="flex items-center gap-3">
-                    <span
-                      className="flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white"
-                      style={{ background: t.avatarGradient }}
-                      aria-hidden
-                    >
-                      {t.initials}
-                    </span>
-                    <div>
-                      <p className="text-sm font-bold text-[var(--color-ink)]">{t.name}</p>
-                      <p className="text-xs text-[var(--color-ink-muted)]">{t.exam}</p>
-                    </div>
-                  </figcaption>
-                  <p className="mt-3 text-xs font-bold uppercase tracking-wide text-[var(--color-accent)]">
-                    {t.outcome}
-                  </p>
-                  <blockquote className="mt-2 text-sm leading-relaxed text-[var(--color-ink)]">
-                    &ldquo;{t.quote}&rdquo;
-                  </blockquote>
-                </figure>
-              </Reveal>
-            ))}
+          <div className="mt-10">
+            <MarketingHonestProof />
           </div>
-          <p className="mt-4 text-center text-[11px] text-[var(--color-ink-muted)]">
-            Individual results vary — illustrative student feedback; we do not guarantee licensure
-            outcomes.
-          </p>
         </div>
       </div>
     </section>
