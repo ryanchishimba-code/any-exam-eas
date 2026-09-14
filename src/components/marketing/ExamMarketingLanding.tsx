@@ -9,12 +9,13 @@ import {
   type ExamSeoKey,
 } from "@/lib/seo/exam-config";
 import {
-  LANDING_HERO_CTA_DISCLOSURE,
+  formatExamLiveCountLine,
   PLATFORM_EXAM_LIST_MIDDOT,
   landingTrialHrefForExam,
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
-import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
+import { ExamMarketingHero } from "@/components/marketing/ExamMarketingHero";
+import { examHubProductLinks } from "@/lib/marketing/exam-hub";
 import {
   LandingPricingPreviewLazy,
   UsmleStepShowcaseLazy,
@@ -35,8 +36,6 @@ type Props = {
   usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
   /** Optional product band after the hero (study guide, practice, etc.). */
   extraAfterHero?: ReactNode;
-  /** Replace the default single-column hero (used by /nclex conversion ATF). */
-  hero?: ReactNode;
 };
 
 export function ExamMarketingLanding({
@@ -44,87 +43,58 @@ export function ExamMarketingLanding({
   questionCountLabel,
   usmleStepCounts,
   extraAfterHero,
-  hero,
 }: Props) {
   const config = getExamSeoConfig(examKey);
   const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
   const isUsmle = examKey === "usmle";
   const topFeatures = config.features.slice(0, 4);
+  const questionCountLine =
+    formatExamLiveCountLine(config.shortName, questionCountLabel) ??
+    (questionCountLabel ? `${questionCountLabel} ${config.shortName} questions` : "");
+  const productLinks = examHubProductLinks(examKey);
 
   return (
     <div className="aee-exam-marketing">
-      {hero ?? (
-      <section className="aee-exam-marketing__hero border-b border-[var(--color-border)]/40">
-        <div className="mx-auto max-w-5xl px-5 pb-16 pt-[var(--page-top)] sm:px-6 sm:pb-20">
-          <nav aria-label="Breadcrumb" className="text-sm text-[var(--color-ink-muted)]">
-            <Link href={ROUTES.home} className="transition-colors hover:text-[var(--color-accent)]">
-              Home
-            </Link>
-            <span className="mx-2 opacity-40">/</span>
-            <span className="font-medium text-[var(--color-ink)]">{config.shortName} Prep</span>
-          </nav>
+      <ExamMarketingHero examKey={examKey} questionCountLine={questionCountLine} />
 
-          <header className="mt-10 max-w-3xl">
-            <p
-              className="text-xs font-bold uppercase tracking-[0.16em]"
-              style={{ color: config.accentColor }}
-            >
-              {config.blueprintLabel}
+      {extraAfterHero ?? (
+        <section className="border-b border-[var(--color-border)]/40 py-14">
+          <div className="mx-auto max-w-5xl px-5 sm:px-6">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
+              Start here
             </p>
-            <h1 className="mt-4 text-[clamp(2.5rem,6.5vw,4.5rem)] font-extrabold leading-[1.05] tracking-tight text-[var(--color-ink)]">
-              {config.h1}
-            </h1>
-            <p className="mt-5 max-w-xl text-[clamp(1.125rem,2.2vw,1.375rem)] leading-relaxed text-[var(--color-ink)]">
-              {config.heroSubline}
+            <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)] font-bold tracking-tight text-[var(--color-ink)]">
+              {config.shortName} tools on one plan.
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
+              {formatTrialLabel()} — no card, then {formatMonthlyPrice("pro")}/mo.
             </p>
-            {questionCountLabel ? (
-              <p className="mt-4 text-base font-semibold text-[var(--color-ink-muted)]">
-                {questionCountLabel} {config.shortName} questions live · one plan for six boards
-              </p>
-            ) : null}
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <LandingCta
-                href={landingTrialHrefForExam(examKey)}
-                ctaName={`exam_hero_trial_${examKey}`}
-                location="exam_marketing_hero"
-                className="aee-flagship-cta--hero group"
-                icon={
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                    aria-hidden
-                  />
-                }
-              >
-                {formatTrialCtaLabel()}
-              </LandingCta>
-              <Link
-                href="#pricing"
-                className="text-base font-semibold text-[var(--color-accent)] hover:underline"
-              >
-                View pricing →
-              </Link>
-            </div>
-            <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <span className="inline-flex items-baseline gap-1.5 text-base font-bold text-[var(--color-ink)]">
-                From
-                <HighlightedPrice size="hero" period="/mo" />
-              </span>
-              <span className="text-sm text-[var(--color-ink-muted)]">{formatTrialLabel()}</span>
-            </div>
-            <p className="mt-3 text-sm text-[var(--color-ink-muted)]">{LANDING_HERO_CTA_DISCLOSURE}</p>
-            <p className="mt-6 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              Independent study aid — not affiliated with or endorsed by the exam owner.
-            </p>
-          </header>
-        </div>
-      </section>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-3" role="list">
+              {productLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="block h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-accent)]/40"
+                  >
+                    <p
+                      className="text-sm font-bold"
+                      style={{ color: item.accent ? "var(--color-accent)" : "var(--color-ink)" }}
+                    >
+                      {item.title}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+                      {item.body}
+                    </p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
       )}
 
-      {extraAfterHero}
-
       {isUsmle && (
-        <section className="border-b border-[var(--color-border)]/40 py-14">
+        <section id="usmle-steps" className="scroll-mt-24 border-b border-[var(--color-border)]/40 py-14">
           <div className="mx-auto max-w-5xl px-5 sm:px-6">
             <UsmleStepShowcaseLazy initialStepCounts={usmleStepCounts} />
           </div>
@@ -184,7 +154,7 @@ export function ExamMarketingLanding({
           </div>
           <p className="mt-8 text-center text-base">
             <Link href={ROUTES.compare} className="font-semibold text-[var(--color-accent)] hover:underline">
-              Compare vs stacking QBanks →
+              Compare plans honestly →
             </Link>
           </p>
         </div>

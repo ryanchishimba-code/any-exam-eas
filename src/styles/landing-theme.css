@@ -13,6 +13,7 @@
   --landing-section-py: clamp(3.5rem, 8vw, 6rem);
   color: var(--color-ink);
   background: var(--color-bg);
+  overflow-x: clip;
 }
 
 [data-theme="dark"] .aee-marketing {
@@ -24,6 +25,7 @@
 }
 
 .aee-flagship {
+  overflow-x: clip;
   --flagship-navy: var(--color-ink);
   --flagship-navy-soft: var(--color-ink-muted);
   --flagship-teal: var(--color-accent);

@@ -23,4 +23,13 @@ describe("public blog copy", () => {
       /guaranteed to pass/i
     );
   });
+
+  it("scrubs stale bank totals and 3-day trial language", () => {
+    expect(publicBlogExcerpt("Start a 3-day trial with 43,000+ questions.")).toBe(
+      "Start a 5-day free trial with 47,969 questions."
+    );
+    expect(publicBlogBody("<p>48,775 questions across six boards</p>")).toContain("47,969");
+    expect(publicBlogTitle("Spend less, pass easy")).toBe("Study smarter on one plan");
+    expect(publicBlogTitle("How to pass NCLEX first try")).toBe("How to prepare for NCLEX");
+  });
 });

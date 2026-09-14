@@ -10,7 +10,6 @@ import {
   MASTER_FEATURE_ROWS,
   UWORLD_THREE_EXAM_MIN,
   formatUsd,
-  threeExamSavingsPercent,
 } from "@/lib/seo/competitor-comparison";
 import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
@@ -56,8 +55,6 @@ function ComparisonTable({
 }
 
 export function ComparePageContent() {
-  const savings = threeExamSavingsPercent();
-
   return (
     <div className="mx-auto max-w-4xl px-5 pb-20 pt-[var(--page-top)] sm:px-6">
       <nav className="text-sm text-[var(--color-ink-muted)]">
@@ -111,16 +108,15 @@ export function ComparePageContent() {
         </div>
         <div className="rounded-2xl border border-[var(--color-border)] p-5">
           <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            vs stacking three QBanks
+            Same study window
           </p>
-          <p className="mt-2 text-3xl font-black text-emerald-600 dark:text-emerald-400">
-            Lower list price
+          <p className="mt-2 text-3xl font-black text-[var(--color-ink)]">
+            One Pro plan
           </p>
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
             3 months of Pro ({formatUsd(AEE_MONTHLY * 3)}) vs public UWorld
             shortest-tier NCLEX + Step 2 CK + NAPLEX ({formatUsd(UWORLD_THREE_EXAM_MIN)},
-            Jul 2026 listings). About {savings}% less at those list prices — competitor
-            prices change.
+            Jul 2026 listings). Competitor prices change.
           </p>
         </div>
       </section>
@@ -214,7 +210,7 @@ export function ComparePageContent() {
             "You need more than one board exam on the same timeline (RN + NP, PharmD + side cert, Step 1 + Step 2).",
             "You want Blueprint Roadmaps, Deep Dives, and Full Exams — not QBank-only prep.",
             `${formatTrialLabel()} plus a ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment (support, not a refund) vs paid-upfront bundles.`,
-            `${SEO_LIVE_STATS.questionCount}+ questions across six exams beats stacking separate subscriptions.`,
+            `${SEO_LIVE_STATS.questionCount} questions across six exams on one plan — not six separate QBanks.`,
           ].map((item) => (
             <li key={item} className="flex gap-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
               <Check

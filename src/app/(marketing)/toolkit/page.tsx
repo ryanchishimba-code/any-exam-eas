@@ -159,7 +159,9 @@ export default function ToolkitPage() {
             </p>
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {EXAM_CARDS.map(({ key, label }) => {
-                const articles = getArticlesForExam(key).slice(0, 4);
+                const articles = getArticlesForExam(key)
+                  .filter((article) => !/vs-|alternative/i.test(article.slug))
+                  .slice(0, 2);
                 return (
                   <div
                     key={key}

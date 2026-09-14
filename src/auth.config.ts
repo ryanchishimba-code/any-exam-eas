@@ -8,7 +8,12 @@ import { hasMinRole, isStaffRole } from "@/lib/permissions";
 /** Edge-safe config — used by middleware only (no Prisma/bcrypt). */
 export const authConfig = {
   trustHost: true,
-  secret: process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET,
+  secret:
+    process.env.AUTH_SECRET ??
+    process.env.NEXTAUTH_SECRET ??
+    (process.env.NEXT_PHASE === "phase-production-build"
+      ? "vercel-preview-build-placeholder-min16"
+      : undefined),
   session: { strategy: "jwt", maxAge: 30 * 24 * 60 * 60 },
   pages: {
     signIn: "/auth/login",

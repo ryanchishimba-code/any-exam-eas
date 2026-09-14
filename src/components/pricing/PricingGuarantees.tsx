@@ -56,8 +56,8 @@ export function PricingGuarantees({ className, variant = "full" }: PricingGuaran
         {BILLING_GUARANTEE_HEADLINE}
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-        One subscription for every major board — without stacking $99+ single-exam apps. You won&apos;t
-        regret investing in prep that matches how you actually learn.
+        One subscription for every major board — Roadmap, Deep Dive, and Full Exam in one study
+        window. You won&apos;t regret investing in prep that matches how you actually learn.
       </p>
 
       <ul className="mt-6 space-y-3">

@@ -25,7 +25,6 @@ import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   formatUsd,
   UWORLD_THREE_EXAM_MIN,
-  threeExamSavingsPercent,
 } from "@/lib/seo/competitor-comparison";
 import {
   enforceMetaDescription,
@@ -190,7 +189,7 @@ export function buildCompareJsonLd() {
             name: "How does AnyExamEasy compare to UWorld on price?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: `AnyExamEasy Pro is ${formatMonthlyPrice("pro")}/month for all six board exams. Stacking UWorld for NCLEX, USMLE Step 2 CK, and NAPLEX QBank costs at least ${formatUsd(UWORLD_THREE_EXAM_MIN)} at shortest public tiers — roughly ${threeExamSavingsPercent()}% more than three months of AnyExamEasy.`,
+              text: `AnyExamEasy Pro is ${formatMonthlyPrice("pro")}/month for all six board exams. Stacking UWorld for NCLEX, USMLE Step 2 CK, and NAPLEX QBank costs at least ${formatUsd(UWORLD_THREE_EXAM_MIN)} at shortest public tiers (Jul 2026 listings). Competitor prices change.`,
             },
           },
           {

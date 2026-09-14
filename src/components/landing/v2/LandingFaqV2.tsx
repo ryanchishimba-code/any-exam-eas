@@ -20,7 +20,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "How much does it cost?",
-    a: `Pro is ${formatMonthlyPrice("pro")}/month and includes all six exams. Annual billing saves ${PRO_ANNUAL_SAVINGS_PERCENT}% versus monthly. That's typically less than a single per-exam UWorld or AMBOSS subscription.`,
+    a: `Pro is ${formatMonthlyPrice("pro")}/month and includes all six exams. Annual billing saves ${PRO_ANNUAL_SAVINGS_PERCENT}% versus monthly. Roadmap, Deep Dive, and Full Exam stay on the same plan.`,
   },
   {
     q: "Is there a free trial? Do I need a card?",
@@ -40,7 +40,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Why not just buy UWorld for the one exam I'm taking?",
-    a: `UWorld is a strong QBank — if you only need raw practice questions for a single board and the $200–400+ price tag fits your budget, it's a reasonable choice. Where AnyExamEasy differs: you get a structured blueprint Roadmap, Deep Dive review modules opened from the questions you miss, Full Exam simulations, lab values, calculators, and six boards under one plan. If you're only studying one exam and want just a QBank, we're transparent that you should compare. If you want guided prep or are studying more than one board, AnyExamEasy typically costs less and gives you more.`,
+    a: `UWorld is a strong QBank — if you only need raw practice questions for a single board and the $200–400+ price tag fits your budget, it's a reasonable choice. Where AnyExamEasy differs: you get a structured blueprint Roadmap, Deep Dive review modules opened from the questions you miss, Full Exam simulations, lab values, calculators, and six boards under one plan. If you're only studying one exam and want just a QBank, compare on craft and study window — we do not invent a savings percentage.`,
   },
   {
     q: "Is this genuinely enough to pass my board exam?",

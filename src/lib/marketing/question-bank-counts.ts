@@ -274,7 +274,7 @@ export function buildLandingSocialProofStats(
     {
       value: "6",
       label: "Board exams",
-      detail: "One subscription — no per-exam stacking",
+      detail: "One subscription across six boards",
     },
     {
       value: "Pro",

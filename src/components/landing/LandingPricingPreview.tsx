@@ -11,7 +11,6 @@ import {
   getBillingPlanTier,
   BILLING_TRIAL_DISCLOSURE,
 } from "@/lib/billing-plans";
-import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import {
   PRO_FEATURES,
   PRICING_VALUE_HEADLINE,
@@ -144,18 +143,9 @@ export function LandingPricingPreview() {
       </div>
 
       <p className="aee-landing-pricing__anchor">
-        Pro at {formatMonthlyPrice("pro")}/mo for NCLEX, USMLE, NAPLEX, PANCE, FNP &amp; NPTE —
-        typically less than stacking per-exam QBanks · {BILLING_TRIAL_DISCLOSURE}
+        Pro at {formatMonthlyPrice("pro")}/mo for NCLEX, USMLE, NAPLEX, PANCE, FNP &amp; NPTE.
+        Roadmap → Deep Dive → Full Exam · {BILLING_TRIAL_DISCLOSURE}
       </p>
-
-      <LandingCta
-        href={LANDING_TRIAL_HREF}
-        ctaName="pricing_preview_bottom"
-        location="pricing"
-        className="aee-flagship-cta--hero aee-flagship-cta--xl group mx-auto mt-6 w-full max-w-md"
-      >
-        {formatTrialCtaLabel()}
-      </LandingCta>
 
       <Link href={ROUTES.pricing} prefetch={false} className="aee-landing-pricing__full-link">
         View full pricing &amp; plan details →
