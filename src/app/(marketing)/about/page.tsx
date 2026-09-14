@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
@@ -192,19 +193,24 @@ export default function AboutPage() {
               Who builds {SITE_NAME}
             </h2>
             <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-start">
-              <div
-                className="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg)] text-2xl font-bold tracking-tight text-[var(--color-accent)]"
-              >
+              <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg)] shadow-[var(--shadow-apple-sm)]">
                 {FOUNDER_PUBLIC.photoSrc ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     src={FOUNDER_PUBLIC.photoSrc}
-                    alt={`${FOUNDER_PUBLIC.name}, ${FOUNDER_PUBLIC.role}`}
-                    className="h-full w-full object-cover"
+                    alt={FOUNDER_PUBLIC.photoAlt}
+                    width={FOUNDER_PUBLIC.photoWidth}
+                    height={FOUNDER_PUBLIC.photoHeight}
+                    className="h-full w-full object-cover object-[center_18%]"
+                    sizes="160px"
                   />
                 ) : (
                   <>
-                    <span aria-hidden>{FOUNDER_PUBLIC.initials}</span>
+                    <span
+                      className="flex h-full w-full items-center justify-center text-2xl font-bold tracking-tight text-[var(--color-accent)]"
+                      aria-hidden
+                    >
+                      {FOUNDER_PUBLIC.initials}
+                    </span>
                     <span className="sr-only">Founder photo coming soon</span>
                   </>
                 )}
@@ -218,21 +224,9 @@ export default function AboutPage() {
                 </p>
                 <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
                   {FOUNDER_PUBLIC.name} builds {COMPANY_PUBLIC.productName} at{" "}
-                  {COMPANY_PUBLIC.legalName}. A full bio, credentials, and photo will be published
-                  here when they are ready — we do not invent degrees or licenses.
+                  {COMPANY_PUBLIC.legalName}. A full bio and credentials will be published here when
+                  they are ready — we do not invent degrees or licenses.
                 </p>
-                {!FOUNDER_PUBLIC.photoSrc ? (
-                  <p className="mt-3 text-sm text-[var(--color-ink-muted)]">
-                    Photo slot reserved. Questions:{" "}
-                    <a
-                      href={`mailto:${COMPANY_PUBLIC.supportEmail}`}
-                      className="font-semibold text-[var(--color-accent)] hover:underline"
-                    >
-                      {COMPANY_PUBLIC.supportEmail}
-                    </a>
-                    .
-                  </p>
-                ) : null}
               </div>
             </div>
           </div>

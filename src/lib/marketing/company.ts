@@ -9,8 +9,10 @@ export const FOUNDER_PUBLIC = {
   name: "Ryan Chishimba",
   role: "Founder and product editor",
   initials: "RC",
-  /** Set when a real headshot lands in /public. */
-  photoSrc: null as string | null,
+  photoSrc: "/images/brand/founder-ryan-chishimba.jpg",
+  photoWidth: 800,
+  photoHeight: 1067,
+  photoAlt: "Ryan Chishimba, founder of AnyExamEasy",
   location: "Texas",
 } as const;
 
