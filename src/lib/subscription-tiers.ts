@@ -107,7 +107,7 @@ export const PRO_FEATURE_HIGHLIGHTS: readonly ProFeatureHighlight[] = [
 export const PRO_UPGRADE_HEADLINE = "One plan. Everything you need for all 6 boards.";
 
 export const PRICING_VALUE_HEADLINE =
-  "One Pro plan for all six boards — typically less than stacking per-exam QBanks.";
+  "One Pro plan for all six boards — Roadmap, Deep Dive, and Full Exam.";
 
 /** Trial study limits — shown in marketing copy. */
 export const TRIAL_STUDY_LIMITS = [

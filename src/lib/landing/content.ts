@@ -111,9 +111,9 @@ export const LANDING_BENEFITS = [
   },
   {
     visualId: "hero-app-mockup" as const,
-    title: "Six exams in one affordable subscription",
+    title: "Six exams in one subscription",
     detail:
-      "Stop stacking $200–400+ per-exam subscriptions. USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT prep live under one plan.",
+      "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT prep live under one plan — Roadmap, Deep Dive, and Full Exam included.",
   },
   {
     visualId: "screenshot-analytics" as const,
@@ -220,6 +220,23 @@ export function formatExamHeroSubline(
   _countLabel?: string
 ): string {
   return LANDING_HERO_SUBLINE_BODY;
+}
+
+/** Board-hub ATF sublines — sample-first, no pass-rate claims. */
+export const EXAM_HUB_HERO_SUBLINES: Record<string, string> = {
+  nclex: "NGN vignettes and clinical judgment — try a free sample, then keep going.",
+  usmle: "Step-day vignettes and CCS-style reasoning — try a free sample, then keep going.",
+  naplex: "Calculations, compounding, and cases — try a free sample, then keep going.",
+  pance: "NCCPA-style clinical judgment — try a free sample, then keep going.",
+  "aanp-fnp": "Primary-care vignettes that teach — try a free sample, then keep going.",
+  "npte-pt": "Clinical scenarios for PT decisions — try a free sample, then keep going.",
+};
+
+export function formatExamHubSubline(examSlug?: string): string {
+  if (examSlug && EXAM_HUB_HERO_SUBLINES[examSlug]) {
+    return EXAM_HUB_HERO_SUBLINES[examSlug];
+  }
+  return EXAM_HUB_HERO_SUBLINES.nclex;
 }
 
 /**
@@ -346,7 +363,7 @@ export const LANDING_HERO_HEADLINE_QUOTED = LANDING_HERO_HEADLINE;
 /** Scannable hero benefits — shown under the subline. */
 export const LANDING_HERO_BENEFITS = [
   "Only serve-ready items reach your sessions — weak bulk is filtered out",
-  "Six licensing exams under one plan — no $200–400/exam stacking",
+  "Six licensing exams under one plan — Roadmap, Deep Dive, Full Exam",
   "NGN-ready NCLEX formats + teachable rationales (not template distractors)",
   "Deep Dive lessons open from the questions you miss (Pro)",
 ] as const;
@@ -383,7 +400,7 @@ export const LANDING_SOCIAL_PROOF = [
   {
     value: "6",
     label: "Board exams",
-    detail: "One subscription — no per-exam stacking",
+    detail: "One subscription across six boards",
   },
   {
     value: "Pro",
@@ -559,7 +576,7 @@ export type LandingSuccessStory = {
 
 /** Platform stats for the social proof band — factual, no pass-rate claims. */
 export const LANDING_PASS_STATS = [
-  { value: "6", label: "Board exams", detail: "One subscription — no per-exam stacking" },
+  { value: "6", label: "Board exams", detail: "One subscription across six boards" },
   {
     value: `${TRIAL_DAYS} days`,
     label: "Free trial",

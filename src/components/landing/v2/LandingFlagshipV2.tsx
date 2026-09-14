@@ -18,7 +18,6 @@ import {
   LandingFaqV2,
   LandingPricingPreview,
   LandingStickyCta,
-  LandingTrialGuarantee,
 } from "@/components/landing/v2/LandingFlagshipSectionsLazy";
 import { LandingStatsStrip } from "@/components/landing/v2/LandingStatsStrip";
 import {
@@ -92,8 +91,8 @@ export function LandingFlagshipV2({
                 One plan. Every board. Start free.
               </h2>
               <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
-                Pro at {formatMonthlyPrice("pro")}/mo for all six boards — typically less than
-                stacking per-exam QBanks. {formatTrialLabel()} · cancel anytime.
+                Pro at {formatMonthlyPrice("pro")}/mo for all six boards. Roadmap → Deep Dive →
+                Full Exam. {formatTrialLabel()} · no card · cancel anytime.
               </p>
             </div>
             <div className="mt-10">
@@ -101,8 +100,6 @@ export function LandingFlagshipV2({
             </div>
           </div>
         </section>
-
-        <LandingTrialGuarantee />
 
         <LandingFaqV2 />
 

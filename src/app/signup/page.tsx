@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft } from "lucide-react";
 import { SignupForm } from "@/components/SignupForm";
 import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { getCachedSession } from "@/lib/auth/session";
 import { contentWidth } from "@/lib/layout/shell-ui";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
@@ -19,6 +19,8 @@ import { ROUTES } from "@/lib/routes";
 const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
 const SIGNUP_DESCRIPTION =
   "Create your Any Exam Easy account for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE prep. Start a free trial or subscribe to Pro.";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: { absolute: SIGNUP_TITLE },
@@ -69,20 +71,21 @@ export default async function SignupPage({
 
   return (
     <PageShell
-      eyebrow="Get started"
+      eyebrow="AnyExamEasy"
       title="Create your account."
-      description={`Start a ${TRIAL_DAYS}-day free trial (no card) or subscribe to Pro from ${formatMonthlyPrice("pro")}/mo. Your trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions. Must be 18 or older.`}
+      description={`${TRIAL_DAYS}-day free trial · no card · then ${formatMonthlyPrice("pro")}/mo. ${TRIAL_LIFETIME_QUESTIONS} practice questions included. Must be 18 or older.`}
       align="center"
       maxWidth={contentWidth.auth}
       variant="premium"
+      compact
     >
-      <div className="mb-6 text-center">
+      <div className="mb-2 flex flex-col items-center gap-4 text-center">
+        <BrandLogo href={ROUTES.home} variant="nav" />
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
+          className="text-sm font-medium text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-accent)]"
         >
-          <ArrowLeft className="h-4 w-4 shrink-0" aria-hidden />
-          Return home
+          ← Return home
         </Link>
       </div>
       <AuthCard>

@@ -328,6 +328,7 @@ export function SignupForm({
       )}
 
       <fieldset className="space-y-4" disabled={loading}>
+        <legend className="apple-label">Account</legend>
         <div className="grid gap-4 sm:grid-cols-2">
           <input
             required
@@ -412,8 +413,11 @@ export function SignupForm({
         </div>
         <div>
           <label id="signup-dob-label" className="apple-label">
-            Date of birth (18+ required)
+            Date of birth
           </label>
+          <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
+            Required — you must be 18 or older to create an account.
+          </p>
           <div className="mt-2" aria-labelledby="signup-dob-label">
             <ExamDatePicker
               id="signup-dob"

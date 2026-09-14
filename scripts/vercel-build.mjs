@@ -8,6 +8,25 @@ function ensureBuildHeap() {
   process.env.NODE_OPTIONS = [process.env.NODE_OPTIONS, extra].filter(Boolean).join(" ").trim();
 }
 
+/**
+ * Preview env often lacks Production-only secrets (docs say check Preview + Build).
+ * Auth.js / Prisma asserts then kill `next build` in ~1 minute while Production
+ * of the same SHA succeeds. Placeholders are build-only; runtime still uses
+ * dashboard Preview env when present.
+ */
+function ensurePreviewAuthEnv() {
+  if (!process.env.NEXTAUTH_URL && process.env.VERCEL_URL) {
+    process.env.NEXTAUTH_URL = `https://${process.env.VERCEL_URL}`;
+  }
+  const hasSecret = Boolean(process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET);
+  if (!hasSecret && process.env.VERCEL_ENV !== "production") {
+    process.env.NEXTAUTH_SECRET = "vercel-preview-build-placeholder-min16";
+    console.warn(
+      "[vercel-build] NEXTAUTH_SECRET unset on non-production — using a build placeholder so Preview can compile."
+    );
+  }
+}
+
 function run(command, args, { allowFail = false } = {}) {
   const result = spawnSync(command, args, {
     stdio: "inherit",
@@ -44,6 +63,7 @@ function runMigrateDeploy() {
 
 run("node", ["scripts/set-prisma-provider.mjs", "postgresql"]);
 ensureDatabaseUrl();
+ensurePreviewAuthEnv();
 run("npx", ["prisma", "generate"]);
 
 if (shouldRunMigrations()) {

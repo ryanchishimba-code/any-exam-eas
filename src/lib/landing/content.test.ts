@@ -5,6 +5,7 @@ import {
   formatExamHeroEyebrow,
   formatExamHeroHeadline,
   formatExamHeroTrialOffer,
+  formatExamHubSubline,
   formatExamLiveCountLine,
   formatHeroTotalCountLine,
   landingTrialHrefForExam,
@@ -52,5 +53,12 @@ describe("homepage hero copy", () => {
       )
     ).toBe("8,327 NCLEX questions live");
     expect(formatExamHeroTrialOffer()).toBe("5-day free trial · no card · then $27.99/mo");
+  });
+
+  it("uses board-specific hub sublines for non-NCLEX ATF", () => {
+    expect(formatExamHubSubline("naplex")).toMatch(/calculations/i);
+    expect(formatExamHubSubline("usmle")).toMatch(/step-day/i);
+    expect(formatExamHubSubline("pance")).toMatch(/NCCPA/i);
+    expect(formatExamHubSubline()).toMatch(/NGN/i);
   });
 });

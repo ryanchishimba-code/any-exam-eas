@@ -35,13 +35,18 @@ export function LegalCheckbox({
           </a>
           .
         </span>
-        {summaryLine ? (
-          <span className="block text-[11px] text-[var(--color-ink-muted)]">{summaryLine}</span>
-        ) : null}
-        <span className="block text-[11px] text-[var(--color-ink-muted)]">
-          {LEGAL_ENTITY.productName} does not guarantee exam passage, licensure, or certification.
-          Subscription terms include auto-renewal as described in the Terms.
-        </span>
+        <details className="rounded-xl border border-[var(--color-border)]/70 bg-[var(--color-surface)]/60 px-3 py-2">
+          <summary className="cursor-pointer text-[11px] font-semibold text-[var(--color-ink)]">
+            What you are agreeing to
+          </summary>
+          <span className="mt-2 block space-y-2 text-[11px] text-[var(--color-ink-muted)]">
+            {summaryLine ? <span className="block">{summaryLine}</span> : null}
+            <span className="block">
+              {LEGAL_ENTITY.productName} does not guarantee exam passage, licensure, or
+              certification. Subscription terms include auto-renewal as described in the Terms.
+            </span>
+          </span>
+        </details>
       </span>
     </label>
   );

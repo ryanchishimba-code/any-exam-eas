@@ -62,7 +62,7 @@ function NavWordmark({
       </svg>
       <span
         className={cn(
-          "text-[0.9375rem] font-semibold tracking-tight max-[360px]:hidden",
+          "aee-nav-wordmark__text text-[0.9375rem] font-semibold tracking-tight max-[430px]:hidden",
           wordColor
         )}
       >

@@ -18,6 +18,10 @@ import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { ROUTES, EXAM_NAV_ITEMS } from "@/lib/routes";
 import { LANDING_TRIAL_HREF, landingTrialHrefForExam } from "@/lib/landing/content";
+import {
+  MARKETING_DARK_HERO_PATHS,
+  marketingExamKeyFromPath,
+} from "@/lib/marketing/exam-hub";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { formatTrialCtaLabel } from "@/lib/site";
 
@@ -35,7 +39,7 @@ type NavLink = { href: string; label: string };
 const guestLinks: NavLink[] = [
   { href: ROUTES.home, label: "Home" },
   { href: ROUTES.toolkit, label: "Toolkit" },
-  { href: `${ROUTES.home}#pricing`, label: "Pricing" },
+  { href: ROUTES.pricing, label: "Pricing" },
   { href: ROUTES.about, label: "About" },
 ];
 
@@ -133,9 +137,11 @@ export function Navigation() {
     pathname.startsWith("/question-bank") ||
     pathname.startsWith("/full-exam");
 
-  const onDarkHero = !isAuthenticated && (pathname === "/" || pathname === "/nclex");
-  const guestTrialHref =
-    pathname === "/nclex" ? landingTrialHrefForExam("nclex") : LANDING_TRIAL_HREF;
+  const examFromPath = marketingExamKeyFromPath(pathname);
+  const onDarkHero = !isAuthenticated && MARKETING_DARK_HERO_PATHS.has(pathname);
+  const guestTrialHref = examFromPath
+    ? landingTrialHrefForExam(examFromPath)
+    : LANDING_TRIAL_HREF;
   const [heroScrolled, setHeroScrolled] = useState(false);
 
   useEffect(() => {
@@ -216,13 +222,13 @@ export function Navigation() {
             <div className="aee-nav-auth-group">
               <LoginModalTrigger
                 callbackUrl={ROUTES.dashboard}
-                className={`aee-nav-login max-[380px]:px-2.5 ${navOnHero ? "aee-nav-login--on-hero" : ""}`}
+                className={`aee-nav-login max-[430px]:px-2 ${navOnHero ? "aee-nav-login--on-hero" : ""}`}
                 aria-label="Sign in to your account"
               >
                 <LogIn className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden />
-                <span className="max-[380px]:hidden">Sign in</span>
+                <span className="max-[430px]:hidden">Sign in</span>
               </LoginModalTrigger>
-              <Link href={guestTrialHref} className="aee-nav-cta text-[0.8125rem] max-[380px]:px-3">
+              <Link href={guestTrialHref} className="aee-nav-cta text-[0.8125rem] max-[430px]:px-2.5">
                 {formatTrialCtaLabel()}
               </Link>
             </div>

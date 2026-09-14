@@ -38,7 +38,7 @@ function isPrismaClientCurrent(client: PrismaClient | undefined): client is Pris
 
 export function getPrisma(): PrismaClient {
   ensureDatabaseUrlEnv();
-  if (process.env.VERCEL) {
+  if (process.env.VERCEL && !isNextBuild) {
     try {
       assertRuntimeDatabaseUrl();
     } catch (error) {

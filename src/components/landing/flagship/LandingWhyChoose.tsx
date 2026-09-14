@@ -58,10 +58,11 @@ export function LandingWhyChoose() {
             id="why-heading"
             className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl"
           >
-            Six boards, premium quality — for less than one UWorld plan.
+            Six boards, one premium study window.
           </h2>
           <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
-            Everything serious candidates need, without stacking $200–400 subscriptions per exam.
+            Everything serious candidates need — Roadmap, Deep Dive, and Full Exam — without a
+            separate QBank per board.
           </p>
         </div>
 
