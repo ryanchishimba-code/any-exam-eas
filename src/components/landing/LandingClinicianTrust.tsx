@@ -1,61 +1,58 @@
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, HeartPulse, ShieldCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck, Map, ShieldCheck } from "lucide-react";
 import { ROUTES } from "@/lib/routes";
+import { COMPANY_PUBLIC } from "@/lib/marketing/company";
+import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 
 const TRUST_PILLARS = [
   {
-    icon: HeartPulse,
-    label: "Licensed healthcare providers",
-    detail: "Real clinicians build and review every question and rationale.",
+    icon: ShieldCheck,
+    label: "QA-gated bank",
+    detail: "Items ship after an editorial gate — soft stems stay off the live bank.",
   },
   {
-    icon: ShieldCheck,
-    label: "QA-gated, not crowd-sourced",
-    detail: "Every item clears a quality gate before it ever reaches you.",
+    icon: Map,
+    label: "Blueprint Roadmaps",
+    detail: "Per-exam plans tied to official outlines, not a random question firehose.",
   },
   {
     icon: BadgeCheck,
-    label: "12+ yrs frontline experience",
-    detail: "Bedside expertise baked into explanations — not just textbook recall.",
+    label: formatTrialLabel(),
+    detail: `No card. Try a free sample, then decide if Pro is worth ${formatMonthlyPrice("pro")}/mo.`,
   },
 ] as const;
 
 /**
- * Compact "Built by Clinicians" trust band.
- *
- * Sits between the Why-Choose and Pro Benefits sections of the landing page
- * to reinforce content credibility before the pricing section.
+ * Honest trust band — company + product facts, no invented clinician years.
  */
 export function LandingClinicianTrust() {
   return (
     <section
-      aria-labelledby="clinician-trust-heading"
+      aria-labelledby="product-trust-heading"
       className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-14 sm:px-6 sm:py-16"
     >
       <div className="mx-auto max-w-5xl">
-        {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)]">
-              Built by clinicians
+              {COMPANY_PUBLIC.legalName}
             </p>
             <h2
-              id="clinician-trust-heading"
+              id="product-trust-heading"
               className="mt-2 text-2xl font-bold tracking-tight text-[var(--color-ink)] sm:text-3xl"
             >
-              Questions written by people who&apos;ve done the job.
+              A study product with a named company behind it.
             </h2>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              12+ years of combined frontline healthcare experience goes into every
-              vignette, rationale, and clinical pearl — so you study the real thing,
-              not a template.
+              {COMPANY_PUBLIC.productName} is built in Texas. We publish live bank counts, a
+              no-card trial, and a compare table — not invented pass rates.
             </p>
           </div>
           <Link
             href={ROUTES.about}
             className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-[var(--color-accent)] transition hover:underline hover:underline-offset-4"
           >
-            Our story
+            About the builder
             <ArrowRight
               className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
               aria-hidden
@@ -63,7 +60,6 @@ export function LandingClinicianTrust() {
           </Link>
         </div>
 
-        {/* Pillars */}
         <ul className="mt-8 grid gap-4 sm:grid-cols-3">
           {TRUST_PILLARS.map(({ icon: Icon, label, detail }) => (
             <li

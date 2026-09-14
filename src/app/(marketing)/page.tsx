@@ -3,7 +3,6 @@ import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeExperience } from "@/components/home/HomeExperience";
 import { LandingSeoGuide } from "@/components/landing/LandingSeoGuide";
 import { LANDING_FALLBACK_BANK_COUNTS } from "@/lib/marketing/landing-fallback-counts";
-import { LANDING_SUCCESS_STORIES } from "@/lib/landing/content";
 import { buildHomeMetadata } from "@/lib/seo";
 
 /** Fully static shell — live bank counts hydrate client-side via `/api/marketing/bank-counts`. */
@@ -26,7 +25,7 @@ export default function HomePage() {
       <HomeJsonLd />
       <HomeExperience
         bankCounts={LANDING_FALLBACK_BANK_COUNTS}
-        testimonials={LANDING_SUCCESS_STORIES}
+        testimonials={[]}
       >
         <LandingSeoGuide
           questionCountLabel={LANDING_FALLBACK_BANK_COUNTS.totalLabel}

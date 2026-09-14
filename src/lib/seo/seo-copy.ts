@@ -11,7 +11,6 @@ export const SEO_LIVE_STATS = {
   questionCountRaw: PUBLISHED_QUESTION_BANK_TOTAL,
   topDrugsCount: TOP_500_DRUGS_COUNT,
   topDrugsLabel: DRUGS_DECK_MARKETING_TITLE,
-  clinicianYears: "12+",
   trialDays: 5,
   /** Support window for quality issues — not a money-back refund. */
   moneyBackDays: 30,
@@ -21,7 +20,7 @@ export const SEO_VALUE_PROPS = {
   deepDives: "Deep Dive review modules opened from missed questions",
   fullExam: "Timed Full Exam simulations with weak-area focus",
   adaptiveRoadmap: "Adaptive Blueprint Roadmaps tied to each licensing exam",
-  qaGated: "QA-gated, clinician-built question bank",
+  qaGated: "QA-gated, blueprint-aligned question bank",
   multiExam: "NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE-PT in one subscription",
   /** Honest content claim — formats + rationales, not UWorld parity or pass rates. */
   ngnAndRationales:
@@ -66,7 +65,7 @@ export function seoQuestionBankPhrase(totalLabel?: string): string {
 }
 
 export function seoPlatformPitch(totalLabel?: string): string {
-  return `${seoQuestionBankPhrase(totalLabel)}, adaptive Blueprint Roadmaps, Deep Dive modules, and Full Exam simulations — built by licensed clinicians (${SEO_LIVE_STATS.clinicianYears} years combined).`;
+  return `${seoQuestionBankPhrase(totalLabel)}, adaptive Blueprint Roadmaps, Deep Dive modules, and Full Exam simulations — six boards on one Pro plan.`;
 }
 
 /** Homepage H1 — default NCLEX job; six-board system lives in the subhead. */

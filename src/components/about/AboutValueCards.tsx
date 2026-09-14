@@ -6,7 +6,7 @@
  */
 
 import { BookOpen, Map, Stethoscope, Timer, type LucideIcon } from "lucide-react";
-import { SEO_LIVE_STATS, SEO_VALUE_PROPS } from "@/lib/seo/seo-copy";
+import { SEO_VALUE_PROPS } from "@/lib/seo/seo-copy";
 
 type ValueCard = {
   icon: LucideIcon;
@@ -38,8 +38,8 @@ const CARDS: ValueCard[] = [
   },
   {
     icon: Stethoscope,
-    title: "Clinician-built, six boards, one plan",
-    kicker: `${SEO_LIVE_STATS.clinicianYears} years combined frontline experience`,
+    title: "Six boards, one plan",
+    kicker: "No stacking per-exam banks",
     blurb: `${SEO_VALUE_PROPS.qaGated}. NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE-PT on one Pro subscription — premium prep without stacking banks.`,
   },
 ];

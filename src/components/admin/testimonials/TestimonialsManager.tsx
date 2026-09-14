@@ -503,7 +503,7 @@ function TestimonialForm({
               <Input
                 value={form.name}
                 onChange={(e) => onChange({ name: e.target.value })}
-                placeholder="Prisca M."
+                placeholder="Student name"
                 required
                 maxLength={80}
               />

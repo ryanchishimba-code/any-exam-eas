@@ -1,23 +1,13 @@
 import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import {
-  LANDING_SUCCESS_STORIES,
-  type LandingSuccessStory,
-} from "@/lib/landing/content";
+import type { LandingSuccessStory } from "@/lib/landing/content";
 import { deriveInitials, gradientForName } from "@/lib/admin/testimonials-validators";
 
 /**
  * Public-facing testimonials source.
  *
- * Returns admin-approved testimonials from the database, shaped as
- * `LandingSuccessStory[]` so existing landing components can consume them
- * unchanged. When the table is empty (or on any DB error) it falls back to the
- * curated static stories — so the public site is never blank and existing
- * behavior is preserved until an admin publishes their own.
- *
- * NOTE: a `photoUrl` is intentionally NOT part of `LandingSuccessStory` today
- * (avatars are gradient + initials). When wiring real photos into the public
- * cards, extend `LandingSuccessStory` with an optional `photoUrl` and render it.
+ * Returns admin-approved testimonials only. Empty table or DB errors return
+ * [] — never invented student quotes.
  */
 export async function getPublishedTestimonials(
   limit = 12
@@ -28,8 +18,6 @@ export async function getPublishedTestimonials(
       orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
       take: limit,
     });
-
-    if (rows.length === 0) return LANDING_SUCCESS_STORIES;
 
     return rows.map((row) => ({
       quote: row.quote,
@@ -44,8 +32,7 @@ export async function getPublishedTestimonials(
       photoUrl: row.photoUrl ?? undefined,
     }));
   } catch {
-    // DB unavailable / table not migrated yet — keep the site working.
-    return LANDING_SUCCESS_STORIES;
+    return [];
   }
 }
 

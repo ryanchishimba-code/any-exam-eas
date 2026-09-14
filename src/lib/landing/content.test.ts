@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   LANDING_HERO_HEADLINE,
   LANDING_HERO_SUBLINE_BODY,
+  LANDING_SUCCESS_STORIES,
   formatExamHeroEyebrow,
   formatExamHeroHeadline,
   formatExamHeroTrialOffer,
@@ -53,6 +54,10 @@ describe("homepage hero copy", () => {
       )
     ).toBe("8,327 NCLEX questions live");
     expect(formatExamHeroTrialOffer()).toBe("5-day free trial · no card · then $27.99/mo");
+  });
+
+  it("does not ship invented student testimonials as a static fallback", () => {
+    expect(LANDING_SUCCESS_STORIES).toEqual([]);
   });
 
   it("uses board-specific hub sublines for non-NCLEX ATF", () => {

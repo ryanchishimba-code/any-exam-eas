@@ -16,7 +16,7 @@ export function LegalCheckbox({
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="mt-1 shrink-0"
+        className="mt-1 shrink-0 accent-[var(--color-accent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
         required
       />
       <span className="block space-y-2">

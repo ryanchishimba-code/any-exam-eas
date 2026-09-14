@@ -20,6 +20,7 @@ import {
   LandingStickyCta,
 } from "@/components/landing/v2/LandingFlagshipSectionsLazy";
 import { LandingStatsStrip } from "@/components/landing/v2/LandingStatsStrip";
+import { MarketingProductProof } from "@/components/marketing/MarketingProductProof";
 import {
   LANDING_TRIAL_DETAIL,
   LANDING_TRIAL_HREF,
@@ -78,6 +79,8 @@ export function LandingFlagshipV2({
         <LandingSectionPageviews />
 
         <LandingHeroV2 bankCounts={bankCounts} />
+
+        <MarketingProductProof compact />
 
         <LandingStatsStrip bankCounts={bankCounts} />
 

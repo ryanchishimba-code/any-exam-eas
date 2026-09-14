@@ -117,7 +117,7 @@ describe("TestimonialsManager", () => {
 
     await user.click(screen.getByRole("button", { name: /add testimonial/i }));
 
-    await user.type(screen.getByPlaceholderText("Prisca M."), "Jordan T.");
+    await user.type(screen.getByPlaceholderText("Student name"), "Jordan T.");
     await user.type(
       screen.getByPlaceholderText(/I passed on my first try/i),
       "This platform made the difference for me."
@@ -138,7 +138,7 @@ describe("TestimonialsManager", () => {
     await screen.findByText(/no testimonials yet/i);
 
     await user.click(screen.getByRole("button", { name: /add testimonial/i }));
-    await user.type(screen.getByPlaceholderText("Prisca M."), "Jordan T.");
+    await user.type(screen.getByPlaceholderText("Student name"), "Jordan T.");
     await user.type(screen.getByPlaceholderText("NCLEX-RN"), "USMLE Step 1");
     await user.type(
       screen.getByPlaceholderText(/I passed on my first try/i),
@@ -210,7 +210,7 @@ describe("TestimonialsManager", () => {
     await screen.findByText(/no testimonials yet/i);
 
     await user.click(screen.getByRole("button", { name: /add testimonial/i }));
-    await user.type(screen.getByPlaceholderText("Prisca M."), "Jo");
+    await user.type(screen.getByPlaceholderText("Student name"), "Jo");
     await user.type(screen.getByPlaceholderText("NCLEX-RN"), "NCLEX");
     await user.type(screen.getByPlaceholderText(/I passed on my first try/i), "Short");
 

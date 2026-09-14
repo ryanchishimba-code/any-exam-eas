@@ -56,7 +56,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     ],
     readingMinutes: 9,
     intro:
-      "Stacking separate UWorld subscriptions for NCLEX, USMLE, and NAPLEX can exceed $1,000/year. A multi-exam platform with clinician-built questions, Blueprint Roadmaps, Deep Dives, and Full Exam simulations changes the cost equation — without sacrificing vignette quality.",
+      "Stacking separate UWorld subscriptions for NCLEX, USMLE, and NAPLEX can exceed $1,000/year. A multi-exam platform with QA-gated questions, Blueprint Roadmaps, Deep Dives, and Full Exam simulations changes the cost equation — without sacrificing vignette quality.",
     sections: [
       {
         heading: "Why students search for a UWorld alternative",
