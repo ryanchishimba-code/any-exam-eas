@@ -11,7 +11,7 @@ export const FOUNDER_PUBLIC = {
   initials: "RC",
   photoSrc: "/images/brand/founder-ryan-chishimba.jpg",
   photoWidth: 800,
-  photoHeight: 1067,
+  photoHeight: 1200,
   photoAlt: "Ryan Chishimba, founder of AnyExamEasy",
   location: "Texas",
 } as const;

@@ -193,14 +193,14 @@ export default function AboutPage() {
               Who builds {SITE_NAME}
             </h2>
             <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-start">
-              <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg)] shadow-[var(--shadow-apple-sm)]">
+              <div className="relative h-60 w-40 shrink-0 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg)] shadow-[var(--shadow-apple-sm)]">
                 {FOUNDER_PUBLIC.photoSrc ? (
                   <Image
                     src={FOUNDER_PUBLIC.photoSrc}
                     alt={FOUNDER_PUBLIC.photoAlt}
                     width={FOUNDER_PUBLIC.photoWidth}
                     height={FOUNDER_PUBLIC.photoHeight}
-                    className="h-full w-full object-cover object-[center_18%]"
+                    className="h-full w-full object-cover object-top"
                     sizes="160px"
                   />
                 ) : (
