@@ -53,6 +53,30 @@ describe("public blog copy", () => {
     expect(scrubbed).not.toMatch(/3 Days/);
   });
 
+  it("scrubs mashed comparison-table blobs like Questions43,000+ and Trial3 Days", () => {
+    const blob = [
+      "FeatureAnyExamEasyTypical CompetitorMonthly Price$27.99$99–$399+",
+      "Exams Included6 Boards1 ExamQuestions43,000+VariesPersonalized Roadmap",
+      "IncludedOften ExtraFree Trial3 DaysLimited / None",
+    ].join("");
+    const scrubbed = publicBlogBody(`<p>${blob}</p>`);
+    expect(scrubbed).toContain(`Questions${publishedTotal}`);
+    expect(scrubbed).toContain("Trial5 Days");
+    expect(scrubbed).not.toMatch(/43,000\+?/);
+    expect(scrubbed).not.toMatch(/43k/i);
+    expect(scrubbed).not.toMatch(/3 Days/);
+    expect(scrubbed).not.toMatch(/3-day/i);
+
+    const shortForms = publicBlogBody(
+      "<p>Questions43k+ bank · Trial3-day access · 143,000 more elsewhere</p>"
+    );
+    expect(shortForms).toContain(`Questions${publishedTotal}`);
+    expect(shortForms).toContain("Trial5 Days");
+    expect(shortForms).not.toMatch(/43k/i);
+    expect(shortForms).not.toMatch(/3-day/i);
+    expect(shortForms).toContain("143,000 more elsewhere");
+  });
+
   it("removes invented named quotes from blog HTML", () => {
     const html = `
       <h3>Students Are Saving Hundreds</h3>
