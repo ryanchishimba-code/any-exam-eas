@@ -49,18 +49,25 @@ export function scrubGuaranteeCopy(text: string): string {
   return applyPatterns(text, GUARANTEE_PATTERNS);
 }
 
-/** Stale bank totals + trial length from older CMS drafts (table cells included). */
+/**
+ * Stale bank totals + trial length from older CMS drafts.
+ *
+ * CMS comparison tables are sometimes stored as one mashed paragraph
+ * (`Questions43,000+`, `Free Trial3 Days`) — `\b` fails there because the
+ * letter before the digit is still a word character. Use a digit-lookbehind
+ * instead so both spaced/HTML cells and concatenated blobs rewrite.
+ */
 export function scrubStaleOfferCopy(text: string): string {
   const total = publishedTotalLabel();
   const trialDays = String(TRIAL_DAYS);
   return text
-    .replace(/\b48,775\b/g, total)
-    .replace(/\b43(?:&#44;|,)?000(?:\s*<[^>]+>)*\s*\+?/g, total)
-    .replace(/\b43k\+?\b/gi, total)
+    .replace(/(?<![0-9])48,775\b/g, total)
+    .replace(/(?<![0-9])43(?:&#44;|,)?000(?:\s*<[^>]+>)*\s*\+?/g, total)
+    .replace(/(?<![0-9])43k\+?/gi, total)
     .replace(/\b3-day(?:s)?(?:\s+free)?\s+trial\b/gi, `${trialDays}-day free trial`)
     .replace(/\b3\s+day(?:s)?(?:\s+free)?\s+trial\b/gi, `${trialDays}-day free trial`)
     .replace(/>(\s*)3[\s-]Days?(\s*)</gi, `>$1${trialDays} Days$2<`)
-    .replace(/(?<=Free Trial[\s\S]{0,160})\b3[\s-]Days?\b/gi, `${trialDays} Days`);
+    .replace(/(?<=[Tt]rial[\s\S]{0,160})(?<![0-9])3[\s-]Days?/gi, `${trialDays} Days`);
 }
 
 function scrubInventedSocialProof(html: string): string {
