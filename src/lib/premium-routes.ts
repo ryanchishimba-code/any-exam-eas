@@ -21,6 +21,7 @@ export const PREMIUM_PAGE_PREFIXES = [
   "/nclex/study-guide",
   "/naplex/study-guide",
   "/aanp-fnp/study-guide",
+  "/usmle/study-guide",
 ] as const;
 
 export function isPremiumPage(path: string): boolean {

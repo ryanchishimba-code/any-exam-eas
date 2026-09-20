@@ -53,7 +53,8 @@ describe("app-shell routes", () => {
     expect(isStudyGuideReaderRoute("/aanp-fnp/study-guide/exam-strategy")).toBe(true);
     expect(isAppShellRoute("/aanp-fnp/study-guide")).toBe(true);
 
-    // An exam without a book must not pick up reader chrome.
-    expect(isStudyGuideReaderRoute("/usmle/study-guide/anything")).toBe(false);
+    expect(isStudyGuideReaderRoute("/usmle/study-guide/exam-strategy")).toBe(true);
+    expect(isAppShellRoute("/usmle/study-guide")).toBe(true);
+    expect(isStudyGuideReaderRoute("/pance/study-guide/anything")).toBe(false);
   });
 });

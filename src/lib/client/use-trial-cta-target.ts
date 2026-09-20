@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { useCampaignAwareHref } from "@/lib/client/use-campaign-href";
 import { ROUTES } from "@/lib/routes";
 import { formatTrialCtaLabel } from "@/lib/site";
 
@@ -12,6 +13,7 @@ export function useTrialCtaTarget(guestHref: string): {
   isMemberContinue: boolean;
 } {
   const { status } = useSession();
+  const campaignHref = useCampaignAwareHref(guestHref);
   if (status === "authenticated") {
     return {
       href: ROUTES.dashboard,
@@ -20,7 +22,7 @@ export function useTrialCtaTarget(guestHref: string): {
     };
   }
   return {
-    href: guestHref,
+    href: campaignHref,
     label: formatTrialCtaLabel(),
     isMemberContinue: false,
   };

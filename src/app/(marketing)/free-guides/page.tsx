@@ -31,6 +31,11 @@ const STUDY_GUIDE_CARDS = [
     title: "AANP FNP Study Guide",
     body: "Primary-care FNP chapters across domain, lifespan, and pharm.",
   },
+  {
+    href: STUDY_GUIDES.usmle.routeBase,
+    title: "USMLE Study Guide",
+    body: "Step 1, Step 2 CK, and Step 3 chapters — open the reader without an account.",
+  },
 ] as const;
 
 const TOOLKIT_WINS = [
@@ -124,7 +129,7 @@ export default function FreeGuidesPage() {
             <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-[var(--color-ink-muted)]">
               Book-style readers you can open before you subscribe.
             </p>
-            <ul className="mt-12 grid gap-6 sm:grid-cols-3" role="list">
+            <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" role="list">
               {STUDY_GUIDE_CARDS.map((item) => (
                 <li key={item.href}>
                   <Link

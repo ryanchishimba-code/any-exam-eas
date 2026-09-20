@@ -60,5 +60,7 @@ export const config = {
     "/naplex/study-guide/:path*",
     "/aanp-fnp/study-guide",
     "/aanp-fnp/study-guide/:path*",
+    "/usmle/study-guide",
+    "/usmle/study-guide/:path*",
   ],
 };

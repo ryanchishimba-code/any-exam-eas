@@ -12,7 +12,7 @@
  */
 
 /** Exams that ship a study guide book. A subset of `ExamSlug`. */
-export type StudyGuideExam = "nclex" | "naplex" | "aanp-fnp";
+export type StudyGuideExam = "nclex" | "naplex" | "aanp-fnp" | "usmle";
 
 export type StudyGuideConfig = {
   exam: StudyGuideExam;
@@ -100,6 +100,22 @@ export const STUDY_GUIDES: Record<StudyGuideExam, StudyGuideConfig> = {
       examName: "AANP FNP",
       owner: "AANPCB",
       programNoun: "nurse practitioner program",
+    },
+  },
+  usmle: {
+    exam: "usmle",
+    track: "std",
+    guideId: "sg_guide_usmle_std",
+    title: "USMLE Study Guide",
+    bookTitle: "AnyExamEasy USMLE Reference Book",
+    routeBase: "/usmle/study-guide",
+    hubHref: "/usmle",
+    contentDir: "usmle-study-guide",
+    visualsPrefix: "/usmle-study-guide/visuals/",
+    legal: {
+      examName: "USMLE",
+      owner: "NBME / FSMB",
+      programNoun: "medical school or residency program",
     },
   },
 };

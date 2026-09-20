@@ -54,6 +54,7 @@ export const ROUTES = {
   /** NCLEX product hub (study guide entry — separate from QBank). */
   nclexHub: "/nclex",
   nclexStudyGuide: "/nclex/study-guide",
+  usmleStudyGuide: "/usmle/study-guide",
   auth: {
     login: "/login",
     signup: "/signup",
