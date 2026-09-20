@@ -12,7 +12,14 @@ function manuscriptFirstSlug(exam: StudyGuideExam): string {
   return loadManuscriptGuide(exam).toc[0]?.slug ?? "manuscript-pending";
 }
 
+function databaseConfigured(): boolean {
+  return Boolean(process.env.DATABASE_URL?.trim());
+}
+
 export async function loadPublishedGuideFirstSlug(exam: StudyGuideExam): Promise<string> {
+  if (!databaseConfigured()) {
+    return manuscriptFirstSlug(exam);
+  }
   try {
     const slug = await withDbRetry(async () => {
       const config = STUDY_GUIDES[exam];
@@ -31,6 +38,13 @@ export async function loadPublishedGuideChapter(
   exam: StudyGuideExam,
   chapterSlug: string
 ) {
+  if (!databaseConfigured()) {
+    const manuscript = getManuscriptChapter(exam, chapterSlug);
+    if (!manuscript) {
+      return { guide: null, toc: [], chapter: null };
+    }
+    return manuscriptAsPublished(exam, manuscript, chapterSlug);
+  }
   try {
     const published = await withDbRetry(async () => {
       const config = STUDY_GUIDES[exam];
@@ -51,7 +65,14 @@ export async function loadPublishedGuideChapter(
   if (!manuscript) {
     return { guide: null, toc: [], chapter: null };
   }
+  return manuscriptAsPublished(exam, manuscript, chapterSlug);
+}
 
+function manuscriptAsPublished(
+  exam: StudyGuideExam,
+  manuscript: NonNullable<ReturnType<typeof getManuscriptChapter>>,
+  chapterSlug: string
+) {
   const config = STUDY_GUIDES[exam];
   return {
     guide: {
