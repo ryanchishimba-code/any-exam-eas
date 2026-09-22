@@ -28,7 +28,7 @@ const STATUS_LABEL: Record<RoadmapReadinessKey, string> = {
   needs_more_work: "Focus",
 };
 
-/** Brand-aligned readiness palette — teal / gold / indigo (no pink). */
+/** Brand-aligned readiness palette — teal / gold / navy (no indigo or pink). */
 const STATUS_BAR: Record<RoadmapReadinessKey, string> = {
   strong: "bg-[linear-gradient(90deg,var(--db-ready-strong),var(--db-ready-strong-end))]",
   needs_review: "bg-[linear-gradient(90deg,var(--db-ready-review),var(--db-ready-review-end))]",

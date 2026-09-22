@@ -1,7 +1,7 @@
 /**
  * Landing / flagship theme sync — uses global data-theme tokens.
- * Imported from marketing layout. Teal + contrast scoped to `.aee-marketing`
- * so the product indigo accent stays intact on the dashboard.
+ * Imported from marketing layout. Teal + contrast stay scoped to `.aee-marketing`.
+ * Study dashboard surfaces remap accents separately via `--study-accent`.
  */
 
 .aee-marketing {

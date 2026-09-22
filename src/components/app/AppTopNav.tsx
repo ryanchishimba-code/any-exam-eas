@@ -20,7 +20,7 @@ function navLinkClass(active: boolean) {
   return cn(
     "relative text-xs font-semibold tracking-tight transition-colors",
     active
-      ? "text-[var(--color-ink)] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-[var(--color-accent)]"
+      ? "text-[var(--color-ink)] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-[var(--study-accent)]"
       : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
   );
 }

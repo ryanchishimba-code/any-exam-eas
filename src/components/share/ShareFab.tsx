@@ -44,7 +44,7 @@ export function ShareFab() {
         type="button"
         onClick={() => setOpen(true)}
         className={cn(
-          "fixed right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 to-[var(--color-accent)] text-white shadow-lg shadow-sky-500/30 transition hover:scale-105 sm:right-6 sm:h-14 sm:w-14",
+          "fixed right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--study-accent)] text-[var(--study-accent-on)] shadow-lg shadow-teal-900/15 transition hover:bg-[var(--study-accent-hover)] hover:scale-105 sm:right-6 sm:h-14 sm:w-14",
           aboveMobileNav
             ? "bottom-[calc(4.75rem+env(safe-area-inset-bottom,0px))] lg:bottom-6"
             : "bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] sm:bottom-6"

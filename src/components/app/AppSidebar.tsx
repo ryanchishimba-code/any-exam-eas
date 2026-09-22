@@ -198,14 +198,14 @@ function SidebarNavLink({
         "study-nav-link",
         STUDY_NAV_COLOR,
         active
-          ? "text-[var(--color-accent)]"
+          ? "text-[var(--study-accent)]"
           : "text-[var(--color-ink)] hover:bg-[color-mix(in_srgb,var(--color-ink)_4%,transparent)]"
       )}
     >
       <Icon
         className={cn(
           "h-[18px] w-[18px] shrink-0",
-          active ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"
+          active ? "text-[var(--study-accent)]" : "text-[var(--color-ink-muted)]"
         )}
         strokeWidth={active ? 2 : 1.75}
         aria-hidden
