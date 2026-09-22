@@ -29,7 +29,7 @@ type Rollup = {
 
 const STATE_COLOR: Record<CellState, string> = {
   unseen: "bg-[var(--color-border)]/70",
-  primed: "bg-sky-300",
+  primed: "bg-teal-300",
   learning: "bg-amber-400",
   shaky: "bg-rose-500",
   stable: "bg-emerald-400",

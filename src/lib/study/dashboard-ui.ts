@@ -5,7 +5,7 @@ export const dbUi = {
     "rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))]",
   /** Graphic-first hero — ring + domain map + one CTA. */
   heroSurface:
-    "apple-animate-in rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] p-5 sm:p-7",
+    "study-home-accent apple-animate-in rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] p-5 sm:p-7",
   heroLayout:
     "flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:gap-9",
   sparkTrack:
@@ -14,7 +14,7 @@ export const dbUi = {
   statusPill:
     "inline-flex items-center gap-1 rounded-full border border-[var(--db-line,var(--color-border))]/70 bg-[var(--color-surface)]/90 px-2.5 py-1 text-[11px] font-medium tabular-nums text-[var(--color-ink-muted)]",
   statusPillAccent:
-    "inline-flex items-center gap-1 rounded-full border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/10 px-2.5 py-1 text-[11px] font-semibold tabular-nums text-[var(--color-accent)]",
+    "study-home-accent inline-flex items-center gap-1 rounded-full border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/10 px-2.5 py-1 text-[11px] font-semibold tabular-nums text-[var(--color-accent)]",
   weakChip:
     "inline-flex max-w-full items-center gap-2 rounded-full border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] px-3.5 py-2 text-[12px] font-medium text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]",
   eyebrow:
@@ -36,7 +36,7 @@ export const dbUi = {
   exploreLink:
     "group flex items-center gap-3 rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] px-4 py-3.5 transition hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-surface)]/50",
   primaryBtn:
-    "inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3 text-[14px] font-semibold text-white shadow-[var(--db-cta-shadow,0_1px_2px_rgba(15,23,42,0.08))] transition hover:opacity-95 hover:shadow-[var(--db-cta-shadow-hover,0_2px_8px_rgba(15,23,42,0.12))] active:scale-[0.98]",
+    "study-home-accent inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3 text-[14px] font-semibold text-[var(--study-accent-on,#fff)] shadow-[var(--db-cta-shadow,0_1px_2px_rgba(15,23,42,0.08))] transition hover:bg-[var(--color-accent-hover)] hover:shadow-[var(--db-cta-shadow-hover,0_2px_8px_rgba(15,23,42,0.12))] active:scale-[0.98]",
   ghostBtn:
     "inline-flex items-center justify-center gap-1.5 rounded-xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] px-3.5 py-2 text-[12px] font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]",
   switchExam:

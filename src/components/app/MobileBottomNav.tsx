@@ -113,12 +113,12 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
                 className={cn(
                   "relative flex min-h-[3rem] flex-col items-center justify-center gap-0.5 px-2 py-2 text-[10px] font-semibold",
                   STUDY_NAV_COLOR,
-                  active ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"
+                  active ? "text-[var(--study-accent)]" : "text-[var(--color-ink-muted)]"
                 )}
               >
                 {active ? (
                   <span
-                    className="absolute inset-x-1 top-1 bottom-1 rounded-xl bg-[var(--color-accent)]/10"
+                    className="absolute inset-x-1 top-1 bottom-1 rounded-xl bg-[var(--study-accent)]/10"
                     aria-hidden
                   />
                 ) : null}
