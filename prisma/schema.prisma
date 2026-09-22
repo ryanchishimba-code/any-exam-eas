@@ -1050,6 +1050,7 @@ model QuestionAttempt {
   createdAt           DateTime @default(now())
   user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([userId, sessionId, questionKey])
   @@index([userId, fieldId, createdAt])
   @@index([userId, correct, createdAt])
   @@index([questionKey, correct])

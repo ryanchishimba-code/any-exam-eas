@@ -5,10 +5,6 @@ import { loadBankItemsByIds } from "@/lib/full-exam/load-bank-items-by-ids";
 import { loadStillIncorrectBankItemIds } from "@/lib/learning/review-incorrect";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
-import {
-  assertExamSessionReady,
-  assessExamSessionQuality,
-} from "@/lib/questions/finalize-exam-session";
 import { resolveQuestionBankSessionCount } from "@/lib/study/question-bank-setup";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 
@@ -19,6 +15,7 @@ const bodySchema = z.object({
   field: z.string().min(1),
   subjectId: z.string().optional(),
   count: z.number().int().min(1).max(100).default(25),
+  preflight: z.boolean().optional(),
 });
 
 function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQuestion {
@@ -76,22 +73,6 @@ export async function POST(req: Request) {
     const access = await enforceQuestionBankFieldAccess(premium.userId, body.field);
     if (!access.ok) return access.response;
 
-    const {
-      checkStudyQuestionUsage,
-      recordStudyQuestionsServed,
-    } = await import("@/lib/study/usage-limits");
-    const usageCheck = await checkStudyQuestionUsage({
-      userId: premium.userId,
-      access: premium.access,
-      requestedCount,
-      adaptive: false,
-    });
-    if (!usageCheck.ok) return usageCheck.response;
-
-    const sessionCount = resolveQuestionBankSessionCount(
-      Math.min(requestedCount, usageCheck.allowedCount)
-    );
-
     const subjectId =
       body.subjectId && body.subjectId !== MIXED_SUBJECT_ID ? body.subjectId : null;
 
@@ -99,41 +80,47 @@ export async function POST(req: Request) {
       userId: premium.userId,
       fieldId,
       subjectId,
-      limit: Math.max(sessionCount * 3, 75),
+      limit: 300,
     });
 
-    if (incorrectIds.length === 0) {
-      return NextResponse.json(
-        {
-          error:
-            "No previously missed questions to review yet. Practice a standard or adaptive set first, then come back.",
-          code: "NO_INCORRECT_ITEMS",
-          availableIncorrect: 0,
-        },
-        { status: 404 }
-      );
+    if (body.preflight || incorrectIds.length === 0) {
+      return NextResponse.json({
+        field: body.field,
+        fieldId,
+        subjectId: subjectId ?? MIXED_SUBJECT_ID,
+        mode: "review_incorrect",
+        availableIncorrect: incorrectIds.length,
+        questions: [],
+        bankItemIds: [],
+        code: incorrectIds.length === 0 ? "NO_INCORRECT_ITEMS" : "OK",
+      });
     }
 
-    if (incorrectIds.length < sessionCount) {
-      return NextResponse.json(
-        {
-          error: `Only ${incorrectIds.length} still-incorrect item${incorrectIds.length === 1 ? "" : "s"} available. Choose ${incorrectIds.length < 25 ? "a smaller session after more practice" : "25"} or keep practicing.`,
-          code: "INCORRECT_POOL_TOO_SMALL",
-          availableIncorrect: incorrectIds.length,
-          requested: sessionCount,
-        },
-        { status: 400 }
-      );
-    }
+    const {
+      checkStudyQuestionUsage,
+      recordStudyQuestionsServed,
+    } = await import("@/lib/study/usage-limits");
+    const usageCheck = await checkStudyQuestionUsage({
+      userId: premium.userId,
+      access: premium.access,
+      requestedCount: Math.min(requestedCount, incorrectIds.length),
+      adaptive: false,
+    });
+    if (!usageCheck.ok) return usageCheck.response;
+
+    const sessionCount = Math.min(
+      resolveQuestionBankSessionCount(Math.min(requestedCount, usageCheck.allowedCount)),
+      incorrectIds.length
+    );
 
     const pickIds = incorrectIds.slice(0, sessionCount);
     const items = await loadBankItemsByIds(fieldId, pickIds);
-    if (items.length < sessionCount) {
+    if (items.length === 0) {
       return NextResponse.json(
         {
-          error: "Some missed items are no longer in the serve bank. Practice more, then retry.",
+          error: "Those missed items are no longer in the bank. Practice more, then retry.",
           code: "INCORRECT_ITEMS_UNAVAILABLE",
-          availableIncorrect: items.length,
+          availableIncorrect: incorrectIds.length,
         },
         { status: 503 }
       );
@@ -147,14 +134,11 @@ export async function POST(req: Request) {
       )
     );
 
-    const quality = assessExamSessionQuality(prepared, sessionCount);
-    assertExamSessionReady(quality, fieldId);
-
     const questions = prepared.map(toApiQuestion);
     await recordStudyQuestionsServed(
       premium.userId,
       questions.length,
-      "practice",
+      "bank",
       usageCheck.plan
     );
 

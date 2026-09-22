@@ -98,6 +98,13 @@ import {
 } from "@/lib/study/question-bank-weak-topics";
 import { TopicPracticeReturnBanner } from "./TopicPracticeReturnBanner";
 import { QuestionSessionSkeleton } from "./QuestionSessionSkeleton";
+import { RemediationLaunchNotice } from "./RemediationLaunchNotice";
+import {
+  decisionFromRemediationPayload,
+  emptyModeFromLaunchQuery,
+  launchQueryForEmpty,
+  type RemediationMode,
+} from "@/lib/study/remediation-launch";
 import { PanceTaskFocus } from "./question-bank/PanceTaskFocus";
 import { useSubjectCounts } from "@/hooks/use-subject-counts";
 import { useExamFieldSessionReset } from "@/hooks/use-exam-field-session-reset";
@@ -304,6 +311,8 @@ export function StudyBankPractice({
     )
   );
   const [loading, setLoading] = useState(false);
+  const [checkingRemediation, setCheckingRemediation] = useState(false);
+  const [remediationEmpty, setRemediationEmpty] = useState<RemediationMode | null>(null);
   const [error, setError] = useState("");
   const [upgradeHref, setUpgradeHref] = useState<string | null>(null);
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
@@ -339,6 +348,8 @@ export function StudyBankPractice({
     setError("");
     setUpgradeHref(null);
     setLoading(false);
+    setCheckingRemediation(false);
+    setRemediationEmpty(null);
     setSubjectId("");
     setSessionEpoch((epoch) => epoch + 1);
     autostartAttempted.current = false;
@@ -699,6 +710,8 @@ export function StudyBankPractice({
     pace?: QuestionBankPace;
     style?: QuestionBankStyle;
     taskCategory?: PanceTaskAreaId | null;
+    /** Skip Next.js navigation so an in-flight session is not unmounted by Suspense. */
+    historyOnly?: boolean;
   }) {
     const resolvedVariant = overrides?.mpjeVariant ?? mpjeVariant;
     const resolvedState = overrides?.mpjeState ?? mpjeState;
@@ -742,17 +755,56 @@ export function StudyBankPractice({
       practiceBase
     );
     if (typeof window !== "undefined") {
-      window.history.replaceState(window.history.state, "", href);
+      const current = `${window.location.pathname}${window.location.search}`;
+      if (current !== href) {
+        window.history.replaceState(window.history.state, "", href);
+      }
+      if (overrides?.historyOnly) return;
     }
     router.replace(href, { scroll: false });
+  }
+
+  function rememberLaunchOutcome(mode: RemediationMode | null) {
+    if (typeof window === "undefined") return;
+    const url = new URL(window.location.href);
+    if (mode) url.searchParams.set("launch", launchQueryForEmpty(mode));
+    else url.searchParams.delete("launch");
+    const next = `${url.pathname}${url.search}`;
+    window.history.replaceState(window.history.state, "", next);
   }
 
   function expectExactSessionCount(received: number, expected: number) {
     assertExactQuestionCount(received, expected);
   }
 
+  async function fetchJson(
+    url: string,
+    body: unknown,
+    timeoutMs: number
+  ): Promise<{ ok: boolean; status: number; data: Record<string, unknown> }> {
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      });
+      const data = (await res.json().catch(() => ({}))) as Record<string, unknown>;
+      return { ok: res.ok, status: res.status, data };
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        throw new Error("This is taking too long. Check your connection and try again.");
+      }
+      throw error;
+    } finally {
+      window.clearTimeout(timer);
+    }
+  }
+
   async function start() {
-    if (isMpje || !isTimedExam) syncPracticeUrl();
+    if (isMpje || !isTimedExam) syncPracticeUrl({ historyOnly: true });
 
     if (!isTimedExam) {
       const validation = validateQuestionBankSession({
@@ -771,7 +823,17 @@ export function StudyBankPractice({
     const generation = ++fetchGenerationRef.current;
     const isStale = () => generation !== fetchGenerationRef.current;
 
-    setLoading(true);
+    const remediationMode: RemediationMode | null =
+      !isTimedExam && (bankStyle === "review_incorrect" || bankStyle === "weak_areas")
+        ? bankStyle
+        : null;
+    if (remediationMode) {
+      setCheckingRemediation(true);
+      setRemediationEmpty(null);
+      rememberLaunchOutcome(null);
+    } else {
+      setLoading(true);
+    }
     setError("");
     setUpgradeHref(null);
     setQuestions(null);
@@ -964,35 +1026,68 @@ export function StudyBankPractice({
       }
 
       if (useReviewIncorrect) {
-        const res = await fetch("/api/study/review-incorrect", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            field,
-            subjectId: effectiveSubjectId,
-            count: limit,
-          }),
+        const preflight = await fetchJson(
+          "/api/study/review-incorrect",
+          { field, subjectId: effectiveSubjectId, count: limit, preflight: true },
+          8000
+        );
+        const decision = decisionFromRemediationPayload({
+          mode: "review_incorrect",
+          ok: preflight.ok,
+          requestedCount: limit,
+          body: preflight.data,
         });
-        const data = await res.json();
-        if (!res.ok) {
-          setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
+        if (decision.status === "empty") {
+          setRemediationEmpty("review_incorrect");
+          rememberLaunchOutcome("review_incorrect");
+          return;
+        }
+        if (decision.status === "error") {
+          throw new Error(decision.message);
+        }
+        const launched = await fetchJson(
+          "/api/study/review-incorrect",
+          { field, subjectId: effectiveSubjectId, count: decision.count },
+          20000
+        );
+        if (!launched.ok) {
+          setUpgradeHref(
+            typeof launched.data.upgradeUrl === "string" ? launched.data.upgradeUrl : null
+          );
+          const followup = decisionFromRemediationPayload({
+            mode: "review_incorrect",
+            ok: false,
+            requestedCount: decision.count,
+            body: launched.data,
+          });
           throw new Error(
-            studyLimitMessage(data) || data.error || "Could not build review-incorrect session"
+            followup.status === "error"
+              ? followup.message
+              : "Could not build review-incorrect session"
           );
         }
-
-        const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
-        const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
+        const launchedDecision = decisionFromRemediationPayload({
+          mode: "review_incorrect",
+          ok: true,
+          requestedCount: decision.count,
+          body: launched.data,
+        });
+        if (launchedDecision.status === "empty") {
+          setRemediationEmpty("review_incorrect");
+          rememberLaunchOutcome("review_incorrect");
+          return;
+        }
+        const metaIds = (launched.data.bankItemIds as string[] | undefined) ?? [];
+        const raw = ((launched.data.questions as ExamQuestion[] | undefined) ?? []).map((q, i) => ({
           ...q,
           id: i + 1,
           field,
-          subjectId: (data.subjectId as string | undefined) ?? effectiveSubjectId,
+          subjectId: (launched.data.subjectId as string | undefined) ?? effectiveSubjectId,
           bankItemId: metaIds[i] ?? `bank-${fieldId}-${i}`,
         }));
         if (raw.length === 0) {
-          throw new Error("No previously missed questions available to review.");
+          throw new Error("Review incorrect did not return any questions. Try again.");
         }
-        expectExactSessionCount(raw.length, limit);
         setAdaptiveMeta({
           sessionRationale: `Reviewing ${raw.length} items you missed and have not yet answered correctly.`,
           questionReasoning: Object.fromEntries(
@@ -1003,20 +1098,58 @@ export function StudyBankPractice({
           ),
         });
         if (isStale()) return;
+        rememberLaunchOutcome(null);
         setQuestions(raw);
         return;
       }
 
       if (useAdaptive) {
-        const res = await fetch("/api/study/adaptive/next", {
+        const studyMode = bankStyle === "weak_areas" ? "weak_area" : "adaptive";
+        if (bankStyle === "weak_areas") {
+          const preflight = await fetchJson(
+            "/api/study/adaptive/next",
+            {
+              field,
+              subjectId: effectiveSubjectId,
+              count: limit,
+              currentDifficulty: "medium",
+              studyMode,
+              preflight: true,
+            },
+            8000
+          );
+          const decision = decisionFromRemediationPayload({
+            mode: "weak_areas",
+            ok: preflight.ok,
+            requestedCount: limit,
+            body: preflight.data,
+          });
+          if (decision.status === "empty") {
+            setRemediationEmpty("weak_areas");
+            rememberLaunchOutcome("weak_areas");
+            return;
+          }
+          if (decision.status === "error") {
+            throw new Error(decision.message);
+          }
+        }
+        const controller = new AbortController();
+        const timer = window.setTimeout(
+          () => controller.abort(),
+          bankStyle === "weak_areas" ? 20_000 : 60_000
+        );
+        let res: Response;
+        try {
+          res = await fetch("/api/study/adaptive/next", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          signal: controller.signal,
           body: JSON.stringify({
             field,
             subjectId: effectiveSubjectId,
             count: limit,
             currentDifficulty: "medium",
-            studyMode: bankStyle === "weak_areas" ? "weak_area" : "adaptive",
+            studyMode,
             ...(isPance && taskCategory ? { taskCategory } : {}),
             ...(isMpje
               ? {
@@ -1029,7 +1162,32 @@ export function StudyBankPractice({
               : {}),
           }),
         });
+        } catch (error) {
+          if (error instanceof DOMException && error.name === "AbortError") {
+            throw new Error("This is taking too long. Check your connection and try again.");
+          }
+          throw error;
+        } finally {
+          window.clearTimeout(timer);
+        }
         const data = await res.json();
+        if (bankStyle === "weak_areas") {
+          const followup = decisionFromRemediationPayload({
+            mode: "weak_areas",
+            ok: res.ok,
+            requestedCount: limit,
+            body: data as Record<string, unknown>,
+          });
+          if (followup.status === "empty") {
+            setRemediationEmpty("weak_areas");
+            rememberLaunchOutcome("weak_areas");
+            return;
+          }
+          if (!res.ok && followup.status === "error") {
+            setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
+            throw new Error(followup.message);
+          }
+        }
         if (!res.ok) {
           setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
           throw new Error(studyLimitMessage(data) || data.error || "Could not build adaptive session");
@@ -1046,7 +1204,10 @@ export function StudyBankPractice({
         if (raw.length === 0) {
           throw new Error("No questions in bank for this selection.");
         }
-        expectExactSessionCount(raw.length, limit);
+        if (bankStyle !== "weak_areas") {
+          expectExactSessionCount(raw.length, limit);
+        }
+        rememberLaunchOutcome(null);
         const questionReasoning: Record<string, string> = {};
         raw.forEach((q, i) => {
           questionReasoning[String(q.id)] =
@@ -1119,12 +1280,19 @@ export function StudyBankPractice({
         setError(message);
       }
     } finally {
-      if (!isStale()) setLoading(false);
+      if (!isStale()) {
+        setLoading(false);
+        setCheckingRemediation(false);
+      }
     }
   }
 
   useEffect(() => {
     autostartAttempted.current = false;
+  }, [searchParams]);
+
+  useEffect(() => {
+    setRemediationEmpty(emptyModeFromLaunchQuery(searchParams.get("launch")));
   }, [searchParams]);
 
   useEffect(() => {
@@ -1176,7 +1344,8 @@ export function StudyBankPractice({
     [questionCount, bankPace]
   );
 
-  if ((loading && !questions) || (examSwitching && !questions)) {
+  const remediationStyle = bankStyle === "review_incorrect" || bankStyle === "weak_areas";
+  if (((loading && !questions && !remediationStyle) || (examSwitching && !questions))) {
     return (
       <div
         id="practice-launcher"
@@ -1552,9 +1721,46 @@ export function StudyBankPractice({
             </div>
           ) : null}
 
+          {checkingRemediation ? (
+            <p role="status" className="text-sm text-[var(--color-ink-muted)]">
+              Checking {bankStyle === "review_incorrect" ? "incorrect items" : "weak areas"}…
+            </p>
+          ) : null}
+
+          {remediationEmpty ? (
+            <RemediationLaunchNotice
+              mode={remediationEmpty}
+              onStartStandard={() => {
+                setRemediationEmpty(null);
+                setBankStyle("standard");
+                rememberLaunchOutcome(null);
+                syncPracticeUrl({ style: "standard" });
+              }}
+              onPracticeMixed={() => {
+                setRemediationEmpty(null);
+                setBankStyle("standard");
+                setSubjectId(MIXED_SUBJECT_ID);
+                rememberLaunchOutcome(null);
+                syncPracticeUrl({ subjectId: MIXED_SUBJECT_ID, style: "standard" });
+              }}
+            />
+          ) : null}
+
           {error ? (
             <div className="space-y-3">
               <InlineError>{error}</InlineError>
+              {remediationStyle ? (
+                <div className="flex justify-center">
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    className="!rounded-full"
+                    onClick={() => void start()}
+                  >
+                    Try again
+                  </Button>
+                </div>
+              ) : null}
               {upgradeHref ? (
                 <div className="flex justify-center">
                   <Button href={upgradeHref} variant="secondary" className="!rounded-full">

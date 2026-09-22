@@ -69,7 +69,29 @@ export function StudyHubSessionSummary() {
             <p className="mt-0.5 text-sm text-slate-600">
               {endedEarlyCopy(summary)}
               Summary for <span className="font-medium">{summary.title}</span>.
+              {summary.attemptsSaved != null
+                ? ` ${summary.attemptsSaved} attempts saved.`
+                : ""}
             </p>
+            {summary.weakTopicLabels && summary.weakTopicLabels.length > 0 ? (
+              <p className="mt-1 text-sm text-slate-600">
+                Weak topics touched: {summary.weakTopicLabels.join(", ")}
+              </p>
+            ) : null}
+            {summary.reviewIncorrectHref || summary.analyticsHref ? (
+              <p className="mt-2 flex flex-wrap gap-3 text-sm font-semibold">
+                {summary.reviewIncorrectHref ? (
+                  <a className="text-sky-800 underline" href={summary.reviewIncorrectHref}>
+                    Review incorrect
+                  </a>
+                ) : null}
+                {summary.analyticsHref ? (
+                  <a className="text-sky-800 underline" href={summary.analyticsHref}>
+                    View analytics
+                  </a>
+                ) : null}
+              </p>
+            ) : null}
           </div>
         </div>
         <button

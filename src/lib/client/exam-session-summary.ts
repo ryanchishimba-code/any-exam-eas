@@ -15,6 +15,10 @@ export type ActivitySessionSummary = {
   mastered?: number;
   progressPct?: number;
   endedEarly: boolean;
+  attemptsSaved?: number;
+  weakTopicLabels?: string[];
+  analyticsHref?: string;
+  reviewIncorrectHref?: string;
   timed?: boolean;
   timeRemainingSec?: number;
   flaggedCount?: number;
