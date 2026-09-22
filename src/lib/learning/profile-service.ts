@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { persistQuestionMastery } from "@/lib/core/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import {
@@ -21,33 +22,76 @@ export async function upsertLearningProfile(userId: string): Promise<void> {
   });
 }
 
+function isUniqueViolation(error: unknown): boolean {
+  return error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002";
+}
+
 export async function recordAttemptWithMastery(
-  input: AttemptInput
-): Promise<{ attemptId: string }> {
+  input: AttemptInput,
+  opts?: { refreshProfile?: boolean }
+): Promise<{ attemptId: string; alreadySaved: boolean }> {
   const analysis = analyzeMistake(input);
   const tags = input.question.tags ?? [];
   const tagsJson = tagsToJson(tags);
+  const questionKey = input.question.bankItemId ?? input.question.id;
 
-  const attempt = await prisma.questionAttempt.create({
-    data: {
-      userId: input.userId,
-      questionKey: input.question.bankItemId ?? input.question.id,
-      bankItemId: input.question.bankItemId ?? null,
-      fieldId: input.fieldId,
-      subjectId: input.question.subjectId ?? null,
-      questionType: input.question.type,
-      stemPreview: input.question.stem.slice(0, 200),
-      correct: input.correct,
-      confidence: input.confidence ?? null,
-      durationMs: input.durationMs ?? null,
-      selectedAnswer: input.selectedAnswer ?? null,
-      sessionId: input.sessionId ?? null,
-      tagsJson,
-      mistakeCategory: input.correct ? null : analysis.category,
-      guessedCorrect: analysis.guessedCorrect,
-      difficultyAtAttempt: input.question.difficulty ?? null,
-    },
-  });
+  if (input.sessionId && questionKey) {
+    const existing = await prisma.questionAttempt.findFirst({
+      where: {
+        userId: input.userId,
+        sessionId: input.sessionId,
+        questionKey,
+      },
+      select: { id: true, confidence: true },
+    });
+    if (existing) {
+      if (input.confidence != null && existing.confidence !== input.confidence) {
+        await prisma.questionAttempt.update({
+          where: { id: existing.id },
+          data: { confidence: input.confidence },
+        });
+      }
+      return { attemptId: existing.id, alreadySaved: true };
+    }
+  }
+
+  let attempt: { id: string };
+  try {
+    attempt = await prisma.questionAttempt.create({
+      data: {
+        userId: input.userId,
+        questionKey,
+        bankItemId: input.question.bankItemId ?? null,
+        fieldId: input.fieldId,
+        subjectId: input.question.subjectId ?? null,
+        questionType: input.question.type,
+        stemPreview: input.question.stem.slice(0, 200),
+        correct: input.correct,
+        confidence: input.confidence ?? null,
+        durationMs: input.durationMs ?? null,
+        selectedAnswer: input.selectedAnswer ?? null,
+        sessionId: input.sessionId ?? null,
+        tagsJson,
+        mistakeCategory: input.correct ? null : analysis.category,
+        guessedCorrect: analysis.guessedCorrect,
+        difficultyAtAttempt: input.question.difficulty ?? null,
+      },
+      select: { id: true },
+    });
+  } catch (error) {
+    if (isUniqueViolation(error) && input.sessionId && questionKey) {
+      const existing = await prisma.questionAttempt.findFirst({
+        where: {
+          userId: input.userId,
+          sessionId: input.sessionId,
+          questionKey,
+        },
+        select: { id: true },
+      });
+      if (existing) return { attemptId: existing.id, alreadySaved: true };
+    }
+    throw error;
+  }
 
   const conceptKeys = analysis.weakConcepts.map((k) =>
     k.startsWith("tag:") || k.startsWith("subject:") ? k : `tag:${k}`
@@ -102,7 +146,6 @@ export async function recordAttemptWithMastery(
     });
   }
 
-  const questionKey = input.question.bankItemId ?? input.question.id;
   try {
     await persistQuestionMastery(input.userId, input.fieldId, questionKey, {
       correct: input.correct,
@@ -114,8 +157,25 @@ export async function recordAttemptWithMastery(
     /* non-blocking */
   }
 
-  await refreshProfileReadiness(input.userId);
-  return { attemptId: attempt.id };
+  if (opts?.refreshProfile !== false) {
+    await refreshProfileReadiness(input.userId);
+  }
+  return { attemptId: attempt.id, alreadySaved: false };
+}
+
+export async function refreshLearningProfile(userId: string): Promise<{
+  studyStreakDays: number;
+  readinessScore: number;
+}> {
+  await refreshProfileReadiness(userId);
+  const profile = await prisma.learningProfile.findUnique({
+    where: { userId },
+    select: { studyStreakDays: true, readinessScore: true },
+  });
+  return {
+    studyStreakDays: profile?.studyStreakDays ?? 0,
+    readinessScore: Math.round(profile?.readinessScore ?? 0),
+  };
 }
 
 async function refreshProfileReadiness(userId: string): Promise<void> {

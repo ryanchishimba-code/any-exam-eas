@@ -19,24 +19,35 @@ export async function processLearningAttempt(
   const insight = buildLearningInsight(input, mistake);
 
   let attemptId: string | undefined;
+  let persisted = false;
+  let alreadySaved = false;
   try {
     const result = await recordAttemptWithMastery(input);
     attemptId = result.attemptId;
-  } catch {
-    /* non-blocking for UI — concept/SRS persistence failed */
+    persisted = true;
+    alreadySaved = result.alreadySaved;
+  } catch (error) {
+    console.error("[session-persist] attempt write failed", {
+      userId: input.userId,
+      sessionId: input.sessionId,
+      questionKey: input.question.bankItemId ?? input.question.id,
+      error: error instanceof Error ? error.message : error,
+    });
   }
 
   // Uniform Skill Cell write (NCLEX / NAPLEX / USMLE / blueprint boards) — fail-safe.
-  try {
-    const { recordUniformCellAttempt } = await import(
-      "@/lib/engine/mastery/uniform-engine"
-    );
-    const cellResult = await recordUniformCellAttempt(input);
-    if (!cellResult.ok) {
-      console.warn("[learning/engine] uniform cell write:", cellResult.error);
+  if (persisted && !alreadySaved) {
+    try {
+      const { recordUniformCellAttempt } = await import(
+        "@/lib/engine/mastery/uniform-engine"
+      );
+      const cellResult = await recordUniformCellAttempt(input);
+      if (!cellResult.ok) {
+        console.warn("[learning/engine] uniform cell write:", cellResult.error);
+      }
+    } catch (error) {
+      console.warn("[learning/engine] uniform cell write failed", error);
     }
-  } catch {
-    /* non-blocking */
   }
 
   const profile = await getLearningProfileSnapshot(input.userId);
@@ -50,7 +61,7 @@ export async function processLearningAttempt(
     weakest: profile.weakestConcepts.filter((c) => c.fieldId === input.fieldId),
   });
 
-  return { attemptId, insight, remediation };
+  return { attemptId, persisted, alreadySaved, insight, remediation };
 }
 
 /** Order questions for adaptive / weak-area sessions using the core engine. */

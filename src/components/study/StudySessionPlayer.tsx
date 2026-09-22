@@ -19,13 +19,17 @@ import {
   toggleBowTieSelection,
 } from "@/lib/questions/ngn-structures";
 import { persistSessionLocally } from "@/lib/questions/storage";
-import { saveStudySessionRemote } from "@/lib/client/save-study-session";
+import {
+  persistCompletedStudySession,
+  saveStudySessionRemote,
+  type SessionPersistReceipt,
+} from "@/lib/client/save-study-session";
 import { EndActivityControl } from "./EndActivityControl";
 import {
   TopicPracticeReturnCompletion,
   type TopicPracticeReturn,
 } from "./TopicPracticeReturnBanner";
-import { SessionCompletionCard } from "./SessionCompletionCard";
+import { SessionCompletionCard, SessionPersistGate } from "./SessionCompletionCard";
 import { buildSessionDomainBreakdown } from "@/lib/study/session-domain-breakdown";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import type {
@@ -166,6 +170,10 @@ export function StudySessionPlayer({
   const [reportOpen, setReportOpen] = useState(false);
   const startedAt = useRef<number>(Date.now());
   const progressSaved = useRef(false);
+  const flushInflight = useRef<Promise<SessionPersistReceipt> | null>(null);
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [receipt, setReceipt] = useState<SessionPersistReceipt | null>(null);
   const touchStart = useRef<number | null>(null);
 
   const current = getQuestionByIndex(questionList, sessionState, sessionState.currentIndex);
@@ -209,38 +217,76 @@ export function StudySessionPlayer({
     [questionList]
   );
 
+  const runFlush = useCallback(
+    async (opts: { completed: boolean; endedEarly: boolean }): Promise<SessionPersistReceipt> => {
+      if (flushInflight.current) return flushInflight.current;
+      setSaveState("saving");
+      setSaveError(null);
+      const partial = summarizeSession(sessionState, questionList);
+      const work = persistCompletedStudySession({
+        session: sessionState,
+        questions: questionList,
+        completed: opts.completed,
+        endedEarly: opts.endedEarly,
+      })
+        .then(async (saved) => {
+          if (!progressSaved.current && sourceType === "exam" && sourceId) {
+            const res = await fetch("/api/progress", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                entityType: "exam",
+                entityId: sourceId,
+                score: partial.accuracy,
+                completed: opts.completed,
+                metadata: {
+                  correct: partial.correct,
+                  total: partial.total,
+                  answered: partial.answered,
+                  endedEarly: opts.endedEarly,
+                },
+              }),
+            });
+            if (!res.ok) {
+              throw new Error("Could not save exam progress.");
+            }
+          }
+          if (!progressSaved.current) {
+            progressSaved.current = true;
+            onComplete?.(partial);
+          }
+          setReceipt(saved);
+          setSaveState("saved");
+          return saved;
+        })
+        .catch((error: unknown) => {
+          const message =
+            error instanceof Error
+              ? error.message
+              : "Could not save this session. Analytics will stay empty until it saves.";
+          console.error("[session-persist] completion UI blocked; persistence failed", {
+            sessionId: sessionState.sessionId,
+            answered: partial.answered,
+            error: message,
+          });
+          setSaveState("error");
+          setSaveError(message);
+          throw error instanceof Error ? error : new Error(message);
+        })
+        .finally(() => {
+          flushInflight.current = null;
+        });
+      flushInflight.current = work;
+      return work;
+    },
+    [onComplete, questionList, sessionState, sourceId, sourceType]
+  );
+
   const exitSession = useCallback(async (): Promise<ActivitySessionSummary> => {
     persistSessionLocally(sessionState, questionList);
-    await saveStudySessionRemote({
-      session: sessionState,
-      questions: questionList,
-      completed: false,
-      endedEarly: true,
-    });
-
+    const finished = isSessionComplete(sessionState, questionList);
+    const saved = await runFlush({ completed: finished, endedEarly: !finished });
     const partial = summarizeSession(sessionState, questionList);
-
-    if (sourceType === "exam" && sourceId) {
-      const res = await fetch("/api/progress", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          entityType: "exam",
-          entityId: sourceId,
-          score: partial.accuracy,
-          completed: false,
-          metadata: {
-            correct: partial.correct,
-            total: partial.total,
-            answered: partial.answered,
-            endedEarly: true,
-          },
-        }),
-      });
-      if (!res.ok) {
-        throw new Error("Could not save exam progress.");
-      }
-    }
 
     return {
       title: title ?? `${field} practice`,
@@ -250,10 +296,14 @@ export function StudySessionPlayer({
       total: partial.total,
       correct: partial.correct,
       accuracy: partial.accuracy,
-      endedEarly: true,
+      endedEarly: !finished,
       timed: sessionState.mode === "timed",
+      attemptsSaved: saved.attemptsSaved,
+      weakTopicLabels: saved.weakTopics.map((topic) => topic.label),
+      analyticsHref: saved.analyticsHref,
+      reviewIncorrectHref: saved.reviewIncorrectHref,
     };
-  }, [field, questionList, sessionState, sourceId, sourceType, title]);
+  }, [field, questionList, runFlush, sessionState, sourceType, title]);
 
   const submitAttempt = useCallback(
     async (
@@ -280,9 +330,22 @@ export function StudySessionPlayer({
         const data = (await res.json()) as {
           insight?: LearningInsight;
           remediation?: RemediationRecommendation[];
+          persisted?: boolean;
         };
+        if (data.persisted === false) {
+          console.error("[session-persist] per-question write was not stored", {
+            sessionId: sessionState.sessionId,
+            questionKey: q.bankItemId ?? q.id,
+          });
+        }
         if (data.insight) setInsight(data.insight);
         if (data.remediation) setRemediation(data.remediation);
+      } else {
+        console.error("[session-persist] per-question write failed", {
+          sessionId: sessionState.sessionId,
+          questionKey: q.bankItemId ?? q.id,
+          status: res.status,
+        });
       }
     },
     [sessionState.sessionId, sessionState.mode]
@@ -299,13 +362,13 @@ export function StudySessionPlayer({
       setRemediation([]);
 
       const correct = isAnswerCorrect(current, choices);
+      // Persist even when the student skips the optional confidence rating.
+      void submitAttempt(current, correct, choices, durationMs);
 
       if (sessionState.mode === "practice" || sessionState.mode === "adaptive" || sessionState.mode === "weak_area" || sessionState.mode === "tutor") {
         setShowConfidence(true);
         return;
       }
-
-      void submitAttempt(current, correct, choices, durationMs);
 
       if (sessionState.mode === "rapid") {
         setTimeout(() => {
@@ -509,24 +572,25 @@ export function StudySessionPlayer({
     return () => window.removeEventListener("keydown", onKey);
   }, [answer?.revealed, current, selected, sessionState.currentIndex]);
 
+  const runFlushRef = useRef(runFlush);
+  runFlushRef.current = runFlush;
+
   useEffect(() => {
-    if (!complete || progressSaved.current) return;
-    progressSaved.current = true;
-    onComplete?.(summary);
-    if (sourceType === "exam" && sourceId) {
-      void fetch("/api/progress", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          entityType: "exam",
-          entityId: sourceId,
-          score: summary.accuracy,
-          completed: true,
-          metadata: { correct: summary.correct, total: summary.total },
-        }),
-      });
-    }
-  }, [complete, summary, onComplete, sourceId, sourceType]);
+    if (!complete || inReview || progressSaved.current) return;
+    const finished = isSessionComplete(sessionState, questionList);
+    void runFlushRef.current({
+      completed: finished,
+      endedEarly: timeUp && !finished,
+    }).catch(() => undefined);
+  }, [complete, inReview, questionList, sessionState, timeUp]);
+
+  const retrySave = useCallback(() => {
+    const finished = isSessionComplete(sessionState, questionList);
+    void runFlush({
+      completed: finished,
+      endedEarly: timeUp && !finished,
+    }).catch(() => undefined);
+  }, [questionList, runFlush, sessionState, timeUp]);
 
   if (!current) {
     if (questionList.length === 0) {
@@ -540,6 +604,17 @@ export function StudySessionPlayer({
           <EndActivityControl
             kind={sourceType === "exam" || sessionState.mode === "timed" ? "exam" : "activity"}
             onConfirm={exitSession}
+          />
+        </div>
+      );
+    }
+    if (saveState !== "saved") {
+      return (
+        <div className={`${studyUi.sessionShell} mt-8`}>
+          <SessionPersistGate
+            state={saveState === "error" ? "error" : "saving"}
+            error={saveError}
+            onRetry={retrySave}
           />
         </div>
       );
@@ -559,6 +634,7 @@ export function StudySessionPlayer({
         summary={summary}
         domainBreakdown={domainBreakdown}
         onReview={startReview}
+        receipt={receipt ?? undefined}
       />
     );
   }
@@ -799,17 +875,24 @@ export function StudySessionPlayer({
           )}
       </article>
 
-      {showReturnActions && returnTo ? (
+      {(showCompletion || timeUp) && !inReview && saveState !== "saved" ? (
+        <SessionPersistGate
+          state={saveState === "error" ? "error" : "saving"}
+          error={saveError}
+          onRetry={retrySave}
+        />
+      ) : showReturnActions && returnTo && saveState === "saved" ? (
         <TopicPracticeReturnCompletion
           returnTo={returnTo}
           summary={summary}
           onReview={startReview}
         />
-      ) : showCompletion ? (
+      ) : (showCompletion || timeUp) && !inReview && saveState === "saved" ? (
         <SessionCompletionCard
           summary={summary}
           domainBreakdown={domainBreakdown}
           onReview={startReview}
+          receipt={receipt ?? undefined}
         />
       ) : null}
 

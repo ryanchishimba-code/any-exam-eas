@@ -72,6 +72,9 @@ export type RemediationRecommendation = {
 
 export type ProcessAttemptResult = {
   attemptId?: string;
+  /** False when the QuestionAttempt row was not written. Callers must not claim success. */
+  persisted: boolean;
+  alreadySaved?: boolean;
   insight: LearningInsight;
   remediation: RemediationRecommendation[];
   masteryDelta?: { conceptKey: string; masteryScore: number }[];

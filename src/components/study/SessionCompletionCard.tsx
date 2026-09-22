@@ -25,6 +25,16 @@ export type SessionNotePreview = {
   text: string;
 };
 
+export type SessionReceipt = {
+  attemptsSaved: number;
+  accuracy: number;
+  correct: number;
+  studyStreakDays: number;
+  weakTopics: { id: string; label: string }[];
+  reviewIncorrectHref: string;
+  analyticsHref: string;
+};
+
 type Props = {
   title?: string;
   subtitle?: string;
@@ -38,7 +48,51 @@ type Props = {
   compact?: boolean;
   className?: string;
   extraActions?: ReactNode;
+  receipt?: SessionReceipt;
 };
+
+export function SessionPersistGate({
+  state,
+  error,
+  onRetry,
+}: {
+  state: "saving" | "error";
+  error?: string | null;
+  onRetry: () => void;
+}) {
+  if (state === "saving") {
+    return (
+      <div
+        role="status"
+        className="rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface-elevated)] p-6 sm:p-8"
+      >
+        <p className="text-lg font-semibold text-[var(--color-ink)]">Saving your session…</p>
+        <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
+          Attempts are not on Analytics until this save finishes.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      role="alert"
+      className="rounded-2xl border border-rose-200 bg-rose-50 p-6 sm:p-8"
+    >
+      <p className="text-lg font-semibold text-rose-950">Session not saved</p>
+      <p className="mt-2 text-sm text-rose-900">
+        {error ?? "We couldn't save this session. Analytics will stay empty until it saves."}
+      </p>
+      <button
+        type="button"
+        onClick={onRetry}
+        className="mt-4 inline-flex items-center justify-center rounded-xl bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white"
+      >
+        Retry save
+      </button>
+    </div>
+  );
+}
 
 export function SessionCompletionCard({
   title = "Session complete",
@@ -53,6 +107,7 @@ export function SessionCompletionCard({
   compact = false,
   className,
   extraActions,
+  receipt,
 }: Props) {
   const scoreColor =
     summary.accuracy >= 80
@@ -97,6 +152,45 @@ export function SessionCompletionCard({
           return to {returnLabel}.
         </p>
       )}
+
+      {receipt ? (
+        <div
+          className={cn(
+            "rounded-xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/60 p-4",
+            compact ? "mt-3" : "mt-6"
+          )}
+        >
+          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Session receipt
+          </p>
+          <ul className="mt-3 space-y-1 text-sm text-[var(--color-ink)]">
+            <li>{receipt.attemptsSaved} attempts saved</li>
+            <li>
+              {receipt.accuracy}% accuracy ({receipt.correct} correct)
+            </li>
+            <li>{receipt.studyStreakDays}d study streak</li>
+            <li>
+              {receipt.weakTopics.length > 0
+                ? `Weak topics touched: ${receipt.weakTopics.map((topic) => topic.label).join(", ")}`
+                : "No missed topics in this session."}
+            </li>
+          </ul>
+          <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+            <Link
+              href={receipt.reviewIncorrectHref}
+              className="inline-flex items-center justify-center rounded-xl bg-[var(--color-accent)] px-4 py-2.5 text-sm font-semibold text-white"
+            >
+              Review incorrect
+            </Link>
+            <Link
+              href={receipt.analyticsHref}
+              className="inline-flex items-center justify-center rounded-xl border border-[var(--color-border)] px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)]"
+            >
+              View analytics
+            </Link>
+          </div>
+        </div>
+      ) : null}
 
       {domainBreakdown && domainBreakdown.length > 0 ? (
         <div

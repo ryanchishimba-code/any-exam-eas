@@ -24,6 +24,7 @@ import {
   assessExamSessionQuality,
 } from "@/lib/questions/finalize-exam-session";
 import { resolveQuestionBankSessionCount } from "@/lib/study/question-bank-setup";
+import { countEligibleWeakTopics } from "@/lib/study/remediation-launch";
 import {
   checkStudyQuestionUsage,
   recordStudyQuestionsServed,
@@ -50,6 +51,7 @@ const bodySchema = z.object({
   weakFocusRatio: z.number().min(0.2).max(0.9).optional(),
   studyMode: z.enum(["adaptive", "weak_area", "practice", "timed", "mock"]).optional(),
   taskCategory: z.string().optional(),
+  preflight: z.boolean().optional(),
 });
 
 function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQuestion {
@@ -131,6 +133,23 @@ export async function POST(req: Request) {
     }
 
     const clientTopicPerformance = body.topicPerformance ?? [];
+    const studyMode =
+      body.studyMode ?? (body.weakFocusRatio && body.weakFocusRatio > 0.7 ? "weak_area" : "adaptive");
+
+    if (studyMode === "weak_area" || body.preflight) {
+      const weakness = await buildTopicWeakness(premium.userId, fieldId);
+      const weakTopicCount = countEligibleWeakTopics(weakness, subjectId);
+      if (body.preflight || (studyMode === "weak_area" && weakTopicCount === 0)) {
+        return NextResponse.json({
+          field: body.field,
+          fieldId,
+          subjectId,
+          weakTopicCount,
+          questions: [],
+          code: weakTopicCount === 0 ? "NO_WEAK_AREAS" : "OK",
+        });
+      }
+    }
 
     // Weakness history and bank sampling are independent — run together.
     const [topicPerformance, items] = await Promise.all([
@@ -174,8 +193,6 @@ export async function POST(req: Request) {
     }
 
     const excludeKeys = new Set(body.excludeQuestionKeys ?? []);
-    const studyMode =
-      body.studyMode ?? (body.weakFocusRatio && body.weakFocusRatio > 0.7 ? "weak_area" : "adaptive");
 
     const { result, orderedQuestions, reasoningByQuestionId } = await runAdaptiveSelection({
       userId: premium.userId,

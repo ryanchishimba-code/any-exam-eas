@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { processLearningAttempt } from "@/lib/learning/engine";
-import { getFieldMeta } from "@/lib/fields";
+import { invalidateStudentReadCaches } from "@/lib/learning/invalidate-read-caches";
+import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import type { StudyQuestion } from "@/lib/questions/types";
 
 export const runtime = "nodejs";
@@ -50,8 +51,7 @@ export async function POST(req: Request) {
     const body = bodySchema.parse(await req.json());
     const question = body.question as StudyQuestion;
     const fieldLabel = question.field ?? "Medicine";
-    const meta = getFieldMeta(fieldLabel);
-    const fieldId = meta?.id ?? fieldLabel.toLowerCase().replace(/\s+/g, "-");
+    const fieldId = resolveQuestionBankFieldId(fieldLabel);
 
     const result = await processLearningAttempt({
       userId: premium.userId,
@@ -65,13 +65,42 @@ export async function POST(req: Request) {
       studyMode: body.studyMode,
     });
 
+    if (!result.persisted) {
+      console.error("[session-persist] attempt API acknowledged a write that did not persist", {
+        userId: premium.userId,
+        sessionId: body.sessionId,
+        questionKey: question.bankItemId ?? question.id,
+      });
+      return NextResponse.json(
+        { ok: false, persisted: false, error: "Could not save this attempt." },
+        { status: 503 }
+      );
+    }
+
+    if (!result.alreadySaved) {
+      await invalidateStudentReadCaches(premium.userId, fieldId);
+    }
+
     return NextResponse.json({
       ok: true,
+      persisted: true,
+      alreadySaved: result.alreadySaved === true,
       insight: result.insight,
       remediation: result.remediation,
       attemptId: result.attemptId,
     });
-  } catch {
-    return NextResponse.json({ error: "Invalid attempt payload." }, { status: 400 });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.error("[session-persist] attempt payload rejected", error.flatten());
+      return NextResponse.json(
+        { ok: false, persisted: false, error: "Invalid attempt payload." },
+        { status: 400 }
+      );
+    }
+    console.error("[session-persist] attempt API failed", error);
+    return NextResponse.json(
+      { ok: false, persisted: false, error: "Could not save this attempt." },
+      { status: 500 }
+    );
   }
 }
