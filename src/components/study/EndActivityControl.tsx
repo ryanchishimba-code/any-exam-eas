@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CircleStop } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -51,6 +51,7 @@ export function EndActivityControl({
   const [open, setOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const cancelledRef = useRef(false);
 
   const label = LABELS[kind];
 
@@ -63,30 +64,42 @@ export function EndActivityControl({
   const handleConfirm = useCallback(async () => {
     setSaving(true);
     setError(null);
-    let timeoutId: number | undefined;
-    try {
-      const SAVE_TIMEOUT_MS = 12_000;
-      const summary = await Promise.race([
-        onConfirm(),
-        new Promise<never>((_, reject) => {
-          timeoutId = window.setTimeout(
-            () => reject(new Error("Save is taking too long. Check your connection and try again.")),
-            SAVE_TIMEOUT_MS
-          );
-        }),
-      ]);
+    cancelledRef.current = false;
+    let navigated = false;
+
+    const finish = (summary: ActivitySessionSummary | void) => {
+      if (navigated || cancelledRef.current) return;
+      navigated = true;
       setOpen(false);
       if (summary) {
         storeActivitySessionSummary(summary);
-        router.push(studyHubWithSummaryPath());
+        router.push(studyHubWithSummaryPath(summary));
       } else {
         router.push(redirectTo);
       }
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Could not save progress. Please try again.");
+    };
+
+    const save = onConfirm()
+      .then((summary) => {
+        finish(summary);
+      })
+      .catch((e: unknown) => {
+        if (navigated || cancelledRef.current) return;
+        setError(e instanceof Error ? e.message : "Could not save progress. Please try again.");
+        setSaving(false);
+      });
+
+    const timeoutId = window.setTimeout(() => {
+      if (!navigated && !cancelledRef.current) {
+        setError("Still saving… your receipt will open when the save finishes. Stay on this page.");
+      }
+    }, 12_000);
+
+    try {
+      await save;
     } finally {
-      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
-      setSaving(false);
+      window.clearTimeout(timeoutId);
+      if (navigated) setSaving(false);
     }
   }, [onConfirm, redirectTo, router]);
 
@@ -145,7 +158,10 @@ export function EndActivityControl({
         loading={saving}
         error={error}
         onCancel={() => {
-          if (!saving) setOpen(false);
+          if (saving && !error) return;
+          cancelledRef.current = true;
+          setSaving(false);
+          setOpen(false);
         }}
         onConfirm={() => void handleConfirm()}
       />

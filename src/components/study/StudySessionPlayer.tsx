@@ -299,6 +299,7 @@ export function StudySessionPlayer({
       endedEarly: !finished,
       timed: sessionState.mode === "timed",
       attemptsSaved: saved.attemptsSaved,
+      studyStreakDays: saved.studyStreakDays,
       weakTopicLabels: saved.weakTopics.map((topic) => topic.label),
       analyticsHref: saved.analyticsHref,
       reviewIncorrectHref: saved.reviewIncorrectHref,

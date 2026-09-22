@@ -5,10 +5,12 @@ export function ReadinessRing({
   score,
   size = 104,
   label = PRACTICE_PROGRESS_LABEL,
+  ariaLabel,
 }: {
   score: number;
   size?: number;
   label?: string;
+  ariaLabel?: string;
 }) {
   const clamped = Math.max(0, Math.min(100, Math.round(score)));
   const stroke = Math.max(8, Math.round(size * 0.09));
@@ -24,7 +26,7 @@ export function ReadinessRing({
       className="relative shrink-0"
       style={{ width: size, height: size }}
       role="img"
-      aria-label={`Practice progress ${clamped} percent`}
+      aria-label={ariaLabel ?? `Practice progress ${clamped} percent`}
     >
       <svg width={size} height={size} className="-rotate-90" aria-hidden>
         <circle

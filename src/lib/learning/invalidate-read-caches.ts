@@ -18,6 +18,7 @@ export function studentReadCacheKeys(userId: string, fieldId?: string | null): s
     keys.push(cacheKey(["weak-topics", userId, scope]));
     keys.push(cacheKey(["library-hub-stats", userId, scope]));
     keys.push(cacheKey(["exam-roadmap", userId, scope]));
+    keys.push(cacheKey(["exam-roadmap-v2", userId, scope]));
     keys.push(cacheKey(["mastery-dashboard", userId, scope]));
     keys.push(cacheKey(["exam-scoped-stats", userId, scope]));
   }
@@ -26,6 +27,7 @@ export function studentReadCacheKeys(userId: string, fieldId?: string | null): s
     if (slug) {
       keys.push(cacheKey(["exam-scoped-stats", userId, slug, fieldId]));
       keys.push(cacheKey(["exam-roadmap", userId, slug]));
+      keys.push(cacheKey(["exam-roadmap-v2", userId, slug]));
       keys.push(cacheKey(["mastery-dashboard", userId, slug]));
     }
   }

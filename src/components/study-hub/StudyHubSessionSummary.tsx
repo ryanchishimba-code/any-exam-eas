@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2, X } from "lucide-react";
 import {
+  activitySummaryFromSearchParams,
   clearActivitySessionSummary,
+  mergeActivitySummary,
   readActivitySessionSummary,
+  receiptQueryKeys,
   type ActivitySessionSummary,
 } from "@/lib/client/exam-session-summary";
 
@@ -28,8 +31,11 @@ export function StudyHubSessionSummary() {
 
   useEffect(() => {
     if (searchParams.get("session") !== "ended") return;
-    const stored = readActivitySessionSummary();
-    if (stored) setSummary(stored);
+    const merged = mergeActivitySummary(
+      readActivitySessionSummary(),
+      activitySummaryFromSearchParams(searchParams)
+    );
+    if (merged) setSummary(merged);
   }, [searchParams]);
 
   if (!summary) return null;
@@ -38,14 +44,17 @@ export function StudyHubSessionSummary() {
     clearActivitySessionSummary();
     setSummary(null);
     const url = new URL(window.location.href);
-    url.searchParams.delete("session");
-    window.history.replaceState({}, "", url.pathname + url.hash);
+    for (const key of receiptQueryKeys()) url.searchParams.delete(key);
+    const next = url.searchParams.toString();
+    window.history.replaceState({}, "", next ? `${url.pathname}?${next}${url.hash}` : url.pathname + url.hash);
   }
 
   const unanswered =
     summary.answered != null && summary.total != null
       ? Math.max(0, summary.total - summary.answered)
       : null;
+
+  const practiceReceipt = summary.attemptsSaved != null;
 
   const showQuizStats =
     summary.activityType === "exam" ||
@@ -54,7 +63,7 @@ export function StudyHubSessionSummary() {
 
   return (
     <section
-      className="rounded-2xl border border-sky-200/80 bg-gradient-to-br from-sky-50 via-white to-indigo-50/40 p-5 shadow-sm"
+      className="mb-5 rounded-2xl border border-sky-200/80 bg-gradient-to-br from-sky-50 via-white to-indigo-50/40 p-5 shadow-sm"
       aria-labelledby="session-summary-heading"
     >
       <div className="flex items-start justify-between gap-4">
@@ -64,19 +73,37 @@ export function StudyHubSessionSummary() {
           </div>
           <div>
             <h2 id="session-summary-heading" className="text-base font-semibold text-slate-900">
-              Progress saved
+              {practiceReceipt ? "Session receipt" : "Progress saved"}
             </h2>
             <p className="mt-0.5 text-sm text-slate-600">
               {endedEarlyCopy(summary)}
-              Summary for <span className="font-medium">{summary.title}</span>.
-              {summary.attemptsSaved != null
-                ? ` ${summary.attemptsSaved} attempts saved.`
-                : ""}
+              {practiceReceipt ? (
+                <>
+                  <span className="font-medium">{summary.attemptsSaved} attempts saved</span>
+                  {summary.accuracy != null ? (
+                    <>
+                      {" "}
+                      · {summary.accuracy}% accuracy
+                      {summary.correct != null ? ` (${summary.correct} correct)` : ""}
+                    </>
+                  ) : null}
+                  {summary.studyStreakDays != null ? (
+                    <> · {summary.studyStreakDays}d study streak</>
+                  ) : null}
+                  .
+                </>
+              ) : (
+                <>
+                  Summary for <span className="font-medium">{summary.title}</span>.
+                </>
+              )}
             </p>
             {summary.weakTopicLabels && summary.weakTopicLabels.length > 0 ? (
               <p className="mt-1 text-sm text-slate-600">
                 Weak topics touched: {summary.weakTopicLabels.join(", ")}
               </p>
+            ) : practiceReceipt ? (
+              <p className="mt-1 text-sm text-slate-600">No missed topics in this session.</p>
             ) : null}
             {summary.reviewIncorrectHref || summary.analyticsHref ? (
               <p className="mt-2 flex flex-wrap gap-3 text-sm font-semibold">

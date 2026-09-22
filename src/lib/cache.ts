@@ -246,5 +246,6 @@ export function invalidateLearningDashboardCache(userId: string): void {
   cacheDeleteMatching(`${cacheKey(["library-hub-stats", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-scoped-stats", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-roadmap", userId])}:`);
+  cacheDeleteMatching(`${cacheKey(["exam-roadmap-v2", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["mastery-dashboard", userId])}:`);
 }

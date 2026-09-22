@@ -79,7 +79,7 @@ export function DashboardExamCountdown({
   })();
 
   const meta = (() => {
-    if (!date) return "Add your test date for a clearer study horizon.";
+    if (!date) return "Set a target exam date. Today's block uses it to pace this board.";
     if (isPast) return `${formatExamDateLong(date)} · update when you reschedule`;
     if (isToday) return `${examName} · you've got this`;
     return `${examName} · ${formatExamDateLong(date)}`;
