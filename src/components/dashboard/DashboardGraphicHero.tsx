@@ -121,6 +121,10 @@ export function DashboardGraphicHero({
   studyLocked = false,
   practiceFieldId,
   masteryMapTiles,
+  eyebrow = "Today's focus",
+  bandLabel: bandLabelOverride,
+  ringScore,
+  disclosure,
 }: {
   examSlug: ExamSlug;
   examName: string;
@@ -134,6 +138,12 @@ export function DashboardGraphicHero({
   studyLocked?: boolean;
   practiceFieldId?: string;
   masteryMapTiles?: import("@/components/dashboard/DomainMap").DomainMapTile[] | null;
+  eyebrow?: string;
+  /** Visible ring label. Practice snapshot stays unlabeled as a pass band. */
+  bandLabel?: string;
+  ringScore?: number;
+  /** Replaces the older Ready / Almost footnote when Today's block owns the band. */
+  disclosure?: { summary: string; lines: string[]; disclaimer: string } | null;
 }) {
   const action = studyLocked
     ? {
@@ -150,7 +160,8 @@ export function DashboardGraphicHero({
         practiceFieldId,
       });
 
-  const bandLabel = readinessSummary?.bandLabel ?? "Practice";
+  const bandLabel = bandLabelOverride ?? readinessSummary?.bandLabel ?? "Practice";
+  const ringValue = ringScore ?? readinessScore;
   const tiles =
     masteryMapTiles && masteryMapTiles.length > 0
       ? masteryMapTiles
@@ -164,10 +175,19 @@ export function DashboardGraphicHero({
       className={dbUi.heroSurface}
     >
       <div className={dbUi.heroLayout}>
-        <ReadinessRing score={readinessScore} size={158} label={bandLabel} />
+        <ReadinessRing
+          score={ringValue}
+          size={158}
+          label={bandLabel}
+          ariaLabel={
+            disclosure
+              ? `${bandLabel} ${ringValue} percent. Not a pass prediction.`
+              : undefined
+          }
+        />
 
         <div className="min-w-0 flex-1 w-full text-center sm:text-left">
-          <p className={dbUi.eyebrow}>Today&apos;s focus</p>
+          <p className={dbUi.eyebrow}>{eyebrow}</p>
           <h2
             id="dashboard-hero-heading"
             className="mt-1 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]"
@@ -205,7 +225,21 @@ export function DashboardGraphicHero({
         </div>
       ) : null}
 
-      {readinessSummary ? (
+      {disclosure ? (
+        <details className="mt-5 rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
+          <summary className="cursor-pointer text-[12px] font-semibold text-[var(--color-ink-muted)]">
+            {disclosure.summary}
+          </summary>
+          <ul className="mt-2 space-y-1 pb-1 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
+            {disclosure.lines.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+          <p className="border-t border-[var(--color-border)]/50 pt-2 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
+            {disclosure.disclaimer}
+          </p>
+        </details>
+      ) : readinessSummary ? (
         <details className="mt-5 rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
           <summary className="cursor-pointer text-[12px] font-semibold text-[var(--color-ink-muted)]">
             Why {readinessSummary.bandLabel}?

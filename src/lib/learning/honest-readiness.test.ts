@@ -117,6 +117,7 @@ describe("buildPracticeReadinessSummary", () => {
       ],
       priorityTopics: [],
       totalAttempts: 20,
+      openIncorrectCount: 4,
       launch: { hasRetake: false, canContinue: false, weakFocusAreas: [] },
     } satisfies ExamRoadmapData;
 

@@ -10,7 +10,9 @@ import { DashboardWeakTopicChips } from "@/components/dashboard/DashboardWeakTop
 import { DashboardViewSections } from "@/components/app/DashboardViewSections";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { DashboardTodayBlock } from "@/components/dashboard/DashboardTodayBlock";
 import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
+import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
@@ -66,6 +68,7 @@ export function DashboardPageContent({
   practiceFieldId,
   masteryRollup = null,
   masteryMapTiles = null,
+  examDayPlan = null,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -82,6 +85,7 @@ export function DashboardPageContent({
   practiceFieldId?: string;
   masteryRollup?: MasteryRollup | null;
   masteryMapTiles?: DomainMapTile[] | null;
+  examDayPlan?: ExamDayPlan | null;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
@@ -122,6 +126,10 @@ export function DashboardPageContent({
 
       {upgrade ? <DashboardUpgradeBanner {...upgrade} /> : null}
 
+      {examDayPlan ? (
+        <DashboardTodayBlock plan={examDayPlan} studyLocked={studyLocked} />
+      ) : null}
+
       <DashboardGraphicHero
         examSlug={examSlug}
         examName={exam.name}
@@ -135,6 +143,36 @@ export function DashboardPageContent({
         studyLocked={studyLocked}
         practiceFieldId={fieldId}
         masteryMapTiles={masteryMapTiles}
+        eyebrow={examDayPlan ? "Practice snapshot" : "Today's focus"}
+        bandLabel={
+          examDayPlan
+            ? examDayPlan.readiness.visible
+              ? (examDayPlan.readiness.label ?? "Practice")
+              : "Practice"
+            : undefined
+        }
+        ringScore={
+          examDayPlan?.readiness.visible && examDayPlan.readiness.score != null
+            ? examDayPlan.readiness.score
+            : undefined
+        }
+        disclosure={
+          examDayPlan
+            ? {
+                summary: examDayPlan.readiness.visible
+                  ? `Why ${examDayPlan.readiness.label}?`
+                  : "Why is the band hidden?",
+                lines: [
+                  examDayPlan.readiness.sampleDetail,
+                  examDayPlan.readiness.visible && examDayPlan.readiness.score != null
+                    ? `${examDayPlan.readiness.coveragePct}% coverage × ${examDayPlan.readiness.recentAccuracyPct}% recent accuracy × ${examDayPlan.readiness.remediationPct}% remediation completion = ${examDayPlan.readiness.score}.`
+                    : `${examDayPlan.readiness.coveragePct}% coverage × ${examDayPlan.readiness.recentAccuracyPct}% recent accuracy × ${examDayPlan.readiness.remediationPct}% remediation completion.`,
+                  examDayPlan.readiness.formula,
+                ],
+                disclaimer: examDayPlan.readiness.disclaimer,
+              }
+            : null
+        }
       />
 
       {masteryRollup ? (

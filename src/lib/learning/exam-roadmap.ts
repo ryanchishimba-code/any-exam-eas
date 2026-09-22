@@ -41,6 +41,7 @@ import {
   usmlePresetPracticeHref,
   type UsmleStudyPresetId,
 } from "@/lib/exam-prep/usmle/study-presets";
+import { countOpenIncorrectItems } from "@/lib/learning/open-incorrect";
 import { prisma } from "@/lib/prisma";
 import {
   computeCoveragePct,
@@ -104,6 +105,11 @@ export type ExamRoadmapData = {
   topics: RoadmapTopicRow[];
   priorityTopics: RoadmapTopicRow[];
   totalAttempts: number;
+  /**
+   * Items missed and not yet answered correctly, from the same attempt scan
+   * as totalAttempts. Matches Review incorrect.
+   */
+  openIncorrectCount: number;
   /** Launch affordances for shared Full Exam actions. */
   launch: {
     hasRetake: boolean;
@@ -499,6 +505,7 @@ async function loadExamRoadmapData(
     topics,
     priorityTopics,
     totalAttempts: attempts.length,
+    openIncorrectCount: countOpenIncorrectItems(attempts),
     launch: {
       hasRetake: history.hasRetake,
       canContinue: history.canContinue,
@@ -518,7 +525,7 @@ export async function getExamRoadmapData(
       ? options.usmleFieldId
       : examSlug;
   return cacheGetOrSet(
-    cacheKey(["exam-roadmap", userId, fieldKey]),
+    cacheKey(["exam-roadmap-v2", userId, fieldKey]),
     CACHE_TTL.learningDashboard,
     () => loadExamRoadmapData(userId, examSlug, options),
     { staleTtlMs: CACHE_STALE.learningDashboard }
