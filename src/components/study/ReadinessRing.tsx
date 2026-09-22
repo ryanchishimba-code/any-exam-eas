@@ -65,7 +65,7 @@ export function ReadinessRing({
         </span>
         {label ? (
           <span
-            className="mt-1 font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]"
+            className="mt-1 max-w-[78%] text-balance text-center font-semibold uppercase leading-tight tracking-[0.08em] text-[var(--color-ink-muted)]"
             style={{ fontSize: labelSize }}
           >
             {label}

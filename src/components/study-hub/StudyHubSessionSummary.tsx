@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2, X } from "lucide-react";
+import { dbUi } from "@/lib/study/dashboard-ui";
 import {
   activitySummaryFromSearchParams,
   clearActivitySessionSummary,
@@ -61,128 +63,131 @@ export function StudyHubSessionSummary() {
     summary.activityType === "practice" ||
     summary.activityType === "cat";
 
+  const hasExtraStats =
+    (showQuizStats && !practiceReceipt && summary.answered != null && summary.total != null) ||
+    (showQuizStats && !practiceReceipt && summary.correct != null && summary.accuracy != null) ||
+    (unanswered != null && unanswered > 0) ||
+    (summary.activityType === "drugs" &&
+      (summary.reviewed != null || (summary.mastered != null && summary.total != null))) ||
+    (summary.activityType === "quilt" && summary.mastered != null && summary.total != null) ||
+    summary.progressPct != null ||
+    (Boolean(summary.timed) && summary.timeRemainingSec != null) ||
+    (summary.flaggedCount != null && summary.flaggedCount > 0) ||
+    Boolean(summary.mode);
+
+  const statClass =
+    "rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)]/50 px-4 py-3.5";
+  const statLabel = dbUi.eyebrow;
+  const statValue =
+    "mt-1.5 text-[22px] font-semibold tracking-[-0.03em] tabular-nums text-[var(--color-ink)]";
+
   return (
-    <section
-      className="mb-5 rounded-2xl border border-sky-200/80 bg-gradient-to-br from-sky-50 via-white to-indigo-50/40 p-5 shadow-sm"
-      aria-labelledby="session-summary-heading"
-    >
+    <section className={`${dbUi.heroSurface} mb-5 sm:mb-6`} aria-labelledby="session-summary-heading">
       <div className="flex items-start justify-between gap-4">
-        <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sky-700">
-            <CheckCircle2 className="h-5 w-5" aria-hidden />
-          </div>
-          <div>
-            <h2 id="session-summary-heading" className="text-base font-semibold text-slate-900">
-              {practiceReceipt ? "Session receipt" : "Progress saved"}
-            </h2>
-            <p className="mt-0.5 text-sm text-slate-600">
-              {endedEarlyCopy(summary)}
-              {practiceReceipt ? (
-                <>
-                  <span className="font-medium">{summary.attemptsSaved} attempts saved</span>
-                  {summary.accuracy != null ? (
-                    <>
-                      {" "}
-                      · {summary.accuracy}% accuracy
-                      {summary.correct != null ? ` (${summary.correct} correct)` : ""}
-                    </>
-                  ) : null}
-                  {summary.studyStreakDays != null ? (
-                    <> · {summary.studyStreakDays}d study streak</>
-                  ) : null}
-                  .
-                </>
-              ) : (
-                <>
-                  Summary for <span className="font-medium">{summary.title}</span>.
-                </>
-              )}
+        <div className="min-w-0">
+          <p className={`${dbUi.eyebrow} inline-flex items-center gap-1.5`}>
+            <CheckCircle2 className="h-3.5 w-3.5 text-[var(--color-accent)]" aria-hidden />
+            {practiceReceipt ? "Session receipt" : "Saved"}
+          </p>
+          <h2
+            id="session-summary-heading"
+            className="mt-1 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]"
+          >
+            {practiceReceipt ? `${summary.attemptsSaved} attempts saved` : "Progress saved"}
+          </h2>
+          <p className={`${dbUi.subtitle} mt-2`}>
+            {endedEarlyCopy(summary)}
+            {practiceReceipt ? (
+              <>
+                {summary.accuracy != null ? (
+                  <>
+                    {summary.accuracy}% accuracy
+                    {summary.correct != null ? ` (${summary.correct} correct)` : ""}
+                  </>
+                ) : (
+                  "Saved to this board"
+                )}
+                {summary.studyStreakDays != null ? ` · ${summary.studyStreakDays}d study streak` : ""}.
+              </>
+            ) : (
+              <>
+                Summary for <span className="font-medium text-[var(--color-ink)]">{summary.title}</span>.
+              </>
+            )}
+          </p>
+          {summary.weakTopicLabels && summary.weakTopicLabels.length > 0 ? (
+            <p className="mt-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+              Weak topics touched: {summary.weakTopicLabels.join(", ")}
             </p>
-            {summary.weakTopicLabels && summary.weakTopicLabels.length > 0 ? (
-              <p className="mt-1 text-sm text-slate-600">
-                Weak topics touched: {summary.weakTopicLabels.join(", ")}
-              </p>
-            ) : practiceReceipt ? (
-              <p className="mt-1 text-sm text-slate-600">No missed topics in this session.</p>
-            ) : null}
-            {summary.reviewIncorrectHref || summary.analyticsHref ? (
-              <p className="mt-2 flex flex-wrap gap-3 text-sm font-semibold">
-                {summary.reviewIncorrectHref ? (
-                  <a className="text-sky-800 underline" href={summary.reviewIncorrectHref}>
-                    Review incorrect
-                  </a>
-                ) : null}
-                {summary.analyticsHref ? (
-                  <a className="text-sky-800 underline" href={summary.analyticsHref}>
-                    View analytics
-                  </a>
-                ) : null}
-              </p>
-            ) : null}
-          </div>
+          ) : practiceReceipt ? (
+            <p className="mt-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+              No missed topics in this session.
+            </p>
+          ) : null}
+          {summary.reviewIncorrectHref || summary.analyticsHref ? (
+            <div className="mt-5 flex flex-col items-start gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
+              {summary.reviewIncorrectHref ? (
+                <Link href={summary.reviewIncorrectHref} className={dbUi.primaryBtn}>
+                  Review incorrect
+                </Link>
+              ) : null}
+              {summary.analyticsHref ? (
+                <Link href={summary.analyticsHref} className={dbUi.ghostBtn}>
+                  View analytics
+                </Link>
+              ) : null}
+            </div>
+          ) : null}
         </div>
         <button
           type="button"
           onClick={dismiss}
-          className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+          className="rounded-xl p-2 text-[var(--color-ink-muted)] transition hover:bg-[var(--color-surface)] hover:text-[var(--color-ink)]"
           aria-label="Dismiss session summary"
         >
           <X className="h-4 w-4" />
         </button>
       </div>
 
-      <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {showQuizStats && summary.answered != null && summary.total != null && (
-          <div className="rounded-xl border border-white/80 bg-white/80 px-4 py-3">
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-500">
-              Answered
-            </dt>
-            <dd className="mt-1 text-lg font-semibold tabular-nums text-slate-900">
+      {hasExtraStats ? (
+      <dl className="mt-6 grid gap-3 border-t border-[var(--color-border)]/45 pt-5 sm:grid-cols-2 lg:grid-cols-4">
+        {showQuizStats && !practiceReceipt && summary.answered != null && summary.total != null && (
+          <div className={statClass}>
+            <dt className={statLabel}>Answered</dt>
+            <dd className={statValue}>
               {summary.answered} / {summary.total}
             </dd>
           </div>
         )}
-        {showQuizStats && summary.correct != null && summary.accuracy != null && (
-          <div className="rounded-xl border border-white/80 bg-white/80 px-4 py-3">
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-500">
-              Correct
-            </dt>
-            <dd className="mt-1 text-lg font-semibold tabular-nums text-slate-900">
+        {showQuizStats && !practiceReceipt && summary.correct != null && summary.accuracy != null && (
+          <div className={statClass}>
+            <dt className={statLabel}>Correct</dt>
+            <dd className={statValue}>
               {summary.correct}
-              <span className="ml-1 text-sm font-medium text-slate-500">
+              <span className="ml-1 text-[15px] font-medium tracking-normal text-[var(--color-ink-muted)]">
                 ({summary.accuracy}%)
               </span>
             </dd>
           </div>
         )}
         {unanswered != null && unanswered > 0 && (
-          <div className="rounded-xl border border-white/80 bg-white/80 px-4 py-3">
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-500">
-              Unanswered
-            </dt>
-            <dd className="mt-1 text-lg font-semibold tabular-nums text-slate-900">
-              {unanswered}
-            </dd>
+          <div className={statClass}>
+            <dt className={statLabel}>Unanswered</dt>
+            <dd className={statValue}>{unanswered}</dd>
           </div>
         )}
         {summary.activityType === "drugs" && (
           <>
             {summary.reviewed != null && (
-              <div className="rounded-xl border border-white/80 bg-white/80 px-4 py-3">
-                <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-500">
-                  Reviewed
-                </dt>
-                <dd className="mt-1 text-lg font-semibold tabular-nums text-slate-900">
-                  {summary.reviewed}
-                </dd>
+              <div className={statClass}>
+                <dt className={statLabel}>Reviewed</dt>
+                <dd className={statValue}>{summary.reviewed}</dd>
               </div>
             )}
             {summary.mastered != null && summary.total != null && (
-              <div className="rounded-xl border border-white/80 bg-white/80 px-4 py-3">
-                <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-500">
-                  Mastered
-                </dt>
-                <dd className="mt-1 text-lg font-semibold tabular-nums text-slate-900">
+              <div className={statClass}>
+                <dt className={statLabel}>Mastered</dt>
+                <dd className={statValue}>
                   {summary.mastered} / {summary.total}
                 </dd>
               </div>
@@ -190,56 +195,41 @@ export function StudyHubSessionSummary() {
           </>
         )}
         {summary.activityType === "quilt" && summary.mastered != null && summary.total != null && (
-          <div className="rounded-xl border border-white/80 bg-white/80 px-4 py-3">
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-500">
-              Tiles mastered
-            </dt>
-            <dd className="mt-1 text-lg font-semibold tabular-nums text-slate-900">
+          <div className={statClass}>
+            <dt className={statLabel}>Tiles mastered</dt>
+            <dd className={statValue}>
               {summary.mastered} / {summary.total}
             </dd>
           </div>
         )}
         {summary.progressPct != null && (
-          <div className="rounded-xl border border-white/80 bg-white/80 px-4 py-3">
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-500">
-              Progress
-            </dt>
-            <dd className="mt-1 text-lg font-semibold tabular-nums text-slate-900">
-              {summary.progressPct}%
-            </dd>
+          <div className={statClass}>
+            <dt className={statLabel}>Progress</dt>
+            <dd className={statValue}>{summary.progressPct}%</dd>
           </div>
         )}
         {summary.timed && summary.timeRemainingSec != null && (
-          <div className="rounded-xl border border-white/80 bg-white/80 px-4 py-3">
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-500">
-              Time left
-            </dt>
-            <dd className="mt-1 text-lg font-semibold tabular-nums text-slate-900">
-              {formatTime(summary.timeRemainingSec)}
-            </dd>
+          <div className={statClass}>
+            <dt className={statLabel}>Time left</dt>
+            <dd className={statValue}>{formatTime(summary.timeRemainingSec)}</dd>
           </div>
         )}
         {summary.flaggedCount != null && summary.flaggedCount > 0 && (
-          <div className="rounded-xl border border-white/80 bg-white/80 px-4 py-3">
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-500">
-              Flagged
-            </dt>
-            <dd className="mt-1 text-lg font-semibold tabular-nums text-slate-900">
-              {summary.flaggedCount}
-            </dd>
+          <div className={statClass}>
+            <dt className={statLabel}>Flagged</dt>
+            <dd className={statValue}>{summary.flaggedCount}</dd>
           </div>
         )}
         {summary.mode && (
-          <div className="rounded-xl border border-white/80 bg-white/80 px-4 py-3">
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-wide text-slate-500">
-              Mode
-            </dt>
-            <dd className="mt-1 text-sm font-semibold capitalize text-slate-900">
+          <div className={statClass}>
+            <dt className={statLabel}>Mode</dt>
+            <dd className="mt-1.5 text-[17px] font-semibold capitalize tracking-[-0.02em] text-[var(--color-ink)]">
               {summary.mode.replace(/_/g, " ")}
             </dd>
           </div>
         )}
       </dl>
+      ) : null}
     </section>
   );
 }
