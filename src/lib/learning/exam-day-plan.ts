@@ -7,10 +7,11 @@
  * rows. Domain labels come from that blueprint. Nothing here is NCLEX-only.
  *
  * Heuristics (also returned as `rules` for the dashboard):
- * 1. Today's four rows stay Qbank, Review incorrect, guide, and drugs. Their
+ * 1. Today's rows stay Qbank, Review incorrect, guide, and drugs. Their
  *    order follows the largest proof gap: an untouched or weak high-weight
  *    domain pulls Qbank and the guide forward; a large open-incorrect queue
  *    pulls Review incorrect forward. Equal gaps still rotate by UTC day.
+ *    The final 14 days add an exam-simulation row and follow the week day.
  * 2. Qbank is 25 questions on that blueprint category.
  *    Gap = blueprint weight × (uncovered share, plus accuracy when attempts exist).
  * 3. Review incorrect is the open-remediation count from the shared mastery
@@ -21,7 +22,14 @@
  *    high-yield topic href.
  * 5. Drugs is a five-card touch on that topic's class, or the board drug list.
  *    A medication-category gap pulls this row up behind the guide.
- * 6. Readiness proof = coverage × recent accuracy × remediation completion.
+ * 6. The week countdown is the multi-week contract. Outside the final 14 days it
+ *    is coverage days plus remediation days, weighted by the same gaps. Today's
+ *    block stays that week's projection and still leads with the largest gap.
+ *    At 14 days or fewer, the week adds exam-simulation days and incorrect-drill
+ *    days, and Today's rows follow that day's kind. Finishing today's Qbank
+ *    block or incorrect review ticks the matching goal. A qualifying exam
+ *    simulation completed today ticks the simulation goal.
+ * 7. Readiness proof = coverage × recent accuracy × remediation completion.
  *    Coverage is the blueprint-weighted share of categories with ≥1 saved attempt,
  *    and it is met only when every high-weight domain has a minimum sample.
  *    Recent accuracy is the last 100 saved answers and counts only after 40 of
@@ -33,6 +41,12 @@
  */
 
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import {
+  buildWeekCountdown,
+  projectionOrder,
+  type TodayBlockId,
+  type WeekCountdownPlan,
+} from "@/lib/learning/week-countdown-plan";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -88,13 +102,15 @@ export type ExamDayTopicInput = {
 };
 
 export type ExamDayBlockItem = {
-  id: "qbank" | "incorrect" | "guide" | "drugs";
+  id: TodayBlockId;
   title: string;
   detail: string;
   /** Why this row leads Today's block. Set on the first row only. */
   why: string | null;
   href: string | null;
   cta: string;
+  /** Saved work today covers this row. Guide and drug rows stay false. */
+  doneToday: boolean;
 };
 
 export type ReadinessBandKey = "ready" | "almost" | "not_yet";
@@ -180,7 +196,7 @@ export type ExamDayPlan = {
   questionsToday: number;
   totalAttempts: number;
   items: ExamDayBlockItem[];
-  week: { id: string; label: string; isToday: boolean }[];
+  weekPlan: WeekCountdownPlan;
   rules: string[];
   readiness: ExamDayReadiness;
 };
@@ -212,6 +228,8 @@ export type ExamDayPlanInput = {
   fallbackDrugHref?: string;
   /** Newest completed simulation first. Omitted from the band math. */
   examSimTrend?: ExamSimTrend | null;
+  /** Qualifying exam simulation completed on the UTC day of `now`. */
+  examSimCompletedToday?: boolean;
 };
 
 const MS_DAY = 86_400_000;
@@ -330,6 +348,26 @@ export function examSimTrendFromSessions(sessions: ExamSimSessionInput[]): ExamS
   };
 }
 
+/** True when a qualifying simulation finished on the same UTC day as `now`. */
+export function examSimCompletedOnUtcDay(
+  sessions: Array<ExamSimSessionInput & { completedAt?: Date | string | null }>,
+  now: Date
+): boolean {
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  return sessions.some((session) => {
+    const qualifying =
+      (session.status === "completed" || session.status === "ended_early") &&
+      typeof session.score === "number" &&
+      Number.isFinite(session.score) &&
+      session.questionCount >= EXAM_SIM_MIN_QUESTIONS;
+    if (!qualifying || session.completedAt == null) return false;
+    const at = new Date(session.completedAt);
+    if (!Number.isFinite(at.getTime())) return false;
+    const day = Date.UTC(at.getUTCFullYear(), at.getUTCMonth(), at.getUTCDate());
+    return day === today;
+  });
+}
+
 function clampPct(value: number): number {
   if (!Number.isFinite(value)) return 0;
   return Math.max(0, Math.min(100, value));
@@ -436,11 +474,12 @@ function pacingLine(examName: string, testDate: string | null, days: number | nu
 
 function planRules(): string[] {
   return [
-    `Today's block keeps the same four rows — ${TODAY_QBANK_COUNT} Qbank questions, Review incorrect, one guide topic, and ${TODAY_DRUG_COUNT} drugs — and orders them by the largest proof gap. An untouched or weak high-weight blueprint domain pulls Qbank and the guide forward. Eight or more open incorrect items, or a shorter queue that is still the larger gap, pulls Review incorrect forward. Equal blueprint gaps rotate by UTC day so one tied domain is not assigned forever.`,
+    `Today's block keeps Qbank (${TODAY_QBANK_COUNT} questions), Review incorrect, one guide topic, and ${TODAY_DRUG_COUNT} drugs, ordered by the largest proof gap. An untouched or weak high-weight blueprint domain pulls Qbank and the guide forward. Eight or more open incorrect items, or a shorter queue that is still the larger gap, pulls Review incorrect forward. Equal blueprint gaps rotate by UTC day so one tied domain is not assigned forever. With 14 or fewer days left, an exam-simulation row is added and that order follows the week's day instead.`,
     `Qbank is ${TODAY_QBANK_COUNT} questions on that blueprint category (weight × uncovered share, with accuracy once attempts exist).`,
     `Review incorrect uses the same open-remediation count as Analytics: a miss stays open until a spaced re-proof or a confirmed mark-mastered, up to ${TODAY_INCORRECT_CAP} in this block. Zero items stays an empty row and does not launch a set.`,
     "The guide row is one high-yield topic: an unpracticed blueprint category when one exists, otherwise the Qbank gap. Every board uses the same topic links.",
     `Drugs is a ${TODAY_DRUG_COUNT}-card touch on that topic's class, or this board's drug list when the topic has no class. A medication-category gap pulls drugs up behind the guide.`,
+    `The week plan is the countdown contract for this board. With more than 14 days left it is coverage days and remediation days, weighted by the same blueprint gap and open incorrect items, and Today's block is that projection. With 14 or fewer days left the week adds exam-simulation days and incorrect-drill days, and Today's rows follow that day's kind. Finishing today's ${TODAY_QBANK_COUNT} Qbank questions, or the incorrect review, ticks the matching goal. A qualifying exam simulation completed today ticks the simulation goal. Earlier days this week are not reconstructed. This is practice progress only.`,
     `${READINESS_FORMULA} Coverage is the blueprint-weighted share of categories with at least one saved attempt. It is met at ${COVERAGE_MIN_PCT}% or more, and only when every domain weighted ${HIGH_WEIGHT_PCT}% or more has at least ${HIGH_WEIGHT_MIN_ATTEMPTS} answers. Recent accuracy is the last ${RECENT_ACCURACY_WINDOW} saved answers and is met at ${RECENT_ACCURACY_MIN_PCT}% once that window has ${RECENT_ACCURACY_MIN_SAMPLE} answers. Remediation completion is the share of saved attempts that are not still-open incorrect items. It is met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} open incorrect items. Ready means all three are met. Almost means two. Not yet means fewer. The band stays hidden until ${READINESS_MIN_SAMPLE} answered questions.`,
     `A completed exam simulation of ${EXAM_SIM_MIN_QUESTIONS} or more questions can appear as an optional trend. It does not change Ready, Almost, or Not yet.`,
     READINESS_DISCLAIMER,
@@ -546,11 +585,23 @@ function leadWhy(
   id: ExamDayBlockItem["id"],
   ctx: {
     openIncorrect: number;
+    openKnown: boolean;
     qbankTopic: ExamDayTopicInput | null;
     guideLabel: string;
     drugLabel: string | null;
+    finalStretch: boolean;
   }
 ): string {
+  if (id === "exam_sim") {
+    return "First because this is an exam-simulation day in the final stretch.";
+  }
+  if (ctx.finalStretch && id === "incorrect") {
+    if (!ctx.openKnown) {
+      return "First because this is an incorrect-drill day. Open items could not be counted on this load.";
+    }
+    const noun = ctx.openIncorrect === 1 ? "item is" : "items are";
+    return `First because this is an incorrect-drill day, and ${ctx.openIncorrect} incorrect ${noun} still open.`;
+  }
   if (id === "incorrect") {
     const noun = ctx.openIncorrect === 1 ? "item is" : "items are";
     return `First because ${ctx.openIncorrect} incorrect ${noun} still open.`;
@@ -588,7 +639,6 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
   const examSim = input.examSimTrend ?? null;
 
   const ranked = rankTopics(topics, now);
-  const weekTopics = ranked.slice(0, Math.min(7, ranked.length));
   const qbankTopic = ranked[0] ?? null;
   const guideTopic =
     ranked.find((topic) => topic.attempts === 0 && topic.id !== qbankTopic?.id) ??
@@ -609,6 +659,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
         why: null,
         href: reviewIncorrectHref(input.fieldId, TODAY_INCORRECT_CAP, false),
         cta: "Check incorrect items",
+        doneToday: false,
       }
     : openIncorrect === 0
       ? {
@@ -619,6 +670,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
           why: null,
           href: null,
           cta: "Nothing to review",
+          doneToday: false,
         }
       : {
           id: "incorrect",
@@ -628,6 +680,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
           why: null,
           href: reviewIncorrectHref(input.fieldId, incorrectCount, true),
           cta: "Start review",
+          doneToday: false,
         };
 
   const guideHref =
@@ -653,12 +706,14 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     ),
     guide: qbankTopic ? domainWeight * 0.92 : 0,
     drugs: qbankTopic ? domainWeight * (isMedicationDomain(qbankTopic) ? 0.75 : 0.2) : 0,
+    exam_sim: 0,
   };
   const tieBreak: Record<ExamDayBlockItem["id"], number> = {
     qbank: 0,
     incorrect: 1,
     guide: 2,
     drugs: 3,
+    exam_sim: 4,
   };
 
   const items: ExamDayBlockItem[] = [
@@ -671,6 +726,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
       why: null,
       href: qbankHref,
       cta: "Start Qbank",
+      doneToday: false,
     },
     incorrectItem,
     {
@@ -680,6 +736,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
       why: null,
       href: guideHref,
       cta: "Open topic",
+      doneToday: false,
     },
     {
       id: "drugs",
@@ -690,6 +747,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
       why: null,
       href: drugHref,
       cta: "Open drugs",
+      doneToday: false,
     },
   ];
   items.sort((a, b) => weights[b.id] - weights[a.id] || tieBreak[a.id] - tieBreak[b.id]);
@@ -698,10 +756,63 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
   if (lead) {
     lead.why = leadWhy(lead.id, {
       openIncorrect,
+      openKnown,
       qbankTopic,
       guideLabel,
       drugLabel,
+      finalStretch: false,
     });
+  }
+
+  const remediationPctForWeek = openKnown
+    ? remediationCompletionPct(totalAttempts, openIncorrect)
+    : 0;
+  const projection = buildWeekCountdown({
+    examName: input.examName,
+    daysUntilExam,
+    now,
+    gapLabel: qbankTopic?.label ?? null,
+    openKnown,
+    openIncorrect,
+    incorrectTarget: openKnown ? incorrectCount : 0,
+    questionsToday,
+    remediationHeavy:
+      remediationUrgency(openKnown, openIncorrect, remediationPctForWeek) > domainWeight,
+    examSimCompletedToday: input.examSimCompletedToday === true,
+  });
+
+  if (projection.intensify) {
+    items.push({
+      id: "exam_sim",
+      title: "Exam simulation",
+      detail:
+        "One exam-shaped practice set. The result is a practice band, not a licensure result.",
+      why: null,
+      href: `${ROUTES.fullExam}/${input.examSlug}`,
+      cta: "Start exam simulation",
+      doneToday: false,
+    });
+    const rank = projectionOrder(projection.projectionKind);
+    items.sort((a, b) => rank.indexOf(a.id) - rank.indexOf(b.id));
+    for (const item of items) item.why = null;
+    const projectedLead = items[0];
+    if (projectedLead) {
+      projectedLead.why = leadWhy(projectedLead.id, {
+        openIncorrect,
+        openKnown,
+        qbankTopic,
+        guideLabel,
+        drugLabel,
+        finalStretch: true,
+      });
+    }
+  }
+
+  for (const item of items) {
+    if (item.id === "qbank") item.doneToday = projection.qbankDone;
+    else if (item.id === "incorrect") item.doneToday = projection.incorrectDone;
+    else if (item.id === "exam_sim") item.doneToday = projection.examSimDone;
+    else item.doneToday = false;
   }
 
   const coveragePct = blueprintTouchCoveragePct(topics);
@@ -763,7 +874,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
       : `Not enough practice yet — ${totalAttempts} of ${READINESS_MIN_SAMPLE} answered on this board. The proof stays hidden until then.`,
     criteria,
     domains,
-    leadReason: lead?.why ?? null,
+    leadReason: items[0]?.why ?? null,
     examSim,
   };
 
@@ -777,11 +888,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     questionsToday,
     totalAttempts,
     items,
-    week: weekTopics.map((topic, index) => ({
-      id: topic.id,
-      label: topic.label,
-      isToday: index === 0,
-    })),
+    weekPlan: projection.weekPlan,
     rules: planRules(),
     readiness,
   };

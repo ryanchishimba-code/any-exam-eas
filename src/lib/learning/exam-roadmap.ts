@@ -42,6 +42,7 @@ import {
   type UsmleStudyPresetId,
 } from "@/lib/exam-prep/usmle/study-presets";
 import {
+  examSimCompletedOnUtcDay,
   examSimTrendFromSessions,
   rollingAccuracyFromAttempts,
   type ExamSimTrend,
@@ -130,6 +131,11 @@ export type ExamRoadmapData = {
    * Optional proof trend — not part of the readiness band.
    */
   examSimTrend?: ExamSimTrend | null;
+  /**
+   * True when a qualifying simulation (50+ questions) completed on today's
+   * UTC date. Optional so an older cached roadmap can omit it.
+   */
+  examSimCompletedToday?: boolean;
   /**
    * Items still open under the shared mastery rule (missed, or pending
    * re-proof). Same scan as totalAttempts. Matches Review incorrect.
@@ -580,6 +586,15 @@ async function loadExamRoadmapData(
         questionCount: session.questionCount,
         practiceBandLabel: practiceBandLabelFromAnalysis(session.analysis),
       }))
+    ),
+    examSimCompletedToday: examSimCompletedOnUtcDay(
+      history.sessions.map((session) => ({
+        status: session.status,
+        score: session.score,
+        questionCount: session.questionCount,
+        completedAt: session.completedAt,
+      })),
+      new Date()
     ),
     openIncorrectCount: countOpenIncorrectItems(attempts, { marks: masteryMarks }),
     openRemediation: labelOpenRemediation(fieldId, attempts, examSlug, masteryMarks),

@@ -5,6 +5,8 @@ import { createId } from "@/lib/id";
 import type { ExamSlug } from "@/lib/exams/catalog";
 import { examSlugToFieldId } from "@/lib/exams/catalog";
 import { withDrizzle } from "@/lib/db-resilience";
+import { cacheDeleteAsync, cacheKey } from "@/lib/cache";
+import { invalidateStudentReadCaches } from "@/lib/learning/invalidate-read-caches";
 import { mergeExamAnswers } from "./scoring";
 
 export { mergeExamAnswers, calculateExamScorePercent } from "./scoring";
@@ -131,7 +133,7 @@ export async function completeExamSession(
   }
 ) {
   const now = new Date();
-  await withDrizzle("examSessions.complete", () =>
+  const [row] = await withDrizzle("examSessions.complete", () =>
     requireDb()
       .update(examSessions)
       .set({
@@ -143,7 +145,18 @@ export async function completeExamSession(
         updatedAt: now,
       })
       .where(and(eq(examSessions.id, sessionId), eq(examSessions.userId, userId)))
+      .returning({ examType: examSessions.examType, fieldId: examSessions.fieldId })
   );
+
+  // Week-plan exam-sim ticks read the roadmap cache. Drop it so a refresh
+  // sees this completion. Qbank rows already invalidate through attempt persist.
+  await invalidateStudentReadCaches(userId, row?.fieldId ?? null);
+  if (row?.examType) {
+    await cacheDeleteAsync(cacheKey(["exam-roadmap-v5", userId, row.examType]));
+  }
+  if (row?.fieldId && row.fieldId !== row.examType) {
+    await cacheDeleteAsync(cacheKey(["exam-roadmap-v5", userId, row.fieldId]));
+  }
 }
 
 export async function listUserExamSessions(userId: string, examType?: string, limit = 30) {
