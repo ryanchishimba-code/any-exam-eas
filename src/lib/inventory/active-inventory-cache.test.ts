@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import {
   ACTIVE_INVENTORY_CACHE_KEY,
@@ -8,7 +10,6 @@ import {
   activeInventoryRevalidateUrl,
   bulkActionAffectsActiveInventory,
   changedFieldsAffectActiveInventory,
-  isCronSecretAuthorized,
   requestActiveInventoryRevalidation,
   shouldRevalidateInventoryAfterRetire,
 } from "./active-inventory-cache";
@@ -19,6 +20,16 @@ describe("active inventory cache identity", () => {
     expect(ACTIVE_INVENTORY_CACHE_TTL_SECONDS).toBe(3600);
     expect(ACTIVE_INVENTORY_CACHE_KEY).toEqual(["marketing-active-inventory-v2"]);
     expect(ACTIVE_INVENTORY_CDN_STALE_SECONDS).toBeLessThan(300);
+  });
+
+  it("does not import cron auth, so marketing clients can load the cache constants", () => {
+    const source = readFileSync(
+      path.join(process.cwd(), "src/lib/inventory/active-inventory-cache.ts"),
+      "utf8"
+    );
+    expect(source).not.toMatch(
+      /from ["']@\/lib\/cron-auth["']|from ["']node:crypto["']|from ["']crypto["']/
+    );
   });
 
   it("revalidates the NCLEX hub and the question bank together", () => {
@@ -95,20 +106,4 @@ describe("requestActiveInventoryRevalidation", () => {
     );
   });
 
-  it("accepts the cron bearer and rejects a spoofed Vercel cron header", () => {
-    const env = { CRON_SECRET: "secret", VERCEL: "1" };
-    expect(
-      isCronSecretAuthorized(
-        new Request("https://example.com", { headers: { authorization: "Bearer secret" } }),
-        env
-      )
-    ).toBe(true);
-    expect(
-      isCronSecretAuthorized(
-        new Request("https://example.com", { headers: { "x-vercel-cron": "1" } }),
-        env
-      )
-    ).toBe(false);
-    expect(isCronSecretAuthorized(new Request("https://example.com"), env)).toBe(false);
-  });
 });

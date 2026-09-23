@@ -1,5 +1,3 @@
-import { isCronAuthorized } from "@/lib/cron-auth";
-
 /**
  * Shared cache identity for the active-question inventory.
  *
@@ -9,8 +7,9 @@ import { isCronAuthorized } from "@/lib/cron-auth";
  * retired total until the TTL elapses. Callers that change `active` or
  * `qaPassed` must revalidate the tag and the paths below.
  *
- * This module stays free of `next/cache` and the app route map so the retire
- * script can import it.
+ * This module stays free of `next/cache`, the app route map, and Node built-ins
+ * so the retire script and marketing client components can import it. Cron
+ * authorization lives in `@/lib/cron-auth`.
  */
 
 /** Tag passed to `unstable_cache` and `revalidateTag`. */
@@ -86,14 +85,6 @@ export function bulkActionAffectsActiveInventory(action: string): boolean {
 /** Revalidate only after an apply that changed at least one row. */
 export function shouldRevalidateInventoryAfterRetire(apply: boolean, written: number): boolean {
   return apply && written > 0;
-}
-
-/** Bearer `CRON_SECRET` check shared with the other cron routes. */
-export function isCronSecretAuthorized(
-  req: Request,
-  env: NodeJS.ProcessEnv = process.env
-): boolean {
-  return isCronAuthorized(req, env);
 }
 
 function stripTrailingSlash(value: string): string {
