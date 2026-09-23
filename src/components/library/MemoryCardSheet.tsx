@@ -17,7 +17,6 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/Button";
 import {
   anatomyHref,
   practiceTopicHref,
@@ -33,6 +32,7 @@ import {
   MEMORY_CARD_KIND_LABELS,
   type MemoryCard,
 } from "@/lib/library/types";
+import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -137,7 +137,7 @@ export function MemoryCardSheet({
     : null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-4">
+    <div className="study-home-accent fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-4">
       <button
         type="button"
         className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
@@ -148,15 +148,17 @@ export function MemoryCardSheet({
         role="dialog"
         aria-modal="true"
         aria-labelledby="memory-card-title"
-        className="relative z-10 flex max-h-[min(92vh,720px)] w-full max-w-lg flex-col overflow-hidden rounded-t-3xl border border-black/[0.08] bg-white shadow-2xl sm:rounded-3xl"
+        className="relative z-10 flex max-h-[min(92vh,720px)] w-full max-w-lg flex-col overflow-hidden rounded-t-3xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] shadow-2xl sm:rounded-3xl"
       >
-        <div className="flex items-start justify-between gap-3 border-b border-black/[0.06] px-5 py-4">
+        <div className="flex items-start justify-between gap-3 border-b border-[var(--db-line,var(--color-border))]/70 px-5 py-4">
           <div>
             <div className="flex flex-wrap gap-2">
-              <Badge className="bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
+              <Badge className="border-transparent bg-[var(--study-accent)]/10 text-[var(--study-accent)]">
                 {MEMORY_CARD_KIND_LABELS[card.kind]}
               </Badge>
-              <Badge className="bg-slate-100 text-slate-600">{card.subject}</Badge>
+              <Badge className="border-transparent bg-[var(--color-surface)] text-[var(--color-ink-muted)]">
+                {card.subject}
+              </Badge>
               {mastery === "got-it" ? (
                 <Badge className="bg-emerald-50 text-emerald-700">Got it</Badge>
               ) : null}
@@ -183,7 +185,7 @@ export function MemoryCardSheet({
 
         <div className="flex-1 overflow-y-auto px-5 py-4">
           {card.sourceLabel ? (
-            <div className="mb-4 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-xs text-slate-800">
+            <div className="mb-4 rounded-xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)] px-3 py-2.5 text-xs text-[var(--color-ink)]">
               <div className="flex items-start gap-2">
                 <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" aria-hidden />
                 <div className="min-w-0">
@@ -193,7 +195,7 @@ export function MemoryCardSheet({
                       href={card.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-0.5 inline-flex items-center gap-1 text-[var(--color-accent)] hover:underline"
+                      className="mt-0.5 inline-flex items-center gap-1 text-[var(--study-accent)] hover:underline"
                     >
                       {card.sourceLabel}
                       <ExternalLink className="h-3 w-3" aria-hidden />
@@ -202,7 +204,7 @@ export function MemoryCardSheet({
                     <p className="mt-0.5">{card.sourceLabel}</p>
                   )}
                   {reviewedLabel ? (
-                    <p className="mt-1 text-slate-500">Reviewed {reviewedLabel}</p>
+                    <p className="mt-1 text-[var(--color-ink-muted)]">Reviewed {reviewedLabel}</p>
                   ) : null}
                 </div>
               </div>
@@ -213,8 +215,8 @@ export function MemoryCardSheet({
             className={cn(
               "rounded-2xl border px-4 py-4 transition",
               showAnswer
-                ? "border-[var(--color-accent)]/20 bg-[var(--color-surface)]"
-                : "border-dashed border-slate-300 bg-white"
+                ? "border-[var(--study-accent)]/25 bg-[var(--color-surface)]"
+                : "border-dashed border-[var(--db-line,var(--color-border))] bg-[var(--db-card,var(--color-surface-elevated))]"
             )}
           >
             <p className="text-sm font-medium leading-relaxed text-[var(--color-ink)]">{card.teaser}</p>
@@ -223,14 +225,14 @@ export function MemoryCardSheet({
               <button
                 type="button"
                 onClick={() => setShowAnswer(true)}
-                className="mt-4 w-full rounded-xl bg-[var(--color-accent)] px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:opacity-90"
+                className={cn(dbUi.primaryBtn, "mt-4 h-auto w-full py-3 text-sm font-bold")}
               >
                 Reveal answer
               </button>
             ) : (
               <div className="mt-4 space-y-4">
                 {card.body ? (
-                  <p className="rounded-xl bg-white px-3 py-3 text-sm font-medium leading-relaxed text-[var(--color-ink)] ring-1 ring-black/[0.06]">
+                  <p className="rounded-xl bg-[var(--db-card,var(--color-surface-elevated))] px-3 py-3 text-sm font-medium leading-relaxed text-[var(--color-ink)] ring-1 ring-[var(--db-line,var(--color-border))]/80">
                     {card.body}
                   </p>
                 ) : null}
@@ -242,7 +244,7 @@ export function MemoryCardSheet({
                         key={item}
                         className="flex gap-2 text-sm leading-relaxed text-[var(--color-ink)]"
                       >
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-accent)]" />
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--study-accent)]" />
                         {item}
                       </li>
                     ))}
@@ -250,9 +252,9 @@ export function MemoryCardSheet({
                 ) : null}
 
                 {card.table ? (
-                  <div className="overflow-x-auto rounded-xl border border-black/[0.06]">
+                  <div className="overflow-x-auto rounded-xl border border-[var(--db-line,var(--color-border))]/80">
                     <table className="w-full min-w-[280px] text-left text-sm">
-                      <thead className="bg-white">
+                      <thead className="bg-[var(--color-surface)]">
                         <tr>
                           {card.table.headers.map((h) => (
                             <th
@@ -294,7 +296,10 @@ export function MemoryCardSheet({
           {card.tags.length ? (
             <div className="mt-4 flex flex-wrap gap-1.5">
               {card.tags.map((tag) => (
-                <Badge key={tag} className="border-border text-[10px]">
+                <Badge
+                  key={tag}
+                  className="border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)] text-[10px] text-[var(--color-ink-muted)]"
+                >
                   {tag}
                 </Badge>
               ))}
@@ -312,7 +317,7 @@ export function MemoryCardSheet({
                     <button
                       type="button"
                       onClick={() => onOpenRelated?.(related)}
-                      className="w-full rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-3 py-2.5 text-left text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/30"
+                      className="w-full rounded-xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)] px-3 py-2.5 text-left text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--study-accent)]/40"
                     >
                       {related.title}
                       <span className="mt-0.5 block text-xs font-normal text-[var(--color-ink-muted)]">
@@ -326,7 +331,7 @@ export function MemoryCardSheet({
           ) : null}
         </div>
 
-        <div className="space-y-3 border-t border-black/[0.06] bg-white p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+        <div className="space-y-3 border-t border-[var(--db-line,var(--color-border))]/70 bg-[var(--db-card,var(--color-surface-elevated))] p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
           <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
@@ -338,7 +343,7 @@ export function MemoryCardSheet({
                 "inline-flex items-center justify-center gap-1.5 rounded-xl border px-3 py-2.5 text-xs font-bold transition",
                 mastery === "got-it"
                   ? "border-emerald-300 bg-emerald-50 text-emerald-800"
-                  : "border-slate-200 bg-white text-slate-700 hover:bg-emerald-50"
+                  : "border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] text-[var(--color-ink)] hover:border-emerald-300 hover:bg-emerald-50"
               )}
             >
               <CheckCircle2 className="h-4 w-4" aria-hidden />
@@ -354,19 +359,19 @@ export function MemoryCardSheet({
                 "inline-flex items-center justify-center gap-1.5 rounded-xl border px-3 py-2.5 text-xs font-bold transition",
                 mastery === "need-review"
                   ? "border-amber-300 bg-amber-50 text-amber-900"
-                  : "border-slate-200 bg-white text-slate-700 hover:bg-amber-50"
+                  : "border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] text-[var(--color-ink)] hover:border-amber-300 hover:bg-amber-50"
               )}
             >
               Need review
             </button>
           </div>
 
-          <div className="rounded-2xl bg-[var(--color-surface)] px-3 py-2.5">
+          <div className="rounded-2xl border border-[var(--db-line,var(--color-border))]/70 bg-[var(--color-surface)] px-3 py-2.5">
             {CALCULATOR_CARD_IDS_BY_EXAM[examSlug]?.has(card.id) ? (
               <Link
                 href="#hub-calculators"
                 onClick={onClose}
-                className="mb-3 inline-flex items-center gap-1.5 rounded-lg bg-[var(--color-accent)]/10 px-2.5 py-1.5 text-[11px] font-semibold text-[var(--color-accent)] hover:bg-[var(--color-accent)]/15"
+                className="mb-3 inline-flex items-center gap-1.5 rounded-lg bg-[var(--study-accent)]/10 px-2.5 py-1.5 text-[11px] font-semibold text-[var(--study-accent)] hover:bg-[var(--study-accent)]/15"
               >
                 <Calculator className="h-3.5 w-3.5" aria-hidden />
                 Open clinical calculators
@@ -376,7 +381,7 @@ export function MemoryCardSheet({
               Study path
             </p>
             <ol className="mt-2 flex flex-wrap items-center gap-1 text-[11px] font-semibold text-[var(--color-ink-muted)]">
-              <li className="rounded-full bg-white px-2 py-0.5 text-[var(--color-accent)] ring-1 ring-[var(--color-accent)]/20">
+              <li className="rounded-full bg-[var(--db-card,var(--color-surface-elevated))] px-2 py-0.5 text-[var(--study-accent)] ring-1 ring-[var(--study-accent)]/30">
                 Card
               </li>
               {linkedStructures.length > 0 ? (
@@ -405,42 +410,40 @@ export function MemoryCardSheet({
           {relatedDrugs.length > 0 ? (
             <div className="flex flex-wrap gap-2">
               {relatedDrugs.map((drug) => (
-                <Button
+                <Link
                   key={drug.id}
                   href={`${top500Href(examSlug)}&drug=${encodeURIComponent(drug.id)}`}
-                  variant="secondary"
-                  className="h-10 rounded-xl px-3 text-sm"
+                  className={cn(dbUi.ghostBtn, "h-10 px-3 text-sm")}
                 >
                   <Pill className="mr-2 h-4 w-4" aria-hidden />
                   {drug.generic}
-                </Button>
+                </Link>
               ))}
             </div>
           ) : null}
           {linkedStructures.length > 0 ? (
             <div className="flex flex-wrap gap-2">
               {linkedStructures.map((structure) => (
-                <Button
+                <Link
                   key={structure.id}
                   href={anatomyHref(examSlug, structure.id)}
-                  variant="secondary"
-                  className="h-10 rounded-xl px-3 text-sm"
+                  className={cn(dbUi.ghostBtn, "h-10 px-3 text-sm")}
                 >
                   <Layers className="mr-2 h-4 w-4" aria-hidden />
                   {structure.name}
-                </Button>
+                </Link>
               ))}
             </div>
           ) : null}
-          <Button href={practiceHref} className="h-11 w-full rounded-xl">
+          <Link href={practiceHref} className={cn(dbUi.primaryBtn, "h-11 w-full")}>
             <BookOpen className="mr-2 h-4 w-4" aria-hidden />
             Practice Questions
-          </Button>
+          </Link>
           {deepDiveHref ? (
-            <Button href={deepDiveHref} variant="secondary" className="h-11 w-full rounded-xl">
+            <Link href={deepDiveHref} className={cn(dbUi.ghostBtn, "h-11 w-full")}>
               <GraduationCap className="mr-2 h-4 w-4" aria-hidden />
               Deep Dive — Review Module
-            </Button>
+            </Link>
           ) : null}
         </div>
       </div>

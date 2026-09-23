@@ -140,7 +140,7 @@ export function LibraryHubSearch({ examSlug, cards, onOpenCard, onQueryChange, i
                         onClick={() => setOpen(false)}
                         className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-[var(--color-surface)]"
                       >
-                        <GraduationCap className="h-4 w-4 shrink-0 text-violet-600" aria-hidden />
+                        <GraduationCap className="h-4 w-4 shrink-0 text-[var(--study-accent)]" aria-hidden />
                         <div className="min-w-0">
                           <p className="truncate text-sm font-semibold text-[var(--color-ink)]">
                             {mod.title}
@@ -188,7 +188,7 @@ export function LibraryHubSearch({ examSlug, cards, onOpenCard, onQueryChange, i
                         onClick={() => setOpen(false)}
                         className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-[var(--color-surface)]"
                       >
-                        <Syringe className="h-4 w-4 shrink-0 text-indigo-600" aria-hidden />
+                        <Syringe className="h-4 w-4 shrink-0 text-[var(--study-navy)]" aria-hidden />
                         <div className="min-w-0">
                           <p className="truncate text-sm font-semibold text-[var(--color-ink)]">
                             {proc.name}
@@ -217,7 +217,7 @@ export function LibraryHubSearch({ examSlug, cards, onOpenCard, onQueryChange, i
                           style={{ backgroundColor: drug.drugClassColor }}
                           aria-hidden
                         />
-                        <Pill className="h-4 w-4 shrink-0 text-violet-600" aria-hidden />
+                        <Pill className="h-4 w-4 shrink-0 text-[var(--study-accent)]" aria-hidden />
                         <div className="min-w-0">
                           <p className="truncate text-sm font-semibold text-[var(--color-ink)]">
                             {drug.generic}

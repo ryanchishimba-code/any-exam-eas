@@ -23,7 +23,7 @@ export function LibraryBriefCards({ cards, cardIds, onOpenCard }: Props) {
   return (
     <section id="brief-cards" aria-labelledby="brief-cards-heading" className="space-y-3">
       <div className="flex items-center gap-2">
-        <Sparkles className="h-4 w-4 text-violet-600" aria-hidden />
+        <Sparkles className="h-4 w-4 text-[var(--study-accent)]" aria-hidden />
         <h3 id="brief-cards-heading" className="text-sm font-bold text-[var(--color-ink)]">
           From your AI brief
         </h3>

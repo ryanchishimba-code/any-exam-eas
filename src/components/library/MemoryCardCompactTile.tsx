@@ -18,7 +18,7 @@ export function MemoryCardCompactTile({
   return (
     <button type="button" onClick={onOpen} className={libUi.cardCompact}>
       <div className="flex items-center gap-2">
-        <span className="rounded-full bg-[var(--color-accent)]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[var(--color-accent)]">
+        <span className="study-home-accent rounded-full bg-[var(--study-accent)]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[var(--study-accent)]">
           {MEMORY_CARD_KIND_LABELS[card.kind]}
         </span>
         {badge ? (
@@ -38,7 +38,7 @@ export function MemoryCardCompactTile({
       </p>
       <span
         className={cn(
-          "mt-3 inline-flex items-center gap-0.5 text-[12px] font-semibold text-[var(--color-accent)]"
+          "mt-3 inline-flex items-center gap-0.5 text-[12px] font-semibold text-[var(--study-accent)]"
         )}
       >
         Open

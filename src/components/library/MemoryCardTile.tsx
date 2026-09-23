@@ -11,7 +11,7 @@ const KIND_DOT: Record<MemoryCard["kind"], string> = {
   equation: "bg-blue-500",
   conversion: "bg-amber-500",
   fact: "bg-teal-500",
-  table: "bg-violet-500",
+  table: "bg-[var(--study-navy)]",
   mistake: "bg-rose-500",
   pearl: "bg-emerald-500",
 };
@@ -48,7 +48,7 @@ export function MemoryCardTile({
       onClick={onOpen}
       className={cn(
         "group flex h-full w-full flex-col rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] p-3.5 text-left transition",
-        "hover:border-[var(--color-accent)]/20 hover:bg-[var(--color-surface)]/40 active:scale-[0.995]"
+        "hover:border-[var(--study-accent)]/35 hover:bg-[var(--color-surface)]/40 active:scale-[0.995]"
       )}
     >
       <div className="flex items-start justify-between gap-2">
@@ -62,13 +62,13 @@ export function MemoryCardTile({
             <p className="truncate text-[11px] font-medium text-[var(--color-ink-muted)]">
               {card.subject} · {card.topic}
             </p>
-            <p className="mt-0.5 line-clamp-2 text-[15px] font-semibold leading-snug text-[var(--color-ink)] group-hover:text-[var(--color-accent)]">
+            <p className="mt-0.5 line-clamp-2 text-[15px] font-semibold leading-snug text-[var(--color-ink)] group-hover:text-[var(--study-accent)]">
               {card.title}
             </p>
           </div>
         </div>
         <ChevronRight
-          className="mt-1 h-4 w-4 shrink-0 text-[var(--color-ink-muted)]/50 transition group-hover:text-[var(--color-accent)]"
+          className="mt-1 h-4 w-4 shrink-0 text-[var(--color-ink-muted)]/50 transition group-hover:text-[var(--study-accent)]"
           aria-hidden
         />
       </div>

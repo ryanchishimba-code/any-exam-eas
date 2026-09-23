@@ -112,7 +112,7 @@ export function LibraryExamWheel({ currentExam }: Props) {
         style={{ height: WHEEL_H, perspective: "1000px" }}
       >
         <div
-          className="pointer-events-none absolute inset-x-2 top-1/2 -translate-y-1/2 rounded-2xl border border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06] shadow-[0_0_30px_-8px_rgba(99,102,241,0.4)] ring-1 ring-inset ring-white/40"
+          className="study-home-accent pointer-events-none absolute inset-x-2 top-1/2 -translate-y-1/2 rounded-2xl border border-[var(--study-accent)]/40 bg-[var(--study-accent)]/[0.06] shadow-[0_0_30px_-8px_color-mix(in_srgb,var(--study-accent)_40%,transparent)] ring-1 ring-inset ring-white/40"
           style={{ height: ITEM_H }}
           aria-hidden
         />
@@ -142,7 +142,7 @@ export function LibraryExamWheel({ currentExam }: Props) {
           onKeyDown={onKeyDown}
           className={cn(
             pickerWheelScrollerClassName,
-            "rounded-[28px] focus-visible:ring-[var(--color-accent)]/70"
+            "rounded-[28px] focus-visible:ring-[var(--study-accent)]/70"
           )}
           style={{ paddingTop: PAD, paddingBottom: PAD }}
         >
@@ -189,7 +189,7 @@ export function LibraryExamWheel({ currentExam }: Props) {
                         {exam.shortName}
                       </span>
                       {slug === currentExam ? (
-                        <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-[var(--color-accent)]/12 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[var(--color-accent)]">
+                        <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-[var(--study-accent)]/12 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[var(--study-accent)]">
                           <Check className="h-3 w-3" aria-hidden />
                           Current
                         </span>
@@ -217,7 +217,7 @@ export function LibraryExamWheel({ currentExam }: Props) {
             "inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-[15px] font-semibold transition",
             isCurrent
               ? "cursor-default bg-black/[0.05] text-[var(--color-ink-muted)]"
-              : "bg-[var(--color-accent)] text-white shadow-[var(--shadow-apple-btn)] hover:opacity-95 active:scale-[0.99]"
+              : "study-home-accent bg-[var(--color-accent)] text-[var(--study-accent-on,#fff)] shadow-[var(--db-cta-shadow,0_1px_2px_rgba(15,23,42,0.08))] hover:bg-[var(--color-accent-hover)] active:scale-[0.99]"
           )}
         >
           {pending ? (

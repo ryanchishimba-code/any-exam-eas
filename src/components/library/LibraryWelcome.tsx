@@ -61,8 +61,8 @@ export function LibraryWelcome({ userName, streakDays, primaryHref }: Props) {
           <Link
             href={primaryHref}
             className={cn(
-              "group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[var(--color-accent)] px-6 py-4 text-[15px] font-semibold text-white shadow-[var(--shadow-apple-btn)] transition-[opacity,box-shadow]",
-              "hover:opacity-95 sm:w-auto"
+              libUi.primaryBtn,
+              "group w-full rounded-2xl px-6 py-4 text-[15px] sm:w-auto"
             )}
           >
             <Sparkles className="h-4 w-4" aria-hidden />
