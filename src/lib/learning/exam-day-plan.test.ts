@@ -723,10 +723,42 @@ describe("week countdown plan", () => {
     const before = buildExamDayPlan(shared);
     const after = buildExamDayPlan({ ...shared, examSimCompletedToday: true });
     expect(before.items[0]?.id).toBe("exam_sim");
+    expect(before.items.find((item) => item.id === "exam_sim")?.doneToday).toBe(false);
+    expect(before.weekPlan.goals.find((goal) => goal.id === "exam_sim")?.statusLabel).toBe("Today");
     expect(after.items[0]?.id).toBe("incorrect");
     expect(after.items.find((item) => item.id === "exam_sim")?.doneToday).toBe(true);
     expect(after.weekPlan.goals.find((goal) => goal.id === "exam_sim")?.status).toBe("done_today");
     expect(after.readiness.label).toBe(before.readiness.label);
+  });
+
+  it("keeps exam simulation open when today's other answers are under 50", () => {
+    const plan = buildExamDayPlan({
+      examSlug: "nclex",
+      examName: "NCLEX-RN",
+      fieldId: "nursing",
+      testDate: "2026-10-01",
+      now: examSimDay,
+      totalAttempts: 41,
+      recentAccuracyPct: 60,
+      openIncorrect: 8,
+      questionsToday: 6,
+      examSimCompletedToday: false,
+      topics: [
+        topic({
+          id: "management-of-care",
+          label: "Management of Care",
+          blueprintWeightPct: 20,
+          attempts: 10,
+          accuracyPct: 70,
+          coveragePct: 20,
+        }),
+      ],
+    });
+    const sim = plan.weekPlan.goals.find((goal) => goal.id === "exam_sim");
+    expect(plan.items.find((item) => item.id === "exam_sim")?.doneToday).toBe(false);
+    expect(sim?.status).toBe("today");
+    expect(sim?.statusLabel).toBe("Today");
+    expect(plan.weekPlan.todayLine).toBe("Today projects an exam simulation, then incorrect drill.");
   });
 });
 

@@ -15,6 +15,32 @@ export function countCorrectAnswers(answers: ExamAnswerRecord[]): number {
   return answers.filter((a) => a.correct).length;
 }
 
+/**
+ * Scored rows in a session answer log. Blank selections do not count.
+ * Null when the column is not an array, so callers can tell "no log" from "empty log".
+ */
+export function countScoredExamAnswers(raw: unknown): number | null {
+  if (!Array.isArray(raw)) return null;
+  const seen = new Set<string>();
+  let count = 0;
+  for (const row of raw) {
+    if (!row || typeof row !== "object") continue;
+    const rec = row as Partial<ExamAnswerRecord>;
+    const selected = typeof rec.selected === "string" ? rec.selected.trim() : "";
+    if (!selected) continue;
+    const questionId = typeof rec.questionId === "string" ? rec.questionId.trim() : "";
+    const index =
+      typeof rec.questionIndex === "number" && Number.isFinite(rec.questionIndex)
+        ? String(rec.questionIndex)
+        : String(count);
+    const key = questionId || `index:${index}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    count += 1;
+  }
+  return count;
+}
+
 /** Percent score 0–100 from recorded answers. */
 export function calculateExamScorePercent(
   answers: ExamAnswerRecord[],

@@ -5,6 +5,7 @@ import {
   analysisWithAnsweredCount,
   countFullExamMisses,
   draftsFromFullExamAnswers,
+  examSimDoneTodayAnswerCount,
   examSimQualifyingQuestionCount,
   fullExamPassPathCopy,
   fullExamStudyMode,
@@ -79,6 +80,70 @@ describe("full exam pass path", () => {
         now
       )
     ).toBe(true);
+  });
+
+  it("does not tick Done today from the planned length of an early 50-question set", () => {
+    const now = new Date("2026-09-23T18:00:00.000Z");
+    const early = examSimDoneTodayAnswerCount({
+      savedAnswerCount: 6,
+      linkedAttemptCount: 6,
+      analysis: { questionCount: 50 },
+    });
+    const stampedLong = examSimDoneTodayAnswerCount({
+      savedAnswerCount: 6,
+      linkedAttemptCount: 6,
+      analysis: { answeredCount: 50, passPathPersisted: true },
+    });
+    const plannedOnly = examSimDoneTodayAnswerCount({
+      savedAnswerCount: null,
+      linkedAttemptCount: null,
+      analysis: {},
+    });
+    expect(early).toBe(6);
+    expect(stampedLong).toBe(6);
+    expect(plannedOnly).toBe(0);
+    for (const saved of [early, stampedLong, plannedOnly]) {
+      expect(
+        examSimCompletedOnUtcDay(
+          [
+            {
+              status: "ended_early",
+              score: 4,
+              questionCount: saved,
+              completedAt: "2026-09-23T16:00:00.000Z",
+            },
+          ],
+          now
+        )
+      ).toBe(false);
+    }
+
+    const finished = examSimDoneTodayAnswerCount({
+      savedAnswerCount: 50,
+      linkedAttemptCount: 50,
+      analysis: { answeredCount: 50 },
+    });
+    expect(finished).toBe(50);
+    expect(
+      examSimCompletedOnUtcDay(
+        [
+          {
+            status: "completed",
+            score: 72,
+            questionCount: finished,
+            completedAt: "2026-09-23T16:00:00.000Z",
+          },
+        ],
+        now
+      )
+    ).toBe(true);
+    expect(
+      examSimDoneTodayAnswerCount({
+        savedAnswerCount: 0,
+        linkedAttemptCount: null,
+        analysis: { answeredCount: 50 },
+      })
+    ).toBe(0);
   });
 
   it("states the practice band and an honest empty remediation path", () => {
