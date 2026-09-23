@@ -5,10 +5,16 @@ import { QuestionBankPracticeLoader } from "@/components/study/question-bank/Que
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCachedSession } from "@/lib/auth/session";
 import { loadStillIncorrectBankItemIds } from "@/lib/learning/review-incorrect";
+import { buildTopicWeakness } from "@/lib/learning/weakness";
 import { requireStudyPage } from "@/lib/require-premium-page";
 import { runPageDb } from "@/lib/page-access-error";
 import { ROUTES } from "@/lib/routes";
 import { resolveQuestionBankRoute } from "@/lib/study/question-bank-route";
+import {
+  countEligibleWeakTopics,
+  questionBankEmptyLaunch,
+  type RemediationMode,
+} from "@/lib/study/remediation-launch";
 import type { ExamSlug } from "@/types/edtech";
 
 function firstParam(value: string | string[] | undefined): string | null {
@@ -24,6 +30,22 @@ export const metadata = {
 /** Nursing/NCLEX subject counts + preference lookups can cold-start Neon. */
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
+
+function QuestionBankRemediationEmpty({
+  mode,
+  fieldId,
+  subjectId,
+}: {
+  mode: RemediationMode;
+  fieldId: string;
+  subjectId: string | null;
+}) {
+  return (
+    <div className="question-bank-ui mx-auto w-full min-w-0 max-w-5xl px-1 pb-10">
+      <RemediationLaunchNotice mode={mode} fieldId={fieldId} subjectId={subjectId} />
+    </div>
+  );
+}
 
 function QuestionBankPracticeSkeleton() {
   return (
@@ -84,27 +106,36 @@ export default async function QuestionBankPage({
   const style = firstParam(sp.style);
   const subjectId = firstParam(sp.subjectId);
 
-  if (style === "review_incorrect") {
+  // Same preflight for Review incorrect and Weak areas: 0 eligible returns the
+  // empty notice here, before the practice Suspense skeleton.
+  if (style === "review_incorrect" || style === "weak_areas") {
     try {
-      const openIds = await loadStillIncorrectBankItemIds({
-        userId: session.user.id,
-        fieldId: route.fieldParam,
-        subjectId,
-        limit: 1,
-      });
-      if (openIds.length === 0) {
+      const eligible =
+        style === "review_incorrect"
+          ? (
+              await loadStillIncorrectBankItemIds({
+                userId: session.user.id,
+                fieldId: route.fieldParam,
+                subjectId,
+                limit: 1,
+              })
+            ).length
+          : countEligibleWeakTopics(
+              await buildTopicWeakness(session.user.id, route.fieldParam),
+              subjectId
+            );
+      const emptyMode = questionBankEmptyLaunch(style, eligible);
+      if (emptyMode) {
         return (
-          <div className="question-bank-ui mx-auto w-full min-w-0 max-w-5xl px-1 pb-10">
-            <RemediationLaunchNotice
-              mode="review_incorrect"
-              fieldId={route.fieldParam}
-              subjectId={subjectId}
-            />
-          </div>
+          <QuestionBankRemediationEmpty
+            mode={emptyMode}
+            fieldId={route.fieldParam}
+            subjectId={subjectId}
+          />
         );
       }
     } catch (error) {
-      console.error("[question-bank] review incorrect empty check", error);
+      console.error("[question-bank] remediation empty check", error);
     }
   }
 

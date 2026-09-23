@@ -166,12 +166,30 @@ export function emptyModeFromLaunchQuery(
   return null;
 }
 
-/** Review incorrect must paint the launcher or the empty notice, never the session skeleton. */
+const REMEDIATION_LAUNCH_STYLES = new Set<string>(["review_incorrect", "weak_areas"]);
+
+/**
+ * Question-bank page preflight: 0 eligible paints the empty notice and skips
+ * the practice skeleton. A positive count continues into the normal launcher.
+ */
+export function questionBankEmptyLaunch(
+  style: string | null | undefined,
+  eligibleCount: number
+): RemediationMode | null {
+  if (!style || !REMEDIATION_LAUNCH_STYLES.has(style)) return null;
+  if (!Number.isFinite(eligibleCount) || eligibleCount > 0) return null;
+  return style as RemediationMode;
+}
+
+/** Review incorrect and Weak areas paint the launcher or the empty notice, never the session skeleton. */
 export function reviewIncorrectBlocksSessionSkeleton(params: {
   bankStyle: string;
   styleParam: string | null | undefined;
 }): boolean {
-  return params.bankStyle === "review_incorrect" || params.styleParam === "review_incorrect";
+  return (
+    REMEDIATION_LAUNCH_STYLES.has(params.bankStyle) ||
+    REMEDIATION_LAUNCH_STYLES.has(params.styleParam ?? "")
+  );
 }
 
 /**
