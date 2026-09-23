@@ -17,8 +17,9 @@
  *   npm run db:retire-near-duplicates -- --field nursing --apply
  *
  * A successful --apply also asks the site to drop the public inventory cache
- * (`POST /api/cron/revalidate-inventory` with CRON_SECRET) so /nclex and the
- * question bank match the database without waiting out the one-hour TTL.
+ * (`POST /api/cron/revalidate-inventory` with CRON_SECRET). That purge is
+ * optional. /nclex and the question bank read a published stamp on the next
+ * request, so a missing CRON_SECRET does not leave the old total on screen.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -37,6 +38,7 @@ import {
   type NearDuplicateRetirePlan,
 } from "../src/lib/exam-prep/item-qa";
 import {
+  describeInventoryRevalidateResult,
   requestActiveInventoryRevalidation,
   shouldRevalidateInventoryAfterRetire,
 } from "../src/lib/inventory/active-inventory-cache";
@@ -360,14 +362,9 @@ async function main() {
         cacheRevalidateUrl: result.url,
         cacheRevalidateError: result.error ?? null,
       });
-      if (result.ok) {
-        console.log(`Inventory cache revalidated: ${result.url}`);
-      } else {
-        console.error(`Inventory cache was not revalidated (${result.url}): ${result.error}`);
-        console.error(
-          `Rows are already updated. Retry: curl -X POST -H "Authorization: Bearer $CRON_SECRET" ${result.url}`
-        );
-      }
+      const detail = describeInventoryRevalidateResult(result);
+      if (result.ok) console.log(detail);
+      else console.warn(detail);
     } else {
       console.log("No rows updated. Public inventory cache left as-is.");
     }
@@ -392,12 +389,6 @@ async function main() {
     })
   );
   console.log(`Report: ${mdPath}`);
-
-  if (cache && !cache.revalidated) {
-    throw new Error(
-      `Rows were updated, but the public inventory cache was not cleared. ${cache.error ?? ""}`.trim()
-    );
-  }
 }
 
 main()

@@ -8,7 +8,7 @@ export type LiveBankCountsResponse = LandingBankCountsDisplay & {
 };
 
 async function fetchLiveBankCounts(): Promise<LiveBankCountsResponse> {
-  const res = await fetch("/api/marketing/bank-counts");
+  const res = await fetch("/api/marketing/bank-counts", { cache: "no-store" });
   if (!res.ok) throw new Error("bank-counts-unavailable");
   return res.json() as Promise<LiveBankCountsResponse>;
 }
@@ -18,7 +18,7 @@ export function useLiveBankCounts() {
   return useQuery({
     queryKey: ["live-bank-counts"],
     queryFn: fetchLiveBankCounts,
-    staleTime: 60_000,
+    staleTime: 0,
     gcTime: 5 * 60_000,
   });
 }

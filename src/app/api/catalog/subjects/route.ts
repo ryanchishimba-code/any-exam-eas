@@ -4,11 +4,13 @@ import {
   getSubjectCatalog,
   getTrendingSubjects,
 } from "@/lib/subjects/catalog";
+import { ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL } from "@/lib/inventory/active-inventory-cache";
 import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { prisma } from "@/lib/prisma";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
-export const revalidate = 60;
+/** Inventory totals in this payload follow the published stamp, not a 60s module cache. */
+export const dynamic = "force-dynamic";
 
 type CatalogPayload = {
   subjects: Array<
@@ -22,9 +24,6 @@ type CatalogPayload = {
   totalQuestions: number;
   updatedAt: string;
 };
-
-let catalogCache: { payload: CatalogPayload; at: number } | null = null;
-const CATALOG_TTL_MS = 60_000;
 
 async function countQuestionsByField(): Promise<Map<string, number>> {
   try {
@@ -48,13 +47,6 @@ async function countQuestionsByField(): Promise<Map<string, number>> {
 
 export async function GET() {
   try {
-    const now = Date.now();
-    if (catalogCache && now - catalogCache.at < CATALOG_TTL_MS) {
-      return NextResponse.json(catalogCache.payload, {
-        headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" },
-      });
-    }
-
     const catalog = getSubjectCatalog();
     const counts = await countQuestionsByField();
 
@@ -74,23 +66,14 @@ export async function GET() {
       updatedAt: new Date().toISOString(),
     };
 
-    catalogCache = { payload, at: now };
-
     return NextResponse.json(payload, {
-      headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" },
+      headers: { "Cache-Control": ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL },
     });
   } catch (e) {
     console.error("[catalog/subjects] lookup failed:", e);
 
-    // Serve stale cache if we have one, otherwise a count-free catalog, so a
-    // DB outage degrades the marketing pages instead of breaking them. Never
-    // leak raw database errors to the client.
-    if (catalogCache) {
-      return NextResponse.json(catalogCache.payload, {
-        headers: { "Cache-Control": "public, s-maxage=30, stale-while-revalidate=120" },
-      });
-    }
-
+    // A count-free catalog keeps marketing pages up during a DB blip.
+    // Never leak raw database errors, and do not replay a previous total.
     const fallback: CatalogPayload = {
       subjects: getSubjectCatalog().map((entry) => ({
         ...entry,
@@ -103,7 +86,7 @@ export async function GET() {
       updatedAt: new Date().toISOString(),
     };
     return NextResponse.json(fallback, {
-      headers: { "Cache-Control": "public, s-maxage=30, stale-while-revalidate=120" },
+      headers: { "Cache-Control": ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL },
     });
   }
 }

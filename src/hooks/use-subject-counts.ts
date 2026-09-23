@@ -25,8 +25,8 @@ export function useSubjectCounts(fieldId: string, options: UseSubjectCountsOptio
       if (previousQuery?.queryKey[1] === fieldId) return previousData;
       return undefined;
     },
-    staleTime: 5 * 60 * 1000,
-    refetchOnMount: seeded ? false : "always",
+    staleTime: 0,
+    refetchOnMount: "always",
     enabled: Boolean(fieldId),
   });
 }

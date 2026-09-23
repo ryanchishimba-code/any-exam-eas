@@ -121,7 +121,7 @@ export function UsmleStepShowcase({
     if (hasCompleteStepCounts(initialStepCounts)) return;
 
     let cancelled = false;
-    fetch("/api/exams/usmle")
+    fetch("/api/exams/usmle", { cache: "no-store" })
       .then((r) => r.json())
       .then((data: ApiResponse) => {
         if (cancelled) return;

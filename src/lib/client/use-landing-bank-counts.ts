@@ -15,7 +15,7 @@ export function useLandingBankCounts(initial: LandingBankCountsDisplay): Landing
   useEffect(() => {
     let cancelled = false;
 
-    fetch("/api/marketing/bank-counts")
+    fetch("/api/marketing/bank-counts", { cache: "no-store" })
       .then((response) => (response.ok ? response.json() : null))
       .then((data: BankCountsApiResponse | null) => {
         if (cancelled || !data || data.degraded || data.error) return;

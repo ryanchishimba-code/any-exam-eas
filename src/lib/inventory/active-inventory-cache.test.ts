@@ -5,11 +5,12 @@ import {
   ACTIVE_INVENTORY_CACHE_KEY,
   ACTIVE_INVENTORY_CACHE_TAG,
   ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
-  ACTIVE_INVENTORY_CDN_STALE_SECONDS,
   ACTIVE_INVENTORY_PATHS,
+  ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL,
   activeInventoryRevalidateUrl,
   bulkActionAffectsActiveInventory,
   changedFieldsAffectActiveInventory,
+  describeInventoryRevalidateResult,
   requestActiveInventoryRevalidation,
   shouldRevalidateInventoryAfterRetire,
 } from "./active-inventory-cache";
@@ -18,8 +19,9 @@ describe("active inventory cache identity", () => {
   it("keeps a one-hour TTL fallback and the question-bank-counts tag", () => {
     expect(ACTIVE_INVENTORY_CACHE_TAG).toBe("question-bank-counts");
     expect(ACTIVE_INVENTORY_CACHE_TTL_SECONDS).toBe(3600);
-    expect(ACTIVE_INVENTORY_CACHE_KEY).toEqual(["marketing-active-inventory-v2"]);
-    expect(ACTIVE_INVENTORY_CDN_STALE_SECONDS).toBeLessThan(300);
+    expect(ACTIVE_INVENTORY_CACHE_KEY).toEqual(["marketing-active-inventory-v3"]);
+    expect(ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL).not.toMatch(/s-maxage|max-age=[1-9]/);
+    expect(ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL).toContain("no-store");
   });
 
   it("does not import cron auth, so marketing clients can load the cache constants", () => {
@@ -62,6 +64,25 @@ describe("inventory invalidation predicates", () => {
     expect(shouldRevalidateInventoryAfterRetire(false, 10)).toBe(false);
     expect(shouldRevalidateInventoryAfterRetire(true, 0)).toBe(false);
     expect(shouldRevalidateInventoryAfterRetire(true, 1)).toBe(true);
+  });
+});
+
+describe("describeInventoryRevalidateResult", () => {
+  it("treats a missed cron purge as optional because the next read uses the stamp", () => {
+    expect(
+      describeInventoryRevalidateResult({
+        ok: false,
+        url: "https://www.anyexameasy.com/api/cron/revalidate-inventory",
+        error: "CRON_SECRET is not set, so the public inventory cache was not cleared.",
+      })
+    ).toMatch(/next request/);
+    expect(
+      describeInventoryRevalidateResult({
+        ok: true,
+        url: "https://www.anyexameasy.com/api/cron/revalidate-inventory",
+        status: 200,
+      })
+    ).toMatch(/revalidated/);
   });
 });
 

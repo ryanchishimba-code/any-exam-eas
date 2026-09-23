@@ -1,8 +1,10 @@
 import { revalidatePath, revalidateTag } from "next/cache";
+import { cacheDelete, cacheKey } from "@/lib/cache";
 import {
   ACTIVE_INVENTORY_CACHE_TAG,
   ACTIVE_INVENTORY_PATHS,
 } from "@/lib/inventory/active-inventory-cache";
+import { INVENTORY_FIELD_IDS } from "@/lib/inventory/active-questions";
 
 export type ActiveInventoryRevalidateResult =
   | { ok: true }
@@ -13,7 +15,15 @@ export type ActiveInventoryRevalidateResult =
  * Safe to call from a route handler. Outside a Next request this returns
  * `{ ok: false }` instead of throwing.
  */
+/** Redis/L1 fallback used when the active-inventory snapshot is degraded. */
+export function dropSubjectServedCountCaches(): void {
+  for (const fieldId of INVENTORY_FIELD_IDS) {
+    cacheDelete(cacheKey(["subject-served-counts", fieldId]));
+  }
+}
+
 export function revalidateActiveQuestionInventory(): ActiveInventoryRevalidateResult {
+  dropSubjectServedCountCaches();
   try {
     revalidateTag(ACTIVE_INVENTORY_CACHE_TAG);
     for (const path of ACTIVE_INVENTORY_PATHS) {

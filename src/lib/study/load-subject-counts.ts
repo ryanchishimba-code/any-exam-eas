@@ -1,4 +1,5 @@
-import { cacheGetOrSet, cacheKey, CACHE_TTL, CACHE_STALE } from "@/lib/cache";
+import { CACHE_TTL, CACHE_STALE } from "@/lib/cache";
+import { cacheAsidePublishedStamp } from "@/lib/inventory/active-inventory-stamp";
 import { withDbRetry } from "@/lib/db";
 import { enforceQuestionBankFieldAccess, resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import {
@@ -51,8 +52,8 @@ export async function loadSubjectCountsForUser(
   }
 
   // Errors propagate after Neon HTTP retries so the question-bank error UI can show.
-  const counts = await cacheGetOrSet(
-    cacheKey(["subject-served-counts", fieldId]),
+  const counts = await cacheAsidePublishedStamp(
+    ["subject-served-counts", fieldId],
     CACHE_TTL.subjectCatalog,
     () => getSubjectServedCountsWithRetry(fieldId),
     { staleTtlMs: CACHE_STALE.subjectCatalog }

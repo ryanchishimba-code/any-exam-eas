@@ -2,10 +2,15 @@
  * Shared cache identity for the active-question inventory.
  *
  * Marketing hubs (`/nclex` and the other board pages) and the question bank
- * both read `getCachedBankStatsBundle()`. That helper is one `unstable_cache`
- * entry. Deactivating a question does not expire it, so the UI can keep a
- * retired total until the TTL elapses. Callers that change `active` or
- * `qaPassed` must revalidate the tag and the paths below.
+ * both read `getCachedBankStatsBundle()`. The heavy snapshot is one
+ * `unstable_cache` entry, keyed by a live published stamp from the database.
+ * A retire or publish changes that stamp, so the next request rebuilds even
+ * when nobody called `POST /api/cron/revalidate-inventory`.
+ *
+ * Writers that run inside a Next request still revalidate the tag and the
+ * paths below. That drops Full Route Cache and Redis fallbacks immediately.
+ * The cron purge is optional. A missing `CRON_SECRET` must not leave the UI
+ * on the previous total.
  *
  * This module stays free of `next/cache`, the app route map, and Node built-ins
  * so the retire script and marketing client components can import it. Cron
@@ -16,24 +21,23 @@
 export const ACTIVE_INVENTORY_CACHE_TAG = "question-bank-counts";
 
 /**
- * Fallback when a writer does not revalidate. A hard refresh does not skip
- * this. On-demand revalidation is what makes the hub and the Qbank match the
- * database immediately.
+ * How long an unchanged stamp may reuse the heavy group-by. The stamp itself
+ * is read on every request, so this TTL does not keep a retired total on screen.
  */
 export const ACTIVE_INVENTORY_CACHE_TTL_SECONDS = 60 * 60;
 
 /**
- * v2 abandons the v1 entry that stayed warm after rows were retired without
- * a tag purge. The inventory query itself is unchanged.
+ * v3 is keyed with the published stamp (`published:touchedAt`). v2 stayed warm
+ * for an hour when a retire skipped the cron purge.
  */
-export const ACTIVE_INVENTORY_CACHE_KEY = ["marketing-active-inventory-v2"] as const;
+export const ACTIVE_INVENTORY_CACHE_KEY = ["marketing-active-inventory-v3"] as const;
 
 /**
- * How long the public counts API may keep serving the previous payload after
- * `s-maxage` expires. Short on purpose: a day-long stale-while-revalidate
- * kept the old total on hard refresh after the data cache had expired.
+ * Public count responses must not sit in a browser or CDN cache.
+ * A hard refresh has to reach the stamp check.
  */
-export const ACTIVE_INVENTORY_CDN_STALE_SECONDS = 60;
+export const ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL =
+  "private, no-cache, no-store, max-age=0, must-revalidate";
 
 export const ACTIVE_INVENTORY_REVALIDATE_PATH = "/api/cron/revalidate-inventory";
 
@@ -114,6 +118,18 @@ export type InventoryRevalidateRequestResult = {
   status?: number;
   error?: string;
 };
+
+/**
+ * CLI copy for an optional cron purge.
+ * A failed purge does not leave `/nclex` or the Qbank on the old total: the
+ * next request compares the published stamp and rebuilds.
+ */
+export function describeInventoryRevalidateResult(
+  result: InventoryRevalidateRequestResult
+): string {
+  if (result.ok) return `Inventory cache revalidated: ${result.url}`;
+  return `Public inventory refreshes from the database on the next request. Optional purge was not completed (${result.url}): ${result.error ?? "unknown error"}`;
+}
 
 /** Ask the deployed app to drop the inventory cache. Used by CLI scripts. */
 export async function requestActiveInventoryRevalidation(

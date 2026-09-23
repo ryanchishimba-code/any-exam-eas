@@ -16,6 +16,10 @@
  * --retire sets active=false on rows classified retire (empty stem, or choices
  * that are only letters / single characters). --clear-resolved drops the text
  * flag when the current lint says the student-facing text is fine.
+ *
+ * A retire also asks the site to purge the inventory cache. That purge is
+ * optional. The next /nclex or Qbank request rebuilds from the published stamp
+ * when CRON_SECRET is unset.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -36,6 +40,7 @@ import {
   type TextFlagRemediationPlan,
 } from "../src/lib/exam-prep/item-qa";
 import {
+  describeInventoryRevalidateResult,
   requestActiveInventoryRevalidation,
   shouldRevalidateInventoryAfterRetire,
 } from "../src/lib/inventory/active-inventory-cache";
@@ -500,8 +505,9 @@ async function main() {
         cacheRevalidateUrl: result.url,
         cacheRevalidateError: result.error ?? null,
       });
-      if (result.ok) console.log(`Inventory cache revalidated: ${result.url}`);
-      else console.error(`Inventory cache was not revalidated (${result.url}): ${result.error}`);
+      const detail = describeInventoryRevalidateResult(result);
+      if (result.ok) console.log(detail);
+      else console.warn(detail);
     }
   }
 
@@ -527,12 +533,6 @@ async function main() {
     })
   );
   console.log(`Report: ${mdPath}`);
-
-  if (cache && !cache.revalidated) {
-    throw new Error(
-      `Rows were updated, but the public inventory cache was not cleared. ${cache.error ?? ""}`.trim()
-    );
-  }
 }
 
 main()

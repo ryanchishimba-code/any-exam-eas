@@ -75,7 +75,7 @@ export function UsmleStepSelector() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetch("/api/exams/usmle")
+    fetch("/api/exams/usmle", { cache: "no-store" })
       .then((r) => r.json())
       .then((data: ApiResponse) => {
         const map: Record<string, number> = {};
