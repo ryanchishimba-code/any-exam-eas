@@ -6,6 +6,11 @@
  * The higher flagged id is retired. The lower kept twin is not updated.
  * qaPassed is never changed, and rows are never deleted.
  *
+ * Partner chains have no hop cap. A row is eligible only when each hop goes to
+ * a strictly lower id and the walk ends at an active keeper in this field.
+ * A decreasing id sequence cannot cycle. A repeated id is skipped as `cycle`
+ * and is not retired. The old cap of 12 (`chain_too_long`) is gone.
+ *
  *   npm run db:retire-near-duplicates -- --field nursing
  *   npm run db:retire-near-duplicates -- --field nursing --apply
  *
@@ -180,6 +185,8 @@ function renderMarkdown(input: {
     "Public inventory is active and qaPassed. This tool sets active=false on the eligible rows only.",
     "qaPassed is not changed, so the published count drops by the eligible rows that are already qaPassed.",
     "That drop is roughly the retired count when most queued near-duplicates are published.",
+    "",
+    "Partner chains are walked to the active lower keeper. Each hop must be a strictly lower id, so a long chain cannot cycle. There is no hop cap.",
     "",
     `- Active before: ${input.inventory.active}`,
     `- Published (active + qaPassed) before: ${input.inventory.published}`,

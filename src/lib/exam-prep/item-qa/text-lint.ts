@@ -11,6 +11,7 @@ export type TextLintIssue = {
     | "empty_explanation"
     | "broken_markdown"
     | "truncated_option"
+    | "letter_only_option"
     | "encoding_glitch";
   severity: "error" | "warn";
   message: string;
@@ -58,9 +59,23 @@ function lintMarkdown(text: string, where: string): TextLintIssue | null {
   return null;
 }
 
+/**
+ * Choice text that is only the letter A–D (optionally "A.", "(B)", "C)").
+ * Distinct from a cut-off sentence so letter placeholders can be cleaned up
+ * without mixing them into truncated_option.
+ */
+function letterOnlyChoice(option: string): boolean {
+  const trimmed = option.trim();
+  return (
+    /^[A-D]$/i.test(trimmed) ||
+    /^[A-D]\s*[.):]$/i.test(trimmed) ||
+    /^[([]\s*[A-D]\s*[)\]]$/i.test(trimmed)
+  );
+}
+
 function optionLooksTruncated(option: string): boolean {
   const trimmed = option.trim();
-  if (!trimmed) return false;
+  if (!trimmed || letterOnlyChoice(trimmed)) return false;
   if (trimmed.length <= 1 && !/^\d$/.test(trimmed)) return true;
   return TRUNCATION_TAIL.test(trimmed);
 }
@@ -100,7 +115,15 @@ export function lintItemText(input: {
       });
       return;
     }
-    if (optionLooksTruncated(option)) {
+    if (letterOnlyChoice(option)) {
+      push(issues, {
+        area: "text",
+        code: "letter_only_option",
+        severity: "error",
+        message: `${label} is only the choice letter "${option.trim()}" with no answer text.`,
+        option,
+      });
+    } else if (optionLooksTruncated(option)) {
       push(issues, {
         area: "text",
         code: "truncated_option",

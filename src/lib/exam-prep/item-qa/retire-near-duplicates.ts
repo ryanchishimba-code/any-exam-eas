@@ -1,10 +1,28 @@
 /**
  * Decide which Item QA near-duplicates may be retired.
  *
- * The audit queues the higher id and keeps the lower id. This planner only
- * selects queued higher ids whose kept twin is still an active row in the
- * same field. It never selects the keeper, and the write helper only sets
+ * The audit queues the higher id and keeps the lower id. This planner walks
+ * each queued higher id along partner links and retires every queued id on
+ * that walk. It never selects the keeper. The write helper only sets
  * active=false plus the QA flag update.
+ *
+ * Partner-chain algorithm
+ * -----------------------
+ * Each queued near-duplicate stores one partner id. A row is a candidate only
+ * when that partner id is strictly lower than its own id. Following those
+ * edges is a strictly decreasing sequence. A decreasing sequence cannot repeat
+ * an id, so a long chain is not a cycle and does not need a hop cap.
+ *
+ * An earlier cap of 12 skipped the tail of real clusters as `chain_too_long`
+ * (the nursing rows still queued after the first apply). Those higher ids are
+ * eligible now. The walk still records seen ids and returns `cycle` if an id
+ * repeats, so a corrupt partner map cannot loop or retire around a cycle.
+ *
+ * The walk stops at the first id that is not itself a queued near-duplicate.
+ * That id must be an active keeper in the same field and lower than the start
+ * id. Resolved ends are memoized, so a chain of length n is linear. After the
+ * plan is built, a retire id that is also someone's keeper is dropped
+ * (`keeper_in_retire_set`).
  */
 import {
   ITEM_QA_PIPELINE,
@@ -13,9 +31,6 @@ import {
   withItemQaRecord,
   type ItemQaRecord,
 } from "./flag";
-
-/** Long chains are refused rather than retired on a bad partner link. */
-export const MAX_NEAR_DUPLICATE_CHAIN = 12;
 
 export type NearDuplicateBankRow = {
   id: string;
@@ -44,7 +59,6 @@ export type NearDuplicateSkipReason =
   | "keeper_other_field"
   | "keeper_not_lower_id"
   | "cycle"
-  | "chain_too_long"
   | "keeper_in_retire_set";
 
 export type NearDuplicateRetireItem = {
@@ -79,6 +93,15 @@ type Candidate = {
   partnerId: string;
   remainingCodes: string[];
 };
+
+type ChainEnd = { rootKeepId: string } | { reason: NearDuplicateSkipReason };
+
+/** Keeper-lower-than-start is per row. Shared chain failures are not. */
+function forStart(startId: string, resolved: ChainEnd): ChainEnd {
+  if ("reason" in resolved) return resolved;
+  if (!(resolved.rootKeepId < startId)) return { reason: "keeper_not_lower_id" };
+  return resolved;
+}
 
 function partnerIdOf(record: ItemQaRecord): string | null {
   const partnerId = record.partnerId?.trim();
@@ -162,27 +185,45 @@ export function planNearDuplicateRetirements(input: {
   }
 
   const retire: NearDuplicateRetireItem[] = [];
+  const memo = new Map<string, ChainEnd>();
 
-  const resolveRoot = (
-    startId: string
-  ): { rootKeepId: string } | { reason: NearDuplicateSkipReason } => {
+  const resolveRoot = (startId: string): ChainEnd => {
     const seen = new Set<string>();
+    const trail: string[] = [];
     let current = startId;
+
     while (candidates.has(current)) {
-      if (seen.has(current)) return { reason: "cycle" };
+      const cached = memo.get(current);
+      if (cached) {
+        for (const id of trail) memo.set(id, cached);
+        return forStart(startId, cached);
+      }
+      if (seen.has(current)) {
+        const failure: ChainEnd = { reason: "cycle" };
+        for (const id of trail) memo.set(id, failure);
+        return failure;
+      }
       seen.add(current);
-      if (seen.size > MAX_NEAR_DUPLICATE_CHAIN) return { reason: "chain_too_long" };
+      trail.push(current);
       const partnerId = candidates.get(current)!.partnerId;
-      if (!(partnerId < current)) return { reason: "partner_not_lower_id" };
+      if (!(partnerId < current)) {
+        const failure: ChainEnd = { reason: "partner_not_lower_id" };
+        for (const id of trail) memo.set(id, failure);
+        return failure;
+      }
       current = partnerId;
     }
 
     const keeper = input.keepers.get(current);
-    if (!keeper) return { reason: "keeper_missing" };
-    if (keeper.fieldId !== input.fieldId) return { reason: "keeper_other_field" };
-    if (!keeper.active) return { reason: "keeper_inactive" };
-    if (!(keeper.id < startId)) return { reason: "keeper_not_lower_id" };
-    return { rootKeepId: keeper.id };
+    const resolved: ChainEnd = !keeper
+      ? { reason: "keeper_missing" }
+      : keeper.fieldId !== input.fieldId
+        ? { reason: "keeper_other_field" }
+        : !keeper.active
+          ? { reason: "keeper_inactive" }
+          : { rootKeepId: keeper.id };
+    for (const id of trail) memo.set(id, resolved);
+    return forStart(startId, resolved);
   };
 
   for (const candidate of candidates.values()) {
