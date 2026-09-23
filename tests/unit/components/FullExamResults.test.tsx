@@ -109,4 +109,82 @@ describe("FullExamResults early-end heading", () => {
     ).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Exam complete" })).toBeNull();
   });
+
+  it("does not say Exam complete for a 50-question sprint ended with no answers", () => {
+    const sprintQuestions: FullExamQuestion[] = Array.from({ length: 50 }, (_, index) => ({
+      id: `q${index}`,
+      question: `Stem ${index + 1}`,
+      options: ["A", "B"],
+      correctAnswer: "A",
+      explanation: "Because A.",
+    }));
+    render(
+      <FullExamResults
+        examSlug="nclex"
+        sessionId="session-sprint-50"
+        score={0}
+        analysis={{
+          sessionConfig: {
+            lengthPreset: "50",
+            questionCount: 50,
+            timed: true,
+            timeLimitSec: 3600,
+            adaptive: false,
+          },
+          timeUsedSec: 12,
+          topicBreakdown: [],
+          questionIds: sprintQuestions.map((question) => question.id),
+          questionSnapshots: [],
+          summary: "Session ended early. Your saved answers were scored.",
+          answeredCount: 0,
+        }}
+        answers={[]}
+        questions={sprintQuestions}
+        missCount={0}
+        passPathPersisted
+        reviewIncorrectHref={null}
+        proofHref="/dashboard"
+        endedEarly={false}
+      />
+    );
+
+    expect(
+      screen.getByRole("heading", { level: 1, name: "You ended the exam early" })
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Exam complete" })).toBeNull();
+    expect(screen.getByText("0 / 50 correct")).toBeInTheDocument();
+    expect(screen.getByText(FULL_EXAM_PRACTICE_DISCLAIMER)).toBeInTheDocument();
+  });
+
+  it("does not say Exam complete for an early-end receipt when status stayed completed", () => {
+    render(
+      <FullExamResults
+        examSlug="nclex"
+        sessionId="session-sprint"
+        score={0}
+        analysis={{
+          ...analysis,
+          summary: "Session ended early. Your saved answers were scored.",
+          sessionConfig: { ...analysis.sessionConfig, questionCount: 50, lengthPreset: "50" },
+          answeredCount: 0,
+          questionSnapshots: [],
+        }}
+        answers={[answer(0, "Wrong", false), answer(1, "Wrong", false)]}
+        questions={questions}
+        missCount={0}
+        passPathPersisted
+        reviewIncorrectHref={null}
+        proofHref="/dashboard"
+        endedEarly={false}
+      />
+    );
+
+    expect(
+      screen.getByRole("heading", { level: 1, name: "You ended the exam early" })
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Exam complete" })).toBeNull();
+    expect(screen.getByText("Session ended early. Your saved answers were scored.")).toBeInTheDocument();
+    expect(screen.getByText("0 / 2 correct")).toBeInTheDocument();
+    expect(screen.getByText(FULL_EXAM_PRACTICE_DISCLAIMER)).toBeInTheDocument();
+  });
 });

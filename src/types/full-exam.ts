@@ -64,6 +64,10 @@ export type FullExamResultsAnalysis = {
   questionIds: string[];
   questionSnapshots: FullExamQuestionSnapshot[];
   summary: string;
+  /** Set when the student or the timer stopped the simulation before submit. */
+  endedEarly?: boolean;
+  /** Scored selections written at completion. Blanks are not included. */
+  answeredCount?: number;
   /** Present when the session ran live NCLEX practice CAT stop rules. */
   catOutcome?: FullExamCatOutcome;
 };

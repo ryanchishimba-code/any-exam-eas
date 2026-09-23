@@ -660,6 +660,7 @@ export function FullExamSimulator({
                 explanation: q.explanation,
                 topicCategory: q.subjectId,
               })),
+              endedEarly,
               summary: endedEarly
                 ? "Session ended early. Your saved answers were scored."
                 : isCatMode

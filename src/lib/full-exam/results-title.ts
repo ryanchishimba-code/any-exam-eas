@@ -34,11 +34,24 @@ export function countUnansweredExamItems(
   return total - answered.size;
 }
 
+/** True when the saved receipt already says the student stopped before submit. */
+export function summarySaysEndedEarly(summary: string | null | undefined): boolean {
+  return typeof summary === "string" && /session ended early/i.test(summary);
+}
+
+/**
+ * Early end is not only the status column. The results summary is written in the
+ * same submit as that flag, and a focused-sprint row can show the early summary
+ * while status stays "completed" and every saved row looks selected.
+ */
 export function fullExamResultsTitle(input: {
   endedEarly: boolean;
   unanswered: number;
+  summary?: string | null;
 }): string {
-  if (input.endedEarly) return FULL_EXAM_RESULTS_ENDED_EARLY_TITLE;
+  if (input.endedEarly || summarySaysEndedEarly(input.summary)) {
+    return FULL_EXAM_RESULTS_ENDED_EARLY_TITLE;
+  }
   if (input.unanswered > 0) return FULL_EXAM_RESULTS_INCOMPLETE_TITLE;
   return FULL_EXAM_RESULTS_COMPLETE_TITLE;
 }
