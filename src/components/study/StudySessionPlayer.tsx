@@ -379,7 +379,13 @@ export function StudySessionPlayer({
       // Persist even when the student skips the optional confidence rating.
       void submitAttempt(current, correct, choices, durationMs);
 
-      if (sessionState.mode === "practice" || sessionState.mode === "adaptive" || sessionState.mode === "weak_area" || sessionState.mode === "tutor") {
+      if (
+        sessionState.mode === "practice" ||
+        sessionState.mode === "adaptive" ||
+        sessionState.mode === "weak_area" ||
+        sessionState.mode === "review_incorrect" ||
+        sessionState.mode === "tutor"
+      ) {
         setShowConfidence(true);
         return;
       }
@@ -731,6 +737,7 @@ export function StudySessionPlayer({
       >
           {(sessionState.mode === "adaptive" ||
             sessionState.mode === "weak_area" ||
+            sessionState.mode === "review_incorrect" ||
             sessionState.adaptiveMeta) &&
             selectionReasoning && (
               <AdaptiveReasoningChip

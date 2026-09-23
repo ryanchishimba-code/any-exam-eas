@@ -68,7 +68,7 @@ import {
   type MpjeVariant,
 } from "@/lib/mpje/config";
 import { parseOptionalMpjeStateParam } from "@/lib/mpje/validators";
-import type { AdaptiveSessionMeta, RawQuestionInput, StudyMode } from "@/lib/questions/types";
+import type { AdaptiveSessionMeta, RawQuestionInput } from "@/lib/questions/types";
 import type { ExamQuestion } from "@/lib/ai";
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
@@ -88,6 +88,7 @@ import {
   resolveQuestionBankSessionCount,
   resolveQuestionBankStyleAndFormat,
   resolveWheelCountValue,
+  studyModeForQuestionBankLaunch,
   stylePreservedForPracticeUrl,
   validateQuestionBankSession,
   writePersistedQuestionBankSetup,
@@ -498,15 +499,11 @@ export function StudyBankPractice({
         : undefined,
     [isTimedExam, timedFieldKey, timedCount, isNclex, nclexLength]
   );
-  const sessionStudyMode: StudyMode = isTimedExam
-    ? "timed"
-    : effectiveBankStyle === "weak_areas"
-      ? "weak_area"
-      : effectiveBankStyle === "adaptive" || effectiveBankStyle === "review_incorrect"
-        ? "adaptive"
-        : bankPace === "timed"
-          ? "timed"
-          : "practice";
+  const sessionStudyMode = studyModeForQuestionBankLaunch({
+    isTimedExam,
+    bankStyle: effectiveBankStyle,
+    pace: bankPace,
+  });
 
   useEffect(() => {
     if (questions) {
