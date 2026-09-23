@@ -25,6 +25,7 @@ import {
 } from "./aanp-fnp-serve-gate";
 import { bankItemToAanpFnpRaw } from "./aanp-fnp-bank-bridge";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
+import { resolveItemProvenance } from "./item-qa/provenance";
 
 const CLINICAL_FIELD_IDS = new Set(["pance", "aanp-fnp", "npte-pt"]);
 
@@ -121,18 +122,19 @@ export function bankItemToSessionRaw(
   index: number
 ): ExamQuestion {
   const enriched = applyAnatomyStudyMetaToBankItem(item);
+  const provenance = resolveItemProvenance(enriched);
 
+  let raw: ExamQuestion;
   if (fieldId === "nursing") {
-    return bankItemToRawQuestion(enriched, index, { field, subjectId });
+    raw = bankItemToRawQuestion(enriched, index, { field, subjectId });
+  } else if (fieldId === "pharmacy") {
+    raw = bankItemToNaplexRaw(enriched, index, { field, subjectId });
+  } else if (fieldId === "aanp-fnp") {
+    raw = bankItemToAanpFnpRaw(enriched, index, { field: fieldId, subjectId });
+  } else if (isClinicalVignetteField(fieldId) || isUsmleField(fieldId)) {
+    raw = bankItemToUsmleRaw(enriched, index, { field: fieldId, subjectId });
+  } else {
+    raw = bankItemToRawQuestion(enriched, index, { field, subjectId });
   }
-  if (fieldId === "pharmacy") {
-    return bankItemToNaplexRaw(enriched, index, { field, subjectId });
-  }
-  if (fieldId === "aanp-fnp") {
-    return bankItemToAanpFnpRaw(enriched, index, { field: fieldId, subjectId });
-  }
-  if (isClinicalVignetteField(fieldId) || isUsmleField(fieldId)) {
-    return bankItemToUsmleRaw(enriched, index, { field: fieldId, subjectId });
-  }
-  return bankItemToRawQuestion(enriched, index, { field, subjectId });
+  return { ...raw, ...provenance };
 }

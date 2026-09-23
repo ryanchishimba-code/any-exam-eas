@@ -38,6 +38,7 @@ import {
 import { NclexExhibitBlock } from "./NclexFormats";
 import { AanpFnpExhibitBlock } from "./AanpFnpFormats";
 import { QuestionRelatedLinks } from "./QuestionRelatedLinks";
+import { ItemProvenanceNote } from "./ItemProvenanceNote";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { analytics } from "@/lib/analytics";
@@ -151,6 +152,11 @@ export const QuestionRenderer = memo(function QuestionRenderer({
       <NgnTypeInstructions question={question} />
 
       <p className="text-lg font-medium leading-snug sm:text-xl">{question.stem}</p>
+      <ItemProvenanceNote
+        sourceLabel={question.sourceLabel}
+        sourceUrl={question.sourceUrl}
+        reviewedAt={question.reviewedAt}
+      />
 
       {question.type === "bow_tie" && (
         <BowTieQuestion

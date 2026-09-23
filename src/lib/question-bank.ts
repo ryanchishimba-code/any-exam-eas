@@ -64,6 +64,8 @@ export type BankItem = {
   blueprintTopic?: string;
   generationVersion?: string;
   reviewStatus?: "pending" | "approved" | "flagged" | "rejected";
+  /** Editorial review timestamp when the bank recorded one. */
+  lastReviewedAt?: string | Date | null;
   generationMeta?: Record<string, unknown>;
   expertRationale?: ExpertStructuredRationale;
   clinicalReasoning?: string;

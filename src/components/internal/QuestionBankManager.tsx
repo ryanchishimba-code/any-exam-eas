@@ -33,6 +33,7 @@ const initialFilters = {
   qaPassed: "",
   active: "",
   reportedOnly: false,
+  qaFlagged: false,
   sort: "updatedAt" as "updatedAt" | "createdAt" | "difficulty",
   order: "desc" as "asc" | "desc",
 };
@@ -71,6 +72,7 @@ export function QuestionBankManager() {
     if (filters.qaPassed) p.set("qaPassed", filters.qaPassed);
     if (filters.active) p.set("active", filters.active);
     if (filters.reportedOnly) p.set("reportedOnly", "true");
+    if (filters.qaFlagged) p.set("qaFlagged", "true");
     p.set("sort", filters.sort);
     p.set("order", filters.order);
     return p.toString();
@@ -144,7 +146,12 @@ export function QuestionBankManager() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`);
-      setBulkMsg(`Updated ${data.updated} question(s).`);
+      const blocked = Array.isArray(data.blocked) ? data.blocked.length : 0;
+      setBulkMsg(
+        blocked
+          ? `Updated ${data.updated}. ${blocked} blocked by the item QA schema.`
+          : `Updated ${data.updated} question(s).`
+      );
       setSelected(new Set());
       void load();
     } catch (e) {
@@ -209,11 +216,18 @@ export function QuestionBankManager() {
       ) : (
         <>
           {facets ? (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
               <StatCard label="Total" value={facets.totals.all} />
               <StatCard label="QA passed" value={facets.totals.qaPassed} accent="green" />
               <StatCard label="Pending" value={facets.totals.pending} accent="amber" />
               <StatCard label="Flagged" value={facets.totals.flagged} accent="orange" />
+              <button
+                type="button"
+                onClick={() => setFilters((f) => ({ ...f, qaFlagged: !f.qaFlagged }))}
+                className="text-left"
+              >
+                <StatCard label="Item QA" value={facets.totals.qaFlagged} accent="orange" />
+              </button>
               <StatCard label="Archived" value={facets.totals.drafts} />
             </div>
           ) : null}
@@ -301,6 +315,15 @@ export function QuestionBankManager() {
                   className="h-4 w-4"
                 />
                 <AlertTriangle size={14} className="text-orange-600" /> Reported
+              </label>
+              <label className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.1] px-3 py-2 text-sm">
+                <input
+                  type="checkbox"
+                  checked={filters.qaFlagged}
+                  onChange={(e) => setFilters((f) => ({ ...f, qaFlagged: e.target.checked }))}
+                  className="h-4 w-4"
+                />
+                Item QA flags
               </label>
               <button
                 type="button"
@@ -420,6 +443,11 @@ export function QuestionBankManager() {
                           {item.subjectId}
                           {item.blueprintDomain ? ` · ${item.blueprintDomain}` : ""}
                         </p>
+                        {item.qaCodes.length ? (
+                          <p className="mt-1 text-[11px] font-medium text-orange-800">
+                            {item.qaCodes.join(" · ")}
+                          </p>
+                        ) : null}
                       </td>
                       <td className="px-3 py-2.5 text-xs">{item.examName}</td>
                       <td className="px-3 py-2.5 tabular-nums">{item.difficulty ?? "—"}</td>

@@ -363,6 +363,15 @@ function diagramFromMeta(meta: Record<string, unknown> | null): string | null {
 function ReadView({ detail }: { detail: AdminQuestionDetail }) {
   return (
     <div className="space-y-4">
+      {detail.itemQa ? (
+        <div className="rounded-xl border border-orange-200 bg-orange-50 px-3 py-2 text-sm text-orange-950">
+          <p className="text-xs font-semibold uppercase tracking-wide">Item QA</p>
+          <p className="mt-1">{detail.itemQa.summary}</p>
+          {detail.itemQa.codes.length ? (
+            <p className="mt-1 text-xs">{detail.itemQa.codes.join(" · ")}</p>
+          ) : null}
+        </div>
+      ) : null}
       {detail.scenario ? (
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-black/45">Scenario</p>

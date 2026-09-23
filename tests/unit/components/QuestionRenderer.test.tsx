@@ -69,4 +69,25 @@ describe("QuestionRenderer", () => {
     await user.click(optionButtons[0]);
     expect(onToggle).not.toHaveBeenCalled();
   });
+
+  it("shows a source and review date when the bank item has them", () => {
+    render(
+      <QuestionRenderer
+        question={{
+          ...sampleNclexQuestion,
+          sourceLabel: "Surviving Sepsis Campaign · 2021 update",
+          reviewedAt: "2026-06-01T00:00:00.000Z",
+        }}
+        selected={[]}
+        revealed={false}
+        onToggle={vi.fn()}
+      />
+    );
+
+    expect(screen.getByText("Surviving Sepsis Campaign · 2021 update")).toBeInTheDocument();
+    expect(screen.getByText("Reviewed Jun 2026")).toBeInTheDocument();
+    const note = screen.getByTestId("item-provenance");
+    expect(note.className).toContain("--study-accent");
+    expect(note.innerHTML).not.toMatch(/indigo|violet|purple/);
+  });
 });

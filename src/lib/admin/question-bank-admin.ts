@@ -4,6 +4,17 @@ import { parseBankOptions } from "@/lib/mpje/parse-bank-options";
 import { bankItemContentHash } from "@/lib/sync-question-bank";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { examSlugFromFieldId, EXAM_CATALOG } from "@/lib/edtech/exams";
+import { readItemQaRecord, type ItemQaRecord } from "@/lib/exam-prep/item-qa/flag";
+import {
+  contentFromStoredItem,
+  type ItemQaContent,
+} from "@/lib/exam-prep/item-qa/rationale-schema";
+import {
+  evaluateItemPublishGate,
+  formatPublishGateError,
+  itemRequiresPublishSchema,
+  ITEM_QA_SCHEMA_VERSION,
+} from "@/lib/exam-prep/item-qa/publish-gate";
 
 /** Review states an item can be in (mirrors BankItem.reviewStatus + draft). */
 export const REVIEW_STATUSES = ["pending", "approved", "flagged", "rejected"] as const;
@@ -20,6 +31,8 @@ export type AdminQuestionFilters = {
   source?: string;
   blueprint?: string;
   reportedOnly?: boolean;
+  /** Items the item-QA job marked with reviewFlag. */
+  qaFlagged?: boolean;
   dateField?: "createdAt" | "updatedAt";
   dateFrom?: Date;
   dateTo?: Date;
@@ -44,6 +57,8 @@ export type AdminQuestionListItem = {
   blueprintDomain: string | null;
   blueprintTopic: string | null;
   openReports: number;
+  reviewFlag: boolean;
+  qaCodes: string[];
   createdAt: string;
   updatedAt: string;
 };
@@ -76,6 +91,7 @@ export type AdminQuestionDetail = {
   generationMeta: Record<string, unknown> | null;
   qualityScore: number | null;
   lastReviewedAt: string | null;
+  itemQa: ItemQaRecord | null;
   createdAt: string;
   updatedAt: string;
   reports: {
@@ -107,6 +123,7 @@ export type AdminQuestionFacets = {
     flagged: number;
     drafts: number;
     qaPassed: number;
+    qaFlagged: number;
   };
 };
 
@@ -192,6 +209,8 @@ function buildWhere(
     where.id = { in: reportedIds && reportedIds.length ? reportedIds : ["__none__"] };
   }
 
+  if (filters.qaFlagged) where.reviewFlag = true;
+
   if (and.length) where.AND = and;
   return where;
 }
@@ -231,6 +250,8 @@ export async function listAdminQuestions(filters: AdminQuestionFilters): Promise
         qaPassed: true,
         active: true,
         source: true,
+        reviewFlag: true,
+        curationMeta: true,
         blueprintDomain: true,
         blueprintTopic: true,
         createdAt: true,
@@ -269,6 +290,8 @@ export async function listAdminQuestions(filters: AdminQuestionFilters): Promise
       blueprintDomain: r.blueprintDomain,
       blueprintTopic: r.blueprintTopic,
       openReports: reportCounts.get(r.id) ?? 0,
+      reviewFlag: r.reviewFlag === true,
+      qaCodes: readItemQaRecord(r.curationMeta)?.codes ?? [],
       createdAt: r.createdAt.toISOString(),
       updatedAt: r.updatedAt.toISOString(),
     })),
@@ -337,6 +360,7 @@ export async function getAdminQuestion(id: string): Promise<AdminQuestionDetail 
         : null,
     qualityScore: readQualityScore(row.generationMeta),
     lastReviewedAt: row.lastReviewedAt?.toISOString() ?? null,
+    itemQa: readItemQaRecord(row.curationMeta),
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
     reports: reports.map((r) => ({
@@ -440,7 +464,7 @@ const EDITABLE_SCALARS: (keyof AdminQuestionUpdate)[] = [
 
 export type UpdateResult =
   | { ok: true; changes: Record<string, { before: unknown; after: unknown }> }
-  | { ok: false; error: string };
+  | { ok: false; error: string; status?: 400 | 409 };
 
 export async function updateAdminQuestion(
   id: string,
@@ -502,8 +526,45 @@ export async function updateAdminQuestion(
     data.lastReviewedAt = new Date();
   }
 
+  const contentEdited =
+    patch.question != null ||
+    patch.options != null ||
+    patch.explanation != null ||
+    patch.correctAnswer != null;
+  const publishing =
+    patch.qaPassed === true ||
+    patch.reviewStatus === "approved" ||
+    (existing.qaPassed && contentEdited);
+  if (publishing && itemRequiresPublishSchema(existing.source, existing.generationMeta)) {
+    const gate = evaluateItemPublishGate(contentForPublishCheck(existing, patch));
+    if (!gate.ok) return { ok: false, error: formatPublishGateError(gate), status: 400 };
+  }
+
   await prisma.questionBankItem.update({ where: { id }, data });
   return { ok: true, changes };
+}
+
+function contentForPublishCheck(
+  existing: {
+    question: string;
+    options: string;
+    correctAnswer: string;
+    explanation: string;
+    itemType: string;
+    references: unknown;
+    generationMeta: unknown;
+  },
+  patch: AdminQuestionUpdate
+): ItemQaContent {
+  return contentFromStoredItem({
+    question: patch.question ?? existing.question,
+    options: patch.options ? rebuildOptionsColumn(existing.options, patch.options) : existing.options,
+    correctAnswer: patch.correctAnswer ?? existing.correctAnswer,
+    explanation: patch.explanation ?? existing.explanation,
+    itemType: patch.itemType ?? existing.itemType,
+    references: existing.references,
+    generationMeta: existing.generationMeta,
+  });
 }
 
 export type CreateQuestionInput = {
@@ -522,13 +583,16 @@ export type CreateQuestionInput = {
   taskCategory?: string;
   patientAgeGroup?: string;
   tags?: string[];
+  governingPrinciple?: string;
+  distractorReasons?: Record<string, string>;
+  citationLabel?: string;
   draft?: boolean;
   diagramUrl?: string;
 };
 
 export type CreateResult =
   | { ok: true; id: string }
-  | { ok: false; error: string };
+  | { ok: false; error: string; status?: 400 | 409 };
 
 export async function createAdminQuestion(input: CreateQuestionInput): Promise<CreateResult> {
   const fieldId = normalizeFieldId(input.fieldId);
@@ -542,7 +606,32 @@ export async function createAdminQuestion(input: CreateQuestionInput): Promise<C
     where: { contentHash },
     select: { id: true },
   });
-  if (clash) return { ok: false, error: "An identical question already exists." };
+  if (clash) return { ok: false, error: "An identical question already exists.", status: 409 };
+
+  const distractorRationale = input.distractorReasons;
+  const generationMeta: Record<string, unknown> = {
+    itemQaSchema: ITEM_QA_SCHEMA_VERSION,
+  };
+  if (input.diagramUrl) generationMeta.diagramUrl = input.diagramUrl;
+  if (input.governingPrinciple) generationMeta.governingPrinciple = input.governingPrinciple;
+  if (distractorRationale && Object.keys(distractorRationale).length) {
+    generationMeta.distractorRationale = distractorRationale;
+  }
+  if (input.citationLabel) generationMeta.citation = { label: input.citationLabel };
+
+  if (!input.draft) {
+    const gate = evaluateItemPublishGate({
+      question: input.question,
+      options: input.options,
+      correctAnswer: input.correctAnswer,
+      explanation: input.explanation,
+      itemType: input.itemType ?? "mcq",
+      distractorRationale,
+      governingPrinciple: input.governingPrinciple,
+      references: input.citationLabel ? [{ label: input.citationLabel }] : undefined,
+    });
+    if (!gate.ok) return { ok: false, error: formatPublishGateError(gate), status: 400 };
+  }
 
   const created = await prisma.questionBankItem.create({
     data: {
@@ -550,7 +639,11 @@ export async function createAdminQuestion(input: CreateQuestionInput): Promise<C
       subjectId,
       question: input.question,
       scenario: input.scenario ?? null,
-      options: JSON.stringify(input.options),
+      options: JSON.stringify(
+        distractorRationale && Object.keys(distractorRationale).length
+          ? { options: input.options, distractorRationale }
+          : input.options
+      ),
       correctAnswer: input.correctAnswer,
       explanation: input.explanation,
       difficulty: input.difficulty ?? null,
@@ -563,7 +656,8 @@ export async function createAdminQuestion(input: CreateQuestionInput): Promise<C
       tags: input.tags && input.tags.length ? JSON.stringify(input.tags) : null,
       source: "manual",
       generationVersion: "admin-manual-v1",
-      generationMeta: input.diagramUrl ? { diagramUrl: input.diagramUrl } : undefined,
+      references: input.citationLabel ? [{ label: input.citationLabel }] : undefined,
+      generationMeta: generationMeta as Prisma.InputJsonValue,
       contentHash,
       // Drafts are inactive + pending; published items still require QA gating before serving.
       active: !input.draft,
@@ -591,11 +685,42 @@ export async function bulkUpdateAdminQuestions(
   ids: string[],
   action: BulkAction,
   options?: { tags?: string[] }
-): Promise<{ updated: number }> {
-  if (!ids.length) return { updated: 0 };
+): Promise<{ updated: number; blocked: Array<{ id: string; error: string }> }> {
+  if (!ids.length) return { updated: 0, blocked: [] };
 
   const where: Prisma.QuestionBankItemWhereInput = { id: { in: ids } };
   let data: Prisma.QuestionBankItemUpdateManyMutationInput = {};
+  let allowedIds = ids;
+  const blocked: Array<{ id: string; error: string }> = [];
+
+  if (action === "approve" || action === "qa_pass") {
+    const rows = await prisma.questionBankItem.findMany({
+      where,
+      select: {
+        id: true,
+        source: true,
+        question: true,
+        options: true,
+        correctAnswer: true,
+        explanation: true,
+        itemType: true,
+        references: true,
+        generationMeta: true,
+      },
+    });
+    allowedIds = [];
+    for (const row of rows) {
+      if (itemRequiresPublishSchema(row.source, row.generationMeta)) {
+        const gate = evaluateItemPublishGate(contentFromStoredItem(row));
+        if (!gate.ok) {
+          blocked.push({ id: row.id, error: formatPublishGateError(gate) });
+          continue;
+        }
+      }
+      allowedIds.push(row.id);
+    }
+    if (!allowedIds.length) return { updated: 0, blocked };
+  }
 
   switch (action) {
     case "approve":
@@ -624,12 +749,15 @@ export async function bulkUpdateAdminQuestions(
       break;
   }
 
-  const res = await prisma.questionBankItem.updateMany({ where, data });
-  return { updated: res.count };
+  const res = await prisma.questionBankItem.updateMany({
+    where: { id: { in: allowedIds } },
+    data,
+  });
+  return { updated: res.count, blocked };
 }
 
 export async function getQuestionFacets(): Promise<AdminQuestionFacets> {
-  const [byField, itemTypes, sources, pending, flagged, drafts, qaPassed, all] =
+  const [byField, itemTypes, sources, pending, flagged, drafts, qaPassed, qaFlagged, all] =
     await Promise.all([
       prisma.questionBankItem.groupBy({ by: ["fieldId"], _count: { _all: true } }),
       prisma.questionBankItem.findMany({
@@ -644,6 +772,7 @@ export async function getQuestionFacets(): Promise<AdminQuestionFacets> {
       prisma.questionBankItem.count({ where: { reviewStatus: "flagged" } }),
       prisma.questionBankItem.count({ where: { active: false } }),
       prisma.questionBankItem.count({ where: { qaPassed: true } }),
+      prisma.questionBankItem.count({ where: { reviewFlag: true } }),
       prisma.questionBankItem.count(),
     ]);
 
@@ -657,6 +786,6 @@ export async function getQuestionFacets(): Promise<AdminQuestionFacets> {
       .sort((a, b) => b.count - a.count),
     itemTypes: itemTypes.map((i) => i.itemType).filter(Boolean).sort(),
     sources: sources.map((s) => s.source).filter(Boolean).sort(),
-    totals: { all, pending, flagged, drafts, qaPassed },
+    totals: { all, pending, flagged, drafts, qaPassed, qaFlagged },
   };
 }

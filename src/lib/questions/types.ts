@@ -60,6 +60,11 @@ export type StudyQuestion = {
   clinicalReasoning?: string;
   distractorRationale?: Record<string, string>;
   references?: string[];
+  /** Citation shown on the item when the bank has one. */
+  sourceLabel?: string;
+  sourceUrl?: string;
+  /** ISO timestamp of the last editorial review, when recorded. */
+  reviewedAt?: string;
   solutionSteps?: string[];
   markedForReview?: boolean;
   imageUrl?: string;
