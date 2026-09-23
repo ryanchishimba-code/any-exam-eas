@@ -34,6 +34,7 @@ import {
   curatedSampleTarget as nptePtCuratedSampleTarget,
 } from "@/lib/question-bank/npte-pt-curated";
 import { sampleQuestionBankRows } from "@/lib/question-bank/random-sample";
+import { formatBucketItemTypeWhere } from "@/lib/inventory/active-questions";
 /** Max rows read per sample query (keeps Neon queries bounded). */
 export const QUESTION_BANK_SAMPLE_MAX_PULL = 500;
 
@@ -834,6 +835,40 @@ export async function sampleQuestionBankItemsForField(params: {
   }
 
   const rows = await sampleQuestionBankRows({ where, pull: pullTarget, total });
+  return shuffleBankItems(dedupeSamplePool(rows.map(rowToBankItem))).slice(0, want);
+}
+
+/**
+ * Active published rows in one inventory format bucket.
+ * Field-wide when subjectId is omitted or mixed, so the pool matches the
+ * inventory NGN/case split rather than a curated subset.
+ */
+export async function sampleActiveItemsByFormat(params: {
+  fieldId: string;
+  subjectId?: string | null;
+  count: number;
+  formatBucket: "ngn" | "case";
+  taskCategory?: string | null;
+}): Promise<BankItem[]> {
+  const subjectId = params.subjectId?.trim();
+  const base =
+    subjectId && subjectId !== "__mixed__"
+      ? activeSubjectWhere(params.fieldId, subjectId, params.taskCategory)
+      : activeFieldWhere(params.fieldId, params.taskCategory);
+  const where = {
+    AND: [base, formatBucketItemTypeWhere(params.formatBucket)],
+  };
+  const want = Math.max(1, params.count);
+  const total = await prisma.questionBankItem.count({ where });
+  if (total === 0) return [];
+
+  if (total <= want) {
+    const rows = await prisma.questionBankItem.findMany({ where });
+    return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
+  }
+
+  const pull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(want * 4, want + 20));
+  const rows = await sampleQuestionBankRows({ where, pull, total });
   return shuffleBankItems(dedupeSamplePool(rows.map(rowToBankItem))).slice(0, want);
 }
 

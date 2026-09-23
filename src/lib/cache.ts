@@ -238,7 +238,8 @@ export async function invalidateExamPreferenceCacheAsync(userId: string): Promis
 
 /** Drop per-user dashboard / weak-topic caches when the selected exam changes. */
 export function invalidateLearningDashboardCache(userId: string): void {
-  // Keys use student-dashboard-v3 — keep both prefixes for older L1 entries.
+  // Keys use student-dashboard-v4 — keep older prefixes for this isolate's L1.
+  cacheDeleteMatching(`${cacheKey(["student-dashboard-v4", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["student-dashboard-v3", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["student-dashboard", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["weak-topics-v3", userId])}:`);

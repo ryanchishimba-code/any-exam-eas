@@ -4,6 +4,7 @@ import {
   type QuestionBankPace,
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
 import {
   MIXED_SUBJECT_ID,
   MIXED_SUBJECT_LABEL,
@@ -14,10 +15,17 @@ import {
   resolveWheelCountValue,
   validateQuestionBankSession,
 } from "@/lib/study/question-bank-setup";
+import {
+  practiceFormatCountOptions,
+  practiceFormatPoolCount,
+  validatePracticeFormatSession,
+  type PracticeFormatMode,
+} from "@/lib/study/practice-format";
 import { REMEDIATION_MASTERY_RULE } from "@/lib/learning/item-mastery";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import { cn } from "@/lib/utils";
 import { QuestionBankCountWheel } from "./question-bank/QuestionBankCountWheel";
+import { QuestionBankFormatMode } from "./question-bank/QuestionBankFormatMode";
 import { QuestionBankSection, QuestionBankSegment } from "./question-bank/QuestionBankSection";
 import { QuestionBankTopicPicker } from "./question-bank/QuestionBankTopicPicker";
 
@@ -40,6 +48,11 @@ type QuestionBankSetupProps = {
   weakSubjectIds?: string[];
   compact?: boolean;
   countsLoading?: boolean;
+  practiceFormat?: PracticeFormatMode;
+  onPracticeFormatChange?: (format: PracticeFormatMode) => void;
+  formats?: FormatCounts | null;
+  totalActive?: number | null;
+  ngnLabel?: string;
 };
 
 const STYLE_OPTIONS: { id: QuestionBankStyle; label: string; hint: string }[] = [
@@ -70,16 +83,40 @@ export function QuestionBankSetup({
   weakSubjectIds = [],
   compact = false,
   countsLoading = false,
+  practiceFormat = "all",
+  onPracticeFormatChange,
+  formats = null,
+  totalActive = null,
+  ngnLabel = "NGN",
 }: QuestionBankSetupProps) {
-  const maxAvailable = availableQuestionCount(subjectId, subjectCounts);
-  const countOptions = questionBankCountOptionsForAvailable(maxAvailable, fieldId);
-  const wheelValue = resolveWheelCountValue(questionCount, countOptions);
-  const validation = validateQuestionBankSession({
-    subjectId,
+  const formatMode = practiceFormat === "ngn" || practiceFormat === "case";
+  const formatPool = practiceFormatPoolCount(practiceFormat, formats);
+  const maxAvailable = formatMode
+    ? formatPool
+    : availableQuestionCount(subjectId, subjectCounts);
+  const countOptions = formatMode
+    ? practiceFormatCountOptions(formatPool)
+    : questionBankCountOptionsForAvailable(maxAvailable, fieldId);
+  const wheelValue = resolveWheelCountValue(
     questionCount,
-    subjectCounts,
-    bankStyle,
-  });
+    countOptions.length > 0 ? countOptions : [{ value: questionCount, label: "", description: "" }]
+  );
+  const validation = formatMode
+    ? validatePracticeFormatSession({
+        format: practiceFormat,
+        questionCount: countOptions.some((option) => option.value === questionCount)
+          ? questionCount
+          : wheelValue,
+        formats,
+        bankStyle,
+        ngnLabel,
+      })
+    : validateQuestionBankSession({
+        subjectId,
+        questionCount,
+        subjectCounts,
+        bankStyle,
+      });
 
   const selectedSubject = isMixedSubjectId(subjectId)
     ? { id: MIXED_SUBJECT_ID, label: MIXED_SUBJECT_LABEL }
@@ -87,7 +124,18 @@ export function QuestionBankSetup({
   const selectedCount = maxAvailable;
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-8">
+      {onPracticeFormatChange ? (
+        <QuestionBankFormatMode
+          value={practiceFormat}
+          onChange={onPracticeFormatChange}
+          formats={formats}
+          totalActive={totalActive}
+          countsLoading={countsLoading}
+          ngnLabel={ngnLabel}
+        />
+      ) : null}
+
       <QuestionBankSection
         title="Choose a topic"
         hint="Search or scroll — weak topics from your dashboard are marked."
@@ -112,7 +160,12 @@ export function QuestionBankSetup({
             </span>
             {typeof selectedCount === "number" ? (
               <span className="tabular-nums">
-                · {selectedCount.toLocaleString()} {selectedCount === 1 ? "question" : "questions"}
+                · {selectedCount.toLocaleString()}{" "}
+                {formatMode
+                  ? `published ${practiceFormat === "case" ? "case" : ngnLabel}`
+                  : selectedCount === 1
+                    ? "question"
+                    : "questions"}
               </span>
             ) : null}
           </div>
@@ -145,7 +198,7 @@ export function QuestionBankSetup({
                       ? `This topic has ${maxAvailable.toLocaleString()} serve-ready question${maxAvailable === 1 ? "" : "s"} — need ${questionBankWheelPresetsForField(fieldId ?? "")[0] ?? 25} to start.`
                       : "Not enough serve-ready questions for this topic yet.")}
                 </p>
-                {validation.suggestMixed ? (
+                {"suggestMixed" in validation && validation.suggestMixed ? (
                   <button
                     type="button"
                     onClick={() => onSubjectChange(MIXED_SUBJECT_ID)}
@@ -165,7 +218,7 @@ export function QuestionBankSetup({
             {!validation.ok && validation.message && countOptions.length > 0 ? (
               <div className="mt-2 space-y-2 text-center" role="status">
                 <p className="text-[12px] text-amber-800">{validation.message}</p>
-                {validation.suggestMixed ? (
+                {"suggestMixed" in validation && validation.suggestMixed ? (
                   <button
                     type="button"
                     onClick={() => onSubjectChange(MIXED_SUBJECT_ID)}
@@ -185,24 +238,30 @@ export function QuestionBankSetup({
                 {STYLE_OPTIONS.map((option) => {
                   const disabledMixed =
                     isMixedSubjectId(subjectId) && option.id !== "standard";
+                  const disabledFormat = formatMode && option.id !== "standard";
+                  const disabled = disabledMixed || disabledFormat;
                   const active = bankStyle === option.id;
                   return (
                     <button
                       key={option.id}
                       type="button"
-                      disabled={disabledMixed}
+                      disabled={disabled}
                       onClick={() => onBankStyleChange(option.id)}
                       className={cn(
                         qbUi.optionCard,
                         active && qbUi.optionCardActive,
-                        disabledMixed && "cursor-not-allowed opacity-45"
+                        disabled && "cursor-not-allowed opacity-45"
                       )}
                     >
                       <p className="text-[13px] font-semibold text-[var(--color-ink)]">
                         {option.label}
                       </p>
                       <p className={cn(qbUi.sectionHint, "mt-0.5")}>
-                        {disabledMixed ? "Pick a single topic for this mode" : option.hint}
+                        {disabledFormat
+                          ? "Available on All questions"
+                          : disabledMixed
+                            ? "Pick a single topic for this mode"
+                            : option.hint}
                       </p>
                     </button>
                   );

@@ -101,6 +101,8 @@ type Props = {
   returnTo?: TopicPracticeReturn;
   /** Review incorrect queue — a correct answer stays pending re-proof. */
   reviewQueue?: boolean;
+  /** NGN or case deliberate practice. Persisted onto each saved attempt. */
+  practiceFormat?: "ngn" | "case";
 };
 
 export function StudySessionPlayer({
@@ -116,6 +118,7 @@ export function StudySessionPlayer({
   onComplete,
   returnTo,
   reviewQueue = false,
+  practiceFormat,
 }: Props) {
   const initial = useMemo(() => {
     try {
@@ -131,6 +134,9 @@ export function StudySessionPlayer({
       });
       if (adaptiveMeta) {
         created.session.adaptiveMeta = adaptiveMeta;
+      }
+      if (practiceFormat) {
+        created.session.practiceFormat = practiceFormat;
       }
       return created;
     } catch (error) {
@@ -150,11 +156,12 @@ export function StudySessionPlayer({
           answers: {},
           startedAt: now,
           updatedAt: now,
+          ...(practiceFormat ? { practiceFormat } : {}),
         } satisfies StudySessionState,
         questions: [] as StudyQuestion[],
       };
     }
-  }, [rawQuestions, field, subjectId, sourceType, sourceId, mode, adaptiveMeta, timedSessionSeconds]);
+  }, [rawQuestions, field, subjectId, sourceType, sourceId, mode, adaptiveMeta, timedSessionSeconds, practiceFormat]);
 
   const [sessionState, setSessionState] = useState<StudySessionState>(initial.session);
   const [questionList] = useState<StudyQuestion[]>(initial.questions);
@@ -328,6 +335,9 @@ export function StudySessionPlayer({
           selectedAnswer: choices.join(", "),
           sessionId: sessionState.sessionId,
           studyMode: sessionState.mode,
+          ...(sessionState.practiceFormat
+            ? { practiceFormat: sessionState.practiceFormat }
+            : {}),
         }),
       });
       if (res.ok) {
@@ -352,7 +362,7 @@ export function StudySessionPlayer({
         });
       }
     },
-    [sessionState.sessionId, sessionState.mode]
+    [sessionState.sessionId, sessionState.mode, sessionState.practiceFormat]
   );
 
   const revealAnswer = useCallback(

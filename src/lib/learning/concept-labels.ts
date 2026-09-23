@@ -53,6 +53,7 @@ export function isInternalMasteryConceptKey(key: string): boolean {
   if (/^ngn-/i.test(slug)) return true;
   if (/-polished$/i.test(slug)) return true;
   if (/^full-exam/i.test(slug)) return true;
+  if (slug.startsWith("practice-format:")) return true;
   if (/^exam-\d+/i.test(slug)) return true;
   return false;
 }

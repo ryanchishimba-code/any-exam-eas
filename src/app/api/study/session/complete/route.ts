@@ -31,6 +31,7 @@ const bodySchema = z.object({
       field: z.string().min(1).max(80),
       subjectId: z.string().max(160).nullish(),
       mode: z.string().min(1).max(40),
+      practiceFormat: z.enum(["ngn", "case"]).nullish(),
     })
     .passthrough(),
   attempts: z.array(draftSchema).max(300),
@@ -59,6 +60,7 @@ export async function POST(req: Request) {
       field: body.session.field,
       sessionId,
       studyMode: body.session.mode,
+      practiceFormat: body.session.practiceFormat ?? undefined,
       subjectId: body.session.subjectId,
       drafts: body.attempts as SessionAttemptDraft[],
     });

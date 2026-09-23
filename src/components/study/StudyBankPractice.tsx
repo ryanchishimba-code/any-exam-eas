@@ -90,6 +90,15 @@ import {
   isMixedSubjectId,
   MIXED_SUBJECT_LABEL,
 } from "@/lib/study/question-bank-setup";
+import {
+  ngnStyleLabel,
+  parsePracticeFormat,
+  practiceFormatCountOptions,
+  practiceFormatPoolCount,
+  practiceFormatTitle,
+  validatePracticeFormatSession,
+  type PracticeFormatMode,
+} from "@/lib/study/practice-format";
 import { QuestionBankSessionPreview } from "./question-bank/QuestionBankSessionPreview";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import {
@@ -195,6 +204,7 @@ function buildBankPracticeUrl(
     mpjeVariant?: MpjeVariant;
     mpjeState?: string;
     taskCategory?: PanceTaskAreaId | null;
+    format?: PracticeFormatMode;
   },
   base = ROUTES.questionBank
 ) {
@@ -205,6 +215,7 @@ function buildBankPracticeUrl(
     count: String(params.count),
     pace: params.pace,
   });
+  if (params.format && params.format !== "all") qs.set("format", params.format);
   if (params.style && params.style !== "standard") qs.set("style", params.style);
   if (params.taskCategory) qs.set("taskCategory", params.taskCategory);
   if (params.mpjeVariant) qs.set("mpjeVariant", params.mpjeVariant);
@@ -305,6 +316,7 @@ export function StudyBankPractice({
   const [questionCount, setQuestionCount] = useState(25);
   const [bankPace, setBankPace] = useState<QuestionBankPace>("untimed");
   const [bankStyle, setBankStyle] = useState<QuestionBankStyle>("adaptive");
+  const [practiceFormat, setPracticeFormat] = useState<PracticeFormatMode>("all");
   const [adaptiveMeta, setAdaptiveMeta] = useState<AdaptiveSessionMeta | null>(null);
   const [nclexLength, setNclexLength] = useState<NclexTimedVariant>("minimum");
   const [mpjeVariant, setMpjeVariant] = useState<MpjeVariant>("state");
@@ -409,6 +421,7 @@ export function StudyBankPractice({
   const activeFormats = subjectCountPayload?.formats ?? null;
   const activeCategories = subjectCountPayload?.categories ?? [];
   const activeCategoryLabel = subjectCountPayload?.categoryLabel ?? null;
+  const ngnLabel = ngnStyleLabel(activeCategoryLabel, fieldId);
   const activeDefinition = subjectCountPayload?.definition ?? null;
   const activeTopicCount = subjectCounts
     ? Object.keys(subjectCounts).length
@@ -619,6 +632,14 @@ export function StudyBankPractice({
       const persisted = readPersistedQuestionBankSetup(fieldId);
       if (persisted?.style) setBankStyle(persisted.style);
     }
+
+    const formatParam = resolvePracticeSearchParam(searchParams, "format");
+    if (formatParam) {
+      setPracticeFormat(parsePracticeFormat(formatParam));
+    } else {
+      const persisted = readPersistedQuestionBankSetup(fieldId);
+      if (persisted?.format) setPracticeFormat(parsePracticeFormat(persisted.format));
+    }
   }, [fieldId, isTimedExam, searchParams]);
 
   useEffect(() => {
@@ -698,7 +719,26 @@ export function StudyBankPractice({
   // Snap count to a valid 25 / 50 / 75 preset for the current topic pool.
   // Keep short retest counts (5 / 10 / 25) when the pool can still fill them.
   useEffect(() => {
-    if (isTimedExam || countsLoading || !subjectCounts || !subjectId) return;
+    if (isTimedExam || countsLoading) return;
+    if (practiceFormat === "ngn" || practiceFormat === "case") {
+      const pool = practiceFormatPoolCount(practiceFormat, activeFormats);
+      const options = practiceFormatCountOptions(pool);
+      if (options.length === 0) return;
+      setQuestionCount((current) => {
+        const resolved = resolveWheelCountValue(current, options);
+        if (resolved !== current || bankStyle !== "standard") {
+          syncPracticeUrl({
+            count: resolved,
+            format: practiceFormat,
+            style: "standard",
+          });
+        }
+        return resolved;
+      });
+      if (bankStyle !== "standard") setBankStyle("standard");
+      return;
+    }
+    if (!subjectCounts || !subjectId) return;
     const max = availableQuestionCount(subjectId, subjectCounts);
     if (max === null || max <= 0) return;
     setQuestionCount((current) => {
@@ -712,7 +752,7 @@ export function StudyBankPractice({
       return resolved;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subjectId, fieldId, subjectCounts, countsLoading, isTimedExam]);
+  }, [subjectId, fieldId, subjectCounts, countsLoading, isTimedExam, practiceFormat, activeFormats, bankStyle]);
 
   const subjectUrlSyncedRef = useRef(false);
   useEffect(() => {
@@ -735,8 +775,9 @@ export function StudyBankPractice({
       pace: bankPace,
       style: bankStyle,
       taskCategory: isPance ? taskCategory : null,
+      format: practiceFormat,
     });
-  }, [fieldId, isTimedExam, subjectId, questionCount, bankPace, bankStyle, isPance, taskCategory]);
+  }, [fieldId, isTimedExam, subjectId, questionCount, bankPace, bankStyle, isPance, taskCategory, practiceFormat]);
 
   function syncPracticeUrl(overrides?: {
     mpjeVariant?: MpjeVariant;
@@ -746,6 +787,7 @@ export function StudyBankPractice({
     pace?: QuestionBankPace;
     style?: QuestionBankStyle;
     taskCategory?: PanceTaskAreaId | null;
+    format?: PracticeFormatMode;
     /** Skip Next.js navigation so an in-flight session is not unmounted by Suspense. */
     historyOnly?: boolean;
   }) {
@@ -781,6 +823,7 @@ export function StudyBankPractice({
         count: overrides?.count ?? questionCount,
         pace: overrides?.pace ?? bankPace,
         style: overrides?.style ?? bankStyle,
+        format: overrides?.format ?? practiceFormat,
         taskCategory: isPance ? resolvedTaskCategory : null,
         mpjeVariant: isMpje ? resolvedVariant : undefined,
         mpjeState:
@@ -842,14 +885,23 @@ export function StudyBankPractice({
   async function start() {
     if (isMpje || !isTimedExam) syncPracticeUrl({ historyOnly: true });
 
+    const deliberateFormat = practiceFormat === "ngn" || practiceFormat === "case";
     if (!isTimedExam) {
-      const validation = validateQuestionBankSession({
-        subjectId,
-        questionCount,
-        subjectCounts,
-        bankStyle,
-        taskCategory: isPance ? taskCategory : null,
-      });
+      const validation = deliberateFormat
+        ? validatePracticeFormatSession({
+            format: practiceFormat,
+            questionCount,
+            formats: activeFormats,
+            bankStyle: "standard",
+            ngnLabel,
+          })
+        : validateQuestionBankSession({
+            subjectId,
+            questionCount,
+            subjectCounts,
+            bankStyle,
+            taskCategory: isPance ? taskCategory : null,
+          });
       if (!validation.ok) {
         setError(validation.message ?? "Cannot start this session.");
         return;
@@ -876,10 +928,56 @@ export function StudyBankPractice({
     try {
       const limit = isTimedExam
         ? timedCount
-        : resolveQuestionBankSessionCount(
-            questionCount,
-            availableQuestionCount(subjectId, subjectCounts)
+        : deliberateFormat
+          ? questionCount
+          : resolveQuestionBankSessionCount(
+              questionCount,
+              availableQuestionCount(subjectId, subjectCounts)
+            );
+
+      if (!isTimedExam && deliberateFormat) {
+        const qs = new URLSearchParams({
+          field: fieldId,
+          limit: String(limit),
+          mode: "bank",
+          scope: "field",
+          mixed: "1",
+          format: practiceFormat,
+          meta: "0",
+          subjectId: MIXED_SUBJECT_ID,
+        });
+        const res = await fetch(`/api/questions?${qs.toString()}`);
+        const data = await res.json();
+        if (!res.ok) {
+          setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
+          throw new Error(studyLimitMessage(data) || data.error || "Could not load this format set");
+        }
+        if (data.practiceFormat !== practiceFormat) {
+          throw new Error("This set was not limited to the selected format.");
+        }
+        const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
+        const subjectIds = (data.subjectIds as Array<string | null> | undefined) ?? [];
+        const raw = (
+          data.questions as Array<ExamQuestion & { subjectId?: string; bankItemId?: string }>
+        ).map((q, i) => ({
+          ...q,
+          id: i + 1,
+          field,
+          subjectId: subjectIds[i] || q.subjectId || MIXED_SUBJECT_ID,
+          bankItemId: metaIds[i] ?? q.bankItemId ?? `bank-${fieldId}-${i}`,
+        }));
+        if (raw.length === 0) {
+          throw new Error(
+            practiceFormat === "case"
+              ? "No published case items were available for this set."
+              : `No published ${ngnLabel} items were available for this set.`
           );
+        }
+        expectExactSessionCount(raw.length, limit);
+        if (isStale()) return;
+        setQuestions(raw);
+        return;
+      }
 
       if (isTimedExam) {
         const examSlug = examSlugFromFieldId(fieldId);
@@ -1362,28 +1460,53 @@ export function StudyBankPractice({
     () =>
       isTimedExam
         ? { ok: true as const }
-        : validateQuestionBankSession({
-            subjectId,
-            questionCount,
-            subjectCounts,
-            bankStyle,
-            taskCategory: isPance ? taskCategory : null,
-          }),
-    [isTimedExam, subjectId, questionCount, subjectCounts, bankStyle, isPance, taskCategory]
+        : practiceFormat === "ngn" || practiceFormat === "case"
+          ? validatePracticeFormatSession({
+              format: practiceFormat,
+              questionCount,
+              formats: activeFormats,
+              bankStyle: "standard",
+              ngnLabel,
+            })
+          : validateQuestionBankSession({
+              subjectId,
+              questionCount,
+              subjectCounts,
+              bankStyle,
+              taskCategory: isPance ? taskCategory : null,
+            }),
+    [
+      isTimedExam,
+      practiceFormat,
+      subjectId,
+      questionCount,
+      subjectCounts,
+      bankStyle,
+      isPance,
+      taskCategory,
+      activeFormats,
+      ngnLabel,
+    ]
   );
 
   const previewTopicLabel = useMemo(() => {
     if (isTimedExam) return `${field} · Timed exam simulation`;
+    if (practiceFormat === "ngn" || practiceFormat === "case") {
+      return `${practiceFormatTitle(practiceFormat, ngnLabel)} · published bank`;
+    }
     const base = isMixedSubjectId(subjectId)
       ? MIXED_SUBJECT_LABEL
       : subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
     return isPance ? sessionLabelWithTask(base, taskCategory) : base;
-  }, [field, isTimedExam, subjectId, subjects, isPance, taskCategory]);
+  }, [field, isTimedExam, practiceFormat, ngnLabel, subjectId, subjects, isPance, taskCategory]);
 
-  const previewAvailableCount = useMemo(
-    () => (isTimedExam ? null : availableQuestionCount(subjectId, subjectCounts)),
-    [isTimedExam, subjectId, subjectCounts]
-  );
+  const previewAvailableCount = useMemo(() => {
+    if (isTimedExam) return null;
+    if (practiceFormat === "ngn" || practiceFormat === "case") {
+      return practiceFormatPoolCount(practiceFormat, activeFormats);
+    }
+    return availableQuestionCount(subjectId, subjectCounts);
+  }, [isTimedExam, practiceFormat, activeFormats, subjectId, subjectCounts]);
 
   const previewEstimatedMinutes = useMemo(
     () => estimateQuestionBankSessionMinutes(questionCount, bankPace),
@@ -1423,9 +1546,13 @@ export function StudyBankPractice({
         : isMpje
           ? " · Uniform MPJE"
           : "";
+    const formatTitle =
+      practiceFormat === "ngn" || practiceFormat === "case"
+        ? practiceFormatTitle(practiceFormat, ngnLabel)
+        : null;
     const title = isTimedExam
       ? `${field}${mpjeScope} · Timed exam · ${questions.length} questions`
-      : `${field}${mpjeScope} · ${scopedTopicLabel} · ${questions.length} questions · ${
+      : `${field}${mpjeScope} · ${formatTitle ?? scopedTopicLabel} · ${questions.length} questions · ${
           bankStyle === "adaptive"
             ? "Adaptive practice"
             : bankStyle === "weak_areas"
@@ -1445,10 +1572,13 @@ export function StudyBankPractice({
         <StudySessionPlayer
           key={`${examScopeKey}:${sessionEpoch}`}
           field={field}
-          subjectId={isTimedExam ? "__mixed__" : subjectId}
+          subjectId={isTimedExam || practiceFormat !== "all" ? "__mixed__" : subjectId}
           questions={questions}
           sourceType="bank"
           mode={sessionStudyMode}
+          practiceFormat={
+            practiceFormat === "ngn" || practiceFormat === "case" ? practiceFormat : undefined
+          }
           reviewQueue={bankStyle === "review_incorrect"}
           title={title}
           adaptiveMeta={adaptiveMeta ?? undefined}
@@ -1473,7 +1603,7 @@ export function StudyBankPractice({
 
   const canStartBank =
     !isTimedExam &&
-    !!subjectId &&
+    (practiceFormat !== "all" || !!subjectId) &&
     bankSessionValidation.ok &&
     !loading &&
     !countsLoading;
@@ -1724,6 +1854,35 @@ export function StudyBankPractice({
               }}
               weakSubjectIds={weakSubjectIds}
               countsLoading={countsLoading}
+              practiceFormat={practiceFormat}
+              formats={activeFormats}
+              totalActive={activeTotal}
+              ngnLabel={ngnLabel}
+              onPracticeFormatChange={(next) => {
+                const pool = practiceFormatPoolCount(next, activeFormats);
+                const options = practiceFormatCountOptions(pool);
+                const resolved =
+                  next === "all" || options.length === 0
+                    ? questionCount
+                    : resolveWheelCountValue(questionCount, options);
+                const style = next === "all" ? bankStyle : "standard";
+                setPracticeFormat(next);
+                setQuestionCount(resolved);
+                if (style !== bankStyle) setBankStyle(style);
+                writePersistedQuestionBankSetup(fieldId, {
+                  subjectId,
+                  count: resolved,
+                  pace: bankPace,
+                  style,
+                  taskCategory: isPance ? taskCategory : null,
+                  format: next,
+                });
+                syncPracticeUrl({
+                  format: next,
+                  count: resolved,
+                  style,
+                });
+              }}
             />
           ) : null}
 

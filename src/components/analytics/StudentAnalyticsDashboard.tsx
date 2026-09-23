@@ -17,6 +17,7 @@ import {
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { studyUi } from "@/lib/study/study-ui";
 import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
+import { FormatPracticePanel } from "@/components/analytics/FormatPracticePanel";
 import type { OpenRemediationSummary } from "@/lib/learning/remediation-loop";
 import type { ExamSlug } from "@/types/edtech";
 import { Button } from "@/components/ui/Button";
@@ -178,6 +179,12 @@ export function StudentAnalyticsDashboard({
           showWhenEmpty={(dashboard.headline.totalAttempts ?? 0) > 0}
         />
       ) : null}
+
+      <FormatPracticePanel
+        stats={dashboard.formatPractice}
+        ngnLabel={examSlug === "nclex" ? "NGN" : "NGN-style"}
+        fieldId={fieldId}
+      />
 
       <section
         className={cn(

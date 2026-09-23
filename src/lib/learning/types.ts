@@ -22,6 +22,8 @@ export type AttemptInput = {
   fieldId: string;
   /** practice | tutor | timed | adaptive | … — drives Mastery cell tutor vs timed windows. */
   studyMode?: string;
+  /** NGN or case deliberate practice. Stored on the attempt for Analytics. */
+  practiceFormat?: "ngn" | "case";
 };
 
 export type MistakeAnalysis = {

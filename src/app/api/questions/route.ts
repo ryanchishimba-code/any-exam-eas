@@ -4,9 +4,14 @@ import { getFieldSubject } from "@/lib/field-subjects";
 import { withDbRetry } from "@/lib/db";
 import {
   countActiveQuestions,
+  sampleActiveItemsByFormat,
   sampleQuestionBankItems,
   sampleQuestionBankItemsForField,
 } from "@/lib/question-bank-db";
+import {
+  parseDeliberatePracticeFormat,
+  retainItemsForPracticeFormat,
+} from "@/lib/study/practice-format";
 import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/bulk-question-generator";
 import {
   getLastQuestionBankSync,
@@ -184,6 +189,9 @@ export async function GET(req: Request) {
   }
 
   const taskCategory = searchParams.get("taskCategory")?.trim() || undefined;
+  const formatBucket = questionBank
+    ? parseDeliberatePracticeFormat(searchParams.get("format"))
+    : null;
 
   const { recordStudyQuestionsServed } = await import("@/lib/study/usage-limits");
 
@@ -230,6 +238,19 @@ export async function GET(req: Request) {
   let preAssembledTimed = false;
 
   const sampled = await withDbRetry(async () => {
+    if (formatBucket && questionBank && !timedExam) {
+      return {
+        kind: "ok" as const,
+        items: await sampleActiveItemsByFormat({
+          fieldId,
+          subjectId: mixed ? null : subjectId,
+          count: Math.min(400, Math.max(limit * 4, limit)),
+          formatBucket,
+        }),
+        preAssembledTimed: false,
+      };
+    }
+
     if (mixed && timedExam) {
       const { assembleTimedExamSessionItems } = await import(
         "@/lib/exam-prep/compose/assemble-timed-exam-session"
@@ -331,7 +352,9 @@ export async function GET(req: Request) {
     });
   }
 
-  if (fieldId === "nursing" && bankPractice && (nclexPresetConfig || blueprintTopics?.length)) {
+  if (formatBucket && questionBank) {
+    items = retainItemsForPracticeFormat(items, formatBucket).slice(0, limit);
+  } else if (fieldId === "nursing" && bankPractice && (nclexPresetConfig || blueprintTopics?.length)) {
     const { filterItemsForNclexTopicPractice } = await import(
       "@/lib/exam-prep/nclex/topic-practice-filter"
     );
@@ -526,10 +549,15 @@ export async function GET(req: Request) {
   const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;
 
   if (bankPractice && items.length < limit) {
+    const formatNoun =
+      formatBucket === "case" ? "case" : formatBucket === "ngn" ? (fieldId === "nursing" ? "NGN" : "NGN-style") : null;
     return NextResponse.json(
       {
-        error: `Not enough ${fieldId} questions available for this topic (${items.length}/${limit}). Try fewer questions or another topic.`,
+        error: formatNoun
+          ? `Only ${items.length} published ${formatNoun} items were available for a ${limit}-question set.`
+          : `Not enough ${fieldId} questions available for this topic (${items.length}/${limit}). Try fewer questions or another topic.`,
         code: "SESSION_UNAVAILABLE",
+        ...(formatBucket ? { practiceFormat: formatBucket } : {}),
       },
       { status: 503 }
     );
@@ -663,6 +691,7 @@ export async function GET(req: Request) {
       nclexLength: timedExam ? nclexLength : undefined,
       requestedLimit: limit,
       returned: questions.length,
+      practiceFormat: formatBucket ?? "all",
     },
     req,
   });
@@ -683,6 +712,12 @@ export async function GET(req: Request) {
     timedExam,
     questions,
     requested: limit,
+    ...(formatBucket
+      ? {
+          practiceFormat: formatBucket,
+          subjectIds: prepared.map((item) => item.subjectId ?? null),
+        }
+      : {}),
     bankItemIds: prepared.map((p) => p.bankItemId).filter(Boolean),
     ...(includeMeta
       ? {

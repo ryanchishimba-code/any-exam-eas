@@ -11,6 +11,8 @@ export function studentReadCacheKeys(userId: string, fieldId?: string | null): s
   if (fieldId) scopes.add(fieldId);
   const keys: string[] = [];
   for (const scope of scopes) {
+    keys.push(cacheKey(["student-dashboard-v4", userId, scope, "trend"]));
+    keys.push(cacheKey(["student-dashboard-v4", userId, scope, "no-trend"]));
     keys.push(cacheKey(["student-dashboard-v3", userId, scope, "trend"]));
     keys.push(cacheKey(["student-dashboard-v3", userId, scope, "no-trend"]));
     keys.push(cacheKey(["student-dashboard", userId, scope]));
