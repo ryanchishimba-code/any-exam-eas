@@ -5,6 +5,7 @@
 
 import type { FullExamLaunchMode } from "@/lib/full-exam/launch-modes";
 import type { ExamSlug } from "@/types/edtech";
+import { countScoredExamAnswers } from "@/lib/exam-sessions/scoring";
 import {
   createExamSession,
   getExamSession,
@@ -35,11 +36,50 @@ export type ExamInstance = {
   completedAt: Date | null;
   analysis: ExamInstanceAnalysis | null;
   weakAreas: unknown;
+  /**
+   * Scored rows in the answer log. Null when the column is not an array.
+   * This is not the planned questionCount.
+   */
+  savedAnswerCount: number | null;
 };
 
 export function parseExamInstanceAnalysis(raw: unknown): ExamInstanceAnalysis | null {
   if (!raw || typeof raw !== "object") return null;
   return raw as ExamInstanceAnalysis;
+}
+
+export function toExamInstance(row: {
+  id: string;
+  userId: string;
+  examType: string;
+  fieldId: string | null;
+  title: string | null;
+  status: string;
+  score: number | null;
+  questionCount: number;
+  timeLimitSec: number | null;
+  startedAt: Date;
+  completedAt: Date | null;
+  analysis: unknown;
+  weakAreas: unknown;
+  answers?: unknown;
+}): ExamInstance {
+  return {
+    id: row.id,
+    userId: row.userId,
+    examType: row.examType,
+    fieldId: row.fieldId,
+    title: row.title,
+    status: row.status,
+    score: row.score,
+    questionCount: row.questionCount,
+    timeLimitSec: row.timeLimitSec,
+    startedAt: row.startedAt,
+    completedAt: row.completedAt,
+    analysis: parseExamInstanceAnalysis(row.analysis),
+    weakAreas: row.weakAreas,
+    savedAnswerCount: countScoredExamAnswers(row.answers),
+  };
 }
 
 export function getPrefetchedQuestionIds(analysis: unknown): string[] {
@@ -87,21 +127,7 @@ export async function loadExamInstance(
 ): Promise<ExamInstance | null> {
   const row = await getExamSession(sessionId, userId);
   if (!row) return null;
-  return {
-    id: row.id,
-    userId: row.userId,
-    examType: row.examType,
-    fieldId: row.fieldId,
-    title: row.title,
-    status: row.status,
-    score: row.score,
-    questionCount: row.questionCount,
-    timeLimitSec: row.timeLimitSec,
-    startedAt: row.startedAt,
-    completedAt: row.completedAt,
-    analysis: parseExamInstanceAnalysis(row.analysis),
-    weakAreas: row.weakAreas,
-  };
+  return toExamInstance(row);
 }
 
 export async function listExamInstances(
@@ -110,19 +136,5 @@ export async function listExamInstances(
   limit = 30
 ): Promise<ExamInstance[]> {
   const rows = await listUserExamSessions(userId, examType, limit);
-  return rows.map((row) => ({
-    id: row.id,
-    userId: row.userId,
-    examType: row.examType,
-    fieldId: row.fieldId,
-    title: row.title,
-    status: row.status,
-    score: row.score,
-    questionCount: row.questionCount,
-    timeLimitSec: row.timeLimitSec,
-    startedAt: row.startedAt,
-    completedAt: row.completedAt,
-    analysis: parseExamInstanceAnalysis(row.analysis),
-    weakAreas: row.weakAreas,
-  }));
+  return rows.map((row) => toExamInstance(row));
 }

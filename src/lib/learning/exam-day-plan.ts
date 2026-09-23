@@ -349,7 +349,11 @@ export function examSimTrendFromSessions(sessions: ExamSimSessionInput[]): ExamS
   };
 }
 
-/** True when a qualifying simulation finished on the same UTC day as `now`. */
+/**
+ * True when a simulation that saved at least EXAM_SIM_MIN_QUESTIONS answers
+ * finished on the same UTC day as `now`. Callers must pass that saved-answer
+ * count as questionCount. The planned length of the set does not qualify.
+ */
 export function examSimCompletedOnUtcDay(
   sessions: Array<ExamSimSessionInput & { completedAt?: Date | string | null }>,
   now: Date

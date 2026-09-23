@@ -147,15 +147,49 @@ export function examSimAnsweredCount(analysis: unknown): number | null {
 }
 
 /**
- * Length used for the optional exam-sim trend and the week-plan tick.
+ * Length used for the optional exam-sim trend.
  * Completions that recorded answeredCount use that. Older rows keep the
- * planned questionCount stored on the session.
+ * planned questionCount stored on the session. The week-plan Done today tick
+ * does not use this fallback — see examSimDoneTodayAnswerCount.
  */
 export function examSimQualifyingQuestionCount(session: {
   questionCount: number;
   analysis?: unknown;
 }): number {
   return examSimAnsweredCount(session.analysis) ?? session.questionCount;
+}
+
+/**
+ * Saved-answer count for the week Exam simulation tick.
+ * Planned session length is never a source. Ending a 50-question set after
+ * fewer saved answers must stay under the 50-answer bar.
+ *
+ * The scored answer log and linked QuestionAttempt rows outvote
+ * analysis.answeredCount. When both of those exist, the smaller count wins
+ * so a planned-length stamp cannot mark the day done.
+ */
+export function examSimDoneTodayAnswerCount(input: {
+  /** Null when this session has no answer log. 0 is an empty log. */
+  savedAnswerCount: number | null;
+  analysis?: unknown;
+  /** QuestionAttempt rows whose sessionId is this exam session. Null if not counted. */
+  linkedAttemptCount?: number | null;
+}): number {
+  const sources: number[] = [];
+  const saved = nonNegativeInt(input.savedAnswerCount);
+  const linked = nonNegativeInt(input.linkedAttemptCount ?? null);
+  if (saved != null && saved > 0) sources.push(saved);
+  if (linked != null && linked > 0) sources.push(linked);
+  if (sources.length > 0) return Math.min(...sources);
+  if (saved === 0) return 0;
+  return examSimAnsweredCount(input.analysis) ?? 0;
+}
+
+function nonNegativeInt(value: number | null): number | null {
+  if (value == null || typeof value !== "number" || !Number.isFinite(value) || value < 0) {
+    return null;
+  }
+  return Math.round(value);
 }
 
 /** Cell mode for a simulation. Untimed sets stay on the tutor window. */

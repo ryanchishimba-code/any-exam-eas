@@ -47,7 +47,10 @@ import {
   rollingAccuracyFromAttempts,
   type ExamSimTrend,
 } from "@/lib/learning/exam-day-plan";
-import { examSimQualifyingQuestionCount } from "@/lib/learning/full-exam-pass-path";
+import {
+  examSimDoneTodayAnswerCount,
+  examSimQualifyingQuestionCount,
+} from "@/lib/learning/full-exam-pass-path";
 import { countOpenIncorrectItems } from "@/lib/learning/open-incorrect";
 import {
   groupOpenRemediationLoops,
@@ -133,8 +136,9 @@ export type ExamRoadmapData = {
    */
   examSimTrend?: ExamSimTrend | null;
   /**
-   * True when a qualifying simulation (50+ questions) completed on today's
-   * UTC date. Optional so an older cached roadmap can omit it.
+   * True when an exam simulation saved at least 50 answers on today's UTC
+   * date. Planned length does not count. Optional so an older cached roadmap
+   * can omit it.
    */
   examSimCompletedToday?: boolean;
   /**
@@ -516,6 +520,13 @@ async function loadExamRoadmapData(
       select: { itemId: true, confirmedAt: true },
     }),
   ]);
+  const attemptsBySession = new Map<string, number>();
+  for (const attempt of attempts) {
+    const sessionId = attempt.sessionId?.trim();
+    if (!sessionId) continue;
+    attemptsBySession.set(sessionId, (attemptsBySession.get(sessionId) ?? 0) + 1);
+  }
+
   const seenBySubject = countSeenBySubjectFromAttempts(attempts);
   const attemptMap = aggregateAttemptsBySubject(attempts);
   const masteryMap = new Map(
@@ -592,7 +603,11 @@ async function loadExamRoadmapData(
       history.sessions.map((session) => ({
         status: session.status,
         score: session.score,
-        questionCount: examSimQualifyingQuestionCount(session),
+        questionCount: examSimDoneTodayAnswerCount({
+          savedAnswerCount: session.savedAnswerCount,
+          analysis: session.analysis,
+          linkedAttemptCount: attemptsBySession.get(session.id) ?? null,
+        }),
         completedAt: session.completedAt,
       })),
       new Date()
@@ -618,7 +633,7 @@ export async function getExamRoadmapData(
       ? options.usmleFieldId
       : examSlug;
   return cacheGetOrSet(
-    cacheKey(["exam-roadmap-v6", userId, fieldKey]),
+    cacheKey(["exam-roadmap-v7", userId, fieldKey]),
     CACHE_TTL.learningDashboard,
     () => loadExamRoadmapData(userId, examSlug, options),
     { staleTtlMs: CACHE_STALE.learningDashboard }

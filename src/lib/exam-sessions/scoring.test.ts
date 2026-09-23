@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   calculateExamScorePercent,
   countCorrectAnswers,
+  countScoredExamAnswers,
   mergeExamAnswers,
 } from "./scoring";
 import type { ExamAnswerRecord } from "./service";
@@ -59,6 +60,20 @@ describe("countCorrectAnswers", () => {
   it("counts only correct flags", () => {
     expect(
       countCorrectAnswers([answer(0, true), answer(1, false), answer(2, true)])
+    ).toBe(2);
+  });
+});
+
+describe("countScoredExamAnswers", () => {
+  it("counts scored rows and skips blanks", () => {
+    expect(countScoredExamAnswers(null)).toBeNull();
+    expect(
+      countScoredExamAnswers([
+        { questionIndex: 0, questionId: "a", selected: "A", correct: true, answeredAt: "" },
+        { questionIndex: 1, questionId: "b", selected: "  ", correct: false, answeredAt: "" },
+        { questionIndex: 2, questionId: "a", selected: "C", correct: false, answeredAt: "" },
+        { questionIndex: 3, selected: "D", correct: true, answeredAt: "" },
+      ])
     ).toBe(2);
   });
 });

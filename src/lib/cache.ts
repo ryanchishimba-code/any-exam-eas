@@ -250,5 +250,6 @@ export function invalidateLearningDashboardCache(userId: string): void {
   cacheDeleteMatching(`${cacheKey(["exam-roadmap-v4", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-roadmap-v5", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-roadmap-v6", userId])}:`);
+  cacheDeleteMatching(`${cacheKey(["exam-roadmap-v7", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["mastery-dashboard", userId])}:`);
 }

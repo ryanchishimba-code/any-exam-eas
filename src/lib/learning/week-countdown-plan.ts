@@ -8,8 +8,9 @@
  * days and Today's rows follow that day's kind.
  *
  * Progress ticks from saved work today only. Earlier days this week are not
- * reconstructed. A qualifying exam simulation is a separate signal. None of
- * this is a licensure prediction.
+ * reconstructed. Exam simulation is done today only after at least 50 answers
+ * from that simulation are saved. Ending a shorter set does not tick it.
+ * None of this is a licensure prediction.
  */
 
 /** Same size as Today's Qbank row. Local so this module does not import the day plan. */
@@ -85,7 +86,7 @@ export type WeekCountdownInput = {
   questionsToday: number;
   /** Open incorrect outranks the blueprint gap. */
   remediationHeavy: boolean;
-  /** Qualifying exam simulation finished on today's UTC date. */
+  /** At least 50 exam-sim answers saved on today's UTC date. */
   examSimCompletedToday: boolean;
 };
 
