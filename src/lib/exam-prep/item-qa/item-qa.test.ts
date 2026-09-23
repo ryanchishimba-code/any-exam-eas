@@ -1,8 +1,18 @@
 import { describe, expect, it } from "vitest";
 import { findNearDuplicatePairs } from "./duplicates";
-import { readItemQaRecord, withItemQaRecord } from "./flag";
+import {
+  readItemQaRecord,
+  withItemQaRecord,
+  withSchemaFailureFlag,
+  withoutSchemaFailureFlag,
+} from "./flag";
 import { formatReviewMonth, resolveItemProvenance } from "./provenance";
-import { evaluateItemPublishGate, itemRequiresPublishSchema } from "./publish-gate";
+import { principleFieldLabel } from "./principle-label";
+import {
+  editedItemNeedsSchemaGate,
+  evaluateItemPublishGate,
+  itemRequiresPublishSchema,
+} from "./publish-gate";
 import { contentFromStoredItem, evaluateRationaleSchema } from "./rationale-schema";
 import { lintItemText } from "./text-lint";
 
@@ -208,6 +218,26 @@ describe("rationale schema", () => {
     expect(issues.filter((issue) => issue.severity === "error")).toHaveLength(0);
     expect(issues.some((issue) => issue.code === "missing_citation")).toBe(false);
   });
+
+  it("accepts an expert clinical pearl as the governing principle", () => {
+    const issues = evaluateRationaleSchema({
+      question: STEM,
+      options: OPTIONS,
+      correctAnswer: OPTIONS[1]!,
+      explanation:
+        "Hypotension with fever is perfusion failure. A weight-based crystalloid bolus is the priority action in the first hour.",
+      distractorRationale: {
+        [OPTIONS[0]!]: "Sliding-scale insulin does not restore blood pressure in this first hour.",
+        [OPTIONS[2]!]: "A delayed blood count misses the immediate resuscitation window.",
+        [OPTIONS[3]!]: "Reassurance leaves hypotension untreated.",
+      },
+      expertRationale: {
+        whyCorrect: { headline: "Restore circulating volume before routine medications." },
+        clinicalPearl: "When shock cues are present, perfusion comes before scheduled medications.",
+      },
+    });
+    expect(issues.some((issue) => issue.code === "missing_governing_principle")).toBe(false);
+  });
 });
 
 describe("publish gate", () => {
@@ -222,6 +252,49 @@ describe("publish gate", () => {
     expect(itemRequiresPublishSchema("manual", null)).toBe(true);
     expect(itemRequiresPublishSchema("seed", null)).toBe(false);
     expect(itemRequiresPublishSchema("seed", { itemQaSchema: "v1" })).toBe(true);
+  });
+
+  it("gates a served legacy edit and a first publish, and leaves an untouched served row alone", () => {
+    expect(
+      editedItemNeedsSchemaGate({
+        source: "seed",
+        generationMeta: null,
+        wasServed: true,
+        willBeServed: true,
+        contentEdited: true,
+        publishingAction: false,
+      })
+    ).toBe(true);
+    expect(
+      editedItemNeedsSchemaGate({
+        source: "seed",
+        generationMeta: null,
+        wasServed: false,
+        willBeServed: true,
+        contentEdited: false,
+        publishingAction: true,
+      })
+    ).toBe(true);
+    expect(
+      editedItemNeedsSchemaGate({
+        source: "seed",
+        generationMeta: null,
+        wasServed: true,
+        willBeServed: true,
+        contentEdited: false,
+        publishingAction: false,
+      })
+    ).toBe(false);
+    expect(
+      editedItemNeedsSchemaGate({
+        source: "manual",
+        generationMeta: null,
+        wasServed: false,
+        willBeServed: false,
+        contentEdited: true,
+        publishingAction: false,
+      })
+    ).toBe(false);
   });
 
   it("allows a complete manual item to publish", () => {
@@ -260,6 +333,29 @@ describe("provenance", () => {
       resolveItemProvenance({ source: "CDC isolation precautions" }).sourceLabel
     ).toBe("CDC isolation precautions");
   });
+
+  it("reads a citation stored only on generationMeta and stays quiet without one", () => {
+    const provenance = resolveItemProvenance({
+      source: "curated",
+      generationMeta: { citation: { label: "NCSBN delegation model" } },
+      lastReviewedAt: "2026-09-01",
+    });
+    expect(provenance.sourceLabel).toBe("NCSBN delegation model");
+    expect(formatReviewMonth(provenance.reviewedAt)).toBe("Sep 2026");
+    expect(resolveItemProvenance({ source: "seed", references: [] }).sourceLabel).toBeUndefined();
+    expect(resolveItemProvenance({ source: "seed" }).reviewedAt).toBeUndefined();
+  });
+});
+
+describe("principle label", () => {
+  it("localizes the shared principle field per board", () => {
+    expect(principleFieldLabel("nursing")).toBe("Nursing priority");
+    expect(principleFieldLabel("pharmacy")).toBe("Monitoring rule");
+    expect(principleFieldLabel("usmle-step-2")).toBe("Clinical pearl");
+    expect(principleFieldLabel("aanp-fnp")).toBe("Clinical pearl");
+    expect(principleFieldLabel("npte-pt")).toBe("Intervention principle");
+    expect(principleFieldLabel("anatomy")).toBe("Governing principle");
+  });
 });
 
 describe("item QA flag record", () => {
@@ -277,5 +373,44 @@ describe("item QA flag record", () => {
     expect(readItemQaRecord(next)?.codes).toEqual(["truncated_option"]);
     expect(next.cluster).toBe("abc");
     expect(readItemQaRecord({ itemQa: { pipeline: "other" } })).toBeNull();
+  });
+
+  it("queues fails_schema beside other codes and clears only the schema codes", () => {
+    const flagged = withSchemaFailureFlag(
+      {
+        itemQa: {
+          pipeline: "item-qa-v1",
+          checkedAt: "2026-09-01T00:00:00.000Z",
+          codes: ["near_duplicate"],
+          summary: "Near-duplicate of item-a.",
+          partnerId: "item-a",
+        },
+      },
+      [
+        {
+          area: "rationale",
+          code: "missing_governing_principle",
+          severity: "error",
+          message: "Add the governing principle or priority rule.",
+        },
+        {
+          area: "rationale",
+          code: "missing_citation",
+          severity: "warn",
+          message: "Optional citation.",
+        },
+      ],
+      "2026-09-23T00:00:00.000Z"
+    );
+    expect(flagged?.reviewFlag).toBe(true);
+    expect(readItemQaRecord(flagged?.curationMeta)?.codes).toEqual([
+      "near_duplicate",
+      "fails_schema",
+      "missing_governing_principle",
+    ]);
+
+    const cleared = withoutSchemaFailureFlag(flagged?.curationMeta, "2026-09-23T01:00:00.000Z");
+    expect(cleared?.reviewFlag).toBe(true);
+    expect(readItemQaRecord(cleared?.curationMeta)?.codes).toEqual(["near_duplicate"]);
   });
 });

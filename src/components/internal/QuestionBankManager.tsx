@@ -34,6 +34,7 @@ const initialFilters = {
   active: "",
   reportedOnly: false,
   qaFlagged: false,
+  schemaOnly: false,
   sort: "updatedAt" as "updatedAt" | "createdAt" | "difficulty",
   order: "desc" as "asc" | "desc",
 };
@@ -73,6 +74,7 @@ export function QuestionBankManager() {
     if (filters.active) p.set("active", filters.active);
     if (filters.reportedOnly) p.set("reportedOnly", "true");
     if (filters.qaFlagged) p.set("qaFlagged", "true");
+    if (filters.schemaOnly) p.set("schemaOnly", "true");
     p.set("sort", filters.sort);
     p.set("order", filters.order);
     return p.toString();
@@ -324,6 +326,15 @@ export function QuestionBankManager() {
                   className="h-4 w-4"
                 />
                 Item QA flags
+              </label>
+              <label className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.1] px-3 py-2 text-sm">
+                <input
+                  type="checkbox"
+                  checked={filters.schemaOnly}
+                  onChange={(e) => setFilters((f) => ({ ...f, schemaOnly: e.target.checked }))}
+                  className="h-4 w-4"
+                />
+                Fails schema
               </label>
               <button
                 type="button"

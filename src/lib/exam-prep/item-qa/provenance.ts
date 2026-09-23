@@ -56,17 +56,61 @@ export function formatReviewMonth(value: string | Date | null | undefined): stri
   }).format(new Date(iso));
 }
 
+function readReferenceList(
+  value: unknown
+): Array<{ label?: string; url?: string; citation?: string }> {
+  if (!Array.isArray(value)) return [];
+  const refs: Array<{ label?: string; url?: string; citation?: string }> = [];
+  for (const entry of value) {
+    if (typeof entry === "string" && entry.trim()) {
+      refs.push({ label: entry.trim() });
+      continue;
+    }
+    const record = asRecord(entry);
+    if (!record) continue;
+    refs.push({
+      label: typeof record.label === "string" ? record.label : undefined,
+      citation: typeof record.citation === "string" ? record.citation : undefined,
+      url: typeof record.url === "string" ? record.url : undefined,
+    });
+  }
+  return refs;
+}
+
+function citationLabelFromMeta(meta: Record<string, unknown> | null): {
+  label: string;
+  url?: string;
+} {
+  const citation = asRecord(meta?.citation);
+  if (!citation) return { label: "" };
+  const label = typeof citation.label === "string" ? citation.label.trim() : "";
+  const text = typeof citation.citation === "string" ? citation.citation.trim() : "";
+  const combined =
+    label && text && !label.includes(text) ? `${label} · ${text}` : label || text;
+  return {
+    label: combined,
+    url: safeHttpUrl(typeof citation.url === "string" ? citation.url : undefined),
+  };
+}
+
 export function resolveItemProvenance(item: {
   source?: string | null;
-  references?: Array<{ label?: string; url?: string; citation?: string }> | null;
+  references?: unknown;
   lastReviewedAt?: Date | string | null;
   generationMeta?: unknown;
 }): ItemProvenance {
   const meta = asRecord(item.generationMeta);
   const metaLabel = typeof meta?.sourceLabel === "string" ? meta.sourceLabel.trim() : "";
-  const reference = item.references?.find((ref) => ref.label?.trim() || ref.citation?.trim());
+  const metaCitation = citationLabelFromMeta(meta);
+  const reference = readReferenceList(item.references).find(
+    (ref) => ref.label?.trim() || ref.citation?.trim()
+  );
   let sourceLabel = metaLabel.length >= 3 ? metaLabel : "";
   let sourceUrl = safeHttpUrl(typeof meta?.sourceUrl === "string" ? meta.sourceUrl : undefined);
+  if (!sourceLabel && metaCitation.label.length >= 3) {
+    sourceLabel = metaCitation.label;
+    sourceUrl = sourceUrl ?? metaCitation.url;
+  }
 
   if (!sourceLabel && reference) {
     const label = reference.label?.trim() ?? "";

@@ -6,6 +6,7 @@ import { InlineError } from "@/components/ui/StatusMessage";
 import { QuestionStudentPreview } from "@/components/admin/questions/QuestionStudentPreview";
 import { QuestionQualitySection } from "@/components/internal/QuestionQualitySection";
 import type { AdminQuestionDetail } from "@/lib/admin/question-bank-admin";
+import { principleFieldLabel } from "@/lib/exam-prep/item-qa/principle-label";
 
 const STATUS_BADGE: Record<string, string> = {
   approved: "bg-green-50 text-green-700 border-green-200",
@@ -45,12 +46,16 @@ export function QuestionDetailDrawer({
   const [blueprintTopic, setBlueprintTopic] = useState("");
   const [tags, setTags] = useState("");
   const [note, setNote] = useState("");
+  const [governingPrinciple, setGoverningPrinciple] = useState("");
+  const [citationLabel, setCitationLabel] = useState("");
+  const [whyWrong, setWhyWrong] = useState<string[]>([]);
   const [showAnswer, setShowAnswer] = useState(false);
 
   const seedEditState = useCallback((d: AdminQuestionDetail) => {
+    const nextOptions = d.options.length ? d.options : ["", ""];
     setQuestion(d.question);
     setScenario(d.scenario ?? "");
-    setOptions(d.options.length ? d.options : ["", ""]);
+    setOptions(nextOptions);
     const idx = d.options.findIndex(
       (o) => o.toLowerCase() === d.correctAnswer.toLowerCase()
     );
@@ -61,6 +66,9 @@ export function QuestionDetailDrawer({
     setBlueprintTopic(d.blueprintTopic ?? "");
     setTags(d.tags.join(", "));
     setNote("");
+    setGoverningPrinciple(d.governingPrinciple ?? "");
+    setCitationLabel(d.citationLabel ?? "");
+    setWhyWrong(nextOptions.map((option) => d.distractorRationale?.[option] ?? ""));
   }, []);
 
   const load = useCallback(async () => {
@@ -112,6 +120,13 @@ export function QuestionDetailDrawer({
   function saveEdits() {
     const cleaned = options.map((o) => o.trim()).filter(Boolean);
     const correctAnswer = (options[correctIndex] ?? "").trim();
+    const distractorReasons: Record<string, string> = {};
+    cleaned.forEach((option) => {
+      const index = options.findIndex((value) => value.trim() === option);
+      if (index === correctIndex) return;
+      const reason = (whyWrong[index] ?? "").trim();
+      if (reason) distractorReasons[option] = reason;
+    });
     void patch({
       question,
       scenario: scenario.trim() || null,
@@ -122,6 +137,9 @@ export function QuestionDetailDrawer({
       blueprintDomain: blueprintDomain.trim() || null,
       blueprintTopic: blueprintTopic.trim() || null,
       tags: tags.split(",").map((t) => t.trim()).filter(Boolean),
+      governingPrinciple: governingPrinciple.trim() || undefined,
+      distractorReasons: Object.keys(distractorReasons).length ? distractorReasons : undefined,
+      citationLabel: citationLabel.trim() || undefined,
       note: note.trim() || undefined,
     });
   }
@@ -230,6 +248,13 @@ export function QuestionDetailDrawer({
                   setTags={setTags}
                   note={note}
                   setNote={setNote}
+                  principleLabel={principleFieldLabel(detail.fieldId)}
+                  governingPrinciple={governingPrinciple}
+                  setGoverningPrinciple={setGoverningPrinciple}
+                  whyWrong={whyWrong}
+                  setWhyWrong={setWhyWrong}
+                  citationLabel={citationLabel}
+                  setCitationLabel={setCitationLabel}
                 />
               ) : (
                 <>
@@ -407,6 +432,20 @@ function ReadView({ detail }: { detail: AdminQuestionDetail }) {
         <p className="text-xs font-semibold uppercase tracking-wide text-black/45">Rationale</p>
         <p className="mt-1 whitespace-pre-wrap text-sm">{detail.explanation}</p>
       </div>
+      {detail.governingPrinciple ? (
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wide text-black/45">
+            {principleFieldLabel(detail.fieldId)}
+          </p>
+          <p className="mt-1 whitespace-pre-wrap text-sm">{detail.governingPrinciple}</p>
+        </div>
+      ) : null}
+      {detail.citationLabel ? (
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wide text-black/45">Source</p>
+          <p className="mt-1 text-sm">{detail.citationLabel}</p>
+        </div>
+      ) : null}
       <div className="grid grid-cols-2 gap-3 text-sm">
         <Meta label="Difficulty" value={detail.difficulty?.toString() ?? "—"} />
         <Meta label="Source" value={detail.source} />
@@ -530,6 +569,13 @@ function EditFields(props: {
   setTags: (v: string) => void;
   note: string;
   setNote: (v: string) => void;
+  principleLabel: string;
+  governingPrinciple: string;
+  setGoverningPrinciple: (v: string) => void;
+  whyWrong: string[];
+  setWhyWrong: (v: string[]) => void;
+  citationLabel: string;
+  setCitationLabel: (v: string) => void;
 }) {
   const {
     question,
@@ -552,6 +598,13 @@ function EditFields(props: {
     setTags,
     note,
     setNote,
+    principleLabel,
+    governingPrinciple,
+    setGoverningPrinciple,
+    whyWrong,
+    setWhyWrong,
+    citationLabel,
+    setCitationLabel,
   } = props;
 
   function setOption(i: number, value: string) {
@@ -582,37 +635,53 @@ function EditFields(props: {
         <span className="mb-1 block font-medium">Options · select correct</span>
         <div className="space-y-2">
           {options.map((opt, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <input
-                type="radio"
-                name="edit-correct"
-                checked={correctIndex === i}
-                onChange={() => setCorrectIndex(i)}
-                className="h-4 w-4 shrink-0"
-              />
-              <input
-                value={opt}
-                onChange={(e) => setOption(i, e.target.value)}
-                className="apple-input w-full"
-              />
-              {options.length > 2 && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOptions(options.filter((_, idx) => idx !== i));
-                    if (correctIndex === i) setCorrectIndex(0);
-                  }}
-                  className="rounded-lg p-1.5 text-black/40 hover:bg-black/[0.05] hover:text-red-600"
-                >
-                  <Trash2 size={16} />
-                </button>
-              )}
+            <div key={i} className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="edit-correct"
+                  checked={correctIndex === i}
+                  onChange={() => setCorrectIndex(i)}
+                  className="h-4 w-4 shrink-0"
+                />
+                <input
+                  value={opt}
+                  onChange={(e) => setOption(i, e.target.value)}
+                  className="apple-input w-full"
+                />
+                {options.length > 2 && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOptions(options.filter((_, idx) => idx !== i));
+                      setWhyWrong(whyWrong.filter((_, idx) => idx !== i));
+                      if (correctIndex === i) setCorrectIndex(0);
+                    }}
+                    className="rounded-lg p-1.5 text-black/40 hover:bg-black/[0.05] hover:text-red-600"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                )}
+              </div>
+              {correctIndex !== i && opt.trim() ? (
+                <input
+                  value={whyWrong[i] ?? ""}
+                  onChange={(e) =>
+                    setWhyWrong(whyWrong.map((value, idx) => (idx === i ? e.target.value : value)))
+                  }
+                  className="apple-input ml-6 w-[calc(100%-1.5rem)]"
+                  placeholder="Why this distractor is wrong"
+                />
+              ) : null}
             </div>
           ))}
         </div>
         <button
           type="button"
-          onClick={() => setOptions([...options, ""])}
+          onClick={() => {
+            setOptions([...options, ""]);
+            setWhyWrong([...whyWrong, ""]);
+          }}
           className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-[var(--color-accent)]"
         >
           <Plus size={14} /> Add option
@@ -625,6 +694,25 @@ function EditFields(props: {
           onChange={(e) => setExplanation(e.target.value)}
           rows={4}
           className="apple-input w-full"
+        />
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1 block font-medium">{principleLabel}</span>
+        <textarea
+          value={governingPrinciple}
+          onChange={(e) => setGoverningPrinciple(e.target.value)}
+          rows={2}
+          className="apple-input w-full"
+          placeholder="The rule that decides the best next step on this board."
+        />
+      </label>
+      <label className="block text-sm">
+        <span className="mb-1 block font-medium">Source citation (optional)</span>
+        <input
+          value={citationLabel}
+          onChange={(e) => setCitationLabel(e.target.value)}
+          className="apple-input w-full"
+          placeholder="Guideline, textbook, or board outline"
         />
       </label>
       <div className="grid gap-4 sm:grid-cols-3">

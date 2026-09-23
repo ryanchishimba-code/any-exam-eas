@@ -86,6 +86,16 @@ export const updateQuestionSchema = z
     tags: tagArray.optional(),
     active: z.boolean().optional(),
     qaPassed: z.boolean().optional(),
+    governingPrinciple: z
+      .string()
+      .trim()
+      .max(2000)
+      .optional()
+      .transform((v) => (v ? v : undefined)),
+    distractorReasons: z
+      .record(z.string().trim().min(1).max(4000), z.string().trim().max(2000))
+      .optional(),
+    citationLabel: optionalText,
     note: z.string().trim().max(2000).optional(),
   })
   .refine((v) => Object.keys(v).length > 0, { message: "No changes provided." });

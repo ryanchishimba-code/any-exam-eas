@@ -11,7 +11,8 @@
  *   npm run db:audit-item-qa -- --field nursing --subject management-of-care --limit 50 --flag --include-rationale
  *
  * --flag marks text defects and near-duplicates.
- * Add --include-rationale to also queue schema gaps (expected on older items).
+ * Add --include-rationale to also queue schema gaps as `fails_schema` (expected on older items).
+ * That flag does not rewrite rationale text, qaPassed, or active.
  * --clear-resolved removes this pipeline's flag when a previously flagged item now passes.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -30,6 +31,7 @@ import {
   ITEM_QA_PIPELINE,
   NEAR_DUPLICATE_CODE,
   readItemQaRecord,
+  schemaFailureCodesFromIssues,
   withItemQaRecord,
   type DuplicatePair,
   type ItemPublishIssue,
@@ -153,6 +155,7 @@ async function applyFlags(
     const codes = [
       ...new Set([
         ...relevant.map((issue) => issue.code),
+        ...(includeRationale ? schemaFailureCodesFromIssues(row.issues) : []),
         ...(partnerId ? [NEAR_DUPLICATE_CODE] : []),
       ]),
     ];

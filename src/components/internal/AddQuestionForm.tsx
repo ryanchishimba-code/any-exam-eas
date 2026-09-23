@@ -5,6 +5,7 @@ import { X, Plus, Trash2, Eye, EyeOff, ImagePlus } from "lucide-react";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { QuestionStudentPreview } from "@/components/admin/questions/QuestionStudentPreview";
 import { compressImageToDataUrl } from "@/lib/images/compress-image";
+import { principleFieldLabel } from "@/lib/exam-prep/item-qa/principle-label";
 
 type FieldOption = { fieldId: string; examName: string };
 
@@ -273,7 +274,7 @@ export function AddQuestionForm({
           </label>
 
           <label className="block text-sm">
-            <span className="mb-1 block font-medium">Governing principle or priority rule</span>
+            <span className="mb-1 block font-medium">{principleFieldLabel(fieldId)}</span>
             <textarea
               value={governingPrinciple}
               onChange={(e) => setGoverningPrinciple(e.target.value)}

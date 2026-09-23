@@ -159,13 +159,25 @@ Admin approve, reject, archive, restore, QA pass, and QA unpass use the same inv
 
 New questions created in admin with **Save as draft** unchecked must pass the schema. Drafts can be incomplete.
 
-Approving or marking QA-passed a `manual` item (or any item stored with `generationMeta.itemQaSchema = "v1"`) runs the same gate. Seed and curated rows are not blocked, so the existing bank stays servable.
+The same gate runs when an edit would leave the item student-visible (`active` and `qaPassed`):
+
+- the first time it becomes student-visible (QA pass, or activate when it is already QA-passed)
+- a later edit of the stem, options, key, explanation, principle, distractor reasons, or citation
+- approve / QA pass / activate on a `manual` item, or any item stored with `generationMeta.itemQaSchema = "v1"`
+
+Seed and curated rows that are already student-visible stay served until someone edits or republishes them. A failed publish does not change the stem, options, explanation, `qaPassed`, or `active`. It writes `fails_schema` onto the existing Item QA flag (`reviewFlag` + `curationMeta.itemQa`) so the gap shows in **Admin → Question bank → Item QA flags** and the **Fails schema** filter. Passing a later edit removes only the schema codes.
+
+To queue a sample without rewriting rationales:
+
+```bash
+npm run db:audit-item-qa -- --field nursing --subject management-of-care --limit 50 --flag --include-rationale
+```
 
 Required on that path:
 
 1. Correct-answer explanation (paragraph, or a structured why-correct headline).
 2. For MCQ and select-all, a reason of at least 20 characters for each wrong option.
-3. Governing principle or priority rule (the form field, a `Principle:` / `Priority:` line, or an expert key takeaway).
+3. Governing principle or priority rule (the form field, a `Principle:` / `Priority:` / `Pearl:` line, or an expert clinical pearl or key takeaway).
 
 Citation is optional. Text lint errors (truncated options, broken markdown, encoding) also block.
 
@@ -173,7 +185,9 @@ The add-question form collects the principle, each distractor reason, and an opt
 
 ## Source and review date
 
-When a served item has a real citation (`references`, `generationMeta.sourceLabel`) or `lastReviewedAt`, the question shows a source line under the stem. Pipeline tags such as `seed` and `curated` are not shown as sources.
+When a served item has a real citation (`references`, `generationMeta.sourceLabel`, or `generationMeta.citation`) or a review date (`lastReviewedAt`, `generationMeta.contentReviewedAt`), the question shows a source line under the stem. Pipeline tags such as `seed` and `curated` are not shown as sources. Items with neither stay quiet.
+
+The principle field is shared. The editor label follows the board: nursing priority, monitoring rule, clinical pearl, or intervention principle.
 
 ## Verify
 
