@@ -17,6 +17,7 @@ import { getUserEdtechMetadata, getExamTestDate } from "@/lib/edtech/user-metada
 import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
+import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
 import { ROUTES } from "@/lib/routes";
 import { StudyHubSessionSummary } from "@/components/study-hub/StudyHubSessionSummary";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
@@ -83,7 +84,7 @@ async function DashboardContent({
   );
 
   // Wave 2: secondary panels — degrade instead of blanking the whole dashboard.
-  const [roadmap, metadata, usage, mastery] = await Promise.all([
+  const [roadmap, metadata, usage, mastery, inventory] = await Promise.all([
     settled(
       getExamRoadmapData(userId, examSlug, {
         usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
@@ -124,6 +125,7 @@ async function DashboardContent({
               "mastery"
             )
           : Promise.resolve(null),
+    settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
   ]);
 
   const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;
@@ -139,6 +141,8 @@ async function DashboardContent({
     openIncorrect: roadmap ? roadmap.openIncorrectCount : null,
     questionsToday: stats.questionsToday,
     roadmap,
+    inventoryCategories: inventory?.categories ?? null,
+    topicQuestionTotal: inventory?.topicQuestionTotal ?? null,
   });
 
   const weakTopics = enrichWeakTopicsWithStudyLinks(

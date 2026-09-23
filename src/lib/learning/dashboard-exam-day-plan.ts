@@ -5,10 +5,12 @@
 
 import { top500Href } from "@/lib/edtech/practice-links-core";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import type { CoverageInventoryCategory } from "@/lib/learning/coverage-heatmap";
 import { buildExamDayPlan, type ExamDayPlan, type ExamDayTopicInput } from "@/lib/learning/exam-day-plan";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { ROUTES } from "@/lib/routes";
+import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import type { ExamSlug } from "@/types/edtech";
 
 export function buildDashboardExamDayPlan(input: {
@@ -21,6 +23,9 @@ export function buildDashboardExamDayPlan(input: {
   openIncorrect: number | null;
   questionsToday: number;
   roadmap: ExamRoadmapData | null;
+  /** Active-inventory categories. Same payload as marketing and the Qbank header. */
+  inventoryCategories?: CoverageInventoryCategory[] | null;
+  topicQuestionTotal?: number | null;
 }): ExamDayPlan {
   const guide = getStudyGuideConfig(input.examSlug);
   const topics: ExamDayTopicInput[] = (input.roadmap?.topics ?? []).map((topic) => ({
@@ -30,6 +35,8 @@ export function buildDashboardExamDayPlan(input: {
     attempts: topic.attempts,
     accuracyPct: topic.accuracy,
     coveragePct: topic.pushCoveragePct,
+    seen: topic.pushesCompleted,
+    available: topic.pushesAvailable,
     practiceHref: topic.practiceHref,
     guideHref: topic.deepDiveHref ?? topic.topicsHubHref,
     guideLabel: topic.highYieldTopics[0] ?? topic.label,
@@ -49,6 +56,9 @@ export function buildDashboardExamDayPlan(input: {
     openIncorrect: input.openIncorrect,
     questionsToday: input.questionsToday,
     topics,
+    inventoryCategories: input.inventoryCategories,
+    topicQuestionTotal: input.topicQuestionTotal,
+    bankSubjectIds: getSubjectsForFieldId(input.fieldId).map((subject) => subject.id),
     examSimTrend: input.roadmap?.examSimTrend ?? null,
     examSimCompletedToday: input.roadmap?.examSimCompletedToday === true,
     fallbackGuideHref: guide?.routeBase ?? `${ROUTES.highYieldTopics}?exam=${input.examSlug}`,

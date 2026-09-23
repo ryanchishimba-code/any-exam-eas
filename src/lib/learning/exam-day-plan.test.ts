@@ -74,6 +74,12 @@ describe("buildExamDayPlan", () => {
     expect(plan.items[0]?.title).toBe(`${TODAY_QBANK_COUNT} Qbank questions`);
     expect(plan.items[0]?.why).toMatch(/Management of Care/);
     expect(plan.items[0]?.why).toMatch(/untouched high-weight/);
+    expect(plan.coverage.domainsLabel).toBe("Client Needs");
+    expect(plan.coverage.topGapId).toBe("management-of-care");
+    expect(plan.readiness.domains[0]?.id).toBe(plan.coverage.topGapId);
+    expect(plan.readiness.domains[0]?.untouched).toBe(true);
+    expect(plan.weekPlan.goals[0]?.title).toMatch(/Management of Care/);
+    expect(plan.coverage.chips[0]?.kind).toBe("untouched");
     expect(plan.items[0]?.href).toContain("field=nursing");
     expect(plan.items[0]?.href).toContain(`count=${TODAY_QBANK_COUNT}`);
     expect(plan.items[0]?.href).toContain("autostart=1");

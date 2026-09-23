@@ -1,7 +1,14 @@
 import { StudyBankPracticeLazy } from "@/components/study/StudyBankPracticeLazy";
 import { examFieldIds } from "@/lib/edtech/exams";
+import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
+import { buildCoverageHeatmap } from "@/lib/learning/coverage-heatmap";
+import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
+import {
+  coverageTopicsFromRoadmap,
+} from "@/lib/learning/load-coverage-heatmap";
 import { getStudentWeakTopics } from "@/lib/learning/student-dashboard";
 import { loadSubjectCountsForUser } from "@/lib/study/load-subject-counts";
+import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import type { ExamSlug } from "@/types/edtech";
 
 export type QuestionBankHubStats = {
@@ -24,10 +31,26 @@ export async function QuestionBankPracticeLoader({
 }) {
   // Critical path retries inside loadSubjectCountsForUser / Neon HTTP.
   // After they are exhausted, let the error bubble to question-bank/error.tsx.
-  const countsPayload = await loadSubjectCountsForUser(userId, fieldParam);
+  const fieldId = resolveQuestionBankFieldId(fieldParam);
 
-  // Weak topics soft-fail after their own retries — never blank the bank.
-  const weakTopics = await getStudentWeakTopics(userId, examFieldIds(examSlug));
+  // Counts stay on the critical path. Weak topics and the roadmap soft-fail.
+  const [countsPayload, weakTopics, roadmap] = await Promise.all([
+    loadSubjectCountsForUser(userId, fieldParam),
+    getStudentWeakTopics(userId, examFieldIds(examSlug)),
+    getExamRoadmapData(userId, examSlug, {
+      usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
+    }).catch(() => null),
+  ]);
+  const coverageFieldId = countsPayload?.fieldId ?? fieldId;
+  const coverage = roadmap
+    ? buildCoverageHeatmap({
+        fieldId: coverageFieldId,
+        topics: coverageTopicsFromRoadmap(roadmap.topics),
+        inventoryCategories: countsPayload?.categories ?? null,
+        topicQuestionTotal: countsPayload?.total ?? null,
+        bankSubjectIds: getSubjectsForFieldId(coverageFieldId).map((subject) => subject.id),
+      })
+    : null;
 
   const totalQuestions = countsPayload ? countsPayload.total : null;
   const initialInventory = countsPayload
@@ -50,6 +73,8 @@ export async function QuestionBankPracticeLoader({
       initialSubjectCountsFieldId={countsPayload?.fieldId}
       initialInventory={initialInventory}
       weakTopics={weakTopics}
+      initialCoverage={coverage}
+      initialCoverageFieldId={coverage ? coverageFieldId : undefined}
       hubStats={hubStats}
       usmleStepLabel={usmleStepLabel}
       topicCount={countsPayload?.counts ? Object.keys(countsPayload.counts).length : null}

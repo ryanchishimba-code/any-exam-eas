@@ -106,7 +106,13 @@ export function DashboardTodayBlock({
       ) : null}
 
       <div className="border-t border-[var(--color-border)]/45 pt-5">
-        <ReadinessProofPanel readiness={plan.readiness} embedded showLeadReason={false} />
+        <ReadinessProofPanel
+          readiness={plan.readiness}
+          domainsLabel={plan.coverage.domainsLabel}
+          coverage={plan.coverage}
+          embedded
+          showLeadReason={false}
+        />
       </div>
 
       <details className="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">

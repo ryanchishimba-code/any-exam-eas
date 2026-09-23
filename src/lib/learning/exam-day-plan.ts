@@ -30,8 +30,10 @@
  *    block or incorrect review ticks the matching goal. A qualifying exam
  *    simulation completed today ticks the simulation goal.
  * 7. Readiness proof = coverage × recent accuracy × remediation completion.
- *    Coverage is the blueprint-weighted share of categories with ≥1 saved attempt,
- *    and it is met only when every high-weight domain has a minimum sample.
+ *    Coverage bars, Today's gap, the week plan, and Qbank chips share one
+ *    heatmap. The coverage factor is the blueprint-weighted share of categories
+ *    with ≥1 saved attempt, and it is met only when every high-weight domain
+ *    has a minimum sample. Bar fill is item coverage from that same heatmap.
  *    Recent accuracy is the last 100 saved answers and counts only after 40 of
  *    them exist. Remediation completion is the share of saved attempts that are
  *    not still-open incorrect items. The band stays hidden until 100 answered
@@ -42,6 +44,13 @@
 
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import { fullExamLaunchHref } from "@/lib/full-exam/hrefs";
+import {
+  buildCoverageHeatmap,
+  COVERAGE_HIGH_WEIGHT_PCT,
+  touchCoveragePct,
+  type CoverageHeatmap,
+  type CoverageInventoryCategory,
+} from "@/lib/learning/coverage-heatmap";
 import {
   buildWeekCountdown,
   projectionOrder,
@@ -59,7 +68,7 @@ export const TODAY_DRUG_COUNT = 5;
 /** Blueprint-weighted touch coverage required for the coverage criterion. */
 export const COVERAGE_MIN_PCT = 60;
 /** Domains at or above this blueprint share are high-weight. */
-export const HIGH_WEIGHT_PCT = 10;
+export const HIGH_WEIGHT_PCT = COVERAGE_HIGH_WEIGHT_PCT;
 /** Answers required in each high-weight domain before coverage is met. */
 export const HIGH_WEIGHT_MIN_ATTEMPTS = 8;
 /** Rolling accuracy window, in saved answers. */
@@ -95,6 +104,11 @@ export type ExamDayTopicInput = {
   accuracyPct: number | null;
   /** Share of this category's bank the student has already seen (0–100). */
   coveragePct: number;
+  /** Distinct items seen. Omit when only coveragePct is known. */
+  seen?: number;
+  /** Serve-path size. Inventory counts override this when they are passed in. */
+  available?: number;
+  subjectIds?: string[];
   practiceHref: string;
   guideHref?: string;
   guideLabel?: string;
@@ -135,11 +149,17 @@ export type ReadinessDomainBar = {
   blueprintWeightPct: number;
   attempts: number;
   accuracyPct: number | null;
-  /** 0–100. Untouched domains stay empty. */
+  /** 0–100. Untouched domains stay empty. Fill is item coverage from the heatmap. */
   fillPct: number;
   untouched: boolean;
+  /** Started, but item coverage is still under the low bar. */
+  veryLow: boolean;
   highWeight: boolean;
   isTopGap: boolean;
+  seen: number;
+  /** Active questions in this domain. 0 when the bank size was not loaded. */
+  available: number;
+  bankCoveragePct: number;
 };
 
 export type ExamSimTrend = {
@@ -198,6 +218,8 @@ export type ExamDayPlan = {
   totalAttempts: number;
   items: ExamDayBlockItem[];
   weekPlan: WeekCountdownPlan;
+  /** Shared with readiness bars and Qbank chips. */
+  coverage: CoverageHeatmap;
   rules: string[];
   readiness: ExamDayReadiness;
 };
@@ -224,6 +246,15 @@ export type ExamDayPlanInput = {
   openIncorrect: number | null;
   questionsToday?: number;
   topics?: ExamDayTopicInput[];
+  /**
+   * Active-inventory category counts. Same rows as marketing and the Qbank
+   * header. When set, domain question counts come from here.
+   */
+  inventoryCategories?: CoverageInventoryCategory[] | null;
+  /** Active questions across topics, from that same inventory payload. */
+  topicQuestionTotal?: number | null;
+  /** Qbank picker ids, so chips select a subject the student can open. */
+  bankSubjectIds?: readonly string[];
   fallbackGuideHref?: string;
   fallbackGuideLabel?: string;
   fallbackDrugHref?: string;
@@ -253,13 +284,7 @@ export function calendarDaysUntil(isoDate: string, now: Date): number | null {
 export function blueprintTouchCoveragePct(
   topics: { blueprintWeightPct: number; attempts: number }[]
 ): number {
-  const weight = topics.reduce((sum, topic) => sum + Math.max(0, topic.blueprintWeightPct), 0);
-  if (weight <= 0) return 0;
-  const touched = topics.reduce(
-    (sum, topic) => sum + (topic.attempts > 0 ? Math.max(0, topic.blueprintWeightPct) : 0),
-    0
-  );
-  return Math.round((touched / weight) * 100);
+  return touchCoveragePct(topics);
 }
 
 export function remediationCompletionPct(totalAttempts: number, openIncorrect: number): number {
@@ -378,13 +403,6 @@ function clampPct(value: number): number {
   return Math.max(0, Math.min(100, value));
 }
 
-function gapScore(topic: ExamDayTopicInput): number {
-  const weight = Math.max(topic.blueprintWeightPct, 1);
-  const coverageGap = 100 - clampPct(topic.coveragePct);
-  const accuracyGap = topic.attempts === 0 ? 100 : 100 - clampPct(topic.accuracyPct ?? 50);
-  return weight * (0.65 * coverageGap + 0.35 * accuracyGap);
-}
-
 /** 0–100 urgency used to order Today's rows. Higher means close this first. */
 export function domainUrgency(topic: ExamDayTopicInput): number {
   const weight = Math.max(0, topic.blueprintWeightPct);
@@ -417,16 +435,11 @@ function isMedicationDomain(topic: ExamDayTopicInput | null): boolean {
   return /pharm|medicat|drug/i.test(`${topic.id} ${topic.label}`);
 }
 
-function rankTopics(topics: ExamDayTopicInput[], now: Date): ExamDayTopicInput[] {
-  const scored = topics.map((topic) => ({ topic, gap: gapScore(topic) }));
-  scored.sort((a, b) => b.gap - a.gap || a.topic.label.localeCompare(b.topic.label));
-  if (scored.length === 0) return [];
-  const topGap = scored[0]!.gap;
-  const tied = scored.filter((row) => Math.abs(row.gap - topGap) < 0.001);
-  const rotate = tied.length > 1 ? utcDayIndex(now) % tied.length : 0;
-  const lead = tied[rotate]!.topic;
-  const rest = scored.map((row) => row.topic).filter((topic) => topic.id !== lead.id);
-  return [lead, ...rest];
+function rankTopics(topics: ExamDayTopicInput[], heatmap: CoverageHeatmap): ExamDayTopicInput[] {
+  const byId = new Map(topics.map((topic) => [topic.id, topic]));
+  return heatmap.domains
+    .map((domain) => byId.get(domain.id))
+    .filter((topic): topic is ExamDayTopicInput => Boolean(topic));
 }
 
 function withPracticeCount(href: string, count: number, fieldId: string): string {
@@ -485,7 +498,7 @@ function planRules(): string[] {
     "The guide row is one high-yield topic: an unpracticed blueprint category when one exists, otherwise the Qbank gap. Every board uses the same topic links.",
     `Drugs is a ${TODAY_DRUG_COUNT}-card touch on that topic's class, or this board's drug list when the topic has no class. A medication-category gap pulls drugs up behind the guide.`,
     `The week plan is the countdown contract for this board. With more than 14 days left it is coverage days and remediation days, weighted by the same blueprint gap and open incorrect items, and Today's block is that projection. With 14 or fewer days left the week adds exam-simulation days and incorrect-drill days, and Today's rows follow that day's kind. Finishing today's ${TODAY_QBANK_COUNT} Qbank questions, or the incorrect review, ticks the matching goal. A qualifying exam simulation completed today ticks the simulation goal. Earlier days this week are not reconstructed. This is practice progress only.`,
-    `${READINESS_FORMULA} Coverage is the blueprint-weighted share of categories with at least one saved attempt. It is met at ${COVERAGE_MIN_PCT}% or more, and only when every domain weighted ${HIGH_WEIGHT_PCT}% or more has at least ${HIGH_WEIGHT_MIN_ATTEMPTS} answers. Recent accuracy is the last ${RECENT_ACCURACY_WINDOW} saved answers and is met at ${RECENT_ACCURACY_MIN_PCT}% once that window has ${RECENT_ACCURACY_MIN_SAMPLE} answers. Remediation completion is the share of saved attempts that are not still-open incorrect items. It is met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} open incorrect items. Ready means all three are met. Almost means two. Not yet means fewer. The band stays hidden until ${READINESS_MIN_SAMPLE} answered questions.`,
+    `${READINESS_FORMULA} Coverage bars, Today's gap, the week plan, and Qbank untouched or low chips use one blueprint heatmap. The coverage factor is the blueprint-weighted share of categories with at least one saved attempt. It is met at ${COVERAGE_MIN_PCT}% or more, and only when every domain weighted ${HIGH_WEIGHT_PCT}% or more has at least ${HIGH_WEIGHT_MIN_ATTEMPTS} answers. Recent accuracy is the last ${RECENT_ACCURACY_WINDOW} saved answers and is met at ${RECENT_ACCURACY_MIN_PCT}% once that window has ${RECENT_ACCURACY_MIN_SAMPLE} answers. Remediation completion is the share of saved attempts that are not still-open incorrect items. It is met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} open incorrect items. Ready means all three are met. Almost means two. Not yet means fewer. The band stays hidden until ${READINESS_MIN_SAMPLE} answered questions.`,
     `A completed exam simulation of ${EXAM_SIM_MIN_QUESTIONS} or more questions can appear as an optional trend. It does not change Ready, Almost, or Not yet.`,
     READINESS_DISCLAIMER,
   ];
@@ -643,7 +656,26 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     : totalAttempts;
   const examSim = input.examSimTrend ?? null;
 
-  const ranked = rankTopics(topics, now);
+  const heatmap = buildCoverageHeatmap({
+    fieldId: input.fieldId,
+    now,
+    topics: topics.map((topic) => ({
+      id: topic.id,
+      label: topic.label,
+      blueprintWeightPct: topic.blueprintWeightPct,
+      attempts: topic.attempts,
+      accuracyPct: topic.accuracyPct,
+      coveragePct: topic.coveragePct,
+      seen: topic.seen,
+      available: topic.available,
+      subjectIds: topic.subjectIds,
+      practiceHref: topic.practiceHref,
+    })),
+    inventoryCategories: input.inventoryCategories,
+    topicQuestionTotal: input.topicQuestionTotal,
+    bankSubjectIds: input.bankSubjectIds,
+  });
+  const ranked = rankTopics(topics, heatmap);
   const qbankTopic = ranked[0] ?? null;
   const guideTopic =
     ranked.find((topic) => topic.attempts === 0 && topic.id !== qbankTopic?.id) ??
@@ -820,7 +852,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     else item.doneToday = false;
   }
 
-  const coveragePct = blueprintTouchCoveragePct(topics);
+  const coveragePct = heatmap.touchCoveragePct;
   const remediationPct = openKnown ? remediationCompletionPct(totalAttempts, openIncorrect) : 0;
   const score = readinessScoreFromFactors(coveragePct, recentAccuracyPct, remediationPct);
   const visible = totalAttempts >= READINESS_MIN_SAMPLE;
@@ -842,19 +874,21 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
   const criteria = [coverage.criterion, accuracy.criterion, remediation.criterion];
   if (examSim) criteria.push(examSimCriterion(examSim));
 
-  const domains: ReadinessDomainBar[] = [...topics]
-    .sort((a, b) => domainUrgency(b) - domainUrgency(a) || a.label.localeCompare(b.label))
-    .map((topic) => ({
-      id: topic.id,
-      label: topic.label,
-      blueprintWeightPct: topic.blueprintWeightPct,
-      attempts: topic.attempts,
-      accuracyPct: topic.accuracyPct,
-      fillPct: topic.attempts <= 0 ? 0 : clampPct(topic.accuracyPct ?? 0),
-      untouched: topic.attempts <= 0,
-      highWeight: topic.blueprintWeightPct >= HIGH_WEIGHT_PCT,
-      isTopGap: topic.id === qbankTopic?.id,
-    }));
+  const domains: ReadinessDomainBar[] = heatmap.domains.map((domain) => ({
+    id: domain.id,
+    label: domain.label,
+    blueprintWeightPct: domain.blueprintWeightPct,
+    attempts: domain.attempts,
+    accuracyPct: domain.accuracyPct,
+    fillPct: domain.fillPct,
+    untouched: domain.untouched,
+    veryLow: domain.veryLow,
+    highWeight: domain.highWeight,
+    isTopGap: domain.id === heatmap.topGapId,
+    seen: domain.seen,
+    available: domain.available,
+    bankCoveragePct: domain.bankCoveragePct,
+  }));
 
   const readiness: ExamDayReadiness = {
     visible,
@@ -894,6 +928,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     totalAttempts,
     items,
     weekPlan: projection.weekPlan,
+    coverage: heatmap,
     rules: planRules(),
     readiness,
   };

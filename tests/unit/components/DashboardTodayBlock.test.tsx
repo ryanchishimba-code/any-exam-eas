@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { DashboardTodayBlock } from "@/components/dashboard/DashboardTodayBlock";
+import { buildCoverageHeatmap } from "@/lib/learning/coverage-heatmap";
 import { TODAY_QBANK_COUNT, buildExamDayPlan } from "@/lib/learning/exam-day-plan";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 import type { WeekCountdownPlan } from "@/lib/learning/week-countdown-plan";
@@ -18,6 +19,7 @@ function plan(items: ExamDayPlan["items"]): ExamDayPlan {
     totalAttempts: 19,
     items,
     weekPlan,
+    coverage: buildCoverageHeatmap({ fieldId: "usmle-step-1", topics: [] }),
     rules: ["Coverage gap ranks the Qbank row."],
     readiness: {
       visible: false,

@@ -27,7 +27,12 @@ import { cn } from "@/lib/utils";
 import { QuestionBankCountWheel } from "./question-bank/QuestionBankCountWheel";
 import { QuestionBankFormatMode } from "./question-bank/QuestionBankFormatMode";
 import { QuestionBankSection, QuestionBankSegment } from "./question-bank/QuestionBankSection";
-import { QuestionBankTopicPicker } from "./question-bank/QuestionBankTopicPicker";
+import { CoverageChips } from "./question-bank/CoverageChips";
+import {
+  QuestionBankTopicPicker,
+  type CoverageSubjectMark,
+} from "./question-bank/QuestionBankTopicPicker";
+import type { CoverageChip, CoverageHeatmap } from "@/lib/learning/coverage-heatmap";
 
 type SubjectOption = { id: string; label: string };
 
@@ -46,6 +51,9 @@ type QuestionBankSetupProps = {
   /** Bank field — USMLE uses 40/50/80 wheel presets. */
   fieldId?: string;
   weakSubjectIds?: string[];
+  coverageChips?: CoverageChip[];
+  coverageLabel?: CoverageHeatmap["domainsLabel"];
+  coverageLoaded?: boolean;
   compact?: boolean;
   countsLoading?: boolean;
   practiceFormat?: PracticeFormatMode;
@@ -81,6 +89,9 @@ export function QuestionBankSetup({
   examLabel,
   fieldId,
   weakSubjectIds = [],
+  coverageChips = [],
+  coverageLabel = "Blueprint topics",
+  coverageLoaded = false,
   compact = false,
   countsLoading = false,
   practiceFormat = "all",
@@ -123,6 +134,10 @@ export function QuestionBankSetup({
     ? { id: MIXED_SUBJECT_ID, label: MIXED_SUBJECT_LABEL }
     : subjects.find((s) => s.id === subjectId);
   const selectedCount = maxAvailable;
+  const coverageMarks: CoverageSubjectMark[] = coverageChips.map((chip) => ({
+    subjectId: chip.subjectId,
+    kind: chip.kind,
+  }));
 
   return (
     <div className="space-y-8">
@@ -139,9 +154,19 @@ export function QuestionBankSetup({
 
       <QuestionBankSection
         title="Choose a topic"
-        hint="Search or scroll — weak topics from your dashboard are marked."
+        hint={
+          coverageLoaded
+            ? "Search or scroll. Untouched and low-coverage topics use the same heatmap as Today."
+            : "Search or scroll — weak topics from your dashboard are marked."
+        }
       >
-        {weakSubjectIds.length > 0 ? (
+        <CoverageChips
+          chips={coverageChips}
+          domainsLabel={coverageLabel}
+          activeSubjectId={subjectId}
+          onSelect={onSubjectChange}
+        />
+        {!coverageLoaded && weakSubjectIds.length > 0 ? (
           <p className={cn(qbUi.surface, "px-3.5 py-2.5 text-[12px] text-[var(--color-ink-muted)]")}>
             {weakSubjectIds.length} weak topic{weakSubjectIds.length === 1 ? "" : "s"} flagged —
             start there for the biggest gains.
@@ -174,6 +199,8 @@ export function QuestionBankSetup({
           subjectCounts={subjectCounts}
           onSubjectChange={onSubjectChange}
           weakSubjectIds={weakSubjectIds}
+          coverageMarks={coverageMarks}
+          coverageLoaded={coverageLoaded}
           countsLoading={countsLoading}
         />
       </QuestionBankSection>
