@@ -68,7 +68,7 @@ npm run db:retire-near-duplicates -- --field nursing --apply
 1. It is active, in that field, and `reviewFlag` is true.
 2. `curationMeta.itemQa` is pipeline `item-qa-v1` and includes `near_duplicate`.
 3. The stored partner id is strictly lower than this row's id (the kept twin from the audit).
-4. Walking partner links ends at an active keeper in the same field. The keeper is not retired.
+4. Walking partner links ends at an active keeper in the same field. Inactive partners in the middle are followed. The keeper is not retired.
 
 ### Partner chains
 
@@ -78,13 +78,14 @@ The walk has no hop cap:
 
 1. A row joins the chain only when its partner id is strictly lower than its own id.
 2. Those links are a strictly decreasing sequence of ids. A decreasing sequence cannot repeat an id, so it cannot cycle. Length is not a cycle risk.
-3. The walk stops at the first id that is not itself a queued near-duplicate. That id must be active, in the same field, and lower than the row being retired. Otherwise the row is skipped (`keeper_missing`, `keeper_inactive`, `keeper_other_field`, or `keeper_not_lower_id`). An inactive row in the middle ends the walk: rows above it are skipped, and rows below it can still retire onto the active keeper.
-4. If an id repeats, that row is skipped as `cycle` and nothing on that walk is retired. The lower-id rule already makes a cycle impossible. The seen-set is there so a corrupt partner map cannot loop.
-5. Two rows that point at each other are not a cycle to retire around. The higher id retires. The lower id is the keeper and stays active.
-6. The resolved keeper is memoized, so a long chain is walked once.
-7. If a retire id is also someone's keeper, it is skipped (`keeper_in_retire_set`). `--apply` refuses the whole write if that happens, and writes nothing.
+3. Queued near-duplicates are followed. An inactive row is not the end of the walk. If that row stores a strictly lower partner id, the walk follows it. That covers a near-duplicate already retired with `retiredReason: near_duplicate`, and any other inactive partner that still points onward.
+4. The walk stops at the first active row in the same field. That row is the keeper. It must be lower than the row being retired. The keeper is not retired, and its own partner link is not followed.
+5. Hard stops skip the queued row: a repeated id (`cycle`), a partner id that is not in the bank (`keeper_missing`), a row in another field (`keeper_other_field`), or an inactive row with no strictly lower partner (`keeper_inactive`). `keeper_not_lower_id` means the active keeper is not lower than the queued row. A chain that is inactive all the way down, with no active keeper, is skipped.
+6. Two rows that point at each other are not a cycle to retire around. The higher id retires. The lower id is the active keeper and stays active.
+7. The resolved keeper is memoized, so a long chain is walked once.
+8. If a retire id is also someone's keeper, it is skipped (`keeper_in_retire_set`). `--apply` refuses the whole write if that happens, and writes nothing.
 
-An earlier cap of 12 skipped the rest of a chain as `chain_too_long`. That was about 250 active nursing near-duplicates after the first apply (1,216 retired). Those higher ids are eligible on the next dry-run. `chain_too_long` is no longer produced.
+An earlier cap of 12 skipped the rest of a chain as `chain_too_long`. That was about 250 active nursing near-duplicates after the first apply (1,216 retired). Removing the cap left those rows skipped as `keeper_inactive`: each one points at an already retired near-duplicate, and that inactive row points on at the live keeper. The walk now continues through those inactive rows. `chain_too_long` is no longer produced.
 
 Text-only flags (`truncated_option`, `letter_only_option`, `empty_stem`) stay in the queue for the text-flag tool below. If a retired near-duplicate also has another Item QA code, `near_duplicate` is removed and `reviewFlag` stays true for the remaining code. A duplicate-only row has `reviewFlag` cleared and keeps a retirement note on `curationMeta.itemQa`.
 
@@ -180,4 +181,4 @@ When a served item has a real citation (`references`, `generationMeta.sourceLabe
 npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts src/lib/exam-prep/item-qa/text-flag-remediation.test.ts src/lib/inventory/active-inventory-cache.test.ts src/lib/inventory/revalidate-active-inventory.test.ts tests/unit/components/QuestionRenderer.test.tsx
 ```
 
-The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, a complete "watch for" choice, the rationale schema, the manual-only publish gate, the source line, the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, `qaPassed` is not a write), and the text-flag plan (empty stems retire, NGN letter placeholders clear, content is not rewritten).
+The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, a complete "watch for" choice, the rationale schema, the manual-only publish gate, the source line, the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, an inactive middle still reaches the active keeper, an all-inactive chain is skipped, `qaPassed` is not a write), and the text-flag plan (empty stems retire, NGN letter placeholders clear, content is not rewritten).
