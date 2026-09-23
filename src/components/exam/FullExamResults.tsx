@@ -19,6 +19,7 @@ import { formatHms } from "@/lib/full-exam/config";
 import {
   countUnansweredExamItems,
   fullExamResultsTitle,
+  summarySaysEndedEarly,
 } from "@/lib/full-exam/results-title";
 import { fullExamHref } from "@/lib/routes";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
@@ -77,9 +78,22 @@ export function FullExamResults({
 }: Props) {
   const exam = EXAM_CATALOG[examSlug];
   const correct = answers.filter((a) => a.correct).length;
+  const plannedCount = Math.max(
+    questions.length,
+    analysis.sessionConfig?.questionCount ?? 0
+  );
+  const recordedAnswered = analysis.answeredCount;
+  const unansweredFromLog = countUnansweredExamItems(plannedCount, answers);
+  const unanswered =
+    typeof recordedAnswered === "number" && Number.isFinite(recordedAnswered)
+      ? Math.max(unansweredFromLog, plannedCount - Math.max(0, Math.floor(recordedAnswered)))
+      : unansweredFromLog;
+  const sessionEndedEarly =
+    endedEarly || analysis.endedEarly === true || summarySaysEndedEarly(analysis.summary);
   const resultsTitle = fullExamResultsTitle({
-    endedEarly,
-    unanswered: countUnansweredExamItems(questions.length, answers),
+    endedEarly: sessionEndedEarly,
+    unanswered,
+    summary: analysis.summary,
   });
   const [view, setView] = useState<ReviewView>(initialReviewOpen ? "question" : "summary");
   const [index, setIndex] = useState(0);
@@ -399,7 +413,7 @@ export function FullExamResults({
         score={score}
         analysis={analysis}
         answers={answers}
-        endedEarly={endedEarly}
+        endedEarly={sessionEndedEarly}
         onReviewMissed={
           questions.length > 0
             ? () => {

@@ -16,6 +16,7 @@ import { reviewIncorrectHref } from "@/lib/learning/remediation-loop";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
+import { summarySaysEndedEarly } from "@/lib/full-exam/results-title";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
@@ -96,7 +97,11 @@ async function FullExamResultsContent({
             : reviewIncorrectHref(fieldId, null, Math.max(missCount, 1))
         }
         proofHref={ROUTES.dashboard}
-        endedEarly={examSession.status === "ended_early"}
+        endedEarly={
+          examSession.status === "ended_early" ||
+          analysis.endedEarly === true ||
+          summarySaysEndedEarly(analysis.summary)
+        }
       />
 
       <div className="mt-6 flex justify-center">

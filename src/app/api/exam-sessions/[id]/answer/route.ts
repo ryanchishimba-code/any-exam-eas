@@ -16,6 +16,7 @@ import {
   snapshotsFromAnalysis,
 } from "@/lib/learning/full-exam-pass-path";
 import { persistCompletedSessionAttempts } from "@/lib/learning/persist-session-attempts";
+import { summarySaysEndedEarly } from "@/lib/full-exam/results-title";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
 export const runtime = "nodejs";
@@ -51,7 +52,17 @@ export async function PATCH(
       answers,
       snapshots: snapshotsFromAnalysis(body.analysis),
     });
-    const analysis = analysisWithAnsweredCount(body.analysis, drafts.length);
+    const summary =
+      body.analysis && typeof body.analysis === "object"
+        ? (body.analysis as { summary?: unknown }).summary
+        : undefined;
+    const endedEarly = Boolean(body.endedEarly) || summarySaysEndedEarly(
+      typeof summary === "string" ? summary : undefined
+    );
+    const analysis = {
+      ...analysisWithAnsweredCount(body.analysis, drafts.length),
+      endedEarly,
+    };
     const totalQuestions = session.questionCount || drafts.length;
     const score = calculateExamScorePercent(answers, totalQuestions);
     const fieldId =
@@ -69,7 +80,7 @@ export async function PATCH(
       score,
       weakAreas: body.weakAreas ?? [],
       analysis,
-      endedEarly: Boolean(body.endedEarly),
+      endedEarly,
       answers,
     });
     return NextResponse.json({
