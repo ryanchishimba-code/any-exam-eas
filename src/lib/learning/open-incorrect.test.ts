@@ -11,13 +11,13 @@ describe("countOpenIncorrectItems", () => {
     ).toBe(1);
   });
 
-  it("clears an item once any correct attempt is saved", () => {
+  it("keeps an item open after one correct attempt", () => {
     expect(
       countOpenIncorrectItems([
         { bankItemId: "q1", questionKey: "q1", correct: false },
         { bankItemId: "q1", questionKey: "q1", correct: true },
       ])
-    ).toBe(0);
+    ).toBe(1);
   });
 
   it("ignores ephemeral numeric keys that are not bank ids", () => {

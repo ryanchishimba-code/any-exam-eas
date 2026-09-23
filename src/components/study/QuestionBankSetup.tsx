@@ -14,6 +14,7 @@ import {
   resolveWheelCountValue,
   validateQuestionBankSession,
 } from "@/lib/study/question-bank-setup";
+import { REMEDIATION_MASTERY_RULE } from "@/lib/learning/item-mastery";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import { cn } from "@/lib/utils";
 import { QuestionBankCountWheel } from "./question-bank/QuestionBankCountWheel";
@@ -49,7 +50,7 @@ const STYLE_OPTIONS: { id: QuestionBankStyle; label: string; hint: string }[] = 
   {
     id: "review_incorrect",
     label: "Review incorrect",
-    hint: "Re-drill items you missed and have not yet gotten right",
+    hint: "Misses stay open until a spaced re-proof",
   },
 ];
 
@@ -207,6 +208,11 @@ export function QuestionBankSetup({
                   );
                 })}
               </div>
+              {bankStyle === "review_incorrect" ? (
+                <p className="mt-3 max-w-2xl px-0.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+                  {REMEDIATION_MASTERY_RULE}
+                </p>
+              ) : null}
             </div>
           ) : null}
 

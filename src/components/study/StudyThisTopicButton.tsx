@@ -4,6 +4,7 @@ import Link from "next/link";
 import { BookMarked, BookOpen, Bone, GraduationCap, Pill, RotateCcw } from "lucide-react";
 import { anatomyHref, topicRetestHref } from "@/lib/edtech/practice-links";
 import { REMEDIATION_MASTERY_RULE, reviewIncorrectHref } from "@/lib/learning/remediation-loop";
+import { MarkItemMastered } from "./MarkItemMastered";
 import type { ResolvedQuestionStudyLinks } from "@/lib/library/question-study-links";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -18,6 +19,10 @@ type Props = {
   missed?: boolean;
   /** Show when the student flagged for review. */
   flagged?: boolean;
+  /** Bank item that can be marked mastered. */
+  bankItemId?: string | null;
+  /** This session is the Review incorrect queue, including pending re-proof. */
+  reviewQueue?: boolean;
   className?: string;
 };
 
@@ -35,6 +40,8 @@ export function StudyThisTopicButton({
   subjectId,
   missed,
   flagged,
+  bankItemId,
+  reviewQueue = false,
   className,
 }: Props) {
   const deepDive = links.primaryDeepDive;
@@ -57,8 +64,21 @@ export function StudyThisTopicButton({
   const showDrug = Boolean(drug && missed);
   const showCards = Boolean(cards && showContent);
   const showAnatomy = Boolean(missed && primaryStructure);
+  const masteryItemId = bankItemId?.trim() || "";
+  const showMastery = Boolean(
+    fieldId && masteryItemId && !/^\d+$/.test(masteryItemId) && (missed || reviewQueue)
+  );
 
-  if (!showDeepDive && !showGuide && !showDrug && !showCards && !showAnatomy && !retestHref) {
+  if (
+    !showDeepDive &&
+    !showGuide &&
+    !showDrug &&
+    !showCards &&
+    !showAnatomy &&
+    !retestHref &&
+    !showMastery &&
+    !(reviewQueue && !missed)
+  ) {
     return null;
   }
 
@@ -74,8 +94,12 @@ export function StudyThisTopicButton({
           Remediation
         </p>
         {missed ? (
-          <p className="mt-1 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
+          <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
             {REMEDIATION_MASTERY_RULE}
+          </p>
+        ) : reviewQueue ? (
+          <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+            Pending re-proof. One correct answer does not clear this item.
           </p>
         ) : null}
       </div>
@@ -126,6 +150,7 @@ export function StudyThisTopicButton({
           </Link>
         ) : null}
       </div>
+      {showMastery && fieldId ? <MarkItemMastered field={fieldId} itemId={masteryItemId} /> : null}
     </div>
   );
 }

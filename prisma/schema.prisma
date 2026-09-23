@@ -55,6 +55,7 @@ model User {
   questionReportsResolved QuestionReport[] @relation("QuestionReportResolvedBy")
   studySessions      StudySession[]
   questionAttempts   QuestionAttempt[]
+  remediationMasteryMarks RemediationMasteryMark[]
   learningProfile    LearningProfile?
   conceptMasteries   ConceptMastery[]
   questionMasteries  QuestionMastery[]
@@ -1056,6 +1057,22 @@ model QuestionAttempt {
   @@index([questionKey, correct])
   @@index([bankItemId])
   @@index([userId, mistakeCategory])
+}
+
+/// Confirmed "mark mastered" for a missed bank item.
+/// A later incorrect attempt reopens it. Keyed by field + item, not exam slug.
+model RemediationMasteryMark {
+  id          String   @id @default(cuid())
+  userId      String
+  fieldId     String
+  itemId      String
+  confirmedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, fieldId, itemId])
+  @@index([userId, fieldId])
 }
 
 /// User-reported problematic questions — triaged by staff with automated QA analysis.

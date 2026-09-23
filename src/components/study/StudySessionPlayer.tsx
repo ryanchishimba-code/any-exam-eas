@@ -99,6 +99,8 @@ type Props = {
   onComplete?: (summary: ReturnType<typeof summarizeSession>) => void;
   /** When set, show return-to-review-module actions after the last question. */
   returnTo?: TopicPracticeReturn;
+  /** Review incorrect queue — a correct answer stays pending re-proof. */
+  reviewQueue?: boolean;
 };
 
 export function StudySessionPlayer({
@@ -113,6 +115,7 @@ export function StudySessionPlayer({
   timedSessionSeconds,
   onComplete,
   returnTo,
+  reviewQueue = false,
 }: Props) {
   const initial = useMemo(() => {
     try {
@@ -847,6 +850,8 @@ export function StudySessionPlayer({
                 subjectId={current.subjectId}
                 missed={answer.correct !== true}
                 flagged={isFlagged}
+                bankItemId={current.bankItemId}
+                reviewQueue={reviewQueue}
               />
               <MasteryMissAttachments
                 missed={answer.correct !== true}

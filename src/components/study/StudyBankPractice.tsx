@@ -103,6 +103,8 @@ import {
   decisionFromRemediationPayload,
   emptyModeFromLaunchQuery,
   launchQueryForEmpty,
+  reviewIncorrectBlocksSessionSkeleton,
+  shouldAutostartPractice,
   type RemediationMode,
 } from "@/lib/study/remediation-launch";
 import { PanceTaskFocus } from "./question-bank/PanceTaskFocus";
@@ -316,7 +318,9 @@ export function StudyBankPractice({
   );
   const [loading, setLoading] = useState(false);
   const [checkingRemediation, setCheckingRemediation] = useState(false);
-  const [remediationEmpty, setRemediationEmpty] = useState<RemediationMode | null>(null);
+  const [remediationEmpty, setRemediationEmpty] = useState<RemediationMode | null>(() =>
+    emptyModeFromLaunchQuery(searchParams.get("launch"))
+  );
   const [error, setError] = useState("");
   const [upgradeHref, setUpgradeHref] = useState<string | null>(null);
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
@@ -861,8 +865,6 @@ export function StudyBankPractice({
         : null;
     if (remediationMode) {
       setCheckingRemediation(true);
-      setRemediationEmpty(null);
-      rememberLaunchOutcome(null);
     } else {
       setLoading(true);
     }
@@ -1074,6 +1076,8 @@ export function StudyBankPractice({
           rememberLaunchOutcome("review_incorrect");
           return;
         }
+        setRemediationEmpty(null);
+        rememberLaunchOutcome(null);
         if (decision.status === "error") {
           throw new Error(decision.message);
         }
@@ -1121,11 +1125,11 @@ export function StudyBankPractice({
           throw new Error("Review incorrect did not return any questions. Try again.");
         }
         setAdaptiveMeta({
-          sessionRationale: `Reviewing ${raw.length} items you missed and have not yet answered correctly.`,
+          sessionRationale: `Reviewing ${raw.length} open items. One correct leaves an item pending re-proof until a spaced re-check, or you mark it mastered.`,
           questionReasoning: Object.fromEntries(
             raw.map((q) => [
               String(q.id),
-              "Previously incorrect — re-test until you get this right.",
+              "Open remediation — a single correct does not clear this item.",
             ])
           ),
         });
@@ -1337,12 +1341,22 @@ export function StudyBankPractice({
   }, [questions, autostartRequested, pathname, router, searchParams]);
 
   useEffect(() => {
-    if (!autostartRequested || autostartAttempted.current || questions || loading) return;
+    if (
+      !shouldAutostartPractice({
+        autostart: autostartRequested,
+        launch: searchParams.get("launch"),
+        hasQuestions: Boolean(questions),
+        loading,
+      })
+    ) {
+      return;
+    }
+    if (autostartAttempted.current) return;
     if (!isTimedExam && !subjectId && bankStyle !== "today") return;
     autostartAttempted.current = true;
     document.getElementById("practice-launcher")?.scrollIntoView({ behavior: "smooth", block: "start" });
     void start();
-  }, [autostartRequested, isTimedExam, subjectId, bankStyle, questions, loading]);
+  }, [autostartRequested, isTimedExam, subjectId, bankStyle, questions, loading, searchParams]);
 
   const bankSessionValidation = useMemo(
     () =>
@@ -1377,7 +1391,15 @@ export function StudyBankPractice({
   );
 
   const remediationStyle = bankStyle === "review_incorrect" || bankStyle === "weak_areas";
-  if (((loading && !questions && !remediationStyle) || (examSwitching && !questions))) {
+  const blockSessionSkeleton = reviewIncorrectBlocksSessionSkeleton({
+    bankStyle,
+    styleParam: searchParams.get("style"),
+  });
+  if (
+    !questions &&
+    !blockSessionSkeleton &&
+    ((loading && !remediationStyle) || examSwitching)
+  ) {
     return (
       <div
         id="practice-launcher"
@@ -1427,6 +1449,7 @@ export function StudyBankPractice({
           questions={questions}
           sourceType="bank"
           mode={sessionStudyMode}
+          reviewQueue={bankStyle === "review_incorrect"}
           title={title}
           adaptiveMeta={adaptiveMeta ?? undefined}
           timedSessionSeconds={timedSessionSeconds}
@@ -1757,8 +1780,8 @@ export function StudyBankPractice({
             </div>
           ) : null}
 
-          {checkingRemediation ? (
-            <p role="status" className="text-sm text-[var(--color-ink-muted)]">
+          {checkingRemediation && !remediationEmpty ? (
+            <p role="status" className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
               Checking {bankStyle === "review_incorrect" ? "incorrect items" : "weak areas"}…
             </p>
           ) : null}
@@ -1766,6 +1789,8 @@ export function StudyBankPractice({
           {remediationEmpty ? (
             <RemediationLaunchNotice
               mode={remediationEmpty}
+              fieldId={fieldId}
+              subjectId={subjectId}
               onStartStandard={() => {
                 setRemediationEmpty(null);
                 setBankStyle("standard");
