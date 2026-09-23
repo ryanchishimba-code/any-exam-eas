@@ -1,23 +1,13 @@
 import { NextResponse } from "next/server";
 import { rollupDailySummaries } from "@/lib/analytics/aggregate";
+import { isCronAuthorized } from "@/lib/cron-auth";
 
 export const maxDuration = 120;
 export const runtime = "nodejs";
 
-function isAuthorized(req: Request): boolean {
-  const secret = process.env.CRON_SECRET;
-  if (!secret) return false;
-
-  const authHeader = req.headers.get("authorization");
-  if (authHeader === `Bearer ${secret}`) return true;
-
-  const cronHeader = req.headers.get("x-vercel-cron");
-  return cronHeader === "1" && Boolean(process.env.VERCEL);
-}
-
 /** Daily — roll up yesterday's AnalyticsEvent rows into AnalyticsDailySummary. */
 export async function GET(req: Request) {
-  if (!isAuthorized(req)) {
+  if (!isCronAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

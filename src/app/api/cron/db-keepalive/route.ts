@@ -1,20 +1,10 @@
 import { NextResponse } from "next/server";
+import { isCronAuthorized } from "@/lib/cron-auth";
 import { warmNeonCompute } from "@/lib/neon-warmup";
 
 export const maxDuration = 60;
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function isAuthorized(req: Request): boolean {
-  const secret = process.env.CRON_SECRET;
-  if (!secret) return false;
-
-  const authHeader = req.headers.get("authorization");
-  if (authHeader === `Bearer ${secret}`) return true;
-
-  const cronHeader = req.headers.get("x-vercel-cron");
-  return cronHeader === "1" && Boolean(process.env.VERCEL);
-}
 
 /**
  * Keep Neon compute from autosuspending between user traffic.
@@ -22,7 +12,7 @@ function isAuthorized(req: Request): boolean {
  * 3 minutes (see vercel.json) so compute stays warm ahead of study traffic.
  */
 export async function GET(req: Request) {
-  if (!isAuthorized(req)) {
+  if (!isCronAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

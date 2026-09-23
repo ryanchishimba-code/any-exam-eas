@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
+import { isCronAuthorized } from "@/lib/cron-auth";
 import {
   ACTIVE_INVENTORY_CACHE_TAG,
   ACTIVE_INVENTORY_PATHS,
-  isCronSecretAuthorized,
 } from "@/lib/inventory/active-inventory-cache";
 import { revalidateActiveQuestionInventory } from "@/lib/inventory/revalidate-active-inventory";
 
@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
  *     https://www.anyexameasy.com/api/cron/revalidate-inventory
  */
 async function handle(req: Request) {
-  if (!isCronSecretAuthorized(req)) {
+  if (!isCronAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
