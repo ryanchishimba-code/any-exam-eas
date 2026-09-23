@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { findNearDuplicatePairs } from "./duplicates";
 import {
   readItemQaRecord,
+  schemaFailureCodesFromIssues,
   withItemQaRecord,
   withSchemaFailureFlag,
   withoutSchemaFailureFlag,
@@ -10,6 +11,7 @@ import { formatReviewMonth, resolveItemProvenance } from "./provenance";
 import { principleFieldLabel } from "./principle-label";
 import {
   editedItemNeedsSchemaGate,
+  isExplicitAdminPublish,
   evaluateItemPublishGate,
   itemRequiresPublishSchema,
 } from "./publish-gate";
@@ -295,6 +297,88 @@ describe("publish gate", () => {
         publishingAction: false,
       })
     ).toBe(false);
+  });
+
+  it("rejects an incomplete Approve and still allows an archived draft save", () => {
+    const legacy = { source: "seed" as const, generationMeta: null };
+    const incomplete = evaluateItemPublishGate({
+      question: STEM,
+      options: OPTIONS,
+      correctAnswer: OPTIONS[1]!,
+      explanation:
+        "Hypotension with fever is perfusion failure. A weight-based crystalloid bolus is the priority action in the first hour.",
+      distractorRationale: {
+        [OPTIONS[0]!]: "",
+        [OPTIONS[2]!]: "",
+        [OPTIONS[3]!]: "",
+      },
+    });
+    expect(incomplete.ok).toBe(false);
+    expect(schemaFailureCodesFromIssues(incomplete.issues)).toContain("fails_schema");
+
+    const approve = isExplicitAdminPublish({
+      ...legacy,
+      reviewStatus: "approved",
+      active: true,
+    });
+    expect(approve).toBe(true);
+    expect(
+      editedItemNeedsSchemaGate({
+        ...legacy,
+        wasServed: false,
+        willBeServed: false,
+        contentEdited: false,
+        publishingAction: approve,
+      })
+    ).toBe(true);
+
+    const archivedSave = isExplicitAdminPublish(legacy);
+    expect(archivedSave).toBe(false);
+    expect(
+      editedItemNeedsSchemaGate({
+        ...legacy,
+        wasServed: false,
+        willBeServed: false,
+        contentEdited: true,
+        publishingAction: archivedSave,
+      })
+    ).toBe(false);
+
+    expect(
+      editedItemNeedsSchemaGate({
+        ...legacy,
+        wasServed: false,
+        willBeServed: true,
+        contentEdited: false,
+        publishingAction: isExplicitAdminPublish({ ...legacy, qaPassed: true }),
+      })
+    ).toBe(true);
+    expect(
+      editedItemNeedsSchemaGate({
+        ...legacy,
+        wasServed: false,
+        willBeServed: false,
+        contentEdited: false,
+        publishingAction: isExplicitAdminPublish({ ...legacy, active: true }),
+      })
+    ).toBe(false);
+
+    const manualRestore = isExplicitAdminPublish({
+      source: "manual",
+      generationMeta: null,
+      active: true,
+    });
+    expect(manualRestore).toBe(true);
+    expect(
+      editedItemNeedsSchemaGate({
+        source: "manual",
+        generationMeta: null,
+        wasServed: false,
+        willBeServed: false,
+        contentEdited: false,
+        publishingAction: manualRestore,
+      })
+    ).toBe(true);
   });
 
   it("allows a complete manual item to publish", () => {

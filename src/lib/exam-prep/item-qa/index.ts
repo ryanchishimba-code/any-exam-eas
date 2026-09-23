@@ -27,6 +27,7 @@ export { principleFieldLabel } from "./principle-label";
 export {
   evaluateItemPublishGate,
   editedItemNeedsSchemaGate,
+  isExplicitAdminPublish,
   formatPublishGateError,
   itemRequiresPublishSchema,
   ITEM_QA_SCHEMA_VERSION,
