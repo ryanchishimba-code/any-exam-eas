@@ -4,6 +4,11 @@ import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import {
+  ACTIVE_INVENTORY_CACHE_KEY,
+  ACTIVE_INVENTORY_CACHE_TAG,
+  ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+} from "@/lib/inventory/active-inventory-cache";
+import {
   fetchActiveInventoryFromDb,
   type ActiveQuestionInventory,
 } from "@/lib/inventory/active-questions";
@@ -203,11 +208,18 @@ export async function getQuestionBankCounts(): Promise<QuestionBankCountsSnapsho
 
 const fetchCachedBankStats = unstable_cache(
   async () => loadBankStatsBundle(),
-  ["marketing-active-inventory-v1"],
-  { revalidate: 3600, tags: ["question-bank-counts"] }
+  [...ACTIVE_INVENTORY_CACHE_KEY],
+  {
+    revalidate: ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+    tags: [ACTIVE_INVENTORY_CACHE_TAG],
+  }
 );
 
-/** Cached inventory + marketing snapshot — revalidates hourly (or via cron tag). */
+/**
+ * Cached inventory + marketing snapshot. The one-hour TTL is only a fallback.
+ * Publish toggles and `db:retire-near-duplicates --apply` revalidate
+ * `question-bank-counts` so the next request reads the database.
+ */
 export async function getCachedBankStatsBundle(): Promise<BankStatsBundle> {
   return fetchCachedBankStats();
 }
@@ -217,7 +229,7 @@ export async function getCachedQuestionBankCounts(): Promise<QuestionBankCountsS
   return (await getCachedBankStatsBundle()).snapshot;
 }
 
-/** Same cached bundle the marketing counts are built from. */
+/** Same cached bundle the marketing hubs and the Qbank topic totals are built from. */
 export async function getCachedActiveInventory(): Promise<ActiveQuestionInventory> {
   return (await getCachedBankStatsBundle()).inventory;
 }

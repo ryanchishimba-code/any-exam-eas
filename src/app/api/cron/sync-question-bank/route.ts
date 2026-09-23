@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { revalidateTag } from "next/cache";
+import { revalidateActiveQuestionInventory } from "@/lib/inventory/revalidate-active-inventory";
 import { syncQuestionBank } from "@/lib/sync-question-bank";
 
 export const maxDuration = 300;
@@ -23,11 +23,13 @@ export async function GET(req: Request) {
 
   const result = await syncQuestionBank();
 
+  let inventoryRevalidated = false;
   if (result.status === "success") {
-    revalidateTag("question-bank-counts");
+    inventoryRevalidated = revalidateActiveQuestionInventory().ok;
   }
 
-  return NextResponse.json(result, {
-    status: result.status === "success" ? 200 : 500,
-  });
+  return NextResponse.json(
+    { ...result, inventoryRevalidated },
+    { status: result.status === "success" ? 200 : 500 }
+  );
 }

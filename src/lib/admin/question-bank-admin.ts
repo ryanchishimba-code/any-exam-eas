@@ -15,6 +15,11 @@ import {
   itemRequiresPublishSchema,
   ITEM_QA_SCHEMA_VERSION,
 } from "@/lib/exam-prep/item-qa/publish-gate";
+import {
+  bulkActionAffectsActiveInventory,
+  changedFieldsAffectActiveInventory,
+} from "@/lib/inventory/active-inventory-cache";
+import { revalidateActiveQuestionInventory } from "@/lib/inventory/revalidate-active-inventory";
 
 /** Review states an item can be in (mirrors BankItem.reviewStatus + draft). */
 export const REVIEW_STATUSES = ["pending", "approved", "flagged", "rejected"] as const;
@@ -541,6 +546,9 @@ export async function updateAdminQuestion(
   }
 
   await prisma.questionBankItem.update({ where: { id }, data });
+  if (changedFieldsAffectActiveInventory(Object.keys(changes))) {
+    revalidateActiveQuestionInventory();
+  }
   return { ok: true, changes };
 }
 
@@ -753,6 +761,9 @@ export async function bulkUpdateAdminQuestions(
     where: { id: { in: allowedIds } },
     data,
   });
+  if (res.count > 0 && bulkActionAffectsActiveInventory(action)) {
+    revalidateActiveQuestionInventory();
+  }
   return { updated: res.count, blocked };
 }
 

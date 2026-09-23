@@ -74,6 +74,34 @@ Public inventory counts rows that are both `active` and `qaPassed`. The dry-run 
 
 The report is `artifacts/retire-near-duplicates-<field>.md` and `.json` (gitignored). Full-exam links are left in place; the practice bank stops serving the row because practice requires `active`.
 
+## Confirm the public count
+
+`/nclex`, the other board hubs, and `/question-bank` read one cached inventory (`unstable_cache`, tag `question-bank-counts`). A hard refresh does not skip it. The entry lasts up to one hour if nothing revalidates it. `/api/marketing/bank-counts` uses that same cache; after the hour it may serve the previous JSON for about a minute, not a day.
+
+`--apply` that updates at least one row POSTs `/api/cron/revalidate-inventory` with `Authorization: Bearer $CRON_SECRET`. That drops the tag and revalidates the hub and question-bank paths, so the next request reads the database. The origin is `INVENTORY_REVALIDATE_URL`, then `NEXT_PUBLIC_SITE_URL`, then `NEXTAUTH_URL`, then `https://www.anyexameasy.com`.
+
+A cleared cache prints `Inventory cache revalidated` and sets `cacheRevalidated: true` in the JSON report. Then hard-refresh:
+
+- `https://www.anyexameasy.com/nclex`
+- `https://www.anyexameasy.com/question-bank?field=nursing`
+
+Both should show the report's published-after count (active and qaPassed). The same number is the NCLEX `served` value from:
+
+```bash
+curl -s https://www.anyexameasy.com/api/marketing/bank-counts
+```
+
+If the rows were updated and the cache call failed, the script exits non-zero after writing the report. The database change is already saved. Retry without retiring anything again:
+
+```bash
+curl -X POST -H "Authorization: Bearer $CRON_SECRET" \
+  https://www.anyexameasy.com/api/cron/revalidate-inventory
+```
+
+`200` with `{ "ok": true, "revalidated": true, "tag": "question-bank-counts" }` means the next visit rebuilds the hub and the question bank from the database. Use that same curl after this change deploys if a previous `--apply` already retired rows and the UI is still on the old total.
+
+Admin approve, reject, archive, restore, QA pass, and QA unpass use the same invalidation. So does applying a question-report fix that marks an item QA-passed. Flagging or editing tags does not, because those do not change `active` or `qaPassed`.
+
 ## Publish schema
 
 New questions created in admin with **Save as draft** unchecked must pass the schema. Drafts can be incomplete.
@@ -97,7 +125,7 @@ When a served item has a real citation (`references`, `generationMeta.sourceLabe
 ## Verify
 
 ```bash
-npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts tests/unit/components/QuestionRenderer.test.tsx
+npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts src/lib/inventory/active-inventory-cache.test.ts src/lib/inventory/revalidate-active-inventory.test.ts tests/unit/components/QuestionRenderer.test.tsx
 ```
 
 The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, the rationale schema, the manual-only publish gate, the source line, and the near-duplicate retire plan (keeper stays, text-only flags stay, `qaPassed` is not a write).

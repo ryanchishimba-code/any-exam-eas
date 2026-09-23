@@ -3,6 +3,7 @@ import { getExam } from "@/lib/edtech/exams";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { bankItemPassesIngestGate } from "@/lib/exam-prep/bank-ingest-gate";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
+import { revalidateActiveQuestionInventory } from "@/lib/inventory/revalidate-active-inventory";
 import { analyzeReportedQuestion } from "./analyzer";
 import type {
   QuestionReportDetail,
@@ -211,6 +212,8 @@ export async function applyQuestionReportFix(
     }),
   ]);
 
+  // Applying a fix marks the row qaPassed, which is a publish toggle.
+  revalidateActiveQuestionInventory();
   return { ok: true };
 }
 
