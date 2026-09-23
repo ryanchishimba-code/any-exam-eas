@@ -159,13 +159,14 @@ Admin approve, reject, archive, restore, QA pass, and QA unpass use the same inv
 
 New questions created in admin with **Save as draft** unchecked must pass the schema. Drafts can be incomplete.
 
-The same gate runs when an edit would leave the item student-visible (`active` and `qaPassed`):
+The same gate runs on every admin publish, including legacy seed and curated rows:
 
-- the first time it becomes student-visible (QA pass, or activate when it is already QA-passed)
-- a later edit of the stem, options, key, explanation, principle, distractor reasons, or citation
-- approve / QA pass / activate on a `manual` item, or any item stored with `generationMeta.itemQaSchema = "v1"`
+- **Approve** (drawer or bulk). Approve sets review status to approved and `active` to true. It does not set `qaPassed`, and it is still rejected when the schema fails.
+- the first time the item becomes student-visible (`active` and `qaPassed`): Mark QA passed on an active item, or Activate / Restore when it is already QA-passed
+- a later edit of the stem, options, key, explanation, principle, distractor reasons, or citation while the item stays student-visible
+- QA pass or activate on a `manual` item, or any item stored with `generationMeta.itemQaSchema = "v1"`, even if that step alone does not serve it yet
 
-Seed and curated rows that are already student-visible stay served until someone edits or republishes them. A failed publish does not change the stem, options, explanation, `qaPassed`, or `active`. It writes `fails_schema` onto the existing Item QA flag (`reviewFlag` + `curationMeta.itemQa`) so the gap shows in **Admin → Question bank → Item QA flags** and the **Fails schema** filter. Passing a later edit removes only the schema codes.
+Save changes on a draft or archived item that is not approved and will not be student-visible stays open, including an incomplete principle or blank distractor reasons. Seed and curated rows that are already student-visible stay served until someone edits or republishes them. A failed Approve or publish does not change the stem, options, explanation, `qaPassed`, or `active`. It writes `fails_schema` onto the existing Item QA flag (`reviewFlag` + `curationMeta.itemQa`) so the gap shows in **Admin → Question bank → Item QA flags** and the **Fails schema** filter. Passing a later gated save removes only the schema codes.
 
 To queue a sample without rewriting rationales:
 
@@ -195,4 +196,4 @@ The principle field is shared. The editor label follows the board: nursing prior
 npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts src/lib/exam-prep/item-qa/text-flag-remediation.test.ts src/lib/inventory/active-inventory-cache.test.ts src/lib/inventory/revalidate-active-inventory.test.ts tests/unit/components/QuestionRenderer.test.tsx
 ```
 
-The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, a complete "watch for" choice, the rationale schema, the manual-only publish gate, the source line, the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, an inactive middle still reaches the active keeper, an all-inactive chain is skipped, `qaPassed` is not a write), and the text-flag plan (empty stems retire, NGN letter placeholders clear, content is not rewritten).
+The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, a complete "watch for" choice, the rationale schema, the publish gate (incomplete Approve rejected, incomplete archived save allowed), the source line, the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, an inactive middle still reaches the active keeper, an all-inactive chain is skipped, `qaPassed` is not a write), and the text-flag plan (empty stems retire, NGN letter placeholders clear, content is not rewritten).

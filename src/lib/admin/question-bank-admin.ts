@@ -19,6 +19,7 @@ import {
 import {
   evaluateItemPublishGate,
   editedItemNeedsSchemaGate,
+  isExplicitAdminPublish,
   formatPublishGateError,
   ITEM_QA_SCHEMA_VERSION,
 } from "@/lib/exam-prep/item-qa/publish-gate";
@@ -576,15 +577,20 @@ export async function updateAdminQuestion(
   const wasServed = existing.active && existing.qaPassed;
   const willBeServed =
     (patch.active ?? existing.active) && (patch.qaPassed ?? existing.qaPassed);
-  const publishingAction =
-    patch.qaPassed === true || patch.reviewStatus === "approved" || patch.active === true;
+  const generationMeta = schemaMeta?.next ?? existing.generationMeta;
   const needsSchema = editedItemNeedsSchemaGate({
     source: existing.source,
-    generationMeta: schemaMeta?.next ?? existing.generationMeta,
+    generationMeta,
     wasServed,
     willBeServed,
     contentEdited,
-    publishingAction,
+    publishingAction: isExplicitAdminPublish({
+      source: existing.source,
+      generationMeta,
+      reviewStatus: patch.reviewStatus,
+      active: patch.active,
+      qaPassed: patch.qaPassed,
+    }),
   });
   if (needsSchema) {
     const attempted = contentForPublishCheck(existing, patch);
@@ -925,7 +931,13 @@ export async function bulkUpdateAdminQuestions(
         wasServed: row.active && row.qaPassed,
         willBeServed,
         contentEdited: false,
-        publishingAction: true,
+        publishingAction: isExplicitAdminPublish({
+          source: row.source,
+          generationMeta: row.generationMeta,
+          reviewStatus: action === "approve" ? "approved" : undefined,
+          active: action === "activate" ? true : undefined,
+          qaPassed: action === "qa_pass" ? true : undefined,
+        }),
       });
       if (!needsSchema) {
         allowedIds.push(row.id);
