@@ -30,6 +30,7 @@ import { FullExamResultsInsights } from "@/components/exam/FullExamResultsInsigh
 import { FullExamCatPracticeBand } from "@/components/exam/FullExamCatPracticeBand";
 import { StudyThisTopicButton } from "@/components/study/StudyThisTopicButton";
 import { QuestionRelatedLinks } from "@/components/study/questions/QuestionRelatedLinks";
+import { RationaleDisclosureText } from "@/components/study/questions/CollapsibleRationale";
 import { resolveQuestionStudyLinks } from "@/lib/library/question-study-links";
 
 type ReviewView = "summary" | "overview" | "question";
@@ -177,11 +178,13 @@ export function FullExamResults({
             </div>
           )}
 
-          <div className="mt-6 rounded-xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-700">
-            <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+          <div className="mt-6 rounded-2xl border border-[var(--study-accent)]/20 bg-[var(--color-surface-elevated)] px-5 py-5 sm:px-6">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-muted)]">
               Rationale
             </p>
-            {current.explanation || "No rationale saved for this question."}
+            <div className="mt-3.5">
+              <RationaleDisclosureText text={current.explanation} resetKey={current.id} />
+            </div>
           </div>
 
           <div className="mt-4 space-y-3">

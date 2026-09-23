@@ -96,35 +96,37 @@ function CoreRationaleBody({
   return (
     <>
       {!hideHeadline && parsed.whyCorrectHeadline && (
-        <p className="text-sm leading-relaxed text-[var(--color-ink)]">
+        <p className="text-[15px] font-medium leading-[1.55] tracking-[-0.015em] text-[var(--color-ink)]">
           {renderInlineBold(parsed.whyCorrectHeadline)}
         </p>
       )}
       {conceptBullets.length > 0 && (
-        <ul className="mt-2 list-inside list-disc space-y-1.5 text-sm text-[var(--color-ink-muted)]">
+        <ul className="mt-3 list-inside list-disc space-y-2 text-[15px] leading-[1.5] tracking-[-0.015em] text-[var(--color-ink-muted)]">
           {conceptBullets.map((bullet) => (
             <li key={bullet}>{renderInlineBold(bullet)}</li>
           ))}
         </ul>
       )}
       {parsed.clinicalContext && (
-        <p className="mt-3 rounded-lg border border-[var(--color-accent)]/15 bg-[var(--color-accent)]/5 px-3 py-2 text-sm text-[var(--color-ink)]">
-          <span className="font-semibold text-[var(--color-accent)]">In practice: </span>
+        <p className="mt-4 rounded-xl border border-[var(--study-accent)]/15 bg-[var(--study-accent)]/5 px-3.5 py-3 text-[15px] leading-[1.55] tracking-[-0.015em] text-[var(--color-ink)]">
+          <span className="font-semibold text-[var(--study-accent)]">In practice: </span>
           {parsed.clinicalContext}
         </p>
       )}
       {wrongOptions.length > 0 && (
-        <div className="mt-4 space-y-3 border-t border-black/[0.06] pt-3">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+        <div className="mt-5 space-y-3 border-t border-black/[0.06] pt-4">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
             Why the other options are wrong
           </p>
           {wrongOptions.map(({ option, body }) => (
             <div
               key={option}
-              className="rounded-lg border border-black/[0.06] bg-[var(--color-surface)]/60 px-3 py-2.5"
+              className="rounded-xl border border-black/[0.06] bg-[var(--color-surface)]/60 px-3.5 py-3"
             >
-              <p className="text-sm font-semibold text-[var(--color-ink)]">{cleanOptionText(option)}</p>
-              <p className="mt-1 whitespace-pre-wrap text-sm leading-relaxed text-[var(--color-ink-muted)]">
+              <p className="text-[15px] font-semibold tracking-[-0.015em] text-[var(--color-ink)]">
+                {cleanOptionText(option)}
+              </p>
+              <p className="mt-1.5 whitespace-pre-wrap text-[15px] leading-[1.55] tracking-[-0.015em] text-[var(--color-ink-muted)]">
                 {renderInlineBold(body)}
               </p>
             </div>
@@ -173,14 +175,14 @@ export function ExpertRationalePanel({
 
   if (!parsed.isStructured && !expertRationale) {
     return (
-      <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink)] whitespace-pre-wrap">
+      <p className="mt-2 whitespace-pre-wrap text-[15px] leading-[1.55] tracking-[-0.015em] text-[var(--color-ink)]">
         {question.explanation}
       </p>
     );
   }
 
   return (
-    <div className="mt-3 space-y-3">
+    <div className="mt-1 space-y-4">
       {showExpertToggle ? (
         <div
           className="inline-flex rounded-full border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] p-0.5"
@@ -217,11 +219,11 @@ export function ExpertRationalePanel({
       ) : null}
 
       {usmle && parsed.whyCorrectHeadline ? (
-        <div className="rounded-xl border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/5 px-3 py-2.5">
-          <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent)]">
+        <div className="rounded-xl border border-[var(--study-accent)]/20 bg-[var(--study-accent)]/5 px-3.5 py-3">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--study-accent)]">
             Educational objective
           </p>
-          <p className="mt-1 text-sm font-medium leading-relaxed text-[var(--color-ink)]">
+          <p className="mt-1.5 text-[15px] font-medium leading-[1.55] tracking-[-0.015em] text-[var(--color-ink)]">
             {renderInlineBold(parsed.whyCorrectHeadline)}
           </p>
         </div>

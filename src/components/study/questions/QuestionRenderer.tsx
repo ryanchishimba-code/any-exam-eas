@@ -1,11 +1,17 @@
 "use client";
 
-import { memo, useState } from "react";
+import { memo } from "react";
 import dynamic from "next/dynamic";
 import type { SequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { cleanOptionText } from "@/lib/question-format";
-import { parseRationaleForDisplay } from "@/lib/engine/rationale/parse-rationale-display";
+import { parseRationaleForDisplay, type ParsedRationaleDisplay } from "@/lib/engine/rationale/parse-rationale-display";
+import {
+  rationaleAfterLead,
+  shouldCollapseRationale,
+  uniqueRationaleParts,
+} from "@/lib/study/rationale-disclosure";
+import { CollapsibleRationale, rationaleLeadForQuestion } from "./CollapsibleRationale";
 import { NgnCjmmNote, NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
 import {
   BowTieQuestion,
@@ -40,6 +46,7 @@ import { AanpFnpExhibitBlock } from "./AanpFnpFormats";
 import { QuestionRelatedLinks } from "./QuestionRelatedLinks";
 import { ItemProvenanceNote } from "./ItemProvenanceNote";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import type { ExamSlug } from "@/types/edtech";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { analytics } from "@/lib/analytics";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
@@ -252,6 +259,148 @@ export const QuestionRenderer = memo(function QuestionRenderer({
   );
 });
 
+function visibleRationaleParts(question: StudyQuestion, parsed: ParsedRationaleDisplay): string[] {
+  const distractors = question.distractorRationale
+    ? Object.values(question.distractorRationale)
+    : [];
+  const wrong = (parsed.wrongOptions ?? []).map((entry) => `${entry.option} ${entry.body}`);
+  return uniqueRationaleParts(question.explanation, [
+    question.clinicalReasoning,
+    ...distractors,
+    ...(question.solutionSteps ?? []),
+    ...(question.references ?? []),
+    ...(parsed.conceptBullets ?? []),
+    ...wrong,
+    parsed.clinicalContext,
+    ...(parsed.stepByStepReasoning ?? []),
+    parsed.clinicalPearl,
+    ...(parsed.highYieldFacts ?? []),
+    parsed.keyTakeaway,
+  ]);
+}
+
+function ExplanationDetail({
+  question,
+  parsed,
+  examSlug,
+  incorrect,
+  hasExpert,
+  leadToOmit,
+  compact = false,
+}: {
+  question: StudyQuestion;
+  parsed: ParsedRationaleDisplay;
+  examSlug: ExamSlug;
+  incorrect: boolean;
+  hasExpert: boolean;
+  /** When the lead already shows the opening sentence, the body continues after it. */
+  leadToOmit?: string;
+  /** Short rationales skip share and related-link chrome. */
+  compact?: boolean;
+}) {
+  const plain = !parsed.isStructured && !question.expertRationale;
+  const plainBody = plain
+    ? leadToOmit
+      ? rationaleAfterLead(question.explanation ?? "", leadToOmit)
+      : (question.explanation ?? "")
+    : "";
+  return (
+    <div className="space-y-4">
+      {plain && plainBody ? (
+        <p
+          className={
+            leadToOmit
+              ? "whitespace-pre-wrap text-[15px] leading-[1.55] tracking-[-0.015em] text-[var(--color-ink)]"
+              : "whitespace-pre-wrap text-[16px] font-medium leading-snug tracking-[-0.02em] text-[var(--color-ink)] sm:text-[17px] sm:leading-relaxed"
+          }
+        >
+          {plainBody}
+        </p>
+      ) : plain ? null : (
+        <ExpertRationalePanel
+          question={question}
+          expertRationale={question.expertRationale}
+          defaultDepth={incorrect && hasExpert ? "expert" : "concise"}
+        />
+      )}
+
+      {question.clinicalReasoning && !parsed.isStructured ? (
+        <div className="rounded-xl border border-[var(--study-accent)]/15 bg-[var(--study-accent)]/5 px-4 py-3.5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--study-accent)]">
+            Clinical reasoning
+          </p>
+          <p className="mt-2 text-[15px] leading-[1.55] tracking-[-0.015em] text-[var(--color-ink)]">
+            {question.clinicalReasoning}
+          </p>
+        </div>
+      ) : null}
+
+      {question.distractorRationale &&
+      !parsed.isStructured &&
+      Object.keys(question.distractorRationale).length > 0 ? (
+        <div className="rounded-xl border border-black/[0.06] px-4 py-3.5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
+            Why each distractor fails
+          </p>
+          <ul className="mt-3 space-y-2.5">
+            {Object.entries(question.distractorRationale).map(([opt, why]) => (
+              <li key={opt} className="text-[15px] leading-[1.5] tracking-[-0.015em]">
+                <span className="font-semibold text-[var(--color-ink)]">{cleanOptionText(opt)}:</span>{" "}
+                <span className="text-[var(--color-ink-muted)]">{why}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {question.solutionSteps && question.solutionSteps.length > 0 && !parsed.keyTakeaway ? (
+        <div className="rounded-xl border border-emerald-200/60 bg-emerald-50/40 px-4 py-3.5">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-emerald-700">
+            Key takeaway
+          </p>
+          <ul className="mt-2 space-y-1.5">
+            {question.solutionSteps.map((step) => (
+              <li key={step} className="text-[15px] leading-[1.5] tracking-[-0.015em] text-[var(--color-ink)]">
+                {step}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {compact ? null : (
+        <>
+          <QuestionRelatedLinks question={question} examSlug={examSlug} sections="anatomy" />
+          <QuestionRelatedLinks question={question} examSlug={examSlug} sections="non-anatomy" />
+        </>
+      )}
+
+      {question.references && question.references.length > 0 ? (
+        <div className="text-[13px] leading-relaxed tracking-[-0.01em] text-[var(--color-ink-muted)]">
+          <span className="font-semibold uppercase tracking-[0.12em]">Sources</span>
+          <ul className="mt-1.5 list-inside list-disc space-y-1">
+            {question.references.map((reference, i) => (
+              <li key={i}>{reference}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {compact ? null : (
+        <div className="flex justify-end border-t border-black/[0.06] pt-3 dark:border-white/[0.08]">
+          <SocialShareBar
+            entityType="question"
+            entityId={question.id}
+            text={`Sharpening my ${examSlug.toUpperCase()} prep with AnyExamEasy 💪`}
+            url="https://www.anyexameasy.com"
+            size="sm"
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function ExplanationPanel({
   question,
   field,
@@ -259,27 +408,28 @@ export function ExplanationPanel({
 }: {
   question: StudyQuestion;
   field?: string;
-  /** Prefer expert depth when the user chooses to open the explanation after a miss. */
+  /** Prefer expert depth when the learner opens the full rationale after a miss. */
   incorrect?: boolean;
 }) {
   const { role } = useUserAccess();
   const conciseOnly = role === "free";
-  // Always start collapsed so users can Next without a wall of text.
-  const [expanded, setExpanded] = useState(false);
   const examSlug = (field ? examSlugFromFieldId(field) : null) ?? "nclex";
 
-  const parsed = parseRationaleForDisplay(
-    question.explanation,
-    question.expertRationale
-  );
+  const parsed = parseRationaleForDisplay(question.explanation, question.expertRationale);
   const hasExpert = Boolean(question.expertRationale || parsed.isExpert);
-  const concisePreview =
-    question.expertRationale?.whyCorrect?.headline ||
-    parsed.keyTakeaway ||
-    parsed.whyCorrectHeadline ||
-    parsed.legacyBody?.slice(0, 140) ||
-    question.explanation?.slice(0, 140) ||
-    "Open the explanation when you want the full breakdown.";
+  const parts = visibleRationaleParts(question, parsed);
+  const collapsible = shouldCollapseRationale(parts);
+  const lead = rationaleLeadForQuestion({
+    principle:
+      question.explanationDetail?.keyTakeaways?.[0] ||
+      question.expertRationale?.keyTakeaway ||
+      parsed.keyTakeaway,
+    headline:
+      question.explanationDetail?.summary ||
+      question.expertRationale?.whyCorrect?.headline ||
+      parsed.whyCorrectHeadline,
+    explanation: question.explanation,
+  });
 
   const hasDistractors =
     Boolean(
@@ -295,13 +445,23 @@ export function ExplanationPanel({
     Boolean(question.references?.length) ||
     hasExpert;
 
-  const showDistractors = expanded && !conciseOnly;
+  const detail = (
+    <ExplanationDetail
+      question={question}
+      parsed={parsed}
+      examSlug={examSlug}
+      incorrect={incorrect}
+      hasExpert={hasExpert}
+      leadToOmit={collapsible ? lead : undefined}
+      compact={!collapsible}
+    />
+  );
 
   return (
     <div className="mt-6 space-y-4">
-      <div className="rounded-xl border border-[var(--color-border)]/60 bg-[var(--color-surface)]/80 p-4 backdrop-blur-sm">
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+      <div className="rounded-2xl border border-[var(--study-accent)]/20 bg-[var(--color-surface-elevated)] px-5 py-5 sm:px-6 sm:py-6">
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-muted)]">
             Rationale
           </p>
           <div className="flex items-center gap-1.5">
@@ -310,143 +470,57 @@ export function ExplanationPanel({
                 Expert
               </span>
             ) : null}
-            <span className="rounded-full bg-[var(--color-surface-elevated)] px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
+            <span className="rounded-full bg-[var(--color-surface)] px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
               AI-assisted
             </span>
           </div>
         </div>
-        {expanded ? (
-          <ExpertRationalePanel
-            question={question}
-            expertRationale={question.expertRationale}
-            defaultDepth={incorrect && hasExpert ? "expert" : "concise"}
-          />
-        ) : (
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-            {concisePreview}
-          </p>
-        )}
-        {(hasDeepContent || !expanded) && !conciseOnly ? (
-          <button
-            type="button"
-            onClick={() =>
-              setExpanded((v) => {
-                const next = !v;
-                if (next) {
+
+        <div className="mt-3.5">
+          {collapsible && !conciseOnly ? (
+            <CollapsibleRationale
+              resetKey={question.id}
+              lead={lead}
+              onExpandedChange={(open) => {
+                if (open) {
                   analytics.ctaClicked(
                     hasExpert ? "rationale_open_expert" : "rationale_open",
                     "explanation_panel"
                   );
                 }
-                return next;
-              })
-            }
-            className="mt-3 inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3.5 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]"
-            aria-expanded={expanded}
-          >
-            {expanded ? "Hide explanation" : "View explanation"}
-          </button>
-        ) : conciseOnly && hasDeepContent ? (
-          <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
-            Upgrade to Pro for rich, detailed explanations.
-          </p>
-        ) : null}
-        {!expanded && !conciseOnly ? (
-          <p className="mt-2 text-xs text-[var(--color-ink-muted)]">
-            Optional — you can keep moving with Next.
-          </p>
-        ) : null}
+              }}
+            >
+              {detail}
+            </CollapsibleRationale>
+          ) : collapsible && conciseOnly ? (
+            <>
+              <p className="text-[16px] font-medium leading-snug tracking-[-0.02em] text-[var(--color-ink)] sm:text-[17px] sm:leading-relaxed">
+                {lead}
+              </p>
+              {hasDeepContent ? (
+                <p className="mt-3 text-[13px] leading-relaxed tracking-[-0.01em] text-[var(--color-ink-muted)]">
+                  Upgrade to Pro for rich, detailed explanations.
+                </p>
+              ) : null}
+            </>
+          ) : parts.length === 0 ? (
+            <p className="text-[16px] font-medium leading-snug tracking-[-0.02em] text-[var(--color-ink)] sm:text-[17px] sm:leading-relaxed">
+              {lead}
+            </p>
+          ) : (
+            detail
+          )}
+        </div>
       </div>
 
-      {expanded && question.clinicalReasoning && !parsed.isStructured && (
-        <div className="rounded-xl border border-[var(--color-accent)]/15 bg-[var(--color-accent)]/5 p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
-            Clinical reasoning
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink)]">
-            {question.clinicalReasoning}
-          </p>
-        </div>
-      )}
-
-      {showDistractors &&
-        question.distractorRationale &&
-        !parsed.isStructured &&
-        Object.keys(question.distractorRationale).length > 0 && (
-          <div className="rounded-xl border border-black/[0.06] p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-              Why each distractor fails
-            </p>
-            <ul className="mt-3 space-y-2">
-              {Object.entries(question.distractorRationale).map(([opt, why]) => (
-                <li key={opt} className="text-sm">
-                  <span className="font-medium text-[var(--color-ink)]">
-                    {cleanOptionText(opt)}:
-                  </span>{" "}
-                  <span className="text-[var(--color-ink-muted)]">{why}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-      {expanded &&
-        question.solutionSteps &&
-        question.solutionSteps.length > 0 &&
-        !parsed.keyTakeaway && (
-        <div className="rounded-xl border border-emerald-200/60 bg-emerald-50/40 p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
-            Key takeaway
-          </p>
-          <ul className="mt-2 space-y-1">
-            {question.solutionSteps.map((step) => (
-              <li key={step} className="text-sm leading-relaxed text-[var(--color-ink)]">
-                {step}
-              </li>
+      {question.type === "matrix" && (question.correctAnswers?.length ?? 0) > 0 ? (
+        <div className="text-[13px] tracking-[-0.01em] text-[var(--color-ink-muted)]">
+          <span className="font-semibold uppercase tracking-[0.12em]">Correct cells</span>
+          <ul className="mt-1.5 list-inside list-disc">
+            {(question.correctAnswers ?? []).map((key) => (
+              <li key={key}>{formatMatrixAnswer(key)}</li>
             ))}
           </ul>
-        </div>
-      )}
-
-      {expanded ? (
-        <>
-          <QuestionRelatedLinks question={question} examSlug={examSlug} sections="anatomy" />
-          <QuestionRelatedLinks question={question} examSlug={examSlug} sections="non-anatomy" />
-        </>
-      ) : null}
-
-      {expanded && question.references && question.references.length > 0 && (
-        <div className="text-xs text-[var(--color-ink-muted)]">
-          <span className="font-semibold uppercase tracking-wide">Sources</span>
-          <ul className="mt-1 list-inside list-disc">
-            {question.references.map((r, i) => (
-              <li key={i}>{r}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {question.type === "matrix" && (question.correctAnswers?.length ?? 0) > 0 && (
-        <div className="text-xs text-[var(--color-ink-muted)]">
-          <span className="font-semibold uppercase tracking-wide">Correct cells</span>
-          <ul className="mt-1 list-inside list-disc">
-            {(question.correctAnswers ?? []).map((k) => (
-              <li key={k}>{formatMatrixAnswer(k)}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Spoiler-safe: shares a "studying" message, never the answer. */}
-      {expanded ? (
-        <div className="flex justify-end border-t border-black/[0.06] pt-3 dark:border-white/[0.08]">
-          <SocialShareBar
-            entityType="question"
-            entityId={question.id}
-            text={`Sharpening my ${examSlug.toUpperCase()} prep with AnyExamEasy 💪`}
-            url="https://www.anyexameasy.com"
-            size="sm"
-          />
         </div>
       ) : null}
     </div>
