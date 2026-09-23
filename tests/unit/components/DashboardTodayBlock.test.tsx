@@ -218,7 +218,7 @@ describe("Dashboard week countdown", () => {
     expect(screen.getAllByText("Exam simulation").length).toBeGreaterThan(0);
     expect(screen.getByText("Incorrect drill")).toBeInTheDocument();
     const sim = screen.getByRole("link", { name: /Start exam simulation/ });
-    expect(sim).toHaveAttribute("href", "/full-exam/naplex");
+    expect(sim).toHaveAttribute("href", "/full-exam/naplex?mode=50");
     expect(sim.querySelector("span.study-home-accent")).not.toBeNull();
     expect(screen.getAllByText(/not a licensure result/).length).toBeGreaterThan(0);
   });

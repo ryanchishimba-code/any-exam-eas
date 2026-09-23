@@ -23,6 +23,7 @@ import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exa
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { cn } from "@/lib/utils";
+import { FullExamPassPathPanel } from "@/components/exam/FullExamPassPathPanel";
 import { FullExamStudyLinks } from "@/components/exam/FullExamStudyLinks";
 import { FullExamResultsInsights } from "@/components/exam/FullExamResultsInsights";
 import { FullExamCatPracticeBand } from "@/components/exam/FullExamCatPracticeBand";
@@ -40,6 +41,12 @@ type Props = {
   answers: ExamAnswerRecord[];
   questions: FullExamQuestion[];
   initialReviewOpen?: boolean;
+  /** Misses written into Review incorrect for this simulation. */
+  missCount?: number;
+  /** False for simulations finished before answers fed Review incorrect. */
+  passPathPersisted?: boolean;
+  reviewIncorrectHref?: string | null;
+  proofHref?: string;
 };
 
 function answerFor(answers: ExamAnswerRecord[], index: number) {
@@ -54,6 +61,10 @@ export function FullExamResults({
   answers,
   questions,
   initialReviewOpen = false,
+  missCount = 0,
+  passPathPersisted = false,
+  reviewIncorrectHref = null,
+  proofHref = "/dashboard",
 }: Props) {
   const exam = EXAM_CATALOG[examSlug];
   const correct = answers.filter((a) => a.correct).length;
@@ -287,6 +298,13 @@ export function FullExamResults({
           </p>
         </div>
       </div>
+
+      <FullExamPassPathPanel
+        missCount={missCount}
+        persisted={passPathPersisted}
+        reviewHref={reviewIncorrectHref}
+        proofHref={proofHref}
+      />
 
       {questions.length > 0 ? (
         <div className={cn(feUi.panel, "p-5 sm:p-6")}>

@@ -130,6 +130,8 @@ export async function completeExamSession(
     weakAreas: { topic: string; weight: number }[];
     analysis?: unknown;
     endedEarly?: boolean;
+    /** Final scored log. Omitted leaves answers already stored on the row. */
+    answers?: ExamAnswerRecord[];
   }
 ) {
   const now = new Date();
@@ -141,6 +143,7 @@ export async function completeExamSession(
         score: payload.score,
         weakAreas: payload.weakAreas,
         analysis: payload.analysis ?? null,
+        ...(payload.answers != null ? { answers: payload.answers } : {}),
         completedAt: now,
         updatedAt: now,
       })
@@ -148,15 +151,17 @@ export async function completeExamSession(
       .returning({ examType: examSessions.examType, fieldId: examSessions.fieldId })
   );
 
-  // Week-plan exam-sim ticks read the roadmap cache. Drop it so a refresh
-  // sees this completion. Qbank rows already invalidate through attempt persist.
+  // Week-plan exam-sim ticks and readiness proof both read the roadmap cache.
   await invalidateStudentReadCaches(userId, row?.fieldId ?? null);
-  if (row?.examType) {
-    await cacheDeleteAsync(cacheKey(["exam-roadmap-v5", userId, row.examType]));
-  }
-  if (row?.fieldId && row.fieldId !== row.examType) {
-    await cacheDeleteAsync(cacheKey(["exam-roadmap-v5", userId, row.fieldId]));
-  }
+  const roadmapScopes = [row?.examType, row?.fieldId].filter(
+    (scope): scope is string => Boolean(scope)
+  );
+  await Promise.all(
+    [...new Set(roadmapScopes)].flatMap((scope) => [
+      cacheDeleteAsync(cacheKey(["exam-roadmap-v5", userId, scope])),
+      cacheDeleteAsync(cacheKey(["exam-roadmap-v6", userId, scope])),
+    ])
+  );
 }
 
 export async function listUserExamSessions(userId: string, examType?: string, limit = 30) {

@@ -5,9 +5,16 @@ import { FullExamResults } from "@/components/exam/FullExamResults";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { contentWidth } from "@/lib/layout/shell-ui";
-import { isExamSlug } from "@/lib/edtech/exams";
+import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { getExamSession } from "@/lib/exam-sessions/service";
+import {
+  countFullExamMisses,
+  draftsFromFullExamAnswers,
+  examPassPathPersisted,
+} from "@/lib/learning/full-exam-pass-path";
+import { reviewIncorrectHref } from "@/lib/learning/remediation-loop";
 import { requirePremiumPage } from "@/lib/require-premium-page";
+import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
@@ -60,6 +67,17 @@ async function FullExamResultsContent({
           topicCategory: a.topicCategory,
         }));
 
+  const fieldId = examSession.fieldId ?? EXAM_CATALOG[examSlug].fieldId;
+  const passPathPersisted = examPassPathPersisted(analysis);
+  const missCount = passPathPersisted
+    ? countFullExamMisses(
+        draftsFromFullExamAnswers({
+          answers,
+          snapshots: analysis.questionSnapshots,
+        })
+      )
+    : 0;
+
   return (
     <>
       <FullExamResults
@@ -70,6 +88,14 @@ async function FullExamResultsContent({
         answers={answers}
         questions={questions}
         initialReviewOpen={reviewOpen}
+        missCount={missCount}
+        passPathPersisted={passPathPersisted}
+        reviewIncorrectHref={
+          passPathPersisted && missCount === 0
+            ? null
+            : reviewIncorrectHref(fieldId, null, Math.max(missCount, 1))
+        }
+        proofHref={ROUTES.dashboard}
       />
 
       <div className="mt-6 flex justify-center">
