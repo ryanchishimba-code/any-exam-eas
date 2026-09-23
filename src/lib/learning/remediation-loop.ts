@@ -1,11 +1,12 @@
 /**
  * Board-generic remediation links.
  *
- * A missed item stays open until a later attempt on that same item is correct.
- * That is the Review incorrect rule from P0 — there is no separate mark-mastered
- * control. Study-guide chapters exist for NCLEX, NAPLEX, and AANP FNP. USMLE,
- * PANCE, and NPTE-PT inherit the same loop and omit the guide link when no
- * chapter is mapped. Drug and card links appear only when a catalog match exists.
+ * Open items use the shared mastery machine in `item-mastery.ts`: a miss stays
+ * open through one correct (pending re-proof) until a spaced re-ask or a
+ * confirmed mark-mastered. Study-guide chapters exist for NCLEX, NAPLEX, and
+ * AANP FNP. USMLE, PANCE, and NPTE-PT inherit the same loop and omit the guide
+ * link when no chapter is mapped. Drug and card links appear only when a
+ * catalog match exists.
  */
 
 import { drugs300DrugHref, libraryTopicHref, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
@@ -23,13 +24,16 @@ import { resolveNaplexTopicSlugForBlueprint } from "@/lib/exam-prep/naplex/topic
 import { resolveTop500DrugId } from "@/lib/exam-prep/nclex/topic-drug-links";
 import { extractTop500DrugsFromText } from "@/lib/exam-prep/nclex-study-meta";
 import { TOP_500_DRUGS } from "@/lib/drugs300/catalog";
-import { attemptItemId, countOpenIncorrectItems } from "@/lib/learning/open-incorrect";
+import {
+  REMEDIATION_MASTERY_RULE,
+  summarizeRemediationMastery,
+  type MasteryMark,
+} from "@/lib/learning/item-mastery";
 import { formatConceptLabel, isInternalMasteryConceptKey } from "@/lib/learning/concept-labels";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
-export const REMEDIATION_MASTERY_RULE =
-  "A missed item stays in Review incorrect until you answer that same item correctly later. There is no separate mark-mastered button.";
+export { REMEDIATION_MASTERY_RULE };
 
 const NAVIGATIONAL_CHAPTERS = new Set(["front-matter", "back-matter"]);
 
@@ -318,12 +322,16 @@ export type OpenLoopAttempt = {
   questionKey?: string | null;
   correct: boolean;
   subjectId?: string | null;
+  createdAt?: Date | string | number | null;
+  sessionId?: string | null;
 };
 
 export type OpenRemediationLoop = {
   id: string;
   label: string;
   openCount: number;
+  /** Open items in this topic that already have one correct and await spacing. */
+  pendingCount: number;
   guide: { title: string; href: string } | null;
   drug: { label: string; href: string; kind: "drug" | "class" } | null;
   cards: { title: string; href: string } | null;
@@ -332,50 +340,47 @@ export type OpenRemediationLoop = {
 
 export type OpenRemediationSummary = {
   loops: OpenRemediationLoop[];
-  /** Still-incorrect items with no subject, so they cannot be tied to a guide or drug. */
+  /** Still-open items with no subject, so they cannot be tied to a guide or drug. */
   unscopedCount: number;
+  /** Still missed plus pending re-proof. Same rule as Review incorrect. */
   totalOpen: number;
+  /** Subset of totalOpen that already has one correct and is waiting on spacing. */
+  pendingReproof: number;
   /** Additional open topics past the list cap. They stay in Review incorrect. */
   hiddenLoopCount: number;
 };
 
 /**
- * Open loops are subjects that still have missed items with no later correct attempt.
- * Same identity rules as Review incorrect (`attemptItemId`).
+ * Open loops are subjects that still have missed or pending-reproof items.
+ * Same mastery machine as Review incorrect.
  */
 export function groupOpenRemediationLoops(params: {
   examSlug: ExamSlug;
   fieldId: string;
   attempts: OpenLoopAttempt[];
+  marks?: MasteryMark[];
+  now?: Date | string | number;
   limit?: number;
 }): OpenRemediationSummary {
-  const correctIds = new Set<string>();
-  for (const row of params.attempts) {
-    if (!row.correct) continue;
-    const id = attemptItemId(row);
-    if (!id) continue;
-    correctIds.add(id);
-    if (row.bankItemId) correctIds.add(row.bankItemId);
-    if (row.questionKey) correctIds.add(row.questionKey);
-  }
+  const mastery = summarizeRemediationMastery({
+    attempts: params.attempts,
+    marks: params.marks,
+    now: params.now,
+  });
 
-  const groups = new Map<string, Set<string>>();
-  for (const row of params.attempts) {
-    if (row.correct) continue;
-    const id = attemptItemId(row);
-    if (!id || correctIds.has(id)) continue;
-    if (row.bankItemId && correctIds.has(row.bankItemId)) continue;
-    if (row.questionKey && correctIds.has(row.questionKey)) continue;
-    const subject = row.subjectId?.trim();
+  const groups = new Map<string, { ids: Set<string>; pending: number }>();
+  for (const item of mastery.items) {
+    const subject = item.subjectId?.trim();
     if (!subject || subject === MIXED_SUBJECT_ID || isInternalMasteryConceptKey(subject)) continue;
-    const set = groups.get(subject) ?? new Set<string>();
-    set.add(id);
-    groups.set(subject, set);
+    const group = groups.get(subject) ?? { ids: new Set<string>(), pending: 0 };
+    group.ids.add(item.itemId);
+    if (item.status === "pending_reproof") group.pending += 1;
+    groups.set(subject, group);
   }
 
   const limit = Math.max(1, params.limit ?? 6);
   const ranked = [...groups.entries()]
-    .map(([subjectId, ids]) => {
+    .map(([subjectId, group]) => {
       const guide = resolveStudyGuideSection(params.examSlug, [subjectId]);
       const drug = resolveRelatedDrug({
         examSlug: params.examSlug,
@@ -385,21 +390,22 @@ export function groupOpenRemediationLoops(params: {
       return {
         id: subjectId,
         label: formatConceptLabel(subjectId),
-        openCount: ids.size,
+        openCount: group.ids.size,
+        pendingCount: group.pending,
         guide: guide ? { title: guide.title, href: guide.href } : null,
         drug: drug ? { label: drug.label, href: drug.href, kind: drug.kind } : null,
         cards: cards ? { title: cards.title, href: cards.href } : null,
-        retestHref: reviewIncorrectHref(params.fieldId, subjectId, Math.min(10, ids.size)),
+        retestHref: reviewIncorrectHref(params.fieldId, subjectId, Math.min(10, group.ids.size)),
       };
     })
     .sort((a, b) => b.openCount - a.openCount || a.label.localeCompare(b.label));
 
-  const scoped = [...groups.values()].reduce((sum, ids) => sum + ids.size, 0);
-  const totalOpen = countOpenIncorrectItems(params.attempts);
+  const scoped = [...groups.values()].reduce((sum, group) => sum + group.ids.size, 0);
   return {
     loops: ranked.slice(0, limit),
-    unscopedCount: Math.max(0, totalOpen - scoped),
-    totalOpen,
+    unscopedCount: Math.max(0, mastery.totalOpen - scoped),
+    totalOpen: mastery.totalOpen,
+    pendingReproof: mastery.pendingReproof,
     hiddenLoopCount: Math.max(0, ranked.length - limit),
   };
 }

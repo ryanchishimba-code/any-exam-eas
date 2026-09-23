@@ -131,13 +131,13 @@ export type ExamRoadmapData = {
    */
   examSimTrend?: ExamSimTrend | null;
   /**
-   * Items missed and not yet answered correctly, from the same attempt scan
-   * as totalAttempts. Matches Review incorrect.
+   * Items still open under the shared mastery rule (missed, or pending
+   * re-proof). Same scan as totalAttempts. Matches Review incorrect.
    */
   openIncorrectCount: number;
   /**
    * Missed topics still outstanding, with guide / drug / card links when the
-   * board has them. Same later-correct rule as Review incorrect.
+   * board has them. Same spaced-mastery rule as Review incorrect.
    */
   openRemediation?: OpenRemediationSummary;
   /** Launch affordances for shared Full Exam actions. */
@@ -455,10 +455,13 @@ function labelOpenRemediation(
     questionKey: string | null;
     correct: boolean;
     subjectId: string | null;
+    createdAt: Date;
+    sessionId: string | null;
   }[],
-  examSlug: ExamSlug
+  examSlug: ExamSlug,
+  marks: { itemId: string; confirmedAt: Date }[]
 ): OpenRemediationSummary {
-  const summary = groupOpenRemediationLoops({ examSlug, fieldId, attempts });
+  const summary = groupOpenRemediationLoops({ examSlug, fieldId, attempts, marks });
   return {
     ...summary,
     loops: summary.loops.map((loop) => ({
@@ -482,7 +485,7 @@ async function loadExamRoadmapData(
   if (!blueprint) return null;
 
   // One attempt scan for subject aggregates + push stats (avoid a second full table read).
-  const [attempts, masteries, serveBySubject, history] = await Promise.all([
+  const [attempts, masteries, serveBySubject, history, masteryMarks] = await Promise.all([
     prisma.questionAttempt.findMany({
       where: { userId, fieldId },
       select: {
@@ -491,7 +494,9 @@ async function loadExamRoadmapData(
         bankItemId: true,
         questionKey: true,
         createdAt: true,
+        sessionId: true,
       },
+      orderBy: { createdAt: "asc" },
     }),
     prisma.conceptMastery.findMany({
       where: { userId, fieldId },
@@ -499,6 +504,10 @@ async function loadExamRoadmapData(
     }),
     countServeBankBySubject(fieldId),
     getUserExamHistory(userId, examSlug, { fieldId }),
+    prisma.remediationMasteryMark.findMany({
+      where: { userId, fieldId },
+      select: { itemId: true, confirmedAt: true },
+    }),
   ]);
   const seenBySubject = countSeenBySubjectFromAttempts(attempts);
   const attemptMap = aggregateAttemptsBySubject(attempts);
@@ -572,8 +581,8 @@ async function loadExamRoadmapData(
         practiceBandLabel: practiceBandLabelFromAnalysis(session.analysis),
       }))
     ),
-    openIncorrectCount: countOpenIncorrectItems(attempts),
-    openRemediation: labelOpenRemediation(fieldId, attempts, examSlug),
+    openIncorrectCount: countOpenIncorrectItems(attempts, { marks: masteryMarks }),
+    openRemediation: labelOpenRemediation(fieldId, attempts, examSlug, masteryMarks),
     launch: {
       hasRetake: history.hasRetake,
       canContinue: history.canContinue,
@@ -593,7 +602,7 @@ export async function getExamRoadmapData(
       ? options.usmleFieldId
       : examSlug;
   return cacheGetOrSet(
-    cacheKey(["exam-roadmap-v4", userId, fieldKey]),
+    cacheKey(["exam-roadmap-v5", userId, fieldKey]),
     CACHE_TTL.learningDashboard,
     () => loadExamRoadmapData(userId, examSlug, options),
     { staleTtlMs: CACHE_STALE.learningDashboard }

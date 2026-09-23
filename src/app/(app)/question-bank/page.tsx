@@ -1,13 +1,20 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
+import { RemediationLaunchNotice } from "@/components/study/RemediationLaunchNotice";
 import { QuestionBankPracticeLoader } from "@/components/study/question-bank/QuestionBankPracticeLoader";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCachedSession } from "@/lib/auth/session";
+import { loadStillIncorrectBankItemIds } from "@/lib/learning/review-incorrect";
 import { requireStudyPage } from "@/lib/require-premium-page";
 import { runPageDb } from "@/lib/page-access-error";
 import { ROUTES } from "@/lib/routes";
 import { resolveQuestionBankRoute } from "@/lib/study/question-bank-route";
 import type { ExamSlug } from "@/types/edtech";
+
+function firstParam(value: string | string[] | undefined): string | null {
+  if (Array.isArray(value)) return value[0] ?? null;
+  return value ?? null;
+}
 
 export const metadata = {
   title: "Question Bank — Any Exam Easy",
@@ -74,6 +81,32 @@ export default async function QuestionBankPage({
 
   await requireStudyPage(ROUTES.questionBank);
   const route = await runPageDb(() => resolveQuestionBankRoute(session.user.id, sp));
+  const style = firstParam(sp.style);
+  const subjectId = firstParam(sp.subjectId);
+
+  if (style === "review_incorrect") {
+    try {
+      const openIds = await loadStillIncorrectBankItemIds({
+        userId: session.user.id,
+        fieldId: route.fieldParam,
+        subjectId,
+        limit: 1,
+      });
+      if (openIds.length === 0) {
+        return (
+          <div className="question-bank-ui mx-auto w-full min-w-0 max-w-5xl px-1 pb-10">
+            <RemediationLaunchNotice
+              mode="review_incorrect"
+              fieldId={route.fieldParam}
+              subjectId={subjectId}
+            />
+          </div>
+        );
+      }
+    } catch (error) {
+      console.error("[question-bank] review incorrect empty check", error);
+    }
+  }
 
   return (
     <div className="w-full space-y-5">

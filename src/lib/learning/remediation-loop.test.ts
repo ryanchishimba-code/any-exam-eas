@@ -60,7 +60,7 @@ describe("resolveRelatedDrug", () => {
 });
 
 describe("groupOpenRemediationLoops", () => {
-  it("keeps a miss open until a later correct attempt on that item", () => {
+  it("keeps a one-time correct in the open count as pending re-proof", () => {
     const summary = groupOpenRemediationLoops({
       examSlug: "nclex",
       fieldId: "nursing",
@@ -72,18 +72,55 @@ describe("groupOpenRemediationLoops", () => {
       ],
     });
 
-    expect(summary.totalOpen).toBe(2);
+    expect(summary.totalOpen).toBe(3);
+    expect(summary.pendingReproof).toBe(1);
     expect(summary.loops.map((loop) => loop.id).sort()).toEqual([
       "management-of-care",
       "pharmacology-nursing",
     ]);
     const care = summary.loops.find((loop) => loop.id === "management-of-care");
-    expect(care?.openCount).toBe(1);
+    expect(care?.openCount).toBe(2);
+    expect(care?.pendingCount).toBe(1);
     expect(care?.guide?.href).toBe("/nclex/study-guide/management-of-care");
     expect(care?.retestHref).toContain("style=review_incorrect");
     expect(care?.retestHref).toContain("subjectId=management-of-care");
     const pharm = summary.loops.find((loop) => loop.id === "pharmacology-nursing");
     expect(pharm?.drug?.kind).toBe("drug");
+  });
+
+  it("drops an item from the open count after spaced re-proof", () => {
+    const t0 = Date.parse("2026-09-01T15:00:00.000Z");
+    const day = 24 * 60 * 60 * 1000;
+    const summary = groupOpenRemediationLoops({
+      examSlug: "nclex",
+      fieldId: "nursing",
+      now: t0 + day + 1000,
+      attempts: [
+        {
+          bankItemId: "b",
+          correct: false,
+          subjectId: "management-of-care",
+          createdAt: t0,
+          sessionId: "s1",
+        },
+        {
+          bankItemId: "b",
+          correct: true,
+          subjectId: "management-of-care",
+          createdAt: t0 + 1000,
+          sessionId: "s2",
+        },
+        {
+          bankItemId: "b",
+          correct: true,
+          subjectId: "management-of-care",
+          createdAt: t0 + day + 1000,
+          sessionId: "s3",
+        },
+      ],
+    });
+    expect(summary.totalOpen).toBe(0);
+    expect(summary.loops).toEqual([]);
   });
 
   it("does not invent a guide chapter for PANCE misses", () => {
@@ -98,8 +135,9 @@ describe("groupOpenRemediationLoops", () => {
     expect(summary.loops[0]?.retestHref).toContain("style=review_incorrect");
   });
 
-  it("documents mastery as a later correct attempt", () => {
-    expect(REMEDIATION_MASTERY_RULE).toMatch(/later/i);
-    expect(REMEDIATION_MASTERY_RULE).toMatch(/no separate mark-mastered/i);
+  it("explains spaced re-proof and mark mastered in student language", () => {
+    expect(REMEDIATION_MASTERY_RULE).toMatch(/pending re-proof/i);
+    expect(REMEDIATION_MASTERY_RULE).toMatch(/1 day or 20 other questions/i);
+    expect(REMEDIATION_MASTERY_RULE).toMatch(/mark it mastered/i);
   });
 });

@@ -1,5 +1,6 @@
 import { isInternalMasteryConceptKey } from "@/lib/learning/concept-labels";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { ROUTES } from "@/lib/routes";
 
 export type RemediationMode = "review_incorrect" | "weak_areas";
 
@@ -163,4 +164,50 @@ export function emptyModeFromLaunchQuery(
   if (launch === "review-empty") return "review_incorrect";
   if (launch === "weak-empty") return "weak_areas";
   return null;
+}
+
+/** Review incorrect must paint the launcher or the empty notice, never the session skeleton. */
+export function reviewIncorrectBlocksSessionSkeleton(params: {
+  bankStyle: string;
+  styleParam: string | null | undefined;
+}): boolean {
+  return params.bankStyle === "review_incorrect" || params.styleParam === "review_incorrect";
+}
+
+/**
+ * Autostart a set only when the URL is not already an honest empty result.
+ * An empty launch stays on screen instead of clearing into a loading skeleton.
+ */
+export function shouldAutostartPractice(params: {
+  autostart: boolean;
+  launch: string | null | undefined;
+  hasQuestions: boolean;
+  loading: boolean;
+}): boolean {
+  if (!params.autostart || params.hasQuestions || params.loading) return false;
+  if (emptyModeFromLaunchQuery(params.launch)) return false;
+  return true;
+}
+
+function bankHref(fieldId: string, subjectId: string): string {
+  const qs = new URLSearchParams({
+    field: fieldId,
+    mode: "bank",
+    subjectId,
+    style: "standard",
+    count: "25",
+  });
+  return `${ROUTES.questionBank}?${qs.toString()}`;
+}
+
+export function remediationEmptyHrefs(
+  fieldId: string,
+  subjectId?: string | null
+): { standardHref: string; mixedHref: string } {
+  const subject =
+    subjectId && subjectId !== MIXED_SUBJECT_ID ? subjectId : MIXED_SUBJECT_ID;
+  return {
+    standardHref: bankHref(fieldId, subject),
+    mixedHref: bankHref(fieldId, MIXED_SUBJECT_ID),
+  };
 }

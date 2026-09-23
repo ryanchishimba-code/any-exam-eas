@@ -4,6 +4,9 @@ import {
   decideRemediationLaunch,
   decisionFromRemediationPayload,
   emptyModeFromLaunchQuery,
+  remediationEmptyHrefs,
+  reviewIncorrectBlocksSessionSkeleton,
+  shouldAutostartPractice,
 } from "./remediation-launch";
 
 describe("remediation launch", () => {
@@ -71,6 +74,38 @@ describe("remediation launch", () => {
     ).toBe("empty");
     expect(emptyModeFromLaunchQuery("review-empty")).toBe("review_incorrect");
     expect(emptyModeFromLaunchQuery("weak-empty")).toBe("weak_areas");
+  });
+
+  it("keeps an empty Review incorrect off the session skeleton and off autostart", () => {
+    expect(
+      reviewIncorrectBlocksSessionSkeleton({
+        bankStyle: "adaptive",
+        styleParam: "review_incorrect",
+      })
+    ).toBe(true);
+    expect(
+      reviewIncorrectBlocksSessionSkeleton({ bankStyle: "standard", styleParam: null })
+    ).toBe(false);
+    expect(
+      shouldAutostartPractice({
+        autostart: true,
+        launch: "review-empty",
+        hasQuestions: false,
+        loading: false,
+      })
+    ).toBe(false);
+    expect(
+      shouldAutostartPractice({
+        autostart: true,
+        launch: null,
+        hasQuestions: false,
+        loading: false,
+      })
+    ).toBe(true);
+    const hrefs = remediationEmptyHrefs("nursing", "management-of-care");
+    expect(hrefs.standardHref).toContain("style=standard");
+    expect(hrefs.standardHref).toContain("subjectId=management-of-care");
+    expect(hrefs.mixedHref).toContain("subjectId=__mixed__");
   });
 
   it("counts only in-scope topics that cleared the weak bar", () => {

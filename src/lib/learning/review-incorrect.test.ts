@@ -1,63 +1,60 @@
 import { describe, expect, it } from "vitest";
+import { selectReviewQueueIds } from "./item-mastery";
 
-/**
- * Pure helper mirrored from review-incorrect selection rules for unit tests
- * without hitting Prisma.
- */
-function selectStillIncorrectIds(
-  incorrect: Array<{ bankItemId: string | null; questionKey: string | null }>,
-  correctKeys: Set<string>,
-  limit: number
-): string[] {
-  const ordered: string[] = [];
-  const seen = new Set<string>();
-  for (const row of incorrect) {
-    const id = row.bankItemId || row.questionKey;
-    if (!id || seen.has(id) || correctKeys.has(id)) continue;
-    if (!row.bankItemId && /^\d+$/.test(id)) continue;
-    seen.add(id);
-    ordered.push(id);
-    if (ordered.length >= limit) break;
-  }
-  return ordered;
-}
+const t0 = Date.parse("2026-09-01T15:00:00.000Z");
 
 describe("review incorrect selection", () => {
-  it("prefers still-incorrect bank ids and skips later-correct", () => {
-    const ids = selectStillIncorrectIds(
-      [
-        { bankItemId: "a", questionKey: "a" },
-        { bankItemId: "b", questionKey: "b" },
-        { bankItemId: "c", questionKey: "c" },
+  it("keeps an item that was corrected once", () => {
+    const ids = selectReviewQueueIds({
+      attempts: [
+        { bankItemId: "a", questionKey: "a", correct: false, createdAt: t0, sessionId: "s1" },
+        { bankItemId: "b", questionKey: "b", correct: false, createdAt: t0 + 1, sessionId: "s1" },
+        { bankItemId: "b", questionKey: "b", correct: true, createdAt: t0 + 2, sessionId: "s1" },
+        { bankItemId: "c", questionKey: "c", correct: false, createdAt: t0 + 3, sessionId: "s1" },
       ],
-      new Set(["b"]),
-      10
-    );
-    expect(ids).toEqual(["a", "c"]);
+      now: t0 + 3,
+      limit: 10,
+    });
+    expect(ids.sort()).toEqual(["a", "b", "c"]);
+  });
+
+  it("drops an item after spaced re-proof", () => {
+    const day = 24 * 60 * 60 * 1000;
+    const ids = selectReviewQueueIds({
+      attempts: [
+        { bankItemId: "a", correct: false, createdAt: t0, sessionId: "s1" },
+        { bankItemId: "a", correct: true, createdAt: t0 + 1000, sessionId: "s2" },
+        { bankItemId: "a", correct: true, createdAt: t0 + day + 1000, sessionId: "s3" },
+        { bankItemId: "c", correct: false, createdAt: t0, sessionId: "s1" },
+      ],
+      now: t0 + day + 1000,
+      limit: 10,
+    });
+    expect(ids).toEqual(["c"]);
   });
 
   it("skips numeric ephemeral keys without bankItemId", () => {
-    const ids = selectStillIncorrectIds(
-      [
-        { bankItemId: null, questionKey: "12" },
-        { bankItemId: "real", questionKey: "real" },
+    const ids = selectReviewQueueIds({
+      attempts: [
+        { bankItemId: null, questionKey: "12", correct: false, createdAt: t0 },
+        { bankItemId: "real", questionKey: "real", correct: false, createdAt: t0 },
       ],
-      new Set(),
-      10
-    );
+      now: t0,
+      limit: 10,
+    });
     expect(ids).toEqual(["real"]);
   });
 
   it("respects limit", () => {
-    const ids = selectStillIncorrectIds(
-      [
-        { bankItemId: "a", questionKey: "a" },
-        { bankItemId: "b", questionKey: "b" },
-        { bankItemId: "c", questionKey: "c" },
+    const ids = selectReviewQueueIds({
+      attempts: [
+        { bankItemId: "a", questionKey: "a", correct: false, createdAt: t0 + 3 },
+        { bankItemId: "b", questionKey: "b", correct: false, createdAt: t0 + 2 },
+        { bankItemId: "c", questionKey: "c", correct: false, createdAt: t0 + 1 },
       ],
-      new Set(),
-      2
-    );
+      now: t0 + 3,
+      limit: 2,
+    });
     expect(ids).toEqual(["a", "b"]);
   });
 });

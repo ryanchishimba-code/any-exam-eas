@@ -13,8 +13,9 @@
  *    pulls Review incorrect forward. Equal gaps still rotate by UTC day.
  * 2. Qbank is 25 questions on that blueprint category.
  *    Gap = blueprint weight × (uncovered share, plus accuracy when attempts exist).
- * 3. Review incorrect is the count of items missed and not yet answered correctly
- *    (same definition as the Review incorrect launcher), capped at 10 for the block.
+ * 3. Review incorrect is the open-remediation count from the shared mastery
+ *    rule (a miss stays open through one correct until spaced re-proof or
+ *    mark-mastered), capped at 10 for the block.
  * 4. The guide row is one high-yield topic: an unpracticed category when one
  *    exists, otherwise the Qbank gap. Boards without a book still get the shared
  *    high-yield topic href.
@@ -437,7 +438,7 @@ function planRules(): string[] {
   return [
     `Today's block keeps the same four rows — ${TODAY_QBANK_COUNT} Qbank questions, Review incorrect, one guide topic, and ${TODAY_DRUG_COUNT} drugs — and orders them by the largest proof gap. An untouched or weak high-weight blueprint domain pulls Qbank and the guide forward. Eight or more open incorrect items, or a shorter queue that is still the larger gap, pulls Review incorrect forward. Equal blueprint gaps rotate by UTC day so one tied domain is not assigned forever.`,
     `Qbank is ${TODAY_QBANK_COUNT} questions on that blueprint category (weight × uncovered share, with accuracy once attempts exist).`,
-    `Review incorrect uses items you missed and have not yet answered correctly — the same saved attempts as Analytics — up to ${TODAY_INCORRECT_CAP}. Zero items stays an empty row and does not launch a set.`,
+    `Review incorrect uses the same open-remediation count as Analytics: a miss stays open until a spaced re-proof or a confirmed mark-mastered, up to ${TODAY_INCORRECT_CAP} in this block. Zero items stays an empty row and does not launch a set.`,
     "The guide row is one high-yield topic: an unpracticed blueprint category when one exists, otherwise the Qbank gap. Every board uses the same topic links.",
     `Drugs is a ${TODAY_DRUG_COUNT}-card touch on that topic's class, or this board's drug list when the topic has no class. A medication-category gap pulls drugs up behind the guide.`,
     `${READINESS_FORMULA} Coverage is the blueprint-weighted share of categories with at least one saved attempt. It is met at ${COVERAGE_MIN_PCT}% or more, and only when every domain weighted ${HIGH_WEIGHT_PCT}% or more has at least ${HIGH_WEIGHT_MIN_ATTEMPTS} answers. Recent accuracy is the last ${RECENT_ACCURACY_WINDOW} saved answers and is met at ${RECENT_ACCURACY_MIN_PCT}% once that window has ${RECENT_ACCURACY_MIN_SAMPLE} answers. Remediation completion is the share of saved attempts that are not still-open incorrect items. It is met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} open incorrect items. Ready means all three are met. Almost means two. Not yet means fewer. The band stays hidden until ${READINESS_MIN_SAMPLE} answered questions.`,
@@ -614,7 +615,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
           id: "incorrect",
           title: "Review incorrect",
           detail:
-            "0 incorrect items to review. A miss on the Qbank block shows up here after the session saves.",
+            "0 incorrect items to review. A miss stays open until a spaced re-proof or you mark it mastered.",
           why: null,
           href: null,
           cta: "Nothing to review",
@@ -622,7 +623,8 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
       : {
           id: "incorrect",
           title: `Review ${incorrectCount} incorrect`,
-          detail: "Items you missed and have not yet answered correctly.",
+          detail:
+            "Misses stay open until a spaced re-proof, or you mark them mastered.",
           why: null,
           href: reviewIncorrectHref(input.fieldId, incorrectCount, true),
           cta: "Start review",
