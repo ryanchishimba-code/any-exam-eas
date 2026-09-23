@@ -53,7 +53,7 @@ export function LiveBankStats({
     {
       icon: BookOpen,
       value: totalLabel,
-      label: degraded ? "Serve-ready questions (updating)" : "Serve-ready questions",
+      label: degraded ? "Active questions (updating)" : "Active questions",
     },
     {
       icon: GraduationCap,

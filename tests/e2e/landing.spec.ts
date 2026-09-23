@@ -48,7 +48,7 @@ test.describe("Landing page", () => {
   test("non-NCLEX board hubs use the premium dark hero", async ({ page }) => {
     await page.goto("/naplex", { waitUntil: "domcontentloaded" });
     await expect(page.locator('[data-exam-hero="naplex"]')).toBeVisible();
-    await expect(page.getByText(/NAPLEX questions live/i)).toBeVisible();
+    await expect(page.getByText(/active NAPLEX questions/i)).toBeVisible();
     await expect(page.getByText(/5-day free trial · no card · then/i).first()).toBeVisible();
   });
 

@@ -40,8 +40,10 @@ export function QuestionBankTopicPicker({
 
   const totalCount = useMemo(() => {
     if (!subjectCounts) return null;
-    return subjects.reduce((sum, s) => sum + (subjectCounts[s.id] ?? 0), 0);
-  }, [subjects, subjectCounts]);
+    // Sum every active topic, including ids outside the visible list, so this
+    // matches the header and the marketing board total.
+    return Object.values(subjectCounts).reduce((sum, n) => sum + n, 0);
+  }, [subjectCounts]);
 
   const virtualizer = useVirtualizer({
     count: filtered.length,
@@ -167,7 +169,7 @@ export function QuestionBankTopicPicker({
           <>
             {subjects.length} topics · {filtered.length} shown
             {totalCount !== null ? (
-              <> · {totalCount.toLocaleString()} questions available</>
+              <> · {totalCount.toLocaleString()} active questions</>
             ) : null}
           </>
         )}

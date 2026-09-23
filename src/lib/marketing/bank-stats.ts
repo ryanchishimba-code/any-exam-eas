@@ -52,7 +52,7 @@ export function formatExactServeReadyCount(count: number): string {
 
 export function formatExactServeReadyQuestions(count: number): string {
   const label = formatExactServeReadyCount(count);
-  return label === "—" ? "— questions" : `${label} serve-ready questions`;
+  return label === "—" ? "— questions" : `${label} active questions`;
 }
 
 const fieldTargets = Object.fromEntries(

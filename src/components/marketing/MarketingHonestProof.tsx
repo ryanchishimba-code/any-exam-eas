@@ -6,11 +6,16 @@ import {
   getPublishedQuestionStats,
 } from "@/lib/marketing/bank-stats";
 
-const PROOF_ITEMS = [
+const PROOF_ITEMS: Array<{
+  title: string;
+  body: (countLabel: string, live: boolean) => string;
+}> = [
   {
     title: "Live published bank",
-    body: (countLabel: string) =>
-      `${countLabel} across six boards — counted from serve-ready items, not a rounded marketing figure.`,
+    body: (countLabel, live) =>
+      live
+        ? `${countLabel} across six boards. Active means published and not retired — the same count as the Qbank, not a rounded figure.`
+        : `${countLabel} is the published floor while the live bank count is unavailable.`,
   },
   {
     title: "No-card trial",
@@ -22,17 +27,23 @@ const PROOF_ITEMS = [
     body: () =>
       "One Pro plan vs stacking separate NCLEX, USMLE, or NAPLEX banks. Advertised competitor prices live on Compare.",
   },
-] as const;
+];
 
 /** Honest, non-testimonial proof — product facts only. */
 export function MarketingHonestProof({
   heading = "What you can verify",
+  questionCountLabel,
+  live = false,
 }: {
   heading?: string;
+  /** Live active-question total when the page already has the inventory. */
+  questionCountLabel?: string;
+  /** True only when questionCountLabel came from the active inventory. */
+  live?: boolean;
 }) {
-  const countLabel = formatExactServeReadyQuestions(
-    getPublishedQuestionStats().totalPublished
-  );
+  const countLabel =
+    (live ? questionCountLabel?.trim() : "") ||
+    formatExactServeReadyQuestions(getPublishedQuestionStats().totalPublished);
 
   return (
     <div className="aee-honest-proof">
@@ -49,7 +60,7 @@ export function MarketingHonestProof({
               {item.title}
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              {item.body(countLabel)}
+              {item.body(countLabel, live)}
             </p>
           </li>
         ))}

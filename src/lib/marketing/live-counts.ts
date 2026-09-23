@@ -45,7 +45,7 @@ export function totalQuestionsDetail(
   if (bankCounts?.totalQuestionsLabel) {
     return bankCounts.totalQuestionsLabel;
   }
-  return `${FALLBACK_QUESTION_COUNTS.total} serve-ready questions`;
+  return `${FALLBACK_QUESTION_COUNTS.total} active questions`;
 }
 
 export function formatLiveTotalForCopy(

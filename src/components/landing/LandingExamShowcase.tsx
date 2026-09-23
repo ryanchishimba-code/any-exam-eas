@@ -30,10 +30,10 @@ export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamS
             {bankCounts.totalLabel}
           </span>
           <span className="mt-1 block text-lg font-bold text-[var(--flagship-navy,var(--color-ink))]">
-            serve-ready questions
+            active questions
           </span>
         </p>
-        <p className="aee-hero-exam-showcase__badge">QA-gated · serve-ready only</p>
+        <p className="aee-hero-exam-showcase__badge">Published, not retired</p>
       </div>
       <p className="aee-hero-exam-showcase__kicker">
         6 board exams · one subscription · starting at{" "}

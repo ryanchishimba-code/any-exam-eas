@@ -107,6 +107,7 @@ import {
 } from "@/lib/study/remediation-launch";
 import { PanceTaskFocus } from "./question-bank/PanceTaskFocus";
 import { useSubjectCounts } from "@/hooks/use-subject-counts";
+import type { SubjectCountsClient } from "@/lib/study/subject-counts-client";
 import { useExamFieldSessionReset } from "@/hooks/use-exam-field-session-reset";
 import type { PanceTaskAreaId } from "@/lib/exam-prep/pance/content-outline";
 import {
@@ -255,6 +256,7 @@ export function StudyBankPractice({
   initialFieldId,
   initialSubjectCounts,
   initialSubjectCountsFieldId,
+  initialInventory,
   weakTopics = [],
   hubStats,
   usmleStepLabel,
@@ -268,6 +270,8 @@ export function StudyBankPractice({
   /** Server-prefetched serve counts — avoids empty-state flash on /question-bank. */
   initialSubjectCounts?: Record<string, number> | null;
   initialSubjectCountsFieldId?: string;
+  /** Active inventory (formats, Client Needs) for the prefetched field. */
+  initialInventory?: SubjectCountsClient | null;
   /** Analytics weak topics — drives badges and default topic selection. */
   weakTopics?: WeakTopicRow[];
   hubStats?: QuestionBankHubStats;
@@ -373,12 +377,40 @@ export function StudyBankPractice({
   }, [examScopeKey, initialSubjectCounts]);
 
   const {
-    data: subjectCounts = null,
+    data: subjectCountPayload = null,
     isLoading: countsLoading,
   } = useSubjectCounts(fieldId, {
-    initialCounts: initialSubjectCounts ?? null,
+    initial: initialInventory ?? (
+      initialSubjectCounts
+        ? {
+            counts: initialSubjectCounts,
+            total: totalQuestions,
+            formats: null,
+            categories: [],
+            categoryLabel: null,
+            definition: null,
+          }
+        : null
+    ),
     initialFieldId: initialSubjectCountsFieldId ?? null,
   });
+  const subjectCounts = subjectCountPayload?.counts ?? null;
+  const inventoryTotal = subjectCountPayload?.total;
+  const activeTotal =
+    typeof inventoryTotal === "number"
+      ? inventoryTotal
+      : typeof totalQuestions === "number" && initialSubjectCountsFieldId === fieldId
+        ? totalQuestions
+        : null;
+  const activeFormats = subjectCountPayload?.formats ?? null;
+  const activeCategories = subjectCountPayload?.categories ?? [];
+  const activeCategoryLabel = subjectCountPayload?.categoryLabel ?? null;
+  const activeDefinition = subjectCountPayload?.definition ?? null;
+  const activeTopicCount = subjectCounts
+    ? Object.keys(subjectCounts).length
+    : initialSubjectCountsFieldId === fieldId
+      ? topicCount
+      : null;
 
   useEffect(() => {
     if (!countsLoading) setExamSwitching(false);
@@ -1445,8 +1477,12 @@ export function StudyBankPractice({
           examName={lockedExam.shortName}
           usmleStepLabel={usmleStepLabel}
           practiceMode={practiceMode}
-          topicCount={topicCount}
-          totalQuestions={totalQuestions}
+          topicCount={activeTopicCount}
+          totalQuestions={activeTotal}
+          formats={activeFormats}
+          categories={activeCategories}
+          categoryLabel={activeCategoryLabel}
+          activeDefinition={activeDefinition}
           readinessScore={hubStats?.readinessScore}
           streakDays={hubStats?.streakDays}
         />

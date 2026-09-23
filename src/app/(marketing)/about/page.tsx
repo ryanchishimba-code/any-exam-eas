@@ -9,17 +9,33 @@ import { buildAboutMetadata, buildAboutJsonLd } from "@/lib/seo/marketing-metada
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { COMPANY_PUBLIC, FOUNDER_PUBLIC } from "@/lib/marketing/company";
+import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
 import {
   formatExactServeReadyQuestions,
   getPublishedQuestionStats,
 } from "@/lib/marketing/bank-stats";
+import {
+  buildLandingBankCountsDisplay,
+  getCachedBankStatsBundle,
+} from "@/lib/marketing/question-bank-counts";
 
 export const revalidate = 3600;
 
-export function generateMetadata() {
-  return buildAboutMetadata(
-    formatExactServeReadyQuestions(getPublishedQuestionStats().totalPublished)
-  );
+async function publishedOrLiveTotalLabel(): Promise<{ label: string; live: boolean }> {
+  const { snapshot } = await getCachedBankStatsBundle();
+  const display = buildLandingBankCountsDisplay(snapshot);
+  if (!display.degraded && display.totalServed > 0) {
+    return { label: display.totalQuestionsLabel, live: true };
+  }
+  return {
+    label: formatExactServeReadyQuestions(getPublishedQuestionStats().totalPublished),
+    live: false,
+  };
+}
+
+export async function generateMetadata() {
+  const { label } = await publishedOrLiveTotalLabel();
+  return buildAboutMetadata(label);
 }
 
 const EXAM_HUB_LINKS = [
@@ -64,9 +80,8 @@ const OFFICIAL_PREP_DOCS = [
   },
 ] as const;
 
-export default function AboutPage() {
-  const published = getPublishedQuestionStats();
-  const totalQuestionsLabel = formatExactServeReadyQuestions(published.totalPublished);
+export default async function AboutPage() {
+  const { label: totalQuestionsLabel, live } = await publishedOrLiveTotalLabel();
 
   return (
     <>
@@ -105,6 +120,11 @@ export default function AboutPage() {
 
             <p className="mt-8 text-sm font-medium text-[var(--color-ink-muted)]">
               {totalQuestionsLabel} · from {formatMonthlyPrice("pro")}/mo after trial
+            </p>
+            <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-[var(--color-ink-muted)]">
+              {live
+                ? ACTIVE_QUESTION_DEFINITION
+                : "Live bank count is unavailable, so this figure is the published floor — not the current Qbank total."}
             </p>
           </div>
         </section>

@@ -80,11 +80,11 @@ describe("question-bank-counts display", () => {
       "npte-pt",
     ]);
     expect(display.exams[0]?.countLabel).toBe("28,373");
-    expect(display.exams[0]?.questionsLabel).toBe("28,373 serve-ready questions");
+    expect(display.exams[0]?.questionsLabel).toBe("28,373 active questions");
     expect(display.exams[1]?.countLabel).toBe("6,938");
     expect(display.exams[2]?.countLabel).toBe("6,380");
     expect(display.totalLabel).toBe("57,494");
-    expect(display.totalQuestionsLabel).toBe("57,494 serve-ready questions");
+    expect(display.totalQuestionsLabel).toBe("57,494 active questions");
     expect(display.totalServed).toBe(57_494);
   });
 

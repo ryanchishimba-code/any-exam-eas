@@ -3,7 +3,11 @@ import Link from "next/link";
 import { ExamMarketingLanding } from "@/components/marketing/ExamMarketingLanding";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { landingTrialHrefForExam } from "@/lib/landing/content";
-import { formatExactServeReadyCount, getPublishedQuestionStats } from "@/lib/marketing/bank-stats";
+import { presentBoardInventory } from "@/lib/inventory/active-questions";
+import {
+  buildLandingBankCountsDisplay,
+  getCachedBankStatsBundle,
+} from "@/lib/marketing/question-bank-counts";
 import { ROUTES } from "@/lib/routes";
 import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata";
 import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
@@ -36,8 +40,15 @@ const PRODUCT_LINKS = [
 ] as const;
 
 export default async function NclexHubPage() {
-  const published = getPublishedQuestionStats();
-  const questionCountLabel = formatExactServeReadyCount(published.perBoard.nclex);
+  const { snapshot, inventory } = await getCachedBankStatsBundle();
+  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+  const examCount = bankCounts.exams.find((row) => row.slug === "nclex");
+  const questionCountLabel = examCount?.countLabel;
+  const boardInventory = presentBoardInventory({
+    slug: "nclex",
+    usingLiveCount: !bankCounts.degraded && (examCount?.served ?? 0) > 0,
+    board: inventory.boards.nclex,
+  });
 
   return (
     <>
@@ -45,6 +56,7 @@ export default async function NclexHubPage() {
       <ExamMarketingLanding
         examKey="nclex"
         questionCountLabel={questionCountLabel}
+        inventory={boardInventory}
         extraAfterHero={
           <section className="border-b border-[var(--color-border)]/40 py-14">
             <div className="mx-auto max-w-5xl px-5 sm:px-6">

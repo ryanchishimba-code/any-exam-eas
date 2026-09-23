@@ -1,12 +1,23 @@
 import { cacheGetOrSet, cacheKey, CACHE_TTL, CACHE_STALE } from "@/lib/cache";
 import { withDbRetry } from "@/lib/db";
 import { enforceQuestionBankFieldAccess, resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
+import {
+  ACTIVE_QUESTION_DEFINITION,
+  fieldInventoryPayload,
+  type FormatCounts,
+  type InventoryCategoryCount,
+} from "@/lib/inventory/active-questions";
+import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
 
 export type SubjectCountsPayload = {
   fieldId: string;
   counts: Record<string, number>;
   total: number;
+  formats: FormatCounts | null;
+  categories: InventoryCategoryCount[];
+  categoryLabel: string | null;
+  definition: string;
 };
 
 /** Server-side serve-ready counts for the question bank topic picker. */
@@ -22,6 +33,23 @@ export async function loadSubjectCountsForUser(
 
   const fieldId = resolveQuestionBankFieldId(fieldParam);
 
+  try {
+    const fromInventory = fieldInventoryPayload(fieldId, await getCachedActiveInventory());
+    if (fromInventory) {
+      return {
+        fieldId,
+        counts: fromInventory.counts,
+        total: fromInventory.total,
+        formats: fromInventory.formats,
+        categories: fromInventory.categories,
+        categoryLabel: fromInventory.categoryLabel,
+        definition: fromInventory.definition,
+      };
+    }
+  } catch (error) {
+    console.error("[subject-counts] inventory lookup failed:", error);
+  }
+
   // Errors propagate after Neon HTTP retries so the question-bank error UI can show.
   const counts = await cacheGetOrSet(
     cacheKey(["subject-served-counts", fieldId]),
@@ -30,5 +58,13 @@ export async function loadSubjectCountsForUser(
     { staleTtlMs: CACHE_STALE.subjectCatalog }
   );
   const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
-  return { fieldId, counts, total };
+  return {
+    fieldId,
+    counts,
+    total,
+    formats: null,
+    categories: [],
+    categoryLabel: null,
+    definition: ACTIVE_QUESTION_DEFINITION,
+  };
 }

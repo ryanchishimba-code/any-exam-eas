@@ -19,7 +19,7 @@ export function ShareModal({ open, onClose, examLabel = "board" }: ShareModalPro
     bankCounts?.totalLabel && bankCounts.totalLabel !== "—"
       ? bankCounts.totalLabel
       : FALLBACK_QUESTION_COUNTS.total;
-  const text = `I'm studying for my ${examLabel} with Any Exam Easy — ${total} serve-ready questions and adaptive practice. Join me → ${SITE}`;
+  const text = `I'm studying for my ${examLabel} with Any Exam Easy — ${total} active questions and adaptive practice. Join me → ${SITE}`;
   const encoded = encodeURIComponent(text);
   const url = encodeURIComponent(SITE);
 

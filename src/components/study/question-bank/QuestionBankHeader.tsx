@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { ChevronRight, LayoutGrid } from "lucide-react";
+import { formatInventoryFormatLine } from "@/lib/inventory/active-questions";
+import type { FormatCounts, InventoryCategoryCount } from "@/lib/inventory/active-questions";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -12,6 +14,10 @@ type Props = {
   practiceMode: "bank" | "timed";
   topicCount?: number | null;
   totalQuestions?: number | null;
+  formats?: FormatCounts | null;
+  categories?: InventoryCategoryCount[];
+  categoryLabel?: string | null;
+  activeDefinition?: string | null;
   readinessScore?: number;
   streakDays?: number;
 };
@@ -22,9 +28,16 @@ export function QuestionBankHeader({
   practiceMode,
   topicCount,
   totalQuestions,
+  formats,
+  categories = [],
+  categoryLabel,
+  activeDefinition,
   readinessScore,
   streakDays,
 }: Props) {
+  const formatLine = formats
+    ? formatInventoryFormatLine(formats, categoryLabel === "Client Needs" ? "NGN" : "NGN-style")
+    : null;
   return (
     <header className="space-y-4 px-0.5">
       <nav
@@ -74,12 +87,40 @@ export function QuestionBankHeader({
               </span>
             ) : null}
             {typeof totalQuestions === "number" ? (
-              <span className={qbUi.statPill}>{totalQuestions.toLocaleString()} questions</span>
+              <span
+                className={qbUi.statPill}
+                data-active-question-count={totalQuestions}
+                title={activeDefinition ?? undefined}
+              >
+                {totalQuestions.toLocaleString()} active questions
+              </span>
+            ) : null}
+            {formatLine ? (
+              <span className={qbUi.statPill} data-question-formats={formatLine}>
+                {formatLine}
+              </span>
             ) : null}
             {typeof streakDays === "number" && streakDays > 0 ? (
               <span className={qbUi.statPill}>{streakDays}d streak</span>
             ) : null}
           </div>
+          {activeDefinition ? (
+            <p className={qbUi.sectionHint} title={activeDefinition}>
+              {activeDefinition}
+            </p>
+          ) : null}
+          {categories.length > 0 ? (
+            <div className="space-y-1.5 pt-1">
+              <p className={qbUi.sectionTitle}>{categoryLabel ?? "Topics"}</p>
+              <div className="flex flex-wrap gap-1.5">
+                {categories.map((category) => (
+                  <span key={category.id} className={qbUi.statPill}>
+                    {category.label} {category.count.toLocaleString()}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
 
         <Link href={`${ROUTES.selectExam}?switch=1`} className={cn(qbUi.switchExam, "shrink-0")}>
