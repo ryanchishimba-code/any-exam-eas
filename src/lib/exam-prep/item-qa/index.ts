@@ -33,4 +33,28 @@ export {
   type ItemQaContent,
   type RationaleSchemaIssue,
 } from "./rationale-schema";
-export { lintItemText, type TextLintIssue } from "./text-lint";
+export {
+  optionsAreLetterPlaceholders,
+  structuredNgnChoiceTexts,
+  studentFacingChoiceTexts,
+} from "./text-choices";
+export {
+  TEXT_FLAG_CODES,
+  classifyTextFlagItem,
+  planTextFlagRemediation,
+  textFlagClearWrite,
+  textFlagRetireReason,
+  textFlagRetireWrite,
+  triggeringOptionTexts,
+  type TextFlagAction,
+  type TextFlagBankRow,
+  type TextFlagClassification,
+  type TextFlagCode,
+  type TextFlagPlanItem,
+  type TextFlagProposedFix,
+  type TextFlagRemediationPlan,
+  type TextFlagSkip,
+  type TextFlagSkipReason,
+  type TextRetireReason,
+} from "./text-flag-remediation";
+export { choiceTextDefect, lintItemText, stemIsTooShort, type TextLintIssue } from "./text-lint";

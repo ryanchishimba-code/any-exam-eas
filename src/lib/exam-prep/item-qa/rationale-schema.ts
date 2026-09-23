@@ -48,6 +48,8 @@ export type ItemQaContent = {
     whyIncorrect?: Array<{ option?: string; correction?: string; misconception?: string }>;
     keyTakeaway?: string;
   };
+  /** Parsed options envelope when the row stores an NGN payload. */
+  ngnPayload?: Record<string, unknown>;
 };
 
 const DISTRACTOR_TYPES = new Set([
@@ -198,6 +200,7 @@ export function contentFromStoredItem(row: {
     governingPrinciple: principle,
     references,
     expertRationale: expert,
+    ...(parsed.ngnPayload ? { ngnPayload: parsed.ngnPayload } : {}),
   };
 }
 

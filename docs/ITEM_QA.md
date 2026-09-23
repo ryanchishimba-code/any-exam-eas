@@ -14,7 +14,7 @@ Normalization lowercases text, strips punctuation and markdown, and collapses wh
 
 The principle is board-generic. A nursing priority rule, a pharmacy monitoring rule, and a USMLE next-step rule all use the same field.
 
-Letter-only choices use the code `letter_only_option`. Other cut-off choice text stays `truncated_option`, so the two cleanups stay separate. A single digit option is neither defect. A one-character option that is not A–D (for example `E` or `?`) stays `truncated_option`.
+Letter-only choices use the code `letter_only_option`. Other cut-off choice text stays `truncated_option`, so the two cleanups stay separate. A single digit option is neither defect. A one-character option that is not A–D (for example `E` or `?`) stays `truncated_option`. A complete phrase that ends in "watch for" or "look for" is not a cut-off. On a bow-tie, matrix, or highlight item, letter placeholders stored beside the real choices are not linted; the structured choices are.
 
 ## Run a report
 
@@ -86,11 +86,45 @@ The walk has no hop cap:
 
 An earlier cap of 12 skipped the rest of a chain as `chain_too_long`. That was about 250 active nursing near-duplicates after the first apply (1,216 retired). Those higher ids are eligible on the next dry-run. `chain_too_long` is no longer produced.
 
-Text-only flags (`truncated_option`, `letter_only_option`, `empty_stem`) stay in the queue. If a retired row also has another Item QA code, `near_duplicate` is removed and `reviewFlag` stays true for the remaining code. A duplicate-only row has `reviewFlag` cleared and keeps a retirement note on `curationMeta.itemQa`.
+Text-only flags (`truncated_option`, `letter_only_option`, `empty_stem`) stay in the queue for the text-flag tool below. If a retired near-duplicate also has another Item QA code, `near_duplicate` is removed and `reviewFlag` stays true for the remaining code. A duplicate-only row has `reviewFlag` cleared and keeps a retirement note on `curationMeta.itemQa`.
 
 Public inventory counts rows that are both `active` and `qaPassed`. The dry-run prints that published count, the expected drop, and the expected count after apply. The drop equals the eligible rows that are already `qaPassed`. When most queued near-duplicates are published, that is roughly the retired count. Read the live count from the dry-run. The pre-cleanup nursing total (7,581) is not the current hub total. Keepers stay published, so their share of the total does not move.
 
 The report is `artifacts/retire-near-duplicates-<field>.md` and `.json` (gitignored). Full-exam links are left in place; the practice bank stops serving the row because practice requires `active`.
+
+## Remediate text flags
+
+Dry-run is the default. The command reads active flagged rows for one field and classifies `truncated_option`, `empty_stem`, `letter_only_option`, and `empty_option`. It does not change near-duplicate rows. It does not rewrite choice text. It does not change `qaPassed`. It does not delete rows.
+
+```bash
+# Classify every active text flag. No writes.
+npm run db:remediate-text-flags -- --field nursing
+
+# Same list. Names the retire write, but still does not write.
+npm run db:remediate-text-flags -- --field nursing --retire
+
+# Same list. Names the clear write, but still does not write.
+npm run db:remediate-text-flags -- --field nursing --clear-resolved
+
+# Soft-deactivate only the retire class after the dry-run looks right.
+npm run db:remediate-text-flags -- --field nursing --retire --apply
+
+# Drop text flags the lint no longer supports. Does not change active or qaPassed.
+npm run db:remediate-text-flags -- --field nursing --clear-resolved --apply
+```
+
+`--field` is required. `--apply` without `--retire` or `--clear-resolved` refuses to write. `--apply` and `--dry-run` together also refuse.
+
+| Action | When | Write |
+| --- | --- | --- |
+| Retire | The stem is still under 12 characters, or every student-facing choice is only a letter, empty, or a single character. | `active=false`, `curationMeta.itemQa.retiredReason`, text codes removed. `reviewFlag` stays true only if another code remains. |
+| Clear false positive | Student-facing text no longer fails text lint. Letter placeholders on a bow-tie, matrix, or highlight item are ignored when the structured choices are complete. A choice that ends in "watch for" (or the same kind of complete phrase) is not a cut-off. | Text codes removed. `reviewFlag` cleared when nothing remains. `active` and `qaPassed` stay as they are. |
+| Fix content | A cut-off choice has exactly one longer completion in the explanation, correct answer, or scenario. | None. The report quotes the completion. A person edits the item, then `--clear-resolved` can drop the flag after the lint agrees. |
+| Needs human | The cut-off is not uniquely recoverable, a letter sits beside real choices, or the row is also a near-duplicate. | None. |
+
+Structured NGN rows often store `options: ["A","B","C","D"]` next to the real actions, monitors, rows, or highlight phrases. Students see the structured choices. Those letter lists are a false positive, not a truncated question. Clearing that flag does not publish the item: `qaPassed` and `reviewStatus` stay as they are.
+
+The report is `artifacts/text-flag-remediation-<field>.md` and `.json` (gitignored). A production snapshot of the nursing queue is in `docs/item-qa/nursing-text-flag-inventory.md`. Full-exam links on a retired row are left in place. A retire that updates at least one row refreshes the public inventory cache the same way near-duplicate retire does. A clear does not, because the public count did not change.
 
 ## Confirm the public count
 
@@ -143,7 +177,7 @@ When a served item has a real citation (`references`, `generationMeta.sourceLabe
 ## Verify
 
 ```bash
-npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts src/lib/inventory/active-inventory-cache.test.ts src/lib/inventory/revalidate-active-inventory.test.ts tests/unit/components/QuestionRenderer.test.tsx
+npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts src/lib/exam-prep/item-qa/text-flag-remediation.test.ts src/lib/inventory/active-inventory-cache.test.ts src/lib/inventory/revalidate-active-inventory.test.ts tests/unit/components/QuestionRenderer.test.tsx
 ```
 
-The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, the rationale schema, the manual-only publish gate, the source line, and the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, `qaPassed` is not a write).
+The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, a complete "watch for" choice, the rationale schema, the manual-only publish gate, the source line, the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, `qaPassed` is not a write), and the text-flag plan (empty stems retire, NGN letter placeholders clear, content is not rewritten).

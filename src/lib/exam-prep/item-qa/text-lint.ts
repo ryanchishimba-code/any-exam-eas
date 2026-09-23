@@ -25,6 +25,13 @@ const MOJIBAKE =
 const TRUNCATION_TAIL =
   /(?:\.{3}|…)\s*$|(?:^|\s)(?:and|or|the|a|an|to|of|with|for)\s*$|[([]\s*$/i;
 
+/**
+ * A complete choice can end in "for" ("to watch for", "to look for").
+ * That is not a cut-off word. Bare "and" / "the" / "for" still fail.
+ */
+const COMPLETE_FUNCTION_TAIL =
+  /\b(?:watch|look(?:ing)?|care|ask|call|account|except|prepare[d]?|send|wait|responsible|indicated|search|screen)\s+for\s*$/i;
+
 function push(issues: TextLintIssue[], issue: TextLintIssue) {
   issues.push(issue);
 }
@@ -76,8 +83,31 @@ function letterOnlyChoice(option: string): boolean {
 function optionLooksTruncated(option: string): boolean {
   const trimmed = option.trim();
   if (!trimmed || letterOnlyChoice(trimmed)) return false;
+  if (
+    trimmed.length >= 24 &&
+    COMPLETE_FUNCTION_TAIL.test(trimmed) &&
+    !/(?:\.{3}|…)\s*$|[([]\s*$/.test(trimmed)
+  ) {
+    return false;
+  }
   if (trimmed.length <= 1 && !/^\d$/.test(trimmed)) return true;
   return TRUNCATION_TAIL.test(trimmed);
+}
+
+/** Same bar the stem lint uses: blank or shorter than a real question. */
+export function stemIsTooShort(stem: string): boolean {
+  const trimmed = stem?.trim() ?? "";
+  return !trimmed || trimmed.length < 12;
+}
+
+/** What text lint would say about one choice. Null means the choice text is fine. */
+export function choiceTextDefect(
+  option: string
+): "empty_option" | "letter_only_option" | "truncated_option" | null {
+  if (!option?.trim()) return "empty_option";
+  if (letterOnlyChoice(option)) return "letter_only_option";
+  if (optionLooksTruncated(option)) return "truncated_option";
+  return null;
 }
 
 export function lintItemText(input: {
@@ -89,7 +119,7 @@ export function lintItemText(input: {
   const stem = input.stem ?? "";
   const explanation = input.explanation ?? "";
 
-  if (!stem.trim() || stem.trim().length < 12) {
+  if (stemIsTooShort(stem)) {
     push(issues, {
       area: "text",
       code: "empty_stem",
@@ -105,7 +135,8 @@ export function lintItemText(input: {
 
   input.options.forEach((option, index) => {
     const label = `Option ${index + 1}`;
-    if (!option?.trim()) {
+    const defect = choiceTextDefect(option);
+    if (defect === "empty_option") {
       push(issues, {
         area: "text",
         code: "empty_option",
@@ -115,7 +146,7 @@ export function lintItemText(input: {
       });
       return;
     }
-    if (letterOnlyChoice(option)) {
+    if (defect === "letter_only_option") {
       push(issues, {
         area: "text",
         code: "letter_only_option",
@@ -123,7 +154,7 @@ export function lintItemText(input: {
         message: `${label} is only the choice letter "${option.trim()}" with no answer text.`,
         option,
       });
-    } else if (optionLooksTruncated(option)) {
+    } else if (defect === "truncated_option") {
       push(issues, {
         area: "text",
         code: "truncated_option",
