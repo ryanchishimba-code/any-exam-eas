@@ -10,6 +10,7 @@ import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLearningProfileSnapshot } from "@/lib/learning/profile-service";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
+import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import { studyUi } from "@/lib/study/study-ui";
@@ -50,12 +51,13 @@ async function AnalyticsContent({
   const examName = EXAM_CATALOG[examSlug].shortName;
   const fieldId = resolveExamFieldId(examSlug);
 
-  const [dashboard, profile, roadmap] = await Promise.all([
+  const [dashboard, profile, roadmap, inventory] = await Promise.all([
     getStudentDashboardData(userId, [fieldId]),
     getLearningProfileSnapshot(userId),
     getExamRoadmapData(userId, examSlug, {
       usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
     }).catch(() => null),
+    loadCoverageInventory(fieldId).catch(() => null),
   ]);
 
   const examDayPlan = buildDashboardExamDayPlan({
@@ -67,12 +69,18 @@ async function AnalyticsContent({
     openIncorrect: roadmap ? roadmap.openIncorrectCount : null,
     questionsToday: 0,
     roadmap,
+    inventoryCategories: inventory?.categories ?? null,
+    topicQuestionTotal: inventory?.topicQuestionTotal ?? null,
   });
 
   return (
     <ProUpgradeGate feature="advanced_analytics" callbackPath={ROUTES.pricing}>
       <div className="space-y-8">
-        <ReadinessProofPanel readiness={examDayPlan.readiness} />
+        <ReadinessProofPanel
+          readiness={examDayPlan.readiness}
+          domainsLabel={examDayPlan.coverage.domainsLabel}
+          coverage={examDayPlan.coverage}
+        />
         <StudentAnalyticsDashboard
           examSlug={examSlug}
           examName={examName}

@@ -119,6 +119,8 @@ import {
 } from "@/lib/study/remediation-launch";
 import { PanceTaskFocus } from "./question-bank/PanceTaskFocus";
 import { useSubjectCounts } from "@/hooks/use-subject-counts";
+import { useCoverageHeatmap } from "@/hooks/use-coverage-heatmap";
+import type { CoverageHeatmap } from "@/lib/learning/coverage-heatmap";
 import type { SubjectCountsClient } from "@/lib/study/subject-counts-client";
 import { useExamFieldSessionReset } from "@/hooks/use-exam-field-session-reset";
 import type { PanceTaskAreaId } from "@/lib/exam-prep/pance/content-outline";
@@ -272,6 +274,8 @@ export function StudyBankPractice({
   initialSubjectCountsFieldId,
   initialInventory,
   weakTopics = [],
+  initialCoverage = null,
+  initialCoverageFieldId,
   hubStats,
   usmleStepLabel,
   topicCount = null,
@@ -288,6 +292,9 @@ export function StudyBankPractice({
   initialInventory?: SubjectCountsClient | null;
   /** Analytics weak topics — drives badges and default topic selection. */
   weakTopics?: WeakTopicRow[];
+  /** Server heatmap for the prefetched field. Same shape as /api/learning/coverage. */
+  initialCoverage?: CoverageHeatmap | null;
+  initialCoverageFieldId?: string;
   hubStats?: QuestionBankHubStats;
   usmleStepLabel?: string;
   topicCount?: number | null;
@@ -440,6 +447,16 @@ export function StudyBankPractice({
     () => weakSubjectIdsForField(weakTopics, fieldId, bankSubjectIds),
     [weakTopics, fieldId, bankSubjectIds]
   );
+  const coverageQuery = useCoverageHeatmap(fieldId, {
+    initial: initialCoverage,
+    initialFieldId: initialCoverageFieldId,
+  });
+  const coverage = coverageQuery.data ?? null;
+  const coverageChips = useMemo(() => {
+    if (!coverage) return [];
+    const ids = new Set(bankSubjectIds);
+    return coverage.chips.filter((chip) => ids.has(chip.subjectId));
+  }, [coverage, bankSubjectIds]);
 
   const isNclex = useMemo(() => isNclexField(field), [field]);
   const isMpje = useMemo(() => isMpjeField(fieldId), [fieldId]);
@@ -673,6 +690,12 @@ export function StudyBankPractice({
       return;
     }
 
+    const coverageLead = coverageChips.find((chip) => list.some((subject) => subject.id === chip.subjectId));
+    if (coverageLead) {
+      setSubjectId(coverageLead.subjectId);
+      return;
+    }
+
     const styleParam = resolvePracticeSearchParam(searchParams, "style");
     const preferWeak =
       styleParam === "weak_areas" ||
@@ -688,7 +711,7 @@ export function StudyBankPractice({
     }
 
     setSubjectId(list[0]?.id ?? "");
-  }, [fieldId, isTimedExam, searchParams, weakTopics, weakSubjectIds.length]);
+  }, [fieldId, isTimedExam, searchParams, weakTopics, weakSubjectIds.length, coverageChips]);
 
   useEffect(() => {
     zeroPoolFallbackAppliedRef.current = false;
@@ -1864,6 +1887,9 @@ export function StudyBankPractice({
                 syncPracticeUrl({ style: s });
               }}
               weakSubjectIds={weakSubjectIds}
+              coverageChips={coverageChips}
+              coverageLabel={coverage?.domainsLabel ?? "Blueprint topics"}
+              coverageLoaded={coverage != null}
               countsLoading={countsLoading}
               practiceFormat={practiceFormat}
               formats={activeFormats}

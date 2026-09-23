@@ -10,6 +10,11 @@ import { cn } from "@/lib/utils";
 
 type SubjectOption = { id: string; label: string };
 
+export type CoverageSubjectMark = {
+  subjectId: string;
+  kind: "untouched" | "weak";
+};
+
 const TOPIC_ROW_HEIGHT = 56;
 
 export function QuestionBankTopicPicker({
@@ -19,6 +24,8 @@ export function QuestionBankTopicPicker({
   onSubjectChange,
   allowMixed = true,
   weakSubjectIds,
+  coverageMarks,
+  coverageLoaded = false,
   countsLoading = false,
 }: {
   subjects: SubjectOption[];
@@ -27,6 +34,9 @@ export function QuestionBankTopicPicker({
   onSubjectChange: (subjectId: string) => void;
   allowMixed?: boolean;
   weakSubjectIds?: string[];
+  /** Heatmap chips. When coverage has loaded, these replace mastery Weak badges. */
+  coverageMarks?: CoverageSubjectMark[];
+  coverageLoaded?: boolean;
   countsLoading?: boolean;
 }) {
   const [query, setQuery] = useState("");
@@ -98,7 +108,8 @@ export function QuestionBankTopicPicker({
                 if (!subject) return null;
                 const selected = subject.id === subjectId;
                 const count = subjectCounts?.[subject.id];
-                const isWeak = weakSubjectIds?.includes(subject.id);
+                const mark = coverageMarks?.find((row) => row.subjectId === subject.id);
+                const isWeak = !coverageLoaded && weakSubjectIds?.includes(subject.id);
                 const disabled =
                   !countsLoading && typeof count === "number" && count <= 0;
                 const { icon: Icon, tint } = subjectVisual(subject.label);
@@ -142,7 +153,11 @@ export function QuestionBankTopicPicker({
                       ) : null}
                     </div>
                     <div className="flex shrink-0 items-center gap-1.5">
-                      {isWeak ? (
+                      {mark ? (
+                        <span className="rounded-full bg-[var(--color-accent)]/10 px-2 py-0.5 text-[11px] font-semibold tracking-[-0.01em] text-[var(--color-accent)]">
+                          {mark.kind === "untouched" ? "Untouched" : "Low"}
+                        </span>
+                      ) : isWeak ? (
                         <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-800">
                           Weak
                         </span>

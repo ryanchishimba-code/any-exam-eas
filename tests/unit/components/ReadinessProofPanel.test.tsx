@@ -26,6 +26,67 @@ describe("ReadinessProofPanel", () => {
     expect(document.body.textContent).not.toMatch(/you will pass/i);
   });
 
+  it("shows the untouched high-weight domain on the same heatmap as Today", () => {
+    const plan = buildExamDayPlan({
+      examSlug: "nclex",
+      examName: "NCLEX-RN",
+      fieldId: "nursing",
+      testDate: "2026-11-03",
+      now,
+      totalAttempts: 12,
+      recentAccuracyPct: 50,
+      openIncorrect: 0,
+      topics: [
+        {
+          id: "management-of-care",
+          label: "Management of Care",
+          blueprintWeightPct: 18,
+          attempts: 0,
+          accuracyPct: null,
+          coveragePct: 0,
+          practiceHref: "/question-bank?subjectId=management-of-care",
+        },
+        {
+          id: "pharmacology",
+          label: "Pharmacological Therapies",
+          blueprintWeightPct: 16,
+          attempts: 12,
+          accuracyPct: 70,
+          coveragePct: 40,
+          practiceHref: "/question-bank?subjectId=pharmacology-nursing",
+        },
+      ],
+      inventoryCategories: [
+        { id: "management-of-care", label: "Management of Care", count: 1204 },
+        { id: "pharmacology", label: "Pharmacological Therapies", count: 880 },
+      ],
+      topicQuestionTotal: 2084,
+    });
+    render(
+      <ReadinessProofPanel
+        readiness={plan.readiness}
+        domainsLabel={plan.coverage.domainsLabel}
+        coverage={plan.coverage}
+      />
+    );
+    expect(screen.getByRole("heading", { name: "Not enough practice yet" })).toBeInTheDocument();
+    expect(screen.getByText("Client Needs")).toBeInTheDocument();
+    expect(screen.getByText("Management of Care")).toBeInTheDocument();
+    expect(screen.getByText("Untouched · 1,204 questions")).toBeInTheDocument();
+    expect(screen.getByText("Top gap")).toBeInTheDocument();
+    expect(plan.items[0]?.detail).toMatch(/Management of Care/);
+    expect(plan.weekPlan.goals.find((goal) => goal.id === "coverage")?.title).toMatch(
+      /Management of Care/
+    );
+    expect(plan.coverage.countsAgree).toBe(true);
+    expect(plan.coverage.chips[0]).toMatchObject({
+      kind: "untouched",
+      subjectId: "management-of-care",
+      available: 1204,
+    });
+    expect(document.body.textContent).not.toMatch(/you will pass/i);
+  });
+
   it("shows Ready with criteria once the sample and factors are met", () => {
     const plan = buildExamDayPlan({
       examSlug: "naplex",
