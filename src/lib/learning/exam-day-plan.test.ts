@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { ExamSlug } from "@/types/edtech";
+import { finalStretchProjection } from "./week-countdown-plan";
 import {
   READINESS_FORMULA,
   READINESS_MIN_SAMPLE,
@@ -10,6 +11,7 @@ import {
   buildExamDayPlan,
   calendarDaysUntil,
   classifyReadinessBand,
+  examSimCompletedOnUtcDay,
   examSimTrendFromSessions,
   readinessScoreFromFactors,
   remediationCompletionPct,
@@ -87,6 +89,10 @@ describe("buildExamDayPlan", () => {
     expect(plan.readiness.score).toBeNull();
     expect(plan.readiness.minSample).toBe(READINESS_MIN_SAMPLE);
     expect(plan.readiness.formula).toBe(READINESS_FORMULA);
+    expect(plan.weekPlan.active).toBe(true);
+    expect(plan.weekPlan.intensity).toBe("building");
+    expect(plan.weekPlan.goals.map((goal) => goal.id)).toEqual(["coverage", "remediation"]);
+    expect(plan.items.some((item) => item.id === "exam_sim")).toBe(false);
     expect(plan.readiness.criteria.every((row) => row.status === "not_scored")).toBe(true);
     expect(planText(plan)).not.toMatch(/you will pass/i);
   });
@@ -253,8 +259,9 @@ describe("buildExamDayPlan", () => {
       openIncorrect: 0,
       topics,
     });
-    expect(first.week[0]?.label).not.toBe(second.week[0]?.label);
-    expect(first.week[0]?.isToday).toBe(true);
+    expect(first.items[0]?.detail).not.toBe(second.items[0]?.detail);
+    expect(first.items[0]?.id).toBe("qbank");
+    expect(first.weekPlan.active).toBe(false);
   });
 
   it("does not claim zero incorrect items when the count is unknown", () => {
@@ -518,6 +525,209 @@ describe("readiness proof gaps", () => {
   });
 });
 
+describe("week countdown plan", () => {
+  const now = new Date("2026-09-22T15:00:00.000Z");
+  const examSimDay = new Date("2026-09-24T15:00:00.000Z");
+
+  it("stays hidden until an exam date is saved and comes back when the date changes", () => {
+    const shared = {
+      examSlug: "nclex" as const,
+      examName: "NCLEX-RN",
+      fieldId: "nursing",
+      now,
+      totalAttempts: 12,
+      recentAccuracyPct: 60,
+      openIncorrect: 3,
+      topics: [
+        topic({ id: "management-of-care", label: "Management of Care", blueprintWeightPct: 20 }),
+      ],
+    };
+    const unset = buildExamDayPlan(shared);
+    expect(unset.weekPlan.active).toBe(false);
+    expect(unset.weekPlan.intensity).toBe("unset");
+    expect(unset.weekPlan.goals).toEqual([]);
+    expect(unset.items.some((item) => item.id === "exam_sim")).toBe(false);
+
+    const dated = buildExamDayPlan({ ...shared, testDate: "2026-11-03" });
+    expect(dated.weekPlan.active).toBe(true);
+    expect(dated.weekPlan.intensity).toBe("building");
+    expect(dated.weekPlan.rangeLabel).toMatch(/weeks out/);
+    expect(dated.weekPlan.todayLine).toMatch(/Management of Care/);
+    expect(dated.items[0]?.id).toBe("qbank");
+
+    const passed = buildExamDayPlan({ ...shared, testDate: "2026-09-01" });
+    expect(passed.weekPlan.active).toBe(false);
+    expect(passed.weekPlan.intensity).toBe("passed");
+    expect(planText(dated)).not.toMatch(/you will pass/i);
+  });
+
+  it("ticks the coverage goal after today's Qbank block is saved", () => {
+    const plan = buildExamDayPlan({
+      examSlug: "pance",
+      examName: "PANCE",
+      fieldId: "pance",
+      testDate: "2026-11-03",
+      now,
+      totalAttempts: 20,
+      recentAccuracyPct: 70,
+      openIncorrect: 2,
+      questionsToday: TODAY_QBANK_COUNT,
+      topics: [
+        topic({ id: "cardio", label: "Cardiovascular", blueprintWeightPct: 16, attempts: 0 }),
+      ],
+    });
+    expect(plan.items.find((item) => item.id === "qbank")?.doneToday).toBe(true);
+    expect(plan.items.find((item) => item.id === "incorrect")?.doneToday).toBe(false);
+    const coverage = plan.weekPlan.goals.find((goal) => goal.id === "coverage");
+    expect(coverage?.status).toBe("done_today");
+    expect(coverage?.statusLabel).toBe("Done today");
+    expect(coverage?.progress).toBe(1);
+  });
+
+  it("ticks incorrect drill when today's answers cover the review set", () => {
+    const plan = buildExamDayPlan({
+      examSlug: "nclex",
+      examName: "NCLEX-RN",
+      fieldId: "nursing",
+      testDate: "2026-11-03",
+      now,
+      totalAttempts: 80,
+      recentAccuracyPct: 70,
+      openIncorrect: 12,
+      questionsToday: TODAY_INCORRECT_CAP,
+      topics: [
+        topic({
+          id: "safety",
+          label: "Safety",
+          blueprintWeightPct: 12,
+          attempts: 40,
+          accuracyPct: 80,
+          coveragePct: 50,
+        }),
+      ],
+    });
+    expect(plan.items[0]?.id).toBe("incorrect");
+    expect(plan.items[0]?.doneToday).toBe(true);
+    expect(plan.weekPlan.todayKind).toBe("remediation");
+    expect(plan.weekPlan.goals[0]?.status).toBe("done_today");
+    expect(plan.items.find((item) => item.id === "qbank")?.doneToday).toBe(false);
+  });
+
+  it("rebuilds week goals when open remediations change", () => {
+    const shared = {
+      examSlug: "naplex" as const,
+      examName: "NAPLEX",
+      fieldId: "pharmacy",
+      testDate: "2026-11-03",
+      now,
+      totalAttempts: 40,
+      recentAccuracyPct: 70,
+      topics: [
+        topic({
+          id: "medication-use-process",
+          label: "Medication Use Process",
+          blueprintWeightPct: 40,
+          attempts: 10,
+          accuracyPct: 80,
+          coveragePct: 30,
+        }),
+      ],
+    };
+    const open = buildExamDayPlan({ ...shared, openIncorrect: 20 });
+    const closed = buildExamDayPlan({ ...shared, openIncorrect: 0 });
+    expect(open.weekPlan.goals.find((goal) => goal.id === "remediation")?.detail).toMatch(/20 open/);
+    expect(closed.weekPlan.goals.find((goal) => goal.id === "remediation")?.status).toBe("clear");
+    expect(open.weekPlan.todayKind).not.toBe(closed.weekPlan.todayKind);
+  });
+
+  it("intensifies exam simulation and incorrect drill inside 14 days for every board", () => {
+    expect(finalStretchProjection(examSimDay)).toBe("exam_sim");
+    for (const examSlug of Object.keys(FIELD_BY_EXAM) as ExamSlug[]) {
+      const plan = buildExamDayPlan({
+        examSlug,
+        examName: examSlug,
+        fieldId: FIELD_BY_EXAM[examSlug],
+        testDate: "2026-10-01",
+        now: examSimDay,
+        totalAttempts: 30,
+        recentAccuracyPct: 60,
+        openIncorrect: 4,
+        topics: [
+          topic({
+            id: "gap",
+            label: "Gap topic",
+            blueprintWeightPct: 20,
+            attempts: 4,
+            accuracyPct: 70,
+            coveragePct: 20,
+          }),
+        ],
+      });
+      expect(plan.weekPlan.intensity).toBe("final");
+      expect(plan.weekPlan.goals.map((goal) => goal.id)).toContain("exam_sim");
+      expect(plan.weekPlan.goals.map((goal) => goal.id)).toContain("remediation");
+      expect(plan.items[0]?.id).toBe("exam_sim");
+      expect(plan.items[1]?.id).toBe("incorrect");
+      expect(plan.items.find((item) => item.id === "exam_sim")?.href).toBe(`/full-exam/${examSlug}`);
+      expect(planText(plan)).not.toMatch(/you will pass/i);
+      expect(planText(plan)).not.toMatch(/guaranteed pass/i);
+    }
+  });
+
+  it("keeps a coverage day inside the final stretch without dropping the simulation goal", () => {
+    const plan = buildExamDayPlan({
+      examSlug: "usmle",
+      examName: "USMLE Step 2",
+      fieldId: "usmle-step-2",
+      testDate: "2026-10-02",
+      now,
+      totalAttempts: 15,
+      recentAccuracyPct: 55,
+      openIncorrect: 2,
+      topics: [
+        topic({
+          id: "cardiovascular",
+          label: "Cardiovascular",
+          blueprintWeightPct: 13,
+          attempts: 0,
+        }),
+      ],
+    });
+    expect(finalStretchProjection(now)).toBe("coverage");
+    expect(plan.daysUntilExam).toBeLessThanOrEqual(14);
+    expect(plan.weekPlan.todayKind).toBe("coverage");
+    expect(plan.items[0]?.id).toBe("qbank");
+    expect(plan.weekPlan.goals.map((goal) => goal.id)).toEqual([
+      "coverage",
+      "exam_sim",
+      "remediation",
+    ]);
+    expect(plan.weekPlan.summary).toMatch(/exam-simulation/);
+    expect(plan.weekPlan.summary).toMatch(/incorrect-drill/);
+  });
+
+  it("moves off an exam-simulation day once that simulation is saved today", () => {
+    const shared = {
+      examSlug: "aanp-fnp" as const,
+      examName: "AANP FNP-C",
+      fieldId: "aanp-fnp",
+      testDate: "2026-10-01",
+      now: examSimDay,
+      totalAttempts: 40,
+      recentAccuracyPct: 64,
+      openIncorrect: 5,
+      topics: [topic({ id: "cardio", label: "Cardiology", blueprintWeightPct: 12, attempts: 8, accuracyPct: 70, coveragePct: 20 })],
+    };
+    const before = buildExamDayPlan(shared);
+    const after = buildExamDayPlan({ ...shared, examSimCompletedToday: true });
+    expect(before.items[0]?.id).toBe("exam_sim");
+    expect(after.items[0]?.id).toBe("incorrect");
+    expect(after.items.find((item) => item.id === "exam_sim")?.doneToday).toBe(true);
+    expect(after.weekPlan.goals.find((goal) => goal.id === "exam_sim")?.status).toBe("done_today");
+    expect(after.readiness.label).toBe(before.readiness.label);
+  });
+});
+
 describe("rolling accuracy and exam simulation trend", () => {
   it("uses the newest answers in the rolling window", () => {
     const attempts = [
@@ -558,5 +768,41 @@ describe("rolling accuracy and exam simulation trend", () => {
       direction: "up",
       practiceBandLabel: "Developing practice band",
     });
+  });
+
+  it("counts a qualifying simulation only on the UTC day it finished", () => {
+    const now = new Date("2026-09-24T18:00:00.000Z");
+    expect(
+      examSimCompletedOnUtcDay(
+        [
+          {
+            status: "completed",
+            score: 70,
+            questionCount: 85,
+            completedAt: "2026-09-24T02:00:00.000Z",
+          },
+        ],
+        now
+      )
+    ).toBe(true);
+    expect(
+      examSimCompletedOnUtcDay(
+        [
+          {
+            status: "completed",
+            score: 70,
+            questionCount: 20,
+            completedAt: "2026-09-24T02:00:00.000Z",
+          },
+          {
+            status: "completed",
+            score: 70,
+            questionCount: 85,
+            completedAt: "2026-09-23T02:00:00.000Z",
+          },
+        ],
+        now
+      )
+    ).toBe(false);
   });
 });

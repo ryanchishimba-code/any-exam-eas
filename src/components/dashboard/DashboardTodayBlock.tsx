@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, Lock } from "lucide-react";
+import { ArrowRight, Check, Lock } from "lucide-react";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
+import { DashboardWeekPlan } from "@/components/dashboard/DashboardWeekPlan";
 import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import { dbUi } from "@/lib/study/dashboard-ui";
 
@@ -15,7 +16,9 @@ export function DashboardTodayBlock({
   const lockedHref = postTrialCheckoutHref();
 
   return (
-    <section aria-labelledby="today-block-heading" className={`${dbUi.heroSurface} space-y-6`}>
+    <div className="space-y-5 sm:space-y-6">
+      <DashboardWeekPlan weekPlan={plan.weekPlan} />
+      <section aria-labelledby="today-block-heading" className={`${dbUi.heroSurface} space-y-6`}>
       <div>
         <p className={dbUi.eyebrow}>Today&apos;s block</p>
         <h2
@@ -24,6 +27,11 @@ export function DashboardTodayBlock({
         >
           {plan.examName}
         </h2>
+        {plan.weekPlan.active && plan.weekPlan.todayLine ? (
+          <p className="mt-2 text-[15px] font-medium leading-relaxed tracking-[-0.015em] text-[var(--color-accent)]">
+            {plan.weekPlan.todayLine}
+          </p>
+        ) : null}
         <p className={`${dbUi.subtitle} mt-2`}>{plan.pacing}</p>
         <p className="mt-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
           {plan.questionsToday} saved today · {plan.totalAttempts} saved attempts on this board
@@ -36,12 +44,19 @@ export function DashboardTodayBlock({
           const cardClass =
             "flex h-full flex-col rounded-2xl border border-[var(--db-line,var(--color-border))]/80 px-4 py-4 sm:px-5";
           // Review incorrect is a primary action, same filled treatment as Today.
-          const filledCta = item.id === "incorrect" && Boolean(href);
+          const filledCta =
+            (item.id === "incorrect" || item.id === "exam_sim") && Boolean(href);
           const body = (
             <>
               <span className="flex flex-wrap items-center gap-2">
                 <span className={dbUi.eyebrow}>{index + 1}</span>
                 {index === 0 ? <span className={dbUi.statusPillAccent}>First priority</span> : null}
+                {item.doneToday ? (
+                  <span className={dbUi.statusPillAccent}>
+                    <Check className="h-3 w-3" aria-hidden />
+                    Done today
+                  </span>
+                ) : null}
               </span>
               <span className="mt-2 block text-[17px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
                 {item.title}
@@ -94,19 +109,6 @@ export function DashboardTodayBlock({
         <ReadinessProofPanel readiness={plan.readiness} embedded showLeadReason={false} />
       </div>
 
-      {plan.week.length > 0 ? (
-        <div>
-          <p className={dbUi.sectionTitle}>This week</p>
-          <ul className="mt-2.5 flex flex-wrap gap-2">
-            {plan.week.map((day) => (
-              <li key={day.id} className={day.isToday ? dbUi.statusPillAccent : dbUi.statusPill}>
-                {day.isToday ? `Today · ${day.label}` : day.label}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-
       <details className="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
         <summary className="cursor-pointer text-[12px] font-semibold text-[var(--color-ink-muted)]">
           How this plan is chosen
@@ -117,6 +119,7 @@ export function DashboardTodayBlock({
           ))}
         </ul>
       </details>
-    </section>
+      </section>
+    </div>
   );
 }

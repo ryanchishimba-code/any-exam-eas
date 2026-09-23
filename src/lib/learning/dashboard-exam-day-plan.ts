@@ -50,6 +50,7 @@ export function buildDashboardExamDayPlan(input: {
     questionsToday: input.questionsToday,
     topics,
     examSimTrend: input.roadmap?.examSimTrend ?? null,
+    examSimCompletedToday: input.roadmap?.examSimCompletedToday === true,
     fallbackGuideHref: guide?.routeBase ?? `${ROUTES.highYieldTopics}?exam=${input.examSlug}`,
     fallbackGuideLabel: guide?.title ?? "High-yield topics",
     fallbackDrugHref: top500Href(input.examSlug),
