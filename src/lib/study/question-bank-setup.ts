@@ -305,11 +305,29 @@ export function writePersistedQuestionBankSetup(
   }
 }
 
+export function isRemediationUrlStyle(
+  style: string | null | undefined
+): style is "weak_areas" | "review_incorrect" {
+  return style === "weak_areas" || style === "review_incorrect";
+}
+
+/**
+ * Browser location wins when it still has a remediation deep link.
+ * useSearchParams can be a remembered Adaptive value for one hydrate frame.
+ */
+export function preferredQuestionBankStyleParam(
+  hookStyle: string | null | undefined,
+  browserStyle: string | null | undefined
+): string | null {
+  if (isRemediationUrlStyle(browserStyle)) return browserStyle;
+  return hookStyle ?? browserStyle ?? null;
+}
+
 /**
  * Restore question-bank style and format from the URL, then from the last setup.
- * A `style=weak_areas` deep link always wins, including over a remembered or
- * simultaneous NGN/case format. Those formats only launch as Standard, so
- * applying them would drop the link and start a format set instead of a weak set.
+ * `style=weak_areas` and `style=review_incorrect` always win over a remembered
+ * style (Adaptive, Standard, or anything else). Those links also clear a
+ * remembered NGN/case format, which only launches as Standard.
  * Other styles keep the existing rule: a deliberate format stays in place and
  * the format snap can still move them to Standard.
  * Subject scope is not decided here — a `subjectId` on the URL stays with the caller.
@@ -320,8 +338,8 @@ export function resolveQuestionBankStyleAndFormat(params: {
   persistedStyle?: string | null;
   persistedFormat?: string | null;
 }): { style: QuestionBankStyle | null; format: PracticeFormatMode | null } {
-  if (params.styleParam === "weak_areas") {
-    return { style: "weak_areas", format: "all" };
+  if (isRemediationUrlStyle(params.styleParam)) {
+    return { style: params.styleParam, format: "all" };
   }
 
   const style = params.styleParam
@@ -340,6 +358,35 @@ export function resolveQuestionBankStyleAndFormat(params: {
 }
 
 /**
+ * Style written back to the address bar.
+ * An explicit chip/format change wins. Otherwise a remediation deep link still
+ * on the URL is kept, so the default Adaptive state cannot overwrite it.
+ */
+export function stylePreservedForPracticeUrl(params: {
+  stateStyle: QuestionBankStyle;
+  overrideStyle?: QuestionBankStyle;
+  browserStyle?: string | null;
+}): QuestionBankStyle {
+  if (params.overrideStyle) return params.overrideStyle;
+  if (
+    isRemediationUrlStyle(params.browserStyle) &&
+    params.stateStyle !== params.browserStyle
+  ) {
+    return params.browserStyle;
+  }
+  return params.stateStyle;
+}
+
+/** Autostart waits until state matches a remediation style still requested by the URL. */
+export function bankStyleHonorsLaunchStyle(
+  bankStyle: QuestionBankStyle,
+  launchStyle: string | null | undefined
+): boolean {
+  if (!isRemediationUrlStyle(launchStyle)) return true;
+  return bankStyle === launchStyle;
+}
+
+/**
  * NGN and case sets replace the selection style on launch.
  * Weak areas does not: that deep link must build a weak-area set (2+ attempts,
  * miss rate at least 40%), not a format-limited Standard set.
@@ -348,7 +395,9 @@ export function deliberateFormatForLaunch(
   style: QuestionBankStyle,
   format: PracticeFormatMode
 ): "ngn" | "case" | null {
-  if (style === "weak_areas") return null;
+  // Remediation deep links build their own set. A lagging NGN/case format must
+  // not turn them into a Standard format fetch.
+  if (style === "weak_areas" || style === "review_incorrect") return null;
   if (format === "ngn" || format === "case") return format;
   return null;
 }

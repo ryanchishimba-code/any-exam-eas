@@ -4,9 +4,12 @@ import {
   MIXED_SUBJECT_ID,
   QUESTION_BANK_WHEEL_PRESETS,
   availableQuestionCount,
+  bankStyleHonorsLaunchStyle,
   deliberateFormatForLaunch,
+  preferredQuestionBankStyleParam,
   questionBankCountOptionsForAvailable,
   resolveQuestionBankStyleAndFormat,
+  stylePreservedForPracticeUrl,
   resolveWheelCountValue,
   resolveQuestionBankSessionCount,
   validateQuestionBankSession,
@@ -186,15 +189,75 @@ describe("question-bank-setup", () => {
     expect(deliberateFormatForLaunch("weak_areas", "all")).toBeNull();
   });
 
-  it("leaves review incorrect, today, and remembered NGN sets on their existing format rule", () => {
+  it("URL weak_areas and review_incorrect beat a remembered Adaptive style", () => {
+    expect(
+      preferredQuestionBankStyleParam("adaptive", "weak_areas")
+    ).toBe("weak_areas");
+    expect(
+      preferredQuestionBankStyleParam("adaptive", "review_incorrect")
+    ).toBe("review_incorrect");
+    // Address bar already rewritten to Adaptive, hook still has the deep link.
+    expect(preferredQuestionBankStyleParam("weak_areas", "adaptive")).toBe("weak_areas");
+    expect(preferredQuestionBankStyleParam(null, "weak_areas")).toBe("weak_areas");
+    expect(
+      resolveQuestionBankStyleAndFormat({
+        styleParam: "weak_areas",
+        formatParam: null,
+        persistedStyle: "adaptive",
+        persistedFormat: "all",
+      })
+    ).toEqual({ style: "weak_areas", format: "all" });
     expect(
       resolveQuestionBankStyleAndFormat({
         styleParam: "review_incorrect",
         formatParam: null,
+        persistedStyle: "adaptive",
         persistedFormat: "ngn",
       })
-    ).toEqual({ style: "review_incorrect", format: "ngn" });
-    expect(deliberateFormatForLaunch("review_incorrect", "ngn")).toBe("ngn");
+    ).toEqual({ style: "review_incorrect", format: "all" });
+    expect(
+      stylePreservedForPracticeUrl({
+        stateStyle: "adaptive",
+        browserStyle: "weak_areas",
+      })
+    ).toBe("weak_areas");
+    expect(
+      stylePreservedForPracticeUrl({
+        stateStyle: "adaptive",
+        browserStyle: "review_incorrect",
+      })
+    ).toBe("review_incorrect");
+    expect(
+      stylePreservedForPracticeUrl({
+        stateStyle: "adaptive",
+        overrideStyle: "standard",
+        browserStyle: "weak_areas",
+      })
+    ).toBe("standard");
+    // Hydrated Weak areas must not be copied back out as Adaptive.
+    expect(
+      stylePreservedForPracticeUrl({
+        stateStyle: "weak_areas",
+        browserStyle: "adaptive",
+      })
+    ).toBe("weak_areas");
+    expect(bankStyleHonorsLaunchStyle("adaptive", "weak_areas")).toBe(false);
+    expect(bankStyleHonorsLaunchStyle("weak_areas", "weak_areas")).toBe(true);
+    expect(bankStyleHonorsLaunchStyle("adaptive", "review_incorrect")).toBe(false);
+    expect(bankStyleHonorsLaunchStyle("review_incorrect", "review_incorrect")).toBe(true);
+    expect(bankStyleHonorsLaunchStyle("adaptive", null)).toBe(true);
+    expect(deliberateFormatForLaunch("review_incorrect", "ngn")).toBeNull();
+    expect(
+      resolveQuestionBankStyleAndFormat({
+        styleParam: "review_incorrect",
+        formatParam: "ngn",
+        persistedStyle: "adaptive",
+      })
+    ).toEqual({ style: "review_incorrect", format: "all" });
+    expect(questionBankEmptyLaunch("weak_areas", 0)).toBe("weak_areas");
+  });
+
+  it("leaves today and a remembered NGN set on their existing format rule when the URL has no remediation style", () => {
     expect(
       resolveQuestionBankStyleAndFormat({
         styleParam: "today",
