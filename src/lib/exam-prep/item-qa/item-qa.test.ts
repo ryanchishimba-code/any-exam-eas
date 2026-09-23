@@ -86,6 +86,35 @@ describe("text lint", () => {
     expect(codes).toContain("broken_markdown");
     expect(codes).toContain("truncated_option");
     expect(codes).toContain("encoding_glitch");
+    expect(codes).not.toContain("letter_only_option");
+  });
+
+  it("flags letter-only A–D choices separately from truncated text", () => {
+    const issues = lintItemText({
+      stem: STEM,
+      options: ["A", "b.", "(C)", "D)", "Start IV fluids and ...", "1"],
+      explanation: "A crystalloid bolus treats hypoperfusion before routine tasks.",
+    });
+    const byOption = Object.fromEntries(issues.map((issue) => [issue.option, issue.code]));
+    expect(byOption).toMatchObject({
+      A: "letter_only_option",
+      "b.": "letter_only_option",
+      "(C)": "letter_only_option",
+      "D)": "letter_only_option",
+      "Start IV fluids and ...": "truncated_option",
+    });
+    expect(issues.some((issue) => issue.option === "1")).toBe(false);
+    expect(issues.filter((issue) => issue.code === "letter_only_option")).toHaveLength(4);
+    expect(issues.filter((issue) => issue.code === "truncated_option")).toHaveLength(1);
+  });
+
+  it("keeps a single non-letter character on truncated_option", () => {
+    const issues = lintItemText({
+      stem: STEM,
+      options: ["E", "?", "Administer the scheduled dose"],
+      explanation: "Give the scheduled dose. The other choices are not real options.",
+    });
+    expect(issues.map((issue) => issue.code)).toEqual(["truncated_option", "truncated_option"]);
   });
 
   it("accepts a clean stem and four complete options", () => {

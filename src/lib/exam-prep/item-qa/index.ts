@@ -7,7 +7,6 @@ export {
   type ItemQaRecord,
 } from "./flag";
 export {
-  MAX_NEAR_DUPLICATE_CHAIN,
   planNearDuplicateRetirements,
   nearDuplicateRetireWrite,
   type NearDuplicateBankRow,

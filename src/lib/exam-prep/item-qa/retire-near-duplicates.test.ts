@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { readItemQaRecord } from "./flag";
 import {
-  MAX_NEAR_DUPLICATE_CHAIN,
   nearDuplicateRetireWrite,
   planNearDuplicateRetirements,
   type NearDuplicateBankRow,
@@ -138,12 +137,13 @@ describe("planNearDuplicateRetirements", () => {
     });
   });
 
-  it("refuses a chain longer than the safety cap and still retires the short pair", () => {
+  it("retires a partner chain longer than the old cap of 12 and keeps the lowest id", () => {
+    const length = 40;
     const rows: NearDuplicateBankRow[] = [];
-    const keeperRows: NearDuplicateKeeperRow[] = [keeper("id-00")];
-    for (let n = 1; n <= MAX_NEAR_DUPLICATE_CHAIN + 1; n += 1) {
-      const id = `id-${String(n).padStart(2, "0")}`;
-      const partnerId = `id-${String(n - 1).padStart(2, "0")}`;
+    const keeperRows: NearDuplicateKeeperRow[] = [keeper("id-000")];
+    for (let n = 1; n <= length; n += 1) {
+      const id = `id-${String(n).padStart(3, "0")}`;
+      const partnerId = `id-${String(n - 1).padStart(3, "0")}`;
       rows.push(flagged({ id, partnerId, qaPassed: true }));
       keeperRows.push(keeper(id));
     }
@@ -153,11 +153,104 @@ describe("planNearDuplicateRetirements", () => {
       rows,
       keepers: keepersOf(...keeperRows),
     });
-    const tooLong = `id-${String(MAX_NEAR_DUPLICATE_CHAIN + 1).padStart(2, "0")}`;
-    expect(plan.skipped).toEqual([expect.objectContaining({ id: tooLong, reason: "chain_too_long" })]);
-    expect(plan.retire).toHaveLength(MAX_NEAR_DUPLICATE_CHAIN);
-    expect(plan.retire.every((item) => item.rootKeepId === "id-00")).toBe(true);
-    expect(plan.retire.some((item) => item.id === "id-00" || item.id === tooLong)).toBe(false);
+
+    expect(plan.skipped).toEqual([]);
+    expect(plan.retire).toHaveLength(length);
+    expect(plan.publishedInventoryDrop).toBe(length);
+    expect(new Set(plan.retire.map((item) => item.rootKeepId))).toEqual(new Set(["id-000"]));
+    expect(plan.retire.some((item) => item.id === "id-000")).toBe(false);
+    expect(plan.retire.map((item) => item.id)).not.toContain("id-000");
+  });
+
+  it("skips a whole long chain when the keeper is inactive, including rows near the keeper", () => {
+    const rows: NearDuplicateBankRow[] = [];
+    const keeperRows: NearDuplicateKeeperRow[] = [keeper("id-000", { active: false })];
+    for (let n = 1; n <= 20; n += 1) {
+      const id = `id-${String(n).padStart(3, "0")}`;
+      const partnerId = `id-${String(n - 1).padStart(3, "0")}`;
+      rows.push(flagged({ id, partnerId }));
+      keeperRows.push(keeper(id));
+    }
+
+    const plan = planNearDuplicateRetirements({
+      fieldId: "nursing",
+      rows,
+      keepers: keepersOf(...keeperRows),
+    });
+
+    expect(plan.retire).toEqual([]);
+    expect(plan.skipped.map((skip) => skip.reason)).toEqual(Array.from({ length: 20 }, () => "keeper_inactive"));
+  });
+
+  it("stops at an inactive middle row and still retires the chain below it", () => {
+    const plan = planNearDuplicateRetirements({
+      fieldId: "nursing",
+      rows: [
+        flagged({ id: "id-001", partnerId: "id-000" }),
+        flagged({ id: "id-002", partnerId: "id-001" }),
+        flagged({ id: "id-003", partnerId: "id-002", active: false }),
+        flagged({ id: "id-004", partnerId: "id-003" }),
+        flagged({ id: "id-005", partnerId: "id-004" }),
+      ],
+      keepers: keepersOf(
+        keeper("id-000"),
+        keeper("id-001"),
+        keeper("id-002"),
+        keeper("id-003", { active: false }),
+        keeper("id-004")
+      ),
+    });
+
+    expect(plan.retire.map((item) => item.id)).toEqual(["id-001", "id-002"]);
+    expect(plan.retire.every((item) => item.rootKeepId === "id-000")).toBe(true);
+    expect(Object.fromEntries(plan.skipped.map((skip) => [skip.id, skip.reason]))).toEqual({
+      "id-003": "inactive",
+      "id-004": "keeper_inactive",
+      "id-005": "keeper_inactive",
+    });
+  });
+
+  it("retires only the higher id when two rows point at each other", () => {
+    const plan = planNearDuplicateRetirements({
+      fieldId: "nursing",
+      rows: [
+        flagged({ id: "item-a", partnerId: "item-b" }),
+        flagged({ id: "item-b", partnerId: "item-a" }),
+      ],
+      keepers: keepersOf(keeper("item-a"), keeper("item-b")),
+    });
+
+    expect(plan.retire.map((item) => item.id)).toEqual(["item-b"]);
+    expect(plan.retire[0]?.rootKeepId).toBe("item-a");
+    expect(plan.skipped).toEqual([
+      expect.objectContaining({ id: "item-a", reason: "partner_not_lower_id", partnerId: "item-b" }),
+    ]);
+  });
+
+  it("merges two long branches onto one keeper and does not retire that keeper", () => {
+    const rows: NearDuplicateBankRow[] = [];
+    const keeperRows: NearDuplicateKeeperRow[] = [keeper("k-000", { fieldId: "pharmacy" })];
+    for (const branch of [1, 2]) {
+      let partnerId = "k-000";
+      for (let n = 1; n <= 15; n += 1) {
+        const id = `k-${branch}-${String(n).padStart(2, "0")}`;
+        rows.push(flagged({ id, partnerId, fieldId: "pharmacy" }));
+        keeperRows.push(keeper(id, { fieldId: "pharmacy" }));
+        partnerId = id;
+      }
+    }
+
+    const plan = planNearDuplicateRetirements({
+      fieldId: "pharmacy",
+      rows,
+      keepers: keepersOf(...keeperRows),
+    });
+
+    expect(plan.fieldId).toBe("pharmacy");
+    expect(plan.retire).toHaveLength(30);
+    expect(new Set(plan.retire.map((item) => item.rootKeepId))).toEqual(new Set(["k-000"]));
+    expect(plan.retire.some((item) => item.id === "k-000")).toBe(false);
+    expect(plan.skipped).toEqual([]);
   });
 
   it("ignores a row from another field", () => {

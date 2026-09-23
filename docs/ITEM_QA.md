@@ -7,12 +7,14 @@ Board-generic checks for every question bank. They detect defects and block **ne
 | Check | What fails |
 | --- | --- |
 | Near-duplicates | Same field, normalized stem + options. Exact copies, or a long stem with Jaccard ≥ 0.90 (or ≥ 0.84 when options are also ≥ 0.80). |
-| Text lint | Empty stem, empty explanation, truncated options (`...`, dangling `and`/`or`), unclosed markdown, encoding glitches (`�`, mojibake). |
+| Text lint | Empty stem, empty explanation, truncated options (`...`, dangling `and`/`or`), letter-only choices (`A`–`D`, including `A.` and `(B)`), unclosed markdown, encoding glitches (`�`, mojibake). |
 | Rationale schema | Correct-answer explanation, a specific reason each MCQ/select-all distractor is wrong, and a governing principle or priority rule. A citation is optional (warning). |
 
 Normalization lowercases text, strips punctuation and markdown, and collapses whitespace. Comparison stays inside one `fieldId`, so the same stem on two boards is not a duplicate.
 
 The principle is board-generic. A nursing priority rule, a pharmacy monitoring rule, and a USMLE next-step rule all use the same field.
+
+Letter-only choices use the code `letter_only_option`. Other cut-off choice text stays `truncated_option`, so the two cleanups stay separate. A single digit option is neither defect. A one-character option that is not A–D (for example `E` or `?`) stays `truncated_option`.
 
 ## Run a report
 
@@ -65,12 +67,28 @@ npm run db:retire-near-duplicates -- --field nursing --apply
 
 1. It is active, in that field, and `reviewFlag` is true.
 2. `curationMeta.itemQa` is pipeline `item-qa-v1` and includes `near_duplicate`.
-3. The stored partner id is the lower id (the kept twin from the audit).
+3. The stored partner id is strictly lower than this row's id (the kept twin from the audit).
 4. Walking partner links ends at an active keeper in the same field. The keeper is not retired.
 
-Text-only flags (`truncated_option`, `empty_stem`) stay in the queue. If a retired row also has another Item QA code, `near_duplicate` is removed and `reviewFlag` stays true for the remaining code. A duplicate-only row has `reviewFlag` cleared and keeps a retirement note on `curationMeta.itemQa`.
+### Partner chains
 
-Public inventory counts rows that are both `active` and `qaPassed`. The dry-run prints that published count, the expected drop, and the expected count after apply. The drop equals the eligible rows that are already `qaPassed`. When most queued near-duplicates are published, that is roughly the retired count. For nursing, that published count is the NCLEX hub total (7,581 before this cleanup). Keepers stay published, so their share of the total does not move.
+The audit stores one partner id on each flagged copy. Copies of copies form a chain (`item-c` → `item-b` → `item-a`). Retirement walks that chain and deactivates every flagged higher id. The active keeper at the end stays published.
+
+The walk has no hop cap:
+
+1. A row joins the chain only when its partner id is strictly lower than its own id.
+2. Those links are a strictly decreasing sequence of ids. A decreasing sequence cannot repeat an id, so it cannot cycle. Length is not a cycle risk.
+3. The walk stops at the first id that is not itself a queued near-duplicate. That id must be active, in the same field, and lower than the row being retired. Otherwise the row is skipped (`keeper_missing`, `keeper_inactive`, `keeper_other_field`, or `keeper_not_lower_id`). An inactive row in the middle ends the walk: rows above it are skipped, and rows below it can still retire onto the active keeper.
+4. If an id repeats, that row is skipped as `cycle` and nothing on that walk is retired. The lower-id rule already makes a cycle impossible. The seen-set is there so a corrupt partner map cannot loop.
+5. Two rows that point at each other are not a cycle to retire around. The higher id retires. The lower id is the keeper and stays active.
+6. The resolved keeper is memoized, so a long chain is walked once.
+7. If a retire id is also someone's keeper, it is skipped (`keeper_in_retire_set`). `--apply` refuses the whole write if that happens, and writes nothing.
+
+An earlier cap of 12 skipped the rest of a chain as `chain_too_long`. That was about 250 active nursing near-duplicates after the first apply (1,216 retired). Those higher ids are eligible on the next dry-run. `chain_too_long` is no longer produced.
+
+Text-only flags (`truncated_option`, `letter_only_option`, `empty_stem`) stay in the queue. If a retired row also has another Item QA code, `near_duplicate` is removed and `reviewFlag` stays true for the remaining code. A duplicate-only row has `reviewFlag` cleared and keeps a retirement note on `curationMeta.itemQa`.
+
+Public inventory counts rows that are both `active` and `qaPassed`. The dry-run prints that published count, the expected drop, and the expected count after apply. The drop equals the eligible rows that are already `qaPassed`. When most queued near-duplicates are published, that is roughly the retired count. Read the live count from the dry-run. The pre-cleanup nursing total (7,581) is not the current hub total. Keepers stay published, so their share of the total does not move.
 
 The report is `artifacts/retire-near-duplicates-<field>.md` and `.json` (gitignored). Full-exam links are left in place; the practice bank stops serving the row because practice requires `active`.
 
@@ -100,4 +118,4 @@ When a served item has a real citation (`references`, `generationMeta.sourceLabe
 npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts tests/unit/components/QuestionRenderer.test.tsx
 ```
 
-The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, the rationale schema, the manual-only publish gate, the source line, and the near-duplicate retire plan (keeper stays, text-only flags stay, `qaPassed` is not a write).
+The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, the rationale schema, the manual-only publish gate, the source line, and the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, `qaPassed` is not a write).
