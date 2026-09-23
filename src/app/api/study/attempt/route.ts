@@ -40,6 +40,7 @@ const bodySchema = z.object({
   selectedAnswer: z.string().optional(),
   sessionId: z.string().optional(),
   studyMode: z.string().optional(),
+  practiceFormat: z.enum(["ngn", "case"]).optional(),
 });
 
 export async function POST(req: Request) {
@@ -63,6 +64,7 @@ export async function POST(req: Request) {
       sessionId: body.sessionId,
       fieldId,
       studyMode: body.studyMode,
+      practiceFormat: body.practiceFormat,
     });
 
     if (!result.persisted) {

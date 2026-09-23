@@ -47,7 +47,7 @@ const BOARD_FIELDS: Record<ExamRouteSlug, readonly InventoryFieldId[]> = {
   "npte-pt": ["npte-pt"],
 };
 
-const CASE_ITEM_TYPES = new Set([
+export const CASE_ITEM_TYPES = new Set([
   "case_study",
   "case_based",
   "unfolding_case",
@@ -55,7 +55,7 @@ const CASE_ITEM_TYPES = new Set([
 ]);
 
 /** Structured formats counted separately from single-best-answer MCQs. */
-const NGN_ITEM_TYPES = new Set([
+export const NGN_ITEM_TYPES = new Set([
   "select_all",
   "sata",
   "ngn_bowtie",
@@ -134,6 +134,23 @@ export function classifyQuestionFormat(
   if (CASE_ITEM_TYPES.has(type)) return "case";
   if (NGN_ITEM_TYPES.has(type)) return "ngn";
   return "mcq";
+}
+
+/** Item types that inventory counts in one deliberate-practice bucket. */
+export function itemTypesForFormatBucket(bucket: "ngn" | "case"): readonly string[] {
+  return [...(bucket === "ngn" ? NGN_ITEM_TYPES : CASE_ITEM_TYPES)];
+}
+
+/**
+ * Prisma filter matching classifyQuestionFormat(itemType, false).
+ * Inventory does not scan caseGroupId, so this filter does not either.
+ */
+export function formatBucketItemTypeWhere(bucket: "ngn" | "case") {
+  return {
+    OR: itemTypesForFormatBucket(bucket).map((itemType) => ({
+      itemType: { equals: itemType, mode: "insensitive" as const },
+    })),
+  };
 }
 
 export function formatInventoryFormatLine(

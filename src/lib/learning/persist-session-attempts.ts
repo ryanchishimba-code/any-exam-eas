@@ -49,6 +49,7 @@ export function draftToAttemptInput(params: {
   fieldId: string;
   sessionId: string;
   studyMode?: string;
+  practiceFormat?: "ngn" | "case";
   draft: SessionAttemptDraft;
 }): AttemptInput {
   const { draft } = params;
@@ -58,6 +59,7 @@ export function draftToAttemptInput(params: {
     fieldId: params.fieldId,
     sessionId: params.sessionId,
     studyMode: params.studyMode,
+    practiceFormat: params.practiceFormat,
     correct: draft.correct,
     confidence: draft.confidence,
     durationMs: draft.durationMs,
@@ -87,6 +89,7 @@ export async function persistCompletedSessionAttempts(params: {
   field: string;
   sessionId: string;
   studyMode?: string;
+  practiceFormat?: "ngn" | "case";
   subjectId?: string | null;
   drafts: SessionAttemptDraft[];
 }): Promise<SessionPersistResult> {
@@ -103,6 +106,7 @@ export async function persistCompletedSessionAttempts(params: {
       fieldId,
       sessionId: params.sessionId,
       studyMode: params.studyMode,
+      practiceFormat: params.practiceFormat,
       draft,
     });
     const result = await recordAttemptWithMastery(input, { refreshProfile: false });

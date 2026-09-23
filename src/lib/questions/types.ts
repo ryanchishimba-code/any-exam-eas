@@ -110,6 +110,8 @@ export type StudySessionState = {
   /** Board-style timed sessions use one countdown for the whole exam. */
   timedSessionSeconds?: number;
   adaptiveMeta?: AdaptiveSessionMeta;
+  /** Set when the student launched an NGN or case set. */
+  practiceFormat?: "ngn" | "case";
 };
 
 export type SessionSummary = {

@@ -13,6 +13,10 @@ import type {
 import { analyzeMistake } from "./mistake-analysis";
 import type { AttemptInput } from "./types";
 import { tagsToJson } from "./weakness";
+import {
+  tagsForStoredAttempt,
+  tagsJsonIncludesPracticeFormat,
+} from "@/lib/study/practice-format";
 
 export async function upsertLearningProfile(userId: string): Promise<void> {
   await prisma.learningProfile.upsert({
@@ -26,13 +30,41 @@ function isUniqueViolation(error: unknown): boolean {
   return error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002";
 }
 
+async function reuseExistingAttempt(
+  existing: { id: string; confidence: number | null; tagsJson: string | null },
+  input: AttemptInput,
+  tagsJson: string | null
+): Promise<{ attemptId: string; alreadySaved: true }> {
+  const data: { confidence?: number; tagsJson?: string } = {};
+  if (input.confidence != null && existing.confidence !== input.confidence) {
+    data.confidence = input.confidence;
+  }
+  if (
+    input.practiceFormat &&
+    tagsJson &&
+    !tagsJsonIncludesPracticeFormat(existing.tagsJson, input.practiceFormat)
+  ) {
+    data.tagsJson = tagsJson;
+  }
+  if (Object.keys(data).length > 0) {
+    await prisma.questionAttempt.update({ where: { id: existing.id }, data });
+  }
+  return { attemptId: existing.id, alreadySaved: true };
+}
+
 export async function recordAttemptWithMastery(
   input: AttemptInput,
   opts?: { refreshProfile?: boolean }
 ): Promise<{ attemptId: string; alreadySaved: boolean }> {
-  const analysis = analyzeMistake(input);
-  const tags = input.question.tags ?? [];
-  const tagsJson = tagsToJson(tags);
+  const storedTags = tagsForStoredAttempt(input.question.tags, input.practiceFormat);
+  const analysis = analyzeMistake({
+    ...input,
+    question: {
+      ...input.question,
+      tags: storedTags.filter((tag) => !tag.startsWith("practice-format:")),
+    },
+  });
+  const tagsJson = tagsToJson(storedTags);
   const questionKey = input.question.bankItemId ?? input.question.id;
 
   if (input.sessionId && questionKey) {
@@ -42,16 +74,10 @@ export async function recordAttemptWithMastery(
         sessionId: input.sessionId,
         questionKey,
       },
-      select: { id: true, confidence: true },
+      select: { id: true, confidence: true, tagsJson: true },
     });
     if (existing) {
-      if (input.confidence != null && existing.confidence !== input.confidence) {
-        await prisma.questionAttempt.update({
-          where: { id: existing.id },
-          data: { confidence: input.confidence },
-        });
-      }
-      return { attemptId: existing.id, alreadySaved: true };
+      return reuseExistingAttempt(existing, input, tagsJson);
     }
   }
 
@@ -86,16 +112,16 @@ export async function recordAttemptWithMastery(
           sessionId: input.sessionId,
           questionKey,
         },
-        select: { id: true },
+        select: { id: true, confidence: true, tagsJson: true },
       });
-      if (existing) return { attemptId: existing.id, alreadySaved: true };
+      if (existing) return reuseExistingAttempt(existing, input, tagsJson);
     }
     throw error;
   }
 
-  const conceptKeys = analysis.weakConcepts.map((k) =>
-    k.startsWith("tag:") || k.startsWith("subject:") ? k : `tag:${k}`
-  );
+  const conceptKeys = analysis.weakConcepts
+    .map((k) => (k.startsWith("tag:") || k.startsWith("subject:") ? k : `tag:${k}`))
+    .filter((k) => !k.toLowerCase().includes("practice-format:"));
 
   for (const conceptKey of conceptKeys) {
     const existing = await prisma.conceptMastery.findUnique({

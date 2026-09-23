@@ -3,6 +3,7 @@ import {
   type QuestionBankPace,
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
+import type { PracticeFormatMode } from "@/lib/study/practice-format";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 
 export { MIXED_SUBJECT_ID };
@@ -268,6 +269,7 @@ export type PersistedQuestionBankSetup = {
   pace?: QuestionBankPace;
   style?: QuestionBankStyle;
   taskCategory?: string | null;
+  format?: PracticeFormatMode;
 };
 
 const STORAGE_PREFIX = "qb-setup:";

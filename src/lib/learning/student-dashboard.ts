@@ -15,6 +15,8 @@ import {
 } from "@/lib/learning/concept-labels";
 import { getFieldMeta } from "@/lib/fields";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { loadFormatPracticeStats } from "@/lib/learning/format-practice-stats";
+import type { FormatPracticeStats } from "@/lib/study/practice-format";
 
 export type AccuracyTrendPoint = {
   date: string;
@@ -58,6 +60,8 @@ export type SpacedReviewSummary = {
   weakDueCount: number;
 };
 
+export type { FormatPracticeStats };
+
 export type StudentDashboardData = {
   headline: {
     readinessScore: number;
@@ -71,6 +75,7 @@ export type StudentDashboardData = {
   weakTopics: WeakTopicRow[];
   recentTests: RecentTestRow[];
   spacedReview: SpacedReviewSummary;
+  formatPractice: FormatPracticeStats;
 };
 
 const TREND_DAYS = 14;
@@ -324,7 +329,7 @@ export async function getStudentDashboardData(
   const scopeKey = fieldIds?.length ? fieldIds.join(",") : "all";
   const trendKey = opts?.skipAccuracyTrend ? "no-trend" : "trend";
   return cacheGetOrSet(
-    cacheKey(["student-dashboard-v3", userId, scopeKey, trendKey]),
+    cacheKey(["student-dashboard-v4", userId, scopeKey, trendKey]),
     CACHE_TTL.learningDashboard,
     () => loadStudentDashboardData(userId, fieldIds, opts),
     { staleTtlMs: CACHE_STALE.learningDashboard }
@@ -402,7 +407,7 @@ async function loadStudentDashboardData(
   const attemptScope = fieldWhere(fieldIds);
   const scopeSlug = scoped ? examSlugFromFieldId(fieldIds![0]) : null;
 
-  const [profile, trend, masteries, completedRecords, attemptGroups, spacedReview] =
+  const [profile, trend, masteries, completedRecords, attemptGroups, spacedReview, formatPractice] =
     await Promise.all([
     // Slim profile — avoid loading every ConceptMastery row (weak topics load below).
     prisma.learningProfile.findUnique({
@@ -444,6 +449,7 @@ async function loadStudentDashboardData(
       _count: { _all: true },
     }),
     getSpacedReviewSummary(userId, fieldIds),
+    loadFormatPracticeStats(userId, fieldIds),
   ]);
 
   const { totalAttempts, correctCount } = sumAttemptCounts(attemptGroups);
@@ -540,5 +546,6 @@ async function loadStudentDashboardData(
     weakTopics,
     recentTests,
     spacedReview,
+    formatPractice,
   };
 }
