@@ -46,6 +46,34 @@ Flags land on `reviewFlag` and `curationMeta.itemQa` (`pipeline: item-qa-v1`). I
 
 The lower id in a duplicate pair is kept. The other id is queued as `near_duplicate`.
 
+## Retire queued near-duplicates
+
+Dry-run is the default. `--apply` is the only way to write. The command sets `active=false` on flagged near-duplicates in one field. It does not delete rows, does not change `qaPassed`, and does not update the kept twin.
+
+```bash
+# List the nursing rows that would be retired. No writes.
+npm run db:retire-near-duplicates -- --field nursing
+
+# Same preview, explicit dry-run flag.
+npm run db:retire-near-duplicates -- --field nursing --dry-run
+
+# Deactivate only those rows after the dry-run looks right.
+npm run db:retire-near-duplicates -- --field nursing --apply
+```
+
+`--field` is required, so another board uses the same command with its own field id. Add `--subject <subjectId>` to limit the scan to one topic. A row is eligible only when all of these are true:
+
+1. It is active, in that field, and `reviewFlag` is true.
+2. `curationMeta.itemQa` is pipeline `item-qa-v1` and includes `near_duplicate`.
+3. The stored partner id is the lower id (the kept twin from the audit).
+4. Walking partner links ends at an active keeper in the same field. The keeper is not retired.
+
+Text-only flags (`truncated_option`, `empty_stem`) stay in the queue. If a retired row also has another Item QA code, `near_duplicate` is removed and `reviewFlag` stays true for the remaining code. A duplicate-only row has `reviewFlag` cleared and keeps a retirement note on `curationMeta.itemQa`.
+
+Public inventory counts rows that are both `active` and `qaPassed`. The dry-run prints that published count, the expected drop, and the expected count after apply. The drop equals the eligible rows that are already `qaPassed`. When most queued near-duplicates are published, that is roughly the retired count. For nursing, that published count is the NCLEX hub total (7,581 before this cleanup). Keepers stay published, so their share of the total does not move.
+
+The report is `artifacts/retire-near-duplicates-<field>.md` and `.json` (gitignored). Full-exam links are left in place; the practice bank stops serving the row because practice requires `active`.
+
 ## Publish schema
 
 New questions created in admin with **Save as draft** unchecked must pass the schema. Drafts can be incomplete.
@@ -69,7 +97,7 @@ When a served item has a real citation (`references`, `generationMeta.sourceLabe
 ## Verify
 
 ```bash
-npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts tests/unit/components/QuestionRenderer.test.tsx
+npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts tests/unit/components/QuestionRenderer.test.tsx
 ```
 
-The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, the rationale schema, the manual-only publish gate, and the source line.
+The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, the rationale schema, the manual-only publish gate, the source line, and the near-duplicate retire plan (keeper stays, text-only flags stay, `qaPassed` is not a write).
