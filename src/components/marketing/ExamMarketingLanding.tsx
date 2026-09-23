@@ -14,7 +14,9 @@ import {
   landingTrialHrefForExam,
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { BoardActiveInventory } from "@/components/marketing/BoardActiveInventory";
 import { ExamMarketingHero } from "@/components/marketing/ExamMarketingHero";
+import type { BoardInventoryPresentation } from "@/lib/inventory/active-questions";
 import { examHubProductLinks } from "@/lib/marketing/exam-hub";
 import {
   LandingPricingPreviewLazy,
@@ -30,8 +32,10 @@ import {
 
 type Props = {
   examKey: ExamSeoKey;
-  /** Live compact question count for this exam, e.g. "8.2K+". */
+  /** Live compact question count for this exam, e.g. "7,581". */
   questionCountLabel?: string;
+  /** Active-inventory breakdown. Same source as the Qbank header. */
+  inventory?: BoardInventoryPresentation | null;
   /** Per-step serve-ready counts for the USMLE step picker (SSR). */
   usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
   /** Optional product band after the hero (study guide, practice, etc.). */
@@ -41,6 +45,7 @@ type Props = {
 export function ExamMarketingLanding({
   examKey,
   questionCountLabel,
+  inventory,
   usmleStepCounts,
   extraAfterHero,
 }: Props) {
@@ -55,7 +60,16 @@ export function ExamMarketingLanding({
 
   return (
     <div className="aee-exam-marketing">
-      <ExamMarketingHero examKey={examKey} questionCountLine={questionCountLine} />
+      <ExamMarketingHero
+        examKey={examKey}
+        questionCountLine={questionCountLine}
+        formatLine={inventory?.formatLine}
+        activeDefinition={inventory?.definition}
+        countSource={inventory?.countSource}
+        activeCount={inventory?.activeCount}
+      />
+
+      {inventory ? <BoardActiveInventory presentation={inventory} /> : null}
 
       {extraAfterHero ?? (
         <section className="border-b border-[var(--color-border)]/40 py-14">

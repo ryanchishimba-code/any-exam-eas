@@ -4,6 +4,7 @@ import {
   getSubjectCatalog,
   getTrendingSubjects,
 } from "@/lib/subjects/catalog";
+import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { prisma } from "@/lib/prisma";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
@@ -26,6 +27,17 @@ let catalogCache: { payload: CatalogPayload; at: number } | null = null;
 const CATALOG_TTL_MS = 60_000;
 
 async function countQuestionsByField(): Promise<Map<string, number>> {
+  try {
+    const inventory = await getCachedActiveInventory();
+    if (!inventory.degraded) {
+      return new Map(
+        Object.values(inventory.fields).map((field) => [field.fieldId, field.active])
+      );
+    }
+  } catch (error) {
+    console.error("[catalog/subjects] inventory counts failed:", error);
+  }
+
   const rows = await prisma.questionBankItem.groupBy({
     by: ["fieldId"],
     where: { active: true, qaPassed: true },

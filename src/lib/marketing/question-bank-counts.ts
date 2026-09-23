@@ -4,6 +4,11 @@ import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import {
+  fetchActiveInventoryFromDb,
+  type ActiveQuestionInventory,
+} from "@/lib/inventory/active-questions";
+import type { ExamRouteSlug } from "@/lib/routes";
+import {
   formatExactServeReadyCount,
   formatExactServeReadyQuestions,
   publishedQuestionCountForField,
@@ -32,7 +37,7 @@ export type LandingExamCountDisplay = {
   label: string;
   /** Exact serve-ready count, e.g. 6,380 */
   countLabel: string;
-  /** Hero display, e.g. 6,380 serve-ready questions */
+  /** Hero display, e.g. 6,380 active questions */
   questionsLabel: string;
   /** Raw serve-ready count from DB (0 when degraded / unknown). */
   served: number;
@@ -168,33 +173,53 @@ async function fetchQuestionBankCountsWithRetry(): Promise<QuestionBankCountsSna
   throw lastError;
 }
 
-/** Live question bank counts grouped by exam field — always fetched at request time. */
-export async function getQuestionBankCounts(): Promise<QuestionBankCountsSnapshot> {
-  noStore();
+export type BankStatsBundle = {
+  snapshot: QuestionBankCountsSnapshot;
+  inventory: ActiveQuestionInventory;
+};
+
+/**
+ * Prefer the active-question inventory so marketing totals match the Qbank.
+ * The older grouped count remains only when that inventory lookup is degraded.
+ */
+async function loadBankStatsBundle(): Promise<BankStatsBundle> {
+  const inventory = await fetchActiveInventoryFromDb();
+  if (!inventory.degraded) {
+    return { inventory, snapshot: snapshotFromActiveInventory(inventory) };
+  }
   try {
-    return await fetchQuestionBankCountsWithRetry();
+    return { inventory, snapshot: await fetchQuestionBankCountsWithRetry() };
   } catch (error) {
     console.error("[marketing/question-bank-counts] lookup failed:", error);
-    return buildEmptySnapshot(true);
+    return { inventory, snapshot: buildEmptySnapshot(true) };
   }
 }
 
-const fetchCachedQuestionBankCounts = unstable_cache(
-  async () => {
-    try {
-      return await fetchQuestionBankCountsWithRetry();
-    } catch (error) {
-      console.error("[marketing/question-bank-counts] cached lookup failed:", error);
-      return buildEmptySnapshot(true);
-    }
-  },
-  ["marketing-question-bank-counts"],
+/** Live question bank counts grouped by exam field — always fetched at request time. */
+export async function getQuestionBankCounts(): Promise<QuestionBankCountsSnapshot> {
+  noStore();
+  return (await loadBankStatsBundle()).snapshot;
+}
+
+const fetchCachedBankStats = unstable_cache(
+  async () => loadBankStatsBundle(),
+  ["marketing-active-inventory-v1"],
   { revalidate: 3600, tags: ["question-bank-counts"] }
 );
 
+/** Cached inventory + marketing snapshot — revalidates hourly (or via cron tag). */
+export async function getCachedBankStatsBundle(): Promise<BankStatsBundle> {
+  return fetchCachedBankStats();
+}
+
 /** Cached counts for marketing/landing pages — revalidates hourly (or via cron tag). */
 export async function getCachedQuestionBankCounts(): Promise<QuestionBankCountsSnapshot> {
-  return fetchCachedQuestionBankCounts();
+  return (await getCachedBankStatsBundle()).snapshot;
+}
+
+/** Same cached bundle the marketing counts are built from. */
+export async function getCachedActiveInventory(): Promise<ActiveQuestionInventory> {
+  return (await getCachedBankStatsBundle()).inventory;
 }
 
 /**
@@ -206,6 +231,43 @@ export function landingServedTotal(snapshot: QuestionBankCountsSnapshot): number
     (sum, fieldId) => sum + (snapshot.fields[fieldId]?.served ?? 0),
     0
   );
+}
+
+/**
+ * Marketing field → board. USMLE's public total is all three steps, stored on
+ * the `usmle-step-2` snapshot slot so the six-board sum stays one row per exam.
+ * The Qbank reads per-step totals from the inventory, not this slot.
+ */
+const MARKETING_FIELD_BOARD: Record<ExamFieldId, ExamRouteSlug> = {
+  nursing: "nclex",
+  "usmle-step-2": "usmle",
+  pharmacy: "naplex",
+  pance: "pance",
+  "aanp-fnp": "aanp-fnp",
+  "npte-pt": "npte-pt",
+};
+
+export function snapshotFromActiveInventory(
+  inventory: ActiveQuestionInventory
+): QuestionBankCountsSnapshot {
+  const fields = Object.fromEntries(
+    EXAM_FIELD_IDS.map((fieldId) => {
+      const served = inventory.degraded
+        ? 0
+        : (inventory.boards[MARKETING_FIELD_BOARD[fieldId]]?.active ?? 0);
+      return [fieldId, { fieldId, total: served, active: served, served }];
+    })
+  ) as Record<ExamFieldId, FieldQuestionBankCounts>;
+
+  const snapshot: QuestionBankCountsSnapshot = {
+    fields,
+    totals: { total: 0, active: 0, served: 0 },
+    updatedAt: inventory.updatedAt,
+    degraded: inventory.degraded,
+  };
+  const served = inventory.degraded ? 0 : landingServedTotal(snapshot);
+  snapshot.totals = { total: served, active: served, served };
+  return snapshot;
 }
 
 function servedCountForField(
@@ -266,10 +328,10 @@ export function buildLandingSocialProofStats(
   return [
     {
       value: bankCounts.totalLabel,
-      label: "Serve-ready questions",
+      label: "Active questions",
       detail: bankCounts.degraded
-        ? "QA-gated vignettes across six licensing exams"
-        : `${bankCounts.totalQuestionsLabel} in the live bank`,
+        ? "Published floor while the live bank count is unavailable"
+        : "Published and not retired — the same count as the Qbank",
     },
     {
       value: "6",

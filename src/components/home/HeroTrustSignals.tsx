@@ -20,7 +20,7 @@ export function HeroTrustSignals({ className = "" }: HeroTrustSignalsProps) {
     {
       icon: BookOpen,
       value: questionTotal,
-      label: "Serve-ready questions",
+      label: "Active questions",
     },
     {
       icon: Sparkles,

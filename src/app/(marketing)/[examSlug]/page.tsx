@@ -7,9 +7,10 @@ import {
   resolveExamSeoKey,
 } from "@/lib/seo/exam-config";
 import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata";
+import { presentBoardInventory } from "@/lib/inventory/active-questions";
 import {
   buildLandingBankCountsDisplay,
-  getCachedQuestionBankCounts,
+  getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
 import { getUsmleExamOptionsWithCounts } from "@/lib/exam-prep/usmle/exam-options";
 
@@ -39,9 +40,16 @@ export default async function ExamMarketingPage({ params }: Props) {
   const key = resolveExamSeoKey(examSlug);
   if (!key) notFound();
 
-  // Live, accurate per-exam question count for the hero (cached ~1h).
-  const bankCounts = buildLandingBankCountsDisplay(await getCachedQuestionBankCounts());
-  const questionCountLabel = bankCounts.exams.find((row) => row.slug === key)?.countLabel;
+  // Live active-question inventory — same helper the Qbank header uses.
+  const { snapshot, inventory } = await getCachedBankStatsBundle();
+  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+  const examCount = bankCounts.exams.find((row) => row.slug === key);
+  const questionCountLabel = examCount?.countLabel;
+  const boardInventory = presentBoardInventory({
+    slug: key,
+    usingLiveCount: !bankCounts.degraded && (examCount?.served ?? 0) > 0,
+    board: inventory.boards[key] ?? null,
+  });
 
   const usmleStepCounts =
     key === "usmle"
@@ -59,6 +67,7 @@ export default async function ExamMarketingPage({ params }: Props) {
       <ExamMarketingLanding
         examKey={key}
         questionCountLabel={questionCountLabel}
+        inventory={boardInventory}
         usmleStepCounts={usmleStepCounts}
       />
     </>

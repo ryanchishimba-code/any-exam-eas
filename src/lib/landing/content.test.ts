@@ -35,7 +35,7 @@ describe("homepage hero copy", () => {
     expect(formatHeroTotalCountLine("7,581 serve-ready questions")).toBe(
       "7,581 questions across six boards"
     );
-    expect(formatExamLiveCountLine("NCLEX", "8,327")).toBe("8,327 NCLEX questions live");
+    expect(formatExamLiveCountLine("NCLEX", "8,327")).toBe("8,327 active NCLEX questions");
   });
 
   it("keeps exam= deep links on board chips", () => {
@@ -52,7 +52,7 @@ describe("homepage hero copy", () => {
         "NCLEX",
         formatExactServeReadyCount(published.perBoard.nclex)
       )
-    ).toBe("8,327 NCLEX questions live");
+    ).toBe("8,327 active NCLEX questions");
     expect(formatExamHeroTrialOffer()).toBe("5-day free trial · no card · then $27.99/mo");
   });
 

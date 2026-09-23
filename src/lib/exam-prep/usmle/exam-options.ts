@@ -71,14 +71,9 @@ const STEP_DIFFICULTY: Record<UsmleStepLevel, ExamDifficulty> = {
 };
 
 /**
- * One indexed groupBy across the three USMLE fields — counts only, no rows loaded.
- *
- * Counts are keyed by `stepLevel` (the canonical exam_type), not raw `fieldId`, so
- * the numbers stay exact even for the edge case where a Step 3 item was filed under
- * the `usmle-step-2` field (legacy full-exam inserter). Step membership:
- *   step1 → fieldId usmle-step-1
- *   step3 → fieldId usmle-step-3  OR  (usmle-step-2 AND stepLevel="step3")
- *   step2 → everything else in usmle-step-2 (stepLevel ≠ "step3")
+ * Fallback when the active inventory is degraded.
+ * Legacy Step 3 rows filed on `usmle-step-2` are not added to Step 3 here either:
+ * the Qbank does not serve them, so they are not active inventory.
  */
 async function fetchUsmleServedCounts(): Promise<Record<UsmleStepLevel, number>> {
   const rows = await prisma.questionBankItem.groupBy({
@@ -98,9 +93,8 @@ async function fetchUsmleServedCounts(): Promise<Record<UsmleStepLevel, number>>
       counts.step1 += n;
     } else if (row.fieldId === "usmle-step-3") {
       counts.step3 += n;
-    } else if (row.fieldId === "usmle-step-2") {
-      if (row.stepLevel === "step3") counts.step3 += n;
-      else counts.step2 += n;
+    } else if (row.fieldId === "usmle-step-2" && row.stepLevel !== "step3") {
+      counts.step2 += n;
     }
   }
   return counts;
@@ -118,7 +112,17 @@ export async function getUsmleExamOptionsWithCounts(): Promise<UsmleExamOptionsP
   let degraded = false;
 
   try {
-    counts = await getCachedUsmleServedCounts();
+    const { getCachedActiveInventory } = await import("@/lib/marketing/question-bank-counts");
+    const inventory = await getCachedActiveInventory();
+    if (!inventory.degraded) {
+      counts = {
+        step1: inventory.fields["usmle-step-1"]?.active ?? 0,
+        step2: inventory.fields["usmle-step-2"]?.active ?? 0,
+        step3: inventory.fields["usmle-step-3"]?.active ?? 0,
+      };
+    } else {
+      counts = await getCachedUsmleServedCounts();
+    }
   } catch (error) {
     console.error("[usmle/exam-options] count lookup failed:", error);
     degraded = true;

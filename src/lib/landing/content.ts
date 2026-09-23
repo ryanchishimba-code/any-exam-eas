@@ -247,7 +247,7 @@ export function formatHeroTotalCountLine(totalLabel?: string): string | null {
   const count = totalLabel?.trim();
   if (!count) return null;
   if (/across six boards/i.test(count)) return count;
-  const numeric = count.replace(/\s*serve-ready questions$/i, "").trim();
+  const numeric = count.replace(/\s*(serve-ready|active) questions$/i, "").trim();
   return `${numeric} questions across six boards`;
 }
 
@@ -259,8 +259,8 @@ export function formatExamLiveCountLine(
   const count = countLabel?.trim();
   const exam = examLabel?.trim();
   if (!count || !exam) return null;
-  const numeric = count.replace(/\s*serve-ready questions$/i, "").trim();
-  return `${numeric} ${exam} questions live`;
+  const numeric = count.replace(/\s*(serve-ready|active) questions$/i, "").trim();
+  return `${numeric} active ${exam} questions`;
 }
 
 /** @deprecated Use formatHeroTotalCountLine — unlabeled per-bank lines caused title/hero mismatch. */

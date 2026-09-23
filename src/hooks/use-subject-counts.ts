@@ -1,23 +1,26 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchSubjectCounts } from "@/lib/study/subject-counts-client";
+import {
+  fetchSubjectCounts,
+  type SubjectCountsClient,
+} from "@/lib/study/subject-counts-client";
 
 export { fetchSubjectCounts };
 
 type UseSubjectCountsOptions = {
-  initialCounts?: Record<string, number> | null;
+  initial?: SubjectCountsClient | null;
   initialFieldId?: string | null;
 };
 
 export function useSubjectCounts(fieldId: string, options: UseSubjectCountsOptions = {}) {
-  const { initialCounts, initialFieldId } = options;
-  const seeded = Boolean(initialFieldId === fieldId && initialCounts);
+  const { initial, initialFieldId } = options;
+  const seeded = Boolean(initialFieldId === fieldId && initial);
 
   return useQuery({
     queryKey: ["subject-counts", fieldId],
     queryFn: () => fetchSubjectCounts(fieldId),
-    initialData: seeded ? initialCounts! : undefined,
+    initialData: seeded ? initial! : undefined,
     placeholderData: (previousData, previousQuery) => {
       if (previousQuery?.queryKey[1] === fieldId) return previousData;
       return undefined;

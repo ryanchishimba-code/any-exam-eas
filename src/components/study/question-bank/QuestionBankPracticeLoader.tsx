@@ -29,8 +29,16 @@ export async function QuestionBankPracticeLoader({
   // Weak topics soft-fail after their own retries — never blank the bank.
   const weakTopics = await getStudentWeakTopics(userId, examFieldIds(examSlug));
 
-  const totalQuestions = countsPayload?.counts
-    ? Object.values(countsPayload.counts).reduce((sum, n) => sum + n, 0)
+  const totalQuestions = countsPayload ? countsPayload.total : null;
+  const initialInventory = countsPayload
+    ? {
+        counts: countsPayload.counts,
+        total: countsPayload.total,
+        formats: countsPayload.formats,
+        categories: countsPayload.categories,
+        categoryLabel: countsPayload.categoryLabel,
+        definition: countsPayload.definition,
+      }
     : null;
 
   return (
@@ -40,6 +48,7 @@ export async function QuestionBankPracticeLoader({
       initialFieldId={fieldParam}
       initialSubjectCounts={countsPayload?.counts}
       initialSubjectCountsFieldId={countsPayload?.fieldId}
+      initialInventory={initialInventory}
       weakTopics={weakTopics}
       hubStats={hubStats}
       usmleStepLabel={usmleStepLabel}

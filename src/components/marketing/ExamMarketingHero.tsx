@@ -18,11 +18,24 @@ import type { ExamSeoKey } from "@/lib/seo/exam-config";
 
 type Props = {
   examKey: ExamSeoKey;
-  /** Labeled per-board count, e.g. "8,327 NCLEX questions live". */
+  /** Labeled per-board count, e.g. "7,581 active NCLEX questions". */
   questionCountLine: string;
+  /** MCQ / NGN / case split from the active inventory, when those formats exist. */
+  formatLine?: string | null;
+  /** What "active" means, or the published-floor disclaimer. */
+  activeDefinition?: string | null;
+  countSource?: "active-inventory" | "published-floor";
+  activeCount?: number | null;
 };
 
-function ExamMarketingHeroCopy({ examKey, questionCountLine }: Props) {
+function ExamMarketingHeroCopy({
+  examKey,
+  questionCountLine,
+  formatLine,
+  activeDefinition,
+  countSource,
+  activeCount,
+}: Props) {
   const trialHref = landingTrialHrefForExam(examKey);
   const secondary = examHubSecondaryLink(examKey);
 
@@ -46,7 +59,23 @@ function ExamMarketingHeroCopy({ examKey, questionCountLine }: Props) {
           <p className="aee-hero-beat__subline">{formatExamHubSubline(examKey)}</p>
 
           {questionCountLine ? (
-            <p className="aee-hero-beat__countline">{questionCountLine}</p>
+            <p
+              className="aee-hero-beat__countline"
+              data-count-source={countSource ?? "published-floor"}
+              data-active-question-count={
+                typeof activeCount === "number" ? activeCount : undefined
+              }
+            >
+              {questionCountLine}
+            </p>
+          ) : null}
+          {formatLine ? (
+            <p className="aee-hero-beat__countline">{formatLine}</p>
+          ) : null}
+          {activeDefinition ? (
+            <p className="aee-hero-beat__countline" title={activeDefinition}>
+              {activeDefinition}
+            </p>
           ) : null}
 
           <div className="aee-hero-beat__actions">
@@ -82,10 +111,24 @@ function ExamMarketingHeroCopy({ examKey, questionCountLine }: Props) {
 }
 
 /** Conversion ATF for board hubs — dark hero, live count, board-specific sample. */
-export function ExamMarketingHero({ examKey, questionCountLine }: Props) {
+export function ExamMarketingHero({
+  examKey,
+  questionCountLine,
+  formatLine,
+  activeDefinition,
+  countSource,
+  activeCount,
+}: Props) {
   return (
     <LandingExamSelectionProvider initialExam={examKey}>
-      <ExamMarketingHeroCopy examKey={examKey} questionCountLine={questionCountLine} />
+      <ExamMarketingHeroCopy
+        examKey={examKey}
+        questionCountLine={questionCountLine}
+        formatLine={formatLine}
+        activeDefinition={activeDefinition}
+        countSource={countSource}
+        activeCount={activeCount}
+      />
     </LandingExamSelectionProvider>
   );
 }

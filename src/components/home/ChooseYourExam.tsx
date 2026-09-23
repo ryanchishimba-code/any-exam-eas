@@ -100,7 +100,7 @@ export function ChooseYourExam({ bankCounts }: ChooseYourExamProps) {
               <div className="aee-pick-board__summary-stats">
                 <span className="aee-pick-board__stat aee-pick-board__stat--questions">
                   <span className="aee-pick-board__stat-value">{selected.countLabel}</span>
-                  <span className="aee-pick-board__stat-label">serve-ready questions</span>
+                  <span className="aee-pick-board__stat-label">active questions</span>
                 </span>
                 <span className="aee-pick-board__stat">
                   <span className="aee-pick-board__stat-value">QA-gated</span>

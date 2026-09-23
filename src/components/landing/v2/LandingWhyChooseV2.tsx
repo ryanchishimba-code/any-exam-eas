@@ -198,7 +198,7 @@ export function LandingWhyChooseV2({
               >
                 <p
                   className={
-                    stat.label === "Serve-ready questions"
+                    stat.label === "Active questions"
                       ? "aee-landing-question-count aee-landing-question-count--metric"
                       : "text-2xl font-bold text-[var(--color-ink)]"
                   }
@@ -214,7 +214,10 @@ export function LandingWhyChooseV2({
           </ul>
 
           <div className="mt-10">
-            <MarketingHonestProof />
+            <MarketingHonestProof
+              live={!bankCounts.degraded && bankCounts.totalServed > 0}
+              questionCountLabel={bankCounts.totalQuestionsLabel}
+            />
           </div>
         </div>
       </div>

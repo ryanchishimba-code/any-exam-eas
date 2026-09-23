@@ -1,17 +1,21 @@
 import { NextResponse } from "next/server";
 import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
+import {
+  ACTIVE_QUESTION_DEFINITION,
+  fieldInventoryPayload,
+} from "@/lib/inventory/active-questions";
+import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { cacheGetOrSet, cacheKey, CACHE_TTL, CACHE_STALE } from "@/lib/cache";
 import { respondDbUnavailable } from "@/lib/api-db-error";
 
 export const runtime = "nodejs";
 
 /**
- * Serve-ready question counts per subject for a single exam field.
+ * Active question counts per subject for a single exam field.
  *
- * Trust contract: these counts come from the exact same `where` the practice
- * serve path uses, so the number shown next to a topic equals the pool that
- * topic actually draws from. Premium-gated (same as the question bank) and
- * cached briefly to keep the topic picker snappy.
+ * Trust contract: counts come from the active inventory (published, not retired),
+ * the same helper marketing uses. If that lookup is degraded, fall back to the
+ * serve-path subject counts so the topic picker still matches what practice draws.
  */
 export async function GET(req: Request) {
   const { requirePremiumApi } = await import("@/lib/api-access");
@@ -32,6 +36,11 @@ export async function GET(req: Request) {
   const fieldId = resolveQuestionBankFieldId(field);
 
   try {
+    const fromInventory = fieldInventoryPayload(fieldId, await getCachedActiveInventory());
+    if (fromInventory) {
+      return NextResponse.json(fromInventory);
+    }
+
     const counts = await cacheGetOrSet(
       cacheKey(["subject-served-counts", fieldId]),
       CACHE_TTL.subjectCatalog,
@@ -40,7 +49,15 @@ export async function GET(req: Request) {
     );
 
     const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
-    return NextResponse.json({ field: fieldId, counts, total });
+    return NextResponse.json({
+      field: fieldId,
+      counts,
+      total,
+      formats: null,
+      categories: [],
+      categoryLabel: null,
+      definition: ACTIVE_QUESTION_DEFINITION,
+    });
   } catch (error) {
     const dbResponse = respondDbUnavailable(error);
     if (dbResponse) return dbResponse;
