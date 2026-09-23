@@ -1,9 +1,13 @@
 import {
   clampQuestionBankCount,
+  parseQuestionBankStyle,
   type QuestionBankPace,
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
-import type { PracticeFormatMode } from "@/lib/study/practice-format";
+import {
+  parsePracticeFormat,
+  type PracticeFormatMode,
+} from "@/lib/study/practice-format";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 
 export { MIXED_SUBJECT_ID };
@@ -299,4 +303,52 @@ export function writePersistedQuestionBankSetup(
   } catch {
     // ignore quota / private mode
   }
+}
+
+/**
+ * Restore question-bank style and format from the URL, then from the last setup.
+ * A `style=weak_areas` deep link always wins, including over a remembered or
+ * simultaneous NGN/case format. Those formats only launch as Standard, so
+ * applying them would drop the link and start a format set instead of a weak set.
+ * Other styles keep the existing rule: a deliberate format stays in place and
+ * the format snap can still move them to Standard.
+ * Subject scope is not decided here — a `subjectId` on the URL stays with the caller.
+ */
+export function resolveQuestionBankStyleAndFormat(params: {
+  styleParam: string | null | undefined;
+  formatParam: string | null | undefined;
+  persistedStyle?: string | null;
+  persistedFormat?: string | null;
+}): { style: QuestionBankStyle | null; format: PracticeFormatMode | null } {
+  if (params.styleParam === "weak_areas") {
+    return { style: "weak_areas", format: "all" };
+  }
+
+  const style = params.styleParam
+    ? parseQuestionBankStyle(params.styleParam)
+    : params.persistedStyle
+      ? parseQuestionBankStyle(params.persistedStyle)
+      : null;
+
+  const format = params.formatParam
+    ? parsePracticeFormat(params.formatParam)
+    : params.persistedFormat
+      ? parsePracticeFormat(params.persistedFormat)
+      : null;
+
+  return { style, format };
+}
+
+/**
+ * NGN and case sets replace the selection style on launch.
+ * Weak areas does not: that deep link must build a weak-area set (2+ attempts,
+ * miss rate at least 40%), not a format-limited Standard set.
+ */
+export function deliberateFormatForLaunch(
+  style: QuestionBankStyle,
+  format: PracticeFormatMode
+): "ngn" | "case" | null {
+  if (style === "weak_areas") return null;
+  if (format === "ngn" || format === "case") return format;
+  return null;
 }
