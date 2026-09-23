@@ -1,6 +1,12 @@
 import { timingSafeEqual } from "node:crypto";
 
 /**
+ * Server-only. Marketing pages import `@/lib/inventory/active-inventory-cache`
+ * into the client bundle, so this module must not be imported from there.
+ * `node:crypto` fails that webpack build.
+ */
+
+/**
  * True when the request presents `Authorization: Bearer <CRON_SECRET>`.
  *
  * Vercel Cron adds that header on scheduled invocations when `CRON_SECRET`
