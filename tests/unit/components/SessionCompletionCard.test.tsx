@@ -31,7 +31,9 @@ describe("SessionCompletionCard mobile receipt", () => {
     expect(
       primary.compareDocumentPosition(analytics) & Node.DOCUMENT_POSITION_FOLLOWING
     ).toBeTruthy();
-    expect(screen.getByText("Session analytics")).toBeInTheDocument();
+    const fold = screen.getByRole("button", { name: "Session analytics" });
+    expect(fold).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByRole("checkbox")).toBeNull();
     expect(screen.getByText("8 saved · 75% accuracy · 3d streak")).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/you will pass|guaranteed pass|pass rate/i);
   });
