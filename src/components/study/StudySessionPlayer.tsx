@@ -657,6 +657,7 @@ export function StudySessionPlayer({
   const showCompletion =
     complete && !inReview && onLastQuestion && Boolean(answer?.revealed);
   const showReturnActions = Boolean(returnTo && showCompletion);
+  const showPostSession = (showCompletion || timeUp) && !inReview;
 
   const progressPct = ((sessionState.currentIndex + 1) / questionList.length) * 100;
   const selectionReasoning =
@@ -692,7 +693,7 @@ export function StudySessionPlayer({
 
   return (
     <div
-      className={`${studyUi.sessionShell} mt-8`}
+      className={`${studyUi.sessionShell} ${showPostSession ? "mt-3 sm:mt-8" : "mt-8"}`}
       onTouchStart={(e) => {
         touchStart.current = e.touches[0].clientX;
       }}
@@ -704,6 +705,7 @@ export function StudySessionPlayer({
         touchStart.current = null;
       }}
     >
+      <div className={showPostSession ? "max-sm:hidden" : undefined}>
       <div className="flex items-center justify-end gap-2">
         {sessionState.mode === "timed" && !timeUp && (
           <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium tabular-nums text-amber-900">
@@ -892,8 +894,9 @@ export function StudySessionPlayer({
             </div>
           )}
       </article>
+      </div>
 
-      {(showCompletion || timeUp) && !inReview && saveState !== "saved" ? (
+      {showPostSession && saveState !== "saved" ? (
         <SessionPersistGate
           state={saveState === "error" ? "error" : "saving"}
           error={saveError}

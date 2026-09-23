@@ -75,19 +75,23 @@ async function AnalyticsContent({
 
   return (
     <ProUpgradeGate feature="advanced_analytics" callbackPath={ROUTES.pricing}>
-      <div className="space-y-8">
-        <ReadinessProofPanel
-          readiness={examDayPlan.readiness}
-          domainsLabel={examDayPlan.coverage.domainsLabel}
-          coverage={examDayPlan.coverage}
-        />
-        <StudentAnalyticsDashboard
-          examSlug={examSlug}
-          examName={examName}
-          fieldId={fieldId}
-          openRemediation={roadmap?.openRemediation ?? null}
-          initialData={{ dashboard, profile }}
-        />
+      <div className="flex flex-col gap-4 sm:block sm:space-y-8">
+        <div className="order-2 sm:order-none">
+          <ReadinessProofPanel
+            readiness={examDayPlan.readiness}
+            domainsLabel={examDayPlan.coverage.domainsLabel}
+            coverage={examDayPlan.coverage}
+          />
+        </div>
+        <div className="order-1 sm:order-none">
+          <StudentAnalyticsDashboard
+            examSlug={examSlug}
+            examName={examName}
+            fieldId={fieldId}
+            openRemediation={roadmap?.openRemediation ?? null}
+            initialData={{ dashboard, profile }}
+          />
+        </div>
       </div>
     </ProUpgradeGate>
   );

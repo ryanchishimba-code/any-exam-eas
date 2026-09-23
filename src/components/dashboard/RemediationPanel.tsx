@@ -69,7 +69,7 @@ export function RemediationPanel({
           : `Missed ${examName} items that are still outstanding.`;
 
   return (
-    <section aria-labelledby="remediation-heading" className={`${dbUi.heroSurface} space-y-4`}>
+    <section aria-labelledby="remediation-heading" className={`${dbUi.heroSurface} space-y-3 max-sm:!p-4 sm:space-y-4`}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <p className={dbUi.eyebrow}>Remediation</p>
@@ -79,18 +79,22 @@ export function RemediationPanel({
           >
             {heading}
           </h2>
-          <p className={`${dbUi.subtitle} mt-2`}>{subtitle}</p>
-          <p className="mt-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-            {REMEDIATION_MASTERY_RULE}
-          </p>
+          <p className={`${dbUi.subtitle} mt-1 sm:mt-2`}>{subtitle}</p>
         </div>
         {open > 0 ? (
-          <ActionLink href={reviewAllHref} locked={studyLocked} className={dbUi.primaryBtn}>
+          <ActionLink
+            href={reviewAllHref}
+            locked={studyLocked}
+            className={`${dbUi.primaryBtn} min-h-11 w-full sm:w-auto`}
+          >
             <RotateCcw className="h-4 w-4" aria-hidden />
             Review incorrect
           </ActionLink>
         ) : null}
       </div>
+      <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+        {REMEDIATION_MASTERY_RULE}
+      </p>
 
       {summary.loops.length > 0 ? (
         <ul className="space-y-3">

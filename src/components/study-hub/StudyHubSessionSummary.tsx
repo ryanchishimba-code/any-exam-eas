@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2, X } from "lucide-react";
+import { PhoneFold } from "@/components/study/PhoneFold";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import {
   activitySummaryFromSearchParams,
@@ -29,7 +30,9 @@ function endedEarlyCopy(summary: ActivitySessionSummary): string {
 
 export function StudyHubSessionSummary() {
   const searchParams = useSearchParams();
-  const [summary, setSummary] = useState<ActivitySessionSummary | null>(null);
+  const [summary, setSummary] = useState<ActivitySessionSummary | null>(() =>
+    activitySummaryFromSearchParams(searchParams)
+  );
 
   useEffect(() => {
     if (searchParams.get("session") !== "ended") return;
@@ -81,9 +84,19 @@ export function StudyHubSessionSummary() {
   const statValue =
     "mt-1.5 text-[22px] font-semibold tracking-[-0.03em] tabular-nums text-[var(--color-ink)]";
 
+  const weakLine =
+    summary.weakTopicLabels && summary.weakTopicLabels.length > 0
+      ? `Weak topics touched: ${summary.weakTopicLabels.join(", ")}`
+      : practiceReceipt
+        ? "No missed topics in this session."
+        : null;
+
   return (
-    <section className={`${dbUi.heroSurface} mb-5 sm:mb-6`} aria-labelledby="session-summary-heading">
-      <div className="flex items-start justify-between gap-4">
+    <section
+      className={`${dbUi.heroSurface} mb-4 max-sm:!p-4 sm:mb-6`}
+      aria-labelledby="session-summary-heading"
+    >
+      <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className={`${dbUi.eyebrow} inline-flex items-center gap-1.5`}>
             <CheckCircle2 className="h-3.5 w-3.5 text-[var(--color-accent)]" aria-hidden />
@@ -91,11 +104,11 @@ export function StudyHubSessionSummary() {
           </p>
           <h2
             id="session-summary-heading"
-            className="mt-1 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]"
+            className="mt-1 text-[22px] font-semibold leading-tight tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]"
           >
             {practiceReceipt ? `${summary.attemptsSaved} attempts saved` : "Progress saved"}
           </h2>
-          <p className={`${dbUi.subtitle} mt-2`}>
+          <p className="mt-1 text-[15px] leading-snug tracking-[-0.015em] text-[var(--color-ink-muted)] sm:mt-2 sm:leading-relaxed">
             {endedEarlyCopy(summary)}
             {practiceReceipt ? (
               <>
@@ -115,24 +128,22 @@ export function StudyHubSessionSummary() {
               </>
             )}
           </p>
-          {summary.weakTopicLabels && summary.weakTopicLabels.length > 0 ? (
-            <p className="mt-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-              Weak topics touched: {summary.weakTopicLabels.join(", ")}
-            </p>
-          ) : practiceReceipt ? (
-            <p className="mt-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-              No missed topics in this session.
-            </p>
-          ) : null}
           {summary.reviewIncorrectHref || summary.analyticsHref ? (
-            <div className="mt-5 flex flex-col items-start gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="mt-3 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap sm:items-center">
               {summary.reviewIncorrectHref ? (
-                <Link href={summary.reviewIncorrectHref} className={dbUi.primaryBtn}>
+                <Link
+                  href={summary.reviewIncorrectHref}
+                  data-session-primary="true"
+                  className={`${dbUi.primaryBtn} min-h-11 w-full sm:w-auto`}
+                >
                   Review incorrect
                 </Link>
               ) : null}
               {summary.analyticsHref ? (
-                <Link href={summary.analyticsHref} className={dbUi.ghostBtn}>
+                <Link
+                  href={summary.analyticsHref}
+                  className={`${dbUi.ghostBtn} min-h-11 w-full sm:w-auto`}
+                >
                   View analytics
                 </Link>
               ) : null}
@@ -149,8 +160,14 @@ export function StudyHubSessionSummary() {
         </button>
       </div>
 
-      {hasExtraStats ? (
-      <dl className="mt-6 grid gap-3 border-t border-[var(--color-border)]/45 pt-5 sm:grid-cols-2 lg:grid-cols-4">
+      {weakLine || hasExtraStats ? (
+        <PhoneFold summary="Session details" className="mt-3 sm:mt-5">
+          <div className="space-y-3">
+            {weakLine ? (
+              <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">{weakLine}</p>
+            ) : null}
+            {hasExtraStats ? (
+      <dl className="grid gap-3 sm:grid-cols-2 sm:border-t sm:border-[var(--color-border)]/45 sm:pt-5 lg:grid-cols-4">
         {showQuizStats && !practiceReceipt && summary.answered != null && summary.total != null && (
           <div className={statClass}>
             <dt className={statLabel}>Answered</dt>
@@ -229,6 +246,9 @@ export function StudyHubSessionSummary() {
           </div>
         )}
       </dl>
+            ) : null}
+          </div>
+        </PhoneFold>
       ) : null}
     </section>
   );

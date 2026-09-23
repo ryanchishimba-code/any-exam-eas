@@ -24,6 +24,7 @@ import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { cn } from "@/lib/utils";
 import { FullExamPassPathPanel } from "@/components/exam/FullExamPassPathPanel";
+import { PhoneFold } from "@/components/study/PhoneFold";
 import { FullExamStudyLinks } from "@/components/exam/FullExamStudyLinks";
 import { FullExamResultsInsights } from "@/components/exam/FullExamResultsInsights";
 import { FullExamCatPracticeBand } from "@/components/exam/FullExamCatPracticeBand";
@@ -282,19 +283,24 @@ export function FullExamResults({
   }
 
   return (
-    <div className="space-y-6 pb-8">
+    <div className="space-y-4 pb-8 sm:space-y-6">
       <div className={feUi.pageShell}>
-        <div className={cn(feUi.panel, "p-6 text-center sm:p-8")}>
-          <div className={feUi.scoreRing}>
-            <span className={cn("text-3xl font-bold tabular-nums", scoreColor)}>{score}%</span>
+        <div className={cn(feUi.panel, "p-4 text-center sm:p-8")}>
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border-2 border-[var(--color-accent)]/25 bg-[var(--color-surface-elevated)] sm:h-28 sm:w-28 sm:border-[6px] sm:shadow-[var(--shadow-apple-sm)]">
+            <span className={cn("text-[20px] font-semibold tabular-nums tracking-[-0.03em] sm:text-3xl sm:font-bold", scoreColor)}>
+              {score}%
+            </span>
           </div>
-          <h1 className="mt-5 text-[24px] font-semibold tracking-tight text-[var(--color-ink)]">
+          <h1 className="mt-3 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:mt-5 sm:text-[24px] sm:tracking-tight">
             Exam complete
           </h1>
-          <p className="mt-2 text-[15px] text-[var(--color-ink-muted)]">{analysis.summary}</p>
-          <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">{exam.name}</p>
-          <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
+          <p className="mt-1 text-[14px] leading-snug tracking-[-0.015em] text-[var(--color-ink-muted)] sm:mt-2 sm:text-[15px]">
+            {analysis.summary}
+          </p>
+          <p className="mt-1 hidden text-[13px] text-[var(--color-ink-muted)] sm:block">{exam.name}</p>
+          <p className="mt-1 text-[13px] tracking-[-0.01em] text-[var(--color-ink-muted)] sm:mt-2 sm:text-sm">
             {correct} / {questions.length} correct
+            <span className="sm:hidden"> · {exam.shortName}</span>
           </p>
         </div>
       </div>
@@ -341,6 +347,8 @@ export function FullExamResults({
         </div>
       )}
 
+      <PhoneFold summary="Score breakdown">
+      <div className="space-y-4 sm:space-y-6">
       <div className="grid gap-3 sm:grid-cols-3">
         <StatCard label="Score" value={`${score}%`} valueClass={scoreColor} />
         <StatCard label="Correct" value={`${correct} / ${questions.length}`} />
@@ -420,6 +428,8 @@ export function FullExamResults({
         practiceCount={analysis.catOutcome ? 25 : 10}
         autostartPractice={Boolean(analysis.catOutcome)}
       />
+      </div>
+      </PhoneFold>
 
       {questions.length > 0 ? (
         <div className="flex flex-wrap justify-center gap-2 border-t border-black/[0.06] pt-6">

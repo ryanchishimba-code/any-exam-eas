@@ -17,6 +17,7 @@ import {
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { studyUi } from "@/lib/study/study-ui";
 import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
+import { PhoneFold } from "@/components/study/PhoneFold";
 import { FormatPracticePanel } from "@/components/analytics/FormatPracticePanel";
 import type { OpenRemediationSummary } from "@/lib/learning/remediation-loop";
 import type { ExamSlug } from "@/types/edtech";
@@ -154,21 +155,25 @@ export function StudentAnalyticsDashboard({
   const srsDue = dashboard.spacedReview.dueCount;
 
   return (
-    <div className="space-y-8">
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div className="space-y-4 sm:space-y-8">
+      <header className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <div>
           <p className={studyUi.eyebrow}>Analytics</p>
-          <h1 className={studyUi.title}>Your {examName} insights</h1>
-          <p className={cn(studyUi.subtitle, "mt-1 max-w-xl")}>
+          <h1 className="text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]">
+            Your {examName} insights
+          </h1>
+          <p className={cn(studyUi.subtitle, "mt-1 hidden max-w-xl sm:block")}>
             Practice progress, accuracy trends, and weak areas — scoped to your active exam.
           </p>
         </div>
-        <SocialShareBar
-          entityType="progress"
-          text={`My ${examName} ${PRACTICE_PROGRESS_LABEL.toLowerCase()} is ${dashboard.headline.readinessScore}% on AnyExamEasy — keeping at it.`}
-          url="https://www.anyexameasy.com"
-          size="sm"
-        />
+        <div className="max-sm:hidden">
+          <SocialShareBar
+            entityType="progress"
+            text={`My ${examName} ${PRACTICE_PROGRESS_LABEL.toLowerCase()} is ${dashboard.headline.readinessScore}% on AnyExamEasy — keeping at it.`}
+            url="https://www.anyexameasy.com"
+            size="sm"
+          />
+        </div>
       </header>
 
       {fieldId ? (
@@ -180,6 +185,8 @@ export function StudentAnalyticsDashboard({
         />
       ) : null}
 
+      <PhoneFold summary="Practice analytics">
+      <div className="space-y-4 sm:space-y-8">
       <FormatPracticePanel
         stats={dashboard.formatPractice}
         ngnLabel={examSlug === "nclex" ? "NGN" : "NGN-style"}
@@ -387,6 +394,8 @@ export function StudentAnalyticsDashboard({
           </ul>
         </section>
       )}
+      </div>
+      </PhoneFold>
     </div>
   );
 }
