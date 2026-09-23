@@ -1,3 +1,5 @@
+import { isCronAuthorized } from "@/lib/cron-auth";
+
 /**
  * Shared cache identity for the active-question inventory.
  *
@@ -86,14 +88,12 @@ export function shouldRevalidateInventoryAfterRetire(apply: boolean, written: nu
   return apply && written > 0;
 }
 
+/** Bearer `CRON_SECRET` check shared with the other cron routes. */
 export function isCronSecretAuthorized(
   req: Request,
   env: NodeJS.ProcessEnv = process.env
 ): boolean {
-  const secret = env.CRON_SECRET?.trim();
-  if (!secret) return false;
-  if (req.headers.get("authorization") === `Bearer ${secret}`) return true;
-  return req.headers.get("x-vercel-cron") === "1" && Boolean(env.VERCEL);
+  return isCronAuthorized(req, env);
 }
 
 function stripTrailingSlash(value: string): string {

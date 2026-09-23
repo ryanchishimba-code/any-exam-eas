@@ -4,30 +4,20 @@ import {
   defaultReportDateKey,
   nightlyTrafficReportRecipients,
 } from "@/lib/analytics/nightly-traffic-report";
-import { sendNightlyTrafficReportEmail } from "@/lib/email/nightly-traffic-report-email";
+import { isCronAuthorized } from "@/lib/cron-auth";
 import { DbUnavailableError, isTransientDbError } from "@/lib/db-resilience";
+import { sendNightlyTrafficReportEmail } from "@/lib/email/nightly-traffic-report-email";
 import { warmNeonCompute } from "@/lib/neon-warmup";
 
 export const maxDuration = 120;
 export const runtime = "nodejs";
-
-function isAuthorized(req: Request): boolean {
-  const secret = process.env.CRON_SECRET;
-  if (!secret) return false;
-
-  const authHeader = req.headers.get("authorization");
-  if (authHeader === `Bearer ${secret}`) return true;
-
-  const cronHeader = req.headers.get("x-vercel-cron");
-  return cronHeader === "1" && Boolean(process.env.VERCEL);
-}
 
 /**
  * Daily — email yesterday's (UTC) traffic digest after analytics rollup.
  * Recipients: NIGHTLY_TRAFFIC_REPORT_TO (comma-separated) or ryanchishimba@gmail.com.
  */
 export async function GET(req: Request) {
-  if (!isAuthorized(req)) {
+  if (!isCronAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

@@ -95,7 +95,7 @@ describe("requestActiveInventoryRevalidation", () => {
     );
   });
 
-  it("accepts the cron bearer and the Vercel cron header", () => {
+  it("accepts the cron bearer and rejects a spoofed Vercel cron header", () => {
     const env = { CRON_SECRET: "secret", VERCEL: "1" };
     expect(
       isCronSecretAuthorized(
@@ -108,7 +108,7 @@ describe("requestActiveInventoryRevalidation", () => {
         new Request("https://example.com", { headers: { "x-vercel-cron": "1" } }),
         env
       )
-    ).toBe(true);
+    ).toBe(false);
     expect(isCronSecretAuthorized(new Request("https://example.com"), env)).toBe(false);
   });
 });
