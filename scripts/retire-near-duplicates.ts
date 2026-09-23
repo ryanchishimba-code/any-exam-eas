@@ -13,6 +13,10 @@
  *
  *   npm run db:retire-near-duplicates -- --field nursing
  *   npm run db:retire-near-duplicates -- --field nursing --apply
+ *
+ * A successful --apply also asks the site to drop the public inventory cache
+ * (`POST /api/cron/revalidate-inventory` with CRON_SECRET) so /nclex and the
+ * question bank match the database without waiting out the one-hour TTL.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -29,6 +33,10 @@ import {
   type NearDuplicateKeeperRow,
   type NearDuplicateRetirePlan,
 } from "../src/lib/exam-prep/item-qa";
+import {
+  requestActiveInventoryRevalidation,
+  shouldRevalidateInventoryAfterRetire,
+} from "../src/lib/inventory/active-inventory-cache";
 
 const prisma = new PrismaClient();
 const BATCH = 400;
@@ -158,6 +166,7 @@ function renderMarkdown(input: {
   inventory: { active: number; published: number };
   fullExamLinks: number;
   written?: number;
+  cache?: { revalidated: boolean; url: string; error?: string };
 }): string {
   const drop = input.plan.publishedInventoryDrop;
   const lines = [
@@ -186,6 +195,13 @@ function renderMarkdown(input: {
     `- Expected published inventory after: ${input.inventory.published - drop}`,
   ];
   if (input.written !== undefined) lines.push(`- Rows updated: ${input.written}`);
+  if (input.cache) {
+    lines.push(
+      input.cache.revalidated
+        ? `- Public inventory cache revalidated: ${input.cache.url}`
+        : `- Public inventory cache NOT revalidated: ${input.cache.error ?? "unknown error"} (${input.cache.url})`
+    );
+  }
   lines.push("", "## Skips", "");
   const skips = Object.entries(skipCounts(input.plan));
   if (!skips.length) lines.push("None.");
@@ -289,8 +305,11 @@ async function main() {
   };
 
   let written: number | undefined;
+  let cache: { revalidated: boolean; url: string; error?: string } | undefined;
   if (!args.apply) {
-    console.log("\nDry run. No rows were changed. Pass --apply to set active=false on the eligible ids only.");
+    console.log(
+      "\nDry run. No rows were changed. Pass --apply to set active=false on the eligible ids only and refresh the public inventory cache."
+    );
   } else {
     written = await applyPlan(plan, field);
     const after = await countInventory(field, args.subject);
@@ -298,6 +317,30 @@ async function main() {
     console.log(`Active after: ${after.active}`);
     console.log(`Published after: ${after.published}`);
     Object.assign(reportBase, { written, inventoryAfter: after });
+
+    if (shouldRevalidateInventoryAfterRetire(true, written)) {
+      const result = await requestActiveInventoryRevalidation();
+      cache = {
+        revalidated: result.ok,
+        url: result.url,
+        error: result.error,
+      };
+      Object.assign(reportBase, {
+        cacheRevalidated: result.ok,
+        cacheRevalidateUrl: result.url,
+        cacheRevalidateError: result.error ?? null,
+      });
+      if (result.ok) {
+        console.log(`Inventory cache revalidated: ${result.url}`);
+      } else {
+        console.error(`Inventory cache was not revalidated (${result.url}): ${result.error}`);
+        console.error(
+          `Rows are already updated. Retry: curl -X POST -H "Authorization: Bearer $CRON_SECRET" ${result.url}`
+        );
+      }
+    } else {
+      console.log("No rows updated. Public inventory cache left as-is.");
+    }
   }
 
   mkdirSync(args.outDir, { recursive: true });
@@ -315,9 +358,16 @@ async function main() {
       inventory,
       fullExamLinks,
       written,
+      cache,
     })
   );
   console.log(`Report: ${mdPath}`);
+
+  if (cache && !cache.revalidated) {
+    throw new Error(
+      `Rows were updated, but the public inventory cache was not cleared. ${cache.error ?? ""}`.trim()
+    );
+  }
 }
 
 main()

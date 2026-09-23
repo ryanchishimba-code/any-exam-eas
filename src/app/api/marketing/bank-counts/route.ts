@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 import {
+  ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+  ACTIVE_INVENTORY_CDN_STALE_SECONDS,
+} from "@/lib/inventory/active-inventory-cache";
+import {
   ACTIVE_QUESTION_DEFINITION,
   formatInventoryFormatLine,
 } from "@/lib/inventory/active-questions";
@@ -44,7 +48,7 @@ export async function GET() {
       },
       {
         headers: {
-          "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+          "Cache-Control": `public, s-maxage=${ACTIVE_INVENTORY_CACHE_TTL_SECONDS}, stale-while-revalidate=${ACTIVE_INVENTORY_CDN_STALE_SECONDS}`,
         },
       }
     );
