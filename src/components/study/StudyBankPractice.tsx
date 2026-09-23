@@ -14,7 +14,6 @@ import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import {
   EXAM_MODES,
   parseQuestionBankPace,
-  parseQuestionBankStyle,
   type QuestionBankPace,
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
@@ -78,12 +77,14 @@ import { parsePracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-lin
 import { qbUi } from "@/lib/study/question-bank-ui";
 import {
   availableQuestionCount,
+  deliberateFormatForLaunch,
   estimateQuestionBankSessionMinutes,
   isRetestSessionCount,
   questionBankCountOptions,
   questionBankCountOptionsForAvailable,
   readPersistedQuestionBankSetup,
   resolveQuestionBankSessionCount,
+  resolveQuestionBankStyleAndFormat,
   resolveWheelCountValue,
   validateQuestionBankSession,
   writePersistedQuestionBankSetup,
@@ -93,7 +94,6 @@ import {
 import {
   buildDeliberateFormatQuestionQuery,
   ngnStyleLabel,
-  parsePracticeFormat,
   practiceFormatCountOptions,
   practiceFormatPoolCount,
   practiceFormatTitle,
@@ -643,21 +643,17 @@ export function StudyBankPractice({
       }
     }
 
-    const styleParam = resolvePracticeSearchParam(searchParams, "style");
-    if (styleParam) {
-      setBankStyle(parseQuestionBankStyle(styleParam));
-    } else {
-      const persisted = readPersistedQuestionBankSetup(fieldId);
-      if (persisted?.style) setBankStyle(persisted.style);
-    }
-
-    const formatParam = resolvePracticeSearchParam(searchParams, "format");
-    if (formatParam) {
-      setPracticeFormat(parsePracticeFormat(formatParam));
-    } else {
-      const persisted = readPersistedQuestionBankSetup(fieldId);
-      if (persisted?.format) setPracticeFormat(parsePracticeFormat(persisted.format));
-    }
+    const persisted = readPersistedQuestionBankSetup(fieldId);
+    const resolved = resolveQuestionBankStyleAndFormat({
+      styleParam: resolvePracticeSearchParam(searchParams, "style"),
+      formatParam: resolvePracticeSearchParam(searchParams, "format"),
+      persistedStyle: persisted?.style,
+      persistedFormat: persisted?.format,
+    });
+    // Weak-areas deep links clear a remembered NGN/case format here. Leaving
+    // that format in place snaps the chip to Standard and launches an NGN set.
+    if (resolved.style) setBankStyle(resolved.style);
+    if (resolved.format) setPracticeFormat(resolved.format);
   }, [fieldId, isTimedExam, searchParams]);
 
   useEffect(() => {
@@ -745,6 +741,13 @@ export function StudyBankPractice({
   useEffect(() => {
     if (isTimedExam || countsLoading) return;
     if (practiceFormat === "ngn" || practiceFormat === "case") {
+      // Weak areas cannot ride an NGN/case set. Drop the format instead of
+      // rewriting the deep link to Standard.
+      if (deliberateFormatForLaunch(bankStyle, practiceFormat) === null) {
+        setPracticeFormat("all");
+        syncPracticeUrl({ format: "all", style: "weak_areas" });
+        return;
+      }
       const pool = practiceFormatPoolCount(practiceFormat, activeFormats);
       const options = practiceFormatCountOptions(pool);
       if (options.length === 0) return;
@@ -789,6 +792,19 @@ export function StudyBankPractice({
     if (subjectUrlSyncedRef.current) return;
     subjectUrlSyncedRef.current = true;
     syncPracticeUrl({ subjectId });
+  }, [isTimedExam, subjectId, searchParams]);
+
+  // A weak-areas link that also carries format=ngn|case would otherwise stay
+  // on that format in the address bar. Clear it once a topic is known.
+  useEffect(() => {
+    if (isTimedExam || !subjectId) return;
+    const styleParam = resolvePracticeSearchParam(searchParams, "style");
+    const formatParam = resolvePracticeSearchParam(searchParams, "format");
+    if (styleParam !== "weak_areas") return;
+    if (formatParam !== "ngn" && formatParam !== "case") return;
+    syncPracticeUrl({ style: "weak_areas", format: "all" });
+    // syncPracticeUrl is recreated each render; this effect follows the URL.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimedExam, subjectId, searchParams]);
 
   useEffect(() => {
@@ -909,7 +925,7 @@ export function StudyBankPractice({
   async function start() {
     if (isMpje || !isTimedExam) syncPracticeUrl({ historyOnly: true });
 
-    const deliberateFormat = practiceFormat === "ngn" || practiceFormat === "case" ? practiceFormat : null;
+    const deliberateFormat = deliberateFormatForLaunch(bankStyle, practiceFormat);
     if (!isTimedExam) {
       const validation = deliberateFormat
         ? validatePracticeFormatSession({
@@ -1484,13 +1500,15 @@ export function StudyBankPractice({
     void start();
   }, [autostartRequested, isTimedExam, subjectId, bankStyle, questions, loading, searchParams]);
 
+  const launchFormat = deliberateFormatForLaunch(bankStyle, practiceFormat);
+
   const bankSessionValidation = useMemo(
     () =>
       isTimedExam
         ? { ok: true as const }
-        : practiceFormat === "ngn" || practiceFormat === "case"
+        : launchFormat
           ? validatePracticeFormatSession({
-              format: practiceFormat,
+              format: launchFormat,
               questionCount,
               formats: activeFormats,
               bankStyle: "standard",
@@ -1506,7 +1524,7 @@ export function StudyBankPractice({
             }),
     [
       isTimedExam,
-      practiceFormat,
+      launchFormat,
       subjectId,
       questionCount,
       subjectCounts,
@@ -1520,25 +1538,25 @@ export function StudyBankPractice({
 
   const previewTopicLabel = useMemo(() => {
     if (isTimedExam) return `${field} · Timed exam simulation`;
-    if (practiceFormat === "ngn" || practiceFormat === "case") {
+    if (launchFormat) {
       const topic = isMixedSubjectId(subjectId)
         ? MIXED_SUBJECT_LABEL
         : subjects.find((s) => s.id === subjectId)?.label ?? "Choose a topic";
-      return `${practiceFormatTitle(practiceFormat, ngnLabel)} · ${topic}`;
+      return `${practiceFormatTitle(launchFormat, ngnLabel)} · ${topic}`;
     }
     const base = isMixedSubjectId(subjectId)
       ? MIXED_SUBJECT_LABEL
       : subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
     return isPance ? sessionLabelWithTask(base, taskCategory) : base;
-  }, [field, isTimedExam, practiceFormat, ngnLabel, subjectId, subjects, isPance, taskCategory]);
+  }, [field, isTimedExam, launchFormat, ngnLabel, subjectId, subjects, isPance, taskCategory]);
 
   const previewAvailableCount = useMemo(() => {
     if (isTimedExam) return null;
-    if (practiceFormat === "ngn" || practiceFormat === "case") {
+    if (launchFormat) {
       return null;
     }
     return availableQuestionCount(subjectId, subjectCounts);
-  }, [isTimedExam, practiceFormat, subjectId, subjectCounts]);
+  }, [isTimedExam, launchFormat, subjectId, subjectCounts]);
 
   const previewEstimatedMinutes = useMemo(
     () => estimateQuestionBankSessionMinutes(questionCount, bankPace),
@@ -1578,10 +1596,7 @@ export function StudyBankPractice({
         : isMpje
           ? " · Uniform MPJE"
           : "";
-    const formatTitle =
-      practiceFormat === "ngn" || practiceFormat === "case"
-        ? practiceFormatTitle(practiceFormat, ngnLabel)
-        : null;
+    const formatTitle = launchFormat ? practiceFormatTitle(launchFormat, ngnLabel) : null;
     const title = isTimedExam
       ? `${field}${mpjeScope} · Timed exam · ${questions.length} questions`
       : `${field}${mpjeScope} · ${
@@ -1610,9 +1625,7 @@ export function StudyBankPractice({
           questions={questions}
           sourceType="bank"
           mode={sessionStudyMode}
-          practiceFormat={
-            practiceFormat === "ngn" || practiceFormat === "case" ? practiceFormat : undefined
-          }
+          practiceFormat={launchFormat ?? undefined}
           reviewQueue={bankStyle === "review_incorrect"}
           title={title}
           adaptiveMeta={adaptiveMeta ?? undefined}
@@ -1637,7 +1650,7 @@ export function StudyBankPractice({
 
   const canStartBank =
     !isTimedExam &&
-    (practiceFormat !== "all" || !!subjectId) &&
+    (launchFormat != null || !!subjectId) &&
     bankSessionValidation.ok &&
     !loading &&
     !countsLoading;

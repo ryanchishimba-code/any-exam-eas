@@ -1,9 +1,12 @@
 import { describe, expect, it } from "vitest";
+import { questionBankEmptyLaunch } from "./remediation-launch";
 import {
   MIXED_SUBJECT_ID,
   QUESTION_BANK_WHEEL_PRESETS,
   availableQuestionCount,
+  deliberateFormatForLaunch,
   questionBankCountOptionsForAvailable,
+  resolveQuestionBankStyleAndFormat,
   resolveWheelCountValue,
   resolveQuestionBankSessionCount,
   validateQuestionBankSession,
@@ -157,5 +160,63 @@ describe("question-bank-setup", () => {
     expect(resolveQuestionBankSessionCount(5, 40)).toBe(5);
     expect(resolveQuestionBankSessionCount(10, 40)).toBe(10);
     expect(resolveQuestionBankSessionCount(5, 3)).toBe(25); // pool too small → wheel
+  });
+
+  it("keeps a weak-areas deep link when a remembered NGN format would otherwise snap to Standard", () => {
+    // Positive eligibility skips the empty notice and reaches this setup.
+    expect(questionBankEmptyLaunch("weak_areas", 2)).toBeNull();
+    expect(
+      resolveQuestionBankStyleAndFormat({
+        styleParam: "weak_areas",
+        formatParam: null,
+        persistedStyle: "standard",
+        persistedFormat: "ngn",
+      })
+    ).toEqual({ style: "weak_areas", format: "all" });
+    expect(
+      resolveQuestionBankStyleAndFormat({
+        styleParam: "weak_areas",
+        formatParam: "ngn",
+        persistedFormat: "case",
+      })
+    ).toEqual({ style: "weak_areas", format: "all" });
+    // Launch stays a weak-area set, not an NGN/case fetch.
+    expect(deliberateFormatForLaunch("weak_areas", "ngn")).toBeNull();
+    expect(deliberateFormatForLaunch("weak_areas", "case")).toBeNull();
+    expect(deliberateFormatForLaunch("weak_areas", "all")).toBeNull();
+  });
+
+  it("leaves review incorrect, today, and remembered NGN sets on their existing format rule", () => {
+    expect(
+      resolveQuestionBankStyleAndFormat({
+        styleParam: "review_incorrect",
+        formatParam: null,
+        persistedFormat: "ngn",
+      })
+    ).toEqual({ style: "review_incorrect", format: "ngn" });
+    expect(deliberateFormatForLaunch("review_incorrect", "ngn")).toBe("ngn");
+    expect(
+      resolveQuestionBankStyleAndFormat({
+        styleParam: "today",
+        formatParam: null,
+        persistedFormat: "case",
+      })
+    ).toEqual({ style: "today", format: "case" });
+    expect(
+      resolveQuestionBankStyleAndFormat({
+        styleParam: null,
+        formatParam: null,
+        persistedStyle: "standard",
+        persistedFormat: "ngn",
+      })
+    ).toEqual({ style: "standard", format: "ngn" });
+    expect(deliberateFormatForLaunch("standard", "ngn")).toBe("ngn");
+    expect(deliberateFormatForLaunch("adaptive", "case")).toBe("case");
+    expect(
+      resolveQuestionBankStyleAndFormat({
+        styleParam: null,
+        formatParam: null,
+      })
+    ).toEqual({ style: null, format: null });
   });
 });
