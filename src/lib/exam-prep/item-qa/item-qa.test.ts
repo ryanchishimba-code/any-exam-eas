@@ -117,6 +117,27 @@ describe("text lint", () => {
     expect(issues.map((issue) => issue.code)).toEqual(["truncated_option", "truncated_option"]);
   });
 
+  it("still flags a bare watch for as truncated", () => {
+    const issues = lintItemText({
+      stem: STEM,
+      options: ["watch for", "Notify the provider about the subtherapeutic INR"],
+      explanation: "The INR is below the range used for atrial fibrillation, so the provider adjusts the dose.",
+    });
+    expect(issues.map((issue) => issue.code)).toContain("truncated_option");
+  });
+
+  it("accepts a complete choice that ends in to watch for", () => {
+    const issues = lintItemText({
+      stem: STEM,
+      options: [
+        "Educate the client about signs of bleeding to watch for",
+        "Notify the provider about the subtherapeutic INR",
+      ],
+      explanation: "The INR is below the range used for atrial fibrillation, so the provider adjusts the dose.",
+    });
+    expect(issues.filter((issue) => issue.code === "truncated_option")).toEqual([]);
+  });
+
   it("accepts a clean stem and four complete options", () => {
     const issues = lintItemText({
       stem: STEM,

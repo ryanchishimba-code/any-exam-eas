@@ -5,6 +5,7 @@
  */
 import type { RationaleSchemaIssue } from "./rationale-schema";
 import { evaluateRationaleSchema, type ItemQaContent } from "./rationale-schema";
+import { studentFacingChoiceTexts } from "./text-choices";
 import { lintItemText, type TextLintIssue } from "./text-lint";
 
 export type ItemPublishIssue = TextLintIssue | RationaleSchemaIssue;
@@ -31,7 +32,10 @@ export function evaluateItemPublishGate(content: ItemQaContent): ItemPublishGate
   const issues: ItemPublishIssue[] = [
     ...lintItemText({
       stem: content.question,
-      options: content.options,
+      options: studentFacingChoiceTexts({
+        options: content.options,
+        ngnPayload: content.ngnPayload,
+      }),
       explanation: content.explanation,
     }),
     ...evaluateRationaleSchema(content),
