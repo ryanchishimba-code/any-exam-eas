@@ -42,16 +42,34 @@ describe("resolveRelatedDrug", () => {
       topicKeys: ["pharmacology-nursing"],
     });
     expect(drug?.kind).toBe("drug");
-    expect(drug?.href).toContain("drug=");
+    expect(drug?.id).toBe("insulin-glargine");
+    expect(drug?.href).toContain("path=safety");
+    expect(drug?.href).toContain("exam=nclex");
+    expect(drug?.href).toContain("drug=insulin-glargine");
+    expect(drug?.safetyPathHref).toBeUndefined();
   });
 
-  it("uses the same catalog for USMLE topics", () => {
+  it("keeps a non-path drug as its own card and still offers the safety path", () => {
     const drug = resolveRelatedDrug({
       examSlug: "usmle",
       topicKeys: ["acute-coronary-syndrome"],
     });
     expect(drug?.id).toBe("aspirin");
     expect(drug?.href).toContain("aspirin");
+    expect(drug?.href).not.toContain("path=safety");
+    expect(drug?.safetyPathHref).toContain("path=safety");
+    expect(drug?.safetyPathHref).toContain("exam=usmle");
+  });
+
+  it("opens a named high-alert drug on the safety path", () => {
+    const drug = resolveRelatedDrug({
+      examSlug: "nclex",
+      topicKeys: ["management-of-care"],
+      explicit: ["Warfarin"],
+    });
+    expect(drug?.id).toBe("warfarin");
+    expect(drug?.href).toContain("path=safety");
+    expect(drug?.href).toContain("drug=warfarin");
   });
 
   it("matches a labeled drug mention to a catalog id", () => {

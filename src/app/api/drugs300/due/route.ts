@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { getDueDrugCards } from "@/lib/drugs300";
+import { isExamSlug } from "@/lib/edtech/exams";
+import { getDueDrugCards, getSafetyPathCards } from "@/lib/drugs300";
+import { DRUG_SAFETY_PATH_ID } from "@/lib/drugs300/safety-path";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -10,6 +12,30 @@ export async function GET(req: Request) {
   if (!auth.ok) return auth.response;
 
   const { searchParams } = new URL(req.url);
+  if (searchParams.get("path") === DRUG_SAFETY_PATH_ID) {
+    const examParam = searchParams.get("exam") ?? "nclex";
+    const examSlug = isExamSlug(examParam) ? examParam : "nclex";
+    try {
+      const path = await getSafetyPathCards(auth.userId, examSlug);
+      return NextResponse.json({
+        cards: path.cards,
+        classId: "all",
+        path: {
+          id: DRUG_SAFETY_PATH_ID,
+          exam: examSlug,
+          reviewedToday: path.reviewedToday,
+          complete: path.complete,
+        },
+      });
+    } catch (error) {
+      const { respondDbUnavailable } = await import("@/lib/api-db-error");
+      const dbResponse = respondDbUnavailable(error);
+      if (dbResponse) return dbResponse;
+      const message = error instanceof Error ? error.message : "Unable to load the safety path";
+      return NextResponse.json({ error: message }, { status: 500 });
+    }
+  }
+
   const classParam = searchParams.get("class") ?? "all";
   const validClasses = [
     "all",

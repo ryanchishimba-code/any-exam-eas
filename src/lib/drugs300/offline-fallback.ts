@@ -11,6 +11,7 @@ import { getCurrentDrugCycle } from "./cycles";
 import { enrichDrug } from "./enrichment";
 import { initialSpacedRepetitionState, isDue } from "./spaced-repetition";
 import type { DrugCardDto, DrugClassProgress, DrugReviewDashboard } from "./dto";
+import { safetyPathDrugIds } from "./safety-path";
 
 function cycleDto() {
   const cycle = getCurrentDrugCycle();
@@ -97,4 +98,13 @@ export function buildOfflineDueDrugCards(
   const pool = TOP_500_DRUGS.filter((d) => drugMatchesClass(d.therapeuticClass, classId));
   const effectiveLimit = classId === "all" ? limit : pool.length;
   return pool.slice(0, effectiveLimit).map((drug) => toOfflineDto(drug, now));
+}
+
+/** Fixed safety-path cards when progress cannot be loaded. Order matches the path. */
+export function buildOfflineSafetyPathCards(examSlug: string): DrugCardDto[] {
+  const now = new Date();
+  return safetyPathDrugIds(examSlug).flatMap((id) => {
+    const drug = TOP_500_DRUGS.find((entry) => entry.id === id);
+    return drug ? [toOfflineDto(drug, now)] : [];
+  });
 }

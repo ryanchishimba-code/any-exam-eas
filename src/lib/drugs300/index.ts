@@ -6,6 +6,8 @@ export {
   ensureDrugReviewCycle,
   getDrugReviewDashboard,
   getDueDrugCards,
+  getSafetyPathCards,
+  isDrugSafetyPathComplete,
   recordDrugReview,
   getOrCreateMnemonic,
 } from "./service";

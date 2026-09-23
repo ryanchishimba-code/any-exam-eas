@@ -3,6 +3,7 @@ import { getPrisma } from "@/lib/prisma";
 import {
   buildOfflineDrugReviewDashboard,
   buildOfflineDueDrugCards,
+  buildOfflineSafetyPathCards,
 } from "./offline-fallback";
 import {
   TOP_500_COUNT,
@@ -23,7 +24,11 @@ import {
   isDue,
   type ReviewGrade,
 } from "./spaced-repetition";
-
+import {
+  safetyPathComplete,
+  safetyPathDrugIds,
+  utcDayStart,
+} from "./safety-path";
 function toDto(
   drug: DrugEntry,
   row: {
@@ -258,6 +263,86 @@ export async function getDueDrugCards(
     }
     throw error;
   }
+}
+
+export type SafetyPathCards = {
+  cards: DrugCardDto[];
+  reviewedToday: string[];
+  complete: boolean;
+};
+
+/** Curated safety-path cards in path order, with which ids were reviewed today. */
+export async function getSafetyPathCards(
+  userId: string,
+  examSlug: string,
+  now = new Date()
+): Promise<SafetyPathCards> {
+  const ids = safetyPathDrugIds(examSlug);
+  try {
+    const prisma = getPrisma();
+    await ensureDrugReviewCycle(userId);
+    const cycle = getCurrentDrugCycle();
+    const progress = await prisma.drugCardProgress.findMany({
+      where: { userId, cycleKey: cycle.key, drugId: { in: ids } },
+    });
+    const progressByDrug = new Map(progress.map((row) => [row.drugId, row]));
+    const dayStart = utcDayStart(now);
+    const cards = ids.flatMap((id) => {
+      const drug = TOP_500_DRUGS.find((entry) => entry.id === id);
+      if (!drug) return [];
+      const row = progressByDrug.get(id);
+      return [
+        toDto(
+          drug,
+          row ?? { ...initialSpacedRepetitionState(now), mnemonic: null },
+          now
+        ),
+      ];
+    });
+    const reviewedToday = ids.filter((id) => {
+      const reviewedAt = progressByDrug.get(id)?.lastReviewAt;
+      return reviewedAt != null && reviewedAt >= dayStart;
+    });
+    return {
+      cards,
+      reviewedToday,
+      complete: safetyPathComplete(reviewedToday, examSlug),
+    };
+  } catch (error) {
+    if (error instanceof DbUnavailableError) {
+      return {
+        cards: buildOfflineSafetyPathCards(examSlug),
+        reviewedToday: [],
+        complete: false,
+      };
+    }
+    throw error;
+  }
+}
+
+/** Today's drugs row is done when every safety-path drug was reviewed on this UTC day. */
+export async function isDrugSafetyPathComplete(
+  userId: string,
+  examSlug: string,
+  now = new Date()
+): Promise<boolean> {
+  const ids = safetyPathDrugIds(examSlug);
+  if (ids.length === 0) return false;
+  const prisma = getPrisma();
+  const cycle = getCurrentDrugCycle();
+  const rows = await prisma.drugCardProgress.findMany({
+    where: {
+      userId,
+      cycleKey: cycle.key,
+      drugId: { in: ids },
+      lastReviewAt: { gte: utcDayStart(now) },
+    },
+    select: { drugId: true },
+  });
+  return safetyPathComplete(
+    rows.map((row) => row.drugId),
+    examSlug
+  );
 }
 
 export async function recordDrugReview(

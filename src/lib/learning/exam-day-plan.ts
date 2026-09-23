@@ -20,8 +20,9 @@
  * 4. The guide row is one high-yield topic: an unpracticed category when one
  *    exists, otherwise the Qbank gap. Boards without a book still get the shared
  *    high-yield topic href.
- * 5. Drugs is a five-card touch on that topic's class, or the board drug list.
- *    A medication-category gap pulls this row up behind the guide.
+ * 5. Drugs is a fixed safety path (five high-alert drugs for this board), not a
+ *    random slice of the deck. Reviewing every drug on that path today marks
+ *    the row done. A medication-category gap pulls this row up behind the guide.
  * 6. The week countdown is the multi-week contract. Outside the final 14 days it
  *    is coverage days plus remediation days, weighted by the same gaps. Today's
  *    block stays that week's projection and still leads with the largest gap.
@@ -57,6 +58,7 @@ import {
   type TodayBlockId,
   type WeekCountdownPlan,
 } from "@/lib/learning/week-countdown-plan";
+import { drugSafetyPathHref, safetyPathLabel } from "@/lib/drugs300/safety-path";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -124,7 +126,7 @@ export type ExamDayBlockItem = {
   why: string | null;
   href: string | null;
   cta: string;
-  /** Saved work today covers this row. Guide and drug rows stay false. */
+  /** Saved work today covers this row. The guide row stays false. */
   doneToday: boolean;
 };
 
@@ -262,6 +264,8 @@ export type ExamDayPlanInput = {
   examSimTrend?: ExamSimTrend | null;
   /** Qualifying exam simulation completed on the UTC day of `now`. */
   examSimCompletedToday?: boolean;
+  /** Every safety-path drug reviewed on the UTC day of `now`. */
+  drugsCompletedToday?: boolean;
 };
 
 const MS_DAY = 86_400_000;
@@ -496,7 +500,7 @@ function planRules(): string[] {
     `Qbank is ${TODAY_QBANK_COUNT} questions on that blueprint category (weight × uncovered share, with accuracy once attempts exist).`,
     `Review incorrect uses the same open-remediation count as Analytics: a miss stays open until a spaced re-proof or a confirmed mark-mastered, up to ${TODAY_INCORRECT_CAP} in this block. Zero items stays an empty row and does not launch a set.`,
     "The guide row is one high-yield topic: an unpracticed blueprint category when one exists, otherwise the Qbank gap. Every board uses the same topic links.",
-    `Drugs is a ${TODAY_DRUG_COUNT}-card touch on that topic's class, or this board's drug list when the topic has no class. A medication-category gap pulls drugs up behind the guide.`,
+    `Drugs is a fixed safety path of ${TODAY_DRUG_COUNT} high-alert drugs for this board, in one order. It is done when each of those drugs is reviewed today. A medication-category gap pulls drugs up behind the guide.`,
     `The week plan is the countdown contract for this board. With more than 14 days left it is coverage days and remediation days, weighted by the same blueprint gap and open incorrect items, and Today's block is that projection. With 14 or fewer days left the week adds exam-simulation days and incorrect-drill days, and Today's rows follow that day's kind. Finishing today's ${TODAY_QBANK_COUNT} Qbank questions, or the incorrect review, ticks the matching goal. A qualifying exam simulation completed today ticks the simulation goal. Earlier days this week are not reconstructed. This is practice progress only.`,
     `${READINESS_FORMULA} Coverage bars, Today's gap, the week plan, and Qbank untouched or low chips use one blueprint heatmap. The coverage factor is the blueprint-weighted share of categories with at least one saved attempt. It is met at ${COVERAGE_MIN_PCT}% or more, and only when every domain weighted ${HIGH_WEIGHT_PCT}% or more has at least ${HIGH_WEIGHT_MIN_ATTEMPTS} answers. Recent accuracy is the last ${RECENT_ACCURACY_WINDOW} saved answers and is met at ${RECENT_ACCURACY_MIN_PCT}% once that window has ${RECENT_ACCURACY_MIN_SAMPLE} answers. Remediation completion is the share of saved attempts that are not still-open incorrect items. It is met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} open incorrect items. Ready means all three are met. Almost means two. Not yet means fewer. The band stays hidden until ${READINESS_MIN_SAMPLE} answered questions.`,
     `A completed exam simulation of ${EXAM_SIM_MIN_QUESTIONS} or more questions can appear as an optional trend. It does not change Ready, Almost, or Not yet.`,
@@ -606,7 +610,6 @@ function leadWhy(
     openKnown: boolean;
     qbankTopic: ExamDayTopicInput | null;
     guideLabel: string;
-    drugLabel: string | null;
     finalStretch: boolean;
   }
 ): string {
@@ -636,7 +639,7 @@ function leadWhy(
   if (id === "guide") {
     return `First because ${ctx.guideLabel} still needs the guide topic.`;
   }
-  return `First because ${ctx.drugLabel ?? ctx.qbankTopic?.label ?? "medications"} is the medication gap to close.`;
+  return "First because high-alert drug safety is the medication gap to close.";
 }
 
 export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
@@ -727,11 +730,8 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
   const guideLabel =
     guideTopic?.guideLabel ?? guideTopic?.label ?? input.fallbackGuideLabel ?? "High-yield topics";
 
-  const drugHref =
-    qbankTopic?.drugHref ??
-    input.fallbackDrugHref ??
-    `${ROUTES.drugs300}?exam=${encodeURIComponent(input.examSlug)}`;
-  const drugLabel = qbankTopic?.drugLabel ?? null;
+  const drugHref = drugSafetyPathHref(input.examSlug);
+  const drugLabel = safetyPathLabel(input.examSlug);
 
   const domainWeight = qbankTopic ? domainUrgency(qbankTopic) : 0;
   const weights: Record<ExamDayBlockItem["id"], number> = {
@@ -778,12 +778,10 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     {
       id: "drugs",
       title: `${TODAY_DRUG_COUNT} drugs`,
-      detail: drugLabel
-        ? `${drugLabel} — review ${TODAY_DRUG_COUNT} cards in this class.`
-        : `Review ${TODAY_DRUG_COUNT} drugs on the ${input.examName} list.`,
+      detail: `Safety path: ${drugLabel}. High-alert drugs, in this order.`,
       why: null,
       href: drugHref,
-      cta: "Open drugs",
+      cta: "Open safety path",
       doneToday: false,
     },
   ];
@@ -796,7 +794,6 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
       openKnown,
       qbankTopic,
       guideLabel,
-      drugLabel,
       finalStretch: false,
     });
   }
@@ -839,7 +836,6 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
         openKnown,
         qbankTopic,
         guideLabel,
-        drugLabel,
         finalStretch: true,
       });
     }
@@ -849,6 +845,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     if (item.id === "qbank") item.doneToday = projection.qbankDone;
     else if (item.id === "incorrect") item.doneToday = projection.incorrectDone;
     else if (item.id === "exam_sim") item.doneToday = projection.examSimDone;
+    else if (item.id === "drugs") item.doneToday = input.drugsCompletedToday === true;
     else item.doneToday = false;
   }
 

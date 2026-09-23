@@ -26,6 +26,8 @@ export function buildDashboardExamDayPlan(input: {
   /** Active-inventory categories. Same payload as marketing and the Qbank header. */
   inventoryCategories?: CoverageInventoryCategory[] | null;
   topicQuestionTotal?: number | null;
+  /** Every safety-path drug reviewed today. */
+  drugsCompletedToday?: boolean;
 }): ExamDayPlan {
   const guide = getStudyGuideConfig(input.examSlug);
   const topics: ExamDayTopicInput[] = (input.roadmap?.topics ?? []).map((topic) => ({
@@ -61,6 +63,7 @@ export function buildDashboardExamDayPlan(input: {
     bankSubjectIds: getSubjectsForFieldId(input.fieldId).map((subject) => subject.id),
     examSimTrend: input.roadmap?.examSimTrend ?? null,
     examSimCompletedToday: input.roadmap?.examSimCompletedToday === true,
+    drugsCompletedToday: input.drugsCompletedToday === true,
     fallbackGuideHref: guide?.routeBase ?? `${ROUTES.highYieldTopics}?exam=${input.examSlug}`,
     fallbackGuideLabel: guide?.title ?? "High-yield topics",
     fallbackDrugHref: top500Href(input.examSlug),

@@ -53,16 +53,31 @@ export function buildRemediationRecommendations(params: {
       topicKeys: [params.subjectId, topicForLinks, ...params.weakConcepts],
     });
     if (drug) {
+      const onPath = drug.href.includes("path=safety");
       recs.push({
         type: "foundational_review",
-        title: drug.kind === "class" ? `Drug class — ${drug.label}` : `Related drug — ${drug.label}`,
-        description:
-          drug.kind === "class"
+        title: onPath
+          ? `Safety path — ${drug.label}`
+          : drug.kind === "class"
+            ? `Drug class — ${drug.label}`
+            : `Related drug — ${drug.label}`,
+        description: onPath
+          ? "Opens this drug on the curated safety path."
+          : drug.kind === "class"
             ? "Drug class tied to this topic."
             : "Drug card tied to this topic.",
         href: drug.href,
         priority: 1,
       });
+      if (drug.safetyPathHref) {
+        recs.push({
+          type: "foundational_review",
+          title: "Drug safety path",
+          description: "Five high-alert drugs, in a fixed order.",
+          href: drug.safetyPathHref,
+          priority: 1,
+        });
+      }
     }
     const cards = resolveRelatedCards(examSlug, [params.subjectId, topicForLinks]);
     if (cards) {

@@ -129,6 +129,13 @@ export function StudyThisTopicButton({
           </Link>
         ) : null}
 
+        {showDrug && drug?.safetyPathHref ? (
+          <Link href={drug.safetyPathHref} className={ghostLink}>
+            <Pill className="h-4 w-4 shrink-0 text-[var(--study-accent)]" aria-hidden />
+            <span className="min-w-0 truncate">Safety path</span>
+          </Link>
+        ) : null}
+
         {showCards && cards ? (
           <Link href={cards.href} className={ghostLink}>
             <BookMarked className="h-4 w-4 shrink-0 text-[var(--study-accent)]" aria-hidden />
