@@ -131,6 +131,12 @@ export function RemediationPanel({
                     {loop.drug.kind === "class" ? "Drug class" : "Drug"} · {loop.drug.label}
                   </ActionLink>
                 ) : null}
+                {loop.drug?.safetyPathHref ? (
+                  <ActionLink href={loop.drug.safetyPathHref} locked={studyLocked} className={ghost}>
+                    <Pill className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />
+                    Safety path
+                  </ActionLink>
+                ) : null}
                 {loop.cards ? (
                   <ActionLink href={loop.cards.href} locked={studyLocked} className={ghost}>
                     <BookMarked className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />

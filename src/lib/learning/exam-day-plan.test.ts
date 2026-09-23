@@ -88,6 +88,14 @@ describe("buildExamDayPlan", () => {
     expect(incorrect?.detail).toMatch(/0 incorrect items/);
     expect(plan.items.find((item) => item.id === "guide")?.title).toBe("1 guide topic");
     expect(plan.items.find((item) => item.id === "drugs")?.title).toBe(`${TODAY_DRUG_COUNT} drugs`);
+    const drugs = plan.items.find((item) => item.id === "drugs");
+    expect(drugs?.href).toContain("path=safety");
+    expect(drugs?.href).toContain("exam=nclex");
+    expect(drugs?.href).not.toContain("class=");
+    expect(drugs?.detail).toMatch(/Warfarin/);
+    expect(drugs?.detail).toMatch(/Insulin/);
+    expect(drugs?.doneToday).toBe(false);
+    expect(drugs?.cta).toBe("Open safety path");
     expect(plan.readiness.visible).toBe(false);
     expect(plan.readiness.label).toBeNull();
     expect(plan.readiness.headline).toBe("Not enough practice yet");
@@ -119,7 +127,38 @@ describe("buildExamDayPlan", () => {
       expect(plan.items[0]?.href).toContain(`field=${encodeURIComponent(fieldId)}`);
       expect(plan.items[2]?.href).toContain(`exam=${encodeURIComponent(examSlug)}`);
       expect(plan.items[3]?.href).toContain(`exam=${encodeURIComponent(examSlug)}`);
+      const drugs = plan.items.find((item) => item.id === "drugs");
+      expect(drugs?.href).toContain("path=safety");
+      expect(drugs?.href).toContain(`exam=${examSlug}`);
     }
+  });
+
+  it("marks the drugs row done only after the safety path is complete", () => {
+    const shared = {
+      examSlug: "nclex" as const,
+      examName: "NCLEX-RN",
+      fieldId: "nursing",
+      now,
+      totalAttempts: 0,
+      recentAccuracyPct: 0,
+      openIncorrect: 0,
+      topics: [
+        topic({ id: "pharmacology", label: "Pharmacological Therapies", blueprintWeightPct: 16 }),
+      ],
+    };
+    expect(buildExamDayPlan(shared).items.find((item) => item.id === "drugs")?.doneToday).toBe(
+      false
+    );
+    expect(
+      buildExamDayPlan({ ...shared, drugsCompletedToday: true }).items.find(
+        (item) => item.id === "drugs"
+      )?.doneToday
+    ).toBe(true);
+    expect(
+      buildExamDayPlan({ ...shared, drugsCompletedToday: true }).items.find(
+        (item) => item.id === "qbank"
+      )?.doneToday
+    ).toBe(false);
   });
 
   it("moves the Qbank gap after saved attempts change coverage", () => {

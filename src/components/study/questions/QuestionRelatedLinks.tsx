@@ -6,7 +6,7 @@ import { libraryCardHref } from "@/lib/edtech/practice-links";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { matchCatalogDrug } from "@/lib/learning/remediation-loop";
-import { drugs300DrugHref } from "@/lib/edtech/practice-links-core";
+import { drugSafetyPathHref, drugStudyHref } from "@/lib/drugs300/safety-path";
 import {
   resolveStudyLinksFromQuestion,
   type ResolvedQuestionStudyLinks,
@@ -43,7 +43,7 @@ export function QuestionRelatedLinks({
     ? (top500Drugs ?? []).map((label) => {
         const hit = matchCatalogDrug(label);
         return hit
-          ? { key: hit.id, label: hit.label, href: drugs300DrugHref(hit.id) }
+          ? { key: hit.id, label: hit.label, href: drugStudyHref(examSlug, hit.id) }
           : { key: label, label, href: null as string | null };
       })
     : [];
@@ -61,6 +61,11 @@ export function QuestionRelatedLinks({
   const uniqueDrugLinks = drugLinks.filter(
     (drug, index, all) => all.findIndex((row) => row.key === drug.key) === index
   );
+  const opensSafetyPath = uniqueDrugLinks.some((drug) => drug.href?.includes("path=safety"));
+  const safetyPathHref =
+    !opensSafetyPath && uniqueDrugLinks.length > 0
+      ? (links.relatedDrug?.safetyPathHref ?? drugSafetyPathHref(examSlug))
+      : null;
 
   const hasDeepDives = links.relatedDeepDives.length > 0;
   const hasCards = links.memoryCardIds.length > 0;
@@ -178,6 +183,13 @@ export function QuestionRelatedLinks({
                 )}
               </li>
             ))}
+            {safetyPathHref ? (
+              <li>
+                <Link href={safetyPathHref} className={chipClass}>
+                  Safety path
+                </Link>
+              </li>
+            ) : null}
           </ul>
         </div>
       ) : null}

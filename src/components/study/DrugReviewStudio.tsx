@@ -31,7 +31,15 @@ import { GuestTrialBanner } from "@/components/marketing/GuestTrialBanner";
 import {
   buildOfflineDrugReviewDashboard,
   buildOfflineDueDrugCards,
+  buildOfflineSafetyPathCards,
 } from "@/lib/drugs300/offline-fallback";
+import {
+  DRUG_SAFETY_PATH_ID,
+  safetyPathComplete,
+  safetyPathDrugIds,
+} from "@/lib/drugs300/safety-path";
+import { isExamSlug } from "@/lib/edtech/exams";
+import { ROUTES } from "@/lib/routes";
 import { GUEST_DRUG_PREVIEW_LIMIT } from "@/lib/guest-preview";
 import { TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 
@@ -59,12 +67,20 @@ function drugClassFromParams(params: URLSearchParams): DrugClassId {
 
 export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: boolean }) {
   const searchParams = useSearchParams();
+  const pathMode = searchParams.get("path") === DRUG_SAFETY_PATH_ID;
+  const pathExamRaw = searchParams.get("exam") ?? "nclex";
+  const pathExam = isExamSlug(pathExamRaw) ? pathExamRaw : "nclex";
   const [dashboard, setDashboard] = useState<DrugReviewDashboard | null>(() =>
     guestPreview ? buildOfflineDrugReviewDashboard() : null
   );
   const [cards, setCards] = useState<DrugCardDto[]>(() =>
-    guestPreview ? buildOfflineDueDrugCards(GUEST_DRUG_PREVIEW_LIMIT) : []
+    guestPreview
+      ? pathMode
+        ? buildOfflineSafetyPathCards(pathExam)
+        : buildOfflineDueDrugCards(GUEST_DRUG_PREVIEW_LIMIT)
+      : []
   );
+  const [reviewedToday, setReviewedToday] = useState<string[]>([]);
   const [activeClass, setActiveClass] = useState<DrugClassId>(() =>
     drugClassFromParams(searchParams)
   );
@@ -117,10 +133,25 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
     }
   }, [guestPreview]);
 
+  const focusPathCard = useCallback((next: DrugCardDto[]) => {
+    const drugId = searchParams.get("drug");
+    if (!drugId) {
+      setIndex(0);
+      return;
+    }
+    const at = next.findIndex((card) => card.drugId === drugId);
+    setIndex(at >= 0 ? at : 0);
+  }, [searchParams]);
+
   const load = useCallback(async () => {
     if (guestPreview) {
       setDashboard(buildOfflineDrugReviewDashboard());
-      setCards(buildOfflineDueDrugCards(GUEST_DRUG_PREVIEW_LIMIT, activeClass));
+      const offline = pathMode
+        ? buildOfflineSafetyPathCards(pathExam)
+        : buildOfflineDueDrugCards(GUEST_DRUG_PREVIEW_LIMIT, activeClass);
+      setCards(offline);
+      if (pathMode) focusPathCard(offline);
+      setReviewedToday([]);
       setLoading(false);
       return;
     }
@@ -129,8 +160,12 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
     setCardsError("");
     try {
       // Parallel: progress + due cards so the flashcard paints sooner above the fold.
-      const dueParams = new URLSearchParams({ class: activeClass });
-      if (activeClass === "all") dueParams.set("limit", "50");
+      const dueParams = new URLSearchParams(
+        pathMode
+          ? { path: DRUG_SAFETY_PATH_ID, exam: pathExam }
+          : { class: activeClass }
+      );
+      if (!pathMode && activeClass === "all") dueParams.set("limit", "50");
 
       const [progressRes, dueRes] = await Promise.all([
         fetch("/api/drugs300/progress"),
@@ -144,7 +179,12 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
       if (!progressRes.ok) {
         if (progressRes.status === 401) {
           setDashboard(buildOfflineDrugReviewDashboard());
-          setCards(buildOfflineDueDrugCards(GUEST_DRUG_PREVIEW_LIMIT, activeClass));
+          const offline = pathMode
+            ? buildOfflineSafetyPathCards(pathExam)
+            : buildOfflineDueDrugCards(GUEST_DRUG_PREVIEW_LIMIT, activeClass);
+          setCards(offline);
+          if (pathMode) focusPathCard(offline);
+          setReviewedToday([]);
           setCardsError("");
           return;
         }
@@ -156,8 +196,17 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
         setCardsError(dueData.error ?? dueData.message ?? "Failed to load cards");
         setCards([]);
       } else {
-        setCards(dueData.cards ?? []);
-        setIndex(0);
+        const next = (dueData.cards ?? []) as DrugCardDto[];
+        setCards(next);
+        if (pathMode) {
+          focusPathCard(next);
+          const reviewed = Array.isArray(dueData.path?.reviewedToday)
+            ? dueData.path.reviewedToday.filter((id: unknown): id is string => typeof id === "string")
+            : [];
+          setReviewedToday(reviewed);
+        } else {
+          setIndex(0);
+        }
         setFlipped(false);
         setMnemonic(null);
         setCardsError("");
@@ -167,13 +216,14 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
     } finally {
       setLoading(false);
     }
-  }, [activeClass, guestPreview]);
+  }, [activeClass, focusPathCard, guestPreview, pathExam, pathMode]);
 
   useEffect(() => {
     void load();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps -- initial load only
 
   useEffect(() => {
+    if (searchParams.get("path") === DRUG_SAFETY_PATH_ID) return;
     const drugId = searchParams.get("drug");
     if (!drugId) return;
     const hit = getDrugSearchHitById(drugId, fdaIndex);
@@ -227,7 +277,12 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
 
       setFlipped(false);
       setMnemonic(null);
-      if (index < cards.length - 1) {
+      if (pathMode) {
+        setReviewedToday((prev) =>
+          prev.includes(current.drugId) ? prev : [...prev, current.drugId]
+        );
+        if (index < cards.length - 1) setIndex((i) => i + 1);
+      } else if (index < cards.length - 1) {
         setIndex((i) => i + 1);
       } else {
         await loadCards(activeClass, dashboard?.classProgress);
@@ -277,7 +332,12 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
     activeClass !== "all" && activeClassStats
       ? activeClassStats.total
       : stats.total;
-  const cardLabel = guestPreview
+  const pathSize = safetyPathDrugIds(pathExam).length;
+  const pathReviewed = safetyPathDrugIds(pathExam).filter((id) => reviewedToday.includes(id)).length;
+  const pathComplete = pathMode && safetyPathComplete(reviewedToday, pathExam);
+  const cardLabel = pathMode
+    ? `Safety path · ${index + 1} of ${cards.length}`
+    : guestPreview
     ? `Preview card ${index + 1} of ${cards.length} (${TOP_500_DRUGS_COUNT} in the full deck)`
     : cards.length > 0 && cards.length < cardTotal
       ? `Card ${index + 1} of ${cards.length} (${cardTotal} in ${activeClassStats?.shortLabel ?? "deck"})`
@@ -287,8 +347,9 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
     <div className="mt-6 space-y-6">
       {guestPreview ? (
         <p className="text-sm text-slate-600">
-          Guest preview — {GUEST_DRUG_PREVIEW_LIMIT} cards from the Top {TOP_500_DRUGS_COUNT} deck.
-          Start a trial for the full library and spaced-repetition progress.
+          {pathMode
+            ? "Guest preview of the safety path. Grades are saved after you start a trial."
+            : `Guest preview — ${GUEST_DRUG_PREVIEW_LIMIT} cards from the Top ${TOP_500_DRUGS_COUNT} deck. Start a trial for the full library and spaced-repetition progress.`}
         </p>
       ) : null}
       {dashboard.resetApplied && (
@@ -305,15 +366,38 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
         </div>
       ) : null}
 
+      {pathMode ? (
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+          <p className="text-[15px] font-medium tracking-[-0.015em] text-[var(--color-ink)]">
+            {pathReviewed} of {pathSize} reviewed today
+          </p>
+          <Link
+            href={ROUTES.drugs300}
+            className="text-[13px] font-semibold text-[var(--color-accent)]"
+          >
+            Full deck
+          </Link>
+          {pathComplete ? (
+            <p className="w-full text-[14px] leading-relaxed text-[var(--color-accent)]">
+              Done today.{" "}
+              <Link href={ROUTES.dashboard} className="font-semibold underline">
+                Today’s block
+              </Link>{" "}
+              marks this row complete.
+            </p>
+          ) : null}
+        </div>
+      ) : (
       <div className="space-y-4">
         <DrugSearch onSelect={handleDrugSelect} portaled={false} />
         {selectedDrug && (
           <DrugSearchPreview drug={selectedDrug} onClose={() => setSelectedDrug(null)} />
         )}
       </div>
+      )}
 
-      {/* Cycle overview — logged-in only; guests should not see 0/509 SRS stats */}
-      {guestPreview ? null : (
+      {/* Cycle overview — logged-in deck only; the safety path stays a short list */}
+      {guestPreview || pathMode ? null : (
       <div className="aee-drugs-progress-card rounded-2xl border border-teal-100 bg-gradient-to-br from-teal-50/90 via-white to-cyan-50/60 p-5 sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
@@ -343,8 +427,9 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
 
       {(error || cardsError) && <InlineError>{error || cardsError}</InlineError>}
 
-      <div className="grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-8">
-        {/* Class sidebar — desktop */}
+      <div className={pathMode ? "space-y-5" : "grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-8"}>
+        {/* Class sidebar — desktop. Hidden on the safety path so the five stay fixed. */}
+        {pathMode ? null : (
         <aside className="hidden lg:block">
           <div className="sticky top-24 rounded-2xl border border-slate-200/80 bg-slate-50/80 p-3">
             <p className="mb-3 flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
@@ -359,10 +444,12 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
             />
           </div>
         </aside>
+        )}
 
         {/* Main flashcard area */}
         <div className="min-w-0 space-y-5">
           {/* Mobile class pills */}
+          {pathMode ? null : (
           <div className="lg:hidden">
             <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
               Filter by class
@@ -374,8 +461,9 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
               hideCounts={guestPreview}
             />
           </div>
+          )}
 
-          {activeClassStats && activeClass !== "all" && (
+          {!pathMode && activeClassStats && activeClass !== "all" && (
             <div className="flex flex-wrap items-center gap-3 rounded-xl border border-slate-200/80 bg-white px-4 py-3">
               <span
                 className="h-3 w-3 rounded-full"
@@ -414,7 +502,7 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
               <p className="mt-2 text-sm text-slate-600">{cardsError}</p>
               <button
                 type="button"
-                onClick={() => void loadCards(activeClass)}
+                onClick={() => void (pathMode ? load() : loadCards(activeClass))}
                 className="mt-6 rounded-xl bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white"
               >
                 Try again
@@ -424,11 +512,14 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
             <div className="rounded-2xl border border-teal-100 bg-white p-12 text-center">
               <Pill className="mx-auto h-12 w-12 text-teal-500" aria-hidden />
               <p className="mt-4 text-lg font-semibold text-slate-900">
-                All caught up{activeClass !== "all" ? " in this class" : ""}!
+                {pathMode
+                  ? "Safety path is empty"
+                  : `All caught up${activeClass !== "all" ? " in this class" : ""}!`}
               </p>
               <p className="mt-2 text-sm text-slate-600">
-                Spaced repetition will schedule your next review. Try another class or check back
-                later.
+                {pathMode
+                  ? "These five cards could not be loaded from the catalog."
+                  : "Spaced repetition will schedule your next review. Try another class or check back later."}
               </p>
             </div>
           ) : (
@@ -472,16 +563,18 @@ export function DrugReviewStudio({ guestPreview = false }: { guestPreview?: bool
                 <div className="text-sm text-slate-600">
                   <span>
                     {cardLabel}
-                    {current.due && (
+                    {current.due && !pathMode && (
                       <span className="ml-2 rounded-full bg-teal-100 px-2 py-0.5 text-xs font-semibold text-teal-800">
                         Due
                       </span>
                     )}
                   </span>
+                  {pathMode ? null : (
                   <p className="mt-0.5 hidden text-xs text-slate-500 sm:block">
                     Interval:{" "}
                     {current.intervalDays > 0 ? `${Math.round(current.intervalDays)}d` : "new"}
                   </p>
+                  )}
                 </div>
               </ActivitySessionToolbar>
 

@@ -9,7 +9,12 @@
  * catalog match exists.
  */
 
-import { drugs300DrugHref, libraryTopicHref, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { libraryTopicHref, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import {
+  drugSafetyPathHref,
+  drugStudyHref,
+  isSafetyPathDrug,
+} from "@/lib/drugs300/safety-path";
 import { getExamTopicStudyLinks, topicNameToSlug } from "@/lib/library/exam-topic-bridge";
 import { CHAPTER_TOPICS_BY_EXAM } from "@/lib/nclex-study-guide/chapter-topics";
 import {
@@ -144,6 +149,8 @@ export type RelatedDrugLink = {
   label: string;
   href: string;
   kind: "drug" | "class";
+  /** Safety path when this link is not already that path. One click from the miss. */
+  safetyPathHref?: string;
 };
 
 export type RelatedCardsLink = {
@@ -231,6 +238,13 @@ export function matchCatalogDrug(raw: string): { id: string; label: string } | n
   return null;
 }
 
+function presentDrugLink(examSlug: ExamSlug, link: RelatedDrugLink): RelatedDrugLink {
+  if (link.kind === "drug" && isSafetyPathDrug(examSlug, link.id)) {
+    return { ...link, href: drugStudyHref(examSlug, link.id) };
+  }
+  return { ...link, safetyPathHref: drugSafetyPathHref(examSlug) };
+}
+
 function drugLinkFromTopic(examSlug: ExamSlug, topicKey: string): RelatedDrugLink | null {
   const links = getExamTopicStudyLinks(examSlug, topicKey);
   const drug = links.drugLinks?.[0];
@@ -251,7 +265,7 @@ export function resolveRelatedDrug(params: {
 }): RelatedDrugLink | null {
   for (const raw of params.explicit ?? []) {
     const hit = matchCatalogDrug(raw);
-    if (hit) return { ...hit, href: drugs300DrugHref(hit.id), kind: "drug" };
+    if (hit) return presentDrugLink(params.examSlug, { ...hit, href: drugStudyHref(params.examSlug, hit.id), kind: "drug" });
   }
 
   const seen = new Set<string>();
@@ -262,7 +276,7 @@ export function resolveRelatedDrug(params: {
     seen.add(slug);
     if (seen.size > 4) break;
     const linked = drugLinkFromTopic(params.examSlug, slug);
-    if (linked) return linked;
+    if (linked) return presentDrugLink(params.examSlug, linked);
   }
 
   const text = params.text?.trim();
@@ -270,7 +284,13 @@ export function resolveRelatedDrug(params: {
     const label = extractTop500DrugsFromText(text, 1)[0];
     if (label) {
       const hit = matchCatalogDrug(label);
-      if (hit) return { ...hit, href: drugs300DrugHref(hit.id), kind: "drug" };
+      if (hit) {
+        return presentDrugLink(params.examSlug, {
+          ...hit,
+          href: drugStudyHref(params.examSlug, hit.id),
+          kind: "drug",
+        });
+      }
     }
   }
   return null;
@@ -333,7 +353,7 @@ export type OpenRemediationLoop = {
   /** Open items in this topic that already have one correct and await spacing. */
   pendingCount: number;
   guide: { title: string; href: string } | null;
-  drug: { label: string; href: string; kind: "drug" | "class" } | null;
+  drug: { label: string; href: string; kind: "drug" | "class"; safetyPathHref?: string } | null;
   cards: { title: string; href: string } | null;
   retestHref: string;
 };
@@ -393,7 +413,14 @@ export function groupOpenRemediationLoops(params: {
         openCount: group.ids.size,
         pendingCount: group.pending,
         guide: guide ? { title: guide.title, href: guide.href } : null,
-        drug: drug ? { label: drug.label, href: drug.href, kind: drug.kind } : null,
+        drug: drug
+          ? {
+              label: drug.label,
+              href: drug.href,
+              kind: drug.kind,
+              safetyPathHref: drug.safetyPathHref,
+            }
+          : null,
         cards: cards ? { title: cards.title, href: cards.href } : null,
         retestHref: reviewIncorrectHref(params.fieldId, subjectId, Math.min(10, group.ids.size)),
       };

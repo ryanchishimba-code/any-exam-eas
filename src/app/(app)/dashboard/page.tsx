@@ -16,6 +16,7 @@ import {
 import { getUserEdtechMetadata, getExamTestDate } from "@/lib/edtech/user-metadata";
 import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
+import { isDrugSafetyPathComplete } from "@/lib/drugs300/service";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
 import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
 import { ROUTES } from "@/lib/routes";
@@ -84,7 +85,7 @@ async function DashboardContent({
   );
 
   // Wave 2: secondary panels — degrade instead of blanking the whole dashboard.
-  const [roadmap, metadata, usage, mastery, inventory] = await Promise.all([
+  const [roadmap, metadata, usage, mastery, inventory, drugsCompletedToday] = await Promise.all([
     settled(
       getExamRoadmapData(userId, examSlug, {
         usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
@@ -126,6 +127,7 @@ async function DashboardContent({
             )
           : Promise.resolve(null),
     settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
+    settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
   ]);
 
   const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;
@@ -143,6 +145,7 @@ async function DashboardContent({
     roadmap,
     inventoryCategories: inventory?.categories ?? null,
     topicQuestionTotal: inventory?.topicQuestionTotal ?? null,
+    drugsCompletedToday,
   });
 
   const weakTopics = enrichWeakTopicsWithStudyLinks(
