@@ -35,6 +35,7 @@ export async function GET(req: Request) {
     source: p.get("source") ?? undefined,
     blueprint: p.get("blueprint") ?? undefined,
     reportedOnly: p.get("reportedOnly") === "true",
+    qaFlagged: p.get("qaFlagged") === "true",
     dateField: (p.get("dateField") as "createdAt" | "updatedAt" | null) ?? undefined,
     dateFrom: p.get("dateFrom") ? new Date(p.get("dateFrom") as string) : undefined,
     dateTo: p.get("dateTo") ? new Date(p.get("dateTo") as string) : undefined,
@@ -56,7 +57,7 @@ export async function POST(req: Request) {
     const body = createQuestionSchema.parse(await req.json());
     const result = await createAdminQuestion(body);
     if (!result.ok) {
-      return NextResponse.json({ error: result.error }, { status: 409 });
+      return NextResponse.json({ error: result.error }, { status: result.status ?? 409 });
     }
 
     void logAdminAction({

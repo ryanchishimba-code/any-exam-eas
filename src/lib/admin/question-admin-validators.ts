@@ -38,6 +38,16 @@ export const createQuestionSchema = z
     taskCategory: optionalText,
     patientAgeGroup: optionalText,
     tags: tagArray.optional(),
+    /** Governing principle or priority rule. Required to publish (not for drafts). */
+    governingPrinciple: z
+      .string()
+      .trim()
+      .max(2000)
+      .optional()
+      .transform((v) => (v ? v : undefined)),
+    /** Option text → why that distractor is wrong. */
+    distractorReasons: z.record(z.string().trim().min(1).max(4000), z.string().trim().max(2000)).optional(),
+    citationLabel: optionalText,
     draft: z.boolean().optional(),
     /** Optional diagram — stored in generationMeta.diagramUrl (data URL or https URL). */
     diagramUrl: z.string().trim().max(800_000).optional(),

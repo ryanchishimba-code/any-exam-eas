@@ -50,7 +50,7 @@ export async function PATCH(req: Request, { params }: RouteParams) {
 
     const result = await updateAdminQuestion(id, patch);
     if (!result.ok) {
-      return NextResponse.json({ error: result.error }, { status: 409 });
+      return NextResponse.json({ error: result.error }, { status: result.status ?? 409 });
     }
 
     if (Object.keys(result.changes).length > 0) {

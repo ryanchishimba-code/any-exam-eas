@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { examQuestionToStudy, isAnswerCorrect, prepareQuestionsForSession } from "./prepare";
+import {
+  examQuestionToStudy,
+  isAnswerCorrect,
+  prepareQuestionsForSession,
+  studyQuestionsToExamQuestions,
+} from "./prepare";
 import type { RawQuestionInput } from "./types";
 
 const sample: RawQuestionInput = {
@@ -19,6 +24,24 @@ describe("examQuestionToStudy", () => {
     expect(q.correctAnswers).toHaveLength(1);
     const correct = q.correctAnswers[0];
     expect(q.options).toContain(correct);
+  });
+
+  it("keeps source and review date through the study round trip", () => {
+    const q = examQuestionToStudy(
+      {
+        ...sample,
+        sourceLabel: "ACC/AHA guideline",
+        sourceUrl: "https://example.com/guideline",
+        reviewedAt: "2026-06-01T00:00:00.000Z",
+      },
+      0
+    );
+    expect(q.sourceLabel).toBe("ACC/AHA guideline");
+    expect(q.sourceUrl).toBe("https://example.com/guideline");
+    expect(q.reviewedAt).toBe("2026-06-01T00:00:00.000Z");
+    const [back] = studyQuestionsToExamQuestions([q]);
+    expect(back?.sourceLabel).toBe("ACC/AHA guideline");
+    expect(back?.reviewedAt).toBe("2026-06-01T00:00:00.000Z");
   });
 });
 

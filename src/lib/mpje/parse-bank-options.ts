@@ -147,6 +147,7 @@ export function enrichBankItemFromRow(row: {
   generationMeta?: unknown;
   references?: unknown;
   source?: string | null;
+  lastReviewedAt?: Date | string | null;
 }): BankItem {
   const { options, statements, ngnPayload, distractorRationale, clinicalReasoning, keyTakeaways } =
     parseBankOptions(row.options);
@@ -186,6 +187,7 @@ export function enrichBankItemFromRow(row: {
       : undefined,
     tags: row.tags ? (JSON.parse(row.tags) as string[]) : undefined,
     references: row.references as BankItem["references"],
+    lastReviewedAt: row.lastReviewedAt ?? undefined,
     distractorRationale,
     clinicalReasoning,
     keyTakeaways,

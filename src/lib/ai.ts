@@ -27,6 +27,11 @@ export type ExamQuestion = {
   clinicalReasoning?: string;
   distractorRationale?: Record<string, string>;
   references?: string[];
+  /** Citation shown on the item when the bank has one. Not a pipeline tag. */
+  sourceLabel?: string;
+  sourceUrl?: string;
+  /** ISO timestamp of the last editorial review, when recorded. */
+  reviewedAt?: string;
   bloomLevel?: string;
   ngnFormat?: string;
   ngnPayload?: Record<string, unknown>;

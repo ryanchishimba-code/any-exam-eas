@@ -1,0 +1,231 @@
+import { describe, expect, it } from "vitest";
+import { findNearDuplicatePairs } from "./duplicates";
+import { readItemQaRecord, withItemQaRecord } from "./flag";
+import { formatReviewMonth, resolveItemProvenance } from "./provenance";
+import { evaluateItemPublishGate, itemRequiresPublishSchema } from "./publish-gate";
+import { contentFromStoredItem, evaluateRationaleSchema } from "./rationale-schema";
+import { lintItemText } from "./text-lint";
+
+const STEM =
+  "Which intervention should the nurse perform first for this client with hypotension and fever?";
+const OPTIONS = [
+  "Administer the scheduled sliding-scale insulin",
+  "Start a 30 mL/kg intravenous crystalloid bolus",
+  "Recheck the complete blood count in six hours",
+  "Reassure the client that the fever will pass",
+];
+
+describe("near-duplicate detection", () => {
+  it("flags an exact stem and option copy and keeps the lower id", () => {
+    const pairs = findNearDuplicatePairs([
+      { id: "b", fieldId: "nursing", stem: STEM, options: OPTIONS },
+      { id: "a", fieldId: "nursing", stem: `  ${STEM}  `, options: [...OPTIONS].reverse() },
+    ]);
+    expect(pairs).toHaveLength(1);
+    expect(pairs[0]).toMatchObject({ keepId: "a", flagId: "b", kind: "exact", stemSimilarity: 1 });
+  });
+
+  it("flags a near-copy stem when the options are also nearly the same", () => {
+    const pairs = findNearDuplicatePairs([
+      { id: "q1", fieldId: "pharmacy", stem: STEM, options: OPTIONS },
+      {
+        id: "q3",
+        fieldId: "pharmacy",
+        stem: STEM.replace("hypotension and fever", "hypotension plus fever"),
+        options: [
+          OPTIONS[0]!,
+          OPTIONS[1]!.replace("intravenous", "IV"),
+          OPTIONS[2]!,
+          OPTIONS[3]!,
+        ],
+      },
+    ]);
+    expect(pairs.some((pair) => pair.kind !== "exact" && pair.stemSimilarity >= 0.84)).toBe(true);
+  });
+
+  it("does not flag the same wording on a different board", () => {
+    const pairs = findNearDuplicatePairs([
+      { id: "n1", fieldId: "nursing", stem: STEM, options: OPTIONS },
+      { id: "p1", fieldId: "pharmacy", stem: STEM, options: OPTIONS },
+    ]);
+    expect(pairs).toHaveLength(0);
+  });
+
+  it("does not flag unrelated stems", () => {
+    const pairs = findNearDuplicatePairs([
+      { id: "1", fieldId: "usmle-step-2", stem: STEM, options: OPTIONS },
+      {
+        id: "2",
+        fieldId: "usmle-step-2",
+        stem: "A patient starting warfarin asks which over-the-counter analgesic is safest for an occasional headache.",
+        options: [
+          "Acetaminophen is generally preferred over NSAIDs",
+          "Ibuprofen is preferred because it does not affect INR",
+          "Aspirin 325 mg daily is recommended without an indication",
+          "All OTC analgesics are equally safe with warfarin",
+        ],
+      },
+    ]);
+    expect(pairs).toHaveLength(0);
+  });
+});
+
+describe("text lint", () => {
+  it("detects truncated options, broken markdown, and encoding glitches", () => {
+    const issues = lintItemText({
+      stem: "Which action should the nurse take **first for this client?",
+      options: [
+        "Start IV fluids and ...",
+        "cafÃ© monitoring only",
+        "Obtain blood cultures before antibiotics",
+        "Document and continue the current plan",
+      ],
+      explanation: "Fluids restore perfusion. The other options delay care.",
+    });
+    const codes = issues.map((issue) => issue.code);
+    expect(codes).toContain("broken_markdown");
+    expect(codes).toContain("truncated_option");
+    expect(codes).toContain("encoding_glitch");
+  });
+
+  it("accepts a clean stem and four complete options", () => {
+    const issues = lintItemText({
+      stem: STEM,
+      options: OPTIONS,
+      explanation: "A crystalloid bolus treats hypoperfusion before routine tasks.",
+    });
+    expect(issues.filter((issue) => issue.severity === "error")).toHaveLength(0);
+  });
+});
+
+describe("rationale schema", () => {
+  it("requires a correct explanation, each distractor reason, and a principle", () => {
+    const issues = evaluateRationaleSchema({
+      question: STEM,
+      options: OPTIONS,
+      correctAnswer: OPTIONS[1]!,
+      explanation: "Give fluids.",
+    });
+    const codes = new Set(issues.filter((issue) => issue.severity === "error").map((issue) => issue.code));
+    expect(codes.has("missing_correct_explanation")).toBe(true);
+    expect(codes.has("missing_distractor_reason")).toBe(true);
+    expect(codes.has("missing_governing_principle")).toBe(true);
+    expect(issues.some((issue) => issue.code === "missing_citation" && issue.severity === "warn")).toBe(
+      true
+    );
+  });
+
+  it("passes a structured item and only warns when the citation is absent", () => {
+    const issues = evaluateRationaleSchema({
+      question: STEM,
+      options: OPTIONS,
+      correctAnswer: OPTIONS[1]!,
+      explanation:
+        "Hypotension with fever is perfusion failure. A weight-based crystalloid bolus is the priority action in the first hour. Insulin, delayed labs, and reassurance do not restore circulating volume.",
+      governingPrinciple: "Treat life-threatening perfusion problems before routine medications or delayed labs.",
+      distractorRationale: {
+        [OPTIONS[0]!]: "Sliding-scale insulin does not restore blood pressure in this first hour.",
+        [OPTIONS[2]!]: "A delayed blood count misses the immediate resuscitation window.",
+        [OPTIONS[3]!]: "Reassurance leaves hypotension untreated.",
+      },
+    });
+    expect(issues.filter((issue) => issue.severity === "error")).toHaveLength(0);
+    expect(issues.map((issue) => issue.code)).toEqual(["missing_citation"]);
+  });
+
+  it("reads principle, distractors, and citation from a stored row", () => {
+    const content = contentFromStoredItem({
+      question: STEM,
+      options: JSON.stringify({
+        options: OPTIONS,
+        distractorRationale: {
+          [OPTIONS[0]!]: "Sliding-scale insulin does not restore blood pressure in this first hour.",
+          [OPTIONS[2]!]: "A delayed blood count misses the immediate resuscitation window.",
+          [OPTIONS[3]!]: "Reassurance leaves hypotension untreated.",
+        },
+      }),
+      correctAnswer: OPTIONS[1]!,
+      explanation:
+        "Hypotension with fever is perfusion failure. A weight-based crystalloid bolus is the priority action in the first hour.",
+      itemType: "mcq",
+      references: [{ label: "Surviving Sepsis Campaign", citation: "2021 update" }],
+      generationMeta: {
+        itemQaSchema: "v1",
+        governingPrinciple: "Restore perfusion before routine tasks when shock is present.",
+      },
+    });
+    const issues = evaluateRationaleSchema(content);
+    expect(issues.filter((issue) => issue.severity === "error")).toHaveLength(0);
+    expect(issues.some((issue) => issue.code === "missing_citation")).toBe(false);
+  });
+});
+
+describe("publish gate", () => {
+  it("blocks a new manual publish that fails the schema and ignores citation warnings", () => {
+    const gate = evaluateItemPublishGate({
+      question: STEM,
+      options: OPTIONS,
+      correctAnswer: OPTIONS[1]!,
+      explanation: "Too short.",
+    });
+    expect(gate.ok).toBe(false);
+    expect(itemRequiresPublishSchema("manual", null)).toBe(true);
+    expect(itemRequiresPublishSchema("seed", null)).toBe(false);
+    expect(itemRequiresPublishSchema("seed", { itemQaSchema: "v1" })).toBe(true);
+  });
+
+  it("allows a complete manual item to publish", () => {
+    const gate = evaluateItemPublishGate({
+      question: STEM,
+      options: OPTIONS,
+      correctAnswer: OPTIONS[1]!,
+      explanation:
+        "Hypotension with fever is perfusion failure. A weight-based crystalloid bolus is the priority action in the first hour. The other choices delay that resuscitation.",
+      governingPrinciple: "Restore perfusion before routine tasks when shock is present.",
+      distractorRationale: {
+        [OPTIONS[0]!]: "Sliding-scale insulin does not restore blood pressure in this first hour.",
+        [OPTIONS[2]!]: "A delayed blood count misses the immediate resuscitation window.",
+        [OPTIONS[3]!]: "Reassurance leaves hypotension untreated.",
+      },
+      references: [{ label: "Surviving Sepsis Campaign", citation: "2021 update" }],
+    });
+    expect(gate.ok).toBe(true);
+  });
+});
+
+describe("provenance", () => {
+  it("shows a citation and review month, not a pipeline source label", () => {
+    const provenance = resolveItemProvenance({
+      source: "seed",
+      lastReviewedAt: "2026-06-01",
+      references: [{ label: "Surviving Sepsis Campaign", citation: "2021 update" }],
+    });
+    expect(provenance.sourceLabel).toBe("Surviving Sepsis Campaign · 2021 update");
+    expect(formatReviewMonth(provenance.reviewedAt)).toBe("Jun 2026");
+    expect(resolveItemProvenance({ source: "curated" }).sourceLabel).toBeUndefined();
+  });
+
+  it("keeps a human source string that is not a pipeline tag", () => {
+    expect(
+      resolveItemProvenance({ source: "CDC isolation precautions" }).sourceLabel
+    ).toBe("CDC isolation precautions");
+  });
+});
+
+describe("item QA flag record", () => {
+  it("round-trips the queue payload and ignores other curation metadata", () => {
+    const next = withItemQaRecord(
+      { cluster: "abc" },
+      {
+        pipeline: "item-qa-v1",
+        checkedAt: "2026-09-23T00:00:00.000Z",
+        codes: ["truncated_option"],
+        summary: "Option 2 looks truncated.",
+        partnerId: "item-b",
+      }
+    );
+    expect(readItemQaRecord(next)?.codes).toEqual(["truncated_option"]);
+    expect(next.cluster).toBe("abc");
+    expect(readItemQaRecord({ itemQa: { pipeline: "other" } })).toBeNull();
+  });
+});

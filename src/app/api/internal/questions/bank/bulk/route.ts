@@ -36,7 +36,11 @@ export async function POST(req: Request) {
       req,
     });
 
-    return NextResponse.json({ ok: true, updated: result.updated });
+    return NextResponse.json({
+      ok: true,
+      updated: result.updated,
+      blocked: result.blocked,
+    });
   } catch (e) {
     if (e instanceof ZodError) {
       return NextResponse.json(

@@ -34,6 +34,9 @@ export function AddQuestionForm({
   const [options, setOptions] = useState<string[]>(["", "", "", ""]);
   const [correctIndex, setCorrectIndex] = useState(0);
   const [explanation, setExplanation] = useState("");
+  const [whyWrong, setWhyWrong] = useState<string[]>(["", "", "", ""]);
+  const [governingPrinciple, setGoverningPrinciple] = useState("");
+  const [citationLabel, setCitationLabel] = useState("");
   const [blueprintDomain, setBlueprintDomain] = useState("");
   const [blueprintTopic, setBlueprintTopic] = useState("");
   const [tags, setTags] = useState("");
@@ -51,10 +54,12 @@ export function AddQuestionForm({
 
   function addOption() {
     setOptions((prev) => [...prev, ""]);
+    setWhyWrong((prev) => [...prev, ""]);
   }
 
   function removeOption(i: number) {
     setOptions((prev) => prev.filter((_, idx) => idx !== i));
+    setWhyWrong((prev) => prev.filter((_, idx) => idx !== i));
     setCorrectIndex((prev) => (prev === i ? 0 : prev > i ? prev - 1 : prev));
   }
 
@@ -70,6 +75,13 @@ export function AddQuestionForm({
       setError("Select which option is correct.");
       return;
     }
+    const distractorReasons: Record<string, string> = {};
+    cleanedOptions.forEach((option) => {
+      const index = options.findIndex((value) => value.trim() === option);
+      if (index === correctIndex) return;
+      const reason = (whyWrong[index] ?? "").trim();
+      if (reason) distractorReasons[option] = reason;
+    });
 
     setSubmitting(true);
     try {
@@ -87,6 +99,9 @@ export function AddQuestionForm({
           options: cleanedOptions,
           correctAnswer,
           explanation,
+          governingPrinciple: governingPrinciple.trim() || undefined,
+          distractorReasons: Object.keys(distractorReasons).length ? distractorReasons : undefined,
+          citationLabel: citationLabel.trim() || undefined,
           blueprintDomain: blueprintDomain.trim() || undefined,
           blueprintTopic: blueprintTopic.trim() || undefined,
           tags: tags
@@ -199,29 +214,41 @@ export function AddQuestionForm({
             <span className="mb-1 block font-medium">Answer options · select the correct one</span>
             <div className="space-y-2">
               {options.map((opt, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="correct"
-                    checked={correctIndex === i}
-                    onChange={() => setCorrectIndex(i)}
-                    className="h-4 w-4 shrink-0"
-                  />
-                  <input
-                    value={opt}
-                    onChange={(e) => setOption(i, e.target.value)}
-                    className="apple-input w-full"
-                    placeholder={`Option ${String.fromCharCode(65 + i)}`}
-                  />
-                  {options.length > 2 && (
-                    <button
-                      type="button"
-                      onClick={() => removeOption(i)}
-                      className="rounded-lg p-1.5 text-black/40 hover:bg-black/[0.05] hover:text-red-600"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  )}
+                <div key={i} className="space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="correct"
+                      checked={correctIndex === i}
+                      onChange={() => setCorrectIndex(i)}
+                      className="h-4 w-4 shrink-0"
+                    />
+                    <input
+                      value={opt}
+                      onChange={(e) => setOption(i, e.target.value)}
+                      className="apple-input w-full"
+                      placeholder={`Option ${String.fromCharCode(65 + i)}`}
+                    />
+                    {options.length > 2 && (
+                      <button
+                        type="button"
+                        onClick={() => removeOption(i)}
+                        className="rounded-lg p-1.5 text-black/40 hover:bg-black/[0.05] hover:text-red-600"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    )}
+                  </div>
+                  {correctIndex !== i && opt.trim() ? (
+                    <input
+                      value={whyWrong[i] ?? ""}
+                      onChange={(e) =>
+                        setWhyWrong((prev) => prev.map((value, idx) => (idx === i ? e.target.value : value)))
+                      }
+                      className="apple-input ml-6 w-[calc(100%-1.5rem)]"
+                      placeholder="Why this distractor is wrong"
+                    />
+                  ) : null}
                 </div>
               ))}
             </div>
@@ -241,7 +268,28 @@ export function AddQuestionForm({
               onChange={(e) => setExplanation(e.target.value)}
               rows={4}
               className="apple-input w-full"
-              placeholder="Explain why the correct answer is right and the distractors are wrong."
+              placeholder="Explain why the correct answer is right."
+            />
+          </label>
+
+          <label className="block text-sm">
+            <span className="mb-1 block font-medium">Governing principle or priority rule</span>
+            <textarea
+              value={governingPrinciple}
+              onChange={(e) => setGoverningPrinciple(e.target.value)}
+              rows={2}
+              className="apple-input w-full"
+              placeholder="The rule that decides the best next step on this board."
+            />
+          </label>
+
+          <label className="block text-sm">
+            <span className="mb-1 block font-medium">Source citation (optional)</span>
+            <input
+              value={citationLabel}
+              onChange={(e) => setCitationLabel(e.target.value)}
+              className="apple-input w-full"
+              placeholder="Guideline, textbook, or board outline"
             />
           </label>
 
