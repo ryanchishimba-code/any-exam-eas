@@ -16,6 +16,8 @@ import {
 } from "@/lib/library/weak-area-map";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { studyUi } from "@/lib/study/study-ui";
+import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
+import type { OpenRemediationSummary } from "@/lib/learning/remediation-loop";
 import type { ExamSlug } from "@/types/edtech";
 import { Button } from "@/components/ui/Button";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
@@ -51,10 +53,14 @@ function practiceProgressIndex(
 export function StudentAnalyticsDashboard({
   examSlug,
   examName,
+  fieldId,
+  openRemediation = null,
   initialData,
 }: {
   examSlug: ExamSlug;
   examName: string;
+  fieldId?: string;
+  openRemediation?: OpenRemediationSummary | null;
   initialData?: AnalyticsPayload;
 }) {
   const [data, setData] = useState<AnalyticsPayload | null>(initialData ?? null);
@@ -163,6 +169,15 @@ export function StudentAnalyticsDashboard({
           size="sm"
         />
       </header>
+
+      {fieldId ? (
+        <RemediationPanel
+          examName={examName}
+          fieldId={fieldId}
+          summary={openRemediation}
+          showWhenEmpty={(dashboard.headline.totalAttempts ?? 0) > 0}
+        />
+      ) : null}
 
       <section
         className={cn(
@@ -386,7 +401,7 @@ function WeakTopicDeepDiveLink({
   return (
     <Link
       href={links.deepDiveHref}
-      className="inline-flex items-center gap-1 rounded-full bg-violet-600 px-2 py-0.5 text-[11px] font-semibold text-white transition hover:bg-violet-700"
+      className="inline-flex items-center gap-1 rounded-full bg-[var(--study-accent)] px-2 py-0.5 text-[11px] font-semibold text-[var(--study-accent-on,#fff)] transition hover:bg-[var(--study-accent-hover)]"
     >
       <GraduationCap className="h-3 w-3" aria-hidden />
       Deep dive
@@ -434,7 +449,7 @@ function WeakTopicCardsLink({
   return (
     <Link
       href={libraryTopicHref(examSlug, topicKey)}
-      className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-0.5 text-[11px] font-semibold text-violet-700 ring-1 ring-violet-200 transition hover:bg-violet-100"
+      className="inline-flex items-center gap-1 rounded-full border border-[var(--study-accent)]/25 bg-[var(--study-accent)]/10 px-2 py-0.5 text-[11px] font-semibold text-[var(--study-accent)] transition hover:bg-[var(--study-accent)]/15"
     >
       <BookMarked className="h-3 w-3" aria-hidden />
       Memory cards

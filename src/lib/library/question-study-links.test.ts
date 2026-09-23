@@ -9,6 +9,7 @@ describe("resolveQuestionStudyLinks", () => {
     expect(links.primaryDeepDive?.slug).toBe("infection-control");
     expect(links.relatedDeepDives.length).toBeGreaterThan(0);
     expect(links.relatedDeepDives[0]!.href).toContain("mode=deep");
+    expect(links.studyGuide?.href).toBe("/nclex/study-guide/fundamentals-safety");
   });
 
   it("prefers reviewModuleSlug from ngnPayload", () => {

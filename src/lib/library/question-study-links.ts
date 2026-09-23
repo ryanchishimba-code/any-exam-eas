@@ -13,6 +13,14 @@ import { resolveStructureIdsForStudyItem } from "@/lib/exam-prep/anatomy-study-m
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
 import { getExamTopicStudyLinks, type ExamTopicStudyLinks } from "./exam-topic-bridge";
+import {
+  resolveRelatedCards,
+  resolveRelatedDrug,
+  resolveStudyGuideSection,
+  type RelatedCardsLink,
+  type RelatedDrugLink,
+  type StudyGuideSectionLink,
+} from "@/lib/learning/remediation-loop";
 import { MEMORY_CARDS } from "./seeds";
 
 export type { AnatomyStructureLink };
@@ -40,6 +48,11 @@ export type ResolvedQuestionStudyLinks = {
   anatomyStructures: AnatomyStructureLink[];
   keyTakeaway?: string;
   topicLinks: ExamTopicStudyLinks;
+  /** Study-guide chapter when this board ships one for the topic. */
+  studyGuide?: StudyGuideSectionLink;
+  /** Catalog drug or drug class tied to the miss. */
+  relatedDrug?: RelatedDrugLink;
+  relatedCards?: RelatedCardsLink;
 };
 
 function readPayloadMeta(ctx: QuestionStudyContext): {
@@ -175,6 +188,19 @@ export function resolveQuestionStudyLinks(
     fromText
   ).slice(0, 3);
 
+  const explicitDrugs = Array.isArray(ctx.ngnPayload?.top500Drugs)
+    ? ctx.ngnPayload.top500Drugs.map(String)
+    : undefined;
+  const studyGuide = resolveStudyGuideSection(examSlug, candidates) ?? undefined;
+  const relatedDrug =
+    resolveRelatedDrug({
+      examSlug,
+      topicKeys: candidates,
+      explicit: explicitDrugs,
+      text: explicitDrugs?.length ? undefined : ctx.stem,
+    }) ?? undefined;
+  const relatedCards = resolveRelatedCards(examSlug, candidates) ?? undefined;
+
   return {
     primaryDeepDive,
     relatedDeepDives,
@@ -182,6 +208,9 @@ export function resolveQuestionStudyLinks(
     anatomyStructures,
     keyTakeaway: meta.keyTakeaway,
     topicLinks,
+    studyGuide,
+    relatedDrug,
+    relatedCards,
   };
 }
 

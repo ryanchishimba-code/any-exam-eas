@@ -74,7 +74,7 @@ export function MasteryMissAttachments({
           </span>
         ) : null}
         {tags.cjmmFunction ? (
-          <span className="rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-indigo-800 dark:text-indigo-200">
+          <span className="rounded-full bg-[var(--study-accent)]/10 px-2.5 py-0.5 text-[11px] font-semibold text-[var(--study-accent)]">
             CJMM: {tags.cjmmFunction.replace(/_/g, " ")}
           </span>
         ) : null}
