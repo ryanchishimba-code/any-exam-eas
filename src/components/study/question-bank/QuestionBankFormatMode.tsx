@@ -129,8 +129,9 @@ export function QuestionBankFormatMode({
       </div>
       {value !== "all" ? (
         <p className="max-w-xl px-0.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-          This set uses the whole published bank, so the count stays the inventory total.
-          Topic choice applies to All questions.
+          Pick one topic. This set is only {value === "case" ? "case" : ngnLabel} items from
+          that topic. The number on the card is the published bank total. Mixed topics is
+          not available for this format.
         </p>
       ) : null}
     </section>

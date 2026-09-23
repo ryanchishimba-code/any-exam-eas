@@ -1,3 +1,4 @@
+import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import {
   classifyQuestionFormat,
   type FormatCounts,
@@ -130,6 +131,33 @@ export function practiceFormatCountOptions(
   ];
 }
 
+/** A real bank topic. Mixed scope and a blank id cannot start an NGN or case set. */
+export function isDeliberateFormatTopic(subjectId: string | null | undefined): boolean {
+  const id = subjectId?.trim() ?? "";
+  return id.length > 0 && id !== MIXED_SUBJECT_ID;
+}
+
+/**
+ * Question-bank query for one topic and one format.
+ * Omits scope and mixed so the API samples that subjectId instead of rejecting field scope.
+ */
+export function buildDeliberateFormatQuestionQuery(params: {
+  fieldId: string;
+  subjectId: string | null | undefined;
+  format: DeliberatePracticeFormat;
+  limit: number;
+}): URLSearchParams | null {
+  if (!isDeliberateFormatTopic(params.subjectId)) return null;
+  return new URLSearchParams({
+    field: params.fieldId,
+    subjectId: params.subjectId!.trim(),
+    limit: String(params.limit),
+    mode: "bank",
+    format: params.format,
+    meta: "0",
+  });
+}
+
 export type PracticeFormatValidation = {
   ok: boolean;
   message?: string;
@@ -142,11 +170,23 @@ export function validatePracticeFormatSession(params: {
   formats: FormatCounts | null | undefined;
   bankStyle?: QuestionBankStyle;
   ngnLabel?: string;
+  /** When set, mixed or blank topics are blocked before Start. Omit only for count-only checks. */
+  subjectId?: string | null;
 }): PracticeFormatValidation {
-  const { format, questionCount, formats, bankStyle, ngnLabel = "NGN" } = params;
+  const { format, questionCount, formats, bankStyle, ngnLabel = "NGN", subjectId } = params;
   if (format === "all" || format === "mcq") return { ok: true };
 
   const noun = format === "case" ? "case" : ngnLabel;
+  if (subjectId !== undefined && !isDeliberateFormatTopic(subjectId)) {
+    const mixed = (subjectId?.trim() ?? "") === MIXED_SUBJECT_ID;
+    return {
+      ok: false,
+      message: mixed
+        ? `Pick one topic for this ${noun} set. Mixed topics is not available.`
+        : `Pick one topic for this ${noun} set.`,
+    };
+  }
+
   if (bankStyle && bankStyle !== "standard") {
     return {
       ok: false,

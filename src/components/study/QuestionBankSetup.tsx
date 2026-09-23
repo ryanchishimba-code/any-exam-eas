@@ -110,6 +110,7 @@ export function QuestionBankSetup({
         formats,
         bankStyle,
         ngnLabel,
+        subjectId,
       })
     : validateQuestionBankSession({
         subjectId,
@@ -158,14 +159,10 @@ export function QuestionBankSetup({
             <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-accent)]/10 px-2 py-0.5 font-semibold text-[var(--color-accent)]">
               {selectedSubject.label}
             </span>
-            {typeof selectedCount === "number" ? (
+            {typeof selectedCount === "number" && !formatMode ? (
               <span className="tabular-nums">
                 · {selectedCount.toLocaleString()}{" "}
-                {formatMode
-                  ? `published ${practiceFormat === "case" ? "case" : ngnLabel}`
-                  : selectedCount === 1
-                    ? "question"
-                    : "questions"}
+                {selectedCount === 1 ? "question" : "questions"}
               </span>
             ) : null}
           </div>

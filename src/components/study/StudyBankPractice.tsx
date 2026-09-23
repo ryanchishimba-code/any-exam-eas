@@ -91,6 +91,7 @@ import {
   MIXED_SUBJECT_LABEL,
 } from "@/lib/study/question-bank-setup";
 import {
+  buildDeliberateFormatQuestionQuery,
   ngnStyleLabel,
   parsePracticeFormat,
   practiceFormatCountOptions,
@@ -885,15 +886,16 @@ export function StudyBankPractice({
   async function start() {
     if (isMpje || !isTimedExam) syncPracticeUrl({ historyOnly: true });
 
-    const deliberateFormat = practiceFormat === "ngn" || practiceFormat === "case";
+    const deliberateFormat = practiceFormat === "ngn" || practiceFormat === "case" ? practiceFormat : null;
     if (!isTimedExam) {
       const validation = deliberateFormat
         ? validatePracticeFormatSession({
-            format: practiceFormat,
+            format: deliberateFormat,
             questionCount,
             formats: activeFormats,
             bankStyle: "standard",
             ngnLabel,
+            subjectId,
           })
         : validateQuestionBankSession({
             subjectId,
@@ -928,7 +930,7 @@ export function StudyBankPractice({
     try {
       const limit = isTimedExam
         ? timedCount
-        : deliberateFormat
+        : deliberateFormat !== null
           ? questionCount
           : resolveQuestionBankSessionCount(
               questionCount,
@@ -936,23 +938,26 @@ export function StudyBankPractice({
             );
 
       if (!isTimedExam && deliberateFormat) {
-        const qs = new URLSearchParams({
-          field: fieldId,
-          limit: String(limit),
-          mode: "bank",
-          scope: "field",
-          mixed: "1",
-          format: practiceFormat,
-          meta: "0",
-          subjectId: MIXED_SUBJECT_ID,
+        const qs = buildDeliberateFormatQuestionQuery({
+          fieldId,
+          subjectId,
+          format: deliberateFormat,
+          limit,
         });
+        if (!qs) {
+          throw new Error(
+            deliberateFormat === "case"
+              ? "Pick one topic for this case set. Mixed topics is not available."
+              : `Pick one topic for this ${ngnLabel} set. Mixed topics is not available.`
+          );
+        }
         const res = await fetch(`/api/questions?${qs.toString()}`);
         const data = await res.json();
         if (!res.ok) {
           setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
           throw new Error(studyLimitMessage(data) || data.error || "Could not load this format set");
         }
-        if (data.practiceFormat !== practiceFormat) {
+        if (data.practiceFormat !== deliberateFormat) {
           throw new Error("This set was not limited to the selected format.");
         }
         const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
@@ -968,7 +973,7 @@ export function StudyBankPractice({
         }));
         if (raw.length === 0) {
           throw new Error(
-            practiceFormat === "case"
+            deliberateFormat === "case"
               ? "No published case items were available for this set."
               : `No published ${ngnLabel} items were available for this set.`
           );
@@ -1467,6 +1472,7 @@ export function StudyBankPractice({
               formats: activeFormats,
               bankStyle: "standard",
               ngnLabel,
+              subjectId,
             })
           : validateQuestionBankSession({
               subjectId,
@@ -1492,7 +1498,10 @@ export function StudyBankPractice({
   const previewTopicLabel = useMemo(() => {
     if (isTimedExam) return `${field} · Timed exam simulation`;
     if (practiceFormat === "ngn" || practiceFormat === "case") {
-      return `${practiceFormatTitle(practiceFormat, ngnLabel)} · published bank`;
+      const topic = isMixedSubjectId(subjectId)
+        ? MIXED_SUBJECT_LABEL
+        : subjects.find((s) => s.id === subjectId)?.label ?? "Choose a topic";
+      return `${practiceFormatTitle(practiceFormat, ngnLabel)} · ${topic}`;
     }
     const base = isMixedSubjectId(subjectId)
       ? MIXED_SUBJECT_LABEL
@@ -1503,10 +1512,10 @@ export function StudyBankPractice({
   const previewAvailableCount = useMemo(() => {
     if (isTimedExam) return null;
     if (practiceFormat === "ngn" || practiceFormat === "case") {
-      return practiceFormatPoolCount(practiceFormat, activeFormats);
+      return null;
     }
     return availableQuestionCount(subjectId, subjectCounts);
-  }, [isTimedExam, practiceFormat, activeFormats, subjectId, subjectCounts]);
+  }, [isTimedExam, practiceFormat, subjectId, subjectCounts]);
 
   const previewEstimatedMinutes = useMemo(
     () => estimateQuestionBankSessionMinutes(questionCount, bankPace),
@@ -1552,7 +1561,9 @@ export function StudyBankPractice({
         : null;
     const title = isTimedExam
       ? `${field}${mpjeScope} · Timed exam · ${questions.length} questions`
-      : `${field}${mpjeScope} · ${formatTitle ?? scopedTopicLabel} · ${questions.length} questions · ${
+      : `${field}${mpjeScope} · ${
+          formatTitle ? `${formatTitle} · ${scopedTopicLabel}` : scopedTopicLabel
+        } · ${questions.length} questions · ${
           bankStyle === "adaptive"
             ? "Adaptive practice"
             : bankStyle === "weak_areas"
@@ -1572,7 +1583,7 @@ export function StudyBankPractice({
         <StudySessionPlayer
           key={`${examScopeKey}:${sessionEpoch}`}
           field={field}
-          subjectId={isTimedExam || practiceFormat !== "all" ? "__mixed__" : subjectId}
+          subjectId={isTimedExam ? "__mixed__" : subjectId}
           questions={questions}
           sourceType="bank"
           mode={sessionStudyMode}
