@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { ShareModal } from "@/components/share/ShareModal";
 import { EndExamControl } from "@/components/study/EndExamControl";
 import { ExamActionBar } from "@/components/exam/ExamActionBar";
+import { RationaleDisclosureText } from "@/components/study/questions/CollapsibleRationale";
 import { formatHms } from "@/lib/full-exam/config";
 import { assertExactQuestionCount } from "@/lib/exam/session-count";
 import {
@@ -283,7 +284,7 @@ export function TimedPracticeExam({
             <div className="space-y-4 rounded-xl bg-white/5 p-4">
               <p className="font-medium">{q.question}</p>
               <p className="text-sm text-emerald-400">Answer: {q.correctAnswer}</p>
-              <p className="text-sm text-slate-400">{q.explanation}</p>
+              <RationaleDisclosureText text={q.explanation} resetKey={q.id} tone="onDark" />
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <ExamActionBar
@@ -322,7 +323,7 @@ export function TimedPracticeExam({
             </ul>
             {selected && (
               <div className="mt-6">
-                <p className="text-sm text-slate-400">{q.explanation}</p>
+                <RationaleDisclosureText text={q.explanation} resetKey={`${q.id}-check`} tone="onDark" />
                 <Button className="mt-4" onClick={next}>
                   {index + 1 >= questions.length ? "Finish exam" : "Next question"}
                 </Button>

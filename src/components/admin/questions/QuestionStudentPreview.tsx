@@ -1,6 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
+import { RationaleDisclosureText } from "@/components/study/questions/CollapsibleRationale";
 
 /**
  * Student-facing question preview for the admin GUI.
@@ -97,13 +98,13 @@ export function QuestionStudentPreview({
       </ul>
 
       {revealed && explanation?.trim() ? (
-        <div className="mt-4 rounded-xl border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/[0.06] px-4 py-3">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
+        <div className="mt-4 rounded-2xl border border-[var(--study-accent)]/20 bg-[var(--study-accent)]/[0.06] px-5 py-4">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--study-accent)]">
             Rationale
           </p>
-          <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-[var(--color-ink-muted)]">
-            {explanation.trim()}
-          </p>
+          <div className="mt-3">
+            <RationaleDisclosureText text={explanation} resetKey={stem} />
+          </div>
         </div>
       ) : null}
     </div>

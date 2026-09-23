@@ -32,6 +32,7 @@ import {
 } from "@/lib/mpje/grade-answer";
 import { MpjeQuestionDisplay } from "@/components/mpje/MpjeQuestionDisplay";
 import { ExamActionBar } from "@/components/exam/ExamActionBar";
+import { RationaleDisclosureText } from "@/components/study/questions/CollapsibleRationale";
 import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
 import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { cn } from "@/lib/utils";
@@ -463,7 +464,9 @@ export function MpjePracticeExam() {
                       <p className="text-sm font-medium text-emerald-700">
                         Correct: {m.correctAnswer}
                       </p>
-                      <p className="mt-2 text-sm text-slate-600">{m.explanation}</p>
+                      <div className="mt-3">
+                        <RationaleDisclosureText text={m.explanation} resetKey={m.questionId} />
+                      </div>
                     </li>
                   ))}
                 </ul>
