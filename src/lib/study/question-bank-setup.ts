@@ -4,6 +4,7 @@ import {
   type QuestionBankPace,
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
+import type { StudyMode } from "@/lib/questions/types";
 import {
   parsePracticeFormat,
   type PracticeFormatMode,
@@ -384,6 +385,25 @@ export function bankStyleHonorsLaunchStyle(
 ): boolean {
   if (!isRemediationUrlStyle(launchStyle)) return true;
   return bankStyle === launchStyle;
+}
+
+/**
+ * Study mode written onto the launched session and its receipt.
+ * Review incorrect is its own mode. It used to share Adaptive, so the receipt
+ * MODE chip said Adaptive while the title said Review incorrect.
+ * Weak areas stays weak_area, which the receipt shows as Weak Area.
+ */
+export function studyModeForQuestionBankLaunch(params: {
+  isTimedExam: boolean;
+  bankStyle: QuestionBankStyle;
+  pace: QuestionBankPace;
+}): StudyMode {
+  if (params.isTimedExam) return "timed";
+  if (params.bankStyle === "weak_areas") return "weak_area";
+  if (params.bankStyle === "review_incorrect") return "review_incorrect";
+  if (params.bankStyle === "adaptive") return "adaptive";
+  if (params.pace === "timed") return "timed";
+  return "practice";
 }
 
 /**
