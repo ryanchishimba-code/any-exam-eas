@@ -9,7 +9,9 @@ import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-pre
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLearningProfileSnapshot } from "@/lib/learning/profile-service";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
+import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
+import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import { studyUi } from "@/lib/study/study-ui";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
@@ -56,15 +58,29 @@ async function AnalyticsContent({
     }).catch(() => null),
   ]);
 
+  const examDayPlan = buildDashboardExamDayPlan({
+    examSlug,
+    fieldId,
+    testDate: null,
+    totalAttempts: roadmap?.totalAttempts ?? dashboard.headline.totalAttempts,
+    recentAccuracyPct: dashboard.headline.overallAccuracy ?? 0,
+    openIncorrect: roadmap ? roadmap.openIncorrectCount : null,
+    questionsToday: 0,
+    roadmap,
+  });
+
   return (
     <ProUpgradeGate feature="advanced_analytics" callbackPath={ROUTES.pricing}>
-      <StudentAnalyticsDashboard
-        examSlug={examSlug}
-        examName={examName}
-        fieldId={fieldId}
-        openRemediation={roadmap?.openRemediation ?? null}
-        initialData={{ dashboard, profile }}
-      />
+      <div className="space-y-8">
+        <ReadinessProofPanel readiness={examDayPlan.readiness} />
+        <StudentAnalyticsDashboard
+          examSlug={examSlug}
+          examName={examName}
+          fieldId={fieldId}
+          openRemediation={roadmap?.openRemediation ?? null}
+          initialData={{ dashboard, profile }}
+        />
+      </div>
     </ProUpgradeGate>
   );
 }

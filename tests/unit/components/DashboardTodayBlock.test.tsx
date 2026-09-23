@@ -20,16 +20,28 @@ function plan(items: ExamDayPlan["items"]): ExamDayPlan {
     readiness: {
       visible: false,
       minSample: 100,
+      bandKey: null,
       label: null,
+      headline: "Not enough practice yet",
       score: null,
       coveragePct: 0,
       recentAccuracyPct: 0,
+      recentWindowAttempts: 19,
+      recentWindowSize: 100,
+      recentWindowMinSample: 40,
+      recentWindowMeasured: true,
       remediationPct: 0,
+      openIncorrect: 5,
+      totalAttempts: 19,
       formula: "Coverage × recent accuracy × remediation completion — not a pass prediction.",
       disclaimer:
         "This band describes saved practice on this board only. It does not predict a licensure result.",
       sampleDetail:
-        "Readiness band stays hidden until 100 answered questions on this board. You have 19.",
+        "Not enough practice yet — 19 of 100 answered on this board. The proof stays hidden until then.",
+      criteria: [],
+      domains: [],
+      leadReason: null,
+      examSim: null,
     },
   };
 }
@@ -39,6 +51,7 @@ const items: ExamDayPlan["items"] = [
     id: "qbank",
     title: "25 Qbank questions",
     detail: "Coverage gap: Cardiovascular.",
+    why: "First because Cardiovascular is an untouched high-weight domain.",
     href: "/question-bank?style=bank",
     cta: "Start Qbank",
   },
@@ -46,6 +59,7 @@ const items: ExamDayPlan["items"] = [
     id: "incorrect",
     title: "Review 5 incorrect",
     detail: "Items you missed and have not yet answered correctly.",
+    why: null,
     href: "/question-bank?style=review_incorrect",
     cta: "Start review",
   },
@@ -53,6 +67,7 @@ const items: ExamDayPlan["items"] = [
     id: "guide",
     title: "1 guide topic",
     detail: "Cardiovascular",
+    why: null,
     href: "/high-yield-topics",
     cta: "Open topic",
   },
@@ -60,6 +75,7 @@ const items: ExamDayPlan["items"] = [
     id: "drugs",
     title: "5 drugs",
     detail: "Review 5 drugs on the USMLE list.",
+    why: null,
     href: "/study/drugs300",
     cta: "Open drugs",
   },
@@ -78,10 +94,13 @@ describe("DashboardTodayBlock review CTA", () => {
     expect(review).toHaveAttribute("href", "/question-bank?style=review_incorrect");
 
     const qbank = screen.getByRole("link", { name: /Start Qbank/ });
-    expect(qbank.querySelector("span.study-home-accent")).toBeNull();
+    expect(screen.getByText("Start Qbank").className).not.toContain("study-home-accent");
     expect(qbank).toHaveTextContent("Start Qbank");
+    expect(screen.getByText("First priority")).toBeInTheDocument();
     expect(screen.getByText("Open topic")).toBeInTheDocument();
-    expect(screen.getByText("Band hidden")).toBeInTheDocument();
+    expect(screen.getByText("Not enough practice yet")).toBeInTheDocument();
+    expect(screen.getByText(/19 of 100 answered/)).toBeInTheDocument();
+    expect(screen.getByText(/First because Cardiovascular/)).toBeInTheDocument();
   });
 
   it("keeps an empty review row as quiet text and a locked row as the filled subscribe action", () => {

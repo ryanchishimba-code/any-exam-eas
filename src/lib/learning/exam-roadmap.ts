@@ -41,6 +41,11 @@ import {
   usmlePresetPracticeHref,
   type UsmleStudyPresetId,
 } from "@/lib/exam-prep/usmle/study-presets";
+import {
+  examSimTrendFromSessions,
+  rollingAccuracyFromAttempts,
+  type ExamSimTrend,
+} from "@/lib/learning/exam-day-plan";
 import { countOpenIncorrectItems } from "@/lib/learning/open-incorrect";
 import {
   groupOpenRemediationLoops,
@@ -110,6 +115,21 @@ export type ExamRoadmapData = {
   topics: RoadmapTopicRow[];
   priorityTopics: RoadmapTopicRow[];
   totalAttempts: number;
+  /**
+   * Last 100 saved answers on this board. Present after the attempt scan.
+   * Older cached payloads may omit it.
+   */
+  recentAccuracyWindow?: {
+    pct: number;
+    windowAttempts: number;
+    windowSize: number;
+    minSample: number;
+  } | null;
+  /**
+   * Newest completed exam simulation of 50+ questions, when one exists.
+   * Optional proof trend — not part of the readiness band.
+   */
+  examSimTrend?: ExamSimTrend | null;
   /**
    * Items missed and not yet answered correctly, from the same attempt scan
    * as totalAttempts. Matches Review incorrect.
@@ -421,6 +441,13 @@ export function getBlueprintForExamSlug(
   return getExamBlueprint(EXAM_CATALOG[examSlug].fieldId);
 }
 
+function practiceBandLabelFromAnalysis(analysis: unknown): string | null {
+  if (!analysis || typeof analysis !== "object") return null;
+  const label = (analysis as { catOutcome?: { practiceBand?: { label?: unknown } } }).catOutcome
+    ?.practiceBand?.label;
+  return typeof label === "string" ? label : null;
+}
+
 function labelOpenRemediation(
   fieldId: string,
   attempts: {
@@ -463,6 +490,7 @@ async function loadExamRoadmapData(
         correct: true,
         bankItemId: true,
         questionKey: true,
+        createdAt: true,
       },
     }),
     prisma.conceptMastery.findMany({
@@ -535,6 +563,15 @@ async function loadExamRoadmapData(
     topics,
     priorityTopics,
     totalAttempts: attempts.length,
+    recentAccuracyWindow: rollingAccuracyFromAttempts(attempts),
+    examSimTrend: examSimTrendFromSessions(
+      history.sessions.map((session) => ({
+        status: session.status,
+        score: session.score,
+        questionCount: session.questionCount,
+        practiceBandLabel: practiceBandLabelFromAnalysis(session.analysis),
+      }))
+    ),
     openIncorrectCount: countOpenIncorrectItems(attempts),
     openRemediation: labelOpenRemediation(fieldId, attempts, examSlug),
     launch: {
@@ -556,7 +593,7 @@ export async function getExamRoadmapData(
       ? options.usmleFieldId
       : examSlug;
   return cacheGetOrSet(
-    cacheKey(["exam-roadmap-v3", userId, fieldKey]),
+    cacheKey(["exam-roadmap-v4", userId, fieldKey]),
     CACHE_TTL.learningDashboard,
     () => loadExamRoadmapData(userId, examSlug, options),
     { staleTtlMs: CACHE_STALE.learningDashboard }
