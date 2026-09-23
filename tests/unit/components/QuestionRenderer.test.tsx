@@ -90,4 +90,16 @@ describe("QuestionRenderer", () => {
     expect(note.className).toContain("--study-accent");
     expect(note.innerHTML).not.toMatch(/indigo|violet|purple/);
   });
+
+  it("stays quiet when the bank item has no source or review date", () => {
+    render(
+      <QuestionRenderer
+        question={sampleNclexQuestion}
+        selected={[]}
+        revealed={false}
+        onToggle={vi.fn()}
+      />
+    );
+    expect(screen.queryByTestId("item-provenance")).not.toBeInTheDocument();
+  });
 });

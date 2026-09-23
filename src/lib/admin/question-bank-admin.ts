@@ -4,15 +4,22 @@ import { parseBankOptions } from "@/lib/mpje/parse-bank-options";
 import { bankItemContentHash } from "@/lib/sync-question-bank";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { examSlugFromFieldId, EXAM_CATALOG } from "@/lib/edtech/exams";
-import { readItemQaRecord, type ItemQaRecord } from "@/lib/exam-prep/item-qa/flag";
+import {
+  FAILS_SCHEMA_CODE,
+  readItemQaRecord,
+  withSchemaFailureFlag,
+  withoutSchemaFailureFlag,
+  type ItemQaRecord,
+} from "@/lib/exam-prep/item-qa/flag";
 import {
   contentFromStoredItem,
+  resolvedTeachFields,
   type ItemQaContent,
 } from "@/lib/exam-prep/item-qa/rationale-schema";
 import {
   evaluateItemPublishGate,
+  editedItemNeedsSchemaGate,
   formatPublishGateError,
-  itemRequiresPublishSchema,
   ITEM_QA_SCHEMA_VERSION,
 } from "@/lib/exam-prep/item-qa/publish-gate";
 import {
@@ -38,6 +45,8 @@ export type AdminQuestionFilters = {
   reportedOnly?: boolean;
   /** Items the item-QA job marked with reviewFlag. */
   qaFlagged?: boolean;
+  /** Same Item QA queue, limited to rationale schema failures. */
+  schemaOnly?: boolean;
   dateField?: "createdAt" | "updatedAt";
   dateFrom?: Date;
   dateTo?: Date;
@@ -97,6 +106,10 @@ export type AdminQuestionDetail = {
   qualityScore: number | null;
   lastReviewedAt: string | null;
   itemQa: ItemQaRecord | null;
+  /** Prefilled teach-fields for the edit form. Empty when the bank has none. */
+  governingPrinciple: string;
+  distractorRationale: Record<string, string>;
+  citationLabel: string;
   createdAt: string;
   updatedAt: string;
   reports: {
@@ -214,7 +227,13 @@ function buildWhere(
     where.id = { in: reportedIds && reportedIds.length ? reportedIds : ["__none__"] };
   }
 
-  if (filters.qaFlagged) where.reviewFlag = true;
+  if (filters.qaFlagged || filters.schemaOnly) where.reviewFlag = true;
+  if (filters.schemaOnly) {
+    where.curationMeta = {
+      path: ["itemQa", "codes"],
+      array_contains: FAILS_SCHEMA_CODE,
+    };
+  }
 
   if (and.length) where.AND = and;
   return where;
@@ -366,6 +385,7 @@ export async function getAdminQuestion(id: string): Promise<AdminQuestionDetail 
     qualityScore: readQualityScore(row.generationMeta),
     lastReviewedAt: row.lastReviewedAt?.toISOString() ?? null,
     itemQa: readItemQaRecord(row.curationMeta),
+    ...teachFieldsForRow(row),
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
     reports: reports.map((r) => ({
@@ -448,6 +468,9 @@ export type AdminQuestionUpdate = {
   tags?: string[];
   active?: boolean;
   qaPassed?: boolean;
+  governingPrinciple?: string;
+  distractorReasons?: Record<string, string>;
+  citationLabel?: string;
 };
 
 const EDITABLE_SCALARS: (keyof AdminQuestionUpdate)[] = [
@@ -502,6 +525,24 @@ export async function updateAdminQuestion(
     changes.tags = { before, after: patch.tags };
   }
 
+  const schemaMeta = schemaMetaPatch(existing.generationMeta, patch);
+  if (schemaMeta) {
+    data.generationMeta = schemaMeta.next as Prisma.InputJsonValue;
+    changes.generationMeta = { before: schemaMeta.before, after: schemaMeta.next };
+  }
+  if (patch.distractorReasons && Object.keys(patch.distractorReasons).length) {
+    const optionsRaw =
+      typeof data.options === "string" ? data.options : existing.options;
+    data.options = mergeDistractorReasons(optionsRaw, patch.distractorReasons);
+    if (!changes.options) {
+      changes.distractorReasons = { before: null, after: patch.distractorReasons };
+    }
+  }
+  if (patch.citationLabel) {
+    data.references = mergeCitation(existing.references, patch.citationLabel) as Prisma.InputJsonValue;
+    changes.citationLabel = { before: null, after: patch.citationLabel };
+  }
+
   // Recompute content hash if the stem/scenario changed (column is unique).
   const questionChanged = patch.question != null && patch.question !== existing.question;
   const scenarioChanged =
@@ -531,18 +572,40 @@ export async function updateAdminQuestion(
     data.lastReviewedAt = new Date();
   }
 
-  const contentEdited =
-    patch.question != null ||
-    patch.options != null ||
-    patch.explanation != null ||
-    patch.correctAnswer != null;
-  const publishing =
-    patch.qaPassed === true ||
-    patch.reviewStatus === "approved" ||
-    (existing.qaPassed && contentEdited);
-  if (publishing && itemRequiresPublishSchema(existing.source, existing.generationMeta)) {
-    const gate = evaluateItemPublishGate(contentForPublishCheck(existing, patch));
-    if (!gate.ok) return { ok: false, error: formatPublishGateError(gate), status: 400 };
+  const contentEdited = rationaleContentEdited(patch);
+  const wasServed = existing.active && existing.qaPassed;
+  const willBeServed =
+    (patch.active ?? existing.active) && (patch.qaPassed ?? existing.qaPassed);
+  const publishingAction =
+    patch.qaPassed === true || patch.reviewStatus === "approved" || patch.active === true;
+  const needsSchema = editedItemNeedsSchemaGate({
+    source: existing.source,
+    generationMeta: schemaMeta?.next ?? existing.generationMeta,
+    wasServed,
+    willBeServed,
+    contentEdited,
+    publishingAction,
+  });
+  if (needsSchema) {
+    const attempted = contentForPublishCheck(existing, patch);
+    const gate = evaluateItemPublishGate(attempted);
+    if (!gate.ok) {
+      await flagStoredSchemaFailure(existing);
+      return { ok: false, error: formatPublishGateError(gate), status: 400 };
+    }
+    const cleared = withoutSchemaFailureFlag(existing.curationMeta, new Date().toISOString());
+    if (cleared) {
+      data.reviewFlag = cleared.reviewFlag;
+      data.curationMeta = cleared.curationMeta as Prisma.InputJsonValue;
+    }
+    data.lastReviewedAt = new Date();
+    data.generationMeta = {
+      ...(schemaMeta?.next ??
+        (existing.generationMeta && typeof existing.generationMeta === "object"
+          ? (existing.generationMeta as Record<string, unknown>)
+          : {})),
+      itemQaSchema: ITEM_QA_SCHEMA_VERSION,
+    } as Prisma.InputJsonValue;
   }
 
   await prisma.questionBankItem.update({ where: { id }, data });
@@ -550,6 +613,126 @@ export async function updateAdminQuestion(
     revalidateActiveQuestionInventory();
   }
   return { ok: true, changes };
+}
+
+function rationaleContentEdited(patch: AdminQuestionUpdate): boolean {
+  return (
+    patch.question != null ||
+    patch.options != null ||
+    patch.explanation != null ||
+    patch.correctAnswer != null ||
+    patch.itemType != null ||
+    patch.governingPrinciple != null ||
+    patch.distractorReasons != null ||
+    patch.citationLabel != null
+  );
+}
+
+function asMetaRecord(value: unknown): Record<string, unknown> {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  return { ...(value as Record<string, unknown>) };
+}
+
+function schemaMetaPatch(
+  existing: unknown,
+  patch: AdminQuestionUpdate
+): { before: unknown; next: Record<string, unknown> } | null {
+  if (
+    patch.governingPrinciple == null &&
+    patch.citationLabel == null &&
+    patch.distractorReasons == null
+  ) {
+    return null;
+  }
+  const next = asMetaRecord(existing);
+  if (patch.governingPrinciple) next.governingPrinciple = patch.governingPrinciple;
+  if (patch.distractorReasons && Object.keys(patch.distractorReasons).length) {
+    next.distractorRationale = {
+      ...asMetaRecord(next.distractorRationale),
+      ...patch.distractorReasons,
+    };
+  }
+  if (patch.citationLabel) {
+    next.citation = { label: patch.citationLabel };
+    next.sourceLabel = patch.citationLabel;
+  }
+  return { before: existing ?? null, next };
+}
+
+function mergeDistractorReasons(optionsRaw: string, reasons: Record<string, string>): string {
+  let parsed: unknown = null;
+  try {
+    parsed = JSON.parse(optionsRaw);
+  } catch {
+    parsed = null;
+  }
+  if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+    const record = parsed as Record<string, unknown>;
+    return JSON.stringify({
+      ...record,
+      distractorRationale: { ...asMetaRecord(record.distractorRationale), ...reasons },
+    });
+  }
+  const options = Array.isArray(parsed) ? parsed : [];
+  return JSON.stringify({ options, distractorRationale: reasons });
+}
+
+function mergeCitation(existing: unknown, label: string): unknown[] {
+  const refs = Array.isArray(existing) ? [...existing] : [];
+  const already = refs.some((entry) => {
+    if (typeof entry === "string") return entry === label;
+    if (entry && typeof entry === "object" && "label" in entry) {
+      return (entry as { label?: string }).label === label;
+    }
+    return false;
+  });
+  if (already) return refs;
+  return [...refs, { label }];
+}
+
+function teachFieldsForRow(row: {
+  question: string;
+  options: string;
+  correctAnswer: string;
+  explanation: string;
+  itemType?: string | null;
+  references?: unknown;
+  generationMeta?: unknown;
+}) {
+  return resolvedTeachFields(
+    contentFromStoredItem({
+      question: row.question,
+      options: row.options,
+      correctAnswer: row.correctAnswer,
+      explanation: row.explanation,
+      itemType: row.itemType,
+      references: row.references,
+      generationMeta: row.generationMeta,
+    })
+  );
+}
+
+async function flagStoredSchemaFailure(row: {
+  id: string;
+  curationMeta: unknown;
+  question: string;
+  options: string;
+  correctAnswer: string;
+  explanation: string;
+  itemType: string;
+  references: unknown;
+  generationMeta: unknown;
+}): Promise<void> {
+  const gate = evaluateItemPublishGate(contentFromStoredItem(row));
+  const flagged = withSchemaFailureFlag(row.curationMeta, gate.issues, new Date().toISOString());
+  if (!flagged) return;
+  await prisma.questionBankItem.update({
+    where: { id: row.id },
+    data: {
+      reviewFlag: true,
+      curationMeta: flagged.curationMeta as Prisma.InputJsonValue,
+    },
+  });
 }
 
 function contentForPublishCheck(
@@ -564,14 +747,23 @@ function contentForPublishCheck(
   },
   patch: AdminQuestionUpdate
 ): ItemQaContent {
+  const optionsBase = patch.options
+    ? rebuildOptionsColumn(existing.options, patch.options)
+    : existing.options;
+  const options =
+    patch.distractorReasons && Object.keys(patch.distractorReasons).length
+      ? mergeDistractorReasons(optionsBase, patch.distractorReasons)
+      : optionsBase;
   return contentFromStoredItem({
     question: patch.question ?? existing.question,
-    options: patch.options ? rebuildOptionsColumn(existing.options, patch.options) : existing.options,
+    options,
     correctAnswer: patch.correctAnswer ?? existing.correctAnswer,
     explanation: patch.explanation ?? existing.explanation,
     itemType: patch.itemType ?? existing.itemType,
-    references: existing.references,
-    generationMeta: existing.generationMeta,
+    references: patch.citationLabel
+      ? mergeCitation(existing.references, patch.citationLabel)
+      : existing.references,
+    generationMeta: schemaMetaPatch(existing.generationMeta, patch)?.next ?? existing.generationMeta,
   });
 }
 
@@ -625,7 +817,10 @@ export async function createAdminQuestion(input: CreateQuestionInput): Promise<C
   if (distractorRationale && Object.keys(distractorRationale).length) {
     generationMeta.distractorRationale = distractorRationale;
   }
-  if (input.citationLabel) generationMeta.citation = { label: input.citationLabel };
+  if (input.citationLabel) {
+    generationMeta.citation = { label: input.citationLabel };
+    generationMeta.sourceLabel = input.citationLabel;
+  }
 
   if (!input.draft) {
     const gate = evaluateItemPublishGate({
@@ -701,7 +896,7 @@ export async function bulkUpdateAdminQuestions(
   let allowedIds = ids;
   const blocked: Array<{ id: string; error: string }> = [];
 
-  if (action === "approve" || action === "qa_pass") {
+  if (action === "approve" || action === "qa_pass" || action === "activate") {
     const rows = await prisma.questionBankItem.findMany({
       where,
       select: {
@@ -714,16 +909,33 @@ export async function bulkUpdateAdminQuestions(
         itemType: true,
         references: true,
         generationMeta: true,
+        curationMeta: true,
+        active: true,
+        qaPassed: true,
       },
     });
     allowedIds = [];
     for (const row of rows) {
-      if (itemRequiresPublishSchema(row.source, row.generationMeta)) {
-        const gate = evaluateItemPublishGate(contentFromStoredItem(row));
-        if (!gate.ok) {
-          blocked.push({ id: row.id, error: formatPublishGateError(gate) });
-          continue;
-        }
+      const nextActive = action === "approve" || action === "activate" ? true : row.active;
+      const nextQa = action === "qa_pass" ? true : row.qaPassed;
+      const willBeServed = nextActive && nextQa;
+      const needsSchema = editedItemNeedsSchemaGate({
+        source: row.source,
+        generationMeta: row.generationMeta,
+        wasServed: row.active && row.qaPassed,
+        willBeServed,
+        contentEdited: false,
+        publishingAction: true,
+      });
+      if (!needsSchema) {
+        allowedIds.push(row.id);
+        continue;
+      }
+      const gate = evaluateItemPublishGate(contentFromStoredItem(row));
+      if (!gate.ok) {
+        await flagStoredSchemaFailure(row);
+        blocked.push({ id: row.id, error: formatPublishGateError(gate) });
+        continue;
       }
       allowedIds.push(row.id);
     }

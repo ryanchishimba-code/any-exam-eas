@@ -28,6 +28,29 @@ export function itemRequiresPublishSchema(
   return (generationMeta as Record<string, unknown>).itemQaSchema === ITEM_QA_SCHEMA_VERSION;
 }
 
+/**
+ * Publish/edit gate.
+ * A student-visible item (active and qaPassed) cannot be newly served, or saved
+ * with rationale-bearing edits, unless it meets the schema. Legacy rows that are
+ * already served stay served until someone edits or republishes them.
+ * Draft edits that do not make the item student-visible stay open.
+ */
+export function editedItemNeedsSchemaGate(input: {
+  source: string | null | undefined;
+  generationMeta: unknown;
+  wasServed: boolean;
+  willBeServed: boolean;
+  contentEdited: boolean;
+  publishingAction: boolean;
+}): boolean {
+  if (input.contentEdited && input.willBeServed) return true;
+  if (!input.wasServed && input.willBeServed) return true;
+  if (itemRequiresPublishSchema(input.source, input.generationMeta) && input.publishingAction) {
+    return true;
+  }
+  return false;
+}
+
 export function evaluateItemPublishGate(content: ItemQaContent): ItemPublishGate {
   const issues: ItemPublishIssue[] = [
     ...lintItemText({

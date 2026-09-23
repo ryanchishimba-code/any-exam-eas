@@ -47,6 +47,7 @@ export type ItemQaContent = {
     whyCorrect?: { headline?: string };
     whyIncorrect?: Array<{ option?: string; correction?: string; misconception?: string }>;
     keyTakeaway?: string;
+    clinicalPearl?: string;
   };
   /** Parsed options envelope when the row stores an NGN payload. */
   ngnPayload?: Record<string, unknown>;
@@ -62,7 +63,7 @@ const DISTRACTOR_TYPES = new Set([
 ]);
 
 const PRINCIPLE_LINE =
-  /(?:^|\n)\s*(?:governing principle|priority rule|principle|priority|rule)\s*[:\-–—]\s*(.{24,})/i;
+  /(?:^|\n)\s*(?:governing principle|priority rule|nursing priority|clinical pearl|monitoring rule|intervention principle|principle|priority|pearl|rule)\s*[:\-–—]\s*(.{24,})/i;
 
 function asRecord(value: unknown): Record<string, unknown> | null {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
@@ -148,11 +149,28 @@ function readPrinciple(content: ItemQaContent): string {
   if (explicit.length >= 24) return explicit;
   const labeled = content.explanation.match(PRINCIPLE_LINE)?.[1]?.trim() ?? "";
   if (labeled.length >= 24) return labeled;
-  const takeaway = content.expertRationale?.keyTakeaway?.trim() ?? "";
-  if (takeaway.length >= 24 && content.expertRationale?.whyCorrect?.headline?.trim()) {
-    return takeaway;
+  const headline = content.expertRationale?.whyCorrect?.headline?.trim() ?? "";
+  if (headline) {
+    const pearl = content.expertRationale?.clinicalPearl?.trim() ?? "";
+    if (pearl.length >= 24) return pearl;
+    const takeaway = content.expertRationale?.keyTakeaway?.trim() ?? "";
+    if (takeaway.length >= 24) return takeaway;
   }
   return "";
+}
+
+/** Fields the editor form should show, including principle text already inside an expert rationale. */
+export function resolvedTeachFields(content: ItemQaContent): {
+  governingPrinciple: string;
+  distractorRationale: Record<string, string>;
+  citationLabel: string;
+} {
+  const citation = (content.references ?? []).find((ref) => ref.label?.trim() || ref.citation?.trim());
+  return {
+    governingPrinciple: readPrinciple(content),
+    distractorRationale: content.distractorRationale ?? {},
+    citationLabel: citation?.label?.trim() || citation?.citation?.trim() || "",
+  };
 }
 
 function hasCitation(content: ItemQaContent): boolean {

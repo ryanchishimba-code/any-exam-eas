@@ -2,8 +2,13 @@ export { findNearDuplicatePairs, type DuplicateCandidate, type DuplicatePair } f
 export {
   readItemQaRecord,
   withItemQaRecord,
+  withSchemaFailureFlag,
+  withoutSchemaFailureFlag,
+  schemaFailureCodesFromIssues,
+  isSchemaQaCode,
   ITEM_QA_PIPELINE,
   NEAR_DUPLICATE_CODE,
+  FAILS_SCHEMA_CODE,
   type ItemQaRecord,
 } from "./flag";
 export {
@@ -18,8 +23,10 @@ export {
 } from "./retire-near-duplicates";
 export { itemFingerprint, itemTokens, jaccardSimilarity, normalizeItemText } from "./normalize";
 export { formatReviewMonth, resolveItemProvenance, type ItemProvenance } from "./provenance";
+export { principleFieldLabel } from "./principle-label";
 export {
   evaluateItemPublishGate,
+  editedItemNeedsSchemaGate,
   formatPublishGateError,
   itemRequiresPublishSchema,
   ITEM_QA_SCHEMA_VERSION,
@@ -30,6 +37,7 @@ export {
   contentFromStoredItem,
   evaluateRationaleSchema,
   readCitations,
+  resolvedTeachFields,
   type ItemQaContent,
   type RationaleSchemaIssue,
 } from "./rationale-schema";

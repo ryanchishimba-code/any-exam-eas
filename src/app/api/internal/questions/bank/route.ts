@@ -36,6 +36,7 @@ export async function GET(req: Request) {
     blueprint: p.get("blueprint") ?? undefined,
     reportedOnly: p.get("reportedOnly") === "true",
     qaFlagged: p.get("qaFlagged") === "true",
+    schemaOnly: p.get("schemaOnly") === "true",
     dateField: (p.get("dateField") as "createdAt" | "updatedAt" | null) ?? undefined,
     dateFrom: p.get("dateFrom") ? new Date(p.get("dateFrom") as string) : undefined,
     dateTo: p.get("dateTo") ? new Date(p.get("dateTo") as string) : undefined,
