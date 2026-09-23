@@ -4,6 +4,7 @@ import {
   decideRemediationLaunch,
   decisionFromRemediationPayload,
   emptyModeFromLaunchQuery,
+  questionBankEmptyLaunch,
   remediationEmptyHrefs,
   reviewIncorrectBlocksSessionSkeleton,
   shouldAutostartPractice,
@@ -76,11 +77,31 @@ describe("remediation launch", () => {
     expect(emptyModeFromLaunchQuery("weak-empty")).toBe("weak_areas");
   });
 
-  it("keeps an empty Review incorrect off the session skeleton and off autostart", () => {
+  it("skips the practice skeleton only when a remediation launch has nothing eligible", () => {
+    expect(questionBankEmptyLaunch("weak_areas", 0)).toBe("weak_areas");
+    expect(questionBankEmptyLaunch("review_incorrect", 0)).toBe("review_incorrect");
+    expect(questionBankEmptyLaunch("weak_areas", 2)).toBeNull();
+    expect(questionBankEmptyLaunch("adaptive", 0)).toBeNull();
+    expect(questionBankEmptyLaunch("weak_areas", Number.NaN)).toBeNull();
+  });
+
+  it("keeps an empty remediation launch off the session skeleton and off autostart", () => {
     expect(
       reviewIncorrectBlocksSessionSkeleton({
         bankStyle: "adaptive",
         styleParam: "review_incorrect",
+      })
+    ).toBe(true);
+    expect(
+      reviewIncorrectBlocksSessionSkeleton({
+        bankStyle: "weak_areas",
+        styleParam: null,
+      })
+    ).toBe(true);
+    expect(
+      reviewIncorrectBlocksSessionSkeleton({
+        bankStyle: "standard",
+        styleParam: "weak_areas",
       })
     ).toBe(true);
     expect(
@@ -90,6 +111,14 @@ describe("remediation launch", () => {
       shouldAutostartPractice({
         autostart: true,
         launch: "review-empty",
+        hasQuestions: false,
+        loading: false,
+      })
+    ).toBe(false);
+    expect(
+      shouldAutostartPractice({
+        autostart: true,
+        launch: "weak-empty",
         hasQuestions: false,
         loading: false,
       })
