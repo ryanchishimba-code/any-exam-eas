@@ -78,5 +78,8 @@ describe("buildRemediationRecommendations", () => {
     expect(retest?.href).toMatch(/count=25/);
     expect(retest?.href).toMatch(/autostart=1/);
     expect(retest?.type).toBe("retry_questions");
+
+    const guide = recs.find((r) => /Study guide/i.test(r.title));
+    expect(guide?.href).toBe("/nclex/study-guide/management-of-care");
   });
 });

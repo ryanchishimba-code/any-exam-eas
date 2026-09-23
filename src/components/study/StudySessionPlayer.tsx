@@ -843,6 +843,8 @@ export function StudySessionPlayer({
               <StudyThisTopicButton
                 links={studyLinks}
                 examSlug={examSlug}
+                fieldId={field}
+                subjectId={current.subjectId}
                 missed={answer.correct !== true}
                 flagged={isFlagged}
               />

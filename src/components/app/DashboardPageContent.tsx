@@ -11,6 +11,7 @@ import { DashboardViewSections } from "@/components/app/DashboardViewSections";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { DashboardTodayBlock } from "@/components/dashboard/DashboardTodayBlock";
+import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
 import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 import { dbUi } from "@/lib/study/dashboard-ui";
@@ -129,6 +130,14 @@ export function DashboardPageContent({
       {examDayPlan ? (
         <DashboardTodayBlock plan={examDayPlan} studyLocked={studyLocked} />
       ) : null}
+
+      <RemediationPanel
+        examName={exam.name}
+        fieldId={fieldId}
+        summary={roadmap?.openRemediation}
+        studyLocked={studyLocked}
+        showWhenEmpty={stats.questionsAnswered > 0}
+      />
 
       <DashboardGraphicHero
         examSlug={examSlug}

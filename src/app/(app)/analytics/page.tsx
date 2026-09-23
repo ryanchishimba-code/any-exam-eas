@@ -8,6 +8,7 @@ import { requirePremiumPage } from "@/lib/require-premium-page";
 import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLearningProfileSnapshot } from "@/lib/learning/profile-service";
+import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { studyUi } from "@/lib/study/study-ui";
 import { ROUTES } from "@/lib/routes";
@@ -47,9 +48,12 @@ async function AnalyticsContent({
   const examName = EXAM_CATALOG[examSlug].shortName;
   const fieldId = resolveExamFieldId(examSlug);
 
-  const [dashboard, profile] = await Promise.all([
+  const [dashboard, profile, roadmap] = await Promise.all([
     getStudentDashboardData(userId, [fieldId]),
     getLearningProfileSnapshot(userId),
+    getExamRoadmapData(userId, examSlug, {
+      usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
+    }).catch(() => null),
   ]);
 
   return (
@@ -57,6 +61,8 @@ async function AnalyticsContent({
       <StudentAnalyticsDashboard
         examSlug={examSlug}
         examName={examName}
+        fieldId={fieldId}
+        openRemediation={roadmap?.openRemediation ?? null}
         initialData={{ dashboard, profile }}
       />
     </ProUpgradeGate>

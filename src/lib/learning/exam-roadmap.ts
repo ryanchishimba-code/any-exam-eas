@@ -42,6 +42,11 @@ import {
   type UsmleStudyPresetId,
 } from "@/lib/exam-prep/usmle/study-presets";
 import { countOpenIncorrectItems } from "@/lib/learning/open-incorrect";
+import {
+  groupOpenRemediationLoops,
+  type OpenRemediationSummary,
+} from "@/lib/learning/remediation-loop";
+import { getSubjectArea } from "@/lib/subjects/registry";
 import { prisma } from "@/lib/prisma";
 import {
   computeCoveragePct,
@@ -110,6 +115,11 @@ export type ExamRoadmapData = {
    * as totalAttempts. Matches Review incorrect.
    */
   openIncorrectCount: number;
+  /**
+   * Missed topics still outstanding, with guide / drug / card links when the
+   * board has them. Same later-correct rule as Review incorrect.
+   */
+  openRemediation?: OpenRemediationSummary;
   /** Launch affordances for shared Full Exam actions. */
   launch: {
     hasRetake: boolean;
@@ -411,6 +421,26 @@ export function getBlueprintForExamSlug(
   return getExamBlueprint(EXAM_CATALOG[examSlug].fieldId);
 }
 
+function labelOpenRemediation(
+  fieldId: string,
+  attempts: {
+    bankItemId: string | null;
+    questionKey: string | null;
+    correct: boolean;
+    subjectId: string | null;
+  }[],
+  examSlug: ExamSlug
+): OpenRemediationSummary {
+  const summary = groupOpenRemediationLoops({ examSlug, fieldId, attempts });
+  return {
+    ...summary,
+    loops: summary.loops.map((loop) => ({
+      ...loop,
+      label: getSubjectArea(fieldId, loop.id)?.label ?? loop.label,
+    })),
+  };
+}
+
 async function loadExamRoadmapData(
   userId: string,
   examSlug: ExamSlug,
@@ -506,6 +536,7 @@ async function loadExamRoadmapData(
     priorityTopics,
     totalAttempts: attempts.length,
     openIncorrectCount: countOpenIncorrectItems(attempts),
+    openRemediation: labelOpenRemediation(fieldId, attempts, examSlug),
     launch: {
       hasRetake: history.hasRetake,
       canContinue: history.canContinue,
@@ -525,7 +556,7 @@ export async function getExamRoadmapData(
       ? options.usmleFieldId
       : examSlug;
   return cacheGetOrSet(
-    cacheKey(["exam-roadmap-v2", userId, fieldKey]),
+    cacheKey(["exam-roadmap-v3", userId, fieldKey]),
     CACHE_TTL.learningDashboard,
     () => loadExamRoadmapData(userId, examSlug, options),
     { staleTtlMs: CACHE_STALE.learningDashboard }
