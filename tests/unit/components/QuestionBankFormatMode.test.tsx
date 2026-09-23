@@ -31,6 +31,22 @@ describe("QuestionBankFormatMode", () => {
     expect(onChange).not.toHaveBeenCalledWith("case");
   });
 
+  it("tells the student to pick one topic instead of launching the whole bank", () => {
+    render(
+      <QuestionBankFormatMode
+        value="ngn"
+        onChange={() => undefined}
+        formats={formats}
+        ngnLabel="NGN"
+      />
+    );
+
+    expect(screen.getByText(/Pick one topic/i)).toBeInTheDocument();
+    expect(screen.getByText(/only NGN items from that topic/i)).toBeInTheDocument();
+    expect(screen.getByText(/Mixed topics is not available/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Topic choice applies to All questions/i)).not.toBeInTheDocument();
+  });
+
   it("uses NGN-style for boards that are not Client Needs and hides counts while loading", () => {
     render(
       <QuestionBankFormatMode

@@ -8,8 +8,10 @@ import {
 } from "@/lib/inventory/active-questions";
 import { isInternalMasteryConceptKey } from "@/lib/learning/concept-labels";
 import {
+  buildDeliberateFormatQuestionQuery,
   emptyFormatPracticeStats,
   formatPracticeStatsFromRows,
+  isDeliberateFormatTopic,
   ngnStyleLabel,
   parsePracticeFormat,
   practiceFormatCountOptions,
@@ -112,6 +114,115 @@ describe("practice format inventory match", () => {
       "ngn"
     );
     expect(kept.map((item) => item.id)).toEqual(["a", "d"]);
+  });
+});
+
+describe("deliberate format subject wiring", () => {
+  it("sends the selected topic and never mixed scope", () => {
+    const qs = buildDeliberateFormatQuestionQuery({
+      fieldId: "nursing",
+      subjectId: "management-of-care",
+      format: "ngn",
+      limit: 5,
+    });
+    expect(qs).not.toBeNull();
+    expect(qs!.get("field")).toBe("nursing");
+    expect(qs!.get("subjectId")).toBe("management-of-care");
+    expect(qs!.get("format")).toBe("ngn");
+    expect(qs!.get("limit")).toBe("5");
+    expect(qs!.get("mode")).toBe("bank");
+    expect(qs!.get("meta")).toBe("0");
+    expect(qs!.has("scope")).toBe(false);
+    expect(qs!.has("mixed")).toBe(false);
+    expect(qs!.get("subjectId")).not.toBe("__mixed__");
+  });
+
+  it("refuses mixed scope and a blank topic for NGN and cases", () => {
+    expect(isDeliberateFormatTopic("__mixed__")).toBe(false);
+    expect(isDeliberateFormatTopic("")).toBe(false);
+    expect(isDeliberateFormatTopic("  ")).toBe(false);
+    expect(isDeliberateFormatTopic(null)).toBe(false);
+    expect(isDeliberateFormatTopic("management-of-care")).toBe(true);
+
+    expect(
+      buildDeliberateFormatQuestionQuery({
+        fieldId: "nursing",
+        subjectId: "__mixed__",
+        format: "ngn",
+        limit: 5,
+      })
+    ).toBeNull();
+    expect(
+      buildDeliberateFormatQuestionQuery({
+        fieldId: "nursing",
+        subjectId: "",
+        format: "case",
+        limit: 5,
+      })
+    ).toBeNull();
+
+    const cases = buildDeliberateFormatQuestionQuery({
+      fieldId: "nursing",
+      subjectId: "safety-and-infection-control",
+      format: "case",
+      limit: 10,
+    });
+    expect(cases?.get("subjectId")).toBe("safety-and-infection-control");
+    expect(cases?.get("format")).toBe("case");
+    expect(cases?.has("scope")).toBe(false);
+    expect(cases?.has("mixed")).toBe(false);
+  });
+
+  it("blocks Start when mixed topics is selected and allows a real topic", () => {
+    expect(
+      validatePracticeFormatSession({
+        format: "ngn",
+        questionCount: 5,
+        formats,
+        subjectId: "__mixed__",
+        ngnLabel: "NGN",
+      })
+    ).toMatchObject({
+      ok: false,
+      message: "Pick one topic for this NGN set. Mixed topics is not available.",
+    });
+
+    expect(
+      validatePracticeFormatSession({
+        format: "case",
+        questionCount: 5,
+        formats,
+        subjectId: "__mixed__",
+      }).message
+    ).toBe("Pick one topic for this case set. Mixed topics is not available.");
+
+    expect(
+      validatePracticeFormatSession({
+        format: "ngn",
+        questionCount: 5,
+        formats,
+        subjectId: "",
+        ngnLabel: "NGN-style",
+      }).message
+    ).toBe("Pick one topic for this NGN-style set.");
+
+    expect(
+      validatePracticeFormatSession({
+        format: "ngn",
+        questionCount: 5,
+        formats,
+        subjectId: "management-of-care",
+      })
+    ).toEqual({ ok: true, maxAvailable: 842 });
+
+    expect(
+      validatePracticeFormatSession({
+        format: "all",
+        questionCount: 25,
+        formats,
+        subjectId: "__mixed__",
+      })
+    ).toEqual({ ok: true });
   });
 });
 
