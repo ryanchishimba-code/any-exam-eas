@@ -46,16 +46,20 @@ export function buildFullExamInsights(
   examSlug: ExamSlug,
   score: number,
   analysis: FullExamResultsAnalysis,
-  answers: ExamAnswerRecord[]
+  answers: ExamAnswerRecord[],
+  options?: { endedEarly?: boolean }
 ): FullExamInsights {
   const weakTopics = getWeakTopicsFromBreakdown(analysis.topicBreakdown, 70).slice(0, 5);
   const missedCount = answers.filter((a) => !a.correct).length;
   const flaggedCount = answers.filter((a) => a.flagged).length;
   const isCat = Boolean(analysis.catOutcome);
+  const endedEarly = options?.endedEarly === true;
 
   const { headline, subline } = isCat
     ? {
-        headline: "Practice CAT complete — focus weak areas",
+        headline: endedEarly
+          ? "Practice CAT ended early — focus weak areas"
+          : "Practice CAT complete — focus weak areas",
         subline:
           analysis.catOutcome?.practiceBand.hint ??
           "Use the practice band below as a study guide, not a pass prediction.",

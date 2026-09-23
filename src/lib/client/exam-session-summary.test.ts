@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   activitySummaryFromSearchParams,
   mergeActivitySummary,
+  receiptModeLabel,
   studyHubWithSummaryPath,
   type ActivitySessionSummary,
 } from "./exam-session-summary";
@@ -50,5 +51,11 @@ describe("study hub session receipt query", () => {
 
   it("ignores unrelated dashboard URLs", () => {
     expect(activitySummaryFromSearchParams(new URLSearchParams("exam=nclex"))).toBeNull();
+  });
+
+  it("labels review incorrect on the receipt and keeps the weak-area chip", () => {
+    expect(receiptModeLabel("review_incorrect")).toBe("Review incorrect");
+    expect(receiptModeLabel("weak_area")).toBe("Weak Area");
+    expect(receiptModeLabel("adaptive")).toBe("Adaptive");
   });
 });

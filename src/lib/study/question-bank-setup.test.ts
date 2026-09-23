@@ -11,6 +11,7 @@ import {
   resolveQuestionBankStyleAndFormat,
   stylePreservedForPracticeUrl,
   resolveWheelCountValue,
+  studyModeForQuestionBankLaunch,
   resolveQuestionBankSessionCount,
   validateQuestionBankSession,
 } from "./question-bank-setup";
@@ -281,5 +282,43 @@ describe("question-bank-setup", () => {
         formatParam: null,
       })
     ).toEqual({ style: null, format: null });
+  });
+
+  it("labels a review-incorrect launch separately from Adaptive and keeps weak areas", () => {
+    expect(
+      studyModeForQuestionBankLaunch({
+        isTimedExam: false,
+        bankStyle: "review_incorrect",
+        pace: "untimed",
+      })
+    ).toBe("review_incorrect");
+    expect(
+      studyModeForQuestionBankLaunch({
+        isTimedExam: false,
+        bankStyle: "weak_areas",
+        pace: "untimed",
+      })
+    ).toBe("weak_area");
+    expect(
+      studyModeForQuestionBankLaunch({
+        isTimedExam: false,
+        bankStyle: "adaptive",
+        pace: "untimed",
+      })
+    ).toBe("adaptive");
+    expect(
+      studyModeForQuestionBankLaunch({
+        isTimedExam: false,
+        bankStyle: "standard",
+        pace: "timed",
+      })
+    ).toBe("timed");
+    expect(
+      studyModeForQuestionBankLaunch({
+        isTimedExam: true,
+        bankStyle: "review_incorrect",
+        pace: "untimed",
+      })
+    ).toBe("timed");
   });
 });

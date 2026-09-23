@@ -49,9 +49,50 @@ describe("StudyHubSessionSummary receipt", () => {
     expect(panel?.className).toContain("sm:block");
     expect(screen.getByText("Unanswered")).toBeInTheDocument();
     expect(screen.getByText("Mode")).toBeInTheDocument();
+    expect(screen.getByText("Standard")).toBeInTheDocument();
     expect(
       fold.compareDocumentPosition(screen.getByText("Unanswered")) &
         Node.DOCUMENT_POSITION_FOLLOWING
     ).toBeTruthy();
+  });
+
+  it("shows Review incorrect for that session and Weak Area for a weak-area session", () => {
+    sessionStorage.setItem(
+      "aee-activity-session-summary",
+      JSON.stringify({
+        title: "Management of Care",
+        activityType: "practice",
+        mode: "review_incorrect",
+        answered: 1,
+        total: 7,
+        correct: 0,
+        accuracy: 0,
+        endedEarly: true,
+        attemptsSaved: 0,
+        studyStreakDays: 1,
+      })
+    );
+    const { unmount } = render(<StudyHubSessionSummary />);
+    expect(screen.getByText("Mode").parentElement).toHaveTextContent("Review incorrect");
+    expect(screen.queryByText("Adaptive")).toBeNull();
+    unmount();
+
+    sessionStorage.setItem(
+      "aee-activity-session-summary",
+      JSON.stringify({
+        title: "Management of Care",
+        activityType: "practice",
+        mode: "weak_area",
+        answered: 1,
+        total: 25,
+        correct: 0,
+        accuracy: 0,
+        endedEarly: true,
+        attemptsSaved: 0,
+        studyStreakDays: 1,
+      })
+    );
+    render(<StudyHubSessionSummary />);
+    expect(screen.getByText("Mode").parentElement).toHaveTextContent("Weak Area");
   });
 });

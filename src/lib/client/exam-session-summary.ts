@@ -168,3 +168,13 @@ export function mergeActivitySummary(
 export function receiptQueryKeys(): readonly string[] {
   return RECEIPT_QUERY_KEYS;
 }
+
+/**
+ * MODE chip on a session receipt.
+ * Review incorrect keeps the product label. Every other mode keeps the
+ * previous capitalized words (weak_area → Weak Area, adaptive → Adaptive).
+ */
+export function receiptModeLabel(mode: string): string {
+  if (mode === "review_incorrect") return "Review incorrect";
+  return mode.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+}

@@ -96,6 +96,7 @@ async function FullExamResultsContent({
             : reviewIncorrectHref(fieldId, null, Math.max(missCount, 1))
         }
         proofHref={ROUTES.dashboard}
+        endedEarly={examSession.status === "ended_early"}
       />
 
       <div className="mt-6 flex justify-center">

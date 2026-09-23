@@ -27,6 +27,7 @@ export type StudyMode =
   | "adaptive"
   | "tutor"
   | "weak_area"
+  | "review_incorrect"
   | "mock"
   | "cat";
 

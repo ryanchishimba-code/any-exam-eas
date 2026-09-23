@@ -11,6 +11,7 @@ import {
   clearActivitySessionSummary,
   mergeActivitySummary,
   readActivitySessionSummary,
+  receiptModeLabel,
   receiptQueryKeys,
   type ActivitySessionSummary,
 } from "@/lib/client/exam-session-summary";
@@ -240,8 +241,8 @@ export function StudyHubSessionSummary() {
         {summary.mode && (
           <div className={statClass}>
             <dt className={statLabel}>Mode</dt>
-            <dd className="mt-1.5 text-[17px] font-semibold capitalize tracking-[-0.02em] text-[var(--color-ink)]">
-              {summary.mode.replace(/_/g, " ")}
+            <dd className="mt-1.5 text-[17px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
+              {receiptModeLabel(summary.mode)}
             </dd>
           </div>
         )}

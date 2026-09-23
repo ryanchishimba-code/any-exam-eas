@@ -15,6 +15,7 @@ type Props = {
   analysis: FullExamResultsAnalysis;
   answers: ExamAnswerRecord[];
   onReviewMissed?: () => void;
+  endedEarly?: boolean;
 };
 
 export function FullExamResultsInsights({
@@ -23,8 +24,9 @@ export function FullExamResultsInsights({
   analysis,
   answers,
   onReviewMissed,
+  endedEarly = false,
 }: Props) {
-  const insights = buildFullExamInsights(examSlug, score, analysis, answers);
+  const insights = buildFullExamInsights(examSlug, score, analysis, answers, { endedEarly });
   const uniqueActions = insights.actions.filter(
     (action, index, arr) => arr.findIndex((a) => a.href === action.href) === index
   );
