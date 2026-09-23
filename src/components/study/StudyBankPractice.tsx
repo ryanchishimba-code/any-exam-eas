@@ -77,15 +77,18 @@ import { parsePracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-lin
 import { qbUi } from "@/lib/study/question-bank-ui";
 import {
   availableQuestionCount,
+  bankStyleHonorsLaunchStyle,
   deliberateFormatForLaunch,
   estimateQuestionBankSessionMinutes,
   isRetestSessionCount,
+  preferredQuestionBankStyleParam,
   questionBankCountOptions,
   questionBankCountOptionsForAvailable,
   readPersistedQuestionBankSetup,
   resolveQuestionBankSessionCount,
   resolveQuestionBankStyleAndFormat,
   resolveWheelCountValue,
+  stylePreservedForPracticeUrl,
   validateQuestionBankSession,
   writePersistedQuestionBankSetup,
   isMixedSubjectId,
@@ -323,7 +326,19 @@ export function StudyBankPractice({
   const [subjectId, setSubjectId] = useState("");
   const [questionCount, setQuestionCount] = useState(25);
   const [bankPace, setBankPace] = useState<QuestionBankPace>("untimed");
-  const [bankStyle, setBankStyle] = useState<QuestionBankStyle>("adaptive");
+  const [bankStyle, setBankStyle] = useState<QuestionBankStyle>(() => {
+    const style = searchParams.get("style");
+    // Default chip is Adaptive. A remediation deep link is the style for this
+    // visit from the first render, before effects read remembered setup.
+    if (style === "weak_areas" || style === "review_incorrect") return style;
+    return "adaptive";
+  });
+  // Keep honoring the URL if state is still the remembered/default chip.
+  const urlRemediationStyle =
+    searchParams.get("style") === "weak_areas" || searchParams.get("style") === "review_incorrect"
+      ? (searchParams.get("style") as QuestionBankStyle)
+      : null;
+  const effectiveBankStyle = urlRemediationStyle ?? bankStyle;
   const [practiceFormat, setPracticeFormat] = useState<PracticeFormatMode>("all");
   const [adaptiveMeta, setAdaptiveMeta] = useState<AdaptiveSessionMeta | null>(null);
   const [nclexLength, setNclexLength] = useState<NclexTimedVariant>("minimum");
@@ -485,9 +500,9 @@ export function StudyBankPractice({
   );
   const sessionStudyMode: StudyMode = isTimedExam
     ? "timed"
-    : bankStyle === "weak_areas"
+    : effectiveBankStyle === "weak_areas"
       ? "weak_area"
-      : bankStyle === "adaptive" || bankStyle === "review_incorrect"
+      : effectiveBankStyle === "adaptive" || effectiveBankStyle === "review_incorrect"
         ? "adaptive"
         : bankPace === "timed"
           ? "timed"
@@ -645,7 +660,10 @@ export function StudyBankPractice({
 
     const persisted = readPersistedQuestionBankSetup(fieldId);
     const resolved = resolveQuestionBankStyleAndFormat({
-      styleParam: resolvePracticeSearchParam(searchParams, "style"),
+      styleParam: preferredQuestionBankStyleParam(
+        searchParams.get("style"),
+        readBrowserSearchParam("style")
+      ),
       formatParam: resolvePracticeSearchParam(searchParams, "format"),
       persistedStyle: persisted?.style,
       persistedFormat: persisted?.format,
@@ -741,11 +759,20 @@ export function StudyBankPractice({
   useEffect(() => {
     if (isTimedExam || countsLoading) return;
     if (practiceFormat === "ngn" || practiceFormat === "case") {
-      // Weak areas cannot ride an NGN/case set. Drop the format instead of
-      // rewriting the deep link to Standard.
-      if (deliberateFormatForLaunch(bankStyle, practiceFormat) === null) {
+      // Remediation deep links cannot ride an NGN/case set. Drop the format
+      // instead of rewriting the link to Standard. Check the address bar too:
+      // state can still be the default Adaptive on the hydrate frame.
+      const browserStyle = readBrowserSearchParam("style");
+      const remediationStyle =
+        browserStyle === "weak_areas" || browserStyle === "review_incorrect"
+          ? browserStyle
+          : effectiveBankStyle === "weak_areas" || effectiveBankStyle === "review_incorrect"
+            ? effectiveBankStyle
+            : null;
+      if (remediationStyle) {
+        if (bankStyle !== remediationStyle) setBankStyle(remediationStyle);
         setPracticeFormat("all");
-        syncPracticeUrl({ format: "all", style: "weak_areas" });
+        syncPracticeUrl({ format: "all", style: remediationStyle });
         return;
       }
       const pool = practiceFormatPoolCount(practiceFormat, activeFormats);
@@ -779,7 +806,7 @@ export function StudyBankPractice({
       return resolved;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subjectId, fieldId, subjectCounts, countsLoading, isTimedExam, practiceFormat, activeFormats, bankStyle]);
+  }, [subjectId, fieldId, subjectCounts, countsLoading, isTimedExam, practiceFormat, activeFormats, bankStyle, effectiveBankStyle]);
 
   const subjectUrlSyncedRef = useRef(false);
   useEffect(() => {
@@ -800,9 +827,13 @@ export function StudyBankPractice({
     if (isTimedExam || !subjectId) return;
     const styleParam = resolvePracticeSearchParam(searchParams, "style");
     const formatParam = resolvePracticeSearchParam(searchParams, "format");
-    if (styleParam !== "weak_areas") return;
+    const remediationStyle = preferredQuestionBankStyleParam(
+      styleParam,
+      readBrowserSearchParam("style")
+    );
+    if (remediationStyle !== "weak_areas" && remediationStyle !== "review_incorrect") return;
     if (formatParam !== "ngn" && formatParam !== "case") return;
-    syncPracticeUrl({ style: "weak_areas", format: "all" });
+    syncPracticeUrl({ style: remediationStyle, format: "all" });
     // syncPracticeUrl is recreated each render; this effect follows the URL.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimedExam, subjectId, searchParams]);
@@ -813,7 +844,10 @@ export function StudyBankPractice({
       subjectId,
       count: questionCount,
       pace: bankPace,
-      style: bankStyle,
+      style: stylePreservedForPracticeUrl({
+        stateStyle: bankStyle,
+        browserStyle: readBrowserSearchParam("style"),
+      }),
       taskCategory: isPance ? taskCategory : null,
       format: practiceFormat,
     });
@@ -862,7 +896,11 @@ export function StudyBankPractice({
         subjectId: resolvedSubjectId,
         count: overrides?.count ?? questionCount,
         pace: overrides?.pace ?? bankPace,
-        style: overrides?.style ?? bankStyle,
+        style: stylePreservedForPracticeUrl({
+          stateStyle: effectiveBankStyle,
+          overrideStyle: overrides?.style,
+          browserStyle: readBrowserSearchParam("style"),
+        }),
         format: overrides?.format ?? practiceFormat,
         taskCategory: isPance ? resolvedTaskCategory : null,
         mpjeVariant: isMpje ? resolvedVariant : undefined,
@@ -923,9 +961,10 @@ export function StudyBankPractice({
   }
 
   async function start() {
+    const activeStyle = effectiveBankStyle;
     if (isMpje || !isTimedExam) syncPracticeUrl({ historyOnly: true });
 
-    const deliberateFormat = deliberateFormatForLaunch(bankStyle, practiceFormat);
+    const deliberateFormat = deliberateFormatForLaunch(activeStyle, practiceFormat);
     if (!isTimedExam) {
       const validation = deliberateFormat
         ? validatePracticeFormatSession({
@@ -940,7 +979,7 @@ export function StudyBankPractice({
             subjectId,
             questionCount,
             subjectCounts,
-            bankStyle,
+            bankStyle: activeStyle,
             taskCategory: isPance ? taskCategory : null,
           });
       if (!validation.ok) {
@@ -953,8 +992,8 @@ export function StudyBankPractice({
     const isStale = () => generation !== fetchGenerationRef.current;
 
     const remediationMode: RemediationMode | null =
-      !isTimedExam && (bankStyle === "review_incorrect" || bankStyle === "weak_areas")
-        ? bankStyle
+      !isTimedExam && (activeStyle === "review_incorrect" || activeStyle === "weak_areas")
+        ? activeStyle
         : null;
     if (remediationMode) {
       setCheckingRemediation(true);
@@ -1117,9 +1156,9 @@ export function StudyBankPractice({
         return;
       }
 
-      const useAdaptive = bankStyle === "adaptive" || bankStyle === "weak_areas";
-      const useReviewIncorrect = bankStyle === "review_incorrect";
-      const useToday = bankStyle === "today";
+      const useAdaptive = activeStyle === "adaptive" || activeStyle === "weak_areas";
+      const useReviewIncorrect = activeStyle === "review_incorrect";
+      const useToday = activeStyle === "today";
       const effectiveSubjectId = subjectId || subjects[0]?.id || MIXED_SUBJECT_ID || "";
       if (!useToday && !effectiveSubjectId) {
         throw new Error("Choose a topic before starting practice.");
@@ -1282,8 +1321,8 @@ export function StudyBankPractice({
       }
 
       if (useAdaptive) {
-        const studyMode = bankStyle === "weak_areas" ? "weak_area" : "adaptive";
-        if (bankStyle === "weak_areas") {
+        const studyMode = activeStyle === "weak_areas" ? "weak_area" : "adaptive";
+        if (activeStyle === "weak_areas") {
           const preflight = await fetchJson(
             "/api/study/adaptive/next",
             {
@@ -1314,7 +1353,7 @@ export function StudyBankPractice({
         const controller = new AbortController();
         const timer = window.setTimeout(
           () => controller.abort(),
-          bankStyle === "weak_areas" ? 20_000 : 60_000
+          activeStyle === "weak_areas" ? 20_000 : 60_000
         );
         let res: Response;
         try {
@@ -1349,7 +1388,7 @@ export function StudyBankPractice({
           window.clearTimeout(timer);
         }
         const data = await res.json();
-        if (bankStyle === "weak_areas") {
+        if (activeStyle === "weak_areas") {
           const followup = decisionFromRemediationPayload({
             mode: "weak_areas",
             ok: res.ok,
@@ -1382,7 +1421,7 @@ export function StudyBankPractice({
         if (raw.length === 0) {
           throw new Error("No questions in bank for this selection.");
         }
-        if (bankStyle !== "weak_areas") {
+        if (activeStyle !== "weak_areas") {
           expectExactSessionCount(raw.length, limit);
         }
         rememberLaunchOutcome(null);
@@ -1494,13 +1533,28 @@ export function StudyBankPractice({
       return;
     }
     if (autostartAttempted.current) return;
-    if (!isTimedExam && !subjectId && bankStyle !== "today") return;
+    // A remembered Adaptive chip must not launch before the URL style is applied.
+    const launchStyle = preferredQuestionBankStyleParam(
+      searchParams.get("style"),
+      readBrowserSearchParam("style")
+    );
+    if (!bankStyleHonorsLaunchStyle(effectiveBankStyle, launchStyle)) return;
+    if (!isTimedExam && !subjectId && effectiveBankStyle !== "today") return;
     autostartAttempted.current = true;
     document.getElementById("practice-launcher")?.scrollIntoView({ behavior: "smooth", block: "start" });
     void start();
-  }, [autostartRequested, isTimedExam, subjectId, bankStyle, questions, loading, searchParams]);
+  }, [
+    autostartRequested,
+    isTimedExam,
+    subjectId,
+    bankStyle,
+    effectiveBankStyle,
+    questions,
+    loading,
+    searchParams,
+  ]);
 
-  const launchFormat = deliberateFormatForLaunch(bankStyle, practiceFormat);
+  const launchFormat = deliberateFormatForLaunch(effectiveBankStyle, practiceFormat);
 
   const bankSessionValidation = useMemo(
     () =>
@@ -1519,7 +1573,7 @@ export function StudyBankPractice({
               subjectId,
               questionCount,
               subjectCounts,
-              bankStyle,
+              bankStyle: effectiveBankStyle,
               taskCategory: isPance ? taskCategory : null,
             }),
     [
@@ -1528,7 +1582,7 @@ export function StudyBankPractice({
       subjectId,
       questionCount,
       subjectCounts,
-      bankStyle,
+      effectiveBankStyle,
       isPance,
       taskCategory,
       activeFormats,
@@ -1563,9 +1617,10 @@ export function StudyBankPractice({
     [questionCount, bankPace]
   );
 
-  const remediationStyle = bankStyle === "review_incorrect" || bankStyle === "weak_areas";
+  const remediationStyle =
+    effectiveBankStyle === "review_incorrect" || effectiveBankStyle === "weak_areas";
   const blockSessionSkeleton = reviewIncorrectBlocksSessionSkeleton({
-    bankStyle,
+    bankStyle: effectiveBankStyle,
     styleParam: searchParams.get("style"),
   });
   if (
@@ -1602,11 +1657,11 @@ export function StudyBankPractice({
       : `${field}${mpjeScope} · ${
           formatTitle ? `${formatTitle} · ${scopedTopicLabel}` : scopedTopicLabel
         } · ${questions.length} questions · ${
-          bankStyle === "adaptive"
+          effectiveBankStyle === "adaptive"
             ? "Adaptive practice"
-            : bankStyle === "weak_areas"
+            : effectiveBankStyle === "weak_areas"
               ? "Weak areas"
-              : bankStyle === "review_incorrect"
+              : effectiveBankStyle === "review_incorrect"
                 ? "Review incorrect"
                 : bankPace === "timed"
                   ? "Timed"
@@ -1626,7 +1681,7 @@ export function StudyBankPractice({
           sourceType="bank"
           mode={sessionStudyMode}
           practiceFormat={launchFormat ?? undefined}
-          reviewQueue={bankStyle === "review_incorrect"}
+          reviewQueue={effectiveBankStyle === "review_incorrect"}
           title={title}
           adaptiveMeta={adaptiveMeta ?? undefined}
           timedSessionSeconds={timedSessionSeconds}
@@ -1831,9 +1886,9 @@ export function StudyBankPractice({
             >
               <PanceTaskFocus
                 taskCategory={taskCategory}
-                disabled={bankStyle !== "standard"}
+                disabled={effectiveBankStyle !== "standard"}
                 onTaskCategoryChange={(next) => {
-                  if (bankStyle !== "standard") {
+                  if (effectiveBankStyle !== "standard") {
                     setBankStyle("standard");
                   }
                   setTaskCategory(next);
@@ -1856,7 +1911,7 @@ export function StudyBankPractice({
                   });
                 }}
               />
-              {bankStyle !== "standard" ? (
+              {effectiveBankStyle !== "standard" ? (
                 <p className={cn(qbUi.sectionHint, "px-0.5")}>
                   Switch to Standard selection to filter by task area.
                 </p>
@@ -1875,8 +1930,8 @@ export function StudyBankPractice({
                 setSubjectId(id);
                 if (
                   isMixedSubjectId(id) &&
-                  bankStyle !== "standard" &&
-                  bankStyle !== "review_incorrect"
+                  effectiveBankStyle !== "standard" &&
+                  effectiveBankStyle !== "review_incorrect"
                 ) {
                   setBankStyle("standard");
                   syncPracticeUrl({ subjectId: id, style: "standard" });
@@ -1894,7 +1949,7 @@ export function StudyBankPractice({
                 setBankPace(p);
                 syncPracticeUrl({ pace: p });
               }}
-              bankStyle={bankStyle}
+              bankStyle={effectiveBankStyle}
               onBankStyleChange={(s) => {
                 setBankStyle(s);
                 syncPracticeUrl({ style: s });
@@ -1915,7 +1970,7 @@ export function StudyBankPractice({
                   next === "all" || options.length === 0
                     ? questionCount
                     : resolveWheelCountValue(questionCount, options);
-                const style = next === "all" ? bankStyle : "standard";
+                const style = next === "all" ? effectiveBankStyle : "standard";
                 setPracticeFormat(next);
                 setQuestionCount(resolved);
                 if (style !== bankStyle) setBankStyle(style);
@@ -1991,7 +2046,7 @@ export function StudyBankPractice({
 
           {checkingRemediation && !remediationEmpty ? (
             <p role="status" className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-              Checking {bankStyle === "review_incorrect" ? "incorrect items" : "weak areas"}…
+              Checking {effectiveBankStyle === "review_incorrect" ? "incorrect items" : "weak areas"}…
             </p>
           ) : null}
 
@@ -2053,7 +2108,7 @@ export function StudyBankPractice({
             topicLabel={previewTopicLabel}
             questionCount={questionCount}
             pace={bankPace}
-            bankStyle={bankStyle}
+            bankStyle={effectiveBankStyle}
             estimatedMinutes={previewEstimatedMinutes}
             availableCount={previewAvailableCount}
             validationMessage={bankSessionValidation.ok ? undefined : bankSessionValidation.message}
@@ -2064,7 +2119,7 @@ export function StudyBankPractice({
             )}
             onTryMixed={() => {
               setSubjectId(MIXED_SUBJECT_ID);
-              if (bankStyle !== "standard" && bankStyle !== "review_incorrect") {
+              if (effectiveBankStyle !== "standard" && effectiveBankStyle !== "review_incorrect") {
                 setBankStyle("standard");
               }
               syncPracticeUrl({ subjectId: MIXED_SUBJECT_ID, style: "standard" });
