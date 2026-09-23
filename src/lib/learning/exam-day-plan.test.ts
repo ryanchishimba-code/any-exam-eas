@@ -668,7 +668,9 @@ describe("week countdown plan", () => {
       expect(plan.weekPlan.goals.map((goal) => goal.id)).toContain("remediation");
       expect(plan.items[0]?.id).toBe("exam_sim");
       expect(plan.items[1]?.id).toBe("incorrect");
-      expect(plan.items.find((item) => item.id === "exam_sim")?.href).toBe(`/full-exam/${examSlug}`);
+      expect(plan.items.find((item) => item.id === "exam_sim")?.href).toBe(
+        `/full-exam/${examSlug}?mode=50`
+      );
       expect(planText(plan)).not.toMatch(/you will pass/i);
       expect(planText(plan)).not.toMatch(/guaranteed pass/i);
     }

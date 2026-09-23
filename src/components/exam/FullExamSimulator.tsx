@@ -643,6 +643,7 @@ export function FullExamSimulator({
             complete: true,
             endedEarly,
             score,
+            answers: log,
             weakAreas: topicBreakdown
               .filter((t) => t.pct < 70)
               .map((t) => ({ topic: t.topic, weight: t.total - t.correct })),

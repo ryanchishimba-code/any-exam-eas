@@ -47,6 +47,7 @@ import {
   rollingAccuracyFromAttempts,
   type ExamSimTrend,
 } from "@/lib/learning/exam-day-plan";
+import { examSimQualifyingQuestionCount } from "@/lib/learning/full-exam-pass-path";
 import { countOpenIncorrectItems } from "@/lib/learning/open-incorrect";
 import {
   groupOpenRemediationLoops,
@@ -583,7 +584,7 @@ async function loadExamRoadmapData(
       history.sessions.map((session) => ({
         status: session.status,
         score: session.score,
-        questionCount: session.questionCount,
+        questionCount: examSimQualifyingQuestionCount(session),
         practiceBandLabel: practiceBandLabelFromAnalysis(session.analysis),
       }))
     ),
@@ -591,7 +592,7 @@ async function loadExamRoadmapData(
       history.sessions.map((session) => ({
         status: session.status,
         score: session.score,
-        questionCount: session.questionCount,
+        questionCount: examSimQualifyingQuestionCount(session),
         completedAt: session.completedAt,
       })),
       new Date()
@@ -617,7 +618,7 @@ export async function getExamRoadmapData(
       ? options.usmleFieldId
       : examSlug;
   return cacheGetOrSet(
-    cacheKey(["exam-roadmap-v5", userId, fieldKey]),
+    cacheKey(["exam-roadmap-v6", userId, fieldKey]),
     CACHE_TTL.learningDashboard,
     () => loadExamRoadmapData(userId, examSlug, options),
     { staleTtlMs: CACHE_STALE.learningDashboard }

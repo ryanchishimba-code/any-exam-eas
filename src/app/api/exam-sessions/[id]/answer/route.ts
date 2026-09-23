@@ -4,12 +4,22 @@ import {
   completeExamSession,
   getExamSession,
 } from "@/lib/exam-sessions/service";
-import { calculateExamScorePercent } from "@/lib/exam-sessions/scoring";
+import { calculateExamScorePercent, mergeExamAnswers } from "@/lib/exam-sessions/scoring";
 import { requirePremiumApi } from "@/lib/api-access";
+import { examSlugToFieldId } from "@/lib/exams/catalog";
+import type { ExamSlug } from "@/lib/exams/catalog";
+import {
+  analysisWithAnsweredCount,
+  draftsFromFullExamAnswers,
+  fullExamStudyMode,
+  parseFullExamAnswerLog,
+  snapshotsFromAnalysis,
+} from "@/lib/learning/full-exam-pass-path";
+import { persistCompletedSessionAttempts } from "@/lib/learning/persist-session-attempts";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
 export const runtime = "nodejs";
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 export async function PATCH(
   req: Request,
@@ -31,16 +41,43 @@ export async function PATCH(
     const stored = (Array.isArray(session.answers)
       ? session.answers
       : []) as ExamAnswerRecord[];
-    const totalQuestions = session.questionCount || stored.length;
-    const score = calculateExamScorePercent(stored, totalQuestions);
+    const submitted = parseFullExamAnswerLog(body.answers);
+    const answers = (
+      submitted
+        ? submitted.reduce((acc, answer) => mergeExamAnswers(acc, answer), stored)
+        : stored
+    ) as ExamAnswerRecord[];
+    const drafts = draftsFromFullExamAnswers({
+      answers,
+      snapshots: snapshotsFromAnalysis(body.analysis),
+    });
+    const analysis = analysisWithAnsweredCount(body.analysis, drafts.length);
+    const totalQuestions = session.questionCount || drafts.length;
+    const score = calculateExamScorePercent(answers, totalQuestions);
+    const fieldId =
+      session.fieldId ??
+      examSlugToFieldId(session.examType as ExamSlug);
+    const persisted = await persistCompletedSessionAttempts({
+      userId: premium.userId,
+      field: fieldId,
+      sessionId: id,
+      studyMode: fullExamStudyMode(analysis),
+      drafts,
+    });
 
     await completeExamSession(id, premium.userId, {
       score,
       weakAreas: body.weakAreas ?? [],
-      analysis: body.analysis,
+      analysis,
       endedEarly: Boolean(body.endedEarly),
+      answers,
     });
-    return NextResponse.json({ ok: true, score });
+    return NextResponse.json({
+      ok: true,
+      score,
+      attemptsSaved: persisted.attemptsSaved,
+      reviewIncorrectHref: persisted.reviewIncorrectHref,
+    });
   }
 
   const answers = await appendExamAnswer(id, premium.userId, {

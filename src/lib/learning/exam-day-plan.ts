@@ -41,6 +41,7 @@
  */
 
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { fullExamLaunchHref } from "@/lib/full-exam/hrefs";
 import {
   buildWeekCountdown,
   projectionOrder,
@@ -786,9 +787,9 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
       id: "exam_sim",
       title: "Exam simulation",
       detail:
-        "One exam-shaped practice set. The result is a practice band, not a licensure result.",
+        "Opens a 50-question practice set. The result is a practice band, not a licensure result.",
       why: null,
-      href: `${ROUTES.fullExam}/${input.examSlug}`,
+      href: fullExamLaunchHref(input.examSlug, { mode: "50" }),
       cta: "Start exam simulation",
       doneToday: false,
     });

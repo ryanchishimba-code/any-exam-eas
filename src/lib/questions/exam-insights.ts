@@ -24,19 +24,20 @@ export type FullExamInsights = {
 function performanceHeadline(score: number): { headline: string; subline: string } {
   if (score >= 85) {
     return {
-      headline: "Strong exam performance",
-      subline: "You're board-ready on most domains — polish weak spots with targeted review.",
+      headline: "Strong practice band",
+      subline:
+        "Most answers in this simulation were correct. Review any misses, then check readiness proof.",
     };
   }
   if (score >= 70) {
     return {
-      headline: "Solid foundation — room to grow",
-      subline: "Focus your next sessions on the topics below to lift your score quickly.",
+      headline: "Developing practice band",
+      subline: "Use the misses from this simulation as the next remediation set.",
     };
   }
   return {
-    headline: "Build momentum with focused practice",
-    subline: "Review missed items, then drill your weakest blueprint areas in short sessions.",
+    headline: "Building practice band",
+    subline: "Review the misses from this simulation, then drill those topics in shorter sets.",
   };
 }
 
