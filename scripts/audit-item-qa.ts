@@ -28,6 +28,7 @@ import {
   evaluateItemPublishGate,
   findNearDuplicatePairs,
   ITEM_QA_PIPELINE,
+  NEAR_DUPLICATE_CODE,
   readItemQaRecord,
   withItemQaRecord,
   type DuplicatePair,
@@ -150,7 +151,10 @@ async function applyFlags(
       (issue) => issue.severity === "error" && (includeRationale || issue.area === "text")
     );
     const codes = [
-      ...new Set([...relevant.map((issue) => issue.code), ...(partnerId ? ["near_duplicate"] : [])]),
+      ...new Set([
+        ...relevant.map((issue) => issue.code),
+        ...(partnerId ? [NEAR_DUPLICATE_CODE] : []),
+      ]),
     ];
     const summaryParts = [
       partnerId ? `Near-duplicate of ${partnerId}.` : "",
@@ -240,7 +244,9 @@ async function main() {
   let queued = 0;
   for (const row of scanned) {
     for (const issue of row.issues) byCode[issue.code] = (byCode[issue.code] ?? 0) + 1;
-    if (duplicateOf.has(row.id)) byCode.near_duplicate = (byCode.near_duplicate ?? 0) + 1;
+    if (duplicateOf.has(row.id)) {
+      byCode[NEAR_DUPLICATE_CODE] = (byCode[NEAR_DUPLICATE_CODE] ?? 0) + 1;
+    }
     if (shouldQueue(row, duplicateOf.has(row.id), args.includeRationale)) queued += 1;
   }
 

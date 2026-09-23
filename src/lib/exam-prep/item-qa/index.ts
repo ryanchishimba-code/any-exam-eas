@@ -1,5 +1,22 @@
 export { findNearDuplicatePairs, type DuplicateCandidate, type DuplicatePair } from "./duplicates";
-export { readItemQaRecord, withItemQaRecord, ITEM_QA_PIPELINE, type ItemQaRecord } from "./flag";
+export {
+  readItemQaRecord,
+  withItemQaRecord,
+  ITEM_QA_PIPELINE,
+  NEAR_DUPLICATE_CODE,
+  type ItemQaRecord,
+} from "./flag";
+export {
+  MAX_NEAR_DUPLICATE_CHAIN,
+  planNearDuplicateRetirements,
+  nearDuplicateRetireWrite,
+  type NearDuplicateBankRow,
+  type NearDuplicateKeeperRow,
+  type NearDuplicateRetireItem,
+  type NearDuplicateRetirePlan,
+  type NearDuplicateSkip,
+  type NearDuplicateSkipReason,
+} from "./retire-near-duplicates";
 export { itemFingerprint, itemTokens, jaccardSimilarity, normalizeItemText } from "./normalize";
 export { formatReviewMonth, resolveItemProvenance, type ItemProvenance } from "./provenance";
 export {
