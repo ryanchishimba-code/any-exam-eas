@@ -9,9 +9,11 @@ import {
   blueprintTouchCoveragePct,
   buildExamDayPlan,
   calendarDaysUntil,
-  classifyExamDayReadiness,
+  classifyReadinessBand,
+  examSimTrendFromSessions,
   readinessScoreFromFactors,
   remediationCompletionPct,
+  rollingAccuracyFromAttempts,
   type ExamDayTopicInput,
 } from "./exam-day-plan";
 
@@ -66,20 +68,26 @@ describe("buildExamDayPlan", () => {
 
     expect(plan.daysUntilExam).toBe(calendarDaysUntil("2026-11-03", now));
     expect(plan.pacing).toMatch(/NCLEX-RN/);
-    expect(plan.items.map((item) => item.id)).toEqual(["qbank", "incorrect", "guide", "drugs"]);
+    expect(plan.items.map((item) => item.id)).toEqual(["qbank", "guide", "drugs", "incorrect"]);
     expect(plan.items[0]?.title).toBe(`${TODAY_QBANK_COUNT} Qbank questions`);
+    expect(plan.items[0]?.why).toMatch(/Management of Care/);
+    expect(plan.items[0]?.why).toMatch(/untouched high-weight/);
     expect(plan.items[0]?.href).toContain("field=nursing");
     expect(plan.items[0]?.href).toContain(`count=${TODAY_QBANK_COUNT}`);
     expect(plan.items[0]?.href).toContain("autostart=1");
-    expect(plan.items[1]?.href).toBeNull();
-    expect(plan.items[1]?.detail).toMatch(/0 incorrect items/);
-    expect(plan.items[2]?.title).toBe("1 guide topic");
-    expect(plan.items[3]?.title).toBe(`${TODAY_DRUG_COUNT} drugs`);
+    const incorrect = plan.items.find((item) => item.id === "incorrect");
+    expect(incorrect?.href).toBeNull();
+    expect(incorrect?.detail).toMatch(/0 incorrect items/);
+    expect(plan.items.find((item) => item.id === "guide")?.title).toBe("1 guide topic");
+    expect(plan.items.find((item) => item.id === "drugs")?.title).toBe(`${TODAY_DRUG_COUNT} drugs`);
     expect(plan.readiness.visible).toBe(false);
     expect(plan.readiness.label).toBeNull();
+    expect(plan.readiness.headline).toBe("Not enough practice yet");
+    expect(plan.readiness.sampleDetail).toMatch(/0 of 100/);
     expect(plan.readiness.score).toBeNull();
     expect(plan.readiness.minSample).toBe(READINESS_MIN_SAMPLE);
     expect(plan.readiness.formula).toBe(READINESS_FORMULA);
+    expect(plan.readiness.criteria.every((row) => row.status === "not_scored")).toBe(true);
     expect(planText(plan)).not.toMatch(/you will pass/i);
   });
 
@@ -132,10 +140,12 @@ describe("buildExamDayPlan", () => {
         }),
       ],
     });
+    expect(before.items[0]?.id).toBe("qbank");
     expect(before.items[0]?.detail).toMatch(/Management of Care/);
-    expect(before.items[1]?.title).toBe("Review 2 incorrect");
-    expect(before.items[1]?.href).toContain("style=review_incorrect");
-    expect(before.items[1]?.href).toContain("count=2");
+    const beforeIncorrect = before.items.find((item) => item.id === "incorrect");
+    expect(beforeIncorrect?.title).toBe("Review 2 incorrect");
+    expect(beforeIncorrect?.href).toContain("style=review_incorrect");
+    expect(beforeIncorrect?.href).toContain("count=2");
     expect(before.readiness.visible).toBe(false);
 
     const after = buildExamDayPlan({
@@ -210,8 +220,11 @@ describe("buildExamDayPlan", () => {
     expect(shown.readiness.coveragePct).toBe(100);
     expect(shown.readiness.remediationPct).toBe(100);
     expect(shown.readiness.score).toBe(readinessScoreFromFactors(100, 80, 100));
-    expect(shown.readiness.label).toBe(classifyExamDayReadiness(shown.readiness.score ?? 0));
+    expect(shown.readiness.label).toBe("Ready");
+    expect(shown.readiness.bandKey).toBe(classifyReadinessBand(3).key);
+    expect(shown.readiness.criteria.filter((row) => row.status === "met")).toHaveLength(3);
     expect(shown.readiness.formula).toMatch(/not a pass prediction/);
+    expect(shown.readiness.domains.map((domain) => domain.label).sort()).toEqual(["Alpha", "Beta"]);
     expect(planText(shown)).not.toMatch(/you will pass/i);
   });
 
@@ -255,9 +268,10 @@ describe("buildExamDayPlan", () => {
       openIncorrect: null,
       topics: [],
     });
-    expect(plan.items[1]?.detail).toMatch(/could not be counted/);
-    expect(plan.items[1]?.href).toContain("style=review_incorrect");
-    expect(plan.items[1]?.href).not.toContain("autostart=1");
+    const incorrect = plan.items.find((item) => item.id === "incorrect");
+    expect(incorrect?.detail).toMatch(/could not be counted/);
+    expect(incorrect?.href).toContain("style=review_incorrect");
+    expect(incorrect?.href).not.toContain("autostart=1");
     expect(plan.items[0]?.href).toContain("field=usmle-step-1");
   });
 
@@ -272,8 +286,11 @@ describe("buildExamDayPlan", () => {
       openIncorrect: 18,
       topics: [topic({ id: "cardio", label: "Cardiology", practiceHref: "/question-bank?subjectId=cardio" })],
     });
-    expect(plan.items[1]?.title).toBe(`Review ${TODAY_INCORRECT_CAP} incorrect`);
-    expect(plan.items[1]?.href).toContain(`count=${TODAY_INCORRECT_CAP}`);
+    const incorrect = plan.items.find((item) => item.id === "incorrect");
+    expect(incorrect?.title).toBe(`Review ${TODAY_INCORRECT_CAP} incorrect`);
+    expect(incorrect?.href).toContain(`count=${TODAY_INCORRECT_CAP}`);
+    expect(plan.items[0]?.id).toBe("incorrect");
+    expect(plan.items[0]?.why).toMatch(/18/);
     expect(plan.readiness.remediationPct).toBe(remediationCompletionPct(40, 18));
   });
 });
@@ -288,10 +305,258 @@ describe("readiness factors", () => {
     ).toBe(25);
   });
 
-  it("multiplies the three factors", () => {
+  it("multiplies the three factors and classifies by how many criteria are met", () => {
     expect(readinessScoreFromFactors(80, 90, 50)).toBe(36);
-    expect(classifyExamDayReadiness(36)).toBe("Early practice");
-    expect(classifyExamDayReadiness(64)).toBe("Building");
-    expect(classifyExamDayReadiness(81)).toBe("Steady practice");
+    expect(classifyReadinessBand(3)).toEqual({ key: "ready", label: "Ready" });
+    expect(classifyReadinessBand(2)).toEqual({ key: "almost", label: "Almost" });
+    expect(classifyReadinessBand(1)).toEqual({ key: "not_yet", label: "Not yet" });
+  });
+});
+
+describe("readiness proof gaps", () => {
+  const now = new Date("2026-09-22T15:00:00.000Z");
+
+  it("puts review incorrect first when open remediations are the top gap", () => {
+    const plan = buildExamDayPlan({
+      examSlug: "nclex",
+      examName: "NCLEX-RN",
+      fieldId: "nursing",
+      now,
+      totalAttempts: 120,
+      recentAccuracyPct: 74,
+      recentWindowAttempts: 100,
+      openIncorrect: 12,
+      topics: [
+        topic({
+          id: "safety",
+          label: "Safety and Infection Control",
+          blueprintWeightPct: 12,
+          attempts: 40,
+          accuracyPct: 80,
+          coveragePct: 50,
+        }),
+        topic({
+          id: "management-of-care",
+          label: "Management of Care",
+          blueprintWeightPct: 18,
+          attempts: 40,
+          accuracyPct: 78,
+          coveragePct: 45,
+        }),
+      ],
+    });
+    expect(plan.items[0]?.id).toBe("incorrect");
+    expect(plan.items[0]?.why).toMatch(/12 incorrect items are still open/);
+    expect(plan.readiness.leadReason).toBe(plan.items[0]?.why);
+    expect(plan.readiness.visible).toBe(true);
+    expect(plan.readiness.label).toBe("Almost");
+    expect(plan.readiness.criteria.find((row) => row.id === "remediation")?.status).toBe("missing");
+  });
+
+  it("keeps an untouched high-weight domain ahead of a short incorrect queue", () => {
+    const plan = buildExamDayPlan({
+      examSlug: "usmle",
+      examName: "USMLE Step 2",
+      fieldId: "usmle-step-2",
+      now,
+      totalAttempts: 40,
+      recentAccuracyPct: 70,
+      recentWindowAttempts: 40,
+      openIncorrect: 2,
+      topics: [
+        topic({
+          id: "cardiovascular",
+          label: "Cardiovascular",
+          blueprintWeightPct: 13,
+          attempts: 0,
+          coveragePct: 0,
+        }),
+        topic({
+          id: "renal",
+          label: "Renal",
+          blueprintWeightPct: 8,
+          attempts: 20,
+          accuracyPct: 80,
+          coveragePct: 40,
+        }),
+      ],
+    });
+    expect(plan.items[0]?.id).toBe("qbank");
+    expect(plan.items[0]?.why).toMatch(/Cardiovascular/);
+    expect(plan.items[0]?.detail).toMatch(/Cardiovascular/);
+    expect(plan.items.map((item) => item.id)[1]).toBe("guide");
+  });
+
+  it("shows Almost when two criteria are met and Not yet when coverage is the only miss among a weak set", () => {
+    const almost = buildExamDayPlan({
+      examSlug: "pance",
+      examName: "PANCE",
+      fieldId: "pance",
+      now,
+      totalAttempts: 100,
+      recentAccuracyPct: 72,
+      recentWindowAttempts: 80,
+      openIncorrect: 4,
+      topics: [
+        topic({
+          id: "cardio",
+          label: "Cardiovascular",
+          blueprintWeightPct: 80,
+          attempts: 90,
+          accuracyPct: 75,
+          coveragePct: 40,
+        }),
+        topic({
+          id: "pulm",
+          label: "Pulmonary",
+          blueprintWeightPct: 20,
+          attempts: 0,
+          coveragePct: 0,
+        }),
+      ],
+    });
+    expect(almost.readiness.label).toBe("Almost");
+    expect(almost.readiness.criteria.find((row) => row.id === "coverage")?.status).toBe("missing");
+    expect(almost.readiness.criteria.find((row) => row.id === "coverage")?.detail).toMatch(/Pulmonary/);
+
+    const early = buildExamDayPlan({
+      examSlug: "pance",
+      examName: "PANCE",
+      fieldId: "pance",
+      now,
+      totalAttempts: 100,
+      recentAccuracyPct: 40,
+      recentWindowAttempts: 20,
+      openIncorrect: 30,
+      topics: [
+        topic({
+          id: "cardio",
+          label: "Cardiovascular",
+          blueprintWeightPct: 50,
+          attempts: 0,
+          coveragePct: 0,
+        }),
+      ],
+    });
+    expect(early.readiness.label).toBe("Not yet");
+    expect(early.readiness.criteria.find((row) => row.id === "recent_accuracy")?.detail).toMatch(/40 answers/);
+  });
+
+  it("does not let an optional exam simulation change the band", () => {
+    const shared = {
+      examSlug: "nclex" as const,
+      examName: "NCLEX-RN",
+      fieldId: "nursing",
+      now,
+      totalAttempts: 100,
+      recentAccuracyPct: 80,
+      recentWindowAttempts: 100,
+      openIncorrect: 0,
+      topics: [
+        topic({
+          id: "a",
+          label: "Alpha",
+          blueprintWeightPct: 50,
+          attempts: 50,
+          accuracyPct: 80,
+          coveragePct: 40,
+        }),
+        topic({
+          id: "b",
+          label: "Beta",
+          blueprintWeightPct: 50,
+          attempts: 50,
+          accuracyPct: 80,
+          coveragePct: 40,
+        }),
+      ],
+    };
+    const without = buildExamDayPlan(shared);
+    const withSim = buildExamDayPlan({
+      ...shared,
+      examSimTrend: {
+        latestScore: 42,
+        previousScore: 55,
+        direction: "down",
+        completedCount: 2,
+        practiceBandLabel: "Building practice band",
+      },
+    });
+    expect(withSim.readiness.label).toBe(without.readiness.label);
+    expect(withSim.readiness.score).toBe(without.readiness.score);
+    expect(withSim.readiness.criteria.find((row) => row.id === "exam_sim")?.status).toBe("not_scored");
+    expect(withSim.readiness.criteria.find((row) => row.id === "exam_sim")?.detail).toMatch(/not a licensure result/);
+    expect(planText(withSim)).not.toMatch(/you will pass/i);
+  });
+
+  it("updates the proof when open remediations shrink", () => {
+    const shared = {
+      examSlug: "naplex" as const,
+      examName: "NAPLEX",
+      fieldId: "pharmacy",
+      now,
+      totalAttempts: 110,
+      recentAccuracyPct: 76,
+      recentWindowAttempts: 100,
+      topics: [
+        topic({
+          id: "medication-use-process",
+          label: "Medication Use Process",
+          blueprintWeightPct: 40,
+          attempts: 40,
+          accuracyPct: 70,
+          coveragePct: 30,
+        }),
+      ],
+    };
+    const open = buildExamDayPlan({ ...shared, openIncorrect: 20 });
+    const closed = buildExamDayPlan({ ...shared, openIncorrect: 2 });
+    expect(open.items[0]?.id).toBe("incorrect");
+    expect(closed.readiness.remediationPct).toBeGreaterThan(open.readiness.remediationPct);
+    expect(closed.readiness.score).not.toBe(open.readiness.score);
+    expect(closed.items[0]?.id).not.toBe("incorrect");
+  });
+});
+
+describe("rolling accuracy and exam simulation trend", () => {
+  it("uses the newest answers in the rolling window", () => {
+    const attempts = [
+      ...Array.from({ length: 80 }, (_, index) => ({
+        correct: false,
+        createdAt: new Date(Date.UTC(2026, 0, 1, 0, index)),
+      })),
+      ...Array.from({ length: 20 }, (_, index) => ({
+        correct: true,
+        createdAt: new Date(Date.UTC(2026, 1, 1, 0, index)),
+      })),
+    ];
+    const window = rollingAccuracyFromAttempts(attempts, 20);
+    expect(window.windowAttempts).toBe(20);
+    expect(window.pct).toBe(100);
+    expect(rollingAccuracyFromAttempts(attempts).pct).toBe(20);
+  });
+
+  it("ignores short sessions and untrusted band labels", () => {
+    expect(
+      examSimTrendFromSessions([
+        { status: "completed", score: 90, questionCount: 10, practiceBandLabel: "You will pass" },
+      ])
+    ).toBeNull();
+    const trend = examSimTrendFromSessions([
+      {
+        status: "completed",
+        score: 70,
+        questionCount: 85,
+        practiceBandLabel: "Developing practice band",
+      },
+      { status: "completed", score: 60, questionCount: 100 },
+      { status: "in_progress", score: 10, questionCount: 85 },
+    ]);
+    expect(trend).toMatchObject({
+      latestScore: 70,
+      previousScore: 60,
+      direction: "up",
+      practiceBandLabel: "Developing practice band",
+    });
   });
 });

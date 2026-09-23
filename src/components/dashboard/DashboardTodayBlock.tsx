@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Lock } from "lucide-react";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
+import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import { dbUi } from "@/lib/study/dashboard-ui";
 
 export function DashboardTodayBlock({
@@ -12,7 +13,6 @@ export function DashboardTodayBlock({
   studyLocked?: boolean;
 }) {
   const lockedHref = postTrialCheckoutHref();
-  const band = plan.readiness;
 
   return (
     <section aria-labelledby="today-block-heading" className={`${dbUi.heroSurface} space-y-6`}>
@@ -39,10 +39,18 @@ export function DashboardTodayBlock({
           const filledCta = item.id === "incorrect" && Boolean(href);
           const body = (
             <>
-              <span className={dbUi.eyebrow}>{index + 1}</span>
+              <span className="flex flex-wrap items-center gap-2">
+                <span className={dbUi.eyebrow}>{index + 1}</span>
+                {index === 0 ? <span className={dbUi.statusPillAccent}>First priority</span> : null}
+              </span>
               <span className="mt-2 block text-[17px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
                 {item.title}
               </span>
+              {item.why ? (
+                <span className="mt-1.5 block text-[13px] font-medium leading-relaxed text-[var(--color-accent)]">
+                  {item.why}
+                </span>
+              ) : null}
               <span className="mt-1.5 block text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
                 {item.detail}
               </span>
@@ -83,25 +91,7 @@ export function DashboardTodayBlock({
       ) : null}
 
       <div className="border-t border-[var(--color-border)]/45 pt-5">
-        <p className={dbUi.eyebrow}>Readiness band</p>
-        {band.visible && band.label && band.score != null ? (
-          <>
-            <p className="mt-1 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)]">
-              {band.label}
-              <span className="text-[var(--color-ink-muted)]"> · {band.score}</span>
-            </p>
-            <p className={`${dbUi.subtitle} mt-2`}>
-              {band.coveragePct}% coverage × {band.recentAccuracyPct}% recent accuracy ×{" "}
-              {band.remediationPct}% remediation completion = {band.score}. {band.formula}
-            </p>
-          </>
-        ) : (
-          <p className="mt-1 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)]">
-            Band hidden
-          </p>
-        )}
-        <p className={`${dbUi.subtitle} mt-2`}>{band.sampleDetail}</p>
-        <p className="mt-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">{band.disclaimer}</p>
+        <ReadinessProofPanel readiness={plan.readiness} embedded showLeadReason={false} />
       </div>
 
       {plan.week.length > 0 ? (

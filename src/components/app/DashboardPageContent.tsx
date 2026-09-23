@@ -153,30 +153,22 @@ export function DashboardPageContent({
         practiceFieldId={fieldId}
         masteryMapTiles={masteryMapTiles}
         eyebrow={examDayPlan ? "Practice snapshot" : "Today's focus"}
-        bandLabel={
-          examDayPlan
-            ? examDayPlan.readiness.visible
-              ? (examDayPlan.readiness.label ?? "Practice")
-              : "Practice"
-            : undefined
-        }
-        ringScore={
-          examDayPlan?.readiness.visible && examDayPlan.readiness.score != null
-            ? examDayPlan.readiness.score
-            : undefined
-        }
+        bandLabel={examDayPlan ? "Practice" : undefined}
         disclosure={
           examDayPlan
             ? {
                 summary: examDayPlan.readiness.visible
                   ? `Why ${examDayPlan.readiness.label}?`
-                  : "Why is the band hidden?",
+                  : "Why is the proof hidden?",
                 lines: [
                   examDayPlan.readiness.sampleDetail,
                   examDayPlan.readiness.visible && examDayPlan.readiness.score != null
                     ? `${examDayPlan.readiness.coveragePct}% coverage × ${examDayPlan.readiness.recentAccuracyPct}% recent accuracy × ${examDayPlan.readiness.remediationPct}% remediation completion = ${examDayPlan.readiness.score}.`
                     : `${examDayPlan.readiness.coveragePct}% coverage × ${examDayPlan.readiness.recentAccuracyPct}% recent accuracy × ${examDayPlan.readiness.remediationPct}% remediation completion.`,
                   examDayPlan.readiness.formula,
+                  ...examDayPlan.readiness.criteria
+                    .filter((row) => row.id !== "exam_sim")
+                    .map((row) => `${row.label}: ${row.valueLabel}.`),
                 ],
                 disclaimer: examDayPlan.readiness.disclaimer,
               }

@@ -15,11 +15,8 @@ import {
 } from "@/lib/edtech/question-bank-scope";
 import { getUserEdtechMetadata, getExamTestDate } from "@/lib/edtech/user-metadata";
 import { getExamScopedStats } from "@/lib/edtech/stats";
-import { getExamRoadmapData, type ExamRoadmapData } from "@/lib/learning/exam-roadmap";
-import { buildExamDayPlan, type ExamDayTopicInput } from "@/lib/learning/exam-day-plan";
-import { top500Href } from "@/lib/edtech/practice-links-core";
-import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
-import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
+import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
 import { ROUTES } from "@/lib/routes";
 import { StudyHubSessionSummary } from "@/components/study-hub/StudyHubSessionSummary";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
@@ -215,43 +212,3 @@ export default async function DashboardPage() {
   );
 }
 
-function buildDashboardExamDayPlan(input: {
-  examSlug: ExamSlug;
-  fieldId: string;
-  testDate: string | null;
-  totalAttempts: number;
-  recentAccuracyPct: number;
-  openIncorrect: number | null;
-  questionsToday: number;
-  roadmap: ExamRoadmapData | null;
-}) {
-  const guide = getStudyGuideConfig(input.examSlug);
-  const topics: ExamDayTopicInput[] = (input.roadmap?.topics ?? []).map((topic) => ({
-    id: topic.categoryId,
-    label: topic.label,
-    blueprintWeightPct: topic.blueprintWeightPct,
-    attempts: topic.attempts,
-    accuracyPct: topic.accuracy,
-    coveragePct: topic.pushCoveragePct,
-    practiceHref: topic.practiceHref,
-    guideHref: topic.deepDiveHref ?? topic.topicsHubHref,
-    guideLabel: topic.highYieldTopics[0] ?? topic.label,
-    drugHref: topic.drugClassHref,
-    drugLabel: topic.drugClassLabel,
-  }));
-
-  return buildExamDayPlan({
-    examSlug: input.examSlug,
-    examName: input.roadmap?.examName ?? EXAM_CATALOG[input.examSlug].name,
-    fieldId: input.fieldId,
-    testDate: input.testDate,
-    totalAttempts: input.totalAttempts,
-    recentAccuracyPct: input.recentAccuracyPct,
-    openIncorrect: input.openIncorrect,
-    questionsToday: input.questionsToday,
-    topics,
-    fallbackGuideHref: guide?.routeBase ?? `${ROUTES.highYieldTopics}?exam=${input.examSlug}`,
-    fallbackGuideLabel: guide?.title ?? "High-yield topics",
-    fallbackDrugHref: top500Href(input.examSlug),
-  });
-}
