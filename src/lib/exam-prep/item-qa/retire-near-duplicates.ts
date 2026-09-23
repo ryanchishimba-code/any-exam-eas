@@ -13,16 +13,20 @@
  * edges is a strictly decreasing sequence. A decreasing sequence cannot repeat
  * an id, so a long chain is not a cycle and does not need a hop cap.
  *
- * An earlier cap of 12 skipped the tail of real clusters as `chain_too_long`
- * (the nursing rows still queued after the first apply). Those higher ids are
- * eligible now. The walk still records seen ids and returns `cycle` if an id
- * repeats, so a corrupt partner map cannot loop or retire around a cycle.
+ * An earlier cap of 12 skipped the tail of real clusters as `chain_too_long`.
+ * After that cap was removed, those tails still skipped as `keeper_inactive`:
+ * the walk stopped on a near-duplicate that was already retired, even when
+ * that inactive row pointed on at an active keeper. Inactive rows are not a
+ * stop. The walk follows `keepers[].partnerId` while the row is inactive,
+ * until it finds an active keeper in the same field.
  *
- * The walk stops at the first id that is not itself a queued near-duplicate.
- * That id must be an active keeper in the same field and lower than the start
- * id. Resolved ends are memoized, so a chain of length n is linear. After the
- * plan is built, a retire id that is also someone's keeper is dropped
- * (`keeper_in_retire_set`).
+ * Hard stops, which skip the queued row: a repeated id (`cycle`), a partner
+ * id that is not loaded (`keeper_missing`), a row in another field
+ * (`keeper_other_field`), or an inactive row with no strictly lower partner
+ * (`keeper_inactive`). The active keeper is not retired, and its own partner
+ * link is not followed. Resolved ends are memoized, so a chain of length n is
+ * linear. After the plan is built, a retire id that is also someone's keeper
+ * is dropped (`keeper_in_retire_set`).
  */
 import {
   ITEM_QA_PIPELINE,
@@ -46,6 +50,12 @@ export type NearDuplicateKeeperRow = {
   id: string;
   fieldId: string;
   active: boolean;
+  /**
+   * Partner stored on this row. Followed only when the row is inactive, so a
+   * retired near-duplicate does not hide the active keeper further along.
+   * An active keeper's partner is ignored.
+   */
+  partnerId?: string | null;
 };
 
 export type NearDuplicateSkipReason =
@@ -106,6 +116,13 @@ function forStart(startId: string, resolved: ChainEnd): ChainEnd {
 function partnerIdOf(record: ItemQaRecord): string | null {
   const partnerId = record.partnerId?.trim();
   return partnerId ? partnerId : null;
+}
+
+/** Next hop off an inactive row. Blank and non-lower links are not followed. */
+function inactivePartnerId(keeper: NearDuplicateKeeperRow): string | null {
+  const partnerId = keeper.partnerId?.trim();
+  if (!partnerId || !(partnerId < keeper.id)) return null;
+  return partnerId;
 }
 
 /**
@@ -192,7 +209,12 @@ export function planNearDuplicateRetirements(input: {
     const trail: string[] = [];
     let current = startId;
 
-    while (candidates.has(current)) {
+    const finish = (resolved: ChainEnd): ChainEnd => {
+      for (const id of trail) memo.set(id, resolved);
+      return forStart(startId, resolved);
+    };
+
+    while (true) {
       const cached = memo.get(current);
       if (cached) {
         for (const id of trail) memo.set(id, cached);
@@ -204,26 +226,26 @@ export function planNearDuplicateRetirements(input: {
         return failure;
       }
       seen.add(current);
-      trail.push(current);
-      const partnerId = candidates.get(current)!.partnerId;
-      if (!(partnerId < current)) {
-        const failure: ChainEnd = { reason: "partner_not_lower_id" };
-        for (const id of trail) memo.set(id, failure);
-        return failure;
-      }
-      current = partnerId;
-    }
 
-    const keeper = input.keepers.get(current);
-    const resolved: ChainEnd = !keeper
-      ? { reason: "keeper_missing" }
-      : keeper.fieldId !== input.fieldId
-        ? { reason: "keeper_other_field" }
-        : !keeper.active
-          ? { reason: "keeper_inactive" }
-          : { rootKeepId: keeper.id };
-    for (const id of trail) memo.set(id, resolved);
-    return forStart(startId, resolved);
+      const candidate = candidates.get(current);
+      if (candidate) {
+        trail.push(current);
+        if (!(candidate.partnerId < current)) return finish({ reason: "partner_not_lower_id" });
+        current = candidate.partnerId;
+        continue;
+      }
+
+      const keeper = input.keepers.get(current);
+      if (!keeper) return finish({ reason: "keeper_missing" });
+      if (keeper.fieldId !== input.fieldId) return finish({ reason: "keeper_other_field" });
+      // First active row in this field is the keeper. Do not follow its partner.
+      if (keeper.active) return finish({ rootKeepId: keeper.id });
+
+      const next = inactivePartnerId(keeper);
+      if (!next) return finish({ reason: "keeper_inactive" });
+      trail.push(current);
+      current = next;
+    }
   };
 
   for (const candidate of candidates.values()) {

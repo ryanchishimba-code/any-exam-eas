@@ -8,8 +8,10 @@
  *
  * Partner chains have no hop cap. A row is eligible only when each hop goes to
  * a strictly lower id and the walk ends at an active keeper in this field.
- * A decreasing id sequence cannot cycle. A repeated id is skipped as `cycle`
- * and is not retired. The old cap of 12 (`chain_too_long`) is gone.
+ * Inactive near-duplicates are followed until that active keeper, or a hard
+ * stop (cycle, missing, wrong field, or no further partner). A decreasing id
+ * sequence cannot cycle. A repeated id is skipped as `cycle` and is not
+ * retired. The old cap of 12 (`chain_too_long`) is gone.
  *
  *   npm run db:retire-near-duplicates -- --field nursing
  *   npm run db:retire-near-duplicates -- --field nursing --apply
@@ -29,6 +31,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import {
   nearDuplicateRetireWrite,
   planNearDuplicateRetirements,
+  readItemQaRecord,
   type NearDuplicateBankRow,
   type NearDuplicateKeeperRow,
   type NearDuplicateRetirePlan,
@@ -103,15 +106,46 @@ async function loadFlagged(field: string, subject?: string): Promise<NearDuplica
   return rows;
 }
 
-async function loadKeepers(ids: string[]): Promise<Map<string, NearDuplicateKeeperRow>> {
+function partnerIdFromMeta(meta: unknown): string | null {
+  const partnerId = readItemQaRecord(meta)?.partnerId?.trim();
+  return partnerId ? partnerId : null;
+}
+
+/**
+ * Load every partner the planner may walk, including hops past inactive
+ * near-duplicates. An active row is a keeper, so its partner is not loaded.
+ * A repeated id is not fetched again.
+ */
+async function loadKeepers(seedIds: string[]): Promise<Map<string, NearDuplicateKeeperRow>> {
   const keepers = new Map<string, NearDuplicateKeeperRow>();
-  for (let i = 0; i < ids.length; i += BATCH) {
-    const slice = ids.slice(i, i + BATCH);
-    const page = await prisma.questionBankItem.findMany({
-      where: { id: { in: slice } },
-      select: { id: true, fieldId: true, active: true },
-    });
-    for (const row of page) keepers.set(row.id, row);
+  const requested = new Set<string>();
+  let pending = [...new Set(seedIds)];
+
+  while (pending.length) {
+    const ids = pending.filter((id) => !requested.has(id));
+    pending = [];
+    if (!ids.length) break;
+    for (const id of ids) requested.add(id);
+
+    for (let i = 0; i < ids.length; i += BATCH) {
+      const slice = ids.slice(i, i + BATCH);
+      const page = await prisma.questionBankItem.findMany({
+        where: { id: { in: slice } },
+        select: { id: true, fieldId: true, active: true, curationMeta: true },
+      });
+      for (const row of page) {
+        const partnerId = partnerIdFromMeta(row.curationMeta);
+        keepers.set(row.id, {
+          id: row.id,
+          fieldId: row.fieldId,
+          active: row.active,
+          partnerId,
+        });
+        if (!row.active && partnerId && partnerId < row.id && !requested.has(partnerId)) {
+          pending.push(partnerId);
+        }
+      }
+    }
   }
   return keepers;
 }
@@ -119,12 +153,8 @@ async function loadKeepers(ids: string[]): Promise<Map<string, NearDuplicateKeep
 function partnerIds(rows: readonly NearDuplicateBankRow[]): string[] {
   const ids = new Set<string>();
   for (const row of rows) {
-    const meta = row.curationMeta;
-    if (!meta || typeof meta !== "object" || Array.isArray(meta)) continue;
-    const itemQa = (meta as Record<string, unknown>).itemQa;
-    if (!itemQa || typeof itemQa !== "object" || Array.isArray(itemQa)) continue;
-    const partnerId = (itemQa as Record<string, unknown>).partnerId;
-    if (typeof partnerId === "string" && partnerId.trim()) ids.add(partnerId.trim());
+    const partnerId = partnerIdFromMeta(row.curationMeta);
+    if (partnerId) ids.add(partnerId);
   }
   return [...ids];
 }
@@ -186,7 +216,7 @@ function renderMarkdown(input: {
     "qaPassed is not changed, so the published count drops by the eligible rows that are already qaPassed.",
     "That drop is roughly the retired count when most queued near-duplicates are published.",
     "",
-    "Partner chains are walked to the active lower keeper. Each hop must be a strictly lower id, so a long chain cannot cycle. There is no hop cap.",
+    "Partner chains are walked through inactive near-duplicates to the active lower keeper. Each hop must be a strictly lower id, so a long chain cannot cycle. There is no hop cap. An inactive row with no further partner is skipped.",
     "",
     `- Active before: ${input.inventory.active}`,
     `- Published (active + qaPassed) before: ${input.inventory.published}`,

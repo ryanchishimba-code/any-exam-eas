@@ -182,7 +182,7 @@ describe("planNearDuplicateRetirements", () => {
     expect(plan.skipped.map((skip) => skip.reason)).toEqual(Array.from({ length: 20 }, () => "keeper_inactive"));
   });
 
-  it("stops at an inactive middle row and still retires the chain below it", () => {
+  it("continues past an inactive middle to the active keeper and does not retire that keeper", () => {
     const plan = planNearDuplicateRetirements({
       fieldId: "nursing",
       rows: [
@@ -196,17 +196,76 @@ describe("planNearDuplicateRetirements", () => {
         keeper("id-000"),
         keeper("id-001"),
         keeper("id-002"),
-        keeper("id-003", { active: false }),
+        keeper("id-003", { active: false, partnerId: "id-002" }),
         keeper("id-004")
       ),
     });
 
-    expect(plan.retire.map((item) => item.id)).toEqual(["id-001", "id-002"]);
+    expect(plan.retire.map((item) => item.id)).toEqual(["id-001", "id-002", "id-004", "id-005"]);
     expect(plan.retire.every((item) => item.rootKeepId === "id-000")).toBe(true);
+    expect(plan.retire.some((item) => item.id === "id-000" || item.id === "id-003")).toBe(false);
     expect(Object.fromEntries(plan.skipped.map((skip) => [skip.id, skip.reason]))).toEqual({
       "id-003": "inactive",
-      "id-004": "keeper_inactive",
-      "id-005": "keeper_inactive",
+    });
+  });
+
+  it("retires a queued row whose inactive partner points at an active keeper", () => {
+    const queued = "cmrogakt8002u1ymrvrxf2umg";
+    const inactive = "cmr7aw3nn00cp1ybb54t0re3w";
+    const active = "cmr0t29b100481yfnwg2nnl81";
+    const plan = planNearDuplicateRetirements({
+      fieldId: "nursing",
+      rows: [flagged({ id: queued, partnerId: inactive })],
+      keepers: keepersOf(
+        keeper(inactive, { active: false, partnerId: active }),
+        keeper(active, { partnerId: "cmr000000000000000000000" })
+      ),
+    });
+
+    expect(plan.skipped).toEqual([]);
+    expect(plan.retire).toEqual([
+      expect.objectContaining({ id: queued, partnerId: inactive, rootKeepId: active }),
+    ]);
+    expect(plan.retire.some((item) => item.id === active)).toBe(false);
+  });
+
+  it("skips an all-inactive chain when no active keeper exists", () => {
+    const plan = planNearDuplicateRetirements({
+      fieldId: "nursing",
+      rows: [
+        flagged({ id: "id-004", partnerId: "id-003" }),
+        flagged({ id: "id-005", partnerId: "id-004" }),
+      ],
+      keepers: keepersOf(
+        keeper("id-003", { active: false, partnerId: "id-002" }),
+        keeper("id-002", { active: false, partnerId: "id-001" }),
+        keeper("id-001", { active: false })
+      ),
+    });
+
+    expect(plan.retire).toEqual([]);
+    expect(plan.publishedInventoryDrop).toBe(0);
+    expect(plan.skipped.map((skip) => skip.reason)).toEqual(["keeper_inactive", "keeper_inactive"]);
+  });
+
+  it("stops on a missing id or another field instead of following further", () => {
+    const plan = planNearDuplicateRetirements({
+      fieldId: "nursing",
+      rows: [
+        flagged({ id: "id-b-missing", partnerId: "id-a-missing" }),
+        flagged({ id: "id-b-other", partnerId: "id-a-other" }),
+      ],
+      keepers: keepersOf(
+        keeper("id-a-missing", { active: false, partnerId: "gone" }),
+        keeper("id-a-other", { active: false, fieldId: "pharmacy", partnerId: "id-live" }),
+        keeper("id-live")
+      ),
+    });
+
+    expect(plan.retire).toEqual([]);
+    expect(Object.fromEntries(plan.skipped.map((skip) => [skip.id, skip.reason]))).toEqual({
+      "id-b-missing": "keeper_missing",
+      "id-b-other": "keeper_other_field",
     });
   });
 
@@ -217,7 +276,10 @@ describe("planNearDuplicateRetirements", () => {
         flagged({ id: "item-a", partnerId: "item-b" }),
         flagged({ id: "item-b", partnerId: "item-a" }),
       ],
-      keepers: keepersOf(keeper("item-a"), keeper("item-b")),
+      keepers: keepersOf(
+        keeper("item-a", { partnerId: "item-b" }),
+        keeper("item-b", { partnerId: "item-a" })
+      ),
     });
 
     expect(plan.retire.map((item) => item.id)).toEqual(["item-b"]);
@@ -225,6 +287,34 @@ describe("planNearDuplicateRetirements", () => {
     expect(plan.skipped).toEqual([
       expect.objectContaining({ id: "item-a", reason: "partner_not_lower_id", partnerId: "item-b" }),
     ]);
+  });
+
+  it("retires a long chain that passes inactive middles and keeps the active keeper", () => {
+    const rows: NearDuplicateBankRow[] = [];
+    const keeperRows: NearDuplicateKeeperRow[] = [keeper("id-000")];
+    for (let n = 1; n <= 36; n += 1) {
+      const id = `id-${String(n).padStart(3, "0")}`;
+      const partnerId = `id-${String(n - 1).padStart(3, "0")}`;
+      if (n % 2 === 0) {
+        keeperRows.push(keeper(id, { active: false, partnerId }));
+        continue;
+      }
+      rows.push(flagged({ id, partnerId, qaPassed: true }));
+      keeperRows.push(keeper(id));
+    }
+
+    const plan = planNearDuplicateRetirements({
+      fieldId: "nursing",
+      rows,
+      keepers: keepersOf(...keeperRows),
+    });
+
+    expect(plan.skipped).toEqual([]);
+    expect(plan.retire).toHaveLength(18);
+    expect(plan.publishedInventoryDrop).toBe(18);
+    expect(new Set(plan.retire.map((item) => item.rootKeepId))).toEqual(new Set(["id-000"]));
+    expect(plan.retire.some((item) => item.id === "id-000" || item.id === "id-002")).toBe(false);
+    expect(plan.retire.map((item) => item.id)).toContain("id-035");
   });
 
   it("merges two long branches onto one keeper and does not retire that keeper", () => {
