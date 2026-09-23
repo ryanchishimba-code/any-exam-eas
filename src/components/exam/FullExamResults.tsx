@@ -16,6 +16,10 @@ import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { formatAnswerDisplay } from "@/lib/full-exam/answer-serialize";
 import { formatHms } from "@/lib/full-exam/config";
+import {
+  countUnansweredExamItems,
+  fullExamResultsTitle,
+} from "@/lib/full-exam/results-title";
 import { fullExamHref } from "@/lib/routes";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import type { ExamSlug } from "@/types/edtech";
@@ -48,6 +52,8 @@ type Props = {
   passPathPersisted?: boolean;
   reviewIncorrectHref?: string | null;
   proofHref?: string;
+  /** Session status ended_early — student or timer stopped before submit. */
+  endedEarly?: boolean;
 };
 
 function answerFor(answers: ExamAnswerRecord[], index: number) {
@@ -66,9 +72,14 @@ export function FullExamResults({
   passPathPersisted = false,
   reviewIncorrectHref = null,
   proofHref = "/dashboard",
+  endedEarly = false,
 }: Props) {
   const exam = EXAM_CATALOG[examSlug];
   const correct = answers.filter((a) => a.correct).length;
+  const resultsTitle = fullExamResultsTitle({
+    endedEarly,
+    unanswered: countUnansweredExamItems(questions.length, answers),
+  });
   const [view, setView] = useState<ReviewView>(initialReviewOpen ? "question" : "summary");
   const [index, setIndex] = useState(0);
 
@@ -292,7 +303,7 @@ export function FullExamResults({
             </span>
           </div>
           <h1 className="mt-3 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:mt-5 sm:text-[24px] sm:tracking-tight">
-            Exam complete
+            {resultsTitle}
           </h1>
           <p className="mt-1 text-[14px] leading-snug tracking-[-0.015em] text-[var(--color-ink-muted)] sm:mt-2 sm:text-[15px]">
             {analysis.summary}
@@ -385,6 +396,7 @@ export function FullExamResults({
         score={score}
         analysis={analysis}
         answers={answers}
+        endedEarly={endedEarly}
         onReviewMissed={
           questions.length > 0
             ? () => {
