@@ -38,7 +38,7 @@ export const dbUi = {
   primaryBtn:
     "study-home-accent inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3 text-[14px] font-semibold text-[var(--study-accent-on,#fff)] shadow-[var(--db-cta-shadow,0_1px_2px_rgba(15,23,42,0.08))] transition hover:bg-[var(--color-accent-hover)] hover:shadow-[var(--db-cta-shadow-hover,0_2px_8px_rgba(15,23,42,0.12))] active:scale-[0.98]",
   ghostBtn:
-    "inline-flex items-center justify-center gap-1.5 rounded-xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] px-3.5 py-2 text-[12px] font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]",
+    "study-home-accent inline-flex items-center justify-center gap-1.5 rounded-xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] px-3.5 py-2 text-[12px] font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]",
   switchExam:
     "inline-flex items-center gap-1.5 rounded-xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] px-3.5 py-2 text-[12px] font-semibold text-[var(--color-ink-muted)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-ink)]",
   /** Legacy tokens — used by SubscriberHome quick-start panel. */

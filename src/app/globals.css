@@ -701,7 +701,9 @@ body {
 /* —— Study dashboard (premium Tesla-flat stage) —— */
 /* Interactive accents follow study-home navy/teal, not the global indigo product accent.
    The app shell, question bank, and full exam share this remap so header icons and
-   filled CTAs outside the dashboard card do not fall back to root indigo. */
+   filled CTAs outside the dashboard card do not fall back to root indigo.
+   Portaled library sheets must carry `.study-home-accent` themselves — they render
+   on document.body, outside the app shell. */
 .dashboard-ui,
 .question-bank-ui,
 .full-exam-ui,

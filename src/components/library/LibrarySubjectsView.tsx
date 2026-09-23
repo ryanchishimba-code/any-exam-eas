@@ -142,7 +142,7 @@ export function LibrarySubjectsView({ examSlug, cards, onOpenCard }: Props) {
               className={cn(
                 libUi.surface,
                 "group flex items-center gap-3 p-3.5 text-left transition",
-                "hover:border-[var(--color-accent)]/20 hover:bg-[var(--color-surface)]/40 active:scale-[0.995]"
+                "hover:border-[var(--study-accent)]/35 hover:bg-[var(--color-surface)]/40 active:scale-[0.995]"
               )}
             >
               <span
@@ -154,13 +154,13 @@ export function LibrarySubjectsView({ examSlug, cards, onOpenCard }: Props) {
                 <Icon className="h-[18px] w-[18px]" aria-hidden />
               </span>
               <div className="min-w-0 flex-1">
-                <h3 className="truncate text-[14px] font-semibold text-[var(--color-ink)] group-hover:text-[var(--color-accent)]">
+                <h3 className="truncate text-[14px] font-semibold text-[var(--color-ink)] group-hover:text-[var(--study-accent)]">
                   {group.subject}
                 </h3>
                 <div className="mt-1.5 flex items-center gap-2">
                   <span className="h-1 flex-1 overflow-hidden rounded-full bg-[var(--color-surface)]">
                     <span
-                      className="block h-full rounded-full bg-[var(--color-accent)]/60 transition-[width] duration-500"
+                      className="block h-full rounded-full bg-[var(--study-accent)]/70 transition-[width] duration-500"
                       style={{ width: `${pct}%` }}
                     />
                   </span>
@@ -170,7 +170,7 @@ export function LibrarySubjectsView({ examSlug, cards, onOpenCard }: Props) {
                 </div>
               </div>
               <ChevronRight
-                className="h-4 w-4 shrink-0 text-[var(--color-ink-muted)]/40 group-hover:text-[var(--color-accent)]"
+                className="h-4 w-4 shrink-0 text-[var(--color-ink-muted)]/40 group-hover:text-[var(--study-accent)]"
                 aria-hidden
               />
             </button>

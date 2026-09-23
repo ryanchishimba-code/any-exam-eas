@@ -54,7 +54,7 @@ export function LibraryForYou({
     <section id="for-you" aria-labelledby="for-you-heading" className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-violet-600" aria-hidden />
+          <Sparkles className="h-4 w-4 text-[var(--study-accent)]" aria-hidden />
           <h3 id="for-you-heading" className="text-sm font-bold text-[var(--color-ink)]">
             For you today
           </h3>

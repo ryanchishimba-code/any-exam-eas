@@ -33,7 +33,7 @@ export function LibraryTopicBanner({ examSlug, topicKey, cardCount, memoryCardId
         <div className="flex flex-wrap items-center gap-2">
           <Link
             href={practiceTopicHref(examSlug, topicKey, 10)}
-            className="inline-flex items-center gap-1 rounded-full bg-[var(--color-accent)] px-3.5 py-2 text-[12px] font-semibold text-white shadow-[var(--shadow-apple-btn)] hover:opacity-95"
+            className="study-home-accent inline-flex items-center gap-1 rounded-full bg-[var(--color-accent)] px-3.5 py-2 text-[12px] font-semibold text-[var(--study-accent-on,#fff)] shadow-[var(--db-cta-shadow,0_1px_2px_rgba(15,23,42,0.08))] hover:bg-[var(--color-accent-hover)]"
           >
             <BookOpen className="h-3.5 w-3.5" aria-hidden />
             Practice 10

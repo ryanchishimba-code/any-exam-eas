@@ -23,25 +23,26 @@ export const libUi = {
   chip:
     "inline-flex shrink-0 items-center gap-2 rounded-full border px-3 py-1.5 text-[12px] font-medium transition active:scale-[0.98]",
   chipIdle:
-    "border-[var(--color-border)]/70 bg-[var(--color-surface-elevated)] text-[var(--color-ink)] hover:border-[var(--color-accent)]/20",
-  chipActive: "border-transparent bg-[var(--color-accent)] text-white",
+    "border-[var(--color-border)]/70 bg-[var(--color-surface-elevated)] text-[var(--color-ink)] hover:border-[var(--study-accent)]/35",
+  chipActive:
+    "study-home-accent border-transparent bg-[var(--color-accent)] text-[var(--study-accent-on,#fff)]",
   tab:
     "relative flex flex-1 items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-[12px] font-semibold transition-colors duration-200",
   tabIdle: "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]",
   tabActive: "text-[var(--color-ink)]",
   tabIndicator: "absolute inset-0 rounded-xl bg-[var(--color-surface-elevated)] shadow-sm",
   searchInput:
-    "w-full rounded-xl border border-transparent bg-[var(--color-surface-elevated)] py-2 pl-9 pr-9 text-[13px] text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-ink-muted)] focus:border-[var(--color-accent)]/25 focus:bg-[var(--color-surface-elevated)]",
+    "w-full rounded-xl border border-transparent bg-[var(--color-surface-elevated)] py-2 pl-9 pr-9 text-[13px] text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-ink-muted)] focus:border-[var(--study-accent)]/35 focus:bg-[var(--color-surface-elevated)]",
   cardGrid: "grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3",
   cardCompact:
-    "flex w-full flex-col rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] p-3.5 text-left transition hover:border-[var(--color-accent)]/25 hover:bg-[var(--color-surface)]/60 active:scale-[0.99]",
+    "flex w-full flex-col rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] p-3.5 text-left transition hover:border-[var(--study-accent)]/35 hover:bg-[var(--color-surface)]/60 active:scale-[0.99]",
   listSurface: "divide-y divide-[var(--color-border)]/60 overflow-hidden rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)]",
   listRow:
     "flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-[var(--color-surface)]/60",
   emptyState:
     "rounded-2xl border border-dashed border-[var(--color-border)]/80 bg-[var(--color-surface)]/50 px-6 py-10 text-center",
   primaryBtn:
-    "inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-4 py-2.5 text-[13px] font-semibold text-white shadow-sm transition hover:opacity-95 active:scale-[0.98]",
+    "study-home-accent inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-4 py-2.5 text-[13px] font-semibold text-[var(--study-accent-on,#fff)] shadow-[var(--db-cta-shadow,0_1px_2px_rgba(15,23,42,0.08))] transition hover:bg-[var(--color-accent-hover)] active:scale-[0.98]",
   ghostBtn:
-    "inline-flex items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border)]/70 bg-[var(--color-surface-elevated)] px-3 py-2 text-[12px] font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/25 hover:text-[var(--color-accent)]",
+    "study-home-accent inline-flex items-center justify-center gap-1.5 rounded-xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] px-3 py-2 text-[12px] font-semibold text-[var(--color-ink)] transition hover:border-[var(--study-accent)]/40 hover:text-[var(--study-accent)]",
 } as const;

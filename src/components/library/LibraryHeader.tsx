@@ -54,7 +54,7 @@ export function LibraryHeader({
         <div className="min-w-0 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
             {usmleStepLabel ? (
-              <span className="rounded-full bg-[var(--color-accent)]/10 px-2.5 py-0.5 text-[11px] font-semibold text-[var(--color-accent)]">
+              <span className="rounded-full bg-[var(--study-accent)]/10 px-2.5 py-0.5 text-[11px] font-semibold text-[var(--study-accent)]">
                 {usmleStepLabel}
               </span>
             ) : null}
