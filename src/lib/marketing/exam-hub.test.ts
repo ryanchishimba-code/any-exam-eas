@@ -16,7 +16,8 @@ describe("exam hub marketing helpers", () => {
   it("points study-guide boards at the free reader", () => {
     expect(examHubSecondaryLink("nclex").href).toBe("/nclex/study-guide");
     expect(examHubSecondaryLink("naplex").label).toMatch(/NAPLEX study guide/i);
-    expect(examHubSecondaryLink("usmle").href).toBe("#usmle-steps");
+    expect(examHubSecondaryLink("usmle").href).toBe("/usmle/study-guide");
+    expect(examHubSecondaryLink("usmle").label).toMatch(/USMLE study guide/i);
   });
 
   it("builds a three-card start-here band", () => {
@@ -24,5 +25,6 @@ describe("exam hub marketing helpers", () => {
     expect(links).toHaveLength(2);
     expect(links[0]?.title).toMatch(/question bank/i);
     expect(examHubProductLinks("nclex")).toHaveLength(3);
+    expect(examHubProductLinks("usmle")[0]?.href).toBe("/usmle/study-guide");
   });
 });

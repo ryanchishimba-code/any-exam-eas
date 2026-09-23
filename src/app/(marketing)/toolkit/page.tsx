@@ -19,7 +19,7 @@ export const metadata = buildToolkitHubMetadata();
 /**
  * Real in-product / marketing routes used below (verified against ROUTES + examMarketingPath):
  * - Exam hubs: /usmle /nclex /naplex /pance /aanp-fnp /npte-pt
- * - Study Guides: /nclex/study-guide /naplex/study-guide /aanp-fnp/study-guide
+ * - Study Guides: /nclex/study-guide /naplex/study-guide /aanp-fnp/study-guide /usmle/study-guide
  * - Lab values & calculators: /library#hub-calculators
  * - Top 500 drugs: /study/drugs300
  * - Anatomy Explorer: /anatomy
@@ -52,6 +52,11 @@ const IN_PRODUCT_LINKS = [
     href: STUDY_GUIDES["aanp-fnp"].routeBase,
     title: "AANP FNP Study Guide",
     body: "Primary-care FNP book reader with domain, lifespan, and pharm chapters.",
+  },
+  {
+    href: STUDY_GUIDES.usmle.routeBase,
+    title: "USMLE Study Guide",
+    body: "Step 1 / Step 2 CK / Step 3 reader — next-best-step, CCS, and systems chapters.",
   },
   {
     href: `${ROUTES.library}#hub-calculators`,

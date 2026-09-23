@@ -17,6 +17,7 @@ import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { ROUTES, EXAM_NAV_ITEMS } from "@/lib/routes";
+import { useCampaignAwareHref } from "@/lib/client/use-campaign-href";
 import { LANDING_TRIAL_HREF, landingTrialHrefForExam } from "@/lib/landing/content";
 import {
   MARKETING_DARK_HERO_PATHS,
@@ -139,9 +140,9 @@ export function Navigation() {
 
   const examFromPath = marketingExamKeyFromPath(pathname);
   const onDarkHero = !isAuthenticated && MARKETING_DARK_HERO_PATHS.has(pathname);
-  const guestTrialHref = examFromPath
-    ? landingTrialHrefForExam(examFromPath)
-    : LANDING_TRIAL_HREF;
+  const guestTrialHref = useCampaignAwareHref(
+    examFromPath ? landingTrialHrefForExam(examFromPath) : LANDING_TRIAL_HREF
+  );
   const [heroScrolled, setHeroScrolled] = useState(false);
 
   useEffect(() => {

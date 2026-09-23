@@ -85,9 +85,16 @@ describe("Study Guide in Study Tools", () => {
     expect(screen.getByText(/study tools/i)).toBeInTheDocument();
   });
 
+  it("shows for a USMLE learner and points at the USMLE book", () => {
+    renderFor("usmle");
+    const link = studyGuideLink();
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute("href", "/usmle/study-guide");
+  });
+
   it("hides for an exam with no book", () => {
     // Linking here would open a reader with nothing to read.
-    renderFor("usmle");
+    renderFor("pance");
     expect(studyGuideLink()).not.toBeInTheDocument();
   });
 

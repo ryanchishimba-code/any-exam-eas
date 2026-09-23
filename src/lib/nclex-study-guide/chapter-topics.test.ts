@@ -272,3 +272,58 @@ describe("AANP FNP chapter → topic map", () => {
     }
   });
 });
+
+/** USMLE chapters from content/usmle-study-guide (slugFromFilename). */
+const USMLE_CHAPTER_SLUGS = [
+  "front-matter",
+  "exam-strategy",
+  "cardiovascular",
+  "pulmonary",
+  "renal-electrolytes",
+  "infectious-disease",
+  "neuro-stroke",
+  "step3-ccs-ethics",
+  "quick-reference",
+  "back-matter",
+];
+
+describe("USMLE chapter → topic map", () => {
+  it("only references topics that exist in the USMLE high-yield seeds", () => {
+    const known = new Set(getHighYieldTopics("usmle").map((t) => t.slug));
+    const unknown: string[] = [];
+    for (const [chapter, slugs] of Object.entries(CHAPTER_TOPICS_BY_EXAM.usmle)) {
+      for (const slug of slugs) {
+        if (!known.has(slug)) unknown.push(`${chapter} → ${slug}`);
+      }
+    }
+    expect(unknown).toEqual([]);
+  });
+
+  it("covers every chapter the ingest produces", () => {
+    expect(Object.keys(CHAPTER_TOPICS_BY_EXAM.usmle).sort()).toEqual(
+      [...USMLE_CHAPTER_SLUGS].sort()
+    );
+  });
+
+  it("does not repeat a topic within one chapter", () => {
+    for (const [chapter, slugs] of Object.entries(CHAPTER_TOPICS_BY_EXAM.usmle)) {
+      expect(new Set(slugs).size, `${chapter} has duplicates`).toBe(slugs.length);
+    }
+  });
+
+  it("returns no topics for navigational chapters", () => {
+    expect(getTopicSlugsForChapter("usmle", "front-matter")).toEqual([]);
+    expect(getTopicSlugsForChapter("usmle", "exam-strategy")).toEqual([]);
+    expect(getTopicSlugsForChapter("usmle", "back-matter")).toEqual([]);
+  });
+
+  it("never emits a related-topic entry without a usable link", () => {
+    for (const chapter of USMLE_CHAPTER_SLUGS) {
+      for (const t of getChapterRelatedTopics("usmle", chapter)) {
+        const hasLink = Boolean(t.deepDiveHref || t.libraryHref || t.anatomyHref);
+        expect(hasLink, `${chapter} → ${t.slug} has no link`).toBe(true);
+        expect(t.title.trim()).not.toBe("");
+      }
+    }
+  });
+});

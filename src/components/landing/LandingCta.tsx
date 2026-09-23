@@ -3,6 +3,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { analytics } from "@/lib/analytics";
+import { useCampaignAwareHref } from "@/lib/client/use-campaign-href";
+import { withPageCampaignUtms } from "@/lib/marketing/campaign-utm";
 import { cn } from "@/lib/utils";
 
 type LandingCtaProps = {
@@ -26,9 +28,11 @@ export function LandingCta({
   ctaName,
   location = "landing",
 }: LandingCtaProps) {
+  const resolvedHref = useCampaignAwareHref(href);
+
   return (
     <Link
-      href={href}
+      href={resolvedHref}
       className={cn(
         "aee-flagship-cta",
         variant === "primary" && "aee-flagship-cta--primary",
@@ -36,8 +40,13 @@ export function LandingCta({
         variant === "ghost-on-dark" && "aee-flagship-cta--ghost-dark",
         className
       )}
-      onClick={() => {
+      onClick={(event) => {
         if (ctaName) analytics.ctaClicked(ctaName, location);
+        const next = withPageCampaignUtms(href);
+        if (next !== resolvedHref) {
+          event.preventDefault();
+          window.location.assign(next);
+        }
       }}
     >
       {children}

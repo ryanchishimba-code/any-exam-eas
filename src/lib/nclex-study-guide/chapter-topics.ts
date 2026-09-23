@@ -1,6 +1,6 @@
 /**
  * Curated bridge from Study Guide chapters to each exam's high-yield topic
- * vocabulary (`NCLEX_TOPIC_REGISTRY`, `NAPLEX_TOPIC_REGISTRY`).
+ * vocabulary (`NCLEX_TOPIC_REGISTRY`, `NAPLEX_TOPIC_REGISTRY`, and USMLE seeds).
  *
  * `sg_chapters` carries no taxonomy of its own, so there is nothing to join on.
  * The mapping is hand-written rather than derived from chapter titles because a
@@ -166,10 +166,29 @@ const AANP_FNP_CHAPTER_TOPICS: ChapterTopicMap = {
   "back-matter": [],
 };
 
+const USMLE_CHAPTER_TOPICS: ChapterTopicMap = {
+  "front-matter": [],
+  "exam-strategy": [],
+  cardiovascular: ["cardiovascular", "acute-coronary-syndrome"],
+  pulmonary: ["pulmonary"],
+  "renal-electrolytes": ["renal-electrolytes"],
+  "infectious-disease": ["infectious-disease"],
+  "neuro-stroke": ["neurology-stroke"],
+  "step3-ccs-ethics": [
+    "ccs-case-management",
+    "next-best-step",
+    "medical-ethics-legal",
+    "biostatistics-epidemiology",
+  ],
+  "quick-reference": ["acute-coronary-syndrome", "next-best-step"],
+  "back-matter": [],
+};
+
 export const CHAPTER_TOPICS_BY_EXAM: Record<StudyGuideExam, ChapterTopicMap> = {
   nclex: NCLEX_CHAPTER_TOPICS,
   naplex: NAPLEX_CHAPTER_TOPICS,
   "aanp-fnp": AANP_FNP_CHAPTER_TOPICS,
+  usmle: USMLE_CHAPTER_TOPICS,
 };
 
 export function getTopicSlugsForChapter(

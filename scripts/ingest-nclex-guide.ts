@@ -13,6 +13,7 @@
  *   npm run ingest:nclex-guide
  *   npm run ingest:naplex-guide
  *   npm run ingest:aanp-fnp-guide
+ *   npm run ingest:usmle-guide
  */
 
 import fs from "node:fs";

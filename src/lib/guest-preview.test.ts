@@ -8,6 +8,8 @@ describe("guest preview routes", () => {
     expect(isGuestPreviewPage("/nclex/study-guide/cardiac")).toBe(true);
     expect(isGuestPreviewPage("/naplex/study-guide")).toBe(true);
     expect(isGuestPreviewPage("/aanp-fnp/study-guide/exam-strategy")).toBe(true);
+    expect(isGuestPreviewPage("/usmle/study-guide")).toBe(true);
+    expect(isGuestPreviewPage("/usmle/study-guide/exam-strategy")).toBe(true);
     expect(isGuestPreviewPage("/study/drugs300")).toBe(true);
     expect(isGuestPreviewPage("/anatomy")).toBe(true);
     expect(isGuestPreviewPage("/anatomy/catalog")).toBe(true);
@@ -24,6 +26,7 @@ describe("guest preview routes", () => {
 
   it("excludes free-win paths from the premium matcher", () => {
     expect(isPremiumPage("/nclex/study-guide")).toBe(false);
+    expect(isPremiumPage("/usmle/study-guide")).toBe(false);
     expect(isPremiumPage("/study/drugs300")).toBe(false);
     expect(isPremiumPage("/anatomy")).toBe(false);
     expect(isPremiumPage("/study")).toBe(true);
