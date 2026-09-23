@@ -60,7 +60,7 @@ export function prefetchExamSubjectCounts(
   void queryClient.prefetchQuery({
     queryKey: ["subject-counts", fieldId],
     queryFn: () => fetchSubjectCounts(fieldId),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 0,
   });
 }
 

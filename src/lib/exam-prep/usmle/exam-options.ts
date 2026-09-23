@@ -1,4 +1,5 @@
 import { unstable_cache } from "next/cache";
+import { ACTIVE_INVENTORY_CACHE_TAG } from "@/lib/inventory/active-inventory-cache";
 import { prisma } from "@/lib/prisma";
 import { ROUTES } from "@/lib/routes";
 import { USMLE_FIELD_IDS, USMLE_STEPS, type UsmleFieldId } from "./steps";
@@ -103,7 +104,7 @@ async function fetchUsmleServedCounts(): Promise<Record<UsmleStepLevel, number>>
 const getCachedUsmleServedCounts = unstable_cache(
   fetchUsmleServedCounts,
   ["usmle-exam-option-counts"],
-  { revalidate: REVALIDATE_SECONDS }
+  { revalidate: REVALIDATE_SECONDS, tags: [ACTIVE_INVENTORY_CACHE_TAG] }
 );
 
 /** Build the USMLE step options, merging static metadata with live counts. */

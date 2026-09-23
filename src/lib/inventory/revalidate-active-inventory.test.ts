@@ -6,6 +6,7 @@ vi.mock("next/cache", () => ({
 }));
 
 import { revalidatePath, revalidateTag } from "next/cache";
+import { cacheGet, cacheKey, cacheSet } from "@/lib/cache";
 import { ACTIVE_INVENTORY_CACHE_TAG, ACTIVE_INVENTORY_PATHS } from "./active-inventory-cache";
 import { revalidateActiveQuestionInventory } from "./revalidate-active-inventory";
 
@@ -13,6 +14,13 @@ describe("revalidateActiveQuestionInventory", () => {
   beforeEach(() => {
     vi.mocked(revalidateTag).mockReset();
     vi.mocked(revalidatePath).mockReset();
+  });
+
+  it("drops subject-count fallbacks along with the shared tag", () => {
+    const key = cacheKey(["subject-served-counts", "nursing"]);
+    cacheSet(key, { "med-surg": 10 }, 60_000);
+    revalidateActiveQuestionInventory();
+    expect(cacheGet(key)).toBeNull();
   });
 
   it("drops the shared tag and every surface that renders it", () => {

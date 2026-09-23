@@ -89,11 +89,12 @@ export function countSeenBySubjectFromAttempts(
 export async function countServeBankBySubject(
   fieldId: string
 ): Promise<Map<string, number>> {
-  const { CACHE_STALE, CACHE_TTL, cacheGetOrSet, cacheKey } = await import(
-    "@/lib/cache"
+  const { CACHE_STALE, CACHE_TTL } = await import("@/lib/cache");
+  const { cacheAsidePublishedStamp } = await import(
+    "@/lib/inventory/active-inventory-stamp"
   );
-  const counts = await cacheGetOrSet(
-    cacheKey(["subject-served-counts", fieldId]),
+  const counts = await cacheAsidePublishedStamp(
+    ["subject-served-counts", fieldId],
     CACHE_TTL.subjectCatalog,
     async () => {
       const { getSubjectServedCounts } = await import("@/lib/question-bank-db");

@@ -12,7 +12,8 @@ import { ROUTES } from "@/lib/routes";
 import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata";
 import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 
-export const revalidate = 3600;
+/** Count is the published stamp. Do not ISR this hub for an hour after a retire. */
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildExamMetadata("nclex");

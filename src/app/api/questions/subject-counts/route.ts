@@ -4,8 +4,10 @@ import {
   ACTIVE_QUESTION_DEFINITION,
   fieldInventoryPayload,
 } from "@/lib/inventory/active-questions";
+import { ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL } from "@/lib/inventory/active-inventory-cache";
 import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
-import { cacheGetOrSet, cacheKey, CACHE_TTL, CACHE_STALE } from "@/lib/cache";
+import { CACHE_TTL, CACHE_STALE } from "@/lib/cache";
+import { cacheAsidePublishedStamp } from "@/lib/inventory/active-inventory-stamp";
 import { respondDbUnavailable } from "@/lib/api-db-error";
 
 export const runtime = "nodejs";
@@ -38,11 +40,13 @@ export async function GET(req: Request) {
   try {
     const fromInventory = fieldInventoryPayload(fieldId, await getCachedActiveInventory());
     if (fromInventory) {
-      return NextResponse.json(fromInventory);
+      return NextResponse.json(fromInventory, {
+        headers: { "Cache-Control": ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL },
+      });
     }
 
-    const counts = await cacheGetOrSet(
-      cacheKey(["subject-served-counts", fieldId]),
+    const counts = await cacheAsidePublishedStamp(
+      ["subject-served-counts", fieldId],
       CACHE_TTL.subjectCatalog,
       () => getSubjectServedCountsWithRetry(fieldId),
       { staleTtlMs: CACHE_STALE.subjectCatalog }

@@ -11,8 +11,10 @@ export const dynamic = "force-dynamic";
 
 /**
  * Drop the shared active-question inventory cache.
- * Called by `db:retire-near-duplicates --apply` and by operators after a
- * publish change that already landed in the database.
+ * Optional. Publish, retire, and other bank writes change the published stamp,
+ * and the next /nclex or Qbank request rebuilds from that stamp without this
+ * route. Call it when you also want the tag and paths purged immediately.
+ * Called by `db:retire-near-duplicates --apply` when CRON_SECRET is set.
  *
  *   curl -X POST -H "Authorization: Bearer $CRON_SECRET" \
  *     https://www.anyexameasy.com/api/cron/revalidate-inventory

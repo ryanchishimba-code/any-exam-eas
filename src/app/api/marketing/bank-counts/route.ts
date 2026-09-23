@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
-import {
-  ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
-  ACTIVE_INVENTORY_CDN_STALE_SECONDS,
-} from "@/lib/inventory/active-inventory-cache";
+import { ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL } from "@/lib/inventory/active-inventory-cache";
 import {
   ACTIVE_QUESTION_DEFINITION,
   formatInventoryFormatLine,
@@ -12,7 +9,8 @@ import {
   getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
 
-export const revalidate = 3600;
+/** Stamp check on every request. A CDN hour would keep the retired total. */
+export const dynamic = "force-dynamic";
 
 /** Public serve-ready counts for landing surfaces and client fallbacks. */
 export async function GET() {
@@ -48,7 +46,7 @@ export async function GET() {
       },
       {
         headers: {
-          "Cache-Control": `public, s-maxage=${ACTIVE_INVENTORY_CACHE_TTL_SECONDS}, stale-while-revalidate=${ACTIVE_INVENTORY_CDN_STALE_SECONDS}`,
+          "Cache-Control": ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL,
         },
       }
     );

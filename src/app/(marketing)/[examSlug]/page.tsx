@@ -14,7 +14,8 @@ import {
 } from "@/lib/marketing/question-bank-counts";
 import { getUsmleExamOptionsWithCounts } from "@/lib/exam-prep/usmle/exam-options";
 
-export const revalidate = 3600;
+/** Count is the published stamp. Do not ISR board hubs for an hour after a retire. */
+export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ examSlug: string }> };
 

@@ -1,10 +1,13 @@
 import { NextResponse } from "next/server";
 import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
+import { ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL } from "@/lib/inventory/active-inventory-cache";
+import { readActiveInventoryStampKey } from "@/lib/inventory/active-inventory-stamp";
 import { countActiveQuestions, getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 type RouteParams = { params: Promise<{ examSlug: string }> };
 
@@ -18,10 +21,8 @@ export async function GET(_req: Request, { params }: RouteParams) {
   const exam = EXAM_CATALOG[examSlug];
 
   try {
-    const payload = await cacheGetOrSet(
-      cacheKey(["exam-metadata", examSlug]),
-      CACHE_TTL.subjectCatalog,
-      async () => {
+    const stamp = await readActiveInventoryStampKey();
+    const loadExam = async () => {
         const [questionCount, subjectCounts] = await Promise.all([
           countActiveQuestions(exam.fieldId),
           getSubjectServedCountsWithRetry(exam.fieldId),
@@ -47,11 +48,17 @@ export async function GET(_req: Request, { params }: RouteParams) {
           topics,
           updatedAt: new Date().toISOString(),
         };
-      }
-    );
+    };
+    const payload = stamp
+      ? await cacheGetOrSet(
+          cacheKey(["exam-metadata", examSlug, stamp]),
+          CACHE_TTL.subjectCatalog,
+          loadExam
+        )
+      : await loadExam();
 
     return NextResponse.json(payload, {
-      headers: { "Cache-Control": "public, s-maxage=120, stale-while-revalidate=600" },
+      headers: { "Cache-Control": ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL },
     });
   } catch (error) {
     console.error("[api/exams/[examSlug]] failed:", error);

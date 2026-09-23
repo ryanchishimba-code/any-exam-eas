@@ -15,7 +15,8 @@ import {
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { absoluteUrl } from "@/lib/seo";
 
-export const revalidate = 86400;
+/** Guide index prints the live bank total. Do not keep yesterday's snapshot. */
+export const dynamic = "force-dynamic";
 
 export const metadata = buildFreeGuidesMetadata();
 

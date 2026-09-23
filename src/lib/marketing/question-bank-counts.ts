@@ -1,4 +1,5 @@
 import { unstable_cache, unstable_noStore as noStore } from "next/cache";
+import { connection } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
@@ -8,6 +9,7 @@ import {
   ACTIVE_INVENTORY_CACHE_TAG,
   ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
 } from "@/lib/inventory/active-inventory-cache";
+import { readActiveInventoryStampKey } from "@/lib/inventory/active-inventory-stamp";
 import {
   fetchActiveInventoryFromDb,
   type ActiveQuestionInventory,
@@ -206,25 +208,62 @@ export async function getQuestionBankCounts(): Promise<QuestionBankCountsSnapsho
   return (await loadBankStatsBundle()).snapshot;
 }
 
-const fetchCachedBankStats = unstable_cache(
-  async () => loadBankStatsBundle(),
-  [...ACTIVE_INVENTORY_CACHE_KEY],
-  {
-    revalidate: ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
-    tags: [ACTIVE_INVENTORY_CACHE_TAG],
-  }
-);
+const DEGRADED_INVENTORY_ERROR = "active inventory lookup degraded";
 
 /**
- * Cached inventory + marketing snapshot. The one-hour TTL is only a fallback.
- * Publish toggles and `db:retire-near-duplicates --apply` revalidate
- * `question-bank-counts` so the next request reads the database.
+ * Opt the caller into dynamic rendering without skipping `unstable_cache`.
+ * Outside a request (unit tests, scripts) this is a no-op; the stamp read
+ * below is still uncached.
  */
-export async function getCachedBankStatsBundle(): Promise<BankStatsBundle> {
-  return fetchCachedBankStats();
+async function renderInventoryOnEachRequest(): Promise<void> {
+  try {
+    await connection();
+  } catch {
+    /* no request scope */
+  }
 }
 
-/** Cached counts for marketing/landing pages — revalidates hourly (or via cron tag). */
+async function loadFreshBankStatsBundle(): Promise<BankStatsBundle> {
+  const bundle = await loadBankStatsBundle();
+  if (bundle.inventory.degraded || bundle.snapshot.degraded) {
+    throw new Error(DEGRADED_INVENTORY_ERROR);
+  }
+  return bundle;
+}
+
+function isDegradedInventoryError(error: unknown): boolean {
+  return error instanceof Error && error.message === DEGRADED_INVENTORY_ERROR;
+}
+
+/**
+ * Cached inventory + marketing snapshot.
+ *
+ * Every call reads the published stamp from the database, then loads the
+ * heavy snapshot under that stamp. A retire or publish changes the stamp, so
+ * the next hard refresh rebuilds even if the cron purge was skipped. The
+ * one-hour TTL only reuses a snapshot whose stamp is unchanged. A failed
+ * lookup is not cached.
+ */
+export async function getCachedBankStatsBundle(): Promise<BankStatsBundle> {
+  await renderInventoryOnEachRequest();
+
+  const stampKey = await readActiveInventoryStampKey();
+  if (!stampKey) return loadBankStatsBundle();
+
+  try {
+    return await unstable_cache(loadFreshBankStatsBundle, [...ACTIVE_INVENTORY_CACHE_KEY, stampKey], {
+      revalidate: ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+      tags: [ACTIVE_INVENTORY_CACHE_TAG],
+    })();
+  } catch (error) {
+    if (!isDegradedInventoryError(error)) {
+      console.error("[inventory] cached snapshot failed; reading the bank directly:", error);
+    }
+    return loadBankStatsBundle();
+  }
+}
+
+/** Cached counts for marketing pages. The published stamp, not the TTL, drops a retired total. */
 export async function getCachedQuestionBankCounts(): Promise<QuestionBankCountsSnapshot> {
   return (await getCachedBankStatsBundle()).snapshot;
 }

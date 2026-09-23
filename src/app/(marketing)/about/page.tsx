@@ -19,7 +19,8 @@ import {
   getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
 
-export const revalidate = 3600;
+/** The about total uses the same published stamp as /nclex. */
+export const dynamic = "force-dynamic";
 
 async function publishedOrLiveTotalLabel(): Promise<{ label: string; live: boolean }> {
   const { snapshot } = await getCachedBankStatsBundle();
