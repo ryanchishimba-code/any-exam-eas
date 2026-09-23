@@ -63,11 +63,11 @@ export function ExamSwitcher({
     return (
       <Link
         href={switchHref}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-black/[0.08] bg-white/90 py-1.5 pl-2 pr-2.5 text-xs font-semibold text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-surface)]"
+        className="inline-flex items-center gap-1.5 rounded-lg border border-black/[0.08] bg-white/90 py-1.5 pl-2 pr-2.5 text-xs font-semibold text-[var(--color-ink)] shadow-sm transition hover:border-[var(--study-accent)]/40 hover:bg-[var(--color-surface)]"
         aria-label={`Current exam: ${exam.name}. Switch exam`}
         title="Switch exam"
       >
-        <GraduationCap className="h-3.5 w-3.5 text-[var(--color-accent)]" aria-hidden />
+        <GraduationCap className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />
         <span>{exam.shortName}</span>
         <ChevronDown className="h-3 w-3 text-[var(--color-ink-muted)]" aria-hidden />
       </Link>
@@ -85,7 +85,7 @@ export function ExamSwitcher({
           className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white py-2.5 pl-3 pr-3 text-sm font-semibold text-slate-900 transition hover:border-teal-300 hover:bg-teal-50/50"
           aria-label={`Current exam: ${exam.name}. Switch exam`}
         >
-          <GraduationCap className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+          <GraduationCap className="h-4 w-4 text-[var(--study-accent)]" aria-hidden />
           <span className="flex-1 text-left">{exam.name}</span>
           <span className="text-xs font-semibold text-teal-700">Switch</span>
         </Link>
@@ -105,7 +105,7 @@ export function ExamSwitcher({
             onChange={onChange}
             aria-busy={pending}
             className={cn(
-              "appearance-none rounded-xl border border-slate-200 bg-white py-2 pl-3 pr-9 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-slate-300 focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20",
+              "appearance-none rounded-xl border border-slate-200 bg-white py-2 pl-3 pr-9 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-slate-300 focus:border-[var(--study-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--study-accent)]/20",
               pending && "opacity-70"
             )}
           >
@@ -121,7 +121,7 @@ export function ExamSwitcher({
           />
           {pending ? (
             <Loader2
-              className="pointer-events-none absolute right-8 top-1/2 h-3.5 w-3.5 -translate-y-1/2 animate-spin text-[var(--color-accent)]"
+              className="pointer-events-none absolute right-8 top-1/2 h-3.5 w-3.5 -translate-y-1/2 animate-spin text-[var(--study-accent)]"
               aria-hidden
             />
           ) : null}

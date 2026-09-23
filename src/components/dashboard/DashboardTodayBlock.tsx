@@ -35,6 +35,8 @@ export function DashboardTodayBlock({
           const href = studyLocked ? lockedHref : item.href;
           const cardClass =
             "flex h-full flex-col rounded-2xl border border-[var(--db-line,var(--color-border))]/80 px-4 py-4 sm:px-5";
+          // Review incorrect is a primary action, same filled treatment as Today.
+          const filledCta = item.id === "incorrect" && Boolean(href);
           const body = (
             <>
               <span className={dbUi.eyebrow}>{index + 1}</span>
@@ -44,7 +46,13 @@ export function DashboardTodayBlock({
               <span className="mt-1.5 block text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
                 {item.detail}
               </span>
-              <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[var(--color-accent)]">
+              <span
+                className={
+                  filledCta
+                    ? `${dbUi.primaryBtn} mt-4 self-start`
+                    : "mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-[var(--color-accent)]"
+                }
+              >
                 {studyLocked ? <Lock className="h-3.5 w-3.5" aria-hidden /> : null}
                 {studyLocked ? "Subscribe to start" : item.cta}
                 {href ? <ArrowRight className="h-3.5 w-3.5" aria-hidden /> : null}
