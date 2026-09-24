@@ -60,7 +60,7 @@ If your Qbank shows a weak Domain I process (e.g., Evaluate), deliberately hunt 
 
 ### Can AnyExamEasy help?
 
-Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style practice, rationales, Blueprint Roadmaps, and mocks — plus other boards in one login. Soft start free; **$27.99/mo after trial** (trial terms on site). Independent — **not affiliated with AANPCB or AANP**. No pass guarantee.
+Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style AANP FNP practice, rationales, Blueprint Roadmaps, and mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. Independent — **not affiliated with AANPCB or AANP**. No pass guarantee.
 
 ### What if I fail or feel far from ready?
 
@@ -102,13 +102,13 @@ Confidence is not swagger — it’s pattern recognition you earned with deliber
 
 ---
 
-## Ready for practice?
+## Ready for AANP FNP practice?
 
-**[Try AANP FNP practice free →](https://anyexameasy.com)**
+**AnyExamEasy** pairs this AANP FNP reference book with exam-style practice, rationales, Blueprint Roadmaps, and mocks.
 
-Then upgrade when ready — **$27.99/mo after trial** (trial terms on site). Use it to drill weak systems, timed mocks, and rationale review that mirrors the ADPE habits in this book.
+**[Start a 5-day free trial →](https://anyexameasy.com)** — no payment method. Then Pro at **$27.99/mo**. Use it to drill weak systems, timed mocks, and rationale review that mirrors the ADPE habits in this book.
 
-*One login. Real practice. Make the exam feel familiar before it counts.*
+*AANP FNP practice that matches the ADPE judgment this book trains.*
 
 ---
 
@@ -134,4 +134,4 @@ Then upgrade when ready — **$27.99/mo after trial** (trial terms on site). Use
 
 *Always confirm current eligibility, blueprint weights, exam policies, and scheduling rules in the official AANPCB Candidate Handbook and FNP materials at [aanpcert.org](https://www.aanpcert.org).*
 
-*© AnyExamEasy. All rights reserved. Pricing shown ($27.99/mo after trial) may change — confirm current trial terms and subscription details on [anyexameasy.com](https://anyexameasy.com).*
+*© AnyExamEasy. All rights reserved. Pricing shown (5-day free trial, no payment method; then Pro at $27.99/mo) may change — confirm current subscription details on [anyexameasy.com](https://anyexameasy.com).*

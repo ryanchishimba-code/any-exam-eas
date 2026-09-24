@@ -269,7 +269,7 @@ Fix patterns, not only single facts.
 
 ## Soft CTA — last practice sets
 
-Finish weak areas with exam-style items and full rationales on [AnyExamEasy](https://anyexameasy.com) — start free; **$27.99/mo after trial** (trial terms on site). Independent study aid — not AANPCB/AANP; no pass guarantee.
+Finish weak areas with exam-style AANP FNP items and full rationales on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Independent study aid — not affiliated with AANPCB or AANP; no pass guarantee.
 
 ---
 
