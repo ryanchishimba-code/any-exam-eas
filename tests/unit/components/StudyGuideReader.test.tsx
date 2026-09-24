@@ -162,6 +162,22 @@ describe("StudyGuideReader", () => {
     expect(screen.getAllByText("Cardiac").length).toBeGreaterThan(0);
   });
 
+  it("scrolls the chapter column, not a nested paper card", () => {
+    const { container } = renderReader(
+      makeChapter({
+        bodyHtml:
+          '<h1>AnyExamEasy NAPLEX Reference Book</h1><p><a href="https://nabp.pharmacy/programs/examinations/naplex/">nabp.pharmacy/programs/examinations/naplex/</a></p>',
+      })
+    );
+    const paper = container.querySelector("article.sg-paper");
+    const scroller = container.querySelector(".sg-chapter-scroll");
+    expect(paper).toBeTruthy();
+    expect(scroller).toBeTruthy();
+    expect(paper?.className).not.toMatch(/overflow-y-auto/);
+    expect(scroller?.contains(paper ?? null)).toBe(true);
+    expect(scroller?.contains(container.querySelector(".sg-scrubber"))).toBe(false);
+  });
+
   it("shows bookmark and highlight controls without a trial upsell", () => {
     renderReader();
     expect(screen.getByText(/Afterload is resistance/)).toBeInTheDocument();

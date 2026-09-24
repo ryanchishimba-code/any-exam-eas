@@ -217,6 +217,8 @@ export function StudyGuideReader({
   const reduceMotion = useReducedMotion();
   const isDesktop = useIsDesktop();
   const paperRef = useRef<HTMLElement>(null);
+  /** Vertical scrollport for the chapter column — not the paper card. */
+  const scrollRef = useRef<HTMLDivElement>(null);
   const appearanceRef = useRef<HTMLDivElement>(null);
   const tocActiveRef = useRef<HTMLButtonElement | null>(null);
   const scrollPctRef = useRef(0);
@@ -373,7 +375,7 @@ export function StudyGuideReader({
 
   const restoreScroll = useStableCallback(async (ch: SgChapterDto) => {
     const applyPct = (pct: number) => {
-      const el = paperRef.current;
+      const el = scrollRef.current;
       if (!el) return;
       const max = el.scrollHeight - el.clientHeight;
       if (max > 0 && pct > 0) {
@@ -438,7 +440,7 @@ export function StudyGuideReader({
     });
   });
   useEffect(() => {
-    const el = paperRef.current;
+    const el = scrollRef.current;
     if (!el) return;
     let ticking = false;
     const onScroll = () => {
@@ -738,7 +740,7 @@ export function StudyGuideReader({
   ]);
 
   const seekToPct = useCallback((pct: number) => {
-    const el = paperRef.current;
+    const el = scrollRef.current;
     if (!el) return;
     const max = el.scrollHeight - el.clientHeight;
     const clamped = Math.max(0, Math.min(100, pct));
@@ -1010,7 +1012,7 @@ export function StudyGuideReader({
         </AnimatePresence>
 
         {/* CENTER paper */}
-        <main className="relative flex min-w-0 flex-1 flex-col">
+        <main className="relative flex min-h-0 min-w-0 flex-1 flex-col">
           {/* Edge prev/next */}
           {chapter.prevSlug ? (
             <button
@@ -1110,96 +1112,105 @@ export function StudyGuideReader({
             </p>
           ) : null}
 
-          <div className="relative mx-auto min-h-0 w-full max-w-[42rem] flex-1 px-3 sm:my-8 sm:px-8">
-            <article
-              ref={paperRef}
-              onMouseUp={captureSelection}
-              data-theme={prefs.theme}
-              className={cn(
-                "sg-paper h-full overflow-y-auto shadow-2xl sm:rounded-[1.25rem]",
-                paperTheme,
-                fontClass,
-                leadingClass
-              )}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={chapter.id}
-                  {...chapterMotion}
-                  transition={{ duration: reduceMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
+          <div className="relative min-h-0 min-w-0 flex-1">
+            <div ref={scrollRef} className="sg-chapter-scroll h-full min-h-0 min-w-0">
+              <div className="mx-auto flex min-h-full w-full max-w-[42rem] flex-col px-3 py-3 sm:px-8 sm:py-8">
+                <article
+                  ref={paperRef}
+                  onMouseUp={captureSelection}
+                  data-theme={prefs.theme}
+                  className={cn(
+                    "sg-paper flex-1 shadow-2xl sm:rounded-[1.25rem]",
+                    paperTheme,
+                    fontClass,
+                    leadingClass
+                  )}
                 >
-                  {visibleBookSection(chapter.sectionLabel) ? (
-                    <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] opacity-60">
-                      {visibleBookSection(chapter.sectionLabel)}
-                    </p>
-                  ) : null}
-                  <div
-                    className="sg-prose"
-                    dangerouslySetInnerHTML={{ __html: filteredHtml }}
-                  />
-                  {chapter.relatedTopics.length > 0 ? (
-                    <section className="sg-deeper" aria-labelledby="sg-deeper-heading">
-                      <h2 id="sg-deeper-heading" className="sg-deeper__title">
-                        Go deeper on this chapter
-                      </h2>
-                      <p className="sg-deeper__intro">
-                        Related topics with a full review, Library cards, or anatomy to explore.
-                      </p>
-                      <ul className="sg-deeper__list">
-                        {chapter.relatedTopics.map((t) => (
-                          <li key={t.slug} className="sg-deeper__item">
-                            <p className="sg-deeper__topic">{t.title}</p>
-                            {t.summary ? <p className="sg-deeper__summary">{t.summary}</p> : null}
-                            <div className="sg-deeper__links">
-                              {t.deepDiveHref ? (
-                                <Link className="sg-deeper__link" href={t.deepDiveHref}>
-                                  Deep dive
-                                </Link>
-                              ) : null}
-                              {t.libraryHref ? (
-                                <Link className="sg-deeper__link" href={t.libraryHref}>
-                                  Library
-                                  {t.libraryCardCount > 0 ? ` (${t.libraryCardCount})` : ""}
-                                </Link>
-                              ) : null}
-                              {t.anatomyHref ? (
-                                <Link className="sg-deeper__link" href={t.anatomyHref}>
-                                  Anatomy{t.anatomyLabel ? `: ${t.anatomyLabel}` : ""}
-                                </Link>
-                              ) : null}
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </section>
-                  ) : null}
-                </motion.div>
-              </AnimatePresence>
-            </article>
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div
+                      key={chapter.id}
+                      {...chapterMotion}
+                      transition={{ duration: reduceMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {visibleBookSection(chapter.sectionLabel) ? (
+                        <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] opacity-60">
+                          {visibleBookSection(chapter.sectionLabel)}
+                        </p>
+                      ) : null}
+                      <div
+                        className="sg-prose"
+                        dangerouslySetInnerHTML={{ __html: filteredHtml }}
+                      />
+                      {chapter.relatedTopics.length > 0 ? (
+                        <section className="sg-deeper" aria-labelledby="sg-deeper-heading">
+                          <h2 id="sg-deeper-heading" className="sg-deeper__title">
+                            Go deeper on this chapter
+                          </h2>
+                          <p className="sg-deeper__intro">
+                            Related topics with a full review, Library cards, or anatomy to explore.
+                          </p>
+                          <ul className="sg-deeper__list">
+                            {chapter.relatedTopics.map((t) => (
+                              <li key={t.slug} className="sg-deeper__item">
+                                <p className="sg-deeper__topic">{t.title}</p>
+                                {t.summary ? <p className="sg-deeper__summary">{t.summary}</p> : null}
+                                <div className="sg-deeper__links">
+                                  {t.deepDiveHref ? (
+                                    <Link className="sg-deeper__link" href={t.deepDiveHref}>
+                                      Deep dive
+                                    </Link>
+                                  ) : null}
+                                  {t.libraryHref ? (
+                                    <Link className="sg-deeper__link" href={t.libraryHref}>
+                                      Library
+                                      {t.libraryCardCount > 0 ? ` (${t.libraryCardCount})` : ""}
+                                    </Link>
+                                  ) : null}
+                                  {t.anatomyHref ? (
+                                    <Link className="sg-deeper__link" href={t.anatomyHref}>
+                                      Anatomy{t.anatomyLabel ? `: ${t.anatomyLabel}` : ""}
+                                    </Link>
+                                  ) : null}
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
+                      ) : null}
+                    </motion.div>
+                  </AnimatePresence>
+                </article>
+              </div>
+            </div>
 
-            {/* Edge scrubber */}
-            <div className="sg-scrubber" aria-hidden={false}>
-              {/* Uncontrolled: the scroll handler writes `value` on the node so a
-                  60Hz position update doesn't re-render the reader. */}
-              <input
-                ref={scrubberRef}
-                type="range"
-                min={0}
-                max={100}
-                step={0.5}
-                defaultValue={0}
-                aria-label="Seek in chapter"
-                onPointerDown={() => {
-                  scrubbingRef.current = true;
-                }}
-                onPointerUp={() => {
-                  scrubbingRef.current = false;
-                }}
-                onPointerCancel={() => {
-                  scrubbingRef.current = false;
-                }}
-                onChange={(e) => seekToPct(Number(e.target.value))}
-              />
+            {/* Scrubber stays pinned to the visible column. It is outside the
+                scrollport so its rotated track can't widen the chapter. */}
+            <div className="pointer-events-none absolute inset-0 flex justify-center">
+              <div className="pointer-events-none relative h-full w-full max-w-[42rem]">
+                <div className="sg-scrubber" aria-hidden={false}>
+                  {/* Uncontrolled: the scroll handler writes `value` on the node so a
+                      60Hz position update doesn't re-render the reader. */}
+                  <input
+                    ref={scrubberRef}
+                    type="range"
+                    min={0}
+                    max={100}
+                    step={0.5}
+                    defaultValue={0}
+                    aria-label="Seek in chapter"
+                    onPointerDown={() => {
+                      scrubbingRef.current = true;
+                    }}
+                    onPointerUp={() => {
+                      scrubbingRef.current = false;
+                    }}
+                    onPointerCancel={() => {
+                      scrubbingRef.current = false;
+                    }}
+                    onChange={(e) => seekToPct(Number(e.target.value))}
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
