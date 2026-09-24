@@ -465,6 +465,7 @@
     "db:audit-item-qa": "bash scripts/run-with-node.sh npx tsx scripts/audit-item-qa.ts",
     "db:retire-near-duplicates": "bash scripts/run-with-node.sh npx tsx scripts/retire-near-duplicates.ts",
     "db:remediate-text-flags": "bash scripts/run-with-node.sh npx tsx scripts/remediate-text-flags.ts",
+    "db:propose-governing-principles": "bash scripts/run-with-node.sh npx tsx scripts/propose-governing-principles.ts",
     "db:qa-gate": "npx tsx scripts/qa-gate-question-bank.ts",
     "db:qa-gate:dry": "npx tsx scripts/qa-gate-question-bank.ts --dry-run",
     "db:qa-full": "node scripts/qa-full-pipeline.mjs",
