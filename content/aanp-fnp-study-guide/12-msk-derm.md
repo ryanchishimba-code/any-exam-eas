@@ -33,7 +33,7 @@ MSK and derm fill half of primary-care walk-ins — and they sit where Domain II
 
 Expect stems on low-back red flags and cauda equina, OA vs inflammatory arthritis cues, Ottawa-style imaging selectivity, elder falls and occult hip fracture, gout vs septic joint, eczema/psoriasis counseling, cellulitis vs venous stasis, melanoma ABCDE, and SJS/TEN ED cues. Candidates who memorized “NSAIDs for back pain” without disposition lose dangerous points; candidates who inject steroids into a septic joint lose worse ones.
 
-**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Soft start: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -414,7 +414,7 @@ Necrotizing fasciitis cues (pain out of proportion, rapid spread, crepitus, toxi
 - Teaching doses/intervals change — verify guidelines and labels.
 - Independent study aid — not AANPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill back-pain red flags, septic joint, Ottawa/elder fracture, gout, cellulitis vs stasis, ABCDE, and SJS/TEN items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+**Next practice move:** Drill back-pain red flags, septic joint, Ottawa/elder fracture, gout, cellulitis vs stasis, ABCDE, and SJS/TEN items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 

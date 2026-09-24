@@ -35,7 +35,7 @@ Women’s health is not a “niche elective” on AANPCB — it is everyday prim
 
 Candidates who memorize pill brands without medical-eligibility thinking lose easy points. Candidates who send unilateral first-trimester pain home without an ectopic plan lose dangerous ones.
 
-**Pair with practice:** After each topic, run related items, review every miss, and tag your error log with age band + ADPE stage. Soft start: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** After each topic, run related items, review every miss, and tag your error log with age band + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -402,7 +402,7 @@ Shared decision mammography start age themes; don’t ignore palpable mass regar
 - Teaching doses/intervals change — verify CDC/USPSTF/ACOG-aligned sources and labels.  
 - Independent study aid — not AANPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill contraception MEC, STI/PID, AUB/PCOS, prenatal red flags, and screening items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+**Next practice move:** Drill contraception MEC, STI/PID, AUB/PCOS, prenatal red flags, and screening items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 

@@ -33,7 +33,7 @@
 
 Newborn through adolescent care is a smaller Domain II slice than middle/older adult — and that is exactly why candidates under-study it. AANPCB still scores **Assess / Diagnose / Plan / Evaluate** (32% / 26.5% / 26.5% / 15%) on well-child visits, fever triage, AOM stewardship, asthma, ADHD, sports clearance, dehydration, bronchiolitis, vaccines, and adolescent risk. Miss a neonate fever disposition or clear an athlete with exertional syncope and you fail the item the way you’d fail the child.
 
-**Pair with practice:** Tag every miss with age band (newborn/infant/child/adolescent*) + ADPE stage. Soft start: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** Tag every miss with age band (newborn/infant/child/adolescent*) + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -365,7 +365,7 @@ ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable
 - Verify vaccine schedules and abx durations — they update.  
 - Independent study aid — not AANPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill neonatal fever, AOM stewardship, asthma, sports cardiac screens, and adolescent safety items on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+**Next practice move:** Drill neonatal fever, AOM stewardship, asthma, sports cardiac screens, and adolescent safety items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
