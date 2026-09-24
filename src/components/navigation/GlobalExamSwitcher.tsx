@@ -2,10 +2,12 @@
 
 import { Suspense } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { GraduationCap } from "lucide-react";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { ExamSwitcher } from "@/components/edtech/ExamSwitcher";
+import { headerBoardExamSlug } from "@/lib/navigation/app-shell";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -15,9 +17,13 @@ type Props = {
 };
 
 function GlobalExamSwitcherInner({ variant = "nav", onNavigate }: Props) {
+  const pathname = usePathname();
   const { examSlug, loading, refresh } = useAppPreferences();
+  // A study-guide URL names its board. Show that board even while the saved
+  // preference (often NCLEX) is still loading or points at a different exam.
+  const displayExam = headerBoardExamSlug(pathname, examSlug);
 
-  if (loading) {
+  if (loading && !displayExam) {
     return (
       <span
         className={cn(
@@ -29,7 +35,7 @@ function GlobalExamSwitcherInner({ variant = "nav", onNavigate }: Props) {
     );
   }
 
-  if (!examSlug) {
+  if (!displayExam) {
     return (
       <Link
         href={ROUTES.examSelect}
@@ -47,7 +53,7 @@ function GlobalExamSwitcherInner({ variant = "nav", onNavigate }: Props) {
 
   return (
     <ExamSwitcher
-      currentExam={examSlug}
+      currentExam={displayExam}
       variant={variant}
       onSwitched={() => {
         onNavigate?.();
