@@ -25,6 +25,12 @@ const MAX_ENTRIES = 500;
 export type CacheResilienceOptions = {
   /** Keep serving expired L1 entries for this long on transient DB errors. */
   staleTtlMs?: number;
+  /**
+   * Skip a fresh in-process hit and read Redis.
+   * Attempt totals are deleted on the isolate that saved the session. That
+   * delete cannot see this process's memory, so count reads must observe Redis.
+   */
+  skipFreshL1?: boolean;
 };
 
 function prune(): void {
@@ -120,7 +126,7 @@ async function readThroughCache<T>(
 ): Promise<T> {
   const staleTtlMs = options?.staleTtlMs ?? 0;
   const l1 = cacheGetEntry<T>(key);
-  if (l1?.fresh) return l1.value;
+  if (l1?.fresh && !options?.skipFreshL1) return l1.value;
 
   const remoteHit = await redisCacheGet<T>(key);
   if (remoteHit != null) {
@@ -163,7 +169,7 @@ export async function cacheGetOrSetDeduped<T>(
 ): Promise<T> {
   const staleTtlMs = options?.staleTtlMs ?? 0;
   const l1 = cacheGetEntry<T>(key);
-  if (l1?.fresh) return l1.value;
+  if (l1?.fresh && !options?.skipFreshL1) return l1.value;
 
   const remoteHit = await redisCacheGet<T>(key);
   if (remoteHit != null) {
@@ -239,18 +245,21 @@ export async function invalidateExamPreferenceCacheAsync(userId: string): Promis
 /** Drop per-user dashboard / weak-topic caches when the selected exam changes. */
 export function invalidateLearningDashboardCache(userId: string): void {
   // Keys use student-dashboard-v4 — keep older prefixes for this isolate's L1.
+  cacheDeleteMatching(`${cacheKey(["student-dashboard-v5", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["student-dashboard-v4", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["student-dashboard-v3", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["student-dashboard", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["weak-topics-v3", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["weak-topics", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["library-hub-stats", userId])}:`);
+  cacheDeleteMatching(`${cacheKey(["exam-scoped-stats-v2", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-scoped-stats", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-roadmap", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-roadmap-v2", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-roadmap-v4", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-roadmap-v5", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-roadmap-v6", userId])}:`);
+  cacheDeleteMatching(`${cacheKey(["exam-roadmap-v8", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["exam-roadmap-v7", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["mastery-dashboard", userId])}:`);
 }

@@ -658,10 +658,10 @@ export async function getExamRoadmapData(
       ? options.usmleFieldId
       : examSlug;
   return cacheGetOrSet(
-    cacheKey(["exam-roadmap-v7", userId, fieldKey]),
+    cacheKey(["exam-roadmap-v8", userId, fieldKey]),
     CACHE_TTL.learningDashboard,
     () => loadExamRoadmapData(userId, examSlug, options),
-    { staleTtlMs: CACHE_STALE.learningDashboard }
+    { staleTtlMs: CACHE_STALE.learningDashboard, skipFreshL1: true }
   );
 }
 

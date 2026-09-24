@@ -144,6 +144,49 @@ describe("review incorrect launch eligibility", () => {
     expect(reviewFieldIdsForQuery("PANCE")).not.toContain("mpje");
   });
 
+  it("counts one saved miss the same way for NCLEX, NAPLEX, and USMLE alias shapes", () => {
+    const shapes = [
+      { requested: "nursing", stored: "nclex" },
+      { requested: "NCLEX", stored: "nclex-rn" },
+      { requested: "pharmacy", stored: "naplex" },
+      { requested: "NAPLEX", stored: "pharmacy" },
+      { requested: "usmle-step-1", stored: "usmle-step-1" },
+      { requested: "USMLE Step 1", stored: "usmle-step1" },
+      { requested: "usmle-step-2", stored: "medicine" },
+      { requested: "usmle", stored: "usmle" },
+    ];
+
+    for (const shape of shapes) {
+      const attempt = {
+        fieldId: shape.stored,
+        bankItemId: "item-1",
+        questionKey: "item-1",
+        correct: false,
+        createdAt: t0,
+        subjectId: "pathology",
+      };
+      const visible = reviewFieldIdsForQuery(shape.requested).includes(shape.stored)
+        ? [attempt]
+        : [];
+      const queue = selectLaunchReviewQueueIds({
+        attempts: visible,
+        servableIds: new Set(["item-1"]),
+      });
+      const analyticsAttempts = visible.length;
+      const dashboardOpen = queue.length;
+      expect(reviewFieldIdsForQuery(shape.requested)).toContain(shape.stored);
+      expect(dashboardOpen).toBe(1);
+      expect(queue).toHaveLength(1);
+      expect(analyticsAttempts).toBe(dashboardOpen);
+    }
+
+    // Catalog USMLE is Step 2. A Step 1 miss must not be counted there.
+    expect(reviewFieldIdsForQuery("usmle-step-2")).not.toContain("usmle-step-1");
+    expect(reviewFieldIdsForQuery("usmle-step-1")).toContain("usmle-step1");
+    expect(reviewFieldIdsForQuery("usmle-step-1")).not.toContain("medicine");
+    expect(reviewFieldIdsForQuery("PANCE")).not.toContain("mpje");
+  });
+
   it("is the selector the dashboard roadmap and the review loader both call", () => {
     const roadmap = readFileSync(new URL("./exam-roadmap.ts", import.meta.url), "utf8");
     const loader = readFileSync(new URL("./review-incorrect.ts", import.meta.url), "utf8");
@@ -156,5 +199,17 @@ describe("review incorrect launch eligibility", () => {
     expect(loader).toContain("loadServableReviewBankIds");
     expect(page).toContain("subjectId: null");
     expect(selectLaunchReviewQueueIds.toString()).not.toMatch(/naplex|nclex/i);
+
+    const analytics = readFileSync(
+      new URL("../../app/(app)/analytics/page.tsx", import.meta.url),
+      "utf8"
+    );
+    const stats = readFileSync(new URL("../edtech/stats.ts", import.meta.url), "utf8");
+    const dashboardData = readFileSync(new URL("./student-dashboard.ts", import.meta.url), "utf8");
+    expect(analytics).toContain("canonicalPracticeFieldId");
+    expect(analytics).not.toContain("resolveExamFieldId");
+    expect(stats).toContain("reviewFieldIdsForQuery");
+    expect(dashboardData).toContain("expandReviewFieldIds");
+    expect(roadmap).toContain("skipFreshL1");
   });
 });

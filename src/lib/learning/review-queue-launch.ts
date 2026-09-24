@@ -11,35 +11,55 @@
  */
 
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { USMLE_FIELD_ALIASES } from "@/lib/exam-prep/usmle/steps";
 import {
   attemptItemId,
   selectReviewQueueIds,
   type MasteryAttempt,
   type MasteryMark,
 } from "@/lib/learning/item-mastery";
-import { normalizeFieldId } from "@/lib/subjects/field-ids";
+import { FIELD_ID_ALIASES, normalizeFieldId } from "@/lib/subjects/field-ids";
 
 const REVIEW_QUEUE_CAP = 300;
 
+/** MPJE stays its own exam. Its rows are not PANCE attempts. */
+const REVIEW_FIELD_EXCLUSIONS = new Set(["mpje"]);
+
 /**
- * Stored attempt field ids that are the same practice board.
- * Includes the raw request (NAPLEX label or naplex slug) and the canonical id
- * (pharmacy). MPJE is not folded into PANCE.
+ * Stored attempt field ids for one practice board.
+ * Built from the shared alias tables (NCLEX/nursing, NAPLEX/pharmacy,
+ * USMLE step slugs such as usmle-step1, plus usmle/medicine → Step 2).
+ * The raw request is kept so a label like "NAPLEX" still matches.
  */
-const REVIEW_FIELD_SYNONYMS: Record<string, readonly string[]> = {
-  pharmacy: ["pharmacy", "naplex"],
-  nursing: ["nursing", "nclex", "nclex-rn", "nclex-ngn"],
-  pance: ["pance", "pa", "physician-assistant"],
-  "aanp-fnp": ["aanp-fnp", "fnp", "family-nurse-practitioner"],
-  "npte-pt": ["npte-pt", "npte", "pt", "physical-therapy"],
-};
+function storedAliasesForCanonical(canonical: string): string[] {
+  const ids = new Set<string>();
+  for (const map of [FIELD_ID_ALIASES, USMLE_FIELD_ALIASES]) {
+    for (const [alias, target] of Object.entries(map)) {
+      if (REVIEW_FIELD_EXCLUSIONS.has(alias)) continue;
+      if (target === canonical) ids.add(alias);
+    }
+  }
+  return [...ids];
+}
 
 export function reviewFieldIdsForQuery(fieldId: string | null | undefined): string[] {
   const trimmed = fieldId?.trim() ?? "";
   if (!trimmed) return [];
   const canonical = normalizeFieldId(trimmed);
   const ids = new Set<string>([trimmed, canonical]);
-  for (const alias of REVIEW_FIELD_SYNONYMS[canonical] ?? []) ids.add(alias);
+  for (const alias of storedAliasesForCanonical(canonical)) ids.add(alias);
+  return [...ids];
+}
+
+/** Union of reviewFieldIdsForQuery for every requested field. */
+export function expandReviewFieldIds(
+  fieldIds: readonly string[] | null | undefined
+): string[] {
+  if (!fieldIds || fieldIds.length === 0) return [];
+  const ids = new Set<string>();
+  for (const id of fieldIds) {
+    for (const alias of reviewFieldIdsForQuery(id)) ids.add(alias);
+  }
   return [...ids];
 }
 

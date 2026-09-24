@@ -160,6 +160,7 @@ export async function completeExamSession(
     [...new Set(roadmapScopes)].flatMap((scope) => [
       cacheDeleteAsync(cacheKey(["exam-roadmap-v5", userId, scope])),
       cacheDeleteAsync(cacheKey(["exam-roadmap-v6", userId, scope])),
+      cacheDeleteAsync(cacheKey(["exam-roadmap-v8", userId, scope])),
       cacheDeleteAsync(cacheKey(["exam-roadmap-v7", userId, scope])),
     ])
   );

@@ -2,6 +2,7 @@ import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { isPostgresDatabaseUrl, resolveDatabaseUrl } from "@/lib/database-url";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { expandReviewFieldIds } from "@/lib/learning/review-queue-launch";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { getLearningProfileSnapshot } from "./profile-service";
 import { applyRetentionDecay, computeReadinessScore } from "./mastery";
@@ -110,7 +111,8 @@ function buildMotivationalMessage(
 type FieldScope = string[] | null;
 
 function fieldWhere(fieldIds: FieldScope) {
-  return fieldIds && fieldIds.length > 0 ? { fieldId: { in: fieldIds } } : {};
+  const ids = expandReviewFieldIds(fieldIds);
+  return ids.length > 0 ? { fieldId: { in: ids } } : {};
 }
 
 function buildTrendPoints(
@@ -165,9 +167,10 @@ async function getAccuracyTrendSql(
   since.setUTCDate(since.getUTCDate() - (TREND_DAYS - 1));
   since.setUTCHours(0, 0, 0, 0);
 
+  const ids = expandReviewFieldIds(fieldIds);
   const fieldClause =
-    fieldIds && fieldIds.length > 0
-      ? Prisma.sql`AND "fieldId" IN (${Prisma.join(fieldIds)})`
+    ids.length > 0
+      ? Prisma.sql`AND "fieldId" IN (${Prisma.join(ids)})`
       : Prisma.empty;
 
   const rows = await prisma.$queryRaw<
@@ -329,10 +332,10 @@ export async function getStudentDashboardData(
   const scopeKey = fieldIds?.length ? fieldIds.join(",") : "all";
   const trendKey = opts?.skipAccuracyTrend ? "no-trend" : "trend";
   return cacheGetOrSet(
-    cacheKey(["student-dashboard-v4", userId, scopeKey, trendKey]),
+    cacheKey(["student-dashboard-v5", userId, scopeKey, trendKey]),
     CACHE_TTL.learningDashboard,
     () => loadStudentDashboardData(userId, fieldIds, opts),
-    { staleTtlMs: CACHE_STALE.learningDashboard }
+    { staleTtlMs: CACHE_STALE.learningDashboard, skipFreshL1: true }
   );
 }
 
