@@ -28,24 +28,31 @@ describe("pricing and checkout offer copy", () => {
     expect(screen.getByText(APPROVED, { exact: false })).toBeInTheDocument();
     expect(screen.queryByText(/no card/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/20% off first month/i)).not.toBeInTheDocument();
-    expect(screen.getByText("Save 30%")).toBeInTheDocument();
+    expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
+    expect(screen.getByText("$27.99/mo")).toBeInTheDocument();
+    expect(screen.getByText("$235.12 · ≈ $19.59/mo")).toBeInTheDocument();
+    expect(screen.getByText("Best value")).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /other billing options/i }));
-    expect(screen.getByText(/Save 12%/)).toBeInTheDocument();
-    expect(screen.getByText(/Save 5%/)).toBeInTheDocument();
+    expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
+    expect(screen.getByText("$147.79 · ≈ $24.63/mo")).toBeInTheDocument();
+    expect(screen.getByText("$79.77 · ≈ $26.59/mo")).toBeInTheDocument();
   });
 
-  it("keeps multi-month savings on the shared billing picker and removes the monthly badge", async () => {
+  it("keeps interval dollar prices on the shared billing picker and drops percent-off badges", async () => {
     const user = userEvent.setup();
     render(<UpgradeIntervalChoice value="monthly" onChange={() => {}} />);
 
     expect(screen.queryByText(/new members/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/20% off/i)).not.toBeInTheDocument();
-    expect(screen.getByText("Save 30%")).toBeInTheDocument();
+    expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
+    expect(screen.getByText("$27.99/mo")).toBeInTheDocument();
+    expect(screen.getByText("$235.12 · ≈ $19.59/mo")).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /other billing options/i }));
-    expect(screen.getByText(/Save 12%/)).toBeInTheDocument();
-    expect(screen.getByText(/Save 5%/)).toBeInTheDocument();
+    expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
+    expect(screen.getByText("$147.79 · ≈ $24.63/mo")).toBeInTheDocument();
+    expect(screen.getByText("$79.77 · ≈ $26.59/mo")).toBeInTheDocument();
   });
 
   it("uses the approved trial terms on a $0 monthly checkout summary", () => {

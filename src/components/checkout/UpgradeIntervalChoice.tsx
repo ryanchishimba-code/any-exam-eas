@@ -72,11 +72,6 @@ export function UpgradeIntervalChoice({
                     Best value
                   </span>
                 )}
-                {plan.savingsBadge && (
-                  <span className="text-[0.6875rem] font-semibold text-emerald-700">
-                    {plan.savingsBadge}
-                  </span>
-                )}
               </span>
               <span className="mt-1 block text-xs text-[var(--color-ink-muted)]">
                 {priceLine(tier, interval)}
@@ -122,7 +117,6 @@ export function UpgradeIntervalChoice({
                   <span className="font-medium text-[var(--color-ink)]">{plan.label}</span>
                   <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
                     {priceLine(tier, interval)}
-                    {plan.savingsBadge ? ` · ${plan.savingsBadge}` : ""}
                   </span>
                 </button>
               );

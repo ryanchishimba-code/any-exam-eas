@@ -1,9 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { FIRST_MONTH_DISCOUNT_ENABLED } from "@/lib/billing/first-month-discount";
+import { getBillingPlanTier, formatTierPricingSummary } from "@/lib/billing-plans";
+import { buildHomeJsonLd } from "@/lib/seo";
 import {
+  formatCheckoutContinueCta,
   formatCheckoutTrialPageDescription,
   formatLandingStickyDetail,
   formatPricingCheckoutTrialOffer,
+  formatTierPriceLine,
+  formatTrialCtaWithSavings,
   formatTrialPlanDetail,
   NO_PAYMENT_TRIAL_BADGE,
   NO_PAYMENT_TRIAL_SUBLINE,
@@ -47,5 +52,24 @@ describe("pricing and checkout trial offer", () => {
       expect(line).not.toMatch(/no card/i);
       expect(line).not.toMatch(/5 days free/i);
     }
+  });
+
+  it("does not advertise percent-off savings on interval labels or homepage JSON-LD", () => {
+    const intervals = ["monthly", "quarterly", "semiannual", "yearly"] as const;
+    for (const interval of intervals) {
+      const plan = getBillingPlanTier("pro", interval);
+      expect(formatTierPriceLine(plan)).not.toMatch(/save\s+\d+%/i);
+      expect(formatCheckoutContinueCta("trial", "pro", interval)).toBe("Continue to Payment");
+      expect(formatCheckoutContinueCta("subscribe", "pro", interval)).toBe("Continue to Payment");
+      expect(formatTrialCtaWithSavings("pro", interval)).not.toMatch(/save\s+\d+%/i);
+      expect(formatTrialCtaWithSavings("pro", interval)).not.toMatch(/% off/i);
+    }
+    expect(formatTierPricingSummary("pro")).not.toMatch(/save\s+\d+%/i);
+    expect(formatTierPricingSummary("pro")).toContain("$27.99/mo");
+    expect(formatTierPricingSummary("pro")).toContain("$235.12");
+    const json = JSON.stringify(buildHomeJsonLd());
+    expect(json).not.toMatch(/save up to \d+%/i);
+    expect(json).not.toMatch(/save \d+%/i);
+    expect(json).toContain("Pro at $27.99/mo");
   });
 });

@@ -112,14 +112,9 @@ export function formatTrialCtaWithSavings(
   tier: SubscriptionTier = "pro",
   interval: BillingInterval = "monthly"
 ): string {
-  const plan = getBillingPlanTier(tier, interval);
-  if (plan.savingsPercent === 0) {
-    return formatTrialCtaLabel();
-  }
-  if (plan.recommended) {
-    return `Start free · Lock in ${plan.savingsPercent}% off`;
-  }
-  return `Start free · Save ${plan.savingsPercent}%`;
+  void tier;
+  void interval;
+  return formatTrialCtaLabel();
 }
 
 export function formatTrialCtaSubline(
@@ -140,18 +135,9 @@ export function formatCheckoutContinueCta(
   tier: SubscriptionTier,
   interval: BillingInterval
 ): string {
-  const planTier = getBillingPlanTier(tier, interval);
-  if (plan === "trial") {
-    if (planTier.savingsPercent > 0) {
-      return planTier.recommended
-        ? `Continue · Lock in ${planTier.savingsPercent}% Off`
-        : `Continue · Save ${planTier.savingsPercent}%`;
-    }
-    return "Continue to Payment";
-  }
-  if (planTier.savingsPercent > 0) {
-    return `Subscribe · Lock in ${planTier.savingsPercent}% Off`;
-  }
+  void plan;
+  void tier;
+  void interval;
   return "Continue to Payment";
 }
 
@@ -202,7 +188,7 @@ export function formatTierPriceLine(plan: BillingPlanTier): string {
   if (plan.interval === "monthly") {
     return `${formatPlanUsd(plan.totalUsd)}/month`;
   }
-  return `${plan.savingsBadge} · ${formatPlanUsd(plan.totalUsd)} billed every ${plan.months} months`;
+  return `${formatPlanUsd(plan.totalUsd)} billed every ${plan.months} months`;
 }
 
 export function formatTierAfterTrialLine(

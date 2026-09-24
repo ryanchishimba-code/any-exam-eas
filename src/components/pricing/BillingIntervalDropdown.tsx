@@ -24,10 +24,10 @@ type BillingIntervalDropdownProps = {
 
 function optionLabel(tier: SubscriptionTier, interval: BillingInterval): string {
   const plan = getBillingPlanTier(tier, interval);
-  if (plan.savingsPercent === 0) {
+  if (interval === "monthly") {
     return `${plan.label} — ${formatPlanUsd(plan.totalUsd)}/mo`;
   }
-  return `${plan.label} — Save ${plan.savingsPercent}%`;
+  return `${plan.label} — ${formatPlanUsd(plan.totalUsd)}`;
 }
 
 function optionSubline(tier: SubscriptionTier, interval: BillingInterval): string {
@@ -99,11 +99,6 @@ export function BillingIntervalDropdown({
                   Best value
                 </span>
               )}
-              {plan.savingsBadge && (
-                <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[0.625rem] font-semibold text-emerald-800">
-                  {plan.savingsBadge}
-                </span>
-              )}
             </div>
             <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">{optionSubline(tier, value)}</p>
           </div>
@@ -166,12 +161,9 @@ export function BillingIntervalDropdown({
                     </div>
                     <div className="shrink-0 text-right">
                       {t.savingsPercent > 0 ? (
-                        <>
-                          <p className="text-xs font-bold text-emerald-700">−{t.savingsPercent}%</p>
-                          <p className="text-[0.625rem] font-medium text-emerald-600">
-                            Save {formatPlanUsd(savings)}
-                          </p>
-                        </>
+                        <p className="text-[0.625rem] font-medium text-emerald-600">
+                          Save {formatPlanUsd(savings)}
+                        </p>
                       ) : (
                         <p className="text-xs text-[var(--color-ink-muted)]">Flexible</p>
                       )}

@@ -139,13 +139,11 @@ export function PricingTiers({ className }: PricingTiersProps) {
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
             Then {formatPlanUsd(plan.totalUsd)}
             {interval === "monthly" ? "/mo" : `/${plan.shortLabel}`}
-            {plan.savingsBadge ? ` · ${plan.savingsBadge}` : ""}
           </p>
         )}
         {isUpgrade && interval !== "monthly" && (
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
             ≈ {formatPlanUsd(plan.monthlyEquivalentUsd)}/mo
-            {plan.savingsBadge ? ` · ${plan.savingsBadge}` : ""}
           </p>
         )}
       </div>
