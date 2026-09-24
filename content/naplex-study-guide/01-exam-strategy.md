@@ -174,7 +174,7 @@ Map the stem to the step:
 
 **If you’re working full-time:** protect a non-negotiable daily block. Weekend = longer timed sets.
 
-> **Ready to practice what you just planned?** Explore NAPLEX questions on [AnyExamEasy](https://anyexameasy.com) — start free, then upgrade when you’re ready ($27.99/mo after trial; trial terms on site).
+> **Ready to practice what you just planned?** Explore NAPLEX questions on [AnyExamEasy](https://anyexameasy.com) — 5-day free trial, no payment method. Then Pro at $27.99/mo.
 
 ---
 
