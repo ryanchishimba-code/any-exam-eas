@@ -78,6 +78,7 @@ export async function QuestionBankPracticeLoader({
       usmleStepLabel={usmleStepLabel}
       topicCount={countsPayload?.counts ? Object.keys(countsPayload.counts).length : null}
       totalQuestions={totalQuestions}
+      boardOpenRemediationCount={roadmap?.openIncorrectCount ?? null}
     />
   );
 }

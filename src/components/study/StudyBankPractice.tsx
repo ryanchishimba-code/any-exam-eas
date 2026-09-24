@@ -121,8 +121,14 @@ import {
   shouldAutostartPractice,
   type RemediationMode,
 } from "@/lib/study/remediation-launch";
-import { reviewSubjectForLaunch } from "@/lib/learning/review-queue-launch";
-import { reviewIncorrectSessionRationale } from "@/lib/study/review-incorrect-queue-label";
+import {
+  reviewSubjectForLaunch,
+  unscopedReviewSubject,
+} from "@/lib/learning/review-queue-launch";
+import {
+  resolveReviewOpenQueueTotal,
+  reviewIncorrectSessionRationale,
+} from "@/lib/study/review-incorrect-queue-label";
 import { PanceTaskFocus } from "./question-bank/PanceTaskFocus";
 import { useSubjectCounts } from "@/hooks/use-subject-counts";
 import { useCoverageHeatmap } from "@/hooks/use-coverage-heatmap";
@@ -286,6 +292,7 @@ export function StudyBankPractice({
   usmleStepLabel,
   topicCount = null,
   totalQuestions = null,
+  boardOpenRemediationCount = null,
 }: {
   preferredExamSlug?: ExamSlug;
   lockExam?: boolean;
@@ -305,6 +312,11 @@ export function StudyBankPractice({
   usmleStepLabel?: string;
   topicCount?: number | null;
   totalQuestions?: number | null;
+  /**
+   * Servable open remediations for this board. Same roadmap total the dashboard
+   * shows. A capped sitting must not replace it.
+   */
+  boardOpenRemediationCount?: number | null;
 } = {}) {
   const router = useRouter();
   const pathname = usePathname();
@@ -966,7 +978,12 @@ export function StudyBankPractice({
     url: string,
     body: unknown,
     timeoutMs: number
-  ): Promise<{ ok: boolean; status: number; data: Record<string, unknown> }> {
+  ): Promise<{
+    ok: boolean;
+    status: number;
+    data: Record<string, unknown>;
+    openQueueTotal: number | null;
+  }> {
     const controller = new AbortController();
     const timer = window.setTimeout(() => controller.abort(), timeoutMs);
     try {
@@ -977,7 +994,13 @@ export function StudyBankPractice({
         signal: controller.signal,
       });
       const data = (await res.json().catch(() => ({}))) as Record<string, unknown>;
-      return { ok: res.ok, status: res.status, data };
+      const headerTotal = Number(res.headers.get("x-review-open-total"));
+      return {
+        ok: res.ok,
+        status: res.status,
+        data,
+        openQueueTotal: Number.isFinite(headerTotal) ? headerTotal : null,
+      };
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") {
         throw new Error("This is taking too long. Check your connection and try again.");
@@ -1356,8 +1379,14 @@ export function StudyBankPractice({
         if (raw.length === 0) {
           throw new Error("Review incorrect did not return any questions. Try again.");
         }
-        const openQueueTotal =
-          launchedDecision.status === "launch" ? launchedDecision.available : raw.length;
+        const openQueueTotal = resolveReviewOpenQueueTotal({
+          sittingSize: raw.length,
+          boardOpenTotal: unscopedReviewSubject(reviewSubject) ? boardOpenRemediationCount : null,
+          preflightAvailable: decision.status === "launch" ? decision.available : null,
+          payloads: [preflight.data, launched.data],
+          headerTotals: [preflight.openQueueTotal, launched.openQueueTotal],
+        });
+        const openLine = "Open remediation — a single correct does not clear this item.";
         setAdaptiveMeta({
           openQueueTotal,
           sessionRationale: reviewIncorrectSessionRationale({
@@ -1365,10 +1394,11 @@ export function StudyBankPractice({
             openTotal: openQueueTotal,
           }),
           questionReasoning: Object.fromEntries(
-            raw.map((q) => [
-              String(q.id),
-              "Open remediation — a single correct does not clear this item.",
-            ])
+            raw.flatMap((q) => {
+              const pairs: [string, string][] = [[String(q.id), openLine]];
+              if (q.bankItemId) pairs.push([q.bankItemId, openLine]);
+              return pairs;
+            })
           ),
         });
         if (isStale()) return;

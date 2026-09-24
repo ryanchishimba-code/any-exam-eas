@@ -7,7 +7,7 @@ describe("AdaptiveReasoningChip", () => {
     render(
       <AdaptiveReasoningChip
         reasoning="Open remediation — a single correct does not clear this item."
-        sessionRationale="This sitting is 25 of 41 open items."
+        sessionRationale="Reviewing 25 of 41 open items."
         questionIndex={0}
         total={25}
         openTotal={41}
