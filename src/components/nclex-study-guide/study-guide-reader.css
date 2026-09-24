@@ -258,6 +258,17 @@
   scroll-behavior: smooth;
 }
 
+/* Reading column. At 1280px the contents rail (15rem) and annotations drawer
+   (17rem) leave exactly 48rem, so the cream page fills that column instead of
+   sitting in a 42rem measure with navy on either side. Wider monitors keep
+   the same cap so a line stays a comfortable book width. */
+.sg-column {
+  width: 100%;
+  max-width: 48rem;
+  min-width: 0;
+  margin-inline: auto;
+}
+
 .sg-paper {
   /* Clip leftover wide children at the card edge without becoming a scrollport.
      clip + visible does not force the other axis to auto. */
@@ -269,6 +280,126 @@
   .sg-paper {
     padding: 3.75rem 3.75rem 4.75rem;
   }
+}
+/* Front matter spends its top padding on the cover spread, not on empty paper,
+   so the trial sentence clears the chapter toolbar on a laptop. */
+@media (min-width: 1024px) {
+  .sg-chapter-scroll .sg-column.sg-column--opening {
+    padding-top: 1.15rem;
+  }
+  .sg-paper--opening {
+    padding-top: 1.5rem;
+  }
+}
+
+/* Opening spread: cover beside the title and the manuscript's own trial
+   sentence. One column below 768px so a phone still reads top to bottom. */
+.sg-front-spread {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin: 0 0 2rem;
+  min-width: 0;
+}
+.sg-front-spread__copy,
+.sg-front-spread__side,
+.sg-front-spread__meta {
+  min-width: 0;
+}
+@media (max-width: 767px) {
+  .sg-front-spread__side {
+    display: contents;
+  }
+  .sg-front-spread .sg-cover {
+    order: 0;
+  }
+  .sg-front-spread__copy {
+    order: 1;
+  }
+  .sg-front-spread__meta {
+    order: 2;
+  }
+}
+@media (min-width: 768px) {
+  .sg-front-spread {
+    display: grid;
+    grid-template-columns: minmax(9.25rem, 13.25rem) minmax(0, 1fr);
+    column-gap: 1.75rem;
+    row-gap: 0;
+    align-items: start;
+  }
+  .sg-front-spread__side {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .sg-front-spread__copy {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+.sg-prose .sg-front-spread .sg-cover {
+  margin: 0;
+}
+.sg-prose .sg-front-spread .sg-cover img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+}
+@media (max-width: 767px) {
+  .sg-prose .sg-front-spread .sg-cover img {
+    width: auto;
+    max-height: 12.5rem;
+    margin-inline: auto;
+  }
+}
+.sg-prose .sg-cover figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  text-align: left;
+}
+.sg-prose .sg-front-spread__copy > h1 {
+  margin: 0 0 0.28em;
+  font-size: 1.65em;
+  line-height: 1.12;
+}
+.sg-prose .sg-front-spread__copy > p {
+  margin: 0 0 0.55em;
+}
+.sg-prose .sg-front-spread__copy h2 {
+  margin: 0.7em 0 0.35em;
+  font-size: 1.12em;
+}
+.sg-prose .sg-front-spread__meta {
+  margin-top: 0.85rem;
+  font-size: 0.82em;
+  line-height: 1.4;
+}
+.sg-prose .sg-front-spread__meta p {
+  margin: 0 0 0.4em;
+}
+.sg-prose .sg-offer {
+  margin: 0.15em 0 0.85em;
+  padding: 0.7rem 0.95rem;
+  border-radius: 0.9rem;
+  background: rgba(46, 196, 182, 0.1);
+  border: 1px solid rgba(15, 118, 110, 0.16);
+  line-height: 1.4;
+}
+.sg-prose .sg-offer a {
+  color: #0f766e;
+  font-weight: 650;
+  text-underline-offset: 0.15em;
+}
+.sg-paper[data-theme="dim"] .sg-offer,
+.sg-paper[data-theme="dark"] .sg-offer {
+  background: rgba(46, 196, 182, 0.12);
+  border-color: rgba(46, 196, 182, 0.28);
+}
+.sg-paper[data-theme="dim"] .sg-offer a,
+.sg-paper[data-theme="dark"] .sg-offer a {
+  color: #5eead4;
 }
 
 .sg-hl {

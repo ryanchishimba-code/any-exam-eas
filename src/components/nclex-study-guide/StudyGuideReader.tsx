@@ -32,6 +32,7 @@ import {
 } from "@/lib/nclex-study-guide/client-cache";
 import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
 import { visibleBookSection } from "@/lib/nclex-study-guide/display-label";
+import { presentFrontMatter } from "@/lib/nclex-study-guide/front-matter-presentation";
 import { paintStudyGuideHighlights } from "@/lib/nclex-study-guide/paint-highlights";
 import type {
   SgChapterDto,
@@ -124,6 +125,12 @@ const PROGRESS_LOCAL_MS = 1000;
 
 /** Tailwind `lg`. Below this the drawer overlays the page instead of splitting the row. */
 const DESKTOP_QUERY = "(min-width: 1024px)";
+/**
+ * Desktop annotations rail, in px. 17rem, paired with a 15rem contents rail,
+ * leaves a 48rem reading column at 1280px. Wider than this and the cream page
+ * is squeezed; narrower and Highlights / Bookmarks / Notes wrap.
+ */
+const DESKTOP_DRAWER_PX = 272;
 
 function useIsDesktop(): boolean {
   const [isDesktop, setIsDesktop] = useState(true);
@@ -259,8 +266,8 @@ export function StudyGuideReader({
   const [progressTier, setProgressTier] = useState(0);
 
   // Drawer collapsed by default; remember preference. The saved preference is
-  // desktop-only — restoring it under `lg` would leave a phone showing a 288px
-  // panel beside a sliver of text.
+  // desktop-only — restoring it under `lg` would leave a phone showing the
+  // annotations rail beside a sliver of text.
   useEffect(() => {
     setPrefs(readStoredPrefs());
     setPrefsReady(true);
@@ -560,17 +567,19 @@ export function StudyGuideReader({
   }, [goToSlug]);
 
   const filteredHtml = useMemo(() => {
-    if (!search.trim()) return chapter.bodyHtml;
+    // Shape the opening spread before search marks, so a query can't split the
+    // tags the presenter matches on.
+    let html =
+      chapter.slug === "front-matter" ? presentFrontMatter(chapter.bodyHtml) : chapter.bodyHtml;
+    if (!search.trim()) return html;
     const q = search.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     try {
-      return chapter.bodyHtml.replace(
-        new RegExp(`(${q})`, "gi"),
-        '<mark class="sg-search-hit">$1</mark>'
-      );
+      html = html.replace(new RegExp(`(${q})`, "gi"), '<mark class="sg-search-hit">$1</mark>');
     } catch {
-      return chapter.bodyHtml;
+      /* keep the unfiltered chapter */
     }
-  }, [chapter.bodyHtml, search]);
+    return html;
+  }, [chapter.bodyHtml, chapter.slug, search]);
 
   // Re-bind broken-image fallbacks after chapter HTML swaps.
   useEffect(() => {
@@ -981,7 +990,7 @@ export function StudyGuideReader({
       <div className="relative flex min-h-0 flex-1">
         {/* LEFT TOC — a fixed rail on desktop, a slide-over sheet on touch. Visibility is
             CSS-driven so the server markup already matches the viewport (no hydration flash). */}
-        <aside className="sg-toc hidden w-64 shrink-0 overflow-y-auto border-r border-white/10 px-4 py-6 lg:block xl:w-80">
+        <aside className="sg-toc hidden w-60 shrink-0 overflow-y-auto border-r border-white/10 px-4 py-6 lg:block">
           {tocContent}
         </aside>
         <AnimatePresence initial={false}>
@@ -1114,13 +1123,19 @@ export function StudyGuideReader({
 
           <div className="relative min-h-0 min-w-0 flex-1">
             <div ref={scrollRef} className="sg-chapter-scroll h-full min-h-0 min-w-0">
-              <div className="mx-auto flex min-h-full w-full max-w-[42rem] flex-col px-3 py-3 sm:px-8 sm:py-8">
+              <div
+                className={cn(
+                  "sg-column flex min-h-full flex-col px-3 py-3 sm:px-8 sm:py-8",
+                  chapter.slug === "front-matter" && "sg-column--opening"
+                )}
+              >
                 <article
                   ref={paperRef}
                   onMouseUp={captureSelection}
                   data-theme={prefs.theme}
                   className={cn(
                     "sg-paper flex-1 shadow-2xl sm:rounded-[1.25rem]",
+                    chapter.slug === "front-matter" && "sg-paper--opening",
                     paperTheme,
                     fontClass,
                     leadingClass
@@ -1186,7 +1201,7 @@ export function StudyGuideReader({
             {/* Scrubber stays pinned to the visible column. It is outside the
                 scrollport so its rotated track can't widen the chapter. */}
             <div className="pointer-events-none absolute inset-0 flex justify-center">
-              <div className="pointer-events-none relative h-full w-full max-w-[42rem]">
+              <div className="sg-column pointer-events-none relative h-full">
                 <div className="sg-scrubber" aria-hidden={false}>
                   {/* Uncontrolled: the scroll handler writes `value` on the node so a
                       60Hz position update doesn't re-render the reader. */}
@@ -1291,7 +1306,7 @@ export function StudyGuideReader({
             <motion.aside
               key="drawer"
               initial={reduceMotion ? false : isDesktop ? { width: 0, opacity: 0 } : { x: "100%" }}
-              animate={isDesktop ? { width: 288, opacity: 1 } : { x: 0 }}
+              animate={isDesktop ? { width: DESKTOP_DRAWER_PX, opacity: 1 } : { x: 0 }}
               exit={reduceMotion ? undefined : isDesktop ? { width: 0, opacity: 0 } : { x: "100%" }}
               transition={{ type: "spring", stiffness: 380, damping: 36, mass: 0.8 }}
               className={cn(
@@ -1301,8 +1316,8 @@ export function StudyGuideReader({
                   : "absolute inset-y-0 right-0 z-30 w-[min(85vw,320px)] shadow-2xl"
               )}
             >
-              <div className={cn("flex flex-1 flex-col", isDesktop ? "w-72" : "w-full")}>
-                <div className="flex border-b border-white/10 text-xs">
+              <div className={cn("flex flex-1 flex-col", isDesktop ? "w-[17rem]" : "w-full")}>
+                <div className="flex border-b border-white/10 text-[11px]">
                   {(
                     [
                       ["highlights", "Highlights", Highlighter],
@@ -1314,7 +1329,7 @@ export function StudyGuideReader({
                       key={id}
                       type="button"
                       className={cn(
-                        "flex flex-1 items-center justify-center gap-1 px-2 py-2.5 transition-colors",
+                        "flex min-w-0 flex-1 items-center justify-center gap-1 whitespace-nowrap px-1 py-2.5 transition-colors",
                         drawerTab === id
                           ? "border-b-2 border-[#2ec4b6] text-[#2ec4b6]"
                           : "text-white/55 hover:text-white"
