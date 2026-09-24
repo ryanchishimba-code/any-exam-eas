@@ -1,11 +1,37 @@
-import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { filterBankRowsForPracticeField } from "@/lib/edtech/exam-item-scope";
 import { selectReviewQueueIds } from "@/lib/learning/item-mastery";
+import { selectLaunchReviewQueueIds } from "@/lib/learning/review-queue-launch";
 import { prisma } from "@/lib/prisma";
+
+/**
+ * Bank rows Review incorrect can actually start: active, qaPassed, and in the
+ * practice field. This is the published inventory, not the stricter editorial
+ * serve gate, so a just-answered item is not dropped for a board-specific rule.
+ */
+export async function loadServableReviewBankIds(
+  fieldId: string,
+  ids: string[]
+): Promise<Set<string>> {
+  if (ids.length === 0) return new Set();
+  const rows = filterBankRowsForPracticeField(
+    await prisma.questionBankItem.findMany({
+      where: {
+        id: { in: ids },
+        active: true,
+        qaPassed: true,
+      },
+      select: { id: true, fieldId: true, stepLevel: true },
+    }),
+    fieldId
+  );
+  return new Set(rows.map((row) => row.id));
+}
 
 /**
  * Bank item ids still in Review incorrect.
  * A miss stays queued until spaced re-proof or a confirmed mark-mastered.
- * Zero incorrect rows return immediately so an empty queue does not scan history.
+ * Topic scope is kept when that topic has servable misses; otherwise the
+ * board-wide servable queue is used. Zero incorrect rows return immediately.
  */
 export async function loadStillIncorrectBankItemIds(params: {
   userId: string;
@@ -13,17 +39,11 @@ export async function loadStillIncorrectBankItemIds(params: {
   subjectId?: string | null;
   limit?: number;
 }): Promise<string[]> {
-  const limit = Math.min(Math.max(params.limit ?? 100, 1), 300);
-  const subjectId =
-    params.subjectId && params.subjectId !== MIXED_SUBJECT_ID ? params.subjectId : null;
-  const subjectFilter = subjectId ? { subjectId } : {};
-
   const anyMiss = await prisma.questionAttempt.findFirst({
     where: {
       userId: params.userId,
       fieldId: params.fieldId,
       correct: false,
-      ...subjectFilter,
     },
     select: { id: true },
   });
@@ -48,11 +68,14 @@ export async function loadStillIncorrectBankItemIds(params: {
     }),
   ]);
 
-  return selectReviewQueueIds({
+  const openIds = selectReviewQueueIds({ attempts, marks, limit: 300 });
+  const servableIds = await loadServableReviewBankIds(params.fieldId, openIds);
+  return selectLaunchReviewQueueIds({
     attempts,
     marks,
-    subjectId,
-    limit,
+    subjectId: params.subjectId,
+    limit: params.limit,
+    servableIds,
   });
 }
 

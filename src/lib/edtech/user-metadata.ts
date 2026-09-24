@@ -82,7 +82,7 @@ export async function setUserExamTestDate(
   examSlug: string,
   date: string | null
 ): Promise<UserEdtechMetadata> {
-  const current = await getUserEdtechMetadata(userId);
+  const current = await readUserEdtechMetadataFromDb(userId);
   const examTestDates = { ...(current.examTestDates ?? {}) };
 
   if (date && isValidIsoDate(date)) {

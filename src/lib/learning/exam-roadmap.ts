@@ -51,7 +51,12 @@ import {
   examSimDoneTodayAnswerCount,
   examSimQualifyingQuestionCount,
 } from "@/lib/learning/full-exam-pass-path";
-import { countOpenIncorrectItems } from "@/lib/learning/open-incorrect";
+import { loadServableReviewBankIds } from "@/lib/learning/review-incorrect";
+import {
+  attemptsForReviewIds,
+  selectLaunchReviewQueueIds,
+} from "@/lib/learning/review-queue-launch";
+import { selectReviewQueueIds } from "@/lib/learning/item-mastery";
 import {
   groupOpenRemediationLoops,
   type OpenRemediationSummary,
@@ -556,6 +561,22 @@ async function loadExamRoadmapData(
   }
   const pushesCompleted = uniqueKeys.size;
 
+  // Same servable set the Review incorrect queue starts. Topic fallback and
+  // inventory filtering live in selectLaunchReviewQueueIds.
+  const boardOpenIds = selectReviewQueueIds({
+    attempts,
+    marks: masteryMarks,
+    limit: 300,
+  });
+  const servableReviewIds = await loadServableReviewBankIds(fieldId, boardOpenIds);
+  const eligibleReviewIds = selectLaunchReviewQueueIds({
+    attempts,
+    marks: masteryMarks,
+    limit: 300,
+    servableIds: servableReviewIds,
+  });
+  const reviewAttempts = attemptsForReviewIds(attempts, eligibleReviewIds);
+
   const topics = buildRoadmapTopics(
     blueprint,
     examSlug,
@@ -612,8 +633,8 @@ async function loadExamRoadmapData(
       })),
       new Date()
     ),
-    openIncorrectCount: countOpenIncorrectItems(attempts, { marks: masteryMarks }),
-    openRemediation: labelOpenRemediation(fieldId, attempts, examSlug, masteryMarks),
+    openIncorrectCount: eligibleReviewIds.length,
+    openRemediation: labelOpenRemediation(fieldId, reviewAttempts, examSlug, masteryMarks),
     launch: {
       hasRetake: history.hasRetake,
       canContinue: history.canContinue,

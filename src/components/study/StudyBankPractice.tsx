@@ -121,6 +121,7 @@ import {
   shouldAutostartPractice,
   type RemediationMode,
 } from "@/lib/study/remediation-launch";
+import { reviewSubjectForLaunch } from "@/lib/learning/review-queue-launch";
 import { PanceTaskFocus } from "./question-bank/PanceTaskFocus";
 import { useSubjectCounts } from "@/hooks/use-subject-counts";
 import { useCoverageHeatmap } from "@/hooks/use-coverage-heatmap";
@@ -680,7 +681,11 @@ export function StudyBankPractice({
     }
 
     const subjectParam = resolveSubjectParam(searchParams);
-    if (subjectParam === MIXED_SUBJECT_ID) {
+    const styleForSubject = resolvePracticeSearchParam(searchParams, "style");
+    if (
+      subjectParam === MIXED_SUBJECT_ID ||
+      (subjectParam === "mixed" && styleForSubject === "review_incorrect")
+    ) {
       setSubjectId(MIXED_SUBJECT_ID);
       return;
     }
@@ -733,6 +738,23 @@ export function StudyBankPractice({
     if (isTimedExam || countsLoading || !subjectCounts || zeroPoolFallbackAppliedRef.current) {
       return;
     }
+    // Review incorrect is board-scoped. A zero topic pool must not retarget
+    // the queue onto the first inventory subject — that hides misses stored
+    // on a later topic and the server then renders an empty queue.
+    const browserStyle = readBrowserSearchParam("style");
+    const styleParam = resolvePracticeSearchParam(searchParams, "style");
+    if (
+      browserStyle === "review_incorrect" ||
+      styleParam === "review_incorrect" ||
+      effectiveBankStyle === "review_incorrect"
+    ) {
+      return;
+    }
+    // Subject state is still "" on the frame before the URL subject is applied.
+    // Treating that as a zero pool consumes this one-shot and overwrites
+    // __mixed__ with the first topic that has inventory.
+    if (!subjectId) return;
+
     zeroPoolFallbackAppliedRef.current = true;
 
     const pool = availableQuestionCount(subjectId, subjectCounts);
@@ -749,7 +771,15 @@ export function StudyBankPractice({
       setSubjectId(fallback);
       syncPracticeUrl({ subjectId: fallback });
     }
-  }, [isTimedExam, countsLoading, subjectCounts, subjectId, fieldId]);
+  }, [
+    isTimedExam,
+    countsLoading,
+    subjectCounts,
+    subjectId,
+    fieldId,
+    searchParams,
+    effectiveBankStyle,
+  ]);
 
   // Snap count to a valid 25 / 50 / 75 preset for the current topic pool.
   // Keep short retest counts (5 / 10 / 25) when the pool can still fill them.
@@ -1156,7 +1186,9 @@ export function StudyBankPractice({
       const useAdaptive = activeStyle === "adaptive" || activeStyle === "weak_areas";
       const useReviewIncorrect = activeStyle === "review_incorrect";
       const useToday = activeStyle === "today";
-      const effectiveSubjectId = subjectId || subjects[0]?.id || MIXED_SUBJECT_ID || "";
+      const effectiveSubjectId = useReviewIncorrect
+        ? reviewSubjectForLaunch(subjectId)
+        : subjectId || subjects[0]?.id || MIXED_SUBJECT_ID || "";
       if (!useToday && !effectiveSubjectId) {
         throw new Error("Choose a topic before starting practice.");
       }
