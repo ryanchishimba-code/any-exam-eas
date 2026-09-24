@@ -162,7 +162,8 @@ export async function POST(req: Request) {
     }
   }
 
-  // First-time Pro monthly: 20% off the first paid invoice (skipped when a promo coupon is already applied).
+  // First-month 20% is off the product line (FIRST_MONTH_DISCOUNT_ENABLED).
+  // shouldApplyFirstMonthDiscount stays false so this path does not attach aee_first_month_20.
   // Not offered on pay-once: the coupon is scoped to a recurring first invoice.
   if (!stripeCouponId && !oneTime) {
     const {

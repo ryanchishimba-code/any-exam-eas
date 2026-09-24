@@ -7,8 +7,7 @@ import { PageShell } from "@/components/PageShell";
 import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-metadata";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
-import { formatExamHeroTrialOffer } from "@/lib/landing/content";
-import { formatMonthlyPrice } from "@/lib/site";
+import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 export const metadata = buildPricingMetadata();
 export const revalidate = 3600;
@@ -43,7 +42,7 @@ export default async function PricingPage() {
         compact
       >
         <p className="mx-auto mt-3 max-w-md text-center text-sm font-medium text-[var(--color-ink)]">
-          {formatExamHeroTrialOffer()}
+          {formatPricingCheckoutTrialOffer()}
         </p>
 
         <ol className="mx-auto mt-8 grid max-w-2xl gap-3 sm:grid-cols-3" role="list">

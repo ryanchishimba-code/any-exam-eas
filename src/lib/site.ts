@@ -75,6 +75,23 @@ export function formatTrialLabel(): string {
   return `${TRIAL_DAYS}-day free trial`;
 }
 
+/**
+ * Approved trial offer for /pricing and trial checkout.
+ * Product line: 5-day free trial, no payment method required, then Pro monthly.
+ */
+export function formatPricingCheckoutTrialOffer(): string {
+  return `${formatTrialLabel()} · no payment method required · then ${formatMonthlyPrice("pro")}/mo`;
+}
+
+/** Subhead under “Try for free” on /checkout?plan=trial. */
+export function formatCheckoutTrialPageDescription(
+  interval: BillingInterval = "monthly"
+): string {
+  const base = `${formatTrialLabel()} · ${formatTrialTodayPrice()} today · no payment method required`;
+  if (interval !== "monthly") return base;
+  return `${base} · then ${formatMonthlyPrice("pro")}/mo`;
+}
+
 /** e.g. "500 practice questions during your 5-day trial" */
 export function formatTrialQuestionLimit(): string {
   return `${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial`;

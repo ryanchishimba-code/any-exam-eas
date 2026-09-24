@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import type { BillingInterval } from "@/lib/billing-config";
-import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   formatPlanUsd,
   getBillingPlanTier,
@@ -16,7 +15,7 @@ import {
   ONE_TIME_POLICY_SHORT,
   type PaymentMode,
 } from "@/lib/billing-payment-mode";
-import { formatTrialCtaLabel } from "@/lib/site";
+import { formatPricingCheckoutTrialOffer, formatTrialCtaLabel } from "@/lib/site";
 import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
 import { CancelAnytimeNote } from "@/components/pricing/CancelAnytimeNote";
 import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
@@ -186,7 +185,7 @@ export function PricingTiers({ className }: PricingTiersProps) {
           ? showPaymentMode && paymentMode === "manual"
             ? ONE_TIME_POLICY_SHORT
             : renewalTermsLine("pro", interval)
-          : `${TRIAL_DAYS}-day free trial · no card required. Payments are non-refundable (except where required by law). Quality issues: contact support within 30 days — we will make the item right.`}
+          : `${formatPricingCheckoutTrialOffer()}. Payments are non-refundable (except where required by law). Quality issues: contact support within 30 days — we will make the item right.`}
       </p>
 
       <PaymentMethodBadges className="justify-center" size="sm" />

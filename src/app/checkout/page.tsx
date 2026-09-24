@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { EmbeddedStripeCheckout } from "@/components/EmbeddedStripeCheckout";
 import { PageShell } from "@/components/PageShell";
-import { TRIAL_CTA_LABEL } from "@/lib/site";
-import { TRIAL_DAYS } from "@/lib/billing-config";
+import { parseBillingInterval } from "@/lib/billing-plans";
+import { formatCheckoutTrialPageDescription, TRIAL_CTA_LABEL } from "@/lib/site";
 
 export const metadata = {
   title: "Checkout — Any Exam Easy",
@@ -25,6 +25,7 @@ export default async function CheckoutPage({
 }) {
   const params = await searchParams;
   const plan = firstSearchValue(params.plan);
+  const interval = parseBillingInterval(firstSearchValue(params.interval));
   const reactivate = firstSearchValue(params.reactivate);
   const isTrial = plan !== "subscribe";
   const isReactivate = reactivate === "1";
@@ -60,7 +61,7 @@ export default async function CheckoutPage({
           ? "Full access restores as soon as payment is received."
           : isUpgrade
             ? undefined
-            : `${TRIAL_DAYS} days free · $0 today`
+            : formatCheckoutTrialPageDescription(interval)
       }
       maxWidth="max-w-2xl"
       compact

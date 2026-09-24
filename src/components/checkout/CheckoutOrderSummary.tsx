@@ -11,6 +11,7 @@ import {
   ONE_TIME_POLICY_SHORT,
   type PaymentMode,
 } from "@/lib/billing-payment-mode";
+import { formatPricingCheckoutTrialOffer, formatTrialLabel } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
@@ -44,7 +45,9 @@ export function CheckoutOrderSummary({
    * what is left is the part a buyer cannot infer: what happens next.
    */
   const terms = isFree
-    ? "5-day free trial · no card required"
+    ? interval === "monthly"
+      ? formatPricingCheckoutTrialOffer()
+      : `${formatTrialLabel()} · no payment method required`
     : oneTime
       ? ONE_TIME_POLICY_SHORT
       : renewalTermsLine(tier, interval);
