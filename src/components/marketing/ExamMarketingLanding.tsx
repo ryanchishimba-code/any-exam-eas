@@ -25,6 +25,7 @@ import {
 import { ROUTES } from "@/lib/routes";
 import {
   formatMonthlyPrice,
+  formatPricingCheckoutTrialOffer,
   formatTrialCtaLabel,
   formatTrialLabel,
   TRIAL_PAYMENT_DISCLOSURE,
@@ -81,7 +82,7 @@ export function ExamMarketingLanding({
               {config.shortName} tools on one plan.
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
-              {formatTrialLabel()} — no card, then {formatMonthlyPrice("pro")}/mo.
+              {formatPricingCheckoutTrialOffer()}.
             </p>
             <ul className="mt-10 grid gap-4 sm:grid-cols-3" role="list">
               {productLinks.map((item) => (

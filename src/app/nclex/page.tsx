@@ -10,7 +10,7 @@ import {
 } from "@/lib/marketing/question-bank-counts";
 import { ROUTES } from "@/lib/routes";
 import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 /** Count is the published stamp. Do not ISR this hub for an hour after a retire. */
 export const dynamic = "force-dynamic";
@@ -68,8 +68,8 @@ export default async function NclexHubPage() {
                 Study guide, then the Qbank.
               </h2>
               <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
-                Read the free NCLEX guide first. When you are ready to practice, start a{" "}
-                {formatTrialLabel()} — no card, then {formatMonthlyPrice("pro")}/mo.
+                Read the free NCLEX guide first. When you are ready to practice,{" "}
+                {formatPricingCheckoutTrialOffer()}.
               </p>
               <ul className="mt-10 grid gap-4 sm:grid-cols-3" role="list">
                 {PRODUCT_LINKS.map((item) => (

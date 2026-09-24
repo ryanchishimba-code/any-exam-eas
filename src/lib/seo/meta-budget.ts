@@ -151,7 +151,7 @@ export function enforceMetaDescription(description: string, label = "description
 
 const DESC_FILLERS = [
   "Includes Blueprint Roadmaps and Deep Dive review.",
-  "Start a free trial — no credit card required.",
+  "Start a 5-day free trial — no payment method required.",
   "One Pro plan covers six board exams.",
   "Clinician-built Qbank for NCLEX, USMLE, NAPLEX, PANCE, FNP and NPTE.",
 ] as const;
@@ -195,7 +195,7 @@ export function clampMetaDescription(description: string): string {
   if (out.length < SEO_DESC_MIN) {
     const room = SEO_DESC_MAX - out.length;
     const need = SEO_DESC_MIN - out.length;
-    const pad = " Free trial — no card.";
+    const pad = " No payment method required.";
     out = `${out}${pad.slice(0, Math.min(room, Math.max(need, pad.length)))}`;
     if (out.length < SEO_DESC_MIN && out.length < SEO_DESC_MAX) {
       out = `${out}${" ·".repeat(SEO_DESC_MIN - out.length)}`.slice(0, SEO_DESC_MAX);

@@ -1,6 +1,5 @@
 import { BadgeCheck, CreditCard } from "lucide-react";
 import {
-  NO_PAYMENT_TRIAL_BADGE,
   NO_PAYMENT_TRIAL_HEADLINE,
   NO_PAYMENT_TRIAL_SUBLINE,
   formatTrialLabel,
@@ -41,7 +40,7 @@ export function NoPaymentTrialCallout({
           {NO_PAYMENT_TRIAL_HEADLINE}
         </span>
         <span className="hidden text-[11px] font-semibold text-emerald-800/90 sm:inline">
-          · {NO_PAYMENT_TRIAL_BADGE}
+          · {formatTrialLabel()}
         </span>
       </div>
     );

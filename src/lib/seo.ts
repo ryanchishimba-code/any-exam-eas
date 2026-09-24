@@ -85,7 +85,7 @@ export function buildHomeMetadata(totalQuestionsLabel?: string): Metadata {
     "home"
   );
   const description = enforceMetaDescription(
-    `${count} QA-gated questions with Blueprint Roadmaps and full-length mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. Free ${SEO_LIVE_STATS.trialDays}-day trial — no card.`,
+    `${count} QA-gated questions with Blueprint Roadmaps & mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. ${formatTrialLabel()} · no payment method required.`,
     "home"
   );
   const url = getSiteUrl();

@@ -7,13 +7,13 @@ import { AuthCard } from "@/components/ui/AuthCard";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { getCachedSession } from "@/lib/auth/session";
 import { contentWidth } from "@/lib/layout/shell-ui";
-import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
+import { TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import type { SignupPlan } from "@/lib/validators/auth";
-import { formatMonthlyPrice, MARKETING_DISCLAIMER, SITE_NAME } from "@/lib/site";
+import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER, SITE_NAME } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 
 const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
@@ -73,7 +73,7 @@ export default async function SignupPage({
     <PageShell
       eyebrow="AnyExamEasy"
       title="Create your account."
-      description={`${TRIAL_DAYS}-day free trial · no card · then ${formatMonthlyPrice("pro")}/mo. ${TRIAL_LIFETIME_QUESTIONS} practice questions included. Must be 18 or older.`}
+      description={`${formatPricingCheckoutTrialOffer()}. ${TRIAL_LIFETIME_QUESTIONS} practice questions included. Must be 18 or older.`}
       align="center"
       maxWidth={contentWidth.auth}
       variant="premium"

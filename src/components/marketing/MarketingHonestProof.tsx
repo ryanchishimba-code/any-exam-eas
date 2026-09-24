@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 import {
   formatExactServeReadyQuestions,
   getPublishedQuestionStats,
@@ -18,9 +18,8 @@ const PROOF_ITEMS: Array<{
         : `${countLabel} is the published floor while the live bank count is unavailable.`,
   },
   {
-    title: "No-card trial",
-    body: () =>
-      `${formatTrialLabel()} · 500 practice questions · then ${formatMonthlyPrice("pro")}/mo. Cancel anytime.`,
+    title: "Free trial",
+    body: () => `${formatPricingCheckoutTrialOffer()}. Cancel anytime.`,
   },
   {
     title: "Still overpaying per exam?",

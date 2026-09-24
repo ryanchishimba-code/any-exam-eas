@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 type CheckoutPlanSelectorProps = {
   value: SignupPlan;
   onChange: (plan: SignupPlan) => void;
-  /** Signup uses no-card trial copy; checkout keeps payment-aware trial wording. */
+  /** Signup says no payment method is required; checkout keeps payment-aware trial wording. */
   context?: "checkout" | "signup";
 };
 
@@ -29,7 +29,7 @@ const SIGNUP_OPTIONS: { id: SignupPlan; label: string; sub: string }[] = [
   {
     id: "trial",
     label: "Start free trial",
-    sub: `${formatTrialTodayPrice()} · ${TRIAL_DAYS} days · no card`,
+    sub: `${formatTrialTodayPrice()} · no payment method required`,
   },
   {
     id: "subscribe",
