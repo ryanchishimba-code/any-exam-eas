@@ -42,17 +42,27 @@ export function resolveLengthPresetForField(
   });
 }
 
-/** Keep stored session config aligned with the count actually assembled and served. */
+/**
+ * Keep stored session config aligned with the count actually served.
+ * A larger assembled pool must not turn a 50-question sprint into a full-length
+ * session. A shorter delivery can shrink the clock, using the step field when
+ * the board has one (USMLE Step 1 is 7 hours at full length, not at 50).
+ */
 export function syncSessionConfigQuestionCount(
   config: FullExamSessionConfig,
   examSlug: ExamSlug,
-  deliveredCount: number
+  deliveredCount: number,
+  fieldId?: string
 ): FullExamSessionConfig {
-  if (deliveredCount === config.questionCount) return config;
+  if (deliveredCount === config.questionCount || deliveredCount > config.questionCount) {
+    return config;
+  }
   return {
     ...config,
     questionCount: deliveredCount,
-    timeLimitSec: config.timed ? computeTimeLimitSec(examSlug, deliveredCount, true) : 0,
+    timeLimitSec: config.timed
+      ? computeTimeLimitSec(examSlug, deliveredCount, true, fieldId)
+      : 0,
   };
 }
 

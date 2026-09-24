@@ -17,6 +17,7 @@ import {
   getLengthOptions,
   fullExamSessionHref,
   parseFullExamLengthPreset,
+  resolveChosenLengthPreset,
 } from "@/lib/full-exam/config";
 import { acquireAutostartLock, releaseAutostartLock } from "@/lib/full-exam/autostart-lock";
 import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
@@ -73,12 +74,16 @@ export function FullExamLauncher({
   const defaultPreset = defaultMockPresetForAccess(mockAccess);
   const lockedHint = mockPresetLockedMessage(mockAccess);
 
-  const [preset, setPreset] = useState<FullExamLengthPreset>(() => {
-    const fromUrl = initialMode ? parseFullExamLengthPreset(initialMode) : null;
-    if (fromUrl && options.some((o) => o.preset === fromUrl)) return fromUrl;
-    return defaultPreset;
-  });
+  const [preset, setPreset] = useState<FullExamLengthPreset>(() =>
+    resolveChosenLengthPreset({
+      options,
+      chosen: null,
+      initialMode,
+      fallback: defaultPreset,
+    })
+  );
   const presetRef = useRef<FullExamLengthPreset>(preset);
+  const chosenPresetRef = useRef<FullExamLengthPreset | null>(null);
   const [timed, setTimed] = useState(initialTimed);
   const [nclexCat, setNclexCat] = useState(() => {
     if (examSlug !== "nclex") return false;
@@ -94,6 +99,7 @@ export function FullExamLauncher({
 
   const handlePresetChange = useCallback(
     (next: FullExamLengthPreset) => {
+      chosenPresetRef.current = next;
       presetRef.current = next;
       setPreset(next);
       if (examSlug === "nclex") {
@@ -151,6 +157,7 @@ export function FullExamLauncher({
           examSlug,
           launchMode: "new_exam",
           lengthPreset: sessionConfig.lengthPreset,
+          questionCount: sessionConfig.questionCount,
           timed,
           fieldId: examSlug === "usmle" ? fieldId : undefined,
           nclexCat: examSlug === "nclex" ? nclexCat : undefined,
@@ -196,20 +203,22 @@ export function FullExamLauncher({
     }
   }
 
-  // Deep-link only — never reset the wheel to full-length on unrelated re-renders.
+  // Deep-link seeds the wheel once. A choice the student already made stays,
+  // even when the URL still says mode=full or the option list refreshes.
   useEffect(() => {
-    if (!initialMode) return;
-    const fromUrl = parseFullExamLengthPreset(initialMode);
-    if (fromUrl && options.some((o) => o.preset === fromUrl)) {
-      handlePresetChange(fromUrl);
+    const next = resolveChosenLengthPreset({
+      options,
+      chosen: chosenPresetRef.current,
+      initialMode,
+      fallback: defaultPreset,
+    });
+    if (next === presetRef.current) return;
+    presetRef.current = next;
+    setPreset(next);
+    if (examSlug === "nclex" && chosenPresetRef.current == null) {
+      setNclexCat(next === "full");
     }
-  }, [initialMode, options, handlePresetChange]);
-
-  // If plan access changes and the current preset is locked, fall back once.
-  useEffect(() => {
-    if (options.some((o) => o.preset === presetRef.current)) return;
-    handlePresetChange(defaultPreset);
-  }, [options, defaultPreset, handlePresetChange]);
+  }, [options, initialMode, defaultPreset, examSlug]);
 
   const autostartRanRef = useRef(false);
 

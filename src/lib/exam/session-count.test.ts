@@ -46,6 +46,17 @@ describe("syncSessionConfigQuestionCount", () => {
     const config = buildSessionConfig("naplex", "50", true);
     expect(syncSessionConfigQuestionCount(config, "naplex", 50)).toBe(config);
   });
+
+  it("does not widen a 50-question sprint when assembly returns a full pool", () => {
+    const config = buildSessionConfig("usmle", "50", true, { fieldId: "usmle-step-1" });
+    const synced = syncSessionConfigQuestionCount(config, "usmle", 280, "usmle-step-1");
+    expect(synced).toBe(config);
+    expect(synced.questionCount).toBe(50);
+    expect(synced.timeLimitSec).not.toBe(7 * 60 * 60);
+
+    const naplex = buildSessionConfig("naplex", "50", true);
+    expect(syncSessionConfigQuestionCount(naplex, "naplex", 225)).toBe(naplex);
+  });
 });
 
 describe("assertExactQuestionCount", () => {
