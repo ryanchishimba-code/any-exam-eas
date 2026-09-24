@@ -4,16 +4,16 @@ import { isPremiumPage } from "./premium-routes";
 
 describe("guest preview routes", () => {
   it("opens free-win surfaces for logged-out visitors", () => {
-    expect(isGuestPreviewPage("/nclex/study-guide")).toBe(true);
-    expect(isGuestPreviewPage("/nclex/study-guide/cardiac")).toBe(true);
-    expect(isGuestPreviewPage("/naplex/study-guide")).toBe(true);
-    expect(isGuestPreviewPage("/aanp-fnp/study-guide/exam-strategy")).toBe(true);
     expect(isGuestPreviewPage("/study/drugs300")).toBe(true);
     expect(isGuestPreviewPage("/anatomy")).toBe(true);
     expect(isGuestPreviewPage("/anatomy/catalog")).toBe(true);
   });
 
-  it("does not open paid study or admin surfaces", () => {
+  it("keeps reference books and other paid surfaces closed", () => {
+    expect(isGuestPreviewPage("/nclex/study-guide")).toBe(false);
+    expect(isGuestPreviewPage("/nclex/study-guide/cardiac")).toBe(false);
+    expect(isGuestPreviewPage("/naplex/study-guide")).toBe(false);
+    expect(isGuestPreviewPage("/aanp-fnp/study-guide/exam-strategy")).toBe(false);
     expect(isGuestPreviewPage("/dashboard")).toBe(false);
     expect(isGuestPreviewPage("/study")).toBe(false);
     expect(isGuestPreviewPage("/study/practice")).toBe(false);
@@ -22,8 +22,11 @@ describe("guest preview routes", () => {
     expect(isGuestPreviewPage("/library")).toBe(false);
   });
 
-  it("excludes free-win paths from the premium matcher", () => {
-    expect(isPremiumPage("/nclex/study-guide")).toBe(false);
+  it("treats study guides as premium and leaves other free wins open", () => {
+    expect(isPremiumPage("/nclex/study-guide")).toBe(true);
+    expect(isPremiumPage("/nclex/study-guide/cardiac")).toBe(true);
+    expect(isPremiumPage("/naplex/study-guide")).toBe(true);
+    expect(isPremiumPage("/aanp-fnp/study-guide/exam-strategy")).toBe(true);
     expect(isPremiumPage("/study/drugs300")).toBe(false);
     expect(isPremiumPage("/anatomy")).toBe(false);
     expect(isPremiumPage("/study")).toBe(true);

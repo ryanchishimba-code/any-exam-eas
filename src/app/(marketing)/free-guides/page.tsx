@@ -2,8 +2,8 @@ import Link from "next/link";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
-import { formatMonthlyPrice, formatTrialCtaLabel, SITE_NAME } from "@/lib/site";
-import { STUDY_GUIDES } from "@/lib/nclex-study-guide/guide-registry";
+import { formatMonthlyPrice, formatTrialCtaLabel, formatTrialLabel, SITE_NAME } from "@/lib/site";
+import { studyGuideOfferCards, studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { buildFreeGuidesMetadata } from "@/lib/seo/marketing-metadata";
@@ -12,31 +12,13 @@ import {
   buildLandingBankCountsDisplay,
   getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
-import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 import { absoluteUrl } from "@/lib/seo";
 
 /** Guide index prints the live bank total. Do not keep yesterday's snapshot. */
 export const dynamic = "force-dynamic";
 
 export const metadata = buildFreeGuidesMetadata();
-
-const STUDY_GUIDE_CARDS = [
-  {
-    href: STUDY_GUIDES.nclex.routeBase,
-    title: "NCLEX Study Guide",
-    body: "Book-style reader with NGN-focused chapters, highlights, and notes.",
-  },
-  {
-    href: STUDY_GUIDES.naplex.routeBase,
-    title: "NAPLEX Study Guide",
-    body: "Pharmacotherapy chapters with calculations and clinical pearls.",
-  },
-  {
-    href: STUDY_GUIDES["aanp-fnp"].routeBase,
-    title: "AANP FNP Study Guide",
-    body: "Primary-care FNP chapters across domain, lifespan, and pharm.",
-  },
-] as const;
 
 const TOOLKIT_WINS = [
   {
@@ -74,9 +56,9 @@ function buildFreeGuidesJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Free study guides & board tools",
+    name: "Free board tools and premium reference books",
     url: absoluteUrl(ROUTES.freeGuides),
-    description: `Free study guides, toolkit tools, and board hubs from ${SITE_NAME}.`,
+    description: `Free toolkit tools and board hubs from ${SITE_NAME}. Reference books are not a free preview. ${studyGuideTrialLine()}`,
   };
 }
 
@@ -99,12 +81,12 @@ export default async function FreeGuidesPage() {
               Free guides
             </p>
             <h1 className="apple-display mt-5 leading-[1.05]">
-              Start with the free wins.
+              Start with the free tools.
             </h1>
             <p className="apple-subhead mx-auto mt-6 max-w-xl text-[var(--color-ink)]">
-              Study guides, drug cards, anatomy, and six board hubs — then a{" "}
-              {TRIAL_DAYS}-day no-card trial with {TRIAL_LIFETIME_QUESTIONS} practice
-              questions. {questionTotal}{" "}
+              Drug cards, anatomy, and six board hubs are open. Reference books — with
+              bookmarks and highlights — open on a {TRIAL_DAYS}-day free trial, then Pro
+              at {formatMonthlyPrice("pro")}/mo. {questionTotal}{" "}
               {liveTotal
                 ? "active questions across six boards"
                 : "is the published floor while the live count is unavailable"}
@@ -124,6 +106,7 @@ export default async function FreeGuidesPage() {
 
         <section
           className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-[var(--landing-section-py,4rem)]"
+          id="study-guides"
           aria-labelledby="free-guides-books-heading"
         >
           <div className="mx-auto max-w-6xl">
@@ -131,23 +114,37 @@ export default async function FreeGuidesPage() {
               id="free-guides-books-heading"
               className="text-center text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-tight text-[var(--color-ink)]"
             >
-              Study guides
+              Reference books
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-[var(--color-ink-muted)]">
-              Book-style readers you can open before you subscribe.
+              These reference books are not a free preview. {studyGuideTrialLine()} Bookmarks
+              and highlights save on the trial or Pro plan.
             </p>
             <ul className="mt-12 grid gap-6 sm:grid-cols-3" role="list">
-              {STUDY_GUIDE_CARDS.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="block h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 transition hover:border-[var(--color-accent)]/40"
-                  >
-                    <span className="text-lg font-bold text-[var(--color-ink)]">{item.title}</span>
-                    <span className="mt-2 block text-base leading-relaxed text-[var(--color-ink-muted)]">
+              {studyGuideOfferCards().map((item) => (
+                <li key={item.exam}>
+                  <article className="flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6">
+                    <h3 className="text-lg font-bold tracking-tight text-[var(--color-ink)]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-base leading-relaxed text-[var(--color-ink-muted)]">
                       {item.body}
-                    </span>
-                  </Link>
+                    </p>
+                    <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
+                      <Link
+                        href={item.trialHref}
+                        className="text-sm font-semibold text-[var(--color-accent)] hover:underline"
+                      >
+                        Start {formatTrialLabel()}
+                      </Link>
+                      <Link
+                        href={item.signInHref}
+                        className="text-sm font-semibold text-[var(--color-ink)] hover:underline"
+                      >
+                        Sign in
+                      </Link>
+                    </div>
+                  </article>
                 </li>
               ))}
             </ul>

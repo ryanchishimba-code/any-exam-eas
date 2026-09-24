@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-import { getOptionalStudyGuideUser, requireStudyGuideUser } from "@/lib/nclex-study-guide";
+import { requireStudyGuidePremium } from "@/lib/nclex-study-guide/premium-api";
 
 export const runtime = "nodejs";
 
@@ -13,8 +13,8 @@ const createSchema = z.object({
 });
 
 export async function GET(req: Request) {
-  const user = await getOptionalStudyGuideUser();
-  if (!user) return NextResponse.json({ ok: true, bookmarks: [] });
+  const user = await requireStudyGuidePremium(req);
+  if (!user.ok) return user.response;
   const chapterId = new URL(req.url).searchParams.get("chapterId");
   if (!chapterId) {
     return NextResponse.json({ error: "chapterId required" }, { status: 400 });
@@ -27,7 +27,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const authResult = await requireStudyGuideUser();
+  const authResult = await requireStudyGuidePremium(req);
   if (!authResult.ok) return authResult.response;
   const body = createSchema.parse(await req.json());
   try {
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-  const authResult = await requireStudyGuideUser();
+  const authResult = await requireStudyGuidePremium(req);
   if (!authResult.ok) return authResult.response;
   const id = new URL(req.url).searchParams.get("id");
   if (!id) return NextResponse.json({ error: "id required" }, { status: 400 });

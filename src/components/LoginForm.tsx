@@ -13,6 +13,8 @@ import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
 import { messageForSignInError } from "@/lib/auth-client";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { formatTrialLabel } from "@/lib/site";
+import { isStudyGuideCallback, studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
 
 const panelMotion = {
   initial: { opacity: 0, y: 12 },
@@ -106,6 +108,13 @@ export function LoginForm() {
           </StatusMessage>
         )}
 
+      {isStudyGuideCallback(callbackUrl) && view === "login" ? (
+        <p className="rounded-2xl border border-[color-mix(in_srgb,var(--color-accent)_35%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-surface))] px-4 py-3 text-sm leading-relaxed text-[var(--color-ink)]">
+          This reference book is not a free preview. {studyGuideTrialLine()} Sign in if your
+          trial or Pro plan is already active.
+        </p>
+      ) : null}
+
       <AnimatePresence mode="wait" initial={false}>
         {view === "login" ? (
           <motion.div key="login-view" {...panelMotion} className="space-y-5">
@@ -123,7 +132,9 @@ export function LoginForm() {
                 href={LANDING_TRIAL_HREF}
                 className="font-medium text-[var(--color-accent)] hover:underline"
               >
-                Start trial
+                {isStudyGuideCallback(callbackUrl)
+                  ? `Start a ${formatTrialLabel()}`
+                  : "Start trial"}
               </Link>
             </p>
           </motion.div>

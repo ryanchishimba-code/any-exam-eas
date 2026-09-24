@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-import { getOptionalStudyGuideUser, requireStudyGuideUser } from "@/lib/nclex-study-guide";
+import { requireStudyGuidePremium } from "@/lib/nclex-study-guide/premium-api";
 
 export const runtime = "nodejs";
 
@@ -12,8 +12,8 @@ const upsertSchema = z.object({
 });
 
 export async function GET(req: Request) {
-  const user = await getOptionalStudyGuideUser();
-  if (!user) return NextResponse.json({ ok: true, progress: null });
+  const user = await requireStudyGuidePremium(req);
+  if (!user.ok) return user.response;
   const guideId = new URL(req.url).searchParams.get("guideId");
   if (!guideId) {
     return NextResponse.json({ error: "guideId required" }, { status: 400 });
@@ -25,7 +25,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const authResult = await requireStudyGuideUser();
+  const authResult = await requireStudyGuidePremium(req);
   if (!authResult.ok) return authResult.response;
   const body = upsertSchema.parse(await req.json());
   const progress = await prisma.sgReadingProgress.upsert({

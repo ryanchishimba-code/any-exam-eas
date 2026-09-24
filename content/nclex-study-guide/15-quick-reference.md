@@ -227,4 +227,4 @@ Practice this aloud on every case study — even when the item format differs.
 - Official rules live in NCSBN documents — this sheet is a study aid.  
 - Soft CTA only: practice the flashes in a Qbank when ready.
 
-> **Drill these flashes in a Qbank.** [anyexameasy.com](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+> **Drill these flashes in a Qbank.** [anyexameasy.com](https://anyexameasy.com) — 5-day free trial, no payment method. Then Pro at $27.99/mo.

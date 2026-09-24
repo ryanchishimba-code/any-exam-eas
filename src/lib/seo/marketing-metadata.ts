@@ -88,14 +88,14 @@ export function buildResourcesHubMetadata(): Metadata {
 }
 
 export function buildFreeGuidesMetadata(): Metadata {
-  const title = "Free Study Guides & Board Tools";
-  const description = `Free NCLEX, NAPLEX and FNP study guides plus toolkit drugs, anatomy, and six board hubs. Start a ${SEO_LIVE_STATS.trialDays}-day no-card trial with ${SEO_LIVE_STATS.questionCount} live questions.`;
+  const title = "Free Tools & Premium Books";
+  const description = `Drug cards, anatomy, and six board hubs stay free. NCLEX, NAPLEX, and FNP books include bookmarks and highlights on a ${formatTrialLabel()}, then Pro at ${formatMonthlyPrice("pro")}/mo.`;
   return {
     ...baseOpenGraph(title, description, "/free-guides", { absoluteTitle: true }),
     keywords: [
-      "free NCLEX study guide",
-      "free NAPLEX study guide",
-      "free FNP study guide",
+      "NCLEX reference book",
+      "NAPLEX reference book",
+      "FNP reference book",
       "board exam toolkit",
       "free NCLEX practice",
     ],

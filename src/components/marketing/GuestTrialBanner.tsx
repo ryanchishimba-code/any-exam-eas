@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { landingTrialHrefForExam } from "@/lib/landing/content";
 import { formatTrialCtaLabel, formatTrialLabel, formatMonthlyPrice } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -23,15 +22,12 @@ export function GuestTrialBanner({ examSlug, className, compact = false }: Props
         className
       )}
     >
-      <p className="text-sm font-semibold text-[var(--color-ink)]">
-        Want bookmarks + {TRIAL_LIFETIME_QUESTIONS}-question free trial?
+      <p className="text-sm font-semibold tracking-[-0.015em] text-[var(--color-ink)]">
+        {formatTrialLabel()} — no payment method
       </p>
-      {!compact ? (
-        <p className="mt-1 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-          {formatTrialLabel()} · no card · {formatMonthlyPrice("pro")}/mo after. Save highlights,
-          notes, and progress when you start.
-        </p>
-      ) : null}
+      <p className="mt-1 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+        Then Pro at {formatMonthlyPrice("pro")}/mo.
+      </p>
       <Link
         href={href}
         className="mt-3 inline-flex items-center text-sm font-semibold text-[var(--color-accent)] hover:underline"

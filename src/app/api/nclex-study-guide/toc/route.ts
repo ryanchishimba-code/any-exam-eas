@@ -4,16 +4,15 @@ import {
   getPublishedGuide,
 } from "@/lib/nclex-study-guide";
 import { isStudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
-import { requirePremiumApi } from "@/lib/api-access";
+import { requireStudyGuidePremium } from "@/lib/nclex-study-guide/premium-api";
 
 export const runtime = "nodejs";
 
 /** GET /api/nclex-study-guide/toc?exam=nclex */
 export async function GET(req: Request) {
   try {
-    // Gated to match the reader pages; this used to expose the book's
-    // structure (and, via the chapter route, its full text) to anyone.
-    const access = await requirePremiumApi(req);
+    // Same bar as the reader pages. TOC is part of the premium book.
+    const access = await requireStudyGuidePremium(req);
     if (!access.ok) return access.response;
 
     // No fallback to the NCLEX guide on an unknown exam: silently serving the

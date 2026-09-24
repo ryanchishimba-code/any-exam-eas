@@ -1,5 +1,7 @@
-import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
+import { landingTrialHrefForExam } from "@/lib/landing/content";
+import { studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
+import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 import { getExamSeoConfig, type ExamSeoKey } from "@/lib/seo/exam-config";
 
 export const MARKETING_DARK_HERO_PATHS = new Set([
@@ -36,8 +38,8 @@ export function examHubSecondaryLink(examKey: ExamSeoKey): ExamHubSecondaryLink 
   const guide = getStudyGuideConfig(examKey);
   if (guide) {
     return {
-      href: guide.routeBase,
-      label: `Free ${getExamSeoConfig(examKey).shortName} study guide`,
+      href: `${ROUTES.freeGuides}#study-guides`,
+      label: `${getExamSeoConfig(examKey).shortName} reference book`,
     };
   }
   if (examKey === "usmle") {
@@ -61,9 +63,9 @@ export function examHubProductLinks(examKey: ExamSeoKey): ExamHubProductLink[] {
 
   if (guide) {
     links.push({
-      href: guide.routeBase,
-      title: `Free ${config.shortName} study guide`,
-      body: "Open the book-style reader — start without an account.",
+      href: landingTrialHrefForExam(examKey),
+      title: `${config.shortName} reference book`,
+      body: `Bookmarks and highlights in the premium reader. ${studyGuideTrialLine()}`,
       accent: true,
     });
   }

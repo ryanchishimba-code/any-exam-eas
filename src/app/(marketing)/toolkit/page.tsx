@@ -3,7 +3,7 @@ import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { formatTrialCtaLabel, SITE_NAME } from "@/lib/site";
-import { STUDY_GUIDES } from "@/lib/nclex-study-guide/guide-registry";
+import { studyGuideOfferCards } from "@/lib/marketing/study-guide-offer";
 import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
@@ -19,7 +19,7 @@ export const metadata = buildToolkitHubMetadata();
 /**
  * Real in-product / marketing routes used below (verified against ROUTES + examMarketingPath):
  * - Exam hubs: /usmle /nclex /naplex /pance /aanp-fnp /npte-pt
- * - Study Guides: /nclex/study-guide /naplex/study-guide /aanp-fnp/study-guide
+ * - Reference books: trial signup (manuscript stays behind the premium reader)
  * - Lab values & calculators: /library#hub-calculators
  * - Top 500 drugs: /study/drugs300
  * - Anatomy Explorer: /anatomy
@@ -38,21 +38,11 @@ const EXAM_CARDS: { key: ExamSeoKey; label: string }[] = [
 ];
 
 const IN_PRODUCT_LINKS = [
-  {
-    href: STUDY_GUIDES.nclex.routeBase,
-    title: "NCLEX Study Guide",
-    body: "Book-style reader with highlights, bookmarks, and notes.",
-  },
-  {
-    href: STUDY_GUIDES.naplex.routeBase,
-    title: "NAPLEX Study Guide",
-    body: "Pharmacotherapy book reader with highlights, bookmarks, and notes.",
-  },
-  {
-    href: STUDY_GUIDES["aanp-fnp"].routeBase,
-    title: "AANP FNP Study Guide",
-    body: "Primary-care FNP book reader with domain, lifespan, and pharm chapters.",
-  },
+  ...studyGuideOfferCards().map((card) => ({
+    href: card.trialHref,
+    title: card.title,
+    body: card.body,
+  })),
   {
     href: `${ROUTES.library}#hub-calculators`,
     title: "Lab values & calculators",
@@ -78,7 +68,7 @@ const IN_PRODUCT_LINKS = [
     title: "Compare guides",
     body: "How one plan stacks up against single-exam banks.",
   },
-] as const;
+];
 
 /** Official NAPLEX links from the brief (subset of NABP list). */
 const NAPLEX_BOARD_LINKS = NAPLEX_OFFICIAL_LINKS.filter((link) =>

@@ -25,12 +25,15 @@ import {
   Type,
 } from "lucide-react";
 import {
+  ChapterLoadError,
   fetchChapter,
   getCachedChapter,
   prefetchChapter,
   seedChapterCache,
 } from "@/lib/nclex-study-guide/client-cache";
 import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
+import { visibleBookSection } from "@/lib/nclex-study-guide/display-label";
+import { paintStudyGuideHighlights } from "@/lib/nclex-study-guide/paint-highlights";
 import type {
   SgChapterDto,
   SgHighlightColor,
@@ -38,7 +41,8 @@ import type {
   SgTocChapter,
 } from "@/lib/nclex-study-guide/types";
 import { SG_HIGHLIGHT_COLORS } from "@/lib/nclex-study-guide/types";
-import { GuestTrialBanner } from "@/components/marketing/GuestTrialBanner";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import "./study-guide-reader.css";
@@ -73,6 +77,48 @@ const COLOR_SWATCH: Record<SgHighlightColor, string> = {
 };
 
 const DRAWER_KEY = "sg-drawer-open";
+const PREFS_KEY = "sg-reader-prefs";
+const DEFAULT_PREFS: SgReaderPrefs = {
+  fontSize: "md",
+  lineHeight: "relaxed",
+  theme: "paper",
+};
+
+function readStoredPrefs(): SgReaderPrefs {
+  if (typeof window === "undefined") return DEFAULT_PREFS;
+  try {
+    const raw = localStorage.getItem(PREFS_KEY);
+    if (!raw) return DEFAULT_PREFS;
+    const parsed = JSON.parse(raw) as Partial<SgReaderPrefs>;
+    const fontSize = ["sm", "md", "lg", "xl"].includes(parsed.fontSize ?? "")
+      ? parsed.fontSize!
+      : DEFAULT_PREFS.fontSize;
+    const lineHeight = ["snug", "normal", "relaxed"].includes(parsed.lineHeight ?? "")
+      ? parsed.lineHeight!
+      : DEFAULT_PREFS.lineHeight;
+    const theme = ["paper", "dim", "dark"].includes(parsed.theme ?? "")
+      ? parsed.theme!
+      : DEFAULT_PREFS.theme;
+    return { fontSize, lineHeight, theme };
+  } catch {
+    return DEFAULT_PREFS;
+  }
+}
+
+type TextSelection = { text: string; start: number; end: number };
+
+function readPaperSelection(root: HTMLElement | null): TextSelection | null {
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !root || !sel.anchorNode || !root.contains(sel.anchorNode)) {
+    return null;
+  }
+  const text = sel.toString().replace(/\s+/g, " ").trim();
+  if (!text) return null;
+  const plain = root.innerText || "";
+  const start = plain.indexOf(text);
+  const end = start >= 0 ? start + text.length : text.length;
+  return { text, start: Math.max(0, start), end };
+}
 const PROGRESS_FLUSH_MS = 2000;
 /** Throttle for the synchronous localStorage progress write during scroll. */
 const PROGRESS_LOCAL_MS = 1000;
@@ -115,8 +161,6 @@ type Props = {
   guideTitle: string;
   chapters: SgTocChapter[];
   chapter: SgChapterDto;
-  /** Read-only guest preview — no bookmark/note persistence. */
-  guestPreview?: boolean;
 };
 
 function bindImageErrors(node: HTMLElement | null) {
@@ -133,13 +177,42 @@ function bindImageErrors(node: HTMLElement | null) {
   });
 }
 
+function ReaderSeg({
+  label,
+  value,
+  options,
+  onChange,
+  className,
+}: {
+  label: string;
+  value: string;
+  options: { value: string; label: string }[];
+  onChange: (value: string) => void;
+  className?: string;
+}) {
+  return (
+    <div className={cn("sg-seg", className)} role="group" aria-label={label}>
+      {options.map((opt) => (
+        <button
+          key={opt.value}
+          type="button"
+          aria-pressed={value === opt.value}
+          className={cn("sg-seg__btn", value === opt.value && "is-on")}
+          onClick={() => onChange(opt.value)}
+        >
+          {opt.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function StudyGuideReader({
   exam,
   guideId,
   guideTitle,
   chapters,
   chapter: initialChapter,
-  guestPreview = false,
 }: Props) {
   const config = STUDY_GUIDES[exam];
   const reduceMotion = useReducedMotion();
@@ -162,11 +235,9 @@ export function StudyGuideReader({
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
   const [drawerTab, setDrawerTab] = useState<"highlights" | "bookmarks" | "notes">("highlights");
-  const [prefs, setPrefs] = useState<SgReaderPrefs>({
-    fontSize: "md",
-    lineHeight: "relaxed",
-    theme: "paper",
-  });
+  const [prefs, setPrefs] = useState<SgReaderPrefs>(DEFAULT_PREFS);
+  const [prefsReady, setPrefsReady] = useState(false);
+  const [authAction, setAuthAction] = useState<"gate" | null>(null);
   const [search, setSearch] = useState("");
   const [highlights, setHighlights] = useState<HighlightRow[]>([]);
   const [bookmarks, setBookmarks] = useState<BookmarkRow[]>([]);
@@ -187,6 +258,20 @@ export function StudyGuideReader({
   // Drawer collapsed by default; remember preference. The saved preference is
   // desktop-only — restoring it under `lg` would leave a phone showing a 288px
   // panel beside a sliver of text.
+  useEffect(() => {
+    setPrefs(readStoredPrefs());
+    setPrefsReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!prefsReady) return;
+    try {
+      localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    } catch {
+      /* ignore */
+    }
+  }, [prefs, prefsReady]);
+
   useEffect(() => {
     if (!isDesktop) {
       setDrawerOpen(false);
@@ -244,20 +329,30 @@ export function StudyGuideReader({
 
   const loadAnnotations = useCallback(async (chapterId: string) => {
     const qs = `chapterId=${encodeURIComponent(chapterId)}`;
-    const [h, b, n] = await Promise.all([
-      fetch(`/api/nclex-study-guide/highlights?${qs}`).then((r) => r.json()),
-      fetch(`/api/nclex-study-guide/bookmarks?${qs}`).then((r) => r.json()),
-      fetch(`/api/nclex-study-guide/notes?${qs}`).then((r) => r.json()),
+    const [hRes, bRes, nRes] = await Promise.all([
+      fetch(`/api/nclex-study-guide/highlights?${qs}`),
+      fetch(`/api/nclex-study-guide/bookmarks?${qs}`),
+      fetch(`/api/nclex-study-guide/notes?${qs}`),
     ]);
-    setHighlights(h.highlights ?? []);
-    setBookmarks(b.bookmarks ?? []);
-    setNotes(n.notes ?? []);
+    // Keep the marks already on screen if a refresh fails. Entitled readers
+    // should not flash an empty drawer or a sign-in error for a blip.
+    if (hRes.ok) {
+      const h = (await hRes.json()) as { highlights?: HighlightRow[] };
+      setHighlights(h.highlights ?? []);
+    }
+    if (bRes.ok) {
+      const b = (await bRes.json()) as { bookmarks?: BookmarkRow[] };
+      setBookmarks(b.bookmarks ?? []);
+    }
+    if (nRes.ok) {
+      const n = (await nRes.json()) as { notes?: NoteRow[] };
+      setNotes(n.notes ?? []);
+    }
   }, []);
 
   useEffect(() => {
-    if (guestPreview) return;
     void loadAnnotations(chapter.id);
-  }, [chapter.id, guestPreview, loadAnnotations]);
+  }, [chapter.id, loadAnnotations]);
 
   const restoreScroll = useStableCallback(async (ch: SgChapterDto) => {
     const applyPct = (pct: number) => {
@@ -311,7 +406,6 @@ export function StudyGuideReader({
     } catch {
       /* ignore */
     }
-    if (guestPreview) return;
     void fetch("/api/nclex-study-guide/progress", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -394,6 +488,8 @@ export function StudyGuideReader({
       if (!slug || slug === chapterRef.current.slug || navLockRef.current) return;
       navLockRef.current = true;
       setNavPending(true);
+      setAuthHint(null);
+      setAuthAction(null);
       flushProgress();
       try {
         const next = getCachedChapter(exam, slug) ?? (await fetchChapter(exam, slug));
@@ -413,8 +509,17 @@ export function StudyGuideReader({
         document.title = `${next.title} — ${guideTitle}`;
         prefetchChapter(exam, next.prevSlug);
         prefetchChapter(exam, next.nextSlug);
-      } catch {
-        setAuthHint("Could not load that chapter. Try again.");
+      } catch (err) {
+        const status = err instanceof ChapterLoadError ? err.status : 0;
+        if (status === 401 || status === 403) {
+          setAuthAction("gate");
+          setAuthHint(
+            `This reference book is included with the trial or Pro plan. ${studyGuideTrialLine()}`
+          );
+        } else {
+          setAuthAction(null);
+          setAuthHint("Could not load that chapter. Try again.");
+        }
       } finally {
         navLockRef.current = false;
         setNavPending(false);
@@ -453,50 +558,62 @@ export function StudyGuideReader({
     bindImageErrors(paperRef.current);
   }, [chapter.id, filteredHtml]);
 
+  useEffect(() => {
+    const root = paperRef.current;
+    if (!root) return;
+    paintStudyGuideHighlights(root, highlights);
+  }, [chapter.id, filteredHtml, highlights]);
+
   const captureSelection = useCallback(() => {
-    const sel = window.getSelection();
-    if (!sel || sel.isCollapsed || !paperRef.current) {
-      setSelectionInfo(null);
+    const info = readPaperSelection(paperRef.current);
+    setSelectionInfo(info);
+    return info;
+  }, []);
+
+  const noteSaveFailure = useCallback((res: Response, noun: string) => {
+    if (res.status === 401 || res.status === 403) {
+      setAuthAction("gate");
+      setAuthHint(
+        `${studyGuideTrialLine()} Saving ${noun}s needs a trial or Pro plan.`
+      );
       return;
     }
-    const text = sel.toString().trim();
-    if (!text) {
-      setSelectionInfo(null);
-      return;
-    }
-    const plain = paperRef.current.innerText || "";
-    const start = plain.indexOf(text);
-    const end = start >= 0 ? start + text.length : text.length;
-    setSelectionInfo({ text, start: Math.max(0, start), end });
+    setAuthAction(null);
+    setAuthHint(`Could not save that ${noun}. Try again.`);
   }, []);
 
   const saveHighlight = useCallback(
-    async (color: SgHighlightColor = pendingColor) => {
-      if (!selectionInfo) return;
+    async (color: SgHighlightColor = pendingColor, info?: TextSelection | null) => {
+      const target = info ?? selectionInfo;
+      if (!target) {
+        setAuthAction(null);
+        setAuthHint("Select a passage in the chapter, then highlight it.");
+        return;
+      }
       const res = await fetch("/api/nclex-study-guide/highlights", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chapterId: chapter.id,
-          startOffset: selectionInfo.start,
-          endOffset: selectionInfo.end,
-          selectedText: selectionInfo.text,
+          startOffset: target.start,
+          endOffset: target.end,
+          selectedText: target.text,
           color,
         }),
       });
-      if (res.status === 401) {
-        setAuthHint("Sign in to save highlights.");
+      if (!res.ok) {
+        noteSaveFailure(res, "highlight");
         return;
       }
-      if (res.ok) {
-        setSelectionInfo(null);
-        window.getSelection()?.removeAllRanges();
-        await loadAnnotations(chapter.id);
-        setDrawerTab("highlights");
-        toggleDrawer(true);
-      }
+      setAuthHint(null);
+      setAuthAction(null);
+      setSelectionInfo(null);
+      window.getSelection()?.removeAllRanges();
+      await loadAnnotations(chapter.id);
+      setDrawerTab("highlights");
+      toggleDrawer(true);
     },
-    [chapter.id, loadAnnotations, pendingColor, selectionInfo, toggleDrawer]
+    [chapter.id, loadAnnotations, noteSaveFailure, pendingColor, selectionInfo, toggleDrawer]
   );
 
   const saveBookmark = useCallback(async () => {
@@ -516,16 +633,16 @@ export function StudyGuideReader({
         scrollPct: scrollPctRef.current,
       }),
     });
-    if (res.status === 401) {
-      setAuthHint("Sign in to save bookmarks.");
+    if (!res.ok) {
+      noteSaveFailure(res, "bookmark");
       return;
     }
-    if (res.ok) {
-      await loadAnnotations(chapter.id);
-      setDrawerTab("bookmarks");
-      toggleDrawer(true);
-    }
-  }, [chapter.id, chapter.title, loadAnnotations, toggleDrawer]);
+    setAuthHint(null);
+    setAuthAction(null);
+    await loadAnnotations(chapter.id);
+    setDrawerTab("bookmarks");
+    toggleDrawer(true);
+  }, [chapter.id, chapter.title, loadAnnotations, noteSaveFailure, toggleDrawer]);
 
   const saveNote = useCallback(async () => {
     if (!noteDraft.trim()) return;
@@ -538,17 +655,32 @@ export function StudyGuideReader({
         body: noteDraft.trim(),
       }),
     });
-    if (res.status === 401) {
-      setAuthHint("Sign in to save notes.");
+    if (!res.ok) {
+      noteSaveFailure(res, "note");
       return;
     }
-    if (res.ok) {
-      setNoteDraft("");
+    setAuthHint(null);
+    setAuthAction(null);
+    setNoteDraft("");
+    await loadAnnotations(chapter.id);
+    setDrawerTab("notes");
+    toggleDrawer(true);
+  }, [chapter.id, loadAnnotations, noteDraft, noteSaveFailure, toggleDrawer]);
+
+  const removeAnnotation = useCallback(
+    async (kind: "highlights" | "bookmarks" | "notes", id: string) => {
+      const res = await fetch(
+        `/api/nclex-study-guide/${kind}?id=${encodeURIComponent(id)}`,
+        { method: "DELETE" }
+      );
+      if (!res.ok) {
+        noteSaveFailure(res, kind === "highlights" ? "highlight" : kind === "bookmarks" ? "bookmark" : "note");
+        return;
+      }
       await loadAnnotations(chapter.id);
-      setDrawerTab("notes");
-      toggleDrawer(true);
-    }
-  }, [chapter.id, loadAnnotations, noteDraft, toggleDrawer]);
+    },
+    [chapter.id, loadAnnotations, noteSaveFailure]
+  );
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -563,10 +695,10 @@ export function StudyGuideReader({
         e.preventDefault();
         void goToSlug(ch.prevSlug);
       }
-      if (!guestPreview && e.key === "b") void saveBookmark();
-      if (!guestPreview && e.key === "h") {
-        captureSelection();
-        void saveHighlight();
+      if (e.key === "b") void saveBookmark();
+      if (e.key === "h") {
+        const info = captureSelection();
+        void saveHighlight(pendingColor, info);
       }
       if (e.key === "]" || e.key === "\\") {
         toggleDrawer(!drawerOpen);
@@ -581,8 +713,8 @@ export function StudyGuideReader({
   }, [
     captureSelection,
     drawerOpen,
-    guestPreview,
     goToSlug,
+    pendingColor,
     saveBookmark,
     saveHighlight,
     toggleDrawer,
@@ -608,12 +740,12 @@ export function StudyGuideReader({
 
   const fontClass =
     prefs.fontSize === "sm"
-      ? "text-[15px]"
+      ? "text-[17px]"
       : prefs.fontSize === "lg"
-        ? "text-[19px]"
+        ? "text-[21px]"
         : prefs.fontSize === "xl"
-          ? "text-[21px]"
-          : "text-[17px]";
+          ? "text-[24px]"
+          : "text-[19px]";
 
   const leadingClass =
     prefs.lineHeight === "snug"
@@ -630,22 +762,26 @@ export function StudyGuideReader({
         exit: { opacity: 0, y: -8 },
       };
 
+  let lastSection = "";
   const tocContent = (
     <>
-      <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/45">
+      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
         Contents
       </p>
       <nav aria-label="Chapter list">
-        <ul className="space-y-1">
+        <ul className="space-y-0.5">
           {chapters.map((c) => {
             const active = c.slug === chapter.slug;
             const tier = active ? progressTier : 0;
             const bookmarked = active && bookmarks.length > 0;
+            const section = visibleBookSection(c.sectionLabel);
+            const showSection = Boolean(section) && section !== lastSection;
+            lastSection = section ?? "";
             return (
               <li key={c.id}>
-                {c.sectionLabel ? (
-                  <p className="mb-0.5 mt-2 text-[10px] font-semibold uppercase tracking-wide text-[#2ec4b6]">
-                    {c.sectionLabel}
+                {showSection ? (
+                  <p className="mb-1 mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#2ec4b6] first:mt-0">
+                    {section}
                   </p>
                 ) : null}
                 <button
@@ -659,8 +795,7 @@ export function StudyGuideReader({
                     void goToSlug(c.slug);
                   }}
                   className={cn(
-                    // Roomier rows on touch, where this is the only chapter picker.
-                    "flex w-full items-start gap-1.5 rounded-lg px-2 py-2.5 text-left text-[12px] leading-snug transition-colors duration-150 lg:py-1.5",
+                    "flex w-full items-start gap-2 rounded-xl px-2.5 py-3 text-left text-[15px] leading-snug tracking-[-0.011em] transition-colors duration-150 lg:py-2 lg:text-[13.5px]",
                     active
                       ? "bg-[#2ec4b6]/15 font-semibold text-[#2ec4b6]"
                       : "text-white/75 hover:bg-white/5 hover:text-white"
@@ -702,7 +837,7 @@ export function StudyGuideReader({
           onClick={() => setTocOpen(true)}
           aria-label="Open contents"
           aria-expanded={tocOpen}
-          className="flex shrink-0 items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1.5 text-xs font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white lg:hidden"
+          className="sg-icon-btn lg:hidden"
         >
           <List className="h-3.5 w-3.5" aria-hidden />
           {/* Icon-only on the narrowest phones so the header can't overflow. */}
@@ -711,91 +846,84 @@ export function StudyGuideReader({
         {/* The reader collapses the app sidebar, so the way out goes to the dashboard
             rather than the NCLEX hub — that's where study nav is fully available. */}
         <Link
-          href={guestPreview ? ROUTES.freeGuides : ROUTES.dashboard}
-          aria-label={guestPreview ? "Back to free guides" : "Back to dashboard"}
-          className="flex shrink-0 items-center gap-1 rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs font-semibold text-[#2ec4b6] transition-colors hover:bg-white/10 hover:text-white"
+          href={ROUTES.dashboard}
+          aria-label="Back to dashboard"
+          className="sg-icon-btn text-[#2ec4b6]"
         >
           <ChevronLeft className="h-3.5 w-3.5" aria-hidden />
-          {guestPreview ? "Guides" : "Dashboard"}
+          <span className="hidden min-[400px]:inline">Dashboard</span>
         </Link>
         {/* The book title truncates to noise on a phone; the chapter heading carries context there. */}
-        <p className="hidden min-w-0 flex-1 truncate text-sm font-semibold tracking-tight sm:block">
+        <p className="hidden min-w-0 flex-1 truncate text-[15px] font-semibold tracking-[-0.02em] sm:block">
           {guideTitle}
-          {navPending ? <span className="ml-2 text-[10px] font-normal text-white/40">…</span> : null}
+          {navPending ? (
+            <span className="ml-2 text-[11px] font-normal text-white/40">Loading</span>
+          ) : null}
         </p>
         <div className="flex-1 sm:hidden" aria-hidden />
         {navPending ? (
-          <span className="text-[10px] text-white/40 sm:hidden" aria-hidden>
-            …
-          </span>
+          <span className="text-[11px] text-white/40 sm:hidden">Loading</span>
         ) : null}
-        <div className="flex items-center gap-1">
-          <label className="sr-only" htmlFor="sg-font">
-            Font size
-          </label>
-          <Type className="hidden h-3.5 w-3.5 text-white/50 sm:block" aria-hidden />
-          {/* Text size stays reachable on phones; the finer controls are desktop-only. */}
-          <select
-            id="sg-font"
-            className="rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs"
+        <div className="flex items-center gap-1.5">
+          <Type className="hidden h-3.5 w-3.5 text-white/45 sm:block" aria-hidden />
+          <ReaderSeg
+            label="Font size"
             value={prefs.fontSize}
-            onChange={(e) =>
-              setPrefs((p) => ({
-                ...p,
-                fontSize: e.target.value as SgReaderPrefs["fontSize"],
-              }))
+            onChange={(fontSize) =>
+              setPrefs((p) => ({ ...p, fontSize: fontSize as SgReaderPrefs["fontSize"] }))
             }
-          >
-            <option value="sm">A−</option>
-            <option value="md">A</option>
-            <option value="lg">A+</option>
-            <option value="xl">A++</option>
-          </select>
-          <select
-            className="hidden rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs sm:block"
+            options={[
+              { value: "sm", label: "A−" },
+              { value: "md", label: "A" },
+              { value: "lg", label: "A+" },
+              { value: "xl", label: "A++" },
+            ]}
+          />
+          <ReaderSeg
+            className="hidden md:inline-flex"
+            label="Line height"
             value={prefs.lineHeight}
-            onChange={(e) =>
+            onChange={(lineHeight) =>
               setPrefs((p) => ({
                 ...p,
-                lineHeight: e.target.value as SgReaderPrefs["lineHeight"],
+                lineHeight: lineHeight as SgReaderPrefs["lineHeight"],
               }))
             }
-            aria-label="Line height"
-          >
-            <option value="snug">Tight</option>
-            <option value="normal">Normal</option>
-            <option value="relaxed">Relaxed</option>
-          </select>
-          <select
-            className="hidden rounded-md border border-white/15 bg-white/5 px-2 py-1 text-xs sm:block"
+            options={[
+              { value: "snug", label: "Tight" },
+              { value: "normal", label: "Even" },
+              { value: "relaxed", label: "Airy" },
+            ]}
+          />
+          <ReaderSeg
+            className="hidden sm:inline-flex"
+            label="Reading theme"
             value={prefs.theme}
-            onChange={(e) =>
-              setPrefs((p) => ({
-                ...p,
-                theme: e.target.value as SgReaderPrefs["theme"],
-              }))
+            onChange={(theme) =>
+              setPrefs((p) => ({ ...p, theme: theme as SgReaderPrefs["theme"] }))
             }
-            aria-label="Reading theme"
-          >
-            <option value="paper">Paper</option>
-            <option value="dim">Dim</option>
-            <option value="dark">Dark</option>
-          </select>
+            options={[
+              { value: "paper", label: "Paper" },
+              { value: "dim", label: "Dim" },
+              { value: "dark", label: "Dark" },
+            ]}
+          />
         </div>
         <button
           type="button"
-          className="rounded-md border border-white/15 px-2 py-1 text-xs hover:bg-white/5"
+          className="sg-icon-btn hidden sm:inline-flex"
           onClick={() => window.print()}
-          title="Print / Export PDF of this chapter"
+          aria-label="Print this chapter"
+          title="Print this chapter"
         >
           <Printer className="h-3.5 w-3.5" aria-hidden />
         </button>
         <button
           type="button"
-          className="rounded-md border border-white/15 px-2 py-1 text-xs hover:bg-white/5"
+          className="sg-icon-btn"
           onClick={() => toggleDrawer(!drawerOpen)}
           aria-pressed={drawerOpen}
-          aria-label={drawerOpen ? "Close drawer" : "Open drawer"}
+          aria-label={drawerOpen ? "Close notes" : "Open notes"}
         >
           {drawerOpen ? (
             <PanelRightClose className="h-3.5 w-3.5" />
@@ -807,7 +935,7 @@ export function StudyGuideReader({
 
       <div
         ref={progressBarRef}
-        className="h-0.5 w-full bg-white/10"
+        className="h-[3px] w-full bg-white/10"
         role="progressbar"
         aria-valuenow={0}
         aria-valuemin={0}
@@ -820,7 +948,7 @@ export function StudyGuideReader({
       <div className="relative flex min-h-0 flex-1">
         {/* LEFT TOC — a fixed rail on desktop, a slide-over sheet on touch. Visibility is
             CSS-driven so the server markup already matches the viewport (no hydration flash). */}
-        <aside className="sg-toc hidden w-56 shrink-0 overflow-y-auto border-r border-white/10 p-3 lg:block xl:w-64">
+        <aside className="sg-toc hidden w-60 shrink-0 overflow-y-auto border-r border-white/10 px-3 py-5 lg:block xl:w-72">
           {tocContent}
         </aside>
         <AnimatePresence initial={false}>
@@ -842,7 +970,7 @@ export function StudyGuideReader({
                 animate={{ x: 0 }}
                 exit={reduceMotion ? undefined : { x: "-100%" }}
                 transition={{ type: "spring", stiffness: 380, damping: 36, mass: 0.8 }}
-                className="sg-toc absolute inset-y-0 left-0 z-30 w-[min(85vw,320px)] overflow-y-auto border-r border-white/10 bg-[#0b1c2c] p-3 shadow-2xl lg:hidden"
+                className="sg-toc absolute inset-y-0 left-0 z-30 w-[min(88vw,340px)] overflow-y-auto border-r border-white/10 bg-[#0b1c2c] px-4 py-5 shadow-2xl lg:hidden"
               >
                 {tocContent}
               </motion.aside>
@@ -888,40 +1016,30 @@ export function StudyGuideReader({
                 className="w-full rounded-lg border border-white/15 bg-white/5 py-1.5 pl-8 pr-3 text-xs outline-none placeholder:text-white/35 focus:border-[#2ec4b6]/50"
               />
             </div>
-            {guestPreview ? null : (
-              <>
-                <button
-                  type="button"
-                  onClick={() => {
-                    captureSelection();
-                    void saveHighlight();
-                  }}
-                  className="inline-flex items-center gap-1 rounded-lg border border-white/15 px-2 py-1.5 text-xs transition-colors hover:bg-white/5"
-                  title="Highlight selection (h)"
-                >
-                  <Highlighter className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">Highlight</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => void saveBookmark()}
-                  className="inline-flex items-center gap-1 rounded-lg border border-white/15 px-2 py-1.5 text-xs transition-colors hover:bg-white/5"
-                  title="Bookmark (b)"
-                >
-                  <Bookmark className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">Bookmark</span>
-                </button>
-              </>
-            )}
+            <button
+              type="button"
+              onClick={() => {
+                const info = captureSelection();
+                void saveHighlight(pendingColor, info);
+              }}
+              className="sg-icon-btn"
+              title="Highlight selection (h)"
+            >
+              <Highlighter className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Highlight</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => void saveBookmark()}
+              className="sg-icon-btn"
+              title="Bookmark (b)"
+            >
+              <Bookmark className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Bookmark</span>
+            </button>
           </div>
 
-          {guestPreview ? (
-            <div className="border-b border-white/10 px-3 py-3 sm:px-4">
-              <GuestTrialBanner examSlug={exam === "aanp-fnp" ? "aanp-fnp" : exam} compact />
-            </div>
-          ) : null}
-
-          {selectionInfo && !guestPreview ? (
+          {selectionInfo ? (
             <div className="flex flex-wrap items-center gap-2 border-b border-white/10 bg-black/20 px-3 py-2 text-xs">
               <span className="text-white/60">Highlight color:</span>
               {SG_HIGHLIGHT_COLORS.map((c) => (
@@ -945,20 +1063,29 @@ export function StudyGuideReader({
           ) : null}
 
           {authHint ? (
-            <p className="border-b border-amber-400/30 bg-amber-400/10 px-3 py-1.5 text-xs text-amber-100">
+            <p className="border-b border-amber-400/30 bg-amber-400/10 px-4 py-2 text-[13px] leading-relaxed text-amber-50">
               {authHint}{" "}
-              <Link href={ROUTES.auth.login} className="underline">
-                Sign in
-              </Link>
+              {authAction === "gate" ? (
+                <>
+                  <Link href={ROUTES.auth.login} className="font-semibold underline">
+                    Sign in
+                  </Link>
+                  {" · "}
+                  <Link href={LANDING_TRIAL_HREF} className="font-semibold underline">
+                    Start trial
+                  </Link>
+                </>
+              ) : null}
             </p>
           ) : null}
 
-          <div className="relative mx-auto min-h-0 w-full max-w-3xl flex-1 sm:my-4">
+          <div className="relative mx-auto min-h-0 w-full max-w-[40rem] flex-1 sm:my-6">
             <article
               ref={paperRef}
               onMouseUp={captureSelection}
+              data-theme={prefs.theme}
               className={cn(
-                "sg-paper h-full overflow-y-auto px-5 py-8 shadow-2xl sm:rounded-2xl sm:px-10",
+                "sg-paper h-full overflow-y-auto shadow-2xl sm:rounded-[1.25rem]",
                 paperTheme,
                 fontClass,
                 leadingClass
@@ -970,9 +1097,11 @@ export function StudyGuideReader({
                   {...chapterMotion}
                   transition={{ duration: reduceMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] opacity-60">
-                    {chapter.sectionLabel || "Chapter"}
-                  </p>
+                  {visibleBookSection(chapter.sectionLabel) ? (
+                    <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] opacity-60">
+                      {visibleBookSection(chapter.sectionLabel)}
+                    </p>
+                  ) : null}
                   <div
                     className="sg-prose"
                     dangerouslySetInnerHTML={{ __html: filteredHtml }}
@@ -1052,22 +1181,22 @@ export function StudyGuideReader({
                 type="button"
                 onMouseEnter={() => prefetchChapter(exam, chapter.prevSlug)}
                 onClick={() => void goToSlug(chapter.prevSlug!)}
-                className="inline-flex items-center gap-1 text-xs font-semibold text-[#2ec4b6] transition-opacity hover:opacity-80"
+                className="sg-chapter-jump"
               >
                 <ChevronLeft className="h-4 w-4" /> Previous
               </button>
             ) : (
               <span />
             )}
-            <span className="hidden text-[11px] text-white/40 sm:inline">
-              j / k · b bookmark · h highlight
+            <span className="hidden text-[12px] tracking-[-0.01em] text-white/40 md:inline">
+              {chapter.title}
             </span>
             {chapter.nextSlug ? (
               <button
                 type="button"
                 onMouseEnter={() => prefetchChapter(exam, chapter.nextSlug)}
                 onClick={() => void goToSlug(chapter.nextSlug!)}
-                className="inline-flex items-center gap-1 text-xs font-semibold text-[#2ec4b6] transition-opacity hover:opacity-80"
+                className="sg-chapter-jump"
               >
                 Next <ChevronRight className="h-4 w-4" />
               </button>
@@ -1151,7 +1280,7 @@ export function StudyGuideReader({
                       onClick={() => setDrawerTab(id)}
                     >
                       <Icon className="h-3.5 w-3.5" />
-                      <span className="hidden xl:inline">{label}</span>
+                      <span>{label}</span>
                     </button>
                   ))}
                 </div>
@@ -1159,20 +1288,45 @@ export function StudyGuideReader({
                   {drawerTab === "highlights" ? (
                     <ul className="space-y-2">
                       {highlights.length === 0 ? (
-                        <li className="text-white/45">No highlights yet. Select text in the chapter.</li>
+                        <li className="sg-empty">
+                          Select a passage, then choose Highlight. Marks stay on this chapter.
+                        </li>
                       ) : (
                         highlights.map((h) => (
-                          <li
-                            key={h.id}
-                            className="rounded-lg border border-white/10 bg-white/5 p-2"
-                            style={{
-                              borderLeftColor:
-                                COLOR_SWATCH[(h.color as SgHighlightColor) || "yellow"] ||
-                                COLOR_SWATCH.yellow,
-                              borderLeftWidth: 3,
-                            }}
-                          >
-                            {h.selectedText}
+                          <li key={h.id} className="sg-anno">
+                            <button
+                              type="button"
+                              className="min-w-0 flex-1 text-left"
+                              onClick={() => {
+                                const root = paperRef.current;
+                                const target = root?.querySelector(
+                                  `mark.sg-hl[data-highlight-id="${CSS.escape(h.id)}"]`
+                                );
+                                target?.scrollIntoView({
+                                  behavior: reduceMotion ? "auto" : "smooth",
+                                  block: "center",
+                                });
+                              }}
+                            >
+                              <span
+                                className="mb-1 inline-block h-1.5 w-6 rounded-full"
+                                style={{
+                                  background:
+                                    COLOR_SWATCH[(h.color as SgHighlightColor) || "yellow"] ||
+                                    COLOR_SWATCH.yellow,
+                                }}
+                                aria-hidden
+                              />
+                              <p className="leading-relaxed">{h.selectedText}</p>
+                            </button>
+                            <button
+                              type="button"
+                              className="sg-anno__remove"
+                              aria-label="Remove highlight"
+                              onClick={() => void removeAnnotation("highlights", h.id)}
+                            >
+                              Remove
+                            </button>
                           </li>
                         ))
                       )}
@@ -1181,13 +1335,15 @@ export function StudyGuideReader({
                   {drawerTab === "bookmarks" ? (
                     <ul className="space-y-2">
                       {bookmarks.length === 0 ? (
-                        <li className="text-white/45">No bookmarks yet. Press b to pin.</li>
+                        <li className="sg-empty">
+                          Bookmark this spot to jump back later. Press b, or use Bookmark above.
+                        </li>
                       ) : (
                         bookmarks.map((b) => (
-                          <li key={b.id}>
+                          <li key={b.id} className="sg-anno">
                             <button
                               type="button"
-                              className="w-full rounded-lg border border-white/10 bg-white/5 p-2 text-left transition-colors hover:bg-white/10"
+                              className="min-w-0 flex-1 text-left"
                               onClick={() => {
                                 const root = paperRef.current;
                                 const target = root?.querySelector(`#${CSS.escape(b.anchorId)}`);
@@ -1196,13 +1352,25 @@ export function StudyGuideReader({
                                     behavior: reduceMotion ? "auto" : "smooth",
                                     block: "start",
                                   });
+                                  if (!isDesktop) toggleDrawer(false);
                                   return;
                                 }
                                 seekToPct(b.scrollPct);
+                                if (!isDesktop) toggleDrawer(false);
                               }}
                             >
-                              <p className="font-semibold">{b.label || b.anchorId}</p>
-                              <p className="text-white/40">{Math.round(b.scrollPct)}%</p>
+                              <p className="font-semibold tracking-[-0.01em]">
+                                {b.label || b.anchorId}
+                              </p>
+                              <p className="mt-0.5 text-white/40">{Math.round(b.scrollPct)}% through</p>
+                            </button>
+                            <button
+                              type="button"
+                              className="sg-anno__remove"
+                              aria-label="Remove bookmark"
+                              onClick={() => void removeAnnotation("bookmarks", b.id)}
+                            >
+                              Remove
                             </button>
                           </li>
                         ))
@@ -1215,30 +1383,40 @@ export function StudyGuideReader({
                         value={noteDraft}
                         onChange={(e) => setNoteDraft(e.target.value)}
                         placeholder="Add a note for this chapter…"
-                        className="min-h-[80px] w-full rounded-lg border border-white/15 bg-white/5 p-2 text-xs outline-none focus:border-[#2ec4b6]/50"
+                        className="min-h-[96px] w-full rounded-xl border border-white/15 bg-white/5 p-3 text-[13px] leading-relaxed outline-none focus:border-[#2ec4b6]/50"
                       />
                       <button
                         type="button"
                         onClick={() => void saveNote()}
-                        className="w-full rounded-lg bg-[#2ec4b6] px-3 py-2 text-xs font-bold text-[#0b1c2c]"
+                        className="w-full rounded-full bg-[#2ec4b6] px-3 py-2.5 text-[13px] font-semibold tracking-[-0.01em] text-[#0b1c2c]"
                       >
                         Save note
                       </button>
-                      <ul className="space-y-2">
-                        {notes.map((n) => (
-                          <li
-                            key={n.id}
-                            className="rounded-lg border border-white/10 bg-white/5 p-2 whitespace-pre-wrap"
-                          >
-                            {n.body}
-                          </li>
-                        ))}
-                      </ul>
+                      {notes.length === 0 ? (
+                        <p className="sg-empty">Notes stay with this chapter.</p>
+                      ) : (
+                        <ul className="space-y-2">
+                          {notes.map((n) => (
+                            <li key={n.id} className="sg-anno">
+                              <p className="min-w-0 flex-1 whitespace-pre-wrap leading-relaxed">{n.body}</p>
+                              <button
+                                type="button"
+                                className="sg-anno__remove"
+                                aria-label="Remove note"
+                                onClick={() => void removeAnnotation("notes", n.id)}
+                              >
+                                Remove
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   ) : null}
                 </div>
-                <p className="border-t border-white/10 px-3 py-2 text-[10px] text-white/35">
-                  Full-book PDF export — stubbed. Chapter print uses the browser print dialog.
+                <p className="border-t border-white/10 px-3 py-3 text-[11px] leading-relaxed text-white/35">
+                  Print this chapter from your browser. Bookmarks, highlights, and notes stay on
+                  your account.
                 </p>
               </div>
             </motion.aside>

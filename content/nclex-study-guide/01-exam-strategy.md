@@ -358,4 +358,4 @@ D. Psychosocial Integrity only
 - One strong Qbank + error log > five half-used resources.  
 - Sleep and logistics are part of prep.  
 
-> **Practice the frameworks.** Open an NGN-ready set on [anyexameasy.com](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+> **Practice the frameworks.** Open an NGN-ready NCLEX set on [anyexameasy.com](https://anyexameasy.com) — 5-day free trial, no payment method. Then Pro at $27.99/mo.

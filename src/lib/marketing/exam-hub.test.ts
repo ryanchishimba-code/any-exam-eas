@@ -13,10 +13,17 @@ describe("exam hub marketing helpers", () => {
     expect(marketingExamKeyFromPath("/pricing")).toBeNull();
   });
 
-  it("points study-guide boards at the free reader", () => {
-    expect(examHubSecondaryLink("nclex").href).toBe("/nclex/study-guide");
-    expect(examHubSecondaryLink("naplex").label).toMatch(/NAPLEX study guide/i);
+  it("sends study-guide boards to the trial offer, not an open manuscript", () => {
+    expect(examHubSecondaryLink("nclex").href).toBe("/free-guides#study-guides");
+    expect(examHubSecondaryLink("nclex").label).toBe("NCLEX reference book");
+    expect(examHubSecondaryLink("naplex").label).toMatch(/NAPLEX reference book/i);
     expect(examHubSecondaryLink("usmle").href).toBe("#usmle-steps");
+    const book = examHubProductLinks("nclex")[0];
+    expect(book?.href).toContain("/signup?plan=trial");
+    expect(book?.href).not.toContain("/study-guide");
+    expect(book?.body).toMatch(/5-day free trial/i);
+    expect(book?.body).toMatch(/\$27\.99\/mo/);
+    expect(book?.body).not.toMatch(/without an account/i);
   });
 
   it("builds a three-card start-here band", () => {
