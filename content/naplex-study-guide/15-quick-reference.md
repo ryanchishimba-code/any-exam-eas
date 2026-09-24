@@ -157,6 +157,6 @@ ATT/ID · snacks for breaks · pace ~1.5–1.6 min/item average · units on ever
 
 ---
 
-## Soft CTA (study system)
+## Soft CTA
 
-When you’re ready for exam-style reps, practice on [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site). Study aid; independent of NABP. MPJE is separate.
+When you’re ready for exam-style NAPLEX reps, practice on [anyexameasy.com](https://anyexameasy.com) — 5-day free trial, no payment method. Then Pro at $27.99/mo. Study aid; independent of NABP. MPJE is separate.
