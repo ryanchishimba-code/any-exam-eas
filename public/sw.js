@@ -1,5 +1,5 @@
 /* Any Exam Easy — minimal offline shell (static assets + app shell). */
-const CACHE = "aee-shell-v1";
+const CACHE = "aee-shell-v2";
 const PRECACHE = ["/", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
@@ -23,17 +23,21 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  // Network-first for API and auth; cache-first for static assets.
+  // Network-first for API and auth; cache-first for icons and fonts.
   if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/auth")) {
     event.respondWith(fetch(request).catch(() => caches.match("/")));
     return;
   }
 
-  if (
-    url.pathname.startsWith("/_next/static/") ||
-    url.pathname.startsWith("/icons/") ||
-    url.pathname.endsWith(".woff2")
-  ) {
+  // Script URLs are content-hashed, but a cache-first match on /_next/static/
+  // can still serve a previous results module when a URL is reused. Always
+  // try the network so the receipt heading comes from the current deploy.
+  if (url.pathname.startsWith("/_next/static/")) {
+    event.respondWith(fetch(request).catch(() => caches.match(request)));
+    return;
+  }
+
+  if (url.pathname.startsWith("/icons/") || url.pathname.endsWith(".woff2")) {
     event.respondWith(
       caches.match(request).then((cached) => cached || fetch(request).then((res) => {
         if (res.ok) {

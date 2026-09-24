@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { notFound, redirect } from "next/navigation";
 import { getCachedSession } from "@/lib/auth/session";
+import { ExamResultsScoreHeader } from "@/components/exam/ExamResultsScoreHeader";
 import { FullExamResults } from "@/components/exam/FullExamResults";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -21,6 +22,8 @@ import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exa
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
 export const maxDuration = 60;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 function ResultsSkeleton() {
   return (
@@ -68,7 +71,9 @@ async function FullExamResultsContent({
           topicCategory: a.topicCategory,
         }));
 
-  const fieldId = examSession.fieldId ?? EXAM_CATALOG[examSlug].fieldId;
+  const exam = EXAM_CATALOG[examSlug];
+  const fieldId = examSession.fieldId ?? exam.fieldId;
+  const correct = answers.filter((a) => a.correct).length;
   const passPathPersisted = examPassPathPersisted(analysis);
   const missCount = passPathPersisted
     ? countFullExamMisses(
@@ -81,6 +86,19 @@ async function FullExamResultsContent({
 
   return (
     <>
+      <ExamResultsScoreHeader
+        examName={exam.name}
+        examShortName={exam.shortName}
+        score={examSession.score ?? 0}
+        correct={correct}
+        questionCount={questions.length}
+        summary={analysis.summary}
+        endedEarly={examSession.status === "ended_early"}
+        analysisEndedEarly={analysis.endedEarly === true}
+        answeredCount={analysis.answeredCount}
+        plannedQuestionCount={analysis.sessionConfig.questionCount}
+        answers={answers}
+      />
       <FullExamResults
         examSlug={examSlug}
         sessionId={sessionId}

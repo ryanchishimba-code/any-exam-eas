@@ -16,11 +16,7 @@ import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { formatAnswerDisplay } from "@/lib/full-exam/answer-serialize";
 import { formatHms } from "@/lib/full-exam/config";
-import {
-  countUnansweredExamItems,
-  fullExamResultsTitle,
-  summarySaysEndedEarly,
-} from "@/lib/full-exam/results-title";
+import { summarySaysEndedEarly } from "@/lib/full-exam/results-title";
 import { fullExamHref } from "@/lib/routes";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import type { ExamSlug } from "@/types/edtech";
@@ -78,23 +74,8 @@ export function FullExamResults({
 }: Props) {
   const exam = EXAM_CATALOG[examSlug];
   const correct = answers.filter((a) => a.correct).length;
-  const plannedCount = Math.max(
-    questions.length,
-    analysis.sessionConfig?.questionCount ?? 0
-  );
-  const recordedAnswered = analysis.answeredCount;
-  const unansweredFromLog = countUnansweredExamItems(plannedCount, answers);
-  const unanswered =
-    typeof recordedAnswered === "number" && Number.isFinite(recordedAnswered)
-      ? Math.max(unansweredFromLog, plannedCount - Math.max(0, Math.floor(recordedAnswered)))
-      : unansweredFromLog;
   const sessionEndedEarly =
     endedEarly || analysis.endedEarly === true || summarySaysEndedEarly(analysis.summary);
-  const resultsTitle = fullExamResultsTitle({
-    endedEarly: sessionEndedEarly,
-    unanswered,
-    summary: analysis.summary,
-  });
   const [view, setView] = useState<ReviewView>(initialReviewOpen ? "question" : "summary");
   const [index, setIndex] = useState(0);
 
@@ -312,27 +293,6 @@ export function FullExamResults({
 
   return (
     <div className="space-y-4 pb-8 sm:space-y-6">
-      <div className={feUi.pageShell}>
-        <div className={cn(feUi.panel, "p-4 text-center sm:p-8")}>
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border-2 border-[var(--color-accent)]/25 bg-[var(--color-surface-elevated)] sm:h-28 sm:w-28 sm:border-[6px] sm:shadow-[var(--shadow-apple-sm)]">
-            <span className={cn("text-[20px] font-semibold tabular-nums tracking-[-0.03em] sm:text-3xl sm:font-bold", scoreColor)}>
-              {score}%
-            </span>
-          </div>
-          <h1 className="mt-3 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:mt-5 sm:text-[24px] sm:tracking-tight">
-            {resultsTitle}
-          </h1>
-          <p className="mt-1 text-[14px] leading-snug tracking-[-0.015em] text-[var(--color-ink-muted)] sm:mt-2 sm:text-[15px]">
-            {analysis.summary}
-          </p>
-          <p className="mt-1 hidden text-[13px] text-[var(--color-ink-muted)] sm:block">{exam.name}</p>
-          <p className="mt-1 text-[13px] tracking-[-0.01em] text-[var(--color-ink-muted)] sm:mt-2 sm:text-sm">
-            {correct} / {questions.length} correct
-            <span className="sm:hidden"> · {exam.shortName}</span>
-          </p>
-        </div>
-      </div>
-
       <FullExamPassPathPanel
         missCount={missCount}
         persisted={passPathPersisted}
