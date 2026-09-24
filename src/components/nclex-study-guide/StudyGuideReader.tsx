@@ -22,7 +22,6 @@ import {
   PanelRightOpen,
   Printer,
   Search,
-  Type,
 } from "lucide-react";
 import {
   ChapterLoadError,
@@ -218,6 +217,7 @@ export function StudyGuideReader({
   const reduceMotion = useReducedMotion();
   const isDesktop = useIsDesktop();
   const paperRef = useRef<HTMLElement>(null);
+  const appearanceRef = useRef<HTMLDivElement>(null);
   const tocActiveRef = useRef<HTMLButtonElement | null>(null);
   const scrollPctRef = useRef(0);
   const progressBarRef = useRef<HTMLDivElement>(null);
@@ -237,6 +237,7 @@ export function StudyGuideReader({
   const [drawerTab, setDrawerTab] = useState<"highlights" | "bookmarks" | "notes">("highlights");
   const [prefs, setPrefs] = useState<SgReaderPrefs>(DEFAULT_PREFS);
   const [prefsReady, setPrefsReady] = useState(false);
+  const [appearanceOpen, setAppearanceOpen] = useState(false);
   const [authAction, setAuthAction] = useState<"gate" | null>(null);
   const [search, setSearch] = useState("");
   const [highlights, setHighlights] = useState<HighlightRow[]>([]);
@@ -262,6 +263,22 @@ export function StudyGuideReader({
     setPrefs(readStoredPrefs());
     setPrefsReady(true);
   }, []);
+
+  useEffect(() => {
+    if (!appearanceOpen) return;
+    const onPointer = (event: PointerEvent) => {
+      if (!appearanceRef.current?.contains(event.target as Node)) setAppearanceOpen(false);
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setAppearanceOpen(false);
+    };
+    window.addEventListener("pointerdown", onPointer);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("pointerdown", onPointer);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [appearanceOpen]);
 
   useEffect(() => {
     if (!prefsReady) return;
@@ -742,10 +759,10 @@ export function StudyGuideReader({
     prefs.fontSize === "sm"
       ? "text-[17px]"
       : prefs.fontSize === "lg"
-        ? "text-[21px]"
+        ? "text-[22px]"
         : prefs.fontSize === "xl"
-          ? "text-[24px]"
-          : "text-[19px]";
+          ? "text-[25px]"
+          : "text-[20px]";
 
   const leadingClass =
     prefs.lineHeight === "snug"
@@ -765,11 +782,11 @@ export function StudyGuideReader({
   let lastSection = "";
   const tocContent = (
     <>
-      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+      <p className="mb-4 text-[12px] font-semibold tracking-[-0.01em] text-white/45">
         Contents
       </p>
       <nav aria-label="Chapter list">
-        <ul className="space-y-0.5">
+        <ul className="space-y-1">
           {chapters.map((c) => {
             const active = c.slug === chapter.slug;
             const tier = active ? progressTier : 0;
@@ -780,7 +797,7 @@ export function StudyGuideReader({
             return (
               <li key={c.id}>
                 {showSection ? (
-                  <p className="mb-1 mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#2ec4b6] first:mt-0">
+                  <p className="mb-1 mt-5 px-3 text-[12px] font-medium tracking-[-0.01em] text-white/40 first:mt-0">
                     {section}
                   </p>
                 ) : null}
@@ -795,7 +812,7 @@ export function StudyGuideReader({
                     void goToSlug(c.slug);
                   }}
                   className={cn(
-                    "flex w-full items-start gap-2 rounded-xl px-2.5 py-3 text-left text-[15px] leading-snug tracking-[-0.011em] transition-colors duration-150 lg:py-2 lg:text-[13.5px]",
+                    "flex w-full items-start gap-2.5 rounded-2xl px-3 py-3.5 text-left text-[16px] leading-snug tracking-[-0.015em] transition-colors duration-150 lg:py-2.5 lg:text-[14.5px]",
                     active
                       ? "bg-[#2ec4b6]/15 font-semibold text-[#2ec4b6]"
                       : "text-white/75 hover:bg-white/5 hover:text-white"
@@ -864,50 +881,64 @@ export function StudyGuideReader({
         {navPending ? (
           <span className="text-[11px] text-white/40 sm:hidden">Loading</span>
         ) : null}
-        <div className="flex items-center gap-1.5">
-          <Type className="hidden h-3.5 w-3.5 text-white/45 sm:block" aria-hidden />
-          <ReaderSeg
-            label="Font size"
-            value={prefs.fontSize}
-            onChange={(fontSize) =>
-              setPrefs((p) => ({ ...p, fontSize: fontSize as SgReaderPrefs["fontSize"] }))
-            }
-            options={[
-              { value: "sm", label: "A−" },
-              { value: "md", label: "A" },
-              { value: "lg", label: "A+" },
-              { value: "xl", label: "A++" },
-            ]}
-          />
-          <ReaderSeg
-            className="hidden md:inline-flex"
-            label="Line height"
-            value={prefs.lineHeight}
-            onChange={(lineHeight) =>
-              setPrefs((p) => ({
-                ...p,
-                lineHeight: lineHeight as SgReaderPrefs["lineHeight"],
-              }))
-            }
-            options={[
-              { value: "snug", label: "Tight" },
-              { value: "normal", label: "Even" },
-              { value: "relaxed", label: "Airy" },
-            ]}
-          />
-          <ReaderSeg
-            className="hidden sm:inline-flex"
-            label="Reading theme"
-            value={prefs.theme}
-            onChange={(theme) =>
-              setPrefs((p) => ({ ...p, theme: theme as SgReaderPrefs["theme"] }))
-            }
-            options={[
-              { value: "paper", label: "Paper" },
-              { value: "dim", label: "Dim" },
-              { value: "dark", label: "Dark" },
-            ]}
-          />
+        <div className="relative" ref={appearanceRef}>
+          <button
+            type="button"
+            className={cn("sg-icon-btn", appearanceOpen && "is-on")}
+            aria-expanded={appearanceOpen}
+            aria-haspopup="dialog"
+            aria-label="Reading settings"
+            onClick={() => setAppearanceOpen((open) => !open)}
+          >
+            Aa
+          </button>
+          {appearanceOpen ? (
+            <div className="sg-appearance" role="dialog" aria-label="Reading settings">
+              <p>Size</p>
+              <ReaderSeg
+                label="Font size"
+                value={prefs.fontSize}
+                onChange={(fontSize) =>
+                  setPrefs((p) => ({ ...p, fontSize: fontSize as SgReaderPrefs["fontSize"] }))
+                }
+                options={[
+                  { value: "sm", label: "A−" },
+                  { value: "md", label: "A" },
+                  { value: "lg", label: "A+" },
+                  { value: "xl", label: "A++" },
+                ]}
+              />
+              <p>Spacing</p>
+              <ReaderSeg
+                label="Line height"
+                value={prefs.lineHeight}
+                onChange={(lineHeight) =>
+                  setPrefs((p) => ({
+                    ...p,
+                    lineHeight: lineHeight as SgReaderPrefs["lineHeight"],
+                  }))
+                }
+                options={[
+                  { value: "snug", label: "Tight" },
+                  { value: "normal", label: "Even" },
+                  { value: "relaxed", label: "Airy" },
+                ]}
+              />
+              <p>Paper</p>
+              <ReaderSeg
+                label="Reading theme"
+                value={prefs.theme}
+                onChange={(theme) =>
+                  setPrefs((p) => ({ ...p, theme: theme as SgReaderPrefs["theme"] }))
+                }
+                options={[
+                  { value: "paper", label: "Paper" },
+                  { value: "dim", label: "Dim" },
+                  { value: "dark", label: "Dark" },
+                ]}
+              />
+            </div>
+          ) : null}
         </div>
         <button
           type="button"
@@ -948,7 +979,7 @@ export function StudyGuideReader({
       <div className="relative flex min-h-0 flex-1">
         {/* LEFT TOC — a fixed rail on desktop, a slide-over sheet on touch. Visibility is
             CSS-driven so the server markup already matches the viewport (no hydration flash). */}
-        <aside className="sg-toc hidden w-60 shrink-0 overflow-y-auto border-r border-white/10 px-3 py-5 lg:block xl:w-72">
+        <aside className="sg-toc hidden w-64 shrink-0 overflow-y-auto border-r border-white/10 px-4 py-6 lg:block xl:w-80">
           {tocContent}
         </aside>
         <AnimatePresence initial={false}>
@@ -970,7 +1001,7 @@ export function StudyGuideReader({
                 animate={{ x: 0 }}
                 exit={reduceMotion ? undefined : { x: "-100%" }}
                 transition={{ type: "spring", stiffness: 380, damping: 36, mass: 0.8 }}
-                className="sg-toc absolute inset-y-0 left-0 z-30 w-[min(88vw,340px)] overflow-y-auto border-r border-white/10 bg-[#0b1c2c] px-4 py-5 shadow-2xl lg:hidden"
+                className="sg-toc absolute inset-y-0 left-0 z-30 w-[min(92vw,22.5rem)] overflow-y-auto border-r border-white/10 bg-[#0b1c2c] px-5 py-6 shadow-2xl lg:hidden"
               >
                 {tocContent}
               </motion.aside>
@@ -1006,14 +1037,14 @@ export function StudyGuideReader({
             </button>
           ) : null}
 
-          <div className="flex items-center gap-2 border-b border-white/10 px-3 py-2 sm:px-4">
+          <div className="flex items-center gap-2 px-3 py-2.5 sm:px-5">
             <div className="relative min-w-0 flex-1">
-              <Search className="pointer-events-none absolute left-2 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-white/40" />
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-white/40" />
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search this chapter…"
-                className="w-full rounded-lg border border-white/15 bg-white/5 py-1.5 pl-8 pr-3 text-xs outline-none placeholder:text-white/35 focus:border-[#2ec4b6]/50"
+                className="w-full rounded-full border border-white/15 bg-white/5 py-2 pl-9 pr-3 text-[13px] outline-none placeholder:text-white/35 focus:border-[#2ec4b6]/50"
               />
             </div>
             <button
@@ -1079,7 +1110,7 @@ export function StudyGuideReader({
             </p>
           ) : null}
 
-          <div className="relative mx-auto min-h-0 w-full max-w-[40rem] flex-1 sm:my-6">
+          <div className="relative mx-auto min-h-0 w-full max-w-[42rem] flex-1 px-3 sm:my-8 sm:px-8">
             <article
               ref={paperRef}
               onMouseUp={captureSelection}

@@ -4,18 +4,18 @@
   letter-spacing: -0.011em;
 }
 .sg-prose h1 {
-  font-size: 1.85em;
+  font-size: 2em;
   font-weight: 650;
-  letter-spacing: -0.038em;
+  letter-spacing: -0.04em;
   line-height: 1.12;
-  margin: 0 0 0.9em;
+  margin: 0 0 0.85em;
 }
 .sg-prose h2 {
-  font-size: 1.28em;
+  font-size: 1.32em;
   font-weight: 650;
   letter-spacing: -0.03em;
-  line-height: 1.2;
-  margin: 1.85em 0 0.55em;
+  line-height: 1.22;
+  margin: 2em 0 0.6em;
 }
 .sg-prose h3 {
   font-size: 1.08em;
@@ -31,7 +31,7 @@
   margin: 1.1em 0 0.4em;
 }
 .sg-prose p {
-  margin: 0 0 1.15em;
+  margin: 0 0 1.28em;
 }
 .sg-prose ul,
 .sg-prose ol {
@@ -238,12 +238,12 @@
 
 .sg-paper {
   scroll-behavior: smooth;
-  padding: 2.75rem 1.35rem 3.5rem;
-  line-height: 1.7;
+  padding: 2.5rem 1.5rem 4rem;
+  line-height: 1.75;
 }
 @media (min-width: 640px) {
   .sg-paper {
-    padding: 3.5rem 3.25rem 4.25rem;
+    padding: 3.75rem 3.75rem 4.75rem;
   }
 }
 
@@ -287,6 +287,45 @@
 .sg-icon-btn:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
+}
+.sg-icon-btn.is-on {
+  background: rgba(46, 196, 182, 0.16);
+  border-color: rgba(46, 196, 182, 0.4);
+  color: #2ec4b6;
+}
+
+.sg-appearance {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.55rem);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 16rem;
+  padding: 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #102536;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+.sg-appearance > p {
+  margin: 0.35rem 0 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(232, 238, 244, 0.42);
+}
+.sg-appearance > p:first-child {
+  margin-top: 0;
+}
+.sg-appearance .sg-seg {
+  width: 100%;
+}
+.sg-appearance .sg-seg__btn {
+  flex: 1;
+  text-align: center;
 }
 
 .sg-seg {
