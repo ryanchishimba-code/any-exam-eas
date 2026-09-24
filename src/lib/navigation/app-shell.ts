@@ -1,4 +1,5 @@
-import { studyGuideRouteBases } from "@/lib/nclex-study-guide/guide-registry";
+import { studyGuideForPathname, studyGuideRouteBases } from "@/lib/nclex-study-guide/guide-registry";
+import type { ExamSlug } from "@/types/edtech";
 
 /** Derived from the guide registry so reader chrome cannot drift per exam. */
 const STUDY_GUIDE_ROUTE_BASES = studyGuideRouteBases();
@@ -64,6 +65,22 @@ export function isStudyGuideReaderRoute(pathname: string): boolean {
  */
 export function isImmersiveAppRoute(pathname: string): boolean {
   return isFullExamSessionRoute(pathname) || isStudyGuideReaderRoute(pathname);
+}
+
+/**
+ * Board shown by the header exam chip.
+ *
+ * Study-guide URLs name the book in the path (`/naplex/study-guide`,
+ * `/aanp-fnp/study-guide/...`). The saved preference can still be another
+ * exam — often NCLEX — which left the chip disagreeing with the page.
+ * On those routes the path wins. Everywhere else the saved preference stays
+ * the source of truth, so Dashboard / Bank / Full Exam switching is unchanged.
+ */
+export function headerBoardExamSlug(
+  pathname: string,
+  preferredExam: ExamSlug | null
+): ExamSlug | null {
+  return studyGuideForPathname(pathname)?.exam ?? preferredExam;
 }
 
 /** Question bank + full-exam launcher — primary exam cannot be changed from chrome or URL. */

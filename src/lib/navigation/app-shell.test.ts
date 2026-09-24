@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  headerBoardExamSlug,
   hideMarketingChrome,
   isAppShellRoute,
   isExamPracticeLockedRoute,
@@ -55,5 +56,33 @@ describe("app-shell routes", () => {
 
     // An exam without a book must not pick up reader chrome.
     expect(isStudyGuideReaderRoute("/usmle/study-guide/anything")).toBe(false);
+  });
+});
+
+describe("header board chip", () => {
+  it("follows the study-guide path when the saved board is NCLEX", () => {
+    expect(headerBoardExamSlug("/naplex/study-guide", "nclex")).toBe("naplex");
+    expect(headerBoardExamSlug("/naplex/study-guide/calculations", "nclex")).toBe("naplex");
+    expect(headerBoardExamSlug("/aanp-fnp/study-guide", "nclex")).toBe("aanp-fnp");
+    expect(headerBoardExamSlug("/aanp-fnp/study-guide/cardiology", "nclex")).toBe("aanp-fnp");
+  });
+
+  it("keeps NCLEX on the NCLEX book, including when the saved board differs", () => {
+    expect(headerBoardExamSlug("/nclex/study-guide", "naplex")).toBe("nclex");
+    expect(headerBoardExamSlug("/nclex/study-guide/cardiac", "nclex")).toBe("nclex");
+  });
+
+  it("shows the book even before a preference has loaded", () => {
+    expect(headerBoardExamSlug("/aanp-fnp/study-guide/exam-strategy", null)).toBe("aanp-fnp");
+  });
+
+  it("keeps the saved board on dashboard, bank, and full exam", () => {
+    expect(headerBoardExamSlug("/dashboard", "nclex")).toBe("nclex");
+    expect(headerBoardExamSlug("/question-bank", "naplex")).toBe("naplex");
+    expect(headerBoardExamSlug("/full-exam/aanp-fnp", "nclex")).toBe("nclex");
+    expect(headerBoardExamSlug("/analytics", "aanp-fnp")).toBe("aanp-fnp");
+    expect(headerBoardExamSlug("/dashboard", null)).toBeNull();
+    // No book for this path, so the chip must not pretend the URL is a board.
+    expect(headerBoardExamSlug("/usmle/study-guide", "nclex")).toBe("nclex");
   });
 });
