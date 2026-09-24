@@ -44,6 +44,16 @@ npm run db:audit-item-qa -- --field nursing --subject management-of-care --limit
 npm run db:audit-item-qa -- --field nursing --clear-resolved
 ```
 
+Run the report with no `--flag` first. `--limit` only spot-checks the first ids, so omit it for a full subject. Then repeat the same command with `--flag`.
+
+```bash
+# Full management-of-care report, then queue. Does not rewrite stems or rationales.
+npm run db:audit-item-qa -- --field nursing --subject management-of-care --include-rationale
+npm run db:audit-item-qa -- --field nursing --subject management-of-care --include-rationale --flag
+```
+
+Legacy items that are already student-visible may fail this schema until someone edits them. `--flag` writes `fails_schema` and the specific gap (`missing_governing_principle`, `missing_distractor_reason`, and any text or near-duplicate code) onto `reviewFlag` and `curationMeta.itemQa`. It does not change `qaPassed` or `active`, so those items stay published.
+
 Flags land on `reviewFlag` and `curationMeta.itemQa` (`pipeline: item-qa-v1`). In **Admin → Question bank**, open **Item QA flags** or the **Item QA** count. The row shows the issue codes. The detail drawer shows the summary.
 
 The lower id in a duplicate pair is kept. The other id is queued as `near_duplicate`.
