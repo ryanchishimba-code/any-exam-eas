@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { startTransition, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CalendarPlus, Check, ChevronDown } from "lucide-react";
 import { ExamDatePicker } from "@/components/edtech/ExamDatePicker";
@@ -107,10 +107,13 @@ export function DashboardExamCountdown({
       if (!res.ok || !data.ok) {
         throw new Error(typeof data.error === "string" ? data.error : "Could not save test date.");
       }
-      setDate(data.testDate ?? null);
-      setDraft(data.testDate ?? "");
       setEditing(false);
-      router.refresh();
+      // The week-plan title is server-rendered. Updating the ring before
+      // refresh left "Exam date passed" on the plan while this card already
+      // showed the new date. Both sections move on the refreshed props.
+      startTransition(() => {
+        router.refresh();
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not save test date.");
     } finally {
