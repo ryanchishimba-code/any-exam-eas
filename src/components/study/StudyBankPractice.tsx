@@ -122,6 +122,7 @@ import {
   type RemediationMode,
 } from "@/lib/study/remediation-launch";
 import { reviewSubjectForLaunch } from "@/lib/learning/review-queue-launch";
+import { reviewIncorrectSessionRationale } from "@/lib/study/review-incorrect-queue-label";
 import { PanceTaskFocus } from "./question-bank/PanceTaskFocus";
 import { useSubjectCounts } from "@/hooks/use-subject-counts";
 import { useCoverageHeatmap } from "@/hooks/use-coverage-heatmap";
@@ -1355,8 +1356,14 @@ export function StudyBankPractice({
         if (raw.length === 0) {
           throw new Error("Review incorrect did not return any questions. Try again.");
         }
+        const openQueueTotal =
+          launchedDecision.status === "launch" ? launchedDecision.available : raw.length;
         setAdaptiveMeta({
-          sessionRationale: `Reviewing ${raw.length} open items. One correct leaves an item pending re-proof until a spaced re-check, or you mark it mastered.`,
+          openQueueTotal,
+          sessionRationale: reviewIncorrectSessionRationale({
+            sittingSize: raw.length,
+            openTotal: openQueueTotal,
+          }),
           questionReasoning: Object.fromEntries(
             raw.map((q) => [
               String(q.id),

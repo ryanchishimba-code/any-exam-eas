@@ -33,6 +33,24 @@ describe("remediation launch", () => {
     ).toBe("empty");
   });
 
+  it("keeps the full open count when a Review incorrect sitting is capped", () => {
+    expect(
+      decideRemediationLaunch({
+        mode: "review_incorrect",
+        eligibleCount: 41,
+        requestedCount: 25,
+      })
+    ).toMatchObject({ status: "launch", available: 41, count: 25 });
+    expect(
+      decisionFromRemediationPayload({
+        mode: "review_incorrect",
+        ok: true,
+        requestedCount: 10,
+        body: { availableIncorrect: 41 },
+      })
+    ).toMatchObject({ status: "launch", available: 41, count: 10 });
+  });
+
   it("launches the smaller of the eligible pool and the requested count", () => {
     expect(
       decideRemediationLaunch({
