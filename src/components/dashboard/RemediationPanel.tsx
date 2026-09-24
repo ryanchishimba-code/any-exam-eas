@@ -158,7 +158,7 @@ export function RemediationPanel({
 
       {summary.unscopedCount > 0 ? (
         <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-          {summary.unscopedCount} missed item{summary.unscopedCount === 1 ? "" : "s"}{" "}
+          {summary.unscopedCount} open item{summary.unscopedCount === 1 ? "" : "s"}{" "}
           {summary.unscopedCount === 1 ? "has" : "have"} no topic id, so{" "}
           {summary.unscopedCount === 1 ? "it stays" : "they stay"} in Review incorrect without a
           guide or drug link.

@@ -1,5 +1,4 @@
 import { StudyBankPracticeLazy } from "@/components/study/StudyBankPracticeLazy";
-import { examFieldIds } from "@/lib/edtech/exams";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { buildCoverageHeatmap } from "@/lib/learning/coverage-heatmap";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
@@ -36,7 +35,7 @@ export async function QuestionBankPracticeLoader({
   // Counts stay on the critical path. Weak topics and the roadmap soft-fail.
   const [countsPayload, weakTopics, roadmap] = await Promise.all([
     loadSubjectCountsForUser(userId, fieldParam),
-    getStudentWeakTopics(userId, examFieldIds(examSlug)),
+    getStudentWeakTopics(userId, [fieldId]),
     getExamRoadmapData(userId, examSlug, {
       usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
     }).catch(() => null),

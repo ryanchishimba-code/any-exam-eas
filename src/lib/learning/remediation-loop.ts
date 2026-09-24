@@ -381,15 +381,23 @@ export function groupOpenRemediationLoops(params: {
   marks?: MasteryMark[];
   now?: Date | string | number;
   limit?: number;
+  /**
+   * Servable review-queue ids. When set, the heading, the still-missed /
+   * pending split, and the unscoped note all count this list — the same ids
+   * Review incorrect launches.
+   */
+  openIds?: readonly string[];
 }): OpenRemediationSummary {
   const mastery = summarizeRemediationMastery({
     attempts: params.attempts,
     marks: params.marks,
     now: params.now,
   });
+  const allowed = params.openIds ? new Set(params.openIds) : null;
+  const items = allowed ? mastery.items.filter((item) => allowed.has(item.itemId)) : mastery.items;
 
   const groups = new Map<string, { ids: Set<string>; pending: number }>();
-  for (const item of mastery.items) {
+  for (const item of items) {
     const subject = item.subjectId?.trim();
     if (!subject || subject === MIXED_SUBJECT_ID || isInternalMasteryConceptKey(subject)) continue;
     const group = groups.get(subject) ?? { ids: new Set<string>(), pending: 0 };
@@ -428,11 +436,15 @@ export function groupOpenRemediationLoops(params: {
     .sort((a, b) => b.openCount - a.openCount || a.label.localeCompare(b.label));
 
   const scoped = [...groups.values()].reduce((sum, group) => sum + group.ids.size, 0);
+  const totalOpen = allowed ? params.openIds!.length : mastery.totalOpen;
+  const pendingReproof = allowed
+    ? items.filter((item) => item.status === "pending_reproof").length
+    : mastery.pendingReproof;
   return {
     loops: ranked.slice(0, limit),
-    unscopedCount: Math.max(0, mastery.totalOpen - scoped),
-    totalOpen: mastery.totalOpen,
-    pendingReproof: mastery.pendingReproof,
+    unscopedCount: Math.max(0, totalOpen - scoped),
+    totalOpen,
+    pendingReproof,
     hiddenLoopCount: Math.max(0, ranked.length - limit),
   };
 }
