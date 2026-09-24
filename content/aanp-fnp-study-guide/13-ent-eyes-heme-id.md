@@ -33,7 +33,7 @@ ENT, eyes, anemia, and everyday infections are the “between cardiology chapter
 
 Expect stems on acute bacterial rhinosinusitis criteria, GAS pharyngitis testing (Centor-style themes), AOM watchful waiting, conjunctivitis vs keratitis/acute angle-closure, iron-deficiency anemia source-finding, UTI basics, HIV/hepatitis/TB screening cues, influenza/COVID primary-care decisions, and mono vs strep. Candidates who auto-antibiotic every red throat lose stewardship points; candidates who send acute angle-closure home with artificial tears lose sight.
 
-**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Soft start: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -398,7 +398,7 @@ Don’t miss bacterial pneumonia, PE, HF, or ACS hiding under “viral” labels
 - Teaching regimens change — verify guidelines and labels.
 - Independent study aid — not AANPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill sinusitis, Centor/GAS, mono, AOM, red-eye emergencies, anemia, UTI/ASB, HIV/hep screening, and flu/COVID items on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+**Next practice move:** Drill sinusitis, Centor/GAS, mono, AOM, red-eye emergencies, anemia, UTI/ASB, HIV/hep screening, and flu/COVID items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 

@@ -34,7 +34,7 @@ Cardiology is the backbone of outpatient adult primary care — and it sits squa
 
 Expect stems on hypertension cascades, statin risk conversations, chest-pain triage, heart-failure congestion vs perfusion, atrial fibrillation rate-vs-anticoagulation decisions, and syncope red flags. Candidates who memorize drug lists without ADPE lose easy points; candidates who send unstable patients home with “trial of PPI” lose dangerous ones.
 
-**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Soft start: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -390,7 +390,7 @@ Claudication, pulse deficits, wound healing issues; high-intensity statin themes
 - Teaching doses/intervals change — verify guidelines and labels.  
 - Independent study aid — not AANPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill HTN, lipids, chest pain triage, HF, and AF items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+**Next practice move:** Drill HTN, lipids, chest pain triage, HF, and AF items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 
 ---

@@ -8,7 +8,7 @@
 
 **CKD, UTI, BPH, hematuria, and electrolytes show up constantly in Older Adult (30%) and women’s health overlap. Missed complicated UTI and hyperkalemia emergencies are classic board traps.**
 
-Soft practice pairing: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -236,7 +236,7 @@ Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if p
 - [ ] Teach-back / Evaluate plan stated  
 - [ ] Verify current guidelines before clinical use  
 
-**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site). Independent of AANPCB/AANP; no pass guarantee.
+**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice. Independent of AANPCB/AANP; no pass guarantee.
 
 
 ---
@@ -463,7 +463,7 @@ SGLT2 inhibitors and finerenone awareness in eligible albuminuric CKD — verify
 - Triple whammy AKI is preventable.  
 - Torsion is time = testis.
 
-**Practice:** [AnyExamEasy](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Practice:** [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 

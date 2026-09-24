@@ -28,7 +28,7 @@
 
 Prevention is not a side quest. It is woven through **Assess/Plan/Evaluate** and every Domain II age band. Young/Middle/Older adults generate most prevention volume — but missed newborn screens, adolescent risk counseling, and prenatal prevention (inside **Young Adult\***) are classic traps. Items ask *who* to screen, *when to stop*, how to counsel briefly, and how SDoH explains “nonadherence.”
 
-**Pair with practice:** Drill age-banded prevention sets, then mixed ADPE stems that hide a missing mammogram or overdue Tdap in pregnancy. Soft start: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** Drill age-banded prevention sets, then mixed ADPE stems that hide a missing mammogram or overdue Tdap in pregnancy. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -235,7 +235,7 @@ Deprescribing · fall/bone · cognition/mood · vaccines · cancer screening sto
 - Older Adult 30% means vaccines, falls, and stop-rules matter as much as “start screens.”  
 - Verify USPSTF/ACIP — teaching themes age.  
 
-**Practice prevention + ADPE items** on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+**Practice prevention + ADPE items** on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -386,7 +386,7 @@ Oral health affects diabetes/CVD inflammation themes; fluoride/dental referral f
 - Screening ≠ diagnostic testing for symptoms.
 - SDoH explains many Evaluate failures.
 - Verify USPSTF/ACIP yearly — teaching ages drift.
-- Soft practice: https://anyexameasy.com ($27.99/mo after trial; trial terms on site).
+- Soft practice: Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 
 ---

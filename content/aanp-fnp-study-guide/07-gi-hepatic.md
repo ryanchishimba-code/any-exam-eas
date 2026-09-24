@@ -8,7 +8,7 @@
 
 **Abdominal pain, reflux, liver tests, and GI bleeding cues cut across Young Adult* (including prenatal), Middle Adult, and Older Adult (30%). Domain I grades whether you catch surgical emergencies and choose the right first test.**
 
-Soft practice pairing: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -263,7 +263,7 @@ Acute hep A/B/C testing when indicated; acetaminophen history; alcohol quantific
 - [ ] Teach-back / Evaluate plan stated  
 - [ ] Verify current guidelines before clinical use  
 
-**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site). Independent of AANPCB/AANP; no pass guarantee.
+**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice. Independent of AANPCB/AANP; no pass guarantee.
 
 
 ---
@@ -490,7 +490,7 @@ Know vaccines before immunosuppression, infection vigilance, skin cancer counsel
 - Acetaminophen totals include combo cold products.  
 - Prenatal RUQ + HTN ≠ routine fatty meal colic.
 
-**Practice:** [AnyExamEasy](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Practice:** [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 

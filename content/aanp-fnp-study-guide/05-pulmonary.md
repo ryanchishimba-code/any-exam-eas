@@ -14,7 +14,7 @@
 
 Dyspnea, cough, wheeze, and “I can’t shake this cold” fill primary care — across **Child/Adolescent asthma**, **Young/Middle Adult** asthma and PE risk, and **Older Adult (30%)** COPD, pneumonia, and HF mimics. Domain I will ask whether you **Assess** severity and hypoxia, **Diagnose** asthma vs COPD vs CHF vs PE, **Plan** controllers vs ED, and **Evaluate** technique, adherence, and steroids/antibiotics stewardship.
 
-**Pair with practice:** After each topic, drill pulmonary items and tag age band + ADPE. Soft start: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** After each topic, drill pulmonary items and tag age band + ADPE. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -252,7 +252,7 @@ Sudden dyspnea/pleuritic pain/hemoptysis/syncope; risk: surgery, cancer, estroge
 - Stewardship is Plan + Evaluate.  
 - Verify GINA/GOLD/IDSA-style guidance — teaching themes age.
 
-**Practice pulmonary ADPE items** on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+**Practice pulmonary ADPE items** on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -463,7 +463,7 @@ Obstruction: FEV1/FVC reduced themes. Restriction patterns need volumes. Broncho
 - CAP site-of-care before drug name.
 - PE lives on sudden dyspnea boards — especially estrogen/pregnancy/post-op/cancer.
 - Inhaler teach-back is Evaluate gold.
-- Pair practice: https://anyexameasy.com ($27.99/mo after trial; trial terms on site).
+- Pair practice: Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 
 ---

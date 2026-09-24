@@ -16,7 +16,7 @@
 
 You’ll **Assess** symptoms and SDoH, **Diagnose** T2DM vs others, **Plan** comorbidity-driven therapy (not “A1c-only”), and **Evaluate** hypoglycemia risk, labs, and adherence.
 
-**Pair with practice:** Drill endocrine items, tag age band + ADPE. Soft start: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** Drill endocrine items, tag age band + ADPE. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -321,7 +321,7 @@ DEXA screening themes in older women (selected men). Calcium/vit D adequacy. Ant
 
 > **MUST KNOW** — Unstable endocrine emergencies leave the clinic.
 
-**Practice endocrine ADPE items** on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+**Practice endocrine ADPE items** on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 

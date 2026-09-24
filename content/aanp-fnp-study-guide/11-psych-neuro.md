@@ -35,7 +35,7 @@ Depression, anxiety, bipolar cues, migraine, TIA/stroke, and dementia/delirium s
 
 Candidates who prescribe sertraline without asking about mania or suicide lose points. Candidates who send thunderclap headache home with sumatriptan lose dangerous ones.
 
-**Pair with practice:** Tag misses with age band + ADPE. Soft start: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** Tag misses with age band + ADPE. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -328,7 +328,7 @@ First unprovoked seizure → urgent evaluation; status → EMS. Syncope with neu
 - Verify psychopharmacology labels and stroke guidance — they evolve.  
 - Independent study aid — not AANPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill SI safety, antidepressant starts, migraine vs secondary HA, stroke/TIA, and delirium items on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+**Next practice move:** Drill SI safety, antidepressant starts, migraine vs secondary HA, stroke/TIA, and delirium items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 

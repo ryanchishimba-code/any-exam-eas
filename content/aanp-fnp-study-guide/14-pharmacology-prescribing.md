@@ -33,7 +33,7 @@ Therapeutics is not a siloed “pharm chapter” on the AANPCB exam — it is wo
 
 Expect stems on prescribing principles, geriatric potentially inappropriate meds, pregnancy/lactation teratogen awareness, CYP/QT/bleed interactions, controlled-substance judgment (PDMP, naloxone, opioid+benzo risk), antibiotic stewardship, systemic steroid counseling, insulin safety, and adherence/cost/SDoH barriers. Candidates who recall a drug name but skip monitoring lose Evaluate points; candidates who prescribe ACEI to a pregnant patient lose dangerous ones.
 
-**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Soft start: [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -400,7 +400,7 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 - Prenatal-in-YA* makes teratogen filters non-optional.
 - Independent study aid — not AANPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill Beers, teratogens, interactions, stewardship, steroid/insulin safety, and controlled-substance judgment items on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+**Next practice move:** Drill Beers, teratogens, interactions, stewardship, steroid/insulin safety, and controlled-substance judgment items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
