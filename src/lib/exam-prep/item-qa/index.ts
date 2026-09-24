@@ -35,6 +35,7 @@ export {
   type ItemPublishIssue,
 } from "./publish-gate";
 export {
+  collectedDistractorReasons,
   contentFromStoredItem,
   evaluateRationaleSchema,
   readCitations,
@@ -88,3 +89,21 @@ export {
   type PrincipleSource,
   type ProposeGoverningPrincipleArgs,
 } from "./governing-principle-proposal";
+export {
+  DISTRACTOR_REASON_MIN,
+  distractorReasonWrite,
+  parseDistractorAllowlist,
+  parseProposeDistractorReasonArgs,
+  planDistractorReasonProposals,
+  proposeDistractorReasons,
+  rowFailsDistractorReason,
+  type DistractorOptionProposal,
+  type DistractorReasonBankRow,
+  type DistractorReasonClassification,
+  type DistractorReasonPlan,
+  type DistractorReasonPlanItem,
+  type DistractorReasonProposal,
+  type DistractorReasonSkip,
+  type DistractorReasonSkipReason,
+  type ProposeDistractorReasonArgs,
+} from "./distractor-reason-proposal";

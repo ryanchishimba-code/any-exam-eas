@@ -46,7 +46,7 @@ npm run db:audit-item-qa -- --field nursing --clear-resolved
 
 Flags land on `reviewFlag` and `curationMeta.itemQa` (`pipeline: item-qa-v1`). In **Admin → Question bank**, open **Item QA flags** or the **Item QA** count. The row shows the issue codes. The detail drawer shows the summary.
 
-A flagged `missing_governing_principle` can be quoted into `generationMeta.governingPrinciple` with the propose command below. That command does not clear the flag.
+A flagged `missing_governing_principle` can be quoted into `generationMeta.governingPrinciple` with the propose command below. A flagged `missing_distractor_reason` can be quoted into `distractorRationale` with the distractor command that follows it. Neither command clears the flag.
 
 The lower id in a duplicate pair is kept. The other id is queued as `near_duplicate`.
 
@@ -171,6 +171,46 @@ npm run db:audit-item-qa -- --field nursing --subject management-of-care --clear
 
 `--clear-resolved` removes this pipeline's flag only when the row now passes text lint, the rationale schema, and is not a near-duplicate in that scan. A row that still lacks a distractor reason stays flagged. Refresh those codes with `--flag --include-rationale` after the principle is stored. This propose command does not clear flags itself.
 
+## Propose distractor reasons
+
+Some items already say why a wrong option fails, but the schema still reports `missing_distractor_reason`. The checker only counts a reason when it is stored on `distractorRationale`, on expert `whyIncorrect`, or on the same explanation line as the option text. A generic “Why other options are incorrect / Plausible nursing action but not the FIRST priority” block does not name the option, so it does not count. This command quotes a reason that does name the option. It does not call a model, and it does not invent a clinical fact.
+
+Dry-run is the default. `--apply` is the only write. The write sets `generationMeta.distractorRationale`, keyed by the option text. Select-all rows, and any options envelope that already stores `distractorRationale`, also receive those same keys. Option text, the stem, the correct answer, and the explanation stay as they are. `qaPassed` and `active` stay as they are, so this command does not refresh the public inventory cache. Item QA flags stay as they are. Near-duplicate rows are skipped, including rows that also carry `missing_distractor_reason`.
+
+```bash
+# Propose for one subject. No writes. Artifacts land in artifacts/ (gitignored).
+npm run db:propose-distractor-reasons -- --field nursing --subject management-of-care
+
+# Same preview, first 25 matching rows in id order.
+npm run db:propose-distractor-reasons -- --field nursing --subject management-of-care --limit 25
+
+# Preview a reviewed id list. Still no writes.
+npm run db:propose-distractor-reasons -- --field nursing --subject management-of-care --ids-file ./reviewed-ids.txt
+
+# Write only those reviewed ids. Do this only after a person accepts the quoted lines.
+npm run db:propose-distractor-reasons -- --field nursing --subject management-of-care --ids-file ./reviewed-ids.txt --apply
+```
+
+`--field` is required. `--subject` and `--limit` are optional, so another board uses the same command. A row is eligible when it is active, in that field, and either flagged `missing_distractor_reason` or currently failing the distractor check. Unflagged gaps are included so a board can be scanned before the audit flag run.
+
+| Class | When | Write on `--apply` |
+| --- | --- | --- |
+| `auto_extract` | Every wrong option that is still missing a 20-character reason has a quote: a labeled incorrect line that names the option, the incorrect line directly under that option, or expert `whyIncorrect` for that option. | Yes, unless `--ids-file` is set. Then only ids on that list. |
+| `needs_human` | Any missing option has no quote. That includes generic placeholder lines, an answer-key restatement, and an option the teaching summary describes as appropriate (a possible key mismatch). | Only when the id is on `--ids-file` and at least one option has a quote. Options with no quote are left blank. |
+| Skipped `near_duplicate` | The Item QA codes include `near_duplicate`. | Never. |
+
+Without `--ids-file`, `--apply` writes every current `auto_extract` row. Production content should wait for a reviewed `--ids-file`. `--apply` and `--dry-run` together refuse to write. The explanation body is not rewritten.
+
+The report is `artifacts/distractor-reason-proposals-<field>.md` and `.json` (gitignored). It lists the id, stem preview, each wrong option, the proposed reason or none, and the class. It prints the failing-distractor count before and the predicted count after. A partial quote does not clear the code: the predicted count drops only when every missing wrong option received a reason.
+
+Management of Care is the first subject to review. The published queue of 19 ids is **0 `auto_extract`**, **18 `needs_human`**, and **1 skipped near-duplicate** (`cmrm08rnm006u1yf1nbt3cahm`). A shape example is in `docs/item-qa/distractor-reason-proposal-sample.md`. That file is not an allowlist. Pharmacy, medicine, and the other boards use the same command and the same `distractorRationale` map.
+
+After a reviewed apply, drop flags that now pass. This does not change `qaPassed` or `active`. A row that still lacks a governing principle, or any other schema error, stays flagged:
+
+```bash
+npm run db:audit-item-qa -- --field nursing --subject management-of-care --include-rationale --clear-resolved
+```
+
 ## Confirm the public count
 
 `/nclex`, the other board hubs, and `/question-bank` read one cached inventory (`unstable_cache`, tag `question-bank-counts`). A hard refresh does not skip it. The entry lasts up to one hour if nothing revalidates it. `/api/marketing/bank-counts` uses that same cache; after the hour it may serve the previous JSON for about a minute, not a day.
@@ -237,7 +277,7 @@ The principle field is shared. The editor label follows the board: nursing prior
 ## Verify
 
 ```bash
-npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts src/lib/exam-prep/item-qa/text-flag-remediation.test.ts src/lib/exam-prep/item-qa/governing-principle-proposal.test.ts src/lib/inventory/active-inventory-cache.test.ts src/lib/inventory/revalidate-active-inventory.test.ts tests/unit/components/QuestionRenderer.test.tsx
+npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts src/lib/exam-prep/item-qa/text-flag-remediation.test.ts src/lib/exam-prep/item-qa/governing-principle-proposal.test.ts src/lib/exam-prep/item-qa/distractor-reason-proposal.test.ts src/lib/inventory/active-inventory-cache.test.ts src/lib/inventory/revalidate-active-inventory.test.ts tests/unit/components/QuestionRenderer.test.tsx
 ```
 
-The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, a complete "watch for" choice, the rationale schema, the publish gate (incomplete Approve rejected, incomplete archived save allowed), the source line, the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, an inactive middle still reaches the active keeper, an all-inactive chain is skipped, `qaPassed` is not a write), the text-flag plan (empty stems retire, NGN letter placeholders clear, content is not rewritten), and the governing-principle proposal (quotes a stored line, refuses a write without `--apply`, writes `governingPrinciple` only, and keeps other fields out).
+The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, a complete "watch for" choice, the rationale schema, the publish gate (incomplete Approve rejected, incomplete archived save allowed), the source line, the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, an inactive middle still reaches the active keeper, an all-inactive chain is skipped, `qaPassed` is not a write), the text-flag plan (empty stems retire, NGN letter placeholders clear, content is not rewritten), the governing-principle proposal (quotes a stored line, refuses a write without `--apply`, writes `governingPrinciple` only, and keeps other fields out), and the distractor-reason proposal (quotes a stored incorrect line, refuses generic triage placeholders and suspected key mismatches, writes `distractorRationale` only, and keeps the explanation out).

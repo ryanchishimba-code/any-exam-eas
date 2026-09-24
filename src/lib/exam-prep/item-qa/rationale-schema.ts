@@ -144,6 +144,32 @@ function reasonsFromExplanation(
   return found;
 }
 
+/**
+ * Reasons the schema already accepts, keyed by bank option text.
+ * A value shorter than 20 characters is still returned so callers can see a stub.
+ */
+export function collectedDistractorReasons(content: ItemQaContent): Record<string, string> {
+  const explanation = content.explanation?.trim() ?? "";
+  const wrong = listWrongBankOptions(content.options ?? [], content.correctAnswer ?? "");
+  const merged = mergeReasons(
+    content.distractorRationale,
+    reasonsFromExplanation(explanation, wrong),
+    Object.fromEntries(
+      (content.expertRationale?.whyIncorrect ?? []).flatMap((entry) => {
+        const option = entry.option?.trim();
+        const reason = (entry.correction || entry.misconception || "").trim();
+        return option && reason ? [[option, reason]] : [];
+      })
+    )
+  );
+  const out: Record<string, string> = {};
+  for (const option of wrong) {
+    const reason = reasonForOption(merged, option);
+    if (reason) out[option] = reason;
+  }
+  return out;
+}
+
 function readPrinciple(content: ItemQaContent): string {
   const explicit = content.governingPrinciple?.trim() ?? "";
   if (explicit.length >= 24) return explicit;
@@ -239,19 +265,9 @@ export function evaluateRationaleSchema(content: ItemQaContent): RationaleSchema
 
   if (requiresDistractors(content.itemType) && content.options.length >= 2) {
     const wrong = listWrongBankOptions(content.options, content.correctAnswer);
-    const reasons = mergeReasons(
-      content.distractorRationale,
-      reasonsFromExplanation(explanation, wrong),
-      Object.fromEntries(
-        (content.expertRationale?.whyIncorrect ?? []).flatMap((entry) => {
-          const option = entry.option?.trim();
-          const reason = (entry.correction || entry.misconception || "").trim();
-          return option && reason ? [[option, reason]] : [];
-        })
-      )
-    );
+    const reasons = collectedDistractorReasons(content);
     for (const option of wrong) {
-      const reason = reasonForOption(reasons, option);
+      const reason = reasons[option];
       if (!reason || reason.length < 20) {
         issues.push({
           area: "rationale",
