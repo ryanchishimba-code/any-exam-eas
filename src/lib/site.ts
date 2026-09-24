@@ -109,9 +109,11 @@ export function formatLandingHeroSubline(): string {
 }
 
 export function formatTrialCtaWithSavings(
-  _tier: SubscriptionTier = "pro",
-  _interval: BillingInterval = "monthly"
+  tier: SubscriptionTier = "pro",
+  interval: BillingInterval = "monthly"
 ): string {
+  void tier;
+  void interval;
   return formatTrialCtaLabel();
 }
 
@@ -129,10 +131,13 @@ export function formatTrialCtaSubline(
 }
 
 export function formatCheckoutContinueCta(
-  _plan: "trial" | "subscribe",
-  _tier: SubscriptionTier,
-  _interval: BillingInterval
+  plan: "trial" | "subscribe",
+  tier: SubscriptionTier,
+  interval: BillingInterval
 ): string {
+  void plan;
+  void tier;
+  void interval;
   return "Continue to Payment";
 }
 
