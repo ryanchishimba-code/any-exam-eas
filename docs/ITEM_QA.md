@@ -46,6 +46,8 @@ npm run db:audit-item-qa -- --field nursing --clear-resolved
 
 Flags land on `reviewFlag` and `curationMeta.itemQa` (`pipeline: item-qa-v1`). In **Admin → Question bank**, open **Item QA flags** or the **Item QA** count. The row shows the issue codes. The detail drawer shows the summary.
 
+A flagged `missing_governing_principle` can be quoted into `generationMeta.governingPrinciple` with the propose command below. That command does not clear the flag.
+
 The lower id in a duplicate pair is kept. The other id is queued as `near_duplicate`.
 
 ## Retire queued near-duplicates
@@ -127,6 +129,48 @@ Structured NGN rows often store `options: ["A","B","C","D"]` next to the real ac
 
 The report is `artifacts/text-flag-remediation-<field>.md` and `.json` (gitignored). A production snapshot of the nursing queue is in `docs/item-qa/nursing-text-flag-inventory.md`. Full-exam links on a retired row are left in place. A retire that updates at least one row refreshes the public inventory cache the same way near-duplicate retire does. A clear does not, because the public count did not change.
 
+## Propose a governing principle
+
+Some older items already teach the priority rule in the explanation, and the schema still fails because `generationMeta.governingPrinciple` is empty and the explanation has no labeled `Principle:` / `Priority:` / `Pearl:` line. This command quotes a short line from the stored explanation or clinical-reasoning text. It does not call a model, and it does not invent a sentence that is not already stored.
+
+Dry-run is the default. `--apply` is the only write. The write sets `generationMeta.governingPrinciple` and nothing else. Stem, options, explanation, `qaPassed`, and `active` stay as they are, so this command does not refresh the public inventory cache. Item QA flags stay as they are. Near-duplicate rows are skipped, including rows that also carry `missing_governing_principle`.
+
+```bash
+# Propose for one subject. No writes. Artifacts land in artifacts/ (gitignored).
+npm run db:propose-governing-principles -- --field nursing --subject management-of-care
+
+# Same preview, first 25 matching rows in id order.
+npm run db:propose-governing-principles -- --field nursing --subject management-of-care --limit 25
+
+# Preview a reviewed id list. Still no writes.
+npm run db:propose-governing-principles -- --field nursing --subject management-of-care --ids-file ./reviewed-ids.txt
+
+# Write only those reviewed ids. Do this only after a person accepts the quoted lines.
+npm run db:propose-governing-principles -- --field nursing --subject management-of-care --ids-file ./reviewed-ids.txt --apply
+```
+
+`--field` is required. `--subject` and `--limit` are optional, so another board uses the same command. A row is eligible when it is active, in that field, and either flagged `missing_governing_principle` or currently failing the principle check. Unflagged gaps are included so a board can be scanned before the audit flag run.
+
+| Class | When | Write on `--apply` |
+| --- | --- | --- |
+| `auto_extract` | One stored sentence, labeled `Correct:` line, Prioritize Hypotheses clause, expert pearl, or single key takeaway is 24–200 characters and is a quote from the item. | Yes, unless `--ids-file` is set. Then only ids on that list. |
+| `needs_human` | Several candidate sentences, a line longer than 200 characters, an answer-key restatement, or no usable quote. A shorter principle already stored on the row is not overwritten automatically. | Only when the id is on `--ids-file`. |
+| Skipped `near_duplicate` | The Item QA codes include `near_duplicate`. | Never. |
+
+Without `--ids-file`, `--apply` writes every current `auto_extract` row. Production content should wait for a reviewed `--ids-file`. `--apply` and `--dry-run` together refuse to write.
+
+The report is `artifacts/governing-principle-proposals-<field>.md` and `.json` (gitignored). It lists the id, stem preview, explanation excerpt, proposed principle, and class. It prints the failing-principle count before and the predicted count after. A shape example of 25 fixtures (16 `auto_extract`, 9 `needs_human`) is in `docs/item-qa/governing-principle-proposal-sample.md`. That file is not an allowlist.
+
+Management of Care is the first subject to run. It is not an NCLEX-only fork: pharmacy, medicine, and the other boards use the same command and the same `governingPrinciple` field.
+
+After a reviewed apply, drop flags that now pass. This does not change `qaPassed` or `active`:
+
+```bash
+npm run db:audit-item-qa -- --field nursing --subject management-of-care --clear-resolved
+```
+
+`--clear-resolved` removes this pipeline's flag only when the row now passes text lint, the rationale schema, and is not a near-duplicate in that scan. A row that still lacks a distractor reason stays flagged. Refresh those codes with `--flag --include-rationale` after the principle is stored. This propose command does not clear flags itself.
+
 ## Confirm the public count
 
 `/nclex`, the other board hubs, and `/question-bank` read one cached inventory (`unstable_cache`, tag `question-bank-counts`). A hard refresh does not skip it. The entry lasts up to one hour if nothing revalidates it. `/api/marketing/bank-counts` uses that same cache; after the hour it may serve the previous JSON for about a minute, not a day.
@@ -193,7 +237,7 @@ The principle field is shared. The editor label follows the board: nursing prior
 ## Verify
 
 ```bash
-npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts src/lib/exam-prep/item-qa/text-flag-remediation.test.ts src/lib/inventory/active-inventory-cache.test.ts src/lib/inventory/revalidate-active-inventory.test.ts tests/unit/components/QuestionRenderer.test.tsx
+npx vitest run src/lib/exam-prep/item-qa/item-qa.test.ts src/lib/exam-prep/item-qa/retire-near-duplicates.test.ts src/lib/exam-prep/item-qa/text-flag-remediation.test.ts src/lib/exam-prep/item-qa/governing-principle-proposal.test.ts src/lib/inventory/active-inventory-cache.test.ts src/lib/inventory/revalidate-active-inventory.test.ts tests/unit/components/QuestionRenderer.test.tsx
 ```
 
-The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, a complete "watch for" choice, the rationale schema, the publish gate (incomplete Approve rejected, incomplete archived save allowed), the source line, the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, an inactive middle still reaches the active keeper, an all-inactive chain is skipped, `qaPassed` is not a write), and the text-flag plan (empty stems retire, NGN letter placeholders clear, content is not rewritten).
+The unit tests cover exact and near duplicates, truncated/encoding/markdown defects, letter-only A–D choices, a complete "watch for" choice, the rationale schema, the publish gate (incomplete Approve rejected, incomplete archived save allowed), the source line, the near-duplicate retire plan (keeper stays, text-only flags stay, chains longer than 12 retire, an inactive middle still reaches the active keeper, an all-inactive chain is skipped, `qaPassed` is not a write), the text-flag plan (empty stems retire, NGN letter placeholders clear, content is not rewritten), and the governing-principle proposal (quotes a stored line, refuses a write without `--apply`, writes `governingPrinciple` only, and keeps other fields out).

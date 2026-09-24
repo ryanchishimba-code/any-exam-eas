@@ -67,3 +67,24 @@ export {
   type TextRetireReason,
 } from "./text-flag-remediation";
 export { choiceTextDefect, lintItemText, stemIsTooShort, type TextLintIssue } from "./text-lint";
+export {
+  GOVERNING_PRINCIPLE_AUTO_MAX,
+  GOVERNING_PRINCIPLE_MIN,
+  GOVERNING_PRINCIPLE_REVIEW_MAX,
+  governingPrincipleWrite,
+  hasGoverningPrincipleCue,
+  parsePrincipleAllowlist,
+  parseProposeGoverningPrincipleArgs,
+  planGoverningPrincipleProposals,
+  proposeGoverningPrinciple,
+  rowFailsGoverningPrinciple,
+  type GoverningPrincipleBankRow,
+  type GoverningPrinciplePlan,
+  type PrincipleClassification,
+  type PrinciplePlanItem,
+  type PrincipleProposal,
+  type PrincipleSkip,
+  type PrincipleSkipReason,
+  type PrincipleSource,
+  type ProposeGoverningPrincipleArgs,
+} from "./governing-principle-proposal";
