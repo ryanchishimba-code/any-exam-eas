@@ -55,3 +55,29 @@ export function fullExamResultsTitle(input: {
   if (input.unanswered > 0) return FULL_EXAM_RESULTS_INCOMPLETE_TITLE;
   return FULL_EXAM_RESULTS_COMPLETE_TITLE;
 }
+
+/**
+ * Same inputs the results receipt shows: saved summary, planned length, and the
+ * answer log. Early summary wins over a completed status or a fully-selected log.
+ */
+export function resolveFullExamResultsTitle(input: {
+  endedEarly?: boolean;
+  analysisEndedEarly?: boolean;
+  summary?: string | null;
+  answeredCount?: number | null;
+  questionCount: number;
+  answers: AnsweredItem[];
+}): string {
+  const plannedCount = Math.max(0, Math.floor(input.questionCount) || 0);
+  const unansweredFromLog = countUnansweredExamItems(plannedCount, input.answers);
+  const recorded = input.answeredCount;
+  const unanswered =
+    typeof recorded === "number" && Number.isFinite(recorded)
+      ? Math.max(unansweredFromLog, plannedCount - Math.max(0, Math.floor(recorded)))
+      : unansweredFromLog;
+  return fullExamResultsTitle({
+    endedEarly: input.endedEarly === true || input.analysisEndedEarly === true,
+    unanswered,
+    summary: input.summary,
+  });
+}

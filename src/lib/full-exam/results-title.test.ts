@@ -5,6 +5,7 @@ import {
   FULL_EXAM_RESULTS_INCOMPLETE_TITLE,
   countUnansweredExamItems,
   fullExamResultsTitle,
+  resolveFullExamResultsTitle,
   summarySaysEndedEarly,
 } from "@/lib/full-exam/results-title";
 
@@ -42,6 +43,22 @@ describe("full exam results title", () => {
       })
     ).toBe(FULL_EXAM_RESULTS_ENDED_EARLY_TITLE);
     expect(summarySaysEndedEarly("Completed NCLEX-RN simulation.")).toBe(false);
+  });
+
+  it("uses the early summary for a 0-of-50 sprint even when endedEarly is false", () => {
+    const summary = "Session ended early. Your saved answers were scored.";
+    const title = resolveFullExamResultsTitle({
+      endedEarly: false,
+      analysisEndedEarly: false,
+      summary,
+      answeredCount: 0,
+      questionCount: 50,
+      answers: [],
+    });
+    expect(title).toBe(FULL_EXAM_RESULTS_ENDED_EARLY_TITLE);
+    expect(title === FULL_EXAM_RESULTS_COMPLETE_TITLE && summarySaysEndedEarly(summary)).toBe(
+      false
+    );
   });
 
   it("counts blank and missing selections as unanswered", () => {

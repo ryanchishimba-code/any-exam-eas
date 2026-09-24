@@ -676,7 +676,9 @@ export function FullExamSimulator({
           throw new Error(data.error ?? "Could not submit exam");
         }
 
-        router.push(fullExamResultsHref(examSlug, sessionId));
+        // Document load: soft navigation reuses the in-memory results module, which
+        // painted a hardcoded "Exam complete" beside this early-end summary.
+        window.location.assign(fullExamResultsHref(examSlug, sessionId));
       } catch (e) {
         setSubmitError(e instanceof Error ? e.message : "Could not submit exam");
         setSubmitting(false);
@@ -692,7 +694,6 @@ export function FullExamSimulator({
       sessionId,
       exam.name,
       examSlug,
-      router,
       isCatMode,
       catState,
       catCommittedCount,
