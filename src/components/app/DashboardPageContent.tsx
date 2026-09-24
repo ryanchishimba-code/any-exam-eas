@@ -90,7 +90,8 @@ export function DashboardPageContent({
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
-  const isNewUser = stats.questionsAnswered === 0 && !showRecent;
+  const boardAttempts = examDayPlan?.totalAttempts ?? 0;
+  const isNewUser = boardAttempts === 0 && !showRecent;
   const studyLocked = !hasPremiumAccess;
   const readinessSummary = roadmap ? buildPracticeReadinessSummary(roadmap) : null;
   const categoriesLabel =
@@ -120,7 +121,7 @@ export function DashboardPageContent({
         userName={userName}
         streakDays={stats.streakDays}
         dueCount={spacedReview.dueCount}
-        questionsAnswered={stats.questionsAnswered}
+        boardAttempts={boardAttempts}
       />
 
       <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
@@ -136,7 +137,7 @@ export function DashboardPageContent({
         fieldId={fieldId}
         summary={roadmap?.openRemediation}
         studyLocked={studyLocked}
-        showWhenEmpty={stats.questionsAnswered > 0}
+        showWhenEmpty={boardAttempts > 0}
       />
 
       <DashboardGraphicHero

@@ -11,6 +11,7 @@ import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLearningProfileSnapshot } from "@/lib/learning/profile-service";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
+import { boardStudyCountsFromSources } from "@/lib/learning/board-study-counts";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
 import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
@@ -65,13 +66,17 @@ async function AnalyticsContent({
     loadCoverageInventory(fieldId).catch(() => null),
   ]);
 
+  const boardCounts = boardStudyCountsFromSources({
+    roadmap,
+    headline: dashboard.headline,
+  });
   const examDayPlan = buildDashboardExamDayPlan({
     examSlug,
     fieldId,
     testDate: null,
-    totalAttempts: roadmap?.totalAttempts ?? dashboard.headline.totalAttempts,
-    recentAccuracyPct: dashboard.headline.overallAccuracy ?? 0,
-    openIncorrect: roadmap ? roadmap.openIncorrectCount : null,
+    totalAttempts: boardCounts.totalAttempts,
+    recentAccuracyPct: boardCounts.recentAccuracyPct,
+    openIncorrect: boardCounts.openIncorrect,
     questionsToday: 0,
     roadmap,
     inventoryCategories: inventory?.categories ?? null,

@@ -191,9 +191,15 @@ describe("review incorrect launch eligibility", () => {
     const roadmap = readFileSync(new URL("./exam-roadmap.ts", import.meta.url), "utf8");
     const loader = readFileSync(new URL("./review-incorrect.ts", import.meta.url), "utf8");
     const page = readFileSync(new URL("../../app/(app)/question-bank/page.tsx", import.meta.url), "utf8");
-    expect(roadmap).toContain("selectLaunchReviewQueueIds");
+    expect(roadmap).toContain("countServableOpenRemediation");
     expect(roadmap).toContain("reviewFieldIdsForQuery");
-    expect(roadmap).toContain("attemptsForReviewIds");
+    expect(roadmap).toContain("openRemediation.totalOpen");
+    const openCounts = readFileSync(
+      new URL("./open-remediation-counts.ts", import.meta.url),
+      "utf8"
+    );
+    expect(openCounts).toContain("selectLaunchReviewQueueIds");
+    expect(openCounts).toContain("attemptsForReviewIds");
     expect(loader).toContain("selectLaunchReviewQueueIds");
     expect(loader).toContain("reviewFieldIdsForQuery");
     expect(loader).toContain("loadServableReviewBankIds");

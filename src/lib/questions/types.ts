@@ -93,6 +93,11 @@ export type AdaptiveSessionMeta = {
   sessionRationale?: string;
   questionReasoning?: Record<string, string>;
   recommendedDifficulty?: string;
+  /**
+   * Full open-remediation queue for this launch. The sitting may be shorter.
+   * Same servable count the dashboard shows as open remediations.
+   */
+  openQueueTotal?: number;
 };
 
 export type StudySessionState = {

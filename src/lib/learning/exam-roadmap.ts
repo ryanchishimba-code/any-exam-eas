@@ -52,16 +52,10 @@ import {
   examSimQualifyingQuestionCount,
 } from "@/lib/learning/full-exam-pass-path";
 import { loadServableReviewBankIds } from "@/lib/learning/review-incorrect";
-import {
-  attemptsForReviewIds,
-  reviewFieldIdsForQuery,
-  selectLaunchReviewQueueIds,
-} from "@/lib/learning/review-queue-launch";
+import { reviewFieldIdsForQuery } from "@/lib/learning/review-queue-launch";
 import { selectReviewQueueIds } from "@/lib/learning/item-mastery";
-import {
-  groupOpenRemediationLoops,
-  type OpenRemediationSummary,
-} from "@/lib/learning/remediation-loop";
+import { countServableOpenRemediation } from "@/lib/learning/open-remediation-counts";
+import type { OpenRemediationSummary } from "@/lib/learning/remediation-loop";
 import { getSubjectArea } from "@/lib/subjects/registry";
 import { prisma } from "@/lib/prisma";
 import {
@@ -465,26 +459,19 @@ function practiceBandLabelFromAnalysis(analysis: unknown): string | null {
   return typeof label === "string" ? label : null;
 }
 
-function labelOpenRemediation(
+function labelOpenLoops(
   fieldId: string,
-  attempts: {
-    bankItemId: string | null;
-    questionKey: string | null;
-    correct: boolean;
-    subjectId: string | null;
-    createdAt: Date;
-    sessionId: string | null;
-  }[],
-  examSlug: ExamSlug,
-  marks: { itemId: string; confirmedAt: Date }[]
+  summary: OpenRemediationSummary
 ): OpenRemediationSummary {
-  const summary = groupOpenRemediationLoops({ examSlug, fieldId, attempts, marks });
   return {
-    ...summary,
     loops: summary.loops.map((loop) => ({
       ...loop,
       label: getSubjectArea(fieldId, loop.id)?.label ?? loop.label,
     })),
+    unscopedCount: summary.unscopedCount,
+    totalOpen: summary.totalOpen,
+    pendingReproof: summary.pendingReproof,
+    hiddenLoopCount: summary.hiddenLoopCount,
   };
 }
 
@@ -573,13 +560,13 @@ async function loadExamRoadmapData(
     limit: 300,
   });
   const servableReviewIds = await loadServableReviewBankIds(fieldId, boardOpenIds);
-  const eligibleReviewIds = selectLaunchReviewQueueIds({
+  const openRemediation = countServableOpenRemediation({
+    examSlug,
+    fieldId,
     attempts,
     marks: masteryMarks,
-    limit: 300,
     servableIds: servableReviewIds,
   });
-  const reviewAttempts = attemptsForReviewIds(attempts, eligibleReviewIds);
 
   const topics = buildRoadmapTopics(
     blueprint,
@@ -637,8 +624,8 @@ async function loadExamRoadmapData(
       })),
       new Date()
     ),
-    openIncorrectCount: eligibleReviewIds.length,
-    openRemediation: labelOpenRemediation(fieldId, reviewAttempts, examSlug, masteryMarks),
+    openIncorrectCount: openRemediation.totalOpen,
+    openRemediation: labelOpenLoops(fieldId, openRemediation),
     launch: {
       hasRetake: history.hasRetake,
       canContinue: history.canContinue,

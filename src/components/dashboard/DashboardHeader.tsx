@@ -10,7 +10,8 @@ type Props = {
   userName?: string | null;
   streakDays: number;
   dueCount?: number;
-  questionsAnswered?: number;
+  /** Saved attempts on this board. Same total as Today's block and Analytics. */
+  boardAttempts?: number;
 };
 
 export function DashboardHeader({
@@ -18,7 +19,7 @@ export function DashboardHeader({
   userName,
   streakDays,
   dueCount = 0,
-  questionsAnswered = 0,
+  boardAttempts = 0,
 }: Props) {
   const firstName = displayFirstName(userName);
 
@@ -40,10 +41,13 @@ export function DashboardHeader({
           </span>
         ) : null}
         {dueCount > 0 ? <span className={dbUi.statusPillAccent}>{dueCount} due</span> : null}
-        {questionsAnswered > 0 ? (
-          <span className={dbUi.statusPill}>
+        {boardAttempts > 0 ? (
+          <span
+            className={dbUi.statusPill}
+            aria-label={`${boardAttempts.toLocaleString()} saved attempts on this board`}
+          >
             <Layers className="h-3 w-3" aria-hidden />
-            {questionsAnswered.toLocaleString()}
+            {boardAttempts.toLocaleString()}
           </span>
         ) : null}
       </div>

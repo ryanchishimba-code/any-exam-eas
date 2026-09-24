@@ -7,6 +7,7 @@ import { ReadinessRing } from "@/components/study/ReadinessRing";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_CATALOG, examFieldIds, examSlugFromFieldId } from "@/lib/edtech/exams";
+import { expandReviewFieldIds } from "@/lib/learning/review-queue-launch";
 import { recentTestHref } from "@/lib/edtech/recent-test-links";
 import { libraryTopicHref, spacedReviewHref, topicRetestHref } from "@/lib/edtech/practice-links";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
@@ -128,7 +129,7 @@ export function StudentAnalyticsDashboard({
   }
 
   const { dashboard, profile } = data;
-  const fieldIds = examFieldIds(examSlug);
+  const fieldIds = expandReviewFieldIds(fieldId ? [fieldId] : examFieldIds(examSlug));
   const primaryField = EXAM_CATALOG[examSlug].fieldId;
   const progressIndex = practiceProgressIndex(
     dashboard.headline.readinessScore,

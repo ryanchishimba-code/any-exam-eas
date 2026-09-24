@@ -76,6 +76,8 @@ async function loadExamScopedStats(
   const total = Number(attemptRow?.total ?? 0);
   const correct = Number(attemptRow?.correct ?? 0);
 
+  // questionsAnswered / accuracyPct are the last 30 days only. Board totals
+  // (Today's block, readiness sample, analytics) use the full attempt scan.
   return {
     questionsAnswered: total,
     questionsToday: Number(todayRow?.total ?? 0),

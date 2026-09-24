@@ -748,6 +748,11 @@ export function StudySessionPlayer({
                 sessionRationale={sessionState.adaptiveMeta?.sessionRationale}
                 questionIndex={sessionState.currentIndex}
                 total={questionList.length}
+                openTotal={
+                  sessionState.mode === "review_incorrect"
+                    ? sessionState.adaptiveMeta?.openQueueTotal
+                    : undefined
+                }
               />
             )}
           <div className="mb-4 flex justify-end gap-2">

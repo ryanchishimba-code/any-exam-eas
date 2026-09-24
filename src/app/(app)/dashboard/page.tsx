@@ -17,6 +17,7 @@ import { getUserEdtechMetadata, getExamTestDate } from "@/lib/edtech/user-metada
 import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { isDrugSafetyPathComplete } from "@/lib/drugs300/service";
+import { boardStudyCountsFromSources } from "@/lib/learning/board-study-counts";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
 import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
 import { ROUTES } from "@/lib/routes";
@@ -131,16 +132,17 @@ async function DashboardContent({
   ]);
 
   const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;
+  const boardCounts = boardStudyCountsFromSources({
+    roadmap,
+    headline: dashboard.headline,
+  });
   const examDayPlan = buildDashboardExamDayPlan({
     examSlug,
     fieldId,
     testDate,
-    totalAttempts: roadmap?.totalAttempts ?? dashboard.headline.totalAttempts,
-    recentAccuracyPct:
-      stats.questionsAnswered > 0
-        ? stats.accuracyPct
-        : (dashboard.headline.overallAccuracy ?? 0),
-    openIncorrect: roadmap ? roadmap.openIncorrectCount : null,
+    totalAttempts: boardCounts.totalAttempts,
+    recentAccuracyPct: boardCounts.recentAccuracyPct,
+    openIncorrect: boardCounts.openIncorrect,
     questionsToday: stats.questionsToday,
     roadmap,
     inventoryCategories: inventory?.categories ?? null,
