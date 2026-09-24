@@ -54,6 +54,7 @@ import {
 import { loadServableReviewBankIds } from "@/lib/learning/review-incorrect";
 import {
   attemptsForReviewIds,
+  reviewFieldIdsForQuery,
   selectLaunchReviewQueueIds,
 } from "@/lib/learning/review-queue-launch";
 import { selectReviewQueueIds } from "@/lib/learning/item-mastery";
@@ -501,9 +502,12 @@ async function loadExamRoadmapData(
   if (!blueprint) return null;
 
   // One attempt scan for subject aggregates + push stats (avoid a second full table read).
+  const reviewFieldIds = reviewFieldIdsForQuery(fieldId);
+  const attemptFieldIds = reviewFieldIds.length > 0 ? reviewFieldIds : [fieldId];
+
   const [attempts, masteries, serveBySubject, history, masteryMarks] = await Promise.all([
     prisma.questionAttempt.findMany({
-      where: { userId, fieldId },
+      where: { userId, fieldId: { in: attemptFieldIds } },
       select: {
         subjectId: true,
         correct: true,
@@ -521,7 +525,7 @@ async function loadExamRoadmapData(
     countServeBankBySubject(fieldId),
     getUserExamHistory(userId, examSlug, { fieldId }),
     prisma.remediationMasteryMark.findMany({
-      where: { userId, fieldId },
+      where: { userId, fieldId: { in: attemptFieldIds } },
       select: { itemId: true, confirmedAt: true },
     }),
   ]);

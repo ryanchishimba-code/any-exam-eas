@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   attemptsForReviewIds,
+  reviewFieldIdsForQuery,
   selectLaunchReviewQueueIds,
 } from "./review-queue-launch";
 
@@ -108,13 +109,52 @@ describe("review incorrect launch eligibility", () => {
     expect(ids).toEqual(["item-metformin"]);
   });
 
+  it("keeps a cardiovascular miss when the launcher topic is pharmacokinetics", () => {
+    const bankItemId = "cmqvjpyri000i1yaidxytujtb";
+    const attempt = {
+      bankItemId,
+      questionKey: bankItemId,
+      correct: false,
+      createdAt: t0,
+      sessionId: "naplex-today",
+      subjectId: "cardiovascular-rx",
+    };
+    const servableIds = new Set([bankItemId]);
+    const dashboardIds = selectLaunchReviewQueueIds({ attempts: [attempt], servableIds });
+    const launcherTopicQueue = selectLaunchReviewQueueIds({
+      attempts: [attempt],
+      subjectId: "pharmacokinetics",
+      servableIds,
+    });
+    expect(dashboardIds).toEqual([bankItemId]);
+    expect(launcherTopicQueue).toEqual(dashboardIds);
+    expect(servableIds.has(launcherTopicQueue[0]!)).toBe(true);
+    expect(attemptsForReviewIds([attempt], dashboardIds)).toEqual([attempt]);
+  });
+
+  it("treats the NAPLEX label and naplex slug as the pharmacy attempt field", () => {
+    for (const requested of ["NAPLEX", "naplex", "pharmacy"]) {
+      const fields = reviewFieldIdsForQuery(requested);
+      expect(fields).toContain("pharmacy");
+      expect(fields).toContain("naplex");
+    }
+    expect(reviewFieldIdsForQuery("NAPLEX")).toContain("NAPLEX");
+    expect(reviewFieldIdsForQuery("NCLEX")).toContain("nursing");
+    expect(reviewFieldIdsForQuery("NCLEX")).not.toContain("pharmacy");
+    expect(reviewFieldIdsForQuery("PANCE")).not.toContain("mpje");
+  });
+
   it("is the selector the dashboard roadmap and the review loader both call", () => {
     const roadmap = readFileSync(new URL("./exam-roadmap.ts", import.meta.url), "utf8");
     const loader = readFileSync(new URL("./review-incorrect.ts", import.meta.url), "utf8");
+    const page = readFileSync(new URL("../../app/(app)/question-bank/page.tsx", import.meta.url), "utf8");
     expect(roadmap).toContain("selectLaunchReviewQueueIds");
+    expect(roadmap).toContain("reviewFieldIdsForQuery");
     expect(roadmap).toContain("attemptsForReviewIds");
     expect(loader).toContain("selectLaunchReviewQueueIds");
+    expect(loader).toContain("reviewFieldIdsForQuery");
     expect(loader).toContain("loadServableReviewBankIds");
+    expect(page).toContain("subjectId: null");
     expect(selectLaunchReviewQueueIds.toString()).not.toMatch(/naplex|nclex/i);
   });
 });

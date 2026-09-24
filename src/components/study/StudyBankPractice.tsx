@@ -1270,17 +1270,38 @@ export function StudyBankPractice({
       }
 
       if (useReviewIncorrect) {
-        const preflight = await fetchJson(
+        // Send the canonical field id. The visible label (NAPLEX) is not the
+        // attempt field (pharmacy); querying the label misses the saved miss.
+        const reviewField = fieldId || field;
+        let reviewSubject = effectiveSubjectId;
+        let preflight = await fetchJson(
           "/api/study/review-incorrect",
-          { field, subjectId: effectiveSubjectId, count: limit, preflight: true },
+          { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true },
           8000
         );
-        const decision = decisionFromRemediationPayload({
+        let decision = decisionFromRemediationPayload({
           mode: "review_incorrect",
           ok: preflight.ok,
           requestedCount: limit,
           body: preflight.data,
         });
+        if (
+          decision.status === "empty" &&
+          reviewSubject !== MIXED_SUBJECT_ID
+        ) {
+          reviewSubject = MIXED_SUBJECT_ID;
+          preflight = await fetchJson(
+            "/api/study/review-incorrect",
+            { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true },
+            8000
+          );
+          decision = decisionFromRemediationPayload({
+            mode: "review_incorrect",
+            ok: preflight.ok,
+            requestedCount: limit,
+            body: preflight.data,
+          });
+        }
         if (decision.status === "empty") {
           setRemediationEmpty("review_incorrect");
           rememberLaunchOutcome("review_incorrect");
@@ -1293,7 +1314,7 @@ export function StudyBankPractice({
         }
         const launched = await fetchJson(
           "/api/study/review-incorrect",
-          { field, subjectId: effectiveSubjectId, count: decision.count },
+          { field: reviewField, subjectId: reviewSubject, count: decision.count },
           20000
         );
         if (!launched.ok) {
