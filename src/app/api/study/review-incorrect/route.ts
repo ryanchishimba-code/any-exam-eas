@@ -18,6 +18,18 @@ const bodySchema = z.object({
   preflight: z.boolean().optional(),
 });
 
+function reviewQueueResponse(
+  body: Record<string, unknown>,
+  openQueueTotal: number,
+  status = 200
+) {
+  const total = Math.max(0, Math.floor(openQueueTotal));
+  return NextResponse.json(
+    { ...body, openQueueTotal: total, availableIncorrect: total },
+    { status, headers: { "X-Review-Open-Total": String(total) } }
+  );
+}
+
 function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQuestion {
   const ngnType = prepared.ngnFormat ?? prepared.type;
   const typeMap: Record<string, ExamQuestion["type"]> = {
@@ -84,16 +96,18 @@ export async function POST(req: Request) {
     });
 
     if (body.preflight || incorrectIds.length === 0) {
-      return NextResponse.json({
-        field: body.field,
-        fieldId,
-        subjectId: subjectId ?? MIXED_SUBJECT_ID,
-        mode: "review_incorrect",
-        availableIncorrect: incorrectIds.length,
-        questions: [],
-        bankItemIds: [],
-        code: incorrectIds.length === 0 ? "NO_INCORRECT_ITEMS" : "OK",
-      });
+      return reviewQueueResponse(
+        {
+          field: body.field,
+          fieldId,
+          subjectId: subjectId ?? MIXED_SUBJECT_ID,
+          mode: "review_incorrect",
+          questions: [],
+          bankItemIds: [],
+          code: incorrectIds.length === 0 ? "NO_INCORRECT_ITEMS" : "OK",
+        },
+        incorrectIds.length
+      );
     }
 
     const {
@@ -116,13 +130,13 @@ export async function POST(req: Request) {
     const pickIds = incorrectIds.slice(0, sessionCount);
     const items = await loadBankItemsByIds(fieldId, pickIds);
     if (items.length === 0) {
-      return NextResponse.json(
+      return reviewQueueResponse(
         {
           error: "Those missed items are no longer in the bank. Practice more, then retry.",
           code: "INCORRECT_ITEMS_UNAVAILABLE",
-          availableIncorrect: incorrectIds.length,
         },
-        { status: 503 }
+        incorrectIds.length,
+        503
       );
     }
 
@@ -142,15 +156,17 @@ export async function POST(req: Request) {
       usageCheck.plan
     );
 
-    return NextResponse.json({
-      field: body.field,
-      fieldId,
-      subjectId: effectiveSubject,
-      mode: "review_incorrect",
-      availableIncorrect: incorrectIds.length,
-      questions,
-      bankItemIds: prepared.map((q) => q.bankItemId).filter(Boolean),
-    });
+    return reviewQueueResponse(
+      {
+        field: body.field,
+        fieldId,
+        subjectId: effectiveSubject,
+        mode: "review_incorrect",
+        questions,
+        bankItemIds: prepared.map((q) => q.bankItemId).filter(Boolean),
+      },
+      incorrectIds.length
+    );
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: "Invalid request." }, { status: 400 });

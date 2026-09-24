@@ -41,6 +41,7 @@ import type {
   StudySessionState,
 } from "@/lib/questions/types";
 import { AdaptiveReasoningChip } from "./AdaptiveReasoningChip";
+import { reviewIncorrectQuestionReason } from "@/lib/study/review-incorrect-queue-label";
 import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/types";
 import { InsightPanel } from "./InsightPanel";
 import { buildAiTutorRequest } from "./build-ai-tutor-request";
@@ -666,9 +667,13 @@ export function StudySessionPlayer({
   const showPostSession = (showCompletion || timeUp) && !inReview;
 
   const progressPct = ((sessionState.currentIndex + 1) / questionList.length) * 100;
-  const selectionReasoning =
-    sessionState.adaptiveMeta?.questionReasoning?.[String(current.id)] ??
-    sessionState.adaptiveMeta?.sessionRationale;
+  const reviewMeta =
+    adaptiveMeta?.openQueueTotal != null ? adaptiveMeta : (sessionState.adaptiveMeta ?? adaptiveMeta);
+  const selectionReasoning = reviewIncorrectQuestionReason(
+    reviewMeta?.questionReasoning,
+    current,
+    reviewMeta?.sessionRationale
+  );
   const examSlug = examSlugFromFieldId(normalizeFieldId(field)) ?? "nclex";
   const studyLinks = resolveStudyLinksFromQuestion(examSlug, current);
   const masteryTags = masteryTagsFromStudyQuestion(current);
@@ -741,16 +746,13 @@ export function StudySessionPlayer({
             sessionState.adaptiveMeta) &&
             selectionReasoning && (
               <AdaptiveReasoningChip
-                reasoning={
-                  sessionState.adaptiveMeta?.questionReasoning?.[String(current.id)] ??
-                  selectionReasoning
-                }
-                sessionRationale={sessionState.adaptiveMeta?.sessionRationale}
+                reasoning={selectionReasoning}
+                sessionRationale={reviewMeta?.sessionRationale}
                 questionIndex={sessionState.currentIndex}
                 total={questionList.length}
                 openTotal={
-                  sessionState.mode === "review_incorrect"
-                    ? sessionState.adaptiveMeta?.openQueueTotal
+                  sessionState.mode === "review_incorrect" || reviewQueue
+                    ? reviewMeta?.openQueueTotal
                     : undefined
                 }
               />

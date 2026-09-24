@@ -48,7 +48,70 @@ export function reviewIncorrectSessionRationale(params: {
   const noun = sitting === 1 ? "item" : "items";
   const lead =
     openTotal > sitting
-      ? `This sitting is ${sitting} of ${openTotal} open items.`
+      ? `Reviewing ${sitting} of ${openTotal} open items.`
       : `Reviewing ${sitting} open ${noun}.`;
   return `${lead} ${PENDING_REPROOF}`;
+}
+
+function finiteCount(raw: unknown): number | null {
+  const n = typeof raw === "number" ? raw : typeof raw === "string" && raw.trim() ? Number(raw) : NaN;
+  if (!Number.isFinite(n)) return null;
+  return Math.max(0, Math.floor(n));
+}
+
+/** Open-queue total carried on a review-incorrect JSON body. */
+export function readReviewOpenTotal(
+  body: Record<string, unknown> | null | undefined
+): number | null {
+  if (!body) return null;
+  return finiteCount(body.openQueueTotal) ?? finiteCount(body.availableIncorrect);
+}
+
+/**
+ * Sitting-size labels hide the dashboard total when every candidate is the cap.
+ * Prefer the larger of the board roadmap count, the preflight count, and the
+ * launch payload. A launch that only echoes how many questions it served must
+ * not replace a larger open total.
+ */
+export function resolveReviewOpenQueueTotal(params: {
+  sittingSize: number;
+  /** Board-wide servable total from the same roadmap the dashboard renders. */
+  boardOpenTotal?: number | null;
+  /** Preflight `available` before the sitting was sliced. */
+  preflightAvailable?: number | null;
+  payloads?: Array<Record<string, unknown> | null | undefined>;
+  headerTotals?: Array<number | null | undefined>;
+}): number {
+  const sitting = Math.max(0, Math.floor(params.sittingSize) || 0);
+  const candidates = [
+    params.boardOpenTotal,
+    params.preflightAvailable,
+    ...(params.headerTotals ?? []),
+    ...(params.payloads ?? []).map((body) => readReviewOpenTotal(body)),
+  ];
+  let best = sitting;
+  for (const raw of candidates) {
+    const n = finiteCount(raw);
+    if (n != null) best = Math.max(best, n);
+  }
+  return best;
+}
+
+/** Per-question line. Session ids are rewritten on prepare, so match every key we stored. */
+export function reviewIncorrectQuestionReason(
+  reasoning: Record<string, string> | undefined,
+  question: { id: string | number; sourceIndex?: number | null; bankItemId?: string | null },
+  fallback?: string
+): string {
+  if (!reasoning) return fallback ?? "";
+  const keys = [
+    String(question.id),
+    question.sourceIndex != null ? String(question.sourceIndex) : "",
+    question.bankItemId?.trim() ?? "",
+  ].filter(Boolean);
+  for (const key of keys) {
+    const hit = reasoning[key];
+    if (hit) return hit;
+  }
+  return fallback ?? "";
 }
