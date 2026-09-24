@@ -4,7 +4,7 @@ import {
   getPublishedGuide,
 } from "@/lib/nclex-study-guide";
 import { isStudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
-import { requirePremiumApi } from "@/lib/api-access";
+import { requireStudyGuidePremium } from "@/lib/nclex-study-guide/premium-api";
 
 export const runtime = "nodejs";
 
@@ -13,10 +13,9 @@ type Ctx = { params: Promise<{ slug: string }> };
 /** GET /api/nclex-study-guide/chapters/[slug]?exam=nclex */
 export async function GET(req: Request, ctx: Ctx) {
   try {
-    // The reader pages are premium-gated, but this endpoint serves the same
-    // chapter HTML and had no check at all — the whole book was readable
-    // without an account. Mirror `requirePremiumPage` from the page routes.
-    const access = await requirePremiumApi(req);
+    // Same bar as the reader pages (`requirePremiumPage` → hasPremiumAccess).
+    // Guests must not receive published chapter HTML from this endpoint.
+    const access = await requireStudyGuidePremium(req);
     if (!access.ok) return access.response;
 
     const { slug } = await ctx.params;

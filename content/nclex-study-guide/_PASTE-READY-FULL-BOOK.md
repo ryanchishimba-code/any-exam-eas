@@ -7,9 +7,9 @@ title: "AnyExamEasy NCLEX Reference Book"
 subtitle: "Pass-Focused Clinical Judgment Companion · 2026 Next Gen NCLEX"
 brand: AnyExamEasy
 site: https://anyexameasy.com
-cta: "Try NCLEX practice free"
+cta: "Start a 5-day free trial"
 cta_url: https://anyexameasy.com
-pricing: "$27.99/mo after trial; trial terms on site"
+pricing: "5-day free trial, no payment method; then Pro at $27.99/mo"
 logo: visuals/nclex-book-cover.jpg
 logo_nav: "Use study-tool public/brand/anyexameasy-logo-nav.webp when in the web app"
 colors:
@@ -41,11 +41,11 @@ edition: "Enhanced — deepened clinical judgment (vignettes, red flags, concept
 **Pass-Focused Clinical Judgment Companion for the 2026 Next Gen NCLEX**  
 **Enhanced Edition** — deeper vignettes, red flags, and concept checks
 
-[anyexameasy.com](https://anyexameasy.com) · One study system. Six boards.
+[anyexameasy.com](https://anyexameasy.com) · NCLEX practice with this book.
 
-[**Try NCLEX practice free →**](https://anyexameasy.com)
+[**Start a 5-day free trial →**](https://anyexameasy.com)
 
-*No card required to start · $27.99/mo after trial · trial terms on site*
+*No payment method · then Pro at $27.99/mo*
 
 </div>
 
@@ -136,7 +136,7 @@ Download the **official test plan** for the exam you are taking from [ncsbn.org]
 | --- | --- |
 | Strategy, patho-enough-to-reason, memory hooks, red flags | NGN-style practice, teachable rationales, Blueprint Roadmaps, full-length mocks |
 
-**Soft CTA:** Start free on [anyexameasy.com](https://anyexameasy.com). Upgrade when ready — **$27.99/mo after trial** (trial terms on site). One study system across boards when you need them.
+**Soft CTA:** Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this NCLEX book with NGN-style practice.
 
 ---
 
@@ -530,7 +530,7 @@ D. Psychosocial Integrity only
 - One strong Qbank + error log > five half-used resources.  
 - Sleep and logistics are part of prep.  
 
-> **Practice the frameworks.** Open an NGN-ready set on [anyexameasy.com](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+> **Practice the frameworks.** Open an NGN-ready NCLEX set on [anyexameasy.com](https://anyexameasy.com) — 5-day free trial, no payment method. Then Pro at $27.99/mo.
 
 <!-- ========== 02-fundamentals-safety.md ========== -->
 
@@ -5553,7 +5553,7 @@ Practice this aloud on every case study — even when the item format differs.
 - Official rules live in NCSBN documents — this sheet is a study aid.  
 - Soft CTA only: practice the flashes in a Qbank when ready.
 
-> **Drill these flashes in a Qbank.** [anyexameasy.com](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+> **Drill these flashes in a Qbank.** [anyexameasy.com](https://anyexameasy.com) — 5-day free trial, no payment method. Then Pro at $27.99/mo.
 
 <!-- ========== 16-back-matter.md ========== -->
 
@@ -5597,7 +5597,7 @@ No. Ranges vary by lab, age, sex, and method. We teach **direction and urgency**
 
 ### Can AnyExamEasy help with NCLEX prep?
 
-Yes. [AnyExamEasy](https://anyexameasy.com) offers NGN-style NCLEX practice, teachable rationales, Blueprint Roadmaps, and full-length mocks — plus other boards in one login. Start free, then upgrade when you’re ready (**$27.99/mo after trial**; trial terms on site). We’re independent and not affiliated with NCSBN.
+Yes. [AnyExamEasy](https://anyexameasy.com) offers NGN-style NCLEX practice, teachable rationales, Blueprint Roadmaps, and full-length mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. We’re independent and not affiliated with NCSBN.
 
 ---
 
@@ -5609,11 +5609,11 @@ Open a practice set today. Review the misses like a detective. Repeat tomorrow.
 
 ### Ready for NGN-ready practice?
 
-**AnyExamEasy** is built for students who want serious board prep without stacking six expensive subscriptions — **one study system across six boards**, including **NCLEX** with NGN-style practice, teachable rationales, Blueprint Roadmaps, and full-length mocks.
+**AnyExamEasy** pairs this NCLEX reference book with NGN-style practice, teachable rationales, Blueprint Roadmaps, and full-length mocks.
 
-**[Try NCLEX practice free →](https://anyexameasy.com)** — explore the bank, then upgrade when you’re ready ($27.99/mo after trial; trial terms on site).
+**[Start a 5-day free trial →](https://anyexameasy.com)** — no payment method. Then Pro at $27.99/mo.
 
-*One login. Real practice. Make the exam feel familiar before it counts.*
+*NCLEX practice that matches the judgment this book trains.*
 
 ---
 

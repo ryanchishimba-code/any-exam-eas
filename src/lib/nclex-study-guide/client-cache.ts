@@ -14,6 +14,15 @@ const inflight = new Map<string, Promise<SgChapterDto>>();
 
 const keyOf = (exam: StudyGuideExam, slug: string) => `${exam}:${slug}`;
 
+export class ChapterLoadError extends Error {
+  status: number;
+  constructor(status: number) {
+    super(`Chapter load failed (${status})`);
+    this.name = "ChapterLoadError";
+    this.status = status;
+  }
+}
+
 export function seedChapterCache(exam: StudyGuideExam, chapter: SgChapterDto) {
   cache.set(keyOf(exam, chapter.slug), chapter);
 }
@@ -42,7 +51,7 @@ export async function fetchChapter(
       `/api/nclex-study-guide/chapters/${encodeURIComponent(slug)}?exam=${exam}`
     );
     if (!res.ok) {
-      throw new Error(`Chapter load failed (${res.status})`);
+      throw new ChapterLoadError(res.status);
     }
     const data = (await res.json()) as { chapter?: SgChapterDto };
     if (!data.chapter) throw new Error("Chapter missing in response");

@@ -17,7 +17,7 @@
  * renders. Any hook-ordering or declaration-order regression fails loudly.
  */
 
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { StudyGuideReader } from "@/components/nclex-study-guide/StudyGuideReader";
 import type { SgChapterDto, SgTocChapter } from "@/lib/nclex-study-guide/types";
@@ -145,25 +145,66 @@ describe("StudyGuideReader", () => {
     expect(notice).toHaveTextContent("pharmacy program");
   });
 
-  it("shows a trial CTA and hides persistence controls in guest preview", () => {
+  it("does not list a chapter intro heading as a contents section", () => {
     render(
       <StudyGuideReader
         exam="nclex"
         guideId="g1"
         guideTitle="NCLEX-RN Study Guide"
-        chapters={CHAPTERS}
-        chapter={makeChapter()}
-        guestPreview
+        chapters={[
+          { ...CHAPTERS[0]!, sectionLabel: "Why it matters on NCLEX" },
+          CHAPTERS[1]!,
+        ]}
+        chapter={makeChapter({ sectionLabel: "Why it matters on NCLEX" })}
       />
     );
+    expect(screen.queryByText(/Why it matters on NCLEX/i)).not.toBeInTheDocument();
+    expect(screen.getAllByText("Cardiac").length).toBeGreaterThan(0);
+  });
+
+  it("shows bookmark and highlight controls without a trial upsell", () => {
+    renderReader();
     expect(screen.getByText(/Afterload is resistance/)).toBeInTheDocument();
-    expect(screen.getByText(/Want bookmarks \+ 500-question free trial/i)).toBeInTheDocument();
-    expect(screen.queryByTitle(/Highlight selection/i)).not.toBeInTheDocument();
-    expect(screen.queryByTitle(/Bookmark \(b\)/i)).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /back to free guides/i })).toHaveAttribute(
+    expect(screen.getByTitle(/Highlight selection/i)).toBeInTheDocument();
+    expect(screen.getByTitle(/Bookmark \(b\)/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /back to dashboard/i })).toHaveAttribute(
       "href",
-      "/free-guides"
+      "/dashboard"
     );
+    expect(screen.queryByText(/free trial/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/\$27\.99/)).not.toBeInTheDocument();
+  });
+
+  it("paints a saved highlight onto the chapter text", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (input: RequestInfo | URL) => {
+        const url = String(input);
+        if (url.includes("/highlights")) {
+          return new Response(
+            JSON.stringify({
+              highlights: [
+                {
+                  id: "h1",
+                  startOffset: 0,
+                  endOffset: 9,
+                  selectedText: "Afterload",
+                  color: "yellow",
+                },
+              ],
+            }),
+            { headers: { "content-type": "application/json" } }
+          );
+        }
+        return new Response(JSON.stringify({ bookmarks: [], notes: [], highlights: [] }), {
+          headers: { "content-type": "application/json" },
+        });
+      })
+    );
+    renderReader();
+    await waitFor(() => {
+      expect(document.querySelector("mark.sg-hl--yellow")).toHaveTextContent("Afterload");
+    });
   });
 
   it("hides the Go deeper block when a chapter has no related topics", () => {
