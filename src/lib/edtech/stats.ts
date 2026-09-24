@@ -1,8 +1,9 @@
-import { and, count, eq, gte, sql } from "drizzle-orm";
+import { and, count, eq, gte, inArray, sql } from "drizzle-orm";
 import { requireDb } from "@/db";
 import { learningProfiles, questionAttempts } from "@/db/schema";
 import { withDrizzle } from "@/lib/db-resilience";
 import { resolveExamFieldId } from "@/lib/edtech/exam-preference";
+import { reviewFieldIdsForQuery } from "@/lib/learning/review-queue-launch";
 import { CACHE_TTL, CACHE_STALE, cacheGetOrSetDeduped, cacheKey } from "@/lib/cache";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 
@@ -24,6 +25,13 @@ async function loadExamScopedStats(
   const todayStart = new Date();
   todayStart.setUTCHours(0, 0, 0, 0);
 
+  const attemptFields = reviewFieldIdsForQuery(fieldId);
+  const fieldMatch = () =>
+    inArray(
+      questionAttempts.fieldId,
+      attemptFields.length > 0 ? attemptFields : [fieldId]
+    );
+
   const [attemptRows, todayRows, profileRows] = await Promise.all([
     withDrizzle("stats.attempts30d", () =>
       requireDb()
@@ -35,7 +43,7 @@ async function loadExamScopedStats(
         .where(
           and(
             eq(questionAttempts.userId, userId),
-            eq(questionAttempts.fieldId, fieldId),
+            fieldMatch(),
             gte(questionAttempts.createdAt, since)
           )
         )
@@ -47,7 +55,7 @@ async function loadExamScopedStats(
         .where(
           and(
             eq(questionAttempts.userId, userId),
-            eq(questionAttempts.fieldId, fieldId),
+            fieldMatch(),
             gte(questionAttempts.createdAt, todayStart)
           )
         )
@@ -85,10 +93,10 @@ export async function getExamScopedStats(
   const fieldId = fieldIdOverride ?? resolveExamFieldId(examSlug);
   try {
     return await cacheGetOrSetDeduped(
-      cacheKey(["exam-scoped-stats", userId, examSlug, fieldId]),
+      cacheKey(["exam-scoped-stats-v2", userId, examSlug, fieldId]),
       CACHE_TTL.examScopedStats,
       () => loadExamScopedStats(userId, examSlug, fieldId),
-      { staleTtlMs: CACHE_STALE.examScopedStats }
+      { staleTtlMs: CACHE_STALE.examScopedStats, skipFreshL1: true }
     );
   } catch {
     return EMPTY;

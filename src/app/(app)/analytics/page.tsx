@@ -5,7 +5,9 @@ import { ProUpgradeGate } from "@/components/ProUpgradeGate";
 import { StudentAnalyticsDashboard } from "@/components/analytics/StudentAnalyticsDashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { requirePremiumPage } from "@/lib/require-premium-page";
-import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { canonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLearningProfileSnapshot } from "@/lib/learning/profile-service";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
@@ -49,7 +51,10 @@ async function AnalyticsContent({
   examSlug: ExamSlug;
 }) {
   const examName = EXAM_CATALOG[examSlug].shortName;
-  const fieldId = resolveExamFieldId(examSlug);
+  // Catalog USMLE is Step 2. Counts follow the step the student is practicing,
+  // and the same alias set Review incorrect uses for that step.
+  const metadata = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
+  const fieldId = canonicalPracticeFieldId(examSlug, metadata?.usmleFieldId);
 
   const [dashboard, profile, roadmap, inventory] = await Promise.all([
     getStudentDashboardData(userId, [fieldId]),
