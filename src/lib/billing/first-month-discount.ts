@@ -5,6 +5,12 @@ export const FIRST_MONTH_COUPON_ID = "aee_first_month_20";
 
 export const FIRST_MONTH_DISCOUNT_LABEL = `${PRO_FIRST_MONTH_DISCOUNT_PERCENT}% off your first month`;
 
+/**
+ * Product line does not offer a percent-off first month.
+ * Coupon id and resolver stay so checkout does not create or attach `aee_first_month_20`.
+ */
+export const FIRST_MONTH_DISCOUNT_ENABLED = false;
+
 type SubLike = {
   status: string;
   plan: string | null;
@@ -32,6 +38,7 @@ export function shouldApplyFirstMonthDiscount(params: {
   /** Explicit promo coupon already selected — do not stack. */
   hasPromoCoupon?: boolean;
 }): boolean {
+  if (!FIRST_MONTH_DISCOUNT_ENABLED) return false;
   if (params.hasPromoCoupon) return false;
   if (params.interval !== "monthly") return false;
   return isEligibleForFirstMonthDiscount(params.sub);

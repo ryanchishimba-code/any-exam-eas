@@ -43,9 +43,9 @@ describe("first-month-discount", () => {
     ).toBe(false);
   });
 
-  it("only applies on monthly without a promo coupon", () => {
+  it("does not attach a first-month percent-off while the promo is disabled", () => {
     const sub = { status: "trialing", plan: "trial", canceledAt: null };
-    expect(shouldApplyFirstMonthDiscount({ interval: "monthly", sub })).toBe(true);
+    expect(shouldApplyFirstMonthDiscount({ interval: "monthly", sub })).toBe(false);
     expect(shouldApplyFirstMonthDiscount({ interval: "yearly", sub })).toBe(false);
     expect(
       shouldApplyFirstMonthDiscount({ interval: "monthly", sub, hasPromoCoupon: true })
