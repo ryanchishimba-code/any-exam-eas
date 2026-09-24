@@ -19,7 +19,9 @@ export default async function FullExamIndexPage({
 
   const sp = await searchParams;
   const qs = new URLSearchParams();
-  qs.set("mode", sp.mode ?? "full");
+  // Do not invent mode=full. An omitted mode must not lock the wheel on a
+  // full-length session after the student picks a sprint.
+  if (sp.mode) qs.set("mode", sp.mode);
   if (sp.autostart) qs.set("autostart", sp.autostart);
   if (sp.timed) qs.set("timed", sp.timed);
   const suffix = qs.toString();

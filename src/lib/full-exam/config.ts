@@ -182,6 +182,47 @@ export function buildSessionConfig(
   };
 }
 
+/**
+ * Wheel selection wins over a deep-link mode. A later render must not put
+ * Full back after the student already chose 50.
+ */
+export function resolveChosenLengthPreset(params: {
+  options: readonly { preset: FullExamLengthPreset }[];
+  chosen?: FullExamLengthPreset | null;
+  initialMode?: string | null;
+  fallback: FullExamLengthPreset;
+}): FullExamLengthPreset {
+  const allowed = new Set(params.options.map((option) => option.preset));
+  if (params.chosen && allowed.has(params.chosen)) return params.chosen;
+  if (params.initialMode) {
+    const fromUrl = parseFullExamLengthPreset(params.initialMode);
+    if (allowed.has(fromUrl)) return fromUrl;
+  }
+  if (allowed.has(params.fallback)) return params.fallback;
+  return params.options[0]?.preset ?? params.fallback;
+}
+
+/**
+ * The question count on the start request wins when it is one of this board's
+ * presets. A stale lengthPreset of "full" cannot widen a 50-question sprint.
+ */
+export function resolveStartLengthPreset(params: {
+  examSlug: ExamSlug;
+  fieldId?: string;
+  lengthPreset?: string | null;
+  questionCount?: number | null;
+}): FullExamLengthPreset {
+  const options = getLengthOptions(params.examSlug, params.fieldId);
+  const count = params.questionCount;
+  if (typeof count === "number" && Number.isFinite(count) && count > 0) {
+    const matched = options.find((option) => option.questionCount === count);
+    if (matched) return matched.preset;
+  }
+  const parsed = parseFullExamLengthPreset(params.lengthPreset);
+  if (options.some((option) => option.preset === parsed)) return parsed;
+  return options[0]?.preset ?? "50";
+}
+
 export function formatMmSs(totalSec: number): string {
   const m = Math.floor(totalSec / 60);
   const s = totalSec % 60;

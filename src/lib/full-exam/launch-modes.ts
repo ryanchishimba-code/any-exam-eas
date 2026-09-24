@@ -5,7 +5,7 @@
 
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
-import { fullExamLaunchHref } from "@/lib/full-exam/config";
+import { fullExamLaunchHref, getLengthOptions } from "@/lib/full-exam/config";
 
 export const FULL_EXAM_LAUNCH_MODES = [
   "new_exam",
@@ -27,6 +27,8 @@ export type FullExamStartBody = {
   examSlug: ExamSlug;
   launchMode: FullExamLaunchMode;
   lengthPreset?: FullExamLengthPreset;
+  /** Count the student selected. Wins over a stale full-length preset. */
+  questionCount?: number;
   timed?: boolean;
   fieldId?: string;
   nclexCat?: boolean;
@@ -40,10 +42,16 @@ export function buildFullExamStartBody(
   launchMode: FullExamLaunchMode,
   opts?: Omit<FullExamStartBody, "examSlug" | "launchMode">
 ): FullExamStartBody {
+  const lengthPreset = opts?.lengthPreset ?? "50";
+  const questionCount =
+    opts?.questionCount ??
+    getLengthOptions(examSlug, opts?.fieldId).find((option) => option.preset === lengthPreset)
+      ?.questionCount;
   return {
     examSlug,
     launchMode,
-    lengthPreset: opts?.lengthPreset ?? "50",
+    lengthPreset,
+    ...(questionCount ? { questionCount } : {}),
     timed: opts?.timed ?? true,
     ...(opts?.fieldId ? { fieldId: opts.fieldId } : {}),
     ...(opts?.nclexCat != null ? { nclexCat: opts.nclexCat } : {}),

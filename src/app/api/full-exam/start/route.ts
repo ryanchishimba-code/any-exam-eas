@@ -3,13 +3,14 @@ import { createExamInstance } from "@/lib/full-exam/exam-instance";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference, touchExamStudied } from "@/lib/edtech/exam-preference";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
-import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
+import {
+  buildSessionConfig,
+  fullExamSessionHref,
+  resolveStartLengthPreset,
+} from "@/lib/full-exam/config";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
-import {
-  parseRequestedLengthPreset,
-  syncSessionConfigQuestionCount,
-} from "@/lib/exam/session-count";
+import { syncSessionConfigQuestionCount } from "@/lib/exam/session-count";
 import { requirePremiumApi } from "@/lib/api-access";
 import { respondDbUnavailable } from "@/lib/api-db-error";
 import { assembleTimedExamSessionItems } from "@/lib/exam-prep/compose/assemble-timed-exam-session";
@@ -41,7 +42,6 @@ export async function POST(req: Request) {
     ? body.launchMode
     : "new_exam";
 
-  const preset = parseRequestedLengthPreset(body.lengthPreset);
   const timed = body.timed !== false;
   const nclexLength =
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
@@ -77,13 +77,26 @@ export async function POST(req: Request) {
             ? meta.usmleFieldId
             : sessionFieldId;
       sessionFieldId = resolvedField;
-      const step = usmleStepDefinition(resolvedField);
+    } else if (requestedField) {
+      sessionFieldId = requestedField;
+    }
+
+    const requestedCount = Number(body.questionCount);
+    const preset = resolveStartLengthPreset({
+      examSlug,
+      fieldId: sessionFieldId,
+      lengthPreset: typeof body.lengthPreset === "string" ? body.lengthPreset : null,
+      questionCount: Number.isFinite(requestedCount) ? requestedCount : null,
+    });
+
+    if (examSlug === "usmle") {
+      const step = usmleStepDefinition(sessionFieldId);
       sessionTitle =
         preset === "100"
           ? `${step?.shortName ?? "USMLE"} Self-Assessment`
-          : `${step?.name ?? "USMLE"} Full Simulation`;
-    } else if (requestedField) {
-      sessionFieldId = requestedField;
+          : preset === "50"
+            ? `${step?.shortName ?? "USMLE"} Timed Sprint`
+            : `${step?.name ?? "USMLE"} Full Simulation`;
     }
 
     const smart = await resolveSmartExamSelection({
@@ -198,10 +211,14 @@ export async function POST(req: Request) {
       excludeSeenApplied = Boolean(assembled.excludeSeenApplied);
     }
 
+    const servedCount = Math.min(clientPayload.questions.length, config.questionCount);
+    const servedQuestions = clientPayload.questions.slice(0, servedCount);
+    const servedBankItemIds = clientPayload.bankItemIds.slice(0, servedCount);
     const sessionConfig = syncSessionConfigQuestionCount(
       config,
       examSlug,
-      clientPayload.questions.length
+      servedQuestions.length,
+      sessionFieldId
     );
 
     const titleSuffix =
@@ -214,12 +231,12 @@ export async function POST(req: Request) {
             : "";
 
     const sessionId = await createExamInstance(premium.userId, examSlug, {
-      questionCount: clientPayload.questions.length,
+      questionCount: servedQuestions.length,
       timeLimitSec: sessionConfig.timed ? sessionConfig.timeLimitSec : null,
       fieldId: sessionFieldId,
       title: `${sessionTitle}${titleSuffix}`,
       sessionConfig,
-      prefetchedQuestionIds: clientPayload.bankItemIds,
+      prefetchedQuestionIds: servedBankItemIds,
       assembleSource,
       launchMode,
       focusAreas,
@@ -230,7 +247,7 @@ export async function POST(req: Request) {
     void touchExamStudied(premium.userId);
     void recordStudyQuestionsServed(
       premium.userId,
-      clientPayload.questions.length,
+      servedQuestions.length,
       "exam_session",
       usageCheck.plan
     );
@@ -239,9 +256,9 @@ export async function POST(req: Request) {
       sessionId,
       redirectUrl: fullExamSessionHref(examSlug, sessionId),
       config: sessionConfig,
-      questions: clientPayload.questions,
-      bankItemIds: clientPayload.bankItemIds,
-      requested: clientPayload.questions.length,
+      questions: servedQuestions,
+      bankItemIds: servedBankItemIds,
+      requested: servedQuestions.length,
       launchMode,
     });
   } catch (e) {
