@@ -32,7 +32,7 @@ The AANP FNP exam is not a trivia bee. It asks whether you can practice as an **
 
 This chapter locks the official numbers, teaches the ADPE habit, gives study plans that respect those weights, and names the traps that quietly sink strong clinicians.
 
-**Pair with practice:** Strategy without questions is sightseeing. After you finish this chapter, start mixed sets and tag every miss with Domain I process + Domain II age band. Soft start on [anyexameasy.com](https://anyexameasy.com) ($27.99/mo after trial; trial terms on site).
+**Pair with practice:** Strategy without questions is sightseeing. After you finish this chapter, start mixed sets and tag every miss with Domain I process + Domain II age band. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**.
 
 ---
 
@@ -246,7 +246,7 @@ Aim for **consistency over hero days**. A smaller set with full rationale review
 
 **Working full-time:** Non-negotiable daily block; weekends for long sets.
 
-> **Ready to practice what you planned?** Explore AANP FNP questions on [AnyExamEasy](https://anyexameasy.com) — start free; $27.99/mo after trial (trial terms on site).
+> **Ready to practice what you planned?** Explore AANP FNP questions on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**.
 
 ---
 
@@ -352,7 +352,7 @@ Practice percentage is **not** an official exam score. Trends matter: better rat
 - AANP/AANPCB-first; ANCC is a separate outline.  
 - Application loop: topic → questions → error log → weak area.
 
-**Soft CTA:** [anyexameasy.com](https://anyexameasy.com) — $27.99/mo after trial; trial terms on site.
+**Soft CTA:** Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
