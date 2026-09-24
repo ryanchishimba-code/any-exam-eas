@@ -2,7 +2,13 @@ import Link from "next/link";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
-import { formatMonthlyPrice, formatTrialCtaLabel, formatTrialLabel, SITE_NAME } from "@/lib/site";
+import {
+  formatMonthlyPrice,
+  formatPricingCheckoutTrialOffer,
+  formatTrialCtaLabel,
+  formatTrialLabel,
+  SITE_NAME,
+} from "@/lib/site";
 import { studyGuideOfferCards, studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
@@ -215,8 +221,7 @@ export default async function FreeGuidesPage() {
         <section className="border-t border-[var(--color-border)] px-6 py-16 sm:py-20">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-base leading-relaxed text-[var(--color-ink-muted)]">
-              Ready to practice? Start a {TRIAL_DAYS}-day no-card trial, then Pro from{" "}
-              {formatMonthlyPrice("pro")}/mo.
+              Ready to practice? {formatPricingCheckoutTrialOffer()}.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>

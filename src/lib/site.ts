@@ -166,23 +166,23 @@ export function formatLandingConversionSubtitle(): string {
 }
 
 export function formatLandingStickyDetail(): string {
-  return `No card · Pro at ${formatMonthlyPrice("pro")}/mo after trial · ${formatTrialLabel()}`;
+  return formatPricingCheckoutTrialOffer();
 }
 
 /** Primary headline for no-payment trial callouts. */
 export const NO_PAYMENT_TRIAL_HEADLINE = "No payment method required";
 
 /** Supporting copy under the headline on prominent callouts. */
-export const NO_PAYMENT_TRIAL_SUBLINE = `Try for free with email — no card, no checkout until you choose to upgrade. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`;
+export const NO_PAYMENT_TRIAL_SUBLINE = `Try for free with email — no payment method required, and no checkout until you choose to upgrade. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`;
 
 /** Short badge label for CTAs and sticky bars. */
-export const NO_PAYMENT_TRIAL_BADGE = "No card required";
+export const NO_PAYMENT_TRIAL_BADGE = "No payment method required";
 
 export const SIGNUP_PAYMENT_REQUIRED_NOTE =
   `No payment required to start. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`;
 
 export function formatTrialPlanDetail(): string {
-  return `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} questions · no card required · upgrade anytime for unlimited access`;
+  return `${formatTrialLabel()} · ${TRIAL_LIFETIME_QUESTIONS} questions · no payment method required · upgrade anytime for unlimited access`;
 }
 
 export function formatTrialCheckoutDescription(): string {

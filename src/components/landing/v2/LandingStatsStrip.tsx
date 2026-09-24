@@ -12,7 +12,7 @@ export function LandingStatsStrip({ bankCounts }: { bankCounts: LandingBankCount
   const stats = [
     { value: total, label: "Active questions" },
     { value: "6 boards", label: "One login" },
-    { value: `${SEO_LIVE_STATS.trialDays}-day`, label: "No-card trial" },
+    { value: `${SEO_LIVE_STATS.trialDays}-day`, label: "Free trial" },
   ] as const;
 
   return (

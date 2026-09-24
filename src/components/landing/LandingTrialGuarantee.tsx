@@ -7,7 +7,7 @@
  * what "free trial" means before they encounter final objections. Three
  * columns cover:
  *   1. What unlocks on day one
- *   2. No charge during trial — no card required
+ *   2. No charge during trial — no payment method required
  *   3. Quality commitment / support guarantee
  */
 
@@ -25,8 +25,8 @@ const PILLARS = [
   },
   {
     icon: Calendar,
-    title: `${TRIAL_DAYS} days to explore — no card required`,
-    body: "Create your account with email. No payment method needed. Upgrade anytime for unlimited questions and Pro features.",
+    title: `${formatTrialLabel()} — no payment method required`,
+    body: "Create your account with email. No payment method required. Upgrade anytime for unlimited questions and Pro features.",
   },
   {
     icon: BadgeCheck,
@@ -62,7 +62,7 @@ export function LandingTrialGuarantee() {
             Try the whole platform free. Cancel any time.
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-            {formatTrialQuestionLimit()} — no payment required to start.{" "}
+            {formatTrialQuestionLimit()} — no payment method required to start.{" "}
             <strong className="font-semibold text-[var(--color-ink)]">
               Upgrade anytime for unlimited access.
             </strong>

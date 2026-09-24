@@ -15,7 +15,7 @@ import {
 } from "@/lib/demo/qotd";
 import { landingTrialHrefForExam } from "@/lib/landing/content";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
-import { formatTrialCtaLabel } from "@/lib/site";
+import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -166,7 +166,7 @@ export function QotdPractice({
         >
           Explore {examName} prep →
         </Link>
-        <p className="aee-qotd__cta-meta">{formatTrialCtaLabel()} · no card required</p>
+        <p className="aee-qotd__cta-meta">{formatPricingCheckoutTrialOffer()}</p>
       </div>
 
       <div className="aee-qotd__share">

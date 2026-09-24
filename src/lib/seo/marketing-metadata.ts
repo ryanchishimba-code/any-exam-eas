@@ -18,7 +18,13 @@ import {
   getSiteUrl,
 } from "@/lib/seo";
 import { LEGAL_ENTITY } from "@/lib/legal";
-import { SITE_NAME, formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
+import {
+  SITE_NAME,
+  formatMonthlyPrice,
+  formatPricingCheckoutTrialOffer,
+  formatTrialLabel,
+  formatTrialQuestionLimit,
+} from "@/lib/site";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
 import { TRIAL_DAYS } from "@/lib/billing-config";
@@ -266,7 +272,7 @@ export function buildExamJsonLd(key: ExamSeoKey) {
           "@type": "Offer",
           price: TIER_MONTHLY_USD.pro.toFixed(2),
           priceCurrency: "USD",
-          description: `${formatTrialLabel()} · Pro at ${formatMonthlyPrice("pro")}/mo`,
+          description: formatPricingCheckoutTrialOffer(),
           url: absoluteUrl("/signup?plan=trial&tier=pro"),
         },
       },
@@ -395,7 +401,7 @@ export function buildPricingJsonLd() {
             name: "What is included in the free trial?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: `${formatTrialLabel()} with ${formatTrialQuestionLimit()} across all six board exams — no payment required.`,
+              text: `${formatTrialLabel()} with ${formatTrialQuestionLimit()} across all six board exams — no payment method required.`,
             },
           },
         ],

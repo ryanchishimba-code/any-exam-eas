@@ -22,6 +22,10 @@ test.describe("Landing page", () => {
     await expect(page.getByText(/prisca m\.|gerard n\./i)).toHaveCount(0);
     await expect(page.getByRole("heading", { name: /roadmap\. deep dive\. sample ngn/i })).toBeVisible();
     await expect(
+      page.getByText(/5-day free trial · no payment method required · then/i).first()
+    ).toBeVisible();
+    await expect(page.getByText(/\bno[- ]card\b/i)).toHaveCount(0);
+    await expect(
       page.getByRole("navigation", { name: /main navigation/i }).locator('a[href="/pricing"]')
     ).toHaveCount(1);
   });
@@ -49,7 +53,10 @@ test.describe("Landing page", () => {
     await page.goto("/naplex", { waitUntil: "domcontentloaded" });
     await expect(page.locator('[data-exam-hero="naplex"]')).toBeVisible();
     await expect(page.getByText(/active NAPLEX questions/i)).toBeVisible();
-    await expect(page.getByText(/5-day free trial · no card · then/i).first()).toBeVisible();
+    await expect(
+      page.getByText(/5-day free trial · no payment method required · then/i).first()
+    ).toBeVisible();
+    await expect(page.getByText(/\bno[- ]card\b/i)).toHaveCount(0);
   });
 
   test("signup CTA uses brand teal", async ({ page }) => {

@@ -175,7 +175,7 @@ export const LANDING_HERO_HEADLINE_ACCENT = "";
 
 /** Hero sub-headline — six-board truth + offer; exam list lives in chips. */
 export const LANDING_HERO_SUBLINE_BODY =
-  `One login · six boards · ${monthly()}/mo after a ${TRIAL_DAYS}-day no-card trial.`;
+  `One login · six boards · ${TRIAL_DAYS}-day free trial · no payment method required · then ${monthly()}/mo.`;
 
 export function formatFlagshipHeroSubline(_totalLabel?: string): string {
   return LANDING_HERO_SUBLINE_BODY;
@@ -268,14 +268,17 @@ export function formatExamHeroCountLine(countLabel?: string): string | null {
   return formatHeroTotalCountLine(countLabel);
 }
 
-/** Short reassurance directly under the primary hero CTA. */
-export const LANDING_HERO_CTA_DISCLOSURE =
-  `No card · ${monthly()}/mo after trial · ${TRIAL_DAYS}-day trial`;
-
-/** Campus / exam-hub ATF offer — louder than the homepage meta whisper. */
+/**
+ * Campus / exam-hub ATF offer.
+ * Must stay identical to `formatPricingCheckoutTrialOffer` in site.ts.
+ * Kept local to avoid a circular import with site.ts.
+ */
 export function formatExamHeroTrialOffer(): string {
-  return `${TRIAL_DAYS}-day free trial · no card · then ${monthly()}/mo`;
+  return `${TRIAL_DAYS}-day free trial · no payment method required · then ${monthly()}/mo`;
 }
+
+/** Short reassurance directly under the primary hero CTA. */
+export const LANDING_HERO_CTA_DISCLOSURE = formatExamHeroTrialOffer();
 
 /** Longer trial detail for pricing / final CTA (not the hero ATF). */
 export const LANDING_TRIAL_DETAIL =
@@ -580,7 +583,7 @@ export const LANDING_PASS_STATS = [
   {
     value: `${TRIAL_DAYS} days`,
     label: "Free trial",
-    detail: `${TRIAL_LIFETIME_QUESTIONS} practice questions across every exam — no card required`,
+    detail: `${TRIAL_LIFETIME_QUESTIONS} practice questions across every exam — no payment method required`,
   },
   { value: "Roadmap", label: "Per-exam study plan", detail: "Blueprint-aligned — integrated, not QBank-only" },
 ] as const;

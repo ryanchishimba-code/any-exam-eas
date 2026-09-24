@@ -69,6 +69,8 @@ describe("meta-budget helpers", () => {
     const clamped = clampMetaDescription(short);
     expect(clamped.length).toBeGreaterThanOrEqual(SEO_DESC_MIN);
     expect(clamped.length).toBeLessThanOrEqual(SEO_DESC_MAX);
+    expect(clamped).not.toMatch(/no card/i);
+    expect(clamped).not.toMatch(/credit card/i);
 
     const long = "x".repeat(220);
     expect(fitMetaDescription([long], SEO_DESC_MAX).length).toBeLessThanOrEqual(SEO_DESC_MAX);
@@ -111,6 +113,8 @@ describe("public marketing metadata budgets", () => {
         validateMetaDescription(description),
         `${label} description length ${description.length}: ${description}`
       ).toBeNull();
+      expect(description, `${label} description`).not.toMatch(/no card/i);
+      expect(description, `${label} description`).not.toMatch(/\b5 days free\b/i);
 
       expect(meta.openGraph?.title ?? title).toBe(title);
       expect(meta.openGraph?.description ?? description).toBe(description);

@@ -16,6 +16,7 @@ import {
   formatExactServeReadyCount,
   getPublishedQuestionStats,
 } from "@/lib/marketing/bank-stats";
+import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 describe("homepage hero copy", () => {
   it("defaults to an NCLEX-specific job with a six-board offer subline", () => {
@@ -25,6 +26,9 @@ describe("homepage hero copy", () => {
     expect(LANDING_HERO_SUBLINE_BODY).toMatch(/one login/i);
     expect(LANDING_HERO_SUBLINE_BODY).toMatch(/six boards/i);
     expect(LANDING_HERO_SUBLINE_BODY).toMatch(/27\.99/);
+    expect(LANDING_HERO_SUBLINE_BODY).toMatch(/no payment method required/i);
+    expect(LANDING_HERO_SUBLINE_BODY).not.toMatch(/no card/i);
+    expect(LANDING_HERO_SUBLINE_BODY).not.toMatch(/5 days free/i);
     expect(LANDING_HERO_SUBLINE_BODY).not.toMatch(/rent money/i);
   });
 
@@ -53,7 +57,11 @@ describe("homepage hero copy", () => {
         formatExactServeReadyCount(published.perBoard.nclex)
       )
     ).toBe("8,327 active NCLEX questions");
-    expect(formatExamHeroTrialOffer()).toBe("5-day free trial · no card · then $27.99/mo");
+    expect(formatExamHeroTrialOffer()).toBe(
+      "5-day free trial · no payment method required · then $27.99/mo"
+    );
+    expect(formatExamHeroTrialOffer()).toBe(formatPricingCheckoutTrialOffer());
+    expect(formatExamHeroTrialOffer()).not.toMatch(/no card/i);
   });
 
   it("does not ship invented student testimonials as a static fallback", () => {

@@ -30,7 +30,7 @@ import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
 import {
   formatMonthlyPrice,
-  formatTrialLabel,
+  formatPricingCheckoutTrialOffer,
   MARKETING_DISCLAIMER,
   TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
@@ -95,7 +95,7 @@ export function LandingFlagshipV2({
               </h2>
               <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
                 Pro at {formatMonthlyPrice("pro")}/mo for all six boards. Roadmap → Deep Dive →
-                Full Exam. {formatTrialLabel()} · no card · cancel anytime.
+                Full Exam. {formatPricingCheckoutTrialOffer()}. Cancel anytime.
               </p>
             </div>
             <div className="mt-10">

@@ -18,7 +18,7 @@ const TRUST_PILLARS = [
   {
     icon: BadgeCheck,
     label: formatTrialLabel(),
-    detail: `No card. Try a free sample, then decide if Pro is worth ${formatMonthlyPrice("pro")}/mo.`,
+    detail: `No payment method required. Try a free sample, then decide if Pro is worth ${formatMonthlyPrice("pro")}/mo.`,
   },
 ] as const;
 
@@ -44,8 +44,8 @@ export function LandingClinicianTrust() {
               A study product with a named company behind it.
             </h2>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              {COMPANY_PUBLIC.productName} is built in Texas. We publish live bank counts, a
-              no-card trial, and a compare table — not invented pass rates.
+              {COMPANY_PUBLIC.productName} is built in Texas. We publish live bank counts, a{" "}
+              {formatTrialLabel()}, and a compare table — not invented pass rates.
             </p>
           </div>
           <Link

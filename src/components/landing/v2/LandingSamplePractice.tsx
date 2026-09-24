@@ -16,7 +16,7 @@ import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSele
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLandingMcqSample } from "@/lib/demo/landing-samples";
 import { analytics } from "@/lib/analytics";
-import { formatTrialCtaLabel } from "@/lib/site";
+import { formatPricingCheckoutTrialOffer, formatTrialLabel } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -251,7 +251,7 @@ export function LandingHeroPractice() {
           >
             Start {examName} free trial
           </LandingCta>
-          <p className="aee-hero-practice__meta">{formatTrialCtaLabel()} · no card required</p>
+          <p className="aee-hero-practice__meta">{formatPricingCheckoutTrialOffer()}</p>
         </div>
       </div>
     </div>
@@ -262,7 +262,7 @@ export function LandingHeroPractice() {
 export function LandingSampleProof() {
   return (
     <p className="aee-landing-sample-proof">
-      Same interactive player as Study Hub — answer above, then start free with no card.
+      Same interactive player as Study Hub — answer above, then start a {formatTrialLabel()}. No payment method required.
     </p>
   );
 }
