@@ -57,7 +57,7 @@ export function SavingsBreakdownCard({
         <TrendingDown className="h-4 w-4 text-emerald-700" strokeWidth={2.5} aria-hidden />
         <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold text-emerald-900">
-            You save {formatPlanUsd(savings)} ({plan.savingsPercent}% off)
+            You save {formatPlanUsd(savings)}
           </p>
           {isPricing && (
             <p className="mt-0.5 text-xs text-emerald-800">

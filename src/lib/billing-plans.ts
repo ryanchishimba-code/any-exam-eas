@@ -18,8 +18,6 @@ export type BillingPlanTier = {
   savingsPercent: number;
   totalUsd: number;
   monthlyEquivalentUsd: number;
-  /** e.g. "Save 30%" — empty for monthly */
-  savingsBadge: string | null;
   recommended: boolean;
 };
 
@@ -135,7 +133,6 @@ export function getBillingPlanTier(
     savingsPercent,
     totalUsd: intervalTotalUsd(tier, interval),
     monthlyEquivalentUsd: intervalMonthlyEquivalent(tier, interval),
-    savingsBadge: savingsPercent > 0 ? `Save ${savingsPercent}%` : null,
     recommended: interval === "yearly",
   };
 }
@@ -176,6 +173,5 @@ export function formatTierPricingSummary(tier: SubscriptionTier): string {
   const q = formatApproxUsd(intervalTotalUsd(tier, "quarterly"));
   const s = formatApproxUsd(intervalTotalUsd(tier, "semiannual"));
   const y = formatPlanUsd(intervalTotalUsd(tier, "yearly"));
-  const ySave = intervalEffectiveSavingsPercent(tier, "yearly");
-  return `${monthly}/mo · 3mo ≈ ${q} · 6mo ≈ ${s} · 12mo ${y} (save ${ySave}%)`;
+  return `${monthly}/mo · 3mo ≈ ${q} · 6mo ≈ ${s} · 12mo ${y}`;
 }

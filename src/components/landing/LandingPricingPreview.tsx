@@ -53,9 +53,6 @@ function PreviewProCard({ interval }: { interval: BillingInterval }) {
             {interval === "monthly" ? "/mo" : `/${plan.shortLabel}`}
           </span>
         </p>
-        {plan.savingsBadge ? (
-          <p className="aee-landing-pricing-card__savings">{plan.savingsBadge}</p>
-        ) : null}
         {interval !== "monthly" ? (
           <p className="aee-landing-pricing-card__equiv">
             ≈ {formatPlanUsd(plan.monthlyEquivalentUsd)}/mo
@@ -130,9 +127,6 @@ export function LandingPricingPreview() {
                 <tr key={dur} className={dur === interval ? "is-active" : undefined}>
                   <td>
                     {pro.label}
-                    {pro.savingsBadge ? (
-                      <span className="aee-landing-pricing__save">{pro.savingsBadge}</span>
-                    ) : null}
                   </td>
                   <td>{formatPlanUsd(pro.totalUsd)}</td>
                 </tr>
