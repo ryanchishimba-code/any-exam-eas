@@ -113,10 +113,12 @@ export default async function QuestionBankPage({
       const eligible =
         style === "review_incorrect"
           ? (
+              // Empty only when the whole board queue is empty. A launcher
+              // topic in the URL must not hide a miss stored on another topic.
               await loadStillIncorrectBankItemIds({
                 userId: session.user.id,
                 fieldId: route.fieldParam,
-                subjectId,
+                subjectId: null,
                 limit: 1,
               })
             ).length

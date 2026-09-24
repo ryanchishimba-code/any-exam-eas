@@ -17,8 +17,31 @@ import {
   type MasteryAttempt,
   type MasteryMark,
 } from "@/lib/learning/item-mastery";
+import { normalizeFieldId } from "@/lib/subjects/field-ids";
 
 const REVIEW_QUEUE_CAP = 300;
+
+/**
+ * Stored attempt field ids that are the same practice board.
+ * Includes the raw request (NAPLEX label or naplex slug) and the canonical id
+ * (pharmacy). MPJE is not folded into PANCE.
+ */
+const REVIEW_FIELD_SYNONYMS: Record<string, readonly string[]> = {
+  pharmacy: ["pharmacy", "naplex"],
+  nursing: ["nursing", "nclex", "nclex-rn", "nclex-ngn"],
+  pance: ["pance", "pa", "physician-assistant"],
+  "aanp-fnp": ["aanp-fnp", "fnp", "family-nurse-practitioner"],
+  "npte-pt": ["npte-pt", "npte", "pt", "physical-therapy"],
+};
+
+export function reviewFieldIdsForQuery(fieldId: string | null | undefined): string[] {
+  const trimmed = fieldId?.trim() ?? "";
+  if (!trimmed) return [];
+  const canonical = normalizeFieldId(trimmed);
+  const ids = new Set<string>([trimmed, canonical]);
+  for (const alias of REVIEW_FIELD_SYNONYMS[canonical] ?? []) ids.add(alias);
+  return [...ids];
+}
 
 export function unscopedReviewSubject(subjectId: string | null | undefined): boolean {
   const subject = subjectId?.trim() ?? "";

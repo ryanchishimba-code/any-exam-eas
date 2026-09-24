@@ -1,7 +1,11 @@
 import { filterBankRowsForPracticeField } from "@/lib/edtech/exam-item-scope";
 import { selectReviewQueueIds } from "@/lib/learning/item-mastery";
-import { selectLaunchReviewQueueIds } from "@/lib/learning/review-queue-launch";
+import {
+  reviewFieldIdsForQuery,
+  selectLaunchReviewQueueIds,
+} from "@/lib/learning/review-queue-launch";
 import { prisma } from "@/lib/prisma";
+import { normalizeFieldId } from "@/lib/subjects/field-ids";
 
 /**
  * Bank rows Review incorrect can actually start: active, qaPassed, and in the
@@ -39,10 +43,14 @@ export async function loadStillIncorrectBankItemIds(params: {
   subjectId?: string | null;
   limit?: number;
 }): Promise<string[]> {
+  const fieldIds = reviewFieldIdsForQuery(params.fieldId);
+  if (fieldIds.length === 0) return [];
+  const canonicalFieldId = normalizeFieldId(params.fieldId.trim());
+
   const anyMiss = await prisma.questionAttempt.findFirst({
     where: {
       userId: params.userId,
-      fieldId: params.fieldId,
+      fieldId: { in: fieldIds },
       correct: false,
     },
     select: { id: true },
@@ -51,7 +59,7 @@ export async function loadStillIncorrectBankItemIds(params: {
 
   const [attempts, marks] = await Promise.all([
     prisma.questionAttempt.findMany({
-      where: { userId: params.userId, fieldId: params.fieldId },
+      where: { userId: params.userId, fieldId: { in: fieldIds } },
       select: {
         bankItemId: true,
         questionKey: true,
@@ -63,13 +71,13 @@ export async function loadStillIncorrectBankItemIds(params: {
       orderBy: { createdAt: "asc" },
     }),
     prisma.remediationMasteryMark.findMany({
-      where: { userId: params.userId, fieldId: params.fieldId },
+      where: { userId: params.userId, fieldId: { in: fieldIds } },
       select: { itemId: true, confirmedAt: true },
     }),
   ]);
 
   const openIds = selectReviewQueueIds({ attempts, marks, limit: 300 });
-  const servableIds = await loadServableReviewBankIds(params.fieldId, openIds);
+  const servableIds = await loadServableReviewBankIds(canonicalFieldId, openIds);
   return selectLaunchReviewQueueIds({
     attempts,
     marks,
