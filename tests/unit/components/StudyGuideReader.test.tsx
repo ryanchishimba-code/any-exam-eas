@@ -162,6 +162,37 @@ describe("StudyGuideReader", () => {
     expect(screen.getAllByText("Cardiac").length).toBeGreaterThan(0);
   });
 
+  it("lifts the front-matter trial sentence above the disclaimer", () => {
+    const { container } = renderReader(
+      makeChapter({
+        slug: "front-matter",
+        title: "AnyExamEasy NCLEX Reference Book",
+        bodyHtml: [
+          '<figure class="sg-figure"><img src="/nclex-study-guide/visuals/nclex-book-cover.jpg" alt="AnyExamEasy NCLEX Reference Book cover" /><figcaption>AnyExamEasy NCLEX Reference Book cover</figcaption></figure>',
+          '<h1 id="t">AnyExamEasy NCLEX Reference Book</h1>',
+          "<p><strong>Subtitle:</strong> Pass-Focused</p>",
+          "<p><strong>For:</strong> NCLEX-RN and NCLEX-PN candidates</p>",
+          '<h2 id="study-aid-disclaimer-read-this">Study-aid disclaimer (read this)</h2>',
+          "<p>Not medical advice.</p>",
+          '<h2 id="how-to-use-this-book">How to use this book</h2>',
+          "<ol><li>Start with Part I.</li></ol>",
+          '<h2 id="pairing-with-anyexameasy-qbank">Pairing with AnyExamEasy Qbank</h2>',
+          "<table><tbody><tr><td>Book</td><td>Qbank</td></tr></tbody></table>",
+          "<p><strong>Soft CTA:</strong> Start a <strong>5-day free trial</strong> — no payment method. Then Pro at <strong>$27.99/mo</strong>.</p>",
+        ].join(""),
+      })
+    );
+    const prose = container.querySelector(".sg-prose");
+    expect(prose?.querySelector(".sg-front-spread")).toBeTruthy();
+    expect(prose?.querySelector(".sg-cover")).toBeTruthy();
+    expect(prose?.querySelector(".sg-offer")).toHaveTextContent("$27.99/mo");
+    expect(prose?.querySelector(".sg-offer")).toHaveTextContent("no payment method");
+    const html = prose?.innerHTML ?? "";
+    expect(html.indexOf("5-day free trial")).toBeLessThan(html.indexOf("Pairing with AnyExamEasy"));
+    expect(html.indexOf("How to use this book")).toBeLessThan(html.indexOf("Study-aid disclaimer"));
+    expect(container.querySelector("article.sg-paper")).toHaveClass("sg-paper--opening");
+  });
+
   it("scrolls the chapter column, not a nested paper card", () => {
     const { container } = renderReader(
       makeChapter({
