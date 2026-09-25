@@ -12,10 +12,11 @@
  * large, and the Qbank count has to stay on the indexed serve filter.
  */
 import type { ExamRouteSlug } from "@/lib/routes";
-import { withDbRetry, sql } from "@/lib/db";
+import { withDbRetry, sqlQuery } from "@/lib/db";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { blueprintCategoryIdForQuestion } from "@/lib/inventory/blueprint-domain-pool";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
+import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 
 export const ACTIVE_QUESTION_DEFINITION =
   "Active means published and not retired: unique questions still available to practice. Drafts, retired items, memory cards, and library case sets are not included.";
@@ -371,7 +372,8 @@ function normalizeDbRow(row: DbInventoryRow): ActiveInventoryRow {
 }
 
 async function queryActiveInventoryRows(): Promise<DbInventoryRow[]> {
-  const rows = await sql`
+  const rows = await sqlQuery(
+    `
     SELECT
       "fieldId",
       "subjectId",
@@ -393,8 +395,11 @@ async function queryActiveInventoryRows(): Promise<DbInventoryRow[]> {
         'npte-pt'
       )
       AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${studentEligibleAndSql()}
     GROUP BY 1, 2, 3, 4
-  `;
+    `,
+    []
+  );
   return rows as DbInventoryRow[];
 }
 

@@ -463,6 +463,7 @@
     "test:qa:aanp-fnp": "vitest run src/lib/exam-prep/aanp-fnp/blueprint-quota.test.ts src/lib/exam-prep/aanp-fnp/blueprint-topics-2026.test.ts src/lib/exam-prep/aanp-fnp/vignette-repair.test.ts src/lib/exam-prep/aanp-fnp/hybrid-gate.test.ts src/lib/exam-prep/aanp-fnp/clinical-gate-prompt.test.ts src/lib/exam-prep/aanp-fnp/study-links.test.ts src/lib/exam-prep/aanp-fnp/figure-assets.test.ts src/lib/exam-prep/aanp-fnp/format-mix.test.ts src/lib/exam-prep/aanp-fnp/study-presets.test.ts src/lib/exam-prep/aanp-fnp-serve-gate.test.ts src/lib/edtech/practice-link-integrity.test.ts",
     "test:qa:pance": "vitest run src/lib/exam-prep/pance/physician-educator-quality.test.ts src/lib/exam-prep/pance/blueprint-quota.test.ts",
     "db:audit-item-qa": "bash scripts/run-with-node.sh npx tsx scripts/audit-item-qa.ts",
+    "db:student-eligibility": "bash scripts/run-with-node.sh npx tsx scripts/backfill-student-eligibility.ts",
     "db:retire-near-duplicates": "bash scripts/run-with-node.sh npx tsx scripts/retire-near-duplicates.ts",
     "db:remediate-text-flags": "bash scripts/run-with-node.sh npx tsx scripts/remediate-text-flags.ts",
     "db:propose-governing-principles": "bash scripts/run-with-node.sh npx tsx scripts/propose-governing-principles.ts",

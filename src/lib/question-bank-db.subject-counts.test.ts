@@ -61,6 +61,15 @@ const { DATA, matchWhere, neonSql } = vi.hoisted(() => {
     });
   }
 
+  function eligibleRows(fieldId: string, subjectId: string | null, excludeStep3: boolean) {
+    return DATA.filter((row) => {
+      if (row.fieldId !== fieldId || !row.active || !row.qaPassed) return false;
+      if (excludeStep3 && row.stepLevel === "step3") return false;
+      if (subjectId && row.subjectId !== subjectId) return false;
+      return true;
+    });
+  }
+
   /** Mimic Neon HTTP bulk count for the SQL shapes used by getSubjectServedCounts. */
   async function neonSql(
     strings: TemplateStringsArray,
@@ -70,15 +79,26 @@ const { DATA, matchWhere, neonSql } = vi.hoisted(() => {
     const sqlText = strings.join("?");
     const excludeStep3 = sqlText.includes("step3");
     const groups = new Map<string, number>();
-    for (const r of DATA) {
-      if (r.fieldId !== fieldId || !r.active || !r.qaPassed) continue;
-      if (excludeStep3 && r.stepLevel === "step3") continue;
-      groups.set(r.subjectId, (groups.get(r.subjectId) ?? 0) + 1);
+    for (const row of eligibleRows(fieldId, null, excludeStep3)) {
+      groups.set(row.subjectId, (groups.get(row.subjectId) ?? 0) + 1);
     }
     return [...groups.entries()].map(([subjectId, count]) => ({ subjectId, count }));
   }
 
-  return { DATA, matchWhere, neonSql };
+  async function query(text: string, params: unknown[] = []) {
+    const fieldId = String(params[0] ?? "");
+    const subjectId = params.length > 1 ? String(params[1]) : null;
+    const excludeStep3 = text.includes("step3");
+    const rows = eligibleRows(fieldId, subjectId, excludeStep3);
+    if (text.includes("GROUP BY")) {
+      const groups = new Map<string, number>();
+      for (const row of rows) groups.set(row.subjectId, (groups.get(row.subjectId) ?? 0) + 1);
+      return [...groups.entries()].map(([subjectId, count]) => ({ subjectId, count }));
+    }
+    return [{ count: rows.length }];
+  }
+
+  return { DATA, matchWhere, neonSql: Object.assign(neonSql, { query }) };
 });
 
 vi.mock("@/lib/prisma", () => ({
@@ -106,6 +126,7 @@ vi.mock("@/lib/prisma", () => ({
 
 vi.mock("@/lib/db", () => ({
   sql: neonSql,
+  sqlQuery: (text: string, params?: unknown[]) => neonSql.query(text, params),
   getSql: () => neonSql,
   withDbRetry: async <T>(fn: () => Promise<T>) => fn(),
   getNeonSql: () => neonSql,

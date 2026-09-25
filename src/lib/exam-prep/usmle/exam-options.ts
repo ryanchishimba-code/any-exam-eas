@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { ACTIVE_INVENTORY_CACHE_TAG } from "@/lib/inventory/active-inventory-cache";
-import { prisma } from "@/lib/prisma";
+import { sqlQuery } from "@/lib/db";
+import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 import { ROUTES } from "@/lib/routes";
 import { USMLE_FIELD_IDS, USMLE_STEPS, type UsmleFieldId } from "./steps";
 import type { UsmleStepLevel } from "./types";
@@ -9,10 +10,8 @@ import type { UsmleStepLevel } from "./types";
  * USMLE exam (step) selection options with LIVE, accurate question counts.
  *
  * Questions are already separated by `fieldId` (`usmle-step-1/2/3`) and indexed
- * via `@@index([fieldId, active, qaPassed])`, so counting is a single cheap
- * `groupBy` — we never load the questions themselves. Counts use the same serve
- * filter as the rest of the app (`active && qaPassed`) so the number shown equals
- * what a learner can actually practice.
+ * Counts use the student-eligible serve rule (`active`, `qaPassed`, and the
+ * structural predicate) so the number shown equals what a learner can practice.
  *
  * Designed to extend to other multi-exam families later (e.g. COMLEX) by adding
  * a sibling builder that maps its field ids to option metadata.
@@ -77,26 +76,26 @@ const STEP_DIFFICULTY: Record<UsmleStepLevel, ExamDifficulty> = {
  * the Qbank does not serve them, so they are not active inventory.
  */
 async function fetchUsmleServedCounts(): Promise<Record<UsmleStepLevel, number>> {
-  const rows = await prisma.questionBankItem.groupBy({
-    by: ["fieldId", "stepLevel"],
-    where: {
-      fieldId: { in: [...USMLE_FIELD_IDS] },
-      active: true,
-      qaPassed: true,
-    },
-    _count: { _all: true },
-  });
+  const rows = (await sqlQuery(
+    `
+    SELECT "fieldId", COUNT(*)::int AS count
+    FROM "QuestionBankItem"
+    WHERE active = true
+      AND "qaPassed" = true
+      AND "fieldId" = ANY($1::text[])
+      AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${studentEligibleAndSql()}
+    GROUP BY "fieldId"
+    `,
+    [[...USMLE_FIELD_IDS]]
+  )) as Array<{ fieldId: string; count: number }>;
 
   const counts: Record<UsmleStepLevel, number> = { step1: 0, step2: 0, step3: 0 };
   for (const row of rows) {
-    const n = row._count._all;
-    if (row.fieldId === "usmle-step-1") {
-      counts.step1 += n;
-    } else if (row.fieldId === "usmle-step-3") {
-      counts.step3 += n;
-    } else if (row.fieldId === "usmle-step-2" && row.stepLevel !== "step3") {
-      counts.step2 += n;
-    }
+    const n = Number(row.count) || 0;
+    if (row.fieldId === "usmle-step-1") counts.step1 += n;
+    else if (row.fieldId === "usmle-step-3") counts.step3 += n;
+    else if (row.fieldId === "usmle-step-2") counts.step2 += n;
   }
   return counts;
 }

@@ -16,6 +16,10 @@ const state = vi.hoisted(() => ({
 const openIds = Array.from({ length: 41 }, (_, i) => `miss-${i}`);
 const newIds = Array.from({ length: 40 }, (_, i) => `new-${i}`);
 
+vi.mock("@/lib/exam-prep/student-eligibility", () => ({
+  ineligibleServedIds: vi.fn(async () => []),
+}));
+
 vi.mock("@/lib/learning/review-incorrect", () => ({
   loadStillIncorrectBankItemIds: vi.fn(async () => openIds),
   loadServableReviewBankIds: vi.fn(async (_field: string, ids: string[]) => new Set(ids)),

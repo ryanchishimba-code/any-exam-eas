@@ -2,9 +2,8 @@
  * Load curated NPTE-PT full-length practice exam presets from the database.
  */
 import { prisma } from "@/lib/prisma";
-import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import type { BankItem } from "@/lib/question-bank";
-import { nptePtItemPassesTimedExamGate } from "@/lib/exam-prep/npte-pt-serve-gate";
+import { assembleEligibleExamItems, type PresetExamLink } from "@/lib/exam-prep/preset-exam-serve";
 
 export type NptePtPresetExamSummary = {
   examNumber: number;
@@ -52,7 +51,6 @@ export async function loadNptePtPresetExamItems(
     where: { examNumber, active: true },
     include: {
       questions: {
-        where: { question: { active: true, qaPassed: true } },
         orderBy: { sortOrder: "asc" },
         include: { question: true },
       },
@@ -60,31 +58,28 @@ export async function loadNptePtPresetExamItems(
   });
 
   if (!exam || exam.questions.length === 0) return null;
-  if (!nptePtPresetExamIsServeReady(exam.questions.length, exam.questionCount)) return null;
 
-  const items: BankItem[] = [];
-  for (const link of exam.questions) {
-    const item = enrichBankItemFromRow(link.question);
-    item.id = link.question.id;
-    item.source = link.question.source ?? undefined;
-    if (!nptePtItemPassesTimedExamGate(item)) continue;
-    items.push(item);
-  }
-
-  if (!nptePtPresetExamIsServeReady(items.length, exam.questionCount)) return null;
+  const assembled = await assembleEligibleExamItems({
+    fieldId: "npte-pt",
+    questionCount: exam.questionCount,
+    links: exam.questions.map((link) => ({
+      sortOrder: link.sortOrder,
+      areaKey: link.contentCategory || link.question.blueprintDomain || link.question.subjectId,
+      question: link.question as PresetExamLink["question"],
+    })),
+  });
+  if (!assembled) return null;
 
   return {
     exam: {
       examNumber: exam.examNumber,
       title: exam.title,
-      questionCount: items.length,
-      linkedCount: items.length,
+      questionCount: exam.questionCount,
+      linkedCount: assembled.items.length,
       blueprintSummary: exam.blueprintSummary as Record<string, number> | null,
       taskSummary: exam.taskSummary as Record<string, number> | null,
-      qaPassed:
-        exam.qaPassed ||
-        nptePtPresetExamIsServeReady(items.length, exam.questionCount),
+      qaPassed: exam.qaPassed,
     },
-    items,
+    items: assembled.items,
   };
 }

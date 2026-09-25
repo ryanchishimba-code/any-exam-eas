@@ -8,8 +8,9 @@
  * Draft-only edits stay out of the filter, so they do not rebuild the snapshot.
  */
 import { cacheGetOrSet, cacheKey, type CacheResilienceOptions } from "@/lib/cache";
-import { sql } from "@/lib/db";
+import { sqlQuery } from "@/lib/db";
 import { INVENTORY_FIELD_IDS } from "@/lib/inventory/active-questions";
+import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 
 export type ActiveInventoryStamp = {
   /** Rows the Qbank and marketing count as active. */
@@ -66,7 +67,8 @@ export async function readActiveInventoryStampKey(): Promise<string | null> {
 
 /** Uncached. Callers use the key so a skipped cron purge cannot serve the old total. */
 export async function fetchActiveInventoryStamp(): Promise<ActiveInventoryStamp> {
-  const rows = await sql`
+  const rows = await sqlQuery(
+    `
     SELECT
       COUNT(*)::int AS published,
       MAX("updatedAt") AS "touchedAt"
@@ -84,7 +86,10 @@ export async function fetchActiveInventoryStamp(): Promise<ActiveInventoryStamp>
         'npte-pt'
       )
       AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
-  `;
+      ${studentEligibleAndSql()}
+    `,
+    []
+  );
   const row = Array.isArray(rows) ? rows[0] : null;
   return normalizeActiveInventoryStampRow(
     row as { published?: unknown; touchedAt?: unknown } | null

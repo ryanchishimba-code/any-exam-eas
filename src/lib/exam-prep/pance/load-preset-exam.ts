@@ -2,9 +2,8 @@
  * Load curated PANCE full-length practice exam presets from the database.
  */
 import { prisma } from "@/lib/prisma";
-import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import type { BankItem } from "@/lib/question-bank";
-import { usmleBankItemPassesStructuralGate } from "@/lib/exam-prep/usmle-clinical-gate";
+import { assembleEligibleExamItems, type PresetExamLink } from "@/lib/exam-prep/preset-exam-serve";
 
 export type PancePresetExamSummary = {
   examNumber: number;
@@ -50,7 +49,6 @@ export async function loadPancePresetExamItems(
     where: { examNumber, active: true },
     include: {
       questions: {
-        where: { question: { active: true, qaPassed: true } },
         orderBy: { sortOrder: "asc" },
         include: { question: true },
       },
@@ -58,29 +56,27 @@ export async function loadPancePresetExamItems(
   });
 
   if (!exam || exam.questions.length === 0) return null;
-  if (!pancePresetExamIsServeReady(exam.questions.length, exam.questionCount)) return null;
 
-  const items: BankItem[] = [];
-  for (const link of exam.questions) {
-    const item = enrichBankItemFromRow(link.question);
-    item.id = link.question.id;
-    item.source = link.question.source ?? undefined;
-    if (!usmleBankItemPassesStructuralGate(item, FIELD_ID)) continue;
-    items.push(item);
-  }
-
-  if (!pancePresetExamIsServeReady(items.length, exam.questionCount)) return null;
+  const assembled = await assembleEligibleExamItems({
+    fieldId: FIELD_ID,
+    questionCount: exam.questionCount,
+    links: exam.questions.map((link) => ({
+      sortOrder: link.sortOrder,
+      areaKey: link.contentCategory || link.question.blueprintDomain || link.question.subjectId,
+      question: link.question as PresetExamLink["question"],
+    })),
+  });
+  if (!assembled) return null;
 
   return {
     exam: {
       examNumber: exam.examNumber,
       title: exam.title,
-      questionCount: items.length,
-      linkedCount: items.length,
+      questionCount: exam.questionCount,
+      linkedCount: assembled.items.length,
       blueprintSummary: exam.blueprintSummary as Record<string, number> | null,
-      qaPassed:
-        exam.qaPassed || pancePresetExamIsServeReady(items.length, exam.questionCount),
+      qaPassed: exam.qaPassed,
     },
-    items,
+    items: assembled.items,
   };
 }
