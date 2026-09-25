@@ -3,6 +3,7 @@ import { getExamBlueprint } from "@/lib/engine/blueprints";
 import {
   allocateReadinessAreaCounts,
   levelForArea,
+  noteThinAreas,
   summarizeReadiness,
 } from "@/lib/learning/readiness-check/scoring";
 import {
@@ -73,6 +74,22 @@ describe("readiness check scoring", () => {
     ]);
     expect(summary.overallLevel).toBe("insufficient");
     expect(summary.line).toContain("On track in 1 of 4 areas.");
+  });
+
+  it("names a thin clean bank and does not turn it into a level", () => {
+    const summary = noteThinAreas(
+      summarizeReadiness([
+        { areaId: "a", label: "Alpha", answered: 2, correct: 2 },
+        { areaId: "b", label: "Beta", answered: 0, correct: 0 },
+        { areaId: "c", label: "Gamma", answered: 1, correct: 1 },
+      ]),
+      new Set(["b", "c"])
+    );
+    expect(summary.areas.find((row) => row.areaId === "a")?.thinBank).toBeUndefined();
+    expect(summary.areas.find((row) => row.areaId === "b")?.level).toBe("insufficient");
+    expect(summary.areas.find((row) => row.areaId === "b")?.thinBank).toBe(true);
+    expect(summary.line).toBe("On track in 1 of 3 areas. 2 areas don't have enough clean questions yet.");
+    expect(summary.line.toLowerCase()).not.toContain("probability");
   });
 });
 

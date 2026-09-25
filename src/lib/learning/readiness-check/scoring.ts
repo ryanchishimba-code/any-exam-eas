@@ -20,6 +20,8 @@ export type AreaTally = {
 
 export type AreaScore = AreaTally & {
   level: ReadinessLevel;
+  /** The clean bank could not supply the evidence minimum. Not a performance guess. */
+  thinBank?: boolean;
 };
 
 export type ReadinessSummary = {
@@ -117,6 +119,26 @@ export function summarizeReadiness(tallies: AreaTally[]): ReadinessSummary {
     line,
     focus,
     areas,
+  };
+}
+
+/**
+ * Mark areas that stayed unlabeled because the clean bank was too small.
+ * Does not change a level that already has enough answers.
+ */
+export function noteThinAreas(summary: ReadinessSummary, thinAreaIds: ReadonlySet<string>): ReadinessSummary {
+  if (thinAreaIds.size === 0) return summary;
+  const areas = summary.areas.map((area) =>
+    thinAreaIds.has(area.areaId) && area.level === "insufficient" ? { ...area, thinBank: true } : area
+  );
+  const thinCount = areas.filter((area) => area.thinBank).length;
+  if (thinCount === 0 || summary.focus.length > 0) return { ...summary, areas };
+  const head = summary.areaCount === 0 ? "Not enough data yet." : `On track in ${summary.areasOnTrack} of ${summary.areaCount} areas.`;
+  const noun = thinCount === 1 ? "area doesn't" : "areas don't";
+  return {
+    ...summary,
+    areas,
+    line: `${head} ${thinCount} ${noun} have enough clean questions yet.`,
   };
 }
 

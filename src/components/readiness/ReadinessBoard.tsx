@@ -5,7 +5,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ExamOutcomeForm, type OutcomeChoice } from "@/components/readiness/ExamOutcomeForm";
 import { dbUi } from "@/lib/study/dashboard-ui";
-import { READINESS_LEVEL_LABEL, type ReadinessLevel } from "@/lib/learning/readiness-check/thresholds";
+import {
+  READINESS_LEVEL_LABEL,
+  READINESS_THIN_AREA_LABEL,
+  type ReadinessLevel,
+} from "@/lib/learning/readiness-check/thresholds";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import type { ReadinessPageData } from "@/lib/learning/readiness-check/service";
@@ -69,6 +73,11 @@ export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
         <p className="max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
           Levels come from your answers on a {data.length}-question check. An area with fewer than 2 answers stays unlabeled. This is practice readiness, not a prediction of passing.
         </p>
+        {data.areas.some((area) => area.thinBank) ? (
+          <p className="max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+            Flagged questions are left out. An area stays unlabeled when there are not enough clean questions to score it.
+          </p>
+        ) : null}
       </header>
 
       {data.showRestart || saved === "not_yet" ? (
@@ -116,6 +125,7 @@ export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
           <ul className={dbUi.listSurface}>
             {data.areas.map((area) => {
               const moved = data.progress.find((row) => row.areaId === area.areaId);
+              const thin = area.thinBank && area.level === "insufficient";
               return (
                 <li key={area.areaId} className="flex items-center gap-3 px-4 py-3.5">
                   <div className="min-w-0 flex-1">
@@ -123,8 +133,8 @@ export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
                       {area.label}
                     </p>
                     <p className={cn("mt-0.5 text-[13px]", levelClass(area.level))}>
-                      {READINESS_LEVEL_LABEL[area.level as ReadinessLevel]}
-                      {moved && data.baselineSummary ? ` · ${moved.detail}` : ""}
+                      {thin ? READINESS_THIN_AREA_LABEL : READINESS_LEVEL_LABEL[area.level as ReadinessLevel]}
+                      {!thin && moved && data.baselineSummary ? ` · ${moved.detail}` : ""}
                     </p>
                   </div>
                   <Link href={area.practiceHref} className={cn(dbUi.ghostBtn, "shrink-0")}>

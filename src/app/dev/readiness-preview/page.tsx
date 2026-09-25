@@ -38,7 +38,7 @@ const board: ReadinessPageData = {
     { areaId: "basic-care", label: "Basic Care & Comfort", answered: 3, correct: 3, level: "on_track", labelText: "On track", practiceHref: "/question-bank?field=nursing&mode=bank&blueprintArea=basic-care&count=15" },
     { areaId: "pharmacology", label: "Pharmacological Therapies", answered: 3, correct: 1, level: "not_yet", labelText: "Not yet", practiceHref: "/question-bank?field=nursing&mode=bank&blueprintArea=pharmacology&count=15" },
     { areaId: "risk-reduction", label: "Reduction of Risk Potential", answered: 3, correct: 3, level: "on_track", labelText: "On track", practiceHref: "/question-bank?field=nursing&mode=bank&blueprintArea=risk-reduction&count=15" },
-    { areaId: "physiological-adaptation", label: "Physiological Adaptation", answered: 1, correct: 1, level: "insufficient", labelText: "Not enough data yet", practiceHref: "/question-bank?field=nursing&mode=bank&blueprintArea=physiological-adaptation&count=15" },
+    { areaId: "physiological-adaptation", label: "Physiological Adaptation", answered: 1, correct: 1, level: "insufficient", thinBank: true, labelText: "Not enough clean questions in this area yet", practiceHref: "/question-bank?field=nursing&mode=bank&blueprintArea=physiological-adaptation&count=15" },
   ],
   progress: [
     { areaId: "management-of-care", label: "Management of Care", baseline: "getting_close", latest: "on_track", movement: "up", detail: "Was Getting close · Now On track" },

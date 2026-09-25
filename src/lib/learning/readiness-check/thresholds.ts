@@ -36,6 +36,13 @@
  * Offer
  * - Skipping the baseline hides the invite for 7 days, then shows it again.
  * - The quiet link stays on the dashboard the whole time.
+ *
+ * Item eligibility
+ * - See READINESS_ITEM_POLICY in eligibility.ts. The check uses served bank
+ *   items with no open quality flag, and prefers a higher qualityScore.
+ * - Set requireApprovedReview to require reviewStatus "approved".
+ * - An area that cannot reach the evidence minimum on that rule stays unlabeled.
+ *   It is not filled with flagged items.
  */
 
 export const READINESS_CHECK_LENGTH = 24;
@@ -63,6 +70,9 @@ export const READINESS_OUTCOME_SNOOZE_DAYS = 7;
 
 /** A check shorter than this is not started. The bank for that board is too thin. */
 export const READINESS_MIN_CHECK_ITEMS = 8;
+
+/** Area copy when the clean bank cannot supply the evidence minimum. */
+export const READINESS_THIN_AREA_LABEL = "Not enough clean questions in this area yet";
 
 export const READINESS_LEVEL_LABEL = {
   not_yet: "Not yet",

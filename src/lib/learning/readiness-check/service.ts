@@ -25,12 +25,13 @@ import {
   type OutcomePromptMode,
   type ReadinessCardMode,
 } from "@/lib/learning/readiness-check/progress";
-import { summarizeReadiness, type AreaScore } from "@/lib/learning/readiness-check/scoring";
+import { noteThinAreas, summarizeReadiness, type AreaScore } from "@/lib/learning/readiness-check/scoring";
 import {
   EXAM_OUTCOME_RESULT,
   READINESS_CHECK_LENGTH,
   READINESS_LEVEL_LABEL,
   READINESS_MIN_CHECK_ITEMS,
+  READINESS_MIN_EVIDENCE,
   type ExamOutcomeResult,
   type ReadinessLevel,
 } from "@/lib/learning/readiness-check/thresholds";
@@ -89,6 +90,7 @@ export function parseAreaSnapshot(value: unknown): AreaScore[] {
       answered: Number(record.answered) || 0,
       correct: Number(record.correct) || 0,
       level: level as ReadinessLevel,
+      ...(record.thinBank === true ? { thinBank: true } : {}),
     });
   }
   return areas;
@@ -204,7 +206,7 @@ export async function startReadinessCheck(params: {
   });
   if (assembled.length < READINESS_MIN_CHECK_ITEMS) {
     throw new ReadinessCheckError(
-      "Not enough published questions to build a readiness check for this board yet.",
+      "Not enough published questions without an open quality flag to build a readiness check for this board yet.",
       "thin_bank"
     );
   }
@@ -275,7 +277,15 @@ async function finishCheck(checkId: string) {
     if (item.correct) row.correct += 1;
   }
 
-  const summary = summarizeReadiness(tallies);
+  const servedByArea = new Map<string, number>();
+  for (const item of check.items) {
+    servedByArea.set(item.areaId, (servedByArea.get(item.areaId) ?? 0) + 1);
+  }
+  const thinAreaIds = new Set<string>();
+  for (const row of tallies) {
+    if ((servedByArea.get(row.areaId) ?? 0) < READINESS_MIN_EVIDENCE) thinAreaIds.add(row.areaId);
+  }
+  const summary = noteThinAreas(summarizeReadiness(tallies), thinAreaIds);
   const priorBaseline = await prisma.readinessCheck.findFirst({
     where: {
       userId: check.userId,
