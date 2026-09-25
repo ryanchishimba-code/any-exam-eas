@@ -19,6 +19,8 @@ export type UserEdtechMetadata = {
       device?: "mobile" | "desktop";
     };
   };
+  /** Baseline-check invite dismissals, keyed by exam slug. */
+  readinessOffers?: Record<string, { skippedAt: string }>;
 };
 
 function parseMetadata(raw: string | null | undefined): UserEdtechMetadata {
@@ -101,4 +103,19 @@ export async function setUserExamTestDate(
   }
 
   return setUserEdtechMetadata(userId, { examTestDates });
+}
+
+/** Remember that this board's baseline invite was skipped. Does not erase other prefs. */
+export async function setReadinessOfferSkipped(
+  userId: string,
+  examSlug: string,
+  skippedAt: string
+): Promise<UserEdtechMetadata> {
+  const current = await readUserEdtechMetadataFromDb(userId);
+  return setUserEdtechMetadata(userId, {
+    readinessOffers: {
+      ...(current.readinessOffers ?? {}),
+      [examSlug]: { skippedAt },
+    },
+  });
 }

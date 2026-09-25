@@ -885,12 +885,16 @@ export async function sampleQuestionBankItemsForBlueprintArea(params: {
   fieldId: string;
   blueprintAreaId: string;
   count: number;
+  /** Bank ids to leave out when a retake should avoid items just seen. */
+  excludeIds?: string[];
 }): Promise<BankItem[]> {
   if (!isBlueprintAreaId(params.fieldId, params.blueprintAreaId)) return [];
   const want = Math.max(1, params.count);
+  const exclude = (params.excludeIds ?? []).filter(Boolean);
   const where = {
     ...activeBlueprintAreaWhere(params.fieldId, params.blueprintAreaId),
     ...usmleStepSeparationWhere(params.fieldId),
+    ...(exclude.length ? { id: { notIn: exclude } } : {}),
   };
   const total = await prisma.questionBankItem.count({ where });
   if (total === 0) return [];

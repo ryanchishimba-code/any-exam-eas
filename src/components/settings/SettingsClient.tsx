@@ -12,6 +12,7 @@ import { ROUTES } from "@/lib/routes";
 import { formatDisplayName } from "@/lib/display-name";
 import { CONVERSION_EVENTS, trackConversion } from "@/lib/analytics";
 import { requestTourReplay } from "@/lib/onboarding/tour-client";
+import { SettingsExamOutcome } from "@/components/readiness/SettingsExamOutcome";
 import type { ExamSlug } from "@/types/edtech";
 
 export function SettingsClient({
@@ -63,6 +64,8 @@ export function SettingsClient({
       </section>
 
       <BillingSettingsSection />
+
+      {examSlug ? <SettingsExamOutcome examSlug={examSlug} /> : null}
 
       <section
         id="help"

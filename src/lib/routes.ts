@@ -32,6 +32,7 @@ export const ROUTES = {
   fullExam: "/full-exam",
   questionBank: "/question-bank",
   analytics: "/analytics",
+  readiness: "/readiness",
   library: "/library",
   anatomy: "/anatomy",
   anatomyCatalog: "/anatomy/catalog",
