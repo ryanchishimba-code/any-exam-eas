@@ -5,6 +5,11 @@ import { displayFirstName } from "@/lib/display-name";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 
+/** Grouped integer with ASCII commas. `toLocaleString` can differ between Node and the browser. */
+function formatCount(value: number): string {
+  return Math.trunc(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 type Props = {
   examName: string;
   userName?: string | null;
@@ -44,10 +49,10 @@ export function DashboardHeader({
         {boardAttempts > 0 ? (
           <span
             className={dbUi.statusPill}
-            aria-label={`${boardAttempts.toLocaleString("en-US")} saved attempts on this board`}
+            aria-label={`${formatCount(boardAttempts)} saved attempts on this board`}
           >
             <Layers className="h-3 w-3" aria-hidden />
-            {boardAttempts.toLocaleString("en-US")}
+            {formatCount(boardAttempts)}
           </span>
         ) : null}
       </div>

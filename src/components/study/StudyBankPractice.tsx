@@ -74,7 +74,10 @@ import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { cn } from "@/lib/utils";
 import { parsePracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links";
-import { canonicalizeQuestionBankQuery } from "@/lib/study/question-bank-filters";
+import {
+  canonicalizeQuestionBankQuery,
+  resolvePracticeSubjectId,
+} from "@/lib/study/question-bank-filters";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import {
   availableQuestionCount,
@@ -692,52 +695,35 @@ export function StudyBankPractice({
     }
 
     const subjectParam = resolveSubjectParam(searchParams);
-    const styleForSubject = resolvePracticeSearchParam(searchParams, "style");
-    if (
-      subjectParam === MIXED_SUBJECT_ID ||
-      (subjectParam === "mixed" && styleForSubject === "review_incorrect")
-    ) {
-      setSubjectId(MIXED_SUBJECT_ID);
-      return;
-    }
-    const match = subjectParam && list.some((s) => s.id === subjectParam);
-    if (match) {
-      setSubjectId(subjectParam!);
-      return;
-    }
-
-    const persisted = readPersistedQuestionBankSetup(fieldId);
-    if (
-      !resolveSubjectParam(searchParams) &&
-      persisted?.subjectId &&
-      (persisted.subjectId === MIXED_SUBJECT_ID ||
-        list.some((s) => s.id === persisted.subjectId))
-    ) {
-      setSubjectId(persisted.subjectId);
-      return;
-    }
-
-    const coverageLead = coverageChips.find((chip) => list.some((subject) => subject.id === chip.subjectId));
-    if (coverageLead) {
-      setSubjectId(coverageLead.subjectId);
-      return;
-    }
-
     const styleParam = resolvePracticeSearchParam(searchParams, "style");
+    const persisted = readPersistedQuestionBankSetup(fieldId);
+    const coverageLead = coverageChips.find((chip) =>
+      list.some((subject) => subject.id === chip.subjectId)
+    );
     const preferWeak =
       styleParam === "weak_areas" ||
       styleParam === "adaptive" ||
       styleParam === "review_incorrect" ||
       weakSubjectIds.length > 0;
-    if (preferWeak) {
-      const weakest = primaryWeakSubjectId(weakTopics, fieldId, list.map((s) => s.id));
-      if (weakest) {
-        setSubjectId(weakest);
-        return;
-      }
-    }
-
-    setSubjectId(list[0]?.id ?? "");
+    // Invalid or missing subjectId stays off the URL. This choice is UI-only.
+    setSubjectId(
+      resolvePracticeSubjectId({
+        fieldId,
+        subjectIds: list.map((subject) => subject.id),
+        subjectParam,
+        styleParam,
+        persistedSubjectId: persisted?.subjectId ?? null,
+        coverageLeadSubjectId: coverageLead?.subjectId ?? null,
+        preferWeak,
+        weakSubjectId: preferWeak
+          ? primaryWeakSubjectId(
+              weakTopics,
+              fieldId,
+              list.map((subject) => subject.id)
+            )
+          : null,
+      })
+    );
   }, [fieldId, isTimedExam, searchParams, weakTopics, weakSubjectIds.length, coverageChips]);
 
   useEffect(() => {
@@ -765,6 +751,10 @@ export function StudyBankPractice({
     // Treating that as a zero pool consumes this one-shot and overwrites
     // __mixed__ with the first topic that has inventory.
     if (!subjectId) return;
+
+    // A stripped stale subject lands on all topics. Do not replace that with
+    // the first domain that has inventory and write it back into the URL.
+    if (isMixedSubjectId(subjectId) && !resolveSubjectParam(searchParams)) return;
 
     zeroPoolFallbackAppliedRef.current = true;
 
@@ -845,19 +835,6 @@ export function StudyBankPractice({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subjectId, fieldId, subjectCounts, countsLoading, isTimedExam, practiceFormat, activeFormats, bankStyle, effectiveBankStyle]);
-
-  const subjectUrlSyncedRef = useRef(false);
-  useEffect(() => {
-    subjectUrlSyncedRef.current = false;
-  }, [fieldId]);
-
-  useEffect(() => {
-    if (isTimedExam || !subjectId) return;
-    if (resolveSubjectParam(searchParams)) return;
-    if (subjectUrlSyncedRef.current) return;
-    subjectUrlSyncedRef.current = true;
-    syncPracticeUrl({ subjectId });
-  }, [isTimedExam, subjectId, searchParams]);
 
   // A weak-areas link that also carries format=ngn|case would otherwise stay
   // on that format in the address bar. Clear it once a topic is known.

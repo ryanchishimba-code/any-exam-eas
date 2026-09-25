@@ -120,7 +120,7 @@ export function ExamSelectionScreen({
         return;
       }
 
-      prepareClientForExamSwitch(queryClient, "usmle");
+      prepareClientForExamSwitch(queryClient, "usmle", fieldId);
       setUsmleSheetOpen(false);
       try {
         if (!switchMode) await fireExamSelectionConfetti();

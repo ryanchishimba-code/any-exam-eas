@@ -1,5 +1,5 @@
-import dynamic from "next/dynamic";
 import { DashboardUpgradeBanner, type DashboardUpgradeProps } from "@/components/dashboard/DashboardUpgradeBanner";
+import { DashboardExamCountdown } from "@/components/dashboard/DashboardExamCountdown";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import {
   DashboardGraphicHero,
@@ -8,7 +8,6 @@ import {
 } from "@/components/dashboard/DashboardGraphicHero";
 import { DashboardWeakTopicChips } from "@/components/dashboard/DashboardWeakTopicChips";
 import { DashboardViewSections } from "@/components/app/DashboardViewSections";
-import { Skeleton } from "@/components/ui/skeleton";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { DashboardTodayBlock } from "@/components/dashboard/DashboardTodayBlock";
 import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
@@ -25,12 +24,6 @@ import type { MasteryRollup } from "@/lib/engine/mastery/types";
 import type { DomainMapTile } from "@/components/dashboard/DomainMap";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 import { isTodayEngineNaplexEnabled, isTodayEngineUsmleEnabled } from "@/lib/engine/mastery/feature-flag";
-
-const DashboardExamCountdown = dynamic(
-  () =>
-    import("@/components/dashboard/DashboardExamCountdown").then((m) => m.DashboardExamCountdown),
-  { loading: () => <Skeleton className="h-36 w-full rounded-3xl" /> }
-);
 
 export type DashboardHeadline = {
   readinessScore: number;
