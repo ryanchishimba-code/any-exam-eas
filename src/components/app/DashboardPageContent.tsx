@@ -62,6 +62,7 @@ export function DashboardPageContent({
   testDate = null,
   upgrade,
   hasPremiumAccess = true,
+  hasStudyAccess = true,
   practiceFieldId,
   masteryRollup = null,
   masteryMapTiles = null,
@@ -82,6 +83,8 @@ export function DashboardPageContent({
   testDate?: string | null;
   upgrade?: DashboardUpgradeProps | null;
   hasPremiumAccess?: boolean;
+  /** Trial or paid. The readiness invite uses this before its own fetch returns. */
+  hasStudyAccess?: boolean;
   /** Canonical bank field (USMLE step-aware). */
   practiceFieldId?: string;
   masteryRollup?: MasteryRollup | null;
@@ -133,7 +136,11 @@ export function DashboardPageContent({
 
       <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
 
-      <ReadinessDashboardCard examSlug={examSlug} examName={exam.shortName} />
+      <ReadinessDashboardCard
+        examSlug={examSlug}
+        examName={exam.shortName}
+        hasStudyAccess={hasStudyAccess}
+      />
 
       {upgrade ? <DashboardUpgradeBanner {...upgrade} /> : null}
 

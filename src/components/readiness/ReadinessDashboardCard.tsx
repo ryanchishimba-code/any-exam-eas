@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ExamOutcomeForm, type OutcomeChoice } from "@/components/readiness/ExamOutcomeForm";
+import { READINESS_CHECK_LENGTH } from "@/lib/learning/readiness-check/thresholds";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -37,15 +38,16 @@ function CardShell({ children, busy = false }: { children: React.ReactNode; busy
   );
 }
 
-function CardSkeleton() {
-  return (
-    <CardShell busy>
-      <div className="h-3 w-24 animate-pulse rounded-full bg-[var(--color-border)]/70" />
-      <div className="mt-3 h-7 w-4/5 max-w-sm animate-pulse rounded-lg bg-[var(--color-border)]/60" />
-      <div className="mt-3 h-4 w-full max-w-md animate-pulse rounded bg-[var(--color-border)]/50" />
-      <div className="mt-5 h-11 w-40 animate-pulse rounded-xl bg-[var(--color-border)]/60" />
-    </CardShell>
-  );
+function invitePayload(hasStudyAccess: boolean): CardPayload {
+  return {
+    mode: "invite",
+    length: READINESS_CHECK_LENGTH,
+    hasStudyAccess,
+    examDate: null,
+    outcome: null,
+    resume: null,
+    result: null,
+  };
 }
 
 async function postJson(url: string, body?: unknown) {
@@ -63,55 +65,76 @@ async function postJson(url: string, body?: unknown) {
 export function ReadinessDashboardCard({
   examSlug,
   examName,
+  hasStudyAccess = true,
   initial = null,
 }: {
   examSlug: ExamSlug;
   examName: string;
+  /** Known on the dashboard already. The invite can render before the card fetch returns. */
+  hasStudyAccess?: boolean;
   /** Fixture for the dev preview. Production leaves this empty and fetches. */
   initial?: CardPayload | null;
 }) {
   const router = useRouter();
   const [card, setCard] = useState<CardPayload | null>(initial);
-  const [failed, setFailed] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
+  const holdFetch = useRef(false);
 
   useEffect(() => {
     if (initial) return;
+    holdFetch.current = false;
     const controller = new AbortController();
-    setCard(null);
-    setFailed(false);
-    fetch("/api/readiness", { cache: "no-store", signal: controller.signal })
-      .then(async (res) => {
-        if (!res.ok) throw new Error("unavailable");
-        return (await res.json()) as CardPayload;
-      })
-      .then((payload) => {
-        if (!controller.signal.aborted) setCard(payload);
-      })
-      .catch((error: unknown) => {
-        if (error instanceof DOMException && error.name === "AbortError") return;
-        if (!controller.signal.aborted) setFailed(true);
-      });
-    return () => controller.abort();
+    setNotice(null);
+    // After paint, and off the dashboard's server render. Do not clear the
+    // invite while this runs — that was the skeleton flash.
+    const timer = window.setTimeout(() => {
+      fetch("/api/readiness", { cache: "no-store", signal: controller.signal })
+        .then(async (res) => {
+          if (!res.ok) throw new Error("Readiness details couldn't refresh. You can still start a check.");
+          return (await res.json()) as CardPayload;
+        })
+        .then((payload) => {
+          if (!controller.signal.aborted && !holdFetch.current) setCard(payload);
+        })
+        .catch((error: unknown) => {
+          if (error instanceof DOMException && error.name === "AbortError") return;
+          if (!controller.signal.aborted) {
+            setNotice(error instanceof Error ? error.message : "Readiness details couldn't refresh.");
+          }
+        });
+    }, 0);
+    return () => {
+      window.clearTimeout(timer);
+      controller.abort();
+    };
   }, [examSlug, initial]);
 
   async function start(restart = false) {
     setPending(true);
+    setNotice(null);
     try {
       await postJson("/api/readiness/check", { restart });
       router.push(`${ROUTES.readiness}/check`);
     } catch (error) {
       setPending(false);
-      setFailed(true);
-      console.warn("[readiness] start", error);
+      setNotice(
+        error instanceof Error
+          ? error.message
+          : "The check couldn't start. The rest of your day is ready."
+      );
     }
   }
 
   async function skip() {
     setPending(true);
+    holdFetch.current = true;
     try {
       await postJson("/api/readiness/skip");
-      setCard((current) => (current ? { ...current, mode: "quiet" } : current));
+      setCard((current) => ({ ...(current ?? invitePayload(hasStudyAccess)), mode: "quiet" }));
+    } catch (error) {
+      holdFetch.current = false;
+      setNotice(error instanceof Error ? error.message : "Could not hide the invite.");
     } finally {
       setPending(false);
     }
@@ -128,28 +151,22 @@ export function ReadinessDashboardCard({
     if (res.ok) setCard((await res.json()) as CardPayload);
   }
 
-  if (failed) {
+  const view = card ?? invitePayload(hasStudyAccess);
+  const noticeLine = notice ? (
+    <p className="mt-3 text-[14px] leading-relaxed text-[var(--color-ink-muted)]" role="status">
+      {notice}
+    </p>
+  ) : null;
+
+  if (view.mode === "outcome") {
     return (
       <CardShell>
-        <p className={dbUi.eyebrow}>Readiness</p>
-        <p className="mt-2 text-[15px] text-[var(--color-ink-muted)]">
-          Readiness couldn&apos;t load just now. The rest of your day is ready.
-        </p>
+        <ExamOutcomeForm examName={examName} examDate={view.examDate} compact onSubmit={saveOutcome} />
       </CardShell>
     );
   }
 
-  if (!card) return <CardSkeleton />;
-
-  if (card.mode === "outcome") {
-    return (
-      <CardShell>
-        <ExamOutcomeForm examName={examName} examDate={card.examDate} compact onSubmit={saveOutcome} />
-      </CardShell>
-    );
-  }
-
-  if (card.mode === "resume" && card.resume) {
+  if (view.mode === "resume" && view.resume) {
     return (
       <CardShell>
         <p className={dbUi.eyebrow}>Readiness check</p>
@@ -157,38 +174,39 @@ export function ReadinessDashboardCard({
           Pick up where you left off
         </h2>
         <p className="mt-1 text-[15px] text-[var(--color-ink-muted)]">
-          {card.resume.answered} of {card.resume.total} answered
+          {view.resume.answered} of {view.resume.total} answered
         </p>
         <button type="button" className={cn(dbUi.primaryBtn, "mt-4 min-h-11")} disabled={pending} onClick={() => void start(false)}>
           {pending ? "Opening…" : "Continue"}
         </button>
+        {noticeLine}
       </CardShell>
     );
   }
 
-  if (card.mode === "result" && card.result) {
-    const retakeLabel = card.result.retakeDue
+  if (view.mode === "result" && view.result) {
+    const retakeLabel = view.result.retakeDue
       ? "Retake check"
       : "Retake now";
-    const retakeHint = card.result.retakeDue
+    const retakeHint = view.result.retakeDue
       ? "It's been about two weeks. A new check shows what moved."
-      : card.result.daysUntilSuggest
-        ? `A new check is most useful in ${card.result.daysUntilSuggest} ${card.result.daysUntilSuggest === 1 ? "day" : "days"}. You can retake sooner.`
+      : view.result.daysUntilSuggest
+        ? `A new check is most useful in ${view.result.daysUntilSuggest} ${view.result.daysUntilSuggest === 1 ? "day" : "days"}. You can retake sooner.`
         : "You can retake whenever you want a fresh read.";
     return (
       <CardShell>
         <div className="flex flex-wrap items-center gap-2">
           <p className={dbUi.eyebrow}>Readiness</p>
-          {card.result.overallLabel ? (
+          {view.result.overallLabel ? (
             <span className="rounded-full bg-[var(--color-accent)]/10 px-2.5 py-1 text-[11px] font-semibold text-[var(--color-accent)]">
-              {card.result.overallLabel}
+              {view.result.overallLabel}
             </span>
           ) : null}
         </div>
         <h2 className="mt-2 text-[22px] font-semibold leading-snug tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]">
-          {card.result.summaryLine ?? "Your latest check is ready."}
+          {view.result.summaryLine ?? "Your latest check is ready."}
         </h2>
-        {card.outcome?.result === "not_yet" ? (
+        {view.outcome?.result === "not_yet" ? (
           <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
             Didn&apos;t pass yet is a starting point. Your areas and a new check are on the readiness page.
           </p>
@@ -199,7 +217,7 @@ export function ReadinessDashboardCard({
           <Link href={ROUTES.readiness} className={cn(dbUi.primaryBtn, "min-h-11")}>
             See progress
           </Link>
-          {card.hasStudyAccess ? (
+          {view.hasStudyAccess ? (
             <button type="button" className={cn(dbUi.ghostBtn, "min-h-11")} disabled={pending} onClick={() => void start(false)}>
               {pending ? "Starting…" : retakeLabel}
             </button>
@@ -209,11 +227,12 @@ export function ReadinessDashboardCard({
             </Link>
           )}
         </div>
+        {noticeLine}
       </CardShell>
     );
   }
 
-  if (card.mode === "quiet") {
+  if (view.mode === "quiet") {
     return (
       <CardShell>
         <div className="flex min-h-[128px] flex-wrap items-center justify-between gap-3">
@@ -223,7 +242,7 @@ export function ReadinessDashboardCard({
               Baseline check, whenever you want it
             </p>
           </div>
-          {card.hasStudyAccess ? (
+          {view.hasStudyAccess ? (
             <button type="button" className={cn(dbUi.ghostBtn, "min-h-11")} disabled={pending} onClick={() => void start(false)}>
               {pending ? "Starting…" : "Start"}
             </button>
@@ -233,6 +252,7 @@ export function ReadinessDashboardCard({
             </Link>
           )}
         </div>
+        {noticeLine}
       </CardShell>
     );
   }
@@ -244,10 +264,10 @@ export function ReadinessDashboardCard({
         See where you stand
       </h2>
       <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-        {card.length} standard questions across this board, once at the start. You&apos;ll get an overall level, and a provisional read on each tagged area. It&apos;s a baseline, not a prediction of passing.
+        {view.length} standard questions across this board, once at the start. You&apos;ll get an overall level, and a provisional read on each tagged area. It&apos;s a baseline, not a prediction of passing.
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-2">
-        {card.hasStudyAccess ? (
+        {view.hasStudyAccess ? (
           <button type="button" className={cn(dbUi.primaryBtn, "min-h-11")} disabled={pending} onClick={() => void start(false)}>
             {pending ? "Building your check…" : "Start baseline"}
           </button>
@@ -260,6 +280,7 @@ export function ReadinessDashboardCard({
           Not now
         </button>
       </div>
+      {noticeLine}
     </CardShell>
   );
 }
