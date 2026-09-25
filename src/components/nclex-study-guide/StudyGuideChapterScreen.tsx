@@ -1,14 +1,18 @@
 import { notFound, redirect, unstable_rethrow } from "next/navigation";
 import { StudyGuideReader } from "@/components/nclex-study-guide/StudyGuideReader";
 import { StudyGuideUnavailable } from "@/components/nclex-study-guide/StudyGuideUnavailable";
+import { StudyGuideUpsell } from "@/components/nclex-study-guide/StudyGuideUpsell";
 import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
 import { loadPublishedGuideChapter, loadPublishedGuideFirstSlug } from "@/lib/nclex-study-guide/load-published";
-import { requirePremiumPage } from "@/lib/require-premium-page";
+import { resolveStudyGuideAccess } from "@/lib/require-premium-page";
 
 /** Index routes redirect to the first chapter only after the premium gate. */
 export async function StudyGuideIndexScreen({ exam }: { exam: StudyGuideExam }) {
   const config = STUDY_GUIDES[exam];
-  await requirePremiumPage(config.routeBase);
+  const gate = await resolveStudyGuideAccess(config.routeBase);
+  if (gate.status === "upsell") {
+    return <StudyGuideUpsell exam={exam} signedIn={gate.signedIn} />;
+  }
 
   let first = "";
   try {
@@ -35,7 +39,10 @@ export async function StudyGuideChapterScreen({
   chapterSlug: string;
 }) {
   const config = STUDY_GUIDES[exam];
-  await requirePremiumPage(`${config.routeBase}/${chapterSlug}`);
+  const gate = await resolveStudyGuideAccess(`${config.routeBase}/${chapterSlug}`);
+  if (gate.status === "upsell") {
+    return <StudyGuideUpsell exam={exam} signedIn={gate.signedIn} />;
+  }
 
   let guide;
   let toc;

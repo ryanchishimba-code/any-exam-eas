@@ -35,6 +35,10 @@ import {
   type MasteryMark,
 } from "@/lib/learning/item-mastery";
 import { formatConceptLabel, isInternalMasteryConceptKey } from "@/lib/learning/concept-labels";
+import {
+  isUntaggedOpenSubject,
+  OTHER_OPEN_SUBJECT_ID,
+} from "@/lib/learning/other-open-subject";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -337,6 +341,11 @@ export function reviewIncorrectHref(
   return `${ROUTES.questionBank}?${qs.toString()}`;
 }
 
+/** Review incorrect for open items that have no topic id. */
+export function otherOpenRetestHref(fieldId: string, count: number): string {
+  return reviewIncorrectHref(fieldId, OTHER_OPEN_SUBJECT_ID, Math.max(1, count));
+}
+
 export type OpenLoopAttempt = {
   bankItemId?: string | null;
   questionKey?: string | null;
@@ -399,7 +408,7 @@ export function groupOpenRemediationLoops(params: {
   const groups = new Map<string, { ids: Set<string>; pending: number }>();
   for (const item of items) {
     const subject = item.subjectId?.trim();
-    if (!subject || subject === MIXED_SUBJECT_ID || isInternalMasteryConceptKey(subject)) continue;
+    if (isUntaggedOpenSubject(subject)) continue;
     const group = groups.get(subject) ?? { ids: new Set<string>(), pending: 0 };
     group.ids.add(item.itemId);
     if (item.status === "pending_reproof") group.pending += 1;

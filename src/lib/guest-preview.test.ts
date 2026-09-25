@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { isGuestPreviewPage } from "./guest-preview";
-import { isPremiumPage } from "./premium-routes";
+import { isPremiumPage, isStudyGuidePath } from "./premium-routes";
 
 describe("guest preview routes", () => {
   it("opens free-win surfaces for logged-out visitors", () => {
@@ -23,6 +23,8 @@ describe("guest preview routes", () => {
   });
 
   it("treats study guides as premium and leaves other free wins open", () => {
+    expect(isStudyGuidePath("/nclex/study-guide")).toBe(true);
+    expect(isStudyGuidePath("/dashboard")).toBe(false);
     expect(isPremiumPage("/nclex/study-guide")).toBe(true);
     expect(isPremiumPage("/nclex/study-guide/cardiac")).toBe(true);
     expect(isPremiumPage("/naplex/study-guide")).toBe(true);

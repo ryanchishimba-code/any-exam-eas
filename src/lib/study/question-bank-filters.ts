@@ -1,4 +1,5 @@
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { isOtherOpenSubject } from "@/lib/learning/other-open-subject";
 import { isBlueprintAreaId } from "@/lib/inventory/blueprint-domain-pool";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
@@ -10,7 +11,7 @@ const MIXED_SUBJECT_IDS = new Set([MIXED_SUBJECT_ID, "mixed"]);
  * Mixed is board-agnostic. A subject from another board (physiology on AANP) is not.
  */
 export function subjectIdBelongsToField(fieldId: string, subjectId: string): boolean {
-  if (MIXED_SUBJECT_IDS.has(subjectId)) return true;
+  if (MIXED_SUBJECT_IDS.has(subjectId) || isOtherOpenSubject(subjectId)) return true;
   return getSubjectsForFieldId(fieldId).some((subject) => subject.id === subjectId);
 }
 
@@ -118,6 +119,7 @@ export function resolvePracticeSubjectId(input: PracticeSubjectChoice): string {
   ) {
     return MIXED_SUBJECT_ID;
   }
+  if (isOtherOpenSubject(subjectParam)) return subjectParam.trim();
   if (subjectParam && !subjectIdBelongsToField(input.fieldId, subjectParam)) {
     return MIXED_SUBJECT_ID;
   }

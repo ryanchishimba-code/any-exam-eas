@@ -1,6 +1,6 @@
 import type { NextAuthConfig } from "next-auth";
 import { NextResponse } from "next/server";
-import { isPremiumPage } from "@/lib/premium-routes";
+import { isPremiumPage, isStudyGuidePath } from "@/lib/premium-routes";
 import { isInternalPath, staffLoginUrl } from "@/lib/staff-routes";
 import { ADMIN_LOGIN_PATH, adminLoginUrl, isAdminPath } from "@/lib/admin/routes";
 import { hasMinRole, isStaffRole } from "@/lib/permissions";
@@ -79,6 +79,8 @@ export const authConfig = {
         }
         return true;
       }
+
+      if (isStudyGuidePath(path)) return true;
 
       if (isExamSelect || isSettings || isStudyHub || isPremium) {
         if (isLoggedIn) return true;

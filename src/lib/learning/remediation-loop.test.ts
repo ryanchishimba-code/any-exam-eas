@@ -141,6 +141,22 @@ describe("groupOpenRemediationLoops", () => {
     expect(summary.loops).toEqual([]);
   });
 
+  it("counts untagged misses under Other without adding them to topic loops", () => {
+    const summary = groupOpenRemediationLoops({
+      examSlug: "aanp-fnp",
+      fieldId: "aanp-fnp",
+      attempts: [
+        { bankItemId: "tagged", correct: false, subjectId: "cardiovascular" },
+        { bankItemId: "loose", correct: false, subjectId: null },
+      ],
+    });
+    expect(summary.loops.map((loop) => loop.id)).toEqual(["cardiovascular"]);
+    expect(summary.unscopedCount).toBe(1);
+    expect(summary.loops.reduce((sum, loop) => sum + loop.openCount, 0) + summary.unscopedCount).toBe(
+      summary.totalOpen
+    );
+  });
+
   it("does not invent a guide chapter for PANCE misses", () => {
     const summary = groupOpenRemediationLoops({
       examSlug: "pance",

@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState, type ReactNode } from "react";
 import { Hero } from "@/components/Hero";
+import { LandingSeoGuide } from "@/components/landing/LandingSeoGuide";
 import { LandingFlagshipV2 } from "@/components/landing/v2/LandingFlagshipV2";
 import { LandingHeroSkeleton } from "@/components/landing/v2/LandingHeroSkeleton";
 import { useLandingBankCounts } from "@/lib/client/use-landing-bank-counts";
@@ -46,6 +47,7 @@ function GuestLanding({
   return (
     <LandingFlagshipV2 bankCounts={bankCounts} testimonials={testimonials}>
       {children}
+      <LandingSeoGuide questionCountLabel={bankCounts.totalLabel} />
     </LandingFlagshipV2>
   );
 }

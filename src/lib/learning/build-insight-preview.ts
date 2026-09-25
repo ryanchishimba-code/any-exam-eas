@@ -1,5 +1,6 @@
 import { cleanOptionText } from "@/lib/question-format";
 import type { StudyQuestion } from "@/lib/questions/types";
+import { explanatoryRationaleSummary } from "@/lib/study/rationale-disclosure";
 import { pearlsFromQuestion, trapsFromQuestion } from "./insights";
 import type { LearningInsight } from "./types";
 
@@ -33,9 +34,9 @@ export function buildInsightPreview(
       ? "Solid work — explore AI Tutor to reinforce the clinical reasoning."
       : "Let's break down why the keyed answer wins and where your reasoning diverged.",
     whyCorrect:
-      detail?.whyCorrect ??
-      expert?.whyCorrect?.headline ??
-      question.explanation.split(/[.!?]/)[0]?.trim() ??
+      explanatoryRationaleSummary(detail?.whyCorrect) ||
+      explanatoryRationaleSummary(expert?.whyCorrect?.headline) ||
+      explanatoryRationaleSummary(question.explanation) ||
       "See the full explanation below.",
     whyIncorrect,
     keyTakeaways:

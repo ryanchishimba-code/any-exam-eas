@@ -10,6 +10,7 @@ import {
   type PracticeFormatMode,
 } from "@/lib/study/practice-format";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { isOtherOpenSubject } from "@/lib/learning/other-open-subject";
 
 export { MIXED_SUBJECT_ID };
 
@@ -82,6 +83,39 @@ export function questionBankCountOptionsForAvailable(
   if (capped < minPreset) return [];
 
   return base.filter((option) => option.value <= capped);
+}
+
+/**
+ * Options and count the setup wheel, preview, URL, and start button share.
+ * A short retest size (5 / 10 / 25) stays visible even when the wheel presets start at 25.
+ * Any other count snaps to a preset, and that snapped value is the one callers must use.
+ */
+export function questionBankCountChoices(params: {
+  questionCount: number;
+  options: QuestionBankCountOption[];
+}): { options: QuestionBankCountOption[]; count: number } {
+  const requested = clampQuestionBankCount(params.questionCount);
+  const options = params.options;
+  if (options.some((option) => option.value === requested)) {
+    return { options, count: requested };
+  }
+  if (isRetestSessionCount(requested)) {
+    const extra: QuestionBankCountOption = {
+      value: requested,
+      ...describeCountOption(requested),
+    };
+    const merged = [...options, extra]
+      .filter((option, index, all) => all.findIndex((row) => row.value === option.value) === index)
+      .sort((a, b) => a.value - b.value);
+    return { options: merged, count: requested };
+  }
+  if (options.length === 0) {
+    return {
+      options: [{ value: requested, ...describeCountOption(requested) }],
+      count: requested,
+    };
+  }
+  return { options, count: resolveWheelCountValue(requested, options) };
 }
 
 /** Snap a requested count to the nearest wheel option (never above pool max). */
@@ -170,6 +204,10 @@ export function validateQuestionBankSession(params: {
     return { ok: true };
   }
 
+  if (isOtherOpenSubject(subjectId) && bankStyle === "review_incorrect") {
+    return { ok: true, maxAvailable: undefined };
+  }
+
   if (taskCategory && bankStyle !== "standard") {
     return {
       ok: false,
@@ -180,8 +218,7 @@ export function validateQuestionBankSession(params: {
   if (
     isMixedSubjectId(subjectId) &&
     bankStyle !== "standard" &&
-    bankStyle !== "review_incorrect" &&
-    bankStyle !== "today"
+    bankStyle !== "review_incorrect"
   ) {
     return {
       ok: false,

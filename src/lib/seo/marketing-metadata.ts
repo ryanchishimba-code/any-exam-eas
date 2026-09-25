@@ -142,9 +142,10 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
   };
 }
 
-export function buildPricingMetadata(): Metadata {
+export function buildPricingMetadata(totalLabel?: string): Metadata {
+  const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
   const title = "Pricing — 6 Board Exams, One Pro Plan";
-  const description = `One Pro plan: ${SEO_LIVE_STATS.questionCount} questions for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmaps & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`;
+  const description = `One Pro plan: ${count} active questions for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmaps & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`;
   return {
     ...baseOpenGraph(title, description, "/pricing", { absoluteTitle: true }),
     keywords: [

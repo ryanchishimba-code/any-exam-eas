@@ -88,6 +88,24 @@ describe("question-bank-counts display", () => {
     expect(display.totalServed).toBe(57_494);
   });
 
+  it("uses the six-board active sum when totals.served is a different figure", () => {
+    const snapshot = snapshotWithServed({
+      nursing: 8000,
+      pharmacy: 10000,
+      "usmle-step-2": 17000,
+      pance: 2800,
+      "aanp-fnp": 4700,
+      "npte-pt": 4200,
+    });
+    snapshot.totals = { total: 48136, active: 48136, served: 48136 };
+    const display = buildLandingBankCountsDisplay(snapshot);
+    expect(landingServedTotal(snapshot)).toBe(46_700);
+    expect(display.totalServed).toBe(46_700);
+    expect(display.totalLabel).toBe("46,700");
+    expect(display.totalQuestionsLabel).toBe("46,700 active questions");
+    expect(displayTotalQuestionCount(snapshot)).toBe("46,700");
+  });
+
   it("falls back to published floor counts when snapshot is degraded", () => {
     const snapshot = snapshotWithServed({});
     snapshot.degraded = true;

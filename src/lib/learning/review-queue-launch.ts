@@ -11,6 +11,7 @@
  */
 
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { isOtherOpenSubject } from "@/lib/learning/other-open-subject";
 import { USMLE_FIELD_ALIASES } from "@/lib/exam-prep/usmle/steps";
 import {
   attemptItemId,
@@ -64,6 +65,7 @@ export function expandReviewFieldIds(
 }
 
 export function unscopedReviewSubject(subjectId: string | null | undefined): boolean {
+  if (isOtherOpenSubject(subjectId)) return false;
   const subject = subjectId?.trim() ?? "";
   return !subject || subject === MIXED_SUBJECT_ID || subject === "mixed";
 }
@@ -107,7 +109,10 @@ export function selectLaunchReviewQueueIds(params: {
   const board = ranked(null);
   if (unscopedReviewSubject(params.subjectId)) return board.slice(0, limit);
 
-  const scoped = ranked(params.subjectId!.trim());
+  const requested = params.subjectId!.trim();
+  if (isOtherOpenSubject(requested)) return ranked(requested).slice(0, limit);
+
+  const scoped = ranked(requested);
   const chosen = scoped.length > 0 ? scoped : board;
   return chosen.slice(0, limit);
 }

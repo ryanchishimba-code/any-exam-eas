@@ -5,12 +5,15 @@ import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { usePrefetchHrefs } from "@/lib/navigation/use-prefetch-hrefs";
 import { useSession } from "next-auth/react";
-import { LogOut, Menu, Settings, User } from "lucide-react";
+import { LogOut, Menu, Settings, Share2, User } from "lucide-react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
+import { usePracticeSessionActive } from "@/lib/client/practice-session-context";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { isFullExamSessionRoute, isStudyGuideReaderRoute } from "@/lib/navigation/app-shell";
+import { ShareModal } from "@/components/share/ShareModal";
 import { shellUi } from "@/lib/layout/shell-ui";
 import { displayFirstName } from "@/lib/display-name";
 import { questionBankHref } from "@/lib/edtech/practice-links-core";
@@ -34,6 +37,8 @@ export function AppTopNav({ onMenuClick }: Props) {
   const pathname = usePathname();
   const { data: session } = useSession();
   const { examSlug } = useAppPreferences();
+  const practiceSession = usePracticeSessionActive();
+  const [shareOpen, setShareOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const accountLabel =
@@ -106,6 +111,18 @@ export function AppTopNav({ onMenuClick }: Props) {
             <GlobalExamSwitcher variant="nav" />
           </div>
           <ThemeToggle />
+          {practiceSession ||
+          isFullExamSessionRoute(pathname) ||
+          isStudyGuideReaderRoute(pathname) ? null : (
+            <button
+              type="button"
+              onClick={() => setShareOpen(true)}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-[var(--color-ink-muted)] transition hover:bg-[color-mix(in_srgb,var(--color-ink)_4%,transparent)] hover:text-[var(--color-ink)]"
+              aria-label="Share your progress"
+            >
+              <Share2 className="h-4 w-4" />
+            </button>
+          )}
           <Link
             href={ROUTES.settings}
             className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-[var(--color-ink-muted)] transition hover:bg-[color-mix(in_srgb,var(--color-ink)_4%,transparent)] hover:text-[var(--color-ink)]"
@@ -125,6 +142,7 @@ export function AppTopNav({ onMenuClick }: Props) {
           </button>
         </div>
       </nav>
+      <ShareModal open={shareOpen} onClose={() => setShareOpen(false)} />
     </header>
   );
 }

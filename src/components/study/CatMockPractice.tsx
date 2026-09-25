@@ -33,6 +33,7 @@ import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/
 import type { ConfidenceLevel } from "@/lib/questions/types";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
+import { useHoldPracticeSession } from "@/lib/client/practice-session-context";
 import { EndActivityControl } from "./EndActivityControl";
 import { SessionCompletionCard } from "./SessionCompletionCard";
 import { saveStudySessionRemote } from "@/lib/client/save-study-session";
@@ -53,6 +54,7 @@ export function CatMockPractice() {
   const [showConfidence, setShowConfidence] = useState(false);
   const [loading, setLoading] = useState(false);
   const [started, setStarted] = useState(false);
+  useHoldPracticeSession(started);
   const [error, setError] = useState("");
   const [insight, setInsight] = useState<LearningInsight | null>(null);
   const [remediation, setRemediation] = useState<RemediationRecommendation[]>([]);
@@ -315,7 +317,7 @@ export function CatMockPractice() {
     const progressPct = (progressMin / CAT_MAX_QUESTIONS) * 100;
 
     return (
-      <div className="mt-8 space-y-4">
+      <div className="mt-8 space-y-4 max-lg:pb-[calc(4.75rem+env(safe-area-inset-bottom,0px))]">
         <ActivitySessionToolbar
           actions={
             <>

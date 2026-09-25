@@ -6,12 +6,6 @@ import type {
 } from "@/lib/learning/exam-day-plan";
 import { dbUi } from "@/lib/study/dashboard-ui";
 
-const STATUS_LABEL: Record<ReadinessCriterionStatus, string> = {
-  met: "Met",
-  missing: "Missing",
-  not_scored: "Not scored",
-};
-
 function statusClass(status: ReadinessCriterionStatus): string {
   if (status === "met") return dbUi.statusPillAccent;
   return dbUi.statusPill;
@@ -137,7 +131,7 @@ export function ReadinessProofPanel({
           {scoredCriteria.map((row) => (
             <li
               key={row.id}
-              className="flex items-center justify-between gap-3 rounded-2xl border border-[var(--db-line,var(--color-border))]/70 bg-[var(--color-surface)]/50 px-3.5 py-3"
+              className="flex flex-col items-start gap-2 rounded-2xl border border-[var(--db-line,var(--color-border))]/70 bg-[var(--color-surface)]/50 px-3.5 py-3 sm:flex-row sm:items-center sm:justify-between"
             >
               <p className="min-w-0 text-[15px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
                 {row.label}
@@ -145,7 +139,9 @@ export function ReadinessProofPanel({
                   {row.valueLabel}
                 </span>
               </p>
-              <span className={`${statusClass(row.status)} shrink-0`}>{STATUS_LABEL[row.status]}</span>
+              <span className={`${statusClass(row.status)} max-w-full shrink-0 text-left sm:text-right`}>
+                {row.badge}
+              </span>
             </li>
           ))}
         </ul>
@@ -216,7 +212,7 @@ export function ReadinessProofPanel({
           {readiness.criteria.map((row) => (
             <li key={row.id} className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
               <span className="font-semibold text-[var(--color-ink)]">
-                {row.label} · {STATUS_LABEL[row.status]}
+                {row.label} · {row.badge}
               </span>
               {" — "}
               {row.detail}

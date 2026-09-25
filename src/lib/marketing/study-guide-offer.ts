@@ -1,10 +1,10 @@
 import { landingTrialHrefForExam } from "@/lib/landing/content";
 import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 /** Honest offer for the premium reference books. No discount percentages. */
 export function studyGuideTrialLine(): string {
-  return `${formatTrialLabel()} — no payment method. Then Pro at ${formatMonthlyPrice("pro")}/mo.`;
+  return formatPricingCheckoutTrialOffer();
 }
 
 export type StudyGuideOfferCard = {
@@ -16,7 +16,7 @@ export type StudyGuideOfferCard = {
 };
 
 function offerBody(): string {
-  return `Bookmarks and highlights save on the trial or Pro plan. ${studyGuideTrialLine()}`;
+  return `Included with your trial. Bookmarks and highlights save on the trial or Pro plan. ${studyGuideTrialLine()}`;
 }
 
 export function studyGuideOfferCards(): StudyGuideOfferCard[] {

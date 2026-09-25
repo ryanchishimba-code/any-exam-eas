@@ -117,6 +117,7 @@ import {
   type PracticeFormatMode,
 } from "@/lib/study/practice-format";
 import { QuestionBankSessionPreview } from "./question-bank/QuestionBankSessionPreview";
+import { OTHER_OPEN_SUBJECT_ID } from "@/lib/learning/other-open-subject";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import { weakSubjectIdsForField } from "@/lib/study/question-bank-weak-topics";
 import { TopicPracticeReturnBanner } from "./TopicPracticeReturnBanner";
@@ -1722,7 +1723,9 @@ export function StudyBankPractice({
       ? areaLabel
       : isMixedSubjectId(subjectId)
         ? MIXED_SUBJECT_LABEL
-        : subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
+        : subjectId === OTHER_OPEN_SUBJECT_ID
+          ? "Other"
+          : subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
     return isPance ? sessionLabelWithTask(base, taskCategory) : base;
   }, [blueprintAreaId, field, fieldId, isTimedExam, launchFormat, ngnLabel, subjectId, subjects, isPance, taskCategory]);
 

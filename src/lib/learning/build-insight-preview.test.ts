@@ -29,6 +29,24 @@ describe("buildInsightPreview", () => {
     expect(preview.keyTakeaways).toEqual(["Think ABCs"]);
   });
 
+  it("skips a CJMM step label and uses the explanatory sentence", () => {
+    const preview = buildInsightPreview(
+      {
+        ...question,
+        explanation:
+          "Clinical Judgment (CJMM): 1. Recognize cues: watery diarrhea after antibiotics needs soap and water. 2. Take action: start contact precautions.",
+        explanationDetail: {
+          ...question.explanationDetail!,
+          whyCorrect: "Clinical Judgment (CJMM): 1.",
+        },
+      },
+      false,
+      ["Call the provider"]
+    );
+    expect(preview.whyCorrect.toLowerCase()).not.toContain("clinical judgment");
+    expect(preview.whyCorrect).toMatch(/watery diarrhea after antibiotics needs soap and water/i);
+  });
+
   it("uses encouraging copy on correct answers", () => {
     const preview = buildInsightPreview(question, true, ["Assess airway"]);
     expect(preview.summary).toContain("AI Tutor");

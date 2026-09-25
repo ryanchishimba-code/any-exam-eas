@@ -17,6 +17,10 @@
 
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import { isInternalMasteryConceptKey } from "@/lib/learning/concept-labels";
+import {
+  isOtherOpenSubject,
+  isUntaggedOpenSubject,
+} from "@/lib/learning/other-open-subject";
 
 /** Days after the first post-miss correct before a re-ask can clear the item. */
 export const SPACED_REPROOF_MIN_DAYS = 1;
@@ -251,15 +255,20 @@ export function selectReviewQueueIds(params: {
   now?: Date | string | number;
 }): string[] {
   const limit = Math.min(Math.max(params.limit ?? 100, 1), 300);
+  const untaggedOnly = isOtherOpenSubject(params.subjectId);
   const subject =
-    params.subjectId && params.subjectId !== MIXED_SUBJECT_ID ? params.subjectId : null;
+    params.subjectId && params.subjectId !== MIXED_SUBJECT_ID && !untaggedOnly
+      ? params.subjectId
+      : null;
   const summary = summarizeRemediationMastery({
     attempts: params.attempts,
     marks: params.marks,
     now: params.now,
   });
   const ranked = summary.items
-    .filter((item) => !subject || item.subjectId === subject)
+    .filter((item) =>
+      untaggedOnly ? isUntaggedOpenSubject(item.subjectId) : !subject || item.subjectId === subject
+    )
     .sort((a, b) => {
       const rank = queueRank(a) - queueRank(b);
       if (rank !== 0) return rank;
