@@ -177,6 +177,46 @@ describe("DashboardTodayBlock review CTA", () => {
     expect(screen.queryByText(/-day streak/)).toBeNull();
   });
 
+  it("keeps a fixed mix slot empty of counts until the served line arrives", async () => {
+    let resolveFetch: (value: Response) => void = () => {};
+    const fetchMock = vi.fn(
+      () =>
+        new Promise<Response>((resolve) => {
+          resolveFetch = resolve;
+        })
+    );
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(<DashboardTodayBlock plan={plan(items)} deferMix />);
+
+    const slot = document.querySelector("[data-today-mix-slot]");
+    expect(slot).not.toBeNull();
+    expect(slot?.className).toContain("h-6");
+    expect(document.querySelector("[data-today-mix-pending]")).not.toBeNull();
+    expect(document.querySelector("[data-today-mix]")).toBeNull();
+    expect(document.body.textContent).not.toMatch(/\d+ to review/);
+    expect(screen.getByRole("button", { name: /Start today's set/ })).toBeInTheDocument();
+
+    resolveFetch(
+      new Response(
+        JSON.stringify({
+          mixLine: "15 to review · 10 new",
+          empty: false,
+          limitReached: false,
+          streakDays: 0,
+        }),
+        { status: 200, headers: { "Content-Type": "application/json" } }
+      )
+    );
+
+    expect(await screen.findByText("15 to review · 10 new")).toBeInTheDocument();
+    const ready = document.querySelector("[data-today-mix-slot]");
+    expect(ready?.className).toContain("h-6");
+    expect(ready?.querySelector("[data-today-mix]")).toHaveTextContent("15 to review · 10 new");
+    expect(document.body.textContent).not.toMatch(/25 to review/);
+    vi.unstubAllGlobals();
+  });
+
   it("shows the served mix and puts the new-question note at the top of See details", () => {
     render(
       <DashboardTodayBlock
