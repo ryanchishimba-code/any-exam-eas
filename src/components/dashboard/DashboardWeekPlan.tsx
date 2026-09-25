@@ -13,8 +13,8 @@ function GoalStatus({ goal }: { goal: WeekGoal }) {
 }
 
 /**
- * This week's countdown contract. Today's block, rendered beside it, is the
- * daily projection. Teal accent and navy ink come from the study dashboard tokens.
+ * This week's plan, shown under Today's set. Teal accent and navy ink come
+ * from the study dashboard tokens.
  */
 export function DashboardWeekPlan({ weekPlan }: { weekPlan: WeekCountdownPlan }) {
   const finalStretch = weekPlan.intensity === "final";
@@ -22,16 +22,14 @@ export function DashboardWeekPlan({ weekPlan }: { weekPlan: WeekCountdownPlan })
   return (
     <section
       aria-labelledby="week-plan-heading"
-      className={`${dbUi.heroSurface} space-y-6 ${
-        finalStretch ? "border-[var(--color-accent)]/35" : ""
-      }`}
+      className="space-y-5"
     >
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="min-w-0">
           <p className={dbUi.eyebrow}>This week</p>
           <h2
             id="week-plan-heading"
-            className="mt-2 text-[26px] font-semibold tracking-[-0.035em] text-[var(--color-ink)] sm:text-[32px]"
+            className="mt-1 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]"
           >
             {weekPlan.title}
           </h2>
@@ -43,9 +41,14 @@ export function DashboardWeekPlan({ weekPlan }: { weekPlan: WeekCountdownPlan })
         ) : null}
       </div>
 
-      <p className="max-w-2xl text-[16px] leading-relaxed tracking-[-0.011em] text-[var(--color-ink-muted)]">
+      <p className="max-w-2xl text-[15px] leading-relaxed tracking-[-0.011em] text-[var(--color-ink-muted)]">
         {weekPlan.summary}
       </p>
+      {weekPlan.todayLine ? (
+        <p className="text-[15px] font-medium leading-relaxed tracking-[-0.015em] text-[var(--color-ink)]">
+          {weekPlan.todayLine}
+        </p>
+      ) : null}
 
       {weekPlan.goals.length > 0 ? (
         <ul className="space-y-3" aria-label="This week's goals">

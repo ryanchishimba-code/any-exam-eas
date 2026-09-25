@@ -42,7 +42,6 @@ export function DashboardTodayBlock({
 
   return (
     <div className="space-y-5 sm:space-y-6">
-      <DashboardWeekPlan weekPlan={plan.weekPlan} />
       <section
         aria-labelledby="today-block-heading"
         data-tour="today"
@@ -80,11 +79,6 @@ export function DashboardTodayBlock({
             {todaySet?.streakDays != null && todaySet.streakDays > 0 ? (
               <p className="mt-2 text-[13px] tracking-[-0.01em] text-[var(--color-ink-muted)]">
                 {todaySet.streakDays}-day streak
-              </p>
-            ) : null}
-            {plan.weekPlan.active && plan.weekPlan.todayLine ? (
-              <p className="mt-2 text-[14px] leading-relaxed tracking-[-0.015em] text-[var(--color-ink-muted)]">
-                {plan.weekPlan.todayLine}
               </p>
             ) : null}
           </div>
@@ -144,17 +138,30 @@ export function DashboardTodayBlock({
           />
         </div>
 
-        <details className="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
-          <summary className="cursor-pointer text-[12px] font-semibold text-[var(--color-ink-muted)]">
-            How this plan is chosen
-          </summary>
-          <ul className="mt-2 space-y-1 pb-1 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
-            {plan.rules.map((rule) => (
-              <li key={rule}>{rule}</li>
-            ))}
-          </ul>
-        </details>
       </section>
+
+      <details className="rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] px-4 py-3 sm:px-5">
+        <summary className="cursor-pointer text-[15px] font-semibold tracking-[-0.02em] text-[var(--color-ink-muted)]">
+          See details
+        </summary>
+        <div className="mt-4 space-y-5 border-t border-[var(--color-border)]/50 pt-4">
+          {plan.weekPlan.active ? (
+            <DashboardWeekPlan weekPlan={plan.weekPlan} />
+          ) : (
+            <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">{plan.weekPlan.summary}</p>
+          )}
+          <details className="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
+            <summary className="cursor-pointer text-[12px] font-semibold text-[var(--color-ink-muted)]">
+              How this plan is chosen
+            </summary>
+            <ul className="mt-2 space-y-1 pb-1 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
+              {plan.rules.map((rule) => (
+                <li key={rule}>{rule}</li>
+              ))}
+            </ul>
+          </details>
+        </div>
+      </details>
     </div>
   );
 }

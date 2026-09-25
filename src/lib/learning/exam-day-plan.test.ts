@@ -680,7 +680,9 @@ describe("week countdown plan", () => {
     };
     const open = buildExamDayPlan({ ...shared, openIncorrect: 20 });
     const closed = buildExamDayPlan({ ...shared, openIncorrect: 0 });
-    expect(open.weekPlan.goals.find((goal) => goal.id === "remediation")?.detail).toMatch(/20 open/);
+    expect(open.weekPlan.goals.find((goal) => goal.id === "remediation")?.detail).toMatch(
+      /20 questions to review/
+    );
     expect(closed.weekPlan.goals.find((goal) => goal.id === "remediation")?.status).toBe("clear");
     expect(open.weekPlan.todayKind).not.toBe(closed.weekPlan.todayKind);
   });
@@ -749,8 +751,9 @@ describe("week countdown plan", () => {
       "exam_sim",
       "remediation",
     ]);
-    expect(plan.weekPlan.summary).toMatch(/exam-simulation/);
-    expect(plan.weekPlan.summary).toMatch(/incorrect-drill/);
+    expect(plan.weekPlan.summary).toMatch(/practice exam/);
+    expect(plan.weekPlan.summary).toMatch(/questions you missed/);
+    expect(plan.weekPlan.summary).not.toMatch(/blueprint gaps|open incorrect|coverage days|remediation days/);
   });
 
   it("moves off an exam-simulation day once that simulation is saved today", () => {
@@ -803,7 +806,7 @@ describe("week countdown plan", () => {
     expect(plan.items.find((item) => item.id === "exam_sim")?.doneToday).toBe(false);
     expect(sim?.status).toBe("today");
     expect(sim?.statusLabel).toBe("Today");
-    expect(plan.weekPlan.todayLine).toBe("Today projects an exam simulation, then incorrect drill.");
+    expect(plan.weekPlan.todayLine).toBe("Today: a practice exam, then questions you missed.");
   });
 });
 

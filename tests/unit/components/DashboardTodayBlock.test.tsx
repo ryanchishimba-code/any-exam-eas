@@ -206,9 +206,16 @@ describe("Dashboard week countdown", () => {
 
     render(<DashboardTodayBlock plan={built} />);
 
-    expect(screen.getByRole("heading", { name: "Coverage and remediation" })).toBeInTheDocument();
+    const start = screen.getByRole("button", { name: /Start today's set/ });
+    const details = screen.getByText("See details").closest("details");
+    expect(details).not.toBeNull();
+    expect(start.compareDocumentPosition(details as HTMLElement) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(details).toContainElement(screen.getByRole("heading", { name: "Topics to practice" }));
     expect(screen.getByText(/6 weeks out/)).toBeInTheDocument();
-    expect(screen.getByText(/Today's coverage block is done \(Management of Care\)/)).toBeInTheDocument();
+    expect(screen.getByText(/Today's practice on Management of Care is done/)).toBeInTheDocument();
+    expect(screen.getAllByText(/topics you haven't practiced yet/).length).toBeGreaterThan(0);
+    const report = details?.textContent ?? "";
+    expect(report).not.toMatch(/open incorrect items|coverage days|remediation days|blueprint gaps/);
     expect(screen.getAllByText("Done today").length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: /Start Qbank/ })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /Start exam simulation/ })).toBeNull();
@@ -240,12 +247,10 @@ describe("Dashboard week countdown", () => {
 
     render(<DashboardTodayBlock plan={built} />);
 
-    expect(
-      screen.getByRole("heading", { name: "Exam simulation and incorrect drill" })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Practice exam and review" })).toBeInTheDocument();
     expect(screen.getByText("7 days out")).toBeInTheDocument();
-    expect(screen.getAllByText("Exam simulation").length).toBeGreaterThan(0);
-    expect(screen.getByText("Incorrect drill")).toBeInTheDocument();
+    expect(screen.getAllByText("Practice exam").length).toBeGreaterThan(0);
+    expect(screen.getByText("Questions to review")).toBeInTheDocument();
     const sim = screen.getByRole("link", { name: /Start exam simulation/ });
     expect(sim).toHaveAttribute("href", "/full-exam/naplex?mode=50");
     expect(sim.className).not.toContain("study-home-accent");
