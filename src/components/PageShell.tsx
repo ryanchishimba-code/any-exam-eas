@@ -9,7 +9,7 @@ export function PageShell({
   maxWidth = "max-w-3xl",
   compact = false,
 }: {
-  title: string;
+  title: ReactNode;
   description?: string;
   eyebrow?: string;
   children?: ReactNode;

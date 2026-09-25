@@ -1,12 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import {
+  HOME_HERO_PRODUCT_LINE,
   LANDING_HERO_CTA_DISCLOSURE,
   LANDING_HERO_EYEBROW,
   LANDING_HERO_HEADLINE,
-  LANDING_HERO_SUBLINE_BODY,
   LANDING_TRIAL_HREF,
   formatHeroTotalCountLine,
 } from "@/lib/landing/content";
+import { formatTrialCtaLabel } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
 /** Lightweight hero shell shown while the flagship landing bundle loads client-side. */
@@ -27,23 +28,25 @@ export function LandingHeroSkeleton({ bankCounts }: { bankCounts: LandingBankCou
           <h1 id="hero-heading" className="aee-hero-beat__headline">
             {LANDING_HERO_HEADLINE}
           </h1>
+          <p className="aee-hero-beat__subline">{HOME_HERO_PRODUCT_LINE}</p>
+          <div className="aee-hero-beat__actions">
+            <a
+              href={LANDING_TRIAL_HREF}
+              className="aee-flagship-cta aee-flagship-cta--hero aee-flagship-cta--xl aee-flagship-cta--primary aee-flagship-cta--on-dark group aee-hero-beat__cta inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-bold"
+            >
+              {formatTrialCtaLabel()}
+              <ArrowRight className="h-5 w-5" aria-hidden />
+            </a>
+            <a href="#try-a-question" className="aee-hero-beat__secondary">
+              Try a free question
+            </a>
+          </div>
+          <p className="aee-hero-beat__meta" data-offer-line>
+            {LANDING_HERO_CTA_DISCLOSURE}
+          </p>
           {totalCountLine ? (
             <p className="aee-hero-beat__countline">{totalCountLine}</p>
           ) : null}
-          <p className="aee-hero-beat__subline">{LANDING_HERO_SUBLINE_BODY}</p>
-          <div className="aee-hero-beat__actions">
-            <a
-              href="#try-a-question"
-              className="aee-flagship-cta aee-flagship-cta--hero aee-flagship-cta--xl aee-flagship-cta--primary aee-flagship-cta--on-dark group aee-hero-beat__cta inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-bold"
-            >
-              Try a free question
-              <ArrowRight className="h-5 w-5" aria-hidden />
-            </a>
-            <a href={LANDING_TRIAL_HREF} className="aee-hero-beat__secondary aee-hero-beat__secondary--trial">
-              Start free trial
-            </a>
-          </div>
-          <p className="aee-hero-beat__meta">{LANDING_HERO_CTA_DISCLOSURE}</p>
         </div>
         <div className="aee-hero-beat__visual aee-hero-beat__visual--practice" aria-hidden>
           <div className="h-[28rem] w-full max-w-md animate-pulse rounded-3xl bg-white/10" />

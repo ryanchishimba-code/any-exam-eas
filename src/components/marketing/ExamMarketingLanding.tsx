@@ -10,26 +10,21 @@ import {
 } from "@/lib/seo/exam-config";
 import {
   formatExamLiveCountLine,
-  PLATFORM_EXAM_LIST_MIDDOT,
   landingTrialHrefForExam,
+  type LandingSuccessStory,
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
-import { BoardActiveInventory } from "@/components/marketing/BoardActiveInventory";
 import { ExamMarketingHero } from "@/components/marketing/ExamMarketingHero";
+import { WhyTrustIt } from "@/components/marketing/WhyTrustIt";
 import type { BoardInventoryPresentation } from "@/lib/inventory/active-questions";
 import { examHubProductLinks } from "@/lib/marketing/exam-hub";
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
-import {
-  LandingPricingPreviewLazy,
-  UsmleStepShowcaseLazy,
-} from "@/components/marketing/ExamMarketingSectionsLazy";
+import { UsmleStepShowcaseLazy } from "@/components/marketing/ExamMarketingSectionsLazy";
 import { ROUTES } from "@/lib/routes";
 import {
-  formatMonthlyPrice,
   formatPricingCheckoutTrialOffer,
   formatTrialCtaLabel,
   formatTrialLabel,
-  TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
 
 type Props = {
@@ -42,6 +37,8 @@ type Props = {
   usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
   /** Optional product band after the hero (study guide, practice, etc.). */
   extraAfterHero?: ReactNode;
+  /** Admin-approved testimonials. Empty until Ryan publishes real ones. */
+  testimonials?: LandingSuccessStory[];
 };
 
 export function ExamMarketingLanding({
@@ -50,6 +47,7 @@ export function ExamMarketingLanding({
   inventory,
   usmleStepCounts,
   extraAfterHero,
+  testimonials,
 }: Props) {
   const config = getExamSeoConfig(examKey);
   const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
@@ -66,13 +64,11 @@ export function ExamMarketingLanding({
       <ExamMarketingHero
         examKey={examKey}
         questionCountLine={questionCountLine}
-        formatLine={inventory?.formatLine}
-        activeDefinition={inventory?.definition}
         countSource={inventory?.countSource}
         activeCount={inventory?.activeCount}
       />
 
-      {inventory ? <BoardActiveInventory presentation={inventory} /> : null}
+      <WhyTrustIt examKey={examKey} inventory={inventory} testimonials={testimonials} />
 
       {extraAfterHero ?? (
         <section className="border-b border-[var(--color-border)]/40 py-14">
@@ -157,30 +153,6 @@ export function ExamMarketingLanding({
         </div>
       </section>
 
-      <section
-        id="pricing"
-        className="scroll-mt-24 border-b border-[var(--color-border)]/40 py-[var(--landing-section-py,4rem)]"
-      >
-        <div className="mx-auto max-w-5xl px-5 sm:px-6">
-          <header className="mx-auto max-w-2xl text-center">
-            <h2 className="aee-flagship-title">
-              Pro at {formatMonthlyPrice("pro")}/mo
-            </h2>
-            <p className="aee-flagship-subtitle">
-              {formatTrialLabel()} · {PLATFORM_EXAM_LIST_MIDDOT}
-            </p>
-          </header>
-          <div className="mt-10">
-            <LandingPricingPreviewLazy />
-          </div>
-          <p className="mt-8 text-center text-base">
-            <Link href={ROUTES.compare} className="font-semibold text-[var(--color-accent)] hover:underline">
-              Compare plans honestly →
-            </Link>
-          </p>
-        </div>
-      </section>
-
       <div className="mx-auto max-w-5xl px-5 pb-20 pt-14 sm:px-6">
         <section aria-labelledby="exam-faq">
           <h2
@@ -235,7 +207,7 @@ export function ExamMarketingLanding({
             Start {config.shortName} prep
           </h2>
           <p className="mt-3 text-lg text-[var(--color-ink-muted)]">
-            {formatTrialLabel()} · Pro at {formatMonthlyPrice("pro")}/mo
+            {formatTrialLabel()}. Cancel anytime.
           </p>
           <div className="mt-8 flex justify-center">
             <LandingCta
@@ -253,7 +225,11 @@ export function ExamMarketingLanding({
               {formatTrialCtaLabel()}
             </LandingCta>
           </div>
-          <p className="mt-4 text-sm text-[var(--color-ink-muted)]">{TRIAL_PAYMENT_DISCLOSURE}</p>
+          <p className="mt-4 text-sm">
+            <Link href={ROUTES.pricing} className="font-semibold text-[var(--color-accent)] hover:underline">
+              See pricing
+            </Link>
+          </p>
         </section>
       </div>
     </div>

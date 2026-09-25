@@ -11,7 +11,7 @@ import { LandingHeroExamStrip } from "@/components/home/LandingHeroExamStrip";
 import { LandingHeroPractice } from "@/components/landing/v2/LandingSamplePractice";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
 import {
-  LANDING_HERO_SUBLINE_BODY,
+  HOME_HERO_PRODUCT_LINE,
   formatExamHeroEyebrow,
   formatExamHeroHeadline,
   formatExamHeroTrialOffer,
@@ -19,6 +19,7 @@ import {
 } from "@/lib/landing/content";
 import { analytics } from "@/lib/analytics";
 import { useTrialCtaTarget } from "@/lib/client/use-trial-cta-target";
+import { formatTrialCtaLabel } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
 function focusHeroPractice() {
@@ -60,20 +61,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             {headline}
           </h1>
 
-          <p className="aee-hero-beat__subline">{LANDING_HERO_SUBLINE_BODY}</p>
-
-          {totalCountLine ? (
-            <p className="aee-hero-beat__countline" aria-live="polite">
-              {totalCountLine}
-            </p>
-          ) : null}
-
-          <LandingHeroExamStrip
-            variant="chips"
-            selectable
-            bankCounts={bankCounts}
-            className="aee-hero-beat__exams"
-          />
+          <p className="aee-hero-beat__subline">{HOME_HERO_PRODUCT_LINE}</p>
 
           <div className="aee-hero-beat__actions">
             {trialCta.isMemberContinue ? (
@@ -105,7 +93,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
                     />
                   }
                 >
-                  Start free trial
+                  {formatTrialCtaLabel()}
                 </LandingCta>
                 <button
                   type="button"
@@ -121,7 +109,22 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             )}
           </div>
 
-          <p className="aee-hero-beat__meta">{formatExamHeroTrialOffer()}</p>
+          <p className="aee-hero-beat__meta" data-offer-line>
+            {formatExamHeroTrialOffer()}
+          </p>
+
+          {totalCountLine ? (
+            <p className="aee-hero-beat__countline" aria-live="polite">
+              {totalCountLine}
+            </p>
+          ) : null}
+
+          <LandingHeroExamStrip
+            variant="chips"
+            selectable
+            bankCounts={bankCounts}
+            className="aee-hero-beat__exams"
+          />
         </div>
 
         <div className="aee-hero-beat__visual aee-hero-beat__visual--practice">

@@ -3,7 +3,7 @@
 /**
  * LandingFlagshipV2 — conversion-first homepage.
  *
- * Flow: six-board hero + free sample → 3 stats → pricing → FAQ → final CTA
+ * Flow: hero (one CTA, one offer, one board picker) → product frames → FAQ → final CTA
  */
 
 import Link from "next/link";
@@ -16,24 +16,13 @@ import { LandingHeroV2 } from "@/components/landing/v2/LandingHeroV2";
 import { LandingExamSelectionProvider } from "@/components/landing/v2/LandingExamSelectionContext";
 import {
   LandingFaqV2,
-  LandingPricingPreview,
   LandingStickyCta,
 } from "@/components/landing/v2/LandingFlagshipSectionsLazy";
-import { LandingStatsStrip } from "@/components/landing/v2/LandingStatsStrip";
 import { MarketingProductProof } from "@/components/marketing/MarketingProductProof";
-import {
-  LANDING_TRIAL_DETAIL,
-  LANDING_TRIAL_HREF,
-  PLATFORM_EXAM_LIST_MIDDOT,
-} from "@/lib/landing/content";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
-import {
-  formatMonthlyPrice,
-  formatPricingCheckoutTrialOffer,
-  MARKETING_DISCLAIMER,
-  TRIAL_PAYMENT_DISCLOSURE,
-} from "@/lib/site";
+import { MARKETING_DISCLAIMER, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 import { LandingSectionPageviews } from "@/components/landing/v2/LandingSectionPageviews";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
@@ -82,28 +71,6 @@ export function LandingFlagshipV2({
 
         <MarketingProductProof compact />
 
-        <LandingStatsStrip bankCounts={bankCounts} />
-
-        <section id="pricing" className="scroll-mt-24 bg-[var(--color-bg)] py-20 sm:py-24">
-          <div className="mx-auto max-w-5xl px-5 sm:px-6">
-            <div className="mx-auto max-w-2xl text-center">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)]">
-                Simple pricing
-              </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl">
-                One plan. Every board. Start free.
-              </h2>
-              <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
-                Pro at {formatMonthlyPrice("pro")}/mo for all six boards. Roadmap → Deep Dive →
-                Full Exam. {formatPricingCheckoutTrialOffer()}. Cancel anytime.
-              </p>
-            </div>
-            <div className="mt-10">
-              <LandingPricingPreview />
-            </div>
-          </div>
-        </section>
-
         <LandingFaqV2 />
 
         {children}
@@ -114,9 +81,7 @@ export function LandingFlagshipV2({
             <h2 id="final-cta-heading" className="aee-flagship-final-cta__title">
               Premium board prep starts here
             </h2>
-            <p className="aee-flagship-final-cta__subtitle">
-              {LANDING_TRIAL_DETAIL} · {PLATFORM_EXAM_LIST_MIDDOT}
-            </p>
+            <p className="aee-flagship-final-cta__subtitle">Cancel anytime.</p>
             <div className="aee-flagship-final-cta__actions">
               <FinalCta />
               <LoginModalTrigger

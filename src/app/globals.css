@@ -171,6 +171,16 @@ html {
   scroll-padding-top: var(--page-top);
 }
 
+/* The offer bar is in flow and already clears the fixed nav. Page padding
+   should not reserve a second nav-height under it. */
+body:has([data-public-offer]) {
+  --page-top: 1.25rem;
+}
+
+html:has([data-public-offer]) {
+  scroll-padding-top: calc(var(--nav-height) + 4.75rem);
+}
+
 /* ——— Apple.com layout system ——— */
 
 .apple-section {

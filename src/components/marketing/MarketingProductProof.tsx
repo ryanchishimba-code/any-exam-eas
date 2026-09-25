@@ -1,5 +1,3 @@
-import { formatPricingCheckoutTrialOffer } from "@/lib/site";
-
 const FRAMES = [
   {
     id: "roadmap",
@@ -62,8 +60,7 @@ export function MarketingProductProof({
             Roadmap. Deep Dive. Sample NGN.
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-            {formatPricingCheckoutTrialOffer()}. These frames
-            mirror the in-app study window.
+            These frames mirror the in-app study window.
           </p>
         </header>
 

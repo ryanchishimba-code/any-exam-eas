@@ -177,6 +177,13 @@ export const LANDING_HERO_HEADLINE_ACCENT = "";
 export const LANDING_HERO_SUBLINE_BODY =
   `One login · six boards · ${TRIAL_DAYS}-day free trial · no payment method required · then ${monthly()}/mo.`;
 
+/**
+ * Homepage hero subline. The trial price is only `formatExamHeroTrialOffer`,
+ * and the six boards are the chip picker — this line does not repeat either.
+ */
+export const HOME_HERO_PRODUCT_LINE =
+  "Vignettes and rationales for the board you pick.";
+
 export function formatFlagshipHeroSubline(_totalLabel?: string): string {
   return LANDING_HERO_SUBLINE_BODY;
 }

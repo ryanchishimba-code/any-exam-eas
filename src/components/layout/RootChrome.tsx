@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Footer } from "@/components/Footer";
+import { PublicFoldOffer } from "@/components/marketing/PublicFoldOffer";
 import { hideMarketingChrome } from "@/lib/navigation/app-shell";
 
 const Navigation = dynamic(
@@ -29,6 +30,7 @@ export function RootChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navigation />
+      <PublicFoldOffer />
       <main id="main-content">{children}</main>
       <Footer />
     </>

@@ -3491,15 +3491,15 @@ button.aee-flagship-cta {
   }
 
   .aee-hero-beat__headline {
-    margin-top: 0.6rem;
-    font-size: clamp(2.5rem, 9vw, 3.25rem);
-    line-height: 1.05;
+    margin-top: 0.45rem;
+    font-size: clamp(2.05rem, 8vw, 2.65rem);
+    line-height: 1.02;
   }
 
   .aee-hero-beat__subline {
-    margin-top: 0.75rem;
-    font-size: 1.125rem;
-    line-height: 1.45;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.4;
   }
 
   .aee-hero-exam-chips {
@@ -3516,7 +3516,7 @@ button.aee-flagship-cta {
   }
 
   .aee-hero-beat__actions {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     flex-wrap: wrap;
     gap: 0.75rem 1rem;
   }
@@ -4305,6 +4305,33 @@ button.aee-flagship-cta {
 
   .aee-product-proof {
     padding-block: 2rem;
+  }
+}
+
+/* 1280×800 and other short laptops: the CTA and offer line stay on the first screen. */
+@media (min-width: 1024px) and (max-height: 860px) {
+  .aee-hero-beat {
+    min-height: 0;
+    align-items: flex-start;
+    padding-block: calc(var(--nav-height, 4rem) + 0.75rem) 1.25rem;
+  }
+
+  .aee-hero-beat__headline {
+    margin-top: 0.55rem;
+    font-size: clamp(2.25rem, 3.6vw, 3.15rem);
+  }
+
+  .aee-hero-beat__subline {
+    margin-top: 0.55rem;
+    font-size: 1.0625rem;
+  }
+
+  .aee-hero-beat__actions {
+    margin-top: 0.85rem;
+  }
+
+  .aee-hero-beat__meta {
+    margin-top: 0.55rem;
   }
 }
 
