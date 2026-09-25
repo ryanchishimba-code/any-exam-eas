@@ -1,3 +1,4 @@
+import type { Prisma } from "@prisma/client";
 import type { BankItem } from "@/lib/question-bank";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
@@ -163,8 +164,23 @@ function rowToBankItem(row: {
   reviewStatus?: string | null;
   generationVersion?: string | null;
   generationMeta?: unknown;
+  reviewFlag?: boolean | null;
+  qualityScore?: number | null;
+  keepRecommendation?: boolean | null;
+  curationMeta?: unknown;
+  qaPassed?: boolean | null;
+  active?: boolean | null;
 }): BankItem {
-  return enrichBankItemFromRow(row);
+  const item = enrichBankItemFromRow(row);
+  if (typeof row.qaPassed === "boolean") item.qaPassed = row.qaPassed;
+  if (typeof row.active === "boolean") item.active = row.active;
+  if (typeof row.reviewFlag === "boolean") item.reviewFlag = row.reviewFlag;
+  if (typeof row.qualityScore === "number") item.qualityScore = row.qualityScore;
+  if (typeof row.keepRecommendation === "boolean") item.keepRecommendation = row.keepRecommendation;
+  if (row.curationMeta && typeof row.curationMeta === "object" && !Array.isArray(row.curationMeta)) {
+    item.curationMeta = row.curationMeta as Record<string, unknown>;
+  }
+  return item;
 }
 
 export function shuffleBankItems<T>(items: T[]): T[] {
@@ -885,13 +901,28 @@ export async function sampleQuestionBankItemsForBlueprintArea(params: {
   fieldId: string;
   blueprintAreaId: string;
   count: number;
+  /** Bank ids to leave out when a retake should avoid items just seen. */
+  excludeIds?: string[];
+  /** Extra gate, ANDed with the area filter. Readiness uses this for open QA flags. */
+  extraWhere?: Prisma.QuestionBankItemWhereInput;
 }): Promise<BankItem[]> {
   if (!isBlueprintAreaId(params.fieldId, params.blueprintAreaId)) return [];
   const want = Math.max(1, params.count);
-  const where = {
-    ...activeBlueprintAreaWhere(params.fieldId, params.blueprintAreaId),
-    ...usmleStepSeparationWhere(params.fieldId),
-  };
+  const exclude = (params.excludeIds ?? []).filter(Boolean);
+  const where: Prisma.QuestionBankItemWhereInput = params.extraWhere
+    ? {
+        AND: [
+          activeBlueprintAreaWhere(params.fieldId, params.blueprintAreaId),
+          usmleStepSeparationWhere(params.fieldId),
+          ...(exclude.length ? [{ id: { notIn: exclude } }] : []),
+          params.extraWhere,
+        ],
+      }
+    : {
+        ...activeBlueprintAreaWhere(params.fieldId, params.blueprintAreaId),
+        ...usmleStepSeparationWhere(params.fieldId),
+        ...(exclude.length ? { id: { notIn: exclude } } : {}),
+      };
   const total = await prisma.questionBankItem.count({ where });
   if (total === 0) return [];
   if (total <= want) {

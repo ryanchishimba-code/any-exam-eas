@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireInternalPermission } from "@/lib/internal/auth";
 import AnalyticsDashboard from "./AnalyticsDashboard";
 import { ConversionsDashboard } from "@/components/analytics/ConversionsDashboard";
+import { ReadinessOutcomeCounts } from "./ReadinessOutcomeCounts";
 
 export default async function InternalAnalyticsPage() {
   const auth = await requireInternalPermission("analytics.view_basic");
@@ -32,6 +33,8 @@ export default async function InternalAnalyticsPage() {
         </div>
         <ConversionsDashboard />
       </div>
+
+      <ReadinessOutcomeCounts />
     </div>
   );
 }

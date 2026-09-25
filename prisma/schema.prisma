@@ -79,6 +79,8 @@ model User {
   sgBookmarks        SgBookmark[]
   sgNotes            SgNote[]
   sgReadingProgress  SgReadingProgress[]
+  readinessChecks    ReadinessCheck[]
+  examOutcomes       ExamOutcome[]
 }
 
 model Account {
@@ -463,6 +465,7 @@ model QuestionBankItem {
   nptePtFullExamLinks NptePtFullPracticeExamQuestion[]
   panceFullExamLinks  PanceFullPracticeExamQuestion[]
   aanpFnpFullExamLinks AanpFnpFullPracticeExamQuestion[]
+  readinessCheckItems ReadinessCheckItem[]
 }
 
 /// Curated NAPLEX full-length practice exams (2026 blueprint, 75–85 questions each).
@@ -1648,6 +1651,84 @@ model SgNote {
 
   @@index([userId, chapterId])
   @@map("sg_notes")
+}
+
+/// Fixed-length readiness check for one student and one board.
+/// Baseline is the first completed check. Later rows are retakes or a restart after a missed exam.
+model ReadinessCheck {
+  id            String    @id @default(cuid())
+  userId        String
+  examSlug      String
+  fieldId       String
+  /// baseline | retake | restart
+  kind          String
+  /// True only for the first completed check on this board. Never cleared, so progress keeps a starting point.
+  isBaseline    Boolean   @default(false)
+  /// in_progress | completed | abandoned
+  status        String    @default("in_progress")
+  itemCount     Int
+  correctCount  Int?
+  answeredCount Int       @default(0)
+  /// not_yet | getting_close | on_track | insufficient
+  overallLevel  String?
+  areasOnTrack  Int?
+  areasScored   Int?
+  areaCount     Int?
+  summaryLine   String?
+  /// AreaSnapshot[] at completion. The source for progress and outcome calibration.
+  areaSnapshot  Json?
+  startedAt     DateTime  @default(now())
+  completedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items         ReadinessCheckItem[]
+  outcomes      ExamOutcome[]
+
+  @@index([userId, examSlug, status, completedAt])
+  @@index([userId, fieldId, createdAt])
+}
+
+/// One bank item inside a readiness check. The answer is graded on the server.
+model ReadinessCheckItem {
+  id                 String    @id @default(cuid())
+  checkId            String
+  sortOrder          Int
+  questionBankItemId String
+  areaId             String
+  areaLabel          String
+  /// JSON string array of selected option texts.
+  response           String?   @db.Text
+  correct            Boolean?
+  answeredAt         DateTime?
+  check              ReadinessCheck   @relation(fields: [checkId], references: [id], onDelete: Cascade)
+  question           QuestionBankItem @relation(fields: [questionBankItemId], references: [id], onDelete: Restrict)
+
+  @@unique([checkId, sortOrder])
+  @@unique([checkId, questionBankItemId])
+  @@index([questionBankItemId])
+}
+
+/// Optional real-exam result. Not public, and never turned into a testimonial.
+model ExamOutcome {
+  id               String   @id @default(cuid())
+  userId           String
+  examSlug         String
+  fieldId          String
+  /// ISO date (YYYY-MM-DD) the student said they sat, when they had one.
+  examDate         String?
+  /// passed | not_yet | not_taken
+  result           String
+  readinessCheckId String?
+  /// Copy of the latest readiness snapshot at record time.
+  snapshot         Json?
+  recordedAt       DateTime @default(now())
+  createdAt        DateTime @default(now())
+  user             User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  check            ReadinessCheck? @relation(fields: [readinessCheckId], references: [id], onDelete: SetNull)
+
+  @@index([examSlug, result])
+  @@index([userId, examSlug, recordedAt])
 }
 
 model SgReadingProgress {

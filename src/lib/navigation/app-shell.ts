@@ -9,6 +9,7 @@ export const APP_SHELL_PREFIXES = [
   "/dashboard",
   "/question-bank",
   "/analytics",
+  "/readiness",
   "/full-exam",
   "/library",
   "/anatomy",
@@ -26,6 +27,7 @@ export const MINIMAL_CHROME_PREFIXES = [
   "/signup",
   "/checkout",
   "/dev/tour-preview",
+  "/dev/readiness-preview",
 ] as const;
 
 export function isAppShellRoute(pathname: string): boolean {
@@ -64,8 +66,12 @@ export function isStudyGuideReaderRoute(pathname: string): boolean {
  * Routes that keep the top nav but surrender the sidebar, page padding, and
  * mobile tab bar because the page is a full-viewport experience of its own.
  */
+export function isReadinessCheckRoute(pathname: string): boolean {
+  return pathname === "/readiness/check" || pathname.startsWith("/readiness/check/");
+}
+
 export function isImmersiveAppRoute(pathname: string): boolean {
-  return isFullExamSessionRoute(pathname) || isStudyGuideReaderRoute(pathname);
+  return isFullExamSessionRoute(pathname) || isStudyGuideReaderRoute(pathname) || isReadinessCheckRoute(pathname);
 }
 
 /**

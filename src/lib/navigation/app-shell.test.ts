@@ -33,6 +33,9 @@ describe("app-shell routes", () => {
     expect(isImmersiveAppRoute("/nclex/study-guide/cardiac")).toBe(true);
     expect(isImmersiveAppRoute("/full-exam/nclex/abc123")).toBe(true);
     expect(isImmersiveAppRoute("/dashboard")).toBe(false);
+    expect(isImmersiveAppRoute("/readiness/check")).toBe(true);
+    expect(isAppShellRoute("/readiness")).toBe(true);
+    expect(isImmersiveAppRoute("/readiness")).toBe(false);
   });
 
   it("gives the study guide the app shell rather than minimal chrome", () => {

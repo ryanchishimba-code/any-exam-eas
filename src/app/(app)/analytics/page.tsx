@@ -15,6 +15,7 @@ import { boardStudyCountsFromSources } from "@/lib/learning/board-study-counts";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
 import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
+import Link from "next/link";
 import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import { studyUi } from "@/lib/study/study-ui";
 import { ROUTES } from "@/lib/routes";
@@ -87,6 +88,15 @@ async function AnalyticsContent({
     <ProUpgradeGate feature="advanced_analytics" callbackPath={ROUTES.pricing}>
       <div className="flex flex-col gap-4 sm:block sm:space-y-8">
         <div className="order-2 sm:order-none">
+          <p className="mb-3 text-[14px]">
+            <Link href={ROUTES.readiness} className="font-semibold text-[var(--color-accent)]">
+              Readiness checks
+            </Link>
+            <span className="text-[var(--color-ink-muted)]">
+              {" "}
+              — a fixed baseline and progress by area, separate from this proof.
+            </span>
+          </p>
           <ReadinessProofPanel
             readiness={examDayPlan.readiness}
             domainsLabel={examDayPlan.coverage.domainsLabel}

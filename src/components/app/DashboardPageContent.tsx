@@ -25,6 +25,7 @@ import type { DomainMapTile } from "@/components/dashboard/DomainMap";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 import { isTodayEngineNaplexEnabled, isTodayEngineUsmleEnabled } from "@/lib/engine/mastery/feature-flag";
 import { FirstLoginTour } from "@/components/onboarding/FirstLoginTour";
+import { ReadinessDashboardCard } from "@/components/readiness/ReadinessDashboardCard";
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
 
 export type DashboardHeadline = {
@@ -131,6 +132,8 @@ export function DashboardPageContent({
       />
 
       <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
+
+      <ReadinessDashboardCard examSlug={examSlug} examName={exam.shortName} />
 
       {upgrade ? <DashboardUpgradeBanner {...upgrade} /> : null}
 
