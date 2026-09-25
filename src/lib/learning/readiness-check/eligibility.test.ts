@@ -96,6 +96,23 @@ describe("readiness item eligibility", () => {
     expect(readinessItemIsEligible(mcq())).toBe(false);
   });
 
+  it("rejects a row the student-eligibility rule suppresses", () => {
+    const retired = mcq({
+      curationMeta: {
+        itemQa: {
+          retiredAt: "2026-09-01T00:00:00.000Z",
+          retiredReason: "empty_stem",
+        },
+      },
+    });
+    expect(readinessItemHasOpenQaFlag(retired)).toBe(false);
+    expect(isStandardSingleAnswerMcq(retired)).toBe(true);
+    expect(readinessItemIsEligible(retired)).toBe(false);
+    expect(selectReadinessItems([retired, mcq({ id: "clean-mcq" })], 2, undefined, () => 0).map((row) => row.id)).toEqual([
+      "clean-mcq",
+    ]);
+  });
+
   it("can require an approved review without a second call-site rule", () => {
     const policy = { requireApprovedReview: true };
     expect(readinessItemIsEligible(mcq(), policy)).toBe(false);

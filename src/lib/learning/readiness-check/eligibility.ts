@@ -6,7 +6,9 @@
  * prefilter for the same rule.
  *
  * Current pool: standard single-answer multiple choice that passes the existing
- * ingest QA gate (`bankItemPassesIngestGate`, the check that sets `qaPassed`).
+ * ingest QA gate (`bankItemPassesIngestGate`, the check that sets `qaPassed`)
+ * and the shared student-eligibility rule (`assessStudentEligibility`). A row
+ * that rule suppresses cannot be used in a readiness check.
  *
  * Excluded, and never used to fill a short area:
  * - SATA, NGN, K-type, true/false, and any other non-MCQ type
@@ -26,6 +28,10 @@
 import type { Prisma } from "@prisma/client";
 import { bankItemPassesIngestGate } from "@/lib/exam-prep/bank-ingest-gate";
 import { readItemQaRecord } from "@/lib/exam-prep/item-qa/flag";
+import {
+  assessStudentEligibility,
+  peekCompleteCaseGroups,
+} from "@/lib/exam-prep/student-eligibility";
 import { READINESS_THIN_AREA_LABEL } from "@/lib/learning/readiness-check/thresholds";
 import type { BankItem } from "@/lib/question-bank";
 
@@ -164,6 +170,27 @@ export function readinessItemHasOpenQaFlag(row: ReadinessEligibilityRow): boolea
   return false;
 }
 
+function passesStudentEligibility(row: ReadinessEligibilityRow): boolean {
+  const complete = peekCompleteCaseGroups();
+  return assessStudentEligibility(
+    {
+      id: row.id,
+      fieldId: row.fieldId,
+      active: row.active,
+      qaPassed: row.qaPassed,
+      itemType: row.itemType,
+      question: row.question,
+      scenario: row.scenario ?? row.vignette,
+      correctAnswer: row.correctAnswer,
+      explanation: row.explanation,
+      options: row.options,
+      ngnPayload: row.ngnPayload,
+      curationMeta: row.curationMeta,
+    },
+    complete ? { completeCaseGroups: complete } : {}
+  ).eligible;
+}
+
 function passesExistingQaGate(row: ReadinessEligibilityRow): boolean {
   if (row.qaPassed !== true) return false;
   if (row.active === false) return false;
@@ -188,6 +215,7 @@ export function readinessItemIsEligible(
   if (readinessItemHasOpenQaFlag(row)) return false;
   if (policy.requireApprovedReview && row.reviewStatus !== "approved") return false;
   if (!passesExistingQaGate(row)) return false;
+  if (!passesStudentEligibility(row)) return false;
   return true;
 }
 
