@@ -191,3 +191,37 @@ export function allocateReadinessAreaCounts(
 
   return [...counts.values()].map(({ id, label, count }) => ({ id, label, count }));
 }
+
+/**
+ * When an area cannot supply its slot, give the missing questions to areas
+ * that still have eligible items. Never invents items past `spare`.
+ * Areas are tried largest slot first so a heavy domain absorbs the remainder.
+ */
+export function backfillShortAreaCounts(params: {
+  slots: Array<{ id: string; count: number }>;
+  filled: Array<{ id: string; count: number }>;
+  spare: Array<{ id: string; count: number }>;
+  length: number;
+}): Array<{ id: string; extra: number }> {
+  const room = new Map(params.spare.map((row) => [row.id, Math.max(0, row.count)]));
+  const extras = new Map<string, number>();
+  let total = params.filled.reduce((sum, row) => sum + Math.max(0, row.count), 0);
+  const order = [...params.slots].sort((a, b) => b.count - a.count || a.id.localeCompare(b.id));
+  const limit = Math.max(params.length, 0) * Math.max(1, params.slots.length);
+  let guard = 0;
+  while (total < params.length && guard < limit) {
+    guard += 1;
+    let gave = false;
+    for (const area of order) {
+      if (total >= params.length) break;
+      const left = room.get(area.id) ?? 0;
+      if (left <= 0) continue;
+      room.set(area.id, left - 1);
+      extras.set(area.id, (extras.get(area.id) ?? 0) + 1);
+      total += 1;
+      gave = true;
+    }
+    if (!gave) break;
+  }
+  return [...extras.entries()].map(([id, extra]) => ({ id, extra }));
+}
