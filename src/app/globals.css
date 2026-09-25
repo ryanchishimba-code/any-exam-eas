@@ -2389,6 +2389,16 @@ body {
   color: var(--color-ink-muted);
 }
 
+.aee-trial-dashboard-offer {
+  margin-top: 0.75rem;
+  max-width: 36rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.45;
+  color: #0f766e;
+}
+
 .aee-trial-dashboard-countdown {
   position: relative;
   margin-top: 1.25rem;
@@ -2876,4 +2886,199 @@ body {
   border: 1px solid rgba(15, 23, 42, 0.06);
   background: white;
 }
+
+/* First-login product tour. Fixed overlay — no dashboard layout shift. */
+.aee-tour-mask,
+.aee-tour-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  width: 100%;
+  height: 100%;
+}
+
+.aee-tour-mask {
+  pointer-events: none;
+}
+
+.aee-tour-scrim {
+  background: transparent;
+}
+
+.aee-tour-card {
+  position: fixed;
+  z-index: 56;
+  max-width: min(22.5rem, calc(100vw - 2rem));
+  padding: 1.5rem 1.5rem 1.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(10, 37, 64, 0.08);
+  background: var(--color-surface-elevated, #fff);
+  color: var(--color-ink, #0a2540);
+  box-shadow:
+    0 24px 48px rgba(10, 37, 64, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  animation: aee-tour-in 180ms var(--ease-apple-smooth, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.aee-tour-card:focus {
+  outline: none;
+}
+
+.aee-tour-card.is-sheet {
+  left: 0;
+  right: 0;
+  bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  width: auto;
+  max-width: none;
+  border-radius: 1.25rem 1.25rem 0 0;
+  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  animation-name: aee-tour-sheet;
+}
+
+.aee-tour-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-ink-muted, #64748b);
+  cursor: pointer;
+}
+
+.aee-tour-close:hover {
+  background: rgba(10, 37, 64, 0.05);
+}
+
+.aee-tour-close:focus-visible,
+.aee-tour-back:focus-visible,
+.aee-tour-skip:focus-visible,
+.aee-tour-primary:focus-visible {
+  outline: 2px solid var(--study-accent, #0f766e);
+  outline-offset: 2px;
+}
+
+.aee-tour-kicker {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted, #64748b);
+}
+
+.aee-tour-title {
+  margin: 0.4rem 2rem 0 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--study-navy, #0a2540);
+}
+
+.aee-tour-body {
+  margin: 0.55rem 0 0;
+  max-width: 34rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+  color: var(--color-ink-muted, #334155);
+}
+
+.aee-tour-dots {
+  display: flex;
+  gap: 0.4rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aee-tour-dots li {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(10, 37, 64, 0.16);
+}
+
+.aee-tour-dots li.is-current {
+  width: 1.15rem;
+  background: var(--study-accent, #0f766e);
+}
+
+.aee-tour-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.15rem;
+}
+
+.aee-tour-back,
+.aee-tour-skip,
+.aee-tour-primary {
+  min-height: 2.75rem;
+  border-radius: 0.85rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  cursor: pointer;
+}
+
+.aee-tour-back,
+.aee-tour-skip {
+  border: 0;
+  background: transparent;
+  color: var(--color-ink-muted, #64748b);
+  padding: 0 0.75rem;
+}
+
+.aee-tour-skip {
+  margin-left: auto;
+}
+
+.aee-tour-primary {
+  border: 0;
+  padding: 0 1rem;
+  background: var(--study-accent, #0f766e);
+  color: var(--study-accent-on, #fff);
+}
+
+.aee-tour-primary:hover {
+  background: var(--study-accent-hover, #115e59);
+}
+
+@keyframes aee-tour-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes aee-tour-sheet {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aee-tour-card,
+  .aee-tour-mask rect {
+    animation: none;
+    transition: none;
+  }
+}
+
 

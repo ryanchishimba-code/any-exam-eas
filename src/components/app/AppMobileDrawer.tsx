@@ -34,6 +34,7 @@ export function AppMobileDrawer({ open, onClose }: Props) {
       <button
         type="button"
         aria-label="Close menu"
+        data-tour-block="true"
         className="fixed inset-0 z-[60] bg-slate-900/30 backdrop-blur-[2px] lg:hidden"
         onClick={onClose}
       />

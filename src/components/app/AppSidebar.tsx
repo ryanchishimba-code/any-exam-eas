@@ -130,6 +130,12 @@ type Props = {
   onNavigate?: () => void;
 };
 
+function tourHook(id: string): string | undefined {
+  if (id === "question-bank") return "bank";
+  if (id === "study-guide") return "study-guide";
+  return undefined;
+}
+
 function navPath(href: string) {
   return href.split("?")[0]!;
 }
@@ -165,7 +171,7 @@ function SidebarNavLink({
   locked,
   onNavigate,
 }: {
-  item: Pick<NavItem, "href" | "label" | "icon">;
+  item: Pick<NavItem, "id" | "href" | "label" | "icon">;
   active: boolean;
   locked?: boolean;
   onNavigate?: () => void;
@@ -177,6 +183,7 @@ function SidebarNavLink({
       <span
         aria-disabled="true"
         title="Subscribe to continue studying"
+        data-tour={tourHook(item.id)}
         className={cn(
           "study-nav-link cursor-not-allowed opacity-45",
           "text-[var(--color-ink-muted)]"
@@ -195,6 +202,7 @@ function SidebarNavLink({
       prefetch
       onClick={onNavigate}
       aria-current={active ? "page" : undefined}
+      data-tour={tourHook(item.id)}
       data-active={active ? "true" : "false"}
       className={cn(
         "study-nav-link",

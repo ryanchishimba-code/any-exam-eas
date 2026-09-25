@@ -17,7 +17,7 @@ import {
   YAxis,
 } from "recharts";
 import { InlineError } from "@/components/ui/StatusMessage";
-import { CONVERSION_EVENTS, type ConversionsDashboardData } from "@/lib/analytics/conversion-types";
+import { CONVERSION_EVENTS, FUNNEL_CONVERSION_EVENTS, type ConversionsDashboardData } from "@/lib/analytics/conversion-types";
 
 const PIE_COLORS = ["#0ea5e9", "#8b5cf6", "#22c55e", "#f97316", "#ec4899"];
 
@@ -75,10 +75,10 @@ export function ConversionsDashboard() {
 
   const funnelData = useMemo(() => {
     if (!dashboard) return [];
-    return Object.entries(dashboard.totals).map(([eventName, count]) => ({
+    return FUNNEL_CONVERSION_EVENTS.map((eventName) => ({
       eventName,
       label: EVENT_LABELS[eventName] ?? eventName,
-      count,
+      count: dashboard.totals[eventName] ?? 0,
     }));
   }, [dashboard]);
 

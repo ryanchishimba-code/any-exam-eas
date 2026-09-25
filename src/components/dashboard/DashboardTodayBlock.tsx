@@ -14,11 +14,18 @@ export function DashboardTodayBlock({
   studyLocked?: boolean;
 }) {
   const lockedHref = postTrialCheckoutHref();
+  const todayStartId =
+    plan.items.find((item) => item.href && item.id !== "incorrect")?.id ??
+    plan.items.find((item) => item.href)?.id;
 
   return (
     <div className="space-y-5 sm:space-y-6">
       <DashboardWeekPlan weekPlan={plan.weekPlan} />
-      <section aria-labelledby="today-block-heading" className={`${dbUi.heroSurface} space-y-6`}>
+      <section
+        aria-labelledby="today-block-heading"
+        data-tour="today"
+        className={`${dbUi.heroSurface} space-y-6`}
+      >
       <div>
         <p className={dbUi.eyebrow}>Today&apos;s block</p>
         <h2
@@ -87,6 +94,13 @@ export function DashboardTodayBlock({
               {href ? (
                 <Link
                   href={href}
+                  data-tour={
+                    item.id === "incorrect"
+                      ? "review-incorrect"
+                      : item.id === todayStartId
+                        ? "today-start"
+                        : undefined
+                  }
                   className={`${cardClass} bg-[var(--db-card,var(--color-surface-elevated))] transition hover:border-[var(--color-accent)]/40`}
                 >
                   {body}

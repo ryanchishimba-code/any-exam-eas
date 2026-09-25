@@ -164,6 +164,7 @@ export function FeatureShortcuts({
             aria-disabled="true"
             title="Subscribe to continue studying"
             className="aee-feature-shortcut-card pointer-events-none cursor-not-allowed opacity-45"
+            data-tour={href.includes("/study-guide") ? "study-guide" : undefined}
             style={{ "--feature-accent": accent } as CSSProperties}
           >
             <span className="aee-feature-shortcut-card-icon" aria-hidden>
@@ -179,6 +180,7 @@ export function FeatureShortcuts({
             key={href}
             href={href}
             className="aee-feature-shortcut-card"
+            data-tour={href.includes("/study-guide") ? "study-guide" : undefined}
             onClick={onNavigate}
             style={{ "--feature-accent": accent } as CSSProperties}
           >

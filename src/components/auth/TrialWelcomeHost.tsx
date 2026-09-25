@@ -1,6 +1,14 @@
 "use client";
 
-import { createContext, useContext, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import {
+  createContext,
+  Suspense,
+  useContext,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { AnimatePresence } from "framer-motion";
@@ -10,21 +18,28 @@ import {
   peekTrialWelcomePending,
 } from "@/lib/client/trial-welcome";
 import { TRIAL_DAYS } from "@/lib/billing-config";
+import { resolveDisplayedTrial } from "@/lib/auth/trial-welcome-math";
 import { fetchSubscriptionStatus } from "@/lib/client/post-login";
 import { analytics } from "@/lib/analytics";
 
-type TrialWelcomeContextValue = {
+type TrialWelcomeGate = {
   active: boolean;
+  /** False until the client has checked the session flag after mount. */
+  resolved: boolean;
 };
 
-const TrialWelcomeContext = createContext<TrialWelcomeContextValue>({ active: false });
+const TrialWelcomeContext = createContext<TrialWelcomeGate>({ active: false, resolved: false });
+
+export function useTrialWelcome(): TrialWelcomeGate {
+  return useContext(TrialWelcomeContext);
+}
 
 export function useTrialWelcomeActive() {
-  return useContext(TrialWelcomeContext).active;
+  return useTrialWelcome().active;
 }
 
 type TrialWelcomeHostProps = {
-  onActiveChange?: (active: boolean) => void;
+  onActiveChange?: (gate: TrialWelcomeGate) => void;
 };
 
 /** Inline dashboard welcome after login — renders instantly from session flag. */
@@ -43,10 +58,15 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
   const [trialDays, setTrialDays] = useState(TRIAL_DAYS);
   const [showVerifyPrompt, setShowVerifyPrompt] = useState(false);
   const [verifyRequired, setVerifyRequired] = useState(false);
+  const [resolved, setResolved] = useState(false);
 
   useLayoutEffect(() => {
-    onActiveChange?.(visible);
-  }, [onActiveChange, visible]);
+    onActiveChange?.({ active: visible, resolved });
+  }, [onActiveChange, resolved, visible]);
+
+  useLayoutEffect(() => {
+    setResolved(true);
+  }, []);
 
   useLayoutEffect(() => {
     if (validated.current) return;
@@ -59,7 +79,14 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
 
     setVisible(true);
     if (verifyParam) setShowVerifyPrompt(true);
-    if (pending) setDaysRemaining(pending.daysRemaining);
+    if (pending) {
+      const shown = resolveDisplayedTrial({
+        pendingDays: pending.daysRemaining,
+        statusTrialDays: TRIAL_DAYS,
+      });
+      setDaysRemaining(shown.daysRemaining);
+      setTrialDays(shown.trialDays);
+    }
   }, [searchParams]);
 
   useLayoutEffect(() => {
@@ -97,8 +124,13 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
         return;
       }
 
-      setDaysRemaining(sub.daysRemaining ?? pending?.daysRemaining ?? 14);
-      if (typeof sub.trialDays === "number") setTrialDays(sub.trialDays);
+      const shown = resolveDisplayedTrial({
+        statusDays: sub?.daysRemaining,
+        pendingDays: pending?.daysRemaining,
+        statusTrialDays: typeof sub?.trialDays === "number" ? sub.trialDays : TRIAL_DAYS,
+      });
+      setDaysRemaining(shown.daysRemaining);
+      setTrialDays(shown.trialDays);
       if (!unverified) setVisible(true);
 
       if (welcomeParam) {
@@ -130,11 +162,13 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
 }
 
 export function TrialWelcomeProvider({ children }: { children: ReactNode }) {
-  const [active, setActive] = useState(false);
+  const [gate, setGate] = useState<TrialWelcomeGate>({ active: false, resolved: false });
 
   return (
-    <TrialWelcomeContext.Provider value={{ active }}>
-      <TrialWelcomeHost onActiveChange={setActive} />
+    <TrialWelcomeContext.Provider value={gate}>
+      <Suspense fallback={null}>
+        <TrialWelcomeHost onActiveChange={setGate} />
+      </Suspense>
       {children}
     </TrialWelcomeContext.Provider>
   );

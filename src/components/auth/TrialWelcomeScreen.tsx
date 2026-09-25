@@ -6,6 +6,14 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { firstName } from "@/lib/client/returning-user";
 import { TrialFeatureShortcuts } from "@/components/dashboard/TrialFeatureShortcuts";
 import { VerifyEmailPrompt } from "@/components/auth/VerifyEmailPrompt";
+import { TRIAL_DAYS } from "@/lib/billing-config";
+import {
+  approvedTrialOfferLine,
+  trialDayCaption,
+  trialProgressPct,
+  trialUrgencyMessage,
+  trialUrgencyTone,
+} from "@/lib/auth/trial-welcome-math";
 
 type TrialWelcomeScreenProps = {
   daysRemaining: number;
@@ -19,22 +27,9 @@ type TrialWelcomeScreenProps = {
   onDismiss: () => void;
 };
 
-function urgencyTone(daysRemaining: number): "calm" | "moderate" | "urgent" {
-  if (daysRemaining <= 3) return "urgent";
-  if (daysRemaining <= 7) return "moderate";
-  return "calm";
-}
-
-function urgencyMessage(daysRemaining: number): string {
-  if (daysRemaining <= 1) return "Last day — make it count!";
-  if (daysRemaining <= 3) return "Trial ending soon — dive in today.";
-  if (daysRemaining <= 7) return "You're halfway through — keep the momentum.";
-  return "Full access unlocked — start whenever you're ready.";
-}
-
 export function TrialWelcomeScreen({
   daysRemaining,
-  trialDays = 14,
+  trialDays = TRIAL_DAYS,
   userName,
   userEmail,
   showVerifyPrompt = false,
@@ -42,9 +37,9 @@ export function TrialWelcomeScreen({
   onDismiss,
 }: TrialWelcomeScreenProps) {
   const name = userName ? firstName(userName) : null;
-  const tone = urgencyTone(daysRemaining);
-  const elapsed = Math.max(0, Math.min(trialDays, trialDays - daysRemaining));
-  const progressPct = Math.round((elapsed / trialDays) * 100);
+  const tone = trialUrgencyTone(daysRemaining, trialDays);
+  const progressPct = trialProgressPct(daysRemaining, trialDays);
+  const offer = approvedTrialOfferLine();
 
   if (showVerifyPrompt) {
     return (
@@ -84,6 +79,9 @@ export function TrialWelcomeScreen({
         <p className="aee-trial-dashboard-lead">
           Your study tools are ready — practice exams, drug review, and analytics when you are.
         </p>
+        <p className="aee-trial-dashboard-offer" data-testid="trial-offer">
+          {offer}
+        </p>
       </div>
 
       <div className={`aee-trial-dashboard-countdown aee-trial-dashboard-countdown--${tone}`}>
@@ -93,7 +91,9 @@ export function TrialWelcomeScreen({
             <p className="aee-trial-dashboard-countdown-label">
               day{daysRemaining === 1 ? "" : "s"} remaining
             </p>
-            <p className="aee-trial-dashboard-countdown-hint">{urgencyMessage(daysRemaining)}</p>
+            <p className="aee-trial-dashboard-countdown-hint" data-testid="trial-urgency">
+              {trialUrgencyMessage(daysRemaining, trialDays)}
+            </p>
           </div>
         </div>
 
@@ -103,8 +103,8 @@ export function TrialWelcomeScreen({
             style={{ width: `${progressPct}%` }}
           />
         </div>
-        <p className="aee-trial-dashboard-progress-caption">
-          Day {elapsed + 1} of {trialDays} · {progressPct}% of trial used
+        <p className="aee-trial-dashboard-progress-caption" data-testid="trial-day-caption">
+          {trialDayCaption(daysRemaining, trialDays)}
         </p>
       </div>
 
