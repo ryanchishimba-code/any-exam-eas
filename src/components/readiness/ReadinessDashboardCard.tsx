@@ -244,7 +244,7 @@ export function ReadinessDashboardCard({
         See where you stand
       </h2>
       <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-        {card.length} questions across this board, once at the start. You&apos;ll get a plain level for each area. It&apos;s a baseline, not a prediction of passing.
+        {card.length} standard questions across this board, once at the start. You&apos;ll get an overall level, and a provisional read on each tagged area. It&apos;s a baseline, not a prediction of passing.
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-2">
         {card.hasStudyAccess ? (

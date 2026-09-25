@@ -3,13 +3,8 @@ import type { BankItem } from "@/lib/question-bank";
 import { examQuestionToStudy, isAnswerCorrect } from "@/lib/questions/prepare";
 import type { StudyQuestion, StudyQuestionType } from "@/lib/questions/types";
 
-/** Discrete items the check can grade without a special player per board. */
-const PLAYABLE: ReadonlySet<StudyQuestionType> = new Set([
-  "multiple_choice",
-  "true_false",
-  "select_all",
-  "k_type",
-]);
+/** Standard single-answer items. SATA and NGN stay out of the check. */
+const PLAYABLE: ReadonlySet<StudyQuestionType> = new Set(["multiple_choice"]);
 
 export type ReadinessPrompt = {
   itemId: string;
@@ -39,7 +34,7 @@ export function toPlayableQuestion(fieldId: string, item: BankItem): StudyQuesti
     );
     if (!PLAYABLE.has(study.type)) return null;
     if (!study.stem.trim() || study.options.length < 2) return null;
-    if (study.type === "select_all" && study.correctAnswers.length < 1) return null;
+    if (study.correctAnswers.length !== 1) return null;
     return study;
   } catch {
     return null;

@@ -94,20 +94,13 @@ export function summarizeReadiness(tallies: AreaTally[]): ReadinessSummary {
     .slice(0, 2)
     .map((row) => ({ areaId: row.areaId, label: row.label }));
 
-  const head =
-    areaCount === 0
-      ? "Not enough data yet."
-      : `On track in ${areasOnTrack} of ${areaCount} areas.`;
-
-  let line = head;
-  if (areasScored === 0) {
+  const overallLabel = READINESS_LEVEL_LABEL[overallLevel];
+  let line = overallLabel;
+  if (areaCount === 0 || areasScored === 0) {
     line =
       "Not enough data yet. Each area needs at least 2 answered questions before it gets a level.";
   } else if (focus.length > 0) {
-    line = `${head} Focus next on ${joinNames(focus.map((row) => row.label))}.`;
-  } else if (areasScored < areaCount) {
-    const gap = areaCount - areasScored;
-    line = `${head} ${gap} ${gap === 1 ? "area still needs" : "areas still need"} more questions.`;
+    line = `${overallLabel}. A place to practice next: ${joinNames(focus.map((row) => row.label))}.`;
   }
 
   return {
@@ -133,12 +126,15 @@ export function noteThinAreas(summary: ReadinessSummary, thinAreaIds: ReadonlySe
   );
   const thinCount = areas.filter((area) => area.thinBank).length;
   if (thinCount === 0 || summary.focus.length > 0) return { ...summary, areas };
-  const head = summary.areaCount === 0 ? "Not enough data yet." : `On track in ${summary.areasOnTrack} of ${summary.areaCount} areas.`;
   const noun = thinCount === 1 ? "area doesn't" : "areas don't";
+  const lead =
+    summary.overallLevel === "insufficient"
+      ? "Not enough data yet."
+      : `${summary.overallLabel}.`;
   return {
     ...summary,
     areas,
-    line: `${head} ${thinCount} ${noun} have enough clean questions yet.`,
+    line: `${lead} ${thinCount} ${noun} have enough clean questions yet.`,
   };
 }
 

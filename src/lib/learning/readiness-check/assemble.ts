@@ -39,29 +39,33 @@ async function fillArea(params: {
   const pool = await sampleQuestionBankItemsForBlueprintArea({
     fieldId: params.fieldId,
     blueprintAreaId: params.areaId,
-    count: Math.max(params.need * 4, params.need + 8),
+    count: Math.max(params.need * 12, params.need + 40),
     excludeIds: [...params.excludeIds, ...params.used],
     extraWhere: readinessEligibilityWhere(),
   });
   const eligibleById = new Map<string, BankItem>();
   for (const item of pool) {
     if (!item.id || params.used.has(item.id)) continue;
-    if (!readinessItemIsEligible(item)) continue;
-    eligibleById.set(item.id, item);
+    const candidate = {
+      ...item,
+      fieldId: params.fieldId,
+      qaPassed: item.qaPassed ?? true,
+      active: item.active ?? true,
+    };
+    if (!readinessItemIsEligible(candidate)) continue;
+    eligibleById.set(item.id, candidate);
   }
-  const playable: BankItem[] = [];
+  const playableIds = new Set<string>();
   for (const item of filterBankItemsForServe(params.fieldId, [...eligibleById.values()])) {
     if (!item.id || !eligibleById.has(item.id)) continue;
-    const source = eligibleById.get(item.id)!;
     if (!toPlayableQuestion(params.fieldId, item)) continue;
-    playable.push({
-      ...item,
-      qualityScore: source.qualityScore,
-      keepRecommendation: source.keepRecommendation,
-    });
+    playableIds.add(item.id);
   }
   const picked: AssembledReadinessItem[] = [];
-  for (const item of selectReadinessItems(playable, params.need)) {
+  for (const item of selectReadinessItems(
+    [...eligibleById.values()].filter((row) => row.id && playableIds.has(row.id)),
+    params.need
+  )) {
     if (!item.id) continue;
     params.used.add(item.id);
     picked.push({
@@ -75,8 +79,9 @@ async function fillArea(params: {
 
 /**
  * Draw a fixed check from published bank items, spread across the board's blueprint.
- * Only items with no open quality flag are eligible. A short area stays short.
- * The second pass may repeat a recent item. It does not relax the quality rule.
+ * Eligibility is `readinessItemIsEligible` only: standard single-answer MCQs that
+ * pass the QA gate. A short area stays short. The second pass may repeat a recent
+ * clean item. It does not relax the rule.
  */
 export async function assembleReadinessItems(params: {
   fieldId: string;

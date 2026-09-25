@@ -168,8 +168,12 @@ function rowToBankItem(row: {
   qualityScore?: number | null;
   keepRecommendation?: boolean | null;
   curationMeta?: unknown;
+  qaPassed?: boolean | null;
+  active?: boolean | null;
 }): BankItem {
   const item = enrichBankItemFromRow(row);
+  if (typeof row.qaPassed === "boolean") item.qaPassed = row.qaPassed;
+  if (typeof row.active === "boolean") item.active = row.active;
   if (typeof row.reviewFlag === "boolean") item.reviewFlag = row.reviewFlag;
   if (typeof row.qualityScore === "number") item.qualityScore = row.qualityScore;
   if (typeof row.keepRecommendation === "boolean") item.keepRecommendation = row.keepRecommendation;

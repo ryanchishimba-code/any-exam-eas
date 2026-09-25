@@ -39,7 +39,8 @@ describe("readiness check scoring", () => {
 
     expect(summary.areasOnTrack).toBe(5);
     expect(summary.areaCount).toBe(8);
-    expect(summary.line).toBe("On track in 5 of 8 areas. Focus next on Delta and Gamma.");
+    expect(summary.line).toBe("Not yet. A place to practice next: Delta and Gamma.");
+    expect(summary.line).not.toMatch(/of \d+ areas/);
     expect(summary.line.toLowerCase()).not.toContain("probability");
     expect(summary.line).not.toMatch(/%/);
     expect(summary.overallLevel).toBe("not_yet");
@@ -54,7 +55,7 @@ describe("readiness check scoring", () => {
       { areaId: "d", label: "D", answered: 3, correct: 2 },
     ]);
     expect(strong.overallLevel).toBe("on_track");
-    expect(strong.line).toBe("On track in 3 of 4 areas. Focus next on D.");
+    expect(strong.line).toBe("On track. A place to practice next: D.");
 
     const close = summarizeReadiness([
       { areaId: "a", label: "A", answered: 2, correct: 2 },
@@ -63,6 +64,7 @@ describe("readiness check scoring", () => {
       { areaId: "d", label: "D", answered: 2, correct: 1 },
     ]);
     expect(close.overallLevel).toBe("getting_close");
+    expect(close.line).toBe("Getting close. A place to practice next: B and C.");
   });
 
   it("refuses an overall level when half the areas have no evidence", () => {
@@ -73,7 +75,7 @@ describe("readiness check scoring", () => {
       { areaId: "d", label: "D", answered: 0, correct: 0 },
     ]);
     expect(summary.overallLevel).toBe("insufficient");
-    expect(summary.line).toContain("On track in 1 of 4 areas.");
+    expect(summary.line).toBe("Not enough data yet");
   });
 
   it("names a thin clean bank and does not turn it into a level", () => {
@@ -88,7 +90,7 @@ describe("readiness check scoring", () => {
     expect(summary.areas.find((row) => row.areaId === "a")?.thinBank).toBeUndefined();
     expect(summary.areas.find((row) => row.areaId === "b")?.level).toBe("insufficient");
     expect(summary.areas.find((row) => row.areaId === "b")?.thinBank).toBe(true);
-    expect(summary.line).toBe("On track in 1 of 3 areas. 2 areas don't have enough clean questions yet.");
+    expect(summary.line).toBe("Not enough data yet. 2 areas don't have enough clean questions yet.");
     expect(summary.line.toLowerCase()).not.toContain("probability");
   });
 });

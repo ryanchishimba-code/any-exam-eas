@@ -71,11 +71,11 @@ export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
           {data.result?.summaryLine ?? "A baseline, then proof you're moving"}
         </h1>
         <p className="max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-          Levels come from your answers on a {data.length}-question check. An area with fewer than 2 answers stays unlabeled. This is practice readiness, not a prediction of passing.
+          The overall level is the read that matters. Area names follow the tags on a {data.length}-question check of standard multiple-choice items, so each area level is provisional. Fewer than 2 answers stays “Not enough data yet.” This is not a prediction of passing.
         </p>
         {data.areas.some((area) => area.thinBank) ? (
           <p className="max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-            Flagged questions are left out. An area stays unlabeled when there are not enough clean questions to score it.
+            Some tags don&apos;t have enough clean questions to score. Those stay unlabeled. Flagged and non-MCQ items are not used to fill them.
           </p>
         ) : null}
       </header>
@@ -86,7 +86,7 @@ export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
             Didn&apos;t pass yet. The work still counts.
           </h2>
           <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-            Take a new baseline so today has a starting line, then practice the areas that are not on track. Your first check stays here, so you can see the distance you&apos;ve already covered.
+            Take a new baseline so today has a starting line, then practice the areas that look weakest. Your first check stays here, so you can see the distance you&apos;ve already covered.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {data.hasStudyAccess ? (
@@ -117,7 +117,10 @@ export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
       {showAreas ? (
         <section className="space-y-3">
           <div className="flex items-end justify-between gap-3">
-            <h2 className="text-[13px] font-semibold tracking-tight text-[var(--color-ink)]">Areas</h2>
+            <div>
+              <h2 className="text-[13px] font-semibold tracking-tight text-[var(--color-ink)]">Areas</h2>
+              <p className="text-[12px] text-[var(--color-ink-muted)]">Provisional, from the current tags.</p>
+            </div>
             <Link href={data.todayHref} className="text-[13px] font-semibold text-[var(--color-accent)]">
               Practice in Today
             </Link>
@@ -133,7 +136,11 @@ export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
                       {area.label}
                     </p>
                     <p className={cn("mt-0.5 text-[13px]", levelClass(area.level))}>
-                      {thin ? READINESS_THIN_AREA_LABEL : READINESS_LEVEL_LABEL[area.level as ReadinessLevel]}
+                      {thin
+                        ? READINESS_THIN_AREA_LABEL
+                        : area.level === "insufficient"
+                          ? READINESS_LEVEL_LABEL.insufficient
+                          : `Provisional · ${READINESS_LEVEL_LABEL[area.level as ReadinessLevel]}`}
                       {!thin && moved && data.baselineSummary ? ` · ${moved.detail}` : ""}
                     </p>
                   </div>

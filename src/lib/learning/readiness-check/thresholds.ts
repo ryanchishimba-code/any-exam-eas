@@ -25,8 +25,9 @@
  * - "Getting close" when every area has a level and none are "Not yet", but fewer
  *   than 75% are On track.
  * - "Not yet" when at least half the areas have a level and any scored area is Not yet.
- * The headline count is always "On track in N of M areas" using the full blueprint,
- * not a pass percentage.
+ * The student-facing line is the overall band plus, when useful, up to two
+ * weakest areas to practice next. It is not "on track in N of M areas."
+ * Per-area levels use the current tags and stay provisional.
  *
  * Retake
  * - Suggested 14 days after the latest completed check (inside the 1–2 week window).
@@ -38,11 +39,11 @@
  * - The quiet link stays on the dashboard the whole time.
  *
  * Item eligibility
- * - See READINESS_ITEM_POLICY in eligibility.ts. The check uses served bank
- *   items with no open quality flag, and prefers a higher qualityScore.
+ * - One function: readinessItemIsEligible in eligibility.ts.
+ * - Standard single-answer MCQ only. SATA, NGN, K-type, true/false, select-all
+ *   stems, QA-gate failures, flagged, pending, item-QA codes, and retired rows
+ *   stay out. A short area is not padded.
  * - Set requireApprovedReview to require reviewStatus "approved".
- * - An area that cannot reach the evidence minimum on that rule stays unlabeled.
- *   It is not filled with flagged items.
  */
 
 export const READINESS_CHECK_LENGTH = 24;

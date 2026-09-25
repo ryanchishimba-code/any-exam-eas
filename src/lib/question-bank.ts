@@ -64,6 +64,10 @@ export type BankItem = {
   blueprintTopic?: string;
   generationVersion?: string;
   reviewStatus?: "pending" | "approved" | "flagged" | "rejected";
+  /** Stored result of the bank QA gate. Practice serves only true. */
+  qaPassed?: boolean | null;
+  /** False when the row was deactivated or retired. */
+  active?: boolean | null;
   /** Item QA / curation queue. True means a person still needs to clear the row. */
   reviewFlag?: boolean | null;
   /** Curation composite, when the bank has one. Higher is stronger. */
