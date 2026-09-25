@@ -44,10 +44,10 @@ export function DashboardHeader({
         {boardAttempts > 0 ? (
           <span
             className={dbUi.statusPill}
-            aria-label={`${boardAttempts.toLocaleString()} saved attempts on this board`}
+            aria-label={`${boardAttempts.toLocaleString("en-US")} saved attempts on this board`}
           >
             <Layers className="h-3 w-3" aria-hidden />
-            {boardAttempts.toLocaleString()}
+            {boardAttempts.toLocaleString("en-US")}
           </span>
         ) : null}
       </div>

@@ -62,8 +62,23 @@ async function fetchPreferenceOnce(): Promise<PreferencePayload | null> {
   return readPreferencePayload(await res.json());
 }
 
+/**
+ * Bumped on every optimistic exam write. An in-flight preference fetch that
+ * started before the write must not paint the previous board back onto nav.
+ */
+let preferenceWriteRevision = 0;
+
+function publishOptimisticExamSlug(slug: ExamSlug | null) {
+  preferenceWriteRevision += 1;
+  cachedPreference = {
+    examSlug: slug,
+    mpjeStateCode: cachedPreference?.mpjeStateCode ?? null,
+  };
+}
+
 /** Shared across provider and fallback consumers; `force` bypasses the cache after a save. */
 async function fetchPreference(force = false): Promise<PreferencePayload | null> {
+  const revision = preferenceWriteRevision;
   if (force) {
     cachedPreference = null;
     inflightPreference = null;
@@ -76,7 +91,8 @@ async function fetchPreference(force = false): Promise<PreferencePayload | null>
   const pending = fetchPreferenceOnce()
     .then((value) => {
       // Only a real payload is worth caching; a declined read stays retryable.
-      if (value) cachedPreference = value;
+      // A newer optimistic write wins over this response.
+      if (value && revision === preferenceWriteRevision) cachedPreference = value;
       if (inflightPreference === pending) inflightPreference = null;
       return value;
     })
@@ -104,16 +120,19 @@ export function AppPreferencesProvider({
   const [loading, setLoading] = useState(status === "authenticated" && !initialExamSlug);
 
   const setExamSlug = useCallback((slug: ExamSlug | null) => {
+    publishOptimisticExamSlug(slug);
     setExamSlugState(slug);
   }, []);
 
   const load = useCallback(async (force: boolean) => {
+    const revision = preferenceWriteRevision;
     try {
       const payload = await fetchPreference(force);
-      if (!payload) return;
+      if (!payload || revision !== preferenceWriteRevision) return;
       setExamSlugState(payload.examSlug);
       setMpjeStateCode(payload.mpjeStateCode);
     } catch {
+      if (revision !== preferenceWriteRevision) return;
       setExamSlugState(null);
       setMpjeStateCode(null);
     } finally {
@@ -171,16 +190,19 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
   const [loading, setLoading] = useState(active && status === "authenticated");
 
   const setExamSlug = useCallback((slug: ExamSlug | null) => {
+    publishOptimisticExamSlug(slug);
     setExamSlugState(slug);
   }, []);
 
   const load = useCallback(async (force: boolean) => {
+    const revision = preferenceWriteRevision;
     try {
       const payload = await fetchPreference(force);
-      if (!payload) return;
+      if (!payload || revision !== preferenceWriteRevision) return;
       setExamSlugState(payload.examSlug);
       setMpjeStateCode(payload.mpjeStateCode);
     } catch {
+      if (revision !== preferenceWriteRevision) return;
       setExamSlugState(null);
       setMpjeStateCode(null);
     } finally {

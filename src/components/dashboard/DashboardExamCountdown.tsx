@@ -43,15 +43,21 @@ export function DashboardExamCountdown({
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [editing, setEditing] = useState(false);
-  const [now] = useState(() => Date.now());
+  // Date.now() during render disagrees between UTC on the server and the
+  // browser, which hydrates as React #418 ("N days" vs "N-1 days").
+  const [now, setNow] = useState<number | null>(null);
+
+  useEffect(() => {
+    setNow(Date.now());
+  }, []);
 
   useEffect(() => {
     setDate(testDate);
     setDraft(testDate ?? "");
   }, [testDate]);
 
-  const today = useMemo(() => todayIso(), []);
-  const calDays = date ? calendarDaysUntil(date, now) : null;
+  const today = useMemo(() => (now == null ? "" : todayIso()), [now]);
+  const calDays = date && now != null ? calendarDaysUntil(date, now) : null;
   const isPast = calDays != null && calDays < 0;
   const isToday = calDays === 0;
   const isUrgent = calDays != null && calDays > 0 && calDays <= 14;
@@ -72,6 +78,7 @@ export function DashboardExamCountdown({
 
   const title = (() => {
     if (!date) return `When is your ${examName}?`;
+    if (now == null) return formatExamDateLong(date);
     if (isPast) return "Exam date passed";
     if (isToday) return "Exam day";
     if (calDays === 1) return "Exam tomorrow";
@@ -80,19 +87,21 @@ export function DashboardExamCountdown({
 
   const meta = (() => {
     if (!date) return "Set a target exam date. Today's block uses it to pace this board.";
+    if (now == null) return examName;
     if (isPast) return `${formatExamDateLong(date)} · update when you reschedule`;
     if (isToday) return `${examName} · you've got this`;
     return `${examName} · ${formatExamDateLong(date)}`;
   })();
 
   const countLabel = (() => {
-    if (!date) return "—";
+    if (!date || now == null) return "—";
     if (isPast) return "0";
     if (isToday) return "0";
     return String(calDays);
   })();
 
-  const countUnit = !date ? "set date" : isToday || isPast ? "today" : calDays === 1 ? "day" : "days";
+  const countUnit =
+    !date ? "set date" : now == null ? "days" : isToday || isPast ? "today" : calDays === 1 ? "day" : "days";
 
   async function save(next: string | null) {
     setSaving(true);

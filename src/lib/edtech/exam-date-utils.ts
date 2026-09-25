@@ -42,20 +42,20 @@ export function addMonthsToIso(iso: string, months: number): string {
 }
 
 export function formatExamDateLong(iso: string): string {
-  return new Date(`${iso}T00:00:00`).toLocaleDateString(undefined, {
+  return new Intl.DateTimeFormat("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
     year: "numeric",
-  });
+  }).format(new Date(`${iso}T00:00:00`));
 }
 
 export function formatExamDateShort(iso: string): string {
-  return new Date(`${iso}T00:00:00`).toLocaleDateString(undefined, {
+  return new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
-  });
+  }).format(new Date(`${iso}T00:00:00`));
 }
 
 export function calendarDaysUntil(isoDate: string, now = Date.now()): number {

@@ -7,9 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import { TrialWelcomeScreen } from "@/components/auth/TrialWelcomeScreen";
 import {
   clearTrialWelcomePending,
-  initialTrialDaysRemaining,
   peekTrialWelcomePending,
-  shouldShowTrialWelcome,
 } from "@/lib/client/trial-welcome";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { fetchSubscriptionStatus } from "@/lib/client/post-login";
@@ -37,14 +35,13 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
   const { data: session, status } = useSession();
   const validated = useRef(false);
 
-  const [visible, setVisible] = useState(() => shouldShowTrialWelcome());
-  const [daysRemaining, setDaysRemaining] = useState(initialTrialDaysRemaining);
+  // Do not read window/sessionStorage in the initial state. Server HTML and
+  // the first client render must match; the layout effect below opens the
+  // welcome before paint when the flag is actually set.
+  const [visible, setVisible] = useState(false);
+  const [daysRemaining, setDaysRemaining] = useState(TRIAL_DAYS);
   const [trialDays, setTrialDays] = useState(TRIAL_DAYS);
-  const [showVerifyPrompt, setShowVerifyPrompt] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      new URLSearchParams(window.location.search).get("verify") === "1"
-  );
+  const [showVerifyPrompt, setShowVerifyPrompt] = useState(false);
   const [verifyRequired, setVerifyRequired] = useState(false);
 
   useLayoutEffect(() => {
@@ -133,7 +130,7 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
 }
 
 export function TrialWelcomeProvider({ children }: { children: ReactNode }) {
-  const [active, setActive] = useState(() => shouldShowTrialWelcome());
+  const [active, setActive] = useState(false);
 
   return (
     <TrialWelcomeContext.Provider value={{ active }}>

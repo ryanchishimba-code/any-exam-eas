@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { RemediationLaunchNotice } from "@/components/study/RemediationLaunchNotice";
+import { CanonicalQuestionBankUrl } from "@/components/study/question-bank/CanonicalQuestionBankUrl";
 import { QuestionBankPracticeLoader } from "@/components/study/question-bank/QuestionBankPracticeLoader";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCachedSession } from "@/lib/auth/session";
@@ -129,11 +130,16 @@ export default async function QuestionBankPage({
       const emptyMode = questionBankEmptyLaunch(style, eligible);
       if (emptyMode) {
         return (
-          <QuestionBankRemediationEmpty
-            mode={emptyMode}
-            fieldId={route.fieldParam}
-            subjectId={subjectId}
-          />
+          <>
+            <Suspense fallback={null}>
+              <CanonicalQuestionBankUrl fieldId={route.fieldParam} />
+            </Suspense>
+            <QuestionBankRemediationEmpty
+              mode={emptyMode}
+              fieldId={route.fieldParam}
+              subjectId={subjectId}
+            />
+          </>
         );
       }
     } catch (error) {
@@ -143,6 +149,9 @@ export default async function QuestionBankPage({
 
   return (
     <div className="w-full space-y-5">
+      <Suspense fallback={null}>
+        <CanonicalQuestionBankUrl fieldId={route.fieldParam} />
+      </Suspense>
       <Suspense fallback={<QuestionBankPracticeSkeleton />}>
         <QuestionBankContent userId={session.user.id} {...route} />
       </Suspense>

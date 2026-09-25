@@ -6,16 +6,21 @@ vi.mock("next/link", () => ({
     href,
     children,
     className,
+    prefetch: _prefetch,
     ...rest
   }: {
     href: string;
     children: React.ReactNode;
     className?: string;
-  }) => (
-    <a href={href} className={className} {...rest}>
-      {children}
-    </a>
-  ),
+    prefetch?: boolean;
+  }) => {
+    void _prefetch;
+    return (
+      <a href={href} className={className} {...rest}>
+        {children}
+      </a>
+    );
+  },
 }));
 
 vi.mock("next/dynamic", () => ({

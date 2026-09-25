@@ -41,6 +41,7 @@ import type {
   SgTocChapter,
 } from "@/lib/nclex-study-guide/types";
 import { SG_HIGHLIGHT_COLORS } from "@/lib/nclex-study-guide/types";
+import { CrossBoardStudyGuideBanner } from "@/components/nclex-study-guide/CrossBoardStudyGuideBanner";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
 import { ROUTES } from "@/lib/routes";
@@ -986,6 +987,8 @@ export function StudyGuideReader({
       >
         <div ref={progressFillRef} className="sg-progress-fill h-full bg-[#2ec4b6]" />
       </div>
+
+      <CrossBoardStudyGuideBanner guideExam={exam} />
 
       <div className="relative flex min-h-0 flex-1">
         {/* LEFT TOC — a fixed rail on desktop, a slide-over sheet on touch. Visibility is

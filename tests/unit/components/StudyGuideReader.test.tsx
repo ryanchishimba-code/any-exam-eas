@@ -24,7 +24,7 @@ import type { SgChapterDto, SgTocChapter } from "@/lib/nclex-study-guide/types";
 
 vi.mock("next/navigation", () => ({
   usePathname: vi.fn(() => "/nclex/study-guide/cardiac"),
-  useRouter: vi.fn(() => ({ push: vi.fn(), replace: vi.fn(), prefetch: vi.fn() })),
+  useRouter: vi.fn(() => ({ push: vi.fn(), replace: vi.fn(), refresh: vi.fn(), prefetch: vi.fn() })),
 }));
 
 const CHAPTERS: SgTocChapter[] = [

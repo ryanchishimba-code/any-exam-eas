@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import { ChevronDown, GraduationCap, LayoutGrid, Loader2 } from "lucide-react";
 import { switchExamPreference } from "@/lib/edtech/actions";
@@ -10,7 +10,6 @@ import {
   prepareClientForExamSwitch,
   resolvePathAfterExamSwitch,
 } from "@/lib/client/exam-switch-reset";
-import { navigateHard } from "@/lib/client/navigate-hard";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
@@ -27,6 +26,7 @@ export function ExamSwitcher({
   onSwitched?: () => void;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const queryClient = useQueryClient();
   const [pending, startTransition] = useTransition();
@@ -54,8 +54,13 @@ export function ExamSwitcher({
         new URLSearchParams(searchParams.toString()),
         next
       );
-      // Always hard-navigate so RSC + client state remount for the new exam.
-      navigateHard(nextPath === pathname ? `${nextPath}?switched=${next}` : nextPath);
+      const here = searchParams.toString() ? `${pathname}?${searchParams.toString()}` : pathname;
+      if (nextPath === pathname || nextPath === here) {
+        router.refresh();
+      } else {
+        router.push(nextPath);
+        router.refresh();
+      }
     });
   }
 
@@ -63,12 +68,12 @@ export function ExamSwitcher({
     return (
       <Link
         href={switchHref}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-black/[0.08] bg-white/90 py-1.5 pl-2 pr-2.5 text-xs font-semibold text-[var(--color-ink)] shadow-sm transition hover:border-[var(--study-accent)]/40 hover:bg-[var(--color-surface)]"
+        className="inline-flex min-h-9 items-center gap-1.5 rounded-lg border border-black/[0.08] bg-white/90 py-1.5 pl-2 pr-2.5 text-[13px] font-semibold tracking-tight text-[var(--color-ink)] shadow-sm transition hover:border-[var(--study-accent)]/40 hover:bg-[var(--color-surface)]"
         aria-label={`Current exam: ${exam.name}. Switch exam`}
         title="Switch exam"
       >
         <GraduationCap className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />
-        <span>{exam.shortName}</span>
+        <span className="inline-block min-w-[5.5rem] text-left">{exam.shortName}</span>
         <ChevronDown className="h-3 w-3 text-[var(--color-ink-muted)]" aria-hidden />
       </Link>
     );
