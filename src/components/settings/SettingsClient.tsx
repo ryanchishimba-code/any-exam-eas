@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { useTransition } from "react";
-import { GraduationCap, LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { GraduationCap, LogOut, Map } from "lucide-react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
 import { AppearanceSettings } from "@/components/settings/AppearanceSettings";
 import { BillingSettingsSection } from "@/components/settings/BillingSettingsSection";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
 import { formatDisplayName } from "@/lib/display-name";
+import { CONVERSION_EVENTS, trackConversion } from "@/lib/analytics";
+import { requestTourReplay } from "@/lib/onboarding/tour-client";
 import type { ExamSlug } from "@/types/edtech";
 
 export function SettingsClient({
@@ -21,6 +24,13 @@ export function SettingsClient({
   examSlug: ExamSlug | null;
 }) {
   useTransition();
+  const router = useRouter();
+
+  function replayTour() {
+    requestTourReplay();
+    trackConversion(CONVERSION_EVENTS.TOUR_REPLAYED, { from: "settings" });
+    router.push(ROUTES.dashboard);
+  }
 
   return (
     <div className="space-y-6">
@@ -53,6 +63,25 @@ export function SettingsClient({
       </section>
 
       <BillingSettingsSection />
+
+      <section className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)]">
+        <div className="flex items-center gap-2">
+          <Map className="h-5 w-5 text-[var(--color-accent)]" aria-hidden />
+          <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--color-ink-muted)]">
+            Help
+          </h2>
+        </div>
+        <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+          Walk through Today&apos;s block, the question bank, and readiness again.
+        </p>
+        <button
+          type="button"
+          onClick={replayTour}
+          className="mt-4 inline-flex min-h-11 items-center rounded-xl border border-[var(--color-border)] px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/40"
+        >
+          Replay tour
+        </button>
+      </section>
 
       <button
         type="button"

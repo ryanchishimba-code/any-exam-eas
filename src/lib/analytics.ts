@@ -11,6 +11,8 @@
  * GA4 setup (mark the same event names as conversions):
  *   Admin → Configure → Events → find each event → toggle "Mark as conversion"
  *   Events: cta_clicked, pricing_viewed, plan_selected, trial_started, signup_completed
+ *   Product tour events (tour_shown, tour_step_viewed, tour_completed, tour_dismissed,
+ *   tour_replayed) share this pipeline but are not ad conversions.
  *
  * Testing:
  * - GA4: install Google Analytics Debugger extension, open DebugView (Admin → DebugView),

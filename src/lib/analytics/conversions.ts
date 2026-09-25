@@ -2,6 +2,7 @@ import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import {
   CONVERSION_EVENTS,
+  FUNNEL_CONVERSION_EVENTS,
   type ConversionEventName,
   type ConversionProperties,
   type ConversionSource,
@@ -85,9 +86,12 @@ export async function getConversionsDashboard(
   const ctaMap = new Map<string, { cta_name: string; location: string; count: number }>();
   const planMap = new Map<string, number>();
 
+const FUNNEL_EVENT_NAMES = new Set<string>(FUNNEL_CONVERSION_EVENTS);
+
   for (const row of rows) {
     const name = row.eventName as ConversionEventName;
     if (name in totals) totals[name] += 1;
+    if (!FUNNEL_EVENT_NAMES.has(row.eventName)) continue;
 
     const day = row.createdAt.toISOString().slice(0, 10);
     dailyMap.set(day, (dailyMap.get(day) ?? 0) + 1);
@@ -112,7 +116,10 @@ export async function getConversionsDashboard(
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([date, total]) => ({ date, total }));
 
-  const recent = rows.slice(0, 100).map((row) => ({
+  const recent = rows
+    .filter((row) => FUNNEL_EVENT_NAMES.has(row.eventName))
+    .slice(0, 100)
+    .map((row) => ({
     id: row.id,
     userId: row.userId,
     eventName: row.eventName as ConversionEventName,

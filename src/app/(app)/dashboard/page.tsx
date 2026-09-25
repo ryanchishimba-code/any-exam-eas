@@ -14,6 +14,8 @@ import {
   fieldIdForExamSlug,
 } from "@/lib/edtech/question-bank-scope";
 import { getUserEdtechMetadata, getExamTestDate } from "@/lib/edtech/user-metadata";
+import { isTourSeen } from "@/lib/onboarding/tour-record";
+import { readAccountAttemptCount } from "@/lib/onboarding/tour-preference";
 import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { isDrugSafetyPathComplete } from "@/lib/drugs300/service";
@@ -86,7 +88,8 @@ async function DashboardContent({
   );
 
   // Wave 2: secondary panels — degrade instead of blanking the whole dashboard.
-  const [roadmap, metadata, usage, mastery, inventory, drugsCompletedToday] = await Promise.all([
+  const [roadmap, metadata, usage, mastery, inventory, drugsCompletedToday, accountAttemptCount] =
+    await Promise.all([
     settled(
       getExamRoadmapData(userId, examSlug, {
         usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
@@ -129,6 +132,7 @@ async function DashboardContent({
           : Promise.resolve(null),
     settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
     settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
+    settled(readAccountAttemptCount(userId), null, "tour attempts"),
   ]);
 
   const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;
@@ -177,6 +181,8 @@ async function DashboardContent({
       masteryRollup={mastery?.rollup ?? null}
       masteryMapTiles={mastery?.mapTiles ?? null}
       examDayPlan={examDayPlan}
+      tourSeen={metadata == null ? true : isTourSeen(metadata)}
+      accountAttemptCount={accountAttemptCount}
     />
   );
 }

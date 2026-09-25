@@ -25,6 +25,7 @@ export const MINIMAL_CHROME_PREFIXES = [
   "/auth/login",
   "/signup",
   "/checkout",
+  "/dev/tour-preview",
 ] as const;
 
 export function isAppShellRoute(pathname: string): boolean {

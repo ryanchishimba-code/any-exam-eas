@@ -10,6 +10,15 @@ export type UserEdtechMetadata = {
   usmleFieldId?: string;
   /** Anticipated test date per exam, keyed by exam slug (ISO `YYYY-MM-DD`). */
   examTestDates?: Record<string, string>;
+  /** Product tours. Written by `/api/me/preferences` and preserved by exam-date merges. */
+  tours?: {
+    "firstLogin.v1"?: {
+      status: "shown" | "completed" | "skipped";
+      step: number;
+      at: string;
+      device?: "mobile" | "desktop";
+    };
+  };
 };
 
 function parseMetadata(raw: string | null | undefined): UserEdtechMetadata {

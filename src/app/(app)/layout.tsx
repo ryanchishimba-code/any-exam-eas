@@ -25,13 +25,14 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <AppPreferencesProvider initialExamSlug={prefExamSlug}>
-      <TrialWelcomeRoot />
-      <AppShell
-        footer={<SiteBottomBar className="mt-10 border-black/[0.05] pt-8" />}
-      >
-        <AppQueryNotices />
-        {children}
-      </AppShell>
+      <TrialWelcomeRoot>
+        <AppShell
+          footer={<SiteBottomBar className="mt-10 border-black/[0.05] pt-8" />}
+        >
+          <AppQueryNotices />
+          {children}
+        </AppShell>
+      </TrialWelcomeRoot>
     </AppPreferencesProvider>
   );
 }

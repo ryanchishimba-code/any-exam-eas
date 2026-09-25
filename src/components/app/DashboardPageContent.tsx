@@ -25,6 +25,7 @@ import type { MasteryRollup } from "@/lib/engine/mastery/types";
 import type { DomainMapTile } from "@/components/dashboard/DomainMap";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 import { isTodayEngineNaplexEnabled, isTodayEngineUsmleEnabled } from "@/lib/engine/mastery/feature-flag";
+import { FirstLoginTour } from "@/components/onboarding/FirstLoginTour";
 
 const DashboardExamCountdown = dynamic(
   () =>
@@ -70,6 +71,8 @@ export function DashboardPageContent({
   masteryRollup = null,
   masteryMapTiles = null,
   examDayPlan = null,
+  tourSeen = true,
+  accountAttemptCount = null,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -87,6 +90,10 @@ export function DashboardPageContent({
   masteryRollup?: MasteryRollup | null;
   masteryMapTiles?: DomainMapTile[] | null;
   examDayPlan?: ExamDayPlan | null;
+  /** Server read of tours.firstLogin.v1. Unknown metadata fails closed. */
+  tourSeen?: boolean;
+  /** Account-wide attempts. Null fails closed so existing students are not surprised. */
+  accountAttemptCount?: number | null;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
@@ -199,6 +206,11 @@ export function DashboardPageContent({
         recentTests={recentTests}
         srsInFocus={!isNewUser && spacedReview.dueCount > 0}
         practiceFieldId={fieldId}
+      />
+      <FirstLoginTour
+        boardName={exam.shortName}
+        seen={tourSeen}
+        attemptCount={accountAttemptCount}
       />
     </div>
   );

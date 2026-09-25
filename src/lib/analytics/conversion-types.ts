@@ -10,7 +10,23 @@ export const CONVERSION_EVENTS = {
   PLAN_SELECTED: "plan_selected",
   TRIAL_STARTED: "trial_started",
   SIGNUP_COMPLETED: "signup_completed",
+  /** Product tour. Not an ad conversion — excluded from the marketing funnel charts. */
+  TOUR_SHOWN: "tour_shown",
+  TOUR_STEP_VIEWED: "tour_step_viewed",
+  TOUR_STEP_SKIPPED: "tour_step_skipped",
+  TOUR_COMPLETED: "tour_completed",
+  TOUR_DISMISSED: "tour_dismissed",
+  TOUR_REPLAYED: "tour_replayed",
 } as const;
+
+/** Marketing funnel cards. Product-tour events stay in the events table only. */
+export const FUNNEL_CONVERSION_EVENTS = [
+  CONVERSION_EVENTS.CTA_CLICKED,
+  CONVERSION_EVENTS.PRICING_VIEWED,
+  CONVERSION_EVENTS.PLAN_SELECTED,
+  CONVERSION_EVENTS.TRIAL_STARTED,
+  CONVERSION_EVENTS.SIGNUP_COMPLETED,
+] as const;
 
 export type ConversionEventName =
   (typeof CONVERSION_EVENTS)[keyof typeof CONVERSION_EVENTS];
@@ -21,6 +37,12 @@ export type ConversionProperties = {
   plan_selected: { plan_type: string; interval?: string; tier?: string };
   trial_started: { plan_type?: string; tier?: string; interval?: string };
   signup_completed: { plan?: string; tier?: string; interval?: string; exam_slug?: string };
+  tour_shown: { tour: string; board: string; device: "mobile" | "desktop"; trial: boolean };
+  tour_step_viewed: { step_id: string; step_index: number; total_steps: number };
+  tour_step_skipped: { step_id: string };
+  tour_completed: { via: "cta" | "next" | "target_click"; duration_ms: number };
+  tour_dismissed: { at_step: number; via: "skip" | "close" | "esc"; step_id?: string };
+  tour_replayed: { from: "settings" };
 };
 
 export type ConversionSource = "web" | "server";

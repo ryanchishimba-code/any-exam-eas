@@ -113,6 +113,7 @@ export function ReadinessProofPanel({
   return (
     <section
       aria-labelledby="readiness-proof-heading"
+      data-tour="readiness"
       className={embedded ? "space-y-4" : `${dbUi.heroSurface} space-y-4`}
     >
       <div>

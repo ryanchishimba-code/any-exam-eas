@@ -1,17 +1,13 @@
 "use client";
 
-import { Suspense } from "react";
-import { TrialWelcomeHost } from "@/components/auth/TrialWelcomeHost";
+import type { ReactNode } from "react";
+import { TrialWelcomeProvider } from "@/components/auth/TrialWelcomeHost";
 
-function TrialWelcomeFallback() {
-  return null;
-}
-
-/** Suspense boundary required for useSearchParams in TrialWelcomeHost. */
-export function TrialWelcomeRoot() {
-  return (
-    <Suspense fallback={<TrialWelcomeFallback />}>
-      <TrialWelcomeHost />
-    </Suspense>
-  );
+/**
+ * Wraps the app shell so dashboard code can tell when the trial welcome is showing.
+ * The host's useSearchParams suspense boundary stays inside the provider and does
+ * not remount the page.
+ */
+export function TrialWelcomeRoot({ children }: { children?: ReactNode }) {
+  return <TrialWelcomeProvider>{children}</TrialWelcomeProvider>;
 }
