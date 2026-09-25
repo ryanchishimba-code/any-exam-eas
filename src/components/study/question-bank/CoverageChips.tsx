@@ -5,18 +5,19 @@ import { cn } from "@/lib/utils";
 
 /**
  * Untouched and low-coverage chips from the shared heatmap.
- * The count on a chip is the active-inventory count for that domain.
+ * The count is every active question in that blueprint area.
  */
 export function CoverageChips({
   chips,
   domainsLabel,
-  activeSubjectId,
+  selectedChipId,
   onSelect,
 }: {
   chips: CoverageChip[];
   domainsLabel: CoverageHeatmap["domainsLabel"];
-  activeSubjectId?: string;
-  onSelect: (subjectId: string) => void;
+  /** Highlighted when this area is the pool being practiced. */
+  selectedChipId?: string;
+  onSelect: (areaId: string) => void;
 }) {
   if (chips.length === 0) return null;
 
@@ -27,18 +28,20 @@ export function CoverageChips({
       </p>
       <div className="flex flex-wrap gap-2">
         {chips.map((chip) => {
-          const selected = chip.subjectId === activeSubjectId;
+          const selected = chip.domainId === selectedChipId;
           const kindLabel = chip.kind === "untouched" ? "Untouched" : "Low";
           const count =
-            chip.available > 0 ? ` · ${chip.available.toLocaleString()}` : "";
+            chip.available > 0
+              ? ` · ${chip.available.toLocaleString()} in this area`
+              : "";
           return (
             <button
               key={chip.domainId}
               type="button"
-              onClick={() => onSelect(chip.subjectId)}
+              onClick={() => onSelect(chip.domainId)}
               title={
                 chip.available > 0
-                  ? `${chip.available.toLocaleString()} active questions in this domain`
+                  ? `${chip.available.toLocaleString()} active questions in this blueprint area`
                   : undefined
               }
               className={cn(

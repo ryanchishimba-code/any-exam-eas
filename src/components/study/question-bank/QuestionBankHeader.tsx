@@ -115,7 +115,7 @@ export function QuestionBankHeader({
               <div className="flex flex-wrap gap-1.5">
                 {categories.map((category) => (
                   <span key={category.id} className={qbUi.statPill}>
-                    {category.label} {category.count.toLocaleString()}
+                    {category.label} {category.count.toLocaleString()} in this area
                   </span>
                 ))}
               </div>

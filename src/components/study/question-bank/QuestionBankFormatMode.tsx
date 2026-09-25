@@ -15,6 +15,8 @@ type Props = {
   totalActive?: number | null;
   countsLoading?: boolean;
   ngnLabel?: string;
+  /** Blueprint-area practice serves every format in that area. */
+  lockToAll?: boolean;
 };
 
 type FormatOption = {
@@ -37,6 +39,7 @@ export function QuestionBankFormatMode({
   totalActive = null,
   countsLoading = false,
   ngnLabel = "NGN",
+  lockToAll = false,
 }: Props) {
   const allCount = formats
     ? formats.mcq + formats.ngn + formats.case
@@ -54,26 +57,30 @@ export function QuestionBankFormatMode({
     {
       id: "ngn",
       count: ngnCount,
-      hint: countsLoading
-        ? "Checking the bank"
-        : ngnCount == null
-          ? "Count unavailable"
-          : ngnCount > 0
-            ? "Clinical judgment formats"
-            : "None published",
-      disabled: countsLoading || ngnCount == null || ngnCount <= 0,
+      hint: lockToAll
+        ? "Pick one topic for this format"
+        : countsLoading
+          ? "Checking the bank"
+          : ngnCount == null
+            ? "Count unavailable"
+            : ngnCount > 0
+              ? "Clinical judgment formats"
+              : "None published",
+      disabled: lockToAll || countsLoading || ngnCount == null || ngnCount <= 0,
     },
     {
       id: "case",
       count: caseCount,
-      hint: countsLoading
-        ? "Checking the bank"
-        : caseCount == null
-          ? "Count unavailable"
-          : caseCount > 0
-            ? "Case studies"
-            : "None published",
-      disabled: countsLoading || caseCount == null || caseCount <= 0,
+      hint: lockToAll
+        ? "Pick one topic for this format"
+        : countsLoading
+          ? "Checking the bank"
+          : caseCount == null
+            ? "Count unavailable"
+            : caseCount > 0
+              ? "Case studies"
+              : "None published",
+      disabled: lockToAll || countsLoading || caseCount == null || caseCount <= 0,
     },
   ];
 

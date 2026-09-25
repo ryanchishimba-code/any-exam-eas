@@ -35,6 +35,10 @@ import {
 } from "@/lib/question-bank/npte-pt-curated";
 import { sampleQuestionBankRows } from "@/lib/question-bank/random-sample";
 import { formatBucketItemTypeWhere } from "@/lib/inventory/active-questions";
+import {
+  activeBlueprintAreaWhere,
+  isBlueprintAreaId,
+} from "@/lib/inventory/blueprint-domain-pool";
 /** Max rows read per sample query (keeps Neon queries bounded). */
 export const QUESTION_BANK_SAMPLE_MAX_PULL = 500;
 
@@ -870,6 +874,47 @@ export async function sampleActiveItemsByFormat(params: {
   const pull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(want * 4, want + 20));
   const rows = await sampleQuestionBankRows({ where, pull, total });
   return shuffleBankItems(dedupeSamplePool(rows.map(rowToBankItem))).slice(0, want);
+}
+
+/**
+ * Random sample of the active questions in one blueprint area.
+ * The where matches the chip count: explicit clientNeeds, otherwise the
+ * subjects exclusively assigned to that area.
+ */
+export async function sampleQuestionBankItemsForBlueprintArea(params: {
+  fieldId: string;
+  blueprintAreaId: string;
+  count: number;
+}): Promise<BankItem[]> {
+  if (!isBlueprintAreaId(params.fieldId, params.blueprintAreaId)) return [];
+  const want = Math.max(1, params.count);
+  const where = {
+    ...activeBlueprintAreaWhere(params.fieldId, params.blueprintAreaId),
+    ...usmleStepSeparationWhere(params.fieldId),
+  };
+  const total = await prisma.questionBankItem.count({ where });
+  if (total === 0) return [];
+  if (total <= want) {
+    const rows = await prisma.questionBankItem.findMany({ where });
+    return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
+  }
+  const pull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(want * 2, want + 40));
+  const rows = await sampleQuestionBankRows({ where, pull, total });
+  return shuffleBankItems(dedupeSamplePool(rows.map(rowToBankItem))).slice(0, want);
+}
+
+/** Active published questions in one blueprint area. Same where as the chip sample. */
+export async function countBlueprintAreaQuestions(
+  fieldId: string,
+  blueprintAreaId: string
+): Promise<number> {
+  if (!isBlueprintAreaId(fieldId, blueprintAreaId)) return 0;
+  return prisma.questionBankItem.count({
+    where: {
+      ...activeBlueprintAreaWhere(fieldId, blueprintAreaId),
+      ...usmleStepSeparationWhere(fieldId),
+    },
+  });
 }
 
 /**

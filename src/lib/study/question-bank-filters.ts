@@ -1,4 +1,5 @@
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { isBlueprintAreaId } from "@/lib/inventory/blueprint-domain-pool";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
@@ -35,6 +36,11 @@ export function canonicalizeQuestionBankQuery(
   const subjectId = next.get("subjectId");
   if (subjectId && !subjectIdBelongsToField(fieldId, subjectId)) {
     next.delete("subjectId");
+  }
+
+  const blueprintArea = next.get("blueprintArea");
+  if (blueprintArea && !isBlueprintAreaId(fieldId, blueprintArea)) {
+    next.delete("blueprintArea");
   }
 
   if (fieldId !== "pance") next.delete("taskCategory");
@@ -88,20 +94,19 @@ export type PracticeSubjectChoice = {
   subjectParam: string | null;
   /** Used only so `subjectId=mixed` on review-incorrect stays all topics. */
   styleParam: string | null;
-  persistedSubjectId: string | null;
-  coverageLeadSubjectId: string | null;
-  preferWeak: boolean;
-  weakSubjectId: string | null;
+  /**
+   * A topic the student picked on this visit before the URL caught up.
+   * Not a remembered topic and not a coverage lead.
+   */
+  explicitSubjectId: string | null;
 };
 
 /**
  * Topic to show when the bank opens.
  *
- * A subject from another board is not a selection: return mixed (all topics),
- * never the first blueprint domain. A blank URL may still restore a remembered
- * topic or a coverage lead in the UI. Callers must not write that automatic
- * choice back into the address bar — a stripped stale link would otherwise
- * become `subjectId=<first domain>`.
+ * No valid subjectId means Mixed topics. An untouched or low-coverage chip
+ * stays a suggestion. A valid subjectId, or a topic picked in this visit,
+ * is kept. Callers must not write the automatic Mixed choice into the URL.
  */
 export function resolvePracticeSubjectId(input: PracticeSubjectChoice): string {
   if (input.subjectIds.length === 0) return "";
@@ -120,27 +125,39 @@ export function resolvePracticeSubjectId(input: PracticeSubjectChoice): string {
     return subjectParam;
   }
 
-  const persisted = input.persistedSubjectId;
+  const picked = input.explicitSubjectId;
   if (
     !subjectParam &&
-    persisted &&
-    (persisted === MIXED_SUBJECT_ID || input.subjectIds.includes(persisted))
+    picked &&
+    (picked === MIXED_SUBJECT_ID || input.subjectIds.includes(picked))
   ) {
-    return persisted;
-  }
-
-  if (
-    input.coverageLeadSubjectId &&
-    input.subjectIds.includes(input.coverageLeadSubjectId)
-  ) {
-    return input.coverageLeadSubjectId;
-  }
-
-  if (input.preferWeak && input.weakSubjectId && input.subjectIds.includes(input.weakSubjectId)) {
-    return input.weakSubjectId;
+    return picked;
   }
 
   return MIXED_SUBJECT_ID;
+}
+
+/**
+ * Subject written onto the question-bank URL.
+ * An automatic Mixed opening is omitted. An explicit pick, or a subject
+ * already on the URL, is kept. A blueprint-area pick replaces the subject.
+ */
+export function subjectIdForPracticeUrl(input: {
+  fieldId: string;
+  overrideProvided: boolean;
+  override?: string | null;
+  browserSubjectId: string | null;
+  blueprintAreaId: string | null;
+}): string | null {
+  if (input.blueprintAreaId) return null;
+  if (input.overrideProvided) {
+    const value = input.override?.trim() || null;
+    if (!value || !subjectIdBelongsToField(input.fieldId, value)) return null;
+    return value;
+  }
+  const browser = input.browserSubjectId?.trim() || null;
+  if (browser && subjectIdBelongsToField(input.fieldId, browser)) return browser;
+  return null;
 }
 
 /** Value equality, ignoring parameter order. */
