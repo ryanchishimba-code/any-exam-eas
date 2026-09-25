@@ -13,9 +13,10 @@ import {
   TOUR_REPLAY_EVENT,
 } from "@/lib/onboarding/tour-record";
 import {
-  consumeTourReplay,
+  clearTourReplay,
   isTourAnchorVisible,
   isTourBlockedByOverlay,
+  peekTourReplay,
   persistTourStatus,
   readLocalTourSeen,
   tourViewport,
@@ -49,12 +50,13 @@ export function FirstLoginTour({
 
   useEffect(() => {
     setLocalSeen(readLocalTourSeen());
-    setReplay(consumeTourReplay());
+    // Peek, don't clear. Desktop dashboard content can remount while the
+    // shell streams in; consuming the flag on the first mount drops replay.
+    setReplay(peekTourReplay());
     setReady(true);
     const onReplay = () => {
-      consumeTourReplay();
       opened.current = false;
-      setReplay(true);
+      setReplay(peekTourReplay());
       setOpen(false);
     };
     window.addEventListener(TOUR_REPLAY_EVENT, onReplay);
@@ -86,16 +88,27 @@ export function FirstLoginTour({
     let timer = 0;
     const started = Date.now();
 
+    const giveUp = () => {
+      if (replay) clearTourReplay();
+    };
+
     const tryOpen = () => {
       if (cancelled || opened.current) return;
       if (isTourBlockedByOverlay() || !isTourAnchorVisible("today")) {
-        if (Date.now() - started > TARGET_WAIT_MS + SHOW_DELAY_MS) return;
+        if (Date.now() - started > TARGET_WAIT_MS + SHOW_DELAY_MS) {
+          giveUp();
+          return;
+        }
         timer = window.setTimeout(tryOpen, 200);
         return;
       }
       const viewport = tourViewport();
       const visible = visibleTourSteps(steps, viewport, isTourAnchorVisible);
       if (visible.length === 0) {
+        if (Date.now() - started > TARGET_WAIT_MS + SHOW_DELAY_MS) {
+          giveUp();
+          return;
+        }
         timer = window.setTimeout(tryOpen, 200);
         return;
       }
@@ -108,6 +121,7 @@ export function FirstLoginTour({
       setShownSteps(visible);
       setOpen(true);
       startedAt.current = Date.now();
+      if (replay) clearTourReplay();
       if (!replay) {
         writeLocalTourSeen("shown");
         void persistTourStatus({

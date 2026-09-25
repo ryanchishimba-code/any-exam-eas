@@ -32,16 +32,26 @@ export function requestTourReplay(): void {
   window.dispatchEvent(new Event(TOUR_REPLAY_EVENT));
 }
 
-/** Read and clear the settings replay flag. Call from an effect, not render. */
-export function consumeTourReplay(): boolean {
+/**
+ * Replay intent survives the settings → dashboard navigation, including a
+ * remount while the desktop shell is still streaming in. Cleared only once
+ * the tour actually opens (or the open attempt gives up).
+ */
+export function peekTourReplay(): boolean {
   if (typeof window === "undefined") return false;
   try {
-    const value = window.sessionStorage.getItem(TOUR_REPLAY_KEY);
-    if (!value) return false;
-    window.sessionStorage.removeItem(TOUR_REPLAY_KEY);
-    return true;
+    return window.sessionStorage.getItem(TOUR_REPLAY_KEY) === "1";
   } catch {
     return false;
+  }
+}
+
+export function clearTourReplay(): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.sessionStorage.removeItem(TOUR_REPLAY_KEY);
+  } catch {
+    /* ignore */
   }
 }
 
@@ -66,19 +76,19 @@ function hiddenByAncestor(el: HTMLElement): boolean {
   return false;
 }
 
+/**
+ * Laid out and not hidden. Below-the-fold still counts: the spotlight scrolls
+ * the target into view. `display: none` (closed sidebar, boards without a
+ * study-guide link) does not.
+ */
+function isShownTourElement(el: HTMLElement): boolean {
+  if (hiddenByAncestor(el)) return false;
+  const rect = el.getBoundingClientRect();
+  return rect.width >= 8 && rect.height >= 8;
+}
+
 export function isTourAnchorVisible(anchor: string): boolean {
-  if (typeof document === "undefined") return false;
-  const nodes = document.querySelectorAll(`[data-tour="${cssEscape(anchor)}"]`);
-  for (const node of nodes) {
-    if (!(node instanceof HTMLElement)) continue;
-    if (hiddenByAncestor(node)) continue;
-    const rect = node.getBoundingClientRect();
-    if (rect.width < 8 || rect.height < 8) continue;
-    if (rect.bottom <= 0 || rect.right <= 0) continue;
-    if (rect.top >= window.innerHeight || rect.left >= window.innerWidth) continue;
-    return true;
-  }
-  return false;
+  return findVisibleTourAnchor(anchor) != null;
 }
 
 export function findVisibleTourAnchor(anchor: string): HTMLElement | null {
@@ -86,11 +96,7 @@ export function findVisibleTourAnchor(anchor: string): HTMLElement | null {
   const nodes = document.querySelectorAll(`[data-tour="${cssEscape(anchor)}"]`);
   for (const node of nodes) {
     if (!(node instanceof HTMLElement)) continue;
-    if (hiddenByAncestor(node)) continue;
-    const rect = node.getBoundingClientRect();
-    if (rect.width < 8 || rect.height < 8) continue;
-    if (rect.bottom <= 0 || rect.right <= 0) continue;
-    if (rect.top >= window.innerHeight || rect.left >= window.innerWidth) continue;
+    if (!isShownTourElement(node)) continue;
     return node;
   }
   return null;

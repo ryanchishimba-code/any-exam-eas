@@ -188,4 +188,186 @@ describe("FirstLoginTour", () => {
     const preferenceWrites = vi.mocked(fetch).mock.calls.filter(([url]) => url === "/api/me/preferences");
     expect(preferenceWrites).toHaveLength(0);
   });
+
+  it("replays on desktop when the dashboard targets are still below the fold", async () => {
+    const previousMatchMedia = window.matchMedia;
+    const previousInnerHeight = window.innerHeight;
+    const previousInnerWidth = window.innerWidth;
+    const scrolled: string[] = [];
+
+    window.matchMedia = vi.fn((query: string) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })) as unknown as typeof window.matchMedia;
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 720 });
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 1280 });
+    HTMLElement.prototype.getBoundingClientRect = function (this: HTMLElement) {
+      const tour = this.getAttribute("data-tour");
+      const below =
+        tour === "today" ||
+        tour === "review-incorrect" ||
+        tour === "readiness" ||
+        tour === "today-start";
+      const top = below ? 1600 : 40;
+      const height = tour === "today" ? 520 : 48;
+      return {
+        x: 40,
+        y: top,
+        width: 240,
+        height,
+        top,
+        left: 40,
+        right: 280,
+        bottom: top + height,
+        toJSON() {
+          return {};
+        },
+      } as DOMRect;
+    };
+    HTMLElement.prototype.scrollIntoView = function (this: HTMLElement) {
+      const tour = this.getAttribute("data-tour");
+      if (tour) scrolled.push(tour);
+    };
+
+    try {
+      window.sessionStorage.setItem(TOUR_REPLAY_KEY, "1");
+      const early = render(
+        <>
+          {anchors()}
+          <FirstLoginTour boardName="PANCE" seen={true} attemptCount={40} />
+        </>
+      );
+      early.unmount();
+      expect(window.sessionStorage.getItem(TOUR_REPLAY_KEY)).toBe("1");
+
+      const view = render(
+        <>
+          {anchors()}
+          <FirstLoginTour boardName="PANCE" seen={true} attemptCount={40} />
+        </>
+      );
+      await flushTour();
+
+      const dialog = screen.getByRole("dialog", { name: /start here every day/i });
+      expect(dialog).toHaveTextContent("PANCE");
+      expect(dialog).toHaveTextContent("Step 1 of 4");
+      expect(scrolled).toContain("today");
+      expect(window.sessionStorage.getItem(TOUR_REPLAY_KEY)).toBeNull();
+      expect(window.localStorage.getItem(TOUR_LOCAL_KEY)).toBeNull();
+      const preferenceWrites = vi.mocked(fetch).mock.calls.filter(
+        ([url]) => url === "/api/me/preferences"
+      );
+      expect(preferenceWrites).toHaveLength(0);
+
+      fireEvent.click(screen.getByRole("button", { name: "Next" }));
+      expect(screen.getByRole("dialog")).toHaveTextContent("Practice by topic, then fix misses");
+      fireEvent.click(screen.getByRole("button", { name: "Next" }));
+      expect(screen.getByRole("dialog")).toHaveTextContent("Your study guide, built in");
+      fireEvent.click(screen.getByRole("button", { name: "Next" }));
+      expect(screen.getByRole("dialog")).toHaveTextContent("See when you're ready");
+      expect(screen.getByRole("button", { name: "Start today's set" })).toBeInTheDocument();
+
+      view.unmount();
+      render(
+        <>
+          {anchors()}
+          <FirstLoginTour boardName="PANCE" seen={true} attemptCount={40} />
+        </>
+      );
+      await flushTour();
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    } finally {
+      window.matchMedia = previousMatchMedia;
+      Object.defineProperty(window, "innerHeight", { configurable: true, value: previousInnerHeight });
+      Object.defineProperty(window, "innerWidth", { configurable: true, value: previousInnerWidth });
+    }
+  });
+
+  it("desktop replay skips a study guide link that is not shown", async () => {
+    const previousMatchMedia = window.matchMedia;
+    const previousInnerHeight = window.innerHeight;
+    window.matchMedia = vi.fn(() => ({
+      matches: false,
+      media: "(max-width: 1023px)",
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })) as unknown as typeof window.matchMedia;
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 720 });
+    HTMLElement.prototype.getBoundingClientRect = function (this: HTMLElement) {
+      const tour = this.getAttribute("data-tour");
+      const below = tour === "today" || tour === "readiness" || tour === "review-incorrect";
+      const top = below ? 1600 : 40;
+      return {
+        x: 40,
+        y: top,
+        width: 240,
+        height: 48,
+        top,
+        left: 40,
+        right: 280,
+        bottom: top + 48,
+        toJSON() {
+          return {};
+        },
+      } as DOMRect;
+    };
+
+    try {
+      window.sessionStorage.setItem(TOUR_REPLAY_KEY, "1");
+      render(
+        <>
+          <section data-tour="today">Today</section>
+          <span data-tour="bank">Question Bank</span>
+          <span data-tour="review-incorrect">Review incorrect</span>
+          <section data-tour="readiness">Readiness</section>
+          <div style={{ display: "none" }}>
+            <span data-tour="study-guide">Study Guide</span>
+          </div>
+          <FirstLoginTour boardName="USMLE" seen={true} attemptCount={12} />
+        </>
+      );
+      await flushTour();
+      expect(screen.getByRole("dialog")).toHaveTextContent("Step 1 of 3");
+      expect(screen.getByRole("dialog")).toHaveTextContent("USMLE");
+      fireEvent.click(screen.getByRole("button", { name: "Next" }));
+      fireEvent.click(screen.getByRole("button", { name: "Next" }));
+      expect(screen.queryByText(/study guide, built in/i)).not.toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Start today's set" })).toBeInTheDocument();
+      expect(window.localStorage.getItem(TOUR_LOCAL_KEY)).toBeNull();
+    } finally {
+      window.matchMedia = previousMatchMedia;
+      Object.defineProperty(window, "innerHeight", { configurable: true, value: previousInnerHeight });
+    }
+  });
+
+  it("does not replay over an open dialog", async () => {
+    window.sessionStorage.setItem(TOUR_REPLAY_KEY, "1");
+    render(
+      <>
+        <div role="dialog" aria-label="Subscribe to continue">
+          Subscribe
+        </div>
+        {anchors()}
+        <FirstLoginTour boardName="NAPLEX" seen={true} attemptCount={12} />
+      </>
+    );
+    await flushTour();
+    await act(async () => {
+      vi.advanceTimersByTime(10_000);
+    });
+    expect(screen.queryByRole("dialog", { name: /start here every day/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("dialog", { name: /subscribe to continue/i })).toBeInTheDocument();
+    expect(window.sessionStorage.getItem(TOUR_REPLAY_KEY)).toBeNull();
+    expect(window.localStorage.getItem(TOUR_LOCAL_KEY)).toBeNull();
+  });
 });
