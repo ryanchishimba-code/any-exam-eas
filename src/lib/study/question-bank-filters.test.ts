@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import {
+  canonicalQuestionBankHref,
   canonicalizeQuestionBankQuery,
+  questionBankPageFieldId,
   questionBankQueriesMatch,
   resolvePracticeSubjectId,
   subjectIdBelongsToField,
@@ -70,6 +72,30 @@ describe("canonicalizeQuestionBankQuery", () => {
     const next = canonicalizeQuestionBankQuery("aanp-fnp", current);
     expect(next.has("subjectId")).toBe(false);
     expect(next.get("subjectId")).not.toBe("assess");
+  });
+
+  it("keeps an explicit field when the subject belongs to another board", () => {
+    const savedBoard = "nursing";
+    const requested = "aanp-fnp";
+    expect(questionBankPageFieldId(requested, savedBoard)).toBe("aanp-fnp");
+
+    const href = canonicalQuestionBankHref(
+      "/question-bank",
+      new URLSearchParams("field=aanp-fnp&subjectId=physiology"),
+      savedBoard,
+      requested
+    );
+    expect(href).toBe("/question-bank?field=aanp-fnp&mode=bank");
+    expect(href).not.toContain("subjectId");
+    expect(href).not.toContain("field=nursing");
+  });
+
+  it("keeps a subjectId that belongs to the explicit field", () => {
+    const search = new URLSearchParams("field=aanp-fnp&mode=bank&subjectId=assess");
+    expect(questionBankPageFieldId("aanp-fnp", "nursing")).toBe("aanp-fnp");
+    expect(canonicalQuestionBankHref("/question-bank", search, "nursing", "aanp-fnp")).toBeNull();
+    expect(search.get("subjectId")).toBe("assess");
+    expect(search.get("field")).toBe("aanp-fnp");
   });
 
   it("is idempotent", () => {

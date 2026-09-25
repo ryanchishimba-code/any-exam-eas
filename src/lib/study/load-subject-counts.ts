@@ -1,7 +1,7 @@
 import { CACHE_TTL, CACHE_STALE } from "@/lib/cache";
 import { cacheAsidePublishedStamp } from "@/lib/inventory/active-inventory-stamp";
 import { withDbRetry } from "@/lib/db";
-import { enforceQuestionBankFieldAccess, resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
+import { resolveQuestionBankReadAccess } from "@/lib/edtech/question-bank-scope";
 import {
   ACTIVE_QUESTION_DEFINITION,
   fieldInventoryPayload,
@@ -27,12 +27,12 @@ export async function loadSubjectCountsForUser(
   fieldParam: string
 ): Promise<SubjectCountsPayload | null> {
   const access = await withDbRetry(
-    () => enforceQuestionBankFieldAccess(userId, fieldParam),
+    () => resolveQuestionBankReadAccess(userId, fieldParam),
     "qb-field-access"
   );
   if (!access.ok) return null;
 
-  const fieldId = resolveQuestionBankFieldId(fieldParam);
+  const fieldId = access.fieldId;
 
   try {
     const fromInventory = fieldInventoryPayload(fieldId, await getCachedActiveInventory());

@@ -18,6 +18,7 @@ import {
   fieldIdForExamSlug,
   fieldMatchesExamSlug,
   resolveQuestionBankFieldId,
+  resolveQuestionBankReadAccess,
 } from "./question-bank-scope";
 
 describe("question-bank-scope", () => {
@@ -53,6 +54,21 @@ describe("question-bank-scope", () => {
       expect(access.response.status).toBe(403);
       const body = await access.response.json();
       expect(body.code).toBe("EXAM_FIELD_MISMATCH");
+    }
+  });
+
+  it("reads an explicit practice field without requiring it to be the saved exam", async () => {
+    vi.mocked(getUserExamPreferenceFresh).mockResolvedValue({
+      userId: "user-1",
+      examSlug: "nclex",
+      lastStudiedAt: null,
+    });
+
+    const access = await resolveQuestionBankReadAccess("user-1", "aanp-fnp");
+    expect(access.ok).toBe(true);
+    if (access.ok) {
+      expect(access.fieldId).toBe("aanp-fnp");
+      expect(access.examSlug).toBe("aanp-fnp");
     }
   });
 

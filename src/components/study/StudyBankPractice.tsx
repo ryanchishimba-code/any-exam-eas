@@ -21,7 +21,8 @@ import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { persistUsmleStepPreference } from "@/lib/edtech/actions";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
-import { fieldIdForExamSlug, fieldMatchesExamSlug } from "@/lib/edtech/exam-field-ids";
+import { fieldIdForExamSlug } from "@/lib/edtech/exam-field-ids";
+import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import {
   fullExamLaunchHref,
   fullExamSessionHref,
@@ -573,20 +574,10 @@ export function StudyBankPractice({
       const expectedMeta = getFieldMetaById(expectedId);
       if (!expectedMeta) return;
 
-      if (paramMeta && !fieldMatchesExamSlug(paramMeta.id, effectiveExamSlug)) {
-        setField(expectedMeta.label);
-        const qs = canonicalizeQuestionBankQuery(
-          expectedId,
-          practiceUrlSearchParams(searchParams)
-        );
-        router.replace(`${practiceBase}?${qs.toString()}`, { scroll: false });
-        return;
-      }
-
-      // A specific field WITHIN the locked exam (e.g. a chosen USMLE step like
-      // usmle-step-1 / usmle-step-3) — honor it instead of collapsing to the
-      // exam's default field (usmle-step-2).
-      if (paramMeta && paramMeta.id !== expectedId) {
+      // An explicit practice field in the URL wins for this page, including a
+      // board other than the saved exam and a USMLE step other than the default.
+      // The saved preference is not rewritten from here.
+      if (paramMeta && isPracticeFieldId(paramMeta.id)) {
         setField(paramMeta.label);
         return;
       }
@@ -1760,7 +1751,8 @@ export function StudyBankPractice({
 
   const activeMode = EXAM_MODES.find((m) => m.id === practiceMode);
   const activeExamOption = EXAM_FIELD_OPTIONS.find((opt) => opt.id === fieldId);
-  const lockedExam = effectiveExamSlug ? EXAM_CATALOG[effectiveExamSlug] : null;
+  const pageExamSlug = examSlugFromFieldId(fieldId) ?? effectiveExamSlug ?? null;
+  const pageExam = pageExamSlug ? EXAM_CATALOG[pageExamSlug] : null;
 
   const previewTimedMinutes =
     typeof timedSessionSeconds === "number" ? Math.ceil(timedSessionSeconds / 60) : undefined;
@@ -1789,9 +1781,9 @@ export function StudyBankPractice({
         </div>
       ) : null}
 
-      {onQuestionBank && examLocked && lockedExam && effectiveExamSlug ? (
+      {onQuestionBank && examLocked && pageExam ? (
         <QuestionBankHeader
-          examName={lockedExam.shortName}
+          examName={pageExam.shortName}
           usmleStepLabel={usmleStepLabel}
           practiceMode={practiceMode}
           topicCount={activeTopicCount}
@@ -1829,7 +1821,7 @@ export function StudyBankPractice({
             />
           </QuestionBankSection>
 
-          {examLocked && effectiveExamSlug === "usmle" ? (
+          {examLocked && pageExamSlug === "usmle" ? (
             <QuestionBankSection title="USMLE step" hint="Step 1, Step 2 CK, and Step 3 each have dedicated banks and roadmaps.">
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                 {USMLE_STEP_OPTIONS.map((opt) => (
@@ -1987,7 +1979,7 @@ export function StudyBankPractice({
               subjectId={subjectId}
               subjectCounts={subjectCounts}
               fieldId={fieldId}
-              examLabel={lockedExam?.shortName ?? activeExamOption?.label}
+              examLabel={pageExam?.shortName ?? activeExamOption?.label}
               onSubjectChange={(id) => {
                 setSubjectId(id);
                 if (

@@ -104,21 +104,63 @@ export function findVisibleTourAnchor(anchor: string): HTMLElement | null {
 
 export type TourHole = { x: number; y: number; width: number; height: number };
 
-export function measureTourHole(el: HTMLElement, pad = 8, bottomInset = 0): TourHole {
-  const style = window.getComputedStyle(el);
-  const fixed = style.position === "fixed";
-  const rect = el.getBoundingClientRect();
-  const limit = window.innerHeight - Math.max(8, bottomInset);
-  const inView = rect.top >= 8 && rect.bottom <= limit;
-  if (!fixed && !inView) {
-    el.scrollIntoView({ block: "center", inline: "nearest" });
+/** Fixed header plus a little air, so a scrolled target is not hidden under the nav. */
+export function tourScrollOffsetPx(): number {
+  const fallback = 64;
+  if (typeof window === "undefined") return fallback + 12;
+  const raw = getComputedStyle(document.documentElement).getPropertyValue("--nav-height").trim();
+  let header = fallback;
+  if (raw.endsWith("rem")) {
+    const n = parseFloat(raw);
+    if (Number.isFinite(n)) header = n * 16;
+  } else if (raw.endsWith("px") || raw !== "") {
+    const n = parseFloat(raw);
+    if (Number.isFinite(n) && n > 0) header = n;
   }
-  const next = el.getBoundingClientRect();
+  return Math.round(header + 12);
+}
+
+/**
+ * Bring a tour target's top edge just under the fixed header.
+ * Fixed chrome (mobile bottom bar) is already on screen.
+ */
+export function scrollTourAnchorIntoView(el: HTMLElement): void {
+  const position = window.getComputedStyle(el).position;
+  if (position === "fixed") return;
+  const reduce =
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.style.scrollMarginTop = `${tourScrollOffsetPx()}px`;
+  el.scrollIntoView({
+    behavior: reduce ? "auto" : "smooth",
+    block: "start",
+    inline: "nearest",
+  });
+}
+
+/** Visible slice of the target. A tall block must not produce a hole taller than the viewport. */
+export function measureTourHole(el: HTMLElement, pad = 8, bottomInset = 0): TourHole {
+  const rect = el.getBoundingClientRect();
+  const limit = window.innerHeight - Math.max(pad, bottomInset);
+  const top = Math.max(pad, rect.top);
+  const bottom = Math.min(limit, rect.bottom);
+  const left = Math.max(pad, rect.left);
+  const right = Math.min(window.innerWidth - pad, rect.right);
+  const visible = bottom - top >= 8 && right - left >= 8;
+  if (!visible) {
+    const y = Math.max(pad, Math.min(Math.max(rect.top, pad), limit - 24));
+    return {
+      x: Math.max(pad, rect.left - pad),
+      y,
+      width: Math.max(24, Math.min(rect.width + pad * 2, window.innerWidth - pad * 2)),
+      height: Math.max(24, Math.min(rect.height + pad * 2, limit - y)),
+    };
+  }
   return {
-    x: Math.max(8, next.left - pad),
-    y: Math.max(8, next.top - pad),
-    width: next.width + pad * 2,
-    height: next.height + pad * 2,
+    x: left - pad,
+    y: top - pad,
+    width: right - left + pad * 2,
+    height: bottom - top + pad * 2,
   };
 }
 

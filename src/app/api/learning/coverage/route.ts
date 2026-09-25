@@ -18,13 +18,11 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Missing field" }, { status: 400 });
   }
 
-  const { resolveQuestionBankFieldId, enforceQuestionBankFieldAccess } = await import(
-    "@/lib/edtech/question-bank-scope"
-  );
-  const access = await enforceQuestionBankFieldAccess(premium.userId, field);
+  const { resolveQuestionBankReadAccess } = await import("@/lib/edtech/question-bank-scope");
+  const access = await resolveQuestionBankReadAccess(premium.userId, field);
   if (!access.ok) return access.response;
 
-  const fieldId = resolveQuestionBankFieldId(field);
+  const fieldId = access.fieldId;
   const examSlug = examSlugFromFieldId(fieldId);
   if (!examSlug) {
     return NextResponse.json({ error: "Unknown field" }, { status: 400 });

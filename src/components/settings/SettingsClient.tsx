@@ -64,7 +64,10 @@ export function SettingsClient({
 
       <BillingSettingsSection />
 
-      <section className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)]">
+      <section
+        id="help"
+        className="scroll-mt-[calc(var(--nav-height)+1rem)] rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)]"
+      >
         <div className="flex items-center gap-2">
           <Map className="h-5 w-5 text-[var(--color-accent)]" aria-hidden />
           <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--color-ink-muted)]">

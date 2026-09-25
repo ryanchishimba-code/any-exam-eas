@@ -181,6 +181,46 @@ export async function enforceQuestionBankFieldAccess(
   return { ok: true, examSlug: pref.examSlug, fieldId: canonicalFieldId };
 }
 
+/**
+ * Inventory and coverage reads for the question-bank page.
+ * An explicit practice field is allowed even when it is not the saved exam.
+ * This does not change the saved preference. Drawing questions still uses
+ * `enforceQuestionBankFieldAccess`.
+ */
+export async function resolveQuestionBankReadAccess(
+  userId: string,
+  field: string
+): Promise<QuestionBankFieldAccess> {
+  const pref = await getUserExamPreferenceFresh(userId);
+  if (!pref) {
+    return {
+      ok: false,
+      response: NextResponse.json(
+        { error: "Select an exam before practicing.", code: "NO_EXAM_PREFERENCE" },
+        { status: 403 }
+      ),
+    };
+  }
+
+  const fieldId = resolveQuestionBankFieldId(field);
+  const targetSlug = examSlugForFieldId(fieldId);
+  if (!targetSlug || !isPracticeFieldId(fieldId)) {
+    return {
+      ok: false,
+      response: NextResponse.json(
+        {
+          error: "That exam is not available for practice.",
+          code: "UNKNOWN_EXAM_FIELD",
+          fieldId,
+        },
+        { status: 400 }
+      ),
+    };
+  }
+
+  return { ok: true, examSlug: targetSlug, fieldId };
+}
+
 /** Resolve roadmap / analytics field for a USMLE slug + optional step query. */
 export function resolveUsmleRoadmapFieldId(stepParam?: string | null): string {
   if (stepParam) {
