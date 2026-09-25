@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Check, Lock } from "lucide-react";
 import { StartTodaySetButton } from "@/components/dashboard/StartTodaySetButton";
+import { TodayMixLine, TodaySessionProvider, TodayStartLive } from "@/components/dashboard/TodaySession";
 import { TodayGoalRing } from "@/components/dashboard/TodayGoalRing";
 import { DashboardWeekPlan } from "@/components/dashboard/DashboardWeekPlan";
 import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
@@ -24,10 +25,13 @@ export function DashboardTodayBlock({
   plan,
   studyLocked = false,
   todaySet = null,
+  deferMix = false,
 }: {
   plan: ExamDayPlan;
   studyLocked?: boolean;
   todaySet?: TodaySetPreviewView | null;
+  /** Shell paints first. The mix line arrives from the served preview. */
+  deferMix?: boolean;
 }) {
   const lockedHref = postTrialCheckoutHref();
   const done = todaySet?.questionsDone ?? plan.questionsToday;
@@ -40,7 +44,10 @@ export function DashboardTodayBlock({
       : "Start today's set (~15 min)";
   const startDisabled = Boolean(todaySet?.empty || todaySet?.limitReached);
 
+  const mixFieldId = todaySet?.fieldId ?? plan.fieldId;
+
   return (
+    <TodaySessionProvider enabled={deferMix} fieldId={mixFieldId} questionsDone={plan.questionsToday}>
     <div className="space-y-5 sm:space-y-6">
       <section
         aria-labelledby="today-block-heading"
@@ -61,7 +68,8 @@ export function DashboardTodayBlock({
               {plan.examName}
               <span className="text-[var(--color-ink-muted)]"> · about 15 min</span>
             </p>
-            {mixKnown && todaySet?.mixLine ? (
+            {deferMix ? <TodayMixLine /> : null}
+            {!deferMix && mixKnown && todaySet?.mixLine ? (
               <p
                 data-today-mix
                 className="mt-3 text-[17px] font-medium tracking-[-0.02em] text-[var(--color-ink)]"
@@ -69,17 +77,17 @@ export function DashboardTodayBlock({
                 {todaySet.mixLine}
               </p>
             ) : null}
-            {mixKnown && !todaySet?.mixLine && !todaySet?.limitReached ? (
+            {!deferMix && mixKnown && !todaySet?.mixLine && !todaySet?.limitReached ? (
               <p className="mt-3 text-[15px] text-[var(--color-ink-muted)]">
                 No questions ready for this board yet.
               </p>
             ) : null}
-            {!mixKnown ? (
+            {!deferMix && !mixKnown ? (
               <p className="mt-3 text-[15px] text-[var(--color-ink-muted)]">
                 Today&apos;s mix is unavailable. Refresh to see the counts.
               </p>
             ) : null}
-            {todaySet?.streakDays != null && todaySet.streakDays > 0 ? (
+            {!deferMix && todaySet?.streakDays != null && todaySet.streakDays > 0 ? (
               <p className="mt-2 text-[13px] tracking-[-0.01em] text-[var(--color-ink-muted)]">
                 {todaySet.streakDays}-day streak
               </p>
@@ -93,9 +101,11 @@ export function DashboardTodayBlock({
             Subscribe to start
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
+        ) : deferMix ? (
+          <TodayStartLive fieldId={mixFieldId} />
         ) : (
           <StartTodaySetButton
-            fieldId={todaySet?.fieldId ?? plan.fieldId}
+            fieldId={mixFieldId}
             disabled={startDisabled}
             label={startLabel}
           />
@@ -178,5 +188,6 @@ export function DashboardTodayBlock({
         </div>
       </details>
     </div>
+    </TodaySessionProvider>
   );
 }

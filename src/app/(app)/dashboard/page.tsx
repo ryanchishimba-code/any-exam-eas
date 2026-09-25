@@ -21,7 +21,6 @@ import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { isDrugSafetyPathComplete } from "@/lib/drugs300/service";
 import { boardStudyCountsFromSources } from "@/lib/learning/board-study-counts";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
-import { loadTodaySetPreview } from "@/lib/learning/today-set-plan";
 import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
 import { ROUTES } from "@/lib/routes";
 import { StudyHubSessionSummary } from "@/components/study-hub/StudyHubSessionSummary";
@@ -37,9 +36,6 @@ export const metadata = {
 
 /** Neon cold starts + parallel dashboard queries can exceed the default 10s on Vercel. */
 export const maxDuration = 60;
-
-/** The Today mix is computed per request so a reload cannot keep an older line. */
-export const dynamic = "force-dynamic";
 
 function DashboardSkeleton() {
   return (
@@ -92,7 +88,7 @@ async function DashboardContent({
   );
 
   // Wave 2: secondary panels — degrade instead of blanking the whole dashboard.
-  const [roadmap, metadata, usage, mastery, inventory, drugsCompletedToday, accountAttemptCount, todaySet] =
+  const [roadmap, metadata, usage, mastery, inventory, drugsCompletedToday, accountAttemptCount] =
     await Promise.all([
     settled(
       getExamRoadmapData(userId, examSlug, {
@@ -137,17 +133,6 @@ async function DashboardContent({
     settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
     settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
     settled(readAccountAttemptCount(userId), null, "tour attempts"),
-    settled(
-      loadTodaySetPreview({
-        userId,
-        examSlug,
-        fieldId,
-        questionsDone: stats.questionsToday,
-        access,
-      }),
-      null,
-      "today set"
-    ),
   ]);
 
   const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;
@@ -198,19 +183,7 @@ async function DashboardContent({
       examDayPlan={examDayPlan}
       tourSeen={metadata == null ? true : isTourSeen(metadata)}
       accountAttemptCount={accountAttemptCount}
-      todaySet={
-        todaySet
-          ? {
-              fieldId: todaySet.fieldId,
-              target: todaySet.target,
-              questionsDone: todaySet.questionsDone,
-              mixLine: todaySet.mixLine,
-              empty: todaySet.empty,
-              limitReached: todaySet.limitReached,
-              streakDays: todaySet.streakDays,
-            }
-          : null
-      }
+      deferTodayMix
     />
   );
 }

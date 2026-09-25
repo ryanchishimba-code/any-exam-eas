@@ -68,6 +68,7 @@ export function DashboardPageContent({
   tourSeen = true,
   accountAttemptCount = null,
   todaySet = null,
+  deferTodayMix = false,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -90,6 +91,8 @@ export function DashboardPageContent({
   /** Account-wide attempts. Null fails closed so existing students are not surprised. */
   accountAttemptCount?: number | null;
   todaySet?: TodaySetPreviewView | null;
+  /** Mix line loads after the shell, from the served preview, so back navigation is not blocked on it. */
+  deferTodayMix?: boolean;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
@@ -132,7 +135,12 @@ export function DashboardPageContent({
       {upgrade ? <DashboardUpgradeBanner {...upgrade} /> : null}
 
       {examDayPlan ? (
-        <DashboardTodayBlock plan={examDayPlan} studyLocked={studyLocked} todaySet={todaySet} />
+        <DashboardTodayBlock
+          plan={examDayPlan}
+          studyLocked={studyLocked}
+          todaySet={deferTodayMix ? undefined : todaySet}
+          deferMix={deferTodayMix}
+        />
       ) : null}
 
       <RemediationPanel

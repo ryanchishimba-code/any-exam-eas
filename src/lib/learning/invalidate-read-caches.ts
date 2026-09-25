@@ -1,6 +1,7 @@
 import { cacheDeleteAsync, cacheKey, invalidateLearningDashboardCache } from "@/lib/cache";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { reviewFieldIdsForQuery } from "@/lib/learning/review-queue-launch";
+import { invalidateTodayServedCache } from "@/lib/learning/today-set-plan";
 
 /**
  * Drop dashboard / analytics caches for this user so the next page load
@@ -56,6 +57,7 @@ export async function invalidateStudentReadCaches(
   fieldId?: string | null
 ): Promise<void> {
   invalidateLearningDashboardCache(userId);
+  await invalidateTodayServedCache(userId, fieldId);
   const aliases = reviewFieldIdsForQuery(fieldId);
   const targets = aliases.length > 0 ? aliases : [fieldId ?? null];
   const keys = new Set<string>();

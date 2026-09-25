@@ -1,5 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { loadServedTodaySet, loadTodaySetPreview } from "@/lib/learning/today-set-plan";
+import { prisma } from "@/lib/prisma";
+import {
+  invalidateTodayServedCache,
+  loadServedTodaySet,
+  loadTodaySetPreview,
+} from "@/lib/learning/today-set-plan";
 
 const state = vi.hoisted(() => ({
   windowCall: 0,
@@ -85,10 +90,11 @@ async function dashboardAndServed() {
 }
 
 describe("dashboard mix line and the served set", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     state.windowCall = 0;
     state.shortWindow = false;
     state.dropFirstNew = false;
+    await invalidateTodayServedCache("student", "nursing", now);
   });
 
   it("shows the same 15 review and 10 new line the session serves for 41 open misses", async () => {
@@ -112,6 +118,40 @@ describe("dashboard mix line and the served set", () => {
     expect(preview.mixLine).toBe("15 to review · 9 new");
     expect(preview.reviewCount).toBe(15);
     expect(preview.newCount).toBe(9);
+  });
+
+  it("reuses the served composition for the same student, board, and day", async () => {
+    const findMany = prisma.questionBankItem.findMany as unknown as { mock: { calls: unknown[] } };
+    const first = await loadServedTodaySet({
+      userId: "student",
+      examSlug: "nclex",
+      fieldId: "nursing",
+      size: 25,
+      now,
+    });
+    const reads = findMany.mock.calls.length;
+    const second = await loadServedTodaySet({
+      userId: "student",
+      examSlug: "nclex",
+      fieldId: "nursing",
+      size: 25,
+      now,
+    });
+
+    expect(second.mix.ids).toEqual(first.mix.ids);
+    expect(second.mix.mixLine).toBe(first.mix.mixLine);
+    expect(second.mix.mixLine).toBe("15 to review · 10 new");
+    expect(findMany.mock.calls.length).toBe(reads);
+
+    await invalidateTodayServedCache("student", "nursing", now);
+    await loadServedTodaySet({
+      userId: "student",
+      examSlug: "nclex",
+      fieldId: "nursing",
+      size: 25,
+      now,
+    });
+    expect(findMany.mock.calls.length).toBeGreaterThan(reads);
   });
 
   it("does not turn a missed id window into an all-review line when new questions exist", async () => {

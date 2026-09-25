@@ -39,7 +39,9 @@ import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import type { ExamSlug } from "@/types/edtech";
 import type { UserAccess } from "@/lib/access-control";
 import { getStudyUsageSnapshot, type StudyUsageSnapshot } from "@/lib/study/usage-limits";
+import { cacheDeleteAsync, cacheDeleteMatching, cacheGetOrSetDeduped, cacheKey, isUpstashRedisEnabled } from "@/lib/cache";
 
+/** Widest bank page. A matching board usually finishes in a much shorter read. */
 const NEW_WINDOW = 500;
 
 export type TodayTopicLink = {
@@ -124,6 +126,34 @@ function weightForRow(
   return category.weight;
 }
 
+/** Enough rows to fill the new slots, without reading a 500-row page up front. */
+function unseenPageSize(needed: number): number {
+  const slots = Math.max(1, Math.round(needed) || 1);
+  return Math.min(NEW_WINDOW, Math.max(40, slots * 5));
+}
+
+function msUntilNextUtcDay(now: Date): number {
+  const next = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
+  return Math.max(60_000, next - now.getTime());
+}
+
+export function todayServedCacheKey(userId: string, fieldId: string, day: string): string {
+  return cacheKey(["today-set-served-v1", userId, fieldId, day]);
+}
+
+/** Drop today's served mix for this student and board. Call after an answer is saved. */
+export async function invalidateTodayServedCache(
+  userId: string,
+  fieldId?: string | null,
+  now: Date = new Date()
+): Promise<void> {
+  const day = utcDateKey(now);
+  const fields = fieldId ? reviewFieldIdsForQuery(fieldId) : [];
+  const targets = fields.length > 0 ? fields : fieldId ? [fieldId] : [];
+  await Promise.all(targets.map((id) => cacheDeleteAsync(todayServedCacheKey(userId, id, day))));
+  cacheDeleteMatching(`${cacheKey(["today-set-served-v1", userId])}:`);
+}
+
 async function loadUnseenCandidates(params: {
   fieldId: string;
   fieldIds: string[];
@@ -143,7 +173,7 @@ async function loadUnseenCandidates(params: {
   const total = await prisma.questionBankItem.count({ where });
   if (total <= 0) return [];
 
-  const loadWindow = async (skip: number) =>
+  const loadWindow = async (skip: number, take: number) =>
     prisma.questionBankItem.findMany({
       where,
       select: {
@@ -156,7 +186,7 @@ async function loadUnseenCandidates(params: {
       },
       orderBy: { id: "asc" },
       skip,
-      take: NEW_WINDOW,
+      take,
     });
 
   const accept = (list: Awaited<ReturnType<typeof loadWindow>>) =>
@@ -168,23 +198,26 @@ async function loadUnseenCandidates(params: {
 
   // A single id page can miss this board. Stopping there backfills the new
   // slots with review, and the line becomes "25 to review". Keep reading until
-  // those slots are filled or the pool has been covered once.
-  const windowSize = Math.min(NEW_WINDOW, total);
-  let skip = total > windowSize ? Math.floor(params.random() * (total - windowSize + 1)) : 0;
+  // those slots are filled or the pool has been covered once. The first page
+  // is only as wide as the new slots; a miss widens to the full window.
+  let pageSize = Math.min(unseenPageSize(params.needed), total);
+  let skip = total > pageSize ? Math.floor(params.random() * (total - pageSize + 1)) : 0;
   let scanned = 0;
   let loops = 0;
-  const loopCap = Math.ceil(total / windowSize) + 2;
+  const loopCap = Math.ceil(total / Math.max(1, pageSize)) + 2;
   const seen = new Set<string>();
   const candidates: TodayNewCandidate[] = [];
   while (candidates.length < params.needed && scanned < total && loops < loopCap) {
     loops += 1;
-    const rows = await loadWindow(skip);
+    const rows = await loadWindow(skip, pageSize);
     if (rows.length === 0) {
       if (skip === 0) break;
       skip = 0;
       continue;
     }
-    for (const row of accept(rows)) {
+    const accepted = accept(rows);
+    if (accepted.length === 0) pageSize = Math.min(NEW_WINDOW, total);
+    for (const row of accepted) {
       if (seen.has(row.id)) continue;
       seen.add(row.id);
       candidates.push({
@@ -311,6 +344,52 @@ export async function selectTodaySet(params: {
   };
 }
 
+type CachedServed = {
+  requestedSize: number;
+  selection: TodaySetSelection;
+  mix: TodaySetComposition;
+};
+
+/**
+ * Same composition for this student, board, and UTC day. An answer drops the
+ * key. The cached mix was already recounted from a bank load.
+ */
+async function loadServedCore(params: {
+  userId: string;
+  examSlug: ExamSlug;
+  fieldId: string;
+  size: number;
+  goals?: TodaySetSizeInput | null;
+  now?: Date;
+}): Promise<CachedServed> {
+  const now = params.now ?? new Date();
+  const key = todayServedCacheKey(params.userId, params.fieldId, utcDateKey(now));
+  const ttl = msUntilNextUtcDay(now);
+  const options = { skipFreshL1: isUpstashRedisEnabled() };
+  const read = () =>
+    cacheGetOrSetDeduped<CachedServed>(
+      key,
+      ttl,
+      async () => {
+        const selection = await selectTodaySet(params);
+        const loaded = await loadBankItemsByIds(params.fieldId, selection.composition.ids);
+        const loadedIds = new Set(
+          loaded.map((item) => item.id).filter((id): id is string => Boolean(id))
+        );
+        return {
+          requestedSize: params.size,
+          selection,
+          mix: recountTodayMix(selection.composition, loadedIds),
+        };
+      },
+      options
+    );
+  const cached = await read();
+  if (cached.requestedSize === params.size) return cached;
+  await cacheDeleteAsync(key);
+  return read();
+}
+
 /**
  * The sitting `POST /api/study/daily-set` starts, and the mix line the
  * dashboard shows. Same ids, then the same bank load and recount. A line
@@ -328,15 +407,15 @@ export async function loadServedTodaySet(params: {
   mix: TodaySetComposition;
   items: BankItem[];
 }> {
-  const selection = await selectTodaySet(params);
-  const loaded = await loadBankItemsByIds(params.fieldId, selection.composition.ids);
+  const core = await loadServedCore(params);
+  const loaded = await loadBankItemsByIds(params.fieldId, core.selection.composition.ids);
   const loadedIds = new Set(loaded.map((item) => item.id).filter((id): id is string => Boolean(id)));
-  const mix = recountTodayMix(selection.composition, loadedIds);
+  const mix = recountTodayMix(core.selection.composition, loadedIds);
   const byId = new Map(loaded.map((item) => [item.id, item]));
   const items = mix.ids
     .map((id) => byId.get(id))
     .filter((item): item is BankItem => Boolean(item));
-  return { selection, mix, items };
+  return { selection: core.selection, mix, items };
 }
 
 export async function loadTodaySetPreview(params: {
@@ -412,7 +491,7 @@ export async function loadTodaySetPreview(params: {
     };
   }
 
-  const served = await loadServedTodaySet({
+  const served = await loadServedCore({
     userId: params.userId,
     examSlug: params.examSlug,
     fieldId: params.fieldId,
