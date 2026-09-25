@@ -1,11 +1,15 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { DashboardTodayBlock } from "@/components/dashboard/DashboardTodayBlock";
 import { buildCoverageHeatmap } from "@/lib/learning/coverage-heatmap";
 import { TODAY_QBANK_COUNT, buildExamDayPlan } from "@/lib/learning/exam-day-plan";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 import type { WeekCountdownPlan } from "@/lib/learning/week-countdown-plan";
-import { dbUi } from "@/lib/study/dashboard-ui";
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: vi.fn(), replace: vi.fn(), refresh: vi.fn(), prefetch: vi.fn() }),
+  usePathname: () => "/dashboard",
+}));
 
 function plan(items: ExamDayPlan["items"]): ExamDayPlan {
   return {
@@ -102,29 +106,42 @@ const items: ExamDayPlan["items"] = [
   },
 ];
 
+const todaySet = {
+  fieldId: "usmle-step-1",
+  target: 25,
+  questionsDone: 8,
+  mixLine: "8 to review · 17 new",
+  empty: false,
+  limitReached: false,
+  streakDays: 3,
+};
+
 describe("DashboardTodayBlock review CTA", () => {
-  it("renders Start review as the same filled accent button as Today", () => {
-    render(<DashboardTodayBlock plan={plan(items)} />);
+  it("makes today's set the primary action and keeps review as a quiet link", () => {
+    render(<DashboardTodayBlock plan={plan(items)} todaySet={todaySet} />);
+
+    const start = screen.getByRole("button", { name: /Start today's set/ });
+    expect(start).toHaveAttribute("data-tour", "today-start");
+    expect(start.className).toContain("study-home-accent");
+    expect(document.querySelector("[data-tour='today']")).not.toBeNull();
+    expect(screen.getByText("8 to review · 17 new")).toBeInTheDocument();
+    expect(screen.getByText("3-day streak")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "8 of 25 questions today" })).toBeInTheDocument();
 
     const review = screen.getByRole("link", { name: /Start review/ });
-    const action = review.querySelector("span.study-home-accent");
-    expect(action).not.toBeNull();
-    expect(action).toHaveClass(...dbUi.primaryBtn.split(" "));
-    expect(action).toHaveTextContent("Start review");
-    expect(review.className).not.toContain("bg-[var(--color-accent)] ");
+    expect(review).toHaveAttribute("data-tour", "review-incorrect");
     expect(review).toHaveAttribute("href", "/question-bank?style=review_incorrect");
+    expect(review.className).not.toContain("study-home-accent");
+    expect(review.querySelector("span.study-home-accent")).toBeNull();
 
     const qbank = screen.getByRole("link", { name: /Start Qbank/ });
-    expect(screen.getByText("Start Qbank").className).not.toContain("study-home-accent");
-    expect(qbank).toHaveTextContent("Start Qbank");
-    expect(screen.getByText("First priority")).toBeInTheDocument();
+    expect(qbank.className).not.toContain("study-home-accent");
     expect(screen.getByText("Open topic")).toBeInTheDocument();
     expect(screen.getByText("Not enough practice yet")).toBeInTheDocument();
     expect(screen.getByText(/19 of 100 answered/)).toBeInTheDocument();
-    expect(screen.getByText(/First because Cardiovascular/)).toBeInTheDocument();
   });
 
-  it("keeps an empty review row as quiet text and a locked row as the filled subscribe action", () => {
+  it("keeps an empty review row out of the links and locks the primary action", () => {
     const { rerender } = render(
       <DashboardTodayBlock
         plan={plan(
@@ -134,17 +151,27 @@ describe("DashboardTodayBlock review CTA", () => {
               : item
           )
         )}
+        todaySet={todaySet}
       />
     );
 
-    expect(screen.getByText("Nothing to review").className).not.toContain("study-home-accent");
     expect(screen.queryByRole("link", { name: /Nothing to review/ })).toBeNull();
+    expect(screen.queryByText("Nothing to review")).toBeNull();
 
-    rerender(<DashboardTodayBlock plan={plan(items)} studyLocked />);
-    const locked = screen.getAllByRole("link", { name: /Subscribe to start/ });
-    const review = locked.find((link) => link.textContent?.includes("Review 5 incorrect"));
-    expect(review?.querySelector("span.study-home-accent")).not.toBeNull();
-    expect(review).toHaveTextContent("Subscribe to start");
+    rerender(<DashboardTodayBlock plan={plan(items)} todaySet={todaySet} studyLocked />);
+    const locked = screen.getByRole("link", { name: /Subscribe to start/ });
+    expect(locked).toHaveAttribute("data-tour", "today-start");
+    expect(locked.className).toContain("study-home-accent");
+    expect(screen.getByRole("link", { name: /Start review/ }).className).not.toContain(
+      "study-home-accent"
+    );
+  });
+
+  it("does not invent a mix when the counts were not loaded", () => {
+    render(<DashboardTodayBlock plan={plan(items)} todaySet={null} />);
+    expect(screen.getByText(/mix is unavailable/)).toBeInTheDocument();
+    expect(screen.queryByText(/to review/)).toBeNull();
+    expect(screen.queryByText(/-day streak/)).toBeNull();
   });
 });
 
@@ -179,9 +206,16 @@ describe("Dashboard week countdown", () => {
 
     render(<DashboardTodayBlock plan={built} />);
 
-    expect(screen.getByRole("heading", { name: "Coverage and remediation" })).toBeInTheDocument();
+    const start = screen.getByRole("button", { name: /Start today's set/ });
+    const details = screen.getByText("See details").closest("details");
+    expect(details).not.toBeNull();
+    expect(start.compareDocumentPosition(details as HTMLElement) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(details).toContainElement(screen.getByRole("heading", { name: "Topics to practice" }));
     expect(screen.getByText(/6 weeks out/)).toBeInTheDocument();
-    expect(screen.getByText(/Today's coverage block is done \(Management of Care\)/)).toBeInTheDocument();
+    expect(screen.getByText(/Today's practice on Management of Care is done/)).toBeInTheDocument();
+    expect(screen.getAllByText(/topics you haven't practiced yet/).length).toBeGreaterThan(0);
+    const report = details?.textContent ?? "";
+    expect(report).not.toMatch(/open incorrect items|coverage days|remediation days|blueprint gaps/);
     expect(screen.getAllByText("Done today").length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: /Start Qbank/ })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /Start exam simulation/ })).toBeNull();
@@ -213,15 +247,14 @@ describe("Dashboard week countdown", () => {
 
     render(<DashboardTodayBlock plan={built} />);
 
-    expect(
-      screen.getByRole("heading", { name: "Exam simulation and incorrect drill" })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Practice exam and review" })).toBeInTheDocument();
     expect(screen.getByText("7 days out")).toBeInTheDocument();
-    expect(screen.getAllByText("Exam simulation").length).toBeGreaterThan(0);
-    expect(screen.getByText("Incorrect drill")).toBeInTheDocument();
+    expect(screen.getAllByText("Practice exam").length).toBeGreaterThan(0);
+    expect(screen.getByText("Questions to review")).toBeInTheDocument();
     const sim = screen.getByRole("link", { name: /Start exam simulation/ });
     expect(sim).toHaveAttribute("href", "/full-exam/naplex?mode=50");
-    expect(sim.querySelector("span.study-home-accent")).not.toBeNull();
+    expect(sim.className).not.toContain("study-home-accent");
+    expect(screen.getByRole("button", { name: /Start today's set/ })).toBeInTheDocument();
     expect(screen.getAllByText(/not a licensure result/).length).toBeGreaterThan(0);
   });
 });

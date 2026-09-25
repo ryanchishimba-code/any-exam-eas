@@ -274,6 +274,34 @@ describe("question-bank-setup", () => {
     expect(questionBankEmptyLaunch("weak_areas", 0)).toBe("weak_areas");
   });
 
+  it("keeps a daily set on mixed topics and does not let a remembered style replace it", () => {
+    expect(preferredQuestionBankStyleParam("adaptive", "daily_set")).toBe("daily_set");
+    expect(
+      resolveQuestionBankStyleAndFormat({
+        styleParam: "daily_set",
+        formatParam: "ngn",
+        persistedStyle: "adaptive",
+        persistedFormat: "ngn",
+      })
+    ).toEqual({ style: "daily_set", format: "all" });
+    expect(
+      stylePreservedForPracticeUrl({
+        stateStyle: "adaptive",
+        browserStyle: "daily_set",
+      })
+    ).toBe("daily_set");
+    expect(bankStyleHonorsLaunchStyle("adaptive", "daily_set")).toBe(false);
+    expect(deliberateFormatForLaunch("daily_set", "ngn")).toBeNull();
+    expect(
+      validateQuestionBankSession({
+        subjectId: MIXED_SUBJECT_ID,
+        questionCount: 25,
+        subjectCounts: counts,
+        bankStyle: "daily_set",
+      }).ok
+    ).toBe(true);
+  });
+
   it("leaves today and a remembered NGN set on their existing format rule when the URL has no remediation style", () => {
     expect(
       resolveQuestionBankStyleAndFormat({

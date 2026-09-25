@@ -279,13 +279,14 @@ function activePlan(
             ? "1 week out"
             : `${weeksOut} weeks out`;
 
-  const title = ctx.days === 0
-    ? "Exam day"
-    : ctx.intensify
-      ? "Exam simulation and incorrect drill"
-      : input.remediationHeavy
-        ? "Remediation and coverage"
-        : "Coverage and remediation";
+  const title =
+    ctx.days === 0
+      ? "Exam day"
+      : ctx.intensify
+        ? "Practice exam and review"
+        : input.remediationHeavy
+          ? "Questions to review"
+          : "Topics to practice";
 
   const runway =
     ctx.days === 0
@@ -295,8 +296,8 @@ function activePlan(
         : `${ctx.days} days until ${input.examName}`;
 
   const summary = ctx.intensify
-    ? `${runway}. This week is ${dayPhrase(mix.exam_sim, "exam-simulation")} and ${dayPhrase(mix.remediation, "incorrect-drill")}, plus ${dayPhrase(mix.coverage, "coverage")}. A simulation score is a practice band, not a licensure result.`
-    : `${runway}. This week is ${dayPhrase(mix.coverage, "coverage")} and ${dayPhrase(mix.remediation, "remediation")}, from blueprint gaps and open incorrect items. Exam simulation joins the plan in the final ${FINAL_STRETCH_DAYS} days.`;
+    ? `${runway}. ${countNoun(mix.exam_sim, "practice exam")} and ${daysOn(mix.remediation, "questions you missed")}, plus ${daysOn(mix.coverage, "topics you haven't practiced yet")}. A practice-exam score is practice feedback, not a licensure result.`
+    : `${runway}. ${daysOn(mix.coverage, "topics you haven't practiced yet")}, and ${daysOn(mix.remediation, "questions you missed")}. A practice exam joins in the last ${FINAL_STRETCH_DAYS} days.`;
 
   return {
     active: true,
@@ -340,8 +341,8 @@ function goalFor(
         : "later";
     return {
       id,
-      title: "Exam simulation",
-      detail: `${dayPhrase(ctx.dayCount, "exam-simulation")} this week. One exam-shaped practice set. The result is a practice band, not a licensure result.`,
+      title: "Practice exam",
+      detail: `${countNoun(ctx.dayCount, "practice exam")} this week. The score is practice feedback, not a licensure result.`,
       dayCount: ctx.dayCount,
       progress: status === "done_today" ? 1 : 0,
       status,
@@ -359,10 +360,10 @@ function goalFor(
           ? "today"
           : "later";
     const detail = !ctx.openKnown
-      ? "Open incorrect items could not be counted on this load."
+      ? "Questions you missed could not be counted on this load."
       : clear
-        ? "No open incorrect items. Drill days stay on the week if a new miss appears."
-        : `${ctx.openIncorrect} open incorrect items. ${dayPhrase(ctx.dayCount, "drill")} this week.`;
+        ? "No questions to review. If you miss one, it shows up here."
+        : `${questionsToReview(ctx.openIncorrect)}. ${daysOn(ctx.dayCount, "questions you missed")}.`;
     const progress = clear || ctx.incorrectDone
       ? 1
       : status === "today" && ctx.incorrectTarget > 0
@@ -377,7 +378,7 @@ function goalFor(
           : "Later this week";
     return {
       id,
-      title: "Incorrect drill",
+      title: "Questions to review",
       detail,
       dayCount: ctx.dayCount,
       progress,
@@ -391,10 +392,13 @@ function goalFor(
     : ctx.projectionKind === "coverage"
       ? "today"
       : "later";
+  const namedTopic = ctx.gap !== "mixed topics";
   return {
     id,
-    title: `Coverage · ${ctx.gap}`,
-    detail: `${dayPhrase(ctx.dayCount, "coverage")} this week on ${ctx.gap}. Today's Qbank block is ${COVERAGE_QUESTION_TARGET} questions.`,
+    title: namedTopic ? `Practice ${ctx.gap}` : "Topics you haven't practiced yet",
+    detail: namedTopic
+      ? `${daysOn(ctx.dayCount, ctx.gap)}. That's a topic you haven't practiced yet. Today's set is ${COVERAGE_QUESTION_TARGET} questions.`
+      : `${daysOn(ctx.dayCount, "topics you haven't practiced yet")}. Today's set is ${COVERAGE_QUESTION_TARGET} questions.`,
     dayCount: ctx.dayCount,
     progress:
       status === "done_today"
@@ -419,21 +423,29 @@ function todayLine(
 ): string {
   if (kind === "exam_sim") {
     return done.examSimDone
-      ? "Today's exam simulation is done."
-      : "Today projects an exam simulation, then incorrect drill.";
+      ? "Today's practice exam is done."
+      : "Today: a practice exam, then questions you missed.";
   }
   if (kind === "remediation") {
     return done.incorrectDone
-      ? "Today's incorrect drill is done."
-      : "Today projects incorrect drill.";
+      ? "Today's review is done."
+      : "Today: questions you missed.";
   }
   return done.qbankDone
-    ? `Today's coverage block is done (${gap}).`
-    : `Today projects coverage on ${gap}.`;
+    ? `Today's practice on ${gap} is done.`
+    : `Today: practice ${gap}, a topic you haven't practiced yet.`;
 }
 
-function dayPhrase(count: number, noun: string): string {
-  return `${count} ${noun} ${count === 1 ? "day" : "days"}`;
+function daysOn(count: number, what: string): string {
+  return `${count} ${count === 1 ? "day" : "days"} on ${what}`;
+}
+
+function countNoun(count: number, singular: string, plural = `${singular}s`): string {
+  return `${count} ${count === 1 ? singular : plural}`;
+}
+
+function questionsToReview(count: number): string {
+  return count === 1 ? "1 question to review" : `${count} questions to review`;
 }
 
 function utcDayIndex(now: Date): number {
