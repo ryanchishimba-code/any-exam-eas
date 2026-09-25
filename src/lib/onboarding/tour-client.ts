@@ -98,11 +98,12 @@ export function findVisibleTourAnchor(anchor: string): HTMLElement | null {
 
 export type TourHole = { x: number; y: number; width: number; height: number };
 
-export function measureTourHole(el: HTMLElement, pad = 8): TourHole {
+export function measureTourHole(el: HTMLElement, pad = 8, bottomInset = 0): TourHole {
   const style = window.getComputedStyle(el);
   const fixed = style.position === "fixed";
   const rect = el.getBoundingClientRect();
-  const inView = rect.top >= 8 && rect.bottom <= window.innerHeight - 8;
+  const limit = window.innerHeight - Math.max(8, bottomInset);
+  const inView = rect.top >= 8 && rect.bottom <= limit;
   if (!fixed && !inView) {
     el.scrollIntoView({ block: "center", inline: "nearest" });
   }

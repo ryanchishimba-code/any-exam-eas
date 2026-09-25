@@ -113,11 +113,17 @@ export function ProductTour({
 
     const apply = () => {
       const ids = spotlightAnchors(step, tourViewport());
-      const next: TourHole[] = [];
+      const anchors: HTMLElement[] = [];
       for (const id of ids) {
         const el = findVisibleTourAnchor(id);
-        if (el) next.push(measureTourHole(el));
+        if (el) anchors.push(el);
       }
+      const sheetTop =
+        tourViewport() === "mobile" && dialogRef.current?.classList.contains("is-sheet")
+          ? dialogRef.current.getBoundingClientRect().top
+          : null;
+      const bottomInset = sheetTop == null ? 0 : Math.max(0, window.innerHeight - sheetTop + 12);
+      const next: TourHole[] = anchors.map((el) => measureTourHole(el, 8, bottomInset));
       if (next.length === 0) {
         if (freeze) {
           setHoles([]);
