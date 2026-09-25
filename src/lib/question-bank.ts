@@ -83,6 +83,10 @@ export type BankItem = {
   clinicalReasoning?: string;
   distractorRationale?: Record<string, string>;
   keyTakeaways?: string[];
+  /** Present when a student path loaded the bank row. Not item content. */
+  curationMeta?: unknown;
+  qaPassed?: boolean;
+  fieldId?: string;
 };
 
 /** High-yield items modeled after common study-set / board-style MCQs */

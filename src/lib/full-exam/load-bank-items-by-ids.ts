@@ -2,6 +2,11 @@ import { prisma } from "@/lib/prisma";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { filterBankRowsForPracticeField } from "@/lib/edtech/exam-item-scope";
 import type { BankItem } from "@/lib/question-bank";
+import {
+  isStudentEligible,
+  eligibilityInputFromBankItem,
+  warmCompleteCaseGroups,
+} from "@/lib/exam-prep/student-eligibility";
 
 /** Load bank items in the given id order for retake / resume hydrate. */
 export async function loadBankItemsByIds(
@@ -9,6 +14,7 @@ export async function loadBankItemsByIds(
   ids: string[]
 ): Promise<BankItem[]> {
   if (!ids.length) return [];
+  const completeCaseGroups = await warmCompleteCaseGroups();
   const rows = filterBankRowsForPracticeField(
     await prisma.questionBankItem.findMany({
       where: { id: { in: ids } },
@@ -21,5 +27,6 @@ export async function loadBankItemsByIds(
       const row = byId.get(id);
       return row ? enrichBankItemFromRow(row) : null;
     })
-    .filter((item): item is BankItem => item != null);
+    .filter((item): item is BankItem => item != null)
+    .filter((item) => isStudentEligible(eligibilityInputFromBankItem(item), { completeCaseGroups }));
 }

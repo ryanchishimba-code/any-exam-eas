@@ -26,6 +26,7 @@ import {
 import { bankItemToAanpFnpRaw } from "./aanp-fnp-bank-bridge";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 import { resolveItemProvenance } from "./item-qa/provenance";
+import { retainStudentEligibleBankItems } from "./student-eligibility";
 
 const CLINICAL_FIELD_IDS = new Set(["pance", "aanp-fnp", "npte-pt"]);
 
@@ -35,7 +36,7 @@ function isClinicalVignetteField(fieldId: string): boolean {
 
 /** Runtime re-audit — never trust stale qaPassed flags from the DB alone. */
 export function filterBankItemsForServe(fieldId: string, items: BankItem[]): BankItem[] {
-  const scoped = filterBankItemsForPracticeField(items, fieldId);
+  const scoped = retainStudentEligibleBankItems(filterBankItemsForPracticeField(items, fieldId));
   if (fieldId === "nursing") {
     return filterNclexItemsForSession(scoped);
   }

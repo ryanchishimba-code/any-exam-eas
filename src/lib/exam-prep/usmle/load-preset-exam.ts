@@ -2,8 +2,8 @@
  * Load curated USMLE block-style practice exam presets from the database.
  */
 import { prisma } from "@/lib/prisma";
-import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import type { BankItem } from "@/lib/question-bank";
+import { assembleEligibleExamItems, type PresetExamLink } from "@/lib/exam-prep/preset-exam-serve";
 import type { UsmleStepLevel } from "./types";
 
 export type UsmlePresetExamSummary = {
@@ -27,17 +27,13 @@ export function usmlePresetExamIsServeReady(linkedCount: number, targetCount: nu
 
 export async function listUsmleFullPracticeExams(): Promise<UsmlePresetExamSummary[]> {
   const rows = await prisma.usmleFullPracticeExam.findMany({
+    where: { active: true },
     orderBy: { examNumber: "asc" },
-    include: {
-      // Count only links to questions still in the curated serve bank so a preset
-      // is never advertised once its items have been retired from the bank.
-      _count: {
-        select: { questions: { where: { question: { active: true, qaPassed: true } } } },
-      },
-    },
+    include: { _count: { select: { questions: true } } },
   });
 
   return rows
+    .filter((row) => row.active && row._count.questions > 0)
     .map((row) => ({
       examNumber: row.examNumber,
       title: row.title,
@@ -47,9 +43,8 @@ export async function listUsmleFullPracticeExams(): Promise<UsmlePresetExamSumma
       blueprintSummary: row.blueprintSummary as Record<string, number> | null,
       formatSummary: row.formatSummary as Record<string, number> | null,
       taskSummary: row.taskSummary as Record<string, number> | null,
-      qaPassed: usmlePresetExamIsServeReady(row._count.questions, row.questionCount),
-    }))
-    .filter((row) => usmlePresetExamIsServeReady(row.linkedCount, row.questionCount));
+      qaPassed: row.qaPassed || usmlePresetExamIsServeReady(row._count.questions, row.questionCount),
+    }));
 }
 
 export async function loadUsmlePresetExamItems(
@@ -59,31 +54,38 @@ export async function loadUsmlePresetExamItems(
     where: { examNumber },
     include: {
       questions: {
-        // Only serve linked items still active and serve-ready in the curated bank.
-        where: { question: { active: true, qaPassed: true } },
         orderBy: { sortOrder: "asc" },
         include: { question: true },
       },
     },
   });
 
-  if (!row || row.questions.length === 0) return null;
-  if (!usmlePresetExamIsServeReady(row.questions.length, row.questionCount)) return null;
+  if (!row || !row.active || row.questions.length === 0) return null;
 
   const stepLevel = row.stepLevel as UsmleStepLevel;
-  const fieldId = stepLevel === "step1" ? "usmle-step-1" : "usmle-step-2";
+  const fieldId =
+    stepLevel === "step1" ? "usmle-step-1" : stepLevel === "step3" ? "usmle-step-3" : "usmle-step-2";
 
-  const items: BankItem[] = row.questions.map((link) => {
-    const item = enrichBankItemFromRow(link.question);
-    item.id = link.question.id;
-    item.source = link.question.source ?? undefined;
+  const assembled = await assembleEligibleExamItems({
+    fieldId,
+    questionCount: row.questionCount,
+    links: row.questions.map((link) => ({
+      sortOrder: link.sortOrder,
+      areaKey: link.blueprintSystem || link.question.blueprintDomain || link.question.subjectId,
+      question: link.question as PresetExamLink["question"],
+    })),
+  });
+  if (!assembled) return null;
+
+  const items = assembled.items.map((item) => {
+    const link = row.questions.find((candidate) => candidate.question.id === item.id);
     return {
       ...item,
       ngnPayload: {
         ...(item.ngnPayload ?? {}),
         stepLevel,
-        blueprintSystem: link.blueprintSystem ?? link.question.blueprintDomain,
-        physicianTask: link.physicianTask ?? link.question.taskCategory,
+        blueprintSystem: link?.blueprintSystem ?? item.blueprintDomain,
+        physicianTask: link?.physicianTask ?? item.taskCategory,
       },
     };
   });
@@ -93,12 +95,12 @@ export async function loadUsmlePresetExamItems(
       examNumber: row.examNumber,
       title: row.title,
       stepLevel,
-      questionCount: items.length,
+      questionCount: row.questionCount,
       linkedCount: items.length,
       blueprintSummary: row.blueprintSummary as Record<string, number> | null,
       formatSummary: row.formatSummary as Record<string, number> | null,
       taskSummary: row.taskSummary as Record<string, number> | null,
-      qaPassed: usmlePresetExamIsServeReady(items.length, row.questionCount),
+      qaPassed: row.qaPassed,
     },
     items,
     fieldId,

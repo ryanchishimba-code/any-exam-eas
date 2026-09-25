@@ -2,9 +2,8 @@
  * Load curated NCLEX full-length practice exam presets from the database.
  */
 import { prisma } from "@/lib/prisma";
-import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import type { BankItem } from "@/lib/question-bank";
-import { nclexItemPassesTimedExamGate } from "@/lib/exam-prep/nclex-serve-gate";
+import { assembleEligibleExamItems, type PresetExamLink } from "@/lib/exam-prep/preset-exam-serve";
 
 export type NclexPresetExamSummary = {
   examNumber: number;
@@ -46,16 +45,16 @@ export async function loadNclexPresetExamItems(
 
   if (!exam) return null;
 
-  const items: BankItem[] = [];
-  for (const link of exam.questions) {
-    const item = enrichBankItemFromRow(link.question);
-    item.id = link.question.id;
-    item.source = link.question.source ?? undefined;
-    if (!nclexItemPassesTimedExamGate(item)) continue;
-    items.push(item);
-  }
-
-  if (items.length !== exam.questionCount) return null;
+  const assembled = await assembleEligibleExamItems({
+    fieldId: "nursing",
+    questionCount: exam.questionCount,
+    links: exam.questions.map((link) => ({
+      sortOrder: link.sortOrder,
+      areaKey: link.clientNeedsCategory || link.question.subjectId,
+      question: link.question as PresetExamLink["question"],
+    })),
+  });
+  if (!assembled) return null;
 
   return {
     exam: {
@@ -66,6 +65,6 @@ export async function loadNclexPresetExamItems(
       caseStudySummary: exam.caseStudySummary,
       qaPassed: exam.qaPassed,
     },
-    items,
+    items: assembled.items,
   };
 }

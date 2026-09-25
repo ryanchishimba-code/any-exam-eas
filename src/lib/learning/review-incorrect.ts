@@ -4,6 +4,7 @@ import {
   reviewFieldIdsForQuery,
   selectLaunchReviewQueueIds,
 } from "@/lib/learning/review-queue-launch";
+import { ineligibleServedIds } from "@/lib/exam-prep/student-eligibility";
 import { prisma } from "@/lib/prisma";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 
@@ -17,6 +18,7 @@ export async function loadServableReviewBankIds(
   ids: string[]
 ): Promise<Set<string>> {
   if (ids.length === 0) return new Set();
+  const blocked = new Set(await ineligibleServedIds(fieldId));
   const rows = filterBankRowsForPracticeField(
     await prisma.questionBankItem.findMany({
       where: {
@@ -27,7 +29,7 @@ export async function loadServableReviewBankIds(
       select: { id: true, fieldId: true, stepLevel: true },
     }),
     fieldId
-  );
+  ).filter((row) => !blocked.has(row.id));
   return new Set(rows.map((row) => row.id));
 }
 

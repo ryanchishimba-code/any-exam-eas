@@ -6,7 +6,8 @@ import {
 } from "@/lib/subjects/catalog";
 import { ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL } from "@/lib/inventory/active-inventory-cache";
 import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
-import { prisma } from "@/lib/prisma";
+import { sqlQuery } from "@/lib/db";
+import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
 /** Inventory totals in this payload follow the published stamp, not a 60s module cache. */
@@ -37,12 +38,19 @@ async function countQuestionsByField(): Promise<Map<string, number>> {
     console.error("[catalog/subjects] inventory counts failed:", error);
   }
 
-  const rows = await prisma.questionBankItem.groupBy({
-    by: ["fieldId"],
-    where: { active: true, qaPassed: true },
-    _count: { _all: true },
-  });
-  return new Map(rows.map((r) => [r.fieldId, r._count._all]));
+  const rows = (await sqlQuery(
+    `
+    SELECT "fieldId", COUNT(*)::int AS count
+    FROM "QuestionBankItem"
+    WHERE active = true
+      AND "qaPassed" = true
+      AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${studentEligibleAndSql()}
+    GROUP BY "fieldId"
+    `,
+    []
+  )) as Array<{ fieldId: string; count: number }>;
+  return new Map(rows.map((row) => [row.fieldId, Number(row.count) || 0]));
 }
 
 export async function GET() {

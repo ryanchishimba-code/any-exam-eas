@@ -3,6 +3,7 @@
  * for the existing quiz player.
  */
 
+import { ineligibleServedIds } from "@/lib/exam-prep/student-eligibility";
 import { prisma } from "@/lib/prisma";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
@@ -141,7 +142,9 @@ export async function buildNclexTodayForUser(input: {
 
   const candidates: SessionCandidate[] = [];
 
+  const blocked = new Set(await ineligibleServedIds(fieldId));
   for (const item of bank) {
+    if (blocked.has(item.id)) continue;
     const tags = parseMasteryItemTags({
       clientNeeds: item.clientNeeds,
       cjmmFunction: item.cjmmFunction,
@@ -254,7 +257,9 @@ export async function buildNaplexTodayForUser(input: {
 
   const candidates: SessionCandidate[] = [];
 
+  const blocked = new Set(await ineligibleServedIds(fieldId));
   for (const item of bank) {
+    if (blocked.has(item.id)) continue;
     const tags = parseMasteryItemTags({
       clientNeeds: item.clientNeeds,
       cjmmFunction: item.cjmmFunction,
@@ -423,7 +428,9 @@ export async function buildUsmleTodayForUser(input: {
 
   const candidates: SessionCandidate[] = [];
 
+  const blocked = new Set(await ineligibleServedIds(fieldId));
   for (const item of bank) {
+    if (blocked.has(item.id)) continue;
     const tags = parseMasteryItemTags({
       clientNeeds: item.clientNeeds,
       cjmmFunction: item.cjmmFunction,

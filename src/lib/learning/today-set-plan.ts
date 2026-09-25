@@ -34,6 +34,7 @@ import {
   type TodaySetSizeInput,
 } from "@/lib/learning/today-set";
 import { recordDailyHabitDay } from "@/lib/learning/today-set-preference";
+import { ineligibleServedIds } from "@/lib/exam-prep/student-eligibility";
 import { prisma } from "@/lib/prisma";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import type { ExamSlug } from "@/types/edtech";
@@ -163,12 +164,14 @@ async function loadUnseenCandidates(params: {
 }): Promise<TodayNewCandidate[]> {
   if (params.needed <= 0) return [];
   const excluded = new Set(params.excluded);
-  const useNotIn = params.excluded.length > 0 && params.excluded.length <= 4000;
+  const blocked = (await Promise.all(params.fieldIds.map((id) => ineligibleServedIds(id)))).flat();
+  for (const id of blocked) excluded.add(id);
+  const useNotIn = excluded.size > 0 && excluded.size <= 8000;
   const where = {
     active: true,
     qaPassed: true,
     fieldId: { in: params.fieldIds },
-    ...(useNotIn ? { id: { notIn: params.excluded } } : {}),
+    ...(useNotIn ? { id: { notIn: [...excluded] } } : {}),
   };
   const total = await prisma.questionBankItem.count({ where });
   if (total <= 0) return [];

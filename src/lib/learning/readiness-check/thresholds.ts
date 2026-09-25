@@ -42,7 +42,8 @@
  * - One function: readinessItemIsEligible in eligibility.ts.
  * - Standard single-answer MCQ only. SATA, NGN, K-type, true/false, select-all
  *   stems, QA-gate failures, flagged, pending, item-QA codes, and retired rows
- *   stay out. A short area is not padded.
+ *   stay out. The row must also pass assessStudentEligibility. A short area is
+ *   not padded.
  * - Set requireApprovedReview to require reviewStatus "approved".
  */
 

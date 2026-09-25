@@ -1,5 +1,7 @@
 import { unstable_cache, unstable_noStore as noStore } from "next/cache";
 import { connection } from "next/server";
+import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
+import { sqlQuery } from "@/lib/db";
 import { prisma } from "@/lib/prisma";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
@@ -103,16 +105,23 @@ async function fetchQuestionBankCountsFromDb(): Promise<QuestionBankCountsSnapsh
       where: { active: true },
       _count: { _all: true },
     }),
-    prisma.questionBankItem.groupBy({
-      by: ["fieldId"],
-      where: { active: true, qaPassed: true },
-      _count: { _all: true },
-    }),
+    sqlQuery(
+      `
+      SELECT "fieldId", COUNT(*)::int AS count
+      FROM "QuestionBankItem"
+      WHERE active = true
+        AND "qaPassed" = true
+        AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+        ${studentEligibleAndSql()}
+      GROUP BY "fieldId"
+      `,
+      []
+    ) as Promise<Array<{ fieldId: string; count: number }>>,
   ]);
 
   const totalByField = new Map(totalRows.map((r) => [r.fieldId, r._count._all]));
   const activeByField = new Map(activeRows.map((r) => [r.fieldId, r._count._all]));
-  const servedByField = new Map(servedRows.map((r) => [r.fieldId, r._count._all]));
+  const servedByField = new Map(servedRows.map((r) => [r.fieldId, Number(r.count)]));
 
   const sumRows = (rows: typeof totalRows) =>
     rows.reduce((acc, row) => acc + row._count._all, 0);
@@ -154,7 +163,7 @@ async function fetchQuestionBankCountsFromDb(): Promise<QuestionBankCountsSnapsh
   const totals = {
     total: sumRows(totalRows),
     active: sumRows(activeRows),
-    served: sumRows(servedRows),
+    served: servedRows.reduce((acc, row) => acc + Number(row.count), 0),
   };
 
   return {

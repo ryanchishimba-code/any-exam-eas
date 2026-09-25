@@ -118,3 +118,14 @@ export async function withDbRetry<T>(
 export function getNeonSql(): NeonSql {
   return getSql();
 }
+
+/** Run a SQL string. Used when the statement is built from a shared predicate. */
+export async function sqlQuery<T = unknown>(text: string, params: unknown[] = []): Promise<T> {
+  const client = getSql() as NeonSql & {
+    query: (queryText: string, queryParams: unknown[]) => Promise<T>;
+  };
+  if (typeof client.query !== "function") {
+    throw new Error("Neon HTTP client does not expose query().");
+  }
+  return client.query(text, params);
+}

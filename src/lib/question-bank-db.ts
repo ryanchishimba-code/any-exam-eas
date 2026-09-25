@@ -1,5 +1,7 @@
 import type { Prisma } from "@prisma/client";
 import type { BankItem } from "@/lib/question-bank";
+import { retainStudentEligibleBankItems, warmCompleteCaseGroups } from "@/lib/exam-prep/student-eligibility";
+import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
 import { isMpjeField } from "@/lib/mpje/config";
@@ -221,7 +223,7 @@ export function dedupeBankItemsById(items: BankItem[]): BankItem[] {
 }
 
 function dedupeSamplePool(items: BankItem[]): BankItem[] {
-  return dedupeBankItemsById(items);
+  return retainStudentEligibleBankItems(dedupeBankItemsById(items));
 }
 
 /**
@@ -282,6 +284,7 @@ async function ensureBankAvailable(fieldId: string, subjectId?: string): Promise
   // Inline writes during GET/POST sampling caused multi-second timeouts on cold Neon.
   void fieldId;
   void subjectId;
+  await warmCompleteCaseGroups();
 }
 
 /**
@@ -654,17 +657,24 @@ export async function fetchQuestionBankItems(params: {
     where: activeSubjectWhere(params.fieldId, params.subjectId),
   });
 
-  return rows.map(rowToBankItem);
+  return retainStudentEligibleBankItems(rows.map(rowToBankItem));
 }
 
 export async function countActiveQuestions(fieldId?: string) {
-  return prisma.questionBankItem.count({
-    where: {
-      active: true,
-      qaPassed: true,
-      ...(fieldId ? { fieldId, ...usmleStepSeparationWhere(fieldId) } : {}),
-    },
-  });
+  const { sqlQuery } = await import("@/lib/db");
+  const rows = (await sqlQuery(
+    `
+    SELECT COUNT(*)::int AS count
+    FROM "QuestionBankItem"
+    WHERE active = true
+      AND "qaPassed" = true
+      AND ($1::text IS NULL OR "fieldId" = $1)
+      AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${studentEligibleAndSql()}
+    `,
+    [fieldId ?? null]
+  )) as Array<{ count: number }>;
+  return Number(rows[0]?.count ?? 0);
 }
 
 /**
@@ -679,9 +689,25 @@ export async function countActiveSubjectQuestions(
   fieldId: string,
   subjectId: string
 ): Promise<number> {
-  return prisma.questionBankItem.count({
-    where: activeSubjectWhere(fieldId, subjectId),
-  });
+  const { sqlQuery } = await import("@/lib/db");
+  const stepGuard =
+    fieldId === "usmle-step-2"
+      ? `AND ("stepLevel" IS NULL OR "stepLevel" <> 'step3')`
+      : "";
+  const rows = (await sqlQuery(
+    `
+    SELECT COUNT(*)::int AS count
+    FROM "QuestionBankItem"
+    WHERE "fieldId" = $1
+      AND "subjectId" = $2
+      AND active = true
+      AND "qaPassed" = true
+      ${stepGuard}
+      ${studentEligibleAndSql()}
+    `,
+    [fieldId, subjectId]
+  )) as Array<{ count: number }>;
+  return Number(rows[0]?.count ?? 0);
 }
 
 /**
@@ -693,29 +719,27 @@ export async function countActiveSubjectQuestions(
 export async function getSubjectServedCounts(
   fieldId: string
 ): Promise<Record<string, number>> {
-  const { sql } = await import("@/lib/db");
+  const { sqlQuery } = await import("@/lib/db");
 
   type CountRow = { subjectId: string; count: number };
 
-  const rows =
+  const stepGuard =
     fieldId === "usmle-step-2"
-      ? await sql<CountRow>`
-          SELECT "subjectId", COUNT(*)::int AS count
-          FROM "QuestionBankItem"
-          WHERE "fieldId" = ${fieldId}
-            AND active = true
-            AND "qaPassed" = true
-            AND ("stepLevel" IS NULL OR "stepLevel" <> 'step3')
-          GROUP BY "subjectId"
-        `
-      : await sql<CountRow>`
-          SELECT "subjectId", COUNT(*)::int AS count
-          FROM "QuestionBankItem"
-          WHERE "fieldId" = ${fieldId}
-            AND active = true
-            AND "qaPassed" = true
-          GROUP BY "subjectId"
-        `;
+      ? `AND ("stepLevel" IS NULL OR "stepLevel" <> 'step3')`
+      : "";
+  const rows = (await sqlQuery(
+    `
+    SELECT "subjectId", COUNT(*)::int AS count
+    FROM "QuestionBankItem"
+    WHERE "fieldId" = $1
+      AND active = true
+      AND "qaPassed" = true
+      ${stepGuard}
+      ${studentEligibleAndSql()}
+    GROUP BY "subjectId"
+    `,
+    [fieldId]
+  )) as CountRow[];
 
   const counts: Record<string, number> = {};
   for (const row of rows) {
@@ -940,10 +964,13 @@ export async function countBlueprintAreaQuestions(
   blueprintAreaId: string
 ): Promise<number> {
   if (!isBlueprintAreaId(fieldId, blueprintAreaId)) return 0;
+  const { ineligibleServedIds } = await import("@/lib/exam-prep/student-eligibility");
+  const blocked = await ineligibleServedIds(fieldId);
   return prisma.questionBankItem.count({
     where: {
       ...activeBlueprintAreaWhere(fieldId, blueprintAreaId),
       ...usmleStepSeparationWhere(fieldId),
+      ...(blocked.length > 0 ? { id: { notIn: blocked } } : {}),
     },
   });
 }

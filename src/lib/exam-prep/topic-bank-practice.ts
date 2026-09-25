@@ -9,6 +9,7 @@ import type { BankItem } from "@/lib/question-bank";
 import { isMpjeField } from "@/lib/mpje/config";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { filterBankItemsForSessionPool } from "@/lib/exam-prep/prepare-bank-session";
+import { warmCompleteCaseGroups } from "@/lib/exam-prep/student-eligibility";
 import { expandNclexBlueprintTopicMatchers } from "@/lib/exam-prep/nclex/blueprint-topic-aliases";
 import { filterItemsForNclexBlueprintTopics } from "@/lib/exam-prep/nclex/topic-blueprint-match";
 import { filterItemsForNaplexBlueprintTopics } from "@/lib/exam-prep/naplex/topic-blueprint-match";
@@ -529,6 +530,7 @@ export async function gatherTopicBankSessionPool(params: {
    */
   poolMode?: "session" | "selection";
 }): Promise<BankItem[]> {
+  await warmCompleteCaseGroups();
   const poolMode = params.poolMode ?? "session";
   const poolTarget = resolveTopicBankSampleCount(params.sessionLimit, poolMode);
   const minVetted =

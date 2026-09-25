@@ -2,9 +2,8 @@
  * Load curated NAPLEX full-length practice exam presets from the database.
  */
 import { prisma } from "@/lib/prisma";
-import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import type { BankItem } from "@/lib/question-bank";
-import { naplexItemPassesTimedExamGate } from "@/lib/exam-prep/naplex-serve-gate";
+import { assembleEligibleExamItems, type PresetExamLink } from "@/lib/exam-prep/preset-exam-serve";
 
 export type NaplexPresetExamSummary = {
   examNumber: number;
@@ -56,29 +55,27 @@ export async function loadNaplexPresetExamItems(
   });
 
   if (!exam || exam.questions.length === 0) return null;
-  if (!naplexPresetExamIsServeReady(exam.questions.length, exam.questionCount)) return null;
 
-  const items: BankItem[] = [];
-  for (const link of exam.questions) {
-    const item = enrichBankItemFromRow(link.question);
-    item.id = link.question.id;
-    item.source = link.question.source ?? undefined;
-    if (!naplexItemPassesTimedExamGate(item)) continue;
-    items.push(item);
-  }
-
-  if (!naplexPresetExamIsServeReady(items.length, exam.questionCount)) return null;
+  const assembled = await assembleEligibleExamItems({
+    fieldId: "pharmacy",
+    questionCount: exam.questionCount,
+    links: exam.questions.map((link) => ({
+      sortOrder: link.sortOrder,
+      areaKey: link.blueprintArea || link.question.blueprintDomain || link.question.subjectId,
+      question: link.question as PresetExamLink["question"],
+    })),
+  });
+  if (!assembled) return null;
 
   return {
     exam: {
       examNumber: exam.examNumber,
       title: exam.title,
-      questionCount: items.length,
-      linkedCount: items.length,
+      questionCount: exam.questionCount,
+      linkedCount: assembled.items.length,
       blueprintSummary: exam.blueprintSummary as Record<string, number> | null,
-      qaPassed:
-        exam.qaPassed || naplexPresetExamIsServeReady(items.length, exam.questionCount),
+      qaPassed: exam.qaPassed,
     },
-    items,
+    items: assembled.items,
   };
 }
