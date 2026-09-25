@@ -38,6 +38,9 @@ export const metadata = {
 /** Neon cold starts + parallel dashboard queries can exceed the default 10s on Vercel. */
 export const maxDuration = 60;
 
+/** The Today mix is computed per request so a reload cannot keep an older line. */
+export const dynamic = "force-dynamic";
+
 function DashboardSkeleton() {
   return (
     <div className="dashboard-ui mx-auto w-full min-w-0 max-w-5xl space-y-5 pb-10">
