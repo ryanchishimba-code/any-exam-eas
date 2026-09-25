@@ -139,7 +139,7 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step1" }: Prop
       return;
     }
     setExamSlug("usmle");
-    prepareClientForExamSwitch(queryClient, "usmle");
+    prepareClientForExamSwitch(queryClient, "usmle", selected.fieldId);
     router.push(ROUTES.dashboard);
     router.refresh();
   }, [queryClient, router, selected, setExamSlug]);

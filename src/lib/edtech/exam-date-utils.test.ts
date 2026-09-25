@@ -1,10 +1,22 @@
 import { describe, expect, it } from "vitest";
 import {
+  formatExamDateLong,
+  formatExamDateShort,
   formatMmddyyyyDigits,
   isoToMmddyyyy,
   parseMmddyyyy,
   isIsoWithinBounds,
 } from "./exam-date-utils";
+
+describe("formatExamDateLong", () => {
+  it("formats a calendar date without Intl so server and browser text match", () => {
+    const long = formatExamDateLong("2026-10-15");
+    expect(long).toBe("Thursday, October 15, 2026");
+    expect([...long].every((char) => char.charCodeAt(0) < 128)).toBe(true);
+    expect(formatExamDateShort("2026-10-15")).toBe("Oct 15, 2026");
+    expect(formatExamDateLong("not-a-date")).toBe("not-a-date");
+  });
+});
 
 describe("exam-date-utils typed entry", () => {
   it("round-trips ISO dates through mm/dd/yyyy (MMDDYYYY)", () => {

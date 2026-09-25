@@ -1,6 +1,7 @@
 import type { QueryClient } from "@tanstack/react-query";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { fieldIdForExamSlug } from "@/lib/edtech/exam-field-ids";
+import { fieldIdForExamSlug, fieldMatchesExamSlug } from "@/lib/edtech/exam-field-ids";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { clearActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import { clearAllStudySessionsLocally } from "@/lib/questions/storage";
 import { fetchSubjectCounts } from "@/lib/study/subject-counts-client";
@@ -51,24 +52,44 @@ export function invalidateExamScopedQueries(queryClient: QueryClient): void {
   });
 }
 
+/**
+ * Field id to warm after an exam switch.
+ * USMLE has three banks. `fieldIdForExamSlug("usmle")` is always Step 2, and a
+ * Step 1 learner gets HTTP 403 (`USMLE_STEP_MISMATCH`) if we prefetch it.
+ * Return null until the learner has confirmed a step — do not guess.
+ */
+export function subjectCountsFieldForExamSwitch(
+  examSlug: ExamSlug,
+  fieldId?: string | null
+): string | null {
+  if (examSlug === "usmle") {
+    if (fieldId && isUsmleFieldId(fieldId)) return fieldId;
+    return null;
+  }
+  if (fieldId && fieldMatchesExamSlug(fieldId, examSlug)) return fieldId;
+  return fieldIdForExamSlug(examSlug);
+}
+
 /** Warm subject-count cache for the newly selected exam before navigation completes. */
 export function prefetchExamSubjectCounts(
   queryClient: QueryClient,
-  examSlug: ExamSlug
+  examSlug: ExamSlug,
+  fieldId?: string | null
 ): void {
-  const fieldId = fieldIdForExamSlug(examSlug);
+  const resolved = subjectCountsFieldForExamSwitch(examSlug, fieldId);
+  if (!resolved) return;
   void queryClient.prefetchQuery({
-    queryKey: ["subject-counts", fieldId],
-    queryFn: () => fetchSubjectCounts(fieldId),
+    queryKey: ["subject-counts", resolved],
+    queryFn: () => fetchSubjectCounts(resolved),
     staleTime: 0,
   });
 }
 
-export function broadcastExamSwitch(examSlug: ExamSlug): void {
+export function broadcastExamSwitch(examSlug: ExamSlug, fieldId?: string | null): void {
   if (typeof window === "undefined") return;
   const detail: ExamSwitchDetail = {
     examSlug,
-    fieldId: fieldIdForExamSlug(examSlug),
+    fieldId: subjectCountsFieldForExamSwitch(examSlug, fieldId) ?? fieldIdForExamSlug(examSlug),
   };
   window.dispatchEvent(new CustomEvent(EXAM_SWITCH_EVENT, { detail }));
 }
@@ -76,15 +97,17 @@ export function broadcastExamSwitch(examSlug: ExamSlug): void {
 /**
  * After the server saves a new exam preference, scrub client caches and notify
  * mounted study surfaces before navigation.
+ * Pass the confirmed USMLE step field id. Without it, subject counts are not prefetched.
  */
 export function prepareClientForExamSwitch(
   queryClient: QueryClient,
-  examSlug: ExamSlug
+  examSlug: ExamSlug,
+  fieldId?: string | null
 ): void {
   clearExamTransientClientState();
   invalidateExamScopedQueries(queryClient);
-  prefetchExamSubjectCounts(queryClient, examSlug);
-  broadcastExamSwitch(examSlug);
+  prefetchExamSubjectCounts(queryClient, examSlug, fieldId);
+  broadcastExamSwitch(examSlug, fieldId);
 }
 
 /** Resolve a safe post-switch URL so stale ?field= / ?exam= params do not linger. */

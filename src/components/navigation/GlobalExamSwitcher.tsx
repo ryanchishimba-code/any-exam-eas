@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -64,6 +64,29 @@ function GlobalExamSwitcherInner({ variant = "nav", onNavigate }: Props) {
 }
 
 export function GlobalExamSwitcher(props: Props) {
+  // `useSession` can be authenticated in the server render and still "loading"
+  // on the first client render when no session is passed into SessionProvider.
+  // The chip and the account label are the two text nodes that then disagree
+  // (#418). Hold every variant to an empty span until mount, before reading
+  // session status, so header and sidebar cannot paint a name early.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) {
+    return (
+      <span
+        className={cn(
+          "inline-block",
+          props.variant === "mobile" ? "h-10 w-full" : "h-9 min-w-[5.5rem]"
+        )}
+        aria-hidden
+      />
+    );
+  }
+
+  return <GlobalExamSwitcherAuthenticated {...props} />;
+}
+
+function GlobalExamSwitcherAuthenticated(props: Props) {
   const { status } = useSession();
   if (status !== "authenticated") return null;
 

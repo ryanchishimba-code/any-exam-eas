@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { usePrefetchHrefs } from "@/lib/navigation/use-prefetch-hrefs";
 import { useSession } from "next-auth/react";
@@ -34,6 +34,10 @@ export function AppTopNav({ onMenuClick }: Props) {
   const pathname = usePathname();
   const { data: session } = useSession();
   const { examSlug } = useAppPreferences();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const accountLabel =
+    mounted && session?.user?.name ? displayFirstName(session.user.name) : "Account";
   const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: ROUTES.home });
 
   const navLinks = useMemo(
@@ -116,9 +120,7 @@ export function AppTopNav({ onMenuClick }: Props) {
             className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-[var(--color-ink-muted)] transition hover:bg-[color-mix(in_srgb,var(--color-ink)_4%,transparent)] hover:text-[var(--color-ink)] disabled:opacity-60"
           >
             <User className="h-3.5 w-3.5 md:hidden" aria-hidden />
-            <span className="hidden max-w-[8rem] truncate md:inline">
-              {session?.user?.name ? displayFirstName(session.user.name) : "Account"}
-            </span>
+            <span className="hidden max-w-[8rem] truncate md:inline">{accountLabel}</span>
             <LogOut className="h-3.5 w-3.5" aria-hidden />
           </button>
         </div>

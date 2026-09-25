@@ -41,21 +41,53 @@ export function addMonthsToIso(iso: string, months: number): string {
   return toIsoDate(d);
 }
 
+const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as const;
+const MONTHS_LONG = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+] as const;
+const MONTHS_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] as const;
+
+/**
+ * Calendar parts of a `YYYY-MM-DD` exam date.
+ * Built from the string, not `Date` + `Intl`, so the server (UTC) and the
+ * browser cannot disagree on the weekday or the grouping characters.
+ */
+function examDateParts(iso: string): { year: number; month: number; day: number } | null {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+  return { year, month, day };
+}
+
+function weekdayIndex(year: number, month: number, day: number): number {
+  return new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+}
+
 export function formatExamDateLong(iso: string): string {
-  return new Intl.DateTimeFormat("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date(`${iso}T00:00:00`));
+  const parts = examDateParts(iso);
+  if (!parts) return iso;
+  const weekday = WEEKDAYS[weekdayIndex(parts.year, parts.month, parts.day)];
+  return `${weekday}, ${MONTHS_LONG[parts.month - 1]} ${parts.day}, ${parts.year}`;
 }
 
 export function formatExamDateShort(iso: string): string {
-  return new Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date(`${iso}T00:00:00`));
+  const parts = examDateParts(iso);
+  if (!parts) return iso;
+  return `${MONTHS_SHORT[parts.month - 1]} ${parts.day}, ${parts.year}`;
 }
 
 export function calendarDaysUntil(isoDate: string, now = Date.now()): number {

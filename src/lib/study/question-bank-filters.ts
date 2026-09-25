@@ -47,6 +47,67 @@ export function canonicalizeQuestionBankQuery(
   return next;
 }
 
+export type PracticeSubjectChoice = {
+  fieldId: string;
+  subjectIds: readonly string[];
+  subjectParam: string | null;
+  /** Used only so `subjectId=mixed` on review-incorrect stays all topics. */
+  styleParam: string | null;
+  persistedSubjectId: string | null;
+  coverageLeadSubjectId: string | null;
+  preferWeak: boolean;
+  weakSubjectId: string | null;
+};
+
+/**
+ * Topic to show when the bank opens.
+ *
+ * A subject from another board is not a selection: return mixed (all topics),
+ * never the first blueprint domain. A blank URL may still restore a remembered
+ * topic or a coverage lead in the UI. Callers must not write that automatic
+ * choice back into the address bar — a stripped stale link would otherwise
+ * become `subjectId=<first domain>`.
+ */
+export function resolvePracticeSubjectId(input: PracticeSubjectChoice): string {
+  if (input.subjectIds.length === 0) return "";
+
+  const { subjectParam, styleParam } = input;
+  if (
+    subjectParam === MIXED_SUBJECT_ID ||
+    (subjectParam === "mixed" && styleParam === "review_incorrect")
+  ) {
+    return MIXED_SUBJECT_ID;
+  }
+  if (subjectParam && !subjectIdBelongsToField(input.fieldId, subjectParam)) {
+    return MIXED_SUBJECT_ID;
+  }
+  if (subjectParam && input.subjectIds.includes(subjectParam)) {
+    return subjectParam;
+  }
+
+  const persisted = input.persistedSubjectId;
+  if (
+    !subjectParam &&
+    persisted &&
+    (persisted === MIXED_SUBJECT_ID || input.subjectIds.includes(persisted))
+  ) {
+    return persisted;
+  }
+
+  if (
+    input.coverageLeadSubjectId &&
+    input.subjectIds.includes(input.coverageLeadSubjectId)
+  ) {
+    return input.coverageLeadSubjectId;
+  }
+
+  if (input.preferWeak && input.weakSubjectId && input.subjectIds.includes(input.weakSubjectId)) {
+    return input.weakSubjectId;
+  }
+
+  return MIXED_SUBJECT_ID;
+}
+
 /** Value equality, ignoring parameter order. */
 export function questionBankQueriesMatch(a: URLSearchParams, b: URLSearchParams): boolean {
   const keys = new Set<string>([...a.keys(), ...b.keys()]);

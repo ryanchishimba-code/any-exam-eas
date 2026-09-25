@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
+import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import {
   canonicalizeQuestionBankQuery,
   questionBankQueriesMatch,
+  resolvePracticeSubjectId,
   subjectIdBelongsToField,
 } from "@/lib/study/question-bank-filters";
 
@@ -62,6 +65,13 @@ describe("canonicalizeQuestionBankQuery", () => {
     expect(next.get("taskCategory")).toBe("history");
   });
 
+  it("does not invent subjectId=assess when physiology is stripped", () => {
+    const current = new URLSearchParams("field=aanp-fnp&subjectId=physiology");
+    const next = canonicalizeQuestionBankQuery("aanp-fnp", current);
+    expect(next.has("subjectId")).toBe(false);
+    expect(next.get("subjectId")).not.toBe("assess");
+  });
+
   it("is idempotent", () => {
     const once = canonicalizeQuestionBankQuery(
       "pharmacy",
@@ -71,5 +81,55 @@ describe("canonicalizeQuestionBankQuery", () => {
     expect(questionBankQueriesMatch(once, twice)).toBe(true);
     expect(twice.get("mode")).toBe("timed");
     expect(twice.has("subjectId")).toBe(false);
+  });
+});
+
+describe("resolvePracticeSubjectId", () => {
+  const aanpIds = getSubjectsForFieldId("aanp-fnp").map((subject) => subject.id);
+
+  it("drops a foreign subject instead of selecting the first AANP domain", () => {
+    expect(aanpIds[0]).toBe("assess");
+    expect(
+      resolvePracticeSubjectId({
+        fieldId: "aanp-fnp",
+        subjectIds: aanpIds,
+        subjectParam: "physiology",
+        styleParam: null,
+        persistedSubjectId: null,
+        coverageLeadSubjectId: null,
+        preferWeak: false,
+        weakSubjectId: null,
+      })
+    ).toBe(MIXED_SUBJECT_ID);
+  });
+
+  it("opens all topics when the URL has no subject and nothing is remembered", () => {
+    expect(
+      resolvePracticeSubjectId({
+        fieldId: "aanp-fnp",
+        subjectIds: aanpIds,
+        subjectParam: null,
+        styleParam: null,
+        persistedSubjectId: null,
+        coverageLeadSubjectId: null,
+        preferWeak: false,
+        weakSubjectId: null,
+      })
+    ).toBe(MIXED_SUBJECT_ID);
+  });
+
+  it("keeps a subject that belongs to the field", () => {
+    expect(
+      resolvePracticeSubjectId({
+        fieldId: "aanp-fnp",
+        subjectIds: aanpIds,
+        subjectParam: "assess",
+        styleParam: null,
+        persistedSubjectId: null,
+        coverageLeadSubjectId: null,
+        preferWeak: false,
+        weakSubjectId: null,
+      })
+    ).toBe("assess");
   });
 });
