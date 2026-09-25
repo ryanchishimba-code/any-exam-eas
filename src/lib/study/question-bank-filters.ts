@@ -1,4 +1,5 @@
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
 const MIXED_SUBJECT_IDS = new Set([MIXED_SUBJECT_ID, "mixed"]);
@@ -45,6 +46,40 @@ export function canonicalizeQuestionBankQuery(
   }
 
   return next;
+}
+
+/**
+ * Field the question-bank page should show.
+ *
+ * An explicit practice field in the URL wins over the saved board for this
+ * page only. The saved preference is the fallback when the URL has no field
+ * or names something that is not a practice field. This does not change the
+ * saved exam.
+ */
+export function questionBankPageFieldId(
+  requestedFieldId: string | null,
+  savedFieldId: string
+): string {
+  if (requestedFieldId && isPracticeFieldId(requestedFieldId)) return requestedFieldId;
+  return savedFieldId;
+}
+
+/**
+ * Href to replace with, or null when the query is already canonical.
+ * Drops a subject that does not belong to the page field. Does not replace
+ * an explicit field with the saved board.
+ */
+export function canonicalQuestionBankHref(
+  pathname: string,
+  search: URLSearchParams,
+  savedFieldId: string,
+  requestedFieldId: string | null
+): string | null {
+  const fieldId = questionBankPageFieldId(requestedFieldId, savedFieldId);
+  const canonical = canonicalizeQuestionBankQuery(fieldId, search);
+  if (questionBankQueriesMatch(search, canonical)) return null;
+  const qs = canonical.toString();
+  return qs ? `${pathname}?${qs}` : pathname;
 }
 
 export type PracticeSubjectChoice = {

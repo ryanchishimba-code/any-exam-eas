@@ -1,17 +1,16 @@
 import { redirect } from "next/navigation";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import {
+  examSlugForFieldId,
   fieldIdForExamSlug,
-  fieldMatchesExamSlug,
   resolveCanonicalPracticeFieldId,
   resolveQuestionBankFieldId,
 } from "@/lib/edtech/question-bank-scope";
-import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
 import { ROUTES } from "@/lib/routes";
 import {
-  canonicalizeQuestionBankQuery,
-  questionBankQueriesMatch,
+  canonicalQuestionBankHref,
+  questionBankPageFieldId,
 } from "@/lib/study/question-bank-filters";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -45,40 +44,30 @@ export async function resolveQuestionBankRoute(
   if (!pref) redirect(ROUTES.selectExam);
 
   const examSlug = pref.examSlug;
-  const defaultFieldId = fieldIdForExamSlug(examSlug);
-  let fieldParam = defaultFieldId;
+  let savedFieldId = fieldIdForExamSlug(examSlug);
+  if (examSlug === "usmle") {
+    savedFieldId = await resolveCanonicalPracticeFieldId(userId, examSlug);
+  }
 
   const requestedField = sp.field ? resolveQuestionBankFieldId(String(sp.field)) : null;
-
-  if (examSlug === "usmle" && !requestedField) {
-    const meta = await getUserEdtechMetadata(userId);
-    if (meta.usmleFieldId && isUsmleFieldId(meta.usmleFieldId)) {
-      fieldParam = meta.usmleFieldId;
-    }
-  }
-
-  if (requestedField) {
-    const canonicalFieldId = await resolveCanonicalPracticeFieldId(userId, examSlug);
-    if (fieldMatchesExamSlug(requestedField, examSlug) && requestedField === canonicalFieldId) {
-      fieldParam = requestedField;
-    } else {
-      fieldParam = canonicalFieldId;
-    }
-  }
-
-  // One redirect canonicalizes the field AND drops a subject/filter from another
-  // board. Keeping subjectId=physiology while rewriting field to aanp-fnp is
-  // what left history on a stale topic.
+  // Explicit ?field= wins for this page. Only a missing or unknown field
+  // falls back to the saved board. A subject from another board is dropped
+  // against the page field — the saved board must not replace ?field=.
+  const fieldParam = questionBankPageFieldId(requestedField, savedFieldId);
   const current = searchRecordToParams(sp);
-  const canonical = canonicalizeQuestionBankQuery(fieldParam, current);
-  if (!questionBankQueriesMatch(current, canonical)) {
-    redirect(`${ROUTES.questionBank}?${canonical.toString()}`);
-  }
+  const href = canonicalQuestionBankHref(
+    ROUTES.questionBank,
+    current,
+    savedFieldId,
+    requestedField
+  );
+  if (href) redirect(href);
 
+  const pageExamSlug = examSlugForFieldId(fieldParam) ?? examSlug;
   const usmleStepLabel =
-    examSlug === "usmle" && isUsmleFieldId(fieldParam)
+    pageExamSlug === "usmle" && isUsmleFieldId(fieldParam)
       ? usmleStepDefinition(fieldParam)?.shortName
       : undefined;
 
-  return { examSlug, fieldParam, usmleStepLabel };
+  return { examSlug: pageExamSlug, fieldParam, usmleStepLabel };
 }

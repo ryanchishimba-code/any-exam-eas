@@ -21,6 +21,8 @@ import {
   findVisibleTourAnchor,
   isTourAnchorVisible,
   measureTourHole,
+  scrollTourAnchorIntoView,
+  tourScrollOffsetPx,
   tourViewport,
   type TourHole,
 } from "@/lib/onboarding/tour-client";
@@ -84,6 +86,7 @@ export function ProductTour({
   const previousFocus = useRef<HTMLElement | null>(null);
   const touchX = useRef<number | null>(null);
   const missingFired = useRef(new Set<string>());
+  const scrolledFor = useRef<string | null>(null);
   const [index, setIndex] = useState(initialStep);
   const [holes, setHoles] = useState<TourHole[]>([]);
   const [mounted, setMounted] = useState(false);
@@ -107,6 +110,19 @@ export function ProductTour({
 
   const step = steps[index] ?? null;
   const sheet = viewport === "mobile";
+
+  useLayoutEffect(() => {
+    if (!open) {
+      scrolledFor.current = null;
+      return;
+    }
+    if (!step) return;
+    if (scrolledFor.current === step.id) return;
+    const el = findVisibleTourAnchor(anchorForStep(step, tourViewport()));
+    if (!el) return;
+    scrolledFor.current = step.id;
+    scrollTourAnchorIntoView(el);
+  }, [open, step]);
 
   useLayoutEffect(() => {
     if (!open || !step) return;
@@ -344,7 +360,12 @@ function placeCard(holes: TourHole[]): CSSProperties | undefined {
   const left = Math.min(Math.max(margin, primary.x), maxLeft);
   let top = primary.y + primary.height + 14;
   if (top + estimated > window.innerHeight - margin) {
-    top = primary.y - estimated - 14;
+    const header = tourScrollOffsetPx();
+    const attached = Math.max(header, primary.y + 12);
+    top =
+      attached + estimated > window.innerHeight - margin
+        ? Math.max(header, window.innerHeight - estimated - margin)
+        : attached;
   }
   const maxTop = Math.max(margin, window.innerHeight - estimated - margin);
   top = Math.min(Math.max(margin, top), maxTop);

@@ -350,6 +350,42 @@ describe("FirstLoginTour", () => {
     }
   });
 
+  it("scrolls each step target into view when the step changes", async () => {
+    const calls: { tour: string | null; behavior?: ScrollBehavior; block?: ScrollLogicalPosition }[] =
+      [];
+    HTMLElement.prototype.scrollIntoView = function (
+      this: HTMLElement,
+      arg?: boolean | ScrollIntoViewOptions
+    ) {
+      const options = typeof arg === "object" ? arg : undefined;
+      calls.push({
+        tour: this.getAttribute("data-tour"),
+        behavior: options?.behavior,
+        block: options?.block,
+      });
+    };
+
+    render(
+      <>
+        {anchors()}
+        <FirstLoginTour boardName="NCLEX" seen={false} attemptCount={0} />
+      </>
+    );
+    await flushTour();
+
+    const today = calls.filter((call) => call.tour === "today");
+    expect(today.length).toBeGreaterThan(0);
+    expect(today[0]).toMatchObject({ behavior: "smooth", block: "start" });
+    expect(document.querySelector("[data-tour='today']")).toHaveStyle({
+      scrollMarginTop: "76px",
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Next" }));
+    const bank = calls.filter((call) => call.tour === "bank");
+    expect(bank.length).toBeGreaterThan(0);
+    expect(bank[0]).toMatchObject({ behavior: "smooth", block: "start" });
+  });
+
   it("does not replay over an open dialog", async () => {
     window.sessionStorage.setItem(TOUR_REPLAY_KEY, "1");
     render(
