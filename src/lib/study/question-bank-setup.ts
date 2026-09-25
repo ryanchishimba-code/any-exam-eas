@@ -162,11 +162,11 @@ export function validateQuestionBankSession(params: {
 }): QuestionBankSessionValidation {
   const { subjectId, questionCount, subjectCounts, bankStyle, taskCategory } = params;
 
-  if (!subjectId && bankStyle !== "today") {
+  if (!subjectId && bankStyle !== "today" && bankStyle !== "daily_set") {
     return { ok: false, message: "Choose a topic before starting." };
   }
 
-  if (bankStyle === "today") {
+  if (bankStyle === "today" || bankStyle === "daily_set") {
     return { ok: true };
   }
 
@@ -180,8 +180,7 @@ export function validateQuestionBankSession(params: {
   if (
     isMixedSubjectId(subjectId) &&
     bankStyle !== "standard" &&
-    bankStyle !== "review_incorrect" &&
-    bankStyle !== "today"
+    bankStyle !== "review_incorrect"
   ) {
     return {
       ok: false,
@@ -312,6 +311,13 @@ export function isRemediationUrlStyle(
   return style === "weak_areas" || style === "review_incorrect";
 }
 
+/** Remediation deep links and the daily set must not be replaced by a remembered chip. */
+export function isLockedBankLaunchStyle(
+  style: string | null | undefined
+): style is "weak_areas" | "review_incorrect" | "daily_set" {
+  return isRemediationUrlStyle(style) || style === "daily_set";
+}
+
 /**
  * Browser location wins when it still has a remediation deep link.
  * useSearchParams can be a remembered Adaptive value for one hydrate frame.
@@ -320,7 +326,7 @@ export function preferredQuestionBankStyleParam(
   hookStyle: string | null | undefined,
   browserStyle: string | null | undefined
 ): string | null {
-  if (isRemediationUrlStyle(browserStyle)) return browserStyle;
+  if (isLockedBankLaunchStyle(browserStyle)) return browserStyle;
   return hookStyle ?? browserStyle ?? null;
 }
 
@@ -339,7 +345,7 @@ export function resolveQuestionBankStyleAndFormat(params: {
   persistedStyle?: string | null;
   persistedFormat?: string | null;
 }): { style: QuestionBankStyle | null; format: PracticeFormatMode | null } {
-  if (isRemediationUrlStyle(params.styleParam)) {
+  if (isLockedBankLaunchStyle(params.styleParam)) {
     return { style: params.styleParam, format: "all" };
   }
 
@@ -370,7 +376,7 @@ export function stylePreservedForPracticeUrl(params: {
 }): QuestionBankStyle {
   if (params.overrideStyle) return params.overrideStyle;
   if (
-    isRemediationUrlStyle(params.browserStyle) &&
+    isLockedBankLaunchStyle(params.browserStyle) &&
     params.stateStyle !== params.browserStyle
   ) {
     return params.browserStyle;
@@ -383,7 +389,7 @@ export function bankStyleHonorsLaunchStyle(
   bankStyle: QuestionBankStyle,
   launchStyle: string | null | undefined
 ): boolean {
-  if (!isRemediationUrlStyle(launchStyle)) return true;
+  if (!isLockedBankLaunchStyle(launchStyle)) return true;
   return bankStyle === launchStyle;
 }
 
@@ -417,7 +423,7 @@ export function deliberateFormatForLaunch(
 ): "ngn" | "case" | null {
   // Remediation deep links build their own set. A lagging NGN/case format must
   // not turn them into a Standard format fetch.
-  if (style === "weak_areas" || style === "review_incorrect") return null;
+  if (style === "weak_areas" || style === "review_incorrect" || style === "daily_set") return null;
   if (format === "ngn" || format === "case") return format;
   return null;
 }

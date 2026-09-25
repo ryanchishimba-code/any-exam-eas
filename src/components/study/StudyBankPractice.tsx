@@ -22,6 +22,7 @@ import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { persistUsmleStepPreference } from "@/lib/edtech/actions";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { fieldIdForExamSlug } from "@/lib/edtech/exam-field-ids";
+import { takeDailySet } from "@/lib/learning/today-set-stash";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import {
   fullExamLaunchHref,
@@ -357,13 +358,21 @@ export function StudyBankPractice({
     const style = searchParams.get("style");
     // Default chip is Adaptive. A remediation deep link is the style for this
     // visit from the first render, before effects read remembered setup.
-    if (style === "weak_areas" || style === "review_incorrect") return style;
+    if (
+      style === "weak_areas" ||
+      style === "review_incorrect" ||
+      style === "daily_set" ||
+      style === "today"
+    ) {
+      return style;
+    }
     return "adaptive";
   });
   // Keep honoring the URL if state is still the remembered/default chip.
+  const urlStyle = searchParams.get("style");
   const urlRemediationStyle =
-    searchParams.get("style") === "weak_areas" || searchParams.get("style") === "review_incorrect"
-      ? (searchParams.get("style") as QuestionBankStyle)
+    urlStyle === "weak_areas" || urlStyle === "review_incorrect" || urlStyle === "daily_set"
+      ? (urlStyle as QuestionBankStyle)
       : null;
   const effectiveBankStyle = urlRemediationStyle ?? bankStyle;
   const [practiceFormat, setPracticeFormat] = useState<PracticeFormatMode>("all");
@@ -1238,11 +1247,104 @@ export function StudyBankPractice({
         !useArea && (activeStyle === "adaptive" || activeStyle === "weak_areas");
       const useReviewIncorrect = !useArea && activeStyle === "review_incorrect";
       const useToday = !useArea && activeStyle === "today";
+      const useDailySet = !useArea && activeStyle === "daily_set";
       const effectiveSubjectId = useReviewIncorrect
         ? reviewSubjectForLaunch(subjectId)
         : subjectId || subjects[0]?.id || MIXED_SUBJECT_ID || "";
-      if (!useArea && !useToday && !effectiveSubjectId) {
+      if (!useArea && !useToday && !useDailySet && !effectiveSubjectId) {
         throw new Error("Choose a topic before starting practice.");
+      }
+
+      if (useDailySet) {
+        const stashed = takeDailySet(fieldId);
+        if (stashed) {
+          const prepared = stashed.questions as {
+            stem?: string;
+            question?: string;
+            options?: string[];
+            correctAnswers?: string[];
+            correctAnswer?: string;
+            explanation?: string;
+            subjectId?: string;
+            bankItemId?: string;
+            id?: string;
+            type?: string;
+            vignette?: string;
+            tags?: string[];
+          }[];
+          const raw: RawQuestionInput[] = prepared.map((q, i) => ({
+            id: i + 1,
+            question: q.question || q.stem || "",
+            options: q.options ?? [],
+            correctAnswer: q.correctAnswer || (q.correctAnswers ?? []).join(", "),
+            explanation: q.explanation ?? "",
+            field,
+            subjectId: q.subjectId ?? MIXED_SUBJECT_ID,
+            bankItemId: q.bankItemId ?? stashed.bankItemIds[i] ?? q.id,
+            type: (q.type as RawQuestionInput["type"]) ?? "multiple_choice",
+            vignette: q.vignette,
+            tags: q.tags,
+          }));
+          setAdaptiveMeta({
+            sessionRationale: "Today's set — review first, then new questions.",
+            todaySet: stashed.todaySet,
+          });
+          if (isStale()) return;
+          setQuestions(raw);
+          return;
+        }
+
+        const res = await fetch("/api/study/daily-set", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ field: fieldId }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
+          throw new Error(studyLimitMessage(data) || data.error || "Could not build today's set");
+        }
+        type DailyQ = {
+          stem?: string;
+          question?: string;
+          options?: string[];
+          correctAnswers?: string[];
+          correctAnswer?: string;
+          explanation?: string;
+          subjectId?: string;
+          bankItemId?: string;
+          id?: string;
+          type?: string;
+          vignette?: string;
+          tags?: string[];
+        };
+        const prepared = (data.questions as DailyQ[] | undefined) ?? [];
+        if (prepared.length === 0) {
+          throw new Error(data.error || "No questions ready for this board yet.");
+        }
+        const raw: RawQuestionInput[] = prepared.map((q, i) => ({
+          id: i + 1,
+          question: q.question || q.stem || "",
+          options: q.options ?? [],
+          correctAnswer: q.correctAnswer || (q.correctAnswers ?? []).join(", "),
+          explanation: q.explanation ?? "",
+          field,
+          subjectId: q.subjectId ?? MIXED_SUBJECT_ID,
+          bankItemId: q.bankItemId ?? (data.bankItemIds as string[] | undefined)?.[i] ?? q.id,
+          type: (q.type as RawQuestionInput["type"]) ?? "multiple_choice",
+          vignette: q.vignette,
+          tags: q.tags,
+        }));
+        setAdaptiveMeta({
+          sessionRationale:
+            typeof data.mixLine === "string" && data.mixLine
+              ? `Today's set — ${data.mixLine}.`
+              : "Today's set — review first, then new questions.",
+          todaySet: data.todaySet,
+        });
+        if (isStale()) return;
+        setQuestions(raw);
+        return;
       }
 
       if (useToday) {
@@ -1655,7 +1757,15 @@ export function StudyBankPractice({
       readBrowserSearchParam("style")
     );
     if (!bankStyleHonorsLaunchStyle(effectiveBankStyle, launchStyle)) return;
-    if (!isTimedExam && !subjectId && !blueprintAreaId && effectiveBankStyle !== "today") return;
+    if (
+      !isTimedExam &&
+      !subjectId &&
+      !blueprintAreaId &&
+      effectiveBankStyle !== "today" &&
+      effectiveBankStyle !== "daily_set"
+    ) {
+      return;
+    }
     autostartAttempted.current = true;
     document.getElementById("practice-launcher")?.scrollIntoView({ behavior: "smooth", block: "start" });
     void start();
@@ -1774,7 +1884,10 @@ export function StudyBankPractice({
           ? " · Uniform MPJE"
           : "";
     const formatTitle = launchFormat ? practiceFormatTitle(launchFormat, ngnLabel) : null;
-    const title = isTimedExam
+    const title =
+      effectiveBankStyle === "daily_set"
+        ? "Today's set"
+        : isTimedExam
       ? `${field}${mpjeScope} · Timed exam · ${questions.length} questions`
       : `${field}${mpjeScope} · ${
           formatTitle ? `${formatTitle} · ${scopedTopicLabel}` : scopedTopicLabel

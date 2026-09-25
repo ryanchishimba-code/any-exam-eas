@@ -21,6 +21,7 @@ import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { isDrugSafetyPathComplete } from "@/lib/drugs300/service";
 import { boardStudyCountsFromSources } from "@/lib/learning/board-study-counts";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
+import { loadTodaySetPreview } from "@/lib/learning/today-set-plan";
 import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
 import { ROUTES } from "@/lib/routes";
 import { StudyHubSessionSummary } from "@/components/study-hub/StudyHubSessionSummary";
@@ -41,7 +42,7 @@ function DashboardSkeleton() {
   return (
     <div className="dashboard-ui mx-auto w-full min-w-0 max-w-5xl space-y-5 pb-10">
       <Skeleton className="h-28 w-full rounded-2xl" />
-      <Skeleton className="h-24 w-full rounded-2xl" />
+      <Skeleton className="h-[220px] w-full rounded-2xl" />
       <Skeleton className="h-36 w-full rounded-2xl" />
       <Skeleton className="h-48 w-full rounded-2xl" />
     </div>
@@ -88,7 +89,7 @@ async function DashboardContent({
   );
 
   // Wave 2: secondary panels — degrade instead of blanking the whole dashboard.
-  const [roadmap, metadata, usage, mastery, inventory, drugsCompletedToday, accountAttemptCount] =
+  const [roadmap, metadata, usage, mastery, inventory, drugsCompletedToday, accountAttemptCount, todaySet] =
     await Promise.all([
     settled(
       getExamRoadmapData(userId, examSlug, {
@@ -133,6 +134,17 @@ async function DashboardContent({
     settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
     settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
     settled(readAccountAttemptCount(userId), null, "tour attempts"),
+    settled(
+      loadTodaySetPreview({
+        userId,
+        examSlug,
+        fieldId,
+        questionsDone: stats.questionsToday,
+        access,
+      }),
+      null,
+      "today set"
+    ),
   ]);
 
   const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;
@@ -183,6 +195,19 @@ async function DashboardContent({
       examDayPlan={examDayPlan}
       tourSeen={metadata == null ? true : isTourSeen(metadata)}
       accountAttemptCount={accountAttemptCount}
+      todaySet={
+        todaySet
+          ? {
+              fieldId: todaySet.fieldId,
+              target: todaySet.target,
+              questionsDone: todaySet.questionsDone,
+              mixLine: todaySet.mixLine,
+              empty: todaySet.empty,
+              limitReached: todaySet.limitReached,
+              streakDays: todaySet.streakDays,
+            }
+          : null
+      }
     />
   );
 }

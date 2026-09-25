@@ -25,6 +25,7 @@ import type { DomainMapTile } from "@/components/dashboard/DomainMap";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 import { isTodayEngineNaplexEnabled, isTodayEngineUsmleEnabled } from "@/lib/engine/mastery/feature-flag";
 import { FirstLoginTour } from "@/components/onboarding/FirstLoginTour";
+import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
 
 export type DashboardHeadline = {
   readinessScore: number;
@@ -66,6 +67,7 @@ export function DashboardPageContent({
   examDayPlan = null,
   tourSeen = true,
   accountAttemptCount = null,
+  todaySet = null,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -87,6 +89,7 @@ export function DashboardPageContent({
   tourSeen?: boolean;
   /** Account-wide attempts. Null fails closed so existing students are not surprised. */
   accountAttemptCount?: number | null;
+  todaySet?: TodaySetPreviewView | null;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
@@ -129,7 +132,7 @@ export function DashboardPageContent({
       {upgrade ? <DashboardUpgradeBanner {...upgrade} /> : null}
 
       {examDayPlan ? (
-        <DashboardTodayBlock plan={examDayPlan} studyLocked={studyLocked} />
+        <DashboardTodayBlock plan={examDayPlan} studyLocked={studyLocked} todaySet={todaySet} />
       ) : null}
 
       <RemediationPanel

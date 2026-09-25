@@ -98,6 +98,16 @@ export type AdaptiveSessionMeta = {
    * Same servable count the dashboard shows as open remediations.
    */
   openQueueTotal?: number;
+  /**
+   * Present when this sitting is the dashboard daily set.
+   * Topic hrefs are Deep Dive when that board has one, otherwise a topic bank.
+   */
+  todaySet?: {
+    examSlug: string;
+    target: number;
+    tomorrowCount: number;
+    topics: Record<string, { id: string; label: string; href: string }>;
+  };
 };
 
 export type StudySessionState = {

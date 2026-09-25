@@ -17,6 +17,9 @@ export const CONVERSION_EVENTS = {
   TOUR_COMPLETED: "tour_completed",
   TOUR_DISMISSED: "tour_dismissed",
   TOUR_REPLAYED: "tour_replayed",
+  /** Daily study set. Not an ad conversion — excluded from the marketing funnel charts. */
+  TODAY_SET_STARTED: "today_set_started",
+  TODAY_SET_COMPLETED: "today_set_completed",
 } as const;
 
 /** Marketing funnel cards. Product-tour events stay in the events table only. */
@@ -43,6 +46,22 @@ export type ConversionProperties = {
   tour_completed: { via: "cta" | "next" | "target_click"; duration_ms: number };
   tour_dismissed: { at_step: number; via: "skip" | "close" | "esc"; step_id?: string };
   tour_replayed: { from: "settings" };
+  today_set_started: {
+    exam_slug: string;
+    field_id: string;
+    size: number;
+    review_count: number;
+    spaced_count: number;
+    new_count: number;
+  };
+  today_set_completed: {
+    exam_slug: string;
+    size: number;
+    accuracy: number;
+    correct: number;
+    total: number;
+    weakest_topic?: string;
+  };
 };
 
 export type ConversionSource = "web" | "server";
