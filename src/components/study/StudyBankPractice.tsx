@@ -1287,7 +1287,10 @@ export function StudyBankPractice({
             tags: q.tags,
           }));
           setAdaptiveMeta({
-            sessionRationale: "Today's set — review first, then new questions.",
+            sessionRationale:
+              typeof stashed.mixLine === "string" && stashed.mixLine
+                ? `Today's set — ${stashed.mixLine}.`
+                : "Today's set — review first, then new questions.",
             todaySet: stashed.todaySet,
           });
           if (isStale()) return;

@@ -9,12 +9,25 @@
  * met. It is not added to LearningProfile.studyStreakDays. That profile
  * streak already moves on any saved attempt, so summing the two would
  * double-count the same day.
+ *
+ * Review (open remediation, then spaced review) is capped at
+ * TODAY_REVIEW_MAX_SHARE of the set so a long miss list still leaves room
+ * for new questions. If new items run short, leftover review fills those
+ * slots. If both run short, the set is shorter.
  */
 
 import { QUESTION_BANK_MAX_COUNT } from "@/lib/exam/modes";
 import { parseMetadataObject } from "@/lib/onboarding/tour-record";
 
 export const TODAY_SET_DEFAULT_SIZE = 25;
+
+/**
+ * Combined open-remediation and spaced-review share of a daily set.
+ * The rest is reserved for new questions when the bank has them.
+ * 0.6 of the default 25 is 15 review and 10 new.
+ */
+export const TODAY_REVIEW_MAX_SHARE = 0.6;
+
 const HABIT_DAY_CAP = 120;
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -92,6 +105,30 @@ export function resolveTodaySetSize(input?: TodaySetSizeInput | null): number {
   return chosen ?? TODAY_SET_DEFAULT_SIZE;
 }
 
+/**
+ * How many review questions to place before new ones.
+ * Rounded to the nearest question. A default set of 25 reserves 15;
+ * a set of 10 reserves 6.
+ */
+export function todayReviewSlotCap(size: number): number {
+  if (!Number.isFinite(size) || size <= 0) return 0;
+  const requested = Math.max(0, Math.round(size));
+  if (requested <= 0) return 0;
+  const cap = Math.round(requested * TODAY_REVIEW_MAX_SHARE);
+  return Math.min(requested, Math.max(0, cap));
+}
+
+/**
+ * Unseen items to load so the review cap cannot crowd out new questions.
+ * `reviewAvailable` is the deduped open-remediation plus spaced-review count.
+ */
+export function todayUnseenNeeded(size: number, reviewAvailable: number): number {
+  const requested = Number.isFinite(size) ? Math.max(0, Math.round(size)) : 0;
+  const available = Number.isFinite(reviewAvailable) ? Math.max(0, Math.floor(reviewAvailable)) : 0;
+  const firstPass = Math.min(available, todayReviewSlotCap(requested));
+  return Math.max(0, requested - firstPass);
+}
+
 /** Cap a resolved size by a remaining question allowance. Null means unlimited. */
 export function applyQuestionAllowance(
   size: number,
@@ -164,10 +201,12 @@ function weightedSample(
 }
 
 /**
- * Fill a set in order: due Review incorrect, then due spaced review that is
- * not already in that queue, then unseen blueprint-weighted items.
- * The result is never longer than `size`, and the mix line counts only ids
- * that were actually chosen.
+ * Fill a set in order: open remediation, then spaced review that is not
+ * already in that queue, then unseen blueprint-weighted items.
+ * Review is capped first so new questions keep a share of the set. If new
+ * items run short, more review fills the remainder, still with open
+ * remediation ahead of spaced review. The result is never longer than
+ * `size`, and the mix line counts only ids that were actually chosen.
  */
 export function composeTodaySet(input: {
   size: number;
@@ -178,28 +217,38 @@ export function composeTodaySet(input: {
 }): TodaySetComposition {
   const requested = Number.isFinite(input.size) ? Math.max(0, Math.round(input.size)) : 0;
   const random = input.random ?? Math.random;
-  const reviewIncorrect = dedupeIds(input.reviewIncorrectIds).slice(0, requested);
-  const taken = new Set(reviewIncorrect);
-  const spaced: string[] = [];
-  for (const id of dedupeIds(input.spacedReviewIds)) {
-    if (reviewIncorrect.length + spaced.length >= requested) break;
-    if (taken.has(id)) continue;
-    taken.add(id);
-    spaced.push(id);
-  }
+  const reviewCap = todayReviewSlotCap(requested);
 
-  const remaining = requested - reviewIncorrect.length - spaced.length;
+  const openAll = dedupeIds(input.reviewIncorrectIds);
+  const seenReview = new Set(openAll);
+  const spacedAll: string[] = [];
+  for (const id of dedupeIds(input.spacedReviewIds)) {
+    if (seenReview.has(id)) continue;
+    seenReview.add(id);
+    spacedAll.push(id);
+  }
+  const reviewOrder = [...openAll, ...spacedAll];
+  const firstReview = reviewOrder.slice(0, Math.min(reviewCap, requested));
+  const firstTaken = new Set(firstReview);
+
   const pool: { id: string; weight: number }[] = [];
   const seenNew = new Set<string>();
   for (const candidate of input.newCandidates) {
     const id = candidate.id.trim();
-    if (!id || taken.has(id) || seenNew.has(id)) continue;
+    if (!id || seenReview.has(id) || seenNew.has(id)) continue;
     seenNew.add(id);
     const weight =
       Number.isFinite(candidate.weight) && candidate.weight > 0 ? candidate.weight : 0.001;
     pool.push({ id, weight });
   }
-  const fresh = weightedSample(pool, remaining, random);
+  const fresh = weightedSample(pool, requested - firstReview.length, random);
+
+  const shortfall = requested - firstReview.length - fresh.length;
+  const backfill =
+    shortfall > 0 ? reviewOrder.filter((id) => !firstTaken.has(id)).slice(0, shortfall) : [];
+  const selectedReview = new Set([...firstReview, ...backfill]);
+  const reviewIncorrect = openAll.filter((id) => selectedReview.has(id));
+  const spaced = spacedAll.filter((id) => selectedReview.has(id));
   const reviewCount = reviewIncorrect.length + spaced.length;
   return {
     requestedSize: requested,

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { FIRST_LOGIN_TOUR_ID } from "@/lib/onboarding/tour-record";
 import {
+  TODAY_REVIEW_MAX_SHARE,
   TODAY_SET_DEFAULT_SIZE,
   applyQuestionAllowance,
   composeTodaySet,
@@ -12,6 +13,9 @@ import {
   readDailyHabitDays,
   recountTodayMix,
   resolveTodaySetSize,
+  todayReviewSlotCap,
+  todaySetRandom,
+  todayUnseenNeeded,
   weakestTopicFromOutcomes,
 } from "@/lib/learning/today-set";
 
@@ -88,19 +92,129 @@ describe("composeTodaySet", () => {
     expect(set.ids).toHaveLength(25);
   });
 
-  it("does not claim new items when review already fills the set", () => {
+  it("keeps the review share at 60 percent so a long miss list still includes new questions", () => {
+    expect(TODAY_REVIEW_MAX_SHARE).toBe(0.6);
+    expect(todayReviewSlotCap(TODAY_SET_DEFAULT_SIZE)).toBe(15);
+    expect(todayUnseenNeeded(25, 41)).toBe(10);
+
+    const open = Array.from({ length: 41 }, (_, i) => `miss-${i}`);
+    const set = composeTodaySet({
+      size: resolveTodaySetSize(null),
+      reviewIncorrectIds: open,
+      spacedReviewIds: ["spaced-1", "spaced-2"],
+      newCandidates: Array.from({ length: 30 }, (_, i) => ({ id: `new-${i}`, weight: 1 })),
+      random,
+    });
+
+    expect(set.reviewCount).toBe(15);
+    expect(set.newCount).toBe(10);
+    expect(set.mixLine).toBe("15 to review · 10 new");
+    expect(set.ids).toHaveLength(25);
+    expect(set.reviewIncorrectIds).toEqual(open.slice(0, 15));
+    expect(set.spacedReviewIds).toEqual([]);
+    expect(set.newIds).toEqual(Array.from({ length: 10 }, (_, i) => `new-${i}`));
+    expect(formatTodayMixLine(set.reviewCount, set.newCount)).toBe(set.mixLine);
+  });
+
+  it("uses only the open items that exist when the backlog is small", () => {
     const set = composeTodaySet({
       size: 25,
-      reviewIncorrectIds: Array.from({ length: 40 }, (_, i) => `miss-${i}`),
+      reviewIncorrectIds: ["miss-0"],
+      spacedReviewIds: [],
+      newCandidates: Array.from({ length: 40 }, (_, i) => ({ id: `new-${i}`, weight: 1 })),
+      random,
+    });
+    expect(todayUnseenNeeded(25, 1)).toBe(24);
+    expect(set.reviewCount).toBe(1);
+    expect(set.newCount).toBe(24);
+    expect(set.mixLine).toBe("1 to review · 24 new");
+    expect(set.ids).toHaveLength(25);
+    expect(set.ids[0]).toBe("miss-0");
+  });
+
+  it("backfills empty new slots with more review, open remediation before spaced review", () => {
+    const open = Array.from({ length: 18 }, (_, i) => `miss-${i}`);
+    const spaced = Array.from({ length: 10 }, (_, i) => `spaced-${i}`);
+    const set = composeTodaySet({
+      size: 25,
+      reviewIncorrectIds: open,
+      spacedReviewIds: spaced,
+      newCandidates: Array.from({ length: 3 }, (_, i) => ({ id: `new-${i}`, weight: 1 })),
+      random,
+    });
+    expect(set.ids).toHaveLength(25);
+    expect(set.reviewIncorrectIds).toEqual(open);
+    expect(set.spacedReviewIds).toEqual(spaced.slice(0, 4));
+    expect(set.newIds).toEqual(["new-0", "new-1", "new-2"]);
+    expect(set.reviewCount).toBe(22);
+    expect(set.newCount).toBe(3);
+    expect(set.mixLine).toBe("22 to review · 3 new");
+    expect(set.ids.slice(0, 22)).toEqual([...open, ...spaced.slice(0, 4)]);
+  });
+
+  it("fills from review when no new questions are available", () => {
+    const set = composeTodaySet({
+      size: 25,
+      reviewIncorrectIds: Array.from({ length: 41 }, (_, i) => `miss-${i}`),
       spacedReviewIds: ["s1"],
-      newCandidates: [{ id: "n1", weight: 50 }],
+      newCandidates: [],
       random,
     });
     expect(set.reviewCount).toBe(25);
     expect(set.newCount).toBe(0);
     expect(set.mixLine).toBe("25 to review");
-    expect(set.ids).not.toContain("n1");
+    expect(set.ids).toHaveLength(25);
     expect(set.ids).not.toContain("s1");
+  });
+
+  it("applies the same share to a custom set size", () => {
+    const size = resolveTodaySetSize({ dailyGoal: 10 });
+    const set = composeTodaySet({
+      size,
+      reviewIncorrectIds: Array.from({ length: 41 }, (_, i) => `miss-${i}`),
+      spacedReviewIds: ["s1"],
+      newCandidates: Array.from({ length: 20 }, (_, i) => ({ id: `new-${i}`, weight: 1 })),
+      random,
+    });
+    expect(size).toBe(10);
+    expect(todayReviewSlotCap(size)).toBe(6);
+    expect(todayUnseenNeeded(size, 41)).toBe(4);
+    expect(set.reviewCount).toBe(6);
+    expect(set.newCount).toBe(4);
+    expect(set.mixLine).toBe("6 to review · 4 new");
+    expect(set.ids).toHaveLength(10);
+    expect(set.spacedReviewIds).toEqual([]);
+  });
+
+  it("keeps the same mix when the day is composed again and does not refill on recount", () => {
+    const input = {
+      size: 25,
+      reviewIncorrectIds: Array.from({ length: 41 }, (_, i) => `miss-${i}`),
+      spacedReviewIds: ["s1"],
+      newCandidates: [
+        { id: "light", weight: 1 },
+        { id: "heavy", weight: 9 },
+        ...Array.from({ length: 20 }, (_, i) => ({ id: `new-${i}`, weight: 2 })),
+      ],
+    };
+    const seed = ["student", "nursing", "2026-09-25"] as const;
+    const first = composeTodaySet({ ...input, random: todaySetRandom(seed) });
+    const second = composeTodaySet({ ...input, random: todaySetRandom(seed) });
+    expect(second).toEqual(first);
+    expect(first.mixLine).toBe("15 to review · 10 new");
+
+    const dropped = first.newIds[0];
+    expect(dropped).toBeTruthy();
+    const recounted = recountTodayMix(
+      first,
+      new Set(first.ids.filter((id) => id !== dropped))
+    );
+    expect(recounted.reviewCount).toBe(15);
+    expect(recounted.newCount).toBe(9);
+    expect(recounted.mixLine).toBe("15 to review · 9 new");
+    expect(recounted.ids).toHaveLength(24);
+    expect(recounted.ids).not.toContain(dropped);
+    expect(formatTodayMixLine(recounted.reviewCount, recounted.newCount)).toBe(recounted.mixLine);
   });
 
   it("shortens the set instead of inventing new questions", () => {

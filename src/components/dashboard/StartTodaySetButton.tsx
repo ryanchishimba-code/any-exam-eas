@@ -38,6 +38,7 @@ export function StartTodaySetButton({
         fieldId?: string;
         questions?: unknown[];
         bankItemIds?: string[];
+        mixLine?: string | null;
         todaySet?: {
           examSlug: string;
           target: number;
@@ -53,6 +54,7 @@ export function StartTodaySetButton({
         savedAt: Date.now(),
         questions: data.questions,
         bankItemIds: data.bankItemIds ?? [],
+        mixLine: typeof data.mixLine === "string" ? data.mixLine : null,
         todaySet: data.todaySet,
       });
       router.push(data.playerHref);
