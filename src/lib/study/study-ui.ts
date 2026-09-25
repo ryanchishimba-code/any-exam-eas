@@ -47,7 +47,8 @@ export const studyUi = {
   sheetHeader: "border-b border-[var(--color-border)]/60 px-4 py-4 sm:px-5",
   sheetFooter: "border-t border-[var(--color-border)]/60 bg-[var(--color-surface)]/40 px-4 py-4 sm:px-5",
   /** Immersive question viewer — Tesla-flat, distraction-free. */
-  sessionShell: "mx-auto w-full min-w-0 max-w-3xl space-y-4",
+  sessionShell:
+    "mx-auto w-full min-w-0 max-w-3xl space-y-4 max-lg:pb-[calc(4.75rem+env(safe-area-inset-bottom,0px))]",
   sessionCard:
     "aee-question-enter rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface-elevated)]",
   sessionProgress:

@@ -42,8 +42,23 @@ export function shouldCollapseRationale(parts: Array<string | null | undefined>)
   return text.length > RATIONALE_INLINE_MAX_CHARS || rationaleVisualLines(text) > RATIONALE_INLINE_MAX_LINES;
 }
 
+/**
+ * Board-generic step labels that are not an explanation.
+ * NCLEX CJMM is the common case; the same headers show up on NGN and case items.
+ */
+const CJMM_LABEL =
+  /^(?:clinical judgment(?:\s*\(cjmm\))?|ncsbn clinical judgment(?:\s+measurement)?(?:\s+model)?)\s*:?\s*/i;
+
+const STEP_HEADER =
+  /^(?:recognize cues|analyze cues|prioritize hypotheses|generate solutions(?:\s*\/\s*take action)?|take action|evaluate outcomes|correct answer)\s*:\s*/i;
+
+const LEADING_NUMBER = /^\d+\s*[.)]\s*/;
+
+const NON_EXPLANATION =
+  /^(?:why other options are incorrect|why the other options are wrong|references|reference)\b/i;
+
 function firstSentence(text: string): string {
-  const match = text.match(/^(.{12,160}?[.!?])(?:\s|$)/);
+  const match = text.match(/^(.{8,220}?(?<!\d)[.!?])(?:\s|$)/);
   if (match?.[1]) return match[1].trim();
   if (text.length <= RATIONALE_INLINE_MAX_CHARS) return text;
   const slice = text.slice(0, 140);
@@ -52,17 +67,95 @@ function firstSentence(text: string): string {
   return `${cut}…`;
 }
 
-/** Principle line or first sentence, kept short enough to sit above Show more. */
+/** Drop a leading CJMM label, step number, or step header. Repeats while they stack. */
+export function stripLeadingRationaleLabels(text: string): string {
+  let rest = text.trim();
+  for (let i = 0; i < 8 && rest; i += 1) {
+    const next = rest
+      .replace(CJMM_LABEL, "")
+      .replace(LEADING_NUMBER, "")
+      .replace(STEP_HEADER, "")
+      .trim();
+    if (next === rest) break;
+    rest = next;
+  }
+  return rest;
+}
+
+function explanatoryEnough(sentence: string): boolean {
+  const stripped = stripLeadingRationaleLabels(sentence).replace(/[.…]+$/g, "").trim();
+  if (!stripped || NON_EXPLANATION.test(stripped)) return false;
+  if (CJMM_LABEL.test(stripped) || STEP_HEADER.test(stripped) || LEADING_NUMBER.test(stripped)) {
+    return false;
+  }
+  const words = stripped.split(/\s+/).filter((word) => /[A-Za-z]{2,}/.test(word));
+  return words.length >= 2;
+}
+
+/**
+ * First real explanatory sentence.
+ * Strips CJMM prefixes ("Clinical Judgment (CJMM): 1.") and step headers
+ * ("Recognize cues:") before picking a sentence. Empty string when the text
+ * is only a label — callers fall back to the full rationale or a short prompt.
+ */
+export function explanatoryRationaleSummary(text: string | null | undefined): string {
+  let rest = stripLeadingRationaleLabels(stripRationaleMarkup(text ?? ""));
+  if (!rest) return "";
+
+  for (let i = 0; i < 6 && rest; i += 1) {
+    if (NON_EXPLANATION.test(rest)) break;
+    const sentence = firstSentence(rest);
+    const body = stripLeadingRationaleLabels(sentence).replace(/[.…]+$/g, "").trim();
+    if (explanatoryEnough(body)) {
+      const finished = /[.!?…]$/.test(body) ? body : `${body}.`;
+      return finished.length > RATIONALE_INLINE_MAX_CHARS
+        ? firstSentence(finished)
+        : finished;
+    }
+    const consumed = Math.max(sentence.length, 1);
+    rest = stripLeadingRationaleLabels(rest.slice(consumed).replace(/^[\s.!?:—–-]+/, ""));
+  }
+
+  return "";
+}
+
+/**
+ * True when the old first-period picker would have shown only a step label
+ * ("Clinical Judgment (CJMM): 1.") instead of an explanation.
+ */
+export function wouldRenderLabelOnlySummary(text: string | null | undefined): boolean {
+  const cleaned = stripRationaleMarkup(text ?? "");
+  if (!cleaned) return false;
+  const match = cleaned.match(/^(.{8,160}?[.!?])(?:\s|$)/);
+  const legacy = (match?.[1] ?? "").trim();
+  if (!legacy) return false;
+  return !explanatoryEnough(legacy);
+}
+
+/** First real sentence, or the fallback when the text is only a label. */
+export function rationaleSummaryOr(
+  text: string | null | undefined,
+  fallback: string
+): string {
+  return explanatoryRationaleSummary(text) || fallback;
+}
+
+/** Principle line or first explanatory sentence, kept short enough to sit above Show more. */
 export function shortRationaleLead(text: string | null | undefined): string {
   const cleaned = stripRationaleMarkup(text ?? "");
   if (!cleaned) return "";
   if (
     cleaned.length <= RATIONALE_INLINE_MAX_CHARS &&
-    rationaleVisualLines(cleaned) <= RATIONALE_INLINE_MAX_LINES
+    rationaleVisualLines(cleaned) <= RATIONALE_INLINE_MAX_LINES &&
+    explanatoryEnough(cleaned)
   ) {
     return cleaned;
   }
-  return firstSentence(cleaned);
+  return explanatoryRationaleSummary(cleaned);
+}
+
+function usableLead(text: string | null | undefined): string {
+  return shortRationaleLead(text);
 }
 
 export function selectRationaleLead(input: {
@@ -70,11 +163,11 @@ export function selectRationaleLead(input: {
   headline?: string | null;
   explanation?: string | null;
 }): string {
-  const principle = input.principle?.trim();
-  if (principle) return shortRationaleLead(principle);
-  const headline = input.headline?.trim();
-  if (headline) return shortRationaleLead(headline);
-  return shortRationaleLead(input.explanation);
+  const principle = usableLead(input.principle);
+  if (principle) return principle;
+  const headline = usableLead(input.headline);
+  if (headline) return headline;
+  return usableLead(input.explanation);
 }
 
 /** Remainder after a lead that is a prefix of the full text. Otherwise the full text. */

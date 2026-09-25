@@ -18,9 +18,14 @@ import { ExamMarketingHero } from "@/components/marketing/ExamMarketingHero";
 import { WhyTrustIt } from "@/components/marketing/WhyTrustIt";
 import type { BoardInventoryPresentation } from "@/lib/inventory/active-questions";
 import { examHubProductLinks } from "@/lib/marketing/exam-hub";
+import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { UsmleStepShowcaseLazy } from "@/components/marketing/ExamMarketingSectionsLazy";
 import { ROUTES } from "@/lib/routes";
-import { formatTrialCtaLabel, formatTrialLabel } from "@/lib/site";
+import {
+  formatPricingCheckoutTrialOffer,
+  formatTrialCtaLabel,
+  formatTrialLabel,
+} from "@/lib/site";
 
 type Props = {
   examKey: ExamSeoKey;
@@ -52,6 +57,7 @@ export function ExamMarketingLanding({
     formatExamLiveCountLine(config.shortName, questionCountLabel) ??
     (questionCountLabel ? `${questionCountLabel} ${config.shortName} questions` : "");
   const productLinks = examHubProductLinks(examKey);
+  const studyGuide = getStudyGuideConfig(examKey);
 
   return (
     <div className="aee-exam-marketing">
@@ -71,10 +77,14 @@ export function ExamMarketingLanding({
               Start here
             </p>
             <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)] font-bold tracking-tight text-[var(--color-ink)]">
-              {config.shortName} tools on one plan.
+              {studyGuide
+                ? `${config.shortName} study guide, with the Qbank.`
+                : `${config.shortName} tools on one plan.`}
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
-              Question bank, practice sets, and full exams on the same plan.
+              {studyGuide
+                ? `The ${config.shortName} study guide is included with the 5-day free trial. ${formatPricingCheckoutTrialOffer()}.`
+                : `${formatPricingCheckoutTrialOffer()}.`}
             </p>
             <ul className="mt-10 grid gap-4 sm:grid-cols-3" role="list">
               {productLinks.map((item) => (

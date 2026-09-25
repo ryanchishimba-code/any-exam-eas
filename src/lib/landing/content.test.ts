@@ -34,10 +34,10 @@ describe("homepage hero copy", () => {
 
   it("labels the six-board total instead of an unlabeled single-bank count", () => {
     expect(formatHeroTotalCountLine(FALLBACK_QUESTION_COUNTS.total)).toBe(
-      `${FALLBACK_QUESTION_COUNTS.total} questions across six boards`
+      `${FALLBACK_QUESTION_COUNTS.total} active questions across six boards`
     );
     expect(formatHeroTotalCountLine("7,581 serve-ready questions")).toBe(
-      "7,581 questions across six boards"
+      "7,581 active questions across six boards"
     );
     expect(formatExamLiveCountLine("NCLEX", "8,327")).toBe("8,327 active NCLEX questions");
   });

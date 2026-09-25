@@ -110,8 +110,8 @@ export function LoginForm() {
 
       {isStudyGuideCallback(callbackUrl) && view === "login" ? (
         <p className="rounded-2xl border border-[color-mix(in_srgb,var(--color-accent)_35%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-surface))] px-4 py-3 text-sm leading-relaxed text-[var(--color-ink)]">
-          This reference book is not a free preview. {studyGuideTrialLine()} Sign in if your
-          trial or Pro plan is already active.
+          The study guide is included with the 5-day free trial. {studyGuideTrialLine()} Sign
+          in if your trial or Pro plan is already active.
         </p>
       ) : null}
 

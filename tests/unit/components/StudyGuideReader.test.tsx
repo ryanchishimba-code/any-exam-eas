@@ -162,7 +162,7 @@ describe("StudyGuideReader", () => {
     expect(screen.getAllByText("Cardiac").length).toBeGreaterThan(0);
   });
 
-  it("lifts the front-matter trial sentence above the disclaimer", () => {
+  it("keeps the opening spread and hides the trial sentence for an entitled reader", () => {
     const { container } = renderReader(
       makeChapter({
         slug: "front-matter",
@@ -185,10 +185,9 @@ describe("StudyGuideReader", () => {
     const prose = container.querySelector(".sg-prose");
     expect(prose?.querySelector(".sg-front-spread")).toBeTruthy();
     expect(prose?.querySelector(".sg-cover")).toBeTruthy();
-    expect(prose?.querySelector(".sg-offer")).toHaveTextContent("$27.99/mo");
-    expect(prose?.querySelector(".sg-offer")).toHaveTextContent("no payment method");
+    expect(prose?.querySelector(".sg-offer")).toBeNull();
     const html = prose?.innerHTML ?? "";
-    expect(html.indexOf("5-day free trial")).toBeLessThan(html.indexOf("Pairing with AnyExamEasy"));
+    expect(html).not.toMatch(/5-day free trial/i);
     expect(html.indexOf("How to use this book")).toBeLessThan(html.indexOf("Study-aid disclaimer"));
     expect(container.querySelector("article.sg-paper")).toHaveClass("sg-paper--opening");
   });

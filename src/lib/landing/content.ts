@@ -255,7 +255,7 @@ export function formatHeroTotalCountLine(totalLabel?: string): string | null {
   if (!count) return null;
   if (/across six boards/i.test(count)) return count;
   const numeric = count.replace(/\s*(serve-ready|active) questions$/i, "").trim();
-  return `${numeric} questions across six boards`;
+  return `${numeric} active questions across six boards`;
 }
 
 /** Labeled per-board count (exam hubs / optional chip context). */

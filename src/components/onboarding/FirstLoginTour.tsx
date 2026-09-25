@@ -189,9 +189,13 @@ export function FirstLoginTour({
         duration_ms: Math.max(0, Date.now() - startedAt.current),
       });
       if (via === "target_click") return;
-      const link = document.querySelector<HTMLAnchorElement>("[data-tour='today-start']");
-      const href = link?.getAttribute("href");
-      if (href) router.push(href);
+      const start = document.querySelector<HTMLElement>("[data-tour='today-start']");
+      if (start instanceof HTMLAnchorElement) {
+        const href = start.getAttribute("href");
+        if (href) router.push(href);
+        return;
+      }
+      if (start instanceof HTMLButtonElement && !start.disabled) start.click();
     },
     [persistEnd, router, track]
   );

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Map, BookOpen, Timer } from "lucide-react";
@@ -8,10 +9,19 @@ import { PageShell } from "@/components/PageShell";
 import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-metadata";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { pricingHeadlineFromContext } from "@/lib/marketing/why-trust-it";
-import { formatPricingCheckoutTrialOffer } from "@/lib/site";
+import {
+  buildLandingBankCountsDisplay,
+  getCachedBankStatsBundle,
+} from "@/lib/marketing/question-bank-counts";
+import { formatHeroTotalCountLine } from "@/lib/landing/content";
+import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
 
-export const metadata = buildPricingMetadata();
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { snapshot } = await getCachedBankStatsBundle();
+  return buildPricingMetadata(buildLandingBankCountsDisplay(snapshot).totalLabel);
+}
 
 const STUDY_PATH = [
   {
@@ -51,13 +61,18 @@ export default async function PricingPage({
     field: firstParam(params.field),
     exam: firstParam(params.exam),
   });
+  const { snapshot } = await getCachedBankStatsBundle();
+  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+  const totalLine =
+    formatHeroTotalCountLine(bankCounts.totalLabel) ??
+    `${bankCounts.totalLabel} active questions across six boards`;
 
   return (
     <>
       <JsonLdScript data={buildPricingJsonLd()} />
       <PageShell
         title={<PricingBoardHeadline initial={headline} />}
-        description="Roadmap, Deep Dive, and Full Exam on one plan."
+        description={`${totalLine}. Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`}
         align="center"
         maxWidth="max-w-2xl"
         compact

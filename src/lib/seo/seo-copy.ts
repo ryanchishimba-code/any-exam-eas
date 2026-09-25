@@ -61,7 +61,7 @@ export const SEO_KEYWORD_CLUSTERS = {
 
 export function seoQuestionBankPhrase(totalLabel?: string): string {
   const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
-  return `${count} QA-gated practice questions`;
+  return `${count} active questions`;
 }
 
 export function seoPlatformPitch(totalLabel?: string): string {
@@ -75,5 +75,5 @@ export const SEO_HOME_H1_ACCENT = "";
 /** Homepage subline template; inject live question total when available. */
 export function seoHomeHeroSubline(totalLabel?: string): string {
   const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
-  return `${count} questions across six boards — NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — with Blueprint Roadmaps and full-length mocks.`;
+  return `${count} active questions across six boards — NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — with Blueprint Roadmaps and full-length mocks.`;
 }

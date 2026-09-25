@@ -25,7 +25,7 @@ type Props = {
 };
 
 function styleLabel(style: QuestionBankStyle): string {
-  if (style === "today") return "Today";
+  if (style === "today" || style === "daily_set") return "Today's set";
   if (style === "adaptive") return "Adaptive";
   if (style === "weak_areas") return "Weak areas";
   if (style === "review_incorrect") return "Review incorrect";

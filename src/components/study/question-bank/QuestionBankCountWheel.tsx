@@ -10,13 +10,8 @@ type Props = {
   onChange: (count: number) => void;
 };
 
-/** Tap-to-select question count — 25 / 50 / 75 presets. */
+/** Tap-to-select question count. Highlights only an exact match. */
 export function QuestionBankCountWheel({ options, value, onChange }: Props) {
-  const resolvedValue =
-    options.find((o) => o.value === value)?.value ??
-    options.filter((o) => o.value <= value).at(-1)?.value ??
-    options[0]?.value ??
-    value;
 
   return (
     <div className="space-y-2">
@@ -27,7 +22,7 @@ export function QuestionBankCountWheel({ options, value, onChange }: Props) {
         aria-label="Number of Questions"
       >
         {options.map((option) => {
-          const active = option.value === resolvedValue;
+          const active = option.value === value;
           return (
             <button
               key={option.value}

@@ -134,7 +134,7 @@ export type ReadinessBandKey = "ready" | "almost" | "not_yet";
 
 export type ReadinessBandLabel = "Ready" | "Almost" | "Not yet";
 
-export type ReadinessCriterionStatus = "met" | "missing" | "not_scored";
+export type ReadinessCriterionStatus = "met" | "below_target" | "missing" | "not_scored";
 
 export type ReadinessCriterion = {
   id: "coverage" | "recent_accuracy" | "remediation" | "exam_sim";
@@ -143,6 +143,8 @@ export type ReadinessCriterion = {
   valueLabel: string;
   detail: string;
   status: ReadinessCriterionStatus;
+  /** Met, Missing (no data), or Below target with the number the student still needs. */
+  badge: string;
 };
 
 export type ReadinessDomainBar = {
@@ -496,16 +498,29 @@ function pacingLine(examName: string, testDate: string | null, days: number | nu
 
 function planRules(): string[] {
   return [
-    `Today's block keeps Qbank (${TODAY_QBANK_COUNT} questions), Review incorrect, one guide topic, and ${TODAY_DRUG_COUNT} drugs, ordered by the largest proof gap. An untouched or weak high-weight blueprint domain pulls Qbank and the guide forward. Eight or more open incorrect items, or a shorter queue that is still the larger gap, pulls Review incorrect forward. Equal blueprint gaps rotate by UTC day so one tied domain is not assigned forever. With 14 or fewer days left, an exam-simulation row is added and that order follows the week's day instead.`,
-    `Qbank is ${TODAY_QBANK_COUNT} questions on that blueprint category (weight × uncovered share, with accuracy once attempts exist).`,
-    `Review incorrect uses the same open-remediation count as Analytics: a miss stays open until a spaced re-proof or a confirmed mark-mastered, up to ${TODAY_INCORRECT_CAP} in this block. Zero items stays an empty row and does not launch a set.`,
-    "The guide row is one high-yield topic: an unpracticed blueprint category when one exists, otherwise the Qbank gap. Every board uses the same topic links.",
-    `Drugs is a fixed safety path of ${TODAY_DRUG_COUNT} high-alert drugs for this board, in one order. It is done when each of those drugs is reviewed today. A medication-category gap pulls drugs up behind the guide.`,
-    `The week plan is the countdown contract for this board. With more than 14 days left it is coverage days and remediation days, weighted by the same blueprint gap and open incorrect items, and Today's block is that projection. With 14 or fewer days left the week adds exam-simulation days and incorrect-drill days, and Today's rows follow that day's kind. Finishing today's ${TODAY_QBANK_COUNT} Qbank questions, or the incorrect review, ticks the matching goal. A qualifying exam simulation completed today ticks the simulation goal. Earlier days this week are not reconstructed. This is practice progress only.`,
-    `${READINESS_FORMULA} Coverage bars, Today's gap, the week plan, and Qbank untouched or low chips use one blueprint heatmap. The coverage factor is the blueprint-weighted share of categories with at least one saved attempt. It is met at ${COVERAGE_MIN_PCT}% or more, and only when every domain weighted ${HIGH_WEIGHT_PCT}% or more has at least ${HIGH_WEIGHT_MIN_ATTEMPTS} answers. Recent accuracy is the last ${RECENT_ACCURACY_WINDOW} saved answers and is met at ${RECENT_ACCURACY_MIN_PCT}% once that window has ${RECENT_ACCURACY_MIN_SAMPLE} answers. Remediation completion is the share of saved attempts that are not still-open incorrect items. It is met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} open incorrect items. Ready means all three are met. Almost means two. Not yet means fewer. The band stays hidden until ${READINESS_MIN_SAMPLE} answered questions.`,
+    `Today's set is the next step. The extra links are ${TODAY_QBANK_COUNT} questions, questions you missed, one topic guide, and ${TODAY_DRUG_COUNT} drugs. A topic you haven't practiced yet comes first. Eight or more questions to review, or a shorter list that is still the larger need, puts review first. A tie rotates by UTC day. In the last 14 days, a practice exam is added and that day's plan follows it.`,
+    `The question link is ${TODAY_QBANK_COUNT} questions on the topic you haven't practiced yet (how much the exam emphasizes it, times how much you still haven't done, then your accuracy once you have answers).`,
+    `Questions to review use the same count as Analytics: a miss stays until you answer it correctly later or mark it mastered, up to ${TODAY_INCORRECT_CAP} here. Zero means there is nothing to review.`,
+    "The guide link is one topic you haven't practiced yet, or the same topic as the question set. Every board uses the same topic links.",
+    `Drugs is ${TODAY_DRUG_COUNT} high-alert drugs for this board, in one order. It is done when each of those drugs is reviewed today.`,
+    `This week follows your exam date. With more than 14 days left, most days are topics you haven't practiced yet, and the rest are questions you missed. In the last 14 days the week adds practice exams. Finishing today's ${TODAY_QBANK_COUNT} questions, the review, or a full practice exam marks that part done. Earlier days this week are not filled in after the fact. This is practice progress only.`,
+    `${READINESS_FORMULA} Topic bars, today's topic, this week, and untouched or low topics use one exam outline. Topics practiced is how much of the outline you have answered, weighted by how much the exam emphasizes each topic. It is met at ${COVERAGE_MIN_PCT}% or more, and only when every topic weighted ${HIGH_WEIGHT_PCT}% or more has at least ${HIGH_WEIGHT_MIN_ATTEMPTS} answers. Recent accuracy is the last ${RECENT_ACCURACY_WINDOW} saved answers and is met at ${RECENT_ACCURACY_MIN_PCT}% once that window has ${RECENT_ACCURACY_MIN_SAMPLE} answers. Questions reviewed is the share of saved answers that are not still waiting for a correct retry. It is met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} questions to review. Ready means all three are met. Almost means two. Not yet means fewer. The band stays hidden until ${READINESS_MIN_SAMPLE} answered questions.`,
     `A completed exam simulation of ${EXAM_SIM_MIN_QUESTIONS} or more questions can appear as an optional trend. It does not change Ready, Almost, or Not yet.`,
     READINESS_DISCLAIMER,
   ];
+}
+
+function readinessStatus(scored: boolean, hasData: boolean, met: boolean): ReadinessCriterionStatus {
+  if (!scored) return "not_scored";
+  if (!hasData) return "missing";
+  return met ? "met" : "below_target";
+}
+
+function readinessBadge(status: ReadinessCriterionStatus, needs: string): string {
+  if (status === "met") return "Met";
+  if (status === "missing") return "Missing";
+  if (status === "not_scored") return "Not scored";
+  return `Below target · ${needs}`;
 }
 
 function coverageCriterion(
@@ -515,7 +530,15 @@ function coverageCriterion(
 ): { met: boolean; criterion: ReadinessCriterion } {
   const heavy = topics.filter((topic) => topic.blueprintWeightPct >= HIGH_WEIGHT_PCT);
   const short = heavy.filter((topic) => topic.attempts < HIGH_WEIGHT_MIN_ATTEMPTS);
-  const met = topics.length > 0 && coveragePct >= COVERAGE_MIN_PCT && short.length === 0;
+  const hasData = topics.length > 0;
+  const met = hasData && coveragePct >= COVERAGE_MIN_PCT && short.length === 0;
+  const status = readinessStatus(scored, hasData, met);
+  const needs =
+    coveragePct < COVERAGE_MIN_PCT && short.length > 0
+      ? `needs ${COVERAGE_MIN_PCT}% and ${HIGH_WEIGHT_MIN_ATTEMPTS} answers in each high-weight topic`
+      : short.length > 0
+        ? `needs ${HIGH_WEIGHT_MIN_ATTEMPTS} answers in each high-weight topic`
+        : `needs ${COVERAGE_MIN_PCT}%`;
   const missingNames = short
     .slice(0, 3)
     .map((topic) => `${topic.label} (${topic.attempts} answers, ${topic.blueprintWeightPct}% of blueprint)`)
@@ -532,7 +555,8 @@ function coverageCriterion(
       label: "Coverage",
       valueLabel: `${coveragePct}%`,
       detail,
-      status: scored ? (met ? "met" : "missing") : "not_scored",
+      status,
+      badge: readinessBadge(status, needs),
     },
   };
 }
@@ -543,8 +567,16 @@ function accuracyCriterion(input: {
   measured: boolean;
   scored: boolean;
 }): { met: boolean; criterion: ReadinessCriterion } {
+  const hasData = input.windowAttempts > 0;
   const sampleMet = input.windowAttempts >= RECENT_ACCURACY_MIN_SAMPLE;
   const met = sampleMet && input.pct >= RECENT_ACCURACY_MIN_PCT;
+  const status = readinessStatus(input.scored, hasData, met);
+  const needs =
+    !sampleMet && input.pct < RECENT_ACCURACY_MIN_PCT
+      ? `needs ${RECENT_ACCURACY_MIN_PCT}% across ${RECENT_ACCURACY_MIN_SAMPLE} answers`
+      : !sampleMet
+        ? `needs ${RECENT_ACCURACY_MIN_SAMPLE} answers`
+        : `needs ${RECENT_ACCURACY_MIN_PCT}%`;
   const windowPhrase = input.measured
     ? `${input.windowAttempts} answers in the last ${RECENT_ACCURACY_WINDOW}`
     : `${input.windowAttempts} saved answers`;
@@ -558,7 +590,8 @@ function accuracyCriterion(input: {
       label: "Recent accuracy",
       valueLabel: `${input.pct}% · ${input.windowAttempts} answers`,
       detail,
-      status: input.scored ? (met ? "met" : "missing") : "not_scored",
+      status,
+      badge: readinessBadge(status, needs),
     },
   };
 }
@@ -569,10 +602,13 @@ function remediationCriterion(input: {
   remediationPct: number;
   scored: boolean;
 }): { met: boolean; criterion: ReadinessCriterion } {
+  const hasData = input.openKnown;
   const met =
-    input.openKnown &&
+    hasData &&
     input.remediationPct >= REMEDIATION_MIN_PCT &&
     input.openIncorrect <= REMEDIATION_MAX_OPEN;
+  const status = readinessStatus(input.scored, hasData, met);
+  const needs = `needs ${REMEDIATION_MIN_PCT}% and at most ${REMEDIATION_MAX_OPEN} open`;
   const detail = input.openKnown
     ? `Open incorrect items: ${input.openIncorrect}. Remediation completion is ${input.remediationPct}%. Met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} open incorrect items.`
     : "Open incorrect items could not be counted on this load, so remediation completion is missing.";
@@ -583,7 +619,8 @@ function remediationCriterion(input: {
       label: "Remediation",
       valueLabel: input.openKnown ? `${input.remediationPct}% · ${input.openIncorrect} open` : "—",
       detail,
-      status: input.scored ? (met ? "met" : "missing") : "not_scored",
+      status,
+      badge: readinessBadge(status, needs),
     },
   };
 }
@@ -600,6 +637,7 @@ function examSimCriterion(trend: ExamSimTrend): ReadinessCriterion {
     valueLabel: `${trend.latestScore}%`,
     detail: `Last exam simulation scored ${trend.latestScore}%.${previous}${band} Optional trend from completed simulations of ${EXAM_SIM_MIN_QUESTIONS} or more questions. It does not change Ready, Almost, or Not yet, and it is not a licensure result.`,
     status: "not_scored",
+    badge: "Not scored",
   };
 }
 

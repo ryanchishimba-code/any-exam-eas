@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { BookOpen, GraduationCap, Layers } from "lucide-react";
-import { formatExactServeReadyCount, FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import { FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { useLiveBankCounts } from "@/hooks/use-live-bank-counts";
 
 export function LiveBankStats({
@@ -13,23 +12,6 @@ export function LiveBankStats({
   compact?: boolean;
 }) {
   const { data: bankCounts } = useLiveBankCounts();
-  const [nursingFallback, setNursingFallback] = useState(0);
-
-  useEffect(() => {
-    if (bankCounts?.degraded) return;
-    fetch("/api/catalog/subjects")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((catalog) => {
-        if (catalog?.subjects) {
-          const n = catalog.subjects.find(
-            (s: { fieldId: string }) => s.fieldId === "nursing"
-          )?.questionCount;
-          if (typeof n === "number") setNursingFallback(n);
-        }
-      })
-      .catch(() => undefined);
-  }, [bankCounts?.degraded]);
-
   const degraded = bankCounts?.degraded === true;
 
   const totalLabel =
@@ -45,9 +27,7 @@ export function LiveBankStats({
       ? nursingLive.countLabel
       : degraded
         ? "—"
-        : nursingFallback > 0
-          ? formatExactServeReadyCount(nursingFallback)
-          : FALLBACK_QUESTION_COUNTS.nursing;
+        : FALLBACK_QUESTION_COUNTS.nursing;
 
   const items = [
     {

@@ -10,6 +10,7 @@ import {
   questionBankCountOptionsForAvailable,
   resolveQuestionBankStyleAndFormat,
   stylePreservedForPracticeUrl,
+  questionBankCountChoices,
   resolveWheelCountValue,
   studyModeForQuestionBankLaunch,
   resolveQuestionBankSessionCount,
@@ -103,6 +104,21 @@ describe("question-bank-setup", () => {
     expect(questionBankCountOptionsForAvailable(null).map((o) => o.value)).toEqual([
       ...QUESTION_BANK_WHEEL_PRESETS,
     ]);
+  });
+
+  it("keeps a retest count of 5 on the wheel, in the preview, and on start", () => {
+    const presets = questionBankCountOptionsForAvailable(100);
+    const choices = questionBankCountChoices({ questionCount: 5, options: presets });
+    expect(choices.count).toBe(5);
+    expect(choices.options.map((option) => option.value)).toEqual([5, 25, 50, 75]);
+    expect(choices.options.find((option) => option.value === 5)?.description).toBe("Focused session");
+  });
+
+  it("snaps a non-retest count so the wheel and the session agree", () => {
+    const options = questionBankCountOptionsForAvailable(40);
+    const choices = questionBankCountChoices({ questionCount: 75, options });
+    expect(choices.count).toBe(25);
+    expect(choices.options.map((option) => option.value)).toEqual([25]);
   });
 
   it("snaps wheel value to nearest allowed preset", () => {
@@ -256,6 +272,34 @@ describe("question-bank-setup", () => {
       })
     ).toEqual({ style: "review_incorrect", format: "all" });
     expect(questionBankEmptyLaunch("weak_areas", 0)).toBe("weak_areas");
+  });
+
+  it("keeps a daily set on mixed topics and does not let a remembered style replace it", () => {
+    expect(preferredQuestionBankStyleParam("adaptive", "daily_set")).toBe("daily_set");
+    expect(
+      resolveQuestionBankStyleAndFormat({
+        styleParam: "daily_set",
+        formatParam: "ngn",
+        persistedStyle: "adaptive",
+        persistedFormat: "ngn",
+      })
+    ).toEqual({ style: "daily_set", format: "all" });
+    expect(
+      stylePreservedForPracticeUrl({
+        stateStyle: "adaptive",
+        browserStyle: "daily_set",
+      })
+    ).toBe("daily_set");
+    expect(bankStyleHonorsLaunchStyle("adaptive", "daily_set")).toBe(false);
+    expect(deliberateFormatForLaunch("daily_set", "ngn")).toBeNull();
+    expect(
+      validateQuestionBankSession({
+        subjectId: MIXED_SUBJECT_ID,
+        questionCount: 25,
+        subjectCounts: counts,
+        bankStyle: "daily_set",
+      }).ok
+    ).toBe(true);
   });
 
   it("leaves today and a remembered NGN set on their existing format rule when the URL has no remediation style", () => {

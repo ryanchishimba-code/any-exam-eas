@@ -24,12 +24,17 @@ import {
   saveStudySessionRemote,
   type SessionPersistReceipt,
 } from "@/lib/client/save-study-session";
+import { useHoldPracticeSession } from "@/lib/client/practice-session-context";
 import { EndActivityControl } from "./EndActivityControl";
 import {
   TopicPracticeReturnCompletion,
   type TopicPracticeReturn,
 } from "./TopicPracticeReturnBanner";
 import { SessionCompletionCard, SessionPersistGate } from "./SessionCompletionCard";
+import { TodaySetEndCard } from "@/components/dashboard/TodaySetEndCard";
+import { CONVERSION_EVENTS, trackConversion } from "@/lib/analytics";
+import { isExamSlug } from "@/lib/edtech/exams";
+import { weakestTopicFromOutcomes } from "@/lib/learning/today-set";
 import { buildSessionDomainBreakdown } from "@/lib/study/session-domain-breakdown";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import type {
@@ -121,6 +126,7 @@ export function StudySessionPlayer({
   reviewQueue = false,
   practiceFormat,
 }: Props) {
+  useHoldPracticeSession();
   const initial = useMemo(() => {
     try {
       const created = createStudySession({
@@ -198,6 +204,49 @@ export function StudySessionPlayer({
   );
   const summary = summarizeSession(sessionState, questionList);
   const complete = isSessionComplete(sessionState, questionList) || timeUp;
+  const todayMeta = sessionState.adaptiveMeta?.todaySet ?? adaptiveMeta?.todaySet ?? null;
+  const setFinished = isSessionComplete(sessionState, questionList);
+  const todayWeakest = useMemo(() => {
+    if (!todayMeta) return null;
+    const rows = questionList.map((question) => {
+      const topic = question.bankItemId ? todayMeta.topics[question.bankItemId] : undefined;
+      const given = sessionState.answers[question.id];
+      return {
+        topicId: topic?.id ?? "general",
+        topicLabel: topic?.label ?? "This topic",
+        href: topic?.href,
+        correct: given?.correct === true,
+        answered: Boolean(given?.revealed),
+      };
+    });
+    const weakest = weakestTopicFromOutcomes(rows);
+    if (!weakest) return null;
+    const href = rows.find((row) => row.topicId === weakest.topicId && row.href)?.href ?? null;
+    return { label: weakest.topicLabel, href, topicId: weakest.topicId };
+  }, [questionList, sessionState.answers, todayMeta]);
+  const todayEndRecorded = useRef(false);
+  useEffect(() => {
+    if (!todayMeta || !setFinished || inReview || saveState !== "saved" || todayEndRecorded.current) {
+      return;
+    }
+    todayEndRecorded.current = true;
+    trackConversion(CONVERSION_EVENTS.TODAY_SET_COMPLETED, {
+      exam_slug: todayMeta.examSlug,
+      size: questionList.length,
+      accuracy: summary.accuracy,
+      correct: summary.correct,
+      total: summary.total,
+      weakest_topic: todayWeakest?.topicId,
+    });
+    if (!isExamSlug(todayMeta.examSlug)) return;
+    void fetch("/api/me/preferences", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        dailyHabit: { examSlug: todayMeta.examSlug, completedSet: true },
+      }),
+    }).catch(() => undefined);
+  }, [inReview, questionList.length, saveState, setFinished, summary.accuracy, summary.correct, summary.total, todayMeta, todayWeakest?.topicId]);
   const examSlugForSession = examSlugFromFieldId(normalizeFieldId(field)) ?? "nclex";
   const domainBreakdown = useMemo(() => {
     if (examSlugForSession !== "usmle") return undefined;
@@ -649,6 +698,20 @@ export function StudySessionPlayer({
         />
       );
     }
+    if (todayMeta && setFinished) {
+      return (
+        <div className={`${studyUi.sessionShell} mt-8`}>
+          <TodaySetEndCard
+            correct={summary.correct}
+            total={summary.total}
+            accuracy={summary.accuracy}
+            weakest={todayWeakest}
+            tomorrowCount={todayMeta.tomorrowCount}
+            onReview={startReview}
+          />
+        </div>
+      );
+    }
     return (
       <SessionCompletionCard
         title={title ? `${title} complete` : "Session complete"}
@@ -920,6 +983,15 @@ export function StudySessionPlayer({
         <TopicPracticeReturnCompletion
           returnTo={returnTo}
           summary={summary}
+          onReview={startReview}
+        />
+      ) : todayMeta && setFinished && !inReview && saveState === "saved" ? (
+        <TodaySetEndCard
+          correct={summary.correct}
+          total={summary.total}
+          accuracy={summary.accuracy}
+          weakest={todayWeakest}
+          tomorrowCount={todayMeta.tomorrowCount}
           onReview={startReview}
         />
       ) : (showCompletion || timeUp) && !inReview && saveState === "saved" ? (

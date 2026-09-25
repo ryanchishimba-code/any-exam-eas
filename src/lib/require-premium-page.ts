@@ -78,6 +78,46 @@ export async function requireStudyPage(callbackPath = "/study"): Promise<UserAcc
   return access;
 }
 
+export type StudyGuideAccessResult =
+  | { status: "allowed"; access: UserAccess }
+  | { status: "upsell"; signedIn: boolean };
+
+/**
+ * Study-guide pages render an upsell instead of sending anonymous visitors to login.
+ * Email verification, suspension, and the premium reader stay on the existing rules.
+ */
+export async function resolveStudyGuideAccess(
+  _callbackPath: string
+): Promise<StudyGuideAccessResult> {
+  const session = await getCachedSession();
+  if (!session?.user?.id) {
+    return { status: "upsell", signedIn: false };
+  }
+
+  let access: UserAccess;
+  try {
+    const { ensureNeonReady } = await import("@/lib/neon-warmup");
+    await ensureNeonReady("access", { budgetMs: 3_000 });
+    access = await getUserAccess(session.user.id);
+  } catch (error) {
+    redirectIfDbUnavailable(error);
+  }
+
+  if (access.blockReason === "suspended" || access.blockReason === "deleted") {
+    redirect("/pricing?paywall=suspended");
+  }
+
+  if (access.blockReason === "email_unverified") {
+    redirect(`${ROUTES.dashboard}?verify=1`);
+  }
+
+  if (access.hasPremiumAccess) {
+    return { status: "allowed", access };
+  }
+
+  return { status: "upsell", signedIn: true };
+}
+
 /** Server-side paywall — trial + paid only (blocks post-trial free tier). */
 export async function requirePremiumPage(
   callbackPath = "/study"

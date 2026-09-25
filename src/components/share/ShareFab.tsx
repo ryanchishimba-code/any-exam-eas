@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Share2 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { usePracticeSessionActive } from "@/lib/client/practice-session-context";
 import { isAppShellRoute, isFullExamSessionRoute } from "@/lib/navigation/app-shell";
 import { cn } from "@/lib/utils";
 import { ShareModal } from "./ShareModal";
@@ -10,8 +11,11 @@ import { ShareModal } from "./ShareModal";
 export function ShareFab() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const aboveMobileNav =
-    isAppShellRoute(pathname) && !isFullExamSessionRoute(pathname);
+  const practiceSession = usePracticeSessionActive();
+
+  if (practiceSession || isAppShellRoute(pathname) || isFullExamSessionRoute(pathname)) {
+    return null;
+  }
 
   if (
     pathname === "/" ||
@@ -44,10 +48,7 @@ export function ShareFab() {
         type="button"
         onClick={() => setOpen(true)}
         className={cn(
-          "fixed right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--study-accent)] text-[var(--study-accent-on)] shadow-lg shadow-teal-900/15 transition hover:bg-[var(--study-accent-hover)] hover:scale-105 sm:right-6 sm:h-14 sm:w-14",
-          aboveMobileNav
-            ? "bottom-[calc(4.75rem+env(safe-area-inset-bottom,0px))] lg:bottom-6"
-            : "bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] sm:bottom-6"
+          "fixed left-4 top-[calc(env(safe-area-inset-top,0px)+4.75rem)] z-40 flex h-11 w-11 items-center justify-center rounded-full bg-[var(--study-accent)] text-[var(--study-accent-on)] shadow-lg shadow-teal-900/15 transition hover:bg-[var(--study-accent-hover)]"
         )}
         aria-label="Share your progress"
       >

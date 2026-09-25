@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { presentFrontMatter } from "./front-matter-presentation";
+import { presentFrontMatter, suppressEntitledTrialOffers } from "./front-matter-presentation";
 import { markdownToSimpleHtml } from "./markdown";
 
 function ingested(relativeMd: string): string {
@@ -90,5 +90,19 @@ describe("presentFrontMatter", () => {
     const presented = presentFrontMatter(html);
     expect(presented).toContain('<mark class="sg-search-hit">trial</mark>');
     expect(presented.indexOf("sg-search-hit")).toBeLessThan(presented.indexOf("How to use this book"));
+  });
+
+  it("hides the trial offer for a reader who already has access", () => {
+    const html = ingested("content/nclex-study-guide/00-front-matter.md");
+    const presented = presentFrontMatter(html, { hideTrialOffer: true });
+    expect(presented).not.toContain("5-day free trial");
+    expect(presented).not.toContain("sg-offer");
+    expect(presented).toContain("How to use this book");
+
+    const chapter = suppressEntitledTrialOffers(
+      "<p>Start a <strong>5-day free trial</strong> on anyexameasy.com — no payment method. Then Pro at <strong>$27.99/mo</strong>.</p><p>Airway comes before paperwork. Start a 5-day free trial — no payment method. Then Pro at $27.99/mo.</p>"
+    );
+    expect(chapter).not.toContain("5-day free trial");
+    expect(chapter).toContain("Airway comes before paperwork.");
   });
 });

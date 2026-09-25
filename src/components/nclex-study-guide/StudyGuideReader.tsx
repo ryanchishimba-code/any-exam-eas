@@ -33,7 +33,10 @@ import {
 import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
 import { visibleBookSection } from "@/lib/nclex-study-guide/display-label";
 import { presentChapterCitations } from "@/lib/nclex-study-guide/chapter-citations";
-import { presentFrontMatter } from "@/lib/nclex-study-guide/front-matter-presentation";
+import {
+  presentFrontMatter,
+  suppressEntitledTrialOffers,
+} from "@/lib/nclex-study-guide/front-matter-presentation";
 import { paintStudyGuideHighlights } from "@/lib/nclex-study-guide/paint-highlights";
 import type {
   SgChapterDto,
@@ -587,8 +590,11 @@ export function StudyGuideReader({
   const filteredHtml = useMemo(() => {
     // Shape the opening spread before search marks, so a query can't split the
     // tags the presenter matches on.
-    let html =
-      chapter.slug === "front-matter" ? presentFrontMatter(chapter.bodyHtml) : chapter.bodyHtml;
+    let html = suppressEntitledTrialOffers(
+      chapter.slug === "front-matter"
+        ? presentFrontMatter(chapter.bodyHtml, { hideTrialOffer: true })
+        : chapter.bodyHtml
+    );
     html = presentChapterCitations(html);
     if (!search.trim()) return html;
     const q = search.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

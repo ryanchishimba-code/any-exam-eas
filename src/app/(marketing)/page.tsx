@@ -1,36 +1,27 @@
 import type { Metadata } from "next";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeExperience } from "@/components/home/HomeExperience";
-import { LandingSeoGuide } from "@/components/landing/LandingSeoGuide";
-import { LANDING_FALLBACK_BANK_COUNTS } from "@/lib/marketing/landing-fallback-counts";
+import {
+  buildLandingBankCountsDisplay,
+  getCachedBankStatsBundle,
+} from "@/lib/marketing/question-bank-counts";
 import { buildHomeMetadata } from "@/lib/seo";
 
-/** Fully static shell — live bank counts hydrate client-side via `/api/marketing/bank-counts`. */
-export const dynamic = "force-static";
+/** One active-question total for the hero, stats, and metadata. */
+export const dynamic = "force-dynamic";
 
-/**
- * AnyExamEasy.com — Flagship home route (`/`)
- *
- * Architecture:
- * - Static server shell (metadata + JSON-LD + published floor counts)
- * - `HomeExperience` switches guest vs subscriber views client-side
- * - Live bank counts upgrade in the browser from the cached public API
- * - Server-rendered SEO guide (children) for crawler-friendly long-form copy
- */
-export const metadata: Metadata = buildHomeMetadata(LANDING_FALLBACK_BANK_COUNTS.totalLabel);
+export async function generateMetadata(): Promise<Metadata> {
+  const { snapshot } = await getCachedBankStatsBundle();
+  return buildHomeMetadata(buildLandingBankCountsDisplay(snapshot).totalLabel);
+}
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { snapshot } = await getCachedBankStatsBundle();
+  const bankCounts = buildLandingBankCountsDisplay(snapshot);
   return (
     <>
       <HomeJsonLd />
-      <HomeExperience
-        bankCounts={LANDING_FALLBACK_BANK_COUNTS}
-        testimonials={[]}
-      >
-        <LandingSeoGuide
-          questionCountLabel={LANDING_FALLBACK_BANK_COUNTS.totalLabel}
-        />
-      </HomeExperience>
+      <HomeExperience bankCounts={bankCounts} testimonials={[]} />
     </>
   );
 }

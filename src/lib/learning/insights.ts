@@ -1,7 +1,20 @@
 import { cleanOptionText } from "@/lib/question-format";
 import type { StudyQuestion } from "@/lib/questions/types";
+import { explanatoryRationaleSummary } from "@/lib/study/rationale-disclosure";
 import type { AttemptInput, LearningInsight, MistakeAnalysis } from "./types";
 import { analyzeMistake } from "./mistake-analysis";
+
+/** First real explanatory sentence across stored rationale fields. */
+function studentWhyCorrect(
+  candidates: Array<string | null | undefined>,
+  fallback: string
+): string {
+  for (const candidate of candidates) {
+    const summary = explanatoryRationaleSummary(candidate);
+    if (summary) return summary;
+  }
+  return fallback;
+}
 
 /** Prefer expert clinical pearl, then explanationDetail pearls. */
 export function pearlsFromQuestion(q: StudyQuestion): string[] {
@@ -50,18 +63,16 @@ export function buildLearningInsight(
         : "Eliminate when it contradicts the stem's key finding.");
   }
 
-  const whyCorrect =
-    detail?.whyCorrect ??
-    expert?.whyCorrect?.headline ??
-    q.explanation.split(/[.!?]/)[0]?.trim() ??
-    "See full explanation below.";
+  const whyCorrect = studentWhyCorrect(
+    [detail?.whyCorrect, expert?.whyCorrect?.headline, q.explanation],
+    "See the full explanation below."
+  );
 
   const pearls = pearlsFromQuestion(q);
+  const explanationLead = explanatoryRationaleSummary(q.explanation);
   const keyTakeaways =
     detail?.keyTakeaways ??
-    (expert?.keyTakeaway
-      ? [expert.keyTakeaway]
-      : [q.explanation.slice(0, 160) + (q.explanation.length > 160 ? "…" : "")]);
+    (expert?.keyTakeaway ? [expert.keyTakeaway] : explanationLead ? [explanationLead] : []);
 
   return {
     summary: input.correct

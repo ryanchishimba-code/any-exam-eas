@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { OTHER_OPEN_SUBJECT_ID } from "./other-open-subject";
 import {
   attemptsForReviewIds,
   reviewFieldIdsForQuery,
@@ -48,6 +49,19 @@ describe("review incorrect launch eligibility", () => {
     expect(mixedQueue).toEqual(dashboardIds);
     expect(literalMixedQueue).toEqual(dashboardIds);
     expect(otherTopicQueue).toEqual(dashboardIds);
+
+    const untagged = {
+      ...naplexMiss,
+      bankItemId: "item-untagged",
+      questionKey: "item-untagged",
+      subjectId: null,
+    };
+    const otherOnly = selectLaunchReviewQueueIds({
+      attempts: [naplexMiss, untagged],
+      subjectId: OTHER_OPEN_SUBJECT_ID,
+      servableIds: new Set(["item-metformin", "item-untagged"]),
+    });
+    expect(otherOnly).toEqual(["item-untagged"]);
     expect(otherTopicQueue).toEqual(["item-metformin"]);
     expect(servableIds.has(otherTopicQueue[0]!)).toBe(true);
     expect(attemptsForReviewIds([naplexMiss], dashboardIds)).toEqual([naplexMiss]);
