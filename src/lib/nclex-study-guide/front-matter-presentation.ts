@@ -74,7 +74,10 @@ function markCover(figureHtml: string): string {
  * doesn't have the cover + how-to-use + pairing trio (so a partial manuscript
  * can't lose a section).
  */
-export function presentFrontMatter(html: string): string {
+export function presentFrontMatter(
+  html: string,
+  options?: { hideTrialOffer?: boolean }
+): string {
   if (!html || html.includes("sg-front-spread")) return html;
 
   const cover = COVER_RE.exec(html);
@@ -140,7 +143,8 @@ export function presentFrontMatter(html: string): string {
   }
 
   const { offer, rest: pairingRest } = takeOffer(pairHtml);
-  const copy = `${h1[0]}${subtitle?.[1] ?? ""}${offer}${pairingRest}${howHtml}`;
+  const visibleOffer = options?.hideTrialOffer ? "" : offer;
+  const copy = `${h1[0]}${subtitle?.[1] ?? ""}${visibleOffer}${pairingRest}${howHtml}`;
   const metaHtml = meta.length
     ? `<div class="sg-front-spread__meta">${meta.join("")}</div>`
     : "";
@@ -151,4 +155,26 @@ export function presentFrontMatter(html: string): string {
     `</div>`;
   const remainder = rest.slice(0, h1.index) + rest.slice(scan);
   return spread + remainder;
+}
+
+/**
+ * Drop trial CTAs from guide HTML for someone who already has access.
+ * Clinical sentences in the same paragraph stay. Source markdown is unchanged.
+ */
+export function suppressEntitledTrialOffers(html: string): string {
+  const withoutLinks = html.replace(
+    /<a\b[^>]*>[^<]*Start a 5-day free trial[^<]*<\/a>/gi,
+    ""
+  );
+  return withoutLinks.replace(/<p\b([^>]*)>([\s\S]*?)<\/p>/gi, (full, attrs: string, inner: string) => {
+    if (!/5-day free trial/i.test(inner)) return full;
+    const strippedInner = inner
+      .replace(/start a\s+(?:<[^>]+>\s*)*5-day free trial[\s\S]*?\$27\.99\/mo\.?/gi, " ")
+      .replace(/(?:<strong>\s*)?5-day free trial(?:\s*<\/strong>)?[\s\S]*?\$27\.99\/mo\.?/gi, " ")
+      .replace(/\s{2,}/g, " ")
+      .replace(/\s+([.,;])/g, "$1");
+    const plain = strippedInner.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    if (plain.replace(/[^A-Za-z]/g, "").length < 24) return "";
+    return `<p${attrs}>${strippedInner.trim()}</p>`;
+  });
 }

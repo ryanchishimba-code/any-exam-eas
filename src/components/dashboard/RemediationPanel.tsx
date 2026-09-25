@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, BookMarked, BookOpen, Pill, RotateCcw } from "lucide-react";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import {
+  otherOpenRetestHref,
   REMEDIATION_MASTERY_RULE,
   reviewIncorrectHref,
   type OpenRemediationSummary,
@@ -157,12 +158,31 @@ export function RemediationPanel({
       ) : null}
 
       {summary.unscopedCount > 0 ? (
-        <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-          {summary.unscopedCount} open item{summary.unscopedCount === 1 ? "" : "s"}{" "}
-          {summary.unscopedCount === 1 ? "has" : "have"} no topic id, so{" "}
-          {summary.unscopedCount === 1 ? "it stays" : "they stay"} in Review incorrect without a
-          guide or drug link.
-        </p>
+        <div className="rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--db-card,var(--color-surface-elevated))] px-4 py-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <p className="text-[16px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
+              Other
+            </p>
+            <p className="text-[12px] font-medium tabular-nums text-[var(--color-ink-muted)]">
+              {summary.unscopedCount} open
+            </p>
+          </div>
+          <p className="mt-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+            {summary.unscopedCount === 1
+              ? "This item has no topic id. It still counts here, and you can review it."
+              : "These items have no topic id. They still count here, and you can review them."}
+          </p>
+          <div className="mt-3">
+            <ActionLink
+              href={otherOpenRetestHref(fieldId, Math.min(10, summary.unscopedCount))}
+              locked={studyLocked}
+              className={ghost}
+            >
+              <RotateCcw className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />
+              Review
+            </ActionLink>
+          </div>
+        </div>
       ) : null}
 
       <details className="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">

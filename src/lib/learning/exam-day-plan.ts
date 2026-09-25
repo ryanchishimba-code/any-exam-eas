@@ -134,7 +134,7 @@ export type ReadinessBandKey = "ready" | "almost" | "not_yet";
 
 export type ReadinessBandLabel = "Ready" | "Almost" | "Not yet";
 
-export type ReadinessCriterionStatus = "met" | "missing" | "not_scored";
+export type ReadinessCriterionStatus = "met" | "below_target" | "missing" | "not_scored";
 
 export type ReadinessCriterion = {
   id: "coverage" | "recent_accuracy" | "remediation" | "exam_sim";
@@ -143,6 +143,8 @@ export type ReadinessCriterion = {
   valueLabel: string;
   detail: string;
   status: ReadinessCriterionStatus;
+  /** Met, Missing (no data), or Below target with the number the student still needs. */
+  badge: string;
 };
 
 export type ReadinessDomainBar = {
@@ -508,6 +510,19 @@ function planRules(): string[] {
   ];
 }
 
+function readinessStatus(scored: boolean, hasData: boolean, met: boolean): ReadinessCriterionStatus {
+  if (!scored) return "not_scored";
+  if (!hasData) return "missing";
+  return met ? "met" : "below_target";
+}
+
+function readinessBadge(status: ReadinessCriterionStatus, needs: string): string {
+  if (status === "met") return "Met";
+  if (status === "missing") return "Missing";
+  if (status === "not_scored") return "Not scored";
+  return `Below target · ${needs}`;
+}
+
 function coverageCriterion(
   topics: ExamDayTopicInput[],
   coveragePct: number,
@@ -515,7 +530,15 @@ function coverageCriterion(
 ): { met: boolean; criterion: ReadinessCriterion } {
   const heavy = topics.filter((topic) => topic.blueprintWeightPct >= HIGH_WEIGHT_PCT);
   const short = heavy.filter((topic) => topic.attempts < HIGH_WEIGHT_MIN_ATTEMPTS);
-  const met = topics.length > 0 && coveragePct >= COVERAGE_MIN_PCT && short.length === 0;
+  const hasData = topics.length > 0;
+  const met = hasData && coveragePct >= COVERAGE_MIN_PCT && short.length === 0;
+  const status = readinessStatus(scored, hasData, met);
+  const needs =
+    coveragePct < COVERAGE_MIN_PCT && short.length > 0
+      ? `needs ${COVERAGE_MIN_PCT}% and ${HIGH_WEIGHT_MIN_ATTEMPTS} answers in each high-weight topic`
+      : short.length > 0
+        ? `needs ${HIGH_WEIGHT_MIN_ATTEMPTS} answers in each high-weight topic`
+        : `needs ${COVERAGE_MIN_PCT}%`;
   const missingNames = short
     .slice(0, 3)
     .map((topic) => `${topic.label} (${topic.attempts} answers, ${topic.blueprintWeightPct}% of blueprint)`)
@@ -532,7 +555,8 @@ function coverageCriterion(
       label: "Coverage",
       valueLabel: `${coveragePct}%`,
       detail,
-      status: scored ? (met ? "met" : "missing") : "not_scored",
+      status,
+      badge: readinessBadge(status, needs),
     },
   };
 }
@@ -543,8 +567,16 @@ function accuracyCriterion(input: {
   measured: boolean;
   scored: boolean;
 }): { met: boolean; criterion: ReadinessCriterion } {
+  const hasData = input.windowAttempts > 0;
   const sampleMet = input.windowAttempts >= RECENT_ACCURACY_MIN_SAMPLE;
   const met = sampleMet && input.pct >= RECENT_ACCURACY_MIN_PCT;
+  const status = readinessStatus(input.scored, hasData, met);
+  const needs =
+    !sampleMet && input.pct < RECENT_ACCURACY_MIN_PCT
+      ? `needs ${RECENT_ACCURACY_MIN_PCT}% across ${RECENT_ACCURACY_MIN_SAMPLE} answers`
+      : !sampleMet
+        ? `needs ${RECENT_ACCURACY_MIN_SAMPLE} answers`
+        : `needs ${RECENT_ACCURACY_MIN_PCT}%`;
   const windowPhrase = input.measured
     ? `${input.windowAttempts} answers in the last ${RECENT_ACCURACY_WINDOW}`
     : `${input.windowAttempts} saved answers`;
@@ -558,7 +590,8 @@ function accuracyCriterion(input: {
       label: "Recent accuracy",
       valueLabel: `${input.pct}% · ${input.windowAttempts} answers`,
       detail,
-      status: input.scored ? (met ? "met" : "missing") : "not_scored",
+      status,
+      badge: readinessBadge(status, needs),
     },
   };
 }
@@ -569,10 +602,13 @@ function remediationCriterion(input: {
   remediationPct: number;
   scored: boolean;
 }): { met: boolean; criterion: ReadinessCriterion } {
+  const hasData = input.openKnown;
   const met =
-    input.openKnown &&
+    hasData &&
     input.remediationPct >= REMEDIATION_MIN_PCT &&
     input.openIncorrect <= REMEDIATION_MAX_OPEN;
+  const status = readinessStatus(input.scored, hasData, met);
+  const needs = `needs ${REMEDIATION_MIN_PCT}% and at most ${REMEDIATION_MAX_OPEN} open`;
   const detail = input.openKnown
     ? `Open incorrect items: ${input.openIncorrect}. Remediation completion is ${input.remediationPct}%. Met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} open incorrect items.`
     : "Open incorrect items could not be counted on this load, so remediation completion is missing.";
@@ -583,7 +619,8 @@ function remediationCriterion(input: {
       label: "Remediation",
       valueLabel: input.openKnown ? `${input.remediationPct}% · ${input.openIncorrect} open` : "—",
       detail,
-      status: input.scored ? (met ? "met" : "missing") : "not_scored",
+      status,
+      badge: readinessBadge(status, needs),
     },
   };
 }
@@ -600,6 +637,7 @@ function examSimCriterion(trend: ExamSimTrend): ReadinessCriterion {
     valueLabel: `${trend.latestScore}%`,
     detail: `Last exam simulation scored ${trend.latestScore}%.${previous}${band} Optional trend from completed simulations of ${EXAM_SIM_MIN_QUESTIONS} or more questions. It does not change Ready, Almost, or Not yet, and it is not a licensure result.`,
     status: "not_scored",
+    badge: "Not scored",
   };
 }
 

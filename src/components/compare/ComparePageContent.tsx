@@ -54,7 +54,11 @@ function ComparisonTable({
   );
 }
 
-export function ComparePageContent() {
+export function ComparePageContent({
+  questionCountLabel,
+}: {
+  questionCountLabel?: string;
+} = {}) {
   return (
     <div className="mx-auto max-w-4xl px-5 pb-20 pt-[var(--page-top)] sm:px-6">
       <nav className="text-sm text-[var(--color-ink-muted)]">
@@ -210,7 +214,7 @@ export function ComparePageContent() {
             "You need more than one board exam on the same timeline (RN + NP, PharmD + side cert, Step 1 + Step 2).",
             "You want Blueprint Roadmaps, Deep Dives, and Full Exams — not QBank-only prep.",
             `${formatTrialLabel()} plus a ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment (support, not a refund) vs paid-upfront bundles.`,
-            `${SEO_LIVE_STATS.questionCount} questions across six exams on one plan — not six separate QBanks.`,
+            `${questionCountLabel ?? SEO_LIVE_STATS.questionCount} active questions across six exams on one plan — not six separate QBanks.`,
           ].map((item) => (
             <li key={item} className="flex gap-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
               <Check

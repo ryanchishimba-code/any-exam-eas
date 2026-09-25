@@ -138,7 +138,7 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
   },
   {
     feature: "Question volume",
-    anyExamEasy: `${SEO_LIVE_STATS.questionCount}+ QA-gated questions (live bank)`,
+    anyExamEasy: "Active questions across six boards — the same count as the Qbank",
     competitor: "Often 2,000–4,500 per exam",
   },
   {

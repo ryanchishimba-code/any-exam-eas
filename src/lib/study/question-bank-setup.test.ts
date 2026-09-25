@@ -10,6 +10,7 @@ import {
   questionBankCountOptionsForAvailable,
   resolveQuestionBankStyleAndFormat,
   stylePreservedForPracticeUrl,
+  questionBankCountChoices,
   resolveWheelCountValue,
   studyModeForQuestionBankLaunch,
   resolveQuestionBankSessionCount,
@@ -103,6 +104,21 @@ describe("question-bank-setup", () => {
     expect(questionBankCountOptionsForAvailable(null).map((o) => o.value)).toEqual([
       ...QUESTION_BANK_WHEEL_PRESETS,
     ]);
+  });
+
+  it("keeps a retest count of 5 on the wheel, in the preview, and on start", () => {
+    const presets = questionBankCountOptionsForAvailable(100);
+    const choices = questionBankCountChoices({ questionCount: 5, options: presets });
+    expect(choices.count).toBe(5);
+    expect(choices.options.map((option) => option.value)).toEqual([5, 25, 50, 75]);
+    expect(choices.options.find((option) => option.value === 5)?.description).toBe("Focused session");
+  });
+
+  it("snaps a non-retest count so the wheel and the session agree", () => {
+    const options = questionBankCountOptionsForAvailable(40);
+    const choices = questionBankCountChoices({ questionCount: 75, options });
+    expect(choices.count).toBe(25);
+    expect(choices.options.map((option) => option.value)).toEqual([25]);
   });
 
   it("snaps wheel value to nearest allowed preset", () => {

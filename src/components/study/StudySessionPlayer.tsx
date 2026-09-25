@@ -24,6 +24,7 @@ import {
   saveStudySessionRemote,
   type SessionPersistReceipt,
 } from "@/lib/client/save-study-session";
+import { useHoldPracticeSession } from "@/lib/client/practice-session-context";
 import { EndActivityControl } from "./EndActivityControl";
 import {
   TopicPracticeReturnCompletion,
@@ -121,6 +122,7 @@ export function StudySessionPlayer({
   reviewQueue = false,
   practiceFormat,
 }: Props) {
+  useHoldPracticeSession();
   const initial = useMemo(() => {
     try {
       const created = createStudySession({

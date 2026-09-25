@@ -402,7 +402,60 @@ describe("readiness proof gaps", () => {
     expect(plan.readiness.leadReason).toBe(plan.items[0]?.why);
     expect(plan.readiness.visible).toBe(true);
     expect(plan.readiness.label).toBe("Almost");
-    expect(plan.readiness.criteria.find((row) => row.id === "remediation")?.status).toBe("missing");
+    expect(plan.readiness.criteria.find((row) => row.id === "remediation")?.status).toBe(
+      "below_target"
+    );
+    expect(plan.readiness.criteria.find((row) => row.id === "remediation")?.badge).toMatch(
+      /Below target · needs 85%/
+    );
+  });
+
+  it("badges measured gaps as below target and reserves Missing for empty data", () => {
+    const measured = buildExamDayPlan({
+      examSlug: "nclex",
+      examName: "NCLEX",
+      fieldId: "nursing",
+      now,
+      totalAttempts: 138,
+      recentAccuracyPct: 41,
+      recentWindowAttempts: 100,
+      openIncorrect: 41,
+      topics: [
+        topic({
+          id: "safety",
+          label: "Safety and Infection Control",
+          blueprintWeightPct: 12,
+          attempts: 20,
+          accuracyPct: 70,
+          coveragePct: 91,
+        }),
+      ],
+    });
+    const byId = Object.fromEntries(measured.readiness.criteria.map((row) => [row.id, row]));
+    expect(byId.coverage?.status).toBe("met");
+    expect(byId.coverage?.badge).toBe("Met");
+    expect(byId.recent_accuracy?.status).toBe("below_target");
+    expect(byId.recent_accuracy?.badge).toBe("Below target · needs 70%");
+    expect(byId.remediation?.status).toBe("below_target");
+    expect(byId.remediation?.badge).toMatch(/needs 85%/);
+    expect(measured.readiness.criteria.map((row) => row.badge)).not.toContain("Missing");
+
+    const empty = buildExamDayPlan({
+      examSlug: "naplex",
+      examName: "NAPLEX",
+      fieldId: "pharmacy",
+      now,
+      totalAttempts: 120,
+      recentAccuracyPct: 0,
+      recentWindowAttempts: 0,
+      openIncorrect: null,
+      topics: [],
+    });
+    const emptyById = Object.fromEntries(empty.readiness.criteria.map((row) => [row.id, row]));
+    expect(emptyById.coverage?.status).toBe("missing");
+    expect(emptyById.recent_accuracy?.status).toBe("missing");
+    expect(emptyById.remediation?.status).toBe("missing");
+    expect(emptyById.coverage?.badge).toBe("Missing");
   });
 
   it("keeps an untouched high-weight domain ahead of a short incorrect queue", () => {
@@ -468,7 +521,12 @@ describe("readiness proof gaps", () => {
       ],
     });
     expect(almost.readiness.label).toBe("Almost");
-    expect(almost.readiness.criteria.find((row) => row.id === "coverage")?.status).toBe("missing");
+    expect(almost.readiness.criteria.find((row) => row.id === "coverage")?.status).toBe(
+      "below_target"
+    );
+    expect(almost.readiness.criteria.find((row) => row.id === "coverage")?.badge).toMatch(
+      /needs 8 answers/
+    );
     expect(almost.readiness.criteria.find((row) => row.id === "coverage")?.detail).toMatch(/Pulmonary/);
 
     const early = buildExamDayPlan({

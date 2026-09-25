@@ -123,7 +123,7 @@ export default async function FreeGuidesPage() {
               Reference books
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-[var(--color-ink-muted)]">
-              These reference books are not a free preview. {studyGuideTrialLine()} Bookmarks
+              The study guide is included with the 5-day free trial. {studyGuideTrialLine()} Bookmarks
               and highlights save on the trial or Pro plan.
             </p>
             <ul className="mt-12 grid gap-6 sm:grid-cols-3" role="list">

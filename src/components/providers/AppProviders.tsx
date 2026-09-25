@@ -10,6 +10,7 @@ import { RootChrome } from "@/components/layout/RootChrome";
 import { ClientRecovery } from "@/components/ClientRecovery";
 import { PwaRegister } from "@/components/PwaRegister";
 import { AppQueryProvider } from "@/components/providers/AppQueryProvider";
+import { PracticeSessionProvider } from "@/lib/client/practice-session-context";
 import { UserAccessProvider } from "@/lib/client/user-access-context";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
@@ -25,8 +26,10 @@ export function AppProviders({ children }: { children: ReactNode }) {
               <ClientRecovery />
               <PwaRegister />
               <PageViewTrackerBoundary />
-              <RootChrome>{children}</RootChrome>
-              <ShareFabLazy />
+              <PracticeSessionProvider>
+                <RootChrome>{children}</RootChrome>
+                <ShareFabLazy />
+              </PracticeSessionProvider>
             </LoginModalRoot>
           </UserAccessProvider>
         </SessionProvider>

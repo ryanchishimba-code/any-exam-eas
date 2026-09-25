@@ -1,4 +1,3 @@
-import { landingTrialHrefForExam } from "@/lib/landing/content";
 import { studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
@@ -63,9 +62,9 @@ export function examHubProductLinks(examKey: ExamSeoKey): ExamHubProductLink[] {
 
   if (guide) {
     links.push({
-      href: landingTrialHrefForExam(examKey),
-      title: `${config.shortName} reference book`,
-      body: `Bookmarks and highlights in the premium reader. ${studyGuideTrialLine()}`,
+      href: guide.routeBase,
+      title: `${config.shortName} study guide`,
+      body: `Included with the 5-day free trial. ${studyGuideTrialLine()}`,
       accent: true,
     });
   }

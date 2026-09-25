@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import {
   type QuestionBankPace,
   type QuestionBankStyle,
@@ -11,9 +11,9 @@ import {
   MIXED_SUBJECT_LABEL,
   availableQuestionCount,
   isMixedSubjectId,
+  questionBankCountChoices,
   questionBankCountOptionsForAvailable,
   questionBankWheelPresetsForField,
-  resolveWheelCountValue,
   validateQuestionBankSession,
 } from "@/lib/study/question-bank-setup";
 import {
@@ -123,16 +123,18 @@ export function QuestionBankSetup({
   const countOptions = formatMode
     ? practiceFormatCountOptions(formatPool)
     : questionBankCountOptionsForAvailable(maxAvailable, fieldId);
-  const wheelValue = resolveWheelCountValue(
+  const countChoices = questionBankCountChoices({
     questionCount,
-    countOptions.length > 0 ? countOptions : [{ value: questionCount, label: "", description: "" }]
-  );
+    options: countOptions,
+  });
+  const wheelValue = countChoices.count;
+  useEffect(() => {
+    if (wheelValue !== questionCount) onQuestionCountChange(wheelValue);
+  }, [onQuestionCountChange, questionCount, wheelValue]);
   const validation = formatMode
     ? validatePracticeFormatSession({
         format: practiceFormat,
-        questionCount: countOptions.some((option) => option.value === questionCount)
-          ? questionCount
-          : wheelValue,
+        questionCount: wheelValue,
         formats,
         bankStyle,
         ngnLabel,
@@ -140,7 +142,7 @@ export function QuestionBankSetup({
       })
     : validateQuestionBankSession({
         subjectId: activeArea?.domainId || subjectId,
-        questionCount,
+        questionCount: wheelValue,
         subjectCounts: activeArea
           ? { [activeArea.domainId]: activeArea.available }
           : subjectCounts,
@@ -335,7 +337,7 @@ export function QuestionBankSetup({
               </div>
             ) : (
               <QuestionBankCountWheel
-                options={countOptions}
+                options={countChoices.options}
                 value={wheelValue}
                 onChange={onQuestionCountChange}
               />

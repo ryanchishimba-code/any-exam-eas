@@ -13,6 +13,7 @@ export function useLandingBankCounts(initial: LandingBankCountsDisplay): Landing
   const [bankCounts, setBankCounts] = useState(initial);
 
   useEffect(() => {
+    if (!initial.degraded && initial.totalServed > 0) return;
     let cancelled = false;
 
     fetch("/api/marketing/bank-counts", { cache: "no-store" })
@@ -44,7 +45,7 @@ export function useLandingBankCounts(initial: LandingBankCountsDisplay): Landing
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [initial.degraded, initial.totalServed]);
 
   return bankCounts;
 }
