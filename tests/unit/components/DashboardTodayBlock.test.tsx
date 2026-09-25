@@ -124,7 +124,9 @@ describe("DashboardTodayBlock review CTA", () => {
     expect(start).toHaveAttribute("data-tour", "today-start");
     expect(start.className).toContain("study-home-accent");
     expect(document.querySelector("[data-tour='today']")).not.toBeNull();
-    expect(screen.getByText("8 to review · 17 new")).toBeInTheDocument();
+    const mix = document.querySelector("[data-today-mix]");
+    expect(mix).toHaveTextContent("8 to review · 17 new");
+    expect(document.querySelectorAll("[data-today-mix]")).toHaveLength(1);
     expect(screen.getByText("3-day streak")).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "8 of 25 questions today" })).toBeInTheDocument();
 
@@ -171,7 +173,34 @@ describe("DashboardTodayBlock review CTA", () => {
     render(<DashboardTodayBlock plan={plan(items)} todaySet={null} />);
     expect(screen.getByText(/mix is unavailable/)).toBeInTheDocument();
     expect(screen.queryByText(/\d+ to review/)).toBeNull();
+    expect(document.querySelector("[data-today-mix]")).toBeNull();
     expect(screen.queryByText(/-day streak/)).toBeNull();
+  });
+
+  it("shows the served mix and puts the new-question note at the top of See details", () => {
+    render(
+      <DashboardTodayBlock
+        plan={plan(items)}
+        todaySet={{ ...todaySet, mixLine: "15 to review · 10 new" }}
+      />
+    );
+
+    expect(document.querySelector("[data-today-mix]")).toHaveTextContent(
+      "15 to review · 10 new"
+    );
+    expect(document.body.textContent).not.toMatch(/25 to review/);
+
+    const details = document.querySelector("[data-today-details]");
+    const body = details?.querySelector("[data-today-details-body]");
+    const note = body?.querySelector("[data-today-new-note]");
+    expect(details?.querySelector("summary")?.textContent).toMatch(/See details/);
+    expect(body?.firstElementChild).toBe(note);
+    expect(note).toHaveTextContent(
+      "You'll always see some new questions in today's set, even when you have a lot to review."
+    );
+    expect(note?.compareDocumentPosition(screen.getByText(/Set a target exam date/))).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING
+    );
   });
 });
 
@@ -216,6 +245,15 @@ describe("Dashboard week countdown", () => {
     expect(screen.getAllByText(/topics you haven't practiced yet/).length).toBeGreaterThan(0);
     const report = details?.textContent ?? "";
     expect(report).not.toMatch(/open incorrect items|coverage days|remediation days|blueprint gaps/);
+    const note = details?.querySelector("[data-today-new-note]");
+    const body = details?.querySelector("[data-today-details-body]");
+    expect(body?.firstElementChild).toBe(note);
+    expect(note).toHaveTextContent(
+      "You'll always see some new questions in today's set, even when you have a lot to review."
+    );
+    expect(
+      note?.compareDocumentPosition(screen.getByRole("heading", { name: "Topics to practice" }))
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
     const withoutNestedRules = details?.cloneNode(true) as HTMLElement | undefined;
     withoutNestedRules?.querySelector("details")?.remove();
     expect(withoutNestedRules?.textContent ?? "").toMatch(/always see some new questions/i);
@@ -250,6 +288,16 @@ describe("Dashboard week countdown", () => {
     });
 
     render(<DashboardTodayBlock plan={built} />);
+
+    const details = document.querySelector("[data-today-details]");
+    const note = details?.querySelector("[data-today-new-note]");
+    expect(details?.querySelector("[data-today-details-body]")?.firstElementChild).toBe(note);
+    expect(note).toHaveTextContent(
+      "You'll always see some new questions in today's set, even when you have a lot to review."
+    );
+    expect(
+      note?.compareDocumentPosition(screen.getByRole("heading", { name: "Practice exam and review" }))
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
 
     expect(screen.getByRole("heading", { name: "Practice exam and review" })).toBeInTheDocument();
     expect(screen.getByText("7 days out")).toBeInTheDocument();

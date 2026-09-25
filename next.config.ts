@@ -26,8 +26,10 @@ const nextConfig: NextConfig = {
     // Single-threaded compile on Vercel avoids OOM SIGKILL during large app builds.
     ...(onVercel ? { cpus: 1, workerThreads: false, webpackMemoryOptimizations: true } : {}),
     staleTimes: {
-      // Soft-nav client cache for dynamic RSC — aligns with ~90s server dashboard TTL.
-      dynamic: 45,
+      // Dynamic pages (the dashboard mix included) must not paint a previous
+      // RSC payload and then swap it. A 45s client cache flashed "25 to review"
+      // before the served 15/10 line arrived.
+      dynamic: 0,
       // Dev: avoid client router serving a 5‑minute-old static homepage shell.
       static: isProd ? 300 : 0,
     },
@@ -91,6 +93,17 @@ const nextConfig: NextConfig = {
     }
 
     return [
+      {
+        source: "/dashboard",
+        headers: [
+          {
+            key: "Cache-Control",
+            // The Today mix is per request. A cached document painted "25 to review"
+            // and then swapped to the served 15/10 line.
+            value: "private, no-cache, no-store, max-age=0, must-revalidate",
+          },
+        ],
+      },
       {
         source: "/_next/static/:path*",
         headers: [

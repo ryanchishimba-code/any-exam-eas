@@ -62,7 +62,10 @@ export function DashboardTodayBlock({
               <span className="text-[var(--color-ink-muted)]"> · about 15 min</span>
             </p>
             {mixKnown && todaySet?.mixLine ? (
-              <p className="mt-3 text-[17px] font-medium tracking-[-0.02em] text-[var(--color-ink)]">
+              <p
+                data-today-mix
+                className="mt-3 text-[17px] font-medium tracking-[-0.02em] text-[var(--color-ink)]"
+              >
                 {todaySet.mixLine}
               </p>
             ) : null}
@@ -140,14 +143,23 @@ export function DashboardTodayBlock({
 
       </section>
 
-      <details className="rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] px-4 py-3 sm:px-5">
+      <details
+        data-today-details
+        className="rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] px-4 py-3 sm:px-5"
+      >
         <summary className="cursor-pointer text-[15px] font-semibold tracking-[-0.02em] text-[var(--color-ink-muted)]">
           See details
         </summary>
-        <div className="mt-4 space-y-5 border-t border-[var(--color-border)]/50 pt-4">
-          <p className="text-[15px] leading-relaxed text-[var(--color-ink)]">
-            You&apos;ll always see some new questions in today&apos;s set, even when you have a lot to review.
-          </p>
+        <div data-today-details-body className="mt-4 space-y-5 border-t border-[var(--color-border)]/50 pt-4">
+          <div
+            data-today-new-note
+            className="rounded-2xl border border-[var(--color-accent)]/25 bg-[color-mix(in_srgb,var(--color-accent)_9%,var(--color-surface))] px-4 py-3.5"
+          >
+            <p className={dbUi.eyebrow}>Today&apos;s set</p>
+            <p className="mt-1.5 text-[15px] font-medium leading-relaxed tracking-[-0.015em] text-[var(--color-ink)]">
+              You&apos;ll always see some new questions in today&apos;s set, even when you have a lot to review.
+            </p>
+          </div>
           {plan.weekPlan.active ? (
             <DashboardWeekPlan weekPlan={plan.weekPlan} />
           ) : (
