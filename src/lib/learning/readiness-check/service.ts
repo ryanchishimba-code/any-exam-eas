@@ -141,11 +141,74 @@ async function loadOpenCheck(userId: string, examSlug: string) {
   });
 }
 
+type OpenCheck = NonNullable<Awaited<ReturnType<typeof loadOpenCheck>>>;
+
+/** Checks already offered a top-up this process. A short bank is not reassembled on every answer. */
+const topUpAttempted = new Set<string>();
+
+/**
+ * Append missing questions onto an in-progress check that was saved short.
+ * Existing rows, including any saved answers, stay in place. Question 1 stays
+ * question 1. A check that still cannot reach 24 keeps its real length.
+ */
+async function topUpShortCheck(check: OpenCheck): Promise<OpenCheck> {
+  if (check.items.length >= READINESS_CHECK_LENGTH) return check;
+  if (topUpAttempted.has(check.id)) return check;
+  topUpAttempted.add(check.id);
+
+  try {
+    const extra = await assembleReadinessItems({
+      fieldId: check.fieldId,
+      hardExcludeIds: check.items.map((item) => item.questionBankItemId),
+      length: READINESS_CHECK_LENGTH - check.items.length,
+    });
+    if (!extra.length) return check;
+
+    await prisma.$transaction(async (tx) => {
+      await tx.$queryRaw`SELECT id FROM "ReadinessCheck" WHERE id = ${check.id} FOR UPDATE`;
+      const current = await tx.readinessCheck.findUnique({
+        where: { id: check.id },
+        select: {
+          status: true,
+          items: { select: { sortOrder: true, questionBankItemId: true } },
+        },
+      });
+      if (!current || current.status !== "in_progress") return;
+      const room = READINESS_CHECK_LENGTH - current.items.length;
+      if (room <= 0) return;
+      const have = new Set(current.items.map((item) => item.questionBankItemId));
+      const toAdd = extra.filter((item) => !have.has(item.questionBankItemId)).slice(0, room);
+      if (!toAdd.length) return;
+      const start = current.items.reduce((max, item) => Math.max(max, item.sortOrder), -1) + 1;
+      await tx.readinessCheckItem.createMany({
+        data: toAdd.map((item, index) => ({
+          checkId: check.id,
+          sortOrder: start + index,
+          questionBankItemId: item.questionBankItemId,
+          areaId: item.areaId,
+          areaLabel: item.areaLabel,
+        })),
+      });
+      await tx.readinessCheck.update({
+        where: { id: check.id },
+        data: { itemCount: current.items.length + toAdd.length },
+      });
+    });
+  } catch {
+    return (await loadOpenCheck(check.userId, check.examSlug)) ?? check;
+  }
+
+  return (await loadOpenCheck(check.userId, check.examSlug)) ?? check;
+}
+
 async function nextPrompt(
   userId: string,
   examSlug: string
 ): Promise<{ checkId: string; prompt: ReadinessPrompt; answered: number; total: number } | null> {
   let check = await loadOpenCheck(userId, examSlug);
+  if (check && check.items.length < READINESS_CHECK_LENGTH) {
+    check = await topUpShortCheck(check);
+  }
   for (let guard = 0; guard < 40 && check; guard += 1) {
     const item = check.items.find((row) => !row.answeredAt);
     if (!item) return null;
@@ -156,7 +219,7 @@ async function nextPrompt(
       continue;
     }
     const answered = check.items.filter((row) => row.answeredAt).length;
-    const total = Math.max(1, check.itemCount);
+    const total = Math.max(1, check.items.length);
     return {
       checkId: check.id,
       answered,

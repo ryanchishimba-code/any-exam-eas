@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import {
   allocateReadinessAreaCounts,
+  backfillShortAreaCounts,
   levelForArea,
   noteThinAreas,
   summarizeReadiness,
@@ -109,6 +110,55 @@ describe("readiness check allocation", () => {
     const rows = allocateReadinessAreaCounts(blueprint);
     expect(rows.reduce((sum, row) => sum + row.count, 0)).toBe(READINESS_CHECK_LENGTH);
     expect(rows.every((row) => row.count >= READINESS_MIN_EVIDENCE)).toBe(true);
+  });
+
+  it("backfills a NAPLEX area that has a slot but no eligible items", () => {
+    const blueprint = getExamBlueprint("pharmacy")!;
+    const slots = allocateReadinessAreaCounts(blueprint);
+    const emptyId = "naplex-area5-management";
+    expect(slots.find((row) => row.id === emptyId)?.count).toBe(2);
+    const filled = slots.map((row) => ({
+      id: row.id,
+      count: row.id === emptyId ? 0 : row.count,
+    }));
+    expect(filled.reduce((sum, row) => sum + row.count, 0)).toBe(22);
+    const spare = slots.map((row) => ({
+      id: row.id,
+      count: row.id === emptyId ? 0 : READINESS_CHECK_LENGTH,
+    }));
+    const extras = backfillShortAreaCounts({
+      slots,
+      filled,
+      spare,
+      length: READINESS_CHECK_LENGTH,
+    });
+    const served = new Map(filled.map((row) => [row.id, row.count]));
+    for (const extra of extras) served.set(extra.id, (served.get(extra.id) ?? 0) + extra.extra);
+    expect([...served.values()].reduce((sum, count) => sum + count, 0)).toBe(READINESS_CHECK_LENGTH);
+    expect(served.get(emptyId)).toBe(0);
+    expect(extras.reduce((sum, row) => sum + row.extra, 0)).toBe(2);
+    expect(extras.find((row) => row.id === emptyId)).toBeUndefined();
+    expect(served.get("naplex-area3-treatment-planning")).toBe(9);
+    expect(served.get("naplex-area1-foundations")).toBe(7);
+  });
+
+  it("stops backfill when no area has spare items", () => {
+    const extras = backfillShortAreaCounts({
+      slots: [
+        { id: "a", count: 6 },
+        { id: "b", count: 2 },
+      ],
+      filled: [
+        { id: "a", count: 6 },
+        { id: "b", count: 0 },
+      ],
+      spare: [
+        { id: "a", count: 0 },
+        { id: "b", count: 0 },
+      ],
+      length: 8,
+    });
+    expect(extras).toEqual([]);
   });
 
   it("covers a wide board with at least one item per area", () => {
