@@ -145,6 +145,9 @@ export function DashboardTodayBlock({
           See details
         </summary>
         <div className="mt-4 space-y-5 border-t border-[var(--color-border)]/50 pt-4">
+          <p className="text-[15px] leading-relaxed text-[var(--color-ink)]">
+            You&apos;ll always see some new questions in today&apos;s set, even when you have a lot to review.
+          </p>
           {plan.weekPlan.active ? (
             <DashboardWeekPlan weekPlan={plan.weekPlan} />
           ) : (
