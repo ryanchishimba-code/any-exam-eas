@@ -209,6 +209,32 @@ describe("StudyGuideReader", () => {
     expect(scroller?.contains(container.querySelector(".sg-scrubber"))).toBe(false);
   });
 
+  it("starts focused, and marks a real source already in the chapter", () => {
+    const { container } = renderReader(
+      makeChapter({
+        bodyHtml:
+          '<p><strong>Official source of truth:</strong> <a href="https://www.ncsbn.org">NCSBN test plan</a>.</p>',
+      })
+    );
+    expect(screen.getByRole("button", { name: /open contents/i })).toHaveAttribute(
+      "aria-expanded",
+      "false"
+    );
+    expect(screen.getByRole("button", { name: /open notes/i })).toHaveAttribute(
+      "aria-pressed",
+      "false"
+    );
+    expect(container.querySelector(".sg-reader")).toHaveAttribute("data-reader-layout", "focused");
+    expect(container.querySelector(".sg-citation")).toBeTruthy();
+    expect(container.querySelector(".sg-source-link")).toHaveAttribute(
+      "href",
+      "https://www.ncsbn.org"
+    );
+    expect(screen.getByRole("note")).toHaveTextContent(
+      "Portions are AI-generated; verify against authoritative sources"
+    );
+  });
+
   it("shows bookmark and highlight controls without a trial upsell", () => {
     renderReader();
     expect(screen.getByText(/Afterload is resistance/)).toBeInTheDocument();

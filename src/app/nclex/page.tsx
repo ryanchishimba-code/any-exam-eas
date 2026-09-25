@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ExamMarketingLanding } from "@/components/marketing/ExamMarketingLanding";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { landingTrialHrefForExam } from "@/lib/landing/content";
+import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 import { presentBoardInventory } from "@/lib/inventory/active-questions";
 import {
   buildLandingBankCountsDisplay,
@@ -45,6 +46,7 @@ export default async function NclexHubPage() {
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
   const examCount = bankCounts.exams.find((row) => row.slug === "nclex");
   const questionCountLabel = examCount?.countLabel;
+  const testimonials = await getCachedPublishedTestimonials(6);
   const boardInventory = presentBoardInventory({
     slug: "nclex",
     usingLiveCount: !bankCounts.degraded && (examCount?.served ?? 0) > 0,
@@ -58,6 +60,7 @@ export default async function NclexHubPage() {
         examKey="nclex"
         questionCountLabel={questionCountLabel}
         inventory={boardInventory}
+        testimonials={testimonials}
         extraAfterHero={
           <section className="border-b border-[var(--color-border)]/40 py-14">
             <div className="mx-auto max-w-5xl px-5 sm:px-6">

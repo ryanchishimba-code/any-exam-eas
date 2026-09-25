@@ -20,10 +20,6 @@ type Props = {
   examKey: ExamSeoKey;
   /** Labeled per-board count, e.g. "7,581 active NCLEX questions". */
   questionCountLine: string;
-  /** MCQ / NGN / case split from the active inventory, when those formats exist. */
-  formatLine?: string | null;
-  /** What "active" means, or the published-floor disclaimer. */
-  activeDefinition?: string | null;
   countSource?: "active-inventory" | "published-floor";
   activeCount?: number | null;
 };
@@ -31,8 +27,6 @@ type Props = {
 function ExamMarketingHeroCopy({
   examKey,
   questionCountLine,
-  formatLine,
-  activeDefinition,
   countSource,
   activeCount,
 }: Props) {
@@ -58,26 +52,6 @@ function ExamMarketingHeroCopy({
 
           <p className="aee-hero-beat__subline">{formatExamHubSubline(examKey)}</p>
 
-          {questionCountLine ? (
-            <p
-              className="aee-hero-beat__countline"
-              data-count-source={countSource ?? "published-floor"}
-              data-active-question-count={
-                typeof activeCount === "number" ? activeCount : undefined
-              }
-            >
-              {questionCountLine}
-            </p>
-          ) : null}
-          {formatLine ? (
-            <p className="aee-hero-beat__countline">{formatLine}</p>
-          ) : null}
-          {activeDefinition ? (
-            <p className="aee-hero-beat__countline" title={activeDefinition}>
-              {activeDefinition}
-            </p>
-          ) : null}
-
           <div className="aee-hero-beat__actions">
             <LandingCta
               href={trialHref}
@@ -98,7 +72,21 @@ function ExamMarketingHeroCopy({
             </Link>
           </div>
 
-          <p className="aee-hero-beat__meta">{formatExamHeroTrialOffer()}</p>
+          <p className="aee-hero-beat__meta" data-offer-line>
+            {formatExamHeroTrialOffer()}
+          </p>
+
+          {questionCountLine ? (
+            <p
+              className="aee-hero-beat__countline"
+              data-count-source={countSource ?? "published-floor"}
+              data-active-question-count={
+                typeof activeCount === "number" ? activeCount : undefined
+              }
+            >
+              {questionCountLine}
+            </p>
+          ) : null}
         </div>
 
         <div className="aee-hero-beat__visual aee-hero-beat__visual--practice">
@@ -114,8 +102,6 @@ function ExamMarketingHeroCopy({
 export function ExamMarketingHero({
   examKey,
   questionCountLine,
-  formatLine,
-  activeDefinition,
   countSource,
   activeCount,
 }: Props) {
@@ -124,8 +110,6 @@ export function ExamMarketingHero({
       <ExamMarketingHeroCopy
         examKey={examKey}
         questionCountLine={questionCountLine}
-        formatLine={formatLine}
-        activeDefinition={activeDefinition}
         countSource={countSource}
         activeCount={activeCount}
       />

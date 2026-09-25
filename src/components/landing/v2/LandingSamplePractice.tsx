@@ -16,7 +16,7 @@ import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSele
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLandingMcqSample } from "@/lib/demo/landing-samples";
 import { analytics } from "@/lib/analytics";
-import { formatPricingCheckoutTrialOffer, formatTrialLabel } from "@/lib/site";
+import { formatTrialLabel } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -215,7 +215,7 @@ export function LandingPracticeStage({
 
 /** ATF product visual — interactive player for the selected exam. */
 export function LandingHeroPractice() {
-  const { selectedExam, trialHref } = useLandingExamSelection();
+  const { selectedExam } = useLandingExamSelection();
   const examName = EXAM_CATALOG[selectedExam]?.shortName ?? "your exam";
 
   return (
@@ -236,23 +236,6 @@ export function LandingHeroPractice() {
           Free {examName} sample · no account
         </p>
         <LandingPracticeStage compact eagerNgn />
-        <div className="aee-hero-practice__footer">
-          <LandingCta
-            href={trialHref}
-            ctaName={`sample_trial_${selectedExam}`}
-            location="hero_practice"
-            className="aee-flagship-cta--hero aee-hero-practice__trial group"
-            icon={
-              <ArrowRight
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                aria-hidden
-              />
-            }
-          >
-            Start {examName} free trial
-          </LandingCta>
-          <p className="aee-hero-practice__meta">{formatPricingCheckoutTrialOffer()}</p>
-        </div>
       </div>
     </div>
   );

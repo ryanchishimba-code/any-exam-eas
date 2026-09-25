@@ -2,12 +2,13 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Map, BookOpen, Timer } from "lucide-react";
 import { PricingTiers } from "@/components/pricing/PricingTiers";
+import { PricingBoardHeadline } from "@/components/pricing/PricingBoardHeadline";
 import { PricingQueryNotices } from "@/components/pricing/PricingQueryNotices";
 import { PageShell } from "@/components/PageShell";
 import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-metadata";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
-import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
+import { pricingHeadlineFromContext } from "@/lib/marketing/why-trust-it";
+import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 export const metadata = buildPricingMetadata();
 export const revalidate = 3600;
@@ -30,22 +31,55 @@ const STUDY_PATH = [
   },
 ] as const;
 
-export default async function PricingPage() {
+type PricingSearch = {
+  field?: string | string[];
+  exam?: string | string[];
+};
+
+function firstParam(value: string | string[] | undefined): string | null {
+  if (Array.isArray(value)) return value[0] ?? null;
+  return value ?? null;
+}
+
+export default async function PricingPage({
+  searchParams,
+}: {
+  searchParams: Promise<PricingSearch>;
+}) {
+  const params = await searchParams;
+  const headline = pricingHeadlineFromContext({
+    field: firstParam(params.field),
+    exam: firstParam(params.exam),
+  });
+
   return (
     <>
       <JsonLdScript data={buildPricingJsonLd()} />
       <PageShell
-        title="Pro"
-        description={`${FALLBACK_QUESTION_COUNTS.total} questions across six boards. Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`}
+        title={<PricingBoardHeadline initial={headline} />}
+        description="Roadmap, Deep Dive, and Full Exam on one plan."
         align="center"
         maxWidth="max-w-2xl"
         compact
       >
-        <p className="mx-auto mt-3 max-w-md text-center text-sm font-medium text-[var(--color-ink)]">
+        <p
+          className="mx-auto mt-3 max-w-md text-center text-sm font-medium tracking-[-0.01em] text-[var(--color-ink)]"
+          data-offer-line
+        >
           {formatPricingCheckoutTrialOffer()}
         </p>
 
-        <ol className="mx-auto mt-8 grid max-w-2xl gap-3 sm:grid-cols-3" role="list">
+        <Suspense fallback={null}>
+          <PricingQueryNotices />
+        </Suspense>
+
+        <div className="mt-6" data-pricing-fold>
+          <Suspense fallback={null}>
+            <PricingTiers />
+          </Suspense>
+        </div>
+
+        <ol className="mx-auto mt-10 grid max-w-2xl gap-3 sm:grid-cols-3" role="list">
           {STUDY_PATH.map((step, index) => (
             <li
               key={step.title}
@@ -61,16 +95,6 @@ export default async function PricingPage() {
             </li>
           ))}
         </ol>
-
-        <Suspense fallback={null}>
-          <PricingQueryNotices />
-        </Suspense>
-
-        <div className="mt-8">
-          <Suspense fallback={null}>
-            <PricingTiers />
-          </Suspense>
-        </div>
 
         <p className="mx-auto mt-10 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
           Study tool only — not a guarantee of exam results.{" "}

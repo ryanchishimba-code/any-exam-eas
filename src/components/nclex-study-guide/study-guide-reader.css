@@ -1,7 +1,11 @@
 /* NCLEX Study Guide reader — print + prose (scoped via .sg-reader) */
 
+.sg-toc--closed {
+  display: none !important;
+}
+
 .sg-prose {
-  letter-spacing: -0.011em;
+  letter-spacing: -0.022em;
   /* Long unbreakable tokens (board URLs, slash-joined drug lists) and wide
      tables must wrap inside the column. `anywhere` also shrinks min-content,
      so a table can't stretch the chapter pane. */
@@ -37,7 +41,7 @@
   margin: 1.1em 0 0.4em;
 }
 .sg-prose p {
-  margin: 0 0 1.28em;
+  margin: 0 0 1.45em;
 }
 .sg-prose ul,
 .sg-prose ol {
@@ -71,11 +75,45 @@
   background: #2ec4b6;
 }
 .sg-prose blockquote {
-  margin: 0 0 1em;
-  padding: 0.65em 0.9em;
-  border-left: 3px solid #2ec4b6;
-  background: rgba(46, 196, 182, 0.08);
-  border-radius: 0 0.5em 0.5em 0;
+  margin: 0 0 1.2em;
+  padding: 0.75em 1em;
+  border-left: 3px solid #0f766e;
+  background: rgba(46, 196, 182, 0.1);
+  border-radius: 0 0.75em 0.75em 0;
+}
+.sg-prose .sg-citation {
+  margin: 1.35em 0 1.5em;
+  padding: 0.85em 1em 0.9em 1.05em;
+  border-left: 3px solid #0f766e;
+  background: rgba(46, 196, 182, 0.12);
+  border-radius: 0 0.85em 0.85em 0;
+}
+.sg-prose .sg-citation::before {
+  content: "Source";
+  display: block;
+  margin-bottom: 0.35em;
+  font-size: 0.68em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+.sg-prose a.sg-source-link {
+  color: #0f766e;
+  font-weight: 650;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+.sg-paper[data-theme="dim"] .sg-citation,
+.sg-paper[data-theme="dark"] .sg-citation {
+  background: rgba(46, 196, 182, 0.12);
+  border-left-color: #2ec4b6;
+}
+.sg-paper[data-theme="dim"] .sg-citation::before,
+.sg-paper[data-theme="dark"] .sg-citation::before,
+.sg-paper[data-theme="dim"] .sg-source-link,
+.sg-paper[data-theme="dark"] .sg-source-link {
+  color: #5eead4;
 }
 /* End-of-chapter bridge into High-Yield, Library, and Anatomy. Sits on the light
    "paper", so it uses the darker teal for contrast rather than the chrome accent. */
@@ -258,28 +296,46 @@
   scroll-behavior: smooth;
 }
 
-/* Reading column. At 1280px the contents rail (15rem) and annotations drawer
-   (17rem) leave exactly 48rem, so the cream page fills that column instead of
-   sitting in a 42rem measure with navy on either side. Wider monitors keep
-   the same cap so a line stays a comfortable book width. */
+/* Reading column. Contents and notes start closed, so a 1280px window can
+   use a wider measure. With a pane open the cap stays a book width. */
 .sg-column {
   width: 100%;
-  max-width: 48rem;
+  max-width: 44rem;
   min-width: 0;
   margin-inline: auto;
+}
+.sg-reader--focused .sg-column {
+  max-width: min(52rem, 100%);
 }
 
 .sg-paper {
   /* Clip leftover wide children at the card edge without becoming a scrollport.
      clip + visible does not force the other axis to auto. */
   overflow-x: clip;
-  padding: 2.5rem 1.5rem 4rem;
-  line-height: 1.75;
+  padding: 2.75rem 1.65rem 4.25rem;
+  line-height: 1.7;
 }
 @media (min-width: 640px) {
   .sg-paper {
-    padding: 3.75rem 3.75rem 4.75rem;
+    padding: 4.25rem 4.25rem 5.25rem;
   }
+}
+
+.sg-ai-disclosure {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(46, 196, 182, 0.45);
+  background: rgba(46, 196, 182, 0.12);
+  color: #e7fffb;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.45;
+}
+.sg-ai-disclosure strong {
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 /* Front matter spends its top padding on the cover spread, not on empty paper,
    so the trial sentence clears the chapter toolbar on a laptop. */

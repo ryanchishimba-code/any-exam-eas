@@ -32,6 +32,7 @@ import {
 } from "@/lib/nclex-study-guide/client-cache";
 import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
 import { visibleBookSection } from "@/lib/nclex-study-guide/display-label";
+import { presentChapterCitations } from "@/lib/nclex-study-guide/chapter-citations";
 import { presentFrontMatter } from "@/lib/nclex-study-guide/front-matter-presentation";
 import { paintStudyGuideHighlights } from "@/lib/nclex-study-guide/paint-highlights";
 import type {
@@ -78,6 +79,7 @@ const COLOR_SWATCH: Record<SgHighlightColor, string> = {
 };
 
 const DRAWER_KEY = "sg-drawer-open";
+const TOC_KEY = "sg-toc-open";
 const PREFS_KEY = "sg-reader-prefs";
 const DEFAULT_PREFS: SgReaderPrefs = {
   fontSize: "md",
@@ -127,9 +129,8 @@ const PROGRESS_LOCAL_MS = 1000;
 /** Tailwind `lg`. Below this the drawer overlays the page instead of splitting the row. */
 const DESKTOP_QUERY = "(min-width: 1024px)";
 /**
- * Desktop annotations rail, in px. 17rem, paired with a 15rem contents rail,
- * leaves a 48rem reading column at 1280px. Wider than this and the cream page
- * is squeezed; narrower and Highlights / Bookmarks / Notes wrap.
+ * Desktop annotations rail, in px. Contents and notes both start closed, so a
+ * 1280px window keeps this width for the focused column instead of a side rail.
  */
 const DESKTOP_DRAWER_PX = 272;
 
@@ -302,12 +303,15 @@ export function StudyGuideReader({
   useEffect(() => {
     if (!isDesktop) {
       setDrawerOpen(false);
+      setTocOpen(false);
       return;
     }
     try {
       setDrawerOpen(localStorage.getItem(DRAWER_KEY) === "1");
+      setTocOpen(localStorage.getItem(TOC_KEY) === "1");
     } catch {
       setDrawerOpen(false);
+      setTocOpen(false);
     }
   }, [isDesktop]);
 
@@ -341,6 +345,14 @@ export function StudyGuideReader({
       paintProgress(0);
     }
   }, [initialChapter, paintProgress]);
+  const persistToc = useStableCallback((open: boolean) => {
+    try {
+      localStorage.setItem(TOC_KEY, open ? "1" : "0");
+    } catch {
+      /* ignore */
+    }
+  });
+
   const persistDrawer = useStableCallback((open: boolean) => {
     try {
       localStorage.setItem(DRAWER_KEY, open ? "1" : "0");
@@ -353,6 +365,11 @@ export function StudyGuideReader({
     setDrawerOpen(open);
     persistDrawer(open);
   }, [persistDrawer]);
+
+  const toggleToc = useCallback((open: boolean) => {
+    setTocOpen(open);
+    if (isDesktop) persistToc(open);
+  }, [isDesktop, persistToc]);
 
   const loadAnnotations = useCallback(async (chapterId: string) => {
     const qs = `chapterId=${encodeURIComponent(chapterId)}`;
@@ -572,6 +589,7 @@ export function StudyGuideReader({
     // tags the presenter matches on.
     let html =
       chapter.slug === "front-matter" ? presentFrontMatter(chapter.bodyHtml) : chapter.bodyHtml;
+    html = presentChapterCitations(html);
     if (!search.trim()) return html;
     const q = search.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     try {
@@ -733,7 +751,7 @@ export function StudyGuideReader({
         toggleDrawer(!drawerOpen);
       }
       if (e.key === "Escape") {
-        setTocOpen(false);
+        toggleToc(false);
         if (drawerOpen) toggleDrawer(false);
       }
     };
@@ -747,6 +765,7 @@ export function StudyGuideReader({
     saveBookmark,
     saveHighlight,
     toggleDrawer,
+    toggleToc,
   ]);
 
   const seekToPct = useCallback((pct: number) => {
@@ -769,12 +788,12 @@ export function StudyGuideReader({
 
   const fontClass =
     prefs.fontSize === "sm"
-      ? "text-[17px]"
+      ? "text-[18px]"
       : prefs.fontSize === "lg"
-        ? "text-[22px]"
+        ? "text-[24px]"
         : prefs.fontSize === "xl"
-          ? "text-[25px]"
-          : "text-[20px]";
+          ? "text-[27px]"
+          : "text-[22px]";
 
   const leadingClass =
     prefs.lineHeight === "snug"
@@ -820,7 +839,7 @@ export function StudyGuideReader({
                   onMouseEnter={() => prefetchChapter(exam, c.slug)}
                   onFocus={() => prefetchChapter(exam, c.slug)}
                   onClick={() => {
-                    setTocOpen(false);
+                    toggleToc(false);
                     void goToSlug(c.slug);
                   }}
                   className={cn(
@@ -857,16 +876,21 @@ export function StudyGuideReader({
 
   return (
     <div
-      className="sg-reader flex h-[calc(100dvh-var(--nav-height))] flex-col"
+      className={cn(
+        "sg-reader flex h-[calc(100dvh-var(--nav-height))] flex-col",
+        (!tocOpen || !isDesktop) && !drawerOpen && "sg-reader--focused"
+      )}
+      data-reader-layout={!tocOpen && !drawerOpen ? "focused" : "panes"}
       style={{ background: "#0b1c2c", color: "#e8eef4" }}
     >
       <header className="flex shrink-0 items-center gap-2 border-b border-white/10 px-3 py-2 sm:gap-3 sm:px-4">
         <button
           type="button"
-          onClick={() => setTocOpen(true)}
-          aria-label="Open contents"
+          onClick={() => toggleToc(!tocOpen)}
+          aria-label={tocOpen ? "Close contents" : "Open contents"}
           aria-expanded={tocOpen}
-          className="sg-icon-btn lg:hidden"
+          aria-controls="sg-contents"
+          className={cn("sg-icon-btn", tocOpen && "is-on")}
         >
           <List className="h-3.5 w-3.5" aria-hidden />
           {/* Icon-only on the narrowest phones so the header can't overflow. */}
@@ -991,19 +1015,25 @@ export function StudyGuideReader({
       <CrossBoardStudyGuideBanner guideExam={exam} />
 
       <div className="relative flex min-h-0 flex-1">
-        {/* LEFT TOC — a fixed rail on desktop, a slide-over sheet on touch. Visibility is
-            CSS-driven so the server markup already matches the viewport (no hydration flash). */}
-        <aside className="sg-toc hidden w-60 shrink-0 overflow-y-auto border-r border-white/10 px-4 py-6 lg:block">
+        {/* LEFT TOC — in the DOM always, collapsed with CSS until opened.
+            Default closed so a 1280px window is one reading column. */}
+        <aside
+          id="sg-contents"
+          className={cn(
+            "sg-toc hidden w-60 shrink-0 overflow-y-auto border-r border-white/10 px-4 py-6 lg:block",
+            !tocOpen && "sg-toc--closed"
+          )}
+        >
           {tocContent}
         </aside>
         <AnimatePresence initial={false}>
-          {tocOpen ? (
+          {!isDesktop && tocOpen ? (
             <>
               <motion.button
                 key="toc-scrim"
                 type="button"
                 aria-label="Close contents"
-                onClick={() => setTocOpen(false)}
+                onClick={() => toggleToc(false)}
                 initial={reduceMotion ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={reduceMotion ? undefined : { opacity: 0 }}
@@ -1011,6 +1041,7 @@ export function StudyGuideReader({
               />
               <motion.aside
                 key="toc"
+                id={isDesktop ? undefined : "sg-contents"}
                 initial={reduceMotion ? false : { x: "-100%" }}
                 animate={{ x: 0 }}
                 exit={reduceMotion ? undefined : { x: "-100%" }}
@@ -1267,12 +1298,15 @@ export function StudyGuideReader({
 
           {/* The global site footer is suppressed on reader routes, so the
               study-aid disclaimer and legal links live here instead. */}
-          <div className="shrink-0 border-t border-white/10 px-3 py-2.5 text-[10px] leading-relaxed text-white/40 sm:px-4">
-            <p>
+          <div className="shrink-0 border-t border-white/10 px-3 py-3 sm:px-4">
+            <p className="sg-ai-disclosure" role="note">
+              <strong>AI disclosure.</strong> Portions are AI-generated; verify against
+              authoritative sources. Where this chapter names a source, it is marked Source.
+            </p>
+            <p className="mt-2 text-[11px] leading-relaxed text-white/45">
               Study aid only — not medical advice or a substitute for your{" "}
               {config.legal.programNoun}, facility policy, or official board documents.
-              Portions are AI-generated; verify against authoritative sources before
-              clinical use. {config.legal.examName}® is a registered trademark of{" "}
+              {config.legal.examName}® is a registered trademark of{" "}
               {config.legal.owner}. Not affiliated with or endorsed by{" "}
               {config.legal.owner}.{" "}
               <Link href="/legal/disclaimer" className="underline hover:text-white/70">
