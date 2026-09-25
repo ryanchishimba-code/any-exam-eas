@@ -13,13 +13,9 @@ import { CONVERSION_EVENTS } from "@/lib/analytics/conversion-types";
 import { trackConversionServer } from "@/lib/analytics/conversions";
 import { examSlugForFieldId } from "@/lib/edtech/exam-field-ids";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
-import { loadBankItemsByIds } from "@/lib/full-exam/load-bank-items-by-ids";
 import { getFieldMetaById } from "@/lib/fields";
-import {
-  recountTodayMix,
-  resolveTodaySetSize,
-} from "@/lib/learning/today-set";
-import { selectTodaySet } from "@/lib/learning/today-set-plan";
+import { resolveTodaySetSize } from "@/lib/learning/today-set";
+import { loadServedTodaySet } from "@/lib/learning/today-set-plan";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import { ROUTES } from "@/lib/routes";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
@@ -62,16 +58,13 @@ export async function POST(req: Request) {
     });
     if (!usageCheck.ok) return usageCheck.response;
 
-    const selection = await selectTodaySet({
+    const size = Math.min(target, usageCheck.allowedCount);
+    const { selection, mix, items } = await loadServedTodaySet({
       userId: premium.userId,
       examSlug,
       fieldId,
-      size: Math.min(target, usageCheck.allowedCount),
+      size,
     });
-
-    const items = await loadBankItemsByIds(fieldId, selection.composition.ids);
-    const loadedIds = new Set(items.map((item) => item.id).filter((id): id is string => Boolean(id)));
-    const mix = recountTodayMix(selection.composition, loadedIds);
     if (mix.ids.length === 0) {
       return NextResponse.json(
         {
@@ -85,9 +78,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const ordered = mix.ids
-      .map((id) => items.find((item) => item.id === id))
-      .filter((item): item is NonNullable<typeof item> => Boolean(item));
+    const ordered = items;
     const fieldLabel = getFieldMetaById(fieldId)?.label ?? fieldId;
     const questions = ordered.map((item, index) => {
       const study = examQuestionToStudy(

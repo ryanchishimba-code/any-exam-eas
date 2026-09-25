@@ -12,6 +12,8 @@
 import { questionBankHref } from "@/lib/edtech/practice-links-core";
 import { bankRowMatchesPracticeField } from "@/lib/edtech/exam-item-scope";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
+import { loadBankItemsByIds } from "@/lib/full-exam/load-bank-items-by-ids";
+import type { BankItem } from "@/lib/question-bank";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import { loadServableReviewBankIds, loadStillIncorrectBankItemIds } from "@/lib/learning/review-incorrect";
 import { reviewFieldIdsForQuery } from "@/lib/learning/review-queue-launch";
@@ -22,6 +24,7 @@ import {
   mergeDailyHabitDay,
   questionAllowanceFromUsage,
   readDailyHabitDays,
+  recountTodayMix,
   resolveTodaySetSize,
   todaySetRandom,
   todayUnseenNeeded,
@@ -156,28 +159,42 @@ async function loadUnseenCandidates(params: {
       take: NEW_WINDOW,
     });
 
-  const firstSkip = total > NEW_WINDOW ? Math.floor(params.random() * (total - NEW_WINDOW + 1)) : 0;
-  const rows = await loadWindow(firstSkip);
-  const accept = (list: typeof rows) =>
+  const accept = (list: Awaited<ReturnType<typeof loadWindow>>) =>
     list.filter(
       (row) =>
         bankRowMatchesPracticeField(row, params.fieldId) &&
         !excluded.has(row.id)
     );
-  let matched = accept(rows);
-  if (matched.length < params.needed && firstSkip > 0) {
-    matched = accept([...rows, ...(await loadWindow(0))]);
-  }
 
+  // A single id page can miss this board. Stopping there backfills the new
+  // slots with review, and the line becomes "25 to review". Keep reading until
+  // those slots are filled or the pool has been covered once.
+  const windowSize = Math.min(NEW_WINDOW, total);
+  let skip = total > windowSize ? Math.floor(params.random() * (total - windowSize + 1)) : 0;
+  let scanned = 0;
+  let loops = 0;
+  const loopCap = Math.ceil(total / windowSize) + 2;
   const seen = new Set<string>();
   const candidates: TodayNewCandidate[] = [];
-  for (const row of matched) {
-    if (seen.has(row.id)) continue;
-    seen.add(row.id);
-    candidates.push({
-      id: row.id,
-      weight: weightForRow(params.fieldId, row),
-    });
+  while (candidates.length < params.needed && scanned < total && loops < loopCap) {
+    loops += 1;
+    const rows = await loadWindow(skip);
+    if (rows.length === 0) {
+      if (skip === 0) break;
+      skip = 0;
+      continue;
+    }
+    for (const row of accept(rows)) {
+      if (seen.has(row.id)) continue;
+      seen.add(row.id);
+      candidates.push({
+        id: row.id,
+        weight: weightForRow(params.fieldId, row),
+      });
+    }
+    scanned += rows.length;
+    const next = skip + rows.length;
+    skip = next >= total ? 0 : next;
   }
   return candidates;
 }
@@ -294,6 +311,34 @@ export async function selectTodaySet(params: {
   };
 }
 
+/**
+ * The sitting `POST /api/study/daily-set` starts, and the mix line the
+ * dashboard shows. Same ids, then the same bank load and recount. A line
+ * from the composition alone can count a question the player will not get.
+ */
+export async function loadServedTodaySet(params: {
+  userId: string;
+  examSlug: ExamSlug;
+  fieldId: string;
+  size: number;
+  goals?: TodaySetSizeInput | null;
+  now?: Date;
+}): Promise<{
+  selection: TodaySetSelection;
+  mix: TodaySetComposition;
+  items: BankItem[];
+}> {
+  const selection = await selectTodaySet(params);
+  const loaded = await loadBankItemsByIds(params.fieldId, selection.composition.ids);
+  const loadedIds = new Set(loaded.map((item) => item.id).filter((id): id is string => Boolean(id)));
+  const mix = recountTodayMix(selection.composition, loadedIds);
+  const byId = new Map(loaded.map((item) => [item.id, item]));
+  const items = mix.ids
+    .map((id) => byId.get(id))
+    .filter((item): item is BankItem => Boolean(item));
+  return { selection, mix, items };
+}
+
 export async function loadTodaySetPreview(params: {
   userId: string;
   examSlug: ExamSlug;
@@ -367,7 +412,7 @@ export async function loadTodaySetPreview(params: {
     };
   }
 
-  const selection = await selectTodaySet({
+  const served = await loadServedTodaySet({
     userId: params.userId,
     examSlug: params.examSlug,
     fieldId: params.fieldId,
@@ -379,13 +424,13 @@ export async function loadTodaySetPreview(params: {
   return {
     examSlug: params.examSlug,
     fieldId: params.fieldId,
-    size: selection.composition.ids.length,
+    size: served.mix.ids.length,
     target,
     questionsDone,
-    reviewCount: selection.composition.reviewCount,
-    newCount: selection.composition.newCount,
-    mixLine: selection.composition.mixLine,
-    empty: selection.composition.ids.length === 0,
+    reviewCount: served.mix.reviewCount,
+    newCount: served.mix.newCount,
+    mixLine: served.mix.mixLine,
+    empty: served.mix.ids.length === 0,
     limitReached: false,
     streakDays,
   };

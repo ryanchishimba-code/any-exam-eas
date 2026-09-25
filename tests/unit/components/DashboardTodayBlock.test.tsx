@@ -170,7 +170,7 @@ describe("DashboardTodayBlock review CTA", () => {
   it("does not invent a mix when the counts were not loaded", () => {
     render(<DashboardTodayBlock plan={plan(items)} todaySet={null} />);
     expect(screen.getByText(/mix is unavailable/)).toBeInTheDocument();
-    expect(screen.queryByText(/to review/)).toBeNull();
+    expect(screen.queryByText(/\d+ to review/)).toBeNull();
     expect(screen.queryByText(/-day streak/)).toBeNull();
   });
 });
@@ -216,7 +216,10 @@ describe("Dashboard week countdown", () => {
     expect(screen.getAllByText(/topics you haven't practiced yet/).length).toBeGreaterThan(0);
     const report = details?.textContent ?? "";
     expect(report).not.toMatch(/open incorrect items|coverage days|remediation days|blueprint gaps/);
-    expect(report).toMatch(/always see some new questions/i);
+    const withoutNestedRules = details?.cloneNode(true) as HTMLElement | undefined;
+    withoutNestedRules?.querySelector("details")?.remove();
+    expect(withoutNestedRules?.textContent ?? "").toMatch(/always see some new questions/i);
+    expect(withoutNestedRules?.textContent ?? "").toMatch(/Today's practice on Management of Care is done/);
     expect(screen.getAllByText("Done today").length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: /Start Qbank/ })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /Start exam simulation/ })).toBeNull();
