@@ -3,8 +3,10 @@
  *
  * Review incorrect uses the shared open-remediation queue. Spaced review uses
  * QuestionMastery rows that are already due. New items are unseen, servable
- * bank rows weighted by the board blueprint. Every exam goes through this
- * function; the field id decides the bank.
+ * bank rows weighted by the board blueprint. Enough new rows are loaded to
+ * fill the slots the review cap leaves open; compose backfills with more
+ * review when that pool is short. Every exam goes through this function;
+ * the field id decides the bank.
  */
 
 import { questionBankHref } from "@/lib/edtech/practice-links-core";
@@ -22,6 +24,7 @@ import {
   readDailyHabitDays,
   resolveTodaySetSize,
   todaySetRandom,
+  todayUnseenNeeded,
   utcDateKey,
   type TodayNewCandidate,
   type TodaySetComposition,
@@ -243,12 +246,14 @@ export async function selectTodaySet(params: {
     .map((row) => row.bankItemId)
     .filter((id): id is string => Boolean(id));
   const random = todaySetRandom([params.userId, params.fieldId, utcDateKey(now)]);
-  const reviewTaken = Math.min(size, new Set([...reviewIncorrectIds, ...spacedReviewIds]).size);
+  const reviewAvailable = new Set(
+    [...reviewIncorrectIds, ...spacedReviewIds].map((id) => id.trim()).filter(Boolean)
+  ).size;
   const candidates = await loadUnseenCandidates({
     fieldId: params.fieldId,
     fieldIds,
     excluded: [...seenIds, ...reviewIncorrectIds, ...spacedReviewIds],
-    needed: Math.max(0, size - Math.min(size, reviewTaken)),
+    needed: todayUnseenNeeded(size, reviewAvailable),
     random,
   });
   const composition = composeTodaySet({

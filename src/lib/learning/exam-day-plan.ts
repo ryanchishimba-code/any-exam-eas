@@ -498,7 +498,7 @@ function pacingLine(examName: string, testDate: string | null, days: number | nu
 
 function planRules(): string[] {
   return [
-    `Today's set is the next step. The extra links are ${TODAY_QBANK_COUNT} questions, questions you missed, one topic guide, and ${TODAY_DRUG_COUNT} drugs. A topic you haven't practiced yet comes first. Eight or more questions to review, or a shorter list that is still the larger need, puts review first. A tie rotates by UTC day. In the last 14 days, a practice exam is added and that day's plan follows it.`,
+    `Today's set is the next step. You'll always see some new questions in it, even when you have a lot to review. The extra links are ${TODAY_QBANK_COUNT} questions, questions you missed, one topic guide, and ${TODAY_DRUG_COUNT} drugs. A topic you haven't practiced yet comes first. Eight or more questions to review, or a shorter list that is still the larger need, puts review first. A tie rotates by UTC day. In the last 14 days, a practice exam is added and that day's plan follows it.`,
     `The question link is ${TODAY_QBANK_COUNT} questions on the topic you haven't practiced yet (how much the exam emphasizes it, times how much you still haven't done, then your accuracy once you have answers).`,
     `Questions to review use the same count as Analytics: a miss stays until you answer it correctly later or mark it mastered, up to ${TODAY_INCORRECT_CAP} here. Zero means there is nothing to review.`,
     "The guide link is one topic you haven't practiced yet, or the same topic as the question set. Every board uses the same topic links.",

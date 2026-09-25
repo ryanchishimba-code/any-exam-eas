@@ -8,6 +8,8 @@ export type StashedDailySet = {
   savedAt: number;
   questions: unknown[];
   bankItemIds: string[];
+  /** Mix line from the served session. Resume shows this instead of recomputing. */
+  mixLine?: string | null;
   todaySet: {
     examSlug: string;
     target: number;
