@@ -113,6 +113,28 @@ describe("readiness item eligibility", () => {
     ]);
   });
 
+  it("keeps a null review flag, and the query does not drop those rows", () => {
+    expect(readinessItemHasOpenQaFlag(mcq({ reviewFlag: null }))).toBe(false);
+    expect(readinessItemIsEligible(mcq({ reviewFlag: null, reviewStatus: null }))).toBe(true);
+    const where = readinessEligibilityWhere();
+    expect(JSON.stringify(where)).not.toContain('{"NOT":{"reviewFlag":true}}');
+    expect(where).toMatchObject({
+      AND: expect.arrayContaining([
+        { OR: [{ reviewFlag: null }, { reviewFlag: false }] },
+        {
+          OR: [
+            { reviewStatus: null },
+            {
+              AND: expect.arrayContaining([
+                { NOT: { reviewStatus: { in: ["flagged", "rejected", "pending"] } } },
+              ]),
+            },
+          ],
+        },
+      ]),
+    });
+  });
+
   it("can require an approved review without a second call-site rule", () => {
     const policy = { requireApprovedReview: true };
     expect(readinessItemIsEligible(mcq(), policy)).toBe(false);

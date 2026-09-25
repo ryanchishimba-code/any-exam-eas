@@ -219,21 +219,34 @@ export function readinessItemIsEligible(
   return true;
 }
 
-/** Coarse database prefilter. The function above is the real rule. */
+/**
+ * Coarse database prefilter. The function above is the real rule.
+ *
+ * Nullable columns must keep NULL. In SQL, `NOT (review_flag = true)` and
+ * `NOT (review_status IN (...))` are unknown when the column is null, so those
+ * rows disappear. Almost every published item has a null review flag, meaning
+ * "not flagged". Treating null as flagged left one NCLEX area with a few
+ * hundred rows and every other area empty, so a check could not reach 8 items.
+ */
 export function readinessEligibilityWhere(
   policy: ReadinessItemPolicy = READINESS_ITEM_POLICY
 ): Prisma.QuestionBankItemWhereInput {
   const and: Prisma.QuestionBankItemWhereInput[] = [
     { active: true },
     { qaPassed: true },
-    { NOT: { reviewFlag: true } },
+    { OR: [{ reviewFlag: null }, { reviewFlag: false }] },
     {
-      NOT: {
-        reviewStatus: { in: ["flagged", "rejected", "pending"] },
-      },
+      OR: [
+        { reviewStatus: null },
+        {
+          AND: [
+            { NOT: { reviewStatus: { in: ["flagged", "rejected", "pending"] } } },
+            { NOT: { reviewStatus: { contains: "retire", mode: "insensitive" } } },
+            { NOT: { reviewStatus: { contains: "quarantine", mode: "insensitive" } } },
+          ],
+        },
+      ],
     },
-    { NOT: { reviewStatus: { contains: "retire", mode: "insensitive" } } },
-    { NOT: { reviewStatus: { contains: "quarantine", mode: "insensitive" } } },
     { NOT: { itemType: { in: [...READINESS_EXCLUDED_ITEM_TYPES] } } },
   ];
   if (policy.requireApprovedReview) and.push({ reviewStatus: "approved" });

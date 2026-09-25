@@ -206,7 +206,7 @@ export async function startReadinessCheck(params: {
   });
   if (assembled.length < READINESS_MIN_CHECK_ITEMS) {
     throw new ReadinessCheckError(
-      "Not enough published questions without an open quality flag to build a readiness check for this board yet.",
+      `Not enough clean standard questions to build a ${READINESS_CHECK_LENGTH}-question check for this board yet. Flagged, retired, and non-multiple-choice items are left out.`,
       "thin_bank"
     );
   }

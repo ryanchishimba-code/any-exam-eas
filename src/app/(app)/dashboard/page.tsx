@@ -176,6 +176,7 @@ async function DashboardContent({
       userName={userName}
       testDate={testDate}
       hasPremiumAccess={access.hasPremiumAccess}
+      hasStudyAccess={access.hasStudyAccess}
       upgrade={usage ? resolveDashboardUpgradeContext(access, usage) : null}
       practiceFieldId={fieldId}
       masteryRollup={mastery?.rollup ?? null}

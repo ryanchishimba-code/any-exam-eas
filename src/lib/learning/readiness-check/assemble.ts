@@ -1,4 +1,5 @@
 import { getExamBlueprint } from "@/lib/engine/blueprints";
+import { ineligibleServedIds } from "@/lib/exam-prep/student-eligibility";
 import { filterBankItemsForServe } from "@/lib/exam-prep/prepare-bank-session";
 import {
   readinessEligibilityWhere,
@@ -80,8 +81,9 @@ async function fillArea(params: {
 /**
  * Draw a fixed check from published bank items, spread across the board's blueprint.
  * Eligibility is `readinessItemIsEligible` only: standard single-answer MCQs that
- * pass the QA gate. A short area stays short. The second pass may repeat a recent
- * clean item. It does not relax the rule.
+ * pass the QA gate and `assessStudentEligibility`. The sample also drops ids from
+ * `ineligibleServedIds` (`STUDENT_ELIGIBLE_SQL`). A short area stays short. The
+ * second pass may repeat a recent clean item. It does not relax the rule.
  */
 export async function assembleReadinessItems(params: {
   fieldId: string;
@@ -90,7 +92,8 @@ export async function assembleReadinessItems(params: {
   const blueprint = getExamBlueprint(params.fieldId);
   if (!blueprint) return [];
 
-  const excludeIds = params.excludeIds ?? [];
+  const blocked = await ineligibleServedIds(params.fieldId);
+  const excludeIds = [...(params.excludeIds ?? []), ...blocked];
   const used = new Set<string>();
   const picked: AssembledReadinessItem[] = [];
 
@@ -113,7 +116,9 @@ export async function assembleReadinessItems(params: {
         areaLabel: area.label,
         need: short,
         used,
-        excludeIds: [],
+        // Repeat a recent clean item if the area is short. Do not bring back
+        // a row STUDENT_ELIGIBLE_SQL already suppressed.
+        excludeIds: blocked,
       });
       picked.push(...relaxed);
     }
