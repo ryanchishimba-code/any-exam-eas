@@ -340,10 +340,13 @@ function placeCard(holes: TourHole[]): CSSProperties | undefined {
   const width = Math.min(360, window.innerWidth - 32);
   const estimated = 248;
   const margin = 16;
-  const left = Math.min(Math.max(margin, primary.x), window.innerWidth - width - margin);
+  const maxLeft = Math.max(margin, window.innerWidth - width - margin);
+  const left = Math.min(Math.max(margin, primary.x), maxLeft);
   let top = primary.y + primary.height + 14;
   if (top + estimated > window.innerHeight - margin) {
-    top = Math.max(margin, primary.y - estimated - 14);
+    top = primary.y - estimated - 14;
   }
+  const maxTop = Math.max(margin, window.innerHeight - estimated - margin);
+  top = Math.min(Math.max(margin, top), maxTop);
   return { top, left, width };
 }

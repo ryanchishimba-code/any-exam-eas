@@ -61,8 +61,10 @@ export function spotlightAnchors(step: TourStepDef, viewport: TourViewport): str
 }
 
 /**
- * Drop steps whose target is not on screen. Study guide is the usual skip:
- * boards without a book, and phones when the guide link is not in view.
+ * Drop steps whose target is not shown. Study guide is the usual skip:
+ * boards without a book, and phones when the guide link is not rendered
+ * (it lives in the closed sidebar). A target that is only below the fold
+ * still counts — the tour scrolls it into view.
  */
 export function visibleTourSteps(
   steps: TourStepDef[],
