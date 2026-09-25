@@ -31,7 +31,7 @@ export default async function SelectUsmleStepPage() {
   const savedLevel = meta.usmleFieldId
     ? usmleFieldIdToStepLevel(meta.usmleFieldId)
     : null;
-  const initialLevel: UsmleStepLevel = savedLevel ?? "step2";
+  const initialLevel: UsmleStepLevel = savedLevel ?? "step1";
 
   return (
     <div className="relative min-h-[calc(100vh-var(--page-top))] overflow-hidden bg-[var(--color-bg)]">

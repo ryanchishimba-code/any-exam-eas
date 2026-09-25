@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
+import { usePrefetchHrefs } from "@/lib/navigation/use-prefetch-hrefs";
 import { useSession } from "next-auth/react";
 import { LogOut, Menu, Settings, User } from "lucide-react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
@@ -18,7 +19,7 @@ import { cn } from "@/lib/utils";
 
 function navLinkClass(active: boolean) {
   return cn(
-    "relative text-xs font-semibold tracking-tight transition-colors",
+    "relative text-[13px] font-semibold tracking-tight transition-colors",
     active
       ? "text-[var(--color-ink)] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-[var(--study-accent)]"
       : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
@@ -50,6 +51,8 @@ export function AppTopNav({ onMenuClick }: Props) {
     ],
     [examSlug]
   );
+
+  usePrefetchHrefs(navLinks.map((link) => link.href));
 
   function isActive(href: string) {
     const path = href.split("?")[0]!;
@@ -85,6 +88,7 @@ export function AppTopNav({ onMenuClick }: Props) {
               <Link
                 key={link.label}
                 href={link.href}
+                prefetch
                 className={cn(navLinkClass(isActive(link.href)), "whitespace-nowrap")}
               >
                 {link.label}

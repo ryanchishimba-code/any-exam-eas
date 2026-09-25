@@ -74,6 +74,7 @@ import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { cn } from "@/lib/utils";
 import { parsePracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links";
+import { canonicalizeQuestionBankQuery } from "@/lib/study/question-bank-filters";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import {
   availableQuestionCount,
@@ -324,8 +325,7 @@ export function StudyBankPractice({
   const { examSlug: clientExamSlug, loading: prefLoading, setExamSlug, refresh: refreshExamPref } =
     useAppPreferences();
   const modeParam = searchParams.get("mode");
-  const fieldParam =
-    searchParams.get("field") ?? readBrowserSearchParam("field");
+  const fieldParam = searchParams.get("field");
   const onQuestionBank = pathname === ROUTES.questionBank;
   const practiceBase = ROUTES.questionBank;
   const effectiveExamSlug = preferredExamSlug ?? clientExamSlug;
@@ -360,11 +360,7 @@ export function StudyBankPractice({
   const [mpjeVariant, setMpjeVariant] = useState<MpjeVariant>("state");
   const [mpjeState, setMpjeState] = useState("");
   const [taskCategory, setTaskCategory] = useState<PanceTaskAreaId | null>(() =>
-    parsePanceTaskCategoryParam(
-      typeof window !== "undefined"
-        ? new URLSearchParams(window.location.search).get("taskCategory")
-        : null
-    )
+    parsePanceTaskCategoryParam(searchParams.get("taskCategory"))
   );
   const [loading, setLoading] = useState(false);
   const [checkingRemediation, setCheckingRemediation] = useState(false);
@@ -576,9 +572,10 @@ export function StudyBankPractice({
 
       if (paramMeta && !fieldMatchesExamSlug(paramMeta.id, effectiveExamSlug)) {
         setField(expectedMeta.label);
-        const qs = practiceUrlSearchParams(searchParams);
-        qs.set("field", expectedId);
-        if (onQuestionBank && !qs.has("mode")) qs.set("mode", "bank");
+        const qs = canonicalizeQuestionBankQuery(
+          expectedId,
+          practiceUrlSearchParams(searchParams)
+        );
         router.replace(`${practiceBase}?${qs.toString()}`, { scroll: false });
         return;
       }
@@ -595,9 +592,10 @@ export function StudyBankPractice({
 
       const activeField = fieldParam ?? readBrowserSearchParam("field");
       if (!activeField || activeField !== expectedId) {
-        const qs = practiceUrlSearchParams(searchParams);
-        qs.set("field", expectedId);
-        if (onQuestionBank && !qs.has("mode")) qs.set("mode", "bank");
+        const qs = canonicalizeQuestionBankQuery(
+          expectedId,
+          practiceUrlSearchParams(searchParams)
+        );
         router.replace(`${practiceBase}?${qs.toString()}`, { scroll: false });
       }
       return;

@@ -17,11 +17,12 @@ import {
   Stethoscope,
 } from "lucide-react";
 import { ExamCard } from "@/components/edtech/ExamCard";
+import { UsmleStepSheet } from "@/components/edtech/UsmleStepSheet";
 import { StatusMessage } from "@/components/ui/StatusMessage";
-import { persistExamPreference } from "@/lib/edtech/actions";
+import { persistExamPreference, persistUsmleStepPreference } from "@/lib/edtech/actions";
 import { fireExamSelectionConfetti } from "@/lib/edtech/confetti";
-import { navigateHard } from "@/lib/client/navigate-hard";
 import { EXAM_SLUGS, EXAM_CATALOG } from "@/lib/edtech/exams";
+import type { UsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -75,10 +76,15 @@ export function ExamSelectionScreen({
   const [selected, setSelected] = useState<ExamSlug | null>(null);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [usmleSheetOpen, setUsmleSheetOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const persistGenerationRef = useRef(0);
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    router.prefetch(ROUTES.dashboard);
+  }, [router]);
 
   useEffect(() => {
     const handle = window.setTimeout(() => setDebouncedQuery(searchQuery.trim().toLowerCase()), 250);
@@ -94,18 +100,49 @@ export function ExamSelectionScreen({
     });
   }, [debouncedQuery]);
 
+  function goToDashboard() {
+    router.push(ROUTES.dashboard);
+    router.refresh();
+  }
+
+  function confirmUsmleStep(fieldId: UsmleFieldId) {
+    setError(null);
+    const previous = currentExam;
+    setExamSlug("usmle");
+    const generation = ++persistGenerationRef.current;
+    startTransition(async () => {
+      const result = await persistUsmleStepPreference(fieldId);
+      if (generation !== persistGenerationRef.current) return;
+      if (!result.ok) {
+        setError(result.error);
+        setExamSlug(previous);
+        setSelected(null);
+        return;
+      }
+
+      prepareClientForExamSwitch(queryClient, "usmle");
+      setUsmleSheetOpen(false);
+      try {
+        if (!switchMode) await fireExamSelectionConfetti();
+      } catch {
+        /* confetti is decorative */
+      }
+      goToDashboard();
+    });
+  }
+
   function handleSelect(slug: ExamSlug) {
     setError(null);
 
-    // USMLE fans out into Step 1 / Step 2 CK / Step 3 — let the learner pick a
-    // step (with live per-step counts) before we lock in their bank.
+    // Step choice stays on this screen. Step 1 is preselected in the sheet.
     if (slug === "usmle") {
       setSelected(slug);
-      router.push(ROUTES.selectExamUsmle);
+      setUsmleSheetOpen(true);
       return;
     }
 
     setSelected(slug);
+    setExamSlug(slug);
     const generation = ++persistGenerationRef.current;
     startTransition(async () => {
       const result = await persistExamPreference(slug);
@@ -113,37 +150,36 @@ export function ExamSelectionScreen({
       if (!result.ok) {
         setError(result.error);
         setSelected(null);
+        setExamSlug(currentExam);
         return;
       }
 
       prepareClientForExamSwitch(queryClient, slug);
-      setExamSlug(slug);
+
+      const destination = switchMode
+        ? resolvePathAfterExamSwitch(
+            pathname,
+            new URLSearchParams(searchParams.toString()),
+            slug
+          )
+        : ROUTES.dashboard;
 
       try {
         if (!switchMode) {
           await fireExamSelectionConfetti();
+          setSuccess(true);
+          window.setTimeout(() => {
+            router.push(destination);
+            router.refresh();
+          }, 700);
+          return;
         }
-        setSuccess(true);
-        const destination = switchMode
-          ? resolvePathAfterExamSwitch(
-              pathname,
-              new URLSearchParams(searchParams.toString()),
-              slug
-            )
-          : ROUTES.dashboard;
-        window.setTimeout(() => {
-          navigateHard(destination);
-        }, switchMode ? 400 : 900);
+        router.push(destination);
+        router.refresh();
       } catch {
         setError("Saved your exam, but navigation failed. Opening dashboard…");
-        const fallback = switchMode
-          ? resolvePathAfterExamSwitch(
-              pathname,
-              new URLSearchParams(searchParams.toString()),
-              slug
-            )
-          : ROUTES.dashboard;
-        navigateHard(fallback);
+        router.push(destination);
+        router.refresh();
       }
     });
   }
@@ -176,6 +212,18 @@ export function ExamSelectionScreen({
           </motion.div>
         ) : null}
       </AnimatePresence>
+
+      {usmleSheetOpen ? (
+        <UsmleStepSheet
+          pending={pending}
+          onClose={() => {
+            if (pending) return;
+            setUsmleSheetOpen(false);
+            setSelected(null);
+          }}
+          onConfirm={confirmUsmleStep}
+        />
+      ) : null}
 
       <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-[var(--page-top)] sm:px-8 sm:pb-28">
         {!switchMode ? (

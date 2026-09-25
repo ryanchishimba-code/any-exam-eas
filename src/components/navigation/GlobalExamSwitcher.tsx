@@ -19,8 +19,8 @@ type Props = {
 function GlobalExamSwitcherInner({ variant = "nav", onNavigate }: Props) {
   const pathname = usePathname();
   const { examSlug, loading, refresh } = useAppPreferences();
-  // A study-guide URL names its board. Show that board even while the saved
-  // preference (often NCLEX) is still loading or points at a different exam.
+  // Saved primary exam only. A study-guide path must not relabel this chip
+  // while Bank / Exam links still point at the saved board.
   const displayExam = headerBoardExamSlug(pathname, examSlug);
 
   if (loading && !displayExam) {

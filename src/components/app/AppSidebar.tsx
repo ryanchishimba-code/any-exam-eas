@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
+import { usePrefetchHrefs } from "@/lib/navigation/use-prefetch-hrefs";
 import {
   BarChart3,
   Bone,
@@ -191,6 +192,7 @@ function SidebarNavLink({
   return (
     <Link
       href={item.href}
+      prefetch
       onClick={onNavigate}
       aria-current={active ? "page" : undefined}
       data-active={active ? "true" : "false"}
@@ -250,6 +252,8 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
       })).filter((section) => section.items.length > 0),
     [clinical, examSlug]
   );
+
+  usePrefetchHrefs(sections.flatMap((section) => section.items.map((item) => item.href)));
 
   return (
     <aside className={cn(embedded ? "block w-full" : "w-60 shrink-0")}>

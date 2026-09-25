@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useReducedMotion } from "framer-motion";
 import { ArrowRight, Loader2, RefreshCw } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
@@ -16,13 +17,14 @@ import type {
   UsmleExamOptionsPayload,
 } from "@/lib/exam-prep/usmle/exam-options";
 import { persistUsmleStepPreference } from "@/lib/edtech/actions";
-import { navigateHard } from "@/lib/client/navigate-hard";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 type Props = {
   /** Server-rendered options with counts — instant first paint, no flash. */
   initialPayload: UsmleExamOptionsPayload;
-  /** Which option to center on first paint (defaults to Step 2 CK). */
+  /** Which option to center on first paint (defaults to Step 1). */
   initialLevel?: UsmleExamOption["level"];
 };
 
@@ -37,9 +39,11 @@ function formatCount(n: number): string {
   return n > 0 ? `${n.toLocaleString("en-US")} questions` : "Bank loading…";
 }
 
-export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Props) {
+export function ExamWheelPicker({ initialPayload, initialLevel = "step1" }: Props) {
   const reduceMotion = useReducedMotion();
   const queryClient = useQueryClient();
+  const router = useRouter();
+  const { setExamSlug } = useAppPreferences();
 
   const [payload, setPayload] = useState<UsmleExamOptionsPayload>(initialPayload);
   const [refreshing, setRefreshing] = useState(false);
@@ -134,9 +138,11 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
       setPending(false);
       return;
     }
+    setExamSlug("usmle");
     prepareClientForExamSwitch(queryClient, "usmle");
-    navigateHard(selected.practiceHref);
-  }, [selected]);
+    router.push(ROUTES.dashboard);
+    router.refresh();
+  }, [queryClient, router, selected, setExamSlug]);
 
   const onKeyDown = useMemo(
     () =>
@@ -335,7 +341,7 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
             </>
           ) : (
             <>
-              Start {selected?.examTypeLabel} practice
+              Continue with {selected?.examTypeLabel}
               <ArrowRight className="h-4 w-4" aria-hidden />
             </>
           )}
@@ -347,7 +353,7 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
           </p>
         ) : (
           <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
-            Scroll or use ↑ ↓ to choose · Enter to start
+            Scroll or use ↑ ↓ to choose · Enter to open your Study Hub
           </p>
         )}
       </div>

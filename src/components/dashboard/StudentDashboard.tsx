@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import { StudentDashboardCharts } from "@/components/dashboard/StudentDashboardChartsLazy";
+import { HydrationSafeDate } from "@/components/format/HydrationSafeDate";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
@@ -172,10 +173,7 @@ export function StudentDashboard() {
                         <> · {test.correct}/{test.total} correct</>
                       )}
                       {" · "}
-                      {new Date(test.completedAt).toLocaleDateString(undefined, {
-                        month: "short",
-                        day: "numeric",
-                      })}
+                      <HydrationSafeDate iso={test.completedAt} />
                     </p>
                   </div>
                   <span

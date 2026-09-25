@@ -5,6 +5,7 @@ import { ChevronRight, Clock } from "lucide-react";
 import { recentTestHref } from "@/lib/edtech/recent-test-links";
 import { studentFacingSessionTitle } from "@/lib/learning/concept-labels";
 import { getFieldMeta } from "@/lib/fields";
+import { HydrationSafeDate } from "@/components/format/HydrationSafeDate";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { RecentTestRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
@@ -25,10 +26,7 @@ export function DashboardRecentActivity({
   const list = (
     <div className={embedded ? "divide-y divide-[var(--color-border)]/60" : dbUi.listSurface}>
       {items.map((test) => {
-        const when = new Date(test.completedAt).toLocaleDateString(undefined, {
-          month: "short",
-          day: "numeric",
-        });
+        const when = <HydrationSafeDate iso={test.completedAt} />;
         const fieldLabel = getFieldMeta(test.field)?.label ?? test.field;
         const title = studentFacingSessionTitle(test.title, {
           fieldLabel,

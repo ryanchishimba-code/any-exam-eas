@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import {
@@ -10,7 +11,6 @@ import {
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { persistExamPreference } from "@/lib/edtech/actions";
 import { prepareClientForExamSwitch } from "@/lib/client/exam-switch-reset";
-import { navigateHard } from "@/lib/client/navigate-hard";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
@@ -35,6 +35,7 @@ type Props = {
  */
 export function LibraryExamWheel({ currentExam }: Props) {
   const reduceMotion = useReducedMotion();
+  const router = useRouter();
   const queryClient = useQueryClient();
   const { setExamSlug } = useAppPreferences();
 
@@ -73,24 +74,29 @@ export function LibraryExamWheel({ currentExam }: Props) {
 
   const open = useCallback(async () => {
     if (!selected) return;
+    const href = `${ROUTES.library}?exam=${selected}`;
     if (selected === currentExam) {
-      navigateHard(`${ROUTES.library}?exam=${selected}`);
+      router.push(href);
+      router.refresh();
       return;
     }
     setPending(true);
+    setExamSlug(selected);
     try {
       const result = await persistExamPreference(selected);
       if (!result.ok) {
+        setExamSlug(currentExam);
         setPending(false);
         return;
       }
       prepareClientForExamSwitch(queryClient, selected);
-      setExamSlug(selected);
-      navigateHard(`${ROUTES.library}?exam=${selected}`);
+      router.push(href);
+      router.refresh();
     } catch {
+      setExamSlug(currentExam);
       setPending(false);
     }
-  }, [selected, currentExam, queryClient, setExamSlug]);
+  }, [selected, currentExam, queryClient, router, setExamSlug]);
 
   const onKeyDown = useMemo(
     () =>

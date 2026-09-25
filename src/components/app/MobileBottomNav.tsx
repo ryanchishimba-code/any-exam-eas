@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
+import { usePrefetchHrefs } from "@/lib/navigation/use-prefetch-hrefs";
 import {
   BarChart3,
   BookOpen,
@@ -57,6 +58,8 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
     ];
   }, [examSlug]);
 
+  usePrefetchHrefs(items.map((item) => item.href));
+
   return (
     <nav
       className={cn(
@@ -90,7 +93,7 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
                   aria-label={`${ariaLabel ?? label} — subscribe to continue studying`}
                   title="Subscribe to continue studying"
                   className={cn(
-                    "relative flex min-h-[3rem] cursor-not-allowed flex-col items-center justify-center gap-0.5 px-2 py-2 text-[10px] font-semibold opacity-40",
+                    "relative flex min-h-[3.25rem] cursor-not-allowed flex-col items-center justify-center gap-0.5 px-2 py-2 text-[11px] font-semibold tracking-tight opacity-40",
                     "text-[var(--color-ink-muted)]"
                   )}
                 >
@@ -108,10 +111,11 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
             <li key={id} className="flex-1">
               <Link
                 href={href}
+                prefetch
                 aria-label={ariaLabel}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative flex min-h-[3rem] flex-col items-center justify-center gap-0.5 px-2 py-2 text-[10px] font-semibold",
+                  "relative flex min-h-[3.25rem] flex-col items-center justify-center gap-0.5 px-2 py-2 text-[11px] font-semibold tracking-tight",
                   STUDY_NAV_COLOR,
                   active ? "text-[var(--study-accent)]" : "text-[var(--color-ink-muted)]"
                 )}

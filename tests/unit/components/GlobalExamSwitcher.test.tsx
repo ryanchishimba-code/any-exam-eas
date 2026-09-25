@@ -1,6 +1,6 @@
 /**
- * Header board chip — study-guide routes must label the book on screen,
- * not the saved preference.
+ * Header board chip — the saved primary exam, including on another board's book.
+ * A cross-board study guide explains itself with a banner, not by relabeling nav.
  *
  *   npx vitest run --project component tests/unit/components/GlobalExamSwitcher.test.tsx
  */
@@ -16,6 +16,12 @@ const mockPreferences = vi.fn();
 vi.mock("next/navigation", () => ({
   usePathname: () => mockPathname(),
   useSearchParams: () => new URLSearchParams(),
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    refresh: vi.fn(),
+    prefetch: vi.fn(),
+  }),
 }));
 
 vi.mock("@/lib/client/use-app-preferences", () => ({
@@ -65,48 +71,49 @@ beforeEach(() => {
 });
 
 describe("GlobalExamSwitcher on study-guide routes", () => {
-  it("labels the NAPLEX book when the saved board is NCLEX", () => {
+  it("keeps the saved NCLEX board on a NAPLEX study guide", () => {
     mockPathname.mockReturnValue("/naplex/study-guide/calculations");
     const { setExamSlug } = signedInWith("nclex");
 
     renderChip();
 
-    const chip = screen.getByRole("link", { name: /current exam: naplex/i });
-    expect(chip).toHaveTextContent("NAPLEX");
+    const chip = screen.getByRole("link", { name: /current exam: nclex-rn/i });
+    expect(chip).toHaveTextContent("NCLEX");
+    expect(chip).not.toHaveTextContent("NAPLEX");
     expect(chip).toHaveAttribute("href", "/select-exam?switch=1");
     expect(setExamSlug).not.toHaveBeenCalled();
   });
 
-  it("labels the AANP FNP book when the saved board is NCLEX", () => {
+  it("keeps the saved NCLEX board on an AANP FNP study guide", () => {
     mockPathname.mockReturnValue("/aanp-fnp/study-guide");
     signedInWith("nclex");
 
     renderChip();
 
-    const chip = screen.getByRole("link", { name: /current exam: aanp fnp-c/i });
-    expect(chip).toHaveTextContent("AANP FNP");
+    const chip = screen.getByRole("link", { name: /current exam: nclex-rn/i });
+    expect(chip).toHaveTextContent("NCLEX");
     expect(chip).toHaveAttribute("href", "/select-exam?switch=1");
   });
 
-  it("labels NCLEX on the NCLEX book", () => {
+  it("keeps the saved NAPLEX board on the NCLEX book", () => {
     mockPathname.mockReturnValue("/nclex/study-guide/cardiac");
     signedInWith("naplex");
 
     renderChip();
 
-    expect(screen.getByRole("link", { name: /current exam: nclex-rn/i })).toHaveTextContent(
-      "NCLEX"
+    expect(screen.getByRole("link", { name: /current exam: naplex/i })).toHaveTextContent(
+      "NAPLEX"
     );
   });
 
-  it("labels the book in the mobile switcher as well", () => {
+  it("keeps the saved board in the mobile switcher as well", () => {
     mockPathname.mockReturnValue("/aanp-fnp/study-guide/cardiology");
     signedInWith("nclex");
 
     renderChip("mobile");
 
-    expect(screen.getByRole("link", { name: /current exam: aanp fnp-c/i })).toHaveTextContent(
-      "AANP FNP-C"
+    expect(screen.getByRole("link", { name: /current exam: nclex-rn/i })).toHaveTextContent(
+      "NCLEX-RN"
     );
   });
 

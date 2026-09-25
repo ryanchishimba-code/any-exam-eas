@@ -60,20 +60,17 @@ describe("app-shell routes", () => {
 });
 
 describe("header board chip", () => {
-  it("follows the study-guide path when the saved board is NCLEX", () => {
-    expect(headerBoardExamSlug("/naplex/study-guide", "nclex")).toBe("naplex");
-    expect(headerBoardExamSlug("/naplex/study-guide/calculations", "nclex")).toBe("naplex");
-    expect(headerBoardExamSlug("/aanp-fnp/study-guide", "nclex")).toBe("aanp-fnp");
-    expect(headerBoardExamSlug("/aanp-fnp/study-guide/cardiology", "nclex")).toBe("aanp-fnp");
+  it("keeps the saved board on another exam's study guide", () => {
+    // The book in the URL is not the primary exam. Nav must not split.
+    expect(headerBoardExamSlug("/naplex/study-guide", "nclex")).toBe("nclex");
+    expect(headerBoardExamSlug("/naplex/study-guide/calculations", "nclex")).toBe("nclex");
+    expect(headerBoardExamSlug("/aanp-fnp/study-guide", "nclex")).toBe("nclex");
+    expect(headerBoardExamSlug("/aanp-fnp/study-guide/cardiology", "naplex")).toBe("naplex");
   });
 
-  it("keeps NCLEX on the NCLEX book, including when the saved board differs", () => {
-    expect(headerBoardExamSlug("/nclex/study-guide", "naplex")).toBe("nclex");
-    expect(headerBoardExamSlug("/nclex/study-guide/cardiac", "nclex")).toBe("nclex");
-  });
-
-  it("shows the book even before a preference has loaded", () => {
-    expect(headerBoardExamSlug("/aanp-fnp/study-guide/exam-strategy", null)).toBe("aanp-fnp");
+  it("does not invent a board from the path before a preference has loaded", () => {
+    expect(headerBoardExamSlug("/aanp-fnp/study-guide/exam-strategy", null)).toBeNull();
+    expect(headerBoardExamSlug("/nclex/study-guide/cardiac", null)).toBeNull();
   });
 
   it("keeps the saved board on dashboard, bank, and full exam", () => {
@@ -82,7 +79,7 @@ describe("header board chip", () => {
     expect(headerBoardExamSlug("/full-exam/aanp-fnp", "nclex")).toBe("nclex");
     expect(headerBoardExamSlug("/analytics", "aanp-fnp")).toBe("aanp-fnp");
     expect(headerBoardExamSlug("/dashboard", null)).toBeNull();
-    // No book for this path, so the chip must not pretend the URL is a board.
+    expect(headerBoardExamSlug("/nclex/study-guide", "naplex")).toBe("naplex");
     expect(headerBoardExamSlug("/usmle/study-guide", "nclex")).toBe("nclex");
   });
 });
