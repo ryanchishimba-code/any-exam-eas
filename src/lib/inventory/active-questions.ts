@@ -14,6 +14,7 @@
 import type { ExamRouteSlug } from "@/lib/routes";
 import { withDbRetry, sql } from "@/lib/db";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
+import { blueprintCategoryIdForQuestion } from "@/lib/inventory/blueprint-domain-pool";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 
 export const ACTIVE_QUESTION_DEFINITION =
@@ -199,13 +200,7 @@ function categoryIdForRow(
   subjectId: string,
   clientNeeds: string | null
 ): string | null {
-  const explicit = clientNeeds?.trim();
-  if (explicit) return explicit;
-  const categories = getExamBlueprint(fieldId)?.categories ?? [];
-  const match = categories.find(
-    (category) => category.id === subjectId || category.subjectIds?.includes(subjectId)
-  );
-  return match?.id ?? null;
+  return blueprintCategoryIdForQuestion(fieldId, { subjectId, clientNeeds });
 }
 
 function emptyField(fieldId: string): FieldActiveInventory {

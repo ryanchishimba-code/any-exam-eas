@@ -4,10 +4,16 @@ import { getFieldSubject } from "@/lib/field-subjects";
 import { withDbRetry } from "@/lib/db";
 import {
   countActiveQuestions,
+  countBlueprintAreaQuestions,
   sampleActiveItemsByFormat,
   sampleQuestionBankItems,
+  sampleQuestionBankItemsForBlueprintArea,
   sampleQuestionBankItemsForField,
 } from "@/lib/question-bank-db";
+import {
+  blueprintAreaLabel,
+  isBlueprintAreaId,
+} from "@/lib/inventory/blueprint-domain-pool";
 import {
   parseDeliberatePracticeFormat,
   retainItemsForPracticeFormat,
@@ -118,6 +124,17 @@ export async function GET(req: Request) {
   if (!access.ok) return access.response;
   if (!usageCheck.ok) return usageCheck.response;
   const fieldId = access.fieldId;
+  const blueprintAreaParam = searchParams.get("blueprintArea")?.trim() || "";
+  const blueprintAreaId =
+    blueprintAreaParam && isBlueprintAreaId(fieldId, blueprintAreaParam)
+      ? blueprintAreaParam
+      : "";
+  if (blueprintAreaParam && !blueprintAreaId) {
+    return NextResponse.json(
+      { error: "Unknown blueprint area for this exam.", code: "INVALID_BLUEPRINT_AREA" },
+      { status: 400 }
+    );
+  }
 
   if (usageCheck.allowedCount < requestedSessionCount) {
     return NextResponse.json(
@@ -195,7 +212,7 @@ export async function GET(req: Request) {
 
   const { recordStudyQuestionsServed } = await import("@/lib/study/usage-limits");
 
-  if (!mixed) {
+  if (!mixed && !blueprintAreaId) {
     if (!subjectId) {
       return NextResponse.json(
         { error: "Query param subjectId is required for topic-specific practice" },
@@ -238,6 +255,18 @@ export async function GET(req: Request) {
   let preAssembledTimed = false;
 
   const sampled = await withDbRetry(async () => {
+    if (blueprintAreaId && questionBank && !timedExam && !formatBucket) {
+      return {
+        kind: "ok" as const,
+        items: await sampleQuestionBankItemsForBlueprintArea({
+          fieldId,
+          blueprintAreaId,
+          count: presetSampleCount,
+        }),
+        preAssembledTimed: false,
+      };
+    }
+
     if (formatBucket && questionBank && !timedExam) {
       return {
         kind: "ok" as const,
@@ -546,7 +575,12 @@ export async function GET(req: Request) {
     }
   }
 
-  const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;
+  const areaLabel = blueprintAreaId ? blueprintAreaLabel(fieldId, blueprintAreaId) : null;
+  const resolvedSubjectId = blueprintAreaId
+    ? blueprintAreaId
+    : mixed
+      ? MIXED_SUBJECT_ID
+      : subjectId!;
 
   if (bankPractice && items.length < limit) {
     const formatNoun =
@@ -575,9 +609,11 @@ export async function GET(req: Request) {
     );
   }
 
-  const subjectLabel = mixed
-    ? "Assorted topics"
-    : getFieldSubject(field, subjectId!)!.label;
+  const subjectLabel = areaLabel
+    ? areaLabel
+    : mixed
+      ? "Assorted topics"
+      : getFieldSubject(field, subjectId!)!.label;
 
   const raw: ExamQuestion[] = items.map((item, i) =>
     bankItemToSessionRaw(fieldId, field, item.subjectId ?? resolvedSubjectId, item, i)
@@ -672,9 +708,11 @@ export async function GET(req: Request) {
 
   const totalActive = includeMeta ? await countActiveQuestions(fieldId) : 0;
   const subjectTotal = includeMeta
-    ? mixed
-      ? totalActive
-      : await getSubjectQuestionCount(fieldId, subjectId!)
+    ? blueprintAreaId
+      ? await countBlueprintAreaQuestions(fieldId, blueprintAreaId)
+      : mixed
+        ? totalActive
+        : await getSubjectQuestionCount(fieldId, subjectId!)
     : 0;
   const lastSync = includeMeta ? await getLastQuestionBankSync() : null;
 

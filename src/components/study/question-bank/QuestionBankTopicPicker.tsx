@@ -27,6 +27,7 @@ export function QuestionBankTopicPicker({
   coverageMarks,
   coverageLoaded = false,
   countsLoading = false,
+  countQualifierBySubject,
 }: {
   subjects: SubjectOption[];
   subjectId: string;
@@ -38,6 +39,8 @@ export function QuestionBankTopicPicker({
   coverageMarks?: CoverageSubjectMark[];
   coverageLoaded?: boolean;
   countsLoading?: boolean;
+  /** Set when this topic shares a name with a larger blueprint area. */
+  countQualifierBySubject?: Record<string, string>;
 }) {
   const [query, setQuery] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -147,6 +150,9 @@ export function QuestionBankTopicPicker({
                       {typeof count === "number" ? (
                         <p className={qbUi.sectionHint}>
                           {count.toLocaleString()} {count === 1 ? "question" : "questions"}
+                          {countQualifierBySubject?.[subject.id]
+                            ? ` ${countQualifierBySubject[subject.id]}`
+                            : ""}
                         </p>
                       ) : countsLoading ? (
                         <p className={qbUi.sectionHint}>Loading count…</p>

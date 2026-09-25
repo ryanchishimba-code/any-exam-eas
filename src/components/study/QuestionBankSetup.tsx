@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import {
   type QuestionBankPace,
   type QuestionBankStyle,
@@ -33,6 +34,10 @@ import {
   type CoverageSubjectMark,
 } from "./question-bank/QuestionBankTopicPicker";
 import type { CoverageChip, CoverageHeatmap } from "@/lib/learning/coverage-heatmap";
+import {
+  blueprintAreaSelectsSingleTopic,
+  topicRowCountQualifier,
+} from "@/lib/inventory/blueprint-domain-pool";
 
 type SubjectOption = { id: string; label: string };
 
@@ -54,6 +59,9 @@ type QuestionBankSetupProps = {
   coverageChips?: CoverageChip[];
   coverageLabel?: CoverageHeatmap["domainsLabel"];
   coverageLoaded?: boolean;
+  /** Blueprint area the student is practicing. Distinct from a single topic. */
+  blueprintAreaId?: string | null;
+  onBlueprintAreaSelect?: (areaId: string) => void;
   compact?: boolean;
   countsLoading?: boolean;
   practiceFormat?: PracticeFormatMode;
@@ -92,6 +100,8 @@ export function QuestionBankSetup({
   coverageChips = [],
   coverageLabel = "Blueprint topics",
   coverageLoaded = false,
+  blueprintAreaId = null,
+  onBlueprintAreaSelect,
   compact = false,
   countsLoading = false,
   practiceFormat = "all",
@@ -102,9 +112,14 @@ export function QuestionBankSetup({
 }: QuestionBankSetupProps) {
   const formatMode = practiceFormat === "ngn" || practiceFormat === "case";
   const formatPool = practiceFormatPoolCount(practiceFormat, formats);
+  const activeArea = blueprintAreaId
+    ? coverageChips.find((chip) => chip.domainId === blueprintAreaId)
+    : undefined;
   const maxAvailable = formatMode
     ? formatPool
-    : availableQuestionCount(subjectId, subjectCounts);
+    : activeArea
+      ? activeArea.available
+      : availableQuestionCount(subjectId, subjectCounts);
   const countOptions = formatMode
     ? practiceFormatCountOptions(formatPool)
     : questionBankCountOptionsForAvailable(maxAvailable, fieldId);
@@ -124,20 +139,98 @@ export function QuestionBankSetup({
         subjectId,
       })
     : validateQuestionBankSession({
-        subjectId,
+        subjectId: activeArea?.domainId || subjectId,
         questionCount,
-        subjectCounts,
+        subjectCounts: activeArea
+          ? { [activeArea.domainId]: activeArea.available }
+          : subjectCounts,
         bankStyle,
       });
 
-  const selectedSubject = isMixedSubjectId(subjectId)
-    ? { id: MIXED_SUBJECT_ID, label: MIXED_SUBJECT_LABEL }
-    : subjects.find((s) => s.id === subjectId);
+  const selectedSubject = activeArea
+    ? { id: activeArea.domainId, label: activeArea.label }
+    : isMixedSubjectId(subjectId)
+      ? { id: MIXED_SUBJECT_ID, label: MIXED_SUBJECT_LABEL }
+      : subjects.find((s) => s.id === subjectId);
   const selectedCount = maxAvailable;
   const coverageMarks: CoverageSubjectMark[] = coverageChips.map((chip) => ({
     subjectId: chip.subjectId,
     kind: chip.kind,
   }));
+  const areaCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const chip of coverageChips) counts[chip.domainId] = chip.available;
+    return counts;
+  }, [coverageChips]);
+  const countQualifierBySubject = useMemo(() => {
+    if (!fieldId || !subjectCounts) return {};
+    const qualifiers: Record<string, string> = {};
+    for (const subject of subjects) {
+      const topicCount = subjectCounts[subject.id];
+      if (typeof topicCount !== "number") continue;
+      const qualifier = topicRowCountQualifier({
+        fieldId,
+        subjectId: subject.id,
+        topicCount,
+        areaCounts,
+      });
+      if (qualifier) qualifiers[subject.id] = qualifier;
+    }
+    return qualifiers;
+  }, [areaCounts, fieldId, subjectCounts, subjects]);
+  const areasBroaderThanTopics = coverageChips.some((chip) => {
+    if (!fieldId) {
+      const topicCount = subjectCounts?.[chip.subjectId];
+      return typeof topicCount === "number" && topicCount !== chip.available;
+    }
+    return (
+      blueprintAreaSelectsSingleTopic({
+        fieldId,
+        areaId: chip.domainId,
+        topicCounts: subjectCounts,
+        areaCount: chip.available,
+      }) == null && chip.available > 0
+    );
+  });
+  const selectedChipId = activeArea
+    ? activeArea.domainId
+    : coverageChips.find((chip) => {
+        if (!fieldId) return chip.subjectId === subjectId && chip.available === subjectCounts?.[chip.subjectId];
+        return (
+          blueprintAreaSelectsSingleTopic({
+            fieldId,
+            areaId: chip.domainId,
+            topicCounts: subjectCounts,
+            areaCount: chip.available,
+          }) === subjectId
+        );
+      })?.domainId;
+  const selectedTopicQualifier =
+    !activeArea && subjectId ? countQualifierBySubject[subjectId] : undefined;
+
+  function selectChip(areaId: string) {
+    const chip = coverageChips.find((row) => row.domainId === areaId);
+    if (!chip) return;
+    const singleTopic = fieldId
+      ? blueprintAreaSelectsSingleTopic({
+          fieldId,
+          areaId,
+          topicCounts: subjectCounts,
+          areaCount: chip.available,
+        })
+      : chip.available === subjectCounts?.[chip.subjectId]
+        ? chip.subjectId
+        : null;
+    if (singleTopic) {
+      onSubjectChange(singleTopic);
+      return;
+    }
+    if (onBlueprintAreaSelect) {
+      onBlueprintAreaSelect(areaId);
+      return;
+    }
+    onSubjectChange(chip.subjectId);
+  }
 
   return (
     <div className="space-y-8">
@@ -149,22 +242,25 @@ export function QuestionBankSetup({
           totalActive={totalActive}
           countsLoading={countsLoading}
           ngnLabel={ngnLabel}
+          lockToAll={Boolean(activeArea)}
         />
       ) : null}
 
       <QuestionBankSection
         title="Choose a topic"
         hint={
-          coverageLoaded
-            ? "Search or scroll. Untouched and low-coverage topics use the same heatmap as Today."
-            : "Search or scroll — weak topics from your dashboard are marked."
+          areasBroaderThanTopics
+            ? "Blueprint chips count every active question in that area. Each row below counts one topic."
+            : coverageLoaded
+              ? "Search or scroll. Untouched and low-coverage topics use the same heatmap as Today."
+              : "Search or scroll — weak topics from your dashboard are marked."
         }
       >
         <CoverageChips
           chips={coverageChips}
           domainsLabel={coverageLabel}
-          activeSubjectId={subjectId}
-          onSelect={onSubjectChange}
+          selectedChipId={selectedChipId}
+          onSelect={selectChip}
         />
         {!coverageLoaded && weakSubjectIds.length > 0 ? (
           <p className={cn(qbUi.surface, "px-3.5 py-2.5 text-[12px] text-[var(--color-ink-muted)]")}>
@@ -187,7 +283,11 @@ export function QuestionBankSetup({
             {typeof selectedCount === "number" && !formatMode ? (
               <span className="tabular-nums">
                 · {selectedCount.toLocaleString()}{" "}
-                {selectedCount === 1 ? "question" : "questions"}
+                {activeArea
+                  ? "in this area"
+                  : `${selectedCount === 1 ? "question" : "questions"}${
+                      selectedTopicQualifier ? " in this topic" : ""
+                    }`}
               </span>
             ) : null}
           </div>
@@ -195,13 +295,14 @@ export function QuestionBankSetup({
 
         <QuestionBankTopicPicker
           subjects={subjects}
-          subjectId={subjectId}
+          subjectId={activeArea ? "" : subjectId}
           subjectCounts={subjectCounts}
           onSubjectChange={onSubjectChange}
           weakSubjectIds={weakSubjectIds}
           coverageMarks={coverageMarks}
           coverageLoaded={coverageLoaded}
           countsLoading={countsLoading}
+          countQualifierBySubject={countQualifierBySubject}
         />
       </QuestionBankSection>
 
@@ -262,8 +363,9 @@ export function QuestionBankSetup({
                 {STYLE_OPTIONS.map((option) => {
                   const disabledMixed =
                     isMixedSubjectId(subjectId) && option.id !== "standard";
+                  const disabledArea = Boolean(activeArea) && option.id !== "standard";
                   const disabledFormat = formatMode && option.id !== "standard";
-                  const disabled = disabledMixed || disabledFormat;
+                  const disabled = disabledMixed || disabledArea || disabledFormat;
                   const active = bankStyle === option.id;
                   return (
                     <button
@@ -283,9 +385,11 @@ export function QuestionBankSetup({
                       <p className={cn(qbUi.sectionHint, "mt-0.5")}>
                         {disabledFormat
                           ? "Available on All questions"
-                          : disabledMixed
-                            ? "Pick a single topic for this mode"
-                            : option.hint}
+                          : disabledArea
+                            ? "Pick one topic for this mode"
+                            : disabledMixed
+                              ? "Pick a single topic for this mode"
+                              : option.hint}
                       </p>
                     </button>
                   );

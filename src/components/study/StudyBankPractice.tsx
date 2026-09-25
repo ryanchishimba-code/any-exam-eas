@@ -78,7 +78,14 @@ import { parsePracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-lin
 import {
   canonicalizeQuestionBankQuery,
   resolvePracticeSubjectId,
+  subjectIdBelongsToField,
+  subjectIdForPracticeUrl,
 } from "@/lib/study/question-bank-filters";
+import {
+  blueprintAreaCountFromTopics,
+  blueprintAreaLabel,
+  isBlueprintAreaId,
+} from "@/lib/inventory/blueprint-domain-pool";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import {
   availableQuestionCount,
@@ -111,10 +118,7 @@ import {
 } from "@/lib/study/practice-format";
 import { QuestionBankSessionPreview } from "./question-bank/QuestionBankSessionPreview";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
-import {
-  primaryWeakSubjectId,
-  weakSubjectIdsForField,
-} from "@/lib/study/question-bank-weak-topics";
+import { weakSubjectIdsForField } from "@/lib/study/question-bank-weak-topics";
 import { TopicPracticeReturnBanner } from "./TopicPracticeReturnBanner";
 import { QuestionSessionSkeleton } from "./QuestionSessionSkeleton";
 import { RemediationLaunchNotice } from "./RemediationLaunchNotice";
@@ -217,7 +221,8 @@ function practiceUrlSearchParams(
 function buildBankPracticeUrl(
   params: {
     fieldId: string;
-    subjectId: string;
+    subjectId?: string | null;
+    blueprintAreaId?: string | null;
     count: number;
     pace: QuestionBankPace;
     style?: QuestionBankStyle;
@@ -231,10 +236,11 @@ function buildBankPracticeUrl(
   const qs = new URLSearchParams({
     mode: "bank",
     field: params.fieldId,
-    subjectId: params.subjectId,
     count: String(params.count),
     pace: params.pace,
   });
+  if (params.subjectId) qs.set("subjectId", params.subjectId);
+  if (params.blueprintAreaId) qs.set("blueprintArea", params.blueprintAreaId);
   if (params.format && params.format !== "all") qs.set("format", params.format);
   if (params.style && params.style !== "standard") qs.set("style", params.style);
   if (params.taskCategory) qs.set("taskCategory", params.taskCategory);
@@ -343,6 +349,8 @@ export function StudyBankPractice({
 
   const [field, setField] = useState(() => initialFieldLabel(preferredExamSlug, initialFieldId));
   const [subjectId, setSubjectId] = useState("");
+  const [blueprintAreaId, setBlueprintAreaId] = useState<string | null>(null);
+  const explicitSubjectRef = useRef<string | null>(null);
   const [questionCount, setQuestionCount] = useState(25);
   const [bankPace, setBankPace] = useState<QuestionBankPace>("untimed");
   const [bankStyle, setBankStyle] = useState<QuestionBankStyle>(() => {
@@ -457,7 +465,10 @@ export function StudyBankPractice({
         ? totalQuestions
         : null;
   const activeFormats = subjectCountPayload?.formats ?? null;
-  const activeCategories = subjectCountPayload?.categories ?? [];
+  const activeCategories = useMemo(
+    () => subjectCountPayload?.categories ?? [],
+    [subjectCountPayload]
+  );
   const activeCategoryLabel = subjectCountPayload?.categoryLabel ?? null;
   const ngnLabel = ngnStyleLabel(activeCategoryLabel, fieldId);
   const activeDefinition = subjectCountPayload?.definition ?? null;
@@ -487,6 +498,23 @@ export function StudyBankPractice({
     const ids = new Set(bankSubjectIds);
     return coverage.chips.filter((chip) => ids.has(chip.subjectId));
   }, [coverage, bankSubjectIds]);
+  const blueprintAreaCount = useMemo(() => {
+    if (!blueprintAreaId) return null;
+    const chip = coverageChips.find((row) => row.domainId === blueprintAreaId);
+    if (chip) return chip.available;
+    const category = activeCategories.find((row) => row.id === blueprintAreaId);
+    if (category) return category.count;
+    if (subjectCounts) return blueprintAreaCountFromTopics(fieldId, blueprintAreaId, subjectCounts);
+    return null;
+  }, [activeCategories, blueprintAreaId, coverageChips, fieldId, subjectCounts]);
+  const sessionSubjectId = blueprintAreaId || subjectId;
+  const sessionCounts = useMemo(
+    () =>
+      blueprintAreaId && blueprintAreaCount != null
+        ? { [blueprintAreaId]: blueprintAreaCount }
+        : subjectCounts,
+    [blueprintAreaId, blueprintAreaCount, subjectCounts]
+  );
 
   const isNclex = useMemo(() => isNclexField(field), [field]);
   const isMpje = useMemo(() => isMpjeField(fieldId), [fieldId]);
@@ -677,45 +705,52 @@ export function StudyBankPractice({
     if (resolved.format) setPracticeFormat(resolved.format);
   }, [fieldId, isTimedExam, searchParams]);
 
+  const subjectParam = searchParams.get("subjectId");
+  const blueprintAreaParam = searchParams.get("blueprintArea");
+  const styleParamForSubject = searchParams.get("style");
+
   useEffect(() => {
     if (isTimedExam) return;
     const list = getSubjectsForFieldId(fieldId);
     if (!list.length) {
       setSubjectId("");
+      setBlueprintAreaId(null);
       return;
     }
 
-    const subjectParam = resolveSubjectParam(searchParams);
-    const styleParam = resolvePracticeSearchParam(searchParams, "style");
-    const persisted = readPersistedQuestionBankSetup(fieldId);
-    const coverageLead = coverageChips.find((chip) =>
-      list.some((subject) => subject.id === chip.subjectId)
-    );
-    const preferWeak =
-      styleParam === "weak_areas" ||
-      styleParam === "adaptive" ||
-      styleParam === "review_incorrect" ||
-      weakSubjectIds.length > 0;
-    // Invalid or missing subjectId stays off the URL. This choice is UI-only.
-    setSubjectId(
-      resolvePracticeSubjectId({
-        fieldId,
-        subjectIds: list.map((subject) => subject.id),
-        subjectParam,
-        styleParam,
-        persistedSubjectId: persisted?.subjectId ?? null,
-        coverageLeadSubjectId: coverageLead?.subjectId ?? null,
-        preferWeak,
-        weakSubjectId: preferWeak
-          ? primaryWeakSubjectId(
-              weakTopics,
-              fieldId,
-              list.map((subject) => subject.id)
-            )
-          : null,
-      })
-    );
-  }, [fieldId, isTimedExam, searchParams, weakTopics, weakSubjectIds.length, coverageChips]);
+    const ids = list.map((subject) => subject.id);
+    if (
+      explicitSubjectRef.current &&
+      !subjectIdBelongsToField(fieldId, explicitSubjectRef.current)
+    ) {
+      explicitSubjectRef.current = null;
+    }
+    const area =
+      blueprintAreaParam && isBlueprintAreaId(fieldId, blueprintAreaParam)
+        ? blueprintAreaParam
+        : null;
+    const subject = resolvePracticeSubjectId({
+      fieldId,
+      subjectIds: ids,
+      subjectParam,
+      styleParam: styleParamForSubject,
+      explicitSubjectId: subjectParam ? null : explicitSubjectRef.current,
+    });
+    const urlNamesTopic =
+      !!subjectParam &&
+      (subjectParam === MIXED_SUBJECT_ID ||
+        subjectParam === "mixed" ||
+        ids.includes(subjectParam));
+    // A blueprint area is an explicit pick. It does not also select the
+    // lead topic. A topic in the URL wins over the area.
+    if (area && !urlNamesTopic && !explicitSubjectRef.current) {
+      setBlueprintAreaId(area);
+      setSubjectId("");
+      return;
+    }
+    setBlueprintAreaId(null);
+    setSubjectId(subject);
+  }, [blueprintAreaParam, fieldId, isTimedExam, styleParamForSubject, subjectParam]);
 
   useEffect(() => {
     zeroPoolFallbackAppliedRef.current = false;
@@ -811,8 +846,14 @@ export function StudyBankPractice({
       if (bankStyle !== "standard") setBankStyle("standard");
       return;
     }
-    if (!subjectCounts || !subjectId) return;
-    const max = availableQuestionCount(subjectId, subjectCounts);
+    const poolSubjectId = blueprintAreaId || subjectId;
+    const poolCounts = blueprintAreaId
+      ? blueprintAreaCount == null
+        ? null
+        : { [blueprintAreaId]: blueprintAreaCount }
+      : subjectCounts;
+    if (!poolCounts || !poolSubjectId) return;
+    const max = availableQuestionCount(poolSubjectId, poolCounts);
     if (max === null || max <= 0) return;
     setQuestionCount((current) => {
       if (isRetestSessionCount(current) && max >= current) return current;
@@ -825,7 +866,7 @@ export function StudyBankPractice({
       return resolved;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subjectId, fieldId, subjectCounts, countsLoading, isTimedExam, practiceFormat, activeFormats, bankStyle, effectiveBankStyle]);
+  }, [subjectId, blueprintAreaId, blueprintAreaCount, fieldId, subjectCounts, countsLoading, isTimedExam, practiceFormat, activeFormats, bankStyle, effectiveBankStyle]);
 
   // A weak-areas link that also carries format=ngn|case would otherwise stay
   // on that format in the address bar. Clear it once a topic is known.
@@ -862,7 +903,8 @@ export function StudyBankPractice({
   function syncPracticeUrl(overrides?: {
     mpjeVariant?: MpjeVariant;
     mpjeState?: string;
-    subjectId?: string;
+    subjectId?: string | null;
+    blueprintAreaId?: string | null;
     count?: number;
     pace?: QuestionBankPace;
     style?: QuestionBankStyle;
@@ -873,7 +915,21 @@ export function StudyBankPractice({
   }) {
     const resolvedVariant = overrides?.mpjeVariant ?? mpjeVariant;
     const resolvedState = overrides?.mpjeState ?? mpjeState;
-    const resolvedSubjectId = overrides?.subjectId ?? subjectId;
+    const subjectProvided = overrides != null && "subjectId" in overrides;
+    const areaProvided = overrides != null && "blueprintAreaId" in overrides;
+    const browserArea = readBrowserSearchParam("blueprintArea");
+    const resolvedArea = areaProvided
+      ? overrides?.blueprintAreaId || null
+      : browserArea && isBlueprintAreaId(fieldId, browserArea)
+        ? browserArea
+        : blueprintAreaId;
+    const resolvedSubjectId = subjectIdForPracticeUrl({
+      fieldId,
+      overrideProvided: subjectProvided,
+      override: overrides?.subjectId,
+      browserSubjectId: readBrowserSubjectParam(),
+      blueprintAreaId: resolvedArea,
+    });
 
     if (isTimedExam) {
       router.replace(
@@ -893,13 +949,13 @@ export function StudyBankPractice({
       );
       return;
     }
-    if (!resolvedSubjectId) return;
     const resolvedTaskCategory =
       overrides?.taskCategory !== undefined ? overrides.taskCategory : taskCategory;
     const href = buildBankPracticeUrl(
       {
         fieldId,
         subjectId: resolvedSubjectId,
+        blueprintAreaId: resolvedArea,
         count: overrides?.count ?? questionCount,
         pace: overrides?.pace ?? bankPace,
         style: stylePreservedForPracticeUrl({
@@ -982,23 +1038,27 @@ export function StudyBankPractice({
     if (isMpje || !isTimedExam) syncPracticeUrl({ historyOnly: true });
 
     const deliberateFormat = deliberateFormatForLaunch(activeStyle, practiceFormat);
+    // A blueprint-area chip is its own pool. Format and style filters would
+    // serve a different set than the count on the chip.
+    const areaSession = Boolean(blueprintAreaId);
     if (!isTimedExam) {
-      const validation = deliberateFormat
-        ? validatePracticeFormatSession({
-            format: deliberateFormat,
-            questionCount,
-            formats: activeFormats,
-            bankStyle: "standard",
-            ngnLabel,
-            subjectId,
-          })
-        : validateQuestionBankSession({
-            subjectId,
-            questionCount,
-            subjectCounts,
-            bankStyle: activeStyle,
-            taskCategory: isPance ? taskCategory : null,
-          });
+      const validation =
+        deliberateFormat && !areaSession
+          ? validatePracticeFormatSession({
+              format: deliberateFormat,
+              questionCount,
+              formats: activeFormats,
+              bankStyle: "standard",
+              ngnLabel,
+              subjectId,
+            })
+          : validateQuestionBankSession({
+              subjectId: sessionSubjectId,
+              questionCount,
+              subjectCounts: sessionCounts,
+              bankStyle: areaSession ? "standard" : activeStyle,
+              taskCategory: isPance ? taskCategory : null,
+            });
       if (!validation.ok) {
         setError(validation.message ?? "Cannot start this session.");
         return;
@@ -1029,10 +1089,10 @@ export function StudyBankPractice({
           ? questionCount
           : resolveQuestionBankSessionCount(
               questionCount,
-              availableQuestionCount(subjectId, subjectCounts)
+              availableQuestionCount(sessionSubjectId, sessionCounts)
             );
 
-      if (!isTimedExam && deliberateFormat) {
+      if (!isTimedExam && deliberateFormat && !blueprintAreaId) {
         const qs = buildDeliberateFormatQuestionQuery({
           fieldId,
           subjectId,
@@ -1173,13 +1233,15 @@ export function StudyBankPractice({
         return;
       }
 
-      const useAdaptive = activeStyle === "adaptive" || activeStyle === "weak_areas";
-      const useReviewIncorrect = activeStyle === "review_incorrect";
-      const useToday = activeStyle === "today";
+      const useArea = Boolean(blueprintAreaId);
+      const useAdaptive =
+        !useArea && (activeStyle === "adaptive" || activeStyle === "weak_areas");
+      const useReviewIncorrect = !useArea && activeStyle === "review_incorrect";
+      const useToday = !useArea && activeStyle === "today";
       const effectiveSubjectId = useReviewIncorrect
         ? reviewSubjectForLaunch(subjectId)
         : subjectId || subjects[0]?.id || MIXED_SUBJECT_ID || "";
-      if (!useToday && !effectiveSubjectId) {
+      if (!useArea && !useToday && !effectiveSubjectId) {
         throw new Error("Choose a topic before starting practice.");
       }
 
@@ -1507,7 +1569,8 @@ export function StudyBankPractice({
           qs.set("mpjeState", mpjeState);
         }
       }
-      qs.set("subjectId", effectiveSubjectId);
+      if (blueprintAreaId) qs.set("blueprintArea", blueprintAreaId);
+      else qs.set("subjectId", effectiveSubjectId);
       if (isPance && taskCategory) qs.set("taskCategory", taskCategory);
       const nclexPreset = searchParams.get("nclexPreset");
       if (nclexPreset) qs.set("nclexPreset", nclexPreset);
@@ -1592,7 +1655,7 @@ export function StudyBankPractice({
       readBrowserSearchParam("style")
     );
     if (!bankStyleHonorsLaunchStyle(effectiveBankStyle, launchStyle)) return;
-    if (!isTimedExam && !subjectId && effectiveBankStyle !== "today") return;
+    if (!isTimedExam && !subjectId && !blueprintAreaId && effectiveBankStyle !== "today") return;
     autostartAttempted.current = true;
     document.getElementById("practice-launcher")?.scrollIntoView({ behavior: "smooth", block: "start" });
     void start();
@@ -1600,6 +1663,7 @@ export function StudyBankPractice({
     autostartRequested,
     isTimedExam,
     subjectId,
+    blueprintAreaId,
     bankStyle,
     effectiveBankStyle,
     questions,
@@ -1613,7 +1677,7 @@ export function StudyBankPractice({
     () =>
       isTimedExam
         ? { ok: true as const }
-        : launchFormat
+        : launchFormat && !blueprintAreaId
           ? validatePracticeFormatSession({
               format: launchFormat,
               questionCount,
@@ -1623,18 +1687,20 @@ export function StudyBankPractice({
               subjectId,
             })
           : validateQuestionBankSession({
-              subjectId,
+              subjectId: sessionSubjectId,
               questionCount,
-              subjectCounts,
-              bankStyle: effectiveBankStyle,
+              subjectCounts: sessionCounts,
+              bankStyle: blueprintAreaId ? "standard" : effectiveBankStyle,
               taskCategory: isPance ? taskCategory : null,
             }),
     [
       isTimedExam,
       launchFormat,
+      blueprintAreaId,
+      sessionSubjectId,
       subjectId,
       questionCount,
-      subjectCounts,
+      sessionCounts,
       effectiveBankStyle,
       isPance,
       taskCategory,
@@ -1651,19 +1717,22 @@ export function StudyBankPractice({
         : subjects.find((s) => s.id === subjectId)?.label ?? "Choose a topic";
       return `${practiceFormatTitle(launchFormat, ngnLabel)} · ${topic}`;
     }
-    const base = isMixedSubjectId(subjectId)
-      ? MIXED_SUBJECT_LABEL
-      : subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
+    const areaLabel = blueprintAreaId ? blueprintAreaLabel(fieldId, blueprintAreaId) : null;
+    const base = areaLabel
+      ? areaLabel
+      : isMixedSubjectId(subjectId)
+        ? MIXED_SUBJECT_LABEL
+        : subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
     return isPance ? sessionLabelWithTask(base, taskCategory) : base;
-  }, [field, isTimedExam, launchFormat, ngnLabel, subjectId, subjects, isPance, taskCategory]);
+  }, [blueprintAreaId, field, fieldId, isTimedExam, launchFormat, ngnLabel, subjectId, subjects, isPance, taskCategory]);
 
   const previewAvailableCount = useMemo(() => {
     if (isTimedExam) return null;
     if (launchFormat) {
       return null;
     }
-    return availableQuestionCount(subjectId, subjectCounts);
-  }, [isTimedExam, launchFormat, subjectId, subjectCounts]);
+    return availableQuestionCount(sessionSubjectId, sessionCounts);
+  }, [isTimedExam, launchFormat, sessionCounts, sessionSubjectId]);
 
   const previewEstimatedMinutes = useMemo(
     () => estimateQuestionBankSessionMinutes(questionCount, bankPace),
@@ -1981,6 +2050,8 @@ export function StudyBankPractice({
               fieldId={fieldId}
               examLabel={pageExam?.shortName ?? activeExamOption?.label}
               onSubjectChange={(id) => {
+                explicitSubjectRef.current = id;
+                setBlueprintAreaId(null);
                 setSubjectId(id);
                 if (
                   isMixedSubjectId(id) &&
@@ -1988,10 +2059,24 @@ export function StudyBankPractice({
                   effectiveBankStyle !== "review_incorrect"
                 ) {
                   setBankStyle("standard");
-                  syncPracticeUrl({ subjectId: id, style: "standard" });
+                  syncPracticeUrl({ subjectId: id, blueprintAreaId: null, style: "standard" });
                   return;
                 }
-                syncPracticeUrl({ subjectId: id });
+                syncPracticeUrl({ subjectId: id, blueprintAreaId: null });
+              }}
+              blueprintAreaId={blueprintAreaId}
+              onBlueprintAreaSelect={(areaId) => {
+                explicitSubjectRef.current = null;
+                setBlueprintAreaId(areaId);
+                setSubjectId("");
+                if (bankStyle !== "standard") setBankStyle("standard");
+                if (practiceFormat !== "all") setPracticeFormat("all");
+                syncPracticeUrl({
+                  subjectId: null,
+                  blueprintAreaId: areaId,
+                  style: "standard",
+                  format: "all",
+                });
               }}
               questionCount={questionCount}
               onQuestionCountChange={(count) => {
