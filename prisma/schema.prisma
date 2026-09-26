@@ -1746,3 +1746,108 @@ model SgReadingProgress {
   @@index([userId, chapterId])
   @@map("sg_reading_progress")
 }
+
+/// Pilot import receipt. Not a question-bank row.
+model NgnImportBatch {
+  batchId       String   @id @map("batch_id")
+  schemaVersion String   @map("schema_version")
+  boardProfile  String   @map("board_profile")
+  sourceSha256  String   @map("source_sha256")
+  /// Allow-listed source registry captured at import so validators can be re-run.
+  sources       Json
+  importedAt    DateTime @default(now()) @map("imported_at")
+  importedBy    String?  @map("imported_by")
+  rowCounts     Json     @map("row_counts")
+  notes         String?  @db.Text
+
+  cases NgnCase[]
+  items NgnItem[]
+
+  @@map("ngn_import_batch")
+}
+
+/// Clinical case shell (chart, patient, timepoints). Items live in NgnItem.
+model NgnCase {
+  id                String
+  version           Int
+  batchId           String   @map("batch_id")
+  boardProfile      String   @map("board_profile")
+  status            String   @default("draft")
+  title             String
+  primaryClientNeed String   @map("primary_client_need")
+  setting           String   @db.Text
+  patient           Json
+  timepoints        Json
+  chart             Json
+  revealRule        String   @map("reveal_rule") @db.Text
+  references        Json
+  supersedesId      String?  @map("supersedes_id")
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  batch NgnImportBatch @relation(fields: [batchId], references: [batchId], onDelete: Restrict, map: "ngn_case_batch_id_fkey")
+  items NgnItem[]
+
+  @@id([id, version], map: "ngn_case_pkey")
+  @@index([batchId], map: "ngn_case_batch_id_idx")
+  @@index([status], map: "ngn_case_status_idx")
+  @@map("ngn_case")
+}
+
+/// One scored NGN item. Never inserted into QuestionBankItem.
+model NgnItem {
+  id             String
+  version        Int
+  batchId        String   @map("batch_id")
+  caseId         String?  @map("case_id")
+  caseVersion    Int?     @map("case_version")
+  caseStep       Int?     @map("case_step")
+  itemType       String   @map("item_type")
+  cjmmFunction   Json     @map("cjmm_function")
+  timepoint      String?
+  responseFormat String   @map("response_format")
+  scoringRule    String   @map("scoring_rule")
+  maxPoints      Int      @map("max_points")
+  stem           String   @db.Text
+  payload        Json
+  exhibit        Json?
+  rationale      Json
+  clientNeeds    Json     @map("client_needs")
+  references     Json
+  rnFlags        Json     @map("rn_flags")
+  status         String   @default("draft")
+  supersedesId   String?  @map("supersedes_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  batch NgnImportBatch @relation(fields: [batchId], references: [batchId], onDelete: Restrict, map: "ngn_item_batch_id_fkey")
+  case  NgnCase?        @relation(fields: [caseId, caseVersion], references: [id, version], onDelete: Restrict, map: "ngn_item_case_fkey")
+
+  @@id([id, version], map: "ngn_item_pkey")
+  @@index([batchId], map: "ngn_item_batch_id_idx")
+  @@index([status], map: "ngn_item_status_idx")
+  @@index([caseId, caseVersion], map: "ngn_item_case_idx")
+  @@map("ngn_item")
+}
+
+/// Append-only RN review. A database trigger rejects UPDATE and DELETE.
+model NgnItemReview {
+  id               String   @id @default(uuid()) @db.Uuid
+  itemId           String   @map("item_id")
+  itemVersion      Int      @map("item_version")
+  reviewerUserId   String   @map("reviewer_user_id")
+  reviewerName     String   @map("reviewer_name")
+  licenseType      String   @map("license_type")
+  licenseNumber    String   @map("license_number")
+  licenseState     String   @map("license_state")
+  multistateNlc    Boolean  @default(false) @map("multistate_nlc")
+  nursysVerifiedOn DateTime @map("nursys_verified_on") @db.Date
+  nursysResult     String   @map("nursys_result")
+  decision         String
+  rubric           Json
+  flagResolutions  Json     @map("flag_resolutions")
+  comments         String   @default("") @db.Text
+  minutesSpent     Int      @map("minutes_spent")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@index([itemId, itemVersion], map: "ngn_item_review_item_idx")
+  @@map("ngn_item_review")
+}
