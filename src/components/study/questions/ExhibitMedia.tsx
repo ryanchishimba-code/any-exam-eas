@@ -6,6 +6,7 @@ import { getApprovedNclexFigureById } from "@/lib/exam-prep/nclex/figure-assets"
 import { getApprovedNaplexFigureById } from "@/lib/exam-prep/naplex/figure-assets";
 import { getApprovedAanpFnpFigureById } from "@/lib/exam-prep/aanp-fnp/figure-assets";
 import { getApprovedFigureById } from "@/lib/exam-prep/usmle/figure-assets";
+import { studentFacingExhibitKind } from "@/lib/questions/student-display-text";
 import { cn } from "@/lib/utils";
 import { Maximize2, X } from "lucide-react";
 
@@ -48,7 +49,7 @@ export function ExhibitMedia({ figures, className }: Props) {
           >
             <div className="flex items-center justify-between gap-2 border-b border-[var(--color-border)]/70 px-3 py-2">
               <figcaption className="text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted)]">
-                Clinical exhibit · {fig.kind}
+                {studentFacingExhibitKind(fig.kind)}
               </figcaption>
               <button
                 type="button"

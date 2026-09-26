@@ -7,6 +7,8 @@
  */
 export const KEY_REVIEW_AUDIT_REF = "sample-exam-quality-nclex-2026-09-25";
 
+export const NAPLEX_KEY_REVIEW_AUDIT_REF = "sample-exam-quality-naplex-2026-09-25";
+
 export const KEY_WRONG_REASON = "key_wrong_pending_rn_review" as const;
 
 export const RN_REVIEW_QUEUE_PIPELINE = "rn-review-queue-v1" as const;
@@ -15,6 +17,8 @@ export type ReviewedKeyItem = {
   id: string;
   sampleId: string;
   note: string;
+  /** Defaults to the NCLEX audit when omitted. */
+  auditRef?: string;
 };
 
 /** Hide from students until an RN confirms or replaces the key. */
@@ -48,6 +52,60 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     id: "cmqwm3a7u00071yqmb9apivma",
     sampleId: "S29",
     note: "Keyed to ordering an HbA1c, which is outside RN scope.",
+  },
+  {
+    id: "cmqw4jsdz000k1y4r4ma76ptl",
+    sampleId: "N-S15",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Greatest-risk interaction names drugs that are not in the regimen and ignores the nosebleed.",
+  },
+  {
+    id: "cmqw50659000o1yq20xebqqf6",
+    sampleId: "N-S22",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "SSRI sexual dysfunction keyed as temporary; it often persists and needs a management plan.",
+  },
+  {
+    id: "cmqgswm9e001c1ytwdnxl3cat",
+    sampleId: "N-S23",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Keyed finding (muscle pain) does not appear in the vignette.",
+  },
+  {
+    id: "cmqvzci9a000n1yttqt077oyp",
+    sampleId: "N-S24",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Weight-loss request keyed to pioglitazone while the rationale argues for liraglutide.",
+  },
+  {
+    id: "cmqvos1ov000y1ylrqzi8i5rm",
+    sampleId: "N-S34",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Keyed azithromycin-warfarin interaction, but the patient is not on warfarin.",
+  },
+  {
+    id: "cmqgswl4o000y1ytwg8hrapx6",
+    sampleId: "N-S39",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "COPD on SABA keyed to montelukast. The id ending wyd20pt1z is a different sertraline item and is not this key.",
+  },
+  {
+    id: "cmqvts9ow000f1yo8cwivxikq",
+    sampleId: "N-S45",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Uncontrolled asthma keyed to PRN ipratropium; an ICS-formoterol option is present.",
+  },
+  {
+    id: "cmqgswla700101ytwq3l8r6ql",
+    sampleId: "N-S14",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Anticoagulant bruising versus nosebleed has no single best answer. Heavily reused. Audit graded uncertain.",
+  },
+  {
+    id: "cmqgswlj100131ytwck5mmrsy",
+    sampleId: "N-S47",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Action stem with finding options, and the key cites a potassium value not in the vignette. Heavily reused. Audit graded uncertain.",
   },
 ];
 
@@ -126,6 +184,126 @@ export const KEY_UNCERTAIN_RN_REVIEW: readonly ReviewedKeyItem[] = [
     sampleId: "S57",
     note: "Postpartum hemorrhage stem and options disagree, and one option is not a finding.",
   },
+  {
+    id: "cmqvkwom000181y5yqosn57tz",
+    sampleId: "N-S02",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Opioid request and substance-use history overlap; gabapentin-opioid risk is not offered.",
+  },
+  {
+    id: "cmqw28m5s001d1ybjvagp3p9x",
+    sampleId: "N-S03",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "New tiotropium keyed to adding ICS/LABA without eosinophil or exacerbation data.",
+  },
+  {
+    id: "cmqvlw9yw00181yd76qrbvamv",
+    sampleId: "N-S09",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Statin myalgia keyed to a dose cut without a CK, and it conflicts with another statin item.",
+  },
+  {
+    id: "cmqvsvgji001h1yuo7g98bcs8",
+    sampleId: "N-S12",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Counseling stem keyed to an adverse effect that needs a prescriber, not a misconception.",
+  },
+  {
+    id: "cmqvnyxkq000u1yfg005md4p4",
+    sampleId: "N-S21",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Symptomatic statin myalgia with CK 250; hold-and-call is not offered.",
+  },
+  {
+    id: "cmqvjpyyr000k1yaiptb25fw7",
+    sampleId: "N-S25",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Amoxicillin counseling keyed to take-with-food over the missing dose volume.",
+  },
+  {
+    id: "cmqvu2av4001o1yt70nzwatx9",
+    sampleId: "N-S29",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Pregnancy rhinitis: intranasal corticosteroid and loratadine are both defensible.",
+  },
+  {
+    id: "cmqgswld200111ytwxjpewgtz",
+    sampleId: "N-S30",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Nausea keyed to acupressure; pyridoxine with doxylamine is not offered.",
+  },
+  {
+    id: "cmqvmk1w0000v1ydnzoko9sxd",
+    sampleId: "N-S31",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Asthma rescue-use rule applied to COPD.",
+  },
+  {
+    id: "cmqgswm1000191ytw6rg5b53o",
+    sampleId: "N-S32",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "COPD exacerbation antibiotic decision driven by WBC without values.",
+  },
+  {
+    id: "cmqw7d4qw000f1yfa80tft5yt",
+    sampleId: "N-S33",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Two statements are keyable: taking lisinopril against advice, and increased salt.",
+  },
+  {
+    id: "cmqvklw6g000f1ywr20b3gauq",
+    sampleId: "N-S38",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Potassium 5.5 and reduced eGFR on metformin both warrant a change.",
+  },
+  {
+    id: "cmqvq0uqi001s1yp9wx8kk8e0",
+    sampleId: "N-S40",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Sertraline drowsiness keyed as a misconception, but somnolence is a labeled effect.",
+  },
+  {
+    id: "cmqgt75po00181y3qttfk1zw9",
+    sampleId: "N-S41",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "The antihistamine is never named.",
+  },
+  {
+    id: "cmqvn3pjf000l1yvvs2xcjfxh",
+    sampleId: "N-S43",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Hypertension management with no blood pressure, and potassium plus creatinine argue against continue-unchanged.",
+  },
+  {
+    id: "cmqvn3tbf001x1yvv8jkmnn9r",
+    sampleId: "N-S49",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "New ICS/LABA may need technique counseling rather than pulmonology referral.",
+  },
+  {
+    id: "cmqwb2xwt000g1y49i9a5jzf1",
+    sampleId: "N-S50",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "All four options are hyperemesis red flags.",
+  },
+  {
+    id: "cmqvkwpml001l1y5y39xtapgq",
+    sampleId: "N-S59",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Near-twin metformin item keyed to lactic acidosis instead of take-with-food.",
+  },
+  {
+    id: "cmqgswla700101ytwq3l8r6ql",
+    sampleId: "N-S14",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Queued with the uncertain set and also hidden as a heavily reused item with no single best answer.",
+  },
+  {
+    id: "cmqgswlj100131ytwck5mmrsy",
+    sampleId: "N-S47",
+    auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
+    note: "Queued with the uncertain set and also hidden as a heavily reused action-stem with finding options.",
+  },
 ];
 
 const ID_RE = /^[a-z0-9]+$/;
@@ -187,7 +365,7 @@ export function withKeyWrongAudit<T extends { reasons: readonly string[]; auditR
   if (!id || !record.reasons.includes(KEY_WRONG_REASON)) return record;
   const item = keyWrongReviewFor(id);
   if (!item) return record;
-  return { ...record, auditRef: KEY_REVIEW_AUDIT_REF, sampleId: item.sampleId };
+  return { ...record, auditRef: item.auditRef ?? KEY_REVIEW_AUDIT_REF, sampleId: item.sampleId };
 }
 
 export function rnReviewQueueRecord(item: ReviewedKeyItem, queuedAt: string): RnReviewQueueRecord {
@@ -195,7 +373,7 @@ export function rnReviewQueueRecord(item: ReviewedKeyItem, queuedAt: string): Rn
     pipeline: RN_REVIEW_QUEUE_PIPELINE,
     status: "pending",
     reason: "key_uncertain",
-    auditRef: KEY_REVIEW_AUDIT_REF,
+    auditRef: item.auditRef ?? KEY_REVIEW_AUDIT_REF,
     sampleId: item.sampleId,
     note: item.note,
     queuedAt,

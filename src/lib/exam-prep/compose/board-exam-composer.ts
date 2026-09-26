@@ -21,6 +21,20 @@ export type ComposerItem = {
   areaId: string;
   subjectId: string;
   scenarioText: string;
+  answerKey?: string;
+  /** Content signals such as "calculation". Not a stored tag. */
+  signals?: readonly string[];
+};
+
+export type CoverageFloor = {
+  subjectId: string;
+  minPerExam: number;
+};
+
+export type SignalFloor = {
+  areaId: string;
+  signal: string;
+  minPerExam: number;
 };
 
 export type SubjectSetConfig = {
@@ -34,9 +48,22 @@ export type BoardComposeConfig = {
   areas: readonly TestPlanArea[];
   fullExamLength: number;
   maxFullExams: number;
-  /** How many times one item may appear in the published set. */
+  /** How many times one item may appear in the published set. Unused items are used before any reuse. */
   maxItemReuse: number;
-  fullExamTitle: (index: number) => string;
+  /** Stable shuffle so the same low ids are not always chosen first. */
+  selectionSeed?: string;
+  /** Near-duplicate scenarios with different keys cannot share an exam. */
+  blockContradictoryKeys?: boolean;
+  /** Drop shared clinical boilerplate before the near-duplicate comparison. */
+  dropBoilerplateTokens?: boolean;
+  coverageFloors?: readonly CoverageFloor[];
+  signalFloors?: readonly SignalFloor[];
+  /**
+   * When a scarce area cannot fill its quota, take what exists and fill the
+   * rest from this area. The exam title should say the outline was not met.
+   */
+  shortfallFillAreaId?: string;
+  fullExamTitle: (index: number, shortfall?: readonly string[]) => string;
   subjectSets?: SubjectSetConfig;
 };
 
@@ -47,6 +74,8 @@ export type ComposedExam = {
   itemIds: string[];
   areaCounts: Record<string, number>;
   areasOutOfRange: string[];
+  shortfall: string[];
+  signalCounts: Record<string, number>;
 };
 
 export type OverlapStats = {
@@ -78,6 +107,13 @@ export type ComposeResult = {
 };
 
 const TOKEN = /[a-z0-9]+(?:\/[0-9]+)?/g;
+const BOILERPLATE = new Set([
+  "the", "and", "or", "of", "to", "in", "on", "for", "with", "from", "at", "by", "is", "are",
+  "was", "be", "has", "have", "had", "this", "that", "who", "which", "a", "an", "as", "into",
+  "year", "old", "patient", "presents", "presenting", "history", "male", "female", "pharmacy",
+  "prescribed", "prescription", "medication", "medications", "current", "taking", "reports",
+  "reported", "known", "allergies", "allergy", "past", "two", "days", "day",
+]);
 const VITAL = /\b\d{2,3}\/\d{2,3}\b|\b\d+(?:\.\d+)?\b/g;
 
 export function scenarioTokens(text: string): Set<string> {
@@ -118,10 +154,20 @@ type Prepared = {
   text: string;
   tokens: Set<string>;
   vitals: Set<string>;
+  order: number;
+  answerKey?: string;
+  signals: readonly string[];
+  signature: string[];
 };
 
-function prepareScenario(text: string): Pick<Prepared, "tokens" | "vitals"> {
-  return { tokens: scenarioTokens(text), vitals: vitalFingerprints(text) };
+function prepareScenario(text: string, dropBoilerplate = false): Pick<Prepared, "tokens" | "vitals"> {
+  const tokens = scenarioTokens(text);
+  if (dropBoilerplate) {
+    for (const token of tokens) {
+      if (BOILERPLATE.has(token)) tokens.delete(token);
+    }
+  }
+  return { tokens, vitals: vitalFingerprints(text) };
 }
 
 function preparedNearDuplicate(
@@ -188,8 +234,8 @@ export function areasOutsidePlan(
   return outside;
 }
 
-function prepareItem(item: ComposerItem): Prepared {
-  const scenario = prepareScenario(item.scenarioText);
+function prepareItem(item: ComposerItem, order: number, dropBoilerplate = false): Prepared {
+  const scenario = prepareScenario(item.scenarioText, dropBoilerplate);
   return {
     id: item.id,
     areaId: item.areaId,
@@ -197,7 +243,177 @@ function prepareItem(item: ComposerItem): Prepared {
     text: item.scenarioText,
     tokens: scenario.tokens,
     vitals: scenario.vitals,
+    order,
+    answerKey: item.answerKey,
+    signals: item.signals ?? [],
+    signature: [],
   };
+}
+
+function assignSignatures(items: readonly Prepared[]) {
+  const documentFrequency = new Map<string, number>();
+  for (const item of items) {
+    for (const token of item.tokens) {
+      if (token.length < 4) continue;
+      documentFrequency.set(token, (documentFrequency.get(token) ?? 0) + 1);
+    }
+  }
+  for (const item of items) {
+    const shared = [...item.tokens].filter((token) => token.length >= 4 && (documentFrequency.get(token) ?? 0) >= 2);
+    const source = shared.length > 0 ? shared : [...item.tokens].filter((token) => token.length >= 4);
+    item.signature = source
+      .sort(
+        (a, b) =>
+          (documentFrequency.get(a) ?? 0) - (documentFrequency.get(b) ?? 0) || a.localeCompare(b)
+      )
+      .slice(0, 8);
+  }
+}
+
+function hashSeed(seed: string): number {
+  let hash = 2166136261;
+  for (let index = 0; index < seed.length; index++) {
+    hash ^= seed.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function shuffleWithSeed<T>(items: readonly T[], seed: string): T[] {
+  const next = [...items];
+  let state = hashSeed(seed);
+  const random = () => {
+    state = (state + 0x6d2b79f5) >>> 0;
+    let t = state;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  for (let index = next.length - 1; index > 0; index--) {
+    const swap = Math.floor(random() * (index + 1));
+    const current = next[index]!;
+    next[index] = next[swap]!;
+    next[swap] = current;
+  }
+  return next;
+}
+
+function normalizeAnswerKey(key: string): string {
+  return key.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function contradictoryKeys(a: Prepared, b: Prepared): boolean {
+  if (!a.answerKey || !b.answerKey) return false;
+  if (normalizeAnswerKey(a.answerKey) === normalizeAnswerKey(b.answerKey)) return false;
+  return jaccard(a.tokens, b.tokens) >= 0.35;
+}
+
+function blockedTogether(a: Prepared, b: Prepared, blockContradictions: boolean): boolean {
+  const longEnough = a.text.trim().length >= 40 && b.text.trim().length >= 40;
+  if (longEnough && preparedNearDuplicate(a, b)) return true;
+  return blockContradictions && contradictoryKeys(a, b);
+}
+
+function takeUpTo(
+  pool: readonly Prepared[],
+  need: number,
+  used: Map<string, number>,
+  maxReuse: number,
+  selected: Prepared[],
+  floors: readonly CoverageFloor[],
+  signal: SignalFloor | undefined,
+  blockContradictions: boolean
+): Prepared[] {
+  const taken: Prepared[] = [];
+  const takenIds = new Set<string>();
+  const candidates = pool
+    .filter((item) => (used.get(item.id) ?? 0) < maxReuse)
+    .filter((item) => !selected.some((kept) => kept.id === item.id))
+    .sort((a, b) => (used.get(a.id) ?? 0) - (used.get(b.id) ?? 0) || a.order - b.order);
+  const tokenIndex = new Map<string, Prepared[]>();
+  const vitalIndex = new Map<string, Prepared[]>();
+  const addToIndex = (item: Prepared) => {
+    for (const token of item.signature) {
+      const list = tokenIndex.get(token);
+      if (list) list.push(item);
+      else tokenIndex.set(token, [item]);
+    }
+    for (const vital of item.vitals) {
+      const list = vitalIndex.get(vital);
+      if (list) list.push(item);
+      else vitalIndex.set(vital, [item]);
+    }
+  };
+  for (const item of selected) addToIndex(item);
+  const blocked = (item: Prepared) => {
+    const seen = new Set<Prepared>();
+    const consider = (other: Prepared) => {
+      if (seen.has(other)) return false;
+      seen.add(other);
+      return blockedTogether(other, item, blockContradictions);
+    };
+    for (const token of item.signature) {
+      for (const other of tokenIndex.get(token) ?? []) {
+        if (consider(other)) return true;
+      }
+    }
+    for (const vital of item.vitals) {
+      for (const other of vitalIndex.get(vital) ?? []) {
+        if (consider(other)) return true;
+      }
+    }
+    return false;
+  };
+  const subjectCounts = new Map<string, number>();
+  const signalCounts = new Map<string, number>();
+  for (const item of selected) {
+    subjectCounts.set(item.subjectId, (subjectCounts.get(item.subjectId) ?? 0) + 1);
+    for (const name of item.signals) signalCounts.set(name, (signalCounts.get(name) ?? 0) + 1);
+  }
+  const wanted = (item: Prepared) => {
+    for (const floor of floors) {
+      if (item.subjectId === floor.subjectId && (subjectCounts.get(item.subjectId) ?? 0) < floor.minPerExam) {
+        return true;
+      }
+    }
+    return (
+      signal != null &&
+      item.signals.includes(signal.signal) &&
+      (signalCounts.get(signal.signal) ?? 0) < signal.minPerExam
+    );
+  };
+  const floorSubjects = new Set(floors.map((floor) => floor.subjectId));
+  const priority = candidates.filter(
+    (item) => floorSubjects.has(item.subjectId) || (signal != null && item.signals.includes(signal.signal))
+  );
+  let priorityIndex = 0;
+  let restIndex = 0;
+  while (taken.length < need) {
+    let choice: Prepared | null = null;
+    while (priorityIndex < priority.length) {
+      const item = priority[priorityIndex]!;
+      priorityIndex += 1;
+      if (takenIds.has(item.id) || !wanted(item) || blocked(item)) continue;
+      choice = item;
+      break;
+    }
+    if (!choice) {
+      while (restIndex < candidates.length) {
+        const item = candidates[restIndex]!;
+        restIndex += 1;
+        if (takenIds.has(item.id) || blocked(item)) continue;
+        choice = item;
+        break;
+      }
+    }
+    if (!choice) break;
+    taken.push(choice);
+    takenIds.add(choice.id);
+    addToIndex(choice);
+    subjectCounts.set(choice.subjectId, (subjectCounts.get(choice.subjectId) ?? 0) + 1);
+    for (const name of choice.signals) signalCounts.set(name, (signalCounts.get(name) ?? 0) + 1);
+  }
+  return taken;
 }
 
 function takeItems(
@@ -205,21 +421,13 @@ function takeItems(
   need: number,
   used: Map<string, number>,
   maxReuse: number,
-  selected: Prepared[]
+  selected: Prepared[],
+  floors: readonly CoverageFloor[] = [],
+  signal?: SignalFloor,
+  blockContradictions = false
 ): Prepared[] | null {
-  const taken: Prepared[] = [];
-  for (const item of pool) {
-    if ((used.get(item.id) ?? 0) >= maxReuse) continue;
-    if (selected.some((kept) => kept.id === item.id) || taken.some((kept) => kept.id === item.id)) continue;
-    const blocked =
-      item.text.trim().length >= 40 &&
-      (selected.some((kept) => preparedNearDuplicate(kept, item)) ||
-        taken.some((kept) => preparedNearDuplicate(kept, item)));
-    if (blocked) continue;
-    taken.push(item);
-    if (taken.length === need) return taken;
-  }
-  return null;
+  const taken = takeUpTo(pool, need, used, maxReuse, selected, floors, signal, blockContradictions);
+  return taken.length === need ? taken : null;
 }
 
 export function overlapStats(exams: readonly { itemIds: readonly string[] }[]): OverlapStats {
@@ -263,19 +471,20 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
   for (const area of config.areas) byArea.set(area.id, []);
   let unmapped = 0;
   const allPrepared: Prepared[] = [];
-  for (const item of items) {
-    const prepared = prepareItem(item);
+  const seeded = config.selectionSeed
+    ? shuffleWithSeed(items, config.selectionSeed)
+    : [...items].sort((a, b) => a.id.localeCompare(b.id));
+  seeded.forEach((item, order) => {
+    const prepared = prepareItem(item, order, config.dropBoilerplateTokens === true);
     allPrepared.push(prepared);
     const bucket = byArea.get(item.areaId);
     if (!bucket) {
       unmapped += 1;
-      continue;
+      return;
     }
     bucket.push(prepared);
-  }
-  for (const list of byArea.values()) {
-    list.sort((a, b) => a.id.localeCompare(b.id));
-  }
+  });
+  assignSignatures(allPrepared);
 
   const poolByArea = Object.fromEntries(
     config.areas.map((area) => [area.id, byArea.get(area.id)?.length ?? 0])
@@ -306,22 +515,66 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
     return size || a.id.localeCompare(b.id);
   });
 
+  const floors = config.coverageFloors ?? [];
+  const blockContradictions = config.blockContradictoryKeys === true;
   if (quota) {
     for (let index = 1; index <= config.maxFullExams; index++) {
       const selected: Prepared[] = [];
       const counts: Record<string, number> = {};
+      const shortfall: string[] = [];
       let failedArea: string | null = null;
       let failedNeed = 0;
       for (const area of pickOrder) {
         const need = quota[area.id] ?? 0;
-        const taken = takeItems(byArea.get(area.id) ?? [], need, used, config.maxItemReuse, selected);
-        if (!taken) {
-          failedArea = area.id;
-          failedNeed = need;
-          break;
+        const signal = config.signalFloors?.find((floor) => floor.areaId === area.id);
+        const pool = byArea.get(area.id) ?? [];
+        const taken = config.shortfallFillAreaId
+          ? takeUpTo(pool, need, used, config.maxItemReuse, selected, floors, signal, blockContradictions)
+          : takeItems(pool, need, used, config.maxItemReuse, selected, floors, signal, blockContradictions);
+        if (!taken || taken.length < need) {
+          const partial = taken ?? [];
+          selected.push(...partial);
+          counts[area.id] = (counts[area.id] ?? 0) + partial.length;
+          if (!config.shortfallFillAreaId) {
+            failedArea = area.id;
+            failedNeed = need;
+            break;
+          }
+          shortfall.push(area.id);
+          continue;
         }
         selected.push(...taken);
-        counts[area.id] = taken.length;
+        counts[area.id] = (counts[area.id] ?? 0) + taken.length;
+        if (signal) {
+          const have = taken.filter((item) => item.signals.includes(signal.signal)).length;
+          if (have < signal.minPerExam) shortfall.push(`signal:${signal.signal}`);
+        }
+      }
+      if (!failedArea && config.shortfallFillAreaId && selected.length < config.fullExamLength) {
+        const gap = config.fullExamLength - selected.length;
+        const fill = takeUpTo(
+          byArea.get(config.shortfallFillAreaId) ?? [],
+          gap,
+          used,
+          config.maxItemReuse,
+          selected,
+          floors,
+          undefined,
+          blockContradictions
+        );
+        if (fill.length < gap) {
+          failedArea = config.shortfallFillAreaId;
+          failedNeed = gap;
+        } else {
+          selected.push(...fill);
+          counts[config.shortfallFillAreaId] = (counts[config.shortfallFillAreaId] ?? 0) + fill.length;
+        }
+      }
+      if (!failedArea) {
+        for (const floor of floors) {
+          const have = selected.filter((item) => item.subjectId === floor.subjectId).length;
+          if (have < floor.minPerExam) shortfall.push(`subject:${floor.subjectId}`);
+        }
       }
       if (failedArea || selected.length !== config.fullExamLength) {
         const have = byArea.get(failedArea ?? "")?.filter((item) => (used.get(item.id) ?? 0) < config.maxItemReuse).length ?? 0;
@@ -332,12 +585,18 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
       }
       for (const item of selected) used.set(item.id, (used.get(item.id) ?? 0) + 1);
       const areaCounts = Object.fromEntries(config.areas.map((area) => [area.id, counts[area.id] ?? 0]));
+      const signalCounts: Record<string, number> = {};
+      for (const item of selected) {
+        for (const signal of item.signals) signalCounts[signal] = (signalCounts[signal] ?? 0) + 1;
+      }
       exams.push({
         kind: "full",
-        title: config.fullExamTitle(index),
+        title: config.fullExamTitle(index, shortfall),
         itemIds: selected.map((item) => item.id),
         areaCounts,
         areasOutOfRange: areasOutsidePlan(areaCounts, config.fullExamLength, config.areas),
+        shortfall,
+        signalCounts,
       });
     }
     if (exams.length === config.maxFullExams) {
@@ -363,7 +622,16 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
       const pool = (bySubject.get(subjectId) ?? []).sort((a, b) => a.id.localeCompare(b.id));
       let setIndex = 1;
       while (added < room) {
-        const taken = takeItems(pool, subjectConfig.length, used, config.maxItemReuse, []);
+        const taken = takeItems(
+          pool,
+          subjectConfig.length,
+          used,
+          config.maxItemReuse,
+          [],
+          floors,
+          undefined,
+          blockContradictions
+        );
         if (!taken) break;
         for (const item of taken) used.set(item.id, (used.get(item.id) ?? 0) + 1);
         const base = subjectConfig.titles[subjectId] ?? "Practice Set";
@@ -378,6 +646,8 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
           itemIds: taken.map((item) => item.id),
           areaCounts,
           areasOutOfRange: areasOutsidePlan(areaCounts, taken.length, config.areas),
+          shortfall: [],
+          signalCounts: {},
         });
         setIndex += 1;
         added += 1;
@@ -403,6 +673,29 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
       stopReason,
     },
   };
+}
+
+export function reuseStats(exams: readonly { itemIds: readonly string[] }[]): {
+  distinctItems: number;
+  maxReuse: number;
+  reusedItems: number;
+  slotsFromReusedItems: number;
+} {
+  const counts = new Map<string, number>();
+  for (const exam of exams) {
+    for (const id of exam.itemIds) counts.set(id, (counts.get(id) ?? 0) + 1);
+  }
+  let maxReuse = 0;
+  let reusedItems = 0;
+  let slotsFromReusedItems = 0;
+  for (const count of counts.values()) {
+    if (count > maxReuse) maxReuse = count;
+    if (count > 1) {
+      reusedItems += 1;
+      slotsFromReusedItems += count;
+    }
+  }
+  return { distinctItems: counts.size, maxReuse, reusedItems, slotsFromReusedItems };
 }
 
 export function formatAreaDistribution(

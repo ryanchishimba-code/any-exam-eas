@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { cleanOptionText } from "@/lib/question-format";
-import { studentFacingVignette } from "@/lib/questions/student-display-text";
+import { planDualNumericAnswer } from "@/lib/questions/dual-numeric-answer";
+import { studentFacingExhibitTitle, studentFacingVignette } from "@/lib/questions/student-display-text";
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { ExhibitFigureRef } from "@/lib/exam-prep/exhibit-figure";
 import { ArrowRight, Check, GripVertical, RotateCcw, X } from "lucide-react";
@@ -59,7 +60,7 @@ export function ExhibitTable({ question }: { question: StudyQuestion }) {
     <div className="mb-4 overflow-hidden rounded-xl border border-slate-200 dark:border-zinc-700">
       {table.title ? (
         <div className="border-b border-slate-200 bg-slate-50 px-3 py-2 text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400">
-          {table.title}
+          {studentFacingExhibitTitle(table.title)}
         </div>
       ) : null}
       <div className="overflow-x-auto">
@@ -120,10 +121,47 @@ export function ConstructedResponseInput({
 }: Props) {
   const payload = question.ngnPayload as { unit?: string } | undefined;
   const unit = payload?.unit ?? "";
+  const correct = question.correctAnswers[0] ?? "";
+  const dual = planDualNumericAnswer(question.stem, correct);
+  if (dual.mode === "dual") {
+    const parts = (selected[0] ?? "").split("|||");
+    const write = (index: number, raw: string) => {
+      const next = [parts[0] ?? "", parts[1] ?? ""];
+      next[index] = raw.replace(/\|/g, "").trim();
+      const packed = next.some((part) => part.length > 0) ? next.join("|||") : "";
+      onToggle(packed || "__clear__");
+    };
+    return (
+      <div className="mt-6 space-y-3">
+        <p className="text-xs text-[var(--color-ink-muted)]">
+          Enter both values. Round per item instructions.
+        </p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {dual.slots.map((slot, index) => (
+            <label key={slot.label + index} className="block text-sm text-[var(--color-ink)]">
+              <span className="mb-1 block text-xs font-medium text-[var(--color-ink-muted)]">{slot.label}</span>
+              <input
+                type="text"
+                inputMode="decimal"
+                disabled={revealed}
+                value={parts[index] ?? ""}
+                onChange={(event) => write(index, event.target.value)}
+                className="w-full rounded-lg border border-black/10 bg-white px-3 py-2 text-sm tabular-nums shadow-sm focus:border-[var(--color-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]"
+                placeholder="0"
+                aria-label={slot.label}
+              />
+            </label>
+          ))}
+        </div>
+        {revealed ? (
+          <p className="text-sm text-[var(--color-ink-muted)]">Correct: {correct}</p>
+        ) : null}
+      </div>
+    );
+  }
   const value =
     selected[0]?.replace(/\s*(mL\/hr|mcg\/mL|mcg|mg\/mL|mg|mEq|units|capsules|%|mL).*$/i, "").trim() ??
     "";
-  const correct = question.correctAnswers[0] ?? "";
   const isCorrect =
     revealed &&
     normalizeNumeric(value) === normalizeNumeric(correct.replace(/[^\d.]/g, ""));

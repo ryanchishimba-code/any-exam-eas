@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
  * Hide audited wrong keys and queue uncertain keys for RN review.
+ * Covers the NCLEX and NAPLEX reviewed lists.
  *
  * Does not edit stems, options, keys, rationales, `active`, or `qaPassed`.
  * Does not delete rows. Exam links stay until the board composer is applied.
@@ -31,6 +32,7 @@ import {
 } from "../src/lib/exam-prep/student-eligibility";
 import {
   KEY_REVIEW_AUDIT_REF,
+  NAPLEX_KEY_REVIEW_AUDIT_REF,
   KEY_UNCERTAIN_RN_REVIEW,
   KEY_WRONG_PENDING_RN_REVIEW,
   KEY_WRONG_REASON,
@@ -72,30 +74,49 @@ async function main() {
   const now = new Date().toISOString();
   const mode = args.apply ? "APPLY" : "DRY-RUN";
   console.log(`pull-key-wrong ${mode}`);
-  console.log(`audit: ${KEY_REVIEW_AUDIT_REF}`);
+  console.log(`audits: ${KEY_REVIEW_AUDIT_REF}; ${NAPLEX_KEY_REVIEW_AUDIT_REF}`);
   console.log("No stems, options, keys, rationales, active flags, or exam links are modified.");
 
   const wrongIds = KEY_WRONG_PENDING_RN_REVIEW.map((item) => item.id);
   const uncertainIds = KEY_UNCERTAIN_RN_REVIEW.map((item) => item.id);
-  const exams = await prisma.nclexFullPracticeExam.findMany({
-    where: { active: true },
-    orderBy: { examNumber: "asc" },
-    select: {
-      examNumber: true,
-      title: true,
-      questionCount: true,
-      questions: {
-        where: { questionBankItemId: { in: [...wrongIds, ...uncertainIds] } },
-        select: { questionBankItemId: true },
+  const [nclexExams, naplexExams] = await Promise.all([
+    prisma.nclexFullPracticeExam.findMany({
+      where: { active: true },
+      orderBy: { examNumber: "asc" },
+      select: {
+        examNumber: true,
+        title: true,
+        questionCount: true,
+        questions: {
+          where: { questionBankItemId: { in: [...wrongIds, ...uncertainIds] } },
+          select: { questionBankItemId: true },
+        },
       },
-    },
-  });
+    }),
+    prisma.naplexFullPracticeExam.findMany({
+      where: { active: true },
+      orderBy: { examNumber: "asc" },
+      select: {
+        examNumber: true,
+        title: true,
+        questionCount: true,
+        questions: {
+          where: { questionBankItemId: { in: [...wrongIds, ...uncertainIds] } },
+          select: { questionBankItemId: true },
+        },
+      },
+    }),
+  ]);
+  const exams = [
+    ...nclexExams.map((exam) => ({ board: "nclex", ...exam })),
+    ...naplexExams.map((exam) => ({ board: "naplex", ...exam })),
+  ];
 
-  const examsByItem = new Map<string, number[]>();
+  const examsByItem = new Map<string, string[]>();
   for (const exam of exams) {
     for (const link of exam.questions) {
       const list = examsByItem.get(link.questionBankItemId) ?? [];
-      list.push(exam.examNumber);
+      list.push(`${exam.board} ${exam.examNumber}`);
       examsByItem.set(link.questionBankItemId, list);
     }
   }
@@ -103,12 +124,12 @@ async function main() {
   console.log("\n## Wrong keys to hide\n");
   console.log("| sample | id | exams |");
   console.log("| --- | --- | ---: |");
-  const affected = new Set<number>();
+  const affected = new Set<string>();
   let slots = 0;
   for (const item of KEY_WRONG_PENDING_RN_REVIEW) {
     const list = examsByItem.get(item.id) ?? [];
     slots += list.length;
-    for (const examNumber of list) affected.add(examNumber);
+    for (const label of list) affected.add(label);
     console.log(`| ${item.sampleId} | ${item.id} | ${list.length} |`);
   }
   console.log(`\nDistinct exams containing a wrong key: ${affected.size}`);
@@ -118,18 +139,18 @@ async function main() {
   console.log(
     "Serve-time fill keeps every other linked item and replaces each wrong-key slot from the student-eligible pool. The board composer rebuilds whole forms; this script does not rewrite links."
   );
-  console.log("| exam | title | length | slots to replace | kept | action |");
-  console.log("| ---: | --- | ---: | ---: | ---: | --- |");
+  console.log("| board | exam | title | length | slots to replace | kept | action |");
+  console.log("| --- | ---: | --- | ---: | ---: | ---: | --- |");
   for (const exam of exams) {
     const replace = exam.questions.filter((link) => keyWrongReviewFor(link.questionBankItemId)).length;
     if (replace === 0) continue;
     const kept = exam.questionCount - replace;
     console.log(
-      `| ${exam.examNumber} | ${exam.title} | ${exam.questionCount} | ${replace} | ${kept} | backfill |`
+      `| ${exam.board} | ${exam.examNumber} | ${exam.title} | ${exam.questionCount} | ${replace} | ${kept} | backfill |`
     );
   }
 
-  console.log("\n## Uncertain keys (stay visible, queue only)\n");
+  console.log("\n## Uncertain keys (queue only; hidden only if also on the wrong-key list)\n");
   console.log("| sample | id | exams |");
   console.log("| --- | --- | ---: |");
   for (const item of KEY_UNCERTAIN_RN_REVIEW) {
@@ -169,7 +190,7 @@ async function main() {
     if (!changed) continue;
     writes += 1;
     console.log(
-      `${args.apply ? "write" : "plan"} ${item.sampleId} ${item.id} → ${record.status} (${KEY_WRONG_REASON}, ${KEY_REVIEW_AUDIT_REF})`
+      `${args.apply ? "write" : "plan"} ${item.sampleId} ${item.id} → ${record.status} (${KEY_WRONG_REASON}, ${record.auditRef})`
     );
     if (!args.apply) continue;
     await prisma.questionBankItem.update({
@@ -201,12 +222,13 @@ async function main() {
     }
     const queued = rnReviewQueueRecord(item, now);
     const existing = asObject(meta.rnReviewQueue);
-    if (existing.sampleId === item.sampleId && existing.reason === "key_uncertain" && existing.auditRef === KEY_REVIEW_AUDIT_REF) {
+    const auditRef = item.auditRef ?? KEY_REVIEW_AUDIT_REF;
+    if (existing.sampleId === item.sampleId && existing.reason === "key_uncertain" && existing.auditRef === auditRef) {
       continue;
     }
     writes += 1;
     console.log(
-      `${args.apply ? "queue" : "plan queue"} ${item.sampleId} ${item.id} → rnReviewQueue key_uncertain (${KEY_REVIEW_AUDIT_REF})`
+      `${args.apply ? "queue" : "plan queue"} ${item.sampleId} ${item.id} → rnReviewQueue key_uncertain (${auditRef})`
     );
     if (!args.apply) continue;
     await prisma.questionBankItem.update({

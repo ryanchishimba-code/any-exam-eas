@@ -1,4 +1,5 @@
 import { keyWrongIdSql } from "@/lib/exam-prep/reviewed-key-queue";
+import { DUAL_NUMERIC_UNSCORABLE_SQL } from "@/lib/questions/dual-numeric-answer";
 
 /**
  * SQL mirror of `assessStudentEligibility` for active, qaPassed rows.
@@ -152,6 +153,7 @@ OR (${CASE_DEFECT})
 OR NULLIF(curation_meta #>> '{itemQa,retiredReason}', '') IS NOT NULL
 OR NULLIF(curation_meta #>> '{itemQa,retiredAt}', '') IS NOT NULL
 ${keyWrongIdSql()}
+${DUAL_NUMERIC_UNSCORABLE_SQL}
 `;
 
 /** True when a qaPassed, active row may be shown. */

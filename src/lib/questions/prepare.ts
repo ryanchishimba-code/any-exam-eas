@@ -5,6 +5,7 @@ import {
   shuffleAnswerOptions,
 } from "@/lib/question-format";
 import { normalizeStem } from "./stem";
+import { numericValueInSlot, planDualNumericAnswer } from "./dual-numeric-answer";
 import { splitGluedLeadIn, stripInternalDisplayMetadata } from "./student-display-text";
 import {
   resolveNclexStem,
@@ -51,10 +52,12 @@ function toCorrectAnswers(type: StudyQuestionType, correct: string, options: str
 function buildExplanationDetail(q: RawQuestionInput) {
   if (!q.distractorRationale && !q.clinicalReasoning) return undefined;
   return {
-    summary: q.explanation?.trim() ?? "",
-    whyCorrect: q.explanation?.trim() ?? "",
+    summary: stripInternalDisplayMetadata(q.explanation?.trim() ?? ""),
+    whyCorrect: stripInternalDisplayMetadata(q.explanation?.trim() ?? ""),
     whyIncorrect: q.distractorRationale,
-    pearls: q.references,
+    pearls: q.references
+      ?.map((reference) => stripInternalDisplayMetadata(reference))
+      .filter((reference) => reference.length > 0),
   };
 }
 
@@ -153,12 +156,14 @@ export function examQuestionToStudy(
     caseStep: q.caseStep,
     options,
     correctAnswers: toCorrectAnswers(type, correctAnswer, options),
-    explanation: q.explanation?.trim() ?? "",
+    explanation: stripInternalDisplayMetadata(q.explanation?.trim() ?? ""),
     explanationDetail: buildExplanationDetail(q),
     clinicalReasoning: q.clinicalReasoning,
     distractorRationale: q.distractorRationale,
-    references: q.references,
-    sourceLabel: q.sourceLabel,
+    references: q.references
+      ?.map((reference) => stripInternalDisplayMetadata(reference))
+      .filter((reference) => reference.length > 0 && !/^references:?$/i.test(reference)),
+    sourceLabel: studentFacingSourceLabel(q.sourceLabel),
     sourceUrl: q.sourceUrl,
     reviewedAt: q.reviewedAt,
     solutionSteps: q.solutionSteps,
@@ -275,6 +280,12 @@ export function isAnswerCorrect(
   }
 
   if (question.type === "short_answer") {
+    const plan = planDualNumericAnswer(question.stem, normalizedCorrect[0] ?? "");
+    if (plan.mode === "dual") {
+      const parts = (normalizedSelected[0] ?? "").split("|||");
+      return plan.slots.every((slot, index) => numericValueInSlot(parts[index] ?? "", slot));
+    }
+    if (plan.mode === "unscorable") return false;
     const sel = parseNumericAnswer(normalizedSelected[0] ?? "");
     const cor = parseNumericAnswer(normalizedCorrect[0] ?? "");
     if (sel == null || cor == null) {
@@ -307,6 +318,13 @@ export function isAnswerCorrect(
   return normalizedSelected.some((s) =>
     normalizedCorrect.some((c) => s.toLowerCase() === c.toLowerCase())
   );
+}
+
+function studentFacingSourceLabel(label: string | undefined): string | undefined {
+  if (!label) return undefined;
+  const cleaned = stripInternalDisplayMetadata(label);
+  if (!cleaned || /^nabp naplex(?: content outline)?$/i.test(cleaned)) return undefined;
+  return cleaned;
 }
 
 function parseNumericAnswer(raw: string): number | null {
