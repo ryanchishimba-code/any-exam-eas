@@ -6,6 +6,7 @@ import {
 } from "@/lib/question-format";
 import { normalizeStem } from "./stem";
 import { numericValueInSlot, planDualNumericAnswer } from "./dual-numeric-answer";
+import { gradeNumericAnswer } from "./numeric-grade";
 import { splitGluedLeadIn, stripInternalDisplayMetadata } from "./student-display-text";
 import {
   resolveNclexStem,
@@ -279,21 +280,26 @@ export function isAnswerCorrect(
     );
   }
 
-  if (question.type === "short_answer") {
+  if (question.type === "short_answer" || question.type === "calculation") {
     const plan = planDualNumericAnswer(question.stem, normalizedCorrect[0] ?? "");
     if (plan.mode === "dual") {
       const parts = (normalizedSelected[0] ?? "").split("|||");
-      return plan.slots.every((slot, index) => numericValueInSlot(parts[index] ?? "", slot));
+      return plan.slots.every((slot, index) =>
+        numericValueInSlot(parts[index] ?? "", slot, question.stem)
+      );
     }
     if (plan.mode === "unscorable") return false;
-    const sel = parseNumericAnswer(normalizedSelected[0] ?? "");
-    const cor = parseNumericAnswer(normalizedCorrect[0] ?? "");
-    if (sel == null || cor == null) {
+    const graded = gradeNumericAnswer(
+      normalizedSelected[0] ?? "",
+      normalizedCorrect[0] ?? "",
+      question.stem
+    );
+    if (graded == null) {
       return normalizedSelected.some((s) =>
         normalizedCorrect.some((c) => s.toLowerCase() === c.toLowerCase())
       );
     }
-    return Math.abs(sel - cor) < 0.11;
+    return graded;
   }
 
   if (question.type === "drag_drop") {
@@ -325,11 +331,6 @@ function studentFacingSourceLabel(label: string | undefined): string | undefined
   const cleaned = stripInternalDisplayMetadata(label);
   if (!cleaned || /^nabp naplex(?: content outline)?$/i.test(cleaned)) return undefined;
   return cleaned;
-}
-
-function parseNumericAnswer(raw: string): number | null {
-  const n = parseFloat(raw.replace(/[^0-9.-]/g, ""));
-  return Number.isFinite(n) ? n : null;
 }
 
 function hashStem(stem: string): string {

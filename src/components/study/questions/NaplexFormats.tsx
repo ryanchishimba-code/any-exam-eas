@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { cleanOptionText } from "@/lib/question-format";
 import { planDualNumericAnswer } from "@/lib/questions/dual-numeric-answer";
+import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { studentFacingExhibitTitle, studentFacingVignette } from "@/lib/questions/student-display-text";
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { ExhibitFigureRef } from "@/lib/exam-prep/exhibit-figure";
@@ -123,6 +124,7 @@ export function ConstructedResponseInput({
   const unit = payload?.unit ?? "";
   const correct = question.correctAnswers[0] ?? "";
   const dual = planDualNumericAnswer(question.stem, correct);
+  const isCorrect = revealed && isAnswerCorrect(question, selected);
   if (dual.mode === "dual") {
     const parts = (selected[0] ?? "").split("|||");
     const write = (index: number, raw: string) => {
@@ -154,7 +156,12 @@ export function ConstructedResponseInput({
           ))}
         </div>
         {revealed ? (
-          <p className="text-sm text-[var(--color-ink-muted)]">Correct: {correct}</p>
+          <p
+            className={`flex items-center gap-1.5 text-sm ${isCorrect ? "text-emerald-700" : "text-rose-700"}`}
+          >
+            {isCorrect ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
+            Correct: {correct}
+          </p>
         ) : null}
       </div>
     );
@@ -162,10 +169,6 @@ export function ConstructedResponseInput({
   const value =
     selected[0]?.replace(/\s*(mL\/hr|mcg\/mL|mcg|mg\/mL|mg|mEq|units|capsules|%|mL).*$/i, "").trim() ??
     "";
-  const isCorrect =
-    revealed &&
-    normalizeNumeric(value) === normalizeNumeric(correct.replace(/[^\d.]/g, ""));
-
   return (
     <div className="mt-6 space-y-3">
       <p className="text-xs text-[var(--color-ink-muted)]">
@@ -435,7 +438,3 @@ export function DragDropMatch({ question, selected, revealed, onToggle }: Props)
   );
 }
 
-function normalizeNumeric(s: string): number | null {
-  const n = parseFloat(s.replace(/,/g, ""));
-  return Number.isFinite(n) ? n : null;
-}

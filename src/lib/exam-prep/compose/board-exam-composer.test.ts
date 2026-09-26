@@ -154,6 +154,14 @@ describe("naplex composition", () => {
   it("targets the May 2025 weights on an 85-item form", () => {
     const config = naplex2025ComposeConfig();
     const quota = planAreaCounts(config.fullExamLength, config.areas);
+    expect(config.areas).toHaveLength(5);
+    expect(config.areas.map((area) => [area.label, area.weight])).toEqual([
+      ["Foundational Knowledge for Pharmacy Practice", 25],
+      ["Medication Use Process", 25],
+      ["Person-Centered Assessment and Treatment Planning", 40],
+      ["Professional Practice", 5],
+      ["Pharmacy Management and Leadership", 5],
+    ]);
     expect(quota).not.toBeNull();
     const total = Object.values(quota ?? {}).reduce((sum, count) => sum + count, 0);
     expect(total).toBe(85);
