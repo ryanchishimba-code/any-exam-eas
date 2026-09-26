@@ -19,6 +19,12 @@ type Props = {
   loading: boolean;
   disabled: boolean;
   onStart: () => void;
+  /** Replaces the disabled Start button when the chosen format has nothing to serve. */
+  emptyNotice?: {
+    title: string;
+    actionLabel: string;
+    onAction: () => void;
+  } | null;
   isTimedExam?: boolean;
   timedCount?: number;
   timedMinutes?: number;
@@ -45,6 +51,7 @@ export function QuestionBankSessionPreview({
   loading,
   disabled,
   onStart,
+  emptyNotice = null,
   isTimedExam,
   timedCount,
   timedMinutes,
@@ -55,6 +62,7 @@ export function QuestionBankSessionPreview({
         <div className="min-w-0 space-y-1">
           <p className={qbUi.eyebrow}>Session preview</p>
           <p className="truncate text-[14px] font-semibold text-[var(--color-ink)]">{topicLabel}</p>
+          {!emptyNotice ? (
           <p className={qbUi.sectionHint}>
             {isTimedExam ? (
               <>
@@ -68,14 +76,23 @@ export function QuestionBankSessionPreview({
               </>
             )}
           </p>
-          {typeof availableCount === "number" && !isTimedExam ? (
+          ) : null}
+          {typeof availableCount === "number" && !isTimedExam && !emptyNotice ? (
             <p className="text-[11px] tabular-nums text-[var(--color-ink-muted)]">
               {availableCount.toLocaleString()} available in pool
             </p>
           ) : null}
         </div>
 
-        {validationMessage ? (
+        {emptyNotice ? (
+          <div className="space-y-3">
+            <p className="text-[15px] leading-relaxed text-[var(--color-ink)]">{emptyNotice.title}</p>
+            <button type="button" className={qbUi.primaryBtn} onClick={emptyNotice.onAction}>
+              {emptyNotice.actionLabel}
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+            </button>
+          </div>
+        ) : validationMessage ? (
           <div
             className={cn(
               "space-y-2 rounded-xl border border-amber-200/60 bg-amber-500/6 px-3 py-2.5 text-[12px] text-amber-950"
@@ -98,6 +115,7 @@ export function QuestionBankSessionPreview({
           </div>
         ) : null}
 
+        {emptyNotice ? null : (
         <button
           type="button"
           disabled={disabled || loading}
@@ -124,6 +142,7 @@ export function QuestionBankSessionPreview({
             </>
           )}
         </button>
+        )}
       </div>
     </div>
   );

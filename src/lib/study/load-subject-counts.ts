@@ -16,6 +16,7 @@ export type SubjectCountsPayload = {
   counts: Record<string, number>;
   total: number;
   formats: FormatCounts | null;
+  topicFormats: Record<string, FormatCounts> | null;
   categories: InventoryCategoryCount[];
   categoryLabel: string | null;
   definition: string;
@@ -42,6 +43,7 @@ export async function loadSubjectCountsForUser(
         counts: fromInventory.counts,
         total: fromInventory.total,
         formats: fromInventory.formats,
+        topicFormats: fromInventory.topicFormats,
         categories: fromInventory.categories,
         categoryLabel: fromInventory.categoryLabel,
         definition: fromInventory.definition,
@@ -64,6 +66,7 @@ export async function loadSubjectCountsForUser(
     counts,
     total,
     formats: null,
+    topicFormats: null,
     categories: [],
     categoryLabel: null,
     definition: ACTIVE_QUESTION_DEFINITION,

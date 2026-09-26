@@ -1,6 +1,7 @@
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import {
   classifyQuestionFormat,
+  emptyFormatCounts,
   type FormatCounts,
   type QuestionFormatBucket,
 } from "@/lib/inventory/active-questions";
@@ -131,15 +132,84 @@ export function practiceFormatCountOptions(
   ];
 }
 
-/** A real bank topic. Mixed scope and a blank id cannot start an NGN or case set. */
+/** A single bank topic. Mixed scope is its own pool, not a missing topic. */
 export function isDeliberateFormatTopic(subjectId: string | null | undefined): boolean {
   const id = subjectId?.trim() ?? "";
   return id.length > 0 && id !== MIXED_SUBJECT_ID;
 }
 
+/** Mixed topics, or a subject id that has not been chosen yet. */
+export function isMixedPracticeSubject(subjectId: string | null | undefined): boolean {
+  const id = subjectId?.trim() ?? "";
+  return id.length === 0 || id === MIXED_SUBJECT_ID;
+}
+
+/** Mixed or one topic. A blank id still cannot start a set. */
+export function isPracticeFormatSubject(subjectId: string | null | undefined): boolean {
+  return (subjectId?.trim() ?? "").length > 0;
+}
+
 /**
- * Question-bank query for one topic and one format.
- * Omits scope and mixed so the API samples that subjectId instead of rejecting field scope.
+ * Format split for the pool a session will actually draw from.
+ * Mixed uses the field inventory. A topic uses that topic's split from the
+ * same inventory rows. Without a topic map, the field split is the fallback.
+ */
+export function practiceFormatScopeCounts(params: {
+  subjectId: string | null | undefined;
+  formats: FormatCounts | null | undefined;
+  topicFormats?: Record<string, FormatCounts> | null;
+}): FormatCounts | null {
+  if (!params.formats) return null;
+  if (isMixedPracticeSubject(params.subjectId)) return params.formats;
+  const id = params.subjectId!.trim();
+  if (!params.topicFormats) return params.formats;
+  return params.topicFormats[id] ?? emptyFormatCounts();
+}
+
+function publishedFormatNoun(
+  format: DeliberatePracticeFormat,
+  ngnLabel: string
+): string {
+  return format === "case" ? "case studies" : `${ngnLabel} items`;
+}
+
+/**
+ * Honest empty state when the selected format has nothing to serve.
+ * A topic with none, while the board still has some, points at Mixed topics.
+ * A board with none points at standard practice.
+ */
+export function practiceFormatEmptyGuidance(params: {
+  format: DeliberatePracticeFormat;
+  subjectId?: string | null;
+  scopeCount: number;
+  boardCount: number;
+  ngnLabel?: string;
+}): PracticeFormatEmptyGuidance | null {
+  if (params.scopeCount > 0) return null;
+  const ngnLabel = params.ngnLabel?.trim() || "NGN";
+  const noun = publishedFormatNoun(params.format, ngnLabel);
+  const mixed = isMixedPracticeSubject(params.subjectId);
+  if (!mixed && params.boardCount > 0) {
+    const pool = params.boardCount.toLocaleString("en-US");
+    return {
+      title: `No ${noun} in this topic`,
+      detail: `Mixed topics includes ${pool} published ${noun} from across the bank.`,
+      action: "mixed",
+      actionLabel: "Practice mixed topics",
+    };
+  }
+  return {
+    title: `No ${noun} yet`,
+    detail: "Standard practice is ready now, using the questions this board has published.",
+    action: "all",
+    actionLabel: "Practice all questions",
+  };
+}
+
+/**
+ * Question-bank query for one format.
+ * Mixed sends subjectId=__mixed__ so the API samples the field. It does not
+ * send scope=field — question-bank mode rejects that parameter.
  */
 export function buildDeliberateFormatQuestionQuery(params: {
   fieldId: string;
@@ -147,7 +217,7 @@ export function buildDeliberateFormatQuestionQuery(params: {
   format: DeliberatePracticeFormat;
   limit: number;
 }): URLSearchParams | null {
-  if (!isDeliberateFormatTopic(params.subjectId)) return null;
+  if (!isPracticeFormatSubject(params.subjectId)) return null;
   return new URLSearchParams({
     field: params.fieldId,
     subjectId: params.subjectId!.trim(),
@@ -162,6 +232,17 @@ export type PracticeFormatValidation = {
   ok: boolean;
   message?: string;
   maxAvailable?: number;
+  /** The selected format has no student-eligible items in this scope. */
+  emptyPool?: boolean;
+};
+
+export type PracticeFormatEmptyAction = "all" | "mixed";
+
+export type PracticeFormatEmptyGuidance = {
+  title: string;
+  detail: string;
+  action: PracticeFormatEmptyAction;
+  actionLabel: string;
 };
 
 export function validatePracticeFormatSession(params: {
@@ -177,13 +258,10 @@ export function validatePracticeFormatSession(params: {
   if (format === "all" || format === "mcq") return { ok: true };
 
   const noun = format === "case" ? "case" : ngnLabel;
-  if (subjectId !== undefined && !isDeliberateFormatTopic(subjectId)) {
-    const mixed = (subjectId?.trim() ?? "") === MIXED_SUBJECT_ID;
+  if (subjectId !== undefined && !isPracticeFormatSubject(subjectId)) {
     return {
       ok: false,
-      message: mixed
-        ? `Pick one topic for this ${noun} set. Mixed topics is not available.`
-        : `Pick one topic for this ${noun} set.`,
+      message: `Pick one topic for this ${noun} set.`,
     };
   }
 
@@ -205,7 +283,8 @@ export function validatePracticeFormatSession(params: {
   if (maxAvailable <= 0) {
     return {
       ok: false,
-      message: `No published ${noun} items in this bank.`,
+      emptyPool: true,
+      message: `No published ${noun} items in this pool.`,
       maxAvailable: 0,
     };
   }

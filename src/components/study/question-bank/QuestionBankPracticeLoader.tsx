@@ -57,6 +57,7 @@ export async function QuestionBankPracticeLoader({
         counts: countsPayload.counts,
         total: countsPayload.total,
         formats: countsPayload.formats,
+        topicFormats: countsPayload.topicFormats,
         categories: countsPayload.categories,
         categoryLabel: countsPayload.categoryLabel,
         definition: countsPayload.definition,

@@ -91,6 +91,8 @@ export type FieldActiveInventory = {
   active: number;
   formats: FormatCounts;
   topics: InventoryTopicCount[];
+  /** Per-topic format split. Same rows as `formats`, so a topic session can show its own pool. */
+  topicFormats: Record<string, FormatCounts>;
   categories: InventoryCategoryCount[];
   categoryLabel: "Client Needs" | "Blueprint topics";
 };
@@ -210,6 +212,7 @@ function emptyField(fieldId: string): FieldActiveInventory {
     active: 0,
     formats: emptyFormatCounts(),
     topics: [],
+    topicFormats: {},
     categories: [],
     categoryLabel: categoryLabelForField(fieldId),
   };
@@ -250,6 +253,7 @@ export function emptyActiveInventory(degraded: boolean): ActiveQuestionInventory
 type FieldAccum = {
   formats: FormatCounts;
   topics: Map<string, number>;
+  topicFormats: Map<string, FormatCounts>;
   categories: Map<string, number>;
 };
 
@@ -261,6 +265,7 @@ export function aggregateActiveInventory(rows: ActiveInventoryRow[]): ActiveQues
     acc.set(fieldId, {
       formats: emptyFormatCounts(),
       topics: new Map(),
+      topicFormats: new Map(),
       categories: new Map(),
     });
   }
@@ -277,6 +282,9 @@ export function aggregateActiveInventory(rows: ActiveInventoryRow[]): ActiveQues
 
     const subjectId = row.subjectId?.trim() || "unassigned";
     bucket.topics.set(subjectId, (bucket.topics.get(subjectId) ?? 0) + count);
+    const topicSplit = bucket.topicFormats.get(subjectId) ?? emptyFormatCounts();
+    topicSplit[format] += count;
+    bucket.topicFormats.set(subjectId, topicSplit);
 
     const categoryId = categoryIdForRow(row.fieldId, subjectId, row.clientNeeds);
     if (categoryId) {
@@ -302,6 +310,7 @@ export function aggregateActiveInventory(rows: ActiveInventoryRow[]): ActiveQues
       active,
       formats: bucket.formats,
       topics,
+      topicFormats: Object.fromEntries(bucket.topicFormats),
       categories,
       categoryLabel: categoryLabelForField(fieldId),
     };
@@ -422,6 +431,7 @@ export type FieldInventoryPayload = {
   counts: Record<string, number>;
   total: number;
   formats: FormatCounts | null;
+  topicFormats: Record<string, FormatCounts>;
   categories: InventoryCategoryCount[];
   categoryLabel: string | null;
   definition: string;
@@ -440,6 +450,7 @@ export function fieldInventoryPayload(
     counts: Object.fromEntries(field.topics.map((topic) => [topic.id, topic.count])),
     total: field.active,
     formats: field.formats,
+    topicFormats: field.topicFormats,
     categories: field.categories,
     categoryLabel: field.categoryLabel,
     definition: inventory.definition,

@@ -30,6 +30,19 @@ function readEnrichment(obj: Record<string, unknown>): Partial<ParsedBankOptions
   return out;
 }
 
+/** Case group id stored on the options envelope, even when `kind` is omitted. */
+export function caseGroupIdFromOptionsJson(raw: string | null | undefined): string | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return null;
+    const id = (parsed as Record<string, unknown>).caseGroupId;
+    return typeof id === "string" && id.trim() ? id.trim() : null;
+  } catch {
+    return null;
+  }
+}
+
 function isLetterPlaceholderOptions(options: string[]): boolean {
   return options.length >= 3 && options.every((o) => /^[A-D]$/i.test(cleanOptionText(o).trim()));
 }
@@ -163,6 +176,10 @@ export function enrichBankItemFromRow(row: {
       ? { generationMeta: row.generationMeta }
       : {}),
   };
+  if (typeof mergedPayload.caseGroupId !== "string" || !String(mergedPayload.caseGroupId).trim()) {
+    const groupId = caseGroupIdFromOptionsJson(row.options);
+    if (groupId) mergedPayload.caseGroupId = groupId;
+  }
 
   const item: BankItem = {
     id: row.id,

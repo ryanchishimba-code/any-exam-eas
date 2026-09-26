@@ -94,6 +94,10 @@ describe("active question inventory", () => {
       "safety-infection": 30,
     });
     expect(payload?.formats).toEqual({ mcq: 70, ngn: 30, case: 0 });
+    expect(payload?.topicFormats).toEqual({
+      "management-of-care": { mcq: 70, ngn: 0, case: 0 },
+      "safety-infection": { mcq: 0, ngn: 30, case: 0 },
+    });
   });
 
   it("hides the format line until NGN or case items exist", () => {

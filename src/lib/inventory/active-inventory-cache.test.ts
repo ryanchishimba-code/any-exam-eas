@@ -19,7 +19,7 @@ describe("active inventory cache identity", () => {
   it("keeps a one-hour TTL fallback and the question-bank-counts tag", () => {
     expect(ACTIVE_INVENTORY_CACHE_TAG).toBe("question-bank-counts");
     expect(ACTIVE_INVENTORY_CACHE_TTL_SECONDS).toBe(3600);
-    expect(ACTIVE_INVENTORY_CACHE_KEY).toEqual(["marketing-active-inventory-v3"]);
+    expect(ACTIVE_INVENTORY_CACHE_KEY).toEqual(["marketing-active-inventory-v4"]);
     expect(ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL).not.toMatch(/s-maxage|max-age=[1-9]/);
     expect(ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL).toContain("no-store");
   });
