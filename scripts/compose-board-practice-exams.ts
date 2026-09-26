@@ -28,6 +28,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import {
   composeBoardExams,
   formatAreaDistribution,
+  overlapStats,
   type ComposedExam,
 } from "../src/lib/exam-prep/compose/board-exam-composer";
 import {
@@ -157,13 +158,26 @@ async function main() {
   console.log(`Published subject sets: ${composed.math.publishedSubjectSets}`);
   console.log(composed.math.stopReason);
 
+  const fullExams = composed.exams.filter(
+    (exam) =>
+      exam.kind === "full" &&
+      exam.itemIds.length === config.fullExamLength &&
+      exam.areasOutOfRange.length === 0
+  );
+  console.log(`On-plan full exams to publish: ${fullExams.length}`);
+  if (composed.math.publishedSubjectSets > 0) {
+    console.log(
+      `Subject sets left unpublished: ${composed.math.publishedSubjectSets}. Fixed forms stay at ${config.fullExamLength} items.`
+    );
+  }
+
   console.log("\n## Per-exam area distribution\n");
-  composed.exams.forEach((exam, index) => {
+  fullExams.forEach((exam, index) => {
     console.log(`\n${index + 1}. ${exam.title} [${exam.kind}] n=${exam.itemIds.length} out of range: ${exam.areasOutOfRange.length}`);
     for (const line of formatAreaDistribution(exam, config.areas)) console.log(`  ${line}`);
   });
 
-  const overlap = composed.overlap;
+  const overlap = overlapStats(fullExams);
   console.log("\n## Overlap\n");
   console.log(`Exams: ${overlap.exams}`);
   console.log(`Identical pairs: ${overlap.identicalPairs}`);
@@ -171,12 +185,30 @@ async function main() {
   console.log(`Mean shared items: ${overlap.meanSharedItems.toFixed(2)}`);
   console.log(`Max Jaccard: ${overlap.maxJaccard.toFixed(3)}`);
   console.log(`Mean Jaccard: ${overlap.meanJaccard.toFixed(3)}`);
+  const useCounts = new Map<string, number>();
+  for (const exam of fullExams) {
+    for (const id of exam.itemIds) useCounts.set(id, (useCounts.get(id) ?? 0) + 1);
+  }
+  let maxReuse = 0;
+  let reusedItems = 0;
+  let slotsFromReusedItems = 0;
+  for (const count of useCounts.values()) {
+    if (count > maxReuse) maxReuse = count;
+    if (count > 1) {
+      reusedItems += 1;
+      slotsFromReusedItems += count;
+    }
+  }
+  console.log(`Distinct items: ${useCounts.size}`);
+  console.log(`Max item reuse: ${maxReuse}`);
+  console.log(`Items used more than once: ${reusedItems}`);
+  console.log(`Slots filled by those items: ${slotsFromReusedItems}`);
 
   const existing = await prisma.nclexFullPracticeExam.findMany({
     select: { examNumber: true, active: true },
     orderBy: { examNumber: "asc" },
   });
-  const rowPlan = planBoardExamRows({ existing, composedCount: composed.exams.length });
+  const rowPlan = planBoardExamRows({ existing, composedCount: fullExams.length });
   console.log("\n## Row plan\n");
   console.log(`Replace exam numbers: ${rowPlan.replace.join(", ") || "none"}`);
   console.log(`Create exam numbers: ${rowPlan.create.join(", ") || "none"}`);
@@ -188,10 +220,11 @@ async function main() {
   }
 
   const now = new Date().toISOString();
-  for (let index = 0; index < composed.exams.length; index++) {
-    const examNumber = index + 1;
-    const exam = composed.exams[index]!;
-    await writeExam(examNumber, exam, areaById, now);
+  const numbers = [...rowPlan.replace, ...rowPlan.create];
+  for (let index = 0; index < fullExams.length; index++) {
+    const examNumber = numbers[index];
+    if (examNumber == null) break;
+    await writeExam(examNumber, fullExams[index]!, areaById, now);
   }
   for (const examNumber of rowPlan.pause) {
     await pauseExam(examNumber, now);

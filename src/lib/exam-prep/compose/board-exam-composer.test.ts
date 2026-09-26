@@ -35,13 +35,13 @@ function pool(perArea: number, areas = ["alpha", "beta"]): ComposerItem[] {
 }
 
 describe("planAreaCounts", () => {
-  it("fits an 80-item NCLEX form inside every 2026 range", () => {
+  it("fits an 85-item NCLEX form inside every 2026 range", () => {
     const config = nclexRn2026ComposeConfig();
     const quota = planAreaCounts(config.fullExamLength, config.areas);
     expect(quota).not.toBeNull();
     const total = Object.values(quota ?? {}).reduce((sum, count) => sum + count, 0);
-    expect(total).toBe(80);
-    expect(areasOutsidePlan(quota ?? {}, 80, config.areas)).toEqual([]);
+    expect(total).toBe(85);
+    expect(areasOutsidePlan(quota ?? {}, 85, config.areas)).toEqual([]);
     expect(quota?.psychosocial).toBeGreaterThanOrEqual(5);
   });
 });

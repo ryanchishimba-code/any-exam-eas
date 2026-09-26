@@ -32,7 +32,8 @@ export function nclexAreaId(subjectId: string, clientNeeds?: string | null): str
 export function nclexRn2026ComposeConfig(maxFullExams = 43): BoardComposeConfig {
   return {
     boardId: "nclex-rn",
-    fullExamLength: 80,
+    // Fixed forms match the launcher promise of 85 questions. Practice CAT stays 85–150.
+    fullExamLength: 85,
     maxFullExams,
     maxItemReuse: 1,
     areas: NCLEX_RN_CLIENT_NEEDS_2026.map((area) => ({
