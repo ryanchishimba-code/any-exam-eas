@@ -13,6 +13,7 @@
 import { parseSelectAllCorrectAnswers } from "@/lib/question-format";
 import { readItemQaRecord } from "@/lib/exam-prep/item-qa/flag";
 import { isKeyWrongPendingReview } from "@/lib/exam-prep/reviewed-key-queue";
+import { isUnscorableDualNumeric } from "@/lib/questions/dual-numeric-answer";
 import type { BankItem } from "@/lib/question-bank";
 
 export const STUDENT_ELIGIBILITY_PIPELINE = "student-eligibility-v1" as const;
@@ -29,6 +30,7 @@ export const STUDENT_SUPPRESS_REASONS = [
   "incomplete_case_study",
   "retired_but_active",
   "key_wrong_pending_rn_review",
+  "dual_numeric_unscorable",
 ] as const;
 
 export type StudentSuppressReason = (typeof STUDENT_SUPPRESS_REASONS)[number];
@@ -293,6 +295,13 @@ export function assessStudentEligibility(
   }
 
   if (isKeyWrongPendingReview(input.id)) push(reasons, "key_wrong_pending_rn_review");
+
+  if (
+    (type === "constructed_response" || type === "calculation") &&
+    isUnscorableDualNumeric(input.question ?? "", input.correctAnswer ?? "")
+  ) {
+    push(reasons, "dual_numeric_unscorable");
+  }
 
   const restored = isStudentEligibilityRestored(input.curationMeta);
   return {

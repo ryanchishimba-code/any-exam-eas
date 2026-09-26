@@ -25,6 +25,8 @@ export function planBoardExamRows(input: {
   existing: readonly ExistingExamRow[];
   composedCount: number;
   maxExamNumber?: number;
+  /** Keep these exam numbers, in order, instead of compacting to 1..N. */
+  publishNumbers?: readonly number[];
 }): ExamRowWritePlan {
   const maxExamNumber = input.maxExamNumber ?? 100;
   if (input.composedCount < 0) {
@@ -37,8 +39,28 @@ export function planBoardExamRows(input: {
   }
   const existingNumbers = new Set(input.existing.map((row) => row.examNumber));
   const published: number[] = [];
-  for (let examNumber = 1; examNumber <= input.composedCount; examNumber++) {
-    published.push(examNumber);
+  if (input.publishNumbers && input.publishNumbers.length > 0) {
+    for (const examNumber of input.publishNumbers) {
+      if (published.length >= input.composedCount) break;
+      if (examNumber < 1 || examNumber > maxExamNumber) {
+        throw new Error(`Exam number ${examNumber} is outside 1–${maxExamNumber}.`);
+      }
+      published.push(examNumber);
+    }
+    let next = Math.max(0, ...input.existing.map((row) => row.examNumber), ...published) + 1;
+    while (published.length < input.composedCount) {
+      if (next > maxExamNumber) {
+        throw new Error(
+          `Cannot publish ${input.composedCount} exams. The launcher only opens exam numbers 1–${maxExamNumber}.`
+        );
+      }
+      if (!published.includes(next)) published.push(next);
+      next += 1;
+    }
+  } else {
+    for (let examNumber = 1; examNumber <= input.composedCount; examNumber++) {
+      published.push(examNumber);
+    }
   }
   const publishedSet = new Set(published);
   return {

@@ -183,6 +183,29 @@ describe("student eligibility", () => {
     expect(retired.eligible).toBe(false);
   });
 
+  it("hides a two-ask calculation whose key has only one number", () => {
+    const hidden = assessStudentEligibility(
+      row({
+        itemType: "constructed_response",
+        question: "Calculate the total daily dose and the dose per administration for this child.",
+        correctAnswer: "250 mg",
+      })
+    );
+    expect(hidden.reasons).toContain("dual_numeric_unscorable");
+    expect(hidden.eligible).toBe(false);
+
+    const shown = assessStudentEligibility(
+      row({
+        itemType: "constructed_response",
+        question: "Calculate the total daily dose in milligrams and the volume of each dose in milliliters.",
+        correctAnswer: "1000 mg/day; 10 mL per dose",
+      })
+    );
+    expect(shown.reasons).not.toContain("dual_numeric_unscorable");
+    expect(shown.eligible).toBe(true);
+    expect(STUDENT_ELIGIBLE_SQL).toContain("constructed_response");
+  });
+
   it("hides a reviewed wrong key and keeps an uncertain key visible", () => {
     const wrong = assessStudentEligibility(
       row({ id: KEY_WRONG_PENDING_RN_REVIEW[0]!.id, itemType: "vignette" })
@@ -234,6 +257,7 @@ describe("student eligibility", () => {
       expect(STUDENT_ELIGIBLE_SQL).toContain(`'${item.id}'`);
     }
     for (const item of KEY_UNCERTAIN_RN_REVIEW) {
+      if (KEY_WRONG_PENDING_RN_REVIEW.some((wrong) => wrong.id === item.id)) continue;
       expect(STUDENT_ELIGIBLE_SQL).not.toContain(`'${item.id}'`);
     }
     expect(STUDENT_ELIGIBLE_SQL).toContain("studentEligibility,status");

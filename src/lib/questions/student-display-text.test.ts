@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { examQuestionToStudy } from "./prepare";
-import { splitGluedLeadIn, stripInternalDisplayMetadata } from "./student-display-text";
+import {
+  splitGluedLeadIn,
+  stripInternalDisplayMetadata,
+  studentFacingExhibitKind,
+} from "./student-display-text";
 
 describe("student display text", () => {
   it("splits a lead-in that runs into the scenario without punctuation", () => {
@@ -23,6 +27,14 @@ describe("student display text", () => {
   it("strips visit-batch metadata without touching the clinical sentence", () => {
     expect(stripInternalDisplayMetadata("The fundus is boggy (Visit batch 13).")).toBe("The fundus is boggy.");
     expect(stripInternalDisplayMetadata("Visit batch 13 The client is dizzy.")).toBe("The client is dizzy.");
+  });
+
+  it("hides internal blueprint stamps and exhibit ids", () => {
+    expect(stripInternalDisplayMetadata("references: NABP NAPLEX 2026, ADA Standards")).toBe(
+      "references: ADA Standards"
+    );
+    expect(studentFacingExhibitKind("med_label")).toBe("Medication label");
+    expect(studentFacingExhibitKind("diagram")).toBe("Diagram");
   });
 
   it("applies the split at study-question render time and keeps the stored stem intact", () => {

@@ -6,9 +6,11 @@ import {
   scenariosNearDuplicate,
   type ComposerItem,
   type TestPlanArea,
+  reuseStats,
 } from "./board-exam-composer";
 import { planBoardExamRows } from "./board-exam-row-plan";
 import { nclexAreaId, nclexRn2026ComposeConfig } from "./nclex-rn-2026-plan";
+import { naplex2025ComposeConfig, naplexComposerItem } from "./naplex-2025-plan";
 
 const TWO_AREAS: TestPlanArea[] = [
   { id: "alpha", label: "Alpha", minPct: 40, maxPct: 60, weight: 50 },
@@ -133,5 +135,105 @@ describe("planBoardExamRows", () => {
 
   it("refuses to publish exam numbers the launcher cannot open", () => {
     expect(() => planBoardExamRows({ existing: [], composedCount: 101 })).toThrow(/1–100/);
+  });
+
+  it("keeps NAPLEX exam numbers 10–33 instead of compacting to 1–24", () => {
+    const existing = [
+      ...Array.from({ length: 9 }, (_, index) => ({ examNumber: index + 1, active: false })),
+      ...Array.from({ length: 24 }, (_, index) => ({ examNumber: index + 10, active: true })),
+    ];
+    const active = existing.filter((row) => row.active).map((row) => row.examNumber);
+    const plan = planBoardExamRows({ existing, composedCount: 20, publishNumbers: active });
+    expect(plan.replace).toEqual(Array.from({ length: 20 }, (_, index) => index + 10));
+    expect(plan.create).toEqual([]);
+    expect(plan.pause).toEqual([30, 31, 32, 33]);
+  });
+});
+
+describe("naplex composition", () => {
+  it("targets the May 2025 weights on an 85-item form", () => {
+    const config = naplex2025ComposeConfig();
+    const quota = planAreaCounts(config.fullExamLength, config.areas);
+    expect(config.areas).toHaveLength(5);
+    expect(config.areas.map((area) => [area.label, area.weight])).toEqual([
+      ["Foundational Knowledge for Pharmacy Practice", 25],
+      ["Medication Use Process", 25],
+      ["Person-Centered Assessment and Treatment Planning", 40],
+      ["Professional Practice", 5],
+      ["Pharmacy Management and Leadership", 5],
+    ]);
+    expect(quota).not.toBeNull();
+    const total = Object.values(quota ?? {}).reduce((sum, count) => sum + count, 0);
+    expect(total).toBe(85);
+    expect(areasOutsidePlan(quota ?? {}, 85, config.areas)).toEqual([]);
+  });
+
+  it("does not treat a therapeutic vignette as a calculation", () => {
+    const item = naplexComposerItem({
+      id: "law-1",
+      subjectId: "pharmacy-law",
+      blueprintDomain: "naplex-area3-treatment-planning",
+      itemType: "vignette",
+      question: "Which counseling point is best?",
+      scenario: "The patient asks about a refill.",
+      correctAnswer: "Call the prescriber",
+      scenarioText: "The patient asks about a refill. Which counseling point is best?",
+    });
+    expect(item?.signals ?? []).not.toContain("calculation");
+    expect(item?.areaId).toBe("naplex-area3-treatment-planning");
+  });
+
+  it("keeps a normal title when professional-practice items cannot fill the weight", () => {
+    const config = naplex2025ComposeConfig(1);
+    const areas = config.areas.map((area) => area.id);
+    const items: ComposerItem[] = [];
+    for (const areaId of areas) {
+      const count = areaId === "naplex-area4-safety" ? 1 : 40;
+      for (let n = 0; n < count; n++) {
+        items.push({
+          id: `${areaId}-${n}`,
+          areaId,
+          subjectId: areaId === "naplex-area1-foundations" && n < 6 ? "pharmacokinetics" : "cardiovascular-rx",
+          scenarioText: distinctCase(areaId, n),
+          answerKey: `key ${areaId} ${n}`,
+          signals: areaId === "naplex-area1-foundations" && n < 8 ? ["calculation"] : [],
+        });
+      }
+    }
+    for (const subjectId of ["cns-rx", "endocrine-rx", "infectious-disease-rx"]) {
+      for (let n = 0; n < 5; n++) {
+        items.push({
+          id: `${subjectId}-${n}`,
+          areaId: "naplex-area3-treatment-planning",
+          subjectId,
+          scenarioText: distinctCase(subjectId, n + 50),
+          answerKey: `key ${subjectId} ${n}`,
+        });
+      }
+    }
+    const result = composeBoardExams(items, config);
+    expect(result.math.publishedFullExams).toBe(1);
+    expect(result.exams[0]?.title).toBe("NAPLEX Practice Exam 1");
+    expect(result.exams[0]?.shortfall).toContain("naplex-area4-safety");
+    expect(result.exams[0]?.areaCounts["naplex-area4-safety"]).toBe(1);
+  });
+
+  it("uses leftover items before repeating one", () => {
+    const items = pool(3);
+    const result = composeBoardExams(items, {
+      boardId: "demo",
+      areas: TWO_AREAS,
+      fullExamLength: 4,
+      maxFullExams: 2,
+      maxItemReuse: 2,
+      selectionSeed: "reuse-seed",
+      fullExamTitle: (index) => `Demo ${index}`,
+    });
+    expect(result.math.publishedFullExams).toBe(2);
+    const first = new Set(result.exams[0]!.itemIds);
+    const leftovers = items.map((item) => item.id).filter((id) => !first.has(id));
+    expect(leftovers.length).toBeGreaterThan(0);
+    for (const id of leftovers) expect(result.exams[1]!.itemIds).toContain(id);
+    expect(reuseStats(result.exams).maxReuse).toBeLessThanOrEqual(2);
   });
 });
