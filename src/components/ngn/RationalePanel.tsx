@@ -2,13 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { ngnFocus, ngnMuted } from "@/components/ngn/brand";
+import { SourcesDisclosure } from "@/components/ngn/SourcesDisclosure";
 import { explainPointsLost, score } from "@/lib/assessment/scoring/registry";
-import type { NgnItem, SourceRef } from "@/lib/assessment/types";
+import type { NgnItem, NgnReference, SourceRef } from "@/lib/assessment/types";
 
 type RationalePanelProps = {
   item: NgnItem;
   response: unknown;
-  sourcesById: Record<string, Pick<SourceRef, "title" | "url">>;
+  sourcesById: Record<string, Pick<SourceRef, "title" | "url"> | undefined>;
+  caseReferences?: NgnReference[];
 };
 
 function verdictChip(verdict: string | string[]): { label: string; className: string } {
@@ -28,7 +30,7 @@ function lineTone(line: string): string {
   return "text-[#334155]";
 }
 
-export function RationalePanel({ item, response, sourcesById }: RationalePanelProps) {
+export function RationalePanel({ item, response, sourcesById, caseReferences }: RationalePanelProps) {
   const [open, setOpen] = useState(false);
   const earned = useMemo(() => {
     try {
@@ -44,6 +46,13 @@ export function RationalePanel({ item, response, sourcesById }: RationalePanelPr
     <section className="rounded-3xl border border-[#e2e8f0] bg-[#f7fbfb] p-5 sm:p-6" aria-label="Rationale">
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#0A2540]">Rationale</p>
       <p className="mt-3 text-[17px] leading-7 text-[#0A2540]">{item.rationale.short}</p>
+      <div className="mt-5">
+        <SourcesDisclosure
+          itemReferences={item.references}
+          caseReferences={caseReferences}
+          sourcesById={sourcesById}
+        />
+      </div>
       <button
         type="button"
         className={`mt-4 inline-flex min-h-11 items-center rounded-full bg-white px-4 text-sm font-medium text-[#0A2540] ring-1 ring-[#e2e8f0] ${ngnFocus}`}
@@ -97,35 +106,6 @@ export function RationalePanel({ item, response, sourcesById }: RationalePanelPr
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#0A2540]">Takeaway</p>
             <p className="mt-2 text-[15px] leading-6 text-[#0A2540]">{item.rationale.expanded.takeaway}</p>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#0A2540]">References</p>
-            <ul className="mt-2 space-y-2">
-              {item.references.map((reference) => {
-                const source = sourcesById[reference.src];
-                const title = source?.title ?? reference.src;
-                return (
-                  <li key={`${reference.src}-${reference.locator ?? ""}`} className="text-sm leading-6">
-                    {source?.url ? (
-                      <a
-                        href={source.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`font-medium text-[#0A2540] underline decoration-[#00b8ad] decoration-2 underline-offset-4 ${ngnFocus}`}
-                      >
-                        {title}
-                      </a>
-                    ) : (
-                      <span className="font-medium text-[#0A2540]">{title}</span>
-                    )}
-                    {reference.locator ? (
-                      <span className={`block ${ngnMuted}`}>{reference.locator}</span>
-                    ) : null}
-                  </li>
-                );
-              })}
-            </ul>
           </div>
         </div>
       ) : null}

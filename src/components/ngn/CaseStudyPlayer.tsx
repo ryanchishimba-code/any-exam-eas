@@ -117,6 +117,7 @@ export function CaseStudyPlayer({
               onChange={(next) => setResponses((current) => ({ ...current, [item.id]: next }))}
               showRationale={mode === "review" && showRationale}
               sourcesById={sourcesById}
+              caseReferences={caseDoc.references}
             />
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-3">

@@ -2,22 +2,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaseStudyPlayer } from "@/components/ngn/CaseStudyPlayer";
 import { RationalePanel } from "@/components/ngn/RationalePanel";
+import { SourcesDisclosure } from "@/components/ngn/SourcesDisclosure";
 import { ReviewForm } from "@/components/ngn/review/ReviewForm";
 import { StandalonePreview } from "@/components/ngn/review/StandalonePreview";
 import { isNgnPilotEnabled } from "@/lib/assessment/pilot-flag";
 import { loadItemReview } from "@/lib/assessment/ngn-store";
 import { perfect } from "@/lib/assessment/scoring/registry";
-import type { NgnItem, SourceRef } from "@/lib/assessment/types";
+import { sourceRegistry } from "@/lib/assessment/sources";
+import type { NgnItem } from "@/lib/assessment/types";
 
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "NGN item review · Admin",
   robots: { index: false, follow: false },
 };
-
-function sourceMap(sources: SourceRef[]): Record<string, Pick<SourceRef, "title" | "url">> {
-  return Object.fromEntries(sources.map((source) => [source.id, { title: source.title, url: source.url }]));
-}
 
 function KeyBlock({ item }: { item: NgnItem }) {
   let ideal: unknown = null;
@@ -52,7 +50,7 @@ export default async function NgnItemReviewPage({
     return <p className="rounded-3xl border border-[#e2e8f0] bg-white p-6 text-sm text-[#0A2540]">{detail.message}</p>;
   }
 
-  const sourcesById = sourceMap(detail.sources);
+  const sourcesById = sourceRegistry(detail.sources);
   const stepIndex = Math.max(0, (detail.item.caseStep ?? 1) - 1);
   let keyed: unknown = undefined;
   try {
@@ -97,6 +95,12 @@ export default async function NgnItemReviewPage({
         <StandalonePreview item={detail.item} sourcesById={sourcesById} />
       )}
 
+      <SourcesDisclosure
+        itemReferences={detail.item.references}
+        caseReferences={detail.caseDoc?.references}
+        sourcesById={sourcesById}
+      />
+
       <section className="grid gap-5 lg:grid-cols-2">
         <div className="space-y-4">
           <h2 className="text-lg font-semibold">Keyed response</h2>
@@ -113,7 +117,12 @@ export default async function NgnItemReviewPage({
               ))}
             </ul>
           )}
-          <RationalePanel item={detail.item} response={keyed} sourcesById={sourcesById} />
+          <RationalePanel
+            item={detail.item}
+            response={keyed}
+            sourcesById={sourcesById}
+            caseReferences={detail.caseDoc?.references}
+          />
         </div>
         <div className="space-y-4">
           <h2 className="text-lg font-semibold">Reviews</h2>
