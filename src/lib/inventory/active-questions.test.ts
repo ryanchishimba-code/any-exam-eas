@@ -100,8 +100,10 @@ describe("active question inventory", () => {
     });
   });
 
-  it("hides the format line until NGN or case items exist", () => {
-    expect(formatInventoryFormatLine({ mcq: 10, ngn: 0, case: 0 })).toBeNull();
+  it("shows MCQ counts and omits formats the board is not serving", () => {
+    expect(formatInventoryFormatLine({ mcq: 10, ngn: 0, case: 0 })).toBe("10 MCQ");
+    expect(formatInventoryFormatLine({ mcq: 0, ngn: 0, case: 0 })).toBeNull();
+    expect(formatInventoryFormatLine({ mcq: 10, ngn: 2, case: 0 }, "NGN")).toBe("10 MCQ · 2 NGN");
     expect(formatInventoryFormatLine({ mcq: 10, ngn: 2, case: 1 }, "NGN")).toBe(
       "10 MCQ · 2 NGN · 1 case"
     );

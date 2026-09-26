@@ -14,6 +14,7 @@ import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { boardStudyCountsFromSources } from "@/lib/learning/board-study-counts";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
 import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
+import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import Link from "next/link";
 import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
@@ -58,13 +59,14 @@ async function AnalyticsContent({
   const metadata = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
   const fieldId = canonicalPracticeFieldId(examSlug, metadata?.usmleFieldId);
 
-  const [dashboard, profile, roadmap, inventory] = await Promise.all([
+  const [dashboard, profile, roadmap, inventory, activeInventory] = await Promise.all([
     getStudentDashboardData(userId, [fieldId]),
     getLearningProfileSnapshot(userId),
     getExamRoadmapData(userId, examSlug, {
       usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
     }).catch(() => null),
     loadCoverageInventory(fieldId).catch(() => null),
+    getCachedActiveInventory().catch(() => null),
   ]);
 
   const boardCounts = boardStudyCountsFromSources({
@@ -110,6 +112,11 @@ async function AnalyticsContent({
             fieldId={fieldId}
             openRemediation={roadmap?.openRemediation ?? null}
             initialData={{ dashboard, profile }}
+            formats={
+              activeInventory && !activeInventory.degraded
+                ? activeInventory.fields[fieldId]?.formats ?? null
+                : null
+            }
           />
         </div>
       </div>

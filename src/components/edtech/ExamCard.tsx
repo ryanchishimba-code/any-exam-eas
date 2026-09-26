@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MapPin } from "lucide-react";
+import { useScrubbedBoardCopy } from "@/lib/client/use-board-formats";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
 import type { ExamSlug } from "@/types/edtech";
@@ -26,6 +27,7 @@ export function ExamCard({
   const reduceMotion = useReducedMotion();
   const exam = EXAM_CATALOG[slug];
   const theme = EXAM_SELECTION_THEMES[slug];
+  const tagline = useScrubbedBoardCopy(slug, theme.tagline);
   const Icon = theme.icon;
   const [ripple, setRipple] = useState<{ x: number; y: number } | null>(null);
   const cardRef = useRef<HTMLButtonElement>(null);
@@ -123,7 +125,7 @@ export function ExamCard({
               {exam.name}
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/85 sm:text-base">
-              {theme.tagline}
+              {tagline}
             </p>
           </div>
 

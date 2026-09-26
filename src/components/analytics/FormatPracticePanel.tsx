@@ -1,4 +1,6 @@
 import Link from "next/link";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { offeredDeliberateFormats } from "@/lib/study/offered-formats";
 import { emptyFormatPracticeStats, type FormatPracticeStats } from "@/lib/study/practice-format";
 import { studyUi } from "@/lib/study/study-ui";
 import { cn } from "@/lib/utils";
@@ -7,6 +9,8 @@ type Props = {
   stats?: FormatPracticeStats | null;
   ngnLabel: string;
   fieldId?: string;
+  /** Student-eligible split for this field. A zero bucket is not shown. */
+  formats?: FormatCounts | null;
 };
 
 function launchHref(fieldId: string, format: "ngn" | "case"): string {
@@ -22,12 +26,16 @@ function launchHref(fieldId: string, format: "ngn" | "case"): string {
   return `/question-bank?${qs.toString()}`;
 }
 
-export function FormatPracticePanel({ stats, ngnLabel, fieldId }: Props) {
+export function FormatPracticePanel({ stats, ngnLabel, fieldId, formats }: Props) {
   const practice = stats ?? emptyFormatPracticeStats();
-  const cards = [
-    { id: "ngn" as const, title: ngnLabel },
-    { id: "case" as const, title: "Cases" },
-  ];
+  const cards = offeredDeliberateFormats(formats).map((id) => ({
+    id,
+    title: id === "ngn" ? ngnLabel : "Cases",
+  }));
+  if (cards.length === 0) return null;
+
+  const named =
+    cards.length === 2 ? `${cards[0]!.title} and ${cards[1]!.title}` : cards[0]!.title;
 
   return (
     <section className="space-y-4" aria-labelledby="format-practice-heading">
@@ -39,10 +47,10 @@ export function FormatPracticePanel({ stats, ngnLabel, fieldId }: Props) {
           Format practice
         </h2>
         <p className={cn(studyUi.sectionHint, "max-w-xl text-[15px]")}>
-          Attempts saved from {ngnLabel} and case sets. Practice progress only.
+          Attempts saved from {named} sets. Practice progress only.
         </p>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className={cn("grid gap-4", cards.length > 1 && "sm:grid-cols-2")}>
         {cards.map((card) => {
           const bucket = practice[card.id];
           const empty = bucket.attempts <= 0;

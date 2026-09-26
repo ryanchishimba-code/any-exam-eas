@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {
   EXAM_SEO_CONFIG,
   examMarketingPath,
-  getExamSeoConfig,
   resolveExamSeoKey,
   type ExamSeoKey,
 } from "@/lib/seo/exam-config";
@@ -36,6 +35,8 @@ import {
   enforceMetaDescription,
   enforceMetaTitle,
 } from "@/lib/seo/meta-budget";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { publicExamSeo } from "@/lib/marketing/public-format-copy";
 
 function baseOpenGraph(
   title: string,
@@ -76,10 +77,13 @@ function baseOpenGraph(
   };
 }
 
-export function buildExamMetadata(slug: string): Metadata {
+export function buildExamMetadata(
+  slug: string,
+  formats?: FormatCounts | null
+): Metadata {
   const key = resolveExamSeoKey(slug);
   if (!key) return { title: "Board Exam Prep" };
-  const config = getExamSeoConfig(key);
+  const config = publicExamSeo(key, formats ?? null);
   const path = examMarketingPath(key);
   return {
     ...baseOpenGraph(config.metaTitle, config.metaDescription, path, { absoluteTitle: true }),
@@ -246,8 +250,8 @@ export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
   };
 }
 
-export function buildExamJsonLd(key: ExamSeoKey) {
-  const config = getExamSeoConfig(key);
+export function buildExamJsonLd(key: ExamSeoKey, formats?: FormatCounts | null) {
+  const config = publicExamSeo(key, formats ?? null);
   const url = absoluteUrl(examMarketingPath(key));
   const site = getSiteUrl();
 

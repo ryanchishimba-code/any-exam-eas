@@ -66,7 +66,7 @@ describe("why trust it facts", () => {
   });
 
   it("quotes the NCLEX demo rationale and its stored citation", () => {
-    const sample = citedSampleForBoard("nclex");
+    const sample = citedSampleForBoard("nclex", { mcq: 5598, ngn: 492, case: 153 });
     const source = NGN_DEMO_QUESTIONS[0]!;
     expect(sample).toEqual({
       boardLabel: "NCLEX",

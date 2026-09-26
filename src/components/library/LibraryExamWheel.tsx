@@ -8,6 +8,8 @@ import {
   pickerWheelScrollerClassName,
   usePickerWheelScroll,
 } from "@/hooks/usePickerWheelScroll";
+import { useBoardFormatMap } from "@/lib/client/use-board-formats";
+import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { persistExamPreference } from "@/lib/edtech/actions";
 import { prepareClientForExamSwitch } from "@/lib/client/exam-switch-reset";
@@ -34,6 +36,7 @@ type Props = {
  * the CTA opens that exam's library.
  */
 export function LibraryExamWheel({ currentExam }: Props) {
+  const boardFormats = useBoardFormatMap();
   const reduceMotion = useReducedMotion();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -203,7 +206,8 @@ export function LibraryExamWheel({ currentExam }: Props) {
                     </div>
                     {isSelected ? (
                       <p className="mt-0.5 line-clamp-1 text-sm text-[var(--color-ink-muted)]">
-                        {exam.description}
+                        {scrubPublicFormatCopy(exam.description, boardFormats?.[slug] ?? null) ??
+                          "Clinical judgment and prioritization."}
                       </p>
                     ) : null}
                   </div>

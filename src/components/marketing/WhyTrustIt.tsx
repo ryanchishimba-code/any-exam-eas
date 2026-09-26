@@ -28,7 +28,7 @@ type Props = {
 export function WhyTrustIt({ examKey, inventory, testimonials }: Props) {
   const config = getExamSeoConfig(examKey);
   const bank = trustInventoryForPresentation(examKey, inventory);
-  const sample = citedSampleForBoard(examKey);
+  const sample = citedSampleForBoard(examKey, inventory?.formats);
   const quotes = testimonialsForBoard(testimonials, examKey);
   const categories =
     inventory?.countSource === "active-inventory" ? inventory.categories : [];

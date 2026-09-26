@@ -34,7 +34,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props) {
   const { examSlug } = await params;
-  return buildExamMetadata(examSlug);
+  const key = resolveExamSeoKey(examSlug);
+  const { inventory } = await getCachedBankStatsBundle();
+  return buildExamMetadata(examSlug, key ? inventory.boards[key]?.formats ?? null : null);
 }
 
 export default async function ExamMarketingPage({ params }: Props) {
@@ -67,7 +69,7 @@ export default async function ExamMarketingPage({ params }: Props) {
 
   return (
     <>
-      <JsonLdScript data={buildExamJsonLd(key)} />
+      <JsonLdScript data={buildExamJsonLd(key, inventory.boards[key]?.formats ?? null)} />
       <ExamMarketingLanding
         examKey={key}
         questionCountLabel={questionCountLabel}

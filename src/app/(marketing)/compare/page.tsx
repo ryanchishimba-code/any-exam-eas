@@ -10,12 +10,15 @@ export const dynamic = "force-dynamic";
 export const metadata = buildCompareMetadata();
 
 export default async function ComparePage() {
-  const { snapshot } = await getCachedBankStatsBundle();
+  const { snapshot, inventory } = await getCachedBankStatsBundle();
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
   return (
     <>
       <JsonLdScript data={buildCompareJsonLd()} />
-      <ComparePageContent questionCountLabel={bankCounts.totalLabel} />
+      <ComparePageContent
+        questionCountLabel={bankCounts.totalLabel}
+        nclexFormats={inventory.degraded ? null : inventory.boards.nclex?.formats ?? null}
+      />
     </>
   );
 }

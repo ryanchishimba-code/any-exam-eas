@@ -1,3 +1,7 @@
+import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
+import { isFormatOffered } from "@/lib/study/offered-formats";
+
 const FRAMES = [
   {
     id: "roadmap",
@@ -40,9 +44,22 @@ const FRAMES = [
  */
 export function MarketingProductProof({
   compact = false,
+  formats = null,
 }: {
   compact?: boolean;
+  formats?: FormatCounts | null;
 }) {
+  const ngn = isFormatOffered("ngn", formats);
+  const frames = FRAMES.filter((frame) => frame.id !== "ngn" || ngn).map((frame) => {
+    if (frame.id !== "roadmap" || ngn) return frame;
+    return {
+      ...frame,
+      rows: frame.rows.filter((row) => !/\bNGN\b/i.test(row.label)),
+    };
+  });
+  const heading =
+    scrubPublicFormatCopy("Roadmap. Deep Dive. Sample NGN.", formats) ??
+    "Roadmap. Deep Dive. Practice.";
   return (
     <section
       className={`aee-product-proof ${compact ? "aee-product-proof--compact" : ""}`}
@@ -57,15 +74,18 @@ export function MarketingProductProof({
             id="product-proof-heading"
             className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)] font-bold tracking-tight text-[var(--color-ink)]"
           >
-            Roadmap. Deep Dive. Sample NGN.
+            {heading}
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
             These frames mirror the in-app study window.
           </p>
         </header>
 
-        <ul className="mt-10 grid gap-4 lg:grid-cols-3" role="list">
-          {FRAMES.map((frame) => (
+        <ul
+          className={`mt-10 grid gap-4 ${frames.length > 2 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}
+          role="list"
+        >
+          {frames.map((frame) => (
             <li key={frame.id}>
               <figure className="aee-product-proof__frame">
                 <div className="aee-product-proof__chrome" aria-hidden>

@@ -10,6 +10,7 @@ import { TRUST_READINESS_LINE } from "@/lib/marketing/why-trust-it";
 
 const LIVE: BoardInventoryPresentation = {
   formatLine: "5,598 MCQ · 492 NGN · 153 cases",
+  formats: { mcq: 5598, ngn: 492, case: 153 },
   definition: ACTIVE_QUESTION_DEFINITION,
   categories: [],
   categoryLabel: "Client Needs",

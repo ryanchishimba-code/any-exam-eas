@@ -20,6 +20,7 @@ import { studyUi } from "@/lib/study/study-ui";
 import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
 import { PhoneFold } from "@/components/study/PhoneFold";
 import { FormatPracticePanel } from "@/components/analytics/FormatPracticePanel";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
 import type { OpenRemediationSummary } from "@/lib/learning/remediation-loop";
 import type { ExamSlug } from "@/types/edtech";
 import { Button } from "@/components/ui/Button";
@@ -59,12 +60,14 @@ export function StudentAnalyticsDashboard({
   fieldId,
   openRemediation = null,
   initialData,
+  formats = null,
 }: {
   examSlug: ExamSlug;
   examName: string;
   fieldId?: string;
   openRemediation?: OpenRemediationSummary | null;
   initialData?: AnalyticsPayload;
+  formats?: FormatCounts | null;
 }) {
   const [data, setData] = useState<AnalyticsPayload | null>(initialData ?? null);
   const [loading, setLoading] = useState(!initialData);
@@ -192,6 +195,7 @@ export function StudentAnalyticsDashboard({
         stats={dashboard.formatPractice}
         ngnLabel={examSlug === "nclex" ? "NGN" : "NGN-style"}
         fieldId={fieldId}
+        formats={formats}
       />
 
       <section

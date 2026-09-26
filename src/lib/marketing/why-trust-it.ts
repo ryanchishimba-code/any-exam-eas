@@ -1,6 +1,7 @@
 import { NGN_DEMO_QUESTIONS } from "@/lib/demo/ngn-samples";
 import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
-import type { BoardInventoryPresentation } from "@/lib/inventory/active-questions";
+import type { BoardInventoryPresentation, FormatCounts } from "@/lib/inventory/active-questions";
+import { isFormatOffered } from "@/lib/study/offered-formats";
 import type { LandingSuccessStory } from "@/lib/landing/content";
 import { marketingExamKeyFromPath } from "@/lib/marketing/exam-hub";
 import { getExamSeoConfig, type ExamSeoKey } from "@/lib/seo/exam-config";
@@ -41,8 +42,12 @@ export type CitedSample = {
  * Other boards' landing samples do not store a citation, so this returns
  * null instead of borrowing the NCLEX source.
  */
-export function citedSampleForBoard(examKey: ExamSeoKey): CitedSample | null {
+export function citedSampleForBoard(
+  examKey: ExamSeoKey,
+  formats?: FormatCounts | null
+): CitedSample | null {
   if (examKey !== "nclex") return null;
+  if (!isFormatOffered("ngn", formats)) return null;
   const item = NGN_DEMO_QUESTIONS[0];
   const citation = item?.references?.[0]?.trim();
   const rationale = item?.explanation?.trim();

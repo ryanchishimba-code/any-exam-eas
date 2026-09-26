@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { NclexStudyPresetsPanel } from "@/components/prep/NclexStudyPresetsPanel";
 import { AanpFnpStudyPresetsPanel } from "@/components/prep/AanpFnpStudyPresetsPanel";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
 
 const TABS = [
   { id: "bank", label: "Question Bank" },
@@ -26,9 +27,11 @@ type TabId = (typeof TABS)[number]["id"];
 export function PrepHubTabs({
   exam,
   topics,
+  formats = null,
 }: {
   exam: ExamHubMeta;
   topics: { slug: string; label: string; description?: string | null }[];
+  formats?: FormatCounts | null;
 }) {
   const [tab, setTab] = useState<TabId>("bank");
   const router = useRouter();
@@ -109,9 +112,11 @@ export function PrepHubTabs({
                   Choose topics, question count, and timed or untimed practice for {exam.title}.
                 </p>
                 <Button href={questionBankHref(exam.fieldId)}>Open question bank</Button>
-                {exam.slug === "nclex" ? <NclexStudyPresetsPanel examSlug="nclex" /> : null}
+                {exam.slug === "nclex" ? (
+                  <NclexStudyPresetsPanel examSlug="nclex" formats={formats} />
+                ) : null}
                 {exam.slug === "aanp-fnp" ? (
-                  <AanpFnpStudyPresetsPanel examSlug="aanp-fnp" />
+                  <AanpFnpStudyPresetsPanel examSlug="aanp-fnp" formats={formats} />
                 ) : null}
               </>
             )}

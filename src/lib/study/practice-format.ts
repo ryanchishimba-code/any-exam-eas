@@ -166,63 +166,6 @@ export function practiceFormatScopeCounts(params: {
   return params.topicFormats[id] ?? emptyFormatCounts();
 }
 
-function publishedFormatNoun(
-  format: DeliberatePracticeFormat,
-  ngnLabel: string
-): string {
-  return format === "case" ? "case studies" : `${ngnLabel} items`;
-}
-
-function comingSoonDetail(
-  format: DeliberatePracticeFormat,
-  ngnLabel: string,
-  fieldId?: string | null
-): string {
-  const nursing = fieldId === "nursing" || ngnLabel === "NGN";
-  if (nursing && format === "ngn") {
-    return "Next Gen (NGN) case studies are being rebuilt with RN review. Coming soon.";
-  }
-  if (nursing) {
-    return "Unfolding case studies are being rebuilt with RN review. Coming soon.";
-  }
-  const noun = format === "case" ? "Case studies" : `${ngnLabel} items`;
-  return `${noun} are being rebuilt with clinician review. Coming soon.`;
-}
-
-/**
- * Honest empty state when the selected format has nothing to serve.
- * A topic with none, while the board still has some, points at Mixed topics.
- * A board with none says the format is coming soon and offers standard practice.
- */
-export function practiceFormatEmptyGuidance(params: {
-  format: DeliberatePracticeFormat;
-  subjectId?: string | null;
-  scopeCount: number;
-  boardCount: number;
-  ngnLabel?: string;
-  fieldId?: string | null;
-}): PracticeFormatEmptyGuidance | null {
-  if (params.scopeCount > 0) return null;
-  const ngnLabel = params.ngnLabel?.trim() || "NGN";
-  const noun = publishedFormatNoun(params.format, ngnLabel);
-  const mixed = isMixedPracticeSubject(params.subjectId);
-  if (!mixed && params.boardCount > 0) {
-    const pool = params.boardCount.toLocaleString("en-US");
-    return {
-      title: `No ${noun} in this topic`,
-      detail: `Mixed topics includes ${pool} published ${noun} from across the bank.`,
-      action: "mixed",
-      actionLabel: "Practice mixed topics",
-    };
-  }
-  return {
-    title: "Coming soon",
-    detail: comingSoonDetail(params.format, ngnLabel, params.fieldId),
-    action: "all",
-    actionLabel: "Practice standard questions",
-  };
-}
-
 /**
  * Question-bank query for one format.
  * Mixed sends subjectId=__mixed__ so the API samples the field. It does not
@@ -251,15 +194,6 @@ export type PracticeFormatValidation = {
   maxAvailable?: number;
   /** The selected format has no student-eligible items in this scope. */
   emptyPool?: boolean;
-};
-
-export type PracticeFormatEmptyAction = "all" | "mixed";
-
-export type PracticeFormatEmptyGuidance = {
-  title: string;
-  detail: string;
-  action: PracticeFormatEmptyAction;
-  actionLabel: string;
 };
 
 export function validatePracticeFormatSession(params: {

@@ -23,6 +23,7 @@ import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
 import { MARKETING_DISCLAIMER, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 import { LandingSectionPageviews } from "@/components/landing/v2/LandingSectionPageviews";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
@@ -55,21 +56,23 @@ export function LandingFlagshipV2({
   bankCounts,
   testimonials: _testimonials,
   children,
+  boardFormats = null,
 }: {
   bankCounts: LandingBankCountsDisplay;
   testimonials?: import("@/lib/landing/content").LandingSuccessStory[];
   /** Long-form SEO guide rendered from the server page. */
   children?: ReactNode;
+  boardFormats?: Partial<Record<string, FormatCounts | null>> | null;
 }) {
   return (
-    <LandingExamSelectionProvider initialExam="nclex">
+    <LandingExamSelectionProvider initialExam="nclex" boardFormats={boardFormats}>
       <div className="aee-flagship aee-flagship--conversion">
         <LandingHashScroll />
         <LandingSectionPageviews />
 
         <LandingHeroV2 bankCounts={bankCounts} />
 
-        <MarketingProductProof compact />
+        <MarketingProductProof compact formats={boardFormats?.nclex ?? null} />
 
         <LandingFaqV2 />
 

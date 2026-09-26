@@ -14,6 +14,8 @@ import {
 } from "@/lib/landing/content";
 import { examHubSecondaryLink } from "@/lib/marketing/exam-hub";
 import { formatTrialCtaLabel } from "@/lib/site";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
 
 type Props = {
@@ -22,6 +24,7 @@ type Props = {
   questionCountLine: string;
   countSource?: "active-inventory" | "published-floor";
   activeCount?: number | null;
+  formats?: FormatCounts | null;
 };
 
 function ExamMarketingHeroCopy({
@@ -29,9 +32,13 @@ function ExamMarketingHeroCopy({
   questionCountLine,
   countSource,
   activeCount,
+  formats = null,
 }: Props) {
   const trialHref = landingTrialHrefForExam(examKey);
   const secondary = examHubSecondaryLink(examKey);
+  const subline =
+    scrubPublicFormatCopy(formatExamHubSubline(examKey), formats) ??
+    formatExamHubSubline(examKey);
 
   return (
     <section
@@ -50,7 +57,7 @@ function ExamMarketingHeroCopy({
             {formatExamHeroHeadline(examKey)}
           </h1>
 
-          <p className="aee-hero-beat__subline">{formatExamHubSubline(examKey)}</p>
+          <p className="aee-hero-beat__subline">{subline}</p>
 
           <div className="aee-hero-beat__actions">
             <LandingCta
@@ -104,14 +111,19 @@ export function ExamMarketingHero({
   questionCountLine,
   countSource,
   activeCount,
+  formats = null,
 }: Props) {
   return (
-    <LandingExamSelectionProvider initialExam={examKey}>
+    <LandingExamSelectionProvider
+      initialExam={examKey}
+      boardFormats={{ [examKey]: formats }}
+    >
       <ExamMarketingHeroCopy
         examKey={examKey}
         questionCountLine={questionCountLine}
         countSource={countSource}
         activeCount={activeCount}
+        formats={formats}
       />
     </LandingExamSelectionProvider>
   );
