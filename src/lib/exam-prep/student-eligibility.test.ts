@@ -2,8 +2,16 @@ import { describe, expect, it } from "vitest";
 import {
   assessStudentEligibility,
   completeCaseGroupKeys,
+  readStudentEligibilityRecord,
   type StudentEligibilityInput,
 } from "./student-eligibility";
+import {
+  KEY_REVIEW_AUDIT_REF,
+  KEY_UNCERTAIN_RN_REVIEW,
+  KEY_WRONG_PENDING_RN_REVIEW,
+  withKeyWrongAudit,
+} from "./reviewed-key-queue";
+import { STUDENT_ELIGIBLE_SQL } from "./student-eligibility-sql";
 import { planPresetExamFill } from "./preset-exam-fill";
 
 function row(partial: Partial<StudentEligibilityInput> & Pick<StudentEligibilityInput, "itemType">): StudentEligibilityInput {
@@ -173,6 +181,63 @@ describe("student eligibility", () => {
     );
     expect(retired.reasons).toContain("retired_but_active");
     expect(retired.eligible).toBe(false);
+  });
+
+  it("hides a reviewed wrong key and keeps an uncertain key visible", () => {
+    const wrong = assessStudentEligibility(
+      row({ id: KEY_WRONG_PENDING_RN_REVIEW[0]!.id, itemType: "vignette" })
+    );
+    expect(wrong.reasons).toContain("key_wrong_pending_rn_review");
+    expect(wrong.eligible).toBe(false);
+
+    const uncertain = assessStudentEligibility(
+      row({ id: KEY_UNCERTAIN_RN_REVIEW[0]!.id, itemType: "vignette" })
+    );
+    expect(uncertain.reasons).not.toContain("key_wrong_pending_rn_review");
+    expect(uncertain.eligible).toBe(true);
+  });
+
+  it("lets an RN restore override a reviewed wrong key and records the audit", () => {
+    const id = "cmqwifwvc000a1yec5d73ooad";
+    const verdict = assessStudentEligibility(
+      row({
+        id,
+        itemType: "vignette",
+        curationMeta: {
+          studentEligibility: {
+            pipeline: "student-eligibility-v1",
+            status: "restored",
+            reasons: ["key_wrong_pending_rn_review"],
+            assessedAt: "2026-09-25T00:00:00.000Z",
+            restoredAt: "2026-09-25T00:00:00.000Z",
+            auditRef: KEY_REVIEW_AUDIT_REF,
+            sampleId: "S35",
+          },
+        },
+      })
+    );
+    expect(verdict.eligible).toBe(true);
+    expect(verdict.restored).toBe(true);
+    const record = withKeyWrongAudit(id, {
+      pipeline: "student-eligibility-v1" as const,
+      status: "suppressed" as const,
+      reasons: ["key_wrong_pending_rn_review" as const],
+      assessedAt: "2026-09-26T00:00:00.000Z",
+    });
+    expect(record.auditRef).toBe(KEY_REVIEW_AUDIT_REF);
+    expect(record.sampleId).toBe("S35");
+    expect(readStudentEligibilityRecord({ studentEligibility: record })?.auditRef).toBe(KEY_REVIEW_AUDIT_REF);
+  });
+
+  it("mirrors the reviewed ids in SQL behind the restore override", () => {
+    for (const item of KEY_WRONG_PENDING_RN_REVIEW) {
+      expect(STUDENT_ELIGIBLE_SQL).toContain(`'${item.id}'`);
+    }
+    for (const item of KEY_UNCERTAIN_RN_REVIEW) {
+      expect(STUDENT_ELIGIBLE_SQL).not.toContain(`'${item.id}'`);
+    }
+    expect(STUDENT_ELIGIBLE_SQL).toContain("studentEligibility,status");
+    expect(STUDENT_ELIGIBLE_SQL.indexOf("'restored'")).toBeLessThan(STUDENT_ELIGIBLE_SQL.indexOf("OR NOT"));
   });
 
   it("honors an explicit restore without changing the recorded reasons", () => {

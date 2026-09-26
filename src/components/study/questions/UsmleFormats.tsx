@@ -7,6 +7,7 @@ import { BookOpen, ClipboardList, FileText, Pill, Stethoscope } from "lucide-rea
 import { ExhibitTable } from "./NaplexFormats";
 import { ExhibitMedia } from "./ExhibitMedia";
 import type { UsmleFigureRef } from "@/lib/exam-prep/usmle/figure-assets";
+import { studentFacingVignette } from "@/lib/questions/student-display-text";
 
 /** NBME-style scrollable clinical vignette (2026 shorter-block friendly). */
 export function UsmleCaseVignette({ text }: { text: string }) {
@@ -16,7 +17,7 @@ export function UsmleCaseVignette({ text }: { text: string }) {
         <Stethoscope className="h-3 w-3" aria-hidden />
         Clinical vignette
       </div>
-      <p className="whitespace-pre-wrap text-sm leading-relaxed text-zinc-800">{text}</p>
+      <p className="whitespace-pre-wrap text-sm leading-relaxed text-zinc-800">{studentFacingVignette(text)}</p>
     </div>
   );
 }

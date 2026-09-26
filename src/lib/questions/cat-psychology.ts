@@ -41,7 +41,7 @@ export function catLauncherBriefing(): CatBriefingBullet[] {
 
 /** Short in-exam tip under the question chrome. */
 export function catInExamTip(): string {
-  return `Practice CAT · ${CAT_MIN_QUESTIONS}–${CAT_MAX_QUESTIONS}Q · Pause for breaks · ${CAT_PRACTICE_DISCLAIMER}`;
+  return `Practice CAT · ${CAT_MIN_QUESTIONS}–${CAT_MAX_QUESTIONS} questions · Pause for breaks · ${CAT_PRACTICE_DISCLAIMER}`;
 }
 
 /** One-line pause dialog body when CAT mode is on. */

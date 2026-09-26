@@ -1,5 +1,6 @@
 "use client";
 
+import { studentFacingVignette } from "@/lib/questions/student-display-text";
 import { cn } from "@/lib/utils";
 
 export type MpjeDisplayQuestion = {
@@ -80,7 +81,7 @@ export function MpjeQuestionDisplay({
           <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-wider opacity-70">
             Scenario
           </p>
-          <p className="whitespace-pre-wrap">{question.scenario}</p>
+          <p className="whitespace-pre-wrap">{studentFacingVignette(question.scenario ?? "")}</p>
         </div>
       )}
 

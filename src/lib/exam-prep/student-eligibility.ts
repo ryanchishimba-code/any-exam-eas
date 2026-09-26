@@ -12,6 +12,7 @@
  */
 import { parseSelectAllCorrectAnswers } from "@/lib/question-format";
 import { readItemQaRecord } from "@/lib/exam-prep/item-qa/flag";
+import { isKeyWrongPendingReview } from "@/lib/exam-prep/reviewed-key-queue";
 import type { BankItem } from "@/lib/question-bank";
 
 export const STUDENT_ELIGIBILITY_PIPELINE = "student-eligibility-v1" as const;
@@ -27,6 +28,7 @@ export const STUDENT_SUPPRESS_REASONS = [
   "highlight_missing_passage",
   "incomplete_case_study",
   "retired_but_active",
+  "key_wrong_pending_rn_review",
 ] as const;
 
 export type StudentSuppressReason = (typeof STUDENT_SUPPRESS_REASONS)[number];
@@ -39,6 +41,9 @@ export type StudentEligibilityRecord = {
   reasons: StudentSuppressReason[];
   assessedAt: string;
   restoredAt?: string;
+  /** Audit that queued a reviewed-list suppression. Does not change item text. */
+  auditRef?: string;
+  sampleId?: string;
 };
 
 export type StudentEligibilityInput = {
@@ -104,12 +109,16 @@ export function readStudentEligibilityRecord(meta: unknown): StudentEligibilityR
       )
     : [];
   const restoredAt = typeof raw.restoredAt === "string" ? raw.restoredAt : undefined;
+  const auditRef = typeof raw.auditRef === "string" ? raw.auditRef : undefined;
+  const sampleId = typeof raw.sampleId === "string" ? raw.sampleId : undefined;
   return {
     pipeline: STUDENT_ELIGIBILITY_PIPELINE,
     status,
     reasons,
     assessedAt: typeof raw.assessedAt === "string" ? raw.assessedAt : "",
     ...(restoredAt ? { restoredAt } : {}),
+    ...(auditRef ? { auditRef } : {}),
+    ...(sampleId ? { sampleId } : {}),
   };
 }
 
@@ -282,6 +291,8 @@ export function assessStudentEligibility(
     const complete = context.completeCaseGroups;
     if (!key || !complete || !complete.has(key)) push(reasons, "incomplete_case_study");
   }
+
+  if (isKeyWrongPendingReview(input.id)) push(reasons, "key_wrong_pending_rn_review");
 
   const restored = isStudentEligibilityRestored(input.curationMeta);
   return {

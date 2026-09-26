@@ -5,6 +5,7 @@ import {
   shuffleAnswerOptions,
 } from "@/lib/question-format";
 import { normalizeStem } from "./stem";
+import { splitGluedLeadIn, stripInternalDisplayMetadata } from "./student-display-text";
 import {
   resolveNclexStem,
   splitVagueCombinedQuestion,
@@ -126,6 +127,19 @@ export function examQuestionToStudy(
 
   if (!stem) {
     stem = vignette?.slice(0, 160) || "Clinical judgment item";
+  }
+
+  stem = stripInternalDisplayMetadata(stem);
+  if (vignette) {
+    const cleaned = stripInternalDisplayMetadata(vignette);
+    vignette = cleaned || undefined;
+  }
+  if (!vignette) {
+    const glued = splitGluedLeadIn(stem);
+    if (glued.vignette) {
+      vignette = glued.vignette;
+      stem = normalizeStem(glued.stem);
+    }
   }
 
   return {

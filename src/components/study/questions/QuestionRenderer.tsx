@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import type { SequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { cleanOptionText } from "@/lib/question-format";
+import { studentFacingStem } from "@/lib/questions/student-display-text";
 import { parseRationaleForDisplay, type ParsedRationaleDisplay } from "@/lib/engine/rationale/parse-rationale-display";
 import {
   rationaleAfterLead,
@@ -158,7 +159,9 @@ export const QuestionRenderer = memo(function QuestionRenderer({
 
       <NgnTypeInstructions question={question} />
 
-      <p className="text-lg font-medium leading-snug sm:text-xl">{question.stem}</p>
+      <p className="text-lg font-medium leading-snug text-[var(--color-ink)] sm:text-xl">
+        {studentFacingStem(question.stem)}
+      </p>
       <ItemProvenanceNote
         sourceLabel={question.sourceLabel}
         sourceUrl={question.sourceUrl}

@@ -1,3 +1,5 @@
+import { keyWrongIdSql } from "@/lib/exam-prep/reviewed-key-queue";
+
 /**
  * SQL mirror of `assessStudentEligibility` for active, qaPassed rows.
  *
@@ -149,6 +151,7 @@ OR (
 OR (${CASE_DEFECT})
 OR NULLIF(curation_meta #>> '{itemQa,retiredReason}', '') IS NOT NULL
 OR NULLIF(curation_meta #>> '{itemQa,retiredAt}', '') IS NOT NULL
+${keyWrongIdSql()}
 `;
 
 /** True when a qaPassed, active row may be shown. */

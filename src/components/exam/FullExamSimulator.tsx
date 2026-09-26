@@ -29,6 +29,7 @@ import {
   serializeExamSelection,
 } from "@/lib/full-exam/answer-serialize";
 import { fullExamResultsHref } from "@/lib/full-exam/config";
+import { nclexCatQuestionRange, nclexFullPracticeLengthLabel } from "@/lib/full-exam/nclex-length-label";
 import { takeFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
 import {
@@ -966,7 +967,7 @@ export function FullExamSimulator({
               {index + 1}
               <span className="font-normal text-[var(--color-ink-muted)]">
                 {" "}
-                / {isCatMode ? `up to ${CAT_MAX_QUESTIONS}` : questions.length}
+                / {isCatMode ? nclexCatQuestionRange() : questions.length}
               </span>
             </p>
           </div>
@@ -997,7 +998,7 @@ export function FullExamSimulator({
             />
             {isCatMode ? (
               <p className="px-1 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
-                {CAT_MIN_QUESTIONS}–{CAT_MAX_QUESTIONS}Q · Pause for breaks · practice only
+                {nclexFullPracticeLengthLabel(true)} · Pause for breaks · practice only
               </p>
             ) : null}
             {flaggedIndices.length > 0 ? (
@@ -1026,7 +1027,7 @@ export function FullExamSimulator({
         <main className="min-w-0 flex-1 px-4 py-5 pb-36 sm:px-6 lg:pb-32">
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)] lg:hidden">
             Question {index + 1}
-            {isCatMode ? ` of up to ${CAT_MAX_QUESTIONS}` : ` of ${questions.length}`}
+            {isCatMode ? ` of ${nclexCatQuestionRange()}` : ` of ${questions.length}`}
           </p>
 
           {isCatMode && !catTipDismissed ? (

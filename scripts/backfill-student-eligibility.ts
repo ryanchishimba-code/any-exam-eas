@@ -37,6 +37,7 @@ import {
   type StudentEligibilityRecord,
   type StudentSuppressReason,
 } from "../src/lib/exam-prep/student-eligibility";
+import { withKeyWrongAudit } from "../src/lib/exam-prep/reviewed-key-queue";
 import { STUDENT_ELIGIBLE_SQL } from "../src/lib/exam-prep/student-eligibility-sql";
 import { planPresetExamFill, type ExamFillCandidate, type ExamFillSlot } from "../src/lib/exam-prep/preset-exam-fill";
 
@@ -149,26 +150,31 @@ type Desired = {
 
 function desiredRecord(row: ItemRow, reasons: StudentSuppressReason[], restored: boolean, now: string): Desired {
   const prior = readStudentEligibilityRecord(row.curationMeta);
-  const next: StudentEligibilityRecord = restored
-    ? {
-        pipeline: STUDENT_ELIGIBILITY_PIPELINE,
-        status: "restored",
-        reasons,
-        assessedAt: prior?.status === "restored" ? prior.assessedAt || now : now,
-        restoredAt: prior?.restoredAt || now,
-      }
-    : {
-        pipeline: STUDENT_ELIGIBILITY_PIPELINE,
-        status: reasons.length === 0 ? "eligible" : "suppressed",
-        reasons,
-        assessedAt: now,
-      };
+  const next: StudentEligibilityRecord = withKeyWrongAudit(
+    row.id,
+    restored
+      ? {
+          pipeline: STUDENT_ELIGIBILITY_PIPELINE,
+          status: "restored",
+          reasons,
+          assessedAt: prior?.status === "restored" ? prior.assessedAt || now : now,
+          restoredAt: prior?.restoredAt || now,
+        }
+      : {
+          pipeline: STUDENT_ELIGIBILITY_PIPELINE,
+          status: reasons.length === 0 ? "eligible" : "suppressed",
+          reasons,
+          assessedAt: now,
+        }
+  );
 
   if (!restored && reasons.length === 0 && !prior) return { record: null, changed: false };
   if (
     prior &&
     prior.status === next.status &&
     sameReasons(prior.reasons, next.reasons) &&
+    (prior.auditRef ?? "") === (next.auditRef ?? "") &&
+    (prior.sampleId ?? "") === (next.sampleId ?? "") &&
     (next.status !== "restored" || prior.restoredAt === next.restoredAt)
   ) {
     return { record: next, changed: false };
