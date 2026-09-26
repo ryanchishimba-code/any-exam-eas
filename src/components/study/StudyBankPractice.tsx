@@ -60,6 +60,7 @@ import type { QuestionBankHubStats } from "./question-bank/QuestionBankPracticeL
 import { StudyUsageBanner } from "@/components/study/StudyUsageBanner";
 import { studyLimitMessage } from "@/lib/study/usage-limit-messages";
 import { QuestionBankSection, QuestionBankSegment } from "./question-bank/QuestionBankSection";
+import { PracticeExamList } from "./question-bank/PracticeExamList";
 import { MpjeVariantSelector } from "./MpjeVariantSelector";
 import { MpjeStateSelect } from "./MpjeStateSelect";
 import { MpjePracticeBanner } from "./MpjePracticeBanner";
@@ -2350,6 +2351,13 @@ export function StudyBankPractice({
                 </ul>
               </div>
             </div>
+          ) : null}
+
+          {isTimedExam ? (
+            <PracticeExamList
+              fieldId={fieldId}
+              nclexLength={isNclex ? nclexLength : undefined}
+            />
           ) : null}
 
           {isMpje && mpjeVariant === "state" ? (

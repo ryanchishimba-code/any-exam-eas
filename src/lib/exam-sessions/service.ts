@@ -1,4 +1,4 @@
-import { and, desc, eq } from "drizzle-orm";
+import { and, desc, eq, sql } from "drizzle-orm";
 import { requireDb } from "@/db";
 import { examSessions } from "@/db/schema";
 import { createId } from "@/lib/id";
@@ -39,6 +39,9 @@ export async function createExamSession(
     focusAreas?: string[];
     excludeSeenApplied?: boolean;
     retakeOfSessionId?: string;
+    /** Composed practice form, `${examSlug}:${examNumber}`. */
+    presetFormId?: string;
+    presetExamNumber?: number;
   }
 ) {
   const id = createId();
@@ -50,7 +53,8 @@ export async function createExamSession(
     opts?.launchMode ||
     opts?.focusAreas?.length ||
     opts?.excludeSeenApplied != null ||
-    opts?.retakeOfSessionId;
+    opts?.retakeOfSessionId ||
+    opts?.presetFormId;
   const analysis = hasMeta
       ? {
           ...(opts?.sessionConfig ? { sessionConfig: opts.sessionConfig } : {}),
@@ -65,6 +69,10 @@ export async function createExamSession(
             : {}),
           ...(opts?.retakeOfSessionId
             ? { retakeOfSessionId: opts.retakeOfSessionId }
+            : {}),
+          ...(opts?.presetFormId ? { presetFormId: opts.presetFormId } : {}),
+          ...(opts?.presetExamNumber != null
+            ? { presetExamNumber: opts.presetExamNumber }
             : {}),
         }
       : null;
@@ -163,6 +171,30 @@ export async function completeExamSession(
       cacheDeleteAsync(cacheKey(["exam-roadmap-v8", userId, scope])),
       cacheDeleteAsync(cacheKey(["exam-roadmap-v7", userId, scope])),
     ])
+  );
+}
+
+/** Sessions that recorded a composed practice form. Newest first. */
+export async function listPresetFormSessions(userId: string, examType: string, limit = 400) {
+  return withDrizzle("examSessions.listPresetForms", () =>
+    requireDb()
+      .select({
+        id: examSessions.id,
+        status: examSessions.status,
+        score: examSessions.score,
+        analysis: examSessions.analysis,
+        createdAt: examSessions.createdAt,
+      })
+      .from(examSessions)
+      .where(
+        and(
+          eq(examSessions.userId, userId),
+          eq(examSessions.examType, examType),
+          sql`${examSessions.analysis}->>'presetFormId' is not null`
+        )
+      )
+      .orderBy(desc(examSessions.createdAt))
+      .limit(limit)
   );
 }
 

@@ -20,6 +20,8 @@ export type ExamInstanceAnalysis = {
   focusAreas?: string[];
   excludeSeenApplied?: boolean;
   retakeOfSessionId?: string;
+  presetFormId?: string;
+  presetExamNumber?: number;
 };
 
 export type ExamInstance = {
@@ -104,6 +106,8 @@ export async function createExamInstance(
     focusAreas?: string[];
     excludeSeenApplied?: boolean;
     retakeOfSessionId?: string;
+    presetFormId?: string;
+    presetExamNumber?: number;
   }
 ): Promise<string> {
   return createExamSession(userId, examType, {
@@ -118,6 +122,8 @@ export async function createExamInstance(
     focusAreas: opts.focusAreas,
     excludeSeenApplied: opts.excludeSeenApplied,
     retakeOfSessionId: opts.retakeOfSessionId,
+    presetFormId: opts.presetFormId,
+    presetExamNumber: opts.presetExamNumber,
   });
 }
 
