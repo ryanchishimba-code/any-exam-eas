@@ -121,9 +121,7 @@ export function naplex2025ComposeConfig(maxFullExams = 24): BoardComposeConfig {
         weight: area.blueprintWeight,
       };
     }),
-    fullExamTitle: (index, shortfall) =>
-      shortfall && shortfall.length > 0
-        ? `NAPLEX Practice Exam ${index} (outline shortfall)`
-        : `NAPLEX Practice Exam ${index}`,
+    // Domain gaps stay on the exam shortfall field. The title students see stays plain.
+    fullExamTitle: (index) => `NAPLEX Practice Exam ${index}`,
   };
 }

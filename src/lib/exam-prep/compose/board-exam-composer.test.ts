@@ -183,7 +183,7 @@ describe("naplex composition", () => {
     expect(item?.areaId).toBe("naplex-area3-treatment-planning");
   });
 
-  it("labels a form when professional-practice items cannot fill the weight", () => {
+  it("keeps a normal title when professional-practice items cannot fill the weight", () => {
     const config = naplex2025ComposeConfig(1);
     const areas = config.areas.map((area) => area.id);
     const items: ComposerItem[] = [];
@@ -213,7 +213,7 @@ describe("naplex composition", () => {
     }
     const result = composeBoardExams(items, config);
     expect(result.math.publishedFullExams).toBe(1);
-    expect(result.exams[0]?.title).toMatch(/outline shortfall/);
+    expect(result.exams[0]?.title).toBe("NAPLEX Practice Exam 1");
     expect(result.exams[0]?.shortfall).toContain("naplex-area4-safety");
     expect(result.exams[0]?.areaCounts["naplex-area4-safety"]).toBe(1);
   });
