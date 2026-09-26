@@ -66,6 +66,9 @@ type Args = { apply: boolean; restore: boolean; maxExams: number; board: BoardId
 function defaultMaxExams(board: BoardId): number {
   if (board === "naplex") return 24;
   if (board === "nclex-rn") return 43;
+  // Do not publish more forms than the active rows these previews would replace.
+  if (board === "usmle-step-2") return 117;
+  if (board === "aanp-fnp" || board === "pance" || board === "npte-pt") return 100;
   return 200;
 }
 

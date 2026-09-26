@@ -60,12 +60,13 @@ export function panceTaskId(tag: string | null | undefined): string | null {
   return TASK_IDS.has(id) ? id : null;
 }
 
-export function panceComposeConfig(maxFullExams = 200): BoardComposeConfig {
+export function panceComposeConfig(maxFullExams = 100): BoardComposeConfig {
   return {
     boardId: "pance",
     fullExamLength: PANCE_BLOCK_LENGTH,
     maxFullExams,
-    maxItemReuse: 1,
+    // Same reuse cap as NAPLEX. Count stays at or below the 100 active rows.
+    maxItemReuse: 3,
     selectionSeed: "aee-pance-compose-2026-09-26",
     blockContradictoryKeys: true,
     dropBoilerplateTokens: true,

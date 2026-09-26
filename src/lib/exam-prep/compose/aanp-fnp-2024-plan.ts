@@ -51,12 +51,13 @@ export function aanpAgeGroupId(tag: string | null | undefined): AanpFnpPatientAg
   return AGE_IDS.has(id) ? (id as AanpFnpPatientAgeGroupId) : null;
 }
 
-export function aanpFnpComposeConfig(maxFullExams = 200): BoardComposeConfig {
+export function aanpFnpComposeConfig(maxFullExams = 100): BoardComposeConfig {
   return {
     boardId: "aanp-fnp",
     fullExamLength: AANP_FNP_COMPOSE_LENGTH,
     maxFullExams,
-    maxItemReuse: 1,
+    // Same reuse cap as NAPLEX. Count stays at or below the 100 active rows.
+    maxItemReuse: 3,
     selectionSeed: "aee-aanp-fnp-compose-2026-09-26",
     blockContradictoryKeys: true,
     dropBoilerplateTokens: true,

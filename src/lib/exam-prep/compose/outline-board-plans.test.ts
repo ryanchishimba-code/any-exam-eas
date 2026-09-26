@@ -18,6 +18,17 @@ function distinctCase(areaId: string, n: number): string {
   return `Case ${areaId} ${n}. ${tokens} Pressure ${110 + n}/${70 + (n % 7)}.`;
 }
 
+describe("reuse caps", () => {
+  it("reuses Step 2, AANP, PANCE, and NPTE up to 3 times and leaves Step 1 and Step 3 unique", () => {
+    expect(usmleBlockComposeConfig("step1").maxItemReuse).toBe(1);
+    expect(usmleBlockComposeConfig("step3").maxItemReuse).toBe(1);
+    expect(usmleBlockComposeConfig("step2")).toMatchObject({ maxItemReuse: 3, maxFullExams: 117, fullExamLength: 40 });
+    expect(aanpFnpComposeConfig()).toMatchObject({ maxItemReuse: 3, maxFullExams: 100, fullExamLength: 135 });
+    expect(panceComposeConfig()).toMatchObject({ maxItemReuse: 3, maxFullExams: 100, fullExamLength: 60 });
+    expect(nptePtComposeConfig()).toMatchObject({ maxItemReuse: 3, maxFullExams: 100, fullExamLength: 50 });
+  });
+});
+
 describe("outline quotas", () => {
   it("fits a 40-item USMLE block inside every published organ-system range", () => {
     for (const step of ["step1", "step2", "step3"] as const) {

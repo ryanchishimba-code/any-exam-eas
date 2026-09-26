@@ -90,14 +90,19 @@ export function usmlePhysicianTaskId(taskCategory: string | null | undefined): s
   return matches.length === 1 ? matches[0]!.id : null;
 }
 
-export function usmleBlockComposeConfig(step: UsmleStepLevel, maxFullExams = 200): BoardComposeConfig {
+export function usmleBlockComposeConfig(step: UsmleStepLevel, maxFullExams?: number): BoardComposeConfig {
   const title = STEP_TITLE[step];
+  // Step 2 CK may reuse an item in up to 3 forms, same cap as NAPLEX.
+  // The form count stays at or below the active Step 2 rows (117).
+  // Step 1 and Step 3 stay unique-item previews.
+  const reuse = step === "step2" ? 3 : 1;
+  const cap = step === "step2" ? 117 : 200;
   return {
     boardId: `usmle-${step}`,
     areas: usmleOrganAreas(step),
     fullExamLength: USMLE_BLOCK_LENGTH,
-    maxFullExams,
-    maxItemReuse: 1,
+    maxFullExams: maxFullExams ?? cap,
+    maxItemReuse: reuse,
     selectionSeed: `aee-usmle-${step}-compose-2026-09-26`,
     blockContradictoryKeys: true,
     dropBoilerplateTokens: true,

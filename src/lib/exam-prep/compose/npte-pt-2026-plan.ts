@@ -18,9 +18,10 @@ import { NPTE_PT_BLUEPRINT_SOURCE } from "@/lib/exam-prep/npte-pt/types";
  * are reported after the form is built and are not exclusive quotas.
  *
  * Length is one 50-item section. The full exam is 250 items (five
- * sections). A 250-item on-blueprint form would burn the pool and raise
- * reuse; a section is the useful practice unit and can be filled with
- * items used once. The 250-item full exam simulation stays unchanged.
+ * sections). A 250-item on-blueprint form would burn the pool. A section
+ * is the useful practice unit. An item may appear in up to 3 sections,
+ * and never twice inside one section. The 250-item full exam simulation
+ * stays unchanged.
  */
 export const NPTE_PT_SECTION_LENGTH = 50;
 
@@ -37,12 +38,13 @@ export function npteTaskId(tag: string | null | undefined): string | null {
   return TASK_IDS.has(id) ? id : null;
 }
 
-export function nptePtComposeConfig(maxFullExams = 200): BoardComposeConfig {
+export function nptePtComposeConfig(maxFullExams = 100): BoardComposeConfig {
   return {
     boardId: "npte-pt",
     fullExamLength: NPTE_PT_SECTION_LENGTH,
     maxFullExams,
-    maxItemReuse: 1,
+    // Same reuse cap as NAPLEX. Count stays at or below the 100 active rows.
+    maxItemReuse: 3,
     selectionSeed: "aee-npte-pt-compose-2026-09-26",
     blockContradictoryKeys: true,
     dropBoilerplateTokens: true,

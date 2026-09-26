@@ -213,7 +213,7 @@ export async function runOutlineBoard(
   }
   if (args.board === "npte-pt") {
     console.log(
-      `Length tradeoff: NPTE sections are 50 items and the full exam is 250. These forms are one section so the pool can fill the outline with items used once. Process tasks sum to ${NPTE_PT_TASK_WEIGHT_SUM} and are not a fill quota.`
+      `Length tradeoff: NPTE sections are 50 items and the full exam is 250. These forms are one section. An item may appear in up to 3 sections and is not repeated inside one section. Process tasks sum to ${NPTE_PT_TASK_WEIGHT_SUM} and are not a fill quota.`
     );
   }
   if (args.board.startsWith("usmle")) {
@@ -430,8 +430,13 @@ export async function runOutlineBoard(
   const overlap = overlapStats(onPlan);
   const reuse = reuseStats(onPlan);
   console.log("\n## Overlap and reuse\n");
+  const slots = onPlan.reduce((sum, exam) => sum + exam.itemIds.length, 0);
+  const meanReuse = reuse.distinctItems === 0 ? 0 : slots / reuse.distinctItems;
+  console.log(`Reuse cap: ${config.maxItemReuse}. Items with fewer uses are chosen first. An item is not repeated inside one form.`);
+  console.log(`Form cap: ${config.maxFullExams}.`);
   console.log(`Distinct items: ${reuse.distinctItems}`);
   console.log(`Max item reuse: ${reuse.maxReuse}`);
+  console.log(`Average reuse (slots / distinct items): ${meanReuse.toFixed(2)}`);
   console.log(`Max shared items: ${overlap.maxSharedItems}`);
   console.log(`Mean shared items: ${overlap.meanSharedItems.toFixed(2)}`);
   console.log(`Identical pairs: ${overlap.identicalPairs}`);
