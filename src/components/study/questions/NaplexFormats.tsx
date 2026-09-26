@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { cleanOptionText } from "@/lib/question-format";
+import { studentFacingVignette } from "@/lib/questions/student-display-text";
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { ExhibitFigureRef } from "@/lib/exam-prep/exhibit-figure";
 import { ArrowRight, Check, GripVertical, RotateCcw, X } from "lucide-react";
@@ -22,7 +23,7 @@ export function NaplexCaseVignette({ text }: { text: string }) {
         Patient case
       </p>
       <p className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-slate-800 sm:text-sm">
-        {text}
+        {studentFacingVignette(text)}
       </p>
     </div>
   );

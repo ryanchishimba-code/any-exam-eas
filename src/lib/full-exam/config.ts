@@ -53,7 +53,7 @@ export function getLengthOptions(examSlug: ExamSlug, fieldId?: string): LengthOp
         preset: "full",
         label: "Full NCLEX (CAT)",
         description:
-          "85–150 items · 5 hours · Client Needs + NGN case studies (practice CAT).",
+          "85–150 questions · 5 hours · Client Needs mix (practice CAT).",
         questionCount: full,
       },
     ];

@@ -26,6 +26,11 @@ import { feUi } from "@/lib/study/full-exam-ui";
 import { ROUTES } from "@/lib/routes";
 import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { catLauncherBriefing } from "@/lib/questions/cat-psychology";
+import {
+  nclexFullPracticeBadge,
+  nclexFullPracticeHint,
+  nclexFullPracticeLengthLabel,
+} from "@/lib/full-exam/nclex-length-label";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 import type { ExamQuestion } from "@/lib/ai";
@@ -240,7 +245,9 @@ export function FullExamLauncher({
         <div className="w-full max-w-sm text-center">
           <p className="text-[17px] font-semibold text-[var(--color-ink)]">Starting {pageTitle}</p>
           <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
-            {preview.questionCount} questions
+            {examSlug === "nclex" && preset === "full"
+              ? nclexFullPracticeLengthLabel(nclexCat)
+              : `${preview.questionCount} questions`}
           </p>
           <ExamLoadingProgress
             className="mt-4"
@@ -253,8 +260,12 @@ export function FullExamLauncher({
     );
   }
 
+  const nclexFull = examSlug === "nclex" && preset === "full";
+  const lengthLabel = nclexFull
+    ? nclexFullPracticeLengthLabel(nclexCat)
+    : `${preview.questionCount} questions`;
   const summary = [
-    `${preview.questionCount} questions`,
+    lengthLabel,
     preview.timed ? formatHms(preview.timeLimitSec) : "Untimed",
     preview.adaptive ? "Adaptive mix" : "Standard mix",
   ].join("  ·  ");
@@ -290,7 +301,21 @@ export function FullExamLauncher({
               <p className="text-center text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
                 Choose length
               </p>
-              <FullExamLengthWheel options={options} value={preset} onChange={handlePresetChange} />
+              <FullExamLengthWheel
+                options={options}
+                value={preset}
+                onChange={handlePresetChange}
+                fullBadge={
+                  examSlug === "nclex"
+                    ? nclexFullPracticeBadge(preset !== "full" || nclexCat)
+                    : undefined
+                }
+                fullHint={
+                  examSlug === "nclex"
+                    ? nclexFullPracticeHint(preset !== "full" || nclexCat)
+                    : undefined
+                }
+              />
               {lockedHint ? (
                 <p className="text-center text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
                   {lockedHint}{" "}
@@ -332,7 +357,7 @@ export function FullExamLauncher({
                   <span>
                     <span className="font-medium text-[var(--color-ink)]">CAT-style adaptive</span>
                     <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
-                      Variable length 85–150 · 5-hour clock · practice only (not Pearson VUE).
+                      Variable length 85–150 questions · 5-hour clock · practice only (not Pearson VUE).
                     </span>
                   </span>
                 </label>

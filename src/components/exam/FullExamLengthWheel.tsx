@@ -9,6 +9,10 @@ type Props = {
   options: LengthOption[];
   value: FullExamLengthPreset;
   onChange: (preset: FullExamLengthPreset) => void;
+  /** Replaces the "85 Q" badge on the Full preset. */
+  fullBadge?: string;
+  /** Short hint under the Full preset. */
+  fullHint?: string;
 };
 
 function primaryLabel(option: LengthOption): string {
@@ -17,7 +21,7 @@ function primaryLabel(option: LengthOption): string {
 }
 
 /** Tap-to-select exam length — 50 / 100 / full presets. */
-export function FullExamLengthWheel({ options, value, onChange }: Props) {
+export function FullExamLengthWheel({ options, value, onChange, fullBadge, fullHint }: Props) {
   const resolvedPreset =
     options.find((o) => o.preset === value)?.preset ?? options[0]?.preset ?? value;
 
@@ -53,20 +57,20 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
             {option.preset === "full" ? (
               <span
                 className={cn(
-                  "mt-0.5 text-[10px] font-semibold tabular-nums",
-                  active ? "text-[var(--color-ink-muted)]" : "text-[var(--color-ink-muted)]/70"
+                  "mt-0.5 text-[11px] font-semibold tabular-nums tracking-tight",
+                  active ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"
                 )}
               >
-                {option.questionCount} Q
+                {fullBadge ?? `${option.questionCount} Q`}
               </span>
             ) : null}
             <span
               className={cn(
                 "mt-1 line-clamp-2 text-center text-[10px] font-medium leading-tight",
-                active ? "text-[var(--color-ink-muted)]" : "text-[var(--color-ink-muted)]/70"
+                active ? "text-[var(--color-ink)]" : "text-[var(--color-ink-muted)]"
               )}
             >
-              {option.preset === "full" ? "Full-length adaptive" : option.description}
+              {option.preset === "full" ? (fullHint ?? "Full-length adaptive") : option.description}
             </span>
           </button>
         );

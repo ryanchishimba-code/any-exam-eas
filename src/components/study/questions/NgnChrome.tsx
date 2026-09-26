@@ -2,6 +2,7 @@
 
 import { formatNgnLabel } from "@/lib/questions/ngn-map";
 import { stripShiftNotes } from "@/lib/questions/shift-notes";
+import { studentFacingVignette } from "@/lib/questions/student-display-text";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { Info } from "lucide-react";
 
@@ -77,7 +78,7 @@ export function inferVignetteLabel(text: string, stem = ""): string {
 }
 
 export function VignetteBlock({ text, stem = "" }: { text: string; stem?: string }) {
-  const cleaned = stripShiftNotes(text);
+  const cleaned = studentFacingVignette(stripShiftNotes(text));
   const label = inferVignetteLabel(cleaned, stem);
   return (
     <div className="mb-4 rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-4 py-3 sm:px-4">
