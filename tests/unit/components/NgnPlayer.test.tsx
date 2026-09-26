@@ -36,6 +36,25 @@ describe("NGN case player", () => {
     expect(screen.getByRole("columnheader", { name: "T2 0945" })).toBeInTheDocument();
   });
 
+  it("scrolls chart tabs in the mobile sheet without clipping the label", async () => {
+    const user = userEvent.setup();
+    render(<CaseStudyPlayer caseDoc={caseDoc} mode="review" attemptSeed="sheet" />);
+    await openChart(user);
+    const dialog = screen.getByRole("dialog", { name: "Client chart" });
+    expect(dialog.parentElement).toHaveClass("z-[52]");
+    expect(dialog.className).toContain("env(safe-area-inset-bottom,0px)");
+    expect(dialog.className).toContain("100dvh");
+    const tablist = screen.getByRole("tablist", { name: "Chart sections" });
+    expect(tablist.className).toContain("overflow-x-auto");
+    expect(tablist.className).toContain("snap-x");
+    const labs = screen.getByRole("tab", { name: "Laboratory Results" });
+    expect(labs.className).toContain("whitespace-nowrap");
+    expect(labs.className).toContain("min-h-11");
+    expect(labs.className).toContain("min-w-11");
+    expect(labs.className).not.toContain("truncate");
+    expect(labs).toHaveTextContent("Laboratory Results");
+  });
+
   it("does not allow going back in exam mode", async () => {
     const user = userEvent.setup();
     render(<CaseStudyPlayer caseDoc={caseDoc} mode="exam" attemptSeed="exam" />);

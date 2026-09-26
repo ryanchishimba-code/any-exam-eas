@@ -67,7 +67,7 @@ export function CaseStudyPlayer({
   );
 
   return (
-    <div className="pb-24 text-[#0A2540] lg:pb-0">
+    <div className="pb-[calc(7.5rem+env(safe-area-inset-bottom,0px))] text-[#0A2540] lg:pb-0">
       <header className="rounded-3xl bg-[#0A2540] px-5 py-4 text-white sm:px-6">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#00D4C8]">Client</p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
@@ -176,7 +176,7 @@ export function CaseStudyPlayer({
         <>
           <button
             type="button"
-            className={`fixed bottom-4 left-1/2 z-30 min-h-11 -translate-x-1/2 rounded-full bg-[#0A2540] px-5 text-sm font-medium text-white shadow-lg motion-reduce:transition-none ${ngnFocus}`}
+            className={`fixed bottom-[calc(4.75rem+env(safe-area-inset-bottom,0px))] left-1/2 z-30 min-h-11 -translate-x-1/2 rounded-full bg-[#0A2540] px-5 text-sm font-medium text-white shadow-lg motion-reduce:transition-none ${ngnFocus}`}
             aria-expanded={chartOpen}
             onClick={() => setChartOpen(true)}
           >
