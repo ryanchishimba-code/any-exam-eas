@@ -687,7 +687,10 @@ body {
   mask-image: linear-gradient(180deg, #000 20%, transparent 100%);
 }
 
-.question-bank-ui > * {
+/* Direct children sit above the decorative wash. The session preview is excluded
+   so its sticky / static utilities win. Forcing position:relative here kept the
+   bottom offset and covered the practice-exam "Show all" control on desktop. */
+.question-bank-ui > *:not(.qb-session-preview) {
   position: relative;
   z-index: 1;
 }

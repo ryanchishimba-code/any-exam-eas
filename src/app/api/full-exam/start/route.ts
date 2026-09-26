@@ -26,17 +26,25 @@ import {
 import { resolveSmartExamSelection } from "@/lib/full-exam/smart-exam-selection";
 import { loadBankItemsByIds } from "@/lib/full-exam/load-bank-items-by-ids";
 import { loadFullExamSessionQuestionsPayload } from "@/lib/full-exam/load-session-questions";
-import { presetFormId, studentPracticeExamTitle } from "@/lib/exam-prep/preset-form-progress";
+import {
+  practiceExamBoardLabel,
+  practiceExamDisplayIndex,
+  presetFormId,
+  studentPracticeExamTitle,
+} from "@/lib/exam-prep/preset-form-progress";
 import {
   serveNamedPresetForm,
   serveNextUnusedPresetForm,
 } from "@/lib/exam-prep/serve-preset-form";
-import type { ExactPresetForm } from "@/lib/exam-prep/stored-preset-form";
+import {
+  listActivePresetForms,
+  type ExactPresetForm,
+} from "@/lib/exam-prep/stored-preset-form";
 import type { FullExamSessionConfig } from "@/types/full-exam";
 
 function parsePresetExamNumber(value: unknown): number | null {
   const parsed = typeof value === "number" ? value : typeof value === "string" ? Number(value) : NaN;
-  if (!Number.isInteger(parsed) || parsed < 1 || parsed > 100) return null;
+  if (!Number.isInteger(parsed) || parsed < 1 || parsed > 100_000) return null;
   return parsed;
 }
 
@@ -328,13 +336,19 @@ export async function POST(req: Request) {
           : launchMode === "continue_learning"
             ? " · Continue"
             : "";
-    const boardLabel =
-      examSlug === "usmle"
-        ? usmleStepDefinition(sessionFieldId)?.shortName ?? EXAM_CATALOG.usmle.shortName
-        : EXAM_CATALOG[examSlug].shortName;
+    const activeForms =
+      exactForm && explicitPreset != null
+        ? await listActivePresetForms(examSlug, sessionFieldId)
+        : [];
     const title =
       exactForm && explicitPreset != null
-        ? studentPracticeExamTitle(exactForm.title, exactForm.examNumber, boardLabel)
+        ? studentPracticeExamTitle(
+            practiceExamBoardLabel(examSlug, sessionFieldId),
+            practiceExamDisplayIndex(
+              activeForms.map((form) => form.examNumber),
+              exactForm.examNumber
+            )
+          )
         : `${sessionTitle}${titleSuffix}`;
 
     const sessionId = await createExamInstance(premium.userId, examSlug, {

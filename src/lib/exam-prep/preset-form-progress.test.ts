@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   nextUnstartedExamNumber,
   pickNextUnusedPresetForm,
+  practiceExamBoardLabel,
+  practiceExamDisplayIndex,
   practiceExamLengthNote,
   preservePresetFormOnAnalysis,
   previewPracticeExams,
@@ -36,17 +38,28 @@ describe("practice exam labels", () => {
     expect(practiceExamLengthNote(85, 225)).toBe("85-question practice exam");
     expect(practiceExamLengthNote(85, 85)).toBe("85 questions");
     expect(practiceExamLengthNote(85, 150)).toBe("85-question practice exam");
+    expect(practiceExamLengthNote(40, 200)).toBe("40-question practice exam");
+    expect(practiceExamLengthNote(55, 200)).toBe("55-question practice exam");
+    expect(practiceExamLengthNote(70, 200)).toBe("70-question practice exam");
   });
 
-  it("does not show shortfall, coming soon, or placeholder wording", () => {
-    expect(studentPracticeExamTitle("NAPLEX Practice Exam 5", 5, "NAPLEX")).toBe(
-      "NAPLEX Practice Exam 5"
+  it("numbers student titles in list order and leaves stored exam numbers out", () => {
+    const stored = [2621, 9172, 9301];
+    expect(practiceExamBoardLabel("usmle", "usmle-step-3")).toBe("USMLE Step 3");
+    expect(practiceExamBoardLabel("usmle", "usmle-step-1")).toBe("USMLE Step 1");
+    expect(practiceExamBoardLabel("usmle", "usmle-step-2")).toBe("USMLE Step 2 CK");
+    expect(practiceExamBoardLabel("naplex", "pharmacy")).toBe("NAPLEX");
+    expect(practiceExamBoardLabel("nclex", "nursing")).toBe("NCLEX-RN");
+    expect(practiceExamBoardLabel("aanp-fnp", "aanp-fnp")).toBe("AANP FNP-C");
+    expect(practiceExamBoardLabel("pance", "pance")).toBe("PANCE");
+    expect(practiceExamBoardLabel("npte-pt", "npte-pt")).toBe("NPTE-PT");
+    expect(studentPracticeExamTitle("USMLE Step 3", practiceExamDisplayIndex(stored, 2621))).toBe(
+      "USMLE Step 3 Practice Exam 1"
     );
-    expect(studentPracticeExamTitle("NAPLEX outline shortfall", 5, "NAPLEX")).toBe(
-      "NAPLEX Practice Exam 5"
+    expect(studentPracticeExamTitle("USMLE Step 3", practiceExamDisplayIndex(stored, 9301))).toBe(
+      "USMLE Step 3 Practice Exam 3"
     );
-    expect(studentPracticeExamTitle("Coming soon", 2, "NCLEX")).toBe("NCLEX Practice Exam 2");
-    expect(studentPracticeExamTitle("  ", 3, "PANCE")).toBe("PANCE Practice Exam 3");
+    expect(studentPracticeExamTitle("USMLE Step 3", 2)).not.toMatch(/9172|2621|9301|shortfall|coming soon|placeholder/i);
   });
 });
 
