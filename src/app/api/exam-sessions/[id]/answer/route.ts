@@ -17,6 +17,7 @@ import {
 } from "@/lib/learning/full-exam-pass-path";
 import { persistCompletedSessionAttempts } from "@/lib/learning/persist-session-attempts";
 import { summarySaysEndedEarly } from "@/lib/full-exam/results-title";
+import { preservePresetFormOnAnalysis } from "@/lib/exam-prep/preset-form-progress";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
 export const runtime = "nodejs";
@@ -59,10 +60,10 @@ export async function PATCH(
     const endedEarly = Boolean(body.endedEarly) || summarySaysEndedEarly(
       typeof summary === "string" ? summary : undefined
     );
-    const analysis = {
+    const analysis = preservePresetFormOnAnalysis(session.analysis, {
       ...analysisWithAnsweredCount(body.analysis, drafts.length),
       endedEarly,
-    };
+    });
     const totalQuestions = session.questionCount || drafts.length;
     const score = calculateExamScorePercent(answers, totalQuestions);
     const fieldId =
