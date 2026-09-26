@@ -2,14 +2,16 @@
 /**
  * Publish or unpublish NGN items. Default is a dry run.
  *
- *   npx tsx scripts/ngn/publish.ts --batch ngn-pilot-2026-09-26
- *   npx tsx scripts/ngn/publish.ts --ids B01,T01 --owner-attest "Ada RN" --apply
+ *   npx tsx scripts/ngn/publish.ts --batch ngn-pilot-2026-09-26 --owner-attest "Ryan Chishimba, RN" --accept-open-flags
+ *   npx tsx scripts/ngn/publish.ts --batch ngn-pilot-2026-09-26 --owner-attest "Ryan Chishimba, RN" --accept-open-flags --apply
  *   npx tsx scripts/ngn/publish.ts --restore --batch ngn-pilot-2026-09-26 --apply
  *
  * --apply is allowed in production. It updates status only and, with
- * --owner-attest, appends ngn_item_review rows. It never edits stems,
- * options, keys, or rationales, and it never writes QuestionBankItem.
- * Cases publish and unpublish as a whole. One failing item keeps the case draft.
+ * --owner-attest, appends ngn_item_review rows. --accept-open-flags records
+ * each rn_flag as "accepted by owner" on that review's flag_resolutions.
+ * It never edits stems, options, keys, rationales, or rn_flags, and it never
+ * writes QuestionBankItem. Cases publish and unpublish as a whole.
+ * One failing item keeps the case draft.
  */
 import type { ReviewGateInput } from "../../src/lib/assessment/publish-gate";
 import {
@@ -93,6 +95,7 @@ type ReviewRow = {
   licenseNumber: string | null;
   licenseState: string | null;
   comments: string;
+  flagResolutions: unknown;
 };
 
 function argValue(flag: string): string | undefined {
@@ -167,7 +170,17 @@ function toReview(row: ReviewRow): ReviewGateInput {
     licenseNumber: row.licenseNumber,
     licenseState: row.licenseState,
     comments: row.comments,
+    flagResolutions: stringRecord(row.flagResolutions),
   };
+}
+
+function stringRecord(value: unknown): Record<string, string> {
+  const out: Record<string, string> = {};
+  if (!value || typeof value !== "object" || Array.isArray(value)) return out;
+  for (const [key, entry] of Object.entries(value)) {
+    if (typeof entry === "string") out[key] = entry;
+  }
+  return out;
 }
 
 async function main() {
@@ -185,8 +198,15 @@ async function main() {
   if (!batchId && (!ids || ids.length === 0)) {
     fail("Pass --ids and/or --batch. Nothing was written.");
   }
+  const acceptOpenFlags = hasFlag("--accept-open-flags");
   if (ownerAttest && restore) {
     fail("--owner-attest applies to publish, not --restore.");
+  }
+  if (acceptOpenFlags && restore) {
+    fail("--accept-open-flags applies to publish, not --restore.");
+  }
+  if (acceptOpenFlags && !ownerAttest) {
+    fail("--accept-open-flags requires --owner-attest.");
   }
 
   loadEnvFiles();
@@ -248,6 +268,7 @@ async function main() {
       ids,
       batchId,
       ownerAttest,
+      acceptOpenFlags,
       restore,
     });
 
@@ -275,9 +296,16 @@ async function main() {
       for (const skip of plan.skipped) console.log(`  ${skip.id}: ${skip.reason}`);
     }
     if (plan.attestations.length > 0) {
+      const accepted = plan.attestations.reduce(
+        (sum, attestation) => sum + Object.keys(attestation.flagResolutions).length,
+        0
+      );
       console.log(
         `${apply ? "recording" : "would record"} ${plan.attestations.length} owner attestation review${plan.attestations.length === 1 ? "" : "s"}`
       );
+      if (acceptOpenFlags) {
+        console.log(`open RN flags recorded as accepted by the owner: ${accepted} (rn_flags on the items are unchanged)`);
+      }
     }
     console.log(`restore command: ${plan.restoreCommand}`);
 
@@ -303,7 +331,7 @@ async function main() {
             nursysResult: null,
             decision: "approve",
             rubric: {},
-            flagResolutions: {},
+            flagResolutions: attestation.flagResolutions,
             comments: "owner attestation",
             minutesSpent: 0,
           },

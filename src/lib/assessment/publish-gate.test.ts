@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { canPublish, reviewGateOpen } from "@/lib/assessment/publish-gate";
+import { canPublish, OWNER_FLAG_ACCEPTANCE, reviewGateOpen } from "@/lib/assessment/publish-gate";
 import { ownerAttestationReview } from "@/lib/assessment/publish-run";
 import type { PilotDocument } from "@/lib/assessment/types";
 
@@ -85,6 +85,29 @@ describe("canPublish", () => {
       { ...licensed, reviewerUserId: "rn-1", decision: "approve" },
       { ...licensed, reviewerUserId: "rn-2", decision: "approve" },
     ])).toBe(true);
+  });
+
+  it("stays closed on an open RN flag until the owner accepts it", () => {
+    const bowtie = structuredClone(pilot.standalone.find((entry) => entry.id === "B01"));
+    expect(bowtie && bowtie.rnFlags.length > 0).toBeTruthy();
+    if (!bowtie) return;
+    const flags = [...bowtie.rnFlags];
+    const closed = canPublish(bowtie, {
+      sources: pilot.sources,
+      reviews: [ownerAttestationReview("Ryan Chishimba, RN")],
+    });
+    expect(closed.validatorsGreen).toBe(true);
+    expect(closed.ok).toBe(false);
+    expect(closed.errors.join(" ")).toContain(`open RN flag is not accepted: ${flags[0]}`);
+    const accepted = canPublish(bowtie, {
+      sources: pilot.sources,
+      reviews: [ownerAttestationReview("Ryan Chishimba, RN", flags)],
+    });
+    expect(accepted.ok).toBe(true);
+    expect(bowtie.rnFlags).toEqual(flags);
+    expect(ownerAttestationReview("Ryan Chishimba, RN", flags).flagResolutions?.[flags[0]!]).toBe(
+      OWNER_FLAG_ACCEPTANCE
+    );
   });
 
   it("opens for one RN owner attestation when validators are green", () => {

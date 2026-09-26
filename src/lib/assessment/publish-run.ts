@@ -1,4 +1,10 @@
-import { canPublish, isOwnerAttestation, OWNER_ATTESTATION_COMMENT, type ReviewGateInput } from "@/lib/assessment/publish-gate";
+import {
+  canPublish,
+  isOwnerAttestation,
+  OWNER_ATTESTATION_COMMENT,
+  OWNER_FLAG_ACCEPTANCE,
+  type ReviewGateInput,
+} from "@/lib/assessment/publish-gate";
 import type { NgnCase, NgnItem, SourceRef } from "@/lib/assessment/types";
 
 export type PublishItemInput = {
@@ -35,7 +41,12 @@ export type PublishEvaluation = {
   caseChanges: StatusChange[];
   blockedCases: BlockedCase[];
   skipped: { id: string; reason: string }[];
-  attestations: { itemId: string; itemVersion: number; reviewerName: string }[];
+  attestations: {
+    itemId: string;
+    itemVersion: number;
+    reviewerName: string;
+    flagResolutions: Record<string, string>;
+  }[];
   restoreCommand: string;
 };
 
@@ -48,7 +59,16 @@ export function ownerReviewerUserId(name: string): string {
   return `owner:${slug || "rn"}`;
 }
 
-export function ownerAttestationReview(name: string): ReviewGateInput {
+export function ownerFlagResolutions(flags: readonly string[]): Record<string, string> {
+  const resolutions: Record<string, string> = {};
+  for (const flag of flags) {
+    if (typeof flag !== "string" || !flag.trim()) continue;
+    resolutions[flag] = OWNER_FLAG_ACCEPTANCE;
+  }
+  return resolutions;
+}
+
+export function ownerAttestationReview(name: string, flags: readonly string[] = []): ReviewGateInput {
   return {
     reviewerUserId: ownerReviewerUserId(name),
     reviewerName: name.trim(),
@@ -57,6 +77,7 @@ export function ownerAttestationReview(name: string): ReviewGateInput {
     licenseNumber: null,
     licenseState: null,
     comments: OWNER_ATTESTATION_COMMENT,
+    flagResolutions: ownerFlagResolutions(flags),
   };
 }
 
@@ -97,6 +118,8 @@ export function evaluatePublish(input: {
   ids: readonly string[] | null;
   batchId: string | null;
   ownerAttest: string | null;
+  /** Record each rn_flag as accepted by the owner. Does not edit the flags on the item. */
+  acceptOpenFlags?: boolean;
   restore: boolean;
 }): PublishEvaluation {
   const idSet = input.ids && input.ids.length > 0 ? new Set(input.ids) : null;
@@ -194,19 +217,24 @@ export function evaluatePublish(input: {
   const reviewsFor = (row: PublishItemInput): ReviewGateInput[] => {
     const reviews = [...row.reviews];
     if (!input.ownerAttest) return reviews;
-    const attestation = ownerAttestationReview(input.ownerAttest);
-    const already = reviews.some(
-      (review) =>
-        isOwnerAttestation(review) &&
-        (review.reviewerName?.trim() === attestation.reviewerName ||
-          review.reviewerUserId === attestation.reviewerUserId)
-    );
+    const flags = input.acceptOpenFlags ? row.item.rnFlags : [];
+    const attestation = ownerAttestationReview(input.ownerAttest, flags);
+    const already = reviews.some((review) => {
+      if (!isOwnerAttestation(review)) return false;
+      const sameOwner =
+        review.reviewerName?.trim() === attestation.reviewerName ||
+        review.reviewerUserId === attestation.reviewerUserId;
+      if (!sameOwner) return false;
+      if (!input.acceptOpenFlags) return true;
+      return row.item.rnFlags.every((flag) => review.flagResolutions?.[flag]?.trim());
+    });
     if (!already) {
       reviews.push(attestation);
       attestations.push({
         itemId: row.item.id,
         itemVersion: row.item.version,
         reviewerName: attestation.reviewerName ?? input.ownerAttest,
+        flagResolutions: { ...(attestation.flagResolutions ?? {}) },
       });
     }
     return reviews;

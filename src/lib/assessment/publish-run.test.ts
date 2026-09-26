@@ -30,8 +30,9 @@ describe("NGN publish plan", () => {
     const caseDoc = structuredClone(pilot.cases[0]!);
     const broken = structuredClone(caseDoc);
     broken.items[2]!.stem = "";
-    const standalone = pilot.standalone.find((item) => item.id === "B01");
+    const standalone = structuredClone(pilot.standalone.find((item) => item.id === "B01"));
     expect(standalone).toBeTruthy();
+    if (standalone) standalone.rnFlags = [];
     const plan = evaluatePublish({
       items: [...asItems(broken.items), ...asItems(standalone ? [standalone] : [])],
       cases: [asCase(broken)],
@@ -63,6 +64,7 @@ describe("NGN publish plan", () => {
       ids: ["C01"],
       batchId: pilot.batchId,
       ownerAttest: "Ada RN",
+      acceptOpenFlags: true,
       restore: false,
     });
     expect(published.blockedCases).toEqual([]);
@@ -73,6 +75,15 @@ describe("NGN publish plan", () => {
       { id: "C01", version: caseDoc.version, from: "draft", to: "published" },
     ]);
     expect(published.attestations).toHaveLength(caseDoc.items.length);
+    for (const item of caseDoc.items) {
+      const attestation = published.attestations.find((entry) => entry.itemId === item.id);
+      expect(attestation?.flagResolutions).toEqual(
+        Object.fromEntries(item.rnFlags.map((flag) => [flag, "accepted by owner"]))
+      );
+    }
+    expect(caseDoc.items.map((item) => item.rnFlags)).toEqual(
+      pilot.cases[0]!.items.map((item) => item.rnFlags)
+    );
 
     const restore = evaluatePublish({
       items: asItems(
@@ -97,12 +108,68 @@ describe("NGN publish plan", () => {
     );
   });
 
+  it("publishes all 70 pilot items and 10 cases when the owner accepts open flags", () => {
+    const items = [
+      ...pilot.cases.flatMap((caseDoc) => asItems(caseDoc.items)),
+      ...asItems(pilot.standalone),
+    ];
+    const cases = pilot.cases.map((caseDoc) => asCase(caseDoc));
+    const flagsBefore = items.map((row) => [...row.item.rnFlags]);
+    const held = evaluatePublish({
+      items,
+      cases,
+      sourcesByBatch: { [pilot.batchId]: pilot.sources },
+      ids: null,
+      batchId: pilot.batchId,
+      ownerAttest: "Ryan Chishimba, RN",
+      restore: false,
+    });
+    expect(held.caseChanges).toEqual([]);
+    expect(held.blockedCases).toHaveLength(pilot.cases.length);
+    expect(held.itemChanges.map((change) => change.id)).not.toContain("B01");
+    expect(held.blockedCases[0]?.reasons.join(" ")).toMatch(/open RN flag is not accepted/);
+
+    const plan = evaluatePublish({
+      items,
+      cases,
+      sourcesByBatch: { [pilot.batchId]: pilot.sources },
+      ids: null,
+      batchId: pilot.batchId,
+      ownerAttest: "Ryan Chishimba, RN",
+      acceptOpenFlags: true,
+      restore: false,
+    });
+    expect(plan.blockedCases).toEqual([]);
+    expect(plan.itemChanges).toHaveLength(70);
+    expect(plan.itemChanges.every((change) => change.to === "published")).toBe(true);
+    expect(plan.caseChanges.map((change) => change.id).sort()).toEqual(
+      pilot.cases.map((caseDoc) => caseDoc.id).sort()
+    );
+    expect(plan.caseChanges.every((change) => change.to === "published")).toBe(true);
+    expect(plan.attestations).toHaveLength(70);
+    const flagged = items.filter((row) => row.item.rnFlags.length > 0);
+    expect(flagged.length).toBeGreaterThan(0);
+    for (const row of flagged) {
+      const attestation = plan.attestations.find((entry) => entry.itemId === row.item.id);
+      expect(attestation?.flagResolutions).toEqual(
+        Object.fromEntries(row.item.rnFlags.map((flag) => [flag, "accepted by owner"]))
+      );
+    }
+    expect(items.map((row) => row.item.rnFlags)).toEqual(flagsBefore);
+    expect(plan.restoreCommand).toBe(
+      "npx tsx scripts/ngn/publish.ts --restore --batch ngn-pilot-2026-09-26 --apply"
+    );
+  });
+
   it("lets publish run in production and keeps the seed script non-production", () => {
     const publish = readFileSync("scripts/ngn/publish.ts", "utf8");
     const seed = readFileSync("scripts/ngn/seed-pilot.ts", "utf8");
     expect(publish).not.toContain("VERCEL_ENV");
     expect(publish).toContain("allowed in production");
+    expect(publish).toContain('--owner-attest "Ryan Chishimba, RN" --accept-open-flags');
+    expect(publish).toContain("flagResolutions: attestation.flagResolutions");
     expect(publish).not.toMatch(/data:\s*\{[^}]*stem/);
+    expect(publish).not.toMatch(/\.update\(\{[\s\S]{0,180}rnFlags/);
     expect(seed).toContain("Refusing --apply when VERCEL_ENV=production.");
     expect(seed).toContain("scripts/ngn/publish.ts");
   });
