@@ -1836,11 +1836,13 @@ model NgnItemReview {
   reviewerUserId   String   @map("reviewer_user_id")
   reviewerName     String   @map("reviewer_name")
   licenseType      String   @map("license_type")
-  licenseNumber    String   @map("license_number")
-  licenseState     String   @map("license_state")
-  multistateNlc    Boolean  @default(false) @map("multistate_nlc")
-  nursysVerifiedOn DateTime @map("nursys_verified_on") @db.Date
-  nursysResult     String   @map("nursys_result")
+  /// Null when the owner attestation does not include a license number.
+  licenseNumber    String?  @map("license_number")
+  /// Null when the owner attestation does not include a license state.
+  licenseState     String?  @map("license_state")
+  multistateNlc    Boolean? @map("multistate_nlc")
+  nursysVerifiedOn DateTime? @map("nursys_verified_on") @db.Date
+  nursysResult     String?  @map("nursys_result")
   decision         String
   rubric           Json
   flagResolutions  Json     @map("flag_resolutions")

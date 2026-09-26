@@ -159,6 +159,8 @@ import {
   sessionLabelWithTask,
 } from "@/lib/exam-prep/pance/practice-focus";
 import type { ExamSlug } from "@/types/edtech";
+import { readClinicalSession, type ClinicalSessionPayload } from "@/lib/assessment/clinical-session";
+import { ClinicalBankSession } from "./ClinicalBankSession";
 
 const StudySessionPlayer = dynamic(
   () => import("./StudySessionPlayer").then((m) => m.StudySessionPlayer),
@@ -399,6 +401,7 @@ export function StudyBankPractice({
   const [error, setError] = useState("");
   const [upgradeHref, setUpgradeHref] = useState<string | null>(null);
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
+  const [clinicalSession, setClinicalSession] = useState<ClinicalSessionPayload | null>(null);
   const [sessionEpoch, setSessionEpoch] = useState(0);
   const autostartRequested = searchParams.get("autostart") === "1";
   const autostartAttempted = useRef(false);
@@ -427,6 +430,7 @@ export function StudyBankPractice({
   const resetPracticeSession = useCallback(() => {
     fetchGenerationRef.current += 1;
     setQuestions(null);
+    setClinicalSession(null);
     setAdaptiveMeta(null);
     setError("");
     setUpgradeHref(null);
@@ -1131,6 +1135,7 @@ export function StudyBankPractice({
     setError("");
     setUpgradeHref(null);
     setQuestions(null);
+    setClinicalSession(null);
     setAdaptiveMeta(null);
     setSessionEpoch((epoch) => epoch + 1);
     try {
@@ -1165,6 +1170,13 @@ export function StudyBankPractice({
         }
         if (data.practiceFormat !== deliberateFormat) {
           throw new Error("This set was not limited to the selected format.");
+        }
+        const clinical = readClinicalSession(data.clinicalSession);
+        if (clinical) {
+          expectExactSessionCount(clinical.units.length, limit);
+          if (isStale()) return;
+          setClinicalSession(clinical);
+          return;
         }
         const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
         const subjectIds = (data.subjectIds as Array<string | null> | undefined) ?? [];
@@ -1541,6 +1553,13 @@ export function StudyBankPractice({
         if (launchedDecision.status === "empty") {
           setRemediationEmpty("review_incorrect");
           rememberLaunchOutcome("review_incorrect");
+          return;
+        }
+        const clinical = readClinicalSession(launched.data.clinicalSession);
+        if (clinical) {
+          if (isStale()) return;
+          rememberLaunchOutcome(null);
+          setClinicalSession(clinical);
           return;
         }
         const metaIds = (launched.data.bankItemIds as string[] | undefined) ?? [];
@@ -1929,6 +1948,18 @@ export function StudyBankPractice({
     bankStyle: effectiveBankStyle,
     styleParam: searchParams.get("style"),
   });
+  if (clinicalSession) {
+    return (
+      <div className="space-y-4">
+        <ClinicalBankSession
+          session={clinicalSession}
+          reviewQueue={effectiveBankStyle === "review_incorrect"}
+          onExit={resetPracticeSession}
+        />
+      </div>
+    );
+  }
+
   if (
     !questions &&
     !blockSessionSkeleton &&

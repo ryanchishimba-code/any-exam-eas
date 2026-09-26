@@ -210,6 +210,21 @@ export async function GET(req: Request) {
     ? parseDeliberatePracticeFormat(searchParams.get("format"))
     : null;
 
+  if (formatBucket && questionBank && !timedExam && !blueprintAreaId && (mixed || subjectId)) {
+    const { tryClinicalSessionResponse } = await import("@/lib/assessment/clinical-session-response");
+    const clinical = await tryClinicalSessionResponse({
+      field,
+      fieldId,
+      subjectId: mixed ? MIXED_SUBJECT_ID : subjectId ?? MIXED_SUBJECT_ID,
+      format: formatBucket,
+      limit,
+      userId,
+      access: userAccess,
+      req,
+    });
+    if (clinical) return clinical;
+  }
+
   const { recordStudyQuestionsServed } = await import("@/lib/study/usage-limits");
 
   if (!mixed && !blueprintAreaId) {

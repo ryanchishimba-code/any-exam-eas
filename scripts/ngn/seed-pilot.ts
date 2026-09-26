@@ -14,8 +14,10 @@
  *   npx tsx scripts/ngn/seed-pilot.ts --restore --batch ngn-pilot-2026-09-26 --apply
  *   npx tsx scripts/ngn/seed-pilot.ts --restore --batch ngn-pilot-2026-09-26 --apply --include-reviews
  *
- * Do not point DATABASE_URL at production. This script refuses --apply when
- * VERCEL_ENV=production. It never reads or writes QuestionBankItem.
+ * Do not point DATABASE_URL at production for seeding. This script refuses
+ * --apply when VERCEL_ENV=production. Publishing is scripts/ngn/publish.ts,
+ * which may run in production when --apply is explicit. Neither script reads
+ * or writes QuestionBankItem, and neither edits stems, options, keys, or rationales.
  */
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";

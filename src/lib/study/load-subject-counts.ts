@@ -38,12 +38,27 @@ export async function loadSubjectCountsForUser(
   try {
     const fromInventory = fieldInventoryPayload(fieldId, await getCachedActiveInventory());
     if (fromInventory) {
+      const { applyClinicalCounts, publishedClinicalAddition } = await import(
+        "@/lib/assessment/serve-db"
+      );
+      const addition = await publishedClinicalAddition(fieldId).catch(() => ({
+        ngn: 0,
+        case: 0,
+        topics: {},
+      }));
+      const withClinical = applyClinicalCounts(
+        {
+          formats: fromInventory.formats,
+          topicFormats: fromInventory.topicFormats,
+        },
+        addition
+      );
       return {
         fieldId,
         counts: fromInventory.counts,
-        total: fromInventory.total,
-        formats: fromInventory.formats,
-        topicFormats: fromInventory.topicFormats,
+        total: fromInventory.total + addition.ngn + addition.case,
+        formats: withClinical.formats,
+        topicFormats: withClinical.topicFormats,
         categories: fromInventory.categories,
         categoryLabel: fromInventory.categoryLabel,
         definition: fromInventory.definition,
