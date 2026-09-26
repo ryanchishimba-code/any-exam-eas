@@ -24,6 +24,11 @@ export type ComposerItem = {
   answerKey?: string;
   /** Content signals such as "calculation". Not a stored tag. */
   signals?: readonly string[];
+  /**
+   * Second blueprint axis (AANP age group, PANCE task). Items with no id,
+   * or an id outside `secondaryAreas`, stay out of the form.
+   */
+  secondaryId?: string;
 };
 
 export type CoverageFloor = {
@@ -63,6 +68,11 @@ export type BoardComposeConfig = {
    * rest from this area. The exam title should say the outline was not met.
    */
   shortfallFillAreaId?: string;
+  /**
+   * Optional second axis that must also land inside its bands.
+   * Absent for NCLEX and NAPLEX. A form that misses this axis is not published.
+   */
+  secondaryAreas?: readonly TestPlanArea[];
   fullExamTitle: (index: number, shortfall?: readonly string[]) => string;
   subjectSets?: SubjectSetConfig;
 };
@@ -74,6 +84,9 @@ export type ComposedExam = {
   itemIds: string[];
   areaCounts: Record<string, number>;
   areasOutOfRange: string[];
+  /** Second-axis counts. Empty when the board has no secondary plan. */
+  secondaryCounts: Record<string, number>;
+  secondaryOutOfRange: string[];
   shortfall: string[];
   signalCounts: Record<string, number>;
 };
@@ -92,9 +105,15 @@ export type ComposeMath = {
   fullExamLength: number;
   poolByArea: Record<string, number>;
   unmappedItems: number;
+  /** Eligible items whose primary tag mapped and whose secondary tag did not. */
+  secondaryUnmappedItems: number;
   quota: Record<string, number> | null;
+  secondaryQuota: Record<string, number> | null;
+  secondaryPool: Record<string, number>;
   maxFullExamsByArea: Record<string, number>;
+  secondaryMaxFullExamsByArea: Record<string, number>;
   limitingArea: string | null;
+  secondaryLimitingArea: string | null;
   publishedFullExams: number;
   publishedSubjectSets: number;
   stopReason: string;
@@ -157,6 +176,7 @@ type Prepared = {
   order: number;
   answerKey?: string;
   signals: readonly string[];
+  secondaryId?: string;
   signature: string[];
 };
 
@@ -184,21 +204,34 @@ function preparedNearDuplicate(
   return sharedVitals >= 4 && score >= 0.25;
 }
 
-export function planAreaCounts(
+export type AreaCountBound = { id: string; min: number; max: number };
+
+/** Integer floor/ceil of each percent band. Null when a band cannot hold an integer. */
+export function areaCountBounds(
   length: number,
   areas: readonly TestPlanArea[]
-): Record<string, number> | null {
+): AreaCountBound[] | null {
   if (length <= 0 || areas.length === 0) return null;
   const bounds = areas.map((area) => {
     const min = Math.ceil((length * area.minPct) / 100 - 1e-9);
     const max = Math.floor((length * area.maxPct) / 100 + 1e-9);
-    return { ...area, min, max };
+    return { id: area.id, min, max };
   });
   if (bounds.some((area) => area.min > area.max || area.min < 0)) return null;
+  return bounds;
+}
+
+export function planAreaCounts(
+  length: number,
+  areas: readonly TestPlanArea[]
+): Record<string, number> | null {
+  const bounds = areaCountBounds(length, areas);
+  if (!bounds) return null;
   const minSum = bounds.reduce((sum, area) => sum + area.min, 0);
   const maxSum = bounds.reduce((sum, area) => sum + area.max, 0);
   if (minSum > length || maxSum < length) return null;
 
+  const weightById = new Map(areas.map((area) => [area.id, area.weight]));
   const counts: Record<string, number> = {};
   for (const area of bounds) counts[area.id] = area.min;
   let left = length - minSum;
@@ -207,7 +240,7 @@ export function planAreaCounts(
     for (const area of bounds) {
       const current = counts[area.id] ?? 0;
       if (current >= area.max) continue;
-      const ideal = (length * area.weight) / 100;
+      const ideal = (length * (weightById.get(area.id) ?? 0)) / 100;
       const gap = ideal - current;
       if (!best || gap > best.gap + 1e-9 || (Math.abs(gap - best.gap) <= 1e-9 && area.id < best.id)) {
         best = { id: area.id, gap };
@@ -246,6 +279,7 @@ function prepareItem(item: ComposerItem, order: number, dropBoilerplate = false)
     order,
     answerKey: item.answerKey,
     signals: item.signals ?? [],
+    secondaryId: item.secondaryId,
     signature: [],
   };
 }
@@ -314,6 +348,12 @@ function blockedTogether(a: Prepared, b: Prepared, blockContradictions: boolean)
   return blockContradictions && contradictoryKeys(a, b);
 }
 
+type SecondaryPick = {
+  counts: Map<string, number>;
+  min: Record<string, number>;
+  max: Record<string, number>;
+};
+
 function takeUpTo(
   pool: readonly Prepared[],
   need: number,
@@ -322,7 +362,8 @@ function takeUpTo(
   selected: Prepared[],
   floors: readonly CoverageFloor[],
   signal: SignalFloor | undefined,
-  blockContradictions: boolean
+  blockContradictions: boolean,
+  secondary?: SecondaryPick
 ): Prepared[] {
   const taken: Prepared[] = [];
   const takenIds = new Set<string>();
@@ -386,6 +427,42 @@ function takeUpTo(
   const priority = candidates.filter(
     (item) => floorSubjects.has(item.subjectId) || (signal != null && item.signals.includes(signal.signal))
   );
+  const localSecondary = new Map<string, number>();
+  if (secondary) {
+    for (const [id, count] of secondary.counts) localSecondary.set(id, count);
+  }
+  const secondaryGroups = new Map<string, Prepared[]>();
+  const secondaryCursor = new Map<string, number>();
+  if (secondary) {
+    for (const item of candidates) {
+      const key = item.secondaryId ?? "";
+      const list = secondaryGroups.get(key);
+      if (list) list.push(item);
+      else secondaryGroups.set(key, [item]);
+    }
+  }
+  const secondaryScore = (id: string) => {
+    if (!secondary) return 0;
+    const have = localSecondary.get(id) ?? 0;
+    const min = secondary.min[id] ?? 0;
+    const max = secondary.max[id] ?? min;
+    if (have < min) return 1000 + (min - have);
+    if (have < max) return 1;
+    return -1;
+  };
+  const nextInGroup = (key: string): Prepared | null => {
+    const list = secondaryGroups.get(key) ?? [];
+    let cursor = secondaryCursor.get(key) ?? 0;
+    while (cursor < list.length) {
+      const item = list[cursor]!;
+      cursor += 1;
+      if (takenIds.has(item.id) || blocked(item)) continue;
+      secondaryCursor.set(key, cursor);
+      return item;
+    }
+    secondaryCursor.set(key, cursor);
+    return null;
+  };
   let priorityIndex = 0;
   let restIndex = 0;
   while (taken.length < need) {
@@ -396,6 +473,26 @@ function takeUpTo(
       if (takenIds.has(item.id) || !wanted(item) || blocked(item)) continue;
       choice = item;
       break;
+    }
+    if (!choice && secondary) {
+      const ranked = [...secondaryGroups.keys()].sort(
+        (a, b) => secondaryScore(b) - secondaryScore(a) || a.localeCompare(b)
+      );
+      for (const key of ranked) {
+        if (secondaryScore(key) < 0) break;
+        const item = nextInGroup(key);
+        if (!item) continue;
+        choice = item;
+        break;
+      }
+      if (!choice) {
+        for (const key of ranked) {
+          const item = nextInGroup(key);
+          if (!item) continue;
+          choice = item;
+          break;
+        }
+      }
     }
     if (!choice) {
       while (restIndex < candidates.length) {
@@ -410,6 +507,9 @@ function takeUpTo(
     taken.push(choice);
     takenIds.add(choice.id);
     addToIndex(choice);
+    if (secondary && choice.secondaryId) {
+      localSecondary.set(choice.secondaryId, (localSecondary.get(choice.secondaryId) ?? 0) + 1);
+    }
     subjectCounts.set(choice.subjectId, (subjectCounts.get(choice.subjectId) ?? 0) + 1);
     for (const name of choice.signals) signalCounts.set(name, (signalCounts.get(name) ?? 0) + 1);
   }
@@ -424,9 +524,20 @@ function takeItems(
   selected: Prepared[],
   floors: readonly CoverageFloor[] = [],
   signal?: SignalFloor,
-  blockContradictions = false
+  blockContradictions = false,
+  secondary?: SecondaryPick
 ): Prepared[] | null {
-  const taken = takeUpTo(pool, need, used, maxReuse, selected, floors, signal, blockContradictions);
+  const taken = takeUpTo(
+    pool,
+    need,
+    used,
+    maxReuse,
+    selected,
+    floors,
+    signal,
+    blockContradictions,
+    secondary
+  );
   return taken.length === need ? taken : null;
 }
 
@@ -465,23 +576,158 @@ export function overlapStats(exams: readonly { itemIds: readonly string[] }[]): 
   };
 }
 
+/**
+ * Split each primary quota across the second axis so column totals land
+ * inside the secondary bands and no cell asks for more items than exist.
+ * Returns null when the joint pool cannot fill one form.
+ */
+export function allocateSecondaryTargets(input: {
+  primaryQuota: Record<string, number>;
+  bounds: readonly AreaCountBound[];
+  available: Record<string, Record<string, number>>;
+}): Record<string, Record<string, number>> | null {
+  const left: Record<string, Record<string, number>> = {};
+  for (const [areaId, row] of Object.entries(input.available)) left[areaId] = { ...row };
+  const domainLeft = { ...input.primaryQuota };
+  const got: Record<string, number> = {};
+  const placed: Record<string, Record<string, number>> = {};
+  for (const areaId of Object.keys(input.primaryQuota)) placed[areaId] = {};
+  for (const bound of input.bounds) got[bound.id] = 0;
+  const order = [...input.bounds].sort(
+    (a, b) => a.max - a.min - (b.max - b.min) || b.min - a.min || a.id.localeCompare(b.id)
+  );
+  for (const bound of order) {
+    let still = bound.min;
+    const donors = Object.keys(domainLeft).sort(
+      (a, b) => (left[b]?.[bound.id] ?? 0) - (left[a]?.[bound.id] ?? 0) || a.localeCompare(b)
+    );
+    for (const areaId of donors) {
+      if (still <= 0) break;
+      const take = Math.min(still, left[areaId]?.[bound.id] ?? 0, domainLeft[areaId] ?? 0);
+      if (take <= 0) continue;
+      left[areaId]![bound.id] = (left[areaId]?.[bound.id] ?? 0) - take;
+      domainLeft[areaId] = (domainLeft[areaId] ?? 0) - take;
+      got[bound.id] = (got[bound.id] ?? 0) + take;
+      placed[areaId]![bound.id] = (placed[areaId]?.[bound.id] ?? 0) + take;
+      still -= take;
+    }
+    if ((got[bound.id] ?? 0) < bound.min) return null;
+  }
+  for (const areaId of Object.keys(domainLeft)) {
+    while ((domainLeft[areaId] ?? 0) > 0) {
+      let best: string | null = null;
+      let bestHave = -1;
+      for (const bound of input.bounds) {
+        const room = bound.max - (got[bound.id] ?? 0);
+        const have = left[areaId]?.[bound.id] ?? 0;
+        if (room <= 0 || have <= 0) continue;
+        if (have > bestHave || (have === bestHave && best != null && bound.id < best)) {
+          bestHave = have;
+          best = bound.id;
+        }
+      }
+      if (!best) return null;
+      left[areaId]![best] = (left[areaId]?.[best] ?? 0) - 1;
+      domainLeft[areaId] = (domainLeft[areaId] ?? 0) - 1;
+      got[best] = (got[best] ?? 0) + 1;
+      placed[areaId]![best] = (placed[areaId]?.[best] ?? 0) + 1;
+    }
+  }
+  for (const bound of input.bounds) {
+    const count = got[bound.id] ?? 0;
+    if (count < bound.min || count > bound.max) return null;
+  }
+  return placed;
+}
+
+function secondaryCountsOf(
+  items: readonly Prepared[],
+  areas: readonly TestPlanArea[]
+): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const area of areas) counts[area.id] = 0;
+  for (const item of items) {
+    if (item.secondaryId && counts[item.secondaryId] != null) {
+      counts[item.secondaryId] += 1;
+    }
+  }
+  return counts;
+}
+
+/**
+ * Swap same-area items until the second axis sits inside its integer band.
+ * Returns null when no swap can fix the form. Does not mark items used.
+ */
+function balanceSecondary(
+  selected: readonly Prepared[],
+  byArea: ReadonlyMap<string, readonly Prepared[]>,
+  used: ReadonlyMap<string, number>,
+  maxReuse: number,
+  areas: readonly TestPlanArea[],
+  bounds: readonly AreaCountBound[],
+  blockContradictions: boolean
+): Prepared[] | null {
+  const next = [...selected];
+  for (let attempt = 0; attempt < next.length * 2; attempt++) {
+    const counts = secondaryCountsOf(next, areas);
+    if (areasOutsidePlan(counts, next.length, areas).length === 0) return next;
+    const over = bounds.find((bound) => (counts[bound.id] ?? 0) > bound.max);
+    const under = bounds.find((bound) => (counts[bound.id] ?? 0) < bound.min);
+    if (!over || !under) return null;
+    let swapped = false;
+    for (let index = 0; index < next.length; index++) {
+      const current = next[index]!;
+      if (current.secondaryId !== over.id) continue;
+      const pool = byArea.get(current.areaId) ?? [];
+      const replacement = pool.find((item) => {
+        if (item.secondaryId !== under.id) return false;
+        if ((used.get(item.id) ?? 0) >= maxReuse) return false;
+        if (next.some((kept) => kept.id === item.id)) return false;
+        return !next.some(
+          (other, otherIndex) =>
+            otherIndex !== index && blockedTogether(other, item, blockContradictions)
+        );
+      });
+      if (!replacement) continue;
+      next[index] = replacement;
+      swapped = true;
+      break;
+    }
+    if (!swapped) return null;
+  }
+  const counts = secondaryCountsOf(next, areas);
+  return areasOutsidePlan(counts, next.length, areas).length === 0 ? next : null;
+}
+
 export function composeBoardExams(items: readonly ComposerItem[], config: BoardComposeConfig): ComposeResult {
   const quota = planAreaCounts(config.fullExamLength, config.areas);
+  const secondaryAreas = config.secondaryAreas ?? [];
+  const secondaryIds = new Set(secondaryAreas.map((area) => area.id));
+  const secondaryQuota =
+    secondaryAreas.length > 0 ? planAreaCounts(config.fullExamLength, secondaryAreas) : null;
+  const secondaryBounds =
+    secondaryAreas.length > 0 ? areaCountBounds(config.fullExamLength, secondaryAreas) : null;
   const byArea = new Map<string, Prepared[]>();
   for (const area of config.areas) byArea.set(area.id, []);
   let unmapped = 0;
+  let secondaryUnmapped = 0;
   const allPrepared: Prepared[] = [];
   const seeded = config.selectionSeed
     ? shuffleWithSeed(items, config.selectionSeed)
     : [...items].sort((a, b) => a.id.localeCompare(b.id));
   seeded.forEach((item, order) => {
     const prepared = prepareItem(item, order, config.dropBoilerplateTokens === true);
-    allPrepared.push(prepared);
     const bucket = byArea.get(item.areaId);
     if (!bucket) {
       unmapped += 1;
+      allPrepared.push(prepared);
       return;
     }
+    if (secondaryAreas.length > 0 && (!prepared.secondaryId || !secondaryIds.has(prepared.secondaryId))) {
+      secondaryUnmapped += 1;
+      return;
+    }
+    allPrepared.push(prepared);
     bucket.push(prepared);
   });
   assignSignatures(allPrepared);
@@ -489,6 +735,17 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
   const poolByArea = Object.fromEntries(
     config.areas.map((area) => [area.id, byArea.get(area.id)?.length ?? 0])
   );
+  const secondaryPool: Record<string, number> = {};
+  for (const area of secondaryAreas) secondaryPool[area.id] = 0;
+  if (secondaryAreas.length > 0) {
+    for (const list of byArea.values()) {
+      for (const item of list) {
+        if (item.secondaryId && secondaryPool[item.secondaryId] != null) {
+          secondaryPool[item.secondaryId] += 1;
+        }
+      }
+    }
+  }
   const maxFullExamsByArea: Record<string, number> = {};
   let limitingArea: string | null = null;
   let limitingCount = Number.POSITIVE_INFINITY;
@@ -503,12 +760,33 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
       }
     }
   }
+  const secondaryMaxFullExamsByArea: Record<string, number> = {};
+  let secondaryLimitingArea: string | null = null;
+  let secondaryLimitingCount = Number.POSITIVE_INFINITY;
+  if (secondaryQuota) {
+    for (const area of secondaryAreas) {
+      const need = secondaryQuota[area.id] ?? 0;
+      const capacity = need > 0 ? Math.floor((secondaryPool[area.id] ?? 0) / need) : 0;
+      secondaryMaxFullExamsByArea[area.id] = capacity;
+      if (
+        capacity < secondaryLimitingCount ||
+        (capacity === secondaryLimitingCount && area.id < (secondaryLimitingArea ?? "\uffff"))
+      ) {
+        secondaryLimitingCount = capacity;
+        secondaryLimitingArea = area.id;
+      }
+    }
+  }
 
   const used = new Map<string, number>();
   const exams: ComposedExam[] = [];
-  let stopReason = quota
-    ? "Filled the requested full exams."
-    : "Test-plan percentages cannot sum to the exam length.";
+  let stopReason = !quota
+    ? "Test-plan percentages cannot sum to the exam length."
+    : secondaryAreas.length > 0 && !secondaryQuota
+      ? "Secondary test-plan percentages cannot sum to the exam length."
+      : "Filled the requested full exams.";
+  const secondaryMin = Object.fromEntries((secondaryBounds ?? []).map((bound) => [bound.id, bound.min]));
+  const secondaryMax = Object.fromEntries((secondaryBounds ?? []).map((bound) => [bound.id, bound.max]));
 
   const pickOrder = [...config.areas].sort((a, b) => {
     const size = (byArea.get(a.id)?.length ?? 0) - (byArea.get(b.id)?.length ?? 0);
@@ -517,20 +795,84 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
 
   const floors = config.coverageFloors ?? [];
   const blockContradictions = config.blockContradictoryKeys === true;
-  if (quota) {
+  const canFill = Boolean(quota) && (secondaryAreas.length === 0 || Boolean(secondaryQuota));
+  if (canFill && quota) {
     for (let index = 1; index <= config.maxFullExams; index++) {
       const selected: Prepared[] = [];
       const counts: Record<string, number> = {};
       const shortfall: string[] = [];
+      const runningSecondary = new Map<string, number>();
+      const secondaryPick: SecondaryPick | undefined = secondaryBounds
+        ? { counts: runningSecondary, min: secondaryMin, max: secondaryMax }
+        : undefined;
       let failedArea: string | null = null;
       let failedNeed = 0;
+      const available: Record<string, Record<string, number>> = {};
+      if (secondaryBounds) {
+        for (const area of config.areas) {
+          available[area.id] = {};
+          for (const item of byArea.get(area.id) ?? []) {
+            if ((used.get(item.id) ?? 0) >= config.maxItemReuse) continue;
+            const key = item.secondaryId ?? "";
+            available[area.id]![key] = (available[area.id]?.[key] ?? 0) + 1;
+          }
+        }
+      }
+      const crossTargets =
+        quota && secondaryBounds
+          ? allocateSecondaryTargets({ primaryQuota: quota, bounds: secondaryBounds, available })
+          : null;
+      if (crossTargets) {
+        for (const area of pickOrder) {
+          const row = crossTargets[area.id] ?? {};
+          const secondaryIds = Object.keys(row).sort();
+          for (const secondaryId of secondaryIds) {
+            const need = row[secondaryId] ?? 0;
+            if (need <= 0) continue;
+            const pool = (byArea.get(area.id) ?? []).filter((item) => item.secondaryId === secondaryId);
+            const taken = takeItems(
+              pool,
+              need,
+              used,
+              config.maxItemReuse,
+              selected,
+              floors,
+              undefined,
+              blockContradictions
+            );
+            if (!taken) {
+              failedArea = `${area.id}/${secondaryId}`;
+              failedNeed = need;
+              break;
+            }
+            selected.push(...taken);
+            counts[area.id] = (counts[area.id] ?? 0) + taken.length;
+            for (const item of taken) {
+              if (!item.secondaryId) continue;
+              runningSecondary.set(item.secondaryId, (runningSecondary.get(item.secondaryId) ?? 0) + 1);
+            }
+          }
+          if (failedArea) break;
+        }
+      }
       for (const area of pickOrder) {
+        if (crossTargets) break;
         const need = quota[area.id] ?? 0;
         const signal = config.signalFloors?.find((floor) => floor.areaId === area.id);
         const pool = byArea.get(area.id) ?? [];
         const taken = config.shortfallFillAreaId
           ? takeUpTo(pool, need, used, config.maxItemReuse, selected, floors, signal, blockContradictions)
-          : takeItems(pool, need, used, config.maxItemReuse, selected, floors, signal, blockContradictions);
+          : takeItems(
+              pool,
+              need,
+              used,
+              config.maxItemReuse,
+              selected,
+              floors,
+              signal,
+              blockContradictions,
+              secondaryPick
+            );
         if (!taken || taken.length < need) {
           const partial = taken ?? [];
           selected.push(...partial);
@@ -545,6 +887,10 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
         }
         selected.push(...taken);
         counts[area.id] = (counts[area.id] ?? 0) + taken.length;
+        for (const item of taken) {
+          if (!item.secondaryId) continue;
+          runningSecondary.set(item.secondaryId, (runningSecondary.get(item.secondaryId) ?? 0) + 1);
+        }
         if (signal) {
           const have = taken.filter((item) => item.signals.includes(signal.signal)).length;
           if (have < signal.minPerExam) shortfall.push(`signal:${signal.signal}`);
@@ -577,24 +923,58 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
         }
       }
       if (failedArea || selected.length !== config.fullExamLength) {
-        const have = byArea.get(failedArea ?? "")?.filter((item) => (used.get(item.id) ?? 0) < config.maxItemReuse).length ?? 0;
+        const [areaId, secondaryId] = (failedArea ?? "").split("/");
+        const have =
+          (byArea.get(areaId) ?? [])
+            .filter((item) => !secondaryId || item.secondaryId === secondaryId)
+            .filter((item) => (used.get(item.id) ?? 0) < config.maxItemReuse).length;
         stopReason = failedArea
           ? `Stopped at ${exams.length} full exams. ${failedArea} needed ${failedNeed} more items and had ${have} unused after near-duplicate and reuse checks.`
           : `Stopped at ${exams.length} full exams. The form did not reach ${config.fullExamLength} items.`;
         break;
       }
-      for (const item of selected) used.set(item.id, (used.get(item.id) ?? 0) + 1);
-      const areaCounts = Object.fromEntries(config.areas.map((area) => [area.id, counts[area.id] ?? 0]));
+      let placed = selected;
+      if (secondaryAreas.length > 0 && secondaryBounds) {
+        const balanced = balanceSecondary(
+          selected,
+          byArea,
+          used,
+          config.maxItemReuse,
+          secondaryAreas,
+          secondaryBounds,
+          blockContradictions
+        );
+        if (!balanced) {
+          const missed = areasOutsidePlan(
+            secondaryCountsOf(selected, secondaryAreas),
+            selected.length,
+            secondaryAreas
+          );
+          stopReason = `Stopped at ${exams.length} full exams. Secondary plan missed ${missed.join(", ") || "its bands"} after swap repair.`;
+          break;
+        }
+        placed = balanced;
+      }
+      for (const item of placed) used.set(item.id, (used.get(item.id) ?? 0) + 1);
+      const areaCounts = Object.fromEntries(config.areas.map((area) => [area.id, 0]));
+      for (const item of placed) areaCounts[item.areaId] = (areaCounts[item.areaId] ?? 0) + 1;
+      const secondaryCounts =
+        secondaryAreas.length > 0 ? secondaryCountsOf(placed, secondaryAreas) : {};
       const signalCounts: Record<string, number> = {};
-      for (const item of selected) {
+      for (const item of placed) {
         for (const signal of item.signals) signalCounts[signal] = (signalCounts[signal] ?? 0) + 1;
       }
       exams.push({
         kind: "full",
         title: config.fullExamTitle(index, shortfall),
-        itemIds: selected.map((item) => item.id),
+        itemIds: placed.map((item) => item.id),
         areaCounts,
         areasOutOfRange: areasOutsidePlan(areaCounts, config.fullExamLength, config.areas),
+        secondaryCounts,
+        secondaryOutOfRange:
+          secondaryAreas.length > 0
+            ? areasOutsidePlan(secondaryCounts, config.fullExamLength, secondaryAreas)
+            : [],
         shortfall,
         signalCounts,
       });
@@ -646,6 +1026,8 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
           itemIds: taken.map((item) => item.id),
           areaCounts,
           areasOutOfRange: areasOutsidePlan(areaCounts, taken.length, config.areas),
+          secondaryCounts: {},
+          secondaryOutOfRange: [],
           shortfall: [],
           signalCounts: {},
         });
@@ -665,9 +1047,14 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
       fullExamLength: config.fullExamLength,
       poolByArea,
       unmappedItems: unmapped,
+      secondaryUnmappedItems: secondaryUnmapped,
       quota,
+      secondaryQuota,
+      secondaryPool,
       maxFullExamsByArea,
+      secondaryMaxFullExamsByArea,
       limitingArea: quota ? limitingArea : null,
+      secondaryLimitingArea: secondaryQuota ? secondaryLimitingArea : null,
       publishedFullExams: fullCount,
       publishedSubjectSets: subjectCount,
       stopReason,
