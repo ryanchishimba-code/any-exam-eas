@@ -1,16 +1,16 @@
 import { NextResponse } from "next/server";
 import { requirePremiumApi } from "@/lib/api-access";
 import { respondDbUnavailable } from "@/lib/api-db-error";
-import { examSlugFromFieldId, EXAM_CATALOG } from "@/lib/edtech/exams";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import {
   getTimedExamQuestionCount,
   parseNclexTimedVariant,
 } from "@/lib/exam/exam-lengths";
 import { listPresetFormSessions } from "@/lib/exam-sessions/service";
-import { usmleStepDefinition, isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import {
   nextUnstartedExamNumber,
+  practiceExamBoardLabel,
   practiceExamLengthNote,
   presetFormId,
   studentPracticeExamTitle,
@@ -43,10 +43,7 @@ export async function GET(req: Request) {
 
   const nclexLength = parseNclexTimedVariant(url.searchParams.get("nclexLength"));
   const fullSimulationCount = getTimedExamQuestionCount(fieldId, { nclexLength });
-  const boardLabel =
-    examSlug === "usmle" && isUsmleFieldId(fieldId)
-      ? usmleStepDefinition(fieldId)?.shortName ?? EXAM_CATALOG.usmle.shortName
-      : EXAM_CATALOG[examSlug].shortName;
+  const boardLabel = practiceExamBoardLabel(examSlug, fieldId);
 
   try {
     const [forms, sessions] = await Promise.all([
@@ -54,12 +51,12 @@ export async function GET(req: Request) {
       listPresetFormSessions(premium.userId, examSlug),
     ]);
     const uses = summarizePresetFormUses(sessions);
-    const listed = forms.map((form) => {
+    const listed = forms.map((form, index) => {
       const use = uses.get(presetFormId(examSlug, form.examNumber));
       const status: PresetFormProgressStatus = use?.status ?? "not_started";
       return {
         examNumber: form.examNumber,
-        title: studentPracticeExamTitle(form.title, form.examNumber, boardLabel),
+        title: studentPracticeExamTitle(boardLabel, index + 1),
         questionCount: form.questionCount,
         lengthNote: practiceExamLengthNote(form.questionCount, fullSimulationCount),
         status,

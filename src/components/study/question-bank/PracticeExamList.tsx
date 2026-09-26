@@ -8,6 +8,7 @@ import { navigateHard } from "@/lib/client/navigate-hard";
 import { studyLimitMessage } from "@/lib/study/usage-limit-messages";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import {
+  PRACTICE_EXAM_PREVIEW_COUNT,
   previewPracticeExams,
   type PresetFormProgressStatus,
 } from "@/lib/exam-prep/preset-form-progress";
@@ -131,12 +132,23 @@ export function PracticeExamList({
     }
   }
 
+  const canToggle = forms.length > PRACTICE_EXAM_PREVIEW_COUNT;
+
   return (
     <section className="space-y-3" aria-label="Practice exams">
-      <div className="px-0.5">
+      <div className="flex items-center justify-between gap-3 px-0.5">
         <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
           Practice exams
         </h3>
+        {canToggle ? (
+          <button
+            type="button"
+            className="inline-flex min-h-11 shrink-0 items-center rounded-full px-3 text-[15px] font-semibold text-[var(--color-accent)]"
+            onClick={() => setExpanded((open) => !open)}
+          >
+            {expanded ? "Show fewer" : `Show all ${forms.length}`}
+          </button>
+        ) : null}
       </div>
       <ul className="space-y-2">
         {visible.map((row) => {
@@ -184,15 +196,6 @@ export function PracticeExamList({
           );
         })}
       </ul>
-      {forms.length > visible.length || (expanded && forms.length > 3) ? (
-        <button
-          type="button"
-          className="px-0.5 text-[14px] font-semibold text-[var(--color-accent)]"
-          onClick={() => setExpanded((open) => !open)}
-        >
-          {expanded ? "Show fewer" : `Show all ${forms.length}`}
-        </button>
-      ) : null}
       {error ? (
         <p className="text-[14px] text-red-700" role="alert">
           {error}

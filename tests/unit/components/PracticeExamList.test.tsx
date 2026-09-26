@@ -77,7 +77,11 @@ describe("PracticeExamList", () => {
     expect(screen.getAllByText(/85-question practice exam/).length).toBeGreaterThan(0);
     expect(screen.queryByText(/Completed · 82%/)).toBeNull();
     expect(screen.queryByText(/shortfall|coming soon|placeholder/i)).toBeNull();
-    await userEvent.click(screen.getByRole("button", { name: "Show all 4" }));
+    const showAll = screen.getByRole("button", { name: "Show all 4" });
+    expect(screen.getByRole("heading", { name: "Practice exams" }).parentElement).toContainElement(
+      showAll
+    );
+    await userEvent.click(showAll);
     expect(screen.getByText("NAPLEX Practice Exam 1")).toBeTruthy();
     expect(screen.getByText(/Completed · 82%/)).toBeTruthy();
   });

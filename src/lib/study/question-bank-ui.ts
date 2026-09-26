@@ -34,7 +34,7 @@ export const qbUi = {
   searchInput:
     "w-full rounded-xl border border-[var(--qb-line,var(--color-border))]/50 bg-[var(--qb-card,var(--color-surface-elevated))] py-2 pl-9 pr-4 text-[13px] text-[var(--qb-ink,var(--color-ink))] outline-none transition placeholder:text-[var(--qb-muted,var(--color-ink-muted))] focus:border-[var(--color-accent)]/35",
   stickyBar:
-    "sticky bottom-[calc(env(safe-area-inset-bottom,0px)+4.5rem)] z-20 rounded-2xl border border-[var(--qb-line,var(--color-border))]/80 bg-[var(--qb-card,var(--color-surface-elevated))]/98 p-4 backdrop-blur-md lg:static lg:border-[var(--qb-line,var(--color-border))]/80 lg:bg-[var(--qb-card,var(--color-surface-elevated))] lg:backdrop-blur-none",
+    "qb-session-preview sticky bottom-[calc(env(safe-area-inset-bottom,0px)+4.5rem)] z-20 rounded-2xl border border-[var(--qb-line,var(--color-border))]/80 bg-[var(--qb-card,var(--color-surface-elevated))]/98 p-4 backdrop-blur-md lg:static lg:bottom-auto lg:border-[var(--qb-line,var(--color-border))]/80 lg:bg-[var(--qb-card,var(--color-surface-elevated))] lg:backdrop-blur-none",
   exploreGrid: "grid gap-2 sm:grid-cols-2 lg:grid-cols-3",
   exploreLink:
     "group flex items-center gap-3 rounded-2xl border border-[var(--qb-line,var(--color-border))]/80 bg-[var(--qb-card,var(--color-surface-elevated))] px-3.5 py-3 text-left transition hover:border-[var(--color-accent)]/35 hover:bg-[var(--qb-surface,var(--color-surface))]/50",

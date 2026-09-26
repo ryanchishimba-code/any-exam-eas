@@ -3,6 +3,8 @@
  * A form is identified as `${examSlug}:${examNumber}` on the session analysis.
  * Sessions that never recorded that id are left alone.
  */
+import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
+import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
 
 export type PresetFormProgressStatus = "not_started" | "in_progress" | "completed";
 
@@ -12,8 +14,6 @@ export type PresetFormUse = {
   sessionId: string;
   score: number | null;
 };
-
-const HIDDEN_WORDING = /shortfall|coming soon|placeholder/i;
 
 export function presetFormId(examSlug: string, examNumber: number): string {
   return `${examSlug}:${examNumber}`;
@@ -125,16 +125,32 @@ export function practiceExamLengthNote(
   return `${questionCount} questions`;
 }
 
-export function studentPracticeExamTitle(
-  title: string,
-  examNumber: number,
-  boardLabel: string
-): string {
-  const cleaned = title.replace(/\s+/g, " ").trim();
-  if (!cleaned || HIDDEN_WORDING.test(cleaned)) {
-    return `${boardLabel} Practice Exam ${examNumber}`;
+/** Label used in student-facing practice exam titles. USMLE uses the step name. */
+export function practiceExamBoardLabel(examSlug: string, fieldId: string): string {
+  if (examSlug === "usmle") {
+    return (isUsmleFieldId(fieldId) ? usmleStepDefinition(fieldId)?.name : undefined) ?? "USMLE";
   }
-  return cleaned;
+  if (isExamSlug(examSlug)) return EXAM_CATALOG[examSlug].name;
+  return "Practice";
+}
+
+/**
+ * Student-facing title in list order: "USMLE Step 3 Practice Exam 1".
+ * The stored title and exam number stay in admin and on the session id.
+ */
+export function studentPracticeExamTitle(boardLabel: string, displayIndex: number): string {
+  const label = boardLabel.replace(/\s+/g, " ").trim() || "Practice";
+  const index = Number.isInteger(displayIndex) && displayIndex > 0 ? displayIndex : 1;
+  return `${label} Practice Exam ${index}`;
+}
+
+/** 1-based place in the active list, which is sorted by stored exam number. */
+export function practiceExamDisplayIndex(
+  orderedExamNumbers: readonly number[],
+  examNumber: number
+): number {
+  const index = orderedExamNumbers.indexOf(examNumber);
+  return index >= 0 ? index + 1 : 1;
 }
 
 export const PRACTICE_EXAM_PREVIEW_COUNT = 3;
