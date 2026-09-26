@@ -27,10 +27,18 @@ export function planBoardExamRows(input: {
   maxExamNumber?: number;
   /** Keep these exam numbers, in order, instead of compacting to 1..N. */
   publishNumbers?: readonly number[];
+  /**
+   * Exam numbers owned by another scope (other USMLE steps). New rows skip
+   * them. They are not paused.
+   */
+  reservedNumbers?: readonly number[];
 }): ExamRowWritePlan {
   const maxExamNumber = input.maxExamNumber ?? 100;
   if (input.composedCount < 0) {
     throw new Error("composedCount must be zero or greater.");
+  }
+  if (input.composedCount === 0) {
+    return { replace: [], create: [], pause: [] };
   }
   if (input.composedCount > maxExamNumber) {
     throw new Error(
@@ -39,7 +47,7 @@ export function planBoardExamRows(input: {
   }
   const existingNumbers = new Set(input.existing.map((row) => row.examNumber));
   const published: number[] = [];
-  if (input.publishNumbers && input.publishNumbers.length > 0) {
+  if (input.publishNumbers) {
     for (const examNumber of input.publishNumbers) {
       if (published.length >= input.composedCount) break;
       if (examNumber < 1 || examNumber > maxExamNumber) {
@@ -47,14 +55,21 @@ export function planBoardExamRows(input: {
       }
       published.push(examNumber);
     }
-    let next = Math.max(0, ...input.existing.map((row) => row.examNumber), ...published) + 1;
+    const reserved = new Set(input.reservedNumbers ?? []);
+    let next =
+      Math.max(
+        0,
+        ...input.existing.map((row) => row.examNumber),
+        ...published,
+        ...(input.reservedNumbers ?? [])
+      ) + 1;
     while (published.length < input.composedCount) {
       if (next > maxExamNumber) {
         throw new Error(
           `Cannot publish ${input.composedCount} exams. The launcher only opens exam numbers 1–${maxExamNumber}.`
         );
       }
-      if (!published.includes(next)) published.push(next);
+      if (!published.includes(next) && !reserved.has(next)) published.push(next);
       next += 1;
     }
   } else {

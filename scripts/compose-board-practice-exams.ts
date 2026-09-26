@@ -21,6 +21,14 @@
  *   npm run db:compose-board-exams -- --apply --restore
  *   npm run db:compose-board-exams -- --board naplex --apply
  *   npm run db:compose-board-exams -- --board naplex --apply --restore
+ *
+ * Outline previews (no rows written unless --apply):
+ *   npm run db:compose-board-exams -- --board usmle-step-1
+ *   npm run db:compose-board-exams -- --board usmle-step-2
+ *   npm run db:compose-board-exams -- --board usmle-step-3
+ *   npm run db:compose-board-exams -- --board aanp-fnp
+ *   npm run db:compose-board-exams -- --board pance
+ *   npm run db:compose-board-exams -- --board npte-pt
  */
 import { loadEnvFiles, ensureDatabaseUrlEnv } from "./resolve-database-url.mjs";
 
@@ -46,30 +54,52 @@ import {
 } from "../src/lib/exam-prep/compose/nclex-rn-2026-plan";
 import { naplex2025ComposeConfig, naplexComposerItem } from "../src/lib/exam-prep/compose/naplex-2025-plan";
 import { STUDENT_ELIGIBLE_SQL } from "../src/lib/exam-prep/student-eligibility-sql";
+import { isOutlineBoard, OUTLINE_BOARDS, runOutlineBoard } from "./compose-outline-board-exams";
 
 const prisma = new PrismaClient();
 
-type Args = { apply: boolean; restore: boolean; maxExams: number; board: "nclex-rn" | "naplex" };
+const BOARD_IDS = ["nclex-rn", "naplex", ...OUTLINE_BOARDS] as const;
+type BoardId = (typeof BOARD_IDS)[number];
+
+type Args = { apply: boolean; restore: boolean; maxExams: number; board: BoardId; maxExamsSet: boolean };
+
+function defaultMaxExams(board: BoardId): number {
+  if (board === "naplex") return 24;
+  if (board === "nclex-rn") return 43;
+  // Do not publish more forms than the active rows these previews would replace.
+  if (board === "usmle-step-2") return 117;
+  if (board === "aanp-fnp" || board === "pance" || board === "npte-pt") return 100;
+  return 200;
+}
 
 function parseArgs(): Args {
   const args = process.argv.slice(2);
-  const parsed: Args = { apply: false, restore: false, maxExams: 43, board: "nclex-rn" };
+  const parsed: Args = {
+    apply: false,
+    restore: false,
+    maxExams: 43,
+    board: "nclex-rn",
+    maxExamsSet: false,
+  };
   for (let i = 0; i < args.length; i += 1) {
     const arg = args[i];
     if (arg === "--apply") parsed.apply = true;
     else if (arg === "--restore") parsed.restore = true;
     else if (arg === "--board" && args[i + 1]) {
-      const board = args[++i];
-      if (board !== "nclex-rn" && board !== "naplex") {
-        throw new Error("--board must be nclex-rn or naplex.");
+      const board = args[++i]!;
+      if (!BOARD_IDS.includes(board as BoardId)) {
+        throw new Error(`--board must be one of ${BOARD_IDS.join(", ")}.`);
       }
-      parsed.board = board;
-    } else if (arg === "--max-exams" && args[i + 1]) parsed.maxExams = Number(args[++i]);
+      parsed.board = board as BoardId;
+    } else if (arg === "--max-exams" && args[i + 1]) {
+      parsed.maxExams = Number(args[++i]);
+      parsed.maxExamsSet = true;
+    }
   }
   if (!Number.isFinite(parsed.maxExams) || parsed.maxExams < 0) {
     throw new Error("--max-exams must be a non-negative number.");
   }
-  if (parsed.board === "naplex" && !args.includes("--max-exams")) parsed.maxExams = 24;
+  if (!parsed.maxExamsSet) parsed.maxExams = defaultMaxExams(parsed.board);
   return parsed;
 }
 
@@ -432,6 +462,16 @@ async function main() {
 
   if (args.board === "naplex") {
     await runNaplex(args);
+    return;
+  }
+
+  if (isOutlineBoard(args.board)) {
+    await runOutlineBoard(prisma, {
+      apply: args.apply,
+      restore: args.restore,
+      maxExams: args.maxExams,
+      board: args.board,
+    });
     return;
   }
 
