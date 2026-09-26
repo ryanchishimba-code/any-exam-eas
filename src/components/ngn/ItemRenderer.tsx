@@ -7,7 +7,7 @@ import { HighlightText } from "@/components/ngn/items/HighlightText";
 import { MatrixMC, MatrixMR } from "@/components/ngn/items/MatrixItems";
 import { BowTie, emptyBowTie, type BowTieValue } from "@/components/ngn/items/BowTie";
 import { TrendExhibit } from "@/components/ngn/items/TrendExhibit";
-import type { NgnItem, NgnOption, SourceRef } from "@/lib/assessment/types";
+import type { NgnItem, NgnOption, NgnReference, SourceRef } from "@/lib/assessment/types";
 
 type ItemRendererProps = {
   item: NgnItem;
@@ -16,7 +16,8 @@ type ItemRendererProps = {
   onChange: (response: unknown) => void;
   disabled?: boolean;
   showRationale?: boolean;
-  sourcesById?: Record<string, Pick<SourceRef, "title" | "url">>;
+  sourcesById?: Record<string, Pick<SourceRef, "title" | "url"> | undefined>;
+  caseReferences?: NgnReference[];
 };
 
 function options(value: unknown): NgnOption[] {
@@ -114,6 +115,7 @@ export function ItemRenderer({
   disabled,
   showRationale,
   sourcesById = {},
+  caseReferences,
 }: ItemRendererProps) {
   const payload = item.payload;
   let control = null;
@@ -240,7 +242,12 @@ export function ItemRenderer({
       ) : null}
       {control}
       {showRationale ? (
-        <RationalePanel item={item} response={response} sourcesById={sourcesById} />
+        <RationalePanel
+          item={item}
+          response={response}
+          sourcesById={sourcesById}
+          caseReferences={caseReferences}
+        />
       ) : null}
     </div>
   );
