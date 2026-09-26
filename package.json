@@ -464,6 +464,7 @@
     "test:qa:pance": "vitest run src/lib/exam-prep/pance/physician-educator-quality.test.ts src/lib/exam-prep/pance/blueprint-quota.test.ts",
     "db:audit-item-qa": "bash scripts/run-with-node.sh npx tsx scripts/audit-item-qa.ts",
     "db:student-eligibility": "bash scripts/run-with-node.sh npx tsx scripts/backfill-student-eligibility.ts",
+    "db:effective-type": "bash scripts/run-with-node.sh npx tsx scripts/backfill-effective-type.ts",
     "db:retire-near-duplicates": "bash scripts/run-with-node.sh npx tsx scripts/retire-near-duplicates.ts",
     "db:remediate-text-flags": "bash scripts/run-with-node.sh npx tsx scripts/remediate-text-flags.ts",
     "db:propose-governing-principles": "bash scripts/run-with-node.sh npx tsx scripts/propose-governing-principles.ts",

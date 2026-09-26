@@ -48,6 +48,21 @@ describe("readiness item eligibility", () => {
     expect(readinessItemIsEligible(mcq({ itemType: "ordered_response" }))).toBe(false);
     expect(readinessItemIsEligible(mcq({ itemType: "k_type" }))).toBe(false);
     expect(readinessItemIsEligible(mcq({ ngnPayload: { kind: "highlight" } }))).toBe(false);
+    expect(
+      isStandardSingleAnswerMcq(
+        mcq({
+          itemType: "ngn_highlight",
+          ngnPayload: {
+            kind: "highlight",
+            text: "A client is admitted for anticoagulation.",
+            highlights: ["Notify the healthcare provider", "Hold the next dose"],
+            options: ["Notify the healthcare provider", "Hold the next dose", "Give vitamin K", "Discharge"],
+          },
+          options: ["Notify the healthcare provider", "Hold the next dose", "Give vitamin K", "Discharge"],
+          correctAnswer: "Notify the healthcare provider",
+        })
+      )
+    ).toBe(true);
 
     const oneKey = mcq({
       question: "Select all that apply. Which findings require a call to the provider?",

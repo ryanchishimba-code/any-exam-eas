@@ -26,6 +26,7 @@ import {
 import { bankItemToAanpFnpRaw } from "./aanp-fnp-bank-bridge";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 import { resolveItemProvenance } from "./item-qa/provenance";
+import { applyEffectiveMcqForServe } from "./effective-type";
 import { retainStudentEligibleBankItems } from "./student-eligibility";
 
 const CLINICAL_FIELD_IDS = new Set(["pance", "aanp-fnp", "npte-pt"]);
@@ -122,7 +123,7 @@ export function bankItemToSessionRaw(
   item: BankItem,
   index: number
 ): ExamQuestion {
-  const enriched = applyAnatomyStudyMetaToBankItem(item);
+  const enriched = applyEffectiveMcqForServe(applyAnatomyStudyMetaToBankItem(item));
   const provenance = resolveItemProvenance(enriched);
 
   let raw: ExamQuestion;

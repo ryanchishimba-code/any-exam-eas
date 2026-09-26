@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
   assessStudentEligibility,
-  buildCaseGroupFacts,
   completeCaseGroupKeys,
   type StudentEligibilityInput,
 } from "./student-eligibility";
@@ -110,36 +109,6 @@ describe("student eligibility", () => {
     expect(verdict.reasons).toContain("highlight_missing_passage");
   });
 
-  it("suppresses highlight options that are not in the passage and keeps spans that are", () => {
-    const passage = "The note says the client has a plan to end their life tonight.";
-    const missing = assessStudentEligibility(
-      row({
-        itemType: "ngn_highlight",
-        ngnPayload: {
-          kind: "highlight",
-          text: passage,
-          highlights: ["Notify the healthcare provider", "Hold the next dose"],
-          options: ["Notify the healthcare provider", "Hold the next dose"],
-        },
-      })
-    );
-    expect(missing.reasons).toContain("highlight_options_not_in_passage");
-    expect(missing.eligible).toBe(false);
-
-    const present = assessStudentEligibility(
-      row({
-        itemType: "ngn_highlight",
-        ngnPayload: {
-          kind: "highlight",
-          text: passage,
-          highlights: ["a plan to end their life"],
-        },
-      })
-    );
-    expect(present.reasons).not.toContain("highlight_options_not_in_passage");
-    expect(present.eligible).toBe(true);
-  });
-
   it("suppresses a bow-tie whose rationale calls a keyed action incorrect", () => {
     const action = "Leave the bed in the highest position";
     const verdict = assessStudentEligibility(
@@ -158,33 +127,18 @@ describe("student eligibility", () => {
     expect(verdict.reasons).toContain("bowtie_rationale_contradicts_key");
   });
 
-  it("suppresses a bow-tie whose options are comma-split fragments", () => {
-    const verdict = assessStudentEligibility(
-      row({
-        itemType: "ngn_bowtie",
-        correctAnswer: "Administer the DTaP, Hib, IPV, and PCV vaccines",
-        ngnPayload: {
-          kind: "bow_tie",
-          condition: "Delayed immunization schedule",
-          actions: [
-            "Administer the DTaP",
-            "Administer the DTaP, Hib, IPV, and PCV vaccines",
-            "Advise the parent to return in 2 months",
-          ],
-          monitors: ["and PCV vaccines", "IPV", "Hib", "Infant reaction to the vaccines"],
-        },
-      })
-    );
-    expect(verdict.reasons).toContain("bowtie_invalid_structure");
-    expect(verdict.eligible).toBe(false);
-  });
-
   it("suppresses incomplete case groups and keeps a group of six", () => {
     const members = Array.from({ length: 6 }, (_, index) =>
       row({
         id: `case-${index}`,
         itemType: "case_study",
-        ngnPayload: { kind: "case_study", caseGroupId: "group-1", caseStep: index + 1 },
+        ngnPayload: {
+          kind: "matrix",
+          caseGroupId: "group-1",
+          caseStep: index + 1,
+          rows: ["Low SpO2"],
+          columns: ["Intervene now"],
+        },
       })
     );
     const incomplete = assessStudentEligibility(members[0]!, {
@@ -196,58 +150,6 @@ describe("student eligibility", () => {
       completeCaseGroups: completeCaseGroupKeys(members),
     });
     expect(complete.eligible).toBe(true);
-  });
-
-  it("suppresses a six-item case of unrelated single-answer questions", () => {
-    const members = [
-      "A 72-year-old male client with congestive heart failure is admitted.",
-      "A 45-year-old male with alcohol use disorder is admitted for detoxification.",
-      "A 60-year-old female with osteoarthritis reports increased joint pain.",
-      "A 55-year-old male with type 2 diabetes is prescribed metformin.",
-      "A 50-year-old female with type 2 diabetes reports new symptoms.",
-      "A 32-year-old female in labor is admitted at 39 weeks.",
-    ].map((scenario, index) =>
-      row({
-        id: `unrelated-${index}`,
-        itemType: "case_study",
-        scenario,
-        ngnPayload: { kind: "mcq", caseGroupId: "unrelated", caseStep: index + 1, options: ["A", "B", "C", "D"] },
-      })
-    );
-    const facts = buildCaseGroupFacts(members);
-    const verdict = assessStudentEligibility(members[0]!, { caseGroups: facts });
-    expect(verdict.reasons).toContain("case_set_distinct_patients");
-    expect(verdict.reasons).toContain("case_set_single_answer_only");
-    expect(verdict.eligible).toBe(false);
-  });
-
-  it("keeps a six-item case that shares one patient and includes an NGN step", () => {
-    const shared = "A 72-year-old male client with heart failure is admitted to the unit.";
-    const members = Array.from({ length: 6 }, (_, index) =>
-      row({
-        id: `shared-${index}`,
-        itemType: "case_study",
-        scenario: index === 5 ? `${shared} Two hours later the same client is short of breath.` : shared,
-        ngnPayload:
-          index === 2
-            ? {
-                kind: "highlight",
-                caseGroupId: "shared",
-                caseStep: index + 1,
-                text: "The note says the client is short of breath at rest.",
-                highlights: ["short of breath at rest"],
-              }
-            : { kind: "mcq", caseGroupId: "shared", caseStep: index + 1, options: ["A", "B", "C", "D"] },
-      })
-    );
-    const facts = buildCaseGroupFacts(members);
-    const verdict = assessStudentEligibility(members[0]!, { caseGroups: facts });
-    expect(verdict.eligible).toBe(true);
-    expect(facts.get("nursing\tcase_study\tshared")).toMatchObject({
-      members: 6,
-      sharedPatient: true,
-      hasNgnItem: true,
-    });
   });
 
   it("suppresses qa failures and retired-but-active rows", () => {

@@ -1,5 +1,5 @@
 import { getExamBlueprint } from "@/lib/engine/blueprints";
-import { ineligibleServedIds } from "@/lib/exam-prep/student-eligibility";
+import { ineligibleServedIds, warmCompleteCaseGroups } from "@/lib/exam-prep/student-eligibility";
 import { filterBankItemsForServe } from "@/lib/exam-prep/prepare-bank-session";
 import {
   readinessEligibilityWhere,
@@ -106,7 +106,10 @@ export async function assembleReadinessItems(params: {
   const blueprint = getExamBlueprint(params.fieldId);
   if (!blueprint || length <= 0) return [];
 
-  const blocked = await ineligibleServedIds(params.fieldId);
+  const [, blocked] = await Promise.all([
+    warmCompleteCaseGroups(),
+    ineligibleServedIds(params.fieldId),
+  ]);
   const hard = [...new Set([...(params.hardExcludeIds ?? []), ...blocked])];
   const firstPassExclude = [...new Set([...(params.excludeIds ?? []), ...hard])];
   const used = new Set<string>(hard);

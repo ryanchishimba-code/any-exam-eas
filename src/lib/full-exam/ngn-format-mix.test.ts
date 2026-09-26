@@ -58,6 +58,23 @@ describe("selectWithNgnFormatMix", () => {
     expect(counts.vignette ?? 0).toBeLessThan(45);
   });
 
+  it("does not spend the unfolding-case quota on a single-answer case row", () => {
+    const plain = {
+      ...item("plain-case", "case_study"),
+      question: "Which medication should the nurse give?",
+      options: ["Give furosemide", "Hold medications", "Discharge", "Start an antibiotic"],
+      correctAnswer: "Give furosemide",
+      ngnPayload: {
+        kind: "mcq",
+        caseGroupId: "group-1",
+        options: ["Give furosemide", "Hold medications", "Discharge", "Start an antibiotic"],
+      },
+    } as BankItem;
+    const pool = [...Array.from({ length: 30 }, (_, i) => item(`v${i}`, "vignette")), plain];
+    const picked = selectWithNgnFormatMix(pool, 20, "nursing", 9);
+    expect(picked.some((row) => row.id === "plain-case")).toBe(false);
+  });
+
   it("falls back when NGN inventory is thin", () => {
     const pool = Array.from({ length: 20 }, (_, i) => item(`v${i}`, "vignette"));
     const picked = selectWithNgnFormatMix(pool, 10, "nursing", 7);

@@ -31,7 +31,7 @@ import {
   STUDENT_ELIGIBILITY_PIPELINE,
   STUDENT_SUPPRESS_REASONS,
   assessStudentEligibility,
-  buildCaseGroupFacts,
+  completeCaseGroupKeys,
   readStudentEligibilityRecord,
   type StudentEligibilityInput,
   type StudentEligibilityRecord,
@@ -556,31 +556,17 @@ async function main() {
       active: true,
       itemType: { in: ["case_study", "unfolding_case", "case_based"] },
     },
-    select: {
-      fieldId: true,
-      itemType: true,
-      options: true,
-      active: true,
-      scenario: true,
-      question: true,
-      correctAnswer: true,
-    },
+    select: { fieldId: true, itemType: true, options: true, active: true },
   });
-  const caseGroups = buildCaseGroupFacts(
+  const completeCaseGroups = completeCaseGroupKeys(
     caseRows.map((row) => ({
       fieldId: row.fieldId,
       itemType: row.itemType,
       active: row.active,
       optionsRaw: row.options,
-      scenario: row.scenario,
-      question: row.question,
-      correctAnswer: row.correctAnswer,
     }))
   );
-  const servableCaseGroups = [...caseGroups.values()].filter(
-    (facts) => facts.members === 6 && facts.sharedPatient && facts.hasNgnItem
-  ).length;
-  console.log(`case groups: ${caseGroups.size}, servable: ${servableCaseGroups}`);
+  console.log(`complete case groups: ${completeCaseGroups.size}`);
 
   const fields = await prisma.questionBankItem.findMany({
     where: { active: true },
@@ -624,7 +610,7 @@ async function main() {
 
       for (const row of rows) {
         const assessedMeta = metaForAssess(row.curationMeta, args.clearRestores);
-        const verdict = assessStudentEligibility(toInput(row, assessedMeta), { caseGroups });
+        const verdict = assessStudentEligibility(toInput(row, assessedMeta), { completeCaseGroups });
         const forceRestore = restoreIds.has(row.id);
         const restored = forceRestore || (!args.clearRestores && verdict.restored);
         const eligible = restored || verdict.reasons.length === 0;

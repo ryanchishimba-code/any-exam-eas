@@ -16,6 +16,7 @@ import { withDbRetry, sqlQuery } from "@/lib/db";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { blueprintCategoryIdForQuestion } from "@/lib/inventory/blueprint-domain-pool";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
+import { EFFECTIVE_MCQ_SQL } from "@/lib/exam-prep/effective-type-sql";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 
 export const ACTIVE_QUESTION_DEFINITION =
@@ -387,7 +388,10 @@ async function queryActiveInventoryRows(): Promise<DbInventoryRow[]> {
       "fieldId",
       "subjectId",
       COALESCE(NULLIF(BTRIM("clientNeeds"), ''), '') AS "clientNeeds",
-      COALESCE(NULLIF(BTRIM("itemType"), ''), 'mcq') AS "itemType",
+      CASE
+        WHEN ${EFFECTIVE_MCQ_SQL} THEN 'mcq'
+        ELSE COALESCE(NULLIF(BTRIM("itemType"), ''), 'mcq')
+      END AS "itemType",
       false AS "hasCaseGroup",
       COUNT(*)::int AS count
     FROM "QuestionBankItem"

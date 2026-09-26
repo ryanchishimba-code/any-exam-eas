@@ -4,6 +4,7 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { getExamBlueprint, type ExamBlueprint } from "@/lib/engine/blueprints";
+import { isPlainSingleAnswerReclass } from "@/lib/exam-prep/effective-type";
 
 /** Blueprint format → DB itemType aliases that satisfy that slot. */
 const FORMAT_ITEM_TYPES: Record<string, readonly string[]> = {
@@ -46,7 +47,21 @@ function normalizeItemType(item: BankItem): string {
   return (item.itemType ?? "").trim().toLowerCase();
 }
 
+/** A labelled highlight or case row that is really one single-answer MCQ. */
+function isReclassifiedMcq(item: BankItem): boolean {
+  return isPlainSingleAnswerReclass({
+    itemType: item.itemType,
+    question: item.question,
+    scenario: item.scenario ?? item.vignette,
+    correctAnswer: item.correctAnswer,
+    options: item.options,
+    ngnPayload: item.ngnPayload,
+    curationMeta: item.curationMeta,
+  });
+}
+
 function itemMatchesFormat(item: BankItem, format: string): boolean {
+  if (isReclassifiedMcq(item)) return false;
   const type = normalizeItemType(item);
   const aliases = FORMAT_ITEM_TYPES[format];
   if (aliases?.includes(type)) return true;
@@ -58,6 +73,7 @@ function itemMatchesFormat(item: BankItem, format: string): boolean {
 }
 
 function isClassicItem(item: BankItem): boolean {
+  if (isReclassifiedMcq(item)) return true;
   const type = normalizeItemType(item);
   if (CLASSIC_TYPES.has(type)) return true;
   for (const aliases of Object.values(FORMAT_ITEM_TYPES)) {

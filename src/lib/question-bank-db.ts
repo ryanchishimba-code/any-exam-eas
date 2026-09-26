@@ -897,6 +897,8 @@ export function activeItemsByFormatWhere(params: {
   formatBucket: "ngn" | "case";
   taskCategory?: string | null;
   ineligibleIds?: readonly string[];
+  /** Plain MCQs wearing an NGN or case label. They stay in standard practice. */
+  reclassifiedIds?: readonly string[];
 }): Prisma.QuestionBankItemWhereInput {
   const subjectId = params.subjectId?.trim();
   const base =
@@ -904,11 +906,13 @@ export function activeItemsByFormatWhere(params: {
       ? activeSubjectWhere(params.fieldId, subjectId, params.taskCategory)
       : activeFieldWhere(params.fieldId, params.taskCategory);
   const blocked = (params.ineligibleIds ?? []).map((id) => id.trim()).filter(Boolean);
+  const reclassified = (params.reclassifiedIds ?? []).map((id) => id.trim()).filter(Boolean);
   return {
     AND: [
       base,
       formatBucketItemTypeWhere(params.formatBucket),
       ...(blocked.length > 0 ? [{ id: { notIn: blocked } }] : []),
+      ...(reclassified.length > 0 ? [{ id: { notIn: reclassified } }] : []),
     ],
   };
 }
@@ -926,13 +930,16 @@ export async function sampleActiveItemsByFormat(params: {
   formatBucket: "ngn" | "case";
   taskCategory?: string | null;
 }): Promise<BankItem[]> {
-  const [, blocked] = await Promise.all([
+  const { reclassifiedMcqIds } = await import("@/lib/exam-prep/effective-type");
+  const [, blocked, reclassified] = await Promise.all([
     warmCompleteCaseGroups(),
     ineligibleServedIds(params.fieldId),
+    reclassifiedMcqIds(params.fieldId),
   ]);
   const where = activeItemsByFormatWhere({
     ...params,
     ineligibleIds: blocked,
+    reclassifiedIds: reclassified,
   });
   const want = Math.max(1, params.count);
   const total = await prisma.questionBankItem.count({ where });
