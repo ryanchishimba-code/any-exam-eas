@@ -162,8 +162,10 @@ export function formatInventoryFormatLine(
   formats: FormatCounts,
   ngnLabel = "NGN"
 ): string | null {
-  if (formats.ngn <= 0 && formats.case <= 0) return null;
-  const parts = [`${formats.mcq.toLocaleString("en-US")} MCQ`];
+  const parts: string[] = [];
+  if (formats.mcq > 0) {
+    parts.push(`${formats.mcq.toLocaleString("en-US")} MCQ`);
+  }
   if (formats.ngn > 0) {
     parts.push(`${formats.ngn.toLocaleString("en-US")} ${ngnLabel}`);
   }
@@ -171,6 +173,7 @@ export function formatInventoryFormatLine(
     const noun = formats.case === 1 ? "case" : "cases";
     parts.push(`${formats.case.toLocaleString("en-US")} ${noun}`);
   }
+  if (parts.length === 0) return null;
   return parts.join(" · ");
 }
 
@@ -463,6 +466,8 @@ export function fieldInventoryPayload(
 
 export type BoardInventoryPresentation = {
   formatLine: string | null;
+  /** Live split. Null on the published floor, so marketing must not advertise a format. */
+  formats?: FormatCounts | null;
   definition: string;
   categories: InventoryCategoryCount[];
   categoryLabel: string;
@@ -480,6 +485,7 @@ export function presentBoardInventory(input: {
   if (!input.usingLiveCount || !input.board || input.board.active <= 0) {
     return {
       formatLine: null,
+      formats: null,
       definition: ACTIVE_COUNT_UNAVAILABLE,
       categories: [],
       categoryLabel: input.slug === "nclex" ? "Client Needs" : "Blueprint topics",
@@ -492,6 +498,7 @@ export function presentBoardInventory(input: {
   const ngnLabel = input.slug === "nclex" ? "NGN" : "NGN-style";
   return {
     formatLine: formatInventoryFormatLine(input.board.formats, ngnLabel),
+    formats: input.board.formats,
     definition: ACTIVE_QUESTION_DEFINITION,
     categories: input.board.categories,
     categoryLabel: input.board.categoryLabel,

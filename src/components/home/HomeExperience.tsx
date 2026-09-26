@@ -8,6 +8,7 @@ import { LandingFlagshipV2 } from "@/components/landing/v2/LandingFlagshipV2";
 import { LandingHeroSkeleton } from "@/components/landing/v2/LandingHeroSkeleton";
 import { useLandingBankCounts } from "@/lib/client/use-landing-bank-counts";
 import { useUserAccess } from "@/lib/client/use-user-access";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 import type { LandingSuccessStory } from "@/lib/landing/content";
 import { useSession } from "next-auth/react";
@@ -39,15 +40,24 @@ function GuestLanding({
   bankCounts,
   testimonials,
   children,
+  boardFormats,
 }: {
   bankCounts: LandingBankCountsDisplay;
   testimonials?: LandingSuccessStory[];
   children?: ReactNode;
+  boardFormats?: Partial<Record<string, FormatCounts | null>> | null;
 }) {
   return (
-    <LandingFlagshipV2 bankCounts={bankCounts} testimonials={testimonials}>
+    <LandingFlagshipV2
+      bankCounts={bankCounts}
+      testimonials={testimonials}
+      boardFormats={boardFormats}
+    >
       {children}
-      <LandingSeoGuide questionCountLabel={bankCounts.totalLabel} />
+      <LandingSeoGuide
+        questionCountLabel={bankCounts.totalLabel}
+        nclexFormats={boardFormats?.nclex ?? null}
+      />
     </LandingFlagshipV2>
   );
 }
@@ -57,10 +67,12 @@ function AuthenticatedHomeBranch({
   bankCounts,
   testimonials,
   children,
+  boardFormats,
 }: {
   bankCounts: LandingBankCountsDisplay;
   testimonials?: LandingSuccessStory[];
   children?: ReactNode;
+  boardFormats?: Partial<Record<string, FormatCounts | null>> | null;
 }) {
   const { hasPremiumAccess, hasAppAccess, loading: accessLoading } = useUserAccess();
   const [accessTimedOut, setAccessTimedOut] = useState(false);
@@ -90,7 +102,7 @@ function AuthenticatedHomeBranch({
   }
 
   return (
-    <GuestLanding bankCounts={bankCounts} testimonials={testimonials}>
+    <GuestLanding bankCounts={bankCounts} testimonials={testimonials} boardFormats={boardFormats}>
       {children}
     </GuestLanding>
   );
@@ -100,11 +112,13 @@ export function HomeExperience({
   bankCounts: initialBankCounts,
   testimonials,
   children,
+  boardFormats = null,
 }: {
   bankCounts: LandingBankCountsDisplay;
   testimonials?: LandingSuccessStory[];
   /** Server-rendered SEO / long-form blocks (passed through to the guest landing). */
   children?: ReactNode;
+  boardFormats?: Partial<Record<string, FormatCounts | null>> | null;
 }) {
   const bankCounts = useLandingBankCounts(initialBankCounts);
   const { status } = useSession();
@@ -118,7 +132,7 @@ export function HomeExperience({
   // Guests: paint conversion landing immediately (no access API).
   if (status !== "authenticated") {
     return (
-      <GuestLanding bankCounts={bankCounts} testimonials={testimonials}>
+      <GuestLanding bankCounts={bankCounts} testimonials={testimonials} boardFormats={boardFormats}>
         {children}
       </GuestLanding>
     );
@@ -128,6 +142,7 @@ export function HomeExperience({
     <AuthenticatedHomeBranch
       bankCounts={bankCounts}
       testimonials={testimonials}
+      boardFormats={boardFormats}
     >
       {children}
     </AuthenticatedHomeBranch>

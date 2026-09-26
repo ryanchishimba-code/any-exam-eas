@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 import { ArrowRight, Check } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
+import { isFormatOffered } from "@/lib/study/offered-formats";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLandingMcqSample } from "@/lib/demo/landing-samples";
 import { analytics } from "@/lib/analytics";
@@ -200,11 +201,13 @@ export function LandingPracticeStage({
   compact?: boolean;
   eagerNgn?: boolean;
 }) {
-  const { selectedExam, trialHref } = useLandingExamSelection();
+  const { selectedExam, trialHref, formatsFor } = useLandingExamSelection();
+  const showNgn =
+    selectedExam === "nclex" && isFormatOffered("ngn", formatsFor(selectedExam));
 
   return (
     <div className={cn("aee-landing-sample__stage", compact && "aee-landing-sample__stage--hero")}>
-      {selectedExam === "nclex" ? (
+      {showNgn ? (
         <DeferredNgnSample trialHref={trialHref} eager={eagerNgn} />
       ) : (
         <LandingMcqPractice examSlug={selectedExam} compact={compact} />

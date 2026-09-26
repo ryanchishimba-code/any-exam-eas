@@ -60,6 +60,8 @@ export function absoluteUrl(path: string): string {
 }
 
 import { SEO_KEYWORD_CLUSTERS, SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 
 const HOME_KEYWORDS = [
   "NCLEX question bank",
@@ -78,7 +80,10 @@ const HOME_KEYWORDS = [
   "AnyExamEasy",
 ];
 
-export function buildHomeMetadata(totalQuestionsLabel?: string): Metadata {
+export function buildHomeMetadata(
+  totalQuestionsLabel?: string,
+  nclexFormats?: FormatCounts | null
+): Metadata {
   const count = totalQuestionsLabel?.trim() || SEO_LIVE_STATS.questionCount;
   const title = enforceMetaTitle(
     `One Study System. Six Boards. — ${count} Questions`,
@@ -94,7 +99,9 @@ export function buildHomeMetadata(totalQuestionsLabel?: string): Metadata {
   return {
     title: { absolute: title },
     description,
-    keywords: HOME_KEYWORDS,
+    keywords: HOME_KEYWORDS.filter(
+      (keyword) => scrubPublicFormatCopy(keyword, nclexFormats ?? null) === keyword
+    ),
     authors: [{ name: SITE_NAME, url }],
     creator: LEGAL_ENTITY.companyName,
     publisher: LEGAL_ENTITY.companyName,

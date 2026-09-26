@@ -15,7 +15,6 @@ import {
   ngnStyleLabel,
   parsePracticeFormat,
   practiceFormatCountOptions,
-  practiceFormatEmptyGuidance,
   practiceFormatPoolCount,
   practiceFormatScopeCounts,
   practiceFormatTag,
@@ -292,71 +291,6 @@ describe("deliberate format subject wiring", () => {
     ).toEqual({ mcq: 0, ngn: 0, case: 0 });
   });
 
-  it("points an empty format at mixed topics or standard practice", () => {
-    expect(
-      practiceFormatEmptyGuidance({
-        format: "case",
-        subjectId: "__mixed__",
-        scopeCount: 0,
-        boardCount: 0,
-        ngnLabel: "NGN",
-      })
-    ).toMatchObject({
-      title: "Coming soon",
-      detail: "Unfolding case studies are being rebuilt with RN review. Coming soon.",
-      action: "all",
-      actionLabel: "Practice standard questions",
-    });
-
-    expect(
-      practiceFormatEmptyGuidance({
-        format: "ngn",
-        subjectId: "management-of-care",
-        scopeCount: 0,
-        boardCount: 20,
-        ngnLabel: "NGN-style",
-      })
-    ).toMatchObject({
-      title: "No NGN-style items in this topic",
-      action: "mixed",
-      actionLabel: "Practice mixed topics",
-    });
-
-    expect(
-      practiceFormatEmptyGuidance({
-        format: "ngn",
-        subjectId: "__mixed__",
-        scopeCount: 0,
-        boardCount: 0,
-        ngnLabel: "NGN",
-        fieldId: "nursing",
-      })?.detail
-    ).toBe("Next Gen (NGN) case studies are being rebuilt with RN review. Coming soon.");
-
-    expect(
-      practiceFormatEmptyGuidance({
-        format: "case",
-        subjectId: "__mixed__",
-        scopeCount: 0,
-        boardCount: 0,
-        ngnLabel: "NGN-style",
-        fieldId: "pharmacy",
-      })
-    ).toMatchObject({
-      title: "Coming soon",
-      detail: "Case studies are being rebuilt with clinician review. Coming soon.",
-      actionLabel: "Practice standard questions",
-    });
-
-    expect(
-      practiceFormatEmptyGuidance({
-        format: "ngn",
-        subjectId: "__mixed__",
-        scopeCount: 20,
-        boardCount: 20,
-      })
-    ).toBeNull();
-  });
 });
 
 describe("practice format analytics tag", () => {

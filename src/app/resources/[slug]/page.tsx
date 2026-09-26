@@ -16,6 +16,7 @@ import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
 import { formatTrialCtaLabel } from "@/lib/site";
 import { seoResourcesCtaLine } from "@/lib/seo/trial-copy";
+import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -36,6 +37,11 @@ export default async function ResourceArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const primaryExam = article.primaryExam;
+  const inventory = await getCachedActiveInventory().catch(() => null);
+  const formats =
+    primaryExam && inventory && !inventory.degraded
+      ? inventory.boards[primaryExam]?.formats ?? null
+      : null;
   const relatedArticles = primaryExam
     ? getArticlesForExam(primaryExam).filter((a) => a.slug !== slug).slice(0, 4)
     : [];
@@ -67,7 +73,7 @@ export default async function ResourceArticlePage({ params }: Props) {
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert">
           {article.sections.map((section) => (
-            <ResourceArticleSection key={section.heading} section={section} />
+            <ResourceArticleSection key={section.heading} section={section} formats={formats} />
           ))}
         </div>
 

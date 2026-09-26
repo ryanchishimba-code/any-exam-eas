@@ -8,11 +8,18 @@ import {
   aanpFnpPresetPracticeHref,
   type AanpFnpStudyPreset,
 } from "@/lib/exam-prep/aanp-fnp/study-presets";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
+import {
+  filterPresetsByOfferedFormats,
+  visibleStudyPlanDays,
+} from "@/lib/study/offered-formats";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 type Props = {
   examSlug: ExamSlug;
+  formats?: FormatCounts | null;
 };
 
 const FEATURED_IDS = new Set([
@@ -23,13 +30,26 @@ const FEATURED_IDS = new Set([
   "timed-full-mock",
 ]);
 
-export function AanpFnpStudyPresetsPanel({ examSlug }: Props) {
+export function AanpFnpStudyPresetsPanel({ examSlug, formats = null }: Props) {
   const [weekOpen, setWeekOpen] = useState<number | null>(1);
 
   if (examSlug !== "aanp-fnp") return null;
 
-  const featured = AANP_FNP_STUDY_PRESETS.filter((p) => FEATURED_IDS.has(p.id));
-  const rest = AANP_FNP_STUDY_PRESETS.filter((p) => !FEATURED_IDS.has(p.id));
+  const offeredPresets = filterPresetsByOfferedFormats(AANP_FNP_STUDY_PRESETS, formats);
+  const featured = offeredPresets.filter((p) => FEATURED_IDS.has(p.id));
+  const rest = offeredPresets.filter((p) => !FEATURED_IDS.has(p.id));
+  const weeks = AANP_FNP_FOUR_WEEK_PLAN.map((week) => ({
+    ...week,
+    days: visibleStudyPlanDays(week.days, formats, (label) =>
+      scrubPublicFormatCopy(label, formats)
+    ),
+  })).filter((week) => week.days.length > 0);
+  const intro =
+    scrubPublicFormatCopy(
+      "Domain blocks, lifespan drills, pharm, preventive care, SATA, and a timed full mock — packaged like top FNP QBanks.",
+      formats
+    ) ??
+    "Domain blocks, lifespan drills, pharm, preventive care, and a timed full mock — packaged like top FNP QBanks.";
 
   return (
     <div className="mt-8 space-y-8">
@@ -38,8 +58,7 @@ export function AanpFnpStudyPresetsPanel({ examSlug }: Props) {
           AANP FNP Study Path
         </h2>
         <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-          Domain blocks, lifespan drills, pharm, preventive care, SATA, and a timed full mock —
-          packaged like top FNP QBanks.{" "}
+          {intro}{" "}
           <Link
             href="/aanp-fnp/study-guide"
             className="font-medium text-[var(--color-accent)] underline-offset-2 hover:underline"
@@ -77,7 +96,7 @@ export function AanpFnpStudyPresetsPanel({ examSlug }: Props) {
           4-week plan
         </h3>
         <div className="mt-3 space-y-2">
-          {AANP_FNP_FOUR_WEEK_PLAN.map((week) => {
+          {weeks.map((week) => {
             const open = weekOpen === week.week;
             return (
               <div

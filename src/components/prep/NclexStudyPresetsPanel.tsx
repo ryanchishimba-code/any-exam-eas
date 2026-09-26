@@ -11,19 +11,27 @@ import {
   nclexCatExamHref,
   type NclexStudyPreset,
 } from "@/lib/exam-prep/nclex/study-presets";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
+import {
+  filterPresetsByOfferedFormats,
+  visibleStudyPlanDays,
+} from "@/lib/study/offered-formats";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 type Props = {
   examSlug: ExamSlug;
+  formats?: FormatCounts | null;
 };
 
-export function NclexStudyPresetsPanel({ examSlug }: Props) {
+export function NclexStudyPresetsPanel({ examSlug, formats = null }: Props) {
   const [weekOpen, setWeekOpen] = useState<number | null>(1);
 
   if (examSlug !== "nclex") return null;
 
-  const featured = NCLEX_STUDY_PRESETS.filter((p) =>
+  const offeredPresets = filterPresetsByOfferedFormats(NCLEX_STUDY_PRESETS, formats);
+  const featured = offeredPresets.filter((p) =>
     [
       "prioritization-workshop",
       "sata-mastery",
@@ -32,14 +40,23 @@ export function NclexStudyPresetsPanel({ examSlug }: Props) {
       "cat-full-exam",
     ].includes(p.id)
   );
+  const weeks = NCLEX_FOUR_WEEK_PLAN.map((week) => ({
+    ...week,
+    days: visibleStudyPlanDays(week.days, formats, (label) =>
+      scrubPublicFormatCopy(label, formats)
+    ),
+  })).filter((week) => week.days.length > 0);
+  const intro =
+    scrubPublicFormatCopy(
+      "Curated blocks for prioritization, SATA, calculations, trap-tier judgment, and CAT-style exams.",
+      formats
+    ) ?? "Curated blocks for prioritization, calculations, trap-tier judgment, and CAT-style exams.";
 
   return (
     <div className="mt-8 space-y-8">
       <section>
         <h2 className="text-lg font-semibold text-[var(--color-ink)]">First-Attempt Study Path</h2>
-        <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-          Curated blocks for prioritization, SATA, calculations, trap-tier judgment, and CAT-style exams.
-        </p>
+        <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{intro}</p>
 
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           {(Object.keys(NCLEX_DIFFICULTY_TIERS) as (keyof typeof NCLEX_DIFFICULTY_TIERS)[]).map(
@@ -76,7 +93,7 @@ export function NclexStudyPresetsPanel({ examSlug }: Props) {
           Module-linked blocks
         </h3>
         <ul className="mt-3 grid gap-3 sm:grid-cols-2">
-          {NCLEX_STUDY_PRESETS.filter((p) => p.reviewModuleSlug && !featured.some((f) => f.id === p.id)).map(
+          {offeredPresets.filter((p) => p.reviewModuleSlug && !featured.some((f) => f.id === p.id)).map(
             (preset) => (
               <PresetCard key={preset.id} examSlug={examSlug} preset={preset} />
             )
@@ -89,7 +106,7 @@ export function NclexStudyPresetsPanel({ examSlug }: Props) {
           4-week plan
         </h3>
         <div className="mt-3 space-y-2">
-          {NCLEX_FOUR_WEEK_PLAN.map((week) => (
+          {weeks.map((week) => (
             <div key={week.week} className="rounded-xl border border-black/[0.06] bg-white">
               <button
                 type="button"

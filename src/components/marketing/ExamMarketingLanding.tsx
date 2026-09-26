@@ -8,6 +8,7 @@ import {
   getExamSeoConfig,
   type ExamSeoKey,
 } from "@/lib/seo/exam-config";
+import { presentPublicExamSeo } from "@/lib/marketing/public-format-copy";
 import {
   formatExamLiveCountLine,
   landingTrialHrefForExam,
@@ -49,7 +50,7 @@ export function ExamMarketingLanding({
   extraAfterHero,
   testimonials,
 }: Props) {
-  const config = getExamSeoConfig(examKey);
+  const config = presentPublicExamSeo(getExamSeoConfig(examKey), inventory?.formats ?? null);
   const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
   const isUsmle = examKey === "usmle";
   const topFeatures = config.features.slice(0, 4);
@@ -66,6 +67,7 @@ export function ExamMarketingLanding({
         questionCountLine={questionCountLine}
         countSource={inventory?.countSource}
         activeCount={inventory?.activeCount}
+        formats={inventory?.formats ?? null}
       />
 
       <WhyTrustIt examKey={examKey} inventory={inventory} testimonials={testimonials} />

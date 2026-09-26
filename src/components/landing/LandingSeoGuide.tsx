@@ -2,6 +2,8 @@ import Link from "next/link";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 import { ROUTES } from "@/lib/routes";
 import { formatMonthlyPrice, SITE_NAME } from "@/lib/site";
 
@@ -41,8 +43,24 @@ const EXAM_LINKS = [
 /**
  * Compact SEO guide for the homepage — below the conversion funnel.
  */
-export function LandingSeoGuide({ questionCountLabel }: { questionCountLabel?: string }) {
+export function LandingSeoGuide({
+  questionCountLabel,
+  nclexFormats = null,
+}: {
+  questionCountLabel?: string;
+  nclexFormats?: FormatCounts | null;
+}) {
   const count = questionCountLabel?.trim() || SEO_LIVE_STATS.questionCount;
+  const links = EXAM_LINKS.map((exam) =>
+    exam.name === "NCLEX-RN"
+      ? {
+          ...exam,
+          blurb:
+            scrubPublicFormatCopy(exam.blurb, nclexFormats) ??
+            "Clinical judgment and prioritization.",
+        }
+      : exam
+  );
 
   return (
     <section
@@ -62,7 +80,7 @@ export function LandingSeoGuide({ questionCountLabel }: { questionCountLabel?: s
         </p>
 
         <ul className="mt-10 grid gap-3 sm:grid-cols-2" role="list">
-          {EXAM_LINKS.map((exam) => (
+          {links.map((exam) => (
             <li key={exam.href}>
               <Link
                 href={exam.href}

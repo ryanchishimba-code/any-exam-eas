@@ -11,17 +11,27 @@ import { buildHomeMetadata } from "@/lib/seo";
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { snapshot } = await getCachedBankStatsBundle();
-  return buildHomeMetadata(buildLandingBankCountsDisplay(snapshot).totalLabel);
+  const { snapshot, inventory } = await getCachedBankStatsBundle();
+  return buildHomeMetadata(
+    buildLandingBankCountsDisplay(snapshot).totalLabel,
+    inventory.boards.nclex?.formats ?? null
+  );
 }
 
 export default async function HomePage() {
-  const { snapshot } = await getCachedBankStatsBundle();
+  const { snapshot, inventory } = await getCachedBankStatsBundle();
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
+  const boardFormats = Object.fromEntries(
+    Object.entries(inventory.boards).map(([slug, board]) => [slug, board.formats])
+  );
   return (
     <>
       <HomeJsonLd />
-      <HomeExperience bankCounts={bankCounts} testimonials={[]} />
+      <HomeExperience
+        bankCounts={bankCounts}
+        testimonials={[]}
+        boardFormats={inventory.degraded ? null : boardFormats}
+      />
     </>
   );
 }

@@ -13,6 +13,8 @@ import {
 } from "@/lib/seo/competitor-comparison";
 import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 import { formatMonthlyPrice, formatTrialCtaLabel, formatTrialLabel } from "@/lib/site";
 
 function ComparisonTable({
@@ -56,9 +58,16 @@ function ComparisonTable({
 
 export function ComparePageContent({
   questionCountLabel,
+  nclexFormats = null,
 }: {
   questionCountLabel?: string;
+  nclexFormats?: FormatCounts | null;
 } = {}) {
+  const featureRows = MASTER_FEATURE_ROWS.filter(
+    (row) =>
+      scrubPublicFormatCopy(row.feature, nclexFormats) === row.feature &&
+      scrubPublicFormatCopy(row.anyExamEasy, nclexFormats) === row.anyExamEasy
+  );
   return (
     <div className="mx-auto max-w-4xl px-5 pb-20 pt-[var(--page-top)] sm:px-6">
       <nav className="text-sm text-[var(--color-ink-muted)]">
@@ -133,7 +142,7 @@ export function ComparePageContent({
           AnyExamEasy vs typical per-exam competitors · Public pricing Jul 2026
         </p>
         <div className="mt-5">
-          <ComparisonTable rows={MASTER_FEATURE_ROWS} competitorHeader="Typical competitor" />
+          <ComparisonTable rows={featureRows} competitorHeader="Typical competitor" />
         </div>
       </section>
 

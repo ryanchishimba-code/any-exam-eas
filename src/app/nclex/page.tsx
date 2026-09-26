@@ -13,7 +13,8 @@ import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildExamMetadata("nclex");
+  const { inventory } = await getCachedBankStatsBundle();
+  return buildExamMetadata("nclex", inventory.boards.nclex?.formats ?? null);
 }
 
 export default async function NclexHubPage() {
@@ -30,7 +31,7 @@ export default async function NclexHubPage() {
 
   return (
     <>
-      <JsonLdScript data={buildExamJsonLd("nclex")} />
+      <JsonLdScript data={buildExamJsonLd("nclex", inventory.boards.nclex?.formats ?? null)} />
       <ExamMarketingLanding
         examKey="nclex"
         questionCountLabel={questionCountLabel}

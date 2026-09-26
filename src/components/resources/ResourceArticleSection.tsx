@@ -1,6 +1,19 @@
+import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 import type { ResourceSection } from "@/lib/seo/resources-content";
 
-export function ResourceArticleSection({ section }: { section: ResourceSection }) {
+export function ResourceArticleSection({
+  section,
+  formats = null,
+}: {
+  section: ResourceSection;
+  formats?: FormatCounts | null;
+}) {
+  const comparisonRows = section.comparisonRows?.filter(
+    (row) =>
+      scrubPublicFormatCopy(row.feature, formats) === row.feature &&
+      scrubPublicFormatCopy(row.anyExamEasy, formats) === row.anyExamEasy
+  );
   return (
     <section className="mb-10">
       <h2 className="text-xl font-bold text-[var(--color-ink)]">{section.heading}</h2>
@@ -18,7 +31,7 @@ export function ResourceArticleSection({ section }: { section: ResourceSection }
           ))}
         </ul>
       ) : null}
-      {section.comparisonRows && section.comparisonRows.length > 0 ? (
+      {comparisonRows && comparisonRows.length > 0 ? (
         <div className="mt-5 overflow-x-auto rounded-xl border border-[var(--color-border)]">
           <table className="w-full min-w-[480px] text-left text-sm">
             <thead>
@@ -35,7 +48,7 @@ export function ResourceArticleSection({ section }: { section: ResourceSection }
               </tr>
             </thead>
             <tbody>
-              {section.comparisonRows.map((row) => (
+              {comparisonRows.map((row) => (
                 <tr key={row.feature} className="border-b border-[var(--color-border)] last:border-0">
                   <th scope="row" className="px-4 py-3 font-medium text-[var(--color-ink)]">
                     {row.feature}

@@ -1,6 +1,9 @@
 import { notFound, redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { getExamHub, toExamHubMeta, type ExamSlug } from "@/lib/exams/catalog";
+import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
+import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
+import type { ExamRouteSlug } from "@/lib/routes";
 import { PrepHubTabs } from "@/components/prep/PrepHubTabs";
 import { ExamHubIcon } from "@/components/exam/ExamHubIcon";
 import { requirePremiumPage } from "@/lib/require-premium-page";
@@ -69,6 +72,12 @@ export default async function PrepExamPage({
 
   const exam = getExamHub(slug as ExamSlug)!;
   const topics = await ensureTopics(slug as ExamSlug);
+  const inventory = await getCachedActiveInventory().catch(() => null);
+  const formats =
+    inventory && !inventory.degraded && slug !== "top500"
+      ? inventory.boards[slug as ExamRouteSlug]?.formats ?? null
+      : null;
+  const subtitle = scrubPublicFormatCopy(exam.subtitle, formats) ?? exam.subtitle;
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
@@ -84,8 +93,8 @@ export default async function PrepExamPage({
             <h1 className="apple-display text-3xl">{exam.title}</h1>
           </div>
         </div>
-        <p className="mt-3 text-slate-600">{exam.subtitle}</p>
-        <PrepHubTabs exam={toExamHubMeta(exam)} topics={topics} />
+        <p className="mt-3 text-slate-600">{subtitle}</p>
+        <PrepHubTabs exam={toExamHubMeta(exam)} topics={topics} formats={formats} />
       </div>
     </div>
   );
