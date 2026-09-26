@@ -29,6 +29,9 @@
  *   npm run db:compose-board-exams -- --board aanp-fnp
  *   npm run db:compose-board-exams -- --board pance
  *   npm run db:compose-board-exams -- --board npte-pt
+ *
+ * Optional pairwise cap (dry-run unless --apply is also passed):
+ *   npm run db:compose-board-exams -- --board aanp-fnp --max-shared 13
  */
 import { loadEnvFiles, ensureDatabaseUrlEnv } from "./resolve-database-url.mjs";
 
@@ -61,7 +64,14 @@ const prisma = new PrismaClient();
 const BOARD_IDS = ["nclex-rn", "naplex", ...OUTLINE_BOARDS] as const;
 type BoardId = (typeof BOARD_IDS)[number];
 
-type Args = { apply: boolean; restore: boolean; maxExams: number; board: BoardId; maxExamsSet: boolean };
+type Args = {
+  apply: boolean;
+  restore: boolean;
+  maxExams: number;
+  board: BoardId;
+  maxExamsSet: boolean;
+  maxSharedItems: number | null;
+};
 
 function defaultMaxExams(board: BoardId): number {
   if (board === "naplex") return 24;
@@ -80,6 +90,7 @@ function parseArgs(): Args {
     maxExams: 43,
     board: "nclex-rn",
     maxExamsSet: false,
+    maxSharedItems: null,
   };
   for (let i = 0; i < args.length; i += 1) {
     const arg = args[i];
@@ -94,10 +105,15 @@ function parseArgs(): Args {
     } else if (arg === "--max-exams" && args[i + 1]) {
       parsed.maxExams = Number(args[++i]);
       parsed.maxExamsSet = true;
+    } else if (arg === "--max-shared" && args[i + 1]) {
+      parsed.maxSharedItems = Number(args[++i]);
     }
   }
   if (!Number.isFinite(parsed.maxExams) || parsed.maxExams < 0) {
     throw new Error("--max-exams must be a non-negative number.");
+  }
+  if (parsed.maxSharedItems != null && (!Number.isInteger(parsed.maxSharedItems) || parsed.maxSharedItems < 0)) {
+    throw new Error("--max-shared must be a non-negative integer.");
   }
   if (!parsed.maxExamsSet) parsed.maxExams = defaultMaxExams(parsed.board);
   return parsed;
@@ -471,6 +487,7 @@ async function main() {
       restore: args.restore,
       maxExams: args.maxExams,
       board: args.board,
+      maxSharedItems: args.maxSharedItems,
     });
     return;
   }
