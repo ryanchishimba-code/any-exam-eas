@@ -173,10 +173,26 @@ function publishedFormatNoun(
   return format === "case" ? "case studies" : `${ngnLabel} items`;
 }
 
+function comingSoonDetail(
+  format: DeliberatePracticeFormat,
+  ngnLabel: string,
+  fieldId?: string | null
+): string {
+  const nursing = fieldId === "nursing" || ngnLabel === "NGN";
+  if (nursing && format === "ngn") {
+    return "Next Gen (NGN) case studies are being rebuilt with RN review. Coming soon.";
+  }
+  if (nursing) {
+    return "Unfolding case studies are being rebuilt with RN review. Coming soon.";
+  }
+  const noun = format === "case" ? "Case studies" : `${ngnLabel} items`;
+  return `${noun} are being rebuilt with clinician review. Coming soon.`;
+}
+
 /**
  * Honest empty state when the selected format has nothing to serve.
  * A topic with none, while the board still has some, points at Mixed topics.
- * A board with none points at standard practice.
+ * A board with none says the format is coming soon and offers standard practice.
  */
 export function practiceFormatEmptyGuidance(params: {
   format: DeliberatePracticeFormat;
@@ -184,6 +200,7 @@ export function practiceFormatEmptyGuidance(params: {
   scopeCount: number;
   boardCount: number;
   ngnLabel?: string;
+  fieldId?: string | null;
 }): PracticeFormatEmptyGuidance | null {
   if (params.scopeCount > 0) return null;
   const ngnLabel = params.ngnLabel?.trim() || "NGN";
@@ -199,10 +216,10 @@ export function practiceFormatEmptyGuidance(params: {
     };
   }
   return {
-    title: `No ${noun} yet`,
-    detail: "Standard practice is ready now, using the questions this board has published.",
+    title: "Coming soon",
+    detail: comingSoonDetail(params.format, ngnLabel, params.fieldId),
     action: "all",
-    actionLabel: "Practice all questions",
+    actionLabel: "Practice standard questions",
   };
 }
 

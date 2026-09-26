@@ -130,6 +130,7 @@ export function QuestionBankSetup({
           scopeCount: 0,
           boardCount: boardPool,
           ngnLabel,
+          fieldId,
         })
       : null;
   const activeArea = blueprintAreaId

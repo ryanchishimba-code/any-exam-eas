@@ -31,7 +31,7 @@ export const ACTIVE_INVENTORY_CACHE_TTL_SECONDS = 60 * 60;
  * v3 is keyed with the published stamp (`published:touchedAt`). v2 stayed warm
  * for an hour when a retire skipped the cron purge.
  */
-export const ACTIVE_INVENTORY_CACHE_KEY = ["marketing-active-inventory-v4"] as const;
+export const ACTIVE_INVENTORY_CACHE_KEY = ["marketing-active-inventory-v5"] as const;
 
 /**
  * Public count responses must not sit in a browser or CDN cache.

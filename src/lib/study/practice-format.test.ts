@@ -302,9 +302,10 @@ describe("deliberate format subject wiring", () => {
         ngnLabel: "NGN",
       })
     ).toMatchObject({
-      title: "No case studies yet",
+      title: "Coming soon",
+      detail: "Unfolding case studies are being rebuilt with RN review. Coming soon.",
       action: "all",
-      actionLabel: "Practice all questions",
+      actionLabel: "Practice standard questions",
     });
 
     expect(
@@ -319,6 +320,32 @@ describe("deliberate format subject wiring", () => {
       title: "No NGN-style items in this topic",
       action: "mixed",
       actionLabel: "Practice mixed topics",
+    });
+
+    expect(
+      practiceFormatEmptyGuidance({
+        format: "ngn",
+        subjectId: "__mixed__",
+        scopeCount: 0,
+        boardCount: 0,
+        ngnLabel: "NGN",
+        fieldId: "nursing",
+      })?.detail
+    ).toBe("Next Gen (NGN) case studies are being rebuilt with RN review. Coming soon.");
+
+    expect(
+      practiceFormatEmptyGuidance({
+        format: "case",
+        subjectId: "__mixed__",
+        scopeCount: 0,
+        boardCount: 0,
+        ngnLabel: "NGN-style",
+        fieldId: "pharmacy",
+      })
+    ).toMatchObject({
+      title: "Coming soon",
+      detail: "Case studies are being rebuilt with clinician review. Coming soon.",
+      actionLabel: "Practice standard questions",
     });
 
     expect(

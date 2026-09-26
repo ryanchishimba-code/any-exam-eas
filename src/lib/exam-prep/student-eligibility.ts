@@ -6,9 +6,11 @@
  * `qaPassed` change. An RN restore is `curationMeta.studentEligibility.status
  * = "restored"` and is the only override.
  *
- * Case-study completeness needs the rest of the group. Pass
- * `completeCaseGroups` from `completeCaseGroupKeys` (or the warmed cache).
- * When that set is omitted, case-study rows are not eligible.
+ * Case-study completeness needs the rest of the group. Pass `caseGroups`
+ * from `buildCaseGroupFacts` (or the warmed cache). A group counts only when
+ * it has six items, one patient, and a real NGN response. `completeCaseGroups`
+ * is the older count-only set, used when facts are not available. When both
+ * are omitted, case-study rows are not eligible.
  */
 import { parseSelectAllCorrectAnswers } from "@/lib/question-format";
 import { readItemQaRecord } from "@/lib/exam-prep/item-qa/flag";
@@ -25,7 +27,10 @@ export const STUDENT_SUPPRESS_REASONS = [
   "matrix_rows_unkeyed",
   "ordered_key_equals_display",
   "highlight_missing_passage",
+  "highlight_options_not_in_passage",
   "incomplete_case_study",
+  "case_set_distinct_patients",
+  "case_set_single_answer_only",
   "retired_but_active",
 ] as const;
 
@@ -58,10 +63,24 @@ export type StudentEligibilityInput = {
   curationMeta?: unknown;
 };
 
+/** Facts for one `${fieldId}\\t${itemType}\\t${caseGroupId}` group. */
+export type CaseGroupFacts = {
+  members: number;
+  /** Every item is the same patient. Conflicting ages or sexes fail this. */
+  sharedPatient: boolean;
+  /** At least one item is a real NGN response, not a single-answer MCQ. */
+  hasNgnItem: boolean;
+};
+
 export type StudentEligibilityContext = {
   /**
+   * Group facts from `buildCaseGroupFacts`. Preferred over `completeCaseGroups`.
+   * A missing key is an incomplete case.
+   */
+  caseGroups?: ReadonlyMap<string, CaseGroupFacts>;
+  /**
    * `${fieldId}\\t${itemType}\\t${caseGroupId}` for active groups of exactly 6.
-   * Omit to treat every case-study row as incomplete.
+   * Used only when `caseGroups` and the warmed facts cache are both absent.
    */
   completeCaseGroups?: ReadonlySet<string>;
 };
@@ -79,6 +98,29 @@ const ORDERED_TYPES = new Set(["ordered_response", "drag_drop"]);
 const HIGHLIGHT_TYPES = new Set(["ngn_highlight", "highlight"]);
 const CASE_TYPES = new Set(["case_study", "unfolding_case", "case_based"]);
 const STANDARD_TYPES = new Set(["vignette", "mcq", ""]);
+
+/** Response kinds that make a case step a real NGN item. Keep the SQL mirror in step. */
+const NGN_RESPONSE_KINDS = new Set([
+  "bow_tie",
+  "bowtie",
+  "ngn_bowtie",
+  "matrix",
+  "ngn_matrix",
+  "highlight",
+  "ngn_highlight",
+  "select_all",
+  "sata",
+  "ordered_response",
+  "drag_drop",
+  "cloze",
+  "dropdown",
+  "drop_down",
+  "trend",
+  "hotspot",
+  "hot_spot",
+  "constructed_response",
+  "multiple_response",
+]);
 
 const SELECT_ALL_STEM = /\bselect all\b/i;
 const RATIONALE_WRONG_MARK = "why other options are incorrect";
@@ -151,6 +193,82 @@ export function caseGroupStorageKey(input: StudentEligibilityInput): string | nu
   return `${fieldId}\t${type}\t${groupId}`;
 }
 
+function caseNarrative(input: StudentEligibilityInput): string {
+  const scenario = input.scenario?.trim() ?? "";
+  if (scenario) return scenario;
+  return input.question?.trim() ?? "";
+}
+
+/**
+ * Same patient when stated ages do not conflict and stated sexes do not conflict.
+ * A later step may say "the client" without repeating the age. With no age at all,
+ * the opening of every item has to match.
+ */
+export function caseGroupSharesPatient(texts: string[]): boolean {
+  const ages = new Set<string>();
+  const sexes = new Set<string>();
+  for (const text of texts) {
+    const lower = text.toLowerCase();
+    const age = lower.match(/\b(\d{1,3})-year-old\b/);
+    if (age) ages.add(age[1]!);
+    const sex = lower.match(
+      /\b\d{1,3}-year-old\s+(male|man|boy|female|woman|girl|primigravida|multigravida|infant)\b/
+    );
+    if (!sex) continue;
+    const word = sex[1]!;
+    if (word === "male" || word === "man" || word === "boy") sexes.add("m");
+    else if (word === "infant") sexes.add("i");
+    else sexes.add("f");
+  }
+  if (ages.size > 1 || sexes.size > 1) return false;
+  if (ages.size > 0) return true;
+  const signatures = texts.map((text) => norm(text).slice(0, 48)).filter((value) => value.length > 0);
+  if (signatures.length === 0) return false;
+  return new Set(signatures).size === 1;
+}
+
+function memberIsRealNgn(input: StudentEligibilityInput): boolean {
+  const type = (input.itemType ?? "").trim();
+  if (
+    BOWTIE_TYPES.has(type) ||
+    MATRIX_TYPES.has(type) ||
+    ORDERED_TYPES.has(type) ||
+    HIGHLIGHT_TYPES.has(type) ||
+    SATA_TYPES.has(type)
+  ) {
+    return true;
+  }
+  const payload = payloadFromInput(input);
+  const kind = String(payload?.kind ?? "").trim().toLowerCase();
+  if (NGN_RESPONSE_KINDS.has(kind)) return true;
+  if (stringList(payload?.highlights).length > 0 && kind !== "mcq" && kind !== "vignette") return true;
+  if (stringList(payload?.actions).length > 0 && kind.includes("bow")) return true;
+  if (Array.isArray(payload?.rows) && payload.rows.length > 0 && kind !== "mcq" && kind !== "vignette") return true;
+  return (input.correctAnswer ?? "").includes("|||");
+}
+
+/** One entry per case group that has an id. Callers decide which shapes are servable. */
+export function buildCaseGroupFacts(rows: StudentEligibilityInput[]): Map<string, CaseGroupFacts> {
+  const grouped = new Map<string, StudentEligibilityInput[]>();
+  for (const row of rows) {
+    if (row.active === false) continue;
+    const key = caseGroupStorageKey(row);
+    if (!key) continue;
+    const list = grouped.get(key) ?? [];
+    list.push(row);
+    grouped.set(key, list);
+  }
+  const facts = new Map<string, CaseGroupFacts>();
+  for (const [key, members] of grouped) {
+    facts.set(key, {
+      members: members.length,
+      sharedPatient: caseGroupSharesPatient(members.map(caseNarrative)),
+      hasNgnItem: members.some(memberIsRealNgn),
+    });
+  }
+  return facts;
+}
+
 /** Active groups with exactly six members. Incomplete groups are not in the set. */
 export function completeCaseGroupKeys(rows: StudentEligibilityInput[]): Set<string> {
   const counts = new Map<string, number>();
@@ -215,6 +333,35 @@ function push(reasons: StudentSuppressReason[], code: StudentSuppressReason) {
   if (!reasons.includes(code)) reasons.push(code);
 }
 
+/** A choice that was sliced out of a longer comma-separated sibling. */
+function isCommaSplitFragment(option: string, siblings: string[]): boolean {
+  const trimmed = option.trim();
+  if (!trimmed) return false;
+  if (/^(and|or)\b/i.test(trimmed)) return true;
+  const lower = trimmed.toLowerCase();
+  return siblings.some((other) => {
+    if (other === option) return false;
+    const sibling = other.trim().toLowerCase();
+    if (!sibling.includes(",")) return false;
+    if (sibling.startsWith(`${lower},`)) return true;
+    return sibling.split(",").some((part) => part.trim() === lower);
+  });
+}
+
+function bowtieHasFragmentOptions(payload: Record<string, unknown> | null): boolean {
+  const choices = [...stringList(payload?.actions), ...stringList(payload?.monitors)];
+  return choices.some((choice) => isCommaSplitFragment(choice, choices));
+}
+
+function highlightSpansMissPassage(passage: string, spans: string[]): boolean {
+  if (spans.length === 0) return true;
+  const hay = norm(passage);
+  return spans.some((span) => {
+    const needle = norm(span);
+    return needle.length === 0 || !hay.includes(needle);
+  });
+}
+
 export function assessStudentEligibility(
   input: StudentEligibilityInput,
   context: StudentEligibilityContext = {}
@@ -253,7 +400,7 @@ export function assessStudentEligibility(
     const conditionIsStem =
       condition.trim().length > 0 &&
       (norm(condition) === norm(question) || (scenario.trim() && norm(condition) === norm(scenario)));
-    if (actions.length < 1 || monitors.length < 1 || conditionIsStem) {
+    if (actions.length < 1 || monitors.length < 1 || conditionIsStem || bowtieHasFragmentOptions(payload)) {
       push(reasons, "bowtie_invalid_structure");
     }
     const keyed = bowtieKeyedChoices(payload, answer);
@@ -274,13 +421,30 @@ export function assessStudentEligibility(
 
   if (HIGHLIGHT_TYPES.has(type)) {
     const text = typeof payload?.text === "string" ? payload.text.trim() : "";
-    if (!text) push(reasons, "highlight_missing_passage");
+    if (!text) {
+      push(reasons, "highlight_missing_passage");
+    } else {
+      const listed = stringList(payload?.highlights);
+      const spans = listed.length > 0 ? listed : options;
+      if (highlightSpansMissPassage(text, spans)) push(reasons, "highlight_options_not_in_passage");
+    }
   }
 
   if (CASE_TYPES.has(type)) {
     const key = caseGroupStorageKey(input);
-    const complete = context.completeCaseGroups;
-    if (!key || !complete || !complete.has(key)) push(reasons, "incomplete_case_study");
+    const groups = context.caseGroups ?? peekCaseGroupFacts();
+    if (groups) {
+      const facts = key ? groups.get(key) : undefined;
+      if (!key || !facts || facts.members !== 6) {
+        push(reasons, "incomplete_case_study");
+      } else {
+        if (!facts.sharedPatient) push(reasons, "case_set_distinct_patients");
+        if (!facts.hasNgnItem) push(reasons, "case_set_single_answer_only");
+      }
+    } else {
+      const complete = context.completeCaseGroups;
+      if (!key || !complete || !complete.has(key)) push(reasons, "incomplete_case_study");
+    }
   }
 
   const restored = isStudentEligibilityRestored(input.curationMeta);
@@ -298,51 +462,85 @@ export function isStudentEligible(
   return assessStudentEligibility(input, context).eligible;
 }
 
-let completeCaseGroupsCache: { at: number; keys: Set<string> } | null = null;
+let caseGroupCache: { at: number; groups: Map<string, CaseGroupFacts>; servable: Set<string> } | null = null;
 const CASE_GROUP_CACHE_MS = 5 * 60 * 1000;
 
+function cacheFresh(): boolean {
+  return Boolean(caseGroupCache && Date.now() - caseGroupCache.at <= CASE_GROUP_CACHE_MS);
+}
+
+export function peekCaseGroupFacts(): Map<string, CaseGroupFacts> | null {
+  if (!cacheFresh() || !caseGroupCache) return null;
+  return caseGroupCache.groups;
+}
+
+/** Groups a student can be served: six items, one patient, and a real NGN step. */
 export function peekCompleteCaseGroups(): Set<string> | null {
-  if (!completeCaseGroupsCache) return null;
-  if (Date.now() - completeCaseGroupsCache.at > CASE_GROUP_CACHE_MS) return null;
-  return completeCaseGroupsCache.keys;
+  if (!cacheFresh() || !caseGroupCache) return null;
+  return caseGroupCache.servable;
+}
+
+export function rememberCaseGroupFacts(groups: Map<string, CaseGroupFacts>): void {
+  const servable = new Set<string>();
+  for (const [key, facts] of groups) {
+    if (facts.members === 6 && facts.sharedPatient && facts.hasNgnItem) servable.add(key);
+  }
+  caseGroupCache = { at: Date.now(), groups, servable };
 }
 
 export function rememberCompleteCaseGroups(keys: Set<string>): void {
-  completeCaseGroupsCache = { at: Date.now(), keys };
+  const groups = new Map<string, CaseGroupFacts>();
+  for (const key of keys) {
+    groups.set(key, { members: 6, sharedPatient: true, hasNgnItem: true });
+  }
+  rememberCaseGroupFacts(groups);
 }
 
 /** Test hook. */
 export function resetCompleteCaseGroupCache(): void {
-  completeCaseGroupsCache = null;
+  caseGroupCache = null;
 }
 
-type CaseGroupRow = { fieldId: string; itemType: string; gid: string | null; n: number };
+type CaseGroupRow = {
+  fieldId: string;
+  itemType: string;
+  gid: string | null;
+  scenario: string | null;
+  question: string;
+  options: string;
+  correctAnswer: string;
+};
 
-/** Load active 6-item case groups. Safe to call before any student read. */
+/** Load case-group facts. Safe to call before any student read. */
 export async function warmCompleteCaseGroups(): Promise<Set<string>> {
   const cached = peekCompleteCaseGroups();
-  if (cached) return cached;
+  if (cached && peekCaseGroupFacts()) return cached;
   const { sqlQuery } = await import("@/lib/db");
   const rows = (await sqlQuery(
     `
-    SELECT "fieldId", "itemType", options::jsonb->>'caseGroupId' AS gid, COUNT(*)::int AS n
+    SELECT "fieldId", "itemType", options::jsonb->>'caseGroupId' AS gid,
+           scenario, question, options, "correctAnswer"
     FROM "QuestionBankItem"
     WHERE active = true
       AND "itemType" IN ('case_study', 'unfolding_case', 'case_based')
       AND left(btrim(options), 1) = '{'
       AND COALESCE(options::jsonb->>'caseGroupId', '') <> ''
-    GROUP BY 1, 2, 3
-    HAVING COUNT(*) = 6
     `,
     []
   )) as CaseGroupRow[];
-  const keys = new Set<string>();
-  for (const row of rows) {
-    if (!row.gid) continue;
-    keys.add(`${row.fieldId}\t${row.itemType}\t${row.gid}`);
-  }
-  rememberCompleteCaseGroups(keys);
-  return keys;
+  const facts = buildCaseGroupFacts(
+    rows.map((row) => ({
+      fieldId: row.fieldId,
+      itemType: row.itemType,
+      active: true,
+      scenario: row.scenario,
+      question: row.question,
+      correctAnswer: row.correctAnswer,
+      optionsRaw: row.options,
+    }))
+  );
+  rememberCaseGroupFacts(facts);
+  return peekCompleteCaseGroups() ?? new Set();
 }
 
 export function eligibilityInputFromBankItem(
@@ -399,6 +597,9 @@ export function retainStudentEligibleBankItems(
   items: BankItem[],
   context?: StudentEligibilityContext
 ): BankItem[] {
-  const ctx = context ?? { completeCaseGroups: peekCompleteCaseGroups() ?? undefined };
+  const ctx = context ?? {
+    caseGroups: peekCaseGroupFacts() ?? undefined,
+    completeCaseGroups: peekCompleteCaseGroups() ?? undefined,
+  };
   return items.filter((item) => isStudentEligible(eligibilityInputFromBankItem(item), ctx));
 }

@@ -69,7 +69,9 @@ export function QuestionBankFormatMode({
             ? "Count unavailable"
             : ngnCount > 0
               ? "Clinical judgment formats"
-              : "None published",
+              : isMixedPracticeSubject(subjectId)
+                ? "Coming soon"
+                : "None in this topic",
       disabled: lockToAll || countsLoading || ngnCount == null,
     },
     {
@@ -83,7 +85,9 @@ export function QuestionBankFormatMode({
             ? "Count unavailable"
             : caseCount > 0
               ? "Case studies"
-              : "None published",
+              : isMixedPracticeSubject(subjectId)
+                ? "Coming soon"
+                : "None in this topic",
       disabled: lockToAll || countsLoading || caseCount == null,
     },
   ];
