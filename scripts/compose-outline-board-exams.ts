@@ -194,7 +194,13 @@ function stepFor(board: OutlineBoardId): UsmleStepLevel | null {
 
 export async function runOutlineBoard(
   prisma: PrismaClient,
-  args: { apply: boolean; restore: boolean; maxExams: number; board: OutlineBoardId }
+  args: {
+    apply: boolean;
+    restore: boolean;
+    maxExams: number;
+    board: OutlineBoardId;
+    maxSharedItems?: number | null;
+  }
 ) {
   if (args.restore) {
     await restoreOutline(prisma, args.board, args.apply);
@@ -202,7 +208,13 @@ export async function runOutlineBoard(
   }
   const step = stepFor(args.board);
   const config = boardConfig(args.board, args.maxExams);
+  if (args.maxSharedItems != null) config.maxSharedItems = args.maxSharedItems;
   console.log(`Source: ${sourceFor(args.board)}`);
+  if (config.maxSharedItems != null) {
+    console.log(
+      `Pairwise overlap cap: ${config.maxSharedItems} shared items between any two forms. Reuse cap stays ${config.maxItemReuse}.`
+    );
+  }
   console.log(
     `Form length ${config.fullExamLength}. Full-exam simulation length is not changed by this composer.`
   );

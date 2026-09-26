@@ -73,6 +73,11 @@ export type BoardComposeConfig = {
    * Absent for NCLEX and NAPLEX. A form that misses this axis is not published.
    */
   secondaryAreas?: readonly TestPlanArea[];
+  /**
+   * Most items any two published forms may share. Absent means no pairwise cap.
+   * An item is still never repeated inside one form.
+   */
+  maxSharedItems?: number;
   fullExamTitle: (index: number, shortfall?: readonly string[]) => string;
   subjectSets?: SubjectSetConfig;
 };
@@ -354,6 +359,78 @@ type SecondaryPick = {
   max: Record<string, number>;
 };
 
+type PairwiseCap = {
+  maxShared: number;
+  members: Map<string, number[]>;
+  formCount: number;
+};
+
+function createPairwiseCap(maxShared: number | undefined): PairwiseCap | null {
+  if (maxShared == null || !Number.isFinite(maxShared) || maxShared < 0) return null;
+  return { maxShared, members: new Map(), formCount: 0 };
+}
+
+function runningOverlap(cap: PairwiseCap | null, selected: readonly { id: string }[]): number[] {
+  if (!cap) return [];
+  const running = new Array<number>(cap.formCount).fill(0);
+  for (const item of selected) {
+    for (const index of cap.members.get(item.id) ?? []) running[index] = (running[index] ?? 0) + 1;
+  }
+  return running;
+}
+
+function overlapWouldExceed(cap: PairwiseCap | null, itemId: string, running: number[]): boolean {
+  if (!cap) return false;
+  for (const index of cap.members.get(itemId) ?? []) {
+    if ((running[index] ?? 0) + 1 > cap.maxShared) return true;
+  }
+  return false;
+}
+
+function noteTaken(cap: PairwiseCap | null, running: number[], itemId: string) {
+  if (!cap) return;
+  for (const index of cap.members.get(itemId) ?? []) running[index] = (running[index] ?? 0) + 1;
+}
+
+function adjustSwap(cap: PairwiseCap | null, running: number[], removeId: string, addId: string) {
+  if (!cap) return;
+  for (const index of cap.members.get(removeId) ?? []) running[index] = (running[index] ?? 0) - 1;
+  for (const index of cap.members.get(addId) ?? []) running[index] = (running[index] ?? 0) + 1;
+}
+
+function swapKeepsCap(cap: PairwiseCap | null, running: number[], removeId: string, addId: string): boolean {
+  if (!cap) return true;
+  const removed = new Set(cap.members.get(removeId) ?? []);
+  for (const index of cap.members.get(addId) ?? []) {
+    const after = (running[index] ?? 0) - (removed.has(index) ? 1 : 0) + 1;
+    if (after > cap.maxShared) return false;
+  }
+  return true;
+}
+
+function formExceedsCap(cap: PairwiseCap | null, ids: readonly string[]): boolean {
+  if (!cap) return false;
+  const counts = new Array<number>(cap.formCount).fill(0);
+  for (const id of ids) {
+    for (const index of cap.members.get(id) ?? []) {
+      counts[index] = (counts[index] ?? 0) + 1;
+      if (counts[index]! > cap.maxShared) return true;
+    }
+  }
+  return false;
+}
+
+function commitForm(cap: PairwiseCap | null, ids: readonly string[]) {
+  if (!cap) return;
+  const index = cap.formCount;
+  for (const id of ids) {
+    const list = cap.members.get(id);
+    if (list) list.push(index);
+    else cap.members.set(id, [index]);
+  }
+  cap.formCount += 1;
+}
+
 function takeUpTo(
   pool: readonly Prepared[],
   need: number,
@@ -363,10 +440,12 @@ function takeUpTo(
   floors: readonly CoverageFloor[],
   signal: SignalFloor | undefined,
   blockContradictions: boolean,
-  secondary?: SecondaryPick
+  secondary?: SecondaryPick,
+  pairwise: PairwiseCap | null = null
 ): Prepared[] {
   const taken: Prepared[] = [];
   const takenIds = new Set<string>();
+  const running = runningOverlap(pairwise, selected);
   const candidates = pool
     .filter((item) => (used.get(item.id) ?? 0) < maxReuse)
     .filter((item) => !selected.some((kept) => kept.id === item.id))
@@ -387,6 +466,7 @@ function takeUpTo(
   };
   for (const item of selected) addToIndex(item);
   const blocked = (item: Prepared) => {
+    if (overlapWouldExceed(pairwise, item.id, running)) return true;
     const seen = new Set<Prepared>();
     const consider = (other: Prepared) => {
       if (seen.has(other)) return false;
@@ -506,6 +586,7 @@ function takeUpTo(
     if (!choice) break;
     taken.push(choice);
     takenIds.add(choice.id);
+    noteTaken(pairwise, running, choice.id);
     addToIndex(choice);
     if (secondary && choice.secondaryId) {
       localSecondary.set(choice.secondaryId, (localSecondary.get(choice.secondaryId) ?? 0) + 1);
@@ -525,7 +606,8 @@ function takeItems(
   floors: readonly CoverageFloor[] = [],
   signal?: SignalFloor,
   blockContradictions = false,
-  secondary?: SecondaryPick
+  secondary?: SecondaryPick,
+  pairwise: PairwiseCap | null = null
 ): Prepared[] | null {
   const taken = takeUpTo(
     pool,
@@ -536,7 +618,8 @@ function takeItems(
     floors,
     signal,
     blockContradictions,
-    secondary
+    secondary,
+    pairwise
   );
   return taken.length === need ? taken : null;
 }
@@ -665,9 +748,11 @@ function balanceSecondary(
   maxReuse: number,
   areas: readonly TestPlanArea[],
   bounds: readonly AreaCountBound[],
-  blockContradictions: boolean
+  blockContradictions: boolean,
+  pairwise: PairwiseCap | null = null
 ): Prepared[] | null {
   const next = [...selected];
+  const running = runningOverlap(pairwise, next);
   for (let attempt = 0; attempt < next.length * 2; attempt++) {
     const counts = secondaryCountsOf(next, areas);
     if (areasOutsidePlan(counts, next.length, areas).length === 0) return next;
@@ -683,12 +768,14 @@ function balanceSecondary(
         if (item.secondaryId !== under.id) return false;
         if ((used.get(item.id) ?? 0) >= maxReuse) return false;
         if (next.some((kept) => kept.id === item.id)) return false;
+        if (!swapKeepsCap(pairwise, running, current.id, item.id)) return false;
         return !next.some(
           (other, otherIndex) =>
             otherIndex !== index && blockedTogether(other, item, blockContradictions)
         );
       });
       if (!replacement) continue;
+      adjustSwap(pairwise, running, current.id, replacement.id);
       next[index] = replacement;
       swapped = true;
       break;
@@ -779,6 +866,7 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
   }
 
   const used = new Map<string, number>();
+  const pairwise = createPairwiseCap(config.maxSharedItems);
   const exams: ComposedExam[] = [];
   let stopReason = !quota
     ? "Test-plan percentages cannot sum to the exam length."
@@ -838,7 +926,9 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
               selected,
               floors,
               undefined,
-              blockContradictions
+              blockContradictions,
+              undefined,
+              pairwise
             );
             if (!taken) {
               failedArea = `${area.id}/${secondaryId}`;
@@ -861,7 +951,18 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
         const signal = config.signalFloors?.find((floor) => floor.areaId === area.id);
         const pool = byArea.get(area.id) ?? [];
         const taken = config.shortfallFillAreaId
-          ? takeUpTo(pool, need, used, config.maxItemReuse, selected, floors, signal, blockContradictions)
+          ? takeUpTo(
+              pool,
+              need,
+              used,
+              config.maxItemReuse,
+              selected,
+              floors,
+              signal,
+              blockContradictions,
+              undefined,
+              pairwise
+            )
           : takeItems(
               pool,
               need,
@@ -871,7 +972,8 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
               floors,
               signal,
               blockContradictions,
-              secondaryPick
+              secondaryPick,
+              pairwise
             );
         if (!taken || taken.length < need) {
           const partial = taken ?? [];
@@ -906,7 +1008,9 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
           selected,
           floors,
           undefined,
-          blockContradictions
+          blockContradictions,
+          undefined,
+          pairwise
         );
         if (fill.length < gap) {
           failedArea = config.shortfallFillAreaId;
@@ -928,8 +1032,11 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
           (byArea.get(areaId) ?? [])
             .filter((item) => !secondaryId || item.secondaryId === secondaryId)
             .filter((item) => (used.get(item.id) ?? 0) < config.maxItemReuse).length;
+        const checks = pairwise
+          ? "near-duplicate, reuse, and pairwise-overlap checks"
+          : "near-duplicate and reuse checks";
         stopReason = failedArea
-          ? `Stopped at ${exams.length} full exams. ${failedArea} needed ${failedNeed} more items and had ${have} unused after near-duplicate and reuse checks.`
+          ? `Stopped at ${exams.length} full exams. ${failedArea} needed ${failedNeed} more items and had ${have} unused after ${checks}.`
           : `Stopped at ${exams.length} full exams. The form did not reach ${config.fullExamLength} items.`;
         break;
       }
@@ -942,7 +1049,8 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
           config.maxItemReuse,
           secondaryAreas,
           secondaryBounds,
-          blockContradictions
+          blockContradictions,
+          pairwise
         );
         if (!balanced) {
           const missed = areasOutsidePlan(
@@ -955,7 +1063,12 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
         }
         placed = balanced;
       }
+      if (formExceedsCap(pairwise, placed.map((item) => item.id))) {
+        stopReason = `Stopped at ${exams.length} full exams. The next form would share more than ${config.maxSharedItems} items with an earlier form.`;
+        break;
+      }
       for (const item of placed) used.set(item.id, (used.get(item.id) ?? 0) + 1);
+      commitForm(pairwise, placed.map((item) => item.id));
       const areaCounts = Object.fromEntries(config.areas.map((area) => [area.id, 0]));
       for (const item of placed) areaCounts[item.areaId] = (areaCounts[item.areaId] ?? 0) + 1;
       const secondaryCounts =
@@ -1010,10 +1123,13 @@ export function composeBoardExams(items: readonly ComposerItem[], config: BoardC
           [],
           floors,
           undefined,
-          blockContradictions
+          blockContradictions,
+          undefined,
+          pairwise
         );
         if (!taken) break;
         for (const item of taken) used.set(item.id, (used.get(item.id) ?? 0) + 1);
+        commitForm(pairwise, taken.map((item) => item.id));
         const base = subjectConfig.titles[subjectId] ?? "Practice Set";
         const title = setIndex <= 1 ? base : `${base} ${setIndex}`;
         const areaCounts: Record<string, number> = {};

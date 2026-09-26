@@ -236,4 +236,27 @@ describe("naplex composition", () => {
     for (const id of leftovers) expect(result.exams[1]!.itemIds).toContain(id);
     expect(reuseStats(result.exams).maxReuse).toBeLessThanOrEqual(2);
   });
+
+  it("caps how many items any two forms share", () => {
+    const items = pool(4);
+    const shared = {
+      boardId: "demo",
+      areas: TWO_AREAS,
+      fullExamLength: 4,
+      maxFullExams: 4,
+      maxItemReuse: 3,
+      fullExamTitle: (index: number) => `Demo ${index}`,
+    };
+    const open = composeBoardExams(items, shared);
+    const capped = composeBoardExams(items, { ...shared, maxSharedItems: 1 });
+    expect(open.overlap.maxSharedItems).toBeGreaterThan(1);
+    expect(capped.math.publishedFullExams).toBeGreaterThan(0);
+    expect(capped.overlap.maxSharedItems).toBeLessThanOrEqual(1);
+    expect(capped.math.publishedFullExams).toBeLessThan(open.math.publishedFullExams);
+    for (const exam of capped.exams) {
+      expect(new Set(exam.itemIds).size).toBe(exam.itemIds.length);
+      expect(exam.areasOutOfRange).toEqual([]);
+    }
+    expect(capped.math.stopReason).toMatch(/pairwise-overlap|share more than 1/);
+  });
 });
