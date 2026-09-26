@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { canPublish, reviewGateOpen } from "@/lib/assessment/publish-gate";
+import { ownerAttestationReview } from "@/lib/assessment/publish-run";
 import type { PilotDocument } from "@/lib/assessment/types";
 
 const pilot = JSON.parse(
@@ -74,9 +75,34 @@ describe("canPublish", () => {
     });
     expect(result.validatorsGreen).toBe(false);
     expect(result.ok).toBe(false);
+    expect(
+      canPublish(bowtie, {
+        sources: pilot.sources,
+        reviews: [ownerAttestationReview("Ada RN")],
+      }).ok
+    ).toBe(false);
     expect(reviewGateOpen(result.ok ? [] : [
       { ...licensed, reviewerUserId: "rn-1", decision: "approve" },
       { ...licensed, reviewerUserId: "rn-2", decision: "approve" },
     ])).toBe(true);
+  });
+
+  it("opens for one RN owner attestation when validators are green", () => {
+    expect(item && caseDoc).toBeTruthy();
+    if (!item || !caseDoc) return;
+    const owner = canPublish(item, {
+      sources: pilot.sources,
+      caseDoc,
+      reviews: [ownerAttestationReview("Ada RN")],
+    });
+    expect(owner.ok).toBe(true);
+    expect(owner.approvalCount).toBe(1);
+    expect(
+      canPublish(item, {
+        sources: pilot.sources,
+        caseDoc,
+        reviews: [{ ...ownerAttestationReview("Ada RN"), licenseNumber: null, licenseState: null }],
+      }).ok
+    ).toBe(true);
   });
 });

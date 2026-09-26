@@ -1,6 +1,6 @@
 /**
- * NGN pilot gate. Default off when NGN_PILOT_ENABLED is unset, empty, or not true/1.
- * Student surfaces must also have published items. This pilot publishes none.
+ * Admin NGN review gate. Default off when NGN_PILOT_ENABLED is unset, empty, or not true/1.
+ * Student practice does not read this flag. A format appears only when published items exist.
  */
 export function isNgnPilotEnabled(): boolean {
   const raw = process.env.NGN_PILOT_ENABLED?.trim().toLowerCase() ?? "";

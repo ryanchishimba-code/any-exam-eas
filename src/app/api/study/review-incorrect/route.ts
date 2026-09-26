@@ -128,7 +128,72 @@ export async function POST(req: Request) {
     );
 
     const pickIds = incorrectIds.slice(0, sessionCount);
-    const items = await loadBankItemsByIds(fieldId, pickIds);
+    const leadingNgn = pickIds[0]?.startsWith("ngn:") === true;
+    if (leadingNgn) {
+      const ngnKeys = pickIds.filter((id) => id.startsWith("ngn:"));
+      const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
+      const { studentFacingUnit } = await import("@/lib/assessment/serve");
+      const bank = await loadPublishedClinicalBank(fieldId);
+      const wanted = new Set(ngnKeys);
+      const units = [
+        ...bank.catalog.cases.filter((unit) =>
+          unit.items.some((item) => wanted.has(`ngn:${item.id}:v${item.version}`))
+        ),
+        ...bank.catalog.standalones.filter((unit) =>
+          wanted.has(`ngn:${unit.item.id}:v${unit.item.version}`)
+        ),
+      ]
+        .filter((unit) => {
+          if (!subjectId) return true;
+          return unit.subjectId === subjectId;
+        })
+        .map((unit) => studentFacingUnit(unit));
+      if (units.length === 0) {
+        return reviewQueueResponse(
+          {
+            error: "Those missed items are no longer in the bank. Practice more, then retry.",
+            code: "INCORRECT_ITEMS_UNAVAILABLE",
+          },
+          incorrectIds.length,
+          503
+        );
+      }
+      const scored = units.reduce(
+        (sum, unit) => sum + (unit.kind === "case" ? unit.items.length : 1),
+        0
+      );
+      const scoredUsage = await checkStudyQuestionUsage({
+        userId: premium.userId,
+        access: premium.access,
+        requestedCount: scored,
+        adaptive: false,
+      });
+      if (!scoredUsage.ok) return scoredUsage.response;
+      await recordStudyQuestionsServed(premium.userId, scored, "bank", scoredUsage.plan);
+      const practiceFormat = units.some((unit) => unit.kind === "case") ? "case" : "ngn";
+      return reviewQueueResponse(
+        {
+          field: body.field,
+          fieldId,
+          subjectId: subjectId ?? MIXED_SUBJECT_ID,
+          mode: "review_incorrect",
+          questions: [],
+          bankItemIds: ngnKeys,
+          practiceFormat,
+          clinicalSession: {
+            practiceFormat,
+            field: body.field,
+            fieldId,
+            subjectId: subjectId ?? MIXED_SUBJECT_ID,
+            sourcesById: bank.sourcesById,
+            caseReferences: bank.caseReferences,
+            units,
+          },
+        },
+        incorrectIds.length
+      );
+    }
+    const items = await loadBankItemsByIds(fieldId, pickIds.filter((id) => !id.startsWith("ngn:")));
     if (items.length === 0) {
       return reviewQueueResponse(
         {

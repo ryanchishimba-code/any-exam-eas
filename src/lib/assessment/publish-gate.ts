@@ -1,13 +1,28 @@
 import type { NgnCase, NgnItem, SourceRef } from "@/lib/assessment/types";
 import { validateItemForPublish } from "@/lib/assessment/validators/ngn";
 
+export const OWNER_ATTESTATION_COMMENT = "owner attestation";
+
 export type ReviewGateInput = {
   reviewerUserId: string;
+  reviewerName?: string | null;
   decision: string;
   licenseType: string | null;
   licenseNumber: string | null;
   licenseState: string | null;
+  comments?: string | null;
 };
+
+/** One RN owner sign-off. License number and state may be unknown. */
+export function isOwnerAttestation(review: ReviewGateInput): boolean {
+  const name = review.reviewerName?.trim() || review.reviewerUserId.trim();
+  return (
+    review.decision === "approve" &&
+    review.licenseType?.trim() === "RN" &&
+    review.comments?.trim() === OWNER_ATTESTATION_COMMENT &&
+    name.length > 0
+  );
+}
 
 function licensePresent(review: ReviewGateInput): boolean {
   return Boolean(
@@ -34,9 +49,18 @@ export type PublishGateResult = {
   errors: string[];
 };
 
+function ownerAttestationCount(reviews: readonly ReviewGateInput[]): number {
+  const owners = new Set<string>();
+  for (const review of reviews) {
+    if (!isOwnerAttestation(review)) continue;
+    owners.add((review.reviewerName?.trim() || review.reviewerUserId).trim());
+  }
+  return owners.size;
+}
+
 /**
- * Full publish gate: validators green AND two licensed approvals of this version.
- * Read-only. This pilot has no publish button.
+ * Validators must be green. The review half opens with two distinct licensed
+ * approvals, or with one RN owner attestation (license number and state may be null).
  */
 export function canPublish(
   item: NgnItem,
@@ -56,9 +80,11 @@ export function canPublish(
     approvers.add(reviewerId);
   }
   const validatorsGreen = errors.length === 0;
+  const owners = ownerAttestationCount(context.reviews);
+  const approvalCount = owners > 0 ? Math.max(approvers.size, 1) : approvers.size;
   return {
-    ok: validatorsGreen && approvers.size >= 2,
-    approvalCount: approvers.size,
+    ok: validatorsGreen && (approvers.size >= 2 || owners >= 1),
+    approvalCount,
     validatorsGreen,
     errors,
   };

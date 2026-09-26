@@ -38,9 +38,24 @@ export async function GET(req: Request) {
   try {
     const fromInventory = fieldInventoryPayload(fieldId, await getCachedActiveInventory());
     if (fromInventory) {
-      return NextResponse.json(fromInventory, {
-        headers: { "Cache-Control": ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL },
-      });
+      const { applyClinicalCounts, publishedClinicalAddition } = await import(
+        "@/lib/assessment/serve-db"
+      );
+      const addition = await publishedClinicalAddition(fieldId).catch(() => ({
+        ngn: 0,
+        case: 0,
+        topics: {},
+      }));
+      const withClinical = applyClinicalCounts(fromInventory, addition);
+      return NextResponse.json(
+        {
+          ...withClinical,
+          total: fromInventory.total + addition.ngn + addition.case,
+        },
+        {
+          headers: { "Cache-Control": ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL },
+        }
+      );
     }
 
     const counts = await cacheAsidePublishedStamp(

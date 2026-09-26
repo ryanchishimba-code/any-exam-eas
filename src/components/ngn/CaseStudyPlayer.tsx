@@ -13,7 +13,13 @@ type CaseStudyPlayerProps = {
   mode: "exam" | "review";
   attemptSeed?: string;
   initialStep?: number;
+  initialResponses?: Record<string, unknown>;
   sourcesById?: Record<string, Pick<SourceRef, "title" | "url">>;
+  /** When set, the last exam step submits the whole case instead of ending in place. */
+  onSubmit?: (responses: Record<string, unknown>) => void;
+  /** Disables Submit case while the session is scoring. */
+  busy?: boolean;
+  rationaleVisible?: boolean;
 };
 
 function sexLabel(sex: string): string {
@@ -27,11 +33,15 @@ export function CaseStudyPlayer({
   mode,
   attemptSeed = "preview",
   initialStep = 0,
+  initialResponses,
   sourcesById = {},
+  onSubmit,
+  busy = false,
+  rationaleVisible = false,
 }: CaseStudyPlayerProps) {
   const ordered = [...(items ?? caseDoc.items)].sort((a, b) => (a.caseStep ?? 0) - (b.caseStep ?? 0));
   const [step, setStep] = useState(() => Math.min(Math.max(initialStep, 0), Math.max(ordered.length - 1, 0)));
-  const [responses, setResponses] = useState<Record<string, unknown>>({});
+  const [responses, setResponses] = useState<Record<string, unknown>>(() => initialResponses ?? {});
   const [chartOpen, setChartOpen] = useState(false);
   const [showRationale, setShowRationale] = useState(false);
   const [large, setLarge] = useState(false);
@@ -57,7 +67,7 @@ export function CaseStudyPlayer({
   );
 
   return (
-    <div className="text-[#0A2540]">
+    <div className="pb-24 text-[#0A2540] lg:pb-0">
       <header className="rounded-3xl bg-[#0A2540] px-5 py-4 text-white sm:px-6">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#00D4C8]">Client</p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
@@ -115,13 +125,13 @@ export function CaseStudyPlayer({
               seed={`${attemptSeed}:${item.id}`}
               response={responses[item.id]}
               onChange={(next) => setResponses((current) => ({ ...current, [item.id]: next }))}
-              showRationale={mode === "review" && showRationale}
+              showRationale={mode === "review" && (rationaleVisible || showRationale)}
               sourcesById={sourcesById}
               caseReferences={caseDoc.references}
             />
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            {mode === "review" ? (
+            {mode === "review" && !rationaleVisible ? (
               <button
                 type="button"
                 className={`min-h-11 rounded-full bg-[#0A2540] px-4 text-sm font-medium text-white ${ngnFocus}`}
@@ -140,7 +150,19 @@ export function CaseStudyPlayer({
                 Next
               </button>
             ) : null}
-            {mode === "exam" && step === ordered.length - 1 ? (
+            {mode === "exam" && step === ordered.length - 1 && onSubmit ? (
+              <button
+                type="button"
+                disabled={busy}
+                className={`min-h-11 rounded-full bg-[#0A2540] px-4 text-sm font-semibold text-white disabled:opacity-60 ${ngnFocus}`}
+                onClick={() => {
+                  if (!busy) onSubmit(responses);
+                }}
+              >
+                {busy ? "Scoring…" : "Submit case"}
+              </button>
+            ) : null}
+            {mode === "exam" && step === ordered.length - 1 && !onSubmit ? (
               <p className={`text-sm ${ngnMuted}`}>Last question in this case. Earlier questions stay closed.</p>
             ) : null}
             {mode === "exam" && step > 0 ? (

@@ -94,7 +94,8 @@ export async function persistCompletedSessionAttempts(params: {
   drafts: SessionAttemptDraft[];
 }): Promise<SessionPersistResult> {
   const fieldId = resolveQuestionBankFieldId(params.field);
-  const drafts = params.drafts.filter((draft) => draft.questionKey.trim());
+  const { rescoreNgnDrafts } = await import("@/lib/assessment/serve-db");
+  const drafts = (await rescoreNgnDrafts(params.drafts)).filter((draft) => draft.questionKey.trim());
   let newlySaved = 0;
   let alreadySaved = 0;
 

@@ -30,7 +30,19 @@ export async function loadServableReviewBankIds(
     }),
     fieldId
   ).filter((row) => !blocked.has(row.id));
-  return new Set(rows.map((row) => row.id));
+  const servable = new Set(rows.map((row) => row.id));
+  const ngnIds = ids.filter((id) => id.startsWith("ngn:"));
+  if (ngnIds.length === 0) return servable;
+  try {
+    const { keysForCatalog, loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
+    const published = keysForCatalog((await loadPublishedClinicalBank(fieldId)).catalog);
+    for (const id of ngnIds) {
+      if (published.has(id)) servable.add(id);
+    }
+  } catch (error) {
+    console.warn("[review-incorrect] published NGN lookup failed", error);
+  }
+  return servable;
 }
 
 /**

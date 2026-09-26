@@ -150,11 +150,11 @@ function toReview(row: {
   reviewerUserId: string;
   reviewerName: string;
   licenseType: string;
-  licenseNumber: string;
-  licenseState: string;
-  multistateNlc: boolean;
-  nursysVerifiedOn: Date;
-  nursysResult: string;
+  licenseNumber: string | null;
+  licenseState: string | null;
+  multistateNlc: boolean | null;
+  nursysVerifiedOn: Date | null;
+  nursysResult: string | null;
   decision: string;
   rubric: unknown;
   flagResolutions: unknown;
@@ -177,9 +177,9 @@ function toReview(row: {
     licenseType: row.licenseType,
     licenseNumber: row.licenseNumber,
     licenseState: row.licenseState,
-    multistateNlc: row.multistateNlc,
-    nursysVerifiedOn: row.nursysVerifiedOn.toISOString().slice(0, 10),
-    nursysResult: row.nursysResult,
+    multistateNlc: row.multistateNlc ?? false,
+    nursysVerifiedOn: row.nursysVerifiedOn ? row.nursysVerifiedOn.toISOString().slice(0, 10) : "",
+    nursysResult: row.nursysResult ?? "",
     decision: row.decision,
     rubric,
     flagResolutions,
