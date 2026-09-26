@@ -2,6 +2,7 @@
 
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import {
+  isMixedPracticeSubject,
   practiceFormatTitle,
   type PracticeFormatMode,
 } from "@/lib/study/practice-format";
@@ -15,6 +16,8 @@ type Props = {
   totalActive?: number | null;
   countsLoading?: boolean;
   ngnLabel?: string;
+  /** Current topic. Blank or mixed means the set draws from the whole bank. */
+  subjectId?: string | null;
   /** Blueprint-area practice serves every format in that area. */
   lockToAll?: boolean;
 };
@@ -39,6 +42,7 @@ export function QuestionBankFormatMode({
   totalActive = null,
   countsLoading = false,
   ngnLabel = "NGN",
+  subjectId = null,
   lockToAll = false,
 }: Props) {
   const allCount = formats
@@ -65,8 +69,10 @@ export function QuestionBankFormatMode({
             ? "Count unavailable"
             : ngnCount > 0
               ? "Clinical judgment formats"
-              : "None published",
-      disabled: lockToAll || countsLoading || ngnCount == null || ngnCount <= 0,
+              : isMixedPracticeSubject(subjectId)
+                ? "Coming soon"
+                : "None in this topic",
+      disabled: lockToAll || countsLoading || ngnCount == null,
     },
     {
       id: "case",
@@ -79,10 +85,15 @@ export function QuestionBankFormatMode({
             ? "Count unavailable"
             : caseCount > 0
               ? "Case studies"
-              : "None published",
-      disabled: lockToAll || countsLoading || caseCount == null || caseCount <= 0,
+              : isMixedPracticeSubject(subjectId)
+                ? "Coming soon"
+                : "None in this topic",
+      disabled: lockToAll || countsLoading || caseCount == null,
     },
   ];
+  const mixedScope = isMixedPracticeSubject(subjectId);
+  const selectedNoun = value === "case" ? "case" : ngnLabel;
+  const selectedCount = value === "case" ? caseCount : value === "ngn" ? ngnCount : allCount;
 
   return (
     <section className="space-y-4" aria-labelledby="practice-format-heading">
@@ -94,8 +105,11 @@ export function QuestionBankFormatMode({
           Question format
         </h3>
         <p className="max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-          {ngnLabel} and case sets draw from the published bank. The numbers are the
-          active inventory split.
+          {lockToAll
+            ? "This area practices every published format together."
+            : mixedScope
+              ? `${ngnLabel} and case sets draw eligible items from every topic. The numbers are the questions this session can use.`
+              : `${ngnLabel} and case sets draw eligible items from this topic. The numbers are the questions this session can use.`}
         </p>
       </div>
       <div className="grid gap-3 sm:grid-cols-3" role="radiogroup" aria-label="Question format">
@@ -134,11 +148,11 @@ export function QuestionBankFormatMode({
           );
         })}
       </div>
-      {value !== "all" ? (
-        <p className="max-w-xl px-0.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-          Pick one topic. This set is only {value === "case" ? "case" : ngnLabel} items from
-          that topic. The number on the card is the published bank total. Mixed topics is
-          not available for this format.
+      {value !== "all" && selectedCount != null && selectedCount > 0 ? (
+        <p className="max-w-xl px-0.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+          {mixedScope
+            ? `This set draws eligible ${selectedNoun} items from every topic. The number on the card is that pool.`
+            : `This set draws eligible ${selectedNoun} items from this topic. The number on the card is that pool.`}
         </p>
       ) : null}
     </section>

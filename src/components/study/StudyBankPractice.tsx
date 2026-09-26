@@ -112,9 +112,12 @@ import {
   buildDeliberateFormatQuestionQuery,
   ngnStyleLabel,
   practiceFormatCountOptions,
+  practiceFormatEmptyGuidance,
   practiceFormatPoolCount,
+  practiceFormatScopeCounts,
   practiceFormatTitle,
   validatePracticeFormatSession,
+  type PracticeFormatEmptyGuidance,
   type PracticeFormatMode,
 } from "@/lib/study/practice-format";
 import { QuestionBankSessionPreview } from "./question-bank/QuestionBankSessionPreview";
@@ -458,6 +461,7 @@ export function StudyBankPractice({
             counts: initialSubjectCounts,
             total: totalQuestions,
             formats: null,
+            topicFormats: null,
             categories: [],
             categoryLabel: null,
             definition: null,
@@ -475,6 +479,16 @@ export function StudyBankPractice({
         ? totalQuestions
         : null;
   const activeFormats = subjectCountPayload?.formats ?? null;
+  const topicFormats = subjectCountPayload?.topicFormats ?? null;
+  const scopeFormats = useMemo(
+    () =>
+      practiceFormatScopeCounts({
+        subjectId,
+        formats: activeFormats,
+        topicFormats,
+      }),
+    [activeFormats, subjectId, topicFormats]
+  );
   const activeCategories = useMemo(
     () => subjectCountPayload?.categories ?? [],
     [subjectCountPayload]
@@ -839,7 +853,7 @@ export function StudyBankPractice({
         syncPracticeUrl({ format: "all", style: remediationStyle });
         return;
       }
-      const pool = practiceFormatPoolCount(practiceFormat, activeFormats);
+      const pool = practiceFormatPoolCount(practiceFormat, scopeFormats);
       const options = practiceFormatCountOptions(pool);
       if (options.length === 0) return;
       setQuestionCount((current) => {
@@ -876,7 +890,7 @@ export function StudyBankPractice({
       return resolved;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [subjectId, blueprintAreaId, blueprintAreaCount, fieldId, subjectCounts, countsLoading, isTimedExam, practiceFormat, activeFormats, bankStyle, effectiveBankStyle]);
+  }, [subjectId, blueprintAreaId, blueprintAreaCount, fieldId, subjectCounts, countsLoading, isTimedExam, practiceFormat, scopeFormats, bankStyle, effectiveBankStyle]);
 
   // A weak-areas link that also carries format=ngn|case would otherwise stay
   // on that format in the address bar. Clear it once a topic is known.
@@ -1057,7 +1071,7 @@ export function StudyBankPractice({
           ? validatePracticeFormatSession({
               format: deliberateFormat,
               questionCount,
-              formats: activeFormats,
+              formats: scopeFormats,
               bankStyle: "standard",
               ngnLabel,
               subjectId,
@@ -1112,8 +1126,8 @@ export function StudyBankPractice({
         if (!qs) {
           throw new Error(
             deliberateFormat === "case"
-              ? "Pick one topic for this case set. Mixed topics is not available."
-              : `Pick one topic for this ${ngnLabel} set. Mixed topics is not available.`
+              ? "Pick one topic for this case set."
+              : `Pick one topic for this ${ngnLabel} set.`
           );
         }
         const res = await fetch(`/api/questions?${qs.toString()}`);
@@ -1795,7 +1809,7 @@ export function StudyBankPractice({
           ? validatePracticeFormatSession({
               format: launchFormat,
               questionCount,
-              formats: activeFormats,
+              formats: scopeFormats,
               bankStyle: "standard",
               ngnLabel,
               subjectId,
@@ -1818,7 +1832,7 @@ export function StudyBankPractice({
       effectiveBankStyle,
       isPance,
       taskCategory,
-      activeFormats,
+      scopeFormats,
       ngnLabel,
     ]
   );
@@ -1845,10 +1859,10 @@ export function StudyBankPractice({
   const previewAvailableCount = useMemo(() => {
     if (isTimedExam) return null;
     if (launchFormat) {
-      return null;
+      return practiceFormatPoolCount(launchFormat, scopeFormats);
     }
     return availableQuestionCount(sessionSubjectId, sessionCounts);
-  }, [isTimedExam, launchFormat, sessionCounts, sessionSubjectId]);
+  }, [isTimedExam, launchFormat, scopeFormats, sessionCounts, sessionSubjectId]);
 
   const previewEstimatedMinutes = useMemo(
     () => estimateQuestionBankSessionMinutes(questionCount, bankPace),
@@ -1931,6 +1945,40 @@ export function StudyBankPractice({
       </div>
     );
   }
+
+  function applyFormatEmptyAction(action: PracticeFormatEmptyGuidance["action"]) {
+    if (action === "mixed") {
+      explicitSubjectRef.current = MIXED_SUBJECT_ID;
+      setBlueprintAreaId(null);
+      setSubjectId(MIXED_SUBJECT_ID);
+      if (bankStyle !== "standard") setBankStyle("standard");
+      syncPracticeUrl({
+        subjectId: MIXED_SUBJECT_ID,
+        blueprintAreaId: null,
+        style: "standard",
+      });
+      return;
+    }
+    setPracticeFormat("all");
+    syncPracticeUrl({ format: "all" });
+  }
+
+  const formatEmptyGuidance =
+    !isTimedExam && launchFormat && !blueprintAreaId && !countsLoading
+      ? (() => {
+          const scopeCount = practiceFormatPoolCount(launchFormat, scopeFormats);
+          const boardCount = practiceFormatPoolCount(launchFormat, activeFormats);
+          if (scopeCount == null || boardCount == null || scopeCount > 0) return null;
+          return practiceFormatEmptyGuidance({
+            format: launchFormat,
+            subjectId,
+            scopeCount,
+            boardCount,
+            ngnLabel,
+            fieldId,
+          });
+        })()
+      : null;
 
   function launchPracticeMode(modeId: PracticeModeId) {
     const href = practiceModeLaunchHref(fieldId as PracticeFieldId, modeId, practiceBase);
@@ -2218,11 +2266,14 @@ export function StudyBankPractice({
               coverageLoaded={coverage != null}
               countsLoading={countsLoading}
               practiceFormat={practiceFormat}
-              formats={activeFormats}
+              formats={scopeFormats}
+              boardFormats={activeFormats}
               totalActive={activeTotal}
               ngnLabel={ngnLabel}
+              onPracticeAllQuestions={() => applyFormatEmptyAction("all")}
+              onPracticeMixedTopics={() => applyFormatEmptyAction("mixed")}
               onPracticeFormatChange={(next) => {
-                const pool = practiceFormatPoolCount(next, activeFormats);
+                const pool = practiceFormatPoolCount(next, scopeFormats);
                 const options = practiceFormatCountOptions(pool);
                 const resolved =
                   next === "all" || options.length === 0
@@ -2385,6 +2436,15 @@ export function StudyBankPractice({
             loading={loading || countsLoading}
             disabled={!(canStartBank || canStartTimed)}
             onStart={() => void start()}
+            emptyNotice={
+              formatEmptyGuidance
+                ? {
+                    title: formatEmptyGuidance.title,
+                    actionLabel: formatEmptyGuidance.actionLabel,
+                    onAction: () => applyFormatEmptyAction(formatEmptyGuidance.action),
+                  }
+                : null
+            }
             isTimedExam={isTimedExam}
             timedCount={timedCount}
             timedMinutes={previewTimedMinutes}

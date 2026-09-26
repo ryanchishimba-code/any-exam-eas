@@ -4,6 +4,7 @@
  */
 
 import type { BankItem } from "@/lib/question-bank";
+import { isPlainSingleAnswerReclass } from "@/lib/exam-prep/effective-type";
 import type { FullExamLaunchMode } from "@/lib/full-exam/launch-modes";
 import { getPrefetchedQuestionIds } from "@/lib/full-exam/exam-instance";
 import {
@@ -82,7 +83,16 @@ function premiumPoolScore(item: BankItem): number {
     if ((meta as { expertRationale?: unknown }).expertRationale) score += 4;
   }
   const type = (item.itemType ?? "").trim();
-  if (NGN_ITEM_TYPES.has(type)) score += 3;
+  const plainMcq = isPlainSingleAnswerReclass({
+    itemType: item.itemType,
+    question: item.question,
+    scenario: item.scenario ?? item.vignette,
+    correctAnswer: item.correctAnswer,
+    options: item.options,
+    ngnPayload: item.ngnPayload,
+    curationMeta: item.curationMeta,
+  });
+  if (NGN_ITEM_TYPES.has(type) && !plainMcq) score += 3;
   return score;
 }
 

@@ -1,6 +1,10 @@
 import type { Prisma } from "@prisma/client";
 import type { BankItem } from "@/lib/question-bank";
-import { retainStudentEligibleBankItems, warmCompleteCaseGroups } from "@/lib/exam-prep/student-eligibility";
+import {
+  ineligibleServedIds,
+  retainStudentEligibleBankItems,
+  warmCompleteCaseGroups,
+} from "@/lib/exam-prep/student-eligibility";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
@@ -883,9 +887,41 @@ export async function sampleQuestionBankItemsForField(params: {
 }
 
 /**
- * Active published rows in one inventory format bucket.
- * Field-wide when subjectId is omitted or mixed, so the pool matches the
- * inventory NGN/case split rather than a curated subset.
+ * Prisma filter for one deliberate format.
+ * Mixed and a blank subject omit subjectId so the sample is the whole field.
+ * Ineligible ids are excluded with the same SQL rule the inventory count uses.
+ */
+export function activeItemsByFormatWhere(params: {
+  fieldId: string;
+  subjectId?: string | null;
+  formatBucket: "ngn" | "case";
+  taskCategory?: string | null;
+  ineligibleIds?: readonly string[];
+  /** Plain MCQs wearing an NGN or case label. They stay in standard practice. */
+  reclassifiedIds?: readonly string[];
+}): Prisma.QuestionBankItemWhereInput {
+  const subjectId = params.subjectId?.trim();
+  const base =
+    subjectId && subjectId !== "__mixed__"
+      ? activeSubjectWhere(params.fieldId, subjectId, params.taskCategory)
+      : activeFieldWhere(params.fieldId, params.taskCategory);
+  const blocked = (params.ineligibleIds ?? []).map((id) => id.trim()).filter(Boolean);
+  const reclassified = (params.reclassifiedIds ?? []).map((id) => id.trim()).filter(Boolean);
+  return {
+    AND: [
+      base,
+      formatBucketItemTypeWhere(params.formatBucket),
+      ...(blocked.length > 0 ? [{ id: { notIn: blocked } }] : []),
+      ...(reclassified.length > 0 ? [{ id: { notIn: reclassified } }] : []),
+    ],
+  };
+}
+
+/**
+ * Student-eligible rows in one inventory format bucket.
+ * Field-wide when subjectId is omitted or mixed, so a Mixed topics set draws
+ * from the same pool the format card counts. Case groups are warmed first so
+ * the in-memory eligibility check agrees with STUDENT_ELIGIBLE_SQL.
  */
 export async function sampleActiveItemsByFormat(params: {
   fieldId: string;
@@ -894,14 +930,17 @@ export async function sampleActiveItemsByFormat(params: {
   formatBucket: "ngn" | "case";
   taskCategory?: string | null;
 }): Promise<BankItem[]> {
-  const subjectId = params.subjectId?.trim();
-  const base =
-    subjectId && subjectId !== "__mixed__"
-      ? activeSubjectWhere(params.fieldId, subjectId, params.taskCategory)
-      : activeFieldWhere(params.fieldId, params.taskCategory);
-  const where = {
-    AND: [base, formatBucketItemTypeWhere(params.formatBucket)],
-  };
+  const { reclassifiedMcqIds } = await import("@/lib/exam-prep/effective-type");
+  const [, blocked, reclassified] = await Promise.all([
+    warmCompleteCaseGroups(),
+    ineligibleServedIds(params.fieldId),
+    reclassifiedMcqIds(params.fieldId),
+  ]);
+  const where = activeItemsByFormatWhere({
+    ...params,
+    ineligibleIds: blocked,
+    reclassifiedIds: reclassified,
+  });
   const want = Math.max(1, params.count);
   const total = await prisma.questionBankItem.count({ where });
   if (total === 0) return [];

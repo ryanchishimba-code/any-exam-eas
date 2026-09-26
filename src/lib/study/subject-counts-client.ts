@@ -9,16 +9,37 @@ export type SubjectCountsClient = {
   counts: Record<string, number>;
   total: number | null;
   formats: FormatCounts | null;
+  topicFormats: Record<string, FormatCounts> | null;
   categories: InventoryCategoryCount[];
   categoryLabel: string | null;
   definition: string | null;
 };
+
+function parseFormatCounts(value: unknown): FormatCounts | null {
+  if (!value || typeof value !== "object") return null;
+  const row = value as Partial<FormatCounts>;
+  if (typeof row.mcq !== "number" || typeof row.ngn !== "number" || typeof row.case !== "number") {
+    return null;
+  }
+  return { mcq: row.mcq, ngn: row.ngn, case: row.case };
+}
+
+function parseTopicFormats(value: unknown): Record<string, FormatCounts> | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  const out: Record<string, FormatCounts> = {};
+  for (const [id, raw] of Object.entries(value as Record<string, unknown>)) {
+    const formats = parseFormatCounts(raw);
+    if (formats) out[id] = formats;
+  }
+  return out;
+}
 
 function emptySubjectCounts(): SubjectCountsClient {
   return {
     counts: {},
     total: null,
     formats: null,
+    topicFormats: null,
     categories: [],
     categoryLabel: null,
     definition: null,
@@ -33,7 +54,8 @@ function parseSubjectCounts(data: unknown): SubjectCountsClient | null {
   return {
     counts: row.counts as Record<string, number>,
     total,
-    formats: row.formats ?? null,
+    formats: parseFormatCounts(row.formats),
+    topicFormats: parseTopicFormats(row.topicFormats),
     categories: Array.isArray(row.categories) ? row.categories : [],
     categoryLabel: row.categoryLabel ?? null,
     definition:

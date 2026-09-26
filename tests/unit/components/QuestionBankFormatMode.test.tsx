@@ -6,7 +6,7 @@ import { QuestionBankFormatMode } from "@/components/study/question-bank/Questio
 const formats = { mcq: 5400, ngn: 842, case: 0 };
 
 describe("QuestionBankFormatMode", () => {
-  it("shows the inventory split and blocks an empty case pool", async () => {
+  it("shows the inventory split and keeps an empty case pool selectable", async () => {
     const onChange = vi.fn();
     render(
       <QuestionBankFormatMode
@@ -22,29 +22,31 @@ describe("QuestionBankFormatMode", () => {
     expect(ngn).toHaveAttribute("data-format-count", "842");
     expect(ngn).toHaveTextContent("842");
     expect(cases).toHaveAttribute("data-format-count", "0");
-    expect(cases).toBeDisabled();
+    expect(cases).toBeEnabled();
     expect(cases).toHaveTextContent("None published");
 
     const user = userEvent.setup();
     await user.click(ngn);
     expect(onChange).toHaveBeenCalledWith("ngn");
-    expect(onChange).not.toHaveBeenCalledWith("case");
+    await user.click(cases);
+    expect(onChange).toHaveBeenCalledWith("case");
   });
 
-  it("tells the student to pick one topic instead of launching the whole bank", () => {
+  it("tells a mixed-topic student the card count is the session pool", () => {
     render(
       <QuestionBankFormatMode
         value="ngn"
         onChange={() => undefined}
         formats={formats}
+        subjectId="__mixed__"
         ngnLabel="NGN"
       />
     );
 
-    expect(screen.getByText(/Pick one topic/i)).toBeInTheDocument();
-    expect(screen.getByText(/only NGN items from that topic/i)).toBeInTheDocument();
-    expect(screen.getByText(/Mixed topics is not available/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Topic choice applies to All questions/i)).not.toBeInTheDocument();
+    expect(screen.getAllByText(/from every topic/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/The number on the card is that pool/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Mixed topics is not available/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Pick one topic/i)).not.toBeInTheDocument();
   });
 
   it("uses NGN-style for boards that are not Client Needs and hides counts while loading", () => {

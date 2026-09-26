@@ -28,6 +28,7 @@
 import type { Prisma } from "@prisma/client";
 import { bankItemPassesIngestGate } from "@/lib/exam-prep/bank-ingest-gate";
 import { readItemQaRecord } from "@/lib/exam-prep/item-qa/flag";
+import { isPlainSingleAnswerReclass, PLAIN_MCQ_CANDIDATE_TYPES } from "@/lib/exam-prep/effective-type";
 import {
   assessStudentEligibility,
   peekCompleteCaseGroups,
@@ -144,6 +145,19 @@ export function isSelectAllStemWithOneKey(row: ReadinessEligibilityRow): boolean
 }
 
 export function isStandardSingleAnswerMcq(row: ReadinessEligibilityRow): boolean {
+  if (
+    isPlainSingleAnswerReclass({
+      itemType: row.itemType,
+      question: row.question,
+      scenario: row.scenario ?? row.vignette,
+      correctAnswer: row.correctAnswer,
+      options: row.options,
+      ngnPayload: row.ngnPayload,
+      curationMeta: row.curationMeta,
+    })
+  ) {
+    return true;
+  }
   const type = normalizedType(row);
   const kind = ngnKind(row);
   if (EXCLUDED_ITEM_TYPES.has(type) || (kind && EXCLUDED_ITEM_TYPES.has(kind))) return false;
@@ -247,7 +261,12 @@ export function readinessEligibilityWhere(
         },
       ],
     },
-    { NOT: { itemType: { in: [...READINESS_EXCLUDED_ITEM_TYPES] } } },
+    {
+      OR: [
+        { NOT: { itemType: { in: [...READINESS_EXCLUDED_ITEM_TYPES] } } },
+        { itemType: { in: [...PLAIN_MCQ_CANDIDATE_TYPES] } },
+      ],
+    },
   ];
   if (policy.requireApprovedReview) and.push({ reviewStatus: "approved" });
   return { AND: and };

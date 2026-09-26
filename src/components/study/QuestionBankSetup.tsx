@@ -18,6 +18,7 @@ import {
 } from "@/lib/study/question-bank-setup";
 import {
   practiceFormatCountOptions,
+  practiceFormatEmptyGuidance,
   practiceFormatPoolCount,
   validatePracticeFormatSession,
   type PracticeFormatMode,
@@ -27,6 +28,7 @@ import { qbUi } from "@/lib/study/question-bank-ui";
 import { cn } from "@/lib/utils";
 import { QuestionBankCountWheel } from "./question-bank/QuestionBankCountWheel";
 import { QuestionBankFormatMode } from "./question-bank/QuestionBankFormatMode";
+import { PracticeFormatEmptyNotice } from "./question-bank/PracticeFormatEmptyNotice";
 import { QuestionBankSection, QuestionBankSegment } from "./question-bank/QuestionBankSection";
 import { CoverageChips } from "./question-bank/CoverageChips";
 import {
@@ -67,8 +69,12 @@ type QuestionBankSetupProps = {
   practiceFormat?: PracticeFormatMode;
   onPracticeFormatChange?: (format: PracticeFormatMode) => void;
   formats?: FormatCounts | null;
+  /** Field-wide split, used when a topic pool is empty but Mixed topics is not. */
+  boardFormats?: FormatCounts | null;
   totalActive?: number | null;
   ngnLabel?: string;
+  onPracticeAllQuestions?: () => void;
+  onPracticeMixedTopics?: () => void;
 };
 
 const STYLE_OPTIONS: { id: QuestionBankStyle; label: string; hint: string }[] = [
@@ -107,11 +113,26 @@ export function QuestionBankSetup({
   practiceFormat = "all",
   onPracticeFormatChange,
   formats = null,
+  boardFormats = null,
   totalActive = null,
   ngnLabel = "NGN",
+  onPracticeAllQuestions,
+  onPracticeMixedTopics,
 }: QuestionBankSetupProps) {
   const formatMode = practiceFormat === "ngn" || practiceFormat === "case";
   const formatPool = practiceFormatPoolCount(practiceFormat, formats);
+  const boardPool = practiceFormatPoolCount(practiceFormat, boardFormats ?? formats);
+  const formatGuidance =
+    formatMode && formatPool === 0 && boardPool != null
+      ? practiceFormatEmptyGuidance({
+          format: practiceFormat,
+          subjectId,
+          scopeCount: 0,
+          boardCount: boardPool,
+          ngnLabel,
+          fieldId,
+        })
+      : null;
   const activeArea = blueprintAreaId
     ? coverageChips.find((chip) => chip.domainId === blueprintAreaId)
     : undefined;
@@ -244,6 +265,7 @@ export function QuestionBankSetup({
           totalActive={totalActive}
           countsLoading={countsLoading}
           ngnLabel={ngnLabel}
+          subjectId={activeArea ? null : subjectId}
           lockToAll={Boolean(activeArea)}
         />
       ) : null}
@@ -316,6 +338,21 @@ export function QuestionBankSetup({
           <div>
             <p className={cn(qbUi.sectionHint, "mb-3 px-0.5")}>Number of Questions</p>
             {countOptions.length === 0 ? (
+              countsLoading ? (
+                <p className="px-0.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]" role="status">
+                  Checking the bank…
+                </p>
+              ) : formatGuidance ? (
+                <PracticeFormatEmptyNotice
+                  title={formatGuidance.title}
+                  detail={formatGuidance.detail}
+                  actionLabel={formatGuidance.actionLabel}
+                  onAction={() => {
+                    if (formatGuidance.action === "mixed") onPracticeMixedTopics?.();
+                    else onPracticeAllQuestions?.();
+                  }}
+                />
+              ) : (
               <div className="space-y-2 text-center" role="status">
                 <p className="text-[12px] text-amber-800">
                   {validation.message ??
@@ -335,6 +372,7 @@ export function QuestionBankSetup({
                   </button>
                 ) : null}
               </div>
+              )
             ) : (
               <QuestionBankCountWheel
                 options={countChoices.options}

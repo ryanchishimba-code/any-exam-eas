@@ -132,7 +132,13 @@ describe("student eligibility", () => {
       row({
         id: `case-${index}`,
         itemType: "case_study",
-        ngnPayload: { kind: "case_study", caseGroupId: "group-1", caseStep: index + 1 },
+        ngnPayload: {
+          kind: "matrix",
+          caseGroupId: "group-1",
+          caseStep: index + 1,
+          rows: ["Low SpO2"],
+          columns: ["Intervene now"],
+        },
       })
     );
     const incomplete = assessStudentEligibility(members[0]!, {

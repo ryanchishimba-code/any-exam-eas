@@ -15,7 +15,9 @@ import {
   ngnStyleLabel,
   parsePracticeFormat,
   practiceFormatCountOptions,
+  practiceFormatEmptyGuidance,
   practiceFormatPoolCount,
+  practiceFormatScopeCounts,
   practiceFormatTag,
   retainItemsForPracticeFormat,
   tagsForStoredAttempt,
@@ -137,21 +139,37 @@ describe("deliberate format subject wiring", () => {
     expect(qs!.get("subjectId")).not.toBe("__mixed__");
   });
 
-  it("refuses mixed scope and a blank topic for NGN and cases", () => {
+  it("lets mixed topics sample the field and still refuses a blank topic", () => {
     expect(isDeliberateFormatTopic("__mixed__")).toBe(false);
     expect(isDeliberateFormatTopic("")).toBe(false);
     expect(isDeliberateFormatTopic("  ")).toBe(false);
     expect(isDeliberateFormatTopic(null)).toBe(false);
     expect(isDeliberateFormatTopic("management-of-care")).toBe(true);
 
-    expect(
-      buildDeliberateFormatQuestionQuery({
-        fieldId: "nursing",
-        subjectId: "__mixed__",
-        format: "ngn",
-        limit: 5,
-      })
-    ).toBeNull();
+    const mixed = buildDeliberateFormatQuestionQuery({
+      fieldId: "nursing",
+      subjectId: "__mixed__",
+      format: "ngn",
+      limit: 5,
+    });
+    expect(mixed).not.toBeNull();
+    expect(mixed!.get("subjectId")).toBe("__mixed__");
+    expect(mixed!.get("format")).toBe("ngn");
+    expect(mixed!.get("field")).toBe("nursing");
+    expect(mixed!.get("mode")).toBe("bank");
+    expect(mixed!.has("scope")).toBe(false);
+    expect(mixed!.has("mixed")).toBe(false);
+
+    const pharmacyCases = buildDeliberateFormatQuestionQuery({
+      fieldId: "pharmacy",
+      subjectId: "__mixed__",
+      format: "case",
+      limit: 10,
+    });
+    expect(pharmacyCases!.get("subjectId")).toBe("__mixed__");
+    expect(pharmacyCases!.get("format")).toBe("case");
+    expect(pharmacyCases!.has("scope")).toBe(false);
+
     expect(
       buildDeliberateFormatQuestionQuery({
         fieldId: "nursing",
@@ -173,7 +191,7 @@ describe("deliberate format subject wiring", () => {
     expect(cases?.has("mixed")).toBe(false);
   });
 
-  it("blocks Start when mixed topics is selected and allows a real topic", () => {
+  it("starts mixed NGN and case sets from the field pool and blocks a blank topic", () => {
     expect(
       validatePracticeFormatSession({
         format: "ngn",
@@ -182,10 +200,7 @@ describe("deliberate format subject wiring", () => {
         subjectId: "__mixed__",
         ngnLabel: "NGN",
       })
-    ).toMatchObject({
-      ok: false,
-      message: "Pick one topic for this NGN set. Mixed topics is not available.",
-    });
+    ).toEqual({ ok: true, maxAvailable: 842 });
 
     expect(
       validatePracticeFormatSession({
@@ -193,8 +208,18 @@ describe("deliberate format subject wiring", () => {
         questionCount: 5,
         formats,
         subjectId: "__mixed__",
-      }).message
-    ).toBe("Pick one topic for this case set. Mixed topics is not available.");
+      })
+    ).toEqual({ ok: true, maxAvailable: 12 });
+
+    expect(
+      validatePracticeFormatSession({
+        format: "ngn",
+        questionCount: 5,
+        formats: { mcq: 100, ngn: 0, case: 4 },
+        subjectId: "__mixed__",
+        ngnLabel: "NGN-style",
+      })
+    ).toMatchObject({ ok: false, emptyPool: true, maxAvailable: 0 });
 
     expect(
       validatePracticeFormatSession({
@@ -223,6 +248,114 @@ describe("deliberate format subject wiring", () => {
         subjectId: "__mixed__",
       })
     ).toEqual({ ok: true });
+  });
+
+  it("scopes the displayed pool to the topic the session will serve", () => {
+    const field = { mcq: 5000, ngn: 20, case: 24 };
+    const topicFormats = {
+      "management-of-care": { mcq: 40, ngn: 2, case: 0 },
+      cardiology: { mcq: 10, ngn: 0, case: 6 },
+    };
+    expect(
+      practiceFormatScopeCounts({
+        subjectId: "__mixed__",
+        formats: field,
+        topicFormats,
+      })
+    ).toEqual(field);
+    expect(
+      practiceFormatPoolCount(
+        "ngn",
+        practiceFormatScopeCounts({
+          subjectId: "management-of-care",
+          formats: field,
+          topicFormats,
+        })
+      )
+    ).toBe(2);
+    expect(
+      practiceFormatPoolCount(
+        "case",
+        practiceFormatScopeCounts({
+          subjectId: "cardiology",
+          formats: field,
+          topicFormats,
+        })
+      )
+    ).toBe(6);
+    expect(
+      practiceFormatScopeCounts({
+        subjectId: "empty-topic",
+        formats: field,
+        topicFormats,
+      })
+    ).toEqual({ mcq: 0, ngn: 0, case: 0 });
+  });
+
+  it("points an empty format at mixed topics or standard practice", () => {
+    expect(
+      practiceFormatEmptyGuidance({
+        format: "case",
+        subjectId: "__mixed__",
+        scopeCount: 0,
+        boardCount: 0,
+        ngnLabel: "NGN",
+      })
+    ).toMatchObject({
+      title: "Coming soon",
+      detail: "Unfolding case studies are being rebuilt with RN review. Coming soon.",
+      action: "all",
+      actionLabel: "Practice standard questions",
+    });
+
+    expect(
+      practiceFormatEmptyGuidance({
+        format: "ngn",
+        subjectId: "management-of-care",
+        scopeCount: 0,
+        boardCount: 20,
+        ngnLabel: "NGN-style",
+      })
+    ).toMatchObject({
+      title: "No NGN-style items in this topic",
+      action: "mixed",
+      actionLabel: "Practice mixed topics",
+    });
+
+    expect(
+      practiceFormatEmptyGuidance({
+        format: "ngn",
+        subjectId: "__mixed__",
+        scopeCount: 0,
+        boardCount: 0,
+        ngnLabel: "NGN",
+        fieldId: "nursing",
+      })?.detail
+    ).toBe("Next Gen (NGN) case studies are being rebuilt with RN review. Coming soon.");
+
+    expect(
+      practiceFormatEmptyGuidance({
+        format: "case",
+        subjectId: "__mixed__",
+        scopeCount: 0,
+        boardCount: 0,
+        ngnLabel: "NGN-style",
+        fieldId: "pharmacy",
+      })
+    ).toMatchObject({
+      title: "Coming soon",
+      detail: "Case studies are being rebuilt with clinician review. Coming soon.",
+      actionLabel: "Practice standard questions",
+    });
+
+    expect(
+      practiceFormatEmptyGuidance({
+        format: "ngn",
+        subjectId: "__mixed__",
+        scopeCount: 20,
+        boardCount: 20,
+      })
+    ).toBeNull();
   });
 });
 

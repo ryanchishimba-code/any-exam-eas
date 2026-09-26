@@ -56,6 +56,7 @@ export async function GET(req: Request) {
       counts,
       total,
       formats: null,
+      topicFormats: null,
       categories: [],
       categoryLabel: null,
       definition: ACTIVE_QUESTION_DEFINITION,
