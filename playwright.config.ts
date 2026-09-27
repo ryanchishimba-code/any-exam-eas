@@ -81,8 +81,18 @@ export default defineConfig({
     // Public marketing ATF — no auth/DB. Covers 390px overflow + board-hub hero.
     {
       name: "marketing",
-      testMatch: /landing\.spec\.ts/,
-      use: { ...devices["Desktop Chrome"] },
+      testMatch: /(?:landing|mobile-header)\.spec\.ts/,
+      use: {
+        ...devices["Desktop Chrome"],
+        ...(process.env.PLAYWRIGHT_CHROME_PATH
+          ? {
+              launchOptions: {
+                executablePath: process.env.PLAYWRIGHT_CHROME_PATH,
+                args: ["--no-sandbox", "--disable-dev-shm-usage"],
+              },
+            }
+          : {}),
+      },
     },
     {
       name: "marketing-mobile",

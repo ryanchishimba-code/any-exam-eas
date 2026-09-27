@@ -1,8 +1,5 @@
-import {
-  ACTIVE_QUESTION_DEFINITION,
-  type FormatCounts,
-  type InventoryCategoryCount,
-} from "@/lib/inventory/active-questions";
+import type { FormatCounts, InventoryCategoryCount } from "@/lib/inventory/active-questions";
+import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/question-definition";
 
 /** Client payload for per-topic active counts — shared by React Query and prefetch. */
 export type SubjectCountsClient = {
