@@ -93,7 +93,7 @@ export function buildHomeMetadata(
   const description = enforceMetaDescription(
     count
       ? `${count} active questions with Blueprint Roadmaps & mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. ${formatTrialLabel()} · no payment method required.`
-      : `Blueprint Roadmaps and mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP and NPTE-PT. ${formatTrialLabel()} · no payment method required.`,
+      : `Blueprint Roadmaps and mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP and NPTE-PT. ${formatTrialLabel()} · no payment method required. One plan covers six boards.`,
     "home"
   );
   const url = getSiteUrl();

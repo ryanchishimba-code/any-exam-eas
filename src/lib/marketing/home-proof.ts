@@ -11,7 +11,7 @@ import type { QuestionBankCountsSnapshot } from "@/lib/marketing/question-bank-c
 import { formatMonthlyPrice } from "@/lib/site";
 
 export type HomeProofFact = {
-  id: "questions" | "reviewer" | "ngn" | "price";
+  id: "questions" | "reviewer" | "price";
   text: string;
 };
 
@@ -43,7 +43,7 @@ export function siteCountsFromSnapshot(
 /**
  * Proof strip under the homepage hero.
  * Every number comes from `siteQuestionCounts` in counts.ts.
- * Omits the question total and the NGN line when that fact is not in the snapshot.
+ * Omits the question total when the snapshot has no scored items.
  */
 export function buildHomeProofFacts(site: SiteQuestionCounts | null): HomeProofFact[] {
   const facts: HomeProofFact[] = [];
@@ -59,20 +59,13 @@ export function buildHomeProofFacts(site: SiteQuestionCounts | null): HomeProofF
   if (reviewer) {
     facts.push({
       id: "reviewer",
-      text: `NCLEX items reviewed by ${reviewer.displayName}`,
-    });
-  }
-
-  if (site && site.boards.nclex.caseStudies > 0) {
-    facts.push({
-      id: "ngn",
-      text: "NGN case studies included",
+      text: `NCLEX reviewed by ${reviewer.displayName}`,
     });
   }
 
   facts.push({
     id: "price",
-    text: `${formatMonthlyPrice("pro")}/mo covers all six boards`,
+    text: `${formatMonthlyPrice("pro")}/mo`,
   });
 
   return facts;

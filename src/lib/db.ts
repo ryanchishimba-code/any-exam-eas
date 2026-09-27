@@ -62,12 +62,25 @@ export function getSql(): NeonSql {
  * Reusable Neon HTTP `sql` client.
  * Lazy — connection string is resolved on first use (safe on Vercel cold starts).
  */
+const SQL_INSPECT_PROPS = new Set<string | symbol>([
+  "$$typeof",
+  "prototype",
+  "name",
+  "length",
+  "displayName",
+  "then",
+]);
+
 export const sql: NeonSql = new Proxy(function sqlTag() {} as unknown as NeonSql, {
   apply(_target, _thisArg, argArray) {
     const client = getSql() as unknown as (...args: unknown[]) => unknown;
     return client(...argArray);
   },
-  get(_target, prop) {
+  get(target, prop, receiver) {
+    // React Refresh and bundlers inspect exports. Do not open a connection for that.
+    if (typeof prop === "symbol" || SQL_INSPECT_PROPS.has(prop)) {
+      return Reflect.get(target, prop, receiver);
+    }
     const client = getSql() as unknown as Record<string | symbol, unknown>;
     const value = client[prop];
     return typeof value === "function"

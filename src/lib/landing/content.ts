@@ -152,11 +152,10 @@ export const HOME_HERO_BOARDS_EYEBROW =
   "NCLEX-RN · NAPLEX · USMLE · PANCE · FNP · NPTE";
 
 /**
- * Homepage subhead. Short on purpose so the trial line can sit above the fold.
+ * Homepage subhead. At most eight words so the trial sentence can sit on its own line.
  * The exact trial sentence stays on formatPricingCheckoutTrialOffer.
  */
-export const HOME_HERO_SHORT_SUBLINE =
-  "NCLEX and five other boards. A daily set, rationales, and questions you can try first.";
+export const HOME_HERO_SHORT_SUBLINE = "NCLEX and five other boards.";
 
 /** Primary signup destination — Pro monthly is the default conversion path. */
 export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=monthly&tier=pro";

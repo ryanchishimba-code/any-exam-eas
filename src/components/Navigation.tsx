@@ -20,7 +20,6 @@ import { ROUTES, EXAM_NAV_ITEMS } from "@/lib/routes";
 import { LANDING_TRIAL_HREF, landingTrialHrefForExam } from "@/lib/landing/content";
 import { marketingExamKeyFromPath } from "@/lib/marketing/exam-hub";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { formatTrialCtaLabel } from "@/lib/site";
 
 // Only signed-in visitors ever see this, and it needs framer-motion for its
 // menu. Importing it statically put that dependency in the entry chunk for
@@ -34,9 +33,9 @@ const AvatarDropdown = dynamic(
 type NavLink = { href: string; label: string };
 
 const guestLinks: NavLink[] = [
-  { href: ROUTES.home, label: "Home" },
-  { href: ROUTES.toolkit, label: "Toolkit" },
   { href: ROUTES.pricing, label: "Pricing" },
+  { href: ROUTES.faq, label: "FAQ" },
+  { href: ROUTES.howQuestionsAreReviewed, label: "Review" },
   { href: ROUTES.about, label: "About" },
 ];
 
@@ -197,7 +196,7 @@ export function Navigation() {
                 <span>Sign in</span>
               </LoginModalTrigger>
               <Link href={guestTrialHref} className="aee-nav-cta">
-                {formatTrialCtaLabel()}
+                Start free trial
               </Link>
             </div>
           )}
@@ -271,7 +270,7 @@ export function Navigation() {
                     className="aee-nav-cta block py-3 text-center text-sm"
                     onClick={closeMobile}
                   >
-                    {formatTrialCtaLabel()}
+                    Start free trial
                   </Link>
                 </div>
               )}

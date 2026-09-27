@@ -66,29 +66,18 @@ describe("homepage proof facts", () => {
     const facts = buildHomeProofFacts(siteQuestionCounts(FIXTURE));
     const reviewer = CLINICAL_REVIEWERS.find((person) => person.id === "nursing");
     expect(facts.map((fact) => fact.text)).toContain(
-      `NCLEX items reviewed by ${reviewer?.displayName}`
+      `NCLEX reviewed by ${reviewer?.displayName}`
     );
-    expect(facts.map((fact) => fact.text)).toContain("NGN case studies included");
-    expect(facts.map((fact) => fact.text)).toContain(
-      `${formatMonthlyPrice("pro")}/mo covers all six boards`
-    );
+    expect(facts.some((fact) => fact.id === "ngn")).toBe(false);
+    expect(facts.map((fact) => fact.text)).toContain(`${formatMonthlyPrice("pro")}/mo`);
     const joined = facts.map((fact) => fact.text).join(" ");
     expect(joined).not.toMatch(/pass rate|% passed|stars|users/i);
     expect(reviewer?.displayName).toMatch(/Ileen Chishimba, RN/);
   });
 
-  it("omits the NGN line when NCLEX has no case studies", () => {
-    const boards = {
-      ...FIXTURE,
-      nclex: boardQuestionUnits({
-        slug: "nclex",
-        bankItems: 100,
-        formats: { mcq: 100, ngn: 0, case: 0 },
-      }),
-    };
-    const facts = buildHomeProofFacts(siteQuestionCounts(boards));
-    expect(facts.some((fact) => fact.id === "ngn")).toBe(false);
-    expect(facts.some((fact) => fact.id === "questions")).toBe(true);
+  it("keeps the strip to the question total, the nursing reviewer, and the price", () => {
+    const facts = buildHomeProofFacts(siteQuestionCounts(FIXTURE));
+    expect(facts.map((fact) => fact.id)).toEqual(["questions", "reviewer", "price"]);
   });
 
   it("omits bank facts when the snapshot is degraded", () => {

@@ -56,7 +56,8 @@ describe("homepage hero copy", () => {
   it("leads the homepage eyebrow with NCLEX and keeps the subhead short", () => {
     expect(HOME_HERO_BOARDS_EYEBROW.startsWith("NCLEX-RN")).toBe(true);
     expect(HOME_HERO_BOARDS_EYEBROW).toMatch(/NAPLEX/);
-    expect(HOME_HERO_SHORT_SUBLINE.length).toBeLessThan(120);
+    expect(HOME_HERO_SHORT_SUBLINE.split(/\s+/).filter(Boolean)).toHaveLength(5);
+    expect(HOME_HERO_SHORT_SUBLINE.split(/\s+/).filter(Boolean).length).toBeLessThanOrEqual(8);
     expect(HOME_HERO_SHORT_SUBLINE).toMatch(/NCLEX/);
     expect(HOME_HERO_SHORT_SUBLINE).not.toMatch(/27\.99|no payment method/i);
   });
