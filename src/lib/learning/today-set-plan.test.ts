@@ -48,6 +48,7 @@ vi.mock("@/lib/prisma", () => ({
   prisma: {
     userPreference: {
       findUnique: vi.fn(async () => ({ metadata: null })),
+      upsert: vi.fn(async () => ({})),
     },
     questionMastery: {
       findMany: vi.fn(async () => []),

@@ -1,6 +1,11 @@
 import { prisma } from "@/lib/prisma";
 import { isTourSchemaGap } from "@/lib/onboarding/tour-record";
-import { mergeDailyHabitDay, utcDateKey } from "@/lib/learning/today-set";
+import {
+  mergeDailyHabitDay,
+  mergeStoredTodaySet,
+  utcDateKey,
+  type StoredTodaySet,
+} from "@/lib/learning/today-set";
 import type { ExamSlug } from "@/types/edtech";
 
 export async function recordDailyHabitDay(
@@ -44,5 +49,53 @@ export async function recordDailyHabitDay(
       );
     }
     return { ok: false, persisted: false };
+  }
+}
+
+export async function readTodaySetMetadata(userId: string): Promise<unknown> {
+  try {
+    const row = await prisma.userPreference.findUnique({
+      where: { userId },
+      select: { metadata: true },
+    });
+    return row?.metadata ?? null;
+  } catch (error) {
+    if (!isTourSchemaGap(error)) {
+      console.warn(
+        "[today-set] metadata read failed:",
+        error instanceof Error ? error.message : error
+      );
+    }
+    return null;
+  }
+}
+
+/** Remember today's ids so a refresh does not reshuffle and tomorrow can skip them. */
+export async function persistTodaySetSnapshot(
+  userId: string,
+  fieldId: string,
+  snapshot: StoredTodaySet
+): Promise<void> {
+  try {
+    const metadata = await readTodaySetMetadata(userId);
+    const next = mergeStoredTodaySet(metadata, fieldId, snapshot);
+    await prisma.userPreference.upsert({
+      where: { userId },
+      create: {
+        userId,
+        metadata: JSON.stringify(next),
+        updatedAt: new Date(),
+      },
+      update: {
+        metadata: JSON.stringify(next),
+      },
+    });
+  } catch (error) {
+    if (!isTourSchemaGap(error)) {
+      console.warn(
+        "[today-set] snapshot write failed:",
+        error instanceof Error ? error.message : error
+      );
+    }
   }
 }

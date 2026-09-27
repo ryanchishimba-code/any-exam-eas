@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useLayoutEffect, useState, type ReactNode } from "react";
 import { StartTodaySetButton } from "@/components/dashboard/StartTodaySetButton";
+import { browserStudyTimeZone } from "@/lib/learning/today-set";
 
 export type ServedTodayPreview = {
   mixLine: string | null;
@@ -56,6 +57,7 @@ export function TodaySessionProvider({
     const params = new URLSearchParams({
       field: fieldId,
       done: String(Math.max(0, Math.round(questionsDone) || 0)),
+      tz: browserStudyTimeZone(),
     });
     fetch(`/api/study/daily-set/preview?${params.toString()}`, {
       cache: "no-store",

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { isExamSlug } from "@/lib/edtech/exams";
+import { calendarDateKey, resolveStudyTimeZone } from "@/lib/learning/today-set";
 import { recordDailyHabitDay } from "@/lib/learning/today-set-preference";
 import { FIRST_LOGIN_TOUR_ID, markTourStatus, readTourGate } from "@/lib/onboarding/tour-preference";
 import type { TourDevice, TourStatus } from "@/lib/onboarding/tour-record";
@@ -42,6 +43,7 @@ export async function PATCH(req: Request) {
       examSlug?: unknown;
       completedSet?: unknown;
       targetMet?: unknown;
+      timeZone?: unknown;
     };
   };
 
@@ -59,6 +61,12 @@ export async function PATCH(req: Request) {
       examSlug,
       completedSet,
       targetMet,
+      date: calendarDateKey(
+        new Date(),
+        resolveStudyTimeZone(
+          typeof record.dailyHabit.timeZone === "string" ? record.dailyHabit.timeZone : null
+        )
+      ),
     });
     return NextResponse.json({
       ok: result.ok,

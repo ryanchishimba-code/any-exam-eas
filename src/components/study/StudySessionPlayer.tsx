@@ -34,7 +34,7 @@ import { SessionCompletionCard, SessionPersistGate } from "./SessionCompletionCa
 import { TodaySetEndCard } from "@/components/dashboard/TodaySetEndCard";
 import { CONVERSION_EVENTS, trackConversion } from "@/lib/analytics";
 import { isExamSlug } from "@/lib/edtech/exams";
-import { weakestTopicFromOutcomes } from "@/lib/learning/today-set";
+import { browserStudyTimeZone, weakestTopicFromOutcomes } from "@/lib/learning/today-set";
 import { buildSessionDomainBreakdown } from "@/lib/study/session-domain-breakdown";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import type {
@@ -243,7 +243,11 @@ export function StudySessionPlayer({
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        dailyHabit: { examSlug: todayMeta.examSlug, completedSet: true },
+        dailyHabit: {
+          examSlug: todayMeta.examSlug,
+          completedSet: true,
+          timeZone: browserStudyTimeZone(),
+        },
       }),
     }).catch(() => undefined);
   }, [inReview, questionList.length, saveState, setFinished, summary.accuracy, summary.correct, summary.total, todayMeta, todayWeakest?.topicId]);

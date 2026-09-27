@@ -26,6 +26,7 @@ export async function GET(req: Request) {
     }
     const doneRaw = Number(url.searchParams.get("done") ?? "0");
     const questionsDone = Number.isFinite(doneRaw) ? Math.max(0, Math.round(doneRaw)) : 0;
+    const timeZone = url.searchParams.get("tz");
 
     const { resolveQuestionBankFieldId, enforceQuestionBankFieldAccess } = await import(
       "@/lib/edtech/question-bank-scope"
@@ -44,6 +45,7 @@ export async function GET(req: Request) {
       fieldId,
       questionsDone,
       access: premium.access,
+      timeZone,
     });
 
     return NextResponse.json(

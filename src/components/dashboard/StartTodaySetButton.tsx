@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Loader2 } from "lucide-react";
+import { browserStudyTimeZone } from "@/lib/learning/today-set";
 import { stashDailySet } from "@/lib/learning/today-set-stash";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
@@ -30,7 +31,7 @@ export function StartTodaySetButton({
       const res = await fetch("/api/study/daily-set", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ field: fieldId }),
+        body: JSON.stringify({ field: fieldId, timeZone: browserStudyTimeZone() }),
       });
       const data = (await res.json().catch(() => ({}))) as {
         error?: string;
