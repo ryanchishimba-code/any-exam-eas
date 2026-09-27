@@ -66,7 +66,7 @@ describe("homepage proof facts", () => {
     const facts = buildHomeProofFacts(siteQuestionCounts(FIXTURE));
     const reviewer = CLINICAL_REVIEWERS.find((person) => person.id === "nursing");
     expect(facts.map((fact) => fact.text)).toContain(
-      `NCLEX items reviewed by ${reviewer?.displayName}`
+      `NCLEX content review led by ${reviewer?.displayName}`
     );
     expect(facts.map((fact) => fact.text)).toContain("NGN case studies included");
     expect(facts.map((fact) => fact.text)).toContain(
@@ -114,7 +114,7 @@ describe("homepage price comparison", () => {
   it("states the public range and the monthly price, with no competitor names", () => {
     const line = formatNclexPrepPriceComparison();
     expect(line).toBe(
-      "Most NCLEX prep courses cost $99 to $400+ up front. AnyExamEasy is $27.99 a month, cancel anytime."
+      "Other NCLEX prep we checked lists at $79 to $399 (public prices, Sep 27, 2026). AnyExamEasy is $27.99 a month, cancel anytime."
     );
     expect(line).not.toMatch(/Kaplan|Archer|UWorld|AMBOSS/i);
     const source = readFileSync(

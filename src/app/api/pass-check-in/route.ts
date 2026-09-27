@@ -48,6 +48,7 @@ export async function POST(req: Request) {
         result,
         quote: stored.quote,
         shareQuoteConsent: stored.shareQuoteConsent,
+        quoteConsentVersion: stored.quoteConsentVersion,
       },
     });
     return NextResponse.json({ ok: true });

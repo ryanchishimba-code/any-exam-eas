@@ -83,4 +83,16 @@ describe("pricing and checkout offer copy", () => {
     expect(screen.queryByText(/then \$27\.99\/mo/)).not.toBeInTheDocument();
     expect(screen.queryByText(/no card/i)).not.toBeInTheDocument();
   });
+
+  it("does not show the trial line on a paid subscribe summary, even at $0", () => {
+    render(
+      <CheckoutOrderSummary
+        pricing={buildPlanPricing("subscribe", "pro", "monthly", 100)}
+        discount={null}
+        interval="monthly"
+      />
+    );
+
+    expect(screen.queryByText(/no payment method required/i)).not.toBeInTheDocument();
+  });
 });

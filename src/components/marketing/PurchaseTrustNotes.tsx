@@ -11,18 +11,23 @@ import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 export function PurchaseTrustNotes({
   className = "",
   tone = "default",
+  showTrialOffer = true,
 }: {
   className?: string;
   tone?: "default" | "onDark";
+  /** Paid checkout must not repeat the card-free trial line. */
+  showTrialOffer?: boolean;
 }) {
   const ink = tone === "onDark" ? "text-white" : "text-[var(--color-ink)]";
   const muted = tone === "onDark" ? "text-white/75" : "text-[var(--color-ink-muted)]";
   const link = tone === "onDark" ? "text-white underline" : "text-[var(--color-accent)] hover:underline";
   return (
     <div className={`mx-auto max-w-xl text-center ${className}`} data-purchase-trust>
-      <p className={`text-sm font-medium tracking-[-0.01em] ${ink}`}>
-        {formatPricingCheckoutTrialOffer()}
-      </p>
+      {showTrialOffer ? (
+        <p className={`text-sm font-medium tracking-[-0.01em] ${ink}`}>
+          {formatPricingCheckoutTrialOffer()}
+        </p>
+      ) : null}
       <p className={`mt-2 text-sm leading-relaxed ${muted}`}>
         Cancel anytime in Settings. Card payments go through Stripe — we do not store full card
         numbers. Paid charges are non-refundable except where the law requires a refund, and access

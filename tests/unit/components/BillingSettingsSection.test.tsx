@@ -80,6 +80,38 @@ describe("BillingSettingsSection pay-once view", () => {
     expect(screen.queryByText("Reactivate subscription")).toBeNull();
   });
 
+  it("offers Start free trial only when the card-free trial is still available", async () => {
+    mockStatus({
+      hasAccess: false,
+      status: "inactive",
+      needsPaymentMethod: true,
+      reactivation: { method: "checkout", trialAvailable: true, checkoutPlan: "trial" },
+    });
+
+    render(<BillingSettingsSection />);
+
+    const trial = await screen.findByRole("link", { name: "Start free trial" });
+    expect(trial.getAttribute("href")).toContain("plan=trial");
+    expect(screen.queryByRole("link", { name: "Subscribe" })).toBeNull();
+  });
+
+  it("offers Subscribe instead of a trial after the card-free trial is used", async () => {
+    mockStatus({
+      hasAccess: false,
+      status: "trial_expired",
+      needsPaymentMethod: true,
+      reactivation: { method: "checkout", trialAvailable: false, checkoutPlan: "subscribe" },
+    });
+
+    render(<BillingSettingsSection />);
+
+    const subscribe = await screen.findByRole("link", { name: "Subscribe" });
+    expect(subscribe.getAttribute("href")).toContain("plan=subscribe");
+    expect(subscribe.getAttribute("href")).not.toContain("plan=trial");
+    expect(screen.queryByRole("link", { name: "Start free trial" })).toBeNull();
+    expect(screen.queryByText(/no payment method required/i)).toBeNull();
+  });
+
   it("still shows the plan switcher for a recurring subscriber", async () => {
     mockStatus({ hasStripeSubscription: true });
 

@@ -95,7 +95,7 @@ export function BillingIntervalDropdown({
                 {optionLabel(tier, value)}
               </span>
               {plan.recommended && (
-                <span className="rounded-full bg-[var(--color-accent)] px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide text-white">
+                <span className="rounded-full bg-[#0f766e] px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide text-white">
                   Best value
                 </span>
               )}

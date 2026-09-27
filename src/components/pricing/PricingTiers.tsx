@@ -183,7 +183,7 @@ export function PricingTiers({ className }: PricingTiersProps) {
           ? showPaymentMode && paymentMode === "manual"
             ? ONE_TIME_POLICY_SHORT
             : renewalTermsLine("pro", interval)
-          : `${formatPricingCheckoutTrialOffer()}. Payments are non-refundable (except where required by law). Quality issues: contact support within 30 days — we will make the item right.`}
+          : `${formatPricingCheckoutTrialOffer()}. Payments are non-refundable (except where required by law). Found a flawed question? Report it and we'll review it. This is not a refund.`}
       </p>
 
       <PaymentMethodBadges className="justify-center" size="sm" />

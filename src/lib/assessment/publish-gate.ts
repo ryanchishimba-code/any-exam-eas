@@ -1,7 +1,11 @@
 import type { NgnCase, NgnItem, SourceRef } from "@/lib/assessment/types";
 import { validateItemForPublish } from "@/lib/assessment/validators/ngn";
 
-export const OWNER_ATTESTATION_COMMENT = "owner attestation";
+/** Owner sign-off. This is not an RN clinical review. */
+export const OWNER_ATTESTATION_COMMENT = "owner attestation (not RN review)";
+
+/** Earlier rows used this comment with licenseType RN. Still recognized so old sign-offs stay valid. */
+export const LEGACY_OWNER_ATTESTATION_COMMENT = "owner attestation";
 
 /** Written on flag_resolutions when the owner accepts an open rn_flag. The flag text stays on the item. */
 export const OWNER_FLAG_ACCEPTANCE = "accepted by owner";
@@ -17,15 +21,15 @@ export type ReviewGateInput = {
   flagResolutions?: Record<string, string> | null;
 };
 
-/** One RN owner sign-off. License number and state may be unknown. */
+/** One owner sign-off. License number and state may be unknown. Not an RN review. */
 export function isOwnerAttestation(review: ReviewGateInput): boolean {
   const name = review.reviewerName?.trim() || review.reviewerUserId.trim();
-  return (
-    review.decision === "approve" &&
-    review.licenseType?.trim() === "RN" &&
-    review.comments?.trim() === OWNER_ATTESTATION_COMMENT &&
-    name.length > 0
-  );
+  const comment = review.comments?.trim() ?? "";
+  const license = review.licenseType?.trim() ?? "";
+  const current = comment === OWNER_ATTESTATION_COMMENT && license.length > 0;
+  const legacy =
+    comment === LEGACY_OWNER_ATTESTATION_COMMENT && license === "RN";
+  return review.decision === "approve" && name.length > 0 && (current || legacy);
 }
 
 function licensePresent(review: ReviewGateInput): boolean {
@@ -84,8 +88,8 @@ function ownerAttestationCount(reviews: readonly ReviewGateInput[]): number {
 
 /**
  * Validators must be green, and every rn_flag needs a resolution on an approving review.
- * The review half opens with two distinct licensed approvals, or with one RN owner
- * attestation (license number and state may be null). Accepting a flag records it on
+ * The review half opens with two distinct licensed approvals, or with one owner
+ * attestation (not RN review; license number and state may be null). Accepting a flag records it on
  * the review; it does not change the item's rn_flags.
  */
 export function canPublish(

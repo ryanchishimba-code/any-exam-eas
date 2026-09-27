@@ -8,8 +8,17 @@ import {
 } from "@/lib/stripe";
 import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { isStripeConfigured } from "@/lib/payments";
-import { hasConsumedTrial } from "@/lib/trial-eligibility";
-import { parseBillingInterval } from "@/lib/billing-plans";
+import {
+  formatPlanUsd,
+  getBillingPlanTier,
+  parseBillingInterval,
+  renewalIntervalWord,
+} from "@/lib/billing-plans";
+import {
+  PAID_RENEWAL_CONSENT_VERSION,
+  paidRenewalConsentText,
+  requestClientIp,
+} from "@/lib/marketing/legal-copy";
 import {
   isPaymentModeChoiceEnabled,
   parsePaymentMode,
@@ -49,7 +58,19 @@ export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const embedded = body?.embedded === true;
   const reactivating = body?.reactivate === true;
-  let plan = body?.plan === "trial" ? ("trial" as const) : ("subscribe" as const);
+  // Card-free trials never open a Stripe session. Signup and /checkout (without
+  // plan=subscribe) start the app trial. Existing Stripe trials still convert below.
+  if (body?.plan === "trial") {
+    return NextResponse.json(
+      {
+        error:
+          "Free trials do not use checkout. Start the card-free trial from signup.",
+        code: "CARD_FREE_TRIAL_ONLY",
+      },
+      { status: 400 }
+    );
+  }
+  const plan = "subscribe" as const;
   const tier = parseSubscriptionTier(body?.tier ?? sub?.planTier);
   const interval = parseBillingInterval(body?.interval ?? sub?.planInterval);
   // Pay-once is only honored when the choice is live and the user is buying, not trialing.
@@ -85,29 +106,6 @@ export async function POST(req: Request) {
     );
   }
 
-  // Already on a Stripe trial — allow paid upgrade (convert), block starting another trial.
-  if (
-    access.status === "trialing" &&
-    isUsableStripeSubscriptionId(sub?.stripeSubscriptionId) &&
-    plan === "trial" &&
-    !reactivating
-  ) {
-    return NextResponse.json(
-      {
-        error:
-          "Your trial is already active. Choose Upgrade to Pro to start paid billing now.",
-        code: "TRIAL_ALREADY_ACTIVE",
-      },
-      { status: 400 }
-    );
-  }
-
-  if (session.user.email && (reactivating || plan === "trial")) {
-    if (await hasConsumedTrial(session.user.email)) {
-      plan = "subscribe";
-    }
-  }
-
   try {
     const { stripe: stripeClient } = await import("@/lib/stripe");
     const prices = await import("@/lib/stripe-prices");
@@ -131,15 +129,6 @@ export async function POST(req: Request) {
       message,
     });
     return NextResponse.json({ error: message }, { status: 503 });
-  }
-
-  if (plan === "trial" && session.user.email && !reactivating) {
-    if (await hasConsumedTrial(session.user.email)) {
-      return NextResponse.json(
-        { error: "This email has already used a free trial. Subscribe at the standard rate instead." },
-        { status: 400 }
-      );
-    }
   }
 
   let stripeCouponId: string | null = null;
@@ -185,6 +174,25 @@ export async function POST(req: Request) {
     }
   }
 
+  const recurringPaid = plan === "subscribe" && !oneTime;
+  if (recurringPaid && body?.renewalConsent !== true) {
+    return NextResponse.json(
+      { error: "Confirm the renewal terms before paying." },
+      { status: 400 }
+    );
+  }
+  const renewalConsent = recurringPaid
+    ? {
+        version: PAID_RENEWAL_CONSENT_VERSION,
+        acceptedAt: new Date().toISOString(),
+        ip: requestClientIp(req),
+        text: paidRenewalConsentText(
+          formatPlanUsd(getBillingPlanTier(tier, interval).totalUsd),
+          renewalIntervalWord(interval)
+        ),
+      }
+    : null;
+
   // Mid-trial upgrade with Stripe sub + card on file: end trial now and start billing.
   // Pay-once skips this — converting the trial would leave a renewing subscription.
   if (
@@ -201,6 +209,7 @@ export async function POST(req: Request) {
         interval,
         stripeCouponId,
         promoCode,
+        renewalConsent,
       });
       return NextResponse.json({
         upgraded: true,
@@ -232,6 +241,7 @@ export async function POST(req: Request) {
     paymentMode,
     stripeCouponId,
     promoCode,
+    renewalConsent,
     successUrl: `${origin}${ROUTES.dashboard}?checkout=success`,
     // Hosted Checkout cancel should return to plan review, not the marketing page.
     cancelUrl: `${origin}/checkout?cancelled=1&plan=${plan}&tier=${tier}&interval=${interval}${
