@@ -50,7 +50,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     keywords: [
       "UWorld alternative",
       "UWorld alternative 2026",
-      "best value multi-exam prep",
+      "affordable multi-exam prep",
       "affordable board exam Qbank",
       "Blueprint Roadmap board prep",
     ],
@@ -125,7 +125,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       "NCLEX prep comparison — NGN types, clinical judgment, Roadmaps, Deep Dives, Full Exams, pricing, and when a multi-exam plan wins.",
     examTags: ["nclex"],
     primaryExam: "nclex",
-    keywords: ["NCLEX vs UWorld", "UWorld NCLEX alternative", "best NCLEX Qbank 2026"],
+    keywords: ["NCLEX vs UWorld", "UWorld NCLEX alternative", "NCLEX Qbank 2026"],
     readingMinutes: 8,
     intro:
       "Both platforms can prepare you for NCLEX-RN — the decision comes down to NGN coverage, study workflow (Roadmaps + Deep Dives + Full Exams), and whether you need other board exams on the same subscription.",
@@ -322,9 +322,9 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   article({
     slug: "best-value-multi-exam-board-prep-2026",
     title: "Multi-Exam Board Prep: What One Plan Costs (2026)",
-    metaDescription: `Compare NCLEX, USMLE, NAPLEX, PANCE, FNP and NPTE costs — why one Pro plan from ${formatMonthlyPrice("pro")}/mo with Roadmaps and Deep Dives beats stacking QBanks.`,
+    metaDescription: `Compare NCLEX, USMLE, NAPLEX, PANCE, FNP and NPTE costs — one Pro plan from ${formatMonthlyPrice("pro")}/mo with Roadmaps and Deep Dives, instead of stacking QBanks.`,
     examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
-    keywords: ["best value multi-exam prep", "board exam subscription", "affordable board prep 2026"],
+    keywords: ["affordable multi-exam prep", "board exam subscription", "affordable board prep 2026"],
     readingMinutes: 7,
     intro:
       "Licensing exams rarely arrive one at a time. Dual-degree students, career changers, and clinicians adding certifications face a simple math problem: six separate QBanks or one integrated platform.",
@@ -364,7 +364,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       "NCLEX vs Archer",
       "Archer Review NCLEX alternative",
       "Archer vs AnyExamEasy",
-      "best NCLEX Qbank budget 2026",
+      "NCLEX Qbank budget 2026",
     ],
     readingMinutes: 8,
     intro:
@@ -438,7 +438,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       "NAPLEX vs RxPrep",
       "RxPrep alternative",
       "NAPLEX Qbank comparison 2026",
-      "best NAPLEX prep value",
+      "NAPLEX prep comparison",
     ],
     readingMinutes: 9,
     intro:

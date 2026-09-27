@@ -21,11 +21,18 @@ vi.mock("@/lib/analytics", () => ({
 const APPROVED = "5-day free trial · no payment method required · then $27.99/mo";
 
 describe("pricing and checkout offer copy", () => {
-  it("shows the approved trial line on the pricing card and drops the first-month promo", async () => {
+  it("keeps refund terms on the pricing card and drops the first-month promo", async () => {
     const user = userEvent.setup();
     render(<PricingTiers />);
 
-    expect(screen.getByText(APPROVED, { exact: false })).toBeInTheDocument();
+    const offer = screen.getByText(APPROVED);
+    expect(screen.getAllByText(APPROVED)).toHaveLength(1);
+    expect(offer.className).toContain("text-sm");
+    const trialButton = screen.getByRole("link", { name: /start your free trial/i });
+    const cancel = screen.getByText(/cancel anytime in settings/i);
+    expect(trialButton.compareDocumentPosition(offer) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(offer.compareDocumentPosition(cancel) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(screen.getByText(/payments are non-refundable/i)).toBeInTheDocument();
     expect(screen.queryByText(/no card/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/20% off first month/i)).not.toBeInTheDocument();
     expect(screen.getByText("Save 30%")).toBeInTheDocument();

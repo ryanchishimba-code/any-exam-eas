@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/trial-href";
 import { MARKETING_DARK_HERO_PATHS } from "@/lib/marketing/board-paths";
-import { formatPricingCheckoutTrialOffer, formatTrialCtaLabel } from "@/lib/site";
+import { formatTrialCtaLabel } from "@/lib/site";
 
 const HIDDEN_PREFIXES = [
   "/pricing",
@@ -22,8 +22,9 @@ const HIDDEN_PREFIXES = [
 ];
 
 /**
- * One primary CTA and the exact offer line, in flow under the nav, on public
- * pages that do not already open with the dark hero or the pricing fold.
+ * Trial CTA under the nav on public pages that do not already open with the
+ * dark hero or the pricing fold. The offer sentence stays next to that page's
+ * primary CTA (and in the footer), not in this banner.
  */
 export function PublicFoldOffer() {
   const pathname = usePathname() || "/";
@@ -41,10 +42,7 @@ export function PublicFoldOffer() {
       data-public-offer
       style={{ marginTop: "var(--nav-height)" }}
     >
-      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-5 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <p className="min-w-0 text-[13px] font-medium leading-snug tracking-[-0.015em] sm:text-sm" data-offer-line>
-          {formatPricingCheckoutTrialOffer()}
-        </p>
+      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-5 py-3 sm:flex-row sm:items-center sm:justify-end sm:px-6">
         <LandingCta
           href={LANDING_TRIAL_HREF}
           ctaName="public_fold_trial"

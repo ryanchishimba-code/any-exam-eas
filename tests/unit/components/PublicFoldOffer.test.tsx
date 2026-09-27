@@ -13,11 +13,11 @@ describe("PublicFoldOffer", () => {
     pathname.current = "/about";
   });
 
-  it("puts the exact offer line and one trial CTA on a plain public page", () => {
+  it("puts one trial CTA on a plain public page without repeating the offer line", () => {
     render(<PublicFoldOffer />);
     expect(
-      screen.getByText("5-day free trial · no payment method required · then $27.99/mo")
-    ).toBeInTheDocument();
+      screen.queryByText("5-day free trial · no payment method required · then $27.99/mo")
+    ).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: /start your free trial/i })).toHaveAttribute(
       "href",
       expect.stringContaining("/signup?plan=trial")

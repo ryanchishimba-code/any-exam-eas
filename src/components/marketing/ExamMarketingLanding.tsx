@@ -38,7 +38,6 @@ import { UsmleStepShowcaseLazy } from "@/components/marketing/ExamMarketingSecti
 import { testimonialsForBoard } from "@/lib/marketing/why-trust-it";
 import { ROUTES } from "@/lib/routes";
 import { boardReviewBadge } from "@/lib/marketing/legal-copy";
-import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 type Props = {
   examKey: ExamSeoKey;
@@ -149,11 +148,11 @@ export async function ExamMarketingLanding({
                 ? `${config.shortName} study guide, with the Qbank.`
                 : `${config.shortName} tools on one plan.`}
             </h2>
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
-              {studyGuide
-                ? `The ${config.shortName} study guide is included with the 5-day free trial. ${formatPricingCheckoutTrialOffer()}`
-                : formatPricingCheckoutTrialOffer()}
-            </p>
+            {studyGuide ? (
+              <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
+                The {config.shortName} study guide is included with the 5-day free trial.
+              </p>
+            ) : null}
             <ul className="mt-10 grid gap-4 sm:grid-cols-3" role="list">
               {productLinks.map((item) => (
                 <li key={item.href}>

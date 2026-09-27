@@ -104,7 +104,7 @@ export default async function PricingPage({
           ))}
         </ol>
 
-        <PurchaseTrustNotes className="mt-8" />
+        <PurchaseTrustNotes className="mt-8" showTrialOffer={false} />
         <p className="mx-auto mt-6 text-center text-sm">
           <Link href={ROUTES.howQuestionsAreReviewed} className="font-semibold text-[var(--color-accent)] hover:underline">
             How questions are built and reviewed

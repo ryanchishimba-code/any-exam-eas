@@ -187,6 +187,12 @@ export function PricingTiers({ className }: PricingTiersProps) {
         {isUpgrade ? "Continue to checkout" : TRIAL_CTA_LABEL}
       </Button>
 
+      {!isUpgrade ? (
+        <p className="text-center text-sm font-medium leading-snug text-[var(--color-ink)]">
+          {PRICING_TRIAL_OFFER_LINE}
+        </p>
+      ) : null}
+
       <CancelAnytimeNote
         hidden={Boolean(isUpgrade && showPaymentMode && paymentMode === "manual")}
       />
@@ -196,15 +202,7 @@ export function PricingTiers({ className }: PricingTiersProps) {
           ? showPaymentMode && paymentMode === "manual"
             ? ONE_TIME_POLICY_SHORT
             : renewalTermsLine("pro", interval)
-          : (
-            <>
-              {PRICING_TRIAL_OFFER_LINE}
-              <span className="mt-1 block">
-                Payments are non-refundable (except where required by law). Found a flawed question?
-                Report it and we&apos;ll review it. This is not a refund.
-              </span>
-            </>
-          )}
+          : "Payments are non-refundable (except where required by law). Found a flawed question? Report it and we'll review it. This is not a refund."}
       </p>
 
       <PaymentMethodBadges className="justify-center" size="sm" />

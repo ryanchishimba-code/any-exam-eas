@@ -120,7 +120,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       "Compare what makes high-quality NCLEX practice questions in 2026 — NGN formats, clinical judgment, and how AnyExamEasy bundles NCLEX with five other boards.",
     examTags: ["nclex"],
     primaryExam: "nclex",
-    keywords: ["best NCLEX practice questions 2026", "NCLEX question bank", "free NCLEX questions"],
+    keywords: ["NCLEX practice questions 2026", "NCLEX question bank", "free NCLEX questions"],
     readingMinutes: 7,
     intro:
       "The best NCLEX practice questions in 2026 test clinical judgment with Next Generation NCLEX (NGN) formats — not recall-only flashcards. Here's what to look for and how to study efficiently.",
@@ -215,7 +215,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       "What separates elite Step 2 CK practice questions from generic MCQs — vignette design, distractors, and affordable multi-exam prep.",
     examTags: ["usmle"],
     primaryExam: "usmle",
-    keywords: ["best USMLE Step 2 practice questions 2026", "Step 2 CK question bank"],
+    keywords: ["USMLE Step 2 practice questions 2026", "Step 2 CK question bank"],
     sections: [
       {
         heading: "Vignette quality matters",
@@ -277,7 +277,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       "NAPLEX prep in 2026: calculations, patient cases, and pharmacotherapy questions with a pharmacy blueprint Roadmap.",
     examTags: ["naplex"],
     primaryExam: "naplex",
-    keywords: ["best NAPLEX practice questions 2026", "NAPLEX question bank"],
+    keywords: ["NAPLEX practice questions 2026", "NAPLEX question bank"],
     sections: [
       {
         heading: "Balance math and clinical cases",
@@ -348,7 +348,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       "PANCE practice questions aligned to the NCCPA blueprint — systems vignettes, Roadmap tracking, and affordable prep.",
     examTags: ["pance"],
     primaryExam: "pance",
-    keywords: ["best PANCE practice questions 2026", "PANCE question bank"],
+    keywords: ["PANCE practice questions 2026", "PANCE question bank"],
     sections: [
       {
         heading: "NCCPA category coverage",
@@ -409,7 +409,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       "AANPCB FNP certification prep — primary care vignettes across Assess, Diagnose, Plan, and Evaluate domains.",
     examTags: ["aanp-fnp"],
     primaryExam: "aanp-fnp",
-    keywords: ["best AANP FNP practice questions 2026", "AANPCB FNP prep"],
+    keywords: ["AANP FNP practice questions 2026", "AANPCB FNP prep"],
     sections: [
       {
         heading: "Domain-balanced practice",
@@ -460,7 +460,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       "NPTE physical therapy board prep — FSBPT blueprint scenarios, MSK/neuro/cardiopulmonary focus, and timed exams.",
     examTags: ["npte-pt"],
     primaryExam: "npte-pt",
-    keywords: ["best NPTE practice questions 2026", "NPTE-PT question bank"],
+    keywords: ["NPTE practice questions 2026", "NPTE-PT question bank"],
     sections: [
       {
         heading: "Scenario-based clinical reasoning",

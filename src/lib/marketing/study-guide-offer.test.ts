@@ -22,6 +22,7 @@ describe("study guide offer copy", () => {
       expect(card.trialHref).not.toContain("/study-guide");
       expect(card.signInHref).toMatch(/^\/login\?callbackUrl=/);
       expect(card.body).toMatch(/bookmarks and highlights/i);
+      expect(card.body).not.toMatch(/no payment method required/);
     }
   });
 

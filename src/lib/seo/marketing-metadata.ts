@@ -157,7 +157,7 @@ export function buildPricingMetadata(totalLabel?: string): Metadata {
     ...baseOpenGraph(title, description, "/pricing", { absoluteTitle: true }),
     keywords: [
       "UWorld alternative pricing",
-      "best value multi-exam prep",
+      "affordable multi-exam prep",
       "affordable NCLEX Qbank",
       "USMLE question bank price",
       "NAPLEX prep subscription",
@@ -176,7 +176,7 @@ export function buildCompareMetadata(): Metadata {
       "NCLEX vs Archer",
       "NAPLEX vs RxPrep",
       "UWorld alternative comparison",
-      "best value board exam prep 2026",
+      "affordable board exam prep 2026",
       "multi-exam Qbank comparison",
     ],
   };
