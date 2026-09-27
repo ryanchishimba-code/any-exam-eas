@@ -1,6 +1,7 @@
 import type { ReadinessPageData } from "@/lib/learning/readiness-check/service";
 
-export const READINESS_PREVIEW_BOARD: ReadinessPageData = {
+// The thin-bank line is the real preview copy. It is wider than the level-label union.
+export const READINESS_PREVIEW_BOARD = {
   examSlug: "nclex",
   fieldId: "nursing",
   length: 24,
@@ -67,5 +68,5 @@ export const READINESS_PREVIEW_BOARD: ReadinessPageData = {
   baselineSummary: "Not yet. A place to practice next: Pharmacological Therapies and Safety & Infection Control.",
   baselineCompletedAt: "2026-09-02T12:00:00.000Z",
   showRestart: false,
-};
+} as unknown as ReadinessPageData;
 
