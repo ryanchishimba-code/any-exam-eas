@@ -1,6 +1,7 @@
 import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { TIER_ANNUAL_USD, TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
+import { withPriceAsOf } from "@/lib/marketing/legal-copy";
 import { formatMonthlyPrice } from "@/lib/site";
 
 /** Public competitor pricing — verify against vendor sites periodically. Jul 2026 */
@@ -44,7 +45,9 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     id: "uworld",
     name: "UWorld",
     tagline: "Gold-standard per-exam QBank",
-    pricingNote: "NCLEX from $139/30d · Step 2 CK from $349/30d · NAPLEX QBank from $299/60d — separate subscriptions",
+    pricingNote: withPriceAsOf(
+      "NCLEX from $139/30d · Step 2 CK from $349/30d · NAPLEX QBank from $299/60d — separate subscriptions"
+    ),
     strengths: [
       "Industry-leading rationales and NGN/CAT fidelity",
       "Self-assessments with their own readiness metrics",
@@ -61,7 +64,7 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     id: "archer",
     name: "Archer Review",
     tagline: "Budget NCLEX-focused prep",
-    pricingNote: "NCLEX QBank + CAT from $79/mo · Sure PASS combo from $159/mo",
+    pricingNote: withPriceAsOf("NCLEX QBank + CAT from $79/mo · Sure PASS combo from $159/mo"),
     strengths: [
       "Low entry price for NCLEX-only students",
       "Unlimited CAT practice tests",
@@ -78,7 +81,9 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     id: "kaplan",
     name: "Kaplan",
     tagline: "Live review + pass guarantee",
-    pricingNote: "Self-paced NCLEX from $349/6 mo · Live online from $549 · QBank-only from $99",
+    pricingNote: withPriceAsOf(
+      "Self-paced NCLEX from $349/6 mo · Live online from $549 · QBank-only from $99"
+    ),
     strengths: [
       "Live online classes and structured curriculum",
       "Pass guarantee on full prep courses (their product terms)",
@@ -95,7 +100,7 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     id: "rxprep",
     name: "RxPrep (UWorld Pharmacy)",
     tagline: "NAPLEX category leader",
-    pricingNote: "NAPLEX QBank from $299/60d · Full online course from $999/180d",
+    pricingNote: withPriceAsOf("NAPLEX QBank from $299/60d · Full online course from $999/180d"),
     strengths: [
       "Pharmacy-specific brand authority and calc-heavy QBank",
       "Video lectures and comprehensive course book",
@@ -134,7 +139,7 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
   {
     feature: "Monthly price (Pro)",
     anyExamEasy: `${formatMonthlyPrice("pro")}/mo — all 6 exams`,
-    competitor: "$79–$349+ per exam",
+    competitor: withPriceAsOf("$79–$349+ per exam"),
   },
   {
     feature: "Question volume",
@@ -164,12 +169,12 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
   {
     feature: "Free trial",
     anyExamEasy: `${TRIAL_DAYS}-day · ${TRIAL_LIFETIME_QUESTIONS} questions · no payment`,
-    competitor: "Limited demo or paid upfront",
+    competitor: "See each vendor's current trial terms",
   },
   {
     feature: "Quality commitment",
     anyExamEasy: `${SEO_LIVE_STATS.moneyBackDays}-day support window (not a refund)`,
-    competitor: "Rare on QBank-only plans",
+    competitor: "See each vendor's policy",
   },
 ];
 

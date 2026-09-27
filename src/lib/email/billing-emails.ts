@@ -4,7 +4,8 @@ import {
   isEmailConfigured,
   type EmailDeliveryResult,
 } from "@/lib/email/config";
-import { formatPlanUsd, getBillingPlanTier, parseBillingInterval } from "@/lib/billing-plans";
+import { formatPlanUsd, getBillingPlanTier, renewalIntervalWord } from "@/lib/billing-plans";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import { displayFirstName } from "@/lib/display-name";
 import type { BillingInterval } from "@/lib/billing-config";
 
@@ -106,7 +107,8 @@ export async function sendTrialEndingReminderEmail(
     trialEndsAt: Date;
     planInterval: BillingInterval;
     amountUsd: number;
-    hasStripeSubscription?: boolean;
+    /** True only for a live Stripe subscription whose status is trialing. */
+    legacyStripeTrial?: boolean;
   }
 ): Promise<EmailDeliveryResult> {
   const { sendTrialEndingUpgradeEmail } = await import(
@@ -116,7 +118,7 @@ export async function sendTrialEndingReminderEmail(
     to: params.to,
     name: params.name,
     trialEndsAt: params.trialEndsAt,
-    hasStripeSubscription: params.hasStripeSubscription,
+    legacyStripeTrial: params.legacyStripeTrial,
     planInterval: params.planInterval,
     amountUsd: params.amountUsd,
   });
@@ -156,6 +158,96 @@ export async function sendNextBillingReminderEmail(
     subject: `Your Any Exam Easy subscription renews in 24 hours`,
     html: billingEmailShell(
       "Subscription renews tomorrow",
+      bodyHtml,
+      "Manage subscription",
+      settingsUrl
+    ),
+    text,
+  });
+}
+
+export async function sendSubscriptionActiveEmail(
+  params: BillingEmailParams & {
+    planLabel: string;
+    amountUsd: number;
+    interval: BillingInterval;
+    nextChargeAt: Date | null;
+  }
+): Promise<EmailDeliveryResult> {
+  if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
+
+  const settingsUrl = `${appBaseUrl()}/settings`;
+  const refundsUrl = `${appBaseUrl()}/legal/refunds`;
+  const amount = `${formatPlanUsd(params.amountUsd)}/${renewalIntervalWord(params.interval)}`;
+  const nextCharge = params.nextChargeAt ? formatEmailDate(params.nextChargeAt) : "the end of this billing period";
+  const support = `${LEGAL_ENTITY.supportEmail} · ${LEGAL_ENTITY.supportPhone.display}`;
+
+  const bodyHtml = `
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your AnyExamEasy subscription is active.</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;"><strong>${params.planLabel}</strong> · ${amount}. Next charge: ${nextCharge}.</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Cancel anytime in Settings. Canceling stops the next charge. Payments are non-refundable except where required by law.</p>
+    <p style="margin:0;font-size:14px;color:#64748b;">Refund policy: <a href="${refundsUrl}">${refundsUrl}</a><br/>Support: ${support}</p>`;
+
+  const text = [
+    greeting(params.name),
+    "",
+    "Your AnyExamEasy subscription is active.",
+    `${params.planLabel} · ${amount}.`,
+    `Next charge: ${nextCharge}.`,
+    "",
+    `Cancel anytime in Settings: ${settingsUrl}`,
+    `Refund policy: ${refundsUrl}`,
+    `Support: ${support}`,
+  ].join("\n");
+
+  return sendBillingEmail({
+    to: params.to,
+    subject: "Your AnyExamEasy subscription is active",
+    html: billingEmailShell(
+      "Your AnyExamEasy subscription is active",
+      bodyHtml,
+      "Manage subscription",
+      settingsUrl
+    ),
+    text,
+  });
+}
+
+export async function sendAnnualRenewalReminderEmail(
+  params: BillingEmailParams & {
+    chargeAt: Date;
+    planInterval: BillingInterval;
+    amountUsd: number;
+  }
+): Promise<EmailDeliveryResult> {
+  if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
+
+  const settingsUrl = `${appBaseUrl()}/settings`;
+  const tier = getBillingPlanTier("pro", params.planInterval);
+  const when = formatEmailDate(params.chargeAt);
+  const amount = formatPlanUsd(params.amountUsd);
+
+  const bodyHtml = `
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your Any Exam Easy annual subscription renews in about 30 days (<strong>${when}</strong>).</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your saved payment method will be charged <strong>${amount}</strong> for your ${tier.label} plan.</p>
+    <p style="margin:0;font-size:14px;color:#64748b;">Update your payment method or cancel anytime in Settings before renewal. Payments are non-refundable.</p>`;
+
+  const text = [
+    greeting(params.name),
+    "",
+    `Your annual subscription renews in about 30 days (${when}).`,
+    `Your saved payment method will be charged ${amount} for your ${tier.label} plan.`,
+    "",
+    `Manage billing: ${settingsUrl}`,
+  ].join("\n");
+
+  return sendBillingEmail({
+    to: params.to,
+    subject: "Your Any Exam Easy annual plan renews in about 30 days",
+    html: billingEmailShell(
+      "Annual plan renews in about 30 days",
       bodyHtml,
       "Manage subscription",
       settingsUrl

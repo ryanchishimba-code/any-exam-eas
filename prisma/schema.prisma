@@ -283,6 +283,8 @@ model Subscription {
   welcomeEmailSentAt     DateTime?
   /** Dedupes pre-renewal reminder emails — stores the currentPeriodEnd we reminded for. */
   billingReminderForPeriodEnd DateTime?
+  /// Dedupes the ~30-day reminder for annual plans. Additive. Do not apply to production without the owner's OK.
+  annualRenewalReminderForPeriodEnd DateTime?
   compAccessUntil      DateTime? // admin-granted complimentary access
   canceledAt           DateTime?
   createdAt            DateTime @default(now())
@@ -1767,6 +1769,8 @@ model ExamPassCheckIn {
   /// Optional quote. Stored only when shareQuoteConsent is true.
   quote             String?  @db.Text
   shareQuoteConsent Boolean  @default(false)
+  /// Version of the quote-sharing consent text. Null when the student did not consent.
+  quoteConsentVersion String?
   recordedAt        DateTime @default(now())
   user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 

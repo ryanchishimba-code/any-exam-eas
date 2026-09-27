@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { isShareFabHiddenRoute } from "@/lib/navigation/share-fab";
 
 const ShareFab = dynamic(() => import("./ShareFab").then((m) => m.ShareFab), {
   ssr: false,
@@ -12,6 +14,7 @@ const ShareFab = dynamic(() => import("./ShareFab").then((m) => m.ShareFab), {
  * Hidden on public marketing routes inside ShareFab itself.
  */
 export function ShareFabLazy() {
+  const pathname = usePathname();
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -35,6 +38,6 @@ export function ShareFabLazy() {
     };
   }, []);
 
-  if (!ready) return null;
+  if (!ready || isShareFabHiddenRoute(pathname)) return null;
   return <ShareFab />;
 }

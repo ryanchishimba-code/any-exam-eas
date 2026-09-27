@@ -18,6 +18,8 @@ type VerifyEmailPromptProps = {
   email?: string | null;
   /** When true, study is locked until they verify. */
   required?: boolean;
+  /** Email check only — used inside the post-signup “You’re in” screen. */
+  compact?: boolean;
   className?: string;
 };
 
@@ -61,6 +63,7 @@ const COMPARE_ROWS = [
 export function VerifyEmailPrompt({
   email,
   required: _required = false,
+  compact = false,
   className,
 }: VerifyEmailPromptProps) {
   const [message, setMessage] = useState<string | null>(null);
@@ -89,24 +92,31 @@ export function VerifyEmailPrompt({
   return (
     <section
       className={cn(
-        "relative overflow-hidden rounded-[22px] border border-black/[0.06] bg-white px-6 py-8 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_rgba(15,23,42,0.06)]",
+        compact
+          ? "text-left"
+          : "relative overflow-hidden rounded-[22px] border border-black/[0.06] bg-white px-6 py-8 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_rgba(15,23,42,0.06)]",
         className
       )}
-      aria-labelledby="verify-email-heading"
+      aria-labelledby={compact ? undefined : "verify-email-heading"}
+      aria-label={compact ? VERIFY_EMAIL_CHECK_LABEL : undefined}
     >
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[radial-gradient(ellipse_at_top,rgba(13,148,136,0.1),transparent_70%)]"
-        aria-hidden
-      />
-      <div className="relative mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--color-accent)_10%,white)] text-[var(--color-accent)]">
-        <Mail className="h-5 w-5" strokeWidth={1.75} aria-hidden />
-      </div>
-      <h2
-        id="verify-email-heading"
-        className="relative mt-5 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)]"
-      >
-        {VERIFY_EMAIL_HEADLINE}
-      </h2>
+      {compact ? null : (
+        <>
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[radial-gradient(ellipse_at_top,rgba(15,118,110,0.12),transparent_70%)]"
+            aria-hidden
+          />
+          <div className="relative mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#f0fdfa] text-[#0f766e]">
+            <Mail className="h-5 w-5" strokeWidth={1.75} aria-hidden />
+          </div>
+          <h2
+            id="verify-email-heading"
+            className="relative mt-5 text-[22px] font-semibold tracking-[-0.03em] text-[#0f172a]"
+          >
+            {VERIFY_EMAIL_HEADLINE}
+          </h2>
+        </>
+      )}
 
       <div
         className="relative mx-auto mt-5 max-w-md rounded-2xl border border-teal-500/25 bg-teal-50 px-4 py-4 text-left dark:border-teal-400/30 dark:bg-teal-950/40"
@@ -139,6 +149,7 @@ export function VerifyEmailPrompt({
         </div>
       </div>
 
+      {compact ? null : (
       <div className="relative mx-auto mt-8 max-w-md text-left">
         <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
           What’s waiting for you
@@ -156,7 +167,10 @@ export function VerifyEmailPrompt({
           ))}
         </ul>
       </div>
+      )}
 
+      {compact ? null : (
+      <>
       <div className="relative mx-auto mt-6 max-w-md overflow-hidden rounded-2xl border border-black/[0.06] text-left">
         <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 border-b border-black/[0.06] bg-slate-50/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
           <span>Feature</span>
@@ -223,6 +237,8 @@ export function VerifyEmailPrompt({
           </div>
         ) : null}
       </div>
+      </>
+      )}
     </section>
   );
 }

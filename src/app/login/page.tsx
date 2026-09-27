@@ -1,14 +1,6 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
-import { LoginForm } from "@/components/LoginForm";
-import { PageShell } from "@/components/PageShell";
-import { AuthCard } from "@/components/ui/AuthCard";
-import { contentWidth } from "@/lib/layout/shell-ui";
-import Link from "next/link";
-import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
-import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
-import { LEGAL_ENTITY } from "@/lib/legal";
-import { SITE_NAME, formatPricingCheckoutTrialOffer } from "@/lib/site";
+import { LoginPageView } from "@/components/auth/LoginPageView";
+import { SITE_NAME } from "@/lib/site";
 
 const LOGIN_TITLE = `Log In — ${SITE_NAME}`;
 const LOGIN_DESCRIPTION =
@@ -31,43 +23,5 @@ export const metadata: Metadata = {
 };
 
 export default function LoginPage() {
-  return (
-    <PageShell
-      eyebrow="Any Exam Easy"
-      title="Sign in."
-      description={`${PLATFORM_EXAM_LIST} practice — synced across devices.`}
-      align="center"
-      maxWidth={contentWidth.auth}
-      variant="premium"
-    >
-      <AuthCard>
-        <Suspense
-          fallback={
-            <div className="space-y-3 py-1" aria-hidden>
-              <div className="h-12 animate-pulse rounded-xl bg-[var(--color-surface)]" />
-              <div className="h-12 animate-pulse rounded-xl bg-[var(--color-surface)]" />
-              <div className="h-11 animate-pulse rounded-xl bg-[var(--color-surface)]" />
-            </div>
-          }
-        >
-          <LoginForm />
-        </Suspense>
-      </AuthCard>
-      <p className="mx-auto mt-6 max-w-md text-center text-sm leading-relaxed text-[var(--color-ink-muted)]">
-        {formatPricingCheckoutTrialOffer()}.{" "}
-        <Link href="/signup" className="font-semibold text-[var(--color-accent)] hover:underline">
-          Create an account
-        </Link>
-        . Questions:{" "}
-        <a
-          href={`mailto:${LEGAL_ENTITY.supportEmail}`}
-          className="font-semibold text-[var(--color-accent)] hover:underline"
-        >
-          {LEGAL_ENTITY.supportEmail}
-        </a>{" "}
-        or <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />
-        .
-      </p>
-    </PageShell>
-  );
+  return <LoginPageView />;
 }

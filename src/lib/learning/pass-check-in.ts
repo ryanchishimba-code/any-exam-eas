@@ -1,3 +1,5 @@
+import { QUOTE_CONSENT_VERSION } from "@/lib/marketing/legal-copy";
+
 /** Days after signup that make the check-in eligible without a past exam date. */
 export const PASS_CHECK_IN_ACCOUNT_DAYS = 30;
 
@@ -77,10 +79,15 @@ export function shouldShowPassCheckIn(input: {
 export function quoteToStore(quote: string | null | undefined, consent: boolean): {
   quote: string | null;
   shareQuoteConsent: boolean;
+  quoteConsentVersion: string | null;
 } {
   const trimmed = quote?.trim() ?? "";
   if (!consent || trimmed.length === 0) {
-    return { quote: null, shareQuoteConsent: false };
+    return { quote: null, shareQuoteConsent: false, quoteConsentVersion: null };
   }
-  return { quote: trimmed.slice(0, 500), shareQuoteConsent: true };
+  return {
+    quote: trimmed.slice(0, 500),
+    shareQuoteConsent: true,
+    quoteConsentVersion: QUOTE_CONSENT_VERSION,
+  };
 }

@@ -66,18 +66,29 @@ describe("homepage proof facts", () => {
     const facts = buildHomeProofFacts(siteQuestionCounts(FIXTURE));
     const reviewer = CLINICAL_REVIEWERS.find((person) => person.id === "nursing");
     expect(facts.map((fact) => fact.text)).toContain(
-      `NCLEX reviewed by ${reviewer?.displayName}`
+      `NCLEX content review led by ${reviewer?.displayName}`
     );
-    expect(facts.some((fact) => fact.id === "ngn")).toBe(false);
-    expect(facts.map((fact) => fact.text)).toContain(`${formatMonthlyPrice("pro")}/mo`);
+    expect(facts.map((fact) => fact.text)).toContain("NGN case studies included");
+    expect(facts.map((fact) => fact.text)).toContain(
+      `${formatMonthlyPrice("pro")}/mo covers all six boards`
+    );
     const joined = facts.map((fact) => fact.text).join(" ");
     expect(joined).not.toMatch(/pass rate|% passed|stars|users/i);
     expect(reviewer?.displayName).toMatch(/Ileen Chishimba, RN/);
   });
 
-  it("keeps the strip to the question total, the nursing reviewer, and the price", () => {
-    const facts = buildHomeProofFacts(siteQuestionCounts(FIXTURE));
-    expect(facts.map((fact) => fact.id)).toEqual(["questions", "reviewer", "price"]);
+  it("omits the NGN line when NCLEX has no case studies", () => {
+    const boards = {
+      ...FIXTURE,
+      nclex: boardQuestionUnits({
+        slug: "nclex",
+        bankItems: 100,
+        formats: { mcq: 100, ngn: 0, case: 0 },
+      }),
+    };
+    const facts = buildHomeProofFacts(siteQuestionCounts(boards));
+    expect(facts.some((fact) => fact.id === "ngn")).toBe(false);
+    expect(facts.some((fact) => fact.id === "questions")).toBe(true);
   });
 
   it("omits bank facts when the snapshot is degraded", () => {
@@ -103,7 +114,7 @@ describe("homepage price comparison", () => {
   it("states the public range and the monthly price, with no competitor names", () => {
     const line = formatNclexPrepPriceComparison();
     expect(line).toBe(
-      "Most NCLEX prep courses cost $99 to $400+ up front. AnyExamEasy is $27.99 a month, cancel anytime."
+      "Other NCLEX prep we checked lists at $79 to $399 (public prices, Sep 27, 2026). AnyExamEasy is $27.99 a month, cancel anytime."
     );
     expect(line).not.toMatch(/Kaplan|Archer|UWorld|AMBOSS/i);
     const source = readFileSync(

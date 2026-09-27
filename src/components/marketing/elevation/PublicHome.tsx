@@ -13,6 +13,7 @@ import {
   HOME_PRACTICE_HEADLINE,
   HOME_READINESS_HEADING,
   HOME_READINESS_LINE,
+  boardReviewBadge,
 } from "@/lib/marketing/legal-copy";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import { formatNclexPrepPriceComparison } from "@/lib/marketing/price-comparison";
@@ -212,12 +213,12 @@ export function PublicHome({
       </section>
 
       <section className="home-panel home-panel--mist home-rise" aria-labelledby="reviewers-heading">
-        <h2 id="reviewers-heading">Reviewed by clinicians.</h2>
+        <h2 id="reviewers-heading">Content review.</h2>
         <ul className="home-reviewers">
           {CLINICAL_REVIEWERS.map((reviewer) => (
             <li key={reviewer.id} className="home-reviewer">
               <ClinicalReviewerAvatar reviewer={reviewer} size="sm" />
-              <p>{reviewer.displayName}</p>
+              <p>{boardReviewBadge(reviewer.examKeys[0] ?? "", reviewer.displayName)}</p>
             </li>
           ))}
         </ul>

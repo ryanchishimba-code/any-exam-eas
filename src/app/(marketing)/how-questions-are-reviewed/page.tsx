@@ -18,6 +18,7 @@ import {
   getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
+import { AI_ASSISTED_REVIEW_NOTE } from "@/lib/marketing/legal-copy";
 
 export const dynamic = "force-dynamic";
 
@@ -121,6 +122,9 @@ export default async function HowQuestionsAreReviewedPage() {
             still student-eligible. Items that fail a structural check — a bad key, a broken
             format, or an editorial retire — are flagged and hidden. Hiding does not delete the
             stem, the options, the key, or the rationale. A later repair can restore the same row.
+          </p>
+          <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
+            {AI_ASSISTED_REVIEW_NOTE}
           </p>
           {facts.live && suppressed ? (
             <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">

@@ -23,12 +23,21 @@ const panelMotion = {
   transition: { duration: 0.22, ease: [0.25, 0.1, 0.25, 1] as const },
 };
 
-export function LoginForm() {
+export function LoginForm({
+  onViewChange,
+}: {
+  onViewChange?: (view: "login" | "forgot") => void;
+} = {}) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirecting = useRef(false);
   const [redirectMessage, setRedirectMessage] = useState<string | null>(null);
   const [view, setView] = useState<"login" | "forgot">("login");
+
+  function showView(next: "login" | "forgot") {
+    setView(next);
+    onViewChange?.(next);
+  }
   const [hintEmail, setHintEmail] = useState("");
   const resetSuccess = searchParams.get("reset") === "success";
   const authError = searchParams.get("error");
@@ -123,7 +132,7 @@ export function LoginForm() {
               onSuccess={() => {
                 redirecting.current = true;
               }}
-              onForgotPassword={() => setView("forgot")}
+              onForgotPassword={() => showView("forgot")}
             />
 
             <p className="text-center text-sm text-[var(--color-ink)]">
@@ -143,7 +152,7 @@ export function LoginForm() {
             <ForgotPasswordPanel
               variant="page"
               defaultEmail={hintEmail}
-              onBackToLogin={() => setView("login")}
+              onBackToLogin={() => showView("login")}
             />
           </motion.div>
         )}

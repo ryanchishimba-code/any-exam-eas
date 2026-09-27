@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check } from "lucide-react";
+import { StudyUseNote } from "@/components/legal/StudyUseNote";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { cn } from "@/lib/utils";
@@ -70,6 +71,7 @@ function SampleCard({ item }: { item: PublicSampleQuestion }) {
             <span className="font-semibold">Rationale. </span>
             {item.rationale}
           </p>
+          <StudyUseNote className="mt-2" />
           <ul className="mt-3 space-y-1" aria-label="Sources stored on this question">
             {item.sources.map((source) => (
               <li key={source} className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
@@ -135,7 +137,7 @@ export function PublicSampleSet({
           id="try-questions-heading"
           className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)] font-bold tracking-tight text-[var(--color-ink)]"
         >
-          Try real questions. No account.
+          Try sample questions. No account.
         </h2>
         <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
           These are student-eligible items from the live bank. The rationale and sources are the

@@ -81,7 +81,7 @@ function RequirementRow({ met, label }: { met: boolean; label: string }) {
   );
 }
 
-export function ResetPasswordForm() {
+export function ResetPasswordForm({ embedded = false }: { embedded?: boolean }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token") ?? "";
@@ -146,7 +146,7 @@ export function ResetPasswordForm() {
 
   if (!token) {
     return (
-      <div className="apple-card mt-10 space-y-4 p-8 md:p-10 text-center" role="alert">
+      <div className={embedded ? "space-y-4 text-center" : "apple-card mt-10 space-y-4 p-8 text-center md:p-10"} role="alert">
         <InlineError>This reset link is missing or invalid.</InlineError>
         <p className="text-sm text-[var(--color-ink-muted)]">
           Reset links expire after {PASSWORD_RESET_EXPIRY_MINUTES} minutes and can only be used once.
@@ -165,7 +165,7 @@ export function ResetPasswordForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="apple-card mt-10 space-y-5 p-8 md:p-10"
+      className={embedded ? "space-y-5" : "apple-card mt-10 space-y-5 p-8 md:p-10"}
       aria-busy={loading}
     >
       <p className="text-sm text-[var(--color-ink-muted)]">

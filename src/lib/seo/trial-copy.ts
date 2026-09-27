@@ -15,7 +15,7 @@ export function seoTrialLengthFaq(): string {
 }
 
 export function seoTrialIncludedFaq(): string {
-  return `${TRIAL_DAYS} days of access to all question banks, Roadmaps, and reference tools — ${TRIAL_LIFETIME_QUESTIONS} practice questions included.`;
+  return `${TRIAL_DAYS} days with ${TRIAL_LIFETIME_QUESTIONS} practice questions across the board banks, plus Roadmaps and reference tools.`;
 }
 
 export function seoTrialHeading(): string {
@@ -27,15 +27,15 @@ export function seoTrialTryNclexHeading(): string {
 }
 
 export function seoTrialResourceParagraph(): string {
-  return `Start with a ${TRIAL_DAYS}-day trial — ${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment required — and access the full NCLEX bank plus USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT on the same plan.`;
+  return `Start with a ${TRIAL_DAYS}-day trial — ${TRIAL_LIFETIME_QUESTIONS} practice questions across NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. No payment required. The trial does not unlock every item in a board bank.`;
 }
 
 export function seoTrialNaplexStudyTip(): string {
-  return `Start your ${TRIAL_DAYS}-day trial to access the NAPLEX bank and sample questions before subscribing — ${TRIAL_LIFETIME_QUESTIONS} practice questions included.`;
+  return `Start your ${TRIAL_DAYS}-day trial for ${TRIAL_LIFETIME_QUESTIONS} practice questions, including NAPLEX items, before you subscribe.`;
 }
 
 export function seoResourcesCtaLine(): string {
-  return `Access all six board banks with Blueprint Roadmaps, Deep Dives, and Full Exam practice — ${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial, no payment required.`;
+  return `Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmaps and Deep Dives. No payment required.`;
 }
 
 export function seoSixBoardTrialParagraph(): string {

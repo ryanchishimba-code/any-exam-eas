@@ -2,8 +2,8 @@
 /**
  * Publish or unpublish NGN items. Default is a dry run.
  *
- *   npx tsx scripts/ngn/publish.ts --batch ngn-pilot-2026-09-26 --owner-attest "Ryan Chishimba, RN" --accept-open-flags
- *   npx tsx scripts/ngn/publish.ts --batch ngn-pilot-2026-09-26 --owner-attest "Ryan Chishimba, RN" --accept-open-flags --apply
+ *   npx tsx scripts/ngn/publish.ts --batch ngn-pilot-2026-09-26 --owner-attest "Ryan Chishimba, PharmD" --accept-open-flags
+ *   npx tsx scripts/ngn/publish.ts --batch ngn-pilot-2026-09-26 --owner-attest "Ryan Chishimba, PharmD" --license PharmD --accept-open-flags --apply
  *   npx tsx scripts/ngn/publish.ts --restore --batch ngn-pilot-2026-09-26 --apply
  *
  * --apply is allowed in production. It updates status only and, with
@@ -189,6 +189,7 @@ async function main() {
   const batchId = argValue("--batch") ?? null;
   const idsRaw = argValue("--ids");
   const ownerAttest = argValue("--owner-attest")?.trim() || null;
+  const ownerLicense = argValue("--license")?.trim() || "PharmD";
   const ids = idsRaw
     ? idsRaw
         .split(",")
@@ -268,6 +269,7 @@ async function main() {
       ids,
       batchId,
       ownerAttest,
+      ownerLicense,
       acceptOpenFlags,
       restore,
     });
@@ -323,7 +325,7 @@ async function main() {
             itemVersion: attestation.itemVersion,
             reviewerUserId: ownerReviewerUserId(name),
             reviewerName: name,
-            licenseType: "RN",
+            licenseType: attestation.licenseType,
             licenseNumber: null,
             licenseState: null,
             multistateNlc: null,
@@ -332,7 +334,7 @@ async function main() {
             decision: "approve",
             rubric: {},
             flagResolutions: attestation.flagResolutions,
-            comments: "owner attestation",
+            comments: "owner attestation (not RN review)",
             minutesSpent: 0,
           },
         });

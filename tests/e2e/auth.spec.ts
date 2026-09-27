@@ -6,7 +6,7 @@ import { fillDateOfBirth } from "./helpers/forms";
 test.describe("Authentication", () => {
   test("login page renders", async ({ page }) => {
     await page.goto("/login", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("heading", { name: /log in to continue/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /sign in/i })).toBeVisible();
     await expect(page.getByRole("textbox", { name: "Email" })).toBeVisible();
     await expect(page.getByRole("textbox", { name: "Password" })).toBeVisible();
   });
@@ -33,15 +33,19 @@ test.describe("Authentication", () => {
 
   test("signup form blocks submit until terms are accepted", async ({ page }) => {
     await page.goto("/signup?plan=trial&exam=nclex");
-    await page.getByPlaceholder("Full name").fill("QA Tester");
-    await page.getByPlaceholder("Email").fill(`qa-${Date.now()}@example.com`);
-    await page.getByPlaceholder(/password/i).fill("TestPassword1!");
+    await page.getByLabel("Email").fill(`qa-${Date.now()}@example.com`);
+    await page.getByRole("textbox", { name: "Password", exact: true }).fill("TestPassword1!");
+    await page.getByRole("button", { name: "Continue" }).click();
+    await page.getByLabel("First name").fill("QA");
+    await page.getByLabel("Last name").fill("Tester");
     await fillDateOfBirth(page, "1995-06-15");
 
     const submit = page.getByRole("button", { name: /start.*trial|create account/i });
-    await expect(submit).toBeDisabled();
+    await submit.click();
+    await expect(page.getByText("Accept the terms to continue.")).toBeVisible();
 
     await page.getByRole("checkbox").check();
-    await expect(submit).toBeEnabled();
+    await expect(page.getByRole("checkbox")).toBeChecked();
+    await expect(page.getByText("Accept the terms to continue.")).toHaveCount(0);
   });
 });

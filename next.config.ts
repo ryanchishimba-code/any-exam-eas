@@ -171,6 +171,61 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/terms",
+        destination: "/legal/terms",
+        permanent: true,
+      },
+      {
+        source: "/privacy",
+        destination: "/legal/privacy",
+        permanent: true,
+      },
+      {
+        source: "/refund",
+        destination: "/legal/refunds",
+        permanent: true,
+      },
+      {
+        source: "/refunds",
+        destination: "/legal/refunds",
+        permanent: true,
+      },
+      {
+        source: "/cancel",
+        destination: "/legal/refunds",
+        permanent: true,
+      },
+      {
+        source: "/cancellation",
+        destination: "/legal/refunds",
+        permanent: true,
+      },
+      {
+        source: "/cookies",
+        destination: "/legal/privacy",
+        permanent: true,
+      },
+      {
+        source: "/fnp",
+        destination: "/aanp-fnp",
+        permanent: true,
+      },
+      {
+        source: "/free-questions",
+        destination: "/#try-questions",
+        permanent: true,
+      },
+      {
+        source: "/sample",
+        destination: "/#try-questions",
+        permanent: true,
+      },
+      {
+        source: "/auth/signup",
+        destination: "/signup",
+        permanent: true,
+      },
+      {
         source: "/employee/login",
         destination: "/auth/login?callbackUrl=%2Finternal",
         permanent: false,

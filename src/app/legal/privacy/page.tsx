@@ -34,6 +34,18 @@ export default function PrivacyPage() {
             <ul className="mt-2 list-disc space-y-1 pl-5">
               <li>Account data: email, name, date of birth (age verification), password hash</li>
               <li>Study activity: exam attempts, progress, preferences, generated content</li>
+              <li>
+                Pass check-in answers (passed, didn&apos;t pass, haven&apos;t taken it, or dismissed)
+                and optional quotes you choose to share
+              </li>
+              <li>Testimonials you submit for the site</li>
+              <li>Feedback-form messages</li>
+              <li>
+                Question reports: the item, the answer you selected, and the reason you send
+              </li>
+              <li>
+                IP address and browser details stored with the consent snapshot recorded at signup
+              </li>
               <li>Billing data: subscription status, plan interval, payment metadata processed by Stripe (we do not store full card numbers)</li>
               <li>Technical data: IP address, device/browser type, logs, and cookies needed to operate and secure the Service</li>
               <li>Communications: support messages and transactional emails we send you</li>
@@ -59,6 +71,14 @@ export default function PrivacyPage() {
               Each receives only data necessary for its function and is subject to contractual
               obligations where applicable.
             </p>
+            <p className="mt-2">
+              AI Tutor and study inputs may be sent to OpenAI to generate responses. That includes
+              the question stem, the choices, the answer you selected, and study-plan inputs such as
+              weak topics when you open AI Tutor on NCLEX, NAPLEX, or USMLE.
+            </p>
+            <p className="mt-2">
+              We do not sell or share personal information for targeted advertising.
+            </p>
             <p className="mt-2">{LEGAL_DISCLAIMERS.stripeProcessor}</p>
           </section>
 
@@ -69,6 +89,17 @@ export default function PrivacyPage() {
               dispute resolution, security, and legal compliance. You may request account deletion by
               contacting {supportEmail}. Some data may be retained where required by law or for
               legitimate business purposes (for example, payment records and trial-eligibility flags).
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-semibold text-[var(--color-ink)]">Cookies</h2>
+            <p className="mt-2">
+              We use only cookies needed for sign-in and security; no advertising or analytics
+              cookies. Sign-in uses a session cookie. The app includes a Google Analytics loader
+              that runs only when a measurement id is configured. The production
+              Content-Security-Policy allows scripts from this site and Stripe only, so
+              googletagmanager.com does not load and does not set an analytics cookie.
             </p>
           </section>
 
@@ -109,11 +140,6 @@ export default function PrivacyPage() {
               <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />
             </p>
           </section>
-
-          <p className="text-xs">
-            This policy is not legal advice. Consult qualified counsel regarding GDPR, CCPA/CPRA,
-            state auto-renewal laws, or other obligations applicable to your users and business.
-          </p>
         </div>
       </article>
     </div>

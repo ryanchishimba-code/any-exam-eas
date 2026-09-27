@@ -22,6 +22,8 @@ import { CheckoutOrderSummary } from "@/components/checkout/CheckoutOrderSummary
 import { CheckoutDiscountSection } from "@/components/checkout/CheckoutDiscountSection";
 import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
+import { formatPlanUsd, getBillingPlanTier, renewalIntervalWord } from "@/lib/billing-plans";
+import { paidRenewalConsentText } from "@/lib/marketing/legal-copy";
 import { formatCheckoutContinueCta } from "@/lib/site";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { SignupPlan } from "@/lib/validators/auth";
@@ -39,7 +41,8 @@ type CheckoutReviewProps = {
     plan: SignupPlan,
     tier: SubscriptionTier,
     interval: BillingInterval,
-    paymentMode: PaymentMode
+    paymentMode: PaymentMode,
+    renewalConsent: boolean
   ) => void | Promise<void>;
   initialPromo?: string;
   continueBusy?: boolean;
@@ -62,10 +65,21 @@ export function CheckoutReview({
   const [interval, setInterval] = useState<BillingInterval>(initialInterval);
   const [paymentMode, setPaymentMode] = useState<PaymentMode>(initialPaymentMode);
   const [discount, setDiscount] = useState<DiscountValidation | null>(null);
+  const [renewalConsent, setRenewalConsent] = useState(false);
 
   const isUpgrade = plan === "subscribe";
   const showPaymentMode = isPaymentModeChoiceEnabled() && oneTimeAvailable;
   const effectivePaymentMode = showPaymentMode ? paymentMode : DEFAULT_PAYMENT_MODE;
+  const needsRenewalConsent = isUpgrade && effectivePaymentMode === "auto";
+  const consentPlan = getBillingPlanTier(tier, interval);
+  const renewalConsentCopy = paidRenewalConsentText(
+    formatPlanUsd(consentPlan.totalUsd),
+    renewalIntervalWord(interval)
+  );
+
+  useEffect(() => {
+    setRenewalConsent(false);
+  }, [interval, tier, plan, effectivePaymentMode]);
 
   useEffect(() => {
     setPlan(initialPlan);
@@ -152,17 +166,29 @@ export function CheckoutReview({
 
   const continueButton = (
     <div className="space-y-3">
+      {needsRenewalConsent ? (
+        <label className="flex items-start gap-2 text-left text-sm leading-snug text-[var(--color-ink)]">
+          <input
+            type="checkbox"
+            className="mt-1"
+            checked={renewalConsent}
+            onChange={(event) => setRenewalConsent(event.target.checked)}
+          />
+          <span>{renewalConsentCopy}</span>
+        </label>
+      ) : null}
       <Button
         type="button"
         className="w-full gap-2"
-        disabled={continueBusy}
+        disabled={continueBusy || (needsRenewalConsent && !renewalConsent)}
         onClick={() =>
           void onContinue(
             discount?.valid ? discount : null,
             plan,
             tier,
             interval,
-            effectivePaymentMode
+            effectivePaymentMode,
+            needsRenewalConsent && renewalConsent
           )
         }
       >

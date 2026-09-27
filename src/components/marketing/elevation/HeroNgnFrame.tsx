@@ -1,4 +1,5 @@
 import type { HeroNgnFrame as HeroNgnFrameData } from "@/lib/marketing/hero-ngn-frame";
+import { RATIONALE_STUDY_NOTE } from "@/lib/marketing/legal-copy";
 
 /** Static screen of a published bow-tie, rationale, and stored sources. */
 export function HeroNgnFrame({
@@ -10,7 +11,9 @@ export function HeroNgnFrame({
 }) {
   return (
     <figure
-      className={`overflow-hidden rounded-3xl border border-white/15 bg-[#f7f4ef] text-[#1e3a5f] shadow-[0_24px_60px_rgba(0,0,0,0.28)] ${className}`}
+      tabIndex={0}
+      aria-label="Sample NGN question. This region scrolls."
+      className={`overflow-hidden rounded-3xl border border-white/15 bg-[#f7f4ef] text-[#1e3a5f] shadow-[0_24px_60px_rgba(0,0,0,0.28)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f766e] ${className}`}
     >
       <figcaption className="flex items-center justify-between gap-3 border-b border-[#1e3a5f]/10 px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em]">
         <span>Qbank · NGN bow-tie</span>
@@ -57,6 +60,7 @@ export function HeroNgnFrame({
         <div className="rounded-2xl bg-white px-3 py-3">
           <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#0f766e]">Rationale</p>
           <p className="mt-2 text-sm leading-relaxed">{frame.rationale}</p>
+          <p className="mt-2 text-xs leading-relaxed text-[#1e3a5f]/70">{RATIONALE_STUDY_NOTE}</p>
           <ul className="mt-3 space-y-1 text-xs leading-relaxed text-[#1e3a5f]/75">
             {frame.sources.map((source) => (
               <li key={`${source.title}-${source.locator ?? ""}`}>

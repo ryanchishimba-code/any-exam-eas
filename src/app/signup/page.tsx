@@ -1,20 +1,13 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
-import { SignupForm } from "@/components/SignupForm";
-import { PageShell } from "@/components/PageShell";
-import { AuthCard } from "@/components/ui/AuthCard";
-import { BrandLogo } from "@/components/brand/BrandLogo";
+import { SignupScreen } from "@/components/auth/SignupScreen";
 import { getCachedSession } from "@/lib/auth/session";
-import { contentWidth } from "@/lib/layout/shell-ui";
-import { TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import type { SignupPlan } from "@/lib/validators/auth";
-import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
-import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER, SITE_NAME } from "@/lib/site";
+import { SITE_NAME } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 
 const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
@@ -65,43 +58,14 @@ export default async function SignupPage({
   }
 
   const { plan, promo, interval, tier, exam } = await searchParams;
-  const initialPlan = parseInitialPlan(plan);
-  const initialInterval = interval ? parseBillingInterval(interval) : "monthly";
-  const initialTier = parseSubscriptionTier(tier);
-  const initialExam = parseInitialExam(exam);
 
   return (
-    <PageShell
-      eyebrow="AnyExamEasy"
-      title={initialPlan === "trial" ? "Start your free trial." : "Create your account."}
-      description={`${formatPricingCheckoutTrialOffer()}. ${TRIAL_LIFETIME_QUESTIONS} practice questions included. Must be 18 or older.`}
-      align="center"
-      maxWidth={contentWidth.auth}
-      variant="premium"
-      compact
-    >
-      <div className="mb-2 flex flex-col items-center gap-4 text-center">
-        <BrandLogo href={ROUTES.home} variant="nav" />
-        <Link
-          href="/"
-          className="text-sm font-medium text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-accent)]"
-        >
-          ← Return home
-        </Link>
-      </div>
-      <AuthCard>
-        <SignupForm
-          initialPlan={initialPlan}
-          initialPromo={promo?.trim() ?? ""}
-          initialInterval={initialInterval}
-          initialTier={initialTier}
-          initialExam={initialExam}
-        />
-      </AuthCard>
-      <PurchaseTrustNotes className="mt-6" />
-      <p className="mx-auto mt-6 max-w-md text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-        {MARKETING_DISCLAIMER}
-      </p>
-    </PageShell>
+    <SignupScreen
+      initialPlan={parseInitialPlan(plan)}
+      initialPromo={promo?.trim() ?? ""}
+      initialInterval={interval ? parseBillingInterval(interval) : "monthly"}
+      initialTier={parseSubscriptionTier(tier)}
+      initialExam={parseInitialExam(exam)}
+    />
   );
 }

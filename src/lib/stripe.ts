@@ -1,10 +1,7 @@
 import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
-import {
-  TRIAL_DAYS,
-  usesIntroTrialPricing,
-  type BillingInterval,
-} from "@/lib/billing-config";
+import { type BillingInterval } from "@/lib/billing-config";
+import { assertStripeTrialCheckoutClosed } from "@/lib/billing/card-free-checkout";
 import { parseBillingInterval, intervalTotalUsd } from "@/lib/billing-plans";
 import {
   intervalFromPriceId,
@@ -51,7 +48,10 @@ type CheckoutBaseParams = {
   userId: string;
   successUrl: string;
   cancelUrl: string;
-  /** trial = collect payment method; charge after free trial unless legacy intro price is set */
+  /**
+   * `trial` is rejected. Card-free trials start in the app and never open Checkout.
+   * Historical Stripe trial subscriptions are still read by webhooks and billing sync.
+   */
   plan?: "trial" | "subscribe";
   tier?: SubscriptionTier;
   interval?: BillingInterval;
@@ -61,9 +61,28 @@ type CheckoutBaseParams = {
   promoCode?: string | null;
   /** auto = recurring subscription; manual = charge once, no renewal. */
   paymentMode?: PaymentMode;
-  /** @deprecated App DB trial end sync — Stripe sets trial via trial_period_days at checkout. */
-  trialEndUnix?: number;
+  /**
+   * Paid recurring checkout only.
+   * Stored on the Checkout Session and subscription metadata (no database column).
+   */
+  renewalConsent?: {
+    version: string;
+    acceptedAt: string;
+    ip: string | null;
+    text: string;
+  } | null;
 };
+
+function applyRenewalConsentMetadata(
+  metadata: Stripe.MetadataParam,
+  consent: CheckoutBaseParams["renewalConsent"]
+) {
+  if (!consent) return;
+  metadata.renewalConsentVersion = consent.version;
+  metadata.renewalConsentAt = consent.acceptedAt;
+  metadata.renewalConsentIp = consent.ip ?? "";
+  metadata.renewalConsentText = consent.text.slice(0, 500);
+}
 
 /** Fields shared by both session shapes so the webhook can read them uniformly. */
 function sessionMetadata(
@@ -71,17 +90,18 @@ function sessionMetadata(
   tier: SubscriptionTier,
   interval: BillingInterval,
   purchaseType: "subscription" | "one_time"
-) {
-  return {
+): Stripe.MetadataParam {
+  const metadata: Stripe.MetadataParam = {
     userId: params.userId,
     plan: params.plan ?? "subscribe",
     tier,
     interval,
     purchaseType,
-    ...(params.promoCode?.trim()
-      ? { promoCode: params.promoCode.trim().toUpperCase() }
-      : {}),
   };
+  const promo = params.promoCode?.trim();
+  if (promo) metadata.promoCode = promo.toUpperCase();
+  applyRenewalConsentMetadata(metadata, params.renewalConsent);
+  return metadata;
 }
 
 /**
@@ -129,43 +149,34 @@ function buildOneTimeSessionParams(params: CheckoutBaseParams) {
 }
 
 function buildSessionParams(params: CheckoutBaseParams) {
+  assertStripeTrialCheckoutClosed(params.plan);
   return params.paymentMode === "manual"
     ? buildOneTimeSessionParams(params)
     : buildSubscriptionSessionParams(params);
 }
 
 function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
-  const isTrialPlan = params.plan === "trial";
+  assertStripeTrialCheckoutClosed(params.plan);
   const tier = parseSubscriptionTier(params.tier);
   const interval = params.interval ?? "monthly";
-  const introPriceId = process.env.STRIPE_TRIAL_INTRO_PRICE_ID;
-  const useIntro = isTrialPlan && usesIntroTrialPricing() && introPriceId;
 
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
     { price: requireStripePriceId(tier, interval), quantity: 1 },
   ];
 
-  if (useIntro) {
-    lineItems.unshift({ price: introPriceId, quantity: 1 });
-  }
+  const subscriptionMetadata: Stripe.MetadataParam = {
+    userId: params.userId,
+    plan: params.plan ?? "subscribe",
+    tier,
+    interval,
+  };
+  const promo = params.promoCode?.trim();
+  if (promo) subscriptionMetadata.promoCode = promo.toUpperCase();
+  applyRenewalConsentMetadata(subscriptionMetadata, params.renewalConsent);
 
   const subscriptionData: Stripe.Checkout.SessionCreateParams.SubscriptionData = {
-    metadata: {
-      userId: params.userId,
-      plan: params.plan ?? "subscribe",
-      tier,
-      interval,
-      ...(params.promoCode?.trim()
-        ? { promoCode: params.promoCode.trim().toUpperCase() }
-        : {}),
-    },
+    metadata: subscriptionMetadata,
   };
-
-  if (params.trialEndUnix) {
-    subscriptionData.trial_end = params.trialEndUnix;
-  } else if (isTrialPlan) {
-    subscriptionData.trial_period_days = TRIAL_DAYS;
-  }
 
   return {
     mode: "subscription" as const,
@@ -177,9 +188,9 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     line_items: lineItems,
     subscription_data: subscriptionData,
     metadata: sessionMetadata(params, tier, interval, "subscription"),
-    ...(isTrialPlan || params.plan === "subscribe"
-      ? { payment_method_collection: "always" as const }
-      : {}),
+    // Paid subscribe only. `assertStripeTrialCheckoutClosed` runs before this
+    // session is built, so a trial can never collect a card here.
+    payment_method_collection: "always" as const,
     // Card only — Apple Pay / Google Pay still ride on `card`. Do not include
     // `link` (or BNPL extras); shoppers should see wallet + card entry, not Link.
     payment_method_types: ["card"],
@@ -509,6 +520,7 @@ export async function convertTrialSubscriptionToPaid(params: {
   interval: BillingInterval;
   stripeCouponId?: string | null;
   promoCode?: string | null;
+  renewalConsent?: CheckoutBaseParams["renewalConsent"];
 }): Promise<{ status: string; stripeSubscriptionId: string }> {
   if (!stripe) throw new Error("Stripe is not configured");
   if (!isUsableStripeSubscriptionId(params.stripeSubscriptionId)) {
@@ -549,22 +561,24 @@ export async function convertTrialSubscriptionToPaid(params: {
   }
 
   const newPriceId = requireStripePriceId(params.tier, params.interval);
+  const updateMetadata: Stripe.MetadataParam = {
+    ...sub.metadata,
+    userId: params.userId,
+    plan: "subscribe",
+    tier: params.tier,
+    interval: params.interval,
+    pendingTier: "",
+    pendingInterval: "",
+    pendingActiveConfirmation: "1",
+  };
+  const promo = params.promoCode?.trim();
+  if (promo) updateMetadata.promoCode = promo.toUpperCase();
+  applyRenewalConsentMetadata(updateMetadata, params.renewalConsent);
   const updateParams: Stripe.SubscriptionUpdateParams = {
     items: [{ id: item.id, price: newPriceId }],
     trial_end: "now",
     proration_behavior: "none",
-    metadata: {
-      ...sub.metadata,
-      userId: params.userId,
-      plan: "subscribe",
-      tier: params.tier,
-      interval: params.interval,
-      pendingTier: "",
-      pendingInterval: "",
-      ...(params.promoCode?.trim()
-        ? { promoCode: params.promoCode.trim().toUpperCase() }
-        : {}),
-    },
+    metadata: updateMetadata,
   };
 
   if (params.stripeCouponId) {

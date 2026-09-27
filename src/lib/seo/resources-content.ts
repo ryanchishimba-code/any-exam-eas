@@ -115,7 +115,7 @@ function article(
 export const RESOURCE_ARTICLES: ResourceArticle[] = [
   article({
     slug: "best-nclex-practice-questions-2026",
-    title: "Best NCLEX Practice Questions in 2026 (Free Trial + Roadmap)",
+    title: "NCLEX Practice Questions in 2026 (Free Trial + Roadmap)",
     metaDescription:
       "Compare what makes high-quality NCLEX practice questions in 2026 — NGN formats, clinical judgment, and how AnyExamEasy bundles NCLEX with five other boards.",
     examTags: ["nclex"],
@@ -176,7 +176,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "Simulate test-day conditions",
         paragraphs: [
-          "Use full-length timed sessions to practice endurance and decision speed. AnyExamEasy timed simulations mirror board pacing.",
+          "Use full-length timed sessions to practice endurance and decision speed. Timed simulations use board-style pacing.",
         ],
       },
       {
@@ -210,7 +210,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "best-usmle-step-2-practice-questions-2026",
-    title: "Best USMLE Step 2 CK Practice Questions (2026)",
+    title: "USMLE Step 2 CK Practice Questions (2026)",
     metaDescription:
       "What separates elite Step 2 CK practice questions from generic MCQs — vignette design, distractors, and affordable multi-exam prep.",
     examTags: ["usmle"],
@@ -265,14 +265,14 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "Question volume with quality review",
         paragraphs: [
-          "Most successful candidates complete thousands of vignettes — but only if each miss becomes a micro-lesson via rationale review.",
+          "Review every miss the same day so the rationale becomes the next study note.",
         ],
       },
     ],
   }),
   article({
     slug: "best-naplex-practice-questions-2026",
-    title: "Best NAPLEX Practice Questions in 2026",
+    title: "NAPLEX Practice Questions in 2026",
     metaDescription:
       "NAPLEX prep in 2026: calculations, patient cases, and pharmacotherapy questions with a pharmacy blueprint Roadmap.",
     examTags: ["naplex"],
@@ -291,7 +291,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         comparisonRows: [
           { feature: "Calculations", anyExamEasy: "Dedicated math + case mix", typicalQbank: "Varies by vendor" },
           { feature: "Blueprint tracking", anyExamEasy: "NABP five-domain Roadmap", typicalQbank: "Topic lists only" },
-          { feature: "Miss review", anyExamEasy: "Deep Dive modules from misses", typicalQbank: "Static rationales" },
+          { feature: "Miss review", anyExamEasy: "Deep Dive modules from misses", typicalQbank: "See each product's explanations" },
           { feature: "Multi-exam value", anyExamEasy: "NCLEX + USMLE + 4 more included", typicalQbank: "Pharmacy-only" },
         ],
       },
@@ -343,7 +343,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "best-pance-practice-questions-2026",
-    title: "Best PANCE Practice Questions in 2026",
+    title: "PANCE Practice Questions in 2026",
     metaDescription:
       "PANCE practice questions aligned to the NCCPA blueprint — systems vignettes, Roadmap tracking, and affordable prep.",
     examTags: ["pance"],
@@ -404,7 +404,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "best-aanp-fnp-practice-questions-2026",
-    title: "Best AANP FNP Practice Questions in 2026",
+    title: "AANP FNP Practice Questions in 2026",
     metaDescription:
       "AANPCB FNP certification prep — primary care vignettes across Assess, Diagnose, Plan, and Evaluate domains.",
     examTags: ["aanp-fnp"],
@@ -455,7 +455,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "best-npte-practice-questions-2026",
-    title: "Best NPTE-PT Practice Questions in 2026",
+    title: "NPTE-PT Practice Questions in 2026",
     metaDescription:
       "NPTE physical therapy board prep — FSBPT blueprint scenarios, MSK/neuro/cardiopulmonary focus, and timed exams.",
     examTags: ["npte-pt"],

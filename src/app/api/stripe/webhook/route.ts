@@ -7,7 +7,7 @@ import {
 import { stripeUnixToDate, subscriptionCurrentPeriodEnd } from "@/lib/stripe-period";
 import { stripeEventMatchesKeyMode } from "@/lib/stripe-livemode";
 import { prisma } from "@/lib/prisma";
-import { parseBillingInterval } from "@/lib/billing-plans";
+import { getBillingPlanTier, parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import type Stripe from "stripe";
 import { trackEvent } from "@/lib/analytics/events";
@@ -15,7 +15,7 @@ import { saveTypedConversion } from "@/lib/analytics/conversions";
 import { CONVERSION_EVENTS } from "@/lib/analytics/conversion-types";
 import { EVENT_TYPES } from "@/lib/analytics/types";
 import { recordTrialUsed } from "@/lib/trial-eligibility";
-import { sendPaymentFailedEmail } from "@/lib/email/billing-emails";
+import { sendPaymentFailedEmail, sendSubscriptionActiveEmail } from "@/lib/email/billing-emails";
 import { invalidateSubscriptionStatusCache } from "@/lib/cache";
 import {
   applyOneTimePurchase,
@@ -23,6 +23,49 @@ import {
 } from "@/lib/billing/one-time-purchase";
 
 export const runtime = "nodejs";
+
+/** Confirmation for a newly active paid subscription. Trials are skipped. */
+async function maybeSendActiveSubscriptionEmail(
+  userId: string,
+  stripeSub: Stripe.Subscription
+) {
+  if (!stripe || stripeSub.status !== "active") return;
+  if (stripeSub.metadata?.activeConfirmationSent === "1") return;
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { email: true, name: true },
+  });
+  if (!user?.email) return;
+
+  const tier = parseSubscriptionTier(stripeSub.metadata?.tier);
+  const interval = parseBillingInterval(stripeSub.metadata?.interval);
+  const plan = getBillingPlanTier(tier, interval);
+  const sent = await sendSubscriptionActiveEmail({
+    to: user.email,
+    name: user.name,
+    planLabel: `Pro · ${plan.label}`,
+    amountUsd: plan.totalUsd,
+    interval,
+    nextChargeAt: subscriptionCurrentPeriodEnd(stripeSub),
+  });
+
+  if (!sent.ok) {
+    console.error("[stripe/webhook] active subscription email not sent", {
+      userId,
+      reason: sent.reason,
+    });
+    return;
+  }
+
+  await stripe.subscriptions.update(stripeSub.id, {
+    metadata: {
+      ...stripeSub.metadata,
+      activeConfirmationSent: "1",
+      pendingActiveConfirmation: "",
+    },
+  });
+}
 
 export async function POST(req: Request) {
   if (!stripe) {
@@ -208,6 +251,10 @@ export async function POST(req: Request) {
             { userId }
           );
         }
+
+        if (stripeSub.status === "active" && session.metadata?.plan !== "trial") {
+          await maybeSendActiveSubscriptionEmail(userId, stripeSub);
+        }
       }
       break;
     }
@@ -219,6 +266,13 @@ export async function POST(req: Request) {
         const customerId =
           typeof sub.customer === "string" ? sub.customer : sub.customer?.id;
         await applySubscriptionFromStripe(userId, sub, customerId);
+        if (
+          event.type === "customer.subscription.updated" &&
+          sub.status === "active" &&
+          sub.metadata?.pendingActiveConfirmation === "1"
+        ) {
+          await maybeSendActiveSubscriptionEmail(userId, sub);
+        }
         invalidateSubscriptionStatusCache(userId);
         trackEvent({
           userId,

@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { formatPlanUsd, getBillingPlanTier, renewalIntervalWord } from "@/lib/billing-plans";
+import { paidRenewalConsentText } from "@/lib/marketing/legal-copy";
 import { formatMonthlyPrice } from "@/lib/site";
 import { Button } from "./ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
@@ -54,15 +56,30 @@ function HostedSubscribeButton({
 }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [renewalConsent, setRenewalConsent] = useState(false);
+  const consentPlan = getBillingPlanTier("pro", interval);
+  const renewalConsentCopy = paidRenewalConsentText(
+    formatPlanUsd(consentPlan.totalUsd),
+    renewalIntervalWord(interval)
+  );
 
   async function startCheckout() {
+    if (!renewalConsent) {
+      setError("Confirm the renewal terms before paying.");
+      return;
+    }
     setLoading(true);
     setError("");
     try {
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ embedded: false, plan: "subscribe", interval }),
+        body: JSON.stringify({
+          embedded: false,
+          plan: "subscribe",
+          interval,
+          renewalConsent: true,
+        }),
       });
       const data = await res.json();
       if (data.url) {
@@ -79,10 +96,20 @@ function HostedSubscribeButton({
 
   return (
     <div className={className}>
+      <label className="mb-3 flex items-start gap-2 text-left text-sm leading-snug text-[var(--color-ink)]">
+        <input
+          type="checkbox"
+          className="mt-1"
+          checked={renewalConsent}
+          onChange={(event) => setRenewalConsent(event.target.checked)}
+        />
+        <span>{renewalConsentCopy}</span>
+      </label>
       <Button
         type="button"
         variant={variant}
         className={loading ? "pointer-events-none opacity-70" : ""}
+        disabled={!renewalConsent || loading}
         onClick={startCheckout}
       >
         {loading ? "Redirecting…" : label}

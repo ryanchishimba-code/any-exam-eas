@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { PASS_CHECK_IN_RESULT, type PassCheckInResult } from "@/lib/learning/pass-check-in";
+import { passCheckInSubtitle, quoteShareConsentLabel } from "@/lib/marketing/legal-copy";
 import { isImmersiveAppRoute } from "@/lib/navigation/app-shell";
 
 const CHOICES: { id: Exclude<PassCheckInResult, "dismissed">; label: string }[] = [
@@ -61,7 +62,7 @@ export function PassCheckInPrompt({
     setQuoteFor(result);
   }
 
-  const examLabel = examName ? `your ${examName}` : "your exam";
+  const examLabel = examName ?? "your exam";
 
   return (
     <aside
@@ -72,7 +73,7 @@ export function PassCheckInPrompt({
         <div className="min-w-0">
           <p className="text-sm font-semibold text-[var(--color-ink)]">Did you pass?</p>
           <p className="mt-0.5 text-sm leading-snug text-[var(--color-ink-muted)]">
-            Optional check-in for {examLabel}. Your answer stays on your account.
+            {passCheckInSubtitle(examLabel)}
           </p>
         </div>
         <button
@@ -116,18 +117,18 @@ export function PassCheckInPrompt({
               className="mt-1.5 block w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-ink)]"
             />
           </label>
-          <label className="mt-2 flex min-h-11 items-center gap-2 text-sm text-[var(--color-ink)]">
+          <label className="mt-2 flex items-start gap-2 text-sm leading-snug text-[var(--color-ink)]">
             <input
               type="checkbox"
               checked={consent}
               onChange={(event) => setConsent(event.target.checked)}
             />
-            I consent to AnyExamEasy sharing this quote
+            {quoteShareConsentLabel()}
           </label>
           <button
             type="submit"
             disabled={pending != null}
-            className="mt-2 inline-flex min-h-11 items-center rounded-full bg-[var(--color-accent)] px-4 text-sm font-semibold text-white disabled:opacity-60"
+            className="mt-2 inline-flex min-h-11 items-center rounded-full bg-[#0f766e] px-4 text-sm font-semibold text-white hover:bg-[#115e59] disabled:opacity-60"
           >
             {pending === quoteFor ? "Saving…" : "Save"}
           </button>

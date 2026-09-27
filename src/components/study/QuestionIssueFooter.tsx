@@ -7,6 +7,7 @@ import {
   ReportQuestionDialog,
   type ReportQuestionContext,
 } from "@/components/study/ReportQuestionDialog";
+import { StudyUseNote } from "@/components/legal/StudyUseNote";
 import { ROUTES } from "@/lib/routes";
 
 type Props = {
@@ -29,13 +30,16 @@ export function QuestionIssueFooter({ onReportIssue, report, tone = "default" }:
 
   return (
     <div className="mt-4 flex flex-col gap-3 border-t border-black/[0.06] pt-4 sm:flex-row sm:items-center sm:justify-between dark:border-white/[0.08]">
-      <p className={`text-xs leading-relaxed ${muted}`}>
-        <Link href={ROUTES.howQuestionsAreReviewed} className={`font-semibold ${link}`}>
-          How questions are reviewed
-        </Link>
-        <span aria-hidden> · </span>
-        Sources shown here are the ones stored on this item.
-      </p>
+      <div className="min-w-0">
+        <p className={`text-xs leading-relaxed ${muted}`}>
+          <Link href={ROUTES.howQuestionsAreReviewed} className={`font-semibold ${link}`}>
+            How questions are reviewed
+          </Link>
+          <span aria-hidden> · </span>
+          Sources shown here are the ones stored on this item.
+        </p>
+        <StudyUseNote className={`mt-1 ${muted}`} />
+      </div>
       {onReportIssue || report ? (
         <button
           type="button"

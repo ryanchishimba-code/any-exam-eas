@@ -5,26 +5,19 @@ test.describe("Landing page", () => {
   test("hero, navigation, and primary CTAs render", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
-    await expect(page.locator("[data-landing-hero]")).toBeVisible();
-    await expect(
-      page.getByRole("heading", {
-        name: /nclex prep that feels like the real exam/i,
-      })
-    ).toBeVisible();
-    await expect(page.locator("[data-hero-practice]")).toBeVisible();
-    await expect(
-      page.getByRole("button", { name: /try a free question/i }).or(
-        page.getByRole("link", { name: /start.*trial|try.*free|continue/i })
-      ).first()
-    ).toBeVisible();
-    await expect(page.getByRole("link", { name: /pricing/i }).first()).toBeVisible();
+    await expect(page.locator(".home-hero")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "From doubtful to ready." })).toBeVisible();
+    await expect(page.getByRole("link", { name: /start free trial/i }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /try a free question/i }).first()).toBeVisible();
     await expect(page.getByRole("navigation", { name: /main navigation/i })).toBeVisible();
     await expect(page.getByText(/prisca m\.|gerard n\./i)).toHaveCount(0);
-    await expect(page.getByRole("heading", { name: /roadmap\. deep dive\. sample ngn/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "A practice estimate." })).toBeAttached();
+    await expect(page.getByText("NCLEX content review led by Ileen Chishimba, RN")).toBeAttached();
     await expect(
-      page.getByText(/5-day free trial · no payment method required · then/i).first()
+      page.getByText("5-day free trial · no payment method required · then $27.99/mo").first()
     ).toBeVisible();
     await expect(page.getByText(/\bno[- ]card\b/i)).toHaveCount(0);
+    await expect(page.getByRole("button", { name: /share your progress/i })).toHaveCount(0);
     await expect(
       page.getByRole("navigation", { name: /main navigation/i }).locator('a[href="/pricing"]')
     ).toHaveCount(1);
@@ -34,7 +27,7 @@ test.describe("Landing page", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
-    await expect(page.locator("[data-landing-hero]")).toBeVisible();
+    await expect(page.locator(".home-hero")).toBeVisible();
     const overflow = await page.evaluate(() => {
       const doc = document.documentElement;
       return {
@@ -64,7 +57,9 @@ test.describe("Landing page", () => {
     const submit = page.locator('button[type="submit"]').first();
     await expect(submit).toBeVisible();
     const bg = await submit.evaluate((el) => getComputedStyle(el).backgroundColor);
-    expect(bg, `expected teal CTA, got ${bg}`).toMatch(/rgb\(\s*13,\s*148,\s*136\s*\)|rgb\(\s*46,\s*231,\s*220\s*\)/);
+    expect(bg, `expected teal CTA, got ${bg}`).toMatch(
+      /rgb\(\s*15,\s*118,\s*110\s*\)|rgb\(\s*13,\s*148,\s*136\s*\)|rgb\(\s*46,\s*231,\s*220\s*\)/
+    );
   });
 
   test("trial CTA links to signup and signup page renders", async ({ page }) => {
@@ -78,26 +73,27 @@ test.describe("Landing page", () => {
     expect(href).toBeTruthy();
     await page.goto(href!, { waitUntil: "domcontentloaded" });
 
-    await expect(page.getByRole("heading", { name: /create your account/i })).toBeVisible({
+    await expect(page.getByRole("heading", { name: /start your free trial/i })).toBeVisible({
       timeout: 30_000,
     });
     await expect(page.getByText(/trial|payment|free/i).first()).toBeVisible();
   });
 
-  test("sticky CTA appears after scrolling past the hero", async ({ page }) => {
+  test("FAQ stays a real page and the share control stays off the hero", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto("/", { waitUntil: "domcontentloaded" });
-    await expect(page.locator("[data-landing-hero]")).toBeVisible();
-    await expect(page.locator(".aee-landing-sticky-cta")).toHaveCount(0);
-
-    await page.locator("#pricing").scrollIntoViewIfNeeded();
-    await expect(page.locator(".aee-landing-sticky-cta")).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator(".home-hero")).toBeVisible();
+    await expect(page.getByRole("button", { name: /share your progress/i })).toHaveCount(0);
+    await page.goto("/faq", { waitUntil: "domcontentloaded" });
+    await expect(page).toHaveURL(/\/faq$/);
+    await expect(page.getByRole("heading").first()).toBeVisible();
   });
 
   test("landing hero passes axe checks", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
-    await expect(page.locator("[data-landing-hero], .aee-hero-beat").first()).toBeVisible();
+    await expect(page.locator(".home-hero")).toBeVisible();
     await expectNoA11yViolations(page, {
-      selector: "[data-landing-hero], .aee-hero-beat",
+      selector: ".home-hero",
       seriousOnly: true,
     });
   });
