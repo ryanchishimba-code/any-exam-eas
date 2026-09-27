@@ -9,7 +9,7 @@ const ShareFab = dynamic(() => import("./ShareFab").then((m) => m.ShareFab), {
 
 /**
  * Defer Share FAB until the browser is idle so it never competes with LCP/hydration.
- * Hidden entirely on marketing routes inside ShareFab itself.
+ * Hidden on public marketing routes inside ShareFab itself.
  */
 export function ShareFabLazy() {
   const [ready, setReady] = useState(false);

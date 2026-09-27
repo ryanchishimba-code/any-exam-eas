@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -49,6 +49,8 @@ export function LoginPanel({
   forgotLinkClassName = "text-[var(--color-accent)] hover:underline",
 }: LoginPanelProps) {
   const router = useRouter();
+  const emailId = useId();
+  const passwordId = useId();
   const safeCallbackUrl = sanitizeCallbackUrl(callbackUrl);
   const [hint, setHint] = useState<ReturningUserHint | null>(null);
   const [email, setEmail] = useState("");
@@ -179,7 +181,7 @@ export function LoginPanel({
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-black/[0.06]" />
           </div>
-          <p className="relative mx-auto w-fit bg-white px-3 text-xs font-medium text-[var(--color-ink-muted)]">
+          <p className="relative mx-auto w-fit bg-white px-3 text-sm font-semibold text-[var(--color-ink)]">
             or log in with email
           </p>
         </div>
@@ -187,11 +189,15 @@ export function LoginPanel({
 
       <form onSubmit={handlePasswordLogin} className="space-y-3" noValidate aria-busy={busy}>
         <div>
+          <label htmlFor={emailId} className="mb-1.5 block text-sm font-semibold text-[var(--color-ink)]">
+            Email
+          </label>
           <input
+            id={emailId}
             required
             type="email"
             autoComplete="email"
-            placeholder="Email"
+            placeholder="name@email.com"
             value={email}
             disabled={busy}
             aria-invalid={showEmailError || undefined}
@@ -211,19 +217,25 @@ export function LoginPanel({
             </p>
           )}
         </div>
-        <input
-          required
-          type="password"
-          autoComplete="current-password"
-          placeholder="Password"
-          value={password}
-          disabled={busy}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            if (error) setError("");
-          }}
-          className="apple-input"
-        />
+        <div>
+          <label htmlFor={passwordId} className="mb-1.5 block text-sm font-semibold text-[var(--color-ink)]">
+            Password
+          </label>
+          <input
+            id={passwordId}
+            required
+            type="password"
+            autoComplete="current-password"
+            placeholder="Password"
+            value={password}
+            disabled={busy}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              if (error) setError("");
+            }}
+            className="apple-input"
+          />
+        </div>
         <div className="flex justify-end">
           {onForgotPassword ? (
             <button

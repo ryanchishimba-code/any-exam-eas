@@ -5,6 +5,7 @@ import { Share2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { usePracticeSessionActive } from "@/lib/client/practice-session-context";
 import { isAppShellRoute, isFullExamSessionRoute } from "@/lib/navigation/app-shell";
+import { isShareFabHiddenRoute } from "@/lib/navigation/share-fab";
 import { cn } from "@/lib/utils";
 import { ShareModal } from "./ShareModal";
 
@@ -13,23 +14,11 @@ export function ShareFab() {
   const pathname = usePathname();
   const practiceSession = usePracticeSessionActive();
 
-  if (practiceSession || isAppShellRoute(pathname) || isFullExamSessionRoute(pathname)) {
-    return null;
-  }
-
   if (
-    pathname === "/" ||
-    pathname.startsWith("/login") ||
-    pathname.startsWith("/signup") ||
-    pathname.startsWith("/pricing") ||
-    pathname.startsWith("/about") ||
-    pathname.startsWith("/daily") ||
-    pathname.startsWith("/nclex") ||
-    pathname.startsWith("/usmle") ||
-    pathname.startsWith("/naplex") ||
-    pathname.startsWith("/pance") ||
-    pathname.startsWith("/fnp") ||
-    pathname.startsWith("/npte")
+    practiceSession ||
+    isAppShellRoute(pathname) ||
+    isFullExamSessionRoute(pathname) ||
+    isShareFabHiddenRoute(pathname)
   ) {
     return null;
   }

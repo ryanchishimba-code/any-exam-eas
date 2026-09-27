@@ -126,7 +126,7 @@ export function LoginForm() {
               onForgotPassword={() => setView("forgot")}
             />
 
-            <p className="text-center text-xs text-[var(--color-ink-muted)]">
+            <p className="text-center text-sm text-[var(--color-ink)]">
               Need access?{" "}
               <Link
                 href={LANDING_TRIAL_HREF}
