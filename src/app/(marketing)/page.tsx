@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeExperience } from "@/components/home/HomeExperience";
 import { LandingTestimonialsV2 } from "@/components/landing/LandingTestimonialsV2";
+import { HomeProofStrip } from "@/components/marketing/elevation/HomeProofStrip";
 import { PublicHome } from "@/components/marketing/elevation/PublicHome";
 import { PublicSampleSet } from "@/components/marketing/PublicSampleSet";
 import { getHeroNgnFrame } from "@/lib/marketing/hero-ngn-frame";
@@ -12,6 +13,7 @@ import {
   getCachedBankStatsBundle,
   type LandingBankCountsDisplay,
 } from "@/lib/marketing/question-bank-counts";
+import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
 
@@ -47,17 +49,13 @@ async function HomeDeferredProof() {
     getCachedPublishedTestimonials(6),
     getPublicSampleQuestions(),
   ]);
-  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+  const facts = buildHomeProofFacts(siteCountsFromSnapshot(snapshot));
   return (
     <>
-      {bankCounts.totalLabel ? (
-        <p className="mx-auto max-w-5xl px-5 pb-2 pt-8 text-sm text-[var(--color-ink-muted)] sm:px-6">
-          {bankCounts.totalQuestionsLabel}
-        </p>
-      ) : null}
-      <PublicSampleSet items={samples} />
-      <div className="mx-auto max-w-5xl px-5 sm:px-6">
-        <LandingTestimonialsV2 stories={testimonials} />
+      <HomeProofStrip facts={facts} />
+      <PublicSampleSet items={samples} limit={2} compact />
+      <div className="mx-auto max-w-5xl px-5 py-4 sm:px-6">
+        <LandingTestimonialsV2 stories={testimonials} compact />
       </div>
     </>
   );
@@ -71,7 +69,7 @@ export default async function HomePage() {
         <HomeJsonLdLive />
       </Suspense>
       <HomeExperience bankCounts={EMPTY_COUNTS}>
-        <PublicHome bankCounts={EMPTY_COUNTS} heroFrame={heroFrame}>
+        <PublicHome heroFrame={heroFrame}>
           <Suspense fallback={null}>
             <HomeDeferredProof />
           </Suspense>

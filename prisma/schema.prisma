@@ -81,6 +81,7 @@ model User {
   sgReadingProgress  SgReadingProgress[]
   readinessChecks    ReadinessCheck[]
   examOutcomes       ExamOutcome[]
+  examPassCheckIns   ExamPassCheckIn[]
 }
 
 model Account {
@@ -1751,6 +1752,25 @@ model ExamOutcome {
 
   @@index([examSlug, result])
   @@index([userId, examSlug, recordedAt])
+}
+
+/// "Did you pass?" check-in. Additive only.
+/// Apply the migration in prisma/migrations/20260927120000_exam_pass_check_in.
+/// Do not run it against production from the landing redesign PR.
+/// Rows are private. Do not turn them into a public pass rate.
+model ExamPassCheckIn {
+  id                String   @id @default(cuid())
+  userId            String
+  examSlug          String?
+  /// passed | not_yet | not_taken | dismissed
+  result            String
+  /// Optional quote. Stored only when shareQuoteConsent is true.
+  quote             String?  @db.Text
+  shareQuoteConsent Boolean  @default(false)
+  recordedAt        DateTime @default(now())
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, recordedAt])
 }
 
 model SgReadingProgress {

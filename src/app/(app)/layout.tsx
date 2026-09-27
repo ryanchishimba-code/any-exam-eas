@@ -3,6 +3,7 @@ import { AppPreferencesProvider } from "@/lib/client/app-preferences-context";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { AppShell } from "@/components/app/AppShell";
 import { AppQueryNotices } from "@/components/app/AppQueryNotices";
+import { PassCheckInSlot } from "@/components/app/PassCheckInSlot";
 import { TrialWelcomeRoot } from "@/components/auth/TrialWelcomeRoot";
 import { SiteBottomBar } from "@/components/layout/SiteBottomBar";
 import type { ExamSlug } from "@/types/edtech";
@@ -30,6 +31,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           footer={<SiteBottomBar className="mt-10 border-black/[0.05] pt-8" />}
         >
           <AppQueryNotices />
+          {session?.user?.id ? <PassCheckInSlot userId={session.user.id} /> : null}
           {children}
         </AppShell>
       </TrialWelcomeRoot>

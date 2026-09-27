@@ -1,9 +1,17 @@
 import type { HeroNgnFrame as HeroNgnFrameData } from "@/lib/marketing/hero-ngn-frame";
 
 /** Static screen of a published bow-tie, rationale, and stored sources. */
-export function HeroNgnFrame({ frame }: { frame: HeroNgnFrameData }) {
+export function HeroNgnFrame({
+  frame,
+  className = "",
+}: {
+  frame: HeroNgnFrameData;
+  className?: string;
+}) {
   return (
-    <figure className="overflow-hidden rounded-3xl border border-white/15 bg-[#f7f4ef] text-[#1e3a5f] shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
+    <figure
+      className={`overflow-hidden rounded-3xl border border-white/15 bg-[#f7f4ef] text-[#1e3a5f] shadow-[0_24px_60px_rgba(0,0,0,0.28)] ${className}`}
+    >
       <figcaption className="flex items-center justify-between gap-3 border-b border-[#1e3a5f]/10 px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em]">
         <span>Qbank · NGN bow-tie</span>
         <span className="font-medium normal-case tracking-normal text-[#1e3a5f]">

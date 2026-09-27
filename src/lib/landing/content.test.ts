@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  HOME_HERO_BOARDS_EYEBROW,
+  HOME_HERO_SHORT_SUBLINE,
   LANDING_HERO_HEADLINE,
   LANDING_HERO_SUBLINE_BODY,
   LANDING_SUCCESS_STORIES,
@@ -49,6 +51,14 @@ describe("homepage hero copy", () => {
     );
     expect(formatExamHeroTrialOffer()).toBe(formatPricingCheckoutTrialOffer());
     expect(formatExamHeroTrialOffer()).not.toMatch(/no card/i);
+  });
+
+  it("leads the homepage eyebrow with NCLEX and keeps the subhead short", () => {
+    expect(HOME_HERO_BOARDS_EYEBROW.startsWith("NCLEX-RN")).toBe(true);
+    expect(HOME_HERO_BOARDS_EYEBROW).toMatch(/NAPLEX/);
+    expect(HOME_HERO_SHORT_SUBLINE.length).toBeLessThan(120);
+    expect(HOME_HERO_SHORT_SUBLINE).toMatch(/NCLEX/);
+    expect(HOME_HERO_SHORT_SUBLINE).not.toMatch(/27\.99|no payment method/i);
   });
 
   it("does not ship invented student testimonials as a static fallback", () => {
