@@ -1,17 +1,24 @@
 import { describe, expect, it } from "vitest";
 import { FIRST_LOGIN_TOUR_ID } from "@/lib/onboarding/tour-record";
 import {
+  FALLBACK_STUDY_TIME_ZONE,
   TODAY_REVIEW_MAX_SHARE,
   TODAY_SET_DEFAULT_SIZE,
   applyQuestionAllowance,
+  calendarDateKey,
   composeTodaySet,
   computeDailyHabitStreak,
   dailyGoalProgress,
+  fitTodayComposition,
   formatTodayMixLine,
   mergeDailyHabitDay,
+  mergeStoredTodaySet,
+  priorTodaySetIds,
   questionAllowanceFromUsage,
   readDailyHabitDays,
+  readStoredTodaySetForDate,
   recountTodayMix,
+  resolveStudyTimeZone,
   resolveTodaySetSize,
   todayReviewSlotCap,
   todaySetRandom,
@@ -280,6 +287,143 @@ describe("composeTodaySet", () => {
 
   it("does not mention a specific board", () => {
     expect(composeTodaySet.toString()).not.toMatch(/nclex|naplex|usmle|pance/i);
+  });
+
+  it("spreads new questions across topics instead of the lowest ids", () => {
+    const set = composeTodaySet({
+      size: 6,
+      reviewIncorrectIds: [],
+      spacedReviewIds: [],
+      newCandidates: [
+        ...Array.from({ length: 8 }, (_, i) => ({ id: `a-${i}`, weight: 1, topicKey: "alpha" })),
+        ...Array.from({ length: 8 }, (_, i) => ({ id: `b-${i}`, weight: 1, topicKey: "beta" })),
+        ...Array.from({ length: 8 }, (_, i) => ({ id: `c-${i}`, weight: 1, topicKey: "gamma" })),
+      ],
+      random: () => 0,
+    });
+    expect(set.newIds).toHaveLength(6);
+    expect(new Set(set.newIds.map((id) => id[0])).size).toBe(3);
+    expect(set.newIds.filter((id) => id.startsWith("a-")).length).toBeLessThan(6);
+  });
+
+  it("rotates due review and holds back new items already shown", () => {
+    const open = Array.from({ length: 40 }, (_, i) => `miss-${i}`);
+    const fresh = Array.from({ length: 30 }, (_, i) => ({
+      id: `new-${i}`,
+      weight: 1,
+      topicKey: ["alpha", "beta", "gamma"][i % 3],
+    }));
+    const input = {
+      size: 25,
+      reviewIncorrectIds: open,
+      spacedReviewIds: ["spaced-0"],
+      newCandidates: fresh,
+    };
+    const day1 = composeTodaySet({
+      ...input,
+      random: todaySetRandom(["student", "nursing", "2026-09-27"]),
+      reviewCycle: { date: "2026-09-27", salt: 0 },
+    });
+    const again = composeTodaySet({
+      ...input,
+      random: todaySetRandom(["student", "nursing", "2026-09-27"]),
+      reviewCycle: { date: "2026-09-27", salt: 0 },
+    });
+    const shown = new Set(day1.newIds);
+    const day2 = composeTodaySet({
+      ...input,
+      newCandidates: fresh.map((row) => ({ ...row, previouslyShown: shown.has(row.id) })),
+      avoidReviewIds: day1.reviewIncorrectIds,
+      random: todaySetRandom(["student", "nursing", "2026-09-28"]),
+      reviewCycle: { date: "2026-09-28", salt: 0 },
+    });
+
+    expect(again).toEqual(day1);
+    expect(day1.reviewCount).toBe(15);
+    expect(day1.newCount).toBe(10);
+    expect(day1.mixLine).toBe("15 to review · 10 new");
+    expect(day2.reviewCount).toBe(15);
+    expect(day2.newCount).toBe(10);
+    expect(day2.mixLine).toBe(day1.mixLine);
+    expect(day2.ids).not.toEqual(day1.ids);
+    expect(day2.newIds.filter((id) => shown.has(id))).toEqual([]);
+    expect(day2.reviewIncorrectIds.filter((id) => day1.reviewIncorrectIds.includes(id))).toEqual([]);
+    expect(new Set(day1.newIds.map((id) => Number(id.slice(4)) % 3)).size).toBeGreaterThan(1);
+  });
+
+  it("uses previously shown new items only after the unseen pool runs out", () => {
+    const set = composeTodaySet({
+      size: 4,
+      reviewIncorrectIds: [],
+      spacedReviewIds: [],
+      newCandidates: [
+        { id: "fresh-1", weight: 1, topicKey: "alpha" },
+        { id: "old-1", weight: 9, previouslyShown: true, topicKey: "beta" },
+        { id: "old-2", weight: 9, previouslyShown: true, topicKey: "gamma" },
+        { id: "old-3", weight: 9, previouslyShown: true, topicKey: "delta" },
+      ],
+      random: () => 0,
+    });
+    expect(set.newIds[0]).toBe("fresh-1");
+    expect(set.newCount).toBe(4);
+    expect(set.newIds).toContain("old-1");
+    expect(set.mixLine).toBe("4 new");
+  });
+
+  it("fits a smaller sitting from the same ids and keeps the review cap", () => {
+    const full = composeTodaySet({
+      size: 25,
+      reviewIncorrectIds: Array.from({ length: 41 }, (_, i) => `miss-${i}`),
+      spacedReviewIds: [],
+      newCandidates: Array.from({ length: 20 }, (_, i) => ({ id: `new-${i}`, weight: 1 })),
+      random: () => 0,
+    });
+    const fitted = fitTodayComposition(full, 10);
+    expect(fitted.reviewCount).toBe(6);
+    expect(fitted.newCount).toBe(4);
+    expect(fitted.mixLine).toBe("6 to review · 4 new");
+    expect(fitted.ids.every((id) => full.ids.includes(id))).toBe(true);
+    expect(fitTodayComposition(full, 25).ids).toEqual(full.ids);
+  });
+});
+
+describe("study calendar day", () => {
+  it("uses the student zone and falls back to Chicago", () => {
+    expect(FALLBACK_STUDY_TIME_ZONE).toBe("America/Chicago");
+    expect(resolveStudyTimeZone(null)).toBe("America/Chicago");
+    expect(resolveStudyTimeZone("Not/AZone")).toBe("America/Chicago");
+    expect(resolveStudyTimeZone("America/New_York")).toBe("America/New_York");
+    expect(calendarDateKey(new Date("2026-09-28T02:30:00.000Z"), "America/Chicago")).toBe(
+      "2026-09-27"
+    );
+    expect(calendarDateKey(new Date("2026-09-28T05:30:00.000Z"), "America/Chicago")).toBe(
+      "2026-09-28"
+    );
+    expect(calendarDateKey(new Date("2026-09-28T02:30:00.000Z"), "UTC")).toBe("2026-09-28");
+  });
+});
+
+describe("stored today set", () => {
+  it("keeps the tour record and remembers yesterday's ids", () => {
+    const metadata = {
+      tours: { [FIRST_LOGIN_TOUR_ID]: { status: "completed", step: 4, at: "2026-09-01T00:00:00.000Z" } },
+    };
+    const saved = mergeStoredTodaySet(metadata, "nursing", {
+      date: "2026-09-27",
+      timeZone: "America/Chicago",
+      requestedSize: 25,
+      reviewIncorrectIds: ["miss-0"],
+      spacedReviewIds: [],
+      newIds: ["new-0", "new-1"],
+    });
+    expect(saved.tours).toEqual(metadata.tours);
+    expect(readStoredTodaySetForDate(saved, "nursing", "2026-09-27")?.newIds).toEqual([
+      "new-0",
+      "new-1",
+    ]);
+    expect(priorTodaySetIds(saved, "nursing", "2026-09-28").newIds).toEqual(["new-0", "new-1"]);
+    expect(priorTodaySetIds(saved, "nursing", "2026-09-27").newIds).toEqual([]);
+    expect(priorTodaySetIds(saved, "pharmacy", "2026-09-28").newIds).toEqual([]);
   });
 });
 

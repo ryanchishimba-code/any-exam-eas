@@ -14,6 +14,11 @@
  * TODAY_REVIEW_MAX_SHARE of the set so a long miss list still leaves room
  * for new questions. If new items run short, leftover review fills those
  * slots. If both run short, the set is shorter.
+ *
+ * The calendar day is the student's timezone when that zone is known, and
+ * America/Chicago otherwise. The review window moves with that day so the
+ * same due items do not lead every set. New items are spread across topics.
+ * Ids shown on an earlier day wait until the unseen pool runs out.
  */
 
 import { QUESTION_BANK_MAX_COUNT } from "@/lib/exam/modes";
@@ -28,7 +33,11 @@ export const TODAY_SET_DEFAULT_SIZE = 25;
  */
 export const TODAY_REVIEW_MAX_SHARE = 0.6;
 
+/** Used when the account has no timezone and the request did not send one. */
+export const FALLBACK_STUDY_TIME_ZONE = "America/Chicago";
+
 const HABIT_DAY_CAP = 120;
+const TODAY_SET_HISTORY_CAP = 14;
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
 export type TodaySetSizeInput = {
@@ -44,6 +53,20 @@ export type TodayNewCandidate = {
   id: string;
   /** Blueprint share. Higher is more likely to be drawn. Non-positive still fills last. */
   weight: number;
+  /** Topic bucket. Two or more distinct keys spread the new slice across topics. */
+  topicKey?: string | null;
+  /**
+   * Shown on an earlier day and still unanswered.
+   * Drawn only after never-shown items run out.
+   */
+  previouslyShown?: boolean;
+};
+
+/** Moves the due-review window once per calendar day. */
+export type TodayReviewCycle = {
+  date: string;
+  /** Stable per student and board. */
+  salt: number;
 };
 
 export type TodaySetComposition = {
@@ -173,6 +196,166 @@ function dedupeIds(ids: readonly string[]): string[] {
   return out;
 }
 
+function rotateIds(ids: readonly string[], offset: number): string[] {
+  if (ids.length === 0) return [];
+  const start = ((Math.trunc(offset) % ids.length) + ids.length) % ids.length;
+  if (start === 0) return [...ids];
+  return [...ids.slice(start), ...ids.slice(0, start)];
+}
+
+/**
+ * Which index leads the due-review window.
+ * Consecutive calendar days advance one window, so a long queue does not
+ * repeat yesterday's slice until the windows wrap.
+ */
+export function reviewWindowStart(
+  length: number,
+  take: number,
+  dayIndex: number,
+  salt: number
+): number {
+  if (!Number.isFinite(length) || length <= 1) return 0;
+  if (!Number.isFinite(take) || take <= 0) return 0;
+  if (length <= take) return 0;
+  const windows = Math.ceil(length / take);
+  const shift = (Math.trunc(dayIndex) || 0) + (Math.trunc(salt) || 0);
+  const slot = ((shift % windows) + windows) % windows;
+  return (slot * take) % length;
+}
+
+function pickFromRotated(
+  ids: readonly string[],
+  count: number,
+  offset: number,
+  avoid: ReadonlySet<string>
+): string[] {
+  if (count <= 0 || ids.length === 0) return [];
+  const rotated = rotateIds(ids, offset);
+  const picked: string[] = [];
+  const seen = new Set<string>();
+  const take = (list: readonly string[]) => {
+    for (const id of list) {
+      if (picked.length >= count) return;
+      if (seen.has(id)) continue;
+      seen.add(id);
+      picked.push(id);
+    }
+  };
+  take(rotated.filter((id) => !avoid.has(id)));
+  take(rotated);
+  return picked;
+}
+
+function topicSlotPlan(
+  groups: { key: string; weight: number; count: number }[],
+  needed: number
+): Map<string, number> {
+  const plan = new Map<string, number>();
+  const active = groups.filter((group) => group.count > 0 && group.weight > 0);
+  const available = active.reduce((sum, group) => sum + group.count, 0);
+  let left = Math.max(0, Math.min(needed, available));
+  if (left === 0 || active.length === 0) return plan;
+
+  if (left >= active.length) {
+    for (const group of active) {
+      plan.set(group.key, 1);
+      left -= 1;
+    }
+  }
+  if (left === 0) return plan;
+
+  const room = active
+    .map((group) => ({
+      key: group.key,
+      weight: group.weight,
+      room: group.count - (plan.get(group.key) ?? 0),
+    }))
+    .filter((group) => group.room > 0);
+  const weightSum = room.reduce((sum, group) => sum + group.weight, 0);
+  const shares = room.map((group) => {
+    const exact = weightSum > 0 ? (left * group.weight) / weightSum : left / room.length;
+    const whole = Math.min(group.room, Math.floor(exact));
+    return { ...group, whole, frac: exact - Math.floor(exact) };
+  });
+  let used = 0;
+  for (const share of shares) {
+    plan.set(share.key, (plan.get(share.key) ?? 0) + share.whole);
+    used += share.whole;
+  }
+  let rest = left - used;
+  const byRemainder = [...shares].sort(
+    (a, b) => b.frac - a.frac || b.weight - a.weight || a.key.localeCompare(b.key)
+  );
+  for (const share of byRemainder) {
+    if (rest <= 0) break;
+    const current = plan.get(share.key) ?? 0;
+    const group = active.find((item) => item.key === share.key);
+    if (!group || current >= group.count) continue;
+    plan.set(share.key, current + 1);
+    rest -= 1;
+  }
+  if (rest > 0) {
+    for (const group of active) {
+      if (rest <= 0) break;
+      const current = plan.get(group.key) ?? 0;
+      const space = group.count - current;
+      if (space <= 0) continue;
+      const give = Math.min(space, rest);
+      plan.set(group.key, current + give);
+      rest -= give;
+    }
+  }
+  return plan;
+}
+
+function sampleNewQuestions(
+  pool: { id: string; weight: number; topicKey?: string | null }[],
+  count: number,
+  random: () => number
+): string[] {
+  if (count <= 0 || pool.length === 0) return [];
+  const topicOf = (item: { topicKey?: string | null }) => item.topicKey?.trim() || "general";
+  if (new Set(pool.map(topicOf)).size < 2) return weightedSample(pool, count, random);
+
+  const groups = new Map<string, { id: string; weight: number }[]>();
+  for (const item of pool) {
+    const key = topicOf(item);
+    const list = groups.get(key) ?? [];
+    list.push({ id: item.id, weight: item.weight });
+    groups.set(key, list);
+  }
+  const plan = topicSlotPlan(
+    [...groups.entries()].map(([key, items]) => ({
+      key,
+      count: items.length,
+      weight: items.reduce((sum, item) => sum + item.weight, 0),
+    })),
+    count
+  );
+  const bags = [...plan.entries()]
+    .filter(([, slots]) => slots > 0)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([key, slots]) => ({
+      left: slots,
+      items: groups.get(key) ?? [],
+    }));
+  const picked: string[] = [];
+  while (picked.length < count && bags.some((bag) => bag.left > 0 && bag.items.length > 0)) {
+    let progressed = false;
+    for (const bag of bags) {
+      if (picked.length >= count || bag.left <= 0 || bag.items.length === 0) continue;
+      const next = weightedSample(bag.items, 1, random)[0];
+      if (!next) continue;
+      bag.items = bag.items.filter((item) => item.id !== next);
+      bag.left -= 1;
+      picked.push(next);
+      progressed = true;
+    }
+    if (!progressed) break;
+  }
+  return picked;
+}
+
 function weightedSample(
   pool: { id: string; weight: number }[],
   count: number,
@@ -214,10 +397,18 @@ export function composeTodaySet(input: {
   spacedReviewIds: readonly string[];
   newCandidates: readonly TodayNewCandidate[];
   random?: () => number;
+  /** Ignored when `reviewCycle` is set. 0 keeps the historical prefix. */
+  reviewOffset?: number;
+  reviewCycle?: TodayReviewCycle | null;
+  /** Due ids already shown on earlier days. Repeated only when the due pool is short. */
+  avoidReviewIds?: readonly string[];
 }): TodaySetComposition {
   const requested = Number.isFinite(input.size) ? Math.max(0, Math.round(input.size)) : 0;
   const random = input.random ?? Math.random;
   const reviewCap = todayReviewSlotCap(requested);
+  const avoid = new Set(
+    (input.avoidReviewIds ?? []).map((id) => id.trim()).filter(Boolean)
+  );
 
   const openAll = dedupeIds(input.reviewIncorrectIds);
   const seenReview = new Set(openAll);
@@ -227,11 +418,35 @@ export function composeTodaySet(input: {
     seenReview.add(id);
     spacedAll.push(id);
   }
-  const reviewOrder = [...openAll, ...spacedAll];
-  const firstReview = reviewOrder.slice(0, Math.min(reviewCap, requested));
+  const openTake = Math.min(reviewCap, requested);
+  const openOffset = input.reviewCycle
+    ? reviewWindowStart(
+        openAll.length,
+        openTake,
+        calendarDayIndex(input.reviewCycle.date),
+        input.reviewCycle.salt
+      )
+    : (input.reviewOffset ?? 0);
+  const spacedOffset = input.reviewCycle
+    ? reviewWindowStart(
+        spacedAll.length,
+        Math.max(1, openTake),
+        calendarDayIndex(input.reviewCycle.date),
+        input.reviewCycle.salt
+      )
+    : (input.reviewOffset ?? 0);
+  const openFirst = pickFromRotated(openAll, openTake, openOffset, avoid);
+  const spacedFirst = pickFromRotated(
+    spacedAll,
+    Math.max(0, openTake - openFirst.length),
+    spacedOffset,
+    avoid
+  );
+  const firstReview = [...openFirst, ...spacedFirst];
   const firstTaken = new Set(firstReview);
 
-  const pool: { id: string; weight: number }[] = [];
+  const freshPool: { id: string; weight: number; topicKey?: string | null }[] = [];
+  const stalePool: { id: string; weight: number; topicKey?: string | null }[] = [];
   const seenNew = new Set<string>();
   for (const candidate of input.newCandidates) {
     const id = candidate.id.trim();
@@ -239,26 +454,43 @@ export function composeTodaySet(input: {
     seenNew.add(id);
     const weight =
       Number.isFinite(candidate.weight) && candidate.weight > 0 ? candidate.weight : 0.001;
-    pool.push({ id, weight });
+    const row = { id, weight, topicKey: candidate.topicKey };
+    if (candidate.previouslyShown) stalePool.push(row);
+    else freshPool.push(row);
   }
-  const fresh = weightedSample(pool, requested - firstReview.length, random);
+  const newSlots = Math.max(0, requested - firstReview.length);
+  const freshPicked = sampleNewQuestions(freshPool, newSlots, random);
+  const drawnFresh = [
+    ...freshPicked,
+    ...sampleNewQuestions(stalePool, newSlots - freshPicked.length, random),
+  ];
 
-  const shortfall = requested - firstReview.length - fresh.length;
-  const backfill =
-    shortfall > 0 ? reviewOrder.filter((id) => !firstTaken.has(id)).slice(0, shortfall) : [];
+  const shortfall = requested - firstReview.length - drawnFresh.length;
+  const restOpen = rotateIds(openAll, openOffset).filter((id) => !firstTaken.has(id));
+  const restSpaced = rotateIds(spacedAll, spacedOffset).filter((id) => !firstTaken.has(id));
+  const rest = [...restOpen, ...restSpaced];
+  const backfill = [
+    ...rest.filter((id) => !avoid.has(id)),
+    ...rest.filter((id) => avoid.has(id)),
+  ].slice(0, Math.max(0, shortfall));
   const selectedReview = new Set([...firstReview, ...backfill]);
-  const reviewIncorrect = openAll.filter((id) => selectedReview.has(id));
-  const spaced = spacedAll.filter((id) => selectedReview.has(id));
+  const reviewIncorrect = [
+    ...openFirst,
+    ...backfill.filter((id) => openAll.includes(id)),
+  ].filter((id) => selectedReview.has(id));
+  const spaced = [...spacedFirst, ...backfill.filter((id) => spacedAll.includes(id))].filter((id) =>
+    selectedReview.has(id)
+  );
   const reviewCount = reviewIncorrect.length + spaced.length;
   return {
     requestedSize: requested,
-    ids: [...reviewIncorrect, ...spaced, ...fresh],
+    ids: [...reviewIncorrect, ...spaced, ...drawnFresh],
     reviewIncorrectIds: reviewIncorrect,
     spacedReviewIds: spaced,
-    newIds: fresh,
+    newIds: drawnFresh,
     reviewCount,
-    newCount: fresh.length,
-    mixLine: formatTodayMixLine(reviewCount, fresh.length),
+    newCount: drawnFresh.length,
+    mixLine: formatTodayMixLine(reviewCount, drawnFresh.length),
   };
 }
 
@@ -299,6 +531,108 @@ export function dailyGoalProgress(done: number, target: number): DailyGoalProgre
 
 export function utcDateKey(date: Date): string {
   return date.toISOString().slice(0, 10);
+}
+
+/** Keep a caller-supplied IANA zone. Anything else falls back to America/Chicago. */
+export function resolveStudyTimeZone(input?: string | null): string {
+  const trimmed = input?.trim() ?? "";
+  if (!trimmed || trimmed.length > 80) return FALLBACK_STUDY_TIME_ZONE;
+  try {
+    new Intl.DateTimeFormat("en-US", { timeZone: trimmed }).format(0);
+    return trimmed;
+  } catch {
+    return FALLBACK_STUDY_TIME_ZONE;
+  }
+}
+
+/** YYYY-MM-DD in the study timezone. Invalid zones use America/Chicago. */
+export function calendarDateKey(now: Date, timeZone?: string | null): string {
+  const zone = resolveStudyTimeZone(timeZone);
+  try {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: zone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).formatToParts(now);
+    const year = parts.find((part) => part.type === "year")?.value;
+    const month = parts.find((part) => part.type === "month")?.value;
+    const day = parts.find((part) => part.type === "day")?.value;
+    if (year && month && day) return `${year}-${month}-${day}`;
+  } catch {
+    /* use UTC below */
+  }
+  return utcDateKey(now);
+}
+
+/** Browser zone when the runtime exposes one. Otherwise America/Chicago. */
+export function browserStudyTimeZone(): string {
+  try {
+    return resolveStudyTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  } catch {
+    return FALLBACK_STUDY_TIME_ZONE;
+  }
+}
+
+/** Milliseconds until the next midnight in the study timezone. At least one minute. */
+export function msUntilNextCalendarDay(now: Date, timeZone?: string | null): number {
+  const zone = resolveStudyTimeZone(timeZone);
+  const today = calendarDateKey(now, zone);
+  let lo = now.getTime();
+  let hi = now.getTime() + 36 * 60 * 60 * 1000;
+  while (hi - lo > 1000) {
+    const mid = Math.floor((lo + hi) / 2);
+    if (calendarDateKey(new Date(mid), zone) === today) lo = mid;
+    else hi = mid;
+  }
+  return Math.max(60_000, hi - now.getTime());
+}
+
+/** Ordinal for a YYYY-MM-DD calendar date. Consecutive dates differ by 1. */
+export function calendarDayIndex(dateIso: string): number {
+  if (!DATE_RE.test(dateIso)) return 0;
+  const [year, month, day] = dateIso.split("-").map(Number);
+  if (!year || !month || !day) return 0;
+  return Math.floor(Date.UTC(year, month - 1, day) / 86_400_000);
+}
+
+/**
+ * Serve a smaller sitting from a set that was already chosen.
+ * Review stays capped, and the ids are a subset of the original set.
+ * A request at least as long as the set returns the set unchanged.
+ */
+export function fitTodayComposition(composition: TodaySetComposition, size: number): TodaySetComposition {
+  const requested = Number.isFinite(size) ? Math.max(0, Math.round(size)) : 0;
+  if (requested >= composition.ids.length) {
+    return { ...composition, requestedSize: Math.max(composition.requestedSize, requested) };
+  }
+  const reviewCap = todayReviewSlotCap(requested);
+  const openTake = composition.reviewIncorrectIds.slice(0, Math.min(reviewCap, requested));
+  const spacedTake = composition.spacedReviewIds.slice(
+    0,
+    Math.max(0, Math.min(reviewCap, requested) - openTake.length)
+  );
+  const reviewTaken = openTake.length + spacedTake.length;
+  const newTake = composition.newIds.slice(0, Math.max(0, requested - reviewTaken));
+  const shortfall = requested - reviewTaken - newTake.length;
+  const extraOpen = composition.reviewIncorrectIds.slice(openTake.length);
+  const extraSpaced = composition.spacedReviewIds.slice(spacedTake.length);
+  const backfill = [...extraOpen, ...extraSpaced].slice(0, Math.max(0, shortfall));
+  const openSet = new Set(composition.reviewIncorrectIds);
+  const spacedSet = new Set(composition.spacedReviewIds);
+  const reviewIncorrectIds = [...openTake, ...backfill.filter((id) => openSet.has(id))];
+  const spacedReviewIds = [...spacedTake, ...backfill.filter((id) => spacedSet.has(id))];
+  const reviewCount = reviewIncorrectIds.length + spacedReviewIds.length;
+  return {
+    requestedSize: requested,
+    ids: [...reviewIncorrectIds, ...spacedReviewIds, ...newTake],
+    reviewIncorrectIds,
+    spacedReviewIds,
+    newIds: newTake,
+    reviewCount,
+    newCount: newTake.length,
+    mixLine: formatTodayMixLine(reviewCount, newTake.length),
+  };
 }
 
 export function habitDayQualifies(day: Pick<HabitDay, "completedSet" | "targetMet">): boolean {
@@ -460,6 +794,172 @@ export function mergeDailyHabitDay(
   v1.boards = boards;
   habit.v1 = v1;
   return { ...current, dailyHabit: habit };
+}
+
+export type StoredTodaySet = {
+  date: string;
+  timeZone: string;
+  requestedSize: number;
+  reviewIncorrectIds: string[];
+  spacedReviewIds: string[];
+  newIds: string[];
+};
+
+function stringList(value: unknown, cap: number): string[] {
+  if (!Array.isArray(value)) return [];
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const entry of value) {
+    if (typeof entry !== "string") continue;
+    const trimmed = entry.trim();
+    if (!trimmed || trimmed.length > 80 || seen.has(trimmed)) continue;
+    seen.add(trimmed);
+    out.push(trimmed);
+    if (out.length >= cap) break;
+  }
+  return out;
+}
+
+function todaySetBoards(metadata: unknown): Record<string, { days?: unknown }> | null {
+  const root = parseMetadataObject(metadata);
+  const stored = root?.todaySets;
+  if (!stored || typeof stored !== "object" || Array.isArray(stored)) return null;
+  const v1 = (stored as { v1?: unknown }).v1;
+  if (!v1 || typeof v1 !== "object" || Array.isArray(v1)) return null;
+  const boards = (v1 as { boards?: unknown }).boards;
+  if (!boards || typeof boards !== "object" || Array.isArray(boards)) return null;
+  return boards as Record<string, { days?: unknown }>;
+}
+
+function parseStoredTodaySet(value: unknown): StoredTodaySet | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  const row = value as Partial<StoredTodaySet>;
+  if (typeof row.date !== "string" || !DATE_RE.test(row.date)) return null;
+  const requestedSize =
+    typeof row.requestedSize === "number" && Number.isFinite(row.requestedSize)
+      ? Math.max(0, Math.round(row.requestedSize))
+      : 0;
+  return {
+    date: row.date,
+    timeZone: resolveStudyTimeZone(typeof row.timeZone === "string" ? row.timeZone : null),
+    requestedSize,
+    reviewIncorrectIds: stringList(row.reviewIncorrectIds, 120),
+    spacedReviewIds: stringList(row.spacedReviewIds, 120),
+    newIds: stringList(row.newIds, 120),
+  };
+}
+
+export function readStoredTodaySets(metadata: unknown, fieldId: string): StoredTodaySet[] {
+  const days = todaySetBoards(metadata)?.[fieldId]?.days;
+  if (!Array.isArray(days)) return [];
+  return days
+    .map((day) => parseStoredTodaySet(day))
+    .filter((day): day is StoredTodaySet => Boolean(day))
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
+
+export function readStoredTodaySetForDate(
+  metadata: unknown,
+  fieldId: string,
+  date: string
+): StoredTodaySet | null {
+  if (!DATE_RE.test(date)) return null;
+  const days = readStoredTodaySets(metadata, fieldId);
+  for (let i = days.length - 1; i >= 0; i--) {
+    if (days[i]?.date === date) return days[i] ?? null;
+  }
+  return null;
+}
+
+/** New and review ids assigned on earlier calendar days for this board. */
+export function priorTodaySetIds(
+  metadata: unknown,
+  fieldId: string,
+  today: string
+): { newIds: string[]; reviewIds: string[] } {
+  const newIds: string[] = [];
+  const reviewIds: string[] = [];
+  const seenNew = new Set<string>();
+  const seenReview = new Set<string>();
+  for (const day of readStoredTodaySets(metadata, fieldId)) {
+    if (!DATE_RE.test(today) || day.date >= today) continue;
+    for (const id of day.newIds) {
+      if (seenNew.has(id)) continue;
+      seenNew.add(id);
+      newIds.push(id);
+    }
+    for (const id of [...day.reviewIncorrectIds, ...day.spacedReviewIds]) {
+      if (seenReview.has(id)) continue;
+      seenReview.add(id);
+      reviewIds.push(id);
+    }
+  }
+  return { newIds, reviewIds };
+}
+
+export function compositionFromStored(snapshot: StoredTodaySet): TodaySetComposition {
+  const reviewIncorrectIds = dedupeIds(snapshot.reviewIncorrectIds);
+  const open = new Set(reviewIncorrectIds);
+  const spacedReviewIds = dedupeIds(snapshot.spacedReviewIds).filter((id) => !open.has(id));
+  const taken = new Set([...reviewIncorrectIds, ...spacedReviewIds]);
+  const newIds = dedupeIds(snapshot.newIds).filter((id) => !taken.has(id));
+  const reviewCount = reviewIncorrectIds.length + spacedReviewIds.length;
+  return {
+    requestedSize: snapshot.requestedSize,
+    ids: [...reviewIncorrectIds, ...spacedReviewIds, ...newIds],
+    reviewIncorrectIds,
+    spacedReviewIds,
+    newIds,
+    reviewCount,
+    newCount: newIds.length,
+    mixLine: formatTodayMixLine(reviewCount, newIds.length),
+  };
+}
+
+/** One set per board per calendar day. Other metadata, including tours, stays put. */
+export function mergeStoredTodaySet(
+  metadata: unknown,
+  fieldId: string,
+  snapshot: StoredTodaySet
+): Record<string, unknown> {
+  const current = { ...(parseMetadataObject(metadata) ?? {}) };
+  const boardId = fieldId.trim();
+  if (!boardId || !DATE_RE.test(snapshot.date)) return current;
+  const storedRaw = current.todaySets;
+  const stored =
+    storedRaw && typeof storedRaw === "object" && !Array.isArray(storedRaw)
+      ? { ...(storedRaw as Record<string, unknown>) }
+      : {};
+  const v1Raw = stored.v1;
+  const v1 =
+    v1Raw && typeof v1Raw === "object" && !Array.isArray(v1Raw)
+      ? { ...(v1Raw as Record<string, unknown>) }
+      : {};
+  const boardsRaw = v1.boards;
+  const boards =
+    boardsRaw && typeof boardsRaw === "object" && !Array.isArray(boardsRaw)
+      ? { ...(boardsRaw as Record<string, unknown>) }
+      : {};
+  const boardRaw = boards[boardId];
+  const board =
+    boardRaw && typeof boardRaw === "object" && !Array.isArray(boardRaw)
+      ? { ...(boardRaw as Record<string, unknown>) }
+      : {};
+  const nextDay: StoredTodaySet = {
+    date: snapshot.date,
+    timeZone: resolveStudyTimeZone(snapshot.timeZone),
+    requestedSize: Math.max(0, Math.round(snapshot.requestedSize) || 0),
+    reviewIncorrectIds: stringList(snapshot.reviewIncorrectIds, 120),
+    spacedReviewIds: stringList(snapshot.spacedReviewIds, 120),
+    newIds: stringList(snapshot.newIds, 120),
+  };
+  const days = readStoredTodaySets(current, boardId).filter((day) => day.date !== snapshot.date);
+  days.push(nextDay);
+  days.sort((a, b) => a.date.localeCompare(b.date));
+  boards[boardId] = { ...board, days: days.slice(-TODAY_SET_HISTORY_CAP) };
+  v1.boards = boards;
+  stored.v1 = v1;
+  return { ...current, todaySets: stored };
 }
 
 export function hashStringToSeed(value: string): number {

@@ -25,6 +25,7 @@ export const maxDuration = 60;
 
 const bodySchema = z.object({
   field: z.string().min(1),
+  timeZone: z.string().max(80).optional(),
 });
 
 export async function POST(req: Request) {
@@ -64,6 +65,7 @@ export async function POST(req: Request) {
       examSlug,
       fieldId,
       size,
+      timeZone: body.timeZone,
     });
     if (mix.ids.length === 0) {
       return NextResponse.json(
