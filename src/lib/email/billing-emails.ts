@@ -107,7 +107,8 @@ export async function sendTrialEndingReminderEmail(
     trialEndsAt: Date;
     planInterval: BillingInterval;
     amountUsd: number;
-    hasStripeSubscription?: boolean;
+    /** True only for a live Stripe subscription whose status is trialing. */
+    legacyStripeTrial?: boolean;
   }
 ): Promise<EmailDeliveryResult> {
   const { sendTrialEndingUpgradeEmail } = await import(
@@ -117,7 +118,7 @@ export async function sendTrialEndingReminderEmail(
     to: params.to,
     name: params.name,
     trialEndsAt: params.trialEndsAt,
-    hasStripeSubscription: params.hasStripeSubscription,
+    legacyStripeTrial: params.legacyStripeTrial,
     planInterval: params.planInterval,
     amountUsd: params.amountUsd,
   });

@@ -8,7 +8,6 @@ import {
 } from "@/lib/stripe";
 import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { isStripeConfigured } from "@/lib/payments";
-import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import {
   formatPlanUsd,
   getBillingPlanTier,
@@ -59,10 +58,19 @@ export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const embedded = body?.embedded === true;
   const reactivating = body?.reactivate === true;
-  // Card-required trial (`plan=trial`) is unchanged: no renewal checkbox and no
-  // consent metadata. That path still uses Stripe's trial with a payment method.
-  const requestedTrial = body?.plan === "trial";
-  let plan = requestedTrial ? ("trial" as const) : ("subscribe" as const);
+  // Card-free trials never open a Stripe session. Signup and /checkout (without
+  // plan=subscribe) start the app trial. Existing Stripe trials still convert below.
+  if (body?.plan === "trial") {
+    return NextResponse.json(
+      {
+        error:
+          "Free trials do not use checkout. Start the card-free trial from signup.",
+        code: "CARD_FREE_TRIAL_ONLY",
+      },
+      { status: 400 }
+    );
+  }
+  const plan = "subscribe" as const;
   const tier = parseSubscriptionTier(body?.tier ?? sub?.planTier);
   const interval = parseBillingInterval(body?.interval ?? sub?.planInterval);
   // Pay-once is only honored when the choice is live and the user is buying, not trialing.
@@ -98,29 +106,6 @@ export async function POST(req: Request) {
     );
   }
 
-  // Already on a Stripe trial — allow paid upgrade (convert), block starting another trial.
-  if (
-    access.status === "trialing" &&
-    isUsableStripeSubscriptionId(sub?.stripeSubscriptionId) &&
-    plan === "trial" &&
-    !reactivating
-  ) {
-    return NextResponse.json(
-      {
-        error:
-          "Your trial is already active. Choose Upgrade to Pro to start paid billing now.",
-        code: "TRIAL_ALREADY_ACTIVE",
-      },
-      { status: 400 }
-    );
-  }
-
-  if (session.user.email && (reactivating || plan === "trial")) {
-    if (await hasConsumedTrial(session.user.email)) {
-      plan = "subscribe";
-    }
-  }
-
   try {
     const { stripe: stripeClient } = await import("@/lib/stripe");
     const prices = await import("@/lib/stripe-prices");
@@ -144,15 +129,6 @@ export async function POST(req: Request) {
       message,
     });
     return NextResponse.json({ error: message }, { status: 503 });
-  }
-
-  if (plan === "trial" && session.user.email && !reactivating) {
-    if (await hasConsumedTrial(session.user.email)) {
-      return NextResponse.json(
-        { error: "This email has already used a free trial. Subscribe at the standard rate instead." },
-        { status: 400 }
-      );
-    }
   }
 
   let stripeCouponId: string | null = null;
@@ -198,8 +174,7 @@ export async function POST(req: Request) {
     }
   }
 
-  // Recurring paid checkout only. The trial URL is excluded on purpose.
-  const recurringPaid = plan === "subscribe" && !oneTime && !requestedTrial;
+  const recurringPaid = plan === "subscribe" && !oneTime;
   if (recurringPaid && body?.renewalConsent !== true) {
     return NextResponse.json(
       { error: "Confirm the renewal terms before paying." },

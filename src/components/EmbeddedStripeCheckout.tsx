@@ -28,7 +28,8 @@ import type { SignupPlan } from "@/lib/validators/auth";
  */
 export function EmbeddedStripeCheckout() {
   const searchParams = useSearchParams();
-  const plan: SignupPlan = searchParams.get("plan") === "trial" ? "trial" : "subscribe";
+  // Trials never collect a card here. A stale plan=trial query is ignored.
+  const plan: SignupPlan = "subscribe";
   const tier = useMemo((): SubscriptionTier => {
     const raw = searchParams.get("tier");
     return raw === "pro" ? "pro" : "pro";
@@ -88,11 +89,15 @@ export function EmbeddedStripeCheckout() {
     nextPaymentMode: PaymentMode,
     renewalConsent: boolean
   ) {
-    setSelectedPlan(nextPlan);
+    if (nextPlan === "trial") {
+      setError("Free trials start from signup and do not collect a card.");
+      return;
+    }
+    setSelectedPlan("subscribe");
     setSelectedTier(nextTier);
     setSelectedInterval(nextInterval);
     setSelectedPaymentMode(nextPaymentMode);
-    const qs = new URLSearchParams({ plan: nextPlan, tier: nextTier, interval: nextInterval });
+    const qs = new URLSearchParams({ plan: "subscribe", tier: nextTier, interval: nextInterval });
     if (isPaymentModeChoiceEnabled()) qs.set("mode", nextPaymentMode);
     if (discount?.code) qs.set("promo", discount.code);
     if (reactivating) qs.set("reactivate", "1");
@@ -111,7 +116,7 @@ export function EmbeddedStripeCheckout() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          plan: nextPlan,
+          plan: "subscribe",
           tier: nextTier,
           interval: nextInterval,
           paymentMode: nextPaymentMode,

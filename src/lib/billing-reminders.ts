@@ -66,10 +66,14 @@ export async function runBillingReminderEmails(
     let interval = parseBillingInterval(sub.planInterval);
     const tier = resolveStoredTier(sub.planTier);
     let amountUsd = intervalTotalUsd(tier, interval);
+    // A stored Stripe id is not a live trial. Only Stripe status `trialing`
+    // gets the legacy "payment method at checkout" sentence.
+    let legacyStripeTrial = false;
 
     if (sub.stripeSubscriptionId && isStripeConfigured()) {
       try {
         const billing = await getSubscriptionBillingDetails(sub.stripeSubscriptionId);
+        if (billing?.onTrial === true) legacyStripeTrial = true;
         if (billing?.nextRecurringInterval) {
           interval = parseBillingInterval(billing.nextRecurringInterval);
         }
@@ -84,7 +88,7 @@ export async function runBillingReminderEmails(
       to: sub.user.email,
       name: sub.user.name,
       trialEndsAt,
-      hasStripeSubscription: Boolean(sub.stripeSubscriptionId),
+      legacyStripeTrial,
       planInterval: interval,
       amountUsd,
     });

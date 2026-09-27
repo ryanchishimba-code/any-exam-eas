@@ -1,10 +1,7 @@
 import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
-import {
-  TRIAL_DAYS,
-  usesIntroTrialPricing,
-  type BillingInterval,
-} from "@/lib/billing-config";
+import { type BillingInterval } from "@/lib/billing-config";
+import { assertStripeTrialCheckoutClosed } from "@/lib/billing/card-free-checkout";
 import { parseBillingInterval, intervalTotalUsd } from "@/lib/billing-plans";
 import {
   intervalFromPriceId,
@@ -51,7 +48,10 @@ type CheckoutBaseParams = {
   userId: string;
   successUrl: string;
   cancelUrl: string;
-  /** trial = collect payment method; charge after free trial unless legacy intro price is set */
+  /**
+   * `trial` is rejected. Card-free trials start in the app and never open Checkout.
+   * Historical Stripe trial subscriptions are still read by webhooks and billing sync.
+   */
   plan?: "trial" | "subscribe";
   tier?: SubscriptionTier;
   interval?: BillingInterval;
@@ -61,10 +61,8 @@ type CheckoutBaseParams = {
   promoCode?: string | null;
   /** auto = recurring subscription; manual = charge once, no renewal. */
   paymentMode?: PaymentMode;
-  /** @deprecated App DB trial end sync — Stripe sets trial via trial_period_days at checkout. */
-  trialEndUnix?: number;
   /**
-   * Paid recurring checkout only. The card-required trial path does not set this.
+   * Paid recurring checkout only.
    * Stored on the Checkout Session and subscription metadata (no database column).
    */
   renewalConsent?: {
@@ -151,25 +149,20 @@ function buildOneTimeSessionParams(params: CheckoutBaseParams) {
 }
 
 function buildSessionParams(params: CheckoutBaseParams) {
+  assertStripeTrialCheckoutClosed(params.plan);
   return params.paymentMode === "manual"
     ? buildOneTimeSessionParams(params)
     : buildSubscriptionSessionParams(params);
 }
 
 function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
-  const isTrialPlan = params.plan === "trial";
+  assertStripeTrialCheckoutClosed(params.plan);
   const tier = parseSubscriptionTier(params.tier);
   const interval = params.interval ?? "monthly";
-  const introPriceId = process.env.STRIPE_TRIAL_INTRO_PRICE_ID;
-  const useIntro = isTrialPlan && usesIntroTrialPricing() && introPriceId;
 
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
     { price: requireStripePriceId(tier, interval), quantity: 1 },
   ];
-
-  if (useIntro) {
-    lineItems.unshift({ price: introPriceId, quantity: 1 });
-  }
 
   const subscriptionMetadata: Stripe.MetadataParam = {
     userId: params.userId,
@@ -185,12 +178,6 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     metadata: subscriptionMetadata,
   };
 
-  if (params.trialEndUnix) {
-    subscriptionData.trial_end = params.trialEndUnix;
-  } else if (isTrialPlan) {
-    subscriptionData.trial_period_days = TRIAL_DAYS;
-  }
-
   return {
     mode: "subscription" as const,
     customer: params.stripeCustomerId ?? undefined,
@@ -201,9 +188,9 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     line_items: lineItems,
     subscription_data: subscriptionData,
     metadata: sessionMetadata(params, tier, interval, "subscription"),
-    ...(isTrialPlan || params.plan === "subscribe"
-      ? { payment_method_collection: "always" as const }
-      : {}),
+    // Paid subscribe only. `assertStripeTrialCheckoutClosed` runs before this
+    // session is built, so a trial can never collect a card here.
+    payment_method_collection: "always" as const,
     // Card only — Apple Pay / Google Pay still ride on `card`. Do not include
     // `link` (or BNPL extras); shoppers should see wallet + card entry, not Link.
     payment_method_types: ["card"],
