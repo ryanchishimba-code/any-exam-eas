@@ -2295,6 +2295,11 @@ body {
     display: none;
   }
 
+  /* Footer keeps the name; the header hides it so Sign in is not crowded. */
+  .aee-nav-wordmark--always .aee-nav-wordmark__text {
+    display: inline;
+  }
+
   nav.aee-nav-inner {
     gap: 0.5rem;
     padding-left: 0.75rem;
