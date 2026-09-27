@@ -80,7 +80,7 @@ test.describe("Landing page", () => {
     expect(href).toBeTruthy();
     await page.goto(href!, { waitUntil: "domcontentloaded" });
 
-    await expect(page.getByRole("heading", { name: /start your 5-day free trial/i })).toBeVisible({
+    await expect(page.getByRole("heading", { name: /start your free trial/i })).toBeVisible({
       timeout: 30_000,
     });
     await expect(page.getByText(/trial|payment|free/i).first()).toBeVisible();

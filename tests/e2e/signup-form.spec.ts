@@ -62,7 +62,7 @@ test.describe("Signup form", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/signup?plan=trial", { waitUntil: "domcontentloaded" });
 
-    await expect(page.getByRole("heading", { name: "Start your 5-day free trial" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Start your free trial." })).toBeVisible();
     await expect(
       page.getByText("5-day free trial · no payment method required · then $27.99/mo")
     ).toBeVisible();

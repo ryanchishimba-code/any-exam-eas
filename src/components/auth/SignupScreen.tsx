@@ -27,7 +27,7 @@ export function SignupScreen({
 
   return (
     <AuthFocusLayout
-      title={trial ? "Start your 5-day free trial" : "Create your account."}
+      title={trial ? "Start your free trial." : "Create your account."}
       offer={trial ? formatPricingCheckoutTrialOffer() : undefined}
       detail={
         trial

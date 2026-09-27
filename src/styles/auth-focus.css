@@ -235,8 +235,13 @@
 
 .aee-auth-exam-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
+}
+
+.aee-auth-exam-grid .aee-auth-exam {
+  min-height: 2.75rem;
+  padding: 0.5rem 0.625rem;
 }
 
 .aee-auth-names > div,
@@ -289,13 +294,27 @@
 .aee-auth-trust {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  margin: 2rem 0 0;
+  gap: 0.55rem;
+  margin: 2.25rem 0 0;
   padding: 0;
   list-style: none;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.45;
-  color: #334155;
+  color: #475569;
+}
+
+.aee-auth-trust li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+.aee-auth-trust svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-top: 0.15rem;
+  flex: none;
+  color: #475569;
 }
 
 .aee-auth-trust a {
@@ -308,60 +327,132 @@
 .aee-auth-visual {
   display: none;
   min-width: 0;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(15, 118, 110, 0.28), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 50% 18%, rgba(15, 118, 110, 0.22), transparent 60%),
     #0c1c2e;
-  padding: 3rem;
+  padding: 2.5rem 2.25rem;
 }
 
-.aee-auth-visual-card {
-  width: min(100%, 24rem);
-  border-radius: 1.5rem;
-  background: #ffffff;
-  padding: 1.75rem 1.5rem 1.5rem;
+.aee-auth-device {
+  width: min(100%, 28rem);
+  overflow: hidden;
+  border-radius: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #f8fafc;
   color: #0f172a;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.32);
 }
 
-.aee-auth-visual-kicker {
-  margin: 0;
+.aee-auth-device-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: #ffffff;
+  padding: 0.85rem 1.15rem;
   font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #0f766e;
 }
 
-.aee-auth-visual-title {
-  margin: 0.5rem 0 0;
-  font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.04em;
-}
-
-.aee-auth-visual-copy {
-  margin: 0.75rem 0 0;
-  font-size: 0.9375rem;
-  line-height: 1.5;
+.aee-auth-device-bar span:last-child {
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 0.8125rem;
   color: #334155;
 }
 
-.aee-auth-visual-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1.25rem;
+.aee-auth-device-stem {
+  margin: 0;
+  padding: 1.1rem 1.15rem 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.45;
 }
 
-.aee-auth-visual-pills span {
+.aee-auth-device-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0.9rem 0 0;
+  padding: 0 1.15rem;
+  list-style: none;
+}
+
+.aee-auth-device-options li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #334155;
+}
+
+.aee-auth-device-options li span {
+  display: inline-flex;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+  align-items: center;
+  justify-content: center;
   border-radius: 999px;
-  background: #f1f5f9;
-  padding: 0.4rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 600;
+  background: #e2e8f0;
+  font-size: 0.6875rem;
+  font-weight: 700;
   color: #0f172a;
+}
+
+.aee-auth-device-options li[data-correct="true"] {
+  background: #f0fdfa;
+  color: #0f172a;
+  box-shadow: inset 0 0 0 1.5px #0f766e;
+}
+
+.aee-auth-device-options li[data-correct="true"] span {
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.aee-auth-device-rationale {
+  margin: 0.9rem 1.15rem 1.15rem;
+  border-radius: 0.9rem;
+  background: #ffffff;
+  padding: 0.85rem 0.95rem;
+}
+
+.aee-auth-device-rationale p {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #334155;
+}
+
+.aee-auth-device-rationale p:first-child {
+  margin-bottom: 0.3rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.aee-auth-device-caption {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #e2e8f0;
 }
 
 .aee-youre-in-overlay {
@@ -391,12 +482,6 @@
 
 @media (min-width: 380px) {
   .aee-auth-names {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 420px) {
-  .aee-auth-exam-grid {
     grid-template-columns: 1fr 1fr;
   }
 }

@@ -452,7 +452,9 @@ export function SignupForm({
                 >
                   <span className="min-w-0">
                     <span className="aee-auth-exam-name">Preparing for {lockedExam.shortName}</span>
-                    <span className="aee-auth-exam-full">{lockedExam.name}</span>
+                    {lockedExam.name !== lockedExam.shortName ? (
+                      <span className="aee-auth-exam-full">{lockedExam.name}</span>
+                    ) : null}
                   </span>
                   <Check className="h-4 w-4 shrink-0 text-[#0f766e]" aria-hidden />
                 </div>
@@ -491,7 +493,9 @@ export function SignupForm({
                       >
                         <span className="min-w-0">
                           <span className="aee-auth-exam-name">{exam.shortName}</span>
-                          <span className="aee-auth-exam-full">{exam.name}</span>
+                          {exam.name !== exam.shortName ? (
+                            <span className="aee-auth-exam-full">{exam.name}</span>
+                          ) : null}
                         </span>
                         {selected ? <Check className="h-4 w-4 shrink-0 text-[#0f766e]" aria-hidden /> : null}
                       </button>
