@@ -15,6 +15,7 @@ import {
   ONE_TIME_POLICY_SHORT,
   type PaymentMode,
 } from "@/lib/billing-payment-mode";
+import { PRICING_TRIAL_OFFER_LINE } from "@/lib/marketing/legal-copy";
 import { TRIAL_CTA_LABEL } from "@/lib/site";
 import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
 import { CancelAnytimeNote } from "@/components/pricing/CancelAnytimeNote";
@@ -185,6 +186,12 @@ export function PricingTiers({ className }: PricingTiersProps) {
       >
         {isUpgrade ? "Continue to checkout" : TRIAL_CTA_LABEL}
       </Button>
+
+      {!isUpgrade ? (
+        <p className="text-center text-sm font-medium leading-snug text-[var(--color-ink)]">
+          {PRICING_TRIAL_OFFER_LINE}
+        </p>
+      ) : null}
 
       <CancelAnytimeNote
         hidden={Boolean(isUpgrade && showPaymentMode && paymentMode === "manual")}

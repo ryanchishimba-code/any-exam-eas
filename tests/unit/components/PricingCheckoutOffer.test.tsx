@@ -25,7 +25,13 @@ describe("pricing and checkout offer copy", () => {
     const user = userEvent.setup();
     render(<PricingTiers />);
 
-    expect(screen.queryByText(APPROVED, { exact: false })).not.toBeInTheDocument();
+    const offer = screen.getByText(APPROVED);
+    expect(screen.getAllByText(APPROVED)).toHaveLength(1);
+    expect(offer.className).toContain("text-sm");
+    const trialButton = screen.getByRole("link", { name: /start your free trial/i });
+    const cancel = screen.getByText(/cancel anytime in settings/i);
+    expect(trialButton.compareDocumentPosition(offer) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(offer.compareDocumentPosition(cancel) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(screen.getByText(/payments are non-refundable/i)).toBeInTheDocument();
     expect(screen.queryByText(/no card/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/20% off first month/i)).not.toBeInTheDocument();
