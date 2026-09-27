@@ -22,50 +22,30 @@ type Props = {
   className?: string;
   linkClassName?: string;
   priority?: boolean;
-  /** Light mark for the dark homepage hero nav — the PNG has an opaque white field. */
-  onDark?: boolean;
 };
 
 /**
  * Horizontal wordmark for nav. The stacked PNG/WebP is a tall portrait with
  * padding; at `h-10` it collapses to an unreadable speck on light marketing pages.
+ * Mark and word colors live in CSS so they stay AA on a light hero and a navy bar.
  */
-function NavWordmark({
-  onDark,
-  className,
-}: {
-  onDark?: boolean;
-  className?: string;
-}) {
-  const iconFill = onDark ? "#5eead4" : "#0d9488";
-  const checkStroke = onDark ? "#ecfeff" : "#0f172a";
-  const wordColor = onDark ? "text-white" : "text-[var(--color-ink)]";
-
+function NavWordmark({ className }: { className?: string }) {
   return (
     <span className={cn("aee-nav-wordmark inline-flex items-center gap-2", className)}>
-      <svg viewBox="0 0 40 40" className="h-8 w-8 shrink-0" aria-hidden>
-        <path d="M6 16.5 20 10l14 6.5-14 6.5L6 16.5Z" fill={iconFill} />
+      <svg viewBox="0 0 40 40" className="aee-nav-mark h-8 w-8 shrink-0" aria-hidden>
+        <path className="aee-nav-mark__cap" d="M6 16.5 20 10l14 6.5-14 6.5L6 16.5Z" />
         <path
+          className="aee-nav-mark__arch"
           d="M32.5 17.2v7.2c0 2.6-5.4 4.6-12.5 4.6S7.5 27 7.5 24.4v-7.2"
           fill="none"
-          stroke={iconFill}
-          strokeWidth="1.8"
         />
         <path
+          className="aee-nav-mark__check"
           d="M14.5 22.2 18.2 26l7.3-8.4"
           fill="none"
-          stroke={checkStroke}
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
         />
       </svg>
-      <span
-        className={cn(
-          "aee-nav-wordmark__text text-[0.9375rem] font-semibold tracking-tight max-[430px]:hidden",
-          wordColor
-        )}
-      >
+      <span className="aee-nav-wordmark__text text-[0.9375rem] font-semibold tracking-tight max-[430px]:hidden">
         AnyExamEasy
       </span>
     </span>
@@ -78,11 +58,10 @@ export function BrandLogo({
   className,
   linkClassName,
   priority = false,
-  onDark = false,
 }: Props) {
   const mark =
     variant === "nav" ? (
-      <NavWordmark onDark={onDark} className={className} />
+      <NavWordmark className={className} />
     ) : (
       <Image
         src={(variant === "hero" ? BRAND_LOGO : BRAND_LOGO_NAV).src}
@@ -101,7 +80,6 @@ export function BrandLogo({
         href={href}
         className={cn(
           "inline-flex shrink-0 items-center transition hover:opacity-85",
-          onDark && "aee-nav-brand--on-dark",
           linkClassName
         )}
         aria-label="AnyExamEasy"
