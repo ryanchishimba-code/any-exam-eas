@@ -22,15 +22,15 @@ export function LegalCheckbox({
       <span className="block space-y-2">
         <span className="block">
           I confirm I am at least 18 years old. I have read and agree to the{" "}
-          <a href="/legal/terms" className="text-[var(--color-accent)] underline" target="_blank">
+          <a href="/legal/terms" className="text-[var(--color-accent)] underline" target="_blank" rel="noopener noreferrer">
             Terms of Service
           </a>
           ,{" "}
-          <a href="/legal/privacy" className="text-[var(--color-accent)] underline" target="_blank">
+          <a href="/legal/privacy" className="text-[var(--color-accent)] underline" target="_blank" rel="noopener noreferrer">
             Privacy Policy
           </a>
           , and{" "}
-          <a href="/legal/disclaimer" className="text-[var(--color-accent)] underline" target="_blank">
+          <a href="/legal/disclaimer" className="text-[var(--color-accent)] underline" target="_blank" rel="noopener noreferrer">
             Educational Disclaimers
           </a>
           .

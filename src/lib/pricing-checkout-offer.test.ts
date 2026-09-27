@@ -7,6 +7,7 @@ import {
   formatCheckoutTrialPageDescription,
   formatLandingStickyDetail,
   formatPricingCheckoutTrialOffer,
+  formatSignupTrialScope,
   formatTierPriceLine,
   formatTrialCtaWithSavings,
   formatTrialPlanDetail,
@@ -35,6 +36,13 @@ describe("pricing and checkout trial offer", () => {
       expect(line).not.toMatch(/% off/i);
     }
     expect(FIRST_MONTH_DISCOUNT_ENABLED).toBe(false);
+  });
+
+  it("uses the signup trial scope with the live question count", () => {
+    expect(formatSignupTrialScope()).toBe(
+      "Your trial includes 500 practice questions across all six boards, plus Roadmaps and Deep Dives."
+    );
+    expect(formatSignupTrialScope()).not.toMatch(/guarantee|best|#1|no card/i);
   });
 
   it("uses the same phrase on landing and signup helpers", () => {

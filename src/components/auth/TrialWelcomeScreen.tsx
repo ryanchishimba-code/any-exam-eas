@@ -1,5 +1,6 @@
 "use client";
 
+import "@/styles/auth-focus.css";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
@@ -7,6 +8,7 @@ import { firstName } from "@/lib/client/returning-user";
 import { TrialFeatureShortcuts } from "@/components/dashboard/TrialFeatureShortcuts";
 import { VerifyEmailPrompt } from "@/components/auth/VerifyEmailPrompt";
 import { TRIAL_DAYS } from "@/lib/billing-config";
+import { formatSignupTrialScope } from "@/lib/site";
 import {
   approvedTrialOfferLine,
   trialDayCaption,
@@ -47,11 +49,30 @@ export function TrialWelcomeScreen({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
-        className="fixed inset-0 z-[80] overflow-y-auto bg-[var(--color-bg,var(--color-surface))] px-4 py-10 sm:py-14"
+        transition={{ duration: 0.28, ease: [0.2, 0.8, 0.2, 1] }}
+        className="aee-youre-in-overlay"
+        data-tour-block="true"
       >
-        <div className="mx-auto w-full max-w-xl">
-          <VerifyEmailPrompt email={userEmail} required={verifyRequired} />
+        <div className="aee-youre-in-panel">
+          <p className="text-sm font-semibold tracking-[-0.01em] text-[#0f766e]">Trial active</p>
+          <h2 id="youre-in-heading" className="aee-youre-in-title">
+            You&apos;re in.
+          </h2>
+          <p className="mt-4 text-[0.9375rem] font-semibold text-[#0f172a]" data-testid="trial-offer">
+            {offer}
+          </p>
+          <p className="mt-2 text-[0.9375rem] leading-relaxed text-[#334155]">
+            {formatSignupTrialScope()}
+          </p>
+          <div className="mt-8">
+            <VerifyEmailPrompt email={userEmail} required={verifyRequired} compact />
+          </div>
+          <button type="button" className="aee-auth-submit" onClick={onDismiss}>
+            Show me around
+          </button>
+          <p className="mt-3 text-sm leading-relaxed text-[#334155]">
+            A short tour of Today, the question bank, and readiness. You can leave it anytime.
+          </p>
         </div>
       </motion.div>
     );

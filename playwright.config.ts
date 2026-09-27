@@ -69,19 +69,19 @@ export default defineConfig({
     {
       name: "chromium",
       dependencies: ["setup"],
-      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/],
+      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /signup-form\.spec\.ts/],
       use: { ...devices["Desktop Chrome"] },
     },
     {
       name: "mobile-chrome",
       dependencies: ["setup"],
-      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/],
+      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /signup-form\.spec\.ts/],
       use: { ...devices["Pixel 7"] },
     },
     // Public marketing ATF — no auth/DB. Covers 390px overflow + board-hub hero.
     {
       name: "marketing",
-      testMatch: /(?:landing|mobile-header)\.spec\.ts/,
+      testMatch: /(?:landing|mobile-header|signup-form)\.spec\.ts/,
       use: {
         ...devices["Desktop Chrome"],
         ...(process.env.PLAYWRIGHT_CHROME_PATH

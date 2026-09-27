@@ -43,6 +43,26 @@ describe("TrialWelcomeScreen trial length", () => {
     expect(screen.queryByText(/% off/i)).not.toBeInTheDocument();
   });
 
+  it("opens on you're in, then the tour, while email verification is pending", () => {
+    render(
+      <TrialWelcomeScreen
+        daysRemaining={5}
+        showVerifyPrompt
+        userEmail="student@example.com"
+        onDismiss={() => {}}
+      />
+    );
+    expect(screen.getByRole("heading", { name: /you're in/i })).toBeInTheDocument();
+    expect(screen.getByTestId("trial-offer")).toHaveTextContent(
+      "5-day free trial · no payment method required · then $27.99/mo"
+    );
+    expect(
+      screen.getByText(/500 practice questions across all six boards, plus Roadmaps and Deep Dives/i)
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /show me around/i })).toBeInTheDocument();
+    expect(screen.queryByText(/halfway/i)).not.toBeInTheDocument();
+  });
+
   it("defaults to the 5-day plan instead of 14", () => {
     render(<TrialWelcomeScreen daysRemaining={5} onDismiss={() => {}} />);
     expect(screen.getByTestId("trial-day-caption")).toHaveTextContent("Day 1 of 5");

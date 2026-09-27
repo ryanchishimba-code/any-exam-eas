@@ -64,7 +64,9 @@ test.describe("Landing page", () => {
     const submit = page.locator('button[type="submit"]').first();
     await expect(submit).toBeVisible();
     const bg = await submit.evaluate((el) => getComputedStyle(el).backgroundColor);
-    expect(bg, `expected teal CTA, got ${bg}`).toMatch(/rgb\(\s*13,\s*148,\s*136\s*\)|rgb\(\s*46,\s*231,\s*220\s*\)/);
+    expect(bg, `expected teal CTA, got ${bg}`).toMatch(
+      /rgb\(\s*15,\s*118,\s*110\s*\)|rgb\(\s*13,\s*148,\s*136\s*\)|rgb\(\s*46,\s*231,\s*220\s*\)/
+    );
   });
 
   test("trial CTA links to signup and signup page renders", async ({ page }) => {
@@ -78,7 +80,7 @@ test.describe("Landing page", () => {
     expect(href).toBeTruthy();
     await page.goto(href!, { waitUntil: "domcontentloaded" });
 
-    await expect(page.getByRole("heading", { name: /create your account/i })).toBeVisible({
+    await expect(page.getByRole("heading", { name: /start your free trial/i })).toBeVisible({
       timeout: 30_000,
     });
     await expect(page.getByText(/trial|payment|free/i).first()).toBeVisible();
