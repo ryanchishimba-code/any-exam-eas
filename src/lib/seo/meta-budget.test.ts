@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Metadata } from "next";
+import { formatExactQuestionCount, publishedSiteQuestionCounts } from "@/lib/counts";
 import { buildHomeMetadata } from "@/lib/seo";
 import {
   buildAboutMetadata,
@@ -79,11 +80,17 @@ describe("meta-budget helpers", () => {
 
 describe("public marketing metadata budgets", () => {
   const pages: { label: string; meta: Metadata }[] = [
-    { label: "home", meta: buildHomeMetadata() },
+    {
+      label: "home",
+      meta: buildHomeMetadata(formatExactQuestionCount(publishedSiteQuestionCounts().totalQuestions)),
+    },
     { label: "about", meta: buildAboutMetadata() },
     { label: "toolkit", meta: buildToolkitHubMetadata() },
     { label: "free-guides", meta: buildFreeGuidesMetadata() },
-    { label: "pricing", meta: buildPricingMetadata() },
+    {
+      label: "pricing",
+      meta: buildPricingMetadata(formatExactQuestionCount(publishedSiteQuestionCounts().totalQuestions)),
+    },
     { label: "compare", meta: buildCompareMetadata() },
     ...EXAM_SEO_KEYS.map((key) => ({
       label: `exam:${key}`,

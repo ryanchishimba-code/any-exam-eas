@@ -13,6 +13,7 @@ import {
   getCachedBankStatsBundle,
   type LandingBankCountsDisplay,
 } from "@/lib/marketing/question-bank-counts";
+import { formatExactQuestionCount, publishedSiteQuestionCounts } from "@/lib/counts";
 import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
@@ -30,13 +31,10 @@ const EMPTY_COUNTS: LandingBankCountsDisplay = {
   degraded: true,
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { snapshot, inventory } = await getCachedBankStatsBundle();
-  return buildHomeMetadata(
-    buildLandingBankCountsDisplay(snapshot).totalLabel,
-    inventory.boards.nclex?.formats ?? null
-  );
-}
+/** Static head tags. An async generateMetadata waits on the bank and streams the description after </head>. */
+export const metadata: Metadata = buildHomeMetadata(
+  formatExactQuestionCount(publishedSiteQuestionCounts().totalQuestions)
+);
 
 async function HomeJsonLdLive() {
   const { snapshot } = await getCachedBankStatsBundle();

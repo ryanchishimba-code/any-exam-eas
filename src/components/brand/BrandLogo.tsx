@@ -45,7 +45,7 @@ function NavWordmark({ className }: { className?: string }) {
           fill="none"
         />
       </svg>
-      <span className="aee-nav-wordmark__text text-[0.9375rem] font-semibold tracking-tight max-[430px]:hidden">
+      <span className="aee-nav-wordmark__text hidden text-[0.9375rem] font-semibold tracking-tight md:inline">
         AnyExamEasy
       </span>
     </span>
@@ -80,6 +80,7 @@ export function BrandLogo({
         href={href}
         className={cn(
           "inline-flex shrink-0 items-center transition hover:opacity-85",
+          variant === "nav" && "max-md:h-11 max-md:w-11 max-md:justify-center",
           linkClassName
         )}
         aria-label="AnyExamEasy"

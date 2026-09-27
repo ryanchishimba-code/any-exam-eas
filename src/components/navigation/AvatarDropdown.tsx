@@ -215,7 +215,7 @@ export function AvatarDropdown() {
                     className="aee-avatar-menu-item border-b border-black/[0.06] dark:border-white/[0.06]"
                     onClick={close}
                   >
-                    <span className="aee-avatar-menu-icon text-indigo-600 dark:text-indigo-400" aria-hidden>
+                    <span className="aee-avatar-menu-icon text-teal-700 dark:text-teal-300" aria-hidden>
                       <Shield className="h-4 w-4" strokeWidth={2} />
                     </span>
                     <span>

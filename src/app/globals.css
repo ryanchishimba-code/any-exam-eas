@@ -12,15 +12,16 @@
   --color-surface: #f8fafc;
   --color-surface-elevated: #ffffff;
   --color-bg: #ffffff;
-  --color-accent: #4f46e5;
-  --color-accent-hover: #4338ca;
-  --color-accent-light: #6366f1;
+  /* Same teal as --study-accent. White on #0f766e is about 5.5:1. */
+  --color-accent: #0f766e;
+  --color-accent-hover: #115e59;
+  --color-accent-light: #0d9488;
   --color-border: rgba(15, 23, 42, 0.08);
   --shadow-apple-sm: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-apple-md: 0 2px 4px rgba(0, 0, 0, 0.02), 0 8px 24px rgba(0, 0, 0, 0.06);
   --shadow-apple-lg: 0 4px 8px rgba(0, 0, 0, 0.02), 0 16px 48px rgba(0, 0, 0, 0.08);
-  --shadow-apple-btn: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 14px rgba(79, 70, 229, 0.18);
-  --shadow-apple-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(79, 70, 229, 0.22);
+  --shadow-apple-btn: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 14px rgba(15, 118, 110, 0.18);
+  --shadow-apple-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(15, 118, 110, 0.22);
   --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-apple-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --landing-section-py: clamp(2rem, 4.5vw, 3.25rem);
@@ -34,7 +35,7 @@
   --card-foreground: #1d1d1f;
   --muted: #f5f5f7;
   --muted-foreground: #525252;
-  --primary: #4f46e5;
+  --primary: #0f766e;
   --primary-foreground: #ffffff;
   --border: rgba(15, 23, 42, 0.08);
   --input: rgba(15, 23, 42, 0.08);
@@ -124,6 +125,13 @@
   color-scheme: light;
 }
 
+@media (max-width: 767px) {
+  :root {
+    /* A little more air under the fixed header on a phone. */
+    --page-top: calc(var(--nav-height) + 2.25rem);
+  }
+}
+
 @media (min-width: 768px) {
   :root {
     --nav-height: 3.25rem;
@@ -139,7 +147,7 @@
   --flagship-surface-alt: #f4f6f8;
   --flagship-muted: var(--color-ink-muted);
   --flagship-border: rgba(10, 37, 64, 0.08);
-  /* Study-home interactive accent: logo teal on white, navy ink. Not indigo. */
+  /* Study-home interactive accent: same teal as the public brand accent. */
   --study-accent: #0f766e;
   --study-accent-hover: #115e59;
   --study-accent-soft: #14b8a6;
@@ -774,9 +782,9 @@ body {
 }
 
 /* —— Study dashboard (premium Tesla-flat stage) —— */
-/* Interactive accents follow study-home navy/teal, not the global indigo product accent.
+/* Interactive accents follow the teal brand token.
    The app shell, question bank, and full exam share this remap so header icons and
-   filled CTAs outside the dashboard card do not fall back to root indigo.
+   filled CTAs outside the dashboard card stay on that teal.
    Portaled library sheets must carry `.study-home-accent` themselves — they render
    on document.body, outside the app shell. */
 .dashboard-ui,
@@ -2171,17 +2179,26 @@ body {
 }
 
 .aee-nav-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 0.5rem;
   height: 3rem;
   min-width: 0;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   .aee-nav-inner {
     height: 3.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .aee-nav-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 1rem;
   }
 }
 
@@ -2225,6 +2242,7 @@ body {
 
 .aee-nav-auth-group {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 0.5rem;
 }
@@ -2247,11 +2265,13 @@ body {
 
 .aee-nav-cta {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
   border-radius: 980px;
-  background: linear-gradient(180deg, #14b8a6 0%, #0d9488 100%);
+  /* Lightest stop #0f766e is about 5.5:1 with white. #14b8a6 was about 2.5:1. */
+  background: linear-gradient(180deg, #0f766e 0%, #115e59 100%);
   min-height: 2.75rem;
   padding: 0.5rem 1rem;
   font-size: 0.8125rem;
@@ -2266,31 +2286,74 @@ body {
   box-shadow: var(--shadow-apple-md);
 }
 
-@media (max-width: 430px) {
-  .aee-nav-inner {
-    gap: 0.35rem;
+/* Phones, including 393–430px iPhones. The wordmark stays off until md so it
+   cannot sit on top of Sign in. Icon, Sign in, trial, and menu stay 44px. */
+@media (max-width: 767px) {
+  .aee-nav-wordmark__text {
+    display: none;
+  }
+
+  nav.aee-nav-inner {
+    gap: 0.5rem;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }
 
-  .aee-nav-cta {
+  .aee-nav-brand {
+    flex: 0 0 2.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    min-width: 2.75rem;
     min-height: 2.75rem;
-    padding: 0.25rem 0.6rem;
-    font-size: 0.75rem;
+    justify-content: center;
   }
 
+  .aee-nav-actions,
   .aee-nav-auth-group {
-    gap: 0.35rem;
+    flex: 0 0 auto;
+    gap: 0.5rem;
+  }
+
+  .aee-nav-cta {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0.5rem 0.85rem;
+    font-size: 0.8125rem;
+  }
+
+  .aee-nav-menu-btn {
+    flex: 0 0 auto;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0;
+  }
+}
+
+/* 320px still fits the icon, Sign in, Free trial, and menu without clipping. */
+@media (max-width: 359px) {
+  nav.aee-nav-inner {
+    gap: 0.375rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .aee-nav-actions,
+  .aee-nav-auth-group {
+    gap: 0.375rem;
+  }
+
+  .aee-nav-login {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
   }
 
   .aee-nav-auth-group .aee-nav-login__icon {
     display: none;
   }
 
-  .aee-nav-menu-btn {
-    min-width: 2.75rem;
-    min-height: 2.75rem;
-    padding: 0;
+  .aee-nav-cta {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
   }
 }
 

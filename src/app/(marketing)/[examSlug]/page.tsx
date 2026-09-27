@@ -19,6 +19,9 @@ import { getUsmleExamOptionsWithCounts } from "@/lib/exam-prep/usmle/exam-option
 /** Count is the published stamp. Do not ISR board hubs for an hour after a retire. */
 export const dynamic = "force-dynamic";
 
+/** Unknown single-segment URLs must 404 here instead of rendering not-found with HTTP 200. */
+export const dynamicParams = false;
+
 type Props = { params: Promise<{ examSlug: string }> };
 
 const STATIC_SLUGS = [
@@ -36,8 +39,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { examSlug } = await params;
   const key = resolveExamSeoKey(examSlug);
-  const { inventory } = await getCachedBankStatsBundle();
-  return buildExamMetadata(examSlug, key ? inventory.boards[key]?.formats ?? null : null);
+  if (!key) return { title: "Page not found", robots: { index: false, follow: false } };
+  return buildExamMetadata(examSlug);
 }
 
 export default async function ExamMarketingPage({ params }: Props) {

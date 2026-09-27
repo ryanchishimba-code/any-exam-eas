@@ -24,7 +24,7 @@ export function AdminNavLink({ className = "", variant = "pill" }: AdminNavLinkP
     return (
       <Link
         href={ROUTES.admin.root}
-        className={`inline-flex items-center gap-1.5 text-xs font-medium text-indigo-700 hover:text-indigo-900 dark:text-indigo-300 dark:hover:text-indigo-100 ${className}`}
+        className={`inline-flex items-center gap-1.5 text-xs font-medium text-teal-800 hover:text-teal-950 dark:text-teal-200 dark:hover:text-teal-50 ${className}`}
         aria-current={active ? "page" : undefined}
       >
         <Shield className="h-3.5 w-3.5" aria-hidden />
@@ -36,7 +36,7 @@ export function AdminNavLink({ className = "", variant = "pill" }: AdminNavLinkP
   return (
     <Link
       href={ROUTES.admin.root}
-      className={`aee-nav-admin inline-flex items-center gap-1.5 rounded-full border border-indigo-200/80 bg-indigo-50/90 px-3 py-1.5 text-xs font-semibold text-indigo-800 shadow-sm transition hover:border-indigo-300 hover:bg-indigo-100 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-200 dark:hover:bg-indigo-500/20 ${active ? "ring-2 ring-indigo-400/30" : ""} ${className}`}
+      className={`aee-nav-admin inline-flex items-center gap-1.5 rounded-full border border-teal-200/80 bg-teal-50/90 px-3 py-1.5 text-xs font-semibold text-teal-900 shadow-sm transition hover:border-teal-300 hover:bg-teal-100 dark:border-teal-500/30 dark:bg-teal-500/10 dark:text-teal-100 dark:hover:bg-teal-500/20 ${active ? "ring-2 ring-teal-600/30" : ""} ${className}`}
       aria-current={active ? "page" : undefined}
     >
       <Shield className="h-3.5 w-3.5" aria-hidden />

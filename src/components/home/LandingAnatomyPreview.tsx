@@ -86,7 +86,7 @@ const SYSTEMS: SystemData[] = [
   {
     id: "nervous",
     label: "Nervous System",
-    color: "#8b5cf6",
+    color: "#1e3a5f",
     structures: [
       {
         id: "brain",
@@ -238,8 +238,8 @@ const MODES = [
     icon: BookOpen,
     label: "Guided Tours",
     detail: "Exam-scoped narrated walkthroughs — heart, stroke, GI, renal, MSK, endocrine",
-    color: "text-violet-600",
-    bg: "bg-violet-50 dark:bg-violet-950/40",
+    color: "text-teal-800",
+    bg: "bg-teal-50 dark:bg-teal-950/40",
   },
   {
     icon: Zap,

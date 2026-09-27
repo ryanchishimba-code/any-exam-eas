@@ -34,7 +34,7 @@ export const LANDING_VISUALS: Record<string, LandingVisualSpec> = {
     placement: "Top 500 Drugs panel — right side illustration",
     alt: "Pharmacology flashcard illustration with drug class color coding",
     prompt:
-      "Minimal illustration: stack of three flashcards with pill icon, color-coded top borders (teal, violet, sky blue), generic/brand labels abstract, white background, clean medical education style, no brand drug logos",
+      "Minimal illustration: stack of three flashcards with pill icon, color-coded top borders (teal, navy, sky blue), generic/brand labels abstract, white background, clean medical education style, no brand drug logos",
     recommendedSize: "560×420",
   },
   "pricing-value-stack": {
