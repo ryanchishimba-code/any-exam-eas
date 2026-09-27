@@ -196,9 +196,13 @@ export function Navigation() {
                 <LogIn className="aee-nav-login__icon h-4 w-4" strokeWidth={2.25} aria-hidden />
                 <span>Sign in</span>
               </LoginModalTrigger>
-              <Link href={guestTrialHref} className="aee-nav-cta" aria-label={formatTrialCtaLabel()}>
+              <Link
+                href={guestTrialHref}
+                className="aee-nav-cta"
+                aria-label={formatTrialCtaLabel()}
+              >
                 <span className="md:hidden">Free trial</span>
-                <span className="hidden md:inline">Start free trial</span>
+                <span className="hidden md:inline">{formatTrialCtaLabel()}</span>
               </Link>
             </div>
           )}
@@ -272,7 +276,7 @@ export function Navigation() {
                     className="aee-nav-cta block py-3 text-center text-sm"
                     onClick={closeMobile}
                   >
-                    Start free trial
+                    {formatTrialCtaLabel()}
                   </Link>
                 </div>
               )}

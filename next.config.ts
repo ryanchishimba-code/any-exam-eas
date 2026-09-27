@@ -14,6 +14,9 @@ const isProd = process.env.NODE_ENV === "production";
 const devDeploymentId = !isProd ? `dev-${Date.now()}` : undefined;
 
 const nextConfig: NextConfig = {
+  // Streaming metadata lands after </head> for normal browsers, so Lighthouse
+  // reports a missing description. Block metadata for every user agent.
+  htmlLimitedBots: /.*/,
   ...(useStandaloneOutput ? { output: "standalone" as const } : {}),
   ...(devDeploymentId ? { deploymentId: devDeploymentId } : {}),
   poweredByHeader: false,
@@ -160,6 +163,11 @@ const nextConfig: NextConfig = {
       {
         source: "/contact",
         destination: "/feedback",
+        permanent: true,
+      },
+      {
+        source: "/methodology",
+        destination: "/how-questions-are-reviewed",
         permanent: true,
       },
       {

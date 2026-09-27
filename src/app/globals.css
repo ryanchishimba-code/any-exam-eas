@@ -12,15 +12,16 @@
   --color-surface: #f8fafc;
   --color-surface-elevated: #ffffff;
   --color-bg: #ffffff;
-  --color-accent: #4f46e5;
-  --color-accent-hover: #4338ca;
-  --color-accent-light: #6366f1;
+  /* Same teal as --study-accent. White on #0f766e is about 5.5:1. */
+  --color-accent: #0f766e;
+  --color-accent-hover: #115e59;
+  --color-accent-light: #0d9488;
   --color-border: rgba(15, 23, 42, 0.08);
   --shadow-apple-sm: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-apple-md: 0 2px 4px rgba(0, 0, 0, 0.02), 0 8px 24px rgba(0, 0, 0, 0.06);
   --shadow-apple-lg: 0 4px 8px rgba(0, 0, 0, 0.02), 0 16px 48px rgba(0, 0, 0, 0.08);
-  --shadow-apple-btn: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 14px rgba(79, 70, 229, 0.18);
-  --shadow-apple-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(79, 70, 229, 0.22);
+  --shadow-apple-btn: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 14px rgba(15, 118, 110, 0.18);
+  --shadow-apple-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(15, 118, 110, 0.22);
   --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-apple-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --landing-section-py: clamp(2rem, 4.5vw, 3.25rem);
@@ -34,7 +35,7 @@
   --card-foreground: #1d1d1f;
   --muted: #f5f5f7;
   --muted-foreground: #525252;
-  --primary: #4f46e5;
+  --primary: #0f766e;
   --primary-foreground: #ffffff;
   --border: rgba(15, 23, 42, 0.08);
   --input: rgba(15, 23, 42, 0.08);
@@ -124,6 +125,13 @@
   color-scheme: light;
 }
 
+@media (max-width: 767px) {
+  :root {
+    /* A little more air under the fixed header on a phone. */
+    --page-top: calc(var(--nav-height) + 2.25rem);
+  }
+}
+
 @media (min-width: 768px) {
   :root {
     --nav-height: 3.25rem;
@@ -139,7 +147,7 @@
   --flagship-surface-alt: #f4f6f8;
   --flagship-muted: var(--color-ink-muted);
   --flagship-border: rgba(10, 37, 64, 0.08);
-  /* Study-home interactive accent: logo teal on white, navy ink. Not indigo. */
+  /* Study-home interactive accent: same teal as the public brand accent. */
   --study-accent: #0f766e;
   --study-accent-hover: #115e59;
   --study-accent-soft: #14b8a6;
@@ -774,9 +782,9 @@ body {
 }
 
 /* —— Study dashboard (premium Tesla-flat stage) —— */
-/* Interactive accents follow study-home navy/teal, not the global indigo product accent.
+/* Interactive accents follow the teal brand token.
    The app shell, question bank, and full exam share this remap so header icons and
-   filled CTAs outside the dashboard card do not fall back to root indigo.
+   filled CTAs outside the dashboard card stay on that teal.
    Portaled library sheets must carry `.study-home-accent` themselves — they render
    on document.body, outside the app shell. */
 .dashboard-ui,
@@ -2317,9 +2325,7 @@ body {
     padding: 0.5rem 0.85rem;
     font-size: 0.8125rem;
   }
-}
 
-@media (max-width: 1023px) {
   .aee-nav-menu-btn {
     flex: 0 0 auto;
     min-width: 2.75rem;

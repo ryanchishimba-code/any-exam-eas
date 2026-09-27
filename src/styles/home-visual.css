@@ -1,6 +1,6 @@
 /**
  * Homepage visual system — full-bleed panels, device frames, scroll-in motion.
- * Teal and navy are set here so the page does not depend on the root indigo token.
+ * Teal and navy are set here so the page stays on the teal accent.
  */
 
 .home-visual {

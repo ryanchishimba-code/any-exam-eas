@@ -80,6 +80,7 @@ export function BrandLogo({
         href={href}
         className={cn(
           "inline-flex shrink-0 items-center transition hover:opacity-85",
+          variant === "nav" && "max-md:h-11 max-md:w-11 max-md:justify-center",
           linkClassName
         )}
         aria-label="AnyExamEasy"

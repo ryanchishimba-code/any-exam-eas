@@ -1350,18 +1350,21 @@ button.aee-flagship-cta {
 }
 
 .aee-flagship-cta--primary {
-  background: var(--flagship-teal);
+  /* #0f766e with white is about 5.5:1. Root --flagship-teal (#00d4c8) with white is about 1.9:1. */
+  background: #0f766e;
   color: #fff;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
   .aee-flagship-cta--primary {
-    color: #071a2c;
+    background: #0f766e;
+    color: #fff;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
 
   .aee-flagship-cta--primary:hover {
+    background: #115e59;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   }
 }
@@ -1369,7 +1372,7 @@ button.aee-flagship-cta {
 .aee-flagship-cta--primary:hover {
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
-  background: var(--flagship-teal-dim);
+  background: #115e59;
 }
 
 .aee-flagship-cta--hero {
@@ -1406,7 +1409,8 @@ button.aee-flagship-cta {
 }
 
 .aee-flagship-cta--on-dark.aee-flagship-cta--primary {
-  color: #071a2c;
+  background: #0f766e;
+  color: #fff;
 }
 
 /* Hero */

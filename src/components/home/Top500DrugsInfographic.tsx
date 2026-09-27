@@ -21,7 +21,7 @@ const DRUG_REVIEW_HREF = "/study/drugs300";
 const EXAMS = [
   { id: "nclex", label: "NCLEX", icon: HeartPulse, color: "#0d9488", bg: "bg-teal-50", ring: "ring-teal-200/80" },
   { id: "usmle", label: "USMLE", icon: Stethoscope, color: "#2563eb", bg: "bg-blue-50", ring: "ring-blue-200/80" },
-  { id: "naplex", label: "NAPLEX", icon: Pill, color: "#7c3aed", bg: "bg-violet-50", ring: "ring-violet-200/80" },
+  { id: "naplex", label: "NAPLEX", icon: Pill, color: "#0f766e", bg: "bg-teal-50", ring: "ring-teal-200/80" },
 ] as const;
 
 const BENEFITS = [
@@ -29,7 +29,7 @@ const BENEFITS = [
   { icon: Tags, label: "Generic + brand names", color: "text-sky-600", bg: "bg-sky-50" },
   { icon: Target, label: "Indications", color: "text-cyan-600", bg: "bg-cyan-50" },
   { icon: AlertTriangle, label: "Side effects", color: "text-amber-600", bg: "bg-amber-50" },
-  { icon: Lightbulb, label: "Mnemonics", color: "text-violet-600", bg: "bg-violet-50" },
+  { icon: Lightbulb, label: "Mnemonics", color: "text-teal-800", bg: "bg-teal-50" },
 ] as const;
 
 const FEATURED_CLASSES = DRUG_CLASSES.filter((c) => c.id !== "all").slice(0, 6);
@@ -159,7 +159,7 @@ export function Top500DrugsInfographic() {
                     <linearGradient id="orbit-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="#0d9488" />
                       <stop offset="50%" stopColor="#0891b2" />
-                      <stop offset="100%" stopColor="#7c3aed" />
+                      <stop offset="100%" stopColor="#0f766e" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -267,8 +267,8 @@ export function Top500DrugsInfographic() {
                     </dd>
                   </div>
                 </dl>
-                <p className="aee-drugs-mnemonic mt-3 flex items-start gap-2 text-xs text-violet-800">
-                  <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-violet-500" aria-hidden />
+                <p className="aee-drugs-mnemonic mt-3 flex items-start gap-2 text-xs text-teal-900">
+                  <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-700" aria-hidden />
                   <span>
                     <span className="font-semibold">Mnemonic:</span> {SAMPLE_CARD.mnemonic}
                   </span>

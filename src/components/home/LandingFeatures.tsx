@@ -66,7 +66,7 @@ const benefits = [
     outcome: DRUGS_DECK_MARKETING_TITLE,
     title: "Pharmacology flashcards + FDA reference search",
     description: drugsDeckShortDetail(),
-    accent: "from-violet-500 to-indigo-500",
+    accent: "from-teal-700 to-teal-500",
   },
   {
     icon: Bone,

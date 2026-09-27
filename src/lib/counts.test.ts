@@ -8,7 +8,8 @@ import {
   formatExactQuestionCount,
   formatRoundedDownQuestionCount,
   scoredQuestionCount,
-  siteQuestionCounts,
+  publishedSiteQuestionCounts,
+  PUBLISHED_BOARD_UNITS,
   type BoardQuestionUnits,
   type CountBoardSlug,
   COUNT_BOARD_SLUGS,
@@ -28,14 +29,6 @@ const NCLEX_UNITS = boardQuestionUnits({
   formats: { mcq: 5590, ngn: 0, case: 0 },
   clinical: { standaloneNgn: 10, caseStudies: 10, caseItems: 60 },
 });
-
-function units(slug: CountBoardSlug, bankItems: number): BoardQuestionUnits {
-  return boardQuestionUnits({
-    slug,
-    bankItems,
-    formats: { mcq: bankItems, ngn: 0, case: 0 },
-  });
-}
 
 describe("scored question counts", () => {
   it("counts case-study items and does not count the case shell", () => {
@@ -118,15 +111,8 @@ function snapshotFor(boards: Record<CountBoardSlug, BoardQuestionUnits>): Questi
 
 describe("public count labels match the source", () => {
   it("renders each board's exact total and the NCLEX sentence", () => {
-    const boards = {
-      nclex: NCLEX_UNITS,
-      usmle: units("usmle", 17276),
-      naplex: units("naplex", 10066),
-      pance: units("pance", 2938),
-      "aanp-fnp": units("aanp-fnp", 6105),
-      "npte-pt": units("npte-pt", 4240),
-    } satisfies Record<CountBoardSlug, BoardQuestionUnits>;
-    const site = siteQuestionCounts(boards);
+    const boards = PUBLISHED_BOARD_UNITS;
+    const site = publishedSiteQuestionCounts();
     const display = buildLandingBankCountsDisplay(snapshotFor(boards));
 
     expect(site.totalQuestions).toBe(46285);

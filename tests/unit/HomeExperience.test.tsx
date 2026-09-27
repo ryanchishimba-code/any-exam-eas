@@ -15,11 +15,7 @@ vi.mock("@/lib/client/use-landing-bank-counts", () => ({
   useLandingBankCounts: (initial: unknown) => initial,
 }));
 
-vi.mock("@/components/landing/v2/LandingFlagshipV2", () => ({
-  LandingFlagshipV2: () => (
-    <div data-testid="marketing-landing">Pass Your NCLEX marketing landing</div>
-  ),
-}));
+const publicPage = <div data-testid="marketing-landing">Practice. Then prepare.</div>;
 
 vi.mock("@/components/home/SubscriberHome", () => ({
   SubscriberHome: () => <div data-testid="subscriber-home">Ready to study?</div>,
@@ -57,7 +53,9 @@ describe("HomeExperience landing views", () => {
       role: null,
     });
 
-    render(<HomeExperience bankCounts={LANDING_FALLBACK_BANK_COUNTS} />);
+    render(
+      <HomeExperience bankCounts={LANDING_FALLBACK_BANK_COUNTS}>{publicPage}</HomeExperience>
+    );
     expect(screen.getByTestId("marketing-landing")).toBeInTheDocument();
     expect(screen.queryByText("Keep going, Test.")).not.toBeInTheDocument();
   });
@@ -79,7 +77,7 @@ describe("HomeExperience landing views", () => {
     });
 
     const { rerender } = render(
-      <HomeExperience bankCounts={LANDING_FALLBACK_BANK_COUNTS} />
+      <HomeExperience bankCounts={LANDING_FALLBACK_BANK_COUNTS}>{publicPage}</HomeExperience>
     );
     expect(screen.queryByText("Keep going, Test.")).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /Pass Your NCLEX/i })).toBeInTheDocument();
@@ -93,7 +91,9 @@ describe("HomeExperience landing views", () => {
       status: "none",
       role: "expired",
     });
-    rerender(<HomeExperience bankCounts={LANDING_FALLBACK_BANK_COUNTS} />);
+    rerender(
+      <HomeExperience bankCounts={LANDING_FALLBACK_BANK_COUNTS}>{publicPage}</HomeExperience>
+    );
 
     expect(screen.getByTestId("marketing-landing")).toBeInTheDocument();
     expect(screen.queryByText("Keep going, Test.")).not.toBeInTheDocument();
