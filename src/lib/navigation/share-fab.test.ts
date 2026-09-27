@@ -23,6 +23,8 @@ describe("share fab public routes", () => {
       "/aanp-fnp",
       "/nclex",
       "/npte-pt",
+      "/dev/home-frames",
+      "/faq",
     ]) {
       expect(isShareFabHiddenRoute(path), path).toBe(true);
     }

@@ -47,7 +47,7 @@ describe("legal copy", () => {
     expect(RATIONALE_STUDY_NOTE).toBe(
       "Study use only · not medical advice or for patient care · verify with current references."
     );
-    expect(TRADEMARK_NOTICE).toMatch(/UWorld, Kaplan, Archer Review, and RxPrep/);
+    expect(TRADEMARK_NOTICE).toMatch(/UWorld, Kaplan, Archer Review, RxPrep, and AMBOSS/);
     expect(TRADEMARK_NOTICE).not.toMatch(/FNP®/);
     expect(LEGAL_DISCLAIMERS.notOfficialExamContent).not.toMatch(/FNP®/);
   });

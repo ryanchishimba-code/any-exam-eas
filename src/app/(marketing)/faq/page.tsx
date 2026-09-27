@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function FaqPage() {
   return (
     <div className="bg-[var(--color-bg)] pt-[var(--nav-height)]">
-      <LandingFaqV2 />
+      <LandingFaqV2 pageHeading />
     </div>
   );
 }
