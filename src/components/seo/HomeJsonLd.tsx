@@ -1,7 +1,7 @@
 import { buildHomeJsonLd } from "@/lib/seo";
 
-export function HomeJsonLd() {
-  const data = buildHomeJsonLd();
+export function HomeJsonLd({ totalLabel }: { totalLabel?: string }) {
+  const data = buildHomeJsonLd(totalLabel);
 
   return (
     <script

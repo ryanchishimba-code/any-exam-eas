@@ -32,11 +32,11 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Are the questions actually high quality?",
-    a: `Every item is QA-gated before it reaches your session. You get board-style clinical vignettes with teachable rationales — not template-swapped distractors or repetitive stems. Lab values, calculators, and Deep Dives stay linked right from practice.`,
+    a: "A student session only serves items that are active, qa-passed, and still eligible. Flawed items can be hidden without deleting them, and you can report an issue from the rationale. Read the standards page for the gate, the official outlines, and the corrections policy.",
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. You can cancel anytime from your account settings. Canceling before your trial ends means you won't be charged at all.",
+    a: "Yes. Cancel anytime in Settings. That opens Stripe billing and stops the next charge. Canceling before a trial ends means you are not charged. Paid charges are non-refundable except where the law requires a refund.",
   },
   {
     q: "Why not just buy UWorld for the one exam I'm taking?",
@@ -44,7 +44,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Is this genuinely enough to pass my board exam?",
-    a: `No prep service can honestly guarantee a pass — and we won't. What we can say: every item is QA-gated before it enters your session (no bulk filler or template-swapped distractors), Roadmaps are aligned to current blueprints, and rationales are written to build real understanding. Students who pass do so because of how consistently they study, not because of any single resource. We're a serious tool built by clinicians — not a test-dump shortcut.`,
+    a: "No prep service can honestly guarantee a pass, and we will not. Items have to pass a quality gate before a student session can serve them. Roadmaps follow published blueprints, and a rationale shows a source when the item stores one. Passing still depends on how you study. Read how questions are reviewed for the exact gate.",
   },
   {
     q: "Are you affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep?",

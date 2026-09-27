@@ -46,7 +46,7 @@ export async function GET(_req: Request, { params }: RouteParams) {
     return new NextResponse(null, { status: 404 });
   }
 
-  return new NextResponse(bytes, {
+  return new NextResponse(new Uint8Array(bytes), {
     status: 200,
     headers: {
       "Content-Type": contentType,

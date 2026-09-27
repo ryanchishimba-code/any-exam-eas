@@ -29,8 +29,11 @@ const STUDY_GUIDE_LINKS = [
 ];
 
 const legalLinks = [
+  { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
+  { href: ROUTES.contact, label: "Contact" },
   { href: "/legal/terms", label: "Terms of Service" },
   { href: "/legal/privacy", label: "Privacy Policy" },
+  { href: "/legal/refunds", label: "Refunds and cancellation" },
   { href: "/legal/disclaimer", label: "Disclaimers" },
 ];
 

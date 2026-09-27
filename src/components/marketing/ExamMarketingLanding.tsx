@@ -15,6 +15,9 @@ import {
   type LandingSuccessStory,
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
+import { PublicSampleSet } from "@/components/marketing/PublicSampleSet";
+import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { ExamMarketingHero } from "@/components/marketing/ExamMarketingHero";
 import { WhyTrustIt } from "@/components/marketing/WhyTrustIt";
 import type { BoardInventoryPresentation } from "@/lib/inventory/active-questions";
@@ -38,8 +41,10 @@ type Props = {
   usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
   /** Optional product band after the hero (study guide, practice, etc.). */
   extraAfterHero?: ReactNode;
-  /** Admin-approved testimonials. Empty until Ryan publishes real ones. */
+  /** Admin-approved, consented testimonials. Empty renders nothing. */
   testimonials?: LandingSuccessStory[];
+  /** Real bank items for this board. Empty renders nothing. */
+  samples?: PublicSampleQuestion[];
 };
 
 export function ExamMarketingLanding({
@@ -49,6 +54,7 @@ export function ExamMarketingLanding({
   usmleStepCounts,
   extraAfterHero,
   testimonials,
+  samples = [],
 }: Props) {
   const config = presentPublicExamSeo(getExamSeoConfig(examKey), inventory?.formats ?? null);
   const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
@@ -71,6 +77,24 @@ export function ExamMarketingLanding({
       />
 
       <WhyTrustIt examKey={examKey} inventory={inventory} testimonials={testimonials} />
+
+      <PublicSampleSet
+        items={samples.filter((item) => {
+          if (examKey === "usmle") return item.fieldId.startsWith("usmle");
+          if (examKey === "nclex") return item.fieldId === "nursing";
+          if (examKey === "naplex") return item.fieldId === "pharmacy";
+          return item.fieldId === examKey;
+        })}
+      />
+
+      <p className="mx-auto max-w-5xl px-5 pb-2 pt-6 text-sm sm:px-6">
+        <Link
+          href={ROUTES.howQuestionsAreReviewed}
+          className="font-semibold text-[var(--color-accent)] hover:underline"
+        >
+          How our questions are built and reviewed
+        </Link>
+      </p>
 
       {extraAfterHero ?? (
         <section className="border-b border-[var(--color-border)]/40 py-14">
@@ -208,9 +232,9 @@ export function ExamMarketingLanding({
           <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-tight text-[var(--color-ink)]">
             Start {config.shortName} prep
           </h2>
-          <p className="mt-3 text-lg text-[var(--color-ink-muted)]">
-            {formatTrialLabel()}. Cancel anytime.
-          </p>
+          <div className="mt-4">
+            <PurchaseTrustNotes />
+          </div>
           <div className="mt-8 flex justify-center">
             <LandingCta
               href={landingTrialHrefForExam(examKey)}

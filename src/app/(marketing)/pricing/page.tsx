@@ -14,7 +14,9 @@ import {
   getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
 import { formatHeroTotalCountLine } from "@/lib/landing/content";
+import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export const dynamic = "force-dynamic";
 
@@ -111,10 +113,20 @@ export default async function PricingPage({
           ))}
         </ol>
 
-        <p className="mx-auto mt-10 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+        <PurchaseTrustNotes className="mt-8" />
+        <p className="mx-auto mt-6 text-center text-sm">
+          <Link href={ROUTES.howQuestionsAreReviewed} className="font-semibold text-[var(--color-accent)] hover:underline">
+            How questions are built and reviewed
+          </Link>
+        </p>
+        <p className="mx-auto mt-4 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
           Study tool only — not a guarantee of exam results.{" "}
           <Link href="/legal/terms" className="text-[var(--color-accent)] underline">
             Terms
+          </Link>
+          {" · "}
+          <Link href="/legal/refunds" className="text-[var(--color-accent)] underline">
+            Refunds
           </Link>
         </p>
       </PageShell>

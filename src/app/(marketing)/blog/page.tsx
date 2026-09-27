@@ -8,7 +8,7 @@ export const revalidate = 60;
 
 const BLOG_TITLE = "Board Exam Prep Blog — Study Tips & Guides";
 const BLOG_DESCRIPTION =
-  "Study tips, exam roadmaps and Qbank strategy for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE. Practical guides written by clinician educators in 2026.";
+  "Study tips, exam roadmaps and Qbank strategy for NCLEX, USMLE, NAPLEX, PANCE, FNP and NPTE, with links to official test plans.";
 
 export const metadata: Metadata = {
   title: { absolute: BLOG_TITLE },

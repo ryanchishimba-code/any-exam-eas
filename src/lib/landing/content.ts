@@ -315,7 +315,7 @@ export const LANDING_OFFERING_PILLARS = [
 
 /** Subtle trust signals below hero subheadline — no pass-rate or UWorld-parity claims. */
 export const LANDING_HERO_TRUST_SIGNALS = [
-  "QA-gated · clinician-built",
+  "QA-gated before it is served",
   "NGN formats on NCLEX",
   "Teachable rationales",
   "6 exams · 1 plan",
@@ -582,6 +582,8 @@ export type LandingSuccessStory = {
   avatarGradient: string;
   /** Optional admin-uploaded photo (data URL or remote URL). */
   photoUrl?: string;
+  /** ISO date consent was recorded. Shown only when present. */
+  publishedOn?: string;
 };
 
 /** Platform stats for the social proof band — factual, no pass-rate claims. */

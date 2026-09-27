@@ -5,12 +5,9 @@
  * Otherwise render honest product / compare proof. Never invent names.
  */
 
-import Link from "next/link";
-import { ArrowRight, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 import { Reveal } from "@/components/landing/v2/Reveal";
 import type { LandingSuccessStory } from "@/lib/landing/content";
-import { MarketingHonestProof } from "@/components/marketing/MarketingHonestProof";
-import { ROUTES } from "@/lib/routes";
 
 function Avatar({ story }: { story: LandingSuccessStory }) {
   if (story.photoUrl) {
@@ -50,7 +47,13 @@ function QuoteCard({ story, delay }: { story: LandingSuccessStory; delay?: numbe
           <Avatar story={story} />
           <div>
             <p className="text-sm font-bold text-[var(--color-ink)]">{story.name}</p>
-            <p className="text-xs text-[var(--color-ink-muted)]">{story.exam}</p>
+            <p className="text-xs text-[var(--color-ink-muted)]">
+              {story.initials ? `${story.initials} · ` : ""}
+              {story.exam}
+              {formatPublishedOn(story.publishedOn)
+                ? ` · ${formatPublishedOn(story.publishedOn)}`
+                : ""}
+            </p>
           </div>
         </figcaption>
       </figure>
@@ -58,12 +61,25 @@ function QuoteCard({ story, delay }: { story: LandingSuccessStory; delay?: numbe
   );
 }
 
+function formatPublishedOn(iso: string | undefined): string | null {
+  if (!iso) return null;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
+
 export function LandingTestimonialsV2({
   stories = [],
 }: {
   stories?: LandingSuccessStory[];
 }) {
-  const approved = stories.filter((s) => s.quote && s.name);
+  const approved = stories.filter((s) => s.quote && s.name && s.exam);
+  if (approved.length === 0) return null;
 
   return (
     <section
@@ -95,35 +111,7 @@ export function LandingTestimonialsV2({
               ))}
             </div>
           </>
-        ) : (
-          <>
-            <div className="mx-auto max-w-2xl text-center">
-              <h2
-                id="testimonials-heading"
-                className="text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl"
-              >
-                Proof you can check yourself.
-              </h2>
-              <p className="mt-4 text-base text-[var(--color-ink-muted)]">
-                We do not invent student quotes. Start with a free sample, then compare the
-                plan.
-              </p>
-            </div>
-            <div className="mt-10">
-              <MarketingHonestProof />
-            </div>
-          </>
-        )}
-
-        <div className="mt-10 flex justify-center">
-          <Link
-            href={ROUTES.compare}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-5 py-2.5 text-sm font-bold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:shadow-[var(--shadow-apple-md)]"
-          >
-            Compare honestly
-            <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
-        </div>
+        ) : null}
       </div>
     </section>
   );

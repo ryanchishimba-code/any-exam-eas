@@ -19,7 +19,7 @@ const PROOF_ITEMS: Array<{
   },
   {
     title: "Free trial",
-    body: () => `${formatPricingCheckoutTrialOffer()}. Cancel anytime.`,
+    body: () => `${formatPricingCheckoutTrialOffer()}. Cancel anytime in Settings.`,
   },
   {
     title: "Still overpaying per exam?",

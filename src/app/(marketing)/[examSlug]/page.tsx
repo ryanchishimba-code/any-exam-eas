@@ -8,6 +8,7 @@ import {
 } from "@/lib/seo/exam-config";
 import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
+import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
 import { presentBoardInventory } from "@/lib/inventory/active-questions";
 import {
   buildLandingBankCountsDisplay,
@@ -55,7 +56,10 @@ export default async function ExamMarketingPage({ params }: Props) {
     board: inventory.boards[key] ?? null,
   });
 
-  const testimonials = await getCachedPublishedTestimonials(6);
+  const [testimonials, samples] = await Promise.all([
+    getCachedPublishedTestimonials(6),
+    getPublicSampleQuestions(),
+  ]);
 
   const usmleStepCounts =
     key === "usmle"
@@ -76,6 +80,7 @@ export default async function ExamMarketingPage({ params }: Props) {
         inventory={boardInventory}
         usmleStepCounts={usmleStepCounts}
         testimonials={testimonials}
+        samples={samples}
       />
     </>
   );

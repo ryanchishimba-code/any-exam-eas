@@ -229,7 +229,7 @@ export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
   const title = `About ${SITE_NAME} — 6-Board Qbank`;
   // Keep description budget-stable even when live count labels grow (e.g. 50,000+).
   const description =
-    "Clinician-built NCLEX & USMLE Qbank plus NAPLEX, PANCE, FNP & NPTE on one Pro plan. QA-gated items with Roadmaps & Deep Dives. Built in Texas.";
+    "Independent NCLEX and USMLE Qbank plus NAPLEX, PANCE, FNP and NPTE on one Pro plan. QA-gated items with Roadmaps, Deep Dives, and sources when stored.";
   void serveReadyTotalLabel;
   return {
     ...baseOpenGraph(title, description, "/about", { absoluteTitle: true }),
@@ -387,7 +387,7 @@ export function buildPricingJsonLd() {
           priceCurrency: "USD",
           availability: "https://schema.org/InStock",
           url: absoluteUrl("/signup?plan=trial&tier=pro"),
-          description: `${TRIAL_DAYS}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment · ${formatTrialQuestionLimit()}`,
+          description: formatPricingCheckoutTrialOffer(),
         },
       },
       {

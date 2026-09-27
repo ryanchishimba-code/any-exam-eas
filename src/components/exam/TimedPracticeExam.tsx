@@ -7,6 +7,8 @@ import { ShareModal } from "@/components/share/ShareModal";
 import { EndExamControl } from "@/components/study/EndExamControl";
 import { ExamActionBar } from "@/components/exam/ExamActionBar";
 import { RationaleDisclosureText } from "@/components/study/questions/CollapsibleRationale";
+import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
+import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { formatHms } from "@/lib/full-exam/config";
 import { assertExactQuestionCount } from "@/lib/exam/session-count";
 import {
@@ -285,6 +287,22 @@ export function TimedPracticeExam({
               <p className="font-medium">{q.question}</p>
               <p className="text-sm text-emerald-400">Answer: {q.correctAnswer}</p>
               <RationaleDisclosureText text={q.explanation} resetKey={q.id} tone="onDark" />
+              <QuestionIssueFooter
+                tone="onDark"
+                report={buildReportContext({
+                  fieldId,
+                  examSlug: examType,
+                  sessionId,
+                  sessionMode: "timed_review",
+                  question: {
+                    id: q.id,
+                    bankItemId: q.id,
+                    stem: q.question,
+                    options: q.options,
+                    correctAnswers: [q.correctAnswer],
+                  },
+                })}
+              />
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <ExamActionBar
@@ -324,6 +342,23 @@ export function TimedPracticeExam({
             {selected && (
               <div className="mt-6">
                 <RationaleDisclosureText text={q.explanation} resetKey={`${q.id}-check`} tone="onDark" />
+                <QuestionIssueFooter
+                  tone="onDark"
+                  report={buildReportContext({
+                    fieldId,
+                    examSlug: examType,
+                    sessionId,
+                    sessionMode: "timed",
+                    question: {
+                      id: q.id,
+                      bankItemId: q.id,
+                      stem: q.question,
+                      options: q.options,
+                      correctAnswers: [q.correctAnswer],
+                    },
+                    selectedAnswer: selected ?? undefined,
+                  })}
+                />
                 <Button className="mt-4" onClick={next}>
                   {index + 1 >= questions.length ? "Finish exam" : "Next question"}
                 </Button>

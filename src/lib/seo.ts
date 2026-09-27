@@ -3,6 +3,7 @@ import {
   SITE_DOMAIN,
   SITE_NAME,
   formatMonthlyPrice,
+  formatPricingCheckoutTrialOffer,
   formatTrialLabel,
   formatTrialQuestionLimit,
 } from "@/lib/site";
@@ -75,7 +76,7 @@ const HOME_KEYWORDS = [
   "AANP FNP certification prep",
   "NPTE-PT board prep",
   "spaced repetition board prep",
-  "clinician-built Qbank",
+  "QA-gated question bank",
   "one subscription six exams",
   "AnyExamEasy",
 ];
@@ -170,7 +171,7 @@ export function buildRootMetadata(): Metadata {
 }
 
 /** JSON-LD for homepage — Organization + WebSite with search action. */
-export function buildHomeJsonLd() {
+export function buildHomeJsonLd(totalQuestionsLabel?: string) {
   const url = getSiteUrl();
   return {
     "@context": "https://schema.org",
@@ -182,7 +183,7 @@ export function buildHomeJsonLd() {
         legalName: LEGAL_ENTITY.companyName,
         url,
         logo: absoluteUrl("/icons/icon-192.png"),
-        description: `${LEGAL_ENTITY.productName} — ${seoPlatformPitch()}`,
+        description: `${LEGAL_ENTITY.productName} — ${seoPlatformPitch(totalQuestionsLabel)}`,
         sameAs: [url],
       },
       {
@@ -213,12 +214,12 @@ export function buildHomeJsonLd() {
           description: `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · no payment required · Pro at ${formatMonthlyPrice("pro")}/mo`,
           url: absoluteUrl("/pricing"),
         },
-        description: seoPlatformPitch(),
+        description: seoPlatformPitch(totalQuestionsLabel),
       },
       {
         "@type": "Product",
         name: `${SITE_NAME} Pro — Multi-Exam Board Prep`,
-        description: seoPlatformPitch(),
+        description: seoPlatformPitch(totalQuestionsLabel),
         image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
         brand: { "@type": "Brand", name: SITE_NAME },
         offers: {
@@ -228,7 +229,7 @@ export function buildHomeJsonLd() {
           availability: "https://schema.org/InStock",
           url: absoluteUrl("/signup?plan=trial&tier=pro"),
           priceValidUntil: `${new Date().getFullYear()}-12-31`,
-          description: `${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment`,
+          description: formatPricingCheckoutTrialOffer(),
         },
       },
       {

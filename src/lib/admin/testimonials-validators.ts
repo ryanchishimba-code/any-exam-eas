@@ -53,6 +53,8 @@ const baseFields = {
   featured: z.boolean().optional(),
   status: z.enum(TESTIMONIAL_STATUSES).optional(),
   sortOrder: z.coerce.number().int().min(0).max(9999).optional(),
+  /** Admin attests the person agreed to be quoted. Required to publish. */
+  consentConfirmed: z.boolean().optional(),
 };
 
 export const createTestimonialSchema = z.object(baseFields);

@@ -24,7 +24,7 @@ const plans: {
     id: "subscribe",
     title: `Subscribe — ${formatMonthlyPrice()}/mo`,
     description:
-      "Skip the free trial and subscribe now. Payment method required at checkout. Cancel anytime.",
+      "Skip the free trial and subscribe now. Payment method required at checkout. Cancel anytime in Settings.",
   },
 ];
 

@@ -15,7 +15,7 @@ import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
-import { formatMonthlyPrice, formatTrialCtaLabel, formatTrialLabel } from "@/lib/site";
+import { formatMonthlyPrice, formatPricingCheckoutTrialOffer, formatTrialCtaLabel } from "@/lib/site";
 
 function ComparisonTable({
   rows,
@@ -222,7 +222,7 @@ export function ComparePageContent({
           {[
             "You need more than one board exam on the same timeline (RN + NP, PharmD + side cert, Step 1 + Step 2).",
             "You want Blueprint Roadmaps, Deep Dives, and Full Exams — not QBank-only prep.",
-            `${formatTrialLabel()} plus a ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment (support, not a refund) vs paid-upfront bundles.`,
+            `${formatPricingCheckoutTrialOffer()}. Cancel anytime in Settings. Paid charges are non-refundable except where the law requires a refund.`,
             `${questionCountLabel ?? SEO_LIVE_STATS.questionCount} active questions across six exams on one plan — not six separate QBanks.`,
           ].map((item) => (
             <li key={item} className="flex gap-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">

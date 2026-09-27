@@ -63,7 +63,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NCLEX",
     metaTitle: "NCLEX Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `NCLEX practice questions with NGN formats, Blueprint Roadmaps, Deep Dives & Full Exams. Clinician-built Qbank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
+      `NCLEX practice questions with NGN formats, Blueprint Roadmaps, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
     keywords: [
       "NCLEX prep 2026",
       "NCLEX practice questions",
@@ -139,7 +139,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "USMLE",
     metaTitle: "USMLE Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `USMLE practice questions for Step 1, 2 CK & 3 with Roadmaps, Deep Dives & Full Exams. Clinician-built Qbank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
+      `USMLE practice questions for Step 1, 2 CK & 3 with Roadmaps, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
     keywords: [
       "USMLE practice questions",
       "USMLE Step 1 practice questions",
@@ -216,7 +216,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NAPLEX",
     metaTitle: "NAPLEX Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `NAPLEX practice questions, calculations, Blueprint Roadmaps, Deep Dives & Full Exams. Clinician-built Qbank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
+      `NAPLEX practice questions, calculations, Blueprint Roadmaps, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
     keywords: [
       "NAPLEX Qbank",
       "NAPLEX review 2026",
@@ -288,7 +288,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "PANCE",
     metaTitle: "PANCE Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `PANCE practice questions aligned to the NCCPA blueprint, with Roadmaps, Deep Dives & Full Exams. Clinician-built. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
+      `PANCE practice questions aligned to the NCCPA blueprint, with Roadmaps, Deep Dives & Full Exams. QA-gated items. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
     keywords: [
       "PANCE exam prep 2026",
       "PANCE practice questions",
@@ -354,7 +354,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "AANP FNP",
     metaTitle: "AANP FNP Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `AANP FNP practice questions across Assess–Evaluate domains, with Roadmaps & Deep Dives. Clinician-built Qbank. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
+      `AANP FNP practice questions across Assess–Evaluate domains, with Roadmaps & Deep Dives. QA-gated question bank. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
     keywords: [
       "AANP FNP prep 2026",
       "AANP FNP practice questions",
@@ -420,7 +420,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NPTE",
     metaTitle: "NPTE-PT Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `NPTE-PT practice questions with FSBPT blueprint scenarios, Roadmaps, Deep Dives & Full Exams. Clinician-built. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
+      `NPTE-PT practice questions with FSBPT blueprint scenarios, Roadmaps, Deep Dives & Full Exams. QA-gated items. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
     keywords: [
       "NPTE prep 2026",
       "NPTE-PT practice questions",

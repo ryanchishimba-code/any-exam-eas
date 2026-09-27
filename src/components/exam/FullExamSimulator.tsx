@@ -1147,7 +1147,7 @@ export function FullExamSimulator({
               className={feUi.footerBtn}
             >
               <AlertTriangle className="h-4 w-4" />
-              Report
+              Report an issue
             </button>
             <button
               type="button"

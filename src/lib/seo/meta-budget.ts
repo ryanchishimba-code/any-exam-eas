@@ -153,7 +153,7 @@ const DESC_FILLERS = [
   "Includes Blueprint Roadmaps and Deep Dive review.",
   "Start a 5-day free trial — no payment method required.",
   "One Pro plan covers six board exams.",
-  "Clinician-built Qbank for NCLEX, USMLE, NAPLEX, PANCE, FNP and NPTE.",
+  "QA-gated Qbank for NCLEX, USMLE, NAPLEX, PANCE, FNP and NPTE.",
 ] as const;
 
 /** Clamp title to ≤60 (prefer keeping full string when already in budget). */

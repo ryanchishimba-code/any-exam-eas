@@ -8,6 +8,8 @@ import { RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
 const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
   { path: "/about", priority: 0.85, changeFrequency: "monthly" },
+  { path: "/contact", priority: 0.6, changeFrequency: "yearly" },
+  { path: "/how-questions-are-reviewed", priority: 0.8, changeFrequency: "monthly" },
   { path: "/pricing", priority: 0.9, changeFrequency: "weekly" },
   { path: "/compare", priority: 0.88, changeFrequency: "weekly" },
   { path: "/toolkit", priority: 0.9, changeFrequency: "weekly" },
@@ -17,6 +19,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/legal/terms", priority: 0.3, changeFrequency: "yearly" },
   { path: "/legal/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/legal/disclaimer", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/legal/refunds", priority: 0.4, changeFrequency: "yearly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

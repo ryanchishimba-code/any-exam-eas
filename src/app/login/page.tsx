@@ -4,8 +4,10 @@ import { LoginForm } from "@/components/LoginForm";
 import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
 import { contentWidth } from "@/lib/layout/shell-ui";
+import Link from "next/link";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
-import { SITE_NAME } from "@/lib/site";
+import { LEGAL_ENTITY } from "@/lib/legal";
+import { SITE_NAME, formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 const LOGIN_TITLE = `Log In — ${SITE_NAME}`;
 const LOGIN_DESCRIPTION =
@@ -50,6 +52,20 @@ export default function LoginPage() {
           <LoginForm />
         </Suspense>
       </AuthCard>
+      <p className="mx-auto mt-6 max-w-md text-center text-sm leading-relaxed text-[var(--color-ink-muted)]">
+        {formatPricingCheckoutTrialOffer()}.{" "}
+        <Link href="/signup" className="font-semibold text-[var(--color-accent)] hover:underline">
+          Create an account
+        </Link>
+        . Questions:{" "}
+        <a
+          href={`mailto:${LEGAL_ENTITY.supportEmail}`}
+          className="font-semibold text-[var(--color-accent)] hover:underline"
+        >
+          {LEGAL_ENTITY.supportEmail}
+        </a>
+        .
+      </p>
     </PageShell>
   );
 }

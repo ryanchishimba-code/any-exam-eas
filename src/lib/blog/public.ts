@@ -21,6 +21,7 @@ export type PublicBlogPostCard = {
   tags: string[];
   readTime: number;
   publishedAt: string | null;
+  updatedAt: string | null;
   authorName: string | null;
 };
 
@@ -54,6 +55,7 @@ function toCard(row: {
   tags: string[];
   readTime: number;
   publishedAt: Date | null;
+  updatedAt?: Date | null;
   author: { name: string | null } | null;
 }): PublicBlogPostCard {
   return {
@@ -66,6 +68,7 @@ function toCard(row: {
     tags: row.tags,
     readTime: row.readTime,
     publishedAt: row.publishedAt?.toISOString() ?? null,
+    updatedAt: row.updatedAt?.toISOString() ?? null,
     authorName: publicBlogAuthorName(row.author?.name),
   };
 }
@@ -123,6 +126,7 @@ const getPublishedBlogPostBySlugCached = unstable_cache(
         tags: true,
         readTime: true,
         publishedAt: true,
+        updatedAt: true,
         content: true,
         views: true,
         metaTitle: true,

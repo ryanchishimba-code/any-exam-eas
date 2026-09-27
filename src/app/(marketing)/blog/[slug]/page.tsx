@@ -125,6 +125,9 @@ export default async function BlogPostPage({ params }: Props) {
             <h1 className="aee-blog-article-title">{post.title}</h1>
             <p className="aee-blog-byline">
               {formatDate(post.publishedAt)}
+              {post.updatedAt && post.updatedAt.slice(0, 10) !== post.publishedAt?.slice(0, 10)
+                ? ` · Last updated ${formatDate(post.updatedAt)}`
+                : ""}
               {post.authorName ? ` · ${post.authorName}` : ""}
             </p>
             {post.excerpt ? (
@@ -184,7 +187,7 @@ export default async function BlogPostPage({ params }: Props) {
               <div>
                 <p className="font-semibold text-[var(--color-ink)]">{post.authorName}</p>
                 <p className="text-sm text-[var(--color-ink-muted)]">
-                  Clinician-built exam prep at {SITE_NAME}
+                  Study notes from {SITE_NAME}
                 </p>
               </div>
             </aside>

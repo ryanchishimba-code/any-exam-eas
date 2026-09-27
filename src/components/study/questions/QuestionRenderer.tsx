@@ -13,6 +13,8 @@ import {
   uniqueRationaleParts,
 } from "@/lib/study/rationale-disclosure";
 import { CollapsibleRationale, rationaleLeadForQuestion } from "./CollapsibleRationale";
+import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
+import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { NgnCjmmNote, NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
 import {
   BowTieQuestion,
@@ -515,6 +517,15 @@ export function ExplanationPanel({
           )}
         </div>
       </div>
+
+      <QuestionIssueFooter
+        report={buildReportContext({
+          fieldId: field || question.field || examSlug,
+          examSlug,
+          subjectId: question.subjectId,
+          question,
+        })}
+      />
 
       {question.type === "matrix" && (question.correctAnswers?.length ?? 0) > 0 ? (
         <div className="text-[13px] tracking-[-0.01em] text-[var(--color-ink-muted)]">
