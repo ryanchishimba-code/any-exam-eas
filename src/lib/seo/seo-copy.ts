@@ -34,13 +34,13 @@ export const SEO_KEYWORD_CLUSTERS = {
     "NCLEX prep 2026",
     "NGN NCLEX questions",
     "UWorld NCLEX alternative",
-    "best NCLEX Qbank",
+    "NCLEX Qbank",
   ],
   naplex: [
     "NAPLEX Qbank",
     "NAPLEX practice questions 2026",
     "NAPLEX calculations prep",
-    "best NAPLEX review",
+    "NAPLEX review",
   ],
   usmle: [
     "USMLE question bank",
@@ -51,7 +51,7 @@ export const SEO_KEYWORD_CLUSTERS = {
   ],
   multiExam: [
     "one subscription six exams",
-    "best value multi-exam prep",
+    "affordable multi-exam prep",
     "UWorld alternative",
     "blueprint roadmap board prep",
     "multi-exam board prep 2026",

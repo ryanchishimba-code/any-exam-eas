@@ -21,11 +21,12 @@ vi.mock("@/lib/analytics", () => ({
 const APPROVED = "5-day free trial · no payment method required · then $27.99/mo";
 
 describe("pricing and checkout offer copy", () => {
-  it("shows the approved trial line on the pricing card and drops the first-month promo", async () => {
+  it("keeps refund terms on the pricing card and drops the first-month promo", async () => {
     const user = userEvent.setup();
     render(<PricingTiers />);
 
-    expect(screen.getByText(APPROVED, { exact: false })).toBeInTheDocument();
+    expect(screen.queryByText(APPROVED, { exact: false })).not.toBeInTheDocument();
+    expect(screen.getByText(/payments are non-refundable/i)).toBeInTheDocument();
     expect(screen.queryByText(/no card/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/20% off first month/i)).not.toBeInTheDocument();
     expect(screen.getByText("Save 30%")).toBeInTheDocument();

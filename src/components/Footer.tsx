@@ -76,11 +76,11 @@ export function Footer() {
             <p className="mt-2 flex max-w-full flex-col items-start gap-0.5 text-sm leading-snug text-[var(--color-ink)]">
               <a
                 href={`mailto:${LEGAL_ENTITY.supportEmail}`}
-                className="whitespace-nowrap transition hover:text-[var(--color-accent)]"
+                className="inline-flex min-h-6 items-center whitespace-nowrap transition hover:text-[var(--color-accent)]"
               >
                 {LEGAL_ENTITY.supportEmail}
               </a>
-              <SupportPhoneLink className="whitespace-nowrap transition hover:text-[var(--color-accent)]" />
+              <SupportPhoneLink className="inline-flex min-h-6 items-center whitespace-nowrap transition hover:text-[var(--color-accent)]" />
             </p>
           </div>
           <FooterColumn title="Exams" label="Exam links" links={MARKETING_BOARD_LINKS} />

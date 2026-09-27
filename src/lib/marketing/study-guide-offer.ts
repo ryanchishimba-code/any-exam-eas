@@ -16,7 +16,7 @@ export type StudyGuideOfferCard = {
 };
 
 function offerBody(): string {
-  return `Included with your trial. Bookmarks and highlights save on the trial or Pro plan. ${studyGuideTrialLine()}`;
+  return "Included with your trial. Bookmarks and highlights save on the trial or Pro plan.";
 }
 
 export function studyGuideOfferCards(): StudyGuideOfferCard[] {

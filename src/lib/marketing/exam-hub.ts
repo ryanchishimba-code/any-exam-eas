@@ -1,5 +1,4 @@
 import { MARKETING_DARK_HERO_PATHS, marketingExamKeyFromPath } from "@/lib/marketing/board-paths";
-import { studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 import { getExamSeoConfig, type ExamSeoKey } from "@/lib/seo/exam-config";
@@ -42,7 +41,7 @@ export function examHubProductLinks(examKey: ExamSeoKey): ExamHubProductLink[] {
     links.push({
       href: guide.routeBase,
       title: `${config.shortName} study guide`,
-      body: `Included with the 5-day free trial. ${studyGuideTrialLine()}`,
+      body: "Included with the 5-day free trial.",
       accent: true,
     });
   }

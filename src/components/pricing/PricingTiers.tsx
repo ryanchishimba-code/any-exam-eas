@@ -15,7 +15,6 @@ import {
   ONE_TIME_POLICY_SHORT,
   type PaymentMode,
 } from "@/lib/billing-payment-mode";
-import { PRICING_TRIAL_OFFER_LINE } from "@/lib/marketing/legal-copy";
 import { TRIAL_CTA_LABEL } from "@/lib/site";
 import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
 import { CancelAnytimeNote } from "@/components/pricing/CancelAnytimeNote";
@@ -196,15 +195,7 @@ export function PricingTiers({ className }: PricingTiersProps) {
           ? showPaymentMode && paymentMode === "manual"
             ? ONE_TIME_POLICY_SHORT
             : renewalTermsLine("pro", interval)
-          : (
-            <>
-              {PRICING_TRIAL_OFFER_LINE}
-              <span className="mt-1 block">
-                Payments are non-refundable (except where required by law). Found a flawed question?
-                Report it and we&apos;ll review it. This is not a refund.
-              </span>
-            </>
-          )}
+          : "Payments are non-refundable (except where required by law). Found a flawed question? Report it and we'll review it. This is not a refund."}
       </p>
 
       <PaymentMethodBadges className="justify-center" size="sm" />

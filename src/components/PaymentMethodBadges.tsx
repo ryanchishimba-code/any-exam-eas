@@ -6,20 +6,6 @@ const badges = [
   { id: "google_pay", label: "Google Pay" },
 ] as const;
 
-function GooglePayWordmark() {
-  return (
-    <span className="text-[0.75rem] font-semibold leading-none" aria-hidden>
-      <span className="text-[#4285F4]">G</span>
-      <span className="text-[#EA4335]">o</span>
-      <span className="text-[#FBBC05]">o</span>
-      <span className="text-[#4285F4]">g</span>
-      <span className="text-[#34A853]">l</span>
-      <span className="text-[#EA4335]">e</span>
-      <span className="text-slate-700 dark:text-slate-300"> Pay</span>
-    </span>
-  );
-}
-
 /** Compact payment-method trust row for landing, pricing, and checkout. */
 export function PaymentMethodBadges({
   className = "",
@@ -29,7 +15,7 @@ export function PaymentMethodBadges({
   size?: "default" | "sm";
 }) {
   const pad = size === "sm" ? "px-2.5 py-1.5" : "px-3 py-2";
-  const text = size === "sm" ? "text-[0.6875rem]" : "text-xs";
+  const text = "text-xs";
 
   return (
     <ul
@@ -52,7 +38,9 @@ export function PaymentMethodBadges({
               ) : null}
             </>
           ) : badge.id === "google_pay" ? (
-            <GooglePayWordmark />
+            <span className={`${text} font-semibold text-slate-700 dark:text-slate-200`}>
+              {badge.label}
+            </span>
           ) : (
             <span className={`${text} font-semibold text-slate-900 dark:text-slate-100`}>{badge.label}</span>
           )}

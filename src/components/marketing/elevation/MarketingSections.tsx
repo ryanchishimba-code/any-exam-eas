@@ -192,7 +192,7 @@ export function PriceSection({
             Start your free trial
           </LandingCta>
         </div>
-        <PurchaseTrustNotes className="mt-8" />
+        <PurchaseTrustNotes className="mt-8" showTrialOffer={false} />
       </div>
     </section>
   );

@@ -4,12 +4,11 @@ import { LandingCta } from "@/components/landing/LandingCta";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import {
   formatMonthlyPrice,
-  formatPricingCheckoutTrialOffer,
   formatTrialCtaLabel,
   formatTrialLabel,
   SITE_NAME,
 } from "@/lib/site";
-import { studyGuideOfferCards, studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
+import { studyGuideOfferCards } from "@/lib/marketing/study-guide-offer";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { buildFreeGuidesMetadata } from "@/lib/seo/marketing-metadata";
@@ -63,7 +62,7 @@ function buildFreeGuidesJsonLd() {
     "@type": "CollectionPage",
     name: "Free board tools and premium reference books",
     url: absoluteUrl(ROUTES.freeGuides),
-    description: `Free toolkit tools and board hubs from ${SITE_NAME}. Reference books are not a free preview. ${studyGuideTrialLine()}`,
+    description: `Free toolkit tools and board hubs from ${SITE_NAME}. Reference books are not a free preview.`,
   };
 }
 
@@ -121,8 +120,8 @@ export default async function FreeGuidesPage() {
               Reference books
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-[var(--color-ink-muted)]">
-              The study guide is included with the 5-day free trial. {studyGuideTrialLine()} Bookmarks
-              and highlights save on the trial or Pro plan.
+              The study guide is included with the 5-day free trial. Bookmarks and highlights save
+              on the trial or Pro plan.
             </p>
             <ul className="mt-12 grid gap-6 sm:grid-cols-3" role="list">
               {studyGuideOfferCards().map((item) => (
@@ -218,9 +217,7 @@ export default async function FreeGuidesPage() {
 
         <section className="border-t border-[var(--color-border)] px-6 py-16 sm:py-20">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-base leading-relaxed text-[var(--color-ink-muted)]">
-              Ready to practice? {formatPricingCheckoutTrialOffer()}
-            </p>
+            <p className="text-base leading-relaxed text-[var(--color-ink-muted)]">Ready to practice?</p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>
               <Link

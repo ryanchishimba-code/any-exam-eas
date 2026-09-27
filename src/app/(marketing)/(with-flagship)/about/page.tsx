@@ -89,7 +89,7 @@ export default async function AboutPage() {
               {formatPricingCheckoutTrialOffer()}
             </p>
             <div className="mt-8">
-              <PurchaseTrustNotes />
+              <PurchaseTrustNotes showTrialOffer={false} />
             </div>
             {totalQuestionsLabel ? (
               <p className="mt-6 text-sm font-medium text-[var(--color-ink-muted)]">{totalQuestionsLabel}</p>
