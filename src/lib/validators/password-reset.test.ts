@@ -39,15 +39,26 @@ describe("resetPasswordSchema", () => {
     expect(result.newPassword).toBe("SecurePass1");
   });
 
+  it("accepts an 8-character password with a letter and a number", () => {
+    const result = resetPasswordSchema.parse({
+      token: "abc",
+      newPassword: "abc12345",
+    });
+    expect(result.newPassword).toBe("abc12345");
+  });
+
   it("rejects passwords that violate the policy", () => {
     expect(() =>
       resetPasswordSchema.parse({ token: "abc", newPassword: "short1" })
     ).toThrow();
     expect(() =>
-      resetPasswordSchema.parse({ token: "abc", newPassword: "1234567890" })
+      resetPasswordSchema.parse({ token: "abc", newPassword: "abc1234" })
     ).toThrow();
     expect(() =>
-      resetPasswordSchema.parse({ token: "abc", newPassword: "abcdefghij" })
+      resetPasswordSchema.parse({ token: "abc", newPassword: "12345678" })
+    ).toThrow();
+    expect(() =>
+      resetPasswordSchema.parse({ token: "abc", newPassword: "abcdefgh" })
     ).toThrow();
   });
 });
@@ -55,11 +66,12 @@ describe("resetPasswordSchema", () => {
 describe("passwordError", () => {
   it("returns null for valid passwords", () => {
     expect(passwordError("ValidPass1")).toBeNull();
+    expect(passwordError("abc12345")).toBeNull();
   });
 
   it("reports missing requirements", () => {
-    expect(passwordError("abc")).toMatch(/10 characters/);
-    expect(passwordError("abcdefghij")).toMatch(/number/);
-    expect(passwordError("1234567890")).toMatch(/letter/);
+    expect(passwordError("abc1234")).toMatch(/8 characters/);
+    expect(passwordError("abcdefgh")).toMatch(/number/);
+    expect(passwordError("12345678")).toMatch(/letter/);
   });
 });

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { normalizeEmail } from "@/lib/validators/auth";
+import { passwordSchema } from "@/lib/validators/password-policy";
 
 export const staffRoleSchema = z.enum([
   "user",
@@ -15,12 +16,7 @@ export const inviteStaffSchema = z.object({
   role: staffRoleSchema.refine((r) => r !== "user", {
     message: "Choose a staff role (support staff or higher).",
   }),
-  password: z
-    .string()
-    .min(10, "Password must be at least 10 characters.")
-    .regex(/[A-Za-z]/, "Password must include a letter.")
-    .regex(/\d/, "Password must include a number.")
-    .optional(),
+  password: passwordSchema.optional(),
 });
 
 export const updateStaffRoleSchema = z.object({

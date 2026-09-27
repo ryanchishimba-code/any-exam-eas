@@ -4,9 +4,10 @@ import { z } from "zod";
  * Single source of truth for password rules across every flow that sets a
  * password (signup, password reset, and any future credential changes).
  *
- * Policy: at least 10 characters, including at least one letter and one number.
+ * Policy: at least 8 characters, including at least one letter and one number.
+ * Existing hashes are not rechecked; this applies only when a password is set.
  */
-export const PASSWORD_MIN_LENGTH = 10;
+export const PASSWORD_MIN_LENGTH = 8;
 
 export type PasswordRequirementId = "length" | "letter" | "number";
 
