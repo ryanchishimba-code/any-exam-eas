@@ -109,7 +109,8 @@ export function WhyTrustIt({ examKey, inventory, testimonials }: Props) {
                     {sample.citation}
                   </cite>
                   <span className="mt-1 block">
-                    Sample {sample.boardLabel} item. The citation is the one stored on that question.
+                    Public {sample.boardLabel} demo. This citation is written on the demo item, not
+                    copied from a counted bank row.
                   </span>
                 </figcaption>
               </figure>
@@ -154,7 +155,16 @@ export function WhyTrustIt({ examKey, inventory, testimonials }: Props) {
               >
                 <p className="text-sm leading-relaxed text-[var(--color-ink)]">“{quote.quote}”</p>
                 <p className="mt-2 text-xs font-medium text-[var(--color-ink-muted)]">
+                  {quote.initials ? `${quote.initials} · ` : ""}
                   {quote.name} · {quote.exam}
+                  {quote.publishedOn
+                    ? ` · ${new Intl.DateTimeFormat("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                        timeZone: "UTC",
+                      }).format(new Date(quote.publishedOn))}`
+                    : ""}
                 </p>
               </li>
             ))}

@@ -1401,6 +1401,9 @@ model Testimonial {
   sortOrder      Int       @default(0)
   /// Soft-delete timestamp — enables "undo" after a delete.
   deletedAt      DateTime?
+  /// Set only when an admin records that this person consented to publish.
+  /// Public pages require this timestamp. Null stays hidden.
+  consentedAt    DateTime?
   /// Admin user id that created the row (audit trail).
   createdById    String?
   createdAt      DateTime  @default(now())

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL } from "@/lib/inventory/active-inventory-cache";
+import { formatBoardQuestionSentence } from "@/lib/counts";
 import {
   ACTIVE_QUESTION_DEFINITION,
   formatInventoryFormatLine,
@@ -18,21 +19,28 @@ export async function GET() {
     const { snapshot, inventory } = await getCachedBankStatsBundle();
     const display = buildLandingBankCountsDisplay(snapshot);
     const boards = Object.fromEntries(
-      Object.entries(inventory.boards).map(([slug, board]) => [
-        slug,
-        {
-          active: board.active,
-          formats: board.formats,
-          topicCount: board.topicCount,
-          categoryLabel: board.categoryLabel,
-          categories: board.categories,
-          scopeNote: board.scopeNote,
-          formatLine: formatInventoryFormatLine(
-            board.formats,
-            slug === "nclex" ? "NGN" : "NGN-style"
-          ),
-        },
-      ])
+      Object.entries(inventory.boards).map(([slug, board]) => {
+        const units = snapshot.boards?.[slug as keyof NonNullable<typeof snapshot.boards>];
+        const scored = units
+          ? units.bankItems + units.standaloneNgn + units.caseItems
+          : board.active;
+        const formatLine =
+          units && (units.standaloneNgn > 0 || units.caseStudies > 0)
+            ? formatBoardQuestionSentence(units)
+            : formatInventoryFormatLine(board.formats, slug === "nclex" ? "NGN" : "NGN-style");
+        return [
+          slug,
+          {
+            active: scored,
+            formats: board.formats,
+            topicCount: board.topicCount,
+            categoryLabel: board.categoryLabel,
+            categories: board.categories,
+            scopeNote: board.scopeNote,
+            formatLine,
+          },
+        ];
+      })
     );
     return NextResponse.json(
       {

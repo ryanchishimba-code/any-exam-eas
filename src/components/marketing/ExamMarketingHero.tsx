@@ -1,21 +1,19 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
-import { LandingHeroPractice } from "@/components/landing/v2/LandingSamplePractice";
 import { LandingExamSelectionProvider } from "@/components/landing/v2/LandingExamSelectionContext";
 import {
   formatExamHeroEyebrow,
   formatExamHeroHeadline,
   formatExamHeroTrialOffer,
-  formatExamHubSubline,
+  formatExamHeroProductLine,
   landingTrialHrefForExam,
 } from "@/lib/landing/content";
-import { examHubSecondaryLink } from "@/lib/marketing/exam-hub";
 import { formatTrialCtaLabel } from "@/lib/site";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
-import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
 
 type Props = {
@@ -25,6 +23,8 @@ type Props = {
   countSource?: "active-inventory" | "published-floor";
   activeCount?: number | null;
   formats?: FormatCounts | null;
+  /** Real product visual. Omitted when we do not have one for this board. */
+  visual?: ReactNode;
 };
 
 function ExamMarketingHeroCopy({
@@ -32,13 +32,9 @@ function ExamMarketingHeroCopy({
   questionCountLine,
   countSource,
   activeCount,
-  formats = null,
+  visual = null,
 }: Props) {
   const trialHref = landingTrialHrefForExam(examKey);
-  const secondary = examHubSecondaryLink(examKey);
-  const subline =
-    scrubPublicFormatCopy(formatExamHubSubline(examKey), formats) ??
-    formatExamHubSubline(examKey);
 
   return (
     <section
@@ -57,7 +53,7 @@ function ExamMarketingHeroCopy({
             {formatExamHeroHeadline(examKey)}
           </h1>
 
-          <p className="aee-hero-beat__subline">{subline}</p>
+          <p className="aee-hero-beat__subline">{formatExamHeroProductLine(examKey)}</p>
 
           <div className="aee-hero-beat__actions">
             <LandingCta
@@ -74,8 +70,8 @@ function ExamMarketingHeroCopy({
             >
               {formatTrialCtaLabel()}
             </LandingCta>
-            <Link href={secondary.href} className="aee-hero-beat__secondary">
-              {secondary.label}
+            <Link href="#try-questions" className="aee-hero-beat__secondary">
+              Try free sample questions
             </Link>
           </div>
 
@@ -96,10 +92,9 @@ function ExamMarketingHeroCopy({
           ) : null}
         </div>
 
-        <div className="aee-hero-beat__visual aee-hero-beat__visual--practice">
-          <span className="aee-hero-beat__stage-glow" aria-hidden />
-          <LandingHeroPractice />
-        </div>
+        {visual ? (
+          <div className="aee-hero-beat__visual aee-hero-beat__visual--practice">{visual}</div>
+        ) : null}
       </div>
     </section>
   );
@@ -112,6 +107,7 @@ export function ExamMarketingHero({
   countSource,
   activeCount,
   formats = null,
+  visual = null,
 }: Props) {
   return (
     <LandingExamSelectionProvider
@@ -124,6 +120,7 @@ export function ExamMarketingHero({
         countSource={countSource}
         activeCount={activeCount}
         formats={formats}
+        visual={visual}
       />
     </LandingExamSelectionProvider>
   );

@@ -8,12 +8,17 @@
  * All billing copy is derived from lib/site so it never drifts from checkout.
  */
 
+import type { ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import { PRO_ANNUAL_SAVINGS_PERCENT } from "@/lib/pricing-defaults";
 import { formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 
-const FAQ: { q: string; a: string }[] = [
+const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail} or call ${LEGAL_ENTITY.supportPhone.display}.`;
+
+const FAQ: { q: string; a: string; body?: ReactNode }[] = [
   {
     q: "Which exams are included?",
     a: `All six are on one subscription: ${PLATFORM_EXAM_LIST}. USMLE covers Step 1, Step 2 CK, and Step 3.`,
@@ -32,23 +37,39 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Are the questions actually high quality?",
-    a: `Every item is QA-gated before it reaches your session. You get board-style clinical vignettes with teachable rationales — not template-swapped distractors or repetitive stems. Lab values, calculators, and Deep Dives stay linked right from practice.`,
+    a: "A student session only serves items that are active, qa-passed, and still eligible. Flawed items can be hidden without deleting them, and you can report an issue from the rationale. Read the standards page for the gate, the official outlines, and the corrections policy.",
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. You can cancel anytime from your account settings. Canceling before your trial ends means you won't be charged at all.",
+    a: "Yes. Cancel anytime in Settings. That opens Stripe billing and stops the next charge. Canceling before a trial ends means you are not charged. Paid charges are non-refundable except where the law requires a refund.",
   },
   {
     q: "Why not just buy UWorld for the one exam I'm taking?",
-    a: `UWorld is a strong QBank — if you only need raw practice questions for a single board and the $200–400+ price tag fits your budget, it's a reasonable choice. Where AnyExamEasy differs: you get a structured blueprint Roadmap, Deep Dive review modules opened from the questions you miss, Full Exam simulations, lab values, calculators, and six boards under one plan. If you're only studying one exam and want just a QBank, compare on craft and study window — we do not invent a savings percentage.`,
+    a: "Other Qbanks are often sold one exam at a time. AnyExamEasy is one plan for six boards, with a blueprint roadmap, review opened from the questions you miss, and timed practice exams.",
   },
   {
     q: "Is this genuinely enough to pass my board exam?",
-    a: `No prep service can honestly guarantee a pass — and we won't. What we can say: every item is QA-gated before it enters your session (no bulk filler or template-swapped distractors), Roadmaps are aligned to current blueprints, and rationales are written to build real understanding. Students who pass do so because of how consistently they study, not because of any single resource. We're a serious tool built by clinicians — not a test-dump shortcut.`,
+    a: "No prep service can honestly guarantee a pass, and we will not. Items have to pass a quality gate before a student session can serve them. Roadmaps follow published blueprints, and a rationale shows a source when the item stores one. Passing still depends on how you study. Read how questions are reviewed for the exact gate.",
   },
   {
     q: "Are you affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep?",
     a: "No. AnyExamEasy is independent. We are not affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep. Official board documents belong to those organizations — always read their materials before your exam.",
+  },
+  {
+    q: "How do I get help?",
+    a: HELP_ANSWER,
+    body: (
+      <>
+        Email{" "}
+        <a
+          href={`mailto:${LEGAL_ENTITY.supportEmail}`}
+          className="font-semibold text-[var(--color-accent)] hover:underline"
+        >
+          {LEGAL_ENTITY.supportEmail}
+        </a>{" "}
+        or call <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.
+      </>
+    ),
   },
 ];
 
@@ -82,7 +103,7 @@ export function LandingFaqV2() {
             id="faq-heading"
             className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl"
           >
-            Everything you need to know
+            Before you start
           </h2>
         </div>
 
@@ -97,7 +118,7 @@ export function LandingFaqV2() {
                 />
               </summary>
               <p className="-mt-1 pb-5 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-                {item.a}
+                {item.body ?? item.a}
               </p>
             </details>
           ))}

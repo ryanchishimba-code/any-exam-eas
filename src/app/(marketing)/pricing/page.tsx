@@ -14,7 +14,10 @@ import {
   getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
 import { formatHeroTotalCountLine } from "@/lib/landing/content";
+import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
+import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export const dynamic = "force-dynamic";
 
@@ -63,19 +66,24 @@ export default async function PricingPage({
   });
   const { snapshot } = await getCachedBankStatsBundle();
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
-  const totalLine =
-    formatHeroTotalCountLine(bankCounts.totalLabel) ??
-    `${bankCounts.totalLabel} active questions across six boards`;
+  const totalLine = bankCounts.sentence.includes("including")
+    ? bankCounts.sentence
+    : bankCounts.totalLabel
+      ? formatHeroTotalCountLine(bankCounts.totalLabel)
+      : null;
 
   return (
     <>
-      <JsonLdScript data={buildPricingJsonLd()} />
+      <JsonLdScript data={buildPricingJsonLd(bankCounts.totalLabel)} />
       <PageShell
         title={<PricingBoardHeadline initial={headline} />}
-        description={`${totalLine}. Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`}
+        description={
+          totalLine
+            ? `${totalLine}. Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`
+            : `Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`
+        }
         align="center"
-        maxWidth="max-w-2xl"
-        compact
+        maxWidth="max-w-3xl"
       >
         <p
           className="mx-auto mt-3 max-w-md text-center text-sm font-medium tracking-[-0.01em] text-[var(--color-ink)]"
@@ -111,13 +119,27 @@ export default async function PricingPage({
           ))}
         </ol>
 
-        <p className="mx-auto mt-10 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+        <PurchaseTrustNotes className="mt-8" />
+        <p className="mx-auto mt-6 text-center text-sm">
+          <Link href={ROUTES.howQuestionsAreReviewed} className="font-semibold text-[var(--color-accent)] hover:underline">
+            How questions are built and reviewed
+          </Link>
+        </p>
+        <p className="mx-auto mt-4 max-w-xl text-center text-base leading-relaxed text-[var(--color-ink-muted)]">
+          This page shows our price only. One Pro plan covers the six boards.
+        </p>
+        <p className="mx-auto mt-4 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
           Study tool only — not a guarantee of exam results.{" "}
           <Link href="/legal/terms" className="text-[var(--color-accent)] underline">
             Terms
           </Link>
+          {" · "}
+          <Link href="/legal/refunds" className="text-[var(--color-accent)] underline">
+            Refunds
+          </Link>
         </p>
       </PageShell>
+      <FinalMarketingCta title="Start with the free trial." />
     </>
   );
 }

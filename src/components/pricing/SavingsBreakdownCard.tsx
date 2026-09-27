@@ -101,7 +101,7 @@ export function SavingsBreakdownCard({
 
       <p className="border-t border-emerald-100/80 px-4 py-3 text-xs leading-relaxed text-emerald-900/80">
         {plan.recommended
-          ? "Most students choose Annual — locked-in rate, best value vs $200–400+ per-exam elsewhere."
+          ? "Most students choose Annual — the monthly rate stays locked for the term."
           : "Longer plans save more — stay subscribed to keep your rate."}
       </p>
     </div>

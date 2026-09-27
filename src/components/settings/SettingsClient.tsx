@@ -5,9 +5,11 @@ import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { GraduationCap, LogOut, Map } from "lucide-react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { AppearanceSettings } from "@/components/settings/AppearanceSettings";
 import { BillingSettingsSection } from "@/components/settings/BillingSettingsSection";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
 import { formatDisplayName } from "@/lib/display-name";
 import { CONVERSION_EVENTS, trackConversion } from "@/lib/analytics";
@@ -79,6 +81,16 @@ export function SettingsClient({
         </div>
         <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
           Walk through Today&apos;s block, the question bank, and readiness again.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+          Email{" "}
+          <a
+            href={`mailto:${LEGAL_ENTITY.supportEmail}`}
+            className="font-semibold text-[var(--color-accent)] hover:underline"
+          >
+            {LEGAL_ENTITY.supportEmail}
+          </a>{" "}
+          or call <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.
         </p>
         <button
           type="button"

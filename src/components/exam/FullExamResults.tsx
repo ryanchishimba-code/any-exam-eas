@@ -32,6 +32,8 @@ import { FullExamCatPracticeBand } from "@/components/exam/FullExamCatPracticeBa
 import { StudyThisTopicButton } from "@/components/study/StudyThisTopicButton";
 import { QuestionRelatedLinks } from "@/components/study/questions/QuestionRelatedLinks";
 import { RationaleDisclosureText } from "@/components/study/questions/CollapsibleRationale";
+import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
+import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { resolveQuestionStudyLinks } from "@/lib/library/question-study-links";
 
 type ReviewView = "summary" | "overview" | "question";
@@ -191,6 +193,21 @@ export function FullExamResults({
             <div className="mt-3.5">
               <RationaleDisclosureText text={current.explanation} resetKey={current.id} />
             </div>
+            <QuestionIssueFooter
+              report={buildReportContext({
+                fieldId: EXAM_CATALOG[examSlug].fieldId,
+                examSlug,
+                sessionId,
+                sessionMode: "full_exam_review",
+                question: {
+                  id: current.id,
+                  bankItemId: current.id,
+                  stem: current.question,
+                  options: current.options,
+                  correctAnswers: [current.correctAnswer],
+                },
+              })}
+            />
           </div>
 
           <div className="mt-4 space-y-3">

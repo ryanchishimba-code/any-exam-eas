@@ -3,10 +3,11 @@ import {
   SITE_DOMAIN,
   SITE_NAME,
   formatMonthlyPrice,
+  formatPricingCheckoutTrialOffer,
   formatTrialLabel,
   formatTrialQuestionLimit,
 } from "@/lib/site";
-import { LEGAL_ENTITY } from "@/lib/legal";
+import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS, MONTHLY_PRICE_USD } from "@/lib/billing-config";
 import {
   enforceMetaDescription,
@@ -59,7 +60,7 @@ export function absoluteUrl(path: string): string {
   return `${getSiteUrl()}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-import { SEO_KEYWORD_CLUSTERS, SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
+import { SEO_KEYWORD_CLUSTERS, seoPlatformPitch } from "@/lib/seo/seo-copy";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 
@@ -75,7 +76,7 @@ const HOME_KEYWORDS = [
   "AANP FNP certification prep",
   "NPTE-PT board prep",
   "spaced repetition board prep",
-  "clinician-built Qbank",
+  "QA-gated question bank",
   "one subscription six exams",
   "AnyExamEasy",
 ];
@@ -84,13 +85,15 @@ export function buildHomeMetadata(
   totalQuestionsLabel?: string,
   nclexFormats?: FormatCounts | null
 ): Metadata {
-  const count = totalQuestionsLabel?.trim() || SEO_LIVE_STATS.questionCount;
+  const count = totalQuestionsLabel?.trim();
   const title = enforceMetaTitle(
-    `One Study System. Six Boards. — ${count} Questions`,
+    count ? `One Study System. Six Boards. — ${count} Questions` : "One Study System. Six Boards.",
     "home"
   );
   const description = enforceMetaDescription(
-    `${count} active questions with Blueprint Roadmaps & mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. ${formatTrialLabel()} · no payment method required.`,
+    count
+      ? `${count} active questions with Blueprint Roadmaps & mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. ${formatTrialLabel()} · no payment method required.`
+      : `Blueprint Roadmaps and mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP and NPTE-PT. ${formatTrialLabel()} · no payment method required.`,
     "home"
   );
   const url = getSiteUrl();
@@ -170,7 +173,7 @@ export function buildRootMetadata(): Metadata {
 }
 
 /** JSON-LD for homepage — Organization + WebSite with search action. */
-export function buildHomeJsonLd() {
+export function buildHomeJsonLd(totalQuestionsLabel?: string) {
   const url = getSiteUrl();
   return {
     "@context": "https://schema.org",
@@ -182,8 +185,9 @@ export function buildHomeJsonLd() {
         legalName: LEGAL_ENTITY.companyName,
         url,
         logo: absoluteUrl("/icons/icon-192.png"),
-        description: `${LEGAL_ENTITY.productName} — ${seoPlatformPitch()}`,
+        description: `${LEGAL_ENTITY.productName} — ${seoPlatformPitch(totalQuestionsLabel)}`,
         sameAs: [url],
+        contactPoint: organizationContactPoint(),
       },
       {
         "@type": "WebSite",
@@ -213,12 +217,12 @@ export function buildHomeJsonLd() {
           description: `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · no payment required · Pro at ${formatMonthlyPrice("pro")}/mo`,
           url: absoluteUrl("/pricing"),
         },
-        description: seoPlatformPitch(),
+        description: seoPlatformPitch(totalQuestionsLabel),
       },
       {
         "@type": "Product",
         name: `${SITE_NAME} Pro — Multi-Exam Board Prep`,
-        description: seoPlatformPitch(),
+        description: seoPlatformPitch(totalQuestionsLabel),
         image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
         brand: { "@type": "Brand", name: SITE_NAME },
         offers: {
@@ -228,7 +232,7 @@ export function buildHomeJsonLd() {
           availability: "https://schema.org/InStock",
           url: absoluteUrl("/signup?plan=trial&tier=pro"),
           priceValidUntil: `${new Date().getFullYear()}-12-31`,
-          description: `${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment`,
+          description: formatPricingCheckoutTrialOffer(),
         },
       },
       {

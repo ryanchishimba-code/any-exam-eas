@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { examMarketingPath } from "@/lib/seo/exam-config";
-import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
@@ -50,7 +49,7 @@ export function LandingSeoGuide({
   questionCountLabel?: string;
   nclexFormats?: FormatCounts | null;
 }) {
-  const count = questionCountLabel?.trim() || SEO_LIVE_STATS.questionCount;
+  const count = questionCountLabel?.trim() ?? "";
   const links = EXAM_LINKS.map((exam) =>
     exam.name === "NCLEX-RN"
       ? {
@@ -75,8 +74,9 @@ export function LandingSeoGuide({
           Six boards. One subscription.
         </h2>
         <p className="mt-5 text-lg leading-relaxed text-[var(--color-ink)]">
-          {SITE_NAME} unlocks {PLATFORM_EXAM_LIST} — {count} active questions, Study Hub readiness,
-          and Deep Dive lessons from {formatMonthlyPrice("pro")}/mo after a free trial.
+          {SITE_NAME} unlocks {PLATFORM_EXAM_LIST}
+          {count ? ` — ${count} active questions` : ""}, Study Hub readiness, and Deep Dive
+          lessons from {formatMonthlyPrice("pro")}/mo after a free trial.
         </p>
 
         <ul className="mt-10 grid gap-3 sm:grid-cols-2" role="list">

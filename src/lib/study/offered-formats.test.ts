@@ -48,7 +48,7 @@ describe("offered practice formats", () => {
       columns: 2,
     });
     expect(ngnOnly?.intro).toBe(
-      "NGN-style sets draw eligible items from every topic. The numbers are the questions this session can use."
+      "NGN-style sets draw eligible items from every topic. All questions counts every scored item."
     );
     expect(ngnOnly?.intro).not.toMatch(/case|coming soon/i);
 

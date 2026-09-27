@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useLiveBankCounts } from "@/hooks/use-live-bank-counts";
 import { useScrubbedBoardCopy } from "@/lib/client/use-board-formats";
 import { EXAM_HUBS, type ExamSlug } from "@/lib/exams/catalog";
 import { ExamHubIcon } from "@/components/exam/ExamHubIcon";
@@ -7,6 +8,13 @@ import { cn } from "@/lib/utils";
 
 function ExamSelectorCard({ exam }: { exam: (typeof EXAM_HUBS)[number] }) {
   const subtitle = useScrubbedBoardCopy(exam.slug, exam.subtitle);
+  const { data: bankCounts } = useLiveBankCounts();
+  const live = bankCounts?.exams.find((row) => row.slug === exam.slug);
+  const bankLabel = live?.sentence?.includes("including")
+    ? live.sentence
+    : live?.countLabel
+      ? `${live.countLabel} questions`
+      : exam.questionBankLabel;
   return (
     <Link
       href={`/prep/${exam.slug}`}
@@ -22,7 +30,7 @@ function ExamSelectorCard({ exam }: { exam: (typeof EXAM_HUBS)[number] }) {
           </div>
           <h3 className="text-lg font-semibold text-slate-900">{exam.title}</h3>
           <p className="mt-1 text-sm text-slate-600">{subtitle}</p>
-          <p className="mt-2 text-xs font-medium text-slate-500">{exam.questionBankLabel}</p>
+          <p className="mt-2 text-xs font-medium text-slate-500">{bankLabel}</p>
         </div>
         <ArrowRight
           className="h-5 w-5 shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-[var(--color-accent)]"

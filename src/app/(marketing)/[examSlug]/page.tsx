@@ -8,6 +8,7 @@ import {
 } from "@/lib/seo/exam-config";
 import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
+import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
 import { presentBoardInventory } from "@/lib/inventory/active-questions";
 import {
   buildLandingBankCountsDisplay,
@@ -48,14 +49,20 @@ export default async function ExamMarketingPage({ params }: Props) {
   const { snapshot, inventory } = await getCachedBankStatsBundle();
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
   const examCount = bankCounts.exams.find((row) => row.slug === key);
-  const questionCountLabel = examCount?.countLabel;
+  const questionCountLabel = examCount?.sentence.includes("including")
+    ? examCount.sentence
+    : examCount?.countLabel;
   const boardInventory = presentBoardInventory({
     slug: key,
     usingLiveCount: !bankCounts.degraded && (examCount?.served ?? 0) > 0,
     board: inventory.boards[key] ?? null,
+    clinical: snapshot.boards?.[key] ?? null,
   });
 
-  const testimonials = await getCachedPublishedTestimonials(6);
+  const [testimonials, samples] = await Promise.all([
+    getCachedPublishedTestimonials(6),
+    getPublicSampleQuestions(),
+  ]);
 
   const usmleStepCounts =
     key === "usmle"
@@ -76,6 +83,7 @@ export default async function ExamMarketingPage({ params }: Props) {
         inventory={boardInventory}
         usmleStepCounts={usmleStepCounts}
         testimonials={testimonials}
+        samples={samples}
       />
     </>
   );

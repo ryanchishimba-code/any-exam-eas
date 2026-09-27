@@ -1,7 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import { Activity, Beaker, Bone, BookOpenCheck, HeartPulse, Pill, Stethoscope } from "lucide-react";
 import type { ExamSlug } from "@/types/edtech";
-import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
 /**
  * Visual theme per board exam for the selection screen.
@@ -31,7 +30,7 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     slug: "nclex",
     tagline:
       "Master clinical judgment, prioritization, and Next-Gen formats with nursing-first prep.",
-    stats: [`${MARKETING_QUESTION_COUNTS.nursing} Questions`, "High-Yield Topics", "Full Simulations"],
+    stats: ["Question bank", "High-yield topics", "Full simulations"],
     icon: Activity,
     gradient: "from-sky-600/90 via-teal-600/85 to-cyan-700/90",
     glow: "group-hover:shadow-teal-500/25 group-hover:border-teal-300/80",
@@ -43,8 +42,8 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
   usmle: {
     slug: "usmle",
     tagline:
-      "Clinical vignettes, next-best-step management, and sequential sets built for Step 2 CK.",
-    stats: ["80Q Simulations", "Adaptive Bank", "Analytics"],
+      "Clinical vignettes and next-step items for USMLE Step 1, Step 2 CK, and Step 3.",
+    stats: ["Step 1, 2 CK, and 3", "Question bank", "Timed simulations"],
     icon: BookOpenCheck,
     gradient: "from-emerald-600/90 via-green-600/85 to-teal-700/90",
     glow: "group-hover:shadow-emerald-500/25 group-hover:border-emerald-300/80",
@@ -57,7 +56,7 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     slug: "naplex",
     tagline:
       "Calculations, patient cases, and pharmacotherapy — everything NAPLEX expects you to know.",
-    stats: [`${MARKETING_QUESTION_COUNTS.pharmacy} Pharmacy Items`, "Drug Cases", "Timed Exams"],
+    stats: ["Question bank", "Drug cases", "Timed exams"],
     icon: Pill,
     gradient: "from-amber-500/90 via-orange-500/85 to-amber-600/90",
     glow: "group-hover:shadow-amber-500/30 group-hover:border-amber-300/80",
@@ -70,7 +69,7 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     slug: "pance",
     tagline:
       "NCCPA blueprint vignettes — cardiovascular, pulmonary, GI, MSK, ID, neurology, psychiatry, reproductive, endocrine, and more.",
-    stats: ["300Q Exam Blueprint", "Roadmap Tracker", "Full Simulations"],
+    stats: ["NCCPA blueprint", "Roadmap", "Full simulations"],
     icon: HeartPulse,
     gradient: "from-rose-600/90 via-pink-600/85 to-rose-700/90",
     glow: "group-hover:shadow-rose-500/25 group-hover:border-rose-300/80",
@@ -83,7 +82,7 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     slug: "aanp-fnp",
     tagline:
       "AANPCB FNP blueprint primary care — Assess, Diagnose, Plan, and Evaluate across the lifespan.",
-    stats: [`${MARKETING_QUESTION_COUNTS.aanpFnp} Questions`, "Roadmap Tracker", "Full Simulations"],
+    stats: ["Question bank", "Roadmap", "Full simulations"],
     icon: HeartPulse,
     gradient: "from-violet-600/90 via-purple-600/85 to-fuchsia-700/90",
     glow: "group-hover:shadow-violet-500/25 group-hover:border-violet-300/80",
@@ -96,7 +95,7 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     slug: "npte-pt",
     tagline:
       "FSBPT blueprint clinical scenarios — musculoskeletal, neuromuscular, cardiopulmonary, modalities, and professional practice.",
-    stats: [`${MARKETING_QUESTION_COUNTS.nptePt} Questions`, "Roadmap Tracker", "Full Simulations"],
+    stats: ["Question bank", "Roadmap", "Full simulations"],
     icon: Bone,
     gradient: "from-cyan-600/90 via-teal-600/85 to-emerald-700/90",
     glow: "group-hover:shadow-cyan-500/25 group-hover:border-cyan-300/80",

@@ -33,6 +33,7 @@ import {
 import { MpjeQuestionDisplay } from "@/components/mpje/MpjeQuestionDisplay";
 import { ExamActionBar } from "@/components/exam/ExamActionBar";
 import { RationaleDisclosureText } from "@/components/study/questions/CollapsibleRationale";
+import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
 import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { cn } from "@/lib/utils";
@@ -466,6 +467,16 @@ export function MpjePracticeExam() {
                       </p>
                       <div className="mt-3">
                         <RationaleDisclosureText text={m.explanation} resetKey={m.questionId} />
+                        <QuestionIssueFooter
+                          report={{
+                            bankItemId: m.questionId,
+                            questionKey: m.questionId,
+                            fieldId: "mpje",
+                            stemPreview: m.question.slice(0, 500),
+                            correctAnswer: m.correctAnswer,
+                            selectedAnswer: m.selected ?? undefined,
+                          }}
+                        />
                       </div>
                     </li>
                   ))}

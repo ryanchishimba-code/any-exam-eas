@@ -6,7 +6,27 @@ export const LEGAL_ENTITY = {
   productDomain: "anyexameasy.com",
   supportEmail: "support@anyexameasy.com",
   legalEmail: "legal@anyexameasy.com",
+  /**
+   * Public support phone. Display (214) 883-6375, tap tel:+12148836375,
+   * schema telephone +1-214-883-6375. No hours are published.
+   */
+  supportPhone: {
+    display: "(214) 883-6375",
+    tel: "tel:+12148836375",
+    schema: "+1-214-883-6375",
+  },
 } as const;
+
+/** Organization JSON-LD contactPoint. Hours are omitted on purpose. */
+export function organizationContactPoint() {
+  return {
+    "@type": "ContactPoint" as const,
+    telephone: LEGAL_ENTITY.supportPhone.schema,
+    contactType: "customer support",
+    areaServed: "US",
+    availableLanguage: "English",
+  };
+}
 
 export const LEGAL_LAST_UPDATED = "July 5, 2026";
 

@@ -17,7 +17,6 @@ import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
 import {
   DRUGS_DECK_MARKETING_TITLE,
-  MARKETING_QUESTION_COUNTS,
   TOP_500_DRUGS_COUNT,
   drugsDeckShortDetail,
 } from "@/lib/marketing/bank-stats";
@@ -78,7 +77,7 @@ const EXAMS = [
 const VALUE_PILLARS = [
   {
     icon: Layers,
-    title: `${MARKETING_QUESTION_COUNTS.total} curated board items`,
+    title: "Curated board items",
     detail: "QA-checked vignettes with aligned answer choices across nursing, medicine, and pharmacy.",
   },
   {

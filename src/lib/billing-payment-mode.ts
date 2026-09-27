@@ -62,7 +62,7 @@ export function paymentModeOptions(
       sub: `${total}/${per}`,
       detail: `Renews automatically every ${
         plan.months === 1 ? "month" : `${plan.months} months`
-      }. Cancel anytime.`,
+      }. Cancel anytime in Settings.`,
     },
     {
       id: "manual",

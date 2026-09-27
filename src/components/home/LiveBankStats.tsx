@@ -1,7 +1,6 @@
 "use client";
 
 import { BookOpen, GraduationCap, Layers } from "lucide-react";
-import { FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { useLiveBankCounts } from "@/hooks/use-live-bank-counts";
 
 export function LiveBankStats({
@@ -17,34 +16,38 @@ export function LiveBankStats({
   const totalLabel =
     !degraded && bankCounts?.totalLabel && bankCounts.totalLabel !== "—"
       ? bankCounts.totalLabel
-      : degraded
-        ? "—"
-        : FALLBACK_QUESTION_COUNTS.total;
+      : "";
 
   const nursingLive = bankCounts?.exams.find((e) => e.slug === "nclex");
   const nursingLabel =
     !degraded && nursingLive?.countLabel && nursingLive.countLabel !== "—"
       ? nursingLive.countLabel
-      : degraded
-        ? "—"
-        : FALLBACK_QUESTION_COUNTS.nursing;
+      : "";
 
   const items = [
-    {
-      icon: BookOpen,
-      value: totalLabel,
-      label: degraded ? "Active questions (updating)" : "Active questions",
-    },
+    ...(totalLabel
+      ? [
+          {
+            icon: BookOpen,
+            value: totalLabel,
+            label: "Active questions",
+          },
+        ]
+      : []),
     {
       icon: GraduationCap,
       value: "6",
       label: "Licensing exams",
     },
-    {
-      icon: Layers,
-      value: nursingLabel,
-      label: degraded ? "NCLEX bank (updating)" : "NCLEX bank",
-    },
+    ...(nursingLabel
+      ? [
+          {
+            icon: Layers,
+            value: nursingLabel,
+            label: "NCLEX bank",
+          },
+        ]
+      : []),
   ];
 
   if (compact) {

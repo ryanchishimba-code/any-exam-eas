@@ -3,8 +3,6 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState, type ReactNode } from "react";
 import { Hero } from "@/components/Hero";
-import { LandingSeoGuide } from "@/components/landing/LandingSeoGuide";
-import { LandingFlagshipV2 } from "@/components/landing/v2/LandingFlagshipV2";
 import { LandingHeroSkeleton } from "@/components/landing/v2/LandingHeroSkeleton";
 import { useLandingBankCounts } from "@/lib/client/use-landing-bank-counts";
 import { useUserAccess } from "@/lib/client/use-user-access";
@@ -36,43 +34,17 @@ const SubscriberHome = dynamic(
   }
 );
 
-function GuestLanding({
-  bankCounts,
-  testimonials,
-  children,
-  boardFormats,
-}: {
-  bankCounts: LandingBankCountsDisplay;
-  testimonials?: LandingSuccessStory[];
-  children?: ReactNode;
-  boardFormats?: Partial<Record<string, FormatCounts | null>> | null;
-}) {
-  return (
-    <LandingFlagshipV2
-      bankCounts={bankCounts}
-      testimonials={testimonials}
-      boardFormats={boardFormats}
-    >
-      {children}
-      <LandingSeoGuide
-        questionCountLabel={bankCounts.totalLabel}
-        nclexFormats={boardFormats?.nclex ?? null}
-      />
-    </LandingFlagshipV2>
-  );
+function GuestLanding({ children }: { children?: ReactNode }) {
+  return <>{children}</>;
 }
 
 /** Authed-only branch so guests never pay for /api/subscription/status work. */
 function AuthenticatedHomeBranch({
   bankCounts,
-  testimonials,
   children,
-  boardFormats,
 }: {
   bankCounts: LandingBankCountsDisplay;
-  testimonials?: LandingSuccessStory[];
   children?: ReactNode;
-  boardFormats?: Partial<Record<string, FormatCounts | null>> | null;
 }) {
   const { hasPremiumAccess, hasAppAccess, loading: accessLoading } = useUserAccess();
   const [accessTimedOut, setAccessTimedOut] = useState(false);
@@ -101,50 +73,29 @@ function AuthenticatedHomeBranch({
     return <LandingHeroSkeleton bankCounts={bankCounts} />;
   }
 
-  return (
-    <GuestLanding bankCounts={bankCounts} testimonials={testimonials} boardFormats={boardFormats}>
-      {children}
-    </GuestLanding>
-  );
+  return <GuestLanding>{children}</GuestLanding>;
 }
 
 export function HomeExperience({
   bankCounts: initialBankCounts,
-  testimonials,
   children,
-  boardFormats = null,
 }: {
   bankCounts: LandingBankCountsDisplay;
   testimonials?: LandingSuccessStory[];
-  /** Server-rendered SEO / long-form blocks (passed through to the guest landing). */
+  /** Server-rendered public page. */
   children?: ReactNode;
   boardFormats?: Partial<Record<string, FormatCounts | null>> | null;
 }) {
   const bankCounts = useLandingBankCounts(initialBankCounts);
   const { status } = useSession();
 
-  // While session resolves, don't flash the guest conversion landing for
-  // returning subscribers (looks like a post-login bounce to marketing).
-  if (status === "loading") {
-    return <LandingHeroSkeleton bankCounts={bankCounts} />;
-  }
-
-  // Guests: paint conversion landing immediately (no access API).
-  if (status !== "authenticated") {
-    return (
-      <GuestLanding bankCounts={bankCounts} testimonials={testimonials} boardFormats={boardFormats}>
-        {children}
-      </GuestLanding>
-    );
+  // Paint the server-rendered public page in the first HTML, including while
+  // the session is still resolving, so the hero is what a visitor and Lighthouse see.
+  if (status === "loading" || status !== "authenticated") {
+    return <GuestLanding>{children}</GuestLanding>;
   }
 
   return (
-    <AuthenticatedHomeBranch
-      bankCounts={bankCounts}
-      testimonials={testimonials}
-      boardFormats={boardFormats}
-    >
-      {children}
-    </AuthenticatedHomeBranch>
+    <AuthenticatedHomeBranch bankCounts={bankCounts}>{children}</AuthenticatedHomeBranch>
   );
 }

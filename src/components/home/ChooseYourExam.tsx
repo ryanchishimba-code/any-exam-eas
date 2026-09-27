@@ -36,8 +36,8 @@ export function ChooseYourExam({ bankCounts }: ChooseYourExamProps) {
         href: exam.href,
         color: exam.color,
         icon: exam.icon,
-        countLabel: live?.countLabel ?? "—",
-        questionsLabel: live?.questionsLabel ?? `${live?.countLabel ?? "—"} questions`,
+        countLabel: live?.countLabel ?? "",
+        questionsLabel: live?.questionsLabel ?? "",
       };
     });
   }, [bankCounts]);
@@ -98,10 +98,12 @@ export function ChooseYourExam({ bankCounts }: ChooseYourExamProps) {
               <p className="aee-pick-board__summary-desc">{selected.blurb}</p>
 
               <div className="aee-pick-board__summary-stats">
-                <span className="aee-pick-board__stat aee-pick-board__stat--questions">
-                  <span className="aee-pick-board__stat-value">{selected.countLabel}</span>
-                  <span className="aee-pick-board__stat-label">active questions</span>
-                </span>
+                {selected.countLabel ? (
+                  <span className="aee-pick-board__stat aee-pick-board__stat--questions">
+                    <span className="aee-pick-board__stat-value">{selected.countLabel}</span>
+                    <span className="aee-pick-board__stat-label">active questions</span>
+                  </span>
+                ) : null}
                 <span className="aee-pick-board__stat">
                   <span className="aee-pick-board__stat-value">QA-gated</span>
                   <span className="aee-pick-board__stat-label">no bulk filler</span>

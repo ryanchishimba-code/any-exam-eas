@@ -55,12 +55,17 @@ export async function QuestionBankPracticeLoader({
   const initialInventory = countsPayload
     ? {
         counts: countsPayload.counts,
+        sessionCounts: countsPayload.sessionCounts,
         total: countsPayload.total,
         formats: countsPayload.formats,
         topicFormats: countsPayload.topicFormats,
         categories: countsPayload.categories,
         categoryLabel: countsPayload.categoryLabel,
         definition: countsPayload.definition,
+        questionSentence: countsPayload.questionSentence,
+        caseStudies: countsPayload.caseStudies,
+        caseItems: countsPayload.caseItems,
+        standaloneNgn: countsPayload.standaloneNgn,
       }
     : null;
 

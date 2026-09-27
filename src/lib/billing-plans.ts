@@ -1,6 +1,8 @@
 import {
   BILLING_INTERVAL_SAVINGS,
   INTERVAL_MONTHS,
+  TRIAL_DAYS,
+  TRIAL_LIFETIME_QUESTIONS,
   type BillingInterval,
 } from "@/lib/billing-config";
 import {
@@ -26,17 +28,17 @@ export const BILLING_GUARANTEE_HEADLINE =
 
 export const BILLING_GUARANTEE_POINTS = [
   "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — all 6 exams in one Pro plan",
-  "Integrated Exam Roadmaps plus board-style vignettes — without $200–400+ per-exam bundles",
-  "5-day free trial · 500 practice questions · No payment required at signup · Upgrade anytime for unlimited access",
-  "Cancel anytime — access continues through the end of your paid period",
+  "Integrated Exam Roadmaps plus board-style vignettes on one plan",
+  `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · No payment required at signup · Upgrade anytime for unlimited access`,
+  "Cancel anytime in Settings — access continues through the end of your paid period",
   "Update your saved payment method anytime for recurring billing",
 ] as const;
 
 export const BILLING_POLICY_SHORT =
-  "Cancel anytime. Payments are non-refundable — access continues through the end of your paid period.";
+  "Cancel anytime in Settings. Payments are non-refundable — access continues through the end of your paid period.";
 
 /** Short reassurance used as a prominent line on pricing and checkout. */
-export const CANCEL_ANYTIME_LABEL = "Cancel anytime";
+export const CANCEL_ANYTIME_LABEL = "Cancel anytime in Settings";
 
 /**
  * The whole auto-renewal disclosure in one line: amount, cadence, and how it
@@ -54,7 +56,7 @@ export function renewalTermsLine(
 }
 
 export const BILLING_TRIAL_DISCLOSURE =
-  "No payment required to start · 5-day trial with full Pro access (500 practice questions) · Upgrade anytime for unlimited access";
+  `No payment required to start · ${TRIAL_DAYS}-day trial with full Pro access (${TRIAL_LIFETIME_QUESTIONS} practice questions) · Upgrade anytime for unlimited access`;
 
 /** Plan change rules shown in Settings and checkout. */
 export const BILLING_PLAN_CHANGE_POLICY =

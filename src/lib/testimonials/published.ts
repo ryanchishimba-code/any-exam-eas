@@ -14,7 +14,7 @@ export async function getPublishedTestimonials(
 ): Promise<LandingSuccessStory[]> {
   try {
     const rows = await prisma.testimonial.findMany({
-      where: { status: "approved", deletedAt: null },
+      where: { status: "approved", deletedAt: null, consentedAt: { not: null } },
       orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
       take: limit,
     });
@@ -30,6 +30,7 @@ export async function getPublishedTestimonials(
       featured: row.featured,
       avatarGradient: row.avatarGradient || gradientForName(row.name),
       photoUrl: row.photoUrl ?? undefined,
+      publishedOn: row.consentedAt?.toISOString(),
     }));
   } catch {
     return [];

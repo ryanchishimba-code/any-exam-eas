@@ -467,12 +467,17 @@ export function StudyBankPractice({
       initialSubjectCounts
         ? {
             counts: initialSubjectCounts,
+            sessionCounts: null,
             total: totalQuestions,
             formats: null,
             topicFormats: null,
             categories: [],
             categoryLabel: null,
             definition: null,
+            questionSentence: null,
+            caseStudies: 0,
+            caseItems: 0,
+            standaloneNgn: 0,
           }
         : null
     ),
@@ -2075,6 +2080,7 @@ export function StudyBankPractice({
           practiceMode={practiceMode}
           topicCount={activeTopicCount}
           totalQuestions={activeTotal}
+          questionSentence={subjectCountPayload?.questionSentence}
           formats={activeFormats}
           categories={activeCategories}
           categoryLabel={activeCategoryLabel}
@@ -2318,7 +2324,9 @@ export function StudyBankPractice({
               countsLoading={countsLoading}
               practiceFormat={sessionFormat}
               formats={scopeFormats}
-              totalActive={activeTotal}
+              scoredTotal={activeTotal}
+              sessionCounts={subjectCountPayload?.sessionCounts}
+              caseItemCount={subjectCountPayload?.caseItems}
               ngnLabel={ngnLabel}
               onPracticeFormatChange={(next) => {
                 const pool = practiceFormatPoolCount(next, scopeFormats);

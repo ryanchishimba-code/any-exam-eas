@@ -14,7 +14,6 @@ import {
   Timer,
   type LucideIcon,
 } from "lucide-react";
-import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
@@ -168,7 +167,7 @@ export function landingTrialHrefForExam(examSlug?: string): string {
 }
 
 /** Primary hero headline — default NCLEX job; chips swap the exam-specific line. */
-export const LANDING_HERO_HEADLINE = "NCLEX prep that feels like the real exam.";
+export const LANDING_HERO_HEADLINE = "Go from doubtful to confident.";
 
 /** Accent line under the primary headline — empty when the full headline is in LANDING_HERO_HEADLINE. */
 export const LANDING_HERO_HEADLINE_ACCENT = "";
@@ -182,7 +181,13 @@ export const LANDING_HERO_SUBLINE_BODY =
  * and the six boards are the chip picker — this line does not repeat either.
  */
 export const HOME_HERO_PRODUCT_LINE =
-  "Vignettes and rationales for the board you pick.";
+  "A practice baseline, a daily Today set, review of what you missed, practice exams on the official weights, NGN case studies, rationales with sources, and study guides.";
+
+/** Board heroes name NGN only on NCLEX. The trial price stays on its own line. */
+export function formatExamHeroProductLine(examSlug?: string): string {
+  if (!examSlug || examSlug === "nclex") return HOME_HERO_PRODUCT_LINE;
+  return "A practice baseline, a daily Today set, review of what you missed, practice exams on the official weights, rationales with sources, and study guides.";
+}
 
 export function formatFlagshipHeroSubline(_totalLabel?: string): string {
   return LANDING_HERO_SUBLINE_BODY;
@@ -190,12 +195,12 @@ export function formatFlagshipHeroSubline(_totalLabel?: string): string {
 
 /** Exam-specific headlines for marketing pages and homepage chip swaps. */
 export const EXAM_MARKETING_HERO_HEADLINES: Record<string, string> = {
-  nclex: "NCLEX prep that feels like the real exam.",
-  usmle: "USMLE vignettes built for Step-day reasoning.",
-  naplex: "NAPLEX math and cases without the fluff.",
-  pance: "PANCE clinical judgment, blueprint-aligned.",
-  "aanp-fnp": "AANP FNP primary-care cases that teach.",
-  "npte-pt": "NPTE-PT scenarios for clinical decisions.",
+  nclex: "Go into the NCLEX knowing what you know.",
+  usmle: "Go into the USMLE knowing what you know.",
+  naplex: "Go into the NAPLEX knowing what you know.",
+  pance: "Go into the PANCE knowing what you know.",
+  "aanp-fnp": "Go into the AANP FNP exam knowing what you know.",
+  "npte-pt": "Go into the NPTE-PT knowing what you know.",
 };
 
 const HERO_EXAM_EYEBROWS: Record<string, string> = {
@@ -315,7 +320,7 @@ export const LANDING_OFFERING_PILLARS = [
 
 /** Subtle trust signals below hero subheadline — no pass-rate or UWorld-parity claims. */
 export const LANDING_HERO_TRUST_SIGNALS = [
-  "QA-gated · clinician-built",
+  "QA-gated before it is served",
   "NGN formats on NCLEX",
   "Teachable rationales",
   "6 exams · 1 plan",
@@ -395,7 +400,7 @@ export const LANDING_HERO_PITCHES = [
 export const LANDING_HERO_PRICE_TAGLINE = "Premium prep. Accessible price.";
 
 export const LANDING_HERO_PRICE_INCLUDES = [
-  `${MARKETING_QUESTION_COUNTS.total} board-style questions`,
+  "Board-style questions across six exams",
   "Exam Roadmaps, Deep Dive modules & Library",
   "Analytics, lab values & clinical calculators",
 ] as const;
@@ -403,9 +408,9 @@ export const LANDING_HERO_PRICE_INCLUDES = [
 /** Trust stats for the social proof band — illustrative aggregates, not pass-rate claims. */
 export const LANDING_SOCIAL_PROOF = [
   {
-    value: MARKETING_QUESTION_COUNTS.total,
-    label: "Board-style questions",
-    detail: "Curated vignettes across six licensing exams",
+    value: "Qbank",
+    label: "Scored questions",
+    detail: "The same count the question bank shows",
   },
   {
     value: "6",
@@ -435,7 +440,8 @@ export const LANDING_STEPS = [
     step: "02",
     icon: Brain,
     title: "Follow your Exam Roadmap",
-    detail: `${MARKETING_QUESTION_COUNTS.total} stratified items with formats that mirror real exams — Roadmap shows what to practice next.`,
+    detail:
+      "Stratified items with formats that mirror real exams — Roadmap shows what to practice next.",
   },
   {
     step: "03",
@@ -558,7 +564,7 @@ export const SAMPLE_QUESTION_PREVIEWS: SampleQuestionPreview[] = [
 export const SAMPLE_QUESTIONS_FEATURED = SAMPLE_QUESTION_PREVIEWS;
 
 export const LANDING_METRICS = [
-  { value: MARKETING_QUESTION_COUNTS.total, label: "Board-style items" },
+  { value: "Qbank", label: "Scored questions" },
   { value: "6", label: "Board exam tracks" },
   { value: "Roadmap", label: "Per-exam study plan" },
   { value: "Deep Dive", label: "Linked lessons" },
@@ -582,6 +588,8 @@ export type LandingSuccessStory = {
   avatarGradient: string;
   /** Optional admin-uploaded photo (data URL or remote URL). */
   photoUrl?: string;
+  /** ISO date consent was recorded. Shown only when present. */
+  publishedOn?: string;
 };
 
 /** Platform stats for the social proof band — factual, no pass-rate claims. */

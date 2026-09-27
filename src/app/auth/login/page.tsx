@@ -4,8 +4,11 @@ import { LoginForm } from "@/components/LoginForm";
 import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
 import { contentWidth } from "@/lib/layout/shell-ui";
+import Link from "next/link";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
-import { SITE_NAME } from "@/lib/site";
+import { LEGAL_ENTITY } from "@/lib/legal";
+import { SITE_NAME, formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 const LOGIN_TITLE = `Log In — ${SITE_NAME}`;
 const LOGIN_DESCRIPTION =
@@ -32,7 +35,7 @@ export default function AuthLoginPage() {
   return (
     <PageShell
       eyebrow="Any Exam Easy"
-      title="Log in to continue"
+      title="Sign in."
       description={`${PLATFORM_EXAM_LIST} practice — synced across devices.`}
       align="center"
       maxWidth={contentWidth.auth}
@@ -51,6 +54,21 @@ export default function AuthLoginPage() {
           <LoginForm />
         </Suspense>
       </AuthCard>
+      <p className="mx-auto mt-6 max-w-md text-center text-sm leading-relaxed text-[var(--color-ink-muted)]">
+        {formatPricingCheckoutTrialOffer()}.{" "}
+        <Link href="/signup?plan=trial&interval=monthly&tier=pro" className="font-semibold text-[var(--color-accent)] hover:underline">
+          Start your free trial
+        </Link>
+        . Questions:{" "}
+        <a
+          href={`mailto:${LEGAL_ENTITY.supportEmail}`}
+          className="font-semibold text-[var(--color-accent)] hover:underline"
+        >
+          {LEGAL_ENTITY.supportEmail}
+        </a>{" "}
+        or <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />
+        .
+      </p>
     </PageShell>
   );
 }

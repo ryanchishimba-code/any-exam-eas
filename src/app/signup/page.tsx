@@ -13,6 +13,7 @@ import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import type { SignupPlan } from "@/lib/validators/auth";
+import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER, SITE_NAME } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 
@@ -72,7 +73,7 @@ export default async function SignupPage({
   return (
     <PageShell
       eyebrow="AnyExamEasy"
-      title="Create your account."
+      title={initialPlan === "trial" ? "Start your free trial." : "Create your account."}
       description={`${formatPricingCheckoutTrialOffer()}. ${TRIAL_LIFETIME_QUESTIONS} practice questions included. Must be 18 or older.`}
       align="center"
       maxWidth={contentWidth.auth}
@@ -97,6 +98,7 @@ export default async function SignupPage({
           initialExam={initialExam}
         />
       </AuthCard>
+      <PurchaseTrustNotes className="mt-6" />
       <p className="mx-auto mt-6 max-w-md text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
         {MARKETING_DISCLAIMER}
       </p>

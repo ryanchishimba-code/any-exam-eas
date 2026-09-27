@@ -62,7 +62,7 @@ export function practiceFormatChooser(params: {
   const scope = isMixedPracticeSubject(params.subjectId) ? "every topic" : "this topic";
   return {
     choices: ["all", ...offered],
-    intro: `${named} sets draw eligible items from ${scope}. The numbers are the questions this session can use.`,
+    intro: `${named} sets draw eligible items from ${scope}. All questions counts every scored item.`,
     columns: offered.length === 1 ? 2 : 3,
   };
 }

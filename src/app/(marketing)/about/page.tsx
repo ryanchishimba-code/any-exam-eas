@@ -1,37 +1,34 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
-import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
-import { ROUTES } from "@/lib/routes";
-import { formatMonthlyPrice, formatTrialCtaLabel, formatTrialLabel, SITE_NAME } from "@/lib/site";
-import { buildAboutMetadata, buildAboutJsonLd } from "@/lib/seo/marketing-metadata";
-import { examMarketingPath } from "@/lib/seo/exam-config";
+import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { COMPANY_PUBLIC, FOUNDER_PUBLIC } from "@/lib/marketing/company";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
-import {
-  formatExactServeReadyQuestions,
-  getPublishedQuestionStats,
-} from "@/lib/marketing/bank-stats";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
+import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
+import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
+import { FounderNote } from "@/components/marketing/elevation/FounderNote";
+import { COMPANY_PUBLIC } from "@/lib/marketing/company";
 import {
   buildLandingBankCountsDisplay,
   getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
+import { QUALITY_PAGE_UPDATED } from "@/lib/marketing/quality-facts";
+import { ROUTES } from "@/lib/routes";
+import { examMarketingPath } from "@/lib/seo/exam-config";
+import { buildAboutMetadata, buildAboutJsonLd } from "@/lib/seo/marketing-metadata";
+import { formatPricingCheckoutTrialOffer, formatTrialCtaLabel, SITE_NAME } from "@/lib/site";
 
-/** The about total uses the same published stamp as /nclex. */
 export const dynamic = "force-dynamic";
 
 async function publishedOrLiveTotalLabel(): Promise<{ label: string; live: boolean }> {
   const { snapshot } = await getCachedBankStatsBundle();
   const display = buildLandingBankCountsDisplay(snapshot);
   if (!display.degraded && display.totalServed > 0) {
-    return { label: display.totalQuestionsLabel, live: true };
+    return { label: display.sentence || display.totalQuestionsLabel, live: true };
   }
-  return {
-    label: formatExactServeReadyQuestions(getPublishedQuestionStats().totalPublished),
-    live: false,
-  };
+  return { label: "", live: false };
 }
 
 export async function generateMetadata() {
@@ -40,45 +37,12 @@ export async function generateMetadata() {
 }
 
 const EXAM_HUB_LINKS = [
-  { href: examMarketingPath("usmle"), label: "USMLE" },
   { href: examMarketingPath("nclex"), label: "NCLEX" },
+  { href: examMarketingPath("usmle"), label: "USMLE" },
   { href: examMarketingPath("naplex"), label: "NAPLEX" },
   { href: examMarketingPath("pance"), label: "PANCE" },
   { href: examMarketingPath("aanp-fnp"), label: "AANP FNP" },
   { href: examMarketingPath("npte-pt"), label: "NPTE-PT" },
-] as const;
-
-const HOW_A_QUESTION_SHIPS = [
-  {
-    step: "1",
-    title: "Written to the blueprint",
-    body: "Items map to official outlines and high-yield domains — not random filler.",
-  },
-  {
-    step: "2",
-    title: "QA gate",
-    body: "Serve-ready only after editorial review. Soft stems stay off the bank.",
-  },
-  {
-    step: "3",
-    title: "Deep Dive on the miss",
-    body: "Wrong answers open structured teaching — then you return to practice.",
-  },
-] as const;
-
-const OFFICIAL_PREP_DOCS = [
-  {
-    label: "NCLEX 2026 RN Test Plan (PDF)",
-    href: "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
-  },
-  {
-    label: "NCSBN exam test plans hub",
-    href: "https://www.ncsbn.org/exams/testplans.page",
-  },
-  {
-    label: "NAPLEX 2025 Content Outline (PDF)",
-    href: "https://nabp.pharmacy/wp-content/uploads/NAPLEX-Content-Outline.pdf",
-  },
 ] as const;
 
 export default async function AboutPage() {
@@ -88,201 +52,84 @@ export default async function AboutPage() {
     <>
       <JsonLdScript data={buildAboutJsonLd()} />
       <div className="bg-[var(--color-bg)]">
-        {/* 1. Hero */}
-        <section className="relative overflow-hidden px-6 pt-[var(--page-top)] pb-16 sm:pb-24">
+        <section className="px-6 pb-16 pt-[var(--page-top)] sm:pb-24">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
               {SITE_NAME}
             </p>
-
-            <h1 className="mt-5 text-balance text-[clamp(2.75rem,7vw,5rem)] font-bold leading-[1.02] tracking-tight text-[var(--color-ink)]">
-              Six boards. One standard of question.
+            <h1 className="mt-5 text-balance text-[clamp(2.75rem,7vw,4.5rem)] font-bold leading-[1.02] tracking-tight text-[var(--color-ink)]">
+              Practice that tells you why.
             </h1>
-
-            <p className="mx-auto mt-6 max-w-xl text-balance text-[clamp(1.125rem,2.2vw,1.375rem)] leading-relaxed text-[var(--color-ink)]">
-              Blueprint-aligned banks. Same QA gate. One Pro plan — not six logins.
+            <p className="mx-auto mt-6 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink)]">
+              {COMPANY_PUBLIC.productName} is one question bank for six boards. You practice,
+              read the rationale, and come back to the topics you miss. The mission is a student
+              who starts doubtful and walks into the exam knowing what they know.
             </p>
-            <p className="mx-auto mt-4 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-ink-muted)]">
-              <MapPin className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
-              Built in {FOUNDER_PUBLIC.location} · {COMPANY_PUBLIC.legalName}
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
+              Operated by {COMPANY_PUBLIC.legalName}.{" "}
+              <a
+                href={`mailto:${COMPANY_PUBLIC.supportEmail}`}
+                className="font-semibold text-[var(--color-accent)] hover:underline"
+              >
+                {COMPANY_PUBLIC.supportEmail}
+              </a>
+              <span aria-hidden> · </span>
+              <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />
             </p>
-
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <LandingCta href={LANDING_TRIAL_HREF} icon={<ArrowRight className="h-4 w-4" />}>
                 {formatTrialCtaLabel()}
               </LandingCta>
               <Link
-                href={ROUTES.pricing}
+                href={ROUTES.howQuestionsAreReviewed}
                 className="text-base font-semibold text-[var(--color-accent)] hover:underline"
               >
-                See pricing →
+                How questions are reviewed
               </Link>
             </div>
-
-            <p className="mt-8 text-sm font-medium text-[var(--color-ink-muted)]">
-              {totalQuestionsLabel} · from {formatMonthlyPrice("pro")}/mo after trial
+            <p className="mt-4 text-sm font-medium text-[var(--color-ink)]" data-offer-line>
+              {formatPricingCheckoutTrialOffer()}
             </p>
+            <div className="mt-8">
+              <PurchaseTrustNotes />
+            </div>
+            {totalQuestionsLabel ? (
+              <p className="mt-6 text-sm font-medium text-[var(--color-ink-muted)]">{totalQuestionsLabel}</p>
+            ) : null}
             <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-[var(--color-ink-muted)]">
               {live
                 ? ACTIVE_QUESTION_DEFINITION
-                : "Live bank count is unavailable, so this figure is the published floor — not the current Qbank total."}
+                : "Live bank count is unavailable, so this page does not show a number."}
             </p>
           </div>
         </section>
 
-        {/* 2. How a question ships */}
-        <section
-          className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-[var(--landing-section-py,4rem)]"
-          aria-labelledby="about-ships-heading"
-        >
-          <div className="mx-auto max-w-5xl">
-            <h2
-              id="about-ships-heading"
-              className="max-w-2xl text-[clamp(2rem,4.5vw,3rem)] font-bold leading-tight tracking-tight text-[var(--color-ink)]"
-            >
-              Blueprint → QA gate → Deep Dive.
-            </h2>
-            <ol className="mt-12 grid gap-8 sm:grid-cols-3">
-              {HOW_A_QUESTION_SHIPS.map((item) => (
-                <li key={item.step}>
-                  <p className="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-accent)]">
-                    {item.step}
-                  </p>
-                  <h3 className="mt-3 text-xl font-bold tracking-tight text-[var(--color-ink)]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]">
-                    {item.body}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* 3. Official docs + trust */}
-        <section
-          className="px-6 py-[var(--landing-section-py,4rem)]"
-          aria-labelledby="about-docs-heading"
-        >
+        <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-14">
           <div className="mx-auto max-w-3xl">
-            <h2
-              id="about-docs-heading"
-              className="text-[clamp(2rem,4.5vw,3rem)] font-bold leading-tight tracking-tight text-[var(--color-ink)]"
-            >
-              Read the board&apos;s document. We do not replace it.
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-[var(--color-ink-muted)]">
-              Official outlines govern the sitting — we prepare you for them. Items map to those
-              blueprints and only ship after a QA gate.
-            </p>
-            <ul className="mt-10 space-y-4" role="list">
-              {OFFICIAL_PREP_DOCS.map((doc) => (
-                <li key={doc.href}>
-                  <a
-                    href={doc.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between border-b border-[var(--color-border)] py-3 text-base font-semibold text-[var(--color-ink)] transition hover:text-[var(--color-accent)]"
-                  >
-                    {doc.label}
-                    <span aria-hidden>↗</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              More official links live in the{" "}
-              <Link href={ROUTES.toolkit} className="font-semibold text-[var(--color-accent)] hover:underline">
-                Toolkit
-              </Link>
-              .
-            </p>
+            <ClinicalReviewers />
           </div>
         </section>
 
-        {/* 4. Who builds this */}
-        <section
-          className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-[var(--landing-section-py,4rem)]"
-          aria-labelledby="about-builder-heading"
-        >
-          <div className="mx-auto max-w-3xl">
-            <h2
-              id="about-builder-heading"
-              className="text-[clamp(2rem,4.5vw,3rem)] font-bold leading-tight tracking-tight text-[var(--color-ink)]"
-            >
-              Who builds {SITE_NAME}
-            </h2>
-            <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-start">
-              <div className="relative h-60 w-40 shrink-0 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg)] shadow-[var(--shadow-apple-sm)]">
-                {FOUNDER_PUBLIC.photoSrc ? (
-                  <Image
-                    src={FOUNDER_PUBLIC.photoSrc}
-                    alt={FOUNDER_PUBLIC.photoAlt}
-                    width={FOUNDER_PUBLIC.photoWidth}
-                    height={FOUNDER_PUBLIC.photoHeight}
-                    className="h-full w-full object-cover object-top"
-                    sizes="160px"
-                  />
-                ) : (
-                  <>
-                    <span
-                      className="flex h-full w-full items-center justify-center text-2xl font-bold tracking-tight text-[var(--color-accent)]"
-                      aria-hidden
-                    >
-                      {FOUNDER_PUBLIC.initials}
-                    </span>
-                    <span className="sr-only">Founder photo coming soon</span>
-                  </>
-                )}
-              </div>
-              <div>
-                <p className="text-xl font-bold tracking-tight text-[var(--color-ink)]">
-                  {FOUNDER_PUBLIC.name}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[var(--color-accent)]">
-                  {FOUNDER_PUBLIC.role}
-                </p>
-                <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-                  {FOUNDER_PUBLIC.name} builds {COMPANY_PUBLIC.productName} at{" "}
-                  {COMPANY_PUBLIC.legalName}. A full bio and credentials will be published here when
-                  they are ready — we do not invent degrees or licenses.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 5. Six boards + value */}
-        <section
-          className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-[var(--landing-section-py,4rem)]"
-          aria-labelledby="about-boards-heading"
-        >
+        <section className="px-6 py-16" aria-labelledby="about-boards-heading">
           <div className="mx-auto max-w-3xl">
             <h2
               id="about-boards-heading"
-              className="text-[clamp(2rem,4.5vw,3rem)] font-bold leading-tight tracking-tight text-[var(--color-ink)]"
+              className="text-[clamp(2rem,4.5vw,3rem)] font-bold tracking-tight text-[var(--color-ink)]"
             >
-              Six boards. One study system.
+              What the product does
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-[var(--color-ink)]">
-              From {formatMonthlyPrice("pro")}/mo after a free trial — Roadmaps, Deep Dives, and Full
-              Exams included. Stacking per-exam banks costs more; see{" "}
-              <Link href={ROUTES.compare} className="font-semibold text-[var(--color-accent)] hover:underline">
-                compare
-              </Link>{" "}
-              and{" "}
-              <Link href={ROUTES.pricing} className="font-semibold text-[var(--color-accent)] hover:underline">
-                pricing
-              </Link>
-              .
+            <p className="mt-4 text-lg leading-relaxed text-[var(--color-ink-muted)]">
+              One Pro plan covers NCLEX, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP
+              FNP, and NPTE-PT. You get a blueprint roadmap, rationales on missed questions, and
+              timed practice exams weighted to the official outline. We are not affiliated with
+              the boards that write those exams.
             </p>
-            <ul className="mt-10 grid gap-3 sm:grid-cols-2" role="list">
+            <ul className="mt-8 grid gap-3 sm:grid-cols-2" role="list">
               {EXAM_HUB_LINKS.map((exam) => (
                 <li key={exam.href}>
                   <Link
                     href={exam.href}
-                    className="flex items-center justify-between border-b border-[var(--color-border)] py-3 text-base font-semibold text-[var(--color-ink)] transition hover:text-[var(--color-accent)]"
+                    className="flex min-h-11 items-center justify-between border-b border-[var(--color-border)] py-3 text-base font-semibold text-[var(--color-ink)] hover:text-[var(--color-accent)]"
                   >
                     {exam.label}
                     <span aria-hidden>→</span>
@@ -290,42 +137,13 @@ export default async function AboutPage() {
                 </li>
               ))}
             </ul>
-          </div>
-        </section>
-
-        {/* 5. Final CTA */}
-        <section className="px-6 py-20 sm:py-28">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-[clamp(2rem,5vw,3.25rem)] font-bold leading-tight tracking-tight text-[var(--color-ink)]">
-              Start free. Upgrade once.
-            </h2>
-            <p className="mx-auto mt-4 max-w-md text-lg leading-relaxed text-[var(--color-ink-muted)]">
-              Try a set on any board, then unlock all six when you are ready.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <LandingCta href={LANDING_TRIAL_HREF} icon={<ArrowRight className="h-4 w-4" />}>
-                {formatTrialCtaLabel()}
-              </LandingCta>
-              <Link
-                href={ROUTES.pricing}
-                className="text-base font-semibold text-[var(--color-accent)] hover:underline"
-              >
-                Compare plans →
-              </Link>
+            <p className="mt-8 text-sm text-[var(--color-ink-muted)]">Last updated {QUALITY_PAGE_UPDATED}</p>
+            <div className="mt-12">
+              <FounderNote />
             </div>
-            <p className="mt-4 text-sm font-medium text-[var(--color-ink-muted)]">
-              {formatTrialLabel()} · all 6 boards included
-            </p>
           </div>
         </section>
-
-        <section className="border-t border-[var(--color-border)] px-6 py-10">
-          <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-[var(--color-ink-muted)]">
-            Any Exam Easy is independent and not affiliated with NCSBN, NABP, NBME, NCCPA, AANP,
-            FSBPT, UWorld, or RxPrep. Exam names are trademarks of their owners. We do not guarantee
-            exam results, licensure, or employment.
-          </p>
-        </section>
+        <FinalMarketingCta />
       </div>
     </>
   );

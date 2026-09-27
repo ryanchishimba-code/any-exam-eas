@@ -38,7 +38,7 @@ export function advertisesHiddenFormat(
   return false;
 }
 
-const NCLEX_META_WITHOUT_NGN = `NCLEX practice questions, Blueprint Roadmaps, Deep Dives & Full Exams. Clinician-built Qbank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`;
+const NCLEX_META_WITHOUT_NGN = `NCLEX practice questions, Blueprint Roadmaps, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`;
 
 /** Exact replacements. Null drops the line. Missing keys drop unmatched claims. */
 const PUBLIC_FORMAT_FALLBACKS: Record<string, string | null> = {

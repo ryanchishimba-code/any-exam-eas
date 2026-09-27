@@ -1,9 +1,8 @@
 import { SITE_NAME } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/billing-config";
-import {
-  formatExactServeReadyCount,
-  getPublishedQuestionStats,
-} from "@/lib/marketing/bank-stats";
+
+/** Render-time stand-in. Published blog rows are not edited. */
+const STALE_BANK_TOTAL = "the question bank";
 
 /** Public byline when CMS still has a placeholder author. */
 export const BLOG_BRAND_BYLINE = "AnyExamEasy";
@@ -27,10 +26,6 @@ const SPAMMY_TITLE_PATTERNS: Array<{ match: RegExp; replace: string }> = [
 /** Invented marketing attributions that must never ship on public blog pages. */
 const INVENTED_NAME_ALT =
   "Gerard N\\.|Prisca M\\.|Nathan C\\.|Brittany V\\.|Marcus W\\.|Keona T\\.|James O\\.|Sofia R\\.|Deja H\\.|Rachel B\\.|Maria L\\.|Ben K\\.|Priya S\\.|Alex T\\.";
-
-function publishedTotalLabel(): string {
-  return formatExactServeReadyCount(getPublishedQuestionStats().totalPublished);
-}
 
 export function publicBlogAuthorName(name: string | null | undefined): string {
   const trimmed = name?.trim();
@@ -58,7 +53,7 @@ export function scrubGuaranteeCopy(text: string): string {
  * instead so both spaced/HTML cells and concatenated blobs rewrite.
  */
 export function scrubStaleOfferCopy(text: string): string {
-  const total = publishedTotalLabel();
+  const total = STALE_BANK_TOTAL;
   const trialDays = String(TRIAL_DAYS);
   return text
     .replace(/(?<![0-9])48,775\b/g, total)

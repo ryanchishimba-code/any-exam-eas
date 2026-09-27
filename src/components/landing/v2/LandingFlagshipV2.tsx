@@ -19,10 +19,12 @@ import {
   LandingStickyCta,
 } from "@/components/landing/v2/LandingFlagshipSectionsLazy";
 import { MarketingProductProof } from "@/components/marketing/MarketingProductProof";
+import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
+import { LandingTestimonialsV2 } from "@/components/landing/LandingTestimonialsV2";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
-import { MARKETING_DISCLAIMER, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
+import { MARKETING_DISCLAIMER } from "@/lib/site";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 import { LandingSectionPageviews } from "@/components/landing/v2/LandingSectionPageviews";
@@ -54,7 +56,7 @@ function FinalCta() {
 
 export function LandingFlagshipV2({
   bankCounts,
-  testimonials: _testimonials,
+  testimonials,
   children,
   boardFormats = null,
 }: {
@@ -76,6 +78,8 @@ export function LandingFlagshipV2({
 
         <LandingFaqV2 />
 
+        <LandingTestimonialsV2 stories={testimonials} />
+
         {children}
 
         <section className="aee-flagship-final-cta" aria-labelledby="final-cta-heading">
@@ -84,7 +88,7 @@ export function LandingFlagshipV2({
             <h2 id="final-cta-heading" className="aee-flagship-final-cta__title">
               Premium board prep starts here
             </h2>
-            <p className="aee-flagship-final-cta__subtitle">Cancel anytime.</p>
+            <PurchaseTrustNotes tone="onDark" className="mt-4" />
             <div className="aee-flagship-final-cta__actions">
               <FinalCta />
               <LoginModalTrigger
@@ -95,8 +99,7 @@ export function LandingFlagshipV2({
                 Already subscribed? Log in
               </LoginModalTrigger>
             </div>
-            <p className="aee-flagship-final-cta__legal mt-4">{TRIAL_PAYMENT_DISCLOSURE}</p>
-            <p className="aee-flagship-final-cta__legal mt-2">{MARKETING_DISCLAIMER}</p>
+            <p className="aee-flagship-final-cta__legal mt-4">{MARKETING_DISCLAIMER}</p>
             <p className="aee-flagship-final-cta__legal mt-2">
               {LEGAL_ENTITY.productName} is a product of {LEGAL_ENTITY.companyName}.{" "}
               <Link href={ROUTES.about} prefetch={false} className="aee-flagship-final-cta__legal-link">

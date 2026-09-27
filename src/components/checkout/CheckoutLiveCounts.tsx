@@ -15,9 +15,9 @@ export async function CheckoutLiveCounts() {
       ) : (
         <>
           <span className="font-semibold tabular-nums text-[var(--color-ink)]">
-            {display.totalLabel}
-          </span>{" "}
-          active questions in the live bank. Active means published and not retired.
+            {display.sentence || display.totalLabel}
+          </span>
+          {display.sentence ? "" : " active questions in the live bank."}
         </>
       )}
     </p>

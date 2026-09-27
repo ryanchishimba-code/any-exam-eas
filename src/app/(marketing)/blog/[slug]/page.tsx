@@ -20,6 +20,7 @@ import {
 import { ROUTES } from "@/lib/routes";
 import { absoluteUrl, DEFAULT_OG_IMAGE_PATH } from "@/lib/seo";
 import { clampMetaDescription, clampMetaTitle } from "@/lib/seo/meta-budget";
+import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { SITE_NAME } from "@/lib/site";
 
 /** ISR — post HTML is cached; view counts update client-side. */
@@ -231,7 +232,7 @@ export default async function BlogPostPage({ params }: Props) {
               <div>
                 <p className="font-semibold text-[var(--color-ink)]">{post.authorName}</p>
                 <p className="text-sm text-[var(--color-ink-muted)]">
-                  Clinician-built exam prep at {SITE_NAME}
+                  Study notes from {SITE_NAME}
                 </p>
               </div>
             </aside>
@@ -263,6 +264,7 @@ export default async function BlogPostPage({ params }: Props) {
           ) : null}
         </div>
       </article>
+      <FinalMarketingCta title="Practice the questions these notes point to." />
     </>
   );
 }

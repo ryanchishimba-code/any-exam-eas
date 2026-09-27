@@ -827,7 +827,7 @@ export function StudySessionPlayer({
               className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] px-3 py-1.5 text-xs font-semibold text-[var(--color-ink-muted)] transition hover:bg-black/[0.03]"
             >
               <AlertTriangle className="h-3.5 w-3.5" aria-hidden />
-              Report
+              Report an issue
             </button>
             <button
               type="button"

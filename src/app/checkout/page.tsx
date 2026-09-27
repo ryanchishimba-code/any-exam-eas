@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { EmbeddedStripeCheckout } from "@/components/EmbeddedStripeCheckout";
 import { PageShell } from "@/components/PageShell";
 import { parseBillingInterval } from "@/lib/billing-plans";
+import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { formatCheckoutTrialPageDescription, TRIAL_CTA_LABEL } from "@/lib/site";
 
 export const metadata = {
@@ -66,6 +67,7 @@ export default async function CheckoutPage({
       maxWidth="max-w-2xl"
       compact
     >
+      <PurchaseTrustNotes className="mt-4" />
       <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
         <EmbeddedStripeCheckout />
       </Suspense>

@@ -78,7 +78,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           },
           {
             feature: "Question volume",
-            anyExamEasy: `${SEO_LIVE_STATS.questionCount} QA-gated questions`,
+            anyExamEasy: "QA-gated questions across six boards",
             typicalQbank: "Varies; often 2,000–4,000 per exam",
           },
           {
@@ -98,7 +98,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           },
           {
             feature: "Free trial",
-            anyExamEasy: `${SEO_LIVE_STATS.trialDays}-day trial · ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment`,
+            anyExamEasy: `${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required`,
             typicalQbank: "Limited demo or paid-only",
           },
         ],
@@ -339,7 +339,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "What's included on Pro",
         bullets: [
-          `${SEO_LIVE_STATS.questionCount} QA-gated questions across six exams`,
+          "QA-gated questions across six exams",
           "Adaptive Blueprint Roadmaps per licensing track",
           "Deep Dive modules opened from missed questions",
           "Timed Full Exam simulations with weak-area focus",
@@ -418,7 +418,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
         bullets: [
           "You need NCLEX plus another board (USMLE, NAPLEX, PANCE, FNP, or NPTE).",
           "You want Roadmaps, Deep Dives, and Full Exams in one workflow.",
-          `${SEO_LIVE_STATS.trialDays}-day free trial and a ${SEO_LIVE_STATS.moneyBackDays}-day quality commitment reduce upfront risk.`,
+          `${SEO_LIVE_STATS.trialDays}-day free trial, no payment method required, then cancel anytime in Settings.`,
         ],
       },
       {

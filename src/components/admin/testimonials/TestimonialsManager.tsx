@@ -55,6 +55,7 @@ type FormState = {
   avatarGradient: string;
   featured: boolean;
   status: string;
+  consentConfirmed: boolean;
 };
 
 const EMPTY_FORM: FormState = {
@@ -68,6 +69,7 @@ const EMPTY_FORM: FormState = {
   avatarGradient: TESTIMONIAL_AVATAR_GRADIENTS[0],
   featured: false,
   status: "pending",
+  consentConfirmed: false,
 };
 
 const STATUS_STYLES: Record<string, string> = {
@@ -134,6 +136,7 @@ export function TestimonialsManager() {
       avatarGradient: item.avatarGradient ?? gradientForName(item.name),
       featured: item.featured,
       status: item.status,
+      consentConfirmed: Boolean(item.consentedAt),
     });
     setFormError(null);
     setEditingId(item.id);
@@ -154,6 +157,12 @@ export function TestimonialsManager() {
     setSaving(true);
     setFormError(null);
 
+    if (form.status === "approved" && !form.consentConfirmed) {
+      setFormError("Publishing requires a recorded consent. Check the consent box or leave the quote pending.");
+      setSaving(false);
+      return;
+    }
+
     const payload = {
       name: form.name.trim(),
       exam: form.exam.trim(),
@@ -165,6 +174,7 @@ export function TestimonialsManager() {
       avatarGradient: form.avatarGradient || undefined,
       featured: form.featured,
       status: form.status,
+      consentConfirmed: form.consentConfirmed,
     };
 
     try {
@@ -195,7 +205,11 @@ export function TestimonialsManager() {
   }
 
   // Optimistic field patch (status / featured) with rollback on failure.
-  async function patchItem(item: AdminTestimonial, patch: Partial<AdminTestimonial>, successMsg: string) {
+  async function patchItem(
+    item: AdminTestimonial,
+    patch: Partial<AdminTestimonial> & { consentConfirmed?: boolean },
+    successMsg: string
+  ) {
     const prevItems = items;
     setItems((list) => list.map((i) => (i.id === item.id ? { ...i, ...patch } : i)));
     try {
@@ -349,7 +363,13 @@ export function TestimonialsManager() {
               item={item}
               onEdit={() => openEdit(item)}
               onDelete={() => removeItem(item)}
-              onApprove={() => patchItem(item, { status: "approved" }, `“${item.name}” is now live.`)}
+              onApprove={() =>
+                patchItem(
+                  item,
+                  { status: "approved", consentConfirmed: true },
+                  `“${item.name}” is approved with consent recorded.`
+                )
+              }
               onReject={() => patchItem(item, { status: "rejected" }, `“${item.name}” hidden.`)}
               onToggleFeatured={() =>
                 patchItem(item, { featured: !item.featured }, item.featured ? "Unfeatured." : "Featured.")
@@ -568,6 +588,13 @@ function TestimonialForm({
             <label className="flex items-center gap-2.5 text-sm font-medium text-slate-700 dark:text-zinc-200">
               <Switch checked={form.featured} onCheckedChange={(v) => onChange({ featured: v })} />
               Featured (wide card)
+            </label>
+            <label className="flex items-center gap-2.5 text-sm font-medium text-slate-700 dark:text-zinc-200">
+              <Switch
+                checked={form.consentConfirmed}
+                onCheckedChange={(v) => onChange({ consentConfirmed: v })}
+              />
+              Consent to publish is on file
             </label>
 
             <div className="flex items-center gap-2 text-sm">

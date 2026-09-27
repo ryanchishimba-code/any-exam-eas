@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
 
 export const metadata: Metadata = {
@@ -226,7 +227,7 @@ export default function TermsPage() {
         </p>
         <p className="mt-2">
           <strong>Contact.</strong> Questions about these Terms: {legalEmail}. Account and billing
-          support: {supportEmail}.
+          support: {supportEmail} · <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.
         </p>
       </section>
 

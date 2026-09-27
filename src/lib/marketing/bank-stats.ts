@@ -133,7 +133,10 @@ export const FALLBACK_QUESTION_COUNTS = {
   nptePt: formatExactServeReadyCount(publishedQuestionCountForField("npte-pt")),
 } as const;
 
-/** @deprecated Use FALLBACK_QUESTION_COUNTS or live bank-counts API. */
+/**
+ * Unpublished historical floors. Do not render these. Public and in-app
+ * totals come from `@/lib/counts` through the live bank snapshot.
+ */
 export const MARKETING_QUESTION_COUNTS = FALLBACK_QUESTION_COUNTS;
 
 /** Keep in sync with `TOP_500_DRUGS.length` in drugs300 catalog — leaf constant for client. */
@@ -158,6 +161,7 @@ export function top500DrugsLabel(): string {
   return `${TOP_500_DRUGS_COUNT} high-yield drugs`;
 }
 
-export function questionBankLabelForField(fieldId: string): string {
-  return `${formatMarketingQuestionCount(publishedQuestionCountForField(fieldId))} board-style items`;
+/** Neutral label. Live pages replace this with the scored-item count. */
+export function questionBankLabelForField(_fieldId: string): string {
+  return "Student-eligible questions";
 }

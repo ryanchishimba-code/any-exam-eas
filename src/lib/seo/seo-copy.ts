@@ -1,14 +1,13 @@
-/** Canonical marketing stats for SEO copy — keep in sync with bank-stats floors. */
+/** Canonical marketing stats for SEO copy. Question totals come from the live count source. */
 import {
-  FALLBACK_QUESTION_COUNTS,
-  PUBLISHED_QUESTION_BANK_TOTAL,
   TOP_500_DRUGS_COUNT,
   DRUGS_DECK_MARKETING_TITLE,
 } from "@/lib/marketing/bank-stats";
 
 export const SEO_LIVE_STATS = {
-  questionCount: FALLBACK_QUESTION_COUNTS.total,
-  questionCountRaw: PUBLISHED_QUESTION_BANK_TOTAL,
+  /** Empty on purpose. Pages pass a live scored-item label or omit the number. */
+  questionCount: "",
+  questionCountRaw: 0,
   topDrugsCount: TOP_500_DRUGS_COUNT,
   topDrugsLabel: DRUGS_DECK_MARKETING_TITLE,
   trialDays: 5,
@@ -60,7 +59,9 @@ export const SEO_KEYWORD_CLUSTERS = {
 } as const;
 
 export function seoQuestionBankPhrase(totalLabel?: string): string {
-  const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
+  const count = totalLabel?.trim();
+  if (!count) return "Active questions";
+  if (/questions/i.test(count)) return count;
   return `${count} active questions`;
 }
 
@@ -74,6 +75,9 @@ export const SEO_HOME_H1_ACCENT = "";
 
 /** Homepage subline template; inject live question total when available. */
 export function seoHomeHeroSubline(totalLabel?: string): string {
-  const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
-  return `${count} active questions across six boards — NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — with Blueprint Roadmaps and full-length mocks.`;
+  const count = totalLabel?.trim();
+  const lead = count
+    ? `${count} active questions across six boards`
+    : "Six boards";
+  return `${lead} — NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — with Blueprint Roadmaps and full-length mocks.`;
 }

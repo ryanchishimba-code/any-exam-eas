@@ -1,18 +1,6 @@
 import type { ExamRouteSlug } from "@/lib/routes";
-import {
-  FALLBACK_QUESTION_COUNTS,
-  formatExactServeReadyCount,
-} from "@/lib/marketing/bank-stats";
+import { formatExactServeReadyCount } from "@/lib/marketing/bank-stats";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
-
-const SLUG_TO_FIELD: Record<ExamRouteSlug, keyof typeof FALLBACK_QUESTION_COUNTS | null> = {
-  nclex: "nursing",
-  usmle: "usmle",
-  naplex: "pharmacy",
-  pance: "pance",
-  "aanp-fnp": "aanpFnp",
-  "npte-pt": "nptePt",
-};
 
 /** Live serve-ready stat for nav / footer exam links. */
 export function examNavStatLabel(
@@ -21,13 +9,9 @@ export function examNavStatLabel(
 ): string {
   const live = bankCounts?.exams.find((row) => row.slug === slug);
   if (live?.countLabel && live.countLabel !== "—") {
-    return `${live.countLabel} items`;
+    return `${live.countLabel} questions`;
   }
-  const fallbackKey = SLUG_TO_FIELD[slug];
-  if (fallbackKey && fallbackKey !== null) {
-    return `${FALLBACK_QUESTION_COUNTS[fallbackKey]} items`;
-  }
-  return "Board-style items";
+  return "Board-style questions";
 }
 
 export function totalQuestionsLabel(
@@ -36,7 +20,7 @@ export function totalQuestionsLabel(
   if (bankCounts?.totalLabel && bankCounts.totalLabel !== "—") {
     return bankCounts.totalLabel;
   }
-  return FALLBACK_QUESTION_COUNTS.total;
+  return "";
 }
 
 export function totalQuestionsDetail(
@@ -45,7 +29,7 @@ export function totalQuestionsDetail(
   if (bankCounts?.totalQuestionsLabel) {
     return bankCounts.totalQuestionsLabel;
   }
-  return `${FALLBACK_QUESTION_COUNTS.total} active questions`;
+  return "";
 }
 
 export function formatLiveTotalForCopy(
@@ -53,5 +37,5 @@ export function formatLiveTotalForCopy(
 ): string {
   const n = bankCounts?.totalServed;
   if (n && n > 0) return formatExactServeReadyCount(n);
-  return FALLBACK_QUESTION_COUNTS.total;
+  return "";
 }

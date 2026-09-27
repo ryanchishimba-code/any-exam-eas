@@ -16,6 +16,7 @@ import {
   Zap,
 } from "lucide-react";
 import { ExamCard } from "@/components/exams/ExamCard";
+import { useLiveBankCounts } from "@/hooks/use-live-bank-counts";
 import { getExamHub } from "@/lib/exams/catalog";
 import { studyHubHref } from "@/lib/learning/roadmap-links";
 import {
@@ -38,8 +39,20 @@ const ALL_EXAMS: ExamRouteSlug[] = ["nclex", "usmle", "naplex", "pance", "aanp-f
 
 type Props = { slug: ExamRouteSlug };
 
+function liveBankLabel(
+  slug: string,
+  fallback: string,
+  exams: { slug: string; countLabel: string; sentence: string }[] | undefined
+): string {
+  const live = exams?.find((row) => row.slug === slug);
+  if (live?.sentence.includes("including")) return live.sentence;
+  if (live?.countLabel) return `${live.countLabel} questions`;
+  return fallback;
+}
+
 export function ExamLanding({ slug }: Props) {
   const hub = getExamHub(slug);
+  const { data: bankCounts } = useLiveBankCounts();
 
   useEffect(() => {
     void fetch("/api/user/exam-preference", {
@@ -86,7 +99,9 @@ export function ExamLanding({ slug }: Props) {
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
               {hub.subtitle}
             </p>
-            <p className="mt-2 text-sm font-medium text-[var(--color-ink-muted)]">{hub.questionBankLabel}</p>
+            <p className="mt-2 text-sm font-medium text-[var(--color-ink-muted)]">
+              {liveBankLabel(slug, hub.questionBankLabel, bankCounts?.exams)}
+            </p>
           </div>
         </div>
       </motion.div>
@@ -200,7 +215,7 @@ export function ExamLanding({ slug }: Props) {
                   href={`/exams/${s}`}
                   title={h.title}
                   description={h.subtitle}
-                  stat={h.questionBankLabel}
+                  stat={liveBankLabel(s, h.questionBankLabel, bankCounts?.exams)}
                   icon={OtherIcon}
                   accentClass={h.accentClass}
                 />

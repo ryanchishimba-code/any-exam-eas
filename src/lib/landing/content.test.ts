@@ -11,18 +11,13 @@ import {
   formatHeroTotalCountLine,
   landingTrialHrefForExam,
 } from "./content";
-import {
-  FALLBACK_QUESTION_COUNTS,
-  formatExactServeReadyCount,
-  getPublishedQuestionStats,
-} from "@/lib/marketing/bank-stats";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 describe("homepage hero copy", () => {
-  it("defaults to an NCLEX-specific job with a six-board offer subline", () => {
-    expect(LANDING_HERO_HEADLINE).toMatch(/NCLEX/i);
+  it("defaults to a passing promise with a six-board offer subline", () => {
+    expect(LANDING_HERO_HEADLINE).toMatch(/doubtful to confident/i);
     expect(formatExamHeroEyebrow("nclex")).toBe("NCLEX prep");
-    expect(formatExamHeroHeadline("nclex")).toBe(LANDING_HERO_HEADLINE);
+    expect(formatExamHeroHeadline("nclex")).toMatch(/NCLEX/);
     expect(LANDING_HERO_SUBLINE_BODY).toMatch(/one login/i);
     expect(LANDING_HERO_SUBLINE_BODY).toMatch(/six boards/i);
     expect(LANDING_HERO_SUBLINE_BODY).toMatch(/27\.99/);
@@ -33,13 +28,12 @@ describe("homepage hero copy", () => {
   });
 
   it("labels the six-board total instead of an unlabeled single-bank count", () => {
-    expect(formatHeroTotalCountLine(FALLBACK_QUESTION_COUNTS.total)).toBe(
-      `${FALLBACK_QUESTION_COUNTS.total} active questions across six boards`
+    expect(formatHeroTotalCountLine("46,285")).toBe(
+      "46,285 active questions across six boards"
     );
-    expect(formatHeroTotalCountLine("7,581 serve-ready questions")).toBe(
-      "7,581 active questions across six boards"
-    );
-    expect(formatExamLiveCountLine("NCLEX", "8,327")).toBe("8,327 active NCLEX questions");
+    expect(formatHeroTotalCountLine("")).toBeNull();
+    expect(formatExamLiveCountLine("NCLEX", "5,660")).toBe("5,660 active NCLEX questions");
+    expect(formatExamLiveCountLine("NCLEX", "")).toBeNull();
   });
 
   it("keeps exam= deep links on board chips", () => {
@@ -49,14 +43,7 @@ describe("homepage hero copy", () => {
     expect(landingTrialHrefForExam("naplex")).toContain("exam=naplex");
   });
 
-  it("labels the NCLEX published-floor count for exam-hub marketing", () => {
-    const published = getPublishedQuestionStats();
-    expect(
-      formatExamLiveCountLine(
-        "NCLEX",
-        formatExactServeReadyCount(published.perBoard.nclex)
-      )
-    ).toBe("8,327 active NCLEX questions");
+  it("keeps the trial offer identical to checkout", () => {
     expect(formatExamHeroTrialOffer()).toBe(
       "5-day free trial · no payment method required · then $27.99/mo"
     );

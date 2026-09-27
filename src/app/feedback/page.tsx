@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Mail, MessageSquare } from "lucide-react";
+import { Mail, MessageSquare, Phone } from "lucide-react";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { FeedbackForm } from "@/components/feedback/FeedbackForm";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { SITE_NAME } from "@/lib/site";
@@ -58,6 +59,9 @@ export default function ContactPage() {
               <Mail className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
               {LEGAL_ENTITY.supportEmail}
             </a>
+            <SupportPhoneLink className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/40">
+              <Phone className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+            </SupportPhoneLink>
             <p className="inline-flex items-center gap-2 text-sm text-[var(--color-ink-muted)]">
               <MessageSquare className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
               Or use the form below

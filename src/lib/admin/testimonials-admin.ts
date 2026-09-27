@@ -27,6 +27,7 @@ export type AdminTestimonial = {
   status: string;
   sortOrder: number;
   deletedAt: string | null;
+  consentedAt: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -47,12 +48,14 @@ function serialize(row: {
   status: string;
   sortOrder: number;
   deletedAt: Date | null;
+  consentedAt: Date | null;
   createdAt: Date;
   updatedAt: Date;
 }): AdminTestimonial {
   return {
     ...row,
     deletedAt: row.deletedAt ? row.deletedAt.toISOString() : null,
+    consentedAt: row.consentedAt ? row.consentedAt.toISOString() : null,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
   };
@@ -97,7 +100,8 @@ export async function createTestimonial(
   input: CreateTestimonialInput,
   createdById?: string | null
 ): Promise<AdminTestimonial> {
-  const cleaned = clean(input);
+  const { consentConfirmed, ...fields } = input;
+  const cleaned = clean(fields);
   const name = input.name.trim();
   const row = await prisma.testimonial.create({
     data: {
@@ -107,8 +111,8 @@ export async function createTestimonial(
       quote: input.quote.trim(),
       initials: (input.initials?.trim() || deriveInitials(name)).toUpperCase(),
       avatarGradient: input.avatarGradient?.trim() || gradientForName(name),
-      // New testimonials start unpublished — admins approve before they go live.
       status: input.status ?? "pending",
+      consentedAt: consentConfirmed ? new Date() : null,
       createdById: createdById ?? null,
     },
   });
@@ -119,7 +123,7 @@ export async function updateTestimonial(
   id: string,
   input: UpdateTestimonialInput
 ): Promise<AdminTestimonial | null> {
-  const { deleted, ...fields } = input;
+  const { deleted, consentConfirmed, ...fields } = input;
   const cleaned = clean(fields);
 
   // Re-derive initials when the name changes but initials weren't provided.
@@ -131,6 +135,8 @@ export async function updateTestimonial(
   if (typeof deleted === "boolean") {
     data.deletedAt = deleted ? new Date() : null;
   }
+  if (consentConfirmed === true) data.consentedAt = new Date();
+  if (consentConfirmed === false) data.consentedAt = null;
 
   const existing = await prisma.testimonial.findUnique({ where: { id }, select: { id: true } });
   if (!existing) return null;

@@ -17,8 +17,9 @@ export function LandingHeroPriceValue({
   className = "",
   bankCounts,
 }: LandingHeroPriceValueProps) {
-  const includes = bankCounts
-    ? [`${bankCounts.totalLabel} board-style questions`, ...LANDING_HERO_PRICE_INCLUDES.slice(1)]
+  const liveTotal = bankCounts?.totalLabel?.trim();
+  const includes = liveTotal
+    ? [`${liveTotal} board-style questions`, ...LANDING_HERO_PRICE_INCLUDES.slice(1)]
     : LANDING_HERO_PRICE_INCLUDES;
   return (
     <div

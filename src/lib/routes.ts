@@ -2,20 +2,6 @@ import type { ExamSlug } from "@/lib/exams/catalog";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import type { ExamSlug as EdtechExamSlug } from "@/types/edtech";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
-import {
-  formatExactServeReadyCount,
-  getPublishedQuestionStats,
-} from "@/lib/marketing/bank-stats";
-
-const PUBLISHED_STATS = getPublishedQuestionStats();
-const EXAM_NAV_STATS = {
-  nursing: formatExactServeReadyCount(PUBLISHED_STATS.perBoard.nclex),
-  usmle: formatExactServeReadyCount(PUBLISHED_STATS.perBoard.usmle),
-  pharmacy: formatExactServeReadyCount(PUBLISHED_STATS.perBoard.naplex),
-  pance: formatExactServeReadyCount(PUBLISHED_STATS.perBoard.pance),
-  aanpFnp: formatExactServeReadyCount(PUBLISHED_STATS.perBoard["aanp-fnp"]),
-  nptePt: formatExactServeReadyCount(PUBLISHED_STATS.perBoard["npte-pt"]),
-} as const;
 
 /** Canonical app routes — use these in nav, links, and redirects. */
 export const ROUTES = {
@@ -45,6 +31,8 @@ export const ROUTES = {
   freeGuides: "/free-guides",
   blog: "/blog",
   about: "/about",
+  contact: "/contact",
+  howQuestionsAreReviewed: "/how-questions-are-reviewed",
   compare: "/compare",
   employers: "/employers",
   pricing: "/pricing",
@@ -85,7 +73,6 @@ export const EXAM_NAV_ITEMS: {
   href: string;
   fieldId: string;
   practiceHref: string;
-  stat: string;
 }[] = [
   {
     slug: "nclex",
@@ -94,7 +81,6 @@ export const EXAM_NAV_ITEMS: {
     href: "/nclex",
     fieldId: "nursing",
     practiceHref: "/practice/nclex",
-    stat: `${EXAM_NAV_STATS.nursing} items`,
   },
   {
     slug: "usmle",
@@ -103,7 +89,6 @@ export const EXAM_NAV_ITEMS: {
     href: "/usmle",
     fieldId: "usmle-step-2",
     practiceHref: "/practice/usmle",
-    stat: `${EXAM_NAV_STATS.usmle} items`,
   },
   {
     slug: "naplex",
@@ -112,7 +97,6 @@ export const EXAM_NAV_ITEMS: {
     href: "/naplex",
     fieldId: "pharmacy",
     practiceHref: "/practice/naplex",
-    stat: `${EXAM_NAV_STATS.pharmacy} items`,
   },
   {
     slug: "pance",
@@ -121,7 +105,6 @@ export const EXAM_NAV_ITEMS: {
     href: "/pance",
     fieldId: "pance",
     practiceHref: "/practice/pance",
-    stat: `${EXAM_NAV_STATS.pance} items`,
   },
   {
     slug: "aanp-fnp",
@@ -130,7 +113,6 @@ export const EXAM_NAV_ITEMS: {
     href: "/aanp-fnp",
     fieldId: "aanp-fnp",
     practiceHref: "/practice/aanp-fnp",
-    stat: `${EXAM_NAV_STATS.aanpFnp} items`,
   },
   {
     slug: "npte-pt",
@@ -139,7 +121,6 @@ export const EXAM_NAV_ITEMS: {
     href: "/npte-pt",
     fieldId: "npte-pt",
     practiceHref: "/practice/npte-pt",
-    stat: `${EXAM_NAV_STATS.nptePt} items`,
   },
 ];
 

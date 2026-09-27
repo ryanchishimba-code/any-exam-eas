@@ -2,7 +2,6 @@
 
 import { BookOpen, ShieldCheck, Sparkles, Stethoscope } from "lucide-react";
 import { PLATFORM_EXAM_LIST_MIDDOT } from "@/lib/landing/content";
-import { FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { useLiveBankCounts } from "@/hooks/use-live-bank-counts";
 
 type HeroTrustSignalsProps = {
@@ -12,16 +11,18 @@ type HeroTrustSignalsProps = {
 export function HeroTrustSignals({ className = "" }: HeroTrustSignalsProps) {
   const { data: bankCounts } = useLiveBankCounts();
   const questionTotal =
-    bankCounts?.totalLabel && bankCounts.totalLabel !== "—"
-      ? bankCounts.totalLabel
-      : FALLBACK_QUESTION_COUNTS.total;
+    bankCounts?.totalLabel && bankCounts.totalLabel !== "—" ? bankCounts.totalLabel : "";
 
   const signals = [
-    {
-      icon: BookOpen,
-      value: questionTotal,
-      label: "Active questions",
-    },
+    ...(questionTotal
+      ? [
+          {
+            icon: BookOpen,
+            value: questionTotal,
+            label: "Active questions",
+          },
+        ]
+      : []),
     {
       icon: Sparkles,
       value: "Adaptive",

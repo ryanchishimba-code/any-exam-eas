@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ExamMarketingLanding } from "@/components/marketing/ExamMarketingLanding";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
+import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
 import { presentBoardInventory } from "@/lib/inventory/active-questions";
 import {
   buildLandingBankCountsDisplay,
@@ -21,12 +22,18 @@ export default async function NclexHubPage() {
   const { snapshot, inventory } = await getCachedBankStatsBundle();
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
   const examCount = bankCounts.exams.find((row) => row.slug === "nclex");
-  const questionCountLabel = examCount?.countLabel;
-  const testimonials = await getCachedPublishedTestimonials(6);
+  const questionCountLabel = examCount?.sentence.includes("including")
+    ? examCount.sentence
+    : examCount?.countLabel;
+  const [testimonials, samples] = await Promise.all([
+    getCachedPublishedTestimonials(6),
+    getPublicSampleQuestions(),
+  ]);
   const boardInventory = presentBoardInventory({
     slug: "nclex",
     usingLiveCount: !bankCounts.degraded && (examCount?.served ?? 0) > 0,
     board: inventory.boards.nclex,
+    clinical: snapshot.boards?.nclex ?? null,
   });
 
   return (
@@ -37,6 +44,7 @@ export default async function NclexHubPage() {
         questionCountLabel={questionCountLabel}
         inventory={boardInventory}
         testimonials={testimonials}
+        samples={samples}
       />
     </>
   );

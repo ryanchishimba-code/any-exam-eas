@@ -267,7 +267,6 @@ export function Navigation() {
                       onClick={closeMobile}
                     >
                       {exam.label}
-                      <span className="ml-1 text-xs text-[var(--color-ink-muted)]">· {exam.stat}</span>
                     </Link>
                   ))}
                   <div className="my-3 border-t border-black/[0.06]" />
