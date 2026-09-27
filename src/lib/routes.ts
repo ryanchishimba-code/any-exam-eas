@@ -31,6 +31,7 @@ export const ROUTES = {
   freeGuides: "/free-guides",
   blog: "/blog",
   about: "/about",
+  faq: "/faq",
   contact: "/contact",
   howQuestionsAreReviewed: "/how-questions-are-reviewed",
   compare: "/compare",

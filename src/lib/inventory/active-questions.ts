@@ -19,7 +19,6 @@ import { blueprintCategoryIdForQuestion } from "@/lib/inventory/blueprint-domain
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import { EFFECTIVE_MCQ_SQL } from "@/lib/exam-prep/effective-type-sql";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
-
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/question-definition";
 
 export { ACTIVE_QUESTION_DEFINITION };

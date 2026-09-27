@@ -75,3 +75,12 @@ export function requestClientIp(req: Request): string | null {
   }
   return req.headers.get("x-real-ip");
 }
+
+/** Home hero. No outcome promise. */
+export const HOME_PRACTICE_HEADLINE = "From doubtful to ready.";
+
+/** Readiness panel. The picture is a practice estimate, not a pass prediction. */
+export const HOME_READINESS_HEADING = "A practice estimate.";
+
+export const HOME_READINESS_LINE =
+  "From questions you answer here. Not a prediction of your exam result.";

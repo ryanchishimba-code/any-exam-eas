@@ -202,7 +202,7 @@ export default async function HowQuestionsAreReviewedPage() {
             About
           </Link>
           <span aria-hidden> · </span>
-          <Link href="/#try-questions" className="font-semibold text-[var(--color-accent)] hover:underline">
+          <Link href="/nclex#try-questions" className="font-semibold text-[var(--color-accent)] hover:underline">
             Free sample
           </Link>
         </p>

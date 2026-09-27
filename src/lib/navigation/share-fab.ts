@@ -30,8 +30,8 @@ const SHARE_FAB_HIDDEN_PREFIXES = [
   "/resources",
 ] as const;
 
-export function isShareFabHiddenRoute(pathname: string): boolean {
-  if (pathname === "/") return true;
+export function isShareFabHiddenRoute(pathname: string | null | undefined): boolean {
+  if (!pathname || pathname === "/") return true;
   return SHARE_FAB_HIDDEN_PREFIXES.some(
     (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
   );

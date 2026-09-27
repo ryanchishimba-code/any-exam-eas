@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeExperience } from "@/components/home/HomeExperience";
-import { LandingTestimonialsV2 } from "@/components/landing/LandingTestimonialsV2";
+import { HomeQuote } from "@/components/marketing/elevation/HomeQuote";
 import { HomeProofStrip } from "@/components/marketing/elevation/HomeProofStrip";
 import { PublicHome } from "@/components/marketing/elevation/PublicHome";
-import { PublicSampleSet } from "@/components/marketing/PublicSampleSet";
-import { getHeroNgnFrame } from "@/lib/marketing/hero-ngn-frame";
-import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
 import {
   buildLandingBankCountsDisplay,
   getCachedBankStatsBundle,
@@ -41,37 +38,35 @@ async function HomeJsonLdLive() {
   return <HomeJsonLd totalLabel={buildLandingBankCountsDisplay(snapshot).totalLabel} />;
 }
 
-async function HomeDeferredProof() {
-  const [{ snapshot }, testimonials, samples] = await Promise.all([
-    getCachedBankStatsBundle(),
-    getCachedPublishedTestimonials(6),
-    getPublicSampleQuestions(),
-  ]);
-  const facts = buildHomeProofFacts(siteCountsFromSnapshot(snapshot));
-  return (
-    <>
-      <HomeProofStrip facts={facts} />
-      <PublicSampleSet items={samples} limit={2} compact />
-      <div className="mx-auto max-w-5xl px-5 py-4 sm:px-6">
-        <LandingTestimonialsV2 stories={testimonials} compact />
-      </div>
-    </>
-  );
+async function HomeProofLive() {
+  const { snapshot } = await getCachedBankStatsBundle();
+  return <HomeProofStrip facts={buildHomeProofFacts(siteCountsFromSnapshot(snapshot))} />;
+}
+
+async function HomeQuoteLive() {
+  const testimonials = await getCachedPublishedTestimonials(2);
+  return <HomeQuote stories={testimonials} />;
 }
 
 export default async function HomePage() {
-  const heroFrame = await getHeroNgnFrame();
   return (
     <>
       <Suspense fallback={null}>
         <HomeJsonLdLive />
       </Suspense>
       <HomeExperience bankCounts={EMPTY_COUNTS}>
-        <PublicHome heroFrame={heroFrame}>
-          <Suspense fallback={null}>
-            <HomeDeferredProof />
-          </Suspense>
-        </PublicHome>
+        <PublicHome
+          proof={
+            <Suspense fallback={null}>
+              <HomeProofLive />
+            </Suspense>
+          }
+          quote={
+            <Suspense fallback={null}>
+              <HomeQuoteLive />
+            </Suspense>
+          }
+        />
       </HomeExperience>
     </>
   );

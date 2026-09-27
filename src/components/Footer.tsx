@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { NOT_FOR_PATIENT_CARE_LINE } from "@/lib/marketing/legal-copy";
 import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER } from "@/lib/site";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
@@ -22,7 +24,7 @@ const MARKETING_EXAM_LINKS = [
 
 const STUDY_GUIDE_LINKS = [
   { href: ROUTES.freeGuides, label: "Free guides" },
-  { href: "/#try-questions", label: "Free sample questions" },
+  { href: `${examMarketingPath("nclex")}#try-questions`, label: "Free sample questions" },
 ];
 
 const legalLinks = [
@@ -34,9 +36,47 @@ const legalLinks = [
   { href: "/legal/disclaimer", label: "Disclaimers" },
 ];
 
+function HomeFooter() {
+  return (
+    <footer className="home-footer" role="contentinfo">
+      <div className="mx-auto max-w-3xl text-center">
+        <div className="flex justify-center">
+          <BrandLogo href={ROUTES.home} variant="footer" />
+        </div>
+        <nav aria-label="Footer" className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm">
+          <Link href={ROUTES.pricing}>Pricing</Link>
+          <Link href={ROUTES.faq}>FAQ</Link>
+          <Link href={ROUTES.about}>About</Link>
+          <Link href={ROUTES.feedback}>Contact</Link>
+          <Link href={`${examMarketingPath("nclex")}#try-questions`}>Try a free question</Link>
+        </nav>
+        <p className="mt-4 text-sm">
+          <a href={`mailto:${LEGAL_ENTITY.supportEmail}`}>{LEGAL_ENTITY.supportEmail}</a>
+          <span aria-hidden> · </span>
+          <SupportPhoneLink />
+        </p>
+        <p className="mx-auto mt-4 max-w-xl text-xs leading-relaxed">{MARKETING_DISCLAIMER}</p>
+        <p className="mx-auto mt-3 max-w-xl text-xs leading-relaxed">{NOT_FOR_PATIENT_CARE_LINE}</p>
+        <p className="mx-auto mt-3 max-w-xl text-xs leading-relaxed">{TRADEMARK_NOTICE}</p>
+        <p className="mt-4 text-xs">
+          <Link href="/legal/terms">Terms</Link>
+          <span aria-hidden> · </span>
+          <Link href="/legal/privacy">Privacy</Link>
+          <span aria-hidden> · </span>
+          <Link href="/legal/refunds">Refunds</Link>
+          <span aria-hidden> · </span>
+          © {new Date().getFullYear()} {LEGAL_ENTITY.productName}
+        </p>
+      </div>
+    </footer>
+  );
+}
+
 export function Footer() {
+  const pathname = usePathname();
   const { status } = useSession();
   const { hasPremiumAccess, loading } = useUserAccess();
+  if (pathname === "/") return <HomeFooter />;
   const isAuthed = status === "authenticated";
   const showPremiumLinks = !loading && hasPremiumAccess;
 

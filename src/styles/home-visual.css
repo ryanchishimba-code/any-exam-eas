@@ -1,0 +1,550 @@
+/**
+ * Homepage visual system — full-bleed panels, device frames, scroll-in motion.
+ * Teal and navy are set here so the page stays on the teal accent.
+ */
+
+.home-visual {
+  --home-navy: #0a2540;
+  --home-teal: #0f766e;
+  --home-ink: #0a2540;
+  --home-muted: #3d4f63;
+  background: #ffffff;
+  color: var(--home-ink);
+  overflow-x: clip;
+}
+
+.home-hero {
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: calc(var(--nav-height) + 1.25rem) 1.25rem 0;
+  text-align: center;
+}
+
+.home-hero h1 {
+  max-width: 16ch;
+  font-size: clamp(2.75rem, 8.4vw, 5.75rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.home-hero__sub {
+  margin-top: 0.85rem;
+  max-width: 22rem;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--home-muted);
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem 1.25rem;
+  margin-top: 1.35rem;
+}
+
+.home-hero__secondary {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--home-teal);
+}
+
+.home-hero__secondary:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.home-hero__offer {
+  margin-top: 0.7rem;
+  max-width: 36rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--home-muted);
+}
+
+.home-hero__visual {
+  width: min(1040px, 100%);
+  margin-top: 1.75rem;
+}
+
+.home-hero__stage {
+  position: relative;
+  width: 100%;
+}
+
+/* Crop the screenshot inside the screen. The device chrome stays intact. */
+.home-hero .home-laptop__screen img,
+.home-hero .home-phone__screen img {
+  width: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.home-proof {
+  margin: 0;
+  padding: 0.9rem 1.25rem;
+  border-block: 1px solid rgba(10, 37, 64, 0.08);
+  background: #f5f5f7;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  color: var(--home-muted);
+}
+
+.home-panel {
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4.5rem 1.25rem;
+  text-align: center;
+}
+
+.home-panel--mist {
+  background: #f5f5f7;
+}
+
+.home-panel--navy {
+  background: var(--home-navy);
+  color: #f5f5f7;
+}
+
+.home-panel h2 {
+  margin-inline: auto;
+  max-width: 16ch;
+  font-size: clamp(2.5rem, 6.5vw, 4.75rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.home-panel__line {
+  margin: 0.9rem auto 0;
+  max-width: 28rem;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--home-muted);
+}
+
+.home-panel--navy .home-panel__line {
+  color: rgba(245, 245, 247, 0.78);
+}
+
+.home-panel__visual {
+  width: min(920px, 100%);
+  margin: 2.25rem auto 0;
+}
+
+.home-panel__note {
+  margin: 1.25rem auto 0;
+  max-width: 36rem;
+  font-size: 0.95rem;
+  letter-spacing: -0.015em;
+  line-height: 1.45;
+  color: var(--home-muted);
+}
+
+.home-boards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.5rem;
+  width: min(640px, 100%);
+  margin: 2.5rem auto 0;
+}
+
+.home-boards a {
+  display: flex;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(10, 37, 64, 0.08);
+  background: #f5f5f7;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--home-ink);
+}
+
+.home-boards a:hover {
+  color: var(--home-teal);
+}
+
+.home-reviewers {
+  display: grid;
+  gap: 0.75rem;
+  width: min(640px, 100%);
+  margin: 2.5rem auto 0;
+}
+
+@media (min-width: 640px) {
+  .home-reviewers {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.home-reviewer {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  padding: 1.1rem 1.25rem;
+  text-align: left;
+}
+
+.home-reviewer p {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--home-ink);
+}
+
+.home-quote {
+  padding: 5.5rem 1.5rem;
+  text-align: center;
+}
+
+.home-quote__label {
+  margin: 0 0 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--home-muted);
+}
+
+.home-quote blockquote {
+  margin-inline: auto;
+  max-width: 18ch;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.home-quote figcaption {
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  color: var(--home-muted);
+}
+
+.home-quote__controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.home-quote__controls button {
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(10, 37, 64, 0.16);
+  background: #ffffff;
+  font-size: 1.1rem;
+  color: var(--home-ink);
+}
+
+.home-quote__controls button:hover {
+  border-color: var(--home-teal);
+  color: var(--home-teal);
+}
+
+.home-close {
+  padding: 4.5rem 1.5rem 5rem;
+  text-align: center;
+}
+
+.home-close p {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.home-close a {
+  color: var(--home-teal);
+}
+
+.home-close a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.home-close__founder {
+  margin-top: 1.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--home-muted);
+}
+
+.home-laptop {
+  width: 100%;
+  padding-bottom: 4px;
+  filter: drop-shadow(0 28px 36px rgba(10, 37, 64, 0.22));
+}
+
+.home-laptop__lid {
+  position: relative;
+  padding: 34px 22px 20px;
+  border-radius: 18px 18px 4px 4px;
+  background: linear-gradient(180deg, #3a3a3c 0 28px, #161618 28px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.home-laptop__lid::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #8e8e93, #111113 68%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45);
+}
+
+.home-laptop__screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.45);
+}
+
+.home-laptop__screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.home-laptop__hinge {
+  height: 8px;
+  margin: 0 8%;
+  border-radius: 0 0 2px 2px;
+  background: linear-gradient(180deg, #3a3a3c 0%, #0c0c0e 100%);
+}
+
+.home-laptop__base {
+  position: relative;
+  height: 22px;
+  margin: 0 6%;
+}
+
+.home-laptop__base::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: -58px;
+  right: -58px;
+  top: 0;
+  height: 104px;
+  transform: perspective(680px) rotateX(52deg);
+  transform-origin: top center;
+  border-radius: 3px 3px 18px 18px;
+  background: linear-gradient(180deg, #f4f4f7 0%, #c8c8d0 46%, #8a8a93 100%);
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 16px 18px rgba(10, 37, 64, 0.12);
+}
+
+.home-laptop__base::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 18px;
+  width: 22%;
+  height: 14px;
+  transform: translateX(-50%) perspective(680px) rotateX(52deg);
+  transform-origin: top center;
+  border-radius: 8px;
+  background: rgba(22, 22, 24, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.home-phone {
+  width: min(280px, 74vw);
+  margin-inline: auto;
+  padding: 10px;
+  border-radius: 36px;
+  background: var(--home-navy);
+  box-shadow: 0 24px 60px rgba(10, 37, 64, 0.18);
+}
+
+.home-phone__screen {
+  overflow: hidden;
+  border-radius: 28px;
+  background: #ffffff;
+}
+
+.home-phone__screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.home-footer {
+  border-top: 1px solid rgba(10, 37, 64, 0.08);
+  background: #f5f5f7;
+  padding: 2.5rem 1.25rem calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  color: #3d4f63;
+}
+
+.home-footer a:hover {
+  color: #0f766e;
+}
+
+@media (max-width: 767px) {
+  .home-hero {
+    justify-content: flex-start;
+    padding: calc(var(--nav-height) + 3.25rem) 1.35rem 3rem;
+  }
+
+  .home-hero__sub {
+    margin-top: 1.15rem;
+  }
+
+  .home-hero__actions {
+    margin-top: 1.85rem;
+  }
+
+  .home-hero__offer {
+    margin-top: 1.1rem;
+  }
+
+  .home-hero__visual {
+    margin-top: 3rem;
+  }
+
+  .home-hero__laptop {
+    display: none;
+  }
+
+  .home-hero .home-phone__screen img {
+    max-height: min(48vh, 420px);
+  }
+}
+
+@media (min-width: 768px) {
+  .home-hero {
+    justify-content: flex-start;
+    min-height: 100svh;
+    padding: calc(var(--nav-height) + 1.75rem) 2rem 2.25rem;
+  }
+
+  .home-hero h1 {
+    max-width: 14ch;
+    font-size: clamp(2.75rem, 4.6vw, 4.35rem);
+  }
+
+  .home-hero__visual {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: flex-end;
+    justify-content: center;
+    width: min(1080px, 100%);
+    margin-top: 1.5rem;
+    min-height: 0;
+  }
+
+  .home-hero__stage {
+    width: min(960px, 100%);
+    padding-right: 4.5rem;
+  }
+
+  .home-hero__laptop {
+    width: min(760px, 86%);
+    margin-inline: auto;
+  }
+
+  .home-hero .home-laptop__screen img {
+    height: min(30vh, 248px);
+  }
+
+  .home-hero .home-laptop__screen::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 28px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), #ffffff);
+    pointer-events: none;
+  }
+
+  .home-hero__phone {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 1.1rem;
+    z-index: 2;
+    width: min(196px, 22vw);
+    margin: 0;
+  }
+
+  .home-hero .home-phone__screen img {
+    height: min(40vh, 340px);
+  }
+
+  .home-panel {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Panels stay visible for SSR, no-JS, crawlers, full-page screenshots, and
+   reduced motion. View-timeline motion only shifts them while they enter. */
+.home-rise {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .home-rise {
+      animation-name: home-rise;
+      animation-timing-function: linear;
+      animation-fill-mode: none;
+      animation-timeline: view();
+      animation-range: entry 8% cover 42%;
+    }
+  }
+}
+
+@keyframes home-rise {
+  from {
+    transform: translateY(18px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

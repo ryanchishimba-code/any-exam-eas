@@ -2314,6 +2314,11 @@ body {
     gap: 0.5rem;
   }
 
+  .aee-nav-login {
+    flex-shrink: 0;
+    min-width: 2.75rem;
+  }
+
   .aee-nav-cta {
     min-height: 2.75rem;
     min-width: 2.75rem;

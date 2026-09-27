@@ -32,6 +32,7 @@ export const MINIMAL_CHROME_PREFIXES = [
   "/checkout",
   "/dev/tour-preview",
   "/dev/readiness-preview",
+  "/dev/home-frames",
 ] as const;
 
 export function isAppShellRoute(pathname: string): boolean {
