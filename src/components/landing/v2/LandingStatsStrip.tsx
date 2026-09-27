@@ -8,12 +8,12 @@ import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-cou
 import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 
 export function LandingStatsStrip({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
-  const total = bankCounts.totalLabel || SEO_LIVE_STATS.questionCount;
+  const total = bankCounts.totalLabel.trim();
   const stats = [
-    { value: total, label: "Active questions" },
+    ...(total ? [{ value: total, label: "Active questions" }] : []),
     { value: "6 boards", label: "One login" },
     { value: `${SEO_LIVE_STATS.trialDays}-day`, label: "Free trial" },
-  ] as const;
+  ];
 
   return (
     <section

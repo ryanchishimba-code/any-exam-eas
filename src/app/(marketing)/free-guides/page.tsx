@@ -13,7 +13,6 @@ import { studyGuideOfferCards, studyGuideTrialLine } from "@/lib/marketing/study
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { buildFreeGuidesMetadata } from "@/lib/seo/marketing-metadata";
-import { FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import {
   buildLandingBankCountsDisplay,
   getCachedBankStatsBundle,
@@ -72,7 +71,7 @@ export default async function FreeGuidesPage() {
   const { snapshot } = await getCachedBankStatsBundle();
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
   const liveTotal = !bankCounts.degraded && bankCounts.totalServed > 0;
-  const questionTotal = liveTotal ? bankCounts.totalLabel : FALLBACK_QUESTION_COUNTS.total;
+  const questionTotal = liveTotal ? bankCounts.sentence || bankCounts.totalLabel : "";
   return (
     <>
       <JsonLdScript data={buildFreeGuidesJsonLd()} />
@@ -92,11 +91,10 @@ export default async function FreeGuidesPage() {
             <p className="apple-subhead mx-auto mt-6 max-w-xl text-[var(--color-ink)]">
               Drug cards, anatomy, and six board hubs are open. Reference books — with
               bookmarks and highlights — open on a {TRIAL_DAYS}-day free trial, then Pro
-              at {formatMonthlyPrice("pro")}/mo. {questionTotal}{" "}
-              {liveTotal
-                ? "active questions across six boards"
-                : "is the published floor while the live count is unavailable"}
-              .
+              at {formatMonthlyPrice("pro")}/mo.
+              {questionTotal
+                ? ` ${questionTotal.includes("including") ? questionTotal : `${questionTotal} active questions across six boards`}.`
+                : " The live bank count is unavailable on this load."}
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>

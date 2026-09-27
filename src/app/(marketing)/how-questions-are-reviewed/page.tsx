@@ -40,8 +40,11 @@ export default async function HowQuestionsAreReviewedPage() {
   const [facts, bank] = await Promise.all([getQualityFacts(), getCachedBankStatsBundle()]);
   const counts = buildLandingBankCountsDisplay(bank.snapshot);
   const suppressed = countLabel(facts.suppressedNursing);
-  const ngnItems = countLabel(facts.publishedNgnItems);
-  const ngnCases = countLabel(facts.publishedNgnCases);
+  const nclexUnits = bank.snapshot.boards?.nclex;
+  const ngnSentence =
+    nclexUnits && (nclexUnits.standaloneNgn > 0 || nclexUnits.caseStudies > 0)
+      ? `${nclexUnits.standaloneNgn.toLocaleString("en-US")} standalone NGN items and ${nclexUnits.caseItems.toLocaleString("en-US")} items in ${nclexUnits.caseStudies.toLocaleString("en-US")} case studies are published.`
+      : null;
   return (
     <>
     <article className="bg-[var(--color-bg)] px-6 pb-20 pt-[var(--page-top)]">
@@ -124,10 +127,9 @@ export default async function HowQuestionsAreReviewedPage() {
               practice until that repair. The count is read from the bank on this page load.
             </p>
           ) : null}
-          {facts.live && ngnItems && ngnCases ? (
+          {ngnSentence ? (
             <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-              Separately, {ngnItems} NGN items in {ngnCases} unfolding case studies are published.{" "}
-              {NGN_PUBLISHED_DESCRIPTION}
+              Separately, {ngnSentence} {NGN_PUBLISHED_DESCRIPTION}
             </p>
           ) : (
             <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">

@@ -21,6 +21,8 @@ export const dynamic = "force-dynamic";
 const EMPTY_COUNTS: LandingBankCountsDisplay = {
   totalLabel: "",
   totalQuestionsLabel: "",
+  sentence: "",
+  roundedDown: "",
   totalServed: 0,
   exams: [],
   degraded: true,

@@ -1,10 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import { Activity, Beaker, Bone, HeartPulse, Pill, Stethoscope } from "lucide-react";
-import {
-  MARKETING_QUESTION_COUNTS,
-  questionBankLabelForField,
-  top500DrugsLabel,
-} from "@/lib/marketing/bank-stats";
+import { questionBankLabelForField, top500DrugsLabel } from "@/lib/marketing/bank-stats";
 
 export type ExamSlug = "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "npte-pt" | "top500";
 

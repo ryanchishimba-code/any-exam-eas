@@ -66,16 +66,22 @@ export default async function PricingPage({
   });
   const { snapshot } = await getCachedBankStatsBundle();
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
-  const totalLine =
-    formatHeroTotalCountLine(bankCounts.totalLabel) ??
-    `${bankCounts.totalLabel} active questions across six boards`;
+  const totalLine = bankCounts.sentence.includes("including")
+    ? bankCounts.sentence
+    : bankCounts.totalLabel
+      ? formatHeroTotalCountLine(bankCounts.totalLabel)
+      : null;
 
   return (
     <>
-      <JsonLdScript data={buildPricingJsonLd()} />
+      <JsonLdScript data={buildPricingJsonLd(bankCounts.totalLabel)} />
       <PageShell
         title={<PricingBoardHeadline initial={headline} />}
-        description={`${totalLine}. Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`}
+        description={
+          totalLine
+            ? `${totalLine}. Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`
+            : `Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`
+        }
         align="center"
         maxWidth="max-w-3xl"
       >

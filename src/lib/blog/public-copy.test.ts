@@ -6,14 +6,7 @@ import {
   publicBlogExcerpt,
   publicBlogTitle,
 } from "./public-copy";
-import {
-  formatExactServeReadyCount,
-  getPublishedQuestionStats,
-} from "@/lib/marketing/bank-stats";
-
-const publishedTotal = formatExactServeReadyCount(
-  getPublishedQuestionStats().totalPublished
-);
+const publishedTotal = "the question bank";
 
 describe("public blog copy", () => {
   it("replaces placeholder authors", () => {
@@ -32,7 +25,7 @@ describe("public blog copy", () => {
     );
   });
 
-  it("scrubs stale bank totals and 3-day trial language using live published stats", () => {
+  it("scrubs stale bank totals without inserting a published-floor number", () => {
     expect(publicBlogExcerpt("Start a 3-day trial with 43,000+ questions.")).toBe(
       `Start a 5-day free trial with ${publishedTotal} questions.`
     );

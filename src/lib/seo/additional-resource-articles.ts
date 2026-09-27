@@ -78,7 +78,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           },
           {
             feature: "Question volume",
-            anyExamEasy: `${SEO_LIVE_STATS.questionCount} QA-gated questions`,
+            anyExamEasy: "QA-gated questions across six boards",
             typicalQbank: "Varies; often 2,000–4,000 per exam",
           },
           {
@@ -339,7 +339,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "What's included on Pro",
         bullets: [
-          `${SEO_LIVE_STATS.questionCount} QA-gated questions across six exams`,
+          "QA-gated questions across six exams",
           "Adaptive Blueprint Roadmaps per licensing track",
           "Deep Dive modules opened from missed questions",
           "Timed Full Exam simulations with weak-area focus",

@@ -18,11 +18,19 @@ import {
 } from "@/lib/inventory/active-questions";
 import type { ExamRouteSlug } from "@/lib/routes";
 import {
-  formatExactServeReadyCount,
-  formatExactServeReadyQuestions,
-  publishedQuestionCountForField,
-  PUBLISHED_QUESTION_BANK_TOTAL,
-} from "./bank-stats";
+  boardQuestionUnits,
+  COUNT_BOARD_SLUGS,
+  formatBoardQuestionSentence,
+  formatExactQuestionCount,
+  formatRoundedDownQuestionCount,
+  loadClinicalExtrasByBoard,
+  scoredQuestionCount,
+  siteQuestionCounts,
+  type BoardQuestionUnits,
+  type ClinicalQuestionExtra,
+  type CountBoardSlug,
+} from "@/lib/counts";
+import { formatExactServeReadyQuestions } from "./bank-stats";
 
 const DB_RETRY_ATTEMPTS = 2;
 
@@ -36,6 +44,8 @@ export type FieldQuestionBankCounts = {
 export type QuestionBankCountsSnapshot = {
   fields: Record<ExamFieldId, FieldQuestionBankCounts>;
   totals: { total: number; active: number; served: number };
+  /** Scored-item units. Absent on older fixtures; display then uses `served`. */
+  boards?: Partial<Record<CountBoardSlug, BoardQuestionUnits>>;
   updatedAt: string;
   degraded: boolean;
 };
@@ -44,11 +54,15 @@ export type LandingExamCountDisplay = {
   /** Stable exam id matching LANDING_EXAMS ids (usmle, nclex, …) for reliable mapping. */
   slug: string;
   label: string;
-  /** Exact serve-ready count, e.g. 6,380 */
+  /** Exact scored-item count, e.g. 5,660. Empty when the live lookup failed. */
   countLabel: string;
-  /** Hero display, e.g. 6,380 active questions */
+  /** Hero display. Includes case-study items when this board has a separate NGN catalog. */
   questionsLabel: string;
-  /** Raw serve-ready count from DB (0 when degraded / unknown). */
+  /** Full scored-item sentence, e.g. "5,660 questions, including …". */
+  sentence: string;
+  /** Floored to the nearest hundred. Never rounds up. */
+  roundedDown: string;
+  /** Raw scored-item count from DB (0 when degraded / unknown). */
   served: number;
   color: string;
 };
@@ -56,7 +70,11 @@ export type LandingExamCountDisplay = {
 export type LandingBankCountsDisplay = {
   totalLabel: string;
   totalQuestionsLabel: string;
-  /** Sum of serve-ready rows across the six board exams. */
+  /** Honest site sentence, including case-study items when any board has them. */
+  sentence: string;
+  /** Floored site total. Empty when the live lookup failed. */
+  roundedDown: string;
+  /** Sum of scored items across the six board exams. */
   totalServed: number;
   exams: LandingExamCountDisplay[];
   degraded: boolean;
@@ -201,7 +219,14 @@ export type BankStatsBundle = {
 async function loadBankStatsBundle(): Promise<BankStatsBundle> {
   const inventory = await fetchActiveInventoryFromDb();
   if (!inventory.degraded) {
-    return { inventory, snapshot: snapshotFromActiveInventory(inventory) };
+    let clinical: Partial<Record<CountBoardSlug, ClinicalQuestionExtra>> = {};
+    try {
+      clinical = await loadClinicalExtrasByBoard();
+    } catch (error) {
+      console.error("[marketing/question-bank-counts] clinical catalog failed:", error);
+      return { inventory, snapshot: buildEmptySnapshot(true) };
+    }
+    return { inventory, snapshot: snapshotFromActiveInventory(inventory, clinical) };
   }
   try {
     return { inventory, snapshot: await fetchQuestionBankCountsWithRetry() };
@@ -308,19 +333,36 @@ const MARKETING_FIELD_BOARD: Record<ExamFieldId, ExamRouteSlug> = {
 };
 
 export function snapshotFromActiveInventory(
-  inventory: ActiveQuestionInventory
+  inventory: ActiveQuestionInventory,
+  clinical: Partial<Record<CountBoardSlug, ClinicalQuestionExtra>> = {}
 ): QuestionBankCountsSnapshot {
+  const boards = Object.fromEntries(
+    (Object.keys(MARKETING_FIELD_BOARD) as ExamFieldId[]).map((fieldId) => {
+      const slug = MARKETING_FIELD_BOARD[fieldId];
+      const board = inventory.boards[slug];
+      return [
+        slug,
+        boardQuestionUnits({
+          slug,
+          bankItems: inventory.degraded ? 0 : (board?.active ?? 0),
+          formats: board?.formats,
+          clinical: clinical[slug],
+        }),
+      ];
+    })
+  ) as Record<CountBoardSlug, BoardQuestionUnits>;
+
   const fields = Object.fromEntries(
     EXAM_FIELD_IDS.map((fieldId) => {
-      const served = inventory.degraded
-        ? 0
-        : (inventory.boards[MARKETING_FIELD_BOARD[fieldId]]?.active ?? 0);
+      const units = boards[MARKETING_FIELD_BOARD[fieldId]];
+      const served = inventory.degraded || !units ? 0 : scoredQuestionCount(units);
       return [fieldId, { fieldId, total: served, active: served, served }];
     })
   ) as Record<ExamFieldId, FieldQuestionBankCounts>;
 
   const snapshot: QuestionBankCountsSnapshot = {
     fields,
+    boards,
     totals: { total: 0, active: 0, served: 0 },
     updatedAt: inventory.updatedAt,
     degraded: inventory.degraded,
@@ -339,16 +381,16 @@ function servedCountForField(
 }
 
 /**
- * User-facing counts reflect the live qaPassed serve bank when the DB lookup
- * succeeds; otherwise fall back to conservative published floor figures.
+ * User-facing counts are the live scored-item total.
+ * A failed lookup returns an empty string so the page omits the number.
  */
 export function displayQuestionCountForField(
   fieldId: ExamFieldId,
   snapshot?: QuestionBankCountsSnapshot
 ): string {
   const served = servedCountForField(fieldId, snapshot);
-  if (served > 0) return formatExactServeReadyCount(served);
-  return formatExactServeReadyCount(publishedQuestionCountForField(fieldId));
+  if (served > 0) return formatExactQuestionCount(served);
+  return "";
 }
 
 export function displayTotalQuestionCount(
@@ -356,10 +398,9 @@ export function displayTotalQuestionCount(
 ): string {
   if (snapshot && !snapshot.degraded) {
     const total = landingServedTotal(snapshot);
-    if (total > 0) return formatExactServeReadyCount(total);
+    if (total > 0) return formatExactQuestionCount(total);
   }
-  // Prefer the curated marketing total so offline/SSR paint matches live hydrate.
-  return formatExactServeReadyCount(PUBLISHED_QUESTION_BANK_TOTAL);
+  return "";
 }
 
 export function displayQuestionCountDetailForField(
@@ -368,17 +409,34 @@ export function displayQuestionCountDetailForField(
 ): string {
   const served = servedCountForField(fieldId, snapshot);
   if (served > 0) return formatExactServeReadyQuestions(served);
-  return formatExactServeReadyQuestions(publishedQuestionCountForField(fieldId));
+  return "";
+}
+
+function completeBoardUnits(
+  snapshot: QuestionBankCountsSnapshot
+): Record<CountBoardSlug, BoardQuestionUnits> | null {
+  if (!snapshot.boards) return null;
+  const boards = {} as Record<CountBoardSlug, BoardQuestionUnits>;
+  for (const slug of COUNT_BOARD_SLUGS) {
+    const units = snapshot.boards[slug];
+    if (!units) return null;
+    boards[slug] = units;
+  }
+  return boards;
 }
 
 export function displayTotalQuestionsDetail(
   snapshot?: QuestionBankCountsSnapshot
 ): string {
-  if (snapshot && !snapshot.degraded) {
-    const total = landingServedTotal(snapshot);
-    if (total > 0) return formatExactServeReadyQuestions(total);
+  if (!snapshot || snapshot.degraded) return "";
+  const boards = completeBoardUnits(snapshot);
+  if (boards) {
+    const site = siteQuestionCounts(boards);
+    if (site.totalQuestions > 0) return site.sentence;
   }
-  return formatExactServeReadyQuestions(PUBLISHED_QUESTION_BANK_TOTAL);
+  const total = landingServedTotal(snapshot);
+  if (total > 0) return formatExactServeReadyQuestions(total);
+  return "";
 }
 
 /** Social proof band on the landing compare section — uses live totals when available. */
@@ -390,8 +448,8 @@ export function buildLandingSocialProofStats(
       value: bankCounts.totalLabel,
       label: "Active questions",
       detail: bankCounts.degraded
-        ? "Published floor while the live bank count is unavailable"
-        : "Published and not retired — the same count as the Qbank",
+        ? "Live bank count is unavailable, so this page does not show a number"
+        : "One scored item each — the same count as the Qbank",
     },
     {
       value: "6",
@@ -417,18 +475,30 @@ export function buildLandingBankCountsDisplay(
   const totalServed =
     snapshot.degraded ? 0 : landingServedTotal(snapshot);
 
+  const boards = completeBoardUnits(snapshot);
+  const site = boards && !snapshot.degraded ? siteQuestionCounts(boards) : null;
+
   return {
     totalLabel: displayTotalQuestionCount(snapshot),
     totalQuestionsLabel: displayTotalQuestionsDetail(snapshot),
+    sentence: site?.sentence ?? displayTotalQuestionsDetail(snapshot),
+    roundedDown: site ? site.roundedDown : "",
     totalServed,
-    exams: LANDING_EXAM_COUNT_FIELDS.map(({ slug, fieldId, label, color }) => ({
-      slug,
-      label,
-      color,
-      served: servedCountForField(fieldId, snapshot),
-      countLabel: displayQuestionCountForField(fieldId, snapshot),
-      questionsLabel: displayQuestionCountDetailForField(fieldId, snapshot),
-    })),
+    exams: LANDING_EXAM_COUNT_FIELDS.map(({ slug, fieldId, label, color }) => {
+      const units = snapshot.boards?.[slug as CountBoardSlug];
+      const served = servedCountForField(fieldId, snapshot);
+      const sentence = units && served > 0 ? formatBoardQuestionSentence(units) : "";
+      return {
+        slug,
+        label,
+        color,
+        served,
+        countLabel: displayQuestionCountForField(fieldId, snapshot),
+        questionsLabel: sentence || displayQuestionCountDetailForField(fieldId, snapshot),
+        sentence,
+        roundedDown: served > 0 ? formatRoundedDownQuestionCount(served) : "",
+      };
+    }),
     degraded: snapshot.degraded,
   };
 }

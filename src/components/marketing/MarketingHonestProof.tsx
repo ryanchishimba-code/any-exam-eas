@@ -1,10 +1,6 @@
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
-import {
-  formatExactServeReadyQuestions,
-  getPublishedQuestionStats,
-} from "@/lib/marketing/bank-stats";
 
 const PROOF_ITEMS: Array<{
   title: string;
@@ -14,8 +10,8 @@ const PROOF_ITEMS: Array<{
     title: "Live published bank",
     body: (countLabel, live) =>
       live
-        ? `${countLabel} across six boards. Active means published and not retired — the same count as the Qbank, not a rounded figure.`
-        : `${countLabel} is the published floor while the live bank count is unavailable.`,
+        ? `${countLabel} across six boards. A question is one scored item — the same count as the Qbank.`
+        : "The live bank count is unavailable, so this page does not show a number.",
   },
   {
     title: "Free trial",
@@ -40,9 +36,7 @@ export function MarketingHonestProof({
   /** True only when questionCountLabel came from the active inventory. */
   live?: boolean;
 }) {
-  const countLabel =
-    (live ? questionCountLabel?.trim() : "") ||
-    formatExactServeReadyQuestions(getPublishedQuestionStats().totalPublished);
+  const countLabel = live ? questionCountLabel?.trim() ?? "" : "";
 
   return (
     <div className="aee-honest-proof">

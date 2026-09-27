@@ -14,6 +14,8 @@ type Props = {
   practiceMode: "bank" | "timed";
   topicCount?: number | null;
   totalQuestions?: number | null;
+  /** Honest scored-item sentence. Replaces the MCQ · NGN · cases split when set. */
+  questionSentence?: string | null;
   formats?: FormatCounts | null;
   categories?: InventoryCategoryCount[];
   categoryLabel?: string | null;
@@ -28,6 +30,7 @@ export function QuestionBankHeader({
   practiceMode,
   topicCount,
   totalQuestions,
+  questionSentence,
   formats,
   categories = [],
   categoryLabel,
@@ -35,9 +38,11 @@ export function QuestionBankHeader({
   readinessScore,
   streakDays,
 }: Props) {
-  const formatLine = formats
-    ? formatInventoryFormatLine(formats, categoryLabel === "Client Needs" ? "NGN" : "NGN-style")
-    : null;
+  const formatLine = questionSentence
+    ? null
+    : formats
+      ? formatInventoryFormatLine(formats, categoryLabel === "Client Needs" ? "NGN" : "NGN-style")
+      : null;
   return (
     <header className="space-y-4 px-0.5">
       <nav
@@ -86,7 +91,16 @@ export function QuestionBankHeader({
                 {topicCount} {topicCount === 1 ? "topic" : "topics"}
               </span>
             ) : null}
-            {typeof totalQuestions === "number" ? (
+            {questionSentence ? (
+              <span
+                className={qbUi.statPill}
+                data-active-question-count={totalQuestions ?? undefined}
+                data-question-sentence={questionSentence}
+                title={activeDefinition ?? undefined}
+              >
+                {questionSentence}
+              </span>
+            ) : typeof totalQuestions === "number" ? (
               <span
                 className={qbUi.statPill}
                 data-active-question-count={totalQuestions}

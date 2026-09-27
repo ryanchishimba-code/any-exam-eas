@@ -106,11 +106,15 @@ describe("question-bank-counts display", () => {
     expect(displayTotalQuestionCount(snapshot)).toBe("46,700");
   });
 
-  it("falls back to published floor counts when snapshot is degraded", () => {
+  it("omits the number when the snapshot is degraded", () => {
     const snapshot = snapshotWithServed({});
     snapshot.degraded = true;
 
-    expect(displayQuestionCountForField("pharmacy", snapshot)).toBe("10,332");
-    expect(displayTotalQuestionCount(snapshot)).toBe("47,969");
+    expect(displayQuestionCountForField("pharmacy", snapshot)).toBe("");
+    expect(displayTotalQuestionCount(snapshot)).toBe("");
+    const display = buildLandingBankCountsDisplay(snapshot);
+    expect(display.totalLabel).toBe("");
+    expect(display.sentence).toBe("");
+    expect(display.exams.every((exam) => exam.countLabel === "")).toBe(true);
   });
 });

@@ -67,7 +67,11 @@ type QuestionBankSetupProps = {
   practiceFormat?: PracticeFormatMode;
   onPracticeFormatChange?: (format: PracticeFormatMode) => void;
   formats?: FormatCounts | null;
-  totalActive?: number | null;
+  /** Scored-item total for the All card. */
+  scoredTotal?: number | null;
+  /** Bank-item topic counts for the standard session wheel. */
+  sessionCounts?: Record<string, number> | null;
+  caseItemCount?: number | null;
   ngnLabel?: string;
 };
 
@@ -107,7 +111,9 @@ export function QuestionBankSetup({
   practiceFormat = "all",
   onPracticeFormatChange,
   formats = null,
-  totalActive = null,
+  scoredTotal = null,
+  sessionCounts = null,
+  caseItemCount = null,
   ngnLabel = "NGN",
 }: QuestionBankSetupProps) {
   const formatMode = practiceFormat === "ngn" || practiceFormat === "case";
@@ -115,11 +121,12 @@ export function QuestionBankSetup({
   const activeArea = blueprintAreaId
     ? coverageChips.find((chip) => chip.domainId === blueprintAreaId)
     : undefined;
+  const wheelCounts = sessionCounts ?? subjectCounts;
   const maxAvailable = formatMode
     ? formatPool
     : activeArea
       ? activeArea.available
-      : availableQuestionCount(subjectId, subjectCounts);
+      : availableQuestionCount(subjectId, wheelCounts);
   const countOptions = formatMode
     ? practiceFormatCountOptions(formatPool)
     : questionBankCountOptionsForAvailable(maxAvailable, fieldId);
@@ -145,7 +152,7 @@ export function QuestionBankSetup({
         questionCount: wheelValue,
         subjectCounts: activeArea
           ? { [activeArea.domainId]: activeArea.available }
-          : subjectCounts,
+          : wheelCounts,
         bankStyle,
       });
 
@@ -241,7 +248,14 @@ export function QuestionBankSetup({
           value={practiceFormat}
           onChange={onPracticeFormatChange}
           formats={formats}
-          totalActive={totalActive}
+          scoredTotal={
+            subjectId && !isMixedSubjectId(subjectId) && subjectCounts
+              ? (subjectCounts[subjectId] ?? scoredTotal)
+              : scoredTotal
+          }
+          caseItemCount={
+            !subjectId || isMixedSubjectId(subjectId) ? caseItemCount : null
+          }
           countsLoading={countsLoading}
           ngnLabel={ngnLabel}
           subjectId={activeArea ? null : subjectId}

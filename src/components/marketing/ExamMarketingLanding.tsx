@@ -67,9 +67,10 @@ export async function ExamMarketingLanding({
   const config = presentPublicExamSeo(getExamSeoConfig(examKey), inventory?.formats ?? null);
   const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
   const isUsmle = examKey === "usmle";
-  const questionCountLine =
-    formatExamLiveCountLine(config.shortName, questionCountLabel) ??
-    (questionCountLabel ? `${questionCountLabel} ${config.shortName} questions` : "");
+  const questionCountLine = questionCountLabel?.includes("including")
+    ? questionCountLabel
+    : (formatExamLiveCountLine(config.shortName, questionCountLabel) ??
+      (questionCountLabel ? `${questionCountLabel} ${config.shortName} questions` : ""));
   const productLinks = examHubProductLinks(examKey);
   const studyGuide = getStudyGuideConfig(examKey);
   const reviewer = clinicalReviewerForExam(examKey);

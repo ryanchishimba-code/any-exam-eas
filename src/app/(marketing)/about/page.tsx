@@ -10,10 +10,6 @@ import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSec
 import { FounderNote } from "@/components/marketing/elevation/FounderNote";
 import { COMPANY_PUBLIC } from "@/lib/marketing/company";
 import {
-  formatExactServeReadyQuestions,
-  getPublishedQuestionStats,
-} from "@/lib/marketing/bank-stats";
-import {
   buildLandingBankCountsDisplay,
   getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
@@ -29,12 +25,9 @@ async function publishedOrLiveTotalLabel(): Promise<{ label: string; live: boole
   const { snapshot } = await getCachedBankStatsBundle();
   const display = buildLandingBankCountsDisplay(snapshot);
   if (!display.degraded && display.totalServed > 0) {
-    return { label: display.totalQuestionsLabel, live: true };
+    return { label: display.sentence || display.totalQuestionsLabel, live: true };
   }
-  return {
-    label: formatExactServeReadyQuestions(getPublishedQuestionStats().totalPublished),
-    live: false,
-  };
+  return { label: "", live: false };
 }
 
 export async function generateMetadata() {
@@ -97,11 +90,13 @@ export default async function AboutPage() {
             <div className="mt-8">
               <PurchaseTrustNotes />
             </div>
-            <p className="mt-6 text-sm font-medium text-[var(--color-ink-muted)]">{totalQuestionsLabel}</p>
+            {totalQuestionsLabel ? (
+              <p className="mt-6 text-sm font-medium text-[var(--color-ink-muted)]">{totalQuestionsLabel}</p>
+            ) : null}
             <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-[var(--color-ink-muted)]">
               {live
                 ? ACTIVE_QUESTION_DEFINITION
-                : "Live bank count is unavailable, so this figure is the published floor — not the current Qbank total."}
+                : "Live bank count is unavailable, so this page does not show a number."}
             </p>
           </div>
         </section>

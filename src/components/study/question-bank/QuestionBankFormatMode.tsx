@@ -12,8 +12,10 @@ type Props = {
   value: PracticeFormatMode;
   onChange: (format: PracticeFormatMode) => void;
   formats: FormatCounts | null;
-  /** Bank total when the format split has not loaded. */
-  totalActive?: number | null;
+  /** Scored questions in this scope. The All card uses this instead of summing shells. */
+  scoredTotal?: number | null;
+  /** Scored items inside the case studies, when the card is the whole bank. */
+  caseItemCount?: number | null;
   countsLoading?: boolean;
   ngnLabel?: string;
   /** Current topic. Blank or mixed means the set draws from the whole bank. */
@@ -22,9 +24,14 @@ type Props = {
   lockToAll?: boolean;
 };
 
-function countFor(id: PracticeFormatMode, formats: FormatCounts): number {
+function countFor(
+  id: PracticeFormatMode,
+  formats: FormatCounts,
+  scoredTotal?: number | null
+): number {
   if (id === "ngn") return formats.ngn;
   if (id === "case") return formats.case;
+  if (typeof scoredTotal === "number") return scoredTotal;
   return formats.mcq + formats.ngn + formats.case;
 }
 
@@ -32,6 +39,8 @@ export function QuestionBankFormatMode({
   value,
   onChange,
   formats,
+  scoredTotal = null,
+  caseItemCount = null,
   countsLoading = false,
   ngnLabel = "NGN",
   subjectId = null,
@@ -75,13 +84,15 @@ export function QuestionBankFormatMode({
       >
         {chooser.choices.map((id) => {
           const active = selected === id;
-          const count = countFor(id, formats);
+          const count = countFor(id, formats, id === "all" ? scoredTotal : null);
           const hint =
             id === "ngn"
-              ? "Clinical judgment formats"
+              ? "Standalone NGN items"
               : id === "case"
-                ? "Case studies"
-                : "Any published item";
+                ? typeof caseItemCount === "number" && caseItemCount > 0
+                  ? `${caseItemCount.toLocaleString("en-US")} scored items inside`
+                  : "Case studies"
+                : "Every scored item";
           return (
             <button
               key={id}

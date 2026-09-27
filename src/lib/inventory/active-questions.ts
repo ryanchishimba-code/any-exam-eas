@@ -11,6 +11,7 @@
  * caseGroupId buried only in generation JSON is not scanned — that column is
  * large, and the Qbank count has to stay on the indexed serve filter.
  */
+import { formatBoardQuestionSentence } from "@/lib/counts";
 import type { ExamRouteSlug } from "@/lib/routes";
 import { withDbRetry, sqlQuery } from "@/lib/db";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
@@ -20,10 +21,10 @@ import { EFFECTIVE_MCQ_SQL } from "@/lib/exam-prep/effective-type-sql";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 
 export const ACTIVE_QUESTION_DEFINITION =
-  "Active means published and not retired: unique questions still available to practice. Drafts, retired items, memory cards, and library case sets are not included.";
+  "A question is one scored item: a student-eligible bank row, a published standalone NGN item, or a published item inside a published case study. The case study itself is not an extra question. Active means published and not retired. Drafts, hidden items, memory cards, and library case sets are not included.";
 
 export const ACTIVE_COUNT_UNAVAILABLE =
-  "Live bank count is unavailable, so this figure is the published floor — not the current Qbank total.";
+  "Live bank count is unavailable, so this page does not show a number.";
 
 /** Practice fields whose rows are allowed into the inventory. */
 export const INVENTORY_FIELD_IDS = [
@@ -476,11 +477,13 @@ export type BoardInventoryPresentation = {
   activeCount: number | null;
 };
 
-/** Copy and breakdown for a board hub. Live counts and the floor never share a definition line. */
+/** Copy and breakdown for a board hub. Live counts and a missing lookup never share a definition line. */
 export function presentBoardInventory(input: {
   slug: ExamRouteSlug;
   usingLiveCount: boolean;
   board: BoardActiveInventory | null;
+  /** Published NGN catalog for this board. Case shells are not extra questions. */
+  clinical?: { standaloneNgn: number; caseStudies: number; caseItems: number } | null;
 }): BoardInventoryPresentation {
   if (!input.usingLiveCount || !input.board || input.board.active <= 0) {
     return {
@@ -495,15 +498,26 @@ export function presentBoardInventory(input: {
     };
   }
 
+  const clinical = input.clinical ?? { standaloneNgn: 0, caseStudies: 0, caseItems: 0 };
+  const scored = input.board.active + clinical.standaloneNgn + clinical.caseItems;
+  const hasSeparateCatalog = clinical.standaloneNgn > 0 || clinical.caseStudies > 0;
   const ngnLabel = input.slug === "nclex" ? "NGN" : "NGN-style";
+  const formatLine = hasSeparateCatalog
+    ? formatBoardQuestionSentence({
+        bankItems: input.board.active,
+        standaloneNgn: clinical.standaloneNgn,
+        caseStudies: clinical.caseStudies,
+        caseItems: clinical.caseItems,
+      })
+    : formatInventoryFormatLine(input.board.formats, ngnLabel);
   return {
-    formatLine: formatInventoryFormatLine(input.board.formats, ngnLabel),
+    formatLine,
     formats: input.board.formats,
     definition: ACTIVE_QUESTION_DEFINITION,
     categories: input.board.categories,
     categoryLabel: input.board.categoryLabel,
     scopeNote: input.board.scopeNote,
     countSource: "active-inventory",
-    activeCount: input.board.active,
+    activeCount: scored,
   };
 }

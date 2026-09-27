@@ -14,7 +14,6 @@ import {
   Timer,
   type LucideIcon,
 } from "lucide-react";
-import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
@@ -401,7 +400,7 @@ export const LANDING_HERO_PITCHES = [
 export const LANDING_HERO_PRICE_TAGLINE = "Premium prep. Accessible price.";
 
 export const LANDING_HERO_PRICE_INCLUDES = [
-  `${MARKETING_QUESTION_COUNTS.total} board-style questions`,
+  "Board-style questions across six exams",
   "Exam Roadmaps, Deep Dive modules & Library",
   "Analytics, lab values & clinical calculators",
 ] as const;
@@ -409,9 +408,9 @@ export const LANDING_HERO_PRICE_INCLUDES = [
 /** Trust stats for the social proof band — illustrative aggregates, not pass-rate claims. */
 export const LANDING_SOCIAL_PROOF = [
   {
-    value: MARKETING_QUESTION_COUNTS.total,
-    label: "Board-style questions",
-    detail: "Curated vignettes across six licensing exams",
+    value: "Qbank",
+    label: "Scored questions",
+    detail: "The same count the question bank shows",
   },
   {
     value: "6",
@@ -441,7 +440,8 @@ export const LANDING_STEPS = [
     step: "02",
     icon: Brain,
     title: "Follow your Exam Roadmap",
-    detail: `${MARKETING_QUESTION_COUNTS.total} stratified items with formats that mirror real exams — Roadmap shows what to practice next.`,
+    detail:
+      "Stratified items with formats that mirror real exams — Roadmap shows what to practice next.",
   },
   {
     step: "03",
@@ -564,7 +564,7 @@ export const SAMPLE_QUESTION_PREVIEWS: SampleQuestionPreview[] = [
 export const SAMPLE_QUESTIONS_FEATURED = SAMPLE_QUESTION_PREVIEWS;
 
 export const LANDING_METRICS = [
-  { value: MARKETING_QUESTION_COUNTS.total, label: "Board-style items" },
+  { value: "Qbank", label: "Scored questions" },
   { value: "6", label: "Board exam tracks" },
   { value: "Roadmap", label: "Per-exam study plan" },
   { value: "Deep Dive", label: "Linked lessons" },

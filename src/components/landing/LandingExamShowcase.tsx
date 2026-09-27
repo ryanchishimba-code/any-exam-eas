@@ -25,14 +25,16 @@ export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamS
       aria-label="Board exams and question bank sizes"
     >
       <div className="aee-hero-exam-showcase__stat">
-        <p className="aee-hero-exam-showcase__total">
-          <span className="aee-landing-question-count aee-landing-question-count--hero">
-            {bankCounts.totalLabel}
-          </span>
-          <span className="mt-1 block text-lg font-bold text-[var(--flagship-navy,var(--color-ink))]">
-            active questions
-          </span>
-        </p>
+        {bankCounts.totalLabel ? (
+          <p className="aee-hero-exam-showcase__total">
+            <span className="aee-landing-question-count aee-landing-question-count--hero">
+              {bankCounts.totalLabel}
+            </span>
+            <span className="mt-1 block text-lg font-bold text-[var(--flagship-navy,var(--color-ink))]">
+              active questions
+            </span>
+          </p>
+        ) : null}
         <p className="aee-hero-exam-showcase__badge">Published, not retired</p>
       </div>
       <p className="aee-hero-exam-showcase__kicker">
@@ -44,7 +46,7 @@ export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamS
         {LANDING_EXAMS.map((exam) => {
           const shortLabel = EXAM_SHORT_LABEL[exam.id] ?? exam.label;
           const countLabel =
-            bankCounts.exams.find((row) => row.slug === exam.id)?.countLabel ?? "—";
+            bankCounts.exams.find((row) => row.slug === exam.id)?.countLabel ?? "";
 
           return (
             <li
@@ -54,12 +56,14 @@ export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamS
             >
               <Link href={exam.href} prefetch={false} className="aee-hero-exam-showcase__link group">
                 <span className="aee-hero-exam-showcase__name">{shortLabel}</span>
-                <span className="aee-hero-exam-showcase__count">
-                  <span className="aee-landing-question-count aee-landing-question-count--inline">
-                    {countLabel}
+                {countLabel ? (
+                  <span className="aee-hero-exam-showcase__count">
+                    <span className="aee-landing-question-count aee-landing-question-count--inline">
+                      {countLabel}
+                    </span>
+                    <span className="font-semibold"> questions</span>
                   </span>
-                  <span className="font-semibold"> serve-ready</span>
-                </span>
+                ) : null}
               </Link>
             </li>
           );

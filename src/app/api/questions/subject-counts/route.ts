@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { applyScoredClinicalCatalog, boardQuestionUnits, formatBoardQuestionSentence } from "@/lib/counts";
 import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
 import {
   ACTIVE_QUESTION_DEFINITION,
@@ -38,19 +39,42 @@ export async function GET(req: Request) {
   try {
     const fromInventory = fieldInventoryPayload(fieldId, await getCachedActiveInventory());
     if (fromInventory) {
-      const { applyClinicalCounts, publishedClinicalAddition } = await import(
-        "@/lib/assessment/serve-db"
-      );
-      const addition = await publishedClinicalAddition(fieldId).catch(() => ({
-        ngn: 0,
-        case: 0,
-        topics: {},
-      }));
-      const withClinical = applyClinicalCounts(fromInventory, addition);
+      const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
+      const bank = await loadPublishedClinicalBank(fieldId).catch(() => null);
+      const scored = applyScoredClinicalCatalog({
+        fieldId,
+        bankTotal: fromInventory.total,
+        topicCounts: fromInventory.counts,
+        formats: fromInventory.formats,
+        topicFormats: fromInventory.topicFormats,
+        categories: fromInventory.categories,
+        catalog: bank?.catalog ?? null,
+      });
+      const units = boardQuestionUnits({
+        slug: "nclex",
+        bankItems: fromInventory.total,
+        formats: fromInventory.formats,
+        clinical: scored.clinical,
+      });
       return NextResponse.json(
         {
-          ...withClinical,
-          total: fromInventory.total + addition.ngn + addition.case,
+          field: fieldId,
+          counts: scored.topicCounts,
+          sessionCounts: scored.sessionCounts,
+          total: scored.total,
+          bankItemTotal: scored.bankItemTotal,
+          formats: scored.formats,
+          topicFormats: scored.topicFormats,
+          categories: scored.categories,
+          categoryLabel: fromInventory.categoryLabel,
+          definition: fromInventory.definition,
+          questionSentence:
+            scored.clinical.standaloneNgn > 0 || scored.clinical.caseStudies > 0
+              ? formatBoardQuestionSentence(units)
+              : null,
+          caseStudies: scored.clinical.caseStudies,
+          caseItems: scored.clinical.caseItems,
+          standaloneNgn: scored.clinical.standaloneNgn,
         },
         {
           headers: { "Cache-Control": ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL },
@@ -69,12 +93,18 @@ export async function GET(req: Request) {
     return NextResponse.json({
       field: fieldId,
       counts,
+      sessionCounts: counts,
       total,
+      bankItemTotal: total,
       formats: null,
       topicFormats: null,
       categories: [],
       categoryLabel: null,
       definition: ACTIVE_QUESTION_DEFINITION,
+      questionSentence: null,
+      caseStudies: 0,
+      caseItems: 0,
+      standaloneNgn: 0,
     });
   } catch (error) {
     const dbResponse = respondDbUnavailable(error);

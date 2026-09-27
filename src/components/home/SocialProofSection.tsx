@@ -15,7 +15,7 @@ export function SocialProofSection({
 
   // Keep the headline stat in lockstep with the live hero count, never the static floor.
   const stats = LANDING_SOCIAL_PROOF.map((item) => {
-    if (item.label === "Board-style questions" && bankCounts) {
+    if (item.label === "Scored questions" && bankCounts?.totalLabel) {
       return { ...item, value: bankCounts.totalLabel };
     }
     if (item.label === "One plan") {

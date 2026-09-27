@@ -27,11 +27,11 @@ export const ACTIVE_INVENTORY_CACHE_TAG = "question-bank-counts";
 export const ACTIVE_INVENTORY_CACHE_TTL_SECONDS = 60 * 60;
 
 /**
+ * v7 counts a question as one scored item, including published items inside
+ * case studies. v6 counted a case study as one question and omitted those items.
  * v4 adds the per-topic format split the Qbank uses for NGN and case counts.
- * v3 is keyed with the published stamp (`published:touchedAt`). v2 stayed warm
- * for an hour when a retire skipped the cron purge.
  */
-export const ACTIVE_INVENTORY_CACHE_KEY = ["marketing-active-inventory-v6"] as const;
+export const ACTIVE_INVENTORY_CACHE_KEY = ["marketing-active-inventory-v7"] as const;
 
 /**
  * Public count responses must not sit in a browser or CDN cache.

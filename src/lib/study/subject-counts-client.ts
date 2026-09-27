@@ -7,12 +7,18 @@ import {
 /** Client payload for per-topic active counts — shared by React Query and prefetch. */
 export type SubjectCountsClient = {
   counts: Record<string, number>;
+  /** Bank rows only, for the standard-session wheel. */
+  sessionCounts: Record<string, number> | null;
   total: number | null;
   formats: FormatCounts | null;
   topicFormats: Record<string, FormatCounts> | null;
   categories: InventoryCategoryCount[];
   categoryLabel: string | null;
   definition: string | null;
+  questionSentence: string | null;
+  caseStudies: number;
+  caseItems: number;
+  standaloneNgn: number;
 };
 
 function parseFormatCounts(value: unknown): FormatCounts | null {
@@ -37,12 +43,17 @@ function parseTopicFormats(value: unknown): Record<string, FormatCounts> | null 
 function emptySubjectCounts(): SubjectCountsClient {
   return {
     counts: {},
+    sessionCounts: null,
     total: null,
     formats: null,
     topicFormats: null,
     categories: [],
     categoryLabel: null,
     definition: null,
+    questionSentence: null,
+    caseStudies: 0,
+    caseItems: 0,
+    standaloneNgn: 0,
   };
 }
 
@@ -51,8 +62,13 @@ function parseSubjectCounts(data: unknown): SubjectCountsClient | null {
   const row = data as Partial<SubjectCountsClient> & { counts?: unknown; total?: unknown };
   if (!row.counts || typeof row.counts !== "object") return null;
   const total = typeof row.total === "number" ? row.total : null;
+  const sessionCounts =
+    row.sessionCounts && typeof row.sessionCounts === "object"
+      ? (row.sessionCounts as Record<string, number>)
+      : null;
   return {
     counts: row.counts as Record<string, number>,
+    sessionCounts,
     total,
     formats: parseFormatCounts(row.formats),
     topicFormats: parseTopicFormats(row.topicFormats),
@@ -60,6 +76,10 @@ function parseSubjectCounts(data: unknown): SubjectCountsClient | null {
     categoryLabel: row.categoryLabel ?? null,
     definition:
       typeof row.definition === "string" ? row.definition : ACTIVE_QUESTION_DEFINITION,
+    questionSentence: typeof row.questionSentence === "string" ? row.questionSentence : null,
+    caseStudies: typeof row.caseStudies === "number" ? row.caseStudies : 0,
+    caseItems: typeof row.caseItems === "number" ? row.caseItems : 0,
+    standaloneNgn: typeof row.standaloneNgn === "number" ? row.standaloneNgn : 0,
   };
 }
 

@@ -148,9 +148,11 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
 }
 
 export function buildPricingMetadata(totalLabel?: string): Metadata {
-  const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
+  const count = totalLabel?.trim();
   const title = "Pricing — 6 Board Exams, One Pro Plan";
-  const description = `One Pro plan: ${count} active questions for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmaps & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`;
+  const description = count
+    ? `One Pro plan: ${count} active questions for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmaps & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`
+    : `One Pro plan for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmaps & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`;
   return {
     ...baseOpenGraph(title, description, "/pricing", { absoluteTitle: true }),
     keywords: [
@@ -228,7 +230,7 @@ export function buildCompareJsonLd() {
 
 export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
   const title = `About ${SITE_NAME} — 6-Board Qbank`;
-  // Keep description budget-stable even when live count labels grow (e.g. 50,000+).
+  // Description stays inside the meta budget without a bank-size slogan.
   const description =
     "Independent NCLEX and USMLE Qbank plus NAPLEX, PANCE, FNP and NPTE on one Pro plan. QA-gated items with Roadmaps, Deep Dives, and sources when stored.";
   void serveReadyTotalLabel;
@@ -363,7 +365,7 @@ export function buildArticleJsonLd(article: ResourceArticle) {
   };
 }
 
-export function buildPricingJsonLd() {
+export function buildPricingJsonLd(totalLabel?: string) {
   const url = absoluteUrl("/pricing");
   return {
     "@context": "https://schema.org",
@@ -378,7 +380,7 @@ export function buildPricingJsonLd() {
       {
         "@type": "Product",
         name: `${SITE_NAME} Pro — All 6 Board Exams`,
-        description: seoPlatformPitch(),
+        description: seoPlatformPitch(totalLabel),
         image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
         brand: { "@type": "Brand", name: SITE_NAME },
         url,

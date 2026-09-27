@@ -8,7 +8,7 @@ type BankCountsApiResponse = LandingBankCountsDisplay & {
   error?: string;
 };
 
-/** Starts with published floor counts; upgrades from cached public API when available. */
+/** Starts from the server snapshot and refreshes from the public counts API. */
 export function useLandingBankCounts(initial: LandingBankCountsDisplay): LandingBankCountsDisplay {
   const [bankCounts, setBankCounts] = useState(initial);
 
@@ -21,7 +21,6 @@ export function useLandingBankCounts(initial: LandingBankCountsDisplay): Landing
       .then((data: BankCountsApiResponse | null) => {
         if (cancelled || !data || data.degraded || data.error) return;
         setBankCounts((prev) => {
-          // Skip re-render when live totals match the published floor (no flicker).
           if (
             prev.totalLabel === data.totalLabel &&
             prev.totalQuestionsLabel === data.totalQuestionsLabel &&
@@ -32,6 +31,8 @@ export function useLandingBankCounts(initial: LandingBankCountsDisplay): Landing
           return {
             totalLabel: data.totalLabel,
             totalQuestionsLabel: data.totalQuestionsLabel,
+            sentence: data.sentence ?? data.totalQuestionsLabel,
+            roundedDown: data.roundedDown ?? "",
             totalServed: data.totalServed,
             exams: data.exams,
             degraded: false,
@@ -39,7 +40,7 @@ export function useLandingBankCounts(initial: LandingBankCountsDisplay): Landing
         });
       })
       .catch(() => {
-        /* keep floor counts */
+        /* keep the server snapshot, which omits a number when the lookup failed */
       });
 
     return () => {

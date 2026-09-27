@@ -49,11 +49,14 @@ export default async function ExamMarketingPage({ params }: Props) {
   const { snapshot, inventory } = await getCachedBankStatsBundle();
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
   const examCount = bankCounts.exams.find((row) => row.slug === key);
-  const questionCountLabel = examCount?.countLabel;
+  const questionCountLabel = examCount?.sentence.includes("including")
+    ? examCount.sentence
+    : examCount?.countLabel;
   const boardInventory = presentBoardInventory({
     slug: key,
     usingLiveCount: !bankCounts.degraded && (examCount?.served ?? 0) > 0,
     board: inventory.boards[key] ?? null,
+    clinical: snapshot.boards?.[key] ?? null,
   });
 
   const [testimonials, samples] = await Promise.all([

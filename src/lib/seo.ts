@@ -60,7 +60,7 @@ export function absoluteUrl(path: string): string {
   return `${getSiteUrl()}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-import { SEO_KEYWORD_CLUSTERS, SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
+import { SEO_KEYWORD_CLUSTERS, seoPlatformPitch } from "@/lib/seo/seo-copy";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 
@@ -85,13 +85,15 @@ export function buildHomeMetadata(
   totalQuestionsLabel?: string,
   nclexFormats?: FormatCounts | null
 ): Metadata {
-  const count = totalQuestionsLabel?.trim() || SEO_LIVE_STATS.questionCount;
+  const count = totalQuestionsLabel?.trim();
   const title = enforceMetaTitle(
-    `One Study System. Six Boards. — ${count} Questions`,
+    count ? `One Study System. Six Boards. — ${count} Questions` : "One Study System. Six Boards.",
     "home"
   );
   const description = enforceMetaDescription(
-    `${count} active questions with Blueprint Roadmaps & mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. ${formatTrialLabel()} · no payment method required.`,
+    count
+      ? `${count} active questions with Blueprint Roadmaps & mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. ${formatTrialLabel()} · no payment method required.`
+      : `Blueprint Roadmaps and mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP and NPTE-PT. ${formatTrialLabel()} · no payment method required.`,
     "home"
   );
   const url = getSiteUrl();

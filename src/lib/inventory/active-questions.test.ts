@@ -128,7 +128,7 @@ describe("active question inventory", () => {
     });
     expect(floor.countSource).toBe("published-floor");
     expect(floor.activeCount).toBeNull();
-    expect(floor.definition).toMatch(/published floor/i);
+    expect(floor.definition).toMatch(/does not show a number/i);
     expect(floor.formatLine).toBeNull();
   });
 });

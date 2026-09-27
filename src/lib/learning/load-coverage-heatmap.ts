@@ -4,6 +4,7 @@
  * header already use. Attempt stats come from the exam roadmap.
  */
 
+import { applyScoredClinicalCatalog } from "@/lib/counts";
 import { fieldInventoryPayload } from "@/lib/inventory/active-questions";
 import {
   buildCoverageHeatmap,
@@ -41,9 +42,20 @@ export async function loadCoverageInventory(
   try {
     const payload = fieldInventoryPayload(fieldId, await getCachedActiveInventory());
     if (!payload) return null;
-    return {
+    const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
+    const bank = await loadPublishedClinicalBank(fieldId).catch(() => null);
+    const scored = applyScoredClinicalCatalog({
+      fieldId,
+      bankTotal: payload.total,
+      topicCounts: payload.counts,
+      formats: payload.formats,
+      topicFormats: payload.topicFormats,
       categories: payload.categories,
-      topicQuestionTotal: payload.total,
+      catalog: bank?.catalog ?? null,
+    });
+    return {
+      categories: scored.categories,
+      topicQuestionTotal: scored.total,
     };
   } catch (error) {
     console.warn(
