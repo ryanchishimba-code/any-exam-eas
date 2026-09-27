@@ -24,7 +24,7 @@ const SAMPLE_CARDS = [
     z: "z-[1]",
     scale: "scale-[0.92]",
     fields: [
-      { icon: Target, label: "Type 2 diabetes", tone: "violet" },
+      { icon: Target, label: "Type 2 diabetes", tone: "navy" },
       { icon: AlertTriangle, label: "GI upset, B12", tone: "amber" },
     ],
   },
@@ -78,7 +78,7 @@ export function Top500DrugsVisual({ className, variant = "panel" }: Props) {
     >
       <div className="aee-top500-visual__mesh pointer-events-none" aria-hidden />
       <div className="aee-top500-visual__glow aee-top500-visual__glow--teal" aria-hidden />
-      <div className="aee-top500-visual__glow aee-top500-visual__glow--violet" aria-hidden />
+      <div className="aee-top500-visual__glow aee-top500-visual__glow--navy" aria-hidden />
       <div className="aee-top500-visual__glow aee-top500-visual__glow--sky" aria-hidden />
 
       <div className="aee-top500-visual__badge" aria-hidden>
@@ -154,7 +154,7 @@ export function Top500DrugsVisual({ className, variant = "panel" }: Props) {
       </ul>
 
       <div className="aee-top500-visual__footer">
-        <Brain className="h-3 w-3 text-violet-500" aria-hidden />
+        <Brain className="h-3 w-3 text-teal-700" aria-hidden />
         <span>Generic · Brand · MOA · Pearls · FDA search</span>
       </div>
 

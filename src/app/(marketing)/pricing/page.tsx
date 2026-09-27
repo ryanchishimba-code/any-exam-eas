@@ -13,6 +13,7 @@ import {
   buildLandingBankCountsDisplay,
   getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
+import { formatExactQuestionCount, publishedSiteQuestionCounts } from "@/lib/counts";
 import { formatHeroTotalCountLine } from "@/lib/landing/content";
 import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
@@ -21,10 +22,9 @@ import { ROUTES } from "@/lib/routes";
 
 export const dynamic = "force-dynamic";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { snapshot } = await getCachedBankStatsBundle();
-  return buildPricingMetadata(buildLandingBankCountsDisplay(snapshot).totalLabel);
-}
+export const metadata: Metadata = buildPricingMetadata(
+  formatExactQuestionCount(publishedSiteQuestionCounts().totalQuestions)
+);
 
 const STUDY_PATH = [
   {

@@ -8,7 +8,7 @@ import type { LandingSuccessStory } from "@/lib/landing/content";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
 import { formatNclexPrepPriceComparison } from "@/lib/marketing/price-comparison";
-import { formatMonthlyPrice, formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER } from "@/lib/site";
+import { formatMonthlyPrice } from "@/lib/site";
 
 const PATH = [
   {
@@ -187,7 +187,6 @@ export function PriceSection({
             {formatNclexPrepPriceComparison()}
           </p>
         ) : null}
-        <p className="mt-4 text-base font-medium text-[var(--color-ink)]">{formatPricingCheckoutTrialOffer()}</p>
         <div className="mt-8 flex justify-center">
           <LandingCta href={trialHref} ctaName="price_trial" location="price">
             Start your free trial
@@ -228,7 +227,6 @@ export function FinalMarketingCta({
         >
           {title}
         </h2>
-        <p className="mt-5 text-base text-white/80">{formatPricingCheckoutTrialOffer()}</p>
         <div className="mt-8 flex justify-center">
           <LandingCta
             href={trialHref}
@@ -240,7 +238,6 @@ export function FinalMarketingCta({
             Start your free trial
           </LandingCta>
         </div>
-        <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-white/70">{MARKETING_DISCLAIMER}</p>
       </div>
     </section>
   );

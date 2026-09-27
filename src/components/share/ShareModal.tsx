@@ -66,7 +66,7 @@ export function ShareModal({ open, onClose, examLabel = "board" }: ShareModalPro
       aria-modal="true"
       aria-labelledby="share-title"
     >
-      <div className="w-full max-w-md overflow-hidden rounded-2xl bg-gradient-to-br from-sky-600 via-[var(--color-accent)] to-indigo-700 p-[1px] shadow-2xl">
+      <div className="w-full max-w-md overflow-hidden rounded-2xl bg-gradient-to-br from-teal-700 via-[var(--color-accent)] to-[#0a2540] p-[1px] shadow-2xl">
         <div className="rounded-2xl bg-white p-6">
           <h2 id="share-title" className="text-lg font-semibold text-slate-900">
             Share your progress

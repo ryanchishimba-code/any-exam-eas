@@ -139,6 +139,49 @@ export type SiteQuestionCounts = {
   roundedDown: string;
 };
 
+/**
+ * Canonical public board totals. SEO metadata reads this stamp so the
+ * document head does not wait on a database round trip. Live pages may
+ * still render the bank snapshot when it is available.
+ */
+export const PUBLISHED_BOARD_UNITS: Record<CountBoardSlug, BoardQuestionUnits> = {
+  nclex: boardQuestionUnits({
+    slug: "nclex",
+    bankItems: 5590,
+    formats: { mcq: 5590, ngn: 0, case: 0 },
+    clinical: { standaloneNgn: 10, caseStudies: 10, caseItems: 60 },
+  }),
+  usmle: boardQuestionUnits({
+    slug: "usmle",
+    bankItems: 17276,
+    formats: { mcq: 17276, ngn: 0, case: 0 },
+  }),
+  naplex: boardQuestionUnits({
+    slug: "naplex",
+    bankItems: 10066,
+    formats: { mcq: 10066, ngn: 0, case: 0 },
+  }),
+  pance: boardQuestionUnits({
+    slug: "pance",
+    bankItems: 2938,
+    formats: { mcq: 2938, ngn: 0, case: 0 },
+  }),
+  "aanp-fnp": boardQuestionUnits({
+    slug: "aanp-fnp",
+    bankItems: 6105,
+    formats: { mcq: 6105, ngn: 0, case: 0 },
+  }),
+  "npte-pt": boardQuestionUnits({
+    slug: "npte-pt",
+    bankItems: 4240,
+    formats: { mcq: 4240, ngn: 0, case: 0 },
+  }),
+};
+
+export function publishedSiteQuestionCounts(): SiteQuestionCounts {
+  return siteQuestionCounts(PUBLISHED_BOARD_UNITS);
+}
+
 export function siteQuestionCounts(
   boards: Record<CountBoardSlug, BoardQuestionUnits>
 ): SiteQuestionCounts {

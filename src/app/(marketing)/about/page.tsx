@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
@@ -22,6 +23,8 @@ import { formatPricingCheckoutTrialOffer, formatTrialCtaLabel, SITE_NAME } from 
 
 export const dynamic = "force-dynamic";
 
+export const metadata: Metadata = buildAboutMetadata();
+
 async function publishedOrLiveTotalLabel(): Promise<{ label: string; live: boolean }> {
   const { snapshot } = await getCachedBankStatsBundle();
   const display = buildLandingBankCountsDisplay(snapshot);
@@ -29,11 +32,6 @@ async function publishedOrLiveTotalLabel(): Promise<{ label: string; live: boole
     return { label: display.sentence || display.totalQuestionsLabel, live: true };
   }
   return { label: "", live: false };
-}
-
-export async function generateMetadata() {
-  const { label } = await publishedOrLiveTotalLabel();
-  return buildAboutMetadata(label);
 }
 
 const EXAM_HUB_LINKS = [

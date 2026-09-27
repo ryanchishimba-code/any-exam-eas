@@ -46,7 +46,7 @@ const EXAMS = [
     blurb: "Calculations & cases",
     href: "/question-bank?field=pharmacy",
     icon: Pill,
-    color: "#7c3aed",
+    color: "#0f766e",
   },
   {
     id: "pance",

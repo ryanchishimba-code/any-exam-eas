@@ -797,42 +797,42 @@
   transition: opacity 0.3s var(--ease-apple);
 }
 
-/* NCLEX — violet */
+/* NCLEX — teal */
 .aee-exam-card[data-theme="nclex"] {
-  background: linear-gradient(160deg, #faf5ff 0%, #ffffff 55%);
-  border-color: rgba(139, 92, 246, 0.22);
+  background: linear-gradient(160deg, #f0fdfa 0%, #ffffff 55%);
+  border-color: rgba(15, 118, 110, 0.22);
 }
 
 .aee-exam-card[data-theme="nclex"]:hover {
-  border-color: rgba(139, 92, 246, 0.45);
-  box-shadow: 0 20px 56px rgba(139, 92, 246, 0.18);
+  border-color: rgba(15, 118, 110, 0.45);
+  box-shadow: 0 20px 56px rgba(15, 118, 110, 0.18);
 }
 
 .aee-exam-card[data-theme="nclex"] .aee-exam-card-bar {
-  background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc);
+  background: linear-gradient(90deg, #115e59, #0f766e, #0d9488);
 }
 
 .aee-exam-card[data-theme="nclex"] .aee-exam-icon-wrap {
-  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
-  box-shadow: 0 8px 28px rgba(124, 58, 237, 0.35);
+  background: linear-gradient(135deg, #115e59 0%, #0f766e 100%);
+  box-shadow: 0 8px 28px rgba(15, 118, 110, 0.35);
 }
 
 .aee-exam-card[data-theme="nclex"] .aee-exam-subtitle {
-  color: #6d28d9;
+  color: #115e59;
 }
 
 .aee-exam-card[data-theme="nclex"] .aee-exam-tag {
-  border: 1px solid rgba(139, 92, 246, 0.25);
-  background: rgba(237, 233, 254, 0.8);
-  color: #5b21b6;
+  border: 1px solid rgba(15, 118, 110, 0.25);
+  background: rgba(204, 251, 241, 0.8);
+  color: #115e59;
 }
 
 .aee-exam-card[data-theme="nclex"] .aee-exam-cta {
-  color: #7c3aed;
+  color: #0f766e;
 }
 
 .aee-exam-card[data-theme="nclex"]:hover .aee-exam-arrow {
-  color: #7c3aed;
+  color: #0f766e;
 }
 
 /* USMLE — teal */
@@ -1043,42 +1043,42 @@
   color: #0284c7;
 }
 
-/* Others — indigo */
+/* Others — navy */
 .aee-exam-card[data-theme="others"] {
-  background: linear-gradient(160deg, #eef2ff 0%, #ffffff 55%);
-  border-color: rgba(99, 102, 241, 0.2);
+  background: linear-gradient(160deg, #f8fafc 0%, #ffffff 55%);
+  border-color: rgba(10, 37, 64, 0.16);
 }
 
 .aee-exam-card[data-theme="others"]:hover {
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 20px 56px rgba(99, 102, 241, 0.14);
+  border-color: rgba(10, 37, 64, 0.32);
+  box-shadow: 0 20px 56px rgba(10, 37, 64, 0.12);
 }
 
 .aee-exam-card[data-theme="others"] .aee-exam-card-bar {
-  background: linear-gradient(90deg, #4f46e5, #6366f1, #818cf8);
+  background: linear-gradient(90deg, #0a2540, #134e4a, #0f766e);
 }
 
 .aee-exam-card[data-theme="others"] .aee-exam-icon-wrap {
-  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
-  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.3);
+  background: linear-gradient(135deg, #0a2540 0%, #0f766e 100%);
+  box-shadow: 0 8px 28px rgba(10, 37, 64, 0.22);
 }
 
 .aee-exam-card[data-theme="others"] .aee-exam-subtitle {
-  color: #4338ca;
+  color: #0a2540;
 }
 
 .aee-exam-card[data-theme="others"] .aee-exam-tag {
-  border: 1px solid rgba(99, 102, 241, 0.22);
-  background: rgba(224, 231, 255, 0.8);
-  color: #3730a3;
+  border: 1px solid rgba(10, 37, 64, 0.18);
+  background: rgba(241, 245, 249, 0.9);
+  color: #0a2540;
 }
 
 .aee-exam-card[data-theme="others"] .aee-exam-cta {
-  color: #4f46e5;
+  color: #0f766e;
 }
 
 .aee-exam-card[data-theme="others"]:hover .aee-exam-arrow {
-  color: #4f46e5;
+  color: #0f766e;
 }
 
 /* Extracted from globals.css L2834-2932 */
@@ -1558,7 +1558,7 @@
   inset: 0;
   background:
     radial-gradient(circle at 18% 22%, rgba(13, 148, 136, 0.28), transparent 42%),
-    radial-gradient(circle at 82% 18%, rgba(124, 58, 237, 0.24), transparent 40%),
+    radial-gradient(circle at 82% 18%, rgba(10, 37, 64, 0.18), transparent 40%),
     radial-gradient(circle at 72% 88%, rgba(37, 99, 235, 0.22), transparent 38%),
     radial-gradient(circle at 28% 78%, rgba(219, 39, 119, 0.16), transparent 36%);
 }
@@ -1579,12 +1579,12 @@
   background: rgba(20, 184, 166, 0.55);
 }
 
-.aee-top500-visual__glow--violet {
+.aee-top500-visual__glow--navy {
   top: 4%;
   right: 6%;
   width: 32%;
   height: 36%;
-  background: rgba(139, 92, 246, 0.5);
+  background: rgba(10, 37, 64, 0.28);
   animation-delay: -2s;
 }
 
@@ -1725,9 +1725,9 @@
   line-height: 1.25;
 }
 
-.aee-top500-visual__field--violet {
-  background: rgba(124, 58, 237, 0.1);
-  color: #5b21b6;
+.aee-top500-visual__field--navy {
+  background: rgba(10, 37, 64, 0.08);
+  color: #0a2540;
 }
 
 .aee-top500-visual__field--rose {
