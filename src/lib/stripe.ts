@@ -75,15 +75,15 @@ type CheckoutBaseParams = {
   } | null;
 };
 
-function renewalConsentMetadata(params: CheckoutBaseParams): Record<string, string> {
-  const consent = params.renewalConsent;
-  if (!consent) return {};
-  return {
-    renewalConsentVersion: consent.version,
-    renewalConsentAt: consent.acceptedAt,
-    renewalConsentIp: consent.ip ?? "",
-    renewalConsentText: consent.text.slice(0, 500),
-  };
+function applyRenewalConsentMetadata(
+  metadata: Stripe.MetadataParam,
+  consent: CheckoutBaseParams["renewalConsent"]
+) {
+  if (!consent) return;
+  metadata.renewalConsentVersion = consent.version;
+  metadata.renewalConsentAt = consent.acceptedAt;
+  metadata.renewalConsentIp = consent.ip ?? "";
+  metadata.renewalConsentText = consent.text.slice(0, 500);
 }
 
 /** Fields shared by both session shapes so the webhook can read them uniformly. */
@@ -92,18 +92,18 @@ function sessionMetadata(
   tier: SubscriptionTier,
   interval: BillingInterval,
   purchaseType: "subscription" | "one_time"
-) {
-  return {
+): Stripe.MetadataParam {
+  const metadata: Stripe.MetadataParam = {
     userId: params.userId,
     plan: params.plan ?? "subscribe",
     tier,
     interval,
     purchaseType,
-    ...(params.promoCode?.trim()
-      ? { promoCode: params.promoCode.trim().toUpperCase() }
-      : {}),
-    ...renewalConsentMetadata(params),
   };
+  const promo = params.promoCode?.trim();
+  if (promo) metadata.promoCode = promo.toUpperCase();
+  applyRenewalConsentMetadata(metadata, params.renewalConsent);
+  return metadata;
 }
 
 /**
@@ -171,17 +171,18 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     lineItems.unshift({ price: introPriceId, quantity: 1 });
   }
 
+  const subscriptionMetadata: Stripe.MetadataParam = {
+    userId: params.userId,
+    plan: params.plan ?? "subscribe",
+    tier,
+    interval,
+  };
+  const promo = params.promoCode?.trim();
+  if (promo) subscriptionMetadata.promoCode = promo.toUpperCase();
+  applyRenewalConsentMetadata(subscriptionMetadata, params.renewalConsent);
+
   const subscriptionData: Stripe.Checkout.SessionCreateParams.SubscriptionData = {
-    metadata: {
-      userId: params.userId,
-      plan: params.plan ?? "subscribe",
-      tier,
-      interval,
-      ...(params.promoCode?.trim()
-        ? { promoCode: params.promoCode.trim().toUpperCase() }
-        : {}),
-      ...renewalConsentMetadata(params),
-    },
+    metadata: subscriptionMetadata,
   };
 
   if (params.trialEndUnix) {
@@ -573,31 +574,24 @@ export async function convertTrialSubscriptionToPaid(params: {
   }
 
   const newPriceId = requireStripePriceId(params.tier, params.interval);
+  const updateMetadata: Stripe.MetadataParam = {
+    ...sub.metadata,
+    userId: params.userId,
+    plan: "subscribe",
+    tier: params.tier,
+    interval: params.interval,
+    pendingTier: "",
+    pendingInterval: "",
+    pendingActiveConfirmation: "1",
+  };
+  const promo = params.promoCode?.trim();
+  if (promo) updateMetadata.promoCode = promo.toUpperCase();
+  applyRenewalConsentMetadata(updateMetadata, params.renewalConsent);
   const updateParams: Stripe.SubscriptionUpdateParams = {
     items: [{ id: item.id, price: newPriceId }],
     trial_end: "now",
     proration_behavior: "none",
-    metadata: {
-      ...sub.metadata,
-      userId: params.userId,
-      plan: "subscribe",
-      tier: params.tier,
-      interval: params.interval,
-      pendingTier: "",
-      pendingInterval: "",
-      ...(params.promoCode?.trim()
-        ? { promoCode: params.promoCode.trim().toUpperCase() }
-        : {}),
-      ...(params.renewalConsent
-        ? {
-            renewalConsentVersion: params.renewalConsent.version,
-            renewalConsentAt: params.renewalConsent.acceptedAt,
-            renewalConsentIp: params.renewalConsent.ip ?? "",
-            renewalConsentText: params.renewalConsent.text.slice(0, 500),
-          }
-        : {}),
-      pendingActiveConfirmation: "1",
-    },
+    metadata: updateMetadata,
   };
 
   if (params.stripeCouponId) {
