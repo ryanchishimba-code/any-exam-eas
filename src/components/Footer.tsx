@@ -67,20 +67,19 @@ export function Footer() {
       role="contentinfo"
     >
       <div className="mx-auto max-w-[980px] px-5 sm:px-6">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[minmax(13.75rem,1.2fr)_repeat(4,minmax(0,1fr))]">
           <div className="min-w-0 sm:col-span-2 lg:col-span-1">
             <BrandLogo href={ROUTES.home} variant="nav" showName />
-            <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+            <p className="mt-3 max-w-full text-sm leading-relaxed text-[var(--color-ink-muted)]">
               {formatPricingCheckoutTrialOffer()}
             </p>
-            <p className="mt-2 break-words text-sm leading-relaxed text-[var(--color-ink)]">
+            <p className="mt-2 flex max-w-full flex-col items-start gap-0.5 text-sm leading-snug text-[var(--color-ink)]">
               <a
                 href={`mailto:${LEGAL_ENTITY.supportEmail}`}
-                className="transition hover:text-[var(--color-accent)]"
+                className="whitespace-nowrap transition hover:text-[var(--color-accent)]"
               >
                 {LEGAL_ENTITY.supportEmail}
               </a>
-              <span aria-hidden> · </span>
               <SupportPhoneLink className="whitespace-nowrap transition hover:text-[var(--color-accent)]" />
             </p>
           </div>

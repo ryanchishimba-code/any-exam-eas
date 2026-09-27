@@ -10,10 +10,9 @@ import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-me
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { pricingHeadlineFromContext } from "@/lib/marketing/pricing-headline";
 import { formatExactQuestionCount, publishedSiteQuestionCounts } from "@/lib/counts";
-import { formatHeroTotalCountLine } from "@/lib/landing/content";
 import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
-import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
+import { formatMonthlyPrice } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata: Metadata = buildPricingMetadata(
@@ -64,33 +63,18 @@ export default async function PricingPage({
     field: firstParam(params.field),
     exam: firstParam(params.exam),
   });
-  // Published stamp from counts.ts. A live bank query blocked first paint.
   const published = publishedSiteQuestionCounts();
   const publishedLabel = formatExactQuestionCount(published.totalQuestions);
-  const totalLine = published.sentence.includes("including")
-    ? published.sentence
-    : formatHeroTotalCountLine(publishedLabel);
 
   return (
     <>
       <JsonLdScript data={buildPricingJsonLd(publishedLabel)} />
       <PageShell
         title={<PricingBoardHeadline initial={headline} />}
-        description={
-          totalLine
-            ? `${totalLine}. Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`
-            : `Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`
-        }
+        description={`${publishedLabel} questions across six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`}
         align="center"
         maxWidth="max-w-3xl"
       >
-        <p
-          className="mx-auto mt-3 max-w-md text-center text-sm font-medium tracking-[-0.01em] text-[var(--color-ink)]"
-          data-offer-line
-        >
-          {formatPricingCheckoutTrialOffer()}
-        </p>
-
         {firstParam(params.paywall) || firstParam(params.upgrade) ? (
           <Suspense fallback={null}>
             <PricingQueryNotices />

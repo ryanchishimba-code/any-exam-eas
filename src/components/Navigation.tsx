@@ -23,9 +23,7 @@ import { marketingExamKeyFromPath } from "@/lib/marketing/board-paths";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 // Only signed-in visitors ever see this, and it needs framer-motion for its
-// menu. Importing it statically put that dependency in the entry chunk for
-// anonymous traffic on the static marketing pages. The nav already renders a
-// skeleton until auth resolves, so there is nothing to server-render here.
+// menu. Logged-out marketing pages render Sign in in the first HTML instead.
 const AvatarDropdown = dynamic(
   () => import("@/components/navigation/AvatarDropdown").then((m) => m.AvatarDropdown),
   { ssr: false }
@@ -65,7 +63,9 @@ export function Navigation() {
 
   const isAuthenticated = status === "authenticated" && Boolean(session?.user);
   const resolvingAuthedAccess = isAuthenticated && accessLoading;
-  const resolvingAuth = status === "loading" || resolvingAuthedAccess;
+  // Session starts as "loading" for everyone. Treat that as logged out so the
+  // Sign in and trial buttons are in the first HTML, not a grey placeholder.
+  const resolvingAuth = resolvingAuthedAccess;
   const { isAdmin } = useIsAdmin();
 
   const links = useMemo(() => {
