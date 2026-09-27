@@ -56,22 +56,23 @@ export type QualityFacts = {
   suppressedNursing: number | null;
   publishedNgnItems: number | null;
   publishedNgnCases: number | null;
-  rnOwnerApprovals: number | null;
 };
+
+/** Public description of published NGN items. No per-item review claim. */
+export const NGN_PUBLISHED_DESCRIPTION =
+  "They are written to the 2026 NCSBN test plan, with cited sources.";
 
 const EMPTY_FACTS: QualityFacts = {
   live: false,
   suppressedNursing: null,
   publishedNgnItems: null,
   publishedNgnCases: null,
-  rnOwnerApprovals: null,
 };
 
 type FactRow = {
   suppressed_nursing: number;
   ngn_items: number;
   ngn_cases: number;
-  rn_approvals: number;
 };
 
 export async function getQualityFacts(): Promise<QualityFacts> {
@@ -86,14 +87,7 @@ export async function getQualityFacts(): Promise<QualityFacts> {
             AND COALESCE(curation_meta #>> '{studentEligibility,status}', '') = 'suppressed'
         ) AS suppressed_nursing,
         (SELECT COUNT(*)::int FROM ngn_item WHERE status = 'published') AS ngn_items,
-        (SELECT COUNT(*)::int FROM ngn_case WHERE status = 'published') AS ngn_cases,
-        (
-          SELECT COUNT(*)::int
-          FROM ngn_item_review
-          WHERE decision = 'approve'
-            AND license_type = 'RN'
-            AND comments = 'owner attestation'
-        ) AS rn_approvals
+        (SELECT COUNT(*)::int FROM ngn_case WHERE status = 'published') AS ngn_cases
       `,
       []
     );
@@ -104,7 +98,6 @@ export async function getQualityFacts(): Promise<QualityFacts> {
       suppressedNursing: Number(row.suppressed_nursing),
       publishedNgnItems: Number(row.ngn_items),
       publishedNgnCases: Number(row.ngn_cases),
-      rnOwnerApprovals: Number(row.rn_approvals),
     };
   } catch {
     return EMPTY_FACTS;

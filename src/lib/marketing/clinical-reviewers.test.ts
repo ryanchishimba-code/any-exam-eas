@@ -6,6 +6,7 @@ import {
   clinicalReviewerForExam,
   clinicalReviewerPersonNodes,
 } from "@/lib/marketing/company";
+import { NGN_PUBLISHED_DESCRIPTION } from "@/lib/marketing/quality-facts";
 import { EXAM_SEO_KEYS } from "@/lib/seo/exam-config";
 
 describe("CLINICAL_REVIEWERS", () => {
@@ -34,7 +35,14 @@ describe("CLINICAL_REVIEWERS", () => {
     );
     expect(bios).not.toMatch(/USMLE|PANCE|NPTE|AANP|years|University|employed/i);
     expect(CLINICAL_REVIEWERS[0]?.role).toContain("NAPLEX and pharmacology");
-    expect(CLINICAL_REVIEWERS[1]?.role).toContain("NCLEX-RN/PN, including NGN case studies");
+    expect(CLINICAL_REVIEWERS[1]?.role).toBe(
+      "Leads nursing content review (NCLEX-RN/PN). This is an ongoing role.",
+    );
+    expect(`${CLINICAL_REVIEWERS[1]?.role} ${CLINICAL_REVIEWERS[1]?.jobTitle}`).not.toMatch(/NGN/);
+    expect(NGN_PUBLISHED_DESCRIPTION).toBe(
+      "They are written to the 2026 NCSBN test plan, with cited sources.",
+    );
+    expect(NGN_PUBLISHED_DESCRIPTION).not.toMatch(/RN|Ileen|reviewed/i);
     expect(BOARDS_REVIEWED_BY_PROCESS).toMatch(/official content outline/);
     expect(BOARDS_REVIEWED_BY_PROCESS).toMatch(/quality gate/);
     expect(BOARD_PROCESS_LINE).not.toMatch(/Chishimba/);

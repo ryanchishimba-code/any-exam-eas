@@ -3,10 +3,11 @@ import Link from "next/link";
 import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LEGAL_ENTITY } from "@/lib/legal";
-import { buildClinicalReviewerJsonLd, clinicalReviewerForExam } from "@/lib/marketing/company";
+import { buildClinicalReviewerJsonLd } from "@/lib/marketing/company";
 import { ROUTES } from "@/lib/routes";
 import {
   OFFICIAL_TEST_PLANS,
+  NGN_PUBLISHED_DESCRIPTION,
   QUALITY_PAGE_UPDATED,
   getQualityFacts,
 } from "@/lib/marketing/quality-facts";
@@ -40,8 +41,6 @@ export default async function HowQuestionsAreReviewedPage() {
   const suppressed = countLabel(facts.suppressedNursing);
   const ngnItems = countLabel(facts.publishedNgnItems);
   const ngnCases = countLabel(facts.publishedNgnCases);
-  const nursingLead = clinicalReviewerForExam("nclex");
-
   return (
     <article className="bg-[var(--color-bg)] px-6 pb-20 pt-[var(--page-top)]">
       <JsonLdScript data={buildClinicalReviewerJsonLd()} />
@@ -123,22 +122,14 @@ export default async function HowQuestionsAreReviewedPage() {
               practice until that repair. The count is read from the bank on this page load.
             </p>
           ) : null}
-          {facts.live && ngnItems && ngnCases && facts.rnOwnerApprovals ? (
+          {facts.live && ngnItems && ngnCases ? (
             <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-              Separately, {ngnItems} NGN items in {ngnCases} unfolding case studies are published.
-              Each of those published items has an RN owner attestation on an append-only review
-              record.
-              {nursingLead
-                ? ` ${nursingLead.displayName} leads nursing content review, including NGN case studies.`
-                : ""}
+              Separately, {ngnItems} NGN items in {ngnCases} unfolding case studies are published.{" "}
+              {NGN_PUBLISHED_DESCRIPTION}
             </p>
           ) : (
             <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-              NGN case items live in their own tables. Publishing one requires an RN owner
-              attestation stored on an append-only review record.
-              {nursingLead
-                ? ` ${nursingLead.displayName} leads nursing content review, including NGN case studies.`
-                : ""}
+              NGN case items live in their own tables. {NGN_PUBLISHED_DESCRIPTION}
             </p>
           )}
         </section>
