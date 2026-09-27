@@ -37,7 +37,7 @@ export const CLINICAL_REVIEWERS: readonly ClinicalReviewer[] = [
     role: "Leads pharmacy content review (NAPLEX and pharmacology).",
     jobTitle: "Pharmacy content review lead (NAPLEX and pharmacology)",
     examKeys: ["naplex"],
-    avatar: { background: "#1e3a5f", color: "#0d9488" },
+    avatar: { background: "#1e3a5f", color: "#ffffff" },
   },
   {
     id: "nursing",
@@ -46,7 +46,7 @@ export const CLINICAL_REVIEWERS: readonly ClinicalReviewer[] = [
     role: "Leads nursing content review (NCLEX-RN/PN). This is an ongoing role.",
     jobTitle: "Nursing content review lead (NCLEX-RN/PN)",
     examKeys: ["nclex"],
-    avatar: { background: "#0d9488", color: "#1e3a5f" },
+    avatar: { background: "#0f766e", color: "#ffffff" },
   },
 ];
 
