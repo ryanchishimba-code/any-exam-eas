@@ -15,6 +15,7 @@ import type { SignupPlan } from "@/lib/validators/auth";
 import {
   checkPassword,
   isPasswordValid,
+  PASSWORD_MIN_LENGTH,
   passwordError,
   passwordRequirements,
 } from "@/lib/validators/password-policy";
@@ -348,9 +349,9 @@ export function SignupForm({
                   name="password"
                   required
                   type={showPassword ? "text" : "password"}
-                  minLength={10}
+                  minLength={PASSWORD_MIN_LENGTH}
                   autoComplete="new-password"
-                  placeholder="At least 10 characters"
+                  placeholder={passwordRequirements[0]!.label}
                   value={password}
                   aria-invalid={passwordMessage ? true : undefined}
                   aria-describedby="signup-password-reqs"

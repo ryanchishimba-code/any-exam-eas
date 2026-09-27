@@ -86,7 +86,7 @@ test.describe("Signup form", () => {
     await page.getByLabel("Email").fill("student@example.com");
     await page.getByRole("textbox", { name: "Password", exact: true }).fill("short");
     await page.getByRole("button", { name: "Continue" }).click();
-    await expect(page.getByText("Password must be at least 10 characters.")).toBeVisible();
+    await expect(page.getByText("Password must be at least 8 characters.")).toBeVisible();
 
     await page.getByRole("textbox", { name: "Password", exact: true }).fill("TestPassword1");
     await page.getByRole("button", { name: "Show password" }).click();
