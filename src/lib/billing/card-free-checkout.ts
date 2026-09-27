@@ -27,6 +27,28 @@ export type CheckoutEntryDecision =
   | { kind: "dashboard" }
   | { kind: "update-payment"; href: string };
 
+/**
+ * Logged-out visitors never reach the checkout page for a trial. Middleware
+ * runs before the page redirect, so this href has to be decided there.
+ * `plan=subscribe` stays on the auth guard. Logged-in visitors return null
+ * so the page can start an app trial or send a used trial to paid subscribe.
+ */
+export function loggedOutTrialCheckoutHref(
+  pathname: string,
+  search: string,
+  loggedIn: boolean
+): string | null {
+  if (loggedIn) return null;
+  if (pathname !== "/checkout" && !pathname.startsWith("/checkout/")) return null;
+  const params = new URLSearchParams(search.startsWith("?") ? search.slice(1) : search);
+  if (params.get("plan") === "subscribe") return null;
+  const query: CheckoutQuery = {};
+  params.forEach((value, key) => {
+    query[key] = value;
+  });
+  return signupHrefFromCheckoutQuery(query);
+}
+
 export function signupHrefFromCheckoutQuery(query: CheckoutQuery): string {
   const params = new URLSearchParams();
   params.set("plan", "trial");

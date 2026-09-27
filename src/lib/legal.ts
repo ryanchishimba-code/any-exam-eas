@@ -117,7 +117,7 @@ export const LEGAL_DISCLAIMERS = {
  * spaces. The full attribution lives in `LEGAL_DISCLAIMERS.trademarks`.
  */
 export const TRADEMARK_NOTICE =
-  "USMLE®, NCLEX®, NAPLEX®, MPJE®, PANCE®, NPTE®, AANP®, and other exam names are trademarks of their respective owners. Any Exam Easy is independent and is not affiliated with, endorsed by, or sponsored by these organizations. UWorld, Kaplan, Archer Review, and RxPrep are trademarks of their owners; AnyExamEasy is not affiliated with or endorsed by them.";
+  "USMLE®, NCLEX®, NAPLEX®, MPJE®, PANCE®, NPTE®, AANP®, and other exam names are trademarks of their respective owners. Any Exam Easy is independent and is not affiliated with, endorsed by, or sponsored by these organizations. UWorld, Kaplan, Archer Review, RxPrep, and AMBOSS are trademarks of their owners; AnyExamEasy is not affiliated with or endorsed by them.";
 
 export type LegalDisclaimerKey = keyof typeof LEGAL_DISCLAIMERS;
 

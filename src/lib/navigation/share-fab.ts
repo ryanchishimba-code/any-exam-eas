@@ -28,6 +28,8 @@ const SHARE_FAB_HIDDEN_PREFIXES = [
   "/contact",
   "/legal",
   "/resources",
+  "/dev",
+  "/faq",
 ] as const;
 
 export function isShareFabHiddenRoute(pathname: string | null | undefined): boolean {

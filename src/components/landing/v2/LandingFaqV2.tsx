@@ -14,7 +14,7 @@ import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { PRO_ANNUAL_SAVINGS_PERCENT } from "@/lib/pricing-defaults";
-import { formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
+import { formatMonthlyPrice, formatSignupTrialScope } from "@/lib/site";
 
 const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail} or call ${LEGAL_ENTITY.supportPhone.display}.`;
 
@@ -32,7 +32,7 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   {
     home: true,
     q: "Is there a free trial? Do I need a card?",
-    a: `Yes — a ${formatTrialLabel()} with ${formatTrialQuestionLimit()}. No payment method required at signup. Upgrade anytime for unlimited questions, Deep Dive modules, and advanced analytics.`,
+    a: `Yes. ${formatSignupTrialScope()} No payment method required at signup. Upgrade anytime for unlimited questions, Deep Dive modules, and advanced analytics.`,
   },
   {
     q: "How is this different from UWorld or AMBOSS?",
@@ -79,7 +79,14 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   },
 ];
 
-export function LandingFaqV2({ scope = "all" }: { scope?: "all" | "home" }) {
+export function LandingFaqV2({
+  scope = "all",
+  pageHeading = false,
+}: {
+  scope?: "all" | "home";
+  /** Dedicated /faq page. Other embeds keep the section heading as an h2. */
+  pageHeading?: boolean;
+}) {
   const items = scope === "home" ? FAQ.filter((item) => item.home) : FAQ;
   const jsonLd = {
     "@context": "https://schema.org",
@@ -107,15 +114,26 @@ export function LandingFaqV2({ scope = "all" }: { scope?: "all" | "home" }) {
       />
       <div className="mx-auto max-w-3xl px-5 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)]">
-            Questions, answered
-          </p>
-          <h2
-            id="faq-heading"
-            className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl"
-          >
-            Before you start
-          </h2>
+          {pageHeading ? (
+            <h1
+              id="faq-heading"
+              className="text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl"
+            >
+              Questions, answered.
+            </h1>
+          ) : (
+            <>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)]">
+                Questions, answered
+              </p>
+              <h2
+                id="faq-heading"
+                className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl"
+              >
+                Before you start
+              </h2>
+            </>
+          )}
         </div>
 
         <div className="mt-10 divide-y divide-[var(--color-border)] overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-apple-sm)]">

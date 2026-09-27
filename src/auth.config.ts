@@ -4,6 +4,7 @@ import { isPremiumPage, isStudyGuidePath } from "@/lib/premium-routes";
 import { isInternalPath, staffLoginUrl } from "@/lib/staff-routes";
 import { ADMIN_LOGIN_PATH, adminLoginUrl, isAdminPath } from "@/lib/admin/routes";
 import { hasMinRole, isStaffRole } from "@/lib/permissions";
+import { loggedOutTrialCheckoutHref } from "@/lib/billing/card-free-checkout";
 
 /** Edge-safe config — used by middleware only (no Prisma/bcrypt). */
 export const authConfig = {
@@ -81,6 +82,11 @@ export const authConfig = {
       }
 
       if (isStudyGuidePath(path)) return true;
+
+      const trialSignup = loggedOutTrialCheckoutHref(path, request.nextUrl.search, isLoggedIn);
+      if (trialSignup) {
+        return NextResponse.redirect(new URL(trialSignup, request.nextUrl));
+      }
 
       if (isExamSelect || isSettings || isStudyHub || isPremium) {
         if (isLoggedIn) return true;

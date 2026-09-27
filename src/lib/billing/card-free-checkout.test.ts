@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   assertStripeTrialCheckoutClosed,
   paidSubscribeHrefFromCheckoutQuery,
+  loggedOutTrialCheckoutHref,
   resolveCheckoutEntry,
   signupHrefFromCheckoutQuery,
 } from "./card-free-checkout";
@@ -135,6 +136,26 @@ describe("resolveCheckoutEntry", () => {
         query: trialQuery,
       })
     ).toEqual({ kind: "update-payment", href: "/settings?billing=past_due" });
+  });
+});
+
+describe("loggedOutTrialCheckoutHref", () => {
+  it("sends a logged-out trial checkout to signup before the auth guard", () => {
+    expect(
+      loggedOutTrialCheckoutHref(
+        "/checkout",
+        "?plan=trial&interval=monthly&tier=pro",
+        false
+      )
+    ).toBe("/signup?plan=trial&interval=monthly&tier=pro");
+  });
+
+  it("leaves paid checkout and logged-in trial visits to the page", () => {
+    expect(loggedOutTrialCheckoutHref("/checkout", "?plan=subscribe", false)).toBeNull();
+    expect(
+      loggedOutTrialCheckoutHref("/checkout", "?plan=trial&interval=monthly", true)
+    ).toBeNull();
+    expect(loggedOutTrialCheckoutHref("/dashboard", "?plan=trial", false)).toBeNull();
   });
 });
 
