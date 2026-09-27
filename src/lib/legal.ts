@@ -7,45 +7,24 @@ export const LEGAL_ENTITY = {
   supportEmail: "support@anyexameasy.com",
   legalEmail: "legal@anyexameasy.com",
   /**
-   * Public support phone and hours. Display (214) 883-6375, tap tel:+12148836375,
-   * schema telephone +1-214-883-6375. Support is 24/7.
+   * Public support phone. Display (214) 883-6375, tap tel:+12148836375,
+   * schema telephone +1-214-883-6375. No hours are published.
    */
   supportPhone: {
     display: "(214) 883-6375",
     tel: "tel:+12148836375",
     schema: "+1-214-883-6375",
-    helpLabel: "Help 24/7",
-    supportLabel: "24/7 support",
-    availableLabel: "Available 24/7",
-    opens: "00:00",
-    closes: "23:59",
-    dayOfWeek: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
   },
 } as const;
 
-/** Organization JSON-LD contactPoint, including 24/7 hours. */
+/** Organization JSON-LD contactPoint. Hours are omitted on purpose. */
 export function organizationContactPoint() {
-  const phone = LEGAL_ENTITY.supportPhone;
   return {
     "@type": "ContactPoint" as const,
-    telephone: phone.schema,
+    telephone: LEGAL_ENTITY.supportPhone.schema,
     contactType: "customer support",
     areaServed: "US",
     availableLanguage: "English",
-    hoursAvailable: {
-      "@type": "OpeningHoursSpecification" as const,
-      dayOfWeek: phone.dayOfWeek,
-      opens: phone.opens,
-      closes: phone.closes,
-    },
   };
 }
 

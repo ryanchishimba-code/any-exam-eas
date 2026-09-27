@@ -16,7 +16,7 @@ import { LEGAL_ENTITY } from "@/lib/legal";
 import { PRO_ANNUAL_SAVINGS_PERCENT } from "@/lib/pricing-defaults";
 import { formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 
-const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail} or call ${LEGAL_ENTITY.supportPhone.display}. ${LEGAL_ENTITY.supportPhone.availableLabel}.`;
+const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail} or call ${LEGAL_ENTITY.supportPhone.display}.`;
 
 const FAQ: { q: string; a: string; body?: ReactNode }[] = [
   {
@@ -67,8 +67,7 @@ const FAQ: { q: string; a: string; body?: ReactNode }[] = [
         >
           {LEGAL_ENTITY.supportEmail}
         </a>{" "}
-        or call <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.{" "}
-        {LEGAL_ENTITY.supportPhone.availableLabel}.
+        or call <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.
       </>
     ),
   },

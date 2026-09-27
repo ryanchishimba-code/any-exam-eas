@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SupportHoursNote, SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { COMPANY_PUBLIC } from "@/lib/marketing/company";
 import { ROUTES } from "@/lib/routes";
 import { QUALITY_PAGE_UPDATED } from "@/lib/marketing/quality-facts";
 
 const TITLE = "Contact AnyExamEasy";
-const DESCRIPTION = `Email or call AnyExamEasy about billing, a question issue, or privacy. ${COMPANY_PUBLIC.supportPhone.supportLabel}: ${COMPANY_PUBLIC.supportEmail} or ${COMPANY_PUBLIC.supportPhone.display}.`;
+const DESCRIPTION = `Email or call AnyExamEasy about billing, a question issue, or privacy. Support is ${COMPANY_PUBLIC.supportEmail} or ${COMPANY_PUBLIC.supportPhone.display}.`;
 
 export const metadata: Metadata = {
   title: { absolute: `${TITLE} — Any Exam Easy` },
@@ -39,7 +39,6 @@ export default function ContactPage() {
             {COMPANY_PUBLIC.supportEmail}
           </a>
           <SupportPhoneLink className="inline-flex min-h-11 items-center text-xl font-semibold tracking-tight text-[var(--color-accent)] hover:underline" />
-          <SupportHoursNote variant="support" className="text-sm font-semibold text-[var(--color-ink-muted)]" />
         </p>
         <ul className="mt-8 space-y-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
           <li>Billing and cancellation: say so in the subject, or use Cancel or manage billing in Settings.</li>

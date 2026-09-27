@@ -98,7 +98,7 @@ export async function sendWelcomeTrialEmail(
     `Dashboard: ${dashboardUrl}`,
     `Upgrade: ${upgradeUrl}`,
     "",
-    `Support: ${LEGAL_ENTITY.supportEmail} · ${LEGAL_ENTITY.supportPhone.display} · ${LEGAL_ENTITY.supportPhone.helpLabel}`,
+    `Support: ${LEGAL_ENTITY.supportEmail} · ${LEGAL_ENTITY.supportPhone.display}`,
   ].join("\n");
 
   const html = transactionalEmailLayout({
@@ -178,7 +178,7 @@ export async function sendTrialEndingUpgradeEmail(
     `Upgrade: ${upgradeUrl}`,
     `Dashboard: ${dashboardUrl}`,
     "",
-    `Support: ${LEGAL_ENTITY.supportEmail} · ${LEGAL_ENTITY.supportPhone.display} · ${LEGAL_ENTITY.supportPhone.helpLabel}`,
+    `Support: ${LEGAL_ENTITY.supportEmail} · ${LEGAL_ENTITY.supportPhone.display}`,
   ]
     .filter(Boolean)
     .join("\n");

@@ -5,7 +5,7 @@ import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
 import { contentWidth } from "@/lib/layout/shell-ui";
 import Link from "next/link";
-import { SupportHoursNote, SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { SITE_NAME, formatPricingCheckoutTrialOffer } from "@/lib/site";
@@ -66,8 +66,8 @@ export default function AuthLoginPage() {
         >
           {LEGAL_ENTITY.supportEmail}
         </a>{" "}
-        or <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.{" "}
-        <SupportHoursNote />.
+        or <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />
+        .
       </p>
     </PageShell>
   );
