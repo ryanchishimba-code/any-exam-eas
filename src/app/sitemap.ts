@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { listPublishedBlogPosts } from "@/lib/blog/public";
 import { qotdPath, todayIsoUtc } from "@/lib/demo/qotd";
 import { EXAM_SLUGS } from "@/lib/edtech/exams";
 import { getSiteUrl } from "@/lib/seo";
@@ -22,7 +23,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/legal/refunds", priority: 0.4, changeFrequency: "yearly" },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
   const now = new Date();
   const today = todayIsoUtc();
@@ -72,11 +73,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const blogEntries: MetadataRoute.Sitemap = [
+    {
+      url: `${base}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+  ];
+  try {
+    const posts = await listPublishedBlogPosts();
+    for (const post of posts) {
+      blogEntries.push({
+        url: `${base}/blog/${post.slug}`,
+        lastModified: new Date(post.updatedAt ?? post.publishedAt ?? now),
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+    }
+  } catch {
+    // Build and preview can render the sitemap before the database is reachable.
+  }
+
   return [
     ...staticEntries,
     ...examEntries,
     ...examAliasEntries,
     ...qotdEntries,
     ...resourceEntries,
+    ...blogEntries,
   ];
 }

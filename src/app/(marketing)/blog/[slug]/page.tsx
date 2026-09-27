@@ -2,14 +2,23 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogShareButtons } from "@/components/blog/BlogShareButtons";
+import { BlogTrialCta } from "@/components/blog/BlogTrialCta";
 import { BlogViewTracker } from "@/components/blog/BlogViewTracker";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import {
   blogPostAbsoluteUrl,
   getPublishedBlogPostBySlug,
   listPublishedBlogSlugs,
   listRelatedBlogPosts,
 } from "@/lib/blog/public";
+import {
+  blogArticleJsonLd,
+  blogBreadcrumbJsonLd,
+  blogFaqJsonLd,
+  extractBlogFaqs,
+} from "@/lib/blog/schema";
 import { ROUTES } from "@/lib/routes";
+import { absoluteUrl, DEFAULT_OG_IMAGE_PATH } from "@/lib/seo";
 import { clampMetaDescription, clampMetaTitle } from "@/lib/seo/meta-budget";
 import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { SITE_NAME } from "@/lib/site";
@@ -39,11 +48,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     post.metaDescription || post.excerpt || `${post.title} — board exam prep tips from ${SITE_NAME}.`
   );
   const url = blogPostAbsoluteUrl(post.slug);
-  const coverAbsolute =
-    post.coverImage &&
-    (post.coverImage.startsWith("http")
+  const coverAbsolute = post.coverImage
+    ? post.coverImage.startsWith("http")
       ? post.coverImage
-      : `${url.replace(/\/blog\/[^/]+$/, "")}${post.coverImage}`);
+      : absoluteUrl(post.coverImage)
+    : absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
   return {
     title: { absolute: title },
@@ -53,13 +62,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       type: "article",
       url,
-      images: coverAbsolute ? [{ url: coverAbsolute }] : undefined,
+      publishedTime: post.publishedAt ?? undefined,
+      modifiedTime: post.updatedAt ?? post.publishedAt ?? undefined,
+      images: [{ url: coverAbsolute, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: coverAbsolute ? [coverAbsolute] : undefined,
+      images: [coverAbsolute],
     },
     alternates: { canonical: url },
   };
@@ -67,7 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function formatDate(iso: string | null) {
   if (!iso) return "";
-  return new Date(iso).toLocaleDateString(undefined, {
+  return new Date(iso).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -105,15 +116,48 @@ export default async function BlogPostPage({ params }: Props) {
   const toc = extractToc(post.content);
   const html = injectHeadingIds(post.content, toc);
   const url = blogPostAbsoluteUrl(post.slug);
+  const description = clampMetaDescription(
+    post.metaDescription || post.excerpt || `${post.title} — board exam prep from ${SITE_NAME}.`
+  );
+  const faqs = blogFaqJsonLd(extractBlogFaqs(post.content));
+  const coverAbsolute = post.coverImage
+    ? post.coverImage.startsWith("http")
+      ? post.coverImage
+      : absoluteUrl(post.coverImage)
+    : null;
+  const updatedLabel = formatDate(post.updatedAt);
+  const publishedLabel = formatDate(post.publishedAt);
+  const showUpdated = Boolean(updatedLabel && updatedLabel !== publishedLabel);
 
   return (
     <>
+      <JsonLdScript
+        data={blogArticleJsonLd({
+          title: post.title,
+          description,
+          slug: post.slug,
+          publishedAt: post.publishedAt,
+          updatedAt: post.updatedAt,
+          authorName: post.authorName,
+          imageUrl: coverAbsolute,
+        })}
+      />
+      <JsonLdScript
+        data={blogBreadcrumbJsonLd({
+          title: post.title,
+          slug: post.slug,
+          category: post.category,
+        })}
+      />
+      {faqs ? <JsonLdScript data={faqs} /> : null}
       <BlogViewTracker slug={post.slug} />
       <article className="aee-blog-article">
         <div className="aee-blog-article-inner apple-animate-in">
-          <nav className="text-sm text-[var(--color-ink-muted)]">
-            <Link href={ROUTES.blog} className="hover:text-[var(--color-accent)]">
-              ← Blog
+          <nav className="aee-blog-crumb" aria-label="Breadcrumb">
+            <Link href={ROUTES.blog}>Blog</Link>
+            <span aria-hidden="true">/</span>
+            <Link href={`${ROUTES.blog}?category=${encodeURIComponent(post.category)}`}>
+              {post.category}
             </Link>
           </nav>
 
@@ -125,10 +169,8 @@ export default async function BlogPostPage({ params }: Props) {
             </p>
             <h1 className="aee-blog-article-title">{post.title}</h1>
             <p className="aee-blog-byline">
-              {formatDate(post.publishedAt)}
-              {post.updatedAt && post.updatedAt.slice(0, 10) !== post.publishedAt?.slice(0, 10)
-                ? ` · Last updated ${formatDate(post.updatedAt)}`
-                : ""}
+              {publishedLabel ? `Published ${publishedLabel}` : null}
+              {showUpdated ? ` · Updated ${updatedLabel}` : null}
               {post.authorName ? ` · ${post.authorName}` : ""}
             </p>
             {post.excerpt ? (
@@ -138,7 +180,7 @@ export default async function BlogPostPage({ params }: Props) {
             ) : null}
             {post.coverImage ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={post.coverImage} alt="" className="aee-blog-article-cover" />
+              <img src={post.coverImage} alt={post.title} className="aee-blog-article-cover" />
             ) : null}
             <div className="mt-7 flex items-center justify-between gap-4 border-y border-[var(--color-border)] py-4">
               <BlogShareButtons url={url} title={post.title} />
@@ -167,9 +209,11 @@ export default async function BlogPostPage({ params }: Props) {
           ) : null}
 
           <div
-            className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-headings:tracking-tight prose-p:leading-relaxed"
+            className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-headings:tracking-tight prose-a:text-[var(--color-accent)] prose-p:leading-relaxed"
             dangerouslySetInnerHTML={{ __html: html }}
           />
+
+          <BlogTrialCta />
 
           {post.authorName ? (
             <aside className="mt-14 flex items-center gap-4 border-t border-[var(--color-border)] pt-8">
