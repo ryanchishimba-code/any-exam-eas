@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
+import { SupportHoursNote, SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
 import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
@@ -161,15 +161,15 @@ export default async function HowQuestionsAreReviewedPage() {
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
             Every rationale has a Report an issue control. The report is saved for review with the
-            question, the answer you selected, and a short reason.             You can also write{" "}
+            question, the answer you selected, and a short reason. You can also write{" "}
             <a
               className="font-semibold text-[var(--color-accent)] hover:underline"
               href={`mailto:${LEGAL_ENTITY.supportEmail}?subject=${encodeURIComponent("Question issue")}`}
             >
               {LEGAL_ENTITY.supportEmail}
             </a>{" "}
-            or call <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />
-            .
+            or call <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.{" "}
+            <SupportHoursNote />.
           </p>
         </section>
 

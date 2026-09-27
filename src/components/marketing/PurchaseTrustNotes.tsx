@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
+import { SupportHoursNote, SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
@@ -50,6 +50,8 @@ export function PurchaseTrustNotes({
         </a>
         <span aria-hidden> · </span>
         <SupportPhoneLink className={`font-semibold ${link}`} />
+        <span aria-hidden> · </span>
+        <SupportHoursNote className={muted} />
       </p>
     </div>
   );
