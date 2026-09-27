@@ -33,7 +33,7 @@ export default function LoginPage() {
   return (
     <PageShell
       eyebrow="Any Exam Easy"
-      title="Log in to continue"
+      title="Sign in."
       description={`${PLATFORM_EXAM_LIST} practice — synced across devices.`}
       align="center"
       maxWidth={contentWidth.auth}

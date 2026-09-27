@@ -14,6 +14,7 @@ import {
   getCachedBankStatsBundle,
 } from "@/lib/marketing/question-bank-counts";
 import { formatHeroTotalCountLine } from "@/lib/landing/content";
+import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
@@ -76,8 +77,7 @@ export default async function PricingPage({
         title={<PricingBoardHeadline initial={headline} />}
         description={`${totalLine}. Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`}
         align="center"
-        maxWidth="max-w-2xl"
-        compact
+        maxWidth="max-w-3xl"
       >
         <p
           className="mx-auto mt-3 max-w-md text-center text-sm font-medium tracking-[-0.01em] text-[var(--color-ink)]"
@@ -119,6 +119,9 @@ export default async function PricingPage({
             How questions are built and reviewed
           </Link>
         </p>
+        <p className="mx-auto mt-4 max-w-xl text-center text-base leading-relaxed text-[var(--color-ink-muted)]">
+          This page shows our price only. One Pro plan covers the six boards.
+        </p>
         <p className="mx-auto mt-4 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
           Study tool only — not a guarantee of exam results.{" "}
           <Link href="/legal/terms" className="text-[var(--color-accent)] underline">
@@ -130,6 +133,7 @@ export default async function PricingPage({
           </Link>
         </p>
       </PageShell>
+      <FinalMarketingCta title="Start with the free trial." />
     </>
   );
 }

@@ -168,7 +168,7 @@ export function landingTrialHrefForExam(examSlug?: string): string {
 }
 
 /** Primary hero headline — default NCLEX job; chips swap the exam-specific line. */
-export const LANDING_HERO_HEADLINE = "NCLEX prep that feels like the real exam.";
+export const LANDING_HERO_HEADLINE = "Go from doubtful to confident.";
 
 /** Accent line under the primary headline — empty when the full headline is in LANDING_HERO_HEADLINE. */
 export const LANDING_HERO_HEADLINE_ACCENT = "";
@@ -182,7 +182,13 @@ export const LANDING_HERO_SUBLINE_BODY =
  * and the six boards are the chip picker — this line does not repeat either.
  */
 export const HOME_HERO_PRODUCT_LINE =
-  "Vignettes and rationales for the board you pick.";
+  "A practice baseline, a daily Today set, review of what you missed, practice exams on the official weights, NGN case studies, rationales with sources, and study guides.";
+
+/** Board heroes name NGN only on NCLEX. The trial price stays on its own line. */
+export function formatExamHeroProductLine(examSlug?: string): string {
+  if (!examSlug || examSlug === "nclex") return HOME_HERO_PRODUCT_LINE;
+  return "A practice baseline, a daily Today set, review of what you missed, practice exams on the official weights, rationales with sources, and study guides.";
+}
 
 export function formatFlagshipHeroSubline(_totalLabel?: string): string {
   return LANDING_HERO_SUBLINE_BODY;
@@ -190,12 +196,12 @@ export function formatFlagshipHeroSubline(_totalLabel?: string): string {
 
 /** Exam-specific headlines for marketing pages and homepage chip swaps. */
 export const EXAM_MARKETING_HERO_HEADLINES: Record<string, string> = {
-  nclex: "NCLEX prep that feels like the real exam.",
-  usmle: "USMLE vignettes built for Step-day reasoning.",
-  naplex: "NAPLEX math and cases without the fluff.",
-  pance: "PANCE clinical judgment, blueprint-aligned.",
-  "aanp-fnp": "AANP FNP primary-care cases that teach.",
-  "npte-pt": "NPTE-PT scenarios for clinical decisions.",
+  nclex: "Go into the NCLEX knowing what you know.",
+  usmle: "Go into the USMLE knowing what you know.",
+  naplex: "Go into the NAPLEX knowing what you know.",
+  pance: "Go into the PANCE knowing what you know.",
+  "aanp-fnp": "Go into the AANP FNP exam knowing what you know.",
+  "npte-pt": "Go into the NPTE-PT knowing what you know.",
 };
 
 const HERO_EXAM_EYEBROWS: Record<string, string> = {

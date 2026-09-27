@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
-import { MARKETING_DISCLAIMER } from "@/lib/site";
+import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER } from "@/lib/site";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
@@ -21,11 +21,7 @@ const MARKETING_EXAM_LINKS = [
 
 const STUDY_GUIDE_LINKS = [
   { href: ROUTES.freeGuides, label: "Free guides" },
-  { href: "/compare", label: "Compare vs competitors" },
-  { href: "/resources/uworld-alternative-multi-exam-prep-2026", label: "UWorld alternative guide" },
-  { href: "/resources/nclex-vs-uworld-comparison-2026", label: "NCLEX vs UWorld" },
-  { href: "/resources/nclex-vs-archer-comparison-2026", label: "NCLEX vs Archer" },
-  { href: "/resources/naplex-vs-rxprep-comparison-2026", label: "NAPLEX vs RxPrep" },
+  { href: "/#try-questions", label: "Free sample questions" },
 ];
 
 const legalLinks = [
@@ -81,6 +77,9 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-5">
           <div className="md:col-span-1">
             <BrandLogo href={ROUTES.home} variant="footer" />
+            <p className="mt-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+              {formatPricingCheckoutTrialOffer()}
+            </p>
             <p className="mt-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
               {MARKETING_DISCLAIMER}
             </p>

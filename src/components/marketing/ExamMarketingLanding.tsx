@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
 import {
   EXAM_SEO_CONFIG,
   EXAM_SEO_KEYS,
@@ -14,9 +13,17 @@ import {
   landingTrialHrefForExam,
   type LandingSuccessStory,
 } from "@/lib/landing/content";
-import { LandingCta } from "@/components/landing/LandingCta";
 import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
-import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
+import { HeroNgnFrame } from "@/components/marketing/elevation/HeroNgnFrame";
+import {
+  FinalMarketingCta,
+  PathSection,
+  PriceSection,
+  ProblemSection,
+  SocialProof,
+} from "@/components/marketing/elevation/MarketingSections";
+import { BOARD_FORMAT_FACTS } from "@/lib/marketing/board-format-facts";
+import { getHeroNgnFrame } from "@/lib/marketing/hero-ngn-frame";
 import {
   BOARD_PROCESS_LINE,
   clinicalReviewerForExam,
@@ -24,17 +31,13 @@ import {
 import { PublicSampleSet } from "@/components/marketing/PublicSampleSet";
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { ExamMarketingHero } from "@/components/marketing/ExamMarketingHero";
-import { WhyTrustIt } from "@/components/marketing/WhyTrustIt";
 import type { BoardInventoryPresentation } from "@/lib/inventory/active-questions";
 import { examHubProductLinks } from "@/lib/marketing/exam-hub";
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { UsmleStepShowcaseLazy } from "@/components/marketing/ExamMarketingSectionsLazy";
+import { testimonialsForBoard } from "@/lib/marketing/why-trust-it";
 import { ROUTES } from "@/lib/routes";
-import {
-  formatPricingCheckoutTrialOffer,
-  formatTrialCtaLabel,
-  formatTrialLabel,
-} from "@/lib/site";
+import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 type Props = {
   examKey: ExamSeoKey;
@@ -52,7 +55,7 @@ type Props = {
   samples?: PublicSampleQuestion[];
 };
 
-export function ExamMarketingLanding({
+export async function ExamMarketingLanding({
   examKey,
   questionCountLabel,
   inventory,
@@ -64,13 +67,14 @@ export function ExamMarketingLanding({
   const config = presentPublicExamSeo(getExamSeoConfig(examKey), inventory?.formats ?? null);
   const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
   const isUsmle = examKey === "usmle";
-  const topFeatures = config.features.slice(0, 4);
   const questionCountLine =
     formatExamLiveCountLine(config.shortName, questionCountLabel) ??
     (questionCountLabel ? `${questionCountLabel} ${config.shortName} questions` : "");
   const productLinks = examHubProductLinks(examKey);
   const studyGuide = getStudyGuideConfig(examKey);
   const reviewer = clinicalReviewerForExam(examKey);
+  const formatFact = BOARD_FORMAT_FACTS[examKey];
+  const heroFrame = examKey === "nclex" ? await getHeroNgnFrame() : null;
 
   return (
     <div className="aee-exam-marketing">
@@ -80,9 +84,23 @@ export function ExamMarketingLanding({
         countSource={inventory?.countSource}
         activeCount={inventory?.activeCount}
         formats={inventory?.formats ?? null}
+        visual={heroFrame ? <HeroNgnFrame frame={heroFrame} /> : null}
       />
 
-      <WhyTrustIt examKey={examKey} inventory={inventory} testimonials={testimonials} />
+      <section className="mx-auto max-w-3xl px-5 py-12 sm:px-6">
+        <p className="text-lg leading-relaxed text-[var(--color-ink-muted)]">{formatFact.fact}</p>
+        <a
+          href={formatFact.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--color-accent)] hover:underline"
+        >
+          {formatFact.sourceLabel}
+        </a>
+      </section>
+
+      <ProblemSection board={config.shortName} />
+      <PathSection includeNgn={examKey === "nclex"} />
 
       <PublicSampleSet
         items={samples.filter((item) => {
@@ -92,6 +110,8 @@ export function ExamMarketingLanding({
           return item.fieldId === examKey;
         })}
       />
+
+      <SocialProof testimonials={testimonialsForBoard(testimonials, examKey)} />
 
       <div className="mx-auto max-w-5xl px-5 pb-2 pt-6 text-sm leading-relaxed sm:px-6">
         {reviewer ? (
@@ -163,42 +183,9 @@ export function ExamMarketingLanding({
         </section>
       )}
 
-      <section className="border-b border-[var(--color-border)]/40 py-[var(--landing-section-py,4rem)]">
-        <div className="mx-auto max-w-5xl px-5 sm:px-6">
-          <h2 className="aee-flagship-title max-w-2xl">
-            What you get for {config.shortName}
-          </h2>
-          <ul className="mt-10 grid gap-6 sm:grid-cols-2" role="list">
-            {topFeatures.map((feature) => (
-              <li key={feature.title}>
-                <h3 className="text-lg font-bold text-[var(--color-ink)]">{feature.title}</h3>
-                <p className="mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]">
-                  {feature.detail}
-                </p>
-              </li>
-            ))}
-          </ul>
-          <ul className="mt-10 space-y-3" role="list">
-            {[
-              `${config.shortName} question bank + ${formatTrialLabel()}`,
-              "Blueprint Roadmap · Deep Dives · Full Exam sims",
-              "Five other boards on the same subscription",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-base text-[var(--color-ink)]">
-                <Check
-                  className="mt-0.5 h-5 w-5 shrink-0"
-                  style={{ color: config.accentColor }}
-                  strokeWidth={2.5}
-                  aria-hidden
-                />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <PriceSection trialHref={landingTrialHrefForExam(examKey)} />
 
-      <div className="mx-auto max-w-5xl px-5 pb-20 pt-14 sm:px-6">
+      <div className="mx-auto max-w-5xl px-5 pb-8 pt-4 sm:px-6">
         <section aria-labelledby="exam-faq">
           <h2
             id="exam-faq"
@@ -247,36 +234,11 @@ export function ExamMarketingLanding({
           </ul>
         </section>
 
-        <section className="mt-16 text-center">
-          <h2 className="text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-tight text-[var(--color-ink)]">
-            Start {config.shortName} prep
-          </h2>
-          <div className="mt-4">
-            <PurchaseTrustNotes />
-          </div>
-          <div className="mt-8 flex justify-center">
-            <LandingCta
-              href={landingTrialHrefForExam(examKey)}
-              ctaName={`exam_final_trial_${examKey}`}
-              location="exam_marketing_final"
-              className="aee-flagship-cta--hero group"
-              icon={
-                <ArrowRight
-                  className="h-5 w-5 transition-transform group-hover:translate-x-1"
-                  aria-hidden
-                />
-              }
-            >
-              {formatTrialCtaLabel()}
-            </LandingCta>
-          </div>
-          <p className="mt-4 text-sm">
-            <Link href={ROUTES.pricing} className="font-semibold text-[var(--color-accent)] hover:underline">
-              See pricing
-            </Link>
-          </p>
-        </section>
       </div>
+      <FinalMarketingCta
+        title={`Start ${config.shortName} with the free trial.`}
+        trialHref={landingTrialHrefForExam(examKey)}
+      />
     </div>
   );
 }

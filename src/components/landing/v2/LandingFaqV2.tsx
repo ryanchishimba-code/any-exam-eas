@@ -40,7 +40,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Why not just buy UWorld for the one exam I'm taking?",
-    a: `UWorld is a strong QBank — if you only need raw practice questions for a single board and the $200–400+ price tag fits your budget, it's a reasonable choice. Where AnyExamEasy differs: you get a structured blueprint Roadmap, Deep Dive review modules opened from the questions you miss, Full Exam simulations, lab values, calculators, and six boards under one plan. If you're only studying one exam and want just a QBank, compare on craft and study window — we do not invent a savings percentage.`,
+    a: "Other Qbanks are often sold one exam at a time. AnyExamEasy is one plan for six boards, with a blueprint roadmap, review opened from the questions you miss, and timed practice exams.",
   },
   {
     q: "Is this genuinely enough to pass my board exam?",
@@ -82,7 +82,7 @@ export function LandingFaqV2() {
             id="faq-heading"
             className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl"
           >
-            Everything you need to know
+            Before you start
           </h2>
         </div>
 

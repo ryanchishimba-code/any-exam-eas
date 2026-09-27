@@ -98,7 +98,7 @@ export function formatTrialQuestionLimit(): string {
 }
 
 /** Primary marketing CTA label (buttons, sticky bars, nav). */
-export const TRIAL_CTA_LABEL = "Try for free";
+export const TRIAL_CTA_LABEL = "Start your free trial";
 
 export function formatTrialCtaLabel(): string {
   return TRIAL_CTA_LABEL;

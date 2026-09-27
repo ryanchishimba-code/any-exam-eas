@@ -73,7 +73,7 @@ export default async function SignupPage({
   return (
     <PageShell
       eyebrow="AnyExamEasy"
-      title="Create your account."
+      title={initialPlan === "trial" ? "Start your free trial." : "Create your account."}
       description={`${formatPricingCheckoutTrialOffer()}. ${TRIAL_LIFETIME_QUESTIONS} practice questions included. Must be 18 or older.`}
       align="center"
       maxWidth={contentWidth.auth}

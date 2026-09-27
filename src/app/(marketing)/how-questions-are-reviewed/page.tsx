@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
+import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { buildClinicalReviewerJsonLd } from "@/lib/marketing/company";
@@ -42,6 +43,7 @@ export default async function HowQuestionsAreReviewedPage() {
   const ngnItems = countLabel(facts.publishedNgnItems);
   const ngnCases = countLabel(facts.publishedNgnCases);
   return (
+    <>
     <article className="bg-[var(--color-bg)] px-6 pb-20 pt-[var(--page-top)]">
       <JsonLdScript data={buildClinicalReviewerJsonLd()} />
       <div className="mx-auto max-w-3xl">
@@ -198,5 +200,7 @@ export default async function HowQuestionsAreReviewedPage() {
         </p>
       </div>
     </article>
+    <FinalMarketingCta title="Try the questions before you pay." />
+    </>
   );
 }

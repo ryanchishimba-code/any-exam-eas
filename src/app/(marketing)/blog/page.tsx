@@ -71,10 +71,10 @@ export default async function BlogIndexPage() {
       <section className="aee-blog-hero">
         <div className="aee-blog-hero-inner apple-animate-in">
           <p className="aee-blog-kicker">Stories</p>
-          <h1 className="aee-blog-title">Ideas that help you pass.</h1>
+          <h1 className="aee-blog-title">Study notes for the boards you are taking.</h1>
           <p className="aee-blog-lede">
-            Clear, high-yield guidance for NCLEX, USMLE, NAPLEX, and the rest of your boards —
-            written for busy students.
+            Notes on NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT, with links to the official
+            test plans.
           </p>
         </div>
       </section>
@@ -83,7 +83,8 @@ export default async function BlogIndexPage() {
         {posts.length === 0 ? (
           <div className="aee-blog-empty apple-animate-in">
             <p>
-              New stories are on the way. Meanwhile, explore the{" "}
+              No published posts yet. Practice a{" "}
+              <Link href="/#try-questions">free sample</Link> or open the{" "}
               <Link href={ROUTES.toolkit}>Toolkit</Link>.
             </p>
           </div>

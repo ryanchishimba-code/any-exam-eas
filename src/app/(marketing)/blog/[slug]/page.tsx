@@ -11,6 +11,7 @@ import {
 } from "@/lib/blog/public";
 import { ROUTES } from "@/lib/routes";
 import { clampMetaDescription, clampMetaTitle } from "@/lib/seo/meta-budget";
+import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { SITE_NAME } from "@/lib/site";
 
 /** ISR — post HTML is cached; view counts update client-side. */
@@ -219,6 +220,7 @@ export default async function BlogPostPage({ params }: Props) {
           ) : null}
         </div>
       </article>
+      <FinalMarketingCta title="Practice the questions these notes point to." />
     </>
   );
 }

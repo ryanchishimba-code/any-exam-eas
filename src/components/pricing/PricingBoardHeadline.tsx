@@ -28,5 +28,6 @@ export function PricingBoardHeadline({ initial }: { initial: string }) {
     }
   }, [initial]);
 
-  return <>{title}</>;
+  const display = title === "Pro" ? "Six boards. One monthly price." : `${title} is on this plan.`;
+  return <>{display}</>;
 }

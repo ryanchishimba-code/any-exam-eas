@@ -22,7 +22,7 @@ function SampleCard({ item }: { item: PublicSampleQuestion }) {
         <span className="text-xs font-medium text-[var(--color-ink-muted)]">Sample · no sign-up</span>
       </header>
       <p className="mt-4 text-base leading-relaxed text-[var(--color-ink)]">{item.stem}</p>
-      <ul className="mt-4 space-y-2" role="listbox" aria-label={`${item.examLabel} answer choices`}>
+      <ul className="mt-4 space-y-2" aria-label={`${item.examLabel} answer choices`}>
         {item.options.map((option, index) => {
           const isSelected = selected === option;
           const showCorrect = revealed && option === item.correct;
@@ -31,8 +31,7 @@ function SampleCard({ item }: { item: PublicSampleQuestion }) {
             <li key={option}>
               <button
                 type="button"
-                role="option"
-                aria-selected={isSelected}
+                aria-pressed={isSelected}
                 disabled={revealed}
                 onClick={() => setSelected(option)}
                 className={cn(

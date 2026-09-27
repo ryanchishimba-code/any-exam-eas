@@ -192,9 +192,9 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
           "Yes. One subscription includes dedicated Step 1, Step 2 CK, and Step 3 question banks with step-specific Roadmaps and timed practice.",
       },
       {
-        question: "How does pricing compare to UWorld?",
+        question: "How does pricing compare?",
         answer:
-          `AnyExamEasy Pro is ${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo and includes all three USMLE steps plus five other board exams — UWorld typically charges $200–400+ per exam separately.`,
+          `AnyExamEasy Pro is ${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo and includes all three USMLE steps plus five other board exams on the same plan.`,
       },
       {
         question: "Are USMLE explanations detailed?",

@@ -6,6 +6,8 @@ import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
 import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
+import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
+import { FounderNote } from "@/components/marketing/elevation/FounderNote";
 import { COMPANY_PUBLIC } from "@/lib/marketing/company";
 import {
   formatExactServeReadyQuestions,
@@ -19,7 +21,7 @@ import { QUALITY_PAGE_UPDATED } from "@/lib/marketing/quality-facts";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { buildAboutMetadata, buildAboutJsonLd } from "@/lib/seo/marketing-metadata";
-import { formatTrialCtaLabel, SITE_NAME } from "@/lib/site";
+import { formatPricingCheckoutTrialOffer, formatTrialCtaLabel, SITE_NAME } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -89,6 +91,9 @@ export default async function AboutPage() {
                 How questions are reviewed
               </Link>
             </div>
+            <p className="mt-4 text-sm font-medium text-[var(--color-ink)]" data-offer-line>
+              {formatPricingCheckoutTrialOffer()}
+            </p>
             <div className="mt-8">
               <PurchaseTrustNotes />
             </div>
@@ -135,8 +140,12 @@ export default async function AboutPage() {
               ))}
             </ul>
             <p className="mt-8 text-sm text-[var(--color-ink-muted)]">Last updated {QUALITY_PAGE_UPDATED}</p>
+            <div className="mt-12">
+              <FounderNote />
+            </div>
           </div>
         </section>
+        <FinalMarketingCta />
       </div>
     </>
   );

@@ -5,15 +5,28 @@
  */
 
 .aee-marketing {
-  --color-accent: #0d9488;
-  --color-accent-hover: #0f766e;
-  --color-accent-light: #14b8a6;
+  /* #0f766e clears WCAG AA for small text and white-on-teal buttons. #0d9488 stays on large fills. */
+  --color-accent: #0f766e;
+  --color-accent-hover: #115e59;
+  --color-accent-light: #0d9488;
   --color-ink-muted: #334155;
-  --primary: #0d9488;
+  --primary: #0f766e;
+  --flagship-teal: #0f766e;
+  --flagship-teal-dim: #115e59;
   --landing-section-py: clamp(3.5rem, 8vw, 6rem);
   color: var(--color-ink);
   background: var(--color-bg);
   overflow-x: clip;
+}
+
+.aee-marketing .aee-flagship-cta--primary {
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.aee-marketing .aee-flagship-cta--primary.bg-white {
+  background: #ffffff;
+  color: #1e3a5f;
 }
 
 [data-theme="dark"] .aee-marketing {

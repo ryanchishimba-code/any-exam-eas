@@ -7,7 +7,7 @@ export function ClinicalReviewerAvatar({
   reviewer: ClinicalReviewer;
   size?: "sm" | "md";
 }) {
-  const dimension = size === "sm" ? "h-8 w-8 text-xs" : "h-12 w-12 text-sm";
+  const dimension = size === "sm" ? "h-9 w-9 text-sm" : "h-14 w-14 text-xl";
   return (
     <span
       aria-hidden

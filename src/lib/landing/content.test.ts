@@ -19,10 +19,10 @@ import {
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 describe("homepage hero copy", () => {
-  it("defaults to an NCLEX-specific job with a six-board offer subline", () => {
-    expect(LANDING_HERO_HEADLINE).toMatch(/NCLEX/i);
+  it("defaults to a passing promise with a six-board offer subline", () => {
+    expect(LANDING_HERO_HEADLINE).toMatch(/doubtful to confident/i);
     expect(formatExamHeroEyebrow("nclex")).toBe("NCLEX prep");
-    expect(formatExamHeroHeadline("nclex")).toBe(LANDING_HERO_HEADLINE);
+    expect(formatExamHeroHeadline("nclex")).toMatch(/NCLEX/);
     expect(LANDING_HERO_SUBLINE_BODY).toMatch(/one login/i);
     expect(LANDING_HERO_SUBLINE_BODY).toMatch(/six boards/i);
     expect(LANDING_HERO_SUBLINE_BODY).toMatch(/27\.99/);
