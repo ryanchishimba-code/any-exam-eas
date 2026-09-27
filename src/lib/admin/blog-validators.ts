@@ -6,6 +6,10 @@ export const BLOG_CATEGORIES = [
   "NCLEX",
   "USMLE",
   "NAPLEX",
+  "PANCE",
+  "AANP FNP",
+  "NPTE-PT",
+  "All boards",
   "Product Updates",
   "Career",
 ] as const;

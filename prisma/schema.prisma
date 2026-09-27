@@ -1542,12 +1542,31 @@ model BlogPost {
   updatedAt       DateTime  @updatedAt
 
   author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  revisions BlogPostRevision[]
 
   @@index([published, publishedAt])
   @@index([deletedAt, published, publishedAt])
   @@index([category, published])
   @@index([deletedAt, updatedAt])
   @@index([authorId])
+}
+
+/// Full row snapshot saved before scripts/upgrade-blog-posts.ts overwrites a post.
+model BlogPostRevision {
+  id         String   @id @default(cuid())
+  blogPostId String
+  slug       String
+  /// JSON copy of the post fields that the upgrade replaces.
+  snapshot   Json
+  /// pre-upgrade | pre-restore
+  reason     String   @default("pre-upgrade")
+  createdAt  DateTime @default(now())
+
+  post BlogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+
+  @@index([slug, createdAt])
+  @@index([blogPostId, createdAt])
+  @@map("blog_post_revisions")
 }
 
 /// NCLEX Study Guide — book/PDF-style reader (not QBank, not blog).

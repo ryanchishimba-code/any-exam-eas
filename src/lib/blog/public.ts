@@ -21,6 +21,7 @@ export type PublicBlogPostCard = {
   tags: string[];
   readTime: number;
   publishedAt: string | null;
+  updatedAt: string | null;
   authorName: string | null;
 };
 
@@ -54,6 +55,7 @@ function toCard(row: {
   tags: string[];
   readTime: number;
   publishedAt: Date | null;
+  updatedAt: Date;
   author: { name: string | null } | null;
 }): PublicBlogPostCard {
   return {
@@ -66,6 +68,7 @@ function toCard(row: {
     tags: row.tags,
     readTime: row.readTime,
     publishedAt: row.publishedAt?.toISOString() ?? null,
+    updatedAt: row.updatedAt.toISOString(),
     authorName: publicBlogAuthorName(row.author?.name),
   };
 }
@@ -88,6 +91,7 @@ const listPublishedBlogPostsCached = unstable_cache(
         tags: true,
         readTime: true,
         publishedAt: true,
+        updatedAt: true,
         author: { select: { name: true } },
       },
       orderBy: [{ publishedAt: "desc" }, { createdAt: "desc" }],
@@ -123,6 +127,7 @@ const getPublishedBlogPostBySlugCached = unstable_cache(
         tags: true,
         readTime: true,
         publishedAt: true,
+        updatedAt: true,
         content: true,
         views: true,
         metaTitle: true,
@@ -159,7 +164,6 @@ const listRelatedBlogPostsCached = unstable_cache(
         published: true,
         deletedAt: null,
         slug: { not: slug },
-        category,
       },
       select: {
         id: true,
@@ -171,12 +175,15 @@ const listRelatedBlogPostsCached = unstable_cache(
         tags: true,
         readTime: true,
         publishedAt: true,
+        updatedAt: true,
         author: { select: { name: true } },
       },
       orderBy: [{ publishedAt: "desc" }],
-      take: limit,
+      take: MAX_BLOG_POSTS,
     });
-    return rows.map(toCard);
+    const sameCategory = rows.filter((row) => row.category === category);
+    const other = rows.filter((row) => row.category !== category);
+    return [...sameCategory, ...other].slice(0, limit).map(toCard);
   },
   ["blog-related"],
   { revalidate: 60, tags: [BLOG_CACHE_TAG] }
