@@ -5,7 +5,8 @@ import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
-import { COMPANY_PUBLIC, getClinicalReviewLead } from "@/lib/marketing/company";
+import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
+import { COMPANY_PUBLIC } from "@/lib/marketing/company";
 import {
   formatExactServeReadyQuestions,
   getPublishedQuestionStats,
@@ -50,7 +51,6 @@ const EXAM_HUB_LINKS = [
 
 export default async function AboutPage() {
   const { label: totalQuestionsLabel, live } = await publishedOrLiveTotalLabel();
-  const reviewer = getClinicalReviewLead();
 
   return (
     <>
@@ -101,23 +101,11 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        {reviewer ? (
-          <section
-            className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-14"
-            aria-labelledby="clinical-review-lead"
-          >
-            <div className="mx-auto max-w-3xl">
-              <h2
-                id="clinical-review-lead"
-                className="text-2xl font-bold tracking-tight text-[var(--color-ink)]"
-              >
-                Clinical review lead
-              </h2>
-              <p className="mt-3 text-lg font-semibold text-[var(--color-ink)]">{reviewer.name}</p>
-              <p className="mt-1 text-base text-[var(--color-ink-muted)]">{reviewer.credential}</p>
-            </div>
-          </section>
-        ) : null}
+        <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-14">
+          <div className="mx-auto max-w-3xl">
+            <ClinicalReviewers />
+          </div>
+        </section>
 
         <section className="px-6 py-16" aria-labelledby="about-boards-heading">
           <div className="mx-auto max-w-3xl">

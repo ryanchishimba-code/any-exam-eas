@@ -15,7 +15,12 @@ import {
   type LandingSuccessStory,
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
+import {
+  BOARD_PROCESS_LINE,
+  clinicalReviewerForExam,
+} from "@/lib/marketing/company";
 import { PublicSampleSet } from "@/components/marketing/PublicSampleSet";
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { ExamMarketingHero } from "@/components/marketing/ExamMarketingHero";
@@ -65,6 +70,7 @@ export function ExamMarketingLanding({
     (questionCountLabel ? `${questionCountLabel} ${config.shortName} questions` : "");
   const productLinks = examHubProductLinks(examKey);
   const studyGuide = getStudyGuideConfig(examKey);
+  const reviewer = clinicalReviewerForExam(examKey);
 
   return (
     <div className="aee-exam-marketing">
@@ -87,14 +93,27 @@ export function ExamMarketingLanding({
         })}
       />
 
-      <p className="mx-auto max-w-5xl px-5 pb-2 pt-6 text-sm sm:px-6">
-        <Link
-          href={ROUTES.howQuestionsAreReviewed}
-          className="font-semibold text-[var(--color-accent)] hover:underline"
-        >
-          How our questions are built and reviewed
-        </Link>
-      </p>
+      <div className="mx-auto max-w-5xl px-5 pb-2 pt-6 text-sm leading-relaxed sm:px-6">
+        {reviewer ? (
+          <p className="flex items-center gap-2 text-[var(--color-ink-muted)]">
+            <ClinicalReviewerAvatar reviewer={reviewer} size="sm" />
+            <span>
+              Reviewed by{" "}
+              <span className="font-semibold text-[var(--color-ink)]">{reviewer.displayName}</span>
+            </span>
+          </p>
+        ) : (
+          <p className="text-[var(--color-ink-muted)]">{BOARD_PROCESS_LINE}</p>
+        )}
+        <p className="mt-2">
+          <Link
+            href={ROUTES.howQuestionsAreReviewed}
+            className="font-semibold text-[var(--color-accent)] hover:underline"
+          >
+            How our questions are built and reviewed
+          </Link>
+        </p>
+      </div>
 
       {extraAfterHero ?? (
         <section className="border-b border-[var(--color-border)]/40 py-14">

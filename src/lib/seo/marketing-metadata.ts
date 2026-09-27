@@ -36,6 +36,7 @@ import {
   enforceMetaTitle,
 } from "@/lib/seo/meta-budget";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
+import { clinicalReviewerPersonNodes } from "@/lib/marketing/company";
 import { publicExamSeo } from "@/lib/marketing/public-format-copy";
 
 function baseOpenGraph(
@@ -436,6 +437,7 @@ export function buildAboutJsonLd() {
         description: seoPlatformPitch(),
         foundingLocation: { "@type": "Place", name: "Texas, USA" },
       },
+      ...clinicalReviewerPersonNodes(),
     ],
   };
 }

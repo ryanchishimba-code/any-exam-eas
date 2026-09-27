@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { getClinicalReviewLead } from "@/lib/marketing/company";
 import { pickPublicSamples, readStoredCitations, toPublicSampleQuestion } from "@/lib/marketing/public-sample";
 
 describe("readStoredCitations", () => {
@@ -67,20 +66,3 @@ describe("pickPublicSamples", () => {
   });
 });
 
-describe("getClinicalReviewLead", () => {
-  it("renders nothing unless name and credential are both set", () => {
-    const previousName = process.env.CLINICAL_REVIEW_LEAD_NAME;
-    const previousCredential = process.env.CLINICAL_REVIEW_LEAD_CREDENTIAL;
-    delete process.env.CLINICAL_REVIEW_LEAD_NAME;
-    delete process.env.CLINICAL_REVIEW_LEAD_CREDENTIAL;
-    expect(getClinicalReviewLead()).toBeNull();
-    process.env.CLINICAL_REVIEW_LEAD_NAME = "A. Name";
-    expect(getClinicalReviewLead()).toBeNull();
-    process.env.CLINICAL_REVIEW_LEAD_CREDENTIAL = "RN";
-    expect(getClinicalReviewLead()).toEqual({ name: "A. Name", credential: "RN" });
-    if (previousName == null) delete process.env.CLINICAL_REVIEW_LEAD_NAME;
-    else process.env.CLINICAL_REVIEW_LEAD_NAME = previousName;
-    if (previousCredential == null) delete process.env.CLINICAL_REVIEW_LEAD_CREDENTIAL;
-    else process.env.CLINICAL_REVIEW_LEAD_CREDENTIAL = previousCredential;
-  });
-});

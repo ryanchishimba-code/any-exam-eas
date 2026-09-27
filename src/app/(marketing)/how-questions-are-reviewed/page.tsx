@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LEGAL_ENTITY } from "@/lib/legal";
+import { buildClinicalReviewerJsonLd, clinicalReviewerForExam } from "@/lib/marketing/company";
 import { ROUTES } from "@/lib/routes";
 import {
   OFFICIAL_TEST_PLANS,
@@ -37,9 +40,11 @@ export default async function HowQuestionsAreReviewedPage() {
   const suppressed = countLabel(facts.suppressedNursing);
   const ngnItems = countLabel(facts.publishedNgnItems);
   const ngnCases = countLabel(facts.publishedNgnCases);
+  const nursingLead = clinicalReviewerForExam("nclex");
 
   return (
     <article className="bg-[var(--color-bg)] px-6 pb-20 pt-[var(--page-top)]">
+      <JsonLdScript data={buildClinicalReviewerJsonLd()} />
       <div className="mx-auto max-w-3xl">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
           Editorial standards
@@ -122,15 +127,25 @@ export default async function HowQuestionsAreReviewedPage() {
             <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
               Separately, {ngnItems} NGN items in {ngnCases} unfolding case studies are published.
               Each of those published items has an RN owner attestation on an append-only review
-              record. This page does not name the reviewer.
+              record.
+              {nursingLead
+                ? ` ${nursingLead.displayName} leads nursing content review, including NGN case studies.`
+                : ""}
             </p>
           ) : (
             <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
               NGN case items live in their own tables. Publishing one requires an RN owner
               attestation stored on an append-only review record.
+              {nursingLead
+                ? ` ${nursingLead.displayName} leads nursing content review, including NGN case studies.`
+                : ""}
             </p>
           )}
         </section>
+
+        <div className="mt-12">
+          <ClinicalReviewers headingId="standards-clinical-reviewers" />
+        </div>
 
         <section className="mt-12" aria-labelledby="sources-heading">
           <h2 id="sources-heading" className="text-2xl font-bold tracking-tight text-[var(--color-ink)]">
