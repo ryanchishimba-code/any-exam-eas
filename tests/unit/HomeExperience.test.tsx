@@ -15,7 +15,7 @@ vi.mock("@/lib/client/use-landing-bank-counts", () => ({
   useLandingBankCounts: (initial: unknown) => initial,
 }));
 
-const publicPage = <div data-testid="marketing-landing">Practice. Then prepare.</div>;
+const publicPage = <div data-testid="marketing-landing">From doubtful to ready.</div>;
 
 vi.mock("@/components/home/SubscriberHome", () => ({
   SubscriberHome: () => <div data-testid="subscriber-home">Ready to study?</div>,

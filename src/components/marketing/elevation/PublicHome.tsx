@@ -23,26 +23,26 @@ import { FOUNDER_NOTE } from "@/lib/testimonials/consented-seed";
 
 const QUESTION_DESKTOP = {
   src: "/marketing/home/question-desktop.webp",
-  width: 1920,
-  height: 1240,
+  width: 1760,
+  height: 1012,
 } as const;
 
 const QUESTION_PHONE = {
   src: "/marketing/home/question-phone.webp",
   width: 780,
-  height: 1520,
+  height: 1182,
 } as const;
 
 const BOWTIE = {
   src: "/marketing/home/bowtie.webp",
   width: 2240,
-  height: 1012,
+  height: 696,
 } as const;
 
 const READINESS = {
   src: "/marketing/home/readiness.webp",
-  width: 2240,
-  height: 1522,
+  width: 1920,
+  height: 846,
 } as const;
 
 function LaptopFrame({
@@ -62,17 +62,20 @@ function LaptopFrame({
 }) {
   return (
     <figure className="home-laptop">
-      <div className="home-laptop__screen">
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          sizes={sizes}
-          priority={priority}
-          quality={82}
-        />
+      <div className="home-laptop__lid">
+        <div className="home-laptop__screen">
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            sizes={sizes}
+            priority={priority}
+            quality={82}
+          />
+        </div>
       </div>
+      <div className="home-laptop__hinge" aria-hidden />
       <div className="home-laptop__base" aria-hidden />
     </figure>
   );

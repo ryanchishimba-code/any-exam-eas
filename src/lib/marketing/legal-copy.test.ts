@@ -23,8 +23,7 @@ describe("home legal copy", () => {
     );
     expect(HOME_EDUCATIONAL_USE).toBe("For educational use only. Not medical advice.");
     expect(HOME_TESTIMONIAL_LABEL).toMatch(/individual experience/i);
-    expect(HOME_PRACTICE_HEADLINE).toMatch(/practice/i);
-    expect(HOME_PRACTICE_HEADLINE).toMatch(/prepare/i);
+    expect(HOME_PRACTICE_HEADLINE).toBe("From doubtful to ready.");
     expect(HOME_READINESS_HEADING).toMatch(/practice estimate/i);
     expect(HOME_READINESS_LINE).toMatch(/practice|questions you answer/i);
   });
