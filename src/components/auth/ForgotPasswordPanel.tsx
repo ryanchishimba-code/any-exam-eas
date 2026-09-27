@@ -314,15 +314,12 @@ export function ForgotPasswordPanel({
           className="space-y-5"
           aria-busy={loading}
         >
-          <p
-            className={cn(
-              "text-sm leading-relaxed",
-              isModal ? "text-slate-600" : "text-[var(--color-ink-muted)]"
-            )}
-          >
-            Enter the email on your account and we&apos;ll send you a secure link to choose a new
-            password.
-          </p>
+          {isModal ? (
+            <p className="text-sm leading-relaxed text-slate-600">
+              Enter the email on your account and we&apos;ll send you a secure link to choose a new
+              password.
+            </p>
+          ) : null}
 
           <div className="space-y-2 text-left">
             <label

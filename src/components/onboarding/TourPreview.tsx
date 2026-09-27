@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { firstLoginTourSteps } from "@/lib/onboarding/first-login-tour";
 import { ProductTour } from "@/components/onboarding/ProductTour";
+import { TrialWelcomeScreen } from "@/components/auth/TrialWelcomeScreen";
 
 /**
  * Dev-only fixture for screenshots. Production builds 404 this route.
@@ -16,6 +17,18 @@ export function TourPreview() {
   const board = params.get("board") ?? "NCLEX";
   const steps = firstLoginTourSteps(board);
   const safeStep = Number.isFinite(step) ? Math.min(Math.max(step, 0), steps.length - 1) : 0;
+
+  if (params.get("pane") === "youre-in") {
+    return (
+      <TrialWelcomeScreen
+        daysRemaining={5}
+        trialDays={5}
+        userEmail="student@example.com"
+        showVerifyPrompt
+        onDismiss={() => {}}
+      />
+    );
+  }
 
   return (
     <div className="study-home-accent min-h-screen bg-[#f4f7f8] text-[#0a2540]">

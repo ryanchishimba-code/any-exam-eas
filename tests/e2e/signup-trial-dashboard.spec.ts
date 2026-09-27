@@ -13,11 +13,13 @@ test.describe("Signup → trial → dashboard", () => {
 
     await page.goto("/signup?plan=trial&exam=nclex", { waitUntil: "domcontentloaded" });
 
-    await expect(page.getByText(/add payment|free trial|\$0/i).first()).toBeVisible();
+    await expect(page.getByText(/free trial|\$0|no payment method required/i).first()).toBeVisible();
+    await page.getByLabel("Email").fill(uniqueEmail);
+    await page.getByRole("textbox", { name: "Password", exact: true }).fill("E2eTrialPass1!");
+    await page.getByRole("button", { name: "Continue" }).click();
     await expect(page.getByText(/preparing for nclex/i)).toBeVisible();
-    await page.getByPlaceholder("Full name").fill("E2E Trial User");
-    await page.getByPlaceholder("Email").fill(uniqueEmail);
-    await page.getByPlaceholder(/password/i).fill("E2eTrialPass1!");
+    await page.getByLabel("First name").fill("E2E");
+    await page.getByLabel("Last name").fill("Trial");
     await fillDateOfBirth(page, "1992-03-20");
     await acceptSignupTerms(page);
 

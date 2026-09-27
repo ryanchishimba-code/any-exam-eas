@@ -4,7 +4,7 @@ import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Lock, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Lock, Loader2 } from "lucide-react";
 import {
   fetchAuthHealthWarning,
   messageForSignInError,
@@ -55,6 +55,7 @@ export function LoginPanel({
   const [hint, setHint] = useState<ReturningUserHint | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
   const [configWarning, setConfigWarning] = useState<string | null>(null);
@@ -221,20 +222,31 @@ export function LoginPanel({
           <label htmlFor={passwordId} className="mb-1.5 block text-sm font-semibold text-[var(--color-ink)]">
             Password
           </label>
-          <input
-            id={passwordId}
-            required
-            type="password"
-            autoComplete="current-password"
-            placeholder="Password"
-            value={password}
-            disabled={busy}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              if (error) setError("");
-            }}
-            className="apple-input"
-          />
+          <div className="relative">
+            <input
+              id={passwordId}
+              required
+              type={showPassword ? "text" : "password"}
+              autoComplete="current-password"
+              placeholder="Password"
+              value={password}
+              disabled={busy}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (error) setError("");
+              }}
+              className="apple-input pr-14"
+            />
+            <button
+              type="button"
+              data-overlay="password-toggle"
+              onClick={() => setShowPassword((value) => !value)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-[#334155]"
+            >
+              {showPassword ? <EyeOff className="h-4 w-4" aria-hidden /> : <Eye className="h-4 w-4" aria-hidden />}
+            </button>
+          </div>
         </div>
         <div className="flex justify-end">
           {onForgotPassword ? (
