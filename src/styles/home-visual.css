@@ -352,6 +352,27 @@
 }
 
 @media (max-width: 767px) {
+  .home-hero {
+    justify-content: flex-start;
+    padding: calc(var(--nav-height) + 3.25rem) 1.35rem 3rem;
+  }
+
+  .home-hero__sub {
+    margin-top: 1.15rem;
+  }
+
+  .home-hero__actions {
+    margin-top: 1.85rem;
+  }
+
+  .home-hero__offer {
+    margin-top: 1.1rem;
+  }
+
+  .home-hero__visual {
+    margin-top: 3rem;
+  }
+
   .home-hero__laptop {
     display: none;
   }

@@ -18,6 +18,7 @@ import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { ROUTES, EXAM_NAV_ITEMS } from "@/lib/routes";
 import { LANDING_TRIAL_HREF, landingTrialHrefForExam } from "@/lib/landing/content";
+import { formatTrialCtaLabel } from "@/lib/site";
 import { marketingExamKeyFromPath } from "@/lib/marketing/exam-hub";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
@@ -195,8 +196,9 @@ export function Navigation() {
                 <LogIn className="aee-nav-login__icon h-4 w-4" strokeWidth={2.25} aria-hidden />
                 <span>Sign in</span>
               </LoginModalTrigger>
-              <Link href={guestTrialHref} className="aee-nav-cta">
-                Start free trial
+              <Link href={guestTrialHref} className="aee-nav-cta" aria-label={formatTrialCtaLabel()}>
+                <span className="md:hidden">Free trial</span>
+                <span className="hidden md:inline">Start free trial</span>
               </Link>
             </div>
           )}

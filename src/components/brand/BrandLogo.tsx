@@ -45,7 +45,7 @@ function NavWordmark({ className }: { className?: string }) {
           fill="none"
         />
       </svg>
-      <span className="aee-nav-wordmark__text text-[0.9375rem] font-semibold tracking-tight max-[430px]:hidden">
+      <span className="aee-nav-wordmark__text hidden text-[0.9375rem] font-semibold tracking-tight md:inline">
         AnyExamEasy
       </span>
     </span>
