@@ -102,17 +102,29 @@ function SampleCard({ item }: { item: PublicSampleQuestion }) {
 export function PublicSampleSet({
   items,
   onlyField,
+  limit,
+  compact = false,
 }: {
   items: PublicSampleQuestion[];
   onlyField?: string;
+  /** Cap how many cards render. NCLEX items stay first. */
+  limit?: number;
+  compact?: boolean;
 }) {
-  const visible = onlyField ? items.filter((item) => item.fieldId === onlyField) : items;
+  const filtered = onlyField ? items.filter((item) => item.fieldId === onlyField) : items;
+  const visible = [...filtered]
+    .sort((a, b) => Number(a.fieldId !== "nursing") - Number(b.fieldId !== "nursing"))
+    .slice(0, limit ?? filtered.length);
   if (visible.length === 0) return null;
 
   return (
     <section
       id="try-questions"
-      className="scroll-mt-24 border-t border-[var(--color-border)] bg-[var(--color-bg)] py-16 sm:py-20"
+      className={
+        compact
+          ? "scroll-mt-24 bg-[var(--color-bg)] py-10 sm:py-12"
+          : "scroll-mt-24 border-t border-[var(--color-border)] bg-[var(--color-bg)] py-16 sm:py-20"
+      }
       aria-labelledby="try-questions-heading"
     >
       <div className="mx-auto max-w-3xl px-5 sm:px-6">

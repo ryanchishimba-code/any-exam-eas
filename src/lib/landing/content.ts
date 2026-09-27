@@ -147,6 +147,17 @@ export const LANDING_PRICING_FEATURES = [
 
 export const LANDING_HERO_EYEBROW = "NCLEX prep";
 
+/** Homepage eyebrow. NCLEX leads; the other five boards follow. */
+export const HOME_HERO_BOARDS_EYEBROW =
+  "NCLEX-RN · NAPLEX · USMLE · PANCE · FNP · NPTE";
+
+/**
+ * Homepage subhead. Short on purpose so the trial line can sit above the fold.
+ * The exact trial sentence stays on formatPricingCheckoutTrialOffer.
+ */
+export const HOME_HERO_SHORT_SUBLINE =
+  "NCLEX and five other boards. A daily set, rationales, and questions you can try first.";
+
 /** Primary signup destination — Pro monthly is the default conversion path. */
 export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=monthly&tier=pro";
 

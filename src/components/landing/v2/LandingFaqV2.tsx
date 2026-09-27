@@ -18,16 +18,19 @@ import { formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "
 
 const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail} or call ${LEGAL_ENTITY.supportPhone.display}.`;
 
-const FAQ: { q: string; a: string; body?: ReactNode }[] = [
+const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   {
+    home: true,
     q: "Which exams are included?",
     a: `All six are on one subscription: ${PLATFORM_EXAM_LIST}. USMLE covers Step 1, Step 2 CK, and Step 3.`,
   },
   {
+    home: true,
     q: "How much does it cost?",
     a: `Pro is ${formatMonthlyPrice("pro")}/month and includes all six exams. Annual billing saves ${PRO_ANNUAL_SAVINGS_PERCENT}% versus monthly. Roadmap, Deep Dive, and Full Exam stay on the same plan.`,
   },
   {
+    home: true,
     q: "Is there a free trial? Do I need a card?",
     a: `Yes — a ${formatTrialLabel()} with ${formatTrialQuestionLimit()}. No payment method required at signup. Upgrade anytime for unlimited questions, Deep Dive modules, and advanced analytics.`,
   },
@@ -36,6 +39,7 @@ const FAQ: { q: string; a: string; body?: ReactNode }[] = [
     a: `UWorld sells a separate subscription per exam, and AMBOSS focuses primarily on USMLE/medical. AnyExamEasy gives you six boards under one plan, with an integrated blueprint Roadmap, Deep Dive review modules opened from missed questions, timed Full Exams, and a 3D Anatomy Explorer.`,
   },
   {
+    home: true,
     q: "Are the questions actually high quality?",
     a: "A student session only serves items that are active, qa-passed, and still eligible. Flawed items can be hidden without deleting them, and you can report an issue from the rationale. Read the standards page for the gate, the official outlines, and the corrections policy.",
   },
@@ -52,10 +56,12 @@ const FAQ: { q: string; a: string; body?: ReactNode }[] = [
     a: "No prep service can honestly guarantee a pass, and we will not. Items have to pass a quality gate before a student session can serve them. Roadmaps follow published blueprints, and a rationale shows a source when the item stores one. Passing still depends on how you study. Read how questions are reviewed for the exact gate.",
   },
   {
+    home: true,
     q: "Are you affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep?",
     a: "No. AnyExamEasy is independent. We are not affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep. Official board documents belong to those organizations — always read their materials before your exam.",
   },
   {
+    home: true,
     q: "How do I get help?",
     a: HELP_ANSWER,
     body: (
@@ -73,11 +79,12 @@ const FAQ: { q: string; a: string; body?: ReactNode }[] = [
   },
 ];
 
-export function LandingFaqV2() {
+export function LandingFaqV2({ scope = "all" }: { scope?: "all" | "home" }) {
+  const items = scope === "home" ? FAQ.filter((item) => item.home) : FAQ;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ.map((item) => ({
+    mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -87,7 +94,11 @@ export function LandingFaqV2() {
   return (
     <section
       id="faq"
-      className="scroll-mt-24 border-t border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24"
+      className={
+        scope === "home"
+          ? "scroll-mt-24 border-t border-[var(--color-border)] bg-[var(--color-surface)] py-12 sm:py-14"
+          : "scroll-mt-24 border-t border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24"
+      }
       aria-labelledby="faq-heading"
     >
       <script
@@ -108,7 +119,7 @@ export function LandingFaqV2() {
         </div>
 
         <div className="mt-10 divide-y divide-[var(--color-border)] overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-apple-sm)]">
-          {FAQ.map((item) => (
+          {items.map((item) => (
             <details key={item.q} className="group px-5 sm:px-6">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-base font-semibold text-[var(--color-ink)] [&::-webkit-details-marker]:hidden">
                 {item.q}

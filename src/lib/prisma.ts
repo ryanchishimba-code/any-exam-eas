@@ -10,7 +10,7 @@ if (!isNextBuild) {
 }
 
 /** Bump when Prisma schema adds/changes models so dev HMR replaces stale clients. */
-const PRISMA_SCHEMA_VERSION = 10;
+const PRISMA_SCHEMA_VERSION = 11;
 
 type GlobalPrisma = typeof globalThis & {
   prisma?: PrismaClient;
@@ -35,7 +35,8 @@ function isPrismaClientCurrent(client: PrismaClient | undefined): client is Pris
       typeof client.scheduledSocialPost?.findUnique === "function" &&
       typeof client.readinessCheck?.findUnique === "function" &&
       typeof client.ngnImportBatch?.findUnique === "function" &&
-      typeof client.blogPostRevision?.findUnique === "function"
+      typeof client.blogPostRevision?.findUnique === "function" &&
+      typeof client.examPassCheckIn?.findUnique === "function"
   );
 }
 

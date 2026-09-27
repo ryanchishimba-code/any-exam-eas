@@ -7,6 +7,7 @@ import { LandingTestimonialsV2 } from "@/components/landing/LandingTestimonialsV
 import type { LandingSuccessStory } from "@/lib/landing/content";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
+import { formatNclexPrepPriceComparison } from "@/lib/marketing/price-comparison";
 import { formatMonthlyPrice, formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER } from "@/lib/site";
 
 const PATH = [
@@ -60,26 +61,49 @@ export function ProblemSection({ board }: { board?: string }) {
   );
 }
 
-export function PathSection({ includeNgn = true }: { includeNgn?: boolean }) {
+export function PathSection({
+  includeNgn = true,
+  compact = false,
+}: {
+  includeNgn?: boolean;
+  compact?: boolean;
+}) {
   const steps = includeNgn ? PATH : PATH.filter((step) => step.title !== "NGN case studies");
   return (
-    <section className="bg-[var(--color-surface)] px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="path-heading">
+    <section
+      className={
+        compact
+          ? "bg-[var(--color-surface)] px-5 py-12 sm:px-6"
+          : "bg-[var(--color-surface)] px-5 py-20 sm:px-6 sm:py-28"
+      }
+      aria-labelledby="path-heading"
+    >
       <div className="mx-auto max-w-5xl">
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">How you study</p>
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
+          {compact ? "How it works" : "How you study"}
+        </p>
         <h2
           id="path-heading"
-          className="mt-4 max-w-2xl text-[clamp(2rem,5vw,3.25rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]"
+          className={
+            compact
+              ? "mt-3 max-w-2xl text-2xl font-bold leading-tight tracking-tight text-[var(--color-ink)] sm:text-3xl"
+              : "mt-4 max-w-2xl text-[clamp(2rem,5vw,3.25rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]"
+          }
         >
-          A path from the first set to test day.
+          {compact ? "From the first set to test day." : "A path from the first set to test day."}
         </h2>
-        <ol className="mt-12 grid gap-8 sm:grid-cols-2">
+        <ol className={compact ? "mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" : "mt-12 grid gap-8 sm:grid-cols-2"}>
           {steps.map((step, index) => (
-            <li key={step.title} className="border-t border-[var(--color-border)] pt-6">
+            <li key={step.title} className={compact ? "border-t border-[var(--color-border)] pt-4" : "border-t border-[var(--color-border)] pt-6"}>
               <p className="text-xs font-bold tracking-[0.14em] text-[var(--color-accent)]">
                 {String(index + 1).padStart(2, "0")}
               </p>
-              <h3 className="mt-2 text-xl font-semibold tracking-tight text-[var(--color-ink)]">{step.title}</h3>
-              <p className="mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]">{step.body}</p>
+              <h3 className={compact ? "mt-2 text-lg font-semibold tracking-tight text-[var(--color-ink)]" : "mt-2 text-xl font-semibold tracking-tight text-[var(--color-ink)]"}>
+                {step.title}
+              </h3>
+              <p className={compact ? "mt-1 text-sm leading-relaxed text-[var(--color-ink-muted)]" : "mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]"}>
+                {step.body}
+              </p>
             </li>
           ))}
         </ol>
@@ -124,21 +148,45 @@ export function SocialProof({ testimonials }: { testimonials?: LandingSuccessSto
   );
 }
 
-export function PriceSection({ trialHref = LANDING_TRIAL_HREF }: { trialHref?: string }) {
+export function PriceSection({
+  trialHref = LANDING_TRIAL_HREF,
+  showNclexComparison = false,
+}: {
+  trialHref?: string;
+  showNclexComparison?: boolean;
+}) {
   return (
-    <section className="px-5 py-20 sm:px-6 sm:py-28" aria-labelledby="price-heading">
+    <section
+      className={showNclexComparison ? "px-5 py-12 sm:px-6 sm:py-16" : "px-5 py-20 sm:px-6 sm:py-28"}
+      aria-labelledby="price-heading"
+    >
       <div className="mx-auto max-w-3xl text-center">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">Price</p>
         <h2
           id="price-heading"
-          className="mt-4 text-[clamp(2rem,5vw,3.25rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]"
+          className={
+            showNclexComparison
+              ? "mt-3 text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]"
+              : "mt-4 text-[clamp(2rem,5vw,3.25rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]"
+          }
         >
           {formatMonthlyPrice("pro")}/mo for six boards.
         </h2>
-        <p className="mt-6 text-lg leading-relaxed text-[var(--color-ink-muted)]">
+        <p
+          className={
+            showNclexComparison
+              ? "mt-4 text-base leading-relaxed text-[var(--color-ink-muted)] sm:text-lg"
+              : "mt-6 text-lg leading-relaxed text-[var(--color-ink-muted)]"
+          }
+        >
           NCLEX, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT are on
           one Pro plan.
         </p>
+        {showNclexComparison ? (
+          <p className="mt-4 text-base leading-relaxed text-[var(--color-ink)]" data-price-comparison>
+            {formatNclexPrepPriceComparison()}
+          </p>
+        ) : null}
         <p className="mt-4 text-base font-medium text-[var(--color-ink)]">{formatPricingCheckoutTrialOffer()}</p>
         <div className="mt-8 flex justify-center">
           <LandingCta href={trialHref} ctaName="price_trial" location="price">
@@ -154,14 +202,30 @@ export function PriceSection({ trialHref = LANDING_TRIAL_HREF }: { trialHref?: s
 export function FinalMarketingCta({
   title = "Start with the free trial.",
   trialHref = LANDING_TRIAL_HREF,
+  compact = false,
 }: {
   title?: string;
   trialHref?: string;
+  compact?: boolean;
 }) {
   return (
-    <section className="bg-[#1e3a5f] px-5 py-20 text-white sm:px-6 sm:py-28" aria-labelledby="final-cta-heading">
+    <section
+      className={
+        compact
+          ? "bg-[#1e3a5f] px-5 py-12 text-white sm:px-6"
+          : "bg-[#1e3a5f] px-5 py-20 text-white sm:px-6 sm:py-28"
+      }
+      aria-labelledby="final-cta-heading"
+    >
       <div className="mx-auto max-w-3xl text-center">
-        <h2 id="final-cta-heading" className="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-tight">
+        <h2
+          id="final-cta-heading"
+          className={
+            compact
+              ? "text-3xl font-bold leading-tight tracking-tight sm:text-4xl"
+              : "text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
+          }
+        >
           {title}
         </h2>
         <p className="mt-5 text-base text-white/80">{formatPricingCheckoutTrialOffer()}</p>
