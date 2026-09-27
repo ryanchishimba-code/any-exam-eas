@@ -301,6 +301,8 @@ html:has([data-public-offer]) {
   font-size: 0.75rem;
   line-height: 1.33337;
   color: var(--color-ink-muted);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 28rem;
 }
 
 .apple-footer a:hover {

@@ -19,7 +19,10 @@ import { getUsmleExamOptionsWithCounts } from "@/lib/exam-prep/usmle/exam-option
 /** Count is the published stamp. Do not ISR board hubs for an hour after a retire. */
 export const dynamic = "force-dynamic";
 
-/** Unknown single-segment URLs must 404 here instead of rendering not-found with HTTP 200. */
+/**
+ * Unknown single-segment URLs 404 here. There is no root `loading.tsx`:
+ * a root Suspense boundary streams HTTP 200 before `notFound()` can set 404.
+ */
 export const dynamicParams = false;
 
 type Props = { params: Promise<{ examSlug: string }> };
@@ -39,7 +42,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { examSlug } = await params;
   const key = resolveExamSeoKey(examSlug);
-  if (!key) return { title: "Page not found", robots: { index: false, follow: false } };
+  if (!key) notFound();
   return buildExamMetadata(examSlug);
 }
 

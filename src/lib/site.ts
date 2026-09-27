@@ -21,7 +21,7 @@ import {
   type SubscriptionTier,
 } from "@/lib/subscription-tiers";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
-import { LANDING_HERO_SUBLINE_BODY } from "@/lib/landing/content";
+import { PRICING_TRIAL_OFFER_LINE } from "@/lib/marketing/legal-copy";
 
 export const SITE_NAME = "Any Exam Easy";
 export const SITE_DOMAIN = "anyexameasy.com";
@@ -80,7 +80,7 @@ export function formatTrialLabel(): string {
  * Product line: 5-day free trial, no payment method required, then Pro monthly.
  */
 export function formatPricingCheckoutTrialOffer(): string {
-  return `${formatTrialLabel()} · no payment method required · then ${formatMonthlyPrice("pro")}/mo`;
+  return PRICING_TRIAL_OFFER_LINE;
 }
 
 /** Subhead under “Try for free” on /checkout?plan=trial. */
@@ -110,10 +110,6 @@ export const TRIAL_CTA_LABEL = "Start your free trial";
 
 export function formatTrialCtaLabel(): string {
   return TRIAL_CTA_LABEL;
-}
-
-export function formatLandingHeroSubline(): string {
-  return `${LANDING_HERO_SUBLINE_BODY} Pro at ${formatMonthlyPrice("pro")}/month.`;
 }
 
 export function formatTrialCtaWithSavings(

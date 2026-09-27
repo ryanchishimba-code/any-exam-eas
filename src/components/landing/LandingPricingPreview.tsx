@@ -7,9 +7,10 @@ import type { BillingInterval } from "@/lib/billing-config";
 import { BillingIntervalPicker } from "@/components/pricing/BillingIntervalPicker";
 import { LandingCta } from "@/components/landing/LandingCta";
 import {
+  BILLING_TRIAL_DISCLOSURE,
+  factualYearlySavingsBadge,
   formatPlanUsd,
   getBillingPlanTier,
-  BILLING_TRIAL_DISCLOSURE,
 } from "@/lib/billing-plans";
 import {
   PRO_FEATURES,
@@ -25,16 +26,17 @@ const INTERVALS: BillingInterval[] = ["monthly", "quarterly", "semiannual", "yea
 function PreviewProCard({ interval }: { interval: BillingInterval }) {
   const def = TIER_DEFINITIONS.pro;
   const plan = getBillingPlanTier("pro", interval);
+  const yearlyBadge = interval === "yearly" ? factualYearlySavingsBadge("pro") : null;
   const params = new URLSearchParams({ plan: "trial", interval, tier: "pro" });
   const href = `/signup?${params.toString()}`;
 
   return (
     <article className="aee-landing-pricing-card aee-landing-pricing-card--highlight">
       <span className="aee-landing-pricing-card__badge">
-        {interval === "yearly" ? (
+        {yearlyBadge ? (
           <>
             <Crown className="h-3.5 w-3.5" aria-hidden />
-            Best value
+            {yearlyBadge}
           </>
         ) : (
           <>

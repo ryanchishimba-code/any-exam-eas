@@ -124,9 +124,6 @@ function CompareUsCard({
           <p className="text-xs font-bold uppercase tracking-wide text-teal-700 dark:text-teal-300">
             Any Exam Easy
           </p>
-          <span className="rounded-full bg-teal-600 px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide text-white dark:bg-teal-500">
-            Best value
-          </span>
         </div>
         <p
           className={`font-black tracking-tight text-teal-700 dark:text-teal-300 ${compact ? "mt-2 text-2xl" : "mt-2 text-3xl sm:text-4xl"}`}

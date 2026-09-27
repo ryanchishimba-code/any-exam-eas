@@ -46,7 +46,7 @@ export function PaymentMethodBadges({
               <CreditCard className="h-4 w-4 text-slate-600 dark:text-slate-300" aria-hidden />
               <span className={`${text} font-medium text-slate-700 dark:text-slate-200`}>{badge.label}</span>
               {"detail" in badge && badge.detail ? (
-                <span className="hidden text-[0.625rem] text-slate-400 dark:text-slate-500 sm:inline">
+                <span className="hidden text-xs font-medium text-slate-700 dark:text-slate-200 sm:inline">
                   {badge.detail}
                 </span>
               ) : null}

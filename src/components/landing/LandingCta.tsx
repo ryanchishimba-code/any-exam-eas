@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 type LandingCtaProps = {
@@ -37,7 +36,9 @@ export function LandingCta({
         className
       )}
       onClick={() => {
-        if (ctaName) analytics.ctaClicked(ctaName, location);
+        if (!ctaName) return;
+        const name = ctaName;
+        void import("@/lib/analytics").then(({ analytics }) => analytics.ctaClicked(name, location));
       }}
     >
       {children}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { pricingHeadlineFromContext } from "@/lib/marketing/why-trust-it";
+import { pricingHeadlineFromContext } from "@/lib/marketing/pricing-headline";
 
 /**
  * Pricing H1. The server title already includes `?field=` / `?exam=`.

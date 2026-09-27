@@ -26,6 +26,8 @@ const nextConfig: NextConfig = {
   typescript: { ignoreBuildErrors: onVercel },
   productionBrowserSourceMaps: false,
   experimental: {
+    // Inline route CSS so first paint does not wait on a second stylesheet.
+    inlineCss: true,
     // Single-threaded compile on Vercel avoids OOM SIGKILL during large app builds.
     ...(onVercel ? { cpus: 1, workerThreads: false, webpackMemoryOptimizations: true } : {}),
     staleTimes: {
@@ -228,6 +230,11 @@ const nextConfig: NextConfig = {
       {
         source: "/employee/login",
         destination: "/auth/login?callbackUrl=%2Finternal",
+        permanent: false,
+      },
+      {
+        source: "/qbank",
+        destination: "/question-bank",
         permanent: false,
       },
       {

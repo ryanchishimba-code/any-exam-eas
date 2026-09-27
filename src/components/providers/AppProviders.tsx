@@ -6,7 +6,6 @@ import { LoginModalRoot } from "@/components/auth/LoginModalRoot";
 import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { ShareFabLazy } from "@/components/share/ShareFabLazy";
-import { RootChrome } from "@/components/layout/RootChrome";
 import { ClientRecovery } from "@/components/ClientRecovery";
 import { PwaRegister } from "@/components/PwaRegister";
 import { AppQueryProvider } from "@/components/providers/AppQueryProvider";
@@ -27,7 +26,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
               <PwaRegister />
               <PageViewTrackerBoundary />
               <PracticeSessionProvider>
-                <RootChrome>{children}</RootChrome>
+                {children}
                 <ShareFabLazy />
               </PracticeSessionProvider>
             </LoginModalRoot>

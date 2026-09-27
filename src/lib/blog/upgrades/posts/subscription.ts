@@ -4,7 +4,7 @@ import type { BlogUpgrade } from "@/lib/blog/upgrades/types";
 
 const content = [
   p(
-    `One Pro subscription covers six licensing exams: NCLEX-RN and NCLEX-PN, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT. You do not buy a separate bank for each board. The offer is ${TRIAL_OFFER}. ${TRIAL_QUESTION_LIMIT}. After the trial, practice stays locked unless you continue on Pro.`
+    `One Pro subscription covers six licensing exams: NCLEX-RN and NCLEX-PN, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT. You do not buy a separate bank for each board. The offer is ${TRIAL_OFFER} ${TRIAL_QUESTION_LIMIT}. After the trial, practice stays locked unless you continue on Pro.`
   ),
   p(
     `This page is what the product actually includes. It is not a comparison that invents another company’s price, and it is not a claim that you will pass. For how to study, use the ${a("/blog/strategies", "NCLEX study plan")}, the ${a("/blog/why", "budget NCLEX guide")}, or the ${a("/blog/okay", "NAPLEX study plan")}.`
@@ -93,7 +93,7 @@ const content = [
   faq([
     {
       q: "How much does AnyExamEasy cost?",
-      a: "5-day free trial · no payment method required · then $27.99/mo. The trial includes 500 practice questions and one full-length adaptive exam. Pro removes the question cap.",
+      a: `${TRIAL_OFFER} The trial includes 500 practice questions and one full-length adaptive exam. Pro removes the question cap.`,
     },
     {
       q: "Which exams are included?",
@@ -119,7 +119,7 @@ export const subscriptionPost: BlogUpgrade = {
   title: "What One Subscription Includes for Six Boards",
   metaTitle: "What One Subscription Includes for Six Boards",
   metaDescription:
-    "Six exams on one plan: NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE, with a Roadmap. 5-day free trial · no payment method required · then $27.99/mo.",
+    `Six exams on one plan: NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE, with a Roadmap. ${TRIAL_OFFER}`,
   excerpt:
     "What you actually get on one plan: six exam banks, a 500-question trial, one full-length adaptive exam, and reference books that stay with Pro.",
   category: "All boards",

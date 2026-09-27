@@ -2,8 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import { LandingCta } from "@/components/landing/LandingCta";
-import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
-import { MARKETING_DARK_HERO_PATHS } from "@/lib/marketing/exam-hub";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/trial-href";
+import { MARKETING_DARK_HERO_PATHS } from "@/lib/marketing/board-paths";
 import { formatPricingCheckoutTrialOffer, formatTrialCtaLabel } from "@/lib/site";
 
 const HIDDEN_PREFIXES = [

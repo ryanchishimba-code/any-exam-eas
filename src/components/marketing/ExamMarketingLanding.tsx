@@ -151,8 +151,8 @@ export async function ExamMarketingLanding({
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
               {studyGuide
-                ? `The ${config.shortName} study guide is included with the 5-day free trial. ${formatPricingCheckoutTrialOffer()}.`
-                : `${formatPricingCheckoutTrialOffer()}.`}
+                ? `The ${config.shortName} study guide is included with the 5-day free trial. ${formatPricingCheckoutTrialOffer()}`
+                : formatPricingCheckoutTrialOffer()}
             </p>
             <ul className="mt-10 grid gap-4 sm:grid-cols-3" role="list">
               {productLinks.map((item) => (

@@ -219,7 +219,7 @@ export default async function FreeGuidesPage() {
         <section className="border-t border-[var(--color-border)] px-6 py-16 sm:py-20">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-base leading-relaxed text-[var(--color-ink-muted)]">
-              Ready to practice? {formatPricingCheckoutTrialOffer()}.
+              Ready to practice? {formatPricingCheckoutTrialOffer()}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>

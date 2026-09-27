@@ -158,7 +158,7 @@ export const HOME_HERO_BOARDS_EYEBROW =
 export const HOME_HERO_SHORT_SUBLINE = "NCLEX and five other boards.";
 
 /** Primary signup destination — Pro monthly is the default conversion path. */
-export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=monthly&tier=pro";
+export { LANDING_TRIAL_HREF, landingTrialHrefForExam } from "@/lib/landing/trial-href";
 
 /** Large hero exam strip — short labels with brand accent colors + signup deep links. */
 export const LANDING_HERO_EXAMS = [
@@ -169,12 +169,6 @@ export const LANDING_HERO_EXAMS = [
   { slug: "aanp-fnp" as const, label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
   { slug: "npte-pt" as const, label: "NPTE-PT", color: EXAM_ACCENTS.nptePt },
 ] as const;
-
-/** Trial signup URL with optional preferred exam preselected. */
-export function landingTrialHrefForExam(examSlug?: string): string {
-  if (!examSlug) return LANDING_TRIAL_HREF;
-  return `${LANDING_TRIAL_HREF}&exam=${encodeURIComponent(examSlug)}`;
-}
 
 /** Primary hero headline — default NCLEX job; chips swap the exam-specific line. */
 export const LANDING_HERO_HEADLINE = "Go from doubtful to confident.";
@@ -201,6 +195,11 @@ export function formatExamHeroProductLine(examSlug?: string): string {
 
 export function formatFlagshipHeroSubline(_totalLabel?: string): string {
   return LANDING_HERO_SUBLINE_BODY;
+}
+
+/** Homepage hero subline with the Pro price. Kept here so site.ts does not import this module. */
+export function formatLandingHeroSubline(): string {
+  return `${LANDING_HERO_SUBLINE_BODY} Pro at ${monthly()}/month.`;
 }
 
 /** Exam-specific headlines for marketing pages and homepage chip swaps. */

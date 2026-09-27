@@ -125,6 +125,16 @@ export const EXAM_NAV_ITEMS: {
   },
 ];
 
+/** Public board pages. Labels are the six exams visitors should be able to find. */
+export const MARKETING_BOARD_LINKS: { href: string; label: string }[] = [
+  { href: "/nclex", label: "NCLEX" },
+  { href: "/usmle", label: "USMLE Step 2 CK" },
+  { href: "/naplex", label: "NAPLEX" },
+  { href: "/pance", label: "PANCE" },
+  { href: "/aanp-fnp", label: "AANP FNP" },
+  { href: "/npte-pt", label: "NPTE-PT" },
+];
+
 export function examHref(slug: ExamRouteSlug): string {
   return examMarketingPath(slug);
 }

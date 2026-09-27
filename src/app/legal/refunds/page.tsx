@@ -26,7 +26,7 @@ export default function RefundsPage() {
         <div className="mt-8 space-y-6 text-sm leading-relaxed text-[var(--color-ink-muted)]">
           <section>
             <h2 className="text-base font-semibold text-[var(--color-ink)]">Trial</h2>
-            <p className="mt-2">{formatPricingCheckoutTrialOffer()}.</p>
+            <p className="mt-2">{formatPricingCheckoutTrialOffer()}</p>
             <p className="mt-2">{LEGAL_DISCLAIMERS.subscription}</p>
           </section>
           <section>

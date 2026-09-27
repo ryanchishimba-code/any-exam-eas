@@ -128,6 +128,23 @@ export function formatApproxUsd(amount: number): string {
   return formatPlanUsd(amount);
 }
 
+/**
+ * Neutral annual badge. Only when the yearly total is a whole-percent
+ * discount versus 12× monthly, within two hundredths of a percent (penny
+ * rounding). $27.99 × 12 × 0.7 rounds to $235.12 (29.9988% → 30%) and
+ * $235.12 / 12 rounds to $19.59/mo.
+ */
+export function factualYearlySavingsBadge(tier: SubscriptionTier = "pro"): string | null {
+  const plan = getBillingPlanTier(tier, "yearly");
+  const list = intervalListPriceUsd(tier, "yearly");
+  if (list <= 0 || plan.months <= 0 || plan.savingsPercent <= 0) return null;
+  const rawPercent = (1 - plan.totalUsd / list) * 100;
+  if (Math.abs(rawPercent - plan.savingsPercent) > 0.02) return null;
+  const monthlyFromTotal = Math.round((plan.totalUsd / plan.months) * 100) / 100;
+  if (monthlyFromTotal !== plan.monthlyEquivalentUsd) return null;
+  return `Save ${plan.savingsPercent}%`;
+}
+
 export function getBillingPlanTier(
   tier: SubscriptionTier,
   interval: BillingInterval

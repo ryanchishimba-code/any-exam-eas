@@ -9,5 +9,5 @@ export const TRIAL_QUESTION_LIMIT = formatTrialQuestionLimit();
 export const TRIAL_HREF = LANDING_TRIAL_HREF;
 
 export function trialClose(sentence: string): string {
-  return `<p>${sentence} <a href="${TRIAL_HREF}">Try for free</a>. ${TRIAL_OFFER}.</p>`;
+  return `<p>${sentence} <a href="${TRIAL_HREF}">Try for free</a>. ${TRIAL_OFFER}</p>`;
 }

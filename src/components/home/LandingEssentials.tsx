@@ -135,8 +135,7 @@ export function LandingEssentials() {
         <div className="aee-essentials-price mt-10 rounded-2xl bg-gradient-to-br from-teal-600 to-cyan-700 p-6 text-white sm:p-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <span className="aee-value-badge">Best value</span>
-              <p className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
+              <p className="text-4xl font-bold tracking-tight sm:text-5xl">
                 {formatTrialEntryPrice()}
               </p>
               <p className="mt-1 text-teal-100">
