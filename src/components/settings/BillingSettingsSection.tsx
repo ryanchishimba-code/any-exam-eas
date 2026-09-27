@@ -117,8 +117,7 @@ export function BillingSettingsSection() {
 
   const paymentPastDue = status?.status === "past_due";
   const reactivation = status?.reactivation;
-  const reactivatePlan =
-    reactivation?.checkoutPlan ?? (reactivation?.trialAvailable ? "trial" : "subscribe");
+  const trialEligible = reactivation?.trialAvailable === true;
   const isOneTime = status?.purchaseType === "one_time";
   const onTrial = status?.status === "trialing";
   const currentTier = parseSubscriptionTier(status?.planTier);
@@ -190,15 +189,13 @@ export function BillingSettingsSection() {
             href={
               isOneTime
                 ? `/checkout?plan=subscribe&interval=${interval}&mode=manual&reactivate=1`
-                : `/checkout?plan=${reactivatePlan}&interval=${interval}&reactivate=1`
+                : trialEligible
+                  ? `/checkout?plan=trial&interval=${interval}&reactivate=1`
+                  : `/checkout?plan=subscribe&interval=${interval}&reactivate=1`
             }
             className="w-full"
           >
-            {isOneTime
-              ? "Buy another pass"
-              : reactivatePlan === "trial"
-                ? "Start free trial"
-                : "Reactivate subscription"}
+            {isOneTime ? "Buy another pass" : trialEligible ? "Start free trial" : "Subscribe"}
           </Button>
         </div>
         {error && <InlineError className="mt-4">{error}</InlineError>}

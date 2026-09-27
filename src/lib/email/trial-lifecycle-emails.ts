@@ -120,10 +120,29 @@ export async function sendWelcomeTrialEmail(
   });
 }
 
+export function buildTrialEndingBillingNote(params: {
+  legacyStripeTrial?: boolean;
+  planInterval?: BillingInterval;
+  amountUsd?: number | null;
+}): { html: string; text: string } {
+  if (params.legacyStripeTrial !== true || !params.planInterval || params.amountUsd == null) {
+    return { html: "", text: "" };
+  }
+  const tier = getBillingPlanTier("pro", params.planInterval);
+  const amount = formatPlanUsd(params.amountUsd);
+  return {
+    html: emailParagraph(
+      `You added a payment method at checkout — unless you cancel before your trial ends, <strong>${amount}</strong> for your ${tier.label} plan will be charged when the trial ends. You can still upgrade or change plans anytime.`
+    ),
+    text: `\nPayment note: ${amount} for ${tier.label} may be charged at trial end unless you cancel.\n`,
+  };
+}
+
 export async function sendTrialEndingUpgradeEmail(
   params: TrialEmailParams & {
     trialEndsAt: Date;
-    hasStripeSubscription?: boolean;
+    /** True only when Stripe reports this subscription status as trialing. */
+    legacyStripeTrial?: boolean;
     planInterval?: BillingInterval;
     amountUsd?: number;
   }
@@ -133,22 +152,11 @@ export async function sendTrialEndingUpgradeEmail(
   const dashboardUrl = dashboardEmailUrl();
   const upgradeUrl = upgradeEmailUrl("trial-ending");
   const when = formatEmailDate(params.trialEndsAt);
-
-  let billingNoteHtml = "";
-  let billingNoteText = "";
-
-  if (
-    params.hasStripeSubscription &&
-    params.planInterval &&
-    params.amountUsd != null
-  ) {
-    const tier = getBillingPlanTier("pro", params.planInterval);
-    const amount = formatPlanUsd(params.amountUsd);
-    billingNoteHtml = emailParagraph(
-      `You added a payment method at checkout — unless you cancel before your trial ends, <strong>${amount}</strong> for your ${tier.label} plan will be charged when the trial ends. You can still upgrade or change plans anytime.`
-    );
-    billingNoteText = `\nPayment note: ${amount} for ${tier.label} may be charged at trial end unless you cancel.\n`;
-  }
+  const billingNote = buildTrialEndingBillingNote({
+    legacyStripeTrial: params.legacyStripeTrial,
+    planInterval: params.planInterval,
+    amountUsd: params.amountUsd,
+  });
 
   const bodyHtml = [
     emailParagraph(`${greeting(params.name)}`),
@@ -158,7 +166,7 @@ export async function sendTrialEndingUpgradeEmail(
     emailParagraph(
       "You've already started building real study momentum. Keep it going with unlimited questions, teachable rationales, AI Tutor, spaced repetition, and full-length mocks on Pro."
     ),
-    billingNoteHtml,
+    billingNote.html,
     emailParagraph(
       "Upgrade now and pick up exactly where you left off — no reset, no re-setup."
     ),
@@ -173,7 +181,7 @@ export async function sendTrialEndingUpgradeEmail(
     "After that, access downgrades to the free tier unless you upgrade.",
     "",
     "Keep your momentum — upgrade for unlimited questions, teachable rationales, AI Tutor, and Pro tools.",
-    billingNoteText,
+    billingNote.text,
     "",
     `Upgrade: ${upgradeUrl}`,
     `Dashboard: ${dashboardUrl}`,

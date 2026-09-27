@@ -58,7 +58,7 @@ export default function DailyHubPage() {
             <Link
               href={qotdPath(featured, today)}
               prefetch={false}
-              className="aee-flagship-cta aee-flagship-cta--hero group inline-flex items-center gap-2"
+              className="aee-flagship-cta aee-flagship-cta--primary aee-flagship-cta--hero group inline-flex items-center gap-2"
             >
               Answer today&apos;s {featuredName} question
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { NOT_FOR_PATIENT_CARE_LINE } from "@/lib/marketing/legal-copy";
 import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER } from "@/lib/site";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
 import { useUserAccess } from "@/lib/client/use-user-access";
@@ -82,6 +83,9 @@ export function Footer() {
             </p>
             <p className="mt-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
               {MARKETING_DISCLAIMER}
+            </p>
+            <p className="mt-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+              {NOT_FOR_PATIENT_CARE_LINE}
             </p>
             <p className="mt-3 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
               {TRADEMARK_NOTICE}

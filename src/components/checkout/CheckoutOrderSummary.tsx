@@ -37,14 +37,15 @@ export function CheckoutOrderSummary({
 }: CheckoutOrderSummaryProps) {
   const discounted = discount?.valid && hasDiscount(pricing);
   const oneTime = paymentMode === "manual";
-  const isFree = pricing.primary.discounted === 0;
+  const isTrialPlan = pricing.plan === "trial";
 
   /*
    * One line of terms, not a stack of them. The interval selector already
    * carries the price and savings, so repeating them here only added noise —
    * what is left is the part a buyer cannot infer: what happens next.
+   * A $0 paid total (for example a full discount) is still a paid plan.
    */
-  const terms = isFree
+  const terms = isTrialPlan
     ? interval === "monthly"
       ? formatPricingCheckoutTrialOffer()
       : `${formatTrialLabel()} · no payment method required`

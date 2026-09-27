@@ -8,6 +8,7 @@ import {
 } from "@/lib/counts";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import type { QuestionBankCountsSnapshot } from "@/lib/marketing/question-bank-counts";
+import { nclexContentReviewLedBy } from "@/lib/marketing/legal-copy";
 import { formatMonthlyPrice } from "@/lib/site";
 
 export type HomeProofFact = {
@@ -59,7 +60,7 @@ export function buildHomeProofFacts(site: SiteQuestionCounts | null): HomeProofF
   if (reviewer) {
     facts.push({
       id: "reviewer",
-      text: `NCLEX items reviewed by ${reviewer.displayName}`,
+      text: nclexContentReviewLedBy(reviewer.displayName),
     });
   }
 

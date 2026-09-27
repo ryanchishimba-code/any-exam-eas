@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
+import { StudyUseNote } from "@/components/legal/StudyUseNote";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 import type { QotdItem } from "@/lib/demo/qotd";
@@ -75,26 +76,26 @@ export function QotdPractice({
 
         <p className="aee-landing-sample__stem">{item.stem}</p>
 
-        <ul className="aee-landing-sample__options" role="listbox" aria-label="Answer choices">
+        <div className="aee-landing-sample__options" role="listbox" aria-label="Answer choices">
           {item.options.map((opt, i) => {
             const isSelected = selected === opt;
             const isCorrectOpt = revealed && opt === item.correct;
             const isWrong = revealed && isSelected && opt !== item.correct;
             return (
-              <li key={opt}>
-                <button
-                  type="button"
-                  role="option"
-                  aria-selected={isSelected}
-                  disabled={revealed}
-                  onClick={() => setSelected(opt)}
-                  className={cn(
-                    "aee-landing-sample__option",
-                    isSelected && !revealed && "aee-landing-sample__option--selected",
-                    isCorrectOpt && "aee-landing-sample__option--correct",
-                    isWrong && "aee-landing-sample__option--wrong"
-                  )}
-                >
+              <button
+                key={opt}
+                type="button"
+                role="option"
+                aria-selected={isSelected}
+                disabled={revealed}
+                onClick={() => setSelected(opt)}
+                className={cn(
+                  "aee-landing-sample__option",
+                  isSelected && !revealed && "aee-landing-sample__option--selected",
+                  isCorrectOpt && "aee-landing-sample__option--correct",
+                  isWrong && "aee-landing-sample__option--wrong"
+                )}
+              >
                   <span className="aee-landing-sample__letter" aria-hidden>
                     {LABELS[i] ?? "?"}
                   </span>
@@ -102,11 +103,10 @@ export function QotdPractice({
                   {isCorrectOpt ? (
                     <Check className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
                   ) : null}
-                </button>
-              </li>
+              </button>
             );
           })}
-        </ul>
+        </div>
 
         {!revealed ? (
           <button
@@ -130,6 +130,7 @@ export function QotdPractice({
             <p className="aee-landing-sample__rationale">
               <strong>Rationale:</strong> {item.rationale}
             </p>
+            <StudyUseNote className="mt-2" />
             <button
               type="button"
               className="aee-landing-sample__retry"

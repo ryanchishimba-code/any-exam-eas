@@ -78,11 +78,17 @@ describe("pass check-in eligibility", () => {
     expect(quoteToStore("  The daily set helped.  ", true)).toEqual({
       quote: "The daily set helped.",
       shareQuoteConsent: true,
+      quoteConsentVersion: "2026-09-27",
     });
     expect(quoteToStore("The daily set helped.", false)).toEqual({
       quote: null,
       shareQuoteConsent: false,
+      quoteConsentVersion: null,
     });
-    expect(quoteToStore("   ", true)).toEqual({ quote: null, shareQuoteConsent: false });
+    expect(quoteToStore("   ", true)).toEqual({
+      quote: null,
+      shareQuoteConsent: false,
+      quoteConsentVersion: null,
+    });
   });
 });

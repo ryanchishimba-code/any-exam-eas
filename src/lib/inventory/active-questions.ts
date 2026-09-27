@@ -20,7 +20,9 @@ import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import { EFFECTIVE_MCQ_SQL } from "@/lib/exam-prep/effective-type-sql";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 
-export { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/question-definition";
+import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/question-definition";
+
+export { ACTIVE_QUESTION_DEFINITION };
 
 export const ACTIVE_COUNT_UNAVAILABLE =
   "Live bank count is unavailable, so this page does not show a number.";

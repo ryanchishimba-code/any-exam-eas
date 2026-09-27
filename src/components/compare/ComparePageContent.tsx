@@ -128,7 +128,7 @@ export function ComparePageContent({
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
             3 months of Pro ({formatUsd(AEE_MONTHLY * 3)}) vs public UWorld
             shortest-tier NCLEX + Step 2 CK + NAPLEX ({formatUsd(UWORLD_THREE_EXAM_MIN)},
-            Jul 2026 listings). Competitor prices change.
+            as of Sep 27, 2026). Competitor prices change.
           </p>
         </div>
       </section>
@@ -138,7 +138,7 @@ export function ComparePageContent({
           Feature comparison
         </h2>
         <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          AnyExamEasy vs typical per-exam competitors · Public pricing Jul 2026
+          AnyExamEasy vs typical per-exam competitors · Public pricing as of Sep 27, 2026
         </p>
         <div className="mt-5">
           <ComparisonTable rows={featureRows} competitorHeader="Typical competitor" />

@@ -112,7 +112,7 @@ export const PRICING_VALUE_HEADLINE =
 /** Trial study limits — shown in marketing copy. */
 export const TRIAL_STUDY_LIMITS = [
   `${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial`,
-  "Full Pro access — all 6 banks, Roadmaps, Deep Dives, Full Exams & analytics",
+  "Roadmaps and Deep Dives across all six boards during the trial",
   "No payment required at signup · upgrade anytime for unlimited questions",
 ] as const;
 

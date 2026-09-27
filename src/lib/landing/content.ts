@@ -628,7 +628,7 @@ export const UWORLD_COMPARE_ROWS = [
   {
     label: "Monthly price",
     us: `Pro at ${monthly()}/mo — all 6 exams included`,
-    them: "$200–400+ per exam (UWorld sells each board separately)",
+    them: "$200–400+ per exam (UWorld sells each board separately, as of Sep 27, 2026)",
   },
   {
     label: "Exam coverage",
@@ -648,7 +648,7 @@ export const UWORLD_COMPARE_ROWS = [
   {
     label: "Trial entry",
     us: `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} questions · No payment required`,
-    them: "Limited demo or paid upfront bundles",
+    them: "See each vendor's current trial terms",
   },
   {
     label: "Full Exam simulation",

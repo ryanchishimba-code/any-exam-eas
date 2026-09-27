@@ -98,7 +98,7 @@ export function ProBenefitsComparison({
 
         <Link
           href={ctaHref}
-          className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-bold text-white shadow-[var(--shadow-apple-btn)] transition hover:shadow-[var(--shadow-apple-btn-hover)] hover:brightness-105"
+          className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0f766e] px-6 py-3 text-sm font-bold text-white shadow-[var(--shadow-apple-btn)] transition hover:bg-[#115e59] hover:shadow-[var(--shadow-apple-btn-hover)]"
         >
           {ctaLabel}
           <Crown className="h-4 w-4" aria-hidden />

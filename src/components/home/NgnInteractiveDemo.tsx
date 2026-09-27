@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { StudyUseNote } from "@/components/legal/StudyUseNote";
 import { formatTrialCtaLabel } from "@/lib/site";
 import { analytics } from "@/lib/analytics";
 import { NGN_DEMO_QUESTIONS } from "@/lib/demo/ngn-samples";
@@ -149,6 +150,7 @@ export function NgnInteractiveDemo({
                 <div className="mt-6 space-y-4">
                   <AnswerFeedbackLabel correct={correct === true} />
                   <ExplanationPanel question={question} />
+                  <StudyUseNote className="mt-2" />
                   <div className="flex flex-wrap items-center gap-4">
                     <button
                       type="button"
