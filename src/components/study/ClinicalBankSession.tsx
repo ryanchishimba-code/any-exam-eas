@@ -230,9 +230,9 @@ export function ClinicalBankSession({ session, reviewQueue = false, onExit }: Pr
   const references = session.caseReferences[caseKey(unit.caseDoc.id, unit.caseDoc.version)] ?? unit.caseDoc.references;
   return (
     <section className="mx-auto w-full max-w-6xl">
-      <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-3 max-lg:sticky max-lg:top-[var(--nav-height)] max-lg:z-20 max-lg:mb-0 max-lg:bg-[var(--color-bg)] max-lg:pb-4 max-lg:pt-1">
         {progress}
-        <p className={`text-sm ${ngnMuted}`}>{unit.caseDoc.title}</p>
+        <p className={`text-sm max-lg:min-w-0 max-lg:flex-1 ${ngnMuted}`}>{unit.caseDoc.title}</p>
       </div>
       <CaseStudyPlayer
         key={`${unit.caseDoc.id}:${unit.caseDoc.version}`}

@@ -76,6 +76,7 @@ describe("student NGN session", () => {
       />
     );
     expect(screen.getByText("Case 1 of 1")).toBeInTheDocument();
+    expect(screen.getByText("Case 1 of 1").parentElement).toHaveClass("max-lg:sticky");
     expect(screen.getByRole("button", { name: "Client chart" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Recognize cues/ })).toHaveAttribute("aria-current", "step");
     expect(screen.queryByRole("button", { name: "Submit case" })).not.toBeInTheDocument();
