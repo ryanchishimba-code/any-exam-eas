@@ -131,13 +131,13 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 flex max-h-[96dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-[1.75rem] bg-white shadow-[0_24px_80px_rgba(8,145,178,0.22)] sm:max-h-[min(94vh,820px)] sm:max-w-2xl sm:rounded-[1.75rem] lg:max-w-3xl"
+            className="relative z-10 flex max-h-[96dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-[1.75rem] bg-white shadow-[0_24px_80px_rgba(15,118,110,0.18)] sm:max-h-[min(94vh,820px)] sm:max-w-2xl sm:rounded-[1.75rem] lg:max-w-3xl"
           >
-            <div className="relative overflow-hidden bg-gradient-to-br from-[#0e7490] via-[#0891b2] to-[#0284c7] px-6 pb-7 pt-6 text-white">
+            <div className="relative overflow-hidden bg-[#0f766e] px-6 pb-7 pt-6 text-white">
               <button
                 type="button"
                 onClick={onClose}
-                className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
+                className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
                 aria-label="Close"
               >
                 <X className="h-4 w-4" />
@@ -150,7 +150,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
                     setView("login");
                     setForgotStep("form");
                   }}
-                  className="absolute left-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
+                  className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
                   aria-label="Back to login"
                 >
                   <ArrowLeft className="h-4 w-4" aria-hidden />
@@ -170,7 +170,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
                     <HeaderIcon className="h-5 w-5" strokeWidth={2.25} aria-hidden />
                   </span>
                   <div className={view === "forgot" && forgotStep === "form" ? "pl-8 sm:pl-0" : undefined}>
-                    <p className="text-xs font-medium uppercase tracking-wider text-teal-100/90">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-white">
                       {header.eyebrow}
                     </p>
                     <h2 id="login-modal-title" className="text-xl font-semibold tracking-tight">
@@ -184,13 +184,13 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
                 key={`sub-${view}-${forgotStep}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="mt-3 text-sm leading-relaxed text-teal-50/90"
+                className="mt-3 text-sm leading-relaxed text-white"
               >
                 {header.subtitle}
               </motion.p>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-5 py-5 sm:px-8 sm:py-7">
+            <div className="aee-auth-surface flex-1 overflow-y-auto px-5 py-5 sm:px-8 sm:py-7">
               <AnimatePresence mode="wait" initial={false}>
                 {view === "login" ? (
                   <motion.div key="login-panel" {...panelMotion}>
@@ -200,12 +200,12 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
                       forgotLinkClassName="text-teal-600 hover:text-teal-700"
                     />
 
-                    <p className="mt-5 flex items-center justify-center gap-1.5 text-center text-[0.6875rem] text-slate-500">
+                    <p className="mt-5 flex items-center justify-center gap-1.5 text-center text-sm text-[#334155]">
                       <ShieldCheck className="h-3.5 w-3.5 text-teal-600" aria-hidden />
                       Encrypted · Security-first infrastructure
                     </p>
 
-                    <p className="mt-4 text-center text-xs text-slate-500">
+                    <p className="mt-4 text-center text-sm text-[#334155]">
                       New here?{" "}
                       <Link
                         href={LANDING_TRIAL_HREF}

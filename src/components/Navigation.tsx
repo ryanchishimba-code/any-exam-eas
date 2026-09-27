@@ -222,13 +222,13 @@ export function Navigation() {
             <div className="aee-nav-auth-group">
               <LoginModalTrigger
                 callbackUrl={ROUTES.dashboard}
-                className={`aee-nav-login max-[430px]:px-2 ${navOnHero ? "aee-nav-login--on-hero" : ""}`}
+                className={`aee-nav-login ${navOnHero ? "aee-nav-login--on-hero" : ""}`}
                 aria-label="Sign in to your account"
               >
-                <LogIn className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden />
-                <span className="max-[430px]:hidden">Sign in</span>
+                <LogIn className="aee-nav-login__icon h-4 w-4" strokeWidth={2.25} aria-hidden />
+                <span>Sign in</span>
               </LoginModalTrigger>
-              <Link href={guestTrialHref} className="aee-nav-cta text-[0.8125rem] max-[430px]:px-2.5">
+              <Link href={guestTrialHref} className="aee-nav-cta">
                 {formatTrialCtaLabel()}
               </Link>
             </div>
