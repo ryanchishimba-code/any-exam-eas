@@ -8,7 +8,7 @@ import { ROUTES } from "@/lib/routes";
 import type { Metadata } from "next";
 
 const CONTACT_TITLE = `Contact Us — ${SITE_NAME}`;
-const CONTACT_DESCRIPTION = `Contact ${SITE_NAME} for billing, a question, or feedback. ${LEGAL_ENTITY.supportPhone.supportLabel}: ${LEGAL_ENTITY.supportEmail} or ${LEGAL_ENTITY.supportPhone.display}.`;
+const CONTACT_DESCRIPTION = `Contact ${SITE_NAME} for billing help, content questions, bug reports or product feedback. Email support or send a message — we reply to every note.`;
 
 export const metadata: Metadata = {
   title: { absolute: CONTACT_TITLE },
@@ -62,7 +62,7 @@ export default function ContactPage() {
             <SupportPhoneLink className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/40">
               <Phone className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
             </SupportPhoneLink>
-            <SupportHoursNote variant="support" className="text-sm font-semibold text-[var(--color-ink-muted)]" />
+            <SupportHoursNote className="text-sm font-semibold text-[var(--color-ink-muted)]" />
             <p className="inline-flex items-center gap-2 text-sm text-[var(--color-ink-muted)]">
               <MessageSquare className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
               Or use the form below
