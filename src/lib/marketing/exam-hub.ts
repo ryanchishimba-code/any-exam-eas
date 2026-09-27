@@ -1,32 +1,10 @@
+import { MARKETING_DARK_HERO_PATHS, marketingExamKeyFromPath } from "@/lib/marketing/board-paths";
 import { studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 import { getExamSeoConfig, type ExamSeoKey } from "@/lib/seo/exam-config";
 
-export const MARKETING_DARK_HERO_PATHS = new Set([
-  "/",
-  "/nclex",
-  "/usmle",
-  "/naplex",
-  "/pance",
-  "/aanp-fnp",
-  "/npte-pt",
-]);
-
-export function marketingExamKeyFromPath(pathname: string): ExamSeoKey | null {
-  const slug = pathname.replace(/^\//, "").split("/")[0];
-  if (
-    slug === "nclex" ||
-    slug === "usmle" ||
-    slug === "naplex" ||
-    slug === "pance" ||
-    slug === "aanp-fnp" ||
-    slug === "npte-pt"
-  ) {
-    return slug;
-  }
-  return null;
-}
+export { MARKETING_DARK_HERO_PATHS, marketingExamKeyFromPath };
 
 export type ExamHubSecondaryLink = {
   href: string;

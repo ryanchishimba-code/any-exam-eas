@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Sparkles } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
 import {
+  factualYearlySavingsBadge,
   formatPlanUsd,
   getBillingPlanTier,
   getBillingPlanTiersForTier,
@@ -94,11 +95,11 @@ export function BillingIntervalDropdown({
               <span className="text-sm font-semibold text-[var(--color-ink)]">
                 {optionLabel(tier, value)}
               </span>
-              {plan.recommended && (
-                <span className="rounded-full bg-[#0f766e] px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide text-white">
-                  Best value
+              {factualYearlySavingsBadge(tier) && value === "yearly" ? (
+                <span className="rounded-full bg-[#0f766e] px-2 py-0.5 text-xs font-semibold tracking-wide text-white">
+                  {factualYearlySavingsBadge(tier)}
                 </span>
-              )}
+              ) : null}
             </div>
             <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">{optionSubline(tier, value)}</p>
           </div>

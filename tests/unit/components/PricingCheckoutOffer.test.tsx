@@ -28,13 +28,13 @@ describe("pricing and checkout offer copy", () => {
     expect(screen.getByText(APPROVED, { exact: false })).toBeInTheDocument();
     expect(screen.queryByText(/no card/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/20% off first month/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
+    expect(screen.getByText("Save 30%")).toBeInTheDocument();
+    expect(screen.queryByText(/best value/i)).not.toBeInTheDocument();
     expect(screen.getByText("$27.99/mo")).toBeInTheDocument();
     expect(screen.getByText("$235.12 · ≈ $19.59/mo")).toBeInTheDocument();
-    expect(screen.getByText("Best value")).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /other billing options/i }));
-    expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
+    expect(screen.getAllByText("Save 30%")).toHaveLength(1);
     expect(screen.getByText("$147.79 · ≈ $24.63/mo")).toBeInTheDocument();
     expect(screen.getByText("$79.77 · ≈ $26.59/mo")).toBeInTheDocument();
   });
@@ -45,12 +45,13 @@ describe("pricing and checkout offer copy", () => {
 
     expect(screen.queryByText(/new members/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/20% off/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/best value/i)).not.toBeInTheDocument();
+    expect(screen.getByText("Save 30%")).toBeInTheDocument();
     expect(screen.getByText("$27.99/mo")).toBeInTheDocument();
     expect(screen.getByText("$235.12 · ≈ $19.59/mo")).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /other billing options/i }));
-    expect(screen.queryByText(/save \d+%/i)).not.toBeInTheDocument();
+    expect(screen.getAllByText("Save 30%")).toHaveLength(1);
     expect(screen.getByText("$147.79 · ≈ $24.63/mo")).toBeInTheDocument();
     expect(screen.getByText("$79.77 · ≈ $26.59/mo")).toBeInTheDocument();
   });

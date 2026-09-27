@@ -1,26 +1,19 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Map, BookOpen, Timer } from "lucide-react";
 import { PricingTiers } from "@/components/pricing/PricingTiers";
 import { PricingBoardHeadline } from "@/components/pricing/PricingBoardHeadline";
-import { PricingQueryNotices } from "@/components/pricing/PricingQueryNotices";
 import { PageShell } from "@/components/PageShell";
 import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-metadata";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { pricingHeadlineFromContext } from "@/lib/marketing/why-trust-it";
-import {
-  buildLandingBankCountsDisplay,
-  getCachedBankStatsBundle,
-} from "@/lib/marketing/question-bank-counts";
+import { pricingHeadlineFromContext } from "@/lib/marketing/pricing-headline";
 import { formatExactQuestionCount, publishedSiteQuestionCounts } from "@/lib/counts";
-import { formatHeroTotalCountLine } from "@/lib/landing/content";
 import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
-import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
+import { formatMonthlyPrice } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = buildPricingMetadata(
   formatExactQuestionCount(publishedSiteQuestionCounts().totalQuestions)
@@ -44,9 +37,15 @@ const STUDY_PATH = [
   },
 ] as const;
 
+const PricingQueryNotices = dynamic(() =>
+  import("@/components/pricing/PricingQueryNotices").then((m) => m.PricingQueryNotices)
+);
+
 type PricingSearch = {
   field?: string | string[];
   exam?: string | string[];
+  paywall?: string | string[];
+  upgrade?: string | string[];
 };
 
 function firstParam(value: string | string[] | undefined): string | null {
@@ -64,37 +63,23 @@ export default async function PricingPage({
     field: firstParam(params.field),
     exam: firstParam(params.exam),
   });
-  const { snapshot } = await getCachedBankStatsBundle();
-  const bankCounts = buildLandingBankCountsDisplay(snapshot);
-  const totalLine = bankCounts.sentence.includes("including")
-    ? bankCounts.sentence
-    : bankCounts.totalLabel
-      ? formatHeroTotalCountLine(bankCounts.totalLabel)
-      : null;
+  const published = publishedSiteQuestionCounts();
+  const publishedLabel = formatExactQuestionCount(published.totalQuestions);
 
   return (
     <>
-      <JsonLdScript data={buildPricingJsonLd(bankCounts.totalLabel)} />
+      <JsonLdScript data={buildPricingJsonLd(publishedLabel)} />
       <PageShell
         title={<PricingBoardHeadline initial={headline} />}
-        description={
-          totalLine
-            ? `${totalLine}. Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`
-            : `Roadmap → Deep Dive → Full Exam. One plan from ${formatMonthlyPrice("pro")}/mo.`
-        }
+        description={`${publishedLabel} questions across six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`}
         align="center"
         maxWidth="max-w-3xl"
       >
-        <p
-          className="mx-auto mt-3 max-w-md text-center text-sm font-medium tracking-[-0.01em] text-[var(--color-ink)]"
-          data-offer-line
-        >
-          {formatPricingCheckoutTrialOffer()}
-        </p>
-
-        <Suspense fallback={null}>
-          <PricingQueryNotices />
-        </Suspense>
+        {firstParam(params.paywall) || firstParam(params.upgrade) ? (
+          <Suspense fallback={null}>
+            <PricingQueryNotices />
+          </Suspense>
+        ) : null}
 
         <div className="mt-6" data-pricing-fold>
           <Suspense fallback={null}>

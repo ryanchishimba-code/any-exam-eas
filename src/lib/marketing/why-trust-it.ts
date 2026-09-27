@@ -1,9 +1,8 @@
 import { NGN_DEMO_QUESTIONS } from "@/lib/demo/ngn-samples";
-import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
+import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import type { BoardInventoryPresentation, FormatCounts } from "@/lib/inventory/active-questions";
 import { isFormatOffered } from "@/lib/study/offered-formats";
 import type { LandingSuccessStory } from "@/lib/landing/content";
-import { marketingExamKeyFromPath } from "@/lib/marketing/exam-hub";
 import { getExamSeoConfig, type ExamSeoKey } from "@/lib/seo/exam-config";
 
 /**
@@ -103,51 +102,9 @@ export function testimonialsForBoard(
   });
 }
 
-/** Pricing H1 when the visitor arrived with a board. Generic pages stay "Pro". */
-export function pricingPrepHeadline(examKey: ExamSeoKey): string {
-  if (examKey === "nclex") return "NCLEX-RN prep";
-  return `${EXAM_CATALOG[examKey].shortName} prep`;
-}
-
-export function pricingHeadlineFromField(field: string | null | undefined): string | null {
-  const trimmed = field?.trim();
-  if (!trimmed) return null;
-  const slug = examSlugFromFieldId(trimmed);
-  if (!slug || slug === "top500") return null;
-  if (
-    slug !== "nclex" &&
-    slug !== "usmle" &&
-    slug !== "naplex" &&
-    slug !== "pance" &&
-    slug !== "aanp-fnp" &&
-    slug !== "npte-pt"
-  ) {
-    return null;
-  }
-  return pricingPrepHeadline(slug);
-}
-
-export function pricingHeadlineFromPath(pathname: string | null | undefined): string | null {
-  if (!pathname) return null;
-  const key = marketingExamKeyFromPath(pathname);
-  return key ? pricingPrepHeadline(key) : null;
-}
-
-/**
- * Board context for /pricing: `?field=` (or `?exam=`) wins over the referrer.
- * Referrer may be a board hub path or a URL that already carries `field`.
- */
-export function pricingHeadlineFromContext(input: {
-  field?: string | null;
-  exam?: string | null;
-  referrerPath?: string | null;
-  referrerField?: string | null;
-}): string {
-  return (
-    pricingHeadlineFromField(input.field) ??
-    pricingHeadlineFromPath(input.exam ? `/${input.exam.replace(/^\//, "")}` : null) ??
-    pricingHeadlineFromField(input.referrerField) ??
-    pricingHeadlineFromPath(input.referrerPath) ??
-    "Pro"
-  );
-}
+export {
+  pricingHeadlineFromContext,
+  pricingHeadlineFromField,
+  pricingHeadlineFromPath,
+  pricingPrepHeadline,
+} from "@/lib/marketing/pricing-headline";

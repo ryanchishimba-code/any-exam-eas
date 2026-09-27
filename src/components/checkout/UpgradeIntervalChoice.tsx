@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
-import { formatPlanUsd, getBillingPlanTier } from "@/lib/billing-plans";
+import { factualYearlySavingsBadge, formatPlanUsd, getBillingPlanTier } from "@/lib/billing-plans";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import { cn } from "@/lib/utils";
 
@@ -50,6 +50,7 @@ export function UpgradeIntervalChoice({
         {PRIMARY.map((interval) => {
           const plan = getBillingPlanTier(tier, interval);
           const selected = value === interval;
+          const savingsBadge = interval === "yearly" ? factualYearlySavingsBadge(tier) : null;
           return (
             <button
               key={interval}
@@ -67,11 +68,11 @@ export function UpgradeIntervalChoice({
             >
               <span className="flex flex-wrap items-center gap-2">
                 <span className="text-sm font-semibold text-[var(--color-ink)]">{plan.label}</span>
-                {plan.recommended && (
-                  <span className="rounded-full bg-[var(--color-accent)] px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide text-white">
-                    Best value
+                {savingsBadge ? (
+                  <span className="rounded-full bg-[var(--color-accent)] px-2 py-0.5 text-xs font-semibold tracking-wide text-white">
+                    {savingsBadge}
                   </span>
-                )}
+                ) : null}
               </span>
               <span className="mt-1 block text-xs text-[var(--color-ink-muted)]">
                 {priceLine(tier, interval)}

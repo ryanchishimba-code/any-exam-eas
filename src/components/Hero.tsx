@@ -17,8 +17,8 @@ import {
   touchReturningVisit,
   type ReturningUserHint,
 } from "@/lib/client/returning-user";
+import { formatLandingHeroSubline } from "@/lib/landing/content";
 import {
-  formatLandingHeroSubline,
   formatTrialCtaLabel,
   formatTrialHeroOffer,
   formatTrialLabel,

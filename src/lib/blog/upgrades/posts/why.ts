@@ -40,7 +40,7 @@ const content = [
     `A reference book only if you will read it. The NCLEX study guide on this site is part of the trial and Pro. It is not a free download that stays open after the trial ends.`,
   ]),
   p(
-    `AnyExamEasy is one plan for six exams, not an NCLEX-only course. The public offer is ${TRIAL_OFFER}. ${TRIAL_QUESTION_LIMIT}. The trial also includes one full-length adaptive exam. Pro removes the question cap. ${a(TRIAL_HREF, "Start the trial")} when you are ready to practice, or keep reading and decide at the end.`
+    `AnyExamEasy is one plan for six exams, not an NCLEX-only course. The public offer is ${TRIAL_OFFER} ${TRIAL_QUESTION_LIMIT}. The trial also includes one full-length adaptive exam. Pro removes the question cap. ${a(TRIAL_HREF, "Start the trial")} when you are ready to practice, or keep reading and decide at the end.`
   ),
 
   h2("A six-week plan that fits a student budget"),

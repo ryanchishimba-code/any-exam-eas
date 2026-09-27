@@ -2,8 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { Footer } from "@/components/Footer";
-import { PublicFoldOffer } from "@/components/marketing/PublicFoldOffer";
+import type { ReactNode } from "react";
+import { MARKETING_DARK_HERO_PATHS } from "@/lib/marketing/board-paths";
 import { hideMarketingChrome } from "@/lib/navigation/app-shell";
 
 const Navigation = dynamic(
@@ -19,7 +19,39 @@ const Navigation = dynamic(
   }
 );
 
-export function RootChrome({ children }: { children: React.ReactNode }) {
+const PublicFoldOffer = dynamic(
+  () => import("@/components/marketing/PublicFoldOffer").then((m) => m.PublicFoldOffer),
+  { ssr: true }
+);
+
+const FOLD_HIDDEN_PREFIXES = [
+  "/pricing",
+  "/exam",
+  "/practice",
+  "/progress",
+  "/admin",
+  "/internal",
+  "/onboarding",
+  "/study",
+  "/learn",
+  "/register",
+  "/forgot-password",
+  "/reset-password",
+];
+
+function showPublicFoldOffer(pathname: string): boolean {
+  const path = (pathname || "/").split("?")[0] || "/";
+  if (MARKETING_DARK_HERO_PATHS.has(path)) return false;
+  return !FOLD_HIDDEN_PREFIXES.some((prefix) => path === prefix || path.startsWith(`${prefix}/`));
+}
+
+export function RootChrome({
+  children,
+  footer,
+}: {
+  children: ReactNode;
+  footer: ReactNode;
+}) {
   const pathname = usePathname();
   const minimal = hideMarketingChrome(pathname);
 
@@ -30,9 +62,9 @@ export function RootChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navigation />
-      <PublicFoldOffer />
+      {showPublicFoldOffer(pathname) ? <PublicFoldOffer /> : null}
       <main id="main-content">{children}</main>
-      <Footer />
+      {footer}
     </>
   );
 }

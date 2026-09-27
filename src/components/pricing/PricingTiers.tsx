@@ -15,13 +15,13 @@ import {
   ONE_TIME_POLICY_SHORT,
   type PaymentMode,
 } from "@/lib/billing-payment-mode";
-import { formatPricingCheckoutTrialOffer, formatTrialCtaLabel } from "@/lib/site";
+import { PRICING_TRIAL_OFFER_LINE } from "@/lib/marketing/legal-copy";
+import { TRIAL_CTA_LABEL } from "@/lib/site";
 import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
 import { CancelAnytimeNote } from "@/components/pricing/CancelAnytimeNote";
 import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { Button } from "@/components/ui/Button";
-import { analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 type AccessInfo = {
@@ -62,7 +62,18 @@ export function PricingTiers({ className }: PricingTiersProps) {
   }, [session?.user]);
 
   useEffect(() => {
-    analytics.pricingViewed("/pricing");
+    const track = () => {
+      void import("@/lib/analytics").then(({ analytics }) => analytics.pricingViewed("/pricing"));
+    };
+    if (document.readyState === "complete") {
+      const id = window.setTimeout(track, 1500);
+      return () => window.clearTimeout(id);
+    }
+    const onLoad = () => {
+      window.setTimeout(track, 1500);
+    };
+    window.addEventListener("load", onLoad, { once: true });
+    return () => window.removeEventListener("load", onLoad);
   }, []);
 
   useEffect(() => {
@@ -163,15 +174,17 @@ export function PricingTiers({ className }: PricingTiersProps) {
         href={checkoutHref}
         className="w-full"
         variant="primary"
-        onClick={() =>
-          analytics.planSelected(`pro_${interval}`, {
-            tier: "pro",
-            interval,
-            ...(isUpgrade && showPaymentMode ? { paymentMode } : {}),
-          })
-        }
+        onClick={() => {
+          void import("@/lib/analytics").then(({ analytics }) =>
+            analytics.planSelected(`pro_${interval}`, {
+              tier: "pro",
+              interval,
+              ...(isUpgrade && showPaymentMode ? { paymentMode } : {}),
+            })
+          );
+        }}
       >
-        {isUpgrade ? "Continue to checkout" : formatTrialCtaLabel()}
+        {isUpgrade ? "Continue to checkout" : TRIAL_CTA_LABEL}
       </Button>
 
       <CancelAnytimeNote
@@ -183,7 +196,15 @@ export function PricingTiers({ className }: PricingTiersProps) {
           ? showPaymentMode && paymentMode === "manual"
             ? ONE_TIME_POLICY_SHORT
             : renewalTermsLine("pro", interval)
-          : `${formatPricingCheckoutTrialOffer()}. Payments are non-refundable (except where required by law). Found a flawed question? Report it and we'll review it. This is not a refund.`}
+          : (
+            <>
+              {PRICING_TRIAL_OFFER_LINE}
+              <span className="mt-1 block">
+                Payments are non-refundable (except where required by law). Found a flawed question?
+                Report it and we&apos;ll review it. This is not a refund.
+              </span>
+            </>
+          )}
       </p>
 
       <PaymentMethodBadges className="justify-center" size="sm" />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { VercelWebAnalytics } from "@/components/analytics/VercelWebAnalytics";
+import { SiteShell } from "@/components/layout/SiteShell";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import { buildRootMetadata } from "@/lib/seo";
@@ -21,7 +22,9 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link sr-only">
           Skip to main content
         </a>
-        <AppProviders>{children}</AppProviders>
+        <AppProviders>
+          <SiteShell>{children}</SiteShell>
+        </AppProviders>
         <VercelWebAnalytics />
       </body>
     </html>

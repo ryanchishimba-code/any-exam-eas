@@ -1,6 +1,5 @@
 import Link from "next/link";
-
-import { ROUTES } from "@/lib/routes";
+import { MARKETING_BOARD_LINKS } from "@/lib/routes";
 
 export default function NotFound() {
   return (
@@ -10,19 +9,24 @@ export default function NotFound() {
       </p>
       <h1 className="apple-display mt-3 text-[clamp(2rem,5vw,2.75rem)]">Page not found.</h1>
       <p className="apple-subhead mt-4 text-[var(--color-ink-muted)]">
-        That link may be outdated. Head back to your dashboard or the homepage.
+        That link may be outdated. Pick a board or head home.
       </p>
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
+      <div className="mt-8">
         <Link href="/" className="login-modal-btn-primary inline-flex px-6 py-3">
           Home
         </Link>
-        <Link
-          href={ROUTES.dashboard}
-          className="inline-flex items-center rounded-full border border-black/[0.08] px-6 py-3 text-sm font-medium text-[var(--color-ink)] hover:bg-black/[0.03]"
-        >
-          Dashboard
-        </Link>
       </div>
+      <nav aria-label="Boards" className="mt-8 flex max-w-full flex-wrap justify-center gap-x-4 gap-y-2">
+        {MARKETING_BOARD_LINKS.map((board) => (
+          <Link
+            key={board.href}
+            href={board.href}
+            className="text-sm font-medium text-[var(--color-accent)] hover:underline"
+          >
+            {board.label}
+          </Link>
+        ))}
+      </nav>
     </div>
   );
 }

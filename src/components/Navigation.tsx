@@ -16,16 +16,14 @@ import { useIsAdmin } from "@/lib/client/admin-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { ROUTES, EXAM_NAV_ITEMS } from "@/lib/routes";
-import { LANDING_TRIAL_HREF, landingTrialHrefForExam } from "@/lib/landing/content";
+import { ROUTES, MARKETING_BOARD_LINKS } from "@/lib/routes";
+import { LANDING_TRIAL_HREF, landingTrialHrefForExam } from "@/lib/landing/trial-href";
 import { formatTrialCtaLabel } from "@/lib/site";
-import { marketingExamKeyFromPath } from "@/lib/marketing/exam-hub";
+import { marketingExamKeyFromPath } from "@/lib/marketing/board-paths";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 // Only signed-in visitors ever see this, and it needs framer-motion for its
-// menu. Importing it statically put that dependency in the entry chunk for
-// anonymous traffic on the static marketing pages. The nav already renders a
-// skeleton until auth resolves, so there is nothing to server-render here.
+// menu. Logged-out marketing pages render Sign in in the first HTML instead.
 const AvatarDropdown = dynamic(
   () => import("@/components/navigation/AvatarDropdown").then((m) => m.AvatarDropdown),
   { ssr: false }
@@ -36,7 +34,7 @@ type NavLink = { href: string; label: string };
 const guestLinks: NavLink[] = [
   { href: ROUTES.pricing, label: "Pricing" },
   { href: ROUTES.faq, label: "FAQ" },
-  { href: ROUTES.howQuestionsAreReviewed, label: "Review" },
+  { href: ROUTES.howQuestionsAreReviewed, label: "How we review" },
   { href: ROUTES.about, label: "About" },
 ];
 
@@ -65,7 +63,9 @@ export function Navigation() {
 
   const isAuthenticated = status === "authenticated" && Boolean(session?.user);
   const resolvingAuthedAccess = isAuthenticated && accessLoading;
-  const resolvingAuth = status === "loading" || resolvingAuthedAccess;
+  // Session starts as "loading" for everyone. Treat that as logged out so the
+  // Sign in and trial buttons are in the first HTML, not a grey placeholder.
+  const resolvingAuth = resolvingAuthedAccess;
   const { isAdmin } = useIsAdmin();
 
   const links = useMemo(() => {
@@ -147,12 +147,10 @@ export function Navigation() {
           priority={pathname !== "/"}
         />
 
-        <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-5" role="list">
-          {isAuthenticated && hasAppAccess ? (
-            <li>
-              <ExamsDropdown />
-            </li>
-          ) : null}
+        <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-4" role="list">
+          <li>
+            <ExamsDropdown />
+          </li>
           {links.map((l) => {
             const linkActive =
               l.href === ROUTES.dashboard ? practiceActive : isActive(l.href);
@@ -225,28 +223,26 @@ export function Navigation() {
       {open ? (
           <div
             id={MOBILE_MENU_ID}
-            className="aee-mobile-nav-panel aee-mobile-nav border-t border-black/[0.04] bg-[color-mix(in_srgb,var(--color-surface-elevated)_98%,transparent)] px-5 backdrop-blur-xl lg:hidden"
+            className="aee-mobile-nav-panel aee-mobile-nav max-w-full overflow-x-hidden border-t border-black/[0.04] bg-[color-mix(in_srgb,var(--color-surface-elevated)_98%,transparent)] px-4 backdrop-blur-xl lg:hidden"
           >
-            <div className="overflow-hidden py-4">
-              {isAuthenticated && hasAppAccess ? (
-                <>
-                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted)]">
-                    Exams
-                  </p>
-                  {EXAM_NAV_ITEMS.map((exam) => (
-                    <Link
-                      key={exam.slug}
-                      href={exam.href}
-                      prefetch={false}
-                      className={`block py-2 text-sm ${navClass(pathname === exam.href || pathname.startsWith(`${exam.href}/`))}`}
-                      onClick={closeMobile}
-                    >
-                      {exam.label}
-                    </Link>
-                  ))}
-                  <div className="my-3 border-t border-black/[0.06]" />
-                </>
-              ) : null}
+            <div className="max-w-full overflow-x-hidden py-4">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+                Exams
+              </p>
+              <nav aria-label="Exams">
+                {MARKETING_BOARD_LINKS.map((exam) => (
+                  <Link
+                    key={exam.href}
+                    href={exam.href}
+                    prefetch={false}
+                    className={`block max-w-full py-2 text-sm ${navClass(pathname === exam.href || pathname.startsWith(`${exam.href}/`))}`}
+                    onClick={closeMobile}
+                  >
+                    {exam.label}
+                  </Link>
+                ))}
+              </nav>
+              <div className="my-3 border-t border-black/[0.06]" />
               {links.map((l) => {
                 const linkActive =
                   l.href === ROUTES.dashboard ? practiceActive : isActive(l.href);

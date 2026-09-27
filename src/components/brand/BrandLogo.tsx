@@ -22,6 +22,8 @@ type Props = {
   className?: string;
   linkClassName?: string;
   priority?: boolean;
+  /** Header hides the name below `md`. Footer keeps it at every width. */
+  showName?: boolean;
 };
 
 /**
@@ -29,9 +31,15 @@ type Props = {
  * padding; at `h-10` it collapses to an unreadable speck on light marketing pages.
  * Mark and word colors live in CSS so they stay AA on a light hero and a navy bar.
  */
-function NavWordmark({ className }: { className?: string }) {
+function NavWordmark({
+  className,
+  showName = false,
+}: {
+  className?: string;
+  showName?: boolean;
+}) {
   return (
-    <span className={cn("aee-nav-wordmark inline-flex items-center gap-2", className)}>
+      <span className={cn("aee-nav-wordmark inline-flex items-center gap-2", showName && "aee-nav-wordmark--always", className)}>
       <svg viewBox="0 0 40 40" className="aee-nav-mark h-8 w-8 shrink-0" aria-hidden>
         <path className="aee-nav-mark__cap" d="M6 16.5 20 10l14 6.5-14 6.5L6 16.5Z" />
         <path
@@ -45,7 +53,12 @@ function NavWordmark({ className }: { className?: string }) {
           fill="none"
         />
       </svg>
-      <span className="aee-nav-wordmark__text hidden text-[0.9375rem] font-semibold tracking-tight md:inline">
+      <span
+        className={cn(
+          "aee-nav-wordmark__text text-[0.9375rem] font-semibold tracking-tight",
+          showName ? "inline" : "hidden md:inline"
+        )}
+      >
         AnyExamEasy
       </span>
     </span>
@@ -58,10 +71,11 @@ export function BrandLogo({
   className,
   linkClassName,
   priority = false,
+  showName = false,
 }: Props) {
   const mark =
     variant === "nav" ? (
-      <NavWordmark className={className} />
+      <NavWordmark className={className} showName={showName} />
     ) : (
       <Image
         src={(variant === "hero" ? BRAND_LOGO : BRAND_LOGO_NAV).src}
@@ -80,7 +94,9 @@ export function BrandLogo({
         href={href}
         className={cn(
           "inline-flex shrink-0 items-center transition hover:opacity-85",
-          variant === "nav" && "max-md:h-11 max-md:w-11 max-md:justify-center",
+          variant === "nav" &&
+            !showName &&
+            "max-md:h-11 max-md:w-11 max-md:justify-center",
           linkClassName
         )}
         aria-label="AnyExamEasy"

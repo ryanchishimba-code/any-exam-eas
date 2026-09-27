@@ -221,7 +221,7 @@ export function ComparePageContent({
           {[
             "You need more than one board exam on the same timeline (RN + NP, PharmD + side cert, Step 1 + Step 2).",
             "You want Blueprint Roadmaps, Deep Dives, and Full Exams — not QBank-only prep.",
-            `${formatPricingCheckoutTrialOffer()}. Cancel anytime in Settings. Paid charges are non-refundable except where the law requires a refund.`,
+            `${formatPricingCheckoutTrialOffer()} Cancel anytime in Settings. Paid charges are non-refundable except where the law requires a refund.`,
             questionCountLabel
               ? `${questionCountLabel} active questions across six exams on one plan — not six separate QBanks.`
               : "Six exams on one plan — not six separate QBanks.",

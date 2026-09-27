@@ -1,9 +1,18 @@
+import { TRIAL_DAYS } from "@/lib/billing-config";
+import { formatPlanUsd } from "@/lib/billing-plans";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY } from "@/lib/legal";
+import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 
 /**
  * Shared liability and compliance strings. Marketing pages should import
  * these instead of restating the same sentence.
  */
+
+/**
+ * Exact public trial line. Do not add a trailing period.
+ * "5-day free trial · no payment method required · then $27.99/mo"
+ */
+export const PRICING_TRIAL_OFFER_LINE = `${TRIAL_DAYS}-day free trial · no payment method required · then ${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo`;
 
 /** Shown under the existing marketing disclaimer in the footer. */
 export const NOT_FOR_PATIENT_CARE_LINE =
