@@ -7,7 +7,7 @@ import {
   formatTrialLabel,
   formatTrialQuestionLimit,
 } from "@/lib/site";
-import { LEGAL_ENTITY } from "@/lib/legal";
+import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS, MONTHLY_PRICE_USD } from "@/lib/billing-config";
 import {
   enforceMetaDescription,
@@ -187,6 +187,7 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
         logo: absoluteUrl("/icons/icon-192.png"),
         description: `${LEGAL_ENTITY.productName} — ${seoPlatformPitch(totalQuestionsLabel)}`,
         sameAs: [url],
+        contactPoint: organizationContactPoint(),
       },
       {
         "@type": "WebSite",

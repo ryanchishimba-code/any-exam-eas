@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
 
 export const metadata: Metadata = {
@@ -104,7 +105,8 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-semibold text-[var(--color-ink)]">Contact</h2>
             <p className="mt-2">
-              Privacy inquiries: {legalEmail} · Account support: {supportEmail}
+              Privacy inquiries: {legalEmail} · Account support: {supportEmail} ·{" "}
+              <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />
             </p>
           </section>
 

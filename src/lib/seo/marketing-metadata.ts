@@ -16,7 +16,7 @@ import {
   DEFAULT_OG_IMAGE_WIDTH,
   getSiteUrl,
 } from "@/lib/seo";
-import { LEGAL_ENTITY } from "@/lib/legal";
+import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
 import {
   SITE_NAME,
   formatMonthlyPrice,
@@ -438,6 +438,7 @@ export function buildAboutJsonLd() {
         logo: absoluteUrl("/icons/icon-192.png"),
         description: seoPlatformPitch(),
         foundingLocation: { "@type": "Place", name: "Texas, USA" },
+        contactPoint: organizationContactPoint(),
       },
       ...clinicalReviewerPersonNodes(),
     ],

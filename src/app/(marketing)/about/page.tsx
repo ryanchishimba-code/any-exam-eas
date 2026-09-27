@@ -5,6 +5,7 @@ import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
 import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { FounderNote } from "@/components/marketing/elevation/FounderNote";
@@ -72,6 +73,8 @@ export default async function AboutPage() {
               >
                 {COMPANY_PUBLIC.supportEmail}
               </a>
+              <span aria-hidden> · </span>
+              <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <LandingCta href={LANDING_TRIAL_HREF} icon={<ArrowRight className="h-4 w-4" />}>

@@ -107,6 +107,13 @@ export function LandingTrialGuarantee() {
               >
                 {LEGAL_ENTITY.supportEmail}
               </a>{" "}
+              or call{" "}
+              <a
+                href={LEGAL_ENTITY.supportPhone.tel}
+                className="font-semibold text-[var(--color-ink)] underline underline-offset-2 transition hover:text-[var(--color-accent)]"
+              >
+                {LEGAL_ENTITY.supportPhone.display}
+              </a>{" "}
               within 30 days and we&apos;ll fix the item or walk you through it.
               This is support — not a refund. Paid charges stay non-refundable
               except where the law requires otherwise.

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
@@ -45,8 +46,9 @@ export default function RefundsPage() {
           <section>
             <h2 className="text-base font-semibold text-[var(--color-ink)]">Question issues</h2>
             <p className="mt-2">
-              If a question is wrong, report it from the rationale or email {supportEmail}. We
-              review the report and can hide the item while it is repaired. That review is not a
+              If a question is wrong, report it from the rationale, email {supportEmail}, or call{" "}
+              <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.
+              We review the report and can hide the item while it is repaired. That review is not a
               promise of a refund.
             </p>
           </section>

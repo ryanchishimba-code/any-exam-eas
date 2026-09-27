@@ -8,6 +8,7 @@ export const COMPANY_PUBLIC = {
   legalName: LEGAL_ENTITY.companyName,
   productName: LEGAL_ENTITY.productName,
   supportEmail: LEGAL_ENTITY.supportEmail,
+  supportPhone: LEGAL_ENTITY.supportPhone,
 } as const;
 
 export type ClinicalReviewer = {

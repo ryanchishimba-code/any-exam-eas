@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -40,6 +41,8 @@ export function SiteBottomBar({ className }: Props) {
         >
           {LEGAL_ENTITY.supportEmail}
         </a>
+        <span aria-hidden> · </span>
+        <SupportPhoneLink className="tabular-nums text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]" />
       </p>
     </div>
   );

@@ -8,12 +8,17 @@
  * All billing copy is derived from lib/site so it never drifts from checkout.
  */
 
+import type { ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
+import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import { PRO_ANNUAL_SAVINGS_PERCENT } from "@/lib/pricing-defaults";
 import { formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 
-const FAQ: { q: string; a: string }[] = [
+const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail} or call ${LEGAL_ENTITY.supportPhone.display}.`;
+
+const FAQ: { q: string; a: string; body?: ReactNode }[] = [
   {
     q: "Which exams are included?",
     a: `All six are on one subscription: ${PLATFORM_EXAM_LIST}. USMLE covers Step 1, Step 2 CK, and Step 3.`,
@@ -49,6 +54,22 @@ const FAQ: { q: string; a: string }[] = [
   {
     q: "Are you affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep?",
     a: "No. AnyExamEasy is independent. We are not affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep. Official board documents belong to those organizations — always read their materials before your exam.",
+  },
+  {
+    q: "How do I get help?",
+    a: HELP_ANSWER,
+    body: (
+      <>
+        Email{" "}
+        <a
+          href={`mailto:${LEGAL_ENTITY.supportEmail}`}
+          className="font-semibold text-[var(--color-accent)] hover:underline"
+        >
+          {LEGAL_ENTITY.supportEmail}
+        </a>{" "}
+        or call <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.
+      </>
+    ),
   },
 ];
 
@@ -97,7 +118,7 @@ export function LandingFaqV2() {
                 />
               </summary>
               <p className="-mt-1 pb-5 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-                {item.a}
+                {item.body ?? item.a}
               </p>
             </details>
           ))}

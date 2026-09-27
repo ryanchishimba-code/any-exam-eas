@@ -82,6 +82,7 @@ export function transactionalEmailLayout({
               <p style="margin:0;font-size:11px;color:#94a3b8;line-height:1.6;">
                 © ${LEGAL_ENTITY.companyName} · ${LEGAL_ENTITY.productDomain}<br />
                 Questions? <a href="${supportUrl}" style="color:#0891b2;text-decoration:none;">${LEGAL_ENTITY.supportEmail}</a>
+                · <a href="${LEGAL_ENTITY.supportPhone.tel}" style="color:#0891b2;text-decoration:none;">${LEGAL_ENTITY.supportPhone.display}</a>
                 · <a href="${settingsUrl}" style="color:#0891b2;text-decoration:none;">Account settings</a>
               </p>
               ${footerExtra}
