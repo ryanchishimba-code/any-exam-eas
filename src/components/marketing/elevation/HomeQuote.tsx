@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { LandingSuccessStory } from "@/lib/landing/content";
+import { HOME_TESTIMONIAL_LABEL } from "@/lib/marketing/legal-copy";
 
 /** One consented quote at a time. Renders nothing when the database has none. */
 export function HomeQuote({ stories }: { stories: LandingSuccessStory[] }) {
@@ -17,7 +18,8 @@ export function HomeQuote({ stories }: { stories: LandingSuccessStory[] }) {
   }
 
   return (
-    <section className="home-quote home-rise" aria-roledescription="carousel" aria-label="Student quotes">
+    <section className="home-quote home-rise" aria-roledescription="carousel" aria-label="Individual experiences">
+      <p className="home-quote__label">{HOME_TESTIMONIAL_LABEL}</p>
       <figure>
         <blockquote>
           <p>“{story.quote}”</p>

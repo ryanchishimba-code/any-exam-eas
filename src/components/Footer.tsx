@@ -7,6 +7,7 @@ import { BrandLogo } from "@/components/brand/BrandLogo";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER } from "@/lib/site";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
+import { HOME_EDUCATIONAL_USE, HOME_NOT_AFFILIATED } from "@/lib/marketing/legal-copy";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 import { examMarketingPath } from "@/lib/seo/exam-config";
@@ -54,12 +55,14 @@ function HomeFooter() {
           <span aria-hidden> · </span>
           <SupportPhoneLink />
         </p>
-        <p className="mx-auto mt-4 max-w-xl text-xs leading-relaxed">{MARKETING_DISCLAIMER}</p>
-        <p className="mx-auto mt-3 max-w-xl text-[0.6875rem] leading-relaxed">{TRADEMARK_NOTICE}</p>
+        <p className="mx-auto mt-4 max-w-xl text-xs leading-relaxed">{HOME_NOT_AFFILIATED}</p>
+        <p className="mx-auto mt-3 max-w-xl text-xs leading-relaxed">{HOME_EDUCATIONAL_USE}</p>
         <p className="mt-4 text-xs">
           <Link href="/legal/terms">Terms</Link>
           <span aria-hidden> · </span>
           <Link href="/legal/privacy">Privacy</Link>
+          <span aria-hidden> · </span>
+          <Link href="/legal/refunds">Refunds</Link>
           <span aria-hidden> · </span>
           © {new Date().getFullYear()} {LEGAL_ENTITY.productName}
         </p>

@@ -7,9 +7,13 @@ import "@/styles/home-visual.css";
 import {
   HOME_HERO_SHORT_SUBLINE,
   LANDING_HERO_EXAMS,
-  LANDING_HERO_HEADLINE,
   LANDING_TRIAL_HREF,
 } from "@/lib/landing/content";
+import {
+  HOME_PRACTICE_HEADLINE,
+  HOME_READINESS_HEADING,
+  HOME_READINESS_LINE,
+} from "@/lib/marketing/legal-copy";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import { formatNclexPrepPriceComparison } from "@/lib/marketing/price-comparison";
 import { examMarketingPath } from "@/lib/seo/exam-config";
@@ -116,7 +120,7 @@ export function PublicHome({
   return (
     <div className="home-visual">
       <section className="home-hero" aria-labelledby="hero-heading">
-        <h1 id="hero-heading">{LANDING_HERO_HEADLINE}</h1>
+        <h1 id="hero-heading">{HOME_PRACTICE_HEADLINE}</h1>
         <p className="home-hero__sub">{HOME_HERO_SHORT_SUBLINE}</p>
         <div className="home-hero__actions">
           <LandingCta href={LANDING_TRIAL_HREF} ctaName="hero_trial" location="hero">
@@ -163,7 +167,7 @@ export function PublicHome({
       </section>
 
       <section className="home-panel home-panel--navy home-rise" aria-labelledby="ngn-heading">
-        <h2 id="ngn-heading">Built for the new NCLEX.</h2>
+        <h2 id="ngn-heading">Practice the new format.</h2>
         <p className="home-panel__line">Next Generation case studies.</p>
         <div className="home-panel__visual">
           <LaptopFrame
@@ -175,12 +179,12 @@ export function PublicHome({
       </section>
 
       <section className="home-panel home-panel--mist home-rise" aria-labelledby="ready-heading">
-        <h2 id="ready-heading">Know when you&apos;re ready.</h2>
-        <p className="home-panel__line">A baseline, then the topics you miss.</p>
+        <h2 id="ready-heading">{HOME_READINESS_HEADING}</h2>
+        <p className="home-panel__line">{HOME_READINESS_LINE}</p>
         <div className="home-panel__visual">
           <LaptopFrame
             {...READINESS}
-            alt="Readiness board with area levels from a practice check"
+            alt="Practice estimate from questions answered in the app. Not a prediction of an exam result."
             sizes="(min-width: 768px) 920px, 100vw"
           />
         </div>

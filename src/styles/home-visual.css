@@ -215,6 +215,15 @@
   text-align: center;
 }
 
+.home-quote__label {
+  margin: 0 0 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--home-muted);
+}
+
 .home-quote blockquote {
   margin-inline: auto;
   max-width: 18ch;
