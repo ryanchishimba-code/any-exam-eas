@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { LogIn, LogOut, Menu, Shield, X } from "lucide-react";
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { AdminNavLink } from "@/components/navigation/AdminNavLink";
@@ -52,8 +52,10 @@ function navClass(active: boolean) {
     : "aee-nav-link font-semibold hover:underline hover:underline-offset-4 transition-colors duration-200";
 }
 
+/** Stable id. useId() shifted between server and client and mismatched aria-controls. */
+const MOBILE_MENU_ID = "site-menu";
+
 export function Navigation() {
-  const mobileMenuId = useId();
   const headerRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -213,7 +215,7 @@ export function Navigation() {
             onClick={toggleMobile}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            aria-controls={mobileMenuId}
+            aria-controls={MOBILE_MENU_ID}
           >
             {open ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
           </button>
@@ -222,7 +224,7 @@ export function Navigation() {
 
       {open ? (
           <div
-            id={mobileMenuId}
+            id={MOBILE_MENU_ID}
             className="aee-mobile-nav-panel aee-mobile-nav border-t border-black/[0.04] bg-[color-mix(in_srgb,var(--color-surface-elevated)_98%,transparent)] px-5 backdrop-blur-xl lg:hidden"
           >
             <div className="overflow-hidden py-4">

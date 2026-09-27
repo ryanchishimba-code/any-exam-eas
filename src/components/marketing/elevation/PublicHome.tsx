@@ -134,20 +134,23 @@ export function PublicHome({
           {formatPricingCheckoutTrialOffer()}
         </p>
         <div className="home-hero__visual">
-          <div className="home-hero__phone">
-            <PhoneFrame
-              {...QUESTION_PHONE}
-              alt="Phone showing a practice question with its rationale open"
-              priority
-              sizes="74vw"
-            />
-          </div>
-          <div className="home-hero__laptop">
-            <LaptopFrame
-              {...QUESTION_DESKTOP}
-              alt="Laptop showing a practice question with its rationale open"
-              sizes="(min-width: 768px) 920px, 100vw"
-            />
+          <div className="home-hero__stage">
+            <div className="home-hero__laptop">
+              <LaptopFrame
+                {...QUESTION_DESKTOP}
+                alt="Laptop showing a practice question with its rationale open"
+                priority
+                sizes="(min-width: 768px) 820px, 100vw"
+              />
+            </div>
+            <div className="home-hero__phone">
+              <PhoneFrame
+                {...QUESTION_PHONE}
+                alt="Phone showing a practice question with its rationale open"
+                priority
+                sizes="(min-width: 768px) 220px, 74vw"
+              />
+            </div>
           </div>
         </div>
       </section>
