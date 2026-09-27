@@ -94,18 +94,22 @@ describe("canPublish", () => {
     const flags = [...bowtie.rnFlags];
     const closed = canPublish(bowtie, {
       sources: pilot.sources,
-      reviews: [ownerAttestationReview("Ryan Chishimba, RN")],
+      reviews: [ownerAttestationReview("Ryan Chishimba, PharmD")],
     });
     expect(closed.validatorsGreen).toBe(true);
     expect(closed.ok).toBe(false);
     expect(closed.errors.join(" ")).toContain(`open RN flag is not accepted: ${flags[0]}`);
     const accepted = canPublish(bowtie, {
       sources: pilot.sources,
-      reviews: [ownerAttestationReview("Ryan Chishimba, RN", flags)],
+      reviews: [ownerAttestationReview("Ryan Chishimba, PharmD", flags)],
     });
     expect(accepted.ok).toBe(true);
     expect(bowtie.rnFlags).toEqual(flags);
-    expect(ownerAttestationReview("Ryan Chishimba, RN", flags).flagResolutions?.[flags[0]!]).toBe(
+    expect(ownerAttestationReview("Ryan Chishimba, PharmD", flags).licenseType).toBe("PharmD");
+    expect(ownerAttestationReview("Ryan Chishimba, PharmD", flags).comments).toBe(
+      "owner attestation (not RN review)"
+    );
+    expect(ownerAttestationReview("Ryan Chishimba, PharmD", flags).flagResolutions?.[flags[0]!]).toBe(
       OWNER_FLAG_ACCEPTANCE
     );
   });

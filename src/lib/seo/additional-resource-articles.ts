@@ -44,7 +44,7 @@ function article(
 export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   article({
     slug: "uworld-alternative-multi-exam-prep-2026",
-    title: "Best UWorld Alternative for Multi-Exam Prep (2026)",
+    title: "A UWorld Alternative for Multi-Exam Prep (2026)",
     metaDescription: `Compare AnyExamEasy vs UWorld for NCLEX, USMLE and NAPLEX — one Pro plan from ${formatMonthlyPrice("pro")}/mo with Roadmaps, Deep Dives and Full Exams.`,
     examTags: ["nclex", "usmle", "naplex"],
     keywords: [
@@ -56,7 +56,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     ],
     readingMinutes: 9,
     intro:
-      "Stacking separate UWorld subscriptions for NCLEX, USMLE, and NAPLEX can exceed $1,000/year. A multi-exam platform with QA-gated questions, Blueprint Roadmaps, Deep Dives, and Full Exam simulations changes the cost equation — without sacrificing vignette quality.",
+      "Stacking separate UWorld subscriptions for NCLEX, USMLE, and NAPLEX can exceed $1,000/year. A multi-exam platform with QA-gated questions, Blueprint Roadmaps, Deep Dives, and Full Exam simulations changes the cost equation.",
     sections: [
       {
         heading: "Why students search for a UWorld alternative",
@@ -89,7 +89,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           {
             feature: "Miss review",
             anyExamEasy: "Deep Dive modules from missed questions",
-            typicalQbank: "Static rationales only",
+            typicalQbank: "See each product's explanations",
           },
           {
             feature: "Exam-day rehearsal",
@@ -99,7 +99,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           {
             feature: "Free trial",
             anyExamEasy: `${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required`,
-            typicalQbank: "Limited demo or paid-only",
+            typicalQbank: "See each vendor's current trial terms",
           },
         ],
       },
@@ -150,7 +150,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "Pricing for multi-exam students",
         paragraphs: [
           "If NCLEX is your only licensing exam, compare trial access and explanation depth side by side.",
-          "If you also need USMLE, NAPLEX, or PA/FNP/PT prep, a single Pro subscription avoids stacking $200–400+ per-exam renewals.",
+          "If you also need USMLE, NAPLEX, or PA/FNP/PT prep, a single Pro subscription avoids stacking $200–400+ per-exam renewals (public prices as of Sep 27, 2026).",
         ],
         comparisonRows: [
           {
@@ -230,7 +230,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "usmle-step-1-practice-questions-2026",
-    title: "Best USMLE Step 1 Practice Questions (2026)",
+    title: "USMLE Step 1 Practice Questions (2026)",
     metaDescription:
       "Step 1 Qbank guide — mechanisms, pathology, biostatistics, and systems integration with Blueprint Roadmaps, Deep Dives, and Full Exams on one multi-exam plan.",
     examTags: ["usmle"],
@@ -321,7 +321,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "best-value-multi-exam-board-prep-2026",
-    title: "Best Value Multi-Exam Board Prep in 2026",
+    title: "Multi-Exam Board Prep: What One Plan Costs (2026)",
     metaDescription: `Compare NCLEX, USMLE, NAPLEX, PANCE, FNP and NPTE costs — why one Pro plan from ${formatMonthlyPrice("pro")}/mo with Roadmaps and Deep Dives beats stacking QBanks.`,
     examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
     keywords: ["best value multi-exam prep", "board exam subscription", "affordable board prep 2026"],
@@ -332,7 +332,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "The cost of stacking per-exam subscriptions",
         paragraphs: [
-          "Premium QBanks often charge $200–400+ per exam annually. Six exams can exceed $1,500 before textbooks and review courses.",
+          "Premium QBanks often charge $200–400+ per exam annually (public prices as of Sep 27, 2026). Six exams can exceed $1,500 before textbooks and review courses.",
           `AnyExamEasy Pro bundles all six banks with Blueprint Roadmaps, Deep Dive modules, and Full Exam simulations on one plan — from ${formatMonthlyPrice("pro")}/mo after a ${SEO_LIVE_STATS.trialDays}-day free trial.`,
         ],
       },
@@ -373,7 +373,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "Price: NCLEX-only vs six exams on one plan",
         paragraphs: [
-          "Archer QBank + CAT starts around $79/month for NCLEX-RN only. Sure PASS and Intense PREP tiers add live review and coaching at $159–$399+.",
+          "Archer QBank + CAT starts around $79/month for NCLEX-RN only (as of Sep 27, 2026). Sure PASS and Intense PREP tiers add live review and coaching at $159–$399+.",
           "AnyExamEasy Pro includes NCLEX and five other board exams — useful if you are RN-to-NP, dual-track, or planning USMLE or NAPLEX on the same timeline.",
         ],
         competitorLabel: "Archer Review",
@@ -381,7 +381,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           {
             feature: "Entry price",
             anyExamEasy: `Pro from ${SEO_LIVE_STATS.trialDays}-day free trial · all 6 exams`,
-            typicalQbank: "QBank + CAT from ~$79/mo (NCLEX only)",
+            typicalQbank: "QBank + CAT from ~$79/mo (NCLEX only, as of Sep 27, 2026)",
           },
           {
             feature: "Exam coverage",
@@ -429,7 +429,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "naplex-vs-rxprep-comparison-2026",
-    title: "NAPLEX vs RxPrep: Qbank & Best Value (2026)",
+    title: "NAPLEX vs RxPrep: Qbank and Price (2026)",
     metaDescription:
       "Compare AnyExamEasy vs RxPrep for NAPLEX — calculations, Roadmaps, Deep Dives, Full Exams, pricing, and when a multi-exam plan wins.",
     examTags: ["naplex"],
@@ -447,7 +447,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "Pricing: pharmacy-only vs multi-exam Pro",
         paragraphs: [
-          "RxPrep NAPLEX QBank starts at $299 for 60-day access; the full online course runs $999+ for 180 days with video lectures and course book.",
+          "RxPrep NAPLEX QBank starts at $299 for 60-day access (as of Sep 27, 2026); the full online course runs $999+ for 180 days with video lectures and course book.",
           "AnyExamEasy Pro covers NAPLEX alongside NCLEX, USMLE, PANCE, FNP, and NPTE — relevant for dual-degree students or clinicians adding certifications.",
         ],
         competitorLabel: "RxPrep (UWorld)",
@@ -455,7 +455,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           {
             feature: "NAPLEX QBank access",
             anyExamEasy: "Included in Pro · NABP blueprint Roadmap",
-            typicalQbank: "QBank from $299/60d · Course from $999/180d",
+            typicalQbank: "QBank from $299/60d · Course from $999/180d (as of Sep 27, 2026)",
           },
           {
             feature: "Calculations prep",

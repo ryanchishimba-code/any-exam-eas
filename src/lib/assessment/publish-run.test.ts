@@ -121,7 +121,7 @@ describe("NGN publish plan", () => {
       sourcesByBatch: { [pilot.batchId]: pilot.sources },
       ids: null,
       batchId: pilot.batchId,
-      ownerAttest: "Ryan Chishimba, RN",
+      ownerAttest: "Ryan Chishimba, PharmD",
       restore: false,
     });
     expect(held.caseChanges).toEqual([]);
@@ -135,7 +135,7 @@ describe("NGN publish plan", () => {
       sourcesByBatch: { [pilot.batchId]: pilot.sources },
       ids: null,
       batchId: pilot.batchId,
-      ownerAttest: "Ryan Chishimba, RN",
+      ownerAttest: "Ryan Chishimba, PharmD",
       acceptOpenFlags: true,
       restore: false,
     });
@@ -147,6 +147,7 @@ describe("NGN publish plan", () => {
     );
     expect(plan.caseChanges.every((change) => change.to === "published")).toBe(true);
     expect(plan.attestations).toHaveLength(70);
+    expect(plan.attestations.every((row) => row.licenseType === "PharmD")).toBe(true);
     const flagged = items.filter((row) => row.item.rnFlags.length > 0);
     expect(flagged.length).toBeGreaterThan(0);
     for (const row of flagged) {
@@ -166,7 +167,9 @@ describe("NGN publish plan", () => {
     const seed = readFileSync("scripts/ngn/seed-pilot.ts", "utf8");
     expect(publish).not.toContain("VERCEL_ENV");
     expect(publish).toContain("allowed in production");
-    expect(publish).toContain('--owner-attest "Ryan Chishimba, RN" --accept-open-flags');
+    expect(publish).toContain('--owner-attest "Ryan Chishimba, PharmD" --accept-open-flags');
+    expect(publish).toContain("owner attestation (not RN review)");
+    expect(publish).not.toContain('licenseType: "RN"');
     expect(publish).toContain("flagResolutions: attestation.flagResolutions");
     expect(publish).not.toMatch(/data:\s*\{[^}]*stem/);
     expect(publish).not.toMatch(/\.update\(\{[\s\S]{0,180}rnFlags/);

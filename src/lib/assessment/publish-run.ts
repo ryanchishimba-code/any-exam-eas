@@ -45,6 +45,7 @@ export type PublishEvaluation = {
     itemId: string;
     itemVersion: number;
     reviewerName: string;
+    licenseType: string;
     flagResolutions: Record<string, string>;
   }[];
   restoreCommand: string;
@@ -56,7 +57,7 @@ export function ownerReviewerUserId(name: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
-  return `owner:${slug || "rn"}`;
+  return `owner:${slug || "owner"}`;
 }
 
 export function ownerFlagResolutions(flags: readonly string[]): Record<string, string> {
@@ -68,12 +69,17 @@ export function ownerFlagResolutions(flags: readonly string[]): Record<string, s
   return resolutions;
 }
 
-export function ownerAttestationReview(name: string, flags: readonly string[] = []): ReviewGateInput {
+export function ownerAttestationReview(
+  name: string,
+  flags: readonly string[] = [],
+  licenseType = "PharmD"
+): ReviewGateInput {
+  const license = licenseType.trim() || "PharmD";
   return {
     reviewerUserId: ownerReviewerUserId(name),
     reviewerName: name.trim(),
     decision: "approve",
-    licenseType: "RN",
+    licenseType: license,
     licenseNumber: null,
     licenseState: null,
     comments: OWNER_ATTESTATION_COMMENT,
@@ -118,6 +124,8 @@ export function evaluatePublish(input: {
   ids: readonly string[] | null;
   batchId: string | null;
   ownerAttest: string | null;
+  /** Credential on the owner sign-off. Defaults to PharmD. This is not RN review. */
+  ownerLicense?: string | null;
   /** Record each rn_flag as accepted by the owner. Does not edit the flags on the item. */
   acceptOpenFlags?: boolean;
   restore: boolean;
@@ -218,7 +226,11 @@ export function evaluatePublish(input: {
     const reviews = [...row.reviews];
     if (!input.ownerAttest) return reviews;
     const flags = input.acceptOpenFlags ? row.item.rnFlags : [];
-    const attestation = ownerAttestationReview(input.ownerAttest, flags);
+    const attestation = ownerAttestationReview(
+      input.ownerAttest,
+      flags,
+      input.ownerLicense ?? "PharmD"
+    );
     const already = reviews.some((review) => {
       if (!isOwnerAttestation(review)) return false;
       const sameOwner =
@@ -234,6 +246,7 @@ export function evaluatePublish(input: {
         itemId: row.item.id,
         itemVersion: row.item.version,
         reviewerName: attestation.reviewerName ?? input.ownerAttest,
+        licenseType: attestation.licenseType?.trim() || "PharmD",
         flagResolutions: { ...(attestation.flagResolutions ?? {}) },
       });
     }

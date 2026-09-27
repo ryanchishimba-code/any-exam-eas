@@ -213,7 +213,7 @@ export function SignupForm({
 
   const trialHighlights = [
     `${TRIAL_LIFETIME_QUESTIONS} practice questions across every exam bank during your trial`,
-    "Full Pro access — Roadmaps, Deep Dives, and all six board banks",
+    `Your trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmaps and Deep Dives.`,
     "Upgrade anytime for unlimited questions and rich explanations",
   ];
 

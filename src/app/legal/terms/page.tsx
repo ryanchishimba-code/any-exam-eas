@@ -62,10 +62,7 @@ export default function TermsPage() {
         <h3 className="mt-4 font-semibold text-[var(--color-ink)]">4.1 Free trial and signup</h3>
         <p className="mt-2">{LEGAL_DISCLAIMERS.subscription}</p>
         <p className="mt-2">
-          You may start a free trial without providing a payment method. Trial access includes a
-          limited number of practice questions and features as described at signup. A valid payment
-          method is required when you upgrade to a paid Pro subscription. Free trials are
-          limited to one per email address unless we authorize otherwise in writing.
+          Free trials are limited to one per email address unless we authorize otherwise in writing.
         </p>
 
         <h3 className="mt-4 font-semibold text-[var(--color-ink)]">4.2 Recurring billing and auto-renewal</h3>
@@ -230,12 +227,6 @@ export default function TermsPage() {
           support: {supportEmail} · <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.
         </p>
       </section>
-
-      <p className="text-xs text-[var(--color-ink-muted)]">
-        These Terms are provided for operational transparency. They are not legal advice. Have a
-        licensed attorney in your jurisdiction review them before relying on them for compliance
-        with consumer protection, auto-renewal, or professional-education regulations.
-      </p>
     </LegalPage>
   );
 }

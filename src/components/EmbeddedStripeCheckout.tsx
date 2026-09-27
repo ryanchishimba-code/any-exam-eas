@@ -85,7 +85,8 @@ export function EmbeddedStripeCheckout() {
     nextPlan: SignupPlan,
     nextTier: SubscriptionTier,
     nextInterval: BillingInterval,
-    nextPaymentMode: PaymentMode
+    nextPaymentMode: PaymentMode,
+    renewalConsent: boolean
   ) {
     setSelectedPlan(nextPlan);
     setSelectedTier(nextTier);
@@ -116,6 +117,7 @@ export function EmbeddedStripeCheckout() {
           paymentMode: nextPaymentMode,
           promoCode: discount?.valid ? discount.code : undefined,
           reactivate: reactivating || undefined,
+          renewalConsent: renewalConsent || undefined,
         }),
       });
       const data = await res.json().catch(() => ({}));

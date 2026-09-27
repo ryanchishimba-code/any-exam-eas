@@ -56,7 +56,7 @@ export function renewalTermsLine(
 }
 
 export const BILLING_TRIAL_DISCLOSURE =
-  `No payment required to start · ${TRIAL_DAYS}-day trial with full Pro access (${TRIAL_LIFETIME_QUESTIONS} practice questions) · Upgrade anytime for unlimited access`;
+  `No payment required to start · ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmaps and Deep Dives · Upgrade anytime for unlimited access`;
 
 /** Plan change rules shown in Settings and checkout. */
 export const BILLING_PLAN_CHANGE_POLICY =
@@ -108,6 +108,14 @@ export function intervalEffectiveSavingsPercent(
   const list = intervalListPriceUsd(tier, interval);
   const total = intervalTotalUsd(tier, interval);
   return Math.round((1 - total / list) * 100);
+}
+
+/** Cadence word used in the paid-renewal consent sentence (`$27.99/mo`). */
+export function renewalIntervalWord(interval: BillingInterval): string {
+  if (interval === "monthly") return "mo";
+  if (interval === "quarterly") return "3 mo";
+  if (interval === "semiannual") return "6 mo";
+  return "year";
 }
 
 export function formatPlanUsd(amount: number): string {

@@ -1413,6 +1413,26 @@ button.aee-flagship-cta {
   color: #fff;
 }
 
+/*
+ * White on #00d4c8 is about 1.9:1. These CTAs stay on #0f766e (about 5.5:1
+ * with white) on /daily, board heroes, /pricing, and /signup.
+ */
+.aee-qotd-hub .aee-flagship-cta--hero,
+.aee-qotd .aee-flagship-cta--primary,
+.aee-hero-beat .aee-flagship-cta--primary,
+.aee-marketing .aee-flagship-cta--primary {
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.aee-qotd-hub .aee-flagship-cta--hero:hover,
+.aee-qotd .aee-flagship-cta--primary:hover,
+.aee-hero-beat .aee-flagship-cta--primary:hover,
+.aee-marketing .aee-flagship-cta--primary:hover {
+  background: #115e59;
+  color: #ffffff;
+}
+
 /* Hero */
 .aee-flagship-hero {
   position: relative;
@@ -3914,7 +3934,7 @@ button.aee-flagship-cta {
   justify-content: center;
   border-radius: 999px;
   border: none;
-  background: var(--color-accent);
+  background: #0f766e;
   padding: 0.55rem 1.25rem;
   font-size: 0.875rem;
   font-weight: 700;

@@ -63,7 +63,28 @@ type CheckoutBaseParams = {
   paymentMode?: PaymentMode;
   /** @deprecated App DB trial end sync — Stripe sets trial via trial_period_days at checkout. */
   trialEndUnix?: number;
+  /**
+   * Paid recurring checkout only. The card-required trial path does not set this.
+   * Stored on the Checkout Session and subscription metadata (no database column).
+   */
+  renewalConsent?: {
+    version: string;
+    acceptedAt: string;
+    ip: string | null;
+    text: string;
+  } | null;
 };
+
+function renewalConsentMetadata(params: CheckoutBaseParams): Record<string, string> {
+  const consent = params.renewalConsent;
+  if (!consent) return {};
+  return {
+    renewalConsentVersion: consent.version,
+    renewalConsentAt: consent.acceptedAt,
+    renewalConsentIp: consent.ip ?? "",
+    renewalConsentText: consent.text.slice(0, 500),
+  };
+}
 
 /** Fields shared by both session shapes so the webhook can read them uniformly. */
 function sessionMetadata(
@@ -81,6 +102,7 @@ function sessionMetadata(
     ...(params.promoCode?.trim()
       ? { promoCode: params.promoCode.trim().toUpperCase() }
       : {}),
+    ...renewalConsentMetadata(params),
   };
 }
 
@@ -158,6 +180,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
       ...(params.promoCode?.trim()
         ? { promoCode: params.promoCode.trim().toUpperCase() }
         : {}),
+      ...renewalConsentMetadata(params),
     },
   };
 
@@ -509,6 +532,7 @@ export async function convertTrialSubscriptionToPaid(params: {
   interval: BillingInterval;
   stripeCouponId?: string | null;
   promoCode?: string | null;
+  renewalConsent?: CheckoutBaseParams["renewalConsent"];
 }): Promise<{ status: string; stripeSubscriptionId: string }> {
   if (!stripe) throw new Error("Stripe is not configured");
   if (!isUsableStripeSubscriptionId(params.stripeSubscriptionId)) {
@@ -564,6 +588,15 @@ export async function convertTrialSubscriptionToPaid(params: {
       ...(params.promoCode?.trim()
         ? { promoCode: params.promoCode.trim().toUpperCase() }
         : {}),
+      ...(params.renewalConsent
+        ? {
+            renewalConsentVersion: params.renewalConsent.version,
+            renewalConsentAt: params.renewalConsent.acceptedAt,
+            renewalConsentIp: params.renewalConsent.ip ?? "",
+            renewalConsentText: params.renewalConsent.text.slice(0, 500),
+          }
+        : {}),
+      pendingActiveConfirmation: "1",
     },
   };
 

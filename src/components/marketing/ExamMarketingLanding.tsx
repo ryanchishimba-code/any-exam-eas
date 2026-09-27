@@ -37,6 +37,7 @@ import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { UsmleStepShowcaseLazy } from "@/components/marketing/ExamMarketingSectionsLazy";
 import { testimonialsForBoard } from "@/lib/marketing/why-trust-it";
 import { ROUTES } from "@/lib/routes";
+import { boardReviewBadge } from "@/lib/marketing/legal-copy";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 type Props = {
@@ -119,8 +120,9 @@ export async function ExamMarketingLanding({
           <p className="flex items-center gap-2 text-[var(--color-ink-muted)]">
             <ClinicalReviewerAvatar reviewer={reviewer} size="sm" />
             <span>
-              Reviewed by{" "}
-              <span className="font-semibold text-[var(--color-ink)]">{reviewer.displayName}</span>
+              <span className="font-semibold text-[var(--color-ink)]">
+                {boardReviewBadge(examKey, reviewer.displayName)}
+              </span>
             </span>
           </p>
         ) : (

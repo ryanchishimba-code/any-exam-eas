@@ -1,4 +1,5 @@
 import type { LandingSuccessStory } from "@/lib/landing/content";
+import { TESTIMONIAL_RESULTS_NOTE } from "@/lib/marketing/legal-copy";
 
 /**
  * Customer quotes from the database only. Empty list renders nothing.
@@ -26,6 +27,9 @@ export function LandingTestimonialsV2({
       >
         From students
       </h2>
+      <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+        {TESTIMONIAL_RESULTS_NOTE}
+      </p>
       <ul className={compact ? "mt-6 grid gap-4 sm:grid-cols-2" : "mt-8 grid gap-4 sm:grid-cols-2"}>
         {approved.slice(0, 6).map((story) => (
           <li key={`${story.name}-${story.exam}`}>

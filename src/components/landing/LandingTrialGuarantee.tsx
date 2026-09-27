@@ -1,6 +1,10 @@
 "use client";
 
 /**
+ * Do not use this component.
+ * It restates a quality promise the owner withdrew ("we'll make it right").
+ * Leave it unmounted. Pricing uses the report-and-review line instead.
+ *
  * LandingTrialGuarantee — risk-reversal & trial-clarity section.
  *
  * Placed between the pricing section and the FAQ so visitors see exactly

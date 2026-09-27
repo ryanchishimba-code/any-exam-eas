@@ -9,7 +9,17 @@ import {
 import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { isStripeConfigured } from "@/lib/payments";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
-import { parseBillingInterval } from "@/lib/billing-plans";
+import {
+  formatPlanUsd,
+  getBillingPlanTier,
+  parseBillingInterval,
+  renewalIntervalWord,
+} from "@/lib/billing-plans";
+import {
+  PAID_RENEWAL_CONSENT_VERSION,
+  paidRenewalConsentText,
+  requestClientIp,
+} from "@/lib/marketing/legal-copy";
 import {
   isPaymentModeChoiceEnabled,
   parsePaymentMode,
@@ -49,7 +59,10 @@ export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const embedded = body?.embedded === true;
   const reactivating = body?.reactivate === true;
-  let plan = body?.plan === "trial" ? ("trial" as const) : ("subscribe" as const);
+  // Card-required trial (`plan=trial`) is unchanged: no renewal checkbox and no
+  // consent metadata. That path still uses Stripe's trial with a payment method.
+  const requestedTrial = body?.plan === "trial";
+  let plan = requestedTrial ? ("trial" as const) : ("subscribe" as const);
   const tier = parseSubscriptionTier(body?.tier ?? sub?.planTier);
   const interval = parseBillingInterval(body?.interval ?? sub?.planInterval);
   // Pay-once is only honored when the choice is live and the user is buying, not trialing.
@@ -185,6 +198,26 @@ export async function POST(req: Request) {
     }
   }
 
+  // Recurring paid checkout only. The trial URL is excluded on purpose.
+  const recurringPaid = plan === "subscribe" && !oneTime && !requestedTrial;
+  if (recurringPaid && body?.renewalConsent !== true) {
+    return NextResponse.json(
+      { error: "Confirm the renewal terms before paying." },
+      { status: 400 }
+    );
+  }
+  const renewalConsent = recurringPaid
+    ? {
+        version: PAID_RENEWAL_CONSENT_VERSION,
+        acceptedAt: new Date().toISOString(),
+        ip: requestClientIp(req),
+        text: paidRenewalConsentText(
+          formatPlanUsd(getBillingPlanTier(tier, interval).totalUsd),
+          renewalIntervalWord(interval)
+        ),
+      }
+    : null;
+
   // Mid-trial upgrade with Stripe sub + card on file: end trial now and start billing.
   // Pay-once skips this — converting the trial would leave a renewing subscription.
   if (
@@ -201,6 +234,7 @@ export async function POST(req: Request) {
         interval,
         stripeCouponId,
         promoCode,
+        renewalConsent,
       });
       return NextResponse.json({
         upgraded: true,
@@ -232,6 +266,7 @@ export async function POST(req: Request) {
     paymentMode,
     stripeCouponId,
     promoCode,
+    renewalConsent,
     successUrl: `${origin}${ROUTES.dashboard}?checkout=success`,
     // Hosted Checkout cancel should return to plan review, not the marketing page.
     cancelUrl: `${origin}/checkout?cancelled=1&plan=${plan}&tier=${tier}&interval=${interval}${
