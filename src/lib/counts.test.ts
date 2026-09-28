@@ -25,18 +25,18 @@ import type { PublishedCatalog } from "@/lib/assessment/serve";
 
 const NCLEX_UNITS = boardQuestionUnits({
   slug: "nclex",
-  bankItems: 5521,
-  formats: { mcq: 5521, ngn: 0, case: 0 },
+  bankItems: 5425,
+  formats: { mcq: 5425, ngn: 0, case: 0 },
   clinical: { standaloneNgn: 10, caseStudies: 10, caseItems: 60 },
 });
 
 describe("scored question counts", () => {
   it("counts case-study items and does not count the case shell", () => {
-    expect(scoredQuestionCount(NCLEX_UNITS)).toBe(5591);
+    expect(scoredQuestionCount(NCLEX_UNITS)).toBe(5495);
     expect(formatBoardQuestionSentence(NCLEX_UNITS)).toBe(
-      "5,591 questions, including 60 items in 10 case studies and 10 standalone NGN items"
+      "5,495 questions, including 60 items in 10 case studies and 10 standalone NGN items"
     );
-    expect(formatRoundedDownQuestionCount(5591)).toBe("5,500+");
+    expect(formatRoundedDownQuestionCount(5495)).toBe("5,400+");
     expect(formatRoundedDownQuestionCount(99)).toBe("99");
     expect(formatRoundedDownQuestionCount(100)).toBe("100+");
   });
@@ -115,11 +115,11 @@ describe("public count labels match the source", () => {
     const site = publishedSiteQuestionCounts();
     const display = buildLandingBankCountsDisplay(snapshotFor(boards));
 
-    expect(site.totalQuestions).toBe(45303);
+    expect(site.totalQuestions).toBe(45207);
     expect(display.totalLabel).toBe(formatExactQuestionCount(site.totalQuestions));
     expect(display.totalServed).toBe(site.totalQuestions);
     expect(display.sentence).toBe(site.sentence);
-    expect(display.roundedDown).toBe("45,300+");
+    expect(display.roundedDown).toBe("45,200+");
     expect(display.sentence).toContain("60 items in 10 case studies");
     expect(display.sentence).toContain("10 standalone NGN items");
 
@@ -137,7 +137,7 @@ describe("public count labels match the source", () => {
         expect(rounded).toBeLessThanOrEqual(questions);
       }
     }
-    expect(displayTotalQuestionCount(snapshotFor(boards))).toBe("45,303");
+    expect(displayTotalQuestionCount(snapshotFor(boards))).toBe("45,207");
   });
 });
 
