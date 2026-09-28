@@ -33,6 +33,9 @@ export const NCLEX_URGENT_HIDE_1_AUDIT_REF = "nclex-urgent-hide-1-2026-09-28";
 /** Second urgent NCLEX hide, 2026-09-28. Text is unchanged. */
 export const NCLEX_URGENT_HIDE_2_AUDIT_REF = "nclex-urgent-hide-2-2026-09-28";
 
+/** Six dangerous NCLEX and AANP FNP items hidden 2026-09-28. Text is unchanged. */
+export const URGENT_HIDE_3_AUDIT_REF = "urgent-hide-3-2026-09-28";
+
 /** NAPLEX clean-up batch 4, 2026-09-28. Hidden rows keep their text. Key fixes are separate. */
 export const NAPLEX_CLEANUP_BATCH_4_AUDIT_REF = "naplex-cleanup-batch-4-2026-09-28";
 
@@ -17768,6 +17771,44 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     note: "Hidden pending rewrite. Current key: Rinse mouth with water after inhalation.",
   },
   // naplex-cleanup-batch-4-2026-09-28 END
+  // urgent-hide-3-2026-09-28 BEGIN
+  {
+    id: "cmqwrccdh00051yjhwypju4zv",
+    sampleId: "UH3-001",
+    auditRef: URGENT_HIDE_3_AUDIT_REF,
+    note: "Acute heart failure at 90/60. The explanation teaches IV fluids. Also in KEY_UNCERTAIN_RN_REVIEW; this hide takes precedence. Current key: Blood pressure of 90/60 mmHg",
+  },
+  {
+    id: "cmqx01cla000k1ydsi9wvoati",
+    sampleId: "UH3-002",
+    auditRef: URGENT_HIDE_3_AUDIT_REF,
+    note: "Pneumothorax after trauma. The explanation delays chest decompression until blood pressure is treated. Current key: Blood pressure of 80/50 mmHg",
+  },
+  {
+    id: "cmqgtrgg2000w1yfhodcyljmq",
+    sampleId: "UH3-003",
+    auditRef: URGENT_HIDE_3_AUDIT_REF,
+    note: "Chest pain with ST depression keyed to a stress test. Current key: Stress test",
+  },
+  {
+    id: "cmqguk61w002k1yz9cpao4vxb",
+    sampleId: "UH3-004",
+    auditRef: URGENT_HIDE_3_AUDIT_REF,
+    note: "Febrile 6-month-old with a urinary tract infection keyed to fluids. Current key: Increase fluid intake",
+  },
+  {
+    id: "cmr85fv8r00891y9ilgkp222v",
+    sampleId: "UH3-005",
+    auditRef: URGENT_HIDE_3_AUDIT_REF,
+    note: "Active cavitary tuberculosis in a patient with HIV keyed to rifampin alone. Current key: Rifampin",
+  },
+  {
+    id: "cmr85jfkx00am1y9iuabm47vd",
+    sampleId: "UH3-006",
+    auditRef: URGENT_HIDE_3_AUDIT_REF,
+    note: "3-month-old with latch difficulty keyed to domperidone. Current key: Domperidone",
+  },
+  // urgent-hide-3-2026-09-28 END
 ];
 
 /**
@@ -17788,7 +17829,7 @@ export const KEY_UNCERTAIN_RN_REVIEW: readonly ReviewedKeyItem[] = [
   {
     id: "cmqwrccdh00051yjhwypju4zv",
     sampleId: "S16",
-    note: "Keys blood pressure over crackles in acute heart failure and conflicts with S04.",
+    note: "Keys blood pressure over crackles in acute heart failure and conflicts with S04. Also hidden by urgent-hide-3; that hide takes precedence.",
   },
   {
     id: "cmpnjmvp40r8p1ymxlvp34dui",
