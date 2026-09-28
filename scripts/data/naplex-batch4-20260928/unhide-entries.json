@@ -1,0 +1,314 @@
+[
+  {
+    "id": "cmqvjpyv8000j1yai7jckv2sf",
+    "objectSource": "\n  {\n    id: \"cmqvjpyv8000j1yai7jckv2sf\",\n    sampleId: \"NP-KF-001\",\n    auditRef: NAPLEX_KEYFIX_HIDE_AUDIT_REF,\n    note: \"Key (BP 130/80) is described by its own rationale as not requiring follow-up; stem asks what requires immediate follow-up.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqvkbzo8000h1ym39f8zemcs\"",
+    "position": 21377
+  },
+  {
+    "id": "cmqw28j51000d1ybjrtpjii2k",
+    "objectSource": "\n  {\n    id: \"cmqw28j51000d1ybjrtpjii2k\",\n    sampleId: \"NP-KF-097\",\n    auditRef: NAPLEX_KEYFIX_HIDE_AUDIT_REF,\n    note: \"Key 'patient's overall well-being' is not a finding; item not answerable.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqw3g5tx000u1ypjl8mgbpzi\"",
+    "position": 46736
+  },
+  {
+    "id": "cmr31diiv0091js04x6cwbfje",
+    "objectSource": "\n  {\n    id: \"cmr31diiv0091js04x6cwbfje\",\n    sampleId: \"NP-KF-132\",\n    auditRef: NAPLEX_KEYFIX_HIDE_AUDIT_REF,\n    note: \"Keys correct, but the rationale files all three correct answers under 'Why the other options are wrong' and does not explain the two true distractors.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr4be6fw003l1yscqsoqngl7\"",
+    "position": 55822
+  },
+  {
+    "id": "cmr7xtd7000061yikikp1tgdi",
+    "objectSource": "\n  {\n    id: \"cmr7xtd7000061yikikp1tgdi\",\n    sampleId: \"NP-KF-178\",\n    auditRef: NAPLEX_KEYFIX_HIDE_AUDIT_REF,\n    note: \"Rationale lists a keyed answer (INR 1.5) as wrong.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr815pru000y1ynmauy7o2ex\"",
+    "position": 67477
+  },
+  {
+    "id": "cmra7gl6i00051y3eop7yyi3h",
+    "objectSource": "\n  {\n    id: \"cmra7gl6i00051y3eop7yyi3h\",\n    sampleId: \"NP-KF-188\",\n    auditRef: NAPLEX_KEYFIX_HIDE_AUDIT_REF,\n    note: \"Rationale lists a keyed answer as wrong; misfiled under pharmacy-law.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmra7v6r5003l1y3e3hs19hof\"",
+    "position": 70041
+  },
+  {
+    "id": "cmqvmk3g8001b1ydnqgymwtll",
+    "objectSource": "\n  {\n    id: \"cmqvmk3g8001b1ydnqgymwtll\",\n    sampleId: \"NP-UH-010\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Rivaroxaban AF dose at CrCl 15-50 is 15 mg daily; the patient is on 20 mg at CrCl 45 and the item never flags the dosing error; rationale says 'primarily eliminated by the\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqvmk41g001h1ydnxgfzhfcl\"",
+    "position": 78191
+  },
+  {
+    "id": "cmqvqc9lf000t1yys5hya9593",
+    "objectSource": "\n  {\n    id: \"cmqvqc9lf000t1yys5hya9593\",\n    sampleId: \"NP-UH-028\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Keys stopping/holding metformin on SCr 1.8 alone (no eGFR given, eGFR likely 30-45) (Discontinue metformin until renal function improve); FDA label: contraindicated only at\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqvqnnkv001g1y5q0cxg1yqr\"",
+    "position": 83443
+  },
+  {
+    "id": "cmqvsvh0t001m1yuool6knxt0",
+    "objectSource": "\n  {\n    id: \"cmqvsvh0t001m1yuool6knxt0\",\n    sampleId: \"NP-UH-038\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Keys stopping/holding metformin on SCr 1.8 alone (no eGFR given, eGFR likely 30-45) (Hold metformin and consult her healthcare provider); FDA label: contraindicated only at\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqvt6mi3001j1yheiw1np4bt\"",
+    "position": 86288
+  },
+  {
+    "id": "cmqw508zu001g1yq28e63go3p",
+    "objectSource": "\n  {\n    id: \"cmqw508zu001g1yq28e63go3p\",\n    sampleId: \"NP-UH-061\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Key implies metformin must be stopped/changed based on the old SCr >1.5 (men) / >1.4 (women) cutoff taught in the rationale (Contact the prescriber to discuss the appropriaten)\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqw5q2de000k1ygpo3xmslx4\"",
+    "position": 93036
+  },
+  {
+    "id": "cmqw7d7hd001d1yfanxpg72cu",
+    "objectSource": "\n  {\n    id: \"cmqw7d7hd001d1yfanxpg72cu\",\n    sampleId: \"NP-UH-065\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"SCr 1.8 in a 65-year-old woman is eGFR ~31 (CKD-EPI 2021); FDA labeling says not to initiate metformin at eGFR 30-45, and the item counsels on a new start without addressing it.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqw8eknl00121yl413chv7t7\"",
+    "position": 94256
+  },
+  {
+    "id": "cmqxaurxd001c1yprzyyp1n4k",
+    "objectSource": "\n  {\n    id: \"cmqxaurxd001c1yprzyyp1n4k\",\n    sampleId: \"NP-UH-079\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"No laboratory values are given in the case (template mismatch); hyponatremia is a real SSRI effect but nothing in the vignette supports the key.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr045iku005h1ypu33tlnqo0\"",
+    "position": 98429
+  },
+  {
+    "id": "cmr0ft17z005h1yqw6pnmz001",
+    "objectSource": "\n  {\n    id: \"cmr0ft17z005h1yqw6pnmz001\",\n    sampleId: \"NP-UH-102\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Keys discontinuing metformin at eGFR 40-45; round-2 FIX pending (not applied), live key still wrong; FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr0g44v3001f1ywzrpxu0icz\"",
+    "position": 105444
+  },
+  {
+    "id": "cmr0pq03p005d1yajsz92klgl",
+    "objectSource": "\n  {\n    id: \"cmr0pq03p005d1yajsz92klgl\",\n    sampleId: \"NP-UH-114\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Critical needs-pharmacist: Metformin is contraindicated only at eGFR <30; at eGFR 45 on 1,000 mg/day it should be continued (A); the rationale's discontinuation at eGFR 45 is\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr0pq0lj005i1yajncc9bds5\"",
+    "position": 108841
+  },
+  {
+    "id": "cmr0q12uc001h1y9a02tjh4n4",
+    "objectSource": "\n  {\n    id: \"cmr0q12uc001h1y9a02tjh4n4\",\n    sampleId: \"NP-UH-116\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"After 3 months on sertraline 100 mg with worsening anxiety, 'it may take several weeks' is the wrong message; she needs reassessment (dose optimization or switch); no correct\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr0qtnrg001f1yf98i0g4dh0\"",
+    "position": 109390
+  },
+  {
+    "id": "cmr0ri55k001i1y8jwlhd6tst",
+    "objectSource": "\n  {\n    id: \"cmr0ri55k001i1y8jwlhd6tst\",\n    sampleId: \"NP-UH-119\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"COPD uncontrolled on ICS/LABA: GOLD escalation is adding a long-acting LAMA (tiotropium) for triple therapy; ipratropium is a short-acting antimuscarinic, not a maintenance\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr0ul5y1005d1yif6d8i5k4w\"",
+    "position": 110233
+  },
+  {
+    "id": "cmr31diqh0097js047dx13msm",
+    "objectSource": "\n  {\n    id: \"cmr31diqh0097js047dx13msm\",\n    sampleId: \"NP-UH-123\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Critical needs-pharmacist: ACIP: asplenia is not an indication for Shingrix under age 50 (RZV for adults >=19 only if immunodeficient/immunosuppressed), and annual influenza\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr4bs3v7001b1ycj1f9bf37t\"",
+    "position": 111453
+  },
+  {
+    "id": "cmr4edzu1004o1yk3i88n38wk",
+    "objectSource": "\n  {\n    id: \"cmr4edzu1004o1yk3i88n38wk\",\n    sampleId: \"NP-UH-125\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin due to renal impairment.); FDA label: contraindicated only at eGFR <30; do not initiate at\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr4f66jy00461yg6u0rxz7uq\"",
+    "position": 112074
+  },
+  {
+    "id": "cmr4h2gsm000e1yqxf54u31su",
+    "objectSource": "\n  {\n    id: \"cmr4h2gsm000e1yqxf54u31su\",\n    sampleId: \"NP-UH-128\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin); FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and reassess if it\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr4itdnw004f1y7u7to1kbt1\"",
+    "position": 112998
+  },
+  {
+    "id": "cmr4jwq0000151yrnsp8hfd1u",
+    "objectSource": "\n  {\n    id: \"cmr4jwq0000151yrnsp8hfd1u\",\n    sampleId: \"NP-UH-130\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Switch metformin to sitagliptin.); FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr7rz5fw00121yxyhw959b6c\"",
+    "position": 113623
+  },
+  {
+    "id": "cmr7snaka00141y6rq5nyrw6f",
+    "objectSource": "\n  {\n    id: \"cmr7snaka00141y6rq5nyrw6f\",\n    sampleId: \"NP-UH-134\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Keys discontinuing metformin at eGFR 40-45; round-2 FIX pending (not applied), live key still wrong; FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr7snb5w001a1y6r2mrcrkld\"",
+    "position": 114744
+  },
+  {
+    "id": "cmr7usg3e00151yxya2cvuyli",
+    "objectSource": "\n  {\n    id: \"cmr7usg3e00151yxya2cvuyli\",\n    sampleId: \"NP-UH-152\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Keys discontinuing metformin at eGFR 40-45; round-2 FIX pending (not applied), live key still wrong; FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr7usgf500191yxysfbb55uu\"",
+    "position": 119948
+  },
+  {
+    "id": "cmr7wzgpk00111y9he1q102o9",
+    "objectSource": "\n  {\n    id: \"cmr7wzgpk00111y9he1q102o9\",\n    sampleId: \"NP-UH-169\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Keys discontinuing metformin at eGFR 40-45; round-2 FIX pending (not applied), live key still wrong; FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr7wzgt500121y9hk81y7pf7\"",
+    "position": 124843
+  },
+  {
+    "id": "cmr7xe1lj000y1ydxyjh25fni",
+    "objectSource": "\n  {\n    id: \"cmr7xe1lj000y1ydxyjh25fni\",\n    sampleId: \"NP-UH-174\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"The real problem is dispensing amoxicillin to a penicillin-allergic patient; 'drug interaction' framing is wrong and none of the options are in use.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr7xe1sv00101ydxoqi7sulf\"",
+    "position": 126336
+  },
+  {
+    "id": "cmr7yhwa7001c1yr34xluyvha",
+    "objectSource": "\n  {\n    id: \"cmr7yhwa7001c1yr34xluyvha\",\n    sampleId: \"NP-UH-180\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Key implies metformin must be stopped/changed based on the old SCr >1.5 (men) / >1.4 (women) cutoff taught in the rationale (Contact the prescriber to discuss the patient's re)\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr7yhwgb001e1yr3sfjjuxob\"",
+    "position": 128025
+  },
+  {
+    "id": "cmr7yy1oh00151yu82cl9q1ra",
+    "objectSource": "\n  {\n    id: \"cmr7yy1oh00151yu82cl9q1ra\",\n    sampleId: \"NP-UH-186\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Newly diagnosed diabetes at eGFR 45: labeling does not recommend starting metformin at eGFR 30-45, and 2,000 mg/day exceeds the usual renal ceiling; the item ignores this while\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr7yy33m001m1yu8m5g2ujv7\"",
+    "position": 129782
+  },
+  {
+    "id": "cmr7yy23f001a1yu8p1xogsrq",
+    "objectSource": "\n  {\n    id: \"cmr7yy23f001a1yu8p1xogsrq\",\n    sampleId: \"NP-UH-187\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Keyed 'shortness of breath at rest' is not in the vignette, which describes increased albuterol use (A) and wheezing; key not supported by the case.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr7yy33m001m1yu8m5g2ujv7\"",
+    "position": 130095
+  },
+  {
+    "id": "cmra72a7k004r1ybj9kql64j9",
+    "objectSource": "\n  {\n    id: \"cmra72a7k004r1ybj9kql64j9\",\n    sampleId: \"NP-UH-221\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Key implies metformin must be stopped/changed based on the old SCr >1.5 (men) / >1.4 (women) cutoff taught in the rationale (Metformin)\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmra7gm8u000g1y3e52f4avoh\"",
+    "position": 139558
+  },
+  {
+    "id": "cmrlgjwc900081yu0g9sah7tb",
+    "objectSource": "\n  {\n    id: \"cmrlgjwc900081yu0g9sah7tb\",\n    sampleId: \"NP-UH-234\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Digoxin Vd-in-CKD keyed \\\"increase the Vd\\\" (wrong); round-2 FIX pending, live key still wrong\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmrlgkm7b000f1yu0u4yvn468\"",
+    "position": 143400
+  },
+  {
+    "id": "cmrlhcck2000n1yf3a0jlwdz6",
+    "objectSource": "\n  {\n    id: \"cmrlhcck2000n1yf3a0jlwdz6\",\n    sampleId: \"NP-UH-239\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Digoxin Vd keyed \\\"increases Vd due to less protein binding\\\" (wrong); round-2 FIX pending, live key still wrong\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmrlhccsk000q1yf349zplzxn\"",
+    "position": 144870
+  },
+  {
+    "id": "cmrlhy45800091yuvd9zpa6wz",
+    "objectSource": "\n  {\n    id: \"cmrlhy45800091yuvd9zpa6wz\",\n    sampleId: \"NP-UH-243\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Digoxin Vd keyed \\\"increased Vd due to reduced protein binding\\\" (wrong); round-2 FIX pending, live key still wrong\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmrlhy482000a1yuv1hupo0fg\"",
+    "position": 146024
+  },
+  {
+    "id": "cmrp2x70a000n1yp4h69cw4di",
+    "objectSource": "\n  {\n    id: \"cmrp2x70a000n1yp4h69cw4di\",\n    sampleId: \"NP-UH-263\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Alligation key (333/167) is right but the rationale computes 250 mL/250 mL; contradicts the key (round-2 rationale fix pending)\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmrp2x7cs000r1yp4o8ldyab8\"",
+    "position": 151782
+  },
+  {
+    "id": "cmrp7ocw6000c1y2nv6yvyv7q",
+    "objectSource": "\n  {\n    id: \"cmrp7ocw6000c1y2nv6yvyv7q\",\n    sampleId: \"NP-UH-270\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Alligation: rationale gets 100 mL then says \\\"the correct calculation should be 50 mL\\\" (100 mg/5 mL x 250 mL / 50 mg/mL = 100 mL); round-2 FIX pending\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmrp7oyyp000g1y2n6yurc76l\"",
+    "position": 153532
+  },
+  {
+    "id": "cmsfj9z5a00001ymsjk3jd5en",
+    "objectSource": "\n  {\n    id: \"cmsfj9z5a00001ymsjk3jd5en\",\n    sampleId: \"NP-UH-274\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Swallowing difficulty and esophageal symptoms are alendronate label cautions (esophageal abnormalities are a contraindication); prescriber contact about an alternative (IV\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmsfjfgak001a1ymskckr98p7\"",
+    "position": 154669
+  },
+  {
+    "id": "cmshcyzzz002h1yarlluf8rq0",
+    "objectSource": "\n  {\n    id: \"cmshcyzzz002h1yarlluf8rq0\",\n    sampleId: \"NP-UH-281\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Enoxaparin 40 mg daily is a prophylactic, not a bridging, dose; routine bridging in AF is not recommended (CHEST 2022), and warfarin should be stopped 5 days before hip\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmshdt43b000f1y1i2h6e054l\"",
+    "position": 156363
+  },
+  {
+    "id": "cmshkb54a00071ys71be8jfgd",
+    "objectSource": "\n  {\n    id: \"cmshkb54a00071ys71be8jfgd\",\n    sampleId: \"NP-UH-323\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Digoxin LD rationale divides by F=0.7 but keys the undivided 490 mcg (700 mcg also offered); internally wrong\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmshkcn1d000j1ys7khars4h4\"",
+    "position": 168228
+  },
+  {
+    "id": "cmshkb5gd000b1ys7d0qydepe",
+    "objectSource": "\n  {\n    id: \"cmshkb5gd000b1ys7d0qydepe\",\n    sampleId: \"NP-UH-324\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Vmax 500/Km 4 at 400 mg/day gives Css = 4x400/100 = 16 mcg/mL; keyed 12 via a wrong formula\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmshkcn1d000j1ys7khars4h4\"",
+    "position": 168468
+  },
+  {
+    "id": "cmshfqjwp00151y4nyi3vbts4",
+    "objectSource": "\n  {\n    id: \"cmshfqjwp00151y4nyi3vbts4\",\n    sampleId: \"NP-UH-336\",\n    auditRef: NAPLEX_URGENT_HIDE_AUDIT_REF,\n    note: \"Vancomycin loading dose is calculated as 1,470 mg and then rounded to 2,000 mg.\",\n  },",
+    "insertBefore": "\n  // naplex-urgent-hide-2026-09-27 END",
+    "position": 171544
+  },
+  {
+    "id": "cmqvklwen000i1ywrrwwsl4pp",
+    "objectSource": "\n  {\n    id: \"cmqvklwen000i1ywrrwwsl4pp\",\n    sampleId: \"NP-UH2-002\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR).\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqvl73ti000d1yr0m8ryeiqe\"",
+    "position": 172132
+  },
+  {
+    "id": "cmqvqc847000e1yys3m4ariwn",
+    "objectSource": "\n  {\n    id: \"cmqvqc847000e1yys3m4ariwn\",\n    sampleId: \"NP-UH2-008\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR).\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqvqc8lz000j1yysqeol2eev\"",
+    "position": 173512
+  },
+  {
+    "id": "cmqvlh24b000e1y742ww0hwc3",
+    "objectSource": "\n  {\n    id: \"cmqvlh24b000e1y742ww0hwc3\",\n    sampleId: \"NP-UH2-022\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keys tiotropium as the controller for uncontrolled asthma with no ICS (budesonide/formoterol offered); GINA requires an ICS-containing controller.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqvrbhir000f1yi7gpp1pel7\"",
+    "position": 176985
+  },
+  {
+    "id": "cmqvm8odh000g1ymsi0cmq79v",
+    "objectSource": "\n  {\n    id: \"cmqvm8odh000g1ymsi0cmq79v\",\n    sampleId: \"NP-UH2-023\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keys as-needed ipratropium as the controller for uncontrolled asthma with no ICS (fluticasone/salmeterol offered).\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqvrbhir000f1yi7gpp1pel7\"",
+    "position": 177265
+  },
+  {
+    "id": "cmqw50550000e1yq20uz33xnw",
+    "objectSource": "\n  {\n    id: \"cmqw50550000e1yq20uz33xnw\",\n    sampleId: \"NP-UH2-027\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keys scheduled ipratropium as the controller for uncontrolled asthma while budesonide is an option.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr4jwox3000s1yrn68q4cw1z\"",
+    "position": 178330
+  },
+  {
+    "id": "cmr0cx7v4001j1ynj0h9u5w5s",
+    "objectSource": "\n  {\n    id: \"cmr0cx7v4001j1ynj0h9u5w5s\",\n    sampleId: \"NP-UH2-037\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"K 5.5 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr4brz7d00011ycj6de9hylx\"",
+    "position": 181248
+  },
+  {
+    "id": "cmr4jwoca000l1yrnenxe0vwb",
+    "objectSource": "\n  {\n    id: \"cmr4jwoca000l1yrnenxe0vwb\",\n    sampleId: \"NP-UH2-042\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"K 5.8 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\\u2026\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr7rz1rx00011yxy9yw6dbef\"",
+    "position": 182823
+  },
+  {
+    "id": "cmqvp3qrt000e1ygu1j1i72or",
+    "objectSource": "\n  {\n    id: \"cmqvp3qrt000e1ygu1j1i72or\",\n    sampleId: \"NP-UH2-053\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keys adding spironolactone in HF/CKD with K 5.8 mEq/L (contraindicated above 5.0).\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqvsvc7d000i1yuoe4h75jc7\"",
+    "position": 186288
+  },
+  {
+    "id": "cmqvqz7rm000e1yc3alqqtjzc",
+    "objectSource": "\n  {\n    id: \"cmqvqz7rm000e1yc3alqqtjzc\",\n    sampleId: \"NP-UH2-057\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"\\\"Lab value warranting change\\\" keyed CrCl 60 (normal) while the case has INR 4.5 with bruising on warfarin + aspirin.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmqw9px2z000i1yrboooql09m\"",
+    "position": 187209
+  },
+  {
+    "id": "cmr4h2kud001i1yqx15edzw14",
+    "objectSource": "\n  {\n    id: \"cmr4h2kud001i1yqx15edzw14\",\n    sampleId: \"NP-UH2-070\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmr7sncf5001m1y6riovzmsdz\"",
+    "position": 191061
+  },
+  {
+    "id": "cmrp7pr5t000n1y2nqkco33ca",
+    "objectSource": "\n  {\n    id: \"cmrp7pr5t000n1y2nqkco33ca\",\n    sampleId: \"NP-UH2-193\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keyed 400 mg/day, which predicts a toxic phenytoin level from the patient's own data.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmshj1tn8001m1yorjsdp4c9f\"",
+    "position": 228947
+  },
+  {
+    "id": "cmshhsh9v000f1y664iawc0kj",
+    "objectSource": "\n  {\n    id: \"cmshhsh9v000f1y664iawc0kj\",\n    sampleId: \"NP-UH2-194\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keyed to increase phenytoin to 400 mg/day, which predicts a toxic level from the patient's own data.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmshj1tn8001m1yorjsdp4c9f\"",
+    "position": 229166
+  },
+  {
+    "id": "cmshirugm000h1yorfzx7eoq2",
+    "objectSource": "\n  {\n    id: \"cmshirugm000h1yorfzx7eoq2\",\n    sampleId: \"NP-UH2-195\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keyed 400 mg/day, which predicts a toxic phenytoin level from the patient's own data.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmshj1tn8001m1yorjsdp4c9f\"",
+    "position": 229400
+  },
+  {
+    "id": "cmshj3ftk001q1yortwa13h9h",
+    "objectSource": "\n  {\n    id: \"cmshj3ftk001q1yortwa13h9h\",\n    sampleId: \"NP-UH2-196\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keyed 400 mg/day, which predicts a toxic phenytoin level from the patient's own data.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmshj1tn8001m1yorjsdp4c9f\"",
+    "position": 229619
+  },
+  {
+    "id": "cmrleqz0y000c1y7zy18rzkow",
+    "objectSource": "\n  {\n    id: \"cmrleqz0y000c1y7zy18rzkow\",\n    sampleId: \"NP-UH2-199\",\n    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,\n    note: \"Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold. Round-2 fix candidate.\",\n  },",
+    "insertBefore": "\n  {\n    id: \"cmrlfp7jl00171yolj8l9qnfa\"",
+    "position": 230310
+  }
+]

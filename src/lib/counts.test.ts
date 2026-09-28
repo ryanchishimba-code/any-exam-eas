@@ -115,11 +115,11 @@ describe("public count labels match the source", () => {
     const site = publishedSiteQuestionCounts();
     const display = buildLandingBankCountsDisplay(snapshotFor(boards));
 
-    expect(site.totalQuestions).toBe(45207);
+    expect(site.totalQuestions).toBe(43354);
     expect(display.totalLabel).toBe(formatExactQuestionCount(site.totalQuestions));
     expect(display.totalServed).toBe(site.totalQuestions);
     expect(display.sentence).toBe(site.sentence);
-    expect(display.roundedDown).toBe("45,200+");
+    expect(display.roundedDown).toBe("43,300+");
     expect(display.sentence).toContain("60 items in 10 case studies");
     expect(display.sentence).toContain("10 standalone NGN items");
 
@@ -137,7 +137,7 @@ describe("public count labels match the source", () => {
         expect(rounded).toBeLessThanOrEqual(questions);
       }
     }
-    expect(displayTotalQuestionCount(snapshotFor(boards))).toBe("45,207");
+    expect(displayTotalQuestionCount(snapshotFor(boards))).toBe("43,354");
   });
 });
 

@@ -76,7 +76,15 @@ export const NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       "Rifampin 600 mg daily for latent TB treatment",
       "Magnesium/aluminum antacid taken at the same time as B/F/TAF each morning",
     ],
-    `St. John's wort and rifampin are potent CYP3A/inducer interactions that can drop integrase/NNRTI levels and cause virologic failure. Polyvalent cations chelate integrase inhibitors when co-ingested; separate by ≥2 hours. Multivitamin without simultaneous cations and acetaminophen are not clinically significant interactions here.`,
+    `## Why this answer is correct
+A, B and C require intervention.
+• St. John's wort and rifampin are strong inducers that lower bictegravir and TAF (contraindicated); Mg/Al antacids taken together chelate bictegravir (give B/F/TAF 2 hours before or 6 hours after, or give fasting-separated).
+## Why the other options are wrong
+• **Daily multivitamin without minerals taken 2 hours apart from B/F/TAF**: A multivitamin without minerals, taken 2 hours apart, does not chelate.
+• **Acetaminophen 650 mg PRN headache**: Acetaminophen does not interact.
+## Key takeaway
+Bictegravir: avoid strong inducers; separate polyvalent cations.
+(Guideline: DHHS 2024 adult ARV guidelines; Biktarvy labeling)`,
     {
       blueprintDomain: A2,
       difficulty: 4,
@@ -296,10 +304,17 @@ export const NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
     [
       "Pneumococcal conjugate and polysaccharide series per ACIP sequence",
       "Meningococcal ACWY and MenB series",
-      "Recombinant zoster vaccine (Shingrix) 2-dose series",
+      "Annual inactivated influenza vaccine when in season",
       "Tdap now (Tdap preferred over Td for adults needing tetanus protection)",
     ],
-    `Asplenic patients need enhanced pneumococcal protection (PCV followed by PPSV per ACIP), meningococcal ACWY and MenB vaccines, and Shingrix (even if under 50 due to immunocompromising condition). Tdap is indicated when no prior adult dose is documented. Influenza is recommended broadly but is not unique to asplenia; this SATA focuses on condition-specific requirements including Tdap given chart documentation.`,
+    `## Why this answer is correct
+A, B, C and E.
+• Asplenia calls for pneumococcal vaccination (PCV20 or PCV21 alone, or PCV15 then PPSV23), MenACWY (2-dose primary series, boosters every 5 years) and MenB series, plus annual inactivated influenza and Tdap once as an adult. Give at least 14 days after splenectomy.
+## Why the other options are wrong
+• **Recombinant zoster vaccine (Shingrix) 2-dose series**: Recombinant zoster vaccine is recommended at 50 or older, or 19 or older if immunocompromised; asplenia alone does not qualify.
+## Key takeaway
+Asplenia: pneumococcal, MenACWY, MenB, influenza, routine vaccines.
+(Guideline: CDC/ACIP 2025 adult immunization schedule)`,
     {
       blueprintDomain: A2,
       difficulty: 4,
