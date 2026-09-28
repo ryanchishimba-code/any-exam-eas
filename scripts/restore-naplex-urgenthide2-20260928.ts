@@ -23,7 +23,7 @@ ensureDatabaseUrlEnv();
 import { PrismaClient } from "@prisma/client";
 
 const BACKUP = "qbi_naplex_urgenthide2_backup_20260928";
-const EXPECTED = 238;
+const EXPECTED = 247;
 const BEGIN = "// naplex-urgent-hide-2-2026-09-28 BEGIN";
 const END = "// naplex-urgent-hide-2-2026-09-28 END";
 const QUEUE = path.join(process.cwd(), "src/lib/exam-prep/reviewed-key-queue.ts");

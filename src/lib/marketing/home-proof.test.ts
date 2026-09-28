@@ -31,7 +31,7 @@ const FIXTURE = {
     clinical: { standaloneNgn: 10, caseStudies: 10, caseItems: 60 },
   }),
   usmle: units("usmle", 17276),
-  naplex: units("naplex", 9284),
+  naplex: units("naplex", 9275),
   pance: units("pance", 2938),
   "aanp-fnp": units("aanp-fnp", 6105),
   "npte-pt": units("npte-pt", 4240),
@@ -55,11 +55,11 @@ describe("homepage proof facts", () => {
     const site = siteQuestionCounts(FIXTURE);
     const facts = buildHomeProofFacts(site);
     const questions = facts.find((fact) => fact.id === "questions");
-    expect(site.totalQuestions).toBe(45434);
+    expect(site.totalQuestions).toBe(45425);
     expect(questions?.text).toBe(
       `${formatExactQuestionCount(site.totalQuestions)} practice questions`
     );
-    expect(questions?.text).toBe("45,434 practice questions");
+    expect(questions?.text).toBe("45,425 practice questions");
   });
 
   it("names the nursing reviewer and the six-board price, with no pass rate", () => {
@@ -105,7 +105,7 @@ describe("homepage proof facts", () => {
     ];
     for (const file of files) {
       const text = readFileSync(path.resolve(process.cwd(), file), "utf8");
-      expect(text).not.toMatch(/45,434|45434/);
+      expect(text).not.toMatch(/45,425|45425/);
     }
   });
 });

@@ -5231,6 +5231,60 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,
     note: "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
   },
+  {
+    id: "cmqvja7of000j1yxkai3kgijn",
+    sampleId: "NP-UH2-239",
+    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Critical safety error found on second-pass review. Current key: Discontinue rivaroxaban until renal function improves.",
+  },
+  {
+    id: "cmqvja9ls00131yxk87n476v7",
+    sampleId: "NP-UH2-240",
+    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Critical safety error found on second-pass review. Current key: Reduce apixaban to 2.5 mg twice daily.",
+  },
+  {
+    id: "cmqvjpygx000f1yaibu6dss0f",
+    sampleId: "NP-UH2-241",
+    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Critical safety error found on second-pass review. Current key: Diltiazem 120 mg extended-release daily",
+  },
+  {
+    id: "cmqvkc1xr00141ym39aasx42s",
+    sampleId: "NP-UH2-242",
+    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Critical safety error found on second-pass review. Current key: Continue apixaban but monitor for decreased efficacy.",
+  },
+  {
+    id: "cmqvl74e8000j1yr0n4ycdcei",
+    sampleId: "NP-UH2-243",
+    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Critical safety error found on second-pass review. Current key: Counsel the patient to stop taking apixaban immediately.",
+  },
+  {
+    id: "cmqvl76c400131yr02aoxhj9m",
+    sampleId: "NP-UH2-244",
+    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Critical safety error found on second-pass review. Current key: Reduce the apixaban dose to 2.5 mg BID.",
+  },
+  {
+    id: "cmqvlh54l001g1y74e3tyh6bi",
+    sampleId: "NP-UH2-245",
+    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Critical safety error found on second-pass review. Current key: Reduce the dose of apixaban to 2.5 mg twice daily.",
+  },
+  {
+    id: "cmqvlw9hv00121yd7bgsk5mn3",
+    sampleId: "NP-UH2-246",
+    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Critical safety error found on second-pass review. Current key: Reduce apixaban to 2.5 mg BID.",
+  },
+  {
+    id: "cmqvnd3x0000d1yqafhql0vuy",
+    sampleId: "NP-UH2-247",
+    auditRef: NAPLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Critical safety error found on second-pass review. Current key: Increased thirst and urination",
+  },
   // naplex-urgent-hide-2-2026-09-28 END
 ];
 

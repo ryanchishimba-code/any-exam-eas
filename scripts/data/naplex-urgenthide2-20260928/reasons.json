@@ -1426,5 +1426,59 @@
     "reason_group": "doac-24h-hold",
     "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
     "sampleId": "NP-UH2-238"
+  },
+  {
+    "id": "cmqvja7of000j1yxkai3kgijn",
+    "reason_group": "critical-safety-second-pass",
+    "note": "Critical safety error found on second-pass review. Current key: Discontinue rivaroxaban until renal function improves.",
+    "sampleId": "NP-UH2-239"
+  },
+  {
+    "id": "cmqvja9ls00131yxk87n476v7",
+    "reason_group": "critical-safety-second-pass",
+    "note": "Critical safety error found on second-pass review. Current key: Reduce apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH2-240"
+  },
+  {
+    "id": "cmqvjpygx000f1yaibu6dss0f",
+    "reason_group": "critical-safety-second-pass",
+    "note": "Critical safety error found on second-pass review. Current key: Diltiazem 120 mg extended-release daily",
+    "sampleId": "NP-UH2-241"
+  },
+  {
+    "id": "cmqvkc1xr00141ym39aasx42s",
+    "reason_group": "critical-safety-second-pass",
+    "note": "Critical safety error found on second-pass review. Current key: Continue apixaban but monitor for decreased efficacy.",
+    "sampleId": "NP-UH2-242"
+  },
+  {
+    "id": "cmqvl74e8000j1yr0n4ycdcei",
+    "reason_group": "critical-safety-second-pass",
+    "note": "Critical safety error found on second-pass review. Current key: Counsel the patient to stop taking apixaban immediately.",
+    "sampleId": "NP-UH2-243"
+  },
+  {
+    "id": "cmqvl76c400131yr02aoxhj9m",
+    "reason_group": "critical-safety-second-pass",
+    "note": "Critical safety error found on second-pass review. Current key: Reduce the apixaban dose to 2.5 mg BID.",
+    "sampleId": "NP-UH2-244"
+  },
+  {
+    "id": "cmqvlh54l001g1y74e3tyh6bi",
+    "reason_group": "critical-safety-second-pass",
+    "note": "Critical safety error found on second-pass review. Current key: Reduce the dose of apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH2-245"
+  },
+  {
+    "id": "cmqvlw9hv00121yd7bgsk5mn3",
+    "reason_group": "critical-safety-second-pass",
+    "note": "Critical safety error found on second-pass review. Current key: Reduce apixaban to 2.5 mg BID.",
+    "sampleId": "NP-UH2-246"
+  },
+  {
+    "id": "cmqvnd3x0000d1yqafhql0vuy",
+    "reason_group": "critical-safety-second-pass",
+    "note": "Critical safety error found on second-pass review. Current key: Increased thirst and urination",
+    "sampleId": "NP-UH2-247"
   }
 ]
