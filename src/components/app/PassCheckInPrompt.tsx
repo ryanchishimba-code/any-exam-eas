@@ -66,33 +66,31 @@ export function PassCheckInPrompt({
 
   return (
     <aside
-      className="mb-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3"
+      className="mb-3 px-0.5"
       aria-label="Did you pass?"
     >
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-sm font-semibold text-[var(--color-ink)]">Did you pass?</p>
-          <p className="mt-0.5 text-sm leading-snug text-[var(--color-ink-muted)]">
-            {passCheckInSubtitle(examLabel)}
-          </p>
-        </div>
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+        <p className="min-w-0 text-[13px] leading-snug text-[var(--color-ink-muted)]">
+          <span className="font-medium text-[var(--color-ink)]">Did you pass?</span>{" "}
+          {passCheckInSubtitle(examLabel)}
+        </p>
         <button
           type="button"
-          className="min-h-11 shrink-0 px-2 text-sm font-semibold text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
+          className="shrink-0 px-1 text-[12px] font-medium text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
           onClick={() => void save(PASS_CHECK_IN_RESULT.dismissed, false)}
           disabled={pending != null}
         >
           Not now
         </button>
       </div>
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mt-2 flex flex-wrap gap-1.5">
         {CHOICES.map((choice) => (
           <button
             key={choice.id}
             type="button"
             disabled={pending != null}
             onClick={() => choose(choice.id)}
-            className="inline-flex min-h-11 items-center rounded-full border border-[var(--color-accent)] px-4 text-sm font-semibold text-[var(--color-accent)] hover:bg-[var(--color-accent)]/10 disabled:opacity-60"
+            className="inline-flex min-h-8 items-center rounded-full border border-[var(--color-border)] px-3 text-[12px] font-medium text-[var(--color-ink)] hover:border-[var(--color-accent)]/40 disabled:opacity-60"
           >
             {pending === choice.id ? "Saving…" : choice.label}
           </button>

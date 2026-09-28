@@ -62,18 +62,10 @@ export function QuestionBankFormatMode({
       : "all";
 
   return (
-    <section className="space-y-4" aria-labelledby="practice-format-heading">
-      <div className="space-y-1.5 px-0.5">
-        <h3
-          id="practice-format-heading"
-          className="text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)]"
-        >
-          Question format
-        </h3>
-        <p className="max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-          {chooser.intro}
-        </p>
-      </div>
+    <section className="space-y-2.5" aria-labelledby="practice-format-heading">
+      <h3 id="practice-format-heading" className={cn("px-0.5", "text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-muted)]")}>
+        Format
+      </h3>
       <div
         className={cn(
           "grid gap-3",
@@ -103,7 +95,7 @@ export function QuestionBankFormatMode({
               data-format-count={count}
               onClick={() => onChange(id)}
               className={cn(
-                "flex min-h-[8.5rem] flex-col rounded-[22px] border px-5 py-5 text-left transition",
+                "flex min-h-[6.5rem] flex-col rounded-2xl border px-4 py-4 text-left transition",
                 active
                   ? "border-[var(--color-accent)] bg-[var(--color-accent)]/[0.07]"
                   : "border-[var(--color-border)]/80 bg-[var(--color-surface-elevated)] hover:border-[var(--color-accent)]/35"

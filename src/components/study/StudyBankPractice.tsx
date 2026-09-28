@@ -12,7 +12,6 @@ import {
 } from "@/lib/fields";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import {
-  EXAM_MODES,
   parseQuestionBankPace,
   type QuestionBankPace,
   type QuestionBankStyle,
@@ -111,6 +110,7 @@ import {
   writePersistedQuestionBankSetup,
   isMixedSubjectId,
   MIXED_SUBJECT_LABEL,
+  questionBankBoardCount,
 } from "@/lib/study/question-bank-setup";
 import {
   coercePracticeFormat,
@@ -313,9 +313,7 @@ export function StudyBankPractice({
   weakTopics = [],
   initialCoverage = null,
   initialCoverageFieldId,
-  hubStats,
   usmleStepLabel,
-  topicCount = null,
   totalQuestions = null,
   boardOpenRemediationCount = null,
 }: {
@@ -520,12 +518,6 @@ export function StudyBankPractice({
   );
   const activeCategoryLabel = subjectCountPayload?.categoryLabel ?? null;
   const ngnLabel = ngnStyleLabel(activeCategoryLabel, fieldId);
-  const activeDefinition = subjectCountPayload?.definition ?? null;
-  const activeTopicCount = subjectCounts
-    ? Object.keys(subjectCounts).length
-    : initialSubjectCountsFieldId === fieldId
-      ? topicCount
-      : null;
 
   useEffect(() => {
     if (!countsLoading) setExamSwitching(false);
@@ -2161,7 +2153,6 @@ export function StudyBankPractice({
     router.push(href);
   }
 
-  const activeMode = EXAM_MODES.find((m) => m.id === practiceMode);
   const activeExamOption = EXAM_FIELD_OPTIONS.find((opt) => opt.id === fieldId);
   const pageExamSlug = examSlugFromFieldId(fieldId) ?? effectiveExamSlug ?? null;
   const pageExam = pageExamSlug ? EXAM_CATALOG[pageExamSlug] : null;
@@ -2197,22 +2188,16 @@ export function StudyBankPractice({
         <QuestionBankHeader
           examName={pageExam.shortName}
           usmleStepLabel={usmleStepLabel}
-          practiceMode={practiceMode}
-          topicCount={activeTopicCount}
-          totalQuestions={activeTotal}
-          questionSentence={subjectCountPayload?.questionSentence}
-          formats={activeFormats}
-          categories={activeCategories}
-          categoryLabel={activeCategoryLabel}
-          activeDefinition={activeDefinition}
-          readinessScore={hubStats?.readinessScore}
-          streakDays={hubStats?.streakDays}
+          questionCount={questionBankBoardCount({
+            scoredTotal: activeTotal,
+            scoredTopicCounts: subjectCounts,
+          })}
         />
       ) : null}
 
       <StudyUsageBanner compact={onQuestionBank} />
 
-      <QuestionBankSection title="Practice type" hint={activeMode?.description}>
+      <QuestionBankSection title="Practice">
             <QuestionBankSegment
               ariaLabel="Practice type"
               value={practiceMode}
@@ -2235,7 +2220,7 @@ export function StudyBankPractice({
           </QuestionBankSection>
 
           {examLocked && pageExamSlug === "usmle" ? (
-            <QuestionBankSection title="USMLE step" hint="Step 1, Step 2 CK, and Step 3 each have dedicated banks and roadmaps.">
+            <QuestionBankSection title="USMLE step">
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                 {USMLE_STEP_OPTIONS.map((opt) => (
                   <button
@@ -2347,10 +2332,7 @@ export function StudyBankPractice({
           ) : null}
 
           {isPance && !isTimedExam ? (
-            <QuestionBankSection
-              title="NCCPA task areas"
-              hint="Sharpen diagnosis, pharmacotherapy, and other board tasks — works with any organ-system topic."
-            >
+            <QuestionBankSection title="NCCPA task areas">
               <PanceTaskFocus
                 taskCategory={taskCategory}
                 disabled={effectiveBankStyle !== "standard"}
@@ -2495,19 +2477,15 @@ export function StudyBankPractice({
               <div className="space-y-2">
                 <p className="text-[13px] font-semibold text-[var(--color-ink)]">Full exam simulation</p>
                 <p className={qbUi.sectionHint}>{lengthLabel}</p>
-                <ul className="space-y-1.5 pt-1 text-[12px] text-[var(--color-ink-muted)]">
-                  <li>Mixed questions from your full exam bank</li>
-                  <li>No topic filter — mirrors test-day conditions</li>
-                  {isMpje ? (
-                    <li>
-                      {mpjeVariant === "uniform"
-                        ? "Uniform MPJE — federal + common state law"
-                        : mpjeState
-                          ? `State MPJE — ${mpjeState} pharmacy law`
-                          : "Select a state for state-specific law"}
-                    </li>
-                  ) : null}
-                </ul>
+                {isMpje ? (
+                  <p className={cn(qbUi.sectionHint, "pt-1")}>
+                    {mpjeVariant === "uniform"
+                      ? "Uniform MPJE — federal and common state law"
+                      : mpjeState
+                        ? `State MPJE — ${mpjeState} pharmacy law`
+                        : "Select a state for state-specific law"}
+                  </p>
+                ) : null}
               </div>
             </div>
           ) : null}

@@ -9,6 +9,8 @@ import {
   QUESTION_BANK_WHEEL_PRESETS,
   availablePoolForQuestionBankStyle,
   availableQuestionCount,
+  questionBankBoardCount,
+  questionBankPageCount,
   bankStyleHonorsLaunchStyle,
   deliberateFormatForLaunch,
   effectiveQuestionBankStyle,
@@ -34,6 +36,17 @@ describe("question-bank-setup", () => {
 
   it("returns per-topic count", () => {
     expect(availableQuestionCount("cardio", counts)).toBe(40);
+  });
+
+  it("shows the scored board total, not the bank-only session map", () => {
+    const scored = { "management-of-care": 4000, "safety-infection": 1489 };
+    const sessionOnly = { "management-of-care": 4000, "safety-infection": 1419 };
+    expect(questionBankPageCount(MIXED_SUBJECT_ID, scored)).toBe(5489);
+    expect(questionBankPageCount("management-of-care", scored)).toBe(4000);
+    expect(questionBankBoardCount({ scoredTotal: 5489, scoredTopicCounts: scored })).toBe(5489);
+    expect(questionBankBoardCount({ scoredTopicCounts: scored })).toBe(5489);
+    expect(questionBankPageCount(MIXED_SUBJECT_ID, sessionOnly)).toBe(5419);
+    expect(questionBankBoardCount({ scoredTotal: 5489, scoredTopicCounts: sessionOnly })).toBe(5489);
   });
 
   it("treats empty counts as unknown (not zero)", () => {
