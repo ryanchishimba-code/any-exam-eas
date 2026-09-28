@@ -36,6 +36,9 @@ export const NCLEX_URGENT_HIDE_2_AUDIT_REF = "nclex-urgent-hide-2-2026-09-28";
 /** Six dangerous NCLEX and AANP FNP items hidden 2026-09-28. Text is unchanged. */
 export const URGENT_HIDE_3_AUDIT_REF = "urgent-hide-3-2026-09-28";
 
+/** Four more NCLEX items hidden 2026-09-28. Text is unchanged. */
+export const URGENT_HIDE_4_AUDIT_REF = "urgent-hide-4-2026-09-28";
+
 /** NAPLEX clean-up batch 4, 2026-09-28. Hidden rows keep their text. Key fixes are separate. */
 export const NAPLEX_CLEANUP_BATCH_4_AUDIT_REF = "naplex-cleanup-batch-4-2026-09-28";
 
@@ -17809,6 +17812,32 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     note: "3-month-old with latch difficulty keyed to domperidone. Current key: Domperidone",
   },
   // urgent-hide-3-2026-09-28 END
+  // urgent-hide-4-2026-09-28 BEGIN
+  {
+    id: "cmqwwjg3n00061y5k2emykv0n",
+    sampleId: "UH4-001",
+    auditRef: URGENT_HIDE_4_AUDIT_REF,
+    note: "Routine checkup with blood pressure 120/80. Text unchanged. Current key: Schedule regular blood pressure monitoring",
+  },
+  {
+    id: "cmqwxkhdj00041ytvdp03mntj",
+    sampleId: "UH4-002",
+    auditRef: URGENT_HIDE_4_AUDIT_REF,
+    note: "Pregnant client with a history of hypertension. Text unchanged. Current key: Assess for signs of gestational hypertension",
+  },
+  {
+    id: "cmqwl59dz000i1yqxptqro3pn",
+    sampleId: "UH4-003",
+    auditRef: URGENT_HIDE_4_AUDIT_REF,
+    note: "Post-cholecystectomy abdominal pain. Also in KEY_UNCERTAIN_RN_REVIEW; this hide takes precedence. Text unchanged. Current key: Elevated heart rate",
+  },
+  {
+    id: "cmqwwumv700031y25hf8p4bg8",
+    sampleId: "UH4-004",
+    auditRef: URGENT_HIDE_4_AUDIT_REF,
+    note: "Hypertension screening. Text unchanged. Current key: Measure the client's blood pressure.",
+  },
+  // urgent-hide-4-2026-09-28 END
 ];
 
 /**
@@ -17854,7 +17883,7 @@ export const KEY_UNCERTAIN_RN_REVIEW: readonly ReviewedKeyItem[] = [
   {
     id: "cmqwl59dz000i1yqxptqro3pn",
     sampleId: "S40",
-    note: "Fever, tachycardia, and distention should all be reported; the stem asks for one.",
+    note: "Fever, tachycardia, and distention should all be reported; the stem asks for one. Also hidden by urgent-hide-4; that hide takes precedence.",
   },
   {
     id: "cmqwxvj3p000j1y0geuw345sr",
