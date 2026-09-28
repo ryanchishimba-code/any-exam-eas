@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Unhide the 2026-09-28 four-item urgent hide.
+ * Unhide the 2026-09-28 six-item urgent hide.
  *
  * Hiding did not change question text. This script removes the
  * urgent-hide-3-2026-09-28 block from KEY_WRONG_PENDING_RN_REVIEW.
@@ -15,7 +15,7 @@
  *
  * The backup table is left in place. This script does not touch earlier
  * backup tables. Dry run does not require the backup table. --apply refuses
- * until that table has 4 rows.
+ * until that table has 6 rows.
  *
  * cmqwrccdh00051yjhwypju4zv stays in KEY_UNCERTAIN_RN_REVIEW. Removing this
  * hide block makes that uncertain entry visible again.
@@ -30,7 +30,7 @@ ensureDatabaseUrlEnv();
 import { PrismaClient } from "@prisma/client";
 
 const BACKUP = "qbi_urgenthide3_backup_20260928";
-const EXPECTED = 4;
+const EXPECTED = 6;
 const BEGIN = "// urgent-hide-3-2026-09-28 BEGIN";
 const END = "// urgent-hide-3-2026-09-28 END";
 const QUEUE = path.join(process.cwd(), "src/lib/exam-prep/reviewed-key-queue.ts");

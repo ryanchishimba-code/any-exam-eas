@@ -168,8 +168,8 @@ export const PUBLISHED_BOARD_UNITS: Record<CountBoardSlug, BoardQuestionUnits> =
   }),
   "aanp-fnp": boardQuestionUnits({
     slug: "aanp-fnp",
-    bankItems: 6103,
-    formats: { mcq: 6103, ngn: 0, case: 0 },
+    bankItems: 6101,
+    formats: { mcq: 6101, ngn: 0, case: 0 },
   }),
   "npte-pt": boardQuestionUnits({
     slug: "npte-pt",

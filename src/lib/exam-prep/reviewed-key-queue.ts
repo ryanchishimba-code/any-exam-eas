@@ -33,7 +33,7 @@ export const NCLEX_URGENT_HIDE_1_AUDIT_REF = "nclex-urgent-hide-1-2026-09-28";
 /** Second urgent NCLEX hide, 2026-09-28. Text is unchanged. */
 export const NCLEX_URGENT_HIDE_2_AUDIT_REF = "nclex-urgent-hide-2-2026-09-28";
 
-/** Four dangerous NCLEX and AANP FNP items hidden 2026-09-28. Text is unchanged. */
+/** Six dangerous NCLEX and AANP FNP items hidden 2026-09-28. Text is unchanged. */
 export const URGENT_HIDE_3_AUDIT_REF = "urgent-hide-3-2026-09-28";
 
 /** NAPLEX clean-up batch 4, 2026-09-28. Hidden rows keep their text. Key fixes are separate. */
@@ -17795,6 +17795,18 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     sampleId: "UH3-004",
     auditRef: URGENT_HIDE_3_AUDIT_REF,
     note: "Febrile 6-month-old with a urinary tract infection keyed to fluids. Current key: Increase fluid intake",
+  },
+  {
+    id: "cmr85fv8r00891y9ilgkp222v",
+    sampleId: "UH3-005",
+    auditRef: URGENT_HIDE_3_AUDIT_REF,
+    note: "Active cavitary tuberculosis in a patient with HIV keyed to rifampin alone. Current key: Rifampin",
+  },
+  {
+    id: "cmr85jfkx00am1y9iuabm47vd",
+    sampleId: "UH3-006",
+    auditRef: URGENT_HIDE_3_AUDIT_REF,
+    note: "3-month-old with latch difficulty keyed to domperidone. Current key: Domperidone",
   },
   // urgent-hide-3-2026-09-28 END
 ];

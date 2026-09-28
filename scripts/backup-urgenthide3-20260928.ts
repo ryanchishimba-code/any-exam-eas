@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Snapshot four dangerous NCLEX and AANP FNP items into
+ * Snapshot six dangerous NCLEX and AANP FNP items into
  * qbi_urgenthide3_backup_20260928, then mark those rows
  * manual_correction so the nightly seed sync will not overwrite them.
  *
@@ -29,7 +29,7 @@ import { KEY_WRONG_ITEM_IDS } from "../src/lib/exam-prep/reviewed-key-queue";
 import { studentEligibleAndSql } from "../src/lib/exam-prep/student-eligibility-sql";
 
 const BACKUP = "qbi_urgenthide3_backup_20260928";
-const EXPECTED = 4;
+const EXPECTED = 6;
 const IDS = path.join(process.cwd(), "scripts/data/urgenthide3-20260928/hide-ids.json");
 const prisma = new PrismaClient();
 
@@ -38,6 +38,8 @@ const FIELD_BY_ID: Record<string, "nursing" | "aanp-fnp"> = {
   cmqx01cla000k1ydsi9wvoati: "nursing",
   cmqgtrgg2000w1yfhodcyljmq: "aanp-fnp",
   cmqguk61w002k1yz9cpao4vxb: "aanp-fnp",
+  cmr85fv8r00891y9ilgkp222v: "aanp-fnp",
+  cmr85jfkx00am1y9iuabm47vd: "aanp-fnp",
 };
 
 class DryRunRollback extends Error {
@@ -68,7 +70,7 @@ async function main() {
   const ids = JSON.parse(readFileSync(IDS, "utf8")) as string[];
   if (ids.length !== EXPECTED) throw new Error(`id list has ${ids.length} ids, expected ${EXPECTED}`);
   if (new Set(ids).size !== ids.length) throw new Error("hide id list has duplicates");
-  if (ids.join(",") !== Object.keys(FIELD_BY_ID).join(",")) throw new Error("hide id list does not match the expected four ids");
+  if (ids.join(",") !== Object.keys(FIELD_BY_ID).join(",")) throw new Error("hide id list does not match the expected six ids");
   for (const id of ids) {
     if (!/^[a-z0-9]+$/.test(id)) throw new Error(`unexpected id: ${id}`);
     if (!KEY_WRONG_ITEM_IDS.includes(id)) throw new Error(`${id} is missing from the hide list`);
@@ -101,6 +103,8 @@ async function main() {
           WHEN 'cmqx01cla000k1ydsi9wvoati' THEN 'nursing'
           WHEN 'cmqgtrgg2000w1yfhodcyljmq' THEN 'aanp-fnp'
           WHEN 'cmqguk61w002k1yz9cpao4vxb' THEN 'aanp-fnp'
+          WHEN 'cmr85fv8r00891y9ilgkp222v' THEN 'aanp-fnp'
+          WHEN 'cmr85jfkx00am1y9iuabm47vd' THEN 'aanp-fnp'
         END
         ${studentEligibleAndSql()}
       ) AS visible_now,
@@ -111,6 +115,8 @@ async function main() {
           WHEN 'cmqx01cla000k1ydsi9wvoati' THEN 'nursing'
           WHEN 'cmqgtrgg2000w1yfhodcyljmq' THEN 'aanp-fnp'
           WHEN 'cmqguk61w002k1yz9cpao4vxb' THEN 'aanp-fnp'
+          WHEN 'cmr85fv8r00891y9ilgkp222v' THEN 'aanp-fnp'
+          WHEN 'cmr85jfkx00am1y9iuabm47vd' THEN 'aanp-fnp'
         END
         ${beforeSql}
       ) AS visible_before,
@@ -133,6 +139,16 @@ async function main() {
         id = 'cmqguk61w002k1yz9cpao4vxb'
         AND scenario ILIKE '%6-month-old%'
         AND "correctAnswer" ILIKE '%fluid%'
+      ) OR (
+        id = 'cmr85fv8r00891y9ilgkp222v'
+        AND scenario ILIKE '%HIV%'
+        AND scenario ILIKE '%cavitary%'
+        AND "correctAnswer" = 'Rifampin'
+      ) OR (
+        id = 'cmr85jfkx00am1y9iuabm47vd'
+        AND scenario ILIKE '%3-month-old%'
+        AND scenario ILIKE '%latch%'
+        AND "correctAnswer" = 'Domperidone'
       ) AS stem_ok
     FROM "QuestionBankItem"
     WHERE id IN (${idList})
@@ -244,7 +260,7 @@ async function main() {
     throw new Error("an earlier backup count changed");
   }
   if (counts[0]?.nursing !== 5417) throw new Error(`nursing eligible is ${counts[0]?.nursing}, expected 5417`);
-  if (counts[0]?.aanp !== 6103) throw new Error(`aanp-fnp eligible is ${counts[0]?.aanp}, expected 6103`);
+  if (counts[0]?.aanp !== 6101) throw new Error(`aanp-fnp eligible is ${counts[0]?.aanp}, expected 6101`);
 
   try {
     await prisma.$transaction(async (tx) => {
