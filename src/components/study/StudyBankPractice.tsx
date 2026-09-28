@@ -90,14 +90,17 @@ import {
 } from "@/lib/inventory/blueprint-domain-pool";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import {
+  availablePoolForQuestionBankStyle,
   availableQuestionCount,
   bankStyleHonorsLaunchStyle,
   deliberateFormatForLaunch,
+  effectiveQuestionBankStyle,
   estimateQuestionBankSessionMinutes,
   isRetestSessionCount,
   preferredQuestionBankStyleParam,
   questionBankCountOptions,
   questionBankCountOptionsForAvailable,
+  questionBankStyleFromSources,
   readPersistedQuestionBankSetup,
   resolveQuestionBankSessionCount,
   resolveQuestionBankStyleAndFormat,
@@ -365,18 +368,21 @@ export function StudyBankPractice({
   const [questionCount, setQuestionCount] = useState(25);
   const [bankPace, setBankPace] = useState<QuestionBankPace>("untimed");
   const [bankStyle, setBankStyle] = useState<QuestionBankStyle>(() => {
-    const style = searchParams.get("style");
     // Default chip is Adaptive. A remediation deep link is the style for this
     // visit from the first render, before effects read remembered setup.
-    if (
-      style === "weak_areas" ||
-      style === "review_incorrect" ||
-      style === "daily_set" ||
-      style === "today"
-    ) {
-      return style;
-    }
-    return "adaptive";
+    // Mixed topics (the opening subject when the URL has none) cannot keep a
+    // style the adaptive API rejects.
+    const style = searchParams.get("style");
+    const subject = searchParams.get("subjectId");
+    const area = searchParams.get("blueprintArea");
+    const format = searchParams.get("format");
+    return questionBankStyleFromSources({
+      styleParam: style,
+      formatParam: format,
+      subjectId: subject ?? (area ? "" : MIXED_SUBJECT_ID),
+      blueprintArea: Boolean(area) && !subject,
+      fallbackStyle: "adaptive",
+    });
   });
   // Keep honoring the URL if state is still the remembered/default chip.
   const urlStyle = searchParams.get("style");
@@ -384,7 +390,7 @@ export function StudyBankPractice({
     urlStyle === "weak_areas" || urlStyle === "review_incorrect" || urlStyle === "daily_set"
       ? (urlStyle as QuestionBankStyle)
       : null;
-  const effectiveBankStyle = urlRemediationStyle ?? bankStyle;
+  const requestedBankStyle = urlRemediationStyle ?? bankStyle;
   const [practiceFormat, setPracticeFormat] = useState<PracticeFormatMode>("all");
   const [adaptiveMeta, setAdaptiveMeta] = useState<AdaptiveSessionMeta | null>(null);
   const [nclexLength, setNclexLength] = useState<NclexTimedVariant>("minimum");
@@ -527,6 +533,24 @@ export function StudyBankPractice({
 
   const subjects = useMemo(() => getSubjectsForFieldId(fieldId), [fieldId]);
   const bankSubjectIds = useMemo(() => subjects.map((s) => s.id), [subjects]);
+  const openingSubjectId = useMemo(() => {
+    if (isTimedExam || bankSubjectIds.length === 0) return "";
+    const subjectParamNow = resolveSubjectParam(searchParams);
+    return resolvePracticeSubjectId({
+      fieldId,
+      subjectIds: bankSubjectIds,
+      subjectParam: subjectParamNow,
+      styleParam: searchParams.get("style"),
+      explicitSubjectId: subjectParamNow ? null : explicitSubjectRef.current,
+    });
+  }, [bankSubjectIds, fieldId, isTimedExam, searchParams]);
+  const bankStyleScope = {
+    subjectId: blueprintAreaId ? "" : subjectId || openingSubjectId,
+    blueprintArea: Boolean(blueprintAreaId),
+    practiceFormat: sessionFormat,
+  };
+  // Cards, preview, pool, and Start all read this. A disabled style cannot stay selected.
+  const effectiveBankStyle = effectiveQuestionBankStyle(requestedBankStyle, bankStyleScope);
   const weakSubjectIds = useMemo(
     () => weakSubjectIdsForField(weakTopics, fieldId, bankSubjectIds),
     [weakTopics, fieldId, bankSubjectIds]
@@ -742,9 +766,44 @@ export function StudyBankPractice({
       persistedStyle: persisted?.style,
       persistedFormat: persisted?.format,
     });
+    const ids = getSubjectsForFieldId(fieldId).map((subject) => subject.id);
+    const subjectParamNow = resolveSubjectParam(searchParams);
+    const resolvedSubject = ids.length
+      ? resolvePracticeSubjectId({
+          fieldId,
+          subjectIds: ids,
+          subjectParam: subjectParamNow,
+          styleParam: resolvePracticeSearchParam(searchParams, "style"),
+          explicitSubjectId: subjectParamNow ? null : explicitSubjectRef.current,
+        })
+      : "";
+    const areaParam = resolvePracticeSearchParam(searchParams, "blueprintArea");
+    const urlNamesTopic =
+      !!subjectParamNow &&
+      (subjectParamNow === MIXED_SUBJECT_ID ||
+        subjectParamNow === "mixed" ||
+        ids.includes(subjectParamNow));
+    const blueprint =
+      Boolean(areaParam && isBlueprintAreaId(fieldId, areaParam)) &&
+      !urlNamesTopic &&
+      !explicitSubjectRef.current;
     // Weak-areas deep links clear a remembered NGN/case format here. Leaving
     // that format in place snaps the chip to Standard and launches an NGN set.
-    if (resolved.style) setBankStyle(resolved.style);
+    // The topic rule still runs, so Mixed topics cannot restore Adaptive.
+    setBankStyle((current) =>
+      questionBankStyleFromSources({
+        styleParam: preferredQuestionBankStyleParam(
+          searchParams.get("style"),
+          readBrowserSearchParam("style")
+        ),
+        formatParam: resolvePracticeSearchParam(searchParams, "format"),
+        persistedStyle: persisted?.style,
+        persistedFormat: persisted?.format,
+        subjectId: blueprint ? "" : resolvedSubject,
+        blueprintArea: blueprint,
+        fallbackStyle: current,
+      })
+    );
     if (resolved.format) setPracticeFormat(resolved.format);
   }, [fieldId, isTimedExam, searchParams]);
 
@@ -867,9 +926,14 @@ export function StudyBankPractice({
             ? effectiveBankStyle
             : null;
       if (remediationStyle) {
-        if (bankStyle !== remediationStyle) setBankStyle(remediationStyle);
+        const kept = effectiveQuestionBankStyle(remediationStyle, {
+          subjectId: blueprintAreaId ? "" : subjectId,
+          blueprintArea: Boolean(blueprintAreaId),
+          practiceFormat: "all",
+        });
+        if (bankStyle !== kept) setBankStyle(kept);
         setPracticeFormat("all");
-        syncPracticeUrl({ format: "all", style: remediationStyle });
+        syncPracticeUrl({ format: "all", style: kept });
         return;
       }
       if (!scopeFormats) return;
@@ -940,10 +1004,41 @@ export function StudyBankPractice({
     );
     if (remediationStyle !== "weak_areas" && remediationStyle !== "review_incorrect") return;
     if (formatParam !== "ngn" && formatParam !== "case") return;
-    syncPracticeUrl({ style: remediationStyle, format: "all" });
+    const kept = effectiveQuestionBankStyle(remediationStyle, {
+      subjectId,
+      blueprintArea: Boolean(blueprintAreaId),
+      practiceFormat: "all",
+    });
+    if (bankStyle !== kept) setBankStyle(kept);
+    syncPracticeUrl({ style: kept, format: "all" });
     // syncPracticeUrl is recreated each render; this effect follows the URL.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isTimedExam, subjectId, searchParams]);
+
+  // Topic, area, and format changes — including the first resolved subject —
+  // move a disabled style to Standard (or the nearest style that can launch).
+  // Also rewrite a URL that still names the disabled style (Adaptive is not a
+  // remediation override, so it would otherwise stay in the address bar).
+  useEffect(() => {
+    if (isTimedExam) return;
+    const urlStyle = readBrowserSearchParam("style") ?? searchParams.get("style");
+    const urlNamesStyle = (urlStyle ?? "standard") !== effectiveBankStyle;
+    if (!urlNamesStyle && effectiveBankStyle === requestedBankStyle && bankStyle === effectiveBankStyle) {
+      return;
+    }
+    const dropFormat =
+      (requestedBankStyle === "weak_areas" || requestedBankStyle === "review_incorrect") &&
+      effectiveBankStyle !== requestedBankStyle &&
+      (practiceFormat === "ngn" || practiceFormat === "case");
+    if (bankStyle !== effectiveBankStyle) setBankStyle(effectiveBankStyle);
+    if (dropFormat) setPracticeFormat("all");
+    syncPracticeUrl({
+      style: effectiveBankStyle,
+      ...(dropFormat ? { format: "all" as const } : {}),
+    });
+    // syncPracticeUrl is recreated each render; this effect follows the reconciled style.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTimedExam, effectiveBankStyle, requestedBankStyle, practiceFormat, bankStyle, searchParams]);
 
   useEffect(() => {
     if (isTimedExam || !subjectId) return;
@@ -952,13 +1047,15 @@ export function StudyBankPractice({
       count: questionCount,
       pace: bankPace,
       style: stylePreservedForPracticeUrl({
-        stateStyle: bankStyle,
+        stateStyle: effectiveBankStyle,
+        overrideStyle:
+          effectiveBankStyle !== requestedBankStyle ? effectiveBankStyle : undefined,
         browserStyle: readBrowserSearchParam("style"),
       }),
       taskCategory: isPance ? taskCategory : null,
       format: practiceFormat,
     });
-  }, [fieldId, isTimedExam, subjectId, questionCount, bankPace, bankStyle, isPance, taskCategory, practiceFormat]);
+  }, [fieldId, isTimedExam, subjectId, questionCount, bankPace, bankStyle, effectiveBankStyle, requestedBankStyle, isPance, taskCategory, practiceFormat]);
 
   function syncPracticeUrl(overrides?: {
     mpjeVariant?: MpjeVariant;
@@ -1020,7 +1117,14 @@ export function StudyBankPractice({
         pace: overrides?.pace ?? bankPace,
         style: stylePreservedForPracticeUrl({
           stateStyle: effectiveBankStyle,
-          overrideStyle: overrides?.style,
+          // An explicit chip wins. Otherwise keep the reconciled style so a
+          // disabled deep link still on the address bar cannot be written back.
+          overrideStyle:
+            overrides && "style" in overrides
+              ? overrides.style
+              : effectiveBankStyle !== requestedBankStyle
+                ? effectiveBankStyle
+                : undefined,
           browserStyle: readBrowserSearchParam("style"),
         }),
         format: overrides?.format ?? practiceFormat,
@@ -1939,8 +2043,24 @@ export function StudyBankPractice({
     if (launchFormat) {
       return practiceFormatPoolCount(launchFormat, scopeFormats);
     }
-    return availableQuestionCount(sessionSubjectId, sessionCounts);
-  }, [isTimedExam, launchFormat, scopeFormats, sessionCounts, sessionSubjectId]);
+    if (blueprintAreaId) return blueprintAreaCount;
+    return availablePoolForQuestionBankStyle({
+      style: effectiveBankStyle,
+      subjectId,
+      topicCounts: subjectCounts,
+      openRemediationCount: boardOpenRemediationCount,
+    });
+  }, [
+    blueprintAreaCount,
+    blueprintAreaId,
+    boardOpenRemediationCount,
+    effectiveBankStyle,
+    isTimedExam,
+    launchFormat,
+    scopeFormats,
+    subjectCounts,
+    subjectId,
+  ]);
 
   const previewEstimatedMinutes = useMemo(
     () => estimateQuestionBankSessionMinutes(questionCount, bankPace),
@@ -2269,7 +2389,7 @@ export function StudyBankPractice({
           {!isTimedExam ? (
             <QuestionBankSetup
               subjects={subjects}
-              subjectId={subjectId}
+              subjectId={blueprintAreaId ? "" : subjectId || openingSubjectId}
               subjectCounts={subjectCounts}
               fieldId={fieldId}
               examLabel={pageExam?.shortName ?? activeExamOption?.label}
@@ -2277,16 +2397,16 @@ export function StudyBankPractice({
                 explicitSubjectRef.current = id;
                 setBlueprintAreaId(null);
                 setSubjectId(id);
-                if (
-                  isMixedSubjectId(id) &&
-                  effectiveBankStyle !== "standard" &&
-                  effectiveBankStyle !== "review_incorrect"
-                ) {
-                  setBankStyle("standard");
-                  syncPracticeUrl({ subjectId: id, blueprintAreaId: null, style: "standard" });
-                  return;
-                }
-                syncPracticeUrl({ subjectId: id, blueprintAreaId: null });
+                const nextStyle = effectiveQuestionBankStyle(requestedBankStyle, {
+                  subjectId: id,
+                  practiceFormat: sessionFormat,
+                });
+                if (nextStyle !== bankStyle) setBankStyle(nextStyle);
+                syncPracticeUrl({
+                  subjectId: id,
+                  blueprintAreaId: null,
+                  ...(nextStyle !== requestedBankStyle ? { style: nextStyle } : {}),
+                });
               }}
               blueprintAreaId={blueprintAreaId}
               onBlueprintAreaSelect={(areaId) => {
@@ -2490,11 +2610,16 @@ export function StudyBankPractice({
                 bankSessionValidation.suggestMixed
             )}
             onTryMixed={() => {
+              const nextStyle = effectiveQuestionBankStyle(requestedBankStyle, {
+                subjectId: MIXED_SUBJECT_ID,
+                practiceFormat: sessionFormat,
+              });
               setSubjectId(MIXED_SUBJECT_ID);
-              if (effectiveBankStyle !== "standard" && effectiveBankStyle !== "review_incorrect") {
-                setBankStyle("standard");
-              }
-              syncPracticeUrl({ subjectId: MIXED_SUBJECT_ID, style: "standard" });
+              if (nextStyle !== bankStyle) setBankStyle(nextStyle);
+              syncPracticeUrl({
+                subjectId: MIXED_SUBJECT_ID,
+                ...(nextStyle !== requestedBankStyle ? { style: nextStyle } : {}),
+              });
             }}
             loading={loading || countsLoading}
             disabled={!(canStartBank || canStartTimed)}

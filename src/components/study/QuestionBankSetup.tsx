@@ -10,9 +10,11 @@ import {
   MIXED_SUBJECT_ID,
   MIXED_SUBJECT_LABEL,
   availableQuestionCount,
+  effectiveQuestionBankStyle,
   isMixedSubjectId,
   questionBankCountChoices,
   questionBankCountOptionsForAvailable,
+  questionBankStyleAllowed,
   questionBankWheelPresetsForField,
   validateQuestionBankSession,
 } from "@/lib/study/question-bank-setup";
@@ -117,6 +119,15 @@ export function QuestionBankSetup({
   ngnLabel = "NGN",
 }: QuestionBankSetupProps) {
   const formatMode = practiceFormat === "ngn" || practiceFormat === "case";
+  const styleScope = {
+    subjectId: blueprintAreaId ? "" : subjectId,
+    blueprintArea: Boolean(blueprintAreaId),
+    practiceFormat: formatMode ? practiceFormat : ("all" as const),
+  };
+  const selectedStyle = effectiveQuestionBankStyle(bankStyle, styleScope);
+  useEffect(() => {
+    if (selectedStyle !== bankStyle) onBankStyleChange(selectedStyle);
+  }, [bankStyle, onBankStyleChange, selectedStyle]);
   const formatPool = practiceFormatPoolCount(practiceFormat, formats);
   const activeArea = blueprintAreaId
     ? coverageChips.find((chip) => chip.domainId === blueprintAreaId)
@@ -143,7 +154,7 @@ export function QuestionBankSetup({
         format: practiceFormat,
         questionCount: wheelValue,
         formats,
-        bankStyle,
+        bankStyle: selectedStyle,
         ngnLabel,
         subjectId,
       })
@@ -153,7 +164,7 @@ export function QuestionBankSetup({
         subjectCounts: activeArea
           ? { [activeArea.domainId]: activeArea.available }
           : wheelCounts,
-        bankStyle,
+        bankStyle: selectedStyle,
       });
 
   const selectedSubject = activeArea
@@ -385,16 +396,19 @@ export function QuestionBankSetup({
               <div className="grid gap-2 sm:grid-cols-3">
                 {STYLE_OPTIONS.map((option) => {
                   const disabledMixed =
-                    isMixedSubjectId(subjectId) && option.id !== "standard";
+                    isMixedSubjectId(subjectId) &&
+                    !questionBankStyleAllowed(option.id, { subjectId });
                   const disabledArea = Boolean(activeArea) && option.id !== "standard";
                   const disabledFormat = formatMode && option.id !== "standard";
                   const disabled = disabledMixed || disabledArea || disabledFormat;
-                  const active = bankStyle === option.id;
+                  const active = selectedStyle === option.id;
                   return (
                     <button
                       key={option.id}
                       type="button"
                       disabled={disabled}
+                      aria-pressed={active}
+                      data-bank-style={option.id}
                       onClick={() => onBankStyleChange(option.id)}
                       className={cn(
                         qbUi.optionCard,
@@ -418,7 +432,7 @@ export function QuestionBankSetup({
                   );
                 })}
               </div>
-              {bankStyle === "review_incorrect" ? (
+              {selectedStyle === "review_incorrect" ? (
                 <p className="mt-3 max-w-2xl px-0.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
                   {REMEDIATION_MASTERY_RULE}
                 </p>
