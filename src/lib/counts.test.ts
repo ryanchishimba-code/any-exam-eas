@@ -115,7 +115,7 @@ describe("public count labels match the source", () => {
     const site = publishedSiteQuestionCounts();
     const display = buildLandingBankCountsDisplay(snapshotFor(boards));
 
-    expect(site.totalQuestions).toBe(43348);
+    expect(site.totalQuestions).toBe(43344);
     expect(display.totalLabel).toBe(formatExactQuestionCount(site.totalQuestions));
     expect(display.totalServed).toBe(site.totalQuestions);
     expect(display.sentence).toBe(site.sentence);
@@ -137,7 +137,7 @@ describe("public count labels match the source", () => {
         expect(rounded).toBeLessThanOrEqual(questions);
       }
     }
-    expect(displayTotalQuestionCount(snapshotFor(boards))).toBe("43,348");
+    expect(displayTotalQuestionCount(snapshotFor(boards))).toBe("43,344");
   });
 });
 
