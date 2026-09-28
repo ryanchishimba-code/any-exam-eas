@@ -1,0 +1,734 @@
+[
+  {
+    "id": "cmqvnywvy000l1yfgvj85bzg2",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Doxylamine 25 mg at bedtime",
+    "sampleId": "NP-UH3-001"
+  },
+  {
+    "id": "cmqvpoj8j001f1yt0qerw7vxp",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the dose of apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-002"
+  },
+  {
+    "id": "cmqvq0rb8000k1yp9914okbem",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Oral glucose tablets",
+    "sampleId": "NP-UH3-003"
+  },
+  {
+    "id": "cmqvqc8pg000k1yysj72gkyu2",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Naproxen 250 mg every 12 hours as needed.",
+    "sampleId": "NP-UH3-004"
+  },
+  {
+    "id": "cmqvqnkz6000k1y5qbtqtvdz4",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Clopidogrel 75 mg orally.",
+    "sampleId": "NP-UH3-005"
+  },
+  {
+    "id": "cmqvqnmmx00141y5qcog7kf0b",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-006"
+  },
+  {
+    "id": "cmqvrbhzm000l1yi7uuoq6h53",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Discontinue rivaroxaban due to renal impairment.",
+    "sampleId": "NP-UH3-007"
+  },
+  {
+    "id": "cmqvs8kbn000j1y15d5071xx9",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Montelukast can be used as a rescue medication during asthma attacks.",
+    "sampleId": "NP-UH3-008"
+  },
+  {
+    "id": "cmqvsj4u7000j1yjakx1d52uk",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Counsel the patient to take rivaroxaban with food to enhance absorption.",
+    "sampleId": "NP-UH3-009"
+  },
+  {
+    "id": "cmqvt6inx000g1yhef46mddio",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Adjust the dose of apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-010"
+  },
+  {
+    "id": "cmqvtsc3v00131yo8c1h0g5ts",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Budesonide/formoterol",
+    "sampleId": "NP-UH3-011"
+  },
+  {
+    "id": "cmqvv54zv00151y3ywowymprj",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce rivaroxaban to 15 mg daily.",
+    "sampleId": "NP-UH3-012"
+  },
+  {
+    "id": "cmqvwu9y3001r1yd8yyg1wc6u",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Administer naloxone.",
+    "sampleId": "NP-UH3-013"
+  },
+  {
+    "id": "cmqvy04fo000t1yqolkq2fp5s",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Losartan",
+    "sampleId": "NP-UH3-014"
+  },
+  {
+    "id": "cmqvy059l00141yqoxozs3pz2",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Celecoxib 200 mg daily.",
+    "sampleId": "NP-UH3-015"
+  },
+  {
+    "id": "cmqvz1cgb000k1ylz97e8cx5h",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Add hydrochlorothiazide 25 mg daily.",
+    "sampleId": "NP-UH3-016"
+  },
+  {
+    "id": "cmqvzclyu001o1ytt5frq3hvm",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-017"
+  },
+  {
+    "id": "cmqvzp6to000g1y2iyzv0njn9",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Red yeast rice 1200 mg daily",
+    "sampleId": "NP-UH3-018"
+  },
+  {
+    "id": "cmqvzpbeq001q1y2ivw0slwjl",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Losartan 50 mg daily",
+    "sampleId": "NP-UH3-019"
+  },
+  {
+    "id": "cmqw032td000j1yezqfrp0hsy",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the apixaban dose to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-020"
+  },
+  {
+    "id": "cmqw0360k001n1yezq9xmqnwb",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Budesonide/formoterol",
+    "sampleId": "NP-UH3-021"
+  },
+  {
+    "id": "cmqw0gbxm00111y1lh2w7i7zb",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce rivaroxaban to 15 mg daily.",
+    "sampleId": "NP-UH3-022"
+  },
+  {
+    "id": "cmqw2qxf1000i1yx8ev7g4ajc",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: It is safe to use cough syrup with any other medications.",
+    "sampleId": "NP-UH3-023"
+  },
+  {
+    "id": "cmqw33pgl000v1yaw5fmuoc7l",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Add tramadol 50 mg every 6 hours",
+    "sampleId": "NP-UH3-024"
+  },
+  {
+    "id": "cmqw3g4tz000k1ypjhg9nuip7",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Increase alprazolam to 1 mg as needed.",
+    "sampleId": "NP-UH3-025"
+  },
+  {
+    "id": "cmqw4jtvz00121y4r1605evjx",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Budesonide/formoterol",
+    "sampleId": "NP-UH3-026"
+  },
+  {
+    "id": "cmqw4jupb001c1y4ri7n59boa",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the dose of apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-027"
+  },
+  {
+    "id": "cmqw5e9mo001b1ywi0hb7ex19",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban dose to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-028"
+  },
+  {
+    "id": "cmqw5e9sl001d1ywijt6012s5",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban dose to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-029"
+  },
+  {
+    "id": "cmqw6gkln000t1y9ivd3rqqwo",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Budesonide/formoterol (Symbicort)",
+    "sampleId": "NP-UH3-030"
+  },
+  {
+    "id": "cmqw6umoc001p1ysjam8tuvwh",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Amoxicillin and oral contraceptives.",
+    "sampleId": "NP-UH3-031"
+  },
+  {
+    "id": "cmqw9dkva000g1yamssj3et4h",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Continue the current dose of furosemide.",
+    "sampleId": "NP-UH3-032"
+  },
+  {
+    "id": "cmqwadigd000m1y5c84lugv9n",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Doxylamine 25 mg at bedtime",
+    "sampleId": "NP-UH3-033"
+  },
+  {
+    "id": "cmqwadlkk001p1y5cylc1gblh",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction, such as rash or difficulty breathing.",
+    "sampleId": "NP-UH3-034"
+  },
+  {
+    "id": "cmqwbt2fm00121ykgl0se3rdv",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Decrease apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-035"
+  },
+  {
+    "id": "cmqwcs63q00121yzq73rdzav7",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-036"
+  },
+  {
+    "id": "cmqwdhnlt000i1yv27stsxrwy",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Increase amlodipine to 20 mg daily.",
+    "sampleId": "NP-UH3-037"
+  },
+  {
+    "id": "cmqwe6yf1001o1ytdshyjk1s4",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Amoxicillin and oral contraceptives",
+    "sampleId": "NP-UH3-038"
+  },
+  {
+    "id": "cmqxauog6000c1ypr5zdb3n8a",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Nitroglycerin 0.4 mg sublingually",
+    "sampleId": "NP-UH3-039"
+  },
+  {
+    "id": "cmr04gbg7000m1y47061lddp3",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: 125 mg every 12 hours",
+    "sampleId": "NP-UH3-040"
+  },
+  {
+    "id": "cmr04gc1m000t1y47fef0svwp",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban dose to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-041"
+  },
+  {
+    "id": "cmr04qy5z004h1y47iwv34oi8",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: 2.5 mg BID",
+    "sampleId": "NP-UH3-042"
+  },
+  {
+    "id": "cmr06syqn004z1y165ljd1qqc",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-043"
+  },
+  {
+    "id": "cmr07jml200531yyzfjmlt8cy",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Losartan 50 mg daily",
+    "sampleId": "NP-UH3-044"
+  },
+  {
+    "id": "cmr07wfy900191y3ss2ydy756",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Prasugrel",
+    "sampleId": "NP-UH3-045"
+  },
+  {
+    "id": "cmr08aer2005b1y3s696s8qcg",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Administer naloxone",
+    "sampleId": "NP-UH3-046"
+  },
+  {
+    "id": "cmr08pg6x001e1y100dd6td8p",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce warfarin dose to 2.5 mg daily.",
+    "sampleId": "NP-UH3-047"
+  },
+  {
+    "id": "cmr09s50y005o1yrcewr2y97d",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-048"
+  },
+  {
+    "id": "cmr0a3ptz000w1y7d1lb1izoh",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Administer oral glucose",
+    "sampleId": "NP-UH3-049"
+  },
+  {
+    "id": "cmr0b7q9q005j1yq36zqh8p1g",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the dose of apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-050"
+  },
+  {
+    "id": "cmr0d8zkw004p1ynjjbpfcuim",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-051"
+  },
+  {
+    "id": "cmr0dvdlq004m1yh69qfhe2zu",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-052"
+  },
+  {
+    "id": "cmr0fszyp00551yqwmzjozsb9",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Losartan 50 mg daily",
+    "sampleId": "NP-UH3-053"
+  },
+  {
+    "id": "cmr0hdett00201yc3l4v5ci95",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the dose of apixaban to 2.5 mg twice daily due to renal impairment.",
+    "sampleId": "NP-UH3-054"
+  },
+  {
+    "id": "cmr0mwr1k004m1y346tc92sz3",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-055"
+  },
+  {
+    "id": "cmr0n6skj000y1y0qo5hdy8og",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Budesonide/formoterol",
+    "sampleId": "NP-UH3-056"
+  },
+  {
+    "id": "cmr0ng85b00511y0qh8co0iqf",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Amlodipine 5 mg daily",
+    "sampleId": "NP-UH3-057"
+  },
+  {
+    "id": "cmr0pfer5000y1yajcegf2z9w",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Add fludrocortisone",
+    "sampleId": "NP-UH3-058"
+  },
+  {
+    "id": "cmr0ri5y0001l1y8j4ek0282u",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Hold warfarin and recheck INR in 1 week.",
+    "sampleId": "NP-UH3-059"
+  },
+  {
+    "id": "cmr0sixi3005p1y4krgpccpw2",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-060"
+  },
+  {
+    "id": "cmr0ul2s0004t1yif0ozg1k0z",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Losartan 50 mg daily",
+    "sampleId": "NP-UH3-061"
+  },
+  {
+    "id": "cmr0uwlcp001q1y1aogahfexa",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the dose of apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-062"
+  },
+  {
+    "id": "cmr4bed6b004w1ysct3u9f8y9",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Contact the prescriber to adjust the apixaban dose",
+    "sampleId": "NP-UH3-063"
+  },
+  {
+    "id": "cmr4bs38g00151ycjtidtao40",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Losartan 50 mg daily",
+    "sampleId": "NP-UH3-064"
+  },
+  {
+    "id": "cmr4bs46j001e1ycjgvls0b82",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction, including rash or difficulty breathing.",
+    "sampleId": "NP-UH3-065"
+  },
+  {
+    "id": "cmr4c4sql00491ycjp7jbe36t",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-066"
+  },
+  {
+    "id": "cmr4cwbe4003r1yl89pi2lqpd",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Adjust the apixaban dose to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-067"
+  },
+  {
+    "id": "cmr4cweze004y1yl88yxei9et",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction, such as rash or difficulty breathing.",
+    "sampleId": "NP-UH3-068"
+  },
+  {
+    "id": "cmr4db9yn000z1ywgfreg8tmt",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: I can stop my metformin while I'm on antibiotics.",
+    "sampleId": "NP-UH3-069"
+  },
+  {
+    "id": "cmr4dbah100141ywgrirbhwxs",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction, such as rash or difficulty breathing.",
+    "sampleId": "NP-UH3-070"
+  },
+  {
+    "id": "cmr4dbb3p001a1ywgcjtc47jf",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Decrease apixaban to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-071"
+  },
+  {
+    "id": "cmr4e1hlv00011yk3no0b59j9",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Add metoprolol.",
+    "sampleId": "NP-UH3-072"
+  },
+  {
+    "id": "cmr4esf0300111yg6dy9tuowo",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the dose of apixaban to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-073"
+  },
+  {
+    "id": "cmr4f65k3003w1yg6mholn3mk",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction, such as rash or difficulty breathing.",
+    "sampleId": "NP-UH3-074"
+  },
+  {
+    "id": "cmr4fjukf000f1yromea967yw",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the dose of rivaroxaban to 15 mg daily.",
+    "sampleId": "NP-UH3-075"
+  },
+  {
+    "id": "cmr4fjxwd00141yrozmkqgu73",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction, such as rash or difficulty breathing.",
+    "sampleId": "NP-UH3-076"
+  },
+  {
+    "id": "cmr4h2jj400151yqx89u1zem9",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Losartan",
+    "sampleId": "NP-UH3-077"
+  },
+  {
+    "id": "cmr4he2x800481yqx0wqb3ck3",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-078"
+  },
+  {
+    "id": "cmr4hq2ev00141yei5qeifdne",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction to amoxicillin.",
+    "sampleId": "NP-UH3-079"
+  },
+  {
+    "id": "cmr4ih24x00111y7uac04m0tj",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-080"
+  },
+  {
+    "id": "cmr4ih2db00141y7u6s9p6tfa",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction due to penicillin allergy.",
+    "sampleId": "NP-UH3-081"
+  },
+  {
+    "id": "cmr4jwpx700141yrnys0r0ygg",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction due to penicillin allergy.",
+    "sampleId": "NP-UH3-082"
+  },
+  {
+    "id": "cmr4kk8rk00141ywzuwwo24iz",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction, especially given her history.",
+    "sampleId": "NP-UH3-083"
+  },
+  {
+    "id": "cmr4kk93600181ywzvbzql4de",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Carvedilol",
+    "sampleId": "NP-UH3-084"
+  },
+  {
+    "id": "cmr7sbumh000w1y2votk0y545",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-085"
+  },
+  {
+    "id": "cmr7snbm0001e1y6reeacm166",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Seek immediate medical attention if hives or rash develop.",
+    "sampleId": "NP-UH3-086"
+  },
+  {
+    "id": "cmr7td9hx001e1y4g9n5ihsbt",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitor for signs of an allergic reaction, especially rash.",
+    "sampleId": "NP-UH3-087"
+  },
+  {
+    "id": "cmr7ugsw600171yt3bnicpkki",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Counsel the patient to take 2.5 mg twice daily instead due to renal impairment.",
+    "sampleId": "NP-UH3-088"
+  },
+  {
+    "id": "cmr7usf40000t1yxyjxvk9etm",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Contact the prescriber to discuss a dose adjustment.",
+    "sampleId": "NP-UH3-089"
+  },
+  {
+    "id": "cmr7v6wp900051y2z1j4cda3f",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: I should stop taking ibuprofen while on this antibiotic.",
+    "sampleId": "NP-UH3-090"
+  },
+  {
+    "id": "cmr7v6yu7000w1y2zy23fcima",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-091"
+  },
+  {
+    "id": "cmr7v70cg001f1y2zlnl7p1jq",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Venlafaxine",
+    "sampleId": "NP-UH3-092"
+  },
+  {
+    "id": "cmr7w04bm00081yudt5po04ea",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Insulin glargine",
+    "sampleId": "NP-UH3-093"
+  },
+  {
+    "id": "cmr7xtdcw00081yik3o0rhnmn",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Add insulin glargine|||Add sitagliptin",
+    "sampleId": "NP-UH3-094"
+  },
+  {
+    "id": "cmr7yhvph00151yr32gdkmmvd",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-095"
+  },
+  {
+    "id": "cmr7yhw73001b1yr39f5bp57x",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the dose of apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-096"
+  },
+  {
+    "id": "cmr7yy0xd000w1yu88g1tp09s",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Apixaban 2.5 mg BID",
+    "sampleId": "NP-UH3-097"
+  },
+  {
+    "id": "cmr7zcchv000m1y1woorql3mb",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Losartan",
+    "sampleId": "NP-UH3-098"
+  },
+  {
+    "id": "cmr7zcey700181y1wnwq25ge1",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the warfarin dose to 2.5 mg daily.",
+    "sampleId": "NP-UH3-099"
+  },
+  {
+    "id": "cmr7zot8l001b1y6hc45jlo05",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the dose of apixaban to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-100"
+  },
+  {
+    "id": "cmr80qo7x001g1yjnb7ykuodr",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Amoxicillin and oral contraceptives",
+    "sampleId": "NP-UH3-101"
+  },
+  {
+    "id": "cmr815ojj000m1ynmzed453eh",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Monitoring for signs of anaphylaxis during the vaccination",
+    "sampleId": "NP-UH3-102"
+  },
+  {
+    "id": "cmr815r7t001c1ynmgm3lw9ed",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Contact the prescriber to discuss a dose adjustment.",
+    "sampleId": "NP-UH3-103"
+  },
+  {
+    "id": "cmra65pc8003t1ymc79gl1cbu",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Serum creatinine",
+    "sampleId": "NP-UH3-104"
+  },
+  {
+    "id": "cmra65qrx00461ymc6olimq5v",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Continue lisinopril as prescribed",
+    "sampleId": "NP-UH3-105"
+  },
+  {
+    "id": "cmra6lw9y001e1ybjxrai3lc3",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Advise the patient to stop the medication if a rash develops.",
+    "sampleId": "NP-UH3-106"
+  },
+  {
+    "id": "cmra7goae000z1y3ecbup36ct",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Hold warfarin and consider low molecular weight heparin.",
+    "sampleId": "NP-UH3-107"
+  },
+  {
+    "id": "cmra7gp2w00171y3ei9hsy94g",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Signs of thromboembolism.",
+    "sampleId": "NP-UH3-108"
+  },
+  {
+    "id": "cmra7gqjf001m1y3eexs3k4t0",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Start semaglutide 1 mg subcutaneously once weekly.",
+    "sampleId": "NP-UH3-109"
+  },
+  {
+    "id": "cmra7v6gp003i1y3eg2sbk9tx",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce apixaban to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-110"
+  },
+  {
+    "id": "cmrnbt6ak000n1ywdwvp15ykz",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Piperacillin-tazobactam",
+    "sampleId": "NP-UH3-111"
+  },
+  {
+    "id": "cmrnbt6kz000q1ywdvq4x4pvk",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce lamotrigine dose by 50%",
+    "sampleId": "NP-UH3-112"
+  },
+  {
+    "id": "cmrnbvlqa00171ywdg5ny4y4i",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Ensure a double-check of the heparin dose with another pharmacist",
+    "sampleId": "NP-UH3-113"
+  },
+  {
+    "id": "cmrogbyz700071yt0nxhx20lr",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the apixaban dose to 2.5 mg twice daily",
+    "sampleId": "NP-UH3-114"
+  },
+  {
+    "id": "cmrogc0bi000l1yt0qaw5rv34",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Budesonide/formoterol",
+    "sampleId": "NP-UH3-115"
+  },
+  {
+    "id": "cmroh2jvp005c1yt0b2usrjsq",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Reduce the apixaban dose to 2.5 mg twice daily.",
+    "sampleId": "NP-UH3-116"
+  },
+  {
+    "id": "cmrohbq5b006s1yt0m9puz2zy",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Signs of an allergic reaction",
+    "sampleId": "NP-UH3-117"
+  },
+  {
+    "id": "cmrohkkhz008r1yt083h8nlmf",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: I can stop my metformin while I'm in the hospital.",
+    "sampleId": "NP-UH3-118"
+  },
+  {
+    "id": "cmrohkl3z008w1yt0e9p8dlt0",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: You should monitor for any signs of an allergic reaction.",
+    "sampleId": "NP-UH3-119"
+  },
+  {
+    "id": "cmroi2tco00bv1yt0az89rbnj",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Sacubitril/valsartan",
+    "sampleId": "NP-UH3-120"
+  },
+  {
+    "id": "cmroibt6500e91yt0ouyq0fpp",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Report any signs of rash or allergic reaction immediately.",
+    "sampleId": "NP-UH3-121"
+  },
+  {
+    "id": "cmrorzgfr001n1yokj6ghryl1",
+    "reason_group": "independent-reread-safety",
+    "note": "Safety error found on independent re-read. Current key: Implement a double-check system for heparin administration",
+    "sampleId": "NP-UH3-122"
+  }
+]
