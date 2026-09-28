@@ -12,9 +12,7 @@ export function LoginPageView() {
     <AuthFocusLayout
       title={forgot ? "Reset your password." : "Sign in."}
       detail={
-        forgot
-          ? "Enter the email on your account. We'll send a link to choose a new one."
-          : "Your practice picks up where you left off."
+        forgot ? "Enter the email on your account. We'll send a link to choose a new one." : undefined
       }
     >
       <Suspense

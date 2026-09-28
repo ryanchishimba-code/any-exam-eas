@@ -140,8 +140,7 @@ export function PublicSampleSet({
           Try sample questions. No account.
         </h2>
         <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-          These are student-eligible items from the live bank. The rationale and sources are the
-          ones stored on each question. We do not rewrite them for the marketing page.
+          Student-eligible items from the live bank.
         </p>
         <div className="mt-8 space-y-5">
           {visible.map((item) => (

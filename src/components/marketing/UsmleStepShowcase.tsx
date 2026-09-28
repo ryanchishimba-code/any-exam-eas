@@ -21,7 +21,7 @@ import {
   type ExamDifficulty,
 } from "@/lib/exam-prep/usmle/exam-options";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
-import { formatMarketingQuestionCount } from "@/lib/marketing/bank-stats";
+import { formatExactQuestionCount } from "@/lib/counts";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
 
@@ -144,7 +144,7 @@ export function UsmleStepShowcase({
   );
 
   const countLabel = (count: number) =>
-    count > 0 ? formatMarketingQuestionCount(count) : loaded ? "—" : "…";
+    count > 0 ? formatExactQuestionCount(count) : loaded ? "—" : "…";
 
   const pickerItems: BoardPickerItem[] = steps.map((step) => ({
     id: step.level,
@@ -174,9 +174,6 @@ export function UsmleStepShowcase({
         >
           Step 1, Step 2 CK &amp; Step 3 — all on one plan
         </h2>
-        <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          Spin to a step for its live question count and what you&rsquo;ll focus on.
-        </p>
       </header>
 
       {/* Segmented control mirrors the wheel for fast, obvious switching. */}

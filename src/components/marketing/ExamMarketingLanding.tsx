@@ -16,7 +16,6 @@ import {
 import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
 import { HeroNgnFrame } from "@/components/marketing/elevation/HeroNgnFrame";
 import {
-  FinalMarketingCta,
   PathSection,
   PriceSection,
   ProblemSection,
@@ -166,9 +165,6 @@ export async function ExamMarketingLanding({
                     >
                       {item.title}
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-                      {item.body}
-                    </p>
                   </Link>
                 </li>
               ))}
@@ -237,10 +233,6 @@ export async function ExamMarketingLanding({
         </section>
 
       </div>
-      <FinalMarketingCta
-        title={`Start ${config.shortName} with the free trial.`}
-        trialHref={landingTrialHrefForExam(examKey)}
-      />
     </div>
   );
 }

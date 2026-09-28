@@ -8,7 +8,6 @@ import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
-import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { FounderNote } from "@/components/marketing/elevation/FounderNote";
 import { COMPANY_PUBLIC } from "@/lib/marketing/company";
 import {
@@ -59,9 +58,7 @@ export default async function AboutPage() {
               Practice that tells you why.
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink)]">
-              {COMPANY_PUBLIC.productName} is one question bank for six boards. You practice,
-              read the rationale, and come back to the topics you miss. The mission is a student
-              who starts doubtful and walks into the exam knowing what they know.
+              {COMPANY_PUBLIC.productName} is one question bank for six boards.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
               Operated by {COMPANY_PUBLIC.legalName}.{" "}
@@ -117,10 +114,7 @@ export default async function AboutPage() {
               What the product does
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-[var(--color-ink-muted)]">
-              One Pro plan covers NCLEX, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP
-              FNP, and NPTE-PT. You get a blueprint roadmap, rationales on missed questions, and
-              timed practice exams weighted to the official outline. We are not affiliated with
-              the boards that write those exams.
+              We are not affiliated with the boards that write these exams.
             </p>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2" role="list">
               {EXAM_HUB_LINKS.map((exam) => (
@@ -141,7 +135,6 @@ export default async function AboutPage() {
             </div>
           </div>
         </section>
-        <FinalMarketingCta />
       </div>
     </>
   );

@@ -9,7 +9,6 @@ import {
   formatExamHeroEyebrow,
   formatExamHeroHeadline,
   formatExamHeroTrialOffer,
-  formatExamHeroProductLine,
   landingTrialHrefForExam,
 } from "@/lib/landing/content";
 import { formatTrialCtaLabel } from "@/lib/site";
@@ -52,8 +51,6 @@ function ExamMarketingHeroCopy({
           <h1 id={`${examKey}-hero-heading`} className="aee-hero-beat__headline">
             {formatExamHeroHeadline(examKey)}
           </h1>
-
-          <p className="aee-hero-beat__subline">{formatExamHeroProductLine(examKey)}</p>
 
           <div className="aee-hero-beat__actions">
             <LandingCta
