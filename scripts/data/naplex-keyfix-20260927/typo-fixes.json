@@ -1,0 +1,20 @@
+{
+ "cmqgswkfc000p1ytwqjffwq6s": {
+  "id": "cmqgswkfc000p1ytwqjffwq6s",
+  "action": "fix",
+  "edits": [
+   {
+    "field": "options.options[3]",
+    "find": "1.",
+    "replace": "GLP-1 receptor agonists should be taken with a high-fat meal."
+   },
+   {
+    "field": "options.distractorRationale key \"1.\"",
+    "find": "1.",
+    "replace": "GLP-1 receptor agonists should be taken with a high-fat meal."
+   }
+  ],
+  "note": "Option D is a formatting artifact (\"1.\"). Replace with a plausible distractor in the same update as the key fix; the proposed rationale already refers to option D as the artifact and must be updated to match if this edit is applied (proposed text for D: Trap: Some drugs are best absorbed with food. Why it fails here: Oral semaglutide must be taken fasting with <=4 oz water 30 min before food; injectable GLP-1 RAs are taken without regard to meals. Remember: Food timing is not the key GLP-1 RA counseling point.).",
+  "expected_current_updatedAt": "2026-09-07T03:59:45.779Z"
+ }
+}
