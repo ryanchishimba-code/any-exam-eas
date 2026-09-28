@@ -427,6 +427,8 @@ model QuestionBankItem {
   source          String   @default("seed")
   contentHash     String   @unique
   active          Boolean  @default(true)
+  /// Hand-corrected key or rationale. Nightly seed sync must not overwrite the row.
+  manualCorrection Boolean @default(false) @map("manual_correction")
   /// Set by scripts/qa-gate-question-bank.ts — only qaPassed items are served in practice.
   qaPassed        Boolean  @default(false)
   qaAuditedAt     DateTime?
@@ -813,6 +815,10 @@ model QuestionBankSync {
   itemsSkipped Int
   itemsRetired Int      @default(0)
   errorMessage String?
+  /// Ids whose question text this sync wrote.
+  updatedItemIds   Json?
+  /// Ids this sync refused to overwrite because of a manual correction or a key-fix backup.
+  protectedItemIds Json?
   finishedAt   DateTime @default(now())
 }
 
