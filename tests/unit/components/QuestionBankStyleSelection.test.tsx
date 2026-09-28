@@ -39,7 +39,11 @@ describe("Question bank selection style", () => {
       bankStyle: "adaptive",
     });
 
-    expect(screen.getByRole("button", { name: /Standard/ })).toHaveAttribute("aria-pressed", "true");
+    const standard = screen.getByRole("button", { name: /^Standard$/ });
+    expect(standard).toHaveAttribute("aria-pressed", "true");
+    expect(standard.className).toContain("bg-[var(--color-accent)]");
+    expect(standard.className).toContain("text-white");
+    expect(standard.className).not.toContain("border-[var(--qb-line");
     expect(screen.queryByRole("button", { name: /Adaptive/ })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Weak areas/ })).not.toBeInTheDocument();
     expect(screen.queryByText(/Pick a single topic/)).not.toBeInTheDocument();

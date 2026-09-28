@@ -294,11 +294,14 @@ export function QuestionBankSetup({
                       aria-pressed={active}
                       data-bank-style={option.id}
                       onClick={() => onBankStyleChange(option.id)}
-                      className={cn(qbUi.optionCard, "min-h-11 justify-center", active && qbUi.optionCardActive)}
+                      className={cn(
+                        "flex min-h-11 items-center justify-center rounded-2xl border px-3.5 py-3 text-center transition active:scale-[0.99]",
+                        active
+                          ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-white shadow-[0_1px_2px_rgba(15,23,42,0.12)]"
+                          : "border-[var(--qb-line,var(--color-border))]/80 bg-[var(--qb-card,var(--color-surface-elevated))] text-[var(--qb-ink,var(--color-ink))] hover:border-[var(--color-accent)]/35"
+                      )}
                     >
-                      <p className="text-[13px] font-semibold text-[var(--color-ink)]">
-                        {option.label}
-                      </p>
+                      <p className="text-[13px] font-semibold">{option.label}</p>
                     </button>
                   );
                 })}
