@@ -54,11 +54,11 @@ export type LandingExamCountDisplay = {
   /** Stable exam id matching LANDING_EXAMS ids (usmle, nclex, …) for reliable mapping. */
   slug: string;
   label: string;
-  /** Exact scored-item count, e.g. 5,636. Empty when the live lookup failed. */
+  /** Exact scored-item count, e.g. 5,591. Empty when the live lookup failed. */
   countLabel: string;
   /** Hero display. Includes case-study items when this board has a separate NGN catalog. */
   questionsLabel: string;
-  /** Full scored-item sentence, e.g. "5,636 questions, including …". */
+  /** Full scored-item sentence, e.g. "5,591 questions, including …". */
   sentence: string;
   /** Floored to the nearest hundred. Never rounds up. */
   roundedDown: string;

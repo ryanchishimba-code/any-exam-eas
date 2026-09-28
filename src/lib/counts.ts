@@ -78,7 +78,7 @@ function countNoun(count: number, one: string, many: string): string {
 
 /**
  * Honest sentence.
- * NCLEX: "5,636 questions, including 60 items in 10 case studies and 10 standalone NGN items"
+ * NCLEX: "5,591 questions, including 60 items in 10 case studies and 10 standalone NGN items"
  * A board with no separate NGN catalog: "17,276 questions"
  */
 export function formatBoardQuestionSentence(
@@ -147,8 +147,8 @@ export type SiteQuestionCounts = {
 export const PUBLISHED_BOARD_UNITS: Record<CountBoardSlug, BoardQuestionUnits> = {
   nclex: boardQuestionUnits({
     slug: "nclex",
-    bankItems: 5566,
-    formats: { mcq: 5566, ngn: 0, case: 0 },
+    bankItems: 5521,
+    formats: { mcq: 5521, ngn: 0, case: 0 },
     clinical: { standaloneNgn: 10, caseStudies: 10, caseItems: 60 },
   }),
   usmle: boardQuestionUnits({
