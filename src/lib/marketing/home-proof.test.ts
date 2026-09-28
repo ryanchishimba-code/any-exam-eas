@@ -26,8 +26,8 @@ function units(slug: CountBoardSlug, bankItems: number, clinical?: BoardQuestion
 const FIXTURE = {
   nclex: boardQuestionUnits({
     slug: "nclex",
-    bankItems: 5590,
-    formats: { mcq: 5590, ngn: 0, case: 0 },
+    bankItems: 5566,
+    formats: { mcq: 5566, ngn: 0, case: 0 },
     clinical: { standaloneNgn: 10, caseStudies: 10, caseItems: 60 },
   }),
   usmle: units("usmle", 17276),
@@ -55,11 +55,11 @@ describe("homepage proof facts", () => {
     const site = siteQuestionCounts(FIXTURE);
     const facts = buildHomeProofFacts(site);
     const questions = facts.find((fact) => fact.id === "questions");
-    expect(site.totalQuestions).toBe(46285);
+    expect(site.totalQuestions).toBe(46261);
     expect(questions?.text).toBe(
       `${formatExactQuestionCount(site.totalQuestions)} practice questions`
     );
-    expect(questions?.text).toBe("46,285 practice questions");
+    expect(questions?.text).toBe("46,261 practice questions");
   });
 
   it("names the nursing reviewer and the six-board price, with no pass rate", () => {
@@ -101,11 +101,11 @@ describe("homepage proof facts", () => {
     const files = [
       "src/components/marketing/elevation/PublicHome.tsx",
       "src/components/marketing/elevation/HomeProofStrip.tsx",
-      "src/app/(marketing)/page.tsx",
+      "src/app/(marketing)/(with-flagship)/page.tsx",
     ];
     for (const file of files) {
       const text = readFileSync(path.resolve(process.cwd(), file), "utf8");
-      expect(text).not.toMatch(/46,285|46285/);
+      expect(text).not.toMatch(/46,261|46261/);
     }
   });
 });
