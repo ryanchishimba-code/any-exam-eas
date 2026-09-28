@@ -166,6 +166,136 @@ export function isMixedSubjectId(subjectId: string): boolean {
   return subjectId === MIXED_SUBJECT_ID;
 }
 
+export type QuestionBankStyleScope = {
+  /** Topic the session draws from. Mixed topics is `__mixed__`. */
+  subjectId?: string | null;
+  /** A blueprint-area chip only launches as Standard. */
+  blueprintArea?: boolean;
+  /**
+   * NGN and case sets launch as Standard.
+   * Weak areas, Review incorrect, and the daily set drop the format instead.
+   */
+  practiceFormat?: PracticeFormatMode | null;
+};
+
+/**
+ * Mixed topics can launch Standard and Review incorrect (the review API treats
+ * `__mixed__` as the board-wide miss queue). Today and the daily set ignore the
+ * topic. Adaptive and weak areas call the adaptive API, which rejects `__mixed__`
+ * as an unknown subject.
+ */
+const MIXED_TOPIC_STYLES = new Set<QuestionBankStyle>([
+  "standard",
+  "review_incorrect",
+  "today",
+  "daily_set",
+]);
+
+/** Remediation styles clear an NGN/case format instead of becoming Standard. */
+const FORMAT_KEPT_STYLES = new Set<QuestionBankStyle>([
+  "weak_areas",
+  "review_incorrect",
+  "daily_set",
+]);
+
+export const MIXED_TOPIC_STYLE_MESSAGE =
+  "Mixed topics works with Standard, Today, or Review incorrect — pick a single topic for adaptive or weak-area drills.";
+
+/** Whether this style can launch for the topic, area, and format the student picked. */
+export function questionBankStyleAllowed(
+  style: QuestionBankStyle,
+  scope: QuestionBankStyleScope = {}
+): boolean {
+  if (scope.blueprintArea) return style === "standard";
+
+  const formatLimited = scope.practiceFormat === "ngn" || scope.practiceFormat === "case";
+  if (formatLimited && style !== "standard" && !FORMAT_KEPT_STYLES.has(style)) {
+    return false;
+  }
+
+  if (scope.subjectId && isMixedSubjectId(scope.subjectId)) {
+    return MIXED_TOPIC_STYLES.has(style);
+  }
+
+  return true;
+}
+
+/** Standard first, then the other styles a mixed-topic session can still run. */
+const STYLE_FALLBACKS: readonly QuestionBankStyle[] = [
+  "standard",
+  "review_incorrect",
+  "today",
+  "daily_set",
+];
+
+/**
+ * Style the cards, preview, pool, and Start button share.
+ * Keeps the request when that scope can launch it. Otherwise Standard, then
+ * the nearest style that scope allows. A disabled card never stays selected.
+ */
+export function effectiveQuestionBankStyle(
+  requested: QuestionBankStyle,
+  scope: QuestionBankStyleScope = {}
+): QuestionBankStyle {
+  if (questionBankStyleAllowed(requested, scope)) return requested;
+  for (const candidate of STYLE_FALLBACKS) {
+    if (questionBankStyleAllowed(candidate, scope)) return candidate;
+  }
+  return "standard";
+}
+
+/**
+ * Style after a URL, a saved setup, or the Adaptive default is applied to a topic.
+ * Deep links win over a remembered style first. The topic rule then runs, so a
+ * remembered Adaptive session cannot stay selected on Mixed topics.
+ */
+export function questionBankStyleFromSources(params: {
+  styleParam: string | null | undefined;
+  formatParam?: string | null;
+  persistedStyle?: string | null;
+  persistedFormat?: string | null;
+  subjectId?: string | null;
+  blueprintArea?: boolean;
+  /** Used when the URL and saved setup name no style. The chip defaults to Adaptive. */
+  fallbackStyle?: QuestionBankStyle;
+}): QuestionBankStyle {
+  const resolved = resolveQuestionBankStyleAndFormat({
+    styleParam: params.styleParam,
+    formatParam: params.formatParam,
+    persistedStyle: params.persistedStyle,
+    persistedFormat: params.persistedFormat,
+  });
+  const requested = resolved.style ?? params.fallbackStyle ?? "adaptive";
+  return effectiveQuestionBankStyle(requested, {
+    subjectId: params.subjectId,
+    blueprintArea: params.blueprintArea,
+    practiceFormat: resolved.format,
+  });
+}
+
+/**
+ * Pool the preview shows for the style the session will actually run.
+ * Standard, adaptive, and weak-area sessions use the serve-ready topic totals
+ * (the same map Start sizes from, produced by src/lib/counts.ts).
+ * Review incorrect on mixed topics is the board-wide open queue.
+ * Today and the daily set are not drawn from the topic bank.
+ */
+export function availablePoolForQuestionBankStyle(params: {
+  style: QuestionBankStyle;
+  subjectId: string;
+  topicCounts?: Record<string, number> | null;
+  openRemediationCount?: number | null;
+}): number | null {
+  if (params.style === "today" || params.style === "daily_set") return null;
+  const boardWideReview =
+    params.style === "review_incorrect" &&
+    (!params.subjectId || isMixedSubjectId(params.subjectId));
+  if (boardWideReview) {
+    return typeof params.openRemediationCount === "number" ? params.openRemediationCount : null;
+  }
+  return availableQuestionCount(params.subjectId, params.topicCounts);
+}
+
 /** Serve-ready pool size for the current topic selection. */
 export function availableQuestionCount(
   subjectId: string,
@@ -215,15 +345,10 @@ export function validateQuestionBankSession(params: {
     };
   }
 
-  if (
-    isMixedSubjectId(subjectId) &&
-    bankStyle !== "standard" &&
-    bankStyle !== "review_incorrect"
-  ) {
+  if (isMixedSubjectId(subjectId) && !questionBankStyleAllowed(bankStyle, { subjectId })) {
     return {
       ok: false,
-      message:
-        "Mixed topics works with Standard or Review incorrect — pick a single topic for adaptive or weak-area drills.",
+      message: MIXED_TOPIC_STYLE_MESSAGE,
     };
   }
 

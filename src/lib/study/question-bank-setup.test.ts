@@ -1,13 +1,21 @@
 import { describe, expect, it } from "vitest";
+import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
+import { EXAM_FIELD_IDS } from "@/lib/subjects/field-ids";
+import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import { questionBankEmptyLaunch } from "./remediation-launch";
 import {
   MIXED_SUBJECT_ID,
+  MIXED_TOPIC_STYLE_MESSAGE,
   QUESTION_BANK_WHEEL_PRESETS,
+  availablePoolForQuestionBankStyle,
   availableQuestionCount,
   bankStyleHonorsLaunchStyle,
   deliberateFormatForLaunch,
+  effectiveQuestionBankStyle,
   preferredQuestionBankStyleParam,
   questionBankCountOptionsForAvailable,
+  questionBankStyleAllowed,
+  questionBankStyleFromSources,
   resolveQuestionBankStyleAndFormat,
   stylePreservedForPracticeUrl,
   questionBankCountChoices,
@@ -72,6 +80,25 @@ describe("question-bank-setup", () => {
       bankStyle: "adaptive",
     });
     expect(result.ok).toBe(false);
+    expect(result.message).toBe(MIXED_TOPIC_STYLE_MESSAGE);
+    expect(result.message).toMatch(/Review incorrect/);
+    expect(result.message).toMatch(/Today/);
+  });
+
+  it("allows review incorrect and today on mixed topics", () => {
+    for (const bankStyle of ["review_incorrect", "today", "standard"] as const) {
+      expect(
+        validateQuestionBankSession({
+          subjectId: MIXED_SUBJECT_ID,
+          questionCount: 25,
+          subjectCounts: counts,
+          bankStyle,
+        }).ok
+      ).toBe(true);
+      expect(questionBankStyleAllowed(bankStyle, { subjectId: MIXED_SUBJECT_ID })).toBe(true);
+    }
+    expect(questionBankStyleAllowed("adaptive", { subjectId: MIXED_SUBJECT_ID })).toBe(false);
+    expect(questionBankStyleAllowed("weak_areas", { subjectId: MIXED_SUBJECT_ID })).toBe(false);
   });
 
   it("blocks task-area focus with non-standard selection", () => {
@@ -364,5 +391,197 @@ describe("question-bank-setup", () => {
         pace: "untimed",
       })
     ).toBe("timed");
+  });
+});
+
+describe("effective question-bank style", () => {
+  const boards = [...EXAM_FIELD_IDS, ...USMLE_FIELD_IDS];
+
+  it("moves adaptive and weak areas to Standard on mixed topics and keeps styles the backend can run", () => {
+    expect(effectiveQuestionBankStyle("adaptive", { subjectId: MIXED_SUBJECT_ID })).toBe("standard");
+    expect(effectiveQuestionBankStyle("weak_areas", { subjectId: MIXED_SUBJECT_ID })).toBe("standard");
+    expect(effectiveQuestionBankStyle("standard", { subjectId: MIXED_SUBJECT_ID })).toBe("standard");
+    expect(effectiveQuestionBankStyle("review_incorrect", { subjectId: MIXED_SUBJECT_ID })).toBe(
+      "review_incorrect"
+    );
+    expect(effectiveQuestionBankStyle("today", { subjectId: MIXED_SUBJECT_ID })).toBe("today");
+    expect(effectiveQuestionBankStyle("daily_set", { subjectId: MIXED_SUBJECT_ID })).toBe("daily_set");
+  });
+
+  it("keeps a valid style when mixed topics changes back to one topic", () => {
+    for (const fieldId of boards) {
+      const topic = getSubjectsForFieldId(fieldId)[0]?.id;
+      expect(topic, fieldId).toBeTruthy();
+      expect(effectiveQuestionBankStyle("standard", { subjectId: topic })).toBe("standard");
+      expect(effectiveQuestionBankStyle("review_incorrect", { subjectId: topic })).toBe(
+        "review_incorrect"
+      );
+      expect(effectiveQuestionBankStyle("adaptive", { subjectId: topic })).toBe("adaptive");
+      expect(effectiveQuestionBankStyle("weak_areas", { subjectId: topic })).toBe("weak_areas");
+      expect(effectiveQuestionBankStyle("today", { subjectId: topic })).toBe("today");
+    }
+  });
+
+  it("uses the same mixed-topic rule on every board", () => {
+    for (const fieldId of boards) {
+      const topic = getSubjectsForFieldId(fieldId)[0]!.id;
+      expect(effectiveQuestionBankStyle("adaptive", { subjectId: MIXED_SUBJECT_ID })).toBe("standard");
+      expect(effectiveQuestionBankStyle("weak_areas", { subjectId: MIXED_SUBJECT_ID })).toBe("standard");
+      expect(effectiveQuestionBankStyle("review_incorrect", { subjectId: MIXED_SUBJECT_ID })).toBe(
+        "review_incorrect"
+      );
+      expect(questionBankStyleAllowed("adaptive", { subjectId: topic })).toBe(true);
+      expect(questionBankStyleAllowed("adaptive", { subjectId: MIXED_SUBJECT_ID })).toBe(false);
+    }
+  });
+
+  it("applies the topic rule on load, deep links, and restored preferences", () => {
+    expect(
+      questionBankStyleFromSources({
+        styleParam: null,
+        persistedStyle: "adaptive",
+        subjectId: MIXED_SUBJECT_ID,
+      })
+    ).toBe("standard");
+    expect(
+      questionBankStyleFromSources({
+        styleParam: null,
+        subjectId: MIXED_SUBJECT_ID,
+        fallbackStyle: "adaptive",
+      })
+    ).toBe("standard");
+    expect(
+      questionBankStyleFromSources({
+        styleParam: "adaptive",
+        subjectId: MIXED_SUBJECT_ID,
+        persistedStyle: "adaptive",
+      })
+    ).toBe("standard");
+    expect(
+      questionBankStyleFromSources({
+        styleParam: "weak_areas",
+        subjectId: MIXED_SUBJECT_ID,
+        persistedStyle: "adaptive",
+      })
+    ).toBe("standard");
+    expect(
+      questionBankStyleFromSources({
+        styleParam: "review_incorrect",
+        subjectId: MIXED_SUBJECT_ID,
+        persistedStyle: "adaptive",
+      })
+    ).toBe("review_incorrect");
+    expect(
+      questionBankStyleFromSources({
+        styleParam: "daily_set",
+        formatParam: "ngn",
+        subjectId: MIXED_SUBJECT_ID,
+        persistedStyle: "adaptive",
+      })
+    ).toBe("daily_set");
+    expect(
+      questionBankStyleFromSources({
+        styleParam: "weak_areas",
+        persistedStyle: "adaptive",
+        subjectId: "management-of-care",
+      })
+    ).toBe("weak_areas");
+    expect(
+      questionBankStyleFromSources({
+        styleParam: "adaptive",
+        subjectId: "pharmacokinetics",
+      })
+    ).toBe("adaptive");
+  });
+
+  it("forces Standard for a blueprint area and for NGN or case sets", () => {
+    expect(
+      effectiveQuestionBankStyle("review_incorrect", {
+        subjectId: "cardiovascular",
+        blueprintArea: true,
+      })
+    ).toBe("standard");
+    expect(
+      effectiveQuestionBankStyle("adaptive", {
+        subjectId: "management-of-care",
+        practiceFormat: "ngn",
+      })
+    ).toBe("standard");
+    expect(
+      effectiveQuestionBankStyle("weak_areas", {
+        subjectId: "management-of-care",
+        practiceFormat: "case",
+      })
+    ).toBe("weak_areas");
+    expect(
+      effectiveQuestionBankStyle("weak_areas", {
+        subjectId: MIXED_SUBJECT_ID,
+        practiceFormat: "ngn",
+      })
+    ).toBe("standard");
+  });
+
+  it("sizes the preview pool from the style the session will run", () => {
+    const nclex = { "management-of-care": 4000, "safety-infection": 1489 };
+    const naplex = { pharmacokinetics: 800, pharmacology: 1200 };
+    expect(
+      availablePoolForQuestionBankStyle({
+        style: "standard",
+        subjectId: MIXED_SUBJECT_ID,
+        topicCounts: nclex,
+        openRemediationCount: 12,
+      })
+    ).toBe(5489);
+    expect(
+      availablePoolForQuestionBankStyle({
+        style: "adaptive",
+        subjectId: "management-of-care",
+        topicCounts: nclex,
+      })
+    ).toBe(4000);
+    expect(
+      availablePoolForQuestionBankStyle({
+        style: "review_incorrect",
+        subjectId: MIXED_SUBJECT_ID,
+        topicCounts: nclex,
+        openRemediationCount: 12,
+      })
+    ).toBe(12);
+    expect(
+      availablePoolForQuestionBankStyle({
+        style: "review_incorrect",
+        subjectId: MIXED_SUBJECT_ID,
+        topicCounts: naplex,
+      })
+    ).toBeNull();
+    expect(
+      availablePoolForQuestionBankStyle({
+        style: "review_incorrect",
+        subjectId: "pharmacokinetics",
+        topicCounts: naplex,
+        openRemediationCount: 12,
+      })
+    ).toBe(800);
+    expect(
+      availablePoolForQuestionBankStyle({
+        style: "standard",
+        subjectId: MIXED_SUBJECT_ID,
+        topicCounts: naplex,
+      })
+    ).toBe(2000);
+    expect(
+      availablePoolForQuestionBankStyle({
+        style: "today",
+        subjectId: MIXED_SUBJECT_ID,
+        topicCounts: nclex,
+      })
+    ).toBeNull();
+    expect(
+      availablePoolForQuestionBankStyle({
+        style: "daily_set",
+        subjectId: "cardiovascular",
+        topicCounts: { cardiovascular: 90 },
+      })
+    ).toBeNull();
   });
 });
