@@ -12,8 +12,10 @@ import {
   availableQuestionCount,
   effectiveQuestionBankStyle,
   isMixedSubjectId,
+  questionBankBoardCount,
   questionBankCountChoices,
   questionBankCountOptionsForAvailable,
+  questionBankPageCount,
   questionBankStyleAllowed,
   questionBankWheelPresetsForField,
   validateQuestionBankSession,
@@ -24,22 +26,17 @@ import {
   validatePracticeFormatSession,
   type PracticeFormatMode,
 } from "@/lib/study/practice-format";
-import { REMEDIATION_MASTERY_RULE } from "@/lib/learning/item-mastery";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import { cn } from "@/lib/utils";
 import { QuestionBankCountWheel } from "./question-bank/QuestionBankCountWheel";
 import { QuestionBankFormatMode } from "./question-bank/QuestionBankFormatMode";
 import { QuestionBankSection, QuestionBankSegment } from "./question-bank/QuestionBankSection";
-import { CoverageChips } from "./question-bank/CoverageChips";
 import {
   QuestionBankTopicPicker,
   type CoverageSubjectMark,
 } from "./question-bank/QuestionBankTopicPicker";
 import type { CoverageChip, CoverageHeatmap } from "@/lib/learning/coverage-heatmap";
-import {
-  blueprintAreaSelectsSingleTopic,
-  topicRowCountQualifier,
-} from "@/lib/inventory/blueprint-domain-pool";
+import { topicRowCountQualifier } from "@/lib/inventory/blueprint-domain-pool";
 
 type SubjectOption = { id: string; label: string };
 
@@ -77,16 +74,12 @@ type QuestionBankSetupProps = {
   ngnLabel?: string;
 };
 
-const STYLE_OPTIONS: { id: QuestionBankStyle; label: string; hint: string }[] = [
-  { id: "today", label: "Today", hint: "Mastery Engine — Skill Cell set for today" },
-  { id: "standard", label: "Standard", hint: "Topic pool in bank order" },
-  { id: "adaptive", label: "Adaptive", hint: "Weak areas & spaced review" },
-  { id: "weak_areas", label: "Weak areas", hint: "Focus on missed topics" },
-  {
-    id: "review_incorrect",
-    label: "Review incorrect",
-    hint: "Misses stay open until a spaced re-proof",
-  },
+const STYLE_OPTIONS: { id: QuestionBankStyle; label: string }[] = [
+  { id: "today", label: "Today" },
+  { id: "standard", label: "Standard" },
+  { id: "adaptive", label: "Adaptive" },
+  { id: "weak_areas", label: "Weak areas" },
+  { id: "review_incorrect", label: "Review incorrect" },
 ];
 
 export function QuestionBankSetup({
@@ -100,14 +93,11 @@ export function QuestionBankSetup({
   onPaceChange,
   bankStyle,
   onBankStyleChange,
-  examLabel,
   fieldId,
   weakSubjectIds = [],
   coverageChips = [],
-  coverageLabel = "Blueprint topics",
   coverageLoaded = false,
   blueprintAreaId = null,
-  onBlueprintAreaSelect,
   compact = false,
   countsLoading = false,
   practiceFormat = "all",
@@ -132,7 +122,14 @@ export function QuestionBankSetup({
   const activeArea = blueprintAreaId
     ? coverageChips.find((chip) => chip.domainId === blueprintAreaId)
     : undefined;
+  // sessionCounts sizes a standard draw (bank rows only). Every number on
+  // the page uses the scored map, the same total public pages publish.
   const wheelCounts = sessionCounts ?? subjectCounts;
+  const boardCount = questionBankBoardCount({
+    scoredTotal,
+    scoredTopicCounts: subjectCounts,
+  });
+  const topicCount = questionBankPageCount(subjectId, subjectCounts);
   const maxAvailable = formatMode
     ? formatPool
     : activeArea
@@ -167,12 +164,6 @@ export function QuestionBankSetup({
         bankStyle: selectedStyle,
       });
 
-  const selectedSubject = activeArea
-    ? { id: activeArea.domainId, label: activeArea.label }
-    : isMixedSubjectId(subjectId)
-      ? { id: MIXED_SUBJECT_ID, label: MIXED_SUBJECT_LABEL }
-      : subjects.find((s) => s.id === subjectId);
-  const selectedCount = maxAvailable;
   const coverageMarks: CoverageSubjectMark[] = coverageChips.map((chip) => ({
     subjectId: chip.subjectId,
     kind: chip.kind,
@@ -198,59 +189,9 @@ export function QuestionBankSetup({
     }
     return qualifiers;
   }, [areaCounts, fieldId, subjectCounts, subjects]);
-  const areasBroaderThanTopics = coverageChips.some((chip) => {
-    if (!fieldId) {
-      const topicCount = subjectCounts?.[chip.subjectId];
-      return typeof topicCount === "number" && topicCount !== chip.available;
-    }
-    return (
-      blueprintAreaSelectsSingleTopic({
-        fieldId,
-        areaId: chip.domainId,
-        topicCounts: subjectCounts,
-        areaCount: chip.available,
-      }) == null && chip.available > 0
-    );
-  });
-  const selectedChipId = activeArea
-    ? activeArea.domainId
-    : coverageChips.find((chip) => {
-        if (!fieldId) return chip.subjectId === subjectId && chip.available === subjectCounts?.[chip.subjectId];
-        return (
-          blueprintAreaSelectsSingleTopic({
-            fieldId,
-            areaId: chip.domainId,
-            topicCounts: subjectCounts,
-            areaCount: chip.available,
-          }) === subjectId
-        );
-      })?.domainId;
-  const selectedTopicQualifier =
-    !activeArea && subjectId ? countQualifierBySubject[subjectId] : undefined;
-
-  function selectChip(areaId: string) {
-    const chip = coverageChips.find((row) => row.domainId === areaId);
-    if (!chip) return;
-    const singleTopic = fieldId
-      ? blueprintAreaSelectsSingleTopic({
-          fieldId,
-          areaId,
-          topicCounts: subjectCounts,
-          areaCount: chip.available,
-        })
-      : chip.available === subjectCounts?.[chip.subjectId]
-        ? chip.subjectId
-        : null;
-    if (singleTopic) {
-      onSubjectChange(singleTopic);
-      return;
-    }
-    if (onBlueprintAreaSelect) {
-      onBlueprintAreaSelect(areaId);
-      return;
-    }
-    onSubjectChange(chip.subjectId);
-  }
+  const visibleStyles = STYLE_OPTIONS.filter((option) =>
+    questionBankStyleAllowed(option.id, styleScope)
+  );
 
   return (
     <div className="space-y-8">
@@ -260,9 +201,7 @@ export function QuestionBankSetup({
           onChange={onPracticeFormatChange}
           formats={formats}
           scoredTotal={
-            subjectId && !isMixedSubjectId(subjectId) && subjectCounts
-              ? (subjectCounts[subjectId] ?? scoredTotal)
-              : scoredTotal
+            subjectId && !isMixedSubjectId(subjectId) ? (topicCount ?? boardCount) : boardCount
           }
           caseItemCount={
             !subjectId || isMixedSubjectId(subjectId) ? caseItemCount : null
@@ -274,57 +213,12 @@ export function QuestionBankSetup({
         />
       ) : null}
 
-      <QuestionBankSection
-        title="Choose a topic"
-        hint={
-          areasBroaderThanTopics
-            ? "Blueprint chips count every active question in that area. Each row below counts one topic."
-            : coverageLoaded
-              ? "Search or scroll. Untouched and low-coverage topics use the same heatmap as Today."
-              : "Search or scroll — weak topics from your dashboard are marked."
-        }
-      >
-        <CoverageChips
-          chips={coverageChips}
-          domainsLabel={coverageLabel}
-          selectedChipId={selectedChipId}
-          onSelect={selectChip}
-        />
-        {!coverageLoaded && weakSubjectIds.length > 0 ? (
-          <p className={cn(qbUi.surface, "px-3.5 py-2.5 text-[12px] text-[var(--color-ink-muted)]")}>
-            {weakSubjectIds.length} weak topic{weakSubjectIds.length === 1 ? "" : "s"} flagged —
-            start there for the biggest gains.
-          </p>
-        ) : null}
-        {selectedSubject ? (
-          <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 px-0.5 text-[12px] text-[var(--color-ink-muted)]">
-            <span aria-hidden>Practicing</span>
-            {examLabel ? (
-              <>
-                <span className="font-medium text-[var(--color-ink)]">{examLabel}</span>
-                <span aria-hidden>›</span>
-              </>
-            ) : null}
-            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-accent)]/10 px-2 py-0.5 font-semibold text-[var(--color-accent)]">
-              {selectedSubject.label}
-            </span>
-            {typeof selectedCount === "number" && !formatMode ? (
-              <span className="tabular-nums">
-                · {selectedCount.toLocaleString()}{" "}
-                {activeArea
-                  ? "in this area"
-                  : `${selectedCount === 1 ? "question" : "questions"}${
-                      selectedTopicQualifier ? " in this topic" : ""
-                    }`}
-              </span>
-            ) : null}
-          </div>
-        ) : null}
-
+      <QuestionBankSection title="Topic">
         <QuestionBankTopicPicker
           subjects={subjects}
           subjectId={activeArea ? "" : subjectId}
           subjectCounts={subjectCounts}
+          boardCount={boardCount}
           onSubjectChange={onSubjectChange}
           weakSubjectIds={weakSubjectIds}
           coverageMarks={coverageMarks}
@@ -334,13 +228,10 @@ export function QuestionBankSetup({
         />
       </QuestionBankSection>
 
-      <QuestionBankSection
-        title="Session settings"
-        hint="Pick length, then tune how questions are chosen."
-      >
+      <QuestionBankSection title="Session">
         <div className="space-y-5">
           <div>
-            <p className={cn(qbUi.sectionHint, "mb-3 px-0.5")}>Number of Questions</p>
+            <p className={cn(qbUi.sectionHint, "mb-3 px-0.5")}>Questions</p>
             {countOptions.length === 0 ? (
               countsLoading ? (
                 <p className="px-0.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]" role="status">
@@ -392,51 +283,26 @@ export function QuestionBankSetup({
 
           {!compact ? (
             <div>
-              <p className={cn(qbUi.sectionHint, "mb-2 px-0.5")}>Selection style</p>
+              <p className={cn(qbUi.sectionHint, "mb-2 px-0.5")}>Style</p>
               <div className="grid gap-2 sm:grid-cols-3">
-                {STYLE_OPTIONS.map((option) => {
-                  const disabledMixed =
-                    isMixedSubjectId(subjectId) &&
-                    !questionBankStyleAllowed(option.id, { subjectId });
-                  const disabledArea = Boolean(activeArea) && option.id !== "standard";
-                  const disabledFormat = formatMode && option.id !== "standard";
-                  const disabled = disabledMixed || disabledArea || disabledFormat;
+                {visibleStyles.map((option) => {
                   const active = selectedStyle === option.id;
                   return (
                     <button
                       key={option.id}
                       type="button"
-                      disabled={disabled}
                       aria-pressed={active}
                       data-bank-style={option.id}
                       onClick={() => onBankStyleChange(option.id)}
-                      className={cn(
-                        qbUi.optionCard,
-                        active && qbUi.optionCardActive,
-                        disabled && "cursor-not-allowed opacity-45"
-                      )}
+                      className={cn(qbUi.optionCard, "min-h-11 justify-center", active && qbUi.optionCardActive)}
                     >
                       <p className="text-[13px] font-semibold text-[var(--color-ink)]">
                         {option.label}
-                      </p>
-                      <p className={cn(qbUi.sectionHint, "mt-0.5")}>
-                        {disabledFormat
-                          ? "Available on All questions"
-                          : disabledArea
-                            ? "Pick one topic for this mode"
-                            : disabledMixed
-                              ? "Pick a single topic for this mode"
-                              : option.hint}
                       </p>
                     </button>
                   );
                 })}
               </div>
-              {selectedStyle === "review_incorrect" ? (
-                <p className="mt-3 max-w-2xl px-0.5 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-                  {REMEDIATION_MASTERY_RULE}
-                </p>
-              ) : null}
             </div>
           ) : null}
 
@@ -451,11 +317,6 @@ export function QuestionBankSetup({
                 { id: "timed", label: "Timed" },
               ]}
             />
-            <p className={cn(qbUi.sectionHint, "mt-2 px-0.5")}>
-              {pace === "timed"
-                ? "Per-question timer to simulate exam pressure."
-                : "No clock — review rationales at your own speed."}
-            </p>
           </div>
         </div>
       </QuestionBankSection>

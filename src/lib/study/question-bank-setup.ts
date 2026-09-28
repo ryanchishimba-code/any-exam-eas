@@ -308,6 +308,31 @@ export function availableQuestionCount(
   return subjectCounts[subjectId] ?? 0;
 }
 
+/**
+ * Count the question bank page shows for Mixed topics or one topic.
+ *
+ * Pass the scored topic map (`counts` from applyScoredClinicalCatalog).
+ * That is the public total: bank items plus published NGN standalones and
+ * case items. `sessionCounts` is bank rows only, so a standard draw is not
+ * sized with case-study items. On NCLEX that bank-only sum is 70 lower
+ * (5,419 vs 5,489). Do not display it.
+ */
+export function questionBankPageCount(
+  subjectId: string,
+  scoredTopicCounts: Record<string, number> | null | undefined
+): number | null {
+  return availableQuestionCount(subjectId || MIXED_SUBJECT_ID, scoredTopicCounts);
+}
+
+/** Board total shared by the header, the All card, and the Mixed topics row. */
+export function questionBankBoardCount(params: {
+  scoredTotal?: number | null;
+  scoredTopicCounts?: Record<string, number> | null;
+}): number | null {
+  if (typeof params.scoredTotal === "number") return params.scoredTotal;
+  return questionBankPageCount(MIXED_SUBJECT_ID, params.scoredTopicCounts);
+}
+
 export type QuestionBankSessionValidation = {
   ok: boolean;
   message?: string;

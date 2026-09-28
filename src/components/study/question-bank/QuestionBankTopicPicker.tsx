@@ -28,6 +28,7 @@ export function QuestionBankTopicPicker({
   coverageLoaded = false,
   countsLoading = false,
   countQualifierBySubject,
+  boardCount = null,
 }: {
   subjects: SubjectOption[];
   subjectId: string;
@@ -41,6 +42,8 @@ export function QuestionBankTopicPicker({
   countsLoading?: boolean;
   /** Set when this topic shares a name with a larger blueprint area. */
   countQualifierBySubject?: Record<string, string>;
+  /** Scored board total. The Mixed topics row uses this, not a second sum. */
+  boardCount?: number | null;
 }) {
   const [query, setQuery] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -63,7 +66,24 @@ export function QuestionBankTopicPicker({
     getScrollElement: () => scrollRef.current,
     estimateSize: () => TOPIC_ROW_HEIGHT,
     overscan: 10,
+    initialRect: { width: 640, height: 420 },
   });
+  const measuredRows = virtualizer.getVirtualItems();
+  // jsdom and the first paint can report no measured rows. Render the full
+  // list then so topic counts stay in the document and on screen.
+  const topicRows =
+    measuredRows.length > 0
+      ? measuredRows
+      : filtered.map((_, index) => ({
+          index,
+          key: index,
+          start: index * TOPIC_ROW_HEIGHT,
+          size: TOPIC_ROW_HEIGHT,
+        }));
+  const topicListHeight =
+    measuredRows.length > 0
+      ? virtualizer.getTotalSize()
+      : filtered.length * TOPIC_ROW_HEIGHT;
 
   return (
     <div className="space-y-2.5">
@@ -95,18 +115,18 @@ export function QuestionBankTopicPicker({
             {allowMixed && !query.trim() ? (
               <MixedTopicRow
                 selected={subjectId === MIXED_SUBJECT_ID}
-                totalCount={totalCount}
+                totalCount={boardCount ?? totalCount}
                 onSelect={() => onSubjectChange(MIXED_SUBJECT_ID)}
               />
             ) : null}
             <div
               style={{
-                height: `${virtualizer.getTotalSize()}px`,
+                height: `${topicListHeight}px`,
                 width: "100%",
                 position: "relative",
               }}
             >
-              {virtualizer.getVirtualItems().map((virtualRow) => {
+              {topicRows.map((virtualRow) => {
                 const subject = filtered[virtualRow.index];
                 if (!subject) return null;
                 const selected = subject.id === subjectId;
@@ -180,21 +200,14 @@ export function QuestionBankTopicPicker({
         </div>
       )}
 
-      <p className={qbUi.sectionHint}>
-        {countsLoading ? (
+      {countsLoading ? (
+        <p className={qbUi.sectionHint} role="status">
           <span className="inline-flex items-center gap-1.5">
             <Loader2 className="h-3 w-3 animate-spin" aria-hidden />
             Loading question counts…
           </span>
-        ) : (
-          <>
-            {subjects.length} topics · {filtered.length} shown
-            {totalCount !== null ? (
-              <> · {totalCount.toLocaleString()} active questions</>
-            ) : null}
-          </>
-        )}
-      </p>
+        </p>
+      ) : null}
     </div>
   );
 }

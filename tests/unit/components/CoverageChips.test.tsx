@@ -38,8 +38,11 @@ describe("Question bank coverage chips", () => {
       />
     );
 
-    expect(screen.getByText("Client Needs")).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: /Untouched · Management of Care · 1,204 in this area/ }));
+    expect(screen.queryByText("Client Needs")).not.toBeInTheDocument();
+    const topic = screen.getByRole("option", { name: /Management of Care/ });
+    expect(topic).toHaveTextContent("Untouched");
+    expect(topic).toHaveTextContent("1,204");
+    fireEvent.click(topic);
     expect(onSubjectChange).toHaveBeenCalledWith("management-of-care");
     expect(screen.queryByText("Weak")).toBeNull();
     expect(document.body.textContent).not.toMatch(/you will pass/i);
@@ -85,12 +88,10 @@ describe("Question bank coverage chips", () => {
       />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: /Untouched · Assess · 1,887 in this area/ }));
-    expect(onBlueprintAreaSelect).toHaveBeenCalledWith("assess");
+    expect(screen.queryByRole("button", { name: /1,887 in this area/ })).not.toBeInTheDocument();
+    expect(onBlueprintAreaSelect).not.toHaveBeenCalled();
     expect(onSubjectChange).not.toHaveBeenCalled();
-    expect(screen.getByRole("radio", { name: /NGN-style/i })).toBeDisabled();
-    expect(
-      screen.getByText(/Blueprint chips count every active question in that area/)
-    ).toBeInTheDocument();
+    expect(screen.queryByRole("radio", { name: /NGN-style/i })).not.toBeInTheDocument();
+    expect(screen.queryByText(/Blueprint chips count every active question/)).not.toBeInTheDocument();
   });
 });

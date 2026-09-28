@@ -35,7 +35,7 @@ describe("QuestionBankSessionPreview empty format", () => {
     });
 
     expect(screen.getByText("No case studies yet")).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: /Start untimed practice/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /^Start$/ })).not.toBeInTheDocument();
     const action = screen.getByRole("button", { name: "Practice all questions" });
     expect(action).toBeEnabled();
     await userEvent.setup().click(action);
@@ -44,7 +44,7 @@ describe("QuestionBankSessionPreview empty format", () => {
 
   it("keeps Start disabled when the empty notice is absent", () => {
     renderPreview(null);
-    expect(screen.getByRole("button", { name: /Start untimed practice/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /^Start$/ })).toBeDisabled();
     expect(screen.getByText(/No published case items in this pool/i)).toBeInTheDocument();
   });
 });

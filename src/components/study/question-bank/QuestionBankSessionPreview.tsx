@@ -57,7 +57,7 @@ export function QuestionBankSessionPreview({
   timedMinutes,
 }: Props) {
   return (
-    <div className={qbUi.stickyBar}>
+    <div className={qbUi.stickyBar} data-pool-count={availableCount ?? undefined}>
       <div className="space-y-3">
         <div className="min-w-0 space-y-1">
           <p className={qbUi.eyebrow}>Session preview</p>
@@ -76,11 +76,6 @@ export function QuestionBankSessionPreview({
               </>
             )}
           </p>
-          ) : null}
-          {typeof availableCount === "number" && !isTimedExam && !emptyNotice ? (
-            <p className="text-[11px] tabular-nums text-[var(--color-ink-muted)]">
-              {availableCount.toLocaleString()} available in pool
-            </p>
           ) : null}
         </div>
 
@@ -129,15 +124,7 @@ export function QuestionBankSessionPreview({
             </>
           ) : (
             <>
-              {isTimedExam
-                ? `Start timed exam · ${timedCount ?? questionCount} questions`
-                : bankStyle === "adaptive"
-                  ? `Start adaptive · ${questionCount} questions`
-                  : bankStyle === "weak_areas"
-                    ? `Start weak-area drill · ${questionCount} questions`
-                    : bankStyle === "review_incorrect"
-                      ? `Review incorrect · ${questionCount} questions`
-                      : `Start ${pace} practice · ${questionCount} questions`}
+              {isTimedExam ? `Start exam · ${timedCount ?? questionCount}` : "Start"}
               <ArrowRight className="h-3.5 w-3.5" aria-hidden />
             </>
           )}

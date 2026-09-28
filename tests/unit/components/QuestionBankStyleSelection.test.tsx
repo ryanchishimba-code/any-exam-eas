@@ -40,14 +40,11 @@ describe("Question bank selection style", () => {
     });
 
     expect(screen.getByRole("button", { name: /Standard/ })).toHaveAttribute("aria-pressed", "true");
-    expect(screen.getByRole("button", { name: /Adaptive/ })).toHaveAttribute("aria-pressed", "false");
-    expect(screen.getByRole("button", { name: /Adaptive/ })).toBeDisabled();
-    expect(screen.getByRole("button", { name: /Weak areas/ })).toBeDisabled();
+    expect(screen.queryByRole("button", { name: /Adaptive/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Weak areas/ })).not.toBeInTheDocument();
+    expect(screen.queryByText(/Pick a single topic/)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Review incorrect/ })).toBeEnabled();
     expect(screen.getByRole("button", { name: /Today/ })).toBeEnabled();
-    expect(screen.getByRole("button", { name: /Review incorrect/ })).not.toHaveTextContent(
-      /Pick a single topic/
-    );
     expect(onBankStyleChange).toHaveBeenCalledWith("standard");
   });
 
@@ -63,6 +60,36 @@ describe("Question bank selection style", () => {
     );
     expect(screen.getByRole("button", { name: /Standard/ })).toHaveAttribute("aria-pressed", "false");
     expect(onBankStyleChange).not.toHaveBeenCalled();
+  });
+
+  it("shows the scored total on Mixed topics, not the bank-only session total", () => {
+    render(
+      <QuestionBankSetup
+        subjects={subjects}
+        subjectId={MIXED_SUBJECT_ID}
+        subjectCounts={{ "management-of-care": 4000, "safety-infection": 1489 }}
+        sessionCounts={{ "management-of-care": 4000, "safety-infection": 1419 }}
+        scoredTotal={5489}
+        questionCount={25}
+        onQuestionCountChange={vi.fn()}
+        pace="untimed"
+        onPaceChange={vi.fn()}
+        bankStyle="standard"
+        onBankStyleChange={vi.fn()}
+        onSubjectChange={vi.fn()}
+        practiceFormat="all"
+        onPracticeFormatChange={vi.fn()}
+        formats={{ mcq: 5419, ngn: 10, case: 10 }}
+      />
+    );
+
+    expect(screen.getByRole("radio", { name: /All questions/i })).toHaveAttribute(
+      "data-format-count",
+      "5489"
+    );
+    expect(screen.getByText(/5,489 questions/)).toBeInTheDocument();
+    expect(screen.queryByText(/5,419/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/1,419/)).not.toBeInTheDocument();
   });
 
   it("keeps Adaptive selected after mixed topics changes back to one topic", () => {
