@@ -13,7 +13,13 @@ import {
 import type { FieldSubject } from "./field-subjects";
 import type { BankItem } from "./question-bank";
 import { bankItemPassesIngestGate } from "@/lib/exam-prep/bank-ingest-gate";
+import { KEY_WRONG_ITEM_IDS } from "@/lib/exam-prep/reviewed-key-queue";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
+import {
+  decideSeedUpsert,
+  KEYFIX_BACKUP_TABLES,
+  type SeedUpsertDecision,
+} from "@/lib/sync-question-bank-guard";
 
 export type SyncQuestionBankResult = {
   status: "success" | "failed";
@@ -23,6 +29,7 @@ export type SyncQuestionBankResult = {
   itemsSkipped: number;
   itemsRetired: number;
   subjectsToppedUp: number;
+  itemsProtected: number;
   errorMessage?: string;
 };
 
@@ -162,33 +169,76 @@ async function insertBatch(
   return result.count;
 }
 
+type KeyfixBackupIndex = {
+  ids: Set<string>;
+  hashes: Set<string>;
+};
+
+async function loadKeyfixBackupIndex(): Promise<KeyfixBackupIndex> {
+  const ids = new Set<string>();
+  const hashes = new Set<string>();
+  for (const table of KEYFIX_BACKUP_TABLES) {
+    const reg = (await prisma.$queryRawUnsafe(
+      `SELECT to_regclass('public.${table}')::text AS reg`
+    )) as Array<{ reg: string | null }>;
+    if (!reg[0]?.reg) continue;
+    const rows = (await prisma.$queryRawUnsafe(
+      `SELECT id, "contentHash" AS hash FROM ${table}`
+    )) as Array<{ id: string; hash: string | null }>;
+    for (const row of rows) {
+      ids.add(row.id);
+      if (row.hash) hashes.add(row.hash);
+    }
+  }
+  return { ids, hashes };
+}
+
 async function upsertSeedRow(
-  row: ReturnType<typeof collectSeedQuestionRows>[number]
-): Promise<"created" | "updated" | "skipped"> {
+  row: ReturnType<typeof collectSeedQuestionRows>[number],
+  backup: KeyfixBackupIndex,
+  hideIds: ReadonlySet<string>
+): Promise<SeedUpsertDecision & { id?: string }> {
   const data = rowToCreateData(row.fieldId, row.subjectId, row.item, "seed");
 
   const existing = await prisma.questionBankItem.findUnique({
     where: { contentHash: data.contentHash },
   });
 
-  if (!existing) {
-    await prisma.questionBankItem.create({ data });
-    return "created";
+  const decision = decideSeedUpsert({
+    existing: existing
+      ? {
+          id: existing.id,
+          question: existing.question,
+          correctAnswer: existing.correctAnswer,
+          options: existing.options,
+          active: existing.active,
+          manualCorrection: existing.manualCorrection,
+          generationMeta: existing.generationMeta,
+        }
+      : null,
+    incoming: {
+      question: data.question,
+      correctAnswer: data.correctAnswer,
+      options: data.options,
+      contentHash: data.contentHash,
+    },
+    protectedIds: backup.ids,
+    backupHashes: backup.hashes,
+    hideIds,
+  });
+
+  if (decision.action === "create") {
+    const created = await prisma.questionBankItem.create({ data });
+    return { ...decision, id: created.id };
   }
 
-  const unchanged =
-    existing.question === data.question &&
-    existing.correctAnswer === data.correctAnswer &&
-    existing.options === data.options &&
-    existing.active;
-
-  if (unchanged) return "skipped";
+  if (decision.action === "skip") return decision;
 
   await prisma.questionBankItem.update({
     where: { contentHash: data.contentHash },
-    data,
+    data: { ...data, active: decision.active },
   });
-  return "updated";
+  return { ...decision, id: existing?.id };
 }
 
 /**
@@ -246,28 +296,44 @@ async function runSync(): Promise<SyncQuestionBankResult> {
   let itemsCreated = 0;
   let itemsUpdated = 0;
   let itemsSkipped = 0;
+  let itemsProtected = 0;
   let bulkCreated = 0;
   let subjectsToppedUp = 0;
   const activeHashes = new Set<string>();
+  const updatedItemIds: string[] = [];
+  const protectedItemIds: string[] = [];
 
   try {
     await ensureAllBoardExams();
+    const backup = await loadKeyfixBackupIndex();
+    const hideIds = new Set(KEY_WRONG_ITEM_IDS);
 
     for (const row of seeds) {
       activeHashes.add(
         bankItemContentHash(row.fieldId, row.subjectId, row.item)
       );
-      const result = await upsertSeedRow(row);
-      if (result === "created") itemsCreated++;
-      else if (result === "updated") itemsUpdated++;
-      else itemsSkipped++;
+      const result = await upsertSeedRow(row, backup, hideIds);
+      if (result.action === "create") itemsCreated++;
+      else if (result.action === "update") {
+        itemsUpdated++;
+        if (result.id) updatedItemIds.push(result.id);
+      } else if (result.reason === "manual-correction") {
+        itemsSkipped++;
+        itemsProtected++;
+        protectedItemIds.push(result.id);
+      } else itemsSkipped++;
     }
 
+    const protectedFromRetirement = [...backup.ids];
     const retired = await prisma.questionBankItem.updateMany({
       where: {
         source: "seed",
         contentHash: { notIn: [...activeHashes] },
         active: true,
+        manualCorrection: false,
+        ...(protectedFromRetirement.length > 0
+          ? { id: { notIn: protectedFromRetirement } }
+          : {}),
       },
       data: { active: false },
     });
@@ -286,6 +352,7 @@ async function runSync(): Promise<SyncQuestionBankResult> {
       itemsSkipped,
       itemsRetired: retired.count,
       subjectsToppedUp,
+      itemsProtected,
     };
 
     await prisma.questionBankSync.create({
@@ -296,23 +363,31 @@ async function runSync(): Promise<SyncQuestionBankResult> {
         itemsUpdated: result.itemsUpdated,
         itemsSkipped: result.itemsSkipped,
         itemsRetired: result.itemsRetired,
+        updatedItemIds,
+        protectedItemIds,
       },
     });
 
     return result;
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown sync error";
-    await prisma.questionBankSync.create({
-      data: {
-        status: "failed",
-        itemsTotal: seeds.length,
-        itemsCreated,
-        itemsUpdated,
-        itemsSkipped,
-        itemsRetired: 0,
-        errorMessage: message,
-      },
-    });
+    try {
+      await prisma.questionBankSync.create({
+        data: {
+          status: "failed",
+          itemsTotal: seeds.length,
+          itemsCreated,
+          itemsUpdated,
+          itemsSkipped,
+          itemsRetired: 0,
+          errorMessage: message,
+          updatedItemIds,
+          protectedItemIds,
+        },
+      });
+    } catch (logError) {
+      console.error("[question-bank] failed to record sync error", logError);
+    }
     return {
       status: "failed",
       itemsTotal: seeds.length,
@@ -321,6 +396,7 @@ async function runSync(): Promise<SyncQuestionBankResult> {
       itemsSkipped,
       itemsRetired: 0,
       subjectsToppedUp: 0,
+      itemsProtected,
       errorMessage: message,
     };
   }

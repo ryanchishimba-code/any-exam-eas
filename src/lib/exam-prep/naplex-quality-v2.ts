@@ -162,8 +162,8 @@ export const NAPLEX_QUALITY_V2: EnrichedBankItem[] = [
       "48 mL/min",
       "58 mL/min",
     ],
-    "38 mL/min",
-    "CrCl = [(140−72)×60]/(72×1.6) × 0.85 ≈ 37.9 → 38 mL/min. Guides initial vancomycin dosing and monitoring.",
+    "28 mL/min",
+    "CrCl = [(140−72)×60]/(72×1.6) × 0.85 ≈ 30.1 mL/min; the closest option is 28 mL/min. Guides initial vancomycin dosing and monitoring.",
     { blueprintDomain: A1, references: [FDA] }
   ),
 
