@@ -1,6 +1,9 @@
+import Link from "next/link";
+import { Check } from "lucide-react";
 import { DashboardUpgradeBanner, type DashboardUpgradeProps } from "@/components/dashboard/DashboardUpgradeBanner";
 import { DashboardExamCountdown } from "@/components/dashboard/DashboardExamCountdown";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
+import { DashboardProgressFold } from "@/components/dashboard/DashboardProgressFold";
 import {
   DashboardGraphicHero,
   weakTopicPracticeHref,
@@ -13,6 +16,7 @@ import { DashboardTodayBlock } from "@/components/dashboard/DashboardTodayBlock"
 import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
 import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
+import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
@@ -115,6 +119,12 @@ export function DashboardPageContent({
   const fieldId = practiceFieldId ?? exam.fieldId;
   const showNaplexPanel = examSlug === "naplex" && isTodayEngineNaplexEnabled();
   const showUsmlePath = examSlug === "usmle" && isTodayEngineUsmleEnabled();
+  const incorrect = examDayPlan?.items.find((item) => item.id === "incorrect") ?? null;
+  const incorrectHref = incorrect
+    ? studyLocked
+      ? postTrialCheckoutHref()
+      : incorrect.href
+    : null;
 
   return (
     <div className={dbUi.page}>
@@ -126,15 +136,43 @@ export function DashboardPageContent({
         boardAttempts={boardAttempts}
       />
 
-      <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
-
-      <ReadinessDashboardCard
-        examSlug={examSlug}
-        examName={exam.shortName}
-        hasStudyAccess={hasStudyAccess}
-      />
-
       {upgrade ? <DashboardUpgradeBanner {...upgrade} /> : null}
+
+      <div
+        data-dashboard-secondary
+        className="flex flex-wrap items-center gap-x-3 gap-y-1 px-0.5 text-[13px] leading-snug text-[var(--color-ink-muted)]"
+      >
+        <DashboardExamCountdown compact examSlug={examSlug} examName={exam.name} testDate={testDate} />
+        <span aria-hidden className="text-[var(--color-border)]">
+          ·
+        </span>
+        <ReadinessDashboardCard
+          compact
+          examSlug={examSlug}
+          examName={exam.shortName}
+          hasStudyAccess={hasStudyAccess}
+        />
+        {incorrectHref ? (
+          <>
+            <span aria-hidden className="text-[var(--color-border)]">
+              ·
+            </span>
+            <Link
+              href={incorrectHref}
+              data-tour="review-incorrect"
+              className="inline-flex items-center gap-1.5 font-semibold text-[var(--color-ink)] hover:text-[var(--color-accent)]"
+            >
+              {incorrect?.doneToday ? (
+                <>
+                  <Check className="h-3.5 w-3.5" aria-hidden />
+                  <span className="sr-only">Done today</span>
+                </>
+              ) : null}
+              {incorrect?.title || incorrect?.cta || "Review incorrect"}
+            </Link>
+          </>
+        ) : null}
+      </div>
 
       {examDayPlan ? (
         <DashboardTodayBlock
@@ -145,53 +183,53 @@ export function DashboardPageContent({
         />
       ) : null}
 
-      <RemediationPanel
-        examName={exam.name}
-        fieldId={fieldId}
-        summary={roadmap?.openRemediation}
-        studyLocked={studyLocked}
-      />
+      <DashboardProgressFold plan={examDayPlan} studyLocked={studyLocked}>
+        <RemediationPanel
+          examName={exam.name}
+          fieldId={fieldId}
+          summary={roadmap?.openRemediation}
+          studyLocked={studyLocked}
+        />
 
-      <DashboardGraphicHero
-        examSlug={examSlug}
-        examName={exam.name}
-        readinessScore={readinessSummary?.overallScore ?? headline.readinessScore}
-        readinessSummary={readinessSummary}
-        categoriesLabel={categoriesLabel}
-        dueCount={spacedReview.dueCount}
-        topWeakTopic={topWeakFocus(examSlug, weakTopics, fieldId)}
-        hasRecent={showRecent}
-        studyLocked={studyLocked}
-        practiceFieldId={fieldId}
-        masteryMapTiles={masteryMapTiles}
-        eyebrow={examDayPlan ? "Practice snapshot" : "Today's focus"}
-        bandLabel={examDayPlan ? "Practice" : undefined}
-        showPrimaryAction={!examDayPlan}
-      />
+        <DashboardGraphicHero
+          examSlug={examSlug}
+          examName={exam.name}
+          readinessScore={readinessSummary?.overallScore ?? headline.readinessScore}
+          readinessSummary={readinessSummary}
+          categoriesLabel={categoriesLabel}
+          dueCount={spacedReview.dueCount}
+          topWeakTopic={topWeakFocus(examSlug, weakTopics, fieldId)}
+          hasRecent={showRecent}
+          studyLocked={studyLocked}
+          practiceFieldId={fieldId}
+          masteryMapTiles={masteryMapTiles}
+          eyebrow={examDayPlan ? "Practice snapshot" : "Today's focus"}
+          bandLabel={examDayPlan ? "Practice" : undefined}
+          showPrimaryAction={!examDayPlan}
+        />
 
-      {masteryRollup ? (
-        <MasteryReadinessStrip rollup={masteryRollup} />
-      ) : null}
+        {masteryRollup ? <MasteryReadinessStrip rollup={masteryRollup} /> : null}
 
-      {showNaplexPanel ? <NaplexMasteryPanel /> : null}
-      {showUsmlePath ? <UsmleExamPathPanel practiceFieldId={fieldId} /> : null}
+        {showNaplexPanel ? <NaplexMasteryPanel /> : null}
+        {showUsmlePath ? <UsmleExamPathPanel practiceFieldId={fieldId} /> : null}
 
-      {!isNewUser ? (
-        <DashboardWeakTopicChips
+        {!isNewUser ? (
+          <DashboardWeakTopicChips
+            examSlug={examSlug}
+            weakTopics={weakTopics}
+            practiceFieldId={fieldId}
+          />
+        ) : null}
+
+        <DashboardViewSections
           examSlug={examSlug}
           weakTopics={weakTopics}
+          spacedReview={spacedReview}
+          recentTests={recentTests}
+          srsInFocus={!isNewUser && spacedReview.dueCount > 0}
           practiceFieldId={fieldId}
         />
-      ) : null}
-
-      <DashboardViewSections
-        examSlug={examSlug}
-        weakTopics={weakTopics}
-        spacedReview={spacedReview}
-        recentTests={recentTests}
-        srsInFocus={!isNewUser && spacedReview.dueCount > 0}
-        practiceFieldId={fieldId}
-      />
+      </DashboardProgressFold>
       <FirstLoginTour
         boardName={exam.shortName}
         seen={tourSeen}

@@ -36,7 +36,8 @@ export function DashboardExamCountdown({
   examSlug,
   examName,
   testDate,
-}: DashboardExamCountdownProps) {
+  compact = false,
+}: DashboardExamCountdownProps & { compact?: boolean }) {
   const router = useRouter();
   const [date, setDate] = useState<string | null>(testDate);
   const [draft, setDraft] = useState(testDate ?? "");
@@ -103,6 +104,18 @@ export function DashboardExamCountdown({
   const countUnit =
     !date ? "set date" : now == null ? "days" : isToday || isPast ? "today" : calDays === 1 ? "day" : "days";
 
+  const compactLabel = !date
+    ? "Exam date"
+    : now == null
+      ? formatExamDateLong(date)
+      : isPast
+        ? `Exam date passed · ${formatExamDateLong(date)}`
+        : isToday
+          ? `Exam day · ${formatExamDateLong(date)}`
+          : calDays === 1
+            ? `Exam tomorrow · ${formatExamDateLong(date)}`
+            : `${calDays} days · ${formatExamDateLong(date)}`;
+
   async function save(next: string | null) {
     setSaving(true);
     setError("");
@@ -128,6 +141,60 @@ export function DashboardExamCountdown({
     } finally {
       setSaving(false);
     }
+  }
+
+  const dateEditor = editing ? (
+    <div className="mt-3 space-y-3 border-t border-[var(--db-line,var(--color-border))]/60 pt-3">
+      <ExamDatePicker
+        value={draft || date || today}
+        minDate={today}
+        onChange={setDraft}
+        ariaLabel={`${examName} test date`}
+      />
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          disabled={saving || !draft || (!draftDirty && !!date)}
+          onClick={() => save(draft)}
+          className="cursor-pointer border-0 bg-transparent p-0 text-[13px] font-semibold text-[var(--color-ink)] underline-offset-2 hover:text-[var(--color-accent)] hover:underline disabled:opacity-50"
+        >
+          {saving ? "Saving…" : date ? "Update date" : "Save date"}
+        </button>
+        {date ? (
+          <button
+            type="button"
+            disabled={saving}
+            onClick={() => save(null)}
+            className="cursor-pointer border-0 bg-transparent p-0 text-[12px] font-medium text-rose-600/90 hover:underline disabled:opacity-50"
+          >
+            Clear
+          </button>
+        ) : null}
+      </div>
+      {error ? <p className="text-[12px] font-medium text-rose-600">{error}</p> : null}
+    </div>
+  ) : null;
+
+  if (compact) {
+    return (
+      <div
+        className={
+          editing
+            ? "flex w-full max-w-full flex-wrap items-center gap-x-2 gap-y-1"
+            : "inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1"
+        }
+      >
+        <span className="text-[13px] text-[var(--color-ink-muted)]">{compactLabel}</span>
+        <button
+          type="button"
+          onClick={() => setEditing((v) => !v)}
+          className="cursor-pointer border-0 bg-transparent p-0 text-[13px] font-semibold text-[var(--color-ink)] underline-offset-2 hover:text-[var(--color-accent)] hover:underline"
+        >
+          {date ? (editing ? "Done" : "Change") : "Set date"}
+        </button>
+        {dateEditor ? <div className="basis-full">{dateEditor}</div> : null}
+      </div>
+    );
   }
 
   return (

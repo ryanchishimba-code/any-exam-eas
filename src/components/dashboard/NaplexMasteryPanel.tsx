@@ -84,13 +84,7 @@ export function NaplexMasteryPanel() {
     };
   }, []);
 
-  if (!domains) {
-    return (
-      <section className="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/60 p-4">
-        <p className="text-[13px] text-[var(--color-ink-muted)]">Loading NAPLEX map…</p>
-      </section>
-    );
-  }
+  if (!domains) return null;
 
   return (
     <section

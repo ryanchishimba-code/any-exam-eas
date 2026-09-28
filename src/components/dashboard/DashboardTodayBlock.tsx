@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, Check, Lock } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import { StartTodaySetButton } from "@/components/dashboard/StartTodaySetButton";
 import { TodayMixLine, TodaySessionProvider, TodayStartLive } from "@/components/dashboard/TodaySession";
 import { TodayGoalRing } from "@/components/dashboard/TodayGoalRing";
-import { DashboardWeekPlan } from "@/components/dashboard/DashboardWeekPlan";
-import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 import { TODAY_SET_DEFAULT_SIZE } from "@/lib/learning/today-set";
@@ -110,58 +108,7 @@ export function DashboardTodayBlock({
             label={startLabel}
           />
         )}
-
-        <ul className="flex flex-wrap gap-x-4 gap-y-2">
-          {plan.items.map((item) => {
-            const href = studyLocked ? lockedHref : item.href;
-            if (!href) return null;
-            return (
-              <li key={item.id}>
-                <Link
-                  href={href}
-                  data-tour={item.id === "incorrect" ? "review-incorrect" : undefined}
-                  className="inline-flex min-h-11 items-center gap-1.5 text-[13px] font-semibold tracking-[-0.01em] text-[var(--color-ink-muted)] hover:text-[var(--color-accent)]"
-                >
-                  {item.doneToday ? (
-                    <>
-                      <Check className="h-3.5 w-3.5" aria-hidden />
-                      <span className="sr-only">Done today</span>
-                    </>
-                  ) : null}
-                  {item.cta}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-
-        <div className="border-t border-[var(--color-border)]/45 pt-5">
-          <ReadinessProofPanel
-            readiness={plan.readiness}
-            domainsLabel={plan.coverage.domainsLabel}
-            coverage={plan.coverage}
-            embedded
-            showLeadReason={false}
-          />
-        </div>
-
       </section>
-
-      <details
-        data-today-details
-        className="rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] px-4 py-3 sm:px-5"
-      >
-        <summary className="cursor-pointer text-[15px] font-semibold tracking-[-0.02em] text-[var(--color-ink-muted)]">
-          See details
-        </summary>
-        <div data-today-details-body className="mt-4 space-y-5 border-t border-[var(--color-border)]/50 pt-4">
-          {plan.weekPlan.active ? (
-            <DashboardWeekPlan weekPlan={plan.weekPlan} />
-          ) : (
-            <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">{plan.weekPlan.summary}</p>
-          )}
-        </div>
-      </details>
     </div>
     </TodaySessionProvider>
   );
