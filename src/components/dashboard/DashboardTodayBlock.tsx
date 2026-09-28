@@ -111,12 +111,6 @@ export function DashboardTodayBlock({
           />
         )}
 
-        {studyLocked ? (
-          <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-            Trial ended. The block stays visible so you can see the next step after you subscribe.
-          </p>
-        ) : null}
-
         <ul className="flex flex-wrap gap-x-4 gap-y-2">
           {plan.items.map((item) => {
             const href = studyLocked ? lockedHref : item.href;
@@ -161,30 +155,11 @@ export function DashboardTodayBlock({
           See details
         </summary>
         <div data-today-details-body className="mt-4 space-y-5 border-t border-[var(--color-border)]/50 pt-4">
-          <div
-            data-today-new-note
-            className="rounded-2xl border border-[var(--color-accent)]/25 bg-[color-mix(in_srgb,var(--color-accent)_9%,var(--color-surface))] px-4 py-3.5"
-          >
-            <p className={dbUi.eyebrow}>Today&apos;s set</p>
-            <p className="mt-1.5 text-[15px] font-medium leading-relaxed tracking-[-0.015em] text-[var(--color-ink)]">
-              You&apos;ll always see some new questions in today&apos;s set, even when you have a lot to review.
-            </p>
-          </div>
           {plan.weekPlan.active ? (
             <DashboardWeekPlan weekPlan={plan.weekPlan} />
           ) : (
             <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">{plan.weekPlan.summary}</p>
           )}
-          <details className="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
-            <summary className="cursor-pointer text-[12px] font-semibold text-[var(--color-ink-muted)]">
-              How this plan is chosen
-            </summary>
-            <ul className="mt-2 space-y-1 pb-1 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
-              {plan.rules.map((rule) => (
-                <li key={rule}>{rule}</li>
-              ))}
-            </ul>
-          </details>
         </div>
       </details>
     </div>

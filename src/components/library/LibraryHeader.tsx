@@ -65,15 +65,10 @@ export function LibraryHeader({
               </span>
             ) : null}
           </div>
-          <h1 className={cn(libUi.title, "text-balance")}>{title}</h1>
-          <p className={libUi.subtitle}>
-            {name ? `Hey ${name} — ` : ""}
-            {cardCount} memory {cardCount === 1 ? "card" : "cards"} organized by subject.
-          </p>
+          <h1 className={cn(libUi.title, "text-balance")}>{name ? `${name}` : title}</h1>
           <div className="flex flex-wrap gap-1.5 pt-0.5">
-            <span className={libUi.statPill}>{readinessScore}% practice</span>
             <span className={libUi.statPill}>{cardCount} cards</span>
-            {streakDays > 0 ? <span className={libUi.statPill}>{streakDays}d streak</span> : null}
+            <span className={libUi.statPill}>{readinessScore}% practice</span>
           </div>
         </div>
 

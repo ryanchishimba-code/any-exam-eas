@@ -252,7 +252,7 @@ export function FullExamResults({
         <header className="mb-6 space-y-1 border-b border-slate-200/80 pb-4">
           <h1 className="text-xl font-semibold text-slate-900">Review overview</h1>
           <p className="text-sm text-slate-500">
-            Tap a question to review with rationales · {correct}/{questions.length} correct
+            {correct}/{questions.length} correct
           </p>
         </header>
 
@@ -319,10 +319,7 @@ export function FullExamResults({
 
       {questions.length > 0 ? (
         <div className={cn(feUi.panel, "p-5 sm:p-6")}>
-          <p className="text-center text-[14px] font-medium text-[var(--color-ink)]">
-            What would you like to do next?
-          </p>
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button
               type="button"
               onClick={() => {

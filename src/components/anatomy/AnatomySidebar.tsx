@@ -74,8 +74,7 @@ export function AnatomySidebar({
       )}
     >
       <div>
-        <h2 className={anatomyUi.sectionLabel}>Browse structures</h2>
-        <p className={anatomyUi.sectionHint}>Search or filter by organ system</p>
+        <h2 className={anatomyUi.sectionLabel}>Structures</h2>
       </div>
 
       <label className="relative block">

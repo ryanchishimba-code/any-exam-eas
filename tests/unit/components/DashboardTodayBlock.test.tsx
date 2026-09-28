@@ -231,16 +231,9 @@ describe("DashboardTodayBlock review CTA", () => {
     expect(document.body.textContent).not.toMatch(/25 to review/);
 
     const details = document.querySelector("[data-today-details]");
-    const body = details?.querySelector("[data-today-details-body]");
-    const note = body?.querySelector("[data-today-new-note]");
     expect(details?.querySelector("summary")?.textContent).toMatch(/See details/);
-    expect(body?.firstElementChild).toBe(note);
-    expect(note).toHaveTextContent(
-      "You'll always see some new questions in today's set, even when you have a lot to review."
-    );
-    expect(note?.compareDocumentPosition(screen.getByText(/Set a target exam date/))).toBe(
-      Node.DOCUMENT_POSITION_FOLLOWING
-    );
+    expect(details?.querySelector("[data-today-new-note]")).toBeNull();
+    expect(screen.getByText(/Set a target exam date/)).toBeInTheDocument();
   });
 });
 
@@ -285,19 +278,9 @@ describe("Dashboard week countdown", () => {
     expect(screen.getAllByText(/topics you haven't practiced yet/).length).toBeGreaterThan(0);
     const report = details?.textContent ?? "";
     expect(report).not.toMatch(/open incorrect items|coverage days|remediation days|blueprint gaps/);
-    const note = details?.querySelector("[data-today-new-note]");
-    const body = details?.querySelector("[data-today-details-body]");
-    expect(body?.firstElementChild).toBe(note);
-    expect(note).toHaveTextContent(
-      "You'll always see some new questions in today's set, even when you have a lot to review."
-    );
-    expect(
-      note?.compareDocumentPosition(screen.getByRole("heading", { name: "Topics to practice" }))
-    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
-    const withoutNestedRules = details?.cloneNode(true) as HTMLElement | undefined;
-    withoutNestedRules?.querySelector("details")?.remove();
-    expect(withoutNestedRules?.textContent ?? "").toMatch(/always see some new questions/i);
-    expect(withoutNestedRules?.textContent ?? "").toMatch(/Today's practice on Management of Care is done/);
+    expect(details?.querySelector("[data-today-new-note]")).toBeNull();
+    expect(details?.textContent ?? "").not.toMatch(/always see some new questions/i);
+    expect(details?.textContent ?? "").toMatch(/Today's practice on Management of Care is done/);
     expect(screen.getAllByText("Done today").length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: /Start Qbank/ })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /Start exam simulation/ })).toBeNull();
@@ -330,15 +313,7 @@ describe("Dashboard week countdown", () => {
     render(<DashboardTodayBlock plan={built} />);
 
     const details = document.querySelector("[data-today-details]");
-    const note = details?.querySelector("[data-today-new-note]");
-    expect(details?.querySelector("[data-today-details-body]")?.firstElementChild).toBe(note);
-    expect(note).toHaveTextContent(
-      "You'll always see some new questions in today's set, even when you have a lot to review."
-    );
-    expect(
-      note?.compareDocumentPosition(screen.getByRole("heading", { name: "Practice exam and review" }))
-    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
-
+    expect(details?.querySelector("[data-today-new-note]")).toBeNull();
     expect(screen.getByRole("heading", { name: "Practice exam and review" })).toBeInTheDocument();
     expect(screen.getByText("7 days out")).toBeInTheDocument();
     expect(screen.getAllByText("Practice exam").length).toBeGreaterThan(0);

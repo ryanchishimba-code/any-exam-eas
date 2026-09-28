@@ -30,7 +30,6 @@ export function AnatomyFeaturedPicks({ examSlug, selectedId, onSelect, onPreview
   return (
     <section aria-label={`High-yield structures for ${exam.shortName}`}>
       <p className={anatomyUi.sectionLabel}>High-yield for {exam.shortName}</p>
-      <p className={anatomyUi.sectionHint}>Exam-focused structures — click to explore in 3D</p>
       <div className="mt-2 flex flex-wrap gap-2">
         {featured.map((structure) => (
           <button

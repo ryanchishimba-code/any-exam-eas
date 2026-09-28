@@ -112,14 +112,6 @@ export function DashboardPageContent({
         : examSlug === "usmle"
           ? "Your organ systems"
           : "Your blueprint";
-  const categoriesHint =
-    examSlug === "nclex"
-      ? "Official Client Needs · ranked by need · tap to practice"
-      : examSlug === "naplex"
-        ? "NABP 2025 Content Outline · Domain 3 is 40% · tap Today"
-        : examSlug === "usmle"
-          ? "NBME organ systems · ranked by need · tap Today"
-          : "Official exam blueprint · ranked by need · tap to practice";
   const fieldId = practiceFieldId ?? exam.fieldId;
   const showNaplexPanel = examSlug === "naplex" && isTodayEngineNaplexEnabled();
   const showUsmlePath = examSlug === "usmle" && isTodayEngineUsmleEnabled();
@@ -158,7 +150,6 @@ export function DashboardPageContent({
         fieldId={fieldId}
         summary={roadmap?.openRemediation}
         studyLocked={studyLocked}
-        showWhenEmpty={boardAttempts > 0}
       />
 
       <DashboardGraphicHero
@@ -167,7 +158,6 @@ export function DashboardPageContent({
         readinessScore={readinessSummary?.overallScore ?? headline.readinessScore}
         readinessSummary={readinessSummary}
         categoriesLabel={categoriesLabel}
-        categoriesHint={categoriesHint}
         dueCount={spacedReview.dueCount}
         topWeakTopic={topWeakFocus(examSlug, weakTopics, fieldId)}
         hasRecent={showRecent}
@@ -176,26 +166,7 @@ export function DashboardPageContent({
         masteryMapTiles={masteryMapTiles}
         eyebrow={examDayPlan ? "Practice snapshot" : "Today's focus"}
         bandLabel={examDayPlan ? "Practice" : undefined}
-        disclosure={
-          examDayPlan
-            ? {
-                summary: examDayPlan.readiness.visible
-                  ? `Why ${examDayPlan.readiness.label}?`
-                  : "Why is the proof hidden?",
-                lines: [
-                  examDayPlan.readiness.sampleDetail,
-                  examDayPlan.readiness.visible && examDayPlan.readiness.score != null
-                    ? `${examDayPlan.readiness.coveragePct}% coverage × ${examDayPlan.readiness.recentAccuracyPct}% recent accuracy × ${examDayPlan.readiness.remediationPct}% remediation completion = ${examDayPlan.readiness.score}.`
-                    : `${examDayPlan.readiness.coveragePct}% coverage × ${examDayPlan.readiness.recentAccuracyPct}% recent accuracy × ${examDayPlan.readiness.remediationPct}% remediation completion.`,
-                  examDayPlan.readiness.formula,
-                  ...examDayPlan.readiness.criteria
-                    .filter((row) => row.id !== "exam_sim")
-                    .map((row) => `${row.label}: ${row.valueLabel}.`),
-                ],
-                disclaimer: examDayPlan.readiness.disclaimer,
-              }
-            : null
-        }
+        showPrimaryAction={!examDayPlan}
       />
 
       {masteryRollup ? (

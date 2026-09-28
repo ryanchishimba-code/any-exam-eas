@@ -90,7 +90,6 @@ export function AnatomyQuickNav({
     <section aria-label="Jump to structure or procedure" className="space-y-3">
       <div>
         <p className={anatomyUi.sectionLabel}>Jump to</p>
-        <p className={anatomyUi.sectionHint}>Hover to preview in 3D · click to select</p>
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

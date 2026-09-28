@@ -2237,13 +2237,10 @@ export function StudyBankPractice({
                         scroll: false,
                       });
                     }}
-                    className={cn(
-                      qbUi.optionCard,
-                      fieldId === opt.id && qbUi.optionCardActive
-                    )}
+                    className={fieldId === opt.id ? qbUi.optionCardActive : qbUi.optionCard}
                   >
-                    <p className="text-[13px] font-semibold text-[var(--color-ink)]">{opt.label}</p>
-                    <p className={cn(qbUi.sectionHint, "mt-0.5")}>{opt.format}</p>
+                    <p className={cn("text-[13px] font-semibold", fieldId === opt.id ? "text-white" : "text-[var(--color-ink)]")}>{opt.label}</p>
+                    <p className={cn("mt-0.5 text-[12px]", fieldId === opt.id ? "text-white/80" : qbUi.sectionHint)}>{opt.format}</p>
                   </button>
                 ))}
               </div>
@@ -2264,12 +2261,9 @@ export function StudyBankPractice({
                         scroll: false,
                       });
                     }}
-                    className={cn(
-                      qbUi.optionCard,
-                      fieldId === opt.id && qbUi.optionCardActive
-                    )}
+                    className={fieldId === opt.id ? qbUi.optionCardActive : qbUi.optionCard}
                   >
-                    <p className="text-[13px] font-semibold text-[var(--color-ink)]">{opt.label}</p>
+                    <p className={cn("text-[13px] font-semibold", fieldId === opt.id ? "text-white" : "text-[var(--color-ink)]")}>{opt.label}</p>
                   </button>
                 ))}
               </div>
@@ -2277,10 +2271,7 @@ export function StudyBankPractice({
           )}
 
           {!(onQuestionBank && examLocked) ? (
-            <QuestionBankSection
-              title="Quick start"
-              hint="Full exam or question bank — pick how you want to practice."
-            >
+            <QuestionBankSection title="Quick start">
               <div className={cn(qbUi.chipRow, "snap-x snap-mandatory px-0.5")}>
                 {PRACTICE_MODES.map((m) => {
                   const Icon = MODE_ICONS[m.icon as keyof typeof MODE_ICONS] ?? Zap;
@@ -2290,11 +2281,11 @@ export function StudyBankPractice({
                       key={m.id}
                       type="button"
                       onClick={() => launchPracticeMode(m.id)}
-                      className={cn(qbUi.modeCard, active && qbUi.modeCardActive)}
+                      className={active ? qbUi.modeCardActive : qbUi.modeCard}
                     >
-                      <Icon className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
-                      <p className="mt-2 text-[14px] font-semibold text-[var(--color-ink)]">{m.label}</p>
-                      <p className="mt-0.5 text-[11px] text-[var(--color-ink-muted)]">{m.timing}</p>
+                      <Icon className={cn("h-4 w-4", active ? "text-white" : "text-[var(--color-accent)]")} aria-hidden />
+                      <p className={cn("mt-2 text-[14px] font-semibold", active ? "text-white" : "text-[var(--color-ink)]")}>{m.label}</p>
+                      <p className={cn("mt-0.5 text-[11px]", active ? "text-white/80" : "text-[var(--color-ink-muted)]")}>{m.timing}</p>
                     </button>
                   );
                 })}

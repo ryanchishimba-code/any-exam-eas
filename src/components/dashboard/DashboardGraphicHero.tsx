@@ -114,7 +114,6 @@ export function DashboardGraphicHero({
   readinessScore,
   readinessSummary,
   categoriesLabel = "Your blueprint",
-  categoriesHint = "Official exam blueprint · ranked by need · tap to practice",
   dueCount,
   topWeakTopic,
   hasRecent,
@@ -122,6 +121,7 @@ export function DashboardGraphicHero({
   practiceFieldId,
   masteryMapTiles,
   eyebrow = "Today's focus",
+  showPrimaryAction = true,
   bandLabel: bandLabelOverride,
   ringScore,
   disclosure,
@@ -131,7 +131,6 @@ export function DashboardGraphicHero({
   readinessScore: number;
   readinessSummary: PracticeReadinessSummary | null;
   categoriesLabel?: string;
-  categoriesHint?: string;
   dueCount: number;
   topWeakTopic: DashboardWeakFocus | null;
   hasRecent: boolean;
@@ -139,6 +138,8 @@ export function DashboardGraphicHero({
   practiceFieldId?: string;
   masteryMapTiles?: import("@/components/dashboard/DomainMap").DomainMapTile[] | null;
   eyebrow?: string;
+  /** Today's block already owns the page's one primary button. */
+  showPrimaryAction?: boolean;
   /** Visible ring label. Practice snapshot stays unlabeled as a pass band. */
   bandLabel?: string;
   ringScore?: number;
@@ -196,11 +197,13 @@ export function DashboardGraphicHero({
           </h2>
 
           <div className="mt-5 flex flex-col items-center gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
-            <Link href={action.href} className={dbUi.primaryBtn}>
-              {studyLocked ? <Lock className="h-3.5 w-3.5" aria-hidden /> : null}
-              {action.label}
-              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-            </Link>
+            {showPrimaryAction ? (
+              <Link href={action.href} className={dbUi.primaryBtn}>
+                {studyLocked ? <Lock className="h-3.5 w-3.5" aria-hidden /> : null}
+                {action.label}
+                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+              </Link>
+            ) : null}
             <Link
               href={ROUTES.analytics}
               className="text-[13px] font-semibold text-[var(--color-accent)] hover:underline"
@@ -217,9 +220,6 @@ export function DashboardGraphicHero({
             <h3 className="text-[15px] font-semibold tracking-tight text-[var(--color-ink)]">
               {categoriesLabel}
             </h3>
-            <p className="mt-0.5 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
-              {categoriesHint}
-            </p>
           </div>
           <DomainMap tiles={tiles} variant="compact" aria-label={categoriesLabel} />
         </div>
@@ -239,7 +239,7 @@ export function DashboardGraphicHero({
             {disclosure.disclaimer}
           </p>
         </details>
-      ) : readinessSummary ? (
+      ) : showPrimaryAction && readinessSummary ? (
         <details className="mt-5 rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
           <summary className="cursor-pointer text-[12px] font-semibold text-[var(--color-ink-muted)]">
             Why {readinessSummary.bandLabel}?

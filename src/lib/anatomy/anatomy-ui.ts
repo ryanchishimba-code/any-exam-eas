@@ -41,7 +41,7 @@ export const anatomyUi = {
   segmentTrack: "inline-flex rounded-[12px] bg-black/30 p-0.5",
   segmentBtn:
     "rounded-[10px] px-3 py-1.5 text-[13px] font-medium text-[var(--anatomy-ink-muted)] transition",
-  segmentBtnActive: "bg-white/[0.1] text-[var(--anatomy-ink)] shadow-sm",
+  segmentBtnActive: "bg-cyan-600 text-white shadow-sm",
   detailSection:
     "rounded-[18px] border border-white/[0.08] bg-[#1e2733] p-4",
   viewportShell:

@@ -38,7 +38,7 @@ export function QuestionBankCountWheel({ options, value, onChange }: Props) {
               <span
                 className={cn(
                   "font-extrabold tabular-nums tracking-tight",
-                  active ? "text-xl text-[var(--color-accent)]" : "text-lg text-[var(--color-ink-muted)]"
+                  active ? "text-xl text-white" : "text-lg text-[var(--color-ink-muted)]"
                 )}
               >
                 {option.value}
@@ -46,7 +46,7 @@ export function QuestionBankCountWheel({ options, value, onChange }: Props) {
               <span
                 className={cn(
                   "mt-0.5 line-clamp-1 text-center text-[10px] font-medium leading-tight",
-                  active ? "text-[var(--color-ink-muted)]" : "text-[var(--color-ink-muted)]/70"
+                  active ? "text-white/80" : "text-[var(--color-ink-muted)]/70"
                 )}
               >
                 {option.description}

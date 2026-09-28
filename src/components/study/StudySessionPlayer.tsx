@@ -923,16 +923,6 @@ export function StudySessionPlayer({
                       ))}
                     </div>
                   ) : null}
-                  <p className={`${studyUi.keyboardHint} !mt-0`} aria-hidden>
-                    <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">
-                      J
-                    </kbd>
-                    {" Next · "}
-                    <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">
-                      K
-                    </kbd>
-                    {" Back"}
-                  </p>
                 </div>
               ) : null}
 

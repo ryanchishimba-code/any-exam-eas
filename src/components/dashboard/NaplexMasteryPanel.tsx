@@ -101,9 +101,6 @@ export function NaplexMasteryPanel() {
         <h3 className="text-[15px] font-semibold tracking-tight text-[var(--color-ink)]">
           NAPLEX content map
         </h3>
-        <p className="mt-0.5 text-[12px] text-[var(--color-ink-muted)]">
-          Five NABP domains · colored by cell state · Domain 3 is 40% of the exam
-        </p>
       </div>
 
       <div className="grid gap-2 sm:grid-cols-5">
