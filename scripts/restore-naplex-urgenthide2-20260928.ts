@@ -23,7 +23,7 @@ ensureDatabaseUrlEnv();
 import { PrismaClient } from "@prisma/client";
 
 const BACKUP = "qbi_naplex_urgenthide2_backup_20260928";
-const EXPECTED = 198;
+const EXPECTED = 238;
 const BEGIN = "// naplex-urgent-hide-2-2026-09-28 BEGIN";
 const END = "// naplex-urgent-hide-2-2026-09-28 END";
 const QUEUE = path.join(process.cwd(), "src/lib/exam-prep/reviewed-key-queue.ts");
@@ -69,7 +69,7 @@ async function main() {
   console.log("QuestionBankItem text was not changed by this hide.");
   console.log("After unhiding, restore NAPLEX bankItems to 9522 and the six-board total to 45672.");
   if (block.count !== EXPECTED) {
-    console.log("Stopped. The hide block does not contain 198 entries.");
+    console.log(`Stopped. The hide block does not contain ${EXPECTED} entries.`);
     process.exitCode = 1;
     return;
   }

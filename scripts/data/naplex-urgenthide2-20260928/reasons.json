@@ -1186,5 +1186,245 @@
     "reason_group": "phenytoin-400-toxic",
     "note": "Keyed 400 mg/day, which predicts a toxic phenytoin level from the patient's own data.",
     "sampleId": "NP-UH2-198"
+  },
+  {
+    "id": "cmrleqz0y000c1y7zy18rzkow",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold. Round-2 fix candidate.",
+    "sampleId": "NP-UH2-199"
+  },
+  {
+    "id": "cmrlfp7jl00171yolj8l9qnfa",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-200"
+  },
+  {
+    "id": "cmrlglw4c000v1yu04jwd421m",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-201"
+  },
+  {
+    "id": "cmrlgnbrf001b1yu0jkwwu5gz",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-202"
+  },
+  {
+    "id": "cmrlhe4tt00151yf3it4mvuee",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-203"
+  },
+  {
+    "id": "cmrlhg4le001l1yf3xlgzxsnt",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-204"
+  },
+  {
+    "id": "cmrli3n3600151yuv4z1f5xol",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-205"
+  },
+  {
+    "id": "cmrli4v3p001d1yuvmnprd3eq",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-206"
+  },
+  {
+    "id": "cmrli7jcl001t1yuvkw7caiy1",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-207"
+  },
+  {
+    "id": "cmrli8qhs00211yuv1029mcix",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-208"
+  },
+  {
+    "id": "cmrlio14n00161ybl36w9usq4",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-209"
+  },
+  {
+    "id": "cmrlioxsj001e1ybltr9dfkn6",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-210"
+  },
+  {
+    "id": "cmrlkcpzz001d1ya8ybdri2i7",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-211"
+  },
+  {
+    "id": "cmrlkdnup001l1ya86kdk4859",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-212"
+  },
+  {
+    "id": "cmrm22jr1000u1yshc72dn175",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-213"
+  },
+  {
+    "id": "cmrm23ogo00121yshdcnqc4ob",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-214"
+  },
+  {
+    "id": "cmrmtbir300111y58oswbu3ay",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-215"
+  },
+  {
+    "id": "cmrnbs3o9000g1ywdmckm1x7c",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-216"
+  },
+  {
+    "id": "cmrnbt6e0000o1ywdbcf7fpjm",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-217"
+  },
+  {
+    "id": "cmrnbuacn000w1ywdyirq2p8x",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-218"
+  },
+  {
+    "id": "cmroe90pc000w1yc0bsollmiw",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-219"
+  },
+  {
+    "id": "cmrog7dys00191ymqees56l6s",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-220"
+  },
+  {
+    "id": "cmrog89o5001h1ymqp1c3xau2",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-221"
+  },
+  {
+    "id": "cmrovxkk7000q1yu37b9h38mc",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-222"
+  },
+  {
+    "id": "cmrovyvj0000y1yu3doe4wm22",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-223"
+  },
+  {
+    "id": "cmrow2da8001e1yu3vlzmjif4",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-224"
+  },
+  {
+    "id": "cmrow2yg1001m1yu3ri5hsz01",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-225"
+  },
+  {
+    "id": "cmrp2z98a000y1yp4iel69yws",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-226"
+  },
+  {
+    "id": "cmrp46xuc00181yesodbww0gs",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-227"
+  },
+  {
+    "id": "cmrp49uxj001o1yesw175ny7k",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-228"
+  },
+  {
+    "id": "cmrp7qtwp000r1y2n883a8wd1",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-229"
+  },
+  {
+    "id": "cmrp7s84z000z1y2njbejk2s6",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-230"
+  },
+  {
+    "id": "cmrp7ssam00171y2nbquwj81g",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-231"
+  },
+  {
+    "id": "cmsfjtw91001b1yq4ilo3l1zb",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-232"
+  },
+  {
+    "id": "cmsfy8g1x001d1yth4gescgg9",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-233"
+  },
+  {
+    "id": "cmshcxs6e002d1yaru5q27fg8",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-234"
+  },
+  {
+    "id": "cmshdzwo6001g1y1i4b7parvq",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-235"
+  },
+  {
+    "id": "cmshfzxce00091yftwfu02on2",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-236"
+  },
+  {
+    "id": "cmshi10q3001u1y66kt152cnu",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-237"
+  },
+  {
+    "id": "cmshi4y4a000c1y29jlcimbat",
+    "reason_group": "doac-24h-hold",
+    "note": "Keys a 24-hour DOAC hold before hip or knee replacement. CHEST 2022 and the PAUSE trial call for a 2-day hold.",
+    "sampleId": "NP-UH2-238"
   }
 ]
