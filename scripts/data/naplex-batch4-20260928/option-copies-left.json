@@ -1,0 +1,444 @@
+[
+  {
+    "id": "cmqvm8pyj00101yms3b7j29a3",
+    "reasons": [
+      "bullet-not-an-option:Counsel the patient on the proper use of sumatriptan / Advise the patient to tak"
+    ]
+  },
+  {
+    "id": "cmqvos44h001m1ylrat8oq5qp",
+    "reasons": [
+      "bullet-not-an-option:Start lisinopril 10 mg daily / Start amlodipine 5 mg daily",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqvpofjn000d1yt0qurxkkfg",
+    "reasons": [
+      "bullet-not-an-option:Weight gain / Hypoglycemia / Increased thirst",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqvq0qsr000d1yp9uo1yd68m",
+    "reasons": [
+      "bullet-not-an-option:Signs of hypoglycemia / Increased thirst and urination / Weight gain",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqvq0r5s000i1yp94h9wxoa5",
+    "reasons": [
+      "bullet-not-an-option:50 mg daily / 100 mg daily"
+    ]
+  },
+  {
+    "id": "cmqvt6ih0000e1yheux0pt14u",
+    "reasons": [
+      "bullet-not-an-option:Potassium 5.5 mEq/L / Blood glucose 180 mg/dL"
+    ]
+  },
+  {
+    "id": "cmqvv529x000d1y3ysy6zbyo9",
+    "reasons": [
+      "bullet-not-an-option:Increased thirst / Weight loss / Fatigue",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqvvhwd7000d1y3ahq1l070r",
+    "reasons": [
+      "bullet-not-an-option:Increased thirst / Frequent urination",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqvvw7fa00171yc9we6r55pi",
+    "reasons": [
+      "bullet-not-an-option:Increased liver enzymes / Elevated creatine kinase (CK) levels",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqvwjozp000d1ybj2194ede7",
+    "reasons": [
+      "bullet-not-an-option:Increased blood glucose levels / Weight gain / Nausea and vomiting",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqvwjp53000e1ybj6by83lbm",
+    "reasons": [
+      "bullet-not-an-option:Amlodipine 5 mg daily / Hydrochlorothiazide 25 mg daily",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqvxeuss000d1yt6ul869hnd",
+    "reasons": [
+      "bullet-not-an-option:Amlodipine 5 mg daily / Hydrochlorothiazide 25 mg daily",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqvz1cqs000n1ylz3u2api04",
+    "reasons": [
+      "bullet-not-an-option:Elevated liver enzymes / Increased creatinine levels / Change in lipid panel res",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqvzchcb000e1yttyu5r8929",
+    "reasons": [
+      "bullet-not-an-option:Amlodipine 5 mg daily / Hydrochlorothiazide 25 mg daily",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqw032c6000d1yezazov5q49",
+    "reasons": [
+      "bullet-not-an-option:Blood glucose levels / Blood pressure readings",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqw03413000y1yezolv9vgnb",
+    "reasons": [
+      "bullet-not-an-option:Naproxen / Celecoxib",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqw17lfy000d1yitc8nz9jjf",
+    "reasons": [
+      "bullet-not-an-option:Blood pressure reading / Cholesterol levels",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqw17lxj000i1yitck9781gz",
+    "reasons": [
+      "bullet-not-an-option:Amlodipine 5 mg daily / Hydrochlorothiazide 25 mg daily / Metoprolol 50 mg daily",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqw5q1ri000e1ygptuqqrdjn",
+    "reasons": [
+      "bullet-not-an-option:Amlodipine 5 mg daily / Hydrochlorothiazide 25 mg daily / Diltiazem 120 mg daily",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqw6giz4000d1y9iu9iu2fp6",
+    "reasons": [
+      "bullet-not-an-option:Interest in starting a new medication / Concern about weight gain",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqwa0u6z000d1y23et3agoi9",
+    "reasons": [
+      "bullet-not-an-option:Recent weight gain / Increased thirst / Frequent urination",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqwadkm5001d1y5cczj36mpc",
+    "reasons": [
+      "bullet-not-an-option:Elevated liver enzymes / Decreased platelet count / Increased blood pressure",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmqwcgb36000k1yj4u5lqduvs",
+    "reasons": [
+      "bullet-not-an-option:Rivastigmine 1.5 mg twice daily / Galantamine 8 mg twice daily",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmr045gte00511ypu3qmy7jus",
+    "reasons": [
+      "bullet-not-an-option:Amlodipine 5 mg daily / Hydrochlorothiazide 25 mg daily"
+    ]
+  },
+  {
+    "id": "cmr07jkpm004h1yyzxgmw5z23",
+    "reasons": [
+      "bullet-not-an-option:1000 mg once daily / 500 mg twice daily",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmr4b22wt00011ysc3oq7ta0c",
+    "reasons": [
+      "bullet-not-an-option:Add amlodipine 5 mg daily / Add hydrochlorothiazide 12.5 mg daily",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmr4chm73000y1yl853r7heoo",
+    "reasons": [
+      "bullet-not-an-option:Tramadol / Hydrocodone"
+    ]
+  },
+  {
+    "id": "cmr4f63ld003d1yg667emftxw",
+    "reasons": [
+      "bullet-not-an-option:Azithromycin / Doxycycline"
+    ]
+  },
+  {
+    "id": "cmr4fwftt003g1yrorv8g7kmp",
+    "reasons": [
+      "bullet-not-an-option:Switch to a different antibiotic / Contact the prescriber for a medication adjus"
+    ]
+  },
+  {
+    "id": "cmr4gmkdc003d1yavnvlbjwnd",
+    "reasons": [
+      "bullet-not-an-option:Ceftriaxone / Amoxicillin-clavulanate"
+    ]
+  },
+  {
+    "id": "cmr4jwq5p00171yrno8e6n02w",
+    "reasons": [
+      "bullet-not-an-option:Vancomycin and lisinopril / Piperacillin-tazobactam and lisinopril",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmr7rz7f0001m1yxylrfc330m",
+    "reasons": [
+      "bullet-not-an-option:Counsel the patient on the importance of regular blood glucose monitoring / Prov"
+    ]
+  },
+  {
+    "id": "cmr7t0i2q001k1yurgtkwwvrc",
+    "reasons": [
+      "bullet-not-an-option:Sertraline / Citalopram"
+    ]
+  },
+  {
+    "id": "cmr7ugoq500031yt3jtvfdtnk",
+    "reasons": [
+      "bullet-not-an-option:Canagliflozin with lisinopril / Canagliflozin with furosemide"
+    ]
+  },
+  {
+    "id": "cmr7v703s001c1y2zr8cinaat",
+    "reasons": [
+      "bullet-not-an-option:Continue ibuprofen for migraine management / Increase the frequency of ibuprofen"
+    ]
+  },
+  {
+    "id": "cmr80qizp00031yjnt9oeyknc",
+    "reasons": [
+      "bullet-not-an-option:Empagliflozin and diuretics / Metformin and diuretics",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmr815mhd00021ynmcib2b3k0",
+    "reasons": [
+      "bullet-not-an-option:Canagliflozin and diuretics / Canagliflozin and ACE inhibitors",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmra6ltm7000n1ybjfz17vho4",
+    "reasons": [
+      "bullet-not-an-option:Canagliflozin and lisinopril / Canagliflozin and diuretics",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmrlfm2qz00081yolgaohwdoj",
+    "reasons": [
+      "bullet-not-an-option:Increase the absorption due to increased gastric pH / Decrease the absorption du",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmrlk9m3l000r1ya8qjjdqggf",
+    "reasons": [
+      "bullet-not-an-option:Approximately 7 days / Approximately 10 days",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmrlkahtl000v1ya8fhnmj3jt",
+    "reasons": [
+      "bullet-not-an-option:Calcium carbonate may increase the absorption of metoprolol / Calcium carbonate ",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmrohtqo500aa1yt0ekhjn3x1",
+    "reasons": [
+      "bullet-not-an-option:INR of 4.0 / INR of 1.5",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmrohtr3v00ae1yt0wuct1sgj",
+    "reasons": [
+      "bullet-not-an-option:Increase the dose of the inhaled corticosteroid / Add a long-acting beta-agonist",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmrorqpad00021yok1d2ij4uz",
+    "reasons": [
+      "bullet-not-an-option:Omeprazole decreases stomach pH, which may increase Drug Z's dissolution; recomm"
+    ]
+  },
+  {
+    "id": "cmrp2x7a2000q1yp4bqf1rezs",
+    "reasons": [
+      "bullet-not-an-option:0.1 mg/cm³ / 0.5 mg/cm³ / 1.0 mg/cm³",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmrp4cuoo002d1yese78uatub",
+    "reasons": [
+      "bullet-not-an-option:Dispense prednisolone as it is therapeutically equivalent to prednisone / Substi"
+    ]
+  },
+  {
+    "id": "cmsfjbi1q000j1ymsxv9kumgi",
+    "reasons": [
+      "bullet-not-an-option:Micronization / Complexation with cyclodextrins",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmsfjc1d0000q1yms15p8vkeg",
+    "reasons": [
+      "bullet-not-an-option:It delays the dissolution by decreasing gastric pH / It accelerates the dissolut",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmsfjdel0000z1ymsoklnckku",
+    "reasons": [
+      "bullet-not-an-option:Implement a double-check system for all prescriptions / Require all prescription"
+    ]
+  },
+  {
+    "id": "cmsfjomdv00051yq4f46hnw24",
+    "reasons": [
+      "bullet-not-an-option:It will enhance the dissolution and absorption / It will increase the absorption"
+    ]
+  },
+  {
+    "id": "cmshfh0bt00031y4n3s2usanu",
+    "reasons": [
+      "bullet-not-an-option:3 half-lives / 5 half-lives / 7 half-lives",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmshkf1bu000w1ys7z2di3nmp",
+    "reasons": [
+      "bullet-not-an-option:0.1 hr^-1 / 0.2 hr^-1",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmrp7pr5t000n1y2nqkco33ca",
+    "reasons": [
+      "bullet-not-an-option:450 mg/day / 500 mg/day"
+    ]
+  },
+  {
+    "id": "cmshhsh9v000f1y664iawc0kj",
+    "reasons": [
+      "bullet-not-an-option:Increase to 450 mg/day / Increase to 500 mg/day"
+    ]
+  },
+  {
+    "id": "cmshirugm000h1yorfzx7eoq2",
+    "reasons": [
+      "bullet-not-an-option:450 mg/day / 500 mg/day"
+    ]
+  },
+  {
+    "id": "cmshj3ftk001q1yortwa13h9h",
+    "reasons": [
+      "bullet-not-an-option:450 mg/day / 500 mg/day"
+    ]
+  },
+  {
+    "id": "cmr31diiv0091js04x6cwbfje",
+    "reasons": [
+      "no-distractor-object"
+    ]
+  },
+  {
+    "id": "cmr7xtd7000061yikikp1tgdi",
+    "reasons": [
+      "no-distractor-object"
+    ]
+  },
+  {
+    "id": "cmr7yhwa7001c1yr34xluyvha",
+    "reasons": [
+      "bullet-not-an-option:Advise the patient to monitor her blood glucose levels daily / Instruct the pati"
+    ]
+  },
+  {
+    "id": "cmra72a7k004r1ybj9kql64j9",
+    "reasons": [
+      "bullet-not-an-option:Amlodipine / Hydrochlorothiazide"
+    ]
+  },
+  {
+    "id": "cmqw28j51000d1ybjrtpjii2k",
+    "reasons": [
+      "bullet-not-an-option:Current medications / Renal function / Patient's overall well-being",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmr31diqh0097js047dx13msm",
+    "reasons": [
+      "no-distractor-object"
+    ]
+  },
+  {
+    "id": "cmra7gl6i00051y3eop7yyi3h",
+    "reasons": [
+      "no-distractor-object"
+    ]
+  },
+  {
+    "id": "cmrlhy45800091yuvd9zpa6wz",
+    "reasons": [
+      "bullet-not-an-option:Decreased Vd due to increased free drug / Increased Vd due to increased protein "
+    ]
+  },
+  {
+    "id": "cmrp7ocw6000c1y2nv6yvyv7q",
+    "reasons": [
+      "bullet-not-an-option:25 mL / 50 mL / 75 mL",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmshfqjwp00151y4nyi3vbts4",
+    "reasons": [
+      "bullet-not-an-option:2,000 mg / 2,500 mg / 3,000 mg",
+      "old-key-without-distractor-bullet"
+    ]
+  },
+  {
+    "id": "cmshkb5gd000b1ys7d0qydepe",
+    "reasons": [
+      "bullet-not-an-option:10 mcg/mL / 12 mcg/mL",
+      "old-key-without-distractor-bullet"
+    ]
+  }
+]
