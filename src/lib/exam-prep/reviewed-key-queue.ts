@@ -9,6 +9,9 @@ export const KEY_REVIEW_AUDIT_REF = "sample-exam-quality-nclex-2026-09-25";
 
 export const NAPLEX_KEY_REVIEW_AUDIT_REF = "sample-exam-quality-naplex-2026-09-25";
 
+/** Broken NCLEX items hidden 2026-09-27. Text is unchanged pending an RN rewrite. */
+export const NCLEX_KEYFIX_HIDE_AUDIT_REF = "nclex-keyfix-hide-2026-09-27";
+
 export const KEY_WRONG_REASON = "key_wrong_pending_rn_review" as const;
 
 export const RN_REVIEW_QUEUE_PIPELINE = "rn-review-queue-v1" as const;
@@ -106,6 +109,150 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     sampleId: "N-S47",
     auditRef: NAPLEX_KEY_REVIEW_AUDIT_REF,
     note: "Action stem with finding options, and the key cites a potassium value not in the vignette. Heavily reused. Audit graded uncertain.",
+  },
+  {
+    id: "cmr1bhbsu001s1yrm1z01p7kj",
+    sampleId: "KF-insulin-volume",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "8 units of U-100 insulin is 0.08 mL, and that volume is not among the options.",
+  },
+  {
+    id: "cmr1bhjhy003s1yrm7f8def3o",
+    sampleId: "KF-penicillin-volume",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Reconstituted penicillin dose is 5 mL, and 5 mL is not among the options.",
+  },
+  {
+    id: "cmr7emvm000841y9twut54doz",
+    sampleId: "KF-copd-no-option",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "COPD oxygen key is wrong and no remaining option is a correct action.",
+  },
+  {
+    id: "cmr8sz5bk008v1y9nrfsd8vp3",
+    sampleId: "KF-copd-abg",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "No SpO2 is given, and both an elevated PaCO2 and respiratory acidosis are correct.",
+  },
+  {
+    id: "cmr7jyeoa000q1yvujzxjzan4",
+    sampleId: "KF-nitro-headache",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Keyed to nitroglycerin for chest pain, but the scenario reports a headache.",
+  },
+  {
+    id: "cmr10qthh00431y8ay3g9yfji",
+    sampleId: "KF-dka-glucose",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Keys glucose checks every 2 hours; hourly monitoring is the standard and is not offered.",
+  },
+  {
+    id: "cmr7iuyev004j1y66tupingmg",
+    sampleId: "KF-dka-dextrose",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "At glucose 250 mg/dL the fluids should include dextrose, and that option is not offered.",
+  },
+  {
+    id: "cmr8rp7ym00a71ye3b0hzviia",
+    sampleId: "KF-dka-sliding",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Keys sliding-scale IV insulin in new DKA, and no fluid option is offered.",
+  },
+  {
+    id: "cmr13kwvr00401ygqrlcfo4lb",
+    sampleId: "KF-inr-diet",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "INR 4.5 teaching keys avoiding vitamin K foods, and hold-and-notify is not offered.",
+  },
+  {
+    id: "cmr1bhbzu001u1yrm6b40di5v",
+    sampleId: "KF-hydromorphone",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "1.5 mg from 2 mg/mL is 0.75 mL, and 0.75 mL is not offered.",
+  },
+  {
+    id: "cmr1bhjll003t1yrmroht424m",
+    sampleId: "KF-cefazolin",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Displacement makes 500 mg about 1.5 mL, and 1.5 mL is not offered.",
+  },
+  {
+    id: "cmqwv1fw700071ys23qek0zhv",
+    sampleId: "KF-options-mismatch",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Options are copied from a different item and do not match the scenario.",
+  },
+  {
+    id: "cmqwwjfy000041y5kzp4bibjk",
+    sampleId: "KF-chemical-burn",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Copious water irrigation is the first action and is not offered.",
+  },
+  {
+    id: "cmr0stdj4002u1yfnf1lsbw3o",
+    sampleId: "KF-shellfish-myth",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Keys the shellfish/iodine myth, and no remaining option is clearly correct.",
+  },
+  {
+    id: "cmr0wjqi9008g1ymh6c0xq7pt",
+    sampleId: "KF-placeholder-options",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Options include literal placeholders and comma-joined lists.",
+  },
+  {
+    id: "cmr123ae3004c1y1umfhrmllu",
+    sampleId: "KF-placeholder-options-2",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Options include literal placeholders and comma-joined lists.",
+  },
+  {
+    id: "cmr129aze00631y1uihv5f2ep",
+    sampleId: "KF-missing-finding",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "The keyed finding is not in the scenario.",
+  },
+  {
+    id: "cmr76u8gw00sh1ywupke340yh",
+    sampleId: "KF-contrast-myth",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Keys the shellfish/iodine contrast myth, and no other option is a priority finding.",
+  },
+  {
+    id: "cmr8m20w200261yayojf5gkj5",
+    sampleId: "KF-placeholder-options-3",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Options include literal placeholders and comma-joined lists.",
+  },
+  {
+    id: "cmr8r0v5g002d1ye38jnyif17",
+    sampleId: "KF-catheter-flush",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Checking the tubing is not offered, and flushing needs an order.",
+  },
+  {
+    id: "cmrm1lbmv001q1yga0n0esvbs",
+    sampleId: "KF-missing-drug",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "The keyed drug is not in the scenario medication list.",
+  },
+  {
+    id: "cmrm2a6x4008n1ygazw89g6f4",
+    sampleId: "KF-pain-reassess",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "Reassess and notify is the correct action and is not offered.",
+  },
+  {
+    id: "cmrm2a6zs008o1ygak5d8aihn",
+    sampleId: "KF-missing-interaction",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "The keyed interaction involves a drug the client is not taking.",
+  },
+  {
+    id: "cmsewq90y005f1y566genullo",
+    sampleId: "KF-normal-fhr",
+    auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
+    note: "The keyed priority finding is a normal fetal heart rate.",
   },
 ];
 

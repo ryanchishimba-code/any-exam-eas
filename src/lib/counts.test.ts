@@ -25,18 +25,18 @@ import type { PublishedCatalog } from "@/lib/assessment/serve";
 
 const NCLEX_UNITS = boardQuestionUnits({
   slug: "nclex",
-  bankItems: 5590,
-  formats: { mcq: 5590, ngn: 0, case: 0 },
+  bankItems: 5566,
+  formats: { mcq: 5566, ngn: 0, case: 0 },
   clinical: { standaloneNgn: 10, caseStudies: 10, caseItems: 60 },
 });
 
 describe("scored question counts", () => {
   it("counts case-study items and does not count the case shell", () => {
-    expect(scoredQuestionCount(NCLEX_UNITS)).toBe(5660);
+    expect(scoredQuestionCount(NCLEX_UNITS)).toBe(5636);
     expect(formatBoardQuestionSentence(NCLEX_UNITS)).toBe(
-      "5,660 questions, including 60 items in 10 case studies and 10 standalone NGN items"
+      "5,636 questions, including 60 items in 10 case studies and 10 standalone NGN items"
     );
-    expect(formatRoundedDownQuestionCount(5660)).toBe("5,600+");
+    expect(formatRoundedDownQuestionCount(5636)).toBe("5,600+");
     expect(formatRoundedDownQuestionCount(99)).toBe("99");
     expect(formatRoundedDownQuestionCount(100)).toBe("100+");
   });
@@ -115,7 +115,7 @@ describe("public count labels match the source", () => {
     const site = publishedSiteQuestionCounts();
     const display = buildLandingBankCountsDisplay(snapshotFor(boards));
 
-    expect(site.totalQuestions).toBe(46285);
+    expect(site.totalQuestions).toBe(46261);
     expect(display.totalLabel).toBe(formatExactQuestionCount(site.totalQuestions));
     expect(display.totalServed).toBe(site.totalQuestions);
     expect(display.sentence).toBe(site.sentence);
@@ -137,7 +137,7 @@ describe("public count labels match the source", () => {
         expect(rounded).toBeLessThanOrEqual(questions);
       }
     }
-    expect(displayTotalQuestionCount(snapshotFor(boards))).toBe("46,285");
+    expect(displayTotalQuestionCount(snapshotFor(boards))).toBe("46,261");
   });
 });
 
