@@ -1,0 +1,578 @@
+[
+  {
+    "id": "cmqwqlu5f00041yelmi39lwme",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Start oxygen therapy.",
+    "sampleId": "NC-UH1-001"
+  },
+  {
+    "id": "cmr0uy1gf006r1y7o21pvrfyr",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Client reports feeling shaky and sweaty",
+    "sampleId": "NC-UH1-002"
+  },
+  {
+    "id": "cmr0xdqyg00071ybsvb4sqisw",
+    "reason_group": "methadone-withheld",
+    "note": "Withholds methadone maintenance for acute pain. Current key: Offer non-opioid analgesics before opioids",
+    "sampleId": "NC-UH1-003"
+  },
+  {
+    "id": "cmr0ylpj200aw1ybscyrzfdxn",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 92%",
+    "sampleId": "NC-UH1-004"
+  },
+  {
+    "id": "cmr0yyo2d00011ybaziwvcmr8",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Apply oxygen via nasal cannula",
+    "sampleId": "NC-UH1-005"
+  },
+  {
+    "id": "cmr0zipjy006r1yba503ellpb",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: PaO2 of 60 mm Hg",
+    "sampleId": "NC-UH1-006"
+  },
+  {
+    "id": "cmr740xfd00081ywulpxlnvhp",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen flow rate to 4 L/min via nasal cannula",
+    "sampleId": "NC-UH1-007"
+  },
+  {
+    "id": "cmr7488xz00241ywuqklxbpjb",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 g of fast-acting carbohydrate",
+    "sampleId": "NC-UH1-008"
+  },
+  {
+    "id": "cmr74ylb6009j1ywuebzefcqk",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88%",
+    "sampleId": "NC-UH1-009"
+  },
+  {
+    "id": "cmr74ymrm009y1ywuk1t0vt0c",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88%",
+    "sampleId": "NC-UH1-010"
+  },
+  {
+    "id": "cmr75h85p00dv1ywudv9iy6td",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase the oxygen flow rate to 4 L/min.",
+    "sampleId": "NC-UH1-011"
+  },
+  {
+    "id": "cmr75hagk00ei1ywu4njkop5v",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88%",
+    "sampleId": "NC-UH1-012"
+  },
+  {
+    "id": "cmr75n97z00gq1ywu9dkss49t",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Initiate oxygen therapy at 2 L/min via nasal cannula.",
+    "sampleId": "NC-UH1-013"
+  },
+  {
+    "id": "cmr75nai700h31ywupxvcxxf4",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 89%",
+    "sampleId": "NC-UH1-014"
+  },
+  {
+    "id": "cmr75tcnp00jj1ywujdijfml1",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen flow rate to 4 L/min",
+    "sampleId": "NC-UH1-015"
+  },
+  {
+    "id": "cmr76481900m71ywu0nd0qup6",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 of 88% on room air.",
+    "sampleId": "NC-UH1-016"
+  },
+  {
+    "id": "cmr76nz0i00r41ywu8ecjt1yy",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 grams of fast-acting carbohydrate",
+    "sampleId": "NC-UH1-017"
+  },
+  {
+    "id": "cmr770hlq00up1ywujq8ccgyg",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88%",
+    "sampleId": "NC-UH1-018"
+  },
+  {
+    "id": "cmr7766sd00wy1ywupi0r8znr",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88%",
+    "sampleId": "NC-UH1-019"
+  },
+  {
+    "id": "cmr781zd3015d1ywuezq65p4r",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO\u2082 88% on 2 L/min nasal cannula",
+    "sampleId": "NC-UH1-020"
+  },
+  {
+    "id": "cmr79vzcc002n1ybb9340ax2f",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen flow rate to 4 L/min and reassess oxygen saturation.",
+    "sampleId": "NC-UH1-021"
+  },
+  {
+    "id": "cmr7aqstq00bc1ybb01d42c5p",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase the oxygen flow rate to 4 L/min.",
+    "sampleId": "NC-UH1-022"
+  },
+  {
+    "id": "cmr7aw4d500cw1ybbe2hjfp54",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 88% on room air",
+    "sampleId": "NC-UH1-023"
+  },
+  {
+    "id": "cmr7aw5h300d71ybbcxg343nb",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer potassium replacement as prescribed.",
+    "sampleId": "NC-UH1-024"
+  },
+  {
+    "id": "cmr7cs879000q1yvx7qbhyfq5",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 grams of fast-acting carbohydrate.",
+    "sampleId": "NC-UH1-025"
+  },
+  {
+    "id": "cmr7cxuyx001n1yvx1sef7ei1",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Administer oxygen via nasal cannula",
+    "sampleId": "NC-UH1-026"
+  },
+  {
+    "id": "cmr7d3buv003k1yvxmqddwi1x",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 88% on room air",
+    "sampleId": "NC-UH1-027"
+  },
+  {
+    "id": "cmr7d8kf700671yvx54rgn36c",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen flow rate to 4 L/min via nasal cannula",
+    "sampleId": "NC-UH1-028"
+  },
+  {
+    "id": "cmr7deaj300741yvxipf4zpqx",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Oxygen saturation of 92% on room air",
+    "sampleId": "NC-UH1-029"
+  },
+  {
+    "id": "cmr7deb7t007b1yvxqook51u6",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase the oxygen flow rate to 4 L/min and reassess oxygen saturation",
+    "sampleId": "NC-UH1-030"
+  },
+  {
+    "id": "cmr7decmc007p1yvxxy1spi8d",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 g of fast-acting carbohydrate",
+    "sampleId": "NC-UH1-031"
+  },
+  {
+    "id": "cmr7djwmx00961yvxrt7lchsf",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 89% on room air",
+    "sampleId": "NC-UH1-032"
+  },
+  {
+    "id": "cmr7dpbnx00aq1yvxpdqof9ju",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: The client's oxygen saturation is 88% on 2 L/min nasal cannula.",
+    "sampleId": "NC-UH1-033"
+  },
+  {
+    "id": "cmr7dupa300bu1yvxh0pvt3xm",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 88%",
+    "sampleId": "NC-UH1-034"
+  },
+  {
+    "id": "cmr7dupfq00bw1yvxhro3vwr8",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen flow rate to 4 L/min and reassess SpO2",
+    "sampleId": "NC-UH1-035"
+  },
+  {
+    "id": "cmr7e0zzm00031y9tny2eqqgj",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88% on room air",
+    "sampleId": "NC-UH1-036"
+  },
+  {
+    "id": "cmr7e11o3000o1y9t81xlkg1l",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Initiate oxygen therapy via nasal cannula.",
+    "sampleId": "NC-UH1-037"
+  },
+  {
+    "id": "cmr7ecff800491y9ts3sv7v6t",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen flow rate",
+    "sampleId": "NC-UH1-038"
+  },
+  {
+    "id": "cmr7ecgif004n1y9t4le6ex8k",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 of 88% on room air",
+    "sampleId": "NC-UH1-039"
+  },
+  {
+    "id": "cmr7emw38008a1y9te0rxqv79",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Oxygen saturation of 92% on room air.",
+    "sampleId": "NC-UH1-040"
+  },
+  {
+    "id": "cmr7emx6r008o1y9t1uo3v982",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 grams of fast-acting carbohydrate.",
+    "sampleId": "NC-UH1-041"
+  },
+  {
+    "id": "cmr7f3wgx00d61y9t6ekh15hc",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO\u2082 at 88% on 2 L/min oxygen.",
+    "sampleId": "NC-UH1-042"
+  },
+  {
+    "id": "cmr7f3wnt00d81y9tgtmrsve4",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase the oxygen flow rate to 4L/min and reassess",
+    "sampleId": "NC-UH1-043"
+  },
+  {
+    "id": "cmr7f9wu6000k1y59oyl932pb",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Apply oxygen via nasal cannula.",
+    "sampleId": "NC-UH1-044"
+  },
+  {
+    "id": "cmr7fnm3q00431y59n1p0us7a",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase the oxygen flow rate to 4 L/min and reassess oxygen saturation.",
+    "sampleId": "NC-UH1-045"
+  },
+  {
+    "id": "cmr7gb7d1008r1y593qcgspe3",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen flow rate to 4 L/min and reassess oxygen saturation.",
+    "sampleId": "NC-UH1-046"
+  },
+  {
+    "id": "cmr7gb9ay009f1y598ojf51gu",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: SpO2 88% on room air",
+    "sampleId": "NC-UH1-047"
+  },
+  {
+    "id": "cmr7gb9mc009j1y59d4qak1ke",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Initiate high-flow oxygen therapy",
+    "sampleId": "NC-UH1-048"
+  },
+  {
+    "id": "cmr7gpxx000ck1y59m0y9i9mp",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88%",
+    "sampleId": "NC-UH1-049"
+  },
+  {
+    "id": "cmr7haemh00461yx3o1ixm0cx",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88%",
+    "sampleId": "NC-UH1-050"
+  },
+  {
+    "id": "cmr7hhn6o006n1yx3fiw5y3fu",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO\u2082 of 88% on 2 L/min oxygen",
+    "sampleId": "NC-UH1-051"
+  },
+  {
+    "id": "cmr7humyt009m1yx3kkx82het",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Start oxygen therapy at 2 L/min via nasal cannula.",
+    "sampleId": "NC-UH1-052"
+  },
+  {
+    "id": "cmr7i8jg300ce1yx31p5fsemn",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen flow rate to 4 L/min",
+    "sampleId": "NC-UH1-053"
+  },
+  {
+    "id": "cmr7ify4n000u1y66xriwwmdk",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Initiate oxygen therapy at 4 L/min via nasal cannula.",
+    "sampleId": "NC-UH1-054"
+  },
+  {
+    "id": "cmr7jefl200911y663a6kcmt6",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO\u2082 88% on room air",
+    "sampleId": "NC-UH1-055"
+  },
+  {
+    "id": "cmr7jei9x009s1y66m3wq57pz",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 of 88% on 2L oxygen",
+    "sampleId": "NC-UH1-056"
+  },
+  {
+    "id": "cmr7jrmtd00cv1y6666ufbici",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen flow rate to 4 L/min and reassess SpO\u2082",
+    "sampleId": "NC-UH1-057"
+  },
+  {
+    "id": "cmr7jyedq000n1yvutaalwvsz",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 grams of oral glucose",
+    "sampleId": "NC-UH1-058"
+  },
+  {
+    "id": "cmr7k4wz5002d1yvu5hq5xkwl",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Provide supplemental oxygen",
+    "sampleId": "NC-UH1-059"
+  },
+  {
+    "id": "cmr8m7aus004l1yayzmvh1aki",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 grams of fast-acting carbohydrate",
+    "sampleId": "NC-UH1-060"
+  },
+  {
+    "id": "cmr8mnrjg00ab1yay7xg7fhao",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 88% on 3 L/min oxygen",
+    "sampleId": "NC-UH1-061"
+  },
+  {
+    "id": "cmr8n4t06000d1yh6zcms3w3q",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Administer oxygen via nasal cannula at 4 L/min",
+    "sampleId": "NC-UH1-062"
+  },
+  {
+    "id": "cmr8n4ua0000q1yh6wchd98x6",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer potassium replacement as ordered and continue monitoring.",
+    "sampleId": "NC-UH1-063"
+  },
+  {
+    "id": "cmr8ng335004z1yh6qligzbi3",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Increase the oxygen flow rate to 4 L/min.",
+    "sampleId": "NC-UH1-064"
+  },
+  {
+    "id": "cmr8o8mec00ct1yh6ke10o9ix",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen flow rate to 4 L/min",
+    "sampleId": "NC-UH1-065"
+  },
+  {
+    "id": "cmr8odn2800011y5n0scqjy0j",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Administer oxygen via nasal cannula.",
+    "sampleId": "NC-UH1-066"
+  },
+  {
+    "id": "cmr8oj65k00281y5ntoyzt52o",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Apply oxygen via nasal cannula at 4 L/min.",
+    "sampleId": "NC-UH1-067"
+  },
+  {
+    "id": "cmr8oj6na002e1y5nzxp8l5lc",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Initiate oxygen therapy at 2 L/min via nasal cannula.",
+    "sampleId": "NC-UH1-068"
+  },
+  {
+    "id": "cmr8ooero003o1y5n1utiye83",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 90% on 2 L/min oxygen",
+    "sampleId": "NC-UH1-069"
+  },
+  {
+    "id": "cmr8ooh7u004i1y5n0a8mdbk1",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO\u2082 of 88% on 2 L/min oxygen",
+    "sampleId": "NC-UH1-070"
+  },
+  {
+    "id": "cmr8otx0v006a1y5nhoqhm2iz",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase the oxygen flow rate.",
+    "sampleId": "NC-UH1-071"
+  },
+  {
+    "id": "cmr8oty2e006n1y5nllhbjztg",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 of 88%",
+    "sampleId": "NC-UH1-072"
+  },
+  {
+    "id": "cmr8p5ajs00961y5nmzdkcdyc",
+    "reason_group": "trauma-incentive-spirometry",
+    "note": "Trauma item keyed to incentive spirometry instead of escalating care. Current key: Encourage the client to use an incentive spirometer",
+    "sampleId": "NC-UH1-073"
+  },
+  {
+    "id": "cmr8qk2cl00bj1yvfm1kvhekv",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 grams of fast-acting carbohydrate",
+    "sampleId": "NC-UH1-074"
+  },
+  {
+    "id": "cmr8qpskk00ck1yvfh43va5rs",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88% on room air.",
+    "sampleId": "NC-UH1-075"
+  },
+  {
+    "id": "cmr8qvdvi000q1ye3wdnpvrv1",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Apply oxygen via nasal cannula.",
+    "sampleId": "NC-UH1-076"
+  },
+  {
+    "id": "cmr8r764800401ye3u5ic9k38",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Administer oxygen via nasal cannula at 2 L/min.",
+    "sampleId": "NC-UH1-077"
+  },
+  {
+    "id": "cmr8s0dom00cx1ye3o79611tz",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88% on 2 L/min",
+    "sampleId": "NC-UH1-078"
+  },
+  {
+    "id": "cmr8sz58p008u1y9nd7ica1yz",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Apply oxygen via nasal cannula at 4 L/min.",
+    "sampleId": "NC-UH1-079"
+  },
+  {
+    "id": "cmr8sz64000951y9nnz8sjgjf",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO\u2082 of 88% on 2 L/min oxygen",
+    "sampleId": "NC-UH1-080"
+  },
+  {
+    "id": "cmr8t4ysf00af1y9nofw6rv8b",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Oxygen saturation of 88%",
+    "sampleId": "NC-UH1-081"
+  },
+  {
+    "id": "cmr8t4zz200ar1y9nh9j45z5x",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Apply oxygen via nasal cannula at 2 L/min",
+    "sampleId": "NC-UH1-082"
+  },
+  {
+    "id": "cmr8tb4py00by1y9nr8afaall",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO\u2082 of 88%",
+    "sampleId": "NC-UH1-083"
+  },
+  {
+    "id": "cmr8thqjf000i1y0yd2q1xecj",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Administer oxygen via nasal cannula",
+    "sampleId": "NC-UH1-084"
+  },
+  {
+    "id": "cmr8tnvgc001x1y0yyhpk6d31",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Provide supplemental oxygen via nasal cannula",
+    "sampleId": "NC-UH1-085"
+  },
+  {
+    "id": "cmr8tu7ao00481y0ys1sxoiiv",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: SpO2 of 88%",
+    "sampleId": "NC-UH1-086"
+  },
+  {
+    "id": "cmr8ve9il00441yab5fo86coo",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase the oxygen flow rate to 4 L/min via nasal cannula.",
+    "sampleId": "NC-UH1-087"
+  },
+  {
+    "id": "cmr8ve9le00451yab5ftt195f",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: The client's oxygen saturation is 92% on 2 L/min oxygen.",
+    "sampleId": "NC-UH1-088"
+  },
+  {
+    "id": "cmr8vlxje005o1yab7fyn51i7",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Provide supplemental oxygen via nasal cannula",
+    "sampleId": "NC-UH1-089"
+  },
+  {
+    "id": "cmr8vucq9007p1yab0i2d42er",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 g of oral glucose",
+    "sampleId": "NC-UH1-090"
+  },
+  {
+    "id": "cmr8w3mc600961yabcm5canzj",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 g of fast-acting carbohydrate",
+    "sampleId": "NC-UH1-091"
+  },
+  {
+    "id": "cmroe80m400131ybztr6yqvw2",
+    "reason_group": "acs-routine-oxygen",
+    "note": "Chest pain or ACS item keyed to routine oxygen at SpO2 90% or higher, or that delays reperfusion for oxygen. Current key: Initiate oxygen therapy at 4 L/min via nasal cannula",
+    "sampleId": "NC-UH1-092"
+  },
+  {
+    "id": "cmrogaji2002j1ymrtcqasndq",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase the oxygen flow rate to 4 L/min",
+    "sampleId": "NC-UH1-093"
+  },
+  {
+    "id": "cmsewiemy00101y56bmgn125b",
+    "reason_group": "dka-insulin-safety",
+    "note": "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Administer 15 grams of fast-acting carbohydrate",
+    "sampleId": "NC-UH1-094"
+  },
+  {
+    "id": "cmsex6zdn00dm1y562rqfvq1j",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase oxygen to 4 L/min via nasal cannula",
+    "sampleId": "NC-UH1-095"
+  },
+  {
+    "id": "cmsexas5q00gk1y56h4ff1pi3",
+    "reason_group": "copd-o2-at-target",
+    "note": "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase the oxygen flow rate to 4 L/min via nasal cannula.",
+    "sampleId": "NC-UH1-096"
+  }
+]
