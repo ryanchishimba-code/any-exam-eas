@@ -30,6 +30,9 @@ export const NCLEX_KEYFIX_HIDE_B2_AUDIT_REF = "nclex-keyfix-hide-2026-09-27-b2";
 /** Urgent NCLEX hide, 2026-09-28. Text is unchanged. */
 export const NCLEX_URGENT_HIDE_1_AUDIT_REF = "nclex-urgent-hide-1-2026-09-28";
 
+/** Second urgent NCLEX hide, 2026-09-28. Text is unchanged. */
+export const NCLEX_URGENT_HIDE_2_AUDIT_REF = "nclex-urgent-hide-2-2026-09-28";
+
 export const KEY_WRONG_REASON = "key_wrong_pending_rn_review" as const;
 
 export const RN_REVIEW_QUEUE_PIPELINE = "rn-review-queue-v1" as const;
@@ -6604,6 +6607,44 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     note: "COPD item keyed to raise oxygen or treat SpO2 88-92% as an emergency. Current key: Increase the oxygen flow rate to 4 L/min via nasal cannula.",
   },
   // nclex-urgent-hide-1-2026-09-28 END
+  // nclex-urgent-hide-2-2026-09-28 BEGIN
+  {
+    id: "cmr8tnwc400261y0yrc21tke8",
+    sampleId: "NC-UH2-001",
+    auditRef: NCLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Unsafe item pending rewrite. Current key: Initiate thrombolytic therapy",
+  },
+  {
+    id: "cmr8utci100co1y0yf34n0txx",
+    sampleId: "NC-UH2-002",
+    auditRef: NCLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Unsafe item pending rewrite. Current key: Administer naloxone to reverse opioid effects",
+  },
+  {
+    id: "cmqwjuudm000a1yvmde6a50d2",
+    sampleId: "NC-UH2-003",
+    auditRef: NCLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Unsafe item pending rewrite. Also in KEY_UNCERTAIN_RN_REVIEW; this hide takes precedence. Current key: The client has a new onset of hematuria.",
+  },
+  {
+    id: "cmrm08rsp006v1yf1xxnif9ii",
+    sampleId: "NC-UH2-004",
+    auditRef: NCLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Unsafe item pending rewrite. Current key: Administer naloxone as prescribed.",
+  },
+  {
+    id: "cmqwu1wdn000b1yop0gu3tncf",
+    sampleId: "NC-UH2-005",
+    auditRef: NCLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Unsafe item pending rewrite. Current key: The client has noticed increased bruising.",
+  },
+  {
+    id: "cmqwy5pl100081yzsw0md49jr",
+    sampleId: "NC-UH2-006",
+    auditRef: NCLEX_URGENT_HIDE_2_AUDIT_REF,
+    note: "Unsafe item pending rewrite. Current key: Administer the hydromorphone as ordered.",
+  },
+  // nclex-urgent-hide-2-2026-09-28 END
 ];
 
 /**
@@ -6639,7 +6680,7 @@ export const KEY_UNCERTAIN_RN_REVIEW: readonly ReviewedKeyItem[] = [
   {
     id: "cmqwjuudm000a1yvmde6a50d2",
     sampleId: "S31",
-    note: "INR 4.5 with a new headache may outrank hematuria.",
+    note: "INR 4.5 with a new headache may outrank hematuria. Also hidden by nclex-urgent-hide-2; that hide takes precedence.",
   },
   {
     id: "cmqwjgefu000b1yfpca0fon8v",
