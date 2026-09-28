@@ -8,7 +8,8 @@
  *   npx tsx scripts/restore-naplex-batch4-20260928.ts --apply
  *
  * --apply copies every non-id column from qbi_naplex_batch4_backup_20260928
- * back onto QuestionBankItem, removes the naplex-cleanup-batch-4-2026-09-28
+ * back onto QuestionBankItem (2,283 key-fix and hide rows plus 30
+ * explanation-only rows), removes the naplex-cleanup-batch-4-2026-09-28
  * hide block, and puts the 52 unhide entries back on their previous lists.
  * Then set the NAPLEX bank count back to 9,153 and the six-board total back
  * to 45,207, and deploy.
@@ -27,7 +28,7 @@ ensureDatabaseUrlEnv();
 import { PrismaClient } from "@prisma/client";
 
 const BACKUP = "qbi_naplex_batch4_backup_20260928";
-const EXPECTED = 2283;
+const EXPECTED = 2313;
 const HIDE_EXPECTED = 1905;
 const BEGIN = "// naplex-cleanup-batch-4-2026-09-28 BEGIN";
 const END = "// naplex-cleanup-batch-4-2026-09-28 END";
@@ -62,9 +63,15 @@ async function main() {
   const block = hideBlock(source);
   const unhides = JSON.parse(readFileSync(path.join(DATA, "unhide-entries.json"), "utf8")) as UnhideEntry[];
   const fixes = JSON.parse(readFileSync(path.join(DATA, "key-fixes.json"), "utf8")) as Array<{ id: string }>;
+  const rationales = JSON.parse(readFileSync(path.join(DATA, "rationale-fixes.json"), "utf8")) as Array<{ id: string }>;
   const hides = JSON.parse(readFileSync(path.join(DATA, "hide-ids.json"), "utf8")) as string[];
-  if (hides.length !== HIDE_EXPECTED || fixes.length !== 378 || hides.length + fixes.length !== EXPECTED) {
-    throw new Error("batch 4 id files do not add up to 2283 touched rows");
+  if (
+    hides.length !== HIDE_EXPECTED ||
+    fixes.length !== 378 ||
+    rationales.length !== 30 ||
+    hides.length + fixes.length + rationales.length !== EXPECTED
+  ) {
+    throw new Error("batch 4 id files do not add up to 2313 touched rows");
   }
   if (unhides.length !== 52) throw new Error(`expected 52 unhide entries, found ${unhides.length}`);
   const stillPresent = unhides.filter((entry) => source.includes(`id: "${entry.id}"`));
@@ -119,7 +126,9 @@ async function main() {
     .filter((name) => name !== "id")
     .map((name) => `${quoteIdent(name)} = b.${quoteIdent(name)}`)
     .join(", ");
-  const idList = [...hides, ...fixes.map((fix) => fix.id)].map((id) => `'${id}'`).join(", ");
+  const idList = [...hides, ...fixes.map((fix) => fix.id), ...rationales.map((fix) => fix.id)]
+    .map((id) => `'${id}'`)
+    .join(", ");
   const restored = await prisma.$executeRawUnsafe(`
     UPDATE "QuestionBankItem" q
     SET ${assignments}
