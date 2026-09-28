@@ -1,0 +1,62 @@
+[
+  {
+    "id": "cmr4bs0p7000g1ycj3q3yfj39",
+    "expectedKey": "Bupropion",
+    "fieldsToUpdate": [
+      "explanation"
+    ],
+    "explanation": "## Why this answer is correct\nBupropion is the best alternative because it addresses her main complaint, **weight gain**, better than any other option.\n• Bupropion (a norepinephrine-dopamine reuptake inhibitor) is **weight-neutral or causes modest weight loss**, and it has a low rate of sexual adverse effects.\n• It is **activating**. **Insomnia is one of its most common adverse effects**, so it does *not* treat insomnia. Counsel her to take it in the **morning** (XL once daily; for SR, give the second dose at least 8 hours after the first and not near bedtime) and review sleep hygiene.\n• Persistent insomnia may also be a residual depressive symptom, so monitor sleep after the switch.\n• Screen for contraindications before switching: **seizure disorder, current or prior bulimia or anorexia nervosa, and abrupt withdrawal from alcohol, benzodiazepines or antiseizure drugs** (seizure risk).\n## Why the other options are wrong\n• **Fluoxetine**: Another SSRI with the same class effects, including long-term weight gain. It is also the most activating SSRI, so it can worsen insomnia.\n• **Citalopram**: An SSRI with a similar weight and sleep profile to sertraline, plus dose-related QT prolongation (maximum 40 mg/day, 20 mg/day if over 60). It does not address her concerns.\n• **Duloxetine**: An SNRI that commonly causes insomnia and is not weight-favorable long term. It offers no advantage for her complaints.\n## Key takeaway\nChoose bupropion when weight gain (or sexual dysfunction) drives an antidepressant switch. It is activating and often causes insomnia, so dose it in the morning, and do not use it with seizure or eating disorders.\n(Guideline: APA MDD practice guideline 2010; VA/DoD MDD guideline 2022; bupropion prescribing information)",
+    "mustInclude": [
+      "does *not* treat insomnia",
+      "weight-neutral or causes modest weight loss"
+    ]
+  },
+  {
+    "id": "cmr4esc2m00021yg6jwuele21",
+    "expectedKey": "Serum creatinine.",
+    "fieldsToUpdate": [
+      "explanation"
+    ],
+    "explanation": "## Why this answer is correct\nSerum creatinine (and the eGFR calculated from it) is the most critical parameter. Her SCr of 1.8 mg/dL means her current metformin dose is too high.\n• For a 55-year-old woman, SCr 1.8 mg/dL gives an **eGFR of about 33 mL/min/1.73 m²** (CKD-EPI 2021), which is CKD stage G3b.\n• Metformin is **renally cleared**. It does not damage the kidneys, but it **accumulates** as kidney function falls, raising the risk of lactic acidosis.\n• FDA/KDIGO eGFR thresholds for metformin:\n  • eGFR ≥45: usual dosing.\n  • eGFR 30-44: do not start; if already taking it, **reduce to a maximum of 1000 mg/day**.\n  • eGFR <30: contraindicated.\n• She takes **2000 mg/day**, so recommend **reducing to 500 mg twice daily**, then recheck eGFR every 3-6 months.\n• Her fatigue deserves a look: long-term metformin can cause **vitamin B12 deficiency** (check B12 periodically), and fatigue with malaise can rarely signal lactic acidosis.\n• With T2D and CKD, an **SGLT2 inhibitor** (eGFR ≥20) is recommended for kidney and cardiovascular protection. Continue her ACE inhibitor and monitor potassium and SCr.\n## Why the other options are wrong\n• **Liver function tests**: Metformin does not need routine LFT monitoring, and routine LFTs are not recommended for atorvastatin after baseline (ACC/AHA 2018). They do not drive any decision here.\n• **Lipid panel**: This is periodic monitoring for atorvastatin. It matters, but it is not the safety issue raised by her renal function.\n• **Blood glucose levels**: Glucose and A1C track efficacy, but the immediate decision (metformin dose) depends on renal function.\n## Key takeaway\nMetformin dosing follows eGFR: full dose at ≥45, a 1000 mg/day maximum at 30-44 (do not start), and contraindicated below 30. An SCr of 1.8 in an older woman is about eGFR 33, so reduce the dose.\n(Guideline: KDIGO 2022 diabetes in CKD guideline; ADA Standards of Care 2026; FDA metformin labeling 2016)",
+    "mustInclude": [
+      "does not damage the kidneys",
+      "maximum of 1000 mg/day"
+    ]
+  },
+  {
+    "id": "cmr7vmx6a000g1ybz4s3m0jwn",
+    "expectedKey": "Creatinine clearance of 30 mL/min",
+    "fieldsToUpdate": [
+      "explanation"
+    ],
+    "explanation": "## Why this answer is correct\nA creatinine clearance of 30 mL/min calls for a **rivaroxaban dose change** in atrial fibrillation.\n• AF dosing by Cockcroft-Gault CrCl:\n  • CrCl >50 mL/min: **20 mg once daily**.\n  • CrCl 15-50 mL/min: **15 mg once daily**.\n  • CrCl <15 mL/min: avoid.\n• Each dose is taken **with the evening meal**, which improves absorption.\n• At CrCl 30 she is **not contraindicated**; she needs the **15 mg** dose.\n• **Amiodarone** inhibits P-gp and weakly inhibits CYP3A4, so it can raise rivaroxaban exposure. With reduced renal function this adds to bleeding risk: reassess bleeding risk, counsel on bleeding signs, and recheck renal function at least yearly (more often when CrCl is ≤60).\n## Why the other options are wrong\n• **INR of 2.5**: The INR is used to monitor warfarin, not DOACs. Rivaroxaban can nudge the INR, but no dose change is based on it.\n• **Potassium 5.5 mEq/L**: Mild hyperkalemia should be assessed (diet, other medications), but it has no bearing on rivaroxaban dosing.\n• **Elevated AST/ALT**: Unquantified elevations deserve evaluation (amiodarone can be hepatotoxic), but rivaroxaban is avoided only in moderate to severe hepatic impairment (Child-Pugh B/C) or liver disease with coagulopathy. No rivaroxaban change follows from the data given.\n## Key takeaway\nRivaroxaban for AF is 20 mg daily with the evening meal, 15 mg when CrCl is 15-50 mL/min, and avoided below 15. A CrCl of 30 means a dose reduction, not a contraindication.\n(Guideline: 2023 ACC/AHA/ACCP/HRS AF guideline; rivaroxaban prescribing information)",
+    "mustInclude": [
+      "not contraindicated",
+      "15 mg once daily"
+    ]
+  },
+  {
+    "id": "cmr7yhtg3000e1yr3m2garswg",
+    "expectedKey": "Bupropion 150 mg daily.",
+    "fieldsToUpdate": [
+      "explanation"
+    ],
+    "explanation": "## Why this answer is correct\nBupropion 150 mg daily is the best alternative because it addresses her **weight gain** on sertraline.\n• Bupropion is **weight-neutral or modestly weight-reducing** and rarely causes sexual dysfunction. Among these options, only bupropion targets her weight concern.\n• It is **activating**, and **insomnia is a common adverse effect**, so it does *not* relieve insomnia. Start **150 mg XL each morning**, avoid evening doses and reinforce sleep hygiene. Reassess sleep after the switch, since insomnia can also be a residual depressive symptom.\n• Screen for contraindications: **seizure disorder, current or prior bulimia or anorexia, and abrupt alcohol or sedative withdrawal**.\n• No important interaction with her **levothyroxine** or **combined oral contraceptive**. Bupropion does strongly inhibit CYP2D6, so review any future 2D6 substrates.\n## Why the other options are wrong\n• **Citalopram 20 mg daily**: Another SSRI with a similar weight and sleep profile, so it does not address her concerns.\n• **Venlafaxine 75 mg daily**: An SNRI that commonly causes insomnia and dose-related blood pressure increases. It is not weight-favorable long term, so it offers no advantage here.\n• **Fluoxetine 20 mg daily**: An SSRI that is the most activating of its class (likely worse insomnia). It shares the long-term weight effects of SSRIs.\n## Key takeaway\nBupropion is the antidepressant of choice when weight gain or sexual dysfunction drives a switch. It causes insomnia rather than treating it, so dose it in the morning.\n(Guideline: APA MDD practice guideline 2010; VA/DoD MDD guideline 2022; bupropion prescribing information)",
+    "mustInclude": [
+      "does *not* relieve insomnia",
+      "weight-neutral or modestly weight-reducing"
+    ]
+  },
+  {
+    "id": "cmshfncn9000r1y4n9bjpwd82",
+    "expectedKey": "0.094 mg",
+    "fieldsToUpdate": [
+      "explanation"
+    ],
+    "explanation": "## Why this answer is correct\nThe equivalent IV dose is **0.094 mg**.\n• Bioavailability (F) is the fraction of an oral dose that reaches the systemic circulation. IV drug has F = 1.\n• The body \"sees\" 0.125 mg × 0.75 = **0.094 mg** from the oral dose, so the same amount given IV is equivalent.\n• **IV dose = oral dose × F** (0.125 × 0.75 = 0.094 mg).\n• In reverse, **oral dose = IV dose ÷ F**, which is why IV digoxin doses run about 20-25% lower than oral doses.\n• In practice this rounds to about **0.1 mg IV**, given slowly over at least 5 minutes.\n• **Clinical note:** Changing the route does not correct for **declining renal function**. Digoxin is mainly renally cleared, so reduced kidney function calls for a **lower dose** and a **serum digoxin level** (generally 0.5-0.9 ng/mL in HF; keep below about 1.2 ng/mL), whatever the route.\n## Why the other options are wrong\n• **0.125 mg**: Giving the same dose IV ignores bioavailability and delivers about 33% more drug to the body.\n• **0.167 mg**: This comes from *dividing* by F (0.125 ÷ 0.75), which is the formula for converting IV to oral. It would give roughly 1.8 times the intended exposure, a real toxicity risk with digoxin's narrow therapeutic index.\n• **0.250 mg**: Double the oral dose, with no pharmacokinetic basis. It risks toxicity (nausea, visual changes, bradycardia, arrhythmias), especially with renal impairment.\n## Key takeaway\nOral to IV: multiply by F. IV to oral: divide by F. For digoxin, IV doses are about 25% lower than oral doses. Renal decline calls for a dose reduction and a level, not a route change.\n(Guideline: Digoxin prescribing information; 2023 ACC/AHA/ACCP/HRS AF guideline)",
+    "mustInclude": [
+      "IV dose = oral dose × F",
+      "0.125 × 0.75 = 0.094 mg"
+    ]
+  }
+]
