@@ -1,0 +1,2018 @@
+[
+  {
+    "id": "cmqgt74wy000y1y3qfl9zvuh2",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Eliquis labeling: clarithromycin needs no apixaban dose adjustment, while rifampin (combined strong P-gp/CYP3A4 inducer) should be avoided; key is wrong.",
+    "sampleId": "NP-UH-001"
+  },
+  {
+    "id": "cmqvjaaqt001f1yxkwncjp6o7",
+    "reason_group": "other-graded-hide",
+    "note": "Lab-value template: K 5.5 mEq/L (option C, not in case) on lisinopril equally warrants a change; LDL 'target <100' framing is outdated (ACC/AHA 2018 uses statin intensity/%\u2026",
+    "sampleId": "NP-UH-002"
+  },
+  {
+    "id": "cmqvk1k5p001i1yvd0h2xvdn7",
+    "reason_group": "other-graded-hide",
+    "note": "Worsening migraine on COC: progestin-only pill, IUD, and implant are all US MEC category 1, so B, C, and D are equally safe (C/D more effective); single key is not defensible.",
+    "sampleId": "NP-UH-003"
+  },
+  {
+    "id": "cmqvkc2bh00181ym302ab9pbj",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Avoid metformin due to renal impairment.); FDA label: contraindicated only at eGFR <30; do not initiate at 30-45\u2026",
+    "sampleId": "NP-UH-004"
+  },
+  {
+    "id": "cmqvkc2vo001e1ym3svjksqhb",
+    "reason_group": "other-graded-hide",
+    "note": "Apixaban is only ~27% renally cleared and CrCl 60 needs no adjustment (FDA label); rationale claims 'primarily eliminated by the kidneys' and 'careful dose adjustment'; with\u2026",
+    "sampleId": "NP-UH-005"
+  },
+  {
+    "id": "cmqvkwnlo000v1y5yxmbw337k",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Switch to insulin therapy.); FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and reassess\u2026",
+    "sampleId": "NP-UH-006"
+  },
+  {
+    "id": "cmqvm8og7000h1yms0lwyps1d",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Acute stroke symptoms on apixaban; keyed SCr 1.5 (CrCl 70) does not warrant change, while K 6.0 mEq/L is the dangerous value. Key wrong.",
+    "sampleId": "NP-UH-007"
+  },
+  {
+    "id": "cmqvm8qr0001a1ymsnmepwnq7",
+    "reason_group": "other-graded-hide",
+    "note": "Template mismatch: keyed 'history of substance abuse' contradicts the stem ('no significant medical history'); acetaminophen allergy (C) would equally require follow-up.",
+    "sampleId": "NP-UH-008"
+  },
+  {
+    "id": "cmqvmk2yn00161ydne5ynnj1a",
+    "reason_group": "other-graded-hide",
+    "note": "Template mismatch: keyed 'elevated liver enzymes' contradicts the stem (LFTs within normal limits); new rash or N/V are equally plausible answers.",
+    "sampleId": "NP-UH-009"
+  },
+  {
+    "id": "cmqvmk3g8001b1ydnqgymwtll",
+    "reason_group": "other-graded-hide",
+    "note": "Rivaroxaban AF dose at CrCl 15-50 is 15 mg daily; the patient is on 20 mg at CrCl 45 and the item never flags the dosing error; rationale says 'primarily eliminated by the\u2026",
+    "sampleId": "NP-UH-010"
+  },
+  {
+    "id": "cmqvmk41g001h1ydnxgfzhfcl",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys discontinuing metformin at eGFR exactly 30 (contraindicated only <30); graded Major needs-pharmacist",
+    "sampleId": "NP-UH-011"
+  },
+  {
+    "id": "cmqvmu3o3000e1yuzj3dmf9dy",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin and start glipizide.); FDA label: contraindicated only at eGFR <30; do not initiate at\u2026",
+    "sampleId": "NP-UH-012"
+  },
+  {
+    "id": "cmqvmu66n00181yuzbe6r1ent",
+    "reason_group": "other-graded-hide",
+    "note": "Template mismatch: keyed 'presence of muscle pain' contradicts the stem (reports no side effects, LDL 90 at goal); no option is a real finding.",
+    "sampleId": "NP-UH-013"
+  },
+  {
+    "id": "cmqvn3q24000r1yvvosfwhwwq",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Contact the prescriber to discuss metformin discontinuation.); FDA label: contraindicated only at eGFR <30; do\u2026",
+    "sampleId": "NP-UH-014"
+  },
+  {
+    "id": "cmqvnd4as000i1yqaxhpypzxd",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Keyed K 4.5 is normal; CKD 4 with SCr 2.2 and bleeding on apixaban 5 mg BID is what needs reassessment.",
+    "sampleId": "NP-UH-015"
+  },
+  {
+    "id": "cmqvnd73w001h1yqafq5d6c7w",
+    "reason_group": "other-graded-hide",
+    "note": "Lab-value template: keyed ALT 45 U/L (<3x ULN) does not warrant stopping or changing a statin per FDA labeling/ACC-AHA; BP 140/90 (D) would warrant a change; none of the values\u2026",
+    "sampleId": "NP-UH-016"
+  },
+  {
+    "id": "cmqvnn5j3001b1yjafxzq15n7",
+    "reason_group": "other-graded-hide",
+    "note": "Lisinopril needs no renal dose adjustment at CrCl >30 mL/min (labeling: lower start only if CrCl 10-30); SCr 1.8 in a 60-year-old man is eGFR ~43 (CKD-EPI 2021); ACE inhibitors\u2026",
+    "sampleId": "NP-UH-017"
+  },
+  {
+    "id": "cmqvnyx9t000q1yfgru8gsoxz",
+    "reason_group": "metformin-egfr45",
+    "note": "\"Lab value warrants change\" keyed to serum creatinine 1.4-1.6 mg/dL using the old SCr 1.4/1.5 metformin cutoff (Serum creatinine of 1.5 mg/dL)",
+    "sampleId": "NP-UH-018"
+  },
+  {
+    "id": "cmqvnyyvv001b1yfg0x3so5j9",
+    "reason_group": "other-graded-hide",
+    "note": "Key ('I sometimes feel anxious with a headache') is not a counseling gap; the real counseling point (serotonin syndrome risk with sertraline + sumatriptan) is absent; item does\u2026",
+    "sampleId": "NP-UH-019"
+  },
+  {
+    "id": "cmqvo91id001j1ysdy5gic8ao",
+    "reason_group": "other-graded-hide",
+    "note": "Cross-reactivity in penicillin allergy is not a drug-drug interaction; the actual problem is prescribing amoxicillin to a patient with penicillin-induced hives (contact\u2026",
+    "sampleId": "NP-UH-020"
+  },
+  {
+    "id": "cmqvoio6i001h1yq3zpn3xmis",
+    "reason_group": "other-graded-hide",
+    "note": "On amlodipine + HCTZ: adding an ACE inhibitor (B) or an ARB (C) is equally guideline-concordant; single key not defensible.",
+    "sampleId": "NP-UH-021"
+  },
+  {
+    "id": "cmqvoipky001w1yq3xuef5cop",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Hold metformin and contact the prescriber for alternative th); FDA label: contraindicated only at eGFR <30; do\u2026",
+    "sampleId": "NP-UH-022"
+  },
+  {
+    "id": "cmqvos0n3000n1ylru721kqlv",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys switching metformin to a sulfonylurea with SCr 1.5 (rationale cites creatinine cutoff); should intensify, not stop metformin",
+    "sampleId": "NP-UH-023"
+  },
+  {
+    "id": "cmqvos47w001n1ylr1tcwm66f",
+    "reason_group": "metformin-egfr45",
+    "note": "Key implies metformin must be stopped/changed based on the old SCr >1.5 (men) / >1.4 (women) cutoff taught in the rationale (Suggest an alternative medication for diabetes.)",
+    "sampleId": "NP-UH-024"
+  },
+  {
+    "id": "cmqvp3td1001b1yguay5fkf8k",
+    "reason_group": "metformin-egfr45",
+    "note": "Keyed statement is false: eGFR 45 is not below the metformin threshold (FDA labeling: contraindicated <30; do not initiate at 30-45; reassess if falling below 45); teaches an\u2026",
+    "sampleId": "NP-UH-025"
+  },
+  {
+    "id": "cmqvp3tzc001j1yguao1y5zyg",
+    "reason_group": "metformin-egfr45",
+    "note": "\"Lab value warrants change\" keyed to serum creatinine 1.4-1.6 mg/dL using the old SCr 1.4/1.5 metformin cutoff (Serum creatinine greater than 1.5 mg/dL)",
+    "sampleId": "NP-UH-026"
+  },
+  {
+    "id": "cmqvqc87s000f1yys3bs19gqz",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Rationale invents azithromycin-induced renal impairment/hyperkalemia with lisinopril; the labeled interaction is azithromycin-warfarin (increased INR).",
+    "sampleId": "NP-UH-027"
+  },
+  {
+    "id": "cmqvqc9lf000t1yys5hya9593",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding metformin on SCr 1.8 alone (no eGFR given, eGFR likely 30-45) (Discontinue metformin until renal function improve); FDA label: contraindicated only at\u2026",
+    "sampleId": "NP-UH-028"
+  },
+  {
+    "id": "cmqvqnnkv001g1y5q0cxg1yqr",
+    "reason_group": "other-graded-hide",
+    "note": "Rivaroxaban AF dose at CrCl 15-50 is 15 mg daily; patient is on 20 mg at CrCl 45 with bleeding, and the item never flags the overdose.",
+    "sampleId": "NP-UH-029"
+  },
+  {
+    "id": "cmqvqnnnk001h1y5q041jsdem",
+    "reason_group": "other-graded-hide",
+    "note": "Taking liraglutide at bedtime is not a labeled or evidence-based nausea strategy (dose any time regardless of meals; slow titration, smaller meals); 2.4 mg is not a Victoza\u2026",
+    "sampleId": "NP-UH-030"
+  },
+  {
+    "id": "cmqvrbmp9001s1yi7aro4rd00",
+    "reason_group": "metformin-egfr45",
+    "note": "\"Lab value warrants change\" keyed to serum creatinine 1.4-1.6 mg/dL using the old SCr 1.4/1.5 metformin cutoff (Serum creatinine of 1.5 mg/dL)",
+    "sampleId": "NP-UH-031"
+  },
+  {
+    "id": "cmqvrm83c00171yg5sa2py6iy",
+    "reason_group": "other-graded-hide",
+    "note": "False interaction: lisinopril + atorvastatin does not cause hyperkalemia; options C and D are the same pair; no clinically meaningful interaction among the options for this\u2026",
+    "sampleId": "NP-UH-032"
+  },
+  {
+    "id": "cmqvrm8oz001a1yg54za7gy00",
+    "reason_group": "metformin-egfr45",
+    "note": "Keyed SCr 1.5 mg/dL relies on the withdrawn SCr cutoff; in a 50-year-old man it is eGFR ~56 (CKD-EPI 2021), which does not require metformin action (FDA labeling uses eGFR); no\u2026",
+    "sampleId": "NP-UH-033"
+  },
+  {
+    "id": "cmqvrwj3800161yzbgjf759s0",
+    "reason_group": "other-graded-hide",
+    "note": "Template mismatch: keyed 'request for a higher dose of buprenorphine' is not in the case (patient asked about an OTC anxiety supplement).",
+    "sampleId": "NP-UH-034"
+  },
+  {
+    "id": "cmqvs8n1m001a1y15fiqtmgly",
+    "reason_group": "other-graded-hide",
+    "note": "HbA1c 7.2% on metformin 500 mg BID is near goal and not an 'immediate follow-up' finding; no option is a true urgent finding.",
+    "sampleId": "NP-UH-035"
+  },
+  {
+    "id": "cmqvsj4it000f1yjagvg20gln",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Keyed SCr 1.0 is normal and the rationale says no change is warranted; HF with weight gain and hypotension points to BNP/volume status.",
+    "sampleId": "NP-UH-036"
+  },
+  {
+    "id": "cmqvsvdwv00101yuotw6vns5y",
+    "reason_group": "metformin-egfr45",
+    "note": "Rationale teaches metformin contraindicated at SCr >1.5 mg/dL (withdrawn 2016 label cutoff); key built on that cutoff",
+    "sampleId": "NP-UH-037"
+  },
+  {
+    "id": "cmqvsvh0t001m1yuool6knxt0",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding metformin on SCr 1.8 alone (no eGFR given, eGFR likely 30-45) (Hold metformin and consult her healthcare provider); FDA label: contraindicated only at\u2026",
+    "sampleId": "NP-UH-038"
+  },
+  {
+    "id": "cmqvt6mi3001j1yheiw1np4bt",
+    "reason_group": "other-graded-hide",
+    "note": "Template mismatch: keyed 'increased creatinine' is not in the case (labs normal); decreased WBC (B) is equally urgent on methotrexate.",
+    "sampleId": "NP-UH-039"
+  },
+  {
+    "id": "cmqvu2b4r001r1yt7nfjw3ul5",
+    "reason_group": "metformin-egfr45",
+    "note": "\"Lab value warrants change\" keyed to serum creatinine 1.4-1.6 mg/dL using the old SCr 1.4/1.5 metformin cutoff (Serum creatinine level of 1.6 mg/dL)",
+    "sampleId": "NP-UH-040"
+  },
+  {
+    "id": "cmqvuejz5000g1yvzkvi1wusk",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Warfarin is not renally dosed; keyed SCr 1.2 is wrong; INR 3.5 (A) is above the AF goal and would warrant a change.",
+    "sampleId": "NP-UH-041"
+  },
+  {
+    "id": "cmqvuekh9000l1yvzku6z5vht",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Estrogen-containing contraceptives are contraindicated after DVT (US MEC category 4) and can affect warfarin; keyed NSAIDs are not in the regimen;\u2026",
+    "sampleId": "NP-UH-042"
+  },
+  {
+    "id": "cmqvuemju00161yvzcsu9qe0h",
+    "reason_group": "other-graded-hide",
+    "note": "False interaction: azithromycin does not reduce combined oral contraceptive efficacy (only rifamycins are established; CDC US MEC category 1 for other antibiotics); counseling\u2026",
+    "sampleId": "NP-UH-043"
+  },
+  {
+    "id": "cmqvuemub00191yvzp1gi5fwa",
+    "reason_group": "other-graded-hide",
+    "note": "Antibiotics used for UTI do not reduce oral contraceptive efficacy (only rifamycins do; CDC US MEC category 1); keying 'current use of antibiotics' as an urgent finding teaches\u2026",
+    "sampleId": "NP-UH-044"
+  },
+  {
+    "id": "cmqvvhwwd000j1y3awh8bapgl",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin due to renal impairment.); FDA label: contraindicated only at eGFR <30; do not initiate at\u2026",
+    "sampleId": "NP-UH-045"
+  },
+  {
+    "id": "cmqvvi0bo001b1y3a4vohrmpk",
+    "reason_group": "other-graded-hide",
+    "note": "Template mismatch: keyed rescue-inhaler overuse is not in the case; LAMA + ICS/LABA (D) is legitimate triple therapy, not a problem.",
+    "sampleId": "NP-UH-046"
+  },
+  {
+    "id": "cmqvvi0sf001h1y3a17d73p5o",
+    "reason_group": "other-graded-hide",
+    "note": "Migraine with aura: combined estrogen is US MEC category 4, but progestin-only methods and IUDs are both category 1, so B and D are equally correct.",
+    "sampleId": "NP-UH-047"
+  },
+  {
+    "id": "cmqvw7w7n00191yuww0hyj0vc",
+    "reason_group": "other-graded-hide",
+    "note": "Keys the outdated canagliflozin eGFR 45 threshold; current labeling allows use at eGFR >=30 (100 mg max below 60), so eGFR 45 is not an urgent finding.",
+    "sampleId": "NP-UH-048"
+  },
+  {
+    "id": "cmqvw7wkv001d1yuwe31dnezv",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed 'no reported side effects requires immediate follow-up' is not a clinical finding; LDL 70 on a statin in CAD is near goal; no option is correct.",
+    "sampleId": "NP-UH-049"
+  },
+  {
+    "id": "cmqvwjubt00171ybjabvlqou7",
+    "reason_group": "other-graded-hide",
+    "note": "Template mismatch: keyed 'new-onset chest pain' is not in the case (ankle swelling is the reported finding); no option fits.",
+    "sampleId": "NP-UH-050"
+  },
+  {
+    "id": "cmqvwjuze001d1ybj92oyua16",
+    "reason_group": "other-graded-hide",
+    "note": "Rivaroxaban AF dose at CrCl 15-50 is 15 mg daily; the patient is on 20 mg at CrCl 45 with bleeding, and the item never flags the overdose.",
+    "sampleId": "NP-UH-051"
+  },
+  {
+    "id": "cmqvwu8yr001e1yd8gmlyq4ng",
+    "reason_group": "other-graded-hide",
+    "note": "Muscle cramps on a statin call for CK assessment, not LFTs; FDA labeling no longer requires routine LFT monitoring; keyed LFTs are not the most critical parameter.",
+    "sampleId": "NP-UH-052"
+  },
+  {
+    "id": "cmqvy05yh001d1yqodbcgthpp",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Patient is already on tiotropium (a LAMA) plus salmeterol/fluticasone; 'add a LAMA' is therapeutic duplication. Worsening dyspnea and wheeze suggest\u2026",
+    "sampleId": "NP-UH-053"
+  },
+  {
+    "id": "cmqw0gd20001c1y1lf7t3fh14",
+    "reason_group": "other-graded-hide",
+    "note": "Template mismatch: keyed 'swelling in my feet' is not in the case (the stem reports cough); lightheadedness (C) is equally a counseling point; a 32-year-old on an ACE inhibitor\u2026",
+    "sampleId": "NP-UH-054"
+  },
+  {
+    "id": "cmqw17oky00171yit8yhf3nkb",
+    "reason_group": "other-graded-hide",
+    "note": "Aprepitant (NK1 antagonist) is used for prevention, not as rescue for breakthrough CINV; NCCN breakthrough options include olanzapine, dexamethasone, metoclopramide, and\u2026",
+    "sampleId": "NP-UH-055"
+  },
+  {
+    "id": "cmqw17ovp001a1yithrhayt23",
+    "reason_group": "other-graded-hide",
+    "note": "Migraine with aura is a US MEC category 4 contraindication to combined estrogen contraceptives; the correct action is to contact the prescriber, not to counsel on clot risk and\u2026",
+    "sampleId": "NP-UH-056"
+  },
+  {
+    "id": "cmqw1ig5b001f1yqa0r5ny79x",
+    "reason_group": "other-graded-hide",
+    "note": "Patient has a penicillin-allergy rash history and is being dispensed amoxicillin; the item ignores the allergy and keys a nonsensical statement ('take with my other\u2026",
+    "sampleId": "NP-UH-057"
+  },
+  {
+    "id": "cmqw33r0j001f1yawthgkf28k",
+    "reason_group": "other-graded-hide",
+    "note": "Rivaroxaban AF dose at CrCl 15-50 is 15 mg daily; the patient is on 20 mg at CrCl 45 unflagged, and labeling does recommend periodic renal function checks (D).",
+    "sampleId": "NP-UH-058"
+  },
+  {
+    "id": "cmqw3g83l001h1ypj6i20g39r",
+    "reason_group": "other-graded-hide",
+    "note": "Canagliflozin 100 mg is labeled for eGFR >=30 (and has kidney-outcome benefit in diabetic CKD); eGFR 45 does not require an alternative, and switching to insulin for 'safety'\u2026",
+    "sampleId": "NP-UH-059"
+  },
+  {
+    "id": "cmqw3swok001a1y3lvq1vnfmt",
+    "reason_group": "other-graded-hide",
+    "note": "'I use my albuterol whenever I feel short of breath' is correct rescue-inhaler use, not a misconception; the item conflates overuse with the statement; no option is a\u2026",
+    "sampleId": "NP-UH-060"
+  },
+  {
+    "id": "cmqw508zu001g1yq28e63go3p",
+    "reason_group": "metformin-egfr45",
+    "note": "Key implies metformin must be stopped/changed based on the old SCr >1.5 (men) / >1.4 (women) cutoff taught in the rationale (Contact the prescriber to discuss the appropriaten)",
+    "sampleId": "NP-UH-061"
+  },
+  {
+    "id": "cmqw5q2de000k1ygpo3xmslx4",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin and switch to insulin.); FDA label: contraindicated only at eGFR <30; do not initiate at\u2026",
+    "sampleId": "NP-UH-062"
+  },
+  {
+    "id": "cmqw6gmid001c1y9i0aet0201",
+    "reason_group": "metformin-egfr45",
+    "note": "Critical needs-pharmacist: Metformin is not held for stable CrCl 45 (FDA labeling: contraindicated <30, reassess if eGFR falls below 45, hold only for contrast/acute illness);\u2026",
+    "sampleId": "NP-UH-063"
+  },
+  {
+    "id": "cmqw6ulaa00181ysjw3ebu0m8",
+    "reason_group": "other-graded-hide",
+    "note": "Starting amiodarone requires baseline thyroid, liver, and pulmonary tests (B and C equally); no lab value is given that 'warrants a change'; stem/key mismatch.",
+    "sampleId": "NP-UH-064"
+  },
+  {
+    "id": "cmqw7d7hd001d1yfanxpg72cu",
+    "reason_group": "other-graded-hide",
+    "note": "SCr 1.8 in a 65-year-old woman is eGFR ~31 (CKD-EPI 2021); FDA labeling says not to initiate metformin at eGFR 30-45, and the item counsels on a new start without addressing it.",
+    "sampleId": "NP-UH-065"
+  },
+  {
+    "id": "cmqw8eknl00121yl413chv7t7",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Switch to glipizide 5 mg daily.); FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\u2026",
+    "sampleId": "NP-UH-066"
+  },
+  {
+    "id": "cmqw919kw001c1yb5o9j7ph4s",
+    "reason_group": "other-graded-hide",
+    "note": "Muscle pain and weakness on atorvastatin require CK assessment; LFTs every 4-6 weeks for AST 45/ALT 50 (<3x ULN) is not guideline monitoring; no correct option.",
+    "sampleId": "NP-UH-067"
+  },
+  {
+    "id": "cmqw9dni600161yamdl7an3me",
+    "reason_group": "other-graded-hide",
+    "note": "Statements A ('stop sertraline if anxious') and D ('take lorazepam daily to avoid withdrawal') are also misconceptions; multiple answers need counseling.",
+    "sampleId": "NP-UH-068"
+  },
+  {
+    "id": "cmqwb305k00121y49hallctao",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Switch to insulin therapy.); FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and reassess\u2026",
+    "sampleId": "NP-UH-069"
+  },
+  {
+    "id": "cmqwc4r7m001h1y9ni2z27hi0",
+    "reason_group": "other-graded-hide",
+    "note": "COPD exacerbation with purulent sputum and SpO2 88%: GOLD treatment is SABA plus a systemic corticosteroid (prednisone, B) and an antibiotic (azithromycin, A); maintenance\u2026",
+    "sampleId": "NP-UH-070"
+  },
+  {
+    "id": "cmqwcs78h001e1yzq2qh0ck1q",
+    "reason_group": "other-graded-hide",
+    "note": "Muscle pain and weakness on atorvastatin call for CK, not LFTs; no correct option offered.",
+    "sampleId": "NP-UH-071"
+  },
+  {
+    "id": "cmqwdi601001f1yv223whqlf0",
+    "reason_group": "other-graded-hide",
+    "note": "No laboratory value is given in the case; weight gain and edema (clinical findings) warrant diuretic adjustment, and BNP is not needed to make the change; stem/key template\u2026",
+    "sampleId": "NP-UH-072"
+  },
+  {
+    "id": "cmqwdi6ea001g1yv2ohz8rflo",
+    "reason_group": "other-graded-hide",
+    "note": "Patient is pregnant: doxycycline (tetracycline class) should be avoided in pregnancy (tooth discoloration/bone effects during the last half of pregnancy), so the priority is to\u2026",
+    "sampleId": "NP-UH-073"
+  },
+  {
+    "id": "cmqwdvren001b1yjpapvxn8it",
+    "reason_group": "other-graded-hide",
+    "note": "Lightheadedness on standing on lisinopril + furosemide points to orthostatic blood pressure (B) at least as much as renal function (C); electrolytes also defensible; multiple\u2026",
+    "sampleId": "NP-UH-074"
+  },
+  {
+    "id": "cmqwe6x9n00191ytdebdoeslk",
+    "reason_group": "other-graded-hide",
+    "note": "Furosemide + spironolactone is not a therapeutic duplication (different classes, standard HFrEF GDMT; K effects partly offset, not additive hyperkalemia from the loop); A (two\u2026",
+    "sampleId": "NP-UH-075"
+  },
+  {
+    "id": "cmqxaup7q000k1ypray1oscfm",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin due to renal impairment); FDA label: contraindicated only at eGFR <30; do not initiate at\u2026",
+    "sampleId": "NP-UH-076"
+  },
+  {
+    "id": "cmqxaurjc00181yprahjcuqye",
+    "reason_group": "other-graded-hide",
+    "note": "Two defensible answers: the patient asks about OTC diphenhydramine (B; anticholinergic sedative not preferred for insomnia) and reports worsening anxiety (D); stem does not\u2026",
+    "sampleId": "NP-UH-077"
+  },
+  {
+    "id": "cmqxaurmq00191ypr2j3zvae3",
+    "reason_group": "metformin-egfr45",
+    "note": "\"Lab value warrants change\" keyed to serum creatinine 1.4-1.6 mg/dL using the old SCr 1.4/1.5 metformin cutoff (Creatinine level of 1.5 mg/dL)",
+    "sampleId": "NP-UH-078"
+  },
+  {
+    "id": "cmqxaurxd001c1yprzyyp1n4k",
+    "reason_group": "other-graded-hide",
+    "note": "No laboratory values are given in the case (template mismatch); hyponatremia is a real SSRI effect but nothing in the vignette supports the key.",
+    "sampleId": "NP-UH-079"
+  },
+  {
+    "id": "cmr045iku005h1ypu33tlnqo0",
+    "reason_group": "other-graded-hide",
+    "note": "Patient already takes tiotropium (a LAMA) plus salmeterol/fluticasone (triple therapy); 'add a LAMA' is a therapeutic duplication; worsening dyspnea/wheeze on triple therapy\u2026",
+    "sampleId": "NP-UH-080"
+  },
+  {
+    "id": "cmr04ge5y001g1y477fwetg0q",
+    "reason_group": "other-graded-hide",
+    "note": "Taking levothyroxine with breakfast (A) is the classic counseling error (take on an empty stomach 30-60 min before breakfast or at bedtime); the item treats it as correct\u2026",
+    "sampleId": "NP-UH-081"
+  },
+  {
+    "id": "cmr05260j001p1y2t2m4r9mms",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding metformin on SCr 1.8 alone (no eGFR given, eGFR likely 30-45) (Discontinue metformin due to renal impairment); FDA label: contraindicated only at eGFR\u2026",
+    "sampleId": "NP-UH-082"
+  },
+  {
+    "id": "cmr062lee00561yho7dc7x1k1",
+    "reason_group": "other-graded-hide",
+    "note": "False interaction: azithromycin does not reduce combined oral contraceptive efficacy (only rifamycins are established; US MEC category 1 for other antibiotics); keyed\u2026",
+    "sampleId": "NP-UH-083"
+  },
+  {
+    "id": "cmr062m2g005e1yho3flueiil",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: ACR 2019 OA guideline conditionally recommends against non-tramadol opioids and CDC 2022 advises optimizing non-opioid therapy first; escalating to\u2026",
+    "sampleId": "NP-UH-084"
+  },
+  {
+    "id": "cmr076x3a001g1yyzciz4otbx",
+    "reason_group": "other-graded-hide",
+    "note": "Loratadine (A) is equally appropriate: cetirizine cross-sensitivity concerns apply to hydroxyzine/levocetirizine, not loratadine or fexofenadine; two defensible answers.",
+    "sampleId": "NP-UH-085"
+  },
+  {
+    "id": "cmr076xej001j1yyzucpwq9ts",
+    "reason_group": "other-graded-hide",
+    "note": "Two defensible answers: a new calcium supplement (B) must be separated from levothyroxine by ~4 hours (classic counseling point), and missed doses (D) also need counseling.",
+    "sampleId": "NP-UH-086"
+  },
+  {
+    "id": "cmr07jny0005j1yyzfq7hr4ju",
+    "reason_group": "other-graded-hide",
+    "note": "All four patient statements are correct (take at onset; max 200 mg/24 h; no pharmacokinetic OC interaction; limit use to prevent medication-overuse headache), so the keyed\u2026",
+    "sampleId": "NP-UH-087"
+  },
+  {
+    "id": "cmr094xjg005g1y10zj0eg1rm",
+    "reason_group": "other-graded-hide",
+    "note": "Patient is overusing salmeterol/fluticasone: 'take every 12 hours regardless of symptoms' (C; LABA maximum twice daily) is at least as important as the keyed 'consult if\u2026",
+    "sampleId": "NP-UH-088"
+  },
+  {
+    "id": "cmr09hrfh001f1yrcm6jmz9ij",
+    "reason_group": "other-graded-hide",
+    "note": "'No routine monitoring' is inaccurate: DOACs need no INR, but ACC/AHA advises renal (and hepatic) function at least annually; C (renal every 6 months) is more than needed at\u2026",
+    "sampleId": "NP-UH-089"
+  },
+  {
+    "id": "cmr09s1xp004u1yrcfofhak9z",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin); FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and reassess if it\u2026",
+    "sampleId": "NP-UH-090"
+  },
+  {
+    "id": "cmr0a3rrk001k1y7dy59gmc8x",
+    "reason_group": "other-graded-hide",
+    "note": "Albuterol + tiotropium is a standard, recommended combination with no clinically significant interaction; none of the listed pairs is a real risk interaction; rationale invents\u2026",
+    "sampleId": "NP-UH-091"
+  },
+  {
+    "id": "cmr0awfaq001g1yq3lyizjvn0",
+    "reason_group": "other-graded-hide",
+    "note": "CHEST 2022 (BRIDGE trial) recommends against routine heparin bridging for AF patients interrupting warfarin; stop warfarin ~5 days before surgery without bridging; no option\u2026",
+    "sampleId": "NP-UH-092"
+  },
+  {
+    "id": "cmr0bs5i9005j1ytbspsvkqke",
+    "reason_group": "other-graded-hide",
+    "note": "The supplement is unnamed, so 'stop the supplement immediately' is unsupported; new muscle pain and weakness on a statin call for contacting the prescriber and checking CK; key\u2026",
+    "sampleId": "NP-UH-093"
+  },
+  {
+    "id": "cmr0cc1xd001l1ybd8ofe2q2r",
+    "reason_group": "other-graded-hide",
+    "note": "Patient is starting tiotropium; adding ipratropium duplicates anticholinergic therapy (tiotropium labeling advises against combining with other anticholinergics); formoterol\u2026",
+    "sampleId": "NP-UH-094"
+  },
+  {
+    "id": "cmr0dvgbz005j1yh62se7fl3b",
+    "reason_group": "other-graded-hide",
+    "note": "Two statements need counseling: A (use only when short of breath) and D (do not use if feeling well) are both wrong for maintenance budesonide/formoterol in COPD.",
+    "sampleId": "NP-UH-095"
+  },
+  {
+    "id": "cmr0e8x1l001f1yqxqy9fj05a",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: IDSA ABRS guidance: macrolides (azithromycin) are not recommended because of high pneumococcal resistance; for penicillin allergy use doxycycline (D)\u2026",
+    "sampleId": "NP-UH-096"
+  },
+  {
+    "id": "cmr0ejuva005f1yqxoeajf00h",
+    "reason_group": "other-graded-hide",
+    "note": "No laboratory values are given (template mismatch), and omeprazole hepatotoxicity is not the issue in PPI non-response; stem/key mismatch.",
+    "sampleId": "NP-UH-097"
+  },
+  {
+    "id": "cmr0ev85o001f1ye3vh2zcora",
+    "reason_group": "other-graded-hide",
+    "note": "ACC/AHA 2017: ACE inhibitor, CCB and thiazide are equally first-line (stage 2 HTN may warrant two agents); lisinopril, amlodipine and HCTZ are all defensible; 'preferred for\u2026",
+    "sampleId": "NP-UH-098"
+  },
+  {
+    "id": "cmr0ev8le001j1ye3u4snrn5w",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed 'avoid foods high in vitamin K' is the classic misconception (counsel consistent intake), contradicting sibling items that flag avoidance as needing counseling; B and D\u2026",
+    "sampleId": "NP-UH-099"
+  },
+  {
+    "id": "cmr0f6w73005g1ye3mhlx8o2p",
+    "reason_group": "other-graded-hide",
+    "note": "Routine periodic LFT monitoring was removed from statin labeling in 2012 (baseline only, then as indicated); patient's concern is muscle pain but CK is not offered; no good\u2026",
+    "sampleId": "NP-UH-100"
+  },
+  {
+    "id": "cmr0f6wxp005n1ye3zm72rvrp",
+    "reason_group": "other-graded-hide",
+    "note": "The patient's only inhaler is maintenance salmeterol/fluticasone (scheduled twice daily), so 'more than twice a week' is not a misuse; the rationale confuses it with rescue\u2026",
+    "sampleId": "NP-UH-101"
+  },
+  {
+    "id": "cmr0ft17z005h1yqw6pnmz001",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys discontinuing metformin at eGFR 40-45; round-2 FIX pending (not applied), live key still wrong; FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\u2026",
+    "sampleId": "NP-UH-102"
+  },
+  {
+    "id": "cmr0g44v3001f1ywzrpxu0icz",
+    "reason_group": "unsafe-teaching",
+    "note": "Keys vitamin K for elevated INR without bleeding (CHEST: hold/adjust warfarin, no vitamin K)",
+    "sampleId": "NP-UH-103"
+  },
+  {
+    "id": "cmr0grxnw000r1ygwx7o57x5t",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys \"discontinue due to renal impairment\" at eGFR 45; the vomiting/abdominal pain may justify a sick-day hold but the stated renal reason is wrong",
+    "sampleId": "NP-UH-104"
+  },
+  {
+    "id": "cmr0hpcb2005c1yc3oqqxcsih",
+    "reason_group": "other-graded-hide",
+    "note": "Patient on triple therapy with more dyspnea: increasing ICS dose is not a GOLD strategy; B duplicates the LABA; no option (assess technique/adherence, exacerbation treatment,\u2026",
+    "sampleId": "NP-UH-105"
+  },
+  {
+    "id": "cmr0hpcxm005i1yc3dy5c3nak",
+    "reason_group": "other-graded-hide",
+    "note": "No laboratory values are given; weight gain and fatigue in HF call for volume assessment, and creatinine, electrolytes and BNP are all defensible; stem/key template mismatch.",
+    "sampleId": "NP-UH-106"
+  },
+  {
+    "id": "cmr0mlgrk001m1y34a5px9jx6",
+    "reason_group": "unsafe-teaching",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold warfarin, no vitamin K)",
+    "sampleId": "NP-UH-107"
+  },
+  {
+    "id": "cmr0mwtn6005i1y34c9z68otn",
+    "reason_group": "other-graded-hide",
+    "note": "Options C ('SGLT2 inhibitor') and D ('dapagliflozin', an SGLT2 inhibitor) are the same answer, so the key is arbitrary; BP 140/90 is also above the ADA goal (<130/80).",
+    "sampleId": "NP-UH-108"
+  },
+  {
+    "id": "cmr0n6tcg00181y0qjbmiu1jb",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding metformin on SCr 1.8 alone (no eGFR given, eGFR likely 30-45) (Switch to glipizide 5 mg daily.); FDA label: contraindicated only at eGFR <30; do not\u2026",
+    "sampleId": "NP-UH-109"
+  },
+  {
+    "id": "cmr0ng9cl005g1y0q30a3s1ye",
+    "reason_group": "other-graded-hide",
+    "note": "Rivaroxaban 20 mg at CrCl 30 is already the wrong dose (label: 15 mg daily for CrCl 15-50), which the item ignores while keying a hypothetical eGFR <15 threshold; the\u2026",
+    "sampleId": "NP-UH-110"
+  },
+  {
+    "id": "cmr0oxdm9001f1y8x6ymaxza5",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: INR 3.5 without bleeding does not warrant vitamin K (CHEST 2012: continue or small dose adjustment, recheck); vitamin K would also complicate\u2026",
+    "sampleId": "NP-UH-111"
+  },
+  {
+    "id": "cmr0oxdt8001h1y8x6h9v8ol8",
+    "reason_group": "other-graded-hide",
+    "note": "SCr 1.5 in a 65-year-old woman is eGFR ~38 (CKD-EPI 2021): metformin 2,000 mg/day exceeds the ~1,000 mg/day ceiling at eGFR 30-44 and needs dose review, which no option\u2026",
+    "sampleId": "NP-UH-112"
+  },
+  {
+    "id": "cmr0oxe3t001k1y8xmg241gd1",
+    "reason_group": "other-graded-hide",
+    "note": "Two statements need counseling: new muscle pain on atorvastatin (B, needs evaluation) and missed doses (D).",
+    "sampleId": "NP-UH-113"
+  },
+  {
+    "id": "cmr0pq03p005d1yajsz92klgl",
+    "reason_group": "metformin-egfr45",
+    "note": "Critical needs-pharmacist: Metformin is contraindicated only at eGFR <30; at eGFR 45 on 1,000 mg/day it should be continued (A); the rationale's discontinuation at eGFR 45 is\u2026",
+    "sampleId": "NP-UH-114"
+  },
+  {
+    "id": "cmr0pq0lj005i1yajncc9bds5",
+    "reason_group": "other-graded-hide",
+    "note": "No A1c is given (glucose 150 only), so the keyed A1c cannot 'warrant a change'; stem/key template mismatch.",
+    "sampleId": "NP-UH-115"
+  },
+  {
+    "id": "cmr0q12uc001h1y9a02tjh4n4",
+    "reason_group": "other-graded-hide",
+    "note": "After 3 months on sertraline 100 mg with worsening anxiety, 'it may take several weeks' is the wrong message; she needs reassessment (dose optimization or switch); no correct\u2026",
+    "sampleId": "NP-UH-116"
+  },
+  {
+    "id": "cmr0qtnrg001f1yf98i0g4dh0",
+    "reason_group": "other-graded-hide",
+    "note": "Routine LFT monitoring after statin initiation was removed from labeling in 2012 (baseline only, then as clinically indicated); ACC/AHA 2018 checks a lipid panel 4-12 weeks\u2026",
+    "sampleId": "NP-UH-117"
+  },
+  {
+    "id": "cmr0qtodm001l1yf9cmdzny74",
+    "reason_group": "unsafe-teaching",
+    "note": "Keys vitamin K for elevated INR without bleeding (CHEST: hold/adjust warfarin, no vitamin K)",
+    "sampleId": "NP-UH-118"
+  },
+  {
+    "id": "cmr0ri55k001i1y8jwlhd6tst",
+    "reason_group": "other-graded-hide",
+    "note": "COPD uncontrolled on ICS/LABA: GOLD escalation is adding a long-acting LAMA (tiotropium) for triple therapy; ipratropium is a short-acting antimuscarinic, not a maintenance\u2026",
+    "sampleId": "NP-UH-119"
+  },
+  {
+    "id": "cmr0ul5y1005d1yif6d8i5k4w",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Hold metformin and consult her physician.); FDA label: contraindicated only at eGFR <30; do not initiate at\u2026",
+    "sampleId": "NP-UH-120"
+  },
+  {
+    "id": "cmr0uwjae001i1y1ae77iee9c",
+    "reason_group": "other-graded-hide",
+    "note": "She reports GI upset, which B (take with food) addresses directly, and C (stop if eGFR <30) is also a correct counseling point; lactic acidosis is rare at eGFR 55; several\u2026",
+    "sampleId": "NP-UH-121"
+  },
+  {
+    "id": "cmr0uwjhy001j1y1anbzsdqdj",
+    "reason_group": "other-graded-hide",
+    "note": "The patient's stated concern is bleeding risk, which A (avoid NSAIDs) addresses; consistent timing (B) is generic; two defensible answers and D is also partly true.",
+    "sampleId": "NP-UH-122"
+  },
+  {
+    "id": "cmr31diqh0097js047dx13msm",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: ACIP: asplenia is not an indication for Shingrix under age 50 (RZV for adults >=19 only if immunodeficient/immunosuppressed), and annual influenza\u2026",
+    "sampleId": "NP-UH-123"
+  },
+  {
+    "id": "cmr4bs3v7001b1ycj1f9bf37t",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Suggest switching metformin to insulin due to renal impairme); FDA label: contraindicated only at eGFR <30; do\u2026",
+    "sampleId": "NP-UH-124"
+  },
+  {
+    "id": "cmr4edzu1004o1yk3i88n38wk",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin due to renal impairment.); FDA label: contraindicated only at eGFR <30; do not initiate at\u2026",
+    "sampleId": "NP-UH-125"
+  },
+  {
+    "id": "cmr4f66jy00461yg6u0rxz7uq",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: ED/inpatient CAP: ceftriaxone monotherapy is incomplete (ATS/IDSA: beta-lactam plus macrolide, or respiratory fluoroquinolone alone); only\u2026",
+    "sampleId": "NP-UH-126"
+  },
+  {
+    "id": "cmr4fjtv900081yropdhnl7yz",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding metformin on SCr 1.8 alone (no eGFR given, eGFR likely 30-45) (Contact the prescriber to discuss metformin discon); FDA label: contraindicated only at\u2026",
+    "sampleId": "NP-UH-127"
+  },
+  {
+    "id": "cmr4h2gsm000e1yqxf54u31su",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin); FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and reassess if it\u2026",
+    "sampleId": "NP-UH-128"
+  },
+  {
+    "id": "cmr4itdnw004f1y7u7to1kbt1",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding metformin on SCr 1.8 alone (no eGFR given, eGFR likely 30-45) (Discontinue metformin and switch to insulin); FDA label: contraindicated only at eGFR <30;\u2026",
+    "sampleId": "NP-UH-129"
+  },
+  {
+    "id": "cmr4jwq0000151yrnsp8hfd1u",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Switch metformin to sitagliptin.); FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\u2026",
+    "sampleId": "NP-UH-130"
+  },
+  {
+    "id": "cmr7rz5fw00121yxyhw959b6c",
+    "reason_group": "unsafe-teaching",
+    "note": "Keys adding a LABA without an inhaled corticosteroid (LABA monotherapy in asthma is unsafe)",
+    "sampleId": "NP-UH-131"
+  },
+  {
+    "id": "cmr7sbvdi00151y2v9syhmewa",
+    "reason_group": "other-graded-hide",
+    "note": "SCr 1.8 in a 65-year-old woman is eGFR ~31 (CKD-EPI 2021): labeling does not recommend starting metformin at eGFR 30-45, which the item ignores while keying lactic acidosis\u2026",
+    "sampleId": "NP-UH-132"
+  },
+  {
+    "id": "cmr7sbwlu001k1y2vhw8d7qrg",
+    "reason_group": "metformin-egfr45",
+    "note": "\"Lab value warrants change\" keyed to serum creatinine 1.4-1.6 mg/dL using the old SCr 1.4/1.5 metformin cutoff (Serum creatinine level of 1.4 mg/dL)",
+    "sampleId": "NP-UH-133"
+  },
+  {
+    "id": "cmr7snaka00141y6rq5nyrw6f",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys discontinuing metformin at eGFR 40-45; round-2 FIX pending (not applied), live key still wrong; FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\u2026",
+    "sampleId": "NP-UH-134"
+  },
+  {
+    "id": "cmr7snb5w001a1y6r2mrcrkld",
+    "reason_group": "metformin-egfr45",
+    "note": "\"Lab value warrants change\" keyed to serum creatinine 1.4-1.6 mg/dL using the old SCr 1.4/1.5 metformin cutoff (Serum creatinine of 1.5 mg/dL)",
+    "sampleId": "NP-UH-135"
+  },
+  {
+    "id": "cmr7t0evl000p1yur2mp3k1jm",
+    "reason_group": "other-graded-hide",
+    "note": "Metformin and atorvastatin do not interact to cause lactic acidosis (false teaching); insulin and digoxin are not in the regimen; no option is a meaningful interaction.",
+    "sampleId": "NP-UH-136"
+  },
+  {
+    "id": "cmr7t0g3o00111yurz33d8lrs",
+    "reason_group": "other-graded-hide",
+    "note": "Statin muscle pain and weakness: ACC/AHA advises holding the statin and checking CK, then rechallenging at a lower dose or a different statin; reducing to 20 mg while\u2026",
+    "sampleId": "NP-UH-137"
+  },
+  {
+    "id": "cmr7t0gwy00191yurc7xyz92o",
+    "reason_group": "other-graded-hide",
+    "note": "Several statements need counseling: A (should exhale fully first), B (mouth rinsing is for ICS, not tiotropium) and D (discard timing depends on device); the keyed 'dizziness'\u2026",
+    "sampleId": "NP-UH-138"
+  },
+  {
+    "id": "cmr7t0hfm001e1yurcokkured",
+    "reason_group": "other-graded-hide",
+    "note": "SCr 1.8 in a 67-year-old woman gives eGFR about 30 (CKD-EPI 2021), so metformin 2,000 mg/day is not appropriate (do not start at eGFR 30-45); no option addresses the renal\u2026",
+    "sampleId": "NP-UH-139"
+  },
+  {
+    "id": "cmr7td4yn00061y4gnox9jifa",
+    "reason_group": "other-graded-hide",
+    "note": "Case gives SCr 1.2, not the keyed 1.5; orthostatic dizziness at BP 110/70 (C) and K 5.5 (A) also warrant change, so several options are defensible.",
+    "sampleId": "NP-UH-140"
+  },
+  {
+    "id": "cmr7td7qo000x1y4gxnwskkjk",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin and switch to glipizide.); FDA label: contraindicated only at eGFR <30; do not initiate at\u2026",
+    "sampleId": "NP-UH-141"
+  },
+  {
+    "id": "cmr7td81k00101y4g5v2kietr",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed SCr 1.8 not in case; K 5.5 and BNP 500 (decompensated HF) also warrant change; misfiled under compounding.",
+    "sampleId": "NP-UH-142"
+  },
+  {
+    "id": "cmr7td8gn00141y4gtn2lyvki",
+    "reason_group": "unsafe-teaching",
+    "note": "Teaches avoiding vitamin K foods on warfarin (correct teaching is a consistent intake)",
+    "sampleId": "NP-UH-143"
+  },
+  {
+    "id": "cmr7td8ru00171y4g18ennq92",
+    "reason_group": "other-graded-hide",
+    "note": "Muscle aches on a statin need assessment (CK; hold and rechallenge), and LDL 160 on atorvastatin 40 mg is not at goal; 'continue and monitor' addresses neither; no correct option.",
+    "sampleId": "NP-UH-144"
+  },
+  {
+    "id": "cmr7tqo4000111yiv8b03eoic",
+    "reason_group": "other-graded-hide",
+    "note": "No laboratory values are given (WBC is not reported), so no lab can 'warrant a therapeutic change'; stem/key template mismatch.",
+    "sampleId": "NP-UH-145"
+  },
+  {
+    "id": "cmr7u4zkv00181yo91qxvxmey",
+    "reason_group": "other-graded-hide",
+    "note": "In STEMI, primary PCI (C, immediate angiography) is the definitive next step and is given together with aspirin plus a P2Y12 loading dose (ticagrelor or prasugrel preferred for\u2026",
+    "sampleId": "NP-UH-146"
+  },
+  {
+    "id": "cmr7ugp1b00061yt3ldvr7yk9",
+    "reason_group": "other-graded-hide",
+    "note": "Case INR is 2.8 (in range, no change); keyed 3.5 is not the patient's value, and INR 1.5 (C) would also warrant change.",
+    "sampleId": "NP-UH-147"
+  },
+  {
+    "id": "cmr7usddb00081yxy7hmb0yct",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Contact the prescriber to discuss metformin discontinuation.); FDA label: contraindicated only at eGFR <30; do\u2026",
+    "sampleId": "NP-UH-148"
+  },
+  {
+    "id": "cmr7use4h000h1yxyn6qm223i",
+    "reason_group": "other-graded-hide",
+    "note": "Case CrCl is 45; keyed CrCl 30 is not in case, and apixaban is not adjusted for CrCl alone (2 of 3 criteria); rationale teaches renal dosing error; no option warrants change.",
+    "sampleId": "NP-UH-149"
+  },
+  {
+    "id": "cmr7uses6000p1yxy5vwhvipi",
+    "reason_group": "other-graded-hide",
+    "note": "Patient is already on a LABA (salmeterol) and LAMA (tiotropium); 'switch to LABA/LAMA' and 'add a LABA' duplicate therapy; first step for frequent SABA use is\u2026",
+    "sampleId": "NP-UH-150"
+  },
+  {
+    "id": "cmr7usfrk00111yxylyfjshoy",
+    "reason_group": "other-graded-hide",
+    "note": "Stem describes a compounded hydrocortisone/clotrimazole cream with no labs, yet asks which lab value warrants a change; answer unrelated to the vignette; template mismatch.",
+    "sampleId": "NP-UH-151"
+  },
+  {
+    "id": "cmr7usg3e00151yxya2cvuyli",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys discontinuing metformin at eGFR 40-45; round-2 FIX pending (not applied), live key still wrong; FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\u2026",
+    "sampleId": "NP-UH-152"
+  },
+  {
+    "id": "cmr7usgf500191yxysfbb55uu",
+    "reason_group": "unsafe-teaching",
+    "note": "Keys smoking counseling; misses that combined estrogen pill is contraindicated with migraine with aura (stroke risk)",
+    "sampleId": "NP-UH-153"
+  },
+  {
+    "id": "cmr7v6wrv00061y2zyh239rdo",
+    "reason_group": "other-graded-hide",
+    "note": "Case INR is 2.5 (in range); keyed 3.5 is not the patient's value, and INR 1.5 (C) also warrants change.",
+    "sampleId": "NP-UH-154"
+  },
+  {
+    "id": "cmr7v6ya8000p1y2zenuweswm",
+    "reason_group": "other-graded-hide",
+    "note": "Rationale claims amlodipine-clopidogrel raises blood pressure (false); CCB effect on clopidogrel is weak and debated; no option is a clear clinically significant interaction.",
+    "sampleId": "NP-UH-155"
+  },
+  {
+    "id": "cmr7v6z2v000z1y2zp11z13hq",
+    "reason_group": "other-graded-hide",
+    "note": "Both statins are generic; switching atorvastatin to rosuvastatin does not address cost; well-controlled patient; no option fits the cost question.",
+    "sampleId": "NP-UH-156"
+  },
+  {
+    "id": "cmr7vmy1w000r1ybzaibycjcz",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed SCr 1.8 not in case; K 5.5 (A) equally warrants change; the actual problem (ACE-inhibitor cough) is not an option.",
+    "sampleId": "NP-UH-157"
+  },
+  {
+    "id": "cmr7vn0dr001k1ybzm4o4p6ij",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed eGFR 45 not in case (and not a reason to change metformin); A1C 8.0% (A) not in case either but would warrant change; several options defensible.",
+    "sampleId": "NP-UH-158"
+  },
+  {
+    "id": "cmr7w05ut000n1yudrbrfciix",
+    "reason_group": "other-graded-hide",
+    "note": "Theophylline not in regimen; salmeterol-theophylline is not a major interaction; no meaningful interaction among options.",
+    "sampleId": "NP-UH-159"
+  },
+  {
+    "id": "cmr7w0699000r1yudmp2twub8",
+    "reason_group": "other-graded-hide",
+    "note": "Lisinopril needs no dose reduction at eGFR 45 (label: adjust only below CrCl 30) and ACE inhibitors are renoprotective; metformin 2,000 mg/day at eGFR 45 is the drug to review;\u2026",
+    "sampleId": "NP-UH-160"
+  },
+  {
+    "id": "cmr7w06vc000x1yudz6hedccq",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Discontinue metformin and switch to insulin.); FDA label: contraindicated only at eGFR <30; do not initiate at\u2026",
+    "sampleId": "NP-UH-161"
+  },
+  {
+    "id": "cmr7w07kw00141yud50yiqqmv",
+    "reason_group": "other-graded-hide",
+    "note": "SCr 1.8 in a 65-year-old woman is eGFR ~31 (CKD-EPI 2021): metformin 2,000 mg/day exceeds the ~1,000 mg/day ceiling at eGFR 30-44 and needs dose review, which no option\u2026",
+    "sampleId": "NP-UH-162"
+  },
+  {
+    "id": "cmr7w09ar001l1yudkmel60ks",
+    "reason_group": "other-graded-hide",
+    "note": "Fasting glucose 130 is at the upper end of the ADA preprandial goal (80-130 mg/dL); BP 138/85 is above the <130/80 goal; key is not clearly best and diabetes is not even stated.",
+    "sampleId": "NP-UH-163"
+  },
+  {
+    "id": "cmr7wexc0000f1y12e77tjams",
+    "reason_group": "other-graded-hide",
+    "note": "Tiotropium (LAMA) plus fluticasone/salmeterol (ICS/LABA) is guideline triple therapy, not duplication; rationale is false; dispensing with technique counseling is appropriate.",
+    "sampleId": "NP-UH-164"
+  },
+  {
+    "id": "cmr7wezm900111y12imnfstpx",
+    "reason_group": "other-graded-hide",
+    "note": "Case gives SCr 1.5; keyed eGFR 45 is not in case and does not require any lisinopril change (label adjusts only below CrCl 30); K 5.5 (A) and BP 150/90 (C) would warrant change.",
+    "sampleId": "NP-UH-165"
+  },
+  {
+    "id": "cmr7wzdpf00071y9hr9sew3lh",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Switch to insulin therapy for better blood sugar management.); FDA label: contraindicated only at eGFR <30; do\u2026",
+    "sampleId": "NP-UH-166"
+  },
+  {
+    "id": "cmr7wzf74000m1y9hkl1hpl9x",
+    "reason_group": "other-graded-hide",
+    "note": "No blood pressure is given, and the patient reports dizziness; adding lisinopril is unsupported; INR is irrelevant on rivaroxaban.",
+    "sampleId": "NP-UH-167"
+  },
+  {
+    "id": "cmr7wzfec000o1y9hcxdb4mbt",
+    "reason_group": "other-graded-hide",
+    "note": "Rationale says furosemide plus potassium supplements causes hyperkalemia; loop diuretics cause potassium loss and are routinely paired with supplements; potassium is not in the\u2026",
+    "sampleId": "NP-UH-168"
+  },
+  {
+    "id": "cmr7wzgpk00111y9he1q102o9",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys discontinuing metformin at eGFR 40-45; round-2 FIX pending (not applied), live key still wrong; FDA label: contraindicated only at eGFR <30; do not initiate at 30-45 and\u2026",
+    "sampleId": "NP-UH-169"
+  },
+  {
+    "id": "cmr7wzgt500121y9hk81y7pf7",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Warfarin is usually continued for minor dental procedures (CHEST 2022, with local hemostatic measures), and INR 3.5 needs at most a small adjustment;\u2026",
+    "sampleId": "NP-UH-170"
+  },
+  {
+    "id": "cmr7wzh7n00161y9hbhp3o69y",
+    "reason_group": "other-graded-hide",
+    "note": "Rivaroxaban 20 mg at CrCl 45 is the wrong dose (label: 15 mg daily with the evening meal at CrCl 15-50), which the item ignores; renal function (C) is equally defensible\u2026",
+    "sampleId": "NP-UH-171"
+  },
+  {
+    "id": "cmr7xe0sl000q1ydxz7nx0ywe",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed 'increased pain' is neither a lab value nor in the case; opioid-positive UDS is expected; no option fits the question.",
+    "sampleId": "NP-UH-172"
+  },
+  {
+    "id": "cmr7xe13d000t1ydxqp8hneld",
+    "reason_group": "other-graded-hide",
+    "note": "ACE inhibitors are recommended in diabetic CKD; SCr 1.8 and K 5.2 need baseline monitoring, not avoidance; rationale teaches that lisinopril should not be started; sibling\u2026",
+    "sampleId": "NP-UH-173"
+  },
+  {
+    "id": "cmr7xe1lj000y1ydxyjh25fni",
+    "reason_group": "other-graded-hide",
+    "note": "The real problem is dispensing amoxicillin to a penicillin-allergic patient; 'drug interaction' framing is wrong and none of the options are in use.",
+    "sampleId": "NP-UH-174"
+  },
+  {
+    "id": "cmr7xe1sv00101ydxoqi7sulf",
+    "reason_group": "other-graded-hide",
+    "note": "Stated nonadherence should be addressed before adding a drug; rationale adds HCTZ because he is nonadherent; amlodipine dose not given.",
+    "sampleId": "NP-UH-175"
+  },
+  {
+    "id": "cmr7xe380001e1ydxbwdd7bqo",
+    "reason_group": "other-graded-hide",
+    "note": "Label: starting metformin at eGFR 30-45 is not recommended, and 2,000 mg/day is high; alcohol counseling misses the main issue; sibling keyed differently.",
+    "sampleId": "NP-UH-176"
+  },
+  {
+    "id": "cmr7xtf86000u1yik7nxxsd6h",
+    "reason_group": "other-graded-hide",
+    "note": "Case SCr is 1.0; keyed SCr 1.5 contradicts it; glucose above 200 (B) is equally unstated and would warrant follow-up.",
+    "sampleId": "NP-UH-177"
+  },
+  {
+    "id": "cmr7xthjz001m1yikrj2tvw22",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Switch the patient to a different diabetes medication.); FDA label: contraindicated only at eGFR <30; do not\u2026",
+    "sampleId": "NP-UH-178"
+  },
+  {
+    "id": "cmr7yhva300101yr32c3s5jk6",
+    "reason_group": "other-graded-hide",
+    "note": "Only SCr 1.8 is given in the vignette (potassium, BP and A1c in the options are not); with known CKD stage 3 and no baseline, SCr 1.8 alone does not warrant changing\u2026",
+    "sampleId": "NP-UH-179"
+  },
+  {
+    "id": "cmr7yhwa7001c1yr34xluyvha",
+    "reason_group": "metformin-egfr45",
+    "note": "Key implies metformin must be stopped/changed based on the old SCr >1.5 (men) / >1.4 (women) cutoff taught in the rationale (Contact the prescriber to discuss the patient's re)",
+    "sampleId": "NP-UH-180"
+  },
+  {
+    "id": "cmr7yhwgb001e1yr3sfjjuxob",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Metformin should be discontinued due to renal impairment.); FDA label: contraindicated only at eGFR <30; do not\u2026",
+    "sampleId": "NP-UH-181"
+  },
+  {
+    "id": "cmr7yy1ce00111yu8dwncx5mp",
+    "reason_group": "other-graded-hide",
+    "note": "INR 2.5 is therapeutic for AF and is not an abnormal lab; peri-operative warfarin interruption is driven by the procedure, not by a lab value; no listed value warrants a\u2026",
+    "sampleId": "NP-UH-182"
+  },
+  {
+    "id": "cmr7yy1fl00121yu86lsffoer",
+    "reason_group": "other-graded-hide",
+    "note": "COPD with frequent exacerbations on a LAMA: GOLD escalates to LAMA/LABA (adding ICS only as LABA/LAMA/ICS with eosinophils >=300); ICS without a LABA is not a recommended COPD\u2026",
+    "sampleId": "NP-UH-183"
+  },
+  {
+    "id": "cmr7yy1il00131yu88re9uuzw",
+    "reason_group": "metformin-egfr45",
+    "note": "Critical needs-pharmacist: Metformin is contraindicated only at eGFR <30; at eGFR 45 on 2,000 mg/day the dose may be reduced toward 1,000 mg/day (B) or continued with\u2026",
+    "sampleId": "NP-UH-184"
+  },
+  {
+    "id": "cmr7yy1ll00141yu8h9rngtta",
+    "reason_group": "unsafe-teaching",
+    "note": "Keys ezetimibe; misses simvastatin 40 mg with amlodipine (exceeds 20 mg labeled limit)",
+    "sampleId": "NP-UH-185"
+  },
+  {
+    "id": "cmr7yy1oh00151yu82cl9q1ra",
+    "reason_group": "other-graded-hide",
+    "note": "Newly diagnosed diabetes at eGFR 45: labeling does not recommend starting metformin at eGFR 30-45, and 2,000 mg/day exceeds the usual renal ceiling; the item ignores this while\u2026",
+    "sampleId": "NP-UH-186"
+  },
+  {
+    "id": "cmr7yy23f001a1yu8p1xogsrq",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed 'shortness of breath at rest' is not in the vignette, which describes increased albuterol use (A) and wheezing; key not supported by the case.",
+    "sampleId": "NP-UH-187"
+  },
+  {
+    "id": "cmr7yy33m001m1yu8m5g2ujv7",
+    "reason_group": "other-graded-hide",
+    "note": "Dysphagia and esophageal disease are label cautions/contraindications (esophageal abnormalities) for alendronate; first step is prescriber contact about an alternative, not\u2026",
+    "sampleId": "NP-UH-188"
+  },
+  {
+    "id": "cmr7zcf5w001a1y1wye1do3id",
+    "reason_group": "unsafe-teaching",
+    "note": "Keys SCr monitoring; misses that PrEP must not be given to an HIV-positive patient",
+    "sampleId": "NP-UH-189"
+  },
+  {
+    "id": "cmr7zcg0s001i1y1wl9ozgj6g",
+    "reason_group": "other-graded-hide",
+    "note": "Tiotropium plus a LABA is guideline dual bronchodilation (GOLD), not a dangerous interaction; rationale is false; no option is a meaningful interaction.",
+    "sampleId": "NP-UH-190"
+  },
+  {
+    "id": "cmr7zcgf8001m1y1wsten8w8n",
+    "reason_group": "other-graded-hide",
+    "note": "Mefloquine resistance exists in parts of Southeast Asia (CDC Yellow Book), while doxycycline 100 mg daily from 1-2 days before (C) and hepatitis A vaccine (B) are both\u2026",
+    "sampleId": "NP-UH-191"
+  },
+  {
+    "id": "cmr7zooz800061y6hlrwrzy51",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed creatinine 1.8 not in case; K 5.5 (A) also warrants change; chest pain with tachycardia is the real issue.",
+    "sampleId": "NP-UH-192"
+  },
+  {
+    "id": "cmr7zot0s00191y6hi9x7oqdg",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed 'elevated potassium' is not in the vignette; with furosemide the classic digoxin risk is hypokalemia, and declining renal function/urine output (C) is equally important;\u2026",
+    "sampleId": "NP-UH-193"
+  },
+  {
+    "id": "cmr7zzjud00141yafatr8xti8",
+    "reason_group": "unsafe-teaching",
+    "note": "Keys allergy monitoring; teaches dispensing amoxicillin despite documented penicillin allergy",
+    "sampleId": "NP-UH-194"
+  },
+  {
+    "id": "cmr7zzlip001k1yafga61f0vy",
+    "reason_group": "metformin-egfr45",
+    "note": "Case SCr is 0.8; keyed SCr 1.5 contradicts it; rationale uses outdated SCr-based metformin thresholds (label uses eGFR).",
+    "sampleId": "NP-UH-195"
+  },
+  {
+    "id": "cmr80d38p00011yfcx4j2ec2e",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Switching lisinopril to losartan does not lower hyperkalemia risk (ARBs raise K similarly); rationale is false. With edema and K 5.8, increasing\u2026",
+    "sampleId": "NP-UH-196"
+  },
+  {
+    "id": "cmr80d4hz000g1yfc9soo9jo6",
+    "reason_group": "other-graded-hide",
+    "note": "Case SCr is 0.9; keyed SCr 1.5 contradicts it; K 5.5 (A) equally warrants change.",
+    "sampleId": "NP-UH-197"
+  },
+  {
+    "id": "cmr80d4l2000h1yfcqjg1ydmw",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: ADA: insulin is the preferred agent for GDM (metformin crosses the placenta), and fasting glucose 130 is far above the <95 mg/dL goal, so 'continue\u2026",
+    "sampleId": "NP-UH-198"
+  },
+  {
+    "id": "cmr80d6hz00141yfco1qb3csr",
+    "reason_group": "other-graded-hide",
+    "note": "New metformin prescription at CrCl 45: labeling does not recommend initiation at eGFR 30-45, which the item ignores; C (hold during fever/infection, sick-day rule) is also a\u2026",
+    "sampleId": "NP-UH-199"
+  },
+  {
+    "id": "cmr80d6qw00171yfcszxq0zc7",
+    "reason_group": "other-graded-hide",
+    "note": "Rivaroxaban 20 mg at CrCl 30 is the wrong dose (label: 15 mg daily at CrCl 15-50), which the item ignores; C is also a true statement.",
+    "sampleId": "NP-UH-200"
+  },
+  {
+    "id": "cmr80qj8w00061yjna1omvddv",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed creatinine not in case; symptomatic hypotension (90/60) is the actual problem; K 5.5 (A) also warrants change.",
+    "sampleId": "NP-UH-201"
+  },
+  {
+    "id": "cmr80qju3000d1yjnhj2comxr",
+    "reason_group": "overdose-calc",
+    "note": "Critical needs-pharmacist: Key 2.5 mg/mL is wrong: 250 mg/5 mL is 50 mg/mL regardless of the total bottle volume; rationale divides by 100 mL incorrectly.",
+    "sampleId": "NP-UH-202"
+  },
+  {
+    "id": "cmr80ql89000p1yjnu55nara4",
+    "reason_group": "other-graded-hide",
+    "note": "Spironolactone at K 4.8 in HFrEF is guideline-directed therapy; the question asks for an 'alternative', and increasing furosemide is unsupported (no congestion described); no\u2026",
+    "sampleId": "NP-UH-203"
+  },
+  {
+    "id": "cmr80qmnd00111yjneckljhll",
+    "reason_group": "other-graded-hide",
+    "note": "INR 2.5 is therapeutic, and every listed value is normal, so none warrants a change; the rationale itself says no dose change is needed, contradicting the key.",
+    "sampleId": "NP-UH-204"
+  },
+  {
+    "id": "cmr80qngg00191yjn5e75dx83",
+    "reason_group": "other-graded-hide",
+    "note": "No reason to replace lisinopril is given; amlodipine, HCTZ and losartan are all first-line for hypertension with diabetes (ACE inhibitor/ARB preferred only with albuminuria),\u2026",
+    "sampleId": "NP-UH-205"
+  },
+  {
+    "id": "cmr80qnjz001a1yjngwvv1jwp",
+    "reason_group": "other-graded-hide",
+    "note": "A code blue is for cardiopulmonary arrest; a hemodynamically stable STEMI needs STEMI/cath-lab activation plus aspirin; 'call a code blue' is not the correct first action and\u2026",
+    "sampleId": "NP-UH-206"
+  },
+  {
+    "id": "cmr815mw500061ynmyiuy2cy3",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed creatinine 1.8 not in case, and warfarin needs no renal dose change; INR 2.5 is in range; no option warrants change.",
+    "sampleId": "NP-UH-207"
+  },
+  {
+    "id": "cmr815nxc000g1ynm9vhdgv0r",
+    "reason_group": "other-graded-hide",
+    "note": "INR is not used to monitor apixaban; rationale says INR 1.0 shows 'insufficient anticoagulation' (false); no option warrants change.",
+    "sampleId": "NP-UH-208"
+  },
+  {
+    "id": "cmr815po9000x1ynmxn2eb0bs",
+    "reason_group": "other-graded-hide",
+    "note": "Metformin is contraindicated at eGFR 25; the key names a metformin-lisinopril 'interaction' that the rationale admits does not exist.",
+    "sampleId": "NP-UH-209"
+  },
+  {
+    "id": "cmr815pz600101ynm8b9m735q",
+    "reason_group": "other-graded-hide",
+    "note": "No laboratory values are given (liver enzymes are not reported), so no lab can 'warrant a change'; stem/key template mismatch.",
+    "sampleId": "NP-UH-210"
+  },
+  {
+    "id": "cmr81klco00011yto7o4wp3g5",
+    "reason_group": "other-graded-hide",
+    "note": "No congestion is described; K 5.8 calls for reducing/holding the RAAS blocker and treating hyperkalemia, not a furosemide increase 'for fluid overload'.",
+    "sampleId": "NP-UH-211"
+  },
+  {
+    "id": "cmr81knhv000m1ytohyx4ywn2",
+    "reason_group": "other-graded-hide",
+    "note": "Patient was just prescribed ICS/LABA and reports poor adherence; adding a third inhaler is not the logical step; GOLD would start LAMA or LAMA/LABA and address adherence.",
+    "sampleId": "NP-UH-212"
+  },
+  {
+    "id": "cmr81kpd900141ytop7oz7fdn",
+    "reason_group": "other-graded-hide",
+    "note": "Every finding is normal (well-controlled asthma, occasional SABA use, PEF 90% of best); keying 'occasional albuterol use' as requiring immediate follow-up teaches that\u2026",
+    "sampleId": "NP-UH-213"
+  },
+  {
+    "id": "cmra5pvoo000l1ymcwu2ls69u",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Diuretics are largely ineffective for dihydropyridine CCB edema (precapillary vasodilation); dose reduction or switching agent (B, e.g., a non-DHP)\u2026",
+    "sampleId": "NP-UH-214"
+  },
+  {
+    "id": "cmra5pyyl001k1ymcclhk99t4",
+    "reason_group": "other-graded-hide",
+    "note": "ACE inhibitors are indicated in diabetic CKD; SCr 1.8 and K 5.2 call for monitoring, not a change; keyed BP 140/90 option not in case; siblings keyed differently.",
+    "sampleId": "NP-UH-215"
+  },
+  {
+    "id": "cmra65raf004b1ymczp2gz3y7",
+    "reason_group": "other-graded-hide",
+    "note": "INR 3.0 is within the 2.0-3.0 AF goal, and the case INR is 2.5; all options are normal, so no option warrants change.",
+    "sampleId": "NP-UH-216"
+  },
+  {
+    "id": "cmra65tbj004v1ymc2go7sq2b",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys discontinuing metformin at eGFR 30 using \"<30\" rule; eGFR 30 is not <30",
+    "sampleId": "NP-UH-217"
+  },
+  {
+    "id": "cmra6lulm000x1ybjkq7p76dm",
+    "reason_group": "other-graded-hide",
+    "note": "Amlodipine does not interact with spironolactone to cause hyperkalemia (false mechanism); none of the combinations is a significant interaction; misfiled under infectious disease.",
+    "sampleId": "NP-UH-218"
+  },
+  {
+    "id": "cmra6lvl300171ybjz0yl1eqt",
+    "reason_group": "other-graded-hide",
+    "note": "Vancomycin plus piperacillin/tazobactam (A) is the best-documented combination AKI signal; gentamicin is also nephrotoxic; two defensible answers.",
+    "sampleId": "NP-UH-219"
+  },
+  {
+    "id": "cmra729yp004o1ybjurru0mzg",
+    "reason_group": "other-graded-hide",
+    "note": "Warfarin is resumed 12-24 h after surgery when hemostasis is secure, not 'immediately'; stopping 3 days before is also short of the usual 5 days; key teaches imprecise periop\u2026",
+    "sampleId": "NP-UH-220"
+  },
+  {
+    "id": "cmra72a7k004r1ybj9kql64j9",
+    "reason_group": "metformin-egfr45",
+    "note": "Key implies metformin must be stopped/changed based on the old SCr >1.5 (men) / >1.4 (women) cutoff taught in the rationale (Metformin)",
+    "sampleId": "NP-UH-221"
+  },
+  {
+    "id": "cmra7gm8u000g1y3e52f4avoh",
+    "reason_group": "metformin-egfr45",
+    "note": "Keys stopping/holding/switching off metformin at eGFR/CrCl ~45 (Hold metformin and monitor renal function); FDA label: contraindicated only at eGFR <30; do not initiate at\u2026",
+    "sampleId": "NP-UH-222"
+  },
+  {
+    "id": "cmra7gqfv001l1y3er4ft71fu",
+    "reason_group": "other-graded-hide",
+    "note": "Case SCr is 1.8; keyed 2.2 not in case; K 5.5 (A) and BP 150/90 (C) also warrant change; misfiled under law.",
+    "sampleId": "NP-UH-223"
+  },
+  {
+    "id": "cmra7v9f0004c1y3ew2160ell",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed CrCl 45 not in case, and apixaban is not reduced for CrCl alone (2 of 3 criteria; this 72-year-old meets none stated); rationale teaches renal dosing error; misfiled\u2026",
+    "sampleId": "NP-UH-224"
+  },
+  {
+    "id": "cmra7vba6004v1y3e9z24emon",
+    "reason_group": "other-graded-hide",
+    "note": "Ondansetron is not a clinically meaningful CYP2D6 inhibitor; the tamoxifen concern is strong 2D6 inhibitors (paroxetine, fluoxetine); keyed interaction is false; misfiled under\u2026",
+    "sampleId": "NP-UH-225"
+  },
+  {
+    "id": "cmrleqz5e000d1y7z1rua8uoq",
+    "reason_group": "phenytoin-template",
+    "note": "Keys a 100-mg jump (300->400 mg/day) from a level of 8 mcg/mL as routine; MM (Km 4) predicts ~32 mcg/mL (toxic). Implicitly linear",
+    "sampleId": "NP-UH-226"
+  },
+  {
+    "id": "cmrlflg5b00011yolyda92p62",
+    "reason_group": "digoxin-template",
+    "note": "CKD does decrease digoxin Vd, but through reduced tissue (Na/K-ATPase) binding, not increased binding; the keyed mechanism is backwards and no option is fully correct.",
+    "sampleId": "NP-UH-227"
+  },
+  {
+    "id": "cmrlflge400041yoluj7x6rja",
+    "reason_group": "other-graded-hide",
+    "note": "Labeling and case reports describe altered, mostly decreased, phenytoin levels with ciprofloxacin; 'increased half-life and steady-state concentration' is not established; key\u2026",
+    "sampleId": "NP-UH-228"
+  },
+  {
+    "id": "cmrlflggw00051yolauurxie9",
+    "reason_group": "other-graded-hide",
+    "note": "Amiodarone oral loading is not weight-based; for AF it is typically 400-1,200 mg/day in divided doses (e.g., 400 mg two or three times daily) to about 6-10 g total; '1,200 mg\u2026",
+    "sampleId": "NP-UH-229"
+  },
+  {
+    "id": "cmrlflgjr00061yolmyf3vjw7",
+    "reason_group": "other-graded-hide",
+    "note": "For traditional gentamicin dosing both the peak (efficacy) and trough (toxicity) are monitored, and the stem asks about both; extended-interval dosing uses a random\u2026",
+    "sampleId": "NP-UH-230"
+  },
+  {
+    "id": "cmrlfm2tz00091yolt423v1tm",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin is only about 20-30% protein bound, so hypoalbuminemia does not meaningfully change its free fraction or toxicity (unlike phenytoin); the item teaches a misleading concept.",
+    "sampleId": "NP-UH-231"
+  },
+  {
+    "id": "cmrlfmnvc000k1yolca63sozr",
+    "reason_group": "other-graded-hide",
+    "note": "Amiodarone oral loading is not weight-based; for AF it is typically 400-1,200 mg/day in divided doses to about 6-10 g total; '1,200 mg once daily' is not a standard regimen.",
+    "sampleId": "NP-UH-232"
+  },
+  {
+    "id": "cmrlgj85000011yu0zr4uuww1",
+    "reason_group": "digoxin-template",
+    "note": "CKD decreases, not increases, digoxin's volume of distribution (reduced tissue binding), which is why loading doses are reduced in renal failure; the key states the opposite\u2026",
+    "sampleId": "NP-UH-233"
+  },
+  {
+    "id": "cmrlgjwc900081yu0g9sah7tb",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin Vd-in-CKD keyed \"increase the Vd\" (wrong); round-2 FIX pending, live key still wrong",
+    "sampleId": "NP-UH-234"
+  },
+  {
+    "id": "cmrlgkm7b000f1yu0u4yvn468",
+    "reason_group": "other-graded-hide",
+    "note": "The stem says food 'significantly affects' bioavailability without saying in which direction (food increases absorption for some drugs), so the keyed 'empty stomach' cannot be\u2026",
+    "sampleId": "NP-UH-235"
+  },
+  {
+    "id": "cmrlgl8v8000o1yu0avbimlko",
+    "reason_group": "other-graded-hide",
+    "note": "Prednisone is a weak CYP3A4 inducer, not an inhibitor, and no option describes a real interaction (the relevant concern here is methotrexate plus an NSAID reducing methotrexate\u2026",
+    "sampleId": "NP-UH-236"
+  },
+  {
+    "id": "cmrlgl95c000r1yu0ocvfljlz",
+    "reason_group": "other-graded-hide",
+    "note": "Trough 15-20 mcg/mL is the outdated 2009 target; the 2020 ASHP/IDSA/PIDS/SIDP guideline recommends AUC-guided dosing (AUC/MIC 400-600) and no longer recommends trough-only\u2026",
+    "sampleId": "NP-UH-237"
+  },
+  {
+    "id": "cmrlhab3f00001yf3sm8waf39",
+    "reason_group": "other-graded-hide",
+    "note": "Labeling for metoprolol tartrate states food enhances bioavailability (by about 40%), so 'delays absorption but does not affect extent' is wrong; sibling items key 'increase',\u2026",
+    "sampleId": "NP-UH-238"
+  },
+  {
+    "id": "cmrlhcck2000n1yf3a0jlwdz6",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin Vd keyed \"increases Vd due to less protein binding\" (wrong); round-2 FIX pending, live key still wrong",
+    "sampleId": "NP-UH-239"
+  },
+  {
+    "id": "cmrlhccsk000q1yf349zplzxn",
+    "reason_group": "other-graded-hide",
+    "note": "Phenytoin usually takes 7-14 days or longer to reach steady state (concentration-dependent half-life), as sibling items teach; '5-7 days' encourages checking levels too early.",
+    "sampleId": "NP-UH-240"
+  },
+  {
+    "id": "cmrlhf44e001c1yf3jis0e5eq",
+    "reason_group": "other-graded-hide",
+    "note": "Routine LMWH bridging in AF is not recommended (BRIDGE trial; CHEST 2022); warfarin is stopped 5 days before without bridging; no option states this (D stops only 2 days before).",
+    "sampleId": "NP-UH-241"
+  },
+  {
+    "id": "cmrlhx98400011yuvevu5u65d",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin Vd is classically estimated from renal function (Jusko-Koup) and scales with body weight; heart failure status is not the primary determinant; key debatable.",
+    "sampleId": "NP-UH-242"
+  },
+  {
+    "id": "cmrlhy45800091yuvd9zpa6wz",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin Vd keyed \"increased Vd due to reduced protein binding\" (wrong); round-2 FIX pending, live key still wrong",
+    "sampleId": "NP-UH-243"
+  },
+  {
+    "id": "cmrlhy482000a1yuv1hupo0fg",
+    "reason_group": "other-graded-hide",
+    "note": "Methotrexate is eliminated mainly unchanged by the kidneys, not by CYP2C9 metabolism; no option is correct (clinically important methotrexate interactions involve reduced renal\u2026",
+    "sampleId": "NP-UH-244"
+  },
+  {
+    "id": "cmrlhz1sf000g1yuv2fu8sngv",
+    "reason_group": "other-graded-hide",
+    "note": "Omeprazole is not a meaningful CYP2D6 inhibitor, and CYP2D6 inhibition would raise metoprolol levels (more effect), not reduce effectiveness; the keyed reasoning is backwards\u2026",
+    "sampleId": "NP-UH-245"
+  },
+  {
+    "id": "cmrlhz1yc000i1yuv1tej2dxo",
+    "reason_group": "other-graded-hide",
+    "note": "Fluoxetine inhibits CYP2D6, which reduces conversion of tramadol to its active O-desmethyl metabolite (less analgesia, more parent drug and serotonergic/seizure risk); keyed\u2026",
+    "sampleId": "NP-UH-246"
+  },
+  {
+    "id": "cmrli1md6000w1yuvyfw95b91",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin Vd keyed \"increased Vd due to decreased protein binding\" in CKD 4; digoxin is ~25% bound and CKD decreases Vd (same template as cmrlgj850/cmrlhcck2)",
+    "sampleId": "NP-UH-247"
+  },
+  {
+    "id": "cmrlim3tp000h1ybla3pnqxgh",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin Vd-in-CKD (loading-dose basis) keyed \"increase Vd due to fluid overload\"; CKD decreases digoxin Vd (same flawed item as Critical cmrlgj850)",
+    "sampleId": "NP-UH-248"
+  },
+  {
+    "id": "cmrlk779r00061ya8acoo62n5",
+    "reason_group": "unsafe-teaching",
+    "note": "Critical needs-pharmacist: Linear scaling from a trough of 10 to 15-20 needs 1.5-2 g q12h; keyed 1.25 g gives about 12.5 (below goal); trough targeting is also outdated (AUC).",
+    "sampleId": "NP-UH-249"
+  },
+  {
+    "id": "cmrlk9luu000o1ya8mm8d3tk1",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin Vd-in-CKD keyed \"CKD increases Vd\"; CKD decreases digoxin Vd and loading doses are reduced (same flawed template as cmrlgj850)",
+    "sampleId": "NP-UH-250"
+  },
+  {
+    "id": "cmrogbzld000e1yt0vugemmt1",
+    "reason_group": "other-graded-hide",
+    "note": "Case creatinine is 1.8; keyed 2.0 not in case; K 5.5 (A) also warrants change.",
+    "sampleId": "NP-UH-251"
+  },
+  {
+    "id": "cmroglmso001p1yt0d32qtjuw",
+    "reason_group": "other-graded-hide",
+    "note": "Tiotropium does not prolong QT; the keyed interaction is not recognized; no drug in the options is in the regimen; misfiled under endocrine.",
+    "sampleId": "NP-UH-252"
+  },
+  {
+    "id": "cmrogln4n001s1yt0pg4a8726",
+    "reason_group": "other-graded-hide",
+    "note": "Case eGFR is 90; keyed eGFR 45 is not in case, and rivaroxaban for DVT needs no dose change at CrCl 15 or more (label); no option warrants change; misfiled under endocrine.",
+    "sampleId": "NP-UH-253"
+  },
+  {
+    "id": "cmrogtpyc003o1yt0t4t5xtr7",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed CrCl 40 not in case, and apixaban is not reduced for CrCl alone (2 of 3 criteria); rationale teaches renal dosing error; INR options are irrelevant for apixaban.",
+    "sampleId": "NP-UH-254"
+  },
+  {
+    "id": "cmrogtrkm00451yt0bpzpghig",
+    "reason_group": "other-graded-hide",
+    "note": "Ibuprofen not in regimen; SCr 1.8 in a 62-year-old woman gives eGFR about 31 (CKD-EPI 2021), so starting metformin 2,000 mg/day is not appropriate and is not addressed.",
+    "sampleId": "NP-UH-255"
+  },
+  {
+    "id": "cmrohbsxj007k1yt0l93ctwn8",
+    "reason_group": "other-graded-hide",
+    "note": "Most minor procedures are low bleeding risk: CHEST 2022 holds apixaban 1 day before (2 days only for high-bleed-risk); some minimal-risk procedures continue it; the keyed 48-h\u2026",
+    "sampleId": "NP-UH-256"
+  },
+  {
+    "id": "cmroibtml00ed1yt0vo4vwcms",
+    "reason_group": "other-graded-hide",
+    "note": "Ceftriaxone does not cause nephrotoxicity with furosemide (that was older cephalosporins such as cephaloridine); no option drug is in the regimen; ceftriaxone-warfarin (A) is\u2026",
+    "sampleId": "NP-UH-257"
+  },
+  {
+    "id": "cmrovu5ni00031yu3b78c2uzc",
+    "reason_group": "other-graded-hide",
+    "note": "Immediate-release metformin 500 mg can be crushed; rationale falsely says it is 'designed to be released slowly'; keyed consequence is unsupported and no option is correct.",
+    "sampleId": "NP-UH-258"
+  },
+  {
+    "id": "cmrovu60h00061yu331uu5vk5",
+    "reason_group": "other-graded-hide",
+    "note": "Calcium does not increase dabigatran absorption; keyed mechanism is invented; age-related decline in renal clearance (B) is the plausible cause, but renal function is not given.",
+    "sampleId": "NP-UH-259"
+  },
+  {
+    "id": "cmrp2ur1l000a1yp42tw8a778",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 400 mg/day for 8->15 mcg/mL as a \"cautious\" increase; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-260"
+  },
+  {
+    "id": "cmrp2vrwm000f1yp44wr92chx",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 400 mg using an invented power formula; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-261"
+  },
+  {
+    "id": "cmrp2wgko000l1yp4itgzmq5p",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 375 mg/day; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350 (graded Major, needs-pharmacist)",
+    "sampleId": "NP-UH-262"
+  },
+  {
+    "id": "cmrp2x70a000n1yp4h69cw4di",
+    "reason_group": "alligation",
+    "note": "Alligation key (333/167) is right but the rationale computes 250 mL/250 mL; contradicts the key (round-2 rationale fix pending)",
+    "sampleId": "NP-UH-263"
+  },
+  {
+    "id": "cmrp2x7cs000r1yp4o8ldyab8",
+    "reason_group": "phenytoin-template",
+    "note": "Rationale computes linear 562.5 then overrides to 400 mg/day; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-264"
+  },
+  {
+    "id": "cmrp2y7ya000t1yp4retql3j5",
+    "reason_group": "alligation",
+    "note": "Alligation (5% and 50% to make 10%): 40 parts 5% to 5 parts 50%, so 5% = 500 x 40/45 = 444 mL; no option is correct (keyed 400 mL).",
+    "sampleId": "NP-UH-265"
+  },
+  {
+    "id": "cmrp7n39d00021y2nhg7tai5k",
+    "reason_group": "phenytoin-template",
+    "note": "Given Vmax 500/Km 10, dose for 15 = 300 mg/day; rationale adds 120 to current dose and keys 400 (wrong)",
+    "sampleId": "NP-UH-266"
+  },
+  {
+    "id": "cmrp7npgc00061y2nouuvsyd0",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 400 mg/day for 8->15; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-267"
+  },
+  {
+    "id": "cmrp7ocmf00091y2n09jsp5ib",
+    "reason_group": "overdose-calc",
+    "note": "Vancomycin maintenance keyed 1,000 mg q12h from a wrong PK calculation",
+    "sampleId": "NP-UH-268"
+  },
+  {
+    "id": "cmrp7ocs4000b1y2n1fbbofpj",
+    "reason_group": "alligation",
+    "note": "Alligation (5% and 25% to make 10%): 15 parts 5% to 5 parts 25%, so 5% = 500 x 15/20 = 375 mL; no option is correct (keyed 300 mL).",
+    "sampleId": "NP-UH-269"
+  },
+  {
+    "id": "cmrp7ocw6000c1y2nv6yvyv7q",
+    "reason_group": "alligation",
+    "note": "Alligation: rationale gets 100 mL then says \"the correct calculation should be 50 mL\" (100 mg/5 mL x 250 mL / 50 mg/mL = 100 mL); round-2 FIX pending",
+    "sampleId": "NP-UH-270"
+  },
+  {
+    "id": "cmrp7oyyp000g1y2n6yurc76l",
+    "reason_group": "alligation",
+    "note": "Alligation (10% and 2% to make 5%): 3 parts 10% to 5 parts 2%, so 10% = 500 x 3/8 = 187.5 mL; keyed 312.5 mL is the 2% volume; no option is correct.",
+    "sampleId": "NP-UH-271"
+  },
+  {
+    "id": "cmrp7oz9q000j1y2nq9h14hlr",
+    "reason_group": "phenytoin-template",
+    "note": "Keys arbitrary 25% increase to 375 mg/day; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350 (offered)",
+    "sampleId": "NP-UH-272"
+  },
+  {
+    "id": "cmrp7pqx6000l1y2nph31h73d",
+    "reason_group": "other-graded-hide",
+    "note": "Stem describes a dextrose alligation problem but the question and options are a generic 'coordinate with the prescriber' template; the item has no answerable calculation.",
+    "sampleId": "NP-UH-273"
+  },
+  {
+    "id": "cmsfj9z5a00001ymsjk3jd5en",
+    "reason_group": "other-graded-hide",
+    "note": "Swallowing difficulty and esophageal symptoms are alendronate label cautions (esophageal abnormalities are a contraindication); prescriber contact about an alternative (IV\u2026",
+    "sampleId": "NP-UH-274"
+  },
+  {
+    "id": "cmsfjfgak001a1ymskckr98p7",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed target (trough 15-20) is outdated; 2020 consensus uses AUC 400-600 dosing.",
+    "sampleId": "NP-UH-275"
+  },
+  {
+    "id": "cmsfjqzzj000l1yq4wf0dku24",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed target (trough 15-20) is outdated; 2020 consensus uses AUC 400-600; option D is not a concrete action.",
+    "sampleId": "NP-UH-276"
+  },
+  {
+    "id": "cmsfjrvmp000x1yq4gcfxs95v",
+    "reason_group": "other-graded-hide",
+    "note": "Lexicomp and Micromedex are both standard interaction resources; no single defensible answer.",
+    "sampleId": "NP-UH-277"
+  },
+  {
+    "id": "cmsg0czde000s1yiyu72xd0n3",
+    "reason_group": "other-graded-hide",
+    "note": "Keyed target (trough 15-20) is outdated; 2020 consensus uses AUC 400-600 dosing.",
+    "sampleId": "NP-UH-278"
+  },
+  {
+    "id": "cmshcpbll000h1yar59fwuk77",
+    "reason_group": "overdose-calc",
+    "note": "Pediatric amoxicillin per-dose volume keyed wrong (dosing error)",
+    "sampleId": "NP-UH-279"
+  },
+  {
+    "id": "cmshcpbuq000k1yarxut7eel8",
+    "reason_group": "other-graded-hide",
+    "note": "The prescription is clearly for Celebrex and the wrong bottle was pulled; the fix is to retrieve and dispense the correct drug (C) with indication confirmed; calling the\u2026",
+    "sampleId": "NP-UH-280"
+  },
+  {
+    "id": "cmshcyzzz002h1yarlluf8rq0",
+    "reason_group": "other-graded-hide",
+    "note": "Enoxaparin 40 mg daily is a prophylactic, not a bridging, dose; routine bridging in AF is not recommended (CHEST 2022), and warfarin should be stopped 5 days before hip\u2026",
+    "sampleId": "NP-UH-281"
+  },
+  {
+    "id": "cmshdt43b000f1y1i2h6e054l",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 450 mg/day (linear) for 8->15; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-282"
+  },
+  {
+    "id": "cmshdukni000k1y1ixaiwnw9o",
+    "reason_group": "other-graded-hide",
+    "note": "There is no generic 50% dose reduction for strong CYP3A4 inhibitors; adjustments are drug-specific per labeling (from no change to contraindication); the item teaches a false rule.",
+    "sampleId": "NP-UH-283"
+  },
+  {
+    "id": "cmshdw349000l1y1i0p2rsp15",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin LD rationale divides by F=0.7 but reports the undivided 892.5 mcg (arithmetic wrong; 1,275 mcg if oral) and targets 1.5 ng/mL in HF (above 0.5-0.9)",
+    "sampleId": "NP-UH-284"
+  },
+  {
+    "id": "cmshdw3bk000n1y1iykqfcfvm",
+    "reason_group": "other-graded-hide",
+    "note": "The dosing interval is not given: 15 mg/kg x 90 kg = 1,350 mg per dose (A); 2,700 mg/day assumes q12h, which depends on renal function and AUC targets; ambiguous.",
+    "sampleId": "NP-UH-285"
+  },
+  {
+    "id": "cmshfido600051y4n9oryeuc7",
+    "reason_group": "phenytoin-template",
+    "note": "Sheiner-Tozer: 8 / (0.2 x 3.0 + 0.1) = 8 / 0.7 = 11.4 mcg/mL; the rationale's arithmetic gives 12.5, and no option matches the correct value.",
+    "sampleId": "NP-UH-286"
+  },
+  {
+    "id": "cmshfidrv00061y4nkh0bfsgg",
+    "reason_group": "other-graded-hide",
+    "note": "Vd cannot be calculated as maintenance dose divided by a trough; Vd = dose/C0 after a single bolus; 1,000/12/70 = 1.19 L/kg anyway, not 1.1; method is invalid.",
+    "sampleId": "NP-UH-287"
+  },
+  {
+    "id": "cmshfie6q00091y4n9wska98v",
+    "reason_group": "alligation",
+    "note": "Alligation (50% and 10% to make 20%): 10 parts 50% to 30 parts 10%, so 50% = 500 x 10/40 = 125 mL; the rationale computes 125 mL and then asserts 150 mL; no option is correct.",
+    "sampleId": "NP-UH-288"
+  },
+  {
+    "id": "cmshfkc1c000e1y4nwxip9gio",
+    "reason_group": "other-graded-hide",
+    "note": "Recomputed CrCl = (140-60) x 70 / (72 x 2.0) x 0.85 = 33.1 mL/min; the rationale's own '70% of 5 mg/kg/day' gives 245 mg, not the keyed 210 mg; aminoglycosides are adjusted by\u2026",
+    "sampleId": "NP-UH-289"
+  },
+  {
+    "id": "cmshflpfy000o1y4n67u969zc",
+    "reason_group": "phenytoin-template",
+    "note": "Phenytoin LD computes 585 mg then keys 975 mg \"adjusted for protein binding\" (~67% overdose); 600 is offered (graded Major, needs-pharmacist)",
+    "sampleId": "NP-UH-290"
+  },
+  {
+    "id": "cmshfnd1j000v1y4nhgfo0odw",
+    "reason_group": "phenytoin-template",
+    "note": "Linear proportion (300x15/8) mislabeled Michaelis-Menten, keyed 400 (arithmetic also wrong: 562.5)",
+    "sampleId": "NP-UH-291"
+  },
+  {
+    "id": "cmshfoq6600121y4nfengy8kx",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 375 mg/day for 8->15; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-292"
+  },
+  {
+    "id": "cmshfqjzx00161y4ndskw92rj",
+    "reason_group": "digoxin-template",
+    "note": "LD = 7.5 L/kg x 80 kg x 1 ng/mL = 600 mcg (the rationale computes 600 mcg, then keys 1,250 mcg 'for practical dosing'); 1,250 mcg is roughly double and risks toxicity; no\u2026",
+    "sampleId": "NP-UH-293"
+  },
+  {
+    "id": "cmshfsj7c001b1y4nbb1csh9l",
+    "reason_group": "other-graded-hide",
+    "note": "Unanswerable: the equation needs Cmax (saturation concentration), which is not given; the rationale asserts ~10 minutes without a calculation.",
+    "sampleId": "NP-UH-294"
+  },
+  {
+    "id": "cmshhqc0n00001y6671hgrtmc",
+    "reason_group": "overdose-calc",
+    "note": "Keys morphine 720 mg/day total oral dose (gross overdose from conversion error)",
+    "sampleId": "NP-UH-295"
+  },
+  {
+    "id": "cmshhrcfx00081y666w4ysp4w",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 400 mg/day for 15->20 mcg/mL; MM (Km 4) gives ~317 mg/day; 400 would be toxic",
+    "sampleId": "NP-UH-296"
+  },
+  {
+    "id": "cmshhsguv000a1y66pchi7a9w",
+    "reason_group": "alligation",
+    "note": "Alligation (5% and 50% to make 10%): 40 parts 5% to 5 parts 50%, so 5% = 500 x 40/45 = 444 mL; no option is correct (keyed 400 mL).",
+    "sampleId": "NP-UH-297"
+  },
+  {
+    "id": "cmshhsh6v000e1y663unm30yz",
+    "reason_group": "other-graded-hide",
+    "note": "Unanswerable: no relationship between cosolvent concentration and solubility is given; the rationale asserts 30% is 'typically needed'.",
+    "sampleId": "NP-UH-298"
+  },
+  {
+    "id": "cmshhttrf000g1y66bsihfxnd",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin LD rationale divides by F=0.7 but keys the undivided 840 mcg (true oral value 1,200 is also an option); ambiguous route, internally wrong",
+    "sampleId": "NP-UH-299"
+  },
+  {
+    "id": "cmshhtu1w000j1y66lojciohb",
+    "reason_group": "phenytoin-template",
+    "note": "With a current level of 8 mcg/mL, the incremental loading dose to reach 15 is (15 - 8) x 0.65 L/kg x 60 kg = 273 mg; the rationale computes 585 mg (ignoring the current level)\u2026",
+    "sampleId": "NP-UH-300"
+  },
+  {
+    "id": "cmshhtuao000m1y66k40yjv29",
+    "reason_group": "phenytoin-template",
+    "note": "Rationale computes linear 562.5 then overrides to 400 mg/day; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-301"
+  },
+  {
+    "id": "cmshhv09u000s1y66jklks1w1",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 325 mg/day for 8->15; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350 (offered)",
+    "sampleId": "NP-UH-302"
+  },
+  {
+    "id": "cmshhx19c00111y66dc9y3an4",
+    "reason_group": "other-graded-hide",
+    "note": "A 10 mg/mL solution is impossible when the maximum solubility even in pure cosolvent is 5 mg/mL; the rationale's (10-1)/(5-1) = 2.25 (225%), not 60%; item is unanswerable.",
+    "sampleId": "NP-UH-303"
+  },
+  {
+    "id": "cmship4y900041yor13r1otcb",
+    "reason_group": "phenytoin-template",
+    "note": "Linear proportion mislabeled Michaelis-Menten, keyed 450 mg/day; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-304"
+  },
+  {
+    "id": "cmshiqjgu00091yortg70myps",
+    "reason_group": "alligation",
+    "note": "Alligation (5 and 20 mg/mL to make 10 mg/mL): 10 parts of 5 mg/mL to 5 parts of 20 mg/mL = 66.7 mL and 33.3 mL; keyed 40/60 gives 14 mg/mL and no option is correct; mixing two\u2026",
+    "sampleId": "NP-UH-305"
+  },
+  {
+    "id": "cmshiqjqh000c1yorrsrlktfb",
+    "reason_group": "phenytoin-template",
+    "note": "Linear proportion mislabeled Michaelis-Menten, keyed 450 mg/day; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350 (not offered)",
+    "sampleId": "NP-UH-306"
+  },
+  {
+    "id": "cmshiu5j3000s1yor3kgb6bes",
+    "reason_group": "other-graded-hide",
+    "note": "Noyes-Whitney needs the diffusion-layer thickness h, which is not given, and the rationale leaves 0.5 m2 unconverted (5,000 cm2); the keyed 0.005 mg/s does not follow;\u2026",
+    "sampleId": "NP-UH-307"
+  },
+  {
+    "id": "cmshiu5m6000t1yortab6n36a",
+    "reason_group": "phenytoin-template",
+    "note": "Linear proportion (300x15/8) keyed 400 mg/day (arithmetic also wrong); Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-308"
+  },
+  {
+    "id": "cmshivq5100101yorj5ojjt1c",
+    "reason_group": "phenytoin-template",
+    "note": "Rationale uses a linear proportion (300 x 15/8 = 450 mg) while claiming Michaelis-Menten; with a population Km of 4 mg/L, Vmax = 450 mg/day, so 450 mg/day would drive levels\u2026",
+    "sampleId": "NP-UH-309"
+  },
+  {
+    "id": "cmshiyerg00181yors4m9ps4w",
+    "reason_group": "phenytoin-template",
+    "note": "Explicitly teaches linear phenytoin dosing; 562.5 \"rounded\" to 450 mg/day",
+    "sampleId": "NP-UH-310"
+  },
+  {
+    "id": "cmshj02qd001g1yorgnbptn29",
+    "reason_group": "phenytoin-template",
+    "note": "Rationale calls a linear proportion 'Michaelis-Menten' (450 mg) and then picks 400 mg as 'conservative'; with a population Km of 4 mg/L, Vmax = 420 mg/day and 400 mg/day would\u2026",
+    "sampleId": "NP-UH-311"
+  },
+  {
+    "id": "cmshj1tk4001l1yorpn7ra9zg",
+    "reason_group": "other-graded-hide",
+    "note": "Dissolution rate does not depend on solvent volume in this way, the units do not reconcile, and even the rationale's own formula gives (0.2 x 50 x 10) / 2 = 50 mL, not the\u2026",
+    "sampleId": "NP-UH-312"
+  },
+  {
+    "id": "cmshj5ybv00221yorqcpjdfbs",
+    "reason_group": "phenytoin-template",
+    "note": "Vmax 500/Km 10 at 400 mg/day gives Css = 10x400/(500-400) = 40 mg/L; keyed 15 mg/L via a wrong formula (hides toxicity)",
+    "sampleId": "NP-UH-313"
+  },
+  {
+    "id": "cmshj7d2b00241yor38q91s5z",
+    "reason_group": "other-graded-hide",
+    "note": "A trough cannot be calculated from the data given (no elimination rate or vancomycin clearance), and the rationale simply asserts the target (15 mg/L); trough-only targeting is\u2026",
+    "sampleId": "NP-UH-314"
+  },
+  {
+    "id": "cmshj7d5f00251yor8wfkgxek",
+    "reason_group": "alligation",
+    "note": "Alligation (10% and 2% to make 5%): 3 parts 10% to 5 parts 2%, so 10% = 500 x 3/8 = 187.5 mL; no option is correct (keyed 125 mL).",
+    "sampleId": "NP-UH-315"
+  },
+  {
+    "id": "cmshj8lkd002b1yorsh7ujja0",
+    "reason_group": "phenytoin-template",
+    "note": "Critical needs-pharmacist: Michaelis-Menten (Km 4): Vmax = 300 x 16/12 = 400; dose for 15 = 400 x 15/19 = about 316 mg/day (closest 350); key 375 is unsupported (+25 arithmetic\u2026",
+    "sampleId": "NP-UH-316"
+  },
+  {
+    "id": "cmshj9yrm002h1yorcp2bl6jj",
+    "reason_group": "phenytoin-template",
+    "note": "Linear proportion keyed 400 mg/day (arithmetic wrong); Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-317"
+  },
+  {
+    "id": "cmshjbd71002o1yornqve5d84",
+    "reason_group": "phenytoin-template",
+    "note": "Rationale uses a linear proportion (300 x 15/8 = 375 mg) while claiming Michaelis-Menten; with a population Km of 4 mg/L, Vmax = 450 mg/day and the estimate for 15 mg/L is\u2026",
+    "sampleId": "NP-UH-318"
+  },
+  {
+    "id": "cmshk9wpf00001ys7y80uymgk",
+    "reason_group": "digoxin-template",
+    "note": "LD = 1.0 ng/mL x 7.5 L/kg x 80 kg = 600 mcg IV; the rationale divides by F = 0.75 (600 / 0.75 = 800 mcg, not 750) although no oral route is stated; keyed 750 mcg is wrong\u2026",
+    "sampleId": "NP-UH-319"
+  },
+  {
+    "id": "cmshk9wx800021ys7x9en916r",
+    "reason_group": "overdose-calc",
+    "note": "Critical needs-pharmacist: Cockcroft-Gault with age 60, 100 kg, SCr 1.5 = 74 mL/min (not 55.6); 0.65 x 4.44 L/h = 2.9 L/h (closest 3.0); key 4.5 is an arithmetic error.",
+    "sampleId": "NP-UH-320"
+  },
+  {
+    "id": "cmshk9x0800031ys7v3bz821z",
+    "reason_group": "phenytoin-template",
+    "note": "Unanswerable: no measured phenytoin level is given, so Sheiner-Tozer cannot be applied, and Sheiner-Tozer adjusts a level, not a dose.",
+    "sampleId": "NP-UH-321"
+  },
+  {
+    "id": "cmshk9x3900041ys7d2j11a6y",
+    "reason_group": "phenytoin-template",
+    "note": "Critical needs-pharmacist: Rationale applies linear scaling (300 x 15/8 = 562.5) yet keys 400; Michaelis-Menten with Km 4 gives about 355 mg/day (closest 350).",
+    "sampleId": "NP-UH-322"
+  },
+  {
+    "id": "cmshkb54a00071ys71be8jfgd",
+    "reason_group": "digoxin-template",
+    "note": "Digoxin LD rationale divides by F=0.7 but keys the undivided 490 mcg (700 mcg also offered); internally wrong",
+    "sampleId": "NP-UH-323"
+  },
+  {
+    "id": "cmshkb5gd000b1ys7d0qydepe",
+    "reason_group": "phenytoin-template",
+    "note": "Vmax 500/Km 4 at 400 mg/day gives Css = 4x400/100 = 16 mcg/mL; keyed 12 via a wrong formula",
+    "sampleId": "NP-UH-324"
+  },
+  {
+    "id": "cmshkcn1d000j1ys7khars4h4",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 400 mg/day for 12->18; MM (Km 4) Vmax = 400 mg/day, so 400 mg/day drives levels without limit; ~327 -> 350",
+    "sampleId": "NP-UH-325"
+  },
+  {
+    "id": "cmshkcn4a000k1ys74ztxzn2i",
+    "reason_group": "other-graded-hide",
+    "note": "The rationale computes 200 mL (200 mg at 1 mg/mL) and then keys 4 mL with an irrelevant dissolution-rate argument; no option is correct.",
+    "sampleId": "NP-UH-326"
+  },
+  {
+    "id": "cmshkds8j000p1ys71feuvzzq",
+    "reason_group": "phenytoin-template",
+    "note": "Linear proportion keyed 400 mg/day; Michaelis-Menten with population Km 4 mg/L gives ~355 mg/day (8->15) / ~332 (10->15) -> 350",
+    "sampleId": "NP-UH-327"
+  },
+  {
+    "id": "cmshkf0e0000r1ys7mnma2rn7",
+    "reason_group": "digoxin-template",
+    "note": "LD = 1 ng/mL x 7.3 L/kg x 80 kg = 584 mcg IV (about 779 mcg if given orally with F = 0.75); the rationale's 584 / 0.75 is miscalculated as 1,200 mcg, a roughly 2-fold overdose;\u2026",
+    "sampleId": "NP-UH-328"
+  },
+  {
+    "id": "cmshkf1ge000x1ys7iy7ff94e",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 450 mg for 10->15 with a power formula; MM (Km 4) ~332 mg/day",
+    "sampleId": "NP-UH-329"
+  },
+  {
+    "id": "cmshkgff6000y1ys763u4v8hv",
+    "reason_group": "digoxin-template",
+    "note": "Incremental LD = (1.5 - 0.6) ng/mL x 7 L/kg x 70 kg = 441 mcg (0.44 mg); the key ignores the existing level (1.05 mg), and 1.5 ng/mL exceeds the 0.5-0.9 ng/mL HF target; no\u2026",
+    "sampleId": "NP-UH-330"
+  },
+  {
+    "id": "cmshkgftf00121ys7flmcbbph",
+    "reason_group": "overdose-calc",
+    "note": "Warfarin \"loading dose\" from a linear INR assumption keyed 10 mg; INR is not linear and loading is not recommended",
+    "sampleId": "NP-UH-331"
+  },
+  {
+    "id": "cmshkjx1v001c1ys7ybxm8lmj",
+    "reason_group": "alligation",
+    "note": "Alligation (10% and 25% to make 15%): 10 parts 10% to 5 parts 25%, so 10% = 500 x 10/15 = 333 mL; no option is correct (keyed 300 mL).",
+    "sampleId": "NP-UH-332"
+  },
+  {
+    "id": "cmshkjxcp001e1ys75h6qkx24",
+    "reason_group": "phenytoin-template",
+    "note": "Keys 340 mg/day for 15->18 with an invented formula; MM (Km 4) ~311 -> 320 (offered)",
+    "sampleId": "NP-UH-333"
+  },
+  {
+    "id": "cmshkl6ck001i1ys7coybbf8s",
+    "reason_group": "phenytoin-template",
+    "note": "300->400 mg/day at 15 mg/L: with Km 4, Vmax ~380 < 400 so no steady state; keyed 25 mg/L not supported",
+    "sampleId": "NP-UH-334"
+  },
+  {
+    "id": "cmshknl37001o1ys70jk365wv",
+    "reason_group": "phenytoin-template",
+    "note": "ROUND-1 FIXED (key now 910 mg) but still flawed: full phenytoin loading dose for a patient on phenytoin for years, with no current level (loads while ignoring the current level)",
+    "sampleId": "NP-UH-335"
+  },
+  {
+    "id": "cmshfqjwp00151y4nyi3vbts4",
+    "reason_group": "vancomycin-override",
+    "note": "Vancomycin loading dose is calculated as 1,470 mg and then rounded to 2,000 mg.",
+    "sampleId": "NP-UH-336"
+  }
+]

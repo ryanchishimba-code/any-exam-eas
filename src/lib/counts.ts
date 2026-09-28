@@ -158,8 +158,8 @@ export const PUBLISHED_BOARD_UNITS: Record<CountBoardSlug, BoardQuestionUnits> =
   }),
   naplex: boardQuestionUnits({
     slug: "naplex",
-    bankItems: 9858,
-    formats: { mcq: 9858, ngn: 0, case: 0 },
+    bankItems: 9522,
+    formats: { mcq: 9522, ngn: 0, case: 0 },
   }),
   pance: boardQuestionUnits({
     slug: "pance",
