@@ -49,7 +49,7 @@ export function FullExamLengthWheel({ options, value, onChange, fullBadge, fullH
             <span
               className={cn(
                 "font-extrabold tabular-nums tracking-tight",
-                active ? "text-xl text-[var(--color-accent)]" : "text-lg text-[var(--color-ink-muted)]"
+                active ? "text-xl text-white" : "text-lg text-[var(--color-ink-muted)]"
               )}
             >
               {primaryLabel(option)}
@@ -58,7 +58,7 @@ export function FullExamLengthWheel({ options, value, onChange, fullBadge, fullH
               <span
                 className={cn(
                   "mt-0.5 text-[11px] font-semibold tabular-nums tracking-tight",
-                  active ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"
+                  active ? "text-white" : "text-[var(--color-ink-muted)]"
                 )}
               >
                 {fullBadge ?? `${option.questionCount} Q`}
@@ -67,7 +67,7 @@ export function FullExamLengthWheel({ options, value, onChange, fullBadge, fullH
             <span
               className={cn(
                 "mt-1 line-clamp-2 text-center text-[10px] font-medium leading-tight",
-                active ? "text-[var(--color-ink)]" : "text-[var(--color-ink-muted)]"
+                active ? "text-white/80" : "text-[var(--color-ink-muted)]"
               )}
             >
               {option.preset === "full" ? (fullHint ?? "Full-length adaptive") : option.description}

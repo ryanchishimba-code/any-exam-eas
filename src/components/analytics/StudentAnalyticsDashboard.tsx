@@ -164,11 +164,8 @@ export function StudentAnalyticsDashboard({
         <div>
           <p className={studyUi.eyebrow}>Analytics</p>
           <h1 className="text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]">
-            Your {examName} insights
+            {examName}
           </h1>
-          <p className={cn(studyUi.subtitle, "mt-1 hidden max-w-xl sm:block")}>
-            Practice progress, accuracy trends, and weak areas — scoped to your active exam.
-          </p>
         </div>
         <div className="max-sm:hidden">
           <SocialShareBar
@@ -185,7 +182,7 @@ export function StudentAnalyticsDashboard({
           examName={examName}
           fieldId={fieldId}
           summary={openRemediation}
-          showWhenEmpty={(dashboard.headline.totalAttempts ?? 0) > 0}
+          showWhenEmpty={false}
         />
       ) : null}
 
@@ -211,13 +208,6 @@ export function StudentAnalyticsDashboard({
         />
         <div className="min-w-0 flex-1 space-y-2">
           <p className={studyUi.eyebrow}>{PRACTICE_PROGRESS_LABEL}</p>
-          <p className="text-[20px] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[22px]">
-            {dashboard.headline.readinessScore >= 75
-              ? "Strong practice signal — keep timed sets in the mix."
-              : dashboard.headline.readinessScore >= 50
-                ? "Solid practice progress — focus weak areas to climb faster."
-                : "Early practice stage — consistency builds a trustworthy signal."}
-          </p>
           <p className={studyUi.sectionHint}>
             {dashboard.headline.overallAccuracy != null
               ? `${dashboard.headline.overallAccuracy}% accuracy across ${dashboard.headline.totalAttempts} attempts`
@@ -225,9 +215,6 @@ export function StudentAnalyticsDashboard({
             {dashboard.headline.studyStreakDays > 0
               ? ` · ${dashboard.headline.studyStreakDays}-day streak`
               : ""}
-          </p>
-          <p className={cn(studyUi.sectionHint, "text-[12px]")}>
-            {PRACTICE_PROGRESS_HINT}
           </p>
         </div>
       </section>
@@ -238,9 +225,6 @@ export function StudentAnalyticsDashboard({
             <p className={studyUi.eyebrow}>Spaced review</p>
             <p className="mt-1 text-[17px] font-semibold text-[var(--color-ink)]">
               {srsDue} question{srsDue === 1 ? "" : "s"} due now
-            </p>
-            <p className={cn(studyUi.sectionHint, "mt-0.5")}>
-              {dashboard.spacedReview.weakDueCount} flagged as weak — clear them before they slip.
             </p>
           </div>
           <Link
@@ -312,11 +296,7 @@ export function StudentAnalyticsDashboard({
 
         <section className={studyUi.chartPanel}>
           <h3 className={studyUi.sectionTitle}>Weak areas — remediation</h3>
-          {weakTopics.length === 0 ? (
-            <p className="mt-4 text-sm text-[var(--color-ink-muted)]">
-              No weak topics detected yet. Keep practicing!
-            </p>
-          ) : (
+          {weakTopics.length === 0 ? null : (
             <ul className="mt-4 space-y-3">
               {weakTopics.slice(0, 6).map((t) => (
                 <li key={t.id}>
@@ -369,10 +349,7 @@ export function StudentAnalyticsDashboard({
 
       {examSlug === "pance" ? (
         <section className={cn(studyUi.panel, studyUi.panelPad)}>
-          <h3 className={studyUi.sectionTitle}>PANCE endurance check</h3>
-          <p className={cn(studyUi.sectionHint, "mt-2")}>
-            Full 300-question / 5-hour simulation aligned to NCCPA timing — build stamina before test day.
-          </p>
+          <h3 className={studyUi.sectionTitle}>PANCE</h3>
           <Button href={fullExamLaunchHref("pance", { mode: "full" })} className="mt-4">
             Take PANCE practice exam
           </Button>

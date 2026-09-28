@@ -179,9 +179,6 @@ export function ExamLaunchActions({
     <div className={cn("space-y-3", className)}>
       <div>
         <p className={feUi.eyebrow}>Exam actions</p>
-        <p className={cn(feUi.sectionHint, "mt-1")}>
-          Same smart selection as Full Exam — blueprint-true, less repetition.
-        </p>
       </div>
       <div
         className={cn(
@@ -189,41 +186,22 @@ export function ExamLaunchActions({
           density === "compact" ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-4"
         )}
       >
-        {ACTIONS.map(({ mode, icon: Icon, hint }) => {
-          const disabled = mode === "retake_last" && !hasRetake;
-          const emphasize =
-            mode === "continue_learning" && canContinue
-              ? true
-              : mode === "new_exam" && !canContinue;
+        {ACTIONS.filter((action) => action.mode !== "retake_last" || hasRetake).map(({ mode, icon: Icon }) => {
+          const emphasize = mode === "continue_learning" && canContinue;
           return (
             <button
               key={mode}
               type="button"
-              disabled={disabled}
-              title={disabled ? "Complete an exam first to unlock retake" : hint}
               onClick={() => void start(mode)}
               className={cn(
-                "flex flex-col items-start gap-1 rounded-[16px] border px-4 py-3.5 text-left transition active:scale-[0.99]",
+                "flex min-h-11 items-center gap-2 rounded-[16px] border px-4 py-3.5 text-left text-[14px] font-semibold tracking-tight transition active:scale-[0.99]",
                 emphasize
-                  ? "border-[var(--color-accent)]/35 bg-[var(--color-accent)] text-white shadow-[var(--shadow-apple-btn)]"
-                  : "border-[var(--color-border)] bg-[var(--color-surface-elevated)] text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] hover:shadow-[var(--shadow-apple-md)]",
-                disabled && "cursor-not-allowed opacity-40"
+                  ? "border-[var(--color-accent)] bg-[var(--color-accent)] text-white shadow-[var(--shadow-apple-btn)]"
+                  : "border-[var(--color-border)] bg-[var(--color-surface-elevated)] text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] hover:shadow-[var(--shadow-apple-md)]"
               )}
             >
-              <span className="inline-flex items-center gap-2 text-[14px] font-semibold tracking-tight">
-                <Icon className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
-                {LAUNCH_MODE_LABELS[mode]}
-              </span>
-              <span
-                className={cn(
-                  "text-[12px] leading-snug",
-                  emphasize ? "text-white/80" : "text-[var(--color-ink-muted)]"
-                )}
-              >
-                {mode === "continue_learning" && canContinue
-                  ? "Resume your in-progress exam"
-                  : hint}
-              </span>
+              <Icon className="h-4 w-4 shrink-0 opacity-90" aria-hidden />
+              {LAUNCH_MODE_LABELS[mode]}
             </button>
           );
         })}

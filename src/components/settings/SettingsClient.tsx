@@ -80,9 +80,6 @@ export function SettingsClient({
           </h2>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-          Walk through Today&apos;s block, the question bank, and readiness again.
-        </p>
-        <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
           Email{" "}
           <a
             href={`mailto:${LEGAL_ENTITY.supportEmail}`}

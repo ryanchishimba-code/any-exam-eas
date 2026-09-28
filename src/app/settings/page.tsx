@@ -62,9 +62,6 @@ async function SettingsPageInner() {
         <h1 className="text-3xl font-bold tracking-tight text-[var(--color-ink)]">
           Settings
         </h1>
-        <p className="mt-2 text-[var(--color-ink-muted)]">
-          Exam preferences, billing, and account.
-        </p>
         <div className="mt-8">
           <SettingsClient
             email={session.user.email ?? ""}

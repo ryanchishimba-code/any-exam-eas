@@ -94,10 +94,6 @@ async function AnalyticsContent({
             <Link href={ROUTES.readiness} className="font-semibold text-[var(--color-accent)]">
               Readiness checks
             </Link>
-            <span className="text-[var(--color-ink-muted)]">
-              {" "}
-              — a fixed baseline and progress by area, separate from this proof.
-            </span>
           </p>
           <ReadinessProofPanel
             readiness={examDayPlan.readiness}

@@ -1,10 +1,9 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowRight, BookMarked, BookOpen, Pill, RotateCcw } from "lucide-react";
+import { BookMarked, BookOpen, Pill, RotateCcw } from "lucide-react";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import {
   otherOpenRetestHref,
-  REMEDIATION_MASTERY_RULE,
   reviewIncorrectHref,
   type OpenRemediationSummary,
 } from "@/lib/learning/remediation-loop";
@@ -86,17 +85,13 @@ export function RemediationPanel({
           <ActionLink
             href={reviewAllHref}
             locked={studyLocked}
-            className={`${dbUi.primaryBtn} min-h-11 w-full sm:w-auto`}
+            className={`${ghost} min-h-11 w-full justify-center sm:w-auto`}
           >
             <RotateCcw className="h-4 w-4" aria-hidden />
             Review incorrect
           </ActionLink>
         ) : null}
       </div>
-      <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-        {REMEDIATION_MASTERY_RULE}
-      </p>
-
       {summary.loops.length > 0 ? (
         <ul className="space-y-3">
           {summary.loops.map((loop) => (
@@ -185,24 +180,6 @@ export function RemediationPanel({
         </div>
       ) : null}
 
-      <details className="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
-        <summary className="cursor-pointer text-[12px] font-semibold text-[var(--color-ink-muted)]">
-          How this loop works on every board
-        </summary>
-        <p className="mt-2 pb-1 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
-          NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT share this list. A study-guide link
-          appears for NCLEX, NAPLEX, and AANP FNP when the topic maps to a chapter. USMLE, PANCE,
-          and NPTE-PT use the same retest rule and show a drug or card link when the catalog has
-          one. An item leaves this list after a spaced re-proof or a confirmed mark-mastered.
-        </p>
-      </details>
-
-      {studyLocked && open > 0 ? (
-        <p className="inline-flex items-center gap-1.5 text-[13px] text-[var(--color-ink-muted)]">
-          <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-          Trial ended. Subscribe to open these links.
-        </p>
-      ) : null}
     </section>
   );
 }

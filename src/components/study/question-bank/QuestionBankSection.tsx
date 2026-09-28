@@ -49,7 +49,7 @@ export function QuestionBankSegment<T extends string>({
             role="tab"
             aria-selected={active}
             onClick={() => onChange(opt.id)}
-            className={cn(qbUi.segmentBtn, active && qbUi.segmentBtnActive)}
+            className={active ? qbUi.segmentBtnActive : qbUi.segmentBtn}
           >
             {opt.label}
           </button>

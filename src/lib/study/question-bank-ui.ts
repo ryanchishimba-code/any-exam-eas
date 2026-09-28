@@ -18,7 +18,7 @@ export const qbUi = {
   segmentBtn:
     "flex-1 rounded-lg px-4 py-2 text-[12px] font-semibold text-[var(--qb-muted,var(--color-ink-muted))] transition sm:flex-none sm:min-w-[7rem]",
   segmentBtnActive:
-    "bg-[var(--qb-card,var(--color-surface-elevated))] text-[var(--qb-ink,var(--color-ink))] border border-[var(--qb-line,var(--color-border))]/60",
+    "flex-1 rounded-lg bg-[var(--color-accent)] px-4 py-2 text-[12px] font-semibold text-white transition sm:flex-none sm:min-w-[7rem]",
   chipRow:
     "flex gap-2 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
   chip:
@@ -30,7 +30,7 @@ export const qbUi = {
     "divide-y divide-[var(--qb-line,var(--color-border))]/70 overflow-hidden rounded-2xl border border-[var(--qb-line,var(--color-border))]/80 bg-[var(--qb-card,var(--color-surface-elevated))]",
   listRow:
     "flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-[var(--qb-surface,var(--color-surface))]/70",
-  listRowSelected: "bg-[var(--color-accent)]/[0.06]",
+  listRowSelected: "bg-[var(--color-accent)] text-white",
   searchInput:
     "w-full rounded-xl border border-[var(--qb-line,var(--color-border))]/50 bg-[var(--qb-card,var(--color-surface-elevated))] py-2 pl-9 pr-4 text-[13px] text-[var(--qb-ink,var(--color-ink))] outline-none transition placeholder:text-[var(--qb-muted,var(--color-ink-muted))] focus:border-[var(--color-accent)]/35",
   stickyBar:
@@ -43,11 +43,11 @@ export const qbUi = {
   optionCard:
     "rounded-2xl border border-[var(--qb-line,var(--color-border))]/80 bg-[var(--qb-card,var(--color-surface-elevated))] px-3.5 py-3 text-left transition hover:border-[var(--color-accent)]/35 active:scale-[0.99]",
   optionCardActive:
-    "border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06]",
+    "rounded-2xl border border-[var(--color-accent)] bg-[var(--color-accent)] px-3.5 py-3 text-left text-white shadow-[0_1px_2px_rgba(15,23,42,0.12)] transition active:scale-[0.99]",
   modeCard:
     "flex min-w-[9rem] shrink-0 snap-start flex-col rounded-2xl border border-[var(--qb-line,var(--color-border))]/80 bg-[var(--qb-card,var(--color-surface-elevated))] p-3.5 text-left transition hover:border-[var(--color-accent)]/35 active:scale-[0.99]",
   modeCardActive:
-    "border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06]",
+    "flex min-w-[9rem] shrink-0 snap-start flex-col rounded-2xl border border-[var(--color-accent)] bg-[var(--color-accent)] p-3.5 text-left text-white shadow-[0_1px_2px_rgba(15,23,42,0.12)] transition active:scale-[0.99]",
   primaryBtn:
     "inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-4 text-[14px] font-semibold text-white shadow-[var(--qb-cta-shadow,0_1px_2px_rgba(15,23,42,0.08))] transition hover:opacity-95 hover:shadow-[var(--qb-cta-shadow-hover,0_2px_8px_rgba(15,23,42,0.12))] active:scale-[0.98] disabled:opacity-50",
   ghostBtn:

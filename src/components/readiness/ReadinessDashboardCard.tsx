@@ -26,6 +26,9 @@ type CardPayload = {
   } | null;
 };
 
+const quietAction =
+  "inline cursor-pointer border-0 bg-transparent p-0 text-[13px] font-semibold text-[var(--color-ink)] underline-offset-2 hover:text-[var(--color-accent)] hover:underline disabled:opacity-60";
+
 function CardShell({ children, busy = false }: { children: React.ReactNode; busy?: boolean }) {
   return (
     <section
@@ -67,6 +70,7 @@ export function ReadinessDashboardCard({
   examName,
   hasStudyAccess = true,
   initial = null,
+  compact = false,
 }: {
   examSlug: ExamSlug;
   examName: string;
@@ -74,11 +78,14 @@ export function ReadinessDashboardCard({
   hasStudyAccess?: boolean;
   /** Fixture for the dev preview. Production leaves this empty and fetches. */
   initial?: CardPayload | null;
+  /** One line in the dashboard status row. Actions stay text, not a solid button. */
+  compact?: boolean;
 }) {
   const router = useRouter();
   const [card, setCard] = useState<CardPayload | null>(initial);
   const [notice, setNotice] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
+  const [outcomeOpen, setOutcomeOpen] = useState(false);
   const holdFetch = useRef(false);
 
   useEffect(() => {
@@ -153,12 +160,34 @@ export function ReadinessDashboardCard({
 
   const view = card ?? invitePayload(hasStudyAccess);
   const noticeLine = notice ? (
-    <p className="mt-3 text-[14px] leading-relaxed text-[var(--color-ink-muted)]" role="status">
-      {notice}
-    </p>
+    compact ? (
+      <span className="basis-full text-[13px] text-[var(--color-ink-muted)]" role="status">
+        {notice}
+      </span>
+    ) : (
+      <p className="mt-3 text-[14px] leading-relaxed text-[var(--color-ink-muted)]" role="status">
+        {notice}
+      </p>
+    )
   ) : null;
 
   if (view.mode === "outcome") {
+    if (compact) {
+      return (
+        <span className="inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1" data-readiness-card="true">
+          <span>Exam result. Not a prediction of passing.</span>
+          <button type="button" className={quietAction} onClick={() => setOutcomeOpen((open) => !open)}>
+            {outcomeOpen ? "Hide" : "Record result"}
+          </button>
+          {outcomeOpen ? (
+            <span className="mt-2 basis-full">
+              <ExamOutcomeForm examName={examName} examDate={view.examDate} compact onSubmit={saveOutcome} />
+            </span>
+          ) : null}
+          {noticeLine}
+        </span>
+      );
+    }
     return (
       <CardShell>
         <ExamOutcomeForm examName={examName} examDate={view.examDate} compact onSubmit={saveOutcome} />
@@ -167,6 +196,19 @@ export function ReadinessDashboardCard({
   }
 
   if (view.mode === "resume" && view.resume) {
+    if (compact) {
+      return (
+        <span className="inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1" data-readiness-card="true">
+          <span>
+            {view.resume.answered} of {view.resume.total} on your check. Not a prediction of passing.
+          </span>
+          <button type="button" className={quietAction} disabled={pending} onClick={() => void start(false)}>
+            {pending ? "Opening…" : "Continue"}
+          </button>
+          {noticeLine}
+        </span>
+      );
+    }
     return (
       <CardShell>
         <p className={dbUi.eyebrow}>Readiness check</p>
@@ -193,6 +235,28 @@ export function ReadinessDashboardCard({
       : view.result.daysUntilSuggest
         ? `A new check is most useful in ${view.result.daysUntilSuggest} ${view.result.daysUntilSuggest === 1 ? "day" : "days"}. You can retake sooner.`
         : "You can retake whenever you want a fresh read.";
+    if (compact) {
+      return (
+        <span className="inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1" data-readiness-card="true">
+          <span>
+            {view.result.summaryLine ?? view.result.overallLabel ?? "Latest check is ready."} Not a prediction of passing.
+          </span>
+          <Link href={ROUTES.readiness} className={quietAction}>
+            Open check
+          </Link>
+          {view.hasStudyAccess ? (
+            <button type="button" className={quietAction} disabled={pending} onClick={() => void start(false)}>
+              {pending ? "Starting…" : retakeLabel}
+            </button>
+          ) : (
+            <Link href={ROUTES.pricing} className={quietAction}>
+              View plans
+            </Link>
+          )}
+          {noticeLine}
+        </span>
+      );
+    }
     return (
       <CardShell>
         <div className="flex flex-wrap items-center gap-2">
@@ -233,6 +297,23 @@ export function ReadinessDashboardCard({
   }
 
   if (view.mode === "quiet") {
+    if (compact) {
+      return (
+        <span className="inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1" data-readiness-card="true">
+          <span>Baseline, not a prediction of passing.</span>
+          {view.hasStudyAccess ? (
+            <button type="button" className={quietAction} disabled={pending} onClick={() => void start(false)}>
+              {pending ? "Starting…" : "Start baseline"}
+            </button>
+          ) : (
+            <Link href={ROUTES.pricing} className={quietAction}>
+              View plans
+            </Link>
+          )}
+          {noticeLine}
+        </span>
+      );
+    }
     return (
       <CardShell>
         <div className="flex min-h-[128px] flex-wrap items-center justify-between gap-3">
@@ -254,6 +335,27 @@ export function ReadinessDashboardCard({
         </div>
         {noticeLine}
       </CardShell>
+    );
+  }
+
+  if (compact) {
+    return (
+      <span className="inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1" data-readiness-card="true">
+        <span>Baseline, not a prediction of passing.</span>
+        {view.hasStudyAccess ? (
+          <button type="button" className={quietAction} disabled={pending} onClick={() => void start(false)}>
+            {pending ? "Starting…" : "Start baseline"}
+          </button>
+        ) : (
+          <Link href={ROUTES.pricing} className={quietAction}>
+            View plans
+          </Link>
+        )}
+        <button type="button" className={quietAction} disabled={pending} onClick={() => void skip()}>
+          Not now
+        </button>
+        {noticeLine}
+      </span>
     );
   }
 

@@ -49,10 +49,14 @@ export function QuestionBankTopicPicker({
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(() => {
+    const withItems =
+      !countsLoading && subjectCounts && Object.keys(subjectCounts).length > 0
+        ? subjects.filter((s) => (subjectCounts[s.id] ?? 0) > 0)
+        : subjects;
     const q = query.trim().toLowerCase();
-    if (!q) return subjects;
-    return subjects.filter((s) => s.label.toLowerCase().includes(q));
-  }, [query, subjects]);
+    if (!q) return withItems;
+    return withItems.filter((s) => s.label.toLowerCase().includes(q));
+  }, [countsLoading, query, subjectCounts, subjects]);
 
   const totalCount = useMemo(() => {
     if (!subjectCounts) return null;
@@ -164,11 +168,16 @@ export function QuestionBankTopicPicker({
                       <Icon className="h-4 w-4" aria-hidden />
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-[13px] font-semibold text-[var(--color-ink)]">
+                      <p
+                        className={cn(
+                          "truncate text-[13px] font-semibold",
+                          selected ? "text-white" : "text-[var(--color-ink)]"
+                        )}
+                      >
                         {subject.label}
                       </p>
                       {typeof count === "number" ? (
-                        <p className={qbUi.sectionHint}>
+                        <p className={selected ? "text-[12px] text-white/80" : qbUi.sectionHint}>
                           {count.toLocaleString()} {count === 1 ? "question" : "questions"}
                           {countQualifierBySubject?.[subject.id]
                             ? ` ${countQualifierBySubject[subject.id]}`
@@ -180,7 +189,14 @@ export function QuestionBankTopicPicker({
                     </div>
                     <div className="flex shrink-0 items-center gap-1.5">
                       {mark ? (
-                        <span className="rounded-full bg-[var(--color-accent)]/10 px-2 py-0.5 text-[11px] font-semibold tracking-[-0.01em] text-[var(--color-accent)]">
+                        <span
+                          className={cn(
+                            "rounded-full px-2 py-0.5 text-[11px] font-semibold tracking-[-0.01em]",
+                            selected
+                              ? "bg-white/15 text-white"
+                              : "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+                          )}
+                        >
                           {mark.kind === "untouched" ? "Untouched" : "Low"}
                         </span>
                       ) : isWeak ? (
@@ -189,7 +205,7 @@ export function QuestionBankTopicPicker({
                         </span>
                       ) : null}
                       {selected ? (
-                        <Check className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+                        <Check className={cn("h-4 w-4", selected ? "text-white" : "text-[var(--color-accent)]")} aria-hidden />
                       ) : null}
                     </div>
                   </button>
@@ -229,17 +245,24 @@ function MixedTopicRow({
       onClick={onSelect}
       className={cn(qbUi.listRow, selected && qbUi.listRowSelected)}
     >
-      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
+      <span
+        className={cn(
+          "inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl",
+          selected ? "bg-white/15 text-white" : "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+        )}
+      >
         <Layers className="h-4 w-4" aria-hidden />
       </span>
       <div className="min-w-0 flex-1">
-        <p className="text-[13px] font-semibold text-[var(--color-ink)]">{MIXED_SUBJECT_LABEL}</p>
-        <p className={qbUi.sectionHint}>
+        <p className={cn("text-[13px] font-semibold", selected ? "text-white" : "text-[var(--color-ink)]")}>
+          {MIXED_SUBJECT_LABEL}
+        </p>
+        <p className={selected ? "text-[12px] text-white/80" : qbUi.sectionHint}>
           Random across all topics
           {totalCount !== null ? <> · {totalCount.toLocaleString()} questions</> : null}
         </p>
       </div>
-      {selected ? <Check className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden /> : null}
+      {selected ? <Check className="h-4 w-4 shrink-0 text-white" aria-hidden /> : null}
     </button>
   );
 }

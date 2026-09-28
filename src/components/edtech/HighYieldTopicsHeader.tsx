@@ -59,18 +59,11 @@ export function HighYieldTopicsHeader({
             ) : null}
           </div>
           <h1 className={cn(studyUi.title, "text-balance")}>High-Yield Topics</h1>
-          <p className={studyUi.subtitle}>
-            {topicCount} exam-focused summaries and textbook modules — pearls, pitfalls, and
-            practice links.
-          </p>
           <div className="flex flex-wrap items-center gap-2 pt-0.5">
+            {reviewedCount === 0 ? (
+              <span className={studyUi.statPill}>{topicCount} topics</span>
+            ) : null}
             <span className={studyUi.statPill}>{masteryPct}% explored</span>
-            <span className="h-1.5 w-24 overflow-hidden rounded-full bg-[var(--color-surface)]">
-              <span
-                className="block h-full rounded-full bg-[var(--color-accent)]/70 transition-all duration-500"
-                style={{ width: `${masteryPct}%` }}
-              />
-            </span>
           </div>
         </div>
 

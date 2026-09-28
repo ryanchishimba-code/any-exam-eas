@@ -25,7 +25,6 @@ import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { ROUTES } from "@/lib/routes";
 import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
-import { catLauncherBriefing } from "@/lib/questions/cat-psychology";
 import {
   nclexFullPracticeBadge,
   nclexFullPracticeHint,
@@ -275,7 +274,6 @@ export function FullExamLauncher({
       <StudyPageHeader
         eyebrow="Full simulated exam"
         title={pageTitle}
-        subtitle="Test-day conditions with a calm timer, flag-for-review, and a detailed breakdown when you finish."
         breadcrumbs={[{ label: "Dashboard", href: ROUTES.dashboard }, { label: "Full Exam", href: ROUTES.fullExam }]}
       />
 
@@ -361,25 +359,6 @@ export function FullExamLauncher({
                     </span>
                   </span>
                 </label>
-                {nclexCat ? (
-                  <div
-                    className="rounded-xl border border-teal-200/60 bg-teal-50/50 px-3.5 py-3 text-left"
-                    role="note"
-                    aria-label="Practice CAT briefing"
-                  >
-                    <p className="text-[11px] font-semibold uppercase tracking-wide text-teal-900">
-                      Test-day psychology (practice)
-                    </p>
-                    <ul className="mt-2 space-y-2">
-                      {catLauncherBriefing().map((bullet) => (
-                        <li key={bullet.title} className="text-[12px] leading-snug text-teal-950/90">
-                          <span className="font-semibold">{bullet.title}. </span>
-                          {bullet.body}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : null}
               </div>
             ) : null}
 
@@ -412,9 +391,6 @@ export function FullExamLauncher({
                 <Zap className="h-4 w-4" aria-hidden />
                 {pending ? "Starting…" : timed ? "Start Timed Exam" : "Start Untimed Exam"}
               </button>
-              <p className="text-center text-[12px] text-[var(--color-ink-muted)]">
-                Auto-saves every answer · Flag &amp; review · Rationales after you submit
-              </p>
               <Link
                 href={ROUTES.dashboard}
                 className="flex items-center justify-center gap-0.5 text-[13px] font-semibold text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
