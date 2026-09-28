@@ -12,7 +12,7 @@
  * explanation-only rows), removes the naplex-cleanup-batch-4-2026-09-28
  * hide block, and puts the 52 unhide entries back on their previous lists.
  * Then set the NAPLEX bank count back to 9,153 and the six-board total back
- * to 45,207, and deploy.
+ * to 45,201, and deploy. The NCLEX urgent-hide 2 entries stay in place.
  *
  * Earlier hide-batch restore scripts count the entries in their own blocks.
  * Those counts drop while these 52 entries are removed, so those restores
@@ -91,7 +91,7 @@ async function main() {
   console.log(`unhide entries to put back: ${unhides.length}`);
   console.log(`unhide ids still in the queue: ${stillPresent.length}`);
   console.log(backupRows === null ? "backup table: not created yet" : `backup rows: ${backupRows}`);
-  console.log("After restoring, set NAPLEX bankItems back to 9153 and the six-board total back to 45207.");
+  console.log("After restoring, set NAPLEX bankItems back to 9153 and the six-board total back to 45201.");
   if (block.count !== HIDE_EXPECTED) {
     console.log(`Stopped. The hide block does not contain ${HIDE_EXPECTED} entries.`);
     process.exitCode = 1;

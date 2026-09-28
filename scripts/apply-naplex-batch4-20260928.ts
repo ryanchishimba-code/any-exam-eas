@@ -343,7 +343,7 @@ async function main() {
   }
   if (unhideVisible.length !== unhideIds.length) problems.push("an unhide does not pass eligibility");
   if (mismatches.length !== 0 || planned.length !== 378) problems.push("key fixes are not all applicable");
-  if (naplex[0]?.n !== 7300 || published.boards.naplex.bankItems !== 7300 || published.totalQuestions !== 43354) {
+  if (naplex[0]?.n !== 7300 || published.boards.naplex.bankItems !== 7300 || published.totalQuestions !== 43348) {
     problems.push(`count stamp ${published.boards.naplex.bankItems}/${published.totalQuestions} live eligible ${naplex[0]?.n}`);
   }
   if (!listedSame) problems.push("option-copies-left.json is stale");
