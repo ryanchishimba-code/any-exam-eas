@@ -12,6 +12,9 @@ export const NAPLEX_KEY_REVIEW_AUDIT_REF = "sample-exam-quality-naplex-2026-09-2
 /** Broken NCLEX items hidden 2026-09-27. Text is unchanged pending an RN rewrite. */
 export const NCLEX_KEYFIX_HIDE_AUDIT_REF = "nclex-keyfix-hide-2026-09-27";
 
+/** Batch 2 broken NCLEX items hidden 2026-09-27. Text is unchanged pending an RN rewrite. */
+export const NCLEX_KEYFIX_HIDE_B2_AUDIT_REF = "nclex-keyfix-hide-2026-09-27-b2";
+
 export const KEY_WRONG_REASON = "key_wrong_pending_rn_review" as const;
 
 export const RN_REVIEW_QUEUE_PIPELINE = "rn-review-queue-v1" as const;
@@ -253,6 +256,276 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     sampleId: "KF-normal-fhr",
     auditRef: NCLEX_KEYFIX_HIDE_AUDIT_REF,
     note: "The keyed priority finding is a normal fetal heart rate.",
+  },
+  {
+    id: "cmr77c94800yf1ywuyldkvn6o",
+    sampleId: "KF2-scd-dvt",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "SCDs are contraindicated on a limb with acute DVT. Early ambulation once anticoagulated (A) is guideline-supported, but the stem says the client is on bed rest, so re-keying\u2026",
+  },
+  {
+    id: "cmr75yxbd00l91ywuik50psrb",
+    sampleId: "KF2-copd-at-target",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "No unstable client; keyed \"adjust oxygen\" for COPD at SpO2 92% (at target).",
+  },
+  {
+    id: "cmr77c7ym00y11ywu08006add",
+    sampleId: "KF2-copd-spo2",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "COPD client keyed to SpO2 above 92% (GOLD target 88\u201392%); no remaining option is correct.",
+  },
+  {
+    id: "cmr75n9t200gw1ywuk1f7os6e",
+    sampleId: "KF2-stemi-nitro",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Inferior STEMI keyed to nitroglycerin without BP/RV assessment; remaining options (defibrillation, 100% NRB, repeat ECG) are not correct either.",
+  },
+  {
+    id: "cmr7647px00m31ywu6jjoeyxa",
+    sampleId: "KF2-tka-swelling",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "POD 3 TKA with increasing pain and swelling: DVT/infection assessment and notification not offered; all options treat symptoms.",
+  },
+  {
+    id: "cmr8mns5w00ai1yay9swbo7zk",
+    sampleId: "KF2-nsaid-pud",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "NSAID in a client with a PUD history: the nurse should clarify the order, and no option does that.",
+  },
+  {
+    id: "cmqwnohzh00091y7hex6gw5ip",
+    sampleId: "KF2-dka-confused",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Glucose 250 mg/dL with the key/rationale calling confusion and sweating hypoglycemia; internally inconsistent scenario.",
+  },
+  {
+    id: "cmqwrcmbq000m1yjh6ebdjbhm",
+    sampleId: "KF2-hhs-mislabeled",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Labels glucose 300 mg/dL as HHS and keys dilutional sodium 128 as priority; values do not match HHS criteria.",
+  },
+  {
+    id: "cmr0tl18f005b1y8q3jhmtwou",
+    sampleId: "KF2-dka-180",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Glucose 180 mg/dL during DKA insulin infusion treated as hypoglycemia; correct action (recheck, add dextrose per protocol) not offered.",
+  },
+  {
+    id: "cmr76uab300t41ywubu063xav",
+    sampleId: "KF2-dka-shaky",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "DKA \"shaky\" template at glucose 250 mg/dL keyed as hypoglycemia; no finding option is clearly correct.",
+  },
+  {
+    id: "cmr7eseh700aa1y9tyoop9ziu",
+    sampleId: "KF2-dka-shaky-2",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "DKA \"shaky\" template at glucose 250: carbohydrate key is wrong and none of the other options (increase insulin, BP, water) is correct.",
+  },
+  {
+    id: "cmr8wawx600a71yab8te8iclv",
+    sampleId: "KF2-dka-shaky-3",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "DKA \"shaky\" template at glucose 250: carbohydrate key is wrong; no remaining option is correct.",
+  },
+  {
+    id: "cmr74yl7s009i1ywu0zm3gnna",
+    sampleId: "KF2-hyperglycemia-ssi",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Persistent hyperglycemia keyed to sliding-scale insulin; provider-directed regimen change is not offered.",
+  },
+  {
+    id: "cmr0yf0uq009d1ybsi1vz84vw",
+    sampleId: "KF2-aptt-missing",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Keys notification of an aPTT result that is not given in the scenario.",
+  },
+  {
+    id: "cmr8ufrug009r1y0yy7zwc3fz",
+    sampleId: "KF2-inr-cardioversion",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "INR 1.8 before cardioversion: notify and continue warfarin (cardioversion postponed); no option says that, and holding warfarin raises stroke risk.",
+  },
+  {
+    id: "cmr76u9cr00ss1ywug0wsx63o",
+    sampleId: "KF2-donning-order",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "CDC donning order is gown, N95, goggles, gloves; no option lists that sequence.",
+  },
+  {
+    id: "cmr8vlwgr005d1yabtg0hysms",
+    sampleId: "KF2-contact-shield",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Contact precautions do not require a face shield; the keyed breach is not a breach and no option is a true breach.",
+  },
+  {
+    id: "cmqwx6mkq00031y2mmbh00wu5",
+    sampleId: "KF2-lisinopril",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Pregnant client on lisinopril (fetotoxic); no option addresses the teratogenic drug.",
+  },
+  {
+    id: "cmr1bh65q000k1yrmatrq3wyt",
+    sampleId: "KF2-bilirubin-dup",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Bilirubin 12 mg/dL at 24 h needs phototherapy, but options A and D are duplicates (both phototherapy), so no single key is possible.",
+  },
+  {
+    id: "cmr787yxj016h1ywu7vjk6z84",
+    sampleId: "KF2-prenatal-ntd",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "At 20 weeks prenatal vitamins cannot reduce NTD risk; no option gives the correct reason; stem spliced.",
+  },
+  {
+    id: "cmr8sz532008s1y9nglxbb5mm",
+    sampleId: "KF2-late-decels",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Case fragment with FHR 160 and late decelerations keyed to pushing technique; intrauterine resuscitation and notification are not offered.",
+  },
+  {
+    id: "cmroe7zyv000w1ybzode20s9g",
+    sampleId: "KF2-newborn-hr",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Newborn HR 90 bpm: NRP requires positive-pressure ventilation for HR <100, which is not offered; free-flow O2 is wrong.",
+  },
+  {
+    id: "cmrogf0we00591ymriqgrx4vt",
+    sampleId: "KF2-jogging-teaching",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "\"Needs further teaching\" item where the keyed statement (continue established jogging) is correct per ACOG, and no option is clearly incorrect.",
+  },
+  {
+    id: "cmsewieq700111y56bwiqzdqv",
+    sampleId: "KF2-palmar-grasp",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "\"Needs further teaching\" item where every statement is correct (the palmar grasp is present at birth).",
+  },
+  {
+    id: "cmsewq8pv005b1y56ub57mswj",
+    sampleId: "KF2-early-decels",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Early decelerations with moderate variability are benign; no option is reportable.",
+  },
+  {
+    id: "cmr1bh8es000z1yrm1u1j0eoq",
+    sampleId: "KF2-refuse-meds",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Involuntary clients also retain the right to refuse medication/treatment (A, C); multiple true options.",
+  },
+  {
+    id: "cmr7echi000501y9tyfy2rm2q",
+    sampleId: "KF2-heparin-tpa",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Thrombolytic ordered for a client on an active heparin drip: the nurse should verify aPTT and eligibility, which no option offers.",
+  },
+  {
+    id: "cmr8nxmdj009u1yh664m9hz50",
+    sampleId: "KF2-stroke-anticoag",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Anticoagulated client with acute stroke symptoms needs emergent CT/neuro assessment; no option offers it, and the key has the nurse adjusting warfarin.",
+  },
+  {
+    id: "cmr8w3ln1008x1yabxco70mt6",
+    sampleId: "KF2-postictal",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Seizure has ended (postictal, SpO2 95%); lorazepam key is wrong and side-lying/airway monitoring is not offered.",
+  },
+  {
+    id: "cmr8utdfc00d01y0yx5mfuxk1",
+    sampleId: "KF2-consent-surgeon",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Risk/benefit disclosure is the surgeon's; \"refer questions to the surgeon\" is not offered.",
+  },
+  {
+    id: "cmr0pyubm002t1y1g19jzu0s4",
+    sampleId: "KF2-pap-age",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Age 28: cytology alone every 3 years is recommended; no option states this (co-testing is for 30\u201365).",
+  },
+  {
+    id: "cmr0ufrka00251y7owlq2oh3d",
+    sampleId: "KF2-bse-family",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "25-year-old with family history: BSE key not recommended; risk assessment/genetic counseling referral not offered as such.",
+  },
+  {
+    id: "cmr0ylppz00ay1ybs9y5edbuy",
+    sampleId: "KF2-mammo-family",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "28-year-old with family history keyed to mammogram; risk assessment/genetic counseling referral not offered (nurse does not order BRCA testing).",
+  },
+  {
+    id: "cmr130q6500dn1y1utvgvuuj4",
+    sampleId: "KF2-pap-annual",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Annual Pap from 21 is outdated (every 3 years for 21\u201329); no correct option.",
+  },
+  {
+    id: "cmr0w0sgi004i1ymhesalodpe",
+    sampleId: "KF2-ards-vent",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "ARDS item keys the nurse to adjust ventilator settings (outside RN scope); needs rewrite as collaborative care.",
+  },
+  {
+    id: "cmr0zisd5007a1ybat8jmjq0e",
+    sampleId: "KF2-smoke-co",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Smoke inhalation with facial burns: pulse oximetry is unreliable with CO poisoning; airway assessment/100% O2/COHb not offered.",
+  },
+  {
+    id: "cmr8v1dvc00031yabr4mvtxoq",
+    sampleId: "KF2-hip-fall",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Possible hip fracture after a fall: assess/immobilize/notify is not offered; the key applies a prevention device to an injured hip.",
+  },
+  {
+    id: "cmqwm39ww00041yqm37qp9jwo",
+    sampleId: "KF2-suicide-mismatch",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Stem/option mismatch: suicidal-client discharge stem with pressure-injury options; no option answers the stem.",
+  },
+  {
+    id: "cmqwrpox200051yb34bokv6c0",
+    sampleId: "KF2-gi-bleed",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Active GI bleed (BP 90/56, Hgb 7.2) described as discharge; options concern wound dressings.",
+  },
+  {
+    id: "cmqwzs4sz000c1ylelw41b3bb",
+    sampleId: "KF2-foley-straight",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Client has an indwelling Foley yet is keyed to straight catheterization; checking catheter patency is not offered.",
+  },
+  {
+    id: "cmr13y5ot008p1ygq42jbmdvb",
+    sampleId: "KF2-missing-labs",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Stem says \"based on the lab results\" but gives no lab values.",
+  },
+  {
+    id: "cmr7djvqo008x1yvxdo16xtyu",
+    sampleId: "KF2-bph-female",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Female client described with benign prostatic hyperplasia (factual error); bladder scan (D) would otherwise be correct.",
+  },
+  {
+    id: "cmr7f9xm4000s1y59aqezwogw",
+    sampleId: "KF2-aspart-missing",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Keyed insulin aspart is not in the client's regimen (metformin, glyburide); unanswerable as written.",
+  },
+  {
+    id: "cmr8r0vmi002i1ye3da03w09n",
+    sampleId: "KF2-levothyroxine",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Key \"increase levothyroxine\" for a client not on levothyroxine and without a diagnosis of hypothyroidism; it is also a provider decision.",
+  },
+  {
+    id: "cmr8tb5wn00ca1y9nskhco53i",
+    sampleId: "KF2-aspart-missing-2",
+    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
+    note: "Keyed insulin aspart is not in the client's regimen (metformin, glipizide); unanswerable.",
   },
 ];
 
