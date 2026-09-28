@@ -1,0 +1,1190 @@
+[
+  {
+    "id": "cmqvkbzyc000k1ym33sr14rb1",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR) and at eGFR 45 (max about 1,000 mg/day at 30-44; do not escalate).",
+    "sampleId": "NP-UH2-001"
+  },
+  {
+    "id": "cmqvklwen000i1ywrrwwsl4pp",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR).",
+    "sampleId": "NP-UH2-002"
+  },
+  {
+    "id": "cmqvl73ti000d1yr0m8ryeiqe",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR).",
+    "sampleId": "NP-UH2-003"
+  },
+  {
+    "id": "cmqvlh29l000g1y74vx6up3d5",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR).",
+    "sampleId": "NP-UH2-004"
+  },
+  {
+    "id": "cmqvlw7y3000i1yd7t9nw0wdm",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR).",
+    "sampleId": "NP-UH2-005"
+  },
+  {
+    "id": "cmqvlw80w000j1yd7t4oufxmk",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR).",
+    "sampleId": "NP-UH2-006"
+  },
+  {
+    "id": "cmqvnn316000l1yjarnjw901q",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR).",
+    "sampleId": "NP-UH2-007"
+  },
+  {
+    "id": "cmqvqc847000e1yys3m4ariwn",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR).",
+    "sampleId": "NP-UH2-008"
+  },
+  {
+    "id": "cmqvqc8lz000j1yysqeol2eev",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR); rationale also says max 2,000.",
+    "sampleId": "NP-UH2-009"
+  },
+  {
+    "id": "cmqvw7tih000i1yuwg4proo99",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR).",
+    "sampleId": "NP-UH2-010"
+  },
+  {
+    "id": "cmqvx3x4u000j1yvkdhnmlrxc",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR) at eGFR 45; its own rationale says the increase is contraindicated.",
+    "sampleId": "NP-UH2-011"
+  },
+  {
+    "id": "cmqwadija000n1y5cewdhqgkj",
+    "reason_group": "a-metformin-over-max",
+    "note": "Keys metformin 1,500 mg twice daily = 3,000 mg/day, above the 2,550 mg/day labeled maximum (IR); rationale calls 2,000 the max then escalates past it.",
+    "sampleId": "NP-UH2-012"
+  },
+  {
+    "id": "cmqvkbzdw000e1ym3vu447h4g",
+    "reason_group": "b-sulfonylurea-hypoglycemia",
+    "note": "Critical needs-pharmacist: key (metformin to 2,000 mg/day) is a no-op (already on 2,000) and leaves glipizide unchanged despite hypoglycemia.",
+    "sampleId": "NP-UH2-013"
+  },
+  {
+    "id": "cmqvlw7jm000d1yd7rqsxr9dq",
+    "reason_group": "b-sulfonylurea-hypoglycemia",
+    "note": "Keys glipizide 10 -> 20 mg in a patient already having hypoglycemic episodes.",
+    "sampleId": "NP-UH2-014"
+  },
+  {
+    "id": "cmqvnd4lv000m1yqa1azu6a9w",
+    "reason_group": "b-sulfonylurea-hypoglycemia",
+    "note": "Keys \"continue current regimen\" (metformin + glipizide unchanged) after a glucose of 50 mg/dL; SU should be reduced/replaced (GLP-1 RA offered).",
+    "sampleId": "NP-UH2-015"
+  },
+  {
+    "id": "cmqvo8yxv000m1ysddfjk3pmg",
+    "reason_group": "b-sulfonylurea-hypoglycemia",
+    "note": "Keys increasing glipizide in a patient reporting hypoglycemia; rationale says hypoglycemia means the dose is too low.",
+    "sampleId": "NP-UH2-016"
+  },
+  {
+    "id": "cmqvqnktl000i1y5qy97f6ofu",
+    "reason_group": "b-sulfonylurea-hypoglycemia",
+    "note": "Keys increasing glipizide in a patient having hypoglycemic episodes.",
+    "sampleId": "NP-UH2-017"
+  },
+  {
+    "id": "cmqvv5350000m1y3yuru4vmz5",
+    "reason_group": "b-sulfonylurea-hypoglycemia",
+    "note": "Keys glipizide 10 -> 15 mg in a patient having afternoon hypoglycemia.",
+    "sampleId": "NP-UH2-018"
+  },
+  {
+    "id": "cmqvk1gr7000j1yvdq8brd25n",
+    "reason_group": "c-no-change-hyperglycemia",
+    "note": "Keys \"continue current regimen and monitor\" for polydipsia/polyuria with A1c 8.5% on metformin + glimepiride.",
+    "sampleId": "NP-UH2-019"
+  },
+  {
+    "id": "cmqvkbzks000g1ym31qkg1ivx",
+    "reason_group": "c-no-change-hyperglycemia",
+    "note": "Keys \"continue current medications without changes\" for fatigue, polyuria and glucose 250 mg/dL.",
+    "sampleId": "NP-UH2-020"
+  },
+  {
+    "id": "cmqvlw96h000y1yd7fiwa5vpl",
+    "reason_group": "c-no-change-hyperglycemia",
+    "note": "Keys \"continue metformin and monitor renal function\" for new polydipsia/polyuria/fatigue (symptomatic hyperglycemia); GLP-1 RA offered.",
+    "sampleId": "NP-UH2-021"
+  },
+  {
+    "id": "cmqvlh24b000e1y742ww0hwc3",
+    "reason_group": "d-asthma-no-ics",
+    "note": "Keys tiotropium as the controller for uncontrolled asthma with no ICS (budesonide/formoterol offered); GINA requires an ICS-containing controller.",
+    "sampleId": "NP-UH2-022"
+  },
+  {
+    "id": "cmqvm8odh000g1ymsi0cmq79v",
+    "reason_group": "d-asthma-no-ics",
+    "note": "Keys as-needed ipratropium as the controller for uncontrolled asthma with no ICS (fluticasone/salmeterol offered).",
+    "sampleId": "NP-UH2-023"
+  },
+  {
+    "id": "cmqvrbhir000f1yi7gpp1pel7",
+    "reason_group": "d-asthma-no-ics",
+    "note": "Keys \"LABA as needed\" (on low-dose ICS, well controlled); LABA is not a PRN reliever (salmeterol as rescue is unsafe; only ICS-formoterol is used PRN).",
+    "sampleId": "NP-UH2-024"
+  },
+  {
+    "id": "cmqvsvbwq000f1yuognld0i7s",
+    "reason_group": "d-asthma-no-ics",
+    "note": "Keys formoterol 12 mcg BID monotherapy (LABA without ICS; boxed-warning mortality risk) for uncontrolled asthma.",
+    "sampleId": "NP-UH2-025"
+  },
+  {
+    "id": "cmqw3g482000e1ypjdmuv180k",
+    "reason_group": "d-asthma-no-ics",
+    "note": "Keys scheduled albuterol 2 puffs q4h as the \"alternative therapy\" for uncontrolled asthma (SABA escalation instead of an ICS-containing controller).",
+    "sampleId": "NP-UH2-026"
+  },
+  {
+    "id": "cmqw50550000e1yq20uz33xnw",
+    "reason_group": "d-asthma-no-ics",
+    "note": "Keys scheduled ipratropium as the controller for uncontrolled asthma while budesonide is an option.",
+    "sampleId": "NP-UH2-027"
+  },
+  {
+    "id": "cmr4jwox3000s1yrn68q4cw1z",
+    "reason_group": "d-asthma-no-ics",
+    "note": "ED exacerbation (PEF 60%, SABA only): keys ipratropium over a systemic corticosteroid, teaching steroid omission.",
+    "sampleId": "NP-UH2-028"
+  },
+  {
+    "id": "cmr7zcc6l000j1y1wsn4nh69s",
+    "reason_group": "d-asthma-no-ics",
+    "note": "Keys adding a LABA for a 10-year-old on montelukast only (no ICS); LABA without ICS is contraindicated in asthma.",
+    "sampleId": "NP-UH2-029"
+  },
+  {
+    "id": "cmrli07l7000r1yuvnc12kn91",
+    "reason_group": "phenytoin-template",
+    "note": "Round-2 hide-pending-rewrite (Critical): Stem gives a phenytoin level of 15 mcg/mL, which is within 10-20 mcg/mL, yet the key calls it supratherapeutic; ataxia at a normal\u2026",
+    "sampleId": "NP-UH2-030"
+  },
+  {
+    "id": "cmrli1nn7000z1yuv58yn7yp4",
+    "reason_group": "phenytoin-template",
+    "note": "Round-2 hide-pending-rewrite (Major): Phenytoin half-life is concentration-dependent; after a dose increase toward the therapeutic range steady state commonly takes 1-2 weeks\u2026",
+    "sampleId": "NP-UH2-031"
+  },
+  {
+    "id": "cmrlk76xu00021ya8952kgqrx",
+    "reason_group": "phenytoin-template",
+    "note": "Round-2 hide-pending-rewrite (Critical): Stem reports a low phenytoin level with more seizures, but the key says fluoxetine inhibits CYP2C9 and decreases phenytoin metabolism,\u2026",
+    "sampleId": "NP-UH2-032"
+  },
+  {
+    "id": "cmrlkssje00021yruuvt3mnfo",
+    "reason_group": "phenytoin-template",
+    "note": "Round-2 hide-pending-rewrite (Critical): Cimetidine inhibition raises phenytoin levels (toxicity), which does not explain increased seizure frequency; carbamazepine induction\u2026",
+    "sampleId": "NP-UH2-033"
+  },
+  {
+    "id": "cmroe522200071yc0lpjblxzs",
+    "reason_group": "phenytoin-template",
+    "note": "Round-2 hide-pending-rewrite (Major): Phenytoin suspension (free acid, 125 mg/5 mL) delivers about 8% more phenytoin per mg than sodium capsules, and loss of control after\u2026",
+    "sampleId": "NP-UH2-034"
+  },
+  {
+    "id": "cmshfopwv000z1y4nov4cbqyl",
+    "reason_group": "phenytoin-template",
+    "note": "Round-2 hide-pending-rewrite (Major): The rationale says 5 half-lives x 24 h (= 5 days), which is not an option, yet keys 8 days; nonlinear kinetics lengthen the half-life\u2026",
+    "sampleId": "NP-UH2-035"
+  },
+  {
+    "id": "cmqw8elub001h1yl4baro1aap",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.8 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-036"
+  },
+  {
+    "id": "cmr0cx7v4001j1ynj0h9u5w5s",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.5 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-037"
+  },
+  {
+    "id": "cmr4brz7d00011ycj6de9hylx",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.5 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-038"
+  },
+  {
+    "id": "cmr4esbzj00011yg6tu7fchbh",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.8 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-039"
+  },
+  {
+    "id": "cmr4hq0nm000m1yeibppkkcms",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.8 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-040"
+  },
+  {
+    "id": "cmr4j6mkr00011ygk8k5sovtf",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.5 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-041"
+  },
+  {
+    "id": "cmr4jwoca000l1yrnenxe0vwb",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.8 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-042"
+  },
+  {
+    "id": "cmr7rz1rx00011yxy9yw6dbef",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.8 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-043"
+  },
+  {
+    "id": "cmr7sn6jx00011y6rwg834p1x",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.5 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-044"
+  },
+  {
+    "id": "cmr7u4v6g00011yo99ogp3jdy",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.8 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-045"
+  },
+  {
+    "id": "cmr7v6wdq00011y2zyh4o1adj",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.5 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-046"
+  },
+  {
+    "id": "cmr7w03lw00011yudh3ma27mv",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.5 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-047"
+  },
+  {
+    "id": "cmr7wevvp00011y1200oegfaa",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.6 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-048"
+  },
+  {
+    "id": "cmr7zzftr00011yafhouraqcc",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.8 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-049"
+  },
+  {
+    "id": "cmr80d4ws000l1yfcbkeyxai3",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.8 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-050"
+  },
+  {
+    "id": "cmra6ltf4000l1ybj1vmmwiu5",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 5.5 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-051"
+  },
+  {
+    "id": "cmroglo5200231yt0ou8wo7wr",
+    "reason_group": "f-cv-hyperkalemia-arb-switch",
+    "note": "K 6.2 mEq/L. Keys switching lisinopril to losartan to manage hyperkalemia; ARBs raise potassium similarly (same template as batch-1 Critical cmr80d38p), so the hyperkalemia is\u2026",
+    "sampleId": "NP-UH2-052"
+  },
+  {
+    "id": "cmqvp3qrt000e1ygu1j1i72or",
+    "reason_group": "f-cv-hyperkalemia-k-raising",
+    "note": "Keys adding spironolactone in HF/CKD with K 5.8 mEq/L (contraindicated above 5.0).",
+    "sampleId": "NP-UH2-053"
+  },
+  {
+    "id": "cmqvsvc7d000i1yuoe4h75jc7",
+    "reason_group": "f-cv-hyperkalemia-k-raising",
+    "note": "Keys increasing lisinopril to 20 mg at BP 130/80 with K 5.5 mEq/L.",
+    "sampleId": "NP-UH2-054"
+  },
+  {
+    "id": "cmr7yxydb00011yu86tgnxuaq",
+    "reason_group": "f-cv-hyperkalemia-k-raising",
+    "note": "Keys adding spironolactone in HF/CKD (SCr 1.8) with K 5.5 mEq/L (contraindicated above 5.0).",
+    "sampleId": "NP-UH2-055"
+  },
+  {
+    "id": "cmqvo8y8p000d1ysd1u0nuvxg",
+    "reason_group": "f-cv-ignores-high-inr",
+    "note": "\"Finding requiring immediate follow-up\" keyed \"history of heart failure\" while the case has INR 4.5 with bruising and nosebleeds on warfarin.",
+    "sampleId": "NP-UH2-056"
+  },
+  {
+    "id": "cmqvqz7rm000e1yc3alqqtjzc",
+    "reason_group": "f-cv-ignores-high-inr",
+    "note": "\"Lab value warranting change\" keyed CrCl 60 (normal) while the case has INR 4.5 with bruising on warfarin + aspirin.",
+    "sampleId": "NP-UH2-057"
+  },
+  {
+    "id": "cmqw9px2z000i1yrboooql09m",
+    "reason_group": "f-cv-ignores-high-inr",
+    "note": "\"Finding requiring immediate follow-up\" keyed \"compliance\" while the case has INR 3.5 with bleeding gums on warfarin.",
+    "sampleId": "NP-UH2-058"
+  },
+  {
+    "id": "cmqvmu5ps00121yuza04vdold",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-059"
+  },
+  {
+    "id": "cmqvxpra600151yqp1z01q85x",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-060"
+  },
+  {
+    "id": "cmr04gd5a00151y47mjnxyey7",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-061"
+  },
+  {
+    "id": "cmr06fh74000m1y16gch7d30r",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 5.2 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-062"
+  },
+  {
+    "id": "cmr0gry2d000v1ygw8o6ehhua",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys IV vitamin K 1 mg for INR 3.5 without bleeding (ED chest pain) (CHEST: hold/adjust warfarin).",
+    "sampleId": "NP-UH2-063"
+  },
+  {
+    "id": "cmr0ocyxa00181ysgun7kthjl",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys prothrombin complex concentrate for INR 4.5 with minor bleeding (bruising, nosebleeds); PCC (thrombotic risk) is reserved for major/life-threatening bleeding (CHEST).",
+    "sampleId": "NP-UH2-064"
+  },
+  {
+    "id": "cmr0s618w000s1y4k2nidef4h",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-065"
+  },
+  {
+    "id": "cmr4brztd00071ycj2bhwh5n5",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-066"
+  },
+  {
+    "id": "cmr4c4qae003l1ycjr75wqakx",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-067"
+  },
+  {
+    "id": "cmr4do4f3004p1ywgdli0ikl5",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-068"
+  },
+  {
+    "id": "cmr4gmod900481yavx73r2mcm",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-069"
+  },
+  {
+    "id": "cmr4h2kud001i1yqx15edzw14",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-070"
+  },
+  {
+    "id": "cmr7sncf5001m1y6riovzmsdz",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-071"
+  },
+  {
+    "id": "cmr7vn058001h1ybz1xcn2jta",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys prothrombin complex concentrate for INR 4.5 without bleeding; PCC (thrombotic risk) is reserved for major/life-threatening bleeding (CHEST).",
+    "sampleId": "NP-UH2-072"
+  },
+  {
+    "id": "cmr7yhtcm000d1yr3315yo1lk",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys prothrombin complex concentrate for INR 4.5 with hematuria (not major bleeding); hold warfarin/vitamin K is the step; PCC (thrombotic risk) is reserved for\u2026",
+    "sampleId": "NP-UH2-073"
+  },
+  {
+    "id": "cmr7zcaxa00071y1wdg42f1qv",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-074"
+  },
+  {
+    "id": "cmr80d760001c1yfcz1cax4kt",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-075"
+  },
+  {
+    "id": "cmrohbrdn00741yt0yer2ic1w",
+    "reason_group": "f-cv-warfarin-reversal",
+    "note": "Keys vitamin K for INR 4.5 without bleeding (CHEST: hold/reduce warfarin and recheck; vitamin K not routinely given); same template batch 1 hid (cmr0g44v3, cmr0qtodm, cmr0mlgrk).",
+    "sampleId": "NP-UH2-076"
+  },
+  {
+    "id": "cmqvrbin7000t1yi7ui7ogopk",
+    "reason_group": "f-cv-warfarin-vitk-diet",
+    "note": "Teaches avoiding/limiting vitamin K foods on warfarin (correct teaching is a consistent intake); same template as batch-1 hides cmr7td8gn and cmr0ev8le.",
+    "sampleId": "NP-UH2-077"
+  },
+  {
+    "id": "cmqxauqd9000w1yprtgay0imb",
+    "reason_group": "f-cv-warfarin-vitk-diet",
+    "note": "Teaches avoiding/limiting vitamin K foods on warfarin (correct teaching is a consistent intake); same template as batch-1 hides cmr7td8gn and cmr0ev8le.",
+    "sampleId": "NP-UH2-078"
+  },
+  {
+    "id": "cmr045fus004s1ypu951i7aj5",
+    "reason_group": "f-cv-warfarin-vitk-diet",
+    "note": "Teaches avoiding/limiting vitamin K foods on warfarin (correct teaching is a consistent intake); same template as batch-1 hides cmr7td8gn and cmr0ev8le.",
+    "sampleId": "NP-UH2-079"
+  },
+  {
+    "id": "cmr04r0yc005c1y471feusodd",
+    "reason_group": "f-cv-warfarin-vitk-diet",
+    "note": "Teaches avoiding/limiting vitamin K foods on warfarin (correct teaching is a consistent intake); same template as batch-1 hides cmr7td8gn and cmr0ev8le.",
+    "sampleId": "NP-UH2-080"
+  },
+  {
+    "id": "cmr7xe074000k1ydxpwiowdrc",
+    "reason_group": "f-cv-warfarin-vitk-diet",
+    "note": "Teaches avoiding/limiting vitamin K foods on warfarin (correct teaching is a consistent intake); same template as batch-1 hides cmr7td8gn and cmr0ev8le.",
+    "sampleId": "NP-UH2-081"
+  },
+  {
+    "id": "cmrmtclm300191y58es7ua30u",
+    "reason_group": "f-cv-warfarin-vitk-diet",
+    "note": "Teaches avoiding/limiting vitamin K foods on warfarin (correct teaching is a consistent intake); same template as batch-1 hides cmr7td8gn and cmr0ev8le.",
+    "sampleId": "NP-UH2-082"
+  },
+  {
+    "id": "cmrow7spq002c1yu3ev2lq6lg",
+    "reason_group": "f-cv-warfarin-vitk-diet",
+    "note": "Teaches avoiding/limiting vitamin K foods on warfarin (correct teaching is a consistent intake); same template as batch-1 hides cmr7td8gn and cmr0ev8le.",
+    "sampleId": "NP-UH2-083"
+  },
+  {
+    "id": "cmsfjghuj001m1ymsvkicyz86",
+    "reason_group": "f-cv-warfarin-vitk-diet",
+    "note": "Keys \"avoid foods high in vitamin K\" to minimize bleeding on warfarin; avoiding vitamin K raises the INR and bleeding risk (and daily aspirin is an option).",
+    "sampleId": "NP-UH2-084"
+  },
+  {
+    "id": "cmsfy9lb5001j1ythm15tmw72",
+    "reason_group": "f-cv-warfarin-vitk-diet",
+    "note": "Teaches avoiding/limiting vitamin K foods on warfarin (correct teaching is a consistent intake); same template as batch-1 hides cmr7td8gn and cmr0ev8le.",
+    "sampleId": "NP-UH2-085"
+  },
+  {
+    "id": "cmshcpbrp000j1yarzrg49j2j",
+    "reason_group": "f-cv-warfarin-vitk-diet",
+    "note": "Teaches avoiding/limiting vitamin K foods on warfarin (correct teaching is a consistent intake); same template as batch-1 hides cmr7td8gn and cmr0ev8le.",
+    "sampleId": "NP-UH2-086"
+  },
+  {
+    "id": "cmrm21m2v000m1yshply0cgdz",
+    "reason_group": "f-cv-bridging",
+    "note": "Keys stopping rivaroxaban 48 h pre-op and bridging with enoxaparin; DOACs are never bridged (bleeding risk without benefit).",
+    "sampleId": "NP-UH2-087"
+  },
+  {
+    "id": "cmrorwxkx00161yok89rvfc16",
+    "reason_group": "f-cv-bridging",
+    "note": "Keys stopping warfarin 5 days pre-op and bridging with enoxaparin in AF without high-risk features (BRIDGE/CHEST 2022: no bridging; same template as round-1 Critical cmrovw8gf\u2026",
+    "sampleId": "NP-UH2-088"
+  },
+  {
+    "id": "cmrp30ekm00161yp40lv3pxeo",
+    "reason_group": "f-cv-bridging",
+    "note": "Keys stopping rivaroxaban 2 days pre-op and bridging with enoxaparin; DOACs are never bridged (bleeding risk without benefit).",
+    "sampleId": "NP-UH2-089"
+  },
+  {
+    "id": "cmqwaqhvd000d1ymf8g9dpp68",
+    "reason_group": "np-critical-unsafe",
+    "note": "Critical needs-pharmacist: nausea/vomiting/abdominal pain on metformin with SCr 2.5 (eGFR well below 30) suggests metformin-associated lactic acidosis; key (elevated glucose)\u2026",
+    "sampleId": "NP-UH2-090"
+  },
+  {
+    "id": "cmr0cx3it000d1ynjb1601w3a",
+    "reason_group": "np-critical-unsafe",
+    "note": "Critical needs-pharmacist: keys metformin 1,000 mg twice daily (2,000 mg/day) at eGFR about 39; renal maximum is 1,000 mg/day and FDA advises against starting at eGFR 30-45\u2026",
+    "sampleId": "NP-UH2-091"
+  },
+  {
+    "id": "cmqvja734000d1yxk0rdmtfbv",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): 'Current medications' is not a finding; SCr 1.2 mg/dL is not alarming and the A1C of 7.8% is what the physician is already addressing;\u2026",
+    "sampleId": "NP-UH2-092"
+  },
+  {
+    "id": "cmqvjpy9w000d1yaik92mp2in",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Metformin at eGFR 45 needs dose review (<=1,000 mg/day at 30-44; do not initiate at 30-45) and eGFR monitoring every 3-6 months, not\u2026",
+    "sampleId": "NP-UH2-093"
+  },
+  {
+    "id": "cmqvjpyri000i1yaidxytujtb",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Symptomatic hyperglycemia (polyuria/polydipsia, glucose >200) on metformin: ADA suggests considering insulin when symptomatic, and a GLP-1\u2026",
+    "sampleId": "NP-UH2-094"
+  },
+  {
+    "id": "cmqvk1g8s000e1yvdflhs5muu",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Metoprolol has no compelling indication here and is not first-line for hypertension; with CKD, K 5.2 and edema the item gives no clean\u2026",
+    "sampleId": "NP-UH2-095"
+  },
+  {
+    "id": "cmqvk1gkb000h1yvdtjg017ra",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): Atorvastatin 40 mg and rosuvastatin 20 mg are both high-intensity; switching between them has no rationale; for a new prescription,\u2026",
+    "sampleId": "NP-UH2-096"
+  },
+  {
+    "id": "cmqvkbzrk000i1ym3ajwhpclq",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Glucose 300 with weight gain on metformin + glipizide: ADA suggests a GLP-1 RA before insulin for most patients (weight benefit), while\u2026",
+    "sampleId": "NP-UH2-097"
+  },
+  {
+    "id": "cmqvklw97000g1ywrin095upl",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Stem does not say fluticasone/salmeterol is taken once daily, so 'increase to twice daily' is unsupported; for uncontrolled asthma on\u2026",
+    "sampleId": "NP-UH2-098"
+  },
+  {
+    "id": "cmqvl73wx000e1yr0gj4jl7xd",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): A1C 8.5% without symptoms or catabolic features: ADA adds a GLP-1 RA or SGLT2 inhibitor (A or D), not insulin 'immediately'; key wrong.",
+    "sampleId": "NP-UH2-099"
+  },
+  {
+    "id": "cmqvmk047000d1ydn78aiwi7a",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): HF with CKD 3 (eGFR about 31), BP 150/90 on furosemide and metoprolol: HCTZ adds little near eGFR 30 alongside a loop; spironolactone\u2026",
+    "sampleId": "NP-UH2-100"
+  },
+  {
+    "id": "cmqvn3p5p000g1yvvyk17fqip",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Uncontrolled asthma on ICS/LABA with 2 ED visits: GINA step 5 adds a LAMA (tiotropium soft-mist, not the 18 mcg COPD capsule) or raises\u2026",
+    "sampleId": "NP-UH2-101"
+  },
+  {
+    "id": "cmqvnn2d2000e1yjavnw2motd",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): Metoprolol (key) has no compelling indication and is not first-line add-on therapy; with ACE-inhibitor cough the right move is\u2026",
+    "sampleId": "NP-UH2-102"
+  },
+  {
+    "id": "cmrlilla900081ybl4l2egfti",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): Taking a drug on an empty stomach does not overcome first-pass metabolism; the key teaches a false principle (food effects are\u2026",
+    "sampleId": "NP-UH2-103"
+  },
+  {
+    "id": "cmrlim3qr000g1yblstysaq11",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): Omeprazole does not reduce carbamazepine absorption; the keyed mechanism is fabricated (common real causes: nonadherence, carbamazepine\u2026",
+    "sampleId": "NP-UH2-104"
+  },
+  {
+    "id": "cmrlimo3h000s1yblc57iu1lm",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): CHEST 2012 suggests warfarin initiation at 10 mg daily for the first 2 days in healthy outpatients with VTE (option A defensible); only\u2026",
+    "sampleId": "NP-UH2-105"
+  },
+  {
+    "id": "cmrlin985000z1yblx062aazb",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): After resuming, time to return to steady state is still governed by half-life (about 4-5 half-lives); missed doses lower the level but do\u2026",
+    "sampleId": "NP-UH2-106"
+  },
+  {
+    "id": "cmrlk9m9b000t1ya8yrkfond3",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Keys trough-only monitoring for vancomycin; ASHP/IDSA 2020 recommends AUC-guided dosing (AUC/MIC 400-600) for serious MRSA infection, and\u2026",
+    "sampleId": "NP-UH2-107"
+  },
+  {
+    "id": "cmrlksscl00001yru896kxxqp",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): Omeprazole does not decrease warfarin absorption; if anything, CYP2C19 inhibition slightly raises R-warfarin levels and INR; the keyed\u2026",
+    "sampleId": "NP-UH2-108"
+  },
+  {
+    "id": "cmrmt6sij00061y58ma6s3l6j",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Intravenous, transdermal and (partly) rectal routes all reduce or bypass first-pass metabolism; B, C and D are defensible.",
+    "sampleId": "NP-UH2-109"
+  },
+  {
+    "id": "cmrmt7i0a000f1y58wmd5i4e9",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): A prodrug does not bypass first-pass metabolism (prodrugs are mainly used to improve absorption); IV administration (C) is the route\u2026",
+    "sampleId": "NP-UH2-110"
+  },
+  {
+    "id": "cmroifd87000d1y7nzkicax04",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): High-fiber diet does not increase dabigatran bioavailability; the real bioavailability hazard is opening/chewing capsules (about 75%\u2026",
+    "sampleId": "NP-UH2-111"
+  },
+  {
+    "id": "cmrp3zush000a1yes5z741c4u",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Transdermal delivery bypasses first pass but does not increase oral bioavailability as the stem asks, and oral anticoagulants are not\u2026",
+    "sampleId": "NP-UH2-112"
+  },
+  {
+    "id": "cmrp7npaq00051y2n3lklp4xe",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): The stem asks to 'calculate' the dose proportionally: 1 g x 15/5 = 3 g every 12 hours, which is not an option; the keyed 1.5 g does not\u2026",
+    "sampleId": "NP-UH2-113"
+  },
+  {
+    "id": "cmsfy4hww000l1ythoax9u2m0",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Keys 'monitor trough before the 4th dose' for severe MRSA; ASHP/IDSA 2020 recommends a loading dose (20-35 mg/kg) and AUC-guided dosing; 1\u2026",
+    "sampleId": "NP-UH2-114"
+  },
+  {
+    "id": "cmsfy6ys700111ythdtpdkqk9",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Amiodarone is the classic, well-documented warfarin interaction (CYP2C9 inhibition); a 'memory' herbal (ginkgo) affects platelets rather\u2026",
+    "sampleId": "NP-UH2-115"
+  },
+  {
+    "id": "cmsg0a74q000c1yiy0iij08dr",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Keys 'obtain a trough before any adjustment' for severe MRSA at CrCl 40 on 1 g q12h; current practice is empiric renal dose adjustment\u2026",
+    "sampleId": "NP-UH2-116"
+  },
+  {
+    "id": "cmshdq3jf00041y1ie02ukphu",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): Aminoglycosides are dosed intermittently to reach a peak and trough; an 'infusion rate to maintain peak and trough' is not a valid\u2026",
+    "sampleId": "NP-UH2-117"
+  },
+  {
+    "id": "cmshdri6f000b1y1i2f2eqo13",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): tau = ln(8/1)/0.1 = 20.8 h (plus infusion time), not 12 h; the keyed interval does not follow from the item's own formula; nearest\u2026",
+    "sampleId": "NP-UH2-118"
+  },
+  {
+    "id": "cmshfh07800021y4nu06577we",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): ke = ln(8/1)/8 h = 0.26 h^-1 (0.30 using tau minus a 1-h infusion); none of the options match and the key (0.115) is wrong.",
+    "sampleId": "NP-UH2-119"
+  },
+  {
+    "id": "cmshfie9x000a1y4nsf6v10co",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): At steady state CL = R/Css = 50/10 = 5 L/h; k = 0.693/6 = 0.1155 h^-1; Vd = CL/k = 43 L; no option matches and the key (25 L) is wrong.",
+    "sampleId": "NP-UH2-120"
+  },
+  {
+    "id": "cmshfiegb000c1y4nnp12ksj5",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): The stem never gives the current warfarin clearance; the 1.0 L/h baseline appears only in the rationale, so the item is unanswerable as\u2026",
+    "sampleId": "NP-UH2-121"
+  },
+  {
+    "id": "cmshfkd0a000i1y4n65t5fu8q",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Several regimens could lower the trough from 25 to about 15 (e.g., 750 mg q12h by linear scaling, or q18-24h); q24h is not uniquely\u2026",
+    "sampleId": "NP-UH2-122"
+  },
+  {
+    "id": "cmshhrc8j00071y663ccppufx",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Lowering a trough from 25 to 15 at the same dose cannot be solved without k; q24h roughly halves exposure and may undershoot, q18h is also\u2026",
+    "sampleId": "NP-UH2-123"
+  },
+  {
+    "id": "cmshhsgxx000b1y66jgslcn10",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Target peak 8/trough <1 with CrCl 50 implies conventional dosing; estimated t1/2 about 5 h gives tau about 16 h, and nomograms use q12h at\u2026",
+    "sampleId": "NP-UH2-124"
+  },
+  {
+    "id": "cmshhtu4t000k1y66oqkp83xp",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): k = CL/V = 1.2/21 = 0.057 h^-1; tau = ln(8/1)/k = about 36 h; on q24h the trough would be about 2 mcg/mL, above the target of 1; the\u2026",
+    "sampleId": "NP-UH2-125"
+  },
+  {
+    "id": "cmshhv03l000q1y66tnq3ij8x",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Linear scaling from trough 25 to 15 gives about 600 mg q12h; 750 mg q12h (about 19) and q24h (lower) are both plausible; ambiguous without k.",
+    "sampleId": "NP-UH2-126"
+  },
+  {
+    "id": "cmshhx120000z1y6687etryr0",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): Linear scaling gives 1,000 x 15/8 = 1,875 mg q12h; the key (1,500 mg) predicts a trough of about 12, and 1,750 and 2,000 mg are equally\u2026",
+    "sampleId": "NP-UH2-127"
+  },
+  {
+    "id": "cmshiqjdq00081yorfko7kjcn",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): The item's own formula gives 1,000 x 15/8 = 1,875 mg; the key (1,500 mg) does not follow, and 1,750 and 2,000 mg are equally close;\u2026",
+    "sampleId": "NP-UH2-128"
+  },
+  {
+    "id": "cmshiru7j000f1yori836x1kl",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): With CL 0.8 L/h, average Css = 1,000/(0.8 x 12) = about 104 mg/L and the trough would be far above 12 mg/L; the key cannot be derived\u2026",
+    "sampleId": "NP-UH2-129"
+  },
+  {
+    "id": "cmshiu5fz000r1yor6co2oxxx",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): The current dose is never stated, so the proportional calculation cannot be done; the key (1,500 mg) cannot be derived.",
+    "sampleId": "NP-UH2-130"
+  },
+  {
+    "id": "cmshiu5pe000u1yorgprgbqnb",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): The effect of a strong CYP3A4 inhibitor on half-life depends on the fraction metabolized by CYP3A4 and cannot be calculated from the\u2026",
+    "sampleId": "NP-UH2-131"
+  },
+  {
+    "id": "cmshiwued00131yorc0otrsib",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): Using the item's formula, dose = CL x C x tau = 4 L/h x 15 mg/L x 12 h = 720 mg (750 mg nearest), not 1,000 mg; and using a trough as\u2026",
+    "sampleId": "NP-UH2-132"
+  },
+  {
+    "id": "cmshjbd3w002n1yor27nezxhd",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Vancomycin clearance is not given (only CrCl), and the rationale treats the trough as an average concentration; the keyed 1,200 mg cannot\u2026",
+    "sampleId": "NP-UH2-133"
+  },
+  {
+    "id": "cmshkb5dc000a1ys7bkvfci0c",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Peak 8/trough <2 targets imply conventional dosing; at CrCl 60 (t1/2 about 4.5 h) tau is about 9-12 h and nomograms give q8-12h; q24h is\u2026",
+    "sampleId": "NP-UH2-134"
+  },
+  {
+    "id": "cmshkcmtz000h1ys7hrxpflg4",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Major): Vancomycin clearance is not given, so the maintenance dose cannot be calculated; keyed 1,000 mg q12h (12.5 mg/kg) cannot be derived;\u2026",
+    "sampleId": "NP-UH2-135"
+  },
+  {
+    "id": "cmshkijdo00161ys7j94u6zdv",
+    "reason_group": "r2-graded-hide",
+    "note": "Round-2 hide-pending-rewrite (Critical): Tripling the trough (5 to 15) needs about 3x the daily dose (q4h at the same dose); q8h (key) gives only 1.5x and q6h 2x; no option\u2026",
+    "sampleId": "NP-UH2-136"
+  },
+  {
+    "id": "cmqvoikcn000d1yq37xr4yc5t",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Elevated A1C 9.0%, thirst and polyuria all reflect the same hyperglycemia; keying one symptom (frequent urination) over the A1C is\u2026",
+    "sampleId": "NP-UH2-137"
+  },
+  {
+    "id": "cmqvqnko0000g1y5qjvln7u9o",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Tachycardia (110) with hypotension (90/60) and severe pain/vomiting suggest hemodynamic instability (volume depletion/acute\u2026",
+    "sampleId": "NP-UH2-138"
+  },
+  {
+    "id": "cmqvrbhli000g1yi7k5fqq4ep",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Apixaban is not monitored by INR or platelets and routine dental work does not require interruption; no listed lab clearly 'warrants a\u2026",
+    "sampleId": "NP-UH2-139"
+  },
+  {
+    "id": "cmqvsj4g0000e1yja41zotdfr",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Spironolactone should not be started with K 5.2 mEq/L (initiate only if K <5.0) on lisinopril; the key risks hyperkalemia; HF type is\u2026",
+    "sampleId": "NP-UH2-140"
+  },
+  {
+    "id": "cmqvsj4ol000h1yja3mbomh0y",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Switching to a different ICS (key) removes the LABA and adds nothing; for worsening asthma on ICS-formoterol the options are\u2026",
+    "sampleId": "NP-UH2-141"
+  },
+  {
+    "id": "cmqvsvc07000g1yuo8vumakcr",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): 'Switch to a different inhaled corticosteroid' is meaningless and removes the LABA; for a 5-year-old, GINA steps up by increasing ICS\u2026",
+    "sampleId": "NP-UH2-142"
+  },
+  {
+    "id": "cmqvt6ikf000f1yheaedd3ebk",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Stem gives no LDL or BP and says a new amlodipine prescription was brought in; 'increase atorvastatin to 80 mg' has no basis in the case;\u2026",
+    "sampleId": "NP-UH2-143"
+  },
+  {
+    "id": "cmqvt6iux000i1yhela7gmgxs",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): BP 110/70 is acceptable in HF; the presenting shortness of breath and edema (volume overload) with SCr 2.5 are the findings needing\u2026",
+    "sampleId": "NP-UH2-144"
+  },
+  {
+    "id": "cmqvthtag000f1y53xd43yllv",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): A 72-year-old on apixaban with CrCl 45 meets no dose-reduction criteria (age >=80, weight <=60 kg, SCr >=1.5 needs 2 of 3); CrCl 45\u2026",
+    "sampleId": "NP-UH2-145"
+  },
+  {
+    "id": "cmqvts9vx000h1yo8suumtdqs",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): A 72-year-old with SCr 1.8 meets only one apixaban reduction criterion (SCr >=1.5; age <80, weight not given), so 5 mg twice daily\u2026",
+    "sampleId": "NP-UH2-146"
+  },
+  {
+    "id": "cmqvv52da000e1y3yomawercf",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): HF type and potassium are not given; with BP 130/80 (near goal) metoprolol succinate (B) and spironolactone (D) are both GDMT for HFrEF;\u2026",
+    "sampleId": "NP-UH2-147"
+  },
+  {
+    "id": "cmqvvhwqm000h1y3aeqw4vhp2",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Apixaban is not monitored by INR or platelet thresholds; platelets <150,000 (key) do not warrant a change; eGFR 30 alone does not\u2026",
+    "sampleId": "NP-UH2-148"
+  },
+  {
+    "id": "cmqvw7t39000e1yuwij6975ob",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Stem does not say fluticasone/salmeterol is taken once daily, so 'increase to twice daily' is unsupported (it is labeled twice daily);\u2026",
+    "sampleId": "NP-UH2-149"
+  },
+  {
+    "id": "cmqvwjqxv000g1ybj85gbfwzv",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Keyed 'occasional vomiting that does not affect daily activities' is the one option that does NOT need follow-up; severe dehydration\u2026",
+    "sampleId": "NP-UH2-150"
+  },
+  {
+    "id": "cmqvwu65b000d1yd8j4j193po",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): A1C 8.5% without symptoms, BP controlled, eGFR 65: ADA adds a GLP-1 RA or SGLT2 inhibitor (canagliflozin, C) or a DPP-4 inhibitor in an\u2026",
+    "sampleId": "NP-UH2-151"
+  },
+  {
+    "id": "cmqw28j81000e1ybjh1jh1jvf",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): A1C 8.5% without catabolic features: ADA adds an SGLT2 inhibitor (canagliflozin, D, which also lowers BP) or GLP-1 RA/DPP-4 inhibitor,\u2026",
+    "sampleId": "NP-UH2-152"
+  },
+  {
+    "id": "cmqw46cdl000d1ylmx1jfxjll",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Weight gain of 3 lb and new edema are not in the case (options invent findings); BP 130/85 is not urgent; no answer derivable from the\u2026",
+    "sampleId": "NP-UH2-153"
+  },
+  {
+    "id": "cmqw4jrsw000d1y4rg26kqr7o",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): K 5.2 is mild hyperkalemia; worsening edema and dyspnea with SCr 2.5 (decompensated HF) are at least as urgent; multiple defensible answers.",
+    "sampleId": "NP-UH2-154"
+  },
+  {
+    "id": "cmqw7d4qw000f1yfa80tft5yt",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Two statements need counseling: taking lisinopril against instructions (key) and increasing salt intake 'to help blood pressure' (C, a\u2026",
+    "sampleId": "NP-UH2-155"
+  },
+  {
+    "id": "cmqw916nh000c1yb52gpkrra8",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): 'No significant side effects reported' is not a finding needing follow-up; the other options (eGFR 45, weight loss, thirst) are not\u2026",
+    "sampleId": "NP-UH2-156"
+  },
+  {
+    "id": "cmqw9dknc000f1yamjljnnix2",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Second-generation antihistamines (loratadine) are safe in asthma; 'avoid all antihistamines' is outdated and wrong. Loratadine (A)\u2026",
+    "sampleId": "NP-UH2-157"
+  },
+  {
+    "id": "cmqw9pwle000d1yrbdj6o39l4",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Stem asks 'which finding requires immediate follow-up' but the options are treatment actions; key content (atorvastatin 80 mg) is\u2026",
+    "sampleId": "NP-UH2-158"
+  },
+  {
+    "id": "cmqwa0us3000j1y239h0kemkz",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): For acute wheezing in a 30-kg child, albuterol MDI is 2-4 puffs or more (180-360+ mcg, 4-8 puffs in exacerbations) or 2.5 mg by\u2026",
+    "sampleId": "NP-UH2-159"
+  },
+  {
+    "id": "cmqwadhpn000d1y5cjj3mmxaw",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): 'Current medications including lisinopril' is not a finding (ACE inhibitors are indicated in diabetic CKD); eGFR 45 on metformin (A)\u2026",
+    "sampleId": "NP-UH2-160"
+  },
+  {
+    "id": "cmqwadhvl000f1y5ctnvznf0m",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): COPD already on triple therapy (LAMA + ICS/LABA): increasing the ICS dose is not a GOLD strategy (raises pneumonia risk); a LABA\u2026",
+    "sampleId": "NP-UH2-161"
+  },
+  {
+    "id": "cmqwb2xwt000g1y49i9a5jzf1",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): In a patient with a history of hyperemesis gravidarum, dehydration, >5% weight loss and inability to keep food down all require follow-up;\u2026",
+    "sampleId": "NP-UH2-162"
+  },
+  {
+    "id": "cmqwbt05h000e1ykgf2qsq1fp",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): A1C 8.5% without symptoms on metformin 2,000 mg/day: ADA adds a GLP-1 RA or SGLT2 inhibitor (canagliflozin, C) or DPP-4 inhibitor, not\u2026",
+    "sampleId": "NP-UH2-163"
+  },
+  {
+    "id": "cmqxauon4000e1yprz19ef20g",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Stem/option mismatch: a buprenorphine/naloxone question with options '5 mL...20 mL' (buprenorphine/naloxone is a film/tablet dosed in\u2026",
+    "sampleId": "NP-UH2-164"
+  },
+  {
+    "id": "cmqxauoqm000f1yprzdjrv112",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Stem/option mismatch: 'which laboratory value warrants a therapeutic change' with ceftriaxone doses as options; persistent fever at 48\u2026",
+    "sampleId": "NP-UH2-165"
+  },
+  {
+    "id": "cmr03uqye000d1ypuvfnz5mbw",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): 4,500 mg is a single piperacillin-tazobactam dose (4.5 g q6-8h), not a total daily dose (13.5-18 g/day); the rationale's 'total daily\u2026",
+    "sampleId": "NP-UH2-166"
+  },
+  {
+    "id": "cmr045f7g004l1ypufssw9jhm",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): If the organism is resistant to piperacillin-tazobactam, the antibiotic must be changed (septic shock, BP 85/50), not dosed at '8\u2026",
+    "sampleId": "NP-UH2-167"
+  },
+  {
+    "id": "cmr05dzz4004n1y2tfyqp6659",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Stem/option mismatch: 'which laboratory value' with warfarin tablet counts as options; INR 4.5 without bleeding on amoxicillin calls\u2026",
+    "sampleId": "NP-UH2-168"
+  },
+  {
+    "id": "cmr06fgw4000j1y16vka24xrd",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Keyed 'hold warfarin and recheck INR in 1 week' reads as a week-long hold (subtherapeutic INR, stroke risk); for INR 3.5 without bleeding\u2026",
+    "sampleId": "NP-UH2-169"
+  },
+  {
+    "id": "cmr0d8zcj004m1ynjlo590nyi",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Stem/option mismatch ('which laboratory value' with doses); on hemodialysis piperacillin-tazobactam is 2.25 g every 12 h (or q8h for\u2026",
+    "sampleId": "NP-UH2-170"
+  },
+  {
+    "id": "cmr0dvdrg004o1yh6pu9lz8gx",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Stem/option mismatch ('which laboratory value' with tablet counts); holding warfarin (0 tablets) for INR 4.5 is reasonable content but the\u2026",
+    "sampleId": "NP-UH2-171"
+  },
+  {
+    "id": "cmr0ejrlg004d1yqxvl892517",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Culture shows resistance to piperacillin-tazobactam, so the drug must be changed; keying a piperacillin-tazobactam dose (3,375 mg) is\u2026",
+    "sampleId": "NP-UH2-172"
+  },
+  {
+    "id": "cmr0oxajc000k1y8x5c3xoh8e",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Current perioperative guidance holds metformin on the day of surgery (about 24 h), not 48 h before; the 48-h rule applies after iodinated\u2026",
+    "sampleId": "NP-UH2-173"
+  },
+  {
+    "id": "cmr0ppwwi004h1yajbxnh3ty0",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Stem/option mismatch: COPD symptom question with tablet quantities as options; unanswerable.",
+    "sampleId": "NP-UH2-174"
+  },
+  {
+    "id": "cmr0ppx0h004i1yajoqpy1507",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Stem/option mismatch: pain management in a patient on buprenorphine/naloxone with options '30-120 mL'; unanswerable.",
+    "sampleId": "NP-UH2-175"
+  },
+  {
+    "id": "cmr0rhrjt000f1y8je2y5bl9c",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Multidrug-resistant bacteremia on piperacillin-tazobactam requires changing therapy per susceptibilities; keying a\u2026",
+    "sampleId": "NP-UH2-176"
+  },
+  {
+    "id": "cmr0y95fp000f1y3mke0hx33y",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Rash and fever after piperacillin-tazobactam suggest a hypersensitivity reaction requiring a switch to a non-beta-lactam or a different\u2026",
+    "sampleId": "NP-UH2-177"
+  },
+  {
+    "id": "cmr0zrfz5004k1yjgc4w7fykm",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): A rash on piperacillin-tazobactam in a patient with a penicillin allergy requires stopping the drug and choosing a non-penicillin\u2026",
+    "sampleId": "NP-UH2-178"
+  },
+  {
+    "id": "cmr10goa0004k1yhqmgxpafd8",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): On hemodialysis piperacillin-tazobactam is 2.25 g every 12 h (every 8 h for nosocomial pneumonia) plus 0.75 g after each dialysis;\u2026",
+    "sampleId": "NP-UH2-179"
+  },
+  {
+    "id": "cmr4b2432000d1ysczpa6htbs",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): COPD exacerbation with increased dyspnea and purulent sputum: GOLD recommends both a short oral corticosteroid course (B) and antibiotics\u2026",
+    "sampleId": "NP-UH2-180"
+  },
+  {
+    "id": "cmr4be7pe003u1ysctsn35804",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Dispensing amoxicillin to a patient with a penicillin-allergy rash requires contacting the prescriber for an alternative (or allergy\u2026",
+    "sampleId": "NP-UH2-181"
+  },
+  {
+    "id": "cmr4be9dr00481yscwznt5xfw",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): No alternative is needed: apixaban at CrCl 45 is appropriate and preferred; the rationale's 'warfarin is the safest alternative in\u2026",
+    "sampleId": "NP-UH2-182"
+  },
+  {
+    "id": "cmr4bedgy004z1ysc5075vvur",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): No basis to choose bumetanide over torsemide (both loop diuretics, no volume status given); K 5.8 with weakness needs hyperkalemia\u2026",
+    "sampleId": "NP-UH2-183"
+  },
+  {
+    "id": "cmr4e1jj9000k1yk3dttlx9nu",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): Daily albuterol use for a week on ICS-LABA plus montelukast signals loss of control needing assessment and prescriber contact; the key\u2026",
+    "sampleId": "NP-UH2-184"
+  },
+  {
+    "id": "cmr4e1jy3000o1yk3sf9zhahg",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): IDSA/ATS 2019: for healthy outpatients amoxicillin (C) or doxycycline is first-line and macrolide monotherapy only where pneumococcal\u2026",
+    "sampleId": "NP-UH2-185"
+  },
+  {
+    "id": "cmr4e1ljj00141yk38ccp4ak7",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): A history of penicillin-induced hives (IgE-mediated) contraindicates amoxicillin; the pharmacist must contact the prescriber for an\u2026",
+    "sampleId": "NP-UH2-186"
+  },
+  {
+    "id": "cmr4e1mqi001g1yk3e8nqf4zc",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Major): 'I should take my medications even if I skip meals' (A) is a dangerous misconception with glipizide and recurrent hypoglycemia, at least\u2026",
+    "sampleId": "NP-UH2-187"
+  },
+  {
+    "id": "cmr4edxso003y1yk3s2bfyj7b",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): GOLD: for persistent dyspnea on a LAMA, add a LABA (LAMA/LABA); ICS is added only with eosinophils >=300 or recurrent exacerbations,\u2026",
+    "sampleId": "NP-UH2-188"
+  },
+  {
+    "id": "cmr4edxve003z1yk3pkjqmgwc",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Spironolactone should not be dispensed with K 5.8 mEq/L (contraindicated above 5.0); the item keys fatigue counseling and ignores the\u2026",
+    "sampleId": "NP-UH2-189"
+  },
+  {
+    "id": "cmr4edzd0004i1yk38ii8gnp2",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): COPD exacerbation (worse dyspnea, productive cough, RR 24, SpO2 88%) needs a short systemic corticosteroid course (B) and, with\u2026",
+    "sampleId": "NP-UH2-190"
+  },
+  {
+    "id": "cmr4ee08b004t1yk3bysue5ru",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): Using albuterol only when short of breath is correct rescue use, so the keyed statement does not need counseling; all four statements\u2026",
+    "sampleId": "NP-UH2-191"
+  },
+  {
+    "id": "cmr4ee0eb004v1yk3j7o6jgba",
+    "reason_group": "r2-graded-hide-late",
+    "note": "Round-2 hide-pending-rewrite (Critical): A 62-year-old with CrCl 48 meets no apixaban dose-reduction criteria, so contacting the prescriber for a 'dose adjustment' is wrong;\u2026",
+    "sampleId": "NP-UH2-192"
+  },
+  {
+    "id": "cmrp7pr5t000n1y2nqkco33ca",
+    "reason_group": "phenytoin-400-toxic",
+    "note": "Keyed 400 mg/day, which predicts a toxic phenytoin level from the patient's own data.",
+    "sampleId": "NP-UH2-193"
+  },
+  {
+    "id": "cmshhsh9v000f1y664iawc0kj",
+    "reason_group": "phenytoin-400-toxic",
+    "note": "Keyed to increase phenytoin to 400 mg/day, which predicts a toxic level from the patient's own data.",
+    "sampleId": "NP-UH2-194"
+  },
+  {
+    "id": "cmshirugm000h1yorfzx7eoq2",
+    "reason_group": "phenytoin-400-toxic",
+    "note": "Keyed 400 mg/day, which predicts a toxic phenytoin level from the patient's own data.",
+    "sampleId": "NP-UH2-195"
+  },
+  {
+    "id": "cmshj3ftk001q1yortwa13h9h",
+    "reason_group": "phenytoin-400-toxic",
+    "note": "Keyed 400 mg/day, which predicts a toxic phenytoin level from the patient's own data.",
+    "sampleId": "NP-UH2-196"
+  },
+  {
+    "id": "cmshj1tn8001m1yorjsdp4c9f",
+    "reason_group": "phenytoin-400-toxic",
+    "note": "Round 1 corrected this key to 400 mg/day. That dose still predicts a toxic phenytoin level from the patient's own data.",
+    "sampleId": "NP-UH2-197"
+  },
+  {
+    "id": "cmshhw7be000x1y6662c982n1",
+    "reason_group": "phenytoin-400-toxic",
+    "note": "Keyed 400 mg/day, which predicts a toxic phenytoin level from the patient's own data.",
+    "sampleId": "NP-UH2-198"
+  }
+]
