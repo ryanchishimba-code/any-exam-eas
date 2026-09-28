@@ -11,30 +11,12 @@ import { formatNclexPrepPriceComparison } from "@/lib/marketing/price-comparison
 import { formatMonthlyPrice } from "@/lib/site";
 
 const PATH = [
-  {
-    title: "A practice baseline",
-    body: "See what you miss before you build a plan around it. The score is practice on this site, not a prediction of your license.",
-  },
-  {
-    title: "A daily Today set",
-    body: "One set for the day, so the bank does not turn into an endless list.",
-  },
-  {
-    title: "Review what you got wrong",
-    body: "Misses come back with the rationale, and a source when the item stores one.",
-  },
-  {
-    title: "Practice exams on official weights",
-    body: "Timed forms follow the published outline. A form that cannot fill those weights is not padded.",
-  },
-  {
-    title: "NGN case studies",
-    body: "Published Next Generation items are written to the 2026 NCSBN test plan, with cited sources.",
-  },
-  {
-    title: "Study guides",
-    body: "Board guides sit next to the Qbank, so the outline and the questions stay in one place.",
-  },
+  "A practice baseline",
+  "A daily Today set",
+  "Review what you got wrong",
+  "Practice exams on official weights",
+  "NGN case studies",
+  "Study guides",
 ] as const;
 
 export function ProblemSection({ board }: { board?: string }) {
@@ -51,11 +33,6 @@ export function ProblemSection({ board }: { board?: string }) {
         >
           {headline}
         </h2>
-        <p className="mt-6 text-lg leading-relaxed text-[var(--color-ink-muted)]">
-          Most students are paying for more than one product, guessing which topics matter, and
-          walking into the exam without a clear picture of what they miss. AnyExamEasy is the daily
-          practice that closes that gap.
-        </p>
       </div>
     </section>
   );
@@ -68,7 +45,7 @@ export function PathSection({
   includeNgn?: boolean;
   compact?: boolean;
 }) {
-  const steps = includeNgn ? PATH : PATH.filter((step) => step.title !== "NGN case studies");
+  const steps = includeNgn ? PATH : PATH.filter((step) => step !== "NGN case studies");
   return (
     <section
       className={
@@ -92,18 +69,18 @@ export function PathSection({
         >
           {compact ? "From the first set to test day." : "A path from the first set to test day."}
         </h2>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
+          Scores on this site are practice, not a prediction of your license.
+        </p>
         <ol className={compact ? "mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" : "mt-12 grid gap-8 sm:grid-cols-2"}>
           {steps.map((step, index) => (
-            <li key={step.title} className={compact ? "border-t border-[var(--color-border)] pt-4" : "border-t border-[var(--color-border)] pt-6"}>
+            <li key={step} className={compact ? "border-t border-[var(--color-border)] pt-4" : "border-t border-[var(--color-border)] pt-6"}>
               <p className="text-xs font-bold tracking-[0.14em] text-[var(--color-accent)]">
                 {String(index + 1).padStart(2, "0")}
               </p>
               <h3 className={compact ? "mt-2 text-lg font-semibold tracking-tight text-[var(--color-ink)]" : "mt-2 text-xl font-semibold tracking-tight text-[var(--color-ink)]"}>
-                {step.title}
+                {step}
               </h3>
-              <p className={compact ? "mt-1 text-sm leading-relaxed text-[var(--color-ink-muted)]" : "mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]"}>
-                {step.body}
-              </p>
             </li>
           ))}
         </ol>

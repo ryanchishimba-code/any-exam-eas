@@ -4,11 +4,7 @@ import type { ReactNode } from "react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
 import "@/styles/home-visual.css";
-import {
-  HOME_HERO_SHORT_SUBLINE,
-  LANDING_HERO_EXAMS,
-  LANDING_TRIAL_HREF,
-} from "@/lib/landing/content";
+import { LANDING_HERO_EXAMS, LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import {
   HOME_PRACTICE_HEADLINE,
   HOME_READINESS_HEADING,
@@ -16,7 +12,6 @@ import {
   boardReviewBadge,
 } from "@/lib/marketing/legal-copy";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
-import { formatNclexPrepPriceComparison } from "@/lib/marketing/price-comparison";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { ROUTES } from "@/lib/routes";
 import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
@@ -125,7 +120,6 @@ export function PublicHome({
     <div className="home-visual">
       <section className="home-hero" aria-labelledby="hero-heading">
         <h1 id="hero-heading">{HOME_PRACTICE_HEADLINE}</h1>
-        <p className="home-hero__sub">{HOME_HERO_SHORT_SUBLINE}</p>
         <div className="home-hero__actions">
           <LandingCta href={LANDING_TRIAL_HREF} ctaName="hero_trial" location="hero">
             Start free trial
@@ -163,7 +157,6 @@ export function PublicHome({
 
       <section className="home-panel home-rise" aria-labelledby="explained-heading">
         <h2 id="explained-heading">Every question explained.</h2>
-        <p className="home-panel__line">The rationale stays on the item.</p>
         <div className="home-panel__visual">
           <PhoneFrame
             {...QUESTION_PHONE}
@@ -175,7 +168,6 @@ export function PublicHome({
 
       <section className="home-panel home-panel--navy home-rise" aria-labelledby="ngn-heading">
         <h2 id="ngn-heading">Practice the new format.</h2>
-        <p className="home-panel__line">Next Generation case studies.</p>
         <div className="home-panel__visual">
           <LaptopFrame
             {...BOWTIE}
@@ -207,9 +199,6 @@ export function PublicHome({
             </li>
           ))}
         </ul>
-        <p className="home-panel__note" data-price-comparison>
-          {formatNclexPrepPriceComparison()}
-        </p>
       </section>
 
       <section className="home-panel home-panel--mist home-rise" aria-labelledby="reviewers-heading">

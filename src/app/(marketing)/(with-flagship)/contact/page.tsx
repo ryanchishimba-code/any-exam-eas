@@ -28,8 +28,7 @@ export default function ContactPage() {
           Write or call.
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-[var(--color-ink-muted)]">
-          {COMPANY_PUBLIC.productName} is operated by {COMPANY_PUBLIC.legalName}. For billing, a
-          question problem, or a privacy request, email or call the contacts below.
+          {COMPANY_PUBLIC.productName} is operated by {COMPANY_PUBLIC.legalName}.
         </p>
         <p className="mt-8 flex flex-col gap-2">
           <a

@@ -10,7 +10,6 @@ import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-me
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { pricingHeadlineFromContext } from "@/lib/marketing/pricing-headline";
 import { formatExactQuestionCount, publishedSiteQuestionCounts } from "@/lib/counts";
-import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { formatMonthlyPrice } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
@@ -20,21 +19,9 @@ export const metadata: Metadata = buildPricingMetadata(
 );
 
 const STUDY_PATH = [
-  {
-    icon: Map,
-    title: "Roadmap",
-    body: "Blueprint-aligned next steps for the board in front of you.",
-  },
-  {
-    icon: BookOpen,
-    title: "Deep Dive",
-    body: "Lessons open from the questions you miss — stay in one study flow.",
-  },
-  {
-    icon: Timer,
-    title: "Full Exam",
-    body: "Timed mocks with weak-area weighting before test day.",
-  },
+  { icon: Map, title: "Roadmap" },
+  { icon: BookOpen, title: "Deep Dive" },
+  { icon: Timer, title: "Full Exam" },
 ] as const;
 
 const PricingQueryNotices = dynamic(() =>
@@ -97,9 +84,6 @@ export default async function PricingPage({
                 <step.icon className="h-3.5 w-3.5" aria-hidden />
                 {String(index + 1).padStart(2, "0")} {step.title}
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-                {step.body}
-              </p>
             </li>
           ))}
         </ol>
@@ -109,9 +93,6 @@ export default async function PricingPage({
           <Link href={ROUTES.howQuestionsAreReviewed} className="font-semibold text-[var(--color-accent)] hover:underline">
             How questions are built and reviewed
           </Link>
-        </p>
-        <p className="mx-auto mt-4 max-w-xl text-center text-base leading-relaxed text-[var(--color-ink-muted)]">
-          This page shows our price only. One Pro plan covers the six boards.
         </p>
         <p className="mx-auto mt-4 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
           Study tool only — not a guarantee of exam results.{" "}
@@ -124,7 +105,6 @@ export default async function PricingPage({
           </Link>
         </p>
       </PageShell>
-      <FinalMarketingCta title="Start with the free trial." />
     </>
   );
 }
