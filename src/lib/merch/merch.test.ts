@@ -58,7 +58,7 @@ describe("merch catalog", () => {
     expect(MERCH_PRODUCTS.map((product) => product.colors.map((color) => color.name))).toEqual([
       ["Moss", "Espresso"],
       ["Chocolate Brown", "Moss"],
-      ["Latte", "Military Green", "Forest", "Bone"],
+      ["Latte", "Bone"],
       ["Forest Green"],
       ["Chocolate Brown"],
       ["Forest Green"],
