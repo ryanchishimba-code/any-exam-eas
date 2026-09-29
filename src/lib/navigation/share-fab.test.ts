@@ -25,6 +25,7 @@ describe("share fab public routes", () => {
       "/npte-pt",
       "/dev/home-frames",
       "/faq",
+      "/merch",
     ]) {
       expect(isShareFabHiddenRoute(path), path).toBe(true);
     }

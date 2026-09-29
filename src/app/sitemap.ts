@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { listPublishedBlogPosts } from "@/lib/blog/public";
 import { qotdPath, todayIsoUtc } from "@/lib/demo/qotd";
 import { EXAM_SLUGS } from "@/lib/edtech/exams";
+import { MERCH_PATH } from "@/lib/merch/catalog";
+import { isMerchPageAvailable } from "@/lib/merch/merch";
 import { getSiteUrl } from "@/lib/seo";
 import { getExamMarketingSitemapPaths } from "@/lib/seo/marketing-metadata";
 import { RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
@@ -96,6 +98,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Build and preview can render the sitemap before the database is reachable.
   }
 
+  const merchEntries = isMerchPageAvailable()
+    ? [
+        {
+          url: `${base}${MERCH_PATH}`,
+          lastModified: now,
+          changeFrequency: "weekly" as const,
+          priority: 0.4,
+        },
+      ]
+    : [];
+
   return [
     ...staticEntries,
     ...examEntries,
@@ -103,5 +116,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...qotdEntries,
     ...resourceEntries,
     ...blogEntries,
+    ...merchEntries,
   ];
 }

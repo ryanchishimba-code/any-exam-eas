@@ -1,0 +1,309 @@
+/* Merch storefront. Product photography is shot on #f5f5f7, so tiles stay light in both themes. */
+
+.merch {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  overflow-x: clip;
+}
+
+.merch-wrap {
+  width: min(71.25rem, 100%);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 40rem) {
+  .merch-wrap {
+    padding-inline: 1.5rem;
+  }
+}
+
+.merch-hero {
+  padding-top: calc(var(--nav-height) + 3.5rem);
+  text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .merch-hero {
+    padding-top: calc(var(--nav-height) + 6rem);
+  }
+}
+
+.merch-eyebrow {
+  margin: 0 0 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
+}
+
+.merch-hero h1 {
+  margin: 0;
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  text-wrap: balance;
+}
+
+.merch-sub {
+  margin: 1.125rem auto 0;
+  max-width: 36rem;
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.011em;
+  color: var(--color-ink-muted);
+}
+
+.merch-hero-cta {
+  margin-top: 2.125rem;
+  min-height: 2.75rem;
+  padding-inline: 1.75rem;
+}
+
+.merch-hero-frame {
+  margin-top: 2.75rem;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: #f5f5f7;
+  padding: 1.375rem 0.875rem 1rem;
+}
+
+@media (min-width: 48rem) {
+  .merch-hero-frame {
+    margin-top: 4rem;
+    border-radius: 1.75rem;
+    padding: 3rem 2.5rem 2.25rem;
+  }
+}
+
+.merch-hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Reserve the photo box before the file decodes. width/height attributes
+     alone still shifted the page under height: auto. */
+  aspect-ratio: 2280 / 1300;
+}
+
+.merch-lineup {
+  scroll-margin-top: calc(var(--nav-height) + 1.25rem);
+  padding-top: 5.5rem;
+}
+
+@media (min-width: 48rem) {
+  .merch-lineup {
+    padding-top: 8rem;
+  }
+}
+
+.merch-lineup-head {
+  margin-bottom: 2.25rem;
+  text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .merch-lineup-head {
+    margin-bottom: 3.5rem;
+  }
+}
+
+.merch-lineup h2 {
+  margin: 0;
+  font-size: clamp(2.125rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.merch-lineup-head p {
+  margin: 0.75rem 0 0;
+  font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+  line-height: 1.4;
+  color: var(--color-ink-muted);
+}
+
+.merch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem 0.875rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 56.25rem) {
+  .merch-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3.5rem 1.5rem;
+  }
+}
+
+.merch-card {
+  display: flex;
+  height: 100%;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.merch-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 0.875rem;
+  background: #f5f5f7;
+}
+
+@media (min-width: 48rem) {
+  .merch-photo {
+    border-radius: 1.125rem;
+  }
+}
+
+.merch-photo img {
+  object-fit: contain;
+}
+
+.merch-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 1.125rem 0 0;
+  padding: 0.15rem;
+  list-style: none;
+}
+
+.merch-swatch {
+  display: block;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.18);
+}
+
+.merch-swatch.is-shown {
+  outline: 1.5px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+@media (max-width: 40rem) {
+  .merch-swatches {
+    gap: 0.55rem;
+    margin-top: 0.875rem;
+  }
+
+  .merch-swatch {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+.merch-card h3 {
+  margin: 0.85rem 0 0;
+  max-width: 100%;
+  font-size: clamp(1rem, 1.5vw, 1.1875rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.merch-colors {
+  margin: 0.25rem 0 0;
+  max-width: 100%;
+  padding-inline: 0.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: var(--color-ink-muted);
+  text-wrap: balance;
+}
+
+.merch-price {
+  margin: 0.55rem 0 1rem;
+  font-size: 1.0625rem;
+  letter-spacing: -0.011em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.merch-buy {
+  margin-top: auto;
+  min-height: 2.75rem;
+  min-width: 5.5rem;
+  padding: 0.7rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.merch-closing {
+  padding: 4.5rem 1.25rem 4.5rem;
+  text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .merch-closing {
+    padding-block: 6.5rem 5.5rem;
+  }
+}
+
+.merch-shipping {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+.merch-policy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 3.5rem 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+.merch-policy svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--color-accent);
+}
+
+.merch-store {
+  margin: 2rem 0 0;
+}
+
+.merch-store a {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-underline-offset: 0.18em;
+}
+
+.merch-store a:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .merch-photo img {
+    transition: transform 0.4s var(--ease-apple, ease);
+  }
+
+  .merch-card:hover .merch-photo img {
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .merch .aee-flagship-cta,
+  .merch .aee-flagship-cta:hover,
+  .merch-photo img {
+    transform: none;
+    transition: none;
+  }
+}

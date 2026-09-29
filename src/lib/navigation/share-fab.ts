@@ -30,6 +30,7 @@ const SHARE_FAB_HIDDEN_PREFIXES = [
   "/resources",
   "/dev",
   "/faq",
+  "/merch",
 ] as const;
 
 export function isShareFabHiddenRoute(pathname: string | null | undefined): boolean {
