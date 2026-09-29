@@ -43,6 +43,8 @@ describe("merch catalog", () => {
       "Premium Hoodie",
       "Classic Hoodie",
       "Crewneck",
+      "Everything Is Hard Hoodie",
+      "Everything Is Hard Crewneck",
       "Polo",
       "Dad Cap",
       "Corduroy Cap",
@@ -51,12 +53,14 @@ describe("merch catalog", () => {
       "Sherpa Blanket",
     ]);
     expect(MERCH_PRODUCTS.map((product) => product.priceUsd)).toEqual([
-      24.99, 56.99, 42.99, 37.99, 29.99, 21.99, 23.99, 19.99, 7.99, 64.99,
+      24.99, 56.99, 42.99, 37.99, 63.99, 41.99, 29.99, 21.99, 23.99, 19.99, 7.99, 64.99,
     ]);
     expect(MERCH_PRODUCTS.map((product) => product.colors.map((color) => color.name))).toEqual([
       ["Moss", "Espresso"],
       ["Chocolate Brown", "Moss"],
       ["Latte", "Military Green", "Forest", "Bone"],
+      ["Forest Green"],
+      ["Chocolate Brown"],
       ["Forest Green"],
       ["Black"],
       ["Spruce"],

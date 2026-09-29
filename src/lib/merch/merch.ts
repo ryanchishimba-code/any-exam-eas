@@ -131,10 +131,12 @@ const COUNT_WORDS = [
   "Eight",
   "Nine",
   "Ten",
+  "Eleven",
+  "Twelve",
 ] as const;
 
 export function merchLineupSubtitle(count: number): string {
-  const label = count >= 0 && count <= 10 ? COUNT_WORDS[count] : String(count);
+  const label = count >= 0 && count < COUNT_WORDS.length ? COUNT_WORDS[count] : String(count);
   const noun = count === 1 ? "piece" : "pieces";
   return `${label} ${noun}. Made for study days.`;
 }
