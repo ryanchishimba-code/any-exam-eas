@@ -39,6 +39,12 @@ export const URGENT_HIDE_3_AUDIT_REF = "urgent-hide-3-2026-09-28";
 /** Four more NCLEX items hidden 2026-09-28. Text is unchanged. */
 export const URGENT_HIDE_4_AUDIT_REF = "urgent-hide-4-2026-09-28";
 
+/**
+ * Sixteen NAPLEX items from the 2026-09-27 urgent hide that batch 4 returned
+ * to students without a corrected answer key. Text is unchanged.
+ */
+export const NAPLEX_UH1_REHIDE_AUDIT_REF = "naplex-urgent-hide-1-rehide-2026-09-29";
+
 /** NAPLEX clean-up batch 4, 2026-09-28. Hidden rows keep their text. Key fixes are separate. */
 export const NAPLEX_CLEANUP_BATCH_4_AUDIT_REF = "naplex-cleanup-batch-4-2026-09-28";
 
@@ -17838,6 +17844,104 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     note: "Hypertension screening. Text unchanged. Current key: Measure the client's blood pressure.",
   },
   // urgent-hide-4-2026-09-28 END
+  // naplex-urgent-hide-1-rehide-2026-09-29 BEGIN
+  {
+    id: "cmqvmk3g8001b1ydnqgymwtll",
+    sampleId: "NP-UH1R-001",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-010. Rivaroxaban 20 mg daily at CrCl 45 is still not the keyed defect. Text unchanged. Re-hidden 2026-09-29; the batch-4 explanation did not correct the answer key. Current key: Renal function (eGFR)",
+  },
+  {
+    id: "cmqvqc9lf000t1yys5hya9593",
+    sampleId: "NP-UH1R-002",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-028. Still keys stopping metformin on serum creatinine 1.8 alone. Text unchanged. Re-hidden 2026-09-29; the batch-4 explanation did not correct the answer key. Current key: Discontinue metformin until renal function improves.",
+  },
+  {
+    id: "cmqvsvh0t001m1yuool6knxt0",
+    sampleId: "NP-UH1R-003",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-038. Still keys holding metformin on serum creatinine 1.8 alone. Text unchanged. Re-hidden 2026-09-29; the batch-4 explanation did not correct the answer key. Current key: Hold metformin and consult her healthcare provider due to renal impairment.",
+  },
+  {
+    id: "cmqw508zu001g1yq28e63go3p",
+    sampleId: "NP-UH1R-004",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-061. Still implies metformin must be changed from the old serum-creatinine cutoff. Text unchanged. Re-hidden 2026-09-29; the batch-4 explanation did not correct the answer key. Current key: Contact the prescriber to discuss the appropriateness of metformin given her renal function.",
+  },
+  {
+    id: "cmqw7d7hd001d1yfanxpg72cu",
+    sampleId: "NP-UH1R-005",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-065. New metformin start near eGFR 31 still keys food counseling and does not address initiation. Text unchanged. Re-hidden 2026-09-29. Current key: Metformin should be taken with food to minimize gastrointestinal side effects.",
+  },
+  {
+    id: "cmqxaurxd001c1yprzyyp1n4k",
+    sampleId: "NP-UH1R-006",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-079. Hyponatremia is still keyed although the vignette has no supporting laboratory value. Text unchanged. Re-hidden 2026-09-29. Current key: Low sodium levels.",
+  },
+  {
+    id: "cmr0q12uc001h1y9a02tjh4n4",
+    sampleId: "NP-UH1R-007",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-116. After months of worsening anxiety the key is still that sertraline may take several weeks. Text unchanged. Re-hidden 2026-09-29. Current key: It may take several weeks to feel the full effects of sertraline.",
+  },
+  {
+    id: "cmr0ri55k001i1y8jwlhd6tst",
+    sampleId: "NP-UH1R-008",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-119. COPD escalation is still keyed to ipratropium rather than a long-acting antimuscarinic. Text unchanged. Re-hidden 2026-09-29. Current key: Ipratropium bromide",
+  },
+  {
+    id: "cmr7xe1lj000y1ydxyjh25fni",
+    sampleId: "NP-UH1R-009",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-174. Still keyed to cephalexin under a drug-interaction frame. Text unchanged. Re-hidden 2026-09-29. Current key: Cephalexin",
+  },
+  {
+    id: "cmr7yhwa7001c1yr34xluyvha",
+    sampleId: "NP-UH1R-010",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-180. Still implies a metformin change from the old serum-creatinine cutoff. Text unchanged. Re-hidden 2026-09-29. Current key: Contact the prescriber to discuss the patient's renal function.",
+  },
+  {
+    id: "cmr7yy1oh00151yu82cl9q1ra",
+    sampleId: "NP-UH1R-011",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-186. New metformin start at eGFR 45 still keys lactic-acidosis monitoring. Text unchanged. Re-hidden 2026-09-29. Current key: Monitor for signs of lactic acidosis.",
+  },
+  {
+    id: "cmr7yy23f001a1yu8p1xogsrq",
+    sampleId: "NP-UH1R-012",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-187. Shortness of breath at rest is still keyed and is not in the vignette. Text unchanged. Re-hidden 2026-09-29. Current key: Shortness of breath at rest.",
+  },
+  {
+    id: "cmra72a7k004r1ybj9kql64j9",
+    sampleId: "NP-UH1R-013",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-221. Metformin adjustment is still keyed from the old serum-creatinine cutoff. Text unchanged. Re-hidden 2026-09-29. Current key: Metformin",
+  },
+  {
+    id: "cmsfj9z5a00001ymsjk3jd5en",
+    sampleId: "NP-UH1R-014",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-274. Alendronate administration is still keyed despite esophageal symptoms. Text unchanged. Re-hidden 2026-09-29. Current key: Take alendronate with a full glass of water and remain upright for 30 minutes.",
+  },
+  {
+    id: "cmshcyzzz002h1yarlluf8rq0",
+    sampleId: "NP-UH1R-015",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-281. Enoxaparin 40 mg is still keyed as a hold-until-warfarin-stops action. Text unchanged. Re-hidden 2026-09-29. Current key: Recommend holding the enoxaparin dose until warfarin is discontinued.",
+  },
+  {
+    id: "cmshkb54a00071ys71be8jfgd",
+    sampleId: "NP-UH1R-016",
+    auditRef: NAPLEX_UH1_REHIDE_AUDIT_REF,
+    note: "Original NP-UH-323. Digoxin loading dose is still 490 mcg. The batch-4 explanation dropped the bioavailability step instead of correcting the key. Text unchanged. Re-hidden 2026-09-29. Current key: 490 mcg",
+  },
+  // naplex-urgent-hide-1-rehide-2026-09-29 END
 ];
 
 /**
