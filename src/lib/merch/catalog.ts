@@ -87,7 +87,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "tee",
     name: "Tee",
-    priceUsd: 24.99,
+    priceUsd: 23.99,
     image: "/merch/tee.webp",
     imageAlt: "Moss tee with a small embroidered chest mark",
     imageWidth: 1200,
@@ -101,7 +101,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "premium-hoodie",
     name: "Premium Hoodie",
-    priceUsd: 56.99,
+    priceUsd: 53.99,
     image: "/merch/hoodie-premium.webp",
     imageAlt: "Chocolate brown premium hoodie with a kangaroo pocket and a small embroidered chest mark",
     imageWidth: 1200,
@@ -115,7 +115,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "classic-hoodie",
     name: "Classic Hoodie",
-    priceUsd: 42.99,
+    priceUsd: 39.99,
     image: "/merch/hoodie-classic.webp",
     imageAlt: "Latte classic hoodie with a small dark embroidered chest mark",
     imageWidth: 1200,
@@ -129,7 +129,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "crewneck",
     name: "Crewneck",
-    priceUsd: 37.99,
+    priceUsd: 35.99,
     image: "/merch/crew.webp",
     imageAlt: "Forest green crewneck with a small embroidered chest mark",
     imageWidth: 1200,
@@ -140,7 +140,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "everything-is-hard-hoodie",
     name: "Everything Is Hard Hoodie",
-    priceUsd: 63.99,
+    priceUsd: 59.99,
     image: "/merch/hoodie-everything.webp",
     imageAlt: "Chocolate brown hoodie embroidered with Everything is hard until it's not.",
     imageWidth: 1200,
@@ -151,7 +151,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "everything-is-hard-crewneck",
     name: "Everything Is Hard Crewneck",
-    priceUsd: 41.99,
+    priceUsd: 38.99,
     image: "/merch/crew-everything.webp",
     imageAlt: "Forest green crewneck embroidered with Everything is hard until it's not.",
     imageWidth: 1200,
@@ -162,7 +162,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "polo",
     name: "Polo",
-    priceUsd: 29.99,
+    priceUsd: 28.99,
     image: "/merch/polo.webp",
     imageAlt: "Black polo shirt",
     imageWidth: 1200,
@@ -173,7 +173,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "dad-cap",
     name: "Dad Cap",
-    priceUsd: 21.99,
+    priceUsd: 20.99,
     image: "/merch/cap-dad.webp",
     imageAlt: "Spruce dad cap with an embroidered front mark",
     imageWidth: 1200,
@@ -184,7 +184,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "corduroy-cap",
     name: "Corduroy Cap",
-    priceUsd: 23.99,
+    priceUsd: 22.99,
     image: "/merch/cap-cord.webp",
     imageAlt: "Brown corduroy cap with a small front patch",
     imageWidth: 1200,
@@ -198,7 +198,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "cuffed-beanie",
     name: "Cuffed Beanie",
-    priceUsd: 19.99,
+    priceUsd: 18.99,
     image: "/merch/beanie.webp",
     imageAlt: "Olive cuffed beanie with a small embroidered cuff mark",
     imageWidth: 1200,
@@ -230,7 +230,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "sherpa-blanket",
     name: "Sherpa Blanket",
-    priceUsd: 64.99,
+    priceUsd: 60.99,
     image: "/merch/blanket.webp",
     imageAlt: "Fireside brown sherpa blanket, folded",
     imageWidth: 1200,

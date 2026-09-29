@@ -57,7 +57,7 @@ describe("merch catalog", () => {
       "Sherpa Blanket",
     ]);
     expect(MERCH_PRODUCTS.map((product) => product.priceUsd)).toEqual([
-      24.99, 56.99, 42.99, 37.99, 63.99, 41.99, 29.99, 21.99, 23.99, 19.99, 9.99, 64.99,
+      23.99, 53.99, 39.99, 35.99, 59.99, 38.99, 28.99, 20.99, 22.99, 18.99, 9.99, 60.99,
     ]);
     expect(MERCH_PRODUCTS.map((product) => product.colors.map((color) => color.name))).toEqual([
       ["Moss", "Espresso"],
