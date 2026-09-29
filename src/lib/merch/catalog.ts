@@ -8,8 +8,9 @@
  * hides the product. Do not add a placeholder label. If none are linkable,
  * /merch returns 404.
  *
- * Polo and the sherpa blanket are stand-ins. Swap `image`, `imageAlt`,
- * `colors`, and `priceUsd` here when premium blanks replace them.
+ * The polo is a Port Authority K500 in Black. The sherpa blanket photo is
+ * still a stand-in. Swap `image`, `imageAlt`, `colors`, and `priceUsd` here
+ * when that blank is replaced.
  *
  * Visibility flag (MERCH_ENABLED). A new deployment picks it up:
  * - unset: off in production; on for local `next dev` and Vercel preview
@@ -141,7 +142,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "polo",
     name: "Polo",
-    priceUsd: 25.99,
+    priceUsd: 29.99,
     image: "/merch/polo.webp",
     imageAlt: "Black polo shirt",
     imageWidth: 1200,
