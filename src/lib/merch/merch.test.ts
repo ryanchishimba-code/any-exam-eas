@@ -1,6 +1,10 @@
 import { existsSync, readFileSync } from "node:fs";
+import { NextRequest } from "next/server";
 import { describe, expect, it } from "vitest";
+import { authConfig } from "@/auth.config";
+import { loggedOutTrialCheckoutHref } from "@/lib/billing/card-free-checkout";
 import { MERCH_COPY, MERCH_OG_IMAGE, MERCH_PATH, MERCH_PRODUCTS, MERCH_STORE_URL } from "@/lib/merch/catalog";
+import { isPremiumPage } from "@/lib/premium-routes";
 import {
   buildMerchMetadata,
   formatMerchPrice,
@@ -161,6 +165,38 @@ describe("merch presentation", () => {
     expect(validateMetaDescription(String(metadata.description))).toBeNull();
     expect(metadata.alternates).toEqual({ canonical: MERCH_PATH });
     expect(metadata.robots).toMatchObject({ index: true, follow: true });
+  });
+});
+
+describe("signed-out merch access", () => {
+  it("leaves /merch off the auth middleware and the premium gate", () => {
+    const middleware = readFileSync("src/middleware.ts", "utf8");
+    expect(middleware).not.toMatch(/["']\/merch/);
+    expect(isPremiumPage("/merch")).toBe(false);
+    expect(isPremiumPage("/merch/tee")).toBe(false);
+    expect(loggedOutTrialCheckoutHref("/merch", "", false)).toBeNull();
+  });
+
+  it("allows a signed-out visit without a login redirect", () => {
+    const request = new NextRequest("https://www.anyexameasy.com/merch");
+    const decision = authConfig.callbacks.authorized?.({
+      auth: null,
+      request,
+    });
+    expect(decision).toBe(true);
+  });
+
+  it("sends Buy straight to an external url with no account check in the page", () => {
+    const page = readFileSync("src/app/(marketing)/merch/page.tsx", "utf8");
+    const collection = readFileSync("src/components/merch/MerchCollection.tsx", "utf8");
+    expect(page).not.toMatch(/useSession|getServerSession|signIn\(|from ["']@\/auth["']/);
+    expect(collection).not.toMatch(/useSession|signIn\(|\/auth\/login|\/signup/);
+    expect(collection).toContain('target="_blank"');
+    expect(collection).toContain('rel="noopener noreferrer"');
+    const buy = visibleMerchProducts([tee]);
+    expect(buy).toHaveLength(1);
+    expect(buy[0]?.fourthwallUrl.startsWith("https://")).toBe(true);
+    expect(buy[0]?.fourthwallUrl.startsWith("/")).toBe(false);
   });
 });
 
