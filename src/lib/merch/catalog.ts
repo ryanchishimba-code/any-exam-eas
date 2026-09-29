@@ -213,7 +213,7 @@ export const MERCH_PRODUCTS = [
   {
     id: "sticker-sheet",
     name: "Sticker Sheet",
-    priceUsd: 7.99,
+    priceUsd: 9.99,
     image: "/merch/stickers.webp",
     imageAlt: "Sticker sheet with Future RN, PharmD, PA, NP, and PT badges",
     imageWidth: 1200,
