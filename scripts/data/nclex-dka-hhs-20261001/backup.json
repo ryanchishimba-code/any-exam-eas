@@ -1,0 +1,511 @@
+{
+  "backedUpAt": "2026-10-01T01:41:15.212Z",
+  "table": "QuestionBankItem",
+  "ids": [
+    "cmr7iuy7p004h1y662iswxqel",
+    "cmr8rd6f6005x1ye3donkesut",
+    "cmr8oz188007t1y5nanfq8lak",
+    "cmr8tb44d00bs1y9nj2uuvx9j",
+    "cmr7jl1uu00bu1y66y5ocsv59",
+    "cmr75nazn00h81ywus1d5b7c8"
+  ],
+  "columnTypes": {
+    "id": "text",
+    "fieldId": "text",
+    "subjectId": "text",
+    "question": "text",
+    "options": "text",
+    "correctAnswer": "text",
+    "explanation": "text",
+    "solutionSteps": "text",
+    "tags": "text",
+    "source": "text",
+    "contentHash": "text",
+    "active": "bool",
+    "createdAt": "timestamp",
+    "updatedAt": "timestamp",
+    "stateCode": "bpchar",
+    "difficulty": "int2",
+    "topicCategory": "text",
+    "blueprintDomain": "text",
+    "itemType": "text",
+    "references": "jsonb",
+    "scenario": "text",
+    "stepLevel": "text",
+    "qaPassed": "bool",
+    "qaAuditedAt": "timestamp",
+    "taskCategory": "text",
+    "blueprintTopic": "text",
+    "generationVersion": "text",
+    "reviewStatus": "text",
+    "lastReviewedAt": "timestamp",
+    "generationMeta": "jsonb",
+    "patientAgeGroup": "text",
+    "embedding": "vector",
+    "quality_score": "float8",
+    "cluster_id": "text",
+    "keep_recommendation": "bool",
+    "review_flag": "bool",
+    "curation_meta": "jsonb",
+    "clientNeeds": "text",
+    "cjmmFunction": "text",
+    "manual_correction": "bool"
+  },
+  "rows": [
+    {
+      "id": "cmr7iuy7p004h1y662iswxqel",
+      "fieldId": "nursing",
+      "subjectId": "physiological-adaptation",
+      "question": "Which intervention is the priority for this client?",
+      "options": "{\"options\":[\"Administer regular insulin IV as prescribed.\",\"Provide oral fluids to rehydrate the client.\",\"Monitor the client's blood glucose every 4 hours.\",\"Encourage the client to eat a carbohydrate-rich meal.\"],\"distractorRationale\":{\"Provide oral fluids to rehydrate the client.\":\"Rehydration is important but insulin is the immediate priority.\",\"Monitor the client's blood glucose every 4 hours.\":\"Monitoring is necessary but does not address the acute issue.\",\"Encourage the client to eat a carbohydrate-rich meal.\":\"Carbohydrates would worsen hyperglycemia.\"},\"clinicalReasoning\":\"Recognize Cues: Client has HHS with high glucose. Analyze Cues: Immediate need to reduce glucose. Prioritize Hypotheses: Hyperglycemia is life-threatening. Generate Solutions: Administer insulin IV. Take Action: Lower glucose levels. Evaluate Outcomes: Client's glucose levels decrease, improving condition.\",\"kind\":\"mcq\",\"blueprintTopic\":\"endocrine-emergencies\",\"blueprintSystem\":\"nclex-physiological\",\"generationMeta\":{\"model\":\"gpt-4o\",\"batchId\":\"nclex-gap-2026-07-05-msldfq\",\"qcScore\":1,\"slotIndex\":26,\"examNumber\":9003,\"generatedAt\":\"2026-07-05T08:16:26.427Z\",\"pipelineVersion\":\"gpt-4o-nclex-full-exam-v2\"},\"clientNeedsCategory\":\"Physiological Adaptation\",\"reviewModuleSlug\":\"prioritization\",\"memoryCardIds\":[\"nclex-pri-abc-first\",\"nclex-pri-see-first\",\"nclex-pri-assess-act\",\"nclex-pri-trap-eventually\"],\"top500Drugs\":[\"Dapsone (Aczone (topical))\"],\"structureIds\":[\"heart\",\"lungs\",\"kidneys\"]}",
+      "correctAnswer": "Administer regular insulin IV as prescribed.",
+      "explanation": "Administering regular insulin IV is crucial to lower the client's extremely high blood glucose levels and address the hyperosmolar state. Rehydration is also important but insulin administration is the immediate priority to prevent further complications.\n\nClinical reasoning: Recognize Cues: Client has HHS with high glucose. Analyze Cues: Immediate need to reduce glucose. Prioritize Hypotheses: Hyperglycemia is life-threatening. Generate Solutions: Administer insulin IV. Take Action: Lower glucose levels. Evaluate Outcomes: Client's glucose levels decrease, improving condition.\n\nWhy other options are incorrect:\n• Provide oral fluids to rehydrate the client.: Incorrect — Rehydration is important but insulin is the immediate priority.\n• Monitor the client's blood glucose every 4 hours.: Incorrect — Monitoring is necessary but does not address the acute issue.\n• Encourage the client to eat a carbohydrate-rich meal.: Incorrect — Carbohydrates would worsen hyperglycemia.",
+      "solutionSteps": null,
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9003\",\"physiological-adaptation\",\"endocrine-emergencies\",\"batch-nclex-gap-2026-07-05-msldfq\",\"ai-curated\"]",
+      "source": "ai-curated",
+      "contentHash": "286cb8ad6491dfd9cf2c4524c6cecb12044d4cadd375fd91593e1694acb86f43",
+      "active": true,
+      "createdAt": "2026-07-05T08:21:13.526Z",
+      "updatedAt": "2026-09-07T03:50:47.671Z",
+      "stateCode": null,
+      "difficulty": 5,
+      "topicCategory": "Physiological Adaptation",
+      "blueprintDomain": "nclex-physiological",
+      "itemType": "vignette",
+      "references": [
+        {
+          "label": "NCSBN NCLEX-RN Test Plan / CJMM"
+        }
+      ],
+      "scenario": "A 70-year-old female client with type 2 diabetes is admitted with confusion and weakness. Her blood glucose level is 600 mg/dL, and she is diagnosed with hyperosmolar hyperglycemic state (HHS).",
+      "stepLevel": null,
+      "qaPassed": true,
+      "qaAuditedAt": "2026-09-07T03:50:47.670Z",
+      "taskCategory": null,
+      "blueprintTopic": "endocrine-emergencies",
+      "generationVersion": "gpt-4o-nclex-full-exam-v2",
+      "reviewStatus": "approved",
+      "lastReviewedAt": null,
+      "generationMeta": {
+        "model": "gpt-4o",
+        "batchId": "nclex-gap-2026-07-05-msldfq",
+        "qcScore": 1,
+        "slotIndex": 26,
+        "examNumber": 9003,
+        "generatedAt": "2026-07-05T08:16:26.427Z",
+        "pipelineVersion": "gpt-4o-nclex-full-exam-v2"
+      },
+      "patientAgeGroup": null,
+      "embedding": null,
+      "quality_score": null,
+      "cluster_id": null,
+      "keep_recommendation": null,
+      "review_flag": null,
+      "curation_meta": null,
+      "clientNeeds": null,
+      "cjmmFunction": null,
+      "manual_correction": false
+    },
+    {
+      "id": "cmr8rd6f6005x1ye3donkesut",
+      "fieldId": "nursing",
+      "subjectId": "reduction-risk",
+      "question": "Which intervention is the priority for this client?",
+      "options": "{\"options\":[\"Administer regular insulin IV infusion\",\"Provide oral fluids to prevent dehydration\",\"Administer sodium bicarbonate to correct acidosis\",\"Monitor blood glucose levels every hour\"],\"distractorRationale\":{\"Provide oral fluids to prevent dehydration\":\"Oral fluids are insufficient in severe DKA; IV fluids are typically required.\",\"Administer sodium bicarbonate to correct acidosis\":\"Bicarbonate is rarely used in DKA unless severe acidosis is present; insulin is the primary treatment.\",\"Monitor blood glucose levels every hour\":\"While monitoring is important, it does not address the immediate need for insulin to correct DKA.\"},\"clinicalReasoning\":\"Recognize Cues: High blood glucose and ketones indicate DKA. Analyze Cues: DKA results from insulin deficiency. Prioritize Hypotheses: Hyperglycemia and ketosis are the immediate threats. Generate Solutions: Administer insulin. Take Action: Start IV insulin infusion. Evaluate Outcomes: Monitor glucose and ketone reduction.\",\"kind\":\"mcq\",\"blueprintTopic\":\"pre-post-procedure\",\"blueprintSystem\":\"nclex-physiological\",\"generationMeta\":{\"model\":\"gpt-4o\",\"batchId\":\"nclex-gap-2026-07-06-0yyj0f\",\"qcScore\":1,\"slotIndex\":4,\"examNumber\":9004,\"generatedAt\":\"2026-07-06T05:06:12.019Z\",\"pipelineVersion\":\"gpt-4o-nclex-full-exam-v2\"},\"clientNeedsCategory\":\"Reduction of Risk Potential\",\"reviewModuleSlug\":\"prioritization\",\"memoryCardIds\":[\"nclex-pri-abc-first\",\"nclex-pri-see-first\",\"nclex-pri-assess-act\",\"nclex-pri-trap-eventually\"],\"top500Drugs\":[\"Sodium bicarbonate (NaHCO3)\",\"Dapsone (Aczone (topical))\"],\"structureIds\":[\"spleen\",\"adrenal-glands\",\"aorta\"]}",
+      "correctAnswer": "Administer regular insulin IV infusion",
+      "explanation": "The priority intervention for a client with DKA is to administer regular insulin IV to reduce blood glucose levels and stop ketone production. This addresses the underlying cause of DKA. While monitoring glucose and providing fluids are important, insulin administration is the critical first step.\n\nClinical reasoning: Recognize Cues: High blood glucose and ketones indicate DKA. Analyze Cues: DKA results from insulin deficiency. Prioritize Hypotheses: Hyperglycemia and ketosis are the immediate threats. Generate Solutions: Administer insulin. Take Action: Start IV insulin infusion. Evaluate Outcomes: Monitor glucose and ketone reduction.\n\nWhy other options are incorrect:\n• Provide oral fluids to prevent dehydration: Incorrect — Oral fluids are insufficient in severe DKA; IV fluids are typically required.\n• Administer sodium bicarbonate to correct acidosis: Incorrect — Bicarbonate is rarely used in DKA unless severe acidosis is present; insulin is the primary treatment.\n• Monitor blood glucose levels every hour: Incorrect — While monitoring is important, it does not address the immediate need for insulin to correct DKA.",
+      "solutionSteps": null,
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9004\",\"reduction-risk\",\"pre-post-procedure\",\"batch-nclex-gap-2026-07-06-0yyj0f\",\"ai-curated\"]",
+      "source": "ai-curated",
+      "contentHash": "f47b2f5b53dd976221d85c893b001740f86f5609c204c58240874835ddc68848",
+      "active": true,
+      "createdAt": "2026-07-06T05:07:07.075Z",
+      "updatedAt": "2026-09-07T03:50:55.693Z",
+      "stateCode": null,
+      "difficulty": 2,
+      "topicCategory": "Reduction of Risk Potential",
+      "blueprintDomain": "nclex-physiological",
+      "itemType": "vignette",
+      "references": [
+        {
+          "label": "NCSBN NCLEX-RN Test Plan / Clinical Judgment Measurement Model"
+        },
+        {
+          "label": "Open RN Project"
+        }
+      ],
+      "scenario": "A 32-year-old male client with type 1 diabetes is admitted for diabetic ketoacidosis (DKA). He presents with polyuria, polydipsia, and Kussmaul respirations. His blood glucose is 450 mg/dL, and ketones are present in his urine.",
+      "stepLevel": null,
+      "qaPassed": true,
+      "qaAuditedAt": "2026-09-07T03:50:55.692Z",
+      "taskCategory": null,
+      "blueprintTopic": "pre-post-procedure",
+      "generationVersion": "gpt-4o-nclex-full-exam-v2",
+      "reviewStatus": "approved",
+      "lastReviewedAt": null,
+      "generationMeta": {
+        "model": "gpt-4o",
+        "batchId": "nclex-gap-2026-07-06-0yyj0f",
+        "qcScore": 1,
+        "slotIndex": 4,
+        "examNumber": 9004,
+        "generatedAt": "2026-07-06T05:06:12.019Z",
+        "pipelineVersion": "gpt-4o-nclex-full-exam-v2"
+      },
+      "patientAgeGroup": null,
+      "embedding": null,
+      "quality_score": null,
+      "cluster_id": null,
+      "keep_recommendation": null,
+      "review_flag": null,
+      "curation_meta": null,
+      "clientNeeds": null,
+      "cjmmFunction": null,
+      "manual_correction": false
+    },
+    {
+      "id": "cmr8oz188007t1y5nanfq8lak",
+      "fieldId": "nursing",
+      "subjectId": "physiological-adaptation",
+      "question": "Which nursing action is most appropriate?",
+      "options": "{\"options\":[\"Administer regular insulin IV as prescribed.\",\"Increase the IV fluid rate to 250 mL/hr.\",\"Encourage oral fluid intake to prevent dehydration.\",\"Monitor the client's blood glucose every 4 hours.\"],\"distractorRationale\":{\"Increase the IV fluid rate to 250 mL/hr.\":\"Fluid management is important but should be balanced with insulin therapy.\",\"Encourage oral fluid intake to prevent dehydration.\":\"Oral intake is not appropriate due to lethargy and risk of aspiration.\",\"Monitor the client's blood glucose every 4 hours.\":\"Frequent monitoring is necessary but does not address immediate hyperglycemia.\"},\"clinicalReasoning\":\"Recognize Cues: High blood glucose and lethargy indicate HHS. Analyze Cues: Immediate glucose reduction needed. Prioritize Hypotheses: Hyperglycemia is the primary issue. Generate Solutions: Administer insulin to lower glucose. Take Action: Give insulin IV. Evaluate Outcomes: Monitor glucose for improvement.\",\"kind\":\"mcq\",\"blueprintTopic\":\"endocrine-emergencies\",\"blueprintSystem\":\"nclex-physiological\",\"generationMeta\":{\"model\":\"gpt-4o\",\"batchId\":\"nclex-gap-2026-07-06-aj98h4\",\"qcScore\":1,\"slotIndex\":18,\"examNumber\":9005,\"generatedAt\":\"2026-07-06T03:56:51.810Z\",\"pipelineVersion\":\"gpt-4o-nclex-full-exam-v2\"},\"clientNeedsCategory\":\"Physiological Adaptation\",\"reviewModuleSlug\":\"prioritization\",\"memoryCardIds\":[\"nclex-pri-abc-first\",\"nclex-pri-see-first\",\"nclex-pri-assess-act\",\"nclex-pri-trap-eventually\"],\"top500Drugs\":[\"Dapsone (Aczone (topical))\"],\"structureIds\":[\"heart\",\"lungs\",\"kidneys\"]}",
+      "correctAnswer": "Administer regular insulin IV as prescribed.",
+      "explanation": "Administering regular insulin IV is critical in managing HHS by reducing blood glucose levels. This action addresses the underlying hyperglycemia and is a priority in the acute management of the condition.\n\nClinical reasoning: Recognize Cues: High blood glucose and lethargy indicate HHS. Analyze Cues: Immediate glucose reduction needed. Prioritize Hypotheses: Hyperglycemia is the primary issue. Generate Solutions: Administer insulin to lower glucose. Take Action: Give insulin IV. Evaluate Outcomes: Monitor glucose for improvement.\n\nWhy other options are incorrect:\n• Increase the IV fluid rate to 250 mL/hr.: Incorrect — Fluid management is important but should be balanced with insulin therapy.\n• Encourage oral fluid intake to prevent dehydration.: Incorrect — Oral intake is not appropriate due to lethargy and risk of aspiration.\n• Monitor the client's blood glucose every 4 hours.: Incorrect — Frequent monitoring is necessary but does not address immediate hyperglycemia.",
+      "solutionSteps": null,
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9005\",\"physiological-adaptation\",\"endocrine-emergencies\",\"batch-nclex-gap-2026-07-06-aj98h4\",\"ai-curated\"]",
+      "source": "ai-curated",
+      "contentHash": "c271d0ec22ce5ca21140ec28e7b078b3111e8c94a9fbd50de432eb7f4427d649",
+      "active": true,
+      "createdAt": "2026-07-06T04:00:07.929Z",
+      "updatedAt": "2026-09-07T03:50:51.671Z",
+      "stateCode": null,
+      "difficulty": 3,
+      "topicCategory": "Physiological Adaptation",
+      "blueprintDomain": "nclex-physiological",
+      "itemType": "vignette",
+      "references": [
+        {
+          "label": "NCSBN NCLEX-RN Test Plan"
+        }
+      ],
+      "scenario": "A 65-year-old female with type 2 diabetes is admitted for hyperglycemic hyperosmolar state (HHS). She is lethargic, with a blood glucose level of 650 mg/dL, and has an IV of normal saline running at 150 mL/hr.",
+      "stepLevel": null,
+      "qaPassed": true,
+      "qaAuditedAt": "2026-09-07T03:50:51.670Z",
+      "taskCategory": null,
+      "blueprintTopic": "endocrine-emergencies",
+      "generationVersion": "gpt-4o-nclex-full-exam-v2",
+      "reviewStatus": "approved",
+      "lastReviewedAt": null,
+      "generationMeta": {
+        "model": "gpt-4o",
+        "batchId": "nclex-gap-2026-07-06-aj98h4",
+        "qcScore": 1,
+        "slotIndex": 18,
+        "examNumber": 9005,
+        "generatedAt": "2026-07-06T03:56:51.810Z",
+        "pipelineVersion": "gpt-4o-nclex-full-exam-v2"
+      },
+      "patientAgeGroup": null,
+      "embedding": null,
+      "quality_score": null,
+      "cluster_id": null,
+      "keep_recommendation": null,
+      "review_flag": null,
+      "curation_meta": null,
+      "clientNeeds": null,
+      "cjmmFunction": null,
+      "manual_correction": false
+    },
+    {
+      "id": "cmr8tb44d00bs1y9nj2uuvx9j",
+      "fieldId": "nursing",
+      "subjectId": "physiological-adaptation",
+      "question": "Which intervention is the priority for this client?",
+      "options": "{\"options\":[\"Administer regular insulin IV infusion.\",\"Provide oral fluids to prevent dehydration.\",\"Administer sodium bicarbonate IV for acidosis.\",\"Monitor blood glucose every 4 hours.\"],\"distractorRationale\":{\"Provide oral fluids to prevent dehydration.\":\"Oral fluids are inadequate in severe DKA; IV fluids are needed.\",\"Administer sodium bicarbonate IV for acidosis.\":\"Bicarbonate is not routinely used unless severe acidosis.\",\"Monitor blood glucose every 4 hours.\":\"Frequent monitoring is important but does not treat DKA.\"},\"clinicalReasoning\":\"Recognize Cues: High glucose, ketones, confusion. Analyze Cues: DKA with acidosis. Prioritize Hypotheses: Hyperglycemia and ketone production are primary issues. Generate Solutions: Administer insulin. Take Action: Start insulin infusion. Evaluate Outcomes: Lower glucose, reduce ketones.\",\"kind\":\"mcq\",\"blueprintTopic\":\"endocrine-emergencies\",\"blueprintSystem\":\"nclex-physiological\",\"generationMeta\":{\"model\":\"gpt-4o\",\"batchId\":\"nclex-gap-2026-07-06-y25kae\",\"qcScore\":1,\"slotIndex\":3,\"examNumber\":9008,\"generatedAt\":\"2026-07-06T05:57:24.336Z\",\"pipelineVersion\":\"gpt-4o-nclex-full-exam-v2\"},\"clientNeedsCategory\":\"Physiological Adaptation\",\"reviewModuleSlug\":\"prioritization\",\"memoryCardIds\":[\"nclex-pri-abc-first\",\"nclex-pri-see-first\",\"nclex-pri-assess-act\",\"nclex-pri-trap-eventually\"],\"top500Drugs\":[\"Sodium bicarbonate (NaHCO3)\",\"Dapsone (Aczone (topical))\"],\"structureIds\":[\"heart\",\"lungs\",\"kidneys\"]}",
+      "correctAnswer": "Administer regular insulin IV infusion.",
+      "explanation": "In DKA, the priority is to lower blood glucose levels and stop ketone production by administering insulin. Insulin helps to normalize blood glucose and correct the metabolic acidosis. While fluids and monitoring are important, they do not directly address the underlying cause of DKA.\n\nClinical reasoning: Recognize Cues: High glucose, ketones, confusion. Analyze Cues: DKA with acidosis. Prioritize Hypotheses: Hyperglycemia and ketone production are primary issues. Generate Solutions: Administer insulin. Take Action: Start insulin infusion. Evaluate Outcomes: Lower glucose, reduce ketones.\n\nWhy other options are incorrect:\n• Provide oral fluids to prevent dehydration.: Incorrect — Oral fluids are inadequate in severe DKA; IV fluids are needed.\n• Administer sodium bicarbonate IV for acidosis.: Incorrect — Bicarbonate is not routinely used unless severe acidosis.\n• Monitor blood glucose every 4 hours.: Incorrect — Frequent monitoring is important but does not treat DKA.",
+      "solutionSteps": null,
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9008\",\"physiological-adaptation\",\"endocrine-emergencies\",\"batch-nclex-gap-2026-07-06-y25kae\",\"ai-curated\"]",
+      "source": "ai-curated",
+      "contentHash": "a3ab70017f22e9207f2c8fe5626fd304a859424a9919a5935511187953bdeff7",
+      "active": true,
+      "createdAt": "2026-07-06T06:01:30.014Z",
+      "updatedAt": "2026-09-07T03:50:55.693Z",
+      "stateCode": null,
+      "difficulty": 5,
+      "topicCategory": "Physiological Adaptation",
+      "blueprintDomain": "nclex-physiological",
+      "itemType": "vignette",
+      "references": [
+        {
+          "label": "NCSBN NCLEX-RN Test Plan / Clinical Judgment Measurement Model"
+        },
+        {
+          "label": "Source [1] — OpenStax / LibreTexts"
+        }
+      ],
+      "scenario": "A 55-year-old male client with type 1 diabetes is admitted with diabetic ketoacidosis (DKA). He presents with polyuria, polydipsia, and confusion. His blood glucose level is 450 mg/dL, and he has ketones in his urine.",
+      "stepLevel": null,
+      "qaPassed": true,
+      "qaAuditedAt": "2026-09-07T03:50:55.692Z",
+      "taskCategory": null,
+      "blueprintTopic": "endocrine-emergencies",
+      "generationVersion": "gpt-4o-nclex-full-exam-v2",
+      "reviewStatus": "approved",
+      "lastReviewedAt": null,
+      "generationMeta": {
+        "model": "gpt-4o",
+        "batchId": "nclex-gap-2026-07-06-y25kae",
+        "qcScore": 1,
+        "slotIndex": 3,
+        "examNumber": 9008,
+        "generatedAt": "2026-07-06T05:57:24.336Z",
+        "pipelineVersion": "gpt-4o-nclex-full-exam-v2"
+      },
+      "patientAgeGroup": null,
+      "embedding": null,
+      "quality_score": null,
+      "cluster_id": null,
+      "keep_recommendation": null,
+      "review_flag": null,
+      "curation_meta": null,
+      "clientNeeds": null,
+      "cjmmFunction": null,
+      "manual_correction": false
+    },
+    {
+      "id": "cmr7jl1uu00bu1y66y5ocsv59",
+      "fieldId": "nursing",
+      "subjectId": "physiological-adaptation",
+      "question": "Which intervention is the priority for this client?",
+      "options": "{\"options\":[\"Administer regular insulin IV as prescribed\",\"Provide oral fluids to prevent dehydration\",\"Administer sodium bicarbonate to correct acidosis\",\"Monitor blood glucose every hour\"],\"distractorRationale\":{\"Provide oral fluids to prevent dehydration\":\"Oral fluids are insufficient in DKA due to severe dehydration and potential for altered consciousness.\",\"Administer sodium bicarbonate to correct acidosis\":\"Bicarbonate is rarely used in DKA unless severe acidosis persists despite insulin.\",\"Monitor blood glucose every hour\":\"Monitoring is important but does not directly treat DKA without insulin administration.\"},\"clinicalReasoning\":\"Recognize Cues: Client with DKA, high glucose, low pH, low HCO3-. Analyze Cues: DKA requires insulin to correct metabolic abnormalities. Prioritize Hypotheses: Insulin is critical to resolving ketoacidosis. Generate Solutions: Administer insulin IV. Take Action: Initiate insulin therapy. Evaluate Outcomes: Monitor glucose and ketone levels for improvement.\",\"kind\":\"mcq\",\"blueprintTopic\":\"endocrine-emergencies\",\"blueprintSystem\":\"nclex-physiological\",\"generationMeta\":{\"model\":\"gpt-4o\",\"batchId\":\"nclex-gap-2026-07-05-ocrkxm\",\"qcScore\":1,\"slotIndex\":76,\"examNumber\":9007,\"generatedAt\":\"2026-07-05T08:37:53.076Z\",\"pipelineVersion\":\"gpt-4o-nclex-full-exam-v2\"},\"clientNeedsCategory\":\"Physiological Adaptation\",\"reviewModuleSlug\":\"prioritization\",\"memoryCardIds\":[\"nclex-pri-abc-first\",\"nclex-pri-see-first\",\"nclex-pri-assess-act\",\"nclex-pri-trap-eventually\"],\"top500Drugs\":[\"Sodium bicarbonate (NaHCO3)\",\"Dapsone (Aczone (topical))\"],\"structureIds\":[\"heart\",\"lungs\",\"kidneys\"]}",
+      "correctAnswer": "Administer regular insulin IV as prescribed",
+      "explanation": "Administering regular insulin IV is the priority intervention for a client in DKA to reduce blood glucose levels and correct acidosis. Insulin therapy is essential to halt ketone production and resolve metabolic derangements. While fluid replacement and monitoring are important, insulin administration directly addresses the pathophysiology of DKA.\n\nClinical reasoning: Recognize Cues: Client with DKA, high glucose, low pH, low HCO3-. Analyze Cues: DKA requires insulin to correct metabolic abnormalities. Prioritize Hypotheses: Insulin is critical to resolving ketoacidosis. Generate Solutions: Administer insulin IV. Take Action: Initiate insulin therapy. Evaluate Outcomes: Monitor glucose and ketone levels for improvement.\n\nWhy other options are incorrect:\n• Provide oral fluids to prevent dehydration: Incorrect — Oral fluids are insufficient in DKA due to severe dehydration and potential for altered consciousness.\n• Administer sodium bicarbonate to correct acidosis: Incorrect — Bicarbonate is rarely used in DKA unless severe acidosis persists despite insulin.\n• Monitor blood glucose every hour: Incorrect — Monitoring is important but does not directly treat DKA without insulin administration.",
+      "solutionSteps": null,
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9007\",\"physiological-adaptation\",\"endocrine-emergencies\",\"batch-nclex-gap-2026-07-05-ocrkxm\",\"ai-curated\"]",
+      "source": "ai-curated",
+      "contentHash": "6388043d7215d5966955e1332b6710b336a67030890f3e9d35ce2456c66a8640",
+      "active": true,
+      "createdAt": "2026-07-05T08:41:31.303Z",
+      "updatedAt": "2026-09-07T03:50:47.671Z",
+      "stateCode": null,
+      "difficulty": 3,
+      "topicCategory": "Physiological Adaptation",
+      "blueprintDomain": "nclex-physiological",
+      "itemType": "vignette",
+      "references": [
+        {
+          "label": "NCSBN NCLEX-RN Test Plan"
+        },
+        {
+          "label": "OpenStax / LibreTexts — Endocrine Emergencies"
+        }
+      ],
+      "scenario": "A 50-year-old male client with type 1 diabetes is admitted with diabetic ketoacidosis (DKA). He presents with polyuria, polydipsia, and abdominal pain. His blood glucose is 450 mg/dL, and arterial blood gas shows pH 7.25, HCO3- 12 mEq/L.",
+      "stepLevel": null,
+      "qaPassed": true,
+      "qaAuditedAt": "2026-09-07T03:50:47.670Z",
+      "taskCategory": null,
+      "blueprintTopic": "endocrine-emergencies",
+      "generationVersion": "gpt-4o-nclex-full-exam-v2",
+      "reviewStatus": "approved",
+      "lastReviewedAt": null,
+      "generationMeta": {
+        "model": "gpt-4o",
+        "batchId": "nclex-gap-2026-07-05-ocrkxm",
+        "qcScore": 1,
+        "slotIndex": 76,
+        "examNumber": 9007,
+        "generatedAt": "2026-07-05T08:37:53.076Z",
+        "pipelineVersion": "gpt-4o-nclex-full-exam-v2"
+      },
+      "patientAgeGroup": null,
+      "embedding": null,
+      "quality_score": null,
+      "cluster_id": null,
+      "keep_recommendation": null,
+      "review_flag": null,
+      "curation_meta": null,
+      "clientNeeds": null,
+      "cjmmFunction": null,
+      "manual_correction": false
+    },
+    {
+      "id": "cmr75nazn00h81ywus1d5b7c8",
+      "fieldId": "nursing",
+      "subjectId": "pharmacology-nursing",
+      "question": "Which intervention is the priority for this client?",
+      "options": "{\"options\":[\"Administer regular insulin IV\",\"Provide oral rehydration\",\"Administer potassium chloride\",\"Monitor blood glucose every 4 hours\"],\"distractorRationale\":{\"Provide oral rehydration\":\"Inadequate for severe dehydration in HHS; IV fluids are required.\",\"Administer potassium chloride\":\"Potassium may be needed but is secondary to insulin for glucose control.\",\"Monitor blood glucose every 4 hours\":\"Monitoring is necessary but not the immediate intervention.\"},\"clinicalReasoning\":\"Recognize Cues: High blood glucose, dehydration. Analyze Cues: HHS diagnosis. Prioritize Hypotheses: Severe hyperglycemia. Generate Solutions: Administer insulin. Take Action: Administer IV insulin. Evaluate Outcomes: Monitor for glucose reduction.\",\"keyTakeaways\":[\"In hyperosmolar hyperglycemic state, the priority intervention is to administer IV insulin to rapidly control blood glucose levels.\"],\"kind\":\"mcq\",\"blueprintTopic\":\"anti-infectives\",\"blueprintSystem\":\"nclex-physiological\",\"generationMeta\":{\"model\":\"gpt-4o\",\"batchId\":\"nclex-gap-2026-07-05-yf06l6\",\"qcScore\":1,\"slotIndex\":77,\"examNumber\":9010,\"generatedAt\":\"2026-07-05T02:07:55.410Z\",\"pipelineVersion\":\"gpt-4o-nclex-full-exam-v2\"},\"clientNeedsCategory\":\"Pharmacological Therapies\",\"reviewModuleSlug\":\"prioritization\",\"memoryCardIds\":[\"nclex-pri-abc-first\",\"nclex-pri-see-first\",\"nclex-pri-assess-act\",\"nclex-pri-trap-eventually\"],\"top500Drugs\":[\"Potassium chloride (K-Dur)\",\"Dapsone (Aczone (topical))\"],\"structureIds\":[\"heart\",\"kidneys\",\"spleen\"]}",
+      "correctAnswer": "Administer regular insulin IV",
+      "explanation": "## Why this answer is correct\nImmediate Insulin Administration is Critical in HHS Management\n• Hyperosmolar hyperglycemic state (HHS) leads to severe hyperglycemia and dehydration.\n• IV insulin is essential to rapidly lower blood glucose levels and prevent complications.\n• Fluid replacement is important but should follow insulin administration to avoid rapid shifts in glucose levels.\n**In practice:** In HHS, the client is at risk for severe complications such as cerebral edema and cardiovascular collapse due to extreme hyperglycemia and dehydration.\n## Why the other options are wrong\n\n\n\n**Provide oral rehydration**\n• Trap: This option may seem reasonable for hydration but is inadequate for severe dehydration.\n• Why it fails here: In cases of HHS, IV fluids are necessary to rapidly restore intravascular volume and correct electrolyte imbalances.\n• Remember: Oral rehydration is not sufficient for the severe dehydration seen in HHS.\n\n**Administer potassium chloride**\n• Trap: Potassium chloride may seem appropriate due to potential hypokalemia from insulin therapy.\n• Why it fails here: While potassium monitoring and replacement may be necessary, it is secondary to the urgent need for insulin to control hyperglycemia.\n• Remember: Insulin administration takes precedence to stabilize blood glucose before addressing potassium levels.\n\n**Monitor blood glucose every 4 hours**\n• Trap: Monitoring blood glucose is important but does not address the immediate need for intervention.\n• Why it fails here: Immediate action is required to lower the dangerously high blood glucose levels, making monitoring insufficient as a standalone intervention.\n• Remember: Frequent monitoring is essential but should accompany active treatment.\n## Key takeaway\n**In hyperosmolar hyperglycemic state, the priority intervention is to administer IV insulin to rapidly control blood glucose levels.**\n\n**Memory hook:** Remember: In HHS, think 'Insulin first, fluids second' to ensure safe and effective management.\n\n## Step-by-step reasoning\n\n1. Recognize cues: The client presents with confusion, dry mucous membranes, and a blood glucose level of 600 mg/dL.\n2. Analyze cues: These symptoms indicate a diagnosis of hyperosmolar hyperglycemic state (HHS), characterized by severe hyperglycemia and dehydration.\n3. Prioritize hypotheses: The most urgent problem is the severe hyperglycemia, which needs immediate intervention to prevent further complications.\n4. Generate solutions: Administering IV insulin is the most effective way to lower blood glucose levels quickly.\n5. Take action: Initiate IV insulin administration to manage hyperglycemia.\n6. Evaluate outcomes: Monitor the client’s blood glucose levels and clinical status for improvement.\n\n## Clinical pearl\n\nAlways prioritize interventions that address life-threatening conditions first; in HHS, that means controlling hyperglycemia with insulin before other supportive measures.\n\n## Pharmacology tie-in\n\nRegular insulin IV acts quickly to decrease blood glucose levels by facilitating glucose uptake into cells. Monitor blood glucose levels frequently during treatment, and be aware of potential hypokalemia as insulin can drive potassium into cells.\n\n## High-yield facts\n\n• HHS is characterized by extreme hyperglycemia (often >600 mg/dL) and significant dehydration.\n• Fluid replacement is critical in managing HHS, typically starting with isotonic saline.\n• Insulin therapy is essential for correcting hyperglycemia and preventing complications.\n\n## Common pitfalls\n\n• Students often confuse the urgency of insulin administration with the need for rehydration.\n• There may be a misunderstanding of potassium management, thinking it should be prioritized over insulin.\n• Monitoring blood glucose is vital, but students may overlook the need for immediate action.\n\n## Next step in care\n\nAfter administering IV insulin, continue to monitor the client's blood glucose levels and vital signs closely, and initiate fluid replacement therapy as indicated.\n\n## Test-taking tip\n\nLook for keywords like 'priority' or 'immediate' in the question stem; these often indicate the need for urgent interventions rather than supportive measures.\n\n## Real-world nursing application\n\nIn practice, watch for signs of worsening hyperglycemia or dehydration, and be prepared to escalate care if the client does not respond to initial treatments.\n\n## Layered depth\n\n**Basic:** Insulin administration is the first step in managing severe hyperglycemia.\n\n**Intermediate:** Understanding the pathophysiology of HHS helps prioritize insulin over other interventions.\n\n**Advanced:** Recognize that rapid shifts in glucose levels can lead to complications; thus, careful monitoring and gradual correction are essential.\n\n## Visual cues\n\n• **HHS Management Algorithm:** A flowchart outlining the steps for managing hyperosmolar hyperglycemic state, including insulin administration and fluid replacement.\n\n## Related topics\n\n• **NAPLEX — Insulin therapy:** Understanding insulin's role in managing hyperglycemia is crucial.\n• **USMLE — Diabetes complications:** HHS is a critical complication of uncontrolled diabetes.",
+      "solutionSteps": null,
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9010\",\"pharmacology-nursing\",\"anti-infectives\",\"batch-nclex-gap-2026-07-05-yf06l6\",\"ai-curated\"]",
+      "source": "ai-curated",
+      "contentHash": "1ebb55c89316f1e954cd697d26e0e3da2605e26dc0d1d402a6c8ae4ac726fb36",
+      "active": true,
+      "createdAt": "2026-07-05T02:11:21.827Z",
+      "updatedAt": "2026-09-07T03:50:35.689Z",
+      "stateCode": null,
+      "difficulty": 5,
+      "topicCategory": "Pharmacological Therapies",
+      "blueprintDomain": "nclex-physiological",
+      "itemType": "vignette",
+      "references": [
+        {
+          "label": "NCSBN NCLEX-RN Test Plan"
+        },
+        {
+          "label": "Source [1] — Open RN"
+        }
+      ],
+      "scenario": "A 50-year-old male with type 2 diabetes presents with confusion, dry mucous membranes, and a blood glucose level of 600 mg/dL. He is diagnosed with hyperosmolar hyperglycemic state (HHS).",
+      "stepLevel": null,
+      "qaPassed": true,
+      "qaAuditedAt": "2026-09-07T03:50:35.687Z",
+      "taskCategory": null,
+      "blueprintTopic": "anti-infectives",
+      "generationVersion": "gpt-4o-nclex-full-exam-v2",
+      "reviewStatus": "approved",
+      "lastReviewedAt": null,
+      "generationMeta": {
+        "model": "gpt-4o",
+        "batchId": "nclex-gap-2026-07-05-yf06l6",
+        "qcScore": 1,
+        "slotIndex": 77,
+        "examNumber": 9010,
+        "generatedAt": "2026-07-05T02:07:55.410Z",
+        "rationaleModel": "gpt-4o-mini",
+        "expertRationale": {
+          "memoryHook": "Remember: In HHS, think 'Insulin first, fluids second' to ensure safe and effective management.",
+          "visualCues": [
+            {
+              "label": "HHS Management Algorithm",
+              "description": "A flowchart outlining the steps for managing hyperosmolar hyperglycemic state, including insulin administration and fluid replacement."
+            }
+          ],
+          "whyCorrect": {
+            "headline": "Immediate Insulin Administration is Critical in HHS Management",
+            "clinicalContext": "In HHS, the client is at risk for severe complications such as cerebral edema and cardiovascular collapse due to extreme hyperglycemia and dehydration.",
+            "conceptBreakdown": [
+              "Hyperosmolar hyperglycemic state (HHS) leads to severe hyperglycemia and dehydration.",
+              "IV insulin is essential to rapidly lower blood glucose levels and prevent complications.",
+              "Fluid replacement is important but should follow insulin administration to avoid rapid shifts in glucose levels."
+            ]
+          },
+          "keyTakeaway": "In hyperosmolar hyperglycemic state, the priority intervention is to administer IV insulin to rapidly control blood glucose levels.",
+          "layeredDepth": {
+            "basic": "Insulin administration is the first step in managing severe hyperglycemia.",
+            "advanced": "Recognize that rapid shifts in glucose levels can lead to complications; thus, careful monitoring and gradual correction are essential.",
+            "intermediate": "Understanding the pathophysiology of HHS helps prioritize insulin over other interventions."
+          },
+          "visualBlocks": [
+            {
+              "kind": "lab_table",
+              "rows": [
+                {
+                  "note": "Severe hyperglycemia indicative of HHS",
+                  "label": "Blood Glucose",
+                  "value": "600 mg/dL",
+                  "abnormal": true,
+                  "reference": "< 140 mg/dL"
+                },
+                {
+                  "note": "Monitor closely for shifts",
+                  "label": "Potassium",
+                  "value": "4.0 mEq/L",
+                  "abnormal": false,
+                  "reference": "3.5 - 5.0 mEq/L"
+                }
+              ],
+              "title": "Electrolyte and Glucose Levels"
+            },
+            {
+              "kind": "flow",
+              "steps": [
+                "Recognize cues: Confusion, dry mucous membranes, high blood glucose.",
+                "Analyze cues: Diagnosis of HHS confirmed.",
+                "Prioritize hypotheses: Severe hyperglycemia is life-threatening.",
+                "Generate solutions: Administer IV insulin.",
+                "Take action: Start IV insulin infusion.",
+                "Evaluate outcomes: Monitor blood glucose and clinical status."
+              ],
+              "title": "Clinical judgment pathway"
+            }
+          ],
+          "whyIncorrect": [
+            {
+              "option": "Provide oral rehydration",
+              "correction": "In cases of HHS, IV fluids are necessary to rapidly restore intravascular volume and correct electrolyte imbalances.",
+              "conceptLink": "Oral rehydration is not sufficient for the severe dehydration seen in HHS.",
+              "misconception": "This option may seem reasonable for hydration but is inadequate for severe dehydration."
+            },
+            {
+              "option": "Administer potassium chloride",
+              "correction": "While potassium monitoring and replacement may be necessary, it is secondary to the urgent need for insulin to control hyperglycemia.",
+              "conceptLink": "Insulin administration takes precedence to stabilize blood glucose before addressing potassium levels.",
+              "misconception": "Potassium chloride may seem appropriate due to potential hypokalemia from insulin therapy."
+            },
+            {
+              "option": "Monitor blood glucose every 4 hours",
+              "correction": "Immediate action is required to lower the dangerously high blood glucose levels, making monitoring insufficient as a standalone intervention.",
+              "conceptLink": "Frequent monitoring is essential but should accompany active treatment.",
+              "misconception": "Monitoring blood glucose is important but does not address the immediate need for intervention."
+            }
+          ],
+          "clinicalPearl": "Always prioritize interventions that address life-threatening conditions first; in HHS, that means controlling hyperglycemia with insulin before other supportive measures.",
+          "testTakingTip": "Look for keywords like 'priority' or 'immediate' in the question stem; these often indicate the need for urgent interventions rather than supportive measures.",
+          "commonPitfalls": [
+            "Students often confuse the urgency of insulin administration with the need for rehydration.",
+            "There may be a misunderstanding of potassium management, thinking it should be prioritized over insulin.",
+            "Monitoring blood glucose is vital, but students may overlook the need for immediate action."
+          ],
+          "highYieldFacts": [
+            "HHS is characterized by extreme hyperglycemia (often >600 mg/dL) and significant dehydration.",
+            "Fluid replacement is critical in managing HHS, typically starting with isotonic saline.",
+            "Insulin therapy is essential for correcting hyperglycemia and preventing complications."
+          ],
+          "nextStepInCare": "After administering IV insulin, continue to monitor the client's blood glucose levels and vital signs closely, and initiate fluid replacement therapy as indicated.",
+          "crossReferences": [
+            {
+              "exam": "NAPLEX",
+              "note": "Understanding insulin's role in managing hyperglycemia is crucial.",
+              "topic": "Insulin therapy"
+            },
+            {
+              "exam": "USMLE",
+              "note": "HHS is a critical complication of uncontrolled diabetes.",
+              "topic": "Diabetes complications"
+            }
+          ],
+          "pharmacologyTieIn": "Regular insulin IV acts quickly to decrease blood glucose levels by facilitating glucose uptake into cells. Monitor blood glucose levels frequently during treatment, and be aware of potential hypokalemia as insulin can drive potassium into cells.",
+          "stepByStepReasoning": [
+            "Recognize cues: The client presents with confusion, dry mucous membranes, and a blood glucose level of 600 mg/dL.",
+            "Analyze cues: These symptoms indicate a diagnosis of hyperosmolar hyperglycemic state (HHS), characterized by severe hyperglycemia and dehydration.",
+            "Prioritize hypotheses: The most urgent problem is the severe hyperglycemia, which needs immediate intervention to prevent further complications.",
+            "Generate solutions: Administering IV insulin is the most effective way to lower blood glucose levels quickly.",
+            "Take action: Initiate IV insulin administration to manage hyperglycemia.",
+            "Evaluate outcomes: Monitor the client’s blood glucose levels and clinical status for improvement."
+          ],
+          "realWorldApplication": "In practice, watch for signs of worsening hyperglycemia or dehydration, and be prepared to escalate care if the client does not respond to initial treatments."
+        },
+        "pipelineVersion": "gpt-4o-nclex-full-exam-v2",
+        "rationaleEnrichedAt": "2026-07-16T13:11:16.149Z",
+        "rationaleQualityScore": 100,
+        "expertRationaleVersion": "nclex-expert-v1",
+        "rationaleEnrichFailCount": 0,
+        "rationaleEnrichFailReason": null
+      },
+      "patientAgeGroup": null,
+      "embedding": null,
+      "quality_score": null,
+      "cluster_id": null,
+      "keep_recommendation": null,
+      "review_flag": null,
+      "curation_meta": null,
+      "clientNeeds": null,
+      "cjmmFunction": null,
+      "manual_correction": false
+    }
+  ]
+}
