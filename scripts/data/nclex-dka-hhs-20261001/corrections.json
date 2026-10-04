@@ -1,0 +1,82 @@
+{
+  "items": [
+    {
+      "id": "cmr7iuy7p004h1y662iswxqel",
+      "sc": "A 70-year-old female client with type 2 diabetes is admitted with confusion and weakness. Her blood glucose is 600 mg/dL, serum osmolality is 340 mOsm/kg, and serum potassium is 4.6 mmol/L. Blood pressure is 88/50 mmHg, heart rate is 118/min, and mucous membranes are dry. She is diagnosed with hyperosmolar hyperglycemic state (HHS). IV access is in place and no IV fluids have been started.",
+      "q": "Which prescribed intervention should the nurse implement first?",
+      "opts": [
+        "Begin a continuous IV regular insulin infusion.",
+        "Offer oral fluids to rehydrate the client.",
+        "Start IV 0.9% sodium chloride infusion.",
+        "Recheck blood glucose in 4 hours."
+      ],
+      "key": 2,
+      "explanation": "Starting isotonic IV fluid (0.9% sodium chloride) is the first step in HHS. Volume depletion is the main driver of HHS, and initial IV fluid restores circulating volume and tissue perfusion, improves renal excretion of glucose, and lowers glucose and osmolality. Insulin follows once fluid resuscitation is under way and the serum potassium is confirmed at 3.5 mmol/L or higher; here potassium is 4.6 mmol/L, so insulin is not blocked by potassium but is sequenced after fluid is started.\n\nClinical reasoning: Recognize Cues: Confusion, glucose 600 mg/dL, osmolality 340 mOsm/kg, hypotension, tachycardia, dry mucous membranes, no fluids running. Analyze Cues: Severe volume depletion with hyperosmolality. Prioritize Hypotheses: Hypovolemia and impaired perfusion are the most urgent problems. Generate Solutions: Isotonic IV fluid, then insulin after potassium is known, with potassium monitoring. Take Action: Start 0.9% sodium chloride infusion. Evaluate Outcomes: Blood pressure, urine output, mental status, osmolality, and glucose trend improve gradually; glucose falls no faster than about 90-120 mg/dL/h.\n\nWhy other options are incorrect:\n• Begin a continuous IV regular insulin infusion.: Incorrect — Insulin is started after IV fluid resuscitation is under way. Fluid alone lowers glucose and osmolality, and starting insulin in a volume-depleted client with no fluid running risks a rapid fall in osmolality and worsening hypotension.\n• Offer oral fluids to rehydrate the client.: Incorrect — Oral fluids cannot replace the large deficit quickly enough, and a confused, weak client is at risk for aspiration.\n• Recheck blood glucose in 4 hours.: Incorrect — Glucose is checked every 1-2 hours during treatment, so a 4-hour interval is too infrequent, and monitoring alone does not treat the hypovolemia."
+    },
+    {
+      "id": "cmr8rd6f6005x1ye3donkesut",
+      "sc": "A 32-year-old male client with type 1 diabetes is admitted with diabetic ketoacidosis (DKA). He has polyuria, polydipsia, and Kussmaul respirations. His blood glucose is 450 mg/dL, urine ketones are large, venous pH is 7.12, serum bicarbonate is 9 mmol/L, and serum potassium is 3.1 mmol/L. Prescriptions include IV 0.9% sodium chloride, IV potassium chloride, and a regular insulin infusion.",
+      "q": "Which action should the nurse take first?",
+      "opts": [
+        "Start IV 0.9% saline and potassium chloride.",
+        "Start the regular insulin infusion as prescribed.",
+        "Give IV sodium bicarbonate to correct acidosis.",
+        "Offer oral fluids to ease the dehydration."
+      ],
+      "key": 0,
+      "explanation": "In DKA with a low serum potassium (3.1 mmol/L), the nurse starts isotonic IV fluid and potassium replacement first and holds the insulin infusion. Insulin drives potassium into cells, so giving it while potassium is below 3.5 mmol/L risks life-threatening arrhythmias and respiratory muscle weakness. Insulin is delayed until potassium rises above 3.5 mmol/L.\n\nClinical reasoning: Recognize Cues: Glucose 450 mg/dL, pH 7.12, bicarbonate 9 mmol/L, potassium 3.1 mmol/L. Analyze Cues: DKA with moderate-to-severe acidosis, volume depletion, and hypokalemia. Prioritize Hypotheses: Hypokalemia with insulin therapy and hypovolemia are the greatest immediate risks. Generate Solutions: Isotonic fluid and potassium replacement now, insulin delayed, repeat potassium. Take Action: Start 0.9% saline with potassium chloride as prescribed and hold insulin. Evaluate Outcomes: Potassium rises above 3.5 mmol/L, then insulin is started; cardiac rhythm and respiratory effort remain stable.\n\nWhy other options are incorrect:\n• Start the regular insulin infusion as prescribed.: Incorrect — Insulin is delayed until potassium is above 3.5 mmol/L; giving it now can lower potassium further and trigger arrhythmias and respiratory weakness.\n• Give IV sodium bicarbonate to correct acidosis.: Incorrect — Bicarbonate is considered only when the pH is below 7.0, and it can worsen hypokalemia; the pH here is 7.12.\n• Offer oral fluids to ease the dehydration.: Incorrect — Oral fluids cannot restore volume quickly in DKA with Kussmaul respirations; IV isotonic fluid is needed."
+    },
+    {
+      "id": "cmr8oz188007t1y5nanfq8lak",
+      "sc": "A 65-year-old female with type 2 diabetes is admitted for hyperglycemic hyperosmolar state (HHS). She is lethargic. Her blood glucose is 650 mg/dL, serum potassium is 4.4 mmol/L, blood pressure is 90/52 mmHg, heart rate is 116/min, and urine output is 10 mL/hr. She has no history of heart failure or kidney disease, and her lung sounds are clear. The provider prescribed 0.9% sodium chloride 1,000 mL/hr for the first 2 hours, but the infusion is running at 150 mL/hr.",
+      "q": "Which nursing action is most appropriate?",
+      "opts": [
+        "Start the prescribed regular insulin IV infusion now.",
+        "Encourage oral fluid intake to prevent dehydration.",
+        "Recheck blood glucose in 4 hours.",
+        "Increase the infusion to the prescribed 1,000 mL/hr."
+      ],
+      "key": 3,
+      "explanation": "The volume deficit is uncorrected because the prescribed isotonic fluid rate is not being delivered. Raising the 0.9% sodium chloride infusion to the prescribed rate comes first. In adults without cardiac or renal compromise, initial isotonic fluid at 500-1,000 mL/h for the first 2-4 hours restores intravascular volume, perfusion, and urine output, and lowers glucose and osmolality on its own. Insulin follows once fluid resuscitation is under way and potassium is confirmed at 3.5 mmol/L or higher.\n\nClinical reasoning: Recognize Cues: Lethargy, glucose 650 mg/dL, hypotension, tachycardia, low urine output, fluid running well below the prescribed rate, clear lungs, no heart or kidney disease. Analyze Cues: Severe hypovolemia in HHS that fluid has not yet corrected. Prioritize Hypotheses: Inadequate fluid resuscitation is the most urgent problem. Generate Solutions: Correct the infusion rate, then add insulin when potassium is known and fluid is under way. Take Action: Increase the infusion to the prescribed rate. Evaluate Outcomes: Blood pressure, heart rate, urine output, and mental status improve; glucose and osmolality fall gradually; lung sounds are reassessed for overload.\n\nWhy other options are incorrect:\n• Start the prescribed regular insulin IV infusion now.: Incorrect — Fluid resuscitation is the initial step and the volume deficit is not yet corrected; insulin is added once fluid is infusing at the prescribed rate, with potassium at 3.5 mmol/L or higher.\n• Encourage oral fluid intake to prevent dehydration.: Incorrect — A lethargic client is at risk for aspiration, and oral intake cannot correct a deficit this large.\n• Recheck blood glucose in 4 hours.: Incorrect — Glucose is checked every 1-2 hours during treatment, and monitoring does not correct the underinfusion of fluid."
+    },
+    {
+      "id": "cmr8tb44d00bs1y9nj2uuvx9j",
+      "sc": "A 55-year-old male client with type 1 diabetes is admitted with diabetic ketoacidosis (DKA). He has polyuria, polydipsia, and confusion. His blood glucose is 450 mg/dL, urine ketones are positive, venous pH is 7.14, serum bicarbonate is 10 mmol/L, and initial serum potassium is 4.6 mmol/L. IV 0.9% sodium chloride has been infusing for 1 hour, and blood pressure has improved from 92/54 to 106/66 mmHg.",
+      "q": "Which intervention is the priority for this client?",
+      "opts": [
+        "Administer sodium bicarbonate IV for acidosis.",
+        "Begin the prescribed IV insulin infusion.",
+        "Provide oral fluids to prevent dehydration.",
+        "Recheck blood glucose in 4 hours."
+      ],
+      "key": 1,
+      "explanation": "Isotonic fluid is already infusing and the serum potassium (4.6 mmol/L) is above 3.5 mmol/L, so the IV insulin infusion can now be started. Insulin stops ketone production and corrects the acidosis, and it is the cornerstone of DKA treatment once fluid is under way and potassium is safe. Potassium is rechecked about 2 hours after insulin starts because insulin lowers it.\n\nClinical reasoning: Recognize Cues: Glucose 450 mg/dL, pH 7.14, bicarbonate 10 mmol/L, potassium 4.6 mmol/L, fluid running 1 hour, blood pressure improving. Analyze Cues: DKA with insulin deficiency, volume repletion started, potassium adequate. Prioritize Hypotheses: Ongoing ketogenesis and acidosis now need insulin. Generate Solutions: Start IV insulin infusion with potassium monitoring. Take Action: Begin the prescribed insulin infusion. Evaluate Outcomes: Glucose falls, ketones and acidosis resolve, potassium stays at 4-5 mmol/L, and glucose is checked every 1-2 hours.\n\nWhy other options are incorrect:\n• Administer sodium bicarbonate IV for acidosis.: Incorrect — Bicarbonate is considered only when the pH is below 7.0; the pH here is 7.14, and bicarbonate can worsen hypokalemia.\n• Provide oral fluids to prevent dehydration.: Incorrect — Oral fluids are unsafe with confusion, and IV isotonic fluid is already restoring volume.\n• Recheck blood glucose in 4 hours.: Incorrect — Glucose is checked every 1-2 hours during DKA treatment, and monitoring alone does not stop ketone production."
+    },
+    {
+      "id": "cmr7jl1uu00bu1y66y5ocsv59",
+      "sc": "A 50-year-old male client with type 1 diabetes is admitted with diabetic ketoacidosis (DKA). He has polyuria, polydipsia, and abdominal pain. His blood glucose is 450 mg/dL, and arterial blood gas shows pH 7.25 and HCO3- 12 mEq/L. The serum potassium result is not yet available. Prescriptions include IV 0.9% sodium chloride and a regular insulin infusion; no IV fluids have been started.",
+      "q": "Which action should the nurse take first?",
+      "opts": [
+        "Begin the prescribed regular insulin infusion.",
+        "Provide oral fluids to prevent dehydration.",
+        "Start the prescribed 0.9% sodium chloride IV.",
+        "Give sodium bicarbonate to correct acidosis."
+      ],
+      "key": 2,
+      "explanation": "Starting the prescribed isotonic fluid is the first action. Fluid restores circulating volume and perfusion, and it can be started before the potassium result is known. Insulin is held until the serum potassium is confirmed to be above 3.5 mmol/L, because insulin shifts potassium into cells and a low level can cause life-threatening arrhythmias and respiratory muscle weakness.\n\nClinical reasoning: Recognize Cues: DKA with glucose 450 mg/dL, pH 7.25, HCO3- 12 mEq/L, abdominal pain, potassium pending, no fluids running. Analyze Cues: Volume depletion with ketoacidosis and an unknown potassium. Prioritize Hypotheses: Restoring volume is safe and urgent, and insulin safety depends on the potassium result. Generate Solutions: Fluids now, potassium result, then insulin if potassium is above 3.5 mmol/L. Take Action: Start the 0.9% sodium chloride infusion. Evaluate Outcomes: Perfusion improves, potassium is reviewed, insulin starts when safe, and glucose and ketones trend down.\n\nWhy other options are incorrect:\n• Begin the prescribed regular insulin infusion.: Incorrect — Insulin is held until potassium is known to be above 3.5 mmol/L; with the result pending, giving it first could cause hypokalemia and arrhythmias.\n• Provide oral fluids to prevent dehydration.: Incorrect — Oral fluids cannot correct the deficit quickly in DKA, and abdominal pain raises the risk of vomiting.\n• Give sodium bicarbonate to correct acidosis.: Incorrect — Bicarbonate is considered only when the pH is below 7.0, and the pH here is 7.25."
+    },
+    {
+      "id": "cmr75nazn00h81ywus1d5b7c8",
+      "sc": "A 50-year-old male with type 2 diabetes presents with confusion, dry mucous membranes, and a blood glucose level of 600 mg/dL. Serum osmolality is 335 mOsm/kg and serum potassium is 5.6 mmol/L. Blood pressure is 94/56 mmHg and heart rate is 112/min. He is diagnosed with hyperosmolar hyperglycemic state (HHS), and no IV fluids are running.",
+      "q": "Which intervention is the priority for this client?",
+      "opts": [
+        "Administer regular insulin IV as prescribed.",
+        "Start an IV 0.9% sodium chloride infusion.",
+        "Administer potassium chloride IV.",
+        "Provide oral rehydration to the client."
+      ],
+      "key": 1,
+      "explanation": "Starting isotonic IV fluid (0.9% sodium chloride) is the priority in HHS. The client is volume depleted and hyperosmolar, and initial IV fluid restores circulating volume and perfusion and begins to lower glucose and osmolality. Insulin is started after fluid is under way and potassium is confirmed at 3.5 mmol/L or higher. Potassium replacement is started only after the level falls below 5.0 mmol/L.\n\nClinical reasoning: Recognize Cues: Confusion, glucose 600 mg/dL, osmolality 335 mOsm/kg, hypotension, tachycardia, dry mucous membranes, potassium 5.6 mmol/L. Analyze Cues: HHS with severe dehydration and a high-normal-to-high potassium. Prioritize Hypotheses: Hypovolemia needs correction first. Generate Solutions: Isotonic fluid, then insulin, with potassium monitoring. Take Action: Start the 0.9% sodium chloride infusion. Evaluate Outcomes: Blood pressure, urine output, and mental status improve, and glucose and osmolality decline gradually; potassium is rechecked as it falls with treatment.\n\nWhy other options are incorrect:\n• Administer regular insulin IV as prescribed.: Incorrect — Insulin follows the start of IV fluid; giving it first in a volume-depleted client can drop osmolality too fast and worsen hypotension.\n• Administer potassium chloride IV.: Incorrect — Potassium replacement is not started while the level is 5.6 mmol/L; it begins once the level falls below 5.0 mmol/L during treatment.\n• Provide oral rehydration to the client.: Incorrect — Oral rehydration cannot restore this volume deficit quickly, and confusion raises aspiration risk."
+    }
+  ]
+}
