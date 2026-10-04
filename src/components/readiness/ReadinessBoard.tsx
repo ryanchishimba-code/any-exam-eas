@@ -94,7 +94,7 @@ export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
                 {pending ? "Building…" : "Start a new baseline"}
               </button>
             ) : (
-              <Link href={ROUTES.pricing} className={cn(dbUi.primaryBtn, "min-h-11")}>
+              <Link href={ROUTES.pricing} prefetch={false} className={cn(dbUi.primaryBtn, "min-h-11")}>
                 View plans
               </Link>
             )}
@@ -165,7 +165,7 @@ export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
               {pending ? "Building your check…" : "Start baseline"}
             </button>
           ) : (
-            <Link href={ROUTES.pricing} className={cn(dbUi.primaryBtn, "mt-4 min-h-11")}>
+            <Link href={ROUTES.pricing} prefetch={false} className={cn(dbUi.primaryBtn, "mt-4 min-h-11")}>
               View plans
             </Link>
           )}

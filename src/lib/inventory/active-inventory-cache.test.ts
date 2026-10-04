@@ -5,6 +5,7 @@ import {
   ACTIVE_INVENTORY_CACHE_KEY,
   ACTIVE_INVENTORY_CACHE_TAG,
   ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+  ACTIVE_INVENTORY_STAMP_TTL_SECONDS,
   ACTIVE_INVENTORY_PATHS,
   ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL,
   activeInventoryRevalidateUrl,
@@ -19,7 +20,9 @@ describe("active inventory cache identity", () => {
   it("keeps a one-hour TTL fallback and the question-bank-counts tag", () => {
     expect(ACTIVE_INVENTORY_CACHE_TAG).toBe("question-bank-counts");
     expect(ACTIVE_INVENTORY_CACHE_TTL_SECONDS).toBe(3600);
-    expect(ACTIVE_INVENTORY_CACHE_KEY).toEqual(["marketing-active-inventory-v6"]);
+    expect(ACTIVE_INVENTORY_STAMP_TTL_SECONDS).toBe(300);
+    expect(ACTIVE_INVENTORY_STAMP_TTL_SECONDS).toBeLessThan(ACTIVE_INVENTORY_CACHE_TTL_SECONDS);
+    expect(ACTIVE_INVENTORY_CACHE_KEY).toEqual(["marketing-active-inventory-v7"]);
     expect(ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL).not.toMatch(/s-maxage|max-age=[1-9]/);
     expect(ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL).toContain("no-store");
   });
@@ -69,6 +72,13 @@ describe("inventory invalidation predicates", () => {
 
 describe("describeInventoryRevalidateResult", () => {
   it("treats a missed cron purge as optional because the next read uses the stamp", () => {
+    expect(
+      describeInventoryRevalidateResult({
+        ok: false,
+        url: "https://www.anyexameasy.com/api/cron/revalidate-inventory",
+        error: "CRON_SECRET is not set, so the public inventory cache was not cleared.",
+      })
+    ).toMatch(/5 minutes/);
     expect(
       describeInventoryRevalidateResult({
         ok: false,

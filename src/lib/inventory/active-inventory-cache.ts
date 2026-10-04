@@ -3,14 +3,12 @@
  *
  * Marketing hubs (`/nclex` and the other board pages) and the question bank
  * both read `getCachedBankStatsBundle()`. The heavy snapshot is one
- * `unstable_cache` entry, keyed by a live published stamp from the database.
- * A retire or publish changes that stamp, so the next request rebuilds even
- * when nobody called `POST /api/cron/revalidate-inventory`.
- *
- * Writers that run inside a Next request still revalidate the tag and the
- * paths below. That drops Full Route Cache and Redis fallbacks immediately.
- * The cron purge is optional. A missing `CRON_SECRET` must not leave the UI
- * on the previous total.
+ * `unstable_cache` entry, keyed by a published stamp. The stamp itself is
+ * cached for 5 minutes under the same tag, so every surface shares one
+ * snapshot. A purge drops the tag and the paths below immediately. If that
+ * purge is skipped, the stamp expires within 5 minutes and the next read
+ * rebuilds. That window is short enough that a missed cron cannot leave an
+ * hour-old total on screen.
  *
  * This module stays free of `next/cache`, the app route map, and Node built-ins
  * so the retire script and marketing client components can import it. Cron
@@ -21,10 +19,18 @@
 export const ACTIVE_INVENTORY_CACHE_TAG = "question-bank-counts";
 
 /**
- * How long an unchanged stamp may reuse the heavy group-by. The stamp itself
- * is read on every request, so this TTL does not keep a retired total on screen.
+ * How long an unchanged stamp may reuse the heavy group-by.
+ * The stamp cache below is what drops a retired total when the cron is skipped.
  */
 export const ACTIVE_INVENTORY_CACHE_TTL_SECONDS = 60 * 60;
+
+/**
+ * Shared published-stamp cache and the ISR window for `/nclex` and the
+ * other board hubs. Same tag as the heavy snapshot, so a purge clears both.
+ */
+export const ACTIVE_INVENTORY_STAMP_TTL_SECONDS = 5 * 60;
+
+export const ACTIVE_INVENTORY_STAMP_CACHE_KEY = ["active-inventory-stamp-v1"] as const;
 
 /**
  * v7 counts a question as one scored item, including published items inside
@@ -34,8 +40,8 @@ export const ACTIVE_INVENTORY_CACHE_TTL_SECONDS = 60 * 60;
 export const ACTIVE_INVENTORY_CACHE_KEY = ["marketing-active-inventory-v7"] as const;
 
 /**
- * Public count responses must not sit in a browser or CDN cache.
- * A hard refresh has to reach the stamp check.
+ * Public count JSON must not sit in a browser or CDN cache.
+ * The API stays dynamic and reads the shared 5-minute stamp.
  */
 export const ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL =
   "private, no-cache, no-store, max-age=0, must-revalidate";
@@ -122,14 +128,14 @@ export type InventoryRevalidateRequestResult = {
 
 /**
  * CLI copy for an optional cron purge.
- * A failed purge does not leave `/nclex` or the Qbank on the old total: the
- * next request compares the published stamp and rebuilds.
+ * A successful purge drops the tag immediately. If it is skipped, the shared
+ * stamp and the marketing hubs refresh within 5 minutes and stay together.
  */
 export function describeInventoryRevalidateResult(
   result: InventoryRevalidateRequestResult
 ): string {
   if (result.ok) return `Inventory cache revalidated: ${result.url}`;
-  return `Public inventory refreshes from the database on the next request. Optional purge was not completed (${result.url}): ${result.error ?? "unknown error"}`;
+  return `Public inventory refreshes within 5 minutes if this purge is skipped, and the next request after that uses the new published stamp. Optional purge was not completed (${result.url}): ${result.error ?? "unknown error"}`;
 }
 
 /** Ask the deployed app to drop the inventory cache. Used by CLI scripts. */

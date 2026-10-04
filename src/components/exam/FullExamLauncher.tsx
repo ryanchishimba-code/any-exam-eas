@@ -317,7 +317,7 @@ export function FullExamLauncher({
               {lockedHint ? (
                 <p className="text-center text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
                   {lockedHint}{" "}
-                  <Link href="/pricing?upgrade=pro&feature=unlimited_mock_exams" className="font-semibold text-[var(--color-accent)]">
+                  <Link href="/pricing?upgrade=pro&feature=unlimited_mock_exams" prefetch={false} className="font-semibold text-[var(--color-accent)]">
                     Compare plans
                   </Link>
                 </p>

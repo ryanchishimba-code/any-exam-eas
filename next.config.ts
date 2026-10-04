@@ -26,8 +26,9 @@ const nextConfig: NextConfig = {
   typescript: { ignoreBuildErrors: onVercel },
   productionBrowserSourceMaps: false,
   experimental: {
-    // Inline route CSS so first paint does not wait on a second stylesheet.
-    inlineCss: true,
+    // Keep route CSS in a cacheable file. Inlining duplicated the stylesheet
+    // into every HTML document and the RSC payload.
+    inlineCss: false,
     // Single-threaded compile on Vercel avoids OOM SIGKILL during large app builds.
     ...(onVercel ? { cpus: 1, workerThreads: false, webpackMemoryOptimizations: true } : {}),
     staleTimes: {

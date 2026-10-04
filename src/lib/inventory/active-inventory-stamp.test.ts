@@ -52,27 +52,34 @@ describe("active inventory stamp", () => {
 });
 
 describe("inventory surfaces do not keep an hour-old total", () => {
-  const dynamicSurfaces = [
+  const isrHubs = [
     "src/app/nclex/page.tsx",
-    "src/app/(marketing)/[examSlug]/page.tsx",
-    "src/app/(marketing)/about/page.tsx",
-    "src/app/(marketing)/free-guides/page.tsx",
-    "src/app/api/marketing/bank-counts/route.ts",
-    "scripts/retire-near-duplicates.ts",
-    "scripts/remediate-text-flags.ts",
+    "src/app/(marketing)/(with-flagship)/[examSlug]/page.tsx",
   ];
+  const dynamicSurfaces = [
+    "src/app/(marketing)/(with-flagship)/about/page.tsx",
+    "src/app/(marketing)/(with-flagship)/free-guides/page.tsx",
+    "src/app/api/marketing/bank-counts/route.ts",
+  ];
+  const scripts = ["scripts/retire-near-duplicates.ts", "scripts/remediate-text-flags.ts"];
 
-  it("renders count pages dynamically and does not fail a retire when the cron purge is skipped", () => {
+  it("serves board hubs from a 5-minute ISR and keeps the other count pages dynamic", () => {
+    for (const file of isrHubs) {
+      const source = readFileSync(path.join(process.cwd(), file), "utf8");
+      expect(source, file).toContain("export const revalidate = 300");
+      expect(source, file).toContain("ACTIVE_INVENTORY_STAMP_TTL_SECONDS");
+      expect(source, file).toContain("dynamic: false");
+      expect(source, file).not.toContain('dynamic = "force-dynamic"');
+    }
     for (const file of dynamicSurfaces) {
       const source = readFileSync(path.join(process.cwd(), file), "utf8");
-      if (file.endsWith("page.tsx") || file.includes("/api/")) {
-        expect(source, file).toContain('dynamic = "force-dynamic"');
-        expect(source, file).not.toMatch(/export const revalidate = \d+/);
-      }
-      if (file.endsWith(".ts") && file.startsWith("scripts/")) {
-        expect(source, file).toContain("describeInventoryRevalidateResult");
-        expect(source, file).not.toContain("public inventory cache was not cleared");
-      }
+      expect(source, file).toContain('dynamic = "force-dynamic"');
+      expect(source, file).not.toMatch(/export const revalidate = \d+/);
+    }
+    for (const file of scripts) {
+      const source = readFileSync(path.join(process.cwd(), file), "utf8");
+      expect(source, file).toContain("describeInventoryRevalidateResult");
+      expect(source, file).not.toContain("public inventory cache was not cleared");
     }
   });
 });

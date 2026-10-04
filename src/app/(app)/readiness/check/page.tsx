@@ -29,7 +29,7 @@ export default async function ReadinessCheckPage() {
           You can still see levels you already earned, and record how an exam went, from the readiness page.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <Link href={ROUTES.pricing} className={cn(dbUi.primaryBtn, "min-h-11")}>
+          <Link href={ROUTES.pricing} prefetch={false} className={cn(dbUi.primaryBtn, "min-h-11")}>
             View plans
           </Link>
           <Link href={ROUTES.readiness} className={cn(dbUi.ghostBtn, "min-h-11")}>

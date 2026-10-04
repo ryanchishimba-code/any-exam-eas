@@ -249,7 +249,7 @@ export function ReadinessDashboardCard({
               {pending ? "Starting…" : retakeLabel}
             </button>
           ) : (
-            <Link href={ROUTES.pricing} className={quietAction}>
+            <Link href={ROUTES.pricing} prefetch={false} className={quietAction}>
               View plans
             </Link>
           )}
@@ -286,7 +286,7 @@ export function ReadinessDashboardCard({
               {pending ? "Starting…" : retakeLabel}
             </button>
           ) : (
-            <Link href={ROUTES.pricing} className={cn(dbUi.ghostBtn, "min-h-11")}>
+            <Link href={ROUTES.pricing} prefetch={false} className={cn(dbUi.ghostBtn, "min-h-11")}>
               Study access to retake
             </Link>
           )}
@@ -306,7 +306,7 @@ export function ReadinessDashboardCard({
               {pending ? "Starting…" : "Start baseline"}
             </button>
           ) : (
-            <Link href={ROUTES.pricing} className={quietAction}>
+            <Link href={ROUTES.pricing} prefetch={false} className={quietAction}>
               View plans
             </Link>
           )}
@@ -328,7 +328,7 @@ export function ReadinessDashboardCard({
               {pending ? "Starting…" : "Start"}
             </button>
           ) : (
-            <Link href={ROUTES.pricing} className={cn(dbUi.ghostBtn, "min-h-11")}>
+            <Link href={ROUTES.pricing} prefetch={false} className={cn(dbUi.ghostBtn, "min-h-11")}>
               View plans
             </Link>
           )}
@@ -347,7 +347,7 @@ export function ReadinessDashboardCard({
             {pending ? "Starting…" : "Start baseline"}
           </button>
         ) : (
-          <Link href={ROUTES.pricing} className={quietAction}>
+          <Link href={ROUTES.pricing} prefetch={false} className={quietAction}>
             View plans
           </Link>
         )}
@@ -374,7 +374,7 @@ export function ReadinessDashboardCard({
             {pending ? "Building your check…" : "Start baseline"}
           </button>
         ) : (
-          <Link href={ROUTES.pricing} className={cn(dbUi.primaryBtn, "min-h-11")}>
+          <Link href={ROUTES.pricing} prefetch={false} className={cn(dbUi.primaryBtn, "min-h-11")}>
             View plans
           </Link>
         )}

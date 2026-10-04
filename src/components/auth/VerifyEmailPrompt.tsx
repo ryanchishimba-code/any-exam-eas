@@ -230,6 +230,7 @@ export function VerifyEmailPrompt({
             </p>
             <Link
               href={ROUTES.pricing}
+              prefetch={false}
               className="mt-2 inline-flex text-[13px] font-semibold text-teal-700 hover:underline dark:text-teal-300"
             >
               View plans

@@ -9,22 +9,8 @@ function BlockSkeleton({ className }: { className?: string }) {
   );
 }
 
-export const CostComparisonChartLazy = dynamic(
-  () => import("@/components/landing/CostComparisonChart").then((m) => m.CostComparisonChart),
-  { loading: () => <BlockSkeleton className="my-8" /> }
-);
-
+/** Loaded only when the USMLE hub renders the step picker. */
 export const UsmleStepShowcaseLazy = dynamic(
   () => import("@/components/marketing/UsmleStepShowcase").then((m) => m.UsmleStepShowcase),
   { loading: () => <BlockSkeleton className="my-10" /> }
-);
-
-export const ProBenefitsComparisonLazy = dynamic(
-  () => import("@/components/pricing/ProBenefitsComparison").then((m) => m.ProBenefitsComparison),
-  { loading: () => <BlockSkeleton className="my-10" /> }
-);
-
-export const LandingPricingPreviewLazy = dynamic(
-  () => import("@/components/landing/LandingPricingPreview").then((m) => m.LandingPricingPreview),
-  { loading: () => <BlockSkeleton className="my-8" /> }
 );

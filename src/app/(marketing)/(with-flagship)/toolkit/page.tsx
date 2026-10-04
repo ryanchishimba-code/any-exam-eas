@@ -291,6 +291,7 @@ export default function ToolkitPage() {
               <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>
               <Link
                 href={ROUTES.pricing}
+                prefetch={false}
                 className="text-base font-semibold text-[var(--color-accent)] hover:underline"
               >
                 View pricing →

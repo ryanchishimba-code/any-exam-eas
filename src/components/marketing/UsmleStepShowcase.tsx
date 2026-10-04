@@ -19,13 +19,16 @@ import {
   USMLE_EXAM_TYPE_LABEL,
   USMLE_EXAM_TYPE_TAGLINE,
   type ExamDifficulty,
-} from "@/lib/exam-prep/usmle/exam-options";
+} from "@/lib/exam-prep/usmle/exam-option-copy";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
-import { formatExactQuestionCount } from "@/lib/counts";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
 
 const ACCENT = EXAM_ACCENTS.usmle;
+
+function formatExactQuestionCount(count: number): string {
+  return Math.max(0, Math.floor(count)).toLocaleString("en-US");
+}
 
 const STEP_DIFFICULTY: Record<UsmleStepLevel, ExamDifficulty> = {
   step1: "Foundational",

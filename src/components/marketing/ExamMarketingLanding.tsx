@@ -129,6 +129,7 @@ export async function ExamMarketingLanding({
         <p className="mt-2">
           <Link
             href={ROUTES.howQuestionsAreReviewed}
+            prefetch={false}
             className="font-semibold text-[var(--color-accent)] hover:underline"
           >
             How our questions are built and reviewed
@@ -157,6 +158,7 @@ export async function ExamMarketingLanding({
                 <li key={item.href}>
                   <Link
                     href={item.href}
+                    prefetch={false}
                     className="block h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition hover:border-[var(--color-accent)]/40"
                   >
                     <p
@@ -214,6 +216,7 @@ export async function ExamMarketingLanding({
                 <li key={key}>
                   <Link
                     href={examMarketingPath(key)}
+                    prefetch={false}
                     className="text-base font-semibold text-[var(--color-ink)] hover:text-[var(--color-accent)]"
                   >
                     {other.shortName}
@@ -224,6 +227,7 @@ export async function ExamMarketingLanding({
             <li>
               <Link
                 href={ROUTES.toolkit}
+                prefetch={false}
                 className="text-base font-semibold text-[var(--color-accent)] hover:underline"
               >
                 Toolkit →

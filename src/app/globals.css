@@ -1,4 +1,9 @@
 @import "tailwindcss";
+/* Question-bank scripts and tests are not UI. Keep them out of the class scan. */
+@source not "../../scripts";
+@source not "../../tests";
+@source not "../../prisma";
+@source not "../../docs";
 @import "../styles/a11y.css";
 
 /* Light + dark UI — `data-theme` on <html> (see ThemeProvider); Tailwind `dark:` follows it. */
