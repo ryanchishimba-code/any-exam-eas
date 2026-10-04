@@ -339,6 +339,7 @@ export function ExamSelectionScreen({
         >
           <Link
             href="/pricing"
+            prefetch={false}
             className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-teal-600 dark:hover:text-teal-400"
           >
             <HelpCircle className="h-4 w-4" aria-hidden />

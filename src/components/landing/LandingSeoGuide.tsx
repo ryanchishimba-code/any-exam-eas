@@ -96,7 +96,7 @@ export function LandingSeoGuide({
         </ul>
 
         <div className="mt-10 flex flex-wrap gap-5 text-base font-semibold">
-          <Link href={ROUTES.pricing} className="text-[var(--color-accent)] hover:underline">
+          <Link href={ROUTES.pricing} prefetch={false} className="text-[var(--color-accent)] hover:underline">
             Pricing →
           </Link>
           <Link href={ROUTES.toolkit} className="text-[var(--color-accent)] hover:underline">

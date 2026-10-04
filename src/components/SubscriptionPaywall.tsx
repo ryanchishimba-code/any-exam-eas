@@ -26,7 +26,7 @@ export function SubscriptionPaywall({ access }: { access: SubscriptionAccess }) 
           Subscribe Now
         </Button>
       </div>
-      <Link href="/pricing" className="mt-4 inline-block text-xs text-[var(--color-ink-muted)] hover:underline">
+      <Link href="/pricing" prefetch={false} className="mt-4 inline-block text-xs text-[var(--color-ink-muted)] hover:underline">
         View pricing details
       </Link>
     </div>

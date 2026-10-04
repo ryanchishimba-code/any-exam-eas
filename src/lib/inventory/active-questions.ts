@@ -20,6 +20,22 @@ import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import { EFFECTIVE_MCQ_SQL } from "@/lib/exam-prep/effective-type-sql";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/question-definition";
+import {
+  classifyQuestionFormat,
+  emptyFormatCounts,
+  type FormatCounts,
+} from "@/lib/inventory/question-format";
+
+export {
+  CASE_ITEM_TYPES,
+  NGN_ITEM_TYPES,
+  classifyQuestionFormat,
+  emptyFormatCounts,
+  formatBucketItemTypeWhere,
+  itemTypesForFormatBucket,
+  type FormatCounts,
+  type QuestionFormatBucket,
+} from "@/lib/inventory/question-format";
 
 export { ACTIVE_QUESTION_DEFINITION };
 
@@ -50,32 +66,6 @@ const BOARD_FIELDS: Record<ExamRouteSlug, readonly InventoryFieldId[]> = {
   "aanp-fnp": ["aanp-fnp"],
   "npte-pt": ["npte-pt"],
 };
-
-export const CASE_ITEM_TYPES = new Set([
-  "case_study",
-  "case_based",
-  "unfolding_case",
-  "ccs_prompt",
-]);
-
-/** Structured formats counted separately from single-best-answer MCQs. */
-export const NGN_ITEM_TYPES = new Set([
-  "select_all",
-  "sata",
-  "ngn_bowtie",
-  "bow_tie",
-  "ngn_matrix",
-  "matrix",
-  "ordered_response",
-  "ngn_highlight",
-  "highlight",
-  "drag_drop",
-  "constructed_response",
-]);
-
-export type QuestionFormatBucket = "mcq" | "ngn" | "case";
-
-export type FormatCounts = Record<QuestionFormatBucket, number>;
 
 export type InventoryTopicCount = {
   id: string;
@@ -126,38 +116,6 @@ export type ActiveInventoryRow = {
   hasCaseGroup: boolean;
   count: number;
 };
-
-export function emptyFormatCounts(): FormatCounts {
-  return { mcq: 0, ngn: 0, case: 0 };
-}
-
-export function classifyQuestionFormat(
-  itemType: string | null | undefined,
-  hasCaseGroup = false
-): QuestionFormatBucket {
-  if (hasCaseGroup) return "case";
-  const type = (itemType ?? "mcq").trim().toLowerCase();
-  if (CASE_ITEM_TYPES.has(type)) return "case";
-  if (NGN_ITEM_TYPES.has(type)) return "ngn";
-  return "mcq";
-}
-
-/** Item types that inventory counts in one deliberate-practice bucket. */
-export function itemTypesForFormatBucket(bucket: "ngn" | "case"): readonly string[] {
-  return [...(bucket === "ngn" ? NGN_ITEM_TYPES : CASE_ITEM_TYPES)];
-}
-
-/**
- * Prisma filter matching classifyQuestionFormat(itemType, false).
- * Inventory does not scan caseGroupId, so this filter does not either.
- */
-export function formatBucketItemTypeWhere(bucket: "ngn" | "case") {
-  return {
-    OR: itemTypesForFormatBucket(bucket).map((itemType) => ({
-      itemType: { equals: itemType, mode: "insensitive" as const },
-    })),
-  };
-}
 
 export function formatInventoryFormatLine(
   formats: FormatCounts,

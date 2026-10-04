@@ -10,6 +10,8 @@ import {
   ACTIVE_INVENTORY_CACHE_KEY,
   ACTIVE_INVENTORY_CACHE_TAG,
   ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+  ACTIVE_INVENTORY_STAMP_CACHE_KEY,
+  ACTIVE_INVENTORY_STAMP_TTL_SECONDS,
 } from "@/lib/inventory/active-inventory-cache";
 import { readActiveInventoryStampKey } from "@/lib/inventory/active-inventory-stamp";
 import {
@@ -243,17 +245,50 @@ export async function getQuestionBankCounts(): Promise<QuestionBankCountsSnapsho
 }
 
 const DEGRADED_INVENTORY_ERROR = "active inventory lookup degraded";
+const STAMP_UNAVAILABLE = "active inventory stamp unavailable";
+
+export type BankStatsCacheOptions = {
+  /**
+   * When false, skip `connection()` so an ISR route can stay static.
+   * Dynamic callers keep the default and still share the stamp cache.
+   */
+  dynamic?: boolean;
+};
 
 /**
  * Opt the caller into dynamic rendering without skipping `unstable_cache`.
- * Outside a request (unit tests, scripts) this is a no-op; the stamp read
- * below is still uncached.
+ * Outside a request (unit tests, scripts) this is a no-op.
  */
 async function renderInventoryOnEachRequest(): Promise<void> {
   try {
     await connection();
   } catch {
     /* no request scope */
+  }
+}
+
+/**
+ * One published stamp for every count surface. A failed lookup is not cached.
+ */
+async function readSharedStampKey(): Promise<string | null> {
+  try {
+    return await unstable_cache(
+      async () => {
+        const key = await readActiveInventoryStampKey();
+        if (!key) throw new Error(STAMP_UNAVAILABLE);
+        return key;
+      },
+      [...ACTIVE_INVENTORY_STAMP_CACHE_KEY],
+      {
+        revalidate: ACTIVE_INVENTORY_STAMP_TTL_SECONDS,
+        tags: [ACTIVE_INVENTORY_CACHE_TAG],
+      }
+    )();
+  } catch (error) {
+    if (!(error instanceof Error) || error.message !== STAMP_UNAVAILABLE) {
+      console.error("[inventory] stamp cache failed; reading the stamp directly:", error);
+    }
+    return null;
   }
 }
 
@@ -272,16 +307,19 @@ function isDegradedInventoryError(error: unknown): boolean {
 /**
  * Cached inventory + marketing snapshot.
  *
- * Every call reads the published stamp from the database, then loads the
- * heavy snapshot under that stamp. A retire or publish changes the stamp, so
- * the next hard refresh rebuilds even if the cron purge was skipped. The
- * one-hour TTL only reuses a snapshot whose stamp is unchanged. A failed
- * lookup is not cached.
+ * Callers share a 5-minute published stamp, then load the heavy snapshot
+ * under that stamp. A purge of `question-bank-counts` drops both immediately.
+ * If the purge is skipped, the stamp expires within 5 minutes and the next
+ * read rebuilds. A failed stamp lookup is not cached.
  */
-export async function getCachedBankStatsBundle(): Promise<BankStatsBundle> {
-  await renderInventoryOnEachRequest();
+export async function getCachedBankStatsBundle(
+  options?: BankStatsCacheOptions
+): Promise<BankStatsBundle> {
+  if (options?.dynamic !== false) {
+    await renderInventoryOnEachRequest();
+  }
 
-  const stampKey = await readActiveInventoryStampKey();
+  const stampKey = await readSharedStampKey();
   if (!stampKey) return loadBankStatsBundle();
 
   try {
@@ -297,14 +335,18 @@ export async function getCachedBankStatsBundle(): Promise<BankStatsBundle> {
   }
 }
 
-/** Cached counts for marketing pages. The published stamp, not the TTL, drops a retired total. */
-export async function getCachedQuestionBankCounts(): Promise<QuestionBankCountsSnapshot> {
-  return (await getCachedBankStatsBundle()).snapshot;
+/** Cached counts for marketing pages. The shared stamp, not the hour TTL, drops a retired total. */
+export async function getCachedQuestionBankCounts(
+  options?: BankStatsCacheOptions
+): Promise<QuestionBankCountsSnapshot> {
+  return (await getCachedBankStatsBundle(options)).snapshot;
 }
 
 /** Same cached bundle the marketing hubs and the Qbank topic totals are built from. */
-export async function getCachedActiveInventory(): Promise<ActiveQuestionInventory> {
-  return (await getCachedBankStatsBundle()).inventory;
+export async function getCachedActiveInventory(
+  options?: BankStatsCacheOptions
+): Promise<ActiveQuestionInventory> {
+  return (await getCachedBankStatsBundle(options)).inventory;
 }
 
 /**

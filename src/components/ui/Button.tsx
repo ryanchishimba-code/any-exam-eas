@@ -34,6 +34,7 @@ export function Button({
     return (
       <Link
         href={href}
+        prefetch={href.startsWith("/pricing") ? false : undefined}
         className={classes}
         onClick={props.onClick as ((e: MouseEvent<HTMLAnchorElement>) => void) | undefined}
       >

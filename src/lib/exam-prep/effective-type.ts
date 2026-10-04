@@ -10,7 +10,7 @@
  * fragments) is not forced into MCQ. The dry-run lists those for a decision.
  */
 import { parseSelectAllCorrectAnswers } from "@/lib/question-format";
-import { CASE_ITEM_TYPES, NGN_ITEM_TYPES } from "@/lib/inventory/active-questions";
+import { CASE_ITEM_TYPES, NGN_ITEM_TYPES } from "@/lib/inventory/question-format";
 
 export const EFFECTIVE_TYPE_PIPELINE = "effective-type-v1" as const;
 export const PLAIN_SINGLE_ANSWER_MCQ = "plain_single_answer_mcq" as const;

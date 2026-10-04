@@ -16,8 +16,13 @@ import {
 } from "@/lib/marketing/question-bank-counts";
 import { getUsmleExamOptionsWithCounts } from "@/lib/exam-prep/usmle/exam-options";
 
-/** Count is the published stamp. Do not ISR board hubs for an hour after a retire. */
-export const dynamic = "force-dynamic";
+/**
+ * Five-minute ISR for `/naplex` and the other board hubs. This must stay a
+ * numeric literal and must match ACTIVE_INVENTORY_STAMP_TTL_SECONDS. Counts
+ * use that shared stamp cache, so a purge refreshes every surface together.
+ * A missed purge cannot keep an hour-old total.
+ */
+export const revalidate = 300;
 
 /**
  * Unknown single-segment URLs 404 here. There is no root `loading.tsx`:
@@ -52,7 +57,7 @@ export default async function ExamMarketingPage({ params }: Props) {
   if (!key) notFound();
 
   // Live active-question inventory — same helper the Qbank header uses.
-  const { snapshot, inventory } = await getCachedBankStatsBundle();
+  const { snapshot, inventory } = await getCachedBankStatsBundle({ dynamic: false });
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
   const examCount = bankCounts.exams.find((row) => row.slug === key);
   const questionCountLabel = examCount?.sentence.includes("including")
@@ -73,7 +78,7 @@ export default async function ExamMarketingPage({ params }: Props) {
   const usmleStepCounts =
     key === "usmle"
       ? Object.fromEntries(
-          (await getUsmleExamOptionsWithCounts()).options.map((opt) => [
+          (await getUsmleExamOptionsWithCounts({ dynamic: false })).options.map((opt) => [
             opt.level,
             opt.questionCount,
           ])

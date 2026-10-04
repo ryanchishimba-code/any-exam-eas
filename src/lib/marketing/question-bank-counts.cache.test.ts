@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const cacheKeys: string[][] = [];
+const connectionCalls: number[] = [];
 
 vi.mock("next/cache", () => ({
   unstable_cache: (fn: () => Promise<unknown>, key: string[]) => {
@@ -11,7 +12,9 @@ vi.mock("next/cache", () => ({
 }));
 
 vi.mock("next/server", () => ({
-  connection: async () => {},
+  connection: async () => {
+    connectionCalls.push(1);
+  },
 }));
 
 vi.mock("@/lib/inventory/active-inventory-stamp", () => ({
@@ -39,7 +42,14 @@ vi.mock("@/lib/inventory/active-questions", async () => {
 import { aggregateActiveInventory } from "@/lib/inventory/active-questions";
 import { fetchActiveInventoryFromDb } from "@/lib/inventory/active-questions";
 import { readActiveInventoryStampKey } from "@/lib/inventory/active-inventory-stamp";
-import { ACTIVE_INVENTORY_CACHE_KEY } from "@/lib/inventory/active-inventory-cache";
+import {
+  ACTIVE_INVENTORY_CACHE_KEY,
+  ACTIVE_INVENTORY_STAMP_CACHE_KEY,
+} from "@/lib/inventory/active-inventory-cache";
+
+function snapshotKeys(): string[][] {
+  return cacheKeys.filter((key) => key[0] === ACTIVE_INVENTORY_CACHE_KEY[0]);
+}
 import { getCachedBankStatsBundle } from "./question-bank-counts";
 
 function nursingInventory(count: number) {
@@ -58,6 +68,7 @@ function nursingInventory(count: number) {
 describe("getCachedBankStatsBundle", () => {
   beforeEach(() => {
     cacheKeys.length = 0;
+    connectionCalls.length = 0;
     vi.mocked(readActiveInventoryStampKey).mockReset();
     vi.mocked(fetchActiveInventoryFromDb).mockReset();
   });
@@ -69,7 +80,21 @@ describe("getCachedBankStatsBundle", () => {
     const bundle = await getCachedBankStatsBundle();
 
     expect(bundle.inventory.boards.nclex.active).toBe(6243);
-    expect(cacheKeys).toEqual([
+    expect(cacheKeys).toContainEqual([...ACTIVE_INVENTORY_STAMP_CACHE_KEY]);
+    expect(snapshotKeys()).toEqual([
+      [...ACTIVE_INVENTORY_CACHE_KEY, "6243:2026-09-23T17:00:00.000Z"],
+    ]);
+    expect(connectionCalls).toHaveLength(1);
+  });
+
+  it("skips connection() for an ISR caller and still shares the stamp cache", async () => {
+    vi.mocked(readActiveInventoryStampKey).mockResolvedValue("6243:2026-09-23T17:00:00.000Z");
+    vi.mocked(fetchActiveInventoryFromDb).mockResolvedValue(nursingInventory(6243));
+
+    await getCachedBankStatsBundle({ dynamic: false });
+
+    expect(connectionCalls).toHaveLength(0);
+    expect(snapshotKeys()).toEqual([
       [...ACTIVE_INVENTORY_CACHE_KEY, "6243:2026-09-23T17:00:00.000Z"],
     ]);
   });
@@ -88,7 +113,7 @@ describe("getCachedBankStatsBundle", () => {
     const fresh = await getCachedBankStatsBundle();
 
     expect(fresh.inventory.boards.nclex.active).toBe(6243);
-    expect(cacheKeys.map((key) => key[key.length - 1])).toEqual([
+    expect(snapshotKeys().map((key) => key[key.length - 1])).toEqual([
       "6457:2026-09-20T00:00:00.000Z",
       "6243:2026-09-23T17:00:00.000Z",
     ]);
@@ -101,7 +126,7 @@ describe("getCachedBankStatsBundle", () => {
     const bundle = await getCachedBankStatsBundle();
 
     expect(bundle.inventory.boards.nclex.active).toBe(6243);
-    expect(cacheKeys).toEqual([]);
+    expect(snapshotKeys()).toEqual([]);
   });
 
   it("does not cache a degraded lookup", async () => {
@@ -115,6 +140,6 @@ describe("getCachedBankStatsBundle", () => {
 
     expect(bundle.inventory.degraded).toBe(true);
     expect(fetchActiveInventoryFromDb).toHaveBeenCalledTimes(2);
-    expect(cacheKeys).toHaveLength(1);
+    expect(snapshotKeys()).toHaveLength(1);
   });
 });

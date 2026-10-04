@@ -227,6 +227,7 @@ export default function EmployersPage() {
             </Link>
             <Link
               href={ROUTES.pricing}
+              prefetch={false}
               className="inline-flex h-12 items-center justify-center rounded-full border border-[var(--color-border)] px-6 text-sm font-semibold text-[var(--color-ink)] transition hover:bg-[var(--color-surface-elevated)]"
             >
               View pricing

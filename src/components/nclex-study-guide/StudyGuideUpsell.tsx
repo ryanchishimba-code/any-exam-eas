@@ -41,6 +41,7 @@ export function StudyGuideUpsell({
         {signedIn ? (
           <Link
             href={ROUTES.pricing}
+            prefetch={false}
             className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--color-accent)] px-6 text-base font-semibold text-white transition hover:opacity-95"
           >
             Continue with Pro · {formatMonthlyPrice("pro")}/mo

@@ -5,6 +5,13 @@ import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 import { ROUTES } from "@/lib/routes";
 import { USMLE_FIELD_IDS, USMLE_STEPS, type UsmleFieldId } from "./steps";
 import type { UsmleStepLevel } from "./types";
+import {
+  USMLE_EXAM_TYPE_LABEL,
+  USMLE_EXAM_TYPE_TAGLINE,
+  type ExamDifficulty,
+} from "./exam-option-copy";
+
+export { USMLE_EXAM_TYPE_LABEL, USMLE_EXAM_TYPE_TAGLINE, type ExamDifficulty };
 
 /**
  * USMLE exam (step) selection options with LIVE, accurate question counts.
@@ -15,22 +22,10 @@ import type { UsmleStepLevel } from "./types";
  *
  * Designed to extend to other multi-exam families later (e.g. COMLEX) by adding
  * a sibling builder that maps its field ids to option metadata.
+ *
+ * Client components must import labels from `exam-option-copy.ts`. This module
+ * reads the database.
  */
-export type ExamDifficulty = "Foundational" | "Clinical" | "Advanced";
-
-/** Short, user-facing exam-type token per step (Step 2 is "CK"). */
-export const USMLE_EXAM_TYPE_LABEL: Record<UsmleStepLevel, string> = {
-  step1: "Step 1",
-  step2: "Step 2 CK",
-  step3: "Step 3",
-};
-
-/** Compact clinical descriptor shown under each wheel option. */
-export const USMLE_EXAM_TYPE_TAGLINE: Record<UsmleStepLevel, string> = {
-  step1: "Foundational Sciences",
-  step2: "Clinical Knowledge",
-  step3: "Advanced Management",
-};
 
 export type UsmleExamOption = {
   level: UsmleStepLevel;
@@ -107,13 +102,15 @@ const getCachedUsmleServedCounts = unstable_cache(
 );
 
 /** Build the USMLE step options, merging static metadata with live counts. */
-export async function getUsmleExamOptionsWithCounts(): Promise<UsmleExamOptionsPayload> {
+export async function getUsmleExamOptionsWithCounts(cacheOptions?: {
+  dynamic?: boolean;
+}): Promise<UsmleExamOptionsPayload> {
   let counts: Record<UsmleStepLevel, number> = { step1: 0, step2: 0, step3: 0 };
   let degraded = false;
 
   try {
     const { getCachedActiveInventory } = await import("@/lib/marketing/question-bank-counts");
-    const inventory = await getCachedActiveInventory();
+    const inventory = await getCachedActiveInventory(cacheOptions);
     if (!inventory.degraded) {
       counts = {
         step1: inventory.fields["usmle-step-1"]?.active ?? 0,

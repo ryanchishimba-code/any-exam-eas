@@ -4,7 +4,7 @@ import {
   emptyFormatCounts,
   type FormatCounts,
   type QuestionFormatBucket,
-} from "@/lib/inventory/active-questions";
+} from "@/lib/inventory/question-format";
 import type { QuestionBankStyle } from "@/lib/exam/modes";
 
 /** Deliberate Qbank format. "all" keeps the existing topic session. */

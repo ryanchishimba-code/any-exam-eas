@@ -194,7 +194,7 @@ export default async function HowQuestionsAreReviewedPage() {
         </section>
 
         <p className="mt-14 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-          <Link href={ROUTES.pricing} className="font-semibold text-[var(--color-accent)] hover:underline">
+          <Link href={ROUTES.pricing} prefetch={false} className="font-semibold text-[var(--color-accent)] hover:underline">
             Pricing
           </Link>
           <span aria-hidden> · </span>
