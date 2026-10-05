@@ -41,7 +41,7 @@ import {
   curatedSampleTarget as nptePtCuratedSampleTarget,
 } from "@/lib/question-bank/npte-pt-curated";
 import { sampleQuestionBankRows } from "@/lib/question-bank/random-sample";
-import { formatBucketItemTypeWhere } from "@/lib/inventory/active-questions";
+import { formatBucketItemTypeWhere } from "@/lib/inventory/question-format";
 import {
   activeBlueprintAreaWhere,
   isBlueprintAreaId,

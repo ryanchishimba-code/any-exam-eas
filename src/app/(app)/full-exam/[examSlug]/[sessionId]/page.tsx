@@ -1,7 +1,7 @@
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import { notFound, redirect } from "next/navigation";
 import { getCachedSession } from "@/lib/auth/session";
-import { FullExamSimulator } from "@/components/exam/FullExamSimulator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
@@ -27,6 +27,11 @@ function ExamSessionSkeleton() {
     </div>
   );
 }
+
+const FullExamSimulator = dynamic(
+  () => import("@/components/exam/FullExamSimulator").then((m) => m.FullExamSimulator),
+  { loading: () => <ExamSessionSkeleton /> }
+);
 
 async function FullExamSessionContent({
   examSlug,

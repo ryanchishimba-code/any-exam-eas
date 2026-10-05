@@ -1,5 +1,5 @@
 import { shuffleBankItems } from "@/lib/question-bank-db";
-import { examQuestionToStudy, prepareQuestionsForSession } from "./prepare";
+import { prepareQuestionsForSession } from "./prepare";
 import type { RawQuestionInput, StudyQuestion } from "./types";
 import {
   enforceSessionCount,
@@ -16,6 +16,8 @@ import {
   resolveTopicBankSampleCount,
   supportsTopicBankPractice,
 } from "@/lib/exam-prep/topic-bank-practice";
+
+export { mapApiQuestionsToStudy } from "./map-api-questions";
 
 /** Field ids used by full-length NCLEX, NAPLEX, USMLE, and PANCE simulators. */
 export const FULL_EXAM_FIELD_IDS = new Set([
@@ -246,12 +248,4 @@ export function assertExamSessionReady(
   if (quality.returned !== quality.requested) {
     throw new Error("Exam session could not be assembled at the requested length.");
   }
-}
-
-/** Map already-prepared API questions without changing session order or option order. */
-export function mapApiQuestionsToStudy(
-  raw: RawQuestionInput[],
-  opts?: { shuffleOptions?: boolean }
-): StudyQuestion[] {
-  return raw.map((q, i) => examQuestionToStudy(q, i, opts));
 }
