@@ -1,4 +1,4 @@
-import { getAllAnatomyStructures } from "@/lib/anatomy";
+import { getAllAnatomyStructures } from "@/lib/anatomy/systems/catalog";
 import { TOP_500_DRUGS } from "@/lib/drugs300/catalog";
 import type { AnatomyDiseaseLink } from "./types";
 import { searchTermsForPathology, slugifyPathology } from "./synonyms";

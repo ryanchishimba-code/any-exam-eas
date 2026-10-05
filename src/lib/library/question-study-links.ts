@@ -1,4 +1,4 @@
-import { deepDiveTopicHref } from "@/lib/edtech/practice-links";
+import { deepDiveTopicHref } from "@/lib/edtech/practice-links-core";
 import { getReviewModuleTitle } from "@/lib/edtech/topic-graph";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
 import {

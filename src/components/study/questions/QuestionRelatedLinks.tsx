@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { BookMarked, Bone, BookOpen, GraduationCap, Pill } from "lucide-react";
-import { libraryCardHref } from "@/lib/edtech/practice-links";
+import { libraryCardHref } from "@/lib/edtech/practice-links-core";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { matchCatalogDrug } from "@/lib/learning/remediation-loop";

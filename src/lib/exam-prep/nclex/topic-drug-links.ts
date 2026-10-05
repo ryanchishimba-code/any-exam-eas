@@ -1,6 +1,6 @@
 import { TOP_500_DRUGS } from "@/lib/drugs300/catalog";
 import { getDrugClassMeta, type DrugClassId } from "@/lib/drugs300/drug-classes";
-import { drugs300ClassHref, drugs300DrugHref } from "@/lib/edtech/practice-links";
+import { drugs300ClassHref, drugs300DrugHref } from "@/lib/edtech/practice-links-core";
 import {
   getNclexStudyPreset,
   nclexPresetPracticeHref,

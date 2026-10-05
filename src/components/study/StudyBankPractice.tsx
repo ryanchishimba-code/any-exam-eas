@@ -75,7 +75,7 @@ import type { ExamQuestion } from "@/lib/ai";
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { cn } from "@/lib/utils";
-import { parsePracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links";
+import { parsePracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import {
   canonicalizeQuestionBankQuery,
   resolvePracticeSubjectId,
