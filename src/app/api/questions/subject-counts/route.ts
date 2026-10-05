@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
-import { applyScoredClinicalCatalog, boardQuestionUnits, formatBoardQuestionSentence } from "@/lib/counts";
+import { boardQuestionUnits, formatBoardQuestionSentence } from "@/lib/counts";
+import { getScoredFieldInventory } from "@/lib/inventory/scored-field-inventory";
 import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
-import {
-  ACTIVE_QUESTION_DEFINITION,
-  fieldInventoryPayload,
-} from "@/lib/inventory/active-questions";
+import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
 import { ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL } from "@/lib/inventory/active-inventory-cache";
-import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { CACHE_TTL, CACHE_STALE } from "@/lib/cache";
 import { cacheAsidePublishedStamp } from "@/lib/inventory/active-inventory-stamp";
 import { respondDbUnavailable } from "@/lib/api-db-error";
@@ -37,22 +34,12 @@ export async function GET(req: Request) {
   const fieldId = access.fieldId;
 
   try {
-    const fromInventory = fieldInventoryPayload(fieldId, await getCachedActiveInventory());
+    const fromInventory = await getScoredFieldInventory(fieldId);
     if (fromInventory) {
-      const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
-      const bank = await loadPublishedClinicalBank(fieldId).catch(() => null);
-      const scored = applyScoredClinicalCatalog({
-        fieldId,
-        bankTotal: fromInventory.total,
-        topicCounts: fromInventory.counts,
-        formats: fromInventory.formats,
-        topicFormats: fromInventory.topicFormats,
-        categories: fromInventory.categories,
-        catalog: bank?.catalog ?? null,
-      });
+      const scored = fromInventory.scored;
       const units = boardQuestionUnits({
         slug: "nclex",
-        bankItems: fromInventory.total,
+        bankItems: fromInventory.bankTotal,
         formats: fromInventory.formats,
         clinical: scored.clinical,
       });
