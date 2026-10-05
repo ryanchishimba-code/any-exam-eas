@@ -55,11 +55,11 @@ if (!raw.startsWith("postgres")) {
   process.exit(1);
 }
 
-const databaseUrl = withPoolParams(raw).replace(
-  /connection_limit=\d+/,
-  "connection_limit=1"
-);
-process.env.PRISMA_CONNECTION_LIMIT = "1";
+// Local runs are not VERCEL, so withPoolParams would otherwise stamp limit 5.
+// Two matches the runtime default. This script writes Vercel env; do not run
+// it until the pool change is approved for production.
+process.env.PRISMA_CONNECTION_LIMIT ??= "2";
+const databaseUrl = withPoolParams(raw);
 
 let host = "unknown";
 try {
