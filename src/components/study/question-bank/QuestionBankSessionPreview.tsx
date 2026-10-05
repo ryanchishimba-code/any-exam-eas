@@ -19,6 +19,8 @@ type Props = {
   loading: boolean;
   disabled: boolean;
   onStart: () => void;
+  /** Warm the session player chunk before the click. No request, no quota. */
+  onWarm?: () => void;
   /** Replaces the disabled Start button when the chosen format has nothing to serve. */
   emptyNotice?: {
     title: string;
@@ -51,6 +53,7 @@ export function QuestionBankSessionPreview({
   loading,
   disabled,
   onStart,
+  onWarm,
   emptyNotice = null,
   isTimedExam,
   timedCount,
@@ -116,6 +119,8 @@ export function QuestionBankSessionPreview({
           disabled={disabled || loading}
           className={cn(qbUi.primaryBtn, loading && "opacity-90")}
           onClick={onStart}
+          onPointerEnter={onWarm}
+          onFocus={onWarm}
         >
           {loading ? (
             <>

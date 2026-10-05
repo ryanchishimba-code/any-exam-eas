@@ -1586,22 +1586,16 @@ export function StudyBankPractice({
         // attempt field (pharmacy); querying the label misses the saved miss.
         const reviewField = fieldId || field;
         let reviewSubject = effectiveSubjectId;
-        let preflight = await fetchJson(
-          "/api/study/review-incorrect",
-          { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true },
-          8000
-        );
-        let decision = decisionFromRemediationPayload({
-          mode: "review_incorrect",
-          ok: preflight.ok,
-          requestedCount: limit,
-          body: preflight.data,
-        });
-        if (
-          decision.status === "empty" &&
-          reviewSubject !== MIXED_SUBJECT_ID
-        ) {
-          reviewSubject = MIXED_SUBJECT_ID;
+        // The question-bank page already counted an open board queue. Skip the
+        // extra preflight round trip and go straight to the sitting.
+        const knownBoardQueue =
+          unscopedReviewSubject(reviewSubject) &&
+          typeof boardOpenRemediationCount === "number" &&
+          boardOpenRemediationCount > 0;
+        let preflight: Awaited<ReturnType<typeof fetchJson>> | null = null;
+        let decision: ReturnType<typeof decisionFromRemediationPayload> | null = null;
+        let launchCount = limit;
+        if (!knownBoardQueue) {
           preflight = await fetchJson(
             "/api/study/review-incorrect",
             { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true },
@@ -1613,20 +1607,42 @@ export function StudyBankPractice({
             requestedCount: limit,
             body: preflight.data,
           });
+          if (
+            decision.status === "empty" &&
+            reviewSubject !== MIXED_SUBJECT_ID
+          ) {
+            reviewSubject = MIXED_SUBJECT_ID;
+            preflight = await fetchJson(
+              "/api/study/review-incorrect",
+              { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true },
+              8000
+            );
+            decision = decisionFromRemediationPayload({
+              mode: "review_incorrect",
+              ok: preflight.ok,
+              requestedCount: limit,
+              body: preflight.data,
+            });
+          }
+          if (decision.status === "empty") {
+            setRemediationEmpty("review_incorrect");
+            rememberLaunchOutcome("review_incorrect");
+            return;
+          }
+          setRemediationEmpty(null);
+          rememberLaunchOutcome(null);
+          if (decision.status === "error") {
+            throw new Error(decision.message);
+          }
+          launchCount = decision.count;
         }
-        if (decision.status === "empty") {
-          setRemediationEmpty("review_incorrect");
-          rememberLaunchOutcome("review_incorrect");
-          return;
-        }
-        setRemediationEmpty(null);
-        rememberLaunchOutcome(null);
-        if (decision.status === "error") {
-          throw new Error(decision.message);
+        if (knownBoardQueue) {
+          setRemediationEmpty(null);
+          rememberLaunchOutcome(null);
         }
         const launched = await fetchJson(
           "/api/study/review-incorrect",
-          { field: reviewField, subjectId: reviewSubject, count: decision.count },
+          { field: reviewField, subjectId: reviewSubject, count: launchCount },
           20000
         );
         if (!launched.ok) {
@@ -1636,7 +1652,7 @@ export function StudyBankPractice({
           const followup = decisionFromRemediationPayload({
             mode: "review_incorrect",
             ok: false,
-            requestedCount: decision.count,
+            requestedCount: launchCount,
             body: launched.data,
           });
           throw new Error(
@@ -1648,7 +1664,7 @@ export function StudyBankPractice({
         const launchedDecision = decisionFromRemediationPayload({
           mode: "review_incorrect",
           ok: true,
-          requestedCount: decision.count,
+          requestedCount: launchCount,
           body: launched.data,
         });
         if (launchedDecision.status === "empty") {
@@ -1677,9 +1693,10 @@ export function StudyBankPractice({
         const openQueueTotal = resolveReviewOpenQueueTotal({
           sittingSize: raw.length,
           boardOpenTotal: unscopedReviewSubject(reviewSubject) ? boardOpenRemediationCount : null,
-          preflightAvailable: decision.status === "launch" ? decision.available : null,
-          payloads: [preflight.data, launched.data],
-          headerTotals: [preflight.openQueueTotal, launched.openQueueTotal],
+          preflightAvailable:
+            decision && decision.status === "launch" ? decision.available : null,
+          payloads: [preflight?.data, launched.data],
+          headerTotals: [preflight?.openQueueTotal, launched.openQueueTotal],
         });
         const openLine = "Open remediation — a single correct does not clear this item.";
         setAdaptiveMeta({
@@ -1704,7 +1721,12 @@ export function StudyBankPractice({
 
       if (useAdaptive) {
         const studyMode = activeStyle === "weak_areas" ? "weak_area" : "adaptive";
-        if (activeStyle === "weak_areas") {
+        // A board-level weak list was already loaded with the page. A topic
+        // filter still needs the preflight, because that list is not topic-scoped.
+        if (
+          activeStyle === "weak_areas" &&
+          (weakTopics.length === 0 || !unscopedReviewSubject(effectiveSubjectId))
+        ) {
           const preflight = await fetchJson(
             "/api/study/adaptive/next",
             {
@@ -2593,6 +2615,9 @@ export function StudyBankPractice({
             loading={loading || countsLoading}
             disabled={!(canStartBank || canStartTimed)}
             onStart={() => void start()}
+            onWarm={() => {
+              void import("./StudySessionPlayer");
+            }}
             isTimedExam={isTimedExam}
             timedCount={timedCount}
             timedMinutes={previewTimedMinutes}
