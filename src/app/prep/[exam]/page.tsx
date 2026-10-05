@@ -71,8 +71,10 @@ export default async function PrepExamPage({
   await requirePremiumPage(`/prep/${slug}`);
 
   const exam = getExamHub(slug as ExamSlug)!;
-  const topics = await ensureTopics(slug as ExamSlug);
-  const inventory = await getCachedActiveInventory().catch(() => null);
+  const [topics, inventory] = await Promise.all([
+    ensureTopics(slug as ExamSlug),
+    getCachedActiveInventory().catch(() => null),
+  ]);
   const formats =
     inventory && !inventory.degraded && slug !== "top500"
       ? inventory.boards[slug as ExamRouteSlug]?.formats ?? null
