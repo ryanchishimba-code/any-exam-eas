@@ -21,6 +21,10 @@ import {
   prepareAanpFnpBankItem,
 } from "@/lib/exam-prep/aanp-fnp-serve-gate";
 import { usmleBankItemIsServeReady } from "@/lib/exam-prep/usmle-clinical-gate";
+import {
+  BLUEPRINT_TIMED_SLUG_ALIASES,
+  type BlueprintTimedExamSlug,
+} from "./blueprint-timed-fields";
 
 export type ExamComposeConfig = {
   /** Public slug used in /api/exams/<slug>/compose. */
@@ -42,7 +46,7 @@ export type ExamComposeConfig = {
 const usmleGate = (fieldId: string): TimedExamFilterFn => (item) =>
   usmleBankItemIsServeReady(item, fieldId);
 
-const CONFIGS: Record<string, ExamComposeConfig> = {
+const CONFIGS: Record<BlueprintTimedExamSlug, ExamComposeConfig> = {
   nclex: {
     slug: "nclex",
     fieldId: "nursing",
@@ -112,22 +116,13 @@ const CONFIGS: Record<string, ExamComposeConfig> = {
   },
 };
 
-/** "usmle" defaults to Step 2 CK, the most representative single sitting. */
-const SLUG_ALIASES: Record<string, string> = {
-  usmle: "usmle-step-2",
-  "usmle-step2": "usmle-step-2",
-  "usmle-step1": "usmle-step-1",
-  "usmle-step3": "usmle-step-3",
-  pharmacy: "naplex",
-  nursing: "nclex",
-  "nclex-rn": "nclex",
-  fnp: "aanp-fnp",
-  npte: "npte-pt",
-};
-
 export function resolveExamComposeConfig(slug: string): ExamComposeConfig | undefined {
   const key = slug.trim().toLowerCase();
-  return CONFIGS[key] ?? CONFIGS[SLUG_ALIASES[key] ?? ""];
+  if (Object.prototype.hasOwnProperty.call(CONFIGS, key)) {
+    return CONFIGS[key as BlueprintTimedExamSlug];
+  }
+  const alias = BLUEPRINT_TIMED_SLUG_ALIASES[key];
+  return alias ? CONFIGS[alias] : undefined;
 }
 
 /** Resolve compose config from a bank fieldId (e.g. nursing, usmle-step-2). */

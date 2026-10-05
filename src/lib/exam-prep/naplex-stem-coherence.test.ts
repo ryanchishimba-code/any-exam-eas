@@ -3,10 +3,12 @@ import type { BankItem } from "@/lib/question-bank";
 import { auditNaplexBankItem } from "./naplex-bank-audit";
 import {
   extractCounselTemplateDrugs,
-  findPharmacySeedByVignette,
   naplexStemOptionDrugMismatch,
-  resetPharmacySeedIndexForTests,
 } from "./naplex-stem-coherence";
+import {
+  findPharmacySeedByVignette,
+  resetPharmacySeedIndexForTests,
+} from "./naplex-pharmacy-seed-index";
 
 describe("naplexStemOptionDrugMismatch", () => {
   it("flags Allopurinol options on a warfarin vignette", () => {

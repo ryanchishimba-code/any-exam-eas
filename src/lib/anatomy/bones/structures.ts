@@ -1,10 +1,10 @@
 import type { AnatomyStructure } from "../types";
 import {
   ADULT_BONE_COUNT,
-  buildBoneInstances,
-  type BoneInstance,
+  listBoneIdentities,
+  type BoneIdentity,
   type BoneRegion,
-} from "./instances";
+} from "./bone-identity";
 
 const REGION_LABELS: Record<BoneRegion, string> = {
   cranium: "Cranium",
@@ -32,7 +32,7 @@ const LEGACY_BONE_IDS = new Set([
   "vertebral-column",
 ]);
 
-function boneStructure(bone: BoneInstance): AnatomyStructure {
+function boneStructure(bone: BoneIdentity): AnatomyStructure {
   const regionLabel = REGION_LABELS[bone.region];
   return {
     id: bone.id,
@@ -54,7 +54,7 @@ function boneStructure(bone: BoneInstance): AnatomyStructure {
 }
 
 export function generateBoneStructures(): AnatomyStructure[] {
-  return buildBoneInstances().map(boneStructure);
+  return listBoneIdentities().map(boneStructure);
 }
 
 export function getBoneRegionLabel(region: BoneRegion): string {

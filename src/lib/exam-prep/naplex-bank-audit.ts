@@ -10,6 +10,9 @@ import {
 } from "@/lib/exam-prep/naplex-answer-align";
 import { naplexStemOptionDrugMismatch } from "@/lib/exam-prep/naplex-stem-coherence";
 import { detectNaplexFormatIssues } from "@/lib/exam-prep/naplex-format-coherence";
+import { resolveNaplexStem, resolveNaplexVignette } from "./naplex-stem";
+
+export { resolveNaplexStem, resolveNaplexVignette } from "./naplex-stem";
 
 export type NaplexAuditIssue = {
   code: string;
@@ -62,32 +65,6 @@ const AGE_PATTERN =
   /\b\d{1,3}[- ]year[- ]old\b|\b\d{1,3}\s*y\/o\b|\bAge\s+\d{1,3}\b|\(\d{1,3}\s*y\)|\b\d{1,2}\s*w[kK]\b|\b\d{1,2}\s*weeks?\s*gestation\b/i;
 
 const NAPLEX_PREFIX = /^NAPLEX\s+\d+:\s*/i;
-
-export function resolveNaplexVignette(item: BankItem): string {
-  const vignette = item.vignette?.trim() || item.scenario?.trim() || "";
-  if (vignette) return vignette;
-  const q = item.question?.trim() ?? "";
-  if (q.includes("\n\n")) {
-    const head = q.split("\n\n")[0]?.trim() ?? "";
-    if (head.length >= 40) return head;
-  }
-  return "";
-}
-
-export function resolveNaplexStem(item: BankItem): string {
-  const vignette = resolveNaplexVignette(item);
-  const q = item.question?.trim() ?? "";
-  if (vignette && q.startsWith(vignette)) {
-    return q.slice(vignette.length).replace(/^\s*\n+\s*/, "").trim();
-  }
-  if (q.includes("\n\n")) {
-    const parts = q.split("\n\n");
-    if (parts.length >= 2 && (parts[0]?.length ?? 0) >= 40) {
-      return parts.slice(1).join("\n\n").trim();
-    }
-  }
-  return q;
-}
 
 export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
   const issues: NaplexAuditIssue[] = [];

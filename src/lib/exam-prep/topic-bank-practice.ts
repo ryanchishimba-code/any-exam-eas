@@ -6,9 +6,8 @@ import {
   sampleQuestionBankItemsForField,
 } from "@/lib/question-bank-db";
 import type { BankItem } from "@/lib/question-bank";
-import { isMpjeField } from "@/lib/mpje/config";
-import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { filterBankItemsForSessionPool } from "@/lib/exam-prep/prepare-bank-session";
+import { resolveTopicBankSampleCount } from "@/lib/exam-prep/topic-bank-sample-count";
 import { warmCompleteCaseGroups } from "@/lib/exam-prep/student-eligibility";
 import { expandNclexBlueprintTopicMatchers } from "@/lib/exam-prep/nclex/blueprint-topic-aliases";
 import { filterItemsForNclexBlueprintTopics } from "@/lib/exam-prep/nclex/topic-blueprint-match";
@@ -17,25 +16,13 @@ import { filterItemsForUsmleBlueprintTopics } from "@/lib/exam-prep/usmle/topic-
 import { filterItemsForPanceBlueprintTopics } from "@/lib/exam-prep/pance/topic-blueprint-match";
 import { filterItemsForAanpFnpBlueprintTopics } from "@/lib/exam-prep/aanp-fnp/topic-blueprint-match";
 import { filterItemsForNptePtBlueprintTopics } from "@/lib/exam-prep/npte-pt/topic-blueprint-match";
-import { isNaplexCalcTopicSlug, isNaplexCalculationItem } from "@/lib/exam-prep/naplex/calc-topic-qa";
+import { isNaplexCalcTopicSlug, isNaplexCalculationItem } from "@/lib/exam-prep/naplex/naplex-calc-match";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 
-/** Single-subject question bank sessions (not mixed-field / not timed full exams). */
-export function supportsTopicBankPractice(fieldId: string): boolean {
-  return isPracticeFieldId(fieldId) || isMpjeField(fieldId);
-}
-
-/** DB pull size — large enough to survive runtime gates without template-stem collapse. */
-export function resolveTopicBankSampleCount(
-  limit: number,
-  mode: "session" | "selection" = "session"
-): number {
-  if (mode === "selection") {
-    // Adaptive/selection only needs a modest ranked pool, not a full session oversample.
-    return Math.min(120, Math.max(limit * 3, 48));
-  }
-  return Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(limit * 6, 80));
-}
+export {
+  resolveTopicBankSampleCount,
+  supportsTopicBankPractice,
+} from "@/lib/exam-prep/topic-bank-sample-count";
 
 const TOPIC_GATHER_MAX_ROUNDS = 2;
 const NAPLEX_TOPIC_GATHER_MAX_ROUNDS = 8;
