@@ -11,7 +11,7 @@ import {
 } from "@/lib/learning/coverage-heatmap";
 import { getExamRoadmapData, type RoadmapTopicRow } from "@/lib/learning/exam-roadmap";
 import { getScoredFieldInventory } from "@/lib/inventory/scored-field-inventory";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import type { ExamSlug } from "@/types/edtech";
 
 export type CoverageInventorySnapshot = {

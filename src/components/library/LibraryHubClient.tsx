@@ -15,7 +15,7 @@ import { SessionToneSelector } from "@/components/library/SessionToneSelector";
 import { MemoryCardSheet } from "@/components/library/MemoryCardSheet";
 import { practiceTopicHref } from "@/lib/edtech/practice-links";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import { isUsmleStep1Subject } from "@/lib/subjects/medicine/subject-splits";
 import { applyMasteryStore, readMasteryStore } from "@/lib/library/card-mastery";
 import { syncCardMasteryForExam } from "@/lib/library/card-mastery-sync";

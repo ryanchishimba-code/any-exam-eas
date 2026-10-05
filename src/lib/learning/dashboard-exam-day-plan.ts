@@ -10,7 +10,7 @@ import { buildExamDayPlan, type ExamDayPlan, type ExamDayTopicInput } from "@/li
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { ROUTES } from "@/lib/routes";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import type { ExamSlug } from "@/types/edtech";
 
 export function buildDashboardExamDayPlan(input: {

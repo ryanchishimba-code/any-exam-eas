@@ -1,42 +1,15 @@
 /**
- * Study fields — derived from registered subject modules (not hardcoded).
- * Add a discipline by registering a module in subjects/registry.ts.
+ * Study fields for nav and the question bank.
+ * Labels come from the light catalog, not the generation modules in registry.ts,
+ * so a client import does not download seed audits or anatomy geometry.
  */
-import {
-  getRegisteredSubjectIds,
-  resolveSubjectModule,
-} from "./subjects/registry";
 import { normalizeFieldId } from "./subjects/field-ids";
+import { PRACTICE_FIELD_META, type PracticeFieldMeta } from "./subjects/subject-catalog";
 
-export type StudyField = {
-  id: string;
-  label: string;
-  category: "professional" | "stem";
-  oerDomains: string[];
-  examFocus: string;
-  topicPlaceholder: string;
-  boardExam: string;
-};
+export type StudyField = PracticeFieldMeta;
 
-function moduleToStudyField(fieldId: string): StudyField {
-  const mod = resolveSubjectModule(fieldId);
-  const meta = mod.metadata;
-  const category: StudyField["category"] =
-    meta.category === "stem" ? "stem" : "professional";
-
-  return {
-    id: meta.id,
-    label: meta.label,
-    category,
-    boardExam: meta.boardExam ?? "Board-style exams",
-    oerDomains: meta.oerDomains,
-    examFocus: meta.examFocus,
-    topicPlaceholder: meta.topicPlaceholder,
-  };
-}
-
-/** All registered disciplines in stable registry order. */
-export const STUDY_FIELDS: StudyField[] = getRegisteredSubjectIds().map(moduleToStudyField);
+/** All practice boards, in registry order. */
+export const STUDY_FIELDS: StudyField[] = PRACTICE_FIELD_META;
 
 /** Default field label for study/generate UI when none is selected. */
 export const DEFAULT_STUDY_FIELD_LABEL = STUDY_FIELDS[0]?.label ?? "NCLEX";

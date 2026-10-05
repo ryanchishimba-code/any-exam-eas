@@ -10,7 +10,7 @@ import {
   getFieldMeta,
   getFieldMetaById,
 } from "@/lib/fields";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import {
   parseQuestionBankPace,
   type QuestionBankPace,

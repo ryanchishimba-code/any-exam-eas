@@ -2,7 +2,7 @@ import type { BankItem } from "@/lib/question-bank";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
 import { TOP_500_DRUGS } from "@/lib/drugs300/catalog";
 import { getMemoryCardIdsForTopic } from "@/lib/library/weak-area-map";
-import { getSubjectArea, getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectArea, getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import { resolveNclexStem, resolveNclexVignette } from "./nclex-bank-audit";
 import { enrichRelatedStudyMeta, relatedMetaFromPayload } from "./anatomy-study-meta";
 

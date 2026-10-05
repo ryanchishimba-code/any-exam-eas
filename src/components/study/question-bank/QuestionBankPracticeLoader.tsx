@@ -7,7 +7,7 @@ import {
 } from "@/lib/learning/load-coverage-heatmap";
 import { getStudentWeakTopics } from "@/lib/learning/student-dashboard";
 import { loadSubjectCountsForUser } from "@/lib/study/load-subject-counts";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import type { ExamSlug } from "@/types/edtech";
 
 export type QuestionBankHubStats = {

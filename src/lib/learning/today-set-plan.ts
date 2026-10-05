@@ -49,7 +49,7 @@ import {
 } from "@/lib/learning/today-set-preference";
 import { ineligibleServedIds } from "@/lib/exam-prep/student-eligibility";
 import { prisma } from "@/lib/prisma";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import type { ExamSlug } from "@/types/edtech";
 import type { UserAccess } from "@/lib/access-control";
 import { getStudyUsageSnapshot, type StudyUsageSnapshot } from "@/lib/study/usage-limits";
