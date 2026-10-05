@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { VercelWebAnalytics } from "@/components/analytics/VercelWebAnalytics";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { ThemeScript } from "@/components/theme/ThemeScript";
@@ -26,6 +27,7 @@ export default function RootLayout({
           <SiteShell>{children}</SiteShell>
         </AppProviders>
         <VercelWebAnalytics />
+        <SpeedInsights />
       </body>
     </html>
   );

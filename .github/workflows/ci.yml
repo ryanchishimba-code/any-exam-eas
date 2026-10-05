@@ -43,3 +43,4 @@ jobs:
         run: |
           node scripts/set-prisma-provider.mjs postgresql
           npm run build
+          node scripts/check-perf-budget.mjs
