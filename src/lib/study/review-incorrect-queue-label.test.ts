@@ -76,7 +76,14 @@ describe("review incorrect sitting label", () => {
       new URL("../../components/study/question-bank/QuestionBankPracticeLoader.tsx", import.meta.url),
       "utf8"
     );
-    expect(loader).toContain("boardOpenRemediationCount={roadmap?.openIncorrectCount");
+    expect(practice).toContain("openIncorrectCount");
+    expect(practice).toContain("resolvedOpenCount");
+    const coverageRoute = readFileSync(
+      new URL("../../app/api/learning/coverage/route.ts", import.meta.url),
+      "utf8"
+    );
+    expect(coverageRoute).toContain("openIncorrectCount: loaded.openIncorrectCount");
+    expect(loader).toContain("boardOpenRemediationCount={null}");
   });
 
   it("keeps the dashboard open total when a launch payload only echoes the sitting", () => {

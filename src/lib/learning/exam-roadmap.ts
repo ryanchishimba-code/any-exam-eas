@@ -493,6 +493,8 @@ async function loadExamRoadmapData(
   const attemptFieldIds = reviewFieldIds.length > 0 ? reviewFieldIds : [fieldId];
 
   const [attempts, masteries, serveBySubject, history, masteryMarks] = await Promise.all([
+    // Rolling accuracy sorts in memory. Sorting every row in Postgres only
+    // adds a step before the first byte comes back.
     prisma.questionAttempt.findMany({
       where: { userId, fieldId: { in: attemptFieldIds } },
       select: {
@@ -503,7 +505,6 @@ async function loadExamRoadmapData(
         createdAt: true,
         sessionId: true,
       },
-      orderBy: { createdAt: "asc" },
     }),
     prisma.conceptMastery.findMany({
       where: { userId, fieldId },

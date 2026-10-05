@@ -79,62 +79,71 @@ async function DashboardContent({
         )
       : fieldIdForExamSlug(examSlug);
 
-  // Wave 1: user stats share the Prisma slot. Coverage is the shared inventory
-  // cache, so it overlaps that slot instead of waiting for a second wave.
-  const [stats, dashboard, inventory] = await runPageDb(() =>
-    Promise.all([
-      getExamScopedStats(userId, examSlug, fieldId),
-      getStudentDashboardData(userId, [fieldId], { skipAccuracyTrend: true }),
-      settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
-    ])
-  );
-
-  // Wave 2: secondary panels — degrade instead of blanking the whole dashboard.
-  const [roadmap, metadata, usage, mastery, drugsCompletedToday, accountAttemptCount] =
-    await Promise.all([
-    settled(
-      getExamRoadmapData(userId, examSlug, {
-        usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
-      }),
-      null,
-      "roadmap"
-    ),
-    settled(metadataPromise, null, "metadata"),
-    settled(getStudyUsageSnapshot(access), null, "usage"),
-    examSlug === "nclex"
-      ? settled(
-          import("@/lib/engine/mastery/dashboard").then((m) =>
-            m.loadNclexMasteryDashboard(userId)
-          ),
-          null,
-          "mastery"
-        )
-      : examSlug === "naplex"
-        ? settled(
-            import("@/lib/engine/mastery/dashboard").then((m) =>
-              m.loadNaplexMasteryDashboard(userId)
-            ),
-            null,
-            "mastery"
-          )
-        : examSlug === "usmle"
+  // One wave, after Neon is awake. Starting the roadmap only after the
+  // dashboard returned left the second connection idle and held the HTML
+  // stream open for both round trips. Format buckets are an analytics chart;
+  // the dashboard does not render them.
+  const [stats, dashboard, inventory, roadmap, metadata, usage, mastery, drugsCompletedToday] =
+    await runPageDb(() => {
+      const masteryPromise =
+        examSlug === "nclex"
           ? settled(
-              import("@/lib/engine/mastery/dashboard").then((m) => {
-                const step =
-                  fieldId === "usmle-step-1"
-                    ? "step1"
-                    : fieldId === "usmle-step-3"
-                      ? "step3"
-                      : "step2";
-                return m.loadUsmleMasteryDashboard(userId, step);
-              }),
+              import("@/lib/engine/mastery/dashboard").then((m) =>
+                m.loadNclexMasteryDashboard(userId)
+              ),
               null,
               "mastery"
             )
-          : Promise.resolve(null),
-    settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
-    settled(readAccountAttemptCount(userId), null, "tour attempts"),
-  ]);
+          : examSlug === "naplex"
+            ? settled(
+                import("@/lib/engine/mastery/dashboard").then((m) =>
+                  m.loadNaplexMasteryDashboard(userId)
+                ),
+                null,
+                "mastery"
+              )
+            : examSlug === "usmle"
+              ? settled(
+                  import("@/lib/engine/mastery/dashboard").then((m) => {
+                    const step =
+                      fieldId === "usmle-step-1"
+                        ? "step1"
+                        : fieldId === "usmle-step-3"
+                          ? "step3"
+                          : "step2";
+                    return m.loadUsmleMasteryDashboard(userId, step);
+                  }),
+                  null,
+                  "mastery"
+                )
+              : Promise.resolve(null);
+      return Promise.all([
+        getExamScopedStats(userId, examSlug, fieldId),
+        getStudentDashboardData(userId, [fieldId], {
+          skipAccuracyTrend: true,
+          skipFormatPractice: true,
+        }),
+        settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
+        settled(
+          getExamRoadmapData(userId, examSlug, {
+            usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
+          }),
+          null,
+          "roadmap"
+        ),
+        settled(metadataPromise, null, "metadata"),
+        settled(getStudyUsageSnapshot(access), null, "usage"),
+        masteryPromise,
+        settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
+      ]);
+    });
+
+  // The tour only opens for a student who has not seen it and has zero
+  // attempts. A seen tour does not need an account-wide count on this request.
+  const tourSeen = metadata == null ? true : isTourSeen(metadata);
+  const accountAttemptCount = tourSeen
+    ? null
+    : await settled(readAccountAttemptCount(userId), null, "tour attempts");
 
   const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;
   const boardCounts = boardStudyCountsFromSources({
@@ -183,7 +192,7 @@ async function DashboardContent({
       masteryRollup={mastery?.rollup ?? null}
       masteryMapTiles={mastery?.mapTiles ?? null}
       examDayPlan={examDayPlan}
-      tourSeen={metadata == null ? true : isTourSeen(metadata)}
+      tourSeen={tourSeen}
       accountAttemptCount={accountAttemptCount}
       deferTodayMix
     />

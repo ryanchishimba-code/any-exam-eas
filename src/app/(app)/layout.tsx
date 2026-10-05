@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { getCachedSession } from "@/lib/auth/session";
 import { AppPreferencesProvider } from "@/lib/client/app-preferences-context";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
@@ -31,7 +32,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           footer={<SiteBottomBar className="mt-10 border-black/[0.05] pt-8" />}
         >
           <AppQueryNotices />
-          {session?.user?.id ? <PassCheckInSlot userId={session.user.id} /> : null}
+          {session?.user?.id ? (
+            <Suspense fallback={null}>
+              <PassCheckInSlot userId={session.user.id} />
+            </Suspense>
+          ) : null}
           {children}
         </AppShell>
       </TrialWelcomeRoot>

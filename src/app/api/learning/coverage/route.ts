@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
-import { loadCoverageHeatmapForUser } from "@/lib/learning/load-coverage-heatmap";
+import { loadQuestionBankCoverage } from "@/lib/learning/load-coverage-heatmap";
 
 export const runtime = "nodejs";
 
@@ -9,8 +9,10 @@ export const runtime = "nodejs";
  * Readiness bars, Today's block, and Qbank chips all use this shape.
  */
 export async function GET(req: Request) {
-  const { requirePremiumApi } = await import("@/lib/api-access");
-  const premium = await requirePremiumApi();
+  // Same study access as the question-bank page (trial or paid). Premium-only
+  // would hide chips the server used to render for a trial student.
+  const { requireStudyApi } = await import("@/lib/api-access");
+  const premium = await requireStudyApi();
   if (!premium.ok) return premium.response;
 
   const field = new URL(req.url).searchParams.get("field");
@@ -29,11 +31,26 @@ export async function GET(req: Request) {
   }
 
   try {
-    const heatmap = await loadCoverageHeatmapForUser(premium.userId, examSlug, fieldId);
-    if (!heatmap) {
-      return NextResponse.json({ error: "Coverage unavailable" }, { status: 503 });
-    }
-    return NextResponse.json(heatmap);
+    const loaded = await loadQuestionBankCoverage(premium.userId, examSlug, fieldId);
+    // A roadmap miss used to leave weak marks on the page. Keep those, with
+    // an empty chip list, instead of failing the whole response.
+    const heatmap = loaded.heatmap ?? {
+      domainsLabel: fieldId === "nursing" ? ("Client Needs" as const) : ("Blueprint topics" as const),
+      domains: [],
+      topGapId: null,
+      touchCoveragePct: 0,
+      bankCoveragePct: null,
+      categoryQuestionTotal: 0,
+      unmappedQuestionTotal: 0,
+      topicQuestionTotal: null,
+      countsAgree: false,
+      chips: [],
+    };
+    return NextResponse.json({
+      ...heatmap,
+      openIncorrectCount: loaded.openIncorrectCount,
+      weakTopics: loaded.weakTopics,
+    });
   } catch (error) {
     console.error("[learning/coverage] lookup failed:", error);
     return NextResponse.json({ error: "Coverage unavailable" }, { status: 503 });

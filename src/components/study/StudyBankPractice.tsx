@@ -543,15 +543,23 @@ export function StudyBankPractice({
   };
   // Cards, preview, pool, and Start all read this. A disabled style cannot stay selected.
   const effectiveBankStyle = effectiveQuestionBankStyle(requestedBankStyle, bankStyleScope);
-  const weakSubjectIds = useMemo(
-    () => weakSubjectIdsForField(weakTopics, fieldId, bankSubjectIds),
-    [weakTopics, fieldId, bankSubjectIds]
-  );
   const coverageQuery = useCoverageHeatmap(fieldId, {
     initial: initialCoverage,
     initialFieldId: initialCoverageFieldId,
   });
   const coverage = coverageQuery.data ?? null;
+  // The question-bank document ships topic counts first. Chips, weak marks,
+  // and the open review total fill this same query once it returns.
+  const coverageWeakTopics = coverageQuery.data?.weakTopics ?? [];
+  const resolvedWeakTopics = weakTopics.length > 0 ? weakTopics : coverageWeakTopics;
+  const resolvedOpenCount =
+    typeof boardOpenRemediationCount === "number"
+      ? boardOpenRemediationCount
+      : coverageQuery.data?.openIncorrectCount ?? null;
+  const weakSubjectIds = useMemo(
+    () => weakSubjectIdsForField(resolvedWeakTopics, fieldId, bankSubjectIds),
+    [resolvedWeakTopics, fieldId, bankSubjectIds]
+  );
   const coverageChips = useMemo(() => {
     if (!coverage) return [];
     const ids = new Set(bankSubjectIds);
@@ -1590,8 +1598,8 @@ export function StudyBankPractice({
         // extra preflight round trip and go straight to the sitting.
         const knownBoardQueue =
           unscopedReviewSubject(reviewSubject) &&
-          typeof boardOpenRemediationCount === "number" &&
-          boardOpenRemediationCount > 0;
+          typeof resolvedOpenCount === "number" &&
+          resolvedOpenCount > 0;
         let preflight: Awaited<ReturnType<typeof fetchJson>> | null = null;
         let decision: ReturnType<typeof decisionFromRemediationPayload> | null = null;
         let launchCount = limit;
@@ -1692,7 +1700,7 @@ export function StudyBankPractice({
         }
         const openQueueTotal = resolveReviewOpenQueueTotal({
           sittingSize: raw.length,
-          boardOpenTotal: unscopedReviewSubject(reviewSubject) ? boardOpenRemediationCount : null,
+          boardOpenTotal: unscopedReviewSubject(reviewSubject) ? resolvedOpenCount : null,
           preflightAvailable:
             decision && decision.status === "launch" ? decision.available : null,
           payloads: [preflight?.data, launched.data],
@@ -1725,7 +1733,7 @@ export function StudyBankPractice({
         // filter still needs the preflight, because that list is not topic-scoped.
         if (
           activeStyle === "weak_areas" &&
-          (weakTopics.length === 0 || !unscopedReviewSubject(effectiveSubjectId))
+          (resolvedWeakTopics.length === 0 || !unscopedReviewSubject(effectiveSubjectId))
         ) {
           const preflight = await fetchJson(
             "/api/study/adaptive/next",
@@ -2062,12 +2070,12 @@ export function StudyBankPractice({
       style: effectiveBankStyle,
       subjectId,
       topicCounts: subjectCounts,
-      openRemediationCount: boardOpenRemediationCount,
+      openRemediationCount: resolvedOpenCount,
     });
   }, [
     blueprintAreaCount,
     blueprintAreaId,
-    boardOpenRemediationCount,
+    resolvedOpenCount,
     effectiveBankStyle,
     isTimedExam,
     launchFormat,
