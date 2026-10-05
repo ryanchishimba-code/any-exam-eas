@@ -113,15 +113,16 @@ export function isNeonPooledUrl(url = process.env.DATABASE_URL ?? "") {
  * @see https://www.prisma.io/docs/guides/performance-and-optimization/connection-management
  */
 /**
- * Production stays at one Prisma connection per isolate. Raising it lets the
- * dashboard run TCP queries in parallel and also holds more Neon pooler slots.
- * Beacons used to exhaust those slots at limit 3–5. Do not change the default
- * until Ryan sets PRISMA_CONNECTION_LIMIT on a preview and watches for P2024.
- * This object is not read by withPoolParams.
+ * Two Prisma connections per Vercel isolate. One serialized the dashboard's
+ * parallel TCP queries. Three to five exhausted Neon's pooler under beacon
+ * traffic (P2024). Measured on a Neon branch copy through the pooled host:
+ * the dashboard aggregate and the spaced-review count took about 104 ms one
+ * after another and about 51 ms side by side. Rollback without a code change:
+ * set PRISMA_CONNECTION_LIMIT=1. withPoolParams reads vercelConnectionLimit.
  */
 export const NEON_POOL_PROPOSAL = {
-  applied: false,
-  vercelConnectionLimit: "1",
+  applied: true,
+  vercelConnectionLimit: "2",
   experimentConnectionLimit: "2",
   poolTimeoutSeconds: "20",
   connectTimeoutSeconds: "15",
@@ -132,12 +133,12 @@ export function withPoolParams(url: string): string {
   if (!isPostgresDatabaseUrl(url)) return url;
   try {
     const parsed = new URL(url);
-    // Vercel serverless: 1 connection per isolate. Higher limits (3–5) exhaust
+    // Vercel serverless: 2 connections per isolate. Limits of 3–5 exhaust
     // Neon's pool under concurrent analytics/beacon traffic and cause P2024 /
-    // idle-in-transaction kills. Override with PRISMA_CONNECTION_LIMIT if needed.
+    // idle-in-transaction kills. Set PRISMA_CONNECTION_LIMIT=1 to roll back.
     const connectionLimit =
       process.env.PRISMA_CONNECTION_LIMIT ??
-      (process.env.VERCEL ? "1" : "5");
+      (process.env.VERCEL ? NEON_POOL_PROPOSAL.vercelConnectionLimit : "5");
     // Always enforce — Vercel Neon integration URLs often ship with limit=5.
     parsed.searchParams.set("connection_limit", connectionLimit);
     // Cold Neon compute can take >10s to accept TCP; give connect a bit more room.

@@ -118,23 +118,22 @@ describe("withPoolParams", () => {
       DATABASE_URL: `${REAL_URL}&connection_limit=5&pool_timeout=20`,
     };
     const pooled = withPoolParams(process.env.DATABASE_URL!);
-    expect(pooled).toContain("connection_limit=1");
+    expect(pooled).toContain("connection_limit=2");
     expect(pooled).toContain("pool_timeout=20");
     expect(pooled).toContain("connect_timeout=15");
     expect(pooled).toContain("pgbouncer=true");
   });
 
-  it("keeps the Neon pool experiment off until Ryan sets PRISMA_CONNECTION_LIMIT", () => {
-    expect(NEON_POOL_PROPOSAL.applied).toBe(false);
-    expect(NEON_POOL_PROPOSAL.vercelConnectionLimit).toBe("1");
+  it("uses two Prisma connections on Vercel and still honors a rollback to one", () => {
+    expect(NEON_POOL_PROPOSAL.applied).toBe(true);
+    expect(NEON_POOL_PROPOSAL.vercelConnectionLimit).toBe("2");
     expect(NEON_POOL_PROPOSAL.experimentConnectionLimit).toBe("2");
     process.env = {
       VERCEL: "1",
-      PRISMA_CONNECTION_LIMIT: "2",
       DATABASE_URL: REAL_URL,
     };
     expect(withPoolParams(REAL_URL)).toContain("connection_limit=2");
-    delete process.env.PRISMA_CONNECTION_LIMIT;
+    process.env.PRISMA_CONNECTION_LIMIT = "1";
     expect(withPoolParams(REAL_URL)).toContain("connection_limit=1");
   });
 });
