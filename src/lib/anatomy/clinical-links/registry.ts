@@ -1,4 +1,4 @@
-import { getAnatomyStructure } from "@/lib/anatomy";
+import { getAnatomyStructure } from "@/lib/anatomy/systems/catalog";
 import { getDrugById } from "@/lib/drugs300/catalog";
 import type { DrugEntry } from "@/lib/drugs300/types";
 import { CURATED_DISEASE_LINKS } from "./diseases-curated";

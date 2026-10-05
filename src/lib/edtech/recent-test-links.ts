@@ -1,5 +1,5 @@
 import { fullExamResultsHref } from "@/lib/full-exam/config";
-import { analyticsHref } from "@/lib/edtech/practice-links";
+import { analyticsHref } from "@/lib/edtech/practice-links-core";
 import type { RecentTestRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
 
