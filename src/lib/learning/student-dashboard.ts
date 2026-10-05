@@ -17,7 +17,10 @@ import {
 import { getFieldMeta } from "@/lib/fields";
 import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import { loadFormatPracticeStats } from "@/lib/learning/format-practice-stats";
-import type { FormatPracticeStats } from "@/lib/study/practice-format";
+import {
+  emptyFormatPracticeStats,
+  type FormatPracticeStats,
+} from "@/lib/study/practice-format";
 
 export type AccuracyTrendPoint = {
   date: string;
@@ -335,12 +338,15 @@ export async function getStudentWeakTopics(
 export async function getStudentDashboardData(
   userId: string,
   fieldIds: FieldScope = null,
-  opts?: { skipAccuracyTrend?: boolean }
+  opts?: { skipAccuracyTrend?: boolean; skipFormatPractice?: boolean }
 ): Promise<StudentDashboardData> {
   const scopeKey = fieldIds?.length ? fieldIds.join(",") : "all";
   const trendKey = opts?.skipAccuracyTrend ? "no-trend" : "trend";
+  // Dashboard never reads format buckets. A separate key so an analytics
+  // payload is not served in their place.
+  const formatKey = opts?.skipFormatPractice ? "no-format" : "format";
   return cacheGetOrSet(
-    cacheKey(["student-dashboard-v5", userId, scopeKey, trendKey]),
+    cacheKey(["student-dashboard-v5", userId, scopeKey, trendKey, formatKey]),
     CACHE_TTL.learningDashboard,
     () => loadStudentDashboardData(userId, fieldIds, opts),
     { staleTtlMs: CACHE_STALE.learningDashboard, skipFreshL1: true }
@@ -409,16 +415,50 @@ export async function getLibraryHubStats(
  *   score is restricted to those study fields so analytics reflects only the
  *   selected exam. Omit (or pass null/empty) for the global, all-exam view.
  */
+type RecentExamJoinRow = {
+  id: string;
+  entityId: string;
+  score: number | null;
+  metadata: string | null;
+  createdAt: Date;
+  examTitle: string | null;
+  examField: string | null;
+  examQuestionCount: number | null;
+};
+
 async function loadStudentDashboardData(
   userId: string,
   fieldIds: FieldScope = null,
-  opts?: { skipAccuracyTrend?: boolean }
+  opts?: { skipAccuracyTrend?: boolean; skipFormatPractice?: boolean }
 ): Promise<StudentDashboardData> {
   const scoped = Boolean(fieldIds && fieldIds.length > 0);
   const attemptScope = fieldWhere(fieldIds);
   const scopeSlug = scoped ? examSlugFromFieldId(fieldIds![0]) : null;
 
-  const [profile, trend, masteries, completedRecords, attemptGroups, spacedReview, formatPractice] =
+  const recentLimit = scoped ? 40 : 8;
+  // One round trip. The old path loaded ProgressRecord, then GeneratedExam,
+  // and the second query could not start until the first returned.
+  const recentExamsPromise = prisma.$queryRaw<RecentExamJoinRow[]>`
+    SELECT
+      pr.id,
+      pr."entityId",
+      pr.score,
+      pr.metadata,
+      pr."createdAt",
+      e.title AS "examTitle",
+      e.field AS "examField",
+      e."questionCount" AS "examQuestionCount"
+    FROM "ProgressRecord" pr
+    LEFT JOIN "Exam" e ON e.id = pr."entityId"
+    WHERE pr."userId" = ${userId}
+      AND pr."entityType" = 'exam'
+      AND pr.completed = true
+      AND pr.score IS NOT NULL
+    ORDER BY pr."createdAt" DESC
+    LIMIT ${recentLimit}
+  `;
+
+  const [profile, trend, masteries, recentExamRows, attemptGroups, spacedReview, formatPractice] =
     await Promise.all([
     // Slim profile — avoid loading every ConceptMastery row (weak topics load below).
     prisma.learningProfile.findUnique({
@@ -444,81 +484,62 @@ async function loadStudentDashboardData(
       },
       ...(scoped ? {} : { take: WEAK_TOPIC_FETCH }),
     }),
-    prisma.progressRecord.findMany({
-      where: {
-        userId,
-        entityType: "exam",
-        completed: true,
-        score: { not: null },
-      },
-      orderBy: { createdAt: "desc" },
-      take: scoped ? 40 : 8,
-    }),
+    recentExamsPromise,
     prisma.questionAttempt.groupBy({
       by: ["correct"],
       where: { userId, ...attemptScope },
       _count: { _all: true },
     }),
     getSpacedReviewSummary(userId, fieldIds),
-    loadFormatPracticeStats(userId, fieldIds),
+    opts?.skipFormatPractice
+      ? Promise.resolve(emptyFormatPracticeStats())
+      : loadFormatPracticeStats(userId, fieldIds),
   ]);
 
   const { totalAttempts, correctCount } = sumAttemptCounts(attemptGroups);
 
-  const examIds = completedRecords.map((r) => r.entityId);
-  const exams =
-    examIds.length > 0
-      ? await prisma.generatedExam.findMany({
-          where: { id: { in: examIds } },
-          select: { id: true, title: true, field: true, questionCount: true },
-        })
-      : [];
-  const examById = new Map(exams.map((e) => [e.id, e]));
-
   // Recent sessions live in ProgressRecord (no fieldId) → match through the
   // generated exam's field so a scoped view only shows the selected exam.
-  function recordInScope(entityId: string): boolean {
+  function recordInScope(row: RecentExamJoinRow): boolean {
     if (!scoped) return true;
-    const exam = examById.get(entityId);
-    if (!exam) return false;
-    const field = normalizeFieldId(exam.field);
+    if (!row.examField) return false;
+    const field = normalizeFieldId(row.examField);
     if (fieldIds!.includes(field)) return true;
     if (scopeSlug && examSlugFromFieldId(field) === scopeSlug) return true;
-    return Boolean(scopeSlug && exam.field === scopeSlug);
+    return Boolean(scopeSlug && row.examField === scopeSlug);
   }
 
   const weakTopics = mapWeakTopics(masteries);
 
-  const recentTests: RecentTestRow[] = completedRecords
-    .filter((r) => recordInScope(r.entityId))
+  const recentTests: RecentTestRow[] = recentExamRows
+    .filter((row) => recordInScope(row))
     .slice(0, 8)
-    .map((r) => {
-    const exam = examById.get(r.entityId);
+    .map((row) => {
     let correct: number | null = null;
     let total: number | null = null;
-    if (r.metadata) {
+    if (row.metadata) {
       try {
-        const meta = JSON.parse(r.metadata) as { correct?: number; total?: number };
+        const meta = JSON.parse(row.metadata) as { correct?: number; total?: number };
         if (typeof meta.correct === "number") correct = meta.correct;
         if (typeof meta.total === "number") total = meta.total;
       } catch {
         /* ignore */
       }
     }
-    const fieldRaw = exam?.field ?? "General";
+    const fieldRaw = row.examField ?? "General";
     const fieldLabel = getFieldMeta(fieldRaw)?.label ?? fieldRaw;
     return {
-      id: r.id,
-      examId: r.entityId,
-      title: studentFacingSessionTitle(exam?.title, {
+      id: row.id,
+      examId: row.entityId,
+      title: studentFacingSessionTitle(row.examTitle, {
         fieldLabel,
         fallback: "Practice exam",
       }),
       field: fieldRaw,
-      score: Math.round(r.score ?? 0),
+      score: Math.round(row.score ?? 0),
       correct,
-      total: total ?? exam?.questionCount ?? null,
-      completedAt: r.createdAt.toISOString(),
+      total: total ?? row.examQuestionCount ?? null,
+      completedAt: row.createdAt.toISOString(),
     };
   });
 

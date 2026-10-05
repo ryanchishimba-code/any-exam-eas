@@ -13,6 +13,10 @@ export function studentReadCacheKeys(userId: string, fieldId?: string | null): s
   if (fieldId) scopes.add(fieldId);
   const keys: string[] = [];
   for (const scope of scopes) {
+    keys.push(cacheKey(["student-dashboard-v5", userId, scope, "trend", "format"]));
+    keys.push(cacheKey(["student-dashboard-v5", userId, scope, "trend", "no-format"]));
+    keys.push(cacheKey(["student-dashboard-v5", userId, scope, "no-trend", "format"]));
+    keys.push(cacheKey(["student-dashboard-v5", userId, scope, "no-trend", "no-format"]));
     keys.push(cacheKey(["student-dashboard-v5", userId, scope, "trend"]));
     keys.push(cacheKey(["student-dashboard-v5", userId, scope, "no-trend"]));
     keys.push(cacheKey(["student-dashboard-v4", userId, scope, "trend"]));

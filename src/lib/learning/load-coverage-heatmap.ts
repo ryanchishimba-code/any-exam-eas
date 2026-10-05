@@ -58,18 +58,43 @@ export async function loadCoverageHeatmapForUser(
   examSlug: ExamSlug,
   fieldId: string
 ): Promise<CoverageHeatmap | null> {
-  const [roadmap, inventory] = await Promise.all([
+  const loaded = await loadQuestionBankCoverage(userId, examSlug, fieldId);
+  return loaded.heatmap;
+}
+
+/**
+ * Heatmap plus the two question-bank slots that used to block the document:
+ * weak-topic marks and the open review count. One roadmap read feeds both.
+ */
+export async function loadQuestionBankCoverage(
+  userId: string,
+  examSlug: ExamSlug,
+  fieldId: string
+): Promise<{
+  heatmap: CoverageHeatmap | null;
+  openIncorrectCount: number | null;
+  weakTopics: import("@/lib/learning/student-dashboard").WeakTopicRow[];
+}> {
+  const { getStudentWeakTopics } = await import("@/lib/learning/student-dashboard");
+  const [roadmap, inventory, weakTopics] = await Promise.all([
     getExamRoadmapData(userId, examSlug, {
       usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
     }).catch(() => null),
     loadCoverageInventory(fieldId),
+    getStudentWeakTopics(userId, [fieldId]),
   ]);
-  if (!roadmap) return null;
-  return buildCoverageHeatmap({
-    fieldId,
-    topics: coverageTopicsFromRoadmap(roadmap.topics),
-    inventoryCategories: inventory?.categories ?? null,
-    topicQuestionTotal: inventory?.topicQuestionTotal ?? null,
-    bankSubjectIds: getSubjectsForFieldId(fieldId).map((subject) => subject.id),
-  });
+  if (!roadmap) {
+    return { heatmap: null, openIncorrectCount: null, weakTopics };
+  }
+  return {
+    heatmap: buildCoverageHeatmap({
+      fieldId,
+      topics: coverageTopicsFromRoadmap(roadmap.topics),
+      inventoryCategories: inventory?.categories ?? null,
+      topicQuestionTotal: inventory?.topicQuestionTotal ?? null,
+      bankSubjectIds: getSubjectsForFieldId(fieldId).map((subject) => subject.id),
+    }),
+    openIncorrectCount: roadmap.openIncorrectCount,
+    weakTopics,
+  };
 }

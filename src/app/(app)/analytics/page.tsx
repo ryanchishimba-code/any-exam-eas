@@ -2,22 +2,10 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getCachedSession } from "@/lib/auth/session";
 import { ProUpgradeGate } from "@/components/ProUpgradeGate";
-import { StudentAnalyticsDashboard } from "@/components/analytics/StudentAnalyticsDashboard";
+import { AnalyticsLive } from "@/components/analytics/AnalyticsLive";
 import { Skeleton } from "@/components/ui/skeleton";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { canonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
-import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
-import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { getLearningProfileSnapshot } from "@/lib/learning/profile-service";
-import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
-import { boardStudyCountsFromSources } from "@/lib/learning/board-study-counts";
-import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
-import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
-import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
-import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
-import Link from "next/link";
-import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import { studyUi } from "@/lib/study/study-ui";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
@@ -46,76 +34,10 @@ function AnalyticsSkeleton() {
   );
 }
 
-async function AnalyticsContent({
-  userId,
-  examSlug,
-}: {
-  userId: string;
-  examSlug: ExamSlug;
-}) {
-  const examName = EXAM_CATALOG[examSlug].shortName;
-  // Catalog USMLE is Step 2. Counts follow the step the student is practicing,
-  // and the same alias set Review incorrect uses for that step.
-  const metadata = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
-  const fieldId = canonicalPracticeFieldId(examSlug, metadata?.usmleFieldId);
-
-  const [dashboard, profile, roadmap, inventory, activeInventory] = await Promise.all([
-    getStudentDashboardData(userId, [fieldId]),
-    getLearningProfileSnapshot(userId),
-    getExamRoadmapData(userId, examSlug, {
-      usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
-    }).catch(() => null),
-    loadCoverageInventory(fieldId).catch(() => null),
-    getCachedActiveInventory().catch(() => null),
-  ]);
-
-  const boardCounts = boardStudyCountsFromSources({
-    roadmap,
-    headline: dashboard.headline,
-  });
-  const examDayPlan = buildDashboardExamDayPlan({
-    examSlug,
-    fieldId,
-    testDate: null,
-    totalAttempts: boardCounts.totalAttempts,
-    recentAccuracyPct: boardCounts.recentAccuracyPct,
-    openIncorrect: boardCounts.openIncorrect,
-    questionsToday: 0,
-    roadmap,
-    inventoryCategories: inventory?.categories ?? null,
-    topicQuestionTotal: inventory?.topicQuestionTotal ?? null,
-  });
-
+async function AnalyticsFrame({ examSlug }: { examSlug: ExamSlug }) {
   return (
     <ProUpgradeGate feature="advanced_analytics" callbackPath={ROUTES.pricing}>
-      <div className="flex flex-col gap-4 sm:block sm:space-y-8">
-        <div className="order-2 sm:order-none">
-          <p className="mb-3 text-[14px]">
-            <Link href={ROUTES.readiness} className="font-semibold text-[var(--color-accent)]">
-              Readiness checks
-            </Link>
-          </p>
-          <ReadinessProofPanel
-            readiness={examDayPlan.readiness}
-            domainsLabel={examDayPlan.coverage.domainsLabel}
-            coverage={examDayPlan.coverage}
-          />
-        </div>
-        <div className="order-1 sm:order-none">
-          <StudentAnalyticsDashboard
-            examSlug={examSlug}
-            examName={examName}
-            fieldId={fieldId}
-            openRemediation={roadmap?.openRemediation ?? null}
-            initialData={{ dashboard, profile }}
-            formats={
-              activeInventory && !activeInventory.degraded
-                ? activeInventory.fields[fieldId]?.formats ?? null
-                : null
-            }
-          />
-        </div>
-      </div>
+      <AnalyticsLive examSlug={examSlug} />
     </ProUpgradeGate>
   );
 }
@@ -136,7 +58,7 @@ export default async function AnalyticsPage() {
   return (
     <div className={studyUi.page}>
       <Suspense fallback={<AnalyticsSkeleton />} key={pref.examSlug}>
-        <AnalyticsContent userId={session.user.id} examSlug={pref.examSlug} />
+        <AnalyticsFrame examSlug={pref.examSlug} />
       </Suspense>
     </div>
   );
