@@ -17,7 +17,15 @@ import {
 import type { FormatCounts } from "@/lib/inventory/question-format";
 import type { SessionAttemptDraft } from "@/lib/learning/session-attempt-plan";
 import { prisma } from "@/lib/prisma";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { unstable_cache } from "next/cache";
+import {
+  ACTIVE_INVENTORY_CACHE_TAG,
+  ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+  ACTIVE_INVENTORY_STAMP_CACHE_KEY,
+  ACTIVE_INVENTORY_STAMP_TTL_SECONDS,
+} from "@/lib/inventory/active-inventory-cache";
+import { readActiveInventoryStampKey } from "@/lib/inventory/active-inventory-stamp";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import type { NgnItem, NgnReference, SourceRef } from "@/lib/assessment/types";
 
 function asRecord(value: unknown): Record<string, unknown> {
@@ -155,15 +163,57 @@ async function loadPublishedClinicalBankFromDb(fieldId: string): Promise<LoadedC
   }
 }
 
+const STAMP_UNAVAILABLE = "STAMP_UNAVAILABLE";
+
 /**
- * User-agnostic published NGN catalog. Question bank, coverage, and review
- * incorrect all read it. The memory cache keeps a warm isolate off the
- * Prisma connection (limit 1) for five minutes.
+ * Same published stamp as the scored inventory cache, so a purge of
+ * `question-bank-counts` drops this catalog too.
+ */
+async function publishedClinicalStampKey(): Promise<string | null> {
+  try {
+    return await unstable_cache(
+      async () => {
+        const key = await readActiveInventoryStampKey();
+        if (!key) throw new Error(STAMP_UNAVAILABLE);
+        return key;
+      },
+      [...ACTIVE_INVENTORY_STAMP_CACHE_KEY],
+      {
+        revalidate: ACTIVE_INVENTORY_STAMP_TTL_SECONDS,
+        tags: [ACTIVE_INVENTORY_CACHE_TAG],
+      }
+    )();
+  } catch (error) {
+    if (!(error instanceof Error) || error.message !== STAMP_UNAVAILABLE) {
+      console.error("[clinical-bank] stamp cache failed; reading the bank directly:", error);
+    }
+    return null;
+  }
+}
+
+async function loadSharedClinicalBank(fieldId: string): Promise<LoadedClinicalBank> {
+  const stampKey = await publishedClinicalStampKey();
+  if (!stampKey) return loadPublishedClinicalBankFromDb(fieldId);
+  return unstable_cache(
+    () => loadPublishedClinicalBankFromDb(fieldId),
+    ["published-clinical-bank-v1", fieldId, stampKey],
+    {
+      revalidate: ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+      tags: [ACTIVE_INVENTORY_CACHE_TAG],
+    }
+  )();
+}
+
+/**
+ * User-agnostic published NGN catalog. Clinical sessions and review-incorrect
+ * read it. A warm isolate keeps the object for five minutes. A cold isolate
+ * reuses the tagged data-cache entry instead of rebuilding every chart.
+ * A thrown read is not cached. A missing stamp skips the shared cache.
  */
 export async function loadPublishedClinicalBank(fieldId: string): Promise<LoadedClinicalBank> {
   const hit = clinicalBankCache.get(fieldId);
   if (hit && Date.now() - hit.at < CLINICAL_BANK_TTL_MS) return hit.bank;
-  const bank = await loadPublishedClinicalBankFromDb(fieldId);
+  const bank = await loadSharedClinicalBank(fieldId);
   clinicalBankCache.set(fieldId, { at: Date.now(), bank });
   return bank;
 }

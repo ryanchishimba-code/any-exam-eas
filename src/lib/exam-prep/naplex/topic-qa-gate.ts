@@ -4,7 +4,7 @@
 import { getSubjectsForField } from "@/lib/field-subjects";
 import { getHighYieldTopics } from "@/lib/edtech/seeds";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
-import { NAPLEX_CALC_TOPIC_SLUGS } from "./calc-topic-qa";
+import { NAPLEX_CALC_TOPIC_SLUGS } from "./naplex-calc-match";
 import {
   NAPLEX_TOPIC_REGISTRY,
   getNaplexTopicMeta,

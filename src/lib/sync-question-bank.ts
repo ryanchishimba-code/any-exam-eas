@@ -425,29 +425,4 @@ export async function ensureQuestionBankSeeded(): Promise<void> {
   }
 }
 
-export async function getLastQuestionBankSync() {
-  return prisma.questionBankSync.findFirst({
-    orderBy: { finishedAt: "desc" },
-  });
-}
-
-/**
- * Serve-ready count for a (field, subject). Mirrors the serve filter
- * (`active && qaPassed`, plus USMLE Step 2/3 separation) so the number never
- * overstates the practiceable pool. Previously counted `active` only, which
- * could report questions that the bank would never actually serve.
- */
-export async function getSubjectQuestionCount(fieldId: string, subjectId: string) {
-  return prisma.questionBankItem.count({
-    where: {
-      fieldId,
-      subjectId,
-      active: true,
-      qaPassed: true,
-      // Legacy Step 3 rows live under usmle-step-2; exclude them from Step 2 CK.
-      ...(fieldId === "usmle-step-2"
-        ? { OR: [{ stepLevel: null }, { stepLevel: { not: "step3" } }] }
-        : {}),
-    },
-  });
-}
+export { getLastQuestionBankSync, getSubjectQuestionCount } from "./question-bank-sync-meta";

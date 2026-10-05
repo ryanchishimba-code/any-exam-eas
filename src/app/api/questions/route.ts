@@ -18,11 +18,11 @@ import {
   parseDeliberatePracticeFormat,
   retainItemsForPracticeFormat,
 } from "@/lib/study/practice-format";
-import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/bulk-question-generator";
+import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/question-bank/min-per-subject";
 import {
   getLastQuestionBankSync,
   getSubjectQuestionCount,
-} from "@/lib/sync-question-bank";
+} from "@/lib/question-bank-sync-meta";
 import {
   parseNclexTimedVariant,
   resolveTimedExamLimit,
@@ -33,7 +33,8 @@ import { studyQuestionsToExamQuestions } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
-import { fieldSupportsBlueprintTimedExam } from "@/lib/exam-prep/compose/compose-timed-exam-session";
+import { fieldSupportsBlueprintTimedExam } from "@/lib/exam-prep/compose/blueprint-timed-fields";
+import { resolveExamBankSampleCount } from "@/lib/questions/exam-sample-count";
 import type { BankItem } from "@/lib/question-bank";
 
 const MIXED_SUBJECT_ID = "__mixed__";
@@ -241,19 +242,6 @@ export async function GET(req: Request) {
     }
   }
 
-  const { bankItemToSessionRaw, prepareBankItemsForSession } = await import(
-    "@/lib/exam-prep/prepare-bank-session"
-  );
-  const {
-    resolveExamBankSampleCount,
-    finalizeExamSessionQuestions,
-    assertExamSessionReady,
-    mapApiQuestionsToStudy,
-    assessExamSessionQuality,
-  } = await import("@/lib/questions/finalize-exam-session");
-  const { gatherTopicBankSessionPool } = await import(
-    "@/lib/exam-prep/topic-bank-practice"
-  );
   const bankPractice = questionBank && !timedExam;
   const topicPractice = bankPractice;
   const sampleCount = resolveExamBankSampleCount(fieldId, limit, timedExam, {
@@ -268,6 +256,55 @@ export async function GET(req: Request) {
 
   let items: BankItem[];
   let preAssembledTimed = false;
+
+  let sessionModulesFailed: unknown = null;
+  const loadSessionModule = <T>(promise: Promise<T>): Promise<T | null> =>
+    promise.then(
+      (value) => value,
+      (error) => {
+        sessionModulesFailed = error;
+        return null;
+      }
+    );
+  // Overlap gate/module init with the bank read. Topic gather and timed
+  // assembly need their modules before a pooled connection is checked out.
+  const preparePromise = loadSessionModule(import("@/lib/exam-prep/prepare-bank-session"));
+  const finalizePromise = loadSessionModule(import("@/lib/questions/finalize-exam-session"));
+  const topicPromise = bankPractice
+    ? loadSessionModule(import("@/lib/exam-prep/topic-bank-practice"))
+    : null;
+  const timedAssemblePromise =
+    mixed && timedExam
+      ? loadSessionModule(import("@/lib/exam-prep/compose/assemble-timed-exam-session"))
+      : null;
+
+  const includeMeta = searchParams.get("meta") !== "0";
+  let metaResult: [number, number, Awaited<ReturnType<typeof getLastQuestionBankSync>>] | null =
+    null;
+  let metaFailed: unknown = null;
+  const metaPromise = includeMeta
+    ? Promise.all([
+        countActiveQuestions(fieldId),
+        blueprintAreaId
+          ? countBlueprintAreaQuestions(fieldId, blueprintAreaId)
+          : !mixed && subjectId
+            ? getSubjectQuestionCount(fieldId, subjectId)
+            : Promise.resolve(0),
+        getLastQuestionBankSync(),
+      ]).then(
+        (value) => {
+          metaResult = value;
+        },
+        (error) => {
+          metaFailed = error;
+        }
+      )
+    : null;
+
+  if (topicPromise || timedAssemblePromise) {
+    await Promise.all([topicPromise, timedAssemblePromise].filter((promise) => promise != null));
+    if (sessionModulesFailed) throw sessionModulesFailed;
+  }
 
   const sampled = await withDbRetry(async () => {
     if (blueprintAreaId && questionBank && !timedExam && !formatBucket) {
@@ -296,10 +333,9 @@ export async function GET(req: Request) {
     }
 
     if (mixed && timedExam) {
-      const { assembleTimedExamSessionItems } = await import(
-        "@/lib/exam-prep/compose/assemble-timed-exam-session"
-      );
-      const assembled = await assembleTimedExamSessionItems({
+      const timedMod = await timedAssemblePromise;
+      if (!timedMod) throw sessionModulesFailed;
+      const assembled = await timedMod.assembleTimedExamSessionItems({
         fieldId,
         field,
         limit,
@@ -331,9 +367,11 @@ export async function GET(req: Request) {
     }
 
     if (bankPractice) {
+      const topicMod = await topicPromise;
+      if (!topicMod) throw sessionModulesFailed;
       return {
         kind: "ok" as const,
-        items: await gatherTopicBankSessionPool({
+        items: await topicMod.gatherTopicBankSessionPool({
           fieldId,
           subjectId: subjectId!,
           sessionLimit: limit,
@@ -384,6 +422,19 @@ export async function GET(req: Request) {
 
   items = sampled.items;
   preAssembledTimed = sampled.preAssembledTimed;
+
+  const prepareMod = await preparePromise;
+  const finalizeMod = await finalizePromise;
+  if (!prepareMod || !finalizeMod) {
+    throw sessionModulesFailed ?? new Error("Failed to load question session modules");
+  }
+  const { bankItemToSessionRaw, prepareBankItemsForSession } = prepareMod;
+  const {
+    finalizeExamSessionQuestions,
+    assertExamSessionReady,
+    mapApiQuestionsToStudy,
+    assessExamSessionQuality,
+  } = finalizeMod;
 
   if (items.length > 0 && !(mixed && timedExam) && !bankPractice) {
     items = prepareBankItemsForSession({
@@ -719,17 +770,12 @@ export async function GET(req: Request) {
 
   const questions: ExamQuestion[] = studyQuestionsToExamQuestions(prepared);
 
-  const includeMeta = searchParams.get("meta") !== "0";
-
-  const totalActive = includeMeta ? await countActiveQuestions(fieldId) : 0;
-  const subjectTotal = includeMeta
-    ? blueprintAreaId
-      ? await countBlueprintAreaQuestions(fieldId, blueprintAreaId)
-      : mixed
-        ? totalActive
-        : await getSubjectQuestionCount(fieldId, subjectId!)
-    : 0;
-  const lastSync = includeMeta ? await getLastQuestionBankSync() : null;
+  if (metaPromise) await metaPromise;
+  if (metaFailed) throw metaFailed;
+  const totalActive = metaResult ? metaResult[0] : 0;
+  const scopedCount = metaResult ? metaResult[1] : 0;
+  const subjectTotal = metaResult ? (blueprintAreaId || !mixed ? scopedCount : metaResult[0]) : 0;
+  const lastSync = metaResult ? metaResult[2] : null;
 
   trackEvent({
     userId,

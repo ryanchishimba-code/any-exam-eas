@@ -7,7 +7,7 @@ import {
   isNaplexCalcTopicSlug,
   isNaplexCalculationItem,
   matchesNaplexCalcSubtopic,
-} from "./calc-topic-qa";
+} from "./naplex-calc-match";
 
 function itemText(item: BankItem): string {
   return [

@@ -20,7 +20,7 @@ import { claviclePathPoints, ribPathPoints, sternumAnchorY } from "../cartoon/sk
 import { CATALOG_SKULL_RADIUS } from "../cartoon/skull-geometry";
 import { skullCatalogPointToWorld } from "../cartoon/skull-bone-geometry";
 
-export const ADULT_BONE_COUNT = 206;
+export { ADULT_BONE_COUNT } from "./bone-identity";
 
 export type BoneSide = "right" | "left" | "midline";
 export type BoneRegion =

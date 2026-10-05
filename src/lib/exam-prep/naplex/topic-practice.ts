@@ -1,6 +1,6 @@
 import type { HighYieldTopic } from "@/types/edtech";
 import { getNaplexTopicMeta } from "./topic-registry";
-import { isNaplexCalcTopicSlug } from "./calc-topic-qa";
+import { isNaplexCalcTopicSlug } from "./naplex-calc-match";
 
 export type NaplexTopicPracticeParams = {
   /** Pharmacy subject bucket for the initial DB pull. */

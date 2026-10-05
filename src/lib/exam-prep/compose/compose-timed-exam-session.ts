@@ -6,6 +6,8 @@ import type { BankItem } from "@/lib/question-bank";
 import type { SelectionSummary } from "@/lib/exam-prep/naplex/blueprint-selection";
 import { composePracticeExamProgressive } from "./compose-practice-exam";
 import { resolveExamComposeConfig } from "./exam-compose-config";
+
+export { fieldSupportsBlueprintTimedExam } from "./blueprint-timed-fields";
 import { userFacingComposeTiers, EXACT_FILL_COMPOSE_TIER } from "@/lib/exam-prep/progressive-compose";
 import { resolveLiveComposePoolLimit } from "@/lib/exam-prep/progressive-exam-relaxation";
 
@@ -26,11 +28,6 @@ export type ComposeTimedExamSessionResult = {
   selectionSummary: SelectionSummary;
   tierId: string;
 };
-
-/** True when this field has a published blueprint + compose config. */
-export function fieldSupportsBlueprintTimedExam(fieldId: string): boolean {
-  return Boolean(resolveExamComposeConfig(fieldId));
-}
 
 /**
  * Compose a timed exam session aligned to the board content outline.

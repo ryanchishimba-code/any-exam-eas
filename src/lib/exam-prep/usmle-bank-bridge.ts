@@ -1,7 +1,7 @@
 import type { ExamQuestion } from "@/lib/ai";
 import type { BankItem } from "@/lib/question-bank";
 import { coerceOptionList } from "@/lib/questions/option-coerce";
-import { splitUsmleBankItem } from "./usmle-clinical-gate";
+import { splitUsmleBankItem } from "./usmle-bank-split";
 
 const USMLE_ITEM_MAP: Record<string, ExamQuestion["type"]> = {
   mcq: "multiple_choice",

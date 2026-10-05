@@ -1,9 +1,9 @@
 import { getFieldMeta } from "./fields";
 import {
-  getAllFieldSubjects,
-  getSubjectArea as getRegistrySubjectArea,
+  getSubjectArea,
   getSubjectsForFieldId,
-} from "./subjects/registry";
+  PRACTICE_FIELD_META,
+} from "./subjects/subject-catalog";
 import { normalizeFieldId } from "./subjects/field-ids";
 import type { SubjectArea } from "./subjects/types";
 
@@ -11,10 +11,12 @@ import type { SubjectArea } from "./subjects/types";
 export type FieldSubject = SubjectArea;
 
 /**
- * Subject areas per field — sourced from registered subject modules.
- * Add a new discipline by registering a module in subjects/registry.ts.
+ * Subject areas per field — topic lists only.
+ * Generation modules stay in subjects/registry.ts.
  */
-export const FIELD_SUBJECTS: Record<string, FieldSubject[]> = getAllFieldSubjects();
+export const FIELD_SUBJECTS: Record<string, FieldSubject[]> = Object.fromEntries(
+  PRACTICE_FIELD_META.map((meta) => [meta.id, getSubjectsForFieldId(meta.id)])
+);
 
 export function getSubjectsForField(fieldLabel: string): FieldSubject[] {
   const meta = getFieldMeta(fieldLabel);
@@ -28,7 +30,7 @@ export function getFieldSubject(
 ): FieldSubject | undefined {
   const meta = getFieldMeta(fieldLabel);
   const id = normalizeFieldId(meta?.id ?? fieldLabel);
-  return getRegistrySubjectArea(id, subjectId);
+  return getSubjectArea(id, subjectId);
 }
 
 export function buildScopedTopic(
