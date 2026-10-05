@@ -4,6 +4,7 @@ import {
   ACTIVE_INVENTORY_CACHE_TAG,
   ACTIVE_INVENTORY_PATHS,
 } from "@/lib/inventory/active-inventory-cache";
+import { clearPublishedClinicalBankCache } from "@/lib/assessment/serve-db";
 import { INVENTORY_FIELD_IDS } from "@/lib/inventory/active-questions";
 
 export type ActiveInventoryRevalidateResult =
@@ -24,6 +25,7 @@ export function dropSubjectServedCountCaches(): void {
 
 export function revalidateActiveQuestionInventory(): ActiveInventoryRevalidateResult {
   dropSubjectServedCountCaches();
+  clearPublishedClinicalBankCache();
   try {
     revalidateTag(ACTIVE_INVENTORY_CACHE_TAG);
     for (const path of ACTIVE_INVENTORY_PATHS) {

@@ -20,12 +20,16 @@ import { examMarketingPath } from "@/lib/seo/exam-config";
 import { buildAboutMetadata, buildAboutJsonLd } from "@/lib/seo/marketing-metadata";
 import { formatPricingCheckoutTrialOffer, formatTrialCtaLabel, SITE_NAME } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+/**
+ * Five-minute ISR. This must stay a numeric literal (Next cannot analyze an
+ * imported config value) and must match ACTIVE_INVENTORY_STAMP_TTL_SECONDS.
+ */
+export const revalidate = 300;
 
 export const metadata: Metadata = buildAboutMetadata();
 
 async function publishedOrLiveTotalLabel(): Promise<{ label: string; live: boolean }> {
-  const { snapshot } = await getCachedBankStatsBundle();
+  const { snapshot } = await getCachedBankStatsBundle({ dynamic: false });
   const display = buildLandingBankCountsDisplay(snapshot);
   if (!display.degraded && display.totalServed > 0) {
     return { label: display.sentence || display.totalQuestionsLabel, live: true };

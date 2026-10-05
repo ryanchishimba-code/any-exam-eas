@@ -79,16 +79,18 @@ async function DashboardContent({
         )
       : fieldIdForExamSlug(examSlug);
 
-  // Wave 1: core study state (keep concurrency low — Prisma connection_limit=1 on Vercel).
-  const [stats, dashboard] = await runPageDb(() =>
+  // Wave 1: user stats share the Prisma slot. Coverage is the shared inventory
+  // cache, so it overlaps that slot instead of waiting for a second wave.
+  const [stats, dashboard, inventory] = await runPageDb(() =>
     Promise.all([
       getExamScopedStats(userId, examSlug, fieldId),
       getStudentDashboardData(userId, [fieldId], { skipAccuracyTrend: true }),
+      settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
     ])
   );
 
   // Wave 2: secondary panels — degrade instead of blanking the whole dashboard.
-  const [roadmap, metadata, usage, mastery, inventory, drugsCompletedToday, accountAttemptCount] =
+  const [roadmap, metadata, usage, mastery, drugsCompletedToday, accountAttemptCount] =
     await Promise.all([
     settled(
       getExamRoadmapData(userId, examSlug, {
@@ -130,7 +132,6 @@ async function DashboardContent({
               "mastery"
             )
           : Promise.resolve(null),
-    settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
     settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
     settled(readAccountAttemptCount(userId), null, "tour attempts"),
   ]);

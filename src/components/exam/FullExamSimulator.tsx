@@ -39,7 +39,7 @@ import {
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
-import { mapApiQuestionsToStudy } from "@/lib/questions/finalize-exam-session";
+import { mapApiQuestionsToStudy } from "@/lib/questions/map-api-questions";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
 import {
   CAT_MAX_QUESTIONS,

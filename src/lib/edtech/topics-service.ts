@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { cacheGetOrSetDeduped, cacheKey, CACHE_TTL } from "@/lib/cache";
 import { prisma } from "@/lib/prisma";
 import { getHighYieldTopics as getStaticTopics } from "@/lib/edtech/seeds";
@@ -127,6 +128,25 @@ function enrichLoadedTopics(examSlug: ExamSlug, topics: HighYieldTopic[]): HighY
   return merged;
 }
 
+/**
+ * Topic lists are the same for every student on a board. Cache the read for
+ * five minutes. A thrown database error is not stored, so the static fallback
+ * stays a per-request recovery.
+ */
+const loadHighYieldTopicsCached = unstable_cache(
+  async (examSlug: ExamSlug): Promise<HighYieldTopic[]> => {
+    await syncReviewModuleTopics(examSlug);
+    const rows = await prisma.highYieldTopic.findMany({
+      where: { examSlug },
+      orderBy: { sortOrder: "asc" },
+    });
+    if (rows.length === 0) return getStaticTopics(examSlug);
+    return enrichLoadedTopics(examSlug, rows.map(mapDbTopic));
+  },
+  ["high-yield-topics-v1"],
+  { revalidate: 300, tags: ["high-yield-topics"] }
+);
+
 /** Prefer DB topics when seeded; fall back to static repo content. */
 export async function loadHighYieldTopics(
   examSlug: ExamSlug,
@@ -134,17 +154,7 @@ export async function loadHighYieldTopics(
 ): Promise<HighYieldTopic[]> {
   let topics: HighYieldTopic[];
   try {
-    await syncReviewModuleTopics(examSlug);
-    const rows = await prisma.highYieldTopic.findMany({
-      where: { examSlug },
-      orderBy: { sortOrder: "asc" },
-    });
-    if (rows.length > 0) {
-      const mapped = rows.map(mapDbTopic);
-      topics = enrichLoadedTopics(examSlug, mapped);
-    } else {
-      topics = getStaticTopics(examSlug);
-    }
+    topics = await loadHighYieldTopicsCached(examSlug);
   } catch {
     topics = getStaticTopics(examSlug);
   }

@@ -112,6 +112,22 @@ export function isNeonPooledUrl(url = process.env.DATABASE_URL ?? "") {
  * Append Prisma connection pool hints for serverless (Neon recommended: pooled URL + low limit).
  * @see https://www.prisma.io/docs/guides/performance-and-optimization/connection-management
  */
+/**
+ * Production stays at one Prisma connection per isolate. Raising it lets the
+ * dashboard run TCP queries in parallel and also holds more Neon pooler slots.
+ * Beacons used to exhaust those slots at limit 3–5. Do not change the default
+ * until Ryan sets PRISMA_CONNECTION_LIMIT on a preview and watches for P2024.
+ * This object is not read by withPoolParams.
+ */
+export const NEON_POOL_PROPOSAL = {
+  applied: false,
+  vercelConnectionLimit: "1",
+  experimentConnectionLimit: "2",
+  poolTimeoutSeconds: "20",
+  connectTimeoutSeconds: "15",
+  pgbouncer: true,
+} as const;
+
 export function withPoolParams(url: string): string {
   if (!isPostgresDatabaseUrl(url)) return url;
   try {

@@ -20,7 +20,11 @@ import {
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
 import { AI_ASSISTED_REVIEW_NOTE } from "@/lib/marketing/legal-copy";
 
-export const dynamic = "force-dynamic";
+/**
+ * Five-minute ISR. This must stay a numeric literal (Next cannot analyze an
+ * imported config value) and must match ACTIVE_INVENTORY_STAMP_TTL_SECONDS.
+ */
+export const revalidate = 300;
 
 const TITLE = "How our questions are built and reviewed";
 const DESCRIPTION =
@@ -39,7 +43,10 @@ function countLabel(value: number | null): string | null {
 }
 
 export default async function HowQuestionsAreReviewedPage() {
-  const [facts, bank] = await Promise.all([getQualityFacts(), getCachedBankStatsBundle()]);
+  const [facts, bank] = await Promise.all([
+    getQualityFacts(),
+    getCachedBankStatsBundle({ dynamic: false }),
+  ]);
   const counts = buildLandingBankCountsDisplay(bank.snapshot);
   const suppressed = countLabel(facts.suppressedNursing);
   const nclexUnits = bank.snapshot.boards?.nclex;

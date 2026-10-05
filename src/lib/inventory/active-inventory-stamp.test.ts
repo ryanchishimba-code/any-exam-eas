@@ -55,15 +55,16 @@ describe("inventory surfaces do not keep an hour-old total", () => {
   const isrHubs = [
     "src/app/nclex/page.tsx",
     "src/app/(marketing)/(with-flagship)/[examSlug]/page.tsx",
-  ];
-  const dynamicSurfaces = [
+    "src/app/(marketing)/(with-flagship)/page.tsx",
     "src/app/(marketing)/(with-flagship)/about/page.tsx",
     "src/app/(marketing)/(with-flagship)/free-guides/page.tsx",
-    "src/app/api/marketing/bank-counts/route.ts",
+    "src/app/(marketing)/(with-flagship)/how-questions-are-reviewed/page.tsx",
+    "src/app/(marketing)/(with-flagship)/compare/page.tsx",
   ];
+  const dynamicSurfaces = ["src/app/api/marketing/bank-counts/route.ts"];
   const scripts = ["scripts/retire-near-duplicates.ts", "scripts/remediate-text-flags.ts"];
 
-  it("serves board hubs from a 5-minute ISR and keeps the other count pages dynamic", () => {
+  it("serves public count pages from a 5-minute ISR and keeps the counts API dynamic", () => {
     for (const file of isrHubs) {
       const source = readFileSync(path.join(process.cwd(), file), "utf8");
       expect(source, file).toContain("export const revalidate = 300");

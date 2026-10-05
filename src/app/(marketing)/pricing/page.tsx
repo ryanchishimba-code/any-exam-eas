@@ -8,11 +8,16 @@ import { PricingBoardHeadline } from "@/components/pricing/PricingBoardHeadline"
 import { PageShell } from "@/components/PageShell";
 import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-metadata";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { pricingHeadlineFromContext } from "@/lib/marketing/pricing-headline";
 import { formatExactQuestionCount, publishedSiteQuestionCounts } from "@/lib/counts";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { formatMonthlyPrice } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
+
+/**
+ * Five-minute ISR. Query-string headlines and paywall notices render in
+ * Suspense so this document can stay cached. Counts are the published totals.
+ */
+export const revalidate = 300;
 
 export const metadata: Metadata = buildPricingMetadata(
   formatExactQuestionCount(publishedSiteQuestionCounts().totalQuestions)
@@ -28,28 +33,7 @@ const PricingQueryNotices = dynamic(() =>
   import("@/components/pricing/PricingQueryNotices").then((m) => m.PricingQueryNotices)
 );
 
-type PricingSearch = {
-  field?: string | string[];
-  exam?: string | string[];
-  paywall?: string | string[];
-  upgrade?: string | string[];
-};
-
-function firstParam(value: string | string[] | undefined): string | null {
-  if (Array.isArray(value)) return value[0] ?? null;
-  return value ?? null;
-}
-
-export default async function PricingPage({
-  searchParams,
-}: {
-  searchParams: Promise<PricingSearch>;
-}) {
-  const params = await searchParams;
-  const headline = pricingHeadlineFromContext({
-    field: firstParam(params.field),
-    exam: firstParam(params.exam),
-  });
+export default function PricingPage() {
   const published = publishedSiteQuestionCounts();
   const publishedLabel = formatExactQuestionCount(published.totalQuestions);
 
@@ -57,16 +41,18 @@ export default async function PricingPage({
     <>
       <JsonLdScript data={buildPricingJsonLd(publishedLabel)} />
       <PageShell
-        title={<PricingBoardHeadline initial={headline} />}
+        title={
+          <Suspense fallback={<>Six boards. One monthly price.</>}>
+            <PricingBoardHeadline />
+          </Suspense>
+        }
         description={`${publishedLabel} questions across six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`}
         align="center"
         maxWidth="max-w-3xl"
       >
-        {firstParam(params.paywall) || firstParam(params.upgrade) ? (
-          <Suspense fallback={null}>
-            <PricingQueryNotices />
-          </Suspense>
-        ) : null}
+        <Suspense fallback={null}>
+          <PricingQueryNotices />
+        </Suspense>
 
         <div className="mt-6" data-pricing-fold>
           <Suspense fallback={null}>

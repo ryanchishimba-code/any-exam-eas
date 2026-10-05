@@ -14,7 +14,7 @@ import {
   type ServeCase,
   type ServeItem,
 } from "@/lib/assessment/serve";
-import type { FormatCounts } from "@/lib/inventory/active-questions";
+import type { FormatCounts } from "@/lib/inventory/question-format";
 import type { SessionAttemptDraft } from "@/lib/learning/session-attempt-plan";
 import { prisma } from "@/lib/prisma";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
@@ -84,7 +84,16 @@ const emptyBank = (): LoadedClinicalBank => ({
   caseReferences: {},
 });
 
-export async function loadPublishedClinicalBank(fieldId: string): Promise<LoadedClinicalBank> {
+/** Same window as the public inventory stamp. A purge clears this isolate's copy. */
+const CLINICAL_BANK_TTL_MS = 5 * 60 * 1000;
+
+const clinicalBankCache = new Map<string, { at: number; bank: LoadedClinicalBank }>();
+
+export function clearPublishedClinicalBankCache(): void {
+  clinicalBankCache.clear();
+}
+
+async function loadPublishedClinicalBankFromDb(fieldId: string): Promise<LoadedClinicalBank> {
   const profiles = boardProfilesForField(fieldId);
   if (profiles.length === 0) return emptyBank();
   try {
@@ -144,6 +153,19 @@ export async function loadPublishedClinicalBank(fieldId: string): Promise<Loaded
     if (/ngn_|does not exist|P2021|P2022/i.test(message)) return emptyBank();
     throw error;
   }
+}
+
+/**
+ * User-agnostic published NGN catalog. Question bank, coverage, and review
+ * incorrect all read it. The memory cache keeps a warm isolate off the
+ * Prisma connection (limit 1) for five minutes.
+ */
+export async function loadPublishedClinicalBank(fieldId: string): Promise<LoadedClinicalBank> {
+  const hit = clinicalBankCache.get(fieldId);
+  if (hit && Date.now() - hit.at < CLINICAL_BANK_TTL_MS) return hit.bank;
+  const bank = await loadPublishedClinicalBankFromDb(fieldId);
+  clinicalBankCache.set(fieldId, { at: Date.now(), bank });
+  return bank;
 }
 
 export async function publishedClinicalAddition(fieldId: string) {

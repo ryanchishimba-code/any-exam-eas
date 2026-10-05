@@ -19,8 +19,12 @@ import {
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { absoluteUrl } from "@/lib/seo";
 
-/** Guide index prints the live bank total. Do not keep yesterday's snapshot. */
-export const dynamic = "force-dynamic";
+/**
+ * Five-minute ISR. This must stay a numeric literal (Next cannot analyze an
+ * imported config value) and must match ACTIVE_INVENTORY_STAMP_TTL_SECONDS.
+ * The guide index uses the same stamp as the board hubs.
+ */
+export const revalidate = 300;
 
 export const metadata = buildFreeGuidesMetadata();
 
@@ -67,7 +71,7 @@ function buildFreeGuidesJsonLd() {
 }
 
 export default async function FreeGuidesPage() {
-  const { snapshot } = await getCachedBankStatsBundle();
+  const { snapshot } = await getCachedBankStatsBundle({ dynamic: false });
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
   const liveTotal = !bankCounts.degraded && bankCounts.totalServed > 0;
   const questionTotal = liveTotal ? bankCounts.sentence || bankCounts.totalLabel : "";

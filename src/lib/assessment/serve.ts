@@ -1,5 +1,7 @@
-import type { FormatCounts } from "@/lib/inventory/active-questions";
-import { emptyFormatCounts } from "@/lib/inventory/active-questions";
+import {
+  emptyFormatCounts,
+  type FormatCounts,
+} from "@/lib/inventory/question-format";
 import type { NgnCase, NgnItem } from "@/lib/assessment/types";
 
 export type ServeItem = NgnItem & {
