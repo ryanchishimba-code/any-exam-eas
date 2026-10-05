@@ -28,6 +28,40 @@ if (home.includes('dynamic = "force-dynamic"')) {
   process.exit(1);
 }
 
+const publicPages = [
+  "src/app/nclex/page.tsx",
+  "src/app/(marketing)/(with-flagship)/[examSlug]/page.tsx",
+  "src/app/(marketing)/pricing/page.tsx",
+  "src/app/(marketing)/(with-flagship)/about/page.tsx",
+  "src/app/(marketing)/(with-flagship)/blog/page.tsx",
+  "src/app/(marketing)/(with-flagship)/daily/page.tsx",
+  "src/app/(marketing)/(with-flagship)/daily/[exam]/page.tsx",
+  "src/app/(marketing)/(with-flagship)/daily/[exam]/[date]/page.tsx",
+  "src/app/legal/terms/page.tsx",
+  "src/app/legal/privacy/page.tsx",
+  "src/app/legal/refunds/page.tsx",
+  "src/app/legal/disclaimer/page.tsx",
+  "src/app/auth/login/page.tsx",
+  "src/app/(marketing)/(with-flagship)/contact/page.tsx",
+];
+for (const rel of publicPages) {
+  const text = readFileSync(path.join(root, rel), "utf8");
+  if (text.includes('dynamic = "force-dynamic"')) {
+    console.error(rel + " must not be force-dynamic");
+    process.exit(1);
+  }
+}
+const hubs = readFileSync(
+  path.join(root, "src/lib/seo/exam-config.ts"),
+  "utf8"
+);
+for (const slug of ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"]) {
+  if (!hubs.includes('"' + slug + '"')) {
+    console.error("missing board hub " + slug);
+    process.exit(1);
+  }
+}
+
 const staticDir = path.join(root, ".next/static");
 if (!existsSync(staticDir)) {
   console.log("perf budget: source guards passed (no .next build to measure)");

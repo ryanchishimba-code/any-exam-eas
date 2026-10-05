@@ -14,8 +14,12 @@ import { getSiteUrl } from "@/lib/seo";
 import { LandingCta } from "@/components/landing/LandingCta";
 import type { ExamSlug } from "@/types/edtech";
 
-/** “Today” must resolve at request time — never freeze the hub at build/deploy. */
-export const dynamic = "force-dynamic";
+/**
+ * Today’s six-board set is a pure function of the UTC date. A one-minute
+ * cache keeps the hub off the dynamic path; it rotates within a minute of
+ * midnight instead of waiting for the next deploy.
+ */
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Question of the Day — Free Board Exam Practice",

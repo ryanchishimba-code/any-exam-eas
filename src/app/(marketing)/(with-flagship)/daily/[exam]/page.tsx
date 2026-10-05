@@ -16,8 +16,11 @@ type Props = { params: Promise<{ exam: string }> };
 /** Only the six board slugs are valid under /daily/[exam]. */
 export const dynamicParams = false;
 
-/** Recompute “today” on every request so QOTD rotates at UTC midnight. */
-export const dynamic = "force-dynamic";
+/**
+ * Same one-minute window as the hub. Each of the six boards is prerendered
+ * and regenerated from the UTC date, so a deploy does not freeze yesterday’s item.
+ */
+export const revalidate = 60;
 
 export function generateStaticParams() {
   return EXAM_SLUGS.map((exam) => ({ exam }));

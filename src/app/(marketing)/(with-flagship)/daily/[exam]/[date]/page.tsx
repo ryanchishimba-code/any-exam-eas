@@ -8,13 +8,23 @@ import {
   qotdAbsoluteUrl,
   qotdPath,
 } from "@/lib/demo/qotd";
-import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { getSiteUrl } from "@/lib/seo";
 
 type Props = { params: Promise<{ exam: string; date: string }> };
 
-/** Dated share URLs must resolve on demand so old posts stay stable and invalid paths 404. */
-export const dynamic = "force-dynamic";
+/**
+ * A dated URL is the question for that UTC day on every board. Today’s six
+ * share links are prerendered; any other valid date is cached for a day after
+ * the first request. Invalid dates 404. A deploy rebuilds the pack.
+ */
+export const revalidate = 86400;
+export const dynamicParams = true;
+
+export function generateStaticParams() {
+  const today = new Date().toISOString().slice(0, 10);
+  return EXAM_SLUGS.map((exam) => ({ exam, date: today }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { exam, date } = await params;
