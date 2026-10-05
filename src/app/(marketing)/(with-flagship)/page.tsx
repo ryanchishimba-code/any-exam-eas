@@ -15,8 +15,12 @@ import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/hom
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
 
-/** The hero paints without waiting on the bank snapshot. Counts stream in below. */
-export const dynamic = "force-dynamic";
+/**
+ * Five-minute ISR. This must stay a numeric literal (Next cannot analyze an
+ * imported config value) and must match ACTIVE_INVENTORY_STAMP_TTL_SECONDS.
+ * The hero still streams counts below the fold. Login stays in the shared nav.
+ */
+export const revalidate = 300;
 
 const EMPTY_COUNTS: LandingBankCountsDisplay = {
   totalLabel: "",
@@ -34,12 +38,12 @@ export const metadata: Metadata = buildHomeMetadata(
 );
 
 async function HomeJsonLdLive() {
-  const { snapshot } = await getCachedBankStatsBundle();
+  const { snapshot } = await getCachedBankStatsBundle({ dynamic: false });
   return <HomeJsonLd totalLabel={buildLandingBankCountsDisplay(snapshot).totalLabel} />;
 }
 
 async function HomeProofLive() {
-  const { snapshot } = await getCachedBankStatsBundle();
+  const { snapshot } = await getCachedBankStatsBundle({ dynamic: false });
   return <HomeProofStrip facts={buildHomeProofFacts(siteCountsFromSnapshot(snapshot))} />;
 }
 

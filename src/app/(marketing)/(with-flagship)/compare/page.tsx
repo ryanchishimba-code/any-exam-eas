@@ -6,11 +6,15 @@ import {
 } from "@/lib/marketing/question-bank-counts";
 import { buildCompareJsonLd, buildCompareMetadata } from "@/lib/seo/marketing-metadata";
 
-export const dynamic = "force-dynamic";
+/**
+ * Five-minute ISR. This must stay a numeric literal (Next cannot analyze an
+ * imported config value) and must match ACTIVE_INVENTORY_STAMP_TTL_SECONDS.
+ */
+export const revalidate = 300;
 export const metadata = buildCompareMetadata();
 
 export default async function ComparePage() {
-  const { snapshot, inventory } = await getCachedBankStatsBundle();
+  const { snapshot, inventory } = await getCachedBankStatsBundle({ dynamic: false });
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
   return (
     <>
