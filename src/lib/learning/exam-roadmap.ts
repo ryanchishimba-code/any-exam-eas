@@ -56,7 +56,7 @@ import { reviewFieldIdsForQuery } from "@/lib/learning/review-queue-launch";
 import { selectReviewQueueIds } from "@/lib/learning/item-mastery";
 import { countServableOpenRemediation } from "@/lib/learning/open-remediation-counts";
 import type { OpenRemediationSummary } from "@/lib/learning/remediation-loop";
-import { getSubjectArea } from "@/lib/subjects/registry";
+import { getSubjectArea } from "@/lib/subjects/subject-catalog";
 import { prisma } from "@/lib/prisma";
 import {
   computeCoveragePct,

@@ -15,7 +15,7 @@ import {
   studentFacingSessionTitle,
 } from "@/lib/learning/concept-labels";
 import { getFieldMeta } from "@/lib/fields";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import { loadFormatPracticeStats } from "@/lib/learning/format-practice-stats";
 import type { FormatPracticeStats } from "@/lib/study/practice-format";
 

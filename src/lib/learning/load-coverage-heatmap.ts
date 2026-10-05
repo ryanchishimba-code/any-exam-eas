@@ -4,16 +4,14 @@
  * header already use. Attempt stats come from the exam roadmap.
  */
 
-import { applyScoredClinicalCatalog } from "@/lib/counts";
-import { fieldInventoryPayload } from "@/lib/inventory/active-questions";
 import {
   buildCoverageHeatmap,
   type CoverageHeatmap,
   type CoverageInventoryCategory,
 } from "@/lib/learning/coverage-heatmap";
 import { getExamRoadmapData, type RoadmapTopicRow } from "@/lib/learning/exam-roadmap";
-import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getScoredFieldInventory } from "@/lib/inventory/scored-field-inventory";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import type { ExamSlug } from "@/types/edtech";
 
 export type CoverageInventorySnapshot = {
@@ -40,22 +38,11 @@ export async function loadCoverageInventory(
   fieldId: string
 ): Promise<CoverageInventorySnapshot | null> {
   try {
-    const payload = fieldInventoryPayload(fieldId, await getCachedActiveInventory());
-    if (!payload) return null;
-    const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
-    const bank = await loadPublishedClinicalBank(fieldId).catch(() => null);
-    const scored = applyScoredClinicalCatalog({
-      fieldId,
-      bankTotal: payload.total,
-      topicCounts: payload.counts,
-      formats: payload.formats,
-      topicFormats: payload.topicFormats,
-      categories: payload.categories,
-      catalog: bank?.catalog ?? null,
-    });
+    const scoredField = await getScoredFieldInventory(fieldId);
+    if (!scoredField) return null;
     return {
-      categories: scored.categories,
-      topicQuestionTotal: scored.total,
+      categories: scoredField.scored.categories,
+      topicQuestionTotal: scoredField.scored.total,
     };
   } catch (error) {
     console.warn(

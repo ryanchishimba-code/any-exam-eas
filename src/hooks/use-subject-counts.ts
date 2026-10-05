@@ -25,8 +25,10 @@ export function useSubjectCounts(fieldId: string, options: UseSubjectCountsOptio
       if (previousQuery?.queryKey[1] === fieldId) return previousData;
       return undefined;
     },
-    staleTime: 0,
-    refetchOnMount: "always",
+    // The page already rendered these counts. Refetching on mount repeats the
+    // inventory read and repaints the hub after load. A field change uses a new key.
+    staleTime: seeded ? 5 * 60 * 1000 : 0,
+    refetchOnMount: seeded ? false : "always",
     enabled: Boolean(fieldId),
   });
 }

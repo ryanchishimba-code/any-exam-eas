@@ -270,7 +270,7 @@ async function renderInventoryOnEachRequest(): Promise<void> {
 /**
  * One published stamp for every count surface. A failed lookup is not cached.
  */
-async function readSharedStampKey(): Promise<string | null> {
+export async function getPublishedInventoryStampKey(): Promise<string | null> {
   try {
     return await unstable_cache(
       async () => {
@@ -319,7 +319,7 @@ export async function getCachedBankStatsBundle(
     await renderInventoryOnEachRequest();
   }
 
-  const stampKey = await readSharedStampKey();
+  const stampKey = await getPublishedInventoryStampKey();
   if (!stampKey) return loadBankStatsBundle();
 
   try {

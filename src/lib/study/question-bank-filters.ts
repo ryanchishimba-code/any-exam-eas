@@ -2,7 +2,7 @@ import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import { isOtherOpenSubject } from "@/lib/learning/other-open-subject";
 import { isBlueprintAreaId } from "@/lib/inventory/blueprint-domain-pool";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 
 const MIXED_SUBJECT_IDS = new Set([MIXED_SUBJECT_ID, "mixed"]);
 

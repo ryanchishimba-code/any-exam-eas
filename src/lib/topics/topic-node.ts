@@ -30,7 +30,7 @@ import {
 } from "@/lib/exam-prep/usmle/topic-registry";
 import { getHighYieldTopic } from "@/lib/edtech/seeds";
 import { conceptKeyToSubjectSlug } from "@/lib/study/question-bank-weak-topics";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import { isUsmleStep1Subject } from "@/lib/subjects/medicine/subject-splits";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 

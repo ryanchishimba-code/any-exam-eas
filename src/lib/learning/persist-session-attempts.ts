@@ -1,6 +1,6 @@
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { prisma } from "@/lib/prisma";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import { invalidateStudentReadCaches } from "@/lib/learning/invalidate-read-caches";
 import {
   recordAttemptWithMastery,
