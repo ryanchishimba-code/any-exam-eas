@@ -102,8 +102,12 @@ export default async function QuestionBankPage({
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.questionBank)}`);
   }
 
-  await requireStudyPage(ROUTES.questionBank);
-  const route = await runPageDb(() => resolveQuestionBankRoute(session.user.id, sp));
+  // Access and the board route are independent once the session exists.
+  // Running them together removes a serial wait on the question-bank critical path.
+  const [, route] = await Promise.all([
+    requireStudyPage(ROUTES.questionBank),
+    runPageDb(() => resolveQuestionBankRoute(session.user.id, sp)),
+  ]);
   const style = firstParam(sp.style);
   const subjectId = firstParam(sp.subjectId);
 

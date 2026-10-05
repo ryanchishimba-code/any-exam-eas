@@ -1,7 +1,4 @@
-import { and, count, eq, gte, inArray, sql } from "drizzle-orm";
-import { requireDb } from "@/db";
-import { learningProfiles, questionAttempts } from "@/db/schema";
-import { withDrizzle } from "@/lib/db-resilience";
+import { sqlQuery, withDbRetry } from "@/lib/db";
 import { resolveExamFieldId } from "@/lib/edtech/exam-preference";
 import { reviewFieldIdsForQuery } from "@/lib/learning/review-queue-launch";
 import { CACHE_TTL, CACHE_STALE, cacheGetOrSetDeduped, cacheKey } from "@/lib/cache";
@@ -16,7 +13,7 @@ const EMPTY: StudyHubQuickStats = {
 
 async function loadExamScopedStats(
   userId: string,
-  examSlug: ExamSlug,
+  _examSlug: ExamSlug,
   fieldId: string
 ): Promise<StudyHubQuickStats> {
   const since = new Date();
@@ -26,63 +23,53 @@ async function loadExamScopedStats(
   todayStart.setUTCHours(0, 0, 0, 0);
 
   const attemptFields = reviewFieldIdsForQuery(fieldId);
-  const fieldMatch = () =>
-    inArray(
-      questionAttempts.fieldId,
-      attemptFields.length > 0 ? attemptFields : [fieldId]
-    );
+  const fields = attemptFields.length > 0 ? attemptFields : [fieldId];
+  const params: unknown[] = [userId, since, todayStart];
+  const fieldSql = fields
+    .map((field) => {
+      params.push(field);
+      return `$${params.length}`;
+    })
+    .join(", ");
 
-  const [attemptRows, todayRows, profileRows] = await Promise.all([
-    withDrizzle("stats.attempts30d", () =>
-      requireDb()
-        .select({
-          total: count(),
-          correct: sql<number>`sum(case when ${questionAttempts.correct} then 1 else 0 end)::int`,
-        })
-        .from(questionAttempts)
-        .where(
-          and(
-            eq(questionAttempts.userId, userId),
-            fieldMatch(),
-            gte(questionAttempts.createdAt, since)
-          )
-        )
-    ),
-    withDrizzle("stats.attemptsToday", () =>
-      requireDb()
-        .select({ total: count() })
-        .from(questionAttempts)
-        .where(
-          and(
-            eq(questionAttempts.userId, userId),
-            fieldMatch(),
-            gte(questionAttempts.createdAt, todayStart)
-          )
-        )
-    ),
-    withDrizzle("stats.profile", () =>
-      requireDb()
-        .select({ streak: learningProfiles.studyStreakDays })
-        .from(learningProfiles)
-        .where(eq(learningProfiles.userId, userId))
-        .limit(1)
-    ),
-  ]);
-
-  const attemptRow = attemptRows[0];
-  const todayRow = todayRows[0];
-  const profile = profileRows[0];
-
-  const total = Number(attemptRow?.total ?? 0);
-  const correct = Number(attemptRow?.correct ?? 0);
+  // One Neon HTTP round trip, off the Prisma connection_limit=1 slot.
+  // The 30-day window includes today, so both counts come from one scan.
+  const rows = await withDbRetry(
+    () =>
+      sqlQuery<
+        { total: number; correct: number; today: number; streak: number | null }[]
+      >(
+        `
+        SELECT
+          COUNT(*) FILTER (WHERE "createdAt" >= $2)::int AS total,
+          COALESCE(SUM(CASE WHEN "correct" AND "createdAt" >= $2 THEN 1 ELSE 0 END), 0)::int AS correct,
+          COUNT(*) FILTER (WHERE "createdAt" >= $3)::int AS today,
+          (
+            SELECT "studyStreakDays"
+            FROM "LearningProfile"
+            WHERE "userId" = $1
+            LIMIT 1
+          ) AS streak
+        FROM "QuestionAttempt"
+        WHERE "userId" = $1
+          AND "fieldId" IN (${fieldSql})
+          AND "createdAt" >= $2
+        `,
+        params
+      ),
+    "stats.scoped"
+  );
+  const row = rows[0];
+  const total = Number(row?.total ?? 0);
+  const correct = Number(row?.correct ?? 0);
 
   // questionsAnswered / accuracyPct are the last 30 days only. Board totals
   // (Today's block, readiness sample, analytics) use the full attempt scan.
   return {
     questionsAnswered: total,
-    questionsToday: Number(todayRow?.total ?? 0),
+    questionsToday: Number(row?.today ?? 0),
     accuracyPct: total > 0 ? Math.round((correct / total) * 100) : 0,
-    streakDays: profile?.streak ?? 0,
+    streakDays: Number(row?.streak ?? 0),
   };
 }
 

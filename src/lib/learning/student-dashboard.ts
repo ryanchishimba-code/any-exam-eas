@@ -241,21 +241,29 @@ async function getSpacedReviewSummary(
   fieldIds: FieldScope
 ): Promise<SpacedReviewSummary> {
   const now = new Date();
-  const scope = fieldWhere(fieldIds);
-  const [dueCount, weakDueCount] = await Promise.all([
-    prisma.questionMastery.count({
-      where: { userId, nextDue: { lte: now }, ...scope },
-    }),
-    prisma.questionMastery.count({
-      where: {
-        userId,
-        nextDue: { lte: now },
-        abilityEstimate: { lt: 0.55 },
-        ...scope,
-      },
-    }),
-  ]);
-  return { dueCount, weakDueCount };
+  const ids = expandReviewFieldIds(fieldIds);
+  const fieldClause =
+    ids.length > 0
+      ? Prisma.sql`AND "fieldId" IN (${Prisma.join(ids)})`
+      : Prisma.empty;
+  // One scan instead of two counts. connection_limit=1 would run those back to back.
+  const rows = await prisma.$queryRaw<{ due_count: number; weak_due_count: number }[]>(
+    Prisma.sql`
+      SELECT
+        COUNT(*) FILTER (WHERE "nextDue" <= ${now})::int AS due_count,
+        COUNT(*) FILTER (
+          WHERE "nextDue" <= ${now} AND "abilityEstimate" < 0.55
+        )::int AS weak_due_count
+      FROM "QuestionMastery"
+      WHERE "userId" = ${userId}
+        ${fieldClause}
+    `
+  );
+  const row = rows[0];
+  return {
+    dueCount: Number(row?.due_count ?? 0),
+    weakDueCount: Number(row?.weak_due_count ?? 0),
+  };
 }
 
 function mapWeakTopics(
