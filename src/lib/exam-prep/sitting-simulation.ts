@@ -4,7 +4,7 @@
  * published NGN rows the old gather never merged in.
  */
 import type { BankItem } from "@/lib/question-bank";
-import { sittingAskKey, sittingEntityKey } from "@/lib/exam-prep/entity-cap";
+import { sittingAskKey, sittingCapTags, sittingEntityKey } from "@/lib/exam-prep/entity-cap";
 import { isServableToStudents } from "@/lib/exam-prep/student-eligibility";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { finalizeAssembledSitting } from "@/lib/exam-prep/sitting-selection";
@@ -179,8 +179,18 @@ function buildShared(fieldId: string, limit: number, uniqueExtra: number, ngnCou
 
 /** NAPLEX-length pharmacy sitting and an NCLEX CAT-sized nursing pool. */
 export function simulatedBoards(): { naplex: SimulatedBank; nclex: SimulatedBank } {
+  const naplex = buildShared("pharmacy", 225, 260, 0);
+  // Drug mentions are capped at 2, so a long pharmacy pull needs stems that name no capped drug.
+  const neutral = Array.from({ length: 120 }, (_, i) =>
+    mcq(
+      `neutral-${i}`,
+      `Which storage step applies to shipment lot ${i} before it leaves the pharmacy vault?`,
+      { choices: uniqueChoices(`vault-${i}`), correctIndex: i % 3 }
+    )
+  );
+  naplex.wide.push(...neutral);
   return {
-    naplex: buildShared("pharmacy", 225, 260, 0),
+    naplex,
     nclex: buildShared("nursing", 150, 180, 40),
   };
 }
@@ -283,6 +293,7 @@ export function deliverCatSitting(
       entityKey: sittingEntityKey(text, fieldId),
       askKey: sittingAskKey(item.question) ?? sittingAskKey(text),
       clusterId: clusters[index],
+      ...sittingCapTags(item, fieldId),
       item,
     };
   });

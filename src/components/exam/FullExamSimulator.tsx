@@ -35,7 +35,7 @@ import {
   fullExamSubmitEndedEarly,
   shouldOfferFullExamReviewSubmit,
 } from "@/lib/full-exam/submit-intent";
-import { sittingAskKey, sittingEntityKey } from "@/lib/exam-prep/entity-cap";
+import { sittingAskKey, sittingCapTags, sittingEntityKey } from "@/lib/exam-prep/entity-cap";
 import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
@@ -104,6 +104,9 @@ type CatPoolItem = StudyQuestion & {
   entityKey?: string | null;
   askKey?: string | null;
   clusterId?: string | null;
+  drugKeys?: readonly string[] | null;
+  conditionKey?: string | null;
+  repeatKeys?: readonly string[] | null;
 };
 
 function narrowTopicForQuestion(question: StudyQuestion): string | null {
@@ -161,6 +164,9 @@ function catFormatHint(pool: CatPoolItem[], delivered: StudyQuestion[]): CatForm
         entityKey: tagged.entityKey,
         askKey: tagged.askKey,
         clusterId: tagged.clusterId,
+        drugKeys: tagged.drugKeys,
+        conditionKey: tagged.conditionKey,
+        repeatKeys: tagged.repeatKeys,
       };
     }),
   };
@@ -362,6 +368,16 @@ export function FullExamSimulator({
           );
           const pool: CatPoolItem[] = items.map((q, i) => {
             const text = [q.vignette, q.stem].filter(Boolean).join("\n");
+            const source = {
+              question: q.stem,
+              vignette: q.vignette,
+              scenario: q.vignette,
+              subjectId: q.subjectId,
+              topicCategory: q.topicCategory,
+              blueprintTopic: q.blueprintTopic,
+              tags: q.tags,
+              ngnPayload: q.ngnPayload,
+            };
             return {
               ...q,
               ...catFormatFields(q),
@@ -370,6 +386,7 @@ export function FullExamSimulator({
               entityKey: sittingEntityKey(text, fieldId),
               askKey: sittingAskKey(q.stem) ?? sittingAskKey(text),
               clusterId: clusters[i],
+              ...sittingCapTags(source, fieldId),
             };
           });
           const first = pickCatNext(initCatSession(), pool, new Set(), Math.random, catFormatHint(pool, []));

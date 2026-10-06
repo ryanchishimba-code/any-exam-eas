@@ -6,7 +6,9 @@ import {
   entityShareCap,
   isPharmacyNumericEntry,
   itemClinicalText,
+  nursingConditionCap,
   nursingDosageShareCap,
+  PHARMACY_DRUG_CAP,
 } from "@/lib/exam-prep/entity-cap";
 import {
   finalizeAssembledSitting,
@@ -493,6 +495,219 @@ describe("finalizeAssembledSitting caps", () => {
     expect(ids).not.toContain("qa-failed-calc");
     expect(ids).not.toContain("inactive-calc");
     expect(ids).not.toContain("sata-one-key");
+  });
+});
+
+describe("sitting-wide drug, condition, and case caps", () => {
+  const filler = (id: string, field: "pharmacy" | "nursing") =>
+    item(
+      id,
+      field === "pharmacy"
+        ? `Which counseling point applies to refill case ${id}?`
+        : `Which isolation step is required before entering room ${id}?`,
+      [`Point ${id}`, "Skip the step"],
+      `Point ${id}`,
+      { itemType: "mcq" }
+    );
+
+  it("caps each pharmacy drug at 2 even when a longer drug is also in the vignette", () => {
+    const token = ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india", "juliet"] as const;
+    const about = (drug: string, index: number, subject?: string) =>
+      item(
+        `${drug}-${index}`,
+        subject
+          ? `Which monitoring step is required before the next dose in encounter ${token[index] ?? index}?`
+          : `Which monitoring step is required before the next ${drug} dose in encounter ${token[index] ?? index}?`,
+        [`Check ${drug} ${index}`, "Skip the visit"],
+        `Check ${drug} ${index}`,
+        {
+          itemType: "mcq",
+          subjectId: subject,
+          scenario:
+            drug === "lisinopril" && !subject
+              ? `${token[index] ?? "note"} chart is a separate follow-up with its own counseling goal. Home therapy includes acetaminophen.`
+              : `${token[index] ?? "note"} chart is a separate follow-up with its own counseling goal.`,
+        }
+      );
+    const pair = (id: string, scene: string, question: string) =>
+      item(id, question, [`Act ${id}`, "Wait"], `Act ${id}`, {
+        itemType: "mcq",
+        scenario: scene,
+      });
+    const pool = [
+      ...Array.from({ length: 6 }, (_, index) => about("lisinopril", index)),
+      ...Array.from({ length: 4 }, (_, index) => about("lisinopril", index + 6, "lisinopril")),
+      ...Array.from({ length: 5 }, (_, index) => about("warfarin", index)),
+      ...Array.from({ length: 4 }, (_, index) => about("apixaban", index)),
+      ...Array.from({ length: 5 }, (_, index) => about("gabapentin", index)),
+      ...Array.from({ length: 4 }, (_, index) => about("clopidogrel", index)),
+      pair(
+        "gaba-micro-a",
+        "A patient asks whether gabapentin is listed in Micromedex before the evening dose. Chart A is open.",
+        "Which reference check is required before the gabapentin dose?"
+      ),
+      pair(
+        "gaba-micro-b",
+        "A patient asks whether gabapentin is listed in Micromedex before the evening dose. Chart B is open.",
+        "Which reference check is required before the gabapentin dose?"
+      ),
+      ...Array.from({ length: 80 }, (_, index) => filler(`fill-${index}`, "pharmacy")),
+    ];
+    const selected = finalizeAssembledSitting({ pool, limit: 50, fieldId: "pharmacy", seed: 50 });
+    const mentions = (drug: string) =>
+      selected.items.filter((row) => {
+        const text = `${row.subjectId ?? ""}\n${itemClinicalText(row)}`;
+        return new RegExp(`\\b${drug}\\b`, "i").test(text);
+      }).length;
+    expect(selected.items).toHaveLength(50);
+    expect(PHARMACY_DRUG_CAP).toBe(2);
+    for (const drug of ["lisinopril", "warfarin", "apixaban", "gabapentin", "clopidogrel"]) {
+      expect(mentions(drug)).toBeLessThanOrEqual(2);
+    }
+    const micromedex = selected.items.filter((row) => /micromedex/i.test(itemClinicalText(row)));
+    expect(micromedex).toHaveLength(1);
+  });
+
+  it("caps NCLEX conditions at 3 and keeps one copy of an identical case", () => {
+    const routine = (id: string, weeks: number) =>
+      item(
+        id,
+        "Which priority intervention is required at this routine prenatal visit?",
+        [`Teach ${id}`, "Delay teaching"],
+        `Teach ${id}`,
+        {
+          scenario: `A ${22 + (weeks % 4)}-year-old pregnant client at ${weeks} weeks presents for a routine prenatal visit. Chart ${id} is open.`,
+        }
+      );
+    const distinctPregnancy = (id: string, concern: string) =>
+      item(
+        id,
+        `Which finding during this ${concern} prenatal visit should be reported first?`,
+        [`Report ${id}`, "Recheck tomorrow"],
+        `Report ${id}`,
+        { scenario: `Prenatal clinic note ${id}: the concern is ${concern}, which is not the routine template.` }
+      );
+    const gallbladder = (id: string, label: string) =>
+      item(
+        id,
+        `Which action is first for this ${label} client in bay ${id}?`,
+        [`Act ${id}`, "Wait"],
+        `Act ${id}`,
+        { scenario: `Bay ${id} has a different ${label} history and a unique exam finding ${id}.` }
+      );
+    const moodToken = ["amber", "birch", "cedar", "dune", "elm", "fern"] as const;
+    const depressed = (id: string, index: number) =>
+      item(
+        id,
+        `Which safety step is first for the client in room ${moodToken[index]} who feels depressed?`,
+        [`Stay ${id}`, "Leave"],
+        `Stay ${id}`,
+        {
+          scenario: `${moodToken[index]} clinic documents a separate mood assessment. The client feels depressed and is not suicidal.`,
+        }
+      );
+    const anaphylaxis = (id: string) =>
+      item(
+        id,
+        id.endsWith("b") ? "Which medication is given first?" : "Which action is the priority?",
+        [`Epinephrine ${id}`, "Diphenhydramine"],
+        `Epinephrine ${id}`,
+        {
+          scenario:
+            "A client develops anaphylaxis with hives, wheezing, and hypotension minutes after the antibiotic infusion. The crash cart is outside the room.",
+        }
+      );
+    const pool = [
+      ...Array.from({ length: 4 }, (_, index) => routine(`preg-${index}`, 28 + index)),
+      ...["headache", "swelling", "glucose", "fundal"].map((concern, index) =>
+        distinctPregnancy(`preg-other-${index}`, concern)
+      ),
+      ...["gallbladder", "cholecystitis", "cholelithiasis", "laparoscopic cholecystectomy", "gallbladder pain"].map(
+        (label, index) => gallbladder(`gall-${index}`, label)
+      ),
+      ...Array.from({ length: 6 }, (_, index) => depressed(`mood-${index}`, index)),
+      anaphylaxis("anaphylaxis-a"),
+      anaphylaxis("anaphylaxis-b"),
+      ...Array.from({ length: 90 }, (_, index) => filler(`nfill-${index}`, "nursing")),
+    ];
+    const selected = finalizeAssembledSitting({ pool, limit: 85, fieldId: "nursing", seed: 85 });
+    const textOf = (row: (typeof selected.items)[number]) => itemClinicalText(row);
+    const pregnancy = selected.items.filter((row) => /pregnan|prenatal/i.test(textOf(row)));
+    const gall = selected.items.filter((row) => /gallbladder|cholecystitis|cholelithiasis|cholecystectomy/i.test(textOf(row)));
+    const mood = selected.items.filter((row) => /depress/i.test(textOf(row)));
+    const shock = selected.items.filter((row) => /anaphylaxis/i.test(textOf(row)));
+    const routineCount = pregnancy.filter((row) =>
+      /priority intervention is required at this routine prenatal visit/i.test(row.question)
+    ).length;
+    expect(selected.items).toHaveLength(85);
+    expect(nursingConditionCap(85)).toBe(3);
+    expect(pregnancy.length).toBeLessThanOrEqual(3);
+    expect(routineCount).toBeLessThanOrEqual(1);
+    expect(gall.length).toBeLessThanOrEqual(3);
+    expect(mood.length).toBeLessThanOrEqual(3);
+    expect(shock).toHaveLength(1);
+  });
+
+  it("applies the condition cap and calc-template dedupe on later CAT picks", () => {
+    const catToken = ["amber", "birch", "cedar", "dune", "elm", "fern"] as const;
+    const routine = (id: string, index: number) =>
+      item(
+        id,
+        `Which prenatal finding in the ${catToken[index]} clinic should be reported first?`,
+        [`Teach ${id}`, "Delay teaching"],
+        `Teach ${id}`,
+        {
+          scenario: `${catToken[index]} prenatal clinic sees a pregnant client with a complaint that belongs only to ${catToken[index]}.`,
+        }
+      );
+    const gallbladder = (id: string, index: number) =>
+      item(
+        id,
+        `Which comfort measure is first after the gallbladder episode in the ${catToken[index]} bay?`,
+        [`Support ${id}`, "Discharge"],
+        `Support ${id}`,
+        { scenario: `${catToken[index]} bay documents a gallbladder episode that is separate from the other bays.` }
+      );
+    const depressed = (id: string, index: number) =>
+      item(
+        id,
+        `Which safety step is first for the client who feels depressed in the ${catToken[index]} room?`,
+        [`Stay ${id}`, "Leave"],
+        `Stay ${id}`,
+        { scenario: `${catToken[index]} room documents a separate mood assessment. The client feels depressed.` }
+      );
+    const dose = (id: string, ml: number) =>
+      item(
+        id,
+        `How many milliliters per hour should infuse for order ${ml}?`,
+        [],
+        String(ml),
+        { itemType: "constructed_response", scenario: `Infusion order ${id} uses a different pump ${ml}.` }
+      );
+    const shock = (id: string) =>
+      item(id, `Which action is the priority in case ${id}?`, [`Epinephrine ${id}`, "Observe"], `Epinephrine ${id}`, {
+        scenario:
+          "A client develops anaphylaxis with hives, wheezing, and hypotension minutes after the antibiotic infusion. The crash cart is outside the room.",
+      });
+    const pool = [
+      ...Array.from({ length: 6 }, (_, index) => routine(`cat-preg-${index}`, index)),
+      ...Array.from({ length: 6 }, (_, index) => gallbladder(`cat-gall-${index}`, index)),
+      ...Array.from({ length: 6 }, (_, index) => depressed(`cat-mood-${index}`, index)),
+      ...Array.from({ length: 4 }, (_, index) => dose(`cat-dose-${index}`, 40 + index * 5)),
+      shock("cat-shock-a"),
+      shock("cat-shock-b"),
+      ...Array.from({ length: 100 }, (_, index) => filler(`cat-fill-${index}`, "nursing")),
+    ];
+    const delivered = deliverCatSitting(pool, 85, "nursing");
+    const textOf = (row: (typeof delivered)[number]) => itemClinicalText(row);
+    expect(delivered.length).toBe(85);
+    expect(delivered.filter((row) => /pregnan|prenatal/i.test(textOf(row))).length).toBeLessThanOrEqual(3);
+    expect(delivered.filter((row) => /gallbladder/i.test(textOf(row))).length).toBeLessThanOrEqual(3);
+    expect(delivered.filter((row) => /depress/i.test(textOf(row))).length).toBeLessThanOrEqual(3);
+    expect(delivered.filter((row) => /anaphylaxis/i.test(textOf(row)))).toHaveLength(1);
+    const doses = delivered.filter((row) => calcTemplateAsk(row.question));
+    const templates = doses.map((row) => calcTemplateAsk(row.question));
+    expect(new Set(templates).size).toBe(templates.length);
   });
 });
 

@@ -314,7 +314,7 @@ export function finalizeAssembledSitting(params: {
   const excludeSeenApplied = Boolean(seen && seen.size > 0 && picked.length > 0);
 
   let capped = enforceNarrowTopicCap(picked, params.pool, limit);
-  capped = enforceEntityAndDosageCap(capped, params.pool, limit, params.fieldId);
+  capped = enforceEntityAndDosageCap(capped, params.pool, limit, params.fieldId, seen);
 
   const spread = orderWithTopicGap(capped, (item) =>
     sequentialSetId(item) ? null : narrowTopicKeyFromBankItem(item)
