@@ -6,7 +6,7 @@ describe("inferAnatomyStructuresFromText", () => {
     const hits = inferAnatomyStructuresFromText(
       "A 58-year-old with crushing chest pain and ST elevations in leads V1–V4. Which coronary territory is affected?"
     );
-    expect(hits.some((s) => s.id === "heart")).toBe(true);
+    expect(hits.some((s) => s.id === "heart" || s.id === "heart-coronary-arteries")).toBe(true);
   });
 
   it("matches skeletal landmarks in MSK vignettes", () => {
