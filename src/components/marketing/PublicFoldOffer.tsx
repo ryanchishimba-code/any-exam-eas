@@ -21,6 +21,7 @@ const HIDDEN_PREFIXES = [
   "/reset-password",
   "/about",
   "/contact",
+  "/merch",
 ];
 
 /**

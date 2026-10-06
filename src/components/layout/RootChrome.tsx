@@ -12,7 +12,7 @@ const Navigation = dynamic(
     ssr: true,
     loading: () => (
       <header
-        className="sticky top-0 z-50 h-[var(--nav-height)] border-b border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur-md"
+        className="fixed top-0 z-50 h-[var(--nav-height)] w-full border-b border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur-md"
         aria-hidden
       />
     ),
@@ -39,6 +39,7 @@ const FOLD_HIDDEN_PREFIXES = [
   "/reset-password",
   "/about",
   "/contact",
+  "/merch",
 ];
 
 function showPublicFoldOffer(pathname: string): boolean {
