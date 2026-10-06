@@ -196,16 +196,26 @@ function rowToBankItem(row: {
 /** Constructed pharmacy calculations for the sitting reserve. Read-only. */
 export async function samplePharmacyCalculationItems(count: number): Promise<BankItem[]> {
   const pull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(count, 8));
+  let blocked: string[] = [];
+  try {
+    blocked = await ineligibleServedIds("pharmacy");
+  } catch (error) {
+    console.warn(
+      "[sample] pharmacy eligibility list unavailable",
+      error instanceof Error ? error.message : error
+    );
+  }
   const rows = await sampleQuestionBankRows({
     where: {
       fieldId: "pharmacy",
       active: true,
       qaPassed: true,
       itemType: { in: ["constructed_response", "calculation", "short_answer"] },
+      ...(blocked.length > 0 ? { id: { notIn: blocked } } : {}),
     },
     pull,
   });
-  return rows.map((row) => rowToBankItem(row));
+  return retainStudentEligibleBankItems(rows.map((row) => rowToBankItem(row)));
 }
 
 export function shuffleBankItems<T>(items: T[]): T[] {

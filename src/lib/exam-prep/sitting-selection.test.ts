@@ -16,12 +16,15 @@ import {
   storedFormNeedsFreshAssembly,
 } from "@/lib/exam-prep/sitting-selection";
 import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
+import { isKeyWrongPendingReview } from "@/lib/exam-prep/reviewed-key-queue";
 import {
   compareSitting,
   deliverCatSitting,
   simulateCatNgnCount,
   simulatedBoards,
 } from "@/lib/exam-prep/sitting-simulation";
+
+const HIDE_LISTED_CALC_ID = "cmra6lyew002xic04rnufu0in";
 
 function item(
   id: string,
@@ -425,6 +428,71 @@ describe("finalizeAssembledSitting caps", () => {
       const count = selected.items.filter((row) => new RegExp(`\\b${drug}\\b`, "i").test(itemClinicalText(row))).length;
       expect(count).toBeLessThanOrEqual(2);
     }
+  });
+
+  it("never places a hide-listed calculation in an assembled pharmacy sitting", () => {
+    expect(isKeyWrongPendingReview(HIDE_LISTED_CALC_ID)).toBe(true);
+    const hidden = item(
+      HIDE_LISTED_CALC_ID,
+      "How many milligrams of amoxicillin are in each milliliter of the 250 mg/5 mL suspension?",
+      [],
+      "4.3",
+      {
+        itemType: "constructed_response",
+        active: true,
+        qaPassed: true,
+        scenario: "The caregiver asks for the concentration before the first dose.",
+      }
+    );
+    const eligibleCalc = item(
+      "eligible-calc",
+      "How many milligrams of vancomycin are required for a 70 kg adult? Round to the nearest whole milligram.",
+      [],
+      "1500",
+      { itemType: "constructed_response", active: true, qaPassed: true, scenario: "Infusion case eligible-calc." }
+    );
+    const failedQa = item(
+      "qa-failed-calc",
+      "How many milliliters of gentamicin should be drawn for a 80 kg adult?",
+      [],
+      "4",
+      { itemType: "constructed_response", active: true, qaPassed: false, scenario: "Dose case qa-failed-calc." }
+    );
+    const inactive = item(
+      "inactive-calc",
+      "How many tablets of metformin should be dispensed for 30 days?",
+      [],
+      "60",
+      { itemType: "constructed_response", active: false, qaPassed: true, scenario: "Dispense case inactive-calc." }
+    );
+    const oneKeySata = item(
+      "sata-one-key",
+      "Select all monitoring steps required before the next phenytoin dose.",
+      ["Check the level", "Skip the level", "Call the lab"],
+      "Check the level",
+      { itemType: "select_all", active: true, qaPassed: true }
+    );
+    const filler = (id: string) =>
+      item(id, `Which counseling point applies to refill case ${id}?`, [`Point ${id}`, "Skip"], `Point ${id}`, {
+        itemType: "mcq",
+        active: true,
+        qaPassed: true,
+      });
+    const pool = [
+      hidden,
+      eligibleCalc,
+      failedQa,
+      inactive,
+      oneKeySata,
+      ...Array.from({ length: 40 }, (_, i) => filler(`elig-fill-${i}`)),
+    ];
+    const selected = finalizeAssembledSitting({ pool, limit: 20, fieldId: "pharmacy", seed: 49 });
+    const ids = selected.items.map((row) => row.id);
+    expect(ids).toContain("eligible-calc");
+    expect(ids).not.toContain(HIDE_LISTED_CALC_ID);
+    expect(ids).not.toContain("qa-failed-calc");
+    expect(ids).not.toContain("inactive-calc");
+    expect(ids).not.toContain("sata-one-key");
   });
 });
 

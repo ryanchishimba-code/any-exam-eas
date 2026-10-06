@@ -372,7 +372,7 @@ export function eligibilityInputFromBankItem(
   return {
     id: item.id,
     fieldId: extras?.fieldId ?? item.fieldId,
-    active: extras?.active,
+    active: extras?.active ?? item.active,
     qaPassed: extras?.qaPassed ?? item.qaPassed,
     itemType: item.itemType,
     question: item.question,
@@ -387,6 +387,11 @@ export function eligibilityInputFromBankItem(
 }
 
 const ineligibleIdCache = new Map<string, { at: number; ids: string[] }>();
+
+/** Test hook. */
+export function resetIneligibleServedIdCache(): void {
+  ineligibleIdCache.clear();
+}
 
 /** Active qaPassed ids the structural rule suppresses. Restored rows are omitted. */
 export async function ineligibleServedIds(fieldId: string): Promise<string[]> {
@@ -421,4 +426,21 @@ export function retainStudentEligibleBankItems(
 ): BankItem[] {
   const ctx = context ?? { completeCaseGroups: peekCompleteCaseGroups() ?? undefined };
   return items.filter((item) => isStudentEligible(eligibilityInputFromBankItem(item), ctx));
+}
+
+/**
+ * Same predicate as `assessStudentEligibility`.
+ * Catalog case ids (`ngn:`) are not database case groups. A database case is
+ * kept only when that group list has not been loaded yet.
+ */
+export function isServableToStudents(item: BankItem): boolean {
+  const verdict = assessStudentEligibility(eligibilityInputFromBankItem(item), {
+    completeCaseGroups: peekCompleteCaseGroups() ?? undefined,
+  });
+  if (verdict.eligible) return true;
+  if (verdict.reasons.length === 0) return false;
+  if (!verdict.reasons.every((reason) => reason === "incomplete_case_study")) return false;
+  const id = item.id?.trim() ?? "";
+  if (id.startsWith("ngn:")) return true;
+  return peekCompleteCaseGroups() == null;
 }

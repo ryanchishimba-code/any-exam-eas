@@ -38,6 +38,7 @@ import {
   isPharmacyCalculationItem,
   pharmacyCalculationQuota,
 } from "@/lib/exam-prep/sitting-selection";
+import { isServableToStudents, retainStudentEligibleBankItems } from "@/lib/exam-prep/student-eligibility";
 import { sampleActiveItemsByFormat, samplePharmacyCalculationItems } from "@/lib/question-bank-db";
 
 /** USMLE presets are step-scoped; skip the heavy preset join when it cannot match. */
@@ -96,7 +97,7 @@ async function catalogNgnItems(fieldId: string): Promise<BankItem[]> {
   }
 }
 
-/** Published NGN/case rows, already eligibility-filtered. MCQ repair is not applied. */
+/** Published NGN/case rows. Bank samples and catalog conversions share the student predicate. */
 async function publishedNgnPool(fieldId: string, limit: number): Promise<BankItem[]> {
   const ngnWant = Math.max(8, Math.round(limit * 0.35));
   const caseWant = limit >= 85 ? 24 : Math.max(4, Math.round(limit * 0.12));
@@ -111,7 +112,7 @@ async function publishedNgnPool(fieldId: string, limit: number): Promise<BankIte
       const type = (item.itemType ?? "").trim().toLowerCase();
       return type !== "drag_drop" && type !== "constructed_response";
     });
-    return mergeBankItems(catalog, fromBank);
+    return mergeBankItems(catalog, fromBank).filter(isServableToStudents);
   } catch (error) {
     console.warn(
       "[assemble] published NGN pool unavailable",
@@ -194,7 +195,9 @@ export async function assembleTimedExamSessionItems(
       try {
         const quota = pharmacyCalculationQuota(limit);
         const sampled = await samplePharmacyCalculationItems(Math.max(quota * 3, 12));
-        const prepared = sampled.map((item) => prepare(item)).filter(isPharmacyCalculationItem);
+        const prepared = retainStudentEligibleBankItems(
+          sampled.map((item) => prepare(item)).filter(isPharmacyCalculationItem)
+        );
         items = mergeBankItems(items, prepared);
       } catch (error) {
         console.warn(

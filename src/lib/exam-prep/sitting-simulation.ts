@@ -5,6 +5,7 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { sittingAskKey, sittingEntityKey } from "@/lib/exam-prep/entity-cap";
+import { isServableToStudents } from "@/lib/exam-prep/student-eligibility";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { finalizeAssembledSitting } from "@/lib/exam-prep/sitting-selection";
 import { isPublishedNgnBankItem } from "@/lib/full-exam/ngn-format-mix";
@@ -147,17 +148,24 @@ function buildShared(fieldId: string, limit: number, uniqueExtra: number, ngnCou
   }
   for (let i = 0; i < ngnCount; i++) {
     const drug = DRUGS[(i * 4) % DRUGS.length]!;
-    extra.push(
-      mcq(
-        `ngn-${i}`,
-        `Bow-tie for ${drug} toxicity: which actions and parameters apply in this ${DRUGS[(i * 9) % DRUGS.length]} case?`,
-        {
-          itemType: i % 2 === 0 ? "ngn_bowtie" : "select_all",
-          correctIndex: 0,
-          choices: uniqueChoices(`ngn-${drug}-${i}`),
-        }
-      )
+    const bowtie = i % 2 === 0;
+    const choices = uniqueChoices(`ngn-${drug}-${i}`);
+    const row = mcq(
+      `ngn-${i}`,
+      `Bow-tie for ${drug} toxicity: which actions and parameters apply in this ${DRUGS[(i * 9) % DRUGS.length]} case?`,
+      {
+        itemType: bowtie ? "ngn_bowtie" : "select_all",
+        correctIndex: 0,
+        choices,
+      }
     );
+    if (bowtie) {
+      const action = `Give the ${drug} antidote now`;
+      const monitor = `Recheck the ${drug} level in one hour`;
+      row.ngnPayload = { condition: `${drug} toxicity`, actions: [action], monitors: [monitor] };
+      row.correctAnswer = `${action}|||${monitor}`;
+    }
+    extra.push(row);
   }
 
   return {
@@ -264,8 +272,9 @@ export function deliverCatSitting(
   length: number,
   fieldId = "nursing"
 ): BankItem[] {
-  const clusters = assignSittingClusters([...pool]);
-  const items = pool.map((item, index) => {
+  const eligible = pool.filter((item) => isServableToStudents(item));
+  const clusters = assignSittingClusters([...eligible]);
+  const items = eligible.map((item, index) => {
     const text = [item.scenario, item.vignette, item.question].filter(Boolean).join("\n");
     return {
       id: item.id ?? `row-${index}`,

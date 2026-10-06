@@ -1,6 +1,7 @@
 import type { BankItem } from "@/lib/question-bank";
 import { narrowTopicKeyFromBankItem, narrowTopicShareCap } from "@/lib/exam-prep/narrow-topic";
 import { assignSittingClusters, sequentialSetId } from "@/lib/exam-prep/sitting-clusters";
+import { isServableToStudents } from "@/lib/exam-prep/student-eligibility";
 
 /**
  * Share cap for a drug or condition named in the stem.
@@ -228,6 +229,7 @@ export function enforceEntityAndDosageCap(
   const accept = (item: BankItem): boolean => {
     const id = item.id?.trim();
     if (id && used.has(id)) return false;
+    if (!isServableToStudents(item)) return false;
     if (sequentialSetId(item)) {
       if (id) used.add(id);
       kept.push(item);
