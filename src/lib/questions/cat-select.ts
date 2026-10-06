@@ -1,6 +1,6 @@
 /** Pure helpers for rule-based CAT item selection (practice only). */
 
-import { entityShareCap } from "@/lib/exam-prep/entity-cap";
+import { entityShareCap, nursingConditionCap, PHARMACY_DRUG_CAP } from "@/lib/exam-prep/entity-cap";
 import { narrowTopicShareCap } from "@/lib/exam-prep/narrow-topic";
 import {
   difficultyForQuestion,
@@ -24,13 +24,32 @@ export type CatSelectableItem = {
   askKey?: string | null;
   /** Near-duplicate cluster. A second member is not delivered. */
   clusterId?: string | null;
+  /** Pharmacy drugs already counted toward the sitting-wide cap of 2. */
+  drugKeys?: readonly string[] | null;
+  /** NCLEX condition already counted toward the cap of 3. */
+  conditionKey?: string | null;
+  /** Case opening, calc template, or anchored ask. Each may appear once. */
+  repeatKeys?: readonly string[] | null;
 };
 
 export type CatFormatHint = {
   /** Share of delivered items that should be NGN when the pool has any. 0 disables. */
   ngnTargetRatio?: number;
   delivered?: ReadonlyArray<
-    Pick<CatSelectableItem, "id" | "ngn" | "setId" | "stepIndex" | "narrowTopic" | "entityKey" | "askKey" | "clusterId">
+    Pick<
+      CatSelectableItem,
+      | "id"
+      | "ngn"
+      | "setId"
+      | "stepIndex"
+      | "narrowTopic"
+      | "entityKey"
+      | "askKey"
+      | "clusterId"
+      | "drugKeys"
+      | "conditionKey"
+      | "repeatKeys"
+    >
   >;
 };
 
@@ -88,29 +107,53 @@ function filterByTopic<T extends CatSelectableItem>(
   return spaced.length > 0 ? spaced : pool;
 }
 
-type CatConstraint = Pick<CatSelectableItem, "entityKey" | "askKey" | "clusterId">;
+type CatConstraint = Pick<
+  CatSelectableItem,
+  "entityKey" | "askKey" | "clusterId" | "drugKeys" | "conditionKey" | "repeatKeys"
+>;
 
-/** Drop a repeat cluster, a repeated ask, and any entity already at max(2, 4%). */
+function hasEntityConstraint(item: CatConstraint): boolean {
+  return Boolean(
+    item.entityKey ||
+      item.askKey ||
+      item.clusterId ||
+      item.conditionKey ||
+      item.drugKeys?.length ||
+      item.repeatKeys?.length
+  );
+}
+
+/** Drop a repeat cluster, a repeated case, a drug past 2, and a condition past 3. */
 function filterByEntity<T extends CatConstraint>(
   candidates: T[],
   delivered: ReadonlyArray<CatConstraint>
 ): T[] {
-  const constrained =
-    candidates.some((item) => item.entityKey || item.askKey || item.clusterId) ||
-    delivered.some((item) => item.entityKey || item.askKey || item.clusterId);
+  const constrained = candidates.some(hasEntityConstraint) || delivered.some(hasEntityConstraint);
   if (!constrained) return candidates;
-  const cap = entityShareCap(delivered.length + 1);
+  const deliveredLength = delivered.length + 1;
+  const cap = entityShareCap(deliveredLength);
+  const conditionCap = nursingConditionCap(deliveredLength);
   const entityCounts = new Map<string, number>();
+  const drugCounts = new Map<string, number>();
+  const conditionCounts = new Map<string, number>();
   const asks = new Set<string>();
   const clusters = new Set<string>();
+  const repeats = new Set<string>();
   for (const item of delivered) {
     if (item.entityKey) entityCounts.set(item.entityKey, (entityCounts.get(item.entityKey) ?? 0) + 1);
     if (item.entityKey && item.askKey) asks.add(`${item.entityKey}:${item.askKey}`);
     if (item.clusterId) clusters.add(item.clusterId);
+    for (const drug of item.drugKeys ?? []) drugCounts.set(drug, (drugCounts.get(drug) ?? 0) + 1);
+    if (item.conditionKey) conditionCounts.set(item.conditionKey, (conditionCounts.get(item.conditionKey) ?? 0) + 1);
+    for (const key of item.repeatKeys ?? []) repeats.add(key);
   }
   return candidates.filter((item) => {
     if (item.clusterId && clusters.has(item.clusterId)) return false;
-    if (item.entityKey && (entityCounts.get(item.entityKey) ?? 0) >= cap) return false;
+    if (item.repeatKeys?.some((key) => repeats.has(key))) return false;
+    const entityLimit = item.entityKey?.startsWith("condition:") ? conditionCap : cap;
+    if (item.entityKey && (entityCounts.get(item.entityKey) ?? 0) >= entityLimit) return false;
+    if (item.drugKeys?.some((drug) => (drugCounts.get(drug) ?? 0) >= PHARMACY_DRUG_CAP)) return false;
+    if (item.conditionKey && (conditionCounts.get(item.conditionKey) ?? 0) >= conditionCap) return false;
     if (item.entityKey && item.askKey && asks.has(`${item.entityKey}:${item.askKey}`)) return false;
     return true;
   });

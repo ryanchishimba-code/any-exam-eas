@@ -40,6 +40,8 @@ const DRUGS = [
   "enoxaparin",
   "fluoxetine",
   "furosemide",
+  "clopidogrel",
+  "gabapentin",
   "gentamicin",
   "glipizide",
   "heparin",
@@ -74,12 +76,17 @@ const DRUGS = [
 ].sort((left, right) => right.length - left.length);
 
 const CONDITIONS: { key: string; re: RegExp }[] = [
-  { key: "cholecystectomy", re: /\b(?:laparoscopic cholecystectomy|lap(?:aroscopic)? chole|cholecystectomy)\b/i },
-  { key: "suicide", re: /\bsuicid\w*|\bself-harm\b|\bdepress(?:ion|ive)\b|\bdepressed mood\b/i },
   { key: "preeclampsia", re: /\bpreeclampsia\b|\blate decel\w*\b/i },
   { key: "hip-arthroplasty", re: /\b(?:total hip|hip)\s+(?:arthroplasty|replacement)\b|\bhip arthroplasty\b/i },
   { key: "postpartum-hemorrhage", re: /\bpost-?partum hemorrhage\b|\bpph\b/i },
   { key: "gestational-diabetes", re: /\bgestational diabetes\b/i },
+  {
+    key: "gallbladder",
+    re: /\bgallbladder\b|\bcholecystitis\b|\bcholelithiasis\b|\b(?:laparoscopic cholecystectomy|lap(?:aroscopic)? chole|cholecystectomy)\b/i,
+  },
+  { key: "suicide", re: /\bsuicid\w*|\bself-harm\b|\bdepress\w*/i },
+  { key: "pregnancy", re: /\bpregnan\w*|\bprenatal\b|\bantenatal\b|\btrimester\b/i },
+  { key: "anaphylaxis", re: /\banaphylax\w*/i },
   { key: "heart-failure", re: /\bheart failure\b/i },
   { key: "ckd", re: /\bchronic kidney disease\b|\bckd\b/i },
   { key: "c-diff", re: /\bc\.?\s*diff\w*|\bclostridioides\b/i },
@@ -184,6 +191,143 @@ export function isNursingSittingField(fieldId: string): boolean {
   return fieldId === "nursing" || fieldId.startsWith("nclex");
 }
 
+/** Pharmacy sittings keep each drug to two items, including mentions outside the calc reserve. */
+export const PHARMACY_DRUG_CAP = 2;
+
+/** NCLEX conditions stop at 3, and never above the 4% entity cap on a shorter sitting. */
+export function nursingConditionCap(sittingLength: number): number {
+  return Math.min(3, entityShareCap(sittingLength));
+}
+
+const SUBJECT_META_KEYS = ["mainSubject", "primarySubject", "mainDrug", "drug", "entity", "concept"] as const;
+
+type SittingCapSource = Pick<
+  BankItem,
+  | "question"
+  | "vignette"
+  | "scenario"
+  | "subjectId"
+  | "topicCategory"
+  | "blueprintTopic"
+  | "tags"
+  | "generationMeta"
+  | "curationMeta"
+  | "ngnPayload"
+>;
+
+function asRecord(value: unknown): Record<string, unknown> | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  return value as Record<string, unknown>;
+}
+
+/** Metadata that names the item's subject, before falling back to stem tokens. */
+function mainSubjectTexts(item: SittingCapSource): string[] {
+  const texts: string[] = [];
+  for (const meta of [item.generationMeta, item.curationMeta, item.ngnPayload]) {
+    const record = asRecord(meta);
+    if (!record) continue;
+    for (const key of SUBJECT_META_KEYS) {
+      const value = record[key];
+      if (typeof value === "string" && value.trim()) texts.push(value);
+    }
+  }
+  for (const value of [item.subjectId, item.blueprintTopic, item.topicCategory]) {
+    if (typeof value === "string" && value.trim()) texts.push(value.replace(/[-_]/g, " "));
+  }
+  for (const tag of item.tags ?? []) {
+    if (tag.trim()) texts.push(tag.replace(/[-_]/g, " "));
+  }
+  return texts;
+}
+
+/**
+ * Drug counted toward the pharmacy cap.
+ * A main-subject field wins. Otherwise the longest drug in the question wins,
+ * then the longest drug in the vignette — the same token list as the calc pool.
+ */
+export function sittingDrugMention(item: SittingCapSource): string | null {
+  for (const text of mainSubjectTexts(item)) {
+    const drug = matchDrug(text);
+    if (drug) return drug;
+  }
+  return matchDrug(item.question ?? "") ?? matchDrug(itemClinicalText(item));
+}
+
+/** Condition counted toward the NCLEX cap. Specific obstetric keys are listed before pregnancy. */
+export function sittingConditionMention(item: SittingCapSource): string | null {
+  for (const text of mainSubjectTexts(item)) {
+    const condition = matchCondition(text);
+    if (condition) return condition;
+  }
+  return matchCondition(itemClinicalText(item));
+}
+
+const AGE_PHRASE = /\b\d+(?:\.\d+)?\s*-?\s*(?:year|yr)s?\s*-?\s*old\b/gi;
+const ROOM_PHRASE = /\broom\s+#?\d+\b/gi;
+
+function caseSentence(item: SittingCapSource): string {
+  const scene = [item.scenario, item.vignette].filter(Boolean).join(" ").trim();
+  if (scene.length < 40) return "";
+  return scene.split(/(?<=[.!?])\s+/)[0] ?? scene;
+}
+
+/** Same opening case. Ages and room numbers drop out; other digits stay so distinct doses do not collapse. */
+export function sittingCaseFingerprint(item: SittingCapSource): string | null {
+  const sentence = caseSentence(item);
+  if (!sentence) return null;
+  const tokens = sentence
+    .toLowerCase()
+    .replace(AGE_PHRASE, " ")
+    .replace(ROOM_PHRASE, " ")
+    .replace(/[^a-z0-9 ]+/g, " ")
+    .split(/\s+/)
+    .filter((token) => token.length > 2);
+  if (tokens.length < 5) return null;
+  return `case:${tokens.slice(0, 14).join(" ")}`;
+}
+
+function normalizedAsk(question: string): string {
+  return question
+    .toLowerCase()
+    .replace(AGE_PHRASE, " ")
+    .replace(ROOM_PHRASE, " ")
+    .replace(/[^a-z0-9 ]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Keys that may appear once per sitting: the case opening, a number-stripped
+ * calc template, and the same ask about the same drug or condition.
+ */
+export function sittingRepeatKeys(item: SittingCapSource, fieldId: string): string[] {
+  const keys: string[] = [];
+  const scene = sittingCaseFingerprint(item);
+  if (scene) keys.push(scene);
+  const calc = calcTemplateAsk(item.question ?? "");
+  if (calc) keys.push(`calc:${calc}`);
+  const ask = normalizedAsk(item.question ?? "");
+  const anchor =
+    (isNursingSittingField(fieldId) ? sittingConditionMention(item) : null) ??
+    (fieldId === "pharmacy" ? sittingDrugMention(item) : null);
+  if (anchor && ask.length >= 24) keys.push(`ask:${anchor}:${ask}`);
+  return keys;
+}
+
+/** Caps the CAT picker applies on every adaptive pick, including later refills. */
+export function sittingCapTags(
+  item: SittingCapSource,
+  fieldId: string
+): { drugKeys: string[]; conditionKey: string | null; repeatKeys: string[] } {
+  const drug = fieldId === "pharmacy" ? sittingDrugMention(item) : null;
+  const condition = isNursingSittingField(fieldId) ? sittingConditionMention(item) : null;
+  return {
+    drugKeys: drug ? [drug] : [],
+    conditionKey: condition,
+    repeatKeys: sittingRepeatKeys(item, fieldId),
+  };
+}
+
 /** Drug wins over a co-mentioned condition. Generic calc templates key off the ask. */
 export function sittingEntityKey(text: string, fieldId: string): string | null {
   const drug = matchDrug(text);
@@ -201,16 +345,21 @@ export function enforceEntityAndDosageCap(
   items: readonly BankItem[],
   pool: readonly BankItem[],
   limit: number,
-  fieldId: string
+  fieldId: string,
+  seenIds?: ReadonlySet<string>
 ): BankItem[] {
   const entityCap = entityShareCap(limit);
   const dosageMax = isNursingSittingField(fieldId) ? nursingDosageShareCap(limit) : Number.POSITIVE_INFINITY;
   const calcMax = fieldId === "pharmacy" ? pharmacyCalculationQuota(limit) : Number.POSITIVE_INFINITY;
   const narrowCap = narrowTopicShareCap(limit);
   const entityCounts = new Map<string, number>();
+  const drugCounts = new Map<string, number>();
+  const conditionCounts = new Map<string, number>();
   const askCounts = new Map<string, number>();
   const templateCounts = new Map<string, number>();
   const narrowCounts = new Map<string, number>();
+  const usedRepeats = new Set<string>();
+  const conditionCap = nursingConditionCap(limit);
   let dosage = 0;
   let calcs = 0;
   const kept: BankItem[] = [];
@@ -244,13 +393,28 @@ export function enforceEntityAndDosageCap(
     const dose = isNursingSittingField(fieldId) && isNursingDosageItem(text);
     const numeric = fieldId === "pharmacy" && isPharmacyNumericEntry(item);
     const narrow = narrowTopicKeyFromBankItem(item);
-    if (entity && (entityCounts.get(entity) ?? 0) >= entityCap) return false;
+    const drug = fieldId === "pharmacy" ? sittingDrugMention(item) : null;
+    const condition = isNursingSittingField(fieldId) ? sittingConditionMention(item) : null;
+    const repeats = sittingRepeatKeys(item, fieldId);
+    const entityLimit =
+      fieldId === "pharmacy" && entity?.startsWith("drug:")
+        ? PHARMACY_DRUG_CAP
+        : entity?.startsWith("condition:")
+          ? conditionCap
+          : entityCap;
+    if (entity && (entityCounts.get(entity) ?? 0) >= entityLimit) return false;
+    if (drug && (drugCounts.get(drug) ?? 0) >= PHARMACY_DRUG_CAP) return false;
+    if (condition && (conditionCounts.get(condition) ?? 0) >= conditionCap) return false;
+    if (repeats.some((key) => usedRepeats.has(key))) return false;
     if (entity && ask && (askCounts.get(`${entity}:${ask}`) ?? 0) >= 1) return false;
     if (template && (templateCounts.get(template) ?? 0) >= 1) return false;
     if (dose && dosage >= dosageMax) return false;
     if (numeric && calcs >= calcMax) return false;
     if (narrow && (narrowCounts.get(narrow) ?? 0) >= narrowCap) return false;
     if (entity) entityCounts.set(entity, (entityCounts.get(entity) ?? 0) + 1);
+    if (drug) drugCounts.set(drug, (drugCounts.get(drug) ?? 0) + 1);
+    if (condition) conditionCounts.set(condition, (conditionCounts.get(condition) ?? 0) + 1);
+    for (const key of repeats) usedRepeats.add(key);
     if (entity && ask) askCounts.set(`${entity}:${ask}`, 1);
     if (template) templateCounts.set(template, 1);
     if (dose) dosage += 1;
@@ -279,7 +443,14 @@ export function enforceEntityAndDosageCap(
     accept(item);
   }
   if (kept.length < limit) {
-    for (const item of pool) {
+    const unseenFirst = !seenIds?.size
+      ? pool
+      : [...pool].sort((left, right) => {
+          const leftSeen = left.id && seenIds.has(left.id) ? 1 : 0;
+          const rightSeen = right.id && seenIds.has(right.id) ? 1 : 0;
+          return leftSeen - rightSeen;
+        });
+    for (const item of unseenFirst) {
       if (kept.length >= limit) break;
       accept(item);
     }
