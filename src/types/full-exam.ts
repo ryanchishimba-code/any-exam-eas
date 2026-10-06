@@ -49,7 +49,10 @@ export type FullExamAnswerState = {
 export type FullExamTopicBreakdown = {
   topic: string;
   correct: number;
+  /** Answered items in this topic. Percentages use this, not the unattempted form. */
   total: number;
+  /** Delivered items in this topic with no saved selection. */
+  unanswered?: number;
   pct: number;
 };
 
@@ -68,6 +71,8 @@ export type FullExamQuestionSnapshot = {
 export type FullExamResultsAnalysis = {
   sessionConfig: FullExamSessionConfig;
   timeUsedSec: number;
+  /** First paint of the sitting in this tab. Survives a late session stamp. */
+  clientOpenedAt?: string;
   topicBreakdown: FullExamTopicBreakdown[];
   questionIds: string[];
   questionSnapshots: FullExamQuestionSnapshot[];

@@ -39,6 +39,38 @@ const GENERIC_ANATOMY_TERMS = new Set([
   "lower-limb",
   "upper limb",
   "lower limb",
+  "male",
+  "female",
+  "adult",
+  "child",
+  "patient",
+  "client",
+  "intermediate",
+  "medial",
+  "lateral",
+  "anterior",
+  "posterior",
+  "superior",
+  "inferior",
+  "proximal",
+  "distal",
+  "deep",
+  "superficial",
+  "internal",
+  "external",
+  "left",
+  "right",
+  "upper",
+  "lower",
+  "basic",
+  "advanced",
+  "general",
+  "clinical",
+  "level",
+  "pain",
+  "cancer",
+  "gland",
+  "zone",
 ]);
 
 function wordBoundaryMatch(haystack: string, term: string): boolean {
@@ -60,20 +92,28 @@ function toLink(structure: (typeof ANATOMY_STRUCTURES)[number]): AnatomyStructur
 function scoreStructure(structure: (typeof ANATOMY_STRUCTURES)[number], haystack: string): number {
   let score = 0;
   const name = structure.name.toLowerCase();
+  const fullName = wordBoundaryMatch(haystack, name);
 
-  if (wordBoundaryMatch(haystack, name)) score += 16;
-  else {
+  if (fullName) score += 16;
+  else if (!name.includes(" ")) {
+    // A single-word organ name is the confident hit. Pieces of
+    // "Intermediate Cuneiform" are not.
+  } else {
     for (const part of name.split(/\s+/)) {
-      if (part.length >= 4 && wordBoundaryMatch(haystack, part)) score += 10;
+      if (part.length >= 8 && !GENERIC_ANATOMY_TERMS.has(part) && wordBoundaryMatch(haystack, part)) {
+        score += 10;
+      }
     }
   }
 
   for (const keyword of structure.keywords) {
-    if (wordBoundaryMatch(haystack, keyword)) score += keyword.length >= 6 ? 7 : 4;
+    const term = keyword.trim().toLowerCase();
+    if (term.length < 6 || GENERIC_ANATOMY_TERMS.has(term)) continue;
+    if (wordBoundaryMatch(haystack, term)) score += term.length >= 8 ? 8 : 6;
   }
 
-  if (structure.highYield) score += 2;
-  if (structure.parentId) score -= 1;
+  if (score >= 10 && structure.highYield) score += 2;
+  if (score > 0 && structure.parentId) score -= 1;
 
   return score;
 }
@@ -87,7 +127,7 @@ export function inferAnatomyStructuresFromText(
   opts?: { limit?: number; minScore?: number }
 ): AnatomyStructureLink[] {
   const limit = opts?.limit ?? 3;
-  const minScore = opts?.minScore ?? 6;
+  const minScore = opts?.minScore ?? 12;
   const haystack = normalize(text);
   if (!haystack.trim()) return [];
 

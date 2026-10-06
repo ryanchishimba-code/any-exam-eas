@@ -71,7 +71,7 @@ export function ExamSelectionScreen({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const queryClient = useQueryClient();
-  const { setExamSlug } = useAppPreferences();
+  const { setExamSlug, refresh } = useAppPreferences();
   const [pending, startTransition] = useTransition();
   const [selected, setSelected] = useState<ExamSlug | null>(null);
   const [success, setSuccess] = useState(false);
@@ -100,11 +100,6 @@ export function ExamSelectionScreen({
     });
   }, [debouncedQuery]);
 
-  function goToDashboard() {
-    router.push(ROUTES.dashboard);
-    router.refresh();
-  }
-
   function confirmUsmleStep(fieldId: UsmleFieldId) {
     setError(null);
     const previous = currentExam;
@@ -127,7 +122,8 @@ export function ExamSelectionScreen({
       } catch {
         /* confetti is decorative */
       }
-      goToDashboard();
+      await refresh();
+      window.location.assign(ROUTES.dashboard);
     });
   }
 
@@ -155,6 +151,7 @@ export function ExamSelectionScreen({
       }
 
       prepareClientForExamSwitch(queryClient, slug);
+      await refresh();
 
       const destination = switchMode
         ? resolvePathAfterExamSwitch(
@@ -169,17 +166,14 @@ export function ExamSelectionScreen({
           await fireExamSelectionConfetti();
           setSuccess(true);
           window.setTimeout(() => {
-            router.push(destination);
-            router.refresh();
+            window.location.assign(destination);
           }, 700);
           return;
         }
-        router.push(destination);
-        router.refresh();
+        window.location.assign(destination);
       } catch {
         setError("Saved your exam, but navigation failed. Opening dashboard…");
-        router.push(destination);
-        router.refresh();
+        window.location.assign(destination);
       }
     });
   }

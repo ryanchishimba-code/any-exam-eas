@@ -4,8 +4,8 @@ import {
   completeExamSession,
   getExamSession,
 } from "@/lib/exam-sessions/service";
-import { administeredQuestionCount } from "@/lib/full-exam/administered-score";
-import { calculateExamScorePercent, mergeExamAnswers } from "@/lib/exam-sessions/scoring";
+import { administeredQuestionCount, practiceResultsTotals, practiceScorePercent } from "@/lib/full-exam/administered-score";
+import { mergeExamAnswers } from "@/lib/exam-sessions/scoring";
 import { requirePremiumApi } from "@/lib/api-access";
 import { examSlugToFieldId } from "@/lib/exams/catalog";
 import type { ExamSlug } from "@/lib/exams/catalog";
@@ -71,7 +71,18 @@ export async function PATCH(
       answers,
       plannedCount: session.questionCount,
     });
-    const score = calculateExamScorePercent(answers, totalQuestions);
+    const cat = Boolean(
+      body.analysis &&
+        typeof body.analysis === "object" &&
+        (body.analysis as { catOutcome?: unknown }).catOutcome
+    );
+    const totals = practiceResultsTotals({
+      delivered: totalQuestions,
+      answers,
+      cat,
+    });
+    const correct = answers.filter((answer) => answer.correct && answer.selected?.trim()).length;
+    const score = practiceScorePercent(correct, totals.denominator || totalQuestions);
     const fieldId =
       session.fieldId ??
       examSlugToFieldId(session.examType as ExamSlug);

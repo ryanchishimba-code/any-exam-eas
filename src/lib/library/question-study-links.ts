@@ -36,8 +36,10 @@ export type QuestionStudyContext = {
   subjectId?: string;
   tags?: string[];
   topicCategory?: string;
-  /** Question stem + rationale text for anatomy inference. */
+  /** Question stem + rationale text for topic search. */
   stem?: string;
+  /** Clinical stem only. Anatomy links ignore the rationale so headings cannot match a bone. */
+  anatomyText?: string;
   ngnPayload?: Record<string, unknown> | null;
 };
 
@@ -176,8 +178,9 @@ export function resolveQuestionStudyLinks(
           memoryCardIds,
           structureIds: explicitStructureIds,
         });
-  const fromText = ctx.stem?.trim()
-    ? inferAnatomyStructuresFromText(ctx.stem, { limit: 3 })
+  const anatomySource = (ctx.anatomyText ?? ctx.stem)?.trim() ?? "";
+  const fromText = anatomySource
+    ? inferAnatomyStructuresFromText(anatomySource, { limit: 3, minScore: 12 })
     : [];
   const fromResolved = getAnatomyStructuresForStructureIds(inferredStructureIds, 3);
 
@@ -186,7 +189,13 @@ export function resolveQuestionStudyLinks(
     fromTopic,
     fromResolved,
     fromText
-  ).slice(0, 3);
+  )
+    .filter((link) => {
+      if (link.system !== "skeletal") return true;
+      const name = link.name.toLowerCase();
+      return name.length >= 5 && anatomySource.includes(name);
+    })
+    .slice(0, 3);
 
   const explicitDrugs = Array.isArray(ctx.ngnPayload?.top500Drugs)
     ? ctx.ngnPayload.top500Drugs.map(String)
@@ -218,11 +227,14 @@ export function resolveStudyLinksFromQuestion(
   examSlug: ExamSlug,
   question: StudyQuestion
 ): ResolvedQuestionStudyLinks {
-  const stem = [question.stem, question.explanation].filter(Boolean).join("\n");
+  const anatomyText = [question.vignette, question.stem].filter(Boolean).join("\n");
+  const stem = [anatomyText, question.explanation].filter(Boolean).join("\n");
   return resolveQuestionStudyLinks(examSlug, {
     subjectId: question.subjectId,
     tags: question.tags,
+    topicCategory: question.topicCategory,
     ngnPayload: question.ngnPayload as Record<string, unknown> | null | undefined,
     stem,
+    anatomyText,
   });
 }

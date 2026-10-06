@@ -26,6 +26,18 @@ describe("fullExamTimeUsedSec", () => {
     ).toBe(480);
   });
 
+  it("keeps a first-paint stamp when the session start is only a few seconds", () => {
+    const now = Date.parse("2026-10-06T12:10:56.000Z");
+    const used = fullExamTimeUsedSec({
+      startedAt: "2026-10-06T12:10:28.000Z",
+      nowMs: now,
+      fallbackSec: 28,
+      openedAtMs: Date.parse("2026-10-06T12:04:00.000Z"),
+      answerTimes: ["2026-10-06T12:10:56.000Z"],
+    });
+    expect(used).toBe(6 * 60 + 56);
+  });
+
   it("falls back to the timer when the session has no start", () => {
     expect(fullExamTimeUsedSec({ startedAt: null, nowMs: Date.now(), fallbackSec: 90 })).toBe(90);
   });

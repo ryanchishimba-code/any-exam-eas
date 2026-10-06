@@ -8,6 +8,7 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { normalizeClinicalCaseText } from "@/lib/exam-prep/clinical-case-dedupe";
+import { templateGroupKeys } from "@/lib/exam-prep/template-groups";
 import { optionChoiceSimilarity, optionsFingerprint } from "@/lib/questions/session-quality";
 
 const FAMILY_META_KEYS = [
@@ -222,6 +223,15 @@ export function assignSittingClusters(items: readonly BankItem[]): string[] {
   };
 
   const families = items.map((item) => templateFamilyId(item));
+  const byTemplate = new Map<string, number>();
+  for (let i = 0; i < items.length; i++) {
+    for (const key of templateGroupKeys(items[i]!)) {
+      const prior = byTemplate.get(key);
+      if (prior == null) byTemplate.set(key, i);
+      else union(prior, i);
+    }
+  }
+
   const byFamily = new Map<string, number>();
   for (let i = 0; i < items.length; i++) {
     const family = families[i];

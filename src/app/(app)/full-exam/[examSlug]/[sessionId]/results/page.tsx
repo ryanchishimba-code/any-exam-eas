@@ -17,7 +17,8 @@ import { reviewIncorrectHref } from "@/lib/learning/remediation-loop";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
-import { practiceScorePercent } from "@/lib/full-exam/administered-score";
+import { practiceResultsTotals, practiceScorePercent } from "@/lib/full-exam/administered-score";
+import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
 import { fullExamTreatsAsEndedEarly } from "@/lib/full-exam/results-title";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
@@ -76,12 +77,26 @@ async function FullExamResultsContent({
   const exam = EXAM_CATALOG[examSlug];
   const fieldId = examSession.fieldId ?? exam.fieldId;
   const correct = answers.filter((a) => a.correct).length;
+  const totals = practiceResultsTotals({
+    delivered: questions.length,
+    answers,
+    cat: Boolean(analysis.catOutcome),
+  });
   const displayScore =
-    questions.length > 0
-      ? practiceScorePercent(correct, questions.length)
+    totals.denominator > 0
+      ? practiceScorePercent(correct, totals.denominator)
       : (examSession.score ?? 0);
+  const openedAtMs = analysis.clientOpenedAt ? Date.parse(analysis.clientOpenedAt) : Number.NaN;
+  const timeUsedSec = fullExamTimeUsedSec({
+    startedAt: examSession.startedAt,
+    nowMs: examSession.completedAt ? new Date(examSession.completedAt).getTime() : Date.now(),
+    fallbackSec: analysis.timeUsedSec,
+    openedAtMs: Number.isFinite(openedAtMs) ? openedAtMs : undefined,
+    answerTimes: answers.map((answer) => answer.answeredAt),
+  });
   const analysisForResults: FullExamResultsAnalysis = {
     ...analysis,
+    timeUsedSec,
     topicBreakdown: buildTopicBreakdown(questions, answers),
   };
   const treatsAsEndedEarly = fullExamTreatsAsEndedEarly({
@@ -110,7 +125,7 @@ async function FullExamResultsContent({
         examShortName={exam.shortName}
         score={displayScore}
         correct={correct}
-        questionCount={questions.length}
+        questionCount={totals.denominator > 0 ? totals.denominator : questions.length}
         summary={analysis.summary}
         endedEarly={examSession.status === "ended_early"}
         analysisEndedEarly={analysis.endedEarly === true}

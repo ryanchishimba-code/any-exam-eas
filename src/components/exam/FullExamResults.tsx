@@ -15,6 +15,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { formatAnswerDisplay, storedAnswerIncludesChoice } from "@/lib/full-exam/answer-serialize";
+import { practiceResultsTotals } from "@/lib/full-exam/administered-score";
 import { formatHms } from "@/lib/full-exam/config";
 import { fullExamTreatsAsEndedEarly } from "@/lib/full-exam/results-title";
 import { fullExamHref } from "@/lib/routes";
@@ -76,6 +77,12 @@ export function FullExamResults({
 }: Props) {
   const exam = EXAM_CATALOG[examSlug];
   const correct = answers.filter((a) => a.correct).length;
+  const totals = practiceResultsTotals({
+    delivered: questions.length,
+    answers,
+    cat: Boolean(analysis.catOutcome),
+  });
+  const scoreTotal = totals.denominator > 0 ? totals.denominator : questions.length;
   const sessionEndedEarly = fullExamTreatsAsEndedEarly({
     endedEarly,
     analysisEndedEarly: analysis.endedEarly === true,
@@ -123,7 +130,7 @@ export function FullExamResults({
             <span className="font-normal text-slate-400">/ {questions.length}</span>
           </h1>
           <p className="text-sm text-slate-500">
-            Score {score}% · {correct}/{questions.length} correct
+            Score {score}% · {correct}/{scoreTotal} correct
           </p>
         </header>
 
@@ -191,7 +198,11 @@ export function FullExamResults({
               Rationale
             </p>
             <div className="mt-3.5">
-              <RationaleDisclosureText text={current.explanation} resetKey={current.id} />
+              <RationaleDisclosureText
+                text={current.explanation}
+                resetKey={current.id}
+                examSlug={examSlug}
+              />
             </div>
             <QuestionIssueFooter
               report={buildReportContext({
@@ -252,7 +263,8 @@ export function FullExamResults({
         <header className="mb-6 space-y-1 border-b border-slate-200/80 pb-4">
           <h1 className="text-xl font-semibold text-slate-900">Review overview</h1>
           <p className="text-sm text-slate-500">
-            {correct}/{questions.length} correct
+            {correct}/{scoreTotal} correct
+            {totals.unanswered > 0 ? ` · ${totals.unanswered} not answered` : ""}
           </p>
         </header>
 
@@ -408,7 +420,9 @@ export function FullExamResults({
             </p>
           ) : null}
           <div className="mt-4 space-y-4">
-            {analysis.topicBreakdown.map((t) => (
+            {analysis.topicBreakdown
+              .filter((t) => t.total > 0)
+              .map((t) => (
               <div key={t.topic}>
                 <div className="mb-1 flex justify-between text-[13px]">
                   <span className="font-medium text-[var(--color-ink)]">{t.topic}</span>
@@ -420,6 +434,12 @@ export function FullExamResults({
               </div>
             ))}
           </div>
+          {analysis.topicBreakdown.reduce((sum, row) => sum + (row.unanswered ?? 0), 0) > 0 ? (
+            <p className="mt-3 text-[12px] text-[var(--color-ink-muted)]">
+              {analysis.topicBreakdown.reduce((sum, row) => sum + (row.unanswered ?? 0), 0)} not
+              answered — percentages use answered items only.
+            </p>
+          ) : null}
         </div>
       ) : null}
 

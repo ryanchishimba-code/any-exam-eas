@@ -24,6 +24,8 @@ type TopicQuestion = {
   subjectId?: string;
   blueprintDomain?: string | null;
   blueprintTopic?: string | null;
+  question?: string | null;
+  tags?: string[] | null;
 };
 
 function clean(value: string | null | undefined): string {
@@ -64,51 +66,76 @@ function humanTopic(value: string): string | null {
   return null;
 }
 
+const BROAD_NURSING_LABEL =
+  /^(medical-surgical nursing|pediatric nursing|maternal & child health|nursing fundamentals|fundamentals|general)$/i;
+
+const PSYCH_ITEM =
+  /\b(depressi(?:on|ve)|suicid|self[-\s]?harm|psychosocial|mental health|therapeutic communication|therapeutic response|bipolar|schizophreni|grief|hopeless)\b/i;
+
 function bucketForQuestion(q: TopicQuestion): string {
   const subject = clean(q.subjectId);
   const category = clean(q.topicCategory);
   const domain = clean(q.blueprintDomain);
   const topic = clean(q.blueprintTopic);
 
+  let base = "General";
   const fromSubject = subjectLabel(subject) ?? subjectLabel(category) ?? subjectLabel(topic);
-  if (fromSubject) return fromSubject;
+  if (fromSubject) base = fromSubject;
+  else {
+    const fromDomain = naplexAreaLabel(domain);
+    if (fromDomain) base = fromDomain;
+    else {
+      const spine = resolveOrganSystemId(domain, topic || category, subject);
+      if (spine) base = organSystemById(spine)?.shortLabel ?? spine;
+      else {
+        const written = humanTopic(category) ?? humanTopic(topic);
+        if (written) base = written;
+        else {
+          const raw = [category, topic, subject, domain].find((value) => value && !isPlaceholder(value));
+          if (raw) base = displayLabel(raw);
+        }
+      }
+    }
+  }
 
-  const fromDomain = naplexAreaLabel(domain);
-  if (fromDomain) return fromDomain;
-
-  const spine = resolveOrganSystemId(domain, topic || category, subject);
-  if (spine) return organSystemById(spine)?.shortLabel ?? spine;
-
-  const written = humanTopic(category) ?? humanTopic(topic);
-  if (written) return written;
-
-  const raw = [category, topic, subject, domain].find((value) => value && !isPlaceholder(value));
-  if (!raw) return "General";
-  return displayLabel(raw);
+  if (/psychosocial/i.test(base)) return base;
+  const haystack = [q.question, topic, category, subject, ...(q.tags ?? [])].filter(Boolean).join(" ");
+  const broad = BROAD_NURSING_LABEL.test(base) || base === "General";
+  if (PSYCH_ITEM.test(haystack) && (broad || /\b(depressi|suicid|therapeutic (?:response|communication)|psychosocial|mental health)\b/i.test(haystack))) {
+    return "Psychosocial Integrity";
+  }
+  return base;
 }
 
 export function buildTopicBreakdown(
   questions: TopicQuestion[],
   answers: ExamAnswerRecord[]
 ): FullExamTopicBreakdown[] {
-  const byTopic = new Map<string, { correct: number; total: number }>();
+  const byTopic = new Map<string, { correct: number; total: number; unanswered: number }>();
 
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
     const topic = bucketForQuestion(q ?? {});
-    const entry = byTopic.get(topic) ?? { correct: 0, total: 0 };
-    entry.total += 1;
+    const entry = byTopic.get(topic) ?? { correct: 0, total: 0, unanswered: 0 };
     const ans = answers.find((a) => a.questionIndex === i);
-    if (ans?.correct) entry.correct += 1;
+    const selected = typeof ans?.selected === "string" ? ans.selected.trim() : "";
+    if (!selected) {
+      entry.unanswered += 1;
+    } else {
+      entry.total += 1;
+      if (ans?.correct) entry.correct += 1;
+    }
     byTopic.set(topic, entry);
   }
 
   return [...byTopic.entries()]
-    .map(([topic, { correct, total }]) => ({
+    .map(([topic, { correct, total, unanswered }]) => ({
       topic,
       correct,
       total,
+      ...(unanswered > 0 ? { unanswered } : {}),
       pct: total > 0 ? Math.round((correct / total) * 100) : 0,
     }))
+    .filter((row) => row.total > 0 || (row.unanswered ?? 0) > 0)
     .sort((a, b) => a.pct - b.pct || a.topic.localeCompare(b.topic));
 }

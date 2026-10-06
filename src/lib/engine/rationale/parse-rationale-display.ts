@@ -34,6 +34,58 @@ function stripBold(text: string): string {
   return text.replace(/\*\*/g, "").trim();
 }
 
+const SECTION_HEADERS = [
+  "## Why this answer is correct",
+  "## Why the other options are wrong",
+  "## Key takeaway",
+  "## Step-by-step reasoning",
+  "## Clinical pearl",
+  "## Pharmacology tie-in",
+  "## High-yield facts",
+  "## Common pitfalls",
+  "## Next step in care",
+  "## Test-taking tip",
+  "## Real-world nursing application",
+  "## Real-world clinical application",
+  "## Real-world NP practice",
+  "## Real-world application",
+  "## Layered depth",
+  "## Visual cues",
+  "## Related topics",
+];
+
+function headersAfter(header: string): string[] {
+  return SECTION_HEADERS.filter((candidate) => candidate !== header);
+}
+
+/** Drop a following ## section that leaked into this body. */
+export function clipRationaleSection(text: string): string {
+  const cut = text.search(/\n#{1,6}\s+/);
+  const body = (cut >= 0 ? text.slice(0, cut) : text).replace(/^#{1,6}\s+.*$/gm, "");
+  return stripBold(body);
+}
+
+export type PracticeBoard = "nursing" | "pharmacy" | "clinical";
+
+export function practiceBoardFromExam(examSlug?: string | null): PracticeBoard {
+  if (!examSlug) return "clinical";
+  if (examSlug === "nclex" || examSlug === "nclex-pn" || examSlug === "nclex-rn" || examSlug === "nursing") {
+    return "nursing";
+  }
+  if (examSlug === "naplex" || examSlug === "mpje" || examSlug === "pharmacy") return "pharmacy";
+  return "clinical";
+}
+
+/** Stored copy often says "On the unit" even on pharmacy items. */
+export function adaptBoardPracticeWording(text: string, board: PracticeBoard): string {
+  if (!text || board === "nursing") return text;
+  const phrase = board === "pharmacy" ? "In the pharmacy, this means" : "In practice, this means";
+  const place = board === "pharmacy" ? "In the pharmacy" : "In practice";
+  return text
+    .replace(/On the unit, this means/gi, phrase)
+    .replace(/\bOn the unit\b/gi, place);
+}
+
 function extractSection(text: string, header: string, nextHeaders: string[]): string {
   const start = text.indexOf(header);
   if (start < 0) return "";
@@ -87,7 +139,7 @@ function parseNumberedSteps(block: string): string[] {
 }
 
 function parseSimpleSection(block: string): string {
-  return block.replace(/\*\*/g, "").trim();
+  return clipRationaleSection(block);
 }
 
 function asStringArray(value: unknown): string[] {
@@ -175,39 +227,33 @@ export function parseRationaleForDisplay(
   const hasStructure = text.includes("## Why this answer is correct");
   if (!hasStructure) return empty;
 
-  const whyBlock = extractSection(text, "## Why this answer is correct", [
+  const whyBlock = extractSection(text, "## Why this answer is correct", headersAfter("## Why this answer is correct"));
+  const wrongBlock = extractSection(
+    text,
     "## Why the other options are wrong",
-    "## Key takeaway",
-  ]);
-  const wrongBlock = extractSection(text, "## Why the other options are wrong", [
-    "## Key takeaway",
-  ]);
-  const takeawayBlock = extractSection(text, "## Key takeaway", [
+    headersAfter("## Why the other options are wrong")
+  );
+  const takeawayBlock = extractSection(text, "## Key takeaway", headersAfter("## Key takeaway"));
+  const stepsBlock = extractSection(
+    text,
     "## Step-by-step reasoning",
-    "## Clinical pearl",
-  ]);
-  const stepsBlock = extractSection(text, "## Step-by-step reasoning", [
-    "## Clinical pearl",
-    "## Pharmacology tie-in",
-    "## Why the other options are wrong",
-  ]);
-  const pearlBlock = extractSection(text, "## Clinical pearl", [
-    "## Pharmacology tie-in",
-    "## High-yield facts",
-  ]);
-  const pharmBlock = extractSection(text, "## Pharmacology tie-in", ["## High-yield facts"]);
-  const hyBlock = extractSection(text, "## High-yield facts", ["## Common pitfalls"]);
-  const pitfallBlock = extractSection(text, "## Common pitfalls", ["## Next step in care"]);
-  const nextBlock = extractSection(text, "## Next step in care", ["## Test-taking tip"]);
-  const tipBlock = extractSection(text, "## Test-taking tip", [
-    "## Real-world nursing application",
-  ]);
-  const rwBlock = extractSection(text, "## Real-world nursing application", [
-    "## Layered depth",
-  ]);
-  const layeredBlock = extractSection(text, "## Layered depth", ["## Visual cues"]);
-  const visualBlock = extractSection(text, "## Visual cues", ["## Related topics"]);
-  const xrefBlock = extractSection(text, "## Related topics", []);
+    headersAfter("## Step-by-step reasoning")
+  );
+  const pearlBlock = extractSection(text, "## Clinical pearl", headersAfter("## Clinical pearl"));
+  const pharmBlock = extractSection(text, "## Pharmacology tie-in", headersAfter("## Pharmacology tie-in"));
+  const hyBlock = extractSection(text, "## High-yield facts", headersAfter("## High-yield facts"));
+  const pitfallBlock = extractSection(text, "## Common pitfalls", headersAfter("## Common pitfalls"));
+  const nextBlock = extractSection(text, "## Next step in care", headersAfter("## Next step in care"));
+  const tipBlock = extractSection(text, "## Test-taking tip", headersAfter("## Test-taking tip"));
+  const rwBlock = [
+    extractSection(text, "## Real-world nursing application", headersAfter("## Real-world nursing application")),
+    extractSection(text, "## Real-world clinical application", headersAfter("## Real-world clinical application")),
+    extractSection(text, "## Real-world NP practice", headersAfter("## Real-world NP practice")),
+    extractSection(text, "## Real-world application", headersAfter("## Real-world application")),
+  ].find((block) => block.trim());
+  const layeredBlock = extractSection(text, "## Layered depth", headersAfter("## Layered depth"));
+  const visualBlock = extractSection(text, "## Visual cues", headersAfter("## Visual cues"));
+  const xrefBlock = extractSection(text, "## Related topics", headersAfter("## Related topics"));
 
   const lines = whyBlock.split("\n").map((l) => l.trim()).filter(Boolean);
   const headline = lines.find((l) => !l.startsWith("•") && !l.startsWith("-") && !l.startsWith("**In practice"));

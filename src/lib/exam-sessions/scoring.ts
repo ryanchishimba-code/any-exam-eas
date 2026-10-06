@@ -1,14 +1,30 @@
 import type { ExamAnswerRecord } from "./service";
 
-/** Replace answer at same question index (idempotent updates). */
+function earlierAnsweredAt(previous?: string, incoming?: string): string {
+  const prevMs = previous ? Date.parse(previous) : Number.NaN;
+  const nextMs = incoming ? Date.parse(incoming) : Number.NaN;
+  if (Number.isFinite(prevMs) && Number.isFinite(nextMs)) {
+    return prevMs <= nextMs ? previous! : incoming!;
+  }
+  if (Number.isFinite(prevMs)) return previous!;
+  if (Number.isFinite(nextMs)) return incoming!;
+  return incoming || previous || "";
+}
+
+/**
+ * Replace the row at the same question index.
+ * The first real answeredAt stays, so a submit that restamps every row
+ * cannot collapse the sitting onto a few seconds.
+ */
 export function mergeExamAnswers(
   answers: ExamAnswerRecord[],
   answer: ExamAnswerRecord
 ): ExamAnswerRecord[] {
-  return [
-    ...answers.filter((a) => a.questionIndex !== answer.questionIndex),
-    answer,
-  ];
+  const previous = answers.find((row) => row.questionIndex === answer.questionIndex);
+  const next = previous
+    ? { ...answer, answeredAt: earlierAnsweredAt(previous.answeredAt, answer.answeredAt) }
+    : answer;
+  return [...answers.filter((row) => row.questionIndex !== answer.questionIndex), next];
 }
 
 export function countCorrectAnswers(answers: ExamAnswerRecord[]): number {

@@ -67,6 +67,8 @@ async function fetchPreferenceOnce(): Promise<PreferencePayload | null> {
  * started before the write must not paint the previous board back onto nav.
  */
 let preferenceWriteRevision = 0;
+/** Server prop has caught up to the latest optimistic write. */
+let confirmedPreferenceRevision = 0;
 
 function publishOptimisticExamSlug(slug: ExamSlug | null) {
   preferenceWriteRevision += 1;
@@ -92,7 +94,10 @@ async function fetchPreference(force = false): Promise<PreferencePayload | null>
     .then((value) => {
       // Only a real payload is worth caching; a declined read stays retryable.
       // A newer optimistic write wins over this response.
-      if (value && revision === preferenceWriteRevision) cachedPreference = value;
+      if (value && revision === preferenceWriteRevision) {
+        cachedPreference = value;
+        confirmedPreferenceRevision = revision;
+      }
       if (inflightPreference === pending) inflightPreference = null;
       return value;
     })
@@ -115,7 +120,12 @@ export function AppPreferencesProvider({
   children,
 }: ProviderProps) {
   const { status } = useSession();
-  const [examSlug, setExamSlugState] = useState<ExamSlug | null>(initialExamSlug);
+  const [examSlug, setExamSlugState] = useState<ExamSlug | null>(() => {
+    if (preferenceWriteRevision > confirmedPreferenceRevision && cachedPreference?.examSlug) {
+      return cachedPreference.examSlug;
+    }
+    return initialExamSlug;
+  });
   const [mpjeStateCode, setMpjeStateCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(status === "authenticated" && !initialExamSlug);
 
@@ -143,10 +153,19 @@ export function AppPreferencesProvider({
   // Callers refresh after saving a new exam, so never serve them a stale slug.
   const refresh = useCallback(() => load(true), [load]);
 
-  // Sync from server layout props only when they actually change to a new value.
-  // Avoid clobbering an optimistic setExamSlug during soft refresh races.
+  // A select-exam save navigates into this provider. A stale server prop must
+  // not paint the previous board over the exam that was just saved.
   useEffect(() => {
     if (initialExamSlug === undefined) return;
+    const pending =
+      preferenceWriteRevision > confirmedPreferenceRevision && cachedPreference?.examSlug;
+    if (pending && cachedPreference?.examSlug !== initialExamSlug) {
+      setExamSlugState(cachedPreference!.examSlug);
+      return;
+    }
+    if (pending && cachedPreference?.examSlug === initialExamSlug) {
+      confirmedPreferenceRevision = preferenceWriteRevision;
+    }
     setExamSlugState((prev) => (prev === initialExamSlug ? prev : initialExamSlug));
   }, [initialExamSlug]);
 
