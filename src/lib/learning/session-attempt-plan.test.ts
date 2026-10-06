@@ -78,5 +78,8 @@ describe("session attempt plan", () => {
         "/question-bank?mode=bank&field=nursing&style=review_incorrect&count=25&pace=untimed&subjectId=management-of-care",
       analyticsHref: "/analytics",
     });
+    const scoped = sessionReceiptLinks("nursing", null, { examSessionId: "sess-1", incorrectCount: 26 });
+    expect(scoped.reviewIncorrectHref).toContain("examSessionId=sess-1");
+    expect(scoped.reviewIncorrectHref).toContain("count=26");
   });
 });

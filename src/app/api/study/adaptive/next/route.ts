@@ -18,6 +18,7 @@ import {
 import { computeOverallAccuracy } from "@/lib/learning/adaptive-session";
 import { buildTopicWeakness } from "@/lib/learning/weakness";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
+import { joinStoredCorrectAnswer } from "@/lib/questions/multi-answer";
 import type { ExamQuestion } from "@/lib/ai";
 import {
   assertExamSessionReady,
@@ -75,14 +76,8 @@ function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQu
     vignette: prepared.vignette,
     question: prepared.stem,
     options: prepared.options,
-    correctAnswer:
-      prepared.type === "select_all" ||
-      prepared.type === "bow_tie" ||
-      prepared.type === "matrix" ||
-      prepared.type === "highlight" ||
-      prepared.type === "ordered_response"
-        ? prepared.correctAnswers.join(",")
-        : (prepared.correctAnswers[0] ?? ""),
+    correctAnswer: joinStoredCorrectAnswer(prepared.type, prepared.correctAnswers),
+    ngnPayload: prepared.ngnPayload,
     explanation: prepared.explanation,
     clinicalReasoning: prepared.clinicalReasoning,
     solutionSteps: prepared.solutionSteps,

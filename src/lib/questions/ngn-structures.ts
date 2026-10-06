@@ -1,5 +1,6 @@
 import type { ExamQuestion } from "@/lib/ai";
 import { cleanOptionText } from "@/lib/question-format";
+import { joinStoredCorrectAnswer } from "@/lib/questions/multi-answer";
 import type { StudyQuestion } from "./types";
 
 export type NgnLayoutInput = Pick<
@@ -37,7 +38,7 @@ function toLayoutInput(q: NgnLayoutInput | StudyQuestion): NgnLayoutInput {
       type: (q.ngnFormat ?? q.type) as ExamQuestion["type"],
       question: q.stem,
       options: q.options,
-      correctAnswer: q.correctAnswers.join(","),
+      correctAnswer: joinStoredCorrectAnswer(q.type, q.correctAnswers),
       vignette: q.vignette,
       chartData: q.chartData ?? resolveChartData({ ngnPayload: q.ngnPayload } as NgnLayoutInput),
       ngnPayload: q.ngnPayload,

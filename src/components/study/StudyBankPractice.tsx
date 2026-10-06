@@ -244,6 +244,7 @@ function buildBankPracticeUrl(
     mpjeState?: string;
     taskCategory?: PanceTaskAreaId | null;
     format?: PracticeFormatMode;
+    examSessionId?: string | null;
   },
   base = ROUTES.questionBank
 ) {
@@ -253,6 +254,7 @@ function buildBankPracticeUrl(
     count: String(params.count),
     pace: params.pace,
   });
+  if (params.examSessionId?.trim()) qs.set("examSessionId", params.examSessionId.trim());
   if (params.subjectId) qs.set("subjectId", params.subjectId);
   if (params.blueprintAreaId) qs.set("blueprintArea", params.blueprintAreaId);
   if (params.format && params.format !== "all") qs.set("format", params.format);
@@ -1134,6 +1136,7 @@ export function StudyBankPractice({
           isMpje && resolvedVariant === "state" && resolvedState
             ? resolvedState
             : undefined,
+        examSessionId: searchParams.get("examSessionId"),
       },
       practiceBase
     );

@@ -1,6 +1,7 @@
 "use client";
 
 import { formatNgnLabel } from "@/lib/questions/ngn-map";
+import { parseBowTieLayout } from "@/lib/questions/ngn-structures";
 import { stripShiftNotes } from "@/lib/questions/shift-notes";
 import { studentFacingVignette } from "@/lib/questions/student-display-text";
 import type { StudyQuestion } from "@/lib/questions/types";
@@ -46,9 +47,21 @@ export function NgnFormatBadge({ question }: { question: StudyQuestion }) {
   );
 }
 
+function bowTieInstruction(question: StudyQuestion): string {
+  const layout = parseBowTieLayout(question);
+  const actions =
+    layout.actionPickCount === 1 ? "one action" : `${layout.actionPickCount} actions`;
+  const monitors =
+    layout.monitorPickCount === 1 ? "one parameter" : `${layout.monitorPickCount} parameters`;
+  return `Select ${actions} to take and ${monitors} to monitor.`;
+}
+
 export function NgnTypeInstructions({ question }: { question: StudyQuestion }) {
   const key = question.type === "clinical_reasoning" ? "multiple_choice" : question.type;
-  const text = TYPE_INSTRUCTIONS[key] ?? TYPE_INSTRUCTIONS[question.ngnFormat ?? ""] ?? null;
+  const text =
+    question.type === "bow_tie" || question.ngnFormat === "bow_tie"
+      ? bowTieInstruction(question)
+      : (TYPE_INSTRUCTIONS[key] ?? TYPE_INSTRUCTIONS[question.ngnFormat ?? ""] ?? null);
   if (!text) return null;
   return (
     <p className="mb-3 flex items-start gap-2 rounded-lg border border-sky-100 bg-sky-50/80 px-3 py-2 text-xs leading-relaxed text-sky-900">

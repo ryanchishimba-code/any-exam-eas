@@ -203,6 +203,7 @@ export function resolveQuestionStudyLinks(
   const scene = (ctx.anatomyText ?? ctx.stem ?? "").trim();
   const anatomyStructures = (scene ? confidentAnatomy(mergedAnatomy, fromText, scene) : mergedAnatomy)
     .filter((link) => link.system !== "skeletal" || structureNameInText(link.name, scene))
+    .filter((link) => !scene || anatomyLinkFitsScene(link.name, scene))
     .slice(0, 3);
 
   const explicitDrugs = Array.isArray(ctx.ngnPayload?.top500Drugs)
@@ -257,7 +258,37 @@ const LINK_STOP = new Set([
   "foundational",
   "knowledge",
   "general",
+  "first",
+  "dosing",
+  "within",
+  "signs",
+  "shock",
+  "hold",
+  "head",
+  "switch",
+  "renal",
+  "delay",
+  "reaction",
+  "toxicity",
+  "screening",
+  "perioperative",
+  "procedure",
+  "adjustment",
+  "antibiotics",
+  "transfusion",
+  "hour",
+  "rule",
+  "level",
+  "adult",
+  "acute",
+  "chronic",
 ]);
+
+const TOKEN_ALIAS: Record<string, string[]> = {
+  mag: ["magnesium"],
+};
+
+const GENERIC_ANATOMY = new Set(["head", "zone", "rate", "body", "neck", "left", "right", "upper", "lower"]);
 
 function structureNameInText(name: string, text: string): boolean {
   const trimmed = name.trim();
@@ -267,15 +298,31 @@ function structureNameInText(name: string, text: string): boolean {
 }
 
 function titleTokens(title: string): string[] {
-  return title
+  const raw = title
     .toLowerCase()
     .split(/[^a-z0-9]+/)
-    .filter((token) => token.length > 4 && !LINK_STOP.has(token));
+    .filter(Boolean);
+  const expanded = raw.flatMap((token) => (TOKEN_ALIAS[token] ? [token, ...TOKEN_ALIAS[token]] : [token]));
+  return expanded.filter((token) => token.length >= 6 && !LINK_STOP.has(token));
 }
 
 function titleMatchesText(title: string, text: string): boolean {
-  const scene = text.toLowerCase();
-  return titleTokens(title).some((token) => scene.includes(token));
+  const tokens = titleTokens(title);
+  if (tokens.length === 0) return false;
+  return tokens.some((token) => new RegExp(`\\b${token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text));
+}
+
+function anatomyLinkFitsScene(name: string, scene: string): boolean {
+  if (/\bheart\b/i.test(name) && /\b(chest pain|st elevation|coronary|heart failure|myocardial)\b/i.test(scene)) {
+    return true;
+  }
+  const sceneForHeart = scene.replace(/\bfetal heart\b/gi, " ").replace(/\bheart rate\b/gi, " ");
+  const parts = name
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((part) => part.length >= 5 && !GENERIC_ANATOMY.has(part) && part !== "heart");
+  if (parts.length === 0) return false;
+  return parts.some((part) => new RegExp(`\\b${part}\\b`, "i").test(sceneForHeart));
 }
 
 function statedAgeYears(text: string): number | null {

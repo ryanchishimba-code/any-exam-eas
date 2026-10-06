@@ -64,5 +64,8 @@ describe("resolveQuestionStudyLinks", () => {
     );
     expect(guideMatchesQuestion("Endocrine", "Atorvastatin 40 mg. LDL remains 160.")).toBe(false);
     expect(guideMatchesQuestion("Anticoagulation & Reversal", "Aprepitant for chemotherapy nausea.")).toBe(false);
+    expect(guideMatchesQuestion("Vancomycin Dosing & AUC", "Morphine 4 mg IV for postoperative pain.")).toBe(false);
+    expect(guideMatchesQuestion("Mag Toxicity Signs", "Magnesium sulfate infusion for preeclampsia.")).toBe(true);
+    expect(guideMatchesQuestion("Mag Toxicity Signs", "A client with a head strike is alert.")).toBe(false);
   });
 });

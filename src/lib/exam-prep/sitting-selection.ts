@@ -203,6 +203,78 @@ export function selectSittingItems(params: {
   };
 }
 
+const CALC_ITEM =
+  /\b(?:calculate|how many|how much|round to|ml\/hr|mg\/kg|infusion rate|drops per|\bgtt\b)\b/i;
+
+export function isPharmacyCalculationItem(item: BankItem): boolean {
+  const type = (item.itemType ?? "").toLowerCase();
+  if (type !== "constructed_response" && type !== "calculation" && type !== "short_answer") return false;
+  if (!/\d/.test(String(item.correctAnswer ?? ""))) return false;
+  const text = [item.question, item.vignette, item.scenario].filter(Boolean).join("\n");
+  return CALC_ITEM.test(text);
+}
+
+function enforceNarrowTopicCap(
+  items: readonly BankItem[],
+  pool: readonly BankItem[],
+  limit: number
+): BankItem[] {
+  const cap = narrowTopicShareCap(limit);
+  const counts = new Map<string, number>();
+  const kept: BankItem[] = [];
+  const used = new Set<string>();
+  const consider = (item: BankItem): boolean => {
+    const id = item.id?.trim();
+    if (id && used.has(id)) return false;
+    const key = sequentialSetId(item) ? null : narrowTopicKeyFromBankItem(item);
+    if (key && (counts.get(key) ?? 0) >= cap) return false;
+    if (key) counts.set(key, (counts.get(key) ?? 0) + 1);
+    if (id) used.add(id);
+    kept.push(item);
+    return true;
+  };
+  for (const item of items) {
+    if (kept.length >= limit) break;
+    consider(item);
+  }
+  if (kept.length < limit) {
+    for (const item of pool) {
+      if (kept.length >= limit) break;
+      consider(item);
+    }
+  }
+  return kept.slice(0, limit);
+}
+
+function withCalculationReserve(
+  pool: readonly BankItem[],
+  picked: readonly BankItem[],
+  limit: number
+): BankItem[] {
+  const quota = Math.min(pool.filter(isPharmacyCalculationItem).length, Math.max(2, Math.round(limit * 0.06)), limit);
+  if (quota === 0) return picked.slice(0, limit);
+  const next = picked.slice(0, limit);
+  const have = next.filter(isPharmacyCalculationItem).length;
+  if (have >= quota) return next;
+  const used = new Set(next.map((item) => item.id?.trim()).filter(Boolean));
+  const extras = pool.filter((item) => isPharmacyCalculationItem(item) && !used.has(item.id?.trim() ?? ""));
+  let need = quota - have;
+  for (const extra of extras) {
+    if (need <= 0) break;
+    let index = -1;
+    for (let i = next.length - 1; i >= 0; i -= 1) {
+      if (!isPharmacyCalculationItem(next[i]!)) {
+        index = i;
+        break;
+      }
+    }
+    if (index < 0) break;
+    next[index] = extra;
+    need -= 1;
+  }
+  return next;
+}
+
 export type AssembledSitting = {
   items: BankItem[];
   relaxed: boolean;
@@ -255,7 +327,13 @@ export function finalizeAssembledSitting(params: {
 
   const excludeSeenApplied = Boolean(seen && seen.size > 0 && picked.length > 0);
 
-  const spread = orderWithTopicGap(picked, (item) =>
+  let capped = enforceNarrowTopicCap(picked, params.pool, limit);
+  if (params.fieldId === "pharmacy") {
+    capped = withCalculationReserve(params.pool, capped, limit);
+    capped = enforceNarrowTopicCap(capped, params.pool, limit);
+  }
+
+  const spread = orderWithTopicGap(capped, (item) =>
     sequentialSetId(item) ? null : narrowTopicKeyFromBankItem(item)
   );
   return { items: spread.slice(0, limit), relaxed, excludeSeenApplied };

@@ -241,6 +241,7 @@ describe("narrow topic spread", () => {
   it("caps one condition at 2 of 50 and 4 of 91", () => {
     expect(narrowTopicShareCap(50)).toBe(2);
     expect(narrowTopicShareCap(91)).toBe(4);
+    expect(narrowTopicShareCap(150)).toBe(4);
     const copd = (id: string, n: number) =>
       item(
         id,

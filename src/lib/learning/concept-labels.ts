@@ -55,6 +55,7 @@ export function isInternalMasteryConceptKey(key: string): boolean {
   if (/^full-exam/i.test(slug)) return true;
   if (slug.startsWith("practice-format:")) return true;
   if (/^exam-\d+/i.test(slug)) return true;
+  if (/^naplex-a-/.test(slug) || slug === "elevate" || /-elevate$/.test(slug)) return true;
   return false;
 }
 

@@ -4,6 +4,8 @@ import {
   parseSelectAllCorrectAnswers,
 } from "@/lib/question-format";
 import { mixShuffleSeed, shuffleDeliveryChoices } from "@/lib/questions/shuffle-delivery";
+import { seededShuffle } from "@/lib/assessment/shuffle";
+import { joinStoredCorrectAnswer, splitStoredCorrectAnswers } from "@/lib/questions/multi-answer";
 import { normalizeStem } from "./stem";
 import { numericValueInSlot, planDualNumericAnswer } from "./dual-numeric-answer";
 import { gradeNumericAnswer } from "./numeric-grade";
@@ -28,10 +30,7 @@ export { coerceOptionList } from "./option-coerce";
 
 function toCorrectAnswers(type: StudyQuestionType, correct: string, options: string[] = []): string[] {
   if (type === "drag_drop") {
-    return correct
-      .split(",")
-      .map((s) => cleanOptionText(s.trim()))
-      .filter(Boolean);
+    return splitStoredCorrectAnswers(correct, options);
   }
   if (type === "select_all") {
     return parseSelectAllCorrectAnswers(options, correct);
@@ -45,10 +44,7 @@ function toCorrectAnswers(type: StudyQuestionType, correct: string, options: str
     type === "bow_tie" ||
     type === "highlight"
   ) {
-    const parts = correct.includes("|||")
-      ? correct.split("|||")
-      : correct.split(",");
-    return parts.map((s) => cleanOptionText(s.trim())).filter(Boolean);
+    return splitStoredCorrectAnswers(correct, options);
   }
   return [cleanOptionText(correct)];
 }
@@ -85,7 +81,41 @@ export function examQuestionToStudy(
     correctAnswer = c.startsWith("t") ? "True" : "False";
   } else if (type === "bow_tie") {
     const layout = parseBowTieLayout({ ...q, options, correctAnswer });
-    options = [...layout.actions, ...layout.monitors];
+    let actions = layout.actions;
+    let monitors = layout.monitors;
+    const conditionOptions = Array.isArray(q.ngnPayload?.conditionOptions)
+      ? (q.ngnPayload.conditionOptions as unknown[]).filter((entry): entry is string => typeof entry === "string")
+      : [];
+    let shuffledConditions = conditionOptions;
+    if (opts?.shuffleOptions !== false && (actions.length > 1 || monitors.length > 1 || conditionOptions.length > 1)) {
+      const seed = mixShuffleSeed(
+        opts?.shuffleSeed ?? (Number.parseInt(hashStem(`${q.bankItemId ?? ""}:${q.question ?? ""}`), 36) || 1),
+        index,
+        q.bankItemId
+      );
+      actions = seededShuffle(actions, `${seed}:actions`);
+      monitors = seededShuffle(monitors, `${seed}:monitors`);
+      shuffledConditions = seededShuffle(conditionOptions, `${seed}:condition`);
+    }
+    options = [...actions, ...monitors];
+    const bowTieChart: Record<string, unknown> = {
+      ...(q.chartData && typeof q.chartData === "object" ? q.chartData : {}),
+      kind: "bow_tie",
+      condition: layout.condition,
+      conditionOptions: shuffledConditions,
+      actions,
+      monitors,
+      actionPickCount: layout.actionPickCount,
+      monitorPickCount: layout.monitorPickCount,
+    };
+    q = {
+      ...q,
+      chartData: bowTieChart,
+      ngnPayload: {
+        ...(q.ngnPayload ?? {}),
+        ...bowTieChart,
+      },
+    };
   } else if (type === "matrix") {
     const layout = parseMatrixLayout({ ...q, options, correctAnswer });
     options = matrixOptionsFromLayout(layout);
@@ -253,9 +283,7 @@ const NGN_EXAM_TYPES = new Set<StudyQuestionType>([
 ]);
 
 function joinCorrectAnswers(type: StudyQuestionType, answers: string[]): string {
-  if (answers.length === 0) return "";
-  if (type === "select_all" && answers.length > 1) return answers.join(",");
-  return answers.join(",");
+  return joinStoredCorrectAnswer(type, answers);
 }
 
 /** Map prepared study rows to API ExamQuestion — use after shuffle; never index into a parallel raw[]. */

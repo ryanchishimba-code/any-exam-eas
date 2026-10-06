@@ -19,6 +19,14 @@ const KNOWN_DRUGS = [
   "carbidopa",
   "digoxin",
   "furosemide",
+  "lisinopril",
+  "amlodipine",
+  "metformin",
+  "clonidine",
+  "clonazepam",
+  "apixaban",
+  "rivaroxaban",
+  "zolpidem",
   "acetaminophen",
   "ibuprofen",
   "albuterol",
@@ -81,6 +89,9 @@ const INTENTS: { id: string; re: RegExp }[] = [
   { id: "therapeutic", re: /therapeutic (?:response|communication)/ },
   { id: "priority", re: /\bpriority\b/ },
   { id: "adverse", re: /adverse effect|side effect|toxicity/ },
+  { id: "iv-push", re: /iv push|push rate|mg per minute|mg\/min/ },
+  { id: "periprocedure-hold", re: /hold (?:before|prior|the dose)|peri-?procedure|before (?:surgery|the procedure)/ },
+  { id: "lasa", re: /look-alike|sound-alike|name pair|confused with/ },
 ];
 
 function itemText(item: BankItem): string {
@@ -199,6 +210,9 @@ export function templateGroupKeys(item: BankItem): string[] {
   const intent = intentId(`${questionLine(item)} ${text}`);
   if (intent && anchors.length > 0) {
     keys.push(`ask:${anchors.join("+")}::${intent}`);
+  }
+  if (/\bclonidine\b/.test(text) && /\bclonazepam\b/.test(text)) {
+    keys.push("case:clonidine+clonazepam");
   }
   // Drug plus a specific finding (atorvastatin + myalgia) is one case even when
   // the ask is reworded. A broad pair such as asthma + albuterol is not.

@@ -73,6 +73,19 @@ describe("buildTopicBreakdown", () => {
     ]);
   });
 
+  it("moves a counseling-labeled cardiovascular stem out of Patient Counseling", () => {
+    const rows = buildTopicBreakdown(
+      [
+        {
+          topicCategory: "Patient Counseling",
+          question: "A client with heart failure takes lisinopril. Which counseling point is required?",
+        },
+      ],
+      [answer(0, true)]
+    );
+    expect(rows[0]?.topic).toBe("Cardiovascular Pharmacotherapy");
+  });
+
   it("keeps General when the item has no topic data", () => {
     const rows = buildTopicBreakdown([{}, { subjectId: "__mixed__" }], [answer(0, false), answer(1, true)]);
     expect(rows).toEqual([{ topic: "General", correct: 1, total: 2, pct: 50 }]);

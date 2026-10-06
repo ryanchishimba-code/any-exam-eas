@@ -67,7 +67,10 @@ export function buildFiveDeepDiveBeats(
     title: "5. Three sibling items in this cell",
     body: siblings.startsWith("•") ? siblings : `• ${siblings}`,
   });
-  return beats;
+  return beats.map((beat, index) => ({
+    ...beat,
+    title: beat.title.replace(/^\d+\./, `${index + 1}.`),
+  }));
 }
 
 function isGenericBeat(text: string): boolean {

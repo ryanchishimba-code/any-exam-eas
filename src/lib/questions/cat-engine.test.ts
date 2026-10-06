@@ -29,6 +29,26 @@ describe("cat-engine", () => {
     expect(s.isComplete).toBe(false);
   });
 
+  it("stops for confidence once accuracy is decisive after the minimum", () => {
+    let s = initCatSession();
+    for (let i = 0; i < CAT_MIN_QUESTIONS; i++) {
+      s = updateCatSession(s, true, "medium");
+    }
+    expect(s.isComplete).toBe(true);
+    expect(s.stopReason).toBe("confidence");
+    expect(s.questionNumber).toBe(CAT_MIN_QUESTIONS);
+  });
+
+  it("runs an 83 percent sitting to the maximum length", () => {
+    let s = initCatSession();
+    for (let i = 0; i < 150; i++) {
+      s = updateCatSession(s, i % 6 !== 0, "medium");
+    }
+    expect(s.questionNumber).toBe(150);
+    expect(s.stopReason).toBe("maximum");
+    expect(s.isComplete).toBe(true);
+  });
+
   it("targets harder difficulty when ability is high", () => {
     let s = initCatSession();
     for (let i = 0; i < 40; i++) {

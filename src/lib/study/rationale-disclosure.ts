@@ -170,16 +170,47 @@ export function selectRationaleLead(input: {
   return usableLead(input.explanation);
 }
 
+function sameSentence(left: string, right: string): boolean {
+  const norm = (value: string) =>
+    value
+      .toLowerCase()
+      .replace(/[“”"']/g, "")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+  const a = norm(left);
+  const b = norm(right);
+  return a.length >= 24 && a === b;
+}
+
+/** Drop a second copy of the opening sentence inside one rationale. */
+export function stripDuplicatedOpeningSentence(text: string): string {
+  const trimmed = text.trim();
+  const lead = firstSentence(trimmed);
+  if (!lead) return trimmed;
+  const rest = trimmed.slice(lead.length).replace(/^[\s]+/, "");
+  const again = firstSentence(rest);
+  if (again && sameSentence(lead, again)) {
+    return rest.slice(again.length).replace(/^[\s.!?:—–-]+/, "").trim();
+  }
+  return trimmed;
+}
+
 /** Remainder after a lead that is a prefix of the full text. Otherwise the full text. */
 export function rationaleAfterLead(text: string, lead: string): string {
-  const full = text.trim();
+  const full = stripDuplicatedOpeningSentence(text.trim());
   const summary = lead.trim();
   if (!full) return "";
   if (!summary || full === summary) return full === summary ? "" : full;
+  let rest = full;
   if (full.startsWith(summary)) {
-    return full.slice(summary.length).replace(/^[\s.!?:—–-]+/, "").trim();
+    rest = full.slice(summary.length).replace(/^[\s.!?:—–-]+/, "").trim();
   }
-  return full;
+  const leadSentence = firstSentence(summary);
+  const restSentence = firstSentence(rest);
+  if (leadSentence && restSentence && sameSentence(leadSentence, restSentence)) {
+    rest = rest.slice(restSentence.length).replace(/^[\s.!?:—–-]+/, "").trim();
+  }
+  return stripDuplicatedOpeningSentence(rest);
 }
 
 /**

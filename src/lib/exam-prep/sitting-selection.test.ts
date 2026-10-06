@@ -3,9 +3,11 @@ import type { BankItem } from "@/lib/question-bank";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import {
   finalizeAssembledSitting,
+  isPharmacyCalculationItem,
   selectSittingItems,
   storedFormNeedsFreshAssembly,
 } from "@/lib/exam-prep/sitting-selection";
+import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
 import { compareSitting, simulateCatNgnCount, simulatedBoards } from "@/lib/exam-prep/sitting-simulation";
 
 function item(
@@ -208,6 +210,46 @@ describe("selectSittingItems", () => {
     expect(
       storedFormNeedsFreshAssembly({ items: pool, limit: 10, seenIds: seen, namedForm: true })
     ).toBe(false);
+  });
+});
+
+describe("finalizeAssembledSitting caps", () => {
+  it("caps heart failure on the exam length even when the pool is much larger", () => {
+    const hf = (id: string) =>
+      item(id, `Heart failure exacerbation ${id}. Which assessment is first?`, ["Daily weight", "Other"], "Daily weight");
+    const other = (id: string) =>
+      item(id, `Wound care teaching item ${id}. Which step is first?`, [`Choice ${id}`, "Other"], `Choice ${id}`);
+    const pool = [
+      ...Array.from({ length: 20 }, (_, i) => hf(`hf-${i}`)),
+      ...Array.from({ length: 80 }, (_, i) => other(`other-${i}`)),
+    ];
+    const selected = finalizeAssembledSitting({ pool, limit: 50, fieldId: "nursing", seed: 7 });
+    const hfCount = selected.items.filter(
+      (row) => narrowTopicKey({ text: row.question }) === "heart-failure"
+    ).length;
+    expect(selected.items).toHaveLength(50);
+    expect(hfCount).toBeLessThanOrEqual(2);
+  });
+
+  it("reserves calculation items in a pharmacy sitting", () => {
+    const calc = (id: string) =>
+      item(
+        id,
+        `How many mL per hour should the infusion run? Round to the nearest whole number. Item ${id}.`,
+        [],
+        "42",
+        { itemType: "constructed_response" }
+      );
+    const other = (id: string) =>
+      item(id, `Counseling point ${id} for a new prescription.`, ["Teach", "Skip"], "Teach", { itemType: "mcq" });
+    const pool = [
+      ...Array.from({ length: 40 }, (_, i) => other(`mcq-${i}`)),
+      ...Array.from({ length: 4 }, (_, i) => calc(`calc-${i}`)),
+    ];
+    expect(isPharmacyCalculationItem(pool[40]!)).toBe(true);
+    const selected = finalizeAssembledSitting({ pool, limit: 20, fieldId: "pharmacy", seed: 3 });
+    const calcCount = selected.items.filter(isPharmacyCalculationItem).length;
+    expect(calcCount).toBeGreaterThanOrEqual(2);
   });
 });
 

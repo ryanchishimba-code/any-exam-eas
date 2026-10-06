@@ -432,39 +432,35 @@ export function FullExamSimulator({
     if (loading || submitting || paused) return;
 
     function syncClock() {
-      if (startedAt) {
-        const used = fullExamTimeUsedSec({
-          startedAt,
-          nowMs: Date.now(),
-          pausedSec: pauseAccumSec.current,
-          fallbackSec: 0,
-          openedAtMs: openedAtMs.current,
-        });
-        if (config.timed && config.timeLimitSec > 0) {
-          const left = Math.max(0, config.timeLimitSec - used);
-          setRemainingSec(left);
-          if (left <= 0) setTimeUp(true);
-        } else {
-          setElapsedSec(used);
-        }
-        return;
-      }
+      const anchor = startedAt ?? new Date(openedAtMs.current).toISOString();
+      const used = fullExamTimeUsedSec({
+        startedAt: anchor,
+        nowMs: Date.now(),
+        pausedSec: pauseAccumSec.current,
+        fallbackSec: 0,
+        openedAtMs: openedAtMs.current,
+      });
       if (config.timed && config.timeLimitSec > 0) {
-        setRemainingSec((s) => {
-          if (s <= 1) {
-            setTimeUp(true);
-            return 0;
-          }
-          return s - 1;
-        });
+        const left = Math.max(0, config.timeLimitSec - used);
+        setRemainingSec(left);
+        if (left <= 0) setTimeUp(true);
       } else {
-        setElapsedSec((s) => s + 1);
+        setElapsedSec(used);
       }
     }
 
-    if (startedAt) syncClock();
+    syncClock();
     const tick = setInterval(syncClock, 1000);
-    return () => clearInterval(tick);
+    const onVisible = () => {
+      if (document.visibilityState === "visible") syncClock();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("focus", syncClock);
+    return () => {
+      clearInterval(tick);
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("focus", syncClock);
+    };
   }, [loading, submitting, paused, config.timed, config.timeLimitSec, startedAt]);
 
   const persistAnswer = useCallback(

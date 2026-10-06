@@ -2,6 +2,7 @@
  * Parse stored rationale text into UI-friendly sections.
  * Supports expert ## sections, structured headers, and legacy plain text.
  */
+import { stripDuplicatedOpeningSentence } from "@/lib/study/rationale-disclosure";
 import type { ExpertStructuredRationale } from "./expert-rationale-types";
 export type ParsedRationaleDisplay = {
   whyCorrectHeadline?: string;
@@ -135,10 +136,12 @@ function pearlDuplicatesTeaching(
 /** Stored copy often says "On the unit" even on pharmacy items. Nursing items drop pharmacy-only lines. */
 export function adaptBoardPracticeWording(text: string, board: PracticeBoard): string {
   if (!text) return text;
-  let next = dedupeRepeatedBlocks(stripGenericPriorityFiller(text));
+  let next = stripDuplicatedOpeningSentence(dedupeRepeatedBlocks(stripGenericPriorityFiller(text)));
   if (board === "nursing") {
     next = next
-      .replace(/for both NCLEX and NAPLEX/gi, "for NCLEX")
+      .replace(/crucial for both (?:NAPLEX and NCLEX|NCLEX and NAPLEX)/gi, "important for nursing practice")
+      .replace(/for both (?:NCLEX and NAPLEX|NAPLEX and NCLEX)/gi, "for NCLEX")
+      .replace(/crucial for pharmacists(?: as well)?/gi, "important for nursing practice")
       .replace(/crucial for pharmacy practice/gi, "important for nursing practice");
     return next;
   }
@@ -322,8 +325,17 @@ export function parseRationaleForDisplay(
   let headline = lines.find((l) => !l.startsWith("•") && !l.startsWith("-") && !l.startsWith("**In practice"));
   const inPractice = whyBlock.match(/\*\*In practice:\*\*\s*(.+)/i)?.[1]?.trim();
   const conceptBullets = parseBullets(whyBlock);
-  if (headline && conceptBullets[0] && sameRationaleText(headline, conceptBullets[0])) {
-    headline = undefined;
+  if (headline && conceptBullets[0]) {
+    const bullet = conceptBullets[0];
+    const headlineSentence = headline.split(/(?<=[.!?])\s/)[0] ?? headline;
+    const bulletSentence = bullet.split(/(?<=[.!?])\s/)[0] ?? bullet;
+    if (
+      sameRationaleText(headline, bullet) ||
+      sameRationaleText(headlineSentence, bulletSentence) ||
+      sameRationaleText(headlineSentence, bullet)
+    ) {
+      headline = undefined;
+    }
   }
 
   let keyTakeaway = takeawayBlock.replace(/\*\*/g, "").trim();
