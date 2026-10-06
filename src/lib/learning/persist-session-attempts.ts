@@ -91,6 +91,8 @@ export async function persistCompletedSessionAttempts(params: {
   studyMode?: string;
   practiceFormat?: "ngn" | "case";
   subjectId?: string | null;
+  /** Set for a full-exam completion so Review incorrect stays on that sitting. */
+  examSessionId?: string | null;
   drafts: SessionAttemptDraft[];
 }): Promise<SessionPersistResult> {
   const fieldId = resolveQuestionBankFieldId(params.field);
@@ -166,7 +168,12 @@ export async function persistCompletedSessionAttempts(params: {
   }
 
   const summary = summarizeAttemptDrafts(drafts);
-  const links = sessionReceiptLinks(fieldId, params.subjectId);
+  const links = sessionReceiptLinks(fieldId, params.subjectId, params.examSessionId
+    ? {
+        examSessionId: params.examSessionId,
+        incorrectCount: drafts.filter((draft) => draft.correct === false).length,
+      }
+    : undefined);
 
   console.info("[session-persist] session saved", {
     userId: params.userId,

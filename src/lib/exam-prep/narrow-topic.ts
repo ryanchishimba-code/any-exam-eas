@@ -7,10 +7,18 @@ import type { BankItem } from "@/lib/question-bank";
 
 const NARROW: { id: string; re: RegExp }[] = [
   { id: "depression-suicide", re: /\b(depressi(?:on|ve)|suicid|self[-\s]?harm|hopeless|giving away (?:his|her|their)?\s*belongings)\b/i },
+  { id: "heart-failure", re: /\b(heart failure|hf exacerbation|ejection fraction|orthopnea|pulmonary edema|fluid volume overload)\b/i },
+  { id: "preeclampsia", re: /\b(preeclampsia|pre-eclampsia|eclampsia|magnesium sulfate|mag sulfate)\b/i },
+  { id: "triage", re: /\b(triage|mass casualty|start method)\b/i },
+  { id: "med-reconciliation", re: /\b(medication reconciliation|med(?:ication)? rec)\b/i },
+  { id: "dissolution", re: /\b(dissolution|disintegrat\w*|formulation)\b/i },
+  { id: "iv-push", re: /\bfurosemide\b[\s\S]{0,80}\b(iv push|push rate|mg\/min)|\b(iv push|push rate)\b[\s\S]{0,80}\bfurosemide\b/i },
+  { id: "periprocedure-hold", re: /\b(apixaban|rivaroxaban|warfarin)\b[\s\S]{0,80}\bhold\b|\bhold\b[\s\S]{0,80}\b(apixaban|rivaroxaban)\b/i },
+  { id: "lasa-pair", re: /\bclonidine\b[\s\S]{0,80}\bclonazepam\b|\bclonazepam\b[\s\S]{0,80}\bclonidine\b|\blook-alike\b|\bsound-alike\b/i },
   { id: "copd", re: /\bcopd\b|\bchronic obstructive\b|\bemphysema\b|\bchronic bronchitis\b/i },
   { id: "breastfeeding", re: /\bbreastfeed|\blactation\b|\bmilk supply\b/i },
   { id: "gtt-teaching", re: /\bglucose tolerance\b|\bgtt\b|\bgestational diabetes\b/i },
-  { id: "warfarin-inr", re: /\bwarfarin\b|\binr\b/i },
+  { id: "warfarin-inr", re: /\bwarfarin\b|\bcoumadin\b|\binr\b/i },
   { id: "statin-myalgia", re: /\bstatins?\b|\bmyalgias?\b|\bmuscle (?:pain|ache)/i },
   { id: "insulin-potassium", re: /\binsulin\b[\s\S]{0,80}\bpotassium\b|\bpotassium\b[\s\S]{0,80}\binsulin\b/i },
   { id: "opioid-sedation", re: /\b(opioid|morphine|fentanyl|hydromorphone|oxycodone|hydrocodone)\b/i },
@@ -61,12 +69,13 @@ export function narrowTopicKeyFromBankItem(item: BankItem): string | null {
 
 /**
  * No single narrow condition above this share of the sitting, and never below 2.
- * 4% keeps COPD from filling 6 of 50 and opioid sedation from filling 8 of 91.
+ * 4% keeps COPD from filling 6 of 50. A long CAT stops at 4 so one condition
+ * cannot fill 6 or more of 150.
  */
 export function narrowTopicShareCap(sittingLength: number): number {
   const length = Math.max(0, Math.floor(sittingLength) || 0);
   if (length <= 0) return 2;
-  return Math.max(2, Math.ceil(length * 0.04));
+  return Math.min(4, Math.max(2, Math.ceil(length * 0.04)));
 }
 
 /**

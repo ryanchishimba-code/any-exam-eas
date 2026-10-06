@@ -16,6 +16,13 @@ import {
   stripRationaleMarkup,
 } from "@/lib/study/rationale-disclosure";
 
+/** Wrong-option labels already end with a period. Do not add a second one before "Trap:". */
+function optionLead(option: string): string {
+  const text = stripRationaleMarkup(option).trim();
+  if (!text) return "";
+  return /[.?!]$/.test(text) ? text : `${text}.`;
+}
+
 type Tone = "study" | "onDark";
 
 const leadClass: Record<Tone, string> = {
@@ -154,7 +161,7 @@ function StructuredRationaleText({
           </p>
           {parsed.wrongOptions.map((row) => (
             <p key={row.option} className={bodyClass[tone]}>
-              <span className="font-semibold">{stripRationaleMarkup(row.option)}. </span>
+              <span className="font-semibold">{optionLead(row.option)} </span>
               {stripRationaleMarkup(row.body)}
             </p>
           ))}

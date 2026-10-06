@@ -30,6 +30,8 @@ describe("isInternalMasteryConceptKey", () => {
     expect(isInternalMasteryConceptKey("physiological-adaptation")).toBe(false);
     expect(isInternalMasteryConceptKey("tag:fluid-balance-io")).toBe(false);
     expect(isInternalMasteryConceptKey("postoperative-care")).toBe(false);
+    expect(isInternalMasteryConceptKey("naplex-a-elevate")).toBe(true);
+    expect(isInternalMasteryConceptKey("elevated-potassium")).toBe(false);
   });
 });
 

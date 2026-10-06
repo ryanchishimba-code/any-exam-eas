@@ -1,4 +1,5 @@
 import { formatConceptLabel, isInternalMasteryConceptKey } from "@/lib/learning/concept-labels";
+import { reviewIncorrectHref } from "@/lib/learning/remediation-loop";
 
 /** One revealed answer, ready to upsert into QuestionAttempt. */
 export type SessionAttemptDraft = {
@@ -155,8 +156,20 @@ function topicIdForDraft(draft: SessionAttemptDraft): string | null {
 
 export function sessionReceiptLinks(
   fieldId: string,
-  subjectId?: string | null
+  subjectId?: string | null,
+  opts?: { examSessionId?: string | null; incorrectCount?: number | null }
 ): { reviewIncorrectHref: string; analyticsHref: string } {
+  if (opts?.examSessionId?.trim()) {
+    return {
+      reviewIncorrectHref: reviewIncorrectHref(
+        fieldId,
+        subjectId,
+        Math.max(1, opts.incorrectCount ?? 1),
+        opts.examSessionId
+      ),
+      analyticsHref: "/analytics",
+    };
+  }
   const qs = new URLSearchParams({
     mode: "bank",
     field: fieldId,

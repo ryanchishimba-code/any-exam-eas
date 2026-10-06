@@ -77,6 +77,8 @@ function baseItem(
   const stepIndex = typeof item.caseStep === "number" ? item.caseStep : undefined;
   const payload = {
     ...(fields.ngnPayload ?? {}),
+    ...(item.exhibit ? { exhibit: item.exhibit } : {}),
+    clinicalItemType: item.itemType,
     ...(setId ? { setId } : {}),
     ...(stepIndex != null ? { stepIndex } : {}),
   };
@@ -110,8 +112,7 @@ function convertBowtie(payload: Record<string, unknown>): Pick<BankItem, "option
   const conditionKeys = keysOf(conditionBlock);
   const condition =
     (conditionOptions.length > 0 ? textsFor(conditionOptions, conditionKeys)?.[0] : null) ??
-    conditionOptions[0]?.text ??
-    (typeof payload.condition === "string" ? payload.condition : "Clinical condition");
+    (typeof payload.condition === "string" ? payload.condition : "");
   return {
     itemType: "ngn_bowtie",
     options: [...actions.options.map((option) => option.text), ...monitors.options.map((option) => option.text)],
@@ -119,6 +120,7 @@ function convertBowtie(payload: Record<string, unknown>): Pick<BankItem, "option
     ngnPayload: {
       kind: "bow_tie",
       condition,
+      conditionOptions: conditionOptions.map((option) => option.text),
       actions: actions.options.map((option) => option.text),
       monitors: monitors.options.map((option) => option.text),
       actionPickCount: actionTexts.length,

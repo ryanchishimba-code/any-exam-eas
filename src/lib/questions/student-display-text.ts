@@ -9,6 +9,7 @@ const INTERNAL_META = [
   VISIT_BATCH,
   /\s*\(\s*batch\s+\d+\s*\)/gi,
   /\s*\(\s*unit\s+\d+\s*\)/gi,
+  /\s*\(\s*visit\s+\d+\s*\)/gi,
   /\bNABP NAPLEX 2026\b/gi,
 ];
 
@@ -58,12 +59,25 @@ function collapseQuoteLineBreaks(text: string): string {
     .replace(/"([^"]*?)\s*\n+\s*([^"]*?)"/g, '"$1 $2"');
 }
 
+/** Close a stem that opened "(" and never closed it, keeping the final punctuation. */
+export function closeDanglingParen(text: string): string {
+  const open = (text.match(/\(/g) ?? []).length;
+  const close = (text.match(/\)/g) ?? []).length;
+  if (open <= close) return text;
+  let next = text;
+  for (let i = 0; i < open - close; i += 1) {
+    if (/[.?!]$/.test(next)) next = `${next.slice(0, -1)})${next.slice(-1)}`;
+    else next = `${next})`;
+  }
+  return next;
+}
+
 export function stripInternalDisplayMetadata(text: string): string {
   let next = collapseQuoteLineBreaks(text);
   for (const pattern of INTERNAL_META) {
     next = next.replace(pattern, "");
   }
-  return next
+  next = next
     .replace(/[ \t]{2,}/g, " ")
     .replace(/\s+([.?!])/g, "$1")
     .replace(/:\s*,\s*/g, ": ")
@@ -73,6 +87,7 @@ export function stripInternalDisplayMetadata(text: string): string {
     .replace(/\)\s*\?/g, ")")
     .replace(/\.\.(?!\.)/g, ".")
     .trim();
+  return closeDanglingParen(next);
 }
 
 const CITATION_REQUIRES_STEM: { citation: RegExp; stem: RegExp }[] = [
@@ -90,8 +105,12 @@ export function citationFitsQuestion(label: string, stem: string): boolean {
   if (/^(?:source|content outline|source\s*\/\s*content outline|nabp naplex(?: content outline)?)$/i.test(cleaned)) {
     return false;
   }
+  if (/^source\s+\d+\b/i.test(cleaned)) return false;
   const scene = stem.trim();
   if (!scene) return true;
+  if (/clinical judgment measurement model/i.test(cleaned) && !/\b(cjmm|clinical judgment|ngn)\b/i.test(scene)) {
+    return false;
+  }
   return CITATION_REQUIRES_STEM.every((rule) => !rule.citation.test(cleaned) || rule.stem.test(scene));
 }
 

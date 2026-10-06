@@ -8,6 +8,7 @@ import { getExamSession } from "@/lib/exam-sessions/service";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
+import { joinStoredCorrectAnswer, reviewQueueKind } from "@/lib/questions/multi-answer";
 import { resolveQuestionBankSessionCount } from "@/lib/study/question-bank-setup";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 
@@ -55,14 +56,8 @@ function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQu
     vignette: prepared.vignette,
     question: prepared.stem,
     options: prepared.options,
-    correctAnswer:
-      prepared.type === "select_all" ||
-      prepared.type === "bow_tie" ||
-      prepared.type === "matrix" ||
-      prepared.type === "highlight" ||
-      prepared.type === "ordered_response"
-        ? prepared.correctAnswers.join(",")
-        : (prepared.correctAnswers[0] ?? ""),
+    correctAnswer: joinStoredCorrectAnswer(prepared.type, prepared.correctAnswers),
+    ngnPayload: prepared.ngnPayload,
     explanation: prepared.explanation,
     clinicalReasoning: prepared.clinicalReasoning,
     solutionSteps: prepared.solutionSteps,
@@ -131,22 +126,76 @@ export async function POST(req: Request) {
       checkStudyQuestionUsage,
       recordStudyQuestionsServed,
     } = await import("@/lib/study/usage-limits");
+    const scopedToExam = Boolean(body.examSessionId);
+    const serveCount = scopedToExam
+      ? Math.min(incorrectIds.length, 100)
+      : Math.min(requestedCount, incorrectIds.length);
     const usageCheck = await checkStudyQuestionUsage({
       userId: premium.userId,
       access: premium.access,
-      requestedCount: Math.min(requestedCount, incorrectIds.length),
+      requestedCount: serveCount,
       adaptive: false,
     });
     if (!usageCheck.ok) return usageCheck.response;
 
-    const sessionCount = Math.min(
-      resolveQuestionBankSessionCount(Math.min(requestedCount, usageCheck.allowedCount)),
-      incorrectIds.length
-    );
+    const sessionCount = scopedToExam
+      ? serveCount
+      : Math.min(
+          resolveQuestionBankSessionCount(Math.min(requestedCount, usageCheck.allowedCount)),
+          incorrectIds.length
+        );
 
     const pickIds = incorrectIds.slice(0, sessionCount);
-    const leadingNgn = pickIds[0]?.startsWith("ngn:") === true;
-    if (leadingNgn) {
+    const queueKind = reviewQueueKind(pickIds);
+    if (queueKind === "mixed") {
+      const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
+      const { publishedCatalogToBankItems } = await import("@/lib/full-exam/catalog-exam-items");
+      const clinical = await loadPublishedClinicalBank(fieldId);
+      const catalogItems = publishedCatalogToBankItems(clinical.catalog);
+      const bankItems = await loadBankItemsByIds(
+        fieldId,
+        pickIds.filter((id) => !id.startsWith("ngn:"))
+      );
+      const byId = new Map(
+        [...catalogItems, ...bankItems].map((item) => [item.id?.trim() ?? "", item] as const)
+      );
+      const ordered = pickIds.flatMap((id) => {
+        const item = byId.get(id);
+        return item ? [item] : [];
+      });
+      if (ordered.length === 0) {
+        return reviewQueueResponse(
+          {
+            error: "Those missed items are no longer in the bank. Practice more, then retry.",
+            code: "INCORRECT_ITEMS_UNAVAILABLE",
+          },
+          incorrectIds.length,
+          503
+        );
+      }
+      const effectiveSubject = subjectId ?? MIXED_SUBJECT_ID;
+      const prepared = ordered.map((item, i) =>
+        examQuestionToStudy(
+          bankItemToSessionRaw(fieldId, body.field, item.subjectId ?? effectiveSubject, item, i),
+          i,
+          { shuffleOptions: true, shuffleSeed: 0x161 }
+        )
+      );
+      const questions = prepared.map(toApiQuestion);
+      await recordStudyQuestionsServed(premium.userId, questions.length, "bank", usageCheck.plan);
+      return reviewQueueResponse(
+        {
+          field: body.field,
+          fieldId,
+          subjectId: effectiveSubject,
+          mode: "review_incorrect",
+          questions,
+          bankItemIds: ordered.map((item) => item.id).filter(Boolean),
+        },
+        incorrectIds.length
+      );
+    }
+    if (queueKind === "clinical") {
       const ngnKeys = pickIds.filter((id) => id.startsWith("ngn:"));
       const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
       const { studentFacingUnit } = await import("@/lib/assessment/serve");

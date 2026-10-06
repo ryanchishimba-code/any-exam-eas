@@ -90,6 +90,7 @@ export async function PATCH(
       userId: premium.userId,
       field: fieldId,
       sessionId: id,
+      examSessionId: id,
       studyMode: fullExamStudyMode(analysis),
       drafts,
     });

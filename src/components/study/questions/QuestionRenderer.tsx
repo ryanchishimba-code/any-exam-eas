@@ -18,6 +18,7 @@ import {
 import { CollapsibleRationale, rationaleLeadForQuestion } from "./CollapsibleRationale";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { buildReportContext } from "@/components/study/ReportQuestionDialog";
+import { TrendExhibit } from "@/components/ngn/items/TrendExhibit";
 import { NgnCjmmNote, NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
 import {
   BowTieQuestion,
@@ -70,6 +71,30 @@ const ExpertRationalePanel = dynamic(
     ),
   }
 );
+
+function CatalogExhibit({ question }: { question: StudyQuestion }) {
+  const payload = question.ngnPayload as
+    | {
+        exhibit?: { title?: string; columns?: unknown; rows?: unknown; note?: string; text?: string } | null;
+        clinicalItemType?: string;
+      }
+    | undefined;
+  const exhibit = payload?.exhibit;
+  if (!exhibit || typeof exhibit !== "object") return null;
+  if (payload?.clinicalItemType === "bowtie" && typeof exhibit.text === "string" && exhibit.text.trim()) {
+    return (
+      <aside className="mb-4 rounded-3xl bg-[#f4f6f8] p-4">
+        {exhibit.title ? <p className="text-sm font-semibold text-[#0A2540]">{exhibit.title}</p> : null}
+        <p className="mt-2 whitespace-pre-wrap text-[15px] leading-6 text-[#0A2540]">{exhibit.text}</p>
+      </aside>
+    );
+  }
+  return (
+    <div className="mb-4">
+      <TrendExhibit exhibit={exhibit} />
+    </div>
+  );
+}
 
 type Props = {
   question: StudyQuestion;
@@ -170,6 +195,8 @@ export const QuestionRenderer = memo(function QuestionRenderer({
           <NaplexExhibitBlock question={question} />
         )
       )}
+
+      <CatalogExhibit question={question} />
 
       <NgnTypeInstructions question={question} />
 

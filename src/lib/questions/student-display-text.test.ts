@@ -28,6 +28,10 @@ describe("student display text", () => {
 
   it("strips visit-batch metadata without touching the clinical sentence", () => {
     expect(stripInternalDisplayMetadata("The fundus is boggy (Visit batch 13).")).toBe("The fundus is boggy.");
+    expect(stripInternalDisplayMetadata("The client returns (visit 8).")).toBe("The client returns.");
+    expect(stripInternalDisplayMetadata("What dose (mg) per administration? (Round to the nearest whole number.")).toBe(
+      "What dose (mg) per administration? (Round to the nearest whole number)."
+    );
     expect(stripInternalDisplayMetadata("Visit batch 13 The client is dizzy.")).toBe("The client is dizzy.");
   });
 
@@ -57,6 +61,9 @@ describe("student display text", () => {
     expect(citationFitsQuestion("AHA heart failure guideline", "Heart failure with a low ejection fraction.")).toBe(
       true
     );
+    expect(citationFitsQuestion("AHA HF guideline", "Opioid respiratory depression after morphine.")).toBe(false);
+    expect(citationFitsQuestion("Source 8 - Open RN", "A heparin infusion rate.")).toBe(false);
+    expect(citationFitsQuestion("Clinical Judgment Measurement Model", "Calculate the heparin infusion.")).toBe(false);
     expect(figureFitsQuestion("MDI technique diagram", "Teach dry-powder inhaler Diskus use.")).toBe(false);
     expect(figureFitsQuestion("DPI Diskus diagram", "Teach dry-powder inhaler Diskus use.")).toBe(true);
   });

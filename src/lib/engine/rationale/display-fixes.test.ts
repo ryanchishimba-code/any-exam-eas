@@ -68,6 +68,12 @@ Adding it can help manage both acute and delayed nausea.
     expect(adaptBoardPracticeWording("This is crucial for pharmacy practice and for both NCLEX and NAPLEX.", "nursing")).toBe(
       "This is important for nursing practice and for NCLEX."
     );
+    expect(adaptBoardPracticeWording("This point is crucial for both NAPLEX and NCLEX.", "nursing")).toBe(
+      "This point is important for nursing practice."
+    );
+    expect(adaptBoardPracticeWording("This skill is crucial for pharmacists as well.", "nursing")).toBe(
+      "This skill is important for nursing practice."
+    );
     expect(adaptBoardPracticeWording(`${filler}\n\n${filler}`, "nursing")).toBe("");
   });
 
@@ -83,6 +89,7 @@ Adding it can help manage both acute and delayed nausea.
     const beats = buildFiveDeepDiveBeats(question);
     expect(beats.some((beat) => /Compare each wrong option/i.test(beat.body))).toBe(false);
     expect(beats.some((beat) => beat.id === "why_distractors")).toBe(false);
+    expect(beats.map((beat) => beat.title[0])).toEqual(["1", "2", "3"]);
   });
 
   it("drops an empty clipped section", () => {

@@ -109,7 +109,8 @@ async function FullExamResultsContent({
     answers,
   });
   const passPathPersisted = examPassPathPersisted(analysis);
-  const missCount = passPathPersisted
+  const fromAnswers = answers.filter((answer) => answer.correct === false).length;
+  const fromPass = passPathPersisted
     ? countFullExamMisses(
         draftsFromFullExamAnswers({
           answers,
@@ -117,6 +118,7 @@ async function FullExamResultsContent({
         })
       )
     : 0;
+  const missCount = Math.max(fromPass, fromAnswers);
 
   return (
     <>
@@ -145,9 +147,7 @@ async function FullExamResultsContent({
         missCount={missCount}
         passPathPersisted={passPathPersisted}
         reviewIncorrectHref={
-          passPathPersisted && missCount === 0
-            ? null
-            : reviewIncorrectHref(fieldId, null, Math.max(missCount, 1), sessionId)
+          missCount === 0 ? null : reviewIncorrectHref(fieldId, null, missCount, sessionId)
         }
         proofHref={ROUTES.dashboard}
         endedEarly={treatsAsEndedEarly}

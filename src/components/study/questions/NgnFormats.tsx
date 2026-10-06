@@ -79,7 +79,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
               Condition
             </p>
             <p className="mt-2 text-sm font-semibold leading-snug text-[var(--color-ink)]">
-              {layout.condition}
+              {revealed && layout.condition ? layout.condition : "—"}
             </p>
           </div>
         </div>
