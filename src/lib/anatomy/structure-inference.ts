@@ -12,9 +12,38 @@ function normalize(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9\s-]/g, " ");
 }
 
+/**
+ * Bone-catalog tokens and everyday words. Matching these pulled Clavicle and
+ * Femur onto pharmacokinetics items that only said "long half-life".
+ */
+const GENERIC_ANATOMY_TERMS = new Set([
+  "bone",
+  "skeleton",
+  "long",
+  "short",
+  "flat",
+  "irregular",
+  "sesamoid",
+  "hand",
+  "foot",
+  "arm",
+  "leg",
+  "cranium",
+  "face",
+  "thorax",
+  "pelvis",
+  "vertebral",
+  "ossicles",
+  "hyoid",
+  "upper-limb",
+  "lower-limb",
+  "upper limb",
+  "lower limb",
+]);
+
 function wordBoundaryMatch(haystack: string, term: string): boolean {
   const t = term.trim().toLowerCase();
-  if (t.length < 3) return false;
+  if (t.length < 3 || GENERIC_ANATOMY_TERMS.has(t)) return false;
   const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   return new RegExp(`\\b${escaped}\\b`, "i").test(haystack);
 }

@@ -43,6 +43,28 @@ describe("examQuestionToStudy", () => {
     expect(back?.sourceLabel).toBe("ACC/AHA guideline");
     expect(back?.reviewedAt).toBe("2026-06-01T00:00:00.000Z");
   });
+
+  it("keeps subject and blueprint fields through the study round trip", () => {
+    const q = examQuestionToStudy(
+      {
+        ...sample,
+        subjectId: "pharmacokinetics",
+        topicCategory: "pharmacokinetics",
+        blueprintDomain: "naplex-2026-pharmacotherapy",
+        blueprintTopic: "half-life",
+      },
+      0
+    );
+    expect(q.subjectId).toBe("pharmacokinetics");
+    expect(q.topicCategory).toBe("pharmacokinetics");
+    expect(q.blueprintDomain).toBe("naplex-2026-pharmacotherapy");
+    expect(q.blueprintTopic).toBe("half-life");
+    const [back] = studyQuestionsToExamQuestions([q]);
+    expect(back?.subjectId).toBe("pharmacokinetics");
+    expect(back?.topicCategory).toBe("pharmacokinetics");
+    expect(back?.blueprintDomain).toBe("naplex-2026-pharmacotherapy");
+    expect(back?.blueprintTopic).toBe("half-life");
+  });
 });
 
 describe("isAnswerCorrect", () => {

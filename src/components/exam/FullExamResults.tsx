@@ -16,7 +16,7 @@ import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { formatAnswerDisplay } from "@/lib/full-exam/answer-serialize";
 import { formatHms } from "@/lib/full-exam/config";
-import { summarySaysEndedEarly } from "@/lib/full-exam/results-title";
+import { fullExamTreatsAsEndedEarly } from "@/lib/full-exam/results-title";
 import { fullExamHref } from "@/lib/routes";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import type { ExamSlug } from "@/types/edtech";
@@ -76,8 +76,15 @@ export function FullExamResults({
 }: Props) {
   const exam = EXAM_CATALOG[examSlug];
   const correct = answers.filter((a) => a.correct).length;
-  const sessionEndedEarly =
-    endedEarly || analysis.endedEarly === true || summarySaysEndedEarly(analysis.summary);
+  const sessionEndedEarly = fullExamTreatsAsEndedEarly({
+    endedEarly,
+    analysisEndedEarly: analysis.endedEarly === true,
+    summary: analysis.summary,
+    questionCount: questions.length,
+    plannedQuestionCount: analysis.sessionConfig.questionCount,
+    catStopReason: analysis.catOutcome?.stopReason,
+    answers,
+  });
   const [view, setView] = useState<ReviewView>(initialReviewOpen ? "question" : "summary");
   const [index, setIndex] = useState(0);
 
@@ -87,9 +94,6 @@ export function FullExamResults({
       setIndex(0);
     }
   }, [initialReviewOpen, questions.length]);
-
-  const scoreColor =
-    score >= 80 ? "text-teal-600" : score >= 65 ? "text-amber-600" : "text-rose-600";
 
   const current = questions[index];
   const currentAnswer = answerFor(answers, index);
@@ -351,9 +355,7 @@ export function FullExamResults({
 
       <PhoneFold summary="Score breakdown">
       <div className="space-y-4 sm:space-y-6">
-      <div className="grid gap-3 sm:grid-cols-3">
-        <StatCard label="Score" value={`${score}%`} valueClass={scoreColor} />
-        <StatCard label="Correct" value={`${correct} / ${questions.length}`} />
+      <div className="grid gap-3 sm:grid-cols-1">
         <StatCard label="Time used" value={formatHms(analysis.timeUsedSec)} icon={Clock} />
       </div>
 

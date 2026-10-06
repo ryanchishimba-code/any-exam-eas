@@ -138,5 +138,13 @@ export function bankItemToSessionRaw(
   } else {
     raw = bankItemToRawQuestion(enriched, index, { field, subjectId });
   }
-  return { ...raw, ...provenance };
+  return {
+    ...raw,
+    ...provenance,
+    subjectId: raw.subjectId ?? enriched.subjectId ?? subjectId,
+    topicCategory:
+      raw.topicCategory || enriched.topicCategory || enriched.subjectId || subjectId,
+    blueprintDomain: enriched.blueprintDomain,
+    blueprintTopic: enriched.blueprintTopic,
+  };
 }

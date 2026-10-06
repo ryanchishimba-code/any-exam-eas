@@ -101,6 +101,20 @@ export async function persistCompletedSessionAttempts(params: {
 
   const { recordUniformCellAttempt } = await import("@/lib/engine/mastery/uniform-engine");
 
+  const questionKeys = drafts.map((draft) => (draft.bankItemId ?? draft.questionKey).trim());
+  const existingRows =
+    questionKeys.length > 0
+      ? await prisma.questionAttempt.findMany({
+          where: {
+            userId: params.userId,
+            sessionId: params.sessionId,
+            questionKey: { in: questionKeys },
+          },
+          select: { questionKey: true },
+        })
+      : [];
+  const alreadyStored = new Set(existingRows.map((row) => row.questionKey));
+
   for (const draft of drafts) {
     const input = draftToAttemptInput({
       userId: params.userId,
@@ -110,7 +124,11 @@ export async function persistCompletedSessionAttempts(params: {
       practiceFormat: params.practiceFormat,
       draft,
     });
-    const result = await recordAttemptWithMastery(input, { refreshProfile: false });
+    const questionKey = (draft.bankItemId ?? draft.questionKey).trim();
+    const result = await recordAttemptWithMastery(input, {
+      refreshProfile: false,
+      skipExistenceCheck: !alreadyStored.has(questionKey),
+    });
     if (result.alreadySaved) {
       alreadySaved += 1;
       continue;

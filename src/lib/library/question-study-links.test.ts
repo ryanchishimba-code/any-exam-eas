@@ -19,6 +19,17 @@ describe("resolveQuestionStudyLinks", () => {
     expect(links.primaryDeepDive?.slug).toBe("heart-failure-gdmt");
   });
 
+  it("does not offer clavicle or femur on a NAPLEX pharmacokinetics item", () => {
+    const links = resolveQuestionStudyLinks("naplex", {
+      subjectId: "pharmacokinetics",
+      topicCategory: "pharmacokinetics",
+      stem: "Calculate the half-life from clearance and volume of distribution. The drug has a long half-life. How long to steady state?",
+    });
+    expect(links.anatomyStructures.some((structure) => /clavicle|femur/i.test(structure.id))).toBe(
+      false
+    );
+  });
+
   it("falls back to topicCategory for full-exam review", () => {
     const links = resolveQuestionStudyLinks("usmle", {
       topicCategory: "cardiology",

@@ -54,7 +54,7 @@ async function reuseExistingAttempt(
 
 export async function recordAttemptWithMastery(
   input: AttemptInput,
-  opts?: { refreshProfile?: boolean }
+  opts?: { refreshProfile?: boolean; skipExistenceCheck?: boolean }
 ): Promise<{ attemptId: string; alreadySaved: boolean }> {
   const storedTags = tagsForStoredAttempt(input.question.tags, input.practiceFormat);
   const analysis = analyzeMistake({
@@ -67,7 +67,7 @@ export async function recordAttemptWithMastery(
   const tagsJson = tagsToJson(storedTags);
   const questionKey = input.question.bankItemId ?? input.question.id;
 
-  if (input.sessionId && questionKey) {
+  if (input.sessionId && questionKey && !opts?.skipExistenceCheck) {
     const existing = await prisma.questionAttempt.findFirst({
       where: {
         userId: input.userId,

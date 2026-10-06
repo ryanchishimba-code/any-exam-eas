@@ -32,6 +32,9 @@ export type FullExamQuestion = {
   correctAnswer: string;
   explanation: string;
   topicCategory?: string;
+  subjectId?: string;
+  blueprintDomain?: string;
+  blueprintTopic?: string;
 };
 
 export type FullExamAnswerState = {
@@ -55,6 +58,9 @@ export type FullExamQuestionSnapshot = {
   correctAnswer: string;
   explanation: string;
   topicCategory?: string;
+  subjectId?: string;
+  blueprintDomain?: string;
+  blueprintTopic?: string;
 };
 
 export type FullExamResultsAnalysis = {

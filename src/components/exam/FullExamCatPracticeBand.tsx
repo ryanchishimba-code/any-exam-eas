@@ -6,6 +6,7 @@ import {
   PRACTICE_PROGRESS_LABEL,
   PROGRESS_METRICS_DISCLAIMER,
 } from "@/lib/site";
+import { nclexCatQuestionRange } from "@/lib/full-exam/nclex-length-label";
 import {
   catAbilityToPracticePct,
   catStopReasonLabel,
@@ -44,23 +45,13 @@ export function FullExamCatPracticeBand({ catOutcome }: Props) {
         </div>
       </div>
 
-      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-3 py-2.5">
           <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            Answered
+            Length
           </p>
           <p className="mt-0.5 text-sm font-semibold tabular-nums text-[var(--color-ink)]">
-            {answered} / up to 145
-          </p>
-        </div>
-        <div className="rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-3 py-2.5">
-          <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            Accuracy
-          </p>
-          <p className="mt-0.5 text-sm font-semibold tabular-nums text-[var(--color-ink)]">
-            {answered > 0
-              ? `${Math.round((catOutcome.correctCount / answered) * 100)}%`
-              : "—"}
+            {answered} answered · {nclexCatQuestionRange()}
           </p>
         </div>
         <div className="rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-3 py-2.5">

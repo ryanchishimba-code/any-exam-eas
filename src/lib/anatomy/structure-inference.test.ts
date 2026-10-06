@@ -21,4 +21,19 @@ describe("inferAnatomyStructuresFromText", () => {
       []
     );
   });
+
+  it("does not attach clavicle or femur to a pharmacokinetics stem that says long", () => {
+    const hits = inferAnatomyStructuresFromText(
+      "A patient starts a drug with a long half-life and linear clearance. How long until steady state, and what happens to the volume of distribution if protein binding falls?"
+    );
+    expect(hits.map((hit) => hit.id)).not.toEqual(expect.arrayContaining(["clavicle", "femur"]));
+    expect(hits.some((hit) => /clavicle|femur/i.test(hit.id))).toBe(false);
+  });
+
+  it("still matches a named bone in an orthopedic stem", () => {
+    const hits = inferAnatomyStructuresFromText(
+      "An older adult falls and has a shortened, externally rotated leg. Imaging shows a femoral neck fracture of the femur."
+    );
+    expect(hits.some((hit) => hit.id === "femur")).toBe(true);
+  });
 });

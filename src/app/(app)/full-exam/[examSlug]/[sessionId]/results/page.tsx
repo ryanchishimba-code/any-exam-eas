@@ -17,7 +17,9 @@ import { reviewIncorrectHref } from "@/lib/learning/remediation-loop";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
-import { summarySaysEndedEarly } from "@/lib/full-exam/results-title";
+import { practiceScorePercent } from "@/lib/full-exam/administered-score";
+import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
+import { fullExamTreatsAsEndedEarly } from "@/lib/full-exam/results-title";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
@@ -74,6 +76,23 @@ async function FullExamResultsContent({
   const exam = EXAM_CATALOG[examSlug];
   const fieldId = examSession.fieldId ?? exam.fieldId;
   const correct = answers.filter((a) => a.correct).length;
+  const displayScore =
+    questions.length > 0
+      ? practiceScorePercent(correct, questions.length)
+      : (examSession.score ?? 0);
+  const analysisForResults: FullExamResultsAnalysis = {
+    ...analysis,
+    topicBreakdown: buildTopicBreakdown(questions, answers),
+  };
+  const treatsAsEndedEarly = fullExamTreatsAsEndedEarly({
+    endedEarly: examSession.status === "ended_early",
+    analysisEndedEarly: analysis.endedEarly === true,
+    summary: analysis.summary,
+    questionCount: questions.length,
+    plannedQuestionCount: analysis.sessionConfig.questionCount,
+    catStopReason: analysis.catOutcome?.stopReason,
+    answers,
+  });
   const passPathPersisted = examPassPathPersisted(analysis);
   const missCount = passPathPersisted
     ? countFullExamMisses(
@@ -89,7 +108,7 @@ async function FullExamResultsContent({
       <ExamResultsScoreHeader
         examName={exam.name}
         examShortName={exam.shortName}
-        score={examSession.score ?? 0}
+        score={displayScore}
         correct={correct}
         questionCount={questions.length}
         summary={analysis.summary}
@@ -97,13 +116,14 @@ async function FullExamResultsContent({
         analysisEndedEarly={analysis.endedEarly === true}
         answeredCount={analysis.answeredCount}
         plannedQuestionCount={analysis.sessionConfig.questionCount}
+        catStopReason={analysis.catOutcome?.stopReason}
         answers={answers}
       />
       <FullExamResults
         examSlug={examSlug}
         sessionId={sessionId}
-        score={examSession.score ?? 0}
-        analysis={analysis}
+        score={displayScore}
+        analysis={analysisForResults}
         answers={answers}
         questions={questions}
         initialReviewOpen={reviewOpen}
@@ -115,18 +135,14 @@ async function FullExamResultsContent({
             : reviewIncorrectHref(fieldId, null, Math.max(missCount, 1))
         }
         proofHref={ROUTES.dashboard}
-        endedEarly={
-          examSession.status === "ended_early" ||
-          analysis.endedEarly === true ||
-          summarySaysEndedEarly(analysis.summary)
-        }
+        endedEarly={treatsAsEndedEarly}
       />
 
       <div className="mt-6 flex justify-center">
         <SocialShareBar
           entityType="result"
           entityId={sessionId}
-          text={`I scored ${examSession.score ?? 0}% on my ${examSlug.toUpperCase()} mock exam with AnyExamEasy! 🎓`}
+          text={`I scored ${displayScore}% on my ${examSlug.toUpperCase()} mock exam with AnyExamEasy! 🎓`}
           url="https://www.anyexameasy.com"
         />
       </div>
