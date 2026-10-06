@@ -10,6 +10,9 @@ export const KEYFIX_BACKUP_TABLES = [
   "qbi_naplex_keyfix_backup_20260927",
   "qbi_keyfix_backup_20260927",
   "qbi_keyfix_backup_20260927_b2",
+  // 2026-10-05 batch 1. Holds the pre-rewrite hashes so a later seed match
+  // cannot insert a second copy after the live contentHash moved.
+  "qbi_fixes_task5_backup_20261005",
 ] as const;
 
 export type SeedExistingRow = {

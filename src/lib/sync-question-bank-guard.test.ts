@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  KEYFIX_BACKUP_TABLES,
   collectHandFixedIds,
   decideSeedUpsert,
   type SeedExistingRow,
@@ -26,6 +27,12 @@ function existing(overrides: Partial<SeedExistingRow> = {}): SeedExistingRow {
     ...overrides,
   };
 }
+
+describe("KEYFIX_BACKUP_TABLES", () => {
+  it("includes the 2026-10-05 batch 1 backup", () => {
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_fixes_task5_backup_20261005");
+  });
+});
 
 describe("decideSeedUpsert", () => {
   it("creates a row the bank has never stored", () => {
