@@ -8,7 +8,7 @@
  * Stored stems and keys are not edited.
  */
 
-import { numericGradeRule, parseNumericEntry, roundHalfAwayFromZero } from "./numeric-grade";
+import { numericValuesMatch, parseNumericEntry } from "./numeric-grade";
 
 export type NumericSlot = {
   label: string;
@@ -96,11 +96,8 @@ export function isUnscorableDualNumeric(stem: string, key: string): boolean {
 export function numericValueInSlot(raw: string, slot: NumericSlot, instruction = ""): boolean {
   const value = parseNumericEntry(raw);
   if (value == null) return false;
-  const rule = numericGradeRule(instruction);
-  const graded = rule.kind === "round" ? roundHalfAwayFromZero(value, rule.places) : value;
-  const scale = Math.max(1, Math.abs(slot.min), Math.abs(slot.max), Math.abs(graded));
-  const epsilon = 1e-9 * scale;
-  return graded >= slot.min - epsilon && graded <= slot.max + epsilon;
+  const key = slot.min === slot.max ? String(slot.min) : `${slot.min}-${slot.max}`;
+  return numericValuesMatch(value, slot.min, slot.max, instruction, key);
 }
 
 /**

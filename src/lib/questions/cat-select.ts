@@ -1,5 +1,6 @@
 /** Pure helpers for rule-based CAT item selection (practice only). */
 
+import { entityShareCap } from "@/lib/exam-prep/entity-cap";
 import { narrowTopicShareCap } from "@/lib/exam-prep/narrow-topic";
 import {
   difficultyForQuestion,
@@ -17,13 +18,19 @@ export type CatSelectableItem = {
   stepIndex?: number;
   /** Narrow clinical topic. Used to avoid a third item in a row and a topic pile-up. */
   narrowTopic?: string | null;
+  /** Drug or condition cap key. Absent keys are not capped. */
+  entityKey?: string | null;
+  /** Same drug/condition plus the same ask is kept once. */
+  askKey?: string | null;
+  /** Near-duplicate cluster. A second member is not delivered. */
+  clusterId?: string | null;
 };
 
 export type CatFormatHint = {
   /** Share of delivered items that should be NGN when the pool has any. 0 disables. */
   ngnTargetRatio?: number;
   delivered?: ReadonlyArray<
-    Pick<CatSelectableItem, "id" | "ngn" | "setId" | "stepIndex" | "narrowTopic">
+    Pick<CatSelectableItem, "id" | "ngn" | "setId" | "stepIndex" | "narrowTopic" | "entityKey" | "askKey" | "clusterId">
   >;
 };
 
@@ -81,6 +88,34 @@ function filterByTopic<T extends CatSelectableItem>(
   return spaced.length > 0 ? spaced : pool;
 }
 
+type CatConstraint = Pick<CatSelectableItem, "entityKey" | "askKey" | "clusterId">;
+
+/** Drop a repeat cluster, a repeated ask, and any entity already at max(2, 4%). */
+function filterByEntity<T extends CatConstraint>(
+  candidates: T[],
+  delivered: ReadonlyArray<CatConstraint>
+): T[] {
+  const constrained =
+    candidates.some((item) => item.entityKey || item.askKey || item.clusterId) ||
+    delivered.some((item) => item.entityKey || item.askKey || item.clusterId);
+  if (!constrained) return candidates;
+  const cap = entityShareCap(delivered.length + 1);
+  const entityCounts = new Map<string, number>();
+  const asks = new Set<string>();
+  const clusters = new Set<string>();
+  for (const item of delivered) {
+    if (item.entityKey) entityCounts.set(item.entityKey, (entityCounts.get(item.entityKey) ?? 0) + 1);
+    if (item.entityKey && item.askKey) asks.add(`${item.entityKey}:${item.askKey}`);
+    if (item.clusterId) clusters.add(item.clusterId);
+  }
+  return candidates.filter((item) => {
+    if (item.clusterId && clusters.has(item.clusterId)) return false;
+    if (item.entityKey && (entityCounts.get(item.entityKey) ?? 0) >= cap) return false;
+    if (item.entityKey && item.askKey && asks.has(`${item.entityKey}:${item.askKey}`)) return false;
+    return true;
+  });
+}
+
 /**
  * Next unused item. Continues an open sequential case in order, then keeps a
  * published-NGN share when the pool contains those items and a target was set.
@@ -110,7 +145,12 @@ export function pickCatNext<T extends CatSelectableItem>(
   const starters = available.filter((item) => item.stepIndex == null || item.stepIndex <= 1);
   const startable = starters.length > 0 ? starters : available;
   const inBand = startable.filter((q) => q.difficultyBand === want);
-  const bandOrAny = filterByTopic(inBand.length > 0 ? inBand : startable, delivered);
+  const bandSource = inBand.length > 0 ? inBand : startable;
+  let bandOrAny = filterByEntity(filterByTopic(bandSource, delivered), delivered);
+  if (bandOrAny.length === 0 && bandSource !== startable) {
+    bandOrAny = filterByEntity(filterByTopic(startable, delivered), delivered);
+  }
+  if (bandOrAny.length === 0) return null;
 
   const target = hint?.ngnTargetRatio ?? 0;
   const poolHasNgn = available.some((item) => item.ngn);
@@ -119,11 +159,16 @@ export function pickCatNext<T extends CatSelectableItem>(
     const ratio = deliveredNgn / delivered.length;
     if (ratio < target) {
       const ngnBand = bandOrAny.filter((item) => item.ngn);
-      const ngnAny = filterByTopic(
-        startable.filter((item) => item.ngn),
+      const ngnAny = filterByEntity(
+        filterByTopic(
+          startable.filter((item) => item.ngn),
+          delivered
+        ),
         delivered
       );
-      return pickFrom(ngnBand.length > 0 ? ngnBand : ngnAny, random);
+      const ngnPick = ngnBand.length > 0 ? ngnBand : ngnAny;
+      if (ngnPick.length === 0) return pickFrom(bandOrAny, random);
+      return pickFrom(ngnPick, random);
     }
     if (ratio > target + 0.06) {
       const classic = bandOrAny.filter((item) => !item.ngn);

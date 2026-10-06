@@ -36,6 +36,7 @@ import { RationaleDisclosureText } from "@/components/study/questions/Collapsibl
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { resolveQuestionStudyLinks } from "@/lib/library/question-study-links";
+import { bowTieReviewColumns, type BowTieReviewChoice } from "@/lib/questions/bow-tie-review";
 import { studentFacingStem } from "@/lib/questions/student-display-text";
 
 type ReviewView = "summary" | "overview" | "question";
@@ -60,6 +61,38 @@ type Props = {
 
 function answerFor(answers: ExamAnswerRecord[], index: number) {
   return answers.find((a) => a.questionIndex === index);
+}
+
+function ReviewChoiceList({
+  title,
+  choices,
+}: {
+  title: string;
+  choices: BowTieReviewChoice[];
+}) {
+  if (choices.length === 0) return null;
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white p-3">
+      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">{title}</p>
+      <ul className="mt-2 space-y-2">
+        {choices.map((choice) => (
+          <li
+            key={choice.text}
+            className={cn(
+              "rounded-lg border px-3 py-2 text-sm",
+              choice.correct && "border-teal-300 bg-teal-50 text-teal-900",
+              choice.selected && !choice.correct && "border-rose-300 bg-rose-50 text-rose-900",
+              !choice.selected && !choice.correct && "border-slate-200 bg-slate-50/50 text-slate-700"
+            )}
+          >
+            {studentFacingStem(choice.text)}
+            {choice.selected ? " · Your answer" : ""}
+            {choice.correct ? " · Correct" : ""}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export function FullExamResults({
@@ -105,6 +138,16 @@ export function FullExamResults({
 
   const current = questions[index];
   const currentAnswer = answerFor(answers, index);
+  const bowTieColumns = current
+    ? bowTieReviewColumns({
+        question: current.question,
+        options: current.options,
+        correctAnswer: current.correctAnswer,
+        selected: currentAnswer?.selected ?? "",
+        ngnFormat: current.ngnFormat,
+        bowTie: current.bowTie,
+      })
+    : null;
   const isCorrect = currentAnswer?.correct ?? false;
   const clinicalText = current ? studentFacingStem(current.question) : undefined;
   const studyLinks = resolveQuestionStudyLinks(examSlug, {
@@ -159,7 +202,40 @@ export function FullExamResults({
             {studentFacingStem(current.question)}
           </p>
 
-          {current.options.length > 0 ? (
+          {bowTieColumns && bowTieColumns.conditions.length > 0 ? (
+            <div className="mt-6 space-y-3">
+              <div className="grid gap-3 lg:grid-cols-3">
+                <ReviewChoiceList title="Actions to take" choices={bowTieColumns.actions} />
+                <ReviewChoiceList title="Condition" choices={bowTieColumns.conditions} />
+                <ReviewChoiceList title="Parameters to monitor" choices={bowTieColumns.parameters} />
+              </div>
+              {bowTieColumns.actions.length === 0 &&
+              bowTieColumns.parameters.length === 0 &&
+              current.options.length > 0 ? (
+                <ul className="space-y-2">
+                  {current.options.map((opt) => {
+                    const selected = storedAnswerIncludesChoice(currentAnswer?.selected ?? "", opt);
+                    const correctOpt = storedAnswerIncludesChoice(current.correctAnswer, opt);
+                    return (
+                      <li
+                        key={opt}
+                        className={cn(
+                          "rounded-xl border px-4 py-3 text-sm",
+                          correctOpt && "border-teal-300 bg-teal-50 text-teal-900",
+                          selected && !correctOpt && "border-rose-300 bg-rose-50 text-rose-900",
+                          !selected && !correctOpt && "border-slate-200 bg-slate-50/50 text-slate-700"
+                        )}
+                      >
+                        {studentFacingStem(opt)}
+                        {selected ? " · Your answer" : ""}
+                        {correctOpt ? " · Correct" : ""}
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : null}
+            </div>
+          ) : current.options.length > 0 ? (
             <ul className="mt-6 space-y-2">
               {current.options.map((opt) => {
                 const selected = storedAnswerIncludesChoice(currentAnswer?.selected ?? "", opt);

@@ -27,6 +27,13 @@ export type FullExamSessionConfig = {
   silentReview?: boolean;
 };
 
+export type FullExamBowTieSnapshot = {
+  condition?: string;
+  conditionOptions?: string[];
+  actions?: string[];
+  monitors?: string[];
+};
+
 export type FullExamQuestion = {
   id: string;
   question: string;
@@ -37,6 +44,8 @@ export type FullExamQuestion = {
   subjectId?: string;
   blueprintDomain?: string;
   blueprintTopic?: string;
+  ngnFormat?: string;
+  bowTie?: FullExamBowTieSnapshot;
 };
 
 export type FullExamAnswerState = {
@@ -66,6 +75,8 @@ export type FullExamQuestionSnapshot = {
   subjectId?: string;
   blueprintDomain?: string;
   blueprintTopic?: string;
+  ngnFormat?: string;
+  bowTie?: FullExamBowTieSnapshot;
 };
 
 export type FullExamResultsAnalysis = {

@@ -9,7 +9,7 @@ import { Info } from "lucide-react";
 
 const TYPE_INSTRUCTIONS: Record<string, string> = {
   bow_tie:
-    "Select exactly one action to take and the required number of conditions to monitor. This mirrors NCLEX-NGN bow-tie items.",
+    "Choose the condition, the actions to take, and the parameters to monitor. This mirrors NCLEX-NGN bow-tie items.",
   matrix:
     "For each clinical finding, choose the best column. One answer per row.",
   highlight:

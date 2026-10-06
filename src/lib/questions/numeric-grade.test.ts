@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
   gradeNumericAnswer,
+  numericAnswerUnit,
   numericGradeRule,
+  numericRoundingNote,
   parseNumericEntry,
 } from "./numeric-grade";
 import { isAnswerCorrect } from "./prepare";
@@ -70,6 +72,20 @@ describe("gradeNumericAnswer", () => {
   it("accepts an inclusive stored range", () => {
     expect(gradeNumericAnswer("1700", "1600-1800 mg", "Calculate the dose.")).toBe(true);
     expect(gradeNumericAnswer("1500", "1600-1800 mg", "Calculate the dose.")).toBe(false);
+  });
+
+  it("accepts 333.3 against an integer key when no rounding rule was shown", () => {
+    expect(gradeNumericAnswer("333.3", "333", "How many tablets should be dispensed?")).toBe(true);
+    expect(gradeNumericAnswer("340", "333", "How many tablets should be dispensed?")).toBe(false);
+  });
+});
+
+describe("numeric answer display", () => {
+  it("derives tablets instead of a stored mg label and shows a rounding rule", () => {
+    const stem = "Amoxicillin 500 mg every 8 hours for 10 days. How many tablets should be dispensed?";
+    expect(numericAnswerUnit(stem, "30", "mg")).toBe("tablets");
+    expect(numericRoundingNote(stem, "333")).toBe("Round to the nearest whole number.");
+    expect(numericRoundingNote("Round to the nearest whole number.", "333")).toBeNull();
   });
 });
 

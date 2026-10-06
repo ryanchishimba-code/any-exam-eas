@@ -25,7 +25,7 @@ export function ItemProvenanceNote({
       <div className="flex items-start gap-2">
         <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[var(--study-accent)]" aria-hidden />
         <div className="min-w-0">
-          <p className="text-xs font-semibold">{sourceLabel ? "Source" : "Reviewed"}</p>
+          {sourceLabel ? <p className="text-xs font-semibold">Source</p> : null}
           {sourceLabel ? (
             sourceUrl ? (
               <a

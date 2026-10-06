@@ -61,6 +61,49 @@ function collapseQuoteLineBreaks(text: string): string {
 
 const REPEATED_LABEL = "Remember|Reviewed|Updated|Revised|Note|Caution|Warning|Trap|Source";
 
+const REVIEW_MONTH = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
+
+/** A lone "Reviewed" heading beside "Reviewed Oct 2026" is the same label twice. */
+function dropBareReviewedBesideDate(text: string): string {
+  if (!new RegExp(`\\bReviewed\\s+(?:${REVIEW_MONTH})\\b`, "i").test(text)) return text;
+  const beside = new RegExp(
+    `\\bReviewed\\b\\s+(?=Reviewed\\s+(?:${REVIEW_MONTH})\\b)`,
+    "gi"
+  );
+  const ownLine = new RegExp(
+    `(^|\\n)\\s*Reviewed\\s*(?=\\n+\\s*Reviewed\\s+(?:${REVIEW_MONTH})\\b)`,
+    "gi"
+  );
+  return text.replace(ownLine, "$1").replace(beside, "");
+}
+
+const BOW_TIE_COUNT = "one|two|three|four|1|2|3|4";
+
+function bowTieCount(word: string): number {
+  const named: Record<string, number> = { one: 1, two: 2, three: 3, four: 4 };
+  return named[word.toLowerCase()] ?? Number(word);
+}
+
+/** Stem, banner, and body use one bow-tie sentence. */
+export function normalizeBowTieInstruction(text: string): string {
+  const pattern = new RegExp(
+    `(?:complete the bow-tie(?: diagram)?[:,]?\\s*)?(?:select|choose)\\s+(?:exactly\\s+)?(${BOW_TIE_COUNT})\\s+actions?\\s+to take\\s+and\\s+(?:the required number of\\s+)?(${BOW_TIE_COUNT})\\s+(?:conditions?|parameters?|findings?)\\s+to monitor\\.*`,
+    "gi"
+  );
+  const shortPattern = new RegExp(
+    `(?:complete the bow-tie(?: diagram)?[:,]?\\s*)?(?:select|choose)\\s+(?:exactly\\s+)?(${BOW_TIE_COUNT})\\s+actions?\\s+and\\s+(?:exactly\\s+)?(${BOW_TIE_COUNT})\\s+(?:conditions?|parameters?|findings?)\\s+to monitor\\.*`,
+    "gi"
+  );
+  const rewrite = (_match: string, actions: string, monitors: string) => {
+    const actionCount = bowTieCount(actions);
+    const monitorCount = bowTieCount(monitors);
+    const actionLabel = `${actionCount} action${actionCount === 1 ? "" : "s"}`;
+    const monitorLabel = `${monitorCount} parameter${monitorCount === 1 ? "" : "s"}`;
+    return `Choose the condition, ${actionLabel} to take, and ${monitorLabel} to monitor.`;
+  };
+  return text.replace(pattern, rewrite).replace(shortPattern, rewrite);
+}
+
 /** "Remember: Remember" and "Reviewed Reviewed" collapse to one label. */
 export function collapseRepeatedLabels(text: string): string {
   const labeled = new RegExp(`\\b(${REPEATED_LABEL})\\b\\s*[:：]\\s*\\1\\b\\s*[,:]?\\s*`, "gi");
@@ -126,7 +169,7 @@ export function closeDanglingParen(text: string): string {
 }
 
 export function stripInternalDisplayMetadata(text: string): string {
-  let next = collapseRepeatedLabels(collapseQuoteLineBreaks(text));
+  let next = normalizeBowTieInstruction(dropBareReviewedBesideDate(collapseRepeatedLabels(collapseQuoteLineBreaks(text))));
   next = joinBrokenDoseDecimals(next).replace(/\b1\s+hours\b/gi, "1 hour");
   for (const pattern of INTERNAL_META) {
     next = next.replace(pattern, "");

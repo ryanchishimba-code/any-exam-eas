@@ -11,6 +11,7 @@ import { examQuestionToStudy } from "@/lib/questions/prepare";
 import { joinStoredCorrectAnswer, reviewQueueKind } from "@/lib/questions/multi-answer";
 import { resolveQuestionBankSessionCount } from "@/lib/study/question-bank-setup";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { isServableToStudents } from "@/lib/exam-prep/student-eligibility";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -159,10 +160,12 @@ export async function POST(req: Request) {
       const byId = new Map(
         [...catalogItems, ...bankItems].map((item) => [item.id?.trim() ?? "", item] as const)
       );
-      const ordered = pickIds.flatMap((id) => {
-        const item = byId.get(id);
-        return item ? [item] : [];
-      });
+      const ordered = pickIds
+        .flatMap((id) => {
+          const item = byId.get(id);
+          return item ? [item] : [];
+        })
+        .filter(isServableToStudents);
       if (ordered.length === 0) {
         return reviewQueueResponse(
           {

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { cleanOptionText } from "@/lib/question-format";
 import { planDualNumericAnswer } from "@/lib/questions/dual-numeric-answer";
+import { numericAnswerUnit, numericRoundingNote } from "@/lib/questions/numeric-grade";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { figureFitsQuestion, studentFacingExhibitTitle, studentFacingVignette } from "@/lib/questions/student-display-text";
 import type { StudyQuestion } from "@/lib/questions/types";
@@ -125,8 +126,9 @@ export function ConstructedResponseInput({
   onToggle,
 }: Props) {
   const payload = question.ngnPayload as { unit?: string } | undefined;
-  const unit = payload?.unit ?? "";
   const correct = question.correctAnswers[0] ?? "";
+  const unit = numericAnswerUnit(question.stem, correct, payload?.unit);
+  const rounding = numericRoundingNote(question.stem, correct);
   const dual = planDualNumericAnswer(question.stem, correct);
   const isCorrect = revealed && isAnswerCorrect(question, selected);
   if (dual.mode === "dual") {
@@ -140,7 +142,7 @@ export function ConstructedResponseInput({
     return (
       <div className="mt-6 space-y-3">
         <p className="text-xs text-[var(--color-ink-muted)]">
-          Enter both values. Round per item instructions.
+          Enter both values. {rounding ?? "Round per item instructions."}
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
           {dual.slots.map((slot, index) => (
@@ -171,12 +173,12 @@ export function ConstructedResponseInput({
     );
   }
   const value =
-    selected[0]?.replace(/\s*(mL\/hr|mcg\/mL|mcg|mg\/mL|mg|mEq|units|capsules|%|mL).*$/i, "").trim() ??
+    selected[0]?.replace(/\s*(mL\/hr|mcg\/mL|mg\/mL|mcg|mg|mEq|units|tablets|capsules|gtt|%|mL).*$/i, "").trim() ??
     "";
   return (
     <div className="mt-6 space-y-3">
       <p className="text-xs text-[var(--color-ink-muted)]">
-        Enter your numeric answer{unit ? ` (${unit})` : ""}. Round per item instructions.
+        Enter your numeric answer{unit ? ` (${unit})` : ""}. {rounding ?? "Round per item instructions."}
       </p>
       <div className="flex flex-wrap items-center gap-2">
         <input

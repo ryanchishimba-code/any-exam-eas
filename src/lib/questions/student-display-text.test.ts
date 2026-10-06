@@ -71,6 +71,13 @@ describe("student display text", () => {
       "Remember: steady-state takes 4 half-lives."
     );
     expect(stripInternalDisplayMetadata("Reviewed Reviewed Oct 2026")).toBe("Reviewed Oct 2026");
+    expect(stripInternalDisplayMetadata("Reviewed\nReviewed Oct 2026")).toBe("Reviewed Oct 2026");
+    expect(
+      stripInternalDisplayMetadata("Complete the bow-tie: select ONE action and TWO conditions to monitor.")
+    ).toBe("Choose the condition, 1 action to take, and 2 parameters to monitor.");
+    expect(stripInternalDisplayMetadata("Select 2 actions to take and 2 parameters to monitor..")).toBe(
+      "Choose the condition, 2 actions to take, and 2 parameters to monitor."
+    );
     const repaired = repairSplitInstructionQuote(
       'The client says, "I am not ready',
       '" Which therapeutic response is best?'
