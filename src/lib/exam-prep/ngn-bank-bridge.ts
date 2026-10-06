@@ -56,6 +56,7 @@ export function ngnPayloadToChartData(
     return {
       kind: "bow_tie",
       condition: payload.condition,
+      conditionOptions: payload.conditionOptions,
       actions: payload.actions,
       monitors: payload.monitors,
       actionPickCount: payload.actionPickCount ?? 1,

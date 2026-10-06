@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
+import { entityShareCap, nursingDosageShareCap } from "@/lib/exam-prep/entity-cap";
 import {
   finalizeAssembledSitting,
   isPharmacyCalculationItem,
+  pharmacyCalculationQuota,
   selectSittingItems,
   storedFormNeedsFreshAssembly,
 } from "@/lib/exam-prep/sitting-selection";
@@ -232,24 +234,118 @@ describe("finalizeAssembledSitting caps", () => {
   });
 
   it("reserves calculation items in a pharmacy sitting", () => {
-    const calc = (id: string) =>
+    const calcDrugs = ["vancomycin", "phenytoin", "gentamicin", "heparin"];
+    const calc = (id: string, index: number) =>
       item(
         id,
-        `How many mL per hour should the infusion run? Round to the nearest whole number. Item ${id}.`,
+        `How many milligrams of ${calcDrugs[index] ?? "amoxicillin"} should be given to a ${40 + index} kg patient? Round to the nearest whole number.`,
         [],
-        "42",
-        { itemType: "constructed_response" }
+        String(12 + index),
+        { itemType: "constructed_response", scenario: `Infusion case ${index} with a unique volume of ${80 + index * 7} mL.` }
       );
     const other = (id: string) =>
       item(id, `Counseling point ${id} for a new prescription.`, ["Teach", "Skip"], "Teach", { itemType: "mcq" });
     const pool = [
       ...Array.from({ length: 40 }, (_, i) => other(`mcq-${i}`)),
-      ...Array.from({ length: 4 }, (_, i) => calc(`calc-${i}`)),
+      ...Array.from({ length: 4 }, (_, i) => calc(`calc-${i}`, i)),
     ];
     expect(isPharmacyCalculationItem(pool[40]!)).toBe(true);
     const selected = finalizeAssembledSitting({ pool, limit: 20, fieldId: "pharmacy", seed: 3 });
     const calcCount = selected.items.filter(isPharmacyCalculationItem).length;
     expect(calcCount).toBeGreaterThanOrEqual(2);
+    expect(pharmacyCalculationQuota(20)).toBe(2);
+    expect(pharmacyCalculationQuota(50)).toBe(4);
+  });
+
+  it("keeps one row per drug-and-ask and caps the drug on a 50-item pharmacy sitting", () => {
+    const filler = (id: string) =>
+      item(id, `Which monitoring step is required before agent ${id}?`, [`Check ${id}`, "Skip"], `Check ${id}`);
+    const loading = (id: string) =>
+      item(
+        id,
+        `Why is a digoxin loading dose used for this new atrial fibrillation case ${id}?`,
+        [`Reason ${id}`, "Skip"],
+        `Reason ${id}`
+      );
+    const vd = (id: string) =>
+      item(
+        id,
+        `How does CKD change the digoxin volume of distribution in case ${id}?`,
+        [`Lower Vd ${id}`, "Skip"],
+        `Lower Vd ${id}`
+      );
+    const pool = [
+      ...Array.from({ length: 3 }, (_, i) => loading(`load-${i}`)),
+      ...Array.from({ length: 2 }, (_, i) => vd(`vd-${i}`)),
+      ...Array.from({ length: 60 }, (_, i) => filler(`fill-${i}`)),
+    ];
+    const selected = finalizeAssembledSitting({ pool, limit: 50, fieldId: "pharmacy", seed: 11 });
+    const digoxin = selected.items.filter((row) => /digoxin/i.test(row.question));
+    expect(selected.items).toHaveLength(50);
+    expect(digoxin.filter((row) => /loading dose/i.test(row.question))).toHaveLength(1);
+    expect(digoxin.filter((row) => /volume of distribution/i.test(row.question))).toHaveLength(1);
+    expect(digoxin.length).toBeLessThanOrEqual(entityShareCap(50));
+  });
+
+  it("caps a repeated condition and dosage calculations on an NCLEX-length sitting", () => {
+    const chole = (id: string) =>
+      item(
+        id,
+        `Postoperative day 1 after laparoscopic cholecystectomy, case ${id}. Which action is first?`,
+        [`Ambulate ${id}`, "Stay in bed"],
+        `Ambulate ${id}`
+      );
+    const dose = (id: string) =>
+      item(id, `What rate (mL/hr) should the nurse set for infusion ${id}?`, [`${id} mL/hr`, "Stop"], `${id} mL/hr`);
+    const filler = (id: string) =>
+      item(id, `Which monitoring step is required before agent ${id}?`, [`Check ${id}`, "Skip"], `Check ${id}`);
+    const pool = [
+      ...Array.from({ length: 8 }, (_, i) => chole(`chole-${i}`)),
+      ...Array.from({ length: 20 }, (_, i) => dose(`dose-${i}`)),
+      ...Array.from({ length: 120 }, (_, i) => filler(`fill-${i}`)),
+    ];
+    const selected = finalizeAssembledSitting({ pool, limit: 89, fieldId: "nursing", seed: 5 });
+    const choleCount = selected.items.filter((row) => /cholecystectomy/i.test(row.question)).length;
+    const doseCount = selected.items.filter((row) => /mL\/hr/i.test(row.question)).length;
+    expect(selected.items).toHaveLength(89);
+    expect(choleCount).toBeLessThanOrEqual(entityShareCap(89));
+    expect(doseCount).toBeLessThanOrEqual(1);
+    expect(doseCount).toBeLessThanOrEqual(nursingDosageShareCap(89));
+    expect(nursingDosageShareCap(89)).toBe(8);
+  });
+
+  it("reserves about 8 percent real calculation items when the pharmacy pool has them", () => {
+    const calcDrugs = [
+      "vancomycin",
+      "phenytoin",
+      "gentamicin",
+      "heparin",
+      "digoxin",
+      "levothyroxine",
+      "metformin",
+      "warfarin",
+    ];
+    const calc = (id: string, index: number) =>
+      item(
+        id,
+        `How many milligrams of ${calcDrugs[index]} are required for a ${50 + index} kg adult? Round to the nearest whole milligram.`,
+        [],
+        String(15 + index),
+        {
+          itemType: "constructed_response",
+          scenario: `Calculation ${index}: volume ${100 + index * 13} mL, concentration ${index + 2} mg/mL.`,
+        }
+      );
+    const other = (id: string) =>
+      item(id, `Which monitoring step is required before agent ${id}?`, [`Check ${id}`, "Skip"], `Check ${id}`, {
+        itemType: "mcq",
+      });
+    const pool = [
+      ...Array.from({ length: 70 }, (_, i) => other(`mcq-${i}`)),
+      ...Array.from({ length: 8 }, (_, i) => calc(`calc-${i}`, i)),
+    ];
+    const selected = finalizeAssembledSitting({ pool, limit: 50, fieldId: "pharmacy", seed: 9 });
+    expect(selected.items.filter(isPharmacyCalculationItem).length).toBeGreaterThanOrEqual(4);
   });
 });
 

@@ -10,9 +10,12 @@ import {
   practiceBoardFromExam,
 } from "@/lib/engine/rationale/parse-rationale-display";
 import {
+  rationaleAfterLead,
+  rationaleFragmentShownInLead,
   selectRationaleLead,
   shortRationaleLead,
   shouldCollapseRationale,
+  stripLeadingSectionTitles,
   stripRationaleMarkup,
 } from "@/lib/study/rationale-disclosure";
 
@@ -114,18 +117,30 @@ function StructuredRationaleText({
   text,
   tone,
   examSlug,
+  lead,
 }: {
   text: string;
   tone: Tone;
   examSlug?: string | null;
+  /** When set, opening lines already shown in the collapsed lead are omitted. */
+  lead?: string;
 }) {
   const board = practiceBoardFromExam(examSlug);
   const prepared = adaptBoardPracticeWording(text, board);
+  const shown = (fragment: string | undefined): string => {
+    const copy = sectionCopy(fragment, board);
+    if (!copy) return "";
+    if (lead && rationaleFragmentShownInLead(copy, lead)) return "";
+    return copy;
+  };
   const parsed = parseRationaleForDisplay(prepared);
   if (!parsed.isStructured) {
-    return <p className={cn(bodyClass[tone])}>{stripRationaleMarkup(prepared)}</p>;
+    const plain = stripLeadingSectionTitles(stripRationaleMarkup(prepared));
+    const rest = lead ? rationaleAfterLead(plain, lead) : stripRationaleMarkup(prepared);
+    if (!rest) return null;
+    return <p className={cn(bodyClass[tone])}>{rest}</p>;
   }
-  const why = sectionCopy(parsed.whyCorrectHeadline, board);
+  const why = shown(parsed.whyCorrectHeadline);
   const practice = sectionCopy(parsed.clinicalContext, board);
   const pearl = sectionCopy(parsed.clinicalPearl, board);
   const takeaway = sectionCopy(parsed.keyTakeaway, board);
@@ -144,13 +159,17 @@ function StructuredRationaleText({
   return (
     <div className="space-y-4">
       {why ? <p className={bodyClass[tone]}>{why}</p> : null}
-      {parsed.conceptBullets.length > 0 ? (
+      {parsed.conceptBullets.some((bullet) => shown(bullet)) ? (
         <ul className="list-disc space-y-1 pl-5">
-          {parsed.conceptBullets.map((bullet) => (
-            <li key={bullet} className={bodyClass[tone]}>
-              {stripRationaleMarkup(bullet)}
-            </li>
-          ))}
+          {parsed.conceptBullets.map((bullet) => {
+            const copy = shown(bullet);
+            if (!copy) return null;
+            return (
+              <li key={bullet} className={bodyClass[tone]}>
+                {copy}
+              </li>
+            );
+          })}
         </ul>
       ) : null}
       {practice ? <p className={bodyClass[tone]}>{practice}</p> : null}
@@ -274,10 +293,12 @@ export function RationaleDisclosureText({
 
   const board = practiceBoardFromExam(examSlug);
   const prepared = adaptBoardPracticeWording(explanation, board);
-  const leadSource = stripRationaleMarkup(prepared);
-  const lead = shortRationaleLead(leadSource) || leadSource;
-  const body = <StructuredRationaleText text={prepared} tone={tone} examSlug={examSlug} />;
-  if (!shouldCollapseRationale([prepared])) {
+  const lead = shortRationaleLead(prepared) || stripLeadingSectionTitles(stripRationaleMarkup(prepared));
+  const collapsed = shouldCollapseRationale([prepared]);
+  const body = (
+    <StructuredRationaleText text={prepared} tone={tone} examSlug={examSlug} lead={collapsed ? lead : undefined} />
+  );
+  if (!collapsed) {
     return <div className={className}>{body}</div>;
   }
 

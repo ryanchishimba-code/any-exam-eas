@@ -1,7 +1,7 @@
 "use client";
 
 import { formatNgnLabel } from "@/lib/questions/ngn-map";
-import { parseBowTieLayout } from "@/lib/questions/ngn-structures";
+import { bowTiePickInstruction, parseBowTieLayout } from "@/lib/questions/ngn-structures";
 import { stripShiftNotes } from "@/lib/questions/shift-notes";
 import { studentFacingVignette } from "@/lib/questions/student-display-text";
 import type { StudyQuestion } from "@/lib/questions/types";
@@ -48,12 +48,7 @@ export function NgnFormatBadge({ question }: { question: StudyQuestion }) {
 }
 
 function bowTieInstruction(question: StudyQuestion): string {
-  const layout = parseBowTieLayout(question);
-  const actions =
-    layout.actionPickCount === 1 ? "one action" : `${layout.actionPickCount} actions`;
-  const monitors =
-    layout.monitorPickCount === 1 ? "one parameter" : `${layout.monitorPickCount} parameters`;
-  return `Select ${actions} to take and ${monitors} to monitor.`;
+  return `${bowTiePickInstruction(parseBowTieLayout(question))}.`;
 }
 
 export function NgnTypeInstructions({ question }: { question: StudyQuestion }) {

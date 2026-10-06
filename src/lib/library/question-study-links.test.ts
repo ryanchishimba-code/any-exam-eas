@@ -67,5 +67,24 @@ describe("resolveQuestionStudyLinks", () => {
     expect(guideMatchesQuestion("Vancomycin Dosing & AUC", "Morphine 4 mg IV for postoperative pain.")).toBe(false);
     expect(guideMatchesQuestion("Mag Toxicity Signs", "Magnesium sulfate infusion for preeclampsia.")).toBe(true);
     expect(guideMatchesQuestion("Mag Toxicity Signs", "A client with a head strike is alert.")).toBe(false);
+    expect(
+      guideMatchesQuestion(
+        "Source Control in Sepsis",
+        "Postoperative pain after laparoscopic cholecystectomy. Which action is first?"
+      )
+    ).toBe(false);
+    expect(
+      guideMatchesQuestion("Lactate-Guided Resuscitation", "Partial-thickness burns. Start Parkland resuscitation.")
+    ).toBe(false);
+    expect(guideMatchesQuestion("Source Control in Sepsis", "Septic shock with a lactate of 4.2 mmol/L.")).toBe(true);
+    expect(guideMatchesQuestion("Lactate-Guided Resuscitation", "Septic shock, lactate 5 mmol/L, qSOFA 2.")).toBe(
+      true
+    );
+    expect(
+      guideMatchesQuestion("Autonomic Receptor Effects", "Diphenhydramine at bedtime. Which counseling point?")
+    ).toBe(false);
+    expect(
+      guideMatchesQuestion("Heart Failure: Guideline-Directed Medical Therapy", "Hold rivaroxaban before surgery.")
+    ).toBe(false);
   });
 });

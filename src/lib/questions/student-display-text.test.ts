@@ -3,6 +3,7 @@ import { examQuestionToStudy } from "./prepare";
 import {
   citationFitsQuestion,
   figureFitsQuestion,
+  repairSplitInstructionQuote,
   splitGluedLeadIn,
   stripInternalDisplayMetadata,
   studentFacingExhibitKind,
@@ -41,6 +42,25 @@ describe("student display text", () => {
     );
     expect(studentFacingExhibitKind("med_label")).toBe("Medication label");
     expect(studentFacingExhibitKind("diagram")).toBe("Diagram");
+  });
+
+  it("joins a split decimal, uses the singular hour, and drops a quote stuck on the instruction", () => {
+    expect(stripInternalDisplayMetadata("Give 0. 125 mg of digoxin.")).toBe("Give 0.125 mg of digoxin.");
+    expect(stripInternalDisplayMetadata("Infuse 0. 5 g over 1 hours.")).toBe("Infuse 0.5 g over 1 hour.");
+    expect(stripInternalDisplayMetadata('" Which therapeutic response is best?')).toBe(
+      "Which therapeutic response is best?"
+    );
+    expect(stripInternalDisplayMetadata('"I\'m not ready to die."')).toBe('"I\'m not ready to die."');
+    expect(stripInternalDisplayMetadata("Remember: Remember, steady-state takes 4 half-lives.")).toBe(
+      "Remember: steady-state takes 4 half-lives."
+    );
+    expect(stripInternalDisplayMetadata("Reviewed Reviewed Oct 2026")).toBe("Reviewed Oct 2026");
+    const repaired = repairSplitInstructionQuote(
+      'The client says, "I am not ready',
+      '" Which therapeutic response is best?'
+    );
+    expect(repaired.vignette.endsWith('"')).toBe(true);
+    expect(repaired.stem).toBe("Which therapeutic response is best?");
   });
 
   it("strips unit tags, doubled punctuation, and a quote split across a line break", () => {

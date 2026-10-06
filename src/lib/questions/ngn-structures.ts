@@ -52,6 +52,8 @@ function toLayoutInput(q: NgnLayoutInput | StudyQuestion): NgnLayoutInput {
 
 export type BowTieLayout = {
   condition: string;
+  /** Choices for the center column. Empty when the item has no condition bank. */
+  conditionOptions: string[];
   actions: string[];
   monitors: string[];
   /** How many actions the learner must pick. Bank bow-ties stay at 1. */
@@ -59,6 +61,13 @@ export type BowTieLayout = {
   /** How many monitors the learner must pick (default 2). */
   monitorPickCount: number;
 };
+
+export function bowTiePickInstruction(layout: Pick<BowTieLayout, "actionPickCount" | "monitorPickCount">): string {
+  const actions = layout.actionPickCount === 1 ? "one action" : `${layout.actionPickCount} actions`;
+  const conditions =
+    layout.monitorPickCount === 1 ? "one condition" : `${layout.monitorPickCount} conditions`;
+  return `Select ${actions} to take and ${conditions} to monitor.`;
+}
 
 export type MatrixLayout = {
   rows: string[];
@@ -78,6 +87,20 @@ function isRecord(v: unknown): v is Record<string, unknown> {
   return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 
+function stringList(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter((entry): entry is string => typeof entry === "string" && entry.trim().length > 0);
+}
+
+function conditionChoices(
+  chart: Record<string, unknown> | undefined,
+  payload: Record<string, unknown> | undefined
+): string[] {
+  const fromChart = stringList(chart?.conditionOptions);
+  if (fromChart.length > 0) return fromChart.map(cleanOptionText);
+  return stringList(payload?.conditionOptions).map(cleanOptionText);
+}
+
 function stripRolePrefix(opt: string): { role: "action" | "monitor" | "neutral"; text: string } {
   const actionMatch = opt.match(/^\[(?:action|actions)\]\s*/i) ?? opt.match(/^action:\s*/i);
   if (actionMatch) return { role: "action", text: cleanOptionText(opt.slice(actionMatch[0].length)) };
@@ -92,6 +115,7 @@ export function parseBowTieLayout(q: NgnLayoutInput | StudyQuestion): BowTieLayo
   if (isRecord(chart) && chart.kind === "bow_tie") {
     return {
       condition: String(chart.condition ?? "Clinical condition"),
+      conditionOptions: conditionChoices(chart, input.ngnPayload),
       actions: (chart.actions as string[]) ?? [],
       monitors: (chart.monitors as string[]) ?? [],
       actionPickCount: Number(chart.actionPickCount ?? 1) || 1,
@@ -113,6 +137,7 @@ export function parseBowTieLayout(q: NgnLayoutInput | StudyQuestion): BowTieLayo
     const mid = Math.ceil(options.length / 2);
     return {
       condition: input.vignette?.split(/[.!?]/)[0]?.trim() || "Patient presentation",
+      conditionOptions: [],
       actions: options.slice(0, mid),
       monitors: options.slice(mid),
       actionPickCount: 1,
@@ -134,6 +159,7 @@ export function parseBowTieLayout(q: NgnLayoutInput | StudyQuestion): BowTieLayo
 
   return {
     condition: input.vignette?.split(/[.!?]/)[0]?.trim() || "Patient presentation",
+    conditionOptions: conditionChoices(isRecord(chart) ? chart : undefined, input.ngnPayload),
     actions,
     monitors,
     actionPickCount: 1,
@@ -226,7 +252,10 @@ export function bowTieSelectionValid(
   const actionCount = selected.filter((s) => layout.actions.includes(s)).length;
   const monitorCount = selected.filter((s) => layout.monitors.includes(s)).length;
   const actionPick = layout.actionPickCount ?? 1;
-  return actionCount === actionPick && monitorCount === layout.monitorPickCount;
+  const conditionOptions = layout.conditionOptions ?? [];
+  const conditionCount = selected.filter((s) => conditionOptions.includes(s)).length;
+  const conditionOk = conditionOptions.length === 0 || conditionCount === 1;
+  return actionCount === actionPick && monitorCount === layout.monitorPickCount && conditionOk;
 }
 
 /** Toggle one bow-tie choice while keeping one action and N monitors. */
@@ -250,6 +279,10 @@ export function toggleBowTieSelection(
         ? prev.filter((o) => o !== monitors[0])
         : prev;
     return [...next, option];
+  }
+  if ((layout.conditionOptions ?? []).includes(option)) {
+    const rest = prev.filter((entry) => !layout.conditionOptions.includes(entry));
+    return [...rest, option];
   }
   return [...prev, option];
 }

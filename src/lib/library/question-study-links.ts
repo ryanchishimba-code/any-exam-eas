@@ -222,7 +222,9 @@ export function resolveQuestionStudyLinks(
   let primary = primaryDeepDive;
   if (scene) {
     deepDives = relatedDeepDives.filter(
-      (dive) => titleMatchesText(dive.title, scene) || titleMatchesText(dive.slug.replace(/-/g, " "), scene)
+      (dive) =>
+        titleMatchesClinicalScene(dive.title, scene) ||
+        titleMatchesClinicalScene(dive.slug.replace(/-/g, " "), scene)
     );
     primary = deepDives[0];
     if (studyGuide && !guideMatchesQuestion(studyGuide.title, scene)) studyGuide = undefined;
@@ -282,10 +284,21 @@ const LINK_STOP = new Set([
   "adult",
   "acute",
   "chronic",
+  "effects",
+  "receptor",
+  "medical",
+  "control",
+  "guided",
+  "guideline",
+  "source",
 ]);
 
 const TOKEN_ALIAS: Record<string, string[]> = {
   mag: ["magnesium"],
+  sepsis: ["septic", "qsofa", "lactate"],
+  septic: ["sepsis", "qsofa", "lactate"],
+  lactate: ["sepsis", "septic", "qsofa"],
+  qsofa: ["sepsis", "septic", "lactate"],
 };
 
 const GENERIC_ANATOMY = new Set(["head", "zone", "rate", "body", "neck", "left", "right", "upper", "lower"]);
@@ -306,10 +319,18 @@ function titleTokens(title: string): string[] {
   return expanded.filter((token) => token.length >= 6 && !LINK_STOP.has(token));
 }
 
+const SEPSIS_GUIDE = /\b(?:sepsis|septic|qsofa|lactate)\b/i;
+
 function titleMatchesText(title: string, text: string): boolean {
   const tokens = titleTokens(title);
   if (tokens.length === 0) return false;
   return tokens.some((token) => new RegExp(`\\b${token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text));
+}
+
+/** Sepsis and lactate guides need a sepsis-specific token in the clinical text. */
+function titleMatchesClinicalScene(title: string, text: string): boolean {
+  if (SEPSIS_GUIDE.test(title) && !SEPSIS_GUIDE.test(text)) return false;
+  return titleMatchesText(title, text);
 }
 
 function anatomyLinkFitsScene(name: string, scene: string): boolean {
@@ -338,7 +359,7 @@ export function guideMatchesQuestion(title: string, text: string): boolean {
     const age = statedAgeYears(text);
     return age != null && age >= 65;
   }
-  return titleMatchesText(title, text);
+  return titleMatchesClinicalScene(title, text);
 }
 
 function confidentAnatomy(

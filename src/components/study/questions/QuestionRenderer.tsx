@@ -6,6 +6,7 @@ import type { SequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { cleanOptionText } from "@/lib/question-format";
 import {
+  repairSplitInstructionQuote,
   studentFacingStem,
   vignetteWithoutRepeatedQuestion,
 } from "@/lib/questions/student-display-text";
@@ -118,6 +119,13 @@ export const QuestionRenderer = memo(function QuestionRenderer({
     }
     onToggle(opt);
   };
+  const paired = question.vignette
+    ? repairSplitInstructionQuote(question.vignette, question.stem)
+    : { vignette: "", stem: question.stem };
+  const vignetteText = paired.vignette
+    ? vignetteWithoutRepeatedQuestion(paired.vignette, paired.stem)
+    : "";
+  const stemText = studentFacingStem(paired.stem);
 
   return (
     <>
@@ -154,8 +162,7 @@ export const QuestionRenderer = memo(function QuestionRenderer({
         <CcsPromptPanel question={question} />
       ) : null}
 
-      {question.vignette &&
-        vignetteWithoutRepeatedQuestion(question.vignette, question.stem) &&
+      {vignetteText &&
         question.type !== "highlight" &&
         question.ngnFormat !== "abstract" &&
         question.ngnFormat !== "drug_ad" &&
@@ -163,20 +170,13 @@ export const QuestionRenderer = memo(function QuestionRenderer({
         question.ngnPayload?.kind !== "drug_ad" &&
         question.ngnPayload?.kind !== "ccs_prompt" && (
           isUsmleField(question.field) ? (
-            <UsmleCaseVignette
-              text={vignetteWithoutRepeatedQuestion(question.vignette, question.stem)}
-            />
+            <UsmleCaseVignette text={vignetteText} />
           ) : question.field === "pharmacy" ||
             question.ngnFormat === "case_based" ||
             question.ngnFormat === "vignette" ? (
-            <NaplexCaseVignette
-              text={vignetteWithoutRepeatedQuestion(question.vignette, question.stem)}
-            />
+            <NaplexCaseVignette text={vignetteText} />
           ) : (
-            <VignetteBlock
-              text={vignetteWithoutRepeatedQuestion(question.vignette, question.stem)}
-              stem={question.stem}
-            />
+            <VignetteBlock text={vignetteText} stem={stemText} />
           )
         )}
 
@@ -201,7 +201,7 @@ export const QuestionRenderer = memo(function QuestionRenderer({
       <NgnTypeInstructions question={question} />
 
       <p className="text-lg font-medium leading-snug text-[var(--color-ink)] sm:text-xl">
-        {studentFacingStem(question.stem)}
+        {stemText}
       </p>
       <ItemProvenanceNote
         sourceLabel={question.sourceLabel}

@@ -113,10 +113,18 @@ function convertBowtie(payload: Record<string, unknown>): Pick<BankItem, "option
   const condition =
     (conditionOptions.length > 0 ? textsFor(conditionOptions, conditionKeys)?.[0] : null) ??
     (typeof payload.condition === "string" ? payload.condition : "");
+  const keyed = [...actionTexts, ...monitorTexts];
+  if (
+    condition &&
+    conditionOptions.some((option) => option.text.trim().toLowerCase() === condition.trim().toLowerCase()) &&
+    !keyed.some((part) => part.trim().toLowerCase() === condition.trim().toLowerCase())
+  ) {
+    keyed.push(condition);
+  }
   return {
     itemType: "ngn_bowtie",
     options: [...actions.options.map((option) => option.text), ...monitors.options.map((option) => option.text)],
-    correctAnswer: [...actionTexts, ...monitorTexts].join("|||"),
+    correctAnswer: keyed.join("|||"),
     ngnPayload: {
       kind: "bow_tie",
       condition,

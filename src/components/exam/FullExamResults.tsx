@@ -36,6 +36,7 @@ import { RationaleDisclosureText } from "@/components/study/questions/Collapsibl
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { resolveQuestionStudyLinks } from "@/lib/library/question-study-links";
+import { studentFacingStem } from "@/lib/questions/student-display-text";
 
 type ReviewView = "summary" | "overview" | "question";
 
@@ -105,9 +106,11 @@ export function FullExamResults({
   const current = questions[index];
   const currentAnswer = answerFor(answers, index);
   const isCorrect = currentAnswer?.correct ?? false;
+  const clinicalText = current ? studentFacingStem(current.question) : undefined;
   const studyLinks = resolveQuestionStudyLinks(examSlug, {
     topicCategory: current?.topicCategory,
-    stem: current ? [current.question, current.explanation].filter(Boolean).join("\n") : undefined,
+    stem: clinicalText,
+    anatomyText: clinicalText,
   });
 
   const notesPreview = answers
@@ -153,7 +156,7 @@ export function FullExamResults({
           </div>
 
           <p className="whitespace-pre-wrap text-base leading-relaxed text-slate-800">
-            {current.question}
+            {studentFacingStem(current.question)}
           </p>
 
           {current.options.length > 0 ? (
@@ -171,7 +174,7 @@ export function FullExamResults({
                       !selected && !correctOpt && "border-slate-200 bg-slate-50/50 text-slate-700"
                     )}
                   >
-                    {opt}
+                    {studentFacingStem(opt)}
                     {selected ? " · Your answer" : ""}
                     {correctOpt ? " · Correct" : ""}
                   </li>

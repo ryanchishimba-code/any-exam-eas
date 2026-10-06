@@ -8,6 +8,10 @@ import { inferAnatomyStructuresFromText } from "@/lib/anatomy/structure-inferenc
 import { buildFiveDeepDiveBeats } from "@/lib/engine/mastery/deep-dive-beats";
 import { trapsFromQuestion } from "@/lib/learning/insights";
 import { vignetteWithoutRepeatedQuestion } from "@/lib/questions/student-display-text";
+import {
+  rationaleFragmentShownInLead,
+  shortRationaleLead,
+} from "@/lib/study/rationale-disclosure";
 import type { StudyQuestion } from "@/lib/questions/types";
 
 const MARKDOWN = `## Why this answer is correct
@@ -74,6 +78,24 @@ Adding it can help manage both acute and delayed nausea.
     expect(adaptBoardPracticeWording("This skill is crucial for pharmacists as well.", "nursing")).toBe(
       "This skill is important for nursing practice."
     );
+    expect(adaptBoardPracticeWording("This skill is crucial for pharmacists.", "nursing")).toBe(
+      "This skill is important for nursing practice."
+    );
+    expect(
+      adaptBoardPracticeWording(
+        "Consult with a pharmacist if there are any uncertainties regarding the medication or dosage.",
+        "nursing"
+      )
+    ).toMatch(/consult with a pharmacist/i);
+    expect(
+      adaptBoardPracticeWording(
+        "Consider involving pharmacists or utilizing teach-back methods.",
+        "nursing"
+      )
+    ).toMatch(/involving pharmacists/i);
+    expect(adaptBoardPracticeWording("Remember: Remember, steady-state takes four half-lives.", "nursing")).toBe(
+      "Remember: steady-state takes four half-lives."
+    );
     expect(adaptBoardPracticeWording(`${filler}\n\n${filler}`, "nursing")).toBe("");
   });
 
@@ -112,6 +134,27 @@ describe("anatomy confidence", () => {
   it("keeps a structure the stem names", () => {
     const heart = inferAnatomyStructuresFromText("Auscultate the heart at the mitral area.");
     expect(heart.some((row) => row.id === "heart")).toBe(true);
+  });
+});
+
+describe("duplicated rationale lead", () => {
+  it("drops the section title and treats the repeated opening sentence as already shown", () => {
+    const stored = `## Why this answer is correct
+Adding a GLP-1 receptor agonist is the most effective way to improve this patient's diabetes management.
+• Adding a GLP-1 receptor agonist is the most effective way to improve this patient's diabetes management.
+• HbA1c of 8.5% indicates inadequate glycemic control.`;
+    const lead = shortRationaleLead(stored);
+    expect(lead.toLowerCase()).not.toContain("why this answer is correct");
+    expect(lead).toMatch(/Adding a GLP-1 receptor agonist/i);
+    expect(rationaleFragmentShownInLead(lead, lead)).toBe(true);
+    expect(
+      rationaleFragmentShownInLead("HbA1c of 8.5% indicates inadequate glycemic control.", lead)
+    ).toBe(false);
+    const heading = "Encouraging Ambulation Promotes Bowel Recovery";
+    const sentence = "Ambulation stimulates peristalsis, which is crucial after abdominal surgery.";
+    const nclexLead = shortRationaleLead(`## Why this answer is correct\n${heading}\n${sentence}`);
+    expect(rationaleFragmentShownInLead(heading, nclexLead)).toBe(true);
+    expect(rationaleFragmentShownInLead(sentence, nclexLead)).toBe(true);
   });
 });
 
