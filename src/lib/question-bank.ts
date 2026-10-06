@@ -72,6 +72,8 @@ export type BankItem = {
   reviewFlag?: boolean | null;
   /** Curation composite, when the bank has one. Higher is stronger. */
   qualityScore?: number | null;
+  /** Near-duplicate family from the curation pipeline, when the bank stored one. */
+  clusterId?: string | null;
   /** Curation keep/drop suggestion. Not a serve gate by itself. */
   keepRecommendation?: boolean | null;
   /** Item QA record lives here (`itemQa`), separate from generationMeta. */

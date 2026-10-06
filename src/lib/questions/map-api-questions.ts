@@ -8,7 +8,7 @@ import type { RawQuestionInput, StudyQuestion } from "./types";
  */
 export function mapApiQuestionsToStudy(
   raw: RawQuestionInput[],
-  opts?: { shuffleOptions?: boolean }
+  opts?: { shuffleOptions?: boolean; shuffleSeed?: number }
 ): StudyQuestion[] {
   return raw.map((q, i) => examQuestionToStudy(q, i, opts));
 }

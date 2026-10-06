@@ -1,0 +1,8 @@
+id,code,severity,detail,excerpt
+merged-warfarin,merged_stem,error,Stem glues two questions together.,therapy Which action should the nurse take first?
+round-fragment,round_to_fragment,error,Dangling “(Round to” fragment.,(Round to
+digoxin-spacing,odd_number_spacing,error,Number has a space around the decimal point.,0. 125
+gentamicin-exhibit,exhibit_mismatch,error,Exhibit names vancomycin but the stem and options do not.,Vancomycin dosing nomogram
+dose-mismatch,calc_key_mismatch,error,Keyed 100 does not match recomputed 160.,80 kg times 2 mg/kg equals 160 mg.
+ranitidine-option,withdrawn_drug,warn,ranitidine was withdrawn from the US market and is still in the stem or options.,Ranitidine
+lamo-key-a,conflicting_cluster_key,error,Cluster near:5 has 2 near-duplicates keyed to use backup contraception | stop lamotrigine.,A patient taking lamotrigine starts an oral contraceptive. Which counseling point is most

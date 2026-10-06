@@ -17,6 +17,8 @@
     "vercel-build": "node scripts/vercel-build.mjs",
     "start": "next start",
     "lint": "next lint",
+    "lint:exam-content": "tsx scripts/lint-exam-content.ts",
+    "simulate:sitting-assembly": "tsx scripts/simulate-sitting-assembly.ts",
     "db:push": "prisma db push",
     "db:migrate": "npx prisma migrate deploy",
     "db:rds": "node scripts/setup-rds.mjs",

@@ -172,6 +172,7 @@ function rowToBankItem(row: {
   generationMeta?: unknown;
   reviewFlag?: boolean | null;
   qualityScore?: number | null;
+  clusterId?: string | null;
   keepRecommendation?: boolean | null;
   curationMeta?: unknown;
   qaPassed?: boolean | null;
@@ -182,6 +183,9 @@ function rowToBankItem(row: {
   if (typeof row.active === "boolean") item.active = row.active;
   if (typeof row.reviewFlag === "boolean") item.reviewFlag = row.reviewFlag;
   if (typeof row.qualityScore === "number") item.qualityScore = row.qualityScore;
+  if (typeof row.clusterId === "string" && row.clusterId.trim()) {
+    item.clusterId = row.clusterId.trim();
+  }
   if (typeof row.keepRecommendation === "boolean") item.keepRecommendation = row.keepRecommendation;
   if (row.curationMeta && typeof row.curationMeta === "object" && !Array.isArray(row.curationMeta)) {
     item.curationMeta = row.curationMeta as Record<string, unknown>;

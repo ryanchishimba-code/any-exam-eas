@@ -11,6 +11,14 @@ type SessionAnalysis = {
   prefetchedQuestionIds?: string[];
 };
 
+function hashSessionShuffleSeed(sessionId: string): number {
+  let hash = 0x51ed270b;
+  for (let i = 0; i < sessionId.length; i++) {
+    hash = Math.imul(hash ^ sessionId.charCodeAt(i), 0x01000193) >>> 0;
+  }
+  return hash >>> 0;
+}
+
 export type FullExamSessionQuestionsPayload = {
   fieldId: string;
   questions: ExamQuestion[];
@@ -81,11 +89,18 @@ export async function loadFullExamSessionQuestionsPayload(
     };
   }
 
+  const storedSeed = config?.optionShuffleSeed;
   const clientPayload = preparedTimedExamItemsForClient(
     resolvedFieldId,
     resolvedFieldId,
     items,
-    limit
+    limit,
+    {
+      shuffleSeed:
+        typeof storedSeed === "number"
+          ? storedSeed
+          : hashSessionShuffleSeed(sessionId),
+    }
   );
 
   return {
