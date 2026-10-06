@@ -180,7 +180,7 @@ export function resolveQuestionStudyLinks(
         });
   const anatomySource = (ctx.anatomyText ?? ctx.stem)?.trim() ?? "";
   const fromText = anatomySource
-    ? inferAnatomyStructuresFromText(anatomySource, { limit: 3, minScore: 12 })
+    ? inferAnatomyStructuresFromText(anatomySource, { limit: 3 })
     : [];
   const fromResolved = getAnatomyStructuresForStructureIds(inferredStructureIds, 3);
 
