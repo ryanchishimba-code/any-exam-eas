@@ -76,12 +76,75 @@ export function practiceBoardFromExam(examSlug?: string | null): PracticeBoard {
   return "clinical";
 }
 
-/** Stored copy often says "On the unit" even on pharmacy items. */
+const GENERIC_PRIORITY_FILLER =
+  /plausible nursing action but not the first priority|plausible but not the (?:first|priority)|not the first priority for this presentation/i;
+
+function normalizeRationaleCompare(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Drop a wrong-option sentence that is the same generic priority filler on every choice. */
+export function stripGenericPriorityFiller(text: string): string {
+  return text
+    .split("\n")
+    .filter((line) => {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#") || trimmed.startsWith("**")) return true;
+      return !GENERIC_PRIORITY_FILLER.test(trimmed.replace(/^incorrect\s*[—–:-]\s*/i, ""));
+    })
+    .join("\n");
+}
+
+/** Same paragraph pasted twice in one rationale. */
+export function dedupeRepeatedBlocks(text: string): string {
+  const blocks = text.split(/\n{2,}/);
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const block of blocks) {
+    const key = normalizeRationaleCompare(block);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(block.trim());
+  }
+  return out.join("\n\n");
+}
+
+function sameRationaleText(left: string | undefined, right: string | undefined): boolean {
+  const a = normalizeRationaleCompare(left ?? "");
+  const b = normalizeRationaleCompare(right ?? "");
+  if (!a || !b) return false;
+  return a === b || a.startsWith(b) || b.startsWith(a);
+}
+
+/** Hide a pearl that restates the takeaway, memory hook, or pharmacy paragraph. */
+function pearlDuplicatesTeaching(
+  pearl: string | undefined,
+  takeaway: string | undefined,
+  memoryHook: string | undefined,
+  practice: string | undefined
+): string | undefined {
+  if (!pearl?.trim()) return undefined;
+  if ([takeaway, memoryHook, practice].some((part) => sameRationaleText(pearl, part))) return undefined;
+  return pearl;
+}
+
+/** Stored copy often says "On the unit" even on pharmacy items. Nursing items drop pharmacy-only lines. */
 export function adaptBoardPracticeWording(text: string, board: PracticeBoard): string {
-  if (!text || board === "nursing") return text;
+  if (!text) return text;
+  let next = dedupeRepeatedBlocks(stripGenericPriorityFiller(text));
+  if (board === "nursing") {
+    next = next
+      .replace(/for both NCLEX and NAPLEX/gi, "for NCLEX")
+      .replace(/crucial for pharmacy practice/gi, "important for nursing practice");
+    return next;
+  }
   const phrase = board === "pharmacy" ? "In the pharmacy, this means" : "In practice, this means";
   const place = board === "pharmacy" ? "In the pharmacy" : "In practice";
-  return text
+  return next
     .replace(/On the unit, this means/gi, phrase)
     .replace(/\bOn the unit\b/gi, place);
 }
@@ -207,7 +270,7 @@ export function parseRationaleForDisplay(
 ): ParsedRationaleDisplay {
   if (expertJson) return parseExpertRationaleForDisplay(expertJson);
 
-  const text = explanation?.trim() ?? "";
+  const text = dedupeRepeatedBlocks(stripGenericPriorityFiller(explanation?.trim() ?? ""));
   const empty: ParsedRationaleDisplay = {
     conceptBullets: [],
     wrongOptions: [],
@@ -256,8 +319,12 @@ export function parseRationaleForDisplay(
   const xrefBlock = extractSection(text, "## Related topics", headersAfter("## Related topics"));
 
   const lines = whyBlock.split("\n").map((l) => l.trim()).filter(Boolean);
-  const headline = lines.find((l) => !l.startsWith("•") && !l.startsWith("-") && !l.startsWith("**In practice"));
+  let headline = lines.find((l) => !l.startsWith("•") && !l.startsWith("-") && !l.startsWith("**In practice"));
   const inPractice = whyBlock.match(/\*\*In practice:\*\*\s*(.+)/i)?.[1]?.trim();
+  const conceptBullets = parseBullets(whyBlock);
+  if (headline && conceptBullets[0] && sameRationaleText(headline, conceptBullets[0])) {
+    headline = undefined;
+  }
 
   let keyTakeaway = takeawayBlock.replace(/\*\*/g, "").trim();
   let memoryHook: string | undefined;
@@ -302,13 +369,20 @@ export function parseRationaleForDisplay(
 
   return {
     whyCorrectHeadline: headline ? stripBold(headline) : undefined,
-    conceptBullets: parseBullets(whyBlock),
+    conceptBullets,
     clinicalContext: inPractice,
-    wrongOptions: parseWrongOptions(wrongBlock),
+    wrongOptions: parseWrongOptions(wrongBlock)
+      .map((row) => ({ ...row, body: stripGenericPriorityFiller(row.body) }))
+      .filter((row) => row.body.length > 0),
     keyTakeaway: keyTakeaway || undefined,
     memoryHook,
     stepByStepReasoning: parseNumberedSteps(stepsBlock),
-    clinicalPearl: pearlBlock ? parseSimpleSection(pearlBlock) : undefined,
+    clinicalPearl: pearlDuplicatesTeaching(
+      pearlBlock ? parseSimpleSection(pearlBlock) : undefined,
+      keyTakeaway,
+      memoryHook,
+      inPractice
+    ),
     pharmacologyTieIn: pharmBlock ? parseSimpleSection(pharmBlock) : undefined,
     highYieldFacts: parseBullets(hyBlock),
     commonPitfalls: parseBullets(pitfallBlock),

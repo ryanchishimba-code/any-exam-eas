@@ -19,6 +19,8 @@ export function itemTypeToNgnFormat(itemType?: string): string | undefined {
       return "ordered_response";
     case "select_all":
       return "select_all";
+    case "ngn_dropdown":
+      return "dropdown";
     case "vignette":
     case "mcq":
       return "multiple_choice";
@@ -56,6 +58,7 @@ export function ngnPayloadToChartData(
       condition: payload.condition,
       actions: payload.actions,
       monitors: payload.monitors,
+      actionPickCount: payload.actionPickCount ?? 1,
       monitorPickCount: payload.monitorPickCount ?? 2,
     };
   }
@@ -65,6 +68,7 @@ export function ngnPayloadToChartData(
       kind: "matrix",
       rows: payload.rows,
       columns: payload.columns,
+      matrixMulti: payload.matrixMulti === true,
     };
   }
 

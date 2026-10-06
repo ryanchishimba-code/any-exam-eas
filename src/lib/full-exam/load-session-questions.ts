@@ -3,6 +3,9 @@ import { getExamSession } from "@/lib/exam-sessions/service";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { filterBankRowsForPracticeField } from "@/lib/edtech/exam-item-scope";
 import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
+import { mergePrefetchedBankItems, publishedCatalogToBankItems } from "@/lib/full-exam/catalog-exam-items";
+import { loadPublishedClinicalBank } from "@/lib/assessment/serve-db";
+import type { BankItem } from "@/lib/question-bank";
 import type { FullExamSessionConfig } from "@/types/full-exam";
 import type { ExamQuestion } from "@/lib/ai";
 
@@ -66,19 +69,29 @@ export async function loadFullExamSessionQuestionsPayload(
     };
   }
 
+  const bankIds = ids.filter((id) => !id.startsWith("ngn:"));
   const rows = filterBankRowsForPracticeField(
-    await prisma.questionBankItem.findMany({
-      where: { id: { in: ids } },
-    }),
+    bankIds.length === 0
+      ? []
+      : await prisma.questionBankItem.findMany({
+          where: { id: { in: bankIds } },
+        }),
     resolvedFieldId
   );
-  const byId = new Map(rows.map((row) => [row.id, row]));
-  const items = ids
-    .map((id) => {
-      const row = byId.get(id);
-      return row ? enrichBankItemFromRow(row) : null;
-    })
-    .filter((item): item is NonNullable<typeof item> => item != null);
+  const byId = new Map(rows.map((row) => [row.id, enrichBankItemFromRow(row)]));
+  let catalogItems: BankItem[] = [];
+  if (ids.some((id) => id.startsWith("ngn:"))) {
+    try {
+      const bank = await loadPublishedClinicalBank(resolvedFieldId);
+      catalogItems = publishedCatalogToBankItems(bank.catalog);
+    } catch (error) {
+      console.warn(
+        "[full-exam] clinical NGN catalog unavailable",
+        error instanceof Error ? error.message : error
+      );
+    }
+  }
+  const items = mergePrefetchedBankItems(ids, byId, catalogItems);
 
   if (items.length < limit) {
     return {

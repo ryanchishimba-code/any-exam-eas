@@ -15,6 +15,7 @@ export function inferStudyQuestionType(q: ExamQuestion): StudyQuestionType {
   if (t === "select_all") return "select_all";
   if (ngn === "k_type") return "k_type";
   if (t === "ordered_response" || ngn === "ordered_response") return "ordered_response";
+  if (ngn === "dropdown" || q.ngnPayload?.kind === "dropdown") return "fill_blank";
   return "multiple_choice";
 }
 

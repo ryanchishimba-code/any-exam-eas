@@ -43,10 +43,17 @@ export type QuestionStudyContext = {
   ngnPayload?: Record<string, unknown> | null;
 };
 
+export type LabeledMemoryCard = {
+  id: string;
+  title: string;
+};
+
 export type ResolvedQuestionStudyLinks = {
   primaryDeepDive?: RelatedDeepDive;
   relatedDeepDives: RelatedDeepDive[];
   memoryCardIds: string[];
+  /** Cards with a real title that matches the stem. Unlabeled chips stay hidden. */
+  memoryCards: LabeledMemoryCard[];
   anatomyStructures: AnatomyStructureLink[];
   keyTakeaway?: string;
   topicLinks: ExamTopicStudyLinks;
@@ -184,24 +191,25 @@ export function resolveQuestionStudyLinks(
     : [];
   const fromResolved = getAnatomyStructuresForStructureIds(inferredStructureIds, 3);
 
-  const anatomyStructures = mergeAnatomyStructureLinks(
+  const mergedAnatomy = mergeAnatomyStructureLinks(
     fromCards,
     fromTopic,
     fromResolved,
     fromText
-  )
-    .filter((link) => {
-      if (link.system !== "skeletal") return true;
-      const name = link.name.toLowerCase();
-      return name.length >= 5 && anatomySource.includes(name);
-    })
+  ).filter((link) => {
+    if (link.system !== "skeletal") return true;
+    return structureNameInText(link.name, anatomySource);
+  });
+  const scene = (ctx.anatomyText ?? ctx.stem ?? "").trim();
+  const anatomyStructures = (scene ? confidentAnatomy(mergedAnatomy, fromText, scene) : mergedAnatomy)
+    .filter((link) => link.system !== "skeletal" || structureNameInText(link.name, scene))
     .slice(0, 3);
 
   const explicitDrugs = Array.isArray(ctx.ngnPayload?.top500Drugs)
     ? ctx.ngnPayload.top500Drugs.map(String)
     : undefined;
-  const studyGuide = resolveStudyGuideSection(examSlug, candidates) ?? undefined;
-  const relatedDrug =
+  let studyGuide = resolveStudyGuideSection(examSlug, candidates) ?? undefined;
+  let relatedDrug =
     resolveRelatedDrug({
       examSlug,
       topicKeys: candidates,
@@ -209,11 +217,23 @@ export function resolveQuestionStudyLinks(
       text: explicitDrugs?.length ? undefined : ctx.stem,
     }) ?? undefined;
   const relatedCards = resolveRelatedCards(examSlug, candidates) ?? undefined;
+  let deepDives = relatedDeepDives;
+  let primary = primaryDeepDive;
+  if (scene) {
+    deepDives = relatedDeepDives.filter(
+      (dive) => titleMatchesText(dive.title, scene) || titleMatchesText(dive.slug.replace(/-/g, " "), scene)
+    );
+    primary = deepDives[0];
+    if (studyGuide && !guideMatchesQuestion(studyGuide.title, scene)) studyGuide = undefined;
+    if (relatedDrug && !titleMatchesText(relatedDrug.label, scene)) relatedDrug = undefined;
+  }
+  const memoryCards = labeledMemoryCards(memoryCardIds, scene);
 
   return {
-    primaryDeepDive,
-    relatedDeepDives,
+    primaryDeepDive: primary,
+    relatedDeepDives: deepDives,
     memoryCardIds,
+    memoryCards,
     anatomyStructures,
     keyTakeaway: meta.keyTakeaway,
     topicLinks,
@@ -221,6 +241,85 @@ export function resolveQuestionStudyLinks(
     relatedDrug,
     relatedCards,
   };
+}
+
+const LINK_STOP = new Set([
+  "nursing",
+  "therapy",
+  "pharmacotherapy",
+  "guide",
+  "study",
+  "clinical",
+  "practice",
+  "health",
+  "patient",
+  "management",
+  "foundational",
+  "knowledge",
+  "general",
+]);
+
+function structureNameInText(name: string, text: string): boolean {
+  const trimmed = name.trim();
+  if (trimmed.length < 4 || !text.trim()) return false;
+  const escaped = trimmed.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`\\b${escaped}\\b`, "i").test(text);
+}
+
+function titleTokens(title: string): string[] {
+  return title
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((token) => token.length > 4 && !LINK_STOP.has(token));
+}
+
+function titleMatchesText(title: string, text: string): boolean {
+  const scene = text.toLowerCase();
+  return titleTokens(title).some((token) => scene.includes(token));
+}
+
+function statedAgeYears(text: string): number | null {
+  const match = text.match(/\b(\d{1,3})\s*-?\s*(?:year|yr)s?\s*-?\s*old\b/i);
+  if (!match) return null;
+  const age = Number(match[1]);
+  return Number.isFinite(age) ? age : null;
+}
+
+/** A guide chapter is shown only when its title is in the stem. Beers requires age 65 or older. */
+export function guideMatchesQuestion(title: string, text: string): boolean {
+  if (/beer|geriatric|older adult/i.test(title)) {
+    const age = statedAgeYears(text);
+    return age != null && age >= 65;
+  }
+  return titleMatchesText(title, text);
+}
+
+function confidentAnatomy(
+  links: AnatomyStructureLink[],
+  fromText: AnatomyStructureLink[],
+  source: string
+): AnatomyStructureLink[] {
+  const text = source.toLowerCase();
+  const byId = new Map<string, AnatomyStructureLink>();
+  for (const link of fromText) byId.set(link.id, link);
+  for (const link of links) {
+    if (byId.has(link.id)) continue;
+    if (structureNameInText(link.name, text)) byId.set(link.id, link);
+  }
+  return [...byId.values()];
+}
+
+function labeledMemoryCards(ids: string[], stem: string): LabeledMemoryCard[] {
+  const out: LabeledMemoryCard[] = [];
+  for (const id of ids) {
+    const card = MEMORY_CARDS.find((entry) => entry.id === id);
+    const title = card?.title?.trim();
+    if (!title || /^memory card$/i.test(title)) continue;
+    if (stem && !titleMatchesText(title, stem)) continue;
+    out.push({ id, title });
+    if (out.length >= 4) break;
+  }
+  return out;
 }
 
 export function resolveStudyLinksFromQuestion(

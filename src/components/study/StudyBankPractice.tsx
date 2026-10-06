@@ -1594,9 +1594,12 @@ export function StudyBankPractice({
         // attempt field (pharmacy); querying the label misses the saved miss.
         const reviewField = fieldId || field;
         let reviewSubject = effectiveSubjectId;
+        const examSessionId = searchParams.get("examSessionId")?.trim() || undefined;
         // The question-bank page already counted an open board queue. Skip the
         // extra preflight round trip and go straight to the sitting.
+        // An exam-scoped review must not use that account-wide count.
         const knownBoardQueue =
+          !examSessionId &&
           unscopedReviewSubject(reviewSubject) &&
           typeof resolvedOpenCount === "number" &&
           resolvedOpenCount > 0;
@@ -1606,7 +1609,7 @@ export function StudyBankPractice({
         if (!knownBoardQueue) {
           preflight = await fetchJson(
             "/api/study/review-incorrect",
-            { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true },
+            { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true, examSessionId },
             8000
           );
           decision = decisionFromRemediationPayload({
@@ -1622,7 +1625,7 @@ export function StudyBankPractice({
             reviewSubject = MIXED_SUBJECT_ID;
             preflight = await fetchJson(
               "/api/study/review-incorrect",
-              { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true },
+              { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true, examSessionId },
               8000
             );
             decision = decisionFromRemediationPayload({
@@ -1650,7 +1653,7 @@ export function StudyBankPractice({
         }
         const launched = await fetchJson(
           "/api/study/review-incorrect",
-          { field: reviewField, subjectId: reviewSubject, count: launchCount },
+          { field: reviewField, subjectId: reviewSubject, count: launchCount, examSessionId },
           20000
         );
         if (!launched.ok) {
@@ -1700,7 +1703,8 @@ export function StudyBankPractice({
         }
         const openQueueTotal = resolveReviewOpenQueueTotal({
           sittingSize: raw.length,
-          boardOpenTotal: unscopedReviewSubject(reviewSubject) ? resolvedOpenCount : null,
+          boardOpenTotal:
+            examSessionId || !unscopedReviewSubject(reviewSubject) ? null : resolvedOpenCount,
           preflightAvailable:
             decision && decision.status === "launch" ? decision.available : null,
           payloads: [preflight?.data, launched.data],

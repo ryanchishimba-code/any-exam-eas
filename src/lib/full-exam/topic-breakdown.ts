@@ -104,7 +104,57 @@ function bucketForQuestion(q: TopicQuestion): string {
   if (PSYCH_ITEM.test(haystack) && (broad || /\b(depressi|suicid|therapeutic (?:response|communication)|psychosocial|mental health)\b/i.test(haystack))) {
     return "Psychosocial Integrity";
   }
-  return base;
+  return pharmacyBucketFromText(q, base) ?? base;
+}
+
+const PHARMACY_SUBJECT =
+  /pharmacotherapy|pharmacy calculations|infectious disease therapy|endocrine|cns & psychiatric/i;
+
+const CALC_STEM =
+  /\b(calculate|alligation|how many (?:ml|milligrams|milliliters|grams|tablets|capsules)|round to(?: the)?(?: nearest)?|infusion pump|mL\/hr|percent strength|isotonicity|e-value|how many ml)\b/i;
+
+const TEXT_BUCKETS: { label: string; re: RegExp }[] = [
+  {
+    label: "Cardiovascular Pharmacotherapy",
+    re: /\b(statin|atorvastatin|ldl|hdl|heart failure|myocardial|atrial fibrillation|warfarin|hypertension|ace inhibitor|angina|atheroscl|apixaban|clopidogrel|lipid)\b/i,
+  },
+  {
+    label: "Infectious Disease Therapy",
+    re: /\b(antibiotic|vancomycin|c\.?\s*diff|clostridioides|sepsis|pneumonia|mrsa|antimicrobial)\b/i,
+  },
+  {
+    label: "Endocrine Pharmacotherapy",
+    re: /\b(insulin|metformin|diabetic ketoacidosis|\bdka\b|levothyroxine|hba1c|thyroid)\b/i,
+  },
+  {
+    label: "CNS & Psychiatric Medications",
+    re: /\b(ssri|sertraline|fluoxetine|antipsychotic|depression)\b/i,
+  },
+];
+
+/**
+ * Stored subject labels win when the stem is silent. A calculations label on a
+ * statin stem, or a cardiovascular label on an alligation stem, follows the text.
+ */
+function pharmacyBucketFromText(q: TopicQuestion, base: string): string | null {
+  const text = clean(q.question);
+  if (!text) return null;
+  const subject = clean(q.subjectId);
+  const pharmacy =
+    PHARMACY_SUBJECT.test(base) ||
+    subject === "compounding-calculations" ||
+    subject.endsWith("-rx");
+  if (!pharmacy) return null;
+  if (CALC_STEM.test(text)) {
+    return /calculation/i.test(base) ? null : "Pharmacy Calculations";
+  }
+  if (/calculation/i.test(base)) {
+    return TEXT_BUCKETS.find((bucket) => bucket.re.test(text))?.label ?? null;
+  }
+  if (!/cardiovascular/i.test(base) && TEXT_BUCKETS[0]!.re.test(text)) {
+    return "Cardiovascular Pharmacotherapy";
+  }
+  return null;
 }
 
 export function buildTopicBreakdown(

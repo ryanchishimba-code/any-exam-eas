@@ -5,6 +5,7 @@ import { selectSittingItems } from "@/lib/exam-prep/sitting-selection";
 import {
   countConsecutiveTopicRun,
   narrowTopicKey,
+  narrowTopicShareCap,
   orderWithTopicGap,
 } from "@/lib/exam-prep/narrow-topic";
 
@@ -145,6 +146,70 @@ describe("template groups", () => {
     expect(clusters[2]).toBe(clusters[3]);
     expect(clusters[0]).not.toBe(clusters[2]);
   });
+
+  it("groups the same vignette asked two ways and keeps unrelated cases apart", () => {
+    const atorva = (id: string, question: string) =>
+      item(
+        id,
+        question,
+        "High-intensity statin",
+        "A 54-year-old takes atorvastatin 40 mg daily. LDL is 160 mg/dL. The rest of the panel is at goal."
+      );
+    const hygiene = (id: string, question: string) =>
+      item(
+        id,
+        question,
+        "Soap and water",
+        "The client has C. diff colitis. Hand hygiene with soap and water is required after care."
+      );
+    const pancreas = (id: string, question: string) =>
+      item(
+        id,
+        question,
+        "Bowel rest",
+        "Pancreatitis after an alcohol binge. The client has severe epigastric pain."
+      );
+    const fatigue = (id: string, question: string) =>
+      item(
+        id,
+        question,
+        "Draw a TSH",
+        "The client reports fatigue and lost 10 lb over six weeks without trying."
+      );
+    const pool = [
+      atorva("a1", "What is the most appropriate change?"),
+      atorva("a2", "Which intensity of therapy is indicated?"),
+      hygiene("h1", "Which hand hygiene is required?"),
+      hygiene("h2", "What should the nurse use to clean hands?"),
+      hygiene("h3", "Which infection-control action is correct?"),
+      pancreas("p1", "What is the priority treatment?"),
+      pancreas("p2", "Which diet order is expected?"),
+      fatigue("f1", "Which test is the priority?"),
+      fatigue("f2", "What is the best next assessment?"),
+      item(
+        "asthma-1",
+        "What is the priority nursing action?",
+        "Coach pursed-lip breathing",
+        "Asthma with wheezing. The client uses an albuterol inhaler at home."
+      ),
+      item(
+        "asthma-2",
+        "Which teaching point is correct?",
+        "Use a spacer",
+        "The client has asthma and uses albuterol before exercise."
+      ),
+    ];
+    const clusters = assignSittingClusters(pool);
+    const idAt = (id: string) => clusters[pool.findIndex((row) => row.id === id)];
+    expect(idAt("a1")).toBe(idAt("a2"));
+    expect(idAt("h1")).toBe(idAt("h2"));
+    expect(idAt("h2")).toBe(idAt("h3"));
+    expect(idAt("p1")).toBe(idAt("p2"));
+    expect(idAt("f1")).toBe(idAt("f2"));
+    expect(idAt("a1")).not.toBe(idAt("h1"));
+    expect(idAt("asthma-1")).not.toBe(idAt("asthma-2"));
+    expect(idAt("p1")).not.toBe(idAt("f1"));
+  });
 });
 
 describe("narrow topic spread", () => {
@@ -171,5 +236,28 @@ describe("narrow topic spread", () => {
     const depression = keys.filter((key) => key === "depression-suicide").length;
     expect(depression).toBeLessThanOrEqual(2);
     expect(orderWithTopicGap(["a", "a", "a", "b"], (value) => value).join("")).not.toBe("aaab");
+  });
+
+  it("caps one condition at 2 of 50 and 4 of 91", () => {
+    expect(narrowTopicShareCap(50)).toBe(2);
+    expect(narrowTopicShareCap(91)).toBe(4);
+    const copd = (id: string, n: number) =>
+      item(
+        id,
+        `What is the priority for ${id}?`,
+        `Choice ${id}`,
+        `COPD exacerbation with dyspnea. Oxygen saturation is ${n} percent on arrival.`
+      );
+    const other = (id: string) =>
+      item(id, `What is the priority for ${id}?`, `Choice ${id}`, `A client needs teaching about wound care number ${id}.`);
+    const pool = [
+      ...Array.from({ length: 8 }, (_, i) => copd(`copd-${i}`, 80 + i)),
+      ...Array.from({ length: 50 }, (_, i) => other(`other-${i}`)),
+    ];
+    const selected = selectSittingItems({ pool, limit: 50, seed: 11, relax: false });
+    const copdCount = selected.items.filter((row) =>
+      narrowTopicKey({ text: `${row.scenario} ${row.question}` }) === "copd"
+    ).length;
+    expect(copdCount).toBeLessThanOrEqual(2);
   });
 });

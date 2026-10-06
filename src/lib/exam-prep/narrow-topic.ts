@@ -6,13 +6,23 @@
 import type { BankItem } from "@/lib/question-bank";
 
 const NARROW: { id: string; re: RegExp }[] = [
-  { id: "depression-suicide", re: /\b(depressi(?:on|ve)|suicid|self[-\s]?harm|hopeless)\b/i },
-  { id: "copd", re: /\bcopd\b|\bchronic obstructive\b/i },
+  { id: "depression-suicide", re: /\b(depressi(?:on|ve)|suicid|self[-\s]?harm|hopeless|giving away (?:his|her|their)?\s*belongings)\b/i },
+  { id: "copd", re: /\bcopd\b|\bchronic obstructive\b|\bemphysema\b|\bchronic bronchitis\b/i },
   { id: "breastfeeding", re: /\bbreastfeed|\blactation\b|\bmilk supply\b/i },
   { id: "gtt-teaching", re: /\bglucose tolerance\b|\bgtt\b|\bgestational diabetes\b/i },
   { id: "warfarin-inr", re: /\bwarfarin\b|\binr\b/i },
   { id: "statin-myalgia", re: /\bstatins?\b|\bmyalgias?\b|\bmuscle (?:pain|ache)/i },
   { id: "insulin-potassium", re: /\binsulin\b[\s\S]{0,80}\bpotassium\b|\bpotassium\b[\s\S]{0,80}\binsulin\b/i },
+  { id: "opioid-sedation", re: /\b(opioid|morphine|fentanyl|hydromorphone|oxycodone|hydrocodone)\b/i },
+  { id: "c-diff-hygiene", re: /\bc\.?\s*diff|\bclostridioides\b|\bclostridium difficile\b/i },
+  { id: "pancreatitis", re: /\bpancreatitis\b/i },
+  { id: "fatigue-weight-loss", re: /\bfatigue\b[\s\S]{0,80}\b\d+\s*(?:lb|pound)|\b\d+\s*(?:lb|pound)s?\b[\s\S]{0,80}\bfatigue\b/i },
+  { id: "burns", re: /\bburns?\b|\bscald\b|\btbsa\b/i },
+  { id: "postpartum-hemorrhage", re: /\bpostpartum hemorrhage\b|\bboggy fundus\b/i },
+  { id: "asthma-albuterol", re: /\basthma\b|\balbuterol\b/i },
+  { id: "ssri-sjw", re: /\b(ssri|sertraline|fluoxetine|paroxetine)\b[\s\S]{0,80}\bst\.?\s*john|\bst\.?\s*john'?s?\s*wort\b/i },
+  { id: "dpi-inhaler", re: /\bdry[- ]powder inhaler\b|\bdiskus\b|\bdpi\b/i },
+  { id: "diabetes-glucose", re: /\b(dka|diabetic ketoacidosis|blood glucose|blood sugar)\b|\bglucose (?:of |is )?2\d\d\b/i },
 ];
 
 export type NarrowTopicSource = {
@@ -49,11 +59,14 @@ export function narrowTopicKeyFromBankItem(item: BankItem): string | null {
   });
 }
 
-/** No single narrow topic above this share of the sitting, and never below 2. */
+/**
+ * No single narrow condition above this share of the sitting, and never below 2.
+ * 4% keeps COPD from filling 6 of 50 and opioid sedation from filling 8 of 91.
+ */
 export function narrowTopicShareCap(sittingLength: number): number {
   const length = Math.max(0, Math.floor(sittingLength) || 0);
   if (length <= 0) return 2;
-  return Math.max(2, Math.ceil(length * 0.08));
+  return Math.max(2, Math.ceil(length * 0.04));
 }
 
 /**

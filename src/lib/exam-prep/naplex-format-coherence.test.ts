@@ -9,6 +9,7 @@ import {
   fixNaplexFormatCoherence,
   itemHasFormatCoherenceIssue,
   orphanGenericCalcStemIssue,
+  prepareNaplexBankItem,
   stemIsSelfContainedCalc,
 } from "./naplex-format-coherence";
 
@@ -1396,5 +1397,62 @@ describe("naplex format coherence", () => {
     expect(fixed.options.every((o) => !/naloxone|intubate|high-flow nasal cannula/i.test(o))).toBe(true);
     expect(fixed.options).toContain(fixed.correctAnswer);
     expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+});
+
+describe("published calc stems stay calculations", () => {
+  const stems: { id: string; question: string; scenario: string }[] = [
+    {
+      id: "cmse6wa1k0001kz04h3wevawf",
+      question:
+        "At what rate (mL/hr) should the nurse set the infusion pump to deliver 10 mEq/hr? (Round to the nearest whole number.)",
+      scenario:
+        "Order: KCl 40 mEq in 1000 mL D5W IV continuous. The prescriber orders a maximum infusion rate of 10 mEq/hr. Pharmacy prepares the full 1000 mL bag.",
+    },
+    {
+      id: "cmse6wac80002kz046zfbfibu",
+      question: "What is the test product AUC as a percentage of reference? (Round to nearest whole number.)",
+      scenario:
+        "BE study review | Reference AUC = 100 ng·h/mL | Test product mean AUC ratio point estimate = 0.92 | Assume the 90% CI falls entirely within 80–125%",
+    },
+    {
+      id: "cmse6waho0003kz046s72h64j",
+      question: "How many mL of 23.4% stock are required? (Round to one decimal place.)",
+      scenario: "Compounding | Prepare 240 mL of 0.9% w/v sodium chloride irrigation from 23.4% w/v NaCl stock",
+    },
+    {
+      id: "cmse6wasx0004kz04syyj18c1",
+      question: "How many mL of 50% dextrose are required? (Round to the nearest whole mL.)",
+      scenario: "Alligation | Prepare 120 mL of 15% w/v dextrose using 50% and 5% stock solutions",
+    },
+    {
+      id: "cmse6watv0005kz04ux7to631",
+      question: "How many milligrams of NaCl must be added?",
+      scenario:
+        "Isotonicity | Prepare 30 mL of 1% w/v drug solution isotonic with NS | E-value (NaCl eq) of drug = 0.18 | NS = 0.9% NaCl",
+    },
+    {
+      id: "cmse6waun0006kz04rezf5p5a",
+      question: "How many milligrams of hydrocortisone are in the entire preparation?",
+      scenario: "Percent strength | A cream is labeled 2% w/w hydrocortisone | Pharmacist compounds 45 g total",
+    },
+  ];
+
+  it.each(stems)("keeps $id as a constructed response", (row) => {
+    const item: BankItem = {
+      id: row.id,
+      subjectId: "compounding-calculations",
+      scenario: row.scenario,
+      question: row.question,
+      options: [],
+      correctAnswer: "12",
+      explanation: "Use the order data in the scenario.",
+      itemType: "constructed_response",
+    };
+    expect(orphanGenericCalcStemIssue(item)).toBeNull();
+    const prepared = prepareNaplexBankItem(item);
+    expect(prepared.itemType).toBe("constructed_response");
+    expect(prepared.question).toBe(row.question);
+    expect(prepared.options.filter(Boolean)).toHaveLength(0);
   });
 });

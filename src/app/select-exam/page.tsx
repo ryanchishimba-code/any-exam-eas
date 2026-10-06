@@ -5,6 +5,7 @@ import { AccessBlockedNotice } from "@/components/AccessBlockedNotice";
 import { ExamSelectionScreen } from "@/components/edtech/ExamSelectionScreen";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { selectExamDestination } from "@/lib/edtech/select-exam-destination";
 import { getUserAccess } from "@/lib/access-control";
 import { ROUTES } from "@/lib/routes";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
@@ -45,15 +46,14 @@ export default async function SelectExamPage({ searchParams }: PageProps) {
   }
 
   const pref = await getUserExamPreference(session.user.id);
-
-  if (pref && !switchMode) {
-    if (access.hasAppAccess) {
-      const qs = new URLSearchParams();
-      if (params.welcome === "trial") qs.set("welcome", "trial");
-      if (params.verify === "1") qs.set("verify", "1");
-      const suffix = qs.toString() ? `?${qs.toString()}` : "";
-      redirect(`${ROUTES.dashboard}${suffix}`);
-    }
+  const destination = selectExamDestination({
+    signedIn: true,
+    emailUnverified: false,
+    hasPreference: Boolean(pref),
+    switchMode,
+    hasAppAccess: access.hasAppAccess,
+  });
+  if (destination === "reactivate") {
     redirect("/settings?reactivate=1");
   }
 

@@ -3,6 +3,9 @@ import { z } from "zod";
 import type { ExamQuestion } from "@/lib/ai";
 import { loadBankItemsByIds } from "@/lib/full-exam/load-bank-items-by-ids";
 import { loadStillIncorrectBankItemIds } from "@/lib/learning/review-incorrect";
+import { missedIdsForExamSession } from "@/lib/learning/remediation-loop";
+import { getExamSession } from "@/lib/exam-sessions/service";
+import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import { resolveQuestionBankSessionCount } from "@/lib/study/question-bank-setup";
@@ -16,6 +19,7 @@ const bodySchema = z.object({
   subjectId: z.string().optional(),
   count: z.number().int().min(1).max(100).default(25),
   preflight: z.boolean().optional(),
+  examSessionId: z.string().min(1).max(80).optional(),
 });
 
 function reviewQueueResponse(
@@ -88,12 +92,25 @@ export async function POST(req: Request) {
     const subjectId =
       body.subjectId && body.subjectId !== MIXED_SUBJECT_ID ? body.subjectId : null;
 
-    const incorrectIds = await loadStillIncorrectBankItemIds({
-      userId: premium.userId,
-      fieldId,
-      subjectId,
-      limit: 300,
-    });
+    let incorrectIds: string[];
+    if (body.examSessionId) {
+      const examSession = await getExamSession(body.examSessionId, premium.userId);
+      if (!examSession) {
+        return NextResponse.json({ error: "Exam session not found." }, { status: 404 });
+      }
+      const analysis = (examSession.analysis ?? {}) as { prefetchedQuestionIds?: string[] };
+      const answers = Array.isArray(examSession.answers)
+        ? (examSession.answers as ExamAnswerRecord[])
+        : [];
+      incorrectIds = missedIdsForExamSession(answers, analysis.prefetchedQuestionIds);
+    } else {
+      incorrectIds = await loadStillIncorrectBankItemIds({
+        userId: premium.userId,
+        fieldId,
+        subjectId,
+        limit: 300,
+      });
+    }
 
     if (body.preflight || incorrectIds.length === 0) {
       return reviewQueueResponse(

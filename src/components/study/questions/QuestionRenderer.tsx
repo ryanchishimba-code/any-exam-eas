@@ -21,6 +21,7 @@ import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { NgnCjmmNote, NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
 import {
   BowTieQuestion,
+  DropdownExamQuestion,
   HighlightQuestion,
   MatrixQuestion,
   UnfoldingCaseBanner,
@@ -244,6 +245,15 @@ export const QuestionRenderer = memo(function QuestionRenderer({
 
       {question.type === "drag_drop" && (
         <DragDropMatch
+          question={question}
+          selected={selected}
+          revealed={revealed}
+          onToggle={handleToggle}
+        />
+      )}
+
+      {question.ngnPayload?.kind === "dropdown" && (
+        <DropdownExamQuestion
           question={question}
           selected={selected}
           revealed={revealed}

@@ -147,7 +147,7 @@ async function FullExamResultsContent({
         reviewIncorrectHref={
           passPathPersisted && missCount === 0
             ? null
-            : reviewIncorrectHref(fieldId, null, Math.max(missCount, 1))
+            : reviewIncorrectHref(fieldId, null, Math.max(missCount, 1), sessionId)
         }
         proofHref={ROUTES.dashboard}
         endedEarly={treatsAsEndedEarly}

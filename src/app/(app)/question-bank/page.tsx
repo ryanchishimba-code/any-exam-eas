@@ -110,10 +110,12 @@ export default async function QuestionBankPage({
   ]);
   const style = firstParam(sp.style);
   const subjectId = firstParam(sp.subjectId);
+  const examSessionId = firstParam(sp.examSessionId);
 
   // Same preflight for Review incorrect and Weak areas: 0 eligible returns the
   // empty notice here, before the practice Suspense skeleton.
-  if (style === "review_incorrect" || style === "weak_areas") {
+  // A results-page review names one exam, so an empty account queue must not block it.
+  if ((style === "review_incorrect" || style === "weak_areas") && !(style === "review_incorrect" && examSessionId)) {
     try {
       const eligible =
         style === "review_incorrect"

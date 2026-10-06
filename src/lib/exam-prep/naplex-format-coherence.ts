@@ -100,10 +100,24 @@ export function isGenericBlueprintCalcStem(stem: string): boolean {
   );
 }
 
+/**
+ * Pipe-separated order lines are real calc scenarios:
+ * "Alligation | Prepare 120 mL of 15% …" and "BE study review | Reference AUC = 100 …".
+ */
+export function pipeSeparatedCalcScenario(text: string): boolean {
+  const parts = text.split("|").map((part) => part.trim()).filter(Boolean);
+  if (parts.length < 2) return false;
+  if (!parts.some((part) => /\d/.test(part))) return false;
+  return /%|auc|meq|mL|mg|alligation|isotonic|isotonicity|stock|prepare|compound|e-value|w\/[vw]|bioequivalen|reference|percent strength/i.test(
+    text
+  );
+}
+
 /** True when vignette contains enough order/dispensing data to support a calculation stem. */
 export function vignetteSupportsCalculation(item: BankItem): boolean {
   const vignette = resolveNaplexVignette(item);
   if (!vignette || vignette.length < 20) return false;
+  if (pipeSeparatedCalcScenario(vignette)) return true;
 
   const numericAnchors =
     vignette.match(
@@ -238,6 +252,8 @@ export function calcStemMatchesVignetteData(item: BankItem): boolean {
   const vignette = resolveNaplexVignette(item);
   const blob = [vignette, stem].filter(Boolean).join("\n");
 
+  if (pipeSeparatedCalcScenario(blob) && !stemAsksForConcentration(stem)) return true;
+
   if (stemAsksForConcentration(stem)) {
     return !concentrationStemLacksSolvableInputs(blob);
   }
@@ -247,6 +263,14 @@ export function calcStemMatchesVignetteData(item: BankItem): boolean {
       /\d+(?:\.\d+)?\s*mL\b.{0,48}(?:over|in|to run over)\s*\d+(?:\.\d+)?\s*(?:h|hr|hours?|min|minutes?)/i.test(
         blob
       )
+    ) {
+      return true;
+    }
+    // Ordered mEq/hr (or mg/hr) plus the amount of drug in a known bag volume.
+    if (
+      /\d+(?:\.\d+)?\s*(?:mEq|mg)\s*\/\s*(?:hr|h|hour)/i.test(blob) &&
+      /\d+(?:\.\d+)?\s*(?:mEq|mg)\b/i.test(blob) &&
+      /\d+(?:\.\d+)?\s*mL\b/i.test(blob)
     ) {
       return true;
     }
@@ -335,6 +359,8 @@ export function calcStemMatchesVignetteData(item: BankItem): boolean {
       (/units\/kg/i.test(blob) && /\d+\s*kg\b/i.test(blob))
     );
   }
+
+  if (pipeSeparatedCalcScenario([vignette, stem].filter(Boolean).join("\n"))) return true;
 
   return true;
 }
