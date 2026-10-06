@@ -17,6 +17,10 @@ import { requirePremiumApi } from "@/lib/api-access";
 import { respondDbUnavailable } from "@/lib/api-db-error";
 import { assembleTimedExamSessionItems } from "@/lib/exam-prep/compose/assemble-timed-exam-session";
 import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
+import {
+  selectSittingItems,
+  storedFormNeedsFreshAssembly,
+} from "@/lib/exam-prep/sitting-selection";
 import { resolveExamBankSampleCount } from "@/lib/questions/finalize-exam-session";
 import { recordStudyQuestionsServed } from "@/lib/study/usage-limits";
 import {
@@ -252,14 +256,36 @@ export async function POST(req: Request) {
     let clientPayload;
     let assembleSource: string | undefined;
     let excludeSeenApplied = false;
+    const optionShuffleSeed = (Date.now() ^ 0x9e3779b9) >>> 0;
+
+    if (
+      exactForm &&
+      storedFormNeedsFreshAssembly({
+        items: exactForm.items,
+        limit: exactForm.questionCount,
+        seenIds: smart.excludeQuestionIds,
+        namedForm: explicitPreset != null,
+      })
+    ) {
+      exactForm = null;
+      sessionConfig = config;
+    }
 
     if (exactForm) {
       try {
+        const diversified = selectSittingItems({
+          pool: exactForm.items,
+          limit: exactForm.questionCount,
+          seenIds: smart.excludeQuestionIds,
+          seed: optionShuffleSeed,
+          relax: true,
+        });
         clientPayload = preparedTimedExamItemsForClient(
           sessionFieldId,
           sessionFieldId,
-          exactForm.items,
-          exactForm.questionCount
+          diversified.items,
+          diversified.items.length,
+          { shuffleSeed: optionShuffleSeed }
         );
         assembleSource = "preset";
       } catch (error) {
@@ -284,7 +310,8 @@ export async function POST(req: Request) {
         sessionFieldId,
         sessionFieldId,
         items,
-        retakeLimit
+        retakeLimit,
+        { shuffleSeed: optionShuffleSeed }
       );
       assembleSource = "retake";
     } else if (!clientPayload) {
@@ -312,7 +339,8 @@ export async function POST(req: Request) {
         sessionFieldId,
         sessionFieldId,
         assembled.items,
-        limit
+        limit,
+        { shuffleSeed: optionShuffleSeed }
       );
       assembleSource = assembled.source;
       excludeSeenApplied = Boolean(assembled.excludeSeenApplied);
@@ -322,7 +350,7 @@ export async function POST(req: Request) {
     const servedQuestions = clientPayload.questions.slice(0, servedCount);
     const servedBankItemIds = clientPayload.bankItemIds.slice(0, servedCount);
     const storedConfig = syncSessionConfigQuestionCount(
-      sessionConfig,
+      { ...sessionConfig, optionShuffleSeed },
       examSlug,
       servedQuestions.length,
       sessionFieldId

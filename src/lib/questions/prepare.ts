@@ -2,8 +2,8 @@ import {
   cleanOptionText,
   normalizeQuestionOptions,
   parseSelectAllCorrectAnswers,
-  shuffleAnswerOptions,
 } from "@/lib/question-format";
+import { mixShuffleSeed, shuffleDeliveryChoices } from "@/lib/questions/shuffle-delivery";
 import { normalizeStem } from "./stem";
 import { numericValueInSlot, planDualNumericAnswer } from "./dual-numeric-answer";
 import { gradeNumericAnswer } from "./numeric-grade";
@@ -65,11 +65,16 @@ function buildExplanationDetail(q: RawQuestionInput) {
 export function examQuestionToStudy(
   q: RawQuestionInput,
   index: number,
-  opts?: { shuffleOptions?: boolean }
+  opts?: { shuffleOptions?: boolean; shuffleSeed?: number }
 ): StudyQuestion {
   const type = inferStudyQuestionType(q);
   let options = coerceOptionList(q.options);
   let correctAnswer = String(q.correctAnswer ?? "");
+  let explanation = q.explanation;
+  let clinicalReasoning = q.clinicalReasoning;
+  let distractorRationale = q.distractorRationale;
+  let solutionSteps = q.solutionSteps;
+  let expertRationale = q.expertRationale;
 
   if (type === "true_false") {
     options = ["True", "False"];
@@ -97,9 +102,26 @@ export function examQuestionToStudy(
       options = normalized.options;
       correctAnswer = normalized.correctAnswer;
     } else {
-      const shuffled = shuffleAnswerOptions(normalized.options, normalized.correctAnswer);
+      const shuffled = shuffleDeliveryChoices({
+        options: normalized.options,
+        correctAnswer: normalized.correctAnswer,
+        explanation,
+        clinicalReasoning,
+        distractorRationale,
+        solutionSteps,
+        expertRationale,
+        seed:
+          opts?.shuffleSeed == null
+            ? undefined
+            : mixShuffleSeed(opts.shuffleSeed, index, q.bankItemId),
+      });
       options = shuffled.options;
       correctAnswer = shuffled.correctAnswer;
+      explanation = shuffled.explanation ?? explanation;
+      clinicalReasoning = shuffled.clinicalReasoning;
+      distractorRationale = shuffled.distractorRationale;
+      solutionSteps = shuffled.solutionSteps;
+      expertRationale = shuffled.expertRationale as typeof expertRationale;
     }
   }
 
@@ -157,17 +179,22 @@ export function examQuestionToStudy(
     caseStep: q.caseStep,
     options,
     correctAnswers: toCorrectAnswers(type, correctAnswer, options),
-    explanation: stripInternalDisplayMetadata(q.explanation?.trim() ?? ""),
-    explanationDetail: buildExplanationDetail(q),
-    clinicalReasoning: q.clinicalReasoning,
-    distractorRationale: q.distractorRationale,
+    explanation: stripInternalDisplayMetadata(explanation?.trim() ?? ""),
+    explanationDetail: buildExplanationDetail({
+      ...q,
+      explanation,
+      clinicalReasoning,
+      distractorRationale,
+    }),
+    clinicalReasoning,
+    distractorRationale,
     references: q.references
       ?.map((reference) => stripInternalDisplayMetadata(reference))
       .filter((reference) => reference.length > 0 && !/^references:?$/i.test(reference)),
     sourceLabel: studentFacingSourceLabel(q.sourceLabel),
     sourceUrl: q.sourceUrl,
     reviewedAt: q.reviewedAt,
-    solutionSteps: q.solutionSteps,
+    solutionSteps,
     tags: q.tags,
     highYield: q.highYield,
     field: q.field,
@@ -179,7 +206,7 @@ export function examQuestionToStudy(
     qualityScore: q.qualityScore,
     difficulty: q.difficultyLabel?.toLowerCase(),
     chartData: q.chartData,
-    expertRationale: q.expertRationale,
+    expertRationale,
   };
 }
 

@@ -136,17 +136,41 @@ export function planNgnFormatTargets(
  * Pick `limit` items from pool, filling blueprint NGN quotas first, then classic items.
  * Falls back gracefully when a format bucket is thin.
  */
+const PUBLISHED_NGN_TYPES = new Set<string>([
+  ...Object.values(FORMAT_ITEM_TYPES).flat(),
+  "select_all",
+  "sata",
+  "case_study",
+  "case_based",
+  "unfolding_case",
+  "drag_drop",
+  "constructed_response",
+]);
+
+/** Published NGN or case row that is still a real alternate format, not a relabeled MCQ. */
+export function isPublishedNgnBankItem(item: BankItem): boolean {
+  if (isReclassifiedMcq(item)) return false;
+  const type = normalizeItemType(item);
+  if (PUBLISHED_NGN_TYPES.has(type)) return true;
+  const kind =
+    item.ngnPayload && typeof item.ngnPayload === "object"
+      ? String((item.ngnPayload as { kind?: unknown }).kind ?? "")
+      : "";
+  return kind === "sequential" || PUBLISHED_NGN_TYPES.has(kind);
+}
+
 export function selectWithNgnFormatMix(
   pool: BankItem[],
   limit: number,
   fieldId: string,
   seed = 0x51ed270b
 ): BankItem[] {
-  if (limit <= 0) return [];
-  if (pool.length <= limit) return pool.slice(0, limit);
+  if (limit <= 0 || pool.length === 0) return [];
 
   const blueprint = getExamBlueprint(fieldId);
-  if (!blueprint?.ngnMix?.length) {
+  // A short pool cannot trade a classic item for a missing format. An exact-length
+  // pool still runs the quota pass so NGN rows are not left past a later slice.
+  if (!blueprint?.ngnMix?.length || pool.length < limit) {
     return pool.slice(0, limit);
   }
 

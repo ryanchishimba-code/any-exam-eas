@@ -56,7 +56,8 @@ import {
   type CatDifficulty,
   type CatSessionState,
 } from "@/lib/questions/cat-engine";
-import { mapDifficultyToCatBand, pickCatNext } from "@/lib/questions/cat-select";
+import { mapDifficultyToCatBand, pickCatNext, type CatFormatHint } from "@/lib/questions/cat-select";
+import { NCLEX_CAT_NGN_TARGET_RATIO } from "@/lib/full-exam/nclex-cat-ngn";
 import {
   catInExamTip,
   catSessionStopSummary,
@@ -81,7 +82,43 @@ const ENCOURAGEMENT = [
   "Steady pace wins. Flag anything uncertain and move on.",
 ];
 
-type CatPoolItem = StudyQuestion & { difficultyBand: CatDifficulty };
+const NGN_STUDY_TYPES = new Set([
+  "select_all",
+  "bow_tie",
+  "matrix",
+  "highlight",
+  "ordered_response",
+  "drag_drop",
+  "unfolding_case",
+]);
+
+type CatPoolItem = StudyQuestion & {
+  difficultyBand: CatDifficulty;
+  ngn?: boolean;
+  setId?: string;
+  stepIndex?: number;
+};
+
+function catFormatFields(question: StudyQuestion): Pick<CatPoolItem, "ngn" | "setId" | "stepIndex"> {
+  const payload = question.ngnPayload as { setId?: string; stepIndex?: number; kind?: string } | undefined;
+  const sequential = payload?.kind === "sequential" && Boolean(payload.setId);
+  return {
+    ngn: NGN_STUDY_TYPES.has(question.type) || sequential,
+    setId: sequential ? payload?.setId : undefined,
+    stepIndex: sequential ? payload?.stepIndex : undefined,
+  };
+}
+
+function catFormatHint(pool: CatPoolItem[], delivered: StudyQuestion[]): CatFormatHint | undefined {
+  if (!pool.some((item) => item.ngn)) return undefined;
+  return {
+    ngnTargetRatio: NCLEX_CAT_NGN_TARGET_RATIO,
+    delivered: delivered.map((question) => ({
+      id: question.id,
+      ...catFormatFields(question),
+    })),
+  };
+}
 
 type Props = {
   sessionId: string;
@@ -255,9 +292,10 @@ export function FullExamSimulator({
         if (isCatMode) {
           const pool: CatPoolItem[] = items.map((q, i) => ({
             ...q,
+            ...catFormatFields(q),
             difficultyBand: mapDifficultyToCatBand(q.difficulty, i),
           }));
-          const first = pickCatNext(initCatSession(), pool, new Set());
+          const first = pickCatNext(initCatSession(), pool, new Set(), Math.random, catFormatHint(pool, []));
           if (!first) {
             throw new Error("Could not start practice CAT — empty question pool.");
           }
@@ -475,7 +513,7 @@ export function FullExamSimulator({
     }
 
     const used = new Set(questions.map((q) => q.id));
-    const next = pickCatNext(state, catPool, used);
+    const next = pickCatNext(state, catPool, used, Math.random, catFormatHint(catPool, questions));
     if (!next) {
       const exhausted: CatSessionState = {
         ...state,

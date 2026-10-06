@@ -725,7 +725,7 @@ export async function GET(req: Request) {
                 : "Medium"
             : undefined),
       }));
-      prepared = mapApiQuestionsToStudy(rawInputsForMap, { shuffleOptions: false });
+      prepared = mapApiQuestionsToStudy(rawInputsForMap, { shuffleOptions: true });
       sessionQuality = assessExamSessionQuality(prepared, limit);
       if (sessionQuality.returned !== limit) {
         throw new Error(

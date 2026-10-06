@@ -21,6 +21,8 @@ export type FullExamSessionConfig = {
   focusAreas?: string[];
   /** NCLEX rule-based CAT simulation (85–150Q stop rules). */
   nclexCat?: boolean;
+  /** Keeps delivery-time option order stable when a sitting is resumed. */
+  optionShuffleSeed?: number;
   /** Hide score summary — weak-area remediation only. */
   silentReview?: boolean;
 };

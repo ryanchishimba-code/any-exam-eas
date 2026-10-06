@@ -23,7 +23,8 @@ export function preparedTimedExamItemsForClient(
   fieldId: string,
   field: string,
   items: BankItem[],
-  limit: number
+  limit: number,
+  opts?: { shuffleSeed?: number }
 ): TimedExamClientPayload {
   const selected = items.slice(0, limit);
   const rawForMap = selected.map((item, i) =>
@@ -45,7 +46,10 @@ export function preparedTimedExamItemsForClient(
         : undefined),
   }));
 
-  const prepared = mapApiQuestionsToStudy(rawInputs, { shuffleOptions: false });
+  const prepared = mapApiQuestionsToStudy(rawInputs, {
+    shuffleOptions: true,
+    shuffleSeed: opts?.shuffleSeed,
+  });
   const quality = assessExamSessionQuality(prepared, limit);
   if (quality.returned !== limit) {
     throw new Error(
