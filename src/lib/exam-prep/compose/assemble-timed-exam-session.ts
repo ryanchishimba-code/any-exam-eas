@@ -35,8 +35,9 @@ import { nclexCatNgnEnabled } from "@/lib/full-exam/nclex-cat-ngn";
 import {
   countSittingClusters,
   finalizeAssembledSitting,
+  isPharmacyCalculationItem,
 } from "@/lib/exam-prep/sitting-selection";
-import { sampleActiveItemsByFormat } from "@/lib/question-bank-db";
+import { sampleActiveItemsByFormat, samplePharmacyCalculationItems } from "@/lib/question-bank-db";
 
 /** USMLE presets are step-scoped; skip the heavy preset join when it cannot match. */
 function skipTimedPresetForField(fieldId: string): boolean {
@@ -187,6 +188,18 @@ export async function assembleTimedExamSessionItems(
     let items = result.items;
     if (fieldId === "nursing" && nclexCatNgnEnabled()) {
       items = mergeBankItems(items, await publishedNgnPool(fieldId, limit));
+    }
+    if (fieldId === "pharmacy") {
+      try {
+        const sampled = await samplePharmacyCalculationItems(Math.max(24, limit));
+        const prepared = sampled.map((item) => prepare(item)).filter(isPharmacyCalculationItem);
+        items = mergeBankItems(items, prepared);
+      } catch (error) {
+        console.warn(
+          "[assemble] pharmacy calculation sample unavailable",
+          error instanceof Error ? error.message : error
+        );
+      }
     }
     return scopeAssemblyResult(
       fieldId,

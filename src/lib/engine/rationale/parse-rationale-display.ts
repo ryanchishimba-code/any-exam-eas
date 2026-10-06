@@ -3,7 +3,9 @@
  * Supports expert ## sections, structured headers, and legacy plain text.
  */
 import { stripDuplicatedOpeningSentence } from "@/lib/study/rationale-disclosure";
+import { collapseRepeatedLabels } from "@/lib/questions/student-display-text";
 import type { ExpertStructuredRationale } from "./expert-rationale-types";
+
 export type ParsedRationaleDisplay = {
   whyCorrectHeadline?: string;
   conceptBullets: string[];
@@ -136,7 +138,9 @@ function pearlDuplicatesTeaching(
 /** Stored copy often says "On the unit" even on pharmacy items. Nursing items drop pharmacy-only lines. */
 export function adaptBoardPracticeWording(text: string, board: PracticeBoard): string {
   if (!text) return text;
-  let next = stripDuplicatedOpeningSentence(dedupeRepeatedBlocks(stripGenericPriorityFiller(text)));
+  let next = collapseRepeatedLabels(
+    stripDuplicatedOpeningSentence(dedupeRepeatedBlocks(stripGenericPriorityFiller(text)))
+  );
   if (board === "nursing") {
     next = next
       .replace(/crucial for both (?:NAPLEX and NCLEX|NCLEX and NAPLEX)/gi, "important for nursing practice")

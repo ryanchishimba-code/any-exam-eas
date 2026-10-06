@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { examQuestionToStudy, isAnswerCorrect, studyQuestionsToExamQuestions } from "@/lib/questions/prepare";
-import { parseBowTieLayout } from "@/lib/questions/ngn-structures";
+import { bowTieSelectionValid, parseBowTieLayout, toggleBowTieSelection } from "@/lib/questions/ngn-structures";
 import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import type { BankItem } from "@/lib/question-bank";
 import {
@@ -50,13 +50,15 @@ function bowtie(id: string, keyed: readonly string[]) {
 
 describe("bow-tie comma keys", () => {
   it.each(CASES)("keeps the comma inside $id when the payload is joined and parsed again", ({ id, keyed }) => {
+    const graded = [...keyed, "The keyed condition"];
     const study = examQuestionToStudy(bowtie(id, keyed), 0, { shuffleOptions: false });
-    expect(study.correctAnswers).toEqual([...keyed]);
-    expect(isAnswerCorrect(study, [...keyed])).toBe(true);
+    expect(study.correctAnswers).toEqual(graded);
+    expect(isAnswerCorrect(study, graded)).toBe(true);
+    expect(isAnswerCorrect(study, [...keyed])).toBe(false);
 
     const [api] = studyQuestionsToExamQuestions([study]);
     expect(api?.correctAnswer?.includes("|||")).toBe(true);
-    expect(api?.correctAnswer?.split("|||")).toEqual([...keyed]);
+    expect(api?.correctAnswer?.split("|||")).toEqual(graded);
 
     const again = examQuestionToStudy(
       {
@@ -66,14 +68,14 @@ describe("bow-tie comma keys", () => {
       0,
       { shuffleOptions: false }
     );
-    expect(again.correctAnswers).toEqual([...keyed]);
-    expect(isAnswerCorrect(again, [...keyed])).toBe(true);
+    expect(again.correctAnswers).toEqual(graded);
+    expect(isAnswerCorrect(again, graded)).toBe(true);
   });
 
   it("credits a comma-free bow-tie the same way", () => {
     const keyed = ["Give fluids", "Raise the legs", "Urine output", "Blood pressure"];
     const study = examQuestionToStudy(bowtie("B04", keyed), 0, { shuffleOptions: false });
-    expect(isAnswerCorrect(study, [...keyed])).toBe(true);
+    expect(isAnswerCorrect(study, [...keyed, "The keyed condition"])).toBe(true);
     expect(splitStoredCorrectAnswers(keyed.join(","), study.options)).toEqual(keyed);
   });
 
@@ -98,7 +100,7 @@ describe("bow-tie comma keys", () => {
     expect(shown).toEqual(parseBowTieLayout(second).actions);
     expect(shown).toEqual(first.chartData?.actions);
     expect(new Set(shown)).toEqual(new Set(storedActions));
-    expect(isAnswerCorrect(first, [...keyed])).toBe(true);
+    expect(isAnswerCorrect(first, [...keyed, "The keyed condition"])).toBe(true);
     const original = storedActions.join("|");
     const moved = [3, 9, 21, 44, 99].some((seed) => {
       const row = examQuestionToStudy(withChart, 0, { shuffleOptions: true, shuffleSeed: seed });
@@ -145,6 +147,85 @@ describe("bow-tie comma keys", () => {
     const payload = preparedTimedExamItemsForClient("nursing", "nursing", [item], 1, { shuffleSeed: 4 });
     expect(payload.questions[0]?.correctAnswer?.split("|||")).toEqual(keyed);
     expect(isAnswerCorrect(payload.prepared[0]!, [...keyed])).toBe(true);
+  });
+
+  it("offers shuffled condition choices with nothing preselected and one condition at a time", () => {
+    const keyed = [NALOXONE, "Stop the PCA infusion", "Respiratory rate and SpO2", "Level of sedation"];
+    const study = examQuestionToStudy(bowtie("B01", keyed), 0, { shuffleOptions: false });
+    const layout = parseBowTieLayout(study);
+    expect(layout.conditionOptions).toEqual(["The keyed condition", "A different condition"]);
+    expect(bowTieSelectionValid([...keyed], layout)).toBe(false);
+    const withCondition = toggleBowTieSelection([...keyed], "The keyed condition", layout);
+    expect(bowTieSelectionValid(withCondition, layout)).toBe(true);
+    const replaced = toggleBowTieSelection(withCondition, "A different condition", layout);
+    expect(replaced.filter((choice) => layout.conditionOptions.includes(choice))).toEqual([
+      "A different condition",
+    ]);
+    expect(isAnswerCorrect(study, replaced)).toBe(false);
+  });
+
+  it("spreads keyed bow-tie actions and select-all choices across positions", () => {
+    const actions = ["Key action A", "Key action B", "Decoy action 1", "Decoy action 2", "Decoy action 3"];
+    const monitors = ["Monitor A", "Monitor B", "Monitor C"];
+    const trials = 400;
+    let adjacent = 0;
+    let unchanged = 0;
+    const indexHits = [0, 0, 0, 0, 0];
+    for (let seed = 1; seed <= trials; seed += 1) {
+      const row = examQuestionToStudy(
+        {
+          ...bowtie("B01", ["Key action A", "Key action B", "Monitor A", "Monitor B"]),
+          options: [...actions, ...monitors],
+          ngnPayload: {
+            kind: "bow_tie",
+            condition: "The keyed condition",
+            conditionOptions: ["The keyed condition", "A different condition", "A third condition"],
+            actions,
+            monitors,
+            actionPickCount: 2,
+            monitorPickCount: 2,
+          },
+        },
+        0,
+        { shuffleOptions: true, shuffleSeed: seed }
+      );
+      const shown = parseBowTieLayout(row).actions;
+      const first = shown.indexOf("Key action A");
+      const second = shown.indexOf("Key action B");
+      if (first >= 0) indexHits[first] += 1;
+      if (second >= 0) indexHits[second] += 1;
+      if (Math.abs(first - second) === 1) adjacent += 1;
+      if (shown.join("|") === actions.join("|")) unchanged += 1;
+    }
+    const adjacency = adjacent / trials;
+    expect(adjacency).toBeGreaterThan(0.15);
+    expect(adjacency).toBeLessThan(0.65);
+    expect(indexHits.every((count) => count > 0)).toBe(true);
+    expect(unchanged).toBeLessThan(trials * 0.2);
+
+    const choices = ["Correct 1", "Correct 2", "Correct 3", "Wrong 1", "Wrong 2", "Wrong 3"];
+    let stuckAtFront = 0;
+    for (let seed = 1; seed <= trials; seed += 1) {
+      const study = examQuestionToStudy(
+        {
+          id: 9,
+          type: "select_all",
+          ngnFormat: "select_all",
+          question: "Select all actions that apply to this client right now.",
+          options: choices,
+          correctAnswer: "Correct 1|||Correct 2|||Correct 3",
+          explanation: "Three actions apply to this client.",
+          bankItemId: "select-all-spread",
+        },
+        0,
+        { shuffleOptions: true, shuffleSeed: seed }
+      );
+      const positions = ["Correct 1", "Correct 2", "Correct 3"]
+        .map((choice) => study.options.indexOf(choice))
+        .sort((left, right) => left - right);
+      if (positions[0] === 0 && positions[1] === 1 && positions[2] === 2) stuckAtFront += 1;
+    }
+    expect(stuckAtFront / trials).toBeLessThan(0.15);
   });
 });
 

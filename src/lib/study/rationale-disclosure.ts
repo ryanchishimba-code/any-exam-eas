@@ -13,6 +13,20 @@ export const RATIONALE_INLINE_MAX_LINES = 3;
 /** Approximate characters per line on a phone study card. */
 export const RATIONALE_CHARS_PER_LINE = 56;
 
+const LEADING_SECTION_TITLE =
+  /^(?:why this answer is correct|why the other options are (?:wrong|incorrect)|key takeaway|clinical pearl|common pitfalls|next step in care|real-world(?: nursing)? application|layered depth)\b[:\s]*/i;
+
+/** Drop a flattened section title that would otherwise glue onto the first sentence. */
+export function stripLeadingSectionTitles(text: string): string {
+  let rest = text.trim();
+  for (let i = 0; i < 4 && rest; i += 1) {
+    const next = rest.replace(LEADING_SECTION_TITLE, "").trim();
+    if (next === rest) break;
+    rest = next;
+  }
+  return rest;
+}
+
 export function stripRationaleMarkup(text: string): string {
   return text
     .replace(/^\s*#{1,6}\s+/gm, "")
@@ -141,8 +155,24 @@ export function rationaleSummaryOr(
 }
 
 /** Principle line or first explanatory sentence, kept short enough to sit above Show more. */
+export function normalizeRationaleSentence(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[“”"']/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+/** True when the lead already shows this heading or sentence. */
+export function rationaleFragmentShownInLead(fragment: string, lead: string): boolean {
+  const part = normalizeRationaleSentence(fragment);
+  const shown = normalizeRationaleSentence(lead);
+  if (!part || !shown || part.length < 16) return false;
+  return part === shown || shown.includes(part) || (shown.length >= 24 && part.startsWith(shown));
+}
+
 export function shortRationaleLead(text: string | null | undefined): string {
-  const cleaned = stripRationaleMarkup(text ?? "");
+  const cleaned = stripLeadingSectionTitles(stripRationaleMarkup(text ?? ""));
   if (!cleaned) return "";
   if (
     cleaned.length <= RATIONALE_INLINE_MAX_CHARS &&

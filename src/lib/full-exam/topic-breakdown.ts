@@ -111,7 +111,7 @@ const PHARMACY_SUBJECT =
   /pharmacotherapy|pharmacy calculations|infectious disease|endocrine|cns & psychiatric|patient counseling|general pharmacology|pharmaceutics|pharmacokinetics|compounding|self-care|pharmacy law|drug information/i;
 
 const CALC_STEM =
-  /\b(calculate|alligation|how many (?:ml|milligrams|milliliters|grams|tablets|capsules)|round to(?: the)?(?: nearest)?|infusion pump|mL\/hr|percent strength|isotonicity|e-value|how many ml)\b/i;
+  /\b(calculate|alligation|\bauc\b|how many (?:ml|milligrams|milliliters|grams|tablets|capsules)|round to(?: the)?(?: nearest)?|infusion pump|mL\/hr|percent strength|isotonicity|e-value|w\/v|w\/w|how many ml)\b/i;
 
 const TEXT_BUCKETS: { label: string; re: RegExp }[] = [
   {

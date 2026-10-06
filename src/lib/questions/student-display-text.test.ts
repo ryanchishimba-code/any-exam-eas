@@ -3,6 +3,8 @@ import { examQuestionToStudy } from "./prepare";
 import {
   citationFitsQuestion,
   figureFitsQuestion,
+  joinBrokenDoseDecimals,
+  repairSplitInstructionQuote,
   splitGluedLeadIn,
   stripInternalDisplayMetadata,
   studentFacingExhibitKind,
@@ -41,6 +43,40 @@ describe("student display text", () => {
     );
     expect(studentFacingExhibitKind("med_label")).toBe("Medication label");
     expect(studentFacingExhibitKind("diagram")).toBe("Diagram");
+  });
+
+  it("joins a broken dose decimal and leaves sentence breaks and clock times alone", () => {
+    expect(joinBrokenDoseDecimals("0. 125 mg")).toBe("0.125 mg");
+    expect(joinBrokenDoseDecimals("0. 5 g")).toBe("0.5 g");
+    expect(joinBrokenDoseDecimals("2. 5 mL")).toBe("2.5 mL");
+    expect(joinBrokenDoseDecimals("at 0800. 2 hours later")).toBe("at 0800. 2 hours later");
+    expect(joinBrokenDoseDecimals("Day 1. 3 doses")).toBe("Day 1. 3 doses");
+    expect(joinBrokenDoseDecimals("BP was 120/80. 2 hours")).toBe("BP was 120/80. 2 hours");
+    expect(joinBrokenDoseDecimals("Step 1. 2 tablets")).toBe("Step 1. 2 tablets");
+    expect(stripInternalDisplayMetadata("Give 0. 125 mg of digoxin.")).toBe("Give 0.125 mg of digoxin.");
+    expect(stripInternalDisplayMetadata("Infuse 0. 5 g over 1 hours.")).toBe("Infuse 0.5 g over 1 hour.");
+    expect(stripInternalDisplayMetadata("at 0800. 2 hours later")).toBe("at 0800. 2 hours later");
+    expect(stripInternalDisplayMetadata("Day 1. 3 doses")).toBe("Day 1. 3 doses");
+    expect(stripInternalDisplayMetadata("BP was 120/80. 2 hours")).toBe("BP was 120/80. 2 hours");
+  });
+
+  it("joins a split decimal, uses the singular hour, and drops a quote stuck on the instruction", () => {
+    expect(stripInternalDisplayMetadata("Give 0. 125 mg of digoxin.")).toBe("Give 0.125 mg of digoxin.");
+    expect(stripInternalDisplayMetadata("Infuse 0. 5 g over 1 hours.")).toBe("Infuse 0.5 g over 1 hour.");
+    expect(stripInternalDisplayMetadata('" Which therapeutic response is best?')).toBe(
+      "Which therapeutic response is best?"
+    );
+    expect(stripInternalDisplayMetadata('"I\'m not ready to die."')).toBe('"I\'m not ready to die."');
+    expect(stripInternalDisplayMetadata("Remember: Remember, steady-state takes 4 half-lives.")).toBe(
+      "Remember: steady-state takes 4 half-lives."
+    );
+    expect(stripInternalDisplayMetadata("Reviewed Reviewed Oct 2026")).toBe("Reviewed Oct 2026");
+    const repaired = repairSplitInstructionQuote(
+      'The client says, "I am not ready',
+      '" Which therapeutic response is best?'
+    );
+    expect(repaired.vignette.endsWith('"')).toBe(true);
+    expect(repaired.stem).toBe("Which therapeutic response is best?");
   });
 
   it("strips unit tags, doubled punctuation, and a quote split across a line break", () => {

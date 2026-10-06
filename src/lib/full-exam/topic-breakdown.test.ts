@@ -86,6 +86,19 @@ describe("buildTopicBreakdown", () => {
     expect(rows[0]?.topic).toBe("Cardiovascular Pharmacotherapy");
   });
 
+  it("buckets an AUC stem under Pharmacy Calculations", () => {
+    const rows = buildTopicBreakdown(
+      [
+        {
+          subjectId: "compounding-calculations",
+          question: "What is the test product AUC as a percentage of reference? Round to the nearest whole number.",
+        },
+      ],
+      [answer(0, true)]
+    );
+    expect(rows[0]?.topic).toBe("Pharmacy Calculations");
+  });
+
   it("keeps General when the item has no topic data", () => {
     const rows = buildTopicBreakdown([{}, { subjectId: "__mixed__" }], [answer(0, false), answer(1, true)]);
     expect(rows).toEqual([{ topic: "General", correct: 1, total: 2, pct: 50 }]);

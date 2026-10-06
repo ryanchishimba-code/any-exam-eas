@@ -80,8 +80,17 @@ describe("publishedCatalogToBankItems", () => {
     );
     expect(study.type).toBe("bow_tie");
     expect(
-      isAnswerCorrect(study, ["Start normal saline", "Give a fluid bolus", "Urine output", "Blood pressure"])
+      isAnswerCorrect(study, [
+        "Start normal saline",
+        "Give a fluid bolus",
+        "Urine output",
+        "Blood pressure",
+        "Hypovolemia",
+      ])
     ).toBe(true);
+    expect(
+      isAnswerCorrect(study, ["Start normal saline", "Give a fluid bolus", "Urine output", "Blood pressure"])
+    ).toBe(false);
     expect(isAnswerCorrect(study, ["Start normal saline", "Urine output", "Blood pressure"])).toBe(false);
   });
 

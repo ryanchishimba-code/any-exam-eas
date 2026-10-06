@@ -193,6 +193,21 @@ function rowToBankItem(row: {
   return item;
 }
 
+/** Constructed pharmacy calculations for the sitting reserve. Read-only. */
+export async function samplePharmacyCalculationItems(count: number): Promise<BankItem[]> {
+  const pull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(count, 24));
+  const rows = await sampleQuestionBankRows({
+    where: {
+      fieldId: "pharmacy",
+      active: true,
+      qaPassed: true,
+      itemType: { in: ["constructed_response", "calculation", "short_answer"] },
+    },
+    pull,
+  });
+  return rows.map((row) => rowToBankItem(row));
+}
+
 export function shuffleBankItems<T>(items: T[]): T[] {
   const a = [...items];
   for (let i = a.length - 1; i > 0; i--) {

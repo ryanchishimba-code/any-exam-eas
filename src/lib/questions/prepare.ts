@@ -98,6 +98,17 @@ export function examQuestionToStudy(
       shuffledConditions = seededShuffle(conditionOptions, `${seed}:condition`);
     }
     options = [...actions, ...monitors];
+    const keyedParts = splitStoredCorrectAnswers(correctAnswer, [...actions, ...monitors, ...shuffledConditions]);
+    const conditionChoice = shuffledConditions.find(
+      (choice) => choice.trim().toLowerCase() === layout.condition.trim().toLowerCase()
+    );
+    if (
+      conditionChoice &&
+      !/^(?:clinical condition|patient presentation)$/i.test(conditionChoice) &&
+      !keyedParts.some((part) => part.trim().toLowerCase() === conditionChoice.trim().toLowerCase())
+    ) {
+      correctAnswer = joinStoredCorrectAnswer("bow_tie", [...keyedParts, conditionChoice]);
+    }
     const bowTieChart: Record<string, unknown> = {
       ...(q.chartData && typeof q.chartData === "object" ? q.chartData : {}),
       kind: "bow_tie",
@@ -125,6 +136,14 @@ export function examQuestionToStudy(
     options = options.map(cleanOptionText);
   } else if (type === "select_all") {
     options = options.map(cleanOptionText);
+    if (opts?.shuffleOptions !== false && options.length > 1) {
+      const seed = mixShuffleSeed(
+        opts?.shuffleSeed ?? (Number.parseInt(hashStem(`${q.bankItemId ?? ""}:${q.question ?? ""}`), 36) || 1),
+        index,
+        q.bankItemId
+      );
+      options = seededShuffle(options, `${seed}:options`);
+    }
   } else if (type === "ordered_response" || type === "drag_drop") {
     options = options.map(cleanOptionText);
   } else if (type === "short_answer" || type === "fill_blank") {

@@ -2,6 +2,7 @@
 
 import { cleanOptionText } from "@/lib/question-format";
 import {
+  bowTiePickInstruction,
   bowTieSelectionValid,
   parseBowTieLayout,
   parseHighlightLayout,
@@ -41,10 +42,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
 
   return (
     <div className="mt-6 space-y-4">
-      <p className="text-xs text-[var(--color-ink-muted)]">
-        Select <strong>{layout.actionPickCount === 1 ? "one action" : `${layout.actionPickCount} actions`}</strong> and{" "}
-        <strong>{layout.monitorPickCount} conditions to monitor</strong>.
-      </p>
+      <p className="text-xs text-[var(--color-ink-muted)]">{bowTiePickInstruction(layout)}.</p>
 
       <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr] lg:items-stretch">
         <div className="rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4">
@@ -73,14 +71,37 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
           </ul>
         </div>
 
-        <div className="flex items-center justify-center lg:px-2">
-          <div className="w-full rounded-xl border-2 border-dashed border-[var(--color-accent)]/35 bg-[var(--color-accent)]/5 px-4 py-5 text-center lg:max-w-[200px]">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-ink-muted)]">
+        <div className="flex items-stretch justify-center lg:px-2">
+          <div className="w-full rounded-xl border-2 border-dashed border-[var(--color-accent)]/35 bg-[var(--color-accent)]/5 px-4 py-4 lg:max-w-[240px]">
+            <p className="text-center text-[10px] font-bold uppercase tracking-wider text-[var(--color-ink-muted)]">
               Condition
             </p>
-            <p className="mt-2 text-sm font-semibold leading-snug text-[var(--color-ink)]">
-              {revealed && layout.condition ? layout.condition : "—"}
-            </p>
+            {layout.conditionOptions.length > 0 ? (
+              <ul className="mt-3 space-y-2">
+                {layout.conditionOptions.map((opt) => {
+                  const isSelected = selected.includes(opt);
+                  const isCorrect = question.correctAnswers.some(
+                    (c) => cleanOptionText(c).toLowerCase() === opt.toLowerCase()
+                  );
+                  return (
+                    <li key={opt}>
+                      <button
+                        type="button"
+                        disabled={revealed}
+                        onClick={() => toggleBowTie(opt)}
+                        className={`w-full rounded-lg border px-3 py-2.5 text-left text-sm transition ${revealedClass(isSelected, isCorrect, revealed)}`}
+                      >
+                        {opt}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <p className="mt-2 text-center text-sm font-semibold leading-snug text-[var(--color-ink)]">
+                {revealed && layout.condition ? layout.condition : "—"}
+              </p>
+            )}
           </div>
         </div>
 
@@ -115,7 +136,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
         <p className="text-xs text-[var(--color-ink-muted)]">
           {valid
             ? "Selection complete — submit when ready."
-            : `Pick ${layout.actionPickCount} action${layout.actionPickCount === 1 ? "" : "s"} and ${layout.monitorPickCount} monitors.`}
+            : `${bowTiePickInstruction(layout).replace(/\.$/, "")}.`}
         </p>
       )}
     </div>
