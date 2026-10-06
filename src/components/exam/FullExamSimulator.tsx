@@ -35,6 +35,7 @@ import {
   fullExamSubmitEndedEarly,
   shouldOfferFullExamReviewSubmit,
 } from "@/lib/full-exam/submit-intent";
+import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
 import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
 import { takeFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
@@ -97,7 +98,32 @@ type CatPoolItem = StudyQuestion & {
   ngn?: boolean;
   setId?: string;
   stepIndex?: number;
+  narrowTopic?: string | null;
 };
+
+function narrowTopicForQuestion(question: StudyQuestion): string | null {
+  return narrowTopicKey({
+    text: [question.vignette, question.stem].filter(Boolean).join(" "),
+    topicCategory: question.topicCategory,
+    blueprintTopic: question.blueprintTopic,
+    subjectId: question.subjectId,
+    tags: question.tags,
+  });
+}
+
+function examOpenedAtMs(sessionId: string): number {
+  const key = `aee-exam-opened:${sessionId}`;
+  const now = Date.now();
+  if (typeof window === "undefined") return now;
+  try {
+    const prev = Number(window.sessionStorage.getItem(key));
+    if (Number.isFinite(prev) && prev > 0) return prev;
+    window.sessionStorage.setItem(key, String(now));
+  } catch {
+    // private mode
+  }
+  return now;
+}
 
 function catFormatFields(question: StudyQuestion): Pick<CatPoolItem, "ngn" | "setId" | "stepIndex"> {
   const payload = question.ngnPayload as { setId?: string; stepIndex?: number; kind?: string } | undefined;
@@ -112,14 +138,14 @@ function catFormatFields(question: StudyQuestion): Pick<CatPoolItem, "ngn" | "se
   };
 }
 
-function catFormatHint(pool: CatPoolItem[], delivered: StudyQuestion[]): CatFormatHint | undefined {
+function catFormatHint(pool: CatPoolItem[], delivered: StudyQuestion[]): CatFormatHint {
   const eligible = pool.filter((item) => item.ngn).length;
-  if (eligible === 0) return undefined;
   return {
-    ngnTargetRatio: cappedNgnTargetRatio(eligible, pool.length),
+    ngnTargetRatio: eligible === 0 ? 0 : cappedNgnTargetRatio(eligible, pool.length),
     delivered: delivered.map((question) => ({
       id: question.id,
       ...catFormatFields(question),
+      narrowTopic: narrowTopicForQuestion(question),
     })),
   };
 }
@@ -221,6 +247,20 @@ export function FullExamSimulator({
   const catStoppedTracked = useRef(false);
 
   const pauseAccumSec = useRef(0);
+  const openedAtMs = useRef(0);
+  if (openedAtMs.current === 0) openedAtMs.current = examOpenedAtMs(sessionId);
+  const firstAnsweredAt = useRef<Record<number, string>>(
+    Object.fromEntries(
+      initialAnswers
+        .filter((row) => row.answeredAt)
+        .map((row) => [row.questionIndex, row.answeredAt])
+    )
+  );
+  const rememberAnsweredAt = useCallback((qi: number) => {
+    if (!firstAnsweredAt.current[qi]) {
+      firstAnsweredAt.current[qi] = new Date().toISOString();
+    }
+  }, []);
   const pauseStarted = useRef<number | null>(null);
 
   const current = questions[index];
@@ -297,6 +337,7 @@ export function FullExamSimulator({
           const pool: CatPoolItem[] = items.map((q, i) => ({
             ...q,
             ...catFormatFields(q),
+            narrowTopic: narrowTopicForQuestion(q),
             difficultyBand: mapDifficultyToCatBand(q.difficulty, i),
           }));
           const first = pickCatNext(initCatSession(), pool, new Set(), Math.random, catFormatHint(pool, []));
@@ -392,6 +433,7 @@ export function FullExamSimulator({
           nowMs: Date.now(),
           pausedSec: pauseAccumSec.current,
           fallbackSec: 0,
+          openedAtMs: openedAtMs.current,
         });
         if (config.timed && config.timeLimitSec > 0) {
           const left = Math.max(0, config.timeLimitSec - used);
@@ -620,6 +662,7 @@ export function FullExamSimulator({
         nextSelected = [option];
       }
 
+      if (hasSelection(nextSelected)) rememberAnsweredAt(index);
       setAnswers((prev) => {
         const next = { ...prev[index], ...currentAnswer, selected: nextSelected };
         const merged = { ...prev, [index]: next };
@@ -627,7 +670,7 @@ export function FullExamSimulator({
         return merged;
       });
     },
-    [current, currentAnswer, index, persistAnswer, submitting, timeUp]
+    [current, currentAnswer, index, persistAnswer, rememberAnsweredAt, submitting, timeUp]
   );
 
   const updateAnswer = useCallback(
@@ -635,6 +678,9 @@ export function FullExamSimulator({
       setAnswers((prev) => {
         const next = { ...prev[index], ...patch };
         const merged = { ...prev, [index]: next };
+        if (patch.selected !== undefined && hasSelection(next.selected)) {
+          rememberAnsweredAt(index);
+        }
         if (
           patch.selected !== undefined ||
           patch.flagged !== undefined ||
@@ -645,7 +691,7 @@ export function FullExamSimulator({
         return merged;
       });
     },
-    [index, persistAnswer]
+    [index, persistAnswer, rememberAnsweredAt]
   );
 
   const buildAnswerLog = useCallback((): ExamAnswerRecord[] => {
@@ -663,7 +709,7 @@ export function FullExamSimulator({
         eliminated: st.eliminated,
         notes: st.notes,
         topicCategory: questionTopicFields(q).topicCategory,
-        answeredAt: new Date().toISOString(),
+        answeredAt: firstAnsweredAt.current[i] ?? new Date().toISOString(),
       });
     }
     return log;
@@ -706,6 +752,8 @@ export function FullExamSimulator({
         fallbackSec: config.timed
           ? Math.max(0, config.timeLimitSec - remainingSec)
           : elapsedSec,
+        openedAtMs: openedAtMs.current,
+        answerTimes: log.map((answer) => answer.answeredAt),
       });
       const markEndedEarly = fullExamSubmitEndedEarly({
         requestedEarly: endedEarly,
@@ -743,6 +791,7 @@ export function FullExamSimulator({
             analysis: {
               sessionConfig: config,
               timeUsedSec,
+              clientOpenedAt: new Date(openedAtMs.current).toISOString(),
               topicBreakdown,
               questionIds: questions.map((q) => q.bankItemId ?? q.id),
               questionSnapshots: questions.map((q) => ({

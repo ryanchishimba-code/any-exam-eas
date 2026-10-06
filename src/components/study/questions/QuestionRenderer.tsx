@@ -5,7 +5,10 @@ import dynamic from "next/dynamic";
 import type { SequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { cleanOptionText } from "@/lib/question-format";
-import { studentFacingStem } from "@/lib/questions/student-display-text";
+import {
+  studentFacingStem,
+  vignetteWithoutRepeatedQuestion,
+} from "@/lib/questions/student-display-text";
 import { parseRationaleForDisplay, type ParsedRationaleDisplay } from "@/lib/engine/rationale/parse-rationale-display";
 import {
   rationaleAfterLead,
@@ -126,6 +129,7 @@ export const QuestionRenderer = memo(function QuestionRenderer({
       ) : null}
 
       {question.vignette &&
+        vignetteWithoutRepeatedQuestion(question.vignette, question.stem) &&
         question.type !== "highlight" &&
         question.ngnFormat !== "abstract" &&
         question.ngnFormat !== "drug_ad" &&
@@ -133,13 +137,20 @@ export const QuestionRenderer = memo(function QuestionRenderer({
         question.ngnPayload?.kind !== "drug_ad" &&
         question.ngnPayload?.kind !== "ccs_prompt" && (
           isUsmleField(question.field) ? (
-            <UsmleCaseVignette text={question.vignette} />
+            <UsmleCaseVignette
+              text={vignetteWithoutRepeatedQuestion(question.vignette, question.stem)}
+            />
           ) : question.field === "pharmacy" ||
             question.ngnFormat === "case_based" ||
             question.ngnFormat === "vignette" ? (
-            <NaplexCaseVignette text={question.vignette} />
+            <NaplexCaseVignette
+              text={vignetteWithoutRepeatedQuestion(question.vignette, question.stem)}
+            />
           ) : (
-            <VignetteBlock text={question.vignette} stem={question.stem} />
+            <VignetteBlock
+              text={vignetteWithoutRepeatedQuestion(question.vignette, question.stem)}
+              stem={question.stem}
+            />
           )
         )}
 

@@ -8,7 +8,7 @@ import {
 } from "@/lib/site";
 import { nclexCatQuestionRange } from "@/lib/full-exam/nclex-length-label";
 import {
-  catAbilityToPracticePct,
+  catPracticeProgressPct,
   catStopReasonLabel,
 } from "@/lib/questions/cat-select";
 import type { FullExamCatOutcome } from "@/types/full-exam";
@@ -21,7 +21,7 @@ type Props = {
 };
 
 export function FullExamCatPracticeBand({ catOutcome }: Props) {
-  const practicePct = catAbilityToPracticePct(catOutcome.ability);
+  const practicePct = catPracticeProgressPct(catOutcome);
   const stopLabel = catStopReasonLabel(catOutcome.stopReason);
   const answered = catOutcome.correctCount + catOutcome.incorrectCount;
 

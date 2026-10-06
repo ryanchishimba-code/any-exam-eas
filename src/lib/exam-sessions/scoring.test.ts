@@ -33,6 +33,19 @@ describe("mergeExamAnswers", () => {
     expect(second[0].correct).toBe(true);
     expect(second[0].selected).toBe("right");
   });
+
+  it("keeps the earlier answeredAt when a later save restamps the row", () => {
+    const stored = mergeExamAnswers([], {
+      ...answer(0, false, "wrong"),
+      answeredAt: "2026-10-06T12:00:00.000Z",
+    });
+    const submitted = mergeExamAnswers(stored, {
+      ...answer(0, true, "right"),
+      answeredAt: "2026-10-06T12:10:28.000Z",
+    });
+    expect(submitted[0]?.answeredAt).toBe("2026-10-06T12:00:00.000Z");
+    expect(submitted[0]?.selected).toBe("right");
+  });
 });
 
 describe("calculateExamScorePercent", () => {

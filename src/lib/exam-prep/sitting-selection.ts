@@ -10,6 +10,11 @@ import {
   assignSittingClusters,
   sequentialSetId,
 } from "@/lib/exam-prep/sitting-clusters";
+import {
+  narrowTopicKeyFromBankItem,
+  narrowTopicShareCap,
+  orderWithTopicGap,
+} from "@/lib/exam-prep/narrow-topic";
 import { selectWithNgnFormatMix } from "@/lib/full-exam/ngn-format-mix";
 
 export type SittingSelection = {
@@ -129,6 +134,18 @@ export function selectSittingItems(params: {
   const seed = params.seed ?? 0x51ed270b;
   const random = mulberry32(seed);
   const ordered = shuffleWithSeed(blocks, seed);
+  const topicCap = narrowTopicShareCap(limit);
+  const topicCounts = new Map<string, number>();
+  const topicBlocked = (item: BankItem) => {
+    const key = narrowTopicKeyFromBankItem(item);
+    if (!key) return false;
+    return (topicCounts.get(key) ?? 0) >= topicCap;
+  };
+  const noteTopic = (item: BankItem) => {
+    const key = narrowTopicKeyFromBankItem(item);
+    if (!key) return;
+    topicCounts.set(key, (topicCounts.get(key) ?? 0) + 1);
+  };
   const unseenFirst = [
     ...ordered.filter((block) => block.members.some((item) => !isSeen(item, params.seenIds))),
     ...ordered.filter((block) => block.members.every((item) => isSeen(item, params.seenIds))),
@@ -149,7 +166,9 @@ export function selectSittingItems(params: {
     if (selected.length >= limit) break;
     const representative = pickRepresentative(block, params.seenIds, random);
     if (block.sequential && selected.length + representative.length > limit) continue;
+    if (!block.sequential && representative.some((item) => topicBlocked(item))) continue;
     take(representative);
+    if (!block.sequential) representative.forEach(noteTopic);
   }
 
   let relaxed = false;
@@ -167,13 +186,18 @@ export function selectSittingItems(params: {
     const seenLeft = leftovers.filter((item) => isSeen(item, params.seenIds));
     for (const item of [...shuffleWithSeed(unseenLeft, seed ^ 0x9e37), ...shuffleWithSeed(seenLeft, seed ^ 0x85eb)]) {
       if (selected.length >= limit) break;
+      if (topicBlocked(item)) continue;
       relaxed = true;
       take([item]);
+      noteTopic(item);
     }
   }
 
+  const spread = orderWithTopicGap(selected, (item) =>
+    sequentialSetId(item) ? null : narrowTopicKeyFromBankItem(item)
+  );
   return {
-    items: selected.slice(0, limit),
+    items: spread.slice(0, limit),
     relaxed,
     clusterCount: blocks.length,
   };
@@ -231,7 +255,10 @@ export function finalizeAssembledSitting(params: {
 
   const excludeSeenApplied = Boolean(seen && seen.size > 0 && picked.length > 0);
 
-  return { items: picked.slice(0, limit), relaxed, excludeSeenApplied };
+  const spread = orderWithTopicGap(picked, (item) =>
+    sequentialSetId(item) ? null : narrowTopicKeyFromBankItem(item)
+  );
+  return { items: spread.slice(0, limit), relaxed, excludeSeenApplied };
 }
 
 /**

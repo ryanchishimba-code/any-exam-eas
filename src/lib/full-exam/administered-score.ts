@@ -28,6 +28,46 @@ export function administeredQuestionCount(input: {
   return Math.max(0, Math.floor(input.plannedCount ?? 0) || 0);
 }
 
+type ScoredAnswer = {
+  questionIndex: number;
+  selected?: string | null;
+};
+
+/**
+ * Fixed forms keep the delivered length so blanks stay in the score.
+ * A practice CAT that has already drawn the next item must not count that
+ * blank in "9 / 33" when 32 selections were saved.
+ */
+export function practiceResultsTotals(input: {
+  delivered: number;
+  answers?: ScoredAnswer[] | null;
+  cat?: boolean;
+}): { denominator: number; answered: number; unanswered: number } {
+  const delivered = Math.max(0, Math.floor(input.delivered) || 0);
+  const answeredIndexes = new Set<number>();
+  for (const answer of input.answers ?? []) {
+    if (typeof answer.questionIndex !== "number" || !Number.isFinite(answer.questionIndex)) {
+      continue;
+    }
+    if (typeof answer.selected === "string" && answer.selected.trim()) {
+      answeredIndexes.add(Math.floor(answer.questionIndex));
+    }
+  }
+  const answered = answeredIndexes.size;
+  if (input.cat) {
+    return {
+      denominator: answered,
+      answered,
+      unanswered: Math.max(0, delivered - answered),
+    };
+  }
+  return {
+    denominator: delivered,
+    answered,
+    unanswered: Math.max(0, delivered - answered),
+  };
+}
+
 /** Percent correct over administered items. Unanswered administered items count as misses. */
 export function practiceScorePercent(correct: number, administered: number): number {
   const total = Math.max(0, Math.floor(administered) || 0);

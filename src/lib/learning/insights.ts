@@ -1,5 +1,6 @@
 import { cleanOptionText } from "@/lib/question-format";
 import type { StudyQuestion } from "@/lib/questions/types";
+import { clipRationaleSection } from "@/lib/engine/rationale/parse-rationale-display";
 import { explanatoryRationaleSummary } from "@/lib/study/rationale-disclosure";
 import type { AttemptInput, LearningInsight, MistakeAnalysis } from "./types";
 import { analyzeMistake } from "./mistake-analysis";
@@ -21,22 +22,20 @@ export function pearlsFromQuestion(q: StudyQuestion): string[] {
   const fromExpert = q.expertRationale?.clinicalPearl?.trim();
   const fromDetail = q.explanationDetail?.pearls ?? [];
   const pearls = [...(fromExpert ? [fromExpert] : []), ...fromDetail]
-    .map((p) => p.trim())
+    .map((p) => clipRationaleSection(p))
     .filter(Boolean);
   return [...new Set(pearls)];
 }
 
-/** Prefer expert common pitfalls for the miss-card trap line. */
-export function trapsFromQuestion(q: StudyQuestion, correct: boolean): string[] {
+const GENERIC_TRAP =
+  /^(watch for look-alike distractors|rushing past the stem qualifier|choosing the true statement that does not answer|compare each wrong option to the priority action)/i;
+
+/** Item-specific traps only. Generic filler is omitted so the section can hide. */
+export function trapsFromQuestion(q: StudyQuestion, _correct: boolean): string[] {
   const fromExpert = (q.expertRationale?.commonPitfalls ?? [])
     .map((t) => t.trim())
-    .filter(Boolean);
-  if (fromExpert.length > 0) return [...new Set(fromExpert)];
-  if (correct) return ["Watch for look-alike distractors on exam day."];
-  return [
-    "Rushing past the stem qualifier (except, first, most likely).",
-    "Choosing the true statement that does not answer the question asked.",
-  ];
+    .filter((t) => t && !GENERIC_TRAP.test(t));
+  return [...new Set(fromExpert)];
 }
 
 /** Build premium explanation payload from question + attempt context. */

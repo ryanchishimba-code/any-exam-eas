@@ -84,6 +84,31 @@ export function studentFacingStem(stem: string): string {
   return stripInternalDisplayMetadata(stem);
 }
 
+/**
+ * The scenario sometimes already ends with the question line, which then
+ * repeats under it. Drop that ending so the question is shown once.
+ */
+export function vignetteWithoutRepeatedQuestion(vignette: string, stem: string): string {
+  const scene = stripInternalDisplayMetadata(vignette);
+  const ask = stripInternalDisplayMetadata(stem);
+  if (!scene || !ask || ask.length < 12) return scene;
+  const loose = (value: string) =>
+    value
+      .toLowerCase()
+      .replace(/["'“”]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  const sceneLoose = loose(scene);
+  const askLoose = loose(ask);
+  if (!sceneLoose.endsWith(askLoose)) return scene;
+  const pattern = askLoose.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/ /g, "\\s+");
+  const stripped = scene
+    .replace(new RegExp(`(?:["'“”]\\s*)?${pattern}\\s*$`, "i"), "")
+    .replace(/[\s"'“”]+$/g, "")
+    .trim();
+  return stripped;
+}
+
 export function studentFacingVignette(text: string): string {
   return stripInternalDisplayMetadata(text);
 }

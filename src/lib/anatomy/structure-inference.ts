@@ -39,6 +39,34 @@ const GENERIC_ANATOMY_TERMS = new Set([
   "lower-limb",
   "upper limb",
   "lower limb",
+  "male",
+  "female",
+  "adult",
+  "child",
+  "patient",
+  "client",
+  "intermediate",
+  "medial",
+  "lateral",
+  "anterior",
+  "posterior",
+  "superior",
+  "inferior",
+  "proximal",
+  "distal",
+  "deep",
+  "superficial",
+  "internal",
+  "external",
+  "left",
+  "right",
+  "upper",
+  "lower",
+  "basic",
+  "advanced",
+  "general",
+  "clinical",
+  "level",
 ]);
 
 function wordBoundaryMatch(haystack: string, term: string): boolean {
@@ -63,6 +91,8 @@ function scoreStructure(structure: (typeof ANATOMY_STRUCTURES)[number], haystack
 
   if (wordBoundaryMatch(haystack, name)) score += 16;
   else {
+    // "Coronary arteries" still matches a stem that says coronary.
+    // Direction words such as "intermediate" stay in the generic list.
     for (const part of name.split(/\s+/)) {
       if (part.length >= 4 && wordBoundaryMatch(haystack, part)) score += 10;
     }

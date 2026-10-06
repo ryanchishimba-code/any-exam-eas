@@ -2,8 +2,11 @@
 
 import { useMemo, useState } from "react";
 import {
+  adaptBoardPracticeWording,
+  clipRationaleSection,
   parseExpertRationaleForDisplay,
   parseRationaleForDisplay,
+  practiceBoardFromExam,
   type ParsedRationaleDisplay,
 } from "@/lib/engine/rationale/parse-rationale-display";
 import type { ExpertStructuredRationale } from "@/lib/engine/rationale/expert-rationale-types";
@@ -87,9 +90,11 @@ function ExpertSection({
 function CoreRationaleBody({
   parsed,
   hideHeadline = false,
+  board = "clinical",
 }: {
   parsed: ParsedRationaleDisplay;
   hideHeadline?: boolean;
+  board?: ReturnType<typeof practiceBoardFromExam>;
 }) {
   const conceptBullets = parsed.conceptBullets ?? [];
   const wrongOptions = parsed.wrongOptions ?? [];
@@ -110,7 +115,7 @@ function CoreRationaleBody({
       {parsed.clinicalContext && (
         <p className="mt-4 rounded-xl border border-[var(--study-accent)]/15 bg-[var(--study-accent)]/5 px-3.5 py-3 text-[15px] leading-[1.55] tracking-[-0.015em] text-[var(--color-ink)]">
           <span className="font-semibold text-[var(--study-accent)]">In practice: </span>
-          {parsed.clinicalContext}
+          {adaptBoardPracticeWording(parsed.clinicalContext, board)}
         </p>
       )}
       {wrongOptions.length > 0 && (
@@ -229,7 +234,11 @@ export function ExpertRationalePanel({
         </div>
       ) : null}
 
-      <CoreRationaleBody parsed={parsed} hideHeadline={usmle} />
+      <CoreRationaleBody
+        parsed={parsed}
+        hideHeadline={usmle}
+        board={practiceBoardFromExam(question.field)}
+      />
 
       {depth === "expert" && parsed.isExpert ? (
         <div className="space-y-3 border-t border-[var(--color-border)]/40 pt-3">
@@ -247,9 +256,11 @@ export function ExpertRationalePanel({
             </ExpertSection>
           ) : null}
 
-          {parsed.clinicalPearl ? (
+          {clipRationaleSection(parsed.clinicalPearl ?? "") ? (
             <ExpertSection title="Clinical pearl" icon={Stethoscope} accent="pearl">
-              <p className="text-sm leading-relaxed text-[var(--color-ink)]">{parsed.clinicalPearl}</p>
+              <p className="text-sm leading-relaxed text-[var(--color-ink)]">
+                {clipRationaleSection(parsed.clinicalPearl ?? "")}
+              </p>
             </ExpertSection>
           ) : null}
 
@@ -269,19 +280,24 @@ export function ExpertRationalePanel({
             </ExpertSection>
           ) : null}
 
-          {parsed.commonPitfalls.length > 0 ? (
+          {parsed.commonPitfalls.map((p) => clipRationaleSection(p)).filter(Boolean).length > 0 ? (
             <ExpertSection title="Common pitfalls" icon={ShieldAlert} accent="pitfall" defaultOpen={false}>
               <ul className="list-inside list-disc space-y-1 text-sm text-[var(--color-ink-muted)]">
-                {parsed.commonPitfalls.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
+                {parsed.commonPitfalls
+                  .map((p) => clipRationaleSection(p))
+                  .filter(Boolean)
+                  .map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
               </ul>
             </ExpertSection>
           ) : null}
 
-          {parsed.nextStepInCare ? (
+          {clipRationaleSection(parsed.nextStepInCare ?? "") ? (
             <ExpertSection title="Next step in care" icon={BookOpen} defaultOpen={false}>
-              <p className="text-sm leading-relaxed text-[var(--color-ink)]">{parsed.nextStepInCare}</p>
+              <p className="text-sm leading-relaxed text-[var(--color-ink)]">
+                {clipRationaleSection(parsed.nextStepInCare ?? "")}
+              </p>
             </ExpertSection>
           ) : null}
 
@@ -291,17 +307,33 @@ export function ExpertRationalePanel({
             </ExpertSection>
           ) : null}
 
-          {parsed.realWorldApplication ? (
+          {clipRationaleSection(parsed.realWorldApplication ?? "") ? (
             <ExpertSection
-              title={usmle ? "Real-world clinical application" : "Real-world nursing application"}
+              title={
+                usmle
+                  ? "Real-world clinical application"
+                  : practiceBoardFromExam(question.field) === "nursing"
+                    ? "Real-world nursing application"
+                    : practiceBoardFromExam(question.field) === "pharmacy"
+                      ? "Real-world pharmacy application"
+                      : "Real-world application"
+              }
               icon={Stethoscope}
               defaultOpen={false}
             >
-              <p className="text-sm leading-relaxed text-[var(--color-ink)]">{parsed.realWorldApplication}</p>
+              <p className="text-sm leading-relaxed text-[var(--color-ink)]">
+                {adaptBoardPracticeWording(
+                  clipRationaleSection(parsed.realWorldApplication ?? ""),
+                  practiceBoardFromExam(question.field)
+                )}
+              </p>
             </ExpertSection>
           ) : null}
 
-          {parsed.layeredDepth ? (
+          {parsed.layeredDepth &&
+          clipRationaleSection(parsed.layeredDepth.basic) &&
+          clipRationaleSection(parsed.layeredDepth.intermediate) &&
+          clipRationaleSection(parsed.layeredDepth.advanced) ? (
             <ExpertSection title="Layered depth" defaultOpen={false}>
               <div className="space-y-2 text-sm leading-relaxed">
                 <p>
@@ -320,28 +352,32 @@ export function ExpertRationalePanel({
             </ExpertSection>
           ) : null}
 
-          {parsed.visualCues.length > 0 ? (
+          {parsed.visualCues.some((cue) => clipRationaleSection(cue.description)) ? (
             <ExpertSection title="Visual cues" defaultOpen={false}>
               <ul className="space-y-2 text-sm">
-                {parsed.visualCues.map((v) => (
+                {parsed.visualCues
+                  .filter((cue) => clipRationaleSection(cue.description))
+                  .map((v) => (
                   <li key={v.label}>
                     <span className="font-semibold text-[var(--color-ink)]">{v.label}: </span>
-                    <span className="text-[var(--color-ink-muted)]">{v.description}</span>
+                    <span className="text-[var(--color-ink-muted)]">{clipRationaleSection(v.description)}</span>
                   </li>
                 ))}
               </ul>
             </ExpertSection>
           ) : null}
 
-          {parsed.crossReferences.length > 0 ? (
+          {parsed.crossReferences.some((row) => clipRationaleSection(row.note)) ? (
             <ExpertSection title="Related topics" defaultOpen={false}>
               <ul className="space-y-2 text-sm">
-                {parsed.crossReferences.map((c) => (
+                {parsed.crossReferences
+                  .filter((row) => clipRationaleSection(row.note))
+                  .map((c) => (
                   <li key={`${c.exam}-${c.topic}`}>
                     <span className="font-semibold text-[var(--color-ink)]">
                       {c.exam} — {c.topic}:
                     </span>{" "}
-                    <span className="text-[var(--color-ink-muted)]">{c.note}</span>
+                    <span className="text-[var(--color-ink-muted)]">{clipRationaleSection(c.note)}</span>
                   </li>
                 ))}
               </ul>

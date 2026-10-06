@@ -4,10 +4,16 @@ import { useEffect, useId, useState, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
-  rationaleAfterLead,
+  adaptBoardPracticeWording,
+  clipRationaleSection,
+  parseRationaleForDisplay,
+  practiceBoardFromExam,
+} from "@/lib/engine/rationale/parse-rationale-display";
+import {
   selectRationaleLead,
   shortRationaleLead,
   shouldCollapseRationale,
+  stripRationaleMarkup,
 } from "@/lib/study/rationale-disclosure";
 
 type Tone = "study" | "onDark";
@@ -91,6 +97,153 @@ export function CollapsibleRationale({
   );
 }
 
+function sectionCopy(text: string | undefined, board: ReturnType<typeof practiceBoardFromExam>): string {
+  const clipped = clipRationaleSection(adaptBoardPracticeWording(text ?? "", board)).trim();
+  return clipped;
+}
+
+/** Structured rationale without raw ## or ** markers. Empty sections are omitted. */
+function StructuredRationaleText({
+  text,
+  tone,
+  examSlug,
+}: {
+  text: string;
+  tone: Tone;
+  examSlug?: string | null;
+}) {
+  const board = practiceBoardFromExam(examSlug);
+  const prepared = adaptBoardPracticeWording(text, board);
+  const parsed = parseRationaleForDisplay(prepared);
+  if (!parsed.isStructured) {
+    return <p className={cn(bodyClass[tone])}>{stripRationaleMarkup(prepared)}</p>;
+  }
+  const why = sectionCopy(parsed.whyCorrectHeadline, board);
+  const practice = sectionCopy(parsed.clinicalContext, board);
+  const pearl = sectionCopy(parsed.clinicalPearl, board);
+  const takeaway = sectionCopy(parsed.keyTakeaway, board);
+  const nextStep = sectionCopy(parsed.nextStepInCare, board);
+  const application = sectionCopy(parsed.realWorldApplication, board);
+  const pitfalls = (parsed.commonPitfalls ?? []).map((row) => sectionCopy(row, board)).filter(Boolean);
+  const cues = (parsed.visualCues ?? []).filter((cue) => sectionCopy(cue.description, board));
+  const related = (parsed.crossReferences ?? []).filter((row) => sectionCopy(row.note, board));
+  const depth = parsed.layeredDepth;
+  const depthVisible = Boolean(
+    depth &&
+      sectionCopy(depth.basic, board) &&
+      sectionCopy(depth.intermediate, board) &&
+      sectionCopy(depth.advanced, board)
+  );
+  return (
+    <div className="space-y-4">
+      {why ? <p className={bodyClass[tone]}>{why}</p> : null}
+      {parsed.conceptBullets.length > 0 ? (
+        <ul className="list-disc space-y-1 pl-5">
+          {parsed.conceptBullets.map((bullet) => (
+            <li key={bullet} className={bodyClass[tone]}>
+              {stripRationaleMarkup(bullet)}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {practice ? <p className={bodyClass[tone]}>{practice}</p> : null}
+      {parsed.wrongOptions.length > 0 ? (
+        <div className="space-y-2">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Why the other options are wrong
+          </p>
+          {parsed.wrongOptions.map((row) => (
+            <p key={row.option} className={bodyClass[tone]}>
+              <span className="font-semibold">{stripRationaleMarkup(row.option)}. </span>
+              {stripRationaleMarkup(row.body)}
+            </p>
+          ))}
+        </div>
+      ) : null}
+      {pearl ? (
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Clinical pearl
+          </p>
+          <p className={cn(bodyClass[tone], "mt-1")}>{pearl}</p>
+        </div>
+      ) : null}
+      {takeaway ? (
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Key takeaway
+          </p>
+          <p className={cn(bodyClass[tone], "mt-1")}>{takeaway}</p>
+        </div>
+      ) : null}
+      {pitfalls.length > 0 ? (
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Common pitfalls
+          </p>
+          <ul className="mt-1 list-disc space-y-1 pl-5">
+            {pitfalls.map((row) => (
+              <li key={row} className={bodyClass[tone]}>
+                {row}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+      {nextStep ? (
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Next step in care
+          </p>
+          <p className={cn(bodyClass[tone], "mt-1")}>{nextStep}</p>
+        </div>
+      ) : null}
+      {application ? (
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            {board === "nursing" ? "Real-world nursing application" : "Real-world application"}
+          </p>
+          <p className={cn(bodyClass[tone], "mt-1")}>{application}</p>
+        </div>
+      ) : null}
+      {depthVisible && depth ? (
+        <div className="space-y-1">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Layered depth
+          </p>
+          <p className={bodyClass[tone]}>Basic: {sectionCopy(depth.basic, board)}</p>
+          <p className={bodyClass[tone]}>Intermediate: {sectionCopy(depth.intermediate, board)}</p>
+          <p className={bodyClass[tone]}>Advanced: {sectionCopy(depth.advanced, board)}</p>
+        </div>
+      ) : null}
+      {cues.length > 0 ? (
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Visual cues
+          </p>
+          {cues.map((cue) => (
+            <p key={cue.label} className={bodyClass[tone]}>
+              {stripRationaleMarkup(cue.label)}: {sectionCopy(cue.description, board)}
+            </p>
+          ))}
+        </div>
+      ) : null}
+      {related.length > 0 ? (
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Related topics
+          </p>
+          {related.map((row) => (
+            <p key={`${row.exam}-${row.topic}`} className={bodyClass[tone]}>
+              {row.topic}: {sectionCopy(row.note, board)}
+            </p>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 /** Plain-text rationales (exam review, missed lists) share the same disclosure. */
 export function RationaleDisclosureText({
   text,
@@ -98,27 +251,32 @@ export function RationaleDisclosureText({
   tone = "study",
   emptyLabel = "No rationale saved for this question.",
   className,
+  examSlug,
 }: {
   text?: string | null;
   resetKey?: string;
   tone?: Tone;
   emptyLabel?: string;
   className?: string;
+  examSlug?: string | null;
 }) {
   const explanation = text?.trim() ?? "";
   if (!explanation) {
     return <p className={cn(leadClass[tone], className)}>{emptyLabel}</p>;
   }
 
-  const lead = shortRationaleLead(explanation) || explanation;
-  if (!shouldCollapseRationale([explanation])) {
-    return <p className={cn(leadClass[tone], "whitespace-pre-wrap", className)}>{explanation}</p>;
+  const board = practiceBoardFromExam(examSlug);
+  const prepared = adaptBoardPracticeWording(explanation, board);
+  const leadSource = stripRationaleMarkup(prepared);
+  const lead = shortRationaleLead(leadSource) || leadSource;
+  const body = <StructuredRationaleText text={prepared} tone={tone} examSlug={examSlug} />;
+  if (!shouldCollapseRationale([prepared])) {
+    return <div className={className}>{body}</div>;
   }
 
-  const rest = rationaleAfterLead(explanation, lead);
   return (
     <CollapsibleRationale resetKey={resetKey} tone={tone} lead={lead} className={className}>
-      {rest ? <p className={bodyClass[tone]}>{rest}</p> : <p className={bodyClass[tone]}>{explanation}</p>}
+      {body}
     </CollapsibleRationale>
   );
 }
