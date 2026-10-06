@@ -53,6 +53,26 @@ describe("buildTopicBreakdown", () => {
     expect(rows[0]?.topic).toBe("Pharmacotherapy");
   });
 
+  it("follows the stem when a pharmacy subject label contradicts the item", () => {
+    const rows = buildTopicBreakdown(
+      [
+        {
+          subjectId: "compounding-calculations",
+          question: "Which statin is preferred when the LDL is 160?",
+        },
+        {
+          subjectId: "cardiovascular-rx",
+          question: "How many mL of 50% dextrose are required? Round to the nearest whole mL.",
+        },
+      ],
+      [answer(0, true), answer(1, false)]
+    );
+    expect(rows.map((row) => row.topic).sort()).toEqual([
+      "Cardiovascular Pharmacotherapy",
+      "Pharmacy Calculations",
+    ]);
+  });
+
   it("keeps General when the item has no topic data", () => {
     const rows = buildTopicBreakdown([{}, { subjectId: "__mixed__" }], [answer(0, false), answer(1, true)]);
     expect(rows).toEqual([{ topic: "General", correct: 1, total: 2, pct: 50 }]);

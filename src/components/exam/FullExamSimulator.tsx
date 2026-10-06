@@ -44,7 +44,7 @@ import {
   mergeExamAnswers,
 } from "@/lib/exam-sessions/scoring";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
-import { parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
+import { parseBowTieLayout, parseMatrixKey, toggleBowTieSelection } from "@/lib/questions/ngn-structures";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { mapApiQuestionsToStudy } from "@/lib/questions/map-api-questions";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
@@ -127,12 +127,17 @@ function examOpenedAtMs(sessionId: string): number {
 
 function catFormatFields(question: StudyQuestion): Pick<CatPoolItem, "ngn" | "setId" | "stepIndex"> {
   const payload = question.ngnPayload as { setId?: string; stepIndex?: number; kind?: string } | undefined;
-  const sequential = payload?.kind === "sequential" && Boolean(payload.setId);
+  const sequential =
+    Boolean(payload?.setId) &&
+    (payload?.kind === "sequential" || typeof payload?.stepIndex === "number");
+  const dropdown = payload?.kind === "dropdown" || question.ngnFormat === "dropdown";
   return {
     ngn:
       (question.type === "select_all"
         ? question.correctAnswers.length >= 2
-        : NGN_STUDY_TYPES.has(question.type)) || sequential,
+        : NGN_STUDY_TYPES.has(question.type)) ||
+      sequential ||
+      dropdown,
     setId: sequential ? payload?.setId : undefined,
     stepIndex: sequential ? payload?.stepIndex : undefined,
   };
@@ -634,8 +639,11 @@ export function FullExamSimulator({
           : [...prev, option];
       } else if (current.type === "matrix") {
         const prev = currentAnswer.selected;
+        const multi = current.ngnPayload?.matrixMulti === true;
         if (prev.includes(option)) {
           nextSelected = prev.filter((o) => o !== option);
+        } else if (multi) {
+          nextSelected = [...prev, option];
         } else {
           const { row } = parseMatrixKey(option);
           const withoutRow = prev.filter((o) => parseMatrixKey(o).row !== row);
@@ -643,21 +651,7 @@ export function FullExamSimulator({
         }
       } else if (current.type === "bow_tie") {
         const layout = parseBowTieLayout(current);
-        const prev = currentAnswer.selected;
-        if (prev.includes(option)) {
-          nextSelected = prev.filter((o) => o !== option);
-        } else if (layout.actions.includes(option)) {
-          nextSelected = [...prev.filter((o) => !layout.actions.includes(o)), option];
-        } else if (layout.monitors.includes(option)) {
-          let next = prev.filter((o) => !layout.monitors.includes(o));
-          const monitors = prev.filter((o) => layout.monitors.includes(o));
-          if (monitors.length >= layout.monitorPickCount) {
-            next = prev.filter((o) => o !== monitors[0]);
-          }
-          nextSelected = [...next, option];
-        } else {
-          nextSelected = [...prev, option];
-        }
+        nextSelected = toggleBowTieSelection(currentAnswer.selected, option, layout);
       } else {
         nextSelected = [option];
       }

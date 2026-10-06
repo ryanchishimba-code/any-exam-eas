@@ -53,6 +53,8 @@ export type BowTieLayout = {
   condition: string;
   actions: string[];
   monitors: string[];
+  /** How many actions the learner must pick. Bank bow-ties stay at 1. */
+  actionPickCount: number;
   /** How many monitors the learner must pick (default 2). */
   monitorPickCount: number;
 };
@@ -91,7 +93,8 @@ export function parseBowTieLayout(q: NgnLayoutInput | StudyQuestion): BowTieLayo
       condition: String(chart.condition ?? "Clinical condition"),
       actions: (chart.actions as string[]) ?? [],
       monitors: (chart.monitors as string[]) ?? [],
-      monitorPickCount: Number(chart.monitorPickCount ?? 2),
+      actionPickCount: Number(chart.actionPickCount ?? 1) || 1,
+      monitorPickCount: Number(chart.monitorPickCount ?? 2) || 2,
     };
   }
 
@@ -111,6 +114,7 @@ export function parseBowTieLayout(q: NgnLayoutInput | StudyQuestion): BowTieLayo
       condition: input.vignette?.split(/[.!?]/)[0]?.trim() || "Patient presentation",
       actions: options.slice(0, mid),
       monitors: options.slice(mid),
+      actionPickCount: 1,
       monitorPickCount: 2,
     };
   }
@@ -131,6 +135,7 @@ export function parseBowTieLayout(q: NgnLayoutInput | StudyQuestion): BowTieLayo
     condition: input.vignette?.split(/[.!?]/)[0]?.trim() || "Patient presentation",
     actions,
     monitors,
+    actionPickCount: 1,
     monitorPickCount: 2,
   };
 }
@@ -219,7 +224,8 @@ export function bowTieSelectionValid(
 ): boolean {
   const actionCount = selected.filter((s) => layout.actions.includes(s)).length;
   const monitorCount = selected.filter((s) => layout.monitors.includes(s)).length;
-  return actionCount === 1 && monitorCount === layout.monitorPickCount;
+  const actionPick = layout.actionPickCount ?? 1;
+  return actionCount === actionPick && monitorCount === layout.monitorPickCount;
 }
 
 /** Toggle one bow-tie choice while keeping one action and N monitors. */
@@ -230,7 +236,11 @@ export function toggleBowTieSelection(
 ): string[] {
   if (prev.includes(option)) return prev.filter((o) => o !== option);
   if (layout.actions.includes(option)) {
-    return [...prev.filter((o) => !layout.actions.includes(o)), option];
+    const actionPick = layout.actionPickCount ?? 1;
+    const actions = prev.filter((entry) => layout.actions.includes(entry));
+    const base =
+      actions.length >= actionPick ? prev.filter((entry) => entry !== actions[0]) : prev;
+    return [...base, option];
   }
   if (layout.monitors.includes(option)) {
     const monitors = prev.filter((o) => layout.monitors.includes(o));

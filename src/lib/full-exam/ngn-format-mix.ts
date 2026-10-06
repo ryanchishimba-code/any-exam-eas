@@ -3,6 +3,7 @@
  * Without this, random/gather paths over-sample vignettes even when NGN inventory is healthy.
  */
 import type { BankItem } from "@/lib/question-bank";
+import { sequentialSetId } from "@/lib/exam-prep/sitting-clusters";
 import { getExamBlueprint, type ExamBlueprint } from "@/lib/engine/blueprints";
 import { isPlainSingleAnswerReclass, isRealHighlight } from "@/lib/exam-prep/effective-type";
 import { parseSelectAllCorrectAnswers } from "@/lib/question-format";
@@ -109,6 +110,73 @@ function itemMatchesFormat(item: BankItem, format: string): boolean {
   const kind = payloadKind(item);
   if (!kind || kind === "highlight") return false;
   return kind === format || aliases?.includes(kind) === true;
+}
+
+function stepIndexOf(item: BankItem): number | null {
+  const payload = item.ngnPayload;
+  if (!payload || typeof payload !== "object") return null;
+  const step = (payload as { stepIndex?: unknown }).stepIndex;
+  return typeof step === "number" && Number.isFinite(step) ? step : null;
+}
+
+/**
+ * Whole published cases: one item per step, steps exactly 1..n, n ≥ 2.
+ * A missing or duplicate step drops the case so a broken set is not served.
+ */
+export function completeSequentialGroups(pool: readonly BankItem[]): BankItem[][] {
+  const bySet = new Map<string, BankItem[]>();
+  for (const item of pool) {
+    const setId = sequentialSetId(item);
+    const step = stepIndexOf(item);
+    if (!setId || step == null) continue;
+    const list = bySet.get(setId) ?? [];
+    list.push(item);
+    bySet.set(setId, list);
+  }
+
+  const groups: BankItem[][] = [];
+  for (const items of bySet.values()) {
+    const sorted = [...items].sort((a, b) => (stepIndexOf(a) ?? 0) - (stepIndexOf(b) ?? 0));
+    const steps = sorted.map((item) => stepIndexOf(item) ?? 0);
+    const unique = [...new Set(steps)];
+    if (unique.length !== sorted.length || unique.length < 2) continue;
+    if (!unique.every((step, index) => step === index + 1)) continue;
+    groups.push(sorted);
+  }
+  return groups;
+}
+
+function isCatalogStandalone(item: BankItem): boolean {
+  const id = item.id ?? "";
+  return id.startsWith("ngn:") && sequentialSetId(item) == null;
+}
+
+/** Keep each case's steps together and in order while the rest of the sitting shuffles. */
+function shuffleKeepingCases(items: BankItem[], seed: number): BankItem[] {
+  const bySet = new Map<string, BankItem[]>();
+  for (const item of items) {
+    const setId = sequentialSetId(item);
+    if (!setId) continue;
+    const list = bySet.get(setId) ?? [];
+    list.push(item);
+    bySet.set(setId, list);
+  }
+  for (const group of bySet.values()) {
+    group.sort((a, b) => (stepIndexOf(a) ?? 0) - (stepIndexOf(b) ?? 0));
+  }
+  const emitted = new Set<string>();
+  const units: BankItem[][] = [];
+  for (const item of items) {
+    const setId = sequentialSetId(item);
+    if (!setId) {
+      units.push([item]);
+      continue;
+    }
+    if (emitted.has(setId)) continue;
+    emitted.add(setId);
+    units.push(bySet.get(setId) ?? [item]);
+  }
+  return shuffleWithSeed(units, seed).flat();
 }
 
 function isClassicItem(item: BankItem): boolean {
@@ -240,6 +308,26 @@ export function selectWithNgnFormatMix(
     return true;
   };
 
+  const caseTarget = targets.find((target) => target.format === "unfolding_case");
+  let caseRoom = caseTarget?.count ?? (limit >= 85 ? Math.min(18, limit) : 0);
+  for (const group of completeSequentialGroups(pool)) {
+    if (group.length < 2 || group.length > caseRoom) continue;
+    if (picked.length + group.length > limit) continue;
+    if (group.some((item) => used.has(item.id ?? ""))) continue;
+    group.forEach((item) => take(item));
+    caseRoom -= group.length;
+  }
+
+  // Published standalones (bow-tie and trend) are not QuestionBankItem rows.
+  // Take them before classic fill so a long vignette pool cannot crowd them out.
+  const standaloneCap = Math.max(0, Math.floor(limit * 0.22) - picked.length);
+  let standaloneRoom = standaloneCap;
+  for (const item of pool) {
+    if (standaloneRoom <= 0 || picked.length >= limit) break;
+    if (!isCatalogStandalone(item)) continue;
+    if (take(item)) standaloneRoom -= 1;
+  }
+
   for (const target of targets) {
     let need = target.count;
     for (const item of pool) {
@@ -261,7 +349,7 @@ export function selectWithNgnFormatMix(
     take(item);
   }
 
-  return shuffleWithSeed(picked.slice(0, limit), seed);
+  return shuffleKeepingCases(picked.slice(0, limit), seed);
 }
 
 /** Summarize format counts for tests / diagnostics. */

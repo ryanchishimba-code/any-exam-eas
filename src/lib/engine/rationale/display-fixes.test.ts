@@ -41,6 +41,36 @@ describe("explanation display", () => {
     );
   });
 
+  it("hides generic priority filler, a repeated block, a duplicate pearl, and cross-board lines", () => {
+    const filler =
+      "Incorrect — Plausible nursing action but not the FIRST priority for this presentation.";
+    const parsed = parseRationaleForDisplay(`## Why this answer is correct
+Aprepitant is the best choice to improve nausea control during chemotherapy.
+• Aprepitant is the best choice to improve nausea control during chemotherapy.
+**In practice:** Adding it can help manage both acute and delayed nausea.
+
+## Why the other options are wrong
+**Lorazepam**
+${filler}
+**Promethazine**
+Promethazine causes sedation, which this client cannot tolerate.
+
+## Key takeaway
+Adding it can help manage both acute and delayed nausea.
+**Memory hook:** Aprepitant for acute and delayed nausea.
+
+## Clinical pearl
+Adding it can help manage both acute and delayed nausea.
+`);
+    expect(parsed.whyCorrectHeadline).toBeUndefined();
+    expect(parsed.wrongOptions.map((row) => row.option)).toEqual(["Promethazine"]);
+    expect(parsed.clinicalPearl).toBeUndefined();
+    expect(adaptBoardPracticeWording("This is crucial for pharmacy practice and for both NCLEX and NAPLEX.", "nursing")).toBe(
+      "This is important for nursing practice and for NCLEX."
+    );
+    expect(adaptBoardPracticeWording(`${filler}\n\n${filler}`, "nursing")).toBe("");
+  });
+
   it("hides filler traps when the item has no specific text", () => {
     const question = {
       id: "q",

@@ -29,6 +29,8 @@ import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { filterBankItemsForPracticeField } from "@/lib/edtech/exam-item-scope";
 import { preferPremiumBankItems } from "@/lib/full-exam/smart-exam-selection";
 import { isPublishedNgnBankItem } from "@/lib/full-exam/ngn-format-mix";
+import { publishedCatalogToBankItems } from "@/lib/full-exam/catalog-exam-items";
+import { loadPublishedClinicalBank } from "@/lib/assessment/serve-db";
 import { nclexCatNgnEnabled } from "@/lib/full-exam/nclex-cat-ngn";
 import {
   countSittingClusters,
@@ -77,20 +79,37 @@ function mergeBankItems(current: BankItem[], extra: BankItem[]): BankItem[] {
   return out;
 }
 
+/** Clinical catalog bow-ties, trends, and complete cases. Broken steps stay out. */
+async function catalogNgnItems(fieldId: string): Promise<BankItem[]> {
+  if (fieldId !== "nursing") return [];
+  try {
+    const bank = await loadPublishedClinicalBank(fieldId);
+    return publishedCatalogToBankItems(bank.catalog);
+  } catch (error) {
+    console.warn(
+      "[assemble] clinical NGN catalog unavailable",
+      error instanceof Error ? error.message : error
+    );
+    return [];
+  }
+}
+
 /** Published NGN/case rows, already eligibility-filtered. MCQ repair is not applied. */
 async function publishedNgnPool(fieldId: string, limit: number): Promise<BankItem[]> {
   const ngnWant = Math.max(8, Math.round(limit * 0.35));
   const caseWant = limit >= 85 ? 24 : Math.max(4, Math.round(limit * 0.12));
   try {
-    const [ngnItems, caseItems] = await Promise.all([
+    const [ngnItems, caseItems, catalog] = await Promise.all([
       sampleActiveItemsByFormat({ fieldId, count: ngnWant, formatBucket: "ngn" }),
       sampleActiveItemsByFormat({ fieldId, count: caseWant, formatBucket: "case" }),
+      catalogNgnItems(fieldId),
     ]);
-    return [...ngnItems, ...caseItems].filter((item) => {
+    const fromBank = [...ngnItems, ...caseItems].filter((item) => {
       if (!isPublishedNgnBankItem(item)) return false;
       const type = (item.itemType ?? "").trim().toLowerCase();
       return type !== "drag_drop" && type !== "constructed_response";
     });
+    return mergeBankItems(catalog, fromBank);
   } catch (error) {
     console.warn(
       "[assemble] published NGN pool unavailable",

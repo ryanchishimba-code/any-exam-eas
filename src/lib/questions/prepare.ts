@@ -7,7 +7,7 @@ import { mixShuffleSeed, shuffleDeliveryChoices } from "@/lib/questions/shuffle-
 import { normalizeStem } from "./stem";
 import { numericValueInSlot, planDualNumericAnswer } from "./dual-numeric-answer";
 import { gradeNumericAnswer } from "./numeric-grade";
-import { splitGluedLeadIn, stripInternalDisplayMetadata } from "./student-display-text";
+import { citationFitsQuestion, splitGluedLeadIn, stripInternalDisplayMetadata } from "./student-display-text";
 import {
   resolveNclexStem,
   splitVagueCombinedQuestion,
@@ -36,10 +36,13 @@ function toCorrectAnswers(type: StudyQuestionType, correct: string, options: str
   if (type === "select_all") {
     return parseSelectAllCorrectAnswers(options, correct);
   }
+  if (type === "matrix") {
+    const parts = correct.includes(";;") ? correct.split(";;") : [correct];
+    return parts.map((s) => cleanOptionText(s.trim())).filter(Boolean);
+  }
   if (
     type === "ordered_response" ||
     type === "bow_tie" ||
-    type === "matrix" ||
     type === "highlight"
   ) {
     const parts = correct.includes("|||")
@@ -94,7 +97,7 @@ export function examQuestionToStudy(
     options = options.map(cleanOptionText);
   } else if (type === "ordered_response" || type === "drag_drop") {
     options = options.map(cleanOptionText);
-  } else if (type === "short_answer") {
+  } else if (type === "short_answer" || type === "fill_blank") {
     options = [];
   } else {
     const normalized = normalizeQuestionOptions(options, correctAnswer);
@@ -192,7 +195,10 @@ export function examQuestionToStudy(
     references: q.references
       ?.map((reference) => stripInternalDisplayMetadata(reference))
       .filter((reference) => reference.length > 0 && !/^references:?$/i.test(reference)),
-    sourceLabel: studentFacingSourceLabel(q.sourceLabel),
+    sourceLabel: studentFacingSourceLabel(
+      q.sourceLabel,
+      [q.vignette, q.question].filter(Boolean).join("\n")
+    ),
     sourceUrl: q.sourceUrl,
     reviewedAt: q.reviewedAt,
     solutionSteps,
@@ -361,10 +367,12 @@ export function isAnswerCorrect(
   );
 }
 
-function studentFacingSourceLabel(label: string | undefined): string | undefined {
+function studentFacingSourceLabel(label: string | undefined, stem?: string): string | undefined {
   if (!label) return undefined;
   const cleaned = stripInternalDisplayMetadata(label);
   if (!cleaned || /^nabp naplex(?: content outline)?$/i.test(cleaned)) return undefined;
+  if (/^(?:source|content outline|source\s*\/\s*content outline)$/i.test(cleaned)) return undefined;
+  if (stem && !citationFitsQuestion(cleaned, stem)) return undefined;
   return cleaned;
 }
 

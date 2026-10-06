@@ -113,9 +113,10 @@ export function templateFamilyId(item: BankItem): string | null {
 export function sequentialSetId(item: BankItem): string | null {
   const payload = item.ngnPayload;
   if (!payload || typeof payload !== "object") return null;
-  if (payload.kind !== "sequential") return null;
   const setId = payload.setId;
-  return typeof setId === "string" && setId.trim() ? setId.trim() : null;
+  if (typeof setId !== "string" || !setId.trim()) return null;
+  if (payload.kind === "sequential" || typeof payload.stepIndex === "number") return setId.trim();
+  return null;
 }
 
 export function stemTokens(text: string): string[] {

@@ -8,6 +8,7 @@ const VISIT_BATCH = /\s*\(?\bvisit batch\s+\d+\b\)?/gi;
 const INTERNAL_META = [
   VISIT_BATCH,
   /\s*\(\s*batch\s+\d+\s*\)/gi,
+  /\s*\(\s*unit\s+\d+\s*\)/gi,
   /\bNABP NAPLEX 2026\b/gi,
 ];
 
@@ -50,8 +51,15 @@ export function studentFacingExhibitTitle(title: string): string {
 const LEAD_IN =
   /\b(?:Which action|Which of the following|Which finding|Which client|Which nursing|Which assessment|Which task|Which response|What is the priority|What should the nurse)\b/;
 
+/** A quoted phrase split by an authoring line break reads as one sentence. */
+function collapseQuoteLineBreaks(text: string): string {
+  return text
+    .replace(/“([^”]*?)\s*\n+\s*([^”]*?)”/g, "“$1 $2”")
+    .replace(/"([^"]*?)\s*\n+\s*([^"]*?)"/g, '"$1 $2"');
+}
+
 export function stripInternalDisplayMetadata(text: string): string {
-  let next = text;
+  let next = collapseQuoteLineBreaks(text);
   for (const pattern of INTERNAL_META) {
     next = next.replace(pattern, "");
   }
@@ -61,7 +69,43 @@ export function stripInternalDisplayMetadata(text: string): string {
     .replace(/:\s*,\s*/g, ": ")
     .replace(/,\s*,/g, ",")
     .replace(/\(\s*\)/g, "")
+    .replace(/\.\s*\)\s*\?/g, ".")
+    .replace(/\)\s*\?/g, ")")
+    .replace(/\.\.(?!\.)/g, ".")
     .trim();
+}
+
+const CITATION_REQUIRES_STEM: { citation: RegExp; stem: RegExp }[] = [
+  { citation: /heart failure|hf guideline/i, stem: /heart failure|\bhf\b|ejection fraction|\bnyha\b/i },
+  {
+    citation: /joint commission|patient identification|patient id/i,
+    stem: /identif|two identifiers|name and (?:dob|date of birth)|patient id/i,
+  },
+];
+
+/** Hide a bare outline label, and a citation whose topic is absent from the stem. */
+export function citationFitsQuestion(label: string, stem: string): boolean {
+  const cleaned = label.trim();
+  if (!cleaned) return false;
+  if (/^(?:source|content outline|source\s*\/\s*content outline|nabp naplex(?: content outline)?)$/i.test(cleaned)) {
+    return false;
+  }
+  const scene = stem.trim();
+  if (!scene) return true;
+  return CITATION_REQUIRES_STEM.every((rule) => !rule.citation.test(cleaned) || rule.stem.test(scene));
+}
+
+/** Hide an MDI diagram on a dry-powder item, and the reverse. */
+export function figureFitsQuestion(caption: string, stem: string): boolean {
+  const cap = caption.toLowerCase();
+  const text = stem.toLowerCase();
+  const capMdi = /\bmdi\b|metered[- ]dose/.test(cap);
+  const capDpi = /\bdpi\b|dry[- ]powder|diskus/.test(cap);
+  const stemMdi = /\bmdi\b|metered[- ]dose/.test(text);
+  const stemDpi = /\bdpi\b|dry[- ]powder|diskus/.test(text);
+  if (capMdi && stemDpi && !stemMdi) return false;
+  if (capDpi && stemMdi && !stemDpi) return false;
+  return true;
 }
 
 /**

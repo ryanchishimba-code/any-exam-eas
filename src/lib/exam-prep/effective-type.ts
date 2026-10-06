@@ -176,7 +176,9 @@ function hasNestedNgnKind(payload: Record<string, unknown> | null): boolean {
     kind === "sata" ||
     kind === "ordered_response" ||
     kind === "drag_drop" ||
-    kind === "constructed_response"
+    kind === "constructed_response" ||
+    kind === "sequential" ||
+    kind === "dropdown"
   );
 }
 

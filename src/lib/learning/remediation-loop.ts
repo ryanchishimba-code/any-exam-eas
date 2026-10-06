@@ -326,7 +326,8 @@ export function resolveRelatedCards(
 export function reviewIncorrectHref(
   fieldId: string,
   subjectId: string | null | undefined,
-  count: number
+  count: number,
+  examSessionId?: string | null
 ): string {
   const subject =
     subjectId && subjectId !== MIXED_SUBJECT_ID ? subjectId : MIXED_SUBJECT_ID;
@@ -338,7 +339,34 @@ export function reviewIncorrectHref(
     count: String(Math.max(1, Math.min(75, Math.round(count) || 1))),
     autostart: "1",
   });
+  if (examSessionId?.trim()) qs.set("examSessionId", examSessionId.trim());
   return `${ROUTES.questionBank}?${qs.toString()}`;
+}
+
+export type ExamMissAnswer = {
+  correct?: boolean | null;
+  questionId?: string | null;
+  questionIndex?: number | null;
+};
+
+/** Misses from one sitting. Prefetched ids fill answers that omitted questionId. */
+export function missedIdsForExamSession(
+  answers: readonly ExamMissAnswer[],
+  prefetchedQuestionIds?: readonly string[] | null
+): string[] {
+  const ids: string[] = [];
+  const seen = new Set<string>();
+  for (const answer of answers) {
+    if (answer.correct !== false) continue;
+    const direct = answer.questionId?.trim();
+    const fromIndex =
+      answer.questionIndex != null ? prefetchedQuestionIds?.[answer.questionIndex]?.trim() : undefined;
+    const id = direct || fromIndex;
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    ids.push(id);
+  }
+  return ids;
 }
 
 /** Review incorrect for open items that have no topic id. */

@@ -68,7 +68,8 @@ export function QuestionRelatedLinks({
       : null;
 
   const hasDeepDives = links.relatedDeepDives.length > 0;
-  const hasCards = links.memoryCardIds.length > 0;
+  const memoryCards = links.memoryCards ?? [];
+  const hasCards = memoryCards.length > 0;
   const hasAnatomy = clinical && links.anatomyStructures.length > 0;
   const hasGuide = Boolean(links.studyGuide);
   const hasDrugs = uniqueDrugLinks.length > 0;
@@ -138,14 +139,14 @@ export function QuestionRelatedLinks({
 
       {showNonAnatomy && hasCards ? (
         <div className="mt-3 flex flex-wrap gap-2">
-          {links.memoryCardIds.map((cardId) => (
+          {memoryCards.map((card) => (
             <Link
-              key={cardId}
-              href={libraryCardHref(examSlug, cardId)}
+              key={card.id}
+              href={libraryCardHref(examSlug, card.id)}
               className={chipClass}
             >
               <BookMarked className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />
-              Memory card
+              {card.title}
             </Link>
           ))}
         </div>

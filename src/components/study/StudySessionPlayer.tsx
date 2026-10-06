@@ -543,8 +543,10 @@ export function StudySessionPlayer({
       return;
     }
     if (current.type === "matrix") {
+      const multi = current.ngnPayload?.matrixMulti === true;
       setSelected((prev) => {
         if (prev.includes(option)) return prev.filter((o) => o !== option);
+        if (multi) return [...prev, option];
         const { row } = parseMatrixKey(option);
         const withoutRow = prev.filter((o) => parseMatrixKey(o).row !== row);
         return [...withoutRow, option];

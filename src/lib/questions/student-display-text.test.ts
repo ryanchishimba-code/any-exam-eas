@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { examQuestionToStudy } from "./prepare";
 import {
+  citationFitsQuestion,
+  figureFitsQuestion,
   splitGluedLeadIn,
   stripInternalDisplayMetadata,
   studentFacingExhibitKind,
@@ -35,6 +37,28 @@ describe("student display text", () => {
     );
     expect(studentFacingExhibitKind("med_label")).toBe("Medication label");
     expect(studentFacingExhibitKind("diagram")).toBe("Diagram");
+  });
+
+  it("strips unit tags, doubled punctuation, and a quote split across a line break", () => {
+    expect(stripInternalDisplayMetadata("Check the fundus (Unit 19).")).toBe("Check the fundus.");
+    expect(stripInternalDisplayMetadata("Hold the dose.)?")).toBe("Hold the dose.");
+    expect(stripInternalDisplayMetadata("Recheck the INR..")).toBe("Recheck the INR.");
+    expect(stripInternalDisplayMetadata('The client said "I feel\nshort of breath" today.')).toBe(
+      'The client said "I feel short of breath" today.'
+    );
+  });
+
+  it("hides a bare source and a citation that does not match the stem", () => {
+    expect(citationFitsQuestion("Source / Content Outline", "Pediatric triage")).toBe(false);
+    expect(citationFitsQuestion("Content Outline", "A statin refill")).toBe(false);
+    expect(
+      citationFitsQuestion("AHA heart failure guideline", "A 4-year-old in pediatric triage has a fever.")
+    ).toBe(false);
+    expect(citationFitsQuestion("AHA heart failure guideline", "Heart failure with a low ejection fraction.")).toBe(
+      true
+    );
+    expect(figureFitsQuestion("MDI technique diagram", "Teach dry-powder inhaler Diskus use.")).toBe(false);
+    expect(figureFitsQuestion("DPI Diskus diagram", "Teach dry-powder inhaler Diskus use.")).toBe(true);
   });
 
   it("applies the split at study-question render time and keeps the stored stem intact", () => {

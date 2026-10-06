@@ -32,26 +32,8 @@ function revealedClass(selected: boolean, isCorrect: boolean, revealed: boolean)
 export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseProps) {
   const layout = parseBowTieLayout(question);
 
-  function toggleBowTie(opt: string, pool: "action" | "monitor") {
+  function toggleBowTie(opt: string) {
     if (revealed) return;
-
-    if (selected.includes(opt)) {
-      onToggle(opt);
-      return;
-    }
-
-    if (pool === "action") {
-      for (const s of selected.filter((x) => layout.actions.includes(x))) {
-        onToggle(s);
-      }
-      onToggle(opt);
-      return;
-    }
-
-    const monitors = selected.filter((s) => layout.monitors.includes(s));
-    if (monitors.length >= layout.monitorPickCount) {
-      onToggle(monitors[0]);
-    }
     onToggle(opt);
   }
 
@@ -60,7 +42,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
   return (
     <div className="mt-6 space-y-4">
       <p className="text-xs text-[var(--color-ink-muted)]">
-        Select <strong>one action</strong> and{" "}
+        Select <strong>{layout.actionPickCount === 1 ? "one action" : `${layout.actionPickCount} actions`}</strong> and{" "}
         <strong>{layout.monitorPickCount} conditions to monitor</strong>.
       </p>
 
@@ -80,7 +62,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
                   <button
                     type="button"
                     disabled={revealed}
-                    onClick={() => toggleBowTie(opt, "action")}
+                    onClick={() => toggleBowTie(opt)}
                     className={`w-full rounded-lg border px-3 py-2.5 text-left text-sm transition ${revealedClass(isSelected, isCorrect, revealed)}`}
                   >
                     {opt}
@@ -117,7 +99,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
                   <button
                     type="button"
                     disabled={revealed}
-                    onClick={() => toggleBowTie(opt, "monitor")}
+                    onClick={() => toggleBowTie(opt)}
                     className={`w-full rounded-lg border px-3 py-2.5 text-left text-sm transition ${revealedClass(isSelected, isCorrect, revealed)}`}
                   >
                     {opt}
@@ -133,7 +115,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
         <p className="text-xs text-[var(--color-ink-muted)]">
           {valid
             ? "Selection complete — submit when ready."
-            : `Pick 1 action and ${layout.monitorPickCount} monitors.`}
+            : `Pick ${layout.actionPickCount} action${layout.actionPickCount === 1 ? "" : "s"} and ${layout.monitorPickCount} monitors.`}
         </p>
       )}
     </div>
@@ -209,6 +191,71 @@ export function MatrixQuestion({ question, selected, revealed, onToggle }: BaseP
           ))}
         </tbody>
       </table>
+    </div>
+  );
+}
+
+type DropdownChoice = { id: string; text: string };
+type DropdownSlot = { id: string; options: DropdownChoice[] };
+
+/** Cloze dropdowns for published trend and case items. The answer is one encoded string. */
+export function DropdownExamQuestion({ question, selected, revealed, onToggle }: BaseProps) {
+  const payload = question.ngnPayload as
+    | { template?: string; dropdowns?: DropdownSlot[] }
+    | undefined;
+  const template = payload?.template ?? question.stem;
+  const dropdowns = payload?.dropdowns ?? [];
+  const byId = new Map(dropdowns.map((dropdown) => [dropdown.id, dropdown]));
+  const current = new Map(
+    (selected[0] ?? "")
+      .split("|")
+      .map((part) => part.split("="))
+      .filter((pair) => pair.length === 2 && pair[0] && pair[1])
+      .map((pair) => [pair[0]!, pair[1]!] as const)
+  );
+
+  function choose(id: string, text: string) {
+    if (revealed) return;
+    const next = new Map(current);
+    if (text) next.set(id, text);
+    else next.delete(id);
+    const encoded = dropdowns
+      .filter((dropdown) => next.get(dropdown.id))
+      .map((dropdown) => `${dropdown.id}=${next.get(dropdown.id)}`)
+      .join("|");
+    onToggle(encoded || "__clear__");
+  }
+
+  const parts = template.split(/(\{\{[a-zA-Z0-9_]+\}\})/g);
+  return (
+    <div className="mt-6">
+      <p className="text-[17px] leading-9 text-[var(--color-ink)]">
+        {parts.map((part, index) => {
+          const match = part.match(/^\{\{([a-zA-Z0-9_]+)\}\}$/);
+          if (!match) return <span key={`text-${index}`}>{part}</span>;
+          const id = match[1] ?? "";
+          const dropdown = byId.get(id);
+          if (!dropdown) return <span key={id}>{part}</span>;
+          return (
+            <label key={id} className="mx-1 inline-flex items-center">
+              <span className="sr-only">Choice {id}</span>
+              <select
+                className="min-h-11 max-w-full rounded-xl border border-black/10 bg-white px-3 text-[15px]"
+                value={current.get(id) ?? ""}
+                disabled={revealed}
+                onChange={(event) => choose(id, event.target.value)}
+              >
+                <option value="">Select</option>
+                {dropdown.options.map((option) => (
+                  <option key={option.id} value={option.text}>
+                    {option.text}
+                  </option>
+                ))}
+              </select>
+            </label>
+          );
+        })}
+      </p>
     </div>
   );
 }

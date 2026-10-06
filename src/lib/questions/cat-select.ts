@@ -106,8 +106,11 @@ export function pickCatNext<T extends CatSelectableItem>(
   }
 
   const want = targetDifficulty(state);
-  const inBand = available.filter((q) => q.difficultyBand === want);
-  const bandOrAny = filterByTopic(inBand.length > 0 ? inBand : available, delivered);
+  // Mid-case steps are reached only by continuing the open set above.
+  const starters = available.filter((item) => item.stepIndex == null || item.stepIndex <= 1);
+  const startable = starters.length > 0 ? starters : available;
+  const inBand = startable.filter((q) => q.difficultyBand === want);
+  const bandOrAny = filterByTopic(inBand.length > 0 ? inBand : startable, delivered);
 
   const target = hint?.ngnTargetRatio ?? 0;
   const poolHasNgn = available.some((item) => item.ngn);
@@ -117,7 +120,7 @@ export function pickCatNext<T extends CatSelectableItem>(
     if (ratio < target) {
       const ngnBand = bandOrAny.filter((item) => item.ngn);
       const ngnAny = filterByTopic(
-        available.filter((item) => item.ngn),
+        startable.filter((item) => item.ngn),
         delivered
       );
       return pickFrom(ngnBand.length > 0 ? ngnBand : ngnAny, random);
