@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { contentLintRowsToCsv, lintContentItems, type ContentLintItem } from "@/lib/exam-prep/content-lint";
+import {
+  contentLintRowsToCsv,
+  exhibitTextFromBankItem,
+  lintContentItems,
+  type ContentLintItem,
+} from "@/lib/exam-prep/content-lint";
 
 function item(partial: Partial<ContentLintItem> & Pick<ContentLintItem, "id" | "question">): ContentLintItem {
   return {
@@ -37,6 +42,30 @@ describe("lintContentItems", () => {
     expect(codes.some((code) => code.startsWith("clean:"))).toBe(false);
   });
 
+  it("flags stray unit tags and a calculation stem with advice options", () => {
+    const rows = lintContentItems([
+      item({
+        id: "unit",
+        question: "The nurse reviews the order. (Unit 19).",
+      }),
+      item({
+        id: "alligation",
+        question: "Alligation | Prepare 120 mL of 15% dextrose. How many mL of 50% dextrose are required?",
+        options: ["Counsel the patient", "Call the prescriber", "Document the interaction", "Refuse the order"],
+        correctAnswer: "",
+      }),
+      item({
+        id: "dpi",
+        question: "Which teaching point applies when this patient uses a dry-powder inhaler (DPI)?",
+        exhibitText: "Metered-dose inhaler with a spacer",
+      }),
+    ]);
+    const codes = rows.map((row) => `${row.id}:${row.code}`);
+    expect(codes).toContain("unit:stray_fragment");
+    expect(codes).toContain("alligation:calc_option_mismatch");
+    expect(codes).toContain("dpi:exhibit_mismatch");
+  });
+
   it("flags an exhibit about a different drug", () => {
     const rows = lintContentItems([
       item({
@@ -46,6 +75,28 @@ describe("lintContentItems", () => {
       }),
     ]);
     expect(rows.some((row) => row.code === "exhibit_mismatch")).toBe(true);
+  });
+
+  it("reads an insulin-chart exhibit and flags a dabigatran stem", () => {
+    const exhibitText = exhibitTextFromBankItem({
+      id: "dabi",
+      question: "A patient starts dabigatran. Which counseling point applies?",
+      options: ["Take with food", "Store in the original bottle", "Crush the capsule", "Skip a dose"],
+      correctAnswer: "Store in the original bottle",
+      explanation: "Keep dabigatran in the original container.",
+      ngnPayload: {
+        media: [{ kind: "insulin_chart", alt: "High-alert insulin label", caption: "Insulin" }],
+      },
+    });
+    const rows = lintContentItems([
+      item({
+        id: "dabi",
+        question: "A patient starts dabigatran. Which counseling point applies?",
+        exhibitText,
+      }),
+    ]);
+    expect(exhibitText?.toLowerCase()).toContain("insulin");
+    expect(rows.some((row) => row.id === "dabi" && row.code === "exhibit_mismatch")).toBe(true);
   });
 
   it("flags calculation keys that disagree with the rationale or a recomputed dose", () => {

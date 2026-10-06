@@ -8,9 +8,18 @@
 import type { BankItem } from "@/lib/question-bank";
 import {
   assignSittingClusters,
+  questionFrame,
   sequentialSetId,
 } from "@/lib/exam-prep/sitting-clusters";
+
+/** Same question frame, different scenario. Lifted when the pool cannot fill. */
+export const SITTING_FRAME_CAP = 2;
 import { selectWithNgnFormatMix } from "@/lib/full-exam/ngn-format-mix";
+import { NCLEX_CAT_NGN_TARGET_RATIO } from "@/lib/full-exam/nclex-cat-ngn";
+import {
+  isPublishedClinicalBankItem,
+  reservePublishedClinicalItems,
+} from "@/lib/full-exam/published-clinical-exam";
 
 export type SittingSelection = {
   items: BankItem[];
@@ -118,6 +127,8 @@ export function selectSittingItems(params: {
   seenIds?: ReadonlySet<string>;
   seed?: number;
   relax?: boolean;
+  /** Max rows that may share a lead-in frame. Null leaves the frame uncapped. */
+  frameCap?: number | null;
 }): SittingSelection {
   const limit = Math.max(0, params.limit);
   const pool = dedupeById(params.pool);
@@ -136,6 +147,24 @@ export function selectSittingItems(params: {
 
   const selected: BankItem[] = [];
   const usedIds = new Set<string>();
+  const frameCounts = new Map<string, number>();
+  const frameCap = params.frameCap;
+  const frameBlocked = (items: BankItem[]) => {
+    if (frameCap == null) return false;
+    const sample = items[0];
+    if (!sample || sequentialSetId(sample)) return false;
+    const frame = questionFrame(sample.question ?? "");
+    if (frame === "other") return false;
+    return (frameCounts.get(frame) ?? 0) >= frameCap;
+  };
+  const noteFrame = (items: BankItem[]) => {
+    if (frameCap == null) return;
+    const sample = items[0];
+    if (!sample || sequentialSetId(sample)) return;
+    const frame = questionFrame(sample.question ?? "");
+    if (frame === "other") return;
+    frameCounts.set(frame, (frameCounts.get(frame) ?? 0) + 1);
+  };
   const take = (items: BankItem[]) => {
     for (const item of items) {
       const id = item.id?.trim();
@@ -149,6 +178,8 @@ export function selectSittingItems(params: {
     if (selected.length >= limit) break;
     const representative = pickRepresentative(block, params.seenIds, random);
     if (block.sequential && selected.length + representative.length > limit) continue;
+    if (frameBlocked(representative)) continue;
+    noteFrame(representative);
     take(representative);
   }
 
@@ -167,7 +198,9 @@ export function selectSittingItems(params: {
     const seenLeft = leftovers.filter((item) => isSeen(item, params.seenIds));
     for (const item of [...shuffleWithSeed(unseenLeft, seed ^ 0x9e37), ...shuffleWithSeed(seenLeft, seed ^ 0x85eb)]) {
       if (selected.length >= limit) break;
+      if (frameBlocked([item])) continue;
       relaxed = true;
+      noteFrame([item]);
       take([item]);
     }
   }
@@ -201,37 +234,63 @@ export function finalizeAssembledSitting(params: {
   const seed = params.seed ?? 0x51ed270b;
   const includeNgn = params.includeNgn !== false;
   const seen = params.seenIds;
-
-  const diverse = selectSittingItems({
-    pool: params.pool,
-    limit: Math.max(params.pool.length, limit),
+  const clinical = includeNgn ? params.pool.filter((item) => isPublishedClinicalBankItem(item)) : [];
+  const classic = clinical.length > 0 ? params.pool.filter((item) => !isPublishedClinicalBankItem(item)) : params.pool;
+  const ngnTarget =
+    clinical.length > 0 ? Math.min(limit, Math.max(8, Math.round(limit * NCLEX_CAT_NGN_TARGET_RATIO))) : 0;
+  const reserved = reservePublishedClinicalItems({
+    items: clinical,
+    target: ngnTarget,
     seenIds: seen,
     seed,
-    relax: false,
   });
+  const restLimit = Math.max(0, limit - reserved.length);
+
+  const fillClassic = (frameCap: number | null, relax: boolean) =>
+    selectSittingItems({
+      pool: classic,
+      limit: relax ? restLimit : Math.max(classic.length, restLimit),
+      seenIds: seen,
+      seed,
+      relax,
+      frameCap,
+    });
+
+  let classicPick = fillClassic(SITTING_FRAME_CAP, false);
+  let relaxed = false;
+  if (classicPick.items.length < restLimit) {
+    const lifted = fillClassic(null, false);
+    if (lifted.items.length > classicPick.items.length) classicPick = lifted;
+  }
+  if (classicPick.items.length < restLimit) {
+    const filled = fillClassic(null, true);
+    relaxed = filled.relaxed;
+    if (filled.items.length > classicPick.items.length) classicPick = filled;
+  }
 
   const applyMix = (source: BankItem[]) =>
-    includeNgn ? selectWithNgnFormatMix(source, limit, params.fieldId, seed) : source.slice(0, limit);
+    includeNgn && reserved.length === 0
+      ? selectWithNgnFormatMix(source, restLimit, params.fieldId, seed)
+      : source.slice(0, restLimit);
 
-  let picked = applyMix(diverse.items);
-  let relaxed = false;
-
-  if (picked.length < limit) {
+  let classicItems = applyMix(classicPick.items);
+  if (classicItems.length < restLimit && reserved.length === 0) {
     const filled = selectSittingItems({
-      pool: params.pool,
-      limit,
+      pool: classic,
+      limit: restLimit,
       seenIds: seen,
       seed,
       relax: true,
     });
-    relaxed = filled.relaxed;
+    relaxed = filled.relaxed || relaxed;
     const mixed = applyMix(filled.items);
-    picked = mixed.length >= picked.length ? mixed : filled.items.slice(0, limit);
+    classicItems = mixed.length >= classicItems.length ? mixed : filled.items.slice(0, restLimit);
   }
 
+  const picked = [...reserved, ...classicItems].slice(0, limit);
   const excludeSeenApplied = Boolean(seen && seen.size > 0 && picked.length > 0);
 
-  return { items: picked.slice(0, limit), relaxed, excludeSeenApplied };
+  return { items: picked, relaxed, excludeSeenApplied };
 }
 
 /**

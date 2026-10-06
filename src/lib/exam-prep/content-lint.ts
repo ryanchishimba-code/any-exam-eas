@@ -11,6 +11,8 @@ export type ContentLintCode =
   | "odd_number_spacing"
   | "exhibit_mismatch"
   | "calc_key_mismatch"
+  | "calc_option_mismatch"
+  | "stray_fragment"
   | "conflicting_cluster_key"
   | "withdrawn_drug";
 
@@ -79,10 +81,20 @@ const KNOWN_EXHIBIT_DRUGS = [
   "phenytoin",
   "lithium",
   "theophylline",
+  "dabigatran",
 ];
 
 const CALC_LEAD =
-  /\b(?:calculate|how many|how much|at what rate|round to|what is the (?:rate|dose|volume|concentration|total|amount|infusion))\b/i;
+  /\b(?:calculate|how many|how much|at what rate|round to|alligation|prepare\s+\d|what is the (?:rate|dose|volume|concentration|total|amount|infusion))\b/i;
+
+/** Calculation stems that should not be paired with advice-only options. */
+const CALC_OPTION_LEAD =
+  /\b(?:calculate|alligation|prepare\s+\d|how many\s+(?:ml|milliliters|mg|mcg|units?|tablets?|capsules?|drops)|how much\s+(?:ml|mg)|at what rate|what is the (?:rate|dose|volume|concentration|infusion)|round to the nearest)\b/i;
+
+const DEVICE_TOKENS = ["dpi", "mdi", "spacer", "inhaler", "nomogram"] as const;
+const SPECIFIC_DEVICES = ["dpi", "mdi", "spacer"] as const;
+
+const STRAY_FRAGMENT = /\(Unit\s+\d+\)|number\.\)\?/i;
 
 const STATED_RESULT =
   /(?:correct answer(?:\s+is)?|calculated (?:dose|rate|volume|answer)(?:\s+is)?|equals|(?<![=<>])=\s*)\s*(-?\d+(?:\.\d+)?)/gi;
@@ -126,6 +138,32 @@ function lintMergedStem(item: ContentLintItem, rows: ContentLintRow[]) {
   push(rows, item, "merged_stem", "error", "Stem glues two questions together.", stem.slice(match.index));
 }
 
+function lintStrayFragment(item: ContentLintItem, rows: ContentLintRow[]) {
+  const blob = `${item.question}\n${(item.options ?? []).join("\n")}`;
+  const match = STRAY_FRAGMENT.exec(blob);
+  if (!match) return;
+  push(rows, item, "stray_fragment", "error", "Stray unit tag or broken ending in the stem.", match[0]);
+}
+
+function optionLooksNumeric(option: string): boolean {
+  return /\d/.test(option) || /\b(?:ml|mg|mcg|units?|meq|tablets?|capsules?)\b/i.test(option);
+}
+
+function lintCalcOptions(item: ContentLintItem, rows: ContentLintRow[]) {
+  const options = item.options ?? [];
+  if (options.length < 2) return;
+  if (!CALC_OPTION_LEAD.test(item.question ?? "")) return;
+  if (options.some(optionLooksNumeric)) return;
+  push(
+    rows,
+    item,
+    "calc_option_mismatch",
+    "error",
+    "Calculation stem is paired with non-numeric options.",
+    item.question
+  );
+}
+
 function lintRoundTo(item: ContentLintItem, rows: ContentLintRow[]) {
   const blob = `${item.question}\n${(item.options ?? []).join("\n")}`;
   const match = ROUND_TO_FRAGMENT.exec(blob);
@@ -149,13 +187,18 @@ function lintOddSpacing(item: ContentLintItem, rows: ContentLintRow[]) {
   }
 }
 
-function drugTokens(text: string): Set<string> {
+function namedTokens(text: string, names: readonly string[]): Set<string> {
   const found = new Set<string>();
   const lower = text.toLowerCase();
-  for (const drug of KNOWN_EXHIBIT_DRUGS) {
-    if (new RegExp(`\\b${drug}\\b`, "i").test(lower)) found.add(drug);
+  for (const name of names) {
+    if (new RegExp(`\\b${name}\\b`, "i").test(lower)) found.add(name);
   }
-  for (const match of lower.matchAll(DRUG_SUFFIX)) {
+  return found;
+}
+
+function drugTokens(text: string): Set<string> {
+  const found = namedTokens(text, KNOWN_EXHIBIT_DRUGS);
+  for (const match of text.toLowerCase().matchAll(DRUG_SUFFIX)) {
     if (match[1]) found.add(match[1].toLowerCase());
   }
   return found;
@@ -164,10 +207,23 @@ function drugTokens(text: string): Set<string> {
 function lintExhibit(item: ContentLintItem, rows: ContentLintRow[]) {
   const exhibit = item.exhibitText?.trim();
   if (!exhibit) return;
-  const exhibitDrugs = drugTokens(exhibit);
-  if (exhibitDrugs.size === 0) return;
   const body = itemText(item);
-  const mismatched = [...exhibitDrugs].filter((drug) => !new RegExp(`\\b${drug}\\b`, "i").test(body));
+  const mismatched: string[] = [];
+  for (const drug of drugTokens(exhibit)) {
+    if (!new RegExp(`\\b${drug}\\b`, "i").test(body)) mismatched.push(drug);
+  }
+  const exhibitDevices = namedTokens(exhibit, DEVICE_TOKENS);
+  const bodyDevices = namedTokens(body, DEVICE_TOKENS);
+  const exhibitSpecific = SPECIFIC_DEVICES.filter((device) => exhibitDevices.has(device));
+  const bodySpecific = SPECIFIC_DEVICES.filter((device) => bodyDevices.has(device));
+  if (exhibitSpecific.length > 0 && bodySpecific.length > 0) {
+    for (const device of exhibitSpecific) {
+      if (!bodyDevices.has(device)) mismatched.push(device);
+    }
+    for (const device of bodySpecific) {
+      if (!exhibitDevices.has(device)) mismatched.push(device);
+    }
+  }
   if (mismatched.length === 0) return;
   push(
     rows,
@@ -317,9 +373,11 @@ export function lintContentItems(items: readonly ContentLintItem[]): ContentLint
   for (const item of items) {
     lintMergedStem(item, rows);
     lintRoundTo(item, rows);
+    lintStrayFragment(item, rows);
     lintOddSpacing(item, rows);
     lintExhibit(item, rows);
     lintCalculation(item, rows);
+    lintCalcOptions(item, rows);
     lintWithdrawn(item, rows);
   }
   lintConflictingClusters(items, rows);
@@ -342,20 +400,40 @@ export function contentLintRowsToCsv(rows: readonly ContentLintRow[]): string {
   return `${lines.join("\n")}\n`;
 }
 
+function pushText(chunks: string[], value: unknown) {
+  if (typeof value === "string" && value.trim()) chunks.push(value.trim());
+}
+
+/** Caption, alt text, and figure kind shipped beside the stem. */
 export function exhibitTextFromBankItem(item: BankItem): string | undefined {
   const chunks: string[] = [];
   const meta = item.generationMeta;
   if (meta && typeof meta === "object") {
     for (const key of ["exhibitCaption", "figureCaption", "diagramAlt", "exhibitLabel", "diagramLabel"]) {
-      const value = meta[key];
-      if (typeof value === "string" && value.trim()) chunks.push(value.trim());
+      pushText(chunks, meta[key]);
     }
   }
   const payload = item.ngnPayload;
   if (payload && typeof payload === "object") {
     for (const key of ["exhibit", "figureTitle", "diagramLabel", "exhibitCaption"]) {
-      const value = payload[key];
-      if (typeof value === "string" && value.trim()) chunks.push(value.trim());
+      pushText(chunks, payload[key]);
+    }
+    const table = payload.table;
+    if (table && typeof table === "object") {
+      const rec = table as { title?: unknown; headers?: unknown };
+      pushText(chunks, rec.title);
+      if (Array.isArray(rec.headers)) chunks.push(rec.headers.map(String).join(" "));
+    }
+    if (Array.isArray(payload.media)) {
+      for (const figure of payload.media) {
+        if (!figure || typeof figure !== "object") continue;
+        const rec = figure as { alt?: unknown; caption?: unknown; kind?: unknown; title?: unknown };
+        pushText(chunks, rec.alt);
+        pushText(chunks, rec.caption);
+        pushText(chunks, rec.title);
+        if (rec.kind === "insulin_chart") chunks.push("insulin");
+        if (typeof rec.kind === "string") pushText(chunks, rec.kind.replace(/_/g, " "));
+      }
     }
   }
   return chunks.length > 0 ? chunks.join(" ") : undefined;

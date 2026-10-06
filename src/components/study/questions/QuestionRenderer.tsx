@@ -53,6 +53,8 @@ import type { ExamSlug } from "@/types/edtech";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { analytics } from "@/lib/analytics";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
+import { PublishedClinicalExamItem } from "@/components/exam/PublishedClinicalExamItem";
+import { readPublishedClinical } from "@/lib/full-exam/published-clinical-exam";
 
 const ExpertRationalePanel = dynamic(
   () =>
@@ -89,6 +91,19 @@ export const QuestionRenderer = memo(function QuestionRenderer({
     }
     onToggle(opt);
   };
+
+  const clinical = readPublishedClinical(question.ngnPayload);
+  if (clinical) {
+    return (
+      <PublishedClinicalExamItem
+        clinical={clinical}
+        seed={question.bankItemId || question.id}
+        selected={selected}
+        disabled={revealed}
+        onToggle={handleToggle}
+      />
+    );
+  }
 
   return (
     <>

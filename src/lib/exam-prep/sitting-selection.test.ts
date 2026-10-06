@@ -4,6 +4,7 @@ import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import {
   finalizeAssembledSitting,
   selectSittingItems,
+  SITTING_FRAME_CAP,
   storedFormNeedsFreshAssembly,
 } from "@/lib/exam-prep/sitting-selection";
 import { compareSitting, simulateCatNgnCount, simulatedBoards } from "@/lib/exam-prep/sitting-simulation";
@@ -30,6 +31,13 @@ const LAMO_OPTIONS = [
   "Stop lamotrigine the day the contraceptive starts",
   "Double the contraceptive dose",
   "No interaction is expected",
+];
+
+const HEART_FAILURE = [
+  "A 70-year-old male client with a history of heart failure is experiencing increased shortness of breath and swelling in his legs. His vital signs show BP 130/80 mmHg, HR 90 bpm, and respiratory rate of 24 breaths/min. The nurse notes bilateral crackles upon auscultation.",
+  "A 60-year-old male client with a history of heart failure is admitted with worsening dyspnea and edema. His current medications include furosemide and lisinopril. Upon assessment, his blood pressure is 100/60 mmHg, heart rate is 110 bpm, and he has 3+ pitting edema in both lower extremities.",
+  "A 50-year-old male client is being evaluated for potential heart failure. He reports experiencing shortness of breath with exertion, fatigue, and swelling in his legs. Upon assessment, his blood pressure is 130/80 mmHg, heart rate is 90 bpm, and he has 2+ pitting edema.",
+  "A 55-year-old male client with a history of heart failure presents to the clinic with complaints of increased shortness of breath and swelling in his legs. Vital signs show a blood pressure of 110/70 mmHg.",
 ];
 
 describe("selectSittingItems", () => {
@@ -59,6 +67,67 @@ describe("selectSittingItems", () => {
     const lamo = selected.items.filter((row) => row.id?.startsWith("lamo-"));
     expect(lamo).toHaveLength(1);
     expect(new Set(assignSittingClusters(selected.items)).size).toBe(selected.items.length);
+  });
+
+  it("clusters live heart-failure templates even when each row has its own cluster id", () => {
+    const pool = HEART_FAILURE.map((scenario, index) =>
+      item(
+        `hf-${index}`,
+        index % 2 === 0 ? "Which action should the nurse take first?" : "Which finding is the highest priority?",
+        ["Sit the client upright", "Document the finding", "Encourage fluids", "Restrict visitors"],
+        "Sit the client upright",
+        { scenario, clusterId: `nclex-c-0000${index}` }
+      )
+    );
+    pool.push(
+      item(
+        "burn",
+        "Which action should the nurse take first?",
+        ["Protect the airway", "Apply lotion", "Offer juice", "Ambulate"],
+        "Protect the airway",
+        { scenario: "A client arrives from a house fire with facial burns and a hoarse voice.", clusterId: "nclex-c-burn" }
+      )
+    );
+    const selected = selectSittingItems({ pool, limit: 5, seed: 2, relax: false, frameCap: null });
+    const hf = selected.items.filter((row) => row.id?.startsWith("hf-"));
+    expect(hf).toHaveLength(1);
+    expect(selected.items.some((row) => row.id === "burn")).toBe(true);
+    expect(new Set(assignSittingClusters(pool.filter((row) => row.id?.startsWith("hf-")))).size).toBe(1);
+    const kidney = item(
+      "ckd",
+      "Which finding is the highest priority?",
+      ["Sit the client upright", "Document the finding", "Encourage fluids", "Restrict visitors"],
+      "Sit the client upright",
+      {
+        scenario:
+          "A 68-year-old client with chronic kidney disease presents with shortness of breath and leg swelling, crackles, and proteinuria.",
+        clusterId: "nclex-c-ckd",
+      }
+    );
+    const mixed = assignSittingClusters([...pool.filter((row) => row.id?.startsWith("hf-")), kidney]);
+    expect(new Set(mixed.slice(0, 4)).size).toBe(1);
+    expect(mixed[4]).not.toBe(mixed[0]);
+  });
+
+  it("caps repeated question frames when the scenarios differ", () => {
+    const pool = ["atorvastatin", "metformin", "lisinopril", "warfarin", "sertraline"].map((drug) =>
+      item(
+        drug,
+        "Which action should the pharmacist take first?",
+        [`Hold ${drug}`, "Dispense as written", "Call the insurer", "Document only"],
+        `Hold ${drug}`,
+        { scenario: `A new counseling visit about ${drug} and a different comorbidity ${drug}-case.` }
+      )
+    );
+    const selected = selectSittingItems({
+      pool,
+      limit: 5,
+      seed: 4,
+      relax: false,
+      frameCap: SITTING_FRAME_CAP,
+    });
+    expect(selected.items.length).toBe(SITTING_FRAME_CAP);
+    expect(new Set(assignSittingClusters(pool)).size).toBe(pool.length);
   });
 
   it("uses a stored family id instead of wording", () => {

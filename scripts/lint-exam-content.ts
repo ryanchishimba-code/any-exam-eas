@@ -10,6 +10,7 @@
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { parseBankOptions } from "../src/lib/mpje/parse-bank-options";
 import {
   contentLintRowsToCsv,
   exhibitTextFromBankItem,
@@ -29,17 +30,22 @@ function hasFlag(flag: string): boolean {
   return process.argv.includes(flag);
 }
 
-async function loadDbItems(limit: number): Promise<ContentLintItem[]> {
+async function loadDbItems(limit: number, fieldId?: string): Promise<ContentLintItem[]> {
   const { PrismaClient } = await import("@prisma/client");
   const prisma = new PrismaClient();
   try {
     const rows = await prisma.questionBankItem.findMany({
-      where: { active: true, qaPassed: true },
-      take: limit,
+      where: {
+        active: true,
+        qaPassed: true,
+        ...(fieldId ? { fieldId } : {}),
+      },
+      ...(limit > 0 ? { take: limit } : {}),
       orderBy: { id: "asc" },
       select: {
         id: true,
         question: true,
+        scenario: true,
         options: true,
         correctAnswer: true,
         explanation: true,
@@ -53,16 +59,8 @@ async function loadDbItems(limit: number): Promise<ContentLintItem[]> {
       },
     });
     return rows.map((row) => {
-      let options: string[] = [];
-      try {
-        const parsed = JSON.parse(row.options) as unknown;
-        if (Array.isArray(parsed)) options = parsed.map(String);
-        else if (parsed && typeof parsed === "object" && Array.isArray((parsed as { options?: unknown }).options)) {
-          options = ((parsed as { options: unknown[] }).options ?? []).map(String);
-        }
-      } catch {
-        options = [];
-      }
+      const parsed = parseBankOptions(row.options);
+      const options = parsed.options;
       const generationMeta =
         row.generationMeta && typeof row.generationMeta === "object" && !Array.isArray(row.generationMeta)
           ? (row.generationMeta as Record<string, unknown>)
@@ -71,12 +69,15 @@ async function loadDbItems(limit: number): Promise<ContentLintItem[]> {
         row.curationMeta && typeof row.curationMeta === "object" && !Array.isArray(row.curationMeta)
           ? (row.curationMeta as Record<string, unknown>)
           : undefined;
+      const ngnPayload = parsed.ngnPayload;
+      const question = [row.scenario?.trim(), row.question].filter(Boolean).join("\n\n");
       return {
         id: row.id,
-        question: row.question,
+        question,
         options,
         correctAnswer: row.correctAnswer,
         explanation: row.explanation,
+        clinicalReasoning: parsed.clinicalReasoning,
         itemType: row.itemType,
         topicCategory: row.topicCategory ?? undefined,
         blueprintTopic: row.blueprintTopic ?? undefined,
@@ -84,12 +85,14 @@ async function loadDbItems(limit: number): Promise<ContentLintItem[]> {
         clusterId: row.clusterId,
         generationMeta,
         curationMeta,
+        ngnPayload,
         exhibitText: exhibitTextFromBankItem({
-          question: row.question,
+          question,
           options,
           correctAnswer: row.correctAnswer,
           explanation: row.explanation,
           generationMeta,
+          ngnPayload,
         }),
       };
     });
@@ -115,10 +118,12 @@ async function main() {
   let items: ContentLintItem[];
   let source: string;
   if (hasFlag("--db")) {
-    const limit = Number(argValue("--limit") ?? "400");
+    const limitArg = argValue("--limit");
+    const limit = limitArg == null ? 400 : Number(limitArg);
+    const fieldId = argValue("--field");
     try {
-      items = await loadDbItems(Number.isFinite(limit) && limit > 0 ? limit : 400);
-      source = `database (read-only, ${items.length} rows)`;
+      items = await loadDbItems(Number.isFinite(limit) && limit >= 0 ? limit : 400, fieldId);
+      source = `database (read-only, ${items.length} rows${fieldId ? `, ${fieldId}` : ""})`;
     } catch (error) {
       console.error(
         "Database read failed. Falling back to the fixture.",
