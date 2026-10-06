@@ -15,7 +15,6 @@ import { timedExamPrepareItemForField } from "./exam-compose-config";
 import { gatherProgressiveBankPool } from "@/lib/exam-prep/gather-progressive-bank-pool";
 import { EXACT_FILL_COMPOSE_TIER } from "@/lib/exam-prep/progressive-compose";
 import {
-  fillExamItemsToCount,
   resolveProgressivePoolLimit,
   resolveProgressivePullSize,
 } from "@/lib/exam-prep/progressive-exam-relaxation";
@@ -28,8 +27,14 @@ import { tryLoadTimedPresetSession } from "@/lib/exam-prep/try-timed-preset-exam
 import { gatherSprintTimedExamPool } from "@/lib/exam-prep/gather-sprint-timed-pool";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { filterBankItemsForPracticeField } from "@/lib/edtech/exam-item-scope";
-import { preferUnseenBankItems, preferPremiumBankItems } from "@/lib/full-exam/smart-exam-selection";
-import { selectWithNgnFormatMix } from "@/lib/full-exam/ngn-format-mix";
+import { preferPremiumBankItems } from "@/lib/full-exam/smart-exam-selection";
+import { isPublishedNgnBankItem } from "@/lib/full-exam/ngn-format-mix";
+import { nclexCatNgnEnabled } from "@/lib/full-exam/nclex-cat-ngn";
+import {
+  countSittingClusters,
+  finalizeAssembledSitting,
+} from "@/lib/exam-prep/sitting-selection";
+import { sampleActiveItemsByFormat } from "@/lib/question-bank-db";
 
 /** USMLE presets are step-scoped; skip the heavy preset join when it cannot match. */
 function skipTimedPresetForField(fieldId: string): boolean {
@@ -60,31 +65,54 @@ function prepareTimedExamItem(fieldId: string, item: BankItem): BankItem {
   return timedExamPrepareItemForField(fieldId)?.(item) ?? prepareBoardBankItem(fieldId, item);
 }
 
+function mergeBankItems(current: BankItem[], extra: BankItem[]): BankItem[] {
+  const seen = new Set(current.map((item) => item.id?.trim()).filter((id): id is string => Boolean(id)));
+  const out = [...current];
+  for (const item of extra) {
+    const id = item.id?.trim();
+    if (id && seen.has(id)) continue;
+    if (id) seen.add(id);
+    out.push(item);
+  }
+  return out;
+}
+
+/** Published NGN/case rows, already eligibility-filtered. MCQ repair is not applied. */
+async function publishedNgnPool(fieldId: string, limit: number): Promise<BankItem[]> {
+  const ngnWant = Math.max(8, Math.round(limit * 0.35));
+  const caseWant = limit >= 85 ? 24 : Math.max(4, Math.round(limit * 0.12));
+  try {
+    const [ngnItems, caseItems] = await Promise.all([
+      sampleActiveItemsByFormat({ fieldId, count: ngnWant, formatBucket: "ngn" }),
+      sampleActiveItemsByFormat({ fieldId, count: caseWant, formatBucket: "case" }),
+    ]);
+    return [...ngnItems, ...caseItems].filter((item) => {
+      if (!isPublishedNgnBankItem(item)) return false;
+      const type = (item.itemType ?? "").trim().toLowerCase();
+      return type !== "drag_drop" && type !== "constructed_response";
+    });
+  } catch (error) {
+    console.warn(
+      "[assemble] published NGN pool unavailable",
+      error instanceof Error ? error.message : error
+    );
+    return [];
+  }
+}
+
 function fillGatheredItems(
   gathered: BankItem[],
   limit: number,
   tierId: string,
-  fieldId: string,
+  _fieldId: string,
   excludeQuestionIds?: Set<string>
 ): AssembleTimedExamSessionResult | null {
   if (gathered.length < limit) return null;
-  const seed = (Date.now() ^ 0x51ed270b) >>> 0;
-  const preferred = preferUnseenBankItems(gathered, excludeQuestionIds, gathered.length);
-  const filled = fillExamItemsToCount(
-    preferred.items.slice(0, limit),
-    preferred.items,
-    limit,
-    EXACT_FILL_COMPOSE_TIER,
-    seed
-  );
-  if (filled.length < limit) return null;
-  const ranked = preferUnseenBankItems(filled, excludeQuestionIds, filled.length);
-  const mixed = selectWithNgnFormatMix(ranked.items, limit, fieldId, seed);
   return {
-    items: mixed.slice(0, limit),
+    items: gathered,
     source: "gather",
     tierId,
-    excludeSeenApplied: ranked.excludeSeenApplied,
+    excludeSeenApplied: Boolean(excludeQuestionIds?.size),
   };
 }
 
@@ -100,13 +128,21 @@ function scopeAssemblyResult(
   if (preferPremiumPool) {
     items = preferPremiumBankItems(items);
   }
-  const preferred = preferUnseenBankItems(items, excludeQuestionIds, items.length);
-  items = selectWithNgnFormatMix(preferred.items, limit, fieldId);
-  if (items.length < limit) return null;
+  const seed = (Date.now() ^ 0x51ed270b) >>> 0;
+  const includeNgn = fieldId === "nursing" && nclexCatNgnEnabled();
+  const finalized = finalizeAssembledSitting({
+    pool: items,
+    limit,
+    fieldId,
+    seenIds: excludeQuestionIds,
+    seed,
+    includeNgn,
+  });
+  if (finalized.items.length < limit) return null;
   return {
     ...result,
-    items: items.slice(0, limit),
-    excludeSeenApplied: preferred.excludeSeenApplied || result.excludeSeenApplied,
+    items: finalized.items,
+    excludeSeenApplied: finalized.excludeSeenApplied || result.excludeSeenApplied,
   };
 }
 
@@ -125,25 +161,45 @@ export async function assembleTimedExamSessionItems(
   const prepare = (item: BankItem) => prepareTimedExamItem(fieldId, item);
   const seed = (Date.now() ^ 0x51ed270b) >>> 0;
   const hasFocus = Boolean(focusAreas?.length);
-  const scope = (
+  const scope = async (
     result: AssembleTimedExamSessionResult | null
-  ): AssembleTimedExamSessionResult | null =>
-    scopeAssemblyResult(fieldId, limit, result, excludeQuestionIds, preferPremiumPool);
+  ): Promise<AssembleTimedExamSessionResult | null> => {
+    if (!result) return null;
+    let items = result.items;
+    if (fieldId === "nursing" && nclexCatNgnEnabled()) {
+      items = mergeBankItems(items, await publishedNgnPool(fieldId, limit));
+    }
+    return scopeAssemblyResult(
+      fieldId,
+      limit,
+      { ...result, items },
+      excludeQuestionIds,
+      preferPremiumPool
+    );
+  };
 
   if (!hasFocus) {
-    // NCLEX: oversample so blueprint NGN quotas can fill from the fast pool.
+    // Oversample so one-per-cluster selection can still fill a long exam.
     const sprintTarget =
       fieldId === "nursing"
-        ? Math.max(Math.ceil(limit * 2.2), limit + 48)
-        : Math.max(limit, excludeQuestionIds?.size ? limit + 40 : limit);
-    const fastItems = await gatherSprintTimedExamPool({
+        ? Math.max(Math.ceil(limit * 2.2), limit + 80)
+        : Math.max(Math.ceil(limit * 1.6), limit + 80);
+    let fastItems = await gatherSprintTimedExamPool({
       fieldId,
       limit: sprintTarget,
       prepareItem: prepare,
     });
+    if (countSittingClusters(fastItems) < limit) {
+      const more = await gatherSprintTimedExamPool({
+        fieldId,
+        limit: sprintTarget,
+        prepareItem: prepare,
+      });
+      fastItems = mergeBankItems(fastItems, more);
+    }
     if (fastItems.length >= limit) {
-      return scope({
-        items: fastItems.slice(0, Math.max(limit, fastItems.length)),
+      return await scope({
+        items: fastItems,
         source: "gather",
       });
     }
@@ -152,7 +208,7 @@ export async function assembleTimedExamSessionItems(
   if (!hasFocus && !skipTimedPresetForField(fieldId)) {
     const preset = await tryLoadTimedPresetSession({ fieldId, limit, seed });
     if (preset) {
-      return scope({
+      return await scope({
         items: preset.items,
         source: "preset",
         presetExamNumber: preset.examNumber,
@@ -182,7 +238,7 @@ export async function assembleTimedExamSessionItems(
       fieldId,
       excludeQuestionIds
     );
-    if (filled) return scope(filled);
+    if (filled) return await scope(filled);
   }
 
   // Focused or blueprint-balanced compose — also used for weak-area launches.
@@ -195,7 +251,7 @@ export async function assembleTimedExamSessionItems(
       liveFast: true,
     });
     if (composed?.items.length && composed.items.length >= limit) {
-      return scope({
+      return await scope({
         items: composed.items,
         source: "blueprint",
         tierId: composed.tierId,
@@ -213,7 +269,7 @@ export async function assembleTimedExamSessionItems(
       liveFast: true,
     });
     if (composed?.items.length && composed.items.length >= limit) {
-      return scope({
+      return await scope({
         items: composed.items,
         source: "blueprint",
         tierId: composed.tierId,
@@ -242,5 +298,5 @@ export async function assembleTimedExamSessionItems(
     fieldId,
     excludeQuestionIds
   );
-  return scope(filled);
+  return await scope(filled);
 }

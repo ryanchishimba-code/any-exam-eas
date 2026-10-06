@@ -50,6 +50,50 @@ describe("pickCatNext", () => {
   });
 });
 
+describe("pickCatNext NGN share", () => {
+  it("keeps delivering published NGN items instead of starving them", () => {
+    const pool = [
+      ...Array.from({ length: 40 }, (_, i) => ({
+        id: `mcq-${i}`,
+        difficultyBand: (i % 3 === 0 ? "easy" : i % 3 === 1 ? "medium" : "hard") as const,
+        ngn: false,
+      })),
+      ...Array.from({ length: 20 }, (_, i) => ({
+        id: `ngn-${i}`,
+        difficultyBand: (i % 3 === 0 ? "easy" : i % 3 === 1 ? "medium" : "hard") as const,
+        ngn: true,
+      })),
+    ];
+    const delivered: typeof pool = [];
+    const used = new Set<string>();
+    let state = initCatSession();
+    for (let i = 0; i < 40; i++) {
+      const next = pickCatNext(state, pool, used, () => 0.2, {
+        ngnTargetRatio: 0.22,
+        delivered,
+      });
+      expect(next).not.toBeNull();
+      used.add(next!.id);
+      delivered.push(next!);
+      state = updateCatSession(state, true, next!.difficultyBand);
+    }
+    const ngn = delivered.filter((item) => item.ngn).length;
+    expect(ngn).toBeGreaterThan(6);
+  });
+
+  it("continues an open sequential case in order", () => {
+    const pool = [
+      { id: "s1", difficultyBand: "medium" as const, setId: "case", stepIndex: 1, ngn: true },
+      { id: "s2", difficultyBand: "hard" as const, setId: "case", stepIndex: 2, ngn: true },
+      { id: "m1", difficultyBand: "medium" as const },
+    ];
+    const next = pickCatNext(initCatSession(), pool, new Set(["s1"]), () => 0, {
+      delivered: [{ id: "s1", setId: "case", stepIndex: 1, ngn: true }],
+    });
+    expect(next?.id).toBe("s2");
+  });
+});
+
 describe("catAbilityToPracticePct", () => {
   it("maps ability bounds to 0–100", () => {
     expect(catAbilityToPracticePct(-1)).toBe(0);

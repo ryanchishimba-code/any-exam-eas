@@ -1,0 +1,67 @@
+[
+  {
+    "id": "merged-warfarin",
+    "question": "The client is receiving warfarin therapy Which action should the nurse take first?",
+    "options": ["Check the INR", "Give vitamin K", "Hold the dose", "Document only"],
+    "correctAnswer": "Check the INR",
+    "explanation": "A supratherapeutic INR is assessed before the next dose."
+  },
+  {
+    "id": "round-fragment",
+    "question": "Calculate the infusion rate in mL/hr. (Round to",
+    "options": ["10", "20", "30", "40"],
+    "correctAnswer": "20",
+    "explanation": "The rate follows from the ordered volume and time."
+  },
+  {
+    "id": "digoxin-spacing",
+    "question": "The order is digoxin 0. 125 mg daily. Which assessment is the priority?",
+    "options": ["Apical pulse", "Blood glucose", "Urine output", "Temperature"],
+    "correctAnswer": "Apical pulse",
+    "explanation": "Hold digoxin and notify the prescriber when the apical rate is low."
+  },
+  {
+    "id": "gentamicin-exhibit",
+    "question": "A gentamicin peak is due. Which level should the pharmacist report?",
+    "options": ["Peak 2 mg/L", "Peak 12 mg/L", "Trough 9 mg/L", "Random 1 mg/L"],
+    "correctAnswer": "Peak 12 mg/L",
+    "explanation": "A gentamicin peak above the target range is reported.",
+    "exhibitText": "Vancomycin dosing nomogram"
+  },
+  {
+    "id": "dose-mismatch",
+    "question": "The patient weighs 80 kg. The order is 2 mg/kg. Calculate the dose in mg.",
+    "options": [],
+    "correctAnswer": "100",
+    "explanation": "80 kg times 2 mg/kg equals 160 mg.",
+    "itemType": "constructed_response"
+  },
+  {
+    "id": "lamo-key-a",
+    "question": "A patient taking lamotrigine starts an oral contraceptive. Which counseling point is most appropriate?",
+    "options": ["Use backup contraception", "Stop lamotrigine", "Double the contraceptive", "No interaction"],
+    "correctAnswer": "Use backup contraception",
+    "explanation": "Estrogens can lower lamotrigine levels."
+  },
+  {
+    "id": "lamo-key-b",
+    "question": "A 28-year-old patient taking lamotrigine starts an oral contraceptive. Which counseling point is most appropriate?",
+    "options": ["Use backup contraception", "Stop lamotrigine", "Double the contraceptive", "No interaction"],
+    "correctAnswer": "Stop lamotrigine",
+    "explanation": "This key disagrees with the paired item."
+  },
+  {
+    "id": "ranitidine-option",
+    "question": "Which histamine blocker is preferred for ulcer symptoms?",
+    "options": ["Ranitidine", "Famotidine", "Omeprazole", "Sucralfate"],
+    "correctAnswer": "Famotidine",
+    "explanation": "Famotidine remains available. Ranitidine does not."
+  },
+  {
+    "id": "clean-item",
+    "question": "Which action should the nurse take first for a client with chest pain?",
+    "options": ["Apply oxygen", "Document the pain", "Give a snack", "Ambulate the client"],
+    "correctAnswer": "Apply oxygen",
+    "explanation": "Airway and oxygenation come before routine documentation."
+  }
+]
