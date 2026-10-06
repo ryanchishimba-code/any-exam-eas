@@ -3,6 +3,7 @@ import { examQuestionToStudy } from "./prepare";
 import {
   citationFitsQuestion,
   figureFitsQuestion,
+  joinBrokenDoseDecimals,
   repairSplitInstructionQuote,
   splitGluedLeadIn,
   stripInternalDisplayMetadata,
@@ -42,6 +43,21 @@ describe("student display text", () => {
     );
     expect(studentFacingExhibitKind("med_label")).toBe("Medication label");
     expect(studentFacingExhibitKind("diagram")).toBe("Diagram");
+  });
+
+  it("joins a broken dose decimal and leaves sentence breaks and clock times alone", () => {
+    expect(joinBrokenDoseDecimals("0. 125 mg")).toBe("0.125 mg");
+    expect(joinBrokenDoseDecimals("0. 5 g")).toBe("0.5 g");
+    expect(joinBrokenDoseDecimals("2. 5 mL")).toBe("2.5 mL");
+    expect(joinBrokenDoseDecimals("at 0800. 2 hours later")).toBe("at 0800. 2 hours later");
+    expect(joinBrokenDoseDecimals("Day 1. 3 doses")).toBe("Day 1. 3 doses");
+    expect(joinBrokenDoseDecimals("BP was 120/80. 2 hours")).toBe("BP was 120/80. 2 hours");
+    expect(joinBrokenDoseDecimals("Step 1. 2 tablets")).toBe("Step 1. 2 tablets");
+    expect(stripInternalDisplayMetadata("Give 0. 125 mg of digoxin.")).toBe("Give 0.125 mg of digoxin.");
+    expect(stripInternalDisplayMetadata("Infuse 0. 5 g over 1 hours.")).toBe("Infuse 0.5 g over 1 hour.");
+    expect(stripInternalDisplayMetadata("at 0800. 2 hours later")).toBe("at 0800. 2 hours later");
+    expect(stripInternalDisplayMetadata("Day 1. 3 doses")).toBe("Day 1. 3 doses");
+    expect(stripInternalDisplayMetadata("BP was 120/80. 2 hours")).toBe("BP was 120/80. 2 hours");
   });
 
   it("joins a split decimal, uses the singular hour, and drops a quote stuck on the instruction", () => {

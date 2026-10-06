@@ -90,6 +90,28 @@ export function repairSplitInstructionQuote(
   return { vignette, stem };
 }
 
+/**
+ * Dose tokens that mark a split number as a decimal, not a new sentence.
+ * Tablets, doses, and hours are left alone.
+ */
+const DOSE_UNIT =
+  "mcg\\/kg|mg\\/kg|mcg\\/kg\\/min|meq\\/l|mg\\/dl|ml\\/hr|ml\\/h|mcg|meq|mmol|mg|ml|units?|iu|ng|gtt|g|l";
+
+/**
+ * Join a space that broke a decimal ("0. 125 mg", "2. 5 mL").
+ * A lone 0 before the period is always a decimal. Any other join needs 1–2
+ * digits before the period and a dose unit right after the fraction.
+ * Clock times (0800) and sentence breaks ("Day 1. 3 doses") stay put.
+ */
+export function joinBrokenDoseDecimals(text: string): string {
+  const withLeadingZero = text.replace(/\b0\.\s+(?=\d)/g, "0.");
+  const withUnit = new RegExp(
+    `(?<!\\d)(\\d{1,2})\\.\\s+(?=\\d+\\s*(?:(?:${DOSE_UNIT})\\b|%))`,
+    "gi"
+  );
+  return withLeadingZero.replace(withUnit, "$1.");
+}
+
 /** Close a stem that opened "(" and never closed it, keeping the final punctuation. */
 export function closeDanglingParen(text: string): string {
   const open = (text.match(/\(/g) ?? []).length;
@@ -105,7 +127,7 @@ export function closeDanglingParen(text: string): string {
 
 export function stripInternalDisplayMetadata(text: string): string {
   let next = collapseRepeatedLabels(collapseQuoteLineBreaks(text));
-  next = next.replace(/(\d)\.\s+(?=\d)/g, "$1.").replace(/\b1\s+hours\b/gi, "1 hour");
+  next = joinBrokenDoseDecimals(next).replace(/\b1\s+hours\b/gi, "1 hour");
   for (const pattern of INTERNAL_META) {
     next = next.replace(pattern, "");
   }
