@@ -4,6 +4,7 @@ import {
   parseSelectAllCorrectAnswers,
 } from "@/lib/question-format";
 import { mixShuffleSeed, shuffleDeliveryChoices } from "@/lib/questions/shuffle-delivery";
+import { clinicalResponseIsCorrect } from "@/lib/full-exam/published-clinical-exam";
 import { normalizeStem } from "./stem";
 import { numericValueInSlot, planDualNumericAnswer } from "./dual-numeric-answer";
 import { gradeNumericAnswer } from "./numeric-grade";
@@ -304,6 +305,8 @@ export function isAnswerCorrect(
   selected: string[]
 ): boolean {
   if (selected.length === 0) return false;
+  const clinical = clinicalResponseIsCorrect(question.ngnPayload, selected);
+  if (clinical != null) return clinical;
   const normalizedSelected = selected.map(cleanOptionText);
   const normalizedCorrect = question.correctAnswers.map(cleanOptionText);
 

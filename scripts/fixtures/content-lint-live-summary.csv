@@ -1,0 +1,13 @@
+field,code,severity,count,example_id,example_excerpt
+nursing,conflicting_cluster_key,error,96,cmqwhvgxx00021y5xd7l1insp,A 65-year-old female client is admitted for a hip replacement surgery. She is currently on
+nursing,merged_stem,error,78,cmqwuev4f000h1y1soi1z65ks,visit Which action should the nurse take first?
+nursing,calc_key_mismatch,error,30,cmr1bh9fu00151yrmtdtygtis,## Why this answer is correct Accurate Calculation of Medication Dosage • Understanding un
+nursing,odd_number_spacing,error,18,cmpnjm1r90nlt1ymx18fow88y,2. 33
+nursing,round_to_fragment,error,17,cmr1bhea4002i1yrmevwixctw,(Round to
+nursing,stray_fragment,error,2,cmr1d7udp00701ydf6mhyl6rt,(Unit 4)
+pharmacy,calc_key_mismatch,error,219,cmqd1mxwb00b11ych4jrve7o8,"Daily dose = 90 mg/kg × 16 kg = 1440 mg/day. Total mg = 1440 × 10 days = 14,400 mg. Concen"
+pharmacy,withdrawn_drug,warn,42,cmqgswo9x00221ytwov28upgv,Sibutramine
+pharmacy,conflicting_cluster_key,error,39,cmqgswllz00141ytw313230zy,A 65-year-old female presents to the pharmacy with a prescription for warfarin 5 mg daily.
+pharmacy,merged_stem,error,34,cmqd1mxwb00b11ych4jrve7o8,days How many milliliters (mL) of the suspension should be dispensed for the full 10-day
+pharmacy,exhibit_mismatch,error,22,cmqvo8zpd000w1ysdyu75mh49,"MDI inhaler counseling steps: shake, exhale, seal and press, inhale, hold, rinse if ICS MD"
+pharmacy,calc_option_mismatch,error,17,cmr09hoin000n1yrc1illlzfu,A 25-year-old female presents to the pharmacy with a prescription for a compounded topical

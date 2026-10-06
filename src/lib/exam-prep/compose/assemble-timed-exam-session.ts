@@ -28,13 +28,12 @@ import { gatherSprintTimedExamPool } from "@/lib/exam-prep/gather-sprint-timed-p
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { filterBankItemsForPracticeField } from "@/lib/edtech/exam-item-scope";
 import { preferPremiumBankItems } from "@/lib/full-exam/smart-exam-selection";
-import { isPublishedNgnBankItem } from "@/lib/full-exam/ngn-format-mix";
 import { nclexCatNgnEnabled } from "@/lib/full-exam/nclex-cat-ngn";
+import { loadPublishedClinicalExamItems } from "@/lib/full-exam/published-clinical-exam-load";
 import {
   countSittingClusters,
   finalizeAssembledSitting,
 } from "@/lib/exam-prep/sitting-selection";
-import { sampleActiveItemsByFormat } from "@/lib/question-bank-db";
 
 /** USMLE presets are step-scoped; skip the heavy preset join when it cannot match. */
 function skipTimedPresetForField(fieldId: string): boolean {
@@ -77,20 +76,13 @@ function mergeBankItems(current: BankItem[], extra: BankItem[]): BankItem[] {
   return out;
 }
 
-/** Published NGN/case rows, already eligibility-filtered. MCQ repair is not applied. */
-async function publishedNgnPool(fieldId: string, limit: number): Promise<BankItem[]> {
-  const ngnWant = Math.max(8, Math.round(limit * 0.35));
-  const caseWant = limit >= 85 ? 24 : Math.max(4, Math.round(limit * 0.12));
+/**
+ * Published clinical catalog (ngn_item). QuestionBankItem rows labelled NGN are
+ * mostly single-answer MCQs or structurally ineligible, so they are not the pool.
+ */
+async function publishedNgnPool(fieldId: string, _limit: number): Promise<BankItem[]> {
   try {
-    const [ngnItems, caseItems] = await Promise.all([
-      sampleActiveItemsByFormat({ fieldId, count: ngnWant, formatBucket: "ngn" }),
-      sampleActiveItemsByFormat({ fieldId, count: caseWant, formatBucket: "case" }),
-    ]);
-    return [...ngnItems, ...caseItems].filter((item) => {
-      if (!isPublishedNgnBankItem(item)) return false;
-      const type = (item.itemType ?? "").trim().toLowerCase();
-      return type !== "drag_drop" && type !== "constructed_response";
-    });
+    return await loadPublishedClinicalExamItems(fieldId);
   } catch (error) {
     console.warn(
       "[assemble] published NGN pool unavailable",
