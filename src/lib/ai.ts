@@ -42,6 +42,12 @@ export type ExamQuestion = {
   difficultyLabel?: "Easy" | "Medium" | "Hard";
   /** Blueprint category (e.g. Management of Care, Pharmacotherapy). */
   topicCategory?: string;
+  /** Bank subject slug, kept so results can group by the board's content areas. */
+  subjectId?: string;
+  /** Board blueprint area id (NAPLEX 2026 area, and similar). */
+  blueprintDomain?: string;
+  /** Finer blueprint topic slug when the bank has one. */
+  blueprintTopic?: string;
   /** Expert-tier rationale JSON (NCLEX UWorld-beating depth). */
   expertRationale?: import("@/lib/engine/rationale/expert-rationale-types").ExpertStructuredRationale;
   /** Structured pharmacology metadata — required for NAPLEX / NCLEX pharm items. */

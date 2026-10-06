@@ -49,11 +49,17 @@ function scoreStructureForTopic(
   if (explicitStructureIds.has(structure.id)) score += 20;
   if (aliases.has(structure.practiceTopicSlug)) score += 10;
   if (structure.highYieldTopicSlug && aliases.has(structure.highYieldTopicSlug)) score += 8;
-  if (structure.highYield) score += 2;
-  if (!structure.parentId) score += 1;
 
   for (const cardId of structure.memoryCardIds) {
     if (memoryCardIds.has(cardId)) score += 4;
+  }
+
+  // Rank real matches: a root high-yield organ beats a child that only shares
+  // the same topic. These points are not awarded with no topic hit, or every
+  // slug returned a few unrelated structures.
+  if (score > 0) {
+    if (structure.highYield) score += 2;
+    if (!structure.parentId) score += 1;
   }
 
   return score;

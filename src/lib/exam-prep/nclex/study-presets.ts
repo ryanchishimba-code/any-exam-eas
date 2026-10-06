@@ -164,7 +164,7 @@ export const NCLEX_STUDY_PRESETS: NclexStudyPreset[] = [
   },
   {
     id: "cat-full-exam",
-    title: "CAT Full Exam (75–145Q)",
+    title: "CAT Full Exam (85–150Q)",
     description: "Rule-based adaptive length mimicking NCLEX stop rules.",
     count: 85,
     timed: true,

@@ -251,6 +251,87 @@ describe("FullExamResults early-end heading", () => {
     expect(screen.getByText(FULL_EXAM_PRACTICE_DISCLAIMER)).toBeInTheDocument();
   });
 
+  it("calls a confidence stop complete and scores the items delivered", () => {
+    const answers = Array.from({ length: 91 }, (_, questionIndex) => ({
+      questionIndex,
+      questionId: `q${questionIndex}`,
+      selected: "A",
+      correct: questionIndex < 80,
+      answeredAt: "2026-10-05T00:00:00.000Z",
+    }));
+    render(
+      <ExamResultsScoreHeader
+        examName="NCLEX-RN"
+        examShortName="NCLEX"
+        score={88}
+        correct={80}
+        questionCount={91}
+        summary="Completed NCLEX-RN practice CAT — Practice confidence threshold reached after 91 questions."
+        endedEarly
+        analysisEndedEarly
+        plannedQuestionCount={150}
+        catStopReason="confidence"
+        answers={answers}
+      />
+    );
+    expect(screen.getByRole("heading", { level: 1, name: "Exam complete" })).toBeInTheDocument();
+    expect(screen.getByText("88%")).toBeInTheDocument();
+    expect(screen.getByText("80 / 91 correct")).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Incomplete simulation" })).toBeNull();
+    expect(screen.queryByRole("heading", { name: "You ended the exam early" })).toBeNull();
+  });
+
+  it("calls a finished form complete when End exam was the only control", () => {
+    const answers = Array.from({ length: 150 }, (_, questionIndex) => ({
+      questionIndex,
+      selected: "A",
+      correct: questionIndex < 120,
+      answeredAt: "2026-10-05T00:00:00.000Z",
+    }));
+    render(
+      <ExamResultsScoreHeader
+        examName="NCLEX-RN"
+        examShortName="NCLEX"
+        score={80}
+        correct={120}
+        questionCount={150}
+        summary={EARLY_SUMMARY}
+        endedEarly
+        analysisEndedEarly
+        plannedQuestionCount={150}
+        answers={answers}
+      />
+    );
+    expect(screen.getByRole("heading", { level: 1, name: "Exam complete" })).toBeInTheDocument();
+    expect(screen.getByText("120 / 150 correct")).toBeInTheDocument();
+  });
+
+  it("keeps a true early end when the student stopped before the form was done", () => {
+    const answers = Array.from({ length: 40 }, (_, questionIndex) => ({
+      questionIndex,
+      selected: "A",
+      correct: true,
+      answeredAt: "2026-10-05T00:00:00.000Z",
+    }));
+    render(
+      <ExamResultsScoreHeader
+        examName="NCLEX-RN"
+        examShortName="NCLEX"
+        score={100}
+        correct={40}
+        questionCount={40}
+        summary={EARLY_SUMMARY}
+        endedEarly
+        plannedQuestionCount={150}
+        answers={answers}
+      />
+    );
+    expect(
+      screen.getByRole("heading", { level: 1, name: "You ended the exam early" })
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Exam complete" })).toBeNull();
+  });
+
   it("renders the score heading from the server receipt, not the client results module", () => {
     const page = readFileSync(
       join(process.cwd(), "src/app/(app)/full-exam/[examSlug]/[sessionId]/results/page.tsx"),

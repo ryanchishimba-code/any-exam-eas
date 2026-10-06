@@ -74,6 +74,10 @@ export type StudyQuestion = {
   highYield?: boolean;
   field?: string;
   subjectId?: string;
+  /** Blueprint category label or subject slug from the bank. */
+  topicCategory?: string;
+  blueprintDomain?: string;
+  blueprintTopic?: string;
   bankItemId?: string;
   difficulty?: string;
   qualityScore?: number;

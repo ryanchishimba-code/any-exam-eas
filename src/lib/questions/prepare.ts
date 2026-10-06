@@ -199,6 +199,9 @@ export function examQuestionToStudy(
     highYield: q.highYield,
     field: q.field,
     subjectId: q.subjectId,
+    topicCategory: q.topicCategory,
+    blueprintDomain: q.blueprintDomain,
+    blueprintTopic: q.blueprintTopic,
     bankItemId: q.bankItemId,
     qualityScore: q.qualityScore,
     difficulty: q.difficultyLabel?.toLowerCase(),
@@ -288,6 +291,10 @@ export function studyQuestionsToExamQuestions(prepared: StudyQuestion[]): import
       chartData: p.chartData,
       caseStep: p.caseStep,
       qualityScore: p.qualityScore,
+      subjectId: p.subjectId,
+      topicCategory: p.topicCategory,
+      blueprintDomain: p.blueprintDomain,
+      blueprintTopic: p.blueprintTopic,
     };
   });
 }

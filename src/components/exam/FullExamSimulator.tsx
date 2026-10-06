@@ -28,8 +28,14 @@ import {
   serializeCorrectAnswer,
   serializeExamSelection,
 } from "@/lib/full-exam/answer-serialize";
+import { isNaturalCatStop } from "@/lib/full-exam/administered-score";
 import { fullExamResultsHref } from "@/lib/full-exam/config";
 import { nclexCatQuestionRange, nclexFullPracticeLengthLabel } from "@/lib/full-exam/nclex-length-label";
+import {
+  fullExamSubmitEndedEarly,
+  shouldOfferFullExamReviewSubmit,
+} from "@/lib/full-exam/submit-intent";
+import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
 import { takeFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
 import {
@@ -129,6 +135,15 @@ function defaultAnswer(): FullExamAnswerState {
 
 function hasSelection(selected: string[]): boolean {
   return selected.length > 0;
+}
+
+function questionTopicFields(q: StudyQuestion) {
+  return {
+    topicCategory: q.topicCategory || q.subjectId,
+    subjectId: q.subjectId,
+    blueprintDomain: q.blueprintDomain,
+    blueprintTopic: q.blueprintTopic,
+  };
 }
 
 function initialRemainingSec(
@@ -366,7 +381,23 @@ export function FullExamSimulator({
   useEffect(() => {
     if (loading || submitting || paused) return;
 
-    const tick = setInterval(() => {
+    function syncClock() {
+      if (startedAt) {
+        const used = fullExamTimeUsedSec({
+          startedAt,
+          nowMs: Date.now(),
+          pausedSec: pauseAccumSec.current,
+          fallbackSec: 0,
+        });
+        if (config.timed && config.timeLimitSec > 0) {
+          const left = Math.max(0, config.timeLimitSec - used);
+          setRemainingSec(left);
+          if (left <= 0) setTimeUp(true);
+        } else {
+          setElapsedSec(used);
+        }
+        return;
+      }
       if (config.timed && config.timeLimitSec > 0) {
         setRemainingSec((s) => {
           if (s <= 1) {
@@ -378,10 +409,12 @@ export function FullExamSimulator({
       } else {
         setElapsedSec((s) => s + 1);
       }
-    }, 1000);
+    }
 
+    if (startedAt) syncClock();
+    const tick = setInterval(syncClock, 1000);
     return () => clearInterval(tick);
-  }, [loading, submitting, paused, config.timed, config.timeLimitSec]);
+  }, [loading, submitting, paused, config.timed, config.timeLimitSec, startedAt]);
 
   const persistAnswer = useCallback(
     async (qi: number, state: FullExamAnswerState) => {
@@ -404,7 +437,7 @@ export function FullExamSimulator({
           flagged: state.flagged,
           eliminated: state.eliminated,
           notes: state.notes,
-          topicCategory: q.subjectId,
+          topicCategory: questionTopicFields(q).topicCategory,
         } satisfies Partial<ExamAnswerRecord>),
       });
     },
@@ -625,7 +658,7 @@ export function FullExamSimulator({
         flagged: st.flagged,
         eliminated: st.eliminated,
         notes: st.notes,
-        topicCategory: q.subjectId,
+        topicCategory: questionTopicFields(q).topicCategory,
         answeredAt: new Date().toISOString(),
       });
     }
@@ -637,6 +670,7 @@ export function FullExamSimulator({
       if (submitting) return;
       setSubmitting(true);
       setSubmitError(null);
+      await new Promise((resolve) => setTimeout(resolve, 0));
 
       let finalCatState = catState;
       let finalCommitted = catCommittedCount;
@@ -657,9 +691,25 @@ export function FullExamSimulator({
       const log = buildAnswerLog();
       const score = calculateExamScorePercent(log, questions.length);
       const topicBreakdown = buildTopicBreakdown(questions, log);
-      const timeUsedSec = config.timed
-        ? config.timeLimitSec - remainingSec
-        : elapsedSec;
+      const pauseInProgress =
+        pauseStarted.current != null
+          ? Math.max(0, Math.floor((Date.now() - pauseStarted.current) / 1000))
+          : 0;
+      const timeUsedSec = fullExamTimeUsedSec({
+        startedAt,
+        nowMs: Date.now(),
+        pausedSec: pauseAccumSec.current + pauseInProgress,
+        fallbackSec: config.timed
+          ? Math.max(0, config.timeLimitSec - remainingSec)
+          : elapsedSec,
+      });
+      const markEndedEarly = fullExamSubmitEndedEarly({
+        requestedEarly: endedEarly,
+        servedCount: questions.length,
+        answeredCount: log.length,
+        plannedCount: config.questionCount,
+        catNaturalStop: isCatMode && isNaturalCatStop(finalCatState.stopReason),
+      });
 
       const catOutcome: FullExamCatOutcome | undefined = isCatMode
         ? {
@@ -670,7 +720,7 @@ export function FullExamSimulator({
 
       if (isCatMode && !catStoppedTracked.current) {
         catStoppedTracked.current = true;
-        const reason = finalCatState.stopReason ?? (endedEarly ? "ended_early" : "submitted");
+        const reason = finalCatState.stopReason ?? (markEndedEarly ? "ended_early" : "submitted");
         analytics.ctaClicked(`nclex_cat_stopped_${reason}`, "full_exam_cat");
       }
 
@@ -680,7 +730,7 @@ export function FullExamSimulator({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             complete: true,
-            endedEarly,
+            endedEarly: markEndedEarly,
             score,
             answers: log,
             weakAreas: topicBreakdown
@@ -697,10 +747,10 @@ export function FullExamSimulator({
                 options: q.options,
                 correctAnswer: serializeCorrectAnswer(q),
                 explanation: q.explanation,
-                topicCategory: q.subjectId,
+                ...questionTopicFields(q),
               })),
-              endedEarly,
-              summary: endedEarly
+              endedEarly: markEndedEarly,
+              summary: markEndedEarly
                 ? "Session ended early. Your saved answers were scored."
                 : isCatMode
                   ? `Completed ${exam.name} practice CAT — ${catSessionStopSummary(finalCatState)}`
@@ -730,6 +780,7 @@ export function FullExamSimulator({
       config,
       remainingSec,
       elapsedSec,
+      startedAt,
       sessionId,
       exam.name,
       examSlug,
@@ -741,6 +792,46 @@ export function FullExamSimulator({
     ]
   );
 
+  const offerReviewSubmit = useMemo(() => {
+    if (questions.length === 0 || index < questions.length - 1) return false;
+    let catStopsAfterCurrent = false;
+    if (isCatMode && current && hasSelection(currentAnswer.selected)) {
+      const projected = commitCatThrough(
+        index,
+        catState,
+        catCommittedCount,
+        questions,
+        answers
+      );
+      if (projected.state.isComplete) {
+        catStopsAfterCurrent = true;
+      } else {
+        const used = new Set(questions.map((q) => q.id));
+        catStopsAfterCurrent =
+          pickCatNext(projected.state, catPool, used, () => 0, catFormatHint(catPool, questions)) ==
+          null;
+      }
+    }
+    return shouldOfferFullExamReviewSubmit({
+      isCat: isCatMode,
+      index,
+      servedCount: questions.length,
+      catAlreadyComplete: catState.isComplete,
+      catStopsAfterCurrent,
+    });
+  }, [
+    answers,
+    catCommittedCount,
+    catPool,
+    catState,
+    commitCatThrough,
+    current,
+    currentAnswer.selected,
+    index,
+    isCatMode,
+    questions,
+  ]);
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (submitting || !current) return;
@@ -749,9 +840,12 @@ export function FullExamSimulator({
       }
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
+        if (offerReviewSubmit) {
+          openReviewPhase();
+          return;
+        }
         if (isCatMode) {
           if (index < questions.length - 1) setIndex((i) => i + 1);
-          else if (catState.isComplete) openReviewPhase();
           else advanceCat();
         } else if (index < questions.length - 1) {
           setIndex((i) => i + 1);
@@ -761,6 +855,7 @@ export function FullExamSimulator({
       }
       if (e.key === "ArrowLeft" && index > 0) setIndex((i) => i - 1);
       if (e.key === "ArrowRight") {
+        if (offerReviewSubmit) return;
         if (isCatMode) {
           if (index < questions.length - 1) setIndex((i) => i + 1);
           else advanceCat();
@@ -779,9 +874,9 @@ export function FullExamSimulator({
     submitting,
     updateAnswer,
     isCatMode,
-    catState.isComplete,
     advanceCat,
     openReviewPhase,
+    offerReviewSubmit,
   ]);
 
   useEffect(() => {
@@ -800,9 +895,6 @@ export function FullExamSimulator({
     if (pauseStarted.current) {
       const pausedFor = Math.floor((Date.now() - pauseStarted.current) / 1000);
       pauseAccumSec.current += pausedFor;
-      if (config.timed) {
-        setRemainingSec((s) => s + pausedFor);
-      }
       pauseStarted.current = null;
     }
     setPaused(false);
@@ -886,9 +978,6 @@ export function FullExamSimulator({
 
   const displayTotal = isCatMode ? CAT_MAX_QUESTIONS : questions.length;
   const progressPct = ((index + 1) / Math.max(1, displayTotal)) * 100;
-  const atLastServed = index + 1 >= questions.length;
-  const showCatReviewCta = isCatMode && catState.isComplete;
-  const showStandardReviewCta = !isCatMode && atLastServed;
 
   if (phase === "review") {
     const flaggedList = [...flaggedIndices].sort((a, b) => a - b);
@@ -981,10 +1070,11 @@ export function FullExamSimulator({
             <button
               type="button"
               disabled={submitting}
+              aria-busy={submitting}
               onClick={() => void submitExam()}
               className={cn(feUi.footerBtnPrimary, "flex-1")}
             >
-              Submit exam
+              {submitting ? "Submitting…" : "Submit exam"}
             </button>
           </div>
         </main>
@@ -1143,10 +1233,12 @@ export function FullExamSimulator({
               </button>
             ) : null}
 
-            {showStandardReviewCta || showCatReviewCta ? (
+            {offerReviewSubmit ? (
               <button
                 type="button"
+                data-testid="full-exam-review-submit"
                 disabled={submitting}
+                aria-busy={submitting}
                 onClick={() => openReviewPhase()}
                 className={feUi.footerBtnPrimary}
               >

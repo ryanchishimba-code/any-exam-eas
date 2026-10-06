@@ -23,18 +23,21 @@ export function ExamResultsScoreHeader({
   analysisEndedEarly = false,
   answeredCount,
   plannedQuestionCount,
+  catStopReason,
   answers,
 }: {
   examName: string;
   examShortName: string;
   score: number;
   correct: number;
+  /** Items the student was given. Not the CAT prefetch pool. */
   questionCount: number;
   summary: string;
   endedEarly?: boolean;
   analysisEndedEarly?: boolean;
   answeredCount?: number | null;
   plannedQuestionCount?: number;
+  catStopReason?: string | null;
   answers: AnswerRow[];
 }) {
   const title = resolveFullExamResultsTitle({
@@ -42,7 +45,9 @@ export function ExamResultsScoreHeader({
     analysisEndedEarly,
     summary,
     answeredCount,
-    questionCount: Math.max(questionCount, plannedQuestionCount ?? 0),
+    questionCount,
+    plannedQuestionCount,
+    catStopReason,
     answers,
   });
   const scoreColor =

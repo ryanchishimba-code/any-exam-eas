@@ -1,8 +1,11 @@
 /**
  * Results heading for a finished Full Exam / focused sprint.
- * "Exam complete" is only for a submitted simulation with every item answered.
+ * "Exam complete" is a submitted simulation with every administered item answered,
+ * including a practice CAT that stopped on its own before the maximum.
  * Early end reuses the Study Hub receipt line ("You ended the exam early").
  */
+
+import { isNaturalCatStop } from "@/lib/full-exam/administered-score";
 
 export const FULL_EXAM_RESULTS_COMPLETE_TITLE = "Exam complete";
 export const FULL_EXAM_RESULTS_ENDED_EARLY_TITLE = "You ended the exam early";
@@ -57,27 +60,52 @@ export function fullExamResultsTitle(input: {
 }
 
 /**
- * Same inputs the results receipt shows: saved summary, planned length, and the
- * answer log. Early summary wins over a completed status or a fully-selected log.
+ * Delivered length is the items the student was given, not the CAT pool.
+ * A finished form (every planned item answered) or a natural CAT stop is
+ * "Exam complete" even if an older client stored the early-end sentence
+ * because End exam was the only control on the last item.
  */
 export function resolveFullExamResultsTitle(input: {
   endedEarly?: boolean;
   analysisEndedEarly?: boolean;
   summary?: string | null;
   answeredCount?: number | null;
+  /** Items administered (served snapshots), not the prefetch pool. */
   questionCount: number;
+  /** Planned form length. Omitted when the caller only knows the delivered set. */
+  plannedQuestionCount?: number | null;
+  catStopReason?: string | null;
   answers: AnsweredItem[];
 }): string {
-  const plannedCount = Math.max(0, Math.floor(input.questionCount) || 0);
-  const unansweredFromLog = countUnansweredExamItems(plannedCount, input.answers);
-  const recorded = input.answeredCount;
-  const unanswered =
-    typeof recorded === "number" && Number.isFinite(recorded)
-      ? Math.max(unansweredFromLog, plannedCount - Math.max(0, Math.floor(recorded)))
-      : unansweredFromLog;
+  const delivered = Math.max(0, Math.floor(input.questionCount) || 0);
+  const unanswered = countUnansweredExamItems(delivered, input.answers);
+  const planned =
+    typeof input.plannedQuestionCount === "number" && Number.isFinite(input.plannedQuestionCount)
+      ? Math.max(0, Math.floor(input.plannedQuestionCount))
+      : null;
+  const naturalCat = isNaturalCatStop(input.catStopReason);
+  const finishedForm =
+    delivered > 0 &&
+    unanswered === 0 &&
+    (naturalCat || (planned != null && planned > 0 && delivered >= planned));
+  if (finishedForm) return FULL_EXAM_RESULTS_COMPLETE_TITLE;
   return fullExamResultsTitle({
     endedEarly: input.endedEarly === true || input.analysisEndedEarly === true,
     unanswered,
     summary: input.summary,
   });
+}
+
+export function fullExamTreatsAsEndedEarly(input: {
+  endedEarly?: boolean;
+  analysisEndedEarly?: boolean;
+  summary?: string | null;
+  questionCount: number;
+  plannedQuestionCount?: number | null;
+  catStopReason?: string | null;
+  answers: AnsweredItem[];
+}): boolean {
+  return (
+    resolveFullExamResultsTitle(input) === FULL_EXAM_RESULTS_ENDED_EARLY_TITLE
+  );
 }

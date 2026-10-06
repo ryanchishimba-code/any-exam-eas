@@ -4,6 +4,7 @@ import {
   completeExamSession,
   getExamSession,
 } from "@/lib/exam-sessions/service";
+import { administeredQuestionCount } from "@/lib/full-exam/administered-score";
 import { calculateExamScorePercent, mergeExamAnswers } from "@/lib/exam-sessions/scoring";
 import { requirePremiumApi } from "@/lib/api-access";
 import { examSlugToFieldId } from "@/lib/exams/catalog";
@@ -49,9 +50,10 @@ export async function PATCH(
         ? submitted.reduce((acc, answer) => mergeExamAnswers(acc, answer), stored)
         : stored
     ) as ExamAnswerRecord[];
+    const snapshots = snapshotsFromAnalysis(body.analysis);
     const drafts = draftsFromFullExamAnswers({
       answers,
-      snapshots: snapshotsFromAnalysis(body.analysis),
+      snapshots,
     });
     const summary =
       body.analysis && typeof body.analysis === "object"
@@ -64,7 +66,11 @@ export async function PATCH(
       ...analysisWithAnsweredCount(body.analysis, drafts.length),
       endedEarly,
     });
-    const totalQuestions = session.questionCount || drafts.length;
+    const totalQuestions = administeredQuestionCount({
+      snapshotCount: snapshots.length,
+      answers,
+      plannedCount: session.questionCount,
+    });
     const score = calculateExamScorePercent(answers, totalQuestions);
     const fieldId =
       session.fieldId ??
