@@ -16,6 +16,8 @@ const PINNED_CHOICE = /^(?:all|none)\s+of\s+(?:the\s+)?(?:above|following|these)
 export type DeliveryShuffleInput = {
   options: string[];
   correctAnswer: string;
+  /** Stem and vignette. A letter or number that names an option here locks order. */
+  question?: string;
   explanation?: string;
   clinicalReasoning?: string;
   distractorRationale?: Record<string, string>;
@@ -76,21 +78,128 @@ function letterFor(index: number): string {
   return String.fromCharCode(65 + index);
 }
 
-/** Rewrite "option B" / "(C)" to the letter that choice moved to. */
+const ORDINALS = ["first", "second", "third", "fourth", "fifth"] as const;
+
+function mappedLetter(letterMap: ReadonlyMap<string, string>, letter: string): string {
+  return letterMap.get(letter.toUpperCase()) ?? letter.toUpperCase();
+}
+
+function letterIndex(letter: string): number {
+  return letter.toUpperCase().charCodeAt(0) - 65;
+}
+
+function withInitialCase(source: string, next: string): string {
+  if (source[0] && source[0] === source[0].toUpperCase()) {
+    return next[0]!.toUpperCase() + next.slice(1);
+  }
+  return next;
+}
+
+/**
+ * Move unambiguous option labels onto the letter or number that choice now
+ * occupies. Drug names and articles stay put: "Option D-dimer", "Rho(D)",
+ * "this option a…", and "(A)lert" are not labels.
+ */
 export function rewriteChoiceLetters(text: string, letterMap: ReadonlyMap<string, string>): string {
   if (!text || letterMap.size === 0) return text;
-  const mapped = (letter: string) => letterMap.get(letter.toUpperCase()) ?? letter.toUpperCase();
-  return text
-    .replace(/\b(option|choice|answer)\s+([A-D])\b/gi, (full, word: string, letter: string) => {
-      const next = mapped(letter);
-      if (next === letter.toUpperCase()) return full;
-      const shown = letter === letter.toLowerCase() ? next.toLowerCase() : next;
-      return `${word} ${shown}`;
-    })
-    .replace(/\(([A-D])\)/g, (full, letter: string) => {
-      const next = mapped(letter);
-      return next === letter.toUpperCase() ? full : `(${next})`;
-    });
+  const mapped = (letter: string) => mappedLetter(letterMap, letter);
+
+  return (
+    text
+      // "(A)" only as a label at the start of a line or bullet. Not Rho(D) or (A)lert.
+      .replace(
+        /(^|\n)([ \t]*(?:[-*•][ \t]+)?)(\()([A-E])(\))(?=\s|$)/gm,
+        (full, lead: string, indent: string, open: string, letter: string, close: string) => {
+          const next = mapped(letter);
+          return next === letter ? full : `${lead}${indent}${open}${next}${close}`;
+        }
+      )
+      // "**A. …**" / "**A.**" bullets, and "A." / "A)" labels at line start.
+      .replace(
+        /(^|\n)([ \t]*)(\*\*)([A-E])(\.)/g,
+        (full, lead: string, indent: string, stars: string, letter: string, dot: string) => {
+          const next = mapped(letter);
+          return next === letter ? full : `${lead}${indent}${stars}${next}${dot}`;
+        }
+      )
+      .replace(
+        /(^|\n)([ \t]*)([A-E])([.)])(?=\s+[A-Z])/g,
+        (full, lead: string, indent: string, letter: string, mark: string) => {
+          const next = mapped(letter);
+          return next === letter ? full : `${lead}${indent}${next}${mark}`;
+        }
+      )
+      // "Option A" / "Choice B" when the letter is its own token. Not "Option D-dimer".
+      .replace(
+        /\b([Oo]ption|[Cc]hoice|[Aa]nswer)\s+([A-E])(?![A-Za-z0-9-])/g,
+        (full, word: string, letter: string) => {
+          const next = mapped(letter);
+          return next === letter ? full : `${word} ${next}`;
+        }
+      )
+      // "option 2" / "(option 2)" — the number is the original position.
+      .replace(
+        /\b([Oo]ption|[Cc]hoice|[Aa]nswer)\s+([1-5])(?![0-9-])/g,
+        (full, word: string, raw: string) => {
+          const original = letterFor(Number(raw) - 1);
+          const next = mapped(original);
+          const shown = String(letterIndex(next) + 1);
+          return shown === raw ? full : `${word} ${shown}`;
+        }
+      )
+      .replace(
+        /\b(first|second|third|fourth|fifth)\s+(option|choice|answer)\b/gi,
+        (full, ordinal: string, noun: string) => {
+          const index = ORDINALS.indexOf(ordinal.toLowerCase() as (typeof ORDINALS)[number]);
+          if (index < 0) return full;
+          const next = mapped(letterFor(index));
+          const nextOrdinal = ORDINALS[letterIndex(next)];
+          if (!nextOrdinal || nextOrdinal === ordinal.toLowerCase()) return full;
+          return `${withInitialCase(ordinal, nextOrdinal)} ${noun}`;
+        }
+      )
+  );
+}
+
+/** Stem text that names a choice by letter, number, or a lettered list. */
+export function stemLocksOptionOrder(question: string | undefined): boolean {
+  if (!question) return false;
+  if (/\b(?:[Oo]ption|[Cc]hoice|[Aa]nswer)\s+[A-E](?![A-Za-z0-9-])/.test(question)) return true;
+  if (/\b(?:[Oo]ption|[Cc]hoice|[Aa]nswer)\s+\([A-E]\)(?![A-Za-z0-9-])/.test(question)) return true;
+  if (/\b(?:[Oo]ption|[Cc]hoice|[Aa]nswer)\s+[1-5](?![0-9-])/.test(question)) return true;
+  if (/\b(?:first|second|third|fourth|fifth)\s+(?:option|choice|answer)\b/i.test(question)) return true;
+  const labels = question.match(/(?:^|\n)\s*[A-E][.)]\s/g);
+  return (labels?.length ?? 0) >= 2;
+}
+
+/**
+ * Bare letters used as option commentary ("B is incorrect; C is…") are too
+ * varied to rewrite safely. Keep the original order instead.
+ */
+export function rationaleLocksOptionOrder(text: string | undefined): boolean {
+  if (!text) return false;
+  if (/(?:^|[.;:\n])\s*[A-E]\s+is\s+(?:in)?correct\b/m.test(text)) return true;
+  if (/(?:^|[.;:\n])\s*[A-E]\s+does\s+not\b/m.test(text)) return true;
+  if (/\b(?:options|choices|answers)\s+[A-E]\s*(?:,|\band\b|\bor\b)\s*[A-E]\b/.test(text)) return true;
+  if (/\bboth\s+[A-E]\s+and\s+[A-E]\b/.test(text)) return true;
+  return false;
+}
+
+function rationaleCorpus(input: DeliveryShuffleInput): string {
+  const parts: string[] = [];
+  if (input.explanation) parts.push(input.explanation);
+  if (input.clinicalReasoning) parts.push(input.clinicalReasoning);
+  if (input.solutionSteps?.length) parts.push(input.solutionSteps.join("\n"));
+  if (input.distractorRationale) parts.push(Object.values(input.distractorRationale).join("\n"));
+  if (input.expertRationale != null) parts.push(flattenUnknown(input.expertRationale));
+  return parts.join("\n");
+}
+
+function flattenUnknown(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) return value.map(flattenUnknown).join("\n");
+  if (!value || typeof value !== "object") return "";
+  return Object.values(value as Record<string, unknown>).map(flattenUnknown).join("\n");
 }
 
 function rewriteUnknown(value: unknown, letterMap: ReadonlyMap<string, string>): unknown {
@@ -99,7 +208,7 @@ function rewriteUnknown(value: unknown, letterMap: ReadonlyMap<string, string>):
   if (!value || typeof value !== "object") return value;
   const out: Record<string, unknown> = {};
   for (const [key, entry] of Object.entries(value as Record<string, unknown>)) {
-    const nextKey = /^[A-D]$/i.test(key) ? (letterMap.get(key.toUpperCase()) ?? key) : key;
+    const nextKey = /^[A-E]$/i.test(key) ? (letterMap.get(key.toUpperCase()) ?? key) : key;
     out[nextKey] = rewriteUnknown(entry, letterMap);
   }
   return out;
@@ -129,6 +238,9 @@ export function shuffleDeliveryChoices(input: DeliveryShuffleInput): DeliveryShu
   };
   if (options.length < 2) return base;
   if (options.some(optionLocksPosition)) return base;
+  if (stemLocksOptionOrder(input.question) || rationaleLocksOptionOrder(rationaleCorpus(input))) {
+    return base;
+  }
 
   const pinned = options.filter(optionIsPinned);
   const movable = options.filter((option) => !optionIsPinned(option));

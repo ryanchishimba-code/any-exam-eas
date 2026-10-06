@@ -105,6 +105,7 @@ export function examQuestionToStudy(
       const shuffled = shuffleDeliveryChoices({
         options: normalized.options,
         correctAnswer: normalized.correctAnswer,
+        question: [q.vignette, q.question].filter(Boolean).join("\n"),
         explanation,
         clinicalReasoning,
         distractorRationale,
