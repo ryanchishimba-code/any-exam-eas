@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { contentLintRowsToCsv, lintContentItems, type ContentLintItem } from "@/lib/exam-prep/content-lint";
+import {
+  contentLintRowsToCsv,
+  exhibitTextFromBankItem,
+  lintContentItems,
+  type ContentLintItem,
+} from "@/lib/exam-prep/content-lint";
 
 function item(partial: Partial<ContentLintItem> & Pick<ContentLintItem, "id" | "question">): ContentLintItem {
   return {
@@ -46,6 +51,69 @@ describe("lintContentItems", () => {
       }),
     ]);
     expect(rows.some((row) => row.code === "exhibit_mismatch")).toBe(true);
+  });
+
+  it("reads image alt text and does not treat a shared lead-in as one cluster", () => {
+    const caption = exhibitTextFromBankItem({
+      question: "Which adjustment is required?",
+      options: ["Hold the dose", "Continue", "Call", "Document"],
+      correctAnswer: "Hold the dose",
+      explanation: "Because",
+      ngnPayload: {
+        media: [{ alt: "Insulin vial label", caption: "U-100 insulin chart" }],
+      },
+    });
+    expect(caption).toContain("Insulin");
+
+    const rows = lintContentItems([
+      item({
+        id: "media",
+        question: "Which inhaler technique is correct?",
+        scenario: "The patient uses a dry-powder inhaler.",
+        exhibitText: caption,
+        options: ["Shake the MDI", "Exhale fully", "Rinse the mouth", "Use a spacer"],
+      }),
+      item({
+        id: "hf",
+        fieldId: "nursing",
+        question: "What is the next best step?",
+        scenario: "Heart failure with edema after the first dose of lisinopril.",
+        options: ["Stop lisinopril", "Give fluids", "Discharge", "Start heparin"],
+        correctAnswer: "Stop lisinopril",
+      }),
+      item({
+        id: "acs",
+        fieldId: "nursing",
+        question: "What is the next best step?",
+        scenario: "Crushing chest pain with ST elevation in two leads.",
+        options: ["Activate the cath lab", "Give acetaminophen", "Discharge", "Order a sleep study"],
+        correctAnswer: "Activate the cath lab",
+      }),
+      item({
+        id: "pharm-same-stem",
+        fieldId: "pharmacy",
+        question: "What is the next best step?",
+        scenario: "Heart failure with edema after the first dose of lisinopril.",
+        options: ["Stop lisinopril", "Give fluids", "Discharge", "Start heparin"],
+        correctAnswer: "Give fluids",
+      }),
+    ]);
+    expect(rows.some((row) => row.id === "media" && row.code === "exhibit_mismatch")).toBe(true);
+    expect(rows.some((row) => row.code === "conflicting_cluster_key")).toBe(false);
+  });
+
+  it("compares a calculation key with the final stated answer", () => {
+    const rows = lintContentItems([
+      item({
+        id: "steps",
+        question: "The patient weighs 80 kg. The order is 2 mg/kg. Calculate the dose in mg.",
+        correctAnswer: "160",
+        explanation: "First, 2 mg times 1 kg equals 2. Then 80 kg times 2 mg/kg equals 160 mg. The correct answer is 160.",
+        itemType: "constructed_response",
+        options: [],
+      }),
+    ]);
+    expect(rows.some((row) => row.id === "steps" && row.code === "calc_key_mismatch")).toBe(false);
   });
 
   it("flags calculation keys that disagree with the rationale or a recomputed dose", () => {

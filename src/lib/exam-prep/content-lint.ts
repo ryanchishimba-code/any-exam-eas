@@ -35,6 +35,9 @@ export type ContentLintItem = {
   tags?: string[];
   /** Diagram caption, exhibit title, or alt text shipped with the item. */
   exhibitText?: string;
+  /** Case text shown with the stem. Clustering and exhibit checks read it. */
+  scenario?: string;
+  fieldId?: string;
   clusterId?: string | null;
   generationMeta?: Record<string, unknown>;
   curationMeta?: Record<string, unknown>;
@@ -84,8 +87,10 @@ const KNOWN_EXHIBIT_DRUGS = [
 const CALC_LEAD =
   /\b(?:calculate|how many|how much|at what rate|round to|what is the (?:rate|dose|volume|concentration|total|amount|infusion))\b/i;
 
-const STATED_RESULT =
-  /(?:correct answer(?:\s+is)?|calculated (?:dose|rate|volume|answer)(?:\s+is)?|equals|(?<![=<>])=\s*)\s*(-?\d+(?:\.\d+)?)/gi;
+const FINAL_RESULT =
+  /(?:correct answer(?:\s+is)?|final answer(?:\s+is)?|the answer(?:\s+is)?|keyed answer(?:\s+is)?)\s*[:=]?\s*(-?\d+(?:\.\d+)?)/gi;
+
+const EQUALS_RESULT = /(?<![=<>])(?:=|equals)\s*(-?\d+(?:\.\d+)?)/gi;
 
 function excerpt(text: string, index = 0): string {
   const start = Math.max(0, index - 24);
@@ -93,7 +98,13 @@ function excerpt(text: string, index = 0): string {
 }
 
 function itemText(item: ContentLintItem): string {
-  return [item.question, ...(item.options ?? []), item.topicCategory ?? "", item.blueprintTopic ?? ""]
+  return [
+    item.scenario ?? "",
+    item.question,
+    ...(item.options ?? []),
+    item.topicCategory ?? "",
+    item.blueprintTopic ?? "",
+  ]
     .join(" ")
     .toLowerCase();
 }
@@ -216,27 +227,41 @@ function looksLikeCalc(item: ContentLintItem): boolean {
   return CALC_LEAD.test(item.question ?? "");
 }
 
+function lastNumber(matches: IterableIterator<RegExpMatchArray>): number | null {
+  let value: number | null = null;
+  for (const match of matches) {
+    const next = Number(match[1]);
+    if (Number.isFinite(next)) value = next;
+  }
+  return value;
+}
+
+/** The last stated result, not an intermediate product. */
+function finalStatedNumber(rationale: string): number | null {
+  const stated = lastNumber(rationale.matchAll(FINAL_RESULT));
+  if (stated != null) return stated;
+  return lastNumber(rationale.matchAll(EQUALS_RESULT));
+}
+
 function lintCalculation(item: ContentLintItem, rows: ContentLintRow[]) {
   if (!looksLikeCalc(item)) return;
   const keyed = numericKey(item.correctAnswer);
   if (keyed == null) return;
 
-  const stated: number[] = [];
   const rationale = rationaleText(item);
-  for (const match of rationale.matchAll(STATED_RESULT)) {
-    const value = Number(match[1]);
-    if (Number.isFinite(value)) stated.push(value);
-  }
-  const recomputed = /\bdose\b/i.test(item.question)
-    ? recomputeDose(item.question)
-    : /\brate\b|\bmL\/h/i.test(item.question)
-      ? recomputeRate(item.question)
-      : null;
-  const conflicts = stated.filter((value) => numbersDisagree(keyed, value));
-  const recomputeConflict = recomputed != null && numbersDisagree(keyed, recomputed);
-  if (conflicts.length === 0 && !recomputeConflict) return;
+  const stem = `${item.scenario ?? ""}\n${item.question ?? ""}`;
+  const stated = finalStatedNumber(rationale);
+  if (stated != null && !numbersDisagree(keyed, stated)) return;
 
-  const shown = conflicts[0] ?? recomputed;
+  const asksDose = /\bdose\b/i.test(item.question ?? "") && /\bmg\s*\/\s*kg\b/i.test(stem);
+  const asksRate = /\b(rate|mL\/h)\b/i.test(item.question ?? "");
+  const recomputed = asksDose ? recomputeDose(stem) : asksRate ? recomputeRate(stem) : null;
+  const statedConflict = stated != null && numbersDisagree(keyed, stated);
+  const recomputeConflict =
+    stated == null && recomputed != null && numbersDisagree(keyed, recomputed);
+  if (!statedConflict && !recomputeConflict) return;
+
+  const shown = statedConflict ? stated : recomputed;
   push(
     rows,
     item,
@@ -267,6 +292,8 @@ function asBankItem(item: ContentLintItem): BankItem {
   return {
     id: item.id,
     question: item.question,
+    scenario: item.scenario,
+    vignette: item.scenario,
     options: item.options ?? [],
     correctAnswer: item.correctAnswer ?? "",
     explanation: item.explanation ?? "",
@@ -286,15 +313,24 @@ function answerKey(item: ContentLintItem): string {
 }
 
 function lintConflictingClusters(items: readonly ContentLintItem[], rows: ContentLintRow[]) {
-  const bank = items.map(asBankItem);
-  const clusters = assignSittingClusters(bank);
-  const groups = new Map<string, ContentLintItem[]>();
-  items.forEach((item, index) => {
-    const id = clusters[index]!;
-    const list = groups.get(id) ?? [];
+  const byBoard = new Map<string, ContentLintItem[]>();
+  for (const item of items) {
+    const board = item.fieldId?.trim() || "";
+    const list = byBoard.get(board) ?? [];
     list.push(item);
-    groups.set(id, list);
-  });
+    byBoard.set(board, list);
+  }
+
+  const groups = new Map<string, ContentLintItem[]>();
+  for (const [board, boardItems] of byBoard) {
+    const clusters = assignSittingClusters(boardItems.map(asBankItem));
+    boardItems.forEach((item, index) => {
+      const id = `${board}:${clusters[index]!}`;
+      const list = groups.get(id) ?? [];
+      list.push(item);
+      groups.set(id, list);
+    });
+  }
 
   for (const [clusterId, group] of groups) {
     if (group.length < 2) continue;
@@ -342,21 +378,28 @@ export function contentLintRowsToCsv(rows: readonly ContentLintRow[]): string {
   return `${lines.join("\n")}\n`;
 }
 
+const MEDIA_TEXT_KEYS = ["alt", "caption", "title", "label", "exhibitCaption", "figureCaption", "diagramAlt", "exhibitLabel", "diagramLabel", "figureTitle", "exhibit"] as const;
+
+function collectMediaText(value: unknown, chunks: string[], depth = 0) {
+  if (!value || depth > 4) return;
+  if (typeof value === "string") return;
+  if (Array.isArray(value)) {
+    for (const entry of value) collectMediaText(entry, chunks, depth + 1);
+    return;
+  }
+  if (typeof value !== "object") return;
+  const record = value as Record<string, unknown>;
+  for (const key of MEDIA_TEXT_KEYS) {
+    const text = record[key];
+    if (typeof text === "string" && text.trim()) chunks.push(text.trim());
+  }
+  if ("media" in record) collectMediaText(record.media, chunks, depth + 1);
+  if ("figures" in record) collectMediaText(record.figures, chunks, depth + 1);
+}
+
 export function exhibitTextFromBankItem(item: BankItem): string | undefined {
   const chunks: string[] = [];
-  const meta = item.generationMeta;
-  if (meta && typeof meta === "object") {
-    for (const key of ["exhibitCaption", "figureCaption", "diagramAlt", "exhibitLabel", "diagramLabel"]) {
-      const value = meta[key];
-      if (typeof value === "string" && value.trim()) chunks.push(value.trim());
-    }
-  }
-  const payload = item.ngnPayload;
-  if (payload && typeof payload === "object") {
-    for (const key of ["exhibit", "figureTitle", "diagramLabel", "exhibitCaption"]) {
-      const value = payload[key];
-      if (typeof value === "string" && value.trim()) chunks.push(value.trim());
-    }
-  }
+  collectMediaText(item.generationMeta, chunks);
+  collectMediaText(item.ngnPayload, chunks);
   return chunks.length > 0 ? chunks.join(" ") : undefined;
 }
