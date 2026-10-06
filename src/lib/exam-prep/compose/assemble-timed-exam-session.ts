@@ -184,18 +184,18 @@ export async function assembleTimedExamSessionItems(
       fieldId === "nursing"
         ? Math.max(Math.ceil(limit * 2.2), limit + 80)
         : Math.max(Math.ceil(limit * 1.6), limit + 80);
-    let fastItems = await gatherSprintTimedExamPool({
-      fieldId,
-      limit: sprintTarget,
-      prepareItem: prepare,
-    });
-    if (countSittingClusters(fastItems) < limit) {
-      const more = await gatherSprintTimedExamPool({
+    const rowCap = Math.min(2000, Math.max(sprintTarget * 3, limit * 4));
+    let fastItems: BankItem[] = [];
+    for (let pull = 0; pull < 6 && fastItems.length < rowCap; pull++) {
+      const batch = await gatherSprintTimedExamPool({
         fieldId,
-        limit: sprintTarget,
+        limit: Math.min(sprintTarget, rowCap - fastItems.length),
         prepareItem: prepare,
       });
-      fastItems = mergeBankItems(fastItems, more);
+      const before = fastItems.length;
+      fastItems = mergeBankItems(fastItems, batch);
+      if (fastItems.length === before) break;
+      if (countSittingClusters(fastItems) >= limit) break;
     }
     if (fastItems.length >= limit) {
       return await scope({

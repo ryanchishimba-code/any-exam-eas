@@ -4,7 +4,8 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { getExamBlueprint, type ExamBlueprint } from "@/lib/engine/blueprints";
-import { isPlainSingleAnswerReclass } from "@/lib/exam-prep/effective-type";
+import { isPlainSingleAnswerReclass, isRealHighlight } from "@/lib/exam-prep/effective-type";
+import { parseSelectAllCorrectAnswers } from "@/lib/question-format";
 
 /** Blueprint format → DB itemType aliases that satisfy that slot. */
 const FORMAT_ITEM_TYPES: Record<string, readonly string[]> = {
@@ -60,21 +61,61 @@ function isReclassifiedMcq(item: BankItem): boolean {
   });
 }
 
-function itemMatchesFormat(item: BankItem, format: string): boolean {
-  if (isReclassifiedMcq(item)) return false;
+function payloadKind(item: BankItem): string {
+  if (!item.ngnPayload || typeof item.ngnPayload !== "object") return "";
+  return String((item.ngnPayload as { kind?: unknown }).kind ?? "")
+    .trim()
+    .toLowerCase();
+}
+
+/** SATA rows whose key is one choice are single-answer MCQs. */
+function isSingleAnswerSelectAll(item: BankItem): boolean {
   const type = normalizeItemType(item);
+  if (type !== "select_all" && type !== "sata") return false;
+  return parseSelectAllCorrectAnswers(item.options ?? [], item.correctAnswer ?? "").length < 2;
+}
+
+/** `kind` on the options envelope is not a format. NAPLEX MCQs store kind=highlight. */
+function isClassicCarrier(item: BankItem): boolean {
+  const type = normalizeItemType(item);
+  return type === "mcq" || type === "vignette" || type === "multiple_choice" || type === "";
+}
+
+function isRealHighlightItem(item: BankItem): boolean {
+  const type = normalizeItemType(item);
+  if (type !== "highlight" && type !== "ngn_highlight" && payloadKind(item) !== "highlight") return false;
+  if (isClassicCarrier(item)) return false;
+  return isRealHighlight(
+    {
+      itemType: item.itemType,
+      question: item.question,
+      scenario: item.scenario ?? item.vignette,
+      correctAnswer: item.correctAnswer,
+      options: item.options,
+      ngnPayload: item.ngnPayload,
+    },
+    item.ngnPayload && typeof item.ngnPayload === "object" ? item.ngnPayload : null
+  );
+}
+
+function itemMatchesFormat(item: BankItem, format: string): boolean {
+  if (isReclassifiedMcq(item) || isSingleAnswerSelectAll(item) || isClassicCarrier(item)) return false;
+  const type = normalizeItemType(item);
+  if ((format === "highlight" || type === "highlight" || type === "ngn_highlight") && !isRealHighlightItem(item)) {
+    return false;
+  }
   const aliases = FORMAT_ITEM_TYPES[format];
   if (aliases?.includes(type)) return true;
-  const kind =
-    item.ngnPayload && typeof item.ngnPayload === "object"
-      ? String((item.ngnPayload as { kind?: unknown }).kind ?? "")
-      : "";
+  const kind = payloadKind(item);
+  if (!kind || kind === "highlight") return false;
   return kind === format || aliases?.includes(kind) === true;
 }
 
 function isClassicItem(item: BankItem): boolean {
-  if (isReclassifiedMcq(item)) return true;
+  if (isReclassifiedMcq(item) || isSingleAnswerSelectAll(item)) return true;
+  if (isClassicCarrier(item)) return true;
   const type = normalizeItemType(item);
+  if ((type === "highlight" || type === "ngn_highlight") && !isRealHighlightItem(item)) return true;
   if (CLASSIC_TYPES.has(type)) return true;
   for (const aliases of Object.values(FORMAT_ITEM_TYPES)) {
     if (aliases.includes(type)) return false;
@@ -147,15 +188,17 @@ const PUBLISHED_NGN_TYPES = new Set<string>([
   "constructed_response",
 ]);
 
-/** Published NGN or case row that is still a real alternate format, not a relabeled MCQ. */
+/**
+ * A row that can fill an NGN slot. Single-answer SATA, relabeled cases, and
+ * MCQs that only carry kind=highlight in the options JSON do not qualify.
+ */
 export function isPublishedNgnBankItem(item: BankItem): boolean {
-  if (isReclassifiedMcq(item)) return false;
+  if (isReclassifiedMcq(item) || isSingleAnswerSelectAll(item) || isClassicCarrier(item)) return false;
   const type = normalizeItemType(item);
+  if (type === "highlight" || type === "ngn_highlight") return isRealHighlightItem(item);
   if (PUBLISHED_NGN_TYPES.has(type)) return true;
-  const kind =
-    item.ngnPayload && typeof item.ngnPayload === "object"
-      ? String((item.ngnPayload as { kind?: unknown }).kind ?? "")
-      : "";
+  const kind = payloadKind(item);
+  if (!kind || kind === "highlight" || kind === "mcq" || kind === "vignette") return false;
   return kind === "sequential" || PUBLISHED_NGN_TYPES.has(kind);
 }
 
@@ -174,7 +217,16 @@ export function selectWithNgnFormatMix(
     return pool.slice(0, limit);
   }
 
-  const targets = planNgnFormatTargets(limit, blueprint);
+  const planned = planNgnFormatTargets(limit, blueprint);
+  const targets = planned
+    .map((target) => ({
+      ...target,
+      count: Math.min(
+        target.count,
+        pool.filter((item) => itemMatchesFormat(item, target.format)).length
+      ),
+    }))
+    .filter((target) => target.count > 0);
   if (!targets.length) return pool.slice(0, limit);
 
   const used = new Set<string>();

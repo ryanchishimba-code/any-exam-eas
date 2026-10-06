@@ -33,6 +33,67 @@ const LAMO_OPTIONS = [
 ];
 
 describe("selectSittingItems", () => {
+  it("clusters identical option sets even when the stems are paraphrases", () => {
+    const options = [
+      "Start warfarin today",
+      "Hold anticoagulation",
+      "Give vitamin K",
+      "Recheck in one year",
+    ];
+    const pool = [
+      item(
+        "para-a",
+        "Which regimen should be started today?",
+        options,
+        options[0]!,
+        {
+          scenario:
+            "A 54-year-old man with atrial fibrillation and a prior stroke takes no medicines. Heart rate is 118 and creatinine is 1.1.",
+        }
+      ),
+      item(
+        "para-b",
+        "What is the most appropriate antithrombotic plan?",
+        options,
+        options[0]!,
+        {
+          scenario:
+            "A 61-year-old woman has new atrial fibrillation, a CHA2DS2-VASc score of 4, and no bleeding history.",
+        }
+      ),
+      item(
+        "other",
+        "What is the next best step?",
+        ["Activate the cath lab", "Give acetaminophen", "Discharge home", "Order a sleep study"],
+        "Activate the cath lab",
+        { scenario: "Crushing chest pain with ST elevation in two contiguous leads." }
+      ),
+    ];
+    const clusters = assignSittingClusters(pool);
+    expect(clusters[0]).toBe(clusters[1]);
+    expect(clusters[2]).not.toBe(clusters[0]);
+
+    const selected = selectSittingItems({ pool, limit: 3, seed: 2, relax: false });
+    expect(selected.items.filter((row) => row.id?.startsWith("para-"))).toHaveLength(1);
+    expect(selected.items.some((row) => row.id === "other")).toBe(true);
+  });
+
+  it("keeps a large pool of distinct items fast to cluster", () => {
+    const pool = Array.from({ length: 360 }, (_, index) =>
+      item(
+        `row-${index}`,
+        `Which monitoring step is required before agent ${index} in case ${index * 3}?`,
+        [`Check level ${index}`, `Ignore ${index}`, `Stop ${index}`, `Discharge ${index}`],
+        `Check level ${index}`,
+        { scenario: `Unique history ${index} with finding ${index * 17} and drug ${index * 13}.` }
+      )
+    );
+    const started = Date.now();
+    const clusters = assignSittingClusters(pool);
+    expect(Date.now() - started).toBeLessThan(80);
+    expect(new Set(clusters).size).toBe(pool.length);
+  });
+
   it("keeps one row from a near-duplicate template cluster", () => {
     const pool: BankItem[] = [];
     for (let copy = 0; copy < 9; copy++) {
@@ -166,10 +227,11 @@ describe("simulated sittings", () => {
     expect(after.keyPosition[3]).toBeLessThan(0.4);
   });
 
-  it("puts published NGN items into an NCLEX CAT-sized pool", () => {
+  it("puts eligible NGN items into an NCLEX pool without a 22% claim", () => {
     const { before, after } = compareSitting(boards.nclex);
     expect(before.ngnCount).toBe(0);
-    expect(after.ngnCount).toBeGreaterThan(10);
+    expect(after.ngnCount).toBeGreaterThan(0);
+    expect(after.ngnCount).toBeLessThan(Math.round(boards.nclex.limit * 0.22));
     expect(after.dupRate).toBe(0);
     const assembled = finalizeAssembledSitting({
       pool: boards.nclex.wide,
@@ -180,6 +242,7 @@ describe("simulated sittings", () => {
       includeNgn: true,
     });
     const catNgn = simulateCatNgnCount(assembled.items, 87);
-    expect(catNgn).toBeGreaterThan(8);
+    expect(catNgn).toBeGreaterThan(0);
+    expect(catNgn).toBeLessThanOrEqual(after.ngnCount);
   });
 });

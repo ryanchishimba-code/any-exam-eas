@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import {
   countFormatsInSelection,
+  isPublishedNgnBankItem,
   planNgnFormatTargets,
   selectWithNgnFormatMix,
 } from "./ngn-format-mix";
@@ -44,7 +45,9 @@ describe("selectWithNgnFormatMix", () => {
     const pool: BankItem[] = [];
     for (let i = 0; i < 40; i++) pool.push(item(`v${i}`, "vignette"));
     for (let i = 0; i < 8; i++) pool.push(item(`b${i}`, "ngn_bowtie"));
-    for (let i = 0; i < 6; i++) pool.push(item(`s${i}`, "select_all"));
+    for (let i = 0; i < 6; i++) {
+      pool.push({ ...item(`s${i}`, "select_all"), correctAnswer: "A|||B" });
+    }
     for (let i = 0; i < 5; i++) pool.push(item(`m${i}`, "ngn_matrix"));
     for (let i = 0; i < 4; i++) pool.push(item(`o${i}`, "ordered_response"));
     for (let i = 0; i < 4; i++) pool.push(item(`c${i}`, "case_study"));
@@ -73,6 +76,26 @@ describe("selectWithNgnFormatMix", () => {
     const pool = [...Array.from({ length: 30 }, (_, i) => item(`v${i}`, "vignette")), plain];
     const picked = selectWithNgnFormatMix(pool, 20, "nursing", 9);
     expect(picked.some((row) => row.id === "plain-case")).toBe(false);
+  });
+
+  it("caps NGN at eligible rows and ignores kind=highlight on an MCQ", () => {
+    const pool: BankItem[] = [];
+    for (let i = 0; i < 200; i++) pool.push(item(`v${i}`, "vignette"));
+    for (let i = 0; i < 6; i++) pool.push(item(`b${i}`, "ngn_bowtie"));
+    for (let i = 0; i < 30; i++) pool.push(item(`s${i}`, "select_all"));
+    for (let i = 0; i < 12; i++) {
+      pool.push({
+        ...item(`h${i}`, "vignette"),
+        ngnPayload: { kind: "highlight", options: ["A", "B", "C", "D"] },
+      } as BankItem);
+    }
+
+    expect(pool.filter((row) => isPublishedNgnBankItem(row))).toHaveLength(6);
+    const picked = selectWithNgnFormatMix(pool, 150, "nursing", 1);
+    const ngn = picked.filter((row) => isPublishedNgnBankItem(row));
+    expect(ngn).toHaveLength(6);
+    expect(ngn.every((row) => row.id?.startsWith("b"))).toBe(true);
+    expect(ngn.length / picked.length).toBeLessThan(0.22);
   });
 
   it("falls back when NGN inventory is thin", () => {

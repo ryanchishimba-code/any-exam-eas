@@ -10,7 +10,7 @@ import { isPublishedNgnBankItem } from "@/lib/full-exam/ngn-format-mix";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import { initCatSession, updateCatSession } from "@/lib/questions/cat-engine";
 import { mapDifficultyToCatBand, pickCatNext } from "@/lib/questions/cat-select";
-import { NCLEX_CAT_NGN_TARGET_RATIO } from "@/lib/full-exam/nclex-cat-ngn";
+import { cappedNgnTargetRatio } from "@/lib/full-exam/nclex-cat-ngn";
 
 const CHOICES = ["Hold the dose", "Continue and monitor", "Call the prescriber", "Document only"];
 
@@ -271,7 +271,10 @@ export function simulateCatNgnCount(pool: readonly BankItem[], length: number): 
   let ngn = 0;
   for (let i = 0; i < length; i++) {
     const next = pickCatNext(state, items, used, () => 0.1, {
-      ngnTargetRatio: items.some((item) => item.ngn) ? NCLEX_CAT_NGN_TARGET_RATIO : 0,
+      ngnTargetRatio: cappedNgnTargetRatio(
+        items.filter((item) => item.ngn).length,
+        items.length
+      ),
       delivered,
     });
     if (!next) break;

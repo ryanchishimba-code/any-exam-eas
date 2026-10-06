@@ -57,7 +57,7 @@ import {
   type CatSessionState,
 } from "@/lib/questions/cat-engine";
 import { mapDifficultyToCatBand, pickCatNext, type CatFormatHint } from "@/lib/questions/cat-select";
-import { NCLEX_CAT_NGN_TARGET_RATIO } from "@/lib/full-exam/nclex-cat-ngn";
+import { cappedNgnTargetRatio } from "@/lib/full-exam/nclex-cat-ngn";
 import {
   catInExamTip,
   catSessionStopSummary,
@@ -103,16 +103,20 @@ function catFormatFields(question: StudyQuestion): Pick<CatPoolItem, "ngn" | "se
   const payload = question.ngnPayload as { setId?: string; stepIndex?: number; kind?: string } | undefined;
   const sequential = payload?.kind === "sequential" && Boolean(payload.setId);
   return {
-    ngn: NGN_STUDY_TYPES.has(question.type) || sequential,
+    ngn:
+      (question.type === "select_all"
+        ? question.correctAnswers.length >= 2
+        : NGN_STUDY_TYPES.has(question.type)) || sequential,
     setId: sequential ? payload?.setId : undefined,
     stepIndex: sequential ? payload?.stepIndex : undefined,
   };
 }
 
 function catFormatHint(pool: CatPoolItem[], delivered: StudyQuestion[]): CatFormatHint | undefined {
-  if (!pool.some((item) => item.ngn)) return undefined;
+  const eligible = pool.filter((item) => item.ngn).length;
+  if (eligible === 0) return undefined;
   return {
-    ngnTargetRatio: NCLEX_CAT_NGN_TARGET_RATIO,
+    ngnTargetRatio: cappedNgnTargetRatio(eligible, pool.length),
     delivered: delivered.map((question) => ({
       id: question.id,
       ...catFormatFields(question),
