@@ -807,7 +807,9 @@ export function FullExamSimulator({
         catStopsAfterCurrent = true;
       } else {
         const used = new Set(questions.map((q) => q.id));
-        catStopsAfterCurrent = pickCatNext(projected.state, catPool, used) == null;
+        catStopsAfterCurrent =
+          pickCatNext(projected.state, catPool, used, () => 0, catFormatHint(catPool, questions)) ==
+          null;
       }
     }
     return shouldOfferFullExamReviewSubmit({

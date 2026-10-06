@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { formatAnswerDisplay } from "@/lib/full-exam/answer-serialize";
+import { formatAnswerDisplay, storedAnswerIncludesChoice } from "@/lib/full-exam/answer-serialize";
 import { formatHms } from "@/lib/full-exam/config";
 import { fullExamTreatsAsEndedEarly } from "@/lib/full-exam/results-title";
 import { fullExamHref } from "@/lib/routes";
@@ -152,12 +152,8 @@ export function FullExamResults({
           {current.options.length > 0 ? (
             <ul className="mt-6 space-y-2">
               {current.options.map((opt) => {
-                const selected = formatAnswerDisplay(currentAnswer?.selected ?? "")
-                  .split(", ")
-                  .includes(opt);
-                const correctOpt = formatAnswerDisplay(current.correctAnswer)
-                  .split(", ")
-                  .includes(opt);
+                const selected = storedAnswerIncludesChoice(currentAnswer?.selected ?? "", opt);
+                const correctOpt = storedAnswerIncludesChoice(current.correctAnswer, opt);
                 return (
                   <li
                     key={opt}

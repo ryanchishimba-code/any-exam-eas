@@ -37,6 +37,16 @@ export function formatAnswerDisplay(value: string): string {
   return value;
 }
 
+/** Whether a snapshot choice is this option. Commas inside one choice stay intact. */
+export function storedAnswerIncludesChoice(stored: string, choice: string): boolean {
+  const target = choice.trim();
+  if (!stored.trim() || !target) return false;
+  const parts = stored.includes("|||")
+    ? stored.split("|||").map((part) => part.trim()).filter(Boolean)
+    : [stored];
+  return parts.some((part) => part === target);
+}
+
 /** Serialize correct answers for results snapshots. */
 export function serializeCorrectAnswer(question: StudyQuestion): string {
   if (
