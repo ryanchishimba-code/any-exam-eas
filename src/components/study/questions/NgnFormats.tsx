@@ -107,7 +107,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
 
         <div className="rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4">
           <p className="text-[10px] font-bold uppercase tracking-wider text-teal-700">
-            Conditions to monitor
+            Parameters to monitor
           </p>
           <ul className="mt-3 space-y-2">
             {layout.monitors.map((opt) => {
@@ -136,7 +136,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
         <p className="text-xs text-[var(--color-ink-muted)]">
           {valid
             ? "Selection complete — submit when ready."
-            : `${bowTiePickInstruction(layout).replace(/\.$/, "")}.`}
+            : `${bowTiePickInstruction(layout)}.`}
         </p>
       )}
     </div>

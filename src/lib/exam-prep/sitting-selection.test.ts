@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
-import { entityShareCap, nursingDosageShareCap } from "@/lib/exam-prep/entity-cap";
+import {
+  calcTemplateAsk,
+  entityShareCap,
+  isPharmacyNumericEntry,
+  itemClinicalText,
+  nursingDosageShareCap,
+} from "@/lib/exam-prep/entity-cap";
 import {
   finalizeAssembledSitting,
   isPharmacyCalculationItem,
@@ -10,7 +16,12 @@ import {
   storedFormNeedsFreshAssembly,
 } from "@/lib/exam-prep/sitting-selection";
 import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
-import { compareSitting, simulateCatNgnCount, simulatedBoards } from "@/lib/exam-prep/sitting-simulation";
+import {
+  compareSitting,
+  deliverCatSitting,
+  simulateCatNgnCount,
+  simulatedBoards,
+} from "@/lib/exam-prep/sitting-simulation";
 
 function item(
   id: string,
@@ -346,6 +357,133 @@ describe("finalizeAssembledSitting caps", () => {
     ];
     const selected = finalizeAssembledSitting({ pool, limit: 50, fieldId: "pharmacy", seed: 9 });
     expect(selected.items.filter(isPharmacyCalculationItem).length).toBeGreaterThanOrEqual(4);
+  });
+
+  it("keeps a 50-item pharmacy sitting inside the calc reserve with no repeated template or drug", () => {
+    const concentration = (id: string, mg: number) =>
+      item(
+        id,
+        `Amoxicillin suspension is ${mg} mg/5 mL. Calculate the concentration in mg/mL.`,
+        [],
+        String(mg / 5),
+        {
+          itemType: "constructed_response",
+          scenario: `Pharmacy counter case ${id}. The caregiver asks how many mg are in each mL.`,
+        }
+      );
+    const tablets = (id: string, days: number) =>
+      item(
+        id,
+        `Amoxicillin 500 mg is ordered every 8 hours for ${days} days. How many tablets should be dispensed?`,
+        [],
+        String(days * 3),
+        { itemType: "constructed_response", scenario: `Dispensing case ${id} at the outpatient window.` }
+      );
+    const drugMcq = (drug: string, id: string) =>
+      item(
+        id,
+        `Which monitoring step is required before the next ${drug} dose in encounter ${id}?`,
+        [`Check ${id}`, "Skip the visit"],
+        `Check ${id}`,
+        { itemType: "mcq", scenario: `${drug} follow-up ${id}.` }
+      );
+    const realCalc = (drug: string, index: number) =>
+      item(
+        `real-${drug}`,
+        `How many milligrams of ${drug} are required for a ${50 + index} kg adult? Round to the nearest whole milligram.`,
+        [],
+        String(15 + index),
+        {
+          itemType: "constructed_response",
+          scenario: `Calculation for ${drug}: volume ${100 + index * 13} mL.`,
+        }
+      );
+    const filler = (id: string) =>
+      item(id, `Which counseling point applies to refill case ${id}?`, [`Point ${id}`, "Skip"], `Point ${id}`, {
+        itemType: "mcq",
+      });
+    const pool = [
+      ...Array.from({ length: 12 }, (_, i) => concentration(`amox-conc-${i}`, 200 + i * 25)),
+      ...Array.from({ length: 8 }, (_, i) => tablets(`amox-tab-${i}`, 7 + i)),
+      ...Array.from({ length: 6 }, (_, i) => drugMcq("lisinopril", `lisi-${i}`)),
+      ...Array.from({ length: 4 }, (_, i) => drugMcq("atorvastatin", `ator-${i}`)),
+      ...Array.from({ length: 4 }, (_, i) => drugMcq("metformin", `met-${i}`)),
+      ...["vancomycin", "phenytoin", "gentamicin", "heparin", "digoxin", "warfarin"].map((drug, index) =>
+        realCalc(drug, index)
+      ),
+      ...Array.from({ length: 80 }, (_, i) => filler(`fill-${i}`)),
+    ];
+    const selected = finalizeAssembledSitting({ pool, limit: 50, fieldId: "pharmacy", seed: 163 });
+    const calcs = selected.items.filter(isPharmacyNumericEntry);
+    const templates = calcs.map((row) => calcTemplateAsk(row.question)).filter((key): key is string => Boolean(key));
+    expect(selected.items).toHaveLength(50);
+    expect(entityShareCap(50)).toBe(2);
+    expect(calcs.length).toBeLessThanOrEqual(pharmacyCalculationQuota(50));
+    expect(calcs.length).toBeGreaterThanOrEqual(4);
+    expect(new Set(templates).size).toBe(templates.length);
+    for (const drug of ["amoxicillin", "lisinopril", "atorvastatin", "metformin"]) {
+      const count = selected.items.filter((row) => new RegExp(`\\b${drug}\\b`, "i").test(itemClinicalText(row))).length;
+      expect(count).toBeLessThanOrEqual(2);
+    }
+  });
+});
+
+describe("NCLEX CAT condition cap", () => {
+  it("keeps every condition at or below 3 in an 85-item adaptive delivery", () => {
+    const stacks: { pattern: RegExp; stem: (id: string, n: number) => string }[] = [
+      {
+        pattern: /cholecystectomy|lap chole/i,
+        stem: (id, n) =>
+          `Postoperative day ${n + 1} after laparoscopic cholecystectomy, room ${id}. Which action is the priority for this client?`,
+      },
+      {
+        pattern: /suicide|depression/i,
+        stem: (id, n) =>
+          `A client in room ${id} reports suicidal thoughts and a history of depression after ${n + 2} days on the unit. Which action is the priority?`,
+      },
+      {
+        pattern: /preeclampsia|late decel/i,
+        stem: (id, n) =>
+          `At ${30 + n} weeks the fetal tracing shows late decels and the client has preeclampsia, bed ${id}. Which action is first?`,
+      },
+      {
+        pattern: /hip arthroplasty/i,
+        stem: (id, n) =>
+          `Day ${n + 1} after hip arthroplasty, the client in room ${id} needs assistance to the chair. Which precaution is required?`,
+      },
+      {
+        pattern: /postpartum hemorrhage/i,
+        stem: (id, n) =>
+          `Two hours after delivery the client in room ${id} has a postpartum hemorrhage and soaked pad ${n + 1}. Which action is first?`,
+      },
+      {
+        pattern: /\bburns?\b/i,
+        stem: (id, n) =>
+          `A client in room ${id} has partial-thickness burns to the arm from a scald ${n + 1} hours ago. Which action is first?`,
+      },
+    ];
+    const pool = [
+      ...stacks.flatMap((stack) =>
+        Array.from({ length: 8 }, (_, n) =>
+          item(`cond-${stack.pattern.source}-${n}`, stack.stem(`r${n}`, n), [`Act ${n}`, "Wait"], `Act ${n}`)
+        )
+      ),
+      ...Array.from({ length: 90 }, (_, n) =>
+        item(
+          `filler-${n}`,
+          `Which isolation step is required before entering room ${700 + n} for agent ${n}?`,
+          [`Step ${n}`, "Skip"],
+          `Step ${n}`
+        )
+      ),
+    ];
+    const delivered = deliverCatSitting(pool, 85, "nursing");
+    expect(entityShareCap(85)).toBe(3);
+    expect(delivered).toHaveLength(85);
+    for (const stack of stacks) {
+      const count = delivered.filter((row) => stack.pattern.test(itemClinicalText(row))).length;
+      expect(count).toBeLessThanOrEqual(3);
+    }
   });
 });
 

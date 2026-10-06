@@ -4,6 +4,7 @@
  * published NGN rows the old gather never merged in.
  */
 import type { BankItem } from "@/lib/question-bank";
+import { sittingAskKey, sittingEntityKey } from "@/lib/exam-prep/entity-cap";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { finalizeAssembledSitting } from "@/lib/exam-prep/sitting-selection";
 import { isPublishedNgnBankItem } from "@/lib/full-exam/ngn-format-mix";
@@ -258,17 +259,27 @@ export function measureSitting(
 }
 
 /** Walk the practice CAT the way the simulator does, stopping at `length`. */
-export function simulateCatNgnCount(pool: readonly BankItem[], length: number): number {
-  const items = pool.map((item, index) => ({
-    id: item.id ?? `row-${index}`,
-    difficultyBand: mapDifficultyToCatBand(index % 3 === 0 ? "easy" : index % 3 === 1 ? "medium" : "hard", index),
-    ngn: isPublishedNgnBankItem(item),
-    item,
-  }));
+export function deliverCatSitting(
+  pool: readonly BankItem[],
+  length: number,
+  fieldId = "nursing"
+): BankItem[] {
+  const clusters = assignSittingClusters([...pool]);
+  const items = pool.map((item, index) => {
+    const text = [item.scenario, item.vignette, item.question].filter(Boolean).join("\n");
+    return {
+      id: item.id ?? `row-${index}`,
+      difficultyBand: mapDifficultyToCatBand(index % 3 === 0 ? "easy" : index % 3 === 1 ? "medium" : "hard", index),
+      ngn: isPublishedNgnBankItem(item),
+      entityKey: sittingEntityKey(text, fieldId),
+      askKey: sittingAskKey(item.question) ?? sittingAskKey(text),
+      clusterId: clusters[index],
+      item,
+    };
+  });
   const delivered: typeof items = [];
   const used = new Set<string>();
   let state = initCatSession();
-  let ngn = 0;
   for (let i = 0; i < length; i++) {
     const next = pickCatNext(state, items, used, () => 0.1, {
       ngnTargetRatio: cappedNgnTargetRatio(
@@ -280,10 +291,13 @@ export function simulateCatNgnCount(pool: readonly BankItem[], length: number): 
     if (!next) break;
     used.add(next.id);
     delivered.push(next);
-    if (next.ngn) ngn += 1;
     state = updateCatSession(state, i % 2 === 0, next.difficultyBand);
   }
-  return ngn;
+  return delivered.map((row) => row.item);
+}
+
+export function simulateCatNgnCount(pool: readonly BankItem[], length: number, fieldId = "nursing"): number {
+  return deliverCatSitting(pool, length, fieldId).filter((item) => isPublishedNgnBankItem(item)).length;
 }
 
 export function compareSitting(board: SimulatedBank): { before: SittingMetrics; after: SittingMetrics } {

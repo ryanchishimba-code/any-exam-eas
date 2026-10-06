@@ -62,11 +62,12 @@ export type BowTieLayout = {
   monitorPickCount: number;
 };
 
-export function bowTiePickInstruction(layout: Pick<BowTieLayout, "actionPickCount" | "monitorPickCount">): string {
-  const actions = layout.actionPickCount === 1 ? "one action" : `${layout.actionPickCount} actions`;
-  const conditions =
-    layout.monitorPickCount === 1 ? "one condition" : `${layout.monitorPickCount} conditions`;
-  return `Select ${actions} to take and ${conditions} to monitor.`;
+export function bowTiePickInstruction(
+  layout: Pick<BowTieLayout, "actionPickCount" | "monitorPickCount" | "conditionOptions">
+): string {
+  const actions = `${layout.actionPickCount} action${layout.actionPickCount === 1 ? "" : "s"}`;
+  const parameters = `${layout.monitorPickCount} parameter${layout.monitorPickCount === 1 ? "" : "s"}`;
+  return `Choose the condition, ${actions} to take, and ${parameters} to monitor`;
 }
 
 export type MatrixLayout = {

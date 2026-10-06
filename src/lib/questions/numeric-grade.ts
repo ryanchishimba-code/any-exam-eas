@@ -115,8 +115,75 @@ export function parseNumericSpan(raw: string): NumericSpan | null {
   return { min: point, max: point };
 }
 
-function gradedValue(value: number, rule: NumericGradeRule): number {
-  return rule.kind === "round" ? roundHalfAwayFromZero(value, rule.places) : value;
+/** Decimal places written on the key. "333" is 0, "9.20" is 2. */
+export function keyDecimalPlaces(keyRaw: string): number {
+  const matches = keyRaw.match(/\d+\.\d+/g);
+  if (!matches || matches.length === 0) return 0;
+  return Math.max(...matches.map((token) => token.split(".")[1]!.length));
+}
+
+/**
+ * Exact keys also accept a value that rounds to the key's precision,
+ * or that sits within 0.5% of the key. An explicit rounding instruction
+ * still uses only that rule.
+ */
+export function numericValuesMatch(
+  student: number,
+  min: number,
+  max: number,
+  instruction: string,
+  keyRaw: string
+): boolean {
+  const rule = numericGradeRule(instruction);
+  const scale = Math.max(1, Math.abs(student), Math.abs(min), Math.abs(max));
+  const epsilon = 1e-9 * scale;
+  if (rule.kind === "round") {
+    const graded = roundHalfAwayFromZero(student, rule.places);
+    const lo = roundHalfAwayFromZero(min, rule.places);
+    const hi = roundHalfAwayFromZero(max, rule.places);
+    return graded >= lo - epsilon && graded <= hi + epsilon;
+  }
+  if (student >= min - epsilon && student <= max + epsilon) return true;
+  const rounded = roundHalfAwayFromZero(student, keyDecimalPlaces(keyRaw));
+  if (rounded >= min - epsilon && rounded <= max + epsilon) return true;
+  const anchor = student < min ? min : max;
+  const denom = Math.max(Math.abs(anchor), 1e-9);
+  return Math.abs(student - anchor) / denom <= 0.005;
+}
+
+const UNIT_WORDS = "mg/mL|mcg/mL|mL/hr|mg|mcg|mL|tablets?|capsules?|gtt|mEq|%";
+
+/** Unit chip for a numeric box. A stem that asks for tablets does not keep a stored "mg". */
+export function numericAnswerUnit(stem: string, key: string, stored?: string): string {
+  const ask = stem.toLowerCase();
+  if (/how many tablets/.test(ask)) return "tablets";
+  if (/how many capsules/.test(ask)) return "capsules";
+  if (/how many (?:ml|milliliters)/.test(ask)) return "mL";
+  if (/how many (?:drops|gtt)/.test(ask)) return "gtt";
+  if (/mg\s*\/\s*ml|concentration in mg/.test(ask)) return "mg/mL";
+  if (/ml\s*\/\s*hr|infusion rate|drops per minute/.test(ask)) return "mL/hr";
+  if (/how many milligrams|dose in mg|milligrams of/.test(ask)) return "mg";
+  const storedUnit = (stored ?? "").trim();
+  if (storedUnit && !(/^mg$/i.test(storedUnit) && /tablet/.test(ask))) {
+    if (new RegExp(storedUnit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i").test(stem)) return storedUnit;
+  }
+  const fromKey = key.match(new RegExp(`\\d(?:\\.\\d+)?\\s*(${UNIT_WORDS})\\s*$`, "i"));
+  if (!fromKey) return "";
+  const unit = fromKey[1]!;
+  if (/^tablets?$/i.test(unit)) return "tablets";
+  if (/^capsules?$/i.test(unit)) return "capsules";
+  return unit;
+}
+
+/** Shown when the stem never says how to round a numeric key. */
+export function numericRoundingNote(stem: string, key: string): string | null {
+  if (numericGradeRule(stem).kind === "round") return null;
+  if (parseNumericSpan(key) == null) return null;
+  const places = keyDecimalPlaces(key);
+  if (places <= 0) return "Round to the nearest whole number.";
+  if (places === 1) return "Round to the nearest tenth.";
+  if (places === 2) return "Round to the nearest hundredth.";
+  return `Round to ${places} decimal places.`;
 }
 
 /**
@@ -133,11 +200,5 @@ export function gradeNumericAnswer(
   const key = parseNumericSpan(keyRaw);
   if (student == null && key == null) return null;
   if (student == null || key == null) return false;
-  const rule = numericGradeRule(instruction);
-  const graded = gradedValue(student, rule);
-  const min = gradedValue(key.min, rule);
-  const max = gradedValue(key.max, rule);
-  const scale = Math.max(1, Math.abs(graded), Math.abs(min), Math.abs(max));
-  const epsilon = 1e-9 * scale;
-  return graded >= min - epsilon && graded <= max + epsilon;
+  return numericValuesMatch(student, key.min, key.max, instruction, keyRaw);
 }

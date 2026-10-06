@@ -35,7 +35,9 @@ import {
   fullExamSubmitEndedEarly,
   shouldOfferFullExamReviewSubmit,
 } from "@/lib/full-exam/submit-intent";
+import { sittingAskKey, sittingEntityKey } from "@/lib/exam-prep/entity-cap";
 import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
+import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
 import { takeFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
@@ -99,6 +101,9 @@ type CatPoolItem = StudyQuestion & {
   setId?: string;
   stepIndex?: number;
   narrowTopic?: string | null;
+  entityKey?: string | null;
+  askKey?: string | null;
+  clusterId?: string | null;
 };
 
 function narrowTopicForQuestion(question: StudyQuestion): string | null {
@@ -147,11 +152,17 @@ function catFormatHint(pool: CatPoolItem[], delivered: StudyQuestion[]): CatForm
   const eligible = pool.filter((item) => item.ngn).length;
   return {
     ngnTargetRatio: eligible === 0 ? 0 : cappedNgnTargetRatio(eligible, pool.length),
-    delivered: delivered.map((question) => ({
-      id: question.id,
-      ...catFormatFields(question),
-      narrowTopic: narrowTopicForQuestion(question),
-    })),
+    delivered: delivered.map((question) => {
+      const tagged = question as StudyQuestion & Partial<CatPoolItem>;
+      return {
+        id: question.id,
+        ...catFormatFields(question),
+        narrowTopic: tagged.narrowTopic ?? narrowTopicForQuestion(question),
+        entityKey: tagged.entityKey,
+        askKey: tagged.askKey,
+        clusterId: tagged.clusterId,
+      };
+    }),
   };
 }
 
@@ -339,12 +350,28 @@ export function FullExamSimulator({
 
       function applyLoaded(items: StudyQuestion[]) {
         if (isCatMode) {
-          const pool: CatPoolItem[] = items.map((q, i) => ({
-            ...q,
-            ...catFormatFields(q),
-            narrowTopic: narrowTopicForQuestion(q),
-            difficultyBand: mapDifficultyToCatBand(q.difficulty, i),
-          }));
+          const clusters = assignSittingClusters(
+            items.map((q) => ({
+              id: q.id,
+              question: q.stem,
+              vignette: q.vignette,
+              options: q.options,
+              correctAnswer: q.correctAnswers.join("|||"),
+              explanation: q.explanation,
+            }))
+          );
+          const pool: CatPoolItem[] = items.map((q, i) => {
+            const text = [q.vignette, q.stem].filter(Boolean).join("\n");
+            return {
+              ...q,
+              ...catFormatFields(q),
+              narrowTopic: narrowTopicForQuestion(q),
+              difficultyBand: mapDifficultyToCatBand(q.difficulty, i),
+              entityKey: sittingEntityKey(text, fieldId),
+              askKey: sittingAskKey(q.stem) ?? sittingAskKey(text),
+              clusterId: clusters[i],
+            };
+          });
           const first = pickCatNext(initCatSession(), pool, new Set(), Math.random, catFormatHint(pool, []));
           if (!first) {
             throw new Error("Could not start practice CAT — empty question pool.");
@@ -784,14 +811,29 @@ export function FullExamSimulator({
               clientOpenedAt: new Date(openedAtMs.current).toISOString(),
               topicBreakdown,
               questionIds: questions.map((q) => q.bankItemId ?? q.id),
-              questionSnapshots: questions.map((q) => ({
-                id: q.bankItemId ?? q.id,
-                question: q.stem,
-                options: q.options,
-                correctAnswer: serializeCorrectAnswer(q),
-                explanation: q.explanation,
-                ...questionTopicFields(q),
-              })),
+              questionSnapshots: questions.map((q) => {
+                const bowTie =
+                  q.type === "bow_tie" || q.ngnFormat === "bow_tie" ? parseBowTieLayout(q) : null;
+                return {
+                  id: q.bankItemId ?? q.id,
+                  question: q.stem,
+                  options: q.options,
+                  correctAnswer: serializeCorrectAnswer(q),
+                  explanation: q.explanation,
+                  ...questionTopicFields(q),
+                  ...(bowTie
+                    ? {
+                        ngnFormat: "bow_tie" as const,
+                        bowTie: {
+                          condition: bowTie.condition,
+                          conditionOptions: bowTie.conditionOptions,
+                          actions: bowTie.actions,
+                          monitors: bowTie.monitors,
+                        },
+                      }
+                    : {}),
+                };
+              }),
               endedEarly: markEndedEarly,
               summary: markEndedEarly
                 ? "Session ended early. Your saved answers were scored."

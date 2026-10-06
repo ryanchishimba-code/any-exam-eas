@@ -15,7 +15,13 @@ import {
   narrowTopicShareCap,
   orderWithTopicGap,
 } from "@/lib/exam-prep/narrow-topic";
-import { enforceEntityAndDosageCap } from "@/lib/exam-prep/entity-cap";
+import {
+  enforceEntityAndDosageCap,
+  isPharmacyCalculationItem,
+  pharmacyCalculationQuota,
+} from "@/lib/exam-prep/entity-cap";
+
+export { isPharmacyCalculationItem, pharmacyCalculationQuota };
 import { selectWithNgnFormatMix } from "@/lib/full-exam/ngn-format-mix";
 
 export type SittingSelection = {
@@ -204,27 +210,6 @@ export function selectSittingItems(params: {
   };
 }
 
-const CALC_ITEM =
-  /\b(?:calculate|how many|how much|round to|ml\/hr|mg\/kg|infusion rate|drops per|\bgtt\b|\bauc\b|alligation|isotonicity|e-value|percent strength|w\/v|w\/w)\b/i;
-
-/** About 8% of a pharmacy sitting, clamped to 6–10% and at least 2 when the exam is long enough. */
-export function pharmacyCalculationQuota(limit: number): number {
-  const length = Math.max(0, Math.floor(limit));
-  if (length <= 0) return 0;
-  const low = Math.max(2, Math.round(length * 0.06));
-  const high = Math.max(low, Math.round(length * 0.1));
-  const target = Math.round(length * 0.08);
-  return Math.min(length, high, Math.max(low, target));
-}
-
-export function isPharmacyCalculationItem(item: BankItem): boolean {
-  const type = (item.itemType ?? "").toLowerCase();
-  if (type !== "constructed_response" && type !== "calculation" && type !== "short_answer") return false;
-  if (!/\d/.test(String(item.correctAnswer ?? ""))) return false;
-  const text = [item.question, item.vignette, item.scenario].filter(Boolean).join("\n");
-  return CALC_ITEM.test(text);
-}
-
 function clusterLookup(pool: readonly BankItem[]): (item: BankItem) => string | undefined {
   const clusterIds = assignSittingClusters([...pool]);
   const byItem = new Map<BankItem, string>();
@@ -274,47 +259,6 @@ function enforceNarrowTopicCap(
     }
   }
   return kept.slice(0, limit);
-}
-
-function withCalculationReserve(
-  pool: readonly BankItem[],
-  picked: readonly BankItem[],
-  limit: number
-): BankItem[] {
-  const quota = Math.min(pool.filter(isPharmacyCalculationItem).length, pharmacyCalculationQuota(limit));
-  if (quota === 0) return picked.slice(0, limit);
-  const next = picked.slice(0, limit);
-  const have = next.filter(isPharmacyCalculationItem).length;
-  if (have >= quota) return next;
-  const clusterOf = clusterLookup(pool);
-  const usedClusters = new Set(next.map((item) => clusterOf(item)).filter((id): id is string => Boolean(id)));
-  const used = new Set(next.map((item) => item.id?.trim()).filter(Boolean));
-  const extras = pool.filter((item) => {
-    if (!isPharmacyCalculationItem(item) || used.has(item.id?.trim() ?? "")) return false;
-    const cluster = clusterOf(item);
-    return !cluster || !usedClusters.has(cluster);
-  });
-  let need = quota - have;
-  for (const extra of extras) {
-    if (need <= 0) break;
-    const extraCluster = clusterOf(extra);
-    if (extraCluster && usedClusters.has(extraCluster)) continue;
-    let index = -1;
-    for (let i = next.length - 1; i >= 0; i -= 1) {
-      if (!isPharmacyCalculationItem(next[i]!)) {
-        index = i;
-        break;
-      }
-    }
-    if (index < 0) break;
-    const replaced = next[index]!;
-    const replacedCluster = clusterOf(replaced);
-    if (replacedCluster) usedClusters.delete(replacedCluster);
-    if (extraCluster) usedClusters.add(extraCluster);
-    next[index] = extra;
-    need -= 1;
-  }
-  return next;
 }
 
 export type AssembledSitting = {
@@ -371,11 +315,6 @@ export function finalizeAssembledSitting(params: {
 
   let capped = enforceNarrowTopicCap(picked, params.pool, limit);
   capped = enforceEntityAndDosageCap(capped, params.pool, limit, params.fieldId);
-  if (params.fieldId === "pharmacy") {
-    capped = withCalculationReserve(params.pool, capped, limit);
-    capped = enforceNarrowTopicCap(capped, params.pool, limit);
-    capped = withCalculationReserve(params.pool, capped, limit);
-  }
 
   const spread = orderWithTopicGap(capped, (item) =>
     sequentialSetId(item) ? null : narrowTopicKeyFromBankItem(item)

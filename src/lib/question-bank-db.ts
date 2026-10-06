@@ -195,7 +195,7 @@ function rowToBankItem(row: {
 
 /** Constructed pharmacy calculations for the sitting reserve. Read-only. */
 export async function samplePharmacyCalculationItems(count: number): Promise<BankItem[]> {
-  const pull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(count, 24));
+  const pull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(count, 8));
   const rows = await sampleQuestionBankRows({
     where: {
       fieldId: "pharmacy",

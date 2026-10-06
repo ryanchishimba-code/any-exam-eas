@@ -36,6 +36,7 @@ import {
   countSittingClusters,
   finalizeAssembledSitting,
   isPharmacyCalculationItem,
+  pharmacyCalculationQuota,
 } from "@/lib/exam-prep/sitting-selection";
 import { sampleActiveItemsByFormat, samplePharmacyCalculationItems } from "@/lib/question-bank-db";
 
@@ -191,7 +192,8 @@ export async function assembleTimedExamSessionItems(
     }
     if (fieldId === "pharmacy") {
       try {
-        const sampled = await samplePharmacyCalculationItems(Math.max(24, limit));
+        const quota = pharmacyCalculationQuota(limit);
+        const sampled = await samplePharmacyCalculationItems(Math.max(quota * 3, 12));
         const prepared = sampled.map((item) => prepare(item)).filter(isPharmacyCalculationItem);
         items = mergeBankItems(items, prepared);
       } catch (error) {
