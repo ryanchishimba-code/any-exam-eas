@@ -25,6 +25,7 @@ import {
 
 export { isPharmacyCalculationItem, pharmacyCalculationQuota };
 import { selectWithNgnFormatMix } from "@/lib/full-exam/ngn-format-mix";
+import { rankSittingByBlueprint } from "@/lib/exam-prep/sitting-blueprint";
 
 export type SittingSelection = {
   items: BankItem[];
@@ -341,8 +342,9 @@ export function finalizeAssembledSitting(params: {
   const includeNgn = params.includeNgn !== false;
   const seen = params.seenIds;
 
+  const rankedPool = rankSittingByBlueprint(params.pool, limit, params.fieldId, seed);
   const diverse = selectSittingItems({
-    pool: params.pool,
+    pool: rankedPool,
     limit: Math.max(params.pool.length, limit),
     seenIds: seen,
     seed,
@@ -352,7 +354,7 @@ export function finalizeAssembledSitting(params: {
   const applyMix = (source: BankItem[]) =>
     includeNgn ? selectWithNgnFormatMix(source, limit, params.fieldId, seed) : source.slice(0, limit);
 
-  let picked = applyMix(diverse.items);
+  let picked = applyMix(rankSittingByBlueprint(diverse.items, limit, params.fieldId, seed ^ 0x9e37));
   let relaxed = false;
 
   if (picked.length < limit) {
@@ -373,9 +375,9 @@ export function finalizeAssembledSitting(params: {
   let chosen = picked;
   let capStats: CapRejectionStats = { poolSize: params.pool.length, kept: 0, rejections: {}, relaxLevel: 0 };
   let strict: { kept: number; rejections: Record<string, number> } | null = null;
-  for (let level = 0; level <= 5; level++) {
+  for (let level = 0; level <= 7; level++) {
     const limits = sittingCapLimits(limit, level);
-    const narrowed = enforceNarrowTopicCap(picked, params.pool, limit, limits.narrowCap);
+    const narrowed = enforceNarrowTopicCap(picked, rankedPool, limit, limits.narrowCap);
     const stats: CapRejectionStats = {
       poolSize: params.pool.length,
       kept: 0,
@@ -384,7 +386,7 @@ export function finalizeAssembledSitting(params: {
     };
     const capped = enforceEntityAndDosageCap(
       narrowed,
-      params.pool,
+      rankedPool,
       limit,
       params.fieldId,
       seen,

@@ -18,10 +18,17 @@ import {
   sittingConditionMentions,
   sittingDrugMentions,
   sittingDrugSplit,
+  sittingConceptKeys,
   sittingRepeatKeys,
   sittingVitalFingerprint,
+  conceptRepeatCap,
   templateRepeatCap,
 } from "@/lib/exam-prep/entity-cap";
+import {
+  classifyNaplexSittingItem,
+  naplexDiseaseFloor,
+  naplexLawItemCeiling,
+} from "@/lib/exam-prep/sitting-blueprint";
 import {
   finalizeAssembledSitting,
   isPharmacyCalculationItem,
@@ -2309,7 +2316,7 @@ describe("length-scaled sitting caps", () => {
     ];
     const clusterResult = finalizeAssembledSitting({ pool: clustered, limit: 2, fieldId: "pharmacy", seed: 2 });
     expect(clusterResult.items).toHaveLength(1);
-    expect(clusterResult.capStats.relaxLevel).toBe(5);
+    expect(clusterResult.capStats.relaxLevel).toBe(7);
     expect(clusterResult.capStats.rejections.cluster ?? 0).toBeGreaterThan(0);
 
     const shock = (id: string, age: number, room: number, options: string[]) =>
@@ -2325,8 +2332,218 @@ describe("length-scaled sitting caps", () => {
     ).toBe(true);
     const caseResult = finalizeAssembledSitting({ pool: cases, limit: 2, fieldId: "pharmacy", seed: 3 });
     expect(caseResult.items).toHaveLength(1);
-    expect(caseResult.capStats.relaxLevel).toBe(5);
+    expect(caseResult.capStats.relaxLevel).toBe(7);
     const reasons = Object.keys(caseResult.capStats.rejections);
     expect(reasons.some((reason) => reason.startsWith("repeat:") || reason === "cluster")).toBe(true);
+  });
+});
+
+describe("blueprint mix and concept cap", () => {
+  const options = (token: string) => [
+    `Choose ${token} first`,
+    `Delay ${token}`,
+    `Skip ${token}`,
+    `Document ${token} only`,
+  ];
+  const scene = (n: number, topic: string) => {
+    const when = ["Morning", "Evening", "Overnight", "Weekend", "Holiday"][n % 5];
+    const finding = ["ankle blister", "new rash", "dry cough", "sharp headache", "hand tremor", "oral ulcer", "night wheeze", "leg cramp"][n % 8];
+    const extra = ["fever", "swelling", "itching", "spasm", "bruising", "numbness", "nausea", "fatigue"][(n * 3) % 8];
+    return `${topic} during ${when} clinic bay ${n} opens with ${finding} plus ${extra}. This note is not copied from another chart.`;
+  };
+
+  it("caps a repeated clinical concept at 1 on a short sitting and 2 on a long one", () => {
+    expect(conceptRepeatCap(50)).toBe(1);
+    expect(conceptRepeatCap(100)).toBe(1);
+    expect(conceptRepeatCap(225)).toBe(2);
+
+    const hipaa = (n: number) =>
+      item(
+        `hipaa-${n}`,
+        `What should the pharmacist tell the caller about the prescription?`,
+        options(`hipaa-${n}`),
+        options(`hipaa-${n}`)[0]!,
+        {
+          scenario: `${scene(n, "a spouse HIPAA call")} The spouse asks for the diagnosis.`,
+        }
+      );
+    const hipaaKeys = sittingConceptKeys(hipaa(0), "pharmacy");
+    expect(hipaaKeys).toContain("concept:hipaa-family-disclosure");
+    const short = finalizeAssembledSitting({
+      pool: Array.from({ length: 5 }, (_, n) => hipaa(n)),
+      limit: 5,
+      fieldId: "pharmacy",
+      seed: 4,
+      includeNgn: false,
+    });
+    expect(short.items.filter((row) => row.id?.startsWith("hipaa-")).length).toBeGreaterThan(1);
+    expect(short.capStats.relaxLevel).toBeGreaterThanOrEqual(6);
+
+    const fillers = Array.from({ length: 8 }, (_, n) =>
+      item(`other-${n}`, `Which storage step fits lot ${n}?`, options(`lot-${n}`), options(`lot-${n}`)[0]!, {
+        scenario: scene(n + 20, "a storage invoice"),
+        subjectId: "pharmaceutics",
+      })
+    );
+    const mixed = finalizeAssembledSitting({
+      pool: [...Array.from({ length: 5 }, (_, n) => hipaa(n)), ...fillers],
+      limit: 6,
+      fieldId: "pharmacy",
+      seed: 5,
+      includeNgn: false,
+    });
+    expect(mixed.items.filter((row) => row.id?.startsWith("hipaa-")).length).toBeLessThanOrEqual(1);
+    expect(mixed.capStats.relaxLevel).toBeLessThan(6);
+  });
+
+  it("collapses the live near-duplicate concepts the stem check misses", () => {
+    const glargine = (n: number) =>
+      item(
+        `glargine-${n}`,
+        `Which high-alert handling step is required for this insulin?`,
+        options(`glargine-${n}`),
+        options(`glargine-${n}`)[0]!,
+        { scenario: `${scene(n, "insulin glargine")} The vial is on the ISMP high-alert list.` }
+      );
+    const lamo = (n: number) =>
+      item(
+        `lamo-${n}`,
+        `Which counseling point is required before this contraceptive starts?`,
+        options(`lamo-${n}`),
+        options(`lamo-${n}`)[0]!,
+        {
+          scenario: `${scene(n + 30, "lamotrigine")} The patient is starting an oral contraceptive.`,
+        }
+      );
+    const lasa = (n: number) =>
+      item(
+        `lasa-${n}`,
+        `Which look-alike pair must be separated on this shelf?`,
+        options(`lasa-${n}`),
+        options(`lasa-${n}`)[0]!,
+        { scenario: `${scene(n + 40, "shelf check")} Celebrex and Celexa were stored in the same bin.` }
+      );
+    const cinv = (n: number) =>
+      item(
+        `cinv-${n}`,
+        `Which antiemetic should replace ondansetron for this highly emetogenic regimen?`,
+        options(`cinv-${n}`),
+        options(`cinv-${n}`)[0]!,
+        { scenario: `${scene(n + 50, "antiemetic change")} The oncologist asks about changing ondansetron to aprepitant.` }
+      );
+    const info = (n: number) =>
+      item(
+        `info-${n}`,
+        `Which drug information source is the best next place to check this monograph?`,
+        options(`info-${n}`),
+        options(`info-${n}`)[0]!,
+        { scenario: `${scene(n + 60, "monograph question")} A student asks where to confirm the gabapentin dose.` }
+      );
+
+    expect(sittingConceptKeys(glargine(0), "pharmacy").some((key) => key.startsWith("concept:high-alert:glargine"))).toBe(
+      true
+    );
+    expect(sittingConceptKeys(lamo(0), "pharmacy")).toContain("concept:pair:lamotrigine+oral-contraceptive");
+    expect(sittingConceptKeys(lasa(0), "pharmacy").some((key) => key.includes("celecoxib") && key.includes("citalopram"))).toBe(
+      true
+    );
+    expect(sittingConceptKeys(cinv(0), "pharmacy").some((key) => key.includes("ondansetron") && key.includes("aprepitant"))).toBe(
+      true
+    );
+    expect(sittingConceptKeys(info(0), "pharmacy")).toContain("concept:drug-info:gabapentin");
+
+    const pool = [
+      ...Array.from({ length: 5 }, (_, n) => glargine(n)),
+      ...Array.from({ length: 5 }, (_, n) => lamo(n)),
+      ...Array.from({ length: 4 }, (_, n) => lasa(n)),
+      ...Array.from({ length: 3 }, (_, n) => cinv(n)),
+      ...Array.from({ length: 3 }, (_, n) => info(n)),
+    ];
+    const sitting = finalizeAssembledSitting({
+      pool,
+      limit: 20,
+      fieldId: "pharmacy",
+      seed: 6,
+      includeNgn: false,
+    });
+    const count = (prefix: string) => sitting.items.filter((row) => row.id?.startsWith(prefix)).length;
+    expect(count("glargine-")).toBeLessThanOrEqual(1);
+    expect(count("lamo-")).toBeLessThanOrEqual(1);
+    expect(count("lasa-")).toBeLessThanOrEqual(1);
+    expect(count("cinv-")).toBeLessThanOrEqual(1);
+    expect(count("info-")).toBeLessThanOrEqual(1);
+    expect(sitting.items.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("follows NABP area weights and keeps law-only items low when therapeutics exist", () => {
+    expect(naplexLawItemCeiling(50)).toBe(1);
+    expect(naplexLawItemCeiling(225)).toBe(5);
+    expect(naplexDiseaseFloor("cardio", 225)).toBe(16);
+    expect(naplexDiseaseFloor("cardio", 50)).toBeGreaterThanOrEqual(3);
+
+    const row = (id: string, subjectId: string, topic: string) =>
+      item(id, `Which plan is best for ${topic} case ${id}?`, options(id), options(id)[0]!, {
+        subjectId,
+        blueprintTopic: `${topic} ${id}`,
+        scenario: scene(Number(id.replace(/\D/g, "")) || 0, topic),
+      });
+    const cycle = (topics: string[], n: number) => topics[n % topics.length]!;
+    const pool = [
+      ...Array.from({ length: 30 }, (_, n) => row(`law-${n}`, "pharmacy-law", "hipaa-privacy")),
+      ...Array.from({ length: 30 }, (_, n) => row(`counsel-${n}`, "patient-counseling", "teach-back-counseling")),
+      ...Array.from({ length: 30 }, (_, n) => row(`pk-${n}`, "pharmacokinetics", "half-life-steady-state")),
+      ...Array.from({ length: 10 }, (_, n) =>
+        row(`cardio-${n}`, "cardiovascular-rx", cycle(["heart failure GDMT", "hypertension", "anticoagulation", "atrial fibrillation"], n))
+      ),
+      ...Array.from({ length: 8 }, (_, n) =>
+        row(`id-${n}`, "infectious-disease-rx", cycle(["sepsis antibiotics", "community-acquired pneumonia", "mrsa stewardship"], n))
+      ),
+      ...Array.from({ length: 8 }, (_, n) =>
+        row(`endo-${n}`, "endocrine-rx", cycle(["diabetes pharmacotherapy", "thyroid replacement", "sglt2 inhibitor"], n))
+      ),
+      ...Array.from({ length: 6 }, (_, n) =>
+        row(`psych-${n}`, "cns-rx", cycle(["depression-ssri-monitoring", "epilepsy treatment", "bipolar regimen"], n))
+      ),
+      ...Array.from({ length: 4 }, (_, n) => row(`pulm-${n}`, "otc-self-care", cycle(["asthma inhalers", "copd inhalers"], n))),
+      ...Array.from({ length: 2 }, (_, n) => row(`onc-${n}`, "otc-self-care", "oncology-supportive-care")),
+    ];
+    expect(classifyNaplexSittingItem(pool.find((row) => row.id === "law-0")!).lawOnly).toBe(true);
+    expect(classifyNaplexSittingItem(pool.find((row) => row.id === "endo-0")!).disease).toBe("endocrine");
+
+    const sitting = finalizeAssembledSitting({
+      pool,
+      limit: 50,
+      fieldId: "pharmacy",
+      seed: 7,
+      includeNgn: false,
+    });
+    const count = (prefix: string) => sitting.items.filter((row) => row.id?.startsWith(prefix)).length;
+    expect(sitting.items).toHaveLength(50);
+    expect(count("law-")).toBeLessThanOrEqual(naplexLawItemCeiling(50));
+    expect(count("cardio-")).toBeGreaterThanOrEqual(naplexDiseaseFloor("cardio", 50));
+    expect(count("id-")).toBeGreaterThanOrEqual(Math.min(8, naplexDiseaseFloor("id", 50)));
+    expect(count("endo-")).toBeGreaterThanOrEqual(Math.min(8, naplexDiseaseFloor("endocrine", 50)));
+    expect(count("psych-")).toBeGreaterThanOrEqual(Math.min(6, naplexDiseaseFloor("psych", 50)));
+    expect(count("pulm-")).toBeGreaterThanOrEqual(Math.min(4, naplexDiseaseFloor("pulm", 50)));
+    expect(count("onc-")).toBeGreaterThanOrEqual(1);
+    expect(count("counsel-")).toBeLessThan(count("cardio-") + count("id-") + count("endo-"));
+  });
+
+  it("still fills from law-only rows when that is the whole pool", () => {
+    const pool = Array.from({ length: 12 }, (_, n) =>
+      item(`only-law-${n}`, `Which DEA record is required for log ${n}?`, options(`law-${n}`), options(`law-${n}`)[0]!, {
+        subjectId: "pharmacy-law",
+        blueprintTopic: `controlled-substances-${n}`,
+        scenario: scene(n + 70, "controlled-substance log"),
+      })
+    );
+    const sitting = finalizeAssembledSitting({
+      pool,
+      limit: 8,
+      fieldId: "pharmacy",
+      seed: 8,
+      includeNgn: false,
+    });
+    expect(sitting.items).toHaveLength(8);
   });
 });
