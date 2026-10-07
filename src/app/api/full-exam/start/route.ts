@@ -21,7 +21,7 @@ import {
 } from "@/lib/exam-prep/compose/assemble-timed-exam-session";
 import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import {
-  selectSittingItems,
+  selectStoredFormSitting,
   sessionOrderSeed,
   spreadPharmacyNumericEntries,
   storedFormNeedsFreshAssembly,
@@ -285,21 +285,31 @@ export async function POST(req: Request) {
 
     if (exactForm) {
       try {
-        const diversified = selectSittingItems({
+        const diversified = selectStoredFormSitting({
           pool: exactForm.items,
           limit: exactForm.questionCount,
+          fieldId: sessionFieldId,
           seenIds: smart.excludeQuestionIds,
           seed: optionShuffleSeed,
-          relax: true,
         });
-        clientPayload = preparedTimedExamItemsForClient(
-          sessionFieldId,
-          sessionFieldId,
-          orderForSession(diversified.items),
-          diversified.items.length,
-          { shuffleSeed: optionShuffleSeed }
-        );
-        assembleSource = "preset";
+        if (!diversified) {
+          if (explicitPreset != null) {
+            throw new Error(
+              `Could not compose a ${exactForm.questionCount}-question exam aligned to the board blueprint. Try again shortly.`
+            );
+          }
+          exactForm = null;
+          sessionConfig = config;
+        } else {
+          clientPayload = preparedTimedExamItemsForClient(
+            sessionFieldId,
+            sessionFieldId,
+            orderForSession(diversified),
+            exactForm.questionCount,
+            { shuffleSeed: optionShuffleSeed }
+          );
+          assembleSource = "preset";
+        }
       } catch (error) {
         if (explicitPreset != null) throw error;
         exactForm = null;

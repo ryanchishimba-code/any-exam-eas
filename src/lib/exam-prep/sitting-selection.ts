@@ -410,6 +410,47 @@ export function finalizeAssembledSitting(params: {
 }
 
 /**
+ * Serve a stored form at the length the launcher advertised.
+ *
+ * `selectSittingItems` keeps the narrow-topic cap at its strict share (4 on a
+ * 135-item AANP form) and never climbs the sitting ladder. A form that is
+ * stored as 135 can come back as 126, and the start route then shrinks the
+ * clock to that shorter delivery. The ladder already raises the narrow cap
+ * (and, off pharmacy, cluster/case caps) without turning off eligibility.
+ * Use the strict picker when it fills. Otherwise take a full ladder result.
+ * A pool that still cannot fill returns null so the caller composes fresh
+ * instead of launching the short sitting.
+ */
+export function selectStoredFormSitting(params: {
+  pool: readonly BankItem[];
+  limit: number;
+  fieldId: string;
+  seenIds?: ReadonlySet<string>;
+  seed?: number;
+}): BankItem[] | null {
+  const limit = Math.max(0, params.limit);
+  if (limit === 0) return [];
+  const strict = selectSittingItems({
+    pool: params.pool,
+    limit,
+    seenIds: params.seenIds,
+    seed: params.seed,
+    relax: true,
+  });
+  if (strict.items.length === limit) return strict.items;
+  const finalized = finalizeAssembledSitting({
+    pool: params.pool,
+    limit,
+    fieldId: params.fieldId,
+    seenIds: params.seenIds,
+    seed: params.seed,
+    includeNgn: params.fieldId === "nursing",
+  });
+  if (finalized.items.length !== limit) return null;
+  return finalized.items;
+}
+
+/**
  * A stored form whose unseen, one-per-cluster rows cannot cover most of the
  * length should yield to a fresh assembly. A form the student asked for by
  * number stays.
