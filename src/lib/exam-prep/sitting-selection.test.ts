@@ -9,12 +9,18 @@ import {
   itemClinicalText,
   nursingConditionCap,
   nursingDosageShareCap,
+  perFiftyCap,
   PHARMACY_DRUG_CAP,
+  pharmacyBackgroundDrugCap,
+  pharmacyDrugCap,
+  sittingCapLimits,
   sittingCaseFingerprint,
   sittingConditionMentions,
   sittingDrugMentions,
+  sittingDrugSplit,
   sittingRepeatKeys,
   sittingVitalFingerprint,
+  templateRepeatCap,
 } from "@/lib/exam-prep/entity-cap";
 import {
   finalizeAssembledSitting,
@@ -25,7 +31,7 @@ import {
   spreadPharmacyNumericEntries,
   storedFormNeedsFreshAssembly,
 } from "@/lib/exam-prep/sitting-selection";
-import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
+import { narrowTopicKey, narrowTopicShareCap } from "@/lib/exam-prep/narrow-topic";
 import { isKeyWrongPendingReview } from "@/lib/exam-prep/reviewed-key-queue";
 import {
   compareSitting,
@@ -1393,7 +1399,8 @@ describe("retest 166 postpartum, vitals, and medication duplicates", () => {
     const postpartum = kept.filter((row) => sittingConditionMentions(row).includes("postpartum"));
     expect(postpartum.length).toBeLessThanOrEqual(3);
     expect(kept.filter((row) => row.id?.startsWith("pph-"))).toHaveLength(1);
-    expect(kept.filter((row) => row.id?.startsWith("blues-"))).toHaveLength(1);
+    // Template keys scale per 50 items, so an 85-item sitting allows two postpartum-blues stems.
+    expect(kept.filter((row) => row.id?.startsWith("blues-"))).toHaveLength(templateRepeatCap(85));
     expect(kept.some((row) => row.id === "newborn-1")).toBe(true);
 
     const delivered = deliverCatSitting(pool, 85, "nursing");
@@ -2107,5 +2114,219 @@ describe("retest 167 misses", () => {
     });
     const otherIndexes = other.items.flatMap((row, index) => (isPharmacyCalculationItem(row) ? [index] : []));
     expect(otherIndexes.join(",")).not.toBe(indexes.join(","));
+  });
+});
+
+describe("length-scaled sitting caps", () => {
+  const lengths = [50, 100, 135, 150, 200, 225, 250, 280, 300] as const;
+
+  it("scales drug, template, narrow, and condition caps, and matches today's caps at 50", () => {
+    expect(perFiftyCap(2, 50)).toBe(2);
+    expect(perFiftyCap(2, 225)).toBe(9);
+    const drug = { 50: 2, 100: 4, 135: 6, 150: 6, 200: 8, 225: 9, 250: 10, 280: 12, 300: 12 };
+    const template = { 50: 1, 100: 2, 135: 3, 150: 3, 200: 4, 225: 5, 250: 5, 280: 6, 300: 6 };
+    const background = { 50: 4, 100: 8, 135: 11, 150: 12, 200: 16, 225: 18, 250: 20, 280: 23, 300: 24 };
+    const narrow = { 50: 2, 100: 4, 135: 4, 150: 4, 200: 6, 225: 6, 250: 7, 280: 8, 300: 8 };
+    const condition = { 50: 2, 100: 4, 135: 5, 150: 6, 200: 8, 225: 8, 250: 9, 280: 10, 300: 11 };
+    for (const length of lengths) {
+      expect(pharmacyDrugCap(length)).toBe(drug[length]);
+      expect(templateRepeatCap(length)).toBe(template[length]);
+      expect(pharmacyBackgroundDrugCap(length)).toBe(background[length]);
+      expect(narrowTopicShareCap(length)).toBe(narrow[length]);
+      expect(nursingConditionCap(length)).toBe(condition[length]);
+    }
+    expect(PHARMACY_DRUG_CAP).toBe(2);
+    expect(nursingConditionCap(30)).toBe(2);
+    expect(nursingConditionCap(75)).toBe(3);
+    expect(nursingConditionCap(85)).toBe(3);
+    expect(narrowTopicShareCap(91)).toBe(4);
+  });
+
+  it("does not treat cholesterol or sterol as drugs", () => {
+    const cholesterol = item(
+      "chol",
+      "Which lifestyle note belongs in the chart?",
+      ["Diet counseling", "No note"],
+      "Diet counseling",
+      { scenario: "The lipid panel shows high cholesterol. The membrane sterol content is not a medicine." }
+    );
+    expect(sittingDrugMentions(cholesterol)).not.toContain("cholesterol");
+    expect(sittingDrugMentions(cholesterol)).not.toContain("sterol");
+    const formoterol = item(
+      "form",
+      "Which counseling point applies to the new formoterol inhaler?",
+      ["Rinse the mouth", "Stop tomorrow"],
+      "Rinse the mouth",
+      { scenario: "Clinic formoterol is starting a long-acting inhaler the patient has not used." }
+    );
+    expect(sittingDrugMentions(formoterol)).toContain("formoterol");
+  });
+
+  it("counts med-list drugs as background and still returns them from sittingDrugMentions", () => {
+    const row = item(
+      "split",
+      "What is the most appropriate action before dispensing the amiodarone?",
+      ["Contact the prescriber", "Dispense as written"],
+      "Contact the prescriber",
+      {
+        scenario:
+          "Her current medications include warfarin 5 mg daily, lisinopril 20 mg daily, and metoprolol 50 mg twice daily.",
+      }
+    );
+    const split = sittingDrugSplit(row);
+    expect(split.subject).toContain("amiodarone");
+    expect(split.subject).not.toContain("lisinopril");
+    expect(split.background).toEqual(expect.arrayContaining(["warfarin", "lisinopril", "metoprolol"]));
+    expect(sittingDrugMentions(row)).toEqual(
+      expect.arrayContaining(["amiodarone", "warfarin", "lisinopril", "metoprolol"])
+    );
+  });
+
+  it("holds subject, template, and narrow caps at 50 and at 225", () => {
+    const token = (n: number) =>
+      ["amber", "birch", "cedar", "dune", "elm", "fern", "grove", "harbor", "inlet", "jetty", "knoll", "ledge"][n % 12]!;
+    const lisinopril = (n: number) =>
+      item(
+        `lisin-${n}`,
+        `Which monitoring step is required before the lisinopril dose in the ${token(n)} clinic, visit ${n}?`,
+        [`Check the ${token(n)} pressure`, `Skip the ${token(n)} visit`, `Stop the ${token(n)} plan`, `Call the ${token(n)} desk`],
+        `Check the ${token(n)} pressure`,
+        { scenario: `${token(n)} clinic chart ${n * 17} is a separate lisinopril follow-up.` }
+      );
+    const steadyAsks = [
+      ["Approximately how many half-lives does it take for amiodarone to reach steady state?", "Alpha clinic opens a new amiodarone start with its own consent form."],
+      ["How many half-lives pass before carbamazepine is expected to reach steady state?", "Bravo ward is asking about a carbamazepine level drawn this morning."],
+      ["About how many half-lives are required for digoxin to reach steady state?", "Cedar pharmacy is counseling a first digoxin fill for a new patient."],
+      ["Approximately how many half-lives does lithium need to reach steady state?", "Dune clinic is starting lithium after a separate intake visit."],
+      ["How many half-lives should pass before phenytoin reaches steady state?", "Elm hospital is reviewing a phenytoin load from last night."],
+      ["Approximately how many half-lives until vancomycin reaches steady state?", "Fern infusion center is timing a vancomycin trough for a different order."],
+      ["How many half-lives does theophylline take to reach steady state?", "Grove clinic is teaching a theophylline schedule that is not the prior visit."],
+      ["Approximately how many half-lives are needed for procainamide to reach steady state?", "Harbor ward is documenting a procainamide start on a new admission."],
+    ] as const;
+    const steadyOptions = [
+      ["Refrigerate the alpha carton", "Freeze the alpha carton", "Sun the alpha carton", "Discard the alpha leaflet"],
+      ["Lock the bravo safe", "Leave the bravo safe open", "Mail the bravo bottle", "Store the bravo bottle in the register"],
+      ["Quarantine the cedar lot", "Sell the cedar lot", "Return the cedar lot to the shelf", "Ignore the cedar recall"],
+      ["Level the dune balance", "Skip the dune calibration", "Weigh the dune spatula", "Tare the dune printer"],
+      ["Wash the elm tray", "Reuse the elm powder", "Count on the elm counter", "Skip the elm wipe"],
+      ["Record the fern noon reading", "Leave the fern log blank", "Copy the fern yesterday", "Erase the fern excursion"],
+      ["Use the grove insulated tote", "Use a grove paper sack", "Use an open grove tray", "Drop the grove parcel in the mailbox"],
+      ["Read back the harbor order", "Guess the harbor strength", "Hang up on the harbor caller", "Dispense the closest harbor bottle"],
+    ];
+    const steady = (n: number) => {
+      const ask = steadyAsks[n]!;
+      const options = steadyOptions[n]!;
+      return item(`steady-${n}`, ask[0], [...options], options[0]!, { scenario: ask[1] });
+    };
+    const copdScenes = [
+      "A rancher from amber county is tripoding with pursed lips during a COPD exacerbation.",
+      "The birch clinic spirometry shows chronic obstructive pulmonary disease with a new oxygen order.",
+      "Cedar ward documents emphysema and asks for the next nebulizer during this COPD flare.",
+      "Dune rehab records chronic bronchitis and a separate COPD action plan for discharge teaching.",
+      "Elm emergency sees a different COPD exacerbation after a dust exposure at work.",
+      "Fern pharmacy counsels a COPD inhaler technique that is not the previous visit.",
+      "Grove hospital admits chronic obstructive disease with a unique oxygen titration note.",
+      "Harbor clinic reviews a COPD exacerbation that started after a viral illness.",
+      "Inlet ward charts emphysema progression with a new pulmonary rehab referral.",
+      "Jetty clinic documents chronic bronchitis symptoms that began last winter.",
+    ];
+    const copd = (n: number) =>
+      item(
+        `copd-${n}`,
+        `Which observation belongs in the ${token(n)} respiratory note number ${n}?`,
+        [
+          `Record the ${token(n)} work of breathing`,
+          `Close the ${token(n)} chart`,
+          `Transfer ${token(n)} without a note`,
+          `Erase the ${token(n)} oxygen order`,
+        ],
+        `Record the ${token(n)} work of breathing`,
+        { scenario: copdScenes[n] ?? `Unique COPD chart ${n} for ${token(n)}.` }
+      );
+    const filler = (n: number) =>
+      item(
+        `fill-${n}`,
+        `Which storage step applies to shipment lot ${n} before it leaves the pharmacy vault?`,
+        [`Seal lot ${n}`, `Leave lot ${n}`, `Discard lot ${n}`, `Ignore lot ${n}`],
+        `Seal lot ${n}`,
+        { scenario: `Vault lot ${n} is a unique shipment with packing note ${n * 19}.` }
+      );
+    const pool = [
+      ...Array.from({ length: 12 }, (_, n) => lisinopril(n)),
+      ...Array.from({ length: 8 }, (_, n) => steady(n)),
+      ...Array.from({ length: 10 }, (_, n) => copd(n)),
+      ...Array.from({ length: 220 }, (_, n) => filler(n)),
+    ];
+    const at50 = enforceEntityAndDosageCap(pool, pool, 50, "pharmacy");
+    expect(at50.filter((row) => row.id?.startsWith("lisin-"))).toHaveLength(2);
+    expect(at50.filter((row) => row.id?.startsWith("steady-"))).toHaveLength(1);
+    expect(at50.filter((row) => row.id?.startsWith("copd-"))).toHaveLength(2);
+    const at225 = enforceEntityAndDosageCap(pool, pool, 225, "pharmacy");
+    expect(at225).toHaveLength(225);
+    expect(at225.filter((row) => row.id?.startsWith("lisin-"))).toHaveLength(9);
+    expect(at225.filter((row) => row.id?.startsWith("steady-"))).toHaveLength(5);
+    expect(at225.filter((row) => row.id?.startsWith("copd-"))).toHaveLength(6);
+  });
+
+  it("fills on the first sufficient relaxation level and does not relax cluster or case keys", () => {
+    const steady = (id: string, scene: string, options: string[]) =>
+      item(
+        id,
+        "Approximately how many half-lives does it take for this drug to reach steady state?",
+        options,
+        options[0]!,
+        { scenario: scene }
+      );
+    const templatePool = [
+      steady("ss-a", "Alpha clinic chart is open for a first counseling visit about a new start.", [
+        "Refrigerate the alpha carton",
+        "Freeze the alpha carton",
+        "Leave the alpha carton in the sun",
+        "Discard the alpha leaflet",
+      ]),
+      steady("ss-b", "Bravo ward note describes a separate question for a different new start.", [
+        "Lock the bravo narcotic safe",
+        "Leave the bravo safe open",
+        "Store the bravo bottle in the register",
+        "Mail the bravo bottle home",
+      ]),
+    ];
+    const relaxed = finalizeAssembledSitting({ pool: templatePool, limit: 2, fieldId: "pharmacy", seed: 1 });
+    expect(sittingCapLimits(2, 0).templateCap).toBe(1);
+    expect(sittingCapLimits(2, 1).templateCap).toBe(2);
+    expect(relaxed.items).toHaveLength(2);
+    expect(relaxed.capStats.relaxLevel).toBe(1);
+    expect(relaxed.capStats.strict?.kept).toBe(1);
+
+    const sharedOptions = ["Start today", "Hold the dose", "Give vitamin K", "Recheck next year"];
+    const clustered = [
+      item("cl-a", "Which regimen should be started for the alpha carton?", sharedOptions, sharedOptions[0]!, {
+        scenario: "Alpha shelf holds a unique recalled lot that is not the bravo lot.",
+      }),
+      item("cl-b", "Which regimen should be started for the bravo carton?", sharedOptions, sharedOptions[0]!, {
+        scenario: "Bravo cage holds a different recalled lot with its own invoice.",
+      }),
+    ];
+    const clusterResult = finalizeAssembledSitting({ pool: clustered, limit: 2, fieldId: "pharmacy", seed: 2 });
+    expect(clusterResult.items).toHaveLength(1);
+    expect(clusterResult.capStats.relaxLevel).toBe(5);
+    expect(clusterResult.capStats.rejections.cluster ?? 0).toBeGreaterThan(0);
+
+    const shock = (id: string, age: number, room: number, options: string[]) =>
+      item(id, `Which action is the priority in bay ${id}?`, options, options[0]!, {
+        scenario: `A ${age}-year-old patient in the emergency department, room ${room}, develops anaphylaxis minutes after ceftriaxone for pyelonephritis. Penicillin allergy. BP 74/42, HR 130, RR 30, SpO2 89%.`,
+      });
+    const cases = [
+      shock("shock-a", 33, 352, ["Give the alpha antidote", "Watch alpha", "Call alpha", "Document alpha"]),
+      shock("shock-b", 35, 418, ["Open the bravo cart", "Close bravo", "Page bravo", "Leave bravo"]),
+    ];
+    expect(
+      sittingRepeatKeys(cases[0]!, "pharmacy").some((key) => sittingRepeatKeys(cases[1]!, "pharmacy").includes(key))
+    ).toBe(true);
+    const caseResult = finalizeAssembledSitting({ pool: cases, limit: 2, fieldId: "pharmacy", seed: 3 });
+    expect(caseResult.items).toHaveLength(1);
+    expect(caseResult.capStats.relaxLevel).toBe(5);
+    const reasons = Object.keys(caseResult.capStats.rejections);
+    expect(reasons.some((reason) => reason.startsWith("repeat:") || reason === "cluster")).toBe(true);
   });
 });

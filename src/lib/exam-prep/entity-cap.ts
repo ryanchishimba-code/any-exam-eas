@@ -143,6 +143,16 @@ const DRUG_ALIASES: { key: string; re: RegExp }[] = [
 const DRUG_SUFFIX =
   /\b([a-z]{5,}(?:statin|pril|sartan|olol|dipine|prazole|cillin|mycin|cycline|oxetine|traline|azepam|azolam|parin|xaban|gliptin|flozin|glutide|setron|dronate|lukast|terol))\b/gi;
 
+/**
+ * Suffix hits that are lipids, not drugs. "cholesterol" matches `terol`
+ * (choles + terol). Anything ending in "sterol" is the same false positive.
+ */
+const DRUG_SUFFIX_STOP = new Set(["cholesterol", "sterol"]);
+
+function isDrugSuffixStop(name: string): boolean {
+  return DRUG_SUFFIX_STOP.has(name) || name.endsWith("sterol");
+}
+
 const MED_LIST_CUE =
   /\b(?:home (?:medications?|meds|regimen)|current (?:medications?|meds|regimen)|medications? include|medication list|medication reconciliation|med rec|outpatient medications?|scheduled medications?)\b/i;
 
@@ -336,7 +346,7 @@ function canonicalDrugs(text: string): string[] {
   }
   for (const match of text.toLowerCase().matchAll(new RegExp(DRUG_SUFFIX.source, "gi"))) {
     const name = match[1];
-    if (!name) continue;
+    if (!name || isDrugSuffixStop(name)) continue;
     if ([...seen].some((key) => name === key || name.includes(key))) continue;
     add(name);
   }
@@ -373,31 +383,54 @@ function pushDrugs(target: string[], drugs: readonly string[]) {
   }
 }
 
+export type SittingDrugSplit = {
+  /** Question, keyed answer, short subject fields, and scene lines when the question names no drug. */
+  subject: string[];
+  /** Drugs that appear only inside a medication-list sentence. */
+  background: string[];
+};
+
 /**
- * Drugs that count toward the pharmacy cap.
- * Every drug in the question, the keyed answer, or a short subject field counts.
+ * Subject drugs spend the pharmacy subject cap. Medication-list drugs spend
+ * a separate, looser background cap so a boilerplate "lisinopril, metformin,
+ * atorvastatin" line does not use up the drugs the question is about.
  * A longer name in a home-medication list no longer hides the subject drug.
- * Drugs named in a medication-list sentence ("current medications include…")
- * in the scenario or vignette also spend the cap, even when the question
- * line names a different drug.
  */
-export function sittingDrugMentions(item: SittingCapSource): string[] {
+export function sittingDrugSplit(item: SittingCapSource): SittingDrugSplit {
   const question = item.question ?? "";
-  const mentions: string[] = [];
+  const subject: string[] = [];
+  const background: string[] = [];
   const questionDrugs = canonicalDrugs(question);
-  pushDrugs(mentions, questionDrugs);
-  pushDrugs(mentions, canonicalDrugs(keyedAnswerText(item)));
+  pushDrugs(subject, questionDrugs);
+  pushDrugs(subject, canonicalDrugs(keyedAnswerText(item)));
   const scene = [item.scenario, item.vignette].filter(Boolean).join("\n");
   for (const sentence of sentencesOf(scene)) {
     const medList = MED_LIST_CUE.test(sentence);
-    if (questionDrugs.length > 0 && !medList) continue;
-    pushDrugs(mentions, canonicalDrugs(sentence));
+    if (medList) {
+      pushDrugs(background, canonicalDrugs(sentence));
+      continue;
+    }
+    if (questionDrugs.length > 0) continue;
+    pushDrugs(subject, canonicalDrugs(sentence));
   }
   for (const field of mainSubjectTexts(item)) {
     if (field.length > 60) continue;
     if (field.split(/\s+/).length > 4) continue;
-    pushDrugs(mentions, canonicalDrugs(field));
+    pushDrugs(subject, canonicalDrugs(field));
   }
+  const subjectSet = new Set(subject);
+  return { subject, background: background.filter((drug) => !subjectSet.has(drug)) };
+}
+
+/**
+ * Every drug that still counts somewhere: subject drugs first, then
+ * background med-list drugs. Callers that need the split use sittingDrugSplit.
+ */
+export function sittingDrugMentions(item: SittingCapSource): string[] {
+  const split = sittingDrugSplit(item);
+  const mentions: string[] = [];
+  pushDrugs(mentions, split.subject);
+  pushDrugs(mentions, split.background);
   return mentions;
 }
 
@@ -405,12 +438,80 @@ export function isNursingSittingField(fieldId: string): boolean {
   return fieldId === "nursing" || fieldId.startsWith("nclex");
 }
 
-/** Pharmacy sittings keep each drug to two items, including mentions outside the calc reserve. */
+/**
+ * Base pharmacy subject-drug allowance. Length 50 stays at 2.
+ * Longer sittings use pharmacyDrugCap, which scales this per 50 items.
+ */
 export const PHARMACY_DRUG_CAP = 2;
 
-/** NCLEX conditions stop at 3, and never above the 4% entity cap on a shorter sitting. */
+/** Med-list-only drugs. Looser than the subject cap so boilerplate lists do not starve the sitting. */
+export const PHARMACY_BACKGROUND_DRUG_BASE = 4;
+
+/**
+ * max(base, ceil(base * length / 50)).
+ * A 50-item sitting keeps the base. A 225-item sitting is 4.5× that, rounded up.
+ */
+export function perFiftyCap(base: number, length: number): number {
+  const safeBase = Number.isFinite(base) ? Math.max(0, base) : 0;
+  const safeLength = Math.max(0, Math.floor(length) || 0);
+  return Math.max(safeBase, Math.ceil((safeBase * safeLength) / 50));
+}
+
+/** Subject-drug cap: 50→2, 100→4, 225→9. */
+export function pharmacyDrugCap(length: number): number {
+  return perFiftyCap(PHARMACY_DRUG_CAP, length);
+}
+
+/** Background med-list cap: 50→4, 100→8, 225→18. */
+export function pharmacyBackgroundDrugCap(length: number): number {
+  return perFiftyCap(PHARMACY_BACKGROUND_DRUG_BASE, length);
+}
+
+/** template:* keys and calc-template asks: 50→1, 100→2, 225→5. */
+export function templateRepeatCap(length: number): number {
+  return perFiftyCap(1, length);
+}
+
+/**
+ * NCLEX conditions stay on the short-sitting rule through 85, the CAT minimum
+ * the cap of 3 was written for: min(3, the 4% entity share). Above 85 the
+ * allowance is max(3, ceil(3 * length / 85)), so a fixed 150-item exam is 6
+ * rather than staying at 3 for every longer form.
+ */
 export function nursingConditionCap(sittingLength: number): number {
-  return Math.min(3, entityShareCap(sittingLength));
+  const length = Math.max(0, Math.floor(sittingLength) || 0);
+  if (length <= 85) return Math.min(3, entityShareCap(length));
+  return Math.max(3, Math.ceil((3 * length) / 85));
+}
+
+export type SittingCapLimits = {
+  relaxLevel: number;
+  templateCap: number;
+  narrowCap: number;
+  subjectDrugCap: number;
+  /** Infinity once the ladder turns the background med-list cap off. */
+  backgroundDrugCap: number;
+  conditionCap: number;
+};
+
+/**
+ * Strict caps at level 0. Higher levels are cumulative:
+ * L1 template ×2, L2 narrow +1 per 50, L3 background cap off,
+ * L4 subject drug +1 per 50, L5 condition +1.
+ * Cluster, case, vitals, ask, eligibility, calc quota, and sequential sets
+ * are not in this object because they never relax.
+ */
+export function sittingCapLimits(limit: number, relaxLevel = 0): SittingCapLimits {
+  const level = Math.max(0, Math.min(5, Math.floor(relaxLevel) || 0));
+  const perFifty = perFiftyCap(1, limit);
+  return {
+    relaxLevel: level,
+    templateCap: templateRepeatCap(limit) * (level >= 1 ? 2 : 1),
+    narrowCap: narrowTopicShareCap(limit) + (level >= 2 ? perFifty : 0),
+    subjectDrugCap: pharmacyDrugCap(limit) + (level >= 4 ? perFifty : 0),
+    backgroundDrugCap: level >= 3 ? Number.POSITIVE_INFINITY : pharmacyBackgroundDrugCap(limit),
+    conditionCap: nursingConditionCap(limit) + (level >= 5 ? 1 : 0),
+  };
 }
 
 const SUBJECT_META_KEYS = ["mainSubject", "primarySubject", "mainDrug", "drug", "entity", "concept"] as const;
@@ -460,9 +561,9 @@ function mainSubjectTexts(item: SittingCapSource): string[] {
   return texts;
 }
 
-/** Primary salient drug. Background medication-list names are not primary. */
+/** Primary subject drug. Background medication-list names are not primary. */
 export function sittingDrugMention(item: SittingCapSource): string | null {
-  return sittingDrugMentions(item)[0] ?? null;
+  return sittingDrugSplit(item).subject[0] ?? null;
 }
 
 const SKIP_PAYLOAD_KEY =
@@ -1060,7 +1161,7 @@ export function sittingRepeatKeys(item: SittingCapSource, fieldId: string): stri
   const anchors = isNursingSittingField(fieldId)
     ? sittingConditionMentions(item)
     : fieldId === "pharmacy"
-      ? sittingDrugMentions(item)
+      ? sittingDrugSplit(item).subject
       : [];
   if (ask.length >= 24) {
     for (const anchor of anchors) keys.push(`ask:${anchor}:${ask}`);
@@ -1074,7 +1175,7 @@ export function sittingCapTags(
   item: SittingCapSource,
   fieldId: string
 ): { drugKeys: string[]; conditionKey: string | null; conditionKeys: string[]; repeatKeys: string[] } {
-  const drugKeys = fieldId === "pharmacy" ? sittingDrugMentions(item) : [];
+  const drugKeys = fieldId === "pharmacy" ? sittingDrugSplit(item).subject : [];
   const conditionKeys = isNursingSittingField(fieldId) ? sittingConditionMentions(item) : [];
   return {
     drugKeys,
@@ -1090,7 +1191,7 @@ export function sittingCapTags(
  */
 export function sittingCapEntityKey(item: SittingCapSource, fieldId: string): string | null {
   if (fieldId === "pharmacy") {
-    const drug = sittingDrugMentions(item)[0];
+    const drug = sittingDrugSplit(item).subject[0];
     if (drug) return `drug:${drug}`;
     return null;
   }
@@ -1118,7 +1219,15 @@ export type CapRejectionStats = {
   poolSize: number;
   kept: number;
   rejections: Record<string, number>;
+  /** 0 is the strict pass. 1–5 are the cumulative relaxation ladder. */
+  relaxLevel?: number;
+  /** Strict pass, kept beside the level that was actually used. */
+  strict?: { kept: number; rejections: Record<string, number> };
 };
+
+function scaledRepeatKey(key: string): boolean {
+  return key.startsWith("template:") || key.startsWith("calc:");
+}
 
 export function enforceEntityAndDosageCap(
   items: readonly BankItem[],
@@ -1126,20 +1235,25 @@ export function enforceEntityAndDosageCap(
   limit: number,
   fieldId: string,
   seenIds?: ReadonlySet<string>,
-  stats?: CapRejectionStats
+  stats?: CapRejectionStats,
+  limits: SittingCapLimits = sittingCapLimits(limit, 0)
 ): BankItem[] {
   const entityCap = entityShareCap(limit);
   const dosageMax = isNursingSittingField(fieldId) ? nursingDosageShareCap(limit) : Number.POSITIVE_INFINITY;
   const calcMax = fieldId === "pharmacy" ? pharmacyCalculationQuota(limit) : Number.POSITIVE_INFINITY;
-  const narrowCap = narrowTopicShareCap(limit);
+  const narrowCap = limits.narrowCap;
+  const subjectDrugCap = limits.subjectDrugCap;
+  const backgroundDrugCap = limits.backgroundDrugCap;
+  const templateCap = limits.templateCap;
+  const conditionCap = limits.conditionCap;
   const entityCounts = new Map<string, number>();
-  const drugCounts = new Map<string, number>();
+  const subjectDrugCounts = new Map<string, number>();
+  const backgroundDrugCounts = new Map<string, number>();
   const conditionCounts = new Map<string, number>();
   const askCounts = new Map<string, number>();
   const templateCounts = new Map<string, number>();
   const narrowCounts = new Map<string, number>();
-  const usedRepeats = new Set<string>();
-  const conditionCap = nursingConditionCap(limit);
+  const repeatCounts = new Map<string, number>();
   let dosage = 0;
   let calcs = 0;
   const kept: BankItem[] = [];
@@ -1187,12 +1301,12 @@ export function enforceEntityAndDosageCap(
     const dose = isNursingSittingField(fieldId) && isNursingDosageItem(text);
     const numeric = fieldId === "pharmacy" && isPharmacyNumericEntry(item);
     const narrow = narrowTopicKeyFromBankItem(item);
-    const drugs = fieldId === "pharmacy" ? sittingDrugMentions(item) : [];
+    const drugSplit = fieldId === "pharmacy" ? sittingDrugSplit(item) : { subject: [], background: [] };
     const conditions = isNursingSittingField(fieldId) ? sittingConditionMentions(item) : [];
     const repeats = sittingRepeatKeys(item, fieldId);
     const entityLimit =
       fieldId === "pharmacy" && entity?.startsWith("drug:")
-        ? PHARMACY_DRUG_CAP
+        ? subjectDrugCap
         : entity?.startsWith("condition:")
           ? conditionCap
           : entityCap;
@@ -1200,7 +1314,13 @@ export function enforceEntityAndDosageCap(
       noteRejection(item, entity.startsWith("condition:") ? "condition" : entity.startsWith("drug:") ? "drug" : "entity");
       return false;
     }
-    if (drugs.some((drug) => (drugCounts.get(drug) ?? 0) >= PHARMACY_DRUG_CAP)) {
+    if (drugSplit.subject.some((drug) => (subjectDrugCounts.get(drug) ?? 0) >= subjectDrugCap)) {
+      noteRejection(item, "drug");
+      return false;
+    }
+    if (
+      drugSplit.background.some((drug) => (backgroundDrugCounts.get(drug) ?? 0) >= backgroundDrugCap)
+    ) {
       noteRejection(item, "drug");
       return false;
     }
@@ -1208,7 +1328,7 @@ export function enforceEntityAndDosageCap(
       noteRejection(item, "condition");
       return false;
     }
-    const repeatHit = repeats.find((key) => usedRepeats.has(key));
+    const repeatHit = repeats.find((key) => (repeatCounts.get(key) ?? 0) >= (scaledRepeatKey(key) ? templateCap : 1));
     if (repeatHit) {
       noteRejection(item, `repeat:${repeatHit.split(":")[0]}`);
       return false;
@@ -1217,7 +1337,7 @@ export function enforceEntityAndDosageCap(
       noteRejection(item, "entity-ask");
       return false;
     }
-    if (template && (templateCounts.get(template) ?? 0) >= 1) {
+    if (template && (templateCounts.get(template) ?? 0) >= templateCap) {
       noteRejection(item, "template");
       return false;
     }
@@ -1234,11 +1354,14 @@ export function enforceEntityAndDosageCap(
       return false;
     }
     if (entity) entityCounts.set(entity, (entityCounts.get(entity) ?? 0) + 1);
-    for (const drug of drugs) drugCounts.set(drug, (drugCounts.get(drug) ?? 0) + 1);
+    for (const drug of drugSplit.subject) subjectDrugCounts.set(drug, (subjectDrugCounts.get(drug) ?? 0) + 1);
+    for (const drug of drugSplit.background) {
+      backgroundDrugCounts.set(drug, (backgroundDrugCounts.get(drug) ?? 0) + 1);
+    }
     for (const condition of conditions) conditionCounts.set(condition, (conditionCounts.get(condition) ?? 0) + 1);
-    for (const key of repeats) usedRepeats.add(key);
+    for (const key of repeats) repeatCounts.set(key, (repeatCounts.get(key) ?? 0) + 1);
     if (entity && ask) askCounts.set(`${entity}:${ask}`, 1);
-    if (template) templateCounts.set(template, 1);
+    if (template) templateCounts.set(template, (templateCounts.get(template) ?? 0) + 1);
     if (dose) dosage += 1;
     if (numeric) calcs += 1;
     if (narrow) narrowCounts.set(narrow, (narrowCounts.get(narrow) ?? 0) + 1);
@@ -1296,6 +1419,7 @@ export function enforceEntityAndDosageCap(
     stats.poolSize = pool.length;
     stats.kept = sliced.length;
     stats.rejections = Object.fromEntries(rejectionCounts);
+    stats.relaxLevel = limits.relaxLevel;
   }
   return sliced;
 }

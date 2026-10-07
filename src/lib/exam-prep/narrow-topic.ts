@@ -69,12 +69,14 @@ export function narrowTopicKeyFromBankItem(item: BankItem): string | null {
 
 /**
  * No single narrow condition above this share of the sitting, and never below 2.
- * 4% keeps COPD from filling 6 of 50. A long CAT stops at 4 so one condition
- * cannot fill 6 or more of 150.
+ * 4% keeps COPD from filling 6 of 50. Through 150, including a full CAT, the
+ * cap still stops at 4. Above 150 it grows as ceil(4 * length / 150):
+ * 225→6, 250→7, 280→8, 300→8.
  */
 export function narrowTopicShareCap(sittingLength: number): number {
   const length = Math.max(0, Math.floor(sittingLength) || 0);
   if (length <= 0) return 2;
+  if (length > 150) return Math.ceil((4 * length) / 150);
   return Math.min(4, Math.max(2, Math.ceil(length * 0.04)));
 }
 

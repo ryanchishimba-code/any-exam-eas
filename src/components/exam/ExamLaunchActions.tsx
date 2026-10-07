@@ -12,6 +12,7 @@ import {
 } from "@/lib/full-exam/launch-modes";
 import { fullExamSessionHref } from "@/lib/full-exam/config";
 import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
+import { fetchFullExamStart } from "@/lib/full-exam/start-client";
 import { feUi } from "@/lib/study/full-exam-ui";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
@@ -109,11 +110,7 @@ export function ExamLaunchActions({
           nclexCat: examSlug === "nclex" ? nclexCat : undefined,
           focusAreas: launchMode === "focus_weak" ? focusAreas : undefined,
         });
-        const res = await fetch("/api/full-exam/start", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
+        const res = await fetchFullExamStart(body);
         const data = (await res.json().catch(() => ({}))) as {
           sessionId?: string;
           redirectUrl?: string;

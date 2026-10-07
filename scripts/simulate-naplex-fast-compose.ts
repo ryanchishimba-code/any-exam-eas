@@ -20,9 +20,10 @@ import {
   fastGatherItemGoal,
 } from "@/lib/exam-prep/compose/assemble-timed-exam-session";
 import {
-  PHARMACY_DRUG_CAP,
-  sittingDrugMentions,
+  pharmacyDrugCap,
+  sittingDrugSplit,
   sittingRepeatKeys,
+  templateRepeatCap,
 } from "@/lib/exam-prep/entity-cap";
 import {
   finalizeAssembledSitting,
@@ -131,24 +132,27 @@ async function main() {
     sizes.push(out.items.length);
     if (out.items.length < LIMIT) fails += 1;
 
+    const level = out.capStats.relaxLevel ?? 0;
+    const drugCap = pharmacyDrugCap(LIMIT) + (level >= 4 ? templateRepeatCap(LIMIT) : 0);
+    const templateCap = templateRepeatCap(LIMIT) * (level >= 1 ? 2 : 1);
     const drugCounts = new Map<string, number>();
     const templateCounts = new Map<string, number>();
     for (const item of out.items) {
-      for (const drug of sittingDrugMentions(item)) {
+      for (const drug of sittingDrugSplit(item).subject) {
         drugCounts.set(drug, (drugCounts.get(drug) ?? 0) + 1);
       }
       for (const key of sittingRepeatKeys(item, "pharmacy")) {
-        if (!key.startsWith("template:")) continue;
+        if (!key.startsWith("template:") && !key.startsWith("calc:")) continue;
         templateCounts.set(key, (templateCounts.get(key) ?? 0) + 1);
       }
     }
     for (const count of drugCounts.values()) {
       if (count > maxDrug) maxDrug = count;
-      if (count > PHARMACY_DRUG_CAP) drugViolations += 1;
+      if (count > drugCap) drugViolations += 1;
     }
     for (const count of templateCounts.values()) {
       if (count > maxTemplate) maxTemplate = count;
-      if (count > 1) templateViolations += 1;
+      if (count > templateCap) templateViolations += 1;
     }
   }
 
@@ -170,7 +174,8 @@ async function main() {
       min: sizes[0] ?? 0,
       p10: sizes[Math.floor(N * 0.1)] ?? 0,
       median: sizes[Math.floor(N / 2)] ?? 0,
-      drugCap: PHARMACY_DRUG_CAP,
+      drugCap: pharmacyDrugCap(LIMIT),
+      templateCap: templateRepeatCap(LIMIT),
       drugViolations,
       templateViolations,
       maxDrug,

@@ -242,6 +242,10 @@ describe("narrow topic spread", () => {
     expect(narrowTopicShareCap(50)).toBe(2);
     expect(narrowTopicShareCap(91)).toBe(4);
     expect(narrowTopicShareCap(150)).toBe(4);
+    expect(narrowTopicShareCap(225)).toBe(6);
+    expect(narrowTopicShareCap(250)).toBe(7);
+    expect(narrowTopicShareCap(280)).toBe(8);
+    expect(narrowTopicShareCap(300)).toBe(8);
     const copd = (id: string, n: number) =>
       item(
         id,

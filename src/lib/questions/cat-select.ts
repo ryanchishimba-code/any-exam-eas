@@ -1,8 +1,9 @@
 /** Pure helpers for rule-based CAT item selection (practice only). */
 
-import { entityShareCap, nursingConditionCap, PHARMACY_DRUG_CAP } from "@/lib/exam-prep/entity-cap";
+import { entityShareCap, nursingConditionCap, pharmacyDrugCap } from "@/lib/exam-prep/entity-cap";
 import { narrowTopicShareCap } from "@/lib/exam-prep/narrow-topic";
 import {
+  CAT_MAX_QUESTIONS,
   difficultyForQuestion,
   targetDifficulty,
   type CatDifficulty,
@@ -24,7 +25,7 @@ export type CatSelectableItem = {
   askKey?: string | null;
   /** Near-duplicate cluster. A second member is not delivered. */
   clusterId?: string | null;
-  /** Pharmacy drugs already counted toward the sitting-wide cap of 2. */
+  /** Pharmacy subject drugs, capped at the share for the planned CAT maximum. */
   drugKeys?: readonly string[] | null;
   /** NCLEX condition already counted toward the cap of 3. */
   conditionKey?: string | null;
@@ -133,7 +134,12 @@ function countedConditions(item: Pick<CatConstraint, "conditionKey" | "condition
   return item.conditionKey ? [item.conditionKey] : [];
 }
 
-/** Drop a repeat cluster, a repeated case, a drug past 2, and a condition past 3. */
+/**
+ * Drop a repeat cluster, a repeated case, a subject drug past the share cap
+ * for the planned CAT maximum, and a condition past the length-scaled cap.
+ * The drug cap uses the maximum length, not the items delivered so far, so a
+ * pick never exceeds the share the full CAT is allowed.
+ */
 function filterByEntity<T extends CatConstraint>(
   candidates: T[],
   delivered: ReadonlyArray<CatConstraint>
@@ -143,6 +149,7 @@ function filterByEntity<T extends CatConstraint>(
   const deliveredLength = delivered.length + 1;
   const cap = entityShareCap(deliveredLength);
   const conditionCap = nursingConditionCap(deliveredLength);
+  const drugCap = pharmacyDrugCap(CAT_MAX_QUESTIONS);
   const entityCounts = new Map<string, number>();
   const drugCounts = new Map<string, number>();
   const conditionCounts = new Map<string, number>();
@@ -164,7 +171,7 @@ function filterByEntity<T extends CatConstraint>(
     if (item.repeatKeys?.some((key) => repeats.has(key))) return false;
     const entityLimit = item.entityKey?.startsWith("condition:") ? conditionCap : cap;
     if (item.entityKey && (entityCounts.get(item.entityKey) ?? 0) >= entityLimit) return false;
-    if (item.drugKeys?.some((drug) => (drugCounts.get(drug) ?? 0) >= PHARMACY_DRUG_CAP)) return false;
+    if (item.drugKeys?.some((drug) => (drugCounts.get(drug) ?? 0) >= drugCap)) return false;
     if (countedConditions(item).some((condition) => (conditionCounts.get(condition) ?? 0) >= conditionCap)) return false;
     if (item.entityKey && item.askKey && asks.has(`${item.entityKey}:${item.askKey}`)) return false;
     return true;

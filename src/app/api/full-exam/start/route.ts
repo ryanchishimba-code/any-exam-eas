@@ -76,7 +76,9 @@ function fixedFormSessionConfig(
 }
 
 export const runtime = "nodejs";
-export const maxDuration = 300;
+// Compose itself stops at 25s. 60s covers auth, preset lookup, and the session write
+// without letting a stalled database hold the function until the platform's 300s kill.
+export const maxDuration = 60;
 
 export async function POST(req: Request) {
   const premium = await requirePremiumApi();
