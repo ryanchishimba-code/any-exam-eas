@@ -100,8 +100,21 @@ function withInitialCase(source: string, next: string): string {
  * occupies. Drug names and articles stay put: "Option D-dimer", "Rho(D)",
  * "this option a…", and "(A)lert" are not labels.
  */
+function choiceText(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (value && typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    for (const key of ["text", "label", "content", "step"]) {
+      if (typeof record[key] === "string") return record[key];
+    }
+  }
+  return "";
+}
+
 export function rewriteChoiceLetters(text: string, letterMap: ReadonlyMap<string, string>): string {
-  if (!text || letterMap.size === 0) return text;
+  if (typeof text !== "string" || !text || letterMap.size === 0) {
+    return typeof text === "string" ? text : "";
+  }
   const mapped = (letter: string) => mappedLetter(letterMap, letter);
 
   return (
@@ -266,13 +279,13 @@ export function shuffleDeliveryChoices(input: DeliveryShuffleInput): DeliveryShu
     options: nextOptions,
     correctAnswer,
     explanation: input.explanation
-      ? rewriteChoiceLetters(input.explanation, letterMap)
+      ? rewriteChoiceLetters(choiceText(input.explanation), letterMap)
       : input.explanation,
     clinicalReasoning: input.clinicalReasoning
-      ? rewriteChoiceLetters(input.clinicalReasoning, letterMap)
+      ? rewriteChoiceLetters(choiceText(input.clinicalReasoning), letterMap)
       : input.clinicalReasoning,
     distractorRationale: distractor,
-    solutionSteps: input.solutionSteps?.map((step) => rewriteChoiceLetters(step, letterMap)),
+    solutionSteps: input.solutionSteps?.map((step) => rewriteChoiceLetters(choiceText(step), letterMap)),
     expertRationale: rewriteUnknown(input.expertRationale, letterMap),
     shuffled: true,
   };

@@ -142,6 +142,17 @@ function tokenJaccard(a: readonly string[], b: readonly string[]): number {
   return union > 0 ? inter / union : 0;
 }
 
+function optionText(option: unknown): string {
+  if (typeof option === "string") return option;
+  if (option && typeof option === "object") {
+    const record = option as Record<string, unknown>;
+    for (const key of ["text", "label", "value", "content"]) {
+      if (typeof record[key] === "string") return record[key];
+    }
+  }
+  return "";
+}
+
 function payloadCaseText(item: BankItem): string {
   const payload = item.ngnPayload;
   if (!payload || typeof payload !== "object") return "";
@@ -155,8 +166,10 @@ function payloadCaseText(item: BankItem): string {
 
 /** Question plus the case the student sees. The lead-in alone is not a template. */
 function itemStem(item: BankItem): string {
-  const vignette = item.vignette?.trim() || item.scenario?.trim() || "";
-  const question = item.question?.trim() ?? "";
+  const vignette =
+    (typeof item.vignette === "string" ? item.vignette.trim() : "") ||
+    (typeof item.scenario === "string" ? item.scenario.trim() : "");
+  const question = typeof item.question === "string" ? item.question.trim() : "";
   return [vignette, payloadCaseText(item), question].filter(Boolean).join(" ");
 }
 
@@ -289,7 +302,10 @@ export function assignSittingClusters(items: readonly BankItem[]): string[] {
   for (let i = 0; i < items.length; i++) {
     const options = items[i]!.options ?? [];
     if (options.length < 3) continue;
-    const normalized = [...options].map((option) => option.trim().toLowerCase()).filter(Boolean).sort();
+    const normalized = [...options]
+      .map((option) => (typeof option === "string" ? option : optionText(option)).trim().toLowerCase())
+      .filter(Boolean)
+      .sort();
     if (normalized.length < 3) continue;
     for (let omit = 0; omit < normalized.length; omit++) {
       const key = normalized.filter((_, index) => index !== omit).join("\0");

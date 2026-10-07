@@ -1,9 +1,13 @@
 import type { BankItem } from "@/lib/question-bank";
 
 /** Split stored USMLE bank text into vignette + lead-in stem. */
+function fieldText(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
 export function splitUsmleBankItem(item: BankItem): { vignette?: string; stem: string } {
-  const explicit = item.vignette?.trim() || item.scenario?.trim();
-  const q = item.question.trim();
+  const explicit = fieldText(item.vignette) || fieldText(item.scenario);
+  const q = fieldText(item.question);
 
   if (explicit) {
     if (q.startsWith(explicit)) {

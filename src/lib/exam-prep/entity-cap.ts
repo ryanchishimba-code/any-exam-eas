@@ -1,6 +1,10 @@
 import type { BankItem } from "@/lib/question-bank";
 import { narrowTopicKeyFromBankItem, narrowTopicShareCap } from "@/lib/exam-prep/narrow-topic";
-import { classifyNaplexSittingItem, naplexLawItemCeiling } from "@/lib/exam-prep/sitting-blueprint";
+import {
+  classifyNaplexSittingItem,
+  isPharmacyBlueprintField,
+  naplexLawItemCeiling,
+} from "@/lib/exam-prep/sitting-blueprint";
 import { assignSittingClusters, sequentialSetId } from "@/lib/exam-prep/sitting-clusters";
 import { isServableToStudents } from "@/lib/exam-prep/student-eligibility";
 
@@ -363,8 +367,20 @@ function sentencesOf(text: string): string[] {
     .filter(Boolean);
 }
 
+function plainText(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  if (value && typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    for (const key of ["text", "label", "value", "content"]) {
+      if (typeof record[key] === "string") return record[key];
+    }
+  }
+  return "";
+}
+
 function keyedAnswerText(item: SittingCapSource): string {
-  const raw = item.correctAnswer?.trim() ?? "";
+  const raw = plainText(item.correctAnswer).trim();
   if (!raw) return "";
   const options = item.options ?? [];
   return raw
@@ -373,7 +389,7 @@ function keyedAnswerText(item: SittingCapSource): string {
       const piece = part.trim();
       if (/^[A-H]$/i.test(piece) && options.length > 0) {
         const index = piece.toUpperCase().charCodeAt(0) - 65;
-        return options[index] ?? piece;
+        return plainText(options[index]) || piece;
       }
       return piece;
     })
@@ -578,7 +594,7 @@ function mainSubjectTexts(item: SittingCapSource): string[] {
     if (typeof value === "string" && value.trim()) texts.push(value.replace(/[-_]/g, " "));
   }
   for (const tag of item.tags ?? []) {
-    if (tag.trim()) texts.push(tag.replace(/[-_]/g, " "));
+    if (typeof tag === "string" && tag.trim()) texts.push(tag.replace(/[-_]/g, " "));
   }
   return texts;
 }
@@ -819,9 +835,12 @@ export function sittingConditionMention(item: SittingCapSource): string | null {
 }
 
 function caseNarrative(item: SittingCapSource): string {
-  const scene = [item.scenario, item.vignette].filter(Boolean).join(" ").trim();
+  const scene = [item.scenario, item.vignette]
+    .filter((value): value is string => typeof value === "string" && value.length > 0)
+    .join(" ")
+    .trim();
   if (scene.length >= 40) return scene;
-  const question = item.question?.trim() ?? "";
+  const question = typeof item.question === "string" ? item.question.trim() : "";
   if (
     question.length >= 40 &&
     /\b(?:year|yr|yo)s?\s*-?\s*old\b|\b\d{1,3}[mf]\b|\bblood pressure\b|\bbp\b|\bspo2\b|\bheart rate\b/i.test(question)
@@ -1057,7 +1076,7 @@ function distractorRepeatKey(item: SittingCapSource): string | null {
   if (options.length < 3) return null;
   const answer = keyedAnswerText(item).trim().toLowerCase().replace(/\s+/g, " ");
   const long = options
-    .map((option) => option.trim().toLowerCase().replace(/\s+/g, " "))
+    .map((option) => plainText(option).trim().toLowerCase().replace(/\s+/g, " "))
     .filter((option) => option && option !== answer && option.length >= 48);
   if (long.length < 2) return null;
   return `distractors:${[...long].sort().join("|")}`;
@@ -1192,6 +1211,7 @@ const INTERACTION_PAIR =
  * looser template cap.
  */
 export function sittingConceptKeys(item: SittingCapSource, fieldId: string): string[] {
+  if (!isPharmacyBlueprintField(fieldId)) return [];
   const keys: string[] = [];
   const question = item.question ?? "";
   const answer = keyedAnswerText(item);
@@ -1225,7 +1245,7 @@ export function sittingConceptKeys(item: SittingCapSource, fieldId: string): str
   if (/\b(?:look-?alike|sound-?alike|\blasa\b)\b/i.test(stem) && focus.length >= 2) {
     keys.push(`concept:lasa:${[...focus].sort().join("+")}`);
   }
-  const subject = item.subjectId?.trim().toLowerCase() ?? "";
+  const subject = typeof item.subjectId === "string" ? item.subjectId.trim().toLowerCase() : "";
   if (fieldId === "pharmacy" && subject && primary && subject !== "general") {
     keys.push(`concept:focus:${subject}:${primary}`);
   }

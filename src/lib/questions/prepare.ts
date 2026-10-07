@@ -49,11 +49,23 @@ function toCorrectAnswers(type: StudyQuestionType, correct: string, options: str
   return [cleanOptionText(correct)];
 }
 
+function displayText(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (value && typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    for (const key of ["text", "label", "content", "step"]) {
+      if (typeof record[key] === "string") return record[key];
+    }
+  }
+  return "";
+}
+
 function buildExplanationDetail(q: RawQuestionInput) {
   if (!q.distractorRationale && !q.clinicalReasoning) return undefined;
+  const explanation = displayText(q.explanation).trim();
   return {
-    summary: stripInternalDisplayMetadata(q.explanation?.trim() ?? ""),
-    whyCorrect: stripInternalDisplayMetadata(q.explanation?.trim() ?? ""),
+    summary: stripInternalDisplayMetadata(explanation),
+    whyCorrect: stripInternalDisplayMetadata(explanation),
     whyIncorrect: q.distractorRationale,
     pearls: q.references
       ?.map((reference) => stripInternalDisplayMetadata(reference))
@@ -232,7 +244,7 @@ export function examQuestionToStudy(
     caseStep: q.caseStep,
     options,
     correctAnswers: toCorrectAnswers(type, correctAnswer, options),
-    explanation: stripInternalDisplayMetadata(explanation?.trim() ?? ""),
+    explanation: stripInternalDisplayMetadata(displayText(explanation).trim()),
     explanationDetail: buildExplanationDetail({
       ...q,
       explanation,
@@ -242,7 +254,7 @@ export function examQuestionToStudy(
     clinicalReasoning,
     distractorRationale,
     references: q.references
-      ?.map((reference) => stripInternalDisplayMetadata(reference))
+      ?.map((reference) => stripInternalDisplayMetadata(displayText(reference)))
       .filter((reference) => reference.length > 0 && !/^references:?$/i.test(reference)),
     sourceLabel: studentFacingSourceLabel(
       q.sourceLabel,

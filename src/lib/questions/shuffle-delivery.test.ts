@@ -243,4 +243,22 @@ describe("shuffle locks when a reference cannot be rewritten", () => {
     expect(shuffled.explanation).toContain("patency (A)");
     expect(shuffled.explanation).not.toMatch(/Option B is correct/);
   });
+
+  it("does not throw when an option, explanation, or solution step is an object", () => {
+    const shuffled = shuffleDeliveryChoices({
+      options: [
+        { text: "Give intravenous fluids" },
+        { text: "Obtain cultures, then antibiotics" },
+        { text: "Apply oxygen and reassess" },
+        { text: "Document and continue to monitor" },
+      ] as unknown as string[],
+      correctAnswer: "Obtain cultures, then antibiotics",
+      explanation: { text: "Option B is correct because cultures come before antibiotics." } as unknown as string,
+      solutionSteps: [{ step: "Draw cultures before the first antibiotic dose." }] as unknown as string[],
+      seed: 3,
+    });
+    expect(shuffled.options).toContain("Obtain cultures, then antibiotics");
+    expect(shuffled.explanation).toContain("cultures");
+    expect(shuffled.solutionSteps?.[0]).toContain("cultures");
+  });
 });
