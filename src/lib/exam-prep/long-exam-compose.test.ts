@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
-import { sittingConceptKeys } from "@/lib/exam-prep/entity-cap";
+import { sittingCapEntityKey, sittingConceptKeys } from "@/lib/exam-prep/entity-cap";
 import {
   isPharmacyBlueprintField,
   rankSittingByBlueprint,
@@ -99,6 +99,40 @@ describe("long-exam compose", () => {
     expect(sittingConceptKeys(hipaa, "aanp-fnp")).toEqual([]);
     expect(sittingConceptKeys(hipaa, "pance")).toEqual([]);
     expect(sittingConceptKeys(hipaa, "pharmacy")).toContain("concept:hipaa-family-disclosure");
+  });
+
+  it("fills PANCE 300 when one cluster per sitting leaves the pool short", () => {
+    const pool: BankItem[] = [];
+    for (let n = 0; n < 260; n++) {
+      const stamp = mark(n);
+      const options = [
+        `Start ${stamp} therapy`,
+        `Delay ${stamp} therapy`,
+        `Skip ${stamp} therapy`,
+        `Document ${stamp} only`,
+      ];
+      for (const copy of [0, 1]) {
+        pool.push({
+          id: `pance-${stamp}-${copy}`,
+          subjectId: "cardiovascular",
+          question: `Which ${stamp} step follows this hypertension finding?`,
+          options,
+          correctAnswer: options[0]!,
+          explanation: `Because ${stamp} copy ${copy} is the next step.`,
+          scenario: `${stamp} copy ${copy} clinic shows hypertension with marker ${stamp}-${copy}. This note is not copied from another chart.`,
+        });
+      }
+    }
+    const blocked = finalizeAssembledSitting({
+      pool,
+      limit: 300,
+      fieldId: "pance",
+      seed: 3,
+    });
+    expect(sittingCapEntityKey(pool[0]!, "pance")).toBeNull();
+    expect(blocked.items).toHaveLength(300);
+    expect(blocked.capStats.relaxLevel).toBeGreaterThan(5);
+    expect(blocked.capStats.relaxLevel).toBeLessThanOrEqual(9);
   });
 
   it("fills a repeated AANP concept without the pharmacy ladder", () => {

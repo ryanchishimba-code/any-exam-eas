@@ -524,23 +524,32 @@ export type SittingCapLimits = {
   /** Infinity once the ladder turns the background med-list cap off. */
   backgroundDrugCap: number;
   conditionCap: number;
-  /** Infinity only on the last ladder step, when the sitting still cannot fill. */
+  /** Infinity only on the last pharmacy ladder step, when the sitting still cannot fill. */
   conceptCap: number;
+  /**
+   * One row per cluster through level 7. Level 8 allows a second row, and
+   * level 9 turns the cap off. Pharmacy finalize never climbs past 7.
+   */
+  clusterCap: number;
+  /** Same ladder as clusterCap. Identical case openings stay one-per-sitting through level 7. */
+  caseCap: number;
 };
 
 /**
  * Strict caps at level 0. Higher levels are cumulative:
  * L1 template ×2, L2 narrow +1 per 50, L3 background cap off,
  * L4 subject drug +1 per 50, L5 condition +1,
- * L6 concept cap +1, L7 concept cap off.
- * Cluster, case, vitals, ask, eligibility, calc quota, and sequential sets
- * are not in this object because they never relax.
+ * L6 concept cap +1, L7 concept cap off,
+ * L8 cluster and case ×2, L9 cluster and case off.
+ * Vitals, ask, eligibility, calc quota, and sequential sets never relax.
+ * Pharmacy sittings stop at L7, so a NAPLEX form still keeps one row per cluster.
  */
 export function sittingCapLimits(limit: number, relaxLevel = 0): SittingCapLimits {
-  const level = Math.max(0, Math.min(7, Math.floor(relaxLevel) || 0));
+  const level = Math.max(0, Math.min(9, Math.floor(relaxLevel) || 0));
   const perFifty = perFiftyCap(1, limit);
   const conceptCap =
     level >= 7 ? Number.POSITIVE_INFINITY : conceptRepeatCap(limit) + (level >= 6 ? 1 : 0);
+  const duplicateCap = level >= 9 ? Number.POSITIVE_INFINITY : level >= 8 ? 2 : 1;
   return {
     relaxLevel: level,
     templateCap: templateRepeatCap(limit) * (level >= 1 ? 2 : 1),
@@ -549,6 +558,8 @@ export function sittingCapLimits(limit: number, relaxLevel = 0): SittingCapLimit
     backgroundDrugCap: level >= 3 ? Number.POSITIVE_INFINITY : pharmacyBackgroundDrugCap(limit),
     conditionCap: nursingConditionCap(limit) + (level >= 5 ? 1 : 0),
     conceptCap,
+    clusterCap: duplicateCap,
+    caseCap: duplicateCap,
   };
 }
 
@@ -1316,7 +1327,10 @@ export function sittingCapEntityKey(item: SittingCapSource, fieldId: string): st
     const condition = sittingConditionMentions(item)[0];
     if (condition) return `condition:${condition}`;
   }
-  return sittingEntityKey(itemClinicalText(item), fieldId);
+  // PANCE, USMLE, AANP, and NPTE do not use the NCLEX condition cap. The
+  // fallback used to tag every hypertension vignette as a nursing condition
+  // and left a 300-item PANCE sitting short.
+  return null;
 }
 
 /** Drug wins over a co-mentioned condition. Generic calc templates key off the ask. */
@@ -1348,6 +1362,7 @@ function scaledRepeatKey(key: string): boolean {
 
 function repeatAllowance(key: string, limits: SittingCapLimits): number {
   if (key.startsWith("concept:")) return limits.conceptCap;
+  if (key.startsWith("case:")) return limits.caseCap;
   if (scaledRepeatKey(key)) return limits.templateCap;
   return 1;
 }
@@ -1393,7 +1408,7 @@ export function enforceEntityAndDosageCap(
     const id = item.id?.trim();
     if (id) clusterById.set(id, cluster);
   });
-  const usedClusters = new Set<string>();
+  const clusterCounts = new Map<string, number>();
   const rejectionCounts = new Map<string, number>();
   const notedRejections = new Set<string>();
   const noteRejection = (item: BankItem, reason: string) => {
@@ -1416,7 +1431,7 @@ export function enforceEntityAndDosageCap(
       return true;
     }
     const cluster = clusterByItem.get(item) ?? (id ? clusterById.get(id) : undefined);
-    if (cluster && usedClusters.has(cluster)) {
+    if (cluster && (clusterCounts.get(cluster) ?? 0) >= limits.clusterCap) {
       noteRejection(item, "cluster");
       return false;
     }
@@ -1497,7 +1512,7 @@ export function enforceEntityAndDosageCap(
     if (numeric) calcs += 1;
     if (narrow) narrowCounts.set(narrow, (narrowCounts.get(narrow) ?? 0) + 1);
     if (lawItem) lawOnly += 1;
-    if (cluster) usedClusters.add(cluster);
+    if (cluster) clusterCounts.set(cluster, (clusterCounts.get(cluster) ?? 0) + 1);
     if (id) used.add(id);
     kept.push(item);
     return true;

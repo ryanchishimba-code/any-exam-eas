@@ -375,7 +375,7 @@ export function finalizeAssembledSitting(params: {
   let chosen = picked;
   let capStats: CapRejectionStats = { poolSize: params.pool.length, kept: 0, rejections: {}, relaxLevel: 0 };
   let strict: { kept: number; rejections: Record<string, number> } | null = null;
-  const relaxCeiling = isPharmacyBlueprintField(params.fieldId) ? 7 : 5;
+  const relaxCeiling = isPharmacyBlueprintField(params.fieldId) ? 7 : 9;
   for (let level = 0; level <= relaxCeiling; level++) {
     const limits = sittingCapLimits(limit, level);
     const narrowed = enforceNarrowTopicCap(picked, rankedPool, limit, limits.narrowCap);
