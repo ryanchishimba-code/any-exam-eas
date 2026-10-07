@@ -9,10 +9,11 @@
  *   N=500 npx tsx scripts/simulate-board-compose.ts
  *   BOOTSTRAP=1 N=100 npx tsx scripts/simulate-board-compose.ts
  *
- * Samples stay outside the repo (PHARM_SAMPLE, USMLE_SAMPLE). A 900-row
- * pharmacy sample cannot fill 225 even with no caps. BOOTSTRAP=1 resamples
- * with replacement and then drops duplicate ids, so it never invents items
- * or cluster clones. Treat that mode as a secondary check.
+ * Samples stay outside the repo (PHARM_SAMPLE, USMLE_SAMPLE). The pharmacy
+ * sample is about 900 rows. Older composers topped out near 216 at 225 on
+ * that sample even with no caps. BOOTSTRAP=1 resamples with replacement and
+ * then drops duplicate ids, so it never invents items or cluster clones.
+ * Treat that mode as a secondary check. LENGTHS=50,100 limits which lengths run.
  */
 import fs from "node:fs";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
@@ -51,7 +52,18 @@ type BoardRun = {
 
 const N = Number(process.env.N ?? 500);
 const BOOTSTRAP = process.env.BOOTSTRAP === "1";
-const ONLY = (process.env.ONLY ?? "").trim();
+const ONLY = new Set(
+  (process.env.ONLY ?? "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean)
+);
+const LENGTHS = new Set(
+  (process.env.LENGTHS ?? "")
+    .split(",")
+    .map((part) => Number(part.trim()))
+    .filter((value) => Number.isFinite(value) && value > 0)
+);
 
 const boards: BoardRun[] = [
   {
@@ -276,6 +288,9 @@ async function runLength(board: BoardRun, eligible: readonly BankItem[], limit: 
     });
     times.push(performance.now() - started);
     sizes.push(out.items.length);
+    if ((trial + 1) % 50 === 0) {
+      fs.writeSync(2, `${board.board} ${limit} ${trial + 1}/${N} fails=${fails}\n`);
+    }
     const level = out.capStats.relaxLevel ?? 0;
     relaxLevels[level] = (relaxLevels[level] ?? 0) + 1;
     if (out.items.length < limit) fails += 1;
@@ -365,7 +380,9 @@ async function runLength(board: BoardRun, eligible: readonly BankItem[], limit: 
 }
 
 async function main() {
-  const selected = ONLY ? boards.filter((board) => board.fieldId === ONLY || board.board === ONLY) : boards;
+  const selected = ONLY.size
+    ? boards.filter((board) => ONLY.has(board.fieldId) || ONLY.has(board.board))
+    : boards;
   for (const board of selected) {
     if (!fs.existsSync(board.samplePath)) {
       console.log(JSON.stringify({ board: board.board, fieldId: board.fieldId, skipped: "sample missing" }));
@@ -379,8 +396,9 @@ async function main() {
       continue;
     }
     for (const limit of board.lengths) {
+      if (LENGTHS.size > 0 && !LENGTHS.has(limit)) continue;
       const summary = await runLength(board, eligible, limit);
-      console.log(JSON.stringify(summary));
+      fs.writeSync(1, `${JSON.stringify(summary)}\n`);
     }
   }
 }
