@@ -1,5 +1,6 @@
 import type { BankItem } from "@/lib/question-bank";
 import { narrowTopicKeyFromBankItem, narrowTopicShareCap } from "@/lib/exam-prep/narrow-topic";
+import { classifyNaplexSittingItem, naplexLawItemCeiling } from "@/lib/exam-prep/sitting-blueprint";
 import { assignSittingClusters, sequentialSetId } from "@/lib/exam-prep/sitting-clusters";
 import { isServableToStudents } from "@/lib/exam-prep/student-eligibility";
 
@@ -132,6 +133,8 @@ const DRUG_ALIASES: { key: string; re: RegExp }[] = [
   { key: "valproic", re: /\b(?:valproic(?: acid)?|valproate|divalproex|depakote|depakene)\b/i },
   { key: "famotidine", re: /\b(?:famotidine|pepcid)\b/i },
   { key: "citalopram", re: /\b(?:citalopram|celexa)\b/i },
+  { key: "celecoxib", re: /\b(?:celecoxib|celebrex)\b/i },
+  { key: "ondansetron", re: /\b(?:ondansetron|zofran)\b/i },
   { key: "aprepitant", re: /\b(?:aprepitant|emend|fosaprepitant)\b/i },
   { key: "clarithromycin", re: /\b(?:clarithromycin|biaxin)\b/i },
   { key: "ciprofloxacin", re: /\b(?:ciprofloxacin|cipro)\b/i },
@@ -473,6 +476,19 @@ export function templateRepeatCap(length: number): number {
 }
 
 /**
+ * Same clinical concept (interaction pair, high-alert role, HIPAA disclosure,
+ * drug-information ask, subject plus primary drug). 50 and 100 stay at 1.
+ * Longer sittings allow 2. Not the template cap: a 225-item exam may repeat a
+ * calc template 5 times and still not repeat "HIPAA, the spouse is calling"
+ * five times. Blueprint topics stay on the narrow-topic cap.
+ */
+export function conceptRepeatCap(length: number): number {
+  const n = Math.max(0, Math.floor(length) || 0);
+  if (n <= 100) return 1;
+  return 2;
+}
+
+/**
  * NCLEX conditions stay on the short-sitting rule through 85, the CAT minimum
  * the cap of 3 was written for: min(3, the 4% entity share). Above 85 the
  * allowance is max(3, ceil(3 * length / 85)), so a fixed 150-item exam is 6
@@ -492,18 +508,23 @@ export type SittingCapLimits = {
   /** Infinity once the ladder turns the background med-list cap off. */
   backgroundDrugCap: number;
   conditionCap: number;
+  /** Infinity only on the last ladder step, when the sitting still cannot fill. */
+  conceptCap: number;
 };
 
 /**
  * Strict caps at level 0. Higher levels are cumulative:
  * L1 template ×2, L2 narrow +1 per 50, L3 background cap off,
- * L4 subject drug +1 per 50, L5 condition +1.
+ * L4 subject drug +1 per 50, L5 condition +1,
+ * L6 concept cap +1, L7 concept cap off.
  * Cluster, case, vitals, ask, eligibility, calc quota, and sequential sets
  * are not in this object because they never relax.
  */
 export function sittingCapLimits(limit: number, relaxLevel = 0): SittingCapLimits {
-  const level = Math.max(0, Math.min(5, Math.floor(relaxLevel) || 0));
+  const level = Math.max(0, Math.min(7, Math.floor(relaxLevel) || 0));
   const perFifty = perFiftyCap(1, limit);
+  const conceptCap =
+    level >= 7 ? Number.POSITIVE_INFINITY : conceptRepeatCap(limit) + (level >= 6 ? 1 : 0);
   return {
     relaxLevel: level,
     templateCap: templateRepeatCap(limit) * (level >= 1 ? 2 : 1),
@@ -511,6 +532,7 @@ export function sittingCapLimits(limit: number, relaxLevel = 0): SittingCapLimit
     subjectDrugCap: pharmacyDrugCap(limit) + (level >= 4 ? perFifty : 0),
     backgroundDrugCap: level >= 3 ? Number.POSITIVE_INFINITY : pharmacyBackgroundDrugCap(limit),
     conditionCap: nursingConditionCap(limit) + (level >= 5 ? 1 : 0),
+    conceptCap,
   };
 }
 
@@ -1136,6 +1158,80 @@ function sittingTemplateKeys(item: SittingCapSource, fieldId: string): string[] 
   return keys;
 }
 
+const CONCEPT_PARTNERS: { key: string; re: RegExp }[] = [
+  {
+    key: "oral-contraceptive",
+    re: /\b(?:oral contraceptives?|\bocps?\b|ethinyl estradiol|norgestimate|birth control)\b/i,
+  },
+];
+
+/** Drugs in the question, keyed answer, or non-med-list scene, plus a class partner such as an OCP. */
+function conceptFocusDrugs(item: SittingCapSource): string[] {
+  const text = `${item.question ?? ""}\n${keyedAnswerText(item)}\n${sentencesOutsideMedList(clinicalBlob(item))}`;
+  const found = canonicalDrugs(text);
+  for (const partner of CONCEPT_PARTNERS) {
+    if (partner.re.test(text) && !found.includes(partner.key)) found.push(partner.key);
+  }
+  return found;
+}
+
+function specificProduct(text: string, fallback: string): string {
+  const named = text.match(/\b(glargine|lispro|aspart|detemir|degludec|nph)\b/i);
+  if (named?.[1]) return named[1].toLowerCase();
+  return fallback;
+}
+
+const INTERACTION_PAIR =
+  /\b(?:interact|contraindicat|combined with|in combination|when taken with|taken together|do not (?:use|take|combine)|avoid (?:with|combining)|instead of|switch(?:ed|ing)? (?:from|to)|replac(?:e|ing)|chang(?:e|ed|ing)\b[^.?\n]{0,80}\bto\b)\b/i;
+
+/**
+ * Coarse clinical concept. Stem wording can change and still share a key, which
+ * is the gap a 0.72 stem-similarity check misses. A med-list that merely names
+ * two drugs is not a pair: the pair key is for an interaction, a switch, or a
+ * named partner such as an oral contraceptive. Calc templates stay on the
+ * looser template cap.
+ */
+export function sittingConceptKeys(item: SittingCapSource, fieldId: string): string[] {
+  const keys: string[] = [];
+  const question = item.question ?? "";
+  const answer = keyedAnswerText(item);
+  const stem = clinicalBlob(item);
+  const outside = sentencesOutsideMedList(stem);
+  const focusText = `${question}\n${answer}`;
+  const focus = conceptFocusDrugs(item);
+  const primary = focus[0];
+  const pairText = `${question}\n${outside}`;
+
+  if (focus.length >= 2 && (INTERACTION_PAIR.test(pairText) || focus.includes("oral-contraceptive"))) {
+    keys.push(`concept:pair:${[...focus].sort().join("+")}`);
+  }
+  if (/\blamotrigine\b/i.test(outside) && CONCEPT_PARTNERS[0]!.re.test(outside)) {
+    keys.push("concept:pair:lamotrigine+oral-contraceptive");
+  }
+  if (primary && /\b(?:high[ -]?alert|ismp)\b/i.test(`${question}\n${outside}`)) {
+    keys.push(`concept:high-alert:${specificProduct(`${question}\n${outside}`, primary)}`);
+  }
+  if (
+    primary &&
+    /\b(?:lexicomp|micromedex|facts and comparisons|clinical pharmacology|which (?:resource|reference|source)|tertiary (?:literature|source|reference)|drug information (?:source|resource|reference))\b/i.test(
+      focusText
+    )
+  ) {
+    keys.push(`concept:drug-info:${primary}`);
+  }
+  if (/\bhipaa\b/i.test(stem) && /\b(?:spouse|husband|wife|family|caller|boyfriend|girlfriend)\b/i.test(stem)) {
+    keys.push("concept:hipaa-family-disclosure");
+  }
+  if (/\b(?:look-?alike|sound-?alike|\blasa\b)\b/i.test(stem) && focus.length >= 2) {
+    keys.push(`concept:lasa:${[...focus].sort().join("+")}`);
+  }
+  const subject = item.subjectId?.trim().toLowerCase() ?? "";
+  if (fieldId === "pharmacy" && subject && primary && subject !== "general") {
+    keys.push(`concept:focus:${subject}:${primary}`);
+  }
+  return [...new Set(keys)];
+}
+
 /**
  * Keys that may appear once per sitting: the case opening, an abnormal vital
  * set, a number-stripped calc template, the same ask about the same drug or
@@ -1167,6 +1263,7 @@ export function sittingRepeatKeys(item: SittingCapSource, fieldId: string): stri
     for (const anchor of anchors) keys.push(`ask:${anchor}:${ask}`);
   }
   for (const key of sittingTemplateKeys(item, fieldId)) keys.push(key);
+  for (const key of sittingConceptKeys(item, fieldId)) keys.push(key);
   return keys;
 }
 
@@ -1219,7 +1316,7 @@ export type CapRejectionStats = {
   poolSize: number;
   kept: number;
   rejections: Record<string, number>;
-  /** 0 is the strict pass. 1–5 are the cumulative relaxation ladder. */
+  /** 0 is the strict pass. 1–7 are the cumulative relaxation ladder. */
   relaxLevel?: number;
   /** Strict pass, kept beside the level that was actually used. */
   strict?: { kept: number; rejections: Record<string, number> };
@@ -1227,6 +1324,12 @@ export type CapRejectionStats = {
 
 function scaledRepeatKey(key: string): boolean {
   return key.startsWith("template:") || key.startsWith("calc:");
+}
+
+function repeatAllowance(key: string, limits: SittingCapLimits): number {
+  if (key.startsWith("concept:")) return limits.conceptCap;
+  if (scaledRepeatKey(key)) return limits.templateCap;
+  return 1;
 }
 
 export function enforceEntityAndDosageCap(
@@ -1256,6 +1359,9 @@ export function enforceEntityAndDosageCap(
   const repeatCounts = new Map<string, number>();
   let dosage = 0;
   let calcs = 0;
+  let lawOnly = 0;
+  const lawCeiling = fieldId === "pharmacy" ? naplexLawItemCeiling(limit) : Number.POSITIVE_INFINITY;
+  const lawOpen = limits.relaxLevel >= 7;
   const kept: BankItem[] = [];
   const used = new Set<string>();
   const clusterIds = assignSittingClusters([...pool]);
@@ -1304,6 +1410,11 @@ export function enforceEntityAndDosageCap(
     const drugSplit = fieldId === "pharmacy" ? sittingDrugSplit(item) : { subject: [], background: [] };
     const conditions = isNursingSittingField(fieldId) ? sittingConditionMentions(item) : [];
     const repeats = sittingRepeatKeys(item, fieldId);
+    const lawItem = fieldId === "pharmacy" && classifyNaplexSittingItem(item).lawOnly;
+    if (!lawOpen && lawItem && lawOnly >= lawCeiling) {
+      noteRejection(item, "law");
+      return false;
+    }
     const entityLimit =
       fieldId === "pharmacy" && entity?.startsWith("drug:")
         ? subjectDrugCap
@@ -1328,7 +1439,7 @@ export function enforceEntityAndDosageCap(
       noteRejection(item, "condition");
       return false;
     }
-    const repeatHit = repeats.find((key) => (repeatCounts.get(key) ?? 0) >= (scaledRepeatKey(key) ? templateCap : 1));
+    const repeatHit = repeats.find((key) => (repeatCounts.get(key) ?? 0) >= repeatAllowance(key, limits));
     if (repeatHit) {
       noteRejection(item, `repeat:${repeatHit.split(":")[0]}`);
       return false;
@@ -1365,6 +1476,7 @@ export function enforceEntityAndDosageCap(
     if (dose) dosage += 1;
     if (numeric) calcs += 1;
     if (narrow) narrowCounts.set(narrow, (narrowCounts.get(narrow) ?? 0) + 1);
+    if (lawItem) lawOnly += 1;
     if (cluster) usedClusters.add(cluster);
     if (id) used.add(id);
     kept.push(item);
