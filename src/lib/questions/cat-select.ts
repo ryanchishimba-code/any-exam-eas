@@ -28,7 +28,9 @@ export type CatSelectableItem = {
   drugKeys?: readonly string[] | null;
   /** NCLEX condition already counted toward the cap of 3. */
   conditionKey?: string | null;
-  /** Case opening, calc template, or anchored ask. Each may appear once. */
+  /** Every primary condition on the item. Each is capped at 3. */
+  conditionKeys?: readonly string[] | null;
+  /** Case opening, abnormal vitals, calc template, or anchored ask. Each may appear once. */
   repeatKeys?: readonly string[] | null;
 };
 
@@ -48,6 +50,7 @@ export type CatFormatHint = {
       | "clusterId"
       | "drugKeys"
       | "conditionKey"
+      | "conditionKeys"
       | "repeatKeys"
     >
   >;
@@ -109,7 +112,7 @@ function filterByTopic<T extends CatSelectableItem>(
 
 type CatConstraint = Pick<
   CatSelectableItem,
-  "entityKey" | "askKey" | "clusterId" | "drugKeys" | "conditionKey" | "repeatKeys"
+  "entityKey" | "askKey" | "clusterId" | "drugKeys" | "conditionKey" | "conditionKeys" | "repeatKeys"
 >;
 
 function hasEntityConstraint(item: CatConstraint): boolean {
@@ -118,9 +121,16 @@ function hasEntityConstraint(item: CatConstraint): boolean {
       item.askKey ||
       item.clusterId ||
       item.conditionKey ||
+      item.conditionKeys?.length ||
       item.drugKeys?.length ||
       item.repeatKeys?.length
   );
+}
+
+function countedConditions(item: Pick<CatConstraint, "conditionKey" | "conditionKeys">): string[] {
+  const listed = item.conditionKeys?.map((key) => key.trim()).filter(Boolean);
+  if (listed && listed.length > 0) return [...new Set(listed)];
+  return item.conditionKey ? [item.conditionKey] : [];
 }
 
 /** Drop a repeat cluster, a repeated case, a drug past 2, and a condition past 3. */
@@ -144,7 +154,9 @@ function filterByEntity<T extends CatConstraint>(
     if (item.entityKey && item.askKey) asks.add(`${item.entityKey}:${item.askKey}`);
     if (item.clusterId) clusters.add(item.clusterId);
     for (const drug of item.drugKeys ?? []) drugCounts.set(drug, (drugCounts.get(drug) ?? 0) + 1);
-    if (item.conditionKey) conditionCounts.set(item.conditionKey, (conditionCounts.get(item.conditionKey) ?? 0) + 1);
+    for (const condition of countedConditions(item)) {
+      conditionCounts.set(condition, (conditionCounts.get(condition) ?? 0) + 1);
+    }
     for (const key of item.repeatKeys ?? []) repeats.add(key);
   }
   return candidates.filter((item) => {
@@ -153,7 +165,7 @@ function filterByEntity<T extends CatConstraint>(
     const entityLimit = item.entityKey?.startsWith("condition:") ? conditionCap : cap;
     if (item.entityKey && (entityCounts.get(item.entityKey) ?? 0) >= entityLimit) return false;
     if (item.drugKeys?.some((drug) => (drugCounts.get(drug) ?? 0) >= PHARMACY_DRUG_CAP)) return false;
-    if (item.conditionKey && (conditionCounts.get(item.conditionKey) ?? 0) >= conditionCap) return false;
+    if (countedConditions(item).some((condition) => (conditionCounts.get(condition) ?? 0) >= conditionCap)) return false;
     if (item.entityKey && item.askKey && asks.has(`${item.entityKey}:${item.askKey}`)) return false;
     return true;
   });

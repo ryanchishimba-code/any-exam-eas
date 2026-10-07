@@ -35,7 +35,7 @@ import {
   fullExamSubmitEndedEarly,
   shouldOfferFullExamReviewSubmit,
 } from "@/lib/full-exam/submit-intent";
-import { sittingAskKey, sittingCapTags, sittingEntityKey } from "@/lib/exam-prep/entity-cap";
+import { sittingAskKey, sittingCapEntityKey, sittingCapTags } from "@/lib/exam-prep/entity-cap";
 import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
@@ -106,6 +106,7 @@ type CatPoolItem = StudyQuestion & {
   clusterId?: string | null;
   drugKeys?: readonly string[] | null;
   conditionKey?: string | null;
+  conditionKeys?: readonly string[] | null;
   repeatKeys?: readonly string[] | null;
 };
 
@@ -166,6 +167,7 @@ function catFormatHint(pool: CatPoolItem[], delivered: StudyQuestion[]): CatForm
         clusterId: tagged.clusterId,
         drugKeys: tagged.drugKeys,
         conditionKey: tagged.conditionKey,
+        conditionKeys: tagged.conditionKeys,
         repeatKeys: tagged.repeatKeys,
       };
     }),
@@ -372,6 +374,8 @@ export function FullExamSimulator({
               question: q.stem,
               vignette: q.vignette,
               scenario: q.vignette,
+              options: q.options,
+              correctAnswer: q.correctAnswers.join("|||"),
               subjectId: q.subjectId,
               topicCategory: q.topicCategory,
               blueprintTopic: q.blueprintTopic,
@@ -383,7 +387,7 @@ export function FullExamSimulator({
               ...catFormatFields(q),
               narrowTopic: narrowTopicForQuestion(q),
               difficultyBand: mapDifficultyToCatBand(q.difficulty, i),
-              entityKey: sittingEntityKey(text, fieldId),
+              entityKey: sittingCapEntityKey(source, fieldId),
               askKey: sittingAskKey(q.stem) ?? sittingAskKey(text),
               clusterId: clusters[i],
               ...sittingCapTags(source, fieldId),

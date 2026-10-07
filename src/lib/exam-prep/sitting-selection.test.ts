@@ -3,12 +3,18 @@ import type { BankItem } from "@/lib/question-bank";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import {
   calcTemplateAsk,
+  enforceEntityAndDosageCap,
   entityShareCap,
   isPharmacyNumericEntry,
   itemClinicalText,
   nursingConditionCap,
   nursingDosageShareCap,
   PHARMACY_DRUG_CAP,
+  sittingCaseFingerprint,
+  sittingConditionMentions,
+  sittingDrugMentions,
+  sittingRepeatKeys,
+  sittingVitalFingerprint,
 } from "@/lib/exam-prep/entity-cap";
 import {
   finalizeAssembledSitting,
@@ -803,5 +809,443 @@ describe("simulated sittings", () => {
     const catNgn = simulateCatNgnCount(assembled.items, 87);
     expect(catNgn).toBeGreaterThan(0);
     expect(catNgn).toBeLessThanOrEqual(after.ngnCount);
+  });
+});
+
+describe("retest 165 drug, condition, and case detection", () => {
+  const filler = (id: string, field: "pharmacy" | "nursing") =>
+    item(
+      id,
+      field === "pharmacy"
+        ? `Which storage step applies to shipment lot ${id} before it leaves the pharmacy vault?`
+        : `Which isolation step is required before entering room ${id} for a unique dressing change?`,
+      [`Step ${id}`, "Skip the step"],
+      `Step ${id}`,
+      { itemType: "mcq" }
+    );
+
+  it("counts insulin, warfarin, and sertraline beyond a single longest metadata name", () => {
+    const insulinHiddenByLongerList = item(
+      "insulin-list",
+      "Which check applies to the insulin vial before the evening dose in encounter alpha?",
+      ["Verify the insulin concentration", "Skip the check"],
+      "Verify the insulin concentration",
+      {
+        scenario:
+          "Home medications include levothyroxine 125 mcg daily and acetaminophen 500 mg as needed. The chart also lists spironolactone.",
+        generationMeta: { mainDrug: "heparin" },
+      }
+    );
+    const lantus = item(
+      "insulin-lantus",
+      "Which counseling point applies to the new Lantus prescription in encounter bravo?",
+      ["Inject Lantus at the same time each evening", "Shake the pen"],
+      "Inject Lantus at the same time each evening",
+      { scenario: "Clinic bravo is starting a basal insulin the patient has not used before." }
+    );
+    const humalogKey = item(
+      "insulin-key",
+      "Which high-alert product should be verified during encounter charlie?",
+      ["Humalog", "Acetaminophen"],
+      "Humalog",
+      { scenario: "The medication drawer for encounter charlie contains several look-alike vials." }
+    );
+    const warfarinKey = item(
+      "warfarin-key",
+      "Which medication interaction should the pharmacist address first during this pneumonia admission?",
+      ["Warfarin with the new antibiotic", "Continue every home medication"],
+      "Warfarin with the new antibiotic",
+      {
+        scenario:
+          "An older adult is admitted with pneumonia. Home medications include warfarin 5 mg daily and metoprolol 50 mg twice daily.",
+      }
+    );
+    const zoloft = item(
+      "sertraline-zoloft",
+      "Which adverse effect is most likely during the first week of Zoloft in encounter delta?",
+      ["Nausea", "Hair loss"],
+      "Nausea",
+      { scenario: "Encounter delta starts sertraline under its brand name only." }
+    );
+
+    expect(sittingDrugMentions(insulinHiddenByLongerList)).toEqual(expect.arrayContaining(["insulin", "heparin"]));
+    expect(sittingDrugMentions(insulinHiddenByLongerList)).not.toContain("levothyroxine");
+    expect(sittingDrugMentions(insulinHiddenByLongerList)).not.toContain("acetaminophen");
+    expect(sittingDrugMentions(insulinHiddenByLongerList)).not.toContain("spironolactone");
+    expect(sittingDrugMentions(lantus)).toContain("insulin");
+    expect(sittingDrugMentions(humalogKey)).toEqual(["insulin"]);
+    expect(sittingDrugMentions(warfarinKey)).toEqual(["warfarin"]);
+    expect(sittingDrugMentions(zoloft)).toContain("sertraline");
+  });
+
+  it("counts hypertension, ACS, pressure injury, START triage, and opioid risk from the stem", () => {
+    const hypertension = item(
+      "htn-vitals",
+      "Which finding is the highest priority?",
+      ["Blood pressure", "Hunger"],
+      "Blood pressure",
+      {
+        scenario:
+          "A client presents with complaints of frequent headaches and blurred vision. Blood pressure is 150/95.",
+        generationMeta: { mainSubject: "preeclampsia" },
+      }
+    );
+    const backgroundHypertension = item(
+      "acs-background-htn",
+      "Which action is first for this client?",
+      ["Obtain an ECG", "Offer a blanket"],
+      "Obtain an ECG",
+      { scenario: "History of hypertension. He now has crushing chest pain radiating to the jaw." }
+    );
+    const pressure = item(
+      "pressure",
+      "Which dressing is appropriate for this wound?",
+      ["Foam", "Leave it open"],
+      "Foam",
+      { scenario: "The sacral wound is a stage 2 pressure injury." }
+    );
+    const triage = item(
+      "triage",
+      "Which client is treated first?",
+      ["Red tag", "Green tag"],
+      "Red tag",
+      { scenario: "START triage is underway after a mass-casualty incident." }
+    );
+    const opioid = item(
+      "opioid",
+      "Which assessment is the priority before the next dose?",
+      ["Respiratory rate", "Appetite"],
+      "Respiratory rate",
+      {
+        scenario:
+          "A male client with chronic pain is prescribed an opioid. He has a history of substance use disorder and is currently in recovery.",
+      }
+    );
+
+    expect(sittingConditionMentions(hypertension)).toContain("hypertension");
+    expect(sittingConditionMentions(hypertension)).not.toContain("preeclampsia");
+    expect(sittingConditionMentions(backgroundHypertension)).toContain("acs");
+    expect(sittingConditionMentions(backgroundHypertension)).not.toContain("hypertension");
+    expect(sittingConditionMentions(pressure)).toContain("pressure-injury");
+    expect(sittingConditionMentions(triage)).toContain("mass-casualty");
+    expect(sittingConditionMentions(opioid)).toContain("opioid-sud");
+    expect(sittingConditionMentions(opioid)).not.toContain("suicide");
+  });
+
+  it("blocks identical vitals and age-or-sex clones of the same opening", () => {
+    const anaphylaxis = (id: string, age: number, sex: string, room: number) =>
+      item(id, "Which action is the priority?", [`Epinephrine ${id}`, "Observe"], `Epinephrine ${id}`, {
+        scenario: `A ${age}-year-old ${sex} in the emergency department, room ${room}, develops anaphylaxis minutes after ceftriaxone for pyelonephritis. Penicillin allergy. BP 74/42, HR 130, RR 30, SpO2 89%.`,
+      });
+    const bleedA = item(
+      "ugib-a",
+      "Which action is first?",
+      ["Start fluids", "Offer food"],
+      "Start fluids",
+      {
+        scenario:
+          "A 77-year-old male with peptic ulcer disease and daily aspirin is pale, cool, and lightheaded. BP 90/56, HR 118, hemoglobin 7.2.",
+      }
+    );
+    const bleedB = item(
+      "ugib-b",
+      "Which order does the nurse anticipate?",
+      ["Large-bore IV access", "Oral diet"],
+      "Large-bore IV access",
+      {
+        scenario:
+          "Brought from home after vomiting blood, this 74-year-old man has a history of peptic ulcer disease. BP 90/56, HR 118, hemoglobin 7.2. He is pale and lightheaded.",
+      }
+    );
+    const colonoscopy = (id: string, age: number) =>
+      item(id, `Which finding after today's procedure matters most for ${id}?`, [`Report ${id}`, "Recheck tomorrow"], `Report ${id}`, {
+        scenario: `A ${age}-year-old male is recovering from a colonoscopy performed earlier today. Finding set ${id} is documented.`,
+      });
+    const shockA = anaphylaxis("shock-a", 33, "female", 352);
+    const shockB = anaphylaxis("shock-b", 35, "woman", 418);
+    expect(sittingCaseFingerprint(shockA)).toBe(sittingCaseFingerprint(shockB));
+    expect(sittingVitalFingerprint(shockA)).toBe(sittingVitalFingerprint(shockB));
+    expect(sittingCaseFingerprint(bleedA)).not.toBe(sittingCaseFingerprint(bleedB));
+    expect(sittingVitalFingerprint(bleedA)).toBe(sittingVitalFingerprint(bleedB));
+    expect(sittingRepeatKeys(bleedA, "nursing").some((key) => sittingRepeatKeys(bleedB, "nursing").includes(key))).toBe(
+      true
+    );
+    expect(sittingCaseFingerprint(colonoscopy("colo-a", 45))).toBe(sittingCaseFingerprint(colonoscopy("colo-b", 60)));
+  });
+
+  it("holds pharmacy drug caps at 2 for the retest-165 insulin, warfarin, and sertraline misses", () => {
+    const insulin = (id: string, question: string, answer: string, extra: Partial<BankItem> = {}) =>
+      item(id, question, [answer, `Other ${id}`], answer, { itemType: "mcq", ...extra });
+    const candidates = [
+      insulin(
+        "insulin-1",
+        "Which check applies to the insulin vial before the evening dose in encounter alpha?",
+        "Verify the insulin concentration",
+        {
+          scenario: "Home medications include levothyroxine 125 mcg daily and acetaminophen 500 mg as needed.",
+          generationMeta: { mainDrug: "heparin" },
+        }
+      ),
+      insulin(
+        "insulin-2",
+        "Which counseling point applies to the new Lantus prescription in encounter bravo?",
+        "Inject Lantus at the same time each evening",
+        { scenario: "Clinic bravo is starting basal insulin the patient has not used before." }
+      ),
+      insulin(
+        "insulin-3",
+        "Which high-alert product should be verified during encounter charlie?",
+        "Humalog",
+        { scenario: "The medication drawer for encounter charlie contains several look-alike vials." }
+      ),
+      insulin(
+        "insulin-4",
+        "The list includes spironolactone. Which product is the insulin that must be double-checked in encounter delta?",
+        "Confirm the insulin aspart vial",
+        { scenario: "Encounter delta is a separate high-alert verification." }
+      ),
+      item(
+        "warfarin-1",
+        "Which monitoring step is required before the next warfarin dose in encounter echo?",
+        ["Check the INR", "Skip the visit"],
+        "Check the INR",
+        { scenario: "Encounter echo is a dedicated anticoagulation follow-up." }
+      ),
+      item(
+        "warfarin-2",
+        "Which counseling point applies to a new warfarin prescription in encounter foxtrot?",
+        ["Report bleeding", "Stop all food"],
+        "Report bleeding",
+        { scenario: "Encounter foxtrot starts anticoagulation for a first clot." }
+      ),
+      item(
+        "warfarin-3",
+        "Which medication interaction should the pharmacist address first during this pneumonia admission?",
+        ["Warfarin with the new antibiotic", "Continue every home medication"],
+        "Warfarin with the new antibiotic",
+        {
+          scenario:
+            "An older adult is admitted with pneumonia in bay north. Home medications include warfarin 5 mg daily and metoprolol 50 mg twice daily.",
+        }
+      ),
+      item(
+        "warfarin-4",
+        "Which reconciliation problem is the priority for this second pneumonia admission?",
+        ["The warfarin interaction", "A missing vitamin"],
+        "The warfarin interaction",
+        {
+          scenario:
+            "A different older adult is admitted with pneumonia in bay south. Home medications include warfarin 2 mg daily and metoprolol 25 mg daily.",
+        }
+      ),
+      item(
+        "sertraline-1",
+        "Which adverse effect is most likely during the first week of Zoloft in encounter golf?",
+        ["Nausea", "Hair loss"],
+        "Nausea",
+        { scenario: "Encounter golf starts the brand antidepressant." }
+      ),
+      item(
+        "sertraline-2",
+        "Which interaction matters most when sertraline is added in encounter hotel?",
+        ["Serotonin risk", "No interaction"],
+        "Serotonin risk",
+        { scenario: "Encounter hotel adds the generic SSRI to an otherwise stable regimen." }
+      ),
+      item(
+        "sertraline-3",
+        "Which counseling point applies to a Zoloft refill in encounter india?",
+        ["Take it with food", "Stop tomorrow"],
+        "Take it with food",
+        { scenario: "Encounter india is a refill of the same SSRI under the brand name." }
+      ),
+      ...Array.from({ length: 55 }, (_, index) => filler(`pharm-fill-${index}`, "pharmacy")),
+    ];
+    const kept = enforceEntityAndDosageCap(candidates, candidates, 50, "pharmacy");
+    const ids = kept.map((row) => row.id);
+    expect(ids.filter((id) => id?.startsWith("insulin-"))).toHaveLength(2);
+    expect(ids.filter((id) => id?.startsWith("warfarin-"))).toHaveLength(2);
+    expect(ids.filter((id) => id?.startsWith("sertraline-"))).toHaveLength(2);
+    expect(PHARMACY_DRUG_CAP).toBe(2);
+
+    const assembled = finalizeAssembledSitting({ pool: candidates, limit: 50, fieldId: "pharmacy", seed: 165 });
+    expect(assembled.items).toHaveLength(50);
+    expect(assembled.items.filter((row) => row.id?.startsWith("insulin-")).length).toBeLessThanOrEqual(2);
+    expect(assembled.items.filter((row) => row.id?.startsWith("warfarin-")).length).toBeLessThanOrEqual(2);
+    expect(assembled.items.filter((row) => row.id?.startsWith("sertraline-")).length).toBeLessThanOrEqual(2);
+  });
+
+  it("holds NCLEX condition caps at 3 and blocks the retest duplicate cases", () => {
+    const priority = (id: string, scenario: string) =>
+      item(id, "Which finding is the highest priority?", [`Finding ${id}`, "No change"], `Finding ${id}`, { scenario });
+    const distinct = (id: string, scenario: string, question: string) =>
+      item(id, question, [`Act ${id}`, "Wait"], `Act ${id}`, { scenario });
+    const candidates = [
+      priority("htn-same-1", "Clinic amber: morning headaches and blurred vision. Blood pressure is 150/95."),
+      priority("htn-same-2", "Clinic birch: a different headache pattern. Blood pressure is 162/98."),
+      priority("htn-same-3", "Clinic cedar: visual changes today. Blood pressure is 148/96."),
+      priority("htn-same-4", "Clinic dune: another elevated reading. Blood pressure is 170/100."),
+      distinct(
+        "htn-diff-1",
+        "Case river is an explicit hypertension follow-up with blood pressure 158/94 and no chest pain.",
+        "Which hypertension complication should be reported first in case river?"
+      ),
+      distinct(
+        "htn-diff-2",
+        "Case stone is a hypertensive urgency visit with blood pressure 180/110.",
+        "Which action comes first for this hypertensive urgency in case stone?"
+      ),
+      distinct(
+        "acs-1",
+        "History of hypertension. Crushing chest pain started at rest in bay one.",
+        "Which action is first for the client in bay one?"
+      ),
+      distinct(
+        "acs-2",
+        "Acute coronary syndrome is the working diagnosis in bay two.",
+        "Which monitor is required first in bay two?"
+      ),
+      distinct(
+        "acs-3",
+        "The ECG shows an ST-elevation myocardial infarction in bay three.",
+        "Which team is activated first in bay three?"
+      ),
+      distinct(
+        "acs-4",
+        "Unstable angina recurred after lunch in bay four.",
+        "Which medication check is first in bay four?"
+      ),
+      distinct(
+        "pressure-1",
+        "A stage 2 pressure injury is present on the sacrum in room maple.",
+        "Which dressing is appropriate in room maple?"
+      ),
+      distinct(
+        "pressure-2",
+        "The heel has a suspected deep-tissue pressure injury in room oak.",
+        "Which offloading plan is required in room oak?"
+      ),
+      distinct(
+        "pressure-3",
+        "Documentation describes a decubitus ulcer on the elbow in room pine.",
+        "Which turning schedule is required in room pine?"
+      ),
+      distinct(
+        "pressure-4",
+        "A new bedsore is reported on the coccyx in room cedarwood.",
+        "Which skin assessment is first in room cedarwood?"
+      ),
+      distinct(
+        "mci-1",
+        "START triage is underway after the stadium collapse. Case red walks.",
+        "Which tag color is assigned to case red?"
+      ),
+      distinct(
+        "mci-2",
+        "The mass-casualty drill continues at the north entrance. Case yellow waits.",
+        "Which client is delayed in case yellow?"
+      ),
+      distinct(
+        "mci-3",
+        "Disaster triage uses black tags for expectant clients. Case black is apart.",
+        "Which resource decision applies to case black?"
+      ),
+      distinct(
+        "mci-4",
+        "Simple triage and rapid treatment is repeated at the south lawn. Case green sits.",
+        "Which instruction is given to case green?"
+      ),
+      distinct(
+        "opioid-open-1",
+        "A 40-year-old male client with chronic pain is prescribed an opioid. He has a history of substance use disorder and is currently in recovery. Pain score 8.",
+        "Which assessment comes first before the opioid dose for the 40-year-old?"
+      ),
+      distinct(
+        "opioid-open-2",
+        "A 55-year-old male client with chronic pain is prescribed an opioid. He has a history of substance use disorder and is currently in recovery. Pain score 4.",
+        "Which assessment comes first before the opioid dose for the 55-year-old?"
+      ),
+      distinct(
+        "opioid-3",
+        "Postoperative morphine has produced respiratory depression and pinpoint pupils in case harbor.",
+        "Which antidote is prepared first in case harbor?"
+      ),
+      distinct(
+        "opioid-4",
+        "A client in recovery is prescribed oxycodone and has a substance use disorder history. Case inlet is separate.",
+        "Which monitoring plan is required in case inlet?"
+      ),
+      distinct(
+        "opioid-5",
+        "Fentanyl was given and naloxone is now ordered for respiratory depression in case jetty.",
+        "Which response is watched first in case jetty?"
+      ),
+      item("shock-a", "Which action is the priority?", ["Epinephrine now", "Diphenhydramine"], "Epinephrine now", {
+        scenario:
+          "A 33-year-old female in the emergency department, room 352, develops anaphylaxis minutes after ceftriaxone for pyelonephritis. Penicillin allergy. BP 74/42, HR 130, RR 30, SpO2 89%.",
+      }),
+      item("shock-b", "Which medication is given first?", ["Epinephrine first", "Observe"], "Epinephrine first", {
+        scenario:
+          "A 35-year-old woman in the emergency department, room 418, develops anaphylaxis minutes after ceftriaxone for pyelonephritis. Penicillin allergy. BP 74/42, HR 130, RR 30, SpO2 89%.",
+      }),
+      item("ugib-a", "Which action is first?", ["Start fluids", "Offer food"], "Start fluids", {
+        scenario:
+          "A 77-year-old male with peptic ulcer disease and daily aspirin is pale, cool, and lightheaded. BP 90/56, HR 118, hemoglobin 7.2.",
+      }),
+      item("ugib-b", "Which order does the nurse anticipate?", ["Large-bore IV access", "Oral diet"], "Large-bore IV access", {
+        scenario:
+          "Brought from home after vomiting blood, this 74-year-old man has a history of peptic ulcer disease. BP 90/56, HR 118, hemoglobin 7.2. He is pale and lightheaded.",
+      }),
+      item("colo-a", "Which finding after today's procedure matters most in note alpha?", ["Report bleeding", "Discharge"], "Report bleeding", {
+        scenario: "A 45-year-old male is recovering from a colonoscopy performed earlier today. Note alpha records mild cramping.",
+      }),
+      item("colo-b", "Which finding after today's procedure matters most in note beta?", ["Report bleeding now", "Send home"], "Report bleeding now", {
+        scenario: "A 60-year-old male is recovering from a colonoscopy performed earlier today. Note beta records a different cramp score.",
+      }),
+      item("weight-a", "Which teaching point comes first at this prenatal visit for chart alpha?", ["Review gain", "Ignore weight"], "Review gain", {
+        scenario: "A 28-year-old client at a prenatal visit expresses concern about gaining too much weight. Chart alpha is open.",
+      }),
+      item("weight-b", "Which teaching point comes first at this prenatal visit for chart beta?", ["Review the gain", "Delay teaching"], "Review the gain", {
+        scenario: "A 31-year-old client at a prenatal visit expresses concern about gaining too much weight. Chart beta is open.",
+      }),
+      item("headache-a", "Which complaint is addressed first for client amber?", ["Vision", "Hunger"], "Vision", {
+        scenario: "A 52-year-old client presents with complaints of frequent headaches and blurred vision. Blood pressure is 150/95.",
+      }),
+      item("headache-b", "Which complaint is addressed first for client birch?", ["The headache", "Sleep"], "The headache", {
+        scenario: "A 61-year-old female presents with complaints of frequent headaches and blurred vision. Blood pressure is 166/102.",
+      }),
+      ...Array.from({ length: 80 }, (_, index) => filler(`nurs-fill-${index}`, "nursing")),
+    ];
+
+    const kept = enforceEntityAndDosageCap(candidates, candidates, 85, "nursing");
+    const count = (prefix: string) => kept.filter((row) => row.id?.startsWith(prefix)).length;
+    expect(nursingConditionCap(85)).toBe(3);
+    expect(count("htn-")).toBeLessThanOrEqual(3);
+    expect(count("htn-same-")).toBeLessThanOrEqual(1);
+    expect(count("acs-")).toBeLessThanOrEqual(3);
+    expect(count("pressure-")).toBeLessThanOrEqual(3);
+    expect(count("mci-")).toBeLessThanOrEqual(3);
+    expect(count("opioid-")).toBeLessThanOrEqual(3);
+    expect(count("opioid-open-")).toBeLessThanOrEqual(1);
+    expect(count("shock-")).toBe(1);
+    expect(count("ugib-")).toBe(1);
+    expect(count("colo-")).toBe(1);
+    expect(count("weight-")).toBe(1);
+    expect(count("headache-")).toBeLessThanOrEqual(1);
+    expect(kept).toHaveLength(85);
+
+    const delivered = deliverCatSitting(candidates, 85, "nursing");
+    const deliveredCount = (prefix: string) => delivered.filter((row) => row.id?.startsWith(prefix)).length;
+    expect(delivered).toHaveLength(85);
+    expect(deliveredCount("htn-")).toBeLessThanOrEqual(3);
+    expect(deliveredCount("acs-")).toBeLessThanOrEqual(3);
+    expect(deliveredCount("pressure-")).toBeLessThanOrEqual(3);
+    expect(deliveredCount("mci-")).toBeLessThanOrEqual(3);
+    expect(deliveredCount("opioid-")).toBeLessThanOrEqual(3);
+    expect(deliveredCount("shock-")).toBeLessThanOrEqual(1);
+    expect(deliveredCount("ugib-")).toBeLessThanOrEqual(1);
+    expect(deliveredCount("colo-")).toBeLessThanOrEqual(1);
+    expect(deliveredCount("weight-")).toBeLessThanOrEqual(1);
+    expect(deliveredCount("headache-")).toBeLessThanOrEqual(1);
   });
 });

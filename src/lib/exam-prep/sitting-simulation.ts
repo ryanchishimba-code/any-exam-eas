@@ -4,7 +4,7 @@
  * published NGN rows the old gather never merged in.
  */
 import type { BankItem } from "@/lib/question-bank";
-import { sittingAskKey, sittingCapTags, sittingEntityKey } from "@/lib/exam-prep/entity-cap";
+import { sittingAskKey, sittingCapEntityKey, sittingCapTags } from "@/lib/exam-prep/entity-cap";
 import { isServableToStudents } from "@/lib/exam-prep/student-eligibility";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { finalizeAssembledSitting } from "@/lib/exam-prep/sitting-selection";
@@ -290,7 +290,7 @@ export function deliverCatSitting(
       id: item.id ?? `row-${index}`,
       difficultyBand: mapDifficultyToCatBand(index % 3 === 0 ? "easy" : index % 3 === 1 ? "medium" : "hard", index),
       ngn: isPublishedNgnBankItem(item),
-      entityKey: sittingEntityKey(text, fieldId),
+      entityKey: sittingCapEntityKey(item, fieldId),
       askKey: sittingAskKey(item.question) ?? sittingAskKey(text),
       clusterId: clusters[index],
       ...sittingCapTags(item, fieldId),
