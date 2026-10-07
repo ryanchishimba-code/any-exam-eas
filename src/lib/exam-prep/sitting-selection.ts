@@ -19,6 +19,7 @@ import {
   enforceEntityAndDosageCap,
   isPharmacyCalculationItem,
   pharmacyCalculationQuota,
+  type CapRejectionStats,
 } from "@/lib/exam-prep/entity-cap";
 
 export { isPharmacyCalculationItem, pharmacyCalculationQuota };
@@ -265,7 +266,62 @@ export type AssembledSitting = {
   items: BankItem[];
   relaxed: boolean;
   excludeSeenApplied: boolean;
+  capStats: CapRejectionStats;
 };
+
+/** Stable 32-bit seed from a session id so calc placement survives refresh. */
+export function sessionOrderSeed(sessionId: string): number {
+  let hash = 2166136261;
+  for (let i = 0; i < sessionId.length; i++) {
+    hash ^= sessionId.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+/**
+ * Place pharmacy numeric-entry calculations through the sitting.
+ * Positions are deterministic for a seed, so the same session id keeps the
+ * same order on refresh and resume.
+ */
+export function spreadPharmacyNumericEntries(items: readonly BankItem[], seed: number): BankItem[] {
+  const calcs: BankItem[] = [];
+  const rest: BankItem[] = [];
+  for (const item of items) {
+    if (isPharmacyCalculationItem(item)) calcs.push(item);
+    else rest.push(item);
+  }
+  if (calcs.length === 0 || rest.length === 0) return [...items];
+  const total = items.length;
+  const random = mulberry32(seed ^ 0x9e3779b9);
+  const used = new Set<number>();
+  const span = total / calcs.length;
+  const positions: number[] = [];
+  for (let i = 0; i < calcs.length; i++) {
+    const start = Math.floor(i * span);
+    const end = Math.min(total - 1, Math.max(start, Math.ceil((i + 1) * span) - 1));
+    let slot = start + Math.floor(random() * (end - start + 1));
+    let guard = 0;
+    while (used.has(slot) && guard < total) {
+      slot = (slot + 1) % total;
+      guard += 1;
+    }
+    used.add(slot);
+    positions.push(slot);
+  }
+  positions.sort((left, right) => left - right);
+  const out: BankItem[] = new Array(total);
+  calcs.forEach((item, index) => {
+    out[positions[index]!] = item;
+  });
+  let restIndex = 0;
+  for (let i = 0; i < total; i++) {
+    if (out[i]) continue;
+    out[i] = rest[restIndex]!;
+    restIndex += 1;
+  }
+  return out;
+}
 
 /**
  * Final pass for a timed or full exam: cluster cap, unseen preference, then
@@ -314,12 +370,15 @@ export function finalizeAssembledSitting(params: {
   const excludeSeenApplied = Boolean(seen && seen.size > 0 && picked.length > 0);
 
   let capped = enforceNarrowTopicCap(picked, params.pool, limit);
-  capped = enforceEntityAndDosageCap(capped, params.pool, limit, params.fieldId, seen);
+  const capStats: CapRejectionStats = { poolSize: params.pool.length, kept: 0, rejections: {} };
+  capped = enforceEntityAndDosageCap(capped, params.pool, limit, params.fieldId, seen, capStats);
 
-  const spread = orderWithTopicGap(capped, (item) =>
+  const gapped = orderWithTopicGap(capped, (item) =>
     sequentialSetId(item) ? null : narrowTopicKeyFromBankItem(item)
-  );
-  return { items: spread.slice(0, limit), relaxed, excludeSeenApplied };
+  ).slice(0, limit);
+  const ordered = params.fieldId === "pharmacy" ? spreadPharmacyNumericEntries(gapped, seed) : gapped;
+  capStats.kept = ordered.length;
+  return { items: ordered, relaxed, excludeSeenApplied, capStats };
 }
 
 /**

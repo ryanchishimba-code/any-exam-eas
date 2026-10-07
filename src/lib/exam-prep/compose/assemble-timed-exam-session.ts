@@ -32,11 +32,13 @@ import { isPublishedNgnBankItem } from "@/lib/full-exam/ngn-format-mix";
 import { publishedCatalogToBankItems } from "@/lib/full-exam/catalog-exam-items";
 import { loadPublishedClinicalBank } from "@/lib/assessment/serve-db";
 import { nclexCatNgnEnabled } from "@/lib/full-exam/nclex-cat-ngn";
+import type { CapRejectionStats } from "@/lib/exam-prep/entity-cap";
 import {
   countSittingClusters,
   finalizeAssembledSitting,
   isPharmacyCalculationItem,
   pharmacyCalculationQuota,
+  sessionOrderSeed,
 } from "@/lib/exam-prep/sitting-selection";
 import { isServableToStudents, retainStudentEligibleBankItems } from "@/lib/exam-prep/student-eligibility";
 import { sampleActiveItemsByFormat, samplePharmacyCalculationItems } from "@/lib/question-bank-db";
@@ -56,6 +58,8 @@ export type AssembleTimedExamSessionParams = {
   excludeQuestionIds?: Set<string>;
   /** Bias toward expert rationales + NGN (Focus / weak-area launches). */
   preferPremiumPool?: boolean;
+  /** Session id. Numeric-entry order is seeded from it so refresh stays stable. */
+  sessionId?: string;
 };
 
 export type AssembleTimedExamSessionResult = {
@@ -64,7 +68,61 @@ export type AssembleTimedExamSessionResult = {
   tierId?: string;
   presetExamNumber?: number;
   excludeSeenApplied?: boolean;
+  /** Set when every path returned a short sitting. The route logs this on 503. */
+  unavailable?: CapRejectionStats;
 };
+
+/** Distinct clusters the fast gather must hold before it stops pulling. */
+export function fastGatherClusterGoal(limit: number): number {
+  return Math.ceil(Math.max(0, limit) * 1.5);
+}
+
+/**
+ * Rows the fast gather should hold before it stops.
+ * `ceil(limit * 1.5)` clusters is the floor. One sprint of about `limit * 1.6`
+ * rows still left pharmacy sittings short under the drug cap (about 26% at
+ * N=500), while a second sprint filled. Stop only once both the cluster floor
+ * and this row floor are met.
+ */
+export function fastGatherItemGoal(limit: number, sprintTarget: number, rowCap: number): number {
+  const rows = Math.max(0, Math.floor(limit));
+  const sprint = Math.max(0, Math.floor(sprintTarget));
+  const cap = Math.max(0, Math.floor(rowCap));
+  return Math.min(cap, Math.max(sprint * 2, Math.ceil(rows * 4)));
+}
+
+/**
+ * Pull fast-gather batches until the pool has headroom past the sitting length.
+ * A short or empty pull stops the loop. Callers that cannot fill from this
+ * pool should fall through to the slower paths.
+ */
+export async function collectFastTimedPool(params: {
+  limit: number;
+  rowCap: number;
+  sprintTarget: number;
+  pull: (count: number) => Promise<BankItem[]>;
+}): Promise<BankItem[]> {
+  const clusterGoal = fastGatherClusterGoal(params.limit);
+  const itemGoal = fastGatherItemGoal(params.limit, params.sprintTarget, params.rowCap);
+  let fastItems: BankItem[] = [];
+  for (let pullIndex = 0; pullIndex < 6 && fastItems.length < params.rowCap; pullIndex++) {
+    const batch = await params.pull(Math.min(params.sprintTarget, params.rowCap - fastItems.length));
+    const before = fastItems.length;
+    fastItems = mergeBankItems(fastItems, batch);
+    if (fastItems.length === before) break;
+    if (countSittingClusters(fastItems) >= clusterGoal && fastItems.length >= itemGoal) break;
+  }
+  return fastItems;
+}
+
+export function logComposeUnavailable(limit: number, stats: CapRejectionStats | null | undefined): void {
+  console.warn("[full-exam] could not compose exam", {
+    limit,
+    poolSize: stats?.poolSize ?? 0,
+    kept: stats?.kept ?? 0,
+    rejections: stats?.rejections ?? {},
+  });
+}
 
 function prepareTimedExamItem(fieldId: string, item: BankItem): BankItem {
   return timedExamPrepareItemForField(fieldId)?.(item) ?? prepareBoardBankItem(fieldId, item);
@@ -142,25 +200,29 @@ function scopeAssemblyResult(
   fieldId: string,
   limit: number,
   result: AssembleTimedExamSessionResult | null,
-  excludeQuestionIds?: Set<string>,
-  preferPremiumPool = false
+  excludeQuestionIds: Set<string> | undefined,
+  preferPremiumPool: boolean,
+  orderSeed: number,
+  shortfalls: CapRejectionStats[]
 ): AssembleTimedExamSessionResult | null {
   if (!result) return null;
   let items = filterBankItemsForPracticeField(result.items, fieldId);
   if (preferPremiumPool) {
     items = preferPremiumBankItems(items);
   }
-  const seed = (Date.now() ^ 0x51ed270b) >>> 0;
   const includeNgn = fieldId === "nursing" && nclexCatNgnEnabled();
   const finalized = finalizeAssembledSitting({
     pool: items,
     limit,
     fieldId,
     seenIds: excludeQuestionIds,
-    seed,
+    seed: orderSeed,
     includeNgn,
   });
-  if (finalized.items.length < limit) return null;
+  if (finalized.items.length < limit) {
+    shortfalls.push(finalized.capStats);
+    return null;
+  }
   return {
     ...result,
     items: finalized.items,
@@ -179,10 +241,13 @@ export async function assembleTimedExamSessionItems(
     sampleCount,
     excludeQuestionIds,
     preferPremiumPool = Boolean(focusAreas?.length),
+    sessionId,
   } = params;
   const prepare = (item: BankItem) => prepareTimedExamItem(fieldId, item);
   const seed = (Date.now() ^ 0x51ed270b) >>> 0;
+  const orderSeed = sessionId ? sessionOrderSeed(sessionId) : seed;
   const hasFocus = Boolean(focusAreas?.length);
+  const shortfalls: CapRejectionStats[] = [];
   const scope = async (
     result: AssembleTimedExamSessionResult | null
   ): Promise<AssembleTimedExamSessionResult | null> => {
@@ -211,7 +276,9 @@ export async function assembleTimedExamSessionItems(
       limit,
       { ...result, items },
       excludeQuestionIds,
-      preferPremiumPool
+      preferPremiumPool,
+      orderSeed,
+      shortfalls
     );
   };
 
@@ -222,34 +289,35 @@ export async function assembleTimedExamSessionItems(
         ? Math.max(Math.ceil(limit * 2.2), limit + 80)
         : Math.max(Math.ceil(limit * 1.6), limit + 80);
     const rowCap = Math.min(2000, Math.max(sprintTarget * 3, limit * 4));
-    let fastItems: BankItem[] = [];
-    for (let pull = 0; pull < 6 && fastItems.length < rowCap; pull++) {
-      const batch = await gatherSprintTimedExamPool({
-        fieldId,
-        limit: Math.min(sprintTarget, rowCap - fastItems.length),
-        prepareItem: prepare,
-      });
-      const before = fastItems.length;
-      fastItems = mergeBankItems(fastItems, batch);
-      if (fastItems.length === before) break;
-      if (countSittingClusters(fastItems) >= limit) break;
-    }
+    const fastItems = await collectFastTimedPool({
+      limit,
+      rowCap,
+      sprintTarget,
+      pull: (count) =>
+        gatherSprintTimedExamPool({
+          fieldId,
+          limit: count,
+          prepareItem: prepare,
+        }),
+    });
     if (fastItems.length >= limit) {
-      return await scope({
+      const fast = await scope({
         items: fastItems,
         source: "gather",
       });
+      if (fast) return fast;
     }
   }
 
   if (!hasFocus && !skipTimedPresetForField(fieldId)) {
     const preset = await tryLoadTimedPresetSession({ fieldId, limit, seed });
     if (preset) {
-      return await scope({
+      const presetResult = await scope({
         items: preset.items,
         source: "preset",
         presetExamNumber: preset.examNumber,
       });
+      if (presetResult) return presetResult;
     }
   }
 
@@ -275,7 +343,10 @@ export async function assembleTimedExamSessionItems(
       fieldId,
       excludeQuestionIds
     );
-    if (filled) return await scope(filled);
+    if (filled) {
+      const progressive = await scope(filled);
+      if (progressive) return progressive;
+    }
   }
 
   // Focused or blueprint-balanced compose — also used for weak-area launches.
@@ -288,11 +359,12 @@ export async function assembleTimedExamSessionItems(
       liveFast: true,
     });
     if (composed?.items.length && composed.items.length >= limit) {
-      return await scope({
+      const blueprint = await scope({
         items: composed.items,
         source: "blueprint",
         tierId: composed.tierId,
       });
+      if (blueprint) return blueprint;
     }
   }
 
@@ -306,11 +378,12 @@ export async function assembleTimedExamSessionItems(
       liveFast: true,
     });
     if (composed?.items.length && composed.items.length >= limit) {
-      return await scope({
+      const blueprint = await scope({
         items: composed.items,
         source: "blueprint",
         tierId: composed.tierId,
       });
+      if (blueprint) return blueprint;
     }
   }
 
@@ -326,14 +399,15 @@ export async function assembleTimedExamSessionItems(
     })
   ).map(prepare);
 
-  if (!items.length) return null;
-
-  const filled = fillGatheredItems(
-    items,
-    limit,
-    EXACT_FILL_COMPOSE_TIER.id,
-    fieldId,
-    excludeQuestionIds
+  const filled = items.length
+    ? fillGatheredItems(items, limit, EXACT_FILL_COMPOSE_TIER.id, fieldId, excludeQuestionIds)
+    : null;
+  const legacy = await scope(filled);
+  if (legacy) return legacy;
+  const best = shortfalls.reduce<CapRejectionStats | null>(
+    (current, stats) => (!current || stats.kept > current.kept ? stats : current),
+    null
   );
-  return await scope(filled);
+  if (!best) return null;
+  return { items: [], source: "gather", unavailable: best };
 }

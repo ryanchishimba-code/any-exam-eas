@@ -21,6 +21,8 @@ import {
   isPharmacyCalculationItem,
   pharmacyCalculationQuota,
   selectSittingItems,
+  sessionOrderSeed,
+  spreadPharmacyNumericEntries,
   storedFormNeedsFreshAssembly,
 } from "@/lib/exam-prep/sitting-selection";
 import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
@@ -868,13 +870,15 @@ describe("retest 165 drug, condition, and case detection", () => {
       { scenario: "Encounter delta starts sertraline under its brand name only." }
     );
 
-    expect(sittingDrugMentions(insulinHiddenByLongerList)).toEqual(expect.arrayContaining(["insulin", "heparin"]));
-    expect(sittingDrugMentions(insulinHiddenByLongerList)).not.toContain("levothyroxine");
-    expect(sittingDrugMentions(insulinHiddenByLongerList)).not.toContain("acetaminophen");
+    expect(sittingDrugMentions(insulinHiddenByLongerList)[0]).toBe("insulin");
+    expect(sittingDrugMentions(insulinHiddenByLongerList)).toEqual(
+      expect.arrayContaining(["insulin", "heparin", "levothyroxine", "acetaminophen"])
+    );
     expect(sittingDrugMentions(insulinHiddenByLongerList)).not.toContain("spironolactone");
     expect(sittingDrugMentions(lantus)).toContain("insulin");
     expect(sittingDrugMentions(humalogKey)).toEqual(["insulin"]);
-    expect(sittingDrugMentions(warfarinKey)).toEqual(["warfarin"]);
+    expect(sittingDrugMentions(warfarinKey)[0]).toBe("warfarin");
+    expect(sittingDrugMentions(warfarinKey)).toEqual(expect.arrayContaining(["warfarin", "metoprolol"]));
     expect(sittingDrugMentions(zoloft)).toContain("sertraline");
   });
 
@@ -1751,5 +1755,357 @@ describe("retest 166 postpartum, vitals, and medication duplicates", () => {
     const pool = Array.from({ length: 70 }, (_, index) => filler(`compose-${index}`, "pharmacy"));
     const kept = enforceEntityAndDosageCap(pool, pool, 50, "pharmacy");
     expect(kept).toHaveLength(50);
+  });
+});
+
+describe("retest 167 misses", () => {
+  const giA = item(
+    "cmqwqluo500091yel8a8679i5",
+    "What is the most appropriate immediate action?",
+    [
+      "Establish large-bore IV access, begin fluid resuscitation, and notify the provider for transfusion and urgent endoscopy",
+      "Give the scheduled low-dose aspirin and recheck vital signs in 1 hour",
+    ],
+    "Establish large-bore IV access, begin fluid resuscitation, and notify the provider for transfusion and urgent endoscopy",
+    {
+      scenario:
+        "A 77-year-old male is admitted to the medical-surgical unit with an upper gastrointestinal bleed. His medical history includes peptic ulcer disease and chronic aspirin use. Overnight, he experienced melena, and upon assessment, his vital signs reveal a blood pressure of 90/56 mmHg, heart rate of 118 bpm, and hemoglobin level of 7.2 g/dL. The client appears pale with cool extremities, reports feeling lightheaded when repositioning, and has a capillary refill time of 3 seconds.",
+    }
+  );
+  const giB = item(
+    "cmpnjm27z0nor1ymxab1gpzhb",
+    "What is the nurse's priority action?",
+    [
+      "Complete routine comfort measures for all other assigned clients before addressing abnormal findings.",
+      "Establish IV access, infuse fluids and blood per protocol, monitor vital signs and mental status, and prepare for endoscopy.",
+    ],
+    "Establish IV access, infuse fluids and blood per protocol, monitor vital signs and mental status, and prepare for endoscopy.",
+    {
+      scenario:
+        "A 74-year-old male is admitted to the medical-surgical unit with an upper gastrointestinal (GI) bleed, attributed to his history of peptic ulcer disease and chronic aspirin use. He presents with active melena and shows signs of hypovolemic shock, including a blood pressure of 90/56 mmHg, heart rate of 118 bpm, and hemoglobin level of 7.2 g/dL. The client appears pale with cool extremities and reports feeling lightheaded upon repositioning.",
+    }
+  );
+
+  it("treats hemoglobin level of 7.2 as the same GI-bleed case", () => {
+    const keysA = sittingRepeatKeys(giA, "nursing");
+    const keysB = sittingRepeatKeys(giB, "nursing");
+    expect(sittingVitalFingerprint(giA)).toBe(sittingVitalFingerprint(giB));
+    expect(sittingVitalFingerprint(giA)).toContain("hgb=7.2");
+    expect(keysA.some((key) => keysB.includes(key) && key.startsWith("vitals:"))).toBe(true);
+    expect(sittingConditionMentions(giA)).toContain("gi-bleed");
+    const kept = enforceEntityAndDosageCap([giA, giB], [giA, giB], 2, "nursing");
+    expect(kept.filter((row) => row.id === giA.id || row.id === giB.id)).toHaveLength(1);
+  });
+
+  it("shares one pediatric mg/kg key when the dose lives in the scenario", () => {
+    const question = "What dose (mg) per administration? (Round to the nearest whole number.)";
+    const rows = [
+      item("cmr1bhh7v003c1yrm20vw2xux", question, [], "11 mg", {
+        scenario: "Furosemide 2 mg/kg/day PO divided every 12 hours is ordered for a child weighing 11 kg.",
+        itemType: "vignette",
+      }),
+      item("cmr1bhgpw00371yrm9rygq9ta", question, [], "180 mg", {
+        scenario: "Azithromycin 10 mg/kg/day PO divided once daily is ordered for a child weighing 18 kg.",
+        itemType: "vignette",
+      }),
+      item("cmr1bhh0m003a1yrmawzvszui", question, [], "160 mg", {
+        scenario: "Clindamycin 30 mg/kg/day PO divided every 8 hours is ordered for a child weighing 16 kg.",
+        itemType: "vignette",
+      }),
+      item("cmr1bhgcc00331yrme7wr9p5l", "What dose (mg) should the nurse administer per dose?", [], "100 mg", {
+        scenario: "Cefazolin 25 mg/kg/day IV divided every 8 hours is ordered for a child weighing 12 kg.",
+        itemType: "vignette",
+      }),
+    ];
+    for (const row of rows) {
+      expect(sittingRepeatKeys(row, "nursing")).toContain("template:mgkg-per-admin");
+    }
+    expect(calcTemplateAsk(question)).toBeTruthy();
+    const fillers = Array.from({ length: 20 }, (_, index) =>
+      item(`peds-fill-${index}`, `Which isolation step is required before entering room ${index}?`, [`Step ${index}`, "Skip"], `Step ${index}`)
+    );
+    const kept = enforceEntityAndDosageCap([...rows, ...fillers], [...rows, ...fillers], 12, "nursing");
+    expect(kept.filter((row) => rows.some((candidate) => candidate.id === row.id))).toHaveLength(1);
+  });
+
+  it("caps the new NCLEX conditions at 3 and recognizes the retest topics", () => {
+    const samples: { id: string; scenario: string; key: string }[] = [
+      { id: "copd", scenario: "A 60-year-old male is admitted with a COPD exacerbation on oxygen at 2 L/min by nasal cannula.", key: "copd" },
+      { id: "t2dm", scenario: "A 55-year-old with type 2 diabetes takes metformin and is admitted for hyperglycemia.", key: "type-2-diabetes" },
+      { id: "dka", scenario: "A client in diabetic ketoacidosis has a glucose of 480 and is receiving an insulin infusion.", key: "dka" },
+      { id: "gib", scenario: "The client has an upper GI bleed with melena and a dropping hemoglobin.", key: "gi-bleed" },
+      { id: "etoh", scenario: "A male client in alcohol withdrawal is anxious with tremors. CIWA scoring is due.", key: "alcohol-withdrawal" },
+      { id: "mood", scenario: "A 16-year-old reports depression and refuses to leave the room. The client is not suicidal.", key: "depression" },
+      { id: "oa", scenario: "An older adult with osteoarthritis pain rates the knee 8 out of 10.", key: "arthritis-pain" },
+      { id: "vax", scenario: "The nurse reviews the immunization record before giving the scheduled vaccine.", key: "immunization" },
+      { id: "asthma", scenario: "A child with asthma has wheezing after a viral illness.", key: "asthma" },
+      { id: "postop", scenario: "Postoperative pain is 7 out of 10 on the day after surgery.", key: "postop-pain" },
+      { id: "anc", scenario: "The client is neutropenic after chemotherapy and has a fever.", key: "neutropenia" },
+      { id: "cinv", scenario: "Chemotherapy-induced nausea continues despite the scheduled antiemetic.", key: "cinv" },
+      { id: "thyroid", scenario: "After thyroidectomy the client has perioral tingling from hypocalcemia.", key: "thyroid" },
+    ];
+    for (const sample of samples) {
+      const row = item(sample.id, "Which action is the priority?", ["Act", "Wait"], "Act", { scenario: sample.scenario });
+      expect(sittingConditionMentions(row)).toContain(sample.key);
+    }
+    expect(
+      sittingConditionMentions(
+        item("resp", "Which assessment is first?", ["Rate", "Appetite"], "Rate", {
+          scenario: "Postoperative morphine has produced respiratory depression and pinpoint pupils.",
+        })
+      )
+    ).not.toContain("depression");
+
+    const places = ["alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf", "hotel", "india", "juliet"];
+    const copd = (id: string, place: string) =>
+      item(
+        id,
+        `Which observation belongs in the ${place} respiratory note?`,
+        [`Document ${place} work of breathing`, `Skip the ${place} note`],
+        `Document ${place} work of breathing`,
+        {
+          scenario: `A rancher from ${place} county arrives tripoding with pursed lips during a COPD exacerbation and needs oxygen.`,
+        }
+      );
+    const pool = [
+      ...Array.from({ length: 6 }, (_, index) => copd(`copd-${index}`, places[index]!)),
+      ...Array.from({ length: 40 }, (_, index) =>
+        item(`cond-fill-${index}`, `Which isolation step is required before entering room ${index}?`, [`Step ${index}`, "Skip"], `Step ${index}`)
+      ),
+    ];
+    const keptShort = enforceEntityAndDosageCap(pool, pool, 30, "nursing");
+    expect(nursingConditionCap(30)).toBe(2);
+    expect(keptShort.filter((row) => /copd/i.test(itemClinicalText(row)))).toHaveLength(2);
+    const longPool = [
+      ...Array.from({ length: 8 }, (_, index) => copd(`copd-long-${index}`, places[index]!)),
+      ...Array.from({ length: 80 }, (_, index) =>
+        item(`cond-long-fill-${index}`, `Which isolation step is required before entering room long-${index}?`, [`Long step ${index}`, "Skip"], `Long step ${index}`)
+      ),
+    ];
+    const keptLong = enforceEntityAndDosageCap(longPool, longPool, 75, "nursing");
+    expect(nursingConditionCap(75)).toBe(3);
+    expect(keptLong.filter((row) => /copd/i.test(itemClinicalText(row)))).toHaveLength(3);
+  });
+
+  it("counts warfarin in a current-medications sentence and the added interaction drugs", () => {
+    const q44 = item(
+      "q44",
+      "What is the most appropriate action for the pharmacist to take before dispensing the amiodarone?",
+      [],
+      "Contact the prescriber to discuss potential drug interactions.",
+      {
+        scenario:
+          "A 65-year-old female patient with a history of atrial fibrillation and hypertension presents to the pharmacy with a new prescription for amiodarone 200 mg daily. Her current medications include warfarin 5 mg daily, lisinopril 20 mg daily, and metoprolol 50 mg twice daily. Her recent INR is 2.8.",
+      }
+    );
+    expect(sittingDrugMentions(q44)).toEqual(expect.arrayContaining(["amiodarone", "warfarin", "lisinopril", "metoprolol"]));
+    const names = [
+      "amiodarone",
+      "fluconazole",
+      "carbamazepine",
+      "diltiazem",
+      "oxycodone",
+      "hydromorphone",
+      "prasugrel",
+      "valproic acid",
+      "famotidine",
+      "citalopram",
+      "aprepitant",
+    ];
+    for (const name of names) {
+      expect(sittingDrugMentions(item(name, `Patient takes ${name}.`, [], ""))).not.toHaveLength(0);
+    }
+    const warfarinItems = ["q21", "q42", "q44"].map((id, index) =>
+      item(
+        id,
+        index === 0
+          ? "What potential interaction should the pharmacist be concerned about?"
+          : index === 1
+            ? "What is the likely effect of adding fluconazole on the patient's INR?"
+            : q44.question,
+        index === 1 ? ["Increase the INR", "No effect"] : ["Contact the prescriber", "Dispense as written"],
+        index === 1 ? "Increase the INR" : index === 0 ? "Levofloxacin and warfarin" : q44.correctAnswer,
+        {
+          scenario:
+            index === 0
+              ? "Home medications include warfarin, metoprolol, and simvastatin. The pharmacist notes an order for levofloxacin."
+              : index === 1
+                ? "A 50-year-old male is taking warfarin for atrial fibrillation. He is prescribed fluconazole. His INR is 2.5."
+                : q44.scenario,
+        }
+      )
+    );
+    const fillers = Array.from({ length: 20 }, (_, index) =>
+      item(`warf-fill-${index}`, `Which storage step applies to shipment lot ${index}?`, [`Step ${index}`, "Skip"], `Step ${index}`)
+    );
+    const kept = enforceEntityAndDosageCap([...warfarinItems, ...fillers], [...warfarinItems, ...fillers], 15, "pharmacy");
+    expect(kept.filter((row) => sittingRepeatKeys(row, "pharmacy").includes("template:warfarin-interaction"))).toHaveLength(1);
+    expect(sittingRepeatKeys(warfarinItems[1]!, "pharmacy")).toContain("template:warfarin-interaction");
+  });
+
+  it("caps steady-state and renal dose-reduction templates once per pharmacy sitting", () => {
+    const steady = (id: string, drug: string) =>
+      item(
+        id,
+        `Approximately how many half-lives does it take for ${drug} to reach steady state?`,
+        ["3 to 5 half-lives", "1 half-life"],
+        "3 to 5 half-lives",
+        { scenario: `${drug} case ${id} has its own indication and a unique chart.` }
+      );
+    const renal = (id: string, drug: string) =>
+      item(
+        id,
+        `What adjustment should be made to the ${drug} dose for this kidney function?`,
+        ["Decrease the dose", "No change"],
+        "Decrease the dose",
+        { scenario: `CrCl is reduced in case ${id}. The ${drug} order needs a renal review.` }
+      );
+    const rows = [steady("ss-1", "amiodarone"), steady("ss-2", "carbamazepine"), renal("ren-1", "gabapentin"), renal("ren-2", "levofloxacin")];
+    const fillers = Array.from({ length: 20 }, (_, index) =>
+      item(`tpl-fill-${index}`, `Which storage step applies to shipment lot ${index}?`, [`Step ${index}`, "Skip"], `Step ${index}`)
+    );
+    const kept = enforceEntityAndDosageCap([...rows, ...fillers], [...rows, ...fillers], 16, "pharmacy");
+    expect(kept.filter((row) => /steady state/i.test(row.question))).toHaveLength(1);
+    expect(kept.filter((row) => /kidney function/i.test(row.question))).toHaveLength(1);
+  });
+
+  it("accepts a bow-tie before regular questions use up its condition, and ignores choice-column tags", () => {
+    const bowtie = item(
+      "ngn:hypoglycemia",
+      "Complete the diagram: choose the condition, 2 actions, and 2 parameters.",
+      ["Give dextrose", "Give albuterol"],
+      "Give dextrose",
+      {
+        itemType: "ngn_bowtie",
+        scenario: "The client is NPO, alert, and pale.",
+        ngnPayload: {
+          kind: "bow_tie",
+          condition: "Hypoglycemia",
+          conditionOptions: ["Hypoglycemia", "COPD exacerbation", "Type 2 diabetes", "Upper GI bleed", "Asthma"],
+          actions: ["Give IV dextrose", "Give a nebulized bronchodilator for COPD"],
+          monitors: ["Glucose", "Peak flow"],
+        },
+      }
+    );
+    const cloze = item(
+      "ngn:cloze-pain",
+      "Complete the cloze about the postoperative client.",
+      [],
+      "pain=opioid",
+      {
+        itemType: "ngn_dropdown",
+        scenario: "The client is one day after surgery.",
+        ngnPayload: {
+          kind: "dropdown",
+          template: "The priority finding is postoperative pain.",
+          dropdowns: [
+            {
+              id: "pain",
+              key: "opioid",
+              options: [
+                { id: "opioid", text: "an opioid" },
+                { id: "copd", text: "a COPD exacerbation" },
+                { id: "dka", text: "diabetic ketoacidosis" },
+              ],
+            },
+          ],
+        },
+      }
+    );
+    expect(sittingConditionMentions(bowtie)).toContain("hypoglycemia");
+    expect(sittingConditionMentions(bowtie)).not.toContain("copd");
+    expect(sittingConditionMentions(bowtie)).not.toContain("type-2-diabetes");
+    expect(sittingConditionMentions(bowtie)).not.toContain("gi-bleed");
+    expect(sittingConditionMentions(bowtie)).not.toContain("asthma");
+    expect(sittingConditionMentions(cloze)).toContain("postop-pain");
+    expect(sittingConditionMentions(cloze)).not.toContain("copd");
+    expect(sittingConditionMentions(cloze)).not.toContain("dka");
+
+    const hypoPlaces = ["maple", "cedar", "birch", "spruce"];
+    const hypo = (id: string, place: string) =>
+      item(
+        id,
+        `Which snack does the ${place} aide bring first?`,
+        [`Bring juice to the ${place} bedside`, "Wait for the meal tray"],
+        `Bring juice to the ${place} bedside`,
+        {
+          scenario: `A visitor in the ${place} lounge finds the client pale, sweaty, and confused from hypoglycemia.`,
+        }
+      );
+    const fillers = Array.from({ length: 8 }, (_, index) =>
+      item(`ngn-fill-${index}`, `Which isolation step is required before entering room ngn-${index}?`, [`Step ${index}`, "Skip"], `Step ${index}`)
+    );
+    const pool = [
+      ...hypoPlaces.map((place, index) => hypo(`h${index + 1}`, place)),
+      bowtie,
+      cloze,
+      ...fillers,
+    ];
+    const limit = 12;
+    const kept = enforceEntityAndDosageCap(pool, pool, limit, "nursing");
+    const hypoKept = kept.filter((row) => sittingConditionMentions(row).includes("hypoglycemia"));
+    expect(kept.some((row) => row.id === bowtie.id)).toBe(true);
+    expect(kept.some((row) => row.id === cloze.id)).toBe(true);
+    expect(nursingConditionCap(limit)).toBe(2);
+    expect(hypoKept).toHaveLength(nursingConditionCap(limit));
+    expect(hypoKept.some((row) => row.id === bowtie.id)).toBe(true);
+  });
+
+  it("spreads pharmacy numeric entries through the sitting for a session id", () => {
+    const calcs = [
+      item(
+        "spread-calc-0",
+        "How many milligrams of vancomycin are required for this adult? Round to the nearest whole milligram.",
+        [],
+        "1000",
+        { itemType: "constructed_response", scenario: "A 70 kg adult in the east clinic is due for a vancomycin infusion." }
+      ),
+      item(
+        "spread-calc-1",
+        "Calculate the piperacillin infusion rate in mL/hr for this order.",
+        [],
+        "125",
+        { itemType: "constructed_response", scenario: "The west clinic is starting a piperacillin infusion over two hours." }
+      ),
+      item(
+        "spread-calc-2",
+        "How many levothyroxine tablets should be dispensed for a 30-day supply?",
+        [],
+        "30",
+        { itemType: "constructed_response", scenario: "The south pharmacy is filling a once-daily levothyroxine supply." }
+      ),
+      item(
+        "spread-calc-3",
+        "What is the cefazolin concentration in mg/mL after reconstitution?",
+        [],
+        "100",
+        { itemType: "calculation", scenario: "The north hood is reconstituting a cefazolin vial with sterile water." }
+      ),
+    ];
+    const filler = (id: string) =>
+      item(id, `Which counseling point applies to refill case ${id}?`, [`Point ${id}`, "Skip"], `Point ${id}`, {
+        itemType: "mcq",
+      });
+    const pool = [
+      ...calcs,
+      ...Array.from({ length: 46 }, (_, index) => filler(`spread-fill-${index}`)),
+    ];
+    const seed = sessionOrderSeed("cmuxg3v8fhewk6nw8");
+    const first = finalizeAssembledSitting({ pool, limit: 50, fieldId: "pharmacy", seed });
+    const second = finalizeAssembledSitting({ pool, limit: 50, fieldId: "pharmacy", seed });
+    const indexes = first.items.flatMap((row, index) => (isPharmacyCalculationItem(row) ? [index] : []));
+    expect(first.items.map((row) => row.id)).toEqual(second.items.map((row) => row.id));
+    expect(indexes.length).toBeGreaterThanOrEqual(4);
+    expect(indexes.every((index, position) => index === position)).toBe(false);
+    expect(indexes[indexes.length - 1]! - indexes[0]!).toBeGreaterThan(10);
+    expect(spreadPharmacyNumericEntries(first.items, seed).map((row) => row.id)).toEqual(first.items.map((row) => row.id));
+    const other = finalizeAssembledSitting({
+      pool,
+      limit: 50,
+      fieldId: "pharmacy",
+      seed: sessionOrderSeed("cmuxg6m8gi59ru2e0"),
+    });
+    const otherIndexes = other.items.flatMap((row, index) => (isPharmacyCalculationItem(row) ? [index] : []));
+    expect(otherIndexes.join(",")).not.toBe(indexes.join(","));
   });
 });

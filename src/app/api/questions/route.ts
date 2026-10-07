@@ -343,7 +343,7 @@ export async function GET(req: Request) {
         sampleCount,
       });
 
-      if (!assembled) {
+      if (!assembled || assembled.unavailable || assembled.items.length < limit) {
         return { kind: "empty-timed" as const };
       }
 

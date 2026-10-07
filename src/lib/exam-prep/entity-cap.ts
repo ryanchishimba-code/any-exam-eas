@@ -73,6 +73,22 @@ const DRUGS = [
   "vancomycin",
   "warfarin",
   "zolpidem",
+  "amiodarone",
+  "fluconazole",
+  "carbamazepine",
+  "diltiazem",
+  "oxycodone",
+  "hydromorphone",
+  "prasugrel",
+  "valproic",
+  "famotidine",
+  "citalopram",
+  "aprepitant",
+  "clarithromycin",
+  "ciprofloxacin",
+  "ketoconazole",
+  "rifampin",
+  "lithium",
 ].sort((left, right) => right.length - left.length);
 
 /** Brand, class, and salt names that must share the generic's sitting cap. */
@@ -106,6 +122,22 @@ const DRUG_ALIASES: { key: string; re: RegExp }[] = [
   { key: "albuterol", re: /\b(?:albuterol|ventolin|proair|proventil)\b/i },
   { key: "omeprazole", re: /\b(?:omeprazole|prilosec)\b/i },
   { key: "heparin", re: /\b(?:heparins?|unfractionated heparin)\b/i },
+  { key: "amiodarone", re: /\b(?:amiodarone|cordarone|pacerone)\b/i },
+  { key: "fluconazole", re: /\b(?:fluconazole|diflucan)\b/i },
+  { key: "carbamazepine", re: /\b(?:carbamazepine|tegretol)\b/i },
+  { key: "diltiazem", re: /\b(?:diltiazem|cardizem|tiazac)\b/i },
+  { key: "oxycodone", re: /\b(?:oxycodone|oxycontin|roxicodone|percocet)\b/i },
+  { key: "hydromorphone", re: /\b(?:hydromorphone|dilaudid)\b/i },
+  { key: "prasugrel", re: /\b(?:prasugrel|effient)\b/i },
+  { key: "valproic", re: /\b(?:valproic(?: acid)?|valproate|divalproex|depakote|depakene)\b/i },
+  { key: "famotidine", re: /\b(?:famotidine|pepcid)\b/i },
+  { key: "citalopram", re: /\b(?:citalopram|celexa)\b/i },
+  { key: "aprepitant", re: /\b(?:aprepitant|emend|fosaprepitant)\b/i },
+  { key: "clarithromycin", re: /\b(?:clarithromycin|biaxin)\b/i },
+  { key: "ciprofloxacin", re: /\b(?:ciprofloxacin|cipro)\b/i },
+  { key: "ketoconazole", re: /\b(?:ketoconazole|nizoral)\b/i },
+  { key: "rifampin", re: /\b(?:rifampin|rifampicin)\b/i },
+  { key: "lithium", re: /\b(?:lithium|lithobid)\b/i },
 ];
 
 const DRUG_SUFFIX =
@@ -133,7 +165,7 @@ const CONDITIONS: { key: string; re: RegExp }[] = [
     key: "gallbladder",
     re: /\bgallbladder\b|\bcholecystitis\b|\bcholelithiasis\b|\b(?:laparoscopic cholecystectomy|lap(?:aroscopic)? chole|cholecystectomy)\b/i,
   },
-  { key: "suicide", re: /\bsuicid\w*|\bself-harm\b|\b(?<!respiratory )depress(?:ed|ion|ive)s?\b/i },
+  { key: "suicide", re: /\bsuicid\w*|\bself-harm\b/i },
   { key: "pregnancy", re: /\bpregnan\w*|\bprenatal\b|\bantenatal\b|\btrimester\b/i },
   { key: "anaphylaxis", re: /\banaphylax\w*/i },
   { key: "heart-failure", re: /\bheart failure\b/i },
@@ -160,6 +192,34 @@ const CONDITIONS: { key: string; re: RegExp }[] = [
   {
     key: "mass-casualty",
     re: /\b(?:start triage|simple triage and rapid treatment|mass[- ]casualt(?:y|ies)|disaster triage|\bmci\b|triage tags?|(?:red|yellow|green|black) tags?)\b/i,
+  },
+  { key: "copd", re: /\bcopd\b|\bchronic obstructive\b/i },
+  { key: "asthma", re: /\basthma(?:tic)?\b/i },
+  { key: "dka", re: /\bdka\b|\bdiabetic ketoacidosis\b/i },
+  {
+    key: "type-2-diabetes",
+    re: /\btype\s*(?:2|ii|two)\s+diabet(?:es|ic)\b|\bt2dm\b|\bniddm\b|\bdiabetes mellitus type\s*(?:2|ii)\b/i,
+  },
+  {
+    key: "gi-bleed",
+    re: /\b(?:upper\s+)?(?:gi|gastrointestinal)\s+bleed(?:ing)?\b|\bmelena\b|\bhematemesis\b|\bvomiting blood\b/i,
+  },
+  { key: "alcohol-withdrawal", re: /\balcohol withdrawal\b|\bdelirium tremens\b|\bciwa(?:-ar)?\b/i },
+  {
+    key: "depression",
+    re: /\b(?<!respiratory )(?:adolescent depression|major depressive|depress(?:ed|ion|ive))\b/i,
+  },
+  {
+    key: "arthritis-pain",
+    re: /\bosteoarthrit(?:is|ic)\b|\brheumatoid arthritis\b|\barthritis pain\b/i,
+  },
+  { key: "immunization", re: /\bimmuniz(?:e|ation|ations|ing)\b|\bvaccin(?:e|es|ation|ations|ated)\b/i },
+  { key: "postop-pain", re: /\bpost-?\s?op(?:erative)?\s+pain\b/i },
+  { key: "neutropenia", re: /\bneutropeni(?:a|c)\b/i },
+  { key: "cinv", re: /\bcinv\b|\bchemo(?:therapy)?-induced nausea\b/i },
+  {
+    key: "thyroid",
+    re: /\bthyroid(?:ectomy)?\b|\bhypothyroid(?:ism)?\b|\bhyperthyroid(?:ism)?\b|\blevothyroxine\b/i,
   },
 ];
 
@@ -192,7 +252,7 @@ const CALC_ITEM =
   /\b(?:calculate|how many|how much|round to|ml\/hr|mg\/kg|mg\/\s*ml|concentration|infusion rate|drops per|\bgtt\b|\bauc\b|alligation|isotonicity|e-value|percent strength|w\/v|w\/w)\b/i;
 
 const CALC_TEMPLATE =
-  /\b(?:how many|how much|calculate|concentration|mg\s*\/\s*ml|tablets?|capsules?)\b/i;
+  /\b(?:how many|how much|calculate|concentration|mg\s*\/\s*ml|tablets?|capsules?|what dose)\b/i;
 
 /** About 8% of a pharmacy sitting, clamped to 6–10% and at least 2 when the exam is long enough. */
 export function pharmacyCalculationQuota(limit: number): number {
@@ -316,20 +376,22 @@ function pushDrugs(target: string[], drugs: readonly string[]) {
 /**
  * Drugs that count toward the pharmacy cap.
  * Every drug in the question, the keyed answer, or a short subject field counts.
- * A longer name in a home-medication list no longer hides the subject drug,
- * and that list does not itself spend the cap.
+ * A longer name in a home-medication list no longer hides the subject drug.
+ * Drugs named in a medication-list sentence ("current medications include…")
+ * in the scenario or vignette also spend the cap, even when the question
+ * line names a different drug.
  */
 export function sittingDrugMentions(item: SittingCapSource): string[] {
   const question = item.question ?? "";
   const mentions: string[] = [];
-  pushDrugs(mentions, canonicalDrugs(question));
+  const questionDrugs = canonicalDrugs(question);
+  pushDrugs(mentions, questionDrugs);
   pushDrugs(mentions, canonicalDrugs(keyedAnswerText(item)));
-  if (canonicalDrugs(question).length === 0) {
-    const scene = [item.scenario, item.vignette].filter(Boolean).join("\n");
-    for (const sentence of sentencesOf(scene)) {
-      if (MED_LIST_CUE.test(sentence)) continue;
-      pushDrugs(mentions, canonicalDrugs(sentence));
-    }
+  const scene = [item.scenario, item.vignette].filter(Boolean).join("\n");
+  for (const sentence of sentencesOf(scene)) {
+    const medList = MED_LIST_CUE.test(sentence);
+    if (questionDrugs.length > 0 && !medList) continue;
+    pushDrugs(mentions, canonicalDrugs(sentence));
   }
   for (const field of mainSubjectTexts(item)) {
     if (field.length > 60) continue;
@@ -364,6 +426,7 @@ type SittingCapSource = Pick<
   | "topicCategory"
   | "blueprintTopic"
   | "tags"
+  | "itemType"
   | "generationMeta"
   | "curationMeta"
   | "ngnPayload"
@@ -432,6 +495,78 @@ function clinicalBlob(item: SittingCapSource): string {
     .join("\n")
     .slice(0, 2000);
   return [item.scenario, item.vignette, item.question, extras].filter(Boolean).join("\n");
+}
+
+const NGN_CHOICE_FIELD =
+  /^(?:actions?|monitors?|parameters?|conditionOptions|options|tokens|segments|highlights|distractors|dropdowns)$/i;
+
+/** Bow-tie and cloze rows. Their option columns are not the case subject. */
+export function isBowTieOrCloze(item: SittingCapSource): boolean {
+  const type = (item.itemType ?? "").trim().toLowerCase();
+  if (
+    type === "ngn_bowtie" ||
+    type === "bow_tie" ||
+    type === "bowtie" ||
+    type === "ngn_dropdown" ||
+    type === "dropdown" ||
+    type === "dropdown_cloze" ||
+    type === "cloze" ||
+    type === "ngn_cloze"
+  ) {
+    return true;
+  }
+  const kind = String(asRecord(item.ngnPayload)?.kind ?? "")
+    .trim()
+    .toLowerCase();
+  return kind === "bow_tie" || kind === "bowtie" || kind === "dropdown" || kind === "dropdown_cloze" || kind === "cloze";
+}
+
+function keyedDropdownTexts(payload: Record<string, unknown>): string[] {
+  if (!Array.isArray(payload.dropdowns)) return [];
+  const texts: string[] = [];
+  for (const entry of payload.dropdowns) {
+    const row = asRecord(entry);
+    if (!row || !Array.isArray(row.options)) continue;
+    const key = typeof row.key === "string" ? row.key : "";
+    for (const option of row.options) {
+      if (typeof option === "string") {
+        if (option === key) texts.push(option);
+        continue;
+      }
+      const opt = asRecord(option);
+      if (!opt || typeof opt.text !== "string") continue;
+      const id = typeof opt.id === "string" ? opt.id : "";
+      if (id === key || opt.text === key) texts.push(opt.text);
+    }
+  }
+  return texts;
+}
+
+/**
+ * Stem used for condition and vital caps.
+ * Bow-tie and cloze choice columns stay out, so a distractor condition or a
+ * chart option does not spend a cap the item's own case did not earn.
+ * The keyed condition, cloze template, and patient chart still count.
+ */
+function capClinicalText(item: SittingCapSource): string {
+  if (!isBowTieOrCloze(item)) return clinicalBlob(item);
+  const parts = [item.scenario, item.vignette, item.question].filter((part): part is string => Boolean(part?.trim()));
+  const payload = asRecord(item.ngnPayload);
+  if (payload) {
+    if (typeof payload.condition === "string" && payload.condition.trim()) parts.push(payload.condition);
+    if (typeof payload.template === "string" && payload.template.trim()) parts.push(payload.template);
+    parts.push(...keyedDropdownTexts(payload));
+  }
+  const chart = asRecord(item.chartData);
+  if (chart) {
+    for (const [key, value] of Object.entries(chart)) {
+      if (NGN_CHOICE_FIELD.test(key)) continue;
+      if (/option|actions|monitors|parameters/i.test(key)) continue;
+      const flat = flattenClinicalValue(value, 0);
+      if (flat) parts.push(flat);
+    }
+  }
+  return parts.join("\n");
 }
 
 function conditionFields(item: SittingCapSource): string[] {
@@ -523,7 +658,7 @@ function orderedConditionKeys(keys: ReadonlySet<string>): string[] {
  * and a history-only mention does not spend the cap when another condition is the subject.
  */
 export function sittingConditionMentions(item: SittingCapSource): string[] {
-  const text = clinicalBlob(item);
+  const text = capClinicalText(item);
   const question = item.question ?? "";
   const fields = conditionFields(item);
   const keys = new Set<string>();
@@ -655,13 +790,13 @@ function labeledBloodPressure(text: string): string | null {
 }
 
 function abnormalVitalParts(item: SittingCapSource): [string, string][] {
-  const text = normalizeVitalText(clinicalBlob(item));
+  const text = normalizeVitalText(capClinicalText(item));
   if (text.length < 40) return [];
   const parts: [string, string][] = [];
   const bp = labeledBloodPressure(text);
   if (bp) parts.push(["bp", bp]);
   const withoutPulseOx = text.replace(/\bpulse\s*ox(?:imetry)?\b/gi, "pulseox");
-  const separator = String.raw`\s*(?:of|is|was|:|=)?\s*`;
+  const separator = String.raw`\s*(?:(?:level|count|value)\s+)?(?:of|is|was|:|=)?\s*`;
   pushReading(parts, "hr", new RegExp(String.raw`\b(?:hr|heart rate|pulse)${separator}(\d{2,3})\b`, "i"), withoutPulseOx);
   pushReading(parts, "hr", /\b(\d{2,3})\s*(?:bpm|beats\s*\/\s*min)\b/i, withoutPulseOx);
   pushReading(
@@ -842,6 +977,26 @@ function sittingTemplateKeys(item: SittingCapSource, fieldId: string): string[] 
     if (/\b(?:alarm|reminder)\b/i.test(ask) && /\b(?:forget|forgets|forgot|adherence|missed|misses|doses)\b/i.test(stem)) {
       keys.push("template:adherence-alarm");
     }
+    if (
+      /\bsteady[ -]state\b/i.test(ask) ||
+      (/\bhalf-?\s*lives?\b/i.test(question) && /\b(?:steady|reach)\b/i.test(ask))
+    ) {
+      keys.push("template:steady-state");
+    }
+    if (
+      /\bwarfarin\b/i.test(stem) &&
+      /\b(?:interact\w*|increase the inr|decrease the inr|affects? the inr)\b/i.test(ask)
+    ) {
+      keys.push("template:warfarin-interaction");
+    }
+    if (
+      /\b(?:kidney|renal|crcl|creatinine clearance|ckd)\b/i.test(stem) &&
+      /\b(?:lower|decrease|reduce|adjust)\w*\b[^.\n]{0,60}\bdose\b|\bdose (?:reduction|decrease|adjustment)\b|\bextend\w*\b[^.\n]{0,40}\binterval\b/i.test(
+        ask
+      )
+    ) {
+      keys.push("template:renal-dose-lower");
+    }
     const regimen = medicationCaseKey(item);
     if (regimen) keys.push(regimen);
   }
@@ -859,7 +1014,9 @@ function sittingTemplateKeys(item: SittingCapSource, fieldId: string): string[] 
     ) {
       keys.push("template:contact-gown-gloves");
     }
-    if (/\bmg\s*\/\s*kg\b/i.test(question) && /\bper administration\b/i.test(question) && /\bround to the nearest\b/i.test(question)) {
+    const perDose =
+      /\bper (?:administration|dose)\b/i.test(question) || /\bwhat dose\s*\(\s*mg\s*\)/i.test(question);
+    if (/\bmg\s*\/\s*kg\b/i.test(stem) && perDose) {
       keys.push("template:mgkg-per-admin");
     }
     if (
@@ -957,12 +1114,19 @@ export function sittingEntityKey(text: string, fieldId: string): string | null {
   return null;
 }
 
+export type CapRejectionStats = {
+  poolSize: number;
+  kept: number;
+  rejections: Record<string, number>;
+};
+
 export function enforceEntityAndDosageCap(
   items: readonly BankItem[],
   pool: readonly BankItem[],
   limit: number,
   fieldId: string,
-  seenIds?: ReadonlySet<string>
+  seenIds?: ReadonlySet<string>,
+  stats?: CapRejectionStats
 ): BankItem[] {
   const entityCap = entityShareCap(limit);
   const dosageMax = isNursingSittingField(fieldId) ? nursingDosageShareCap(limit) : Number.POSITIVE_INFINITY;
@@ -990,18 +1154,32 @@ export function enforceEntityAndDosageCap(
     if (id) clusterById.set(id, cluster);
   });
   const usedClusters = new Set<string>();
+  const rejectionCounts = new Map<string, number>();
+  const notedRejections = new Set<string>();
+  const noteRejection = (item: BankItem, reason: string) => {
+    const id = item.id?.trim() || item.question;
+    if (notedRejections.has(id)) return;
+    notedRejections.add(id);
+    rejectionCounts.set(reason, (rejectionCounts.get(reason) ?? 0) + 1);
+  };
 
   const accept = (item: BankItem): boolean => {
     const id = item.id?.trim();
     if (id && used.has(id)) return false;
-    if (!isServableToStudents(item)) return false;
+    if (!isServableToStudents(item)) {
+      noteRejection(item, "ineligible");
+      return false;
+    }
     if (sequentialSetId(item)) {
       if (id) used.add(id);
       kept.push(item);
       return true;
     }
     const cluster = clusterByItem.get(item) ?? (id ? clusterById.get(id) : undefined);
-    if (cluster && usedClusters.has(cluster)) return false;
+    if (cluster && usedClusters.has(cluster)) {
+      noteRejection(item, "cluster");
+      return false;
+    }
     const text = itemClinicalText(item);
     const entity = sittingCapEntityKey(item, fieldId);
     const ask = sittingAskKey(item.question) ?? (entity ? askSignature(text) : null);
@@ -1018,15 +1196,43 @@ export function enforceEntityAndDosageCap(
         : entity?.startsWith("condition:")
           ? conditionCap
           : entityCap;
-    if (entity && (entityCounts.get(entity) ?? 0) >= entityLimit) return false;
-    if (drugs.some((drug) => (drugCounts.get(drug) ?? 0) >= PHARMACY_DRUG_CAP)) return false;
-    if (conditions.some((condition) => (conditionCounts.get(condition) ?? 0) >= conditionCap)) return false;
-    if (repeats.some((key) => usedRepeats.has(key))) return false;
-    if (entity && ask && (askCounts.get(`${entity}:${ask}`) ?? 0) >= 1) return false;
-    if (template && (templateCounts.get(template) ?? 0) >= 1) return false;
-    if (dose && dosage >= dosageMax) return false;
-    if (numeric && calcs >= calcMax) return false;
-    if (narrow && (narrowCounts.get(narrow) ?? 0) >= narrowCap) return false;
+    if (entity && (entityCounts.get(entity) ?? 0) >= entityLimit) {
+      noteRejection(item, entity.startsWith("condition:") ? "condition" : entity.startsWith("drug:") ? "drug" : "entity");
+      return false;
+    }
+    if (drugs.some((drug) => (drugCounts.get(drug) ?? 0) >= PHARMACY_DRUG_CAP)) {
+      noteRejection(item, "drug");
+      return false;
+    }
+    if (conditions.some((condition) => (conditionCounts.get(condition) ?? 0) >= conditionCap)) {
+      noteRejection(item, "condition");
+      return false;
+    }
+    const repeatHit = repeats.find((key) => usedRepeats.has(key));
+    if (repeatHit) {
+      noteRejection(item, `repeat:${repeatHit.split(":")[0]}`);
+      return false;
+    }
+    if (entity && ask && (askCounts.get(`${entity}:${ask}`) ?? 0) >= 1) {
+      noteRejection(item, "entity-ask");
+      return false;
+    }
+    if (template && (templateCounts.get(template) ?? 0) >= 1) {
+      noteRejection(item, "template");
+      return false;
+    }
+    if (dose && dosage >= dosageMax) {
+      noteRejection(item, "dosage");
+      return false;
+    }
+    if (numeric && calcs >= calcMax) {
+      noteRejection(item, "calc");
+      return false;
+    }
+    if (narrow && (narrowCounts.get(narrow) ?? 0) >= narrowCap) {
+      noteRejection(item, "narrow");
+      return false;
+    }
     if (entity) entityCounts.set(entity, (entityCounts.get(entity) ?? 0) + 1);
     for (const drug of drugs) drugCounts.set(drug, (drugCounts.get(drug) ?? 0) + 1);
     for (const condition of conditions) conditionCounts.set(condition, (conditionCounts.get(condition) ?? 0) + 1);
@@ -1054,7 +1260,9 @@ export function enforceEntityAndDosageCap(
     if (calcs < calcMax && kept.length < limit) reserve(pool);
   }
 
-  for (const item of items) {
+  const priorityNgn = items.filter((item) => isBowTieOrCloze(item));
+  const regular = items.filter((item) => !isBowTieOrCloze(item));
+  for (const item of [...priorityNgn, ...regular]) {
     if (kept.length >= limit) break;
     accept(item);
   }
@@ -1071,5 +1279,23 @@ export function enforceEntityAndDosageCap(
       accept(item);
     }
   }
-  return kept.slice(0, limit);
+  const incoming = new Map<BankItem, number>();
+  items.forEach((item, index) => {
+    if (!incoming.has(item)) incoming.set(item, index);
+  });
+  kept.sort((left, right) => {
+    const leftIndex = incoming.get(left);
+    const rightIndex = incoming.get(right);
+    if (leftIndex == null && rightIndex == null) return 0;
+    if (leftIndex == null) return 1;
+    if (rightIndex == null) return -1;
+    return leftIndex - rightIndex;
+  });
+  const sliced = kept.slice(0, limit);
+  if (stats) {
+    stats.poolSize = pool.length;
+    stats.kept = sliced.length;
+    stats.rejections = Object.fromEntries(rejectionCounts);
+  }
+  return sliced;
 }
