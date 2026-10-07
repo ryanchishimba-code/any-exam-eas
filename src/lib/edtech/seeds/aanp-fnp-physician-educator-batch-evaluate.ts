@@ -3,6 +3,10 @@
  */
 import type { EnrichedBankItem } from "@/lib/exam-prep/seed-helpers";
 import { aanpFnpVignette } from "@/lib/exam-prep/aanp-fnp-seed-factory";
+import {
+  preserveBankRowTag,
+  WARFARIN_INR_NO_BLEED_PRESERVED_ROW_ID,
+} from "@/lib/sync-question-bank-guard";
 
 const BATCH = "physician-educator-batch-evaluate";
 const PE = ["physician-educator", BATCH, "aanp-fnp-seed"];
@@ -91,20 +95,20 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
     `A 70-year-old man on warfarin for AFib presents with INR 6.8. He has no bleeding. He took his usual dose and has no new medications.`,
     "What is the most appropriate management?",
     [
-      "Hold warfarin, give vitamin K 2.5 mg PO, recheck INR in 24–48 hours",
+      "Hold warfarin; do not give routine vitamin K; recheck INR",
       "Continue warfarin — therapeutic range",
       "Administer fresh frozen plasma immediately",
-      "Increase warfarin dose",
+      "Hold warfarin, give vitamin K 2.5 mg PO, recheck INR in 24–48 hours",
     ],
-    "Hold warfarin, give vitamin K 2.5 mg PO, recheck INR in 24–48 hours",
-    `Supratherapeutic INR 4.5–10 without bleeding: hold warfarin, consider low-dose oral vitamin K, recheck INR. FFP is for serious bleeding or INR >10 with bleeding risk. INR 6.8 is not therapeutic — continuing or increasing dose is dangerous.`,
+    "Hold warfarin; do not give routine vitamin K; recheck INR",
+    `INR 6.8 with no bleeding is in the CHEST 2012 range of 4.5–10. Hold warfarin and do not give routine vitamin K; recheck the INR. Oral vitamin K is for INR >10 without bleeding, or for bleeding. FFP is for serious bleeding, not an asymptomatic INR in this range. Continuing warfarin at the same dose is unsafe.`,
     {
       blueprintDomain: "evaluate",
       clinicalSystem: "cardiovascular",
       patientAgeGroup: "older-adult",
       blueprintTopic: "warfarin monitoring",
       difficulty: 4,
-      tags: ["warfarin", "INR", ...PE],
+      tags: ["warfarin", "INR", preserveBankRowTag(WARFARIN_INR_NO_BLEED_PRESERVED_ROW_ID), ...PE],
       related: {
         reviewModuleSlug: "aanp-evaluate-domain",
         memoryCardIds: ["fnp-atrial-fib-rate-control", "fnp-evaluate-adherence-first"],

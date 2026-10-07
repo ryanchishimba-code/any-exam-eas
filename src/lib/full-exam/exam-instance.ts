@@ -108,6 +108,7 @@ export async function createExamInstance(
     retakeOfSessionId?: string;
     presetFormId?: string;
     presetExamNumber?: number;
+    id?: string;
   }
 ): Promise<string> {
   return createExamSession(userId, examType, {
@@ -124,6 +125,7 @@ export async function createExamInstance(
     retakeOfSessionId: opts.retakeOfSessionId,
     presetFormId: opts.presetFormId,
     presetExamNumber: opts.presetExamNumber,
+    id: opts.id,
   });
 }
 

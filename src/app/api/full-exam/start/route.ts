@@ -15,12 +15,19 @@ import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps
 import { syncSessionConfigQuestionCount } from "@/lib/exam/session-count";
 import { requirePremiumApi } from "@/lib/api-access";
 import { respondDbUnavailable } from "@/lib/api-db-error";
-import { assembleTimedExamSessionItems } from "@/lib/exam-prep/compose/assemble-timed-exam-session";
+import {
+  assembleTimedExamSessionItems,
+  logComposeUnavailable,
+} from "@/lib/exam-prep/compose/assemble-timed-exam-session";
 import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import {
   selectSittingItems,
+  sessionOrderSeed,
+  spreadPharmacyNumericEntries,
   storedFormNeedsFreshAssembly,
 } from "@/lib/exam-prep/sitting-selection";
+import { createId } from "@/lib/id";
+import type { BankItem } from "@/lib/question-bank";
 import { resolveExamBankSampleCount } from "@/lib/questions/finalize-exam-session";
 import { recordStudyQuestionsServed } from "@/lib/study/usage-limits";
 import {
@@ -257,6 +264,9 @@ export async function POST(req: Request) {
     let assembleSource: string | undefined;
     let excludeSeenApplied = false;
     const optionShuffleSeed = (Date.now() ^ 0x9e3779b9) >>> 0;
+    const sessionId = createId();
+    const orderForSession = (items: BankItem[]) =>
+      sessionFieldId === "pharmacy" ? spreadPharmacyNumericEntries(items, sessionOrderSeed(sessionId)) : items;
 
     if (
       exactForm &&
@@ -283,7 +293,7 @@ export async function POST(req: Request) {
         clientPayload = preparedTimedExamItemsForClient(
           sessionFieldId,
           sessionFieldId,
-          diversified.items,
+          orderForSession(diversified.items),
           diversified.items.length,
           { shuffleSeed: optionShuffleSeed }
         );
@@ -309,7 +319,7 @@ export async function POST(req: Request) {
       clientPayload = preparedTimedExamItemsForClient(
         sessionFieldId,
         sessionFieldId,
-        items,
+        orderForSession(items),
         retakeLimit,
         { shuffleSeed: optionShuffleSeed }
       );
@@ -323,9 +333,11 @@ export async function POST(req: Request) {
         focusAreas,
         sampleCount,
         excludeQuestionIds: smart.excludeQuestionIds,
+        sessionId,
       });
 
-      if (!assembled || assembled.items.length < limit) {
+      if (!assembled || assembled.unavailable || assembled.items.length < limit) {
+        logComposeUnavailable(limit, assembled?.unavailable);
         return NextResponse.json(
           {
             error: `Could not compose a ${limit}-question exam aligned to the board blueprint. Try again shortly.`,
@@ -338,7 +350,7 @@ export async function POST(req: Request) {
       clientPayload = preparedTimedExamItemsForClient(
         sessionFieldId,
         sessionFieldId,
-        assembled.items,
+        orderForSession(assembled.items),
         limit,
         { shuffleSeed: optionShuffleSeed }
       );
@@ -379,7 +391,8 @@ export async function POST(req: Request) {
           )
         : `${sessionTitle}${titleSuffix}`;
 
-    const sessionId = await createExamInstance(premium.userId, examSlug, {
+    const storedSessionId = await createExamInstance(premium.userId, examSlug, {
+      id: sessionId,
       questionCount: servedQuestions.length,
       timeLimitSec: storedConfig.timed ? storedConfig.timeLimitSec : null,
       fieldId: sessionFieldId,
@@ -408,8 +421,8 @@ export async function POST(req: Request) {
     );
 
     return NextResponse.json({
-      sessionId,
-      redirectUrl: fullExamSessionHref(examSlug, sessionId),
+      sessionId: storedSessionId,
+      redirectUrl: fullExamSessionHref(examSlug, storedSessionId),
       config: storedConfig,
       questions: servedQuestions,
       bankItemIds: servedBankItemIds,

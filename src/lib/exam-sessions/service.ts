@@ -42,9 +42,11 @@ export async function createExamSession(
     /** Composed practice form, `${examSlug}:${examNumber}`. */
     presetFormId?: string;
     presetExamNumber?: number;
+    /** When set, the row uses this id so question order can be seeded from it. */
+    id?: string;
   }
 ) {
-  const id = createId();
+  const id = opts?.id?.trim() || createId();
   const now = new Date();
   const hasMeta =
     opts?.sessionConfig ||

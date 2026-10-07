@@ -9,6 +9,8 @@ import {
   KEY_REVIEW_AUDIT_REF,
   KEY_UNCERTAIN_RN_REVIEW,
   KEY_WRONG_PENDING_RN_REVIEW,
+  isKeyUncertainReview,
+  isKeyWrongPendingReview,
   withKeyWrongAudit,
 } from "./reviewed-key-queue";
 import { STUDENT_ELIGIBLE_SQL } from "./student-eligibility-sql";
@@ -250,6 +252,14 @@ describe("student eligibility", () => {
     expect(record.auditRef).toBe(KEY_REVIEW_AUDIT_REF);
     expect(record.sampleId).toBe("S35");
     expect(readStudentEligibilityRecord({ studentEligibility: record })?.auditRef).toBe(KEY_REVIEW_AUDIT_REF);
+  });
+
+  it("serves the rewritten warfarin and postpartum rows and still hides the GI-bleed mismatch", () => {
+    expect(isKeyWrongPendingReview("cmra729k1004j1ybjwbns393z")).toBe(false);
+    expect(KEY_WRONG_PENDING_RN_REVIEW.some((item) => item.id === "cmra729k1004j1ybjwbns393z")).toBe(false);
+    expect(isKeyUncertainReview("cmpnjmgq00pau1ymxrslc23w3")).toBe(false);
+    expect(KEY_UNCERTAIN_RN_REVIEW.some((item) => item.id === "cmpnjmgq00pau1ymxrslc23w3")).toBe(false);
+    expect(isKeyWrongPendingReview("cmqwrpox200051yb34bokv6c0")).toBe(true);
   });
 
   it("mirrors the reviewed ids in SQL behind the restore override", () => {

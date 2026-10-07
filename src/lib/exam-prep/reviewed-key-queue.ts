@@ -15446,12 +15446,6 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     note: "Hidden pending rewrite. Current key: Increased potassium levels",
   },
   {
-    id: "cmra729k1004j1ybjwbns393z",
-    sampleId: "NP-B4-1518",
-    auditRef: NAPLEX_CLEANUP_BATCH_4_AUDIT_REF,
-    note: "Hidden pending rewrite. Current key: I have been eating more green leafy vegetables lately.",
-  },
-  {
     id: "cmra729mw004k1ybjllrx56xl",
     sampleId: "NP-B4-1519",
     auditRef: NAPLEX_CLEANUP_BATCH_4_AUDIT_REF,
@@ -17909,11 +17903,6 @@ export const KEY_UNCERTAIN_RN_REVIEW: readonly ReviewedKeyItem[] = [
     id: "cmqwmhnph00021ysjcbvzfxet",
     sampleId: "S55",
     note: "Allergy and consent checks are core pre-op safety, and the stem says ensure all safety measures.",
-  },
-  {
-    id: "cmpnjmgq00pau1ymxrslc23w3",
-    sampleId: "S57",
-    note: "Postpartum hemorrhage stem and options disagree, and one option is not a finding.",
   },
   {
     id: "cmqvkwom000181y5yqosn57tz",
