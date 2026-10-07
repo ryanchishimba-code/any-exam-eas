@@ -208,6 +208,10 @@ export function itemTextForNaplexFigureFit(item: {
   return [item.vignette, item.scenario, item.question].filter(Boolean).join("\n").toLowerCase();
 }
 
+/** Dry-powder and soft-mist devices are not metered-dose inhalers. */
+const NON_MDI_INHALER_RE =
+  /\b(?:dry[\s-]?powder|dpis?|diskus|ellipta|handihaler|respimat|soft[\s-]?mist)\b/i;
+
 export function naplexFigureFitsItemText(figureId: string, text: string): boolean {
   const keys = NAPLEX_FIGURE_CONTENT_KEYWORDS[figureId] ?? [];
   if (!keys.length) return false;
@@ -218,6 +222,10 @@ export function naplexFigureFitsItemText(figureId: string, text: string): boolea
     /\bfour clients\b/.test(hay) ||
     /\bwhich patient\b[\s\S]{0,80}\b(first|priority)\b/.test(hay)
   ) {
+    return false;
+  }
+
+  if (figureId === "naplex-inhaler-mdi-steps" && NON_MDI_INHALER_RE.test(hay)) {
     return false;
   }
 

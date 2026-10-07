@@ -45,6 +45,36 @@ describe("NAPLEX figure catalog", () => {
     ).toBe("naplex-inhaler-mdi-steps");
   });
 
+  it("does not attach the MDI diagram when the item switches from an MDI to a DPI", () => {
+    expect(
+      selectNaplexFigureForItem({
+        vignette:
+          "A patient using a metered-dose inhaler is switched to a new dry powder inhaler (DPI, Diskus).",
+        question: "Which counseling point applies to the new DPI?",
+        blueprintTopic: "asthma-copd-inhalers",
+      })
+    ).toBeUndefined();
+  });
+
+  it("still attaches the MDI diagram for a plain metered-dose technique item", () => {
+    expect(
+      selectNaplexFigureForItem({
+        vignette: "New albuterol metered-dose inhaler. No spacer at home.",
+        question: "Which steps describe correct metered-dose inhaler technique?",
+        blueprintTopic: "asthma-copd-inhalers",
+      })?.id
+    ).toBe("naplex-inhaler-mdi-steps");
+  });
+
+  it("does not attach the MDI diagram for a soft-mist Respimat item", () => {
+    expect(
+      selectNaplexFigureForItem({
+        vignette: "The patient was on a metered-dose inhaler and now uses tiotropium Respimat, a soft-mist inhaler.",
+        question: "How should the soft-mist device be primed?",
+      })
+    ).toBeUndefined();
+  });
+
   it("attaches CrCl formula when Cockcroft calculation is tested", () => {
     expect(
       selectNaplexFigureForItem({

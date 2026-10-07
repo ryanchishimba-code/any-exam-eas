@@ -1,10 +1,15 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
+import { NAPLEX_CALC_CASES_V3 } from "@/lib/exam-prep/naplex-calc-cases-v3";
 import {
+  HYDROMORPHONE_ROTATION_PRESERVED_ROW_ID,
   KEYFIX_BACKUP_TABLES,
+  bankItemContentHash,
   collectHandFixedIds,
   decideSeedUpsert,
+  planPreservedHashSeed,
+  preservedBankRowIdFromTags,
   type SeedExistingRow,
 } from "./sync-question-bank-guard";
 
@@ -139,6 +144,62 @@ describe("decideSeedUpsert", () => {
         hideIds: new Set(),
       })
     ).toEqual({ action: "update", active: true });
+  });
+});
+
+describe("hydromorphone rotation seed vs preserved content hash", () => {
+  const item = NAPLEX_CALC_CASES_V3.find((row) =>
+    /hydromorphone/i.test(`${row.vignette ?? ""} ${row.question}`)
+  );
+
+  const previousStem = {
+    vignette: "Chronic pain | Morphine SR 90 mg q12h (180 mg/day PO) | Rotate to hydromorphone PO",
+    question:
+      "Approximate equianalgesic daily hydromorphone (mg) using 4:1 morphine:hydromorphone ratio? (Round to nearest whole mg.)",
+  };
+
+  it("keys 30 mg/day after a stated 4:1 ratio and one-third reduction", () => {
+    expect(item).toBeDefined();
+    expect(item?.correctAnswer).toBe("30");
+    expect(`${item?.vignette} ${item?.question}`).toMatch(/4:1 oral morphine:oral hydromorphone/i);
+    expect(`${item?.vignette} ${item?.question}`).toMatch(/one-third \(33%\)/i);
+    expect(item?.explanation).toMatch(/CDC 2022 Clinical Practice Guideline for Prescribing Opioids/);
+    expect(item?.explanation).toMatch(/25–50%/);
+    expect(item?.solutionSteps?.join(" ")).toMatch(/45 × 2\/3 = 30/);
+    expect(preservedBankRowIdFromTags(item?.tags)).toBe(HYDROMORPHONE_ROTATION_PRESERVED_ROW_ID);
+  });
+
+  it("does not insert the rewritten stem beside the preserved-hash row", () => {
+    const seedHash = bankItemContentHash("pharmacy", item!.subjectId, item!);
+    const preservedHash = bankItemContentHash("pharmacy", "pharmacokinetics", previousStem);
+    expect(seedHash).not.toBe(preservedHash);
+
+    expect(
+      planPreservedHashSeed({
+        seedHash,
+        preservedRow: {
+          id: HYDROMORPHONE_ROTATION_PRESERVED_ROW_ID,
+          contentHash: preservedHash,
+        },
+      })
+    ).toEqual({ upsertSeed: false, activeHashes: [preservedHash] });
+
+    expect(
+      planPreservedHashSeed({
+        seedHash,
+        preservedRow: null,
+      })
+    ).toEqual({ upsertSeed: true, activeHashes: [seedHash] });
+
+    expect(
+      planPreservedHashSeed({
+        seedHash,
+        preservedRow: {
+          id: HYDROMORPHONE_ROTATION_PRESERVED_ROW_ID,
+          contentHash: seedHash,
+        },
+      })
+    ).toEqual({ upsertSeed: true, activeHashes: [seedHash] });
   });
 });
 

@@ -3,12 +3,20 @@
  */
 import type { EnrichedBankItem } from "./seed-helpers";
 import { naplexCalcCase } from "./naplex-seed-factory";
+import {
+  HYDROMORPHONE_ROTATION_PRESERVED_ROW_ID,
+  preserveBankRowTag,
+} from "@/lib/sync-question-bank-guard";
 
 const A1 = "naplex-area1-foundations" as const;
 const A2 = "naplex-area2-therapeutics" as const;
 const A3 = "naplex-area3-treatment-planning" as const;
 
 const FDA = { label: "FDA prescribing information", url: "https://www.fda.gov/drugs" };
+const CDC_OPIOID_2022 = {
+  label: "CDC 2022 Clinical Practice Guideline for Prescribing Opioids",
+  url: "https://www.cdc.gov/mmwr/volumes/71/rr/rr7103a1.htm",
+};
 const USP797 = { label: "USP <797> Sterile Compounding", url: "https://www.usp.org" };
 const ADA = { label: "ADA Standards of Care in Diabetes", url: "https://diabetesjournals.org/care" };
 
@@ -103,13 +111,21 @@ export const NAPLEX_CALC_CASES_V3: EnrichedBankItem[] = [
 
   naplexCalcCase(
     "pharmacokinetics",
-    `Chronic pain | Morphine SR 90 mg q12h (180 mg/day PO) | Rotate to hydromorphone PO`,
-    "Approximate equianalgesic daily hydromorphone (mg) using 4:1 morphine:hydromorphone ratio? (Round to nearest whole mg.)",
-    "45",
+    `Chronic pain | Morphine SR 90 mg q12h (180 mg/day PO) | Rotate to oral hydromorphone using a 4:1 oral morphine:oral hydromorphone ratio and a one-third (33%) dose reduction for incomplete cross-tolerance`,
+    "What daily oral hydromorphone dose (mg) should be started after the stated 4:1 oral morphine:oral hydromorphone conversion and one-third (33%) cross-tolerance reduction? (Round to nearest whole mg.)",
+    "30",
     "mg",
-    "180 mg morphine ÷ 4 ≈ 45 mg hydromorphone/day.",
-    { blueprintDomain: A3, references: [FDA] },
-    ["180 mg MSE", "÷ 4 = 45 mg"]
+    "180 mg/day oral morphine ÷ 4 = 45 mg/day equianalgesic oral hydromorphone. Incomplete cross-tolerance: reduce that dose by one-third, so 45 × 2/3 = 30 mg/day. The CDC 2022 Clinical Practice Guideline for Prescribing Opioids recommends reducing the calculated dose by 25–50% when rotating opioids.",
+    {
+      blueprintDomain: A3,
+      references: [CDC_OPIOID_2022],
+      tags: [preserveBankRowTag(HYDROMORPHONE_ROTATION_PRESERVED_ROW_ID)],
+    },
+    [
+      "180 mg/day oral morphine",
+      "÷ 4 = 45 mg equianalgesic hydromorphone",
+      "45 × 2/3 = 30 mg/day after a 33% reduction",
+    ]
   ),
 
   naplexCalcCase(
