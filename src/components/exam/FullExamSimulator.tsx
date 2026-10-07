@@ -381,6 +381,7 @@ export function FullExamSimulator({
               blueprintTopic: q.blueprintTopic,
               tags: q.tags,
               ngnPayload: q.ngnPayload,
+              chartData: q.chartData,
             };
             return {
               ...q,

@@ -114,10 +114,20 @@ const DRUG_SUFFIX =
 const MED_LIST_CUE =
   /\b(?:home (?:medications?|meds|regimen)|current (?:medications?|meds|regimen)|medications? include|medication list|medication reconciliation|med rec|outpatient medications?|scheduled medications?)\b/i;
 
+/** Boggy fundus, atony, and PPH. Word order varies: "fundus boggy" and "boggy fundus". */
+const POSTPARTUM_HEMORRHAGE_RE =
+  /\bpost-?partum hemorrhage\b|\bpph\b|\buterine atony\b|\b(?:boggy|atonic)\b[^.]{0,48}\b(?:fundus|uterus)\b|\b(?:fundus|uterus)\b[^.]{0,48}\b(?:boggy|atonic)\b/i;
+/** Every postpartum topic, including blues and engorgement, shares one cap. */
+const POSTPARTUM_RE =
+  /\bpost-?partum\b|\bpph\b|\buterine atony\b|\blochia\b|\b(?:boggy|atonic)\b[^.]{0,48}\b(?:fundus|uterus)\b|\b(?:fundus|uterus)\b[^.]{0,48}\b(?:boggy|atonic)\b/i;
+const POSTPARTUM_PAD_RE =
+  /\b(?:saturated|soaked)\b[^.]{0,40}\bpads?\b|\bpads?\b[^.]{0,40}\b(?:saturated|soaked)\b|\b\d+\s+pads?\s*(?:\/|per)\s*h/i;
+
 const CONDITIONS: { key: string; re: RegExp }[] = [
   { key: "preeclampsia", re: /\bpreeclampsia\b|\blate decel\w*\b/i },
   { key: "hip-arthroplasty", re: /\b(?:total hip|hip)\s+(?:arthroplasty|replacement)\b|\bhip arthroplasty\b/i },
-  { key: "postpartum-hemorrhage", re: /\bpost-?partum hemorrhage\b|\bpph\b/i },
+  { key: "postpartum-hemorrhage", re: POSTPARTUM_HEMORRHAGE_RE },
+  { key: "postpartum", re: POSTPARTUM_RE },
   { key: "gestational-diabetes", re: /\bgestational diabetes\b/i },
   {
     key: "gallbladder",
@@ -153,7 +163,7 @@ const CONDITIONS: { key: string; re: RegExp }[] = [
   },
 ];
 
-const OB_SPECIFIC = new Set(["preeclampsia", "gestational-diabetes", "postpartum-hemorrhage"]);
+const OB_SPECIFIC = new Set(["preeclampsia", "gestational-diabetes", "postpartum-hemorrhage", "postpartum"]);
 const OPIOID_RE =
   /\b(?:opioids?|opiates?|morphine|fentanyl|hydrocodone|oxycodone|hydromorphone|heroin|tramadol|methadone|buprenorphine)\b/i;
 const OPIOID_CONTEXT_RE =
@@ -357,7 +367,10 @@ type SittingCapSource = Pick<
   | "generationMeta"
   | "curationMeta"
   | "ngnPayload"
->;
+> & {
+  /** Vitals sometimes live on the rendered chart rather than the stem. */
+  chartData?: Record<string, unknown> | null;
+};
 
 function asRecord(value: unknown): Record<string, unknown> | null {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
@@ -389,8 +402,36 @@ export function sittingDrugMention(item: SittingCapSource): string | null {
   return sittingDrugMentions(item)[0] ?? null;
 }
 
+const SKIP_PAYLOAD_KEY =
+  /explanation|rationale|correct|answer|option|distractor|kind|score|model|reference|citation|^id$|tags?/i;
+
+function flattenClinicalValue(value: unknown, depth: number): string {
+  if (depth > 5 || value == null) return "";
+  if (typeof value === "string") return value.trim();
+  if (typeof value === "number" && Number.isFinite(value)) return String(value);
+  if (Array.isArray(value)) {
+    return value
+      .map((entry) => flattenClinicalValue(entry, depth + 1))
+      .filter(Boolean)
+      .join(" ");
+  }
+  if (typeof value === "object") {
+    return Object.entries(value as Record<string, unknown>)
+      .filter(([key]) => !SKIP_PAYLOAD_KEY.test(key))
+      .map(([, entry]) => flattenClinicalValue(entry, depth + 1))
+      .filter(Boolean)
+      .join(" ");
+  }
+  return "";
+}
+
 function clinicalBlob(item: SittingCapSource): string {
-  return [item.scenario, item.vignette, item.question].filter(Boolean).join("\n");
+  const extras = [item.ngnPayload, item.chartData]
+    .map((source) => flattenClinicalValue(source, 0))
+    .filter(Boolean)
+    .join("\n")
+    .slice(0, 2000);
+  return [item.scenario, item.vignette, item.question, extras].filter(Boolean).join("\n");
 }
 
 function conditionFields(item: SittingCapSource): string[] {
@@ -435,6 +476,41 @@ function impliedHypertension(text: string, question: string): boolean {
   return /\b(?:highest priority|priority finding|which finding)\b/i.test(question);
 }
 
+function heavyPostpartumBleed(text: string): boolean {
+  if (!POSTPARTUM_PAD_RE.test(text)) return false;
+  return /\b(?:post-?partum|\bpph\b|vaginal delivery|after delivery|post-?delivery)\b/i.test(text);
+}
+
+function addConditionMatches(keys: Set<string>, source: string) {
+  for (const condition of CONDITIONS) {
+    if (condition.key === "hypertension") continue;
+    if (condition.re.test(source)) keys.add(condition.key);
+  }
+  if (opioidRisk(source)) keys.add("opioid-sud");
+  if (heavyPostpartumBleed(source)) {
+    keys.add("postpartum-hemorrhage");
+    keys.add("postpartum");
+  }
+  if (
+    /\boverwhelmed\b/i.test(source) &&
+    /\btearful\b/i.test(source) &&
+    /\b(?:post-?partum|delivered\b|after (?:a )?vaginal delivery)\b/i.test(source)
+  ) {
+    keys.add("postpartum");
+  }
+  if (keys.has("postpartum-hemorrhage")) keys.add("postpartum");
+}
+
+/** A history clause is not the subject when the stem is about something else. */
+function postpartumIsHistoryOnly(text: string): boolean {
+  if (!POSTPARTUM_RE.test(text) && !POSTPARTUM_HEMORRHAGE_RE.test(text)) return false;
+  const stripped = text.replace(
+    /\b(?:history of|hx of|past medical history of|pmh(?::| of)|known|prior)\s+(?:(?:post-?partum|pph)\b[^.]{0,48})/gi,
+    " "
+  );
+  return !POSTPARTUM_RE.test(stripped) && !POSTPARTUM_HEMORRHAGE_RE.test(stripped) && !heavyPostpartumBleed(stripped);
+}
+
 function orderedConditionKeys(keys: ReadonlySet<string>): string[] {
   const listed = CONDITIONS.map((condition) => condition.key).filter((key) => keys.has(key));
   if (keys.has("opioid-sud") && !listed.includes("opioid-sud")) listed.push("opioid-sud");
@@ -451,11 +527,7 @@ export function sittingConditionMentions(item: SittingCapSource): string[] {
   const question = item.question ?? "";
   const fields = conditionFields(item);
   const keys = new Set<string>();
-  for (const condition of CONDITIONS) {
-    if (condition.key === "hypertension") continue;
-    if (condition.re.test(text)) keys.add(condition.key);
-  }
-  if (opioidRisk(text)) keys.add("opioid-sud");
+  addConditionMatches(keys, text);
   const stemConditionCount = keys.size;
   const explicitHypertension = HTN_RE.test(text) && !hypertensionIsHistoryOnly(text);
   const stemImpliesHypertension = impliedHypertension(text, question) && stemConditionCount === 0;
@@ -463,13 +535,7 @@ export function sittingConditionMentions(item: SittingCapSource): string[] {
   // A metadata label is only the subject when the stem itself names nothing.
   // Otherwise "preeclampsia" in metadata hid hypertension that the vitals carried.
   if (stemConditionCount === 0 && !explicitHypertension && !stemImpliesHypertension && !stemHistoryHypertension) {
-    for (const field of fields) {
-      for (const condition of CONDITIONS) {
-        if (condition.key === "hypertension") continue;
-        if (condition.re.test(field)) keys.add(condition.key);
-      }
-      if (opioidRisk(field)) keys.add("opioid-sud");
-    }
+    for (const field of fields) addConditionMatches(keys, field);
   }
 
   const metadataHypertension = keys.size === 0 && fields.some((field) => HTN_RE.test(field));
@@ -479,6 +545,13 @@ export function sittingConditionMentions(item: SittingCapSource): string[] {
   if (keys.has("preeclampsia")) keys.delete("hypertension");
   if ([...keys].some((key) => OB_SPECIFIC.has(key))) keys.delete("pregnancy");
   if (keys.has("acs") && acsIsHistoryOnly(text) && [...keys].some((key) => key !== "acs")) keys.delete("acs");
+  if (
+    postpartumIsHistoryOnly(text) &&
+    [...keys].some((key) => key !== "postpartum" && key !== "postpartum-hemorrhage")
+  ) {
+    keys.delete("postpartum");
+    keys.delete("postpartum-hemorrhage");
+  }
   return orderedConditionKeys(keys);
 }
 
@@ -541,38 +614,109 @@ function vitalAbnormal(kind: string, value: string): boolean {
   if (kind === "rr") return reading >= 22 || reading <= 10;
   if (kind === "spo2") return reading <= 94;
   if (kind === "hgb") return reading <= 11 || reading >= 17;
+  if (kind === "pef") return reading <= 80;
   return false;
+}
+
+const SUBSCRIPTS = "₀₁₂₃₄₅₆₇₈₉";
+
+function normalizeVitalText(text: string): string {
+  return text.replace(/[₀₁₂₃₄₅₆₇₈₉]/g, (char) => String(SUBSCRIPTS.indexOf(char)));
+}
+
+function pushReading(parts: [string, string][], kind: string, re: RegExp, text: string) {
+  if (parts.some(([listed]) => listed === kind)) return;
+  const match = text.match(re);
+  if (!match?.[1]) return;
+  const reading = Number(match[1]);
+  if (!Number.isFinite(reading)) return;
+  parts.push([kind, String(reading)]);
+}
+
+/**
+ * Labeled blood pressure wins over the first fraction in the stem.
+ * A peak-flow ratio such as 90/200 is not a blood pressure, and it must not
+ * hide the real reading that follows it.
+ */
+function labeledBloodPressure(text: string): string | null {
+  const fractions = [...text.matchAll(/\b(\d{2,3})\s*\/\s*(\d{2,3})\b/g)];
+  const valid = fractions.filter((match) => {
+    const sys = Number(match[1]);
+    const dia = Number(match[2]);
+    return sys >= 60 && sys <= 260 && dia >= 30 && dia <= 160 && dia < sys;
+  });
+  const context = (match: RegExpMatchArray) =>
+    text.slice(Math.max(0, (match.index ?? 0) - 32), match.index ?? 0);
+  const labeled = valid.find((match) => /\b(?:bp|blood pressure)\b/i.test(context(match)));
+  const notPeak = valid.find((match) => !/\b(?:peak|pef|pefr|personal best|i:e)\b/i.test(context(match)));
+  const chosen = labeled ?? notPeak;
+  if (!chosen) return null;
+  return `${Number(chosen[1])}/${Number(chosen[2])}`;
+}
+
+function abnormalVitalParts(item: SittingCapSource): [string, string][] {
+  const text = normalizeVitalText(clinicalBlob(item));
+  if (text.length < 40) return [];
+  const parts: [string, string][] = [];
+  const bp = labeledBloodPressure(text);
+  if (bp) parts.push(["bp", bp]);
+  const withoutPulseOx = text.replace(/\bpulse\s*ox(?:imetry)?\b/gi, "pulseox");
+  const separator = String.raw`\s*(?:of|is|was|:|=)?\s*`;
+  pushReading(parts, "hr", new RegExp(String.raw`\b(?:hr|heart rate|pulse)${separator}(\d{2,3})\b`, "i"), withoutPulseOx);
+  pushReading(parts, "hr", /\b(\d{2,3})\s*(?:bpm|beats\s*\/\s*min)\b/i, withoutPulseOx);
+  pushReading(
+    parts,
+    "rr",
+    new RegExp(String.raw`\b(?:rr|respirations|respiratory rate)${separator}(\d{1,2})\b`, "i"),
+    text
+  );
+  pushReading(parts, "rr", /\b(\d{1,2})\s*(?:breaths\s*\/\s*min|breaths per minute)\b/i, text);
+  pushReading(
+    parts,
+    "spo2",
+    new RegExp(
+      String.raw`\b(?:spo2|sao2|oxygen sat(?:uration)?|o2 sat(?:uration)?|pulseox|sats?)${separator}(\d{2,3})\s*%?`,
+      "i"
+    ),
+    withoutPulseOx
+  );
+  pushReading(
+    parts,
+    "hgb",
+    new RegExp(String.raw`\b(?:hgb|hemoglobin)${separator}(\d{1,2}(?:\.\d+)?)\b`, "i"),
+    text
+  );
+  pushReading(
+    parts,
+    "pef",
+    /\b(\d{1,3})\s*(?:%|percent)\s*of\s*(?:his |her |their |the )?(?:personal best|predicted)\b/i,
+    text
+  );
+  pushReading(
+    parts,
+    "pef",
+    new RegExp(
+      String.raw`\b(?:peak(?:\s+expiratory)?\s+flow(?:\s+rate)?|pefr?)${separator}(\d{1,3})\s*(?:%|percent)\b`,
+      "i"
+    ),
+    text
+  );
+  return parts.filter(([kind, value]) => vitalAbnormal(kind, value));
+}
+
+function formatVitalKey(parts: readonly [string, string][], prefix: string): string | null {
+  if (parts.length < 3) return null;
+  const ordered = [...parts].sort((left, right) => left[0].localeCompare(right[0]));
+  return `${prefix}:${ordered.map(([kind, value]) => `${kind}=${value}`).join(",")}`;
 }
 
 /**
  * Same abnormal vitals and labs are one case, even when the opening sentence
- * was rewritten. Normal filler vitals do not collide.
+ * was rewritten. Normal filler vitals do not collide. Peak-flow percent is its
+ * own field and is never read as SpO2. SpO₂, SaO2, and "oxygen sat" match.
  */
 export function sittingVitalFingerprint(item: SittingCapSource): string | null {
-  const text = clinicalBlob(item);
-  if (text.length < 40) return null;
-  const parts: [string, string][] = [];
-  const bp = text.match(/\b(\d{2,3})\s*\/\s*(\d{2,3})\b/);
-  if (bp) {
-    const sys = Number(bp[1]);
-    const dia = Number(bp[2]);
-    if (sys >= 60 && sys <= 260 && dia >= 30 && dia <= 160 && dia < sys) parts.push(["bp", `${sys}/${dia}`]);
-  }
-  const labeled = (kind: string, re: RegExp) => {
-    const match = text.match(re);
-    if (!match?.[1]) return;
-    const reading = Number(match[1]);
-    if (!Number.isFinite(reading)) return;
-    parts.push([kind, String(reading)]);
-  };
-  labeled("hr", /\b(?:hr|heart rate|pulse)\s*(?:of|is|was|:)?\s*(\d{2,3})\b/i);
-  labeled("rr", /\b(?:rr|respirations|respiratory rate)\s*(?:of|is|was|:)?\s*(\d{1,2})\b/i);
-  labeled("spo2", /\b(?:spo2|oxygen saturation|o2 sat(?:uration)?)\s*(?:of|is|was|:)?\s*(\d{2,3})\s*%?/i);
-  labeled("hgb", /\b(?:hgb|hemoglobin)\s*(?:of|is|was|:)?\s*(\d{1,2}(?:\.\d+)?)\b/i);
-  const abnormal = parts.filter(([kind, value]) => vitalAbnormal(kind, value));
-  if (abnormal.length < 3) return null;
-  abnormal.sort((left, right) => left[0].localeCompare(right[0]));
-  return `vitals:${abnormal.map(([kind, value]) => `${kind}=${value}`).join(",")}`;
+  return formatVitalKey(abnormalVitalParts(item), "vitals");
 }
 
 function normalizedAsk(question: string): string {
@@ -585,17 +729,174 @@ function normalizedAsk(question: string): string {
     .trim();
 }
 
+const RX_STOP = new Set([
+  "a", "an", "the", "of", "for", "in", "on", "and", "or", "with", "to", "is", "are", "was", "were",
+  "about", "also", "she", "he", "her", "his", "him", "takes", "taking", "prescribed", "receiving",
+  "despite", "has", "have", "been", "this", "that", "who", "which", "from", "into", "over", "after",
+  "before", "patient", "pharmacist", "receives", "received", "asked", "asks", "question", "should",
+  "would", "could", "most", "appropriate", "best", "next", "what", "when", "your", "their", "does",
+  "did", "than", "then", "per", "day", "daily", "times", "time", "plus", "three", "severe",
+]);
+
+const MED_CASE_SUFFIX =
+  /\b[a-z]{5,}(?:statin|pril|sartan|olol|dipine|prazole|cillin|mycin|cycline|oxetine|traline|azepam|azolam|parin|xaban|gliptin|flozin|glutide|setron|asone|isone|dronate|lukast|terol)\b/gi;
+
+function normalizeMedAnswer(answer: string): string {
+  return answer
+    .toLowerCase()
+    .replace(/^(?:add|start|initiate|recommend|give|prescribe|use)\s+/, "")
+    .replace(/\b(?:the|a|an)\b/g, " ")
+    .replace(/[^a-z0-9 ]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Same medication scenario with no abnormal vitals.
+ * The key is exact, not a similarity score: age, sex, room, dose numbers, and
+ * drug names are removed, then the remaining clinical tokens must be identical
+ * and the keyed answer must normalize to the same text. At least four clinical
+ * tokens are required. An extra drug such as pantoprazole therefore cannot split
+ * the pair. This is stricter than the board composer's 0.45 unigram Jaccard,
+ * which is not used during sitting selection because that cutoff was wide
+ * enough to starve a 50-question form.
+ */
+function medicationCaseKey(item: SittingCapSource): string | null {
+  const answer = normalizeMedAnswer(keyedAnswerText(item));
+  if (answer.length < 8 || !/[a-z]{3,}/.test(answer)) return null;
+  if (/^\d+(?:\.\d+)?(?:\s*(?:mg|ml|mcg|g|units?|tablets?|capsules?))?$/.test(answer)) return null;
+  let text = [item.scenario, item.vignette].filter(Boolean).join(" ").trim();
+  if (text.length < 40) text = clinicalBlob(item);
+  text = text
+    .replace(/(?:^|[.!?]\s+)(?:which|what|how)\b[^?]*\?\s*$/i, " ")
+    .toLowerCase();
+  text = text
+    .replace(/\brenal impairment\b|\bimpaired renal function\b|\bchronic kidney disease\b|\bckd(?:\s*stage\s*[0-9iv]+)?\b/g, " renal ")
+    .replace(/\boff-label\b/g, " offlabel ")
+    .replace(/\b\d+(?:\.\d+)?\s*-?\s*(?:year|yr|yo)s?\s*-?\s*old\b|\b\d{1,3}[mf]\b/g, " ")
+    .replace(/\b(?:male|female|man|woman|boy|girl|gentleman|lady)\b/g, " ")
+    .replace(/\b(?:room|bay|bed)\s+#?\d+\b/g, " ")
+    .replace(/\bchart\s+#?[a-z0-9]+\b/g, " ");
+  for (const drug of canonicalDrugs(text)) {
+    text = text.replace(new RegExp(`\\b${escapeRegExp(drug)}\\b`, "gi"), " ");
+  }
+  text = text.replace(MED_CASE_SUFFIX, " ").replace(/\d+(?:\.\d+)?/g, " ");
+  const tokens = [
+    ...new Set(text.split(/[^a-z]+/).filter((token) => token.length > 3 && !RX_STOP.has(token))),
+  ].sort();
+  if (tokens.length < 4) return null;
+  return `rxcase:${tokens.join(" ")}::${answer}`;
+}
+
+function sentencesOutsideMedList(text: string): string {
+  return sentencesOf(text)
+    .filter((sentence) => !MED_LIST_CUE.test(sentence))
+    .join(" ");
+}
+
+function distractorRepeatKey(item: SittingCapSource): string | null {
+  const options = item.options ?? [];
+  if (options.length < 3) return null;
+  const answer = keyedAnswerText(item).trim().toLowerCase().replace(/\s+/g, " ");
+  const long = options
+    .map((option) => option.trim().toLowerCase().replace(/\s+/g, " "))
+    .filter((option) => option && option !== answer && option.length >= 48);
+  if (long.length < 2) return null;
+  return `distractors:${[...long].sort().join("|")}`;
+}
+
+/** Distinctive asks that stay one-per-sitting even when the drug or the keyed sentence changes. */
+function sittingTemplateKeys(item: SittingCapSource, fieldId: string): string[] {
+  const question = item.question ?? "";
+  const answer = keyedAnswerText(item);
+  const stem = clinicalBlob(item);
+  const ask = `${question}\n${answer}`;
+  const keys: string[] = [];
+  if (fieldId === "pharmacy") {
+    const outside = sentencesOutsideMedList(stem);
+    if (/\bloading dose\b/i.test(question)) keys.push("template:loading-dose");
+    if (/\b(?:volume of distribution|\bvd\b)/i.test(question) && /\b(?:ckd|chronic kidney|renal)\b/i.test(stem)) {
+      keys.push("template:ckd-vd");
+    }
+    if (
+      /\blamotrigine\b/i.test(stem) &&
+      /\b(?:oral contraceptives?|ethinyl|norgestimate|birth control|\bocps?\b)\b/i.test(stem)
+    ) {
+      keys.push("template:lamotrigine-oc");
+    }
+    if (
+      /\bmetoprolol\b/i.test(outside) &&
+      /\b(?:with (?:a )?(?:high-fat )?(?:food|meals?)|take with food|concerned about food|food interaction|bioavailability)\b/i.test(
+        `${outside}\n${answer}`
+      )
+    ) {
+      keys.push("template:metoprolol-food");
+    }
+    if (
+      /\b(?:apixaban|rivaroxaban|dabigatran|eliquis|xarelto)\b/i.test(stem) &&
+      /\b(?:hip|surgery|pre-?operative|pre-?op)\b/i.test(stem) &&
+      /\b(?:hold|discontinue|withhold|stop)\b[\s\S]{0,48}\b(?:48|before|prior|pre-?op)/i.test(ask)
+    ) {
+      keys.push("template:hold-doac-surgery");
+    }
+    if (/\b(?:alarm|reminder)\b/i.test(ask) && /\b(?:forget|forgets|forgot|adherence|missed|misses|doses)\b/i.test(stem)) {
+      keys.push("template:adherence-alarm");
+    }
+    const regimen = medicationCaseKey(item);
+    if (regimen) keys.push(regimen);
+  }
+  if (isNursingSittingField(fieldId)) {
+    if (
+      /\b(?:warfarin|vitamin k)\b/i.test(stem) &&
+      /\b(?:leafy|dietary|vitamin k)\b/i.test(ask) &&
+      /\b(?:warfarin|vitamin k|leafy)\b/i.test(ask)
+    ) {
+      keys.push("template:warfarin-diet");
+    }
+    if (
+      /\bgown and gloves\b/i.test(ask) ||
+      (/\bcontact precautions?\b/i.test(stem) && /\bgown\b/i.test(ask) && /\bgloves\b/i.test(ask))
+    ) {
+      keys.push("template:contact-gown-gloves");
+    }
+    if (/\bmg\s*\/\s*kg\b/i.test(question) && /\bper administration\b/i.test(question) && /\bround to the nearest\b/i.test(question)) {
+      keys.push("template:mgkg-per-admin");
+    }
+    if (
+      /\boverwhelmed\b/i.test(stem) &&
+      /\btearful\b/i.test(stem) &&
+      /\b(?:post-?partum|delivered\b|after (?:a )?vaginal delivery)\b/i.test(stem)
+    ) {
+      keys.push("template:postpartum-blues");
+    }
+    if (POSTPARTUM_HEMORRHAGE_RE.test(stem) || heavyPostpartumBleed(stem)) {
+      keys.push("template:boggy-hemorrhage");
+    }
+  }
+  const distractors = distractorRepeatKey(item);
+  if (distractors) keys.push(distractors);
+  return keys;
+}
+
 /**
  * Keys that may appear once per sitting: the case opening, an abnormal vital
- * set, a number-stripped calc template, and the same ask about the same drug
- * or condition.
+ * set, a number-stripped calc template, the same ask about the same drug or
+ * condition, and the narrower template keys above.
+ * Blood pressure, heart rate, and respiratory rate also form a core key so a
+ * SpO2 or peak-flow spelling difference cannot split an otherwise identical set.
  */
 export function sittingRepeatKeys(item: SittingCapSource, fieldId: string): string[] {
   const keys: string[] = [];
   const scene = sittingCaseFingerprint(item);
   if (scene) keys.push(scene);
-  const vitals = sittingVitalFingerprint(item);
+  const readings = abnormalVitalParts(item);
+  const vitals = formatVitalKey(readings, "vitals");
   if (vitals) keys.push(vitals);
+  const core = formatVitalKey(
+    readings.filter(([kind]) => kind === "bp" || kind === "hr" || kind === "rr"),
+    "vitals-core"
+  );
+  if (core) keys.push(core);
   const calc = calcTemplateAsk(item.question ?? "");
   if (calc) keys.push(`calc:${calc}`);
   const ask = normalizedAsk(item.question ?? "");
@@ -607,6 +908,7 @@ export function sittingRepeatKeys(item: SittingCapSource, fieldId: string): stri
   if (ask.length >= 24) {
     for (const anchor of anchors) keys.push(`ask:${anchor}:${ask}`);
   }
+  for (const key of sittingTemplateKeys(item, fieldId)) keys.push(key);
   return keys;
 }
 
