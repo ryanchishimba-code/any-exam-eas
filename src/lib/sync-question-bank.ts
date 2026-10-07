@@ -16,10 +16,15 @@ import { bankItemPassesIngestGate } from "@/lib/exam-prep/bank-ingest-gate";
 import { KEY_WRONG_ITEM_IDS } from "@/lib/exam-prep/reviewed-key-queue";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 import {
+  bankItemContentHash,
   decideSeedUpsert,
   KEYFIX_BACKUP_TABLES,
+  planPreservedHashSeed,
+  preservedBankRowIdFromTags,
   type SeedUpsertDecision,
 } from "@/lib/sync-question-bank-guard";
+
+export { bankItemContentHash } from "@/lib/sync-question-bank-guard";
 
 export type SyncQuestionBankResult = {
   status: "success" | "failed";
@@ -43,19 +48,6 @@ export function questionContentHash(
 ): string {
   return createHash("sha256")
     .update(`${fieldId}|${subjectId}|${question.trim().toLowerCase()}`)
-    .digest("hex");
-}
-
-/** Hash including scenario/vignette so split vignette updates do not collide. */
-export function bankItemContentHash(
-  fieldId: string,
-  subjectId: string,
-  item: Pick<BankItem, "question" | "vignette" | "scenario">
-): string {
-  const scenario = (item.vignette ?? item.scenario ?? "").trim().toLowerCase();
-  const stem = item.question.trim().toLowerCase();
-  return createHash("sha256")
-    .update(`${fieldId}|${subjectId}|${scenario}|${stem}`)
     .digest("hex");
 }
 
@@ -307,11 +299,42 @@ async function runSync(): Promise<SyncQuestionBankResult> {
     await ensureAllBoardExams();
     const backup = await loadKeyfixBackupIndex();
     const hideIds = new Set(KEY_WRONG_ITEM_IDS);
+    const preservedIds = [
+      ...new Set(
+        seeds
+          .map((row) => preservedBankRowIdFromTags(row.item.tags))
+          .filter((id): id is string => Boolean(id))
+      ),
+    ];
+    const preservedRows =
+      preservedIds.length === 0
+        ? []
+        : await prisma.questionBankItem.findMany({
+            where: { id: { in: preservedIds } },
+            select: { id: true, contentHash: true },
+          });
+    const preservedById = new Map(preservedRows.map((row) => [row.id, row]));
+    const retainedPreservedIds: string[] = [];
 
     for (const row of seeds) {
-      activeHashes.add(
-        bankItemContentHash(row.fieldId, row.subjectId, row.item)
-      );
+      const seedHash = bankItemContentHash(row.fieldId, row.subjectId, row.item);
+      const preservedId = preservedBankRowIdFromTags(row.item.tags);
+      if (preservedId) {
+        const plan = planPreservedHashSeed({
+          seedHash,
+          preservedRow: preservedById.get(preservedId) ?? null,
+        });
+        for (const hash of plan.activeHashes) activeHashes.add(hash);
+        if (!plan.upsertSeed) {
+          itemsSkipped++;
+          itemsProtected++;
+          protectedItemIds.push(preservedId);
+          retainedPreservedIds.push(preservedId);
+          continue;
+        }
+      } else {
+        activeHashes.add(seedHash);
+      }
       const result = await upsertSeedRow(row, backup, hideIds);
       if (result.action === "create") itemsCreated++;
       else if (result.action === "update") {
@@ -324,7 +347,7 @@ async function runSync(): Promise<SyncQuestionBankResult> {
       } else itemsSkipped++;
     }
 
-    const protectedFromRetirement = [...backup.ids];
+    const protectedFromRetirement = [...new Set([...backup.ids, ...retainedPreservedIds])];
     const retired = await prisma.questionBankItem.updateMany({
       where: {
         source: "seed",

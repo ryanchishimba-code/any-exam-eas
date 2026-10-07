@@ -1,3 +1,5 @@
+import { createHash } from "crypto";
+
 /**
  * Decides whether a seed upsert may overwrite a bank row.
  *
@@ -5,6 +7,18 @@
  * correctAnswer or explanation, so a key fix keeps the same hash and the
  * nightly sync would otherwise write the seed key back over the correction.
  */
+
+export function bankItemContentHash(
+  fieldId: string,
+  subjectId: string,
+  item: { question: string; vignette?: string | null; scenario?: string | null }
+): string {
+  const scenario = (item.vignette ?? item.scenario ?? "").trim().toLowerCase();
+  const stem = item.question.trim().toLowerCase();
+  return createHash("sha256")
+    .update(`${fieldId}|${subjectId}|${scenario}|${stem}`)
+    .digest("hex");
+}
 
 export const KEYFIX_BACKUP_TABLES = [
   "qbi_naplex_keyfix_backup_20260927",
@@ -62,6 +76,45 @@ export function rowIsManuallyCorrected(
 export function nextSeedActive(existing: Pick<SeedExistingRow, "id" | "active">, hideIds: ReadonlySet<string>): boolean {
   if (!existing.active || hideIds.has(existing.id)) return existing.active;
   return true;
+}
+
+/** Tag prefix: `preserve-bank-row:<questionBankItem.id>`. */
+export const PRESERVE_BANK_ROW_TAG_PREFIX = "preserve-bank-row:";
+
+/**
+ * Live row for the morphine-to-hydromorphone calc. Its contentHash is kept
+ * by a separate manual correction, so the rewritten seed stem must not insert
+ * a second copy and must not drop the live hash out of the active set.
+ */
+export const HYDROMORPHONE_ROTATION_PRESERVED_ROW_ID = "cmr31dhuk008ajs04ftdoajhj";
+
+export function preserveBankRowTag(id: string): string {
+  return `${PRESERVE_BANK_ROW_TAG_PREFIX}${id}`;
+}
+
+export function preservedBankRowIdFromTags(tags: readonly string[] | null | undefined): string | null {
+  const tag = tags?.find((entry) => entry.startsWith(PRESERVE_BANK_ROW_TAG_PREFIX));
+  if (!tag) return null;
+  const id = tag.slice(PRESERVE_BANK_ROW_TAG_PREFIX.length).trim();
+  return id.length > 0 ? id : null;
+}
+
+/**
+ * Nightly sync matches seeds to bank rows by contentHash (scenario + stem),
+ * not by id. A rewritten stem is a new hash. When the tagged live row still
+ * exists under a different hash, do not upsert the seed (that would insert a
+ * duplicate) and keep the live hash active so retirement leaves the row in
+ * place. Manual-correction protection still applies if the hashes already match.
+ * An empty bank has no live row, so the corrected seed may be created.
+ */
+export function planPreservedHashSeed(input: {
+  seedHash: string;
+  preservedRow: { id: string; contentHash: string } | null;
+}): { upsertSeed: boolean; activeHashes: string[] } {
+  if (!input.preservedRow || input.preservedRow.contentHash === input.seedHash) {
+    return { upsertSeed: true, activeHashes: [input.seedHash] };
+  }
+  return { upsertSeed: false, activeHashes: [input.preservedRow.contentHash] };
 }
 
 export function decideSeedUpsert(input: {

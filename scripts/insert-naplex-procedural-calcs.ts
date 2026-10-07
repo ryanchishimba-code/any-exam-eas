@@ -16,6 +16,7 @@ import { isNaplexBestQuality } from "../src/lib/exam-prep/naplex-quality-gate";
 import { prepareNaplexBankItem } from "../src/lib/exam-prep/naplex-serve-gate";
 import { serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
 import { bankItemContentHash } from "../src/lib/sync-question-bank";
+import { preservedBankRowIdFromTags } from "../src/lib/sync-question-bank-guard";
 import type { EnrichedBankItem } from "../src/lib/exam-prep/seed-helpers";
 
 const CALC_STEM =
@@ -52,6 +53,10 @@ async function countTrueCalcBest() {
 }
 
 async function upsertItem(item: EnrichedBankItem): Promise<"created" | "updated" | "skipped"> {
+  // Rewritten stem of a hash-preserved manual correction. Inserting it would
+  // duplicate the live row; nightly sync applies the same rule.
+  if (preservedBankRowIdFromTags(item.tags)) return "skipped";
+
   const prepared = prepareNaplexBankItem(item);
   if (!isNaplexBestQuality(prepared, { source: "seed" })) return "skipped";
 
