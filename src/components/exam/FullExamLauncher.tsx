@@ -25,6 +25,7 @@ import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { ROUTES } from "@/lib/routes";
 import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
+import { fetchFullExamStart } from "@/lib/full-exam/start-client";
 import {
   nclexFullPracticeBadge,
   nclexFullPracticeHint,
@@ -154,18 +155,14 @@ export function FullExamLauncher({
       return;
     }
     try {
-      const res = await fetch("/api/full-exam/start", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          examSlug,
-          launchMode: "new_exam",
-          lengthPreset: sessionConfig.lengthPreset,
-          questionCount: sessionConfig.questionCount,
-          timed,
-          fieldId: examSlug === "usmle" ? fieldId : undefined,
-          nclexCat: examSlug === "nclex" ? nclexCat : undefined,
-        }),
+      const res = await fetchFullExamStart({
+        examSlug,
+        launchMode: "new_exam",
+        lengthPreset: sessionConfig.lengthPreset,
+        questionCount: sessionConfig.questionCount,
+        timed,
+        fieldId: examSlug === "usmle" ? fieldId : undefined,
+        nclexCat: examSlug === "nclex" ? nclexCat : undefined,
       });
       const data = (await res.json().catch(() => ({}))) as {
         sessionId?: string;

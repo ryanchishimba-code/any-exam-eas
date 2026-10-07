@@ -19,6 +19,7 @@ import {
   enforceEntityAndDosageCap,
   isPharmacyCalculationItem,
   pharmacyCalculationQuota,
+  sittingCapLimits,
   type CapRejectionStats,
 } from "@/lib/exam-prep/entity-cap";
 
@@ -227,9 +228,9 @@ function clusterLookup(pool: readonly BankItem[]): (item: BankItem) => string | 
 function enforceNarrowTopicCap(
   items: readonly BankItem[],
   pool: readonly BankItem[],
-  limit: number
+  limit: number,
+  cap = narrowTopicShareCap(limit)
 ): BankItem[] {
-  const cap = narrowTopicShareCap(limit);
   const counts = new Map<string, number>();
   const kept: BankItem[] = [];
   const used = new Set<string>();
@@ -369,15 +370,39 @@ export function finalizeAssembledSitting(params: {
 
   const excludeSeenApplied = Boolean(seen && seen.size > 0 && picked.length > 0);
 
-  let capped = enforceNarrowTopicCap(picked, params.pool, limit);
-  const capStats: CapRejectionStats = { poolSize: params.pool.length, kept: 0, rejections: {} };
-  capped = enforceEntityAndDosageCap(capped, params.pool, limit, params.fieldId, seen, capStats);
+  let chosen = picked;
+  let capStats: CapRejectionStats = { poolSize: params.pool.length, kept: 0, rejections: {}, relaxLevel: 0 };
+  let strict: { kept: number; rejections: Record<string, number> } | null = null;
+  for (let level = 0; level <= 5; level++) {
+    const limits = sittingCapLimits(limit, level);
+    const narrowed = enforceNarrowTopicCap(picked, params.pool, limit, limits.narrowCap);
+    const stats: CapRejectionStats = {
+      poolSize: params.pool.length,
+      kept: 0,
+      rejections: {},
+      relaxLevel: level,
+    };
+    const capped = enforceEntityAndDosageCap(
+      narrowed,
+      params.pool,
+      limit,
+      params.fieldId,
+      seen,
+      stats,
+      limits
+    );
+    if (level === 0) strict = { kept: stats.kept, rejections: { ...stats.rejections } };
+    chosen = capped;
+    capStats = stats;
+    if (capped.length >= limit) break;
+  }
 
-  const gapped = orderWithTopicGap(capped, (item) =>
+  const gapped = orderWithTopicGap(chosen, (item) =>
     sequentialSetId(item) ? null : narrowTopicKeyFromBankItem(item)
   ).slice(0, limit);
   const ordered = params.fieldId === "pharmacy" ? spreadPharmacyNumericEntries(gapped, seed) : gapped;
   capStats.kept = ordered.length;
+  capStats.strict = strict ?? { kept: ordered.length, rejections: { ...capStats.rejections } };
   return { items: ordered, relaxed, excludeSeenApplied, capStats };
 }
 

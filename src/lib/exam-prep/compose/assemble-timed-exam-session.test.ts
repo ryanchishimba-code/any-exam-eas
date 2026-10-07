@@ -88,6 +88,8 @@ describe("collectFastTimedPool", () => {
     expect(fastGatherClusterGoal(50)).toBe(75);
     expect(fastGatherClusterGoal(1)).toBe(2);
     expect(fastGatherItemGoal(50, 130, 390)).toBe(260);
+    expect(fastGatherClusterGoal(225)).toBe(450);
+    expect(fastGatherItemGoal(225, 360, 1080)).toBe(900);
   });
 
   it("keeps pulling after the sitting length and after the 1.5 cluster floor until the row floor", async () => {
@@ -205,7 +207,80 @@ describe("logComposeUnavailable", () => {
       poolSize: 130,
       kept: 41,
       rejections: { drug: 22, narrow: 9, "repeat:template": 4 },
+      relaxLevel: 0,
+      strictKept: 41,
+      strictRejections: { drug: 22, narrow: 9, "repeat:template": 4 },
     });
     warn.mockRestore();
+  });
+});
+
+describe("assembleTimedExamSessionItems time budget", () => {
+  it("returns within the deadline when a pull never resolves", async () => {
+    vi.useFakeTimers();
+    try {
+      vi.mocked(gatherSprintTimedExamPool).mockReset();
+      vi.mocked(tryLoadTimedPresetSession).mockReset();
+      vi.mocked(gatherProgressiveBankPool).mockReset();
+      vi.mocked(gatherTimedExamBankItems).mockReset();
+      vi.mocked(gatherSprintTimedExamPool).mockImplementation(() => new Promise(() => {}));
+      vi.mocked(tryLoadTimedPresetSession).mockResolvedValue(null);
+      vi.mocked(gatherProgressiveBankPool).mockResolvedValue([]);
+      vi.mocked(gatherTimedExamBankItems).mockResolvedValue([]);
+      const started = Date.now();
+      const pending = assembleTimedExamSessionItems({
+        fieldId: "pharmacy",
+        field: "pharmacy",
+        limit: 8,
+        sampleCount: 20,
+        sessionId: "deadline-never",
+        deadlineMs: 25_000,
+      });
+      const finished = pending.then((result) => ({ result, elapsed: Date.now() - started }));
+      await vi.advanceTimersByTimeAsync(26_000);
+      const outcome = await finished;
+      expect(outcome.elapsed).toBeLessThanOrEqual(26_000);
+      expect(outcome.result?.items.length ?? 0).toBeLessThan(8);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("returns within the deadline when each pull takes 10s", async () => {
+    vi.useFakeTimers();
+    try {
+      vi.mocked(gatherSprintTimedExamPool).mockReset();
+      vi.mocked(tryLoadTimedPresetSession).mockReset();
+      vi.mocked(gatherProgressiveBankPool).mockReset();
+      vi.mocked(gatherTimedExamBankItems).mockReset();
+      let calls = 0;
+      vi.mocked(gatherSprintTimedExamPool).mockImplementation(
+        () =>
+          new Promise((resolve) => {
+            calls += 1;
+            const n = calls;
+            setTimeout(() => resolve([item(`slow-${n}`)]), 10_000);
+          })
+      );
+      vi.mocked(tryLoadTimedPresetSession).mockResolvedValue(null);
+      vi.mocked(gatherProgressiveBankPool).mockResolvedValue([]);
+      vi.mocked(gatherTimedExamBankItems).mockResolvedValue([]);
+      const started = Date.now();
+      const pending = assembleTimedExamSessionItems({
+        fieldId: "pharmacy",
+        field: "pharmacy",
+        limit: 8,
+        sampleCount: 20,
+        sessionId: "deadline-slow",
+        deadlineMs: 25_000,
+      });
+      const finished = pending.then((result) => ({ result, elapsed: Date.now() - started }));
+      await vi.advanceTimersByTimeAsync(26_000);
+      const outcome = await finished;
+      expect(outcome.elapsed).toBeLessThanOrEqual(26_000);
+      expect(outcome.result?.items.length ?? 0).toBeLessThan(8);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });

@@ -33,6 +33,7 @@ import {
 } from "@/lib/exam/session-count";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
+import { fetchFullExamStart } from "@/lib/full-exam/start-client";
 import { navigateHard } from "@/lib/client/navigate-hard";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import {
@@ -1322,18 +1323,14 @@ export function StudyBankPractice({
             nclexLength: isNclex ? nclexLength : undefined,
             fieldId: isUsmleFieldId(resolvedFieldId) ? resolvedFieldId : undefined,
           });
-          const res = await fetch("/api/full-exam/start", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              examSlug,
-              lengthPreset,
-              timed: true,
-              ...(isNclex ? { nclexLength } : {}),
-              ...(examSlug === "usmle" && isUsmleFieldId(resolvedFieldId)
-                ? { fieldId: resolvedFieldId }
-                : {}),
-            }),
+          const res = await fetchFullExamStart({
+            examSlug,
+            lengthPreset,
+            timed: true,
+            ...(isNclex ? { nclexLength } : {}),
+            ...(examSlug === "usmle" && isUsmleFieldId(resolvedFieldId)
+              ? { fieldId: resolvedFieldId }
+              : {}),
           });
           const data = (await res.json().catch(() => ({}))) as {
             sessionId?: string;

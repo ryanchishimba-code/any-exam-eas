@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { fullExamSessionHref } from "@/lib/full-exam/config";
 import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
+import { fetchFullExamStart } from "@/lib/full-exam/start-client";
 import { navigateHard } from "@/lib/client/navigate-hard";
 import { studyLimitMessage } from "@/lib/study/usage-limit-messages";
 import { qbUi } from "@/lib/study/question-bank-ui";
@@ -88,18 +89,14 @@ export function PracticeExamList({
     if (row.status === "completed") return;
     setPendingNumber(row.examNumber);
     try {
-      const res = await fetch("/api/full-exam/start", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          examSlug,
-          presetExamNumber: row.examNumber,
-          timed: true,
-          lengthPreset: "full",
-          nclexCat: false,
-          ...(nclexLength ? { nclexLength } : {}),
-          ...(examSlug === "usmle" && isUsmleFieldId(fieldId) ? { fieldId } : {}),
-        }),
+      const res = await fetchFullExamStart({
+        examSlug,
+        presetExamNumber: row.examNumber,
+        timed: true,
+        lengthPreset: "full",
+        nclexCat: false,
+        ...(nclexLength ? { nclexLength } : {}),
+        ...(examSlug === "usmle" && isUsmleFieldId(fieldId) ? { fieldId } : {}),
       });
       const data = (await res.json().catch(() => ({}))) as {
         sessionId?: string;
