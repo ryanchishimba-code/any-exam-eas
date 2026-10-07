@@ -34,14 +34,21 @@ export function filterBankRowsForPracticeField<T extends ScopedBankRow>(
   return rows.filter((row) => bankRowMatchesPracticeField(row, fieldId));
 }
 
+function stepLevelOf(item: BankItem): string | null {
+  const direct = (item as BankItem & { stepLevel?: string }).stepLevel;
+  if (typeof direct === "string" && direct.trim()) return direct;
+  return typeof item.ngnPayload?.stepLevel === "string" ? item.ngnPayload.stepLevel : null;
+}
+
 /** Best-effort filter when only BankItem payloads are available (post-enrich). */
 export function filterBankItemsForPracticeField(items: BankItem[], fieldId: string): BankItem[] {
   if (!isUsmleFieldId(fieldId)) return items;
   const target = normalizeFieldId(fieldId);
   return items.filter((item) => {
-    const stepLevel =
-      (item as BankItem & { stepLevel?: string }).stepLevel ??
-      (typeof item.ngnPayload?.stepLevel === "string" ? item.ngnPayload.stepLevel : null);
+    const stepLevel = stepLevelOf(item);
+    if (item.fieldId) {
+      return bankRowMatchesPracticeField({ fieldId: item.fieldId, stepLevel }, fieldId);
+    }
     if (target === "usmle-step-2" && stepLevel === "step3") return false;
     if (target === "usmle-step-3" && stepLevel && stepLevel !== "step3") return false;
     return true;

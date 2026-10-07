@@ -44,6 +44,32 @@ describe("examQuestionToStudy", () => {
     expect(back?.reviewedAt).toBe("2026-06-01T00:00:00.000Z");
   });
 
+  it("relabels a Step 2 CK outline citation on a Step 3 item", () => {
+    const q = examQuestionToStudy(
+      {
+        ...sample,
+        field: "usmle-step-3",
+        sourceLabel: "USMLE Step 2 CK Content Outline 2026",
+        references: ["USMLE Step 2 CK Content Outline 2026"],
+      },
+      0
+    );
+    expect(q.sourceLabel).toBe("USMLE Step 3 Content Outline 2026");
+    expect(q.references).toEqual(["USMLE Step 3 Content Outline 2026"]);
+  });
+
+  it("leaves a Step 2 CK outline citation on a Step 2 item", () => {
+    const q = examQuestionToStudy(
+      {
+        ...sample,
+        field: "usmle-step-2",
+        sourceLabel: "USMLE Step 2 CK Content Outline 2026",
+      },
+      0
+    );
+    expect(q.sourceLabel).toBe("USMLE Step 2 CK Content Outline 2026");
+  });
+
   it("keeps subject and blueprint fields through the study round trip", () => {
     const q = examQuestionToStudy(
       {

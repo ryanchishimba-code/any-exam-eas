@@ -58,4 +58,27 @@ describe("exam-item-scope", () => {
       step2Item,
     ]);
   });
+
+  it("keeps Step 3 rows and drops Step 2 CK rows from a Step 3 sitting", () => {
+    const step2 = {
+      id: "ck",
+      fieldId: "usmle-step-2",
+      ngnPayload: { stepLevel: "step2" },
+    } as BankItem;
+    const legacyStep3 = {
+      id: "legacy",
+      fieldId: "usmle-step-2",
+      ngnPayload: { stepLevel: "step3" },
+    } as BankItem;
+    const step3 = {
+      id: "s3",
+      fieldId: "usmle-step-3",
+      ngnPayload: { stepLevel: "step3" },
+    } as BankItem;
+    expect(
+      filterBankItemsForPracticeField([step2, legacyStep3, step3], "usmle-step-3").map(
+        (item) => item.id
+      )
+    ).toEqual(["legacy", "s3"]);
+  });
 });

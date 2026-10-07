@@ -5,7 +5,13 @@ import {
   isPharmacyBlueprintField,
   rankSittingByBlueprint,
 } from "@/lib/exam-prep/sitting-blueprint";
-import { finalizeAssembledSitting } from "@/lib/exam-prep/sitting-selection";
+import {
+  finalizeAssembledSitting,
+  selectSittingItems,
+  selectStoredFormSitting,
+} from "@/lib/exam-prep/sitting-selection";
+import { buildSessionConfig, computeTimeLimitSec } from "@/lib/full-exam/config";
+import { syncSessionConfigQuestionCount } from "@/lib/exam/session-count";
 import { cleanOptionText } from "@/lib/question-format";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import { shuffleDeliveryChoices } from "@/lib/questions/shuffle-delivery";
@@ -222,5 +228,52 @@ describe("long-exam compose", () => {
     expect(study.options).toHaveLength(4);
     expect(study.explanation).toContain("plan");
     expect(study.solutionSteps?.[0]).toContain("Confirm");
+  });
+});
+
+describe("AANP full-length fill", () => {
+  function narrowOverflowPool(): BankItem[] {
+    const pool = distinctPool("aanp-fnp", 135);
+    const topics = [
+      { phrase: "blood glucose", count: 7 },
+      { phrase: "asthma", count: 7 },
+      { phrase: "COPD", count: 7 },
+    ];
+    let index = 0;
+    for (const topic of topics) {
+      for (let n = 0; n < topic.count; n += 1) {
+        const row = pool[index]!;
+        row.question = `${row.question} ${topic.phrase} note ${mark(index)}`;
+        index += 1;
+      }
+    }
+    return pool;
+  }
+
+  it("fills 135 when the strict narrow-topic cap would stop at 126, and keeps the launcher clock", () => {
+    const pool = narrowOverflowPool();
+    const strict = selectSittingItems({ pool, limit: 135, seed: 4, relax: true });
+    expect(strict.items).toHaveLength(126);
+
+    const filled = selectStoredFormSitting({
+      pool,
+      limit: 135,
+      fieldId: "aanp-fnp",
+      seed: 4,
+    });
+    expect(filled).toHaveLength(135);
+
+    const launcher = buildSessionConfig("aanp-fnp", "full", true);
+    expect(launcher.questionCount).toBe(135);
+    expect(launcher.timeLimitSec).toBe(computeTimeLimitSec("aanp-fnp", 135, true));
+    expect(launcher.timeLimitSec).toBe(210 * 60);
+
+    const shrunk = syncSessionConfigQuestionCount(launcher, "aanp-fnp", strict.items.length);
+    expect(shrunk.questionCount).toBe(126);
+    expect(shrunk.timeLimitSec).toBe(11760);
+
+    const stored = syncSessionConfigQuestionCount(launcher, "aanp-fnp", filled!.length);
+    expect(stored.questionCount).toBe(135);
+    expect(stored.timeLimitSec).toBe(launcher.timeLimitSec);
   });
 });

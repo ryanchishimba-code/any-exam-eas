@@ -11,6 +11,12 @@ import {
 } from "react";
 import { useSession } from "next-auth/react";
 import { isExamSlug } from "@/lib/edtech/exams";
+import { EXAM_SWITCH_EVENT } from "@/lib/client/exam-switch-reset";
+import {
+  clearOptimisticExamSlug,
+  readOptimisticExamSlug,
+  writeOptimisticExamSlug,
+} from "@/lib/client/header-exam-slug";
 import type { ExamSlug } from "@/types/edtech";
 
 export type AppPreferences = {
@@ -71,11 +77,32 @@ let preferenceWriteRevision = 0;
 let confirmedPreferenceRevision = 0;
 
 function publishOptimisticExamSlug(slug: ExamSlug | null) {
+  writeOptimisticExamSlug(slug);
   preferenceWriteRevision += 1;
   cachedPreference = {
     examSlug: slug,
     mpjeStateCode: cachedPreference?.mpjeStateCode ?? null,
   };
+}
+
+function rememberConfirmedPreference(value: PreferencePayload, revision: number): void {
+  const optimistic = readOptimisticExamSlug();
+  if (optimistic && value.examSlug !== optimistic) return;
+  cachedPreference = value;
+  confirmedPreferenceRevision = revision;
+  if (optimistic && value.examSlug === optimistic) clearOptimisticExamSlug();
+}
+
+function applyFetchedExamSlug(
+  payload: PreferencePayload,
+  setExam: (slug: ExamSlug | null) => void
+): void {
+  const optimistic = readOptimisticExamSlug();
+  if (optimistic && payload.examSlug !== optimistic) {
+    setExam(optimistic);
+    return;
+  }
+  setExam(payload.examSlug);
 }
 
 /** Shared across provider and fallback consumers; `force` bypasses the cache after a save. */
@@ -95,8 +122,7 @@ async function fetchPreference(force = false): Promise<PreferencePayload | null>
       // Only a real payload is worth caching; a declined read stays retryable.
       // A newer optimistic write wins over this response.
       if (value && revision === preferenceWriteRevision) {
-        cachedPreference = value;
-        confirmedPreferenceRevision = revision;
+        rememberConfirmedPreference(value, revision);
       }
       if (inflightPreference === pending) inflightPreference = null;
       return value;
@@ -139,10 +165,11 @@ export function AppPreferencesProvider({
     try {
       const payload = await fetchPreference(force);
       if (!payload || revision !== preferenceWriteRevision) return;
-      setExamSlugState(payload.examSlug);
+      applyFetchedExamSlug(payload, setExamSlugState);
       setMpjeStateCode(payload.mpjeStateCode);
     } catch {
       if (revision !== preferenceWriteRevision) return;
+      if (readOptimisticExamSlug()) return;
       setExamSlugState(null);
       setMpjeStateCode(null);
     } finally {
@@ -153,10 +180,26 @@ export function AppPreferencesProvider({
   // Callers refresh after saving a new exam, so never serve them a stale slug.
   const refresh = useCallback(() => load(true), [load]);
 
+  useEffect(() => {
+    function onExamSwitch(event: Event) {
+      const slug = (event as CustomEvent<{ examSlug?: string }>).detail?.examSlug;
+      if (!slug || !isExamSlug(slug)) return;
+      writeOptimisticExamSlug(slug);
+      setExamSlugState(slug);
+    }
+    window.addEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
+    return () => window.removeEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
+  }, []);
+
   // A select-exam save navigates into this provider. A stale server prop must
   // not paint the previous board over the exam that was just saved.
   useEffect(() => {
     if (initialExamSlug === undefined) return;
+    const chosen = readOptimisticExamSlug();
+    if (chosen && chosen !== initialExamSlug) {
+      setExamSlugState(chosen);
+      return;
+    }
     const pending =
       preferenceWriteRevision > confirmedPreferenceRevision && cachedPreference?.examSlug;
     if (pending && cachedPreference?.examSlug !== initialExamSlug) {
@@ -184,6 +227,13 @@ export function AppPreferencesProvider({
     }
 
     if (initialExamSlug) {
+      const chosen = readOptimisticExamSlug();
+      if (chosen && chosen !== initialExamSlug) {
+        setExamSlugState(chosen);
+        setLoading(false);
+        void load(true);
+        return;
+      }
       setExamSlugState((prev) => prev ?? initialExamSlug);
       setLoading(false);
       return;
@@ -218,10 +268,11 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
     try {
       const payload = await fetchPreference(force);
       if (!payload || revision !== preferenceWriteRevision) return;
-      setExamSlugState(payload.examSlug);
+      applyFetchedExamSlug(payload, setExamSlugState);
       setMpjeStateCode(payload.mpjeStateCode);
     } catch {
       if (revision !== preferenceWriteRevision) return;
+      if (readOptimisticExamSlug()) return;
       setExamSlugState(null);
       setMpjeStateCode(null);
     } finally {
@@ -230,6 +281,20 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
   }, []);
 
   const refresh = useCallback(() => load(true), [load]);
+
+  useEffect(() => {
+    if (!active) return;
+    function onExamSwitch(event: Event) {
+      const slug = (event as CustomEvent<{ examSlug?: string }>).detail?.examSlug;
+      if (!slug || !isExamSlug(slug)) return;
+      writeOptimisticExamSlug(slug);
+      setExamSlugState(slug);
+    }
+    window.addEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
+    const chosen = readOptimisticExamSlug();
+    if (chosen) setExamSlugState(chosen);
+    return () => window.removeEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
+  }, [active]);
 
   useEffect(() => {
     if (!active) return;

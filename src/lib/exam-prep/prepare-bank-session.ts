@@ -26,6 +26,7 @@ import {
 import { bankItemToAanpFnpRaw } from "./aanp-fnp-bank-bridge";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 import { resolveItemProvenance } from "./item-qa/provenance";
+import { sourceLabelForPracticeField } from "./usmle/source-label";
 import { applyEffectiveMcqForServe } from "./effective-type";
 import { retainStudentEligibleBankItems } from "./student-eligibility";
 
@@ -141,6 +142,7 @@ export function bankItemToSessionRaw(
   return {
     ...raw,
     ...provenance,
+    sourceLabel: sourceLabelForPracticeField(provenance.sourceLabel, fieldId),
     subjectId: raw.subjectId ?? enriched.subjectId ?? subjectId,
     topicCategory:
       raw.topicCategory || enriched.topicCategory || enriched.subjectId || subjectId,

@@ -9,6 +9,7 @@ import { joinStoredCorrectAnswer, splitStoredCorrectAnswers } from "@/lib/questi
 import { normalizeStem } from "./stem";
 import { numericValueInSlot, planDualNumericAnswer } from "./dual-numeric-answer";
 import { gradeNumericAnswer } from "./numeric-grade";
+import { sourceLabelForPracticeField } from "@/lib/exam-prep/usmle/source-label";
 import { citationFitsQuestion, splitGluedLeadIn, stripInternalDisplayMetadata } from "./student-display-text";
 import {
   resolveNclexStem,
@@ -254,11 +255,16 @@ export function examQuestionToStudy(
     clinicalReasoning,
     distractorRationale,
     references: q.references
-      ?.map((reference) => stripInternalDisplayMetadata(displayText(reference)))
+      ?.map((reference) =>
+        stripInternalDisplayMetadata(
+          displayText(sourceLabelForPracticeField(reference, q.field) ?? reference)
+        )
+      )
       .filter((reference) => reference.length > 0 && !/^references:?$/i.test(reference)),
     sourceLabel: studentFacingSourceLabel(
       q.sourceLabel,
-      [q.vignette, q.question].filter(Boolean).join("\n")
+      [q.vignette, q.question].filter(Boolean).join("\n"),
+      q.field
     ),
     sourceUrl: q.sourceUrl,
     reviewedAt: q.reviewedAt,
@@ -426,9 +432,13 @@ export function isAnswerCorrect(
   );
 }
 
-function studentFacingSourceLabel(label: string | undefined, stem?: string): string | undefined {
+function studentFacingSourceLabel(
+  label: string | undefined,
+  stem?: string,
+  field?: string
+): string | undefined {
   if (!label) return undefined;
-  const cleaned = stripInternalDisplayMetadata(label);
+  const cleaned = stripInternalDisplayMetadata(sourceLabelForPracticeField(label, field) ?? label);
   if (!cleaned || /^nabp naplex(?: content outline)?$/i.test(cleaned)) return undefined;
   if (/^(?:source|content outline|source\s*\/\s*content outline)$/i.test(cleaned)) return undefined;
   if (stem && !citationFitsQuestion(cleaned, stem)) return undefined;
