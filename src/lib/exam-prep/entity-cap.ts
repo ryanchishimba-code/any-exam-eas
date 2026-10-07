@@ -1,6 +1,10 @@
 import type { BankItem } from "@/lib/question-bank";
 import { narrowTopicKeyFromBankItem, narrowTopicShareCap } from "@/lib/exam-prep/narrow-topic";
-import { classifyNaplexSittingItem, naplexLawItemCeiling } from "@/lib/exam-prep/sitting-blueprint";
+import {
+  classifyNaplexSittingItem,
+  isPharmacyBlueprintField,
+  naplexLawItemCeiling,
+} from "@/lib/exam-prep/sitting-blueprint";
 import { assignSittingClusters, sequentialSetId } from "@/lib/exam-prep/sitting-clusters";
 import { isServableToStudents } from "@/lib/exam-prep/student-eligibility";
 
@@ -363,8 +367,20 @@ function sentencesOf(text: string): string[] {
     .filter(Boolean);
 }
 
+function plainText(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  if (value && typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    for (const key of ["text", "label", "value", "content"]) {
+      if (typeof record[key] === "string") return record[key];
+    }
+  }
+  return "";
+}
+
 function keyedAnswerText(item: SittingCapSource): string {
-  const raw = item.correctAnswer?.trim() ?? "";
+  const raw = plainText(item.correctAnswer).trim();
   if (!raw) return "";
   const options = item.options ?? [];
   return raw
@@ -373,7 +389,7 @@ function keyedAnswerText(item: SittingCapSource): string {
       const piece = part.trim();
       if (/^[A-H]$/i.test(piece) && options.length > 0) {
         const index = piece.toUpperCase().charCodeAt(0) - 65;
-        return options[index] ?? piece;
+        return plainText(options[index]) || piece;
       }
       return piece;
     })
@@ -508,23 +524,32 @@ export type SittingCapLimits = {
   /** Infinity once the ladder turns the background med-list cap off. */
   backgroundDrugCap: number;
   conditionCap: number;
-  /** Infinity only on the last ladder step, when the sitting still cannot fill. */
+  /** Infinity only on the last pharmacy ladder step, when the sitting still cannot fill. */
   conceptCap: number;
+  /**
+   * One row per cluster through level 7. Level 8 allows a second row, and
+   * level 9 turns the cap off. Pharmacy finalize never climbs past 7.
+   */
+  clusterCap: number;
+  /** Same ladder as clusterCap. Identical case openings stay one-per-sitting through level 7. */
+  caseCap: number;
 };
 
 /**
  * Strict caps at level 0. Higher levels are cumulative:
  * L1 template ×2, L2 narrow +1 per 50, L3 background cap off,
  * L4 subject drug +1 per 50, L5 condition +1,
- * L6 concept cap +1, L7 concept cap off.
- * Cluster, case, vitals, ask, eligibility, calc quota, and sequential sets
- * are not in this object because they never relax.
+ * L6 concept cap +1, L7 concept cap off,
+ * L8 cluster and case ×2, L9 cluster and case off.
+ * Vitals, ask, eligibility, calc quota, and sequential sets never relax.
+ * Pharmacy sittings stop at L7, so a NAPLEX form still keeps one row per cluster.
  */
 export function sittingCapLimits(limit: number, relaxLevel = 0): SittingCapLimits {
-  const level = Math.max(0, Math.min(7, Math.floor(relaxLevel) || 0));
+  const level = Math.max(0, Math.min(9, Math.floor(relaxLevel) || 0));
   const perFifty = perFiftyCap(1, limit);
   const conceptCap =
     level >= 7 ? Number.POSITIVE_INFINITY : conceptRepeatCap(limit) + (level >= 6 ? 1 : 0);
+  const duplicateCap = level >= 9 ? Number.POSITIVE_INFINITY : level >= 8 ? 2 : 1;
   return {
     relaxLevel: level,
     templateCap: templateRepeatCap(limit) * (level >= 1 ? 2 : 1),
@@ -533,6 +558,8 @@ export function sittingCapLimits(limit: number, relaxLevel = 0): SittingCapLimit
     backgroundDrugCap: level >= 3 ? Number.POSITIVE_INFINITY : pharmacyBackgroundDrugCap(limit),
     conditionCap: nursingConditionCap(limit) + (level >= 5 ? 1 : 0),
     conceptCap,
+    clusterCap: duplicateCap,
+    caseCap: duplicateCap,
   };
 }
 
@@ -578,7 +605,7 @@ function mainSubjectTexts(item: SittingCapSource): string[] {
     if (typeof value === "string" && value.trim()) texts.push(value.replace(/[-_]/g, " "));
   }
   for (const tag of item.tags ?? []) {
-    if (tag.trim()) texts.push(tag.replace(/[-_]/g, " "));
+    if (typeof tag === "string" && tag.trim()) texts.push(tag.replace(/[-_]/g, " "));
   }
   return texts;
 }
@@ -819,9 +846,12 @@ export function sittingConditionMention(item: SittingCapSource): string | null {
 }
 
 function caseNarrative(item: SittingCapSource): string {
-  const scene = [item.scenario, item.vignette].filter(Boolean).join(" ").trim();
+  const scene = [item.scenario, item.vignette]
+    .filter((value): value is string => typeof value === "string" && value.length > 0)
+    .join(" ")
+    .trim();
   if (scene.length >= 40) return scene;
-  const question = item.question?.trim() ?? "";
+  const question = typeof item.question === "string" ? item.question.trim() : "";
   if (
     question.length >= 40 &&
     /\b(?:year|yr|yo)s?\s*-?\s*old\b|\b\d{1,3}[mf]\b|\bblood pressure\b|\bbp\b|\bspo2\b|\bheart rate\b/i.test(question)
@@ -1057,7 +1087,7 @@ function distractorRepeatKey(item: SittingCapSource): string | null {
   if (options.length < 3) return null;
   const answer = keyedAnswerText(item).trim().toLowerCase().replace(/\s+/g, " ");
   const long = options
-    .map((option) => option.trim().toLowerCase().replace(/\s+/g, " "))
+    .map((option) => plainText(option).trim().toLowerCase().replace(/\s+/g, " "))
     .filter((option) => option && option !== answer && option.length >= 48);
   if (long.length < 2) return null;
   return `distractors:${[...long].sort().join("|")}`;
@@ -1192,6 +1222,7 @@ const INTERACTION_PAIR =
  * looser template cap.
  */
 export function sittingConceptKeys(item: SittingCapSource, fieldId: string): string[] {
+  if (!isPharmacyBlueprintField(fieldId)) return [];
   const keys: string[] = [];
   const question = item.question ?? "";
   const answer = keyedAnswerText(item);
@@ -1225,7 +1256,7 @@ export function sittingConceptKeys(item: SittingCapSource, fieldId: string): str
   if (/\b(?:look-?alike|sound-?alike|\blasa\b)\b/i.test(stem) && focus.length >= 2) {
     keys.push(`concept:lasa:${[...focus].sort().join("+")}`);
   }
-  const subject = item.subjectId?.trim().toLowerCase() ?? "";
+  const subject = typeof item.subjectId === "string" ? item.subjectId.trim().toLowerCase() : "";
   if (fieldId === "pharmacy" && subject && primary && subject !== "general") {
     keys.push(`concept:focus:${subject}:${primary}`);
   }
@@ -1296,7 +1327,10 @@ export function sittingCapEntityKey(item: SittingCapSource, fieldId: string): st
     const condition = sittingConditionMentions(item)[0];
     if (condition) return `condition:${condition}`;
   }
-  return sittingEntityKey(itemClinicalText(item), fieldId);
+  // PANCE, USMLE, AANP, and NPTE do not use the NCLEX condition cap. The
+  // fallback used to tag every hypertension vignette as a nursing condition
+  // and left a 300-item PANCE sitting short.
+  return null;
 }
 
 /** Drug wins over a co-mentioned condition. Generic calc templates key off the ask. */
@@ -1328,6 +1362,7 @@ function scaledRepeatKey(key: string): boolean {
 
 function repeatAllowance(key: string, limits: SittingCapLimits): number {
   if (key.startsWith("concept:")) return limits.conceptCap;
+  if (key.startsWith("case:")) return limits.caseCap;
   if (scaledRepeatKey(key)) return limits.templateCap;
   return 1;
 }
@@ -1373,7 +1408,7 @@ export function enforceEntityAndDosageCap(
     const id = item.id?.trim();
     if (id) clusterById.set(id, cluster);
   });
-  const usedClusters = new Set<string>();
+  const clusterCounts = new Map<string, number>();
   const rejectionCounts = new Map<string, number>();
   const notedRejections = new Set<string>();
   const noteRejection = (item: BankItem, reason: string) => {
@@ -1396,7 +1431,7 @@ export function enforceEntityAndDosageCap(
       return true;
     }
     const cluster = clusterByItem.get(item) ?? (id ? clusterById.get(id) : undefined);
-    if (cluster && usedClusters.has(cluster)) {
+    if (cluster && (clusterCounts.get(cluster) ?? 0) >= limits.clusterCap) {
       noteRejection(item, "cluster");
       return false;
     }
@@ -1477,7 +1512,7 @@ export function enforceEntityAndDosageCap(
     if (numeric) calcs += 1;
     if (narrow) narrowCounts.set(narrow, (narrowCounts.get(narrow) ?? 0) + 1);
     if (lawItem) lawOnly += 1;
-    if (cluster) usedClusters.add(cluster);
+    if (cluster) clusterCounts.set(cluster, (clusterCounts.get(cluster) ?? 0) + 1);
     if (id) used.add(id);
     kept.push(item);
     return true;

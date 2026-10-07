@@ -3,9 +3,21 @@ import { normalizeStem } from "./questions/stem";
 
 const OPTION_PREFIX = /^[A-Da-d][.)]\s*/;
 
-/** Strip leading "A) " so UI can render Quizlet-style labels */
-export function cleanOptionText(option: string): string {
-  return option.replace(OPTION_PREFIX, "").trim();
+function optionBody(option: unknown): string {
+  if (typeof option === "string") return option;
+  if (typeof option === "number" || typeof option === "boolean") return String(option);
+  if (option && typeof option === "object") {
+    const record = option as Record<string, unknown>;
+    for (const key of ["text", "label", "value", "content"]) {
+      if (typeof record[key] === "string") return record[key];
+    }
+  }
+  return "";
+}
+
+/** Strip leading "A) " so UI can render Quizlet-style labels. Non-strings cannot throw. */
+export function cleanOptionText(option: unknown): string {
+  return optionBody(option).replace(OPTION_PREFIX, "").trim();
 }
 
 function normOptionKey(text: string): string {

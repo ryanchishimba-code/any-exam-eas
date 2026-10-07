@@ -25,7 +25,7 @@ import {
 
 export { isPharmacyCalculationItem, pharmacyCalculationQuota };
 import { selectWithNgnFormatMix } from "@/lib/full-exam/ngn-format-mix";
-import { rankSittingByBlueprint } from "@/lib/exam-prep/sitting-blueprint";
+import { isPharmacyBlueprintField, rankSittingByBlueprint } from "@/lib/exam-prep/sitting-blueprint";
 
 export type SittingSelection = {
   items: BankItem[];
@@ -375,7 +375,8 @@ export function finalizeAssembledSitting(params: {
   let chosen = picked;
   let capStats: CapRejectionStats = { poolSize: params.pool.length, kept: 0, rejections: {}, relaxLevel: 0 };
   let strict: { kept: number; rejections: Record<string, number> } | null = null;
-  for (let level = 0; level <= 7; level++) {
+  const relaxCeiling = isPharmacyBlueprintField(params.fieldId) ? 7 : 9;
+  for (let level = 0; level <= relaxCeiling; level++) {
     const limits = sittingCapLimits(limit, level);
     const narrowed = enforceNarrowTopicCap(picked, rankedPool, limit, limits.narrowCap);
     const stats: CapRejectionStats = {

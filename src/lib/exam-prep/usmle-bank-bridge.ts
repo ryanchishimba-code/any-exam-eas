@@ -56,7 +56,12 @@ export function bankItemToUsmleExam(item: BankItem, index: number): ExamQuestion
             ? "Hard"
             : "Medium"
         : undefined,
-    references: item.references?.map((r) => r.label),
+    references: item.references
+      ?.map((reference) => {
+        if (typeof reference === "string") return reference;
+        return typeof reference?.label === "string" ? reference.label : "";
+      })
+      .filter((label) => label.length > 0),
   };
 }
 

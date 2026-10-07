@@ -138,6 +138,42 @@ export function parseBankOptions(raw: string): ParsedBankOptions {
   return { options: [] };
 }
 
+function textField(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  if (value && typeof value === "object") {
+    const record = value as Record<string, unknown>;
+    for (const key of ["text", "step", "label", "content", "value"]) {
+      if (typeof record[key] === "string") return record[key];
+    }
+  }
+  return "";
+}
+
+function parseSolutionSteps(raw: string): string[] | undefined {
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    const list = Array.isArray(parsed) ? parsed : [parsed];
+    const steps = list.map(textField).map((step) => step.trim()).filter(Boolean);
+    return steps.length ? steps : undefined;
+  } catch {
+    const step = raw.trim();
+    return step ? [step] : undefined;
+  }
+}
+
+function parseStringTags(raw: string): string[] | undefined {
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    const list = Array.isArray(parsed) ? parsed : [parsed];
+    const tags = list.map(textField).map((tag) => tag.trim()).filter(Boolean);
+    return tags.length ? tags : undefined;
+  } catch {
+    const tag = raw.trim();
+    return tag ? [tag] : undefined;
+  }
+}
+
 export function enrichBankItemFromRow(row: {
   id: string;
   subjectId: string;
@@ -203,10 +239,8 @@ export function enrichBankItemFromRow(row: {
         ? (row.generationMeta as Record<string, unknown>)
         : undefined,
     itemType: row.itemType ?? "mcq",
-    solutionSteps: row.solutionSteps
-      ? (JSON.parse(row.solutionSteps) as string[])
-      : undefined,
-    tags: row.tags ? (JSON.parse(row.tags) as string[]) : undefined,
+    solutionSteps: row.solutionSteps ? parseSolutionSteps(row.solutionSteps) : undefined,
+    tags: row.tags ? parseStringTags(row.tags) : undefined,
     references: row.references as BankItem["references"],
     lastReviewedAt: row.lastReviewedAt ?? undefined,
     distractorRationale,

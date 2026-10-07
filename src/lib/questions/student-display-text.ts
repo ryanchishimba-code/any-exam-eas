@@ -169,6 +169,7 @@ export function closeDanglingParen(text: string): string {
 }
 
 export function stripInternalDisplayMetadata(text: string): string {
+  if (typeof text !== "string" || !text) return "";
   let next = normalizeBowTieInstruction(dropBareReviewedBesideDate(collapseRepeatedLabels(collapseQuoteLineBreaks(text))));
   next = joinBrokenDoseDecimals(next).replace(/\b1\s+hours\b/gi, "1 hour");
   for (const pattern of INTERNAL_META) {

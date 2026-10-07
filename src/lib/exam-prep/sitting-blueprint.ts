@@ -1,16 +1,18 @@
 /**
- * Order a gathered pool toward published blueprint weights before the sitting
- * caps run. NAPLEX uses the NABP five-domain outline (May 1, 2025): 25%
- * foundations, 25% medication-use process, 40% person-centered treatment
- * planning, 5% professional practice, 5% management. Law-only items stay on a
- * low ceiling because pharmacy law is an MPJE exam. Other boards are ordered
- * only when getExamBlueprint already has category weights.
+ * Order a gathered pharmacy pool toward the NABP five-domain outline (May 1,
+ * 2025) before sitting caps run: 25% foundations, 25% medication-use process,
+ * 40% person-centered treatment planning, 5% professional practice, 5%
+ * management. Law-only items stay on a low ceiling because pharmacy law is an
+ * MPJE exam.
+ *
+ * Other boards keep their incoming order. Ranking them changed which rows
+ * consumed caps that never relax, and the extra work did not finish inside
+ * the 25s assemble budget at full length.
  *
  * Targets are preferences. Items that do not fit are kept at the end so a
  * thin pool can still fill the length.
  */
 import type { BankItem } from "@/lib/question-bank";
-import { getExamBlueprint, type ExamBlueprint } from "@/lib/engine/blueprints";
 import {
   NAPLEX_OUTLINE_2025,
   type NaplexOutlineDomainId,
@@ -106,7 +108,7 @@ function diseaseFromText(text: string): NaplexDiseaseId | null {
 
 /** Map one pharmacy row onto an NABP area and, when it is therapeutics, a disease state. */
 export function classifyNaplexSittingItem(item: BankItem): NaplexSittingClass {
-  const subject = (item.subjectId ?? "").trim().toLowerCase();
+  const subject = (typeof item.subjectId === "string" ? item.subjectId : "").trim().toLowerCase();
   const text = blob(item);
   const topicDisease = diseaseFromText(text);
   const subjectDisease = DISEASE_SUBJECT[subject] ?? null;
@@ -282,73 +284,16 @@ function rankNaplex(items: readonly BankItem[], limit: number, seed: number): Ba
   ];
 }
 
-function categoryOf(item: BankItem, blueprint: ExamBlueprint): string | null {
-  const domain = item.blueprintDomain?.trim();
-  if (domain && blueprint.categories.some((category) => category.id === domain)) return domain;
-  const subject = item.subjectId?.trim().toLowerCase();
-  if (!subject) return null;
-  const match = blueprint.categories.find((category) =>
-    (category.subjectIds ?? []).some((id) => id.toLowerCase() === subject)
-  );
-  return match?.id ?? null;
-}
-
-function rankGeneric(items: readonly BankItem[], limit: number, blueprint: ExamBlueprint, seed: number): BankItem[] {
-  const groups = new Map<string, BankItem[]>();
-  let classified = 0;
-  for (const item of items) {
-    const category = categoryOf(item, blueprint) ?? "unclassified";
-    if (category !== "unclassified") classified += 1;
-    const list = groups.get(category) ?? [];
-    list.push(item);
-    groups.set(category, list);
-  }
-  if (classified < 2) return [...items];
-  for (const [key, list] of groups) groups.set(key, shuffle(list, seed ^ key.length));
-
-  const weights = blueprint.categories.map((category) => ({
-    id: category.id,
-    exact: category.weight * limit,
-  }));
-  const targets = new Map<string, number>();
-  let used = 0;
-  for (const row of weights) {
-    const floor = Math.floor(row.exact);
-    targets.set(row.id, floor);
-    used += floor;
-  }
-  const byFrac = [...weights].sort((left, right) => right.exact - Math.floor(right.exact) - (left.exact - Math.floor(left.exact)));
-  let leftover = Math.max(0, limit - used);
-  for (const row of byFrac) {
-    if (leftover <= 0) break;
-    targets.set(row.id, (targets.get(row.id) ?? 0) + 1);
-    leftover -= 1;
-  }
-
-  const counts = new Map<string, number>();
-  const chosen: BankItem[] = [];
-  const seen = new Set<BankItem>();
-  let progress = true;
-  while (progress && chosen.length < limit) {
-    progress = false;
-    for (const category of blueprint.categories) {
-      if ((counts.get(category.id) ?? 0) >= (targets.get(category.id) ?? 0)) continue;
-      const list = groups.get(category.id);
-      const next = list?.shift();
-      if (!next || seen.has(next)) continue;
-      seen.add(next);
-      chosen.push(next);
-      counts.set(category.id, (counts.get(category.id) ?? 0) + 1);
-      progress = true;
-    }
-  }
-  const tail = items.filter((item) => !seen.has(item));
-  return [...chosen, ...tail];
+/** NAPLEX blueprint ranking and concept caps. Every other board keeps #170 order. */
+export function isPharmacyBlueprintField(fieldId: string): boolean {
+  const field = fieldId.trim().toLowerCase();
+  return field === "pharmacy" || field === "naplex";
 }
 
 /**
- * Preferred order for finalizeAssembledSitting. Unclassified pools keep their
- * incoming order so synthetic cap tests do not move.
+ * Preferred order for finalizeAssembledSitting. Non-pharmacy pools keep their
+ * incoming order so synthetic cap tests do not move and long exams stay inside
+ * the assemble budget.
  */
 export function rankSittingByBlueprint(
   items: readonly BankItem[],
@@ -356,9 +301,6 @@ export function rankSittingByBlueprint(
   fieldId: string,
   seed = 0
 ): BankItem[] {
-  const field = fieldId.trim().toLowerCase();
-  if (field === "pharmacy" || field === "naplex") return rankNaplex(items, limit, seed);
-  const blueprint = getExamBlueprint(field);
-  if (!blueprint) return [...items];
-  return rankGeneric(items, limit, blueprint, seed);
+  if (!isPharmacyBlueprintField(fieldId)) return [...items];
+  return rankNaplex(items, limit, seed);
 }
