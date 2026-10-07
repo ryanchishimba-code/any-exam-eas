@@ -88,6 +88,13 @@ export const PRESERVE_BANK_ROW_TAG_PREFIX = "preserve-bank-row:";
  */
 export const HYDROMORPHONE_ROTATION_PRESERVED_ROW_ID = "cmr31dhuk008ajs04ftdoajhj";
 
+/**
+ * Live AANP row for INR 6.8 without bleeding. A separate rewrite is landing
+ * on this id. The seed key is corrected here; the tag keeps a hash mismatch
+ * from inserting a second row or retiring the live one.
+ */
+export const WARFARIN_INR_NO_BLEED_PRESERVED_ROW_ID = "cmqgdi30k00251yr8p1il4n6l";
+
 export function preserveBankRowTag(id: string): string {
   return `${PRESERVE_BANK_ROW_TAG_PREFIX}${id}`;
 }

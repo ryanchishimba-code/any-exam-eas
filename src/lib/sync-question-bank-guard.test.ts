@@ -2,9 +2,11 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { NAPLEX_CALC_CASES_V3 } from "@/lib/exam-prep/naplex-calc-cases-v3";
+import { AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE } from "@/lib/edtech/seeds/aanp-fnp-physician-educator-batch-evaluate";
 import {
   HYDROMORPHONE_ROTATION_PRESERVED_ROW_ID,
   KEYFIX_BACKUP_TABLES,
+  WARFARIN_INR_NO_BLEED_PRESERVED_ROW_ID,
   bankItemContentHash,
   collectHandFixedIds,
   decideSeedUpsert,
@@ -196,6 +198,50 @@ describe("hydromorphone rotation seed vs preserved content hash", () => {
         seedHash,
         preservedRow: {
           id: HYDROMORPHONE_ROTATION_PRESERVED_ROW_ID,
+          contentHash: seedHash,
+        },
+      })
+    ).toEqual({ upsertSeed: true, activeHashes: [seedHash] });
+  });
+});
+
+describe("AANP INR 6.8 seed vs preserved content hash", () => {
+  const item = AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE.find((row) =>
+    /INR 6\.8/.test(row.vignette ?? "")
+  );
+
+  it("holds warfarin without routine vitamin K for INR 4.5–10 and no bleeding", () => {
+    expect(item).toBeDefined();
+    expect(item?.correctAnswer).toBe("Hold warfarin; do not give routine vitamin K; recheck INR");
+    expect(item?.options).toContain(item?.correctAnswer);
+    expect(item?.correctAnswer).not.toMatch(/give vitamin K/i);
+    expect(item?.explanation).toMatch(/CHEST 2012/);
+    expect(item?.explanation).toMatch(/do not give routine vitamin K/i);
+    expect(item?.explanation).toMatch(/INR >10/);
+    expect(preservedBankRowIdFromTags(item?.tags)).toBe(WARFARIN_INR_NO_BLEED_PRESERVED_ROW_ID);
+  });
+
+  it("does not insert a second row or drop the live hash when production was rewritten", () => {
+    const seedHash = bankItemContentHash("aanp-fnp", item!.subjectId, item!);
+    const rewrittenHash = bankItemContentHash("aanp-fnp", "evaluate", {
+      scenario: "A rewritten production vignette for the same INR case.",
+      question: "What is the most appropriate management?",
+    });
+    expect(seedHash).not.toBe(rewrittenHash);
+    expect(
+      planPreservedHashSeed({
+        seedHash,
+        preservedRow: {
+          id: WARFARIN_INR_NO_BLEED_PRESERVED_ROW_ID,
+          contentHash: rewrittenHash,
+        },
+      })
+    ).toEqual({ upsertSeed: false, activeHashes: [rewrittenHash] });
+    expect(
+      planPreservedHashSeed({
+        seedHash,
+        preservedRow: {
+          id: WARFARIN_INR_NO_BLEED_PRESERVED_ROW_ID,
           contentHash: seedHash,
         },
       })

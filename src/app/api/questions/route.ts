@@ -775,7 +775,12 @@ export async function GET(req: Request) {
   const totalActive = metaResult ? metaResult[0] : 0;
   const scopedCount = metaResult ? metaResult[1] : 0;
   const subjectTotal = metaResult ? (blueprintAreaId || !mixed ? scopedCount : metaResult[0]) : 0;
-  const lastSync = metaResult ? metaResult[2] : null;
+  // The sync row is written inside the meta promise. Control-flow analysis still
+  // sees the initial null, and `null?.finishedAt` is a type error (`never`).
+  const metaSnapshot = metaResult as
+    | [number, number, Awaited<ReturnType<typeof getLastQuestionBankSync>>]
+    | null;
+  const lastSync = metaSnapshot?.[2] ?? null;
 
   trackEvent({
     userId,

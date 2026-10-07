@@ -94,89 +94,89 @@ const ROW_CAP = Math.min(2000, Math.max(SPRINT * 3, LIMIT * 4));
 const CALC_SAMPLE = Math.max(pharmacyCalculationQuota(LIMIT) * 3, 12);
 
 async function main() {
-let fails = 0;
-let poolTotal = 0;
-let drugViolations = 0;
-let templateViolations = 0;
-let maxDrug = 0;
-let maxTemplate = 0;
-const sizes: number[] = [];
+  let fails = 0;
+  let poolTotal = 0;
+  let drugViolations = 0;
+  let templateViolations = 0;
+  let maxDrug = 0;
+  let maxTemplate = 0;
+  const sizes: number[] = [];
 
-for (let trial = 0; trial < N; trial++) {
-  const random = rng(1000 + trial);
-  const order = shuffle(eligible, random);
-  let cursor = 0;
-  const fastItems = await collectFastTimedPool({
-    limit: LIMIT,
-    rowCap: ROW_CAP,
-    sprintTarget: SPRINT,
-    pull: async (count) => {
-      const batch = order.slice(cursor, cursor + count);
-      cursor += count;
-      return batch;
-    },
-  });
-  const extra = shuffle(calcs, random)
-    .slice(0, CALC_SAMPLE)
-    .filter((calc) => !fastItems.some((item) => item.id === calc.id));
-  const pool = [...fastItems, ...extra];
-  poolTotal += pool.length;
-  const out = finalizeAssembledSitting({
-    pool,
-    limit: LIMIT,
-    fieldId: "pharmacy",
-    seed: (2000 + trial) >>> 0,
-    includeNgn: false,
-  });
-  sizes.push(out.items.length);
-  if (out.items.length < LIMIT) fails += 1;
+  for (let trial = 0; trial < N; trial++) {
+    const random = rng(1000 + trial);
+    const order = shuffle(eligible, random);
+    let cursor = 0;
+    const fastItems = await collectFastTimedPool({
+      limit: LIMIT,
+      rowCap: ROW_CAP,
+      sprintTarget: SPRINT,
+      pull: async (count) => {
+        const batch = order.slice(cursor, cursor + count);
+        cursor += count;
+        return batch;
+      },
+    });
+    const extra = shuffle(calcs, random)
+      .slice(0, CALC_SAMPLE)
+      .filter((calc) => !fastItems.some((item) => item.id === calc.id));
+    const pool = [...fastItems, ...extra];
+    poolTotal += pool.length;
+    const out = finalizeAssembledSitting({
+      pool,
+      limit: LIMIT,
+      fieldId: "pharmacy",
+      seed: (2000 + trial) >>> 0,
+      includeNgn: false,
+    });
+    sizes.push(out.items.length);
+    if (out.items.length < LIMIT) fails += 1;
 
-  const drugCounts = new Map<string, number>();
-  const templateCounts = new Map<string, number>();
-  for (const item of out.items) {
-    for (const drug of sittingDrugMentions(item)) {
-      drugCounts.set(drug, (drugCounts.get(drug) ?? 0) + 1);
+    const drugCounts = new Map<string, number>();
+    const templateCounts = new Map<string, number>();
+    for (const item of out.items) {
+      for (const drug of sittingDrugMentions(item)) {
+        drugCounts.set(drug, (drugCounts.get(drug) ?? 0) + 1);
+      }
+      for (const key of sittingRepeatKeys(item, "pharmacy")) {
+        if (!key.startsWith("template:")) continue;
+        templateCounts.set(key, (templateCounts.get(key) ?? 0) + 1);
+      }
     }
-    for (const key of sittingRepeatKeys(item, "pharmacy")) {
-      if (!key.startsWith("template:")) continue;
-      templateCounts.set(key, (templateCounts.get(key) ?? 0) + 1);
+    for (const count of drugCounts.values()) {
+      if (count > maxDrug) maxDrug = count;
+      if (count > PHARMACY_DRUG_CAP) drugViolations += 1;
+    }
+    for (const count of templateCounts.values()) {
+      if (count > maxTemplate) maxTemplate = count;
+      if (count > 1) templateViolations += 1;
     }
   }
-  for (const count of drugCounts.values()) {
-    if (count > maxDrug) maxDrug = count;
-    if (count > PHARMACY_DRUG_CAP) drugViolations += 1;
-  }
-  for (const count of templateCounts.values()) {
-    if (count > maxTemplate) maxTemplate = count;
-    if (count > 1) templateViolations += 1;
-  }
-}
 
-sizes.sort((left, right) => left - right);
-console.log(
-  JSON.stringify({
-    eligible: eligible.length,
-    calcs: calcs.length,
-    N,
-    LIMIT,
-    SPRINT,
-    ROW_CAP,
-    clusterGoal: fastGatherClusterGoal(LIMIT),
-    itemGoal: fastGatherItemGoal(LIMIT, SPRINT, ROW_CAP),
-    seedStart: 1000,
-    avgPool: poolTotal / N,
-    fails,
-    failRate: fails / N,
-    min: sizes[0] ?? 0,
-    p10: sizes[Math.floor(N * 0.1)] ?? 0,
-    median: sizes[Math.floor(N / 2)] ?? 0,
-    drugCap: PHARMACY_DRUG_CAP,
-    drugViolations,
-    templateViolations,
-    maxDrug,
-    maxTemplate,
-  })
-);
+  sizes.sort((left, right) => left - right);
+  console.log(
+    JSON.stringify({
+      eligible: eligible.length,
+      calcs: calcs.length,
+      N,
+      LIMIT,
+      SPRINT,
+      ROW_CAP,
+      clusterGoal: fastGatherClusterGoal(LIMIT),
+      itemGoal: fastGatherItemGoal(LIMIT, SPRINT, ROW_CAP),
+      seedStart: 1000,
+      avgPool: poolTotal / N,
+      fails,
+      failRate: fails / N,
+      min: sizes[0] ?? 0,
+      p10: sizes[Math.floor(N * 0.1)] ?? 0,
+      median: sizes[Math.floor(N / 2)] ?? 0,
+      drugCap: PHARMACY_DRUG_CAP,
+      drugViolations,
+      templateViolations,
+      maxDrug,
+      maxTemplate,
+    })
+  );
 }
 
 main().catch((error) => {
