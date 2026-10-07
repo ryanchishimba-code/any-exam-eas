@@ -1249,3 +1249,507 @@ describe("retest 165 drug, condition, and case detection", () => {
     expect(deliveredCount("headache-")).toBeLessThanOrEqual(1);
   });
 });
+
+describe("retest 166 postpartum, vitals, and medication duplicates", () => {
+  const filler = (id: string, field: "pharmacy" | "nursing") =>
+    item(
+      id,
+      field === "pharmacy"
+        ? `Which storage step applies to shipment lot ${id} before it leaves the pharmacy vault?`
+        : `Which isolation step is required before entering room ${id} for a unique dressing change?`,
+      [`Step ${id}`, "Skip the step"],
+      `Step ${id}`,
+      { itemType: "mcq" }
+    );
+
+  const shares = (left: BankItem, right: BankItem, fieldId: string, prefix: string) => {
+    const keys = new Set(sittingRepeatKeys(left, fieldId));
+    return sittingRepeatKeys(right, fieldId).some((key) => key.startsWith(prefix) && keys.has(key));
+  };
+
+  it("counts boggy fundus, atony, lochia, and PPH as postpartum, and caps the topic at 3", () => {
+    const boggy = item(
+      "pph-boggy",
+      "Which finding is reported first?",
+      ["Boggy fundus", "Firm fundus"],
+      "Boggy fundus",
+      {
+        scenario:
+          "A 32-year-old female on the postpartum unit is dizzy 12 hours after a vaginal delivery. BP 90/60, HR 110. The fundus is boggy and above the umbilicus.",
+      }
+    );
+    const near = item(
+      "pph-near",
+      "Which vital sign is the priority to report?",
+      ["Blood pressure 88/50", "Temperature"],
+      "Blood pressure 88/50",
+      {
+        scenario:
+          "Called back for dizziness, this 32-year-old woman is 12 hours after vaginal delivery and has soaked 2 pads per hour. BP 88/50, HR 110. Fundus boggy above the umbilicus.",
+      }
+    );
+    const atony = item(
+      "pph-atony",
+      "Which protocol is started first?",
+      ["Hemorrhage protocol", "Routine fundal checks"],
+      "Hemorrhage protocol",
+      {
+        scenario:
+          "Postpartum day 0. Uterine atony, fundus boggy above the umbilicus and deviated right, pad saturated in 15 minutes, HR 118.",
+      }
+    );
+    const pphLabel = item(
+      "pph-label",
+      "Which finding requires the hemorrhage protocol?",
+      ["Saturated pad in 5 minutes", "A firm fundus"],
+      "Saturated pad in 5 minutes",
+      {
+        scenario:
+          "Labor and delivery, room 399. A 24-year-old has PPH 30 minutes after delivery. BP 94/60, HR 124, and a pad saturated in 5 minutes.",
+      }
+    );
+    const bluesA = item(
+      "blues-a",
+      "Which response is the most therapeutic?",
+      ["Let us talk about how you feel", "This will pass if you sleep"],
+      "Let us talk about how you feel",
+      {
+        scenario:
+          "A 29-year-old woman delivered 12 hours ago. She reports feeling overwhelmed and tearful. The fundus is firm.",
+      }
+    );
+    const bluesB = item(
+      "blues-b",
+      "Which statement should the nurse make?",
+      ["Feeling this way can be frightening. Let us talk.", "Ignore the tears"],
+      "Feeling this way can be frightening. Let us talk.",
+      {
+        scenario:
+          "A 22-year-old is 12 hours postpartum and says she feels overwhelmed and tearful about caring for the baby.",
+      }
+    );
+    const engorgement = item(
+      "pp-engorge",
+      "Which statement needs further teaching?",
+      ["I will avoid breastfeeding until the swelling is gone", "I will feed on demand"],
+      "I will avoid breastfeeding until the swelling is gone",
+      { scenario: "A 28-year-old on postpartum day 2 has breast engorgement and is unsure how to feed." }
+    );
+    const lochia = item(
+      "pp-lochia",
+      "Which description of lochia is expected on day 1?",
+      ["Lochia rubra", "Clear yellow discharge only"],
+      "Lochia rubra",
+      { scenario: "The nurse is teaching a postpartum client about normal lochia rubra on the first day." }
+    );
+    const newborn = item(
+      "newborn-1",
+      "Which action is first for this newborn?",
+      ["Skin to skin", "A full bath"],
+      "Skin to skin",
+      { scenario: "A newborn is assessed 1 hour after delivery. Acrocyanosis is present and the heart rate is 140." }
+    );
+    const history = item(
+      "history-pph",
+      "Which action is first for the chest pain?",
+      ["Obtain an ECG", "Offer juice"],
+      "Obtain an ECG",
+      { scenario: "History of postpartum hemorrhage. She now has crushing chest pain radiating to the jaw." }
+    );
+
+    expect(sittingConditionMentions(boggy)).toEqual(
+      expect.arrayContaining(["postpartum-hemorrhage", "postpartum"])
+    );
+    expect(sittingConditionMentions(atony)).toContain("postpartum-hemorrhage");
+    expect(sittingConditionMentions(pphLabel)).toContain("postpartum-hemorrhage");
+    expect(sittingConditionMentions(lochia)).toContain("postpartum");
+    expect(sittingConditionMentions(lochia)).not.toContain("postpartum-hemorrhage");
+    expect(sittingConditionMentions(bluesA)).toContain("postpartum");
+    expect(sittingConditionMentions(newborn)).not.toContain("postpartum");
+    expect(sittingConditionMentions(history)).toContain("acs");
+    expect(sittingConditionMentions(history)).not.toContain("postpartum");
+    expect(shares(boggy, near, "nursing", "vitals:")).toBe(false);
+    expect(shares(boggy, near, "nursing", "vitals-core:")).toBe(false);
+    expect(shares(boggy, near, "nursing", "template:boggy-hemorrhage")).toBe(true);
+    expect(shares(bluesA, bluesB, "nursing", "template:postpartum-blues")).toBe(true);
+
+    const pool = [
+      boggy,
+      near,
+      atony,
+      pphLabel,
+      bluesA,
+      bluesB,
+      engorgement,
+      lochia,
+      newborn,
+      ...Array.from({ length: 90 }, (_, index) => filler(`pp-fill-${index}`, "nursing")),
+    ];
+    const kept = enforceEntityAndDosageCap(pool, pool, 85, "nursing");
+    const postpartum = kept.filter((row) => sittingConditionMentions(row).includes("postpartum"));
+    expect(postpartum.length).toBeLessThanOrEqual(3);
+    expect(kept.filter((row) => row.id?.startsWith("pph-"))).toHaveLength(1);
+    expect(kept.filter((row) => row.id?.startsWith("blues-"))).toHaveLength(1);
+    expect(kept.some((row) => row.id === "newborn-1")).toBe(true);
+
+    const delivered = deliverCatSitting(pool, 85, "nursing");
+    const deliveredPostpartum = delivered.filter((row) => sittingConditionMentions(row).includes("postpartum"));
+    expect(delivered).toHaveLength(85);
+    expect(deliveredPostpartum.length).toBeLessThanOrEqual(3);
+    expect(delivered.filter((row) => row.id?.startsWith("pph-")).length).toBeLessThanOrEqual(1);
+    expect(delivered.filter((row) => row.id?.startsWith("blues-")).length).toBeLessThanOrEqual(1);
+  });
+
+  it("collapses the pediatric asthma pair across peak-flow ratios, SpO2 spellings, and chart vitals", () => {
+    const inline = item(
+      "asthma-10",
+      "Which action is the priority for this child?",
+      ["Position upright and give a bronchodilator", "Wait for the next round"],
+      "Position upright and give a bronchodilator",
+      {
+        scenario:
+          "A 10-year-old boy is in the pediatric emergency department with moderate asthma after a viral URI. He has intercostal retractions and speaks in short phrases. BP 98/62, HR 118, RR 32, SpO2 90% on room air. Peak flow is 45% of personal best.",
+      }
+    );
+    const unicode = item(
+      "asthma-5",
+      "Which intervention comes first in this room?",
+      ["Upright position, bronchodilator, and continuous pulse ox", "Discharge home"],
+      "Upright position, bronchodilator, and continuous pulse ox",
+      {
+        scenario:
+          "Pediatric emergency department, room 345. A 5-year-old boy has moderate asthma with intercostal retractions and short phrases. BP 98/62 mm Hg, HR 118/min, RR 32/min, SpO₂ 90% on room air, PEF 45% of personal best.",
+      }
+    );
+    const peakFlowFirst = item(
+      "asthma-pef",
+      "Which escalation is required now?",
+      ["Continuous pulse oximetry and a bronchodilator", "Routine comfort measures"],
+      "Continuous pulse oximetry and a bronchodilator",
+      {
+        scenario:
+          "Peak expiratory flow is 90/200 L/min (45% of personal best). Blood pressure 98/62 mm Hg, pulse 118 beats/min, respirations 32 breaths/min, oxygen sat 90% on room air. A school-age child has intercostal retractions.",
+      }
+    );
+    const equalsForm = item(
+      "asthma-equals",
+      "Which monitoring plan is started first?",
+      ["Bronchodilator and pulse oximetry", "Observe only"],
+      "Bronchodilator and pulse oximetry",
+      {
+        scenario:
+          "Moderate asthma with intercostal retractions and short phrases in the pediatric emergency department. BP=98/62, HR=118, RR=32, SpO2=90% on room air. Peak flow=45% of personal best.",
+      }
+    );
+    const chartOnly = item(
+      "asthma-chart",
+      "Which action should the nurse take first?",
+      ["Escalate the asthma treatment", "Offer a snack"],
+      "Escalate the asthma treatment",
+      {
+        scenario:
+          "A child in the pediatric emergency department has moderate asthma, intercostal retractions, and is speaking in short phrases.",
+        chartData: {
+          vitalSigns: "BP 98/62, HR 118, RR 32, SaO2 90% on room air. Peak flow 45% of his personal best.",
+        },
+      }
+    );
+    const noPeak = item(
+      "asthma-no-pef",
+      "Which treatment is given first?",
+      ["Bronchodilator now", "A sedative"],
+      "Bronchodilator now",
+      {
+        scenario:
+          "Another wording of the same exacerbation, without a peak-flow percent. BP 98/62, HR 118, RR 32, SpO2 90% on room air, intercostal retractions, short phrases.",
+      }
+    );
+
+    expect(sittingCaseFingerprint(inline)).not.toBe(sittingCaseFingerprint(unicode));
+    expect(sittingVitalFingerprint(inline)).toBe(sittingVitalFingerprint(unicode));
+    expect(sittingVitalFingerprint(inline)).toBe(sittingVitalFingerprint(peakFlowFirst));
+    expect(sittingVitalFingerprint(inline)).toBe(sittingVitalFingerprint(equalsForm));
+    expect(sittingVitalFingerprint(inline)).toBe(sittingVitalFingerprint(chartOnly));
+    expect(sittingVitalFingerprint(inline)).not.toBe(sittingVitalFingerprint(noPeak));
+    expect(shares(inline, noPeak, "nursing", "vitals-core:")).toBe(true);
+
+    const pool = [
+      inline,
+      unicode,
+      peakFlowFirst,
+      noPeak,
+      ...Array.from({ length: 40 }, (_, index) => filler(`asthma-fill-${index}`, "nursing")),
+    ];
+    const kept = enforceEntityAndDosageCap(pool, pool, 40, "nursing");
+    expect(
+      kept.filter((row) => row.id?.startsWith("asthma-") && !row.id.startsWith("asthma-fill"))
+    ).toHaveLength(1);
+  });
+
+  it("collapses medication scenarios that have no abnormal vitals, and the repeated pharmacy and nursing templates", () => {
+    const chemoA = item(
+      "chemo-a",
+      "Which antiemetic should be added?",
+      ["Add aprepitant", "Add a second dose of ondansetron only"],
+      "Add aprepitant",
+      {
+        scenario:
+          "A 55-year-old female with breast cancer receiving chemotherapy has severe nausea and vomiting despite ondansetron 8 mg three times daily plus dexamethasone.",
+      }
+    );
+    const chemoB = item(
+      "chemo-b",
+      "Which antiemetic is indicated for this regimen?",
+      ["Aprepitant", "Diphenhydramine"],
+      "Aprepitant",
+      {
+        scenario:
+          "A 55-year-old female on pantoprazole with breast cancer receiving chemotherapy has severe nausea and vomiting despite ondansetron 8 mg three times daily plus dexamethasone.",
+      }
+    );
+    const gabaA = item(
+      "gaba-a",
+      "Which reference should be checked before answering?",
+      ["Micromedex", "A general news site"],
+      "Micromedex",
+      {
+        scenario:
+          "A pharmacist receives a question about off-label gabapentin for neuropathic pain in CKD.",
+      }
+    );
+    const gabaB = item(
+      "gaba-b",
+      "Which resource is required for this off-label question?",
+      ["Micromedex", "Wikipedia"],
+      "Micromedex",
+      {
+        scenario:
+          "A pharmacist is asked about off-label gabapentin for neuropathic pain in renal impairment.",
+      }
+    );
+    const lamoA = item(
+      "lamo-a",
+      "A 28-year-old female with epilepsy on lamotrigine 100 mg twice daily starts ethinyl estradiol. Which change is required after breakthrough seizures?",
+      ["Increase the lamotrigine dose", "Stop the contraceptive"],
+      "Increase the lamotrigine dose"
+    );
+    const lamoB = item(
+      "lamo-b",
+      "A 30-year-old female with epilepsy on lamotrigine 200 mg twice daily starts an oral contraceptive and has breakthrough seizures. Which dose change is appropriate?",
+      ["Increase lamotrigine", "Decrease lamotrigine"],
+      "Increase lamotrigine"
+    );
+    const foodA = item(
+      "food-a",
+      "A 50-year-old male with hypertension takes metoprolol tartrate 100 mg twice daily with a high-fat meal. What happens to bioavailability?",
+      ["Increased bioavailability", "No change"],
+      "Increased bioavailability"
+    );
+    const foodB = item(
+      "food-b",
+      "A 55-year-old male with hypertension is prescribed metoprolol tartrate and is concerned about food. Which administration instruction is correct?",
+      ["Take with food", "Take on an empty stomach only"],
+      "Take with food"
+    );
+    const loadA = item(
+      "load-a",
+      "What is the primary purpose of administering a loading dose of digoxin?",
+      ["Achieve therapeutic levels rapidly", "Reduce the maintenance dose forever"],
+      "Achieve therapeutic levels rapidly"
+    );
+    const loadB = item(
+      "load-b",
+      "What is the primary purpose of administering a loading dose of phenytoin?",
+      ["Achieve therapeutic levels rapidly", "Avoid all monitoring"],
+      "Achieve therapeutic levels rapidly"
+    );
+    const vdA = item(
+      "vd-a",
+      "How does CKD change the volume of distribution of vancomycin?",
+      ["Increases Vd due to fluid retention", "Vd never changes"],
+      "Increases Vd due to fluid retention",
+      { scenario: "A 70-year-old female with CKD stage 3 is admitted with pneumonia." }
+    );
+    const vdB = item(
+      "vd-b",
+      "How does CKD affect the Vd of digoxin?",
+      ["Decrease the Vd", "Increase the Vd"],
+      "Decrease the Vd",
+      { scenario: "A 45-year-old female with CKD stage 3 is prescribed digoxin for atrial fibrillation." }
+    );
+    const holdA = item(
+      "hold-a",
+      "When should apixaban be stopped before elective hip replacement?",
+      ["Discontinue 48 hours before surgery", "Continue through the incision"],
+      "Discontinue 48 hours before surgery",
+      { scenario: "A 70-year-old male with atrial fibrillation is scheduled for hip replacement in two weeks and takes apixaban 5 mg twice daily." }
+    );
+    const holdB = item(
+      "hold-b",
+      "How long is rivaroxaban held before hip surgery?",
+      ["Hold 48 hours before surgery", "Bridge with heparin"],
+      "Hold 48 hours before surgery",
+      { scenario: "A 72-year-old female with atrial fibrillation and a history of DVT will have an elective hip replacement. She takes rivaroxaban 20 mg daily." }
+    );
+    const alarmA = item(
+      "alarm-a",
+      "A 68-year-old woman forgets her once-daily tiotropium. Which adherence step is best?",
+      ["Set a daily alarm", "Double the next dose"],
+      "Set a daily alarm"
+    );
+    const alarmB = item(
+      "alarm-b",
+      "A 55-year-old female forgets her weekly methotrexate doses. Which reminder is appropriate?",
+      ["Set a weekly reminder", "Take it only when pain returns"],
+      "Set a weekly reminder"
+    );
+    const dietA = item(
+      "diet-a",
+      "The nurse is teaching a client prescribed warfarin. Which dietary instruction is given?",
+      ["Limit leafy green vegetables", "Avoid all fluids"],
+      "Limit leafy green vegetables"
+    );
+    const dietB = item(
+      "diet-b",
+      "A 60-year-old client with atrial fibrillation is prescribed warfarin and asks about food. Which statement is the keyed teaching?",
+      ["Avoid foods high in vitamin K", "Eat more spinach every day"],
+      "Avoid foods high in vitamin K"
+    );
+    const gownA = item(
+      "gown-a",
+      "A client with MRSA pneumonia is on contact precautions. Which protective equipment does the nurse wear to enter?",
+      ["Gown and gloves", "A surgical mask only"],
+      "Gown and gloves"
+    );
+    const gownB = item(
+      "gown-b",
+      "The nurse is caring for a client on contact precautions. What is donned before entering the room?",
+      ["Gown and gloves", "Sterile gloves only"],
+      "Gown and gloves"
+    );
+    const soap = item(
+      "cdiff-soap",
+      "A client with C. difficile is on contact precautions. Which hand hygiene is required?",
+      ["Soap and water", "Gown and gloves as a substitute for handwashing"],
+      "Soap and water"
+    );
+    const calc = (id: string, drug: string, dose: string) =>
+      item(
+        id,
+        `${drug} ${dose} mg/kg/day PO divided through the day. What dose (mg) per administration? Round to the nearest whole number.`,
+        [`${id} mg`, "Hold the dose"],
+        `${id} mg`
+      );
+    const rate = item(
+      "rate-1",
+      "What rate (mL/hr) should the nurse set for this antibiotic infusion? Round to the nearest whole number.",
+      ["25 mL/hr", "Stop the infusion"],
+      "25 mL/hr"
+    );
+    const sameWrong = [
+      "Wait until the next scheduled assessment round before doing anything else at the bedside.",
+      "Restrict all oral intake for 24 hours without a provider order or a swallowing evaluation.",
+      "Complete routine comfort measures for all other assigned clients before returning.",
+    ];
+    const distractor = (id: string, scenario: string, correct: string) =>
+      item(id, "Which action should the nurse take first?", [correct, ...sameWrong], correct, { scenario });
+
+    expect(sittingCaseFingerprint(chemoA)).not.toBe(sittingCaseFingerprint(chemoB));
+    expect(sittingVitalFingerprint(chemoA)).toBeNull();
+    expect(sittingVitalFingerprint(chemoB)).toBeNull();
+    expect(shares(chemoA, chemoB, "pharmacy", "rxcase:")).toBe(true);
+    expect(sittingCaseFingerprint(gabaA)).not.toBe(sittingCaseFingerprint(gabaB));
+    expect(shares(gabaA, gabaB, "pharmacy", "rxcase:")).toBe(true);
+    expect(shares(lamoA, lamoB, "pharmacy", "template:lamotrigine-oc")).toBe(true);
+    expect(shares(foodA, foodB, "pharmacy", "template:metoprolol-food")).toBe(true);
+    expect(shares(loadA, loadB, "pharmacy", "template:loading-dose")).toBe(true);
+    expect(shares(vdA, vdB, "pharmacy", "template:ckd-vd")).toBe(true);
+    expect(shares(holdA, holdB, "pharmacy", "template:hold-doac-surgery")).toBe(true);
+    expect(shares(alarmA, alarmB, "pharmacy", "template:adherence-alarm")).toBe(true);
+    expect(shares(dietA, dietB, "nursing", "template:warfarin-diet")).toBe(true);
+    expect(shares(gownA, gownB, "nursing", "template:contact-gown-gloves")).toBe(true);
+    expect(sittingRepeatKeys(soap, "nursing").some((key) => key === "template:contact-gown-gloves")).toBe(false);
+    expect(shares(calc("calc-pred", "Prednisolone", "2"), calc("calc-fur", "Furosemide", "2"), "nursing", "template:mgkg-per-admin")).toBe(
+      true
+    );
+
+    const pharmacyPool = [
+      chemoA,
+      chemoB,
+      gabaA,
+      gabaB,
+      lamoA,
+      lamoB,
+      foodA,
+      foodB,
+      loadA,
+      loadB,
+      vdA,
+      vdB,
+      holdA,
+      holdB,
+      alarmA,
+      alarmB,
+      item(
+        "sertraline-distinct",
+        "A 45-year-old male has taken sertraline 100 mg for 6 weeks and reports sexual dysfunction. Which change is preferred?",
+        ["Switch to bupropion", "Double sertraline"],
+        "Switch to bupropion"
+      ),
+      ...Array.from({ length: 55 }, (_, index) => filler(`rx-fill-${index}`, "pharmacy")),
+    ];
+    const pharmacyKept = enforceEntityAndDosageCap(pharmacyPool, pharmacyPool, 50, "pharmacy");
+    expect(pharmacyKept).toHaveLength(50);
+    expect(pharmacyKept.filter((row) => row.id?.startsWith("chemo-"))).toHaveLength(1);
+    expect(pharmacyKept.filter((row) => row.id?.startsWith("gaba-"))).toHaveLength(1);
+    expect(pharmacyKept.filter((row) => row.id?.startsWith("lamo-"))).toHaveLength(1);
+    expect(pharmacyKept.filter((row) => row.id?.startsWith("food-"))).toHaveLength(1);
+    expect(pharmacyKept.filter((row) => /loading dose/i.test(row.question))).toHaveLength(1);
+    expect(pharmacyKept.filter((row) => /volume of distribution|\bVd\b/i.test(row.question))).toHaveLength(1);
+    expect(pharmacyKept.filter((row) => row.id?.startsWith("hold-"))).toHaveLength(1);
+    expect(pharmacyKept.filter((row) => row.id?.startsWith("alarm-"))).toHaveLength(1);
+    expect(pharmacyKept.some((row) => row.id === "sertraline-distinct")).toBe(true);
+
+    const nursingPool = [
+      dietA,
+      dietB,
+      gownA,
+      gownB,
+      soap,
+      calc("calc-pred", "Prednisolone", "2"),
+      calc("calc-fur", "Furosemide", "2"),
+      calc("calc-apap", "Acetaminophen", "60"),
+      rate,
+      distractor(
+        "dist-ugib",
+        "A 74-year-old male with an upper GI bleed is pale. BP 90/56, HR 118, hemoglobin 7.2.",
+        "Obtain IV access and prepare for endoscopy."
+      ),
+      distractor(
+        "dist-asthma-a",
+        "A 10-year-old boy has moderate asthma in the pediatric emergency department. BP 98/62, HR 118, RR 32, SpO2 90%.",
+        "Position upright and give a bronchodilator."
+      ),
+      distractor(
+        "dist-asthma-b",
+        "A different clinic visit for a sprained ankle, with no shared vitals and a different story entirely, still reused the long wrong answers.",
+        "Apply ice and reassess circulation in the foot."
+      ),
+      ...Array.from({ length: 40 }, (_, index) => filler(`rn-fill-${index}`, "nursing")),
+    ];
+    const nursingKept = enforceEntityAndDosageCap(nursingPool, nursingPool, 40, "nursing");
+    expect(nursingKept.filter((row) => row.id?.startsWith("diet-"))).toHaveLength(1);
+    expect(nursingKept.filter((row) => row.id?.startsWith("gown-"))).toHaveLength(1);
+    expect(nursingKept.some((row) => row.id === "cdiff-soap")).toBe(true);
+    expect(nursingKept.filter((row) => row.id?.startsWith("calc-"))).toHaveLength(1);
+    expect(nursingKept.some((row) => row.id === "rate-1")).toBe(true);
+    expect(nursingKept.filter((row) => row.id?.startsWith("dist-"))).toHaveLength(1);
+    expect(nursingKept).toHaveLength(40);
+  });
+
+  it("still composes a 50-question pharmacy sitting from distinct items", () => {
+    const pool = Array.from({ length: 70 }, (_, index) => filler(`compose-${index}`, "pharmacy"));
+    const kept = enforceEntityAndDosageCap(pool, pool, 50, "pharmacy");
+    expect(kept).toHaveLength(50);
+  });
+});

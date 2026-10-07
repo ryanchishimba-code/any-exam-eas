@@ -59,7 +59,7 @@ const CONDITIONS: { id: string; re: RegExp }[] = [
   { id: "dpi", re: /\bdry[- ]powder\b|\bdiskus\b|\bdpi\b/ },
   { id: "micronized", re: /\bmicronized\b/ },
   { id: "belongings", re: /\bbelongings\b/ },
-  { id: "boggy-fundus", re: /\bboggy fundus\b|\bpostpartum hemorrhage\b/ },
+  { id: "boggy-fundus", re: /\bboggy fundus\b|\bfundus\b[^.]{0,40}\bboggy\b|\bboggy\b[^.]{0,40}\b(?:fundus|uterus)\b|\bpostpartum hemorrhage\b|\buterine atony\b|\bpph\b/ },
   { id: "burns", re: /\bburns?\b|\btbsa\b/ },
   { id: "glucose-250", re: /\bglucose\b|\bblood sugar\b/ },
 ];
