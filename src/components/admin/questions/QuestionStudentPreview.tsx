@@ -1,5 +1,6 @@
 "use client";
 
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { Check } from "lucide-react";
 import { RationaleDisclosureText } from "@/components/study/questions/CollapsibleRationale";
 
@@ -44,7 +45,7 @@ export function QuestionStudentPreview({
 
       {scenario?.trim() ? (
         <p className="mt-3 whitespace-pre-wrap rounded-xl bg-slate-50 px-4 py-3 text-sm leading-relaxed text-[var(--color-ink-muted)] dark:bg-zinc-800/80">
-          {scenario.trim()}
+          <InlineBold text={scenario.trim()} />
         </p>
       ) : null}
 
@@ -58,7 +59,7 @@ export function QuestionStudentPreview({
       ) : null}
 
       <p className="mt-4 text-base font-medium leading-relaxed text-[var(--color-ink)]">
-        {stem.trim() || "Question stem will appear here."}
+        <InlineBold text={stem.trim() || "Question stem will appear here."} />
       </p>
 
       <ul className="mt-4 space-y-2">
@@ -82,7 +83,7 @@ export function QuestionStudentPreview({
                     {i + 1}
                   </span>
                   <span className="min-w-0 flex-1">
-                    {opt}
+                    <InlineBold text={opt} />
                     {isCorrect ? (
                       <span className="mt-1 flex items-center gap-1 text-xs font-semibold text-emerald-700">
                         <Check className="h-3.5 w-3.5" aria-hidden />

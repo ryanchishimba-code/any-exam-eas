@@ -1,6 +1,8 @@
 "use client";
 
 import { ngnFocus } from "@/components/ngn/brand";
+import { InlineBold } from "@/components/ngn/InlineBold";
+import { stripInlineBoldMarkers } from "@/lib/questions/inline-bold";
 
 type Column = { id: string; label: string };
 type Row = { id: string; text: string };
@@ -34,7 +36,7 @@ export function MatrixMC({
                 scope="col"
                 className="border-b border-[#e2e8f0] px-3 py-2 font-semibold text-[#0A2540]"
               >
-                {column.label}
+                <InlineBold text={column.label} />
               </th>
             ))}
           </tr>
@@ -43,7 +45,7 @@ export function MatrixMC({
           {rows.map((row) => (
             <tr key={row.id}>
               <th scope="row" className="border-b border-[#e2e8f0] px-3 py-3 font-medium text-[#0A2540]">
-                {row.text}
+                <InlineBold text={row.text} />
               </th>
               {columns.map((column) => {
                 const checked = value[row.id] === column.id;
@@ -55,7 +57,7 @@ export function MatrixMC({
                       className={`h-4 w-4 accent-[#0A2540] ${ngnFocus}`}
                       checked={checked}
                       disabled={disabled}
-                      aria-label={`${row.text}: ${column.label}`}
+                      aria-label={`${stripInlineBoldMarkers(row.text)}: ${stripInlineBoldMarkers(column.label)}`}
                       onChange={() => onChange({ ...value, [row.id]: column.id })}
                     />
                   </td>
@@ -104,7 +106,7 @@ export function MatrixMR({
                 scope="col"
                 className="border-b border-[#e2e8f0] px-3 py-2 font-semibold text-[#0A2540]"
               >
-                {column.label}
+                <InlineBold text={column.label} />
               </th>
             ))}
           </tr>
@@ -113,7 +115,7 @@ export function MatrixMR({
           {rows.map((row) => (
             <tr key={row.id}>
               <th scope="row" className="border-b border-[#e2e8f0] px-3 py-3 font-medium text-[#0A2540]">
-                {row.text}
+                <InlineBold text={row.text} />
               </th>
               {columns.map((column) => {
                 const checked = (value[row.id] ?? []).includes(column.id);
@@ -124,7 +126,7 @@ export function MatrixMR({
                       className={`h-4 w-4 accent-[#0A2540] ${ngnFocus}`}
                       checked={checked}
                       disabled={disabled}
-                      aria-label={`${row.text}: ${column.label}`}
+                      aria-label={`${stripInlineBoldMarkers(row.text)}: ${stripInlineBoldMarkers(column.label)}`}
                       onChange={() => toggle(row.id, column.id)}
                     />
                   </td>

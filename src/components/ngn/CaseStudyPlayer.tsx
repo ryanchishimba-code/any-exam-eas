@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ChartPanel, ChartSheet } from "@/components/ngn/ChartPanel";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { ItemRenderer } from "@/components/ngn/ItemRenderer";
 import { ngnFocus, ngnMuted } from "@/components/ngn/brand";
 import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
@@ -126,7 +127,9 @@ export function CaseStudyPlayer({
               {timepoint ? timepoint.label : ""}
             </p>
           ) : null}
-          <h3 className="mt-3 text-[19px] font-semibold leading-7 tracking-tight">{item.stem}</h3>
+          <h3 className="mt-3 text-[19px] font-semibold leading-7 tracking-tight">
+            <InlineBold text={item.stem} />
+          </h3>
           <div className="mt-5">
             <ItemRenderer
               item={item}

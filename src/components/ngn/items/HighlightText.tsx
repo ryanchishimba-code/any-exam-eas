@@ -1,6 +1,8 @@
 "use client";
 
 import { ngnFocus } from "@/components/ngn/brand";
+import { InlineBold } from "@/components/ngn/InlineBold";
+import { stripInlineBoldMarkers } from "@/lib/questions/inline-bold";
 
 type Token = { id?: string; text: string; selectable?: boolean };
 
@@ -27,7 +29,11 @@ export function HighlightText({
     <p className="text-[17px] leading-8 text-[#0A2540]">
       {tokens.map((token, index) => {
         if (!token.selectable || !token.id) {
-          return <span key={`static-${index}`}>{token.text}</span>;
+          return (
+            <span key={`static-${index}`}>
+              <InlineBold text={token.text} />
+            </span>
+          );
         }
         const id = token.id;
         const pressed = chosen.has(id);
@@ -36,7 +42,7 @@ export function HighlightText({
             key={id}
             type="button"
             aria-pressed={pressed}
-            aria-label={`Selectable phrase: ${token.text}`}
+            aria-label={`Selectable phrase: ${stripInlineBoldMarkers(token.text)}`}
             disabled={disabled}
             onClick={() => toggle(id)}
             className={`rounded-sm px-0.5 text-left motion-reduce:transition-none ${ngnFocus} ${
@@ -45,7 +51,7 @@ export function HighlightText({
                 : "bg-transparent text-inherit decoration-[#00D4C8] decoration-2 underline-offset-4 hover:bg-[#E5FBF9] hover:underline focus-visible:bg-[#E5FBF9] focus-visible:underline"
             }`}
           >
-            {token.text}
+            <InlineBold text={token.text} />
           </button>
         );
       })}

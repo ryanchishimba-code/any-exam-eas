@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ngnFocus } from "@/components/ngn/brand";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { orderForFormat } from "@/lib/assessment/shuffle";
 import type { NgnOption } from "@/lib/assessment/types";
 
@@ -133,7 +134,7 @@ export function BowTie({
                       if (picked?.part === part.id) place(part.id, slot, picked.id);
                     }}
                   >
-                    {id ? textFor(part.id, id) : "Empty slot"}
+                    <InlineBold text={id ? textFor(part.id, id) : "Empty slot"} />
                   </button>
                   {id ? (
                     <button
@@ -178,7 +179,7 @@ export function BowTie({
                         )
                       }
                     >
-                      {option.text}
+                      <InlineBold text={option.text} />
                     </button>
                   </li>
                 ))}

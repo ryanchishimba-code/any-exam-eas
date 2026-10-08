@@ -1,6 +1,8 @@
 "use client";
 
 import { ngnFocus } from "@/components/ngn/brand";
+import { InlineBold } from "@/components/ngn/InlineBold";
+import { stripInlineBoldMarkers } from "@/lib/questions/inline-bold";
 import { orderForFormat } from "@/lib/assessment/shuffle";
 import type { NgnOption, ResponseFormat } from "@/lib/assessment/types";
 
@@ -30,7 +32,13 @@ export function DropdownCloze({
     <p className="text-[17px] leading-9 text-[#0A2540]">
       {parts.map((part, index) => {
         const match = part.match(/^\{\{([a-zA-Z0-9_]+)\}\}$/);
-        if (!match) return <span key={`text-${index}`}>{part}</span>;
+        if (!match) {
+          return (
+            <span key={`text-${index}`}>
+              <InlineBold text={part} />
+            </span>
+          );
+        }
         const id = match[1] ?? "";
         const dropdown = byId.get(id);
         if (!dropdown) return <span key={id}>{part}</span>;
@@ -47,7 +55,7 @@ export function DropdownCloze({
               <option value="">Select</option>
               {options.map((option) => (
                 <option key={option.id} value={option.id}>
-                  {option.text}
+                  {stripInlineBoldMarkers(option.text)}
                 </option>
               ))}
             </select>

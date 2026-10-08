@@ -1,5 +1,6 @@
 "use client";
 
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { RationalePanel } from "@/components/ngn/RationalePanel";
 import { McSingle, Sata, SelectN } from "@/components/ngn/items/ChoiceItems";
 import { DropdownCloze } from "@/components/ngn/items/DropdownItems";
@@ -236,8 +237,14 @@ export function ItemRenderer({
       {item.itemType === "trend" ? <TrendExhibit exhibit={exhibit} /> : null}
       {item.itemType === "bowtie" && exhibit?.text ? (
         <aside className="rounded-3xl bg-[#f4f6f8] p-4">
-          {exhibit.title ? <p className="text-sm font-semibold text-[#0A2540]">{exhibit.title}</p> : null}
-          <p className="mt-2 text-[15px] leading-6 text-[#0A2540]">{exhibit.text}</p>
+          {exhibit.title ? (
+            <p className="text-sm font-semibold text-[#0A2540]">
+              <InlineBold text={exhibit.title} />
+            </p>
+          ) : null}
+          <p className="mt-2 text-[15px] leading-6 text-[#0A2540]">
+            <InlineBold text={exhibit.text} />
+          </p>
         </aside>
       ) : null}
       {control}

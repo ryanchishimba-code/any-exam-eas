@@ -9,6 +9,7 @@ import { figureFitsQuestion, studentFacingExhibitTitle, studentFacingVignette } 
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { ExhibitFigureRef } from "@/lib/exam-prep/exhibit-figure";
 import { ArrowRight, Check, GripVertical, RotateCcw, X } from "lucide-react";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { ExhibitMedia } from "./ExhibitMedia";
 
 type Props = {
@@ -75,7 +76,7 @@ export function ExhibitTable({ question }: { question: StudyQuestion }) {
             <tr>
               {table.headers.map((h, i) => (
                 <th key={i} className="px-3 py-2 font-semibold">
-                  {h}
+                  <InlineBold text={h} />
                 </th>
               ))}
             </tr>
@@ -101,7 +102,7 @@ export function ExhibitTable({ question }: { question: StudyQuestion }) {
                           : "px-3 py-2 text-slate-800 dark:text-zinc-200"
                       }
                     >
-                      {cell}
+                      <InlineBold text={cell} />
                       {abnormal && ci === 1 ? (
                         <span className="ml-1.5 text-[10px] font-bold uppercase text-rose-600">
                           Abn

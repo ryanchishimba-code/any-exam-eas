@@ -91,6 +91,32 @@ describe("QuestionRenderer", () => {
     expect(note.innerHTML).not.toMatch(/indigo|violet|purple/);
   });
 
+  it("bolds exam-mode stem, vignette, and option words without parsing HTML", () => {
+    const { container } = render(
+      <QuestionRenderer
+        examMode
+        question={{
+          ...sampleNclexQuestion,
+          vignette: "The **FIRST** finding is new confusion.",
+          stem: "What is the **INITIAL** action? <script>alert(1)</script>",
+          options: ["Give the **MOST** urgent drug <b>now</b>", "Document and wait"],
+          correctAnswers: ["Give the **MOST** urgent drug <b>now</b>"],
+        }}
+        selected={[]}
+        revealed={false}
+        onToggle={vi.fn()}
+      />
+    );
+
+    for (const word of ["FIRST", "INITIAL", "MOST"]) {
+      expect(screen.getByText(word).tagName).toBe("STRONG");
+    }
+    expect(container.querySelector("script")).toBeNull();
+    expect(container.querySelector("b")).toBeNull();
+    expect(container.textContent).toContain("<script>alert(1)</script>");
+    expect(container.textContent).toContain("<b>now</b>");
+  });
+
   it("stays quiet when the bank item has no source or review date", () => {
     render(
       <QuestionRenderer

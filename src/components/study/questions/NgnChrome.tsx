@@ -5,6 +5,7 @@ import { bowTiePickInstruction, parseBowTieLayout } from "@/lib/questions/ngn-st
 import { stripShiftNotes } from "@/lib/questions/shift-notes";
 import { studentFacingVignette } from "@/lib/questions/student-display-text";
 import type { StudyQuestion } from "@/lib/questions/types";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { Info } from "lucide-react";
 
 const TYPE_INSTRUCTIONS: Record<string, string> = {
@@ -91,7 +92,7 @@ export function VignetteBlock({ text, stem = "" }: { text: string; stem?: string
         {label}
       </p>
       <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink)] whitespace-pre-wrap">
-        {cleaned}
+        <InlineBold text={cleaned} />
       </p>
     </div>
   );

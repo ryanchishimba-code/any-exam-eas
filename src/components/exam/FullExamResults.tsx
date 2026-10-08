@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { formatAnswerDisplay, storedAnswerIncludesChoice } from "@/lib/full-exam/answer-serialize";
 import { practiceResultsTotals } from "@/lib/full-exam/administered-score";
 import { formatHms } from "@/lib/full-exam/config";
@@ -86,7 +87,7 @@ function ReviewChoiceList({
               !choice.selected && !choice.correct && "border-slate-200 bg-slate-50/50 text-slate-700"
             )}
           >
-            {studentFacingStem(choice.text)}
+            <InlineBold text={studentFacingStem(choice.text)} />
             {choice.selected ? " · Your answer" : ""}
             {choice.correct ? " · Correct" : ""}
           </li>
@@ -200,7 +201,7 @@ export function FullExamResults({
           </div>
 
           <p className="whitespace-pre-wrap text-base leading-relaxed text-slate-800">
-            {studentFacingStem(current.question)}
+            <InlineBold text={studentFacingStem(current.question)} />
           </p>
 
           {bowTieColumns && bowTieColumns.conditions.length > 0 ? (
@@ -227,7 +228,7 @@ export function FullExamResults({
                           !selected && !correctOpt && "border-slate-200 bg-slate-50/50 text-slate-700"
                         )}
                       >
-                        {studentFacingStem(opt)}
+                        <InlineBold text={studentFacingStem(opt)} />
                         {selected ? " · Your answer" : ""}
                         {correctOpt ? " · Correct" : ""}
                       </li>
@@ -251,7 +252,7 @@ export function FullExamResults({
                       !selected && !correctOpt && "border-slate-200 bg-slate-50/50 text-slate-700"
                     )}
                   >
-                    {studentFacingStem(opt)}
+                    <InlineBold text={studentFacingStem(opt)} />
                     {selected ? " · Your answer" : ""}
                     {correctOpt ? " · Correct" : ""}
                   </li>
@@ -263,12 +264,14 @@ export function FullExamResults({
               <p>
                 <span className="font-semibold text-slate-600">Your answer: </span>
                 <span className={isCorrect ? "text-teal-700" : "text-rose-700"}>
-                  {formatAnswerDisplay(currentAnswer?.selected ?? "")}
+                  <InlineBold text={formatAnswerDisplay(currentAnswer?.selected ?? "")} />
                 </span>
               </p>
               <p>
                 <span className="font-semibold text-slate-600">Correct: </span>
-                <span className="text-teal-800">{formatAnswerDisplay(current.correctAnswer)}</span>
+                <span className="text-teal-800">
+                  <InlineBold text={formatAnswerDisplay(current.correctAnswer)} />
+                </span>
               </p>
             </div>
           )}

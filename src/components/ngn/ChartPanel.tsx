@@ -3,6 +3,7 @@
 import { useLayoutEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { ngnFocus, ngnMuted } from "@/components/ngn/brand";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { isNewestTime, isTimeVisible } from "@/lib/assessment/reveal";
 import type { ChartTab, NgnChart, NgnTimepoint } from "@/lib/assessment/types";
 
@@ -76,7 +77,7 @@ function ChartTabs({
             }`}
             onClick={() => onSelect(tab.id)}
           >
-            {tab.label}
+            <InlineBold text={tab.label} />
           </button>
         );
       })}
@@ -124,7 +125,7 @@ function ChartBody({ chart, timepoints, currentTimepoint }: ChartPanelProps) {
                   isNewestTime(entry.time, currentTimepoint) ? "bg-[#E5FBF9]" : "bg-[#f4f6f8]"
                 }`}
               >
-                {entry.text}
+                <InlineBold text={entry.text} />
               </li>
             ))}
           </ul>
@@ -132,7 +133,9 @@ function ChartBody({ chart, timepoints, currentTimepoint }: ChartPanelProps) {
         {columns.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full border-separate border-spacing-0 text-left text-sm">
-              <caption className="sr-only">{active.label}</caption>
+              <caption className="sr-only">
+                <InlineBold text={active.label} />
+              </caption>
               <thead>
                 <tr>
                   {columns.map((column) => (
@@ -143,7 +146,7 @@ function ChartBody({ chart, timepoints, currentTimepoint }: ChartPanelProps) {
                         referenceIndexes.has(column.index) ? "bg-[#f4f6f8]" : ""
                       }`}
                     >
-                      {column.label}
+                      <InlineBold text={column.label} />
                     </th>
                   ))}
                 </tr>
@@ -166,7 +169,7 @@ function ChartBody({ chart, timepoints, currentTimepoint }: ChartPanelProps) {
                             reference ? "bg-[#f4f6f8] text-[#334155]" : ""
                           } ${displayIndex === 0 ? "font-medium" : ""}`}
                         >
-                          {cell}
+                          <InlineBold text={cell} />
                         </Tag>
                       );
                     })}

@@ -19,6 +19,7 @@ import {
 import { CollapsibleRationale, rationaleLeadForQuestion } from "./CollapsibleRationale";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { buildReportContext } from "@/components/study/ReportQuestionDialog";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { TrendExhibit } from "@/components/ngn/items/TrendExhibit";
 import { NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
 import { withoutCaseTitle } from "@/lib/full-exam/nclex-exam-labels";
@@ -86,8 +87,14 @@ function CatalogExhibit({ question }: { question: StudyQuestion }) {
   if (payload?.clinicalItemType === "bowtie" && typeof exhibit.text === "string" && exhibit.text.trim()) {
     return (
       <aside className="mb-4 rounded-3xl bg-[#f4f6f8] p-4">
-        {exhibit.title ? <p className="text-sm font-semibold text-[#0A2540]">{exhibit.title}</p> : null}
-        <p className="mt-2 whitespace-pre-wrap text-[15px] leading-6 text-[#0A2540]">{exhibit.text}</p>
+        {exhibit.title ? (
+          <p className="text-sm font-semibold text-[#0A2540]">
+            <InlineBold text={exhibit.title} />
+          </p>
+        ) : null}
+        <p className="mt-2 whitespace-pre-wrap text-[15px] leading-6 text-[#0A2540]">
+          <InlineBold text={exhibit.text} />
+        </p>
       </aside>
     );
   }
@@ -205,7 +212,7 @@ export const QuestionRenderer = memo(function QuestionRenderer({
       {examMode ? null : <NgnTypeInstructions question={question} />}
 
       <p className="text-lg font-medium leading-snug text-[var(--color-ink)] sm:text-xl">
-        {stemText}
+        <InlineBold text={stemText} />
       </p>
       <ItemProvenanceNote
         sourceLabel={question.sourceLabel}
@@ -584,7 +591,9 @@ export function ExplanationPanel({
           <span className="font-semibold uppercase tracking-[0.12em]">Correct cells</span>
           <ul className="mt-1.5 list-inside list-disc">
             {(question.correctAnswers ?? []).map((key) => (
-              <li key={key}>{formatMatrixAnswer(key)}</li>
+              <li key={key}>
+                <InlineBold text={formatMatrixAnswer(key)} />
+              </li>
             ))}
           </ul>
         </div>
