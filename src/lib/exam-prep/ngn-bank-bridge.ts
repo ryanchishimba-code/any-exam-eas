@@ -1,3 +1,4 @@
+import { matrixRowHeader } from "@/lib/assessment/matrix-row-header";
 import type { ExamQuestion } from "@/lib/ai";
 import { stripShiftNotes } from "@/lib/questions/shift-notes";
 import { coerceOptionList } from "@/lib/questions/option-coerce";
@@ -70,6 +71,7 @@ export function ngnPayloadToChartData(
       rows: payload.rows,
       columns: payload.columns,
       matrixMulti: payload.matrixMulti === true,
+      rowHeader: matrixRowHeader(payload.rowHeader),
     };
   }
 

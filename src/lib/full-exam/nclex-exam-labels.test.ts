@@ -8,6 +8,7 @@ import {
   genericJudgmentLabel,
   lockAnswerOnNext,
   studentCaseChrome,
+  studentQuestionPosition,
   tallyLabeledScores,
   withoutCaseTitle,
 } from "./nclex-exam-labels";
@@ -33,6 +34,13 @@ describe("exam-mode labels and locking", () => {
     });
     expect(chrome.stepLabel).toBeNull();
     expect(chrome.caseTitle).toBeNull();
+  });
+
+  it("counts case questions without a step number or step name", () => {
+    expect(studentQuestionPosition(2, 6)).toBe("Question 3 of 6");
+    expect(studentQuestionPosition(0, 1)).toBe("Question 1 of 1");
+    expect(studentQuestionPosition(2, 6)).not.toMatch(STEP_NAME);
+    expect(studentQuestionPosition(2, 6)).not.toMatch(/^\d+\s/);
   });
 
   it("hides step names in practice and keeps them on review", () => {

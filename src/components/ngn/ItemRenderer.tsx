@@ -1,6 +1,7 @@
 "use client";
 
 import { InlineBold } from "@/components/ngn/InlineBold";
+import { matrixRowHeader } from "@/lib/assessment/matrix-row-header";
 import { RationalePanel } from "@/components/ngn/RationalePanel";
 import { McSingle, Sata, SelectN } from "@/components/ngn/items/ChoiceItems";
 import { DropdownCloze } from "@/components/ngn/items/DropdownItems";
@@ -170,6 +171,7 @@ export function ItemRenderer({
         onChange={onChange}
         disabled={disabled}
         name={item.id}
+        rowHeader={matrixRowHeader(payload.rowHeader)}
       />
     );
   } else if (item.responseFormat === "matrix_mr") {
@@ -180,6 +182,7 @@ export function ItemRenderer({
         value={recordOfLists(response)}
         onChange={onChange}
         disabled={disabled}
+        rowHeader={matrixRowHeader(payload.rowHeader)}
       />
     );
   } else if (item.responseFormat === "dropdown_cloze" || item.responseFormat === "dropdown_rationale") {

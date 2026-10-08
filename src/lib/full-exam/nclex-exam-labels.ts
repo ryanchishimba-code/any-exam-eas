@@ -122,3 +122,10 @@ export function lockAnswerOnNext(index: number, length: number): { index: number
 export function examAnswerEditable(index: number, lockedThrough: number): boolean {
   return index >= lockedThrough;
 }
+
+/** Practice and exam case headers. Step numbers and step names stay off this line. */
+export function studentQuestionPosition(index: number, total: number): string {
+  const count = Math.max(total, 1);
+  const shown = Math.min(Math.max(index, 0), count - 1);
+  return `Question ${shown + 1} of ${count}`;
+}

@@ -5,6 +5,7 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
+import { matrixRowHeader } from "@/lib/assessment/matrix-row-header";
 import { ngnQuestionKey, type PublishedCatalog } from "@/lib/assessment/serve";
 import type { NgnCase, NgnItem as ClinicalItem } from "@/lib/assessment/types";
 
@@ -210,6 +211,7 @@ function convertMatrix(
       rows,
       columns: columns.map((column) => column.text),
       matrixMulti: multi,
+      rowHeader: matrixRowHeader(payload.rowHeader),
     },
   };
 }

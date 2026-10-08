@@ -163,7 +163,7 @@ export function MatrixQuestion({ question, selected, revealed, onToggle }: BaseP
         <thead>
           <tr>
             <th className="border border-black/10 bg-black/[0.03] px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-              Finding
+              <InlineBold text={layout.rowHeader} />
             </th>
             {layout.columns.map((col) => (
               <th

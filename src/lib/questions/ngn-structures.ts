@@ -1,3 +1,4 @@
+import { matrixRowHeader } from "@/lib/assessment/matrix-row-header";
 import type { ExamQuestion } from "@/lib/ai";
 import { cleanOptionText } from "@/lib/question-format";
 import { joinStoredCorrectAnswer } from "@/lib/questions/multi-answer";
@@ -73,6 +74,7 @@ export function bowTiePickInstruction(
 export type MatrixLayout = {
   rows: string[];
   columns: string[];
+  rowHeader: string;
 };
 
 export type HighlightSegment = {
@@ -184,6 +186,7 @@ export function parseMatrixLayout(q: NgnLayoutInput | StudyQuestion): MatrixLayo
     return {
       rows: (chart.rows as string[]) ?? [],
       columns: (chart.columns as string[]) ?? [],
+      rowHeader: matrixRowHeader(chart.rowHeader),
     };
   }
 
@@ -198,12 +201,13 @@ export function parseMatrixLayout(q: NgnLayoutInput | StudyQuestion): MatrixLayo
   }
 
   if (rows.size > 0 && cols.size > 0) {
-    return { rows: [...rows], columns: [...cols] };
+    return { rows: [...rows], columns: [...cols], rowHeader: matrixRowHeader(undefined) };
   }
 
   return {
     rows: ["Assessment A", "Assessment B", "Assessment C"],
     columns: ["Indicated", "Contraindicated", "Requires further data"],
+    rowHeader: matrixRowHeader(isRecord(chart) ? chart.rowHeader : undefined),
   };
 }
 
