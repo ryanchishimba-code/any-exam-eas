@@ -1,12 +1,11 @@
 import { unstable_cache } from "next/cache";
-import { cacheGetOrSetDeduped, cacheKey, CACHE_TTL } from "@/lib/cache";
 import { prisma } from "@/lib/prisma";
 import { getHighYieldTopics as getStaticTopics } from "@/lib/edtech/seeds";
 import {
   filterHighYieldTopicsForUsmleStep,
   resolveUsmleLibraryStep,
 } from "@/lib/edtech/usmle-library-catalog";
-import { mergeReviewModules, REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
+import { mergeReviewModules } from "@/lib/edtech/seeds/review-module-topics";
 import { enrichNclexTopics } from "@/lib/exam-prep/nclex/topic-registry";
 import { enrichNaplexTopics } from "@/lib/exam-prep/naplex/topic-registry";
 import { enrichUsmleTopics } from "@/lib/exam-prep/usmle/topic-registry";
@@ -14,69 +13,10 @@ import type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 
 /**
- * Upsert flagship review-module rows so progress FKs stay valid after code deploys.
- *
- * These rows are code-owned seed data, so they only change when a deploy ships new
- * REVIEW_MODULE_TOPICS. Running the loop per render meant 31 serialized writes (nclex
- * and usmle) on every /dashboard/topics view, which with connection_limit=1 on Vercel
- * cannot overlap. Dedupe across instances the same way ensureAllBoardExams does.
+ * Request paths only read HighYieldTopic. Writing rows here left an
+ * ON CONFLICT update idle in a transaction after Vercel killed the function,
+ * and later upserts queued behind that lock. Seed with scripts/seed-edtech.ts.
  */
-async function syncReviewModuleTopics(examSlug: ExamSlug): Promise<void> {
-  await cacheGetOrSetDeduped(
-    cacheKey(["review-module-topics", "synced", examSlug]),
-    CACHE_TTL.subjectCatalog,
-    async () => {
-      await upsertReviewModuleTopics(examSlug);
-      return true;
-    }
-  );
-}
-
-async function upsertReviewModuleTopics(examSlug: ExamSlug): Promise<void> {
-  const modules = REVIEW_MODULE_TOPICS.filter((t) => t.examSlug === examSlug);
-  if (modules.length === 0) return;
-
-  const now = new Date();
-  for (const topic of modules) {
-    try {
-      await prisma.highYieldTopic.upsert({
-        where: { examSlug_slug: { examSlug: topic.examSlug, slug: topic.slug } },
-        create: {
-          id: topic.id,
-          examSlug: topic.examSlug,
-          slug: topic.slug,
-          category: topic.category,
-          title: topic.title,
-          overview: topic.overview,
-          summary: topic.summary,
-          keyConcepts: topic.keyConcepts,
-          mustKnowFacts: topic.mustKnowFacts,
-          pearls: topic.pearls,
-          pitfalls: topic.pitfalls,
-          reviewModule: topic.reviewModule ?? undefined,
-          sortOrder: topic.sortOrder,
-          practiceTopicSlug: topic.practiceTopicSlug,
-          updatedAt: now,
-        },
-        update: {
-          category: topic.category,
-          title: topic.title,
-          overview: topic.overview,
-          summary: topic.summary,
-          keyConcepts: topic.keyConcepts,
-          mustKnowFacts: topic.mustKnowFacts,
-          pearls: topic.pearls,
-          pitfalls: topic.pitfalls,
-          reviewModule: topic.reviewModule ?? undefined,
-          practiceTopicSlug: topic.practiceTopicSlug,
-          updatedAt: now,
-        },
-      });
-    } catch {
-      /* board exam row may be missing before seed — non-fatal */
-    }
-  }
-}
 
 function parseReviewModule(value: unknown): ReviewModuleContent | undefined {
   if (!value || typeof value !== "object") return undefined;
@@ -135,7 +75,6 @@ function enrichLoadedTopics(examSlug: ExamSlug, topics: HighYieldTopic[]): HighY
  */
 const loadHighYieldTopicsCached = unstable_cache(
   async (examSlug: ExamSlug): Promise<HighYieldTopic[]> => {
-    await syncReviewModuleTopics(examSlug);
     const rows = await prisma.highYieldTopic.findMany({
       where: { examSlug },
       orderBy: { sortOrder: "asc" },
