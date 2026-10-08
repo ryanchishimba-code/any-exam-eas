@@ -26,6 +26,7 @@ import {
 } from "@/lib/inventory/active-inventory-cache";
 import { readActiveInventoryStampKey } from "@/lib/inventory/active-inventory-stamp";
 import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
+import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
 import type { NgnItem, NgnReference, SourceRef } from "@/lib/assessment/types";
 
 function asRecord(value: unknown): Record<string, unknown> {
@@ -111,7 +112,10 @@ async function loadPublishedClinicalBankFromDb(fieldId: string): Promise<LoadedC
     if (batches.length === 0) return emptyBank();
     const batchIds = batches.map((batch) => batch.batchId);
     const [itemRows, caseRows] = await Promise.all([
-      prisma.ngnItem.findMany({ where: { batchId: { in: batchIds } } }),
+      prisma.ngnItem.findMany({
+        where: { batchId: { in: batchIds } },
+        orderBy: [{ caseStep: "asc" }, { id: "asc" }],
+      }),
       prisma.ngnCase.findMany({ where: { batchId: { in: batchIds } } }),
     ]);
     let subjects: { id: string; label: string }[] = [];
@@ -123,7 +127,7 @@ async function loadPublishedClinicalBankFromDb(fieldId: string): Promise<LoadedC
     } catch {
       subjects = [];
     }
-    const items = itemRows.map(toServeItem);
+    const items = sortNgnItemsByCaseStep(itemRows.map(toServeItem));
     const cases: ServeCase[] = caseRows.map((row) => ({
       id: row.id,
       version: row.version,
@@ -301,6 +305,7 @@ export async function findServedItem(itemId: string, version: number): Promise<N
     if (!caseRow || caseRow.status !== "published") return null;
     const siblings = await prisma.ngnItem.findMany({
       where: { caseId: row.caseId, caseVersion: row.caseVersion },
+      orderBy: [{ caseStep: "asc" }, { id: "asc" }],
     });
     const latest = new Map<string, { status: string; version: number }>();
     for (const sibling of siblings) {

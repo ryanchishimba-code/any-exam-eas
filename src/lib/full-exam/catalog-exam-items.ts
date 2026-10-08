@@ -4,6 +4,7 @@
  * step converts to a format the exam player can grade.
  */
 import type { BankItem } from "@/lib/question-bank";
+import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
 import { ngnQuestionKey, type PublishedCatalog } from "@/lib/assessment/serve";
 import type { NgnCase, NgnItem as ClinicalItem } from "@/lib/assessment/types";
 
@@ -307,7 +308,7 @@ export function publishedCatalogToBankItems(catalog: PublishedCatalog): BankItem
   }
 
   for (const unit of catalog.cases) {
-    const members = [...unit.items].sort((a, b) => (a.caseStep ?? 0) - (b.caseStep ?? 0));
+    const members = sortNgnItemsByCaseStep(unit.items);
     if (!stepsArePlayable(members)) continue;
     const converted = members.map((item) => ({ item, fields: convertClinicalItem(item) }));
     if (converted.some((row) => row.fields == null)) continue;

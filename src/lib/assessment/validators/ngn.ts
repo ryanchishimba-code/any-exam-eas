@@ -1,4 +1,5 @@
 import { getBoardProfile } from "@/lib/assessment/profiles/nclex-rn-2026";
+import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
 import type { BoardProfile } from "@/lib/assessment/profiles/types";
 import { perfect, score } from "@/lib/assessment/scoring/registry";
 import type {
@@ -583,7 +584,7 @@ function checkCaseIntegrity(caseDoc: NgnCase, profile: BoardProfile, path: strin
   if (caseDoc.items.length !== profile.caseLength) {
     issues.push(issue("error", path, `case must contain ${profile.caseLength} items`));
   }
-  const ordered = [...caseDoc.items];
+  const ordered = sortNgnItemsByCaseStep(caseDoc.items);
   ordered.forEach((item, index) => {
     const expected = profile.stepTaxonomy[index];
     if (!expected || item.caseStep !== expected.step) {
