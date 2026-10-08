@@ -281,6 +281,9 @@ model Subscription {
   trialReminderForEndsAt DateTime?
   /** Dedupes welcome email on trial start. */
   welcomeEmailSentAt     DateTime?
+  /// Dedupes the owner new-trial alert for this trial window. A later trial
+  /// with a different trialEndsAt can alert again. Renewals do not call it.
+  trialAlertForEndsAt    DateTime?
   /** Dedupes pre-renewal reminder emails — stores the currentPeriodEnd we reminded for. */
   billingReminderForPeriodEnd DateTime?
   /// Dedupes the ~30-day reminder for annual plans. Additive. Do not apply to production without the owner's OK.

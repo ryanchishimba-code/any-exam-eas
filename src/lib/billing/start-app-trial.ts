@@ -1,5 +1,6 @@
 import { trialEndsAtFromNow } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
+import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
 import { prisma } from "@/lib/prisma";
 import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
 import { parseSubscriptionTier, type SubscriptionTier } from "@/lib/subscription-tiers";
@@ -14,6 +15,7 @@ export async function startCardFreeTrialForUser(params: {
   email: string;
   tier?: SubscriptionTier | string | null;
   interval?: BillingInterval | string | null;
+  signupSource?: string | null;
 }): Promise<{ started: boolean }> {
   if (await hasConsumedTrial(params.email)) return { started: false };
 
@@ -51,5 +53,9 @@ export async function startCardFreeTrialForUser(params: {
   void import("@/lib/trial-email-triggers").then((m) =>
     m.triggerWelcomeTrialEmail(params.userId)
   );
+  scheduleTrialStartAlert({
+    userId: params.userId,
+    source: params.signupSource ?? null,
+  });
   return { started: true };
 }

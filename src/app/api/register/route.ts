@@ -4,6 +4,7 @@ import { registerUser } from "@/lib/user-auth";
 import { signUpSchema } from "@/lib/validators/auth";
 import { ZodError } from "zod";
 import { trackEvent, logActivity } from "@/lib/analytics/events";
+import { formatTrialSource } from "@/lib/billing/trial-alert-content";
 import { saveTypedConversion } from "@/lib/analytics/conversions";
 import { CONVERSION_EVENTS } from "@/lib/analytics/conversion-types";
 import { EVENT_TYPES } from "@/lib/analytics/types";
@@ -18,7 +19,17 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const input = signUpSchema.parse(body);
-    const user = await registerUser(input);
+    const raw = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
+    const text = (key: string) => (typeof raw[key] === "string" ? raw[key] : null);
+    const user = await registerUser(input, {
+      signupSource: formatTrialSource({
+        utmSource: text("utm_source") ?? text("utmSource"),
+        utmMedium: text("utm_medium") ?? text("utmMedium"),
+        utmCampaign: text("utm_campaign") ?? text("utmCampaign"),
+        utmContent: text("utm_content") ?? text("utmContent"),
+        referrer: text("referrer") ?? req.headers.get("referer"),
+      }),
+    });
 
     void import("@/lib/legal/consent-record").then(({ recordUserLegalConsent }) =>
       recordUserLegalConsent({

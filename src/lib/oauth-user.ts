@@ -4,7 +4,8 @@ import { normalizeEmail } from "@/lib/validators/auth";
 import { normalizeStoredName } from "@/lib/display-name";
 import { isAtLeast18 } from "@/lib/age";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
-import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
+import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
+import { hasConsumedTrial } from "@/lib/trial-eligibility";
 
 const DEFAULT_DOB = new Date("1990-01-01");
 
@@ -108,10 +109,14 @@ export async function findOrCreateGoogleUser(params: {
   }
 
   if (!trialAlreadyUsed) {
-    void recordTrialUsed(email, user.id);
     void import("@/lib/trial-email-triggers").then((m) =>
       m.triggerWelcomeTrialEmail(user.id)
     );
+    scheduleTrialStartAlert({
+      userId: user.id,
+      email,
+      recordTrial: true,
+    });
   }
 
   return { id: user.id, role: user.role };

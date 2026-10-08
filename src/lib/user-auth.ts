@@ -17,7 +17,8 @@ import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators
 import { joinPersonName, normalizeStoredName } from "@/lib/display-name";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
-import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
+import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
+import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
 
 /** Outer wrap stays light — Prisma $extends already retries; stacking caused pool pile-up. */
@@ -146,7 +147,8 @@ export async function recordUserLogin(userId: string): Promise<void> {
 }
 
 export async function registerUser(
-  input: SignUpInput
+  input: SignUpInput,
+  options?: { signupSource?: string | null }
 ): Promise<SafeUser & { plan: "trial" | "subscribe"; promoCode?: string }> {
   const parsed = signUpSchema.parse(input);
   assertPublicSignupEmailAllowed(parsed.email, {
@@ -214,13 +216,6 @@ export async function registerUser(
       )
     );
 
-    if (startsAppTrial) {
-      void recordTrialUsed(parsed.email, user.id);
-      void import("@/lib/trial-email-triggers").then((m) =>
-        m.triggerWelcomeTrialEmail(user.id)
-      );
-    }
-
     if (parsed.examSlug) {
       try {
         const { setUserExamPreference } = await import("@/lib/edtech/exam-preference");
@@ -232,6 +227,18 @@ export async function registerUser(
       } catch (err) {
         console.error("[registerUser] failed to set exam preference:", err);
       }
+    }
+
+    if (startsAppTrial) {
+      void import("@/lib/trial-email-triggers").then((m) =>
+        m.triggerWelcomeTrialEmail(user.id)
+      );
+      scheduleTrialStartAlert({
+        userId: user.id,
+        email: parsed.email,
+        source: options?.signupSource ?? null,
+        recordTrial: true,
+      });
     }
 
     void import("@/lib/email-verification").then((m) =>
