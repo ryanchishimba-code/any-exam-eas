@@ -2,7 +2,7 @@ import type { BoardProfile } from "@/lib/assessment/profiles/types";
 
 /**
  * Publisher and guideline hosts cited by the NCLEX-RN bank
- * (2026-09-26 pilot registry plus NGN batch 1).
+ * (2026-09-26 pilot registry, NGN batch 1, and doi.org for guideline DOIs).
  * A source URL outside this list fails validation.
  */
 export const NCLEX_RN_2026_SOURCE_DOMAINS = [
@@ -12,6 +12,7 @@ export const NCLEX_RN_2026_SOURCE_DOMAINS = [
   "cpr.heart.org",
   "dailymed.nlm.nih.gov",
   "digitalassets.jointcommission.org",
+  "doi.org",
   "emedicine.medscape.com",
   "journal.chestnet.org",
   "journals.bioscientifica.com",

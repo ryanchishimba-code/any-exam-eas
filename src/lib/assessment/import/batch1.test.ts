@@ -44,6 +44,7 @@ const BATCH1_DOMAINS = [
   "academic.oup.com",
   "ascopubs.org",
   "cpr.heart.org",
+  "doi.org",
   "emedicine.medscape.com",
   "journal.chestnet.org",
   "journals.bioscientifica.com",
