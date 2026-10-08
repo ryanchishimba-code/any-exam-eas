@@ -283,31 +283,47 @@ export function DropdownExamQuestion({ question, selected, revealed, onToggle }:
 
 export function HighlightQuestion({ question, selected, revealed, onToggle }: BaseProps) {
   const layout = parseHighlightLayout(question);
+  const payload = question.ngnPayload as { tokens?: { id?: string; text: string; selectable?: boolean }[] } | undefined;
+  const tokens =
+    payload?.tokens && payload.tokens.length > 0
+      ? payload.tokens
+      : layout.segments.map((segment) => ({ id: segment.id, text: segment.text, selectable: true }));
 
   return (
     <div className="mt-6">
       <p className="mb-3 text-xs text-[var(--color-ink-muted)]">
-        Tap the sentence(s) that answer the question.
+        Highlight the findings in the note. A phrase you can select appears when you hover, focus, or tap it.
       </p>
-      <div className="space-y-2 rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4">
-        {layout.segments.map((seg) => {
-          const isSelected = selected.includes(seg.text);
+      <p className="rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4 text-[17px] leading-8 text-[var(--color-ink)]">
+        {tokens.map((token, index) => {
+          if (token.selectable === false || !token.text) {
+            return <span key={`static-${index}`}>{token.text}</span>;
+          }
+          const isSelected = selected.includes(token.text);
           const isCorrect = question.correctAnswers.some(
-            (c) => cleanOptionText(c).toLowerCase() === seg.text.toLowerCase()
+            (choice) => cleanOptionText(choice).toLowerCase() === token.text.toLowerCase()
           );
           return (
             <button
-              key={seg.id}
+              key={token.id ?? `${token.text}-${index}`}
               type="button"
+              aria-pressed={isSelected}
+              aria-label={`Selectable phrase: ${token.text}`}
               disabled={revealed}
-              onClick={() => onToggle(seg.text)}
-              className={`block w-full rounded-lg border px-3 py-2 text-left text-sm leading-relaxed transition ${revealedClass(isSelected, isCorrect, revealed)}`}
+              onClick={() => onToggle(token.text)}
+              className={`rounded-sm px-0.5 text-left ${
+                revealed
+                  ? revealedClass(isSelected, isCorrect, revealed)
+                  : isSelected
+                    ? "bg-[#0A2540] text-white"
+                    : "bg-transparent text-inherit decoration-[#00D4C8] decoration-2 underline-offset-4 hover:bg-[#E5FBF9] hover:underline focus-visible:bg-[#E5FBF9] focus-visible:underline"
+              }`}
             >
-              {seg.text}
+              {token.text}
             </button>
           );
         })}
-      </div>
+      </p>
     </div>
   );
 }
@@ -316,7 +332,6 @@ export function UnfoldingCaseBanner({ question }: { question: StudyQuestion }) {
   if (question.type !== "unfolding_case" && question.ngnFormat !== "unfolding_case") {
     return null;
   }
-  const step = question.caseStep ?? 1;
   return (
     <div className="mb-4 flex items-center gap-2 rounded-xl border border-sky-200/80 bg-sky-50/80 px-4 py-2.5">
       <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700">
@@ -324,7 +339,7 @@ export function UnfoldingCaseBanner({ question }: { question: StudyQuestion }) {
       </span>
       <span className="text-xs text-[var(--color-ink-muted)]">·</span>
       <span className="text-xs font-medium text-[var(--color-ink)]">
-        Step {step} — new data may appear as the case progresses
+        New information may appear as the case continues
       </span>
     </div>
   );

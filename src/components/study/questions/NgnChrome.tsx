@@ -13,7 +13,7 @@ const TYPE_INSTRUCTIONS: Record<string, string> = {
   matrix:
     "For each clinical finding, choose the best column. One answer per row.",
   highlight:
-    "Tap the text segment(s) that best answer the question — like highlighting an EHR note.",
+    "Highlight the findings in the note. Phrases you can select appear when you hover, focus, or tap them.",
   select_all:
     "Select all choices that apply. Partial credit may apply when enabled.",
   ordered_response:
@@ -40,9 +40,6 @@ export function NgnFormatBadge({ question }: { question: StudyQuestion }) {
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/8 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent)]">
       {label}
-      {question.caseStep != null && (
-        <span className="text-[var(--color-ink-muted)]">· Step {question.caseStep}</span>
-      )}
     </span>
   );
 }

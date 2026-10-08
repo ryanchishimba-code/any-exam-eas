@@ -36,12 +36,13 @@ export function HighlightText({
             key={id}
             type="button"
             aria-pressed={pressed}
+            aria-label={`Selectable phrase: ${token.text}`}
             disabled={disabled}
             onClick={() => toggle(id)}
-            className={`mx-0.5 rounded-md px-1 py-0.5 text-left motion-reduce:transition-none ${ngnFocus} ${
+            className={`rounded-sm px-0.5 text-left motion-reduce:transition-none ${ngnFocus} ${
               pressed
                 ? "bg-[#0A2540] text-white"
-                : "bg-transparent text-[#0A2540] underline decoration-[#00D4C8] decoration-2 underline-offset-4 hover:bg-[#E5FBF9]"
+                : "bg-transparent text-inherit decoration-[#00D4C8] decoration-2 underline-offset-4 hover:bg-[#E5FBF9] hover:underline focus-visible:bg-[#E5FBF9] focus-visible:underline"
             }`}
           >
             {token.text}

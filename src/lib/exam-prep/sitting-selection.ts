@@ -25,6 +25,7 @@ import {
 
 export { isPharmacyCalculationItem, pharmacyCalculationQuota };
 import { selectWithNgnFormatMix } from "@/lib/full-exam/ngn-format-mix";
+import { shapeNclexBankSitting } from "@/lib/full-exam/nclex-exam-shape";
 import { isPharmacyBlueprintField, rankSittingByBlueprint } from "@/lib/exam-prep/sitting-blueprint";
 
 export type SittingSelection = {
@@ -355,6 +356,8 @@ export function finalizeAssembledSitting(params: {
   seenIds?: ReadonlySet<string>;
   seed?: number;
   includeNgn?: boolean;
+  /** Full NCLEX exam mode: 3 cases before item 86, bow-tie and trend only after. */
+  nclexExamMode?: boolean;
 }): AssembledSitting {
   const limit = Math.max(0, params.limit);
   const seed = params.seed ?? 0x51ed270b;
@@ -425,7 +428,18 @@ export function finalizeAssembledSitting(params: {
   const gapped = orderWithTopicGap(chosen, (item) =>
     sequentialSetId(item) ? null : narrowTopicKeyFromBankItem(item)
   ).slice(0, limit);
-  const ordered = params.fieldId === "pharmacy" ? spreadPharmacyNumericEntries(gapped, seed) : gapped;
+  const orderedBase = params.fieldId === "pharmacy" ? spreadPharmacyNumericEntries(gapped, seed) : gapped;
+  const shaped =
+    params.nclexExamMode && params.fieldId === "nursing" && limit >= 85
+      ? shapeNclexBankSitting({
+          pool: params.pool,
+          preferred: orderedBase,
+          limit,
+          seed,
+          caseLastAttemptedAt,
+        })
+      : null;
+  const ordered = shaped && shaped.length === limit ? shaped : orderedBase;
   capStats.kept = ordered.length;
   capStats.strict = strict ?? { kept: ordered.length, rejections: { ...capStats.rejections } };
   return { items: ordered, relaxed, excludeSeenApplied, capStats };

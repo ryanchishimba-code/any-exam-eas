@@ -63,6 +63,8 @@ export type AssembleTimedExamSessionParams = {
   preferPremiumPool?: boolean;
   /** Session id. Numeric-entry order is seeded from it so refresh stays stable. */
   sessionId?: string;
+  /** NCLEX full exam: place 3 cases before item 86. */
+  nclexExamMode?: boolean;
   /** Overall gather budget. Defaults to 25s. Tests pass a clock via `now`. */
   deadlineMs?: number;
   now?: () => number;
@@ -261,7 +263,8 @@ function scopeAssemblyResult(
   excludeQuestionIds: Set<string> | undefined,
   preferPremiumPool: boolean,
   orderSeed: number,
-  shortfalls: CapRejectionStats[]
+  shortfalls: CapRejectionStats[],
+  nclexExamMode = false
 ): AssembleTimedExamSessionResult | null {
   if (!result) return null;
   let items = filterBankItemsForPracticeField(result.items, fieldId);
@@ -276,6 +279,7 @@ function scopeAssemblyResult(
     seenIds: excludeQuestionIds,
     seed: orderSeed,
     includeNgn,
+    nclexExamMode,
   });
   if (finalized.items.length < limit) {
     shortfalls.push(finalized.capStats);
@@ -301,6 +305,7 @@ export async function assembleTimedExamSessionItems(
     excludeQuestionIds,
     preferPremiumPool = Boolean(focusAreas?.length),
     sessionId,
+    nclexExamMode = false,
     deadlineMs = DEFAULT_ASSEMBLE_DEADLINE_MS,
     now = Date.now,
   } = params;
@@ -362,7 +367,8 @@ export async function assembleTimedExamSessionItems(
       excludeQuestionIds,
       preferPremiumPool,
       orderSeed,
-      shortfalls
+      shortfalls,
+      nclexExamMode
     );
   };
 

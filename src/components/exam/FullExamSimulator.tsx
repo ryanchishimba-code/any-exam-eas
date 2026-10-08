@@ -50,6 +50,7 @@ import { parseBowTieLayout, parseMatrixKey, toggleBowTieSelection } from "@/lib/
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { mapApiQuestionsToStudy } from "@/lib/questions/map-api-questions";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
+import { examAnswerEditable, lockAnswerOnNext } from "@/lib/full-exam/nclex-exam-labels";
 import {
   CAT_MAX_QUESTIONS,
   CAT_MIN_QUESTIONS,
@@ -263,6 +264,9 @@ export function FullExamSimulator({
   const [hasEnteredReview, setHasEnteredReview] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
   const [catTipDismissed, setCatTipDismissed] = useState(false);
+  const [lockedThrough, setLockedThrough] = useState(0);
+  const examMode = Boolean(config.nclexExamMode);
+  const examNextRef = useRef<() => void>(() => undefined);
   const [encouragement] = useState(
     () => ENCOURAGEMENT[Math.floor(Math.random() * ENCOURAGEMENT.length)]
   );
@@ -357,7 +361,7 @@ export function FullExamSimulator({
       }
 
       function applyLoaded(items: StudyQuestion[]) {
-        if (isCatMode) {
+        if (isCatMode || config.nclexExamMode) {
           const clusters = assignSittingClusters(
             items.map((q) => ({
               id: q.id,
@@ -394,6 +398,15 @@ export function FullExamSimulator({
               ...sittingCapTags(source, fieldId),
             };
           });
+          if (config.nclexExamMode) {
+            setCatPool(isCatMode ? pool : []);
+            setCatState(initCatSession());
+            setCatCommittedCount(0);
+            setLockedThrough(0);
+            setQuestions(items);
+            setIndex(0);
+            return;
+          }
           const first = pickCatNext(initCatSession(), pool, new Set(), Math.random, catFormatHint(pool, []));
           if (!first) {
             throw new Error("Could not start practice CAT — empty question pool.");
@@ -653,6 +666,7 @@ export function FullExamSimulator({
   const toggleSelect = useCallback(
     (option: string) => {
       if (!current || submitting || timeUp) return;
+      if (examMode && !examAnswerEditable(index, lockedThrough)) return;
 
       let nextSelected: string[];
 
@@ -709,7 +723,7 @@ export function FullExamSimulator({
         return merged;
       });
     },
-    [current, currentAnswer, index, persistAnswer, rememberAnsweredAt, submitting, timeUp]
+    [current, currentAnswer, examMode, index, lockedThrough, persistAnswer, rememberAnsweredAt, submitting, timeUp]
   );
 
   const updateAnswer = useCallback(
@@ -854,6 +868,12 @@ export function FullExamSimulator({
                         },
                       }
                     : {}),
+                  ...(() => {
+                    const step =
+                      q.caseStep ??
+                      (q.ngnPayload as { stepIndex?: number } | undefined)?.stepIndex;
+                    return typeof step === "number" ? { caseStep: step } : {};
+                  })(),
                 };
               }),
               endedEarly: markEndedEarly,
@@ -900,6 +920,7 @@ export function FullExamSimulator({
   );
 
   const offerReviewSubmit = useMemo(() => {
+    if (examMode) return false;
     if (questions.length === 0 || index < questions.length - 1) return false;
     let catStopsAfterCurrent = false;
     if (isCatMode && current && hasSelection(currentAnswer.selected)) {
@@ -934,6 +955,7 @@ export function FullExamSimulator({
     commitCatThrough,
     current,
     currentAnswer.selected,
+    examMode,
     index,
     isCatMode,
     questions,
@@ -942,6 +964,14 @@ export function FullExamSimulator({
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (submitting || !current) return;
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      const inControl = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || tag === "BUTTON";
+      if (examMode && e.key === "ArrowLeft") return;
+      if (examMode && !inControl && (e.key === "ArrowRight" || e.key === " " || e.key === "Enter")) {
+        e.preventDefault();
+        examNextRef.current();
+        return;
+      }
       if (e.key === "f" || e.key === "F") {
         updateAnswer({ flagged: !currentAnswer.flagged });
       }
@@ -976,6 +1006,7 @@ export function FullExamSimulator({
   }, [
     current,
     currentAnswer.flagged,
+    examMode,
     index,
     questions.length,
     submitting,
@@ -1006,6 +1037,27 @@ export function FullExamSimulator({
     }
     setPaused(false);
   }
+
+  function goExamNext() {
+    const ans = answers[index] ?? defaultAnswer();
+    if (!hasSelection(ans.selected)) return;
+    if (!examAnswerEditable(index, lockedThrough)) return;
+    let stop = false;
+    if (isCatMode) {
+      const committed = commitCatThrough(index, catState, catCommittedCount, questions, answers);
+      setCatCommittedCount(committed.committed);
+      setCatState(committed.state);
+      stop = committed.state.isComplete;
+    }
+    const next = lockAnswerOnNext(index, questions.length);
+    if (stop || next === "submit") {
+      void submitExam();
+      return;
+    }
+    setLockedThrough(next.lockedThrough);
+    setIndex(next.index);
+  }
+  examNextRef.current = goExamNext;
 
   if (loading) {
     return (
@@ -1223,7 +1275,7 @@ export function FullExamSimulator({
       />
 
       <div className="mx-auto flex max-w-[1400px] gap-0 lg:gap-6">
-        <aside className="hidden w-56 shrink-0 p-4 lg:block xl:w-64">
+        <aside className={cn("hidden w-56 shrink-0 p-4 xl:w-64", examMode ? "" : "lg:block")}>
           <div className="sticky top-[calc(var(--nav-height)+1rem)] space-y-4">
             <ExamQuestionNav
               total={questions.length}
@@ -1287,7 +1339,8 @@ export function FullExamSimulator({
               selected={currentAnswer.selected}
               revealed={false}
               onToggle={toggleSelect}
-              sequentialContext={sequentialContext}
+              sequentialContext={examMode ? null : sequentialContext}
+              examMode={examMode}
             />
           </article>
         </main>
@@ -1325,14 +1378,18 @@ export function FullExamSimulator({
       <footer className={feUi.glassFooter}>
         <div className="mx-auto max-w-[1400px] space-y-2.5 px-4 py-3 sm:px-6">
           <div className="flex items-center justify-between gap-2">
-            <button
-              type="button"
-              disabled={index === 0}
-              onClick={() => setIndex((i) => i - 1)}
-              className={feUi.footerBtn}
-            >
-              <ChevronLeft className="h-4 w-4" /> Previous
-            </button>
+            {examMode ? (
+              <span className="text-[13px] text-[var(--color-ink-muted)]">Answers lock on Next</span>
+            ) : (
+              <button
+                type="button"
+                disabled={index === 0}
+                onClick={() => setIndex((i) => i - 1)}
+                className={feUi.footerBtn}
+              >
+                <ChevronLeft className="h-4 w-4" /> Previous
+              </button>
+            )}
 
             {hasEnteredReview ? (
               <button type="button" onClick={() => setPhase("review")} className={feUi.footerBtn}>
@@ -1354,7 +1411,7 @@ export function FullExamSimulator({
             ) : (
               <button
                 type="button"
-                onClick={() => (isCatMode ? advanceCat() : setIndex((i) => i + 1))}
+                onClick={() => (examMode ? goExamNext() : isCatMode ? advanceCat() : setIndex((i) => i + 1))}
                 className={feUi.footerBtnDark}
               >
                 Next <ChevronRight className="h-4 w-4" />

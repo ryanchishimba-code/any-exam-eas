@@ -38,6 +38,7 @@ import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { resolveQuestionStudyLinks } from "@/lib/library/question-study-links";
 import { bowTieReviewColumns, type BowTieReviewChoice } from "@/lib/questions/bow-tie-review";
 import { studentFacingStem } from "@/lib/questions/student-display-text";
+import { clientNeedLabel, genericJudgmentLabel, tallyLabeledScores } from "@/lib/full-exam/nclex-exam-labels";
 
 type ReviewView = "summary" | "overview" | "question";
 
@@ -488,6 +489,10 @@ export function FullExamResults({
         }
       />
 
+      {examSlug === "nclex" ? (
+        <NclexExamBreakdown questions={questions} answers={answers} />
+      ) : null}
+
       {analysis.topicBreakdown.length > 0 ? (
         <div className={cn(feUi.panel, "p-5 sm:p-6")}>
           <h2 className={feUi.sectionTitle}>
@@ -602,6 +607,62 @@ function ReviewFooter({
         </div>
       </div>
     </footer>
+  );
+}
+
+function NclexExamBreakdown({
+  questions,
+  answers,
+}: {
+  questions: FullExamQuestion[];
+  answers: ExamAnswerRecord[];
+}) {
+  const rows = questions.map((question, index) => {
+    const answer = answers.find((entry) => entry.questionIndex === index);
+    const selected = typeof answer?.selected === "string" ? answer.selected.trim() : "";
+    return {
+      answered: selected.length > 0,
+      correct: answer?.correct === true,
+      step: genericJudgmentLabel(question.caseStep),
+      need: clientNeedLabel(question.topicCategory, question.subjectId, question.blueprintDomain),
+    };
+  });
+  const steps = tallyLabeledScores(rows.map((row) => ({ label: row.step, answered: row.answered, correct: row.correct })));
+  const needs = tallyLabeledScores(rows.map((row) => ({ label: row.need, answered: row.answered, correct: row.correct })));
+  if (steps.length === 0 && needs.length === 0) return null;
+  return (
+    <div className="grid gap-4 lg:grid-cols-2">
+      <BreakdownCard title="Clinical judgment" rows={steps} />
+      <BreakdownCard title="Client needs" rows={needs} />
+    </div>
+  );
+}
+
+function BreakdownCard({
+  title,
+  rows,
+}: {
+  title: string;
+  rows: Array<{ label: string; correct: number; total: number; pct: number }>;
+}) {
+  if (rows.length === 0) return null;
+  return (
+    <div className={cn(feUi.panel, "p-5 sm:p-6")}>
+      <h2 className={feUi.sectionTitle}>{title}</h2>
+      <ul className="mt-4 space-y-3">
+        {rows.map((row) => (
+          <li key={row.label}>
+            <div className="mb-1 flex justify-between text-[13px]">
+              <span className="font-medium text-[var(--color-ink)]">{row.label}</span>
+              <span className="text-[var(--color-ink-muted)]">
+                {row.correct}/{row.total} ({row.pct}%)
+              </span>
+            </div>
+            <Progress value={row.pct} className="h-1.5" />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

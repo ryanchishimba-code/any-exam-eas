@@ -78,12 +78,13 @@ describe("student NGN session", () => {
     expect(screen.getByText("Case 1 of 1")).toBeInTheDocument();
     expect(screen.getByText("Case 1 of 1").parentElement).toHaveClass("max-lg:sticky");
     expect(screen.getByRole("button", { name: "Client chart" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Recognize cues/ })).toHaveAttribute("aria-current", "step");
+    expect(screen.queryByRole("button", { name: /Recognize cues|Prioritize hypotheses|Evaluate outcomes/ })).not.toBeInTheDocument();
+    expect(screen.queryByText(/Recognize cues|Prioritize hypotheses|Generate solutions|Evaluate outcomes/)).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Submit case" })).not.toBeInTheDocument();
     for (let step = 0; step < 5; step += 1) {
       await user.click(screen.getByRole("button", { name: "Next" }));
     }
-    expect(screen.getByRole("button", { name: /Evaluate outcomes/ })).toHaveAttribute("aria-current", "step");
+    expect(screen.queryByText(/Recognize cues|Prioritize hypotheses|Generate solutions|Evaluate outcomes/)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Submit case" })).toBeInTheDocument();
     expect(screen.queryByText(caseDoc.items[0]!.rationale.short)).not.toBeInTheDocument();
   });
