@@ -9,6 +9,7 @@ import {
   signupHrefFromCheckoutQuery,
 } from "@/lib/billing/card-free-checkout";
 import { startCardFreeTrialForUser } from "@/lib/billing/start-app-trial";
+import { formatTrialSource } from "@/lib/billing/trial-alert-content";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
@@ -67,6 +68,13 @@ export default async function CheckoutPage({
         email: session.user.email,
         tier: firstSearchValue(params.tier),
         interval,
+        signupSource: formatTrialSource({
+          utmSource: query.utm_source,
+          utmMedium: query.utm_medium,
+          utmCampaign: query.utm_campaign,
+          utmContent: query.utm_content,
+          referrer: query.referrer,
+        }),
       });
       redirect(started.started ? ROUTES.dashboard : paidSubscribeHrefFromCheckoutQuery(query));
     }

@@ -15,6 +15,8 @@ import { saveTypedConversion } from "@/lib/analytics/conversions";
 import { CONVERSION_EVENTS } from "@/lib/analytics/conversion-types";
 import { EVENT_TYPES } from "@/lib/analytics/types";
 import { recordTrialUsed } from "@/lib/trial-eligibility";
+import { isInitialStripeTrial } from "@/lib/billing/trial-alert-content";
+import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
 import { sendPaymentFailedEmail, sendSubscriptionActiveEmail } from "@/lib/email/billing-emails";
 import { invalidateSubscriptionStatusCache } from "@/lib/cache";
 import {
@@ -240,7 +242,7 @@ export async function POST(req: Request) {
           void import("@/lib/promo").then((m) => m.redeemPromoCode(userId, promoCode));
         }
 
-        if (session.metadata?.plan === "trial" && stripeSub.status === "trialing") {
+        if (isInitialStripeTrial(session.metadata?.plan, stripeSub.status)) {
           saveTypedConversion(
             CONVERSION_EVENTS.TRIAL_STARTED,
             {
@@ -250,6 +252,7 @@ export async function POST(req: Request) {
             },
             { userId }
           );
+          scheduleTrialStartAlert({ userId, source: "stripe" });
         }
 
         if (stripeSub.status === "active" && session.metadata?.plan !== "trial") {
@@ -260,6 +263,8 @@ export async function POST(req: Request) {
     }
     case "customer.subscription.updated":
     case "customer.subscription.deleted": {
+      // Not a new trial. Renewals, trial conversions, and cancellations land
+      // here. The owner alert is only scheduled from a trialing checkout.
       const sub = event.data.object as Stripe.Subscription;
       const userId = await resolveUserIdFromStripeSubscription(sub);
       if (userId) {
