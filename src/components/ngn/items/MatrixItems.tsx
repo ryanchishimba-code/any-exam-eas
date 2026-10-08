@@ -2,7 +2,7 @@
 
 import { ngnFocus } from "@/components/ngn/brand";
 import { InlineBold } from "@/components/ngn/InlineBold";
-import { DEFAULT_MATRIX_ROW_HEADER } from "@/lib/assessment/matrix-row-header";
+import { matrixRowHeader } from "@/lib/assessment/matrix-row-header";
 import { stripInlineBoldMarkers } from "@/lib/questions/inline-bold";
 
 type Column = { id: string; label: string };
@@ -15,7 +15,7 @@ export function MatrixMC({
   onChange,
   disabled,
   name,
-  rowHeader = DEFAULT_MATRIX_ROW_HEADER,
+  rowHeader,
 }: {
   columns: Column[];
   rows: Row[];
@@ -25,13 +25,14 @@ export function MatrixMC({
   name: string;
   rowHeader?: string;
 }) {
+  const header = matrixRowHeader(rowHeader);
   return (
     <div className="overflow-x-auto">
       <table className="w-full border-separate border-spacing-0 text-left text-sm">
         <thead>
           <tr>
             <th scope="col" className="border-b border-[#e2e8f0] px-3 py-2 text-[#334155]">
-              <InlineBold text={rowHeader} />
+              <InlineBold text={header} />
             </th>
             {columns.map((column) => (
               <th
@@ -80,7 +81,7 @@ export function MatrixMR({
   value,
   onChange,
   disabled,
-  rowHeader = DEFAULT_MATRIX_ROW_HEADER,
+  rowHeader,
 }: {
   columns: Column[];
   rows: Row[];
@@ -89,6 +90,7 @@ export function MatrixMR({
   disabled?: boolean;
   rowHeader?: string;
 }) {
+  const header = matrixRowHeader(rowHeader);
   function toggle(rowId: string, columnId: string) {
     const current = value[rowId] ?? [];
     const next = current.includes(columnId)
@@ -103,7 +105,7 @@ export function MatrixMR({
         <thead>
           <tr>
             <th scope="col" className="border-b border-[#e2e8f0] px-3 py-2 text-[#334155]">
-              <InlineBold text={rowHeader} />
+              <InlineBold text={header} />
             </th>
             {columns.map((column) => (
               <th

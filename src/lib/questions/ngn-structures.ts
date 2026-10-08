@@ -179,14 +179,22 @@ export function parseMatrixKey(key: string): { row: string; col: string } {
   return { row: row ?? "", col: col ?? "" };
 }
 
+function layoutRowHeader(
+  chart: Record<string, unknown> | undefined,
+  payload: Record<string, unknown> | undefined
+): string {
+  return matrixRowHeader(chart?.rowHeader, payload?.rowHeader);
+}
+
 export function parseMatrixLayout(q: NgnLayoutInput | StudyQuestion): MatrixLayout {
   const input = toLayoutInput(q);
-  const chart = input.chartData;
-  if (isRecord(chart) && chart.kind === "matrix") {
+  const chart = isRecord(input.chartData) ? input.chartData : undefined;
+  const rowHeader = layoutRowHeader(chart, input.ngnPayload);
+  if (chart?.kind === "matrix") {
     return {
       rows: (chart.rows as string[]) ?? [],
       columns: (chart.columns as string[]) ?? [],
-      rowHeader: matrixRowHeader(chart.rowHeader),
+      rowHeader,
     };
   }
 
@@ -201,13 +209,13 @@ export function parseMatrixLayout(q: NgnLayoutInput | StudyQuestion): MatrixLayo
   }
 
   if (rows.size > 0 && cols.size > 0) {
-    return { rows: [...rows], columns: [...cols], rowHeader: matrixRowHeader(undefined) };
+    return { rows: [...rows], columns: [...cols], rowHeader };
   }
 
   return {
     rows: ["Assessment A", "Assessment B", "Assessment C"],
     columns: ["Indicated", "Contraindicated", "Requires further data"],
-    rowHeader: matrixRowHeader(isRecord(chart) ? chart.rowHeader : undefined),
+    rowHeader,
   };
 }
 

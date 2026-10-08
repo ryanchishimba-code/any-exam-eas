@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { CaseStudyPlayer } from "@/components/ngn/CaseStudyPlayer";
-import { MatrixMC } from "@/components/ngn/items/MatrixItems";
+import { MatrixMC, MatrixMR } from "@/components/ngn/items/MatrixItems";
 import type { NgnCase, NgnItem } from "@/lib/assessment/types";
 
 const STEP_NAME = /Recognize cues|Analyze cues|Prioritize hypotheses|Generate solutions|Take action|Evaluate outcomes/;
@@ -118,5 +118,22 @@ describe("student case chrome", () => {
       />
     );
     expect(screen.getByRole("columnheader", { name: "Finding" })).toBeInTheDocument();
+  });
+
+  it("renders a multiple-response matrix header from the item", () => {
+    render(
+      <MatrixMR
+        columns={[
+          { id: "true", label: "True" },
+          { id: "false", label: "False" },
+        ]}
+        rows={[{ id: "r1", text: "The dose is correct" }]}
+        value={{}}
+        onChange={() => undefined}
+        rowHeader="Statement"
+      />
+    );
+    expect(screen.getByRole("columnheader", { name: "Statement" })).toBeInTheDocument();
+    expect(screen.queryByRole("columnheader", { name: "Finding" })).not.toBeInTheDocument();
   });
 });
