@@ -2,6 +2,11 @@
 
 import { cleanOptionText } from "@/lib/question-format";
 import {
+  NGN_MATRIX_SINGLE_INSTRUCTION,
+  NGN_SELECT_ALL_INSTRUCTION,
+  resolveNgnMultiResponseRule,
+} from "@/lib/questions/ngn-response-rules";
+import {
   bowTiePickInstruction,
   bowTieSelectionValid,
   parseBowTieLayout,
@@ -145,6 +150,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
 
 export function MatrixQuestion({ question, selected, revealed, onToggle }: BaseProps) {
   const layout = parseMatrixLayout(question);
+  const instruction = resolveNgnMultiResponseRule(question)?.instruction ?? NGN_MATRIX_SINGLE_INSTRUCTION;
 
   function toggleCell(row: string, col: string) {
     if (revealed) return;
@@ -154,9 +160,7 @@ export function MatrixQuestion({ question, selected, revealed, onToggle }: BaseP
 
   return (
     <div className="mt-6 overflow-x-auto">
-      <p className="mb-3 text-xs text-[var(--color-ink-muted)]">
-        Select the best column for each clinical finding.
-      </p>
+      <p className="mb-3 text-xs text-[var(--color-ink-muted)]">{instruction}</p>
       <table className="w-full min-w-[480px] border-collapse text-sm">
         <thead>
           <tr>
@@ -283,12 +287,11 @@ export function DropdownExamQuestion({ question, selected, revealed, onToggle }:
 
 export function HighlightQuestion({ question, selected, revealed, onToggle }: BaseProps) {
   const layout = parseHighlightLayout(question);
+  const instruction = resolveNgnMultiResponseRule(question)?.instruction ?? NGN_SELECT_ALL_INSTRUCTION;
 
   return (
     <div className="mt-6">
-      <p className="mb-3 text-xs text-[var(--color-ink-muted)]">
-        Tap the sentence(s) that answer the question.
-      </p>
+      <p className="mb-3 text-xs text-[var(--color-ink-muted)]">{instruction}</p>
       <div className="space-y-2 rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4">
         {layout.segments.map((seg) => {
           const isSelected = selected.includes(seg.text);

@@ -12,6 +12,7 @@ import { analytics } from "@/lib/analytics";
 import { NGN_DEMO_QUESTIONS } from "@/lib/demo/ngn-samples";
 import { examQuestionToStudy, isAnswerCorrect } from "@/lib/questions/prepare";
 import type { StudyQuestion } from "@/lib/questions/types";
+import { ngnCheckEnabled, resolveNgnMultiResponseRule } from "@/lib/questions/ngn-response-rules";
 import {
   bowTieSelectionValid,
   parseBowTieLayout,
@@ -69,8 +70,10 @@ export function NgnInteractiveDemo({
       return;
     }
     if (question.type === "matrix") {
+      const multi = resolveNgnMultiResponseRule(question)?.format === "matrix_mr";
       setSelected((prev) => {
         if (prev.includes(option)) return prev.filter((o) => o !== option);
+        if (multi) return [...prev, option];
         const { row } = parseMatrixKey(option);
         return [...prev.filter((o) => parseMatrixKey(o).row !== row), option];
       });
@@ -84,11 +87,11 @@ export function NgnInteractiveDemo({
     setSelected([option]);
   }
 
-  const canCheck =
-    selected.length > 0 &&
-    (question.type !== "bow_tie" ||
-      bowTieSelectionValid(selected, parseBowTieLayout(question))) &&
-    (question.type !== "matrix" || selected.length === question.correctAnswers.length);
+  const responseRule = resolveNgnMultiResponseRule(question);
+  const canCheck = responseRule
+    ? ngnCheckEnabled(responseRule, selected)
+    : selected.length > 0 &&
+      (question.type !== "bow_tie" || bowTieSelectionValid(selected, parseBowTieLayout(question)));
 
   const correct = revealed ? isAnswerCorrect(question, selected) : null;
 

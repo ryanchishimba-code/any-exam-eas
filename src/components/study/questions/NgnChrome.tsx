@@ -2,6 +2,11 @@
 
 import { formatNgnLabel } from "@/lib/questions/ngn-map";
 import { bowTiePickInstruction, parseBowTieLayout } from "@/lib/questions/ngn-structures";
+import {
+  NGN_MATRIX_SINGLE_INSTRUCTION,
+  NGN_SELECT_ALL_INSTRUCTION,
+  resolveNgnMultiResponseRule,
+} from "@/lib/questions/ngn-response-rules";
 import { stripShiftNotes } from "@/lib/questions/shift-notes";
 import { studentFacingVignette } from "@/lib/questions/student-display-text";
 import type { StudyQuestion } from "@/lib/questions/types";
@@ -10,12 +15,9 @@ import { Info } from "lucide-react";
 const TYPE_INSTRUCTIONS: Record<string, string> = {
   bow_tie:
     "Choose the condition, the actions to take, and the parameters to monitor. This mirrors NCLEX-NGN bow-tie items.",
-  matrix:
-    "For each clinical finding, choose the best column. One answer per row.",
-  highlight:
-    "Tap the text segment(s) that best answer the question — like highlighting an EHR note.",
-  select_all:
-    "Select all choices that apply. Partial credit may apply when enabled.",
+  matrix: NGN_MATRIX_SINGLE_INSTRUCTION,
+  highlight: NGN_SELECT_ALL_INSTRUCTION,
+  select_all: NGN_SELECT_ALL_INSTRUCTION,
   ordered_response:
     "Drag or tap to order steps from first priority to last.",
   unfolding_case:
@@ -53,10 +55,14 @@ function bowTieInstruction(question: StudyQuestion): string {
 
 export function NgnTypeInstructions({ question }: { question: StudyQuestion }) {
   const key = question.type === "clinical_reasoning" ? "multiple_choice" : question.type;
+  const multiResponse = resolveNgnMultiResponseRule(question);
   const text =
     question.type === "bow_tie" || question.ngnFormat === "bow_tie"
       ? bowTieInstruction(question)
-      : (TYPE_INSTRUCTIONS[key] ?? TYPE_INSTRUCTIONS[question.ngnFormat ?? ""] ?? null);
+      : (multiResponse?.instruction ??
+        TYPE_INSTRUCTIONS[key] ??
+        TYPE_INSTRUCTIONS[question.ngnFormat ?? ""] ??
+        null);
   if (!text) return null;
   return (
     <p className="mb-3 flex items-start gap-2 rounded-lg border border-sky-100 bg-sky-50/80 px-3 py-2 text-xs leading-relaxed text-sky-900">

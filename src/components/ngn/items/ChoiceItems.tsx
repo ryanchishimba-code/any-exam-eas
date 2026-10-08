@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { ngnFocus } from "@/components/ngn/brand";
 import { orderForFormat } from "@/lib/assessment/shuffle";
+import { selectNInstruction } from "@/lib/questions/ngn-response-rules";
 import type { NgnOption } from "@/lib/assessment/types";
 
 function OptionList({
@@ -116,7 +117,7 @@ export function SelectN({
   return (
     <div>
       <p id="select-n-count" className="mb-3 text-sm font-medium text-[#334155]">
-        Select {n}. {selected.length} of {n} selected.
+        {selectNInstruction(n)}. {selected.length} of {n} selected.
       </p>
       <OptionList
         options={ordered}

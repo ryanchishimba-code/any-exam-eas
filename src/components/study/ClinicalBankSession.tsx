@@ -6,6 +6,7 @@ import { ItemRenderer } from "@/components/ngn/ItemRenderer";
 import { ngnFocus, ngnMuted } from "@/components/ngn/brand";
 import type { ClinicalSessionPayload } from "@/lib/assessment/clinical-session";
 import { draftForNgnItem } from "@/lib/assessment/attempt-grade";
+import { clinicalItemCheckEnabled } from "@/lib/questions/ngn-response-rules";
 import type { NgnItem } from "@/lib/assessment/types";
 import type { SessionAttemptDraft } from "@/lib/learning/session-attempt-plan";
 import { SessionCompletionCard, SessionPersistGate } from "@/components/study/SessionCompletionCard";
@@ -202,7 +203,7 @@ export function ClinicalBankSession({ session, reviewQueue = false, onExit }: Pr
             {phase === "answer" ? (
               <button
                 type="button"
-                disabled={pending}
+                disabled={pending || !clinicalItemCheckEnabled(item, response)}
                 className={`min-h-11 rounded-full bg-[#0A2540] px-5 text-sm font-semibold text-white disabled:opacity-60 ${ngnFocus}`}
                 onClick={() => void revealItems([unit.item], unit.subjectId, { [unit.item.id]: response ?? null })}
               >
