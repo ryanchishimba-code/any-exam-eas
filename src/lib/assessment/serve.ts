@@ -2,6 +2,7 @@ import {
   emptyFormatCounts,
   type FormatCounts,
 } from "@/lib/inventory/question-format";
+import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
 import type { NgnCase, NgnItem } from "@/lib/assessment/types";
 
 export type ServeItem = NgnItem & {
@@ -124,11 +125,11 @@ export function selectPublishedCatalog(input: {
       members.push(latest);
     }
     if (blocked) continue;
-    members.sort((a, b) => (a.caseStep ?? 0) - (b.caseStep ?? 0) || a.id.localeCompare(b.id));
+    const ordered = sortNgnItemsByCaseStep(members);
     cases.push({
       kind: "case",
-      caseDoc: { ...publishedCase, items: members },
-      items: members,
+      caseDoc: { ...publishedCase, items: ordered },
+      items: ordered,
       subjectId: subjectIdForClientNeed(publishedCase.primaryClientNeed, subjects),
     });
   }
@@ -298,7 +299,7 @@ export function studentFacingUnit(unit: PublishedUnit): PublishedUnit {
   if (unit.kind === "standalone") {
     return { ...unit, item: studentFacingItem(unit.item) };
   }
-  const items = unit.items.map((item) => studentFacingItem(item));
+  const items = sortNgnItemsByCaseStep(unit.items).map((item) => studentFacingItem(item));
   return {
     ...unit,
     items,

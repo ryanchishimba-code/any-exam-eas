@@ -13,6 +13,7 @@
  * writes QuestionBankItem. Cases publish and unpublish as a whole.
  * One failing item keeps the case draft.
  */
+import { sortNgnItemsByCaseStep } from "../../src/lib/assessment/case-order";
 import type { ReviewGateInput } from "../../src/lib/assessment/publish-gate";
 import {
   evaluatePublish,
@@ -36,7 +37,10 @@ type PrismaLike = {
     update: (args: { where: { id_version: { id: string; version: number } }; data: { status: string } }) => Promise<unknown>;
   };
   ngnItem: {
-    findMany: (args: { where?: Record<string, unknown> }) => Promise<ItemRow[]>;
+    findMany: (args: {
+      where?: Record<string, unknown>;
+      orderBy?: { caseStep?: "asc" | "desc"; id?: "asc" | "desc" }[];
+    }) => Promise<ItemRow[]>;
     update: (args: { where: { id_version: { id: string; version: number } }; data: { status: string } }) => Promise<unknown>;
   };
   ngnItemReview: {
@@ -221,7 +225,10 @@ async function main() {
     });
     const batchIds = batches.map((batch) => batch.batchId);
     const itemRows = batchIds.length
-      ? await prisma.ngnItem.findMany({ where: { batchId: { in: batchIds } } })
+      ? await prisma.ngnItem.findMany({
+          where: { batchId: { in: batchIds } },
+          orderBy: [{ caseStep: "asc" }, { id: "asc" }],
+        })
       : [];
     const caseRows = batchIds.length
       ? await prisma.ngnCase.findMany({ where: { batchId: { in: batchIds } } })
@@ -255,7 +262,7 @@ async function main() {
       version: row.version,
       batchId: row.batchId,
       status: row.status,
-      caseDoc: toCase(row, itemsByCase.get(`${row.id}:${row.version}`) ?? []),
+      caseDoc: toCase(row, sortNgnItemsByCaseStep(itemsByCase.get(`${row.id}:${row.version}`) ?? [])),
     }));
     const sourcesByBatch: Record<string, SourceRef[]> = {};
     for (const batch of batches) {

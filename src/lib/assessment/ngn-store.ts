@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
 import { canPublish, type ReviewGateInput } from "@/lib/assessment/publish-gate";
 import type { NgnCase, NgnChart, NgnItem, NgnPatient, NgnTimepoint, SourceRef } from "@/lib/assessment/types";
 
@@ -225,7 +226,9 @@ export async function loadReviewIndex(filters: {
       const caseDoc = caseRow
         ? toCase(
             caseRow,
-            items.filter((sibling) => sibling.caseId === row.caseId).map((sibling) => toItem(sibling))
+            sortNgnItemsByCaseStep(
+              items.filter((sibling) => sibling.caseId === row.caseId).map((sibling) => toItem(sibling))
+            )
           )
         : null;
       const itemReviews = reviews
@@ -289,7 +292,7 @@ export async function loadItemReview(itemId: string, version: number): Promise<I
           orderBy: { caseStep: "asc" },
         })
       : [row];
-    const siblings = siblingRows.map(toItem);
+    const siblings = sortNgnItemsByCaseStep(siblingRows.map(toItem));
     const item = toItem(row);
     const caseRow = row.caseId
       ? await prisma.ngnCase.findUnique({

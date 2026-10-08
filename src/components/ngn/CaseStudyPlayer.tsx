@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ChartPanel, ChartSheet } from "@/components/ngn/ChartPanel";
 import { ItemRenderer } from "@/components/ngn/ItemRenderer";
 import { ngnFocus, ngnMuted } from "@/components/ngn/brand";
+import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
 import { NCLEX_RN_2026_PROFILE } from "@/lib/assessment/profiles/nclex-rn-2026";
 import type { NgnCase, NgnItem, SourceRef } from "@/lib/assessment/types";
 
@@ -39,7 +40,7 @@ export function CaseStudyPlayer({
   busy = false,
   rationaleVisible = false,
 }: CaseStudyPlayerProps) {
-  const ordered = [...(items ?? caseDoc.items)].sort((a, b) => (a.caseStep ?? 0) - (b.caseStep ?? 0));
+  const ordered = sortNgnItemsByCaseStep(items ?? caseDoc.items);
   const [step, setStep] = useState(() => Math.min(Math.max(initialStep, 0), Math.max(ordered.length - 1, 0)));
   const [responses, setResponses] = useState<Record<string, unknown>>(() => initialResponses ?? {});
   const [chartOpen, setChartOpen] = useState(false);
