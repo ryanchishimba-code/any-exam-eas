@@ -9,7 +9,7 @@
  * A case study is not an extra question. QuestionBankItem rows that are already
  * case-style or NGN-style stay inside the bank-item total. They are not added again.
  */
-import type { PublishedCatalog } from "@/lib/assessment/serve";
+import type { PublishedCatalog, PublishedCaseUnit } from "@/lib/assessment/serve";
 import { blueprintAreaLabel, blueprintCategoryIdForQuestion } from "@/lib/inventory/blueprint-domain-pool";
 import type { FormatCounts, InventoryCategoryCount } from "@/lib/inventory/active-questions";
 
@@ -205,18 +205,27 @@ type ClinicalUnit = {
   scoredItems: number;
   /** Practice-unit bucket. A case study counts as one case, not as its items. */
   format: "ngn" | "case";
+  /** Topics whose Cases card should include this unit. Scored totals stay on subjectId. */
+  formatSubjectIds: string[];
 };
+
+function formatSubjectIdsForCase(unit: PublishedCaseUnit): string[] {
+  if (unit.practiceSubjectIds && unit.practiceSubjectIds.length > 0) return [...unit.practiceSubjectIds];
+  return unit.subjectId ? [unit.subjectId] : [];
+}
 
 function unitsFromCatalog(catalog: PublishedCatalog): ClinicalUnit[] {
   const standalones: ClinicalUnit[] = catalog.standalones.map((unit) => ({
     subjectId: unit.subjectId,
     scoredItems: 1,
     format: "ngn",
+    formatSubjectIds: unit.subjectId ? [unit.subjectId] : [],
   }));
   const cases: ClinicalUnit[] = catalog.cases.map((unit) => ({
     subjectId: unit.subjectId,
     scoredItems: unit.items.length,
     format: "case",
+    formatSubjectIds: formatSubjectIdsForCase(unit),
   }));
   return [...standalones, ...cases];
 }
@@ -266,11 +275,18 @@ export function applyScoredClinicalCatalog(input: {
     for (const unit of unitsFromCatalog(input.catalog)) {
       if (unit.subjectId) {
         topicCounts[unit.subjectId] = (topicCounts[unit.subjectId] ?? 0) + unit.scoredItems;
-        const current = topicFormats[unit.subjectId] ?? { mcq: 0, ngn: 0, case: 0 };
-        current[unit.format] += 1;
-        topicFormats[unit.subjectId] = current;
       } else {
         unmappedTopics += unit.scoredItems;
+      }
+      const formatSubjects = unit.formatSubjectIds.length > 0
+        ? unit.formatSubjectIds
+        : unit.subjectId
+          ? [unit.subjectId]
+          : [];
+      for (const id of formatSubjects) {
+        const current = topicFormats[id] ?? { mcq: 0, ngn: 0, case: 0 };
+        current[unit.format] += 1;
+        topicFormats[id] = current;
       }
 
       const areaId = unit.subjectId

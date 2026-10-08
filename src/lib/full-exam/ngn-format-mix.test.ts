@@ -105,6 +105,40 @@ describe("selectWithNgnFormatMix", () => {
     expect(picked.every((p) => p.itemType === "vignette")).toBe(true);
   });
 
+  it("serves unseen cases before seen ones and keeps steps 1-6 together", () => {
+    const vignettes = Array.from({ length: 70 }, (_, index) => item(`v${index}`, "vignette"));
+    const group = (setId: string): BankItem[] =>
+      [1, 2, 3, 4, 5, 6].map(
+        (step) =>
+          ({
+            ...item(`ngn:${setId}-S${step}:v1`, "case_study"),
+            question: `Step ${step} for ${setId}. Which finding needs follow-up?`,
+            explanation: "The chart finding is the one that changes the plan for this step.",
+            ngnPayload: { kind: "sequential", setId, stepIndex: step },
+          }) as BankItem
+      );
+    const pool = [...vignettes, ...group("A"), ...group("B"), ...group("C"), ...group("D")];
+    const picked = selectWithNgnFormatMix(
+      pool,
+      85,
+      "nursing",
+      7,
+      new Map([
+        ["A", 100],
+        ["B", 500],
+      ])
+    );
+    const stepsFor = (setId: string) =>
+      picked
+        .filter((row) => row.ngnPayload?.setId === setId)
+        .map((row) => row.ngnPayload?.stepIndex);
+    const chosen = ["A", "B", "C", "D"].filter((setId) => stepsFor(setId).length > 0);
+    expect(chosen.sort()).toEqual(["A", "C", "D"]);
+    for (const setId of chosen) {
+      expect(stepsFor(setId)).toEqual([1, 2, 3, 4, 5, 6]);
+    }
+  });
+
   it("is a no-op for fields without ngnMix", () => {
     const pool = [
       item("a", "vignette"),

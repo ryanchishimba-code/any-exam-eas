@@ -113,7 +113,7 @@ export function CaseStudyPlayer({
       </ol>
 
       <div className="mt-4 lg:grid lg:grid-cols-2 lg:gap-5">
-        {large ? <div className="min-h-[28rem]">{chart}</div> : null}
+        {large ? <div className="min-h-[28rem] min-w-0">{chart}</div> : null}
         <section className="rounded-3xl border border-[#e2e8f0] bg-white p-5 sm:p-6" aria-label="Question">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#334155]">
             {stepMeta?.label}
