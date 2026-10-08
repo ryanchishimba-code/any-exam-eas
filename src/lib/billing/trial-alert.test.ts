@@ -102,10 +102,14 @@ describe("trial exam names and masking", () => {
         { name: "NCLEX-RN", count: 1 },
       ],
       analyticsUrl: "https://www.anyexameasy.com/admin/analytics",
-      logoUrl: "https://www.anyexameasy.com/images/brand/anyexameasy-logo.png",
+      logoUrl: "https://www.anyexameasy.com/images/brand/anyexameasy-wordmark.png",
     });
     expect(email.subject).toBe("🎉 New trial: NAPLEX");
-    expect(email.html).toContain("NAPLEX");
+    expect(email.html).toContain("Someone just started a NAPLEX trial!");
+    expect(email.html).toContain('width="160"');
+    expect(email.html).toContain("Today by exam");
+    expect(email.html).not.toContain(">New trial<");
+    expect(email.html.split("1:30 PM").length - 1).toBe(1);
     expect(email.html).toContain("Jordan");
     expect(email.html).toContain("Open analytics");
     expect(email.html).toContain("prefers-color-scheme: dark");
@@ -113,7 +117,8 @@ describe("trial exam names and masking", () => {
     expect(email.html).not.toContain("tel:");
     expect(email.text).toContain("Trials today: 4");
     expect(email.text).toContain("Trials this week: 12");
-    expect(email.text).toContain("NAPLEX 3");
+    expect(email.text).toContain("Today by exam: NAPLEX 3");
+    expect(email.text.split("1:30 PM").length - 1).toBe(1);
     expect(email.text).not.toContain(FULL_EMAIL);
   });
 

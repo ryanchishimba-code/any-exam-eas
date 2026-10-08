@@ -10,7 +10,7 @@ import { chromium } from "@playwright/test";
 import { formatTrialAlertEmail } from "../src/lib/billing/trial-alert-content";
 
 const outDir = process.env.TRIAL_ALERT_PREVIEW_DIR?.trim() || "/opt/cursor/artifacts";
-const logoPath = path.join(process.cwd(), "public/images/brand/anyexameasy-logo.png");
+const logoPath = path.join(process.cwd(), "public/images/brand/anyexameasy-wordmark.png");
 const logoData = `data:image/png;base64,${readFileSync(logoPath).toString("base64")}`;
 
 const content = formatTrialAlertEmail({

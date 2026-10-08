@@ -281,9 +281,10 @@ export function formatTrialAlertEmail(model: TrialAlertEmailModel): {
   text: string;
 } {
   const analyticsUrl = model.analyticsUrl ?? `${appBaseUrl()}/admin/analytics`;
-  const logoUrl = model.logoUrl ?? `${appBaseUrl()}/images/brand/anyexameasy-logo.png`;
+  const logoUrl = model.logoUrl ?? `${appBaseUrl()}/images/brand/anyexameasy-wordmark.png`;
   const when = formatChicagoDateTime(model.startedAt);
   const subject = `🎉 New trial: ${model.examName}`;
+  const headline = `🎉 Someone just started a ${model.examName} trial!`;
   const tally =
     model.todayByExam.length > 0
       ? model.todayByExam.map((row) => `${row.name} ${row.count}`).join(" · ")
@@ -295,8 +296,11 @@ export function formatTrialAlertEmail(model: TrialAlertEmailModel): {
     model.source ? detailRow("Source", model.source) : "",
     detailRow("Trials today", String(model.trialsToday)),
     detailRow("Trials this week", String(model.trialsWeek)),
-    tally ? detailRow("Today", tally) : "",
+    tally ? detailRow("Today by exam", tally) : "",
   ].join("");
+
+  const dot = (color: string) =>
+    `<td width="8" height="8" bgcolor="${color}" style="width:8px;height:8px;background:${color};border-radius:99px;font-size:0;line-height:0;">&nbsp;</td><td width="7" style="font-size:0;line-height:0;">&nbsp;</td>`;
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -307,6 +311,10 @@ export function formatTrialAlertEmail(model: TrialAlertEmailModel): {
   <meta name="supported-color-schemes" content="light dark" />
   <title>${escapeHtml(subject)}</title>
   <style>
+    @media only screen and (max-width: 480px) {
+      .aee-headline { font-size: 22px !important; }
+      .aee-badge-text { font-size: 26px !important; }
+    }
     @media (prefers-color-scheme: dark) {
       .aee-bg { background:#0b1220 !important; }
       .aee-card { background:#111827 !important; border-color:#1f2937 !important; }
@@ -314,25 +322,34 @@ export function formatTrialAlertEmail(model: TrialAlertEmailModel): {
       .aee-muted { color:#94a3b8 !important; }
       .aee-line { border-color:#1f2937 !important; }
       .aee-foot { color:#64748b !important; }
+      .aee-logo-plate { background:#ffffff !important; }
+      .aee-band { background:#0e7490 !important; }
+      .aee-on-band { color:#ffffff !important; }
+      .aee-badge { background:#0e7490 !important; }
     }
   </style>
 </head>
 <body class="aee-bg" style="margin:0;padding:0;background:#f5f5f7;color:#1d1d1f;-webkit-text-size-adjust:100%;">
-  <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${escapeHtml(model.examName)} · ${escapeHtml(model.identity)} · ${model.trialsToday} today</div>
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${escapeHtml(headline)} · ${escapeHtml(model.identity)}</div>
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="aee-bg" bgcolor="#f5f5f7" style="background:#f5f5f7;padding:28px 16px;">
     <tr><td align="center">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="aee-card" bgcolor="#ffffff" style="max-width:560px;background:#ffffff;border-radius:16px;border:1px solid rgba(0,0,0,0.06);">
-        <tr><td style="padding:28px 24px 8px;" align="center">
-          <img src="${escapeHtml(logoUrl)}" alt="Any Exam Easy" width="148" style="display:block;width:148px;max-width:70%;height:auto;margin:0 auto 18px;border:0;" />
-          <p class="aee-muted" style="margin:0 0 8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#0e7490;">New trial</p>
-          <h1 class="aee-ink" style="margin:0 0 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:32px;line-height:1.15;font-weight:700;color:#0f172a;">🎉 New trial</h1>
-          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 18px;">
-            <tr><td bgcolor="#0e7490" style="background:#0e7490;background-image:linear-gradient(135deg,#0e7490,#0891b2);border-radius:999px;padding:10px 22px;">
-              <span style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:22px;line-height:1.2;font-weight:700;color:#ffffff;">${escapeHtml(model.examName)}</span>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="aee-card" bgcolor="#ffffff" style="max-width:560px;background:#ffffff;border-radius:16px;border:1px solid rgba(0,0,0,0.06);overflow:hidden;">
+        <tr><td class="aee-logo-plate" bgcolor="#ffffff" align="center" style="background:#ffffff;padding:18px 24px 14px;">
+          <img src="${escapeHtml(logoUrl)}" alt="AnyExamEasy" width="160" style="display:block;width:160px;max-width:72%;height:auto;margin:0 auto;border:0;" />
+        </td></tr>
+        <tr><td class="aee-band" bgcolor="#0e7490" align="center" style="background-color:#0e7490;background-image:linear-gradient(135deg,#0e7490,#0891b2);padding:22px 22px 24px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 14px;"><tr>
+            ${dot("#ffffff")}${dot("#a5f3fc")}${dot("#fde68a")}${dot("#fecdd3")}${dot("#99f6e4")}
+          </tr></table>
+          <h1 class="aee-headline aee-on-band" style="margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:26px;line-height:1.25;font-weight:700;color:#ffffff;">${escapeHtml(headline)}</h1>
+        </td></tr>
+        <tr><td align="center" style="padding:22px 24px 6px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 14px;">
+            <tr><td class="aee-badge" bgcolor="#0e7490" align="center" style="background-color:#0e7490;background-image:linear-gradient(135deg,#0e7490,#0891b2);border-radius:999px;padding:14px 28px;">
+              <span class="aee-badge-text" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:30px;line-height:1.15;font-weight:700;color:#ffffff;">${escapeHtml(model.examName)}</span>
             </td></tr>
           </table>
-          <p class="aee-ink" style="margin:0 0 4px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:18px;font-weight:600;color:#0f172a;">${escapeHtml(model.identity)}</p>
-          <p class="aee-muted" style="margin:0 0 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:13px;color:#64748b;">${escapeHtml(when)}</p>
+          <p class="aee-ink" style="margin:0 0 8px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:18px;font-weight:600;color:#0f172a;">${escapeHtml(model.identity)}</p>
         </td></tr>
         <tr><td style="padding:0 24px 8px;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
@@ -340,7 +357,7 @@ export function formatTrialAlertEmail(model: TrialAlertEmailModel): {
           </table>
         </td></tr>
         <tr><td align="center" style="padding:22px 24px 28px;">
-          <a href="${escapeHtml(analyticsUrl)}" style="display:inline-block;background:#0e7490;background-image:linear-gradient(135deg,#0e7490,#0891b2);color:#ffffff;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:600;font-size:15px;padding:12px 22px;border-radius:12px;">Open analytics</a>
+          <a href="${escapeHtml(analyticsUrl)}" style="display:inline-block;background-color:#0e7490;background-image:linear-gradient(135deg,#0e7490,#0891b2);color:#ffffff;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:600;font-size:15px;padding:12px 22px;border-radius:12px;">Open analytics</a>
         </td></tr>
       </table>
       <p class="aee-foot" style="margin:14px 0 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:11px;color:#94a3b8;">Any Exam Easy</p>
@@ -350,16 +367,15 @@ export function formatTrialAlertEmail(model: TrialAlertEmailModel): {
 </html>`;
 
   const textLines = [
-    subject,
+    headline,
     "",
-    model.examName,
     model.identity,
-    when,
+    `Started: ${when}`,
     model.planLabel ? `Plan: ${model.planLabel}` : "",
     model.source ? `Source: ${model.source}` : "",
     `Trials today: ${model.trialsToday}`,
     `Trials this week: ${model.trialsWeek}`,
-    tally ? `Today: ${tally}` : "",
+    tally ? `Today by exam: ${tally}` : "",
     "",
     `Analytics: ${analyticsUrl}`,
   ].filter((line) => line !== "");
