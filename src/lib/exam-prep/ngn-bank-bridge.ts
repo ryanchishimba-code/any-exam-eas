@@ -70,6 +70,17 @@ export function ngnPayloadToChartData(
       rows: payload.rows,
       columns: payload.columns,
       matrixMulti: payload.matrixMulti === true,
+      ...(payload.requireSelectionPerRow === true ? { requireSelectionPerRow: true } : {}),
+      ...(payload.requireOnePerRow === true ? { requireOnePerRow: true } : {}),
+    };
+  }
+
+  if (kind === "select_n" || payload.responseFormat === "mr_select_n") {
+    return {
+      kind: "select_n",
+      responseFormat: "mr_select_n",
+      n: payload.n,
+      options: payload.options,
     };
   }
 
@@ -122,7 +133,11 @@ export function bankItemToExamQuestion(
   const ngnFormat = itemTypeToNgnFormat(item.itemType);
 
   let options = [...coerceOptionList(item.options)];
-  if (item.itemType === "select_all" || item.ngnPayload?.kind === "select_all") {
+  if (
+    item.itemType === "select_all" ||
+    item.ngnPayload?.kind === "select_all" ||
+    item.ngnPayload?.kind === "select_n"
+  ) {
     const fromPayload = item.ngnPayload?.options;
     if (Array.isArray(fromPayload)) options = fromPayload.map(String);
   }

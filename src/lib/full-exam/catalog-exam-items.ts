@@ -206,6 +206,8 @@ function convertMatrix(
       rows,
       columns: columns.map((column) => column.text),
       matrixMulti: multi,
+      ...(payload.requireSelectionPerRow === true ? { requireSelectionPerRow: true } : {}),
+      ...(payload.requireOnePerRow === true ? { requireOnePerRow: true } : {}),
     },
   };
 }
@@ -249,6 +251,21 @@ function convertChoices(
       options: options.map((option) => option.text),
       correctAnswer: texts[0]!,
       ngnPayload: item.caseId ? { kind: "sequential", options: options.map((option) => option.text) } : { kind: "mcq" },
+    };
+  }
+  if (format === "mr_select_n") {
+    const n = typeof payload.n === "number" && Number.isInteger(payload.n) && payload.n > 0 ? payload.n : null;
+    if (n == null || texts.length < 1 || options.length <= n) return null;
+    return {
+      itemType: "select_all",
+      options: options.map((option) => option.text),
+      correctAnswer: texts.join("|||"),
+      ngnPayload: {
+        kind: "select_n",
+        responseFormat: "mr_select_n",
+        n,
+        options: options.map((option) => option.text),
+      },
     };
   }
   if (texts.length < 2) return null;

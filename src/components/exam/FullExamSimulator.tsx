@@ -46,6 +46,7 @@ import {
   mergeExamAnswers,
 } from "@/lib/exam-sessions/scoring";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
+import { resolveNgnMultiResponseRule, toggleCappedSelection } from "@/lib/questions/ngn-response-rules";
 import { parseBowTieLayout, parseMatrixKey, toggleBowTieSelection } from "@/lib/questions/ngn-structures";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { mapApiQuestionsToStudy } from "@/lib/questions/map-api-questions";
@@ -679,12 +680,16 @@ export function FullExamSimulator({
         nextSelected = [option];
       } else if (current.type === "select_all" || current.type === "highlight") {
         const prev = currentAnswer.selected;
-        nextSelected = prev.includes(option)
-          ? prev.filter((o) => o !== option)
-          : [...prev, option];
+        const rule = resolveNgnMultiResponseRule(current);
+        nextSelected =
+          rule?.format === "mr_select_n"
+            ? toggleCappedSelection(rule, prev, option)
+            : prev.includes(option)
+              ? prev.filter((o) => o !== option)
+              : [...prev, option];
       } else if (current.type === "matrix") {
         const prev = currentAnswer.selected;
-        const multi = current.ngnPayload?.matrixMulti === true;
+        const multi = resolveNgnMultiResponseRule(current)?.format === "matrix_mr";
         if (prev.includes(option)) {
           nextSelected = prev.filter((o) => o !== option);
         } else if (multi) {

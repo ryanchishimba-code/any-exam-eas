@@ -13,6 +13,11 @@ import {
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
 import {
+  ngnCheckEnabled,
+  resolveNgnMultiResponseRule,
+  toggleCappedSelection,
+} from "@/lib/questions/ngn-response-rules";
+import {
   bowTieSelectionValid,
   parseBowTieLayout,
   parseMatrixKey,
@@ -537,13 +542,18 @@ export function StudySessionPlayer({
       return;
     }
     if (current.type === "select_all" || current.type === "highlight") {
+      const rule = resolveNgnMultiResponseRule(current);
       setSelected((prev) =>
-        prev.includes(option) ? prev.filter((o) => o !== option) : [...prev, option]
+        rule?.format === "mr_select_n"
+          ? toggleCappedSelection(rule, prev, option)
+          : prev.includes(option)
+            ? prev.filter((o) => o !== option)
+            : [...prev, option]
       );
       return;
     }
     if (current.type === "matrix") {
-      const multi = current.ngnPayload?.matrixMulti === true;
+      const multi = resolveNgnMultiResponseRule(current)?.format === "matrix_mr";
       setSelected((prev) => {
         if (prev.includes(option)) return prev.filter((o) => o !== option);
         if (multi) return [...prev, option];
@@ -566,6 +576,8 @@ export function StudySessionPlayer({
 
   function canSubmitSelection(): boolean {
     if (!current || selected.length === 0) return false;
+    const responseRule = resolveNgnMultiResponseRule(current);
+    if (responseRule) return ngnCheckEnabled(responseRule, selected);
     const correctCount = current.correctAnswers?.length ?? 0;
     if (current.type === "ordered_response") {
       return selected.length === correctCount;
@@ -573,9 +585,6 @@ export function StudySessionPlayer({
     if (current.type === "bow_tie") {
       const layout = parseBowTieLayout(current);
       return bowTieSelectionValid(selected, layout);
-    }
-    if (current.type === "matrix") {
-      return selected.length === correctCount;
     }
     if (current.type === "drag_drop") {
       const prompts = (current.ngnPayload as { prompts?: string[] } | undefined)?.prompts;
@@ -640,7 +649,8 @@ export function StudySessionPlayer({
       if (num >= 1 && num <= optionCount) {
         toggleSelect(current.options[num - 1]);
       }
-      if (e.key === "Enter" && selected.length > 0) {
+      if (e.key === "Enter" && canSubmitSelection()) {
+        e.preventDefault();
         void revealAnswer(selected);
       }
     }
@@ -876,9 +886,7 @@ export function StudySessionPlayer({
                 ? `Select ${(current.correctAnswers?.length ?? 0) - selected.length} more`
                 : current.type === "bow_tie" && !canSubmitSelection()
                   ? "Complete bow-tie selections"
-                  : current.type === "matrix" && !canSubmitSelection()
-                    ? `Select ${current.correctAnswers?.length ?? 0} cells`
-                    : "Check"}
+                  : "Check"}
             </button>
           )}
 

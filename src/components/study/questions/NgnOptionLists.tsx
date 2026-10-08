@@ -1,6 +1,10 @@
 "use client";
 
 import { cleanOptionText } from "@/lib/question-format";
+import {
+  NGN_SELECT_ALL_INSTRUCTION,
+  resolveNgnMultiResponseRule,
+} from "@/lib/questions/ngn-response-rules";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { Check, X } from "lucide-react";
 
@@ -35,11 +39,14 @@ export function McqOptions({ question, selected, revealed, onToggle }: OptionPro
 }
 
 export function SelectAllOptions({ question, selected, revealed, onToggle }: OptionProps) {
+  const rule = resolveNgnMultiResponseRule(question);
+  const instruction =
+    rule?.format === "mr_select_n"
+      ? rule.instruction
+      : `${NGN_SELECT_ALL_INSTRUCTION} — tap each correct choice.`;
   return (
     <>
-      <p className="mt-4 text-xs text-[var(--color-ink-muted)]">
-        Select all that apply — tap each correct choice.
-      </p>
+      <p className="mt-4 text-xs text-[var(--color-ink-muted)]">{instruction}</p>
       <ul className="mt-3 space-y-2.5">
         {question.options.map((opt, i) => (
           <OptionRow

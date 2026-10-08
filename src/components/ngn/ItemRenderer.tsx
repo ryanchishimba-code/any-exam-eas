@@ -7,6 +7,7 @@ import { HighlightText } from "@/components/ngn/items/HighlightText";
 import { MatrixMC, MatrixMR } from "@/components/ngn/items/MatrixItems";
 import { BowTie, emptyBowTie, type BowTieValue } from "@/components/ngn/items/BowTie";
 import { TrendExhibit } from "@/components/ngn/items/TrendExhibit";
+import { resolveNgnMultiResponseRule } from "@/lib/questions/ngn-response-rules";
 import type { NgnItem, NgnOption, NgnReference, SourceRef } from "@/lib/assessment/types";
 
 type ItemRendererProps = {
@@ -230,6 +231,12 @@ export function ItemRenderer({
     item.exhibit && typeof item.exhibit === "object"
       ? (item.exhibit as { title?: string; columns?: unknown; rows?: unknown; note?: string; text?: string })
       : null;
+  const responseRule = resolveNgnMultiResponseRule({
+    responseFormat: item.responseFormat,
+    payload: item.payload,
+  });
+  const instruction =
+    responseRule && item.responseFormat !== "mr_select_n" ? responseRule.instruction : null;
 
   return (
     <div className="space-y-6">
@@ -240,6 +247,7 @@ export function ItemRenderer({
           <p className="mt-2 text-[15px] leading-6 text-[#0A2540]">{exhibit.text}</p>
         </aside>
       ) : null}
+      {instruction ? <p className="text-sm font-medium text-[#334155]">{instruction}</p> : null}
       {control}
       {showRationale ? (
         <RationalePanel
