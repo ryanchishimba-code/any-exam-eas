@@ -69,7 +69,6 @@ export function RationalePanel({ item, response, sourcesById, caseReferences }: 
               return (
                 <li key={id} className="rounded-2xl bg-white p-4 ring-1 ring-[#e2e8f0]">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs font-medium uppercase tracking-wide text-[#334155]">{id}</span>
                     <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${chip.className}`}>
                       {chip.label}
                     </span>

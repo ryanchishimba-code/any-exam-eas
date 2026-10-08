@@ -326,6 +326,25 @@ export function spreadPharmacyNumericEntries(items: readonly BankItem[], seed: n
 }
 
 /**
+ * A case counts as attempted when any of its steps is in the seen set.
+ * Those cases sort after unseen cases. Equal stamps shuffle together.
+ */
+function caseStampsFromSeen(
+  pool: readonly BankItem[],
+  seenIds: ReadonlySet<string> | undefined
+): Map<string, number> | undefined {
+  if (!seenIds || seenIds.size === 0) return undefined;
+  const stamps = new Map<string, number>();
+  for (const item of pool) {
+    const setId = sequentialSetId(item);
+    const id = item.id?.trim();
+    if (!setId || !id || !seenIds.has(id)) continue;
+    if (!stamps.has(setId)) stamps.set(setId, 1);
+  }
+  return stamps.size > 0 ? stamps : undefined;
+}
+
+/**
  * Final pass for a timed or full exam: cluster cap, unseen preference, then
  * the blueprint NGN mix when this field has one.
  */
@@ -351,8 +370,11 @@ export function finalizeAssembledSitting(params: {
     relax: false,
   });
 
+  const caseLastAttemptedAt = caseStampsFromSeen(params.pool, seen);
   const applyMix = (source: BankItem[]) =>
-    includeNgn ? selectWithNgnFormatMix(source, limit, params.fieldId, seed) : source.slice(0, limit);
+    includeNgn
+      ? selectWithNgnFormatMix(source, limit, params.fieldId, seed, caseLastAttemptedAt)
+      : source.slice(0, limit);
 
   let picked = applyMix(rankSittingByBlueprint(diverse.items, limit, params.fieldId, seed ^ 0x9e37));
   let relaxed = false;

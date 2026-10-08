@@ -56,7 +56,7 @@ export function BowTie({
 
   function textFor(part: Part, id: string | null) {
     if (!id) return "";
-    return banks[part].find((option) => option.id === id)?.text ?? id;
+    return banks[part].find((option) => option.id === id)?.text ?? "";
   }
 
   function place(part: Part, slot: number, id: string) {

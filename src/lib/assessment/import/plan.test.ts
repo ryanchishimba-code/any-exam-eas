@@ -10,7 +10,7 @@ const sha256 = createHash("sha256").update(bytes).digest("hex");
 
 describe("NGN seed plan", () => {
   it("matches the pilot sha256 and plans draft rows only", () => {
-    expect(sha256).toBe("5c437135339c259afdc9593451bb1683ddf220389c8ea6ac9c2759acfe8a38b4");
+    expect(sha256).toBe("997cf67195dc0b184ac55a6602668f59104f39bf2d6c094b12b7b8ae2cc688c5");
     const doc = JSON.parse(bytes.toString("utf8")) as PilotDocument;
     doc.status = "published";
     const plan = buildSeedPlan(doc, sha256);
@@ -30,5 +30,14 @@ describe("NGN seed plan", () => {
     expect(plan.items.filter((row) => row.itemType !== "case_item").every((row) => row.caseId === null)).toBe(
       true
     );
+    const discharge = doc.cases
+      .find((row) => row.id === "C06")
+      ?.items.find((row) => row.id === "C06-S1");
+    const tokens = (discharge?.payload as { tokens?: { text?: string }[] } | undefined)?.tokens ?? [];
+    const stem = tokens.map((token) => token.text ?? "").join("");
+    expect(stem).toContain(
+      "Tolerating regular diet. Voiding without difficulty. States, 'I can't afford all these new pills.'"
+    );
+    expect(stem).not.toContain("pills.'. Voiding");
   });
 });

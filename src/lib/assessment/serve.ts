@@ -3,6 +3,7 @@ import {
   type FormatCounts,
 } from "@/lib/inventory/question-format";
 import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
+import { orderByAttemptRecency, seededShuffle } from "@/lib/assessment/case-rotation";
 import type { NgnCase, NgnItem } from "@/lib/assessment/types";
 
 export type ServeItem = NgnItem & {
@@ -21,6 +22,12 @@ export type PublishedCaseUnit = {
   caseDoc: ServeCase & { items: ServeItem[] };
   items: ServeItem[];
   subjectId: string | null;
+  /**
+   * Topics that should offer and serve this case.
+   * Includes the client-need subject and blueprint siblings (for example
+   * Medical-Surgical Nursing shares Physiological Adaptation cases).
+   */
+  practiceSubjectIds?: string[];
 };
 
 export type PublishedStandaloneUnit = {
@@ -72,6 +79,7 @@ export function selectPublishedCatalog(input: {
   items: readonly ServeItem[];
   cases: readonly ServeCase[];
   subjects?: readonly { id: string; label: string }[];
+  fieldId?: string;
 }): PublishedCatalog {
   const subjects = input.subjects ?? [];
   const itemsById = new Map<string, ServeItem[]>();
@@ -126,11 +134,13 @@ export function selectPublishedCatalog(input: {
     }
     if (blocked) continue;
     const ordered = sortNgnItemsByCaseStep(members);
+    const subjectId = subjectIdForClientNeed(publishedCase.primaryClientNeed, subjects);
     cases.push({
       kind: "case",
       caseDoc: { ...publishedCase, items: ordered },
       items: ordered,
-      subjectId: subjectIdForClientNeed(publishedCase.primaryClientNeed, subjects),
+      subjectId,
+      practiceSubjectIds: practiceSubjectIdsFor(subjectId, input.fieldId ?? "nursing"),
     });
   }
   cases.sort((a, b) => a.caseDoc.id.localeCompare(b.caseDoc.id));
@@ -169,6 +179,34 @@ export function subjectIdForClientNeed(
   return best?.id ?? null;
 }
 
+/**
+ * Nursing topic ids that share one client-need category.
+ * Kept here so the case player does not import the blueprint module.
+ * Medical-Surgical Nursing shares Physiological Adaptation cases.
+ */
+const NURSING_PRACTICE_SUBJECT_GROUPS: readonly (readonly string[])[] = [
+  ["management-of-care"],
+  ["safety-infection"],
+  ["health-promotion"],
+  ["psychosocial"],
+  ["basic-care-comfort", "basic-care"],
+  ["pharmacology-nursing", "pharmacology"],
+  ["reduction-risk", "risk-reduction"],
+  ["physiological-adaptation", "med-surg"],
+];
+
+export function practiceSubjectIdsFor(subjectId: string | null, fieldId = "nursing"): string[] {
+  if (!subjectId) return [];
+  if (fieldId !== "nursing") return [subjectId];
+  const group = NURSING_PRACTICE_SUBJECT_GROUPS.find((ids) => ids.includes(subjectId));
+  return group ? [...new Set([subjectId, ...group])] : [subjectId];
+}
+
+export function casePracticeSubjectIds(unit: PublishedCaseUnit): readonly string[] {
+  if (unit.practiceSubjectIds && unit.practiceSubjectIds.length > 0) return unit.practiceSubjectIds;
+  return unit.subjectId ? [unit.subjectId] : [];
+}
+
 export type ClinicalFormatAddition = {
   ngn: number;
   case: number;
@@ -186,7 +224,11 @@ export function clinicalFormatAddition(
     topics[subjectId] = row;
   };
   for (const unit of catalog.standalones) add(unit.subjectId, "ngn");
-  for (const unit of catalog.cases) add(unit.subjectId, "case");
+  for (const unit of catalog.cases) {
+    const ids = casePracticeSubjectIds(unit);
+    if (ids.length === 0) continue;
+    for (const id of ids) add(id, "case");
+  }
   const counts = publishedFormatCounts(catalog);
   return { ...counts, topics };
 }
@@ -216,28 +258,6 @@ export function mergeClinicalFormatCounts(
   return { formats: next, topicFormats: topics };
 }
 
-function hashSeed(seed: string): number {
-  let hash = 2166136261;
-  for (let i = 0; i < seed.length; i += 1) {
-    hash ^= seed.charCodeAt(i);
-    hash = Math.imul(hash, 16777619);
-  }
-  return hash >>> 0;
-}
-
-function shuffle<T>(rows: readonly T[], seed: string): T[] {
-  const copy = [...rows];
-  let state = hashSeed(seed) || 1;
-  for (let i = copy.length - 1; i > 0; i -= 1) {
-    state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
-    const j = state % (i + 1);
-    const swap = copy[i]!;
-    copy[i] = copy[j]!;
-    copy[j] = swap;
-  }
-  return copy;
-}
-
 export function unitsForFormat(
   catalog: PublishedCatalog,
   format: "ngn" | "case",
@@ -247,21 +267,38 @@ export function unitsForFormat(
   if (format === "ngn") {
     return catalog.standalones.filter((unit) => mixed || unit.subjectId === subjectId);
   }
-  return catalog.cases.filter((unit) => mixed || unit.subjectId === subjectId);
+  return catalog.cases.filter(
+    (unit) => mixed || casePracticeSubjectIds(unit).includes(subjectId ?? "")
+  );
 }
 
-/** Whole cases or individual standalones. Never a subset of a case's steps. */
+/**
+ * Whole cases or individual standalones. Never a subset of a case's steps.
+ * Cases the student has not attempted come first, then the least recent.
+ * Cases with the same attempt time are shuffled. Steps stay in case_step order.
+ */
 export function takeSessionUnits(params: {
   catalog: PublishedCatalog;
   format: "ngn" | "case";
   subjectId?: string | null;
   limit: number;
   seed: string;
+  /** Case id -> last attempt time in ms. Missing or null means not attempted. */
+  caseLastAttemptedAt?: ReadonlyMap<string, number | null> | null;
 }): PublishedUnit[] {
   const pool = unitsForFormat(params.catalog, params.format, params.subjectId);
   const limit = Math.max(0, Math.floor(params.limit));
   if (limit === 0 || pool.length === 0) return [];
-  return shuffle(pool, params.seed).slice(0, Math.min(limit, pool.length));
+  const ordered =
+    params.format === "case"
+      ? orderByAttemptRecency(
+          pool,
+          (unit) => (unit.kind === "case" ? unit.caseDoc.id : ""),
+          params.caseLastAttemptedAt,
+          params.seed
+        )
+      : seededShuffle(pool, params.seed);
+  return ordered.slice(0, Math.min(limit, ordered.length));
 }
 
 export function scoredItemCount(units: readonly PublishedUnit[]): number {

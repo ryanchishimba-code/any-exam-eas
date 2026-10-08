@@ -36,9 +36,9 @@ export function DropdownCloze({
         if (!dropdown) return <span key={id}>{part}</span>;
         const options = orderForFormat(format, dropdown.options, `${seed}:${id}`);
         return (
-          <label key={id} className="mx-1 inline-flex items-center">
-            <span className="sr-only">{dropdown.role ? `${dropdown.role} ` : "Choice "}{id}</span>
+          <label key={id} className="mx-1 inline-flex min-w-0 items-center">
             <select
+              aria-label="Select a response"
               className={`min-h-11 max-w-full rounded-xl border border-[#e2e8f0] bg-white px-3 text-[15px] text-[#0A2540] ${ngnFocus}`}
               value={value[id] ?? ""}
               disabled={disabled}

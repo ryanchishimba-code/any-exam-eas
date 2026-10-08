@@ -258,9 +258,9 @@ export function DropdownExamQuestion({ question, selected, revealed, onToggle }:
           const dropdown = byId.get(id);
           if (!dropdown) return <span key={id}>{part}</span>;
           return (
-            <label key={id} className="mx-1 inline-flex items-center">
-              <span className="sr-only">Choice {id}</span>
+            <label key={id} className="mx-1 inline-flex min-w-0 items-center">
               <select
+                aria-label="Select a response"
                 className="min-h-11 max-w-full rounded-xl border border-black/10 bg-white px-3 text-[15px]"
                 value={current.get(id) ?? ""}
                 disabled={revealed}

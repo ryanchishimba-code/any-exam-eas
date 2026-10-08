@@ -2,6 +2,7 @@
  * Enforce blueprint NGN format quotas when assembling live NCLEX (and similar) exams.
  * Without this, random/gather paths over-sample vignettes even when NGN inventory is healthy.
  */
+import { orderByAttemptRecency } from "@/lib/assessment/case-rotation";
 import type { BankItem } from "@/lib/question-bank";
 import { sequentialSetId } from "@/lib/exam-prep/sitting-clusters";
 import { getExamBlueprint, type ExamBlueprint } from "@/lib/engine/blueprints";
@@ -274,7 +275,8 @@ export function selectWithNgnFormatMix(
   pool: BankItem[],
   limit: number,
   fieldId: string,
-  seed = 0x51ed270b
+  seed = 0x51ed270b,
+  caseLastAttemptedAt?: ReadonlyMap<string, number | null> | null
 ): BankItem[] {
   if (limit <= 0 || pool.length === 0) return [];
 
@@ -310,7 +312,16 @@ export function selectWithNgnFormatMix(
 
   const caseTarget = targets.find((target) => target.format === "unfolding_case");
   let caseRoom = caseTarget?.count ?? (limit >= 85 ? Math.min(18, limit) : 0);
-  for (const group of completeSequentialGroups(pool)) {
+  const caseGroups = orderByAttemptRecency(
+    completeSequentialGroups(pool),
+    (group) => {
+      const first = group[0];
+      return first ? (sequentialSetId(first) ?? "") : "";
+    },
+    caseLastAttemptedAt,
+    String(seed)
+  );
+  for (const group of caseGroups) {
     if (group.length < 2 || group.length > caseRoom) continue;
     if (picked.length + group.length > limit) continue;
     if (group.some((item) => used.has(item.id ?? ""))) continue;
@@ -330,6 +341,11 @@ export function selectWithNgnFormatMix(
 
   for (const target of targets) {
     let need = target.count;
+    if (target.format === "unfolding_case") {
+      for (const item of picked) {
+        if (itemMatchesFormat(item, target.format)) need -= 1;
+      }
+    }
     for (const item of pool) {
       if (need <= 0 || picked.length >= limit) break;
       if (!itemMatchesFormat(item, target.format)) continue;

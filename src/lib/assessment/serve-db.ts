@@ -7,6 +7,7 @@ import {
   scoredItemCount,
   selectPublishedCatalog,
   servedItemKeys,
+  ngnQuestionKey,
   studentFacingUnit,
   takeSessionUnits,
   type PublishedCatalog,
@@ -143,7 +144,7 @@ async function loadPublishedClinicalBankFromDb(fieldId: string): Promise<LoadedC
       revealRule: row.revealRule,
       references: Array.isArray(row.references) ? (row.references as NgnReference[]) : [],
     }));
-    const catalog = selectPublishedCatalog({ items, cases, subjects });
+    const catalog = selectPublishedCatalog({ items, cases, subjects, fieldId });
     const sourcesById: LoadedClinicalBank["sourcesById"] = {};
     for (const batch of batches) {
       const sources = Array.isArray(batch.sources) ? (batch.sources as SourceRef[]) : [];
@@ -243,8 +244,41 @@ export function buildStudentUnits(params: {
   subjectId?: string | null;
   limit: number;
   seed: string;
+  caseLastAttemptedAt?: ReadonlyMap<string, number | null> | null;
 }): PublishedUnit[] {
   return takeSessionUnits(params).map((unit) => studentFacingUnit(unit));
+}
+
+/** Latest attempt time per case. Any step counts as an attempt of the whole case. */
+export async function caseAttemptStamps(
+  userId: string,
+  catalog: PublishedCatalog
+): Promise<Map<string, number>> {
+  const keyToCase = new Map<string, string>();
+  for (const unit of catalog.cases) {
+    for (const item of unit.items) {
+      keyToCase.set(ngnQuestionKey(item.id, item.version), unit.caseDoc.id);
+    }
+  }
+  if (keyToCase.size === 0) return new Map();
+  const keys = [...keyToCase.keys()];
+  const rows = await prisma.questionAttempt.findMany({
+    where: {
+      userId,
+      OR: [{ questionKey: { in: keys } }, { bankItemId: { in: keys } }],
+    },
+    select: { questionKey: true, bankItemId: true, createdAt: true },
+  });
+  const stamps = new Map<string, number>();
+  for (const row of rows) {
+    const caseId =
+      keyToCase.get(row.questionKey) ?? (row.bankItemId ? keyToCase.get(row.bankItemId) : undefined);
+    if (!caseId) continue;
+    const at = row.createdAt.getTime();
+    const current = stamps.get(caseId);
+    if (current == null || at > current) stamps.set(caseId, at);
+  }
+  return stamps;
 }
 
 export function clinicalPoolCount(

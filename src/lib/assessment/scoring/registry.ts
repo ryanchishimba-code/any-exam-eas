@@ -180,6 +180,18 @@ export function perfect(item: ScorableItem): unknown {
   throw new Error(f);
 }
 
+function selectionLabel(payload: JsonRecord, id: string): string {
+  const pools = [payload.tokens, payload.options, payload.rows];
+  for (const pool of pools) {
+    for (const entry of asArray(pool)) {
+      const record = asRecord(entry);
+      if (String(record.id ?? "") !== id) continue;
+      if (typeof record.text === "string" && record.text.trim()) return record.text.trim();
+    }
+  }
+  return id;
+}
+
 /** Student-facing partial-credit lines. Only +/- selection formats emit lines. */
 export function explainPointsLost(item: ScorableItem, resp: unknown): string[] {
   const f = item.responseFormat;
@@ -189,13 +201,13 @@ export function explainPointsLost(item: ScorableItem, resp: unknown): string[] {
     const keys = new Set(asArray(p.keys).map((key) => String(key)));
     const sel = new Set(asArray(resp).map((key) => String(key)));
     for (const selected of [...sel].filter((key) => keys.has(key)).sort()) {
-      lines.push(`+1 ${selected}: correct selection`);
+      lines.push(`+1 ${selectionLabel(p, selected)}: correct selection`);
     }
     for (const selected of [...sel].filter((key) => !keys.has(key)).sort()) {
-      lines.push(`-1 ${selected}: incorrect selection (+/- scoring subtracts)`);
+      lines.push(`-1 ${selectionLabel(p, selected)}: incorrect selection (+/- scoring subtracts)`);
     }
     for (const missed of [...keys].filter((key) => !sel.has(key)).sort()) {
-      lines.push(` 0 ${missed}: missed correct answer`);
+      lines.push(` 0 ${selectionLabel(p, missed)}: missed correct answer`);
     }
   }
   return lines;

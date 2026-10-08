@@ -1,5 +1,11 @@
 import { NextResponse } from "next/server";
-import { clinicalPoolCount, loadPublishedClinicalBank, scoredItemCount, buildStudentUnits } from "@/lib/assessment/serve-db";
+import {
+  buildStudentUnits,
+  caseAttemptStamps,
+  clinicalPoolCount,
+  loadPublishedClinicalBank,
+  scoredItemCount,
+} from "@/lib/assessment/serve-db";
 import type { ClinicalSessionPayload } from "@/lib/assessment/clinical-session";
 import type { UserAccess } from "@/lib/access-control";
 import { trackEvent } from "@/lib/analytics/events";
@@ -29,12 +35,25 @@ export async function tryClinicalSessionResponse(params: {
     );
   }
 
+  let caseLastAttemptedAt: Map<string, number> | null = null;
+  if (params.format === "case") {
+    try {
+      caseLastAttemptedAt = await caseAttemptStamps(params.userId, bank.catalog);
+    } catch (error) {
+      console.warn(
+        "[clinical-session] case attempt history unavailable",
+        error instanceof Error ? error.message : error
+      );
+    }
+  }
+
   const units = buildStudentUnits({
     catalog: bank.catalog,
     format: params.format,
     subjectId: params.subjectId,
     limit: params.limit,
-    seed: `${params.userId}:${params.format}:${params.subjectId}:${new Date().toISOString().slice(0, 10)}`,
+    seed: `${params.userId}:${params.format}:${params.subjectId}:${crypto.randomUUID()}`,
+    caseLastAttemptedAt,
   });
   if (units.length !== params.limit) return null;
 

@@ -4832,21 +4832,21 @@
         "selectable": true
        },
        {
-        "text": ". States, ",
-        "selectable": false
-       },
-       {
-        "id": "h7",
-        "text": "'I can't afford all these new pills.'",
-        "selectable": true
-       },
-       {
         "text": ". ",
         "selectable": false
        },
        {
         "id": "h8",
         "text": "Voiding without difficulty",
+        "selectable": true
+       },
+       {
+        "text": ". States, ",
+        "selectable": false
+       },
+       {
+        "id": "h7",
+        "text": "'I can't afford all these new pills.'",
         "selectable": true
        }
       ],
