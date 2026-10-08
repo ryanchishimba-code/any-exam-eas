@@ -1,7 +1,7 @@
 /**
- * What a student is allowed to see. Exam mode hides case titles and every
- * clinical-judgment step name. Practice hides the step names too. Review
- * pages may keep the internal names. Results use plain-language step labels.
+ * What a student is allowed to see. Practice and exam hide case titles and
+ * every clinical-judgment step name. Internal review pages may keep both.
+ * Results use plain-language step labels.
  */
 
 export const NCLEX_STEP_NAMES = [
@@ -49,8 +49,7 @@ export function studentCaseChrome(input: {
         : null;
     return { stepLabel, caseTitle: input.caseTitle?.trim() || null };
   }
-  if (input.surface === "exam") return { stepLabel: null, caseTitle: null };
-  return { stepLabel: null, caseTitle: input.caseTitle?.trim() || null };
+  return { stepLabel: null, caseTitle: null };
 }
 
 /** Text that would be painted for one exam-mode item. Step names stay out. */

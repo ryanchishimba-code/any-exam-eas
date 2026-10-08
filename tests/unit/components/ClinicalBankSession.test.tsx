@@ -77,6 +77,9 @@ describe("student NGN session", () => {
     );
     expect(screen.getByText("Case 1 of 1")).toBeInTheDocument();
     expect(screen.getByText("Case 1 of 1").parentElement).toHaveClass("max-lg:sticky");
+    expect(screen.queryByText(caseDoc.title)).not.toBeInTheDocument();
+    expect(screen.getByText(/Question 1 of 6/)).toBeInTheDocument();
+    expect(screen.getByText(/POD 2, 0700/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Client chart" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Recognize cues|Prioritize hypotheses|Evaluate outcomes/ })).not.toBeInTheDocument();
     expect(screen.queryByText(/Recognize cues|Prioritize hypotheses|Generate solutions|Evaluate outcomes/)).not.toBeInTheDocument();

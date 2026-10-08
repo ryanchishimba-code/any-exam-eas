@@ -98,10 +98,19 @@ describe("student case chrome", () => {
     expect(screen.queryByText(STEP_NAME)).not.toBeInTheDocument();
   });
 
-  it("keeps step numbers and names on the internal review tabs", () => {
+  it("hides the case title and step names on the student review screen", () => {
+    render(<CaseStudyPlayer caseDoc={caseDoc} mode="review" />);
+    expect(screen.queryByText(caseDoc.title)).not.toBeInTheDocument();
+    expect(screen.queryByText(STEP_NAME)).not.toBeInTheDocument();
+    expect(screen.getByText(/Question 1 of 2/)).toBeInTheDocument();
+    expect(screen.getByText(/· 0800/)).toBeInTheDocument();
+  });
+
+  it("keeps step numbers, names, and the case title on the internal review tabs", () => {
     render(<CaseStudyPlayer caseDoc={caseDoc} mode="review" showStepNames />);
     expect(screen.getByRole("button", { name: "3 Prioritize hypotheses" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "4 Generate solutions" })).toBeInTheDocument();
+    expect(screen.getByText(caseDoc.title)).toBeInTheDocument();
   });
 
   it("falls back to Finding when a matrix does not name its row header", () => {

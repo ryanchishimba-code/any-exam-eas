@@ -97,6 +97,10 @@ export function CaseStudyPlayer({
         </p>
       </header>
 
+      {chrome.caseTitle ? (
+        <p className="mt-4 text-sm font-medium text-[#334155]">{chrome.caseTitle}</p>
+      ) : null}
+
       {showStepNames ? (
         <ol className="mt-4 flex gap-2 overflow-x-auto pb-1" aria-label="Clinical judgment steps">
           {ordered.map((entry, index) => {

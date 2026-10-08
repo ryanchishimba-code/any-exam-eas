@@ -43,14 +43,15 @@ describe("exam-mode labels and locking", () => {
     expect(studentQuestionPosition(2, 6)).not.toMatch(/^\d+\s/);
   });
 
-  it("hides step names in practice and keeps them on review", () => {
+  it("hides step names and case titles in practice and keeps both on review", () => {
     expect(studentCaseChrome({ surface: "practice", step: 3, caseTitle: "Going home safely" })).toEqual({
       stepLabel: null,
+      caseTitle: null,
+    });
+    expect(studentCaseChrome({ surface: "review", step: 1, caseTitle: "Going home safely" })).toEqual({
+      stepLabel: "Recognize cues",
       caseTitle: "Going home safely",
     });
-    expect(studentCaseChrome({ surface: "review", step: 1, caseTitle: "Going home safely" }).stepLabel).toBe(
-      "Recognize cues"
-    );
   });
 
   it("locks the answered item on Next and does not move backward", () => {
