@@ -1836,6 +1836,8 @@ model NgnCase {
   chart             Json
   revealRule        String   @map("reveal_rule") @db.Text
   references        Json
+  /// Hand-corrected case. Importers that honor this flag must not overwrite the chart or narrative.
+  manualCorrection  Boolean  @default(false) @map("manual_correction")
   supersedesId      String?  @map("supersedes_id")
   createdAt         DateTime @default(now()) @map("created_at")
 
@@ -1870,6 +1872,8 @@ model NgnItem {
   references     Json
   rnFlags        Json     @map("rn_flags")
   status         String   @default("draft")
+  /// Hand-corrected item. Importers that honor this flag must not overwrite stem, key, or rationale.
+  manualCorrection Boolean @default(false) @map("manual_correction")
   supersedesId   String?  @map("supersedes_id")
   createdAt      DateTime @default(now()) @map("created_at")
 

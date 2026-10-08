@@ -1,24 +1,46 @@
 import type { BoardProfile } from "@/lib/assessment/profiles/types";
 
 /**
- * Domains retrieved for the 2026-09-26 pilot registry.
+ * Publisher and guideline hosts cited by the NCLEX-RN bank
+ * (2026-09-26 pilot registry plus NGN batch 1).
  * A source URL outside this list fails validation.
  */
 export const NCLEX_RN_2026_SOURCE_DOMAINS = [
+  "academic.oup.com",
+  "ascopubs.org",
   "codeofethics.ana.org",
+  "cpr.heart.org",
   "dailymed.nlm.nih.gov",
   "digitalassets.jointcommission.org",
+  "emedicine.medscape.com",
+  "journal.chestnet.org",
+  "journals.bioscientifica.com",
+  "journals.lww.com",
   "kdigo.org",
+  "link.springer.com",
   "medlineplus.gov",
   "ncsbn.zendesk.com",
+  "onlinelibrary.wiley.com",
   "pmc.ncbi.nlm.nih.gov",
+  "publications.smfm.org",
+  "thorax.bmj.com",
+  "www.accessdata.fda.gov",
+  "www.acog.org",
+  "www.ahajournals.org",
   "www.ahrq.gov",
+  "www.ameriburn.org",
+  "www.amjmed.com",
   "www.cdc.gov",
   "www.cms.gov",
   "www.ecfr.gov",
+  "www.facs.org",
   "www.glasgowcomascale.org",
   "www.heart.org",
+  "www.liebertpub.com",
   "www.lifeblood.com.au",
+  "www.merckmanuals.com",
+  "www.ncbi.nlm.nih.gov",
+  "www.nccn.org",
   "www.nclex.com",
   "www.ncsbn.org",
   "www.nice.org.uk",
@@ -26,6 +48,7 @@ export const NCLEX_RN_2026_SOURCE_DOMAINS = [
   "www.rcp.ac.uk",
   "www.sccm.org",
   "www.ukkidney.org",
+  "www.vumc.org",
 ] as const;
 
 /** NCLEX-RN 2026 clinical judgment profile (NCJMM, six-item cases). */
