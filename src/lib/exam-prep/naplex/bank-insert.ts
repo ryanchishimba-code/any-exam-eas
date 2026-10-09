@@ -4,6 +4,7 @@
 import type { PrismaClient } from "@prisma/client";
 import type { BankItem } from "@/lib/question-bank";
 import { bankItemContentHash } from "@/lib/sync-question-bank";
+import { planBankWrite } from "@/lib/questions/manual-correction";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 import { assessNaplexFullExamItem } from "./quality-gate";
 import type { NaplexFullExamBundle } from "./types";
@@ -33,12 +34,12 @@ export async function insertNaplexFullExamItems(
 
     const existing = await prisma.questionBankItem.findUnique({
       where: { contentHash: hash },
-      select: { id: true },
+      select: { id: true, manualCorrection: true },
     });
 
     let questionBankItemId: string;
 
-    if (existing) {
+    if (existing && planBankWrite(existing) !== "create") {
       questionBankItemId = existing.id;
       skipped++;
     } else {

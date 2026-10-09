@@ -3,6 +3,7 @@
  */
 import type { PrismaClient } from "@prisma/client";
 import { bankItemContentHash } from "@/lib/sync-question-bank";
+import { planBankWrite } from "@/lib/questions/manual-correction";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 import { assessNclexFullExamItem } from "./quality-gate";
 import type { NclexFullExamBundle } from "./types";
@@ -43,9 +44,9 @@ export async function insertNclexFullExamItems(
     if (item.id) {
       const byId = await prisma.questionBankItem.findUnique({
         where: { id: item.id },
-        select: { id: true },
+        select: { id: true, manualCorrection: true },
       });
-      if (byId) {
+      if (byId && planBankWrite(byId) !== "create") {
         questionBankItemId = byId.id;
         skipped++;
       }
@@ -54,10 +55,10 @@ export async function insertNclexFullExamItems(
     if (!questionBankItemId) {
       const existing = await prisma.questionBankItem.findUnique({
         where: { contentHash: hash },
-        select: { id: true },
+        select: { id: true, manualCorrection: true },
       });
 
-      if (existing) {
+      if (existing && planBankWrite(existing) !== "create") {
         questionBankItemId = existing.id;
         skipped++;
       } else {

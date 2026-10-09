@@ -15,6 +15,7 @@ import { PrismaClient } from "@prisma/client";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 import { attachVisualRationaleToItem } from "../src/lib/engine/rationale/enrich-visual-rationale";
 import { EXPERT_RATIONALE_META_KEY } from "../src/lib/engine/rationale/expert-rationale-types";
+import { shouldSkipHandCorrected } from "../src/lib/questions/manual-correction";
 
 const prisma = new PrismaClient();
 const BATCH = 200;
@@ -73,6 +74,7 @@ async function main() {
       where: {
         fieldId: { in: fields },
         active: true,
+        manualCorrection: false,
         ...(lastId ? { id: { gt: lastId } } : {}),
       },
       orderBy: { id: "asc" },
@@ -93,6 +95,7 @@ async function main() {
         blueprintTopic: true,
         blueprintDomain: true,
         taskCategory: true,
+        manualCorrection: true,
       },
     });
 
@@ -100,6 +103,10 @@ async function main() {
 
     for (const row of rows) {
       scanned++;
+      if (shouldSkipHandCorrected(row)) {
+        skipped++;
+        continue;
+      }
       if (hasVisualBlocks(row.generationMeta)) {
         skipped++;
         continue;

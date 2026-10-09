@@ -19,6 +19,7 @@ loadEnvFiles();
 
 import { PrismaClient } from "@prisma/client";
 import { isNclexServeQuality } from "../src/lib/exam-prep/nclex-quality-gate";
+import { shouldSkipHandCorrected } from "../src/lib/questions/manual-correction";
 import { EXPERT_RATIONALE_META_KEY, EXPERT_RATIONALE_VERSION, readExpertRationaleFromMeta } from "../src/lib/engine/rationale/expert-rationale-types";
 import { generateExpertNclexRationale } from "../src/lib/engine/rationale/generate-expert-rationale";
 import { attachVisualRationaleToItem } from "../src/lib/engine/rationale/enrich-visual-rationale";
@@ -103,6 +104,7 @@ async function main() {
       where: {
         fieldId: "nursing",
         active: true,
+        manualCorrection: false,
         ...(serveOnly ? { qaPassed: true } : {}),
         ...(subjects?.length ? { subjectId: { in: subjects } } : {}),
         ...(tagsContains ? { tags: { contains: tagsContains } } : {}),
@@ -117,6 +119,10 @@ async function main() {
       if (enriched >= limit) break;
       scanned++;
       lastId = row.id;
+      if (shouldSkipHandCorrected(row)) {
+        skipped++;
+        continue;
+      }
 
       const priorMeta = readMeta(row);
 

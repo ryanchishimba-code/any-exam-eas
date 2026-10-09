@@ -18,6 +18,7 @@ import { loadEnvFiles, requireOpenAiKey } from "./load-env";
 loadEnvFiles();
 
 import { PrismaClient } from "@prisma/client";
+import { shouldSkipHandCorrected } from "../src/lib/questions/manual-correction";
 import {
   bankItemIsBoardServeReady,
   boardFieldLabel,
@@ -148,6 +149,7 @@ async function enrichField(
         where: {
           fieldId,
           active: true,
+          manualCorrection: false,
           ...(opts.serveOnly ? { qaPassed: true } : {}),
           ...(lastId ? { id: { gt: lastId } } : {}),
         },
@@ -161,6 +163,10 @@ async function enrichField(
       if (enriched >= perFieldLimit) break;
       scanned++;
       lastId = row.id;
+      if (shouldSkipHandCorrected(row)) {
+        skipped++;
+        continue;
+      }
 
       if (!opts.force && readExpertRationaleFromMeta(row.generationMeta)) {
         skipped++;

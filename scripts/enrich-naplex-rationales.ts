@@ -20,6 +20,7 @@ loadEnvFiles();
 
 import { PrismaClient } from "@prisma/client";
 import { assessNaplexItemQuality } from "../src/lib/exam-prep/naplex-quality-gate";
+import { shouldSkipHandCorrected } from "../src/lib/questions/manual-correction";
 import {
   EXPERT_RATIONALE_META_KEY,
   EXPERT_RATIONALE_VERSION,
@@ -135,6 +136,7 @@ async function main() {
       where: {
         fieldId: "pharmacy",
         active: true,
+        manualCorrection: false,
         qaPassed: true,
         ...(opts.domains.length ? { blueprintDomain: { in: opts.domains } } : {}),
         ...(opts.subjects?.length ? { subjectId: { in: opts.subjects } } : {}),
@@ -149,6 +151,10 @@ async function main() {
       if (enriched >= opts.limit) break;
       scanned++;
       lastId = row.id;
+      if (shouldSkipHandCorrected(row)) {
+        skipped++;
+        continue;
+      }
       const priorMeta = readMeta(row);
 
       if (!opts.force && readExpertRationaleFromMeta(row.generationMeta)) {

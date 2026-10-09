@@ -15,6 +15,7 @@ import { PrismaClient } from "@prisma/client";
 import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
 import { attachVisualRationaleToItem } from "../src/lib/engine/rationale/enrich-visual-rationale";
 import { EXPERT_RATIONALE_META_KEY } from "../src/lib/engine/rationale/expert-rationale-types";
+import { shouldSkipHandCorrected } from "../src/lib/questions/manual-correction";
 
 const prisma = new PrismaClient();
 const BATCH = 200;
@@ -77,6 +78,7 @@ async function main() {
       where: {
         fieldId: "aanp-fnp",
         active: true,
+        manualCorrection: false,
         ...(lastId ? { id: { gt: lastId } } : {}),
       },
       orderBy: { id: "asc" },
@@ -87,6 +89,10 @@ async function main() {
     for (const row of rows) {
       scanned++;
       lastId = row.id;
+      if (shouldSkipHandCorrected(row)) {
+        skipped++;
+        continue;
+      }
       const item = enrichBankItemFromRow(row);
       const before = hasVisualBlocks(row.generationMeta);
       const needsImage =

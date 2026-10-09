@@ -15,6 +15,7 @@ import { PrismaClient } from "@prisma/client";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 import { attachVisualRationaleToItem } from "../src/lib/engine/rationale/enrich-visual-rationale";
 import { EXPERT_RATIONALE_META_KEY } from "../src/lib/engine/rationale/expert-rationale-types";
+import { shouldSkipHandCorrected } from "../src/lib/questions/manual-correction";
 
 const prisma = new PrismaClient();
 const BATCH = 200;
@@ -74,7 +75,12 @@ async function main() {
     if (limit > 0 && scanned >= limit) break;
 
     const rows = await prisma.questionBankItem.findMany({
-      where: { fieldId: "nursing", active: true, ...(lastId ? { id: { gt: lastId } } : {}) },
+      where: {
+        fieldId: "nursing",
+        active: true,
+        manualCorrection: false,
+        ...(lastId ? { id: { gt: lastId } } : {}),
+      },
       orderBy: { id: "asc" },
       take: Math.min(BATCH, limit > 0 ? limit - scanned : BATCH),
       select: {
@@ -90,6 +96,7 @@ async function main() {
         tags: true,
         source: true,
         generationMeta: true,
+        manualCorrection: true,
       },
     });
 
@@ -97,6 +104,10 @@ async function main() {
 
     for (const row of rows) {
       scanned++;
+      if (shouldSkipHandCorrected(row)) {
+        skipped++;
+        continue;
+      }
       const item = enrichBankItemFromRow(row);
       // Skip only when visuals exist AND stem media (if any) already has an image block.
       if (
