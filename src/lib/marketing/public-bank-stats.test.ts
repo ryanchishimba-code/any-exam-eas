@@ -1,16 +1,27 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { DbUnavailableError } from "@/lib/db-resilience";
 import { aggregateActiveInventory } from "@/lib/inventory/active-questions";
 import type { BankStatsBundle } from "@/lib/marketing/question-bank-counts";
 
-vi.mock("@/lib/marketing/question-bank-counts", () => ({
-  getCachedBankStatsBundle: vi.fn(),
+const harness = vi.hoisted(() => ({
+  getIsrBankStatsBundle: vi.fn(),
+  redisGet: vi.fn(),
+  redisSet: vi.fn(async () => {}),
 }));
 
-import { getCachedBankStatsBundle } from "@/lib/marketing/question-bank-counts";
+vi.mock("@/lib/marketing/public-question-count", () => ({
+  getIsrBankStatsBundle: (...args: unknown[]) => harness.getIsrBankStatsBundle(...args),
+}));
+
+vi.mock("@/lib/upstash-redis", () => ({
+  redisCacheGet: (...args: unknown[]) => harness.redisGet(...args),
+  redisCacheSet: (...args: unknown[]) => harness.redisSet(...args),
+  redisCacheDelete: vi.fn(async () => {}),
+}));
+
 import {
   getPublicBankStatsBundle,
   PUBLIC_BANK_STATS_CACHE_KEY,
+  PUBLIC_BANK_STATS_STALE_MAX_MS,
   resetPublicBankStatsCache,
 } from "@/lib/marketing/public-bank-stats";
 
@@ -40,67 +51,78 @@ function bundle(count: number, degraded = false): BankStatsBundle {
 describe("getPublicBankStatsBundle", () => {
   beforeEach(() => {
     resetPublicBankStatsCache();
-    vi.mocked(getCachedBankStatsBundle).mockReset();
+    harness.getIsrBankStatsBundle.mockReset();
+    harness.redisGet.mockReset();
+    harness.redisSet.mockClear();
+    vi.spyOn(console, "error").mockImplementation(() => {});
   });
 
   afterEach(() => {
     vi.useRealTimers();
+    vi.restoreAllMocks();
     resetPublicBankStatsCache();
   });
 
-  it("coalesces concurrent recomputes and then reuses the value", async () => {
-    let calls = 0;
-    vi.mocked(getCachedBankStatsBundle).mockImplementation(async () => {
-      calls += 1;
-      await new Promise((resolve) => setTimeout(resolve, 20));
-      return bundle(6243);
+  it("returns the page snapshot and stores that value for the fallback", async () => {
+    harness.getIsrBankStatsBundle.mockResolvedValue(bundle(43371));
+    const value = await getPublicBankStatsBundle();
+    expect(value.inventory.boards.nclex.active).toBe(43371);
+    expect(value.snapshot.degraded).toBe(false);
+    expect(harness.redisGet).not.toHaveBeenCalled();
+    expect(harness.redisSet).toHaveBeenCalledWith(
+      PUBLIC_BANK_STATS_CACHE_KEY,
+      expect.objectContaining({
+        bundle: expect.objectContaining({
+          snapshot: expect.objectContaining({ degraded: false }),
+        }),
+        storedAt: expect.any(Number),
+      }),
+      PUBLIC_BANK_STATS_STALE_MAX_MS
+    );
+    expect(PUBLIC_BANK_STATS_CACHE_KEY).toBe("public-bank-stats-v2");
+  });
+
+  it("marks a redis fallback degraded and records its age", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-10-09T12:00:00.000Z"));
+    const storedAt = new Date("2026-10-09T11:40:00.000Z").getTime();
+    harness.getIsrBankStatsBundle.mockResolvedValue(bundle(0, true));
+    harness.redisGet.mockResolvedValue({ bundle: bundle(43475), storedAt });
+
+    const again = await getPublicBankStatsBundle();
+
+    expect(again.snapshot.degraded).toBe(true);
+    expect(again.inventory.degraded).toBe(true);
+    expect(again.staleAgeMs).toBe(20 * 60 * 1000);
+    expect(again.inventory.boards.nclex.active).toBe(43475);
+    expect(console.error).toHaveBeenCalledWith(
+      "[bank-counts] recompute failed:",
+      expect.any(Error)
+    );
+  });
+
+  it("logs the real error and skips a fallback older than 30 minutes", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-10-09T12:00:00.000Z"));
+    const cause = new Error("Neon connection timeout");
+    harness.getIsrBankStatsBundle.mockRejectedValue(cause);
+    harness.redisGet.mockResolvedValue({
+      bundle: bundle(43475),
+      storedAt: new Date("2026-10-09T11:00:00.000Z").getTime(),
     });
 
-    const [first, second, third] = await Promise.all([
-      getPublicBankStatsBundle(),
-      getPublicBankStatsBundle(),
-      getPublicBankStatsBundle(),
-    ]);
-
-    expect(calls).toBe(1);
-    expect(first.inventory.boards.nclex.active).toBe(6243);
-    expect(second).toBe(first);
-    expect(third).toBe(first);
-
-    const again = await getPublicBankStatsBundle();
-    expect(calls).toBe(1);
-    expect(again.inventory.boards.nclex.active).toBe(6243);
-    expect(PUBLIC_BANK_STATS_CACHE_KEY).toBe("public-bank-stats-v1");
+    await expect(getPublicBankStatsBundle()).rejects.toThrow(cause);
+    expect(console.error).toHaveBeenCalledWith("[bank-counts] recompute failed:", cause);
+    expect(harness.redisSet).not.toHaveBeenCalled();
   });
 
-  it("returns the last good value when a later recompute fails", async () => {
-    vi.useFakeTimers();
-    vi.setSystemTime(new Date("2026-10-09T00:00:00.000Z"));
-    vi.mocked(getCachedBankStatsBundle).mockResolvedValue(bundle(6243));
-    const first = await getPublicBankStatsBundle();
+  it("does not treat a legacy unmarked redis value as fresh", async () => {
+    harness.getIsrBankStatsBundle.mockResolvedValue(bundle(0, true));
+    harness.redisGet.mockResolvedValue(bundle(43475));
 
-    vi.setSystemTime(new Date("2026-10-09T00:11:00.000Z"));
-    vi.mocked(getCachedBankStatsBundle).mockRejectedValue(new DbUnavailableError("down"));
-    const again = await getPublicBankStatsBundle();
-
-    expect(again.inventory.boards.nclex.active).toBe(first.inventory.boards.nclex.active);
-    expect(again.snapshot.degraded).toBe(false);
-  });
-
-  it("forwards ISR cache options into the shared snapshot", async () => {
-    vi.mocked(getCachedBankStatsBundle).mockResolvedValue(bundle(10));
-    await getPublicBankStatsBundle({ dynamic: false });
-    expect(getCachedBankStatsBundle).toHaveBeenCalledWith({ dynamic: false });
-  });
-
-  it("does not keep a degraded recompute as the fresh value", async () => {
-    vi.mocked(getCachedBankStatsBundle).mockResolvedValue(bundle(0, true));
-    const first = await getPublicBankStatsBundle();
-    expect(first.snapshot.degraded).toBe(true);
-
-    vi.mocked(getCachedBankStatsBundle).mockResolvedValue(bundle(6243));
-    const second = await getPublicBankStatsBundle();
-    expect(second.inventory.boards.nclex.active).toBe(6243);
-    expect(vi.mocked(getCachedBankStatsBundle)).toHaveBeenCalledTimes(2);
+    const value = await getPublicBankStatsBundle();
+    expect(value.snapshot.degraded).toBe(true);
+    expect(value.staleAgeMs).toBeUndefined();
+    expect(value.inventory.boards.nclex.active).not.toBe(43475);
   });
 });

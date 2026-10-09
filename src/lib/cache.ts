@@ -142,7 +142,7 @@ async function readThroughCache<T>(
     return value;
   } catch (error) {
     if (staleTtlMs > 0 && l1 && isTransientDbError(error)) {
-      console.warn(`[cache:stale] serving stale L1 entry for ${key}`);
+      console.warn(`[cache:stale] serving stale L1 entry for ${key}`, error);
       return l1.value;
     }
     throw error;

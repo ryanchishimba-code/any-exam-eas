@@ -12,7 +12,8 @@ import { buildLandingBankCountsDisplay } from "@/lib/marketing/question-bank-cou
 import { getPublicBankStatsBundle } from "@/lib/marketing/public-bank-stats";
 
 /**
- * Dynamic so a purge can still rebuild on the origin. The CDN caches the
+ * Dynamic so a purge can still rebuild on the origin. The body is the same
+ * data-cache snapshot the marketing pages render. The CDN caches the
  * logged-out JSON for 10 minutes (`s-maxage=600`, stale-while-revalidate).
  */
 export const dynamic = "force-dynamic";
@@ -20,16 +21,20 @@ export const dynamic = "force-dynamic";
 /** Public serve-ready counts for landing surfaces and client fallbacks. */
 export async function GET() {
   try {
-    const { snapshot, inventory } = await getPublicBankStatsBundle();
+    const bundle = await getPublicBankStatsBundle();
+    const { snapshot, inventory } = bundle;
     const display = buildLandingBankCountsDisplay(snapshot);
     const boards = Object.fromEntries(
       Object.entries(inventory.boards).map(([slug, board]) => {
         const units = snapshot.boards?.[slug as keyof NonNullable<typeof snapshot.boards>];
-        const scored = units
-          ? units.bankItems + units.standaloneNgn + units.caseItems
-          : board.active;
-        const formatLine =
-          units && (units.standaloneNgn > 0 || units.caseStudies > 0)
+        const scored = snapshot.degraded
+          ? 0
+          : units
+            ? units.bankItems + units.standaloneNgn + units.caseItems
+            : board.active;
+        const formatLine = snapshot.degraded
+          ? null
+          : units && (units.standaloneNgn > 0 || units.caseStudies > 0)
             ? formatBoardQuestionSentence(units)
             : formatInventoryFormatLine(board.formats, slug === "nclex" ? "NGN" : "NGN-style");
         return [
@@ -49,6 +54,7 @@ export async function GET() {
     return NextResponse.json(
       {
         ...display,
+        staleAgeMs: bundle.staleAgeMs ?? null,
         updatedAt: snapshot.updatedAt,
         inventory: {
           degraded: inventory.degraded,

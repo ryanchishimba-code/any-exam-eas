@@ -7,7 +7,7 @@
  *
  * This path is `unstable_cache` only. It must not call the Upstash REST
  * client: that fetch is `cache: "no-store"` and turns an ISR page dynamic
- * during revalidation. The API route keeps the Redis single-flight layer.
+ * during revalidation. The bank-counts API reads this same function.
  */
 import { unstable_cache } from "next/cache";
 import { formatRoundedDownQuestionCount } from "@/lib/counts";

@@ -143,7 +143,9 @@ type TimedSql = {
 
 /**
  * One Neon HTTP transaction: statement_timeout and lock_timeout apply to the
- * caller's statement, and the HTTP request itself aborts at timeoutMs.
+ * caller's statement. The HTTP abort sits 1s above the statement timeout, the
+ * same gap the analytics writer uses, so a slow connect is not reported as a
+ * statement cancel and Postgres still wins when the query itself is slow.
  */
 export async function runTimedSqlQuery<T>(
   client: TimedSql,
@@ -151,13 +153,14 @@ export async function runTimedSqlQuery<T>(
   params: unknown[],
   timeoutMs: number
 ): Promise<T> {
+  const clientTimeoutMs = timeoutMs + 1_000;
   const results = await client.transaction(
     (txn) => [
       txn`SELECT set_config('statement_timeout', ${String(timeoutMs)}, true)`,
       txn`SELECT set_config('lock_timeout', ${"2000"}, true)`,
       txn.query(text, params),
     ],
-    { fetchOptions: { signal: AbortSignal.timeout(timeoutMs) } }
+    { fetchOptions: { signal: AbortSignal.timeout(clientTimeoutMs) } }
   );
   return results[results.length - 1] as T;
 }
