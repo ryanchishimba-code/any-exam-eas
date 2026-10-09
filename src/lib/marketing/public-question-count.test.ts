@@ -57,6 +57,36 @@ function walk(dir: string, out: string[] = []): string[] {
   return out;
 }
 
+const ISR_PAGE_FILES = [
+  "src/app/(marketing)/(with-flagship)/page.tsx",
+  "src/app/(marketing)/pricing/page.tsx",
+  "src/app/(marketing)/(with-flagship)/about/page.tsx",
+  "src/app/(marketing)/(with-flagship)/compare/page.tsx",
+  "src/app/(marketing)/(with-flagship)/free-guides/page.tsx",
+  "src/app/(marketing)/(with-flagship)/how-questions-are-reviewed/page.tsx",
+  "src/app/(marketing)/(with-flagship)/[examSlug]/page.tsx",
+  "src/app/nclex/page.tsx",
+];
+
+describe("marketing pages keep the question count on the ISR path", () => {
+  it("does not call the Upstash bank-counts cache from a page module", () => {
+    const loader = readFileSync(
+      path.resolve(process.cwd(), "src/lib/marketing/public-question-count.ts"),
+      "utf8"
+    );
+    expect(loader).toContain("unstable_cache");
+    expect(loader).toContain("getCachedBankStatsBundle({ dynamic: false })");
+    expect(loader).not.toMatch(/cacheGetOrSetDeduped|getPublicBankStatsBundle|upstash|redisCache/);
+
+    for (const file of ISR_PAGE_FILES) {
+      const text = readFileSync(path.resolve(process.cwd(), file), "utf8");
+      expect(text, file).toContain("loadPublicQuestionCounts({ dynamic: false })");
+      expect(text, file).toContain("export const revalidate = 300");
+      expect(text, file).not.toMatch(/getPublicBankStatsBundle|cacheGetOrSetDeduped|upstash/);
+    }
+  });
+});
+
 describe("marketing copy does not hard-code a question total", () => {
   it("fails when a page or component renders a frozen bank total", () => {
     const hits: string[] = [];
