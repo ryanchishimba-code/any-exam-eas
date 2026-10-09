@@ -181,6 +181,13 @@ export function nclexShapeRole(item: BankItem): NclexShapeRole {
   return "knowledge";
 }
 
+/** Live ngn_case rows converted for the exam. Bank-only sequential groups are not these. */
+export function isLivePublishedCaseItem(item: BankItem): boolean {
+  const id = item.id?.trim() ?? "";
+  if (id.startsWith("ngn:")) return true;
+  return (item.tags ?? []).includes("published-ngn-catalog");
+}
+
 function stepOf(item: BankItem): number | undefined {
   const step = payloadRecord(item).stepIndex;
   return typeof step === "number" && Number.isFinite(step) ? step : undefined;
@@ -198,8 +205,9 @@ function toShape(item: BankItem, role: NclexShapeRole): NclexShapeItem {
 
 /**
  * Rebuild a nursing sitting of at least 85 items.
- * Cases come from the pool (unseen first). Knowledge and clinical-judgment
- * standalones prefer the already capped selection, then the rest of the pool.
+ * Cases come from live published ngn_case rows when three complete
+ * six-step cases are in the pool. Unseen cases come first. Knowledge and
+ * clinical-judgment standalones prefer the already capped selection.
  */
 export function shapeNclexBankSitting(input: {
   pool: readonly BankItem[];
@@ -215,8 +223,10 @@ export function shapeNclexBankSitting(input: {
     if (id) byId.set(id, item);
   }
   const groups = completeSequentialGroups([...byId.values()]).filter((group) => group.length === NCLEX_CASE_LENGTH);
+  const published = groups.filter((group) => group.every(isLivePublishedCaseItem));
+  const casePool = published.length >= NCLEX_CASE_COUNT ? published : groups;
   const chosen = chooseExamCases(
-    groups,
+    casePool,
     (group) => sequentialSetId(group[0]!) ?? "",
     input.caseLastAttemptedAt,
     String(input.seed)
