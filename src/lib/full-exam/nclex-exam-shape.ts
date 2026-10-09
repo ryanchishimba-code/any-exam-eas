@@ -144,12 +144,90 @@ export function arrangeNclexExamItems(input: {
   return slots as NclexShapeItem[];
 }
 
+function itemIdOf(item: BankItem): string {
+  return item.id?.trim() ?? "";
+}
+
+/** Knowledge rows that are not already seated and are not case steps. */
+function spareKnowledge(pool: readonly BankItem[], seated: ReadonlySet<string>): BankItem[] {
+  const seen = new Set(seated);
+  const spare: BankItem[] = [];
+  for (const item of pool) {
+    const id = itemIdOf(item);
+    if (!id || seen.has(id)) continue;
+    if (nclexShapeRole(item) !== "knowledge") continue;
+    seen.add(id);
+    spare.push(item);
+  }
+  return spare;
+}
+
+/**
+ * Ids of up to three contiguous six-step cases. Any other case step is an orphan.
+ */
+export function chosenCaseItemIds(items: readonly BankItem[]): Set<string> {
+  const keep = new Set<string>();
+  let cases = 0;
+  let index = 0;
+  while (index < items.length) {
+    const setId = sequentialSetId(items[index]!);
+    if (!setId) {
+      index += 1;
+      continue;
+    }
+    const block = [items[index]!];
+    let next = index + 1;
+    while (next < items.length && sequentialSetId(items[next]!) === setId) {
+      block.push(items[next]!);
+      next += 1;
+    }
+    const steps = block.map((item) => stepOf(item));
+    const whole =
+      block.length === NCLEX_CASE_LENGTH && steps.every((step, stepIndex) => step === stepIndex + 1);
+    if (whole && cases < NCLEX_CASE_COUNT) {
+      cases += 1;
+      for (const item of block) {
+        const id = itemIdOf(item);
+        if (id) keep.add(id);
+      }
+    }
+    index = next;
+  }
+  return keep;
+}
+
+/**
+ * Replace steps that are not part of the three whole cases.
+ * The replacement comes from knowledge that is not already in the sitting.
+ */
+export function withoutOrphanCaseSteps(items: readonly BankItem[], pool: readonly BankItem[] = []): BankItem[] {
+  const keep = chosenCaseItemIds(items);
+  const out = items.slice();
+  const seated = new Set(out.map(itemIdOf).filter(Boolean));
+  const spare = spareKnowledge(pool, seated);
+  let cursor = 0;
+  for (let index = 0; index < out.length; index += 1) {
+    const item = out[index]!;
+    if (!sequentialSetId(item) || keep.has(itemIdOf(item))) continue;
+    const replacement = spare[cursor];
+    if (!replacement) continue;
+    cursor += 1;
+    seated.add(itemIdOf(replacement));
+    out[index] = replacement;
+  }
+  return out;
+}
+
 /**
  * Bow-tie and trend standalones belong at item 86 or later.
- * Case steps stay where they are. Counts are unchanged: an early standalone
- * swaps with a knowledge item from the variable section.
+ * On a longer exam an early standalone swaps with knowledge from the variable
+ * section. On an 85-item exam there is no variable section, so the standalone
+ * swaps with knowledge that was gathered but not seated. Case steps stay put.
  */
-export function deferClinicalStandalones(items: readonly BankItem[]): BankItem[] {
+export function deferClinicalStandalones(
+  items: readonly BankItem[],
+  pool: readonly BankItem[] = []
+): BankItem[] {
   const out = items.slice();
   const early: number[] = [];
   const lateKnowledge: number[] = [];
@@ -166,7 +244,25 @@ export function deferClinicalStandalones(items: readonly BankItem[]): BankItem[]
     out[from] = out[to]!;
     out[to] = swap;
   }
+  const stillEarly = out.flatMap((item, index) => {
+    const role = nclexShapeRole(item);
+    return index < NCLEX_MINIMUM_ITEMS && (role === "bow_tie" || role === "trend") ? [index] : [];
+  });
+  if (stillEarly.length === 0) return out;
+  const seated = new Set(out.map(itemIdOf).filter(Boolean));
+  const spare = spareKnowledge(pool, seated);
+  stillEarly.forEach((index, offset) => {
+    const replacement = spare[offset];
+    if (!replacement) return;
+    seated.add(itemIdOf(replacement));
+    out[index] = replacement;
+  });
   return out;
+}
+
+/** Drop orphan case steps, then move bow-ties and trends to item 86 or later. */
+export function restoreNclexExamOrder(items: readonly BankItem[], pool: readonly BankItem[] = []): BankItem[] {
+  return deferClinicalStandalones(withoutOrphanCaseSteps(items, pool), pool);
 }
 
 /** Prefer cases the student has not seen, then the least recent. */

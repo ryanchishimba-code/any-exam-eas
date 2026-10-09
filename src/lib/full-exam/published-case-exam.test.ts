@@ -126,7 +126,10 @@ describe("production-shaped published cases", () => {
       });
       expect(sitting.items).toHaveLength(limit);
       const groups = completeSequentialGroups(sitting.items).filter((group) => group.length === 6);
-      expect(groups.length).toBeGreaterThanOrEqual(3);
+      expect(groups.length).toBe(3);
+      const chosenIds = new Set(groups.flat().map((item) => item.id));
+      const orphans = sitting.items.filter((item) => item.ngnPayload?.setId && !chosenIds.has(item.id));
+      expect(orphans).toEqual([]);
       const early = sitting.items.slice(0, NCLEX_MINIMUM_ITEMS);
       const earlyGroups = completeSequentialGroups(early).filter((group) => group.length === 6);
       expect(earlyGroups.length).toBeGreaterThanOrEqual(3);
