@@ -17,7 +17,10 @@ const MIXED_SUBJECT_ID = "__mixed__";
 
 export type TimedExamClientPayload = {
   questions: ExamQuestion[];
+  /** Opaque ids for the browser. Catalog slot ids are sealed. */
   bankItemIds: string[];
+  /** Ids stored on the exam session so a refresh can reload the same rows. */
+  canonicalBankItemIds: string[];
   prepared: StudyQuestion[];
 };
 
@@ -28,26 +31,40 @@ export function sealCatalogQuestionKey(key: string): string {
   return ngnQuestionKey(sealStudentRef(parsed), parsed.version);
 }
 
-/**
- * Hide catalog slot ids and case ids before the exam payload is built.
- * caseTitle stays until the study serializer strips it from the vignette.
- */
-export function hideCatalogIdsForStudent(items: readonly BankItem[]): BankItem[] {
-  const caseSeals = new Map<string, string>();
-  return items.map((item) => {
-    const payload = { ...(item.ngnPayload ?? {}) };
-    const setId = typeof payload.setId === "string" ? payload.setId.trim() : "";
-    if (setId && !openStudentRef(setId)) {
-      let sealed = caseSeals.get(setId);
-      if (!sealed) {
-        sealed = sealStudentRef({ id: setId, version: 1 });
-        caseSeals.set(setId, sealed);
-      }
-      payload.setId = sealed;
-    }
-    const id = item.id ? sealCatalogQuestionKey(item.id) : item.id;
-    return { ...item, id, ngnPayload: payload };
-  });
+type LayoutCarrier = {
+  ngnPayload?: Record<string, unknown> | null;
+  chartData?: Record<string, unknown> | null;
+};
+
+function sealSetId(
+  payload: Record<string, unknown> | null | undefined,
+  seals: Map<string, string>
+): Record<string, unknown> | undefined {
+  if (!payload) return undefined;
+  const setId = typeof payload.setId === "string" ? payload.setId.trim() : "";
+  if (!setId || openStudentRef(setId)) return payload;
+  let sealed = seals.get(setId);
+  if (!sealed) {
+    sealed = sealStudentRef({ id: setId, version: 1 });
+    seals.set(setId, sealed);
+  }
+  return { ...payload, setId: sealed };
+}
+
+/** Seal catalog item ids and case ids after option order is already fixed. */
+export function sealStudentFacingIds<T extends LayoutCarrier>(
+  questions: T[],
+  bankItemIds: Array<string | null | undefined>
+): { questions: T[]; bankItemIds: string[] } {
+  const seals = new Map<string, string>();
+  return {
+    questions: questions.map((question) => ({
+      ...question,
+      ngnPayload: sealSetId(question.ngnPayload, seals),
+      chartData: sealSetId(question.chartData, seals),
+    })),
+    bankItemIds: bankItemIds.filter((id): id is string => Boolean(id)).map(sealCatalogQuestionKey),
+  };
 }
 
 export function preparedTimedExamItemsForClient(
@@ -57,7 +74,7 @@ export function preparedTimedExamItemsForClient(
   limit: number,
   opts?: { shuffleSeed?: number }
 ): TimedExamClientPayload {
-  const selected = hideCatalogIdsForStudent(items.slice(0, limit));
+  const selected = items.slice(0, limit);
   const rawForMap = selected.map((item, i) =>
     bankItemToSessionRaw(fieldId, field, item.subjectId ?? MIXED_SUBJECT_ID, item, i)
   );
@@ -88,9 +105,13 @@ export function preparedTimedExamItemsForClient(
     );
   }
 
+  const canonicalBankItemIds = prepared.map((item) => item.bankItemId).filter(Boolean) as string[];
+  const sealed = sealStudentFacingIds(studyQuestionsToExamQuestions(prepared), canonicalBankItemIds);
+
   return {
     prepared,
-    bankItemIds: prepared.map((p) => p.bankItemId).filter(Boolean) as string[],
-    questions: studyQuestionsToExamQuestions(prepared),
+    canonicalBankItemIds,
+    bankItemIds: sealed.bankItemIds,
+    questions: sealed.questions,
   };
 }

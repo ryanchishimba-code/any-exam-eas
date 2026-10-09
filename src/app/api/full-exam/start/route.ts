@@ -378,6 +378,7 @@ export async function POST(req: Request) {
     const servedCount = Math.min(clientPayload.questions.length, sessionConfig.questionCount);
     const servedQuestions = clientPayload.questions.slice(0, servedCount);
     const servedBankItemIds = clientPayload.bankItemIds.slice(0, servedCount);
+    const storedBankItemIds = clientPayload.canonicalBankItemIds.slice(0, servedCount);
     const storedConfig = syncSessionConfigQuestionCount(
       { ...sessionConfig, optionShuffleSeed },
       examSlug,
@@ -415,7 +416,7 @@ export async function POST(req: Request) {
       fieldId: sessionFieldId,
       title,
       sessionConfig: storedConfig,
-      prefetchedQuestionIds: servedBankItemIds,
+      prefetchedQuestionIds: storedBankItemIds,
       assembleSource,
       launchMode,
       focusAreas,

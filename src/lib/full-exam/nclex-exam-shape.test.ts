@@ -246,6 +246,7 @@ describe("shapeNclexBankSitting", () => {
     ]);
     const stored = client.bankItemIds.map((id) => canonicalStoredQuestionKey(id));
     expect(stored).toEqual(block.map((item) => item.id));
+    expect(client.canonicalBankItemIds).toEqual(block.map((item) => item.id));
     const firstSet = (client.questions[0]?.ngnPayload as { setId?: string } | undefined)?.setId ?? "";
     expect(firstSet.startsWith("s1.")).toBe(true);
     expect(client.questions.every((question) => (question.ngnPayload as { setId?: string })?.setId === firstSet)).toBe(true);
