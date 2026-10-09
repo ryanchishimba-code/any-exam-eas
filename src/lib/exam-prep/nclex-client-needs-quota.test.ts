@@ -287,6 +287,29 @@ describe("NCSBN 2026 client-needs quotas", () => {
     expect(clientNeedsWithinRanges(draw!)).toBe(true);
   });
 
+  it("does not pad leftover slots with a step from another case", () => {
+    const limit = 150;
+    const targets = clientNeedsTargets(limit)!;
+    const items: BankItem[] = [];
+    for (const target of targets) {
+      for (let index = 0; index < target.min; index += 1) {
+        items.push(row(`${target.id}-pad-${index}`, target.id));
+      }
+    }
+    const orphan = row("orphan-step", "pediatrics-nursing", {
+      ngnPayload: { setId: "other-case", stepIndex: 4, kind: "highlight" },
+    });
+    const specialties = Array.from({ length: 80 }, (_, index) => row(`peds-pad-${index}`, "pediatrics-nursing"));
+    const draw = composeWithinClientNeeds({
+      preferred: [orphan, ...items, ...specialties].slice(0, limit),
+      pool: [orphan, ...items, ...specialties],
+      limit,
+      seed: 4,
+    });
+    expect(draw).not.toBeNull();
+    expect(draw!.some((item) => item.id === "orphan-step")).toBe(false);
+  });
+
   it("stores category labels without specialty subject ids", () => {
     const values = clientNeedsStoredValues("health-promotion");
     expect(values).toContain("health-promotion");

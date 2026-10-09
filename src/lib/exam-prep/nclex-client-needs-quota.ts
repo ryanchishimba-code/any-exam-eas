@@ -331,7 +331,7 @@ export function composeWithinClientNeeds(params: {
   }
 
   const uncategorized = [...byId.values()].filter(
-    (item) => !examClientNeedsCategory(item) && !used.has(itemId(item))
+    (item) => !examClientNeedsCategory(item) && !used.has(itemId(item)) && sequentialSetId(item) == null
   );
   const uncatPreferred = uncategorized.filter((item) => preferredIds.has(itemId(item)));
   const uncatExtras = shuffle(
