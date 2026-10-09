@@ -62,6 +62,8 @@ export type BankItem = {
   patientAgeGroup?: string;
   /** Specific blueprint topic slug for Deep Dive / analytics. */
   blueprintTopic?: string;
+  /** Client-needs category copied from the options envelope, when the row stored one. */
+  clientNeedsCategory?: string;
   generationVersion?: string;
   reviewStatus?: "pending" | "approved" | "flagged" | "rejected";
   /** Stored result of the bank QA gate. Practice serves only true. */
