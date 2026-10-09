@@ -3,11 +3,11 @@ import type { TrackEventInput } from "./types";
 import { EVENT_TYPES } from "./types";
 import { hashIp, getUserAgent, parseUserAgent } from "./request-context";
 import { isDbUserSessionId } from "./session-id";
-import { enqueueAnalyticsWrite } from "./write-queue";
-
-/** Per-isolate throttle so page views don't update User on every navigation. */
-const lastActiveTouchByUser = new Map<string, number>();
-const LAST_ACTIVE_MIN_INTERVAL_MS = 15 * 60_000;
+import {
+  prepareAnalyticsEvent,
+  scheduleAnalyticsWrite,
+  writePreparedAnalyticsEvent,
+} from "./event-writer";
 
 export function trackPageView(params: {
   path: string;
@@ -55,54 +55,22 @@ export async function touchUserSession(
   }
 }
 
-/** Centralized, non-blocking event tracking. */
+/**
+ * Centralized, non-blocking event tracking. The request snapshot is taken now;
+ * the write runs after the response via `after()` (see event-writer.ts).
+ */
 export function trackEvent(input: TrackEventInput): void {
-  enqueueAnalyticsWrite(() => trackEventAsync(input));
+  const row = prepareAnalyticsEvent(input);
+  scheduleAnalyticsWrite(() => writePreparedAnalyticsEvent(row));
 }
 
+/** Awaitable variant (e.g. already inside `after()`); never throws. */
 export async function trackEventAsync(input: TrackEventInput): Promise<void> {
   try {
-    const ipHash = hashIp(input.req);
-    const ua = getUserAgent(input.req);
-    const parsed = parseUserAgent(ua ?? null);
-    const isPageView = input.eventType === EVENT_TYPES.PAGE_VIEW;
-
-    await prisma.analyticsEvent.create({
-      data: {
-        userId: input.userId ?? null,
-        sessionId: input.sessionId ?? null,
-        eventType: input.eventType,
-        category: input.category ?? "general",
-        metadata: input.metadata ? JSON.stringify(input.metadata) : null,
-        ipHash,
-      },
-    });
-
-    // Page views are high-frequency — skip User/DeviceHistory side effects so
-    // they don't starve product queries on connection_limit=1 isolates.
-    if (isPageView || !input.userId) return;
-
-    if (shouldTouchLastActive(input.userId)) {
-      await prisma.user.update({
-        where: { id: input.userId },
-        data: { lastActiveAt: new Date() },
-      });
-    }
-
-    if (ua) {
-      await upsertDeviceHistory(input.userId, ua, parsed, ipHash);
-    }
+    await writePreparedAnalyticsEvent(prepareAnalyticsEvent(input));
   } catch {
     /* analytics must not break product flows */
   }
-}
-
-function shouldTouchLastActive(userId: string): boolean {
-  const now = Date.now();
-  const prev = lastActiveTouchByUser.get(userId) ?? 0;
-  if (now - prev < LAST_ACTIVE_MIN_INTERVAL_MS) return false;
-  lastActiveTouchByUser.set(userId, now);
-  return true;
 }
 
 async function upsertDeviceHistory(
@@ -114,12 +82,14 @@ async function upsertDeviceHistory(
   const recent = await prisma.deviceHistory.findFirst({
     where: { userId, userAgent },
     orderBy: { lastSeenAt: "desc" },
+    select: { id: true },
   });
 
   if (recent) {
-    await prisma.deviceHistory.update({
+    // updateMany = one UPDATE statement (no BEGIN/SELECT/UPDATE/COMMIT round trips).
+    await prisma.deviceHistory.updateMany({
       where: { id: recent.id },
-      data: { lastSeenAt: new Date(), ipHash: ipHash ?? recent.ipHash },
+      data: { lastSeenAt: new Date(), ...(ipHash ? { ipHash } : {}) },
     });
     return;
   }
