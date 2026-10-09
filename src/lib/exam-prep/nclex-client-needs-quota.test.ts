@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import { finalizeAssembledSitting } from "@/lib/exam-prep/sitting-selection";
+import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { NCLEX_2026_CLIENT_NEEDS } from "@/lib/exam-prep/nclex/blueprint-topics-2026";
 import {
   clientNeedsTargets,
@@ -51,31 +52,66 @@ describe("NCSBN 2026 client-needs quotas", () => {
     }
   });
 
-  it("maps Maternal & Child Health and Pediatric Nursing into Health Promotion", () => {
+  it("uses options.clientNeedsCategory and leaves subject-only maternal and pediatric items out", () => {
+    const bankRow = {
+      question: "Which action is first?",
+      correctAnswer: "Assess",
+      explanation: "Assess before the other steps.",
+      solutionSteps: null,
+      tags: null,
+    };
+    const tagged = enrichBankItemFromRow({
+      ...bankRow,
+      id: "maternal-tagged",
+      subjectId: "maternal-child",
+      topicCategory: "Maternal & Child Health",
+      options: JSON.stringify({
+        options: ["Assess", "Wait", "Document", "Delegate"],
+        clientNeedsCategory: "physiological-adaptation",
+      }),
+    });
+    expect(tagged.clientNeedsCategory).toBe("physiological-adaptation");
+    expect(examClientNeedsCategory(tagged)).toBe("physiological-adaptation");
+
+    const fromColumn = enrichBankItemFromRow({
+      ...bankRow,
+      id: "peds-column",
+      subjectId: "pediatrics-nursing",
+      topicCategory: "Pediatric Nursing",
+      clientNeeds: "safety-infection",
+      options: JSON.stringify(["Assess", "Wait", "Document", "Delegate"]),
+    });
+    expect(examClientNeedsCategory(fromColumn)).toBe("safety-infection");
+
+    const maternalOnly = enrichBankItemFromRow({
+      ...bankRow,
+      id: "maternal-plain",
+      subjectId: "maternal-child",
+      topicCategory: "Maternal & Child Health",
+      options: JSON.stringify(["Assess", "Wait", "Document", "Delegate"]),
+    });
+    const pedsOnly = row("peds-plain", "pediatrics-nursing", {
+      subjectLabel: "Pediatric Nursing",
+    } as Partial<BankItem>);
+    expect(examClientNeedsCategory(maternalOnly)).toBeNull();
+    expect(examClientNeedsCategory(pedsOnly)).toBeNull();
+
     const targets = clientNeedsTargets(85)!;
-    const items: BankItem[] = [];
+    const items: BankItem[] = [tagged, maternalOnly, pedsOnly, row("yacht-1", "yacht-racing")];
     for (const target of targets) {
-      const count = target.count + 2;
-      for (let index = 0; index < count; index += 1) {
-        if (target.id === "health-promotion") {
-          items.push(
-            index % 2 === 0
-              ? row(`maternal-${index}`, "maternal-child", { topicCategory: "Maternal & Child Health" })
-              : row(`peds-${index}`, "pediatrics-nursing", { subjectLabel: "Pediatric Nursing" } as Partial<BankItem>)
-          );
-        } else {
-          items.push(row(`${target.id}-${index}`, target.id));
-        }
+      for (let index = 0; index < target.count + 2; index += 1) {
+        items.push(row(`${target.id}-${index}`, target.id));
       }
     }
-    items.push(row("yacht-1", "yacht-racing"));
     const draw = composeWithinClientNeeds({ preferred: [], pool: items, limit: 85, seed: 3 });
     expect(draw).not.toBeNull();
     expect(clientNeedsWithinRanges(draw!)).toBe(true);
+    expect(draw!.some((item) => item.id === "maternal-plain" || item.id === "peds-plain" || item.id === "yacht-1")).toBe(
+      false
+    );
     const promotion = draw!.filter((item) => examClientNeedsCategory(item) === "health-promotion");
     expect(promotion.length).toBeGreaterThan(0);
-    expect(promotion.every((item) => item.id?.startsWith("maternal-") || item.id?.startsWith("peds-"))).toBe(true);
-    expect(draw!.some((item) => item.id === "yacht-1")).toBe(false);
+    expect(promotion.every((item) => item.subjectId === "health-promotion")).toBe(true);
   });
 
   it("leaves an unclassifiable pool out of the quota math", () => {

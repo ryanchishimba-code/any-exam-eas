@@ -9,7 +9,13 @@ export type ParsedBankOptions = {
   distractorRationale?: Record<string, string>;
   clinicalReasoning?: string;
   keyTakeaways?: string[];
+  clientNeedsCategory?: string;
 };
+
+function readClientNeedsCategory(obj: Record<string, unknown>): string | undefined {
+  const value = obj.clientNeedsCategory;
+  return typeof value === "string" && value.trim() ? value.trim() : undefined;
+}
 
 function readEnrichment(obj: Record<string, unknown>): Partial<ParsedBankOptions> {
   const out: Partial<ParsedBankOptions> = {};
@@ -105,8 +111,9 @@ export function parseBankOptions(raw: string): ParsedBankOptions {
       const opts = Array.isArray(obj.options) ? obj.options.map(String) : [];
       const enrichment = readEnrichment(obj);
 
+      const clientNeedsCategory = readClientNeedsCategory(obj);
       if (typeof obj.kind === "string") {
-        return { options: opts, ngnPayload: obj, ...enrichment };
+        return { options: opts, ngnPayload: obj, clientNeedsCategory, ...enrichment };
       }
 
       if (Array.isArray(obj.statements)) {
@@ -114,6 +121,7 @@ export function parseBankOptions(raw: string): ParsedBankOptions {
           options: opts,
           statements: obj.statements.map(String),
           ngnPayload: obj,
+          clientNeedsCategory,
           ...enrichment,
         };
       }
@@ -127,9 +135,9 @@ export function parseBankOptions(raw: string): ParsedBankOptions {
           obj.labTable != null ||
           obj.chartData != null;
         if (hasExhibitPayload) {
-          return { options: opts, ngnPayload: obj, ...enrichment };
+          return { options: opts, ngnPayload: obj, clientNeedsCategory, ...enrichment };
         }
-        return { options: opts, ...enrichment };
+        return { options: opts, clientNeedsCategory, ...enrichment };
       }
     }
   } catch {
@@ -201,8 +209,9 @@ export function enrichBankItemFromRow(row: {
   curationMeta?: unknown;
   active?: boolean | null;
   fieldId?: string | null;
+  clientNeeds?: string | null;
 }): BankItem {
-  const { options, statements, ngnPayload, distractorRationale, clinicalReasoning, keyTakeaways } =
+  const { options, statements, ngnPayload, distractorRationale, clinicalReasoning, keyTakeaways, clientNeedsCategory } =
     parseBankOptions(row.options);
   const mergedPayload: Record<string, unknown> = {
     ...(ngnPayload ?? {}),
@@ -232,6 +241,9 @@ export function enrichBankItemFromRow(row: {
     blueprintDomain: row.blueprintDomain ?? undefined,
     taskCategory: row.taskCategory ?? undefined,
     blueprintTopic: row.blueprintTopic ?? undefined,
+    clientNeedsCategory:
+      clientNeedsCategory ??
+      (typeof row.clientNeeds === "string" && row.clientNeeds.trim() ? row.clientNeeds.trim() : undefined),
     reviewStatus: row.reviewStatus as BankItem["reviewStatus"],
     generationVersion: row.generationVersion ?? undefined,
     generationMeta:

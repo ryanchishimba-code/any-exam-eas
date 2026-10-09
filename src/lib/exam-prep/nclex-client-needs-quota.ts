@@ -1,12 +1,12 @@
 /**
  * NCSBN 2026 client-needs ranges for one exam draw.
- * A subject that is not a client-needs category is mapped when we know the
- * category, and left out of the draw when we do not.
+ * An item's own options.clientNeedsCategory wins. With no client-needs value,
+ * the subject counts only when it is itself a client-needs category.
+ * Maternal, pediatric, and other specialty subjects stay out of the quota.
  */
 import type { BankItem } from "@/lib/question-bank";
 import { sequentialSetId } from "@/lib/exam-prep/sitting-clusters";
-import { NCLEX_2026_CLIENT_NEEDS, getNclex2026Topic } from "@/lib/exam-prep/nclex/blueprint-topics-2026";
-import { LIFESPAN_SUBJECT_HOLES } from "@/lib/exam-prep/nclex/blueprint-quota";
+import { NCLEX_2026_CLIENT_NEEDS } from "@/lib/exam-prep/nclex/blueprint-topics-2026";
 import type { NclexClientNeedsId } from "@/lib/exam-prep/nclex/types";
 
 const CATEGORY_IDS = new Set<string>(NCLEX_2026_CLIENT_NEEDS.map((category) => category.id));
@@ -26,9 +26,6 @@ const ALIAS_TO_CATEGORY: Record<string, NclexClientNeedsId> = {
   "risk reduction": "reduction-risk",
   "reduction of risk potential": "reduction-risk",
   "physiological adaptation": "physiological-adaptation",
-  "maternal and child health": "health-promotion",
-  "maternal child health": "health-promotion",
-  "pediatric nursing": "health-promotion",
 };
 
 function normalizeLabel(value: string): string {
@@ -44,25 +41,35 @@ function categoryFromText(value: string): NclexClientNeedsId | null {
   const trimmed = value.trim();
   if (!trimmed) return null;
   if (CATEGORY_IDS.has(trimmed)) return trimmed as NclexClientNeedsId;
-  const lifespan = LIFESPAN_SUBJECT_HOLES[trimmed as keyof typeof LIFESPAN_SUBJECT_HOLES];
-  if (lifespan) return lifespan.categoryId;
-  const topic = getNclex2026Topic(trimmed);
-  if (topic) return topic.categoryId;
   const label = normalizeLabel(trimmed);
   const slug = label.replace(/ /g, "-");
   if (CATEGORY_IDS.has(slug)) return slug as NclexClientNeedsId;
   if (ALIAS_TO_CATEGORY[label]) return ALIAS_TO_CATEGORY[label];
-  const lifespanSlug = LIFESPAN_SUBJECT_HOLES[slug as keyof typeof LIFESPAN_SUBJECT_HOLES];
-  if (lifespanSlug) return lifespanSlug.categoryId;
   return null;
+}
+
+function textValue(value: unknown): string | null {
+  return typeof value === "string" && value.trim() ? value.trim() : null;
+}
+
+/** The category stored on the options envelope, including after it is copied onto the item. */
+function optionsClientNeedsCategory(item: BankItem): string | null {
+  const direct = textValue((item as BankItem & { clientNeedsCategory?: unknown }).clientNeedsCategory);
+  if (direct) return direct;
+  const options = item.options as unknown;
+  if (options && typeof options === "object" && !Array.isArray(options)) {
+    const stored = textValue((options as { clientNeedsCategory?: unknown }).clientNeedsCategory);
+    if (stored) return stored;
+  }
+  return textValue(item.ngnPayload?.clientNeedsCategory);
 }
 
 function pushText(out: string[], value: unknown) {
   if (typeof value === "string" && value.trim()) out.push(value.trim());
 }
 
-function classificationCandidates(item: BankItem): string[] {
-  const extra = item as BankItem & { clientNeeds?: unknown; subjectLabel?: string };
+function storedClientNeeds(item: BankItem): string[] {
+  const extra = item as BankItem & { clientNeeds?: unknown };
   const out: string[] = [];
   const clientNeeds = extra.clientNeeds;
   if (clientNeeds && typeof clientNeeds === "object") {
@@ -72,23 +79,32 @@ function classificationCandidates(item: BankItem): string[] {
   } else {
     pushText(out, clientNeeds);
   }
-  pushText(out, item.blueprintDomain);
-  pushText(out, item.topicCategory);
-  pushText(out, item.subjectId);
-  pushText(out, extra.subjectLabel);
   for (const tag of item.tags ?? []) {
     if (tag.startsWith("cn:")) pushText(out, tag.slice(3));
   }
   return out;
 }
 
-/** Client-needs category for quota math. Unknown subjects stay uncounted. */
-export function examClientNeedsCategory(item: BankItem): NclexClientNeedsId | null {
-  for (const candidate of classificationCandidates(item)) {
-    const category = categoryFromText(candidate);
+function firstCategory(values: readonly string[]): NclexClientNeedsId | null {
+  for (const value of values) {
+    const category = categoryFromText(value);
     if (category) return category;
   }
   return null;
+}
+
+/**
+ * Client-needs category for quota math.
+ * options.clientNeedsCategory wins. A subject is used only when the item has
+ * no client-needs value, and only when that subject is a category itself.
+ */
+export function examClientNeedsCategory(item: BankItem): NclexClientNeedsId | null {
+  const fromOptions = optionsClientNeedsCategory(item);
+  if (fromOptions) return categoryFromText(fromOptions);
+  const stored = storedClientNeeds(item);
+  if (stored.length > 0) return firstCategory(stored);
+  const extra = item as BankItem & { subjectLabel?: string };
+  return firstCategory([item.subjectId ?? "", extra.subjectLabel ?? ""].filter(Boolean));
 }
 
 export type ClientNeedsBound = {
