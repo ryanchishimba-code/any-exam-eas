@@ -144,6 +144,31 @@ export function arrangeNclexExamItems(input: {
   return slots as NclexShapeItem[];
 }
 
+/**
+ * Bow-tie and trend standalones belong at item 86 or later.
+ * Case steps stay where they are. Counts are unchanged: an early standalone
+ * swaps with a knowledge item from the variable section.
+ */
+export function deferClinicalStandalones(items: readonly BankItem[]): BankItem[] {
+  const out = items.slice();
+  const early: number[] = [];
+  const lateKnowledge: number[] = [];
+  out.forEach((item, index) => {
+    const role = nclexShapeRole(item);
+    if (index < NCLEX_MINIMUM_ITEMS && (role === "bow_tie" || role === "trend")) early.push(index);
+    else if (index >= NCLEX_MINIMUM_ITEMS && role === "knowledge") lateKnowledge.push(index);
+  });
+  const swaps = Math.min(early.length, lateKnowledge.length);
+  for (let index = 0; index < swaps; index += 1) {
+    const from = early[index]!;
+    const to = lateKnowledge[index]!;
+    const swap = out[from]!;
+    out[from] = out[to]!;
+    out[to] = swap;
+  }
+  return out;
+}
+
 /** Prefer cases the student has not seen, then the least recent. */
 export function chooseExamCases<T>(
   groups: readonly T[],

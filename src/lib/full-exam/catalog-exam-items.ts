@@ -166,15 +166,22 @@ function convertHighlight(payload: Record<string, unknown>): Pick<BankItem, "opt
   };
 }
 
+function columnDisplay(row: Record<string, unknown>): string {
+  if (typeof row.text === "string" && row.text.trim()) return row.text.trim();
+  if (typeof row.label === "string" && row.label.trim()) return row.label.trim();
+  return "";
+}
+
 function columnLabels(payload: Record<string, unknown>): { id: string; text: string }[] {
   if (!Array.isArray(payload.columns)) return [];
   return payload.columns
     .map((column, index) => {
       if (typeof column === "string" && column.trim()) return { id: column.trim(), text: column.trim() };
       const row = record(column);
-      if (!row || typeof row.text !== "string" || !row.text.trim()) return null;
-      const id = typeof row.id === "string" && row.id.trim() ? row.id : row.text.trim();
-      return { id, text: row.text.trim() || `Column ${index + 1}` };
+      const text = row ? columnDisplay(row) : "";
+      if (!row || !text) return null;
+      const id = typeof row.id === "string" && row.id.trim() ? row.id.trim() : text;
+      return { id, text: text || `Column ${index + 1}` };
     })
     .filter((column): column is { id: string; text: string } => column != null);
 }
@@ -193,8 +200,9 @@ function convertMatrix(
     const label = row.text.trim();
     rows.push(label);
     const keys = keysOf(row);
-    if (keys.length < 1) return null;
+    // matrix_mc needs exactly one column. matrix_mr may leave a row blank.
     if (!multi && keys.length !== 1) return null;
+    if (keys.length < 1) continue;
     for (const key of keys) {
       const column = columns.find((candidate) => candidate.id === key || candidate.text === key);
       if (!column) return null;
