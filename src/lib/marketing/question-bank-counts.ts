@@ -2,7 +2,6 @@ import { unstable_cache, unstable_noStore as noStore } from "next/cache";
 import { connection } from "next/server";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 import { sqlQuery } from "@/lib/db";
-import { prisma } from "@/lib/prisma";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
@@ -12,6 +11,7 @@ import {
   ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
   ACTIVE_INVENTORY_STAMP_CACHE_KEY,
   ACTIVE_INVENTORY_STAMP_TTL_SECONDS,
+  BANK_COUNTS_QUERY_TIMEOUT_MS,
 } from "@/lib/inventory/active-inventory-cache";
 import { readActiveInventoryStampKey } from "@/lib/inventory/active-inventory-stamp";
 import {
@@ -33,8 +33,6 @@ import {
   type CountBoardSlug,
 } from "@/lib/counts";
 import { formatExactServeReadyQuestions } from "./bank-stats";
-
-const DB_RETRY_ATTEMPTS = 2;
 
 export type FieldQuestionBankCounts = {
   fieldId: ExamFieldId;
@@ -114,37 +112,41 @@ function buildEmptySnapshot(degraded: boolean): QuestionBankCountsSnapshot {
   };
 }
 
+async function countQuestionBankByField(whereSql: string): Promise<Map<string, number>> {
+  const rows = await sqlQuery<Array<{ fieldId: string; count: number }>>(
+    `
+    SELECT "fieldId", COUNT(*)::int AS count
+    FROM "QuestionBankItem"
+    ${whereSql}
+    GROUP BY "fieldId"
+    `,
+    [],
+    { timeoutMs: BANK_COUNTS_QUERY_TIMEOUT_MS }
+  );
+  return new Map((rows ?? []).map((row) => [row.fieldId, Number(row.count)]));
+}
+
+/**
+ * Fallback field totals when the active-inventory query is degraded.
+ * Neon HTTP, one attempt. The previous Prisma groupBy opened a pooled
+ * connection after the HTTP read had already timed out.
+ */
 async function fetchQuestionBankCountsFromDb(): Promise<QuestionBankCountsSnapshot> {
-  const [totalRows, activeRows, servedRows] = await Promise.all([
-    prisma.questionBankItem.groupBy({
-      by: ["fieldId"],
-      _count: { _all: true },
-    }),
-    prisma.questionBankItem.groupBy({
-      by: ["fieldId"],
-      where: { active: true },
-      _count: { _all: true },
-    }),
-    sqlQuery(
+  const [totalByField, activeByField, servedByField] = await Promise.all([
+    countQuestionBankByField(""),
+    countQuestionBankByField("WHERE active = true"),
+    countQuestionBankByField(
       `
-      SELECT "fieldId", COUNT(*)::int AS count
-      FROM "QuestionBankItem"
       WHERE active = true
         AND "qaPassed" = true
         AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
         ${studentEligibleAndSql()}
-      GROUP BY "fieldId"
-      `,
-      []
-    ) as Promise<Array<{ fieldId: string; count: number }>>,
+      `
+    ),
   ]);
 
-  const totalByField = new Map(totalRows.map((r) => [r.fieldId, r._count._all]));
-  const activeByField = new Map(activeRows.map((r) => [r.fieldId, r._count._all]));
-  const servedByField = new Map(servedRows.map((r) => [r.fieldId, Number(r.count)]));
-
-  const sumRows = (rows: typeof totalRows) =>
-    rows.reduce((acc, row) => acc + row._count._all, 0);
+  const sumField = (counts: Map<string, number>) =>
+    [...counts.values()].reduce((acc, count) => acc + count, 0);
 
   const usmleTotals = USMLE_FIELD_IDS.reduce(
     (acc, stepId) => ({
@@ -181,9 +183,9 @@ async function fetchQuestionBankCountsFromDb(): Promise<QuestionBankCountsSnapsh
   ) as Record<ExamFieldId, FieldQuestionBankCounts>;
 
   const totals = {
-    total: sumRows(totalRows),
-    active: sumRows(activeRows),
-    served: servedRows.reduce((acc, row) => acc + Number(row.count), 0),
+    total: sumField(totalByField),
+    active: sumField(activeByField),
+    served: sumField(servedByField),
   };
 
   return {
@@ -194,24 +196,14 @@ async function fetchQuestionBankCountsFromDb(): Promise<QuestionBankCountsSnapsh
   };
 }
 
-async function fetchQuestionBankCountsWithRetry(): Promise<QuestionBankCountsSnapshot> {
-  let lastError: unknown;
-  for (let attempt = 0; attempt < DB_RETRY_ATTEMPTS; attempt++) {
-    try {
-      return await fetchQuestionBankCountsFromDb();
-    } catch (error) {
-      lastError = error;
-      if (attempt + 1 < DB_RETRY_ATTEMPTS) {
-        await new Promise((r) => setTimeout(r, 250 * (attempt + 1)));
-      }
-    }
-  }
-  throw lastError;
-}
-
 export type BankStatsBundle = {
   snapshot: QuestionBankCountsSnapshot;
   inventory: ActiveQuestionInventory;
+  /**
+   * Set when this bundle is a Redis last-good fallback.
+   * `snapshot.degraded` is also true, so callers omit it as a live total.
+   */
+  staleAgeMs?: number;
 };
 
 /**
@@ -231,7 +223,7 @@ async function loadBankStatsBundle(): Promise<BankStatsBundle> {
     return { inventory, snapshot: snapshotFromActiveInventory(inventory, clinical) };
   }
   try {
-    return { inventory, snapshot: await fetchQuestionBankCountsWithRetry() };
+    return { inventory, snapshot: await fetchQuestionBankCountsFromDb() };
   } catch (error) {
     console.error("[marketing/question-bank-counts] lookup failed:", error);
     return { inventory, snapshot: buildEmptySnapshot(true) };

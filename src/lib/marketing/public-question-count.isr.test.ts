@@ -84,8 +84,11 @@ describe("ISR question counts skip Upstash", () => {
     expect(harness.redisGet).not.toHaveBeenCalled();
   });
 
-  it("still lets the bank-counts API use the Upstash layer", async () => {
-    await expect(getPublicBankStatsBundle()).rejects.toThrow(/Upstash REST/);
-    expect(harness.redisGet).toHaveBeenCalled();
+  it("serves the bank-counts API from the same snapshot without reading Upstash", async () => {
+    harness.getCachedBankStatsBundle.mockResolvedValue(bundle(false));
+    const value = await getPublicBankStatsBundle();
+    expect(harness.redisGet).not.toHaveBeenCalled();
+    expect(harness.getCachedBankStatsBundle).toHaveBeenCalledWith({ dynamic: false });
+    expect(value.snapshot.degraded).toBe(false);
   });
 });

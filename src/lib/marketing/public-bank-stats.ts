@@ -1,65 +1,97 @@
 /**
- * Logged-out bank-counts cache for `/api/marketing/bank-counts` only.
+ * Origin reader for `/api/marketing/bank-counts`.
  *
- * The counts come from `getCachedBankStatsBundle()` (same stamp, same SQL as
- * the marketing pages). This layer adds one shared value for 10 minutes, one
- * in-flight recompute per isolate, and the previous good value when the
- * recompute fails. It uses Upstash REST, which is `cache: "no-store"`, so
- * statically rendered pages must not call it. They use `getIsrBankStatsBundle`.
+ * Marketing pages and this route both read `getIsrBankStatsBundle()` (the Next
+ * data cache). A separate Upstash value used to outlive a failed recompute and
+ * keep serving an older total with `degraded: false`. Redis is now only a
+ * last-good fallback, capped at 30 minutes, and that fallback is marked
+ * degraded. The key is v2 so a value stored by the previous layer is ignored.
  */
-import { cacheDelete, cacheGetOrSetDeduped } from "@/lib/cache";
-import { DbUnavailableError } from "@/lib/db-resilience";
-import { PUBLIC_BANK_COUNTS_CACHE_SECONDS } from "@/lib/inventory/active-inventory-cache";
-import {
-  getCachedBankStatsBundle,
-  type BankStatsBundle,
-  type BankStatsCacheOptions,
-} from "@/lib/marketing/question-bank-counts";
+import { cacheDelete } from "@/lib/cache";
+import { redisCacheGet, redisCacheSet } from "@/lib/upstash-redis";
+import { getIsrBankStatsBundle } from "@/lib/marketing/public-question-count";
+import type { BankStatsBundle, BankStatsCacheOptions } from "@/lib/marketing/question-bank-counts";
 
-export const PUBLIC_BANK_STATS_CACHE_KEY = "public-bank-stats-v1";
+export const PUBLIC_BANK_STATS_CACHE_KEY = "public-bank-stats-v2";
 
-const FRESH_MS = PUBLIC_BANK_COUNTS_CACHE_SECONDS * 1000;
+/** Last-good Redis fallback. Older than this, the API returns the failed read. */
+export const PUBLIC_BANK_STATS_STALE_MAX_MS = 30 * 60 * 1000;
 
-class DegradedBankStatsError extends DbUnavailableError {
-  readonly bundle: BankStatsBundle;
-
-  constructor(bundle: BankStatsBundle) {
-    super("bank counts degraded");
-    this.name = "DegradedBankStatsError";
-    this.bundle = bundle;
-  }
-}
+type StoredBankStats = {
+  bundle: BankStatsBundle;
+  storedAt: number;
+};
 
 function isDegraded(bundle: BankStatsBundle): boolean {
-  return bundle.inventory.degraded || bundle.snapshot.degraded;
+  return Boolean(bundle.inventory?.degraded || bundle.snapshot?.degraded);
 }
 
-async function loadFreshPublicBankStats(
-  options?: BankStatsCacheOptions
-): Promise<BankStatsBundle> {
-  const bundle = await getCachedBankStatsBundle(options);
-  if (isDegraded(bundle)) throw new DegradedBankStatsError(bundle);
-  return bundle;
+function isStoredBankStats(value: unknown): value is StoredBankStats {
+  if (!value || typeof value !== "object") return false;
+  const stored = value as StoredBankStats;
+  return (
+    typeof stored.storedAt === "number" &&
+    Number.isFinite(stored.storedAt) &&
+    !!stored.bundle?.snapshot &&
+    !!stored.bundle?.inventory
+  );
+}
+
+function markStale(bundle: BankStatsBundle, staleAgeMs: number): BankStatsBundle {
+  return {
+    ...bundle,
+    staleAgeMs,
+    snapshot: { ...bundle.snapshot, degraded: true },
+    inventory: { ...bundle.inventory, degraded: true },
+  };
+}
+
+async function rememberFresh(bundle: BankStatsBundle, storedAt = Date.now()): Promise<void> {
+  const stored: StoredBankStats = { bundle, storedAt };
+  await redisCacheSet(PUBLIC_BANK_STATS_CACHE_KEY, stored, PUBLIC_BANK_STATS_STALE_MAX_MS);
+}
+
+async function readStored(): Promise<StoredBankStats | null> {
+  const value = await redisCacheGet<unknown>(PUBLIC_BANK_STATS_CACHE_KEY);
+  return isStoredBankStats(value) ? value : null;
 }
 
 /**
- * Same value `/api/marketing/bank-counts` returns.
- * Pages do not call this: the Upstash read is `cache: "no-store"`.
+ * Same snapshot the marketing pages render.
+ * `options` is ignored: the shared loader always skips `connection()`.
+ * A failed recompute logs the real error. A Redis fallback younger than
+ * 30 minutes is returned with `degraded: true` and `staleAgeMs`.
  */
 export async function getPublicBankStatsBundle(
-  options?: BankStatsCacheOptions
+  _options?: BankStatsCacheOptions
 ): Promise<BankStatsBundle> {
+  let fresh: BankStatsBundle | null = null;
+  let failure: unknown = null;
   try {
-    return await cacheGetOrSetDeduped(
-      PUBLIC_BANK_STATS_CACHE_KEY,
-      FRESH_MS,
-      () => loadFreshPublicBankStats(options),
-      { staleTtlMs: FRESH_MS }
-    );
+    fresh = await getIsrBankStatsBundle();
   } catch (error) {
-    if (error instanceof DegradedBankStatsError) return error.bundle;
-    throw error;
+    failure = error;
   }
+
+  if (fresh && !isDegraded(fresh)) {
+    await rememberFresh(fresh);
+    return fresh;
+  }
+
+  const reason = failure ?? new Error("bank counts degraded");
+  console.error("[bank-counts] recompute failed:", reason);
+
+  const stored = await readStored();
+  const ageMs = stored ? Math.max(0, Date.now() - stored.storedAt) : null;
+  if (stored && ageMs != null && ageMs <= PUBLIC_BANK_STATS_STALE_MAX_MS) {
+    console.error(
+      `[bank-counts] serving stale snapshot ageMs=${ageMs} storedAt=${new Date(stored.storedAt).toISOString()}`
+    );
+    return markStale(stored.bundle, ageMs);
+  }
+
+  if (fresh) return fresh;
+  throw reason;
 }
 
 /** Test hook. Drops the shared public value. */

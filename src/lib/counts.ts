@@ -328,13 +328,13 @@ export function applyScoredClinicalCatalog(input: {
   };
 }
 
-/** Published NGN catalog for the boards that store one. Nursing is the only field today. */
+/**
+ * Published NGN catalog totals for the marketing snapshot.
+ * Neon HTTP, not the Prisma pool: revalidation must not take a pooled connection.
+ */
 export async function loadClinicalExtrasByBoard(): Promise<
   Partial<Record<CountBoardSlug, ClinicalQuestionExtra>>
 > {
-  const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
-  const nursing = await loadPublishedClinicalBank("nursing");
-  const extra = clinicalExtraFromCatalog(nursing.catalog);
-  if (extra.standaloneNgn === 0 && extra.caseStudies === 0 && extra.caseItems === 0) return {};
-  return { nclex: extra };
+  const { loadClinicalExtrasOverHttp } = await import("@/lib/marketing/clinical-extra-http");
+  return loadClinicalExtrasOverHttp();
 }

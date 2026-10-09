@@ -13,7 +13,7 @@
  */
 import { formatBoardQuestionSentence } from "@/lib/counts";
 import type { ExamRouteSlug } from "@/lib/routes";
-import { withDbRetry, sqlQuery } from "@/lib/db";
+import { sqlQuery } from "@/lib/db";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { blueprintCategoryIdForQuestion } from "@/lib/inventory/blueprint-domain-pool";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
@@ -380,13 +380,14 @@ async function queryActiveInventoryRows(): Promise<DbInventoryRow[]> {
   return rows as DbInventoryRow[];
 }
 
-/** Live unique active questions. Returns a degraded snapshot instead of throwing. */
+/**
+ * Live unique active questions. One Neon HTTP attempt.
+ * A retry storm during ISR revalidation holds pooler capacity and turns a
+ * 5s timeout into several. Returns a degraded snapshot instead of throwing.
+ */
 export async function fetchActiveInventoryFromDb(): Promise<ActiveQuestionInventory> {
   try {
-    const rows = await withDbRetry(
-      () => queryActiveInventoryRows(),
-      "active-question-inventory"
-    );
+    const rows = await queryActiveInventoryRows();
     return aggregateActiveInventory(rows.map(normalizeDbRow));
   } catch (error) {
     console.error("[inventory] active question lookup failed:", error);
