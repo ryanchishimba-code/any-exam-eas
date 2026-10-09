@@ -8,6 +8,10 @@ import {
   ACTIVE_INVENTORY_STAMP_TTL_SECONDS,
   ACTIVE_INVENTORY_PATHS,
   ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL,
+  BANK_COUNTS_QUERY_TIMEOUT_MS,
+  PUBLIC_BANK_COUNTS_BROWSER_CACHE_CONTROL,
+  PUBLIC_BANK_COUNTS_CACHE_SECONDS,
+  PUBLIC_BANK_COUNTS_CDN_CACHE_CONTROL,
   activeInventoryRevalidateUrl,
   bulkActionAffectsActiveInventory,
   changedFieldsAffectActiveInventory,
@@ -25,6 +29,12 @@ describe("active inventory cache identity", () => {
     expect(ACTIVE_INVENTORY_CACHE_KEY).toEqual(["marketing-active-inventory-v7"]);
     expect(ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL).not.toMatch(/s-maxage|max-age=[1-9]/);
     expect(ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL).toContain("no-store");
+    expect(PUBLIC_BANK_COUNTS_CACHE_SECONDS).toBe(600);
+    expect(PUBLIC_BANK_COUNTS_BROWSER_CACHE_CONTROL).toContain("max-age=0");
+    expect(PUBLIC_BANK_COUNTS_CDN_CACHE_CONTROL).toBe(
+      "public, s-maxage=600, stale-while-revalidate=600"
+    );
+    expect(BANK_COUNTS_QUERY_TIMEOUT_MS).toBe(5_000);
   });
 
   it("does not import cron auth, so marketing clients can load the cache constants", () => {

@@ -9,6 +9,7 @@
  */
 import { cacheGetOrSet, cacheKey, type CacheResilienceOptions } from "@/lib/cache";
 import { sqlQuery } from "@/lib/db";
+import { BANK_COUNTS_QUERY_TIMEOUT_MS } from "@/lib/inventory/active-inventory-cache";
 import { INVENTORY_FIELD_IDS } from "@/lib/inventory/active-questions";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 
@@ -88,7 +89,8 @@ export async function fetchActiveInventoryStamp(): Promise<ActiveInventoryStamp>
       AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
       ${studentEligibleAndSql()}
     `,
-    []
+    [],
+    { timeoutMs: BANK_COUNTS_QUERY_TIMEOUT_MS }
   );
   const row = Array.isArray(rows) ? rows[0] : null;
   return normalizeActiveInventoryStampRow(

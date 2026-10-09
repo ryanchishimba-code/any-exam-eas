@@ -40,11 +40,25 @@ export const ACTIVE_INVENTORY_STAMP_CACHE_KEY = ["active-inventory-stamp-v1"] as
 export const ACTIVE_INVENTORY_CACHE_KEY = ["marketing-active-inventory-v7"] as const;
 
 /**
- * Public count JSON must not sit in a browser or CDN cache.
- * The API stays dynamic and reads the shared 5-minute stamp.
+ * Authenticated inventory JSON (catalog, exam lists) stays uncached.
+ * The public bank-counts route uses the CDN headers below instead.
  */
 export const ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL =
   "private, no-cache, no-store, max-age=0, must-revalidate";
+
+/**
+ * Logged-out `/api/marketing/bank-counts` cache.
+ * Browsers revalidate. The CDN holds one shared response for 10 minutes and
+ * may serve that response while a single origin refresh runs.
+ */
+export const PUBLIC_BANK_COUNTS_CACHE_SECONDS = 10 * 60;
+
+export const PUBLIC_BANK_COUNTS_BROWSER_CACHE_CONTROL = "public, max-age=0, must-revalidate";
+
+export const PUBLIC_BANK_COUNTS_CDN_CACHE_CONTROL = `public, s-maxage=${PUBLIC_BANK_COUNTS_CACHE_SECONDS}, stale-while-revalidate=${PUBLIC_BANK_COUNTS_CACHE_SECONDS}`;
+
+/** Server and client ceiling for the public count queries. */
+export const BANK_COUNTS_QUERY_TIMEOUT_MS = 5_000;
 
 export const ACTIVE_INVENTORY_REVALIDATE_PATH = "/api/cron/revalidate-inventory";
 

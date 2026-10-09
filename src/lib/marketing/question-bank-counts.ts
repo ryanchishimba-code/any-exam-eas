@@ -269,8 +269,11 @@ async function renderInventoryOnEachRequest(): Promise<void> {
 
 /**
  * One published stamp for every count surface. A failed lookup is not cached.
+ * Concurrent callers on this isolate share one stamp read.
  */
-export async function getPublishedInventoryStampKey(): Promise<string | null> {
+let stampInflight: Promise<string | null> | null = null;
+
+async function readPublishedInventoryStampKey(): Promise<string | null> {
   try {
     return await unstable_cache(
       async () => {
@@ -290,6 +293,27 @@ export async function getPublishedInventoryStampKey(): Promise<string | null> {
     }
     return null;
   }
+}
+
+export async function getPublishedInventoryStampKey(): Promise<string | null> {
+  if (stampInflight) return stampInflight;
+  const pending = readPublishedInventoryStampKey().finally(() => {
+    if (stampInflight === pending) stampInflight = null;
+  });
+  stampInflight = pending;
+  return pending;
+}
+
+/** Concurrent direct reads share one group-by. */
+let directStatsInflight: Promise<BankStatsBundle> | null = null;
+
+function loadBankStatsDirect(): Promise<BankStatsBundle> {
+  if (directStatsInflight) return directStatsInflight;
+  const pending = loadBankStatsBundle().finally(() => {
+    if (directStatsInflight === pending) directStatsInflight = null;
+  });
+  directStatsInflight = pending;
+  return pending;
 }
 
 async function loadFreshBankStatsBundle(): Promise<BankStatsBundle> {
@@ -320,7 +344,7 @@ export async function getCachedBankStatsBundle(
   }
 
   const stampKey = await getPublishedInventoryStampKey();
-  if (!stampKey) return loadBankStatsBundle();
+  if (!stampKey) return loadBankStatsDirect();
 
   try {
     return await unstable_cache(loadFreshBankStatsBundle, [...ACTIVE_INVENTORY_CACHE_KEY, stampKey], {
@@ -331,7 +355,7 @@ export async function getCachedBankStatsBundle(
     if (!isDegradedInventoryError(error)) {
       console.error("[inventory] cached snapshot failed; reading the bank directly:", error);
     }
-    return loadBankStatsBundle();
+    return loadBankStatsDirect();
   }
 }
 
