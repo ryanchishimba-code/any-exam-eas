@@ -4,6 +4,7 @@
 import type { PrismaClient } from "@prisma/client";
 import type { BankItem } from "@/lib/question-bank";
 import { bankItemContentHash } from "@/lib/sync-question-bank";
+import { planBankWrite } from "@/lib/questions/manual-correction";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 import { assessNptePtBankItem } from "./quality-gate";
 import { NPTE_PT_GENERATION_VERSION } from "./types";
@@ -116,10 +117,14 @@ export async function insertNptePtBankItems(
   const existing = await withDbRetry("findMany", () =>
     prisma.questionBankItem.findMany({
       where: { contentHash: { in: hashes } },
-      select: { contentHash: true },
+      select: { contentHash: true, manualCorrection: true },
     })
   );
-  const existingSet = new Set(existing.map((row) => row.contentHash));
+  const existingSet = new Set(
+    existing
+      .filter((row) => planBankWrite(row) !== "create")
+      .map((row) => row.contentHash)
+  );
   const toInsert = prepared.filter((row) => !existingSet.has(row.hash));
   let skipped = prepared.length - toInsert.length;
 

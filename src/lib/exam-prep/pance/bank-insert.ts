@@ -4,6 +4,7 @@
 import type { PrismaClient } from "@prisma/client";
 import type { BankItem } from "@/lib/question-bank";
 import { bankItemContentHash } from "@/lib/sync-question-bank";
+import { planBankWrite } from "@/lib/questions/manual-correction";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 import { assessPanceBankItem } from "./quality-gate";
 import { PANCE_GENERATION_VERSION } from "./types";
@@ -58,9 +59,12 @@ export async function insertPanceBankItems(
     const subjectId = item.subjectId ?? item.topicCategory ?? "cardiovascular";
     const hash = bankItemContentHash("pance", subjectId, item);
     const exists = await withDbRetry("findUnique", () =>
-      prisma.questionBankItem.findUnique({ where: { contentHash: hash }, select: { id: true } })
+      prisma.questionBankItem.findUnique({
+        where: { contentHash: hash },
+        select: { id: true, manualCorrection: true },
+      })
     );
-    if (exists) {
+    if (exists && planBankWrite(exists) !== "create") {
       skipped++;
       continue;
     }

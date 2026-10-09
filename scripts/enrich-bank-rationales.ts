@@ -17,6 +17,7 @@ loadEnvFiles();
 
 import { PrismaClient } from "@prisma/client";
 import { assessNclexItemQuality } from "../src/lib/exam-prep/nclex-quality-gate";
+import { shouldSkipHandCorrected } from "../src/lib/questions/manual-correction";
 import { assessNaplexItemQuality } from "../src/lib/exam-prep/naplex-quality-gate";
 import {
   generateStructuredRationale,
@@ -80,7 +81,12 @@ async function main() {
 
   while (enriched < limit) {
     const rows = await prisma.questionBankItem.findMany({
-      where: { fieldId: field, active: true, ...(lastId ? { id: { gt: lastId } } : {}) },
+      where: {
+        fieldId: field,
+        active: true,
+        manualCorrection: false,
+        ...(lastId ? { id: { gt: lastId } } : {}),
+      },
       orderBy: { id: "asc" },
       take: BATCH,
     });
@@ -90,6 +96,10 @@ async function main() {
       if (enriched >= limit) break;
       scanned++;
       lastId = row.id;
+      if (shouldSkipHandCorrected(row)) {
+        skipped++;
+        continue;
+      }
 
       const item = enrichBankItemFromRow(row);
       if (bestOnly && !isBestTier(field, item, row.source)) {

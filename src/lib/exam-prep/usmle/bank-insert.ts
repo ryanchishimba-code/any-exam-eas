@@ -3,6 +3,7 @@
  */
 import type { PrismaClient } from "@prisma/client";
 import { bankItemContentHash } from "@/lib/sync-question-bank";
+import { planBankWrite } from "@/lib/questions/manual-correction";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 import { assessUsmleFullExamItem } from "./quality-gate";
 import { usmlePresetExamIsServeReady } from "./load-preset-exam";
@@ -45,12 +46,12 @@ export async function insertUsmleFullExam(
 
     const existing = await prisma.questionBankItem.findUnique({
       where: { contentHash: hash },
-      select: { id: true },
+      select: { id: true, manualCorrection: true },
     });
 
     let questionBankItemId: string;
 
-    if (existing) {
+    if (existing && planBankWrite(existing) !== "create") {
       questionBankItemId = existing.id;
       skipped++;
     } else {

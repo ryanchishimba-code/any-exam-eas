@@ -15,6 +15,7 @@ import { assessNclexItemQuality } from "../src/lib/exam-prep/nclex-quality-gate"
 import { assessNaplexItemQuality } from "../src/lib/exam-prep/naplex-quality-gate";
 import { enrichBankItemGuidelines } from "../src/lib/exam-prep/enrich-guidelines";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
+import { shouldSkipHandCorrected } from "../src/lib/questions/manual-correction";
 
 const prisma = new PrismaClient();
 const BATCH = 400;
@@ -44,7 +45,7 @@ function assessBest(fieldId: string, item: ReturnType<typeof enrichBankItemFromR
 
 async function main() {
   const { field, limit, dryRun, bestOnly, json } = parseArgs();
-  const where = { fieldId: field, active: true };
+  const where = { fieldId: field, active: true, manualCorrection: false };
   const total = await prisma.questionBankItem.count({ where });
 
   console.log(
@@ -71,6 +72,10 @@ async function main() {
       if (limit > 0 && processed >= limit) break;
 
       processed++;
+      if (shouldSkipHandCorrected(row)) {
+        skipped++;
+        continue;
+      }
       const item = enrichBankItemFromRow(row);
 
       if (bestOnly && !assessBest(field, item, row.source)) {
