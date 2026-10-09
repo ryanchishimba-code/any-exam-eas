@@ -352,7 +352,7 @@ export function FullExamLauncher({
                   <span>
                     <span className="font-medium text-[var(--color-ink)]">CAT-style adaptive</span>
                     <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
-                      Variable length 85–150 questions · 5-hour clock · practice only (not Pearson VUE).
+                      Exam mode keeps three cases before item 86. Each answer locks when you press Next. Practice only, not Pearson VUE.
                     </span>
                   </span>
                 </label>
@@ -386,7 +386,13 @@ export function FullExamLauncher({
                 className={cn(feUi.startBtn, "bg-[var(--color-accent)]")}
               >
                 <Zap className="h-4 w-4" aria-hidden />
-                {pending ? "Starting…" : timed ? "Start Timed Exam" : "Start Untimed Exam"}
+                {pending
+                  ? "Starting…"
+                  : examSlug === "nclex" && preset === "full"
+                    ? "Start exam"
+                    : timed
+                      ? "Start Timed Exam"
+                      : "Start Untimed Exam"}
               </button>
               <Link
                 href={ROUTES.dashboard}

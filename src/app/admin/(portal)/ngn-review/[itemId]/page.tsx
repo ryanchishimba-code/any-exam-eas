@@ -87,6 +87,7 @@ export default async function NgnItemReviewPage({
           caseDoc={detail.caseDoc}
           items={detail.siblings}
           mode="review"
+          showStepNames
           initialStep={stepIndex}
           attemptSeed={`review-${detail.item.id}`}
           sourcesById={sourcesById}

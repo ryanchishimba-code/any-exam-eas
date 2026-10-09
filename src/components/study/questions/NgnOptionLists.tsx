@@ -1,5 +1,6 @@
 "use client";
 
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { cleanOptionText } from "@/lib/question-format";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { Check, X } from "lucide-react";
@@ -78,7 +79,7 @@ export function OrderedResponseOptions({
               key={`${opt}-${i}`}
               className="rounded-full border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/10 px-3 py-1 text-xs font-medium"
             >
-              {i + 1}. {cleanOptionText(opt)}
+              {i + 1}. <InlineBold text={cleanOptionText(opt)} />
             </li>
           ))}
         </ol>
@@ -98,7 +99,7 @@ export function OrderedResponseOptions({
                     : "border-black/[0.08] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/40"
                 }`}
               >
-                {cleanOptionText(opt)}
+                <InlineBold text={cleanOptionText(opt)} />
               </button>
             </li>
           );
@@ -159,7 +160,7 @@ function OptionRow({
           {multi && selected ? "✓" : index + 1}
         </span>
         <span className="min-w-0 flex-1">
-          {cleanOptionText(option)}
+          <InlineBold text={cleanOptionText(option)} />
           {revealed && isCorrect && (
             <span className="mt-1 flex items-center gap-1 text-xs font-semibold a11y-correct-text">
               <Check className="h-3.5 w-3.5" aria-hidden />

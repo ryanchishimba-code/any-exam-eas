@@ -2,9 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { ChartPanel, ChartSheet } from "@/components/ngn/ChartPanel";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { ItemRenderer } from "@/components/ngn/ItemRenderer";
 import { ngnFocus, ngnMuted } from "@/components/ngn/brand";
 import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
+import { chartWithPatientHistory } from "@/lib/assessment/patient-history-chart";
+import { studentCaseChrome, studentQuestionPosition } from "@/lib/full-exam/nclex-exam-labels";
 import { NCLEX_RN_2026_PROFILE } from "@/lib/assessment/profiles/nclex-rn-2026";
 import type { NgnCase, NgnItem, SourceRef } from "@/lib/assessment/types";
 
@@ -21,6 +24,8 @@ type CaseStudyPlayerProps = {
   /** Disables Submit case while the session is scoring. */
   busy?: boolean;
   rationaleVisible?: boolean;
+  /** Internal review only. Students do not see clinical-judgment step names. */
+  showStepNames?: boolean;
 };
 
 function sexLabel(sex: string): string {
@@ -39,6 +44,7 @@ export function CaseStudyPlayer({
   onSubmit,
   busy = false,
   rationaleVisible = false,
+  showStepNames = false,
 }: CaseStudyPlayerProps) {
   const ordered = sortNgnItemsByCaseStep(items ?? caseDoc.items);
   const [step, setStep] = useState(() => Math.min(Math.max(initialStep, 0), Math.max(ordered.length - 1, 0)));
@@ -59,13 +65,19 @@ export function CaseStudyPlayer({
   const item = ordered[step];
   if (!item) return null;
   const timepoint = caseDoc.timepoints.find((entry) => entry.id === item.timepoint);
-  const stepMeta = NCLEX_RN_2026_PROFILE.stepTaxonomy.find((entry) => entry.step === item.caseStep);
+  const chrome = studentCaseChrome({
+    surface: showStepNames ? "review" : "practice",
+    step: item.caseStep,
+    caseTitle: caseDoc.title,
+  });
   const patient = caseDoc.patient;
   const knownAllergy = patient.allergies && !/no known/i.test(patient.allergies);
 
+  const chartDoc = chartWithPatientHistory(caseDoc.chart, patient.history);
   const chart = (
-    <ChartPanel chart={caseDoc.chart} timepoints={caseDoc.timepoints} currentTimepoint={item.timepoint ?? ""} />
+    <ChartPanel chart={chartDoc} timepoints={caseDoc.timepoints} currentTimepoint={item.timepoint ?? ""} />
   );
+  const questionPosition = studentQuestionPosition(step, ordered.length);
 
   return (
     <div className="pb-[calc(7.5rem+env(safe-area-inset-bottom,0px))] text-[#0A2540] lg:pb-0">
@@ -85,41 +97,43 @@ export function CaseStudyPlayer({
         </p>
       </header>
 
-      <ol className="mt-4 flex gap-2 overflow-x-auto pb-1" aria-label="Clinical judgment steps">
-        {ordered.map((entry, index) => {
-          const meta = NCLEX_RN_2026_PROFILE.stepTaxonomy.find((stepEntry) => stepEntry.step === entry.caseStep);
-          const current = index === step;
-          const locked = mode === "exam" && index !== step;
-          return (
-            <li key={entry.id} className="shrink-0">
-              <button
-                type="button"
-                disabled={locked}
-                aria-current={current ? "step" : undefined}
-                className={`min-h-11 rounded-full px-3 text-left text-sm motion-reduce:transition-none ${ngnFocus} ${
-                  current
-                    ? "bg-[#0A2540] text-white"
-                    : "bg-white text-[#0A2540] ring-1 ring-[#e2e8f0] disabled:text-[#334155]"
-                }`}
-                onClick={() => {
-                  if (!locked) setStep(index);
-                }}
-              >
-                <span className="font-semibold">{entry.caseStep}</span> {meta?.label ?? "Step"}
-              </button>
-            </li>
-          );
-        })}
-      </ol>
+      {chrome.caseTitle ? (
+        <p className="mt-4 text-sm font-medium text-[#334155]">{chrome.caseTitle}</p>
+      ) : null}
+
+      {showStepNames ? (
+        <ol className="mt-4 flex gap-2 overflow-x-auto pb-1" aria-label="Clinical judgment steps">
+          {ordered.map((entry, index) => {
+            const meta = NCLEX_RN_2026_PROFILE.stepTaxonomy.find((stepEntry) => stepEntry.step === entry.caseStep);
+            const current = index === step;
+            return (
+              <li key={entry.id} className="shrink-0">
+                <button
+                  type="button"
+                  aria-current={current ? "step" : undefined}
+                  className={`min-h-11 rounded-full px-3 text-left text-sm motion-reduce:transition-none ${ngnFocus} ${
+                    current ? "bg-[#0A2540] text-white" : "bg-white text-[#0A2540] ring-1 ring-[#e2e8f0]"
+                  }`}
+                  onClick={() => setStep(index)}
+                >
+                  <span className="font-semibold">{entry.caseStep}</span> {meta?.label ?? "Step"}
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      ) : null}
 
       <div className="mt-4 lg:grid lg:grid-cols-2 lg:gap-5">
         {large ? <div className="min-h-[28rem] min-w-0">{chart}</div> : null}
         <section className="rounded-3xl border border-[#e2e8f0] bg-white p-5 sm:p-6" aria-label="Question">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#334155]">
-            {stepMeta?.label}
+            {showStepNames && chrome.stepLabel ? chrome.stepLabel : questionPosition}
             {timepoint ? ` · ${timepoint.label}` : ""}
           </p>
-          <h3 className="mt-3 text-[19px] font-semibold leading-7 tracking-tight">{item.stem}</h3>
+          <h3 className="mt-3 text-[19px] font-semibold leading-7 tracking-tight">
+            <InlineBold text={item.stem} />
+          </h3>
           <div className="mt-5">
             <ItemRenderer
               item={item}
@@ -186,7 +200,7 @@ export function CaseStudyPlayer({
           <ChartSheet
             open={chartOpen}
             onClose={() => setChartOpen(false)}
-            chart={caseDoc.chart}
+            chart={chartDoc}
             timepoints={caseDoc.timepoints}
             currentTimepoint={item.timepoint ?? ""}
           />

@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { ngnFocus } from "@/components/ngn/brand";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { orderForFormat } from "@/lib/assessment/shuffle";
 import type { NgnOption } from "@/lib/assessment/types";
 
@@ -49,7 +50,9 @@ export function McSingle({
             disabled={disabled}
             onChange={() => onChange(option.id)}
           />
-          <span>{option.text}</span>
+          <span>
+            <InlineBold text={option.text} />
+          </span>
         </label>
       )}
     />
@@ -87,7 +90,9 @@ export function Sata({
                 onChange(checked ? selected.filter((id) => id !== option.id) : [...selected, option.id])
               }
             />
-            <span>{option.text}</span>
+            <span>
+            <InlineBold text={option.text} />
+          </span>
           </label>
         );
       }}
@@ -136,7 +141,9 @@ export function SelectN({
                   onChange(checked ? selected.filter((id) => id !== option.id) : [...selected, option.id]);
                 }}
               />
-              <span>{option.text}</span>
+              <span>
+            <InlineBold text={option.text} />
+          </span>
             </label>
           );
         }}

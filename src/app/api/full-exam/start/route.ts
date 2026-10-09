@@ -227,7 +227,8 @@ export async function POST(req: Request) {
     if (
       !exactForm &&
       launchMode === "new_exam" &&
-      !focusAreasRaw?.length
+      !focusAreasRaw?.length &&
+      !(config.nclexExamMode && explicitPreset == null)
     ) {
       exactForm = await serveNextUnusedPresetForm({
         userId: premium.userId,
@@ -235,6 +236,9 @@ export async function POST(req: Request) {
         fieldId: sessionFieldId,
         simulationLength: config.questionCount,
       });
+    }
+    if (config.nclexExamMode && explicitPreset == null) {
+      exactForm = null;
     }
 
     let sessionConfig = exactForm
@@ -346,6 +350,7 @@ export async function POST(req: Request) {
         sampleCount,
         excludeQuestionIds: smart.excludeQuestionIds,
         sessionId,
+        nclexExamMode: sessionConfig.nclexExamMode === true,
       });
 
       if (!assembled || assembled.unavailable || assembled.items.length < limit) {

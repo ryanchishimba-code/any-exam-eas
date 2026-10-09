@@ -5,6 +5,7 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
+import { matrixRowHeader } from "@/lib/assessment/matrix-row-header";
 import { ngnQuestionKey, type PublishedCatalog } from "@/lib/assessment/serve";
 import type { NgnCase, NgnItem as ClinicalItem } from "@/lib/assessment/types";
 
@@ -72,7 +73,8 @@ function baseItem(
   item: ClinicalItem,
   subjectId: string | null,
   vignette: string | undefined,
-  fields: Pick<BankItem, "options" | "correctAnswer" | "itemType" | "ngnPayload">
+  fields: Pick<BankItem, "options" | "correctAnswer" | "itemType" | "ngnPayload">,
+  caseTitle?: string
 ): BankItem {
   const setId = item.caseId?.trim() || undefined;
   const stepIndex = typeof item.caseStep === "number" ? item.caseStep : undefined;
@@ -80,6 +82,7 @@ function baseItem(
     ...(fields.ngnPayload ?? {}),
     ...(item.exhibit ? { exhibit: item.exhibit } : {}),
     clinicalItemType: item.itemType,
+    ...(caseTitle ? { caseTitle } : {}),
     ...(setId ? { setId } : {}),
     ...(stepIndex != null ? { stepIndex } : {}),
   };
@@ -157,6 +160,7 @@ function convertHighlight(payload: Record<string, unknown>): Pick<BankItem, "opt
       kind: "highlight",
       text,
       highlights: correct,
+      tokens: tokens.map((token) => ({ id: token.id, text: token.text, selectable: token.selectable })),
       segments: selectable.map((token) => ({ id: token.id, text: token.text })),
     },
   };
@@ -207,6 +211,7 @@ function convertMatrix(
       rows,
       columns: columns.map((column) => column.text),
       matrixMulti: multi,
+      rowHeader: matrixRowHeader(payload.rowHeader),
     },
   };
 }
@@ -314,7 +319,7 @@ export function publishedCatalogToBankItems(catalog: PublishedCatalog): BankItem
     if (converted.some((row) => row.fields == null)) continue;
     const vignette = caseVignette(unit.caseDoc);
     for (const row of converted) {
-      items.push(baseItem(row.item, unit.subjectId, vignette || undefined, row.fields!));
+      items.push(baseItem(row.item, unit.subjectId, vignette || undefined, row.fields!, unit.caseDoc.title));
     }
   }
 

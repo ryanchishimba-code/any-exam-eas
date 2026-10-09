@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { formatAnswerDisplay, storedAnswerIncludesChoice } from "@/lib/full-exam/answer-serialize";
 import { practiceResultsTotals } from "@/lib/full-exam/administered-score";
 import { formatHms } from "@/lib/full-exam/config";
@@ -38,6 +39,7 @@ import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { resolveQuestionStudyLinks } from "@/lib/library/question-study-links";
 import { bowTieReviewColumns, type BowTieReviewChoice } from "@/lib/questions/bow-tie-review";
 import { studentFacingStem } from "@/lib/questions/student-display-text";
+import { clientNeedLabel, genericJudgmentLabel, tallyLabeledScores } from "@/lib/full-exam/nclex-exam-labels";
 
 type ReviewView = "summary" | "overview" | "question";
 
@@ -85,7 +87,7 @@ function ReviewChoiceList({
               !choice.selected && !choice.correct && "border-slate-200 bg-slate-50/50 text-slate-700"
             )}
           >
-            {studentFacingStem(choice.text)}
+            <InlineBold text={studentFacingStem(choice.text)} />
             {choice.selected ? " · Your answer" : ""}
             {choice.correct ? " · Correct" : ""}
           </li>
@@ -199,7 +201,7 @@ export function FullExamResults({
           </div>
 
           <p className="whitespace-pre-wrap text-base leading-relaxed text-slate-800">
-            {studentFacingStem(current.question)}
+            <InlineBold text={studentFacingStem(current.question)} />
           </p>
 
           {bowTieColumns && bowTieColumns.conditions.length > 0 ? (
@@ -226,7 +228,7 @@ export function FullExamResults({
                           !selected && !correctOpt && "border-slate-200 bg-slate-50/50 text-slate-700"
                         )}
                       >
-                        {studentFacingStem(opt)}
+                        <InlineBold text={studentFacingStem(opt)} />
                         {selected ? " · Your answer" : ""}
                         {correctOpt ? " · Correct" : ""}
                       </li>
@@ -250,7 +252,7 @@ export function FullExamResults({
                       !selected && !correctOpt && "border-slate-200 bg-slate-50/50 text-slate-700"
                     )}
                   >
-                    {studentFacingStem(opt)}
+                    <InlineBold text={studentFacingStem(opt)} />
                     {selected ? " · Your answer" : ""}
                     {correctOpt ? " · Correct" : ""}
                   </li>
@@ -262,12 +264,14 @@ export function FullExamResults({
               <p>
                 <span className="font-semibold text-slate-600">Your answer: </span>
                 <span className={isCorrect ? "text-teal-700" : "text-rose-700"}>
-                  {formatAnswerDisplay(currentAnswer?.selected ?? "")}
+                  <InlineBold text={formatAnswerDisplay(currentAnswer?.selected ?? "")} />
                 </span>
               </p>
               <p>
                 <span className="font-semibold text-slate-600">Correct: </span>
-                <span className="text-teal-800">{formatAnswerDisplay(current.correctAnswer)}</span>
+                <span className="text-teal-800">
+                  <InlineBold text={formatAnswerDisplay(current.correctAnswer)} />
+                </span>
               </p>
             </div>
           )}
@@ -488,6 +492,10 @@ export function FullExamResults({
         }
       />
 
+      {examSlug === "nclex" ? (
+        <NclexExamBreakdown questions={questions} answers={answers} />
+      ) : null}
+
       {analysis.topicBreakdown.length > 0 ? (
         <div className={cn(feUi.panel, "p-5 sm:p-6")}>
           <h2 className={feUi.sectionTitle}>
@@ -602,6 +610,62 @@ function ReviewFooter({
         </div>
       </div>
     </footer>
+  );
+}
+
+function NclexExamBreakdown({
+  questions,
+  answers,
+}: {
+  questions: FullExamQuestion[];
+  answers: ExamAnswerRecord[];
+}) {
+  const rows = questions.map((question, index) => {
+    const answer = answers.find((entry) => entry.questionIndex === index);
+    const selected = typeof answer?.selected === "string" ? answer.selected.trim() : "";
+    return {
+      answered: selected.length > 0,
+      correct: answer?.correct === true,
+      step: genericJudgmentLabel(question.caseStep),
+      need: clientNeedLabel(question.topicCategory, question.subjectId, question.blueprintDomain),
+    };
+  });
+  const steps = tallyLabeledScores(rows.map((row) => ({ label: row.step, answered: row.answered, correct: row.correct })));
+  const needs = tallyLabeledScores(rows.map((row) => ({ label: row.need, answered: row.answered, correct: row.correct })));
+  if (steps.length === 0 && needs.length === 0) return null;
+  return (
+    <div className="grid gap-4 lg:grid-cols-2">
+      <BreakdownCard title="Clinical judgment" rows={steps} />
+      <BreakdownCard title="Client needs" rows={needs} />
+    </div>
+  );
+}
+
+function BreakdownCard({
+  title,
+  rows,
+}: {
+  title: string;
+  rows: Array<{ label: string; correct: number; total: number; pct: number }>;
+}) {
+  if (rows.length === 0) return null;
+  return (
+    <div className={cn(feUi.panel, "p-5 sm:p-6")}>
+      <h2 className={feUi.sectionTitle}>{title}</h2>
+      <ul className="mt-4 space-y-3">
+        {rows.map((row) => (
+          <li key={row.label}>
+            <div className="mb-1 flex justify-between text-[13px]">
+              <span className="font-medium text-[var(--color-ink)]">{row.label}</span>
+              <span className="text-[var(--color-ink-muted)]">
+                {row.correct}/{row.total} ({row.pct}%)
+              </span>
+            </div>
+            <Progress value={row.pct} className="h-1.5" />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

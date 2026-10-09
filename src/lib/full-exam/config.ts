@@ -53,7 +53,7 @@ export function getLengthOptions(examSlug: ExamSlug, fieldId?: string): LengthOp
         preset: "full",
         label: "Full NCLEX (CAT)",
         description:
-          "85–150 questions · 5 hours · Client Needs mix (practice CAT).",
+          "Exam mode · 85–150 questions · 3 cases before item 86 · 5 hours.",
         questionCount: full,
       },
     ];
@@ -160,6 +160,7 @@ export function buildSessionConfig(
   }
   const nclexCat =
     examSlug === "nclex" && resolveNclexCatEnabled(preset, opts?.nclexCat);
+  const nclexExamMode = examSlug === "nclex" && (preset === "full" || nclexCat);
   // Prefetch the full CAT pool so live stop rules (85–150) can fire early.
   if (nclexCat) {
     questionCount = CAT_MAX_QUESTIONS;
@@ -176,7 +177,7 @@ export function buildSessionConfig(
     timeLimitSec,
     adaptive: (preset === "full" && examSlug !== "nclex") || nclexCat,
     ...(examSlug === "nclex"
-      ? { nclexLength: opts?.nclexLength ?? "minimum", nclexCat }
+      ? { nclexLength: opts?.nclexLength ?? "minimum", nclexCat, nclexExamMode }
       : {}),
     ...(opts?.focusAreas?.length ? { focusAreas: opts.focusAreas } : {}),
   };

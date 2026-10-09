@@ -41,16 +41,22 @@ const PILOT_DOMAINS = [
 ] as const;
 
 const BATCH1_DOMAINS = [
+  "aap.org",
   "academic.oup.com",
   "ascopubs.org",
   "cpr.heart.org",
+  "doi.org",
   "emedicine.medscape.com",
+  "ginasthma.org",
+  "goldcopd.org",
   "journal.chestnet.org",
   "journals.bioscientifica.com",
   "journals.lww.com",
   "link.springer.com",
   "onlinelibrary.wiley.com",
+  "publications.aap.org",
   "publications.smfm.org",
+  "sts.org",
   "thorax.bmj.com",
   "www.accessdata.fda.gov",
   "www.acog.org",

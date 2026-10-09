@@ -57,6 +57,45 @@ const bowtie = item({
 });
 
 describe("publishedCatalogToBankItems", () => {
+  it("keeps a matrix row-header label for the exam player", () => {
+    const matrix = item({
+      id: "M1",
+      responseFormat: "matrix_mc",
+      stem: "For each task, choose the column.",
+      payload: {
+        rowHeader: "Task",
+        columns: [
+          { id: "now", text: "Do now" },
+          { id: "later", text: "Do later" },
+        ],
+        rows: [
+          { id: "r1", text: "Give the medication", key: "now" },
+          { id: "r2", text: "Call the provider", key: "later" },
+        ],
+      },
+    });
+    const plain = item({
+      id: "M2",
+      responseFormat: "matrix_mc",
+      stem: "For each finding, choose the column.",
+      payload: {
+        columns: [
+          { id: "now", text: "Do now" },
+          { id: "later", text: "Do later" },
+        ],
+        rows: [{ id: "r1", text: "Lactate 3.1", key: "now" }],
+      },
+    });
+    const rows = publishedCatalogToBankItems({
+      standalones: [
+        { kind: "standalone", item: matrix, subjectId: "phys" },
+        { kind: "standalone", item: plain, subjectId: "phys" },
+      ],
+      cases: [],
+    });
+    expect(rows.map((row) => row.ngnPayload?.rowHeader)).toEqual(["Task", "Finding"]);
+  });
+
   it("keeps a 2-action bow-tie and grades both actions", () => {
     const catalog: PublishedCatalog = { standalones: [{ kind: "standalone", item: bowtie, subjectId: "phys" }], cases: [] };
     const [row] = publishedCatalogToBankItems(catalog);

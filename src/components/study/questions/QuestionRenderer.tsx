@@ -19,8 +19,10 @@ import {
 import { CollapsibleRationale, rationaleLeadForQuestion } from "./CollapsibleRationale";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { buildReportContext } from "@/components/study/ReportQuestionDialog";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { TrendExhibit } from "@/components/ngn/items/TrendExhibit";
-import { NgnCjmmNote, NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
+import { NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
+import { withoutCaseTitle } from "@/lib/full-exam/nclex-exam-labels";
 import {
   BowTieQuestion,
   DropdownExamQuestion,
@@ -85,8 +87,14 @@ function CatalogExhibit({ question }: { question: StudyQuestion }) {
   if (payload?.clinicalItemType === "bowtie" && typeof exhibit.text === "string" && exhibit.text.trim()) {
     return (
       <aside className="mb-4 rounded-3xl bg-[#f4f6f8] p-4">
-        {exhibit.title ? <p className="text-sm font-semibold text-[#0A2540]">{exhibit.title}</p> : null}
-        <p className="mt-2 whitespace-pre-wrap text-[15px] leading-6 text-[#0A2540]">{exhibit.text}</p>
+        {exhibit.title ? (
+          <p className="text-sm font-semibold text-[#0A2540]">
+            <InlineBold text={exhibit.title} />
+          </p>
+        ) : null}
+        <p className="mt-2 whitespace-pre-wrap text-[15px] leading-6 text-[#0A2540]">
+          <InlineBold text={exhibit.text} />
+        </p>
       </aside>
     );
   }
@@ -103,6 +111,8 @@ type Props = {
   revealed: boolean;
   onToggle: (option: string) => void;
   sequentialContext?: SequentialSetContext | null;
+  /** NCLEX exam mode hides step labels, case titles, and format coaching. */
+  examMode?: boolean;
 };
 
 export const QuestionRenderer = memo(function QuestionRenderer({
@@ -111,6 +121,7 @@ export const QuestionRenderer = memo(function QuestionRenderer({
   revealed,
   onToggle,
   sequentialContext,
+  examMode = false,
 }: Props) {
   const handleToggle = (opt: string) => {
     if (opt === "__clear__") {
@@ -122,9 +133,11 @@ export const QuestionRenderer = memo(function QuestionRenderer({
   const paired = question.vignette
     ? repairSplitInstructionQuote(question.vignette, question.stem)
     : { vignette: "", stem: question.stem };
-  const vignetteText = paired.vignette
+  const titled = paired.vignette
     ? vignetteWithoutRepeatedQuestion(paired.vignette, paired.stem)
     : "";
+  const caseTitle = (question.ngnPayload as { caseTitle?: string } | undefined)?.caseTitle;
+  const vignetteText = examMode ? withoutCaseTitle(titled, caseTitle) : titled;
   const stemText = studentFacingStem(paired.stem);
 
   return (
@@ -144,11 +157,9 @@ export const QuestionRenderer = memo(function QuestionRenderer({
         </div>
       )}
 
-      <UnfoldingCaseBanner question={question} />
+      {examMode ? null : <UnfoldingCaseBanner question={question} />}
 
-      <SequentialItemBanner question={question} context={sequentialContext} />
-
-      <NgnCjmmNote question={question} />
+      {examMode ? null : <SequentialItemBanner question={question} context={sequentialContext} />}
 
       {question.ngnFormat === "abstract" || question.ngnPayload?.kind === "abstract" ? (
         <AbstractBlock question={question} />
@@ -198,10 +209,10 @@ export const QuestionRenderer = memo(function QuestionRenderer({
 
       <CatalogExhibit question={question} />
 
-      <NgnTypeInstructions question={question} />
+      {examMode ? null : <NgnTypeInstructions question={question} />}
 
       <p className="text-lg font-medium leading-snug text-[var(--color-ink)] sm:text-xl">
-        {stemText}
+        <InlineBold text={stemText} />
       </p>
       <ItemProvenanceNote
         sourceLabel={question.sourceLabel}
@@ -580,7 +591,9 @@ export function ExplanationPanel({
           <span className="font-semibold uppercase tracking-[0.12em]">Correct cells</span>
           <ul className="mt-1.5 list-inside list-disc">
             {(question.correctAnswers ?? []).map((key) => (
-              <li key={key}>{formatMatrixAnswer(key)}</li>
+              <li key={key}>
+                <InlineBold text={formatMatrixAnswer(key)} />
+              </li>
             ))}
           </ul>
         </div>

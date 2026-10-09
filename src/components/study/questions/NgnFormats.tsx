@@ -1,5 +1,7 @@
 "use client";
 
+import { InlineBold } from "@/components/ngn/InlineBold";
+import { stripInlineBoldMarkers } from "@/lib/questions/inline-bold";
 import { cleanOptionText } from "@/lib/question-format";
 import {
   bowTiePickInstruction,
@@ -63,7 +65,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
                     onClick={() => toggleBowTie(opt)}
                     className={`w-full rounded-lg border px-3 py-2.5 text-left text-sm transition ${revealedClass(isSelected, isCorrect, revealed)}`}
                   >
-                    {opt}
+                    <InlineBold text={opt} />
                   </button>
                 </li>
               );
@@ -91,7 +93,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
                         onClick={() => toggleBowTie(opt)}
                         className={`w-full rounded-lg border px-3 py-2.5 text-left text-sm transition ${revealedClass(isSelected, isCorrect, revealed)}`}
                       >
-                        {opt}
+                        <InlineBold text={opt} />
                       </button>
                     </li>
                   );
@@ -99,7 +101,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
               </ul>
             ) : (
               <p className="mt-2 text-center text-sm font-semibold leading-snug text-[var(--color-ink)]">
-                {revealed && layout.condition ? layout.condition : "—"}
+                <InlineBold text={revealed && layout.condition ? layout.condition : "—"} />
               </p>
             )}
           </div>
@@ -123,7 +125,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
                     onClick={() => toggleBowTie(opt)}
                     className={`w-full rounded-lg border px-3 py-2.5 text-left text-sm transition ${revealedClass(isSelected, isCorrect, revealed)}`}
                   >
-                    {opt}
+                    <InlineBold text={opt} />
                   </button>
                 </li>
               );
@@ -161,14 +163,14 @@ export function MatrixQuestion({ question, selected, revealed, onToggle }: BaseP
         <thead>
           <tr>
             <th className="border border-black/10 bg-black/[0.03] px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-              Finding
+              <InlineBold text={layout.rowHeader} />
             </th>
             {layout.columns.map((col) => (
               <th
                 key={col}
                 className="border border-black/10 bg-black/[0.03] px-3 py-2 text-center text-xs font-semibold text-[var(--color-ink)]"
               >
-                {col}
+                <InlineBold text={col} />
               </th>
             ))}
           </tr>
@@ -177,7 +179,7 @@ export function MatrixQuestion({ question, selected, revealed, onToggle }: BaseP
           {layout.rows.map((row) => (
             <tr key={row}>
               <td className="border border-black/10 px-3 py-2 font-medium text-[var(--color-ink)]">
-                {row}
+                <InlineBold text={row} />
               </td>
               {layout.columns.map((col) => {
                 const key = `${row}|||${col}`;
@@ -191,7 +193,7 @@ export function MatrixQuestion({ question, selected, revealed, onToggle }: BaseP
                       type="button"
                       disabled={revealed}
                       aria-pressed={isSelected}
-                      aria-label={`${row}: ${col}`}
+                      aria-label={`${stripInlineBoldMarkers(row)}: ${stripInlineBoldMarkers(col)}`}
                       onClick={() => toggleCell(row, col)}
                       className={`flex h-10 w-full items-center justify-center rounded-lg border transition ${revealedClass(isSelected, isCorrect, revealed)}`}
                     >
@@ -253,7 +255,13 @@ export function DropdownExamQuestion({ question, selected, revealed, onToggle }:
       <p className="text-[17px] leading-9 text-[var(--color-ink)]">
         {parts.map((part, index) => {
           const match = part.match(/^\{\{([a-zA-Z0-9_]+)\}\}$/);
-          if (!match) return <span key={`text-${index}`}>{part}</span>;
+          if (!match) {
+            return (
+              <span key={`text-${index}`}>
+                <InlineBold text={part} />
+              </span>
+            );
+          }
           const id = match[1] ?? "";
           const dropdown = byId.get(id);
           if (!dropdown) return <span key={id}>{part}</span>;
@@ -269,7 +277,7 @@ export function DropdownExamQuestion({ question, selected, revealed, onToggle }:
                 <option value="">Select</option>
                 {dropdown.options.map((option) => (
                   <option key={option.id} value={option.text}>
-                    {option.text}
+                    {stripInlineBoldMarkers(option.text)}
                   </option>
                 ))}
               </select>
@@ -283,31 +291,51 @@ export function DropdownExamQuestion({ question, selected, revealed, onToggle }:
 
 export function HighlightQuestion({ question, selected, revealed, onToggle }: BaseProps) {
   const layout = parseHighlightLayout(question);
+  const payload = question.ngnPayload as { tokens?: { id?: string; text: string; selectable?: boolean }[] } | undefined;
+  const tokens =
+    payload?.tokens && payload.tokens.length > 0
+      ? payload.tokens
+      : layout.segments.map((segment) => ({ id: segment.id, text: segment.text, selectable: true }));
 
   return (
     <div className="mt-6">
       <p className="mb-3 text-xs text-[var(--color-ink-muted)]">
-        Tap the sentence(s) that answer the question.
+        Highlight the findings in the note. A phrase you can select appears when you hover, focus, or tap it.
       </p>
-      <div className="space-y-2 rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4">
-        {layout.segments.map((seg) => {
-          const isSelected = selected.includes(seg.text);
+      <p className="rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4 text-[17px] leading-8 text-[var(--color-ink)]">
+        {tokens.map((token, index) => {
+          if (token.selectable === false || !token.text) {
+            return (
+              <span key={`static-${index}`}>
+                <InlineBold text={token.text} />
+              </span>
+            );
+          }
+          const isSelected = selected.includes(token.text);
           const isCorrect = question.correctAnswers.some(
-            (c) => cleanOptionText(c).toLowerCase() === seg.text.toLowerCase()
+            (choice) => cleanOptionText(choice).toLowerCase() === token.text.toLowerCase()
           );
           return (
             <button
-              key={seg.id}
+              key={token.id ?? `${token.text}-${index}`}
               type="button"
+              aria-pressed={isSelected}
+              aria-label={`Selectable phrase: ${stripInlineBoldMarkers(token.text)}`}
               disabled={revealed}
-              onClick={() => onToggle(seg.text)}
-              className={`block w-full rounded-lg border px-3 py-2 text-left text-sm leading-relaxed transition ${revealedClass(isSelected, isCorrect, revealed)}`}
+              onClick={() => onToggle(token.text)}
+              className={`rounded-sm px-0.5 text-left ${
+                revealed
+                  ? revealedClass(isSelected, isCorrect, revealed)
+                  : isSelected
+                    ? "bg-[#0A2540] text-white"
+                    : "bg-transparent text-inherit decoration-[#00D4C8] decoration-2 underline-offset-4 hover:bg-[#E5FBF9] hover:underline focus-visible:bg-[#E5FBF9] focus-visible:underline"
+              }`}
             >
-              {seg.text}
+              <InlineBold text={token.text} />
             </button>
           );
         })}
-      </div>
+      </p>
     </div>
   );
 }
@@ -316,7 +344,6 @@ export function UnfoldingCaseBanner({ question }: { question: StudyQuestion }) {
   if (question.type !== "unfolding_case" && question.ngnFormat !== "unfolding_case") {
     return null;
   }
-  const step = question.caseStep ?? 1;
   return (
     <div className="mb-4 flex items-center gap-2 rounded-xl border border-sky-200/80 bg-sky-50/80 px-4 py-2.5">
       <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700">
@@ -324,7 +351,7 @@ export function UnfoldingCaseBanner({ question }: { question: StudyQuestion }) {
       </span>
       <span className="text-xs text-[var(--color-ink-muted)]">·</span>
       <span className="text-xs font-medium text-[var(--color-ink)]">
-        Step {step} — new data may appear as the case progresses
+        New information may appear as the case continues
       </span>
     </div>
   );

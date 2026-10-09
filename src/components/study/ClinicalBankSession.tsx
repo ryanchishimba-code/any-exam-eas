@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { CaseStudyPlayer } from "@/components/ngn/CaseStudyPlayer";
+import { InlineBold } from "@/components/ngn/InlineBold";
 import { ItemRenderer } from "@/components/ngn/ItemRenderer";
 import { ngnFocus, ngnMuted } from "@/components/ngn/brand";
 import type { ClinicalSessionPayload } from "@/lib/assessment/clinical-session";
@@ -185,7 +186,9 @@ export function ClinicalBankSession({ session, reviewQueue = false, onExit }: Pr
       <section className="mx-auto w-full max-w-3xl pb-8 text-[#0A2540]">
         {progress}
         <div className="mt-4 rounded-3xl border border-[#e2e8f0] bg-white p-5 sm:p-6">
-          <h2 className="text-[19px] font-semibold leading-7 tracking-tight">{item.stem}</h2>
+          <h2 className="text-[19px] font-semibold leading-7 tracking-tight">
+            <InlineBold text={item.stem} />
+          </h2>
           <div className="mt-5">
             <ItemRenderer
               item={item}
@@ -232,7 +235,6 @@ export function ClinicalBankSession({ session, reviewQueue = false, onExit }: Pr
     <section className="mx-auto w-full max-w-6xl">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3 max-lg:sticky max-lg:top-[var(--nav-height)] max-lg:z-20 max-lg:mb-0 max-lg:bg-[var(--color-bg)] max-lg:pb-4 max-lg:pt-1">
         {progress}
-        <p className={`text-sm max-lg:min-w-0 max-lg:flex-1 ${ngnMuted}`}>{unit.caseDoc.title}</p>
       </div>
       <CaseStudyPlayer
         key={`${unit.caseDoc.id}:${unit.caseDoc.version}`}

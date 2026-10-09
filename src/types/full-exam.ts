@@ -21,6 +21,8 @@ export type FullExamSessionConfig = {
   focusAreas?: string[];
   /** NCLEX rule-based CAT simulation (85–150Q stop rules). */
   nclexCat?: boolean;
+  /** Real-exam shape: 3 cases before item 86, answers lock on Next. */
+  nclexExamMode?: boolean;
   /** Keeps delivery-time option order stable when a sitting is resumed. */
   optionShuffleSeed?: number;
   /** Hide score summary — weak-area remediation only. */
@@ -46,6 +48,8 @@ export type FullExamQuestion = {
   blueprintTopic?: string;
   ngnFormat?: string;
   bowTie?: FullExamBowTieSnapshot;
+  /** Unfolding-case step, when this item is part of a case. */
+  caseStep?: number;
 };
 
 export type FullExamAnswerState = {
@@ -77,6 +81,7 @@ export type FullExamQuestionSnapshot = {
   blueprintTopic?: string;
   ngnFormat?: string;
   bowTie?: FullExamBowTieSnapshot;
+  caseStep?: number;
 };
 
 export type FullExamResultsAnalysis = {
