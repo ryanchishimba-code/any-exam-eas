@@ -25,7 +25,7 @@ import {
 
 export { isPharmacyCalculationItem, pharmacyCalculationQuota };
 import { selectWithNgnFormatMix } from "@/lib/full-exam/ngn-format-mix";
-import { shapeNclexBankSitting } from "@/lib/full-exam/nclex-exam-shape";
+import { deferClinicalStandalones, shapeNclexBankSitting } from "@/lib/full-exam/nclex-exam-shape";
 import { composeWithinClientNeeds } from "@/lib/exam-prep/nclex-client-needs-quota";
 import { isPharmacyBlueprintField, rankSittingByBlueprint } from "@/lib/exam-prep/sitting-blueprint";
 
@@ -450,7 +450,10 @@ export function finalizeAssembledSitting(params: {
           seed,
         })
       : null;
-  const ordered = quota ?? orderedBaseFinal;
+  const ordered =
+    params.nclexExamMode && params.fieldId === "nursing" && limit >= 85
+      ? deferClinicalStandalones(quota ?? orderedBaseFinal)
+      : (quota ?? orderedBaseFinal);
   capStats.kept = ordered.length;
   capStats.strict = strict ?? { kept: ordered.length, rejections: { ...capStats.rejections } };
   return { items: ordered, relaxed, excludeSeenApplied, capStats };
