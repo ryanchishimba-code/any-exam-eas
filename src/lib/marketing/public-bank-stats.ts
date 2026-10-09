@@ -1,11 +1,11 @@
 /**
- * Logged-out bank-counts cache.
+ * Logged-out bank-counts cache for `/api/marketing/bank-counts` only.
  *
- * `/api/marketing/bank-counts` and server-rendered public pages both call
- * `getPublicBankStatsBundle()`. The counts still come from
- * `getCachedBankStatsBundle()` (same stamp, same SQL). This layer only changes
- * how often that work runs: one shared value for 10 minutes, one in-flight
- * recompute per isolate, and the previous good value when the recompute fails.
+ * The counts come from `getCachedBankStatsBundle()` (same stamp, same SQL as
+ * the marketing pages). This layer adds one shared value for 10 minutes, one
+ * in-flight recompute per isolate, and the previous good value when the
+ * recompute fails. It uses Upstash REST, which is `cache: "no-store"`, so
+ * statically rendered pages must not call it. They use `getIsrBankStatsBundle`.
  */
 import { cacheDelete, cacheGetOrSetDeduped } from "@/lib/cache";
 import { DbUnavailableError } from "@/lib/db-resilience";
@@ -44,8 +44,7 @@ async function loadFreshPublicBankStats(
 
 /**
  * Same value `/api/marketing/bank-counts` returns.
- * ISR pages pass `{ dynamic: false }` so `connection()` does not opt them dynamic.
- * The cached snapshot is shared either way.
+ * Pages do not call this: the Upstash read is `cache: "no-store"`.
  */
 export async function getPublicBankStatsBundle(
   options?: BankStatsCacheOptions
