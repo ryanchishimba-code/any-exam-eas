@@ -119,6 +119,27 @@ describe("getCachedBankStatsBundle", () => {
     ]);
   });
 
+  it("runs one inventory read when concurrent stamp lookups fail", async () => {
+    let calls = 0;
+    vi.mocked(readActiveInventoryStampKey).mockResolvedValue(null);
+    vi.mocked(fetchActiveInventoryFromDb).mockImplementation(async () => {
+      calls += 1;
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      return nursingInventory(6243);
+    });
+
+    const [first, second, third] = await Promise.all([
+      getCachedBankStatsBundle(),
+      getCachedBankStatsBundle(),
+      getCachedBankStatsBundle(),
+    ]);
+
+    expect(calls).toBe(1);
+    expect(first.inventory.boards.nclex.active).toBe(6243);
+    expect(second.inventory.boards.nclex.active).toBe(6243);
+    expect(third.inventory.boards.nclex.active).toBe(6243);
+  });
+
   it("reads the database directly when the stamp lookup fails", async () => {
     vi.mocked(readActiveInventoryStampKey).mockResolvedValue(null);
     vi.mocked(fetchActiveInventoryFromDb).mockResolvedValue(nursingInventory(6243));

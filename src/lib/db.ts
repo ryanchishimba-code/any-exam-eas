@@ -132,13 +132,50 @@ export function getNeonSql(): NeonSql {
   return getSql();
 }
 
+type TimedSql = {
+  (strings: TemplateStringsArray, ...values: unknown[]): unknown;
+  query: (text: string, params: unknown[]) => unknown;
+  transaction: (
+    build: (txn: TimedSql) => unknown[],
+    opts?: { fetchOptions?: { signal?: AbortSignal } }
+  ) => Promise<unknown[]>;
+};
+
+/**
+ * One Neon HTTP transaction: statement_timeout and lock_timeout apply to the
+ * caller's statement, and the HTTP request itself aborts at timeoutMs.
+ */
+export async function runTimedSqlQuery<T>(
+  client: TimedSql,
+  text: string,
+  params: unknown[],
+  timeoutMs: number
+): Promise<T> {
+  const results = await client.transaction(
+    (txn) => [
+      txn`SELECT set_config('statement_timeout', ${String(timeoutMs)}, true)`,
+      txn`SELECT set_config('lock_timeout', ${"2000"}, true)`,
+      txn.query(text, params),
+    ],
+    { fetchOptions: { signal: AbortSignal.timeout(timeoutMs) } }
+  );
+  return results[results.length - 1] as T;
+}
+
 /** Run a SQL string. Used when the statement is built from a shared predicate. */
-export async function sqlQuery<T = unknown>(text: string, params: unknown[] = []): Promise<T> {
-  const client = getSql() as NeonSql & {
+export async function sqlQuery<T = unknown>(
+  text: string,
+  params: unknown[] = [],
+  options?: { timeoutMs?: number }
+): Promise<T> {
+  const client = getSql() as NeonSql & TimedSql & {
     query: (queryText: string, queryParams: unknown[]) => Promise<T>;
   };
   if (typeof client.query !== "function") {
     throw new Error("Neon HTTP client does not expose query().");
+  }
+  if (options?.timeoutMs) {
+    return runTimedSqlQuery<T>(client, text, params, options.timeoutMs);
   }
   return client.query(text, params);
 }
