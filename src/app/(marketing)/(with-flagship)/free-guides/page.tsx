@@ -12,10 +12,7 @@ import { studyGuideOfferCards } from "@/lib/marketing/study-guide-offer";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { buildFreeGuidesMetadata } from "@/lib/seo/marketing-metadata";
-import {
-  buildLandingBankCountsDisplay,
-  getCachedBankStatsBundle,
-} from "@/lib/marketing/question-bank-counts";
+import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -71,8 +68,7 @@ function buildFreeGuidesJsonLd() {
 }
 
 export default async function FreeGuidesPage() {
-  const { snapshot } = await getCachedBankStatsBundle({ dynamic: false });
-  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+  const { display: bankCounts } = await loadPublicQuestionCounts({ dynamic: false });
   const liveTotal = !bankCounts.degraded && bankCounts.totalServed > 0;
   const questionTotal = liveTotal ? bankCounts.sentence || bankCounts.totalLabel : "";
   return (

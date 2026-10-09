@@ -140,9 +140,9 @@ export type SiteQuestionCounts = {
 };
 
 /**
- * Canonical public board totals. SEO metadata reads this stamp so the
- * document head does not wait on a database round trip. Live pages may
- * still render the bank snapshot when it is available.
+ * Offline fixture for tests and one-off scripts.
+ * Public pages do not render this stamp. They read the live bank-counts
+ * snapshot. Document heads use `formatRoundedDownQuestionCount` of that total.
  */
 export const PUBLISHED_BOARD_UNITS: Record<CountBoardSlug, BoardQuestionUnits> = {
   nclex: boardQuestionUnits({

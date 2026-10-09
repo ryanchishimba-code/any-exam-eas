@@ -1,9 +1,6 @@
 import { ComparePageContent } from "@/components/compare/ComparePageContent";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import {
-  buildLandingBankCountsDisplay,
-  getCachedBankStatsBundle,
-} from "@/lib/marketing/question-bank-counts";
+import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { buildCompareJsonLd, buildCompareMetadata } from "@/lib/seo/marketing-metadata";
 
 /**
@@ -14,8 +11,8 @@ export const revalidate = 300;
 export const metadata = buildCompareMetadata();
 
 export default async function ComparePage() {
-  const { snapshot, inventory } = await getCachedBankStatsBundle({ dynamic: false });
-  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+  const { bundle, display: bankCounts } = await loadPublicQuestionCounts({ dynamic: false });
+  const { inventory } = bundle;
   return (
     <>
       <JsonLdScript data={buildCompareJsonLd()} />

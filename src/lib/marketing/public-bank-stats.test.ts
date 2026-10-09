@@ -87,6 +87,12 @@ describe("getPublicBankStatsBundle", () => {
     expect(again.snapshot.degraded).toBe(false);
   });
 
+  it("forwards ISR cache options into the shared snapshot", async () => {
+    vi.mocked(getCachedBankStatsBundle).mockResolvedValue(bundle(10));
+    await getPublicBankStatsBundle({ dynamic: false });
+    expect(getCachedBankStatsBundle).toHaveBeenCalledWith({ dynamic: false });
+  });
+
   it("does not keep a degraded recompute as the fresh value", async () => {
     vi.mocked(getCachedBankStatsBundle).mockResolvedValue(bundle(0, true));
     const first = await getPublicBankStatsBundle();

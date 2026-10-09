@@ -10,10 +10,7 @@ import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
 import { FounderNote } from "@/components/marketing/elevation/FounderNote";
 import { COMPANY_PUBLIC } from "@/lib/marketing/company";
-import {
-  buildLandingBankCountsDisplay,
-  getCachedBankStatsBundle,
-} from "@/lib/marketing/question-bank-counts";
+import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { QUALITY_PAGE_UPDATED } from "@/lib/marketing/quality-facts";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath } from "@/lib/seo/exam-config";
@@ -29,8 +26,7 @@ export const revalidate = 300;
 export const metadata: Metadata = buildAboutMetadata();
 
 async function publishedOrLiveTotalLabel(): Promise<{ label: string; live: boolean }> {
-  const { snapshot } = await getCachedBankStatsBundle({ dynamic: false });
-  const display = buildLandingBankCountsDisplay(snapshot);
+  const { display } = await loadPublicQuestionCounts({ dynamic: false });
   if (!display.degraded && display.totalServed > 0) {
     return { label: display.sentence || display.totalQuestionsLabel, live: true };
   }

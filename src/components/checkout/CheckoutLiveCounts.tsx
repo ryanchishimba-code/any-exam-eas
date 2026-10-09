@@ -1,12 +1,8 @@
-import {
-  buildLandingBankCountsDisplay,
-  getCachedQuestionBankCounts,
-} from "@/lib/marketing/question-bank-counts";
+import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 
 /** Server-rendered live bank totals on checkout for trust before payment. */
 export async function CheckoutLiveCounts() {
-  const snapshot = await getCachedQuestionBankCounts();
-  const display = buildLandingBankCountsDisplay(snapshot);
+  const { display } = await loadPublicQuestionCounts();
 
   return (
     <p className="mx-auto mt-2 max-w-lg text-center text-sm text-[var(--color-ink-muted)]">

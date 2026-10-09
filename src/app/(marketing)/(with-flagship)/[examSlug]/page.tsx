@@ -10,11 +10,7 @@ import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
 import { presentBoardInventory } from "@/lib/inventory/active-questions";
-import {
-  buildLandingBankCountsDisplay,
-  getCachedBankStatsBundle,
-} from "@/lib/marketing/question-bank-counts";
-import { getUsmleExamOptionsWithCounts } from "@/lib/exam-prep/usmle/exam-options";
+import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 
 /**
  * Five-minute ISR for `/naplex` and the other board hubs. This must stay a
@@ -56,9 +52,9 @@ export default async function ExamMarketingPage({ params }: Props) {
   const key = resolveExamSeoKey(examSlug);
   if (!key) notFound();
 
-  // Live active-question inventory — same helper the Qbank header uses.
-  const { snapshot, inventory } = await getCachedBankStatsBundle({ dynamic: false });
-  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+  // Same cached snapshot the bank-counts API serves.
+  const { bundle, display: bankCounts } = await loadPublicQuestionCounts({ dynamic: false });
+  const { snapshot, inventory } = bundle;
   const examCount = bankCounts.exams.find((row) => row.slug === key);
   const questionCountLabel = examCount?.sentence.includes("including")
     ? examCount.sentence
@@ -76,13 +72,12 @@ export default async function ExamMarketingPage({ params }: Props) {
   ]);
 
   const usmleStepCounts =
-    key === "usmle"
-      ? Object.fromEntries(
-          (await getUsmleExamOptionsWithCounts({ dynamic: false })).options.map((opt) => [
-            opt.level,
-            opt.questionCount,
-          ])
-        )
+    key === "usmle" && !inventory.degraded
+      ? {
+          step1: inventory.fields["usmle-step-1"]?.active ?? 0,
+          step2: inventory.fields["usmle-step-2"]?.active ?? 0,
+          step3: inventory.fields["usmle-step-3"]?.active ?? 0,
+        }
       : undefined;
 
   return (
