@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { practiceFormatChooser, offeredDeliberateFormats } from "@/lib/study/offered-formats";
+import { openStudentRef } from "@/lib/assessment/student-item-ref";
 import {
   clinicalFormatAddition,
   mergeClinicalFormatCounts,
@@ -269,7 +270,11 @@ describe("published NGN serving", () => {
   it("strips keys and rationale before a student sees the item", () => {
     const facing = studentFacingItem(item({ id: "B01" }));
     expect(JSON.stringify(facing.payload)).not.toContain("secret");
-    expect(facing.rationale.short).toBe("");
+    expect(facing).not.toHaveProperty("rationale");
+    expect(facing).not.toHaveProperty("batchId");
+    expect(facing).not.toHaveProperty("cjmmFunction");
+    expect(facing.id).not.toBe("B01");
+    expect(openStudentRef(facing.id)).toEqual({ id: "B01", version: 1 });
     expect(facing.stem).toBe("B01");
   });
 });

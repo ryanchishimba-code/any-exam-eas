@@ -2,12 +2,14 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { explainPointsLost } from "@/lib/assessment/scoring/registry";
 import { gradeNgnResponse } from "@/lib/assessment/attempt-grade";
+import { studentRevealedItem } from "@/lib/assessment/serve";
+import { openStudentRef } from "@/lib/assessment/student-item-ref";
 import { findServedItem } from "@/lib/assessment/serve-db";
 
 export const runtime = "nodejs";
 
 const bodySchema = z.object({
-  itemId: z.string().trim().min(1).max(80),
+  itemId: z.string().trim().min(1).max(500),
   version: z.number().int().positive(),
   response: z.unknown(),
 });
@@ -23,7 +25,11 @@ export async function POST(req: Request) {
   }
 
   try {
-    const item = await findServedItem(parsed.data.itemId, parsed.data.version);
+    const ref = openStudentRef(parsed.data.itemId);
+    if (!ref || ref.version !== parsed.data.version) {
+      return NextResponse.json({ error: "This item is not available." }, { status: 404 });
+    }
+    const item = await findServedItem(ref.id, ref.version);
     if (!item) {
       return NextResponse.json({ error: "This item is not available." }, { status: 404 });
     }
@@ -35,7 +41,7 @@ export async function POST(req: Request) {
       lines = [];
     }
     return NextResponse.json({
-      item,
+      item: studentRevealedItem(item, parsed.data.itemId),
       points: grade.points,
       maxPoints: grade.maxPoints,
       correct: grade.correct,

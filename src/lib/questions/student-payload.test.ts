@@ -1,5 +1,15 @@
 import { describe, expect, it } from "vitest";
 import type { ExpertStructuredRationale } from "@/lib/engine/rationale/expert-rationale-types";
+import {
+  canonicalStoredQuestionKey,
+  ngnQuestionKey,
+  presentClinicalUnits,
+  studentRevealedItem,
+  takeSessionUnits,
+  type PublishedCatalog,
+  type ServeItem,
+} from "@/lib/assessment/serve";
+import { openStudentRef } from "@/lib/assessment/student-item-ref";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { examQuestionToStudy, studyQuestionsToExamQuestions } from "./prepare";
 import { findBannedStudentKeys } from "./student-payload";
@@ -36,7 +46,7 @@ function leakingQuestion(): RawQuestionInput {
     solutionSteps: ["Listen to the breathing.", "Open the airway."],
     references: ["Lewis medical-surgical nursing"],
     expertRationale,
-    tags: ["cjmm:recognize_cues", "Recognize cues", "drug:albuterol", "cn:safety"],
+    tags: ["cjmm:recognize_cues", "Recognize cues", "cjmm-polished", "drug:albuterol", "cn:safety"],
     caseStep: 1,
     ngnPayload: {
       kind: "sequential",
@@ -174,5 +184,162 @@ describe("student question payload", () => {
 
     expect(item.generationMeta).toMatchObject({ model: MODEL, slotIndex: 1 });
     expect(item.ngnPayload?.generationMeta).toMatchObject({ rationale: STALE_RATIONALE });
+  });
+});
+
+const EMPTY_RATIONALE = {
+  short: "",
+  expanded: { perOption: {}, cjmmCoaching: "", pointsLost: "", takeaway: "" },
+};
+
+function clinicalItem(overrides: Partial<ServeItem> & Pick<ServeItem, "id">): ServeItem {
+  return {
+    version: 1,
+    batchId: "batch-hidden",
+    itemType: "case_item",
+    caseId: "NC003",
+    caseStep: 1,
+    caseVersion: 1,
+    cjmmFunction: "recognize_cues",
+    timepoint: "day-1",
+    responseFormat: "mc_single",
+    scoringRule: "zero_one",
+    maxPoints: 1,
+    stem: "What is the priority assessment?",
+    payload: { key: "a", options: [{ id: "a", text: "Chest pain" }] },
+    rationale: EMPTY_RATIONALE,
+    clientNeeds: { subcategory: "Physiological Adaptation" },
+    references: [],
+    rnFlags: [],
+    status: "published",
+    ...overrides,
+  };
+}
+
+function clinicalCatalog(): PublishedCatalog {
+  const steps = [1, 2].map((step) =>
+    clinicalItem({
+      id: step === 1 ? "NC003-S1" : "C01-S1",
+      caseId: "NC003",
+      caseStep: step,
+      cjmmFunction: step === 1 ? "recognize_cues" : "take_action",
+    })
+  );
+  return {
+    standalones: [
+      {
+        kind: "standalone",
+        subjectId: "physiological-adaptation",
+        item: clinicalItem({
+          id: "B01",
+          itemType: "bowtie",
+          caseId: null,
+          caseStep: null,
+          caseVersion: null,
+          responseFormat: "bowtie",
+          batchId: "batch-hidden",
+          rationale: EMPTY_RATIONALE,
+        }),
+      },
+    ],
+    cases: [
+      {
+        kind: "case",
+        subjectId: "physiological-adaptation",
+        items: steps,
+        caseDoc: {
+          id: "NC003",
+          version: 1,
+          batchId: "batch-hidden",
+          title: "Day after PCI: chest pain",
+          boardProfile: "nclex-rn-2026",
+          status: "published",
+          primaryClientNeed: "Physiological Adaptation",
+          setting: "Cardiac step-down",
+          patient: {
+            displayName: "Morgan",
+            age: 62,
+            sex: "male",
+            weightKg: 82,
+            allergies: "NKDA",
+            history: "Open colectomy 2 days ago.",
+          },
+          timepoints: [{ id: "day-1", label: "Day 1" }],
+          chart: {
+            tabs: [
+              {
+                id: "history",
+                label: "History",
+                entries: [{ time: "baseline", text: "Open colectomy 2 days ago." }],
+              },
+            ],
+          },
+          revealRule: "baseline",
+          references: [{ src: "src-1", locator: "p. 12" }],
+          items: steps,
+        },
+      },
+    ],
+  };
+}
+
+describe("clinical student payloads", () => {
+  it("strips case titles, slot ids, step names, batch ids, and empty rationales", () => {
+    const catalog = clinicalCatalog();
+    for (const format of ["case", "ngn"] as const) {
+      const selected = takeSessionUnits({
+        catalog,
+        format,
+        subjectId: "__mixed__",
+        limit: 5,
+        seed: format,
+      });
+      const presented = presentClinicalUnits(selected, {
+        "NC003:1": [{ src: "src-1", locator: "p. 12" }],
+      });
+      const wire = JSON.stringify(presented);
+      expect(findBannedStudentKeys(presented)).toEqual([]);
+      expect(wire).not.toContain("Day after PCI");
+      expect(wire).not.toContain("NC003-S1");
+      expect(wire).not.toContain("C01-S1");
+      expect(wire).not.toContain("batch-hidden");
+      expect(wire).not.toContain("recognize_cues");
+      expect(wire).not.toContain("take_action");
+      expect(wire).not.toMatch(/"NC003"/);
+      if (format === "case") {
+        const unit = presented.units[0];
+        expect(unit?.kind).toBe("case");
+        if (unit?.kind !== "case") continue;
+        expect(unit.items.map((item) => item.caseStep)).toEqual([1, 2]);
+        expect(unit.caseDoc).not.toHaveProperty("title");
+        expect(unit.caseDoc.chart.tabs.map((tab) => tab.label)).toEqual(["History"]);
+        expect(unit.caseDoc.patient.history).toBe("Open colectomy 2 days ago.");
+        expect(unit.items[0]).not.toHaveProperty("rationale");
+        const ref = openStudentRef(unit.items[0]!.id);
+        expect(ref).toEqual({ id: "NC003-S1", version: 1 });
+        expect(canonicalStoredQuestionKey(ngnQuestionKey(unit.items[0]!.id, unit.items[0]!.version))).toBe(
+          "ngn:NC003-S1:v1"
+        );
+        const revealed = studentRevealedItem(
+          catalog.cases[0]!.items[0]!,
+          unit.items[0]!.id
+        );
+        expect(revealed.id).toBe(unit.items[0]!.id);
+        expect(revealed.rationale.short).toBe("");
+        expect(revealed).not.toHaveProperty("batchId");
+        expect(revealed).not.toHaveProperty("cjmmFunction");
+        expect(revealed.caseStep).toBe(1);
+        const refKey = `${unit.caseDoc.id}:${unit.caseDoc.version}`;
+        expect(presented.caseReferences[refKey]?.[0]?.locator).toBe("p. 12");
+      }
+      if (format === "ngn") {
+        const unit = presented.units[0];
+        expect(unit?.kind).toBe("standalone");
+        if (unit?.kind !== "standalone") continue;
+        expect(unit.item).not.toHaveProperty("rationale");
+        expect(unit.item).not.toHaveProperty("batchId");
+        expect(openStudentRef(unit.item.id)).toEqual({ id: "B01", version: 1 });
+      }
+    }
   });
 });

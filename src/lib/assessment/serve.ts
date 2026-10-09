@@ -4,7 +4,8 @@ import {
 } from "@/lib/inventory/question-format";
 import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
 import { orderByAttemptRecency, seededShuffle } from "@/lib/assessment/case-rotation";
-import type { NgnCase, NgnItem } from "@/lib/assessment/types";
+import { openStudentRef, sealStudentRef } from "@/lib/assessment/student-item-ref";
+import type { NgnCase, NgnItem, NgnReference } from "@/lib/assessment/types";
 
 export type ServeItem = NgnItem & {
   status: string;
@@ -318,18 +319,51 @@ export function stripAnswerKeys(value: unknown): unknown {
   return out;
 }
 
-const EMPTY_RATIONALE: NgnItem["rationale"] = {
-  short: "",
-  expanded: { perOption: {}, cjmmCoaching: "", pointsLost: "", takeaway: "" },
-};
+function omitStudentItemFields(item: ServeItem): ServeItem {
+  const next = { ...item };
+  delete (next as { batchId?: string }).batchId;
+  delete (next as { cjmmFunction?: ServeItem["cjmmFunction"] }).cjmmFunction;
+  delete (next as { caseId?: string | null }).caseId;
+  delete (next as { rationale?: ServeItem["rationale"] }).rationale;
+  return next;
+}
 
-/** Options and chart text stay. Keys and rationale stay on the server until submit. */
-export function studentFacingItem(item: ServeItem): ServeItem {
-  return {
+/**
+ * Options, stem, and the numeric case step stay.
+ * Slot ids, batch ids, step names, and the answer key stay on the server.
+ * Rationale is omitted until the item is scored.
+ */
+export function studentFacingItem(item: ServeItem, opaqueId = sealStudentRef({ id: item.id, version: item.version })): ServeItem {
+  return omitStudentItemFields({
     ...item,
+    id: opaqueId,
     payload: (stripAnswerKeys(item.payload) ?? {}) as Record<string, unknown>,
-    rationale: EMPTY_RATIONALE,
+  });
+}
+
+/** Scored item for review. The id stays the opaque session id the browser already has. */
+export function studentRevealedItem(item: ServeItem, opaqueId: string): ServeItem {
+  const next = omitStudentItemFields({
+    ...item,
+    id: opaqueId,
+  });
+  next.rationale = item.rationale;
+  return next;
+}
+
+function studentFacingCaseDoc(
+  caseDoc: PublishedCaseUnit["caseDoc"],
+  items: ServeItem[]
+): PublishedCaseUnit["caseDoc"] {
+  const next = {
+    ...caseDoc,
+    id: sealStudentRef({ id: caseDoc.id, version: caseDoc.version }),
+    items,
   };
+  delete (next as { title?: string }).title;
+  delete (next as { batchId?: string }).batchId;
+  delete (next as { itemIds?: string[] }).itemIds;
+  return next;
 }
 
 export function studentFacingUnit(unit: PublishedUnit): PublishedUnit {
@@ -340,8 +374,27 @@ export function studentFacingUnit(unit: PublishedUnit): PublishedUnit {
   return {
     ...unit,
     items,
-    caseDoc: { ...unit.caseDoc, items },
+    caseDoc: studentFacingCaseDoc(unit.caseDoc, items),
   };
+}
+
+/** Student units plus case-reference keys that match the opaque case ids. */
+export function presentClinicalUnits(
+  units: readonly PublishedUnit[],
+  caseReferences: Record<string, NgnReference[]> = {}
+): { units: PublishedUnit[]; caseReferences: Record<string, NgnReference[]> } {
+  const nextRefs: Record<string, NgnReference[]> = {};
+  const faced = units.map((unit) => {
+    const student = studentFacingUnit(unit);
+    if (unit.kind === "case" && student.kind === "case") {
+      const from = `${unit.caseDoc.id}:${unit.caseDoc.version}`;
+      const to = `${student.caseDoc.id}:${student.caseDoc.version}`;
+      const refs = caseReferences[from] ?? unit.caseDoc.references;
+      if (refs.length > 0) nextRefs[to] = refs;
+    }
+    return student;
+  });
+  return { units: faced, caseReferences: nextRefs };
 }
 
 export function ngnQuestionKey(id: string, version: number): string {
@@ -354,6 +407,15 @@ export function parseNgnQuestionKey(key: string): { id: string; version: number 
   const version = Number(match[2]);
   if (!Number.isInteger(version) || version < 1) return null;
   return { id: match[1]!, version };
+}
+
+/** Session drafts carry opaque ids. Stored attempts use the catalog slot id. */
+export function canonicalStoredQuestionKey(key: string): string {
+  const parsed = parseNgnQuestionKey(key);
+  if (!parsed) return key;
+  const real = openStudentRef(parsed.id);
+  if (!real) return key;
+  return ngnQuestionKey(real.id, real.version);
 }
 
 export function servedItemKeys(catalog: PublishedCatalog): string[] {
