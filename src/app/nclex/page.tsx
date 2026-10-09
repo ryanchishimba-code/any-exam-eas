@@ -4,10 +4,7 @@ import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
 import { presentBoardInventory } from "@/lib/inventory/active-questions";
-import {
-  buildLandingBankCountsDisplay,
-  getCachedBankStatsBundle,
-} from "@/lib/marketing/question-bank-counts";
+import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata";
 
 /**
@@ -19,13 +16,14 @@ import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata
 export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { inventory } = await getCachedBankStatsBundle({ dynamic: false });
+  const { bundle } = await loadPublicQuestionCounts({ dynamic: false });
+  const { inventory } = bundle;
   return buildExamMetadata("nclex", inventory.boards.nclex?.formats ?? null);
 }
 
 export default async function NclexHubPage() {
-  const { snapshot, inventory } = await getCachedBankStatsBundle({ dynamic: false });
-  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+  const { bundle, display: bankCounts } = await loadPublicQuestionCounts({ dynamic: false });
+  const { snapshot, inventory } = bundle;
   const examCount = bankCounts.exams.find((row) => row.slug === "nclex");
   const questionCountLabel = examCount?.sentence.includes("including")
     ? examCount.sentence

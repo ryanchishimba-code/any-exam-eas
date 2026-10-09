@@ -8,20 +8,22 @@ import { PricingBoardHeadline } from "@/components/pricing/PricingBoardHeadline"
 import { PageShell } from "@/components/PageShell";
 import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-metadata";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { formatExactQuestionCount, publishedSiteQuestionCounts } from "@/lib/counts";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
+import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { formatMonthlyPrice } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 
 /**
  * Five-minute ISR. Query-string headlines and paywall notices render in
- * Suspense so this document can stay cached. Counts are the published totals.
+ * Suspense so this document can stay cached. The visible total is the live
+ * bank-counts snapshot. The head uses a floor of that same total.
  */
 export const revalidate = 300;
 
-export const metadata: Metadata = buildPricingMetadata(
-  formatExactQuestionCount(publishedSiteQuestionCounts().totalQuestions)
-);
+export async function generateMetadata(): Promise<Metadata> {
+  const { staticLabel } = await loadPublicQuestionCounts({ dynamic: false });
+  return buildPricingMetadata(staticLabel || undefined);
+}
 
 const STUDY_PATH = [
   { icon: Map, title: "Roadmap" },
@@ -33,20 +35,23 @@ const PricingQueryNotices = dynamic(() =>
   import("@/components/pricing/PricingQueryNotices").then((m) => m.PricingQueryNotices)
 );
 
-export default function PricingPage() {
-  const published = publishedSiteQuestionCounts();
-  const publishedLabel = formatExactQuestionCount(published.totalQuestions);
+export default async function PricingPage() {
+  const { exactLabel } = await loadPublicQuestionCounts({ dynamic: false });
 
   return (
     <>
-      <JsonLdScript data={buildPricingJsonLd(publishedLabel)} />
+      <JsonLdScript data={buildPricingJsonLd(exactLabel || undefined)} />
       <PageShell
         title={
           <Suspense fallback={<>Six boards. One monthly price.</>}>
             <PricingBoardHeadline />
           </Suspense>
         }
-        description={`${publishedLabel} questions across six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`}
+        description={
+          exactLabel
+            ? `${exactLabel} questions across six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`
+            : `Six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`
+        }
         align="center"
         maxWidth="max-w-3xl"
       >

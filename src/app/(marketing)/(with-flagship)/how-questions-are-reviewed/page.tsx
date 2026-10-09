@@ -13,10 +13,7 @@ import {
   QUALITY_PAGE_UPDATED,
   getQualityFacts,
 } from "@/lib/marketing/quality-facts";
-import {
-  buildLandingBankCountsDisplay,
-  getCachedBankStatsBundle,
-} from "@/lib/marketing/question-bank-counts";
+import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
 import { AI_ASSISTED_REVIEW_NOTE } from "@/lib/marketing/legal-copy";
 
@@ -45,11 +42,11 @@ function countLabel(value: number | null): string | null {
 export default async function HowQuestionsAreReviewedPage() {
   const [facts, bank] = await Promise.all([
     getQualityFacts(),
-    getCachedBankStatsBundle({ dynamic: false }),
+    loadPublicQuestionCounts({ dynamic: false }),
   ]);
-  const counts = buildLandingBankCountsDisplay(bank.snapshot);
+  const counts = bank.display;
   const suppressed = countLabel(facts.suppressedNursing);
-  const nclexUnits = bank.snapshot.boards?.nclex;
+  const nclexUnits = bank.bundle.snapshot.boards?.nclex;
   const ngnSentence =
     nclexUnits && (nclexUnits.standaloneNgn > 0 || nclexUnits.caseStudies > 0)
       ? `${nclexUnits.standaloneNgn.toLocaleString("en-US")} standalone NGN items and ${nclexUnits.caseItems.toLocaleString("en-US")} items in ${nclexUnits.caseStudies.toLocaleString("en-US")} case studies are published.`
