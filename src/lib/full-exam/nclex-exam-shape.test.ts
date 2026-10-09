@@ -1,4 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { canonicalStoredQuestionKey } from "@/lib/assessment/serve";
+import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
+import { NCLEX_STEP_NAMES } from "@/lib/full-exam/nclex-exam-labels";
 import type { BankItem } from "@/lib/question-bank";
 import {
   CJ_STANDALONE_CHANCE,
@@ -181,5 +184,71 @@ describe("shapeNclexBankSitting", () => {
     expect([...used].sort()).toEqual(["fresh-a", "fresh-b", "fresh-c"]);
     expect(shaped.every((item) => item.itemType !== "ngn_bowtie")).toBe(true);
     expect(shaped.every((item) => (item.ngnPayload as { clinicalItemType?: string } | undefined)?.clinicalItemType !== "trend")).toBe(true);
+  });
+
+  it("takes three live published cases and keeps bank sequential groups out of those slots", () => {
+    const published = ["NC003", "NC014", "NC021"].flatMap((setId) =>
+      Array.from({ length: 6 }, (_, index) =>
+        bank(`ngn:${setId}-S${index + 1}:v1`, "case_study", {
+          question: `Which finding at step ${index + 1} should the nurse report first?`,
+          tags: ["published-ngn-catalog"],
+          vignette: `Day after PCI: chest pain\nMed-surg unit`,
+          ngnPayload: {
+            kind: "sequential",
+            setId,
+            stepIndex: index + 1,
+            caseTitle: "Day after PCI: chest pain",
+            cjmmFunction: "recognize_cues",
+          },
+        })
+      )
+    );
+    const bankCases = ["bank-a", "bank-b", "bank-c"].flatMap(caseItems);
+    const knowledge = Array.from({ length: 140 }, (_, index) => bank(`mcq-${index}`, "vignette"));
+    const shaped = shapeNclexBankSitting({
+      pool: [...bankCases, ...published, ...knowledge],
+      limit: 85,
+      seed: 3,
+    });
+    expect(shaped).not.toBeNull();
+    if (!shaped) return;
+    const thirds = nclexMinimumThirds();
+    const used = new Map<string, number[]>();
+    shaped.forEach((item, index) => {
+      const setId = (item.ngnPayload as { setId?: string } | undefined)?.setId;
+      if (!setId) return;
+      const positions = used.get(setId) ?? [];
+      positions.push(index);
+      used.set(setId, positions);
+    });
+    expect([...used.keys()].sort()).toEqual(["NC003", "NC014", "NC021"]);
+    const starts = [...used.values()].map((positions) => positions[0]!).sort((a, b) => a - b);
+    expect(starts).toHaveLength(3);
+    starts.forEach((start, index) => {
+      const positions = [0, 1, 2, 3, 4, 5].map((offset) => start + offset);
+      expect(positions[0]).toBeGreaterThanOrEqual(thirds[index]!.start);
+      expect(positions[5]).toBeLessThan(thirds[index]!.end);
+      expect(positions[5]).toBeLessThan(86);
+      const steps = positions.map((position) => (shaped[position]?.ngnPayload as { stepIndex?: number })?.stepIndex);
+      expect(steps).toEqual([1, 2, 3, 4, 5, 6]);
+    });
+
+    const block = shaped.slice(starts[0], starts[0]! + 6);
+    const client = preparedTimedExamItemsForClient("nursing", "nursing", block, 6, { shuffleSeed: 2 });
+    const packed = JSON.stringify({ questions: client.questions, bankItemIds: client.bankItemIds });
+    expect(packed).not.toMatch(/NC003-S|NC014-S|NC021-S/);
+    expect(packed).not.toMatch(/"NC003"|"NC014"|"NC021"/);
+    expect(packed).not.toContain("Day after PCI");
+    for (const name of NCLEX_STEP_NAMES) expect(packed).not.toContain(name);
+    expect(packed).not.toContain("recognize_cues");
+    expect(client.questions.map((question) => (question.ngnPayload as { stepIndex?: number })?.stepIndex)).toEqual([
+      1, 2, 3, 4, 5, 6,
+    ]);
+    const stored = client.bankItemIds.map((id) => canonicalStoredQuestionKey(id));
+    expect(stored).toEqual(block.map((item) => item.id));
+    expect(client.canonicalBankItemIds).toEqual(block.map((item) => item.id));
+    const firstSet = (client.questions[0]?.ngnPayload as { setId?: string } | undefined)?.setId ?? "";
+    expect(firstSet.startsWith("s1.")).toBe(true);
+    expect(client.questions.every((question) => (question.ngnPayload as { setId?: string })?.setId === firstSet)).toBe(true);
   });
 });

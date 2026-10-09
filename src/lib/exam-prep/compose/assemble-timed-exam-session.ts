@@ -339,7 +339,7 @@ export async function assembleTimedExamSessionItems(
   ): Promise<AssembleTimedExamSessionResult | null> => {
     if (!result) return null;
     let items = result.items;
-    if (!expired() && fieldId === "nursing" && nclexCatNgnEnabled()) {
+    if (!expired() && fieldId === "nursing" && (nclexExamMode || nclexCatNgnEnabled())) {
       items = mergeBankItems(items, await withinBudget(publishedNgnPool(fieldId, limit), []));
     }
     if (!expired() && fieldId === "pharmacy") {
