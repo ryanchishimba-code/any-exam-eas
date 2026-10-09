@@ -8,6 +8,7 @@ import { getExamSession } from "@/lib/exam-sessions/service";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
+import { studentFacingTags, studentLayoutPayload } from "@/lib/questions/student-payload";
 import { joinStoredCorrectAnswer, reviewQueueKind } from "@/lib/questions/multi-answer";
 import { resolveQuestionBankSessionCount } from "@/lib/study/question-bank-setup";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
@@ -58,13 +59,15 @@ function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQu
     question: prepared.stem,
     options: prepared.options,
     correctAnswer: joinStoredCorrectAnswer(prepared.type, prepared.correctAnswers),
-    ngnPayload: prepared.ngnPayload,
+    ngnPayload: studentLayoutPayload(prepared.ngnPayload),
     explanation: prepared.explanation,
     clinicalReasoning: prepared.clinicalReasoning,
     solutionSteps: prepared.solutionSteps,
-    tags: prepared.tags,
+    references: prepared.references,
+    expertRationale: prepared.expertRationale,
+    tags: studentFacingTags(prepared.tags),
     highYield: prepared.highYield,
-    chartData: prepared.chartData,
+    chartData: studentLayoutPayload(prepared.chartData),
     caseStep: prepared.caseStep,
   };
 }

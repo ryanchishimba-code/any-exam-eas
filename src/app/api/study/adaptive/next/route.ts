@@ -18,6 +18,7 @@ import {
 import { computeOverallAccuracy } from "@/lib/learning/adaptive-session";
 import { buildTopicWeakness } from "@/lib/learning/weakness";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
+import { studentFacingTags, studentLayoutPayload } from "@/lib/questions/student-payload";
 import { joinStoredCorrectAnswer } from "@/lib/questions/multi-answer";
 import type { ExamQuestion } from "@/lib/ai";
 import {
@@ -77,13 +78,15 @@ function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQu
     question: prepared.stem,
     options: prepared.options,
     correctAnswer: joinStoredCorrectAnswer(prepared.type, prepared.correctAnswers),
-    ngnPayload: prepared.ngnPayload,
+    ngnPayload: studentLayoutPayload(prepared.ngnPayload),
     explanation: prepared.explanation,
     clinicalReasoning: prepared.clinicalReasoning,
     solutionSteps: prepared.solutionSteps,
-    tags: prepared.tags,
+    references: prepared.references,
+    expertRationale: prepared.expertRationale,
+    tags: studentFacingTags(prepared.tags),
     highYield: prepared.highYield,
-    chartData: prepared.chartData,
+    chartData: studentLayoutPayload(prepared.chartData),
     caseStep: prepared.caseStep,
   };
 }
