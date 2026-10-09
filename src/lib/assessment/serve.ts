@@ -4,8 +4,11 @@ import {
 } from "@/lib/inventory/question-format";
 import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
 import { orderByAttemptRecency, seededShuffle } from "@/lib/assessment/case-rotation";
+import { ngnQuestionKey, parseNgnQuestionKey } from "@/lib/assessment/question-key";
 import { openStudentRef, sealStudentRef } from "@/lib/assessment/student-item-ref";
 import type { NgnCase, NgnItem, NgnReference } from "@/lib/assessment/types";
+
+export { ngnQuestionKey, parseNgnQuestionKey } from "@/lib/assessment/question-key";
 
 export type ServeItem = NgnItem & {
   status: string;
@@ -395,18 +398,6 @@ export function presentClinicalUnits(
     return student;
   });
   return { units: faced, caseReferences: nextRefs };
-}
-
-export function ngnQuestionKey(id: string, version: number): string {
-  return `ngn:${id}:v${version}`;
-}
-
-export function parseNgnQuestionKey(key: string): { id: string; version: number } | null {
-  const match = /^ngn:([^:]+):v(\d+)$/.exec(key.trim());
-  if (!match) return null;
-  const version = Number(match[2]);
-  if (!Number.isInteger(version) || version < 1) return null;
-  return { id: match[1]!, version };
 }
 
 /** Session drafts carry opaque ids. Stored attempts use the catalog slot id. */
