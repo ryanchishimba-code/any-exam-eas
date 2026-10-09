@@ -204,7 +204,7 @@ export async function POST(req: Request) {
     if (queueKind === "clinical") {
       const ngnKeys = pickIds.filter((id) => id.startsWith("ngn:"));
       const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
-      const { studentFacingUnit } = await import("@/lib/assessment/serve");
+      const { presentClinicalUnits } = await import("@/lib/assessment/serve");
       const bank = await loadPublishedClinicalBank(fieldId);
       const wanted = new Set(ngnKeys);
       const units = [
@@ -214,12 +214,11 @@ export async function POST(req: Request) {
         ...bank.catalog.standalones.filter((unit) =>
           wanted.has(`ngn:${unit.item.id}:v${unit.item.version}`)
         ),
-      ]
-        .filter((unit) => {
-          if (!subjectId) return true;
-          return unit.subjectId === subjectId;
-        })
-        .map((unit) => studentFacingUnit(unit));
+      ].filter((unit) => {
+        if (!subjectId) return true;
+        return unit.subjectId === subjectId;
+      });
+      const presented = presentClinicalUnits(units, bank.caseReferences);
       if (units.length === 0) {
         return reviewQueueResponse(
           {
@@ -230,7 +229,7 @@ export async function POST(req: Request) {
           503
         );
       }
-      const scored = units.reduce(
+      const scored = presented.units.reduce(
         (sum, unit) => sum + (unit.kind === "case" ? unit.items.length : 1),
         0
       );
@@ -242,7 +241,7 @@ export async function POST(req: Request) {
       });
       if (!scoredUsage.ok) return scoredUsage.response;
       await recordStudyQuestionsServed(premium.userId, scored, "bank", scoredUsage.plan);
-      const practiceFormat = units.some((unit) => unit.kind === "case") ? "case" : "ngn";
+      const practiceFormat = presented.units.some((unit) => unit.kind === "case") ? "case" : "ngn";
       return reviewQueueResponse(
         {
           field: body.field,
@@ -258,8 +257,8 @@ export async function POST(req: Request) {
             fieldId,
             subjectId: subjectId ?? MIXED_SUBJECT_ID,
             sourcesById: bank.sourcesById,
-            caseReferences: bank.caseReferences,
-            units,
+            caseReferences: presented.caseReferences,
+            units: presented.units,
           },
         },
         incorrectIds.length

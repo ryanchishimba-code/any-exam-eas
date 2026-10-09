@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { respondDbUnavailable } from "@/lib/api-db-error";
+import { canonicalStoredQuestionKey } from "@/lib/assessment/serve";
 import { persistCompletedSessionAttempts } from "@/lib/learning/persist-session-attempts";
 import type { SessionAttemptDraft } from "@/lib/learning/session-attempt-plan";
 
@@ -49,8 +50,13 @@ export async function POST(req: Request) {
   let answered = 0;
   try {
     const body = bodySchema.parse(await req.json());
+    const attempts = body.attempts.map((draft) => ({
+      ...draft,
+      questionKey: canonicalStoredQuestionKey(draft.questionKey),
+      bankItemId: draft.bankItemId ? canonicalStoredQuestionKey(draft.bankItemId) : draft.bankItemId,
+    }));
     sessionId = body.session.sessionId;
-    answered = body.attempts.length;
+    answered = attempts.length;
     const sessionPayload = body.endedEarly
       ? { ...body.session, endedEarly: true }
       : body.session;
@@ -62,7 +68,7 @@ export async function POST(req: Request) {
       studyMode: body.session.mode,
       practiceFormat: body.session.practiceFormat ?? undefined,
       subjectId: body.session.subjectId,
-      drafts: body.attempts as SessionAttemptDraft[],
+      drafts: attempts as SessionAttemptDraft[],
     });
 
     try {
@@ -78,7 +84,7 @@ export async function POST(req: Request) {
           mode: body.session.mode,
           stateJson: JSON.stringify({
             session: sessionPayload,
-            attempts: body.attempts,
+            attempts,
           }),
           completed: body.completed ?? false,
           score: body.score ?? result.accuracy,
@@ -86,7 +92,7 @@ export async function POST(req: Request) {
         update: {
           stateJson: JSON.stringify({
             session: sessionPayload,
-            attempts: body.attempts,
+            attempts,
           }),
           completed: body.completed ?? false,
           score: body.score ?? result.accuracy,

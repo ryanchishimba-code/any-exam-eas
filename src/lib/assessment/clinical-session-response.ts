@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
+import { presentClinicalUnits, takeSessionUnits } from "@/lib/assessment/serve";
 import {
-  buildStudentUnits,
   caseAttemptStamps,
   clinicalPoolCount,
   loadPublishedClinicalBank,
@@ -47,7 +47,7 @@ export async function tryClinicalSessionResponse(params: {
     }
   }
 
-  const units = buildStudentUnits({
+  const selected = takeSessionUnits({
     catalog: bank.catalog,
     format: params.format,
     subjectId: params.subjectId,
@@ -55,7 +55,9 @@ export async function tryClinicalSessionResponse(params: {
     seed: `${params.userId}:${params.format}:${params.subjectId}:${crypto.randomUUID()}`,
     caseLastAttemptedAt,
   });
-  if (units.length !== params.limit) return null;
+  if (selected.length !== params.limit) return null;
+  const presented = presentClinicalUnits(selected, bank.caseReferences);
+  const units = presented.units;
 
   const scored = scoredItemCount(units);
   const { checkStudyQuestionUsage, recordStudyQuestionsServed } = await import("@/lib/study/usage-limits");
@@ -72,7 +74,7 @@ export async function tryClinicalSessionResponse(params: {
     fieldId: params.fieldId,
     subjectId: params.subjectId,
     sourcesById: bank.sourcesById,
-    caseReferences: bank.caseReferences,
+    caseReferences: presented.caseReferences,
     units,
   };
 

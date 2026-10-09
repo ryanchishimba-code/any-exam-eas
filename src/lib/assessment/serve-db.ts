@@ -8,7 +8,7 @@ import {
   selectPublishedCatalog,
   servedItemKeys,
   ngnQuestionKey,
-  studentFacingUnit,
+  presentClinicalUnits,
   takeSessionUnits,
   type PublishedCatalog,
   type PublishedUnit,
@@ -246,7 +246,7 @@ export function buildStudentUnits(params: {
   seed: string;
   caseLastAttemptedAt?: ReadonlyMap<string, number | null> | null;
 }): PublishedUnit[] {
-  return takeSessionUnits(params).map((unit) => studentFacingUnit(unit));
+  return presentClinicalUnits(takeSessionUnits(params)).units;
 }
 
 /** Latest attempt time per case. Any step counts as an attempt of the whole case. */

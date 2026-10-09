@@ -1,7 +1,7 @@
 import { score } from "@/lib/assessment/scoring/registry";
 import type { NgnItem } from "@/lib/assessment/types";
 import type { SessionAttemptDraft } from "@/lib/learning/session-attempt-plan";
-import { ngnQuestionKey } from "@/lib/assessment/serve";
+import { ngnQuestionKey } from "@/lib/assessment/question-key";
 
 export type NgnGrade = {
   points: number;

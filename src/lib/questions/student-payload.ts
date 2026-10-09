@@ -4,6 +4,7 @@
  * serializers copy only the layout the player renders.
  */
 import { NCLEX_STEP_NAMES, withoutCaseTitle } from "@/lib/full-exam/nclex-exam-labels";
+import { isInternalMasteryConceptKey } from "@/lib/learning/concept-labels";
 
 /** Object keys that must not appear anywhere in a student question JSON. */
 export const STUDENT_BANNED_KEYS = [
@@ -33,6 +34,7 @@ export const STUDENT_BANNED_KEYS = [
   "patientAgeGroup",
   "taskCategory",
   "caseGroupId",
+  "cjmmFunction",
 ] as const;
 
 const BANNED = new Set<string>(STUDENT_BANNED_KEYS);
@@ -144,6 +146,7 @@ export function studentFacingTags(tags: string[] | null | undefined): string[] |
     if (/^cjmm:/i.test(trimmed)) return false;
     const bare = trimmed.toLowerCase();
     if (STEP_NAMES.has(bare) || STEP_SLUGS.has(bare)) return false;
+    if (isInternalMasteryConceptKey(trimmed)) return false;
     return true;
   });
   return next;

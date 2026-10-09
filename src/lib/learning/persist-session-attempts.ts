@@ -1,3 +1,4 @@
+import { canonicalStoredQuestionKey } from "@/lib/assessment/serve";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { prisma } from "@/lib/prisma";
 import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
@@ -97,7 +98,12 @@ export async function persistCompletedSessionAttempts(params: {
 }): Promise<SessionPersistResult> {
   const fieldId = resolveQuestionBankFieldId(params.field);
   const { rescoreNgnDrafts } = await import("@/lib/assessment/serve-db");
-  const drafts = (await rescoreNgnDrafts(params.drafts)).filter((draft) => draft.questionKey.trim());
+  const storedDrafts = params.drafts.map((draft) => {
+    const questionKey = canonicalStoredQuestionKey(draft.questionKey);
+    const bankItemId = draft.bankItemId ? canonicalStoredQuestionKey(draft.bankItemId) : questionKey;
+    return { ...draft, questionKey, bankItemId };
+  });
+  const drafts = (await rescoreNgnDrafts(storedDrafts)).filter((draft) => draft.questionKey.trim());
   let newlySaved = 0;
   let alreadySaved = 0;
 
