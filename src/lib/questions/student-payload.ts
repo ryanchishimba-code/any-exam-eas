@@ -59,6 +59,7 @@ const STUDENT_LAYOUT_KEYS = [
   "stepIndex",
   "totalSteps",
   "caseStep",
+  "requiredSelections",
   "condition",
   "conditionOptions",
   "actions",
@@ -165,6 +166,92 @@ export function vignetteWithoutCaseTitle(
   const title = isRecord(payload) && typeof payload.caseTitle === "string" ? payload.caseTitle : undefined;
   const stripped = withoutCaseTitle(vignette, title).trim();
   return stripped || undefined;
+}
+
+const PRE_SUBMIT_COPY_FIELDS = [
+  "solutionSteps",
+  "clinicalReasoning",
+  "distractorRationale",
+  "expertRationale",
+  "explanationDetail",
+  "rationale",
+] as const;
+
+/** Keys a pre-submit payload must not carry, including empty answer objects. */
+export const PRE_SUBMIT_SCAN_KEYS = [
+  "key",
+  "keys",
+  "rationale",
+  "explanationDetail",
+  "expertRationale",
+  "solutionSteps",
+  "clinicalReasoning",
+  "distractorRationale",
+  "highlights",
+  "correctAnswers",
+] as const;
+
+function stripAnswerLayout(payload: Record<string, unknown> | undefined): Record<string, unknown> | undefined {
+  if (!payload) return payload;
+  const next = { ...payload };
+  delete next.highlights;
+  delete next.key;
+  delete next.keys;
+  delete next.rationale;
+  if (next.kind === "bow_tie") delete next.condition;
+  return next;
+}
+
+const PRE_SUBMIT_SCAN = new Set<string>(PRE_SUBMIT_SCAN_KEYS);
+
+/**
+ * Names of answer-key and rationale fields still present on a payload.
+ * Empty correctAnswer and explanation strings are the withheld exam shape.
+ */
+export function findPreSubmitAnswerLeaks(value: unknown, found: Set<string> = new Set()): string[] {
+  if (Array.isArray(value)) {
+    for (const entry of value) findPreSubmitAnswerLeaks(entry, found);
+    return [...found];
+  }
+  if (!isRecord(value)) return [...found];
+  for (const [key, child] of Object.entries(value)) {
+    if (PRE_SUBMIT_SCAN.has(key)) {
+      const emptyList = Array.isArray(child) && child.length === 0;
+      const emptyText = typeof child === "string" && child.trim() === "";
+      if (!emptyList && !emptyText) found.add(key);
+    }
+    if ((key === "correctAnswer" || key === "explanation") && typeof child === "string" && child.trim()) {
+      found.add(key);
+    }
+    if (key === "condition" && value.kind === "bow_tie" && typeof child === "string" && child.trim()) {
+      found.add("condition");
+    }
+    findPreSubmitAnswerLeaks(child, found);
+  }
+  return [...found];
+}
+
+/**
+ * Practice and exam delivery. The answer text, explanation, and payload
+ * answer keys stay on the server until the reveal route.
+ * correctAnswer and explanation stay as empty strings so the exam type
+ * still has those fields. requiredSelections is only a count.
+ */
+export function withholdPreSubmitExamQuestion<T extends {
+  correctAnswer?: string;
+  explanation?: string;
+  ngnPayload?: Record<string, unknown>;
+  chartData?: Record<string, unknown>;
+  correctAnswers?: string[];
+}>(question: T): T {
+  const next = { ...question, correctAnswer: "", explanation: "" };
+  delete (next as { correctAnswers?: string[] }).correctAnswers;
+  for (const field of PRE_SUBMIT_COPY_FIELDS) {
+    delete (next as Record<string, unknown>)[field];
+  }
+  if (next.ngnPayload) next.ngnPayload = stripAnswerLayout(next.ngnPayload);
+  if (next.chartData) next.chartData = stripAnswerLayout(next.chartData);
+  return next;
 }
 
 /** Walk a student question and return banned keys found at any depth. */

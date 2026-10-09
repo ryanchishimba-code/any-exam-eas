@@ -29,6 +29,7 @@ import {
   studentFacingTags,
   studentLayoutPayload,
   vignetteWithoutCaseTitle,
+  withholdPreSubmitExamQuestion,
 } from "./student-payload";
 import type { RawQuestionInput, StudyQuestion, StudyQuestionType } from "./types";
 
@@ -345,7 +346,17 @@ export function studyQuestionsToExamQuestions(prepared: StudyQuestion[]): import
         ? "true_false"
         : "multiple_choice";
 
-    return {
+    const layout = studentLayoutPayload(p.ngnPayload) ?? {};
+    const chart = studentLayoutPayload(p.chartData) ?? {};
+    if (
+      (p.type === "matrix" || p.type === "ordered_response" || p.type === "drag_drop") &&
+      p.correctAnswers.length > 0
+    ) {
+      layout.requiredSelections = p.correctAnswers.length;
+      chart.requiredSelections = p.correctAnswers.length;
+    }
+
+    return withholdPreSubmitExamQuestion({
       id: i + 1,
       type,
       question: p.stem,
@@ -366,15 +377,15 @@ export function studyQuestionsToExamQuestions(prepared: StudyQuestion[]): import
       reviewedAt: p.reviewedAt,
       expertRationale: p.expertRationale,
       ngnFormat: p.ngnFormat,
-      ngnPayload: studentLayoutPayload(p.ngnPayload),
-      chartData: studentLayoutPayload(p.chartData),
+      ngnPayload: Object.keys(layout).length > 0 ? layout : undefined,
+      chartData: Object.keys(chart).length > 0 ? chart : undefined,
       caseStep: p.caseStep,
       qualityScore: p.qualityScore,
       subjectId: p.subjectId,
       topicCategory: p.topicCategory,
       blueprintDomain: p.blueprintDomain,
       blueprintTopic: p.blueprintTopic,
-    };
+    });
   });
 }
 

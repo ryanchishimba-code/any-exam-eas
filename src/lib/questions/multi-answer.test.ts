@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { examQuestionToStudy, isAnswerCorrect, studyQuestionsToExamQuestions } from "@/lib/questions/prepare";
+import { revealStudyAnswer } from "@/lib/questions/reveal-study-answer";
+import { findPreSubmitAnswerLeaks } from "@/lib/questions/student-payload";
 import { bowTieSelectionValid, parseBowTieLayout, toggleBowTieSelection } from "@/lib/questions/ngn-structures";
 import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import type { BankItem } from "@/lib/question-bank";
@@ -57,8 +59,12 @@ describe("bow-tie comma keys", () => {
     expect(isAnswerCorrect(study, [...keyed])).toBe(false);
 
     const [api] = studyQuestionsToExamQuestions([study]);
-    expect(api?.correctAnswer?.includes("|||")).toBe(true);
-    expect(api?.correctAnswer?.split("|||")).toEqual(graded);
+    expect(api?.correctAnswer).toBe("");
+    expect(findPreSubmitAnswerLeaks(api)).toEqual([]);
+    expect(api?.ngnPayload).not.toHaveProperty("condition");
+    const revealed = revealStudyAnswer(study, { options: api?.options, selected: graded });
+    expect(revealed.correctAnswer.split("|||")).toEqual(graded);
+    expect(revealed.correct).toBe(true);
 
     const again = examQuestionToStudy(
       {
@@ -145,8 +151,14 @@ describe("bow-tie comma keys", () => {
       active: true,
     };
     const payload = preparedTimedExamItemsForClient("nursing", "nursing", [item], 1, { shuffleSeed: 4 });
-    expect(payload.questions[0]?.correctAnswer?.split("|||")).toEqual(keyed);
+    expect(payload.questions[0]?.correctAnswer).toBe("");
+    expect(findPreSubmitAnswerLeaks(payload.questions[0])).toEqual([]);
     expect(isAnswerCorrect(payload.prepared[0]!, [...keyed])).toBe(true);
+    const revealed = revealStudyAnswer(payload.prepared[0]!, {
+      selected: [...keyed],
+      options: payload.questions[0]?.options,
+    });
+    expect(revealed.correct).toBe(true);
   });
 
   it("offers shuffled condition choices with nothing preselected and one condition at a time", () => {

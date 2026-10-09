@@ -12,7 +12,7 @@ import {
 import { openStudentRef } from "@/lib/assessment/student-item-ref";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { examQuestionToStudy, studyQuestionsToExamQuestions } from "./prepare";
-import { findBannedStudentKeys } from "./student-payload";
+import { findBannedStudentKeys, findPreSubmitAnswerLeaks } from "./student-payload";
 import type { RawQuestionInput } from "./types";
 
 const STALE_RATIONALE = "STALE_OLD_RATIONALE_MUST_NOT_REACH_THE_BROWSER";
@@ -119,8 +119,11 @@ describe("student question payload", () => {
       table: { headers: ["Lab"], rows: [["K 3.1"]] },
     });
 
-    expect(api?.expertRationale).toEqual(expertRationale);
-    expect(api?.solutionSteps).toEqual(study.solutionSteps);
+    expect(api?.expertRationale).toBeUndefined();
+    expect(api?.solutionSteps).toBeUndefined();
+    expect(api?.correctAnswer).toBe("");
+    expect(api?.explanation).toBe("");
+    expect(findPreSubmitAnswerLeaks(api)).toEqual([]);
     expect(api?.references).toEqual(study.references);
     expect(api?.ngnPayload).toEqual(study.ngnPayload);
     expect(api?.chartData).toEqual(study.chartData);
