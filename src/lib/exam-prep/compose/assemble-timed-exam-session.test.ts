@@ -39,13 +39,23 @@ vi.mock("@/lib/question-bank-db", async (importOriginal) => {
 });
 
 vi.mock("@/lib/assessment/serve-db", () => ({
-  loadPublishedClinicalBank: vi.fn(async () => ({ catalog: [] })),
+  loadPublishedClinicalBank: vi.fn(async () => ({ catalog: { standalones: [], cases: [] } })),
+}));
+
+vi.mock("@/lib/exam-prep/nclex-client-needs-topup", () => ({
+  topUpNursingClientNeedsPool: vi.fn(async () => []),
 }));
 
 import { gatherSprintTimedExamPool } from "@/lib/exam-prep/gather-sprint-timed-pool";
 import { tryLoadTimedPresetSession } from "@/lib/exam-prep/try-timed-preset-exam";
 import { gatherProgressiveBankPool } from "@/lib/exam-prep/gather-progressive-bank-pool";
 import { gatherTimedExamBankItems } from "@/lib/questions/timed-exam-sampling";
+import { topUpNursingClientNeedsPool } from "@/lib/exam-prep/nclex-client-needs-topup";
+import {
+  clientNeedsTargets,
+  clientNeedsWithinRanges,
+  examClientNeedsCategory,
+} from "@/lib/exam-prep/nclex-client-needs-quota";
 
 const DISTINCT: Array<[string, string, string[]]> = [
   ["Which auxiliary label belongs on this carton?", "Refrigerate after opening", ["Refrigerate after opening", "Freeze solid", "Leave in a sunny window", "Discard the leaflet"]],
@@ -191,6 +201,71 @@ describe("assembleTimedExamSessionItems fast path", () => {
     expect(result?.source).toBe("gather");
     expect(result?.items).toHaveLength(8);
     expect(tryLoadTimedPresetSession).not.toHaveBeenCalled();
+  });
+});
+
+describe("assembleTimedExamSessionItems client-needs quota", () => {
+  function nursingItem(id: string, category: string): BankItem {
+    return {
+      id,
+      subjectId: category,
+      question: `Which action is first for ${id}?`,
+      options: [`Assess ${id}`, `Wait ${id}`, `Document ${id}`, `Delegate ${id}`],
+      correctAnswer: `Assess ${id}`,
+      explanation: `Assess ${id} before the other steps.`,
+      scenario: `Client ${id} is due for a distinct check.`,
+      itemType: "mcq",
+      qaPassed: true,
+      active: true,
+    };
+  }
+
+  it("tops up a short category on the linear and CAT full-exam paths", async () => {
+    for (const [limit, nclexExamMode] of [
+      [85, false],
+      [150, true],
+    ] as const) {
+      vi.mocked(gatherSprintTimedExamPool).mockReset();
+      vi.mocked(tryLoadTimedPresetSession).mockReset();
+      vi.mocked(gatherProgressiveBankPool).mockReset();
+      vi.mocked(gatherTimedExamBankItems).mockReset();
+      vi.mocked(topUpNursingClientNeedsPool).mockReset();
+
+      const targets = clientNeedsTargets(limit)!;
+      const hpm = targets.find((row) => row.id === "health-promotion")!;
+      let cursor = 0;
+      vi.mocked(gatherSprintTimedExamPool).mockImplementation(async ({ limit: pull }) => {
+        const batch: BankItem[] = [];
+        for (let index = 0; index < pull; index += 1) {
+          const n = cursor + index;
+          const category = targets[n % targets.length]!.id;
+          const subject = category === "health-promotion" && n % 17 !== 0 ? "pediatrics-nursing" : category;
+          batch.push(nursingItem(`fast-${limit}-${n}`, subject));
+        }
+        cursor += pull;
+        return batch;
+      });
+      vi.mocked(topUpNursingClientNeedsPool).mockImplementation(async () =>
+        Array.from({ length: hpm.max }, (_, index) => nursingItem(`top-${limit}-${index}`, "health-promotion"))
+      );
+
+      const result = await assembleTimedExamSessionItems({
+        fieldId: "nursing",
+        field: "nursing",
+        limit,
+        sampleCount: 40,
+        sessionId: `nclex-quota-${limit}-${nclexExamMode}`,
+        nclexExamMode,
+        deadlineMs: 20_000,
+      });
+
+      expect(topUpNursingClientNeedsPool).toHaveBeenCalled();
+      expect(result?.items).toHaveLength(limit);
+      expect(clientNeedsWithinRanges(result!.items)).toBe(true);
+      expect(
+        result!.items.filter((item) => examClientNeedsCategory(item) === "health-promotion").length
+      ).toBeGreaterThanOrEqual(hpm.min);
+    }
   });
 });
 
