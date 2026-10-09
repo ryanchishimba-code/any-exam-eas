@@ -25,6 +25,11 @@ import {
 } from "./ngn-structures";
 import { coerceOptionList } from "./option-coerce";
 import { shufflePreservingSequentialSets } from "./sequential-sets";
+import {
+  studentFacingTags,
+  studentLayoutPayload,
+  vignetteWithoutCaseTitle,
+} from "./student-payload";
 import type { RawQuestionInput, StudyQuestion, StudyQuestionType } from "./types";
 
 export { coerceOptionList } from "./option-coerce";
@@ -226,6 +231,7 @@ export function examQuestionToStudy(
     const cleaned = stripInternalDisplayMetadata(vignette);
     vignette = cleaned || undefined;
   }
+  vignette = vignetteWithoutCaseTitle(vignette, q.ngnPayload);
   if (!vignette) {
     const glued = splitGluedLeadIn(stem);
     if (glued.vignette) {
@@ -241,7 +247,7 @@ export function examQuestionToStudy(
     stem,
     vignette,
     ngnFormat: q.ngnFormat ?? q.type,
-    ngnPayload: q.ngnPayload,
+    ngnPayload: studentLayoutPayload(q.ngnPayload),
     caseStep: q.caseStep,
     options,
     correctAnswers: toCorrectAnswers(type, correctAnswer, options),
@@ -269,7 +275,7 @@ export function examQuestionToStudy(
     sourceUrl: q.sourceUrl,
     reviewedAt: q.reviewedAt,
     solutionSteps,
-    tags: q.tags,
+    tags: studentFacingTags(q.tags),
     highYield: q.highYield,
     field: q.field,
     subjectId: q.subjectId,
@@ -279,7 +285,7 @@ export function examQuestionToStudy(
     bankItemId: q.bankItemId,
     qualityScore: q.qualityScore,
     difficulty: q.difficultyLabel?.toLowerCase(),
-    chartData: q.chartData,
+    chartData: studentLayoutPayload(q.chartData),
     expertRationale,
   };
 }
@@ -349,7 +355,7 @@ export function studyQuestionsToExamQuestions(prepared: StudyQuestion[]): import
         : (p.correctAnswers[0] ?? ""),
       explanation: p.explanation,
       solutionSteps: p.solutionSteps,
-      tags: p.tags,
+      tags: studentFacingTags(p.tags),
       highYield: p.highYield,
       vignette: p.vignette,
       clinicalReasoning: p.clinicalReasoning,
@@ -358,9 +364,10 @@ export function studyQuestionsToExamQuestions(prepared: StudyQuestion[]): import
       sourceLabel: p.sourceLabel,
       sourceUrl: p.sourceUrl,
       reviewedAt: p.reviewedAt,
+      expertRationale: p.expertRationale,
       ngnFormat: p.ngnFormat,
-      ngnPayload: p.ngnPayload,
-      chartData: p.chartData,
+      ngnPayload: studentLayoutPayload(p.ngnPayload),
+      chartData: studentLayoutPayload(p.chartData),
       caseStep: p.caseStep,
       qualityScore: p.qualityScore,
       subjectId: p.subjectId,

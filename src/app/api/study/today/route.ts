@@ -20,6 +20,7 @@ import type { MasteryItemTags } from "@/lib/engine/mastery/types";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 import { getFieldMetaById } from "@/lib/fields";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
+import { studentFacingTags } from "@/lib/questions/student-payload";
 import { prisma } from "@/lib/prisma";
 import { ROUTES } from "@/lib/routes";
 import type { BankItem } from "@/lib/question-bank";
@@ -35,7 +36,6 @@ const bodySchema = z.object({
 function masteryTagsToStudyTags(tags: MasteryItemTags): string[] {
   const out: string[] = [];
   if (tags.clientNeeds) out.push(`cn:${tags.clientNeeds}`);
-  if (tags.cjmmFunction) out.push(`cjmm:${tags.cjmmFunction}`);
   if (tags.naplexDomain) out.push(`naplexDomain:${tags.naplexDomain}`);
   if (tags.naplexSubtopic) out.push(`naplexSubtopic:${tags.naplexSubtopic}`);
   for (const id of tags.drugIds ?? []) out.push(`drug:${id}`);
@@ -146,7 +146,7 @@ export async function POST(req: Request) {
         ...study,
         id: row.id,
         bankItemId: row.id,
-        tags: [...new Set(enrichedTags)],
+        tags: studentFacingTags([...new Set(enrichedTags)]),
       };
     });
 
