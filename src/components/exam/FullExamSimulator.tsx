@@ -47,8 +47,6 @@ import {
 } from "@/lib/exam-sessions/scoring";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { parseBowTieLayout, parseMatrixKey, toggleBowTieSelection } from "@/lib/questions/ngn-structures";
-import { fetchRevealedAnswer } from "@/lib/client/fetch-revealed-answer";
-import { applyRevealedAnswer } from "@/lib/questions/apply-revealed-answer";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { mapApiQuestionsToStudy } from "@/lib/questions/map-api-questions";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
@@ -527,76 +525,42 @@ export function FullExamSimulator({
     };
   }, [loading, submitting, paused, config.timed, config.timeLimitSec, startedAt]);
 
-  const gradedRef = useRef<Record<number, StudyQuestion>>({});
-  const [gradeVersion, setGradeVersion] = useState(0);
-
-  const ensureGraded = useCallback(
-    async (indexes: number[], pool: StudyQuestion[] = questions) => {
-      const next = { ...gradedRef.current };
-      let changed = false;
-      await Promise.all(
-        indexes.map(async (i) => {
-          const question = pool[i];
-          if (!question) return;
-          const cached = next[i];
-          if (cached?.correctAnswers.some((answer) => answer.trim())) return;
-          if (question.correctAnswers.some((answer) => answer.trim())) {
-            next[i] = question;
-            changed = true;
-            return;
-          }
-          const selected = answers[i]?.selected ?? [];
-          if (!hasSelection(selected)) return;
-          const itemId = question.bankItemId || question.id;
-          if (!itemId) return;
-          const revealed = await fetchRevealedAnswer({
-            itemId,
-            selected,
-            options: question.options,
-          });
-          if (!revealed) return;
-          next[i] = applyRevealedAnswer(question, revealed.answer);
-          changed = true;
-        })
-      );
-      gradedRef.current = next;
-      if (changed) setGradeVersion((version) => version + 1);
-      return next;
-    },
-    [answers, questions]
-  );
+  const serverCorrectRef = useRef<Record<number, boolean>>({});
+  const [serverGradeTick, setServerGradeTick] = useState(0);
 
   const persistAnswer = useCallback(
-    async (qi: number, state: FullExamAnswerState) => {
-      const q0 = questions[qi];
-      if (!q0) return;
-      if (!hasSelection(state.selected) && !state.flagged && !state.notes) return;
-
-      const grades = hasSelection(state.selected)
-        ? await ensureGraded([qi], questions)
-        : gradedRef.current;
-      const q = grades[qi] ?? q0;
+    async (qi: number, state: FullExamAnswerState): Promise<boolean | null> => {
+      const q = questions[qi];
+      if (!q) return null;
+      if (!hasSelection(state.selected) && !state.flagged && !state.notes) return null;
 
       const selectedSerialized = serializeExamSelection(q, state.selected);
-      const correct =
-        hasSelection(state.selected) && isAnswerCorrect(q, state.selected);
-
-      await fetch(`/api/exam-sessions/${sessionId}/answer`, {
+      const res = await fetch(`/api/exam-sessions/${sessionId}/answer`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           questionIndex: qi,
           questionId: q.bankItemId ?? q.id,
           selected: selectedSerialized,
-          correct,
           flagged: state.flagged,
           eliminated: state.eliminated,
           notes: state.notes,
           topicCategory: questionTopicFields(q).topicCategory,
         } satisfies Partial<ExamAnswerRecord>),
       });
+      if (!res.ok) return null;
+      const data = (await res.json().catch(() => null)) as {
+        answers?: ExamAnswerRecord[];
+      } | null;
+      const saved = data?.answers?.find((answer) => answer.questionIndex === qi);
+      if (saved && hasSelection(state.selected)) {
+        serverCorrectRef.current[qi] = saved.correct === true;
+        setServerGradeTick((tick) => tick + 1);
+        return saved.correct === true;
+      }
+      return null;
     },
-    [ensureGraded, questions, sessionId]
+    [questions, sessionId]
   );
 
   const bandForQuestion = useCallback(
@@ -622,7 +586,7 @@ export function FullExamSimulator({
         const q = qs[i];
         const a = ans[i] ?? defaultAnswer();
         if (!q || !hasSelection(a.selected)) break;
-        const correct = isAnswerCorrect(q, a.selected);
+        const correct = serverCorrectRef.current[i] === true;
         nextState = updateCatSession(nextState, correct, bandForQuestion(q));
         nextCommitted = i + 1;
       }
@@ -652,13 +616,12 @@ export function FullExamSimulator({
     const ans = answers[index] ?? defaultAnswer();
     if (!hasSelection(ans.selected)) return;
 
-    const grades = await ensureGraded([index], questions);
-    const scored = questions.map((question, i) => grades[i] ?? question);
+    await persistAnswer(index, ans);
     const { state, committed } = commitCatThrough(
       index,
       catState,
       catCommittedCount,
-      scored,
+      questions,
       answers
     );
     setCatCommittedCount(committed);
@@ -692,28 +655,25 @@ export function FullExamSimulator({
     catCommittedCount,
     catPool,
     commitCatThrough,
-    ensureGraded,
+    persistAnswer,
     goToCatReview,
   ]);
 
   const openReviewPhase = useCallback(() => {
     if (isCatMode) {
-      void ensureGraded(questions.map((_, i) => i), questions).then((grades) => {
-        const scored = questions.map((question, i) => grades[i] ?? question);
-        const { state, committed } = commitCatThrough(
-          scored.length - 1,
-          catState,
-          catCommittedCount,
-          scored,
-          answers
-        );
-        setCatCommittedCount(committed);
-        setCatState(state);
-      });
+      const { state, committed } = commitCatThrough(
+        questions.length - 1,
+        catState,
+        catCommittedCount,
+        questions,
+        answers
+      );
+      setCatCommittedCount(committed);
+      setCatState(state);
     }
     setHasEnteredReview(true);
     setPhase("review");
-  }, [isCatMode, commitCatThrough, ensureGraded, questions, catState, catCommittedCount, answers]);
+  }, [isCatMode, commitCatThrough, questions, catState, catCommittedCount, answers, serverGradeTick]);
 
   const toggleSelect = useCallback(
     (option: string) => {
@@ -804,12 +764,12 @@ export function FullExamSimulator({
     for (let i = 0; i < questions.length; i++) {
       const st = answers[i];
       if (!st || !hasSelection(st.selected)) continue;
-      const q = gradedRef.current[i] ?? questions[i];
+      const q = questions[i];
       log = mergeExamAnswers(log, {
         questionIndex: i,
         questionId: q.bankItemId ?? q.id,
         selected: serializeExamSelection(q, st.selected),
-        correct: isAnswerCorrect(q, st.selected),
+        correct: serverCorrectRef.current[i] === true || isAnswerCorrect(q, st.selected),
         flagged: st.flagged,
         eliminated: st.eliminated,
         notes: st.notes,
@@ -818,7 +778,7 @@ export function FullExamSimulator({
       });
     }
     return log;
-  }, [answers, gradeVersion, questions]);
+  }, [answers, questions, serverGradeTick]);
 
   const submitExam = useCallback(
     async (endedEarly = false) => {
@@ -827,8 +787,11 @@ export function FullExamSimulator({
       setSubmitError(null);
       await new Promise((resolve) => setTimeout(resolve, 0));
 
-      const grades = await ensureGraded(questions.map((_, i) => i), questions);
-      const scored = questions.map((question, i) => grades[i] ?? question);
+      for (let i = 0; i < questions.length; i++) {
+        const state = answers[i];
+        if (state && hasSelection(state.selected)) await persistAnswer(i, state);
+      }
+      const scored = questions;
 
       let finalCatState = catState;
       let finalCommitted = catCommittedCount;
@@ -958,7 +921,7 @@ export function FullExamSimulator({
     [
       submitting,
       buildAnswerLog,
-      ensureGraded,
+      persistAnswer,
       questions,
       config,
       remainingSec,
@@ -980,7 +943,7 @@ export function FullExamSimulator({
     if (questions.length === 0 || index < questions.length - 1) return false;
     let catStopsAfterCurrent = false;
     if (isCatMode && current && hasSelection(currentAnswer.selected)) {
-      const scored = questions.map((question, i) => gradedRef.current[i] ?? question);
+      const scored = questions;
       const projected = commitCatThrough(
         index,
         catState,
@@ -1013,7 +976,7 @@ export function FullExamSimulator({
     current,
     currentAnswer.selected,
     examMode,
-    gradeVersion,
+    serverGradeTick,
     index,
     isCatMode,
     questions,
@@ -1103,14 +1066,13 @@ export function FullExamSimulator({
     void (async () => {
     let stop = false;
     if (isCatMode) {
-      const grades = await ensureGraded([index], questions);
-      const scored = questions.map((question, i) => grades[i] ?? question);
-      const committed = commitCatThrough(index, catState, catCommittedCount, scored, answers);
+      await persistAnswer(index, ans);
+      const committed = commitCatThrough(index, catState, catCommittedCount, questions, answers);
       setCatCommittedCount(committed.committed);
       setCatState(committed.state);
       stop = committed.state.isComplete;
     } else {
-      await ensureGraded([index], questions);
+      await persistAnswer(index, ans);
     }
     const next = lockAnswerOnNext(index, questions.length);
     if (stop || next === "submit") {

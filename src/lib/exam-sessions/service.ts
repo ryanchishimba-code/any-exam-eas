@@ -200,6 +200,21 @@ export async function listPresetFormSessions(userId: string, examType: string, l
   );
 }
 
+export async function listInProgressExamSessions(userId: string, limit = 20) {
+  return withDrizzle("examSessions.listInProgress", () =>
+    requireDb()
+      .select({
+        id: examSessions.id,
+        status: examSessions.status,
+        analysis: examSessions.analysis,
+      })
+      .from(examSessions)
+      .where(and(eq(examSessions.userId, userId), eq(examSessions.status, "in_progress")))
+      .orderBy(desc(examSessions.updatedAt))
+      .limit(limit)
+  );
+}
+
 export async function listUserExamSessions(userId: string, examType?: string, limit = 30) {
   const conditions = examType
     ? and(eq(examSessions.userId, userId), eq(examSessions.examType, examType))

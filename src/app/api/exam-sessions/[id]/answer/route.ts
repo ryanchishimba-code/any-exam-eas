@@ -19,6 +19,11 @@ import {
 import { persistCompletedSessionAttempts } from "@/lib/learning/persist-session-attempts";
 import { summarySaysEndedEarly } from "@/lib/full-exam/results-title";
 import { preservePresetFormOnAnalysis } from "@/lib/exam-prep/preset-form-progress";
+import {
+  gradeExamAnswerRecords,
+  overlayServerRationales,
+  weakAreasFromGradedAnswers,
+} from "@/lib/exam-sessions/grade-stored-answer";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
 export const runtime = "nodejs";
@@ -45,11 +50,12 @@ export async function PATCH(
       ? session.answers
       : []) as ExamAnswerRecord[];
     const submitted = parseFullExamAnswerLog(body.answers);
-    const answers = (
+    const merged = (
       submitted
         ? submitted.reduce((acc, answer) => mergeExamAnswers(acc, answer), stored)
         : stored
     ) as ExamAnswerRecord[];
+    const answers = await gradeExamAnswerRecords(merged);
     const snapshots = snapshotsFromAnalysis(body.analysis);
     const drafts = draftsFromFullExamAnswers({
       answers,
@@ -62,8 +68,12 @@ export async function PATCH(
     const endedEarly = Boolean(body.endedEarly) || summarySaysEndedEarly(
       typeof summary === "string" ? summary : undefined
     );
+    const gradedAnalysis = await overlayServerRationales(
+      analysisWithAnsweredCount(body.analysis, drafts.length),
+      answers
+    );
     const analysis = preservePresetFormOnAnalysis(session.analysis, {
-      ...analysisWithAnsweredCount(body.analysis, drafts.length),
+      ...(gradedAnalysis as Record<string, unknown>),
       endedEarly,
     });
     const totalQuestions = administeredQuestionCount({
@@ -82,6 +92,7 @@ export async function PATCH(
       cat,
     });
     const correct = answers.filter((answer) => answer.correct && answer.selected?.trim()).length;
+    const weakAreas = weakAreasFromGradedAnswers(answers);
     const score = practiceScorePercent(correct, totals.denominator || totalQuestions);
     const fieldId =
       session.fieldId ??
@@ -97,7 +108,7 @@ export async function PATCH(
 
     await completeExamSession(id, premium.userId, {
       score,
-      weakAreas: body.weakAreas ?? [],
+      weakAreas,
       analysis,
       endedEarly,
       answers,
@@ -110,17 +121,21 @@ export async function PATCH(
     });
   }
 
-  const answers = await appendExamAnswer(id, premium.userId, {
-    questionIndex: Number(body.questionIndex),
-    questionId: body.questionId,
-    selected: String(body.selected ?? ""),
-    correct: Boolean(body.correct),
-    flagged: Boolean(body.flagged),
-    eliminated: Array.isArray(body.eliminated) ? body.eliminated : undefined,
-    notes: typeof body.notes === "string" ? body.notes : undefined,
-    topicCategory: typeof body.topicCategory === "string" ? body.topicCategory : undefined,
-    answeredAt: new Date().toISOString(),
-  });
+  const selected = String(body.selected ?? "");
+  const [graded] = await gradeExamAnswerRecords([
+    {
+      questionIndex: Number(body.questionIndex),
+      questionId: typeof body.questionId === "string" ? body.questionId : undefined,
+      selected,
+      correct: false,
+      flagged: Boolean(body.flagged),
+      eliminated: Array.isArray(body.eliminated) ? body.eliminated : undefined,
+      notes: typeof body.notes === "string" ? body.notes : undefined,
+      topicCategory: typeof body.topicCategory === "string" ? body.topicCategory : undefined,
+      answeredAt: new Date().toISOString(),
+    },
+  ]);
+  const answers = await appendExamAnswer(id, premium.userId, graded!);
 
   if (!answers) {
     return NextResponse.json({ error: "Session not found or already completed" }, { status: 404 });

@@ -10,6 +10,7 @@ import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import { revealStudyAnswer, type RevealedAnswerFields } from "@/lib/questions/reveal-study-answer";
+import type { StudyQuestion } from "@/lib/questions/types";
 
 function catalogRef(itemId: string): { id: string; version: number } | null {
   const canonical = canonicalStoredQuestionKey(itemId);
@@ -18,30 +19,35 @@ function catalogRef(itemId: string): { id: string; version: number } | null {
   return openStudentRef(itemId);
 }
 
-export async function revealStoredItem(input: {
-  itemId: string;
-  selected: string[];
-  options?: string[];
-}): Promise<(RevealedAnswerFields & { correct: boolean }) | null> {
-  const ref = catalogRef(input.itemId);
+/** Bank or published clinical row as the study question the server grades. */
+export async function loadStoredStudyQuestion(itemId: string): Promise<StudyQuestion | null> {
+  const ref = catalogRef(itemId);
   if (ref) {
     const clinical = await findServedItem(ref.id, ref.version);
     if (clinical) {
       const bank = bankItemFromClinicalServeItem(clinical);
       if (!bank) return null;
-      const study = examQuestionToStudy(bankItemToRawQuestion(bank, 0), 0, { shuffleOptions: false });
-      return revealStudyAnswer(study, { selected: input.selected, options: input.options });
+      return examQuestionToStudy(bankItemToRawQuestion(bank, 0), 0, { shuffleOptions: false });
     }
   }
 
-  const bankId = ref ? `ngn:${ref.id}:v${ref.version}` : input.itemId;
+  const bankId = ref ? `ngn:${ref.id}:v${ref.version}` : itemId;
   const row =
     (await prisma.questionBankItem.findUnique({ where: { id: bankId } })) ??
-    (bankId === input.itemId
+    (bankId === itemId
       ? null
-      : await prisma.questionBankItem.findUnique({ where: { id: input.itemId } }));
+      : await prisma.questionBankItem.findUnique({ where: { id: itemId } }));
   if (!row) return null;
   const item = enrichBankItemFromRow(row);
-  const study = examQuestionToStudy(bankItemToRawQuestion(item, 0), 0, { shuffleOptions: false });
+  return examQuestionToStudy(bankItemToRawQuestion(item, 0), 0, { shuffleOptions: false });
+}
+
+export async function revealStoredItem(input: {
+  itemId: string;
+  selected: string[];
+  options?: string[];
+}): Promise<(RevealedAnswerFields & { correct: boolean }) | null> {
+  const study = await loadStoredStudyQuestion(input.itemId);
+  if (!study) return null;
   return revealStudyAnswer(study, { selected: input.selected, options: input.options });
 }
