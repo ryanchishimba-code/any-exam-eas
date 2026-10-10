@@ -3,15 +3,18 @@ import { createExamInstance } from "@/lib/full-exam/exam-instance";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import { getUserExamPreference, touchExamStudied } from "@/lib/edtech/exam-preference";
-import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import {
   buildSessionConfig,
   computeTimeLimitSec,
   fullExamSessionHref,
   resolveStartLengthPreset,
 } from "@/lib/full-exam/config";
-import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
-import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
+import {
+  resolveQuestionBankFieldId,
+  resolveUserUsmleFieldId,
+} from "@/lib/edtech/question-bank-scope";
+import { usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
+import { resolveUsmleExamStartField } from "@/lib/full-exam/usmle-start-field";
 import { syncSessionConfigQuestionCount } from "@/lib/exam/session-count";
 import { requirePremiumApi } from "@/lib/api-access";
 import { respondDbUnavailable } from "@/lib/api-db-error";
@@ -121,14 +124,19 @@ export async function POST(req: Request) {
 
     const requestedField = body.fieldId ? resolveQuestionBankFieldId(String(body.fieldId)) : null;
     if (examSlug === "usmle") {
-      const meta = await getUserEdtechMetadata(premium.userId);
-      const resolvedField =
-        requestedField && isUsmleFieldId(requestedField)
-          ? requestedField
-          : meta.usmleFieldId && isUsmleFieldId(meta.usmleFieldId)
-            ? meta.usmleFieldId
-            : sessionFieldId;
-      sessionFieldId = resolvedField;
+      const savedField = await resolveUserUsmleFieldId(premium.userId);
+      const stepStart = resolveUsmleExamStartField({ requestedField, savedField });
+      if (!stepStart.ok) {
+        return NextResponse.json(
+          {
+            error: "That session does not match your selected exam step.",
+            code: "USMLE_STEP_MISMATCH",
+            expectedFieldId: stepStart.expectedFieldId,
+          },
+          { status: 403 }
+        );
+      }
+      sessionFieldId = stepStart.fieldId;
     } else if (requestedField) {
       sessionFieldId = requestedField;
     }
