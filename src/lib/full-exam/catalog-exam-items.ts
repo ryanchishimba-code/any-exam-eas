@@ -78,10 +78,20 @@ function baseItem(
 ): BankItem {
   const setId = item.caseId?.trim() || undefined;
   const stepIndex = typeof item.caseStep === "number" ? item.caseStep : undefined;
+  const subcategory = item.clientNeeds?.subcategory;
+  const category = item.clientNeeds?.category;
+  const clientNeeds =
+    subcategory || category
+      ? {
+          ...(category ? { category } : {}),
+          ...(subcategory ? { subcategory } : {}),
+        }
+      : undefined;
   const payload = {
     ...(fields.ngnPayload ?? {}),
     ...(item.exhibit ? { exhibit: item.exhibit } : {}),
     clinicalItemType: item.itemType,
+    ...(clientNeeds ? { clientNeeds } : {}),
     ...(caseTitle ? { caseTitle } : {}),
     ...(setId ? { setId } : {}),
     ...(stepIndex != null ? { stepIndex } : {}),
