@@ -102,7 +102,12 @@ export const examSessions = pgTable(
     createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
     updatedAt: timestamp("updatedAt", { mode: "date" }).notNull(),
   },
-  (t) => [index("exam_sessions_userId_examType_createdAt_idx").on(t.userId, t.examType, t.createdAt)]
+  (t) => [
+    index("exam_sessions_userId_examType_createdAt_idx").on(t.userId, t.examType, t.createdAt),
+    // Reveal looks up this user's in-progress sittings touched within 24h.
+    // The range scan is (userId, status, updatedAt); older rows are not read.
+    index("exam_sessions_userId_status_updatedAt_idx").on(t.userId, t.status, t.updatedAt),
+  ]
 );
 
 export const generatedQuestions = pgTable(

@@ -182,6 +182,7 @@ model ExamSession {
   user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, examType, createdAt])
+  @@index([userId, status, updatedAt], map: "exam_sessions_userId_status_updatedAt_idx")
   @@map("exam_sessions")
 }
 

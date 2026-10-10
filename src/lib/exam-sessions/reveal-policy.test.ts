@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { decideExamReveal, isUnfinishedExamActive, sessionContainsItem } from "./reveal-policy";
+import { ngnQuestionKey } from "@/lib/assessment/question-key";
+import { sealStudentRef } from "@/lib/assessment/student-item-ref";
+import {
+  activeExamContainsItem,
+  decideExamReveal,
+  isUnfinishedExamActive,
+  sessionContainsItem,
+} from "./reveal-policy";
 
 const now = new Date("2026-10-10T12:00:00Z");
 
@@ -20,11 +27,23 @@ describe("decideExamReveal", () => {
     ).toBe("withhold");
   });
 
-  it("allows a practice reveal with no session even if the caller has other unfinished exams", () => {
+  it("withholds a practice reveal with no session id when an active exam contains the item", () => {
     expect(
       decideExamReveal({
         sessionRequested: false,
         ownedSession: null,
+        activeSessionContainsItem: true,
+        now,
+      })
+    ).toBe("withhold");
+  });
+
+  it("allows a practice reveal when the item is not in an active exam", () => {
+    expect(
+      decideExamReveal({
+        sessionRequested: false,
+        ownedSession: null,
+        activeSessionContainsItem: false,
         now,
       })
     ).toBe("allow");
@@ -121,10 +140,74 @@ describe("isUnfinishedExamActive", () => {
 });
 
 describe("sessionContainsItem", () => {
-  it("matches a sealed id to the catalog id stored on the session", () => {
-    const analysis = { prefetchedQuestionIds: ["ngn:NC003-S1:v1", "bank-1"] };
+  it("matches a sealed case-step id to the catalog id stored on the session", () => {
+    const analysis = { prefetchedQuestionIds: ["ngn:NC003-S1:v1", "ngn:NC003-S2:v1", "bank-1"] };
+    const sealedStep = ngnQuestionKey(sealStudentRef({ id: "NC003-S1", version: 1 }), 1);
     expect(sessionContainsItem(analysis, "bank-1")).toBe(true);
     expect(sessionContainsItem(analysis, "ngn:NC003-S1:v1")).toBe(true);
+    expect(sessionContainsItem(analysis, sealedStep)).toBe(true);
+    expect(sessionContainsItem(analysis, "ngn:NC003-S3:v1")).toBe(false);
     expect(sessionContainsItem(analysis, "bank-2")).toBe(false);
+  });
+});
+
+describe("activeExamContainsItem", () => {
+  const active = {
+    status: "in_progress",
+    updatedAt: now,
+    startedAt: now,
+    timeLimitSec: 7200,
+  };
+
+  it("matches a case step by catalog id or by the sealed id stored on the sitting", () => {
+    const sealedStep = ngnQuestionKey(sealStudentRef({ id: "NC003-S2", version: 1 }), 1);
+    const sessions = [
+      { ...active, analysis: { prefetchedQuestionIds: ["ngn:NC003-S1:v1", sealedStep] } },
+    ];
+    expect(activeExamContainsItem(sessions, "ngn:NC003-S1:v1", now)).toBe(true);
+    expect(activeExamContainsItem(sessions, sealedStep, now)).toBe(true);
+    expect(activeExamContainsItem(sessions, "ngn:NC003-S2:v1", now)).toBe(true);
+    expect(activeExamContainsItem(sessions, "ngn:NC003-S3:v1", now)).toBe(false);
+  });
+
+  it("ignores abandoned, expired, and finished sittings", () => {
+    const analysis = { prefetchedQuestionIds: ["bank-1"] };
+    expect(
+      activeExamContainsItem(
+        [
+          {
+            status: "in_progress",
+            updatedAt: new Date("2026-10-09T11:00:00Z"),
+            startedAt: new Date("2026-10-09T10:00:00Z"),
+            timeLimitSec: null,
+            analysis,
+          },
+        ],
+        "bank-1",
+        now
+      )
+    ).toBe(false);
+    expect(
+      activeExamContainsItem(
+        [
+          {
+            status: "in_progress",
+            updatedAt: now,
+            startedAt: new Date("2026-10-10T09:00:00Z"),
+            timeLimitSec: 3600,
+            analysis,
+          },
+        ],
+        "bank-1",
+        now
+      )
+    ).toBe(false);
+    expect(
+      activeExamContainsItem(
+        [{ status: "completed", updatedAt: now, startedAt: now, analysis }],
+        "bank-1",
+        now
+      )
+    ).toBe(false);
   });
 });
