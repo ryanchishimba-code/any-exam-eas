@@ -360,7 +360,7 @@ export function StudentAnalyticsDashboard({
         <section>
           <h3 className={studyUi.sectionTitle}>Recent sessions</h3>
           <ul className={cn(studyUi.panel, "mt-3 divide-y divide-[var(--color-border)]")}>
-            {dashboard.recentTests.slice(0, 5).map((t) => (
+            {dashboard.recentTests.map((t) => (
               <li key={t.id}>
                 <Link
                   href={recentTestHref(primaryExamSlug, t)}

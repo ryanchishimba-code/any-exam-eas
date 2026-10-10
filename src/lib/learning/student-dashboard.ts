@@ -21,6 +21,7 @@ import {
   emptyFormatPracticeStats,
   type FormatPracticeStats,
 } from "@/lib/study/practice-format";
+import { mergeRecentTests, recentTestFromExamSession } from "@/lib/learning/recent-tests";
 
 export type AccuracyTrendPoint = {
   date: string;
@@ -458,7 +459,34 @@ async function loadStudentDashboardData(
     LIMIT ${recentLimit}
   `;
 
-  const [profile, trend, masteries, recentExamRows, attemptGroups, spacedReview, formatPractice] =
+  const finishedExamSessionsPromise = prisma.examSession.findMany({
+    where: {
+      userId,
+      status: { in: ["completed", "ended_early"] },
+      ...(scoped && fieldIds
+        ? {
+            OR: [
+              { fieldId: { in: fieldIds } },
+              ...(scopeSlug ? [{ fieldId: null, examType: scopeSlug }] : []),
+            ],
+          }
+        : {}),
+    },
+    orderBy: { completedAt: "desc" },
+    take: 20,
+    select: {
+      id: true,
+      examType: true,
+      fieldId: true,
+      title: true,
+      score: true,
+      questionCount: true,
+      completedAt: true,
+      answers: true,
+    },
+  });
+
+  const [profile, trend, masteries, recentExamRows, finishedExamSessions, attemptGroups, spacedReview, formatPractice] =
     await Promise.all([
     // Slim profile — avoid loading every ConceptMastery row (weak topics load below).
     prisma.learningProfile.findUnique({
@@ -485,6 +513,7 @@ async function loadStudentDashboardData(
       ...(scoped ? {} : { take: WEAK_TOPIC_FETCH }),
     }),
     recentExamsPromise,
+    finishedExamSessionsPromise,
     prisma.questionAttempt.groupBy({
       by: ["correct"],
       where: { userId, ...attemptScope },
@@ -511,9 +540,8 @@ async function loadStudentDashboardData(
 
   const weakTopics = mapWeakTopics(masteries);
 
-  const recentTests: RecentTestRow[] = recentExamRows
+  const progressTests: RecentTestRow[] = recentExamRows
     .filter((row) => recordInScope(row))
-    .slice(0, 8)
     .map((row) => {
     let correct: number | null = null;
     let total: number | null = null;
@@ -542,6 +570,12 @@ async function loadStudentDashboardData(
       completedAt: row.createdAt.toISOString(),
     };
   });
+
+  const recentTests = mergeRecentTests(
+    progressTests,
+    finishedExamSessions.map((row) => recentTestFromExamSession(row)),
+    20
+  );
 
   const overallAccuracy =
     totalAttempts > 0 ? Math.round((correctCount / totalAttempts) * 100) : null;

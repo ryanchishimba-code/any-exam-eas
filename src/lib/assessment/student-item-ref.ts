@@ -1,4 +1,4 @@
-import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from "node:crypto";
+import { createCipheriv, createDecipheriv, createHmac, randomBytes, scryptSync } from "node:crypto";
 
 /**
  * Opaque ids for one practice session. The browser never sees catalog slot
@@ -27,9 +27,15 @@ function key(): Buffer {
 
 export type StudentItemRef = { id: string; version: number };
 
-/** A new ciphertext each call, so the same slot is not recognizable across sessions. */
-export function sealStudentRef(ref: StudentItemRef): string {
-  const iv = randomBytes(12);
+/**
+ * A new ciphertext each call, so the same slot is not recognizable across sessions.
+ * Pass `stable` to keep one sitting's id fixed across reloads. The value should
+ * include the session id so a different sitting still gets a different seal.
+ */
+export function sealStudentRef(ref: StudentItemRef, stable?: string): string {
+  const iv = stable
+    ? createHmac("sha256", key()).update(stable).digest().subarray(0, 12)
+    : randomBytes(12);
   const cipher = createCipheriv(ALGO, key(), iv);
   const body = Buffer.concat([
     cipher.update(JSON.stringify({ i: ref.id, v: ref.version }), "utf8"),
