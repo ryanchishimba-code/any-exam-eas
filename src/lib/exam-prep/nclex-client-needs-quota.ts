@@ -190,44 +190,10 @@ function shuffle<T>(items: readonly T[], seed: number): T[] {
   return out;
 }
 
-/** Column and label strings that mean this category. Specialty subjects are not included. */
-export function clientNeedsStoredValues(id: NclexClientNeedsId): string[] {
-  const category = NCLEX_2026_CLIENT_NEEDS.find((row) => row.id === id);
-  const values = new Set<string>([id]);
-  if (category?.label) values.add(category.label);
-  for (const [alias, mapped] of Object.entries(ALIAS_TO_CATEGORY)) {
-    if (mapped === id) values.add(alias);
-  }
-  return [...values];
-}
-
-export type ClientNeedsDeficit = {
-  id: NclexClientNeedsId;
-  have: number;
-  min: number;
-};
-
-/** Categories in `items` that are under the minimum for an exam of `limit` items. */
-export function clientNeedsDeficits(items: readonly BankItem[], limit: number): ClientNeedsDeficit[] {
-  const targets = clientNeedsTargets(limit);
-  if (!targets) return [];
-  const counts = new Map<NclexClientNeedsId, number>();
-  for (const item of items) {
-    const category = examClientNeedsCategory(item);
-    if (!category) continue;
-    counts.set(category, (counts.get(category) ?? 0) + 1);
-  }
-  return targets.flatMap((row) => {
-    const have = counts.get(row.id) ?? 0;
-    return have < row.min ? [{ id: row.id, have, min: row.min }] : [];
-  });
-}
-
 /**
  * Replace a nursing draw with one that sits inside every 2026 range.
- * A short category keeps its minimum when the pool can supply it. Items with
- * no category fill only the slots left after those minimums. Returns null when
- * a minimum still cannot be met, or a pinned case already exceeds a maximum.
+ * Returns null when the classified pool cannot fill the length, including
+ * when pinned case blocks already exceed a maximum.
  */
 export function composeWithinClientNeeds(params: {
   preferred: readonly BankItem[];
@@ -248,69 +214,48 @@ export function composeWithinClientNeeds(params: {
     const category = examClientNeedsCategory(item);
     return category ? [{ item, category }] : [];
   });
-  const availableCount = new Map<NclexClientNeedsId, number>();
-  for (const entry of classified) {
-    availableCount.set(entry.category, (availableCount.get(entry.category) ?? 0) + 1);
-  }
+  if (classified.length < limit) return null;
 
   const preferred = params.preferred.slice(0, limit);
   const blocks = pinnedBlocks(preferred);
   const pinnedIds = new Set(blocks.flatMap((block) => block.items.map(itemId)));
   const pinnedCounts = new Map<NclexClientNeedsId, number>();
-  let pinnedUncategorized = 0;
   for (const block of blocks) {
     if (block.start + block.items.length > limit) return null;
     for (const item of block.items) {
       const category = examClientNeedsCategory(item);
-      if (!category) {
-        pinnedUncategorized += 1;
-        continue;
-      }
+      if (!category) return null;
       pinnedCounts.set(category, (pinnedCounts.get(category) ?? 0) + 1);
     }
   }
-  const floorOf = (row: ClientNeedsBound) => Math.max(row.min, pinnedCounts.get(row.id) ?? 0);
   for (const row of targets) {
-    const pinned = pinnedCounts.get(row.id) ?? 0;
-    if (pinned > row.max) return null;
-    if ((availableCount.get(row.id) ?? 0) < floorOf(row)) return null;
+    const used = pinnedCounts.get(row.id) ?? 0;
+    if (used > row.max) return null;
+    if (used > row.count) row.count = used;
   }
-  const floorSum = targets.reduce((total, row) => total + floorOf(row), 0);
-  if (floorSum + pinnedUncategorized > limit) return null;
-
-  const quota = new Map<NclexClientNeedsId, number>();
-  for (const row of targets) {
-    const cap = Math.min(row.max, availableCount.get(row.id) ?? 0);
-    quota.set(row.id, Math.min(cap, Math.max(floorOf(row), row.count)));
-  }
-  let sum = [...quota.values()].reduce((total, count) => total + count, 0);
+  let sum = targets.reduce((total, row) => total + row.count, 0);
   let guard = 0;
-  while (sum + pinnedUncategorized > limit && guard < limit * 8) {
+  while (sum !== limit && guard < limit * 8) {
     guard += 1;
-    const row = targets.find((candidate) => (quota.get(candidate.id) ?? 0) > floorOf(candidate));
-    if (!row) return null;
-    quota.set(row.id, (quota.get(row.id) ?? 0) - 1);
-    sum -= 1;
+    if (sum < limit) {
+      const room = targets.find((row) => row.count < row.max);
+      if (!room) return null;
+      room.count += 1;
+      sum += 1;
+    } else {
+      const room = targets.find((row) => row.count > Math.max(row.min, pinnedCounts.get(row.id) ?? 0));
+      if (!room) return null;
+      room.count -= 1;
+      sum -= 1;
+    }
   }
-  if (sum + pinnedUncategorized > limit) return null;
-  while (sum + pinnedUncategorized < limit && guard < limit * 8) {
-    guard += 1;
-    const row = targets.find((candidate) => {
-      const cap = Math.min(candidate.max, availableCount.get(candidate.id) ?? 0);
-      return (quota.get(candidate.id) ?? 0) < cap;
-    });
-    if (!row) break;
-    quota.set(row.id, (quota.get(row.id) ?? 0) + 1);
-    sum += 1;
-  }
-  const uncategorizedSlots = limit - sum - pinnedUncategorized;
-  if (uncategorizedSlots < 0) return null;
+  if (sum !== limit) return null;
 
   const preferredIds = new Set(preferred.map(itemId));
   const used = new Set(pinnedIds);
   const picked: BankItem[] = [];
   for (const row of targets) {
-    const need = (quota.get(row.id) ?? 0) - (pinnedCounts.get(row.id) ?? 0);
+    const need = row.count - (pinnedCounts.get(row.id) ?? 0);
     if (need < 0) return null;
     const candidates = classified.filter((entry) => {
       if (entry.category !== row.id || used.has(itemId(entry.item))) return false;
@@ -330,18 +275,6 @@ export function composeWithinClientNeeds(params: {
     }
   }
 
-  const uncategorized = [...byId.values()].filter(
-    (item) => !examClientNeedsCategory(item) && !used.has(itemId(item)) && sequentialSetId(item) == null
-  );
-  const uncatPreferred = uncategorized.filter((item) => preferredIds.has(itemId(item)));
-  const uncatExtras = shuffle(
-    uncategorized.filter((item) => !preferredIds.has(itemId(item))),
-    (params.seed ?? 1) ^ 0x5a17
-  );
-  const uncatChosen = [...uncatPreferred, ...uncatExtras].slice(0, uncategorizedSlots);
-  if (uncatChosen.length < uncategorizedSlots) return null;
-  for (const item of uncatChosen) used.add(itemId(item));
-
   const slots: Array<BankItem | null> = Array.from({ length: limit }, () => null);
   for (const block of blocks) {
     block.items.forEach((item, offset) => {
@@ -349,21 +282,14 @@ export function composeWithinClientNeeds(params: {
     });
   }
   const placed = new Set(blocks.flatMap((block) => block.items.map(itemId)));
-  const fillers: BankItem[] = [];
-  const fillerIds = new Set<string>();
-  const pushFiller = (item: BankItem) => {
-    const id = itemId(item);
-    if (!id || placed.has(id) || fillerIds.has(id) || !used.has(id)) return;
-    fillerIds.add(id);
-    fillers.push(item);
-  };
-  for (const item of preferred) pushFiller(item);
-  for (const item of picked) pushFiller(item);
-  for (const item of uncatChosen) pushFiller(item);
+  const rest = [
+    ...preferred.filter((item) => used.has(itemId(item)) && !placed.has(itemId(item))),
+    ...picked.filter((item) => !placed.has(itemId(item)) && !preferredIds.has(itemId(item))),
+  ];
   const holes = slots.flatMap((slot, index) => (slot ? [] : [index]));
-  if (fillers.length !== holes.length) return null;
+  if (rest.length !== holes.length) return null;
   holes.forEach((index, offset) => {
-    slots[index] = fillers[offset]!;
+    slots[index] = rest[offset]!;
   });
   if (slots.some((slot) => slot == null)) return null;
   return slots as BankItem[];
@@ -376,7 +302,7 @@ export function clientNeedsCounts(items: readonly BankItem[]): Record<NclexClien
   >;
   for (const item of items) {
     const category = examClientNeedsCategory(item);
-    if (!category) continue;
+    if (!category) return null;
     counts[category] += 1;
   }
   return counts;

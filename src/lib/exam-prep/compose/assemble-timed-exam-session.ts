@@ -40,8 +40,6 @@ import {
   pharmacyCalculationQuota,
   sessionOrderSeed,
 } from "@/lib/exam-prep/sitting-selection";
-import { examClientNeedsCategory } from "@/lib/exam-prep/nclex-client-needs-quota";
-import { topUpNursingClientNeedsPool } from "@/lib/exam-prep/nclex-client-needs-topup";
 import { isServableToStudents, retainStudentEligibleBankItems } from "@/lib/exam-prep/student-eligibility";
 import { sampleActiveItemsByFormat, samplePharmacyCalculationItems } from "@/lib/question-bank-db";
 
@@ -358,25 +356,6 @@ export async function assembleTimedExamSessionItems(
       } catch (error) {
         console.warn(
           "[assemble] pharmacy calculation sample unavailable",
-          error instanceof Error ? error.message : error
-        );
-      }
-    }
-    if (!expired() && fieldId === "nursing") {
-      try {
-        const sampled = await withinBudget(topUpNursingClientNeedsPool(items, limit), [] as BankItem[]);
-        const prepared = sampled.map((item) => {
-          const category = examClientNeedsCategory(item);
-          const next = prepare(item);
-          if (category && !examClientNeedsCategory(next)) {
-            return { ...next, clientNeedsCategory: category };
-          }
-          return next;
-        });
-        items = mergeBankItems(items, prepared.filter(isServableToStudents));
-      } catch (error) {
-        console.warn(
-          "[assemble] client-needs top-up unavailable",
           error instanceof Error ? error.message : error
         );
       }
