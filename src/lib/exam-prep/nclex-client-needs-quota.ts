@@ -1,8 +1,10 @@
 /**
  * NCSBN 2026 client-needs ranges for one exam draw.
- * An item's own options.clientNeedsCategory wins. With no client-needs value,
- * the subject counts only when it is itself a client-needs category.
- * Maternal, pediatric, and other specialty subjects stay out of the quota.
+ * Strings normalize to the eight areas. An NGN step uses its subcategory.
+ * A mapped options.clientNeedsCategory wins for a bank item. A blank bank item
+ * counts only when its subject slug is one of those eight areas.
+ * Maternal, pediatric, and other specialty subjects stay out of the quota
+ * and fill only leftover slots.
  */
 import type { BankItem } from "@/lib/question-bank";
 import { sequentialSetId } from "@/lib/exam-prep/sitting-clusters";
@@ -10,6 +12,22 @@ import { NCLEX_2026_CLIENT_NEEDS } from "@/lib/exam-prep/nclex/blueprint-topics-
 import type { NclexClientNeedsId } from "@/lib/exam-prep/nclex/types";
 
 const CATEGORY_IDS = new Set<string>(NCLEX_2026_CLIENT_NEEDS.map((category) => category.id));
+
+/** Exact options.clientNeedsCategory spellings in the served bank. */
+const OPTION_TEXTS: Record<NclexClientNeedsId, readonly string[]> = {
+  "management-of-care": ["Management of Care"],
+  "safety-infection": [
+    "Safety & Infection Control",
+    "Safety and Infection Control",
+    "Safety and Infection Prevention and Control",
+  ],
+  "health-promotion": ["Health Promotion", "Health Promotion and Maintenance"],
+  psychosocial: ["Psychosocial Integrity"],
+  "basic-care-comfort": ["Basic Care & Comfort", "Basic Care and Comfort"],
+  "pharmacology-nursing": ["Pharmacological Therapies", "Pharmacological and Parenteral Therapies"],
+  "reduction-risk": ["Reduction of Risk Potential"],
+  "physiological-adaptation": ["Physiological Adaptation"],
+};
 
 const ALIAS_TO_CATEGORY: Record<string, NclexClientNeedsId> = {
   "management of care": "management-of-care",
@@ -22,6 +40,7 @@ const ALIAS_TO_CATEGORY: Record<string, NclexClientNeedsId> = {
   "basic care and comfort": "basic-care-comfort",
   "basic care": "basic-care-comfort",
   pharmacology: "pharmacology-nursing",
+  "pharmacological therapies": "pharmacology-nursing",
   "pharmacological and parenteral therapies": "pharmacology-nursing",
   "risk reduction": "reduction-risk",
   "reduction of risk potential": "reduction-risk",
@@ -93,16 +112,61 @@ function firstCategory(values: readonly string[]): NclexClientNeedsId | null {
   return null;
 }
 
+function asRecord(value: unknown): Record<string, unknown> | null {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  return value as Record<string, unknown>;
+}
+
+/** NGN catalog client_needs. Subcategory is the area; category is often the parent. */
+function ngnNeeds(item: BankItem): { subcategory: string | null; category: string | null } | null {
+  const extra = item as BankItem & { clientNeeds?: unknown };
+  const payload = asRecord(item.ngnPayload);
+  const source = asRecord(payload?.clientNeeds) ?? asRecord(extra.clientNeeds);
+  if (!source) return null;
+  return {
+    subcategory: textValue(source.subcategory),
+    category: textValue(source.category),
+  };
+}
+
+function isNgnItem(item: BankItem): boolean {
+  if (ngnNeeds(item)) return true;
+  const payload = asRecord(item.ngnPayload);
+  if (payload) {
+    if (typeof payload.clinicalItemType === "string" && payload.clinicalItemType.trim()) return true;
+    if (typeof payload.setId === "string" && payload.setId.trim() && typeof payload.stepIndex === "number") return true;
+  }
+  return (item.id ?? "").startsWith("ngn:");
+}
+
 /**
  * Client-needs category for quota math.
- * options.clientNeedsCategory wins. A subject is used only when the item has
- * no client-needs value, and only when that subject is a category itself.
+ * An NGN subcategory wins over a parent category. A mapped bank
+ * options.clientNeedsCategory wins over the subject. An unmapped string does
+ * not hide a later match. A blank bank item uses the subject slug only when
+ * that slug is one of the eight areas.
  */
 export function examClientNeedsCategory(item: BankItem): NclexClientNeedsId | null {
+  const needs = ngnNeeds(item);
+  if (needs?.subcategory) {
+    const subcategory = categoryFromText(needs.subcategory);
+    if (subcategory) return subcategory;
+  }
+
   const fromOptions = optionsClientNeedsCategory(item);
-  if (fromOptions) return categoryFromText(fromOptions);
-  const stored = storedClientNeeds(item);
-  if (stored.length > 0) return firstCategory(stored);
+  if (fromOptions) {
+    const mapped = categoryFromText(fromOptions);
+    if (mapped) return mapped;
+  }
+
+  if (isNgnItem(item) && item.topicCategory) {
+    const topic = categoryFromText(item.topicCategory);
+    if (topic) return topic;
+  }
+
+  const stored = firstCategory(storedClientNeeds(item));
+  if (stored) return stored;
+
   const extra = item as BankItem & { subjectLabel?: string };
   return firstCategory([item.subjectId ?? "", extra.subjectLabel ?? ""].filter(Boolean));
 }
@@ -190,10 +254,49 @@ function shuffle<T>(items: readonly T[], seed: number): T[] {
   return out;
 }
 
+/** Exact options JSON spellings for this area, including the bank's display strings. */
+export function clientNeedsOptionTexts(id: NclexClientNeedsId): string[] {
+  return [...(OPTION_TEXTS[id] ?? [])];
+}
+
+/** Column and label strings that mean this category. Specialty subjects are not included. */
+export function clientNeedsStoredValues(id: NclexClientNeedsId): string[] {
+  const category = NCLEX_2026_CLIENT_NEEDS.find((row) => row.id === id);
+  const values = new Set<string>([id, ...clientNeedsOptionTexts(id)]);
+  if (category?.label) values.add(category.label);
+  for (const [alias, mapped] of Object.entries(ALIAS_TO_CATEGORY)) {
+    if (mapped === id) values.add(alias);
+  }
+  return [...values];
+}
+
+export type ClientNeedsDeficit = {
+  id: NclexClientNeedsId;
+  have: number;
+  min: number;
+};
+
+/** Categories in `items` that are under the minimum for an exam of `limit` items. */
+export function clientNeedsDeficits(items: readonly BankItem[], limit: number): ClientNeedsDeficit[] {
+  const targets = clientNeedsTargets(limit);
+  if (!targets) return [];
+  const counts = new Map<NclexClientNeedsId, number>();
+  for (const item of items) {
+    const category = examClientNeedsCategory(item);
+    if (!category) continue;
+    counts.set(category, (counts.get(category) ?? 0) + 1);
+  }
+  return targets.flatMap((row) => {
+    const have = counts.get(row.id) ?? 0;
+    return have < row.min ? [{ id: row.id, have, min: row.min }] : [];
+  });
+}
+
 /**
  * Replace a nursing draw with one that sits inside every 2026 range.
- * Returns null when the classified pool cannot fill the length, including
- * when pinned case blocks already exceed a maximum.
+ * A short category keeps its minimum when the pool can supply it. Items with
+ * no category fill only the slots left after those minimums. Returns null when
+ * a minimum still cannot be met, or a pinned case already exceeds a maximum.
  */
 export function composeWithinClientNeeds(params: {
   preferred: readonly BankItem[];
@@ -214,48 +317,69 @@ export function composeWithinClientNeeds(params: {
     const category = examClientNeedsCategory(item);
     return category ? [{ item, category }] : [];
   });
-  if (classified.length < limit) return null;
+  const availableCount = new Map<NclexClientNeedsId, number>();
+  for (const entry of classified) {
+    availableCount.set(entry.category, (availableCount.get(entry.category) ?? 0) + 1);
+  }
 
   const preferred = params.preferred.slice(0, limit);
   const blocks = pinnedBlocks(preferred);
   const pinnedIds = new Set(blocks.flatMap((block) => block.items.map(itemId)));
   const pinnedCounts = new Map<NclexClientNeedsId, number>();
+  let pinnedUncategorized = 0;
   for (const block of blocks) {
     if (block.start + block.items.length > limit) return null;
     for (const item of block.items) {
       const category = examClientNeedsCategory(item);
-      if (!category) return null;
+      if (!category) {
+        pinnedUncategorized += 1;
+        continue;
+      }
       pinnedCounts.set(category, (pinnedCounts.get(category) ?? 0) + 1);
     }
   }
+  const floorOf = (row: ClientNeedsBound) => Math.max(row.min, pinnedCounts.get(row.id) ?? 0);
   for (const row of targets) {
-    const used = pinnedCounts.get(row.id) ?? 0;
-    if (used > row.max) return null;
-    if (used > row.count) row.count = used;
+    const pinned = pinnedCounts.get(row.id) ?? 0;
+    if (pinned > row.max) return null;
+    if ((availableCount.get(row.id) ?? 0) < floorOf(row)) return null;
   }
-  let sum = targets.reduce((total, row) => total + row.count, 0);
+  const floorSum = targets.reduce((total, row) => total + floorOf(row), 0);
+  if (floorSum + pinnedUncategorized > limit) return null;
+
+  const quota = new Map<NclexClientNeedsId, number>();
+  for (const row of targets) {
+    const cap = Math.min(row.max, availableCount.get(row.id) ?? 0);
+    quota.set(row.id, Math.min(cap, Math.max(floorOf(row), row.count)));
+  }
+  let sum = [...quota.values()].reduce((total, count) => total + count, 0);
   let guard = 0;
-  while (sum !== limit && guard < limit * 8) {
+  while (sum + pinnedUncategorized > limit && guard < limit * 8) {
     guard += 1;
-    if (sum < limit) {
-      const room = targets.find((row) => row.count < row.max);
-      if (!room) return null;
-      room.count += 1;
-      sum += 1;
-    } else {
-      const room = targets.find((row) => row.count > Math.max(row.min, pinnedCounts.get(row.id) ?? 0));
-      if (!room) return null;
-      room.count -= 1;
-      sum -= 1;
-    }
+    const row = targets.find((candidate) => (quota.get(candidate.id) ?? 0) > floorOf(candidate));
+    if (!row) return null;
+    quota.set(row.id, (quota.get(row.id) ?? 0) - 1);
+    sum -= 1;
   }
-  if (sum !== limit) return null;
+  if (sum + pinnedUncategorized > limit) return null;
+  while (sum + pinnedUncategorized < limit && guard < limit * 8) {
+    guard += 1;
+    const row = targets.find((candidate) => {
+      const cap = Math.min(candidate.max, availableCount.get(candidate.id) ?? 0);
+      return (quota.get(candidate.id) ?? 0) < cap;
+    });
+    if (!row) break;
+    quota.set(row.id, (quota.get(row.id) ?? 0) + 1);
+    sum += 1;
+  }
+  const uncategorizedSlots = limit - sum - pinnedUncategorized;
+  if (uncategorizedSlots < 0) return null;
 
   const preferredIds = new Set(preferred.map(itemId));
   const used = new Set(pinnedIds);
   const picked: BankItem[] = [];
   for (const row of targets) {
-    const need = row.count - (pinnedCounts.get(row.id) ?? 0);
+    const need = (quota.get(row.id) ?? 0) - (pinnedCounts.get(row.id) ?? 0);
     if (need < 0) return null;
     const candidates = classified.filter((entry) => {
       if (entry.category !== row.id || used.has(itemId(entry.item))) return false;
@@ -275,6 +399,18 @@ export function composeWithinClientNeeds(params: {
     }
   }
 
+  const uncategorized = [...byId.values()].filter(
+    (item) => !examClientNeedsCategory(item) && !used.has(itemId(item)) && sequentialSetId(item) == null
+  );
+  const uncatPreferred = uncategorized.filter((item) => preferredIds.has(itemId(item)));
+  const uncatExtras = shuffle(
+    uncategorized.filter((item) => !preferredIds.has(itemId(item))),
+    (params.seed ?? 1) ^ 0x5a17
+  );
+  const uncatChosen = [...uncatPreferred, ...uncatExtras].slice(0, uncategorizedSlots);
+  if (uncatChosen.length < uncategorizedSlots) return null;
+  for (const item of uncatChosen) used.add(itemId(item));
+
   const slots: Array<BankItem | null> = Array.from({ length: limit }, () => null);
   for (const block of blocks) {
     block.items.forEach((item, offset) => {
@@ -282,14 +418,21 @@ export function composeWithinClientNeeds(params: {
     });
   }
   const placed = new Set(blocks.flatMap((block) => block.items.map(itemId)));
-  const rest = [
-    ...preferred.filter((item) => used.has(itemId(item)) && !placed.has(itemId(item))),
-    ...picked.filter((item) => !placed.has(itemId(item)) && !preferredIds.has(itemId(item))),
-  ];
+  const fillers: BankItem[] = [];
+  const fillerIds = new Set<string>();
+  const pushFiller = (item: BankItem) => {
+    const id = itemId(item);
+    if (!id || placed.has(id) || fillerIds.has(id) || !used.has(id)) return;
+    fillerIds.add(id);
+    fillers.push(item);
+  };
+  for (const item of preferred) pushFiller(item);
+  for (const item of picked) pushFiller(item);
+  for (const item of uncatChosen) pushFiller(item);
   const holes = slots.flatMap((slot, index) => (slot ? [] : [index]));
-  if (rest.length !== holes.length) return null;
+  if (fillers.length !== holes.length) return null;
   holes.forEach((index, offset) => {
-    slots[index] = rest[offset]!;
+    slots[index] = fillers[offset]!;
   });
   if (slots.some((slot) => slot == null)) return null;
   return slots as BankItem[];
@@ -302,7 +445,7 @@ export function clientNeedsCounts(items: readonly BankItem[]): Record<NclexClien
   >;
   for (const item of items) {
     const category = examClientNeedsCategory(item);
-    if (!category) return null;
+    if (!category) continue;
     counts[category] += 1;
   }
   return counts;
