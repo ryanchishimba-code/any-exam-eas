@@ -6,6 +6,7 @@ import { studentRevealedItem } from "@/lib/assessment/serve";
 import { openStudentRef } from "@/lib/assessment/student-item-ref";
 import { findServedItem } from "@/lib/assessment/serve-db";
 import { revealStoredItem } from "@/lib/questions/reveal-stored-item";
+import { guardExamReveal } from "@/lib/exam-sessions/reveal-guard";
 
 export const runtime = "nodejs";
 
@@ -14,7 +15,18 @@ const bodySchema = z.object({
   version: z.number().int().positive(),
   response: z.unknown(),
   options: z.array(z.string().max(4000)).max(80).optional(),
+  sessionId: z.string().trim().min(1).max(80).optional(),
 });
+
+function withheldReveal() {
+  return NextResponse.json(
+    {
+      error: "Answers stay hidden until the exam is finished.",
+      code: "EXAM_REVEAL_WITHHELD",
+    },
+    { status: 409 }
+  );
+}
 
 function selectedChoices(response: unknown): string[] {
   if (Array.isArray(response)) {
@@ -37,6 +49,16 @@ export async function POST(req: Request) {
   }
 
   try {
+    const decision = await guardExamReveal(
+      premium.userId,
+      parsed.data.itemId,
+      parsed.data.sessionId
+    );
+    if (decision === "not_owner") {
+      return NextResponse.json({ error: "This item is not available." }, { status: 404 });
+    }
+    if (decision === "withhold") return withheldReveal();
+
     const ref = openStudentRef(parsed.data.itemId);
     if (ref && ref.version === parsed.data.version) {
       const item = await findServedItem(ref.id, ref.version);
