@@ -16,7 +16,9 @@ import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 import { getFieldMetaById } from "@/lib/fields";
 import { resolveTodaySetSize } from "@/lib/learning/today-set";
 import { loadServedTodaySet } from "@/lib/learning/today-set-plan";
+import { sealCatalogQuestionKey, sealStudentFacingIds } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
+import { withholdPreSubmitExamQuestion } from "@/lib/questions/student-payload";
 import { ROUTES } from "@/lib/routes";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 
@@ -83,6 +85,7 @@ export async function POST(req: Request) {
     const ordered = items;
     const fieldLabel = getFieldMetaById(fieldId)?.label ?? fieldId;
     const questions = ordered.map((item, index) => {
+      const publicId = item.id ? sealCatalogQuestionKey(item.id) : item.id;
       const study = examQuestionToStudy(
         bankItemToSessionRaw(
           fieldId,
@@ -94,13 +97,20 @@ export async function POST(req: Request) {
         index,
         { shuffleOptions: false }
       );
-      return {
+      return withholdPreSubmitExamQuestion({
         ...study,
-        id: item.id,
-        bankItemId: item.id,
+        id: publicId,
+        bankItemId: publicId,
         subjectId: item.subjectId ?? MIXED_SUBJECT_ID,
-      };
+        stem: study.stem,
+        question: study.stem,
+        correctAnswer: "",
+      });
     });
+    const faced = sealStudentFacingIds(
+      questions,
+      questions.map((question) => (typeof question.bankItemId === "string" ? question.bankItemId : undefined))
+    );
 
     await recordStudyQuestionsServed(premium.userId, questions.length, "bank", usageCheck.plan);
 
@@ -135,8 +145,8 @@ export async function POST(req: Request) {
       reviewCount: mix.reviewCount,
       newCount: mix.newCount,
       mixLine: mix.mixLine,
-      questions,
-      bankItemIds: mix.ids,
+      questions: faced.questions,
+      bankItemIds: faced.bankItemIds,
       todaySet: {
         examSlug,
         target: selection.target,

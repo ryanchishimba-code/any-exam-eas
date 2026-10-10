@@ -17,8 +17,9 @@ import {
 } from "@/lib/learning/adaptive-session";
 import { computeOverallAccuracy } from "@/lib/learning/adaptive-session";
 import { buildTopicWeakness } from "@/lib/learning/weakness";
+import { sealCatalogQuestionKey, sealStudentFacingIds } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
-import { studentFacingTags, studentLayoutPayload } from "@/lib/questions/student-payload";
+import { studentFacingTags, studentLayoutPayload, withholdPreSubmitExamQuestion } from "@/lib/questions/student-payload";
 import { joinStoredCorrectAnswer } from "@/lib/questions/multi-answer";
 import type { ExamQuestion } from "@/lib/ai";
 import {
@@ -70,7 +71,7 @@ function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQu
   };
   const type = typeMap[ngnType] ?? typeMap[prepared.type] ?? "multiple_choice";
 
-  return {
+  return withholdPreSubmitExamQuestion({
     id: prepared.sourceIndex,
     type,
     ngnFormat: prepared.ngnFormat,
@@ -88,7 +89,7 @@ function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQu
     highYield: prepared.highYield,
     chartData: studentLayoutPayload(prepared.chartData),
     caseStep: prepared.caseStep,
-  };
+  });
 }
 
 export async function POST(req: Request) {
@@ -221,9 +222,13 @@ export async function POST(req: Request) {
     const quality = assessExamSessionQuality(orderedQuestions, sessionCount);
     assertExamSessionReady(quality, fieldId);
 
-    const questions = orderedQuestions.map(toApiQuestion);
+    const delivered = sealStudentFacingIds(
+      orderedQuestions.map(toApiQuestion),
+      orderedQuestions.map((question) => question.bankItemId)
+    );
+    const questions = delivered.questions;
     const selectionReasoning = result.selections.map((s) => ({
-      questionKey: s.questionKey,
+      questionKey: sealCatalogQuestionKey(s.questionKey),
       reasoning: s.reasoning,
       score: s.totalScore,
       factors: s.factors.map((f) => ({
@@ -245,7 +250,7 @@ export async function POST(req: Request) {
       fieldId,
       subjectId,
       questions,
-      bankItemIds: orderedQuestions.map((q) => q.bankItemId).filter(Boolean),
+      bankItemIds: delivered.bankItemIds,
       reasoningByQuestionId,
       adaptive: {
         recommendedDifficulty: result.recommendedDifficulty,

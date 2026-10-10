@@ -37,7 +37,8 @@ export async function GET(req: Request, { params }: RouteParams) {
   const page = parsePositiveInt(url.searchParams.get("page"), 1);
   const limit = Math.min(parsePositiveInt(url.searchParams.get("limit"), 20), MAX_PAGE_SIZE);
   const subjectId = url.searchParams.get("subjectId")?.trim() || null;
-  const includeExplanation = url.searchParams.get("includeExplanation") === "1";
+  // Keys and explanations arrive through the reveal route after the answer is submitted.
+  const includeExplanation = false;
 
   const fieldId = await resolveCanonicalPracticeFieldId(premium.userId, examSlug);
 

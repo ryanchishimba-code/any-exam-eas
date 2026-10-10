@@ -29,6 +29,7 @@ import {
 } from "@/lib/exam/exam-lengths";
 import { clampQuestionBankCount } from "@/lib/exam/modes";
 import { resolveQuestionBankSessionCount } from "@/lib/study/question-bank-setup";
+import { sealStudentFacingIds } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import { studyQuestionsToExamQuestions } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
@@ -768,7 +769,11 @@ export async function GET(req: Request) {
     );
   }
 
-  const questions: ExamQuestion[] = studyQuestionsToExamQuestions(prepared);
+  const delivered = sealStudentFacingIds(
+    studyQuestionsToExamQuestions(prepared),
+    prepared.map((item) => item.bankItemId)
+  );
+  const questions: ExamQuestion[] = delivered.questions;
 
   if (metaPromise) await metaPromise;
   if (metaFailed) throw metaFailed;
@@ -822,7 +827,7 @@ export async function GET(req: Request) {
           subjectIds: prepared.map((item) => item.subjectId ?? null),
         }
       : {}),
-    bankItemIds: prepared.map((p) => p.bankItemId).filter(Boolean),
+    bankItemIds: delivered.bankItemIds,
     ...(includeMeta
       ? {
           meta: {

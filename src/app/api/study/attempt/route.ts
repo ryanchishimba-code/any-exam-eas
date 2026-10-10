@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { canonicalStoredQuestionKey } from "@/lib/assessment/serve";
 import { processLearningAttempt } from "@/lib/learning/engine";
 import { invalidateStudentReadCaches } from "@/lib/learning/invalidate-read-caches";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
@@ -50,7 +51,10 @@ export async function POST(req: Request) {
 
   try {
     const body = bodySchema.parse(await req.json());
-    const question = body.question as StudyQuestion;
+    const question = {
+      ...(body.question as StudyQuestion),
+      bankItemId: canonicalStoredQuestionKey(body.question.bankItemId ?? body.question.id),
+    };
     const fieldLabel = question.field ?? "Medicine";
     const fieldId = resolveQuestionBankFieldId(fieldLabel);
 

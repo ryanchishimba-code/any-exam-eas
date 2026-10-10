@@ -47,6 +47,8 @@ import {
 } from "@/lib/exam-sessions/scoring";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { parseBowTieLayout, parseMatrixKey, toggleBowTieSelection } from "@/lib/questions/ngn-structures";
+import { fetchRevealedAnswer } from "@/lib/client/fetch-revealed-answer";
+import { applyRevealedAnswer } from "@/lib/questions/apply-revealed-answer";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { mapApiQuestionsToStudy } from "@/lib/questions/map-api-questions";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
@@ -525,11 +527,55 @@ export function FullExamSimulator({
     };
   }, [loading, submitting, paused, config.timed, config.timeLimitSec, startedAt]);
 
+  const gradedRef = useRef<Record<number, StudyQuestion>>({});
+  const [gradeVersion, setGradeVersion] = useState(0);
+
+  const ensureGraded = useCallback(
+    async (indexes: number[], pool: StudyQuestion[] = questions) => {
+      const next = { ...gradedRef.current };
+      let changed = false;
+      await Promise.all(
+        indexes.map(async (i) => {
+          const question = pool[i];
+          if (!question) return;
+          const cached = next[i];
+          if (cached?.correctAnswers.some((answer) => answer.trim())) return;
+          if (question.correctAnswers.some((answer) => answer.trim())) {
+            next[i] = question;
+            changed = true;
+            return;
+          }
+          const selected = answers[i]?.selected ?? [];
+          if (!hasSelection(selected)) return;
+          const itemId = question.bankItemId || question.id;
+          if (!itemId) return;
+          const revealed = await fetchRevealedAnswer({
+            itemId,
+            selected,
+            options: question.options,
+          });
+          if (!revealed) return;
+          next[i] = applyRevealedAnswer(question, revealed.answer);
+          changed = true;
+        })
+      );
+      gradedRef.current = next;
+      if (changed) setGradeVersion((version) => version + 1);
+      return next;
+    },
+    [answers, questions]
+  );
+
   const persistAnswer = useCallback(
     async (qi: number, state: FullExamAnswerState) => {
-      const q = questions[qi];
-      if (!q) return;
+      const q0 = questions[qi];
+      if (!q0) return;
       if (!hasSelection(state.selected) && !state.flagged && !state.notes) return;
+
+      const grades = hasSelection(state.selected)
+        ? await ensureGraded([qi], questions)
+        : gradedRef.current;
+      const q = grades[qi] ?? q0;
 
       const selectedSerialized = serializeExamSelection(q, state.selected);
       const correct =
@@ -550,7 +596,7 @@ export function FullExamSimulator({
         } satisfies Partial<ExamAnswerRecord>),
       });
     },
-    [questions, sessionId]
+    [ensureGraded, questions, sessionId]
   );
 
   const bandForQuestion = useCallback(
@@ -592,7 +638,7 @@ export function FullExamSimulator({
   }, []);
 
   /** Advance in CAT: navigate within served list, or commit + pick next / stop. */
-  const advanceCat = useCallback(() => {
+  const advanceCat = useCallback(async () => {
     if (!isCatMode) {
       setIndex((i) => Math.min(i + 1, questions.length - 1));
       return;
@@ -606,11 +652,13 @@ export function FullExamSimulator({
     const ans = answers[index] ?? defaultAnswer();
     if (!hasSelection(ans.selected)) return;
 
+    const grades = await ensureGraded([index], questions);
+    const scored = questions.map((question, i) => grades[i] ?? question);
     const { state, committed } = commitCatThrough(
       index,
       catState,
       catCommittedCount,
-      questions,
+      scored,
       answers
     );
     setCatCommittedCount(committed);
@@ -644,24 +692,28 @@ export function FullExamSimulator({
     catCommittedCount,
     catPool,
     commitCatThrough,
+    ensureGraded,
     goToCatReview,
   ]);
 
   const openReviewPhase = useCallback(() => {
     if (isCatMode) {
-      const { state, committed } = commitCatThrough(
-        questions.length - 1,
-        catState,
-        catCommittedCount,
-        questions,
-        answers
-      );
-      setCatCommittedCount(committed);
-      setCatState(state);
+      void ensureGraded(questions.map((_, i) => i), questions).then((grades) => {
+        const scored = questions.map((question, i) => grades[i] ?? question);
+        const { state, committed } = commitCatThrough(
+          scored.length - 1,
+          catState,
+          catCommittedCount,
+          scored,
+          answers
+        );
+        setCatCommittedCount(committed);
+        setCatState(state);
+      });
     }
     setHasEnteredReview(true);
     setPhase("review");
-  }, [isCatMode, commitCatThrough, questions, catState, catCommittedCount, answers]);
+  }, [isCatMode, commitCatThrough, ensureGraded, questions, catState, catCommittedCount, answers]);
 
   const toggleSelect = useCallback(
     (option: string) => {
@@ -752,7 +804,7 @@ export function FullExamSimulator({
     for (let i = 0; i < questions.length; i++) {
       const st = answers[i];
       if (!st || !hasSelection(st.selected)) continue;
-      const q = questions[i];
+      const q = gradedRef.current[i] ?? questions[i];
       log = mergeExamAnswers(log, {
         questionIndex: i,
         questionId: q.bankItemId ?? q.id,
@@ -766,7 +818,7 @@ export function FullExamSimulator({
       });
     }
     return log;
-  }, [answers, questions]);
+  }, [answers, gradeVersion, questions]);
 
   const submitExam = useCallback(
     async (endedEarly = false) => {
@@ -775,14 +827,17 @@ export function FullExamSimulator({
       setSubmitError(null);
       await new Promise((resolve) => setTimeout(resolve, 0));
 
+      const grades = await ensureGraded(questions.map((_, i) => i), questions);
+      const scored = questions.map((question, i) => grades[i] ?? question);
+
       let finalCatState = catState;
       let finalCommitted = catCommittedCount;
       if (isCatMode) {
         const finalized = commitCatThrough(
-          questions.length - 1,
+          scored.length - 1,
           catState,
           catCommittedCount,
-          questions,
+          scored,
           answers
         );
         finalCatState = finalized.state;
@@ -792,8 +847,8 @@ export function FullExamSimulator({
       }
 
       const log = buildAnswerLog();
-      const score = calculateExamScorePercent(log, questions.length);
-      const topicBreakdown = buildTopicBreakdown(questions, log);
+      const score = calculateExamScorePercent(log, scored.length);
+      const topicBreakdown = buildTopicBreakdown(scored, log);
       const pauseInProgress =
         pauseStarted.current != null
           ? Math.max(0, Math.floor((Date.now() - pauseStarted.current) / 1000))
@@ -846,8 +901,8 @@ export function FullExamSimulator({
               timeUsedSec,
               clientOpenedAt: new Date(openedAtMs.current).toISOString(),
               topicBreakdown,
-              questionIds: questions.map((q) => q.bankItemId ?? q.id),
-              questionSnapshots: questions.map((q) => {
+              questionIds: scored.map((q) => q.bankItemId ?? q.id),
+              questionSnapshots: scored.map((q) => {
                 const bowTie =
                   q.type === "bow_tie" || q.ngnFormat === "bow_tie" ? parseBowTieLayout(q) : null;
                 return {
@@ -903,6 +958,7 @@ export function FullExamSimulator({
     [
       submitting,
       buildAnswerLog,
+      ensureGraded,
       questions,
       config,
       remainingSec,
@@ -924,11 +980,12 @@ export function FullExamSimulator({
     if (questions.length === 0 || index < questions.length - 1) return false;
     let catStopsAfterCurrent = false;
     if (isCatMode && current && hasSelection(currentAnswer.selected)) {
+      const scored = questions.map((question, i) => gradedRef.current[i] ?? question);
       const projected = commitCatThrough(
         index,
         catState,
         catCommittedCount,
-        questions,
+        scored,
         answers
       );
       if (projected.state.isComplete) {
@@ -956,6 +1013,7 @@ export function FullExamSimulator({
     current,
     currentAnswer.selected,
     examMode,
+    gradeVersion,
     index,
     isCatMode,
     questions,
@@ -1042,12 +1100,17 @@ export function FullExamSimulator({
     const ans = answers[index] ?? defaultAnswer();
     if (!hasSelection(ans.selected)) return;
     if (!examAnswerEditable(index, lockedThrough)) return;
+    void (async () => {
     let stop = false;
     if (isCatMode) {
-      const committed = commitCatThrough(index, catState, catCommittedCount, questions, answers);
+      const grades = await ensureGraded([index], questions);
+      const scored = questions.map((question, i) => grades[i] ?? question);
+      const committed = commitCatThrough(index, catState, catCommittedCount, scored, answers);
       setCatCommittedCount(committed.committed);
       setCatState(committed.state);
       stop = committed.state.isComplete;
+    } else {
+      await ensureGraded([index], questions);
     }
     const next = lockAnswerOnNext(index, questions.length);
     if (stop || next === "submit") {
@@ -1056,6 +1119,7 @@ export function FullExamSimulator({
     }
     setLockedThrough(next.lockedThrough);
     setIndex(next.index);
+    })();
   }
   examNextRef.current = goExamNext;
 

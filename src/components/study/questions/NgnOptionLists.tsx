@@ -2,6 +2,7 @@
 
 import { InlineBold } from "@/components/ngn/InlineBold";
 import { cleanOptionText } from "@/lib/question-format";
+import { requiredSelectionCount } from "@/lib/questions/required-selections";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { Check, X } from "lucide-react";
 
@@ -70,7 +71,7 @@ export function OrderedResponseOptions({
   return (
     <>
       <p className="mt-4 text-xs text-[var(--color-ink-muted)]">
-        Tap options in priority order ({question.correctAnswers?.length ?? 0} steps).
+        Tap options in priority order ({requiredSelectionCount(question)} steps).
       </p>
       {selected.length > 0 && (
         <ol className="mt-3 flex flex-wrap gap-2">

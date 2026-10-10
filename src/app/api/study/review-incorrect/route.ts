@@ -6,6 +6,7 @@ import { loadStillIncorrectBankItemIds } from "@/lib/learning/review-incorrect";
 import { missedIdsForExamSession } from "@/lib/learning/remediation-loop";
 import { getExamSession } from "@/lib/exam-sessions/service";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
+import { sealCatalogQuestionKey, sealStudentFacingIds } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import { studentFacingTags, studentLayoutPayload } from "@/lib/questions/student-payload";
@@ -187,16 +188,19 @@ export async function POST(req: Request) {
           { shuffleOptions: true, shuffleSeed: 0x161 }
         )
       );
-      const questions = prepared.map(toApiQuestion);
-      await recordStudyQuestionsServed(premium.userId, questions.length, "bank", usageCheck.plan);
+      const delivered = sealStudentFacingIds(
+        prepared.map(toApiQuestion),
+        ordered.map((item) => item.id)
+      );
+      await recordStudyQuestionsServed(premium.userId, delivered.questions.length, "bank", usageCheck.plan);
       return reviewQueueResponse(
         {
           field: body.field,
           fieldId,
           subjectId: effectiveSubject,
           mode: "review_incorrect",
-          questions,
-          bankItemIds: ordered.map((item) => item.id).filter(Boolean),
+          questions: delivered.questions,
+          bankItemIds: delivered.bankItemIds,
         },
         incorrectIds.length
       );
@@ -249,7 +253,7 @@ export async function POST(req: Request) {
           subjectId: subjectId ?? MIXED_SUBJECT_ID,
           mode: "review_incorrect",
           questions: [],
-          bankItemIds: ngnKeys,
+          bankItemIds: ngnKeys.map((id) => sealCatalogQuestionKey(id)),
           practiceFormat,
           clinicalSession: {
             practiceFormat,
@@ -284,10 +288,13 @@ export async function POST(req: Request) {
       )
     );
 
-    const questions = prepared.map(toApiQuestion);
+    const delivered = sealStudentFacingIds(
+      prepared.map(toApiQuestion),
+      prepared.map((question) => question.bankItemId)
+    );
     await recordStudyQuestionsServed(
       premium.userId,
-      questions.length,
+      delivered.questions.length,
       "bank",
       usageCheck.plan
     );
@@ -298,8 +305,8 @@ export async function POST(req: Request) {
         fieldId,
         subjectId: effectiveSubject,
         mode: "review_incorrect",
-        questions,
-        bankItemIds: prepared.map((q) => q.bankItemId).filter(Boolean),
+        questions: delivered.questions,
+        bankItemIds: delivered.bankItemIds,
       },
       incorrectIds.length
     );

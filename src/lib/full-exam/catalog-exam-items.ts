@@ -310,6 +310,16 @@ function stepsArePlayable(items: ClinicalItem[]): boolean {
   return unique.length === items.length && unique.length >= 2 && unique.every((step, index) => step === index + 1);
 }
 
+/** One published clinical row in the exam player's bank shape. */
+export function bankItemFromClinicalServeItem(
+  item: ClinicalItem,
+  subjectId?: string | null
+): BankItem | null {
+  const converted = convertClinicalItem(item);
+  if (!converted) return null;
+  return baseItem(item, subjectId ?? null, undefined, converted);
+}
+
 /** Standalone bow-ties and trends, plus every step of a fully playable case. */
 export function publishedCatalogToBankItems(catalog: PublishedCatalog): BankItem[] {
   const items: BankItem[] = [];

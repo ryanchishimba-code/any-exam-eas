@@ -10,7 +10,10 @@ import {
   recordSessionAnswer,
   summarizeSession,
 } from "@/lib/questions/session-engine";
+import { fetchRevealedAnswer } from "@/lib/client/fetch-revealed-answer";
+import { applyRevealedAnswer } from "@/lib/questions/apply-revealed-answer";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
+import { requiredSelectionCount } from "@/lib/questions/required-selections";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
 import {
   bowTieSelectionValid,
@@ -171,7 +174,8 @@ export function StudySessionPlayer({
   }, [rawQuestions, field, subjectId, sourceType, sourceId, mode, adaptiveMeta, timedSessionSeconds, practiceFormat]);
 
   const [sessionState, setSessionState] = useState<StudySessionState>(initial.session);
-  const [questionList] = useState<StudyQuestion[]>(initial.questions);
+  const [questionList, setQuestionList] = useState<StudyQuestion[]>(initial.questions);
+  const [scoreError, setScoreError] = useState<string | null>(null);
 
   const [selected, setSelected] = useState<string[]>([]);
   const [showConfidence, setShowConfidence] = useState(false);
@@ -422,16 +426,33 @@ export function StudySessionPlayer({
   const revealAnswer = useCallback(
     async (choices: string[]) => {
       if (!current) return;
+      const needsKey = !current.correctAnswers.some((answer) => answer.trim());
+      let graded = current;
+      if (needsKey) {
+        const itemId = current.bankItemId || current.id;
+        const revealed = await fetchRevealedAnswer({
+          itemId,
+          selected: choices,
+          options: current.options,
+        });
+        if (!revealed) {
+          setScoreError("Could not score this item. Try again.");
+          return;
+        }
+        graded = applyRevealedAnswer(current, revealed.answer);
+        setQuestionList((list) => list.map((question) => (question.id === graded.id ? graded : question)));
+      }
+      setScoreError(null);
       const durationMs = Date.now() - startedAt.current;
-      const next = recordSessionAnswer(sessionState, current, choices, { durationMs });
+      const next = recordSessionAnswer(sessionState, graded, choices, { durationMs });
       setSessionState(next);
       persist(next);
       setInsight(null);
       setRemediation([]);
 
-      const correct = isAnswerCorrect(current, choices);
+      const correct = isAnswerCorrect(graded, choices);
       // Persist even when the student skips the optional confidence rating.
-      void submitAttempt(current, correct, choices, durationMs);
+      void submitAttempt(graded, correct, choices, durationMs);
 
       if (
         sessionState.mode === "practice" ||
@@ -566,7 +587,7 @@ export function StudySessionPlayer({
 
   function canSubmitSelection(): boolean {
     if (!current || selected.length === 0) return false;
-    const correctCount = current.correctAnswers?.length ?? 0;
+    const correctCount = requiredSelectionCount(current);
     if (current.type === "ordered_response") {
       return selected.length === correctCount;
     }
@@ -864,6 +885,12 @@ export function StudySessionPlayer({
             sequentialContext={sequentialContext}
           />
 
+          {scoreError && !answer?.revealed ? (
+            <p className="mt-4 text-sm text-red-700" role="alert">
+              {scoreError}
+            </p>
+          ) : null}
+
           {!answer?.revealed && sessionState.mode !== "rapid" && (
             <button
               type="button"
@@ -872,12 +899,12 @@ export function StudySessionPlayer({
               className={`mt-8 w-full sm:w-auto sm:px-10 ${studyUi.sessionPrimaryBtn}`}
             >
               {current.type === "ordered_response" &&
-              selected.length !== (current.correctAnswers?.length ?? 0)
-                ? `Select ${(current.correctAnswers?.length ?? 0) - selected.length} more`
+              selected.length !== requiredSelectionCount(current)
+                ? `Select ${requiredSelectionCount(current) - selected.length} more`
                 : current.type === "bow_tie" && !canSubmitSelection()
                   ? "Complete bow-tie selections"
                   : current.type === "matrix" && !canSubmitSelection()
-                    ? `Select ${current.correctAnswers?.length ?? 0} cells`
+                    ? `Select ${requiredSelectionCount(current)} cells`
                     : "Check"}
             </button>
           )}

@@ -5,6 +5,7 @@ import {
   prepareQuestionsForSession,
   studyQuestionsToExamQuestions,
 } from "./prepare";
+import { findPreSubmitAnswerLeaks } from "./student-payload";
 import type { RawQuestionInput } from "./types";
 
 function nclexItem(
@@ -55,17 +56,22 @@ describe("studyQuestionsToExamQuestions", () => {
 
     expect(exam).toHaveLength(2);
 
-    for (const q of exam) {
+    for (const q of prepared) {
       expect(q.vignette).toBeTruthy();
-      expect(q.options).toContain(q.correctAnswer);
+      expect(q.options).toContain(q.correctAnswers[0]);
       if (q.vignette?.includes("lactate")) {
-        expect(q.correctAnswer).toBe("Obtain cultures then antibiotics");
+        expect(q.correctAnswers[0]).toBe("Obtain cultures then antibiotics");
         expect(q.explanation).toContain("sepsis-q");
       }
       if (q.vignette?.includes("GCS 12")) {
-        expect(q.correctAnswer).toBe("Elevate HOB 30° and notify provider");
+        expect(q.correctAnswers[0]).toBe("Elevate HOB 30° and notify provider");
         expect(q.explanation).toContain("icp-q");
       }
+    }
+    for (const q of exam) {
+      expect(q.correctAnswer).toBe("");
+      expect(q.explanation).toBe("");
+      expect(findPreSubmitAnswerLeaks(q)).toEqual([]);
     }
   });
 });

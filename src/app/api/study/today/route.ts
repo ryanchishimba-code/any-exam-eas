@@ -19,8 +19,9 @@ import { parseMasteryItemTags } from "@/lib/engine/mastery/item-tags";
 import type { MasteryItemTags } from "@/lib/engine/mastery/types";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 import { getFieldMetaById } from "@/lib/fields";
+import { sealCatalogQuestionKey, sealStudentFacingIds } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
-import { studentFacingTags } from "@/lib/questions/student-payload";
+import { studentFacingTags, withholdPreSubmitExamQuestion } from "@/lib/questions/student-payload";
 import { prisma } from "@/lib/prisma";
 import { ROUTES } from "@/lib/routes";
 import type { BankItem } from "@/lib/question-bank";
@@ -114,6 +115,7 @@ export async function POST(req: Request) {
     const fieldLabel = fieldMeta?.label ?? built.fieldId;
 
     const questions = ordered.map((row, i) => {
+      const publicId = sealCatalogQuestionKey(row.id);
       const raw = bankItemToSessionRaw(
         built.fieldId,
         fieldLabel,
@@ -142,23 +144,27 @@ export async function POST(req: Request) {
         ...(Array.isArray(study.tags) ? study.tags : []),
         ...masteryTagsToStudyTags(mastery),
       ];
-      return {
+      return withholdPreSubmitExamQuestion({
         ...study,
-        id: row.id,
-        bankItemId: row.id,
+        id: publicId,
+        bankItemId: publicId,
+        stem: study.stem,
+        question: study.stem,
+        correctAnswer: "",
         tags: studentFacingTags([...new Set(enrichedTags)]),
-      };
+      });
     });
+    const faced = sealStudentFacingIds(questions, questions.map((question) => question.bankItemId));
 
     return NextResponse.json({
       ok: true,
       examSlug,
-      size: questions.length,
+      size: faced.questions.length,
       fieldId: built.fieldId,
       cellKeys: built.cellKeys,
       primers: built.primers,
       domainShare: "domainShare" in built ? built.domainShare : undefined,
-      questions,
+      questions: faced.questions,
       playerHref: `${ROUTES.questionBank}?field=${encodeURIComponent(built.fieldId)}&mode=bank&style=today&count=${built.size}&autostart=1`,
     });
   } catch (e) {

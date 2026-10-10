@@ -14,6 +14,9 @@ import {
   isAnswerCorrect,
   studyQuestionsToExamQuestions,
 } from "@/lib/questions/prepare";
+import { applyRevealedAnswer } from "@/lib/questions/apply-revealed-answer";
+import { revealStudyAnswer } from "@/lib/questions/reveal-study-answer";
+import { findPreSubmitAnswerLeaks } from "@/lib/questions/student-payload";
 
 describe("shuffled delivery and NGN CAT results", () => {
   it("scores and highlights the keyed choice after the client keeps the delivered order", () => {
@@ -38,17 +41,29 @@ describe("shuffled delivery and NGN CAT results", () => {
       { shuffleSeed: 11 }
     );
     const [delivered] = studyQuestionsToExamQuestions([prepared]);
-    const [seen] = mapApiQuestionsToStudy(
-      [
-        {
-          ...delivered!,
-          subjectId: prepared.subjectId,
-          topicCategory: prepared.topicCategory,
-          bankItemId: prepared.bankItemId,
-        },
-      ],
-      { shuffleOptions: false }
+    expect(findPreSubmitAnswerLeaks(delivered)).toEqual([]);
+    expect(delivered?.correctAnswer).toBe("");
+    expect(delivered?.explanation).toBe("");
+    const revealed = revealStudyAnswer(prepared, {
+      options: delivered?.options,
+      selected: [prepared.correctAnswers[0]!],
+    });
+    expect(revealed.correct).toBe(true);
+    const graded = applyRevealedAnswer(
+      mapApiQuestionsToStudy(
+        [
+          {
+            ...delivered!,
+            subjectId: prepared.subjectId,
+            topicCategory: prepared.topicCategory,
+            bankItemId: prepared.bankItemId,
+          },
+        ],
+        { shuffleOptions: false }
+      )[0]!,
+      revealed
     );
+    const seen = graded;
 
     expect(seen!.options).toEqual(prepared.options);
     expect(isAnswerCorrect(seen!, [prepared.correctAnswers[0]!])).toBe(true);
