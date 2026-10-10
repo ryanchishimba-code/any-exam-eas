@@ -6,7 +6,7 @@ import { NCLEX_STEP_NAMES } from "@/lib/full-exam/nclex-exam-labels";
 import { examQuestionToStudy, isAnswerCorrect, studyQuestionsToExamQuestions } from "@/lib/questions/prepare";
 import { applyRevealedAnswer } from "@/lib/questions/apply-revealed-answer";
 import { revealStudyAnswer } from "@/lib/questions/reveal-study-answer";
-import { findPreSubmitAnswerLeaks } from "@/lib/questions/student-payload";
+import { findBannedStudentKeys, findPreSubmitAnswerLeaks } from "@/lib/questions/student-payload";
 
 describe("pre-submit payloads", () => {
   it("scans practice and exam payloads for key and rationale fields", () => {
@@ -34,6 +34,13 @@ describe("pre-submit payloads", () => {
           cjmmFunction: "recognize_cues",
           rationale: "Hidden rationale",
           highlights: ["chest pain"],
+          rnFlags: ["RN to confirm oxytocin at 14 mL/h. Scenario revised during self-review."],
+          qaNotes: ["RN to confirm the revised rate."],
+          pharmdFlags: ["PharmD flag: revised"],
+          reviewerNotes: "RN to confirm",
+          signoff: "revised",
+          authoring: { note: "RN to confirm revised" },
+          rows: [{ id: "r1", text: "New chest pain", reviewNotes: "RN to confirm revised", signoff: "revised" }],
         },
       },
       0,
@@ -41,10 +48,15 @@ describe("pre-submit payloads", () => {
     );
     const [api] = studyQuestionsToExamQuestions([study]);
     expect(findPreSubmitAnswerLeaks(api)).toEqual([]);
+    expect(findBannedStudentKeys(api)).toEqual([]);
     expect(api?.correctAnswer).toBe("");
     expect(api?.explanation).toBe("");
     expect(JSON.stringify(api)).not.toContain("Hidden rationale");
     expect(JSON.stringify(api)).not.toContain("recognize_cues");
+    expect(JSON.stringify(api)).not.toMatch(/RN to confirm/i);
+    expect(JSON.stringify(api)).not.toMatch(/revised/i);
+    expect(JSON.stringify(study)).not.toMatch(/RN to confirm/i);
+    expect(JSON.stringify(study)).not.toMatch(/revised/i);
 
     const revealed = revealStudyAnswer(study, {
       selected: ["New chest pain"],
@@ -102,6 +114,12 @@ describe("pre-submit payloads", () => {
         stepIndex: 1,
         caseTitle: "Day after PCI: chest pain",
         cjmmFunction: "recognize_cues",
+        rnFlags: ["RN to confirm oxytocin at 14 mL/h. Scenario revised during self-review."],
+        qaNotes: ["revised"],
+        pharmdFlags: ["RN to confirm"],
+        reviewerNotes: "revised",
+        signoff: "RN to confirm",
+        rows: [{ id: "r1", text: "New chest pain", reviewNotes: "RN to confirm this row was revised" }],
       },
       tags: ["published-ngn-catalog"],
       qaPassed: true,
@@ -110,6 +128,9 @@ describe("pre-submit payloads", () => {
     const payload = preparedTimedExamItemsForClient("nursing", "nursing", [item], 1, { shuffleSeed: 2 });
     const wire = JSON.stringify({ questions: payload.questions, bankItemIds: payload.bankItemIds });
     expect(findPreSubmitAnswerLeaks(payload.questions)).toEqual([]);
+    expect(findBannedStudentKeys(payload.questions)).toEqual([]);
+    expect(wire).not.toMatch(/RN to confirm/i);
+    expect(wire).not.toMatch(/revised/i);
     expect(wire).not.toMatch(/NC003-S/);
     expect(wire).not.toMatch(/"NC003"/);
     expect(wire).not.toContain("Day after PCI");
