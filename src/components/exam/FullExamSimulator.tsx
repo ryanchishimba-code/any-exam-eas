@@ -182,6 +182,8 @@ type Props = {
   config: FullExamSessionConfig;
   initialAnswers?: ExamAnswerRecord[];
   startedAt?: string | Date | null;
+  /** First question index that can still be changed. Earlier answered items stay locked. */
+  initialLockedThrough?: number;
 };
 
 function defaultAnswer(): FullExamAnswerState {
@@ -231,6 +233,7 @@ export function FullExamSimulator({
   config,
   initialAnswers = [],
   startedAt = null,
+  initialLockedThrough = 0,
 }: Props) {
   const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
@@ -264,7 +267,7 @@ export function FullExamSimulator({
   const [hasEnteredReview, setHasEnteredReview] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
   const [catTipDismissed, setCatTipDismissed] = useState(false);
-  const [lockedThrough, setLockedThrough] = useState(0);
+  const [lockedThrough, setLockedThrough] = useState(initialLockedThrough);
   const examMode = Boolean(config.nclexExamMode);
   const examNextRef = useRef<() => void>(() => undefined);
   const [encouragement] = useState(
@@ -402,7 +405,7 @@ export function FullExamSimulator({
             setCatPool(isCatMode ? pool : []);
             setCatState(initCatSession());
             setCatCommittedCount(0);
-            setLockedThrough(0);
+            setLockedThrough(initialLockedThrough);
             setQuestions(items);
             setIndex(0);
             return;
@@ -481,7 +484,7 @@ export function FullExamSimulator({
     return () => {
       cancelled = true;
     };
-  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.focusAreas, config.nclexCat, loadAttempt, sessionId, isCatMode]);
+  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.focusAreas, config.nclexCat, config.nclexExamMode, loadAttempt, sessionId, isCatMode, initialLockedThrough]);
 
   // Practice CAT telemetry — start once the first item is ready.
   useEffect(() => {
@@ -1081,6 +1084,11 @@ export function FullExamSimulator({
     }
     setLockedThrough(next.lockedThrough);
     setIndex(next.index);
+    void fetch(`/api/exam-sessions/${sessionId}/answer`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ lockThrough: next.lockedThrough }),
+    });
     })();
   }
   examNextRef.current = goExamNext;

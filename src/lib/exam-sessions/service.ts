@@ -132,6 +132,27 @@ export async function appendExamAnswer(
   return next;
 }
 
+export async function updateExamSessionAnalysis(
+  sessionId: string,
+  userId: string,
+  analysis: unknown
+) {
+  const [row] = await withDrizzle("examSessions.updateAnalysis", () =>
+    requireDb()
+      .update(examSessions)
+      .set({ analysis, updatedAt: new Date() })
+      .where(
+        and(
+          eq(examSessions.id, sessionId),
+          eq(examSessions.userId, userId),
+          eq(examSessions.status, "in_progress")
+        )
+      )
+      .returning({ id: examSessions.id })
+  );
+  return row ?? null;
+}
+
 export async function completeExamSession(
   sessionId: string,
   userId: string,
