@@ -348,6 +348,7 @@ export function selectWithNgnFormatMix(
     }
     for (const item of pool) {
       if (need <= 0 || picked.length >= limit) break;
+      if (sequentialSetId(item)) continue;
       if (!itemMatchesFormat(item, target.format)) continue;
       if (take(item)) need -= 1;
     }
@@ -355,13 +356,16 @@ export function selectWithNgnFormatMix(
 
   for (const item of pool) {
     if (picked.length >= limit) break;
+    if (sequentialSetId(item)) continue;
     if (!isClassicItem(item)) continue;
     take(item);
   }
 
   // Top up from remaining pool (any format) if quotas underfilled.
+  // Case steps stay out: only a whole chosen case belongs in the sitting.
   for (const item of pool) {
     if (picked.length >= limit) break;
+    if (sequentialSetId(item)) continue;
     take(item);
   }
 

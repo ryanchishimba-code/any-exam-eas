@@ -257,9 +257,11 @@ export function composeWithinClientNeeds(params: {
   for (const row of targets) {
     const need = row.count - (pinnedCounts.get(row.id) ?? 0);
     if (need < 0) return null;
-    const candidates = classified.filter(
-      (entry) => entry.category === row.id && !used.has(itemId(entry.item))
-    );
+    const candidates = classified.filter((entry) => {
+      if (entry.category !== row.id || used.has(itemId(entry.item))) return false;
+      // Steps of a multi-step case are not padding. Chosen cases are already pinned.
+      return sequentialSetId(entry.item) == null;
+    });
     const inPreferred = candidates.filter((entry) => preferredIds.has(itemId(entry.item)));
     const extras = shuffle(
       candidates.filter((entry) => !preferredIds.has(itemId(entry.item))),
