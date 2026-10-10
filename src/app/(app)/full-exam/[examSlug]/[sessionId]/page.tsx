@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getExamSession, type ExamAnswerRecord } from "@/lib/exam-sessions/service";
+import { readLockedThrough } from "@/lib/full-exam/nclex-answer-lock";
 import { fullExamResultsHref, fullExamSessionHref } from "@/lib/full-exam/config";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { fullExamHref, ROUTES } from "@/lib/routes";
@@ -85,6 +86,7 @@ async function FullExamSessionContent({
       config={config}
       initialAnswers={answers}
       startedAt={examSession.startedAt}
+      initialLockedThrough={readLockedThrough(examSession.analysis)}
     />
   );
 }

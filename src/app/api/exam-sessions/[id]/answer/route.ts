@@ -3,7 +3,16 @@ import {
   appendExamAnswer,
   completeExamSession,
   getExamSession,
+  updateExamSessionAnalysis,
 } from "@/lib/exam-sessions/service";
+import {
+  analysisWithLock,
+  answerSelectionLocked,
+  existingAnswerAt,
+  nclexExamMode,
+  raisedLockedThrough,
+  readLockedThrough,
+} from "@/lib/full-exam/nclex-answer-lock";
 import { administeredQuestionCount, practiceResultsTotals, practiceScorePercent } from "@/lib/full-exam/administered-score";
 import { mergeExamAnswers } from "@/lib/exam-sessions/scoring";
 import { requirePremiumApi } from "@/lib/api-access";
@@ -121,12 +130,66 @@ export async function PATCH(
     });
   }
 
-  const selected = String(body.selected ?? "");
+  const session = await getExamSession(id, premium.userId);
+  if (!session || session.status !== "in_progress") {
+    return NextResponse.json({ error: "Session not found or already completed" }, { status: 404 });
+  }
+
+  const examMode = nclexExamMode(session.analysis);
+  const currentLock = readLockedThrough(session.analysis);
+  const requestedLock = typeof body.lockThrough === "number" ? body.lockThrough : null;
+  const hasAnswerPayload =
+    body.questionIndex != null && body.questionIndex !== "" && body.questionId != null;
+  const incomingIndex = hasAnswerPayload ? Number(body.questionIndex) : null;
+  const incomingSelected = String(body.selected ?? "");
+  const nextLock = examMode
+    ? raisedLockedThrough(currentLock, incomingIndex, requestedLock)
+    : currentLock;
+
+  if (
+    examMode &&
+    hasAnswerPayload &&
+    incomingIndex != null &&
+    answerSelectionLocked({
+      examMode,
+      lockedThrough: nextLock,
+      existingSelected: existingAnswerAt(session.answers, incomingIndex)?.selected,
+      incomingIndex,
+      incomingSelected,
+    })
+  ) {
+    if (nextLock !== currentLock) {
+      await updateExamSessionAnalysis(id, premium.userId, analysisWithLock(session.analysis, nextLock));
+    }
+    return NextResponse.json(
+      {
+        error: "That answer is locked.",
+        code: "ANSWER_LOCKED",
+        lockedThrough: nextLock,
+      },
+      { status: 409 }
+    );
+  }
+
+  if (examMode && !hasAnswerPayload) {
+    if (nextLock !== currentLock) {
+      const updated = await updateExamSessionAnalysis(
+        id,
+        premium.userId,
+        analysisWithLock(session.analysis, nextLock)
+      );
+      if (!updated) {
+        return NextResponse.json({ error: "Session not found or already completed" }, { status: 404 });
+      }
+    }
+    return NextResponse.json({ lockedThrough: nextLock });
+  }
+
   const [graded] = await gradeExamAnswerRecords([
     {
       questionIndex: Number(body.questionIndex),
       questionId: typeof body.questionId === "string" ? body.questionId : undefined,
-      selected,
+      selected: incomingSelected,
       correct: false,
       flagged: Boolean(body.flagged),
       eliminated: Array.isArray(body.eliminated) ? body.eliminated : undefined,
@@ -137,11 +200,15 @@ export async function PATCH(
   ]);
   const answers = await appendExamAnswer(id, premium.userId, graded!);
 
+  if (answers && examMode && nextLock !== currentLock) {
+    await updateExamSessionAnalysis(id, premium.userId, analysisWithLock(session.analysis, nextLock));
+  }
+
   if (!answers) {
     return NextResponse.json({ error: "Session not found or already completed" }, { status: 404 });
   }
 
-  return NextResponse.json({ answers });
+  return NextResponse.json({ answers, ...(examMode ? { lockedThrough: nextLock } : {}) });
   } catch (error) {
     const { respondDbUnavailable } = await import("@/lib/api-db-error");
     const dbResponse = respondDbUnavailable(error);
