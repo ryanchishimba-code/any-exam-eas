@@ -1,23 +1,78 @@
 import { describe, expect, it } from "vitest";
-import { decideExamReveal, sessionContainsItem } from "./reveal-policy";
+import { decideExamReveal, isUnfinishedExamActive, sessionContainsItem } from "./reveal-policy";
+
+const now = new Date("2026-10-10T12:00:00Z");
 
 describe("decideExamReveal", () => {
-  it("withholds keys for an item in an owned in-progress exam", () => {
+  it("withholds keys only for the named active exam that contains the item", () => {
     expect(
       decideExamReveal({
         sessionRequested: true,
-        ownedSession: { status: "in_progress", containsItem: true },
-        activeSessionContainsItem: false,
+        ownedSession: {
+          status: "in_progress",
+          containsItem: true,
+          updatedAt: now,
+          startedAt: now,
+          timeLimitSec: 7200,
+        },
+        now,
       })
     ).toBe("withhold");
   });
 
-  it("allows reveal after the owned exam is finished", () => {
+  it("allows a practice reveal with no session even if the caller has other unfinished exams", () => {
+    expect(
+      decideExamReveal({
+        sessionRequested: false,
+        ownedSession: null,
+        now,
+      })
+    ).toBe("allow");
+  });
+
+  it("allows review of a finished session that contains the item", () => {
     expect(
       decideExamReveal({
         sessionRequested: true,
-        ownedSession: { status: "completed", containsItem: true },
-        activeSessionContainsItem: false,
+        ownedSession: {
+          status: "completed",
+          containsItem: true,
+          updatedAt: now,
+          startedAt: now,
+        },
+        now,
+      })
+    ).toBe("allow");
+  });
+
+  it("allows an abandoned exam that has not been touched for over 24 hours", () => {
+    expect(
+      decideExamReveal({
+        sessionRequested: true,
+        ownedSession: {
+          status: "in_progress",
+          containsItem: true,
+          updatedAt: new Date("2026-10-09T11:00:00Z"),
+          startedAt: new Date("2026-10-09T10:00:00Z"),
+          timeLimitSec: null,
+        },
+        now,
+      })
+    ).toBe("allow");
+  });
+
+  it("allows an exam whose time limit has already passed", () => {
+    expect(
+      decideExamReveal({
+        sessionRequested: true,
+        ownedSession: {
+          status: "in_progress",
+          containsItem: true,
+          updatedAt: now,
+          startedAt: new Date("2026-10-10T09:00:00Z"),
+          timeLimitSec: 3600,
+        },
+        now,
       })
     ).toBe("allow");
   });
@@ -27,39 +82,41 @@ describe("decideExamReveal", () => {
       decideExamReveal({
         sessionRequested: true,
         ownedSession: null,
-        activeSessionContainsItem: false,
+        now,
       })
     ).toBe("not_owner");
   });
 
-  it("keeps practice reveal when no active exam contains the item", () => {
-    expect(
-      decideExamReveal({
-        sessionRequested: false,
-        ownedSession: null,
-        activeSessionContainsItem: false,
-      })
-    ).toBe("allow");
-  });
-
-  it("withholds an unscoped reveal of an item that is in an active exam", () => {
-    expect(
-      decideExamReveal({
-        sessionRequested: false,
-        ownedSession: null,
-        activeSessionContainsItem: true,
-      })
-    ).toBe("withhold");
-  });
-
-  it("still withholds when a finished session id is sent for an item in another active exam", () => {
+  it("does not withhold an item that is not in the named session", () => {
     expect(
       decideExamReveal({
         sessionRequested: true,
-        ownedSession: { status: "completed", containsItem: false },
-        activeSessionContainsItem: true,
+        ownedSession: {
+          status: "in_progress",
+          containsItem: false,
+          updatedAt: now,
+          startedAt: now,
+          timeLimitSec: 7200,
+        },
+        now,
       })
-    ).toBe("withhold");
+    ).toBe("allow");
+  });
+});
+
+describe("isUnfinishedExamActive", () => {
+  it("stays active inside the time limit when the sitting was touched recently", () => {
+    expect(
+      isUnfinishedExamActive(
+        {
+          status: "in_progress",
+          updatedAt: now,
+          startedAt: new Date("2026-10-10T11:00:00Z"),
+          timeLimitSec: 7200,
+        },
+        now
+      )
+    ).toBe(true);
   });
 });
 

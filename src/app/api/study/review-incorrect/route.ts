@@ -4,6 +4,7 @@ import type { ExamQuestion } from "@/lib/ai";
 import { loadBankItemsByIds } from "@/lib/full-exam/load-bank-items-by-ids";
 import { loadStillIncorrectBankItemIds } from "@/lib/learning/review-incorrect";
 import { missedIdsForExamSession } from "@/lib/learning/remediation-loop";
+import { isUnfinishedExamActive } from "@/lib/exam-sessions/reveal-policy";
 import { getExamSession } from "@/lib/exam-sessions/service";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { sealCatalogQuestionKey, sealStudentFacingIds } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
@@ -98,7 +99,14 @@ export async function POST(req: Request) {
       if (!examSession) {
         return NextResponse.json({ error: "Exam session not found." }, { status: 404 });
       }
-      if (examSession.status === "in_progress") {
+      if (
+        isUnfinishedExamActive({
+          status: examSession.status,
+          updatedAt: examSession.updatedAt,
+          startedAt: examSession.startedAt,
+          timeLimitSec: examSession.timeLimitSec,
+        })
+      ) {
         return NextResponse.json(
           {
             error: "Answers stay hidden until the exam is finished.",
@@ -159,21 +167,7 @@ export async function POST(req: Request) {
           incorrectIds.length
         );
 
-    const { activeExamCanonicalIds } = await import("@/lib/exam-sessions/reveal-guard");
-    const { canonicalStoredQuestionKey } = await import("@/lib/assessment/serve");
-    const hidden = await activeExamCanonicalIds(premium.userId);
-    const pickIds = incorrectIds
-      .filter((id) => !hidden.has(id) && !hidden.has(canonicalStoredQuestionKey(id)))
-      .slice(0, sessionCount);
-    if (pickIds.length === 0) {
-      return NextResponse.json(
-        {
-          error: "Answers stay hidden until the exam is finished.",
-          code: "EXAM_REVEAL_WITHHELD",
-        },
-        { status: 409 }
-      );
-    }
+    const pickIds = incorrectIds.slice(0, sessionCount);
     const queueKind = reviewQueueKind(pickIds);
     if (queueKind === "mixed") {
       const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");
