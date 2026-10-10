@@ -9,8 +9,8 @@ export async function fetchRevealedAnswer(input: {
   selected: string[];
   options: string[];
   /**
-   * Exam-mode reveal must send the exam session id. Omitting it is practice
-   * and is not blocked by the student's other unfinished exams.
+   * Exam sittings should send their session id. Omitting it does not reveal
+   * an item that is still in an active exam.
    */
   sessionId?: string;
 }): Promise<{ correct: boolean; answer: RevealedAnswerFields } | null> {

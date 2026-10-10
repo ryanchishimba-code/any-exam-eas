@@ -167,7 +167,17 @@ export async function POST(req: Request) {
           incorrectIds.length
         );
 
-    const pickIds = incorrectIds.slice(0, sessionCount);
+    const { omitItemsInActiveExams } = await import("@/lib/exam-sessions/reveal-guard");
+    const pickIds = (await omitItemsInActiveExams(premium.userId, incorrectIds)).slice(0, sessionCount);
+    if (pickIds.length === 0) {
+      return NextResponse.json(
+        {
+          error: "Answers stay hidden until the exam is finished.",
+          code: "EXAM_REVEAL_WITHHELD",
+        },
+        { status: 409 }
+      );
+    }
     const queueKind = reviewQueueKind(pickIds);
     if (queueKind === "mixed") {
       const { loadPublishedClinicalBank } = await import("@/lib/assessment/serve-db");

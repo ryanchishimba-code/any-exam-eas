@@ -1,4 +1,4 @@
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, gte, sql } from "drizzle-orm";
 import { requireDb } from "@/db";
 import { examSessions } from "@/db/schema";
 import { createId } from "@/lib/id";
@@ -218,6 +218,34 @@ export async function listPresetFormSessions(userId: string, examType: string, l
       )
       .orderBy(desc(examSessions.createdAt))
       .limit(limit)
+  );
+}
+
+/**
+ * In-progress sittings this user touched at or after `since`.
+ * Uses exam_sessions_userId_status_updatedAt_idx (userId, status, updatedAt):
+ * an index range scan, not a scan of every historical sitting. Callers still
+ * drop rows whose exam time limit has already elapsed.
+ */
+export async function listRecentlyTouchedInProgressSessions(userId: string, since: Date) {
+  return withDrizzle("examSessions.listRecentlyTouched", () =>
+    requireDb()
+      .select({
+        id: examSessions.id,
+        status: examSessions.status,
+        analysis: examSessions.analysis,
+        updatedAt: examSessions.updatedAt,
+        startedAt: examSessions.startedAt,
+        timeLimitSec: examSessions.timeLimitSec,
+      })
+      .from(examSessions)
+      .where(
+        and(
+          eq(examSessions.userId, userId),
+          eq(examSessions.status, "in_progress"),
+          gte(examSessions.updatedAt, since)
+        )
+      )
   );
 }
 

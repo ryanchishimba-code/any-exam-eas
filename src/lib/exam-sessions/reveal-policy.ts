@@ -1,8 +1,9 @@
 /**
  * Whether a reveal route may return keys and explanations.
- * Withhold only for the exam session the caller names, and only while that
- * sitting is still active. Practice (no session id) is never blocked by
- * another unfinished exam. Exam-mode reveal has to send that session id.
+ * Withhold when the item is in any active exam this user owns, even if the
+ * request omits the session id. Finished, expired, and abandoned sittings
+ * stay reviewable. Active means in progress, touched within 24 hours, and
+ * still inside its time limit.
  */
 import { canonicalStoredQuestionKey } from "@/lib/assessment/serve";
 
@@ -89,15 +90,35 @@ export function isUnfinishedExamActive(session: ExamActivity, now: Date = new Da
   return true;
 }
 
+/** True when any still-active sitting in the set contains this item. */
+export function activeExamContainsItem(
+  sessions: Array<ExamActivity & { analysis: unknown }>,
+  itemId: string,
+  now: Date = new Date()
+): boolean {
+  for (const session of sessions) {
+    if (!isUnfinishedExamActive(session, now)) continue;
+    if (sessionContainsItem(session.analysis, itemId)) return true;
+  }
+  return false;
+}
+
 export function decideExamReveal(input: {
-  /** Exam-mode reveal sends the session id. Omitting it is practice. */
   sessionRequested: boolean;
   ownedSession: (ExamActivity & { containsItem: boolean }) | null;
+  /** Item is in an active exam this user owns, named or not. */
+  activeSessionContainsItem?: boolean;
   now?: Date;
 }): ExamRevealDecision {
+  const now = input.now ?? new Date();
+  if (input.activeSessionContainsItem) return "withhold";
+  if (
+    input.ownedSession?.containsItem &&
+    isUnfinishedExamActive(input.ownedSession, now)
+  ) {
+    return "withhold";
+  }
   if (!input.sessionRequested) return "allow";
   if (!input.ownedSession) return "not_owner";
-  if (!input.ownedSession.containsItem) return "allow";
-  if (!isUnfinishedExamActive(input.ownedSession, input.now ?? new Date())) return "allow";
-  return "withhold";
+  return "allow";
 }
