@@ -25,10 +25,13 @@ export type TimedExamClientPayload = {
 };
 
 /** Catalog slot ids stay on the server. The browser gets a per-delivery seal. */
-export function sealCatalogQuestionKey(key: string): string {
+export function sealCatalogQuestionKey(key: string, sessionId?: string): string {
   const parsed = parseNgnQuestionKey(key);
   if (!parsed || openStudentRef(parsed.id)) return key;
-  return ngnQuestionKey(sealStudentRef(parsed), parsed.version);
+  const stable = sessionId?.trim()
+    ? `${sessionId.trim()}:${parsed.id}:v${parsed.version}`
+    : undefined;
+  return ngnQuestionKey(sealStudentRef(parsed, stable), parsed.version);
 }
 
 type LayoutCarrier = {
@@ -38,14 +41,16 @@ type LayoutCarrier = {
 
 function sealSetId(
   payload: Record<string, unknown> | null | undefined,
-  seals: Map<string, string>
+  seals: Map<string, string>,
+  sessionId?: string
 ): Record<string, unknown> | undefined {
   if (!payload) return undefined;
   const setId = typeof payload.setId === "string" ? payload.setId.trim() : "";
   if (!setId || openStudentRef(setId)) return payload;
   let sealed = seals.get(setId);
   if (!sealed) {
-    sealed = sealStudentRef({ id: setId, version: 1 });
+    const stable = sessionId?.trim() ? `${sessionId.trim()}:set:${setId}` : undefined;
+    sealed = sealStudentRef({ id: setId, version: 1 }, stable);
     seals.set(setId, sealed);
   }
   return { ...payload, setId: sealed };
@@ -54,16 +59,19 @@ function sealSetId(
 /** Seal catalog item ids and case ids after option order is already fixed. */
 export function sealStudentFacingIds<T extends LayoutCarrier>(
   questions: T[],
-  bankItemIds: Array<string | null | undefined>
+  bankItemIds: Array<string | null | undefined>,
+  sessionId?: string
 ): { questions: T[]; bankItemIds: string[] } {
   const seals = new Map<string, string>();
   return {
     questions: questions.map((question) => ({
       ...question,
-      ngnPayload: sealSetId(question.ngnPayload, seals),
-      chartData: sealSetId(question.chartData, seals),
+      ngnPayload: sealSetId(question.ngnPayload, seals, sessionId),
+      chartData: sealSetId(question.chartData, seals, sessionId),
     })),
-    bankItemIds: bankItemIds.filter((id): id is string => Boolean(id)).map(sealCatalogQuestionKey),
+    bankItemIds: bankItemIds
+      .filter((id): id is string => Boolean(id))
+      .map((id) => sealCatalogQuestionKey(id, sessionId)),
   };
 }
 
@@ -72,7 +80,7 @@ export function preparedTimedExamItemsForClient(
   field: string,
   items: BankItem[],
   limit: number,
-  opts?: { shuffleSeed?: number }
+  opts?: { shuffleSeed?: number; sessionId?: string }
 ): TimedExamClientPayload {
   const selected = items.slice(0, limit);
   const rawForMap = selected.map((item, i) =>
@@ -106,7 +114,11 @@ export function preparedTimedExamItemsForClient(
   }
 
   const canonicalBankItemIds = prepared.map((item) => item.bankItemId).filter(Boolean) as string[];
-  const sealed = sealStudentFacingIds(studyQuestionsToExamQuestions(prepared), canonicalBankItemIds);
+  const sealed = sealStudentFacingIds(
+    studyQuestionsToExamQuestions(prepared),
+    canonicalBankItemIds,
+    opts?.sessionId
+  );
 
   return {
     prepared,

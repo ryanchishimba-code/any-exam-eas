@@ -310,7 +310,7 @@ export async function POST(req: Request) {
             sessionFieldId,
             orderForSession(diversified),
             exactForm.questionCount,
-            { shuffleSeed: optionShuffleSeed }
+            { shuffleSeed: optionShuffleSeed, sessionId }
           );
           assembleSource = "preset";
         }
@@ -337,7 +337,7 @@ export async function POST(req: Request) {
         sessionFieldId,
         orderForSession(items),
         retakeLimit,
-        { shuffleSeed: optionShuffleSeed }
+        { shuffleSeed: optionShuffleSeed, sessionId }
       );
       assembleSource = "retake";
     } else if (!clientPayload) {
@@ -369,7 +369,7 @@ export async function POST(req: Request) {
         sessionFieldId,
         orderForSession(assembled.items),
         limit,
-        { shuffleSeed: optionShuffleSeed }
+        { shuffleSeed: optionShuffleSeed, sessionId }
       );
       assembleSource = assembled.source;
       excludeSeenApplied = Boolean(assembled.excludeSeenApplied);

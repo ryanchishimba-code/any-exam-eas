@@ -113,6 +113,7 @@ export async function loadFullExamSessionQuestionsPayload(
         typeof storedSeed === "number"
           ? storedSeed
           : hashSessionShuffleSeed(sessionId),
+      sessionId,
     }
   );
 

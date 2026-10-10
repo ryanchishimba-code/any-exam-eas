@@ -6,10 +6,11 @@ export function serializeExamSelection(
   selected: string[]
 ): string {
   if (selected.length === 0) return "";
+  // Matrix cells already contain `|||` (`row|||column`). A JSON list keeps each pair intact.
+  if (question.type === "matrix") return JSON.stringify(selected);
   if (
     question.type === "select_all" ||
     question.type === "bow_tie" ||
-    question.type === "matrix" ||
     question.type === "highlight" ||
     question.type === "ordered_response" ||
     question.type === "drag_drop"
@@ -21,11 +22,28 @@ export function serializeExamSelection(
 
 /** Restore persisted selection into UI state. */
 export function deserializeExamSelection(selected: string): string[] {
-  if (!selected.trim()) return [];
-  if (selected.includes("|||")) {
-    return selected.split("|||").map((s) => s.trim()).filter(Boolean);
+  const trimmed = selected.trim();
+  if (!trimmed) return [];
+  if (trimmed.startsWith("[")) {
+    try {
+      const parsed = JSON.parse(trimmed) as unknown;
+      if (Array.isArray(parsed) && parsed.every((part) => typeof part === "string")) {
+        return parsed.map((part) => part.trim()).filter(Boolean);
+      }
+    } catch {
+      /* not a matrix list */
+    }
   }
-  return [selected];
+  if (trimmed.includes(";;")) {
+    return trimmed
+      .split(";;")
+      .map((part) => part.trim())
+      .filter(Boolean);
+  }
+  if (trimmed.includes("|||")) {
+    return trimmed.split("|||").map((s) => s.trim()).filter(Boolean);
+  }
+  return [trimmed];
 }
 
 /** Human-readable answer for results review. */
