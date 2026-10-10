@@ -273,6 +273,8 @@ describe("published NGN serving", () => {
     expect(facing).not.toHaveProperty("rationale");
     expect(facing).not.toHaveProperty("batchId");
     expect(facing).not.toHaveProperty("cjmmFunction");
+    expect(facing).not.toHaveProperty("rnFlags");
+    expect(facing.payload).toEqual({ options: [{ id: "a", text: "A" }] });
     expect(facing.id).not.toBe("B01");
     expect(openStudentRef(facing.id)).toEqual({ id: "B01", version: 1 });
     expect(facing.stem).toBe("B01");

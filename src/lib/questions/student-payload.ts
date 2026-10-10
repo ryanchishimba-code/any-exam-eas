@@ -35,6 +35,18 @@ export const STUDENT_BANNED_KEYS = [
   "taskCategory",
   "caseGroupId",
   "cjmmFunction",
+  "rnFlags",
+  "qaNotes",
+  "pharmdFlags",
+  "reviewerNotes",
+  "reviewNotes",
+  "reviewerNote",
+  "signoff",
+  "signOff",
+  "authoring",
+  "calcCheck",
+  "flagResolutions",
+  "whyItMatters",
 ] as const;
 
 const BANNED = new Set<string>(STUDENT_BANNED_KEYS);

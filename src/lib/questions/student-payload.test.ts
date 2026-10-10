@@ -63,6 +63,22 @@ function leakingQuestion(): RawQuestionInput {
       taskCategory: "internal-task",
       blueprintTopic: "internal-blueprint",
       manualCorrection: true,
+      rnFlags: ["RN to confirm oxytocin at 14 mL/h. Scenario revised during self-review."],
+      qaNotes: ["RN to confirm the revised rate."],
+      pharmdFlags: ["PharmD to confirm the revised oxytocin rate of 14 mL/h."],
+      reviewerNotes: "RN to confirm. This step was revised.",
+      reviewNotes: "revised after RN to confirm",
+      signoff: "RN to confirm",
+      authoring: { calcCheck: { note: "oxytocin 14 mL/h revised" } },
+      rows: [
+        {
+          id: "r1",
+          text: "Heart rate 118",
+          key: "hidden-key",
+          reviewNotes: "RN to confirm this row was revised",
+          signoff: "revised",
+        },
+      ],
       generationMeta: {
         rationale: STALE_RATIONALE,
         model: MODEL,
@@ -98,6 +114,10 @@ describe("student question payload", () => {
     expect(JSON.stringify(api)).not.toContain("Night-time confusion");
     expect(JSON.stringify(api)).not.toContain("slot-9");
     expect(JSON.stringify(api)).not.toContain("recognize_cues");
+    expect(JSON.stringify(api)).not.toMatch(/RN to confirm/i);
+    expect(JSON.stringify(api)).not.toMatch(/revised/i);
+    expect(JSON.stringify(study)).not.toMatch(/RN to confirm/i);
+    expect(JSON.stringify(study)).not.toMatch(/revised/i);
 
     expect(study.vignette).toBe("The client is awake at 0200 and breathing loudly.");
     expect(study.solutionSteps).toEqual(["Listen to the breathing.", "Open the airway."]);
@@ -190,9 +210,19 @@ describe("student question payload", () => {
   });
 });
 
+const REVIEW_NOTE = "RN to confirm oxytocin at 14 mL/h. Scenario revised during self-review.";
+
 const EMPTY_RATIONALE = {
   short: "",
-  expanded: { perOption: {}, cjmmCoaching: "", pointsLost: "", takeaway: "" },
+  expanded: {
+    perOption: {
+      a: { verdict: "key", text: "Chest pain is the change to report.", reviewNotes: REVIEW_NOTE, signoff: "revised" },
+    },
+    cjmmCoaching: "",
+    pointsLost: "",
+    takeaway: "",
+    whyItMatters: REVIEW_NOTE,
+  },
 };
 
 function clinicalItem(overrides: Partial<ServeItem> & Pick<ServeItem, "id">): ServeItem {
@@ -209,13 +239,32 @@ function clinicalItem(overrides: Partial<ServeItem> & Pick<ServeItem, "id">): Se
     scoringRule: "zero_one",
     maxPoints: 1,
     stem: "What is the priority assessment?",
-    payload: { key: "a", options: [{ id: "a", text: "Chest pain" }] },
+    payload: {
+      key: "a",
+      options: [{ id: "a", text: "Chest pain", reviewNotes: REVIEW_NOTE, signoff: "revised" }],
+      rnFlags: [REVIEW_NOTE],
+      qaNotes: ["revised"],
+      pharmdFlags: [REVIEW_NOTE],
+      reviewerNotes: REVIEW_NOTE,
+      authoring: { calcCheck: { note: "oxytocin 14 mL/h" } },
+    },
     rationale: EMPTY_RATIONALE,
     clientNeeds: { subcategory: "Physiological Adaptation" },
     references: [],
-    rnFlags: [],
+    rnFlags: [REVIEW_NOTE],
+    qaNotes: ["revised"],
+    pharmdFlags: [REVIEW_NOTE],
+    reviewerNotes: REVIEW_NOTE,
+    signoff: "revised",
+    authoring: { calcCheck: { note: "oxytocin 14 mL/h" } },
     status: "published",
     ...overrides,
+  } as ServeItem & {
+    qaNotes: string[];
+    pharmdFlags: string[];
+    reviewerNotes: string;
+    signoff: string;
+    authoring: { calcCheck: { note: string } };
   };
 }
 
@@ -278,9 +327,11 @@ function clinicalCatalog(): PublishedCatalog {
             ],
           },
           revealRule: "baseline",
-          references: [{ src: "src-1", locator: "p. 12" }],
+          references: [{ src: "src-1", locator: "p. 12", note: REVIEW_NOTE }],
           items: steps,
-        },
+          rnFlags: [REVIEW_NOTE],
+          authoring: { note: "oxytocin 14 mL/h revised" },
+        } as PublishedCatalog["cases"][number]["caseDoc"],
       },
     ],
   };
@@ -309,6 +360,9 @@ describe("clinical student payloads", () => {
       expect(wire).not.toContain("recognize_cues");
       expect(wire).not.toContain("take_action");
       expect(wire).not.toMatch(/"NC003"/);
+      expect(wire).not.toMatch(/RN to confirm/i);
+      expect(wire).not.toMatch(/revised/i);
+      expect(wire).not.toContain("14 mL/h");
       if (format === "case") {
         const unit = presented.units[0];
         expect(unit?.kind).toBe("case");
@@ -318,6 +372,13 @@ describe("clinical student payloads", () => {
         expect(unit.caseDoc.chart.tabs.map((tab) => tab.label)).toEqual(["History"]);
         expect(unit.caseDoc.patient.history).toBe("Open colectomy 2 days ago.");
         expect(unit.items[0]).not.toHaveProperty("rationale");
+        expect(unit.items[0]).not.toHaveProperty("rnFlags");
+        expect(unit.items[0]).not.toHaveProperty("qaNotes");
+        expect(unit.items[0]).not.toHaveProperty("pharmdFlags");
+        expect(unit.items[0]).not.toHaveProperty("reviewerNotes");
+        expect(unit.items[0]).not.toHaveProperty("signoff");
+        expect(unit.items[0]).not.toHaveProperty("authoring");
+        expect(unit.items[0]?.payload).toEqual({ options: [{ id: "a", text: "Chest pain" }] });
         const ref = openStudentRef(unit.items[0]!.id);
         expect(ref).toEqual({ id: "NC003-S1", version: 1 });
         expect(canonicalStoredQuestionKey(ngnQuestionKey(unit.items[0]!.id, unit.items[0]!.version))).toBe(
@@ -329,8 +390,19 @@ describe("clinical student payloads", () => {
         );
         expect(revealed.id).toBe(unit.items[0]!.id);
         expect(revealed.rationale.short).toBe("");
+        expect(revealed.rationale.expanded.perOption.a).toEqual({
+          verdict: "key",
+          text: "Chest pain is the change to report.",
+        });
+        expect(revealed.rationale.expanded).not.toHaveProperty("whyItMatters");
+        expect(revealed.payload).toMatchObject({ key: "a", options: [{ id: "a", text: "Chest pain" }] });
         expect(revealed).not.toHaveProperty("batchId");
         expect(revealed).not.toHaveProperty("cjmmFunction");
+        expect(revealed).not.toHaveProperty("rnFlags");
+        expect(revealed).not.toHaveProperty("qaNotes");
+        expect(revealed).not.toHaveProperty("authoring");
+        expect(JSON.stringify(revealed)).not.toMatch(/RN to confirm/i);
+        expect(JSON.stringify(revealed)).not.toMatch(/revised/i);
         expect(revealed.caseStep).toBe(1);
         const refKey = `${unit.caseDoc.id}:${unit.caseDoc.version}`;
         expect(presented.caseReferences[refKey]?.[0]?.locator).toBe("p. 12");
