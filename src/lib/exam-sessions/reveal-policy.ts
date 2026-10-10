@@ -1,11 +1,15 @@
 /**
  * Whether a reveal route may return keys and explanations.
- * An in-progress exam keeps every item in that sitting hidden until it is finished.
- * Practice reveals stay immediate when the item is not in an active exam.
+ * Withhold only for the exam session the caller names, and only while that
+ * sitting is still active. Practice (no session id) is never blocked by
+ * another unfinished exam. Exam-mode reveal has to send that session id.
  */
 import { canonicalStoredQuestionKey } from "@/lib/assessment/serve";
 
 export type ExamRevealDecision = "allow" | "withhold" | "not_owner";
+
+/** An in-progress sitting nobody has touched for this long is not active. */
+export const EXAM_REVEAL_IDLE_MS = 24 * 60 * 60 * 1000;
 
 export function sessionItemIds(analysis: unknown): string[] {
   if (!analysis || typeof analysis !== "object") return [];
@@ -50,21 +54,50 @@ export function sessionContainsItem(analysis: unknown, itemId: string): boolean 
   return false;
 }
 
-export function decideExamReveal(input: {
-  /** Caller named a session. A session they do not own is not a practice reveal. */
-  sessionRequested: boolean;
-  ownedSession: { status: string; containsItem: boolean } | null;
-  /** Item sits in some other in-progress exam this user owns. */
-  activeSessionContainsItem: boolean;
-}): ExamRevealDecision {
-  if (input.sessionRequested) {
-    if (!input.ownedSession) return "not_owner";
-    if (input.ownedSession.status === "in_progress" && input.ownedSession.containsItem) {
-      return "withhold";
-    }
-    if (input.activeSessionContainsItem) return "withhold";
-    return "allow";
+function toMs(value: Date | string | number | null | undefined): number | null {
+  if (value == null) return null;
+  if (value instanceof Date) {
+    const ms = value.getTime();
+    return Number.isFinite(ms) ? ms : null;
   }
-  if (input.activeSessionContainsItem) return "withhold";
-  return "allow";
+  if (typeof value === "number") return Number.isFinite(value) ? value : null;
+  const ms = new Date(value).getTime();
+  return Number.isFinite(ms) ? ms : null;
+}
+
+export type ExamActivity = {
+  status: string;
+  updatedAt?: Date | string | number | null;
+  startedAt?: Date | string | number | null;
+  timeLimitSec?: number | null;
+};
+
+/**
+ * True while the sitting is unfinished, was touched within 24 hours, and
+ * its allotted time has not run out. Finished, idle, and overtime sittings
+ * are reviewable.
+ */
+export function isUnfinishedExamActive(session: ExamActivity, now: Date = new Date()): boolean {
+  if (session.status !== "in_progress") return false;
+  const updatedMs = toMs(session.updatedAt);
+  if (updatedMs != null && now.getTime() - updatedMs > EXAM_REVEAL_IDLE_MS) return false;
+  const startedMs = toMs(session.startedAt);
+  const limit = session.timeLimitSec;
+  if (startedMs != null && typeof limit === "number" && Number.isFinite(limit) && limit > 0) {
+    if (now.getTime() >= startedMs + limit * 1000) return false;
+  }
+  return true;
+}
+
+export function decideExamReveal(input: {
+  /** Exam-mode reveal sends the session id. Omitting it is practice. */
+  sessionRequested: boolean;
+  ownedSession: (ExamActivity & { containsItem: boolean }) | null;
+  now?: Date;
+}): ExamRevealDecision {
+  if (!input.sessionRequested) return "allow";
+  if (!input.ownedSession) return "not_owner";
+  if (!input.ownedSession.containsItem) return "allow";
+  if (!isUnfinishedExamActive(input.ownedSession, input.now ?? new Date())) return "allow";
+  return "withhold";
 }

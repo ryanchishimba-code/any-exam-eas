@@ -76,7 +76,7 @@ describe("POST /api/study/ngn-reveal", () => {
     expect(revealStoredItem).not.toHaveBeenCalled();
   });
 
-  it("still reveals immediately in practice when the item is not in an active exam", async () => {
+  it("still reveals immediately in practice when no exam session is named", async () => {
     guardExamReveal.mockResolvedValue("allow");
     revealStoredItem.mockResolvedValue({
       correct: true,
@@ -88,6 +88,7 @@ describe("POST /api/study/ngn-reveal", () => {
       version: 1,
       response: ["Alpha"],
     });
+    expect(guardExamReveal).toHaveBeenCalledWith("user-1", "bank-1", undefined);
     expect(response.status).toBe(200);
     const body = await response.json();
     expect(body.correct).toBe(true);

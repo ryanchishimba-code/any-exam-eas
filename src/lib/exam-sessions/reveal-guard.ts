@@ -1,45 +1,35 @@
-import { getExamSession, listInProgressExamSessions } from "@/lib/exam-sessions/service";
+import { getExamSession } from "@/lib/exam-sessions/service";
 import {
   decideExamReveal,
   sessionContainsItem,
-  sessionItemIds,
   type ExamRevealDecision,
 } from "@/lib/exam-sessions/reveal-policy";
-import { canonicalStoredQuestionKey } from "@/lib/assessment/serve";
 
+/**
+ * Exam-mode reveal must name the session. A request with no session id is
+ * practice and is not compared against the caller's other unfinished exams.
+ */
 export async function guardExamReveal(
   userId: string,
   itemId: string,
   sessionId?: string | null
 ): Promise<ExamRevealDecision> {
-  const requested = typeof sessionId === "string" && sessionId.trim().length > 0;
-  const owned = requested ? await getExamSession(sessionId!.trim(), userId) : null;
-  const active = await listInProgressExamSessions(userId);
-  const activeSessionContainsItem = active.some((session) => {
-    if (owned && session.id === owned.id) return false;
-    return sessionContainsItem(session.analysis, itemId);
-  });
-  return decideExamReveal({
-    sessionRequested: requested,
-    ownedSession: owned
-      ? {
-          status: owned.status,
-          containsItem: sessionContainsItem(owned.analysis, itemId),
-        }
-      : null,
-    activeSessionContainsItem,
-  });
-}
-
-/** Catalog ids currently inside this user's unfinished exams. */
-export async function activeExamCanonicalIds(userId: string): Promise<Set<string>> {
-  const sessions = await listInProgressExamSessions(userId);
-  const ids = new Set<string>();
-  for (const session of sessions) {
-    for (const id of sessionItemIds(session.analysis)) {
-      ids.add(id);
-      ids.add(canonicalStoredQuestionKey(id));
-    }
+  const requestedId = typeof sessionId === "string" ? sessionId.trim() : "";
+  if (!requestedId) {
+    return decideExamReveal({ sessionRequested: false, ownedSession: null });
   }
-  return ids;
+  const owned = await getExamSession(requestedId, userId);
+  if (!owned) {
+    return decideExamReveal({ sessionRequested: true, ownedSession: null });
+  }
+  return decideExamReveal({
+    sessionRequested: true,
+    ownedSession: {
+      status: owned.status,
+      containsItem: sessionContainsItem(owned.analysis, itemId),
+      updatedAt: owned.updatedAt,
+      startedAt: owned.startedAt,
+      timeLimitSec: owned.timeLimitSec,
+    },
+  });
 }
