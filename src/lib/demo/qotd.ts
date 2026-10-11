@@ -1,62 +1,31 @@
 /**
  * Question of the Day — curated public pack (not live bank IDs).
- * Deterministic selection by UTC date so dated share URLs stay stable.
+ * The calendar day is America/Chicago so share URLs roll at midnight Central,
+ * not at 7 PM when UTC midnight arrives. Do not import this module from a
+ * client component — the answer key is in this file.
  */
 
 import type { ExamSlug } from "@/types/edtech";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
-import { getSiteUrl } from "@/lib/seo";
-import { examMarketingPath } from "@/lib/seo/exam-config";
-import type { ExamSeoKey } from "@/lib/seo/exam-config";
+import {
+  dayIndexFromIso,
+  type QotdItem,
+} from "@/lib/demo/qotd-public";
 
-export type QotdItem = {
-  id: string;
-  examSlug: ExamSlug;
-  examLabel: string;
-  examColor: string;
-  stem: string;
-  options: string[];
-  correct: string;
-  rationale: string;
-};
-
-const EPOCH_UTC = Date.UTC(2024, 0, 1);
-
-/** YYYY-MM-DD in UTC. */
-export function todayIsoUtc(now = new Date()): string {
-  return now.toISOString().slice(0, 10);
-}
-
-export function parseQotdDate(date: string): Date | null {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
-  const [y, m, d] = date.split("-").map(Number);
-  if (!y || !m || !d) return null;
-  const utc = Date.UTC(y, m - 1, d);
-  const check = new Date(utc);
-  if (
-    check.getUTCFullYear() !== y ||
-    check.getUTCMonth() !== m - 1 ||
-    check.getUTCDate() !== d
-  ) {
-    return null;
-  }
-  // Don't allow far-future dates (share spam) or pre-epoch junk
-  const today = Date.UTC(
-    new Date().getUTCFullYear(),
-    new Date().getUTCMonth(),
-    new Date().getUTCDate()
-  );
-  if (utc > today + 86_400_000) return null;
-  if (utc < EPOCH_UTC) return null;
-  return check;
-}
-
-export function dayIndexFromIso(dateIso: string): number {
-  const parsed = parseQotdDate(dateIso);
-  if (!parsed) return 0;
-  return Math.floor((parsed.getTime() - EPOCH_UTC) / 86_400_000);
-}
+export {
+  dayIndexFromIso,
+  examMarketingHref,
+  formatQotdDisplayDate,
+  parseQotdDate,
+  qotdAbsoluteUrl,
+  qotdEntityId,
+  qotdPath,
+  qotdShareCaption,
+  todayIsoCentral,
+  toPublicQotd,
+} from "@/lib/demo/qotd-public";
+export type { QotdItem, QotdPublicItem } from "@/lib/demo/qotd-public";
 
 export function isQotdExamSlug(slug: string): slug is ExamSlug {
   return (EXAM_SLUGS as string[]).includes(slug);
@@ -95,7 +64,7 @@ function item(
   };
 }
 
-/** ≥7 curated items per exam for a ~2-week rotation. */
+/** Seven curated items per exam. Selection is the Chicago day index mod 7. */
 export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
   nclex: [
     item(
@@ -103,10 +72,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "01",
       "A nurse assesses a client with fever 38.9°C (102°F), absolute neutrophil count 320/mm³, and a tunneled central line. Which action is the priority?",
       [
-        "Apply a warm compress to the insertion site",
-        "Obtain blood cultures and notify the provider for broad-spectrum antibiotics",
-        "Encourage oral fluids and rest",
-        "Document findings and reassess in 4 hours",
+        "Apply a warm compress and recheck the insertion site in two hours",
+        "Obtain blood cultures and start empiric broad-spectrum antibiotics",
+        "Encourage oral fluids, rest, and acetaminophen at home",
+        "Document the fever and repeat the vital signs in four hours",
       ],
       1,
       "Febrile neutropenia with a central line is an emergency — cultures and empiric antibiotics cannot wait."
@@ -116,10 +85,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "02",
       "A client receiving IV morphine becomes increasingly drowsy with RR 8/min and SpO₂ 88% on room air. What is the nurse’s first action?",
       [
-        "Increase the morphine rate to control breakthrough pain",
-        "Encourage deep breathing and leave the room to chart",
-        "Stop the opioid and prepare naloxone while supporting airway/breathing",
-        "Give an antiemetic and reassess in 30 minutes",
+        "Increase the morphine rate to treat residual pain",
+        "Coach deep breathing, then chart and reassess in one hour",
+        "Stop the opioid, support breathing, and have naloxone ready",
+        "Give an antiemetic and reassess sedation in 30 minutes",
       ],
       2,
       "Opioid-induced respiratory depression requires immediate opioid cessation, airway support, and naloxone readiness."
@@ -129,10 +98,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "03",
       "Which finding after a new ACE inhibitor prescription requires the most urgent follow-up?",
       [
-        "Mild dry cough for 2 days",
-        "BP 128/78 mmHg",
-        "Potassium 4.2 mEq/L",
-        "Angioedema of the lips and tongue",
+        "A mild dry cough for the past two days",
+        "Blood pressure of 128/78 mm Hg at this visit",
+        "Serum potassium of 4.2 mEq/L on today’s draw",
+        "Lip and tongue swelling since the first dose",
       ],
       3,
       "ACE inhibitor–related angioedema can threaten the airway and is an emergency; cough and mild BP changes are expected considerations."
@@ -142,10 +111,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "04",
       "A postoperative client reports sudden shortness of breath and sharp chest pain. SpO₂ drops to 90%. Priority action?",
       [
-        "Raise HOB, apply oxygen per protocol, and notify the provider of possible PE",
-        "Encourage ambulation in the hallway",
-        "Administer PRN acetaminophen and reassess later",
-        "Document and continue routine vital signs q4h",
+        "Sit the client up, apply oxygen, and notify the provider",
+        "Walk the client in the hall to check for atelectasis",
+        "Give PRN acetaminophen and reassess the pain later",
+        "Chart the complaint and continue vital signs every four hours",
       ],
       0,
       "Acute dyspnea with chest pain after surgery raises PE concern — oxygen and rapid escalation come first."
@@ -155,10 +124,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "05",
       "A client with type 1 diabetes is NPO for surgery. Capillary glucose is 58 mg/dL and the client is diaphoretic. Best action?",
       [
-        "Give scheduled morning insulin as ordered",
-        "Treat hypoglycemia per protocol and notify the surgical team",
-        "Delay treatment until after the procedure",
-        "Offer a full breakfast tray immediately",
+        "Give the scheduled morning insulin before the case",
+        "Treat the low glucose and notify the surgical team",
+        "Hold treatment until the procedure is finished",
+        "Send a full breakfast tray despite the NPO order",
       ],
       1,
       "Symptomatic hypoglycemia needs prompt treatment even when NPO — use protocol glucose sources (e.g., IV dextrose) and escalate."
@@ -168,10 +137,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "06",
       "Which task is appropriate to delegate to a trained UAP for a stable medical-surgical client?",
       [
-        "Titrating a heparin infusion",
-        "Teaching insulin self-administration",
-        "Assisting with morning ADLs and recording intake/output",
-        "Assessing a new wound for infection",
+        "Titrate the heparin infusion using the aPTT",
+        "Teach insulin self-injection for the first time",
+        "Help with bathing and record intake and output",
+        "Assess a new surgical wound for infection",
       ],
       2,
       "UAPs can assist with ADLs and I/O for stable clients; assessment, teaching, and IV titration stay with the nurse."
@@ -181,9 +150,9 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "07",
       "A client on warfarin has INR 5.8 and no active bleeding. Which order should the nurse question first?",
       [
-        "Hold warfarin and notify the provider",
-        "Recheck INR per protocol",
-        "Assess for bleeding precautions",
+        "Hold tonight’s warfarin and notify the provider",
+        "Recheck the INR before the next scheduled dose",
+        "Review bleeding precautions and inspect for new bruising",
         "Administer an additional warfarin dose tonight",
       ],
       3,
@@ -196,10 +165,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "01",
       "A 58-year-old man with type 2 diabetes presents with crushing substernal chest pain for 45 minutes. ECG shows ST elevation in V2–V4. Next best step?",
       [
-        "Order serial troponins and observe",
-        "Activate PCI and give aspirin + P2Y12 inhibitor",
-        "Schedule stress test in 24 hours",
-        "Start IV heparin alone and discharge if pain resolves",
+        "Order serial troponins and observe without reperfusion",
+        "Activate PCI and give aspirin plus a P2Y12 inhibitor",
+        "Schedule a treadmill stress test for the next day",
+        "Start IV heparin alone and discharge if the pain stops",
       ],
       1,
       "STEMI requires immediate reperfusion — dual antiplatelet therapy and cath lab activation are time-critical."
@@ -209,10 +178,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "02",
       "A 24-year-old with sore throat develops fever, muffled “hot potato” voice, and trismus. Exam shows a swollen tonsil with uvular deviation. Most likely diagnosis?",
       [
-        "Viral pharyngitis alone",
-        "Simple allergic rhinitis",
-        "Peritonsillar abscess",
-        "Uncomplicated GERD",
+        "Viral pharyngitis without a deep-space infection",
+        "Infectious mononucleosis with tonsillar hypertrophy",
+        "Peritonsillar abscess on the affected side",
+        "Retropharyngeal abscess behind the pharynx",
       ],
       2,
       "Trismus, uvular deviation, and muffled “hot potato” voice point to peritonsillar abscess rather than routine pharyngitis."
@@ -222,10 +191,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "03",
       "A 67-year-old with AF on warfarin starts amiodarone for rhythm control. Which lab change is most expected if dosing is not adjusted?",
       [
-        "Falling INR requiring higher warfarin doses",
-        "Isolated hyperkalemia without INR change",
-        "No interaction — INR remains stable",
-        "Rising INR from CYP2C9 inhibition reducing warfarin clearance",
+        "A falling INR, so the warfarin dose should be increased",
+        "No INR change, because these two drugs do not interact",
+        "A stable INR for months, with TSH the only lab to follow",
+        "A rising INR because amiodarone slows warfarin clearance",
       ],
       3,
       "Amiodarone inhibits CYP2C9 (and other CYPs), potentiating warfarin; INR often rises and warfarin usually needs reduction."
@@ -233,25 +202,25 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
     item(
       "usmle",
       "04",
-      "A toddler with barking cough and stridor improves with cool air. Soft-tissue neck film shows subglottic narrowing. Best initial therapy for moderate croup?",
+      "A toddler has a barking cough, hoarseness, and stridor at rest. Soft-tissue neck film shows subglottic narrowing. Best initial therapy for moderate croup?",
       [
-        "Dexamethasone (and nebulized epinephrine if moderate–severe)",
-        "Immediate intubation for all cases",
-        "Oral azithromycin alone",
-        "Chest physiotherapy",
+        "Dexamethasone now, plus nebulized epinephrine",
+        "Humidified mist or a cool-mist tent as the main treatment",
+        "A course of oral azithromycin for viral croup",
+        "Immediate intubation before any medication trial",
       ],
       0,
-      "Croup is treated with corticosteroids; nebulized epinephrine is added for moderate–severe airway compromise."
+      "Dexamethasone is indicated for croup of all severities. Add nebulized epinephrine for moderate or severe croup. Humidified air or mist is not treatment."
     ),
     item(
       "usmle",
       "05",
       "A 45-year-old with long-standing GERD has progressive dysphagia to solids. Endoscopy shows a distal esophageal stricture. Which chronic exposure is most associated?",
       [
-        "Acute viral esophagitis alone",
-        "Acid-mediated peptic stricture from untreated reflux",
-        "Lactose intolerance",
-        "Vitamin B12 deficiency",
+        "One self-limited episode of viral esophagitis",
+        "Longstanding acid injury from years of untreated reflux",
+        "Bisphosphonate tablets swallowed with little water",
+        "Earlier chest radiation without a reflux history",
       ],
       1,
       "Chronic acid injury can fibrose the distal esophagus into a peptic stricture causing progressive solid-food dysphagia."
@@ -261,10 +230,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "06",
       "A patient with CKD stage 4 has phosphate 6.8 mg/dL and rising PTH. First-line dietary and medical focus?",
       [
-        "High-phosphate supplements",
-        "Immediate parathyroidectomy for all patients",
-        "Phosphate binders with meals plus dietary phosphate restriction",
-        "Unrestricted dairy intake",
+        "Phosphate supplements to match the elevated PTH",
+        "Parathyroidectomy before a trial of phosphate control",
+        "Phosphate binders with meals and a low-phosphate diet",
+        "Calcitriol alone while dairy intake stays high",
       ],
       2,
       "Secondary hyperparathyroidism management starts with phosphate control — binders with meals and diet limits."
@@ -274,10 +243,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "07",
       "A 30-year-old develops ascending paralysis after a diarrheal illness. CSF shows albuminocytologic dissociation. Most likely diagnosis?",
       [
-        "Myasthenia gravis crisis",
-        "Botulism from home-canned food only",
-        "Acute ischemic stroke",
-        "Guillain–Barré syndrome",
+        "Myasthenic crisis without a preceding illness",
+        "Foodborne botulism from preformed toxin",
+        "Acute cervical spinal cord compression",
+        "Post-infectious Guillain–Barré syndrome",
       ],
       3,
       "Post-infectious ascending paralysis with cytoalbuminologic dissociation is classic Guillain–Barré."
@@ -302,10 +271,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "02",
       "A patient on warfarin asks about starting a new St. John’s wort supplement. Best counseling point?",
       [
-        "Safe with all anticoagulants at any dose",
-        "Only interacts with antibiotics",
-        "Avoid — it can induce metabolism and reduce warfarin effect",
-        "Increases INR in every patient",
+        "It can be taken with warfarin without extra INR checks",
+        "The interaction concern is with antibiotics, not warfarin",
+        "Do not start it; enzyme induction can lower the INR",
+        "Expect the INR to rise, and reduce the warfarin dose now",
       ],
       2,
       "St. John’s wort induces CYP enzymes and P-gp and can lower warfarin exposure / anticoagulant effect (typically ↓ INR)."
@@ -313,25 +282,25 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
     item(
       "naplex",
       "03",
-      "Vancomycin trough is drawn correctly just before the 4th dose. Level is above goal with stable renal function. Best next step?",
+      "An adult with MRSA bacteremia and stable renal function is started on IV vancomycin. Which monitoring plan matches the 2020 ASHP/IDSA consensus?",
       [
-        "Double the dose immediately",
-        "Ignore troughs for vancomycin",
-        "Switch to oral vancomycin for bacteremia",
-        "Extend the dosing interval (or adjust per protocol) and recheck",
+        "Target a trough of 15–20 mg/L as the efficacy goal",
+        "Follow peak levels only and do not estimate the daily AUC",
+        "Skip concentration monitoring on a standard every-12-hour dose",
+        "Use AUC-guided dosing with an AUC/MIC target of 400–600",
       ],
       3,
-      "Supratherapeutic troughs usually need interval extension or dose reduction with follow-up levels."
+      "For serious MRSA infections, the 2020 ASHP/IDSA consensus (with PIDS and SIDP) recommends AUC-guided vancomycin dosing with an AUC/MIC target of 400–600 (assuming a broth-microdilution MIC of 1 mg/L). Trough-only monitoring, including a trough target of 15–20 mg/L, is no longer recommended as the efficacy target."
     ),
     item(
       "naplex",
       "04",
       "A 10-kg child needs amoxicillin 40 mg/kg/day divided BID for 10 days. Suspension is 400 mg/5 mL. What volume per dose?",
       [
-        "2.5 mL per dose",
-        "5 mL per dose",
-        "10 mL per dose",
-        "1 mL per dose",
+        "Give 2.5 mL (200 mg) with each dose",
+        "5 mL (400 mg) per dose",
+        "10 mL (800 mg) with each dose",
+        "1 mL (80 mg) per dose",
       ],
       0,
       "Total daily = 400 mg → 200 mg/dose. 400 mg/5 mL → 2.5 mL delivers 200 mg."
@@ -341,10 +310,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "05",
       "Which inhaler counseling point is most important for a new fluticasone/salmeterol Diskus?",
       [
-        "Use only during asthma attacks",
-        "Rinse mouth after use to reduce thrush risk; do not use for acute rescue",
-        "Shake vigorously like an MDI before every puff",
-        "Store in the freezer",
+        "Reserve this inhaler for sudden asthma symptoms only",
+        "Rinse the mouth after use; this is not a rescue inhaler",
+        "Shake it before every dose, the same way you shake an MDI",
+        "Prime it with test sprays into the air before each dose",
       ],
       1,
       "ICS/LABA maintenance devices need mouth rinsing; they are not rescue monotherapy for acute bronchospasm. Diskus devices are not shaken like MDIs."
@@ -354,10 +323,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "06",
       "A prescription is written for “metformin 500 mg BID with meals.” Which counseling statement is best?",
       [
-        "Take on an empty stomach for better absorption always",
-        "Crush extended-release tablets if hard to swallow",
-        "Take with food to reduce GI upset; report lactic acidosis warning signs",
-        "Stop if mild diarrhea occurs once",
+        "Take every dose on an empty stomach so more drug is absorbed",
+        "Crush the extended-release tablet if it is hard to swallow",
+        "Take it with food and report lactic acidosis warning signs",
+        "Stop the medicine after a single episode of mild diarrhea",
       ],
       2,
       "Food improves GI tolerance; patients should know rare lactic acidosis symptoms and not crush XR forms inappropriately."
@@ -382,10 +351,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "01",
       "A 24-year-old presents after a tick bite with an expanding erythema migrans rash and mild arthralgias. No focal neuro deficits. Best initial management?",
       [
-        "Await serology before treating",
-        "Doxycycline for early localized Lyme disease",
-        "Ceftriaxone IV for 14 days",
-        "Prednisone for presumed reactive arthritis",
+        "Wait for confirmatory Lyme serology before any antibiotic",
+        "Start oral doxycycline now for early localized Lyme disease",
+        "Give intravenous ceftriaxone for 14 days for this rash alone",
+        "Treat with prednisone for presumed reactive arthritis",
       ],
       1,
       "Erythema migrans in an endemic area is clinical Lyme — treat empirically without waiting for seroconversion."
@@ -395,10 +364,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "02",
       "A 55-year-old smoker has hemoptysis and a new 2.5 cm spiculated upper-lobe nodule. Next best step?",
       [
-        "Reassure and repeat CXR in 2 years",
-        "Start empiric antibiotics for 6 weeks without imaging follow-up",
-        "Urgent specialty referral / tissue diagnosis pathway (not watchful waiting alone)",
-        "High-dose vitamin C only",
+        "Reassure the patient and repeat the chest x-ray in two years",
+        "Give a week of antibiotics and do no further imaging",
+        "Arrange prompt specialty referral for possible lung cancer",
+        "Repeat low-dose CT in 12 months if the hemoptysis stops",
       ],
       2,
       "Spiculated nodules in smokers need prompt workup for malignancy rather than delayed observation."
@@ -408,10 +377,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "03",
       "A young adult has sudden severe headache, photophobia, and nuchal rigidity. Kernig sign positive. Immediate priority?",
       [
-        "Outpatient migraine diary for 2 weeks",
-        "Only MRI without considering LP/antibiotics timing",
-        "Discharge with acetaminophen",
-        "Stabilize ABCs and pursue emergent meningitis evaluation/treatment pathway",
+        "Sumatriptan now and a clinic visit tomorrow for presumed migraine",
+        "MRI of the brain before antibiotics or lumbar puncture",
+        "Acetaminophen and discharge if the CT scan is normal",
+        "Stabilize, culture, and start treatment for meningitis",
       ],
       3,
       "Suspect meningitis — don’t delay airway/support and the urgent diagnostic/treatment sequence."
@@ -421,10 +390,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "04",
       "A 62-year-old with CHF has weight gain, rising creatinine on high-dose loop diuretic, and orthopnea. Exam shows crackles. Best adjustment theme?",
       [
-        "Optimize volume status carefully — treat congestion while monitoring renal perfusion",
-        "Stop all diuretics permanently",
-        "Force fluids aggressively overnight",
-        "Ignore weight changes",
+        "Relieve congestion carefully while watching renal perfusion",
+        "Stop the loop diuretic indefinitely because the creatinine rose",
+        "Give an overnight fluid bolus to treat the creatinine rise",
+        "Keep the same diuretic dose and stop recording daily weights",
       ],
       0,
       "Decompensated HF needs thoughtful decongestion with labs/vitals — not abrupt abandonment of diuresis or blind fluid loading."
@@ -434,10 +403,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "05",
       "Which screening test is most appropriate for a sexually active 22-year-old woman at a preventive visit?",
       [
-        "Annual coronary CT angiogram",
-        "Chlamydia screening (and gonorrhea per guidelines)",
-        "PSA testing",
-        "No STI screening ever after age 18",
+        "Defer chlamydia testing until she turns 25 years old",
+        "Order chlamydia and gonorrhea screening at this visit",
+        "Mammography as the priority cancer screen at this visit",
+        "Skip STI tests because she has no urinary symptoms",
       ],
       1,
       "Young sexually active women should be offered guideline-based chlamydia (and often gonorrhea) screening."
@@ -447,10 +416,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "06",
       "A patient with acute monoarticular knee pain, fever, and inability to bear weight. Synovial WBC is very high with neutrophils. Priority?",
       [
-        "Home rest and ice only",
-        "Oral steroids without arthrocentesis consideration",
-        "Treat as septic arthritis — urgent ortho/ID pathway and IV antibiotics after cultures",
-        "Ignore fever",
+        "Rest, ice, and a clinic recheck in two days if fever persists",
+        "Oral prednisone for suspected gout before any aspiration",
+        "Aspirate the joint and start intravenous antibiotics",
+        "Colchicine alone, with a follow-up visit next week",
       ],
       2,
       "Hot joint + systemic signs = septic arthritis until proven otherwise — urgent drainage/antibiotics."
@@ -460,10 +429,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "07",
       "First-line pharmacologic therapy for a newly diagnosed adult with infrequent asthma symptoms (a few times per month)?",
       [
-        "Daily high-dose oral steroids indefinitely",
-        "Long-term oxygen at home",
-        "No inhaler therapy ever",
-        "As-needed low-dose ICS–formoterol (preferred) — avoid SABA-only therapy",
+        "Daily oral prednisone as the first controller medicine",
+        "Salmeterol twice daily with no inhaled corticosteroid",
+        "As-needed albuterol alone, with no inhaled steroid",
+        "As-needed low-dose ICS–formoterol when symptoms occur",
       ],
       3,
       "GINA advises against SABA-only treatment; preferred Track 1 for infrequent symptoms is as-needed low-dose ICS–formoterol."
@@ -475,10 +444,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "01",
       "A 52-year-old woman with type 2 diabetes and BMI 34 has an A1c of 8.4% on metformin 1000 mg BID. BP 138/86, eGFR 72. Best next step?",
       [
-        "Increase metformin to 1500 mg BID without additional agent",
-        "Add a GLP-1 receptor agonist or SGLT2 inhibitor with cardiorenal benefit",
-        "Start basal insulin before optimizing non-insulin therapy",
-        "Recheck A1c in 6 months with lifestyle counseling only",
+        "Increase metformin to 1500 mg BID and add nothing else",
+        "Add a GLP-1 receptor agonist or an SGLT2 inhibitor next",
+        "Start basal insulin before optimizing other non-insulin therapy",
+        "Lifestyle counseling only, and repeat the A1c in six months",
       ],
       1,
       "Above-goal A1c on maximized metformin warrants intensification; with obesity, a GLP-1 RA (or SGLT2i when indicated) is preferred over further delay."
@@ -488,10 +457,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "02",
       "A 45-year-old’s screening BP is 148/92 on two separate visits. No end-organ damage. Next best step?",
       [
-        "Reassure that one reading is noise forever",
-        "Order cardiac catheterization immediately",
-        "Confirm and start lifestyle + pharmacologic therapy per hypertension guideline stage",
-        "Start three antihypertensives the same day without lifestyle counseling",
+        "Recheck the blood pressure next year before starting treatment",
+        "Refer for coronary angiography before any blood pressure medicine",
+        "Confirm both readings and start lifestyle plus medication",
+        "Start three antihypertensives today and skip lifestyle counseling",
       ],
       2,
       "Stage 2-range readings (≥140/90) on repeat visits typically need medication plus lifestyle — not indefinite reassurance."
@@ -501,10 +470,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "03",
       "Which contraceptive counseling point is most accurate for a combined oral contraceptive candidate who smokes 15 cigarettes/day and is 36?",
       [
-        "Combined pills are preferred because smoking protects against clotting",
-        "No VTE risk discussion is needed",
-        "Depot medroxyprogesterone is the only legal option worldwide",
-        "Combined hormonal contraception is generally contraindicated — discuss progestin-only or nonhormonal options",
+        "A combined pill is still preferred because she is younger than 40",
+        "Thrombosis does not need to be discussed if her blood pressure is normal",
+        "A levonorgestrel IUD is unsafe solely because she smokes",
+        "Avoid combined hormones and offer a progestin-only or nonhormonal method",
       ],
       3,
       "Age ≥35 with substantial smoking is a combined hormonal contraception contraindication (US MEC 4) — offer safer alternatives."
@@ -514,10 +483,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "04",
       "A healthy 6-month-old is due for routine immunizations. Parents ask about acetaminophen before vaccines. Best guidance?",
       [
-        "Don’t preemptively dose antipyretics solely to prevent fever; treat discomfort if it occurs",
-        "Always give high-dose aspirin before shots",
-        "Skip all vaccines if mild fever occurred once before",
-        "Vaccines are optional after 2 months of age",
+        "Skip a prophylactic dose; treat discomfort if it occurs after the visit",
+        "Give ibuprofen before every vaccine so fever cannot occur",
+        "Give aspirin beforehand; it is a substitute for ibuprofen here",
+        "Delay the rest of the series because of one fever after a prior dose",
       ],
       0,
       "Routine prophylactic antipyretics aren’t required and may blunt antibody response; treat symptoms if needed after vaccination."
@@ -527,10 +496,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "05",
       "A 28-year-old has dysuria, frequency, and no vaginal discharge. Urine dip is nitrite+. Best empiric approach for uncomplicated cystitis?",
       [
-        "IV vancomycin for all UTI",
-        "Short-course guideline antibiotic (e.g., nitrofurantoin when appropriate) after assessing allergies/local resistance",
-        "No treatment if afebrile",
-        "Only cranberry juice for 8 weeks",
+        "One intravenous dose of vancomycin and no oral agent afterward",
+        "Nitrofurantoin for five days when renal function allows it",
+        "No antibiotic, because she is afebrile and can increase fluids",
+        "A cranberry supplement alone for the next several weeks",
       ],
       1,
       "Uncomplicated cystitis is treated with short-course agents chosen for efficacy, resistance, and patient factors."
@@ -540,10 +509,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "06",
       "An older adult’s PHQ-9 is 18 with anhedonia and passive death wish but no plan/intent. Best next step?",
       [
-        "Discharge without follow-up",
-        "Start high-dose benzodiazepines as monotherapy forever",
-        "Safety assessment, close follow-up, and initiate evidence-based depression treatment / referral",
-        "Ignore because grief is always self-limited",
+        "Send the patient home with no scheduled follow-up visit",
+        "Start clonazepam as the only treatment for this depression",
+        "Assess safety, treat or refer, and arrange close follow-up",
+        "Offer no treatment; a score in this range is ordinary grief",
       ],
       2,
       "Moderate–severe PHQ-9 plus passive SI needs structured safety evaluation and active depression management."
@@ -553,10 +522,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "07",
       "A patient with osteoarthritis knee pain failed acetaminophen. No GI bleed history. Which is a reasonable next pharmacologic step?",
       [
-        "Long-term high-dose opioids as first next step",
-        "Systemic corticosteroids indefinitely",
-        "No analgesia options exist",
-        "Trial of topical or oral NSAID with GI/renal risk counseling",
+        "Scheduled oxycodone before any topical analgesic",
+        "A standing course of oral prednisone for the knee",
+        "Explain that no further medication is useful after acetaminophen",
+        "Try a topical or oral NSAID and counsel on GI and renal risk",
       ],
       3,
       "After acetaminophen, NSAIDs (often topical first for knee OA) are common next options when risks are acceptable."
@@ -568,10 +537,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "01",
       "A physical therapist evaluates a patient 2 days post–total knee arthroplasty. Knee flexion 65°, moderate effusion, quadriceps activation lag. Priority intervention?",
       [
-        "Aggressive end-range flexion stretching despite hemarthrosis",
-        "Quad sets / straight-leg raise progression and edema control within precautions",
-        "Complete bedrest for 2 weeks",
-        "Discontinue all strengthening until week 6",
+        "Force end-range flexion despite a tense knee effusion",
+        "Quad sets, edema control, and range within the protocol",
+        "Bed rest until the surgical incision has fully healed",
+        "Hold every strengthening exercise until after the sixth week",
       ],
       1,
       "Early TKA rehab prioritizes quad activation, ROM within protocol, and swelling control — not aggressive forced motion."
@@ -581,10 +550,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "02",
       "A patient with Parkinson disease shows festinating gait and reduced step length. Which cueing strategy is most appropriate?",
       [
-        "Encourage faster shuffling without cues",
-        "Avoid all gait training",
-        "External auditory or visual cues to normalize stride",
-        "Only passive ROM in supine forever",
+        "Encourage faster shuffling and do not add external cues",
+        "Stop gait practice and use supine exercise only",
+        "Use rhythmic auditory or visual cues to lengthen the stride",
+        "Limit the plan of care to passive range of motion in bed",
       ],
       2,
       "External cueing helps break hypokinetic gait patterns in Parkinson disease."
@@ -594,10 +563,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "03",
       "During a lumbar exam, passive straight-leg raise reproduces familiar radicular pain at 35°. This finding most supports?",
       [
-        "Isolated hip OA only",
-        "Ankle sprain",
-        "Normal mobility with no pathology",
-        "Neural tension / disc-related nerve root irritability",
+        "Hamstring tightness without nerve-root irritation",
+        "Isolated osteoarthritis of the hip",
+        "A normal straight-leg raise for this patient",
+        "Lumbar nerve-root irritation from neural tension",
       ],
       3,
       "Early-angle SLR reproducing radicular symptoms suggests neural tension consistent with radiculopathy."
@@ -607,10 +576,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "04",
       "A patient with COPD has SpO₂ 88% on room air during ambulation and reports severe dyspnea. Best immediate action?",
       [
-        "Stop activity, position for breathing, apply supplemental O₂ per order/protocol, reassess",
-        "Push through to complete the full 6-minute walk no matter what",
-        "Start high-intensity plyometrics",
-        "Ignore desaturation",
+        "Stop activity, support breathing, and apply oxygen per order",
+        "Finish the six-minute walk, then decide whether oxygen is needed",
+        "Raise the treadmill speed and incline to build endurance",
+        "Document the saturation and continue the same walking workload",
       ],
       0,
       "Exercise-induced desaturation needs activity pause, breathing strategy, and oxygen per protocol."
@@ -620,10 +589,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "05",
       "Which transfer is most appropriate for a patient with complete C6 tetraplegia who has strong tenodesis and fair trunk control in sitting?",
       [
-        "Independent high-level gymnastics mounts",
-        "Sliding board transfer with skilled assistance as needed",
-        "Unsupervised ladder climbing",
-        "Standing pivot without any upper extremity support ever",
+        "Independent floor-to-chair transfers on the first training day",
+        "Use a sliding-board transfer with assistance as needed",
+        "A mechanical lift for every transfer, with board practice deferred",
+        "A standing pivot transfer with no upper-limb support",
       ],
       1,
       "C6-level patients often use sliding-board techniques leveraging tenodesis and available UE strength."
@@ -633,10 +602,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "06",
       "A sports athlete 3 months post-ACL reconstruction has full ROM, good quad strength, and sport-specific clearance goals. Which principle guides return-to-sport testing?",
       [
-        "Return after exactly 8 weeks regardless of function",
-        "Pain must be ignored during cutting drills",
-        "Objective criteria (strength symmetry, hop tests, movement quality) — not time alone",
-        "Bracing replaces all strengthening",
+        "Clear the athlete at eight weeks if the incision has healed",
+        "Allow cutting drills even when they reproduce knee pain",
+        "Use strength symmetry, hop tests, and movement quality together",
+        "Use a functional brace in place of strength targets",
       ],
       2,
       "RTS decisions use criterion-based testing rather than calendar time alone."
@@ -646,10 +615,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       "07",
       "A patient with a recent CVA has left neglect. Which treatment environment modification helps most during gait training?",
       [
-        "Always approach only from the right and never cue left",
-        "Eliminate all visual input",
-        "Avoid standing activities entirely",
-        "Arrange stimuli and therapist positioning to encourage left-side scanning",
+        "Stand on the patient’s right and skip cues toward the left",
+        "Cover the left visual field so attention stays on the right",
+        "Delay all standing practice until neglect testing is normal",
+        "Arrange cues so the patient must scan toward the left side",
       ],
       3,
       "Neglect rehab uses structured cues and environmental setup to promote attention toward the neglected side."
@@ -657,49 +626,23 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
   ],
 };
 
-
-export function getQotdForExam(exam: ExamSlug, dateIso: string): QotdItem {
+/**
+ * Item for a Chicago calendar date, or null when that date must not be served.
+ * Null is required for future and invalid dates so callers do not show item 01.
+ */
+export function getQotdForExam(
+  exam: ExamSlug,
+  dateIso: string,
+  now = new Date()
+): QotdItem | null {
   const pack = QOTD_BY_EXAM[exam];
-  const idx = dayIndexFromIso(dateIso) % pack.length;
-  return pack[idx]!;
+  const idx = dayIndexFromIso(dateIso, now);
+  if (idx == null) return null;
+  return pack[idx % pack.length] ?? null;
 }
 
-export function getQotdHubFeatured(dateIso: string): ExamSlug {
-  const idx = dayIndexFromIso(dateIso) % EXAM_SLUGS.length;
-  return EXAM_SLUGS[idx]!;
-}
-
-export function qotdPath(exam: ExamSlug, dateIso?: string): string {
-  if (dateIso) return `/daily/${exam}/${dateIso}`;
-  return `/daily/${exam}`;
-}
-
-export function qotdAbsoluteUrl(exam: ExamSlug, dateIso: string): string {
-  return `${getSiteUrl()}${qotdPath(exam, dateIso)}`;
-}
-
-export function qotdShareCaption(item: QotdItem, dateIso: string): string {
-  const stem =
-    item.stem.length > 140 ? `${item.stem.slice(0, 137).trimEnd()}…` : item.stem;
-  return `${item.examLabel} Question of the Day (${dateIso}): ${stem}`;
-}
-
-export function qotdEntityId(exam: ExamSlug, dateIso: string): string {
-  return `qotd-${exam}-${dateIso}`;
-}
-
-export function examMarketingHref(exam: ExamSlug): string {
-  return examMarketingPath(exam as ExamSeoKey);
-}
-
-export function formatQotdDisplayDate(dateIso: string): string {
-  const parsed = parseQotdDate(dateIso);
-  if (!parsed) return dateIso;
-  return parsed.toLocaleDateString("en-US", {
-    timeZone: "UTC",
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
+export function getQotdHubFeatured(dateIso: string, now = new Date()): ExamSlug | null {
+  const idx = dayIndexFromIso(dateIso, now);
+  if (idx == null) return null;
+  return EXAM_SLUGS[idx % EXAM_SLUGS.length] ?? null;
 }

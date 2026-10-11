@@ -5,7 +5,8 @@ import {
   getQotdForExam,
   isQotdExamSlug,
   qotdAbsoluteUrl,
-  todayIsoUtc,
+  todayIsoCentral,
+  toPublicQotd,
 } from "@/lib/demo/qotd";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { getSiteUrl } from "@/lib/seo";
@@ -18,7 +19,8 @@ export const dynamicParams = false;
 
 /**
  * Same one-minute window as the hub. Each of the six boards is prerendered
- * and regenerated from the UTC date, so a deploy does not freeze yesterday’s item.
+ * from the America/Chicago date, so the item rolls at midnight Central
+ * rather than at 7 PM.
  */
 export const revalidate = 60;
 
@@ -29,8 +31,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { exam } = await params;
   if (!isQotdExamSlug(exam)) return {};
-  const today = todayIsoUtc();
+  const today = todayIsoCentral();
   const item = getQotdForExam(exam, today);
+  if (!item) return {};
   const name = EXAM_CATALOG[exam].shortName;
   const canonical = qotdAbsoluteUrl(exam, today);
   const description =
@@ -62,14 +65,15 @@ export default async function DailyExamTodayPage({ params }: Props) {
   const { exam } = await params;
   if (!isQotdExamSlug(exam)) notFound();
 
-  const today = todayIsoUtc();
+  const today = todayIsoCentral();
   const item = getQotdForExam(exam, today);
+  if (!item) notFound();
 
   return (
     <div className="aee-qotd-page">
       <div className="aee-qotd-page__inner">
         <QotdPractice
-          item={item}
+          item={toPublicQotd(item)}
           dateIso={today}
           absoluteShareUrl={qotdAbsoluteUrl(exam, today)}
         />

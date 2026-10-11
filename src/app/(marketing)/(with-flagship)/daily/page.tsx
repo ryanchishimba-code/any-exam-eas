@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import {
   formatQotdDisplayDate,
   getQotdForExam,
   getQotdHubFeatured,
   qotdPath,
-  todayIsoUtc,
+  todayIsoCentral,
 } from "@/lib/demo/qotd";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { landingTrialHrefForExam } from "@/lib/landing/content";
@@ -15,9 +16,9 @@ import { LandingCta } from "@/components/landing/LandingCta";
 import type { ExamSlug } from "@/types/edtech";
 
 /**
- * Today’s six-board set is a pure function of the UTC date. A one-minute
+ * Today’s six-board set follows the America/Chicago calendar date. A one-minute
  * cache keeps the hub off the dynamic path; it rotates within a minute of
- * midnight instead of waiting for the next deploy.
+ * midnight Central instead of waiting for the next deploy.
  */
 export const revalidate = 60;
 
@@ -36,9 +37,10 @@ export const metadata: Metadata = {
 };
 
 export default function DailyHubPage() {
-  const today = todayIsoUtc();
+  const today = todayIsoCentral();
   const featured = getQotdHubFeatured(today);
-  const featuredItem = getQotdForExam(featured, today);
+  const featuredItem = featured ? getQotdForExam(featured, today) : null;
+  if (!featured || !featuredItem) notFound();
   const featuredName = EXAM_CATALOG[featured].shortName;
 
   return (
@@ -85,6 +87,7 @@ export default function DailyHubPage() {
           <ul className="aee-qotd-hub__grid">
             {EXAM_SLUGS.map((slug: ExamSlug) => {
               const item = getQotdForExam(slug, today);
+              if (!item) return null;
               return (
                 <li key={slug}>
                   <Link

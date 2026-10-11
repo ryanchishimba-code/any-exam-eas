@@ -13,29 +13,20 @@ type Props = { params: Promise<{ exam: string; date: string }> };
 export async function GET(_request: Request, { params }: Props) {
   const { exam, date } = await params;
 
-  const fallback = (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#0A2540",
-        color: "#fff",
-        fontSize: 48,
-        fontWeight: 700,
-      }}
-    >
-      AnyExamEasy
-    </div>
-  );
-
   if (!isQotdExamSlug(exam) || !parseQotdDate(date)) {
-    return new ImageResponse(fallback, { ...size });
+    return new Response(null, {
+      status: 404,
+      headers: { "Cache-Control": "no-store" },
+    });
   }
 
   const item = getQotdForExam(exam, date);
+  if (!item) {
+    return new Response(null, {
+      status: 404,
+      headers: { "Cache-Control": "no-store" },
+    });
+  }
   const name = EXAM_CATALOG[exam].shortName;
   const stem =
     item.stem.length > 220 ? `${item.stem.slice(0, 217).trimEnd()}…` : item.stem;

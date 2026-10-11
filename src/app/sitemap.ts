@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { listPublishedBlogPosts } from "@/lib/blog/public";
-import { qotdPath, todayIsoUtc } from "@/lib/demo/qotd";
+import { qotdPath, todayIsoCentral } from "@/lib/demo/qotd";
 import { EXAM_SLUGS } from "@/lib/edtech/exams";
 import { getSiteUrl } from "@/lib/seo";
 import { getExamMarketingSitemapPaths } from "@/lib/seo/marketing-metadata";
@@ -27,7 +27,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
   const now = new Date();
-  const today = todayIsoUtc();
+  const today = todayIsoCentral();
 
   const staticEntries = STATIC_ROUTES.map(({ path, priority, changeFrequency }) => ({
     url: `${base}${path}`,
