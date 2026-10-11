@@ -303,6 +303,7 @@ export async function POST(req: Request) {
           fieldId: sessionFieldId,
           seenIds: smart.excludeQuestionIds,
           seed: optionShuffleSeed,
+          nclexCaseShape: sessionConfig.nclexCaseShape === true,
         });
         if (!diversified) {
           if (explicitPreset != null) {
@@ -359,6 +360,7 @@ export async function POST(req: Request) {
         excludeQuestionIds: smart.excludeQuestionIds,
         sessionId,
         nclexExamMode: sessionConfig.nclexExamMode === true,
+        nclexCaseShape: sessionConfig.nclexCaseShape === true,
       });
 
       if (!assembled || assembled.unavailable || assembled.items.length < limit) {

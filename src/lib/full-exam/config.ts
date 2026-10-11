@@ -161,6 +161,8 @@ export function buildSessionConfig(
   const nclexCat =
     examSlug === "nclex" && resolveNclexCatEnabled(preset, opts?.nclexCat);
   const nclexExamMode = examSlug === "nclex" && (preset === "full" || nclexCat);
+  // Case layout is independent of answer lock, the clock, and exam-mode labels.
+  const nclexCaseShape = examSlug === "nclex";
   // Prefetch the full CAT pool so live stop rules (85–150) can fire early.
   if (nclexCat) {
     questionCount = CAT_MAX_QUESTIONS;
@@ -177,7 +179,7 @@ export function buildSessionConfig(
     timeLimitSec,
     adaptive: (preset === "full" && examSlug !== "nclex") || nclexCat,
     ...(examSlug === "nclex"
-      ? { nclexLength: opts?.nclexLength ?? "minimum", nclexCat, nclexExamMode }
+      ? { nclexLength: opts?.nclexLength ?? "minimum", nclexCat, nclexExamMode, nclexCaseShape }
       : {}),
     ...(opts?.focusAreas?.length ? { focusAreas: opts.focusAreas } : {}),
   };

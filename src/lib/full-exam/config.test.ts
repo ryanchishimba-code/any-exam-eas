@@ -8,7 +8,7 @@ import {
   resolveNclexCatEnabled,
   resolveStartLengthPreset,
 } from "./config";
-import { EXAM_SLUGS } from "@/lib/edtech/exams";
+import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { CAT_MAX_QUESTIONS, NCLEX_CAT_TIME_LIMIT_SEC } from "@/lib/questions/cat-engine";
 
 describe("buildSessionConfig", () => {
@@ -72,8 +72,45 @@ describe("buildSessionConfig", () => {
     const cfg = buildSessionConfig("nclex", "full", true);
     expect(cfg.adaptive).toBe(true);
     expect(cfg.nclexCat).toBe(true);
+    expect(cfg.nclexExamMode).toBe(true);
+    expect(cfg.nclexCaseShape).toBe(true);
     expect(cfg.questionCount).toBe(CAT_MAX_QUESTIONS);
     expect(cfg.timeLimitSec).toBe(NCLEX_CAT_TIME_LIMIT_SEC);
+  });
+
+  it("shapes every NCLEX sitting without turning a sprint into exam mode", () => {
+    const sprint = buildSessionConfig("nclex", "50", true);
+    const extended = buildSessionConfig("nclex", "100", true);
+    expect(sprint.nclexCaseShape).toBe(true);
+    expect(sprint.nclexExamMode).toBe(false);
+    expect(sprint.nclexCat).toBe(false);
+    expect(sprint.adaptive).toBe(false);
+    const nclex = EXAM_CATALOG.nclex;
+    const scaled = (count: number) =>
+      Math.round(((nclex.simulatedDurationMin * 60) / nclex.simulatedQuestionCount) * count);
+    expect(sprint.questionCount).toBe(50);
+    expect(sprint.timeLimitSec).toBe(scaled(50));
+
+    expect(extended.nclexCaseShape).toBe(true);
+    expect(extended.nclexExamMode).toBe(false);
+    expect(extended.nclexCat).toBe(false);
+    expect(extended.questionCount).toBe(100);
+    expect(extended.timeLimitSec).toBe(scaled(100));
+
+    const fixed = buildSessionConfig("nclex", "full", true, { nclexCat: false });
+    expect(fixed.nclexCaseShape).toBe(true);
+    expect(fixed.nclexExamMode).toBe(true);
+    expect(fixed.nclexCat).toBe(false);
+    expect(fixed.questionCount).toBe(85);
+    expect(fixed.timeLimitSec).toBe(5 * 60 * 60);
+
+    const maximum = buildSessionConfig("nclex", "full", true, { nclexLength: "maximum" });
+    expect(maximum.nclexCaseShape).toBe(true);
+    expect(maximum.nclexExamMode).toBe(true);
+    expect(maximum.questionCount).toBe(CAT_MAX_QUESTIONS);
+
+    expect(buildSessionConfig("naplex", "50", true).nclexCaseShape).toBeUndefined();
+    expect(buildSessionConfig("naplex", "full", true).nclexExamMode).toBeUndefined();
   });
 
   it("allows fixed 85 NCLEX when CAT is explicitly disabled", () => {
