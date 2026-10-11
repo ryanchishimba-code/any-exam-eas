@@ -42,10 +42,13 @@ describe("public pages for every board stay cacheable", () => {
     expect(daily).toContain("export const revalidate = 60");
   });
 
-  it("caches a dated question for a day and does not bake it as force-dynamic", () => {
+  it("renders a dated question per request so a future Chicago date can 404", () => {
     const dated = source("src/app/(marketing)/(with-flagship)/daily/[exam]/[date]/page.tsx");
-    expect(dated).toContain("export const revalidate = 86400");
-    expect(dated).not.toContain('dynamic = "force-dynamic"');
+    // ISR plus the Next connection API throws DYNAMIC_SERVER_USAGE (HTTP 500)
+    // before notFound. Today is the Central clock, so this segment stays dynamic.
+    expect(dated).toContain('dynamic = "force-dynamic"');
+    expect(dated).not.toContain("export const revalidate");
+    expect(dated).not.toContain("connection(");
   });
 
   it("keeps signed-in surfaces dynamic", () => {
