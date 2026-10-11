@@ -6,14 +6,15 @@ import { ArrowRight, Check } from "lucide-react";
 import { StudyUseNote } from "@/components/legal/StudyUseNote";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
-import type { QotdItem } from "@/lib/demo/qotd";
+import type { QotdPublicItem } from "@/lib/demo/qotd-public";
 import {
   examMarketingHref,
   formatQotdDisplayDate,
   qotdEntityId,
   qotdPath,
   qotdShareCaption,
-} from "@/lib/demo/qotd";
+} from "@/lib/demo/qotd-public";
+import { revealQotdAnswer } from "@/lib/demo/qotd-reveal";
 import { landingTrialHrefForExam } from "@/lib/landing/content";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
@@ -27,13 +28,38 @@ export function QotdPractice({
   dateIso,
   absoluteShareUrl,
 }: {
-  item: QotdItem;
+  item: QotdPublicItem;
   dateIso: string;
   absoluteShareUrl: string;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
-  const [revealed, setRevealed] = useState(false);
-  const correct = revealed && selected === item.correct;
+  const [reveal, setReveal] = useState<{
+    correctOption: string;
+    rationale: string;
+    isCorrect: boolean;
+  } | null>(null);
+  const [pending, setPending] = useState(false);
+  const [unavailable, setUnavailable] = useState(false);
+  const revealed = reveal !== null;
+  const correct = reveal?.isCorrect ?? false;
+
+  async function onCheck() {
+    if (!selected || pending || revealed) return;
+    setPending(true);
+    setUnavailable(false);
+    try {
+      const result = await revealQotdAnswer(item.examSlug, dateIso, selected);
+      if (!result) {
+        setUnavailable(true);
+        return;
+      }
+      setReveal(result);
+    } catch {
+      setUnavailable(true);
+    } finally {
+      setPending(false);
+    }
+  }
   const examName = EXAM_CATALOG[item.examSlug]?.shortName ?? item.examLabel;
 
   return (
@@ -79,8 +105,8 @@ export function QotdPractice({
         <div className="aee-landing-sample__options" role="listbox" aria-label="Answer choices">
           {item.options.map((opt, i) => {
             const isSelected = selected === opt;
-            const isCorrectOpt = revealed && opt === item.correct;
-            const isWrong = revealed && isSelected && opt !== item.correct;
+            const isCorrectOpt = reveal !== null && opt === reveal.correctOption;
+            const isWrong = reveal !== null && isSelected && opt !== reveal.correctOption;
             return (
               <button
                 key={opt}
@@ -108,15 +134,22 @@ export function QotdPractice({
           })}
         </div>
 
-        {!revealed ? (
-          <button
-            type="button"
-            disabled={!selected}
-            onClick={() => setRevealed(true)}
-            className="aee-landing-sample__check"
-          >
-            Check answer
-          </button>
+        {reveal === null ? (
+          <>
+            <button
+              type="button"
+              disabled={!selected || pending}
+              onClick={() => void onCheck()}
+              className="aee-landing-sample__check"
+            >
+              {pending ? "Checking…" : "Check answer"}
+            </button>
+            {unavailable ? (
+              <p className="aee-landing-sample__rationale">
+                This question isn’t available for that date.
+              </p>
+            ) : null}
+          </>
         ) : (
           <div className="aee-landing-sample__result">
             <p
@@ -128,7 +161,7 @@ export function QotdPractice({
               {correct ? "Correct" : "Not quite — review the rationale"}
             </p>
             <p className="aee-landing-sample__rationale">
-              <strong>Rationale:</strong> {item.rationale}
+              <strong>Rationale:</strong> {reveal.rationale}
             </p>
             <StudyUseNote className="mt-2" />
             <button
@@ -136,7 +169,8 @@ export function QotdPractice({
               className="aee-landing-sample__retry"
               onClick={() => {
                 setSelected(null);
-                setRevealed(false);
+                setReveal(null);
+                setUnavailable(false);
               }}
             >
               Try again

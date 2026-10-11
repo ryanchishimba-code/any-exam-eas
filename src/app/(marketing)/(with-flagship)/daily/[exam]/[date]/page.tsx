@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import type { Metadata } from "next";
 import { QotdPractice } from "@/components/marketing/QotdPractice";
 import {
@@ -7,6 +8,8 @@ import {
   parseQotdDate,
   qotdAbsoluteUrl,
   qotdPath,
+  todayIsoCentral,
+  toPublicQotd,
 } from "@/lib/demo/qotd";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { getSiteUrl } from "@/lib/seo";
@@ -14,22 +17,30 @@ import { getSiteUrl } from "@/lib/seo";
 type Props = { params: Promise<{ exam: string; date: string }> };
 
 /**
- * A dated URL is the question for that UTC day on every board. Today’s six
- * share links are prerendered; any other valid date is cached for a day after
- * the first request. Invalid dates 404. A deploy rebuilds the pack.
+ * A dated URL is that America/Chicago calendar day. Today’s six share links
+ * are prerendered; any other past or current date is cached for a day after
+ * the first request. Future and invalid dates 404 without caching, so a URL
+ * that is still tomorrow is not stuck as a not-found page after midnight.
  */
 export const revalidate = 86400;
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayIsoCentral();
   return EXAM_SLUGS.map((exam) => ({ exam, date: today }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { exam, date } = await params;
-  if (!isQotdExamSlug(exam) || !parseQotdDate(date)) return {};
+  if (!isQotdExamSlug(exam) || !parseQotdDate(date)) {
+    await connection();
+    return {};
+  }
   const item = getQotdForExam(exam, date);
+  if (!item) {
+    await connection();
+    return {};
+  }
   const name = EXAM_CATALOG[exam].shortName;
   const canonical = qotdAbsoluteUrl(exam, date);
   const description =
@@ -58,15 +69,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function DailyExamDatedPage({ params }: Props) {
   const { exam, date } = await params;
-  if (!isQotdExamSlug(exam) || !parseQotdDate(date)) notFound();
+  if (!isQotdExamSlug(exam) || !parseQotdDate(date)) {
+    await connection();
+    notFound();
+  }
 
   const item = getQotdForExam(exam, date);
+  if (!item) {
+    await connection();
+    notFound();
+  }
   const absoluteShareUrl = qotdAbsoluteUrl(exam, date);
 
   return (
     <div className="aee-qotd-page">
       <div className="aee-qotd-page__inner">
-        <QotdPractice item={item} dateIso={date} absoluteShareUrl={absoluteShareUrl} />
+        <QotdPractice
+          item={toPublicQotd(item)}
+          dateIso={date}
+          absoluteShareUrl={absoluteShareUrl}
+        />
       </div>
     </div>
   );
