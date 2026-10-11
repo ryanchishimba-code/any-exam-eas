@@ -13,6 +13,7 @@ describe("nclex answer lock", () => {
   it("recognizes NCLEX exam mode from the stored session config", () => {
     expect(nclexExamMode(examAnalysis)).toBe(true);
     expect(nclexExamMode({ sessionConfig: { nclexExamMode: false } })).toBe(false);
+    expect(nclexExamMode({ sessionConfig: { nclexCaseShape: true } })).toBe(false);
     expect(nclexExamMode(null)).toBe(false);
   });
 

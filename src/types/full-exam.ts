@@ -21,8 +21,13 @@ export type FullExamSessionConfig = {
   focusAreas?: string[];
   /** NCLEX rule-based CAT simulation (85–150Q stop rules). */
   nclexCat?: boolean;
-  /** Real-exam shape: 3 cases before item 86, answers lock on Next. */
+  /** Full NCLEX and CAT: answers lock on Next. Timing and labels follow this flag. */
   nclexExamMode?: boolean;
+  /**
+   * Unfolding-case layout for every NCLEX nursing sitting.
+   * Separate from exam mode, so a 50- or 100-question sitting keeps its clock and answer edits.
+   */
+  nclexCaseShape?: boolean;
   /** Keeps delivery-time option order stable when a sitting is resumed. */
   optionShuffleSeed?: number;
   /** Hide score summary — weak-area remediation only. */

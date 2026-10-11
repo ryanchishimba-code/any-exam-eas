@@ -357,8 +357,10 @@ export function finalizeAssembledSitting(params: {
   seenIds?: ReadonlySet<string>;
   seed?: number;
   includeNgn?: boolean;
-  /** Full NCLEX exam mode: 3 cases before item 86, bow-tie and trend only after. */
+  /** Full NCLEX and CAT. Case layout for those lengths stays on when this is set. */
   nclexExamMode?: boolean;
+  /** Case layout for every NCLEX nursing length. Does not lock answers or change the clock. */
+  nclexCaseShape?: boolean;
 }): AssembledSitting {
   const limit = Math.max(0, params.limit);
   const seed = params.seed ?? 0x51ed270b;
@@ -430,16 +432,18 @@ export function finalizeAssembledSitting(params: {
     sequentialSetId(item) ? null : narrowTopicKeyFromBankItem(item)
   ).slice(0, limit);
   const orderedBase = params.fieldId === "pharmacy" ? spreadPharmacyNumericEntries(gapped, seed) : gapped;
-  const shaped =
-    params.nclexExamMode && params.fieldId === "nursing" && limit >= 85
-      ? shapeNclexBankSitting({
-          pool: params.pool,
-          preferred: orderedBase,
-          limit,
-          seed,
-          caseLastAttemptedAt,
-        })
-      : null;
+  const shapeNclexCases =
+    params.fieldId === "nursing" &&
+    (params.nclexCaseShape === true || (params.nclexExamMode === true && limit >= 85));
+  const shaped = shapeNclexCases
+    ? shapeNclexBankSitting({
+        pool: params.pool,
+        preferred: orderedBase,
+        limit,
+        seed,
+        caseLastAttemptedAt,
+      })
+    : null;
   const orderedBaseFinal = shaped && shaped.length === limit ? shaped : orderedBase;
   const quota =
     params.fieldId === "nursing" && orderedBaseFinal.length === limit
@@ -451,10 +455,7 @@ export function finalizeAssembledSitting(params: {
         })
       : null;
   const seated = quota ?? orderedBaseFinal;
-  const ordered =
-    params.nclexExamMode && params.fieldId === "nursing" && limit >= 85
-      ? restoreNclexExamOrder(seated, params.pool)
-      : seated;
+  const ordered = shapeNclexCases ? restoreNclexExamOrder(seated, params.pool) : seated;
   capStats.kept = ordered.length;
   capStats.strict = strict ?? { kept: ordered.length, rejections: { ...capStats.rejections } };
   return { items: ordered, relaxed, excludeSeenApplied, capStats };
@@ -478,6 +479,8 @@ export function selectStoredFormSitting(params: {
   fieldId: string;
   seenIds?: ReadonlySet<string>;
   seed?: number;
+  /** NCLEX case layout. Stored 50- and 100-question forms use the same shape as a fresh sitting. */
+  nclexCaseShape?: boolean;
 }): BankItem[] | null {
   const limit = Math.max(0, params.limit);
   if (limit === 0) return [];
@@ -496,6 +499,7 @@ export function selectStoredFormSitting(params: {
     seenIds: params.seenIds,
     seed: params.seed,
     includeNgn: params.fieldId === "nursing",
+    nclexCaseShape: params.nclexCaseShape,
   });
   if (finalized.items.length !== limit) return null;
   return finalized.items;

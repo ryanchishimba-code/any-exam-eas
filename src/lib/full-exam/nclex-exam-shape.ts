@@ -4,6 +4,7 @@
  * Steps inside a case stay in order. Scoring is unchanged.
  */
 import { orderByAttemptRecency } from "@/lib/assessment/case-rotation";
+import { examClientNeedsCategory } from "@/lib/exam-prep/nclex-client-needs-quota";
 import type { BankItem } from "@/lib/question-bank";
 import { sequentialSetId } from "@/lib/exam-prep/sitting-clusters";
 import { completeSequentialGroups } from "@/lib/full-exam/ngn-format-mix";
@@ -73,9 +74,18 @@ function shuffleWith<T>(items: readonly T[], random: () => number): T[] {
 }
 
 /**
- * Place cases, then knowledge, then clinical-judgment standalones.
- * Returns null when the pools cannot fill `length` without putting a
- * bow-tie or trend before item 86.
+ * Thirds of the case window. A sitting shorter than 85 uses its own length.
+ * A longer sitting keeps cases inside the first 85 items, one third each.
+ */
+export function nclexCaseWindowThirds(length: number): NclexThird[] {
+  return nclexMinimumThirds(Math.min(Math.max(length, 0), NCLEX_MINIMUM_ITEMS));
+}
+
+/**
+ * Place whole cases, then knowledge, then clinical-judgment standalones.
+ * Fewer than three complete cases still fill the sitting. A partial case is
+ * never placed. Returns null when the pools cannot fill `length` without
+ * putting a bow-tie or trend before item 86.
  */
 export function arrangeNclexExamItems(input: {
   cases: NclexShapeItem[][];
@@ -86,22 +96,29 @@ export function arrangeNclexExamItems(input: {
   seed: number;
 }): NclexShapeItem[] | null {
   const length = input.length;
-  if (length < NCLEX_MINIMUM_ITEMS) return null;
+  if (length < 1) return null;
   const cases = input.cases.filter((group) => group.length === NCLEX_CASE_LENGTH).slice(0, NCLEX_CASE_COUNT);
-  if (cases.length !== NCLEX_CASE_COUNT) return null;
 
   const random = mulberry32(input.seed);
   const slots: Array<NclexShapeItem | undefined> = new Array(length);
-  const thirds = nclexMinimumThirds();
+  const window = Math.min(length, NCLEX_MINIMUM_ITEMS);
+  const thirds = nclexCaseWindowThirds(length);
   cases.forEach((group, index) => {
-    const starts = caseStartsInThird(thirds[index]!);
+    const third = thirds[index];
+    if (!third) return;
+    const starts = caseStartsInThird(third, NCLEX_CASE_LENGTH, window);
     if (starts.length === 0) return;
     const start = starts[Math.floor(random() * starts.length)]!;
     group.forEach((item, step) => {
       slots[start + step] = item;
     });
   });
-  if (slots.slice(0, NCLEX_MINIMUM_ITEMS).filter((item) => item?.role === "case").length !== NCLEX_CASE_COUNT * NCLEX_CASE_LENGTH) {
+  if (
+    length >= NCLEX_MINIMUM_ITEMS &&
+    cases.length === NCLEX_CASE_COUNT &&
+    slots.slice(0, NCLEX_MINIMUM_ITEMS).filter((item) => item?.role === "case").length !==
+      NCLEX_CASE_COUNT * NCLEX_CASE_LENGTH
+  ) {
     return null;
   }
 
@@ -128,14 +145,15 @@ export function arrangeNclexExamItems(input: {
     return item;
   };
 
-  for (let index = 0; index < NCLEX_MINIMUM_ITEMS; index += 1) {
+  for (let index = 0; index < window; index += 1) {
     if (slots[index]) continue;
     const item = takeKnowledge();
     if (!item) return null;
     slots[index] = item;
   }
-  for (let index = NCLEX_MINIMUM_ITEMS; index < length; index += 1) {
-    const wantClinical = random() < CJ_STANDALONE_CHANCE && clinicalIndex < clinical.length;
+  for (let index = window; index < length; index += 1) {
+    const wantClinical =
+      index >= NCLEX_MINIMUM_ITEMS && random() < CJ_STANDALONE_CHANCE && clinicalIndex < clinical.length;
     const item = wantClinical ? takeClinical() : (takeKnowledge() ?? takeClinical());
     if (!item) return null;
     slots[index] = item;
@@ -251,12 +269,26 @@ export function deferClinicalStandalones(
   if (stillEarly.length === 0) return out;
   const seated = new Set(out.map(itemIdOf).filter(Boolean));
   const spare = spareKnowledge(pool, seated);
-  stillEarly.forEach((index, offset) => {
-    const replacement = spare[offset];
-    if (!replacement) return;
+  for (const index of stillEarly) {
+    const category = examClientNeedsCategory(out[index]!);
+    let pickAt = category
+      ? spare.findIndex((item) => examClientNeedsCategory(item) === category)
+      : -1;
+    if (pickAt < 0) {
+      if (category && spare.length > 0) {
+        console.warn(
+          "[nclex-case-shape] replaced an early bow-tie or trend without a same-category standalone",
+          { category }
+        );
+      }
+      pickAt = 0;
+    }
+    const replacement = spare[pickAt];
+    if (!replacement) continue;
+    spare.splice(pickAt, 1);
     seated.add(itemIdOf(replacement));
     out[index] = replacement;
-  });
+  }
   return out;
 }
 
@@ -325,9 +357,10 @@ function toShape(item: BankItem, role: NclexShapeRole): NclexShapeItem {
 }
 
 /**
- * Rebuild a nursing sitting of at least 85 items.
+ * Rebuild a nursing sitting around whole unfolding cases.
  * Cases come from live published ngn_case rows when three complete
- * six-step cases are in the pool. Unseen cases come first. Knowledge and
+ * six-step cases are in the pool. Unseen cases come first. A short supply
+ * keeps fewer whole cases and never a partial one. Knowledge and
  * clinical-judgment standalones prefer the already capped selection.
  */
 export function shapeNclexBankSitting(input: {
@@ -337,7 +370,7 @@ export function shapeNclexBankSitting(input: {
   seed: number;
   caseLastAttemptedAt?: ReadonlyMap<string, number | null> | null;
 }): BankItem[] | null {
-  if (input.limit < NCLEX_MINIMUM_ITEMS) return null;
+  if (input.limit < 1) return null;
   const byId = new Map<string, BankItem>();
   for (const item of [...input.pool, ...(input.preferred ?? [])]) {
     const id = item.id?.trim();
@@ -352,7 +385,16 @@ export function shapeNclexBankSitting(input: {
     input.caseLastAttemptedAt,
     String(input.seed)
   );
-  if (chosen.length < NCLEX_CASE_COUNT) return null;
+  if (chosen.length < NCLEX_CASE_COUNT) {
+    console.warn("[nclex-case-shape] short case supply; serving fewer whole cases", {
+      wanted: NCLEX_CASE_COUNT,
+      available: chosen.length,
+      limit: input.limit,
+    });
+  }
+  // No whole case is available. Leave the capped sitting in place so the
+  // caller can still drop stray steps and early bow-ties without a reshuffle.
+  if (chosen.length === 0) return null;
   const caseIds = new Set(chosen.flat().map((item) => item.id ?? ""));
 
   const preferred = input.preferred ?? [];
@@ -376,12 +418,31 @@ export function shapeNclexBankSitting(input: {
     length: input.limit,
     seed: input.seed,
   });
-  if (!arranged || arranged.length !== input.limit) return null;
+  if (!arranged || arranged.length !== input.limit) {
+    console.warn("[nclex-case-shape] could not fill the sitting with whole cases and standalone items", {
+      limit: input.limit,
+      cases: chosen.length,
+    });
+    return null;
+  }
   const rows: BankItem[] = [];
   for (const slot of arranged) {
     const item = byId.get(slot.id);
     if (!item) return null;
     rows.push(item);
+  }
+  const placed = new Set(
+    rows.flatMap((item) => {
+      const setId = sequentialSetId(item);
+      return setId ? [setId] : [];
+    })
+  ).size;
+  if (chosen.length >= NCLEX_CASE_COUNT && placed < NCLEX_CASE_COUNT) {
+    console.warn("[nclex-case-shape] short case supply; serving fewer whole cases", {
+      wanted: NCLEX_CASE_COUNT,
+      available: placed,
+      limit: input.limit,
+    });
   }
   return rows;
 }
