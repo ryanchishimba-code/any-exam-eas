@@ -133,50 +133,80 @@ describe("question of the day items", () => {
     }
   });
 
-  it("replaces placeholder and dead citations with separate resolving links", () => {
+  it("gives every item a non-empty citation", () => {
     const byId = Object.fromEntries(allItems().map((item) => [item.id, item]));
 
-    expect(byId["pance-06"]?.sources).toEqual(["https://doi.org/10.1016/j.eimce.2023.07.007"]);
+    for (const item of allItems()) {
+      expect(item.sources.length, item.id).toBeGreaterThan(0);
+      for (const url of item.sources) {
+        expect(url).toMatch(/^https:\/\/\S+$/);
+        expect(url).not.toContain(";");
+      }
+    }
+
+    const joined = allItems()
+      .flatMap((item) => item.sources)
+      .join("\n");
+    expect(joined).not.toContain("JAAOS-D-24-00000");
+    expect(joined).not.toContain("018702s057lbl.pdf");
+    expect(joined).not.toContain("/position/management-of-croup");
+    expect(joined).not.toContain("researchgate.net");
+    expect(joined).not.toContain("bacterial-meningitis");
+    expect(joined).not.toContain("10.1016/j.annemergmed.2019.07.009");
+    expect(joined).not.toContain("020357s037s039");
+
+    expect(byId["nclex-02"]?.sources).toEqual([
+      "https://www.aspmn.org/position_statements_and_guidel.php",
+      "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=48137634-91d7-41e3-b54b-e4321d69668a",
+    ]);
     expect(byId["usmle-03"]?.sources).toEqual([
       "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2eceb4d5-0c47-49c3-8263-46f689388efe",
     ]);
     expect(byId["usmle-04"]?.sources).toEqual([
       "https://cps.ca/en/documents/position/acute-management-of-croup",
     ]);
-    expect(byId["pance-03"]?.sources).toEqual([
-      "https://www.idsociety.org/practice-guideline/bacterial-meningitis/",
-      "https://doi.org/10.1016/j.annemergmed.2019.07.009",
+    expect(byId["naplex-06"]?.sources).toEqual([
+      "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=53e950f5-c58f-78e3-e063-6294a90a53e9",
     ]);
+    expect(byId["pance-03"]?.sources).toEqual(["https://www.nice.org.uk/guidance/ng240"]);
+    expect(byId["pance-06"]?.sources).toEqual(["https://doi.org/10.1016/j.eimce.2023.07.007"]);
+    expect(byId["pance-07"]?.sources).toEqual([
+      "https://ginasthma.org/wp-content/uploads/2026/05/GINA-2026-Strategy-Report-WMS.pdf",
+    ]);
+  });
 
+  it("starts each rationale with the keyed option text", () => {
+    const letters = ["A", "B", "C", "D"] as const;
     for (const item of allItems()) {
-      const joined = item.sources.join(" ");
-      expect(joined).not.toContain("JAAOS-D-24-00000");
-      expect(joined).not.toContain("018702s057lbl.pdf");
-      expect(joined).not.toContain("/position/management-of-croup");
-      for (const url of item.sources) {
-        expect(url).toMatch(/^https:\/\/\S+$/);
-        expect(url).not.toContain(";");
-      }
+      const letter = letters[item.correctIndex];
+      expect(item.rationale.startsWith(`${letter} — ${item.correct}`), item.id).toBe(true);
     }
   });
 
   it("teaches AUC-guided vancomycin dosing and evidence-based croup care", () => {
     const vancomycin = QOTD_BY_EXAM.naplex.find((item) => item.id === "naplex-03");
     expect(vancomycin?.correct).toMatch(/AUC\/MIC target of 400–600/);
-    expect(vancomycin?.rationale).toMatch(/2020 ASHP\/IDSA consensus/);
-    expect(vancomycin?.rationale).toMatch(/AUC-guided vancomycin dosing/);
-    expect(vancomycin?.rationale).toMatch(/AUC\/MIC target of 400–600/);
+    expect(vancomycin?.rationale).toMatch(/2020 ASHP\/IDSA\/PIDS\/SIDP consensus/);
+    expect(vancomycin?.rationale).toMatch(/AUC-guided dosing/);
+    expect(vancomycin?.rationale).toMatch(/AUC\/MIC of 400–600/);
     expect(vancomycin?.rationale.toLowerCase()).toMatch(/trough/);
     expect(vancomycin?.rationale.toLowerCase()).toMatch(/no longer recommended/);
 
     const croup = QOTD_BY_EXAM.usmle.find((item) => item.id === "usmle-04");
     expect(croup?.stem.toLowerCase()).not.toMatch(/cool air/);
+    expect(croup?.stem.toLowerCase()).not.toMatch(/neck film/);
     expect(croup?.correct.toLowerCase()).toMatch(/dexamethasone/);
     expect(croup?.correct.toLowerCase()).toMatch(/epinephrine/);
-    expect(croup?.rationale).toMatch(/all severities/);
+    expect(croup?.rationale).toMatch(/every severity/);
     expect(croup?.rationale.toLowerCase()).toMatch(/nebulized epinephrine/);
-    expect(croup?.rationale.toLowerCase()).toMatch(/moderate or severe/);
-    expect(croup?.rationale.toLowerCase()).toMatch(/humidified air or mist is not treatment/);
+    expect(croup?.rationale.toLowerCase()).toMatch(/moderate to severe/);
+    expect(croup?.rationale.toLowerCase()).toMatch(/humidified air or mist tents do not help/);
+
+    const asthma = QOTD_BY_EXAM.pance.find((item) => item.id === "pance-07");
+    expect(asthma?.correctIndex).toBe(3);
+    expect(asthma?.correct).toMatch(/As-needed low-dose ICS–formoterol/);
+    expect(asthma?.rationale).toMatch(/Track 1 \(Steps 1–2\)/);
+    expect(asthma?.rationale).toMatch(/no longer recommends SABA-only/);
   });
 
   it("keeps the answer key out of the public payload and the client page", () => {
