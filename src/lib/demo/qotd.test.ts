@@ -125,6 +125,41 @@ describe("question of the day items", () => {
     }
   });
 
+  it("keeps each correctIndex inside that item's options", () => {
+    for (const item of allItems()) {
+      expect(item.correctIndex).toBeGreaterThanOrEqual(0);
+      expect(item.correctIndex).toBeLessThan(item.options.length);
+      expect(item.options[item.correctIndex]).toBe(item.correct);
+    }
+  });
+
+  it("replaces placeholder and dead citations with separate resolving links", () => {
+    const byId = Object.fromEntries(allItems().map((item) => [item.id, item]));
+
+    expect(byId["pance-06"]?.sources).toEqual(["https://doi.org/10.1016/j.eimce.2023.07.007"]);
+    expect(byId["usmle-03"]?.sources).toEqual([
+      "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2eceb4d5-0c47-49c3-8263-46f689388efe",
+    ]);
+    expect(byId["usmle-04"]?.sources).toEqual([
+      "https://cps.ca/en/documents/position/acute-management-of-croup",
+    ]);
+    expect(byId["pance-03"]?.sources).toEqual([
+      "https://www.idsociety.org/practice-guideline/bacterial-meningitis/",
+      "https://doi.org/10.1016/j.annemergmed.2019.07.009",
+    ]);
+
+    for (const item of allItems()) {
+      const joined = item.sources.join(" ");
+      expect(joined).not.toContain("JAAOS-D-24-00000");
+      expect(joined).not.toContain("018702s057lbl.pdf");
+      expect(joined).not.toContain("/position/management-of-croup");
+      for (const url of item.sources) {
+        expect(url).toMatch(/^https:\/\/\S+$/);
+        expect(url).not.toContain(";");
+      }
+    }
+  });
+
   it("teaches AUC-guided vancomycin dosing and evidence-based croup care", () => {
     const vancomycin = QOTD_BY_EXAM.naplex.find((item) => item.id === "naplex-03");
     expect(vancomycin?.correct).toMatch(/AUC\/MIC target of 400–600/);
@@ -148,7 +183,9 @@ describe("question of the day items", () => {
     for (const item of allItems()) {
       const pub = toPublicQotd(item);
       expect(pub).not.toHaveProperty("correct");
+      expect(pub).not.toHaveProperty("correctIndex");
       expect(pub).not.toHaveProperty("rationale");
+      expect(pub).not.toHaveProperty("sources");
       expect(JSON.stringify(pub)).not.toContain(item.rationale);
     }
 

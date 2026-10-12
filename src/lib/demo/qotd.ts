@@ -49,7 +49,8 @@ function item(
   stem: string,
   options: [string, string, string, string],
   correctIndex: 0 | 1 | 2 | 3,
-  rationale: string
+  rationale: string,
+  sources: readonly string[] = []
 ): QotdItem {
   const correct = options[correctIndex]!;
   return {
@@ -59,8 +60,10 @@ function item(
     examColor: accent(examSlug),
     stem,
     options: [...options],
+    correctIndex,
     correct,
     rationale,
+    sources: [...sources],
   };
 }
 
@@ -83,15 +86,18 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
     item(
       "nclex",
       "02",
-      "A client receiving IV morphine becomes increasingly drowsy with RR 8/min and SpO₂ 88% on room air. What is the nurse’s first action?",
+      "A client receiving IV morphine is difficult to arouse, with RR 7/min and SpO₂ 86% on room air. What is the nurse's first action?",
       [
         "Increase the morphine rate to treat residual pain",
         "Coach deep breathing, then chart and reassess in one hour",
-        "Stop the opioid, support breathing, and have naloxone ready",
+        "Stop the opioid, stimulate and support ventilation with oxygen, and give naloxone per protocol",
         "Give an antiemetic and reassess sedation in 30 minutes",
       ],
       2,
-      "Opioid-induced respiratory depression requires immediate opioid cessation, airway support, and naloxone readiness."
+      "Excess sedation plus RR <8 plus hypoxemia means opioid-induced respiratory depression. Stop the opioid, stimulate the client, support airway and oxygen, call for help, and give dilute naloxone IV, titrated (e.g., 0.04 mg every 2 min) to adequate breathing, not full arousal. Monitor for re-sedation. A worsens it. B delays care. D ignores the airway problem.",
+      [
+        "https://www.researchgate.net/publication/314144266_Monitoring_Hospitalized_Adult_Patients_for_Opioid-Induced_Sedation_and_Respiratory_Depression",
+      ]
     ),
     item(
       "nclex",
@@ -197,7 +203,10 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
         "A rising INR because amiodarone slows warfarin clearance",
       ],
       3,
-      "Amiodarone inhibits CYP2C9 (and other CYPs), potentiating warfarin; INR often rises and warfarin usually needs reduction."
+      "Amiodarone inhibits CYP2C9 (and other CYPs), potentiating warfarin; INR often rises and warfarin usually needs reduction.",
+      [
+        "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2eceb4d5-0c47-49c3-8263-46f689388efe",
+      ]
     ),
     item(
       "usmle",
@@ -210,7 +219,8 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
         "Immediate intubation before any medication trial",
       ],
       0,
-      "Dexamethasone is indicated for croup of all severities. Add nebulized epinephrine for moderate or severe croup. Humidified air or mist is not treatment."
+      "Dexamethasone is indicated for croup of all severities. Add nebulized epinephrine for moderate or severe croup. Humidified air or mist is not treatment.",
+      ["https://cps.ca/en/documents/position/acute-management-of-croup"]
     ),
     item(
       "usmle",
@@ -321,15 +331,18 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
     item(
       "naplex",
       "06",
-      "A prescription is written for “metformin 500 mg BID with meals.” Which counseling statement is best?",
+      "A prescription is written for “metformin 500 mg BID with meals” (immediate-release tablets). Which counseling statement is best?",
       [
         "Take every dose on an empty stomach so more drug is absorbed",
-        "Crush the extended-release tablet if it is hard to swallow",
+        "Take two tablets at the next meal if you miss a dose",
         "Take it with food and report lactic acidosis warning signs",
         "Stop the medicine after a single episode of mild diarrhea",
       ],
       2,
-      "Food improves GI tolerance; patients should know rare lactic acidosis symptoms and not crush XR forms inappropriately."
+      "Taking IR metformin with meals reduces GI upset. The boxed warning covers lactic acidosis: report malaise, muscle pain, trouble breathing, unusual sleepiness, or abdominal pain. A worsens GI effects. B: do not double up on a missed dose. D: mild GI upset is common at the start and usually passes.",
+      [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/020357s037s039,021202s021s023lbl.pdf",
+      ]
     ),
     item(
       "naplex",
@@ -375,15 +388,19 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
     item(
       "pance",
       "03",
-      "A young adult has sudden severe headache, photophobia, and nuchal rigidity. Kernig sign positive. Immediate priority?",
+      "A 22-year-old has 2 days of worsening headache, fever 39.4°C (103°F), photophobia, and nuchal rigidity. Kernig sign is positive. Neurologic exam is otherwise nonfocal, with no papilledema. Immediate priority?",
       [
         "Sumatriptan now and a clinic visit tomorrow for presumed migraine",
         "MRI of the brain before antibiotics or lumbar puncture",
         "Acetaminophen and discharge if the CT scan is normal",
-        "Stabilize, culture, and start treatment for meningitis",
+        "Stabilize, draw blood cultures, and start empiric antibiotics plus dexamethasone for meningitis",
       ],
       3,
-      "Suspect meningitis — don’t delay airway/support and the urgent diagnostic/treatment sequence."
+      "Fever plus meningeal signs means suspected bacterial meningitis. Draw blood cultures and start empiric antibiotics (e.g., ceftriaxone + vancomycin) plus dexamethasone without waiting for imaging or LP. A misses an emergency. B delays antibiotics; CT before LP is needed only for specific indications, and MRI is never the first step. C is unsafe. Contrast: a sudden 'worst-ever' (thunderclap) headache with no fever points to subarachnoid hemorrhage and needs an emergent noncontrast head CT first.",
+      [
+        "https://www.idsociety.org/practice-guideline/bacterial-meningitis/",
+        "https://doi.org/10.1016/j.annemergmed.2019.07.009",
+      ]
     ),
     item(
       "pance",
@@ -422,12 +439,13 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
         "Colchicine alone, with a follow-up visit next week",
       ],
       2,
-      "Hot joint + systemic signs = septic arthritis until proven otherwise — urgent drainage/antibiotics."
+      "Hot joint + systemic signs = septic arthritis until proven otherwise — urgent drainage/antibiotics.",
+      ["https://doi.org/10.1016/j.eimce.2023.07.007"]
     ),
     item(
       "pance",
       "07",
-      "First-line pharmacologic therapy for a newly diagnosed adult with infrequent asthma symptoms (a few times per month)?",
+      "Per GINA, what is the preferred first-line therapy for a newly diagnosed adult with infrequent asthma symptoms (a few times per month)?",
       [
         "Daily oral prednisone as the first controller medicine",
         "Salmeterol twice daily with no inhaled corticosteroid",
@@ -435,7 +453,11 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
         "As-needed low-dose ICS–formoterol when symptoms occur",
       ],
       3,
-      "GINA advises against SABA-only treatment; preferred Track 1 for infrequent symptoms is as-needed low-dose ICS–formoterol."
+      "GINA advises against SABA-only treatment; preferred Track 1 for infrequent symptoms is as-needed low-dose ICS–formoterol. GINA no longer recommends SABA-only treatment; NAEPP 2020 differs for step 1.",
+      [
+        "https://ginasthma.org/reports/",
+        "https://www.nhlbi.nih.gov/resources/2020-focused-updates-asthma-management-guidelines",
+      ]
     ),
   ],
   "aanp-fnp": [
