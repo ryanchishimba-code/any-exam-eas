@@ -238,6 +238,9 @@ describe("question of the day items", () => {
     expect(dated).toContain("toPublicQotd(");
     expect(dated).toContain("notFound(");
     expect(dated).toContain("connection(");
+    expect(dated).toContain("DYNAMIC_SERVER_USAGE");
+    expect(dated).toContain("export const revalidate = 86400");
+    expect(dated).not.toContain('dynamic = "force-dynamic"');
     expect(dated).not.toContain("todayIsoUtc");
     expect(today).toContain("toPublicQotd(");
     expect(today).toContain("todayIsoCentral(");

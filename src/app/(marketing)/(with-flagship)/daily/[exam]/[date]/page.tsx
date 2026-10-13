@@ -19,11 +19,36 @@ type Props = { params: Promise<{ exam: string; date: string }> };
 /**
  * A dated URL is that America/Chicago calendar day. Today’s six share links
  * are prerendered; any other past or current date is cached for a day after
- * the first request. Future and invalid dates 404 without caching, so a URL
- * that is still tomorrow is not stuck as a not-found page after midnight.
+ * the first request. Future and invalid dates 404 with `revalidate` forced
+ * to 0, so a URL that is still tomorrow is not stuck as a not-found page
+ * after Central midnight.
  */
 export const revalidate = 86400;
 export const dynamicParams = true;
+
+/**
+ * `connection()` opts this response out of the day-long cache. During static
+ * render it throws `DYNAMIC_SERVER_USAGE` before the next line runs, which
+ * would surface as a 500 instead of a 404. That throw already sets the
+ * prerender revalidate window to 0, so catch it and then 404.
+ */
+async function notFoundUncached(): Promise<never> {
+  try {
+    await connection();
+  } catch (error) {
+    if (!isDynamicServerUsage(error)) throw error;
+  }
+  notFound();
+}
+
+function isDynamicServerUsage(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "digest" in error &&
+    (error as { digest?: unknown }).digest === "DYNAMIC_SERVER_USAGE"
+  );
+}
 
 export function generateStaticParams() {
   const today = todayIsoCentral();
@@ -33,12 +58,10 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { exam, date } = await params;
   if (!isQotdExamSlug(exam) || !parseQotdDate(date)) {
-    await connection();
     return {};
   }
   const item = getQotdForExam(exam, date);
   if (!item) {
-    await connection();
     return {};
   }
   const name = EXAM_CATALOG[exam].shortName;
@@ -70,14 +93,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function DailyExamDatedPage({ params }: Props) {
   const { exam, date } = await params;
   if (!isQotdExamSlug(exam) || !parseQotdDate(date)) {
-    await connection();
-    notFound();
+    await notFoundUncached();
   }
 
   const item = getQotdForExam(exam, date);
   if (!item) {
-    await connection();
-    notFound();
+    await notFoundUncached();
   }
   const absoluteShareUrl = qotdAbsoluteUrl(exam, date);
 
