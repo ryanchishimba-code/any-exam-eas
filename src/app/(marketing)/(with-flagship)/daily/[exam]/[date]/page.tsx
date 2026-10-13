@@ -93,12 +93,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function DailyExamDatedPage({ params }: Props) {
   const { exam, date } = await params;
   if (!isQotdExamSlug(exam) || !parseQotdDate(date)) {
-    await notFoundUncached();
+    return notFoundUncached();
   }
 
   const item = getQotdForExam(exam, date);
   if (!item) {
-    await notFoundUncached();
+    return notFoundUncached();
   }
   const absoluteShareUrl = qotdAbsoluteUrl(exam, date);
 
