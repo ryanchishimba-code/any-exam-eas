@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
-import { factualYearlySavingsBadge, formatPlanUsd, getBillingPlanTier } from "@/lib/billing-plans";
+import { factualYearlySavingsBadge, formatIntervalEquivalentLine, getBillingPlanTier } from "@/lib/billing-plans";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import { cn } from "@/lib/utils";
 
@@ -16,14 +16,6 @@ type UpgradeIntervalChoiceProps = {
 
 const PRIMARY: BillingInterval[] = ["monthly", "yearly"];
 const MORE: BillingInterval[] = ["semiannual", "quarterly"];
-
-function priceLine(tier: SubscriptionTier, interval: BillingInterval): string {
-  const plan = getBillingPlanTier(tier, interval);
-  if (interval === "monthly") {
-    return `${formatPlanUsd(plan.totalUsd)}/mo`;
-  }
-  return `${formatPlanUsd(plan.totalUsd)} · ≈ ${formatPlanUsd(plan.monthlyEquivalentUsd)}/mo`;
-}
 
 /** Calm monthly/yearly choice for upgrade checkout — other intervals stay collapsed. */
 export function UpgradeIntervalChoice({
@@ -75,7 +67,7 @@ export function UpgradeIntervalChoice({
                 ) : null}
               </span>
               <span className="mt-1 block text-xs text-[var(--color-ink-muted)]">
-                {priceLine(tier, interval)}
+                {formatIntervalEquivalentLine(tier, interval)}
               </span>
             </button>
           );
@@ -117,7 +109,7 @@ export function UpgradeIntervalChoice({
                 >
                   <span className="font-medium text-[var(--color-ink)]">{plan.label}</span>
                   <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
-                    {priceLine(tier, interval)}
+                    {formatIntervalEquivalentLine(tier, interval)}
                   </span>
                 </button>
               );

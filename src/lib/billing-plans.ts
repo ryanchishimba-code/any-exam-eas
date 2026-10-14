@@ -145,6 +145,16 @@ export function factualYearlySavingsBadge(tier: SubscriptionTier = "pro"): strin
   return `Save ${plan.savingsPercent}%`;
 }
 
+/** Yearly and other prepaid lines. Middot, never a hyphen, before the monthly equivalent. */
+export function formatIntervalEquivalentLine(
+  tier: SubscriptionTier,
+  interval: BillingInterval
+): string {
+  const plan = getBillingPlanTier(tier, interval);
+  if (interval === "monthly") return `${formatPlanUsd(plan.totalUsd)}/mo`;
+  return `${formatPlanUsd(plan.totalUsd)} · ≈ ${formatPlanUsd(plan.monthlyEquivalentUsd)}/mo`;
+}
+
 export function getBillingPlanTier(
   tier: SubscriptionTier,
   interval: BillingInterval
