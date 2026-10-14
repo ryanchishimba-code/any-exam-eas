@@ -8,6 +8,7 @@ import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { getArticlesForExam } from "@/lib/seo/resources-content";
+import { BOARD_FORMAT_FACTS } from "@/lib/marketing/board-format-facts";
 import { NCLEX_OFFICIAL_LINKS } from "@/lib/nursing/official-links";
 import { NAPLEX_OFFICIAL_LINKS } from "@/lib/pharmacy/official-links";
 import { buildToolkitHubJsonLd, buildToolkitHubMetadata } from "@/lib/seo/marketing-metadata";
@@ -200,7 +201,9 @@ export default function ToolkitPage() {
               In the product
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
-              Live study instruments — open them where you already practice.
+              Live study instruments — open them where you already practice. In-product study
+              guides exist for NCLEX, NAPLEX, and AANP FNP. USMLE, PANCE, and NPTE-PT do not have
+              an in-product study guide; they use the question bank and practice exams.
             </p>
             <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">
               {IN_PRODUCT_LINKS.map((item) => (
@@ -274,6 +277,57 @@ export default function ToolkitPage() {
                   ))}
                 </ul>
               </div>
+            </div>
+
+            <div className="mt-12 grid gap-10 md:grid-cols-3">
+              {(
+                [
+                  {
+                    title: "PANCE",
+                    links: [
+                      {
+                        href: BOARD_FORMAT_FACTS.pance.href,
+                        label: "NCCPA PANCE content blueprint",
+                      },
+                    ],
+                  },
+                  {
+                    title: "AANP FNP",
+                    links: [
+                      {
+                        href: BOARD_FORMAT_FACTS["aanp-fnp"].href,
+                        label: "AANPCB FNP certification",
+                      },
+                    ],
+                  },
+                  {
+                    title: "NPTE-PT",
+                    links: [
+                      {
+                        href: "https://www.fsbpt.org/free-resources/npte/npte-test-content-outline",
+                        label: "FSBPT NPTE test content outline",
+                      },
+                      {
+                        href: BOARD_FORMAT_FACTS["npte-pt"].href,
+                        label: "FSBPT NPTE development",
+                      },
+                    ],
+                  },
+                ] as const
+              ).map((board) => (
+                <div key={board.title}>
+                  <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ink)]">
+                    {board.title}
+                  </h3>
+                  <ul className="mt-4 space-y-3 text-base">
+                    {board.links.map((link) => (
+                      <li key={link.href}>
+                        <ExternalBoardLink href={link.href} label={link.label} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
 
             <p className="mt-10 max-w-3xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
