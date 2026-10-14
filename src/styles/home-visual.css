@@ -278,6 +278,27 @@
   color: var(--home-teal);
 }
 
+.home-quote__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.home-quote__dots button {
+  min-height: 0.7rem;
+  min-width: 0.7rem;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(10, 37, 64, 0.16);
+  background: transparent;
+}
+
+.home-quote__dots button[aria-current="true"] {
+  background: var(--home-teal);
+  border-color: var(--home-teal);
+}
+
 .home-close {
   padding: 4.5rem 1.5rem 5rem;
   text-align: center;
