@@ -39,6 +39,7 @@ const FOLD_HIDDEN_PREFIXES = [
   "/reset-password",
   "/about",
   "/contact",
+  "/daily",
 ];
 
 function showPublicFoldOffer(pathname: string): boolean {
