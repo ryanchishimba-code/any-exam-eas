@@ -153,7 +153,7 @@ export function buildPricingMetadata(totalLabel?: string): Metadata {
   const title = "Pricing — 6 Board Exams, One Pro Plan";
   const description = count
     ? `One Pro plan: ${count} active questions for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmap & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`
-    : `One Pro plan for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmap & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`;
+    : `One Pro plan for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes the Roadmap and Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day free trial. Cancel anytime.`;
   return {
     ...baseOpenGraph(title, description, "/pricing", { absoluteTitle: true }),
     keywords: [

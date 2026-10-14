@@ -53,7 +53,7 @@ try {
 const signupHtml = await fetch(`${base}/signup`).then((r) => r.text());
 const hasTrialSignup =
   signupHtml.includes("free trial") &&
-  (signupHtml.includes("Full name") || signupHtml.includes("Date of birth"));
+  signupHtml.includes("Step 2: choose your exam");
 const hasMarketingDisclaimer =
   signupHtml.includes("study support tool") ||
   signupHtml.includes("do not guarantee");

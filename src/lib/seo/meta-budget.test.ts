@@ -139,6 +139,14 @@ describe("public marketing metadata budgets", () => {
     }
   });
 
+  it("keeps the pricing description in budget when the question count is unavailable", () => {
+    const description = readDescription(buildPricingMetadata());
+    expect(
+      validateMetaDescription(description),
+      `pricing fallback length ${description.length}: ${description}`
+    ).toBeNull();
+  });
+
   it("keeps exam-config source strings inside the A+ bar before builders run", () => {
     for (const key of EXAM_SEO_KEYS) {
       const config = EXAM_SEO_CONFIG[key];
