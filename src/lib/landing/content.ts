@@ -19,6 +19,7 @@ import { examMarketingPath } from "@/lib/seo/exam-config";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { formatPlanUsd } from "@/lib/billing-plans";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
+import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 
 /** Local price formatter — avoids a circular import with site.ts. */
 const monthly = () => formatPlanUsd(TIER_MONTHLY_USD.pro);
@@ -190,7 +191,9 @@ export const HOME_HERO_PRODUCT_LINE =
 /** Board heroes name NGN only on NCLEX. The trial price stays on its own line. */
 export function formatExamHeroProductLine(examSlug?: string): string {
   if (!examSlug || examSlug === "nclex") return HOME_HERO_PRODUCT_LINE;
-  return "A practice baseline, a daily Today set, review of what you missed, practice exams on the official weights, rationales with sources, and study guides.";
+  const base =
+    "A practice baseline, a daily Today set, review of what you missed, practice exams on the official weights, rationales with sources";
+  return getStudyGuideConfig(examSlug) ? `${base}, and study guides.` : `${base}.`;
 }
 
 export function formatFlagshipHeroSubline(_totalLabel?: string): string {

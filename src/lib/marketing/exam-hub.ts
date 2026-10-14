@@ -60,5 +60,14 @@ export function examHubProductLinks(examKey: ExamSeoKey): ExamHubProductLink[] {
     accent: false,
   });
 
+  if (examKey === "naplex") {
+    links.push({
+      href: ROUTES.toolkit,
+      title: "Toolkit",
+      body: "Official outlines, lab values, and calculators for NAPLEX study.",
+      accent: false,
+    });
+  }
+
   return links;
 }

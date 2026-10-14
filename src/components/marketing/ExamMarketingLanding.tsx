@@ -100,7 +100,13 @@ export async function ExamMarketingLanding({
       </section>
 
       <ProblemSection board={config.shortName} />
-      <PathSection includeNgn={examKey === "nclex"} />
+      <PathSection
+        includeNgn={examKey === "nclex"}
+        includeStudyGuides={Boolean(getStudyGuideConfig(examKey))}
+        extraSteps={
+          examKey === "pance" ? ["300-question pacing across a 5-hour sitting."] : []
+        }
+      />
 
       <PublicSampleSet
         items={samples.filter((item) => {

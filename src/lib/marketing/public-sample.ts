@@ -20,6 +20,7 @@ const SAMPLE_BOARDS = [
   { fieldId: "pharmacy", examLabel: "NAPLEX" },
   { fieldId: "aanp-fnp", examLabel: "AANP FNP" },
   { fieldId: "pance", examLabel: "PANCE" },
+  { fieldId: "npte-pt", examLabel: "NPTE-PT" },
 ] as const;
 
 const FIELD_IDS = SAMPLE_BOARDS.map((board) => board.fieldId);
@@ -144,7 +145,7 @@ async function loadPublicSampleQuestions(): Promise<PublicSampleQuestion[]> {
 
 const loadCachedPublicSamples = unstable_cache(
   loadPublicSampleQuestions,
-  ["public-sample-questions-v3"],
+  ["public-sample-questions-v4"],
   { revalidate: 3600 }
 );
 
