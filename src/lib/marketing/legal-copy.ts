@@ -86,7 +86,7 @@ export function requestClientIp(req: Request): string | null {
 }
 
 /** Home hero. No outcome promise. */
-export const HOME_PRACTICE_HEADLINE = "From doubtful to ready.";
+export const HOME_PRACTICE_HEADLINE = "One study system. Six boards.";
 
 /** Readiness panel. The picture is a practice estimate, not a pass prediction. */
 export const HOME_READINESS_HEADING = "A practice estimate.";

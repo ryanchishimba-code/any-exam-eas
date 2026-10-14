@@ -14,6 +14,7 @@ import {
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { ROUTES } from "@/lib/routes";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
 import { FOUNDER_NOTE } from "@/lib/testimonials/consented-seed";
 
@@ -120,6 +121,11 @@ export function PublicHome({
     <div className="home-visual">
       <section className="home-hero" aria-labelledby="hero-heading">
         <h1 id="hero-heading">{HOME_PRACTICE_HEADLINE}</h1>
+        <p className="home-hero__sub">
+          Practice questions with teachable explanations for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP,
+          and NPTE-PT — all on one {formatMonthlyPrice("pro")}/mo plan. {TRIAL_DAYS}-day free trial,
+          no card required.
+        </p>
         <div className="home-hero__actions">
           <LandingCta href={LANDING_TRIAL_HREF} ctaName="hero_trial" location="hero">
             Start free trial
