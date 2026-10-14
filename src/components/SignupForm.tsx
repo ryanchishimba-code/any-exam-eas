@@ -251,9 +251,12 @@ export function SignupForm({
         <span data-on={step === 1 ? "true" : "false"} />
         <span data-on={step === 2 ? "true" : "false"} />
       </div>
-      <p className="sr-only" aria-live="polite">
+      <p className="mt-2 text-center text-sm text-[#334155]" aria-live="polite">
         Step {step} of 2
       </p>
+      {step === 1 ? (
+        <p className="text-center text-sm text-[#334155]">Step 2: choose your exam</p>
+      ) : null}
 
       {configWarning ? (
         <p className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
@@ -626,7 +629,7 @@ export function SignupForm({
           className="aee-auth-text-btn"
           onClick={() => onPlanChange(plan === "trial" ? "subscribe" : "trial")}
         >
-          {plan === "trial" ? "Subscribe to Pro instead" : "Start with the free trial instead"}
+          {plan === "trial" ? "Skip trial — subscribe to Pro" : "Start with the free trial instead"}
         </button>
       </p>
     </form>
