@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
+import { purchasableBillingIntervalPhrase } from "@/lib/stripe-prices";
 
 export const metadata: Metadata = {
   title: { absolute: "Terms of Service — Any Exam Easy" },
@@ -68,8 +69,7 @@ export default function TermsPage() {
         <h3 className="mt-4 font-semibold text-[var(--color-ink)]">4.2 Recurring billing and auto-renewal</h3>
         <p className="mt-2">
           Paid subscriptions renew automatically at the then-current rate for the billing interval
-          you selected (for example, monthly, every three months, every six months, or yearly)
-          until canceled. By subscribing, you authorize {companyName} and its payment processor to
+          you selected ({purchasableBillingIntervalPhrase()}) until canceled. By subscribing, you authorize {companyName} and its payment processor to
           charge your saved payment method on a recurring basis. You may update your payment method
           or cancel renewal through Settings and the Stripe customer billing portal.
         </p>
