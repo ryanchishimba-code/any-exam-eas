@@ -66,7 +66,7 @@ describe("meta-budget helpers", () => {
     expect(title.length).toBeLessThanOrEqual(SEO_TITLE_MAX);
     expect(clampMetaTitle("A".repeat(80)).length).toBeLessThanOrEqual(SEO_TITLE_MAX);
 
-    const short = "NCLEX practice questions with Blueprint Roadmaps.";
+    const short = "NCLEX practice questions with Roadmap.";
     const clamped = clampMetaDescription(short);
     expect(clamped.length).toBeGreaterThanOrEqual(SEO_DESC_MIN);
     expect(clamped.length).toBeLessThanOrEqual(SEO_DESC_MAX);

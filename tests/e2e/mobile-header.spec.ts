@@ -41,7 +41,7 @@ async function headerBoxes(page: Page) {
 
 test.describe("mobile header does not overlap", () => {
   for (const width of WIDTHS) {
-    test(`logo, Sign in, trial, and menu stay apart at ${width}px`, async ({ page }) => {
+    test(`logo, Log in, trial, and menu stay apart at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 844 });
       await page.goto("/", { waitUntil: "domcontentloaded" });
       await expect(page.locator("header .aee-nav-login").first()).toBeVisible();
@@ -52,7 +52,7 @@ test.describe("mobile header does not overlap", () => {
 
       const parts = [
         ["logo", boxes.logo],
-        ["Sign in", boxes.signIn],
+        ["Log in", boxes.signIn],
         ["trial", boxes.cta],
         ["menu", boxes.menu],
       ] as const;
@@ -78,7 +78,7 @@ test.describe("mobile header does not overlap", () => {
         expect(gap, `gap after ${parts[i][0]}`).toBeGreaterThanOrEqual(6);
       }
 
-      expect(boxes.signIn?.text).toContain("Sign in");
+      expect(boxes.signIn?.text).toContain("Log in");
       expect(boxes.cta?.text).toBe("Free trial");
     });
   }

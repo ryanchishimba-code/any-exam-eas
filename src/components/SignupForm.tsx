@@ -589,7 +589,7 @@ export function SignupForm({
         <p className="mt-3 text-sm text-[#334155]">
           You already have an account.{" "}
           <Link href="/login" className="font-semibold text-[#0f766e] underline">
-            Sign in
+            Log in
           </Link>
         </p>
       ) : null}
@@ -618,7 +618,7 @@ export function SignupForm({
           <>
             Already have an account?{" "}
             <Link href="/login" className="font-semibold text-[#0f766e] underline">
-              Sign in
+              Log in
             </Link>
           </>
         )}

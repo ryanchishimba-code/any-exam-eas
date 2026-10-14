@@ -19,7 +19,7 @@ type ValueCard = {
 const CARDS: ValueCard[] = [
   {
     icon: Map,
-    title: "Blueprint Roadmaps that adapt",
+    title: "Roadmap that adapt",
     kicker: "Know what to study next",
     blurb: `${SEO_VALUE_PROPS.adaptiveRoadmap} — so you stop guessing and focus on the blueprint gaps that move your score.`,
   },

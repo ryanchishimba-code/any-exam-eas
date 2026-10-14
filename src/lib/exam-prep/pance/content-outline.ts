@@ -2,7 +2,7 @@
  * NCCPA PANCE Content Blueprint — current for 2026.
  * Two dimensions: Task Areas (how PAs apply knowledge) and Knowledge & Skill Areas (organ systems).
  *
- * Used for Roadmaps, generation prompts, toolkit copy, and blueprint high-yield tags.
+ * Used for Roadmap, generation prompts, toolkit copy, and blueprint high-yield tags.
  */
 
 export type PanceTaskAreaId =

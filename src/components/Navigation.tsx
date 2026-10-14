@@ -23,7 +23,7 @@ import { marketingExamKeyFromPath } from "@/lib/marketing/board-paths";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 // Only signed-in visitors ever see this, and it needs framer-motion for its
-// menu. Logged-out marketing pages render Sign in in the first HTML instead.
+// menu. Logged-out marketing pages render Log in in the first HTML instead.
 const AvatarDropdown = dynamic(
   () => import("@/components/navigation/AvatarDropdown").then((m) => m.AvatarDropdown),
   { ssr: false }
@@ -64,7 +64,7 @@ export function Navigation() {
   const isAuthenticated = status === "authenticated" && Boolean(session?.user);
   const resolvingAuthedAccess = isAuthenticated && accessLoading;
   // Session starts as "loading" for everyone. Treat that as logged out so the
-  // Sign in and trial buttons are in the first HTML, not a grey placeholder.
+  // Log in and trial buttons are in the first HTML, not a grey placeholder.
   const resolvingAuth = resolvingAuthedAccess;
   const { isAdmin } = useIsAdmin();
 
@@ -191,10 +191,10 @@ export function Navigation() {
               <LoginModalTrigger
                 callbackUrl={ROUTES.dashboard}
                 className="aee-nav-login"
-                aria-label="Sign in to your account"
+                aria-label="Log in to your account"
               >
                 <LogIn className="aee-nav-login__icon h-4 w-4" strokeWidth={2.25} aria-hidden />
-                <span>Sign in</span>
+                <span>Log in</span>
               </LoginModalTrigger>
               <Link
                 href={guestTrialHref}
@@ -267,7 +267,7 @@ export function Navigation() {
                     onClick={closeMobile}
                   >
                     <LogIn className="h-4 w-4" strokeWidth={2.25} aria-hidden />
-                    Sign in
+                    Log in
                   </LoginModalTrigger>
                   <Link
                     href={guestTrialHref}

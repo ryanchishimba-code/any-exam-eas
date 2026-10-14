@@ -36,7 +36,7 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   },
   {
     q: "How is this different from UWorld or AMBOSS?",
-    a: `UWorld sells a separate subscription per exam, and AMBOSS focuses primarily on USMLE/medical. AnyExamEasy gives you six boards under one plan, with an integrated blueprint Roadmap, Deep Dive review modules opened from missed questions, timed Full Exams, and a 3D Anatomy Explorer.`,
+    a: `UWorld sells a separate subscription per exam, and AMBOSS focuses primarily on USMLE/medical. AnyExamEasy gives you six boards under one plan, with an integrated Roadmap, Deep Dive review modules opened from missed questions, timed Full Exams, and a 3D Anatomy Explorer.`,
   },
   {
     home: true,
@@ -49,11 +49,11 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   },
   {
     q: "Why not just buy UWorld for the one exam I'm taking?",
-    a: "Other Qbanks are often sold one exam at a time. AnyExamEasy is one plan for six boards, with a blueprint roadmap, review opened from the questions you miss, and timed practice exams.",
+    a: "Other Qbanks are often sold one exam at a time. AnyExamEasy is one plan for six boards, with a Roadmap, review opened from the questions you miss, and timed practice exams.",
   },
   {
     q: "Is this genuinely enough to pass my board exam?",
-    a: "No prep service can honestly guarantee a pass, and we will not. Items have to pass a quality gate before a student session can serve them. Roadmaps follow published blueprints, and a rationale shows a source when the item stores one. Passing still depends on how you study. Read how questions are reviewed for the exact gate.",
+    a: "No prep service can honestly guarantee a pass, and we will not. Items have to pass a quality gate before a student session can serve them. Roadmap follow published blueprints, and a rationale shows a source when the item stores one. Passing still depends on how you study. Read how questions are reviewed for the exact gate.",
   },
   {
     home: true,

@@ -34,7 +34,7 @@ export async function requireStudyGuideUser(): Promise<
       ok: false,
       response: NextResponse.json(
         {
-          error: "Sign in required to save Study Guide highlights, bookmarks, and notes.",
+          error: "Log in required to save Study Guide highlights, bookmarks, and notes.",
           code: "STUDY_GUIDE_AUTH_REQUIRED",
         },
         { status: 401 }

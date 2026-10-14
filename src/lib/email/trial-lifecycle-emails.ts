@@ -70,7 +70,7 @@ export async function sendWelcomeTrialEmail(
   const bodyHtml = [
     emailParagraph(`${greeting(params.name)}`),
     emailParagraph(
-      `Welcome to <strong>${LEGAL_ENTITY.productName}</strong> — your ${TRIAL_DAYS}-day trial is live. You have <strong>${TRIAL_LIFETIME_QUESTIONS} practice questions</strong> to explore every board bank, plus Roadmaps and concise explanations while you decide if Pro is right for you.`
+      `Welcome to <strong>${LEGAL_ENTITY.productName}</strong> — your ${TRIAL_DAYS}-day trial is live. You have <strong>${TRIAL_LIFETIME_QUESTIONS} practice questions</strong> to explore every board bank, plus Roadmap and concise explanations while you decide if Pro is right for you.`
     ),
     emailParagraph(
       "Whether you're days from NCLEX, deep in Step 2 CK, or juggling NAPLEX calculations — you're in the right place. Here's how to make the first session count:"

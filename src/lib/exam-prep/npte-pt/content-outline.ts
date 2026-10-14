@@ -2,7 +2,7 @@
  * FSBPT NPTE-PT Content Outline — current for 2026.
  * Three dimensions: exam domains (study framing), process task areas, and body-system categories.
  *
- * Used for Roadmaps, generation prompts, toolkit copy, and blueprint high-yield tags.
+ * Used for Roadmap, generation prompts, toolkit copy, and blueprint high-yield tags.
  */
 import type { NptePtContentCategoryId, NptePtTaskCategoryId } from "./types";
 

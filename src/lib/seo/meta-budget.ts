@@ -150,7 +150,7 @@ export function enforceMetaDescription(description: string, label = "description
 }
 
 const DESC_FILLERS = [
-  "Includes Blueprint Roadmaps and Deep Dive review.",
+  "Includes Roadmap and Deep Dive review.",
   "Start a 5-day free trial — no payment method required.",
   "One Pro plan covers six board exams.",
   "QA-gated Qbank for NCLEX, USMLE, NAPLEX, PANCE, FNP and NPTE.",

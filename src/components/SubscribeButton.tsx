@@ -86,7 +86,7 @@ function HostedSubscribeButton({
         window.location.href = data.url;
         return;
       }
-      setError(data.error ?? "Could not start checkout. Sign in and try again.");
+      setError(data.error ?? "Could not start checkout. Log in and try again.");
     } catch {
       setError("Could not reach checkout. Try again.");
     } finally {

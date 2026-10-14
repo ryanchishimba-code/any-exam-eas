@@ -40,7 +40,7 @@ describe("pricing and checkout trial offer", () => {
 
   it("uses the signup trial scope with the live question count", () => {
     expect(formatSignupTrialScope()).toBe(
-      "Your trial includes 500 practice questions across all six boards, plus Roadmaps and Deep Dives."
+      "Your trial includes 500 practice questions across all six boards, plus Roadmap and Deep Dives."
     );
     expect(formatSignupTrialScope()).not.toMatch(/guarantee|best|#1|no card/i);
   });

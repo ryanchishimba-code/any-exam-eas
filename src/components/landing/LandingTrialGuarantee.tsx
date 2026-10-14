@@ -25,7 +25,7 @@ const PILLARS = [
   {
     icon: Zap,
     title: "Start practicing immediately",
-    body: `Explore all 6 exam banks, Roadmaps, Memory Cards, Full Exams, and calculators — ${TRIAL_LIFETIME_QUESTIONS} practice questions included during your ${TRIAL_DAYS}-day trial.`,
+    body: `Explore all 6 exam banks, Roadmap, Memory Cards, Full Exams, and calculators — ${TRIAL_LIFETIME_QUESTIONS} practice questions included during your ${TRIAL_DAYS}-day trial.`,
   },
   {
     icon: Calendar,

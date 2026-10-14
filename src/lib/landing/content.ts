@@ -25,7 +25,7 @@ const monthly = () => formatPlanUsd(TIER_MONTHLY_USD.pro);
 
 /** Primary platform positioning — reuse across compare sections and SEO. */
 export const PLATFORM_TAGLINE =
-  "Premium board prep for every major licensing exam — high-quality practice, smart Roadmaps, and one accessible subscription.";
+  "Premium board prep for every major licensing exam — high-quality practice, smart Roadmap, and one accessible subscription.";
 
 export const PLATFORM_EXAM_LIST = "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT";
 
@@ -137,7 +137,7 @@ export const LANDING_BENEFITS = [
 /** Bullet list for pricing panels and signup CTAs. */
 export const LANDING_PRICING_FEATURES = [
   `${PLATFORM_EXAM_LIST_MIDDOT} question banks`,
-  "Proprietary Exam Roadmaps aligned to each blueprint",
+  "Proprietary Roadmap aligned to each blueprint",
   "Deep Dive Review Modules linked from practice",
   "Curated vignettes with excellent explanations",
   "Performance analytics & weak-area targeting",
@@ -315,7 +315,7 @@ export const LANDING_OFFERING_PILLARS = [
   },
   {
     icon: Map,
-    title: "Roadmaps + Deep Dives built in",
+    title: "Roadmap + Deep Dives built in",
     detail:
       "Blueprint-aligned study plans show what to practice next. Pro unlocks full Deep Dive modules, advanced analytics, and unlimited mock exams.",
   },
@@ -323,7 +323,7 @@ export const LANDING_OFFERING_PILLARS = [
     icon: Sparkles,
     title: "One Pro plan — everything included",
     detail:
-      "All six banks, Roadmaps, analytics, unlimited mocks, and Deep Dives — one simple subscription.",
+      "All six banks, Roadmap, analytics, unlimited mocks, and Deep Dives — one simple subscription.",
   },
 ] as const;
 
@@ -339,7 +339,7 @@ export const LANDING_HERO_TRUST_SIGNALS = [
 export const LANDING_UNIQUE_FEATURES = [
   {
     icon: Map,
-    title: "Proprietary Exam Roadmaps",
+    title: "Proprietary Roadmap",
     detail:
       "Blueprint-aligned study plans for every exam show what to practice next — linked to weak-area drills and timed blocks.",
     proOnly: false,
@@ -401,7 +401,7 @@ export const LANDING_HERO_HEADLINE_ACCENT_LEGACY = "for boards and clinical prac
 /** Three punchy hero benefits — scannable in under 3 seconds. */
 export const LANDING_HERO_PITCHES = [
   "6 board exams · 1 plan",
-  "Roadmaps + Deep Dives",
+  "Roadmap + Deep Dives",
   "Calculators & lab values",
 ] as const;
 
@@ -410,7 +410,7 @@ export const LANDING_HERO_PRICE_TAGLINE = "Premium prep. Accessible price.";
 
 export const LANDING_HERO_PRICE_INCLUDES = [
   "Board-style questions across six exams",
-  "Exam Roadmaps, Deep Dive modules & Library",
+  "Roadmap, Deep Dive modules & Library",
   "Analytics, lab values & clinical calculators",
 ] as const;
 

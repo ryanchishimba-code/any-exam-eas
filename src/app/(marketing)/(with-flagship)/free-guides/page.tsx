@@ -144,7 +144,7 @@ export default async function FreeGuidesPage() {
                         href={item.signInHref}
                         className="text-sm font-semibold text-[var(--color-ink)] hover:underline"
                       >
-                        Sign in
+                        Log in
                       </Link>
                     </div>
                   </article>

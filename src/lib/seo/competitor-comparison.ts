@@ -56,7 +56,7 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     weaknesses: [
       "One exam per subscription — multi-board prep gets expensive fast",
       "Limited adaptive study path beyond performance stats",
-      "No shared Blueprint Roadmap / Deep Dive system across exams",
+      "No shared Roadmap / Deep Dive system across exams",
     ],
     bestFor: "Single-exam students who prioritize explanation depth and brand trust above all else",
   },
@@ -109,7 +109,7 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     weaknesses: [
       "Pharmacy-only — nursing and medical boards need separate subscriptions",
       "Premium course pricing ($999+) vs QBank-only tiers",
-      "No cross-specialty Roadmaps, Deep Dives, or Full Exam bundle",
+      "No cross-specialty Roadmap, Deep Dives, or Full Exam bundle",
     ],
     bestFor: "PharmD students who want the established NAPLEX brand and video course",
   },
@@ -147,7 +147,7 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
     competitor: "Often 2,000–4,500 per exam",
   },
   {
-    feature: "Adaptive Blueprint Roadmap",
+    feature: "Roadmap",
     anyExamEasy: "Per-exam weak-area queue",
     competitor: "Performance stats; limited roadmap",
   },

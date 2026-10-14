@@ -134,7 +134,7 @@ Download the **official test plan** for the exam you are taking from [ncsbn.org]
 
 | This book | AnyExamEasy |
 | --- | --- |
-| Strategy, patho-enough-to-reason, memory hooks, red flags | NGN-style practice, teachable rationales, Blueprint Roadmaps, full-length mocks |
+| Strategy, patho-enough-to-reason, memory hooks, red flags | NGN-style practice, teachable rationales, Roadmap, full-length mocks |
 
 **Soft CTA:** Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this NCLEX book with NGN-style practice.
 
@@ -5597,7 +5597,7 @@ No. Ranges vary by lab, age, sex, and method. We teach **direction and urgency**
 
 ### Can AnyExamEasy help with NCLEX prep?
 
-Yes. [AnyExamEasy](https://anyexameasy.com) offers NGN-style NCLEX practice, teachable rationales, Blueprint Roadmaps, and full-length mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. We’re independent and not affiliated with NCSBN.
+Yes. [AnyExamEasy](https://anyexameasy.com) offers NGN-style NCLEX practice, teachable rationales, Roadmap, and full-length mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. We’re independent and not affiliated with NCSBN.
 
 ---
 
@@ -5609,7 +5609,7 @@ Open a practice set today. Review the misses like a detective. Repeat tomorrow.
 
 ### Ready for NGN-ready practice?
 
-**AnyExamEasy** pairs this NCLEX reference book with NGN-style practice, teachable rationales, Blueprint Roadmaps, and full-length mocks.
+**AnyExamEasy** pairs this NCLEX reference book with NGN-style practice, teachable rationales, Roadmap, and full-length mocks.
 
 **[Start a 5-day free trial →](https://anyexameasy.com)** — no payment method. Then Pro at $27.99/mo.
 

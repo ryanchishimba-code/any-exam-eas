@@ -57,7 +57,7 @@ describe("TrialWelcomeScreen trial length", () => {
       "5-day free trial · no payment method required · then $27.99/mo"
     );
     expect(
-      screen.getByText(/500 practice questions across all six boards, plus Roadmaps and Deep Dives/i)
+      screen.getByText(/500 practice questions across all six boards, plus Roadmap and Deep Dives/i)
     ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /show me around/i })).toBeInTheDocument();
     expect(screen.queryByText(/halfway/i)).not.toBeInTheDocument();

@@ -205,7 +205,7 @@ export function ExamGenerator() {
 
         {error && (
           <InlineError className="text-center">
-            {error}. <Link href="/signup" className="underline">Sign in</Link> to generate.
+            {error}. <Link href="/signup" className="underline">Log in</Link> to generate.
           </InlineError>
         )}
       </form>

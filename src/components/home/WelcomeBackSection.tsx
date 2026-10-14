@@ -134,7 +134,7 @@ export function WelcomeBackSection() {
               <>Your account is ready — subscribe to unlock your study hub and progress.</>
             ) : hint ? (
               <>
-                Sign in as <span className="font-medium text-[var(--color-ink)]">{maskEmail(hint.email)}</span>
+                Log in as <span className="font-medium text-[var(--color-ink)]">{maskEmail(hint.email)}</span>
                 {hint.readinessScore != null && (
                   <> · last {PRACTICE_PROGRESS_LABEL.toLowerCase()} {hint.readinessScore}%</>
                 )}

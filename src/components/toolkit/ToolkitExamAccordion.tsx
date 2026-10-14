@@ -154,7 +154,7 @@ export function ToolkitExamAccordion({ exams }: Props) {
       <div className="relative mt-10 rounded-3xl border border-[var(--color-accent)]/25 bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-surface-elevated))] px-6 py-8 text-center sm:px-10">
         <p className="text-base font-semibold text-[var(--color-ink)]">Ready to pack your toolkit?</p>
         <p className="mx-auto mt-2 max-w-lg text-sm leading-relaxed text-[var(--color-ink-muted)]">
-          Try for free — all six boards, blueprint roadmaps, and full-length practice in one
+          Try for free — all six boards, Roadmap, and full-length practice in one
           place.
         </p>
         <Link href={LANDING_TRIAL_HREF} className="aee-flagship-cta aee-flagship-cta--primary mt-5 inline-flex">

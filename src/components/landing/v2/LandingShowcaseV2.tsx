@@ -7,7 +7,7 @@
  * crisp in light/dark mode and never ships a broken image. Four proofs:
  *  1. The core question + teachable-rationale experience (browser-framed)
  *  2. Progress analytics with weak-area targeting
- *  3. Blueprint Roadmap + Full Exam launch
+ *  3. Roadmap + Full Exam launch
  *  4. The Anatomy Explorer
  */
 
@@ -199,7 +199,7 @@ function RoadmapCard() {
       <div>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent)]">
           <Map className="h-3 w-3" aria-hidden />
-          Blueprint Roadmap
+          Roadmap
         </span>
         <h4 className="mt-2.5 text-lg font-bold text-[var(--color-ink)]">NCLEX-RN · Next up</h4>
         <p className="text-sm text-[var(--color-ink-muted)]">
@@ -327,7 +327,7 @@ export function LandingShowcaseV2() {
             A calm, focused workspace built to make hard prep feel simple.
           </h2>
           <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
-            Practice, analytics, Roadmaps, and Full Exams — designed to cut study overwhelm and
+            Practice, analytics, Roadmap, and Full Exams — designed to cut study overwhelm and
             point you at the next right thing.
           </p>
         </div>

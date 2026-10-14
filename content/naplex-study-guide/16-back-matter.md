@@ -26,7 +26,7 @@ No — and that’s intentional. The book builds frameworks and high-yield judgm
 
 ### Can AnyExamEasy help with NAPLEX prep?
 
-Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style NAPLEX practice, teachable rationales, Blueprint Roadmaps, and mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. Independent — not affiliated with NABP.
+Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style NAPLEX practice, teachable rationales, Roadmap, and mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. Independent — not affiliated with NABP.
 
 ---
 
@@ -36,7 +36,7 @@ You already trained for years to think like a pharmacist. This book is a map —
 
 ### Ready for NAPLEX practice?
 
-**AnyExamEasy** pairs this NAPLEX reference book with exam-style practice, teachable rationales, Blueprint Roadmaps, and mocks.
+**AnyExamEasy** pairs this NAPLEX reference book with exam-style practice, teachable rationales, Roadmap, and mocks.
 
 **[Start a 5-day free trial →](https://anyexameasy.com)** — no payment method. Then Pro at $27.99/mo.
 

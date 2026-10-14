@@ -27,7 +27,7 @@ const content = [
       ["Exams", "All six banks", "All six banks"],
       ["Questions", "500 during the trial", "No question cap"],
       ["Full-length adaptive exam", "One", "Included"],
-      ["Blueprint Roadmap and weak-area sets", "Yes", "Yes"],
+      ["Roadmap and weak-area sets", "Yes", "Yes"],
       ["Deep Dive review after a miss", "Yes", "Yes"],
       ["Spaced repetition", "Yes", "Yes"],
       ["AI Tutor on missed reasoning", "NCLEX, NAPLEX, and USMLE", "NCLEX, NAPLEX, and USMLE"],
@@ -35,7 +35,7 @@ const content = [
     ]
   ),
   p(
-    `AI Tutor walks through why you missed an item on NCLEX, NAPLEX, and the USMLE steps. It is not turned on for PANCE, AANP FNP, or NPTE-PT. Those banks still have rationales, Roadmaps, and full-length exams.`
+    `AI Tutor walks through why you missed an item on NCLEX, NAPLEX, and the USMLE steps. It is not turned on for PANCE, AANP FNP, or NPTE-PT. Those banks still have rationales, Roadmap, and full-length exams.`
   ),
   h3("Reference books are not a free download"),
   p(

@@ -21,7 +21,7 @@ export function LandingFeaturesSection() {
             <span className="aee-flagship-gradient-text">without the premium price tag.</span>
           </h2>
           <p className="aee-flagship-subtitle">
-            Roadmaps, Deep Dives, analytics, and reference tools — high-quality prep included, not upsold.
+            Roadmap, Deep Dives, analytics, and reference tools — high-quality prep included, not upsold.
           </p>
         </header>
 

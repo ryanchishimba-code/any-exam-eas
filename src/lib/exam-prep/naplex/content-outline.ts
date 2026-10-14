@@ -2,7 +2,7 @@
  * NABP NAPLEX Content Outline — effective May 1, 2025 onward.
  * Five content domains; Domain 3 is the heaviest (~40%).
  *
- * Used for Roadmaps, generation prompts, toolkit copy, and blueprint high-yield tags.
+ * Used for Roadmap, generation prompts, toolkit copy, and blueprint high-yield tags.
  */
 
 export type NaplexContentDomainId =

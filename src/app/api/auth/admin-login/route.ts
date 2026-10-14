@@ -58,6 +58,6 @@ export async function POST(req: Request) {
       );
     }
     console.error("[admin-login]", e);
-    return NextResponse.json({ error: "Could not sign in." }, { status: 500 });
+    return NextResponse.json({ error: "Could not log in." }, { status: 500 });
   }
 }

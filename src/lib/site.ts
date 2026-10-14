@@ -102,7 +102,7 @@ export function formatTrialQuestionLimit(): string {
  * Count comes from TRIAL_LIFETIME_QUESTIONS (500 unless overridden).
  */
 export function formatSignupTrialScope(): string {
-  return `Your trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmaps and Deep Dives.`;
+  return `Your trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmap and Deep Dives.`;
 }
 
 /** Primary marketing CTA label (buttons, sticky bars, nav). */

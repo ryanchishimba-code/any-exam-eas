@@ -25,7 +25,7 @@ export function CommunitySubmitForm({ className = "" }: { className?: string }) 
       <div
         className={`rounded-2xl border border-dashed border-black/[0.1] bg-[var(--color-surface-elevated)] p-5 text-center text-sm text-[var(--color-ink-muted)] dark:border-white/[0.12] ${className}`}
       >
-        Sign in to share a study tip or win with the community.
+        Log in to share a study tip or win with the community.
       </div>
     );
   }

@@ -23,7 +23,7 @@ export const metadata = buildToolkitHubMetadata();
  * - Lab values & calculators: /library#hub-calculators
  * - Top 500 drugs: /study/drugs300
  * - Anatomy Explorer: /anatomy
- * - Blueprint Roadmaps (Study Hub): /dashboard
+ * - Roadmap (Study Hub): /dashboard
  * - Compare guides: /compare
  * - Resource articles: /resources/[slug]
  */
@@ -60,7 +60,7 @@ const IN_PRODUCT_LINKS = [
   },
   {
     href: ROUTES.dashboard,
-    title: "Blueprint Roadmaps",
+    title: "Roadmap",
     body: "Domain readiness on your Study Hub dashboard.",
   },
   {

@@ -66,7 +66,7 @@ export function AdminLoginForm({ callbackUrl = "/admin" }: Props) {
         method: "email",
       });
     } catch {
-      setError("Could not sign in. Try again.");
+      setError("Could not log in. Try again.");
       setLoading(false);
     }
   }
@@ -78,7 +78,7 @@ export function AdminLoginForm({ callbackUrl = "/admin" }: Props) {
           <Shield size={20} />
         </div>
         <div>
-          <h1 className="text-xl font-semibold text-slate-900">Admin sign in</h1>
+          <h1 className="text-xl font-semibold text-slate-900">Admin log in</h1>
           <p className="text-sm text-slate-500">Authorized administrators only</p>
         </div>
       </div>
@@ -114,7 +114,7 @@ export function AdminLoginForm({ callbackUrl = "/admin" }: Props) {
           disabled={loading}
           className="w-full rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-60"
         >
-          {loading ? "Signing in…" : "Sign in to admin"}
+          {loading ? "Signing in…" : "Log in to admin"}
         </button>
       </form>
 
