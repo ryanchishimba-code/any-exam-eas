@@ -4,13 +4,12 @@ import type { HomeProofFact } from "@/lib/marketing/home-proof";
 export function HomeProofStrip({ facts }: { facts: HomeProofFact[] }) {
   if (facts.length === 0) return null;
   return (
-    <p className="home-proof" aria-label="Proof">
-      {facts.map((fact, index) => (
-        <span key={fact.id}>
-          {index > 0 ? <span aria-hidden> · </span> : null}
+    <ul className="home-proof">
+      {facts.map((fact) => (
+        <li key={fact.id} aria-label={fact.text}>
           {fact.text}
-        </span>
+        </li>
       ))}
-    </p>
+    </ul>
   );
 }
