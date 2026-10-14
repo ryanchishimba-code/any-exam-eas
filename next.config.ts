@@ -209,6 +209,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/npte",
+        destination: "/npte-pt",
+        permanent: true,
+      },
+      {
         source: "/resources",
         destination: "/toolkit",
         permanent: true,

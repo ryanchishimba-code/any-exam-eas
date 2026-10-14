@@ -12,10 +12,11 @@ import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 
 export type ExamSeoKey = ExamRouteSlug;
 
-/** URL slug → canonical exam key (e.g. /npte → npte-pt). */
-export const EXAM_SEO_SLUG_ALIASES: Record<string, ExamSeoKey> = {
-  npte: "npte-pt",
-};
+/**
+ * Extra marketing slugs that render the same hub.
+ * `/npte` is a 301 to `/npte-pt` in next.config, not a second page.
+ */
+export const EXAM_SEO_SLUG_ALIASES: Record<string, ExamSeoKey> = {};
 
 export const EXAM_SEO_KEYS: ExamSeoKey[] = [
   "nclex",
@@ -471,7 +472,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       },
       {
         question: "Can I access NPTE prep at /npte?",
-        answer: "Yes. Both /npte and /npte-pt route to our NPTE-PT marketing and prep hub.",
+        answer: "Yes. /npte redirects to the NPTE-PT hub at /npte-pt.",
       },
     ],
     relatedResourceSlugs: [

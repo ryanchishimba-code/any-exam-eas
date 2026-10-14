@@ -43,15 +43,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }));
 
-  const examAliasEntries = [
-    { path: "/npte", priority: 0.85 },
-  ].map(({ path, priority }) => ({
-    url: `${base}${path}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority,
-  }));
-
   const qotdEntries = EXAM_SLUGS.flatMap((exam) => [
     {
       url: `${base}${qotdPath(exam)}`,
@@ -99,7 +90,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticEntries,
     ...examEntries,
-    ...examAliasEntries,
     ...qotdEntries,
     ...resourceEntries,
     ...blogEntries,
