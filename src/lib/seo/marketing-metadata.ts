@@ -117,7 +117,7 @@ export function buildFreeGuidesMetadata(): Metadata {
 export function buildToolkitHubMetadata(): Metadata {
   const title = "Board Exam Toolkit — Official Links & Study Tools";
   const description =
-    "Toolkit directory for six boards: official blueprints, lab values & calculators, Top 500 drugs, Anatomy Explorer, Roadmap, and exam guides.";
+    "Toolkit directory for six boards: official blueprints, lab values & calculators, Top 500 drugs, Anatomy Explorer, Roadmap, and exam study guides.";
   const path = "/toolkit";
   return {
     ...baseOpenGraph(title, description, path, { absoluteTitle: true }),
