@@ -229,12 +229,16 @@ export function UsmleStepShowcase({
             <span className="aee-pick-board__stat">
               <Clock className="h-3.5 w-3.5 opacity-60" aria-hidden />
               <span className="aee-pick-board__stat-value">{selected.simulatedQuestionCount}Q</span>
-              <span className="aee-pick-board__stat-label">full sim</span>
+              <span className="aee-pick-board__stat-label">
+                {selectedLevel === "step2" ? "full sim · Clinical vignettes" : "full sim"}
+              </span>
             </span>
-            <span className="aee-pick-board__stat">
-              <Layers className="h-3.5 w-3.5 opacity-60" aria-hidden />
-              <span className="aee-pick-board__stat-value">{selected.difficulty}</span>
-            </span>
+            {selectedLevel === "step2" ? null : (
+              <span className="aee-pick-board__stat">
+                <Layers className="h-3.5 w-3.5 opacity-60" aria-hidden />
+                <span className="aee-pick-board__stat-value">{selected.difficulty}</span>
+              </span>
+            )}
           </div>
 
           <ul className="aee-step-focus" aria-label={`${selected.name} focus areas`}>
