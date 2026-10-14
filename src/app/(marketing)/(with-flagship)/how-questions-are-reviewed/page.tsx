@@ -87,7 +87,7 @@ export default async function HowQuestionsAreReviewedPage() {
                   rel="noopener noreferrer"
                   className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--color-accent)] hover:underline"
                 >
-                  Official source
+                  {plan.linkLabel}
                 </a>
               </li>
             ))}

@@ -12,41 +12,49 @@ export const OFFICIAL_TEST_PLANS = [
     board: "NCLEX",
     detail: "NCSBN NCLEX-RN Test Plan — Client Needs categories and the Clinical Judgment Measurement Model.",
     href: "https://www.ncsbn.org/exams/testplans.page",
+    linkLabel: "NCSBN NCLEX test plans",
   },
   {
     board: "NAPLEX",
     detail: NAPLEX_OUTLINE_SOURCE,
     href: "https://nabp.pharmacy/wp-content/uploads/NAPLEX-Content-Outline.pdf",
+    linkLabel: "NABP NAPLEX content outline (PDF)",
   },
   {
     board: "USMLE Step 1",
     detail: "NBME and FSMB content outline and specifications.",
     href: USMLE_OFFICIAL_SOURCES.step1,
+    linkLabel: "USMLE Step 1 content outline",
   },
   {
     board: "USMLE Step 2 CK",
     detail: "NBME and FSMB content outline and specifications.",
     href: USMLE_OFFICIAL_SOURCES.step2,
+    linkLabel: "USMLE Step 2 CK content outline",
   },
   {
     board: "USMLE Step 3",
     detail: "NBME and FSMB content outline and specifications.",
     href: USMLE_OFFICIAL_SOURCES.step3,
+    linkLabel: "USMLE Step 3 content outline",
   },
   {
     board: "AANP FNP",
     detail: AANP_FNP_BLUEPRINT_SOURCE,
     href: "https://www.aanpcert.org/certs/fnp",
+    linkLabel: "AANPCB FNP content outline",
   },
   {
     board: "PANCE",
     detail: "NCCPA PANCE content blueprint — task areas and organ systems.",
     href: "https://www.nccpa.net/pance-content-blueprint/",
+    linkLabel: "NCCPA PANCE content blueprint",
   },
   {
     board: "NPTE-PT",
     detail: NPTE_PT_BLUEPRINT_SOURCE,
     href: "https://www.fsbpt.org/FreeResources/NPTEDevelopment.aspx",
+    linkLabel: "FSBPT NPTE-PT test content outline",
   },
 ] as const;
 
