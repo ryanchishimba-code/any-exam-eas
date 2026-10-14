@@ -211,12 +211,12 @@ const nextConfig: NextConfig = {
       {
         source: "/npte",
         destination: "/npte-pt",
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: "/blog/strategies",
         destination: "/blog/nclex-study-plan-rn-pn",
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: "/resources",
@@ -226,7 +226,7 @@ const nextConfig: NextConfig = {
       {
         source: "/feedback",
         destination: "/contact",
-        permanent: true,
+        statusCode: 301,
       },
       {
         source: "/methodology",
