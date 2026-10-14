@@ -16,7 +16,7 @@ export async function createFeedback(
       email,
       category: input.category,
       message: input.message.trim(),
-      rating: input.rating ?? 0,
+      rating: input.rating ?? null,
       userId: opts?.userId ?? null,
       ipHash: hashIp(opts?.req),
       userAgent: getUserAgent(opts?.req) ?? null,
@@ -33,7 +33,7 @@ function mapRow(row: {
   email: string | null;
   category: string;
   message: string;
-  rating: number;
+  rating: number | null;
   status: string;
   userId: string | null;
   createdAt: Date;
@@ -58,9 +58,15 @@ function orderBy(sort: FeedbackSort) {
     case "oldest":
       return { createdAt: "asc" as const };
     case "rating_high":
-      return [{ rating: "desc" as const }, { createdAt: "desc" as const }];
+      return [
+        { rating: { sort: "desc" as const, nulls: "last" as const } },
+        { createdAt: "desc" as const },
+      ];
     case "rating_low":
-      return [{ rating: "asc" as const }, { createdAt: "desc" as const }];
+      return [
+        { rating: { sort: "asc" as const, nulls: "last" as const } },
+        { createdAt: "desc" as const },
+      ];
     case "newest":
     default:
       return { createdAt: "desc" as const };
@@ -164,12 +170,15 @@ export async function getFeedbackTrends(
     orderBy: { createdAt: "asc" },
   });
 
-  const byDay = new Map<string, { count: number; sum: number }>();
+  const byDay = new Map<string, { count: number; rated: number; sum: number }>();
   for (const r of rows) {
     const date = r.createdAt.toISOString().slice(0, 10);
-    const entry = byDay.get(date) ?? { count: 0, sum: 0 };
+    const entry = byDay.get(date) ?? { count: 0, rated: 0, sum: 0 };
     entry.count += 1;
-    entry.sum += r.rating;
+    if (r.rating != null) {
+      entry.rated += 1;
+      entry.sum += r.rating;
+    }
     byDay.set(date, entry);
   }
 
@@ -177,7 +186,7 @@ export async function getFeedbackTrends(
     .map(([date, v]) => ({
       date,
       count: v.count,
-      avgRating: v.count ? Math.round((v.sum / v.count) * 10) / 10 : 0,
+      avgRating: v.rated ? Math.round((v.sum / v.rated) * 10) / 10 : 0,
     }))
     .sort((a, b) => a.date.localeCompare(b.date));
 }

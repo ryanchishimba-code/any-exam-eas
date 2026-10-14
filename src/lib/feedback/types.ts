@@ -22,7 +22,7 @@ export type FeedbackListItem = {
   email: string | null;
   category: string;
   message: string;
-  rating: number;
+  rating: number | null;
   status: FeedbackStatus;
   userId: string | null;
   createdAt: string;
