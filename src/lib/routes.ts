@@ -37,7 +37,8 @@ export const ROUTES = {
   compare: "/compare",
   employers: "/employers",
   pricing: "/pricing",
-  feedback: "/feedback",
+  /** Public contact form. `/feedback` 301s here. */
+  feedback: "/contact",
   community: "/community",
   settings: "/settings",
   drugs300: "/study/drugs300",

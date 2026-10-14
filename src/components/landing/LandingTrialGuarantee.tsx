@@ -124,7 +124,7 @@ export function LandingTrialGuarantee() {
             </p>
           </div>
           <Link
-            href="/feedback"
+            href="/contact"
             className="mt-3 shrink-0 rounded-full border border-[color-mix(in_srgb,var(--color-accent)_40%,transparent)] bg-[var(--color-surface-elevated)] px-4 py-2 text-xs font-bold text-[var(--color-accent)] transition hover:bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-surface-elevated))] sm:mt-0"
           >
             Contact support →

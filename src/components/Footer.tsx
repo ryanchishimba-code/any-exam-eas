@@ -13,7 +13,7 @@ const EXPLORE_LINKS = [
   { href: ROUTES.faq, label: "FAQ" },
   { href: ROUTES.about, label: "About" },
   { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
-  { href: ROUTES.feedback, label: "Feedback" },
+  { href: ROUTES.contact, label: "Contact" },
 ] as const;
 
 const LEGAL_LINKS = [
