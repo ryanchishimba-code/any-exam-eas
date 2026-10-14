@@ -14,6 +14,7 @@ import {
   DEFAULT_OG_IMAGE_HEIGHT,
   DEFAULT_OG_IMAGE_PATH,
   DEFAULT_OG_IMAGE_WIDTH,
+  dedupeKeywords,
   getSiteUrl,
 } from "@/lib/seo";
 import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
@@ -88,7 +89,7 @@ export function buildExamMetadata(
   const path = examMarketingPath(key);
   return {
     ...baseOpenGraph(config.metaTitle, config.metaDescription, path, { absoluteTitle: true }),
-    keywords: config.keywords,
+    keywords: dedupeKeywords(config.keywords),
     authors: [{ name: SITE_NAME, url: getSiteUrl() }],
     category: "education",
   };
@@ -143,7 +144,7 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
   const path = `/resources/${article.slug}`;
   return {
     ...baseOpenGraph(article.title, article.metaDescription, path, { absoluteTitle: true }),
-    keywords: article.keywords,
+    keywords: dedupeKeywords(article.keywords),
   };
 }
 
@@ -359,7 +360,7 @@ export function buildArticleJsonLd(article: ResourceArticle) {
         },
         mainEntityOfPage: { "@type": "WebPage", "@id": url },
         inLanguage: "en-US",
-        keywords: article.keywords.join(", "),
+        keywords: dedupeKeywords(article.keywords).join(", "),
       },
     ],
   };

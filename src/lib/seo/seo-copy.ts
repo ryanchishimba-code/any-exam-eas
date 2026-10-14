@@ -47,7 +47,6 @@ export const SEO_KEYWORD_CLUSTERS = {
     "USMLE practice questions",
     "USMLE Step 2 CK Qbank",
     "UWorld USMLE alternative",
-    "Step 1 practice questions 2026",
   ],
   multiExam: [
     "one subscription six exams",

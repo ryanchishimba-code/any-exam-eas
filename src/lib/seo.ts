@@ -64,7 +64,21 @@ import { SEO_KEYWORD_CLUSTERS, seoPlatformPitch } from "@/lib/seo/seo-copy";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 
-const HOME_KEYWORDS = [
+/** Case-insensitive keyword dedupe. First spelling wins. */
+export function dedupeKeywords(keywords: readonly string[]): string[] {
+  const seen = new Set<string>();
+  const unique: string[] = [];
+  for (const keyword of keywords) {
+    const trimmed = keyword.trim();
+    const key = trimmed.toLowerCase();
+    if (!trimmed || seen.has(key)) continue;
+    seen.add(key);
+    unique.push(trimmed);
+  }
+  return unique;
+}
+
+const HOME_KEYWORDS = dedupeKeywords([
   "NCLEX question bank",
   "NCLEX practice questions",
   "USMLE question bank",
@@ -79,7 +93,7 @@ const HOME_KEYWORDS = [
   "QA-gated question bank",
   "one subscription six exams",
   "AnyExamEasy",
-];
+]);
 
 export function buildHomeMetadata(
   totalQuestionsLabel?: string,
@@ -102,8 +116,10 @@ export function buildHomeMetadata(
   return {
     title: { absolute: title },
     description,
-    keywords: HOME_KEYWORDS.filter(
-      (keyword) => scrubPublicFormatCopy(keyword, nclexFormats ?? null) === keyword
+    keywords: dedupeKeywords(
+      HOME_KEYWORDS.filter(
+        (keyword) => scrubPublicFormatCopy(keyword, nclexFormats ?? null) === keyword
+      )
     ),
     authors: [{ name: SITE_NAME, url }],
     creator: LEGAL_ENTITY.companyName,

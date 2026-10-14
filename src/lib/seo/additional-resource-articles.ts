@@ -235,11 +235,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       "Step 1 Qbank guide — mechanisms, pathology, biostatistics, and systems integration with Roadmap, Deep Dives, and Full Exams on one multi-exam plan.",
     examTags: ["usmle"],
     primaryExam: "usmle",
-    keywords: [
-      "USMLE Step 1 practice questions 2026",
-      "Step 1 question bank",
-      "USMLE Step 1 prep",
-    ],
+    keywords: ["Step 1 question bank", "USMLE Step 1 prep"],
     sections: [
       {
         heading: "What high-yield Step 1 items test",
