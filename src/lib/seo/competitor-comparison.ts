@@ -120,7 +120,7 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
  * Competitor strengths above describe *their* products, not ours.
  */
 export const COMPARE_HONESTY_DISCLAIMER =
-  "We do not claim UWorld parity, publish unverified pass rates, or guarantee board outcomes. Competitor pricing is from public listings and may change. Not affiliated with UWorld, Archer Review, Kaplan, AMBOSS, or RxPrep.";
+  "We do not claim UWorld parity, publish unverified pass rates, or guarantee board outcomes. Competitor pricing is from public listings and may change. Not affiliated with UWorld, Archer Review, Kaplan, or RxPrep.";
 
 /** When a dedicated competitor is the better fit — shown on landing + /compare. */
 export const COMPETITOR_MAY_WIN: string[] = [
@@ -143,7 +143,7 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
   },
   {
     feature: "Question volume",
-    anyExamEasy: "Active questions across six boards — the same count as the Qbank",
+    anyExamEasy: "The full active question bank across all six boards",
     competitor: "Often 2,000–4,500 per exam",
   },
   {
