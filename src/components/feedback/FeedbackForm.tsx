@@ -7,43 +7,12 @@ import { Button } from "@/components/ui/Button";
 import { FEEDBACK_CATEGORIES } from "@/lib/feedback/types";
 import { InlineError } from "@/components/ui/StatusMessage";
 
-function StarRating({
-  value,
-  onChange,
-}: {
-  value: number;
-  onChange: (n: number) => void;
-}) {
-  return (
-    <div className="flex gap-1" role="radiogroup" aria-label="Rating">
-      {[1, 2, 3, 4, 5].map((n) => (
-        <button
-          key={n}
-          type="button"
-          role="radio"
-          aria-checked={value === n}
-          aria-label={`${n} star${n === 1 ? "" : "s"}`}
-          onClick={() => onChange(n)}
-          className={`h-10 w-10 rounded-lg text-lg transition-colors ${
-            n <= value
-              ? "bg-[color-mix(in_srgb,var(--color-accent)_18%,transparent)] text-[var(--color-accent)]"
-              : "bg-[var(--color-surface)] text-[var(--color-ink-muted)] hover:text-[var(--color-accent)]"
-          }`}
-        >
-          ★
-        </button>
-      ))}
-    </div>
-  );
-}
-
 export function FeedbackForm() {
   const { data: session } = useSession();
   const [name, setName] = useState(session?.user?.name ?? "");
   const [email, setEmail] = useState(session?.user?.email ?? "");
   const [category, setCategory] = useState("");
   const [message, setMessage] = useState("");
-  const [rating, setRating] = useState(5);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -57,7 +26,7 @@ export function FeedbackForm() {
       const res = await fetch("/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, category, message, rating }),
+        body: JSON.stringify({ name, email, category, message }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error ?? "Submission failed.");
@@ -65,7 +34,6 @@ export function FeedbackForm() {
       setSuccess(true);
       setMessage("");
       setCategory("");
-      setRating(5);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -122,6 +90,9 @@ export function FeedbackForm() {
             autoComplete="email"
             maxLength={254}
           />
+          <span className="mt-2 block text-sm text-[var(--color-ink-muted)]">
+            Leave your email if you&apos;d like a reply
+          </span>
         </label>
       </div>
 
@@ -143,13 +114,6 @@ export function FeedbackForm() {
           ))}
         </select>
       </label>
-
-      <div>
-        <span className="apple-label">Rating</span>
-        <div className="mt-2">
-          <StarRating value={rating} onChange={setRating} />
-        </div>
-      </div>
 
       <label className="block text-sm">
         <span className="apple-label">Message</span>

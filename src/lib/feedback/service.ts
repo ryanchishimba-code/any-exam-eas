@@ -16,7 +16,7 @@ export async function createFeedback(
       email,
       category: input.category,
       message: input.message.trim(),
-      rating: input.rating,
+      rating: input.rating ?? 0,
       userId: opts?.userId ?? null,
       ipHash: hashIp(opts?.req),
       userAgent: getUserAgent(opts?.req) ?? null,
