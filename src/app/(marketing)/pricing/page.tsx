@@ -26,9 +26,21 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const STUDY_PATH = [
-  { icon: Map, title: "Roadmap" },
-  { icon: BookOpen, title: "Deep Dive" },
-  { icon: Timer, title: "Full Exam" },
+  {
+    icon: Map,
+    title: "Roadmap",
+    line: "A personalized study plan mapped to your exam's official blueprint.",
+  },
+  {
+    icon: BookOpen,
+    title: "Deep Dive",
+    line: "Structured review modules you open from missed questions.",
+  },
+  {
+    icon: Timer,
+    title: "Full Exam",
+    line: "Timed, full-length practice exams with board-day pacing.",
+  },
 ] as const;
 
 const PricingQueryNotices = dynamic(() =>
@@ -75,6 +87,7 @@ export default async function PricingPage() {
                 <step.icon className="h-3.5 w-3.5" aria-hidden />
                 {String(index + 1).padStart(2, "0")} {step.title}
               </p>
+              <p className="mt-2 text-sm leading-snug text-[var(--color-ink-muted)]">{step.line}</p>
             </li>
           ))}
         </ol>
