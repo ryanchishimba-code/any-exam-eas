@@ -8,16 +8,23 @@
  * This path is `unstable_cache` only. It must not call the Upstash REST
  * client: that fetch is `cache: "no-store"` and turns an ISR page dynamic
  * during revalidation. The bank-counts API reads this same function.
+ * A failed count read returns the last good counts and is cached, so
+ * revalidation finishes instead of leaving the page STALE.
  */
 import { unstable_cache } from "next/cache";
 import { formatRoundedDownQuestionCount } from "@/lib/counts";
-import { DbUnavailableError } from "@/lib/db-resilience";
+import { emptyActiveInventory } from "@/lib/inventory/active-questions";
 import {
   ACTIVE_INVENTORY_CACHE_TAG,
   ACTIVE_INVENTORY_STAMP_TTL_SECONDS,
 } from "@/lib/inventory/active-inventory-cache";
 import {
+  readLastGoodBankStats,
+  rememberLastGoodBankStats,
+} from "@/lib/marketing/last-good-bank-stats";
+import {
   buildLandingBankCountsDisplay,
+  emptyQuestionBankCountsSnapshot,
   getCachedBankStatsBundle,
   type BankStatsBundle,
   type BankStatsCacheOptions,
@@ -43,40 +50,53 @@ export function staticQuestionCountLabel(total: number): string {
   return formatRoundedDownQuestionCount(total);
 }
 
-class DegradedIsrBankStatsError extends DbUnavailableError {
-  readonly bundle: BankStatsBundle;
-
-  constructor(bundle: BankStatsBundle) {
-    super("bank counts degraded");
-    this.name = "DegradedIsrBankStatsError";
-    this.bundle = bundle;
-  }
+function degradedIsrBundle(): BankStatsBundle {
+  return {
+    inventory: emptyActiveInventory(true),
+    snapshot: emptyQuestionBankCountsSnapshot(true),
+  };
 }
 
 async function loadIsrBankStats(): Promise<BankStatsBundle> {
-  const bundle = await getCachedBankStatsBundle({ dynamic: false });
-  if (bundle.inventory.degraded || bundle.snapshot.degraded) {
-    throw new DegradedIsrBankStatsError(bundle);
+  try {
+    const bundle = await getCachedBankStatsBundle({ dynamic: false });
+    if (!bundle.inventory.degraded && !bundle.snapshot.degraded) {
+      rememberLastGoodBankStats(bundle);
+      return bundle;
+    }
+    const last = readLastGoodBankStats();
+    if (last) {
+      console.error("[marketing] question-count lookup failed; serving last good counts");
+      return last;
+    }
+    console.error(
+      "[marketing] question-count lookup failed; caching the degraded read so ISR does not retry"
+    );
+    return bundle;
+  } catch (error) {
+    const last = readLastGoodBankStats();
+    if (last) {
+      console.error("[marketing] question-count lookup failed; serving last good counts", error);
+      return last;
+    }
+    console.error("[marketing] question-count lookup failed:", error);
+    return degradedIsrBundle();
   }
-  return bundle;
 }
 
 /**
  * Next data cache for statically rendered pages. Revalidate matches the
- * marketing ISR window. A degraded read is not stored.
+ * marketing ISR window. A failed lookup returns the last good counts, or a
+ * degraded bundle, and that result is stored. Throwing here is not cached,
+ * so every revalidation would query again and the page would stay STALE.
  */
-const readIsrBankStats = unstable_cache(loadIsrBankStats, ["public-bank-stats-isr-v1"], {
+const readIsrBankStats = unstable_cache(loadIsrBankStats, ["public-bank-stats-isr-v2"], {
   revalidate: ACTIVE_INVENTORY_STAMP_TTL_SECONDS,
   tags: [ACTIVE_INVENTORY_CACHE_TAG],
 });
 
 export async function getIsrBankStatsBundle(): Promise<BankStatsBundle> {
-  try {
-    return await readIsrBankStats();
-  } catch (error) {
-    if (error instanceof DegradedIsrBankStatsError) return error.bundle;
-    throw error;
-  }
+  return readIsrBankStats();
 }
 
 /**

@@ -13,6 +13,56 @@ const isProd = process.env.NODE_ENV === "production";
  */
 const devDeploymentId = !isProd ? `dev-${Date.now()}` : undefined;
 
+/**
+ * Next 15.5 still copies `polyfills-[hash].js` (the legacy nomodule chunk,
+ * about 113 KB) into every client build. A modern browserslist stops SWC
+ * from downleveling, and this plugin deletes that asset before the build
+ * manifest is written so the page does not reference it.
+ */
+function dropLegacyPolyfills(webpack: {
+  Compilation: { PROCESS_ASSETS_STAGE_ADDITIONS: number };
+}) {
+  return new (class DropLegacyPolyfillsPlugin {
+    apply(compiler: {
+      hooks: {
+        thisCompilation: {
+          tap: (
+            name: string,
+            fn: (compilation: {
+              hooks: {
+                processAssets: {
+                  tap: (
+                    options: { name: string; stage: number },
+                    callback: () => void
+                  ) => void;
+                };
+              };
+              getAssets: () => Array<{ name: string }>;
+              deleteAsset: (name: string) => void;
+            }) => void
+          ) => void;
+        };
+      };
+    }) {
+      compiler.hooks.thisCompilation.tap("DropLegacyPolyfills", (compilation) => {
+        compilation.hooks.processAssets.tap(
+          {
+            name: "DropLegacyPolyfills",
+            stage: webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONS,
+          },
+          () => {
+            for (const asset of compilation.getAssets()) {
+              if (/(^|\/)polyfills(?:-[^/]+)?\.js$/.test(asset.name)) {
+                compilation.deleteAsset(asset.name);
+              }
+            }
+          }
+        );
+      });
+    }
+  })();
+}
+
 const nextConfig: NextConfig = {
   // Streaming metadata lands after </head> for normal browsers, so Lighthouse
   // reports a missing description. Block metadata for every user agent.
@@ -49,14 +99,14 @@ const nextConfig: NextConfig = {
       "three",
     ],
   },
-  ...(onVercel
-    ? {
-        webpack: (config) => {
-          config.parallelism = 1;
-          return config;
-        },
-      }
-    : {}),
+  webpack: (config, { webpack, isServer }) => {
+    if (onVercel) config.parallelism = 1;
+    if (!isServer) {
+      config.plugins ??= [];
+      config.plugins.push(dropLegacyPolyfills(webpack));
+    }
+    return config;
+  },
   images: {
     remotePatterns: [],
     formats: ["image/avif", "image/webp"],

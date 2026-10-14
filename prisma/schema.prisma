@@ -1913,3 +1913,27 @@ model NgnItemReview {
   @@index([itemId, itemVersion], map: "ngn_item_review_item_idx")
   @@map("ngn_item_review")
 }
+
+/// Grouped active-question counts. The sync-question-bank cron replaces these
+/// rows. Page reads must not recompute the live group-by.
+model ActiveInventoryCount {
+  fieldId     String
+  subjectId   String   @default("")
+  clientNeeds String   @default("")
+  itemType    String   @default("mcq")
+  count       Int
+  refreshedAt DateTime
+
+  @@id([fieldId, subjectId, clientNeeds, itemType])
+  @@map("ActiveInventoryCount")
+}
+
+/// One row (id = 1) with the published total and latest edit from the same refresh.
+model ActiveInventoryStampRow {
+  id          Int      @id
+  published   Int
+  touchedAt   DateTime?
+  refreshedAt DateTime
+
+  @@map("ActiveInventoryStampRow")
+}

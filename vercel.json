@@ -1,4 +1,5 @@
 {
+  "regions": ["iad1"],
   "buildCommand": "npm run vercel-build",
   "installCommand": "npm ci && rm -rf .next/cache",
   "crons": [

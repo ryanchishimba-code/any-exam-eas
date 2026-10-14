@@ -1,23 +1,23 @@
 import { unstable_cache, unstable_noStore as noStore } from "next/cache";
 import { connection } from "next/server";
-import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
-import { sqlQuery } from "@/lib/db";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
-import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import {
   ACTIVE_INVENTORY_CACHE_KEY,
   ACTIVE_INVENTORY_CACHE_TAG,
   ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
   ACTIVE_INVENTORY_STAMP_CACHE_KEY,
   ACTIVE_INVENTORY_STAMP_TTL_SECONDS,
-  BANK_COUNTS_QUERY_TIMEOUT_MS,
 } from "@/lib/inventory/active-inventory-cache";
 import { readActiveInventoryStampKey } from "@/lib/inventory/active-inventory-stamp";
 import {
   fetchActiveInventoryFromDb,
   type ActiveQuestionInventory,
 } from "@/lib/inventory/active-questions";
+import {
+  readLastGoodBankStats,
+  rememberLastGoodBankStats,
+} from "@/lib/marketing/last-good-bank-stats";
 import type { ExamRouteSlug } from "@/lib/routes";
 import {
   boardQuestionUnits,
@@ -99,7 +99,7 @@ function emptyFieldCounts(fieldId: ExamFieldId): FieldQuestionBankCounts {
   return { fieldId, total: 0, active: 0, served: 0 };
 }
 
-function buildEmptySnapshot(degraded: boolean): QuestionBankCountsSnapshot {
+export function emptyQuestionBankCountsSnapshot(degraded: boolean): QuestionBankCountsSnapshot {
   const fields = Object.fromEntries(
     EXAM_FIELD_IDS.map((fieldId) => [fieldId, emptyFieldCounts(fieldId)])
   ) as Record<ExamFieldId, FieldQuestionBankCounts>;
@@ -109,90 +109,6 @@ function buildEmptySnapshot(degraded: boolean): QuestionBankCountsSnapshot {
     totals: { total: 0, active: 0, served: 0 },
     updatedAt: new Date().toISOString(),
     degraded,
-  };
-}
-
-async function countQuestionBankByField(whereSql: string): Promise<Map<string, number>> {
-  const rows = await sqlQuery<Array<{ fieldId: string; count: number }>>(
-    `
-    SELECT "fieldId", COUNT(*)::int AS count
-    FROM "QuestionBankItem"
-    ${whereSql}
-    GROUP BY "fieldId"
-    `,
-    [],
-    { timeoutMs: BANK_COUNTS_QUERY_TIMEOUT_MS }
-  );
-  return new Map((rows ?? []).map((row) => [row.fieldId, Number(row.count)]));
-}
-
-/**
- * Fallback field totals when the active-inventory query is degraded.
- * Neon HTTP, one attempt. The previous Prisma groupBy opened a pooled
- * connection after the HTTP read had already timed out.
- */
-async function fetchQuestionBankCountsFromDb(): Promise<QuestionBankCountsSnapshot> {
-  const [totalByField, activeByField, servedByField] = await Promise.all([
-    countQuestionBankByField(""),
-    countQuestionBankByField("WHERE active = true"),
-    countQuestionBankByField(
-      `
-      WHERE active = true
-        AND "qaPassed" = true
-        AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
-        ${studentEligibleAndSql()}
-      `
-    ),
-  ]);
-
-  const sumField = (counts: Map<string, number>) =>
-    [...counts.values()].reduce((acc, count) => acc + count, 0);
-
-  const usmleTotals = USMLE_FIELD_IDS.reduce(
-    (acc, stepId) => ({
-      total: acc.total + (totalByField.get(stepId) ?? 0),
-      active: acc.active + (activeByField.get(stepId) ?? 0),
-      served: acc.served + (servedByField.get(stepId) ?? 0),
-    }),
-    { total: 0, active: 0, served: 0 }
-  );
-
-  const fields = Object.fromEntries(
-    EXAM_FIELD_IDS.map((fieldId) => {
-      if (fieldId === "usmle-step-2") {
-        return [
-          fieldId,
-          {
-            fieldId,
-            total: usmleTotals.total,
-            active: usmleTotals.active,
-            served: usmleTotals.served,
-          },
-        ];
-      }
-      return [
-        fieldId,
-        {
-          fieldId,
-          total: totalByField.get(fieldId) ?? 0,
-          active: activeByField.get(fieldId) ?? 0,
-          served: servedByField.get(fieldId) ?? 0,
-        },
-      ];
-    })
-  ) as Record<ExamFieldId, FieldQuestionBankCounts>;
-
-  const totals = {
-    total: sumField(totalByField),
-    active: sumField(activeByField),
-    served: sumField(servedByField),
-  };
-
-  return {
-    fields,
-    totals,
-    updatedAt: new Date().toISOString(),
-    degraded: false,
   };
 }
 
@@ -206,28 +122,39 @@ export type BankStatsBundle = {
   staleAgeMs?: number;
 };
 
+function bundleFromInventory(
+  inventory: ActiveQuestionInventory,
+  clinical: Partial<Record<CountBoardSlug, ClinicalQuestionExtra>>
+): BankStatsBundle {
+  return { inventory, snapshot: snapshotFromActiveInventory(inventory, clinical) };
+}
+
+function failedCountBundle(inventory: ActiveQuestionInventory): BankStatsBundle {
+  const last = readLastGoodBankStats();
+  if (last) {
+    console.error("[marketing/question-bank-counts] lookup failed; serving last good counts");
+    return last;
+  }
+  return { inventory, snapshot: emptyQuestionBankCountsSnapshot(true) };
+}
+
 /**
- * Prefer the active-question inventory so marketing totals match the Qbank.
- * The older grouped count remains only when that inventory lookup is degraded.
+ * Prefer the stored active-question inventory so marketing totals match the Qbank.
+ * A failed read serves the last good snapshot. It does not run the live group-by.
  */
 async function loadBankStatsBundle(): Promise<BankStatsBundle> {
   const inventory = await fetchActiveInventoryFromDb();
-  if (!inventory.degraded) {
-    let clinical: Partial<Record<CountBoardSlug, ClinicalQuestionExtra>> = {};
-    try {
-      clinical = await loadClinicalExtrasByBoard();
-    } catch (error) {
-      console.error("[marketing/question-bank-counts] clinical catalog failed:", error);
-      return { inventory, snapshot: buildEmptySnapshot(true) };
-    }
-    return { inventory, snapshot: snapshotFromActiveInventory(inventory, clinical) };
-  }
+  if (inventory.degraded) return failedCountBundle(inventory);
+  let clinical: Partial<Record<CountBoardSlug, ClinicalQuestionExtra>> = {};
   try {
-    return { inventory, snapshot: await fetchQuestionBankCountsFromDb() };
+    clinical = await loadClinicalExtrasByBoard();
   } catch (error) {
-    console.error("[marketing/question-bank-counts] lookup failed:", error);
-    return { inventory, snapshot: buildEmptySnapshot(true) };
+    console.error("[marketing/question-bank-counts] clinical catalog failed:", error);
+    return failedCountBundle(inventory);
   }
+  const bundle = bundleFromInventory(inventory, clinical);
+  rememberLastGoodBankStats(bundle);
+  return bundle;
 }
 
 /** Live question bank counts grouped by exam field — always fetched at request time. */
