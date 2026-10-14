@@ -13,6 +13,7 @@ import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { landingTrialHrefForExam } from "@/lib/landing/content";
 import { getSiteUrl } from "@/lib/seo";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { DailyInboxCapture } from "@/components/marketing/DailyInboxCapture";
 import type { ExamSlug } from "@/types/edtech";
 
 /**
@@ -52,6 +53,7 @@ export default function DailyHubPage() {
           One free board-style item per exam, every day. No account required to try — share
           with classmates and start a free trial when you&apos;re ready.
         </p>
+        <DailyInboxCapture />
         <p className="aee-qotd-hub__date">{formatQotdDisplayDate(today)}</p>
 
         <section className="aee-qotd-hub__featured" aria-labelledby="featured-qotd">
