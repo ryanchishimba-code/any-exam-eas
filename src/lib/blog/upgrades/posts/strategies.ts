@@ -1,5 +1,4 @@
 import { a, faq, h2, h3, ol, p, readMinutes, table, ul } from "@/lib/blog/upgrades/html";
-import { trialClose } from "@/lib/blog/upgrades/offer";
 import type { BlogUpgrade } from "@/lib/blog/upgrades/types";
 
 const RN_PLAN = "https://ncsbn.org/public-files/2026_RN_Test%20Plan_English-F.pdf";
@@ -121,8 +120,6 @@ const content = [
   p(
     `Your nursing regulatory body releases the result. A prep company cannot. Quick-result services, where Pearson offers them, are still not the license.`
   ),
-  trialClose(`Practice the cases in the same formats you just read about.`),
-
   h2("Sources"),
   ul([
     `${a(RN_PLAN, "NCSBN, 2026 NCLEX-RN Test Plan", true)} for length, the 52 / 18 / 15 minimum-length mix, Client Needs ranges, and the three case studies.`,

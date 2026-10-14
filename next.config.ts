@@ -214,6 +214,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/blog/strategies",
+        destination: "/blog/nclex-study-plan-rn-pn",
+        permanent: true,
+      },
+      {
         source: "/resources",
         destination: "/toolkit",
         permanent: true,

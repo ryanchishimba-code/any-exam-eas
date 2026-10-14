@@ -43,7 +43,11 @@ describe("blog upgrades", () => {
       );
       expect(post.metaDescription.length, post.slug).toBeLessThanOrEqual(SEO_DESC_MAX);
       expect(post.excerpt.length, post.slug).toBeLessThanOrEqual(400);
-      expect(post.content).toContain(TRIAL_OFFER);
+      if (post.slug === "strategies") {
+        expect(post.content).not.toContain("Try for free");
+      } else {
+        expect(post.content).toContain(TRIAL_OFFER);
+      }
       expect(post.content).toContain('class="aee-faq"');
       expect(extractBlogFaqs(post.content).length).toBeGreaterThanOrEqual(4);
       expect(wordsInHtml(post.content), post.slug).toBeGreaterThan(900);
