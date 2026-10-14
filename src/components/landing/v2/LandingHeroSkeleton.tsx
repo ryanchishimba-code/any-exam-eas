@@ -37,7 +37,7 @@ export function LandingHeroSkeleton({ bankCounts }: { bankCounts: LandingBankCou
               {formatTrialCtaLabel()}
               <ArrowRight className="h-5 w-5" aria-hidden />
             </a>
-            <a href="#try-a-question" className="aee-hero-beat__secondary">
+            <a href="/daily" className="aee-hero-beat__secondary">
               Try a free question
             </a>
           </div>

@@ -130,7 +130,7 @@ export function PublicHome({
           <LandingCta href={LANDING_TRIAL_HREF} ctaName="hero_trial" location="hero">
             Start free trial
           </LandingCta>
-          <Link href={`${examMarketingPath("nclex")}#try-questions`} className="home-hero__secondary">
+          <Link href="/daily" className="home-hero__secondary">
             Try a free question
           </Link>
         </div>
