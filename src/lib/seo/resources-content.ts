@@ -13,7 +13,6 @@ import {
 } from "@/lib/exam-prep/pance/content-outline";
 import {
   seoSixBoardTrialParagraph,
-  seoTrialHeading,
   seoTrialResourceParagraph,
   seoTrialTryNclexHeading,
 } from "@/lib/seo/trial-copy";
@@ -34,6 +33,8 @@ export type ResourceSection = {
   paragraphs?: string[];
   bullets?: string[];
   comparisonRows?: { feature: string; anyExamEasy: string; typicalQbank: string }[];
+  /** First column header for comparison tables (default: Feature). */
+  rowHeader?: string;
   /** Third column header for comparison tables (default: Typical QBank). */
   competitorLabel?: string;
 };
@@ -170,7 +171,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "Build a consistent daily question habit",
         paragraphs: [
           "Aim for 50–75 quality questions per day in the final month, mixing untimed review sets with timed blocks twice weekly.",
-          "Review every incorrect and flagged item the same day — rationales are where learning compounding happens.",
+          "Review every incorrect and flagged item the same day — rationales are where learning compounds.",
         ],
       },
       {
@@ -181,9 +182,10 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       },
       {
         heading: "4-week NCLEX first-attempt timeline",
+        rowHeader: "Week",
         comparisonRows: [
           { feature: "Week 1", anyExamEasy: "Diagnostic sets + Roadmap baseline", typicalQbank: "Untimed review blocks" },
-          { feature: "Week 2", anyExamEasy: "Weak Client Needs + NGN formats daily", typicalQbank: "Random mixed sets" },
+          { feature: "Week 2", anyExamEasy: "Weak Client Needs categories", typicalQbank: "Random mixed sets" },
           { feature: "Week 3", anyExamEasy: "Timed blocks + Spaced Repetition queue", typicalQbank: "Self-scheduled mocks" },
           { feature: "Week 4", anyExamEasy: "Full Exam mocks + Deep Dive on flagged items", typicalQbank: "Light review only" },
         ],
@@ -516,20 +518,39 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       "Stacking separate NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE subscriptions can cost thousands per year. One integrated platform changes the math.",
     sections: [
       {
-        heading: "What's included on every plan",
+        heading: "What's included with your trial and Pro",
         paragraphs: [
           "All six question banks, Roadmap, lab values, clinical calculators, Library, and Memory Cards.",
           "Pro adds Deep Dive modules, Full Exam simulations, advanced analytics, spaced repetition, unlimited mocks, and exportable notes.",
+          seoSixBoardTrialParagraph(),
         ],
-      },
-      {
-        heading: seoTrialHeading(),
-        paragraphs: [seoSixBoardTrialParagraph()],
       },
     ],
   }),
   ...ADDITIONAL_RESOURCE_ARTICLES,
 ];
+
+/** Minutes from the words on the page, at 200 words per minute. */
+export function articleReadingMinutes(article: ResourceArticle): number {
+  const words = [
+    article.intro,
+    ...article.sections.flatMap((section) => [
+      section.heading,
+      ...(section.paragraphs ?? []),
+      ...(section.bullets ?? []),
+      ...(section.comparisonRows ?? []).flatMap((row) => [
+        row.feature,
+        row.anyExamEasy,
+        row.typicalQbank,
+      ]),
+    ]),
+  ]
+    .join(" ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
 
 export function getResourceArticle(slug: string): ResourceArticle | undefined {
   return RESOURCE_ARTICLES.find((a) => a.slug === slug);
