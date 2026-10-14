@@ -61,7 +61,7 @@ export function ProBenefitsComparison({
           {heading}
         </h2>
         <p className="mt-3 text-lg text-[var(--color-ink-muted)]">
-          One plan with everything — all 6 boards, unlimited questions, Blueprint Roadmaps, Deep
+          One plan with everything — all 6 boards, unlimited questions, Roadmap, Deep
           Dives, Full Exams, and analytics.
         </p>
       </div>

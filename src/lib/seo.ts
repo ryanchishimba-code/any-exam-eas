@@ -64,7 +64,21 @@ import { SEO_KEYWORD_CLUSTERS, seoPlatformPitch } from "@/lib/seo/seo-copy";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 
-const HOME_KEYWORDS = [
+/** Case-insensitive keyword dedupe. First spelling wins. */
+export function dedupeKeywords(keywords: readonly string[]): string[] {
+  const seen = new Set<string>();
+  const unique: string[] = [];
+  for (const keyword of keywords) {
+    const trimmed = keyword.trim();
+    const key = trimmed.toLowerCase();
+    if (!trimmed || seen.has(key)) continue;
+    seen.add(key);
+    unique.push(trimmed);
+  }
+  return unique;
+}
+
+const HOME_KEYWORDS = dedupeKeywords([
   "NCLEX question bank",
   "NCLEX practice questions",
   "USMLE question bank",
@@ -79,7 +93,7 @@ const HOME_KEYWORDS = [
   "QA-gated question bank",
   "one subscription six exams",
   "AnyExamEasy",
-];
+]);
 
 export function buildHomeMetadata(
   totalQuestionsLabel?: string,
@@ -92,8 +106,8 @@ export function buildHomeMetadata(
   );
   const description = enforceMetaDescription(
     count
-      ? `${count} active questions with Blueprint Roadmaps & mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. ${formatTrialLabel()} · no payment method required.`
-      : `Blueprint Roadmaps and mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP and NPTE-PT. ${formatTrialLabel()} · no payment method required. One plan covers six boards.`,
+      ? `${count} active questions with Roadmap & mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. ${formatTrialLabel()} · no payment method required.`
+      : `Roadmap and mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP and NPTE-PT. ${formatTrialLabel()} · no payment method required. One plan covers six boards.`,
     "home"
   );
   const url = getSiteUrl();
@@ -102,8 +116,10 @@ export function buildHomeMetadata(
   return {
     title: { absolute: title },
     description,
-    keywords: HOME_KEYWORDS.filter(
-      (keyword) => scrubPublicFormatCopy(keyword, nclexFormats ?? null) === keyword
+    keywords: dedupeKeywords(
+      HOME_KEYWORDS.filter(
+        (keyword) => scrubPublicFormatCopy(keyword, nclexFormats ?? null) === keyword
+      )
     ),
     authors: [{ name: SITE_NAME, url }],
     creator: LEGAL_ENTITY.companyName,
@@ -155,7 +171,7 @@ export function buildRootMetadata(): Metadata {
       default: `${SITE_NAME} — Board Exam Study Support`,
       template: `%s | ${SITE_NAME}`,
     },
-    description: `USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT study support with integrated Roadmaps and adaptive practice.`,
+    description: `USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT study support with integrated Roadmap and adaptive practice.`,
     icons: {
       icon: [
         { url: "/favicon.svg", type: "image/svg+xml" },
@@ -239,7 +255,7 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
         "@type": "HowTo",
         name: "How to study for NCLEX, USMLE, or NAPLEX with AnyExamEasy",
         description:
-          "A blueprint-aligned study workflow using adaptive Roadmaps, Deep Dive review, and Full Exam simulations.",
+          "A blueprint-aligned study workflow using adaptive Roadmap, Deep Dive review, and Full Exam simulations.",
         step: [
           {
             "@type": "HowToStep",
@@ -250,7 +266,7 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
           {
             "@type": "HowToStep",
             position: 2,
-            name: "Follow your Blueprint Roadmap",
+            name: "Follow your Roadmap",
             text: "Complete daily question sets prioritized by weak blueprint categories surfaced in your Roadmap.",
           },
           {

@@ -2,13 +2,12 @@ import { TOP_500_DRUGS } from "@/lib/drugs300/catalog";
 import { getDrugClassMeta, type DrugClassId } from "@/lib/drugs300/drug-classes";
 import { drugs300ClassHref, drugs300DrugHref } from "@/lib/edtech/practice-links-core";
 import {
-  getNclexStudyPreset,
+  NCLEX_STUDY_PRESETS,
   nclexPresetPracticeHref,
 } from "@/lib/exam-prep/nclex/study-presets";
 import {
-  getUsmleStudyPreset,
+  USMLE_STUDY_PRESETS,
   usmlePresetPracticeHref,
-  type UsmleStudyPresetId,
 } from "@/lib/exam-prep/usmle/study-presets";
 import type { HighYieldTopic } from "@/types/edtech";
 
@@ -70,30 +69,30 @@ export function buildTopicPresetLinks(
   topic: HighYieldTopic
 ): TopicPresetLink[] {
   if (examSlug === "nclex") {
-    return (topic.relatedPresetIds ?? [])
-      .map((id) => {
-        const preset = getNclexStudyPreset(id as Parameters<typeof getNclexStudyPreset>[0]);
-        if (!preset) return null;
-        return {
-          id,
-          label: preset.title,
-          href: nclexPresetPracticeHref(examSlug, preset),
-        };
-      })
-      .filter((x): x is TopicPresetLink => x != null);
+    const links: TopicPresetLink[] = [];
+    for (const id of topic.relatedPresetIds ?? []) {
+      const preset = NCLEX_STUDY_PRESETS.find((entry) => entry.id === id);
+      if (!preset) continue;
+      links.push({
+        id: preset.id,
+        label: preset.title,
+        href: nclexPresetPracticeHref(examSlug, preset),
+      });
+    }
+    return links;
   }
   if (examSlug === "usmle") {
-    return (topic.relatedPresetIds ?? [])
-      .map((id) => {
-        const preset = getUsmleStudyPreset(id as UsmleStudyPresetId);
-        if (!preset) return null;
-        return {
-          id,
-          label: preset.title,
-          href: usmlePresetPracticeHref(examSlug, preset),
-        };
-      })
-      .filter((x): x is TopicPresetLink => x != null);
+    const links: TopicPresetLink[] = [];
+    for (const id of topic.relatedPresetIds ?? []) {
+      const preset = USMLE_STUDY_PRESETS.find((entry) => entry.id === id);
+      if (!preset) continue;
+      links.push({
+        id: preset.id,
+        label: preset.title,
+        href: usmlePresetPracticeHref(examSlug, preset),
+      });
+    }
+    return links;
   }
   return [];
 }

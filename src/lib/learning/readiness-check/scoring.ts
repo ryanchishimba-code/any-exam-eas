@@ -95,7 +95,7 @@ export function summarizeReadiness(tallies: AreaTally[]): ReadinessSummary {
     .map((row) => ({ areaId: row.areaId, label: row.label }));
 
   const overallLabel = READINESS_LEVEL_LABEL[overallLevel];
-  let line = overallLabel;
+  let line: string = overallLabel;
   if (areaCount === 0 || areasScored === 0) {
     line =
       "Not enough data yet. Each area needs at least 2 answered questions before it gets a level.";

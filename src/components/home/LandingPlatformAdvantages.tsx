@@ -19,9 +19,9 @@ export type PlatformAdvantage = {
 export const LANDING_PLATFORM_ADVANTAGES: PlatformAdvantage[] = [
  {
  icon: Map,
- title: "Exam Roadmaps",
+ title: "Roadmap",
  description:
- "Blueprint-aligned Roadmaps for each exam show where you stand and what to study next — category by category.",
+ "Blueprint-aligned Roadmap for each exam show where you stand and what to study next — category by category.",
  },
  {
  icon: GraduationCap,

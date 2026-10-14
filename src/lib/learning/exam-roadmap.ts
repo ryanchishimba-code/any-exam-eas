@@ -661,7 +661,7 @@ export function roadmapCategoryBankHref(
 ): string {
   const blueprint = getBlueprintForExamSlug(examSlug);
   const category = blueprint?.categories.find((c) => c.id === categoryId);
-  if (category) {
+  if (blueprint && category) {
     return topicNodePracticeHref(
       topicNodeFromBlueprintCategory(examSlug, category, {
         fieldId: blueprint.fieldId,

@@ -37,7 +37,7 @@ export function ResourceArticleSection({
             <thead>
               <tr className="border-b border-[var(--color-border)] bg-[var(--color-surface)]">
                 <th scope="col" className="px-4 py-3 font-semibold text-[var(--color-ink)]">
-                  Feature
+                  {section.rowHeader ?? "Feature"}
                 </th>
                 <th scope="col" className="px-4 py-3 font-semibold text-[var(--color-ink)]">
                   AnyExamEasy

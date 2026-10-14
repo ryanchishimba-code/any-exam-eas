@@ -10,7 +10,12 @@ import {
   buildArticleJsonLd,
   buildResourceArticleMetadata,
 } from "@/lib/seo/marketing-metadata";
-import { getResourceArticle, getArticlesForExam, RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
+import {
+  articleReadingMinutes,
+  getResourceArticle,
+  getArticlesForExam,
+  RESOURCE_ARTICLES,
+} from "@/lib/seo/resources-content";
 import { ResourceArticleSection } from "@/components/resources/ResourceArticleSection";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
@@ -19,6 +24,17 @@ import { seoResourcesCtaLine } from "@/lib/seo/trial-copy";
 import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 
 type Props = { params: Promise<{ slug: string }> };
+
+function formatResourceUpdated(iso: string): string {
+  const [year, month, day] = iso.split("-").map(Number);
+  if (!year || !month || !day) return iso;
+  return new Date(Date.UTC(year, month - 1, day)).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
 
 export function generateStaticParams() {
   return RESOURCE_ARTICLES.map((a) => ({ slug: a.slug }));
@@ -42,9 +58,14 @@ export default async function ResourceArticlePage({ params }: Props) {
     primaryExam && inventory && !inventory.degraded
       ? inventory.boards[primaryExam]?.formats ?? null
       : null;
-  const relatedArticles = primaryExam
-    ? getArticlesForExam(primaryExam).filter((a) => a.slug !== slug).slice(0, 4)
-    : [];
+  const relatedPool = primaryExam
+    ? getArticlesForExam(primaryExam)
+    : RESOURCE_ARTICLES.filter((item) =>
+        item.examTags.some((tag) => article.examTags.includes(tag))
+      );
+  const relatedArticles = relatedPool.filter((item) => item.slug !== slug).slice(0, 4);
+  const readingMinutes = articleReadingMinutes(article);
+  const updatedLabel = formatResourceUpdated(article.updatedAt);
 
   return (
     <>
@@ -63,11 +84,12 @@ export default async function ResourceArticlePage({ params }: Props) {
         <header className="mt-6">
           <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
             {article.examTags.map((t) => EXAM_SEO_CONFIG[t].shortName).join(" · ")} ·{" "}
-            {article.readingMinutes} min read
+            {readingMinutes} min read
           </p>
           <h1 className="mt-2 text-[clamp(1.75rem,4vw,2.5rem)] font-black leading-tight tracking-[-0.03em] text-[var(--color-ink)]">
             {article.title}
           </h1>
+          <p className="mt-3 text-sm text-[var(--color-ink-muted)]">Updated {updatedLabel}</p>
           <p className="mt-4 text-lg leading-relaxed text-[var(--color-ink-muted)]">{article.intro}</p>
         </header>
 

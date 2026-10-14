@@ -12,7 +12,7 @@ const content = [
     `You can prepare for the NCLEX without a several-hundred-dollar course if you study the official test plan, practice clinical judgment in short daily sets, and pay only for a question bank you will actually finish. Expensive does not mean complete. A focused plan and honest review of your misses will carry more of the work than another unused video library.`
   ),
   p(
-    `This guide is about cost and habits. For the exam format, the week-by-week schedule, and how bow-tie and trend items work, use the ${a("/blog/strategies", "NCLEX study plan for RN and PN candidates")}. If you are also looking at pharmacy or several boards on one bill, see ${a("/blog/spend-less-pass-easy", "what one subscription includes")}.`
+    `This guide is about cost and habits. For the exam format, the week-by-week schedule, and how bow-tie and trend items work, use the ${a("/blog/nclex-study-plan-rn-pn", "NCLEX study plan for RN and PN candidates")}. If you are also looking at pharmacy or several boards on one bill, see ${a("/blog/spend-less-pass-easy", "what one subscription includes")}.`
   ),
 
   h2("Start with what NCSBN already gives you"),
@@ -89,7 +89,7 @@ const content = [
 
   h2("Put the hours on the exam you are actually taking"),
   p(
-    `Open ${a("/nclex", "NCLEX prep")} and sort practice by Client Needs after the first diagnostic. The ${a("/blog/strategies", "study-plan article")} has the RN percentage ranges and a closer look at case studies. PN candidates should use the PN test plan for category names and ranges. Coordinated Care replaces Management of Care, and the bands are not identical. Do not study RN percentages if you are taking the PN.`
+    `Open ${a("/nclex", "NCLEX prep")} and sort practice by Client Needs after the first diagnostic. The ${a("/blog/nclex-study-plan-rn-pn", "study-plan article")} has the RN percentage ranges and a closer look at case studies. PN candidates should use the PN test plan for category names and ranges. Coordinated Care replaces Management of Care, and the bands are not identical. Do not study RN percentages if you are taking the PN.`
   ),
   trialClose(
     `When you want the cases and the error-log habit in one place, use the trial on the question bank.`

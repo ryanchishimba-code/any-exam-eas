@@ -23,7 +23,7 @@ export const submitFeedbackSchema = z.object({
     .trim()
     .min(10, "Message must be at least 10 characters.")
     .max(5000, "Message is too long (max 5000 characters)."),
-  rating: z.coerce.number().int().min(1).max(5),
+  rating: z.coerce.number().int().min(1).max(5).optional(),
 });
 
 export type SubmitFeedbackInput = z.infer<typeof submitFeedbackSchema>;

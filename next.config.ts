@@ -209,14 +209,24 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/npte",
+        destination: "/npte-pt",
+        statusCode: 301,
+      },
+      {
+        source: "/blog/strategies",
+        destination: "/blog/nclex-study-plan-rn-pn",
+        statusCode: 301,
+      },
+      {
         source: "/resources",
         destination: "/toolkit",
         permanent: true,
       },
       {
-        source: "/contact",
-        destination: "/feedback",
-        permanent: true,
+        source: "/feedback",
+        destination: "/contact",
+        statusCode: 301,
       },
       {
         source: "/methodology",

@@ -1,6 +1,16 @@
 export * from "./types";
 export * from "./content-outline";
-export * from "./practice-focus";
+export {
+  PANCE_FEATURED_DRILLS,
+  isPanceTaskAreaId,
+  parsePanceTaskCategoryParam,
+  getPanceTaskLabel,
+  getPanceTaskShortLabel,
+  panceTaskPracticeHref,
+  panceDiagnosisDrillHref,
+  sessionLabelWithTask,
+} from "./practice-focus";
+export type { PanceFeaturedDrill } from "./practice-focus";
 export * from "./blueprint-quota";
 export * from "./batch-diversity";
 export * from "./physician-educator-quality";

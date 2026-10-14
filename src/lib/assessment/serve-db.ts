@@ -28,7 +28,7 @@ import {
 import { readActiveInventoryStampKey } from "@/lib/inventory/active-inventory-stamp";
 import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
-import type { NgnItem, NgnReference, SourceRef } from "@/lib/assessment/types";
+import type { NgnReference, SourceRef } from "@/lib/assessment/types";
 
 function asRecord(value: unknown): Record<string, unknown> {
   if (value && typeof value === "object" && !Array.isArray(value)) return value as Record<string, unknown>;
@@ -327,7 +327,7 @@ export function keysForCatalog(catalog: PublishedCatalog): Set<string> {
   return new Set(servedItemKeys(catalog));
 }
 
-export async function findServedItem(itemId: string, version: number): Promise<NgnItem | null> {
+export async function findServedItem(itemId: string, version: number): Promise<ServeItem | null> {
   const row = await prisma.ngnItem.findUnique({
     where: { id_version: { id: itemId, version } },
   });

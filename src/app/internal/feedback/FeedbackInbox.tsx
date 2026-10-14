@@ -187,7 +187,9 @@ export default function FeedbackInbox({
                   <span className="rounded-full bg-black/[0.06] px-2 py-0.5">
                     {categoryLabel(item.category)}
                   </span>
-                  <span className="text-amber-600">{"★".repeat(item.rating)}</span>
+                  {item.rating != null ? (
+                    <span className="text-amber-600">{"★".repeat(item.rating)}</span>
+                  ) : null}
                   <span
                     className={
                       item.status === "resolved"

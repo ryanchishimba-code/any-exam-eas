@@ -225,7 +225,7 @@ export function ToolkitBackpackIllustration() {
               AnyExamEasy
             </text>
             <text x="72" y="120" textAnchor="middle" fill="#00b8ad" fontSize="8.5" fontWeight="600" fontFamily="system-ui, sans-serif">
-              Practice · Roadmaps · Confidence
+              Practice · Roadmap · Confidence
             </text>
             {/* Sparkles */}
             {!reduceMotion && (

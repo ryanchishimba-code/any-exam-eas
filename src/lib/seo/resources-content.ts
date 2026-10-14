@@ -13,7 +13,6 @@ import {
 } from "@/lib/exam-prep/pance/content-outline";
 import {
   seoSixBoardTrialParagraph,
-  seoTrialHeading,
   seoTrialResourceParagraph,
   seoTrialTryNclexHeading,
 } from "@/lib/seo/trial-copy";
@@ -34,6 +33,8 @@ export type ResourceSection = {
   paragraphs?: string[];
   bullets?: string[];
   comparisonRows?: { feature: string; anyExamEasy: string; typicalQbank: string }[];
+  /** First column header for comparison tables (default: Feature). */
+  rowHeader?: string;
   /** Third column header for comparison tables (default: Typical QBank). */
   competitorLabel?: string;
 };
@@ -73,7 +74,7 @@ export const RESOURCE_DOWNLOADS: ResourceDownload[] = [
     slug: "board-exam-weak-area-checklist",
     title: "Board Exam Weak-Area Checklist",
     description:
-      "Printable checklist to turn Blueprint Roadmap gaps into a weekly Deep Dive + Full Exam plan across NCLEX, USMLE, NAPLEX, and more.",
+      "Printable checklist to turn Roadmap gaps into a weekly Deep Dive + Full Exam plan across NCLEX, USMLE, NAPLEX, and more.",
     examTags: ["naplex", "nclex", "usmle", "pance", "aanp-fnp", "npte-pt"],
     signupHref: "/signup?plan=trial&tier=pro&utm_source=resources&utm_content=weak-area-checklist",
   },
@@ -170,7 +171,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "Build a consistent daily question habit",
         paragraphs: [
           "Aim for 50–75 quality questions per day in the final month, mixing untimed review sets with timed blocks twice weekly.",
-          "Review every incorrect and flagged item the same day — rationales are where learning compounding happens.",
+          "Review every incorrect and flagged item the same day — rationales are where learning compounds.",
         ],
       },
       {
@@ -181,9 +182,10 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       },
       {
         heading: "4-week NCLEX first-attempt timeline",
+        rowHeader: "Week",
         comparisonRows: [
           { feature: "Week 1", anyExamEasy: "Diagnostic sets + Roadmap baseline", typicalQbank: "Untimed review blocks" },
-          { feature: "Week 2", anyExamEasy: "Weak Client Needs + NGN formats daily", typicalQbank: "Random mixed sets" },
+          { feature: "Week 2", anyExamEasy: "Weak Client Needs categories", typicalQbank: "Random mixed sets" },
           { feature: "Week 3", anyExamEasy: "Timed blocks + Spaced Repetition queue", typicalQbank: "Self-scheduled mocks" },
           { feature: "Week 4", anyExamEasy: "Full Exam mocks + Deep Dive on flagged items", typicalQbank: "Light review only" },
         ],
@@ -192,7 +194,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "nclex-study-guide-roadmap",
-    title: "NCLEX Study Guide & Blueprint Roadmap (2026)",
+    title: "NCLEX Study Guide & Roadmap (2026)",
     metaDescription:
       "Use an NCLEX study guide tied to the NCSBN blueprint — Client Needs categories, NGN formats, and weekly Roadmap checkpoints.",
     examTags: ["nclex"],
@@ -228,7 +230,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "USMLE Qbank feature comparison",
         comparisonRows: [
           { feature: "Steps covered", anyExamEasy: "Step 1, Step 2 CK, Step 3", typicalQbank: "Often one step per plan" },
-          { feature: "Study path", anyExamEasy: "Adaptive Blueprint Roadmap per step", typicalQbank: "Performance charts" },
+          { feature: "Study path", anyExamEasy: "Roadmap per step", typicalQbank: "Performance charts" },
           { feature: "Miss review", anyExamEasy: "Deep Dive modules from missed vignettes", typicalQbank: "Static explanations" },
           { feature: "Exam-day rehearsal", anyExamEasy: "Timed Full Exam simulations", typicalQbank: "Mocks vary" },
         ],
@@ -274,7 +276,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "best-naplex-practice-questions-2026",
     title: "NAPLEX Practice Questions in 2026",
     metaDescription:
-      "NAPLEX prep in 2026: calculations, patient cases, and pharmacotherapy questions with a pharmacy blueprint Roadmap.",
+      "NAPLEX prep in 2026: calculations, patient cases, and pharmacotherapy questions with a pharmacy Roadmap.",
     examTags: ["naplex"],
     primaryExam: "naplex",
     keywords: ["NAPLEX practice questions 2026", "NAPLEX question bank"],
@@ -283,7 +285,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "Balance math and clinical cases",
         paragraphs: [
           "Split weekly study between calculation drills and case-based management — both are heavily represented on NAPLEX.",
-          "AnyExamEasy pairs NAPLEX practice with Blueprint Roadmaps, Deep Dive review on misses, and timed Full Exam blocks.",
+          "AnyExamEasy pairs NAPLEX practice with Roadmap, Deep Dive review on misses, and timed Full Exam blocks.",
         ],
       },
       {
@@ -360,7 +362,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "pance-study-guide-nccpa-blueprint",
-    title: "PANCE Study Guide — NCCPA Blueprint Roadmap (2026)",
+    title: "PANCE Study Guide — NCCPA Roadmap (2026)",
     metaDescription:
       "PANCE study guide aligned to the NCCPA task areas and organ-system weights — cardiovascular (13%), treatment tasks, and primary care across the lifespan.",
     examTags: ["pance"],
@@ -472,7 +474,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "npte-pt-study-guide-fsbpt-blueprint",
-    title: "NPTE Study Guide — FSBPT Blueprint Roadmap",
+    title: "NPTE Study Guide — FSBPT Roadmap",
     metaDescription:
       "NPTE-PT study guide mapped to FSBPT systems — musculoskeletal, neuromuscular, cardiopulmonary, and modalities.",
     examTags: ["npte-pt"],
@@ -508,7 +510,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "six-board-exams-one-subscription",
     title: "Six Board Exams, One Subscription — 2026 Guide",
     metaDescription:
-      "Why students switch from per-exam QBanks to AnyExamEasy — six licensing tracks, Roadmaps, Deep Dives, and one Pro plan.",
+      "Why students switch from per-exam QBanks to AnyExamEasy — six licensing tracks, Roadmap, Deep Dives, and one Pro plan.",
     examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
     keywords: ["board exam prep subscription", "UWorld alternative", "affordable board prep"],
     readingMinutes: 8,
@@ -516,20 +518,39 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       "Stacking separate NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE subscriptions can cost thousands per year. One integrated platform changes the math.",
     sections: [
       {
-        heading: "What's included on every plan",
+        heading: "What's included with your trial and Pro",
         paragraphs: [
-          "All six question banks, Blueprint Roadmaps, lab values, clinical calculators, Library, and Memory Cards.",
+          "All six question banks, Roadmap, lab values, clinical calculators, Library, and Memory Cards.",
           "Pro adds Deep Dive modules, Full Exam simulations, advanced analytics, spaced repetition, unlimited mocks, and exportable notes.",
+          seoSixBoardTrialParagraph(),
         ],
-      },
-      {
-        heading: seoTrialHeading(),
-        paragraphs: [seoSixBoardTrialParagraph()],
       },
     ],
   }),
   ...ADDITIONAL_RESOURCE_ARTICLES,
 ];
+
+/** Minutes from the words on the page, at 200 words per minute. */
+export function articleReadingMinutes(article: ResourceArticle): number {
+  const words = [
+    article.intro,
+    ...article.sections.flatMap((section) => [
+      section.heading,
+      ...(section.paragraphs ?? []),
+      ...(section.bullets ?? []),
+      ...(section.comparisonRows ?? []).flatMap((row) => [
+        row.feature,
+        row.anyExamEasy,
+        row.typicalQbank,
+      ]),
+    ]),
+  ]
+    .join(" ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
 
 export function getResourceArticle(slug: string): ResourceArticle | undefined {
   return RESOURCE_ARTICLES.find((a) => a.slug === slug);

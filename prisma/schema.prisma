@@ -1027,7 +1027,8 @@ model UserFeedback {
   email        String?
   category     String
   message      String
-  rating       Int
+  /// 1–5 when the form included a rating. Null when it did not.
+  rating       Int?
   status       String    @default("open") // open | resolved
   userId       String?
   ipHash       String?

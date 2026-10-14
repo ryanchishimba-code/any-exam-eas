@@ -56,7 +56,7 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     weaknesses: [
       "One exam per subscription — multi-board prep gets expensive fast",
       "Limited adaptive study path beyond performance stats",
-      "No shared Blueprint Roadmap / Deep Dive system across exams",
+      "No shared Roadmap / Deep Dive system across exams",
     ],
     bestFor: "Single-exam students who prioritize explanation depth and brand trust above all else",
   },
@@ -109,7 +109,7 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     weaknesses: [
       "Pharmacy-only — nursing and medical boards need separate subscriptions",
       "Premium course pricing ($999+) vs QBank-only tiers",
-      "No cross-specialty Roadmaps, Deep Dives, or Full Exam bundle",
+      "No cross-specialty Roadmap, Deep Dives, or Full Exam bundle",
     ],
     bestFor: "PharmD students who want the established NAPLEX brand and video course",
   },
@@ -120,7 +120,7 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
  * Competitor strengths above describe *their* products, not ours.
  */
 export const COMPARE_HONESTY_DISCLAIMER =
-  "We do not claim UWorld parity, publish unverified pass rates, or guarantee board outcomes. Competitor pricing is from public listings and may change. Not affiliated with UWorld, Archer Review, Kaplan, AMBOSS, or RxPrep.";
+  "We do not claim UWorld parity, publish unverified pass rates, or guarantee board outcomes. Competitor pricing is from public listings and may change. Not affiliated with UWorld, Archer Review, Kaplan, or RxPrep.";
 
 /** When a dedicated competitor is the better fit — shown on landing + /compare. */
 export const COMPETITOR_MAY_WIN: string[] = [
@@ -143,11 +143,11 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
   },
   {
     feature: "Question volume",
-    anyExamEasy: "Active questions across six boards — the same count as the Qbank",
+    anyExamEasy: "The full active question bank across all six boards",
     competitor: "Often 2,000–4,500 per exam",
   },
   {
-    feature: "Adaptive Blueprint Roadmap",
+    feature: "Roadmap",
     anyExamEasy: "Per-exam weak-area queue",
     competitor: "Performance stats; limited roadmap",
   },

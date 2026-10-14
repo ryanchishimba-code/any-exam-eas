@@ -12,10 +12,11 @@ import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 
 export type ExamSeoKey = ExamRouteSlug;
 
-/** URL slug → canonical exam key (e.g. /npte → npte-pt). */
-export const EXAM_SEO_SLUG_ALIASES: Record<string, ExamSeoKey> = {
-  npte: "npte-pt",
-};
+/**
+ * Extra marketing slugs that render the same hub.
+ * `/npte` is a 301 to `/npte-pt` in next.config, not a second page.
+ */
+export const EXAM_SEO_SLUG_ALIASES: Record<string, ExamSeoKey> = {};
 
 export const EXAM_SEO_KEYS: ExamSeoKey[] = [
   "nclex",
@@ -63,7 +64,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NCLEX",
     metaTitle: "NCLEX Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `NCLEX practice questions with NGN formats, Blueprint Roadmaps, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
+      `NCLEX practice questions with NGN formats, Roadmap, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
     keywords: [
       "NCLEX prep 2026",
       "NCLEX practice questions",
@@ -76,7 +77,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "NCLEX question bank",
       "UWorld NCLEX alternative",
       "NCLEX Qbank 2026",
-      "NCLEX blueprint roadmap",
+      "NCLEX Roadmap",
       "AnyExamEasy NCLEX",
     ],
     h1: "NCLEX Board Prep 2026 — Practice Questions & Clinical Judgment",
@@ -139,7 +140,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "USMLE",
     metaTitle: "USMLE Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `USMLE practice questions for Step 1, 2 CK & 3 with Roadmaps, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
+      `USMLE practice questions for Step 1, 2 CK & 3 with Roadmap, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
     keywords: [
       "USMLE practice questions",
       "USMLE Step 1 practice questions",
@@ -152,12 +153,12 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "USMLE clinical vignettes",
       "UWorld USMLE alternative",
       "USMLE Qbank 2026",
-      "USMLE blueprint roadmap",
+      "USMLE Roadmap",
       "AnyExamEasy USMLE",
     ],
     h1: "USMLE Step 1, Step 2 CK & Step 3 — all on one plan",
     heroSubline:
-      "Dedicated banks for every step — basic sciences, clinical vignettes, biostatistics, and CCS-style cases — with blueprint Roadmaps and Deep Dives on a single subscription.",
+      "Dedicated banks for every step — basic sciences, clinical vignettes, biostatistics, and CCS-style cases — with Roadmap and Deep Dives on a single subscription.",
     accentColor: EXAM_ACCENTS.usmle,
     blueprintLabel: "USMLE content outline (Step 1 · Step 2 CK · Step 3)",
     features: [
@@ -171,7 +172,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
         detail: "Build stamina with board-length sessions for Step 1, Step 2 CK, or Step 3 Day 1 MCQs.",
       },
       {
-        title: "Blueprint Roadmaps per step",
+        title: "Roadmap per step",
         detail: "Track readiness by official content category — switch between Step 1, 2, and 3 anytime.",
       },
     ],
@@ -182,14 +183,14 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       },
       {
         heading: "USMLE study roadmap",
-        body: "Follow blueprint-weighted Roadmaps for each step instead of mixing Step 1 biochemistry with Step 3 ethics in one session.",
+        body: "Follow blueprint-weighted Roadmap for each step instead of mixing Step 1 biochemistry with Step 3 ethics in one session.",
       },
     ],
     faqs: [
       {
         question: "Does AnyExamEasy cover all USMLE steps?",
         answer:
-          "Yes. One subscription includes dedicated Step 1, Step 2 CK, and Step 3 question banks with step-specific Roadmaps and timed practice.",
+          "Yes. One subscription includes dedicated Step 1, Step 2 CK, and Step 3 question banks with step-specific Roadmap and timed practice.",
       },
       {
         question: "How does pricing compare?",
@@ -216,7 +217,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NAPLEX",
     metaTitle: "NAPLEX Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `NAPLEX practice questions, calculations, Blueprint Roadmaps, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
+      `NAPLEX practice questions, calculations, Roadmap, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`,
     keywords: [
       "NAPLEX Qbank",
       "NAPLEX review 2026",
@@ -231,7 +232,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     ],
     h1: "NAPLEX Review 2026 — Calculations, Cases & Pharmacotherapy",
     heroSubline:
-      "Board-style NAPLEX items with math walkthroughs, patient counseling scenarios, and a pharmacy blueprint Roadmap — bundled with nursing, medical, PA, FNP, and PT prep.",
+      "Board-style NAPLEX items with math walkthroughs, patient counseling scenarios, and a pharmacy Roadmap — bundled with nursing, medical, PA, FNP, and PT prep.",
     accentColor: EXAM_ACCENTS.naplex,
     blueprintLabel: "NABP NAPLEX Content Outline (five domains)",
     features: [
@@ -288,7 +289,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "PANCE",
     metaTitle: "PANCE Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `PANCE practice questions aligned to the NCCPA blueprint, with Roadmaps, Deep Dives & Full Exams. QA-gated items. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
+      `PANCE practice questions aligned to the NCCPA blueprint, with Roadmap, Deep Dives & Full Exams. QA-gated items. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
     keywords: [
       "PANCE exam prep 2026",
       "PANCE practice questions",
@@ -354,7 +355,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "AANP FNP",
     metaTitle: "AANP FNP Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `AANP FNP practice questions across Assess–Evaluate domains, with Roadmaps & Deep Dives. QA-gated question bank. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
+      `AANP FNP practice questions across Assess–Evaluate domains, with Roadmap & Deep Dives. QA-gated question bank. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
     keywords: [
       "AANP FNP prep 2026",
       "AANP FNP practice questions",
@@ -420,7 +421,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NPTE",
     metaTitle: "NPTE-PT Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `NPTE-PT practice questions with FSBPT blueprint scenarios, Roadmaps, Deep Dives & Full Exams. QA-gated items. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
+      `NPTE-PT practice questions with FSBPT blueprint scenarios, Roadmap, Deep Dives & Full Exams. QA-gated items. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
     keywords: [
       "NPTE prep 2026",
       "NPTE-PT practice questions",
@@ -471,7 +472,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       },
       {
         question: "Can I access NPTE prep at /npte?",
-        answer: "Yes. Both /npte and /npte-pt route to our NPTE-PT marketing and prep hub.",
+        answer: "Yes. /npte redirects to the NPTE-PT hub at /npte-pt.",
       },
     ],
     relatedResourceSlugs: [

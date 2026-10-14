@@ -11,7 +11,7 @@ const INLINE_BOLD = /(\*\*[^*]+\*\*)/g;
  */
 export function splitInlineBold(text: string): InlineBoldPart[] {
   if (!text) return [];
-  return text.split(INLINE_BOLD).flatMap((part) => {
+  return text.split(INLINE_BOLD).flatMap((part): InlineBoldPart[] => {
     if (!part) return [];
     if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
       return [{ text: part.slice(2, -2), bold: true }];

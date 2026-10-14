@@ -15,7 +15,10 @@ const routes = [
   { path: "/learn", expect: [200, 307] },
   { path: "/generate", expect: [200, 307] },
   { path: "/pricing", expect: 200 },
-  { path: "/feedback", expect: 200 },
+  { path: "/contact", expect: 200 },
+  { path: "/feedback", expect: 301 },
+  { path: "/npte", expect: 301 },
+  { path: "/blog/strategies", expect: 301 },
   { path: "/employee/login", expect: [200, 307, 308] },
   { path: "/checkout", expect: [200, 307] },
   { path: "/api/health", expect: [200, 503] },
@@ -50,7 +53,7 @@ try {
 const signupHtml = await fetch(`${base}/signup`).then((r) => r.text());
 const hasTrialSignup =
   signupHtml.includes("free trial") &&
-  (signupHtml.includes("Full name") || signupHtml.includes("Date of birth"));
+  signupHtml.includes("Step 2: choose your exam");
 const hasMarketingDisclaimer =
   signupHtml.includes("study support tool") ||
   signupHtml.includes("do not guarantee");

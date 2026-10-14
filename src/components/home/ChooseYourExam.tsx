@@ -69,7 +69,7 @@ export function ChooseYourExam({ bankCounts }: ChooseYourExamProps) {
             <span className="aee-flagship-gradient-text">Zero extra checkout.</span>
           </h2>
           <p className="aee-flagship-subtitle mx-auto mt-4 max-w-2xl">
-            Spin the wheel to explore each board — blueprint Roadmaps, timed full exams, and
+            Spin the wheel to explore each board — Roadmap, timed full exams, and
             QA-gated rationales, all on one plan.
           </p>
         </div>

@@ -65,7 +65,7 @@ export async function PATCH(req: Request, context: RouteContext) {
     user: updated,
     message:
       body.role === "user"
-        ? "Staff access removed. User must sign in again."
-        : "Role updated. User must sign out and sign in again.",
+        ? "Staff access removed. User must log in again."
+        : "Role updated. User must sign out and log in again.",
   });
 }

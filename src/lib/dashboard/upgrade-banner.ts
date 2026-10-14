@@ -11,7 +11,7 @@ export type DashboardUpgradeContext = {
 
 /** Pro upgrade pitch — reused on dashboard banner. */
 export const PRO_DASHBOARD_UPGRADE_MESSAGE =
-  "Upgrade anytime before your trial ends — unlock unlimited questions, teachable rationales, Roadmaps, Deep Dives, Full Exams, and everything in Pro for all 6 boards.";
+  "Upgrade anytime before your trial ends — unlock unlimited questions, teachable rationales, Roadmap, Deep Dives, Full Exams, and everything in Pro for all 6 boards.";
 
 export const POST_TRIAL_SUBSCRIBE_MESSAGE =
   "Subscribe to continue studying — question bank, Roadmap, exams, and all study tools stay locked until you upgrade.";

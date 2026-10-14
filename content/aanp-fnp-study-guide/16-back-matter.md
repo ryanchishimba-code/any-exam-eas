@@ -60,7 +60,7 @@ If your Qbank shows a weak Domain I process (e.g., Evaluate), deliberately hunt 
 
 ### Can AnyExamEasy help?
 
-Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style AANP FNP practice, rationales, Blueprint Roadmaps, and mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. Independent — **not affiliated with AANPCB or AANP**. No pass guarantee.
+Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style AANP FNP practice, rationales, Roadmap, and mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. Independent — **not affiliated with AANPCB or AANP**. No pass guarantee.
 
 ### What if I fail or feel far from ready?
 
@@ -104,7 +104,7 @@ Confidence is not swagger — it’s pattern recognition you earned with deliber
 
 ## Ready for AANP FNP practice?
 
-**AnyExamEasy** pairs this AANP FNP reference book with exam-style practice, rationales, Blueprint Roadmaps, and mocks.
+**AnyExamEasy** pairs this AANP FNP reference book with exam-style practice, rationales, Roadmap, and mocks.
 
 **[Start a 5-day free trial →](https://anyexameasy.com)** — no payment method. Then Pro at **$27.99/mo**. Use it to drill weak systems, timed mocks, and rationale review that mirrors the ADPE habits in this book.
 

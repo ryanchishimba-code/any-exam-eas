@@ -30,7 +30,7 @@ export type TierDefinition = {
 /** Everything included in Pro — one plan, all features. */
 export const PRO_FEATURES = [
   "Full access to all 6 exam banks (USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, NPTE-PT)",
-  "Proprietary Blueprint Roadmaps",
+  "Proprietary Roadmap",
   "Full Deep Dive Modules",
   "Unlimited full-length mock exams & Full Exam simulations",
   "Unlimited questions & teachable rationales",
@@ -112,7 +112,7 @@ export const PRICING_VALUE_HEADLINE =
 /** Trial study limits — shown in marketing copy. */
 export const TRIAL_STUDY_LIMITS = [
   `${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial`,
-  "Roadmaps and Deep Dives across all six boards during the trial",
+  "Roadmap and Deep Dives across all six boards during the trial",
   "No payment required at signup · upgrade anytime for unlimited questions",
 ] as const;
 

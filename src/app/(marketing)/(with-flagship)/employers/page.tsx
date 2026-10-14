@@ -101,7 +101,7 @@ export default function EmployersPage() {
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              href={ROUTES.feedback}
+              href={ROUTES.contact}
               className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--color-accent)] px-7 text-sm font-semibold text-white shadow-[var(--shadow-apple-btn)] transition hover:shadow-[var(--shadow-apple-btn-hover)]"
             >
               Talk to our team
@@ -219,7 +219,7 @@ export default function EmployersPage() {
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              href={ROUTES.feedback}
+              href={ROUTES.contact}
               className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--color-accent)] px-7 text-sm font-semibold text-white shadow-[var(--shadow-apple-btn)] transition hover:shadow-[var(--shadow-apple-btn-hover)]"
             >
               Talk to our team

@@ -85,7 +85,7 @@ export function ComparePageContent({
           AnyExamEasy vs UWorld, Archer, Kaplan &amp; RxPrep
         </h1>
         <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-muted)]">
-          One Pro plan covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE — with Blueprint Roadmaps,
+          One Pro plan covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE — with Roadmap,
           Deep Dive modules, and Full Exam simulations. We compare on price, features, and
           multi-exam value — without claiming UWorld parity or unverified pass rates.
         </p>
@@ -220,7 +220,7 @@ export function ComparePageContent({
         <ul className="mt-4 space-y-3" role="list">
           {[
             "You need more than one board exam on the same timeline (RN + NP, PharmD + side cert, Step 1 + Step 2).",
-            "You want Blueprint Roadmaps, Deep Dives, and Full Exams — not QBank-only prep.",
+            "You want Roadmap, Deep Dives, and Full Exams — not QBank-only prep.",
             `${formatPricingCheckoutTrialOffer()} Cancel anytime in Settings. Paid charges are non-refundable except where the law requires a refund.`,
             questionCountLabel
               ? `${questionCountLabel} active questions across six exams on one plan — not six separate QBanks.`

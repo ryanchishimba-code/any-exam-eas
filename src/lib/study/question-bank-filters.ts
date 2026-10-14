@@ -119,7 +119,7 @@ export function resolvePracticeSubjectId(input: PracticeSubjectChoice): string {
   ) {
     return MIXED_SUBJECT_ID;
   }
-  if (isOtherOpenSubject(subjectParam)) return subjectParam.trim();
+  if (subjectParam && isOtherOpenSubject(subjectParam)) return subjectParam.trim();
   if (subjectParam && !subjectIdBelongsToField(input.fieldId, subjectParam)) {
     return MIXED_SUBJECT_ID;
   }

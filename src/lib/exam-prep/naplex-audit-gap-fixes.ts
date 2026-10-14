@@ -277,14 +277,7 @@ export function expandNaplexExplanation(item: BankItem): string {
   const existing = item.explanation?.trim() ?? "";
   if (existing.length >= 100) return existing;
 
-  const distractors = item.options
-    .map((o) => o.text?.trim())
-    .filter((t): t is string => Boolean(t && t !== correct))
-    .slice(0, 3);
-  const wrongNote =
-    distractors.length > 0
-      ? ` The other options (${distractors.join("; ")}) do not best fit the clinical or pharmacologic principle tested here.`
-      : "";
+  const wrongNote = "";
 
   const core = existing.length > 0
     ? existing.startsWith("Correct")
@@ -300,7 +293,7 @@ export function expandNaplexExplanation(item: BankItem): string {
 }
 
 function genericFoundationScenario(item: BankItem, stem: string): string {
-  const topic = item.subjectId.replace(/-/g, " ");
+  const topic = item.subjectId?.replace(/-/g, " ") ?? "";
   if (/first-pass|half-life|clearance|bioavailability|volume of distribution|tdm|therapeutic drug monitoring/i.test(stem)) {
     return "A 52-year-old man receives oral morphine 15 mg q4h; a student pharmacist reviews ADME and dosing principles before counseling.";
   }

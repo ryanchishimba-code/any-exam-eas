@@ -278,6 +278,27 @@ export function areAllTierPricesConfigured(): boolean {
   return getMissingStripePriceEnvKeys().length === 0;
 }
 
+const PURCHASABLE_INTERVAL_WORDS: Record<BillingInterval, string> = {
+  monthly: "monthly",
+  quarterly: "every three months",
+  semiannual: "every six months",
+  yearly: "yearly",
+};
+
+/**
+ * Billing intervals a learner can buy today. An interval without a Stripe
+ * price is omitted so legal copy cannot list a plan checkout cannot charge.
+ */
+export function purchasableBillingIntervalPhrase(tier: SubscriptionTier = "pro"): string {
+  const order: BillingInterval[] = ["monthly", "quarterly", "semiannual", "yearly"];
+  const words = order
+    .filter((interval) => isIntervalPriceConfigured(tier, interval))
+    .map((interval) => PURCHASABLE_INTERVAL_WORDS[interval]);
+  if (words.length === 0) return "the billing interval shown at checkout";
+  if (words.length === 1) return words[0]!;
+  return `${words.slice(0, -1).join(", ")}, or ${words[words.length - 1]}`;
+}
+
 /** True when Pro tier has all intervals (minimum for checkout). */
 export function isProFullyConfigured(): boolean {
   const intervals = Object.keys(STRIPE_PRICE_ENV_KEYS.pro) as BillingInterval[];

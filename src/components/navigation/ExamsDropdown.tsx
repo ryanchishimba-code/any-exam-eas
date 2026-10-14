@@ -37,7 +37,7 @@ export function ExamsDropdown() {
     const first = menu?.querySelector<HTMLAnchorElement>('[role="menuitem"]');
     first?.focus();
 
-    function onKeyDown(event: KeyboardEvent) {
+    function onKeyDown(event: globalThis.KeyboardEvent) {
       if (event.key === "Escape") {
         event.preventDefault();
         setOpen(false);

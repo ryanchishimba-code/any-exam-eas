@@ -107,7 +107,7 @@ export function logAdminAction(params: AdminActionParams): void {
     targetType: params.targetType ?? null,
     targetId: params.targetId ?? null,
     metadata: params.metadata ? JSON.stringify(params.metadata) : null,
-    ipHash: hashIp(params.req),
+    ipHash: hashIp(params.req) ?? null,
   };
 
   scheduleAuditWrite(() => writeAdminActionHttp(row));

@@ -20,7 +20,7 @@ export function pricingHeadlineFromField(field: string | null | undefined): stri
   const trimmed = field?.trim();
   if (!trimmed) return null;
   const slug = examSlugFromFieldId(trimmed);
-  if (!slug || slug === "top500") return null;
+  if (!slug) return null;
   return pricingPrepHeadline(slug);
 }
 

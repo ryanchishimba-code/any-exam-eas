@@ -17,8 +17,8 @@ export function BlogViewTracker({ slug }: { slug: string }) {
       return () => window.cancelIdleCallback(id);
     }
 
-    const t = window.setTimeout(run, 800);
-    return () => window.clearTimeout(t);
+    const t = globalThis.setTimeout(run, 800);
+    return () => globalThis.clearTimeout(t);
   }, [slug]);
 
   return null;

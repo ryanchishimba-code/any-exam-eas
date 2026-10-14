@@ -40,7 +40,7 @@ const COMPARE_ROWS: CompareRow[] = [
     amboss: { text: "~$30–60/mo per track" },
   },
   {
-    label: "Integrated blueprint Roadmap",
+    label: "Integrated Roadmap",
     us: { text: "Per-exam plan built in", positive: true },
     uworld: { text: "QBank only — plan it yourself" },
     amboss: { text: "Library + QBank, no unified plan" },

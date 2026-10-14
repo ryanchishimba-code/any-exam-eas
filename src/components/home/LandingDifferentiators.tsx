@@ -58,7 +58,7 @@ const ITEMS = [
   },
   {
     icon: MapPin,
-    title: "PANCE blueprint roadmap",
+    title: "PANCE Roadmap",
     detail:
       "NCCPA-weighted study plan across 15 systems with ACS, sepsis, and infectious disease deep dives.",
   },

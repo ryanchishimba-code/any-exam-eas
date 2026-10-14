@@ -31,10 +31,10 @@ export function ShareFabLazy() {
       };
     }
 
-    const t = window.setTimeout(enable, 1200);
+    const t = globalThis.setTimeout(enable, 1200);
     return () => {
       cancelled = true;
-      window.clearTimeout(t);
+      globalThis.clearTimeout(t);
     };
   }, []);
 

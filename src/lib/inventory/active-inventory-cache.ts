@@ -66,7 +66,7 @@ const DEFAULT_REVALIDATE_ORIGIN = "https://www.anyexameasy.com";
 
 /**
  * Pages and routes that render the cached inventory into HTML or JSON.
- * `/npte` is the public alias of `/npte-pt`.
+ * `/npte` 301s to `/npte-pt`, so only the canonical hub is revalidated.
  */
 export const ACTIVE_INVENTORY_PATHS = [
   "/",
@@ -76,7 +76,6 @@ export const ACTIVE_INVENTORY_PATHS = [
   "/pance",
   "/aanp-fnp",
   "/npte-pt",
-  "/npte",
   "/about",
   "/free-guides",
   "/how-questions-are-reviewed",

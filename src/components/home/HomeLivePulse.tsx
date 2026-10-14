@@ -18,7 +18,7 @@ export function HomeLivePulse() {
     >
       <div className="mx-auto flex max-w-[1080px] flex-col gap-4 px-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
         <p className="text-sm text-[var(--color-ink-muted)]">
-          Built for {PLATFORM_EXAM_LIST} — integrated Roadmaps, adaptive practice,
+          Built for {PLATFORM_EXAM_LIST} — integrated Roadmap, adaptive practice,
           OER-backed rationales, and tools to support your exam prep.
         </p>
 

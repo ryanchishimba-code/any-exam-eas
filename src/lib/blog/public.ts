@@ -11,6 +11,20 @@ import {
 
 export const BLOG_CACHE_TAG = "blog-posts";
 
+/** Stored slug → public URL slug. `/blog/strategies` 301s to the public slug. */
+const BLOG_PUBLIC_SLUGS: Record<string, string> = {
+  strategies: "nclex-study-plan-rn-pn",
+};
+
+export function publicBlogSlug(stored: string): string {
+  return BLOG_PUBLIC_SLUGS[stored] ?? stored;
+}
+
+function storedBlogSlug(slug: string): string {
+  const match = Object.entries(BLOG_PUBLIC_SLUGS).find(([, pub]) => pub === slug);
+  return match?.[0] ?? slug;
+}
+
 export type PublicBlogPostCard = {
   id: string;
   title: string;
@@ -61,7 +75,7 @@ function toCard(row: {
   return {
     id: row.id,
     title: publicBlogTitle(row.title),
-    slug: row.slug,
+    slug: publicBlogSlug(row.slug),
     excerpt: publicBlogExcerpt(row.excerpt),
     coverImage: publicCoverImageUrl(row.slug, row.coverImage),
     category: row.category,
@@ -154,7 +168,11 @@ const getPublishedBlogPostBySlugCached = unstable_cache(
 export async function getPublishedBlogPostBySlug(
   slug: string
 ): Promise<PublicBlogPost | null> {
-  return getPublishedBlogPostBySlugCached(slug);
+  const direct = await getPublishedBlogPostBySlugCached(slug);
+  if (direct) return direct;
+  const stored = storedBlogSlug(slug);
+  if (stored === slug) return null;
+  return getPublishedBlogPostBySlugCached(stored);
 }
 
 const listRelatedBlogPostsCached = unstable_cache(
@@ -163,7 +181,7 @@ const listRelatedBlogPostsCached = unstable_cache(
       where: {
         published: true,
         deletedAt: null,
-        slug: { not: slug },
+        slug: { notIn: [...new Set([slug, storedBlogSlug(slug)])] },
       },
       select: {
         id: true,
@@ -204,7 +222,7 @@ const listPublishedBlogSlugsCached = unstable_cache(
       select: { slug: true },
       take: MAX_BLOG_POSTS,
     });
-    return rows.map((r) => r.slug);
+    return [...new Set(rows.map((r) => publicBlogSlug(r.slug)))];
   },
   ["blog-slugs"],
   { revalidate: 60, tags: [BLOG_CACHE_TAG] }
@@ -215,10 +233,13 @@ export async function listPublishedBlogSlugs(): Promise<string[]> {
 }
 
 export async function incrementBlogViews(slug: string): Promise<void> {
-  await prisma.blogPost.updateMany({
-    where: { slug, published: true, deletedAt: null },
-    data: { views: { increment: 1 } },
-  });
+  for (const target of [...new Set([slug, storedBlogSlug(slug)])]) {
+    const result = await prisma.blogPost.updateMany({
+      where: { slug: target, published: true, deletedAt: null },
+      data: { views: { increment: 1 } },
+    });
+    if (result.count > 0) return;
+  }
 }
 
 export function blogPostAbsoluteUrl(slug: string): string {

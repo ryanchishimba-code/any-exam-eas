@@ -5,7 +5,7 @@
  *
  * Device-framed real screenshots (dashboard, question bank, analytics) with
  * short benefit captions, plus two high-yield reference proofs rendered in-code
- * for crisp, dark-mode-safe fidelity: the Anatomy Explorer and Blueprint Roadmap.
+ * for crisp, dark-mode-safe fidelity: the Anatomy Explorer and Roadmap.
  */
 
 import type { ReactNode } from "react";
@@ -87,7 +87,7 @@ const SUPPORTING = [
   },
 ] as const;
 
-/** Blueprint Roadmap proof — weak areas + Full Exam launch. */
+/** Roadmap proof — weak areas + Full Exam launch. */
 function RoadmapCard() {
   const topics = [
     { name: "Med-Surg prioritization", pct: 42, weak: true },
@@ -100,7 +100,7 @@ function RoadmapCard() {
       <div>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent)]">
           <Map className="h-3 w-3" aria-hidden />
-          Blueprint Roadmap
+          Roadmap
         </span>
         <h4 className="mt-2.5 text-lg font-bold text-[var(--color-ink)]">NCLEX-RN · Next up</h4>
         <p className="text-sm text-[var(--color-ink-muted)]">

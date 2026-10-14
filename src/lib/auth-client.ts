@@ -14,7 +14,7 @@ export function messageForSignInError(
     return "This email uses Google or Apple sign-in. Use those buttons above, or reset your password if you previously set one.";
   }
   if (reason === "password_reset_required") {
-    return "Your password needs to be reset before you can sign in. Use Forgot Password below.";
+    return "Your password needs to be reset before you can log in. Use Forgot Password below.";
   }
   if (reason === "account_disabled") {
     return "This account is suspended or closed. Contact support if you need help.";
@@ -29,9 +29,9 @@ export function messageForSignInError(
     return "Invalid email or password. Check the email you signed up with, or use Forgot Password to set a new one.";
   }
   if (reason === "OAuthAccountNotLinked") {
-    return "This email is registered with a password. Sign in with email and password, or use Google/Apple above.";
+    return "This email is registered with a password. Log in with email and password, or use Google/Apple above.";
   }
-  return "Could not sign in. Please try again.";
+  return "Could not log in. Please try again.";
 }
 
 /** Prefer Auth.js `code` over generic `error` from signIn({ redirect: false }). */
@@ -64,5 +64,5 @@ export function messageFromUnknownAuthError(err: unknown): string {
   if (/fetch|network|failed to load/i.test(text)) {
     return "Could not reach the sign-in service. Check your connection and try again.";
   }
-  return text || "Could not sign in.";
+  return text || "Could not log in.";
 }

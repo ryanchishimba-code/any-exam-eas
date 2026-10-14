@@ -59,7 +59,9 @@ function sortTopicsByUsmleDomain(
 }
 
 function sortTopicsByNaplexDomain(topics: HighYieldTopic[]): HighYieldTopic[] {
-  const domainOrder = new Map(NAPLEX_CONTENT_DOMAINS.map((d, i) => [d.id, i]));
+  const domainOrder = new Map<string, number>(
+    NAPLEX_CONTENT_DOMAINS.map((d, i) => [d.id, i])
+  );
   return [...topics].sort((a, b) => {
     const da = domainOrder.get(a.clientNeedsDomain ?? "") ?? 99;
     const db = domainOrder.get(b.clientNeedsDomain ?? "") ?? 99;

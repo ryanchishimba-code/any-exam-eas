@@ -28,7 +28,7 @@ export const BILLING_GUARANTEE_HEADLINE =
 
 export const BILLING_GUARANTEE_POINTS = [
   "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — all 6 exams in one Pro plan",
-  "Integrated Exam Roadmaps plus board-style vignettes on one plan",
+  "Integrated Roadmap plus board-style vignettes on one plan",
   `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · No payment required at signup · Upgrade anytime for unlimited access`,
   "Cancel anytime in Settings — access continues through the end of your paid period",
   "Update your saved payment method anytime for recurring billing",
@@ -56,7 +56,7 @@ export function renewalTermsLine(
 }
 
 export const BILLING_TRIAL_DISCLOSURE =
-  `No payment required to start · ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmaps and Deep Dives · Upgrade anytime for unlimited access`;
+  `No payment required to start · ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmap and Deep Dives · Upgrade anytime for unlimited access`;
 
 /** Plan change rules shown in Settings and checkout. */
 export const BILLING_PLAN_CHANGE_POLICY =
@@ -143,6 +143,16 @@ export function factualYearlySavingsBadge(tier: SubscriptionTier = "pro"): strin
   const monthlyFromTotal = Math.round((plan.totalUsd / plan.months) * 100) / 100;
   if (monthlyFromTotal !== plan.monthlyEquivalentUsd) return null;
   return `Save ${plan.savingsPercent}%`;
+}
+
+/** Yearly and other prepaid lines. Middot, never a hyphen, before the monthly equivalent. */
+export function formatIntervalEquivalentLine(
+  tier: SubscriptionTier,
+  interval: BillingInterval
+): string {
+  const plan = getBillingPlanTier(tier, interval);
+  if (interval === "monthly") return `${formatPlanUsd(plan.totalUsd)}/mo`;
+  return `${formatPlanUsd(plan.totalUsd)} · ≈ ${formatPlanUsd(plan.monthlyEquivalentUsd)}/mo`;
 }
 
 export function getBillingPlanTier(

@@ -37,7 +37,8 @@ export const ROUTES = {
   compare: "/compare",
   employers: "/employers",
   pricing: "/pricing",
-  feedback: "/feedback",
+  /** Public contact form. `/feedback` 301s here. */
+  feedback: "/contact",
   community: "/community",
   settings: "/settings",
   drugs300: "/study/drugs300",
@@ -128,7 +129,7 @@ export const EXAM_NAV_ITEMS: {
 /** Public board pages. Labels are the six exams visitors should be able to find. */
 export const MARKETING_BOARD_LINKS: { href: string; label: string }[] = [
   { href: "/nclex", label: "NCLEX" },
-  { href: "/usmle", label: "USMLE Step 2 CK" },
+  { href: "/usmle", label: "USMLE" },
   { href: "/naplex", label: "NAPLEX" },
   { href: "/pance", label: "PANCE" },
   { href: "/aanp-fnp", label: "AANP FNP" },

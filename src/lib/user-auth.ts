@@ -96,7 +96,7 @@ export async function findUserByEmail(email: string): Promise<User | null> {
 export async function verifyUserPassword(
   email: string,
   password: string
-): Promise<User | null> {
+): Promise<CredentialUser | null> {
   const result = await authenticateCredentials(email, password);
   return result.ok ? result.user : null;
 }

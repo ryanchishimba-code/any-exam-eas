@@ -30,7 +30,19 @@ type ScoreFn = (row: {
 type CategoryFn = (subjectId: string) => string;
 
 const defaultNclexScore: ScoreFn = (row) =>
-  scoreNclexBankItem(enrichBankItemFromRow(row));
+  scoreNclexBankItem(
+    enrichBankItemFromRow({
+      ...row,
+      id: "id" in row && typeof row.id === "string" ? row.id : "",
+      subjectId:
+        "subjectId" in row && typeof row.subjectId === "string" ? row.subjectId : "",
+      solutionSteps:
+        "solutionSteps" in row &&
+        (typeof row.solutionSteps === "string" || row.solutionSteps === null)
+          ? row.solutionSteps
+          : null,
+    })
+  );
 
 const defaultNclexCategory: CategoryFn = (subjectId) =>
   resolveNclexClientNeedsCategory(subjectId);

@@ -33,5 +33,6 @@ describe("exam hub marketing helpers", () => {
     expect(links).toHaveLength(2);
     expect(links[0]?.title).toMatch(/question bank/i);
     expect(examHubProductLinks("nclex")).toHaveLength(3);
+    expect(examHubProductLinks("naplex").some((link) => link.href === "/toolkit")).toBe(true);
   });
 });

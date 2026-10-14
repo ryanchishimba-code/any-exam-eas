@@ -6,7 +6,7 @@ import { fillDateOfBirth } from "./helpers/forms";
 test.describe("Authentication", () => {
   test("login page renders", async ({ page }) => {
     await page.goto("/login", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("heading", { name: /sign in/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /log in/i })).toBeVisible();
     await expect(page.getByRole("textbox", { name: "Email" })).toBeVisible();
     await expect(page.getByRole("textbox", { name: "Password" })).toBeVisible();
   });

@@ -161,7 +161,7 @@ desktop Chrome + mobile (real device or DevTools device toolbar).
 - [ ] **Study — Question Bank** — `/study` (or exam picker) lists the 6 exams;
       selecting one loads questions; answering reveals rationale; navigation between
       questions works; sequencing isn't visibly clustered (NAPLEX especially).
-- [ ] **Strong features reachable** — Roadmaps, Deep Dives, Reference Hub, and the
+- [ ] **Strong features reachable** — Roadmap, Deep Dives, Reference Hub, and the
       Top 503 Drugs surface load and link correctly.
 - [ ] **Track progress — Analytics** — Student analytics/progress reflects answered
       questions and accuracy.

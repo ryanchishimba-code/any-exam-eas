@@ -37,7 +37,7 @@ export function LoginPromoGraphic() {
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 py-4 text-[1.0625rem] font-semibold text-white shadow-[0_8px_28px_rgba(8,145,178,0.35)] transition-all duration-300 group-hover:from-teal-500 group-hover:to-cyan-500">
-          Sign in
+          Log in
           <ArrowRight
             className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5"
             aria-hidden

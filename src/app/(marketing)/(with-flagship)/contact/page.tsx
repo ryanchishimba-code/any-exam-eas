@@ -1,57 +1,90 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { Mail, MessageSquare, Phone } from "lucide-react";
+import type { Metadata } from "next";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
-import { COMPANY_PUBLIC } from "@/lib/marketing/company";
+import { FeedbackForm } from "@/components/feedback/FeedbackForm";
+import { LEGAL_ENTITY } from "@/lib/legal";
+import { SITE_NAME } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
-import { QUALITY_PAGE_UPDATED } from "@/lib/marketing/quality-facts";
 
-const TITLE = "Contact AnyExamEasy";
-const DESCRIPTION = `Email or call AnyExamEasy about billing, a question issue, or privacy. Support is ${COMPANY_PUBLIC.supportEmail} or ${COMPANY_PUBLIC.supportPhone.display}.`;
+const CONTACT_TITLE = `Contact Us — ${SITE_NAME}`;
+const CONTACT_DESCRIPTION = `Contact ${SITE_NAME} for billing help, content questions, bug reports or product feedback. Email support or send a message — we reply to every note.`;
 
 export const metadata: Metadata = {
-  title: { absolute: `${TITLE} — Any Exam Easy` },
-  description: DESCRIPTION,
+  title: { absolute: CONTACT_TITLE },
+  description: CONTACT_DESCRIPTION,
   alternates: { canonical: ROUTES.contact },
-  openGraph: { title: TITLE, description: DESCRIPTION },
+  keywords: [
+    "contact AnyExamEasy",
+    "Any Exam Easy support",
+    "board exam prep help",
+    "AnyExamEasy feedback",
+  ],
+  openGraph: {
+    title: CONTACT_TITLE,
+    description: CONTACT_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary",
+    title: CONTACT_TITLE,
+    description: CONTACT_DESCRIPTION,
+  },
 };
 
 export default function ContactPage() {
-  const mailto = `mailto:${COMPANY_PUBLIC.supportEmail}`;
-
   return (
-    <article className="bg-[var(--color-bg)] px-6 pb-20 pt-[var(--page-top)]">
-      <div className="mx-auto max-w-xl">
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
-          Contact
-        </p>
-        <h1 className="mt-4 text-[clamp(2.25rem,6vw,3.25rem)] font-bold tracking-tight text-[var(--color-ink)]">
-          Write or call.
-        </h1>
-        <p className="mt-4 text-lg leading-relaxed text-[var(--color-ink-muted)]">
-          {COMPANY_PUBLIC.productName} is operated by {COMPANY_PUBLIC.legalName}.
-        </p>
-        <p className="mt-8 flex flex-col gap-2">
-          <a
-            href={mailto}
-            className="inline-flex min-h-11 items-center text-xl font-semibold tracking-tight text-[var(--color-accent)] hover:underline"
-          >
-            {COMPANY_PUBLIC.supportEmail}
-          </a>
-          <SupportPhoneLink className="inline-flex min-h-11 items-center text-xl font-semibold tracking-tight text-[var(--color-accent)] hover:underline" />
-        </p>
-        <ul className="mt-8 space-y-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-          <li>Billing and cancellation: say so in the subject, or use Cancel or manage billing in Settings.</li>
-          <li>A question that looks wrong: use Report an issue on the rationale, and include the question if you email.</li>
-          <li>
-            Privacy requests: see the{" "}
-            <Link href="/legal/privacy" className="font-semibold text-[var(--color-accent)] hover:underline">
-              privacy policy
+    <div className="min-h-screen bg-[var(--color-bg)]">
+      <section className="relative overflow-hidden px-6 pt-[var(--page-top)]">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,color-mix(in_srgb,var(--color-accent)_12%,transparent),transparent)]"
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-xl pb-16">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
+            {SITE_NAME}
+          </p>
+          <h1 className="mt-3 text-balance text-[clamp(2rem,5vw,2.75rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]">
+            Contact Us
+          </h1>
+          <p className="mt-4 text-lg leading-relaxed text-[var(--color-ink-muted)]">
+            Billing questions, content issues, bug reports, or study feedback — send a message and
+            we&apos;ll get back to you.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href={`mailto:${LEGAL_ENTITY.supportEmail}`}
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/40"
+            >
+              <Mail className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+              {LEGAL_ENTITY.supportEmail}
+            </a>
+            <SupportPhoneLink className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/40">
+              <Phone className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+            </SupportPhoneLink>
+            <p className="inline-flex items-center gap-2 text-sm text-[var(--color-ink-muted)]">
+              <MessageSquare className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+              Or use the form below
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <FeedbackForm />
+          </div>
+
+          <p className="mt-8 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+            Looking for prep strategy first? Browse the{" "}
+            <Link href={ROUTES.toolkit} className="font-semibold text-[var(--color-accent)] hover:underline">
+              Toolkit
+            </Link>{" "}
+            or read{" "}
+            <Link href={ROUTES.about} className="font-semibold text-[var(--color-accent)] hover:underline">
+              why we built {SITE_NAME}
             </Link>
             .
-          </li>
-        </ul>
-        <p className="mt-10 text-xs text-[var(--color-ink-muted)]">Last updated {QUALITY_PAGE_UPDATED}</p>
-      </div>
-    </article>
+          </p>
+        </div>
+      </section>
+    </div>
   );
 }

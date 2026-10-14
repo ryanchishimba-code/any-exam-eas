@@ -7,7 +7,7 @@ const content = [
     `One Pro subscription covers six licensing exams: NCLEX-RN and NCLEX-PN, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT. You do not buy a separate bank for each board. The offer is ${TRIAL_OFFER} ${TRIAL_QUESTION_LIMIT}. After the trial, practice stays locked unless you continue on Pro.`
   ),
   p(
-    `This page is what the product actually includes. It is not a comparison that invents another company’s price, and it is not a claim that you will pass. For how to study, use the ${a("/blog/strategies", "NCLEX study plan")}, the ${a("/blog/why", "budget NCLEX guide")}, or the ${a("/blog/okay", "NAPLEX study plan")}.`
+    `This page is what the product actually includes. It is not a comparison that invents another company’s price, and it is not a claim that you will pass. For how to study, use the ${a("/blog/nclex-study-plan-rn-pn", "NCLEX study plan")}, the ${a("/blog/why", "budget NCLEX guide")}, or the ${a("/blog/okay", "NAPLEX study plan")}.`
   ),
 
   h2("Who the plan is for"),
@@ -27,7 +27,7 @@ const content = [
       ["Exams", "All six banks", "All six banks"],
       ["Questions", "500 during the trial", "No question cap"],
       ["Full-length adaptive exam", "One", "Included"],
-      ["Blueprint Roadmap and weak-area sets", "Yes", "Yes"],
+      ["Roadmap and weak-area sets", "Yes", "Yes"],
       ["Deep Dive review after a miss", "Yes", "Yes"],
       ["Spaced repetition", "Yes", "Yes"],
       ["AI Tutor on missed reasoning", "NCLEX, NAPLEX, and USMLE", "NCLEX, NAPLEX, and USMLE"],
@@ -35,7 +35,7 @@ const content = [
     ]
   ),
   p(
-    `AI Tutor walks through why you missed an item on NCLEX, NAPLEX, and the USMLE steps. It is not turned on for PANCE, AANP FNP, or NPTE-PT. Those banks still have rationales, Roadmaps, and full-length exams.`
+    `AI Tutor walks through why you missed an item on NCLEX, NAPLEX, and the USMLE steps. It is not turned on for PANCE, AANP FNP, or NPTE-PT. Those banks still have rationales, Roadmap, and full-length exams.`
   ),
   h3("Reference books are not a free download"),
   p(
@@ -67,7 +67,7 @@ const content = [
     `It does not promise a license, a score, or a job.`,
     `It is not affiliated with NCSBN, NABP, NBME, FSMB, NCCPA, AANPCB, or FSBPT.`,
     `It does not set your eligibility. Your board or medical authority does.`,
-    `It does not replace the official test plan, content outline, or candidate bulletin. Those stay the source of exam rules. The ${a("/blog/strategies", "NCLEX guide")} and ${a("/blog/okay", "NAPLEX guide")} link them.`,
+    `It does not replace the official test plan, content outline, or candidate bulletin. Those stay the source of exam rules. The ${a("/blog/nclex-study-plan-rn-pn", "NCLEX guide")} and ${a("/blog/okay", "NAPLEX guide")} link them.`,
   ]),
   p(
     `Price after the trial is $27.99 per month on the monthly plan. Longer billing intervals exist on ${a("/pricing", "pricing")} if you want them. The trial itself does not ask for a payment method. ${a(TRIAL_HREF, "Try for free")} when you want to see a case and a rationale, not a feature list.`

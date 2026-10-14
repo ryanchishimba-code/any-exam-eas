@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { FIRST_MONTH_DISCOUNT_ENABLED } from "@/lib/billing/first-month-discount";
-import { getBillingPlanTier, formatTierPricingSummary } from "@/lib/billing-plans";
+import { getBillingPlanTier, formatIntervalEquivalentLine, formatTierPricingSummary } from "@/lib/billing-plans";
 import { buildHomeJsonLd } from "@/lib/seo";
 import {
   formatCheckoutContinueCta,
@@ -40,7 +40,7 @@ describe("pricing and checkout trial offer", () => {
 
   it("uses the signup trial scope with the live question count", () => {
     expect(formatSignupTrialScope()).toBe(
-      "Your trial includes 500 practice questions across all six boards, plus Roadmaps and Deep Dives."
+      "Your trial includes 500 practice questions across all six boards, plus Roadmap and Deep Dives."
     );
     expect(formatSignupTrialScope()).not.toMatch(/guarantee|best|#1|no card/i);
   });
@@ -75,6 +75,8 @@ describe("pricing and checkout trial offer", () => {
     expect(formatTierPricingSummary("pro")).not.toMatch(/save\s+\d+%/i);
     expect(formatTierPricingSummary("pro")).toContain("$27.99/mo");
     expect(formatTierPricingSummary("pro")).toContain("$235.12");
+    expect(formatIntervalEquivalentLine("pro", "yearly")).toBe("$235.12 · ≈ $19.59/mo");
+    expect(formatIntervalEquivalentLine("pro", "yearly")).not.toMatch(/ - /);
     const json = JSON.stringify(buildHomeJsonLd());
     expect(json).not.toMatch(/save up to \d+%/i);
     expect(json).not.toMatch(/save \d+%/i);

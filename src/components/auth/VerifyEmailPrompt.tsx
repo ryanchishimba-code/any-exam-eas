@@ -26,7 +26,7 @@ type VerifyEmailPromptProps = {
 /** Product highlights only — no pricing or payment language. */
 const FEATURE_HIGHLIGHTS = [
   "Six boards in one place — USMLE, NCLEX, NAPLEX, PANCE, FNP & NPTE",
-  "Blueprint Roadmaps that show what to study next",
+  "Roadmap that show what to study next",
   "Deep Dive review opened from the questions you miss",
   "Timed Full Exam simulations with weak-area focus",
   "Analytics that surface your gaps early",

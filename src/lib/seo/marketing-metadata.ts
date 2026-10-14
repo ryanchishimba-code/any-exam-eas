@@ -14,6 +14,7 @@ import {
   DEFAULT_OG_IMAGE_HEIGHT,
   DEFAULT_OG_IMAGE_PATH,
   DEFAULT_OG_IMAGE_WIDTH,
+  dedupeKeywords,
   getSiteUrl,
 } from "@/lib/seo";
 import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
@@ -88,7 +89,7 @@ export function buildExamMetadata(
   const path = examMarketingPath(key);
   return {
     ...baseOpenGraph(config.metaTitle, config.metaDescription, path, { absoluteTitle: true }),
-    keywords: config.keywords,
+    keywords: dedupeKeywords(config.keywords),
     authors: [{ name: SITE_NAME, url: getSiteUrl() }],
     category: "education",
   };
@@ -116,7 +117,7 @@ export function buildFreeGuidesMetadata(): Metadata {
 export function buildToolkitHubMetadata(): Metadata {
   const title = "Board Exam Toolkit — Official Links & Study Tools";
   const description =
-    "Toolkit directory for six boards: official blueprints, lab values & calculators, Top 500 drugs, Anatomy Explorer, Blueprint Roadmaps, and exam guides.";
+    "Toolkit directory for six boards: official blueprints, lab values & calculators, Top 500 drugs, Anatomy Explorer, Roadmap, and exam study guides.";
   const path = "/toolkit";
   return {
     ...baseOpenGraph(title, description, path, { absoluteTitle: true }),
@@ -128,7 +129,7 @@ export function buildToolkitHubMetadata(): Metadata {
       "lab values calculators",
       "Top 500 drugs",
       "Anatomy Explorer",
-      "blueprint roadmap",
+      "Roadmap",
       "NCLEX study resources",
       "USMLE study guide",
       "NAPLEX review",
@@ -143,7 +144,7 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
   const path = `/resources/${article.slug}`;
   return {
     ...baseOpenGraph(article.title, article.metaDescription, path, { absoluteTitle: true }),
-    keywords: article.keywords,
+    keywords: dedupeKeywords(article.keywords),
   };
 }
 
@@ -151,8 +152,8 @@ export function buildPricingMetadata(totalLabel?: string): Metadata {
   const count = totalLabel?.trim();
   const title = "Pricing — 6 Board Exams, One Pro Plan";
   const description = count
-    ? `One Pro plan: ${count} active questions for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmaps & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`
-    : `One Pro plan for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmaps & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`;
+    ? `One Pro plan: ${count} active questions for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmap & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`
+    : `One Pro plan for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes the Roadmap and Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day free trial. Cancel anytime.`;
   return {
     ...baseOpenGraph(title, description, "/pricing", { absoluteTitle: true }),
     keywords: [
@@ -211,7 +212,7 @@ export function buildCompareJsonLd() {
             name: "Is AnyExamEasy a good UWorld alternative for multi-exam prep?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: `${seoPlatformPitch()} One Pro subscription covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE with adaptive Blueprint Roadmaps and Deep Dive modules — without buying separate per-exam subscriptions.`,
+              text: `${seoPlatformPitch()} One Pro subscription covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE with adaptive Roadmap and Deep Dive modules — without buying separate per-exam subscriptions.`,
             },
           },
           {
@@ -219,7 +220,7 @@ export function buildCompareJsonLd() {
             name: "NCLEX vs Archer Review — which is better value?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Archer Review starts around $79/month for NCLEX-only QBank + CAT. AnyExamEasy includes NCLEX plus five other board exams on one plan with Roadmaps, Deep Dives, and Full Exams — better value if you need more than one licensing exam.",
+              text: "Archer Review starts around $79/month for NCLEX-only QBank + CAT. AnyExamEasy includes NCLEX plus five other board exams on one plan with Roadmap, Deep Dives, and Full Exams — better value if you need more than one licensing exam.",
             },
           },
         ],
@@ -232,7 +233,7 @@ export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
   const title = `About ${SITE_NAME} — 6-Board Qbank`;
   // Description stays inside the meta budget without a bank-size slogan.
   const description =
-    "Independent NCLEX and USMLE Qbank plus NAPLEX, PANCE, FNP and NPTE on one Pro plan. QA-gated items with Roadmaps, Deep Dives, and sources when stored.";
+    "Independent NCLEX and USMLE Qbank plus NAPLEX, PANCE, FNP and NPTE on one Pro plan. QA-gated items with Roadmap, Deep Dives, and sources when stored.";
   void serveReadyTotalLabel;
   return {
     ...baseOpenGraph(title, description, "/about", { absoluteTitle: true }),
@@ -244,7 +245,7 @@ export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
       "affordable board exam prep",
       "QA-gated question bank",
       "one subscription six exams",
-      "blueprint roadmap board prep",
+      "Roadmap board prep",
       "deep dive exam review",
       "full exam simulation",
       "multi-exam board prep",
@@ -296,7 +297,7 @@ export function buildExamJsonLd(key: ExamSeoKey, formats?: FormatCounts | null) 
       {
         "@type": "HowTo",
         name: `How to study for ${config.shortName} with AnyExamEasy`,
-        description: `Blueprint-aligned ${config.shortName} study plan using adaptive Roadmaps, Deep Dive modules, and Full Exam simulations.`,
+        description: `Blueprint-aligned ${config.shortName} study plan using adaptive Roadmap, Deep Dive modules, and Full Exam simulations.`,
         step: [
           {
             "@type": "HowToStep",
@@ -307,7 +308,7 @@ export function buildExamJsonLd(key: ExamSeoKey, formats?: FormatCounts | null) 
           {
             "@type": "HowToStep",
             position: 2,
-            name: "Follow your Blueprint Roadmap",
+            name: "Follow your Roadmap",
             text: "Prioritize weak categories surfaced in your Roadmap instead of random question churn.",
           },
           {
@@ -359,7 +360,7 @@ export function buildArticleJsonLd(article: ResourceArticle) {
         },
         mainEntityOfPage: { "@type": "WebPage", "@id": url },
         inLanguage: "en-US",
-        keywords: article.keywords.join(", "),
+        keywords: dedupeKeywords(article.keywords).join(", "),
       },
     ],
   };

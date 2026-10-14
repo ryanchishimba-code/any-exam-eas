@@ -100,7 +100,13 @@ export async function ExamMarketingLanding({
       </section>
 
       <ProblemSection board={config.shortName} />
-      <PathSection includeNgn={examKey === "nclex"} />
+      <PathSection
+        includeNgn={examKey === "nclex"}
+        includeStudyGuides={Boolean(getStudyGuideConfig(examKey))}
+        extraSteps={
+          examKey === "pance" ? ["300-question pacing across a 5-hour sitting."] : []
+        }
+      />
 
       <PublicSampleSet
         items={samples.filter((item) => {
@@ -150,7 +156,9 @@ export async function ExamMarketingLanding({
             </h2>
             {studyGuide ? (
               <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
-                The {config.shortName} study guide is included with the 5-day free trial.
+                {examKey === "nclex"
+                  ? "The NCLEX study guide is included with the 5-day free trial."
+                  : `The ${config.shortName} study guide is included with the 5-day free trial.`}
               </p>
             ) : null}
             <ul className="mt-10 grid gap-4 sm:grid-cols-3" role="list">

@@ -13,7 +13,7 @@ export type NclexTopicPracticeParams = {
 };
 
 /** Presets that narrow by clinical content — safe to stack with blueprint filters. */
-const TOPIC_PRACTICE_CONTENT_PRESETS = new Set<NclexStudyPresetId>([
+const TOPIC_PRACTICE_CONTENT_PRESETS = new Set<string>([
   "prioritization-workshop",
   "sata-mastery",
   "dosage-calc-sprint",

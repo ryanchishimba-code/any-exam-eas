@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import {
   HOME_HERO_PRODUCT_LINE,
@@ -37,9 +38,9 @@ export function LandingHeroSkeleton({ bankCounts }: { bankCounts: LandingBankCou
               {formatTrialCtaLabel()}
               <ArrowRight className="h-5 w-5" aria-hidden />
             </a>
-            <a href="#try-a-question" className="aee-hero-beat__secondary">
+            <Link href="/daily" className="aee-hero-beat__secondary">
               Try a free question
-            </a>
+            </Link>
           </div>
           <p className="aee-hero-beat__meta" data-offer-line>
             {LANDING_HERO_CTA_DISCLOSURE}

@@ -37,7 +37,7 @@ function bucketForQuestion(q: StudyQuestion): string {
 
 export function buildSessionDomainBreakdown(
   questions: StudyQuestion[],
-  answers: Array<{ correct?: boolean } | undefined>
+  answers: Array<{ correct?: boolean | null } | undefined>
 ): SessionDomainBreakdownRow[] {
   const byId = new Map<string, { correct: number; total: number }>();
   for (let i = 0; i < questions.length; i++) {

@@ -30,14 +30,27 @@ export function HomeQuote({ stories }: { stories: LandingSuccessStory[] }) {
         </figcaption>
       </figure>
       {approved.length > 1 ? (
-        <div className="home-quote__controls">
-          <button type="button" aria-label="Previous quote" onClick={() => step(-1)}>
-            ‹
-          </button>
-          <button type="button" aria-label="Next quote" onClick={() => step(1)}>
-            ›
-          </button>
-        </div>
+        <>
+          <div className="home-quote__controls">
+            <button type="button" aria-label="Previous quote" onClick={() => step(-1)}>
+              ‹
+            </button>
+            <button type="button" aria-label="Next quote" onClick={() => step(1)}>
+              ›
+            </button>
+          </div>
+          <div className="home-quote__dots" role="group" aria-label="Quote position">
+            {approved.map((item, dotIndex) => (
+              <button
+                key={`${item.name}-${dotIndex}`}
+                type="button"
+                aria-label={`Quote ${dotIndex + 1} of ${approved.length}`}
+                aria-current={dotIndex === index % approved.length ? "true" : undefined}
+                onClick={() => setIndex(dotIndex)}
+              />
+            ))}
+          </div>
+        </>
       ) : null}
     </section>
   );

@@ -41,11 +41,18 @@ export function ProblemSection({ board }: { board?: string }) {
 export function PathSection({
   includeNgn = true,
   compact = false,
+  includeStudyGuides = true,
+  extraSteps = [],
 }: {
   includeNgn?: boolean;
   compact?: boolean;
+  includeStudyGuides?: boolean;
+  extraSteps?: readonly string[];
 }) {
-  const steps = includeNgn ? PATH : PATH.filter((step) => step !== "NGN case studies");
+  const steps = [
+    ...(includeNgn ? PATH : PATH.filter((step) => step !== "NGN case studies")),
+    ...extraSteps,
+  ].filter((step) => includeStudyGuides || step !== "Study guides");
   return (
     <section
       className={

@@ -113,8 +113,12 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   const related = await listRelatedBlogPosts(post.slug, post.category, 3);
-  const toc = extractToc(post.content);
-  const html = injectHeadingIds(post.content, toc);
+  const isNclexPlan = post.slug === "nclex-study-plan-rn-pn";
+  const body = isNclexPlan
+    ? post.content.replace(/<p>(?:(?!<\/p>)[\s\S])*Try for free(?:(?!<\/p>)[\s\S])*<\/p>/gi, "")
+    : post.content;
+  const toc = extractToc(body);
+  const html = injectHeadingIds(body, toc);
   const url = blogPostAbsoluteUrl(post.slug);
   const description = clampMetaDescription(
     post.metaDescription || post.excerpt || `${post.title} — board exam prep from ${SITE_NAME}.`
@@ -184,7 +188,6 @@ export default async function BlogPostPage({ params }: Props) {
             ) : null}
             <div className="mt-7 flex items-center justify-between gap-4 border-y border-[var(--color-border)] py-4">
               <BlogShareButtons url={url} title={post.title} />
-              <p className="text-xs text-[var(--color-ink-muted)]">{post.views} views</p>
             </div>
           </header>
 
@@ -264,7 +267,9 @@ export default async function BlogPostPage({ params }: Props) {
           ) : null}
         </div>
       </article>
-      <FinalMarketingCta title="Practice the questions these notes point to." />
+      {isNclexPlan ? null : (
+        <FinalMarketingCta title="Practice the questions these notes point to." />
+      )}
     </>
   );
 }

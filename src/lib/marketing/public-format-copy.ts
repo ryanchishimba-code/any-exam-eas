@@ -38,7 +38,7 @@ export function advertisesHiddenFormat(
   return false;
 }
 
-const NCLEX_META_WITHOUT_NGN = `NCLEX practice questions, Blueprint Roadmaps, Deep Dives & Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`;
+const NCLEX_META_WITHOUT_NGN = `NCLEX practice questions plus the Roadmap, Deep Dives, and Full Exams. QA-gated question bank. ${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required.`;
 
 /** Exact replacements. Null drops the line. Missing keys drop unmatched claims. */
 const PUBLIC_FORMAT_FALLBACKS: Record<string, string | null> = {
@@ -61,8 +61,8 @@ const PUBLIC_FORMAT_FALLBACKS: Record<string, string | null> = {
     "Master clinical judgment and prioritization with nursing-first prep.",
   "High-yield NCLEX-RN vignettes, Next Generation NCLEX (NGN) item types, and a blueprint-aligned Roadmap — included in one affordable subscription with five other board exams.":
     "High-yield NCLEX-RN vignettes and a blueprint-aligned Roadmap — included in one affordable subscription with five other board exams.",
-  "Dedicated banks for every step — basic sciences, clinical vignettes, biostatistics, and CCS-style cases — with blueprint Roadmaps and Deep Dives on a single subscription.":
-    "Dedicated banks for every step — basic sciences, clinical vignettes, and biostatistics — with blueprint Roadmaps and Deep Dives on a single subscription.",
+  "Dedicated banks for every step — basic sciences, clinical vignettes, biostatistics, and CCS-style cases — with Roadmap and Deep Dives on a single subscription.":
+    "Dedicated banks for every step — basic sciences, clinical vignettes, and biostatistics — with Roadmap and Deep Dives on a single subscription.",
   "Dedicated banks for Step 1 basic sciences, Step 2 CK clinical management, and Step 3 biostatistics, ethics, abstracts, and CCS-style cases.":
     "Dedicated banks for Step 1 basic sciences, Step 2 CK clinical management, and Step 3 biostatistics, ethics, and abstracts.",
   "Use step-specific banks — mechanisms and pathology for Step 1, next-best-step vignettes for Step 2 CK, and biostatistics/CCS cases for Step 3.":

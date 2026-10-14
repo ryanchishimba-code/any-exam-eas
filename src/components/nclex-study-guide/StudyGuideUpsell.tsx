@@ -59,7 +59,7 @@ export function StudyGuideUpsell({
             href={signInHref}
             className="text-base font-semibold text-[var(--color-ink)] hover:text-[var(--color-accent)]"
           >
-            Sign in
+            Log in
           </Link>
         )}
       </div>

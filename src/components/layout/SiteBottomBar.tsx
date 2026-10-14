@@ -29,7 +29,7 @@ export function SiteBottomBar({ className }: Props) {
         <span aria-hidden> · </span>
         Questions or account help?{" "}
         <Link
-          href={ROUTES.feedback}
+          href={ROUTES.contact}
           className="font-medium text-[var(--color-ink)] underline decoration-black/15 underline-offset-2 transition hover:text-[var(--color-accent)] hover:decoration-[var(--color-accent)]/40"
         >
           Contact us

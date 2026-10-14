@@ -436,7 +436,7 @@ export function groupOpenRemediationLoops(params: {
   const groups = new Map<string, { ids: Set<string>; pending: number }>();
   for (const item of items) {
     const subject = item.subjectId?.trim();
-    if (isUntaggedOpenSubject(subject)) continue;
+    if (!subject || isUntaggedOpenSubject(subject)) continue;
     const group = groups.get(subject) ?? { ids: new Set<string>(), pending: 0 };
     group.ids.add(item.itemId);
     if (item.status === "pending_reproof") group.pending += 1;

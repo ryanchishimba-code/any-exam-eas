@@ -19,6 +19,6 @@ export function StudyBankPracticeLazy(
     }
   }, []);
 
-  const scopeKey = `${props.preferredExamSlug ?? "open"}:${props.initialFieldId ?? "default"}`;
+  const scopeKey = `${props?.preferredExamSlug ?? "open"}:${props?.initialFieldId ?? "default"}`;
   return <StudyBankPractice key={scopeKey} {...props} />;
 }

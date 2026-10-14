@@ -12,7 +12,7 @@ const TRUST_PILLARS = [
   },
   {
     icon: Map,
-    label: "Blueprint Roadmaps",
+    label: "Roadmap",
     detail: "Per-exam plans tied to official outlines, not a random question firehose.",
   },
   {

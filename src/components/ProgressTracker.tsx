@@ -56,7 +56,7 @@ export function ProgressTracker({ embedded = false }: { embedded?: boolean }) {
   if (error) {
     return (
       <InlineError className={embedded ? "mt-6" : "mt-10"}>
-        {error}. <Link href="/login" className="underline">Sign in</Link> to track progress.
+        {error}. <Link href="/login" className="underline">Log in</Link> to track progress.
       </InlineError>
     );
   }

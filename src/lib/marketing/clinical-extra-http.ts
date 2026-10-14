@@ -47,17 +47,20 @@ function asItem(row: ClinicalItemRow): ServeItem {
     caseVersion: row.caseVersion == null ? null : Number(row.caseVersion),
     cjmmFunction: [],
     timepoint: null,
-    responseFormat: "multiple-response",
-    scoringRule: "plus-minus",
+    responseFormat: "mr_sata",
+    scoringRule: "plus_minus",
     maxPoints: 1,
     stem: "",
     payload: {},
-    rationale: { correct: "" },
+    rationale: {
+      short: "",
+      expanded: { perOption: {}, cjmmCoaching: "", pointsLost: "", takeaway: "" },
+    },
     clientNeeds: {},
     references: [],
     rnFlags: [],
     status: row.status,
-  } as ServeItem;
+  };
 }
 
 function asCase(row: ClinicalCaseRow): ServeCase {

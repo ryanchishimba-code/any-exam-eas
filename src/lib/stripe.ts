@@ -131,7 +131,7 @@ function buildOneTimeSessionParams(params: CheckoutBaseParams) {
     },
     // Card only — Apple Pay / Google Pay still ride on `card`. Do not include
     // `link` (or BNPL extras); shoppers should see wallet + card entry, not Link.
-    payment_method_types: ["card"],
+    payment_method_types: ["card"] satisfies Stripe.Checkout.SessionCreateParams.PaymentMethodType[],
     payment_method_options: {
       card: {
         request_three_d_secure: "automatic" as const,
@@ -193,7 +193,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     payment_method_collection: "always" as const,
     // Card only — Apple Pay / Google Pay still ride on `card`. Do not include
     // `link` (or BNPL extras); shoppers should see wallet + card entry, not Link.
-    payment_method_types: ["card"],
+    payment_method_types: ["card"] satisfies Stripe.Checkout.SessionCreateParams.PaymentMethodType[],
     payment_method_options: {
       card: {
         request_three_d_secure: "automatic" as const,

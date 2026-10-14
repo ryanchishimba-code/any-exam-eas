@@ -2591,7 +2591,7 @@ export function StudyBankPractice({
               {isMpje ? (
                 <p className="text-center text-[12px] text-[var(--color-ink-muted)]">
                   Need help?{" "}
-                  <Link href="/feedback" className="font-medium text-[var(--color-accent)] hover:underline">
+                  <Link href="/contact" className="font-medium text-[var(--color-accent)] hover:underline">
                     Contact support
                   </Link>
                 </p>

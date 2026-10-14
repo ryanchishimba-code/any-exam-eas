@@ -15,7 +15,7 @@ export function seoTrialLengthFaq(): string {
 }
 
 export function seoTrialIncludedFaq(): string {
-  return `${TRIAL_DAYS} days with ${TRIAL_LIFETIME_QUESTIONS} practice questions across the board banks, plus Roadmaps and reference tools.`;
+  return `${TRIAL_DAYS} days with ${TRIAL_LIFETIME_QUESTIONS} practice questions across the board banks, plus Roadmap and reference tools.`;
 }
 
 export function seoTrialHeading(): string {
@@ -35,7 +35,7 @@ export function seoTrialNaplexStudyTip(): string {
 }
 
 export function seoResourcesCtaLine(): string {
-  return `Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmaps and Deep Dives. No payment required.`;
+  return `Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmap and Deep Dives. No payment required.`;
 }
 
 export function seoSixBoardTrialParagraph(): string {

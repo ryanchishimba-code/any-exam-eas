@@ -28,7 +28,7 @@ export const BOARD_FORMAT_FACTS: Record<
   },
   "aanp-fnp": {
     fact: "AANP FNP practice uses the AANPCB domain and age-group weights.",
-    sourceLabel: "AANPCB FNP",
+    sourceLabel: "AANPCB FNP content outline",
     href: "https://www.aanpcert.org/certs/fnp",
   },
   "npte-pt": {

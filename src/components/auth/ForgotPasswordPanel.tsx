@@ -224,7 +224,7 @@ export function ForgotPasswordPanel({
             <p className="mt-3 text-[0.8125rem]">
               Still stuck?{" "}
               <Link
-                href="/feedback"
+                href="/contact"
                 className={cn(
                   "font-medium underline-offset-2 hover:underline",
                   isModal ? "text-teal-600" : "text-[var(--color-accent)]"

@@ -215,6 +215,8 @@ export const CACHE_TTL = {
   subscriptionStatus: 60 * 1000, // 60s per user — dedupes nav + home fetches
   questionBankSlice: 10 * 60 * 1000, // 10m
   examScopedStats: 90 * 1000, // 90s per user/exam — dashboard header stats
+  /** BoardExam bootstrap. Same one-hour window as CACHE_STALE.examCatalog. */
+  examCatalog: 60 * 60 * 1000,
 } as const;
 
 /** Stale windows for resilient L1 reads when Neon is briefly unavailable (not Redis freshness). */

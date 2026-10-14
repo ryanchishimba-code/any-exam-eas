@@ -1150,7 +1150,7 @@ export function StudyGuideReader({
               {authAction === "gate" ? (
                 <>
                   <Link href={ROUTES.auth.login} className="font-semibold underline">
-                    Sign in
+                    Log in
                   </Link>
                   {" · "}
                   <Link href={LANDING_TRIAL_HREF} className="font-semibold underline">

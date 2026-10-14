@@ -18,7 +18,7 @@ export const SEO_LIVE_STATS = {
 export const SEO_VALUE_PROPS = {
   deepDives: "Deep Dive review modules opened from missed questions",
   fullExam: "Timed Full Exam simulations with weak-area focus",
-  adaptiveRoadmap: "Adaptive Blueprint Roadmaps tied to each licensing exam",
+  adaptiveRoadmap: "Roadmap tied to each licensing exam",
   qaGated: "QA-gated, blueprint-aligned question bank",
   multiExam: "NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE-PT in one subscription",
   /** Honest content claim — formats + rationales, not UWorld parity or pass rates. */
@@ -47,13 +47,12 @@ export const SEO_KEYWORD_CLUSTERS = {
     "USMLE practice questions",
     "USMLE Step 2 CK Qbank",
     "UWorld USMLE alternative",
-    "Step 1 practice questions 2026",
   ],
   multiExam: [
     "one subscription six exams",
     "affordable multi-exam prep",
     "UWorld alternative",
-    "blueprint roadmap board prep",
+    "Roadmap board prep",
     "multi-exam board prep 2026",
   ],
 } as const;
@@ -66,7 +65,7 @@ export function seoQuestionBankPhrase(totalLabel?: string): string {
 }
 
 export function seoPlatformPitch(totalLabel?: string): string {
-  return `${seoQuestionBankPhrase(totalLabel)}, adaptive Blueprint Roadmaps, Deep Dive modules, and Full Exam simulations — six boards on one Pro plan.`;
+  return `${seoQuestionBankPhrase(totalLabel)}, adaptive Roadmap, Deep Dive modules, and Full Exam simulations — six boards on one Pro plan.`;
 }
 
 /** Homepage H1 — default NCLEX job; six-board system lives in the subhead. */
@@ -79,5 +78,5 @@ export function seoHomeHeroSubline(totalLabel?: string): string {
   const lead = count
     ? `${count} active questions across six boards`
     : "Six boards";
-  return `${lead} — NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — with Blueprint Roadmaps and full-length mocks.`;
+  return `${lead} — NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — with Roadmap and full-length mocks.`;
 }
