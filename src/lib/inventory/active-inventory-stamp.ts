@@ -1,10 +1,11 @@
 /**
- * Cheap published-inventory stamp.
+ * Published-inventory stamp.
  *
- * The heavy group-by stays cached. This query is the cache key. It uses the
- * same serve filter as `queryActiveInventoryRows` in `active-questions.ts`:
- * active, qaPassed, inventory fields, and no legacy Step 3 rows on Step 2.
- * A retire drops `published`. An edit of a still-published row moves `touchedAt`.
+ * Page reads use the row written by the sync-question-bank cron. The live
+ * COUNT/MAX below is that refresh, not a request path. It uses the same serve
+ * filter as `queryActiveInventoryRows` in `active-questions.ts`: active,
+ * qaPassed, inventory fields, and no legacy Step 3 rows on Step 2. A retire
+ * drops `published`. An edit of a still-published row moves `touchedAt`.
  * Draft-only edits stay out of the filter, so they do not rebuild the snapshot.
  */
 import { cacheGetOrSet, cacheKey, type CacheResilienceOptions } from "@/lib/cache";
@@ -55,7 +56,8 @@ function normalizeTouchedAt(value: unknown): string | null {
 
 /**
  * Stamp key, or null when the lookup fails.
- * Callers should skip their own cache on null and read the database directly.
+ * Callers should skip their own cache on null and read the stored counts.
+ * A null stamp must not fall through to the live group-by.
  */
 export async function readActiveInventoryStampKey(): Promise<string | null> {
   try {
@@ -66,10 +68,8 @@ export async function readActiveInventoryStampKey(): Promise<string | null> {
   }
 }
 
-/** Uncached. Callers use the key so a skipped cron purge cannot serve the old total. */
-export async function fetchActiveInventoryStamp(): Promise<ActiveInventoryStamp> {
-  const rows = await sqlQuery(
-    `
+/** Same serve filter as `ACTIVE_INVENTORY_ROWS_SQL`. Only the cron refresh runs this. */
+export const ACTIVE_INVENTORY_STAMP_SQL = `
     SELECT
       COUNT(*)::int AS published,
       MAX("updatedAt") AS "touchedAt"
@@ -88,14 +88,29 @@ export async function fetchActiveInventoryStamp(): Promise<ActiveInventoryStamp>
       )
       AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
       ${studentEligibleAndSql()}
-    `,
-    [],
-    { timeoutMs: BANK_COUNTS_QUERY_TIMEOUT_MS }
-  );
+    `;
+
+/** Live published count. Page reads use the stored stamp instead. */
+export async function queryLiveActiveInventoryStamp(
+  timeoutMs = BANK_COUNTS_QUERY_TIMEOUT_MS
+): Promise<ActiveInventoryStamp> {
+  const rows = await sqlQuery(ACTIVE_INVENTORY_STAMP_SQL, [], { timeoutMs });
   const row = Array.isArray(rows) ? rows[0] : null;
   return normalizeActiveInventoryStampRow(
     row as { published?: unknown; touchedAt?: unknown } | null
   );
+}
+
+/**
+ * Stored stamp written by the question-bank sync cron.
+ * Missing or failed reads throw so the caller skips the cache instead of
+ * scanning QuestionBankItem.
+ */
+export async function fetchActiveInventoryStamp(): Promise<ActiveInventoryStamp> {
+  const { readStoredActiveInventoryStamp } = await import("./stored-active-inventory");
+  const stored = await readStoredActiveInventoryStamp();
+  if (!stored) throw new Error("stored inventory stamp unavailable");
+  return stored;
 }
 
 /**

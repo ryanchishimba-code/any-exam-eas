@@ -32,6 +32,7 @@ vi.mock("@/lib/marketing/question-bank-counts", async () => {
   };
 });
 
+import { resetLastGoodBankStats } from "@/lib/marketing/last-good-bank-stats";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import {
   getPublicBankStatsBundle,
@@ -64,6 +65,7 @@ function bundle(degraded = false): BankStatsBundle {
 describe("ISR question counts skip Upstash", () => {
   beforeEach(() => {
     resetPublicBankStatsCache();
+    resetLastGoodBankStats();
     harness.redisGet.mockClear();
     harness.getCachedBankStatsBundle.mockReset();
   });
@@ -81,6 +83,20 @@ describe("ISR question counts skip Upstash", () => {
     const counts = await loadPublicQuestionCounts({ dynamic: false });
     expect(counts.bundle.snapshot.degraded).toBe(true);
     expect(counts.exactLabel).toBe("");
+    expect(harness.redisGet).not.toHaveBeenCalled();
+  });
+
+  it("serves the last good counts when a later lookup fails", async () => {
+    harness.getCachedBankStatsBundle.mockResolvedValueOnce(bundle(false));
+    const first = await loadPublicQuestionCounts({ dynamic: false });
+    expect(first.bundle.inventory.boards.nclex.active).toBe(1200);
+    expect(first.bundle.inventory.degraded).toBe(false);
+
+    harness.getCachedBankStatsBundle.mockResolvedValueOnce(bundle(true));
+    const again = await loadPublicQuestionCounts({ dynamic: false });
+    expect(again.bundle.inventory.degraded).toBe(false);
+    expect(again.bundle.inventory.boards.nclex.active).toBe(1200);
+    expect(again.bundle.snapshot.degraded).toBe(false);
     expect(harness.redisGet).not.toHaveBeenCalled();
   });
 

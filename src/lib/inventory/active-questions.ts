@@ -327,7 +327,7 @@ type DbInventoryRow = {
   count: number | string;
 };
 
-function normalizeDbRow(row: DbInventoryRow): ActiveInventoryRow {
+export function normalizeDbInventoryRow(row: DbInventoryRow): ActiveInventoryRow {
   const hasCaseGroup =
     row.hasCaseGroup === true ||
     row.hasCaseGroup === 1 ||
@@ -344,9 +344,8 @@ function normalizeDbRow(row: DbInventoryRow): ActiveInventoryRow {
   };
 }
 
-async function queryActiveInventoryRows(): Promise<DbInventoryRow[]> {
-  const rows = await sqlQuery(
-    `
+/** Same serve filter the stamp query uses. The cron refresh is the only caller. */
+export const ACTIVE_INVENTORY_ROWS_SQL = `
     SELECT
       "fieldId",
       "subjectId",
@@ -373,22 +372,28 @@ async function queryActiveInventoryRows(): Promise<DbInventoryRow[]> {
       AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
       ${studentEligibleAndSql()}
     GROUP BY 1, 2, 3, 4
-    `,
-    [],
-    { timeoutMs: BANK_COUNTS_QUERY_TIMEOUT_MS }
-  );
+    `;
+
+export async function queryActiveInventoryRows(
+  timeoutMs = BANK_COUNTS_QUERY_TIMEOUT_MS
+): Promise<DbInventoryRow[]> {
+  const rows = await sqlQuery(ACTIVE_INVENTORY_ROWS_SQL, [], { timeoutMs });
   return rows as DbInventoryRow[];
 }
 
 /**
- * Live unique active questions. One Neon HTTP attempt.
- * A retry storm during ISR revalidation holds pooler capacity and turns a
- * 5s timeout into several. Returns a degraded snapshot instead of throwing.
+ * Stored active-question groups. Page reads never run the live group-by:
+ * that scan exceeds the 5s statement timeout, and a retry on every ISR
+ * revalidation is what keeps /naplex and /pricing STALE.
+ * Returns a degraded snapshot when the stored rows are missing or the read fails.
  */
 export async function fetchActiveInventoryFromDb(): Promise<ActiveQuestionInventory> {
   try {
-    const rows = await queryActiveInventoryRows();
-    return aggregateActiveInventory(rows.map(normalizeDbRow));
+    const { readStoredActiveInventory } = await import("./stored-active-inventory");
+    const stored = await readStoredActiveInventory();
+    if (stored) return stored;
+    console.error("[inventory] active question lookup failed: stored counts are empty");
+    return emptyActiveInventory(true);
   } catch (error) {
     console.error("[inventory] active question lookup failed:", error);
     return emptyActiveInventory(true);

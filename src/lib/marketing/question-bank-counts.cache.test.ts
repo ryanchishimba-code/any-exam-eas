@@ -50,6 +50,7 @@ import {
 function snapshotKeys(): string[][] {
   return cacheKeys.filter((key) => key[0] === ACTIVE_INVENTORY_CACHE_KEY[0]);
 }
+import { resetLastGoodBankStats } from "@/lib/marketing/last-good-bank-stats";
 import { getCachedBankStatsBundle } from "./question-bank-counts";
 
 function nursingInventory(count: number) {
@@ -69,6 +70,7 @@ describe("getCachedBankStatsBundle", () => {
   beforeEach(() => {
     cacheKeys.length = 0;
     connectionCalls.length = 0;
+    resetLastGoodBankStats();
     vi.mocked(readActiveInventoryStampKey).mockReset();
     vi.mocked(fetchActiveInventoryFromDb).mockReset();
   });
