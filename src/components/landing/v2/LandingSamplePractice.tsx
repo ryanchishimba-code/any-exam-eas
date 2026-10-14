@@ -67,7 +67,7 @@ function LandingMcqPractice({
       <header className="aee-landing-sample__card-head">
         <span
           className="aee-landing-sample__badge"
-          style={{ background: sample.accent }}
+          style={{ background: sample.examColor }}
         >
           {sample.examLabel}
         </span>
@@ -77,18 +77,18 @@ function LandingMcqPractice({
       <p className="aee-landing-sample__stem">{sample.stem}</p>
 
       <ul className="aee-landing-sample__options" role="listbox" aria-label="Answer choices">
-        {sample.options.map((opt, i) => {
-          const isSelected = selected === opt.id;
-          const isCorrectOpt = revealed && opt.id === sample.correct;
-          const isWrong = revealed && isSelected && opt.id !== sample.correct;
+        {sample.options.map((option, i) => {
+          const isSelected = selected === option;
+          const isCorrectOpt = revealed && option === sample.correct;
+          const isWrong = revealed && isSelected && option !== sample.correct;
           return (
-            <li key={opt.id}>
+            <li key={option}>
               <button
                 type="button"
                 role="option"
                 aria-selected={isSelected}
                 disabled={revealed}
-                onClick={() => setSelected(opt.id)}
+                onClick={() => setSelected(option)}
                 className={cn(
                   "aee-landing-sample__option",
                   isSelected && !revealed && "aee-landing-sample__option--selected",
@@ -99,7 +99,7 @@ function LandingMcqPractice({
                 <span className="aee-landing-sample__letter" aria-hidden>
                   {LABELS[i]}
                 </span>
-                {opt.text}
+                {option}
               </button>
             </li>
           );

@@ -193,10 +193,11 @@ function resolve2026CategoryId(
 ): string | null {
   const validCategories = rotationCategories(stepLevel);
   const domain = item.blueprintDomain?.trim().toLowerCase();
+  const subjectId = item.subjectId ?? "";
   if (domain && validCategories.has(domain)) return domain;
 
   const fromResolver = resolveUsmleBlueprintCategory(fieldId, {
-    subjectId: item.subjectId,
+    subjectId,
     itemType: item.itemType,
     blueprintDomain: item.blueprintDomain,
     blueprintTopic: item.blueprintTopic,
@@ -209,12 +210,12 @@ function resolve2026CategoryId(
   if (stepLevel === "step1" && domain && STEP1_DISCIPLINE_TO_CATEGORY[domain]) {
     return STEP1_DISCIPLINE_TO_CATEGORY[domain]!;
   }
-  if (stepLevel === "step1" && STEP1_DISCIPLINE_TO_CATEGORY[item.subjectId]) {
-    return STEP1_DISCIPLINE_TO_CATEGORY[item.subjectId]!;
+  if (stepLevel === "step1" && subjectId && STEP1_DISCIPLINE_TO_CATEGORY[subjectId]) {
+    return STEP1_DISCIPLINE_TO_CATEGORY[subjectId]!;
   }
 
   const resolverFallback = resolveUsmleBlueprintCategory(fieldId, {
-    subjectId: item.subjectId,
+    subjectId,
     itemType: item.itemType,
     blueprintDomain: item.blueprintDomain,
     blueprintTopic: item.blueprintTopic,
@@ -530,7 +531,7 @@ export function inferUsmleBlueprint(
     }
   }
 
-  const subjectPick = subjectDefaultTopic(stepLevel, item.subjectId);
+  const subjectPick = subjectDefaultTopic(stepLevel, item.subjectId ?? "");
   if (subjectPick) {
     return {
       blueprintTopic: subjectPick,

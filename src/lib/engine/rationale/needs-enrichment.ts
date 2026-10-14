@@ -2,6 +2,7 @@
  * Detect bank items that need structured rationale enrichment.
  */
 import { cleanOptionText } from "@/lib/question-format";
+import type { BankItem } from "@/lib/question-bank";
 import { listWrongBankOptions } from "./validate-rationale";
 
 const GENERIC_PHRASES = [

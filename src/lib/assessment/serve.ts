@@ -326,6 +326,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
+function recordOrEmpty(value: unknown): Record<string, unknown> {
+  return isRecord(value) ? value : {};
+}
+
 function stringList(value: unknown): string[] | undefined {
   if (!Array.isArray(value)) return undefined;
   const texts = value.filter((entry): entry is string => typeof entry === "string");
@@ -363,7 +367,7 @@ function studentChoiceBlock(value: unknown, includeAnswers: boolean): Record<str
 
 function studentColumns(value: unknown): unknown[] | undefined {
   if (!Array.isArray(value)) return undefined;
-  const columns = value.flatMap((entry) => {
+  const columns = value.flatMap((entry): unknown[] => {
     if (typeof entry === "string" && entry.trim()) return [entry];
     if (!isRecord(entry)) return [];
     const text = typeof entry.text === "string" ? entry.text : undefined;
@@ -379,7 +383,7 @@ function studentColumns(value: unknown): unknown[] | undefined {
 
 function studentRows(value: unknown, includeAnswers: boolean): unknown[] | undefined {
   if (!Array.isArray(value)) return undefined;
-  const rows = value.flatMap((entry) => {
+  const rows = value.flatMap((entry): unknown[] => {
     if (typeof entry === "string") return [entry];
     if (Array.isArray(entry)) {
       const cells = entry.filter((cell): cell is string => typeof cell === "string");
@@ -489,9 +493,9 @@ function studentReferences(value: unknown): NgnReference[] {
 }
 
 function studentRationale(rationale: ServeItem["rationale"]): ServeItem["rationale"] {
-  const expanded = isRecord(rationale?.expanded) ? rationale.expanded : {};
+  const expanded = recordOrEmpty(rationale?.expanded);
   const perOption: ServeItem["rationale"]["expanded"]["perOption"] = {};
-  const rawPerOption = isRecord(expanded.perOption) ? expanded.perOption : {};
+  const rawPerOption = recordOrEmpty(expanded.perOption);
   for (const [id, entry] of Object.entries(rawPerOption)) {
     if (!isRecord(entry) || typeof entry.text !== "string") continue;
     const verdict = entry.verdict;
@@ -549,7 +553,7 @@ function studentChart(chart: PublishedCaseUnit["caseDoc"]["chart"]): PublishedCa
 }
 
 function studentPatient(patient: PublishedCaseUnit["caseDoc"]["patient"]): PublishedCaseUnit["caseDoc"]["patient"] {
-  const source = isRecord(patient) ? patient : {};
+  const source = recordOrEmpty(patient);
   const next: PublishedCaseUnit["caseDoc"]["patient"] = {
     displayName: typeof source.displayName === "string" ? source.displayName : "",
     age: typeof source.age === "number" ? source.age : 0,

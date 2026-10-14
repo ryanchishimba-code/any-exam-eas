@@ -124,7 +124,9 @@ const TOPIC_SUBJECT_OVERRIDES: Partial<Record<string, string>> = {
 
 function resolveUsmleTopicStepLevel(topic: HighYieldTopic): UsmleStepLevel {
   const meta = getUsmleTopicMeta(topic.slug);
-  const domainStep = getUsmleStudyDomain(meta.studyDomain)?.stepLevel;
+  const domainStep = meta.studyDomain
+    ? getUsmleStudyDomain(meta.studyDomain)?.stepLevel
+    : undefined;
   if (domainStep) return domainStep;
 
   const steps = topic.usmleSteps ?? usmleStepsForTopicSlug(topic.slug);

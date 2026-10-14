@@ -17,7 +17,7 @@ function QuestionShot() {
       <p className="mt-4 text-[22px] font-semibold leading-tight tracking-[-0.03em]">Glucose 412 mg/dL</p>
       <p className="mt-3 text-[28px] font-semibold leading-tight tracking-[-0.03em]">{item.question}</p>
       <ul className="mt-5 space-y-3">
-        {item.options.map((option) => {
+        {(item.options ?? []).map((option) => {
           const correct = option === item.correctAnswer;
           return (
             <li

@@ -180,5 +180,5 @@ export async function sqlQuery<T = unknown>(
   if (options?.timeoutMs) {
     return runTimedSqlQuery<T>(client, text, params, options.timeoutMs);
   }
-  return client.query(text, params);
+  return client.query(text, params) as T;
 }

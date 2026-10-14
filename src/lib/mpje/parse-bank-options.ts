@@ -12,6 +12,10 @@ export type ParsedBankOptions = {
   clientNeedsCategory?: string;
 };
 
+function isPlainRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
 function readClientNeedsCategory(obj: Record<string, unknown>): string | undefined {
   const value = obj.clientNeedsCategory;
   return typeof value === "string" && value.trim() ? value.trim() : undefined;
@@ -260,7 +264,7 @@ export function enrichBankItemFromRow(row: {
     keyTakeaways,
     source: row.source ?? undefined,
     qaPassed: row.qaPassed ?? undefined,
-    curationMeta: row.curationMeta,
+    curationMeta: isPlainRecord(row.curationMeta) ? row.curationMeta : undefined,
     fieldId: row.fieldId ?? undefined,
   };
   if (Object.keys(mergedPayload).length > 0) {

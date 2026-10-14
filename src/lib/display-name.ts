@@ -18,7 +18,7 @@ export function formatDisplayName(name?: string | null): string | null {
 }
 
 /** First name for greetings — capitalized, with email-local fallback. */
-export function displayFirstName(name?: string | null, email?: string): string {
+export function displayFirstName(name?: string | null, email?: string | null): string {
   const formatted = formatDisplayName(name);
   if (formatted) return formatted.split(/\s+/)[0] ?? "there";
 
@@ -37,7 +37,7 @@ export function displayFirstName(name?: string | null, email?: string): string {
  */
 export function displayFirstLastInitial(
   name?: string | null,
-  email?: string
+  email?: string | null
 ): string {
   const formatted = formatDisplayName(name);
   if (formatted) {

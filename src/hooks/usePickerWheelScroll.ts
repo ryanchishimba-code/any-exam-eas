@@ -22,6 +22,10 @@ export const pickerWheelScrollerClassName = cn(
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/60"
 );
 
+function isDomTouchEvent(event: Event): event is globalThis.TouchEvent {
+  return "touches" in event;
+}
+
 export type UsePickerWheelScrollOptions = {
   itemHeight: number;
   itemCount: number;
@@ -231,7 +235,8 @@ export function usePickerWheelScroll({
 
     const onTouchMove = (e: Event) => {
       if (!interactingRef.current) return;
-      const touch = (e as TouchEvent).touches[0];
+      if (!isDomTouchEvent(e)) return;
+      const touch = e.touches[0];
       const y = touch?.clientY ?? touchLastYRef.current;
       const deltaY = touchLastYRef.current - y;
       touchLastYRef.current = y;

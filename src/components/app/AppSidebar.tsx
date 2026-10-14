@@ -32,6 +32,7 @@ import {
   getStudyGuideConfig,
 } from "@/lib/nclex-study-guide/guide-registry";
 import { ROUTES, fullExamHref } from "@/lib/routes";
+import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 type NavItem = {
@@ -148,7 +149,7 @@ function isNavActive(pathname: string, href: string, exact?: boolean) {
   return exact ? pathname === path : pathname === path || pathname.startsWith(`${path}/`);
 }
 
-function resolveHref(item: NavItem, examSlug: string | null | undefined): string {
+function resolveHref(item: NavItem, examSlug: ExamSlug | null | undefined): string {
   if (item.href === "__question_bank__") {
     return examSlug ? questionBankHref(examSlug) : ROUTES.questionBank;
   }
