@@ -273,11 +273,16 @@
   text-align: center;
 }
 
-.home-close p {
+.home-close p,
+.home-close h2 {
   font-size: clamp(1.35rem, 3vw, 1.85rem);
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.25;
+}
+
+.home-close h2 {
+  margin: 1.75rem 0 0;
 }
 
 .home-close a {

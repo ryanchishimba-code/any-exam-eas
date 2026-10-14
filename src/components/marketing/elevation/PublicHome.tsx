@@ -228,7 +228,14 @@ export function PublicHome({
         <p className="home-close__founder">
           “{FOUNDER_NOTE.quote}” {FOUNDER_NOTE.attribution}
         </p>
+        <h2>Start your {TRIAL_DAYS}-day free trial.</h2>
+        <p className="home-close__founder">No payment method required. Cancel anytime.</p>
       </section>
+      <div className="home-hero__actions pb-16">
+        <LandingCta href={LANDING_TRIAL_HREF} ctaName="home_close_trial" location="home_close">
+          Start free trial
+        </LandingCta>
+      </div>
     </div>
   );
 }
