@@ -208,7 +208,7 @@ export const EXAM_MARKETING_HERO_HEADLINES: Record<string, string> = {
   usmle: "Go into the USMLE knowing what you know.",
   naplex: "Go into the NAPLEX knowing what you know.",
   pance: "Go into the PANCE knowing what you know.",
-  "aanp-fnp": "Go into the AANP FNP exam knowing what you know.",
+  "aanp-fnp": "Go into the AANP FNP knowing what you know.",
   "npte-pt": "Go into the NPTE-PT knowing what you know.",
 };
 
