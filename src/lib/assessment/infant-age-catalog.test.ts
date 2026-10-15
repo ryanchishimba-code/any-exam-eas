@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { planNp001AgeMonths, patientWithAgeMonths } from "./infant-age-catalog";
+import {
+  infantAgeRollbackSql,
+  planInfantAgeCatalog,
+  planNp001AgeMonths,
+  patientWithAgeMonths,
+  type InfantAgeInsert,
+} from "./infant-age-catalog";
 
 const history = "Term 4-month-old boy (born at 39 weeks), no chronic medical conditions.";
 
@@ -76,5 +82,37 @@ describe("NP001 age-months catalog version", () => {
       fromVersion: 4,
       version: 10,
     });
+  });
+
+  it("plans NP008 with NP001 and leaves the newborn cases alone", () => {
+    const np008History = "4-month-old boy, born at term, healthy.";
+    const plans = planInfantAgeCatalog({
+      cases: [
+        sourceCase(),
+        { id: "NP008", version: 1, status: "published", patient: { age: 0, history: np008History } },
+        { id: "NN001", version: 1, status: "published", patient: { age: 0, history: "Term newborn." } },
+        { id: "NN002", version: 1, status: "published", patient: { age: 0, history: "Born yesterday." } },
+      ],
+      items: [
+        ...steps(),
+        ...[1, 2, 3, 4, 5, 6].map((step) => ({
+          id: `NP008-S${step}`,
+          version: 4,
+          caseId: "NP008",
+          caseVersion: 1,
+          status: "published",
+        })),
+      ],
+      narratives: { NP001: history, NP008: np008History },
+    });
+    expect(plans.map((plan) => (plan.action === "insert" ? plan.caseId : plan.action))).toEqual(["NP001", "NP008"]);
+    const inserts = plans.filter((plan): plan is InfantAgeInsert => plan.action === "insert");
+    const sql = infantAgeRollbackSql(inserts);
+    expect(sql).toContain("('NP001', 2)");
+    expect(sql).toContain("('NP008', 2)");
+    expect(sql).toContain("('NP008-S1', 5)");
+    expect(sql).not.toMatch(/DELETE[\s\S]*NN00/);
+    expect(sql.startsWith("-- Rollback")).toBe(true);
+    expect(sql.indexOf("DELETE FROM ngn_item")).toBeLessThan(sql.indexOf("DELETE FROM ngn_case"));
   });
 });

@@ -5,7 +5,16 @@
  */
 
 export const NP001_CASE_ID = "NP001";
+export const NP008_CASE_ID = "NP008";
 export const NP001_AGE_MONTHS = 4;
+
+/** Infants whose chart says 4-month-old. Newborns NN001 and NN002 stay age 0. */
+export const INFANT_AGE_CASES = [
+  { id: NP001_CASE_ID, ageMonths: NP001_AGE_MONTHS },
+  { id: NP008_CASE_ID, ageMonths: NP001_AGE_MONTHS },
+] as const;
+
+export const INFANT_AGE_CONFIRM = "NP001,NP008";
 
 export type InfantAgeCaseSource = {
   id: string;
@@ -132,4 +141,50 @@ export function planNp001AgeMonths(input: {
 export function patientWithAgeMonths(patient: unknown, ageMonths: number): Record<string, unknown> {
   const source = asRecord(patient) ?? {};
   return { ...source, ageMonths };
+}
+
+/** Plan NP001 and NP008 together. Each case is versioned from the same snapshot. */
+export function planInfantAgeCatalog(input: {
+  cases: readonly InfantAgeCaseSource[];
+  items: readonly InfantAgeItemSource[];
+  narratives: Record<string, string>;
+  targets?: readonly { id: string; ageMonths: number }[];
+}): InfantAgePlan[] {
+  const targets = input.targets ?? INFANT_AGE_CASES;
+  return targets.map((target) =>
+    planNp001AgeMonths({
+      cases: input.cases,
+      items: input.items,
+      narrative: input.narratives[target.id] ?? "",
+      caseId: target.id,
+      ageMonths: target.ageMonths,
+    })
+  );
+}
+
+function sqlLiteral(value: string): string {
+  return `'${value.replace(/'/g, "''")}'`;
+}
+
+/** Deletes the inserted versions only. Not executed by the planner. */
+export function infantAgeRollbackSql(plans: readonly InfantAgeInsert[]): string {
+  const itemRows = plans.flatMap((plan) =>
+    plan.items.map((item) => `  (${sqlLiteral(item.id)}, ${item.version})`)
+  );
+  const caseRows = plans.map((plan) => `  (${sqlLiteral(plan.caseId)}, ${plan.caseVersion})`);
+  return [
+    "-- Rollback the infant ageMonths catalog versions. Do not run unless reverting that insert.",
+    "-- Leaves NN001 and NN002 untouched. Deletes new item versions before their case versions.",
+    "BEGIN;",
+    "DELETE FROM ngn_item",
+    "WHERE (id, version) IN (",
+    `${itemRows.join(",\n")}`,
+    ");",
+    "DELETE FROM ngn_case",
+    "WHERE (id, version) IN (",
+    `${caseRows.join(",\n")}`,
+    ");",
+    "COMMIT;",
+    "",
+  ].join("\n");
 }

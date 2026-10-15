@@ -1,25 +1,34 @@
 #!/usr/bin/env node
 /**
- * Give NGN case NP001 an age-in-months value on a new catalog version.
+ * Give NGN cases NP001 and NP008 ageMonths 4 on new published catalog versions.
  *
- * The published case stores patient.age 0. The history and chart say
- * 4-month-old. Students see the highest published version, so this inserts
- * the next case version with patient.ageMonths = 4 and copies that version's
- * items onto it. Stems, options, keys, rationales, and the chart are copied.
- * The previous published version is left in place.
+ * Both histories say 4-month-old and patient.age is 0. Students see the highest
+ * published version, so this inserts the next case version and copies that
+ * version's items. Stems, options, keys, rationales, and the chart are copied.
+ * NN001 and NN002 are newborns and are not changed. Previous versions stay.
  *
  * Default is a dry run. Nothing is written.
  *
  *   npx tsx scripts/ngn/set-np001-age-months.ts
- *   NGN_INFANT_AGE_CONFIRM=NP001 npx tsx scripts/ngn/set-np001-age-months.ts --apply
+ *   NGN_INFANT_AGE_CONFIRM=NP001,NP008 npx tsx scripts/ngn/set-np001-age-months.ts --apply --production --backup-dir /tmp/infant-age
  *
- * --apply refuses to run when VERCEL_ENV=production. Do not point DATABASE_URL
- * at production. This script never reads or writes QuestionBankItem.
+ * --apply requires NGN_INFANT_AGE_CONFIRM=NP001,NP008.
+ * --production is required for the approved production write. Without it,
+ * --apply still refuses when VERCEL_ENV=production.
+ * This script never reads or writes QuestionBankItem.
+ * Rollback SQL is written and is not executed.
  */
-import { patientWithAgeMonths, planNp001AgeMonths, type InfantAgePlan } from "../../src/lib/assessment/infant-age-catalog";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import {
+  INFANT_AGE_CONFIRM,
+  infantAgeRollbackSql,
+  patientWithAgeMonths,
+  planInfantAgeCatalog,
+  type InfantAgeInsert,
+  type InfantAgePlan,
+} from "../../src/lib/assessment/infant-age-catalog";
 import { loadEnvFiles } from "../load-env";
-
-const CONFIRM = "NP001";
 
 type AgeZeroRow = {
   id: string;
@@ -144,19 +153,40 @@ async function loadRows(db: Db): Promise<{ cases: CaseRow[]; items: ItemRow[]; a
   return { cases, items, ageZero };
 }
 
-function planFrom(cases: CaseRow[], items: ItemRow[]): InfantAgePlan {
-  const published = cases
-    .filter((row) => row.id === "NP001" && row.status === "published")
-    .sort((a, b) => b.version - a.version)[0];
-  const narrative = published ? narrativeOf(published.patient, published.chart) : "";
-  return planNp001AgeMonths({ cases, items, narrative });
+function argValue(flag: string): string | undefined {
+  const index = process.argv.indexOf(flag);
+  if (index < 0) return undefined;
+  return process.argv[index + 1];
 }
 
-async function applyPlan(db: Db, plan: Extract<InfantAgePlan, { action: "insert" }>, cases: CaseRow[], items: ItemRow[]) {
+function planFrom(cases: CaseRow[], items: ItemRow[]): InfantAgePlan[] {
+  const narratives: Record<string, string> = {};
+  for (const id of ["NP001", "NP008"]) {
+    const published = cases
+      .filter((row) => row.id === id && row.status === "published")
+      .sort((a, b) => b.version - a.version)[0];
+    narratives[id] = published ? narrativeOf(published.patient, published.chart) : "";
+  }
+  return planInfantAgeCatalog({ cases, items, narratives });
+}
+
+function insertsOf(plans: readonly InfantAgePlan[]): InfantAgeInsert[] {
+  return plans.filter((plan): plan is InfantAgeInsert => plan.action === "insert");
+}
+
+async function applyPlans(db: Db, plans: readonly InfantAgeInsert[], cases: CaseRow[], items: ItemRow[]) {
+  await db.$transaction(async (tx) => {
+    for (const plan of plans) {
+      await applyPlan(tx, plan, cases, items);
+    }
+  });
+}
+
+async function applyPlan(db: Db, plan: InfantAgeInsert, cases: CaseRow[], items: ItemRow[]) {
   const source = cases.find((row) => row.id === plan.caseId && row.version === plan.fromCaseVersion);
   if (!source) throw new Error(`Missing source case ${plan.caseId} v${plan.fromCaseVersion}.`);
-  await db.$transaction(async (tx) => {
-    await tx.ngnCase.create({
+  {
+    await db.ngnCase.create({
       data: {
         id: source.id,
         version: plan.caseVersion,
@@ -178,7 +208,7 @@ async function applyPlan(db: Db, plan: Extract<InfantAgePlan, { action: "insert"
     for (const planned of plan.items) {
       const item = items.find((row) => row.id === planned.id && row.version === planned.fromVersion);
       if (!item) throw new Error(`Missing source item ${planned.id} v${planned.fromVersion}.`);
-      await tx.ngnItem.create({
+      await db.ngnItem.create({
         data: {
           id: item.id,
           version: planned.version,
@@ -205,22 +235,51 @@ async function applyPlan(db: Db, plan: Extract<InfantAgePlan, { action: "insert"
         },
       });
     }
-  });
+  }
+}
+
+function writeRollback(plans: readonly InfantAgeInsert[], dir: string) {
+  mkdirSync(dir, { recursive: true });
+  const sqlPath = join(dir, "infant-age-months-rollback.sql");
+  writeFileSync(sqlPath, infantAgeRollbackSql(plans));
+  console.log(`rollback SQL saved (not executed): ${sqlPath}`);
+  return sqlPath;
+}
+
+function writeBackup(cases: CaseRow[], items: ItemRow[], plans: readonly InfantAgeInsert[], dir: string) {
+  mkdirSync(dir, { recursive: true });
+  const backup = {
+    savedAt: new Date().toISOString(),
+    cases: plans.map((plan) => cases.find((row) => row.id === plan.caseId && row.version === plan.fromCaseVersion)),
+    items: plans.flatMap((plan) =>
+      plan.items.map((item) => items.find((row) => row.id === item.id && row.version === item.fromVersion))
+    ),
+  };
+  const path = join(dir, "infant-age-months-backup.json");
+  writeFileSync(path, JSON.stringify(backup, null, 2));
+  console.log(`backup saved: ${path}`);
+  return path;
 }
 
 async function main() {
   const apply = hasFlag("--apply");
+  const production = hasFlag("--production");
   if (apply && hasFlag("--dry-run")) fail("Pass either --dry-run or --apply, not both.");
-  console.log(`NP001 ageMonths catalog version — ${apply ? "APPLY" : "DRY RUN (no database writes)"}`);
+  console.log(
+    `NP001 and NP008 ageMonths catalog versions — ${apply ? "APPLY" : "DRY RUN (no database writes)"}`
+  );
 
   loadEnvFiles();
   if (!process.env.DATABASE_URL) fail("DATABASE_URL is not set. Nothing was written.");
 
-  if (apply && process.env.VERCEL_ENV === "production") {
-    fail("Refusing --apply when VERCEL_ENV=production. Nothing was written.");
+  if (apply && process.env.VERCEL_ENV === "production" && !production) {
+    fail("Refusing --apply when VERCEL_ENV=production without --production. Nothing was written.");
   }
-  if (apply && process.env.NGN_INFANT_AGE_CONFIRM !== CONFIRM) {
-    fail(`Refusing --apply. Set NGN_INFANT_AGE_CONFIRM=${CONFIRM} to confirm. Nothing was written.`);
+  if (apply && process.env.NGN_INFANT_AGE_CONFIRM !== INFANT_AGE_CONFIRM) {
+    fail(`Refusing --apply. Set NGN_INFANT_AGE_CONFIRM=${INFANT_AGE_CONFIRM} to confirm. Nothing was written.`);
+  }
+  if (apply && production && process.env.NGN_INFANT_AGE_CONFIRM !== INFANT_AGE_CONFIRM) {
+    fail("Refusing production apply. Nothing was written.");
   }
 
   const { PrismaClient } = await import("@prisma/client");
@@ -228,20 +287,34 @@ async function main() {
   try {
     const { cases, items, ageZero } = await loadRows(prisma);
     printAgeZero(ageZero);
-    const plan = planFrom(cases, items);
-    printPlan(plan);
-    if (plan.action === "error") throw new Error(plan.message);
-    if (!apply || plan.action === "noop") {
+    const plans = planFrom(cases, items);
+    for (const plan of plans) printPlan(plan);
+    const errors = plans.filter((plan) => plan.action === "error");
+    if (errors.length > 0) {
+      throw new Error(errors.map((plan) => (plan.action === "error" ? plan.message : "")).join(" "));
+    }
+    const inserts = insertsOf(plans);
+    const backupDir = argValue("--backup-dir");
+    if (backupDir && inserts.length > 0) {
+      writeBackup(cases, items, inserts, backupDir);
+      writeRollback(inserts, backupDir);
+    } else if (inserts.length > 0) {
+      console.log(infantAgeRollbackSql(inserts));
+      console.log("Rollback SQL printed only. It was not executed.");
+    }
+    if (!apply || inserts.length === 0) {
       console.log(apply ? "Nothing to write." : "Dry run complete. No rows were written.");
       return;
     }
-    await applyPlan(prisma, plan, cases, items);
+    if (!backupDir) fail("Refusing --apply without --backup-dir. Nothing was written.");
+    await applyPlans(prisma, inserts, cases, items);
     const after = await loadRows(prisma);
     const check = planFrom(after.cases, after.items);
-    if (check.action !== "noop") {
-      throw new Error(`Apply finished but the published case is not ageMonths 4 (${check.action}).`);
+    const pending = check.filter((plan) => plan.action !== "noop");
+    if (pending.length > 0) {
+      throw new Error(`Apply finished but a case is still not ageMonths 4 (${pending.map((plan) => plan.action).join(", ")}).`);
     }
-    console.log("apply complete. NP001 published catalog version now has ageMonths 4. No QuestionBankItem rows were written.");
+    console.log("apply complete. NP001 and NP008 published catalog versions now have ageMonths 4. NN001 and NN002 were not changed. No QuestionBankItem rows were written. Rollback SQL was not executed.");
   } finally {
     await prisma.$disconnect();
   }
