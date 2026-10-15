@@ -569,6 +569,14 @@ function checkPatient(caseDoc: NgnCase, path: string, issues: ValidationIssue[])
   if (typeof patient?.age !== "number" || !Number.isInteger(patient.age) || patient.age < 0 || patient.age > 120) {
     issues.push(issue("error", path, "patient age must be an integer from 0 to 120"));
   }
+  if (patient && "ageMonths" in patient && patient.ageMonths != null) {
+    const months = patient.ageMonths;
+    if (typeof months !== "number" || !Number.isInteger(months) || months < 1 || months > 11) {
+      issues.push(issue("error", path, "patient ageMonths must be an integer from 1 to 11"));
+    } else if (typeof patient.age === "number" && patient.age >= 1) {
+      issues.push(issue("error", path, "patient ageMonths is only used when age is under 1 year"));
+    }
+  }
   if (typeof patient?.weightKg !== "number" || patient.weightKg < 2 || patient.weightKg > 400) {
     issues.push(issue("error", path, "patient weightKg is outside 2–400"));
   }

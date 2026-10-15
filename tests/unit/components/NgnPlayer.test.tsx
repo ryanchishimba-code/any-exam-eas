@@ -18,6 +18,39 @@ async function openChart(user: ReturnType<typeof userEvent.setup>) {
 }
 
 describe("NGN case player", () => {
+  it("labels an infant in months and omits a zero year age", () => {
+    const infant = {
+      ...caseDoc,
+      patient: {
+        ...caseDoc.patient,
+        displayName: "Mateo Herrera",
+        age: 0,
+        ageMonths: 4,
+        sex: "male",
+        weightKg: 6.2,
+      },
+    };
+    const { unmount } = render(<CaseStudyPlayer caseDoc={infant} mode="exam" attemptSeed="infant" />);
+    expect(screen.getByRole("heading", { name: "Mateo Herrera" })).toBeInTheDocument();
+    expect(screen.getByText("4-month-old · Male · 6.2 kg")).toBeInTheDocument();
+    expect(screen.queryByText(/0-year-old|0 years/)).not.toBeInTheDocument();
+    unmount();
+
+    const newborn = {
+      ...caseDoc,
+      patient: {
+        ...caseDoc.patient,
+        displayName: "Baby Boy Nguyen",
+        age: 0,
+        sex: "male",
+        weightKg: 4.4,
+      },
+    };
+    render(<CaseStudyPlayer caseDoc={newborn} mode="exam" attemptSeed="newborn" />);
+    expect(screen.getByText("Male · 4.4 kg")).toBeInTheDocument();
+    expect(screen.queryByText(/0-year-old|0 years|0-month-old/)).not.toBeInTheDocument();
+  });
+
   it("hides later chart timepoints until the student reaches them", async () => {
     const user = userEvent.setup();
     render(<CaseStudyPlayer caseDoc={caseDoc} mode="review" attemptSeed="test" />);

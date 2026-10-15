@@ -7,6 +7,7 @@ import type { BankItem } from "@/lib/question-bank";
 import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
 import { matrixRowHeader } from "@/lib/assessment/matrix-row-header";
 import { ngnQuestionKey, type PublishedCatalog } from "@/lib/assessment/serve";
+import { formatCasePatientLine } from "@/lib/assessment/patient-age";
 import type { NgnCase, NgnItem as ClinicalItem } from "@/lib/assessment/types";
 
 type Option = { id: string; text: string };
@@ -63,9 +64,7 @@ function explanationFor(item: ClinicalItem): string {
 
 function caseVignette(caseDoc: Pick<NgnCase, "title" | "setting" | "patient">): string {
   const patient = caseDoc.patient;
-  const who = patient
-    ? `${patient.displayName}, ${patient.age}-year-old ${patient.sex}. ${patient.history ?? ""}`.trim()
-    : "";
+  const who = patient ? formatCasePatientLine(patient) : "";
   return [caseDoc.title, caseDoc.setting, who].filter(Boolean).join("\n");
 }
 
