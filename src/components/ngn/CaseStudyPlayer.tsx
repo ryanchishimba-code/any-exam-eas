@@ -6,6 +6,7 @@ import { InlineBold } from "@/components/ngn/InlineBold";
 import { ItemRenderer } from "@/components/ngn/ItemRenderer";
 import { ngnFocus, ngnMuted } from "@/components/ngn/brand";
 import { sortNgnItemsByCaseStep } from "@/lib/assessment/case-order";
+import { formatPatientDemographics } from "@/lib/assessment/patient-age";
 import { chartWithPatientHistory } from "@/lib/assessment/patient-history-chart";
 import { studentCaseChrome, studentQuestionPosition } from "@/lib/full-exam/nclex-exam-labels";
 import { NCLEX_RN_2026_PROFILE } from "@/lib/assessment/profiles/nclex-rn-2026";
@@ -27,11 +28,6 @@ type CaseStudyPlayerProps = {
   /** Internal review only. Students do not see clinical-judgment step names. */
   showStepNames?: boolean;
 };
-
-function sexLabel(sex: string): string {
-  if (!sex) return "";
-  return sex.charAt(0).toUpperCase() + sex.slice(1);
-}
 
 export function CaseStudyPlayer({
   caseDoc,
@@ -85,9 +81,7 @@ export function CaseStudyPlayer({
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#00D4C8]">Client</p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
           <h2 className="text-2xl font-semibold tracking-tight">{patient.displayName}</h2>
-          <p className="text-sm text-white/90">
-            {patient.age} years · {sexLabel(patient.sex)} · {patient.weightKg} kg
-          </p>
+          <p className="text-sm text-white/90">{formatPatientDemographics(patient)}</p>
         </div>
         <p className="mt-3 text-sm leading-6">
           <span className="font-semibold">Allergies</span>

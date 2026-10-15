@@ -562,6 +562,9 @@ function studentPatient(patient: PublishedCaseUnit["caseDoc"]["patient"]): Publi
     allergies: typeof source.allergies === "string" ? source.allergies : "",
   };
   if (typeof source.history === "string" && source.history.trim()) next.history = source.history;
+  if (typeof source.ageMonths === "number" && Number.isInteger(source.ageMonths)) {
+    next.ageMonths = source.ageMonths;
+  }
   return next;
 }
 

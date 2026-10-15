@@ -54,7 +54,13 @@ export type SourceRef = {
 
 export type NgnPatient = {
   displayName: string;
+  /** Age in completed years. Infants are 0. */
   age: number;
+  /**
+   * Completed months when `age` is under 1 year.
+   * Absent for newborns whose chart does not give a month count.
+   */
+  ageMonths?: number;
   sex: string;
   weightKg: number;
   allergies: string;

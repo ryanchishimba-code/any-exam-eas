@@ -6,6 +6,7 @@ import {
   mergeClinicalFormatCounts,
   selectPublishedCatalog,
   studentFacingItem,
+  studentFacingUnit,
   takeSessionUnits,
   type ServeCase,
   type ServeItem,
@@ -265,6 +266,40 @@ describe("published NGN serving", () => {
     expect(clinicalFormatAddition(catalog).topics["med-surg"]?.case).toBe(1);
     expect(clinicalFormatAddition(catalog).topics["physiological-adaptation"]?.case).toBe(1);
     expect(clinicalFormatAddition(catalog).case).toBe(1);
+  });
+
+  it("keeps an infant age in months on the student case", () => {
+    const facing = studentFacingUnit({
+      kind: "case",
+      subjectId: null,
+      items: [
+        item({
+          id: "NP001-S1",
+          itemType: "case_item",
+          caseId: "NP001",
+          caseVersion: 2,
+          caseStep: 1,
+          status: "published",
+        }),
+      ],
+      caseDoc: {
+        ...caseRow({ id: "NP001", status: "published", version: 2 }),
+        items: [],
+        patient: {
+          displayName: "Mateo Herrera",
+          age: 0,
+          ageMonths: 4,
+          sex: "male",
+          weightKg: 6.2,
+          allergies: "NKDA",
+          history: "Term 4-month-old boy.",
+        },
+      },
+    });
+    expect(facing.kind).toBe("case");
+    if (facing.kind !== "case") return;
+    expect(facing.caseDoc.patient.ageMonths).toBe(4);
+    expect(facing.caseDoc.patient.age).toBe(0);
   });
 
   it("strips keys and rationale before a student sees the item", () => {

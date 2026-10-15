@@ -220,6 +220,96 @@ describe("publishedCatalogToBankItems", () => {
     ]);
   });
 
+  it("writes an infant as N-month-old and never 0-year-old", () => {
+    const step = (id: string, stepIndex: number): ServeItem =>
+      item({
+        id,
+        caseId: "NP001",
+        caseStep: stepIndex,
+        responseFormat: "mc_single",
+        stem: `Step ${stepIndex} for this unfolding case. Which finding matters?`,
+        payload: {
+          key: "o1",
+          options: [
+            { id: "o1", text: "Notify the provider" },
+            { id: "o2", text: "Document and wait" },
+            { id: "o3", text: "Discharge home" },
+            { id: "o4", text: "Ignore the change" },
+          ],
+        },
+      });
+    const playable = [1, 2].map((n) => step(`I${n}`, n));
+    const catalog: PublishedCatalog = {
+      standalones: [],
+      cases: [
+        {
+          kind: "case",
+          subjectId: "phys",
+          caseDoc: {
+            id: "NP001",
+            version: 2,
+            title: "Infant admitted with fast breathing",
+            boardProfile: "nclex",
+            status: "published",
+            batchId: "catalog",
+            primaryClientNeed: "Physiological",
+            setting: "Pediatric unit",
+            patient: {
+              displayName: "Mateo Herrera",
+              age: 0,
+              ageMonths: 4,
+              sex: "male",
+              weightKg: 6.2,
+              allergies: "NKDA",
+              history: "Term 4-month-old boy.",
+            },
+            timepoints: [],
+            chart: { tabs: [] },
+            revealRule: "sequential",
+            references: [],
+            items: playable,
+          },
+          items: playable,
+        },
+        {
+          kind: "case",
+          subjectId: "phys",
+          caseDoc: {
+            id: "NN001",
+            version: 1,
+            title: "Newborn",
+            boardProfile: "nclex",
+            status: "published",
+            batchId: "catalog",
+            primaryClientNeed: "Physiological",
+            setting: "Newborn nursery",
+            patient: {
+              displayName: "Baby Boy Nguyen",
+              age: 0,
+              sex: "male",
+              weightKg: 4.4,
+              allergies: "NKDA",
+              history: "Term male born at 39 weeks.",
+            },
+            timepoints: [],
+            chart: { tabs: [] },
+            revealRule: "sequential",
+            references: [],
+            items: playable.map((row, index) => ({ ...row, id: `N${index + 1}`, caseId: "NN001" })),
+          },
+          items: playable.map((row, index) => ({ ...row, id: `N${index + 1}`, caseId: "NN001" })),
+        },
+      ],
+    };
+    const rows = publishedCatalogToBankItems(catalog);
+    const infant = rows.find((row) => row.id === "ngn:I1:v1");
+    const newborn = rows.find((row) => row.id === "ngn:N1:v1");
+    expect(infant?.vignette).toContain("Mateo Herrera, 4-month-old male.");
+    expect(infant?.vignette).not.toMatch(/0-year-old/);
+    expect(newborn?.vignette).toContain("Baby Boy Nguyen, male.");
+    expect(newborn?.vignette).not.toMatch(/0-year-old|0 years/);
+  });
+
   it("resumes catalog ids that are not QuestionBankItem rows", () => {
     const catalog: PublishedCatalog = { standalones: [{ kind: "standalone", item: bowtie, subjectId: null }], cases: [] };
     const rows = publishedCatalogToBankItems(catalog);
