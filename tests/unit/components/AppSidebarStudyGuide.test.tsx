@@ -8,7 +8,7 @@
  *
  *   npx vitest run --project component tests/unit/components/AppSidebarStudyGuide.test.tsx
  */
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockPreferences = vi.fn();
@@ -70,6 +70,17 @@ describe("Study Guide in Study Tools", () => {
     const link = studyGuideLink();
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "/naplex/study-guide");
+  });
+
+  it("links Video Quick Bites on the NCLEX dashboard and hides it for other exams", () => {
+    renderFor("nclex");
+    expect(screen.getByRole("link", { name: "Video Quick Bites" })).toHaveAttribute(
+      "href",
+      "/dashboard#video-quick-bites"
+    );
+    cleanup();
+    renderFor("naplex");
+    expect(screen.queryByRole("link", { name: "Video Quick Bites" })).not.toBeInTheDocument();
   });
 
   it("still shows for an NCLEX learner and points at the NCLEX book", () => {
