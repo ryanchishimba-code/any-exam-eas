@@ -29,7 +29,7 @@
         "A"
       ],
       "explanation": "A is correct: pH 7.30 is acid, carbon dioxide 50 is high so it's the lungs, and bicarb 24 is normal so the kidneys haven't compensated. B would need a low bicarb. C and D need a high pH.",
-      "videoTimestamp": "1:39"
+      "videoTimestamp": "1:40"
     },
     {
       "id": "ep07-acid-base-q02",
@@ -57,7 +57,7 @@
         "B"
       ],
       "explanation": "B is correct: normal pH is 7.35 to 7.45. A is acidosis. C is alkalosis. D is the scale range, not normal.",
-      "videoTimestamp": "0:20"
+      "videoTimestamp": "0:21"
     },
     {
       "id": "ep07-acid-base-q03",
@@ -85,7 +85,7 @@
         "B"
       ],
       "explanation": "B is correct: carbon dioxide is an acid the lungs control by breathing it off. A, the kidneys, control bicarb. C, the liver, and D, the heart, don't remove carbon dioxide.",
-      "videoTimestamp": "0:28"
+      "videoTimestamp": "0:29"
     },
     {
       "id": "ep07-acid-base-q04",
@@ -113,7 +113,7 @@
         "B"
       ],
       "explanation": "B is correct: normal bicarb is 22 to 26. A is the carbon dioxide range. C is pH. D is sodium.",
-      "videoTimestamp": "0:34"
+      "videoTimestamp": "0:35"
     },
     {
       "id": "ep07-acid-base-q05",
@@ -141,7 +141,7 @@
         "B"
       ],
       "explanation": "B is correct: respiratory opposite, so pH and carbon dioxide move in opposite directions. A reverses that. C is wrong because metabolic is equal: pH and bicarb move the same way. D is wrong because the kidneys control bicarb.",
-      "videoTimestamp": "1:01"
+      "videoTimestamp": "1:02"
     },
     {
       "id": "ep07-acid-base-q06",
@@ -169,7 +169,7 @@
         "B"
       ],
       "explanation": "B is correct: pH 7.50 is high and carbon dioxide 30 is low, moving opposite ways, so it's respiratory alkalosis; bicarb 24 is normal. A needs a low pH. C and D need an abnormal bicarb.",
-      "videoTimestamp": "2:29"
+      "videoTimestamp": "2:30"
     },
     {
       "id": "ep07-acid-base-q07",
@@ -197,7 +197,7 @@
         "A"
       ],
       "explanation": "A is correct: the client is breathing too fast, so help them slow their breathing. B worsens it. C and D don't fix a breathing cause.",
-      "videoTimestamp": "3:00"
+      "videoTimestamp": "3:01"
     },
     {
       "id": "ep07-acid-base-q08",
@@ -230,7 +230,7 @@
         "B"
       ],
       "explanation": "A and B are correct: both mean not breathing enough. C causes respiratory alkalosis. D causes metabolic alkalosis. E causes metabolic acidosis.",
-      "videoTimestamp": "1:51"
+      "videoTimestamp": "1:52"
     },
     {
       "id": "ep07-acid-base-q09",
@@ -264,7 +264,7 @@
         "C"
       ],
       "explanation": "A, B, and C are correct: diabetic ketoacidosis, diarrhea, and kidney failure cause metabolic acidosis. D and E pull out stomach acid, causing metabolic alkalosis.",
-      "videoTimestamp": "2:03"
+      "videoTimestamp": "2:04"
     },
     {
       "id": "ep07-acid-base-q10",
@@ -292,7 +292,7 @@
         "B"
       ],
       "explanation": "B is correct: when the other number, here the bicarb, is moving to fix the pH, that's compensation. A only looks at the pH. C assumes an error. D would mean the bicarb stayed normal.",
-      "videoTimestamp": "0:51"
+      "videoTimestamp": "0:52"
     }
   ]
 }
