@@ -13,7 +13,7 @@ import { SEO_DESC_MAX, SEO_DESC_MIN, SEO_TITLE_MAX } from "@/lib/seo/meta-budget
 describe("how to pass video", () => {
   it("uses placeholder media that can be overridden by public env", () => {
     expect(HOW_TO_PASS_MEDIA.src).toMatch(/how-to-pass\.mp4$/);
-    expect(HOW_TO_PASS_MEDIA.poster).toMatch(/how-to-pass-poster\.jpg$/);
+    expect(HOW_TO_PASS_MEDIA.poster).toMatch(/how-to-pass-poster\.png$/);
     expect(HOW_TO_PASS_MEDIA.captions).toMatch(/how-to-pass\.vtt$/);
     expect(HOW_TO_PASS_TITLE.length).toBeLessThanOrEqual(SEO_TITLE_MAX);
     expect(HOW_TO_PASS_DESCRIPTION.length).toBeGreaterThanOrEqual(SEO_DESC_MIN);
@@ -50,9 +50,15 @@ describe("how to pass video", () => {
     ]);
     const images = meta.openGraph?.images;
     const image = Array.isArray(images) ? images[0] : images;
-    expect(image).toEqual(expect.objectContaining({ url: expect.stringMatching(/how-to-pass-poster\.jpg$/) }));
+    expect(image).toEqual(
+      expect.objectContaining({
+        url: expect.stringMatching(/how-to-pass-poster\.png$/),
+        width: 1280,
+        height: 720,
+      })
+    );
     expect(meta.twitter?.card).toBe("summary_large_image");
-    expect(meta.twitter?.images).toEqual([expect.stringMatching(/how-to-pass-poster\.jpg$/)]);
+    expect(meta.twitter?.images).toEqual([expect.stringMatching(/how-to-pass-poster\.png$/)]);
     expect(meta.alternates?.canonical).toBe("/how-to-pass");
   });
 });

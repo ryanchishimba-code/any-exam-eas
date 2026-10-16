@@ -22,6 +22,7 @@ describe("HomePassVideo", () => {
 
     const video = document.querySelector("video");
     expect(video).toHaveAttribute("src", HOW_TO_PASS_MEDIA.src);
+    expect(video).toHaveAttribute("poster", HOW_TO_PASS_MEDIA.poster);
     expect(video).toHaveAttribute("preload", "none");
     expect(video?.querySelector("track")).toHaveAttribute("src", HOW_TO_PASS_MEDIA.captions);
     expect(video?.querySelector("track")).toHaveAttribute("kind", "captions");

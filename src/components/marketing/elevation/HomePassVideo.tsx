@@ -65,8 +65,8 @@ function PassVideoPlayer() {
           <img
             src={poster}
             alt=""
-            width={1200}
-            height={675}
+            width={1280}
+            height={720}
             decoding="async"
           />
           {phase === "poster" ? (

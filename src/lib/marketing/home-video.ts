@@ -11,8 +11,8 @@ export const HOW_TO_PASS_TITLE = "How to pass any board exam — in 3 minutes";
 export const HOW_TO_PASS_DESCRIPTION =
   "A three-minute walkthrough of one study system for six boards, with a rationale on every option. Start a 5-day free trial. No payment method required.";
 
-export const HOW_TO_PASS_POSTER_WIDTH = 1200;
-export const HOW_TO_PASS_POSTER_HEIGHT = 675;
+export const HOW_TO_PASS_POSTER_WIDTH = 1280;
+export const HOW_TO_PASS_POSTER_HEIGHT = 720;
 
 function publicAsset(envValue: string | undefined, fallback: string): string {
   const value = envValue?.trim();
@@ -20,7 +20,7 @@ function publicAsset(envValue: string | undefined, fallback: string): string {
 }
 
 /**
- * Video, poster, and captions. Override with:
+ * Public marketing files in /public. Override with:
  * NEXT_PUBLIC_HOW_TO_PASS_VIDEO_SRC
  * NEXT_PUBLIC_HOW_TO_PASS_POSTER_SRC
  * NEXT_PUBLIC_HOW_TO_PASS_CAPTIONS_SRC
@@ -32,7 +32,7 @@ export const HOW_TO_PASS_MEDIA = {
   ),
   poster: publicAsset(
     process.env.NEXT_PUBLIC_HOW_TO_PASS_POSTER_SRC,
-    "/images/how-to-pass-poster.jpg"
+    "/images/how-to-pass-poster.png"
   ),
   captions: publicAsset(
     process.env.NEXT_PUBLIC_HOW_TO_PASS_CAPTIONS_SRC,
