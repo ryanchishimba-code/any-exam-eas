@@ -52,7 +52,17 @@ export function PublicHome({
             <span className="home-hero__line">{headlineLead}</span>{" "}
             <span className="home-hero__accent">{headlineAccent}</span>
           </h1>
-          <p className="home-hero__sub">A rationale for every option, on one plan.</p>
+          <p className="home-hero__sub">
+            <strong>
+              <span className="whitespace-nowrap">NCLEX ·</span>{" "}
+              <span className="whitespace-nowrap">NAPLEX ·</span>{" "}
+              <span className="whitespace-nowrap">USMLE ·</span>{" "}
+              <span className="whitespace-nowrap">FNP ·</span>{" "}
+              <span className="whitespace-nowrap">PANCE ·</span>{" "}
+              <span className="whitespace-nowrap">NPTE-PT.</span>
+            </strong>{" "}
+            Every exam, every rationale, one plan.
+          </p>
           <div className="home-hero__actions">
             <LandingCta href={LANDING_TRIAL_HREF} ctaName="hero_trial" location="hero">
               {cta}
