@@ -62,6 +62,8 @@ function collapseQuoteLineBreaks(text: string): string {
 const REPEATED_LABEL = "Remember|Reviewed|Updated|Revised|Note|Caution|Warning|Trap|Source";
 
 const REVIEW_MONTH = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
+const REVIEW_MONTH_NAME =
+  "Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sept?(?:ember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?";
 
 /** A lone "Reviewed" heading beside "Reviewed Oct 2026" is the same label twice. */
 function dropBareReviewedBesideDate(text: string): string {
@@ -75,6 +77,16 @@ function dropBareReviewedBesideDate(text: string): string {
     "gi"
   );
   return text.replace(ownLine, "$1").replace(beside, "");
+}
+
+/** "Reviewed Oct 2026" and "Reviewed October 16, 2026" display as "Reviewed". */
+export function stripReviewedDateLabel(text: string): string {
+  const withDay = new RegExp(
+    `\\bReviewed\\s+(?:${REVIEW_MONTH_NAME})\\.?\\s+\\d{1,2},?\\s+\\d{4}\\b`,
+    "gi"
+  );
+  const monthYear = new RegExp(`\\bReviewed\\s+(?:${REVIEW_MONTH_NAME})\\.?\\s+\\d{4}\\b`, "gi");
+  return text.replace(withDay, "Reviewed").replace(monthYear, "Reviewed");
 }
 
 const BOW_TIE_COUNT = "one|two|three|four|1|2|3|4";
@@ -171,6 +183,7 @@ export function closeDanglingParen(text: string): string {
 export function stripInternalDisplayMetadata(text: string): string {
   if (typeof text !== "string" || !text) return "";
   let next = normalizeBowTieInstruction(dropBareReviewedBesideDate(collapseRepeatedLabels(collapseQuoteLineBreaks(text))));
+  next = stripReviewedDateLabel(next);
   next = joinBrokenDoseDecimals(next).replace(/\b1\s+hours\b/gi, "1 hour");
   for (const pattern of INTERNAL_META) {
     next = next.replace(pattern, "");

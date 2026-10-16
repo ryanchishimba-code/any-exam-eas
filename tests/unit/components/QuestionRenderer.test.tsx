@@ -85,7 +85,9 @@ describe("QuestionRenderer", () => {
     );
 
     expect(screen.getByText("Surviving Sepsis Campaign · 2021 update")).toBeInTheDocument();
-    expect(screen.getByText("Reviewed Jun 2026")).toBeInTheDocument();
+    expect(screen.getByText("Reviewed")).toBeInTheDocument();
+    expect(screen.queryByText(/Reviewed\s+(?:Jun|June|Oct|October)/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/2026/)).not.toBeInTheDocument();
     const note = screen.getByTestId("item-provenance");
     expect(note.className).toContain("--study-accent");
     expect(note.innerHTML).not.toMatch(/indigo|violet|purple/);

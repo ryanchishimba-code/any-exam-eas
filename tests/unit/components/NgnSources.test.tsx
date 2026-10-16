@@ -24,11 +24,13 @@ describe("NGN sources disclosure", () => {
       />
     );
 
-    const details = screen.getByText("Sources").closest("details");
-    expect(details).not.toBeNull();
-    expect(details).not.toHaveAttribute("open");
+    const toggle = screen.getByRole("button", { name: "Sources (4)" });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByRole("link", { name: /NCSBN 2026 NCLEX-RN Test Plan/ })).not.toBeInTheDocument();
 
-    await user.click(screen.getByText("Sources"));
+    toggle.focus();
+    await user.keyboard("{Enter}");
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
 
     const itemLink = screen.getByRole("link", { name: /NCSBN 2026 NCLEX-RN Test Plan/ });
     expect(itemLink).toHaveAttribute("href", "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf");
@@ -55,10 +57,11 @@ describe("NGN sources disclosure", () => {
       />
     );
 
-    expect(screen.getByText("Sources").closest("details")).not.toHaveAttribute("open");
+    const toggle = screen.getByRole("button", { name: "Sources (4)" });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByText("Takeaway")).not.toBeInTheDocument();
 
-    await user.click(screen.getByText("Sources"));
+    await user.click(toggle);
     const newsLinks = screen.getAllByRole("link", { name: /Royal College of Physicians NEWS2/ });
     expect(newsLinks.length).toBeGreaterThan(0);
     expect(newsLinks[0]).toHaveAttribute("target", "_blank");

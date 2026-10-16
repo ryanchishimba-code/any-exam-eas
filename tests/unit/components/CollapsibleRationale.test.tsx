@@ -120,8 +120,14 @@ describe("ExplanationPanel", () => {
     await user.click(screen.getByRole("button", { name: "Show more" }));
 
     expect(screen.getByText(/Charting is not the first action/)).toBeInTheDocument();
-    expect(screen.getByText("Open RN — priority setting")).toBeInTheDocument();
     expect(screen.getByText(/Why each distractor fails/)).toBeInTheDocument();
+    const sources = screen.getByRole("button", { name: "Sources (1)" });
+    expect(sources).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByText("Open RN — priority setting")).not.toBeInTheDocument();
+
+    await user.click(sources);
+    expect(sources).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByText("Open RN — priority setting")).toBeInTheDocument();
 
     rerender(
       <ExplanationPanel
@@ -132,6 +138,31 @@ describe("ExplanationPanel", () => {
     );
     expect(screen.getByRole("button", { name: "Show more" })).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByText(/Charting is not the first action/)).not.toBeInTheDocument();
+  });
+
+  it("keeps citations collapsed under a short rationale", async () => {
+    access.role = null;
+    const user = userEvent.setup();
+    render(
+      <ExplanationPanel
+        question={{
+          ...sampleNclexQuestion,
+          references: ["ADA Standards of Care", "FDA labeling"],
+        }}
+        field="nursing"
+      />
+    );
+
+    expect(screen.getByText("ABCs take priority in acute assessment.")).toBeInTheDocument();
+    const sources = screen.getByRole("button", { name: "Sources (2)" });
+    expect(sources).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByText("ADA Standards of Care")).not.toBeInTheDocument();
+
+    sources.focus();
+    await user.keyboard(" ");
+    expect(sources).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByText("ADA Standards of Care")).toBeInTheDocument();
+    expect(screen.getByText("FDA labeling")).toBeInTheDocument();
   });
 
   it("does not offer Show more to a free account when the rationale is long", () => {
