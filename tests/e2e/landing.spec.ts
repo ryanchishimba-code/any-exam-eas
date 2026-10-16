@@ -7,12 +7,19 @@ test.describe("Landing page", () => {
 
     await expect(page.locator(".home-hero")).toBeVisible();
     await expect(page.getByRole("heading", { name: "One study system. Six boards." })).toBeVisible();
-    await expect(page.getByRole("link", { name: /start free trial/i }).first()).toBeVisible();
-    await expect(page.getByRole("link", { name: /try a free question/i }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /start 5-day free trial/i }).first()).toBeVisible();
+    await expect(page.getByRole("link", { name: /try a free question/i })).toHaveCount(0);
     await expect(page.getByRole("navigation", { name: /main navigation/i })).toBeVisible();
     await expect(page.getByText(/prisca m\.|gerard n\./i)).toHaveCount(0);
-    await expect(page.getByRole("heading", { name: "A practice estimate." })).toBeAttached();
+    await expect(page.getByRole("heading", { name: "A practice estimate." })).toHaveCount(0);
+    await expect(page.getByRole("heading", { name: "Every question explained." })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "How to pass any board exam — in 3 minutes" })).toBeVisible();
+    await expect(page.getByText("Nathan C.")).toBeVisible();
+    await expect(page.getByText("Priscilla J.")).toBeVisible();
+    await expect(page.getByText("Quality exam prep shouldn't be out of reach")).toHaveCount(0);
+    await expect(page.getByText(/24\/7|support hours/i)).toHaveCount(0);
     await expect(page.getByText("NCLEX content review led by Ileen Chishimba, RN")).toBeAttached();
+    await expect(page.getByRole("heading", { name: "Ryan Chishimba, PharmD" })).toBeVisible();
     await expect(
       page.getByText("5-day free trial · no payment method required · then $27.99/mo").first()
     ).toBeVisible();
@@ -87,6 +94,91 @@ test.describe("Landing page", () => {
     await page.goto("/faq", { waitUntil: "domcontentloaded" });
     await expect(page).toHaveURL(/\/faq$/);
     await expect(page.getByRole("heading").first()).toBeVisible();
+  });
+
+  test("pass video waits for a click and the share page previews it", async ({ page }) => {
+    const videoRequests: string[] = [];
+    page.on("request", (request) => {
+      if (request.url().includes("how-to-pass.mp4")) videoRequests.push(request.url());
+    });
+
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    const play = page.getByRole("button", { name: /play video/i });
+    await expect(play).toBeVisible();
+    await expect(play).toHaveAttribute("data-ready", "true");
+    expect(videoRequests).toEqual([]);
+    await expect(page.locator("video")).toHaveCount(0);
+
+    await play.click();
+    await expect.poll(() => videoRequests.length).toBeGreaterThan(0);
+    await expect(page.getByRole("link", { name: "Facebook" })).toHaveAttribute("href", /facebook\.com\/sharer/);
+    await expect(page.getByRole("link", { name: "X", exact: true })).toHaveAttribute(
+      "href",
+      /twitter\.com\/intent/
+    );
+    await expect(page.getByRole("link", { name: "LinkedIn" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Email" })).toHaveAttribute("href", /^mailto:/);
+
+    await page.goto("/how-to-pass#video", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#video")).toBeVisible();
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+      "content",
+      /How to pass any board exam/
+    );
+    await expect(page.locator('meta[property="og:video"]')).toHaveAttribute("content", /how-to-pass\.mp4/);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+      "content",
+      /how-to-pass-poster/
+    );
+    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
+      "content",
+      "summary_large_image"
+    );
+    await expect(page.getByRole("link", { name: /start 5-day free trial/i }).first()).toBeVisible();
+  });
+
+  test("homepage type, tap targets, and overflow at key widths", async ({ page }) => {
+    for (const width of [375, 768, 1280, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto("/", { waitUntil: "domcontentloaded" });
+      await expect(page.locator(".home-hero")).toBeVisible();
+
+      const metrics = await page.evaluate(() => {
+        const doc = document.documentElement;
+        const bodySize = (selector: string) => {
+          const el = document.querySelector(selector);
+          return el ? parseFloat(getComputedStyle(el).fontSize) : 0;
+        };
+        const cta = document.querySelector(".home-hero__actions a");
+        const box = cta?.getBoundingClientRect();
+        return {
+          overflows: doc.scrollWidth > doc.clientWidth + 1,
+          sub: bodySize(".home-hero__sub"),
+          why: bodySize(".home-q__why"),
+          ctaHeight: box?.height ?? 0,
+          ctaWidth: box?.width ?? 0,
+        };
+      });
+
+      expect(metrics.overflows, `overflow at ${width}`).toBe(false);
+      expect(metrics.sub, `hero type at ${width}`).toBeGreaterThanOrEqual(16);
+      expect(metrics.why, `rationale type at ${width}`).toBeGreaterThanOrEqual(16);
+      expect(metrics.ctaHeight, `cta height at ${width}`).toBeGreaterThanOrEqual(44);
+      expect(metrics.ctaWidth, `cta width at ${width}`).toBeGreaterThanOrEqual(44);
+    }
+
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator(".home-sticky")).toHaveCount(0);
+    await page.evaluate(() => window.scrollTo(0, 900));
+    const sticky = page.locator(".home-sticky a");
+    await expect(sticky).toBeVisible();
+    const stickyBox = await sticky.boundingBox();
+    expect(stickyBox?.height ?? 0).toBeGreaterThanOrEqual(44);
+
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.evaluate(() => window.scrollTo(0, 900));
+    await expect(page.locator(".home-sticky")).toBeHidden();
   });
 
   test("landing hero passes axe checks", async ({ page }) => {

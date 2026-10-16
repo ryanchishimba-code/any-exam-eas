@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { PublicFoldOffer } from "@/components/marketing/PublicFoldOffer";
 
-const pathname = vi.hoisted(() => ({ current: "/about" }));
+const pathname = vi.hoisted(() => ({ current: "/toolkit" }));
 
 vi.mock("next/navigation", () => ({
   usePathname: () => pathname.current,
@@ -10,7 +10,7 @@ vi.mock("next/navigation", () => ({
 
 describe("PublicFoldOffer", () => {
   beforeEach(() => {
-    pathname.current = "/about";
+    pathname.current = "/toolkit";
   });
 
   it("puts one trial CTA on a plain public page without repeating the offer line", () => {
@@ -26,7 +26,7 @@ describe("PublicFoldOffer", () => {
   });
 
   it("stays off pages that already open with the hero or the pricing fold", () => {
-    for (const path of ["/", "/nclex", "/pricing", "/naplex"]) {
+    for (const path of ["/", "/nclex", "/pricing", "/naplex", "/how-to-pass"]) {
       pathname.current = path;
       const { container, unmount } = render(<PublicFoldOffer />);
       expect(container).toBeEmptyDOMElement();

@@ -22,6 +22,7 @@ const HIDDEN_PREFIXES = [
   "/about",
   "/contact",
   "/daily",
+  "/how-to-pass",
 ];
 
 /**

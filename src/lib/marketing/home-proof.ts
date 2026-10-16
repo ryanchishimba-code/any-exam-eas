@@ -6,13 +6,10 @@ import {
   type CountBoardSlug,
   type SiteQuestionCounts,
 } from "@/lib/counts";
-import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import type { QuestionBankCountsSnapshot } from "@/lib/marketing/question-bank-counts";
-import { nclexContentReviewLedBy } from "@/lib/marketing/legal-copy";
-import { formatMonthlyPrice } from "@/lib/site";
 
 export type HomeProofFact = {
-  id: "questions" | "reviewer" | "ngn" | "price";
+  id: "questions" | "ngn";
   text: string;
 };
 
@@ -44,37 +41,25 @@ export function siteCountsFromSnapshot(
 /**
  * Proof strip under the homepage hero.
  * Every number comes from `siteQuestionCounts` in counts.ts.
+ * The price is not included here — the homepage shows it once, in the pricing card.
  * Omits the question total and the NGN line when that fact is not in the snapshot.
  */
 export function buildHomeProofFacts(site: SiteQuestionCounts | null): HomeProofFact[] {
-  const facts: HomeProofFact[] = [];
-  const reviewer = CLINICAL_REVIEWERS.find((person) => person.id === "nursing");
+  if (!site) return [];
 
-  if (site) {
-    facts.push({
+  const facts: HomeProofFact[] = [
+    {
       id: "questions",
       text: `${formatExactQuestionCount(site.totalQuestions)} practice questions`,
-    });
-  }
+    },
+  ];
 
-  if (reviewer) {
-    facts.push({
-      id: "reviewer",
-      text: nclexContentReviewLedBy(reviewer.displayName),
-    });
-  }
-
-  if (site && site.boards.nclex.caseStudies > 0) {
+  if (site.boards.nclex.caseStudies > 0) {
     facts.push({
       id: "ngn",
       text: "NGN case studies included",
     });
   }
-
-  facts.push({
-    id: "price",
-    text: `${formatMonthlyPrice("pro")}/mo covers all six boards`,
-  });
 
   return facts;
 }
