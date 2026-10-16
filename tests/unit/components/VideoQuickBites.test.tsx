@@ -9,7 +9,19 @@ describe("Video Quick Bites", () => {
     vi.unstubAllGlobals();
   });
 
-  it("shows locked posters and one upgrade action for a free member", () => {
+  it("lets a free member play the first episode and keeps the rest locked", async () => {
+    const user = userEvent.setup();
+    const fetchMock = vi.fn(async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        videoUrl:
+          "https://iiuq2awk7g8oulze.private.blob.vercel-storage.com/quick-bites/quick-bites-ep02-nclex-works-web.mp4?vercel-blob-signature=test",
+        captionsUrl: "/api/quick-bites/quick-bites-ep02-nclex-works/media?part=captions",
+      }),
+    }));
+    vi.stubGlobal("fetch", fetchMock);
+
     render(
       <VideoQuickBitesSection
         canPlay={false}
@@ -22,7 +34,7 @@ describe("Video Quick Bites", () => {
     expect(screen.getByText("Lab ranges vary by lab.")).toBeInTheDocument();
     expect(screen.getByText("How the Nursing Boards Work")).toBeInTheDocument();
     expect(screen.getByText("Danger-Zone Labs & Exam-Day Plan")).toBeInTheDocument();
-    expect(screen.getAllByText("Locked")).toHaveLength(QUICK_BITE_EPISODES.length);
+    expect(screen.getAllByText("Locked")).toHaveLength(QUICK_BITE_EPISODES.length - 1);
     expect(screen.queryByText("Coming soon")).not.toBeInTheDocument();
     expect(screen.getByText("2:44")).toBeInTheDocument();
     expect(screen.getByText("3:25")).toBeInTheDocument();
@@ -30,11 +42,22 @@ describe("Video Quick Bites", () => {
     expect(screen.getByText("Acid-Base Made Simple")).toBeInTheDocument();
     expect(screen.queryByText(/Question 1 of/)).not.toBeInTheDocument();
     expect(screen.queryByText(/nursing board exam ends at question 85/)).not.toBeInTheDocument();
-    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Play 1. How the Nursing Boards Work" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Play 2. Priority: Who Do You See First?" })).not.toBeInTheDocument();
+    expect(screen.getAllByRole("button")).toHaveLength(1);
     const upgrade = screen.getByRole("link", { name: "Subscribe to watch" });
     expect(upgrade).toHaveAttribute("href", "/checkout?plan=subscribe");
     expect(upgrade.className).toContain("min-h-11");
+    expect(screen.getAllByRole("link")).toHaveLength(1);
     expect(document.querySelector("video")).toBeNull();
+
+    await user.click(screen.getByRole("button", { name: "Play 1. How the Nursing Boards Work" }));
+    const video = await screen.findByLabelText("How the Nursing Boards Work video");
+    expect(video).toHaveAttribute("src", expect.stringContaining("vercel-blob-signature="));
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/quick-bites/quick-bites-ep02-nclex-works/media",
+      expect.any(Object)
+    );
   });
 
   it("lets a paid member open one lazy player", async () => {

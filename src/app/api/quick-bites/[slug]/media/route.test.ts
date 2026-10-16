@@ -110,6 +110,34 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
   });
 
+  it("signs the open episode for a free or trial member and keeps the rest locked", async () => {
+    asAccess("free", "trial_expired", false);
+    const open = await mediaRequest("quick-bites-ep02-nclex-works");
+    expect(open.status).toBe(200);
+    expect(signPrivateQuickBiteGet).toHaveBeenCalledWith(
+      "quick-bites/quick-bites-ep02-nclex-works-web.mp4"
+    );
+    const stream = new ReadableStream({
+      start(controller) {
+        controller.enqueue(new TextEncoder().encode("WEBVTT\n"));
+        controller.close();
+      },
+    });
+    getBlob.mockResolvedValue({ statusCode: 200, stream, blob: { contentType: "text/vtt" } });
+    const captions = await mediaRequest("quick-bites-ep02-nclex-works", "captions");
+    expect(captions.status).toBe(200);
+    expect(await captions.text()).toContain("WEBVTT");
+
+    signPrivateQuickBiteGet.mockClear();
+    getBlob.mockClear();
+    asAccess("trial", "trialing", true);
+    const locked = await mediaRequest("quick-bites-ep03-priority");
+    expect(locked.status).toBe(403);
+    expect(await locked.json()).toMatchObject({ code: "QUICK_BITES_LOCKED" });
+    expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
+    expect(getBlob).not.toHaveBeenCalled();
+  });
+
   it("returns 403 for a trial member", async () => {
     asAccess("trial", "trialing", true);
     const response = await mediaRequest("quick-bites-ep03-priority");

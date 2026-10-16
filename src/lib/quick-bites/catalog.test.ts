@@ -1,9 +1,11 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
+  OPEN_QUICK_BITE_SLUG,
   QUICK_BITE_EPISODES,
   QUICK_BITE_GROUPS,
   getQuickBiteBySlug,
+  isOpenQuickBite,
   quickBiteCaptionsPath,
   quickBitePoster,
   quickBiteVideoPath,
@@ -39,6 +41,11 @@ describe("Quick Bites catalog", () => {
       ORDER.map((_, index) => index + 1)
     );
     expect(QUICK_BITE_EPISODES.filter((episode) => episode.held)).toEqual([]);
+    expect(getQuickBiteBySlug(OPEN_QUICK_BITE_SLUG)).toMatchObject({
+      number: 1,
+      title: "How the Nursing Boards Work",
+    });
+    expect(QUICK_BITE_EPISODES.filter((episode) => isOpenQuickBite(episode.slug))).toHaveLength(1);
     expect(getQuickBiteBySlug("quick-bites-ep07-acid-base")?.duration).toBe("3:25");
     expect(getQuickBiteBySlug("quick-bites-ep12-high-alert-pharm")?.duration).toBe("2:44");
     expect(QUICK_BITE_GROUPS.map((group) => group.title)).toEqual([
