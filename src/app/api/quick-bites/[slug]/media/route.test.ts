@@ -128,6 +128,17 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     expect(getBlob).not.toHaveBeenCalled();
   });
 
+  it("does not sign a held episode", async () => {
+    asAccess("subscriber", "active", true);
+    const video = await mediaRequest("quick-bites-ep07-acid-base");
+    const captions = await mediaRequest("quick-bites-ep12-high-alert-pharm", "captions");
+    expect(video.status).toBe(404);
+    expect(captions.status).toBe(404);
+    expect(await video.text()).not.toContain("vercel-blob-signature");
+    expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
+    expect(getBlob).not.toHaveBeenCalled();
+  });
+
   it("returns 404 for an unknown episode after the paid check", async () => {
     asAccess("subscriber", "active", true);
     const response = await mediaRequest("../secret");

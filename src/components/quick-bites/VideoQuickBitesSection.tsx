@@ -53,7 +53,7 @@ function EpisodeMeta({ episode }: { episode: QuickBiteEpisode }) {
         {episode.title}
       </span>
       <span className="shrink-0 text-[12px] tabular-nums text-[var(--color-ink-muted)]">
-        {episode.duration}
+        {episode.held ? "Coming soon" : episode.duration}
       </span>
     </span>
   );
@@ -71,7 +71,7 @@ export function VideoQuickBitesSection({
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const active = canPlay
     ? QUICK_BITE_GROUPS.flatMap((group) => group.episodes).find(
-        (episode) => episode.slug === activeSlug
+        (episode) => episode.slug === activeSlug && !episode.held
       ) ?? null
     : null;
 
@@ -124,7 +124,7 @@ export function VideoQuickBitesSection({
             <ul className="mt-2.5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {group.episodes.map((episode) => (
                 <li key={episode.slug}>
-                  {canPlay ? (
+                  {canPlay && !episode.held ? (
                     <button
                       type="button"
                       aria-pressed={active?.slug === episode.slug}
@@ -148,12 +148,14 @@ export function VideoQuickBitesSection({
                     <figure className="overflow-hidden rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)]">
                       <div className="relative">
                         <Poster slug={episode.slug} />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/45">
-                          <span className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-black/70 text-white">
-                            <Lock className="h-4 w-4" aria-hidden />
-                            <span className="sr-only">Locked</span>
-                          </span>
-                        </div>
+                        {canPlay ? null : (
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/45">
+                            <span className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-black/70 text-white">
+                              <Lock className="h-4 w-4" aria-hidden />
+                              <span className="sr-only">Locked</span>
+                            </span>
+                          </div>
+                        )}
                       </div>
                       <figcaption>
                         <EpisodeMeta episode={episode} />

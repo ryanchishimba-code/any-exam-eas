@@ -13,6 +13,8 @@ export type QuickBiteEpisode = {
   title: string;
   duration: string;
   group: string;
+  /** Slot stays visible. The current video is not uploaded or playable. */
+  held?: boolean;
 };
 
 type EpisodeSeed = {
@@ -99,6 +101,7 @@ const GROUPS: { title: string; episodes: EpisodeSeed[] }[] = [
         number: 9,
         title: "High-Alert Medications",
         duration: "2:43",
+        held: true,
       },
     ],
   },
@@ -155,6 +158,7 @@ const GROUPS: { title: string; episodes: EpisodeSeed[] }[] = [
         number: 15,
         title: "Acid-Base Made Simple",
         duration: "3:19",
+        held: true,
       },
     ],
   },
@@ -186,6 +190,10 @@ const BY_SLUG = new Map(QUICK_BITE_EPISODES.map((episode) => [episode.slug, epis
 
 export function getQuickBiteBySlug(slug: string): QuickBiteEpisode | undefined {
   return BY_SLUG.get(slug);
+}
+
+export function isQuickBiteHeld(slug: string): boolean {
+  return BY_SLUG.get(slug)?.held === true;
 }
 
 export function quickBiteVideoPath(slug: string): string {

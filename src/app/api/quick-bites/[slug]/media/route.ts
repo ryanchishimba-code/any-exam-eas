@@ -4,6 +4,7 @@ import { requireAuthenticatedApi } from "@/lib/api-access";
 import { canPlayQuickBites } from "@/lib/quick-bites/access";
 import {
   getQuickBiteBySlug,
+  isQuickBiteHeld,
   quickBiteCaptionsPath,
   quickBiteVideoPath,
 } from "@/lib/quick-bites/catalog";
@@ -30,7 +31,7 @@ export async function GET(
 
   const { slug } = await ctx.params;
   const episode = getQuickBiteBySlug(slug);
-  if (!episode) {
+  if (!episode || isQuickBiteHeld(slug)) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
   }
 

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuthenticatedApi } from "@/lib/api-access";
 import { canPlayQuickBites } from "@/lib/quick-bites/access";
-import { getQuickBiteBySlug } from "@/lib/quick-bites/catalog";
+import { getQuickBiteBySlug, isQuickBiteHeld } from "@/lib/quick-bites/catalog";
 import {
   getQuickBiteQuiz,
   gradeQuickBiteAnswer,
@@ -35,7 +35,7 @@ export async function GET(
   if (!gate.ok) return gate.response;
 
   const { slug } = await ctx.params;
-  if (!getQuickBiteBySlug(slug)) {
+  if (!getQuickBiteBySlug(slug) || isQuickBiteHeld(slug)) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
   }
   const quiz = getQuickBiteQuiz(slug);
@@ -54,6 +54,9 @@ export async function POST(
   if (!gate.ok) return gate.response;
 
   const { slug } = await ctx.params;
+  if (isQuickBiteHeld(slug) || !getQuickBiteBySlug(slug)) {
+    return NextResponse.json({ error: "Episode not found" }, { status: 404 });
+  }
   const quiz = getQuickBiteQuiz(slug);
   if (!quiz) {
     return NextResponse.json({ error: "Quiz not found" }, { status: 404 });
