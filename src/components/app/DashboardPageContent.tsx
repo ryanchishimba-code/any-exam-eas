@@ -29,6 +29,7 @@ import type { DomainMapTile } from "@/components/dashboard/DomainMap";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 import { isTodayEngineNaplexEnabled, isTodayEngineUsmleEnabled } from "@/lib/engine/mastery/feature-flag";
 import { FirstLoginTour } from "@/components/onboarding/FirstLoginTour";
+import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBitesSection";
 import { ReadinessDashboardCard } from "@/components/readiness/ReadinessDashboardCard";
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
 
@@ -75,6 +76,7 @@ export function DashboardPageContent({
   accountAttemptCount = null,
   todaySet = null,
   deferTodayMix = false,
+  quickBites = null,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -101,6 +103,12 @@ export function DashboardPageContent({
   todaySet?: TodaySetPreviewView | null;
   /** Mix line loads after the shell, from the served preview, so back navigation is not blocked on it. */
   deferTodayMix?: boolean;
+  /** Paid playback vs locked posters. Rendered only on the NCLEX dashboard. */
+  quickBites?: {
+    canPlay: boolean;
+    upgradeHref: string;
+    upgradeLabel: string;
+  } | null;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
@@ -180,6 +188,14 @@ export function DashboardPageContent({
           studyLocked={studyLocked}
           todaySet={deferTodayMix ? undefined : todaySet}
           deferMix={deferTodayMix}
+        />
+      ) : null}
+
+      {examSlug === "nclex" && quickBites ? (
+        <VideoQuickBitesSection
+          canPlay={quickBites.canPlay}
+          upgradeHref={quickBites.upgradeHref}
+          upgradeLabel={quickBites.upgradeLabel}
         />
       ) : null}
 

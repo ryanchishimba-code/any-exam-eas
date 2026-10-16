@@ -916,6 +916,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  min-height: 44px;
   border-radius: 0.85rem;
   padding: 0.65rem 0.9rem;
   font-size: 0.9375rem;

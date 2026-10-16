@@ -8,6 +8,7 @@ import {
   BarChart3,
   Bone,
   BookMarked,
+  Clapperboard,
   Clock,
   FileText,
   LayoutGrid,
@@ -88,6 +89,13 @@ const NAV_SECTIONS: NavSection[] = [
         exams: STUDY_GUIDE_EXAMS,
       },
       {
+        id: "quick-bites",
+        href: `${ROUTES.dashboard}#video-quick-bites`,
+        label: "Video Quick Bites",
+        icon: Clapperboard,
+        exams: ["nclex"],
+      },
+      {
         id: "high-yield",
         href: ROUTES.highYieldTopics,
         label: "High-Yield Topics",
@@ -142,6 +150,7 @@ function navPath(href: string) {
 }
 
 function isNavActive(pathname: string, href: string, exact?: boolean) {
+  if (href.includes("#")) return false;
   const path = navPath(href);
   if (path.startsWith(`${ROUTES.fullExam}/`)) {
     return pathname === path || pathname.startsWith(`${path}/`);

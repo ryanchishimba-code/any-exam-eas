@@ -1,0 +1,299 @@
+{
+  "episode": "ep13-psych",
+  "title": "Psych Meds + Therapeutic Communication",
+  "video": "quick-bites-ep13-psych-web.mp4",
+  "questions": [
+    {
+      "id": "ep13-psych-q01",
+      "type": "single_best_answer",
+      "stem": "A client on lithium has a level of 2.1, a coarse tremor, and vomiting. What is most likely?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Expected side effects"
+        },
+        {
+          "id": "B",
+          "text": "Lithium toxicity"
+        },
+        {
+          "id": "C",
+          "text": "Serotonin syndrome"
+        },
+        {
+          "id": "D",
+          "text": "Neuroleptic malignant syndrome"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a level of 2.1 is above the therapeutic range of about 0.8 to 1.2, and a coarse tremor with vomiting are toxicity signs. A dismisses a toxic level. C, serotonin syndrome, comes from serotonin drugs such as antidepressants, not lithium. D, neuroleptic malignant syndrome, comes from antipsychotics and shows high fever and rigid muscles.",
+      "videoTimestamp": "1:25"
+    },
+    {
+      "id": "ep13-psych-q02",
+      "type": "single_best_answer",
+      "stem": "For the client with lithium toxicity, what should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give the next dose"
+        },
+        {
+          "id": "B",
+          "text": "Hold the next dose, notify the provider, expect a repeat level and sodium check"
+        },
+        {
+          "id": "C",
+          "text": "Encourage a low-salt diet"
+        },
+        {
+          "id": "D",
+          "text": "Double the fluid restriction"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: hold the next dose, notify the provider, and expect a repeat level and sodium check. A continues the drug. C, low salt, raises lithium. D, less fluid, also raises the level.",
+      "videoTimestamp": "1:25"
+    },
+    {
+      "id": "ep13-psych-q03",
+      "type": "single_best_answer",
+      "stem": "Which client teaching about lithium is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cut back on salt"
+        },
+        {
+          "id": "B",
+          "text": "Keep salt and fluid intake steady, about 2 to 3 liters a day"
+        },
+        {
+          "id": "C",
+          "text": "Drink as little water as possible"
+        },
+        {
+          "id": "D",
+          "text": "Lithium levels never need checking"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: low sodium or dehydration raises the level, so teach steady salt and fluid, about 2 to 3 liters a day. A and C raise the level. D is wrong because the safe range is narrow.",
+      "videoTimestamp": "0:30"
+    },
+    {
+      "id": "ep13-psych-q04",
+      "type": "single_best_answer",
+      "stem": "A client on an antipsychotic has a high fever and very rigid muscles. What is this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Serotonin syndrome"
+        },
+        {
+          "id": "B",
+          "text": "Neuroleptic malignant syndrome"
+        },
+        {
+          "id": "C",
+          "text": "Akathisia"
+        },
+        {
+          "id": "D",
+          "text": "Lithium toxicity"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: high fever and very rigid muscles on an antipsychotic are neuroleptic malignant syndrome, an emergency. A involves agitation, sweating, and twitchy muscles. C is restlessness. D involves lithium.",
+      "videoTimestamp": "0:40"
+    },
+    {
+      "id": "ep13-psych-q05",
+      "type": "select_all_that_apply",
+      "stem": "A client takes two antidepressants. Which findings suggest serotonin syndrome? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Agitation"
+        },
+        {
+          "id": "B",
+          "text": "Sweating"
+        },
+        {
+          "id": "C",
+          "text": "Fever"
+        },
+        {
+          "id": "D",
+          "text": "Twitchy, jerky muscles"
+        },
+        {
+          "id": "E",
+          "text": "Lip smacking"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: these are the taught signs of serotonin syndrome. E, lip smacking, is tardive dyskinesia.",
+      "videoTimestamp": "0:54"
+    },
+    {
+      "id": "ep13-psych-q06",
+      "type": "single_best_answer",
+      "stem": "A client develops neuroleptic malignant syndrome. What is the priority action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue the drug and give a fever reducer"
+        },
+        {
+          "id": "B",
+          "text": "Stop the drug and notify the provider right away"
+        },
+        {
+          "id": "C",
+          "text": "Recheck vital signs in 4 hours"
+        },
+        {
+          "id": "D",
+          "text": "Increase the dose"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: both dangerous reactions are emergencies, so stop the drug and notify the provider right away. A and D continue the drug. C delays.",
+      "videoTimestamp": "0:58"
+    },
+    {
+      "id": "ep13-psych-q07",
+      "type": "single_best_answer",
+      "stem": "A client on an antipsychotic has lip smacking and tongue movements. Why should this be reported early?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It is always temporary"
+        },
+        {
+          "id": "B",
+          "text": "Tardive dyskinesia can be permanent"
+        },
+        {
+          "id": "C",
+          "text": "It means lithium toxicity"
+        },
+        {
+          "id": "D",
+          "text": "It is expected and harmless"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: lip smacking and tongue movements are tardive dyskinesia, which can be permanent, so report it early. A and D downplay it. C is unrelated.",
+      "videoTimestamp": "1:10"
+    },
+    {
+      "id": "ep13-psych-q08",
+      "type": "single_best_answer",
+      "stem": "A client on an antipsychotic can't sit still and keeps pacing. What is this called?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Acute dystonia"
+        },
+        {
+          "id": "B",
+          "text": "Akathisia"
+        },
+        {
+          "id": "C",
+          "text": "Tardive dyskinesia"
+        },
+        {
+          "id": "D",
+          "text": "Serotonin syndrome"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: akathisia is restlessness, can't sit still. A is a sudden muscle spasm in the neck or eyes. C is lip smacking and tongue movements. D involves fever and twitchy muscles.",
+      "videoTimestamp": "1:06"
+    },
+    {
+      "id": "ep13-psych-q09",
+      "type": "single_best_answer",
+      "stem": "A client says, \"I just don't want to be here anymore.\" What is the best response?",
+      "options": [
+        {
+          "id": "A",
+          "text": "\"Things will get better soon.\""
+        },
+        {
+          "id": "B",
+          "text": "\"Are you thinking about killing yourself?\""
+        },
+        {
+          "id": "C",
+          "text": "\"Why do you feel that way?\""
+        },
+        {
+          "id": "D",
+          "text": "\"Let's talk about something happier.\""
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: asking directly does not put the idea in the client's head; it opens the door to safety. A is false reassurance. C is a why question, which blocks communication. D changes the subject.",
+      "videoTimestamp": "2:13"
+    },
+    {
+      "id": "ep13-psych-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which nurse statements are therapeutic? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "\"Tell me more about that.\""
+        },
+        {
+          "id": "B",
+          "text": "\"You seem upset.\""
+        },
+        {
+          "id": "C",
+          "text": "\"Why did you do that?\""
+        },
+        {
+          "id": "D",
+          "text": "\"Don't worry, it'll be fine.\""
+        },
+        {
+          "id": "E",
+          "text": "\"You should just call your sister.\""
+        }
+      ],
+      "keys": [
+        "A",
+        "B"
+      ],
+      "explanation": "A and B are correct: an open question and naming a feeling help. C is a why question, D is false reassurance, and E gives advice; all block communication.",
+      "videoTimestamp": "1:35"
+    }
+  ]
+}

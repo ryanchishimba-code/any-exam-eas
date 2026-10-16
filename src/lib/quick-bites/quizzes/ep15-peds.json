@@ -1,0 +1,301 @@
+{
+  "episode": "ep15-peds",
+  "title": "Peds: Distress, Dehydration, Red Flags",
+  "video": "quick-bites-ep15-peds-web.mp4",
+  "questions": [
+    {
+      "id": "ep15-peds-q01",
+      "type": "single_best_answer",
+      "stem": "A toddler with respiratory syncytial virus was breathing fast and fussy. Now the toddler is belly breathing, sleepy, and the heart rate is dropping. What does this mean?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The toddler is getting better"
+        },
+        {
+          "id": "B",
+          "text": "The toddler is getting worse and tiring out"
+        },
+        {
+          "id": "C",
+          "text": "The toddler is calm and resting"
+        },
+        {
+          "id": "D",
+          "text": "The fever has broken"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: going from fast and fussy to sleepy with a slowing heart rate means the toddler is tiring out; quiet and sleepy isn't calm here. A, C, and D misread the decline.",
+      "videoTimestamp": "1:09"
+    },
+    {
+      "id": "ep15-peds-q02",
+      "type": "single_best_answer",
+      "stem": "For the toddler who is tiring out, what should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Let the toddler sleep and recheck later"
+        },
+        {
+          "id": "B",
+          "text": "Stay, support oxygen and the airway, and call the rapid response team"
+        },
+        {
+          "id": "C",
+          "text": "Give oral fluids"
+        },
+        {
+          "id": "D",
+          "text": "Call the parents first"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: stay, support oxygen and the airway, and call the rapid response team. A delays care. C and D don't address the breathing emergency.",
+      "videoTimestamp": "1:16"
+    },
+    {
+      "id": "ep15-peds-q03",
+      "type": "single_best_answer",
+      "stem": "Which finding is a late sign of distress in a child?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fast breathing"
+        },
+        {
+          "id": "B",
+          "text": "Fast heart rate"
+        },
+        {
+          "id": "C",
+          "text": "Low blood pressure"
+        },
+        {
+          "id": "D",
+          "text": "Fussiness"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: low blood pressure in a child is a late sign; don't wait for it. A, B, and D are early, compensating signs.",
+      "videoTimestamp": "0:31"
+    },
+    {
+      "id": "ep15-peds-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which are signs of breathing distress in a child? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Retractions between the ribs"
+        },
+        {
+          "id": "B",
+          "text": "Nasal flaring"
+        },
+        {
+          "id": "C",
+          "text": "Grunting"
+        },
+        {
+          "id": "D",
+          "text": "Fast breathing"
+        },
+        {
+          "id": "E",
+          "text": "Playing quietly"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: fast breathing, retractions, flaring, and grunting are taught distress signs. E isn't a distress sign.",
+      "videoTimestamp": "0:23"
+    },
+    {
+      "id": "ep15-peds-q05",
+      "type": "single_best_answer",
+      "stem": "What is the best measure of dehydration in a child?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Skin color"
+        },
+        {
+          "id": "B",
+          "text": "Daily weight"
+        },
+        {
+          "id": "C",
+          "text": "Number of tears"
+        },
+        {
+          "id": "D",
+          "text": "Heart rate alone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: daily weight is the best measure because sudden weight loss reflects fluid loss. A, skin color, and C, tears, are rough signs that vary. D, heart rate alone, changes with fever, crying, and pain, so it isn't specific.",
+      "videoTimestamp": "0:51"
+    },
+    {
+      "id": "ep15-peds-q06",
+      "type": "select_all_that_apply",
+      "stem": "Which findings suggest dehydration in a baby? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fewer wet diapers"
+        },
+        {
+          "id": "B",
+          "text": "No tears"
+        },
+        {
+          "id": "C",
+          "text": "Dry mouth"
+        },
+        {
+          "id": "D",
+          "text": "Sunken soft spot"
+        },
+        {
+          "id": "E",
+          "text": "Weight gain"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: fewer wet diapers, no tears, dry mouth, and a sunken soft spot are signs. E, weight gain, isn't.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep15-peds-q07",
+      "type": "single_best_answer",
+      "stem": "A child has mild to moderate dehydration and can drink. What is the first-line treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Intravenous fluids"
+        },
+        {
+          "id": "B",
+          "text": "Oral rehydration solution in small, frequent sips"
+        },
+        {
+          "id": "C",
+          "text": "Large glasses of juice at once"
+        },
+        {
+          "id": "D",
+          "text": "Nothing by mouth"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: for mild to moderate dehydration, give oral rehydration solution in small, frequent sips. A is for severe dehydration. C isn't small, frequent sips. D withholds fluids.",
+      "videoTimestamp": "0:53"
+    },
+    {
+      "id": "ep15-peds-q08",
+      "type": "single_best_answer",
+      "stem": "Children's medication doses are based on what?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Age only"
+        },
+        {
+          "id": "B",
+          "text": "Weight in kilograms"
+        },
+        {
+          "id": "C",
+          "text": "Height"
+        },
+        {
+          "id": "D",
+          "text": "Parent's preference"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: doses are based on weight in kilograms, so double-check every dose. A, age, and C, height, are poor stand-ins because children of the same age or height can weigh very different amounts. D is wrong because dosing is never based on preference.",
+      "videoTimestamp": "1:27"
+    },
+    {
+      "id": "ep15-peds-q09",
+      "type": "single_best_answer",
+      "stem": "A child's injury does not match the parent's story. What must the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Wait for proof before reporting"
+        },
+        {
+          "id": "B",
+          "text": "Report the suspicion of abuse"
+        },
+        {
+          "id": "C",
+          "text": "Ask the parent to explain again later"
+        },
+        {
+          "id": "D",
+          "text": "Document only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: you report a suspicion of abuse; you don't need proof. A waits for proof. C and D don't meet the duty to report.",
+      "videoTimestamp": "1:42"
+    },
+    {
+      "id": "ep15-peds-q10",
+      "type": "single_best_answer",
+      "stem": "Which child should the nurse see first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "4-year-old, fever of 101, playing"
+        },
+        {
+          "id": "B",
+          "text": "Infant who is sleepy, grunting, heart rate 80"
+        },
+        {
+          "id": "C",
+          "text": "Toddler crying after a shot"
+        },
+        {
+          "id": "D",
+          "text": "8-year-old asking for juice"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: an infant who is grunting, sleepy, with a heart rate of 80 is decompensating. A is playing despite fever. C is an expected reaction. D is a routine request.",
+      "videoTimestamp": "1:57"
+    }
+  ]
+}

@@ -1,0 +1,300 @@
+{
+  "episode": "bonus-labs-examday",
+  "title": "Bonus: Lab Danger Zones + Exam Day",
+  "video": "quick-bites-bonus-labs-examday-web.mp4",
+  "questions": [
+    {
+      "id": "bonus-labs-examday-q01",
+      "type": "single_best_answer",
+      "stem": "Two lab results return: potassium 6.4 and blood sugar 180. Which does the nurse act on first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Blood sugar 180"
+        },
+        {
+          "id": "B",
+          "text": "Potassium 6.4"
+        },
+        {
+          "id": "C",
+          "text": "Both equally"
+        },
+        {
+          "id": "D",
+          "text": "Neither is abnormal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: potassium 6.4 is above 5.0 and can trigger a deadly rhythm. A, 180, is high but not an emergency right now. C ignores the priority. D is wrong because potassium 6.4 is abnormal.",
+      "videoTimestamp": "0:52"
+    },
+    {
+      "id": "bonus-labs-examday-q02",
+      "type": "single_best_answer",
+      "stem": "For the client with potassium 6.4, which actions are taught?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give oral potassium"
+        },
+        {
+          "id": "B",
+          "text": "Cardiac monitor, notify the provider, expect a repeat level"
+        },
+        {
+          "id": "C",
+          "text": "Recheck tomorrow"
+        },
+        {
+          "id": "D",
+          "text": "Encourage bananas"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: put the client on a cardiac monitor, notify the provider, and expect a repeat level. A and D add potassium. C delays.",
+      "videoTimestamp": "1:08"
+    },
+    {
+      "id": "bonus-labs-examday-q03",
+      "type": "single_best_answer",
+      "stem": "Which result needs action first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sodium 138"
+        },
+        {
+          "id": "B",
+          "text": "Glucose 65 in an awake client"
+        },
+        {
+          "id": "C",
+          "text": "International normalized ratio 2.5 on warfarin"
+        },
+        {
+          "id": "D",
+          "text": "Potassium 4.2"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: glucose 65 is below 70, so give fast sugar. A, C, and D are all in range.",
+      "videoTimestamp": "1:39"
+    },
+    {
+      "id": "bonus-labs-examday-q04",
+      "type": "single_best_answer",
+      "stem": "What is the main danger of a potassium level outside 3.5 to 5.0?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Seizures"
+        },
+        {
+          "id": "B",
+          "text": "Heart rhythm problems"
+        },
+        {
+          "id": "C",
+          "text": "Bleeding"
+        },
+        {
+          "id": "D",
+          "text": "Kidney stones"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the danger for potassium is heart rhythm. A, seizures, is the danger for sodium. C, bleeding, is the danger for a high international normalized ratio on warfarin. D, kidney stones, goes with high calcium, not potassium.",
+      "videoTimestamp": "0:21"
+    },
+    {
+      "id": "bonus-labs-examday-q05",
+      "type": "single_best_answer",
+      "stem": "A client's sodium is 128. Which complication is the nurse most concerned about?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bleeding"
+        },
+        {
+          "id": "B",
+          "text": "Brain changes and seizures"
+        },
+        {
+          "id": "C",
+          "text": "Hyperglycemia"
+        },
+        {
+          "id": "D",
+          "text": "Heart rhythm problems"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: 128 is below 135, and the danger for low sodium is the brain and seizures. A, bleeding, goes with a high international normalized ratio. C, high blood sugar, isn't caused by low sodium. D, heart rhythm problems, is the main danger for potassium.",
+      "videoTimestamp": "0:23"
+    },
+    {
+      "id": "bonus-labs-examday-q06",
+      "type": "single_best_answer",
+      "stem": "A client on warfarin has a high international normalized ratio. What is the main risk?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Clots"
+        },
+        {
+          "id": "B",
+          "text": "Bleeding"
+        },
+        {
+          "id": "C",
+          "text": "Low blood sugar"
+        },
+        {
+          "id": "D",
+          "text": "Seizures"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: too high means bleeding. A, clots, is the risk if it's too low. C, low blood sugar, isn't related to warfarin's effect. D, seizures, goes with sodium problems.",
+      "videoTimestamp": "0:32"
+    },
+    {
+      "id": "bonus-labs-examday-q07",
+      "type": "select_all_that_apply",
+      "stem": "Which lab trends signal damage? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rising troponin"
+        },
+        {
+          "id": "B",
+          "text": "Rising lactate"
+        },
+        {
+          "id": "C",
+          "text": "Potassium climbing from 4 to 5.5"
+        },
+        {
+          "id": "D",
+          "text": "Stable sodium of 140"
+        },
+        {
+          "id": "E",
+          "text": "Glucose of 90"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: rising troponin signals heart muscle injury, rising lactate signals poor perfusion, and a potassium climbing from 4 to 5.5 matters because trends beat single numbers. D and E are stable and in range.",
+      "videoTimestamp": "0:38"
+    },
+    {
+      "id": "bonus-labs-examday-q08",
+      "type": "single_best_answer",
+      "stem": "Why does the nurse watch lab trends rather than one value?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Single values are always wrong"
+        },
+        {
+          "id": "B",
+          "text": "A trend tells you more than a single number"
+        },
+        {
+          "id": "C",
+          "text": "Trends are required by law"
+        },
+        {
+          "id": "D",
+          "text": "Single values are never abnormal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a trend tells you more than a single number. A and D are false: single values can be right and can be abnormal. C is false: no law requires trending; it's a clinical judgment practice.",
+      "videoTimestamp": "0:44"
+    },
+    {
+      "id": "bonus-labs-examday-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which items belong on the exam-day checklist? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Authorization to test"
+        },
+        {
+          "id": "B",
+          "text": "An identification that matches it exactly"
+        },
+        {
+          "id": "C",
+          "text": "Sleep and eat"
+        },
+        {
+          "id": "D",
+          "text": "Arrive early"
+        },
+        {
+          "id": "E",
+          "text": "Bring your study notes into the testing room"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: bring your authorization to test and an identification whose first and last names match it, sleep, eat, and arrive early. E is wrong because study notes can't be used during the exam.",
+      "videoTimestamp": "1:22"
+    },
+    {
+      "id": "bonus-labs-examday-q10",
+      "type": "single_best_answer",
+      "stem": "How should a candidate approach a select-all-that-apply item?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pick exactly two options"
+        },
+        {
+          "id": "B",
+          "text": "Judge each option on its own, true or false"
+        },
+        {
+          "id": "C",
+          "text": "Choose the longest options"
+        },
+        {
+          "id": "D",
+          "text": "Skip it and return later"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: judge each option on its own, true or false. A is wrong because the number of correct options varies. C is wrong because length doesn't make an option true. D only puts off the item and doesn't help you answer it.",
+      "videoTimestamp": "1:32"
+    }
+  ]
+}

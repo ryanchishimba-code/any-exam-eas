@@ -3,7 +3,12 @@ import { redirect } from "next/navigation";
 import { getCachedSession } from "@/lib/auth/session";
 import { requireAppPage } from "@/lib/require-premium-page";
 import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
-import { resolveDashboardUpgradeContext } from "@/lib/dashboard/upgrade-banner";
+import {
+  postTrialCheckoutHref,
+  resolveDashboardUpgradeContext,
+  trialUpgradeCheckoutHref,
+} from "@/lib/dashboard/upgrade-banner";
+import { canPlayQuickBites } from "@/lib/quick-bites/access";
 import type { UserAccess } from "@/lib/access-control";
 import { DashboardPageContent } from "@/components/app/DashboardPageContent";
 import { AccessBlockedNotice } from "@/components/AccessBlockedNotice";
@@ -195,6 +200,14 @@ async function DashboardContent({
       tourSeen={tourSeen}
       accountAttemptCount={accountAttemptCount}
       deferTodayMix
+      quickBites={{
+        canPlay: canPlayQuickBites(access),
+        upgradeHref:
+          access.role === "free"
+            ? postTrialCheckoutHref(ROUTES.dashboard)
+            : trialUpgradeCheckoutHref(ROUTES.dashboard),
+        upgradeLabel: access.role === "free" ? "Subscribe to watch" : "Upgrade to watch",
+      }}
     />
   );
 }

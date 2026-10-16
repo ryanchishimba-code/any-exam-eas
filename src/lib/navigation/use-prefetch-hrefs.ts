@@ -10,8 +10,9 @@ export function usePrefetchHrefs(hrefs: readonly string[]): void {
 
   useEffect(() => {
     for (const href of key.split("|")) {
-      if (!href) continue;
-      router.prefetch(href);
+      const path = href.split("#")[0];
+      if (!path) continue;
+      router.prefetch(path);
     }
   }, [router, key]);
 }

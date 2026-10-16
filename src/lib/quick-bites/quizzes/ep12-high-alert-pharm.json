@@ -1,0 +1,294 @@
+{
+  "episode": "ep12-high-alert-pharm",
+  "title": "High-Alert Meds: Blood Thinners, Insulin, Opioids",
+  "video": "quick-bites-ep12-high-alert-pharm-web.mp4",
+  "questions": [
+    {
+      "id": "ep12-high-alert-pharm-q01",
+      "type": "single_best_answer",
+      "stem": "A client receives too much heparin. Which antidote should the nurse expect?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vitamin K"
+        },
+        {
+          "id": "B",
+          "text": "Naloxone"
+        },
+        {
+          "id": "C",
+          "text": "Protamine sulfate"
+        },
+        {
+          "id": "D",
+          "text": "Glucagon"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: protamine sulfate reverses heparin. A, vitamin K, reverses warfarin. B, naloxone, reverses opioids. D, glucagon, raises low blood sugar.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep12-high-alert-pharm-q02",
+      "type": "single_best_answer",
+      "stem": "Which lab does the nurse monitor for a client on a heparin infusion?",
+      "options": [
+        {
+          "id": "A",
+          "text": "International normalized ratio"
+        },
+        {
+          "id": "B",
+          "text": "Partial thromboplastin time"
+        },
+        {
+          "id": "C",
+          "text": "Blood glucose"
+        },
+        {
+          "id": "D",
+          "text": "Potassium"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: heparin goes with the partial thromboplastin time. A goes with warfarin. C, blood glucose, and D, potassium, don't measure clotting, so they can't guide a heparin dose.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep12-high-alert-pharm-q03",
+      "type": "single_best_answer",
+      "stem": "A client on warfarin has a high international normalized ratio. Which antidote may be ordered?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Protamine sulfate"
+        },
+        {
+          "id": "B",
+          "text": "Vitamin K"
+        },
+        {
+          "id": "C",
+          "text": "Naloxone"
+        },
+        {
+          "id": "D",
+          "text": "Calcium gluconate"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: vitamin K reverses warfarin. A reverses heparin. C reverses opioids. D, calcium gluconate, treats magnesium toxicity or protects the heart in high potassium.",
+      "videoTimestamp": "0:33"
+    },
+    {
+      "id": "ep12-high-alert-pharm-q04",
+      "type": "single_best_answer",
+      "stem": "A client on warfarin for most conditions asks about the lab goal. Which international normalized ratio is often the goal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.5 to 1.0"
+        },
+        {
+          "id": "B",
+          "text": "1.0 to 1.5"
+        },
+        {
+          "id": "C",
+          "text": "2 to 3"
+        },
+        {
+          "id": "D",
+          "text": "4 to 5"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: the international normalized ratio goal is often 2 to 3. A and B are too low for treatment. D is too high and raises bleeding risk.",
+      "videoTimestamp": "0:28"
+    },
+    {
+      "id": "ep12-high-alert-pharm-q05",
+      "type": "select_all_that_apply",
+      "stem": "Which teaching is correct for a client on a blood thinner? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use a soft toothbrush"
+        },
+        {
+          "id": "B",
+          "text": "Use an electric razor"
+        },
+        {
+          "id": "C",
+          "text": "Report black stools"
+        },
+        {
+          "id": "D",
+          "text": "Report nosebleeds or bruising"
+        },
+        {
+          "id": "E",
+          "text": "Stop eating all leafy greens on warfarin"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: soft toothbrush, electric razor, and watching for bleeding like bruising, nosebleeds, and black stools. E is wrong: on warfarin, keep vitamin K foods steady; don't stop them or suddenly eat much more.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep12-high-alert-pharm-q06",
+      "type": "single_best_answer",
+      "stem": "Which insulin is the standard choice for an intravenous insulin infusion?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rapid-acting"
+        },
+        {
+          "id": "B",
+          "text": "Regular"
+        },
+        {
+          "id": "C",
+          "text": "Long-acting"
+        },
+        {
+          "id": "D",
+          "text": "All insulins"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: regular (short-acting) insulin is the insulin routinely used for intravenous infusions. A, rapid-acting insulin, is given under the skin around meals; a few rapid-acting products are labeled for IV use, but they are not the standard infusion insulin. C, long-acting insulin, is given only under the skin; it is designed for slow absorption from tissue and has no role in an IV drip. D is wrong because long-acting and most other insulins are never given IV.",
+      "videoTimestamp": "1:05"
+    },
+    {
+      "id": "ep12-high-alert-pharm-q07",
+      "type": "single_best_answer",
+      "stem": "A client receives rapid-acting insulin. When should the client eat?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Within 15 minutes"
+        },
+        {
+          "id": "B",
+          "text": "In 2 hours"
+        },
+        {
+          "id": "C",
+          "text": "At bedtime"
+        },
+        {
+          "id": "D",
+          "text": "It doesn't matter"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: rapid-acting insulin starts in about 15 minutes, so the client should eat within 15 minutes. B, C, and D risk low blood sugar.",
+      "videoTimestamp": "1:00"
+    },
+    {
+      "id": "ep12-high-alert-pharm-q08",
+      "type": "single_best_answer",
+      "stem": "Which statement about insulin pens is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pens can be shared if the needle is changed"
+        },
+        {
+          "id": "B",
+          "text": "Never share pens"
+        },
+        {
+          "id": "C",
+          "text": "Pens can be shared within a family"
+        },
+        {
+          "id": "D",
+          "text": "Pens can be shared in the hospital only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: never share pens. A, C, and D all allow sharing.",
+      "videoTimestamp": "1:14"
+    },
+    {
+      "id": "ep12-high-alert-pharm-q09",
+      "type": "single_best_answer",
+      "stem": "A client on an opioid has a breathing rate of 8 and is very sleepy. What should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Recheck in an hour"
+        },
+        {
+          "id": "B",
+          "text": "Stop the opioid, try to wake the client, support breathing, and give naloxone as ordered"
+        },
+        {
+          "id": "C",
+          "text": "Give the next opioid dose early"
+        },
+        {
+          "id": "D",
+          "text": "Raise the opioid dose"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a breathing rate of 8 with heavy sleepiness means stop the opioid, try to wake the client, support breathing, and give naloxone, as ordered. A delays care. C and D give more opioid, which slows breathing further.",
+      "videoTimestamp": "1:37"
+    },
+    {
+      "id": "ep12-high-alert-pharm-q10",
+      "type": "single_best_answer",
+      "stem": "Which side effect of opioids should the nurse teach about in addition to slowed breathing?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Diarrhea"
+        },
+        {
+          "id": "B",
+          "text": "Constipation"
+        },
+        {
+          "id": "C",
+          "text": "High blood sugar"
+        },
+        {
+          "id": "D",
+          "text": "Hair loss"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: opioids slow the gut, so the nurse also teaches about constipation. A is wrong because opioids cause constipation, not diarrhea. C, high blood sugar, and D, hair loss, aren't typical opioid side effects.",
+      "videoTimestamp": "1:49"
+    }
+  ]
+}

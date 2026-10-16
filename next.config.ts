@@ -70,6 +70,10 @@ const nextConfig: NextConfig = {
   ...(useStandaloneOutput ? { output: "standalone" as const } : {}),
   ...(devDeploymentId ? { deploymentId: devDeploymentId } : {}),
   poweredByHeader: false,
+  // Quiz JSON is read from disk at request time so a reviewed file can be swapped in.
+  outputFileTracingIncludes: {
+    "/api/quick-bites/[slug]/quiz": ["./src/lib/quick-bites/quizzes/**/*"],
+  },
   serverExternalPackages: ["stripe"],
   // CI runs lint + typecheck; skipping both on Vercel avoids build OOM on this app.
   eslint: { ignoreDuringBuilds: onVercel },
