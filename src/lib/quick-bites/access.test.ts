@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { canPlayQuickBites } from "./access";
+import { canPlayQuickBiteEpisode, canPlayQuickBites } from "./access";
 import type { UserAccess } from "@/lib/access-control";
 
 function access(
@@ -33,5 +33,17 @@ describe("canPlayQuickBites", () => {
 
   it("locks an active status that is not a subscriber", () => {
     expect(canPlayQuickBites(access("expired", "active", false))).toBe(false);
+  });
+
+  it("opens only How the Nursing Boards Work for free and trial members", () => {
+    const free = access("free", "trial_expired", false);
+    const trial = access("trial", "trialing", true);
+    expect(canPlayQuickBiteEpisode(free, "quick-bites-ep02-nclex-works")).toBe(true);
+    expect(canPlayQuickBiteEpisode(trial, "quick-bites-ep02-nclex-works")).toBe(true);
+    expect(canPlayQuickBiteEpisode(free, "quick-bites-ep03-priority")).toBe(false);
+    expect(canPlayQuickBiteEpisode(trial, "quick-bites-ep12-high-alert-pharm")).toBe(false);
+    expect(canPlayQuickBiteEpisode(access("subscriber", "active"), "quick-bites-ep07-acid-base")).toBe(
+      true
+    );
   });
 });

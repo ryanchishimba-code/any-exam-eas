@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Lock, Play } from "lucide-react";
 import {
   QUICK_BITE_GROUPS,
+  isOpenQuickBite,
   quickBitePoster,
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
@@ -43,6 +44,10 @@ function Poster({ slug }: { slug: string }) {
   );
 }
 
+function episodeIsPlayable(episode: QuickBiteEpisode, canPlayLibrary: boolean) {
+  return !episode.held && (canPlayLibrary || isOpenQuickBite(episode.slug));
+}
+
 function EpisodeMeta({ episode }: { episode: QuickBiteEpisode }) {
   return (
     <span className="flex min-h-11 items-center gap-3 px-3.5 py-2.5">
@@ -69,11 +74,10 @@ export function VideoQuickBitesSection({
   upgradeLabel: string;
 }) {
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
-  const active = canPlay
-    ? QUICK_BITE_GROUPS.flatMap((group) => group.episodes).find(
-        (episode) => episode.slug === activeSlug && !episode.held
-      ) ?? null
-    : null;
+  const active =
+    QUICK_BITE_GROUPS.flatMap((group) => group.episodes).find(
+      (episode) => episode.slug === activeSlug && episodeIsPlayable(episode, canPlay)
+    ) ?? null;
 
   return (
     <section
@@ -102,7 +106,7 @@ export function VideoQuickBitesSection({
       ) : (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[14px] leading-relaxed text-[var(--color-ink)]">
-            Paid members can watch every episode. Previews stay locked until you upgrade.
+            How the Nursing Boards Work is free. Paid members can watch every episode.
           </p>
           <Link
             href={upgradeHref}
@@ -124,7 +128,7 @@ export function VideoQuickBitesSection({
             <ul className="mt-2.5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {group.episodes.map((episode) => (
                 <li key={episode.slug}>
-                  {canPlay && !episode.held ? (
+                  {episodeIsPlayable(episode, canPlay) ? (
                     <button
                       type="button"
                       aria-pressed={active?.slug === episode.slug}

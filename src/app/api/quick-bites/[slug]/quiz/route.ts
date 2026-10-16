@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireAuthenticatedApi } from "@/lib/api-access";
-import { canPlayQuickBites } from "@/lib/quick-bites/access";
+import { canPlayQuickBiteEpisode } from "@/lib/quick-bites/access";
 import { getQuickBiteBySlug, isQuickBiteHeld } from "@/lib/quick-bites/catalog";
 import {
   getQuickBiteQuiz,
@@ -18,10 +18,10 @@ const LOCKED = {
 
 const PRIVATE = { "Cache-Control": "private, no-store" };
 
-async function requirePlayer(request: Request) {
+async function requirePlayer(request: Request, slug: string) {
   const authResult = await requireAuthenticatedApi(request);
   if (!authResult.ok) return authResult;
-  if (!canPlayQuickBites(authResult.access)) {
+  if (!canPlayQuickBiteEpisode(authResult.access, slug)) {
     return { ok: false as const, response: NextResponse.json(LOCKED, { status: 403 }) };
   }
   return { ok: true as const };
@@ -31,10 +31,10 @@ export async function GET(
   request: Request,
   ctx: { params: Promise<{ slug: string }> }
 ) {
-  const gate = await requirePlayer(request);
+  const { slug } = await ctx.params;
+  const gate = await requirePlayer(request, slug);
   if (!gate.ok) return gate.response;
 
-  const { slug } = await ctx.params;
   if (!getQuickBiteBySlug(slug) || isQuickBiteHeld(slug)) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
   }
@@ -50,10 +50,10 @@ export async function POST(
   request: Request,
   ctx: { params: Promise<{ slug: string }> }
 ) {
-  const gate = await requirePlayer(request);
+  const { slug } = await ctx.params;
+  const gate = await requirePlayer(request, slug);
   if (!gate.ok) return gate.response;
 
-  const { slug } = await ctx.params;
   if (isQuickBiteHeld(slug) || !getQuickBiteBySlug(slug)) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
   }

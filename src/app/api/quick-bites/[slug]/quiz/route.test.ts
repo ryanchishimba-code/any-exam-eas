@@ -122,24 +122,51 @@ describe("GET/POST /api/quick-bites/[slug]/quiz", () => {
     expect(await response.text()).not.toContain("nursing board exam");
   });
 
-  it("returns 403 for trial and free members, including answer checks", async () => {
+  it("returns 403 for trial and free members on locked episodes", async () => {
     asAccess("trial", "trialing", true);
     const trial = await GET(quizRequest("quick-bites-ep03-priority"), {
       params: Promise.resolve({ slug: "quick-bites-ep03-priority" }),
     });
     expect(trial.status).toBe(403);
-    expect(await trial.json()).toMatchObject({ code: "QUICK_BITES_LOCKED" });
+    const trialBody = await trial.text();
+    expect(trialBody).toContain("QUICK_BITES_LOCKED");
+    expect(trialBody).not.toContain("heparin");
 
     asAccess("free", "trial_expired", false);
     const free = await POST(
-      quizRequest("quick-bites-ep02-nclex-works", {
+      quizRequest("quick-bites-ep03-priority", {
         method: "POST",
-        body: JSON.stringify({ questionId: "ep02-nclex-works-q01", selected: ["C"] }),
+        body: JSON.stringify({ questionId: "ep03-priority-q01", selected: ["C"] }),
       }),
-      { params: Promise.resolve({ slug: "quick-bites-ep02-nclex-works" }) }
+      { params: Promise.resolve({ slug: "quick-bites-ep03-priority" }) }
     );
     expect(free.status).toBe(403);
     expect(await free.text()).not.toContain("the computer was confident");
+  });
+
+  it("serves the open episode quiz to a free member without keys until the answer is posted", async () => {
+    asAccess("free", "trial_expired", false);
+    const response = await GET(quizRequest("quick-bites-ep02-nclex-works"), {
+      params: Promise.resolve({ slug: "quick-bites-ep02-nclex-works" }),
+    });
+    expect(response.status).toBe(200);
+    const body = await response.json();
+    expect(body.questions).toHaveLength(10);
+    expect(body.questions[0]).not.toHaveProperty("keys");
+    expect(body.questions[0]).not.toHaveProperty("explanation");
+    expect(JSON.stringify(body)).not.toContain("the computer was confident");
+
+    const quiz = getQuickBiteQuiz("quick-bites-ep02-nclex-works")!;
+    const first = quiz.questions[0]!;
+    const posted = await POST(
+      quizRequest("quick-bites-ep02-nclex-works", {
+        method: "POST",
+        body: JSON.stringify({ questionId: first.id, selected: first.keys }),
+      }),
+      { params: Promise.resolve({ slug: "quick-bites-ep02-nclex-works" }) }
+    );
+    expect(posted.status).toBe(200);
+    expect(await posted.json()).toMatchObject({ correct: true, keys: first.keys });
   });
 
   it("serves acid-base and high-alert quizzes to a paid subscriber", async () => {

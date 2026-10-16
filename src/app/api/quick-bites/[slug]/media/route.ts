@@ -1,7 +1,7 @@
 import { get } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { requireAuthenticatedApi } from "@/lib/api-access";
-import { canPlayQuickBites } from "@/lib/quick-bites/access";
+import { canPlayQuickBiteEpisode } from "@/lib/quick-bites/access";
 import {
   getQuickBiteBySlug,
   isQuickBiteHeld,
@@ -25,11 +25,11 @@ export async function GET(
   const authResult = await requireAuthenticatedApi(request);
   if (!authResult.ok) return authResult.response;
 
-  if (!canPlayQuickBites(authResult.access)) {
+  const { slug } = await ctx.params;
+  if (!canPlayQuickBiteEpisode(authResult.access, slug)) {
     return NextResponse.json(LOCKED, { status: 403 });
   }
 
-  const { slug } = await ctx.params;
   const episode = getQuickBiteBySlug(slug);
   if (!episode || isQuickBiteHeld(slug)) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
