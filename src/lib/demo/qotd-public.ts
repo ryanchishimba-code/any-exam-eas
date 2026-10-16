@@ -14,12 +14,16 @@ export type QotdItem = {
   examColor: string;
   stem: string;
   options: string[];
+  /** Index of `correct` in `options`. Stays on the server with the key. */
+  correctIndex: 0 | 1 | 2 | 3;
   correct: string;
   rationale: string;
+  /** Guideline or label URLs. Empty when this item's citation was not revised. */
+  sources: readonly string[];
 };
 
-/** Stem and choices only — no key and no rationale. */
-export type QotdPublicItem = Omit<QotdItem, "correct" | "rationale">;
+/** Stem and choices only — no key, rationale, or citation list. */
+export type QotdPublicItem = Omit<QotdItem, "correct" | "rationale" | "correctIndex" | "sources">;
 
 export const QOTD_TIME_ZONE = "America/Chicago";
 
