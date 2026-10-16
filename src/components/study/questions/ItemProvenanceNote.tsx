@@ -14,8 +14,8 @@ export function ItemProvenanceNote({
   sourceUrl?: string;
   reviewedAt?: string;
 }) {
-  const reviewedLabel = formatReviewMonth(reviewedAt);
-  if (!sourceLabel && !reviewedLabel) return null;
+  const reviewed = formatReviewMonth(reviewedAt) != null;
+  if (!sourceLabel && !reviewed) return null;
 
   return (
     <div
@@ -41,8 +41,8 @@ export function ItemProvenanceNote({
               <p className="mt-0.5">{sourceLabel}</p>
             )
           ) : null}
-          {reviewedLabel ? (
-            <p className="mt-1 text-xs text-[var(--color-ink-muted)]">Reviewed {reviewedLabel}</p>
+          {reviewed ? (
+            <p className="mt-1 text-xs text-[var(--color-ink-muted)]">Reviewed</p>
           ) : null}
         </div>
       </div>

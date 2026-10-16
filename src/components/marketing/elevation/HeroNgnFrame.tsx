@@ -1,5 +1,6 @@
 import type { HeroNgnFrame as HeroNgnFrameData } from "@/lib/marketing/hero-ngn-frame";
 import { RATIONALE_STUDY_NOTE } from "@/lib/marketing/legal-copy";
+import { CollapsibleSources } from "@/components/study/questions/CollapsibleSources";
 
 /** Static screen of a published bow-tie, rationale, and stored sources. */
 export function HeroNgnFrame({
@@ -61,14 +62,21 @@ export function HeroNgnFrame({
           <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#0f766e]">Rationale</p>
           <p className="mt-2 text-sm leading-relaxed">{frame.rationale}</p>
           <p className="mt-2 text-xs leading-relaxed text-[#1e3a5f]/70">{RATIONALE_STUDY_NOTE}</p>
-          <ul className="mt-3 space-y-1 text-xs leading-relaxed text-[#1e3a5f]/75">
-            {frame.sources.map((source) => (
-              <li key={`${source.title}-${source.locator ?? ""}`}>
-                Source: {source.title}
-                {source.locator ? ` — ${source.locator}` : ""}
-              </li>
-            ))}
-          </ul>
+          <CollapsibleSources
+            count={frame.sources.length}
+            resetKey={frame.itemId}
+            className="mt-3"
+            buttonClassName="text-[#1e3a5f]/70 hover:text-[#1e3a5f]"
+          >
+            <ul className="space-y-1 text-xs leading-relaxed text-[#1e3a5f]/75">
+              {frame.sources.map((source) => (
+                <li key={`${source.title}-${source.locator ?? ""}`}>
+                  Source: {source.title}
+                  {source.locator ? ` — ${source.locator}` : ""}
+                </li>
+              ))}
+            </ul>
+          </CollapsibleSources>
         </div>
       </div>
     </figure>

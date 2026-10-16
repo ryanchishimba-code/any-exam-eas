@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import { StudyUseNote } from "@/components/legal/StudyUseNote";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
+import { CollapsibleSources } from "@/components/study/questions/CollapsibleSources";
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { cn } from "@/lib/utils";
 
@@ -72,17 +73,21 @@ function SampleCard({ item }: { item: PublicSampleQuestion }) {
             {item.rationale}
           </p>
           <StudyUseNote className="mt-2" />
-          <ul className="mt-3 space-y-1" aria-label="Sources stored on this question">
-            {item.sources.map((source) => (
-              <li key={source} className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
-                <span className="font-semibold uppercase tracking-[0.08em] text-[var(--color-accent)]">
-                  Source
-                </span>
-                {" · "}
-                <cite className="not-italic">{source}</cite>
-              </li>
-            ))}
-          </ul>
+          {item.sources.length > 0 ? (
+            <CollapsibleSources count={item.sources.length} resetKey={item.id} className="mt-3">
+              <ul className="space-y-1">
+                {item.sources.map((source) => (
+                  <li key={source} className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
+                    <span className="font-semibold uppercase tracking-[0.08em] text-[var(--color-accent)]">
+                      Source
+                    </span>
+                    {" · "}
+                    <cite className="not-italic">{source}</cite>
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleSources>
+          ) : null}
           <QuestionIssueFooter
             report={{
               bankItemId: item.id,

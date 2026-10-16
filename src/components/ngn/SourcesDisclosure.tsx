@@ -1,4 +1,5 @@
 import { ngnFocus, ngnMuted } from "@/components/ngn/brand";
+import { CollapsibleSources } from "@/components/study/questions/CollapsibleSources";
 import { resolveCitedSources, type CitedSource } from "@/lib/assessment/sources";
 import type { NgnReference, SourceRef } from "@/lib/assessment/types";
 
@@ -40,23 +41,26 @@ function SourceList({ label, links }: { label: string; links: CitedSource[] }) {
   );
 }
 
-/** Collapsed source list for reviewers. Teal is the underline only. */
+/** Collapsed source list. Teal is the underline only. */
 export function SourcesDisclosure({ itemReferences, caseReferences, sourcesById }: SourcesDisclosureProps) {
   const itemLinks = resolveCitedSources(itemReferences, sourcesById);
   const caseLinks = caseReferences ? resolveCitedSources(caseReferences, sourcesById) : null;
+  const count = itemLinks.length + (caseLinks?.length ?? 0);
+  const resetKey = [
+    ...itemReferences.map((reference) => `${reference.src}:${reference.locator ?? ""}`),
+    ...(caseReferences ?? []).map((reference) => `case:${reference.src}:${reference.locator ?? ""}`),
+  ].join("|");
 
   return (
-    <details className="rounded-2xl border border-[#e2e8f0] bg-white">
-      <summary
-        className={`cursor-pointer list-none px-4 py-3 text-sm font-medium text-[#0A2540] marker:content-none [&::-webkit-details-marker]:hidden ${ngnFocus}`}
-      >
-        <span className="mr-2 inline-block h-1.5 w-1.5 translate-y-[-1px] rounded-full bg-[#00D4C8]" aria-hidden="true" />
-        Sources
-      </summary>
-      <div className="space-y-4 border-t border-[#e2e8f0] px-4 py-4">
+    <CollapsibleSources
+      count={count}
+      resetKey={resetKey}
+      buttonClassName="text-[#334155] hover:text-[#0A2540]"
+    >
+      <div className="space-y-4 rounded-2xl border border-[#e2e8f0] bg-white px-4 py-4">
         <SourceList label="This item" links={itemLinks} />
         {caseLinks ? <SourceList label="This case" links={caseLinks} /> : null}
       </div>
-    </details>
+    </CollapsibleSources>
   );
 }

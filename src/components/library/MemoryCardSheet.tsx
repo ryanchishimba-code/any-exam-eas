@@ -129,13 +129,6 @@ export function MemoryCardSheet({
     ? deepDiveTopicHref(examSlug, card.reviewModuleSlug)
     : null;
 
-  const reviewedLabel = card.lastReviewedAt
-    ? new Date(card.lastReviewedAt).toLocaleDateString(undefined, {
-        month: "short",
-        year: "numeric",
-      })
-    : null;
-
   return createPortal(
     <div className="study-home-accent fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-4">
       <button
@@ -203,8 +196,8 @@ export function MemoryCardSheet({
                   ) : (
                     <p className="mt-0.5">{card.sourceLabel}</p>
                   )}
-                  {reviewedLabel ? (
-                    <p className="mt-1 text-[var(--color-ink-muted)]">Reviewed {reviewedLabel}</p>
+                  {card.lastReviewedAt ? (
+                    <p className="mt-1 text-[var(--color-ink-muted)]">Reviewed</p>
                   ) : null}
                 </div>
               </div>

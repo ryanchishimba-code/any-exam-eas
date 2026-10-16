@@ -71,6 +71,8 @@ describe("MemoryCardSheet study tokens", () => {
     expect(deepDive.className).toContain("--db-card");
     expect(deepDive.className).toContain("--color-accent");
 
+    expect(screen.getByText("Reviewed")).toBeInTheDocument();
+    expect(screen.queryByText(/Sep(?:tember)?\s+2026/)).not.toBeInTheDocument();
     expect(screen.getByText("Card").className).toContain("--study-accent");
     expect(screen.getByRole("button", { name: /See First Red Flags/ })).toBeInTheDocument();
 

@@ -70,8 +70,11 @@ describe("student display text", () => {
     expect(stripInternalDisplayMetadata("Remember: Remember, steady-state takes 4 half-lives.")).toBe(
       "Remember: steady-state takes 4 half-lives."
     );
-    expect(stripInternalDisplayMetadata("Reviewed Reviewed Oct 2026")).toBe("Reviewed Oct 2026");
-    expect(stripInternalDisplayMetadata("Reviewed\nReviewed Oct 2026")).toBe("Reviewed Oct 2026");
+    expect(stripInternalDisplayMetadata("Reviewed Reviewed Oct 2026")).toBe("Reviewed");
+    expect(stripInternalDisplayMetadata("Reviewed\nReviewed Oct 2026")).toBe("Reviewed");
+    expect(stripInternalDisplayMetadata("Reviewed October 2026")).toBe("Reviewed");
+    expect(stripInternalDisplayMetadata("Reviewed Oct 16, 2026")).toBe("Reviewed");
+    expect(stripInternalDisplayMetadata("Reviewed October 16, 2026")).toBe("Reviewed");
     expect(
       stripInternalDisplayMetadata("Complete the bow-tie: select ONE action and TWO conditions to monitor.")
     ).toBe("Choose the condition, 1 action to take, and 2 parameters to monitor.");

@@ -17,6 +17,7 @@ import {
   uniqueRationaleParts,
 } from "@/lib/study/rationale-disclosure";
 import { CollapsibleRationale, rationaleLeadForQuestion } from "./CollapsibleRationale";
+import { CollapsibleSources } from "./CollapsibleSources";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { InlineBold } from "@/components/ngn/InlineBold";
@@ -440,14 +441,13 @@ function ExplanationDetail({
       )}
 
       {question.references && question.references.length > 0 ? (
-        <div className="text-[13px] leading-relaxed tracking-[-0.01em] text-[var(--color-ink-muted)]">
-          <span className="font-semibold uppercase tracking-[0.12em]">Sources</span>
-          <ul className="mt-1.5 list-inside list-disc space-y-1">
+        <CollapsibleSources count={question.references.length} resetKey={question.id}>
+          <ul className="list-inside list-disc space-y-1 text-[13px] leading-relaxed tracking-[-0.01em] text-[var(--color-ink-muted)]">
             {question.references.map((reference, i) => (
               <li key={i}>{reference}</li>
             ))}
           </ul>
-        </div>
+        </CollapsibleSources>
       ) : null}
 
       {compact ? null : (
