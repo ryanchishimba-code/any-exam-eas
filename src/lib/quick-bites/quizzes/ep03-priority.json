@@ -1,0 +1,293 @@
+{
+  "episode": "ep03-priority",
+  "title": "Priority Frameworks",
+  "video": "quick-bites-ep03-priority-web.mp4",
+  "questions": [
+    {
+      "id": "ep03-priority-q01",
+      "type": "single_best_answer",
+      "stem": "Client A is anxious about surgery tomorrow. Client B is suddenly restless with an oxygen saturation of 88%. Who should the nurse see first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Client A, because anxiety can raise blood pressure"
+        },
+        {
+          "id": "B",
+          "text": "Client B, because new restlessness and 88% saturation point to low oxygen"
+        },
+        {
+          "id": "C",
+          "text": "Either client, because both are stable"
+        },
+        {
+          "id": "D",
+          "text": "Client A, because surgery is tomorrow"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: an oxygen saturation of 88% is low, and new restlessness is an early sign of low oxygen; breathing beats anxiety. A and D put a feeling before a physical need. C is wrong because Client B is not stable.",
+      "videoTimestamp": "1:31"
+    },
+    {
+      "id": "ep03-priority-q02",
+      "type": "single_best_answer",
+      "stem": "What is the normal range for oxygen saturation described in the video?",
+      "options": [
+        {
+          "id": "A",
+          "text": "About 80 to 85%"
+        },
+        {
+          "id": "B",
+          "text": "About 88 to 92%"
+        },
+        {
+          "id": "C",
+          "text": "About 95 to 100%"
+        },
+        {
+          "id": "D",
+          "text": "About 100 to 105%"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: normal oxygen saturation is roughly 95 to 100%. A and B are below normal. D is not possible.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep03-priority-q03",
+      "type": "single_best_answer",
+      "stem": "Using airway, breathing, circulation, which problem does the nurse address first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bleeding"
+        },
+        {
+          "id": "B",
+          "text": "Blocked airway"
+        },
+        {
+          "id": "C",
+          "text": "Low blood pressure from shock"
+        },
+        {
+          "id": "D",
+          "text": "New confusion"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: airway comes first; if there's no airway, nothing else helps. A and C are circulation, which comes after airway and breathing. D is a neuro change, which comes after circulation.",
+      "videoTimestamp": "0:37"
+    },
+    {
+      "id": "ep03-priority-q04",
+      "type": "single_best_answer",
+      "stem": "According to Maslow's pyramid, which client need comes first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A client who feels lonely"
+        },
+        {
+          "id": "B",
+          "text": "A client who is hungry and has not eaten in 12 hours"
+        },
+        {
+          "id": "C",
+          "text": "A client who wants to learn a new skill"
+        },
+        {
+          "id": "D",
+          "text": "A client worried about their job"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: physical needs like food and fluids come first. A is love and belonging, D is esteem/safety-level worry, and C is self-actualization, all higher on the pyramid.",
+      "videoTimestamp": "0:57"
+    },
+    {
+      "id": "ep03-priority-q05",
+      "type": "single_best_answer",
+      "stem": "Which client finding is unexpected after surgery and therefore a priority?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Incision pain rated 4 out of 10"
+        },
+        {
+          "id": "B",
+          "text": "New confusion"
+        },
+        {
+          "id": "C",
+          "text": "Mild nausea after anesthesia"
+        },
+        {
+          "id": "D",
+          "text": "Asking for help to the bathroom"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: new confusion after surgery is unexpected, so it's a priority. A is expected pain after surgery. C and D are expected or routine needs.",
+      "videoTimestamp": "1:45"
+    },
+    {
+      "id": "ep03-priority-q06",
+      "type": "select_all_that_apply",
+      "stem": "Which tiebreakers help the nurse choose the priority client? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Unstable before stable"
+        },
+        {
+          "id": "B",
+          "text": "Acute before chronic"
+        },
+        {
+          "id": "C",
+          "text": "Unexpected before expected"
+        },
+        {
+          "id": "D",
+          "text": "Chronic before acute"
+        },
+        {
+          "id": "E",
+          "text": "Expected before unexpected"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: unstable beats stable, acute (new) beats chronic, and unexpected beats expected. D and E reverse two of those rules.",
+      "videoTimestamp": "1:34"
+    },
+    {
+      "id": "ep03-priority-q07",
+      "type": "single_best_answer",
+      "stem": "The nurse is missing data about a stable client's new complaint. What should the nurse do first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Implement a new intervention"
+        },
+        {
+          "id": "B",
+          "text": "Assess the client"
+        },
+        {
+          "id": "C",
+          "text": "Evaluate the plan"
+        },
+        {
+          "id": "D",
+          "text": "Call the provider for orders"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: when data are missing, assess first. A and D act before having the data. C, evaluate, is the last step of the nursing process.",
+      "videoTimestamp": "2:01"
+    },
+    {
+      "id": "ep03-priority-q08",
+      "type": "single_best_answer",
+      "stem": "A client suddenly becomes unresponsive and is not breathing. What is the nurse's priority?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Complete a full head-to-toe assessment"
+        },
+        {
+          "id": "B",
+          "text": "Act and get help"
+        },
+        {
+          "id": "C",
+          "text": "Document the findings"
+        },
+        {
+          "id": "D",
+          "text": "Review the care plan"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: if the client is crashing, don't keep assessing; act and get help. A delays care. C and D can wait until the emergency is handled.",
+      "videoTimestamp": "2:05"
+    },
+    {
+      "id": "ep03-priority-q09",
+      "type": "single_best_answer",
+      "stem": "Which client should the nurse see first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Chronic obstructive pulmonary disease, oxygen saturation 90%, which is their normal"
+        },
+        {
+          "id": "B",
+          "text": "Post-op day one, new confusion, oxygen saturation 89%"
+        },
+        {
+          "id": "C",
+          "text": "Diabetes, asking for diet teaching"
+        },
+        {
+          "id": "D",
+          "text": "Broken leg, pain 6 out of 10, meds due in 30 minutes"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: new confusion with a saturation of 89% is new, unexpected, and a breathing problem. A is at the client's usual baseline. C, teaching, can wait. D, scheduled pain medicine due in 30 minutes, can wait a few minutes.",
+      "videoTimestamp": "2:09"
+    },
+    {
+      "id": "ep03-priority-q10",
+      "type": "single_best_answer",
+      "stem": "Which order matches the nursing process taught in the video?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Plan, assess, implement, analyze, evaluate"
+        },
+        {
+          "id": "B",
+          "text": "Assess, analyze, plan, implement, evaluate"
+        },
+        {
+          "id": "C",
+          "text": "Implement, assess, plan, evaluate, analyze"
+        },
+        {
+          "id": "D",
+          "text": "Analyze, assess, implement, plan, evaluate"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the nursing process is assess, analyze, plan, implement, evaluate. A, C, and D put steps out of order.",
+      "videoTimestamp": "1:59"
+    }
+  ]
+}

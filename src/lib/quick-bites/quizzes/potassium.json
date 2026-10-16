@@ -1,0 +1,304 @@
+{
+  "episode": "potassium",
+  "title": "Potassium: Hypo vs Hyper",
+  "video": "quick-bites-potassium-web.mp4",
+  "questions": [
+    {
+      "id": "potassium-q01",
+      "type": "single_best_answer",
+      "stem": "A client taking furosemide has a potassium level of 3.1 mEq/L. Which finding on the rhythm strip should the nurse expect?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Tall, peaked T waves"
+        },
+        {
+          "id": "B",
+          "text": "Flat T waves with a U wave after the T"
+        },
+        {
+          "id": "C",
+          "text": "A wide, tall spike (QRS)"
+        },
+        {
+          "id": "D",
+          "text": "No change from a normal beat"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a potassium of 3.1 is below the normal 3.5, and low potassium flattens the T wave and makes the U wave visible. A and C are signs of high potassium, not low. D is wrong because low potassium does change the strip.",
+      "videoTimestamp": "0:49"
+    },
+    {
+      "id": "potassium-q02",
+      "type": "single_best_answer",
+      "stem": "The nurse reviews a normal beat on the rhythm strip. Which wave represents the ventricles resetting?",
+      "options": [
+        {
+          "id": "A",
+          "text": "P wave"
+        },
+        {
+          "id": "B",
+          "text": "The tall middle spike (QRS)"
+        },
+        {
+          "id": "C",
+          "text": "T wave"
+        },
+        {
+          "id": "D",
+          "text": "U wave"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: the T wave is the ventricles resetting. A, the P wave, is the atria firing and contracting. B, the tall spike, is the ventricles firing and contracting. D, the U wave, is a tiny bump after the T, normally barely seen.",
+      "videoTimestamp": "0:42"
+    },
+    {
+      "id": "potassium-q03",
+      "type": "single_best_answer",
+      "stem": "An order reads: potassium chloride 20 mEq, push into a vein. What is the nurse's best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give it slowly over 2 minutes"
+        },
+        {
+          "id": "B",
+          "text": "Give it as a shot into the muscle instead"
+        },
+        {
+          "id": "C",
+          "text": "Hold the dose and clarify the order with the provider"
+        },
+        {
+          "id": "D",
+          "text": "Give half now and half in an hour"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: potassium is never pushed into a vein, so the nurse holds it and clarifies with the provider. A is still a push. B is wrong because potassium is never given as a shot into the muscle. D is still a push and changes the order without the provider.",
+      "videoTimestamp": "2:10"
+    },
+    {
+      "id": "potassium-q04",
+      "type": "select_all_that_apply",
+      "stem": "The nurse is preparing intravenous potassium through a peripheral line. Which actions are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Confirm the dose is diluted"
+        },
+        {
+          "id": "B",
+          "text": "Run it on an infusion pump"
+        },
+        {
+          "id": "C",
+          "text": "Have the dose double-checked"
+        },
+        {
+          "id": "D",
+          "text": "Confirm urine output is at least 30 mL per hour"
+        },
+        {
+          "id": "E",
+          "text": "Infuse about 40 mEq in one hour"
+        },
+        {
+          "id": "F",
+          "text": "Push it slowly if the pump is unavailable"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: potassium is a high-alert medication, so it is diluted, run on a pump, and double-checked, and urine output of at least 30 mL an hour shows the kidneys can clear it. E is wrong because peripheral infusion is about 10 mEq an hour max, per policy. F is wrong because potassium is never pushed.",
+      "videoTimestamp": "1:35"
+    },
+    {
+      "id": "potassium-q05",
+      "type": "single_best_answer",
+      "stem": "Before hanging an intravenous potassium infusion, the nurse notes urine output of 15 mL per hour for the last 2 hours. What is the priority action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start the infusion as ordered"
+        },
+        {
+          "id": "B",
+          "text": "Hold the infusion and notify the provider"
+        },
+        {
+          "id": "C",
+          "text": "Increase the infusion rate to finish sooner"
+        },
+        {
+          "id": "D",
+          "text": "Give the potassium by mouth instead"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: urine output should be at least 30 mL an hour before giving potassium because the kidneys have to clear it, and 15 mL an hour is too low. A risks potassium building up. C is unsafe: faster infusion raises the danger. D changes the route without an order and does not fix the kidney concern.",
+      "videoTimestamp": "1:49"
+    },
+    {
+      "id": "potassium-q06",
+      "type": "single_best_answer",
+      "stem": "Which client is at highest risk for a high potassium level?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A client taking furosemide"
+        },
+        {
+          "id": "B",
+          "text": "A client with vomiting and diarrhea"
+        },
+        {
+          "id": "C",
+          "text": "A client with kidney failure"
+        },
+        {
+          "id": "D",
+          "text": "A client taking a thiazide diuretic"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: kidney failure is the number one cause of high potassium because the kidneys can't get rid of it. A and D are loop and thiazide diuretics, which waste potassium and cause low potassium. B loses potassium, causing low potassium.",
+      "videoTimestamp": "2:26"
+    },
+    {
+      "id": "potassium-q07",
+      "type": "select_all_that_apply",
+      "stem": "Which medications can raise a client's potassium level? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Spironolactone"
+        },
+        {
+          "id": "B",
+          "text": "Ace inhibitors"
+        },
+        {
+          "id": "C",
+          "text": "Furosemide"
+        },
+        {
+          "id": "D",
+          "text": "Hydrochlorothiazide (a thiazide)"
+        },
+        {
+          "id": "E",
+          "text": "Potassium chloride"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "E"
+      ],
+      "explanation": "A, B, and E are correct: spironolactone spares potassium so it builds up, Ace inhibitors raise it, and potassium chloride adds it. C and D are loop and thiazide diuretics that make the kidneys waste potassium.",
+      "videoTimestamp": "2:32"
+    },
+    {
+      "id": "potassium-q08",
+      "type": "single_best_answer",
+      "stem": "A client with a potassium of 6.8 mEq/L has peaked T waves on the monitor. Which medication is the priority?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sodium polystyrene sulfonate (a binder)"
+        },
+        {
+          "id": "B",
+          "text": "Intravenous calcium gluconate"
+        },
+        {
+          "id": "C",
+          "text": "Furosemide"
+        },
+        {
+          "id": "D",
+          "text": "Oral potassium chloride"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: rhythm changes at a potassium of 6.8 mean the heart is in danger, and intravenous calcium gluconate protects the heart first. A and C remove potassium, but that comes later and works more slowly. D would raise potassium further.",
+      "videoTimestamp": "3:40"
+    },
+    {
+      "id": "potassium-q09",
+      "type": "single_best_answer",
+      "stem": "The nurse gives intravenous calcium gluconate to a client with high potassium. Which statement about this drug is accurate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It lowers the potassium level quickly"
+        },
+        {
+          "id": "B",
+          "text": "It protects the heart but does not lower potassium"
+        },
+        {
+          "id": "C",
+          "text": "It shifts potassium into the cells"
+        },
+        {
+          "id": "D",
+          "text": "It removes potassium through the kidneys"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: calcium gluconate protects the heart but does not lower potassium. A is wrong for the same reason. C describes regular insulin plus dextrose. D describes diuretics.",
+      "videoTimestamp": "2:59"
+    },
+    {
+      "id": "potassium-q10",
+      "type": "single_best_answer",
+      "stem": "After intravenous regular insulin plus dextrose is given for high potassium, which assessment is most important to follow up?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Blood glucose"
+        },
+        {
+          "id": "B",
+          "text": "Deep tendon reflexes"
+        },
+        {
+          "id": "C",
+          "text": "Urine color"
+        },
+        {
+          "id": "D",
+          "text": "Pupil size"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: insulin plus dextrose shifts potassium into the cells, and the next step taught is to check glucose. B, C, and D are not the follow-up this treatment calls for.",
+      "videoTimestamp": "3:10"
+    }
+  ]
+}

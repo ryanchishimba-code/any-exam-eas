@@ -1,0 +1,300 @@
+{
+  "episode": "ep10-endocrine",
+  "title": "Endocrine: Low Sugar, High-Sugar Crises, Thyroid",
+  "video": "quick-bites-ep10-endocrine-web.mp4",
+  "questions": [
+    {
+      "id": "ep10-endocrine-q01",
+      "type": "single_best_answer",
+      "stem": "An awake client has a blood sugar of 58 mg/dL and is shaky. What is the first action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give 15 g of fast sugar, like half a cup of juice"
+        },
+        {
+          "id": "B",
+          "text": "Give intravenous insulin"
+        },
+        {
+          "id": "C",
+          "text": "Recheck in 1 hour"
+        },
+        {
+          "id": "D",
+          "text": "Give a full meal"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: 58 is below 70, the client is awake and can swallow, so give 15 g of fast sugar, then recheck in 15 minutes. B would drop the sugar further. C delays treatment. D, a full meal, is too slow to start with.",
+      "videoTimestamp": "2:04"
+    },
+    {
+      "id": "ep10-endocrine-q02",
+      "type": "single_best_answer",
+      "stem": "After giving 15 g of fast sugar for low blood sugar, when should the nurse recheck?",
+      "options": [
+        {
+          "id": "A",
+          "text": "In 5 minutes"
+        },
+        {
+          "id": "B",
+          "text": "In 15 minutes"
+        },
+        {
+          "id": "C",
+          "text": "In 1 hour"
+        },
+        {
+          "id": "D",
+          "text": "At the next meal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the 15-15 rule is 15 g of fast sugar, wait 15 minutes, then recheck. A is too soon. C and D are too late.",
+      "videoTimestamp": "0:40"
+    },
+    {
+      "id": "ep10-endocrine-q03",
+      "type": "single_best_answer",
+      "stem": "A client with low blood sugar cannot swallow safely. What does the nurse expect to give?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Half a cup of juice"
+        },
+        {
+          "id": "B",
+          "text": "Glucose tablets"
+        },
+        {
+          "id": "C",
+          "text": "Glucagon or intravenous dextrose, as ordered"
+        },
+        {
+          "id": "D",
+          "text": "Regular insulin"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: if the client can't swallow safely, give glucagon or intravenous dextrose, as ordered. A and B need safe swallowing. D would lower blood sugar further.",
+      "videoTimestamp": "0:44"
+    },
+    {
+      "id": "ep10-endocrine-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which findings suggest low blood sugar? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Shaky"
+        },
+        {
+          "id": "B",
+          "text": "Sweaty"
+        },
+        {
+          "id": "C",
+          "text": "Confused"
+        },
+        {
+          "id": "D",
+          "text": "Fast heart rate"
+        },
+        {
+          "id": "E",
+          "text": "Fruity breath"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: these are the taught signs of low blood sugar. E, fruity breath, is a sign of diabetic ketoacidosis.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep10-endocrine-q05",
+      "type": "single_best_answer",
+      "stem": "A client with type 1 diabetes has fruity breath, deep fast breathing, a blood sugar of 450, and ketones. What is most likely?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hyperosmolar hyperglycemic state"
+        },
+        {
+          "id": "B",
+          "text": "Diabetic ketoacidosis"
+        },
+        {
+          "id": "C",
+          "text": "Low blood sugar"
+        },
+        {
+          "id": "D",
+          "text": "Low thyroid"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: type 1, fruity breath, deep fast breathing, high sugar, and ketones point to diabetic ketoacidosis. A is usually type 2 with few ketones. C and D don't fit high sugar and ketones.",
+      "videoTimestamp": "1:03"
+    },
+    {
+      "id": "ep10-endocrine-q06",
+      "type": "select_all_that_apply",
+      "stem": "Per the 2024 consensus criteria shown in the video, which findings support diabetic ketoacidosis? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Blood sugar 200 mg/dL or higher, or known diabetes"
+        },
+        {
+          "id": "B",
+          "text": "Ketone level (beta-hydroxybutyrate) 3.0 or higher"
+        },
+        {
+          "id": "C",
+          "text": "pH under 7.3 or bicarb under 18"
+        },
+        {
+          "id": "D",
+          "text": "Blood sugar must be over 600"
+        },
+        {
+          "id": "E",
+          "text": "No ketones present"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: the board shows glucose 200 or higher or known diabetes, a ketone level of 3.0 or higher, and pH under 7.3 or bicarb under 18. D describes the very high sugar common in hyperosmolar hyperglycemic state. E is wrong because ketones are part of diabetic ketoacidosis.",
+      "videoTimestamp": "0:55"
+    },
+    {
+      "id": "ep10-endocrine-q07",
+      "type": "single_best_answer",
+      "stem": "Which finding best distinguishes hyperosmolar hyperglycemic state from diabetic ketoacidosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Usually type 1 diabetes"
+        },
+        {
+          "id": "B",
+          "text": "Severe dehydration with blood sugar often over 600 and few ketones"
+        },
+        {
+          "id": "C",
+          "text": "Fruity breath"
+        },
+        {
+          "id": "D",
+          "text": "Deep, fast breathing to blow off acid"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: hyperosmolar hyperglycemic state is usually type 2, with sugar often over 600, severe dehydration, and not much ketones. A, C, and D describe diabetic ketoacidosis.",
+      "videoTimestamp": "1:06"
+    },
+    {
+      "id": "ep10-endocrine-q08",
+      "type": "single_best_answer",
+      "stem": "A client in diabetic ketoacidosis has a potassium of 3.2 mEq/L after intravenous fluids were started. An insulin infusion is ordered. What should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start the insulin now"
+        },
+        {
+          "id": "B",
+          "text": "Replace potassium first and hold insulin until potassium is above 3.5"
+        },
+        {
+          "id": "C",
+          "text": "Give the insulin as a push"
+        },
+        {
+          "id": "D",
+          "text": "Stop all fluids"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a potassium of 3.2 is below 3.5, so replace it first and hold insulin until it's above 3.5, because insulin pushes potassium into the cells. A and C give insulin with low potassium. D stops the first-line treatment.",
+      "videoTimestamp": "1:21"
+    },
+    {
+      "id": "ep10-endocrine-q09",
+      "type": "single_best_answer",
+      "stem": "What is the first treatment for both diabetic ketoacidosis and hyperosmolar hyperglycemic state?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Intravenous insulin"
+        },
+        {
+          "id": "B",
+          "text": "Intravenous fluids"
+        },
+        {
+          "id": "C",
+          "text": "Oral fluids only"
+        },
+        {
+          "id": "D",
+          "text": "Potassium push"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: for both, intravenous fluids come first. A comes after fluids and a potassium check. C isn't the taught treatment. D is wrong because potassium is never pushed.",
+      "videoTimestamp": "1:16"
+    },
+    {
+      "id": "ep10-endocrine-q10",
+      "type": "single_best_answer",
+      "stem": "Which set of findings fits low thyroid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Anxious, hot, weight loss, fast pulse"
+        },
+        {
+          "id": "B",
+          "text": "Tired, cold, weight gain, slow pulse"
+        },
+        {
+          "id": "C",
+          "text": "Fruity breath and deep breathing"
+        },
+        {
+          "id": "D",
+          "text": "Shaky and sweaty with low sugar"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: low thyroid slows everything down: tired, cold, weight gain, and a slow pulse. A is high thyroid. C is diabetic ketoacidosis. D is low blood sugar.",
+      "videoTimestamp": "1:53"
+    }
+  ]
+}

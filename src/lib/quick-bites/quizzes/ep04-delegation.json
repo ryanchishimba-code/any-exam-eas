@@ -1,0 +1,321 @@
+{
+  "episode": "ep04-delegation",
+  "title": "Delegation",
+  "video": "quick-bites-ep04-delegation-web.mp4",
+  "questions": [
+    {
+      "id": "ep04-delegation-q01",
+      "type": "single_best_answer",
+      "stem": "A new client was just admitted. Which task may the nurse delegate to the nursing assistant?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The admission assessment"
+        },
+        {
+          "id": "B",
+          "text": "Taking the client's vital signs"
+        },
+        {
+          "id": "C",
+          "text": "Developing the care plan"
+        },
+        {
+          "id": "D",
+          "text": "Initial teaching about medications"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the nursing assistant can take vital signs for the admission. A is assessment, which stays with the registered nurse. C, care planning, and D, initial teaching, also stay with the registered nurse.",
+      "videoTimestamp": "0:56"
+    },
+    {
+      "id": "ep04-delegation-q02",
+      "type": "single_best_answer",
+      "stem": "Which statement about delegation is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Delegating a task transfers responsibility for the outcome"
+        },
+        {
+          "id": "B",
+          "text": "You delegate the task but keep the responsibility"
+        },
+        {
+          "id": "C",
+          "text": "Only the provider can delegate"
+        },
+        {
+          "id": "D",
+          "text": "The nursing assistant becomes accountable for assessment"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: to delegate means you hand off a task but keep responsibility for the outcome. A is the opposite. C is wrong because the registered nurse delegates. D is wrong because assessment isn't delegated.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep04-delegation-q03",
+      "type": "select_all_that_apply",
+      "stem": "Which responsibilities stay with the registered nurse? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Caring for unstable clients"
+        },
+        {
+          "id": "B",
+          "text": "Assessing a new admission"
+        },
+        {
+          "id": "C",
+          "text": "Initial teaching"
+        },
+        {
+          "id": "D",
+          "text": "Evaluating whether care worked"
+        },
+        {
+          "id": "E",
+          "text": "Feeding a stable client"
+        },
+        {
+          "id": "F",
+          "text": "Measuring intake and output on a stable client"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: unstable clients, assessment, initial teaching, and evaluation all need nursing judgment. E and F are basic care that assistive personnel can do.",
+      "videoTimestamp": "0:29"
+    },
+    {
+      "id": "ep04-delegation-q04",
+      "type": "single_best_answer",
+      "stem": "Which client assignment is most appropriate for the licensed practical nurse?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A client with new chest pain"
+        },
+        {
+          "id": "B",
+          "text": "A newly admitted client"
+        },
+        {
+          "id": "C",
+          "text": "A stable client with a predictable outcome"
+        },
+        {
+          "id": "D",
+          "text": "A client who just became unstable"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: the practical nurse takes stable clients with predictable outcomes. A and D are unstable and stay with the registered nurse. B needs an admission assessment, which stays with the registered nurse.",
+      "videoTimestamp": "0:59"
+    },
+    {
+      "id": "ep04-delegation-q05",
+      "type": "select_all_that_apply",
+      "stem": "Which tasks can assistive personnel do for a stable client? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bathing"
+        },
+        {
+          "id": "B",
+          "text": "Feeding"
+        },
+        {
+          "id": "C",
+          "text": "Turning"
+        },
+        {
+          "id": "D",
+          "text": "Measuring intake and output"
+        },
+        {
+          "id": "E",
+          "text": "Assessing breath sounds"
+        },
+        {
+          "id": "F",
+          "text": "Teaching about insulin"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: assistive personnel handle basic care such as bathing, feeding, turning, and intake and output. E is assessing and F is teaching, which they can't do.",
+      "videoTimestamp": "1:15"
+    },
+    {
+      "id": "ep04-delegation-q06",
+      "type": "single_best_answer",
+      "stem": "The registered nurse started teaching a client about wound care. Which team member can reinforce that teaching, depending on state rules?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The licensed practical nurse"
+        },
+        {
+          "id": "B",
+          "text": "Assistive personnel"
+        },
+        {
+          "id": "C",
+          "text": "The unit secretary"
+        },
+        {
+          "id": "D",
+          "text": "No one but the registered nurse"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: the practical nurse can reinforce teaching the registered nurse started, depending on your state. B is wrong because assistive personnel don't teach. C is not a clinical role. D is wrong because reinforcing is allowed for the practical nurse.",
+      "videoTimestamp": "1:03"
+    },
+    {
+      "id": "ep04-delegation-q07",
+      "type": "single_best_answer",
+      "stem": "Which task can the registered nurse delegate to the nursing assistant?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Teach a newly diagnosed diabetic how to use insulin"
+        },
+        {
+          "id": "B",
+          "text": "Measure intake and output on a stable client"
+        },
+        {
+          "id": "C",
+          "text": "Assess a client with new chest pain"
+        },
+        {
+          "id": "D",
+          "text": "Evaluate a client's response to pain medication"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: measuring intake and output on a stable client is stable, routine, and needs no judgment. A is teaching, C is assessing, and D is evaluating, which stay with the registered nurse.",
+      "videoTimestamp": "1:43"
+    },
+    {
+      "id": "ep04-delegation-q08",
+      "type": "select_all_that_apply",
+      "stem": "Which are among the five rights of delegation? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Right task"
+        },
+        {
+          "id": "B",
+          "text": "Right circumstance"
+        },
+        {
+          "id": "C",
+          "text": "Right person"
+        },
+        {
+          "id": "D",
+          "text": "Right direction and communication"
+        },
+        {
+          "id": "E",
+          "text": "Right supervision and evaluation"
+        },
+        {
+          "id": "F",
+          "text": "Right price"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, B, C, D, and E are correct: these are the five rights. F is not one of them.",
+      "videoTimestamp": "1:25"
+    },
+    {
+      "id": "ep04-delegation-q09",
+      "type": "single_best_answer",
+      "stem": "A client's condition is changing and the outcome is unpredictable. What should the registered nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Delegate care to the practical nurse"
+        },
+        {
+          "id": "B",
+          "text": "Delegate care to the nursing assistant"
+        },
+        {
+          "id": "C",
+          "text": "Keep the client"
+        },
+        {
+          "id": "D",
+          "text": "Ask the family to monitor the client"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: if the client is unstable or the outcome is unpredictable, keep it yourself. A and B hand off a client who needs nursing judgment. D is not safe delegation.",
+      "videoTimestamp": "1:39"
+    },
+    {
+      "id": "ep04-delegation-q10",
+      "type": "single_best_answer",
+      "stem": "A nursing assistant reports that a client \"seems different today.\" What is the registered nurse's best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ask the nursing assistant to assess the client further"
+        },
+        {
+          "id": "B",
+          "text": "Assess the client personally"
+        },
+        {
+          "id": "C",
+          "text": "Ask the practical nurse to evaluate the care plan"
+        },
+        {
+          "id": "D",
+          "text": "Document the report and recheck at the end of the shift"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: assessment stays with the registered nurse, and a reported change needs nursing judgment. A gives assessment to assistive personnel, who can't assess. C hands off evaluation, which stays with the registered nurse. D delays a possible change in condition.",
+      "videoTimestamp": "0:47"
+    }
+  ]
+}

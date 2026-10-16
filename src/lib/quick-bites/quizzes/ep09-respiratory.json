@@ -1,0 +1,307 @@
+{
+  "episode": "ep09-respiratory",
+  "title": "Respiratory: Asthma/Lung Disease Flares, Chest Tubes, Pulmonary Embolism",
+  "video": "quick-bites-ep09-respiratory-web.mp4",
+  "questions": [
+    {
+      "id": "ep09-respiratory-q01",
+      "type": "single_best_answer",
+      "stem": "A client having an asthma flare was wheezing loudly. Now the wheezing has stopped and the chest is quiet. What does this mean?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The flare is resolving"
+        },
+        {
+          "id": "B",
+          "text": "Almost no air is moving: an emergency"
+        },
+        {
+          "id": "C",
+          "text": "The inhaler worked"
+        },
+        {
+          "id": "D",
+          "text": "The client is asleep"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: when wheezing suddenly stops and the chest goes quiet, almost no air is moving, which is an emergency. A and C wrongly read it as better. D ignores the danger.",
+      "videoTimestamp": "0:29"
+    },
+    {
+      "id": "ep09-respiratory-q02",
+      "type": "select_all_that_apply",
+      "stem": "Which findings are expected during an asthma or chronic lung disease flare? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Wheezing"
+        },
+        {
+          "id": "B",
+          "text": "Using neck and chest muscles to breathe"
+        },
+        {
+          "id": "C",
+          "text": "Unable to finish sentences"
+        },
+        {
+          "id": "D",
+          "text": "Slow, relaxed breathing"
+        },
+        {
+          "id": "E",
+          "text": "Speaking in long paragraphs"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: wheezing, extra neck and chest muscle use, and being unable to finish a sentence are taught flare signs. D and E describe comfortable breathing.",
+      "videoTimestamp": "0:21"
+    },
+    {
+      "id": "ep09-respiratory-q03",
+      "type": "single_best_answer",
+      "stem": "What is the usual oxygen saturation target for a client with chronic obstructive pulmonary disease, per the provider's order?",
+      "options": [
+        {
+          "id": "A",
+          "text": "80 to 85%"
+        },
+        {
+          "id": "B",
+          "text": "88 to 92%"
+        },
+        {
+          "id": "C",
+          "text": "95 to 100%"
+        },
+        {
+          "id": "D",
+          "text": "Above 100%"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the usual target is about 88 to 92%, per the provider's order. A is too low. C is higher than the usual target in this disease. D isn't possible.",
+      "videoTimestamp": "0:38"
+    },
+    {
+      "id": "ep09-respiratory-q04",
+      "type": "single_best_answer",
+      "stem": "A client with chronic obstructive pulmonary disease is in respiratory distress. Which action is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Withhold oxygen to avoid harm"
+        },
+        {
+          "id": "B",
+          "text": "Give oxygen and sit the client upright"
+        },
+        {
+          "id": "C",
+          "text": "Lay the client flat"
+        },
+        {
+          "id": "D",
+          "text": "Wait for a blood gas before giving oxygen"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: sit the client upright and give oxygen; never withhold oxygen in respiratory distress. A and D withhold oxygen. C, lying flat, doesn't help breathing.",
+      "videoTimestamp": "0:46"
+    },
+    {
+      "id": "ep09-respiratory-q05",
+      "type": "single_best_answer",
+      "stem": "The water-seal chamber of a chest tube rises and falls with each breath. What does this mean?",
+      "options": [
+        {
+          "id": "A",
+          "text": "An air leak"
+        },
+        {
+          "id": "B",
+          "text": "Expected tidaling"
+        },
+        {
+          "id": "C",
+          "text": "The tube is blocked"
+        },
+        {
+          "id": "D",
+          "text": "The suction is too high"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: rising and falling with each breath, called tidaling, is expected. A, constant bubbling, would be a leak. C and D aren't what tidaling means.",
+      "videoTimestamp": "1:01"
+    },
+    {
+      "id": "ep09-respiratory-q06",
+      "type": "single_best_answer",
+      "stem": "The water-seal chamber bubbles constantly. What is the nurse's first action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Document it as normal"
+        },
+        {
+          "id": "B",
+          "text": "Check the connections from the client to the unit"
+        },
+        {
+          "id": "C",
+          "text": "Clamp the tube for an hour"
+        },
+        {
+          "id": "D",
+          "text": "Raise the unit above the chest"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: constant bubbling in the water seal means an air leak, so check the connections and notify the provider. A calls it normal. C, clamping, isn't the taught step. D is wrong because the unit stays below the chest.",
+      "videoTimestamp": "1:11"
+    },
+    {
+      "id": "ep09-respiratory-q07",
+      "type": "select_all_that_apply",
+      "stem": "Which actions are correct for a client with a chest tube? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Keep the drainage unit below the chest"
+        },
+        {
+          "id": "B",
+          "text": "Keep the tubing free of kinks"
+        },
+        {
+          "id": "C",
+          "text": "Expect gentle bubbling in the suction chamber"
+        },
+        {
+          "id": "D",
+          "text": "Report constant bubbling in the water seal"
+        },
+        {
+          "id": "E",
+          "text": "Hang the unit on the bed rail above the chest"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: keep the unit below the chest and the tubing free of kinks; gentle suction-chamber bubbling is normal; constant water-seal bubbling is a leak to report. E is wrong because the unit must stay below the chest.",
+      "videoTimestamp": "0:54"
+    },
+    {
+      "id": "ep09-respiratory-q08",
+      "type": "single_best_answer",
+      "stem": "A chest tube accidentally pulls out of the client's chest. What is the first action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Reinsert the tube"
+        },
+        {
+          "id": "B",
+          "text": "Cover the site with a sterile dressing taped on three sides"
+        },
+        {
+          "id": "C",
+          "text": "Clamp the tubing"
+        },
+        {
+          "id": "D",
+          "text": "Wait for the provider"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a dressing taped on three sides lets air escape but not get sucked in; then notify the provider. A, never try to reinsert it. C doesn't cover the open site. D delays covering the site.",
+      "videoTimestamp": "2:11"
+    },
+    {
+      "id": "ep09-respiratory-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which findings suggest a pulmonary embolism? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sudden shortness of breath"
+        },
+        {
+          "id": "B",
+          "text": "Sharp chest pain"
+        },
+        {
+          "id": "C",
+          "text": "Fast heart rate"
+        },
+        {
+          "id": "D",
+          "text": "Anxiety"
+        },
+        {
+          "id": "E",
+          "text": "Slow, gradual cough over weeks"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: these are the taught signs of a clot blocking blood flow in the lungs. E is gradual, not the sudden picture of an embolism.",
+      "videoTimestamp": "1:39"
+    },
+    {
+      "id": "ep09-respiratory-q10",
+      "type": "single_best_answer",
+      "stem": "A client suddenly becomes short of breath with sharp chest pain. A pulmonary embolism is suspected. What should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Leave to find the provider"
+        },
+        {
+          "id": "B",
+          "text": "Stay, sit the client up, give oxygen, and call the rapid response team"
+        },
+        {
+          "id": "C",
+          "text": "Lay the client flat and recheck in an hour"
+        },
+        {
+          "id": "D",
+          "text": "Encourage the client to walk"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: stay with the client, sit them up, give oxygen, and call the rapid response team. A leaves the client. C delays care. D isn't taught and adds strain.",
+      "videoTimestamp": "1:46"
+    }
+  ]
+}

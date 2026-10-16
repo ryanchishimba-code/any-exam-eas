@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
+import { QuickBitesQuiz } from "@/components/quick-bites/QuickBitesQuiz";
 import {
   getQuickBiteBySlug,
   quickBitePoster,
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
+import { parseVideoTimestamp } from "@/lib/quick-bites/timestamp";
 
 type LoadState =
   | { status: "loading" }
@@ -22,7 +24,32 @@ export function QuickBitesPlayer({
   onClose: () => void;
 }) {
   const [state, setState] = useState<LoadState>({ status: "loading" });
+  const videoRef = useRef<HTMLVideoElement>(null);
   const poster = quickBitePoster(episode.slug);
+
+  function rewatch(timestamp: string) {
+    const video = videoRef.current;
+    const seconds = parseVideoTimestamp(timestamp);
+    if (!video || seconds == null) return;
+    try {
+      video.scrollIntoView({ block: "nearest" });
+    } catch {
+      // Some test environments do not implement scrolling.
+    }
+    const seek = () => {
+      try {
+        video.currentTime = seconds;
+      } catch {
+        // jsdom media elements may reject seeking.
+      }
+      const play = video.play?.();
+      if (play && typeof play.catch === "function") play.catch(() => {});
+    };
+    seek();
+    if (video.readyState < 1) {
+      video.addEventListener("loadedmetadata", seek, { once: true });
+    }
+  }
 
   useEffect(() => {
     const controller = new AbortController();
@@ -90,6 +117,7 @@ export function QuickBitesPlayer({
         {state.status === "ready" ? (
           <video
             key={known.slug}
+            ref={videoRef}
             controls
             preload="none"
             playsInline
@@ -127,6 +155,7 @@ export function QuickBitesPlayer({
       <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
         Captions are available from the player. They match the words already on screen.
       </p>
+      <QuickBitesQuiz slug={known.slug} onRewatch={rewatch} onDone={onClose} />
     </div>
   );
 }

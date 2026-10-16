@@ -1,0 +1,300 @@
+{
+  "episode": "ep05-isolation",
+  "title": "Isolation & Infection Control",
+  "video": "quick-bites-ep05-isolation-web.mp4",
+  "questions": [
+    {
+      "id": "ep05-isolation-q01",
+      "type": "single_best_answer",
+      "stem": "The nurse leaves the room of a client with C. diff. Which hand hygiene is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Alcohol-based hand gel"
+        },
+        {
+          "id": "B",
+          "text": "Soap and water"
+        },
+        {
+          "id": "C",
+          "text": "Gloves only, no hand hygiene needed"
+        },
+        {
+          "id": "D",
+          "text": "Hand gel followed by gloves"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: alcohol gel doesn't kill C. diff spores, so you scrub them off with soap and water. A and D rely on gel. C skips hand hygiene, which standard precautions require after every client.",
+      "videoTimestamp": "1:44"
+    },
+    {
+      "id": "ep05-isolation-q02",
+      "type": "single_best_answer",
+      "stem": "A client is admitted with suspected tuberculosis. Which action is best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Private room with the door open"
+        },
+        {
+          "id": "B",
+          "text": "Negative-pressure room and an N95 for staff"
+        },
+        {
+          "id": "C",
+          "text": "Surgical mask for the nurse"
+        },
+        {
+          "id": "D",
+          "text": "Gown and gloves only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: tuberculosis is airborne, so it needs a negative-pressure room and a fit-tested N95. A doesn't contain airborne particles. C, a surgical mask, isn't enough. D is contact precautions.",
+      "videoTimestamp": "2:27"
+    },
+    {
+      "id": "ep05-isolation-q03",
+      "type": "select_all_that_apply",
+      "stem": "Which infections require airborne precautions? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Tuberculosis"
+        },
+        {
+          "id": "B",
+          "text": "Measles"
+        },
+        {
+          "id": "C",
+          "text": "Chickenpox"
+        },
+        {
+          "id": "D",
+          "text": "Influenza"
+        },
+        {
+          "id": "E",
+          "text": "MRSA (resistant staph)"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: tuberculosis, measles, and chickenpox spread in tiny floating particles. D, flu, is droplet. E, resistant staph, is contact.",
+      "videoTimestamp": "0:41"
+    },
+    {
+      "id": "ep05-isolation-q04",
+      "type": "single_best_answer",
+      "stem": "A client on airborne precautions must go to radiology. What should the client wear during transport?",
+      "options": [
+        {
+          "id": "A",
+          "text": "An N95 respirator"
+        },
+        {
+          "id": "B",
+          "text": "A surgical mask"
+        },
+        {
+          "id": "C",
+          "text": "A gown and gloves"
+        },
+        {
+          "id": "D",
+          "text": "Nothing extra"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: if the client has to leave the room, the client wears a regular surgical mask. A, the N95, is for staff. C is contact precautions. D leaves others unprotected.",
+      "videoTimestamp": "0:54"
+    },
+    {
+      "id": "ep05-isolation-q05",
+      "type": "single_best_answer",
+      "stem": "A client has pertussis (whooping cough). Which precautions does the nurse use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Airborne: N95 and negative pressure"
+        },
+        {
+          "id": "B",
+          "text": "Droplet: surgical mask and private room"
+        },
+        {
+          "id": "C",
+          "text": "Contact: gown and gloves only"
+        },
+        {
+          "id": "D",
+          "text": "Standard precautions only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: pertussis is a droplet infection, so a surgical mask and a private room are used. A is for airborne germs. C is for contact germs. D alone isn't enough for a droplet germ.",
+      "videoTimestamp": "1:01"
+    },
+    {
+      "id": "ep05-isolation-q06",
+      "type": "select_all_that_apply",
+      "stem": "Which infections require contact precautions? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "C. diff"
+        },
+        {
+          "id": "B",
+          "text": "Drug-resistant staph (MRSA)"
+        },
+        {
+          "id": "C",
+          "text": "Drug-resistant enterococcus (VRE)"
+        },
+        {
+          "id": "D",
+          "text": "Scabies"
+        },
+        {
+          "id": "E",
+          "text": "Measles"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: these spread by touch from skin or surfaces. E, measles, is airborne.",
+      "videoTimestamp": "1:13"
+    },
+    {
+      "id": "ep05-isolation-q07",
+      "type": "single_best_answer",
+      "stem": "Which practice is part of contact precautions?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Keeping a dedicated stethoscope in the room"
+        },
+        {
+          "id": "B",
+          "text": "Negative-pressure room"
+        },
+        {
+          "id": "C",
+          "text": "Fit-tested N95"
+        },
+        {
+          "id": "D",
+          "text": "Keeping the door closed at all times"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: contact precautions use a gown, gloves, and dedicated equipment like a stethoscope that stays in the room. B, C, and D are airborne precautions.",
+      "videoTimestamp": "1:25"
+    },
+    {
+      "id": "ep05-isolation-q08",
+      "type": "single_best_answer",
+      "stem": "In what order should the nurse put on personal protective equipment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Gloves, gown, mask, goggles"
+        },
+        {
+          "id": "B",
+          "text": "Gown, mask, goggles, gloves"
+        },
+        {
+          "id": "C",
+          "text": "Mask, gloves, gown, goggles"
+        },
+        {
+          "id": "D",
+          "text": "Goggles, gloves, mask, gown"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: put on gown, mask, goggles, then gloves. A, C, and D put the items out of order.",
+      "videoTimestamp": "2:14"
+    },
+    {
+      "id": "ep05-isolation-q09",
+      "type": "single_best_answer",
+      "stem": "Which item should the nurse remove first when taking off personal protective equipment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Gown"
+        },
+        {
+          "id": "B",
+          "text": "Mask"
+        },
+        {
+          "id": "C",
+          "text": "Gloves"
+        },
+        {
+          "id": "D",
+          "text": "Goggles"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: gloves are the dirtiest, so they come off first. The order is gloves, goggles, gown, then mask. A, B, and D come off later, with the mask last, after leaving the room.",
+      "videoTimestamp": "2:19"
+    },
+    {
+      "id": "ep05-isolation-q10",
+      "type": "single_best_answer",
+      "stem": "Which statement about standard precautions is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "They are used only for clients with known infections"
+        },
+        {
+          "id": "B",
+          "text": "They are used for every client"
+        },
+        {
+          "id": "C",
+          "text": "They replace hand hygiene"
+        },
+        {
+          "id": "D",
+          "text": "They are needed only when blood is visible"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: standard precautions are for every client because you can't tell who's carrying something. A and D limit them wrongly. C is wrong because hand hygiene is part of standard precautions.",
+      "videoTimestamp": "0:19"
+    }
+  ]
+}

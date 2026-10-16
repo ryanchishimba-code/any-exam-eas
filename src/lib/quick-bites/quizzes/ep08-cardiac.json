@@ -1,0 +1,300 @@
+{
+  "episode": "ep08-cardiac",
+  "title": "Cardiac Priorities: Chest Pain, Heart Failure, Digoxin",
+  "video": "quick-bites-ep08-cardiac-web.mp4",
+  "questions": [
+    {
+      "id": "ep08-cardiac-q01",
+      "type": "single_best_answer",
+      "stem": "A client reports chest pain. The oxygen saturation is 96%. Which action is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start oxygen right away for all chest pain"
+        },
+        {
+          "id": "B",
+          "text": "Oxygen is not needed unless saturation is below 90%"
+        },
+        {
+          "id": "C",
+          "text": "Give oxygen only after nitroglycerin"
+        },
+        {
+          "id": "D",
+          "text": "Start oxygen at the highest flow"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: oxygen is given if the saturation is below 90%, and 96% is above that. A and D give oxygen routinely. C adds a rule that isn't taught.",
+      "videoTimestamp": "0:24"
+    },
+    {
+      "id": "ep08-cardiac-q02",
+      "type": "single_best_answer",
+      "stem": "How soon should a 12-lead electrocardiogram be obtained for a client with chest pain?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Within 10 minutes"
+        },
+        {
+          "id": "B",
+          "text": "Within 30 minutes"
+        },
+        {
+          "id": "C",
+          "text": "Within 1 hour"
+        },
+        {
+          "id": "D",
+          "text": "After the troponin returns"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: get a 12-lead electrocardiogram within 10 minutes. B, C, and D delay it.",
+      "videoTimestamp": "0:28"
+    },
+    {
+      "id": "ep08-cardiac-q03",
+      "type": "single_best_answer",
+      "stem": "A client with chest pain took sildenafil this morning. Nitroglycerin is ordered. What should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give the nitroglycerin"
+        },
+        {
+          "id": "B",
+          "text": "Hold the nitroglycerin and notify the provider"
+        },
+        {
+          "id": "C",
+          "text": "Give half a dose"
+        },
+        {
+          "id": "D",
+          "text": "Give it with water"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: nitroglycerin is never given with erectile dysfunction drugs like sildenafil because the blood pressure can crash, so the nurse holds it and notifies the provider. A, C, and D still give it.",
+      "videoTimestamp": "0:37"
+    },
+    {
+      "id": "ep08-cardiac-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which findings point to left-sided heart failure? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Crackles in the lungs"
+        },
+        {
+          "id": "B",
+          "text": "Shortness of breath"
+        },
+        {
+          "id": "C",
+          "text": "Trouble breathing lying flat"
+        },
+        {
+          "id": "D",
+          "text": "Swollen ankles"
+        },
+        {
+          "id": "E",
+          "text": "Swollen neck veins"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: left equals lungs, so fluid backs into the lungs. D and E are right-sided failure, where fluid backs into the body.",
+      "videoTimestamp": "0:47"
+    },
+    {
+      "id": "ep08-cardiac-q05",
+      "type": "single_best_answer",
+      "stem": "Which finding is most consistent with right-sided heart failure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pink frothy sputum"
+        },
+        {
+          "id": "B",
+          "text": "Crackles"
+        },
+        {
+          "id": "C",
+          "text": "Swollen neck veins and ankle edema"
+        },
+        {
+          "id": "D",
+          "text": "Trouble breathing lying flat"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: right-sided failure backs fluid into the body, causing swollen neck veins and swollen ankles. A, B, and D are lung findings of left-sided failure.",
+      "videoTimestamp": "0:57"
+    },
+    {
+      "id": "ep08-cardiac-q06",
+      "type": "single_best_answer",
+      "stem": "A client with heart failure weighed 180 lb yesterday and 183 lb today. What should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Recheck in a week"
+        },
+        {
+          "id": "B",
+          "text": "Report the weight gain"
+        },
+        {
+          "id": "C",
+          "text": "Encourage more fluids"
+        },
+        {
+          "id": "D",
+          "text": "Tell the client it's normal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a gain of 3 lb in a day meets the rule to report 2 to 3 lb in a day; that's fluid, not fat. A delays. C adds fluid. D is wrong because the gain is not normal.",
+      "videoTimestamp": "1:11"
+    },
+    {
+      "id": "ep08-cardiac-q07",
+      "type": "single_best_answer",
+      "stem": "How should a client with heart failure weigh themselves at home?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Any time, on any scale"
+        },
+        {
+          "id": "B",
+          "text": "Same time, same scale, same clothes, every morning"
+        },
+        {
+          "id": "C",
+          "text": "Once a week in the evening"
+        },
+        {
+          "id": "D",
+          "text": "Only when feeling swollen"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: same time, same scale, same clothes, every morning. A, C, and D make the weights inconsistent or too infrequent.",
+      "videoTimestamp": "1:08"
+    },
+    {
+      "id": "ep08-cardiac-q08",
+      "type": "single_best_answer",
+      "stem": "Digoxin is due. The apical pulse is 54. What is the first action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give it, then recheck"
+        },
+        {
+          "id": "B",
+          "text": "Hold it and notify the provider per parameters"
+        },
+        {
+          "id": "C",
+          "text": "Give half the dose"
+        },
+        {
+          "id": "D",
+          "text": "Recheck in 4 hours, then give it"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: an adult apical pulse under 60 means hold digoxin and notify the provider per parameters. A and D give a dose to a client with a pulse under 60. C changes the dose without the provider.",
+      "videoTimestamp": "2:15"
+    },
+    {
+      "id": "ep08-cardiac-q09",
+      "type": "select_all_that_apply",
+      "stem": "A client takes digoxin. Which findings suggest toxicity? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Nausea and vomiting"
+        },
+        {
+          "id": "B",
+          "text": "Loss of appetite"
+        },
+        {
+          "id": "C",
+          "text": "Yellow-green halos around lights"
+        },
+        {
+          "id": "D",
+          "text": "Slow or irregular heartbeat"
+        },
+        {
+          "id": "E",
+          "text": "Ankle edema"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: these are the signs of digoxin toxicity taught. E is a heart failure finding, not a toxicity sign.",
+      "videoTimestamp": "1:30"
+    },
+    {
+      "id": "ep08-cardiac-q10",
+      "type": "single_best_answer",
+      "stem": "A client on digoxin has a low potassium level. Why is this a concern?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It lowers the digoxin effect"
+        },
+        {
+          "id": "B",
+          "text": "It makes digoxin toxicity more likely"
+        },
+        {
+          "id": "C",
+          "text": "It causes high blood pressure"
+        },
+        {
+          "id": "D",
+          "text": "It has no effect on digoxin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: low potassium makes digoxin toxicity more likely. A and D understate the risk. C is not the concern taught.",
+      "videoTimestamp": "1:42"
+    }
+  ]
+}

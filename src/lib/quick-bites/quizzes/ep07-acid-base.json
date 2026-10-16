@@ -1,0 +1,298 @@
+{
+  "episode": "ep07-acid-base",
+  "title": "Acid-Base",
+  "video": "quick-bites-ep07-acid-base-web.mp4",
+  "questions": [
+    {
+      "id": "ep07-acid-base-q01",
+      "type": "single_best_answer",
+      "stem": "A blood gas shows pH 7.30, carbon dioxide 50, bicarb 24. What is the interpretation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Respiratory acidosis, uncompensated"
+        },
+        {
+          "id": "B",
+          "text": "Metabolic acidosis"
+        },
+        {
+          "id": "C",
+          "text": "Respiratory alkalosis"
+        },
+        {
+          "id": "D",
+          "text": "Metabolic alkalosis, compensated"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: pH 7.30 is acid, carbon dioxide 50 is high so it's the lungs, and bicarb 24 is normal so the kidneys haven't compensated. B would need a low bicarb. C and D need a high pH.",
+      "videoTimestamp": "1:14"
+    },
+    {
+      "id": "ep07-acid-base-q02",
+      "type": "single_best_answer",
+      "stem": "What is the normal pH range?",
+      "options": [
+        {
+          "id": "A",
+          "text": "7.25 to 7.35"
+        },
+        {
+          "id": "B",
+          "text": "7.35 to 7.45"
+        },
+        {
+          "id": "C",
+          "text": "7.45 to 7.55"
+        },
+        {
+          "id": "D",
+          "text": "7.00 to 7.80"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: normal pH is 7.35 to 7.45. A is acidosis. C is alkalosis. D is the scale range, not normal.",
+      "videoTimestamp": "0:20"
+    },
+    {
+      "id": "ep07-acid-base-q03",
+      "type": "single_best_answer",
+      "stem": "Which body system controls carbon dioxide?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Kidneys"
+        },
+        {
+          "id": "B",
+          "text": "Lungs"
+        },
+        {
+          "id": "C",
+          "text": "Liver"
+        },
+        {
+          "id": "D",
+          "text": "Heart"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: carbon dioxide is an acid the lungs control. A, the kidneys, control bicarb. C and D aren't the controllers taught.",
+      "videoTimestamp": "0:24"
+    },
+    {
+      "id": "ep07-acid-base-q04",
+      "type": "single_best_answer",
+      "stem": "What is the normal bicarb range?",
+      "options": [
+        {
+          "id": "A",
+          "text": "35 to 45"
+        },
+        {
+          "id": "B",
+          "text": "22 to 26"
+        },
+        {
+          "id": "C",
+          "text": "7.35 to 7.45"
+        },
+        {
+          "id": "D",
+          "text": "135 to 145"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: normal bicarb is 22 to 26. A is the carbon dioxide range. C is pH. D is sodium.",
+      "videoTimestamp": "0:28"
+    },
+    {
+      "id": "ep07-acid-base-q05",
+      "type": "single_best_answer",
+      "stem": "Using \"Rome\", which statement is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "In respiratory problems, pH and carbon dioxide move the same way"
+        },
+        {
+          "id": "B",
+          "text": "In respiratory problems, pH and carbon dioxide move opposite ways"
+        },
+        {
+          "id": "C",
+          "text": "In metabolic problems, pH and bicarb move opposite ways"
+        },
+        {
+          "id": "D",
+          "text": "Bicarb is controlled by the lungs"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: respiratory opposite, so pH and carbon dioxide move in opposite directions. A reverses that. C is wrong because metabolic is equal: pH and bicarb move the same way. D is wrong because the kidneys control bicarb.",
+      "videoTimestamp": "0:57"
+    },
+    {
+      "id": "ep07-acid-base-q06",
+      "type": "single_best_answer",
+      "stem": "An anxious, fast-breathing client has pH 7.50, carbon dioxide 30, bicarb 24. What is it?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Respiratory acidosis"
+        },
+        {
+          "id": "B",
+          "text": "Respiratory alkalosis"
+        },
+        {
+          "id": "C",
+          "text": "Metabolic acidosis"
+        },
+        {
+          "id": "D",
+          "text": "Metabolic alkalosis"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: pH 7.50 is high and carbon dioxide 30 is low, moving opposite ways, so it's respiratory alkalosis; bicarb 24 is normal. A needs a low pH. C and D need an abnormal bicarb.",
+      "videoTimestamp": "2:20"
+    },
+    {
+      "id": "ep07-acid-base-q07",
+      "type": "single_best_answer",
+      "stem": "For the anxious client with respiratory alkalosis, which nursing action is best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Help the client slow their breathing"
+        },
+        {
+          "id": "B",
+          "text": "Encourage faster breathing"
+        },
+        {
+          "id": "C",
+          "text": "Give bicarb"
+        },
+        {
+          "id": "D",
+          "text": "Have the client vomit"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: the client is breathing too fast, so help them slow their breathing. B worsens it. C and D don't fix a breathing cause.",
+      "videoTimestamp": "2:51"
+    },
+    {
+      "id": "ep07-acid-base-q08",
+      "type": "select_all_that_apply",
+      "stem": "Which conditions can cause respiratory acidosis? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Chronic lung disease"
+        },
+        {
+          "id": "B",
+          "text": "Opioid overdose"
+        },
+        {
+          "id": "C",
+          "text": "Anxiety with fast breathing"
+        },
+        {
+          "id": "D",
+          "text": "Vomiting"
+        },
+        {
+          "id": "E",
+          "text": "Diarrhea"
+        }
+      ],
+      "keys": [
+        "A",
+        "B"
+      ],
+      "explanation": "A and B are correct: both mean not breathing enough. C causes respiratory alkalosis. D causes metabolic alkalosis. E causes metabolic acidosis.",
+      "videoTimestamp": "1:40"
+    },
+    {
+      "id": "ep07-acid-base-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which conditions can cause metabolic acidosis? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Diabetic ketoacidosis"
+        },
+        {
+          "id": "B",
+          "text": "Diarrhea"
+        },
+        {
+          "id": "C",
+          "text": "Kidney failure"
+        },
+        {
+          "id": "D",
+          "text": "Vomiting"
+        },
+        {
+          "id": "E",
+          "text": "Stomach tube suction"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: diabetic ketoacidosis, diarrhea, and kidney failure cause metabolic acidosis. D and E pull out stomach acid, causing metabolic alkalosis.",
+      "videoTimestamp": "1:52"
+    },
+    {
+      "id": "ep07-acid-base-q10",
+      "type": "single_best_answer",
+      "stem": "A client's carbon dioxide is high from a lung problem, and the bicarb is now rising, moving to fix the pH. What does the rising bicarb show?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Step one: acid or base"
+        },
+        {
+          "id": "B",
+          "text": "Compensation: the other number is fixing it"
+        },
+        {
+          "id": "C",
+          "text": "An error in the blood gas"
+        },
+        {
+          "id": "D",
+          "text": "No compensation yet"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: when the other number, here the bicarb, is moving to fix the pH, that's compensation. A only looks at the pH. C assumes an error. D would mean the bicarb stayed normal.",
+      "videoTimestamp": "0:51"
+    }
+  ]
+}

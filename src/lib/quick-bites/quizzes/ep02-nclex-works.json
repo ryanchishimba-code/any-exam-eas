@@ -1,0 +1,298 @@
+{
+  "episode": "ep02-nclex-works",
+  "title": "How the Nursing Boards Work",
+  "video": "quick-bites-ep02-nclex-works-web.mp4",
+  "questions": [
+    {
+      "id": "ep02-nclex-works-q01",
+      "type": "single_best_answer",
+      "stem": "A candidate's nursing board exam ends at question 85. What does this mean?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The candidate passed"
+        },
+        {
+          "id": "B",
+          "text": "The candidate failed"
+        },
+        {
+          "id": "C",
+          "text": "The result can't be told from the length"
+        },
+        {
+          "id": "D",
+          "text": "The exam had a technical error"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: the exam stopped at 85 because the computer was confident, either way, so the length doesn't show pass or fail. A and B assume the length tells the result. D: stopping at 85 is a normal end point, not an error.",
+      "videoTimestamp": "1:09"
+    },
+    {
+      "id": "ep02-nclex-works-q02",
+      "type": "single_best_answer",
+      "stem": "Which statement about the nursing board exam's scoring is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Candidates receive a percent score"
+        },
+        {
+          "id": "B",
+          "text": "It is pass or fail"
+        },
+        {
+          "id": "C",
+          "text": "Candidates must score 75%"
+        },
+        {
+          "id": "D",
+          "text": "Scores are ranked against classmates"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the exam is pass or fail, and you never see a percent score. A and C describe a percent score, which isn't given. D is wrong because the comparison is to the passing standard, not to classmates.",
+      "videoTimestamp": "0:09"
+    },
+    {
+      "id": "ep02-nclex-works-q03",
+      "type": "single_best_answer",
+      "stem": "How many questions can a candidate receive on the nursing board exam?",
+      "options": [
+        {
+          "id": "A",
+          "text": "50 to 100"
+        },
+        {
+          "id": "B",
+          "text": "75 to 265"
+        },
+        {
+          "id": "C",
+          "text": "85 to 150"
+        },
+        {
+          "id": "D",
+          "text": "Exactly 150"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: the exam gives between 85 and 150 questions. A, B, and D don't match the current range.",
+      "videoTimestamp": "0:21"
+    },
+    {
+      "id": "ep02-nclex-works-q04",
+      "type": "single_best_answer",
+      "stem": "A candidate plans to take two long breaks. Which statement shows correct understanding of exam time?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Breaks pause the 5-hour clock"
+        },
+        {
+          "id": "B",
+          "text": "Breaks count toward the 5 hours"
+        },
+        {
+          "id": "C",
+          "text": "There is no time limit"
+        },
+        {
+          "id": "D",
+          "text": "Breaks add an extra hour"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the exam allows up to 5 hours, and breaks count toward that time. A and D are wrong because breaks don't pause or extend the clock. C is wrong because there is a 5-hour limit.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep02-nclex-works-q05",
+      "type": "single_best_answer",
+      "stem": "A candidate gets a question right during computerized adaptive testing. What happens next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The next question is a little harder"
+        },
+        {
+          "id": "B",
+          "text": "The next question is a little easier"
+        },
+        {
+          "id": "C",
+          "text": "The exam ends"
+        },
+        {
+          "id": "D",
+          "text": "The next question is the same difficulty"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: when you get a question right, the next one is a little harder. B happens after a wrong answer. C and D don't describe how the adaptive test adjusts.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep02-nclex-works-q06",
+      "type": "single_best_answer",
+      "stem": "When does the adaptive exam stop?",
+      "options": [
+        {
+          "id": "A",
+          "text": "After exactly 85 questions"
+        },
+        {
+          "id": "B",
+          "text": "When it is 95% sure the candidate is clearly above or below the passing standard"
+        },
+        {
+          "id": "C",
+          "text": "When the candidate gets 10 questions wrong in a row"
+        },
+        {
+          "id": "D",
+          "text": "Only at the 5-hour mark"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the exam stops when it's 95% sure you're clearly above or clearly below the passing standard. A is wrong because it can run up to 150. C isn't a stopping rule. D: time is a limit, but the usual stop is the confidence rule.",
+      "videoTimestamp": "0:52"
+    },
+    {
+      "id": "ep02-nclex-works-q07",
+      "type": "single_best_answer",
+      "stem": "A candidate says, \"The questions keep getting harder, so I must be failing.\" What is the best response?",
+      "options": [
+        {
+          "id": "A",
+          "text": "\"Yes, you should slow down.\""
+        },
+        {
+          "id": "B",
+          "text": "\"Hard questions are normal and can even be a good sign.\""
+        },
+        {
+          "id": "C",
+          "text": "\"Hard questions mean the exam will run to 150.\""
+        },
+        {
+          "id": "D",
+          "text": "\"Skip the hard ones and come back.\""
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the adaptive test gets harder after right answers, so hard questions are normal and can be a good sign. A assumes failure. C: difficulty doesn't fix the length. D isn't the strategy taught; the video says to keep going.",
+      "videoTimestamp": "1:00"
+    },
+    {
+      "id": "ep02-nclex-works-q08",
+      "type": "single_best_answer",
+      "stem": "How are the next-generation case studies structured?",
+      "options": [
+        {
+          "id": "A",
+          "text": "One case study with 18 questions"
+        },
+        {
+          "id": "B",
+          "text": "Three case studies, each with six questions"
+        },
+        {
+          "id": "C",
+          "text": "Six case studies, each with three questions"
+        },
+        {
+          "id": "D",
+          "text": "Ten stand-alone items only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: you get three case studies, each with six questions, for 18 items. A and C don't match that structure. D: stand-alone judgment items are about 10%, in addition to the case studies.",
+      "videoTimestamp": "1:28"
+    },
+    {
+      "id": "ep02-nclex-works-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which are next-generation item formats described in the video? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bow-tie"
+        },
+        {
+          "id": "B",
+          "text": "Matrix grid"
+        },
+        {
+          "id": "C",
+          "text": "Trend"
+        },
+        {
+          "id": "D",
+          "text": "Drop-down"
+        },
+        {
+          "id": "E",
+          "text": "Essay"
+        },
+        {
+          "id": "F",
+          "text": "Oral interview"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: formats include bow-tie, matrix grids, trends, select all that apply, and drop-downs. E and F are not formats on the exam.",
+      "videoTimestamp": "1:37"
+    },
+    {
+      "id": "ep02-nclex-works-q10",
+      "type": "single_best_answer",
+      "stem": "In the six clinical judgment steps, which step comes right after \"analyze cues\"?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Recognize cues"
+        },
+        {
+          "id": "B",
+          "text": "Prioritize hypotheses"
+        },
+        {
+          "id": "C",
+          "text": "Take action"
+        },
+        {
+          "id": "D",
+          "text": "Evaluate outcomes"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the order is recognize cues, analyze cues, prioritize hypotheses, generate solutions, take action, evaluate outcomes. A comes before analyze cues. C and D come later.",
+      "videoTimestamp": "1:55"
+    }
+  ]
+}

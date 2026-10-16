@@ -1,0 +1,306 @@
+{
+  "episode": "ep14-maternity",
+  "title": "Maternity: Fetal Heart, Bleeding, Blood Pressure",
+  "video": "quick-bites-ep14-maternity-web.mp4",
+  "questions": [
+    {
+      "id": "ep14-maternity-q01",
+      "type": "single_best_answer",
+      "stem": "A laboring client on an oxytocin infusion has late decelerations. What is the first action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Increase the oxytocin"
+        },
+        {
+          "id": "B",
+          "text": "Stop the oxytocin"
+        },
+        {
+          "id": "C",
+          "text": "Document and continue to watch"
+        },
+        {
+          "id": "D",
+          "text": "Encourage pushing"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: oxytocin makes contractions stronger, which cuts blood flow to the placenta, so stopping it comes first. A worsens it. C and D delay the needed action.",
+      "videoTimestamp": "0:46"
+    },
+    {
+      "id": "ep14-maternity-q02",
+      "type": "single_best_answer",
+      "stem": "What is the normal fetal heart rate range?",
+      "options": [
+        {
+          "id": "A",
+          "text": "90 to 110"
+        },
+        {
+          "id": "B",
+          "text": "110 to 160"
+        },
+        {
+          "id": "C",
+          "text": "160 to 200"
+        },
+        {
+          "id": "D",
+          "text": "60 to 100"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the normal fetal heart rate is 110 to 160. A and D are too low. C is too high.",
+      "videoTimestamp": "0:16"
+    },
+    {
+      "id": "ep14-maternity-q03",
+      "type": "single_best_answer",
+      "stem": "The fetal monitor shows short rises in the heart rate. How should the nurse interpret this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Reassuring: the baby is getting enough oxygen"
+        },
+        {
+          "id": "B",
+          "text": "Cord compression"
+        },
+        {
+          "id": "C",
+          "text": "Placenta not delivering enough oxygen"
+        },
+        {
+          "id": "D",
+          "text": "Head compression"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: accelerations, short rises in the heart rate, are reassuring and show enough oxygen. B is variable decelerations. C is late decelerations. D is early decelerations.",
+      "videoTimestamp": "0:19"
+    },
+    {
+      "id": "ep14-maternity-q04",
+      "type": "single_best_answer",
+      "stem": "Using VEAL CHOP, what do late decelerations mean?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cord compression"
+        },
+        {
+          "id": "B",
+          "text": "Head compression"
+        },
+        {
+          "id": "C",
+          "text": "The placenta isn't delivering enough oxygen"
+        },
+        {
+          "id": "D",
+          "text": "The baby is well oxygenated"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: late decels mean the placenta isn't delivering enough oxygen. A is variable decels. B is early decels. D describes accelerations.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "ep14-maternity-q05",
+      "type": "single_best_answer",
+      "stem": "Decelerations mirror each contraction, starting and ending with it. What does this mean?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Placental problem: act now"
+        },
+        {
+          "id": "B",
+          "text": "Early decelerations from head compression, which is fine"
+        },
+        {
+          "id": "C",
+          "text": "Cord compression"
+        },
+        {
+          "id": "D",
+          "text": "Fetal distress requiring delivery"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: early decels mirror the contraction, mean head compression, and are fine. A is late decels. C is variable decels. D overstates a reassuring pattern.",
+      "videoTimestamp": "0:32"
+    },
+    {
+      "id": "ep14-maternity-q06",
+      "type": "select_all_that_apply",
+      "stem": "For late decelerations, which actions does the nurse take? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stop the oxytocin"
+        },
+        {
+          "id": "B",
+          "text": "Turn the client to her side"
+        },
+        {
+          "id": "C",
+          "text": "Give an intravenous fluid bolus"
+        },
+        {
+          "id": "D",
+          "text": "Notify the provider"
+        },
+        {
+          "id": "E",
+          "text": "Increase the oxytocin rate"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: stop the oxytocin, turn her to her side, give an intravenous fluid bolus, and notify the provider. E worsens blood flow to the placenta.",
+      "videoTimestamp": "0:46"
+    },
+    {
+      "id": "ep14-maternity-q07",
+      "type": "single_best_answer",
+      "stem": "After birth, the client's uterus feels soft and boggy with heavy bleeding. What is the first action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Massage the fundus"
+        },
+        {
+          "id": "B",
+          "text": "Give oxytocin as a push"
+        },
+        {
+          "id": "C",
+          "text": "Encourage the client to sleep"
+        },
+        {
+          "id": "D",
+          "text": "Apply ice to the perineum"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: a soft, boggy uterus is the top cause of heavy bleeding after birth, so massage the fundus, help her empty her bladder, and notify. B, C, and D are not the taught first step.",
+      "videoTimestamp": "1:22"
+    },
+    {
+      "id": "ep14-maternity-q08",
+      "type": "select_all_that_apply",
+      "stem": "Which findings suggest preeclampsia? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Blood pressure 140/90 or higher after 20 weeks"
+        },
+        {
+          "id": "B",
+          "text": "Headache"
+        },
+        {
+          "id": "C",
+          "text": "Vision changes"
+        },
+        {
+          "id": "D",
+          "text": "Blood pressure 110/70"
+        },
+        {
+          "id": "E",
+          "text": "Accelerations on the fetal monitor"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: preeclampsia is blood pressure of 140/90 or higher after 20 weeks, with signs like headache and vision changes. D is normal blood pressure. E is a reassuring fetal sign.",
+      "videoTimestamp": "1:25"
+    },
+    {
+      "id": "ep14-maternity-q09",
+      "type": "single_best_answer",
+      "stem": "A client on magnesium sulfate has no reflexes and a breathing rate of 10. What is the first action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stop the magnesium infusion"
+        },
+        {
+          "id": "B",
+          "text": "Recheck in 1 hour"
+        },
+        {
+          "id": "C",
+          "text": "Increase the rate"
+        },
+        {
+          "id": "D",
+          "text": "Give oxytocin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: absent reflexes and a breathing rate of 10 mean magnesium toxicity, so stop the infusion, notify the provider, and have calcium gluconate ready. B delays. C worsens toxicity. D doesn't treat it.",
+      "videoTimestamp": "1:44"
+    },
+    {
+      "id": "ep14-maternity-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which assessments does the nurse monitor for a client receiving magnesium sulfate? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Reflexes"
+        },
+        {
+          "id": "B",
+          "text": "Breathing rate"
+        },
+        {
+          "id": "C",
+          "text": "Urine output"
+        },
+        {
+          "id": "D",
+          "text": "Hair growth"
+        },
+        {
+          "id": "E",
+          "text": "Hearing"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: check reflexes, breathing rate (12 or more), and urine output (30 mL per hour or more), because too much magnesium suppresses all three. D and E aren't the taught checks.",
+      "videoTimestamp": "1:35"
+    }
+  ]
+}

@@ -1,0 +1,300 @@
+{
+  "episode": "ep06-sodium-calcium",
+  "title": "Sodium & Calcium Imbalances",
+  "video": "quick-bites-ep06-sodium-calcium-web.mp4",
+  "questions": [
+    {
+      "id": "ep06-sodium-calcium-q01",
+      "type": "single_best_answer",
+      "stem": "The nurse inflates a blood pressure cuff on a client's arm, and the hand spasms. Which imbalance does this suggest?",
+      "options": [
+        {
+          "id": "A",
+          "text": "High sodium"
+        },
+        {
+          "id": "B",
+          "text": "Low sodium"
+        },
+        {
+          "id": "C",
+          "text": "Low calcium"
+        },
+        {
+          "id": "D",
+          "text": "High calcium"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: a hand spasm when a blood pressure cuff is inflated is a positive Trousseau's sign, a sign of low calcium. A, B, and D don't cause this sign.",
+      "videoTimestamp": "1:18"
+    },
+    {
+      "id": "ep06-sodium-calcium-q02",
+      "type": "single_best_answer",
+      "stem": "What is the normal sodium range?",
+      "options": [
+        {
+          "id": "A",
+          "text": "3.5 to 5.0 mEq/L"
+        },
+        {
+          "id": "B",
+          "text": "9.0 to 10.5 mg/dL"
+        },
+        {
+          "id": "C",
+          "text": "135 to 145 mEq/L"
+        },
+        {
+          "id": "D",
+          "text": "70 to 100 mg/dL"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: normal sodium is 135 to 145. A is potassium. B is calcium. D is a glucose range.",
+      "videoTimestamp": "0:15"
+    },
+    {
+      "id": "ep06-sodium-calcium-q03",
+      "type": "single_best_answer",
+      "stem": "A client's sodium is 125 mEq/L. Which nursing action is the priority?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Encourage large amounts of water"
+        },
+        {
+          "id": "B",
+          "text": "Seizure precautions"
+        },
+        {
+          "id": "C",
+          "text": "Raise sodium as fast as possible"
+        },
+        {
+          "id": "D",
+          "text": "Ambulate the client in the hall"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a sodium of 125 is low, which can cause confusion and seizures, so seizure precautions are the priority. A, extra water, can worsen low sodium. C is unsafe: fixing sodium too fast can injure the brain. D adds fall and seizure risk.",
+      "videoTimestamp": "0:48"
+    },
+    {
+      "id": "ep06-sodium-calcium-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which are causes of low sodium taught in the video? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Too much water"
+        },
+        {
+          "id": "B",
+          "text": "Too much antidiuretic hormone"
+        },
+        {
+          "id": "C",
+          "text": "Vomiting"
+        },
+        {
+          "id": "D",
+          "text": "Dehydration"
+        },
+        {
+          "id": "E",
+          "text": "Diabetes insipidus"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: too much water, too much antidiuretic hormone, and vomiting cause low sodium. D and E cause high sodium.",
+      "videoTimestamp": "0:40"
+    },
+    {
+      "id": "ep06-sodium-calcium-q05",
+      "type": "single_best_answer",
+      "stem": "Which finding is most consistent with high sodium?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Intense thirst and dry mouth"
+        },
+        {
+          "id": "B",
+          "text": "Hand spasm with a blood pressure cuff"
+        },
+        {
+          "id": "C",
+          "text": "Face twitching when the cheek is tapped"
+        },
+        {
+          "id": "D",
+          "text": "Kidney stones"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: high sodium causes thirst, dry mouth, and agitation. B and C are low calcium signs. D is a high calcium finding.",
+      "videoTimestamp": "0:45"
+    },
+    {
+      "id": "ep06-sodium-calcium-q06",
+      "type": "single_best_answer",
+      "stem": "Why must sodium imbalances be corrected slowly?",
+      "options": [
+        {
+          "id": "A",
+          "text": "To save medication"
+        },
+        {
+          "id": "B",
+          "text": "Fixing sodium too fast can injure the brain"
+        },
+        {
+          "id": "C",
+          "text": "Fast correction raises potassium"
+        },
+        {
+          "id": "D",
+          "text": "Slow correction prevents kidney stones"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: fixing sodium too fast can injure the brain. A, C, and D are not the reason taught.",
+      "videoTimestamp": "0:54"
+    },
+    {
+      "id": "ep06-sodium-calcium-q07",
+      "type": "single_best_answer",
+      "stem": "The nurse taps the client's cheek, and the face twitches. What is this sign called, and what does it suggest?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Trousseau's sign, high calcium"
+        },
+        {
+          "id": "B",
+          "text": "Chvostek's sign, low calcium"
+        },
+        {
+          "id": "C",
+          "text": "Chvostek's sign, high sodium"
+        },
+        {
+          "id": "D",
+          "text": "Trousseau's sign, low sodium"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: tapping the cheek and seeing the face twitch is Chvostek's sign, a sign of low calcium. A names the cuff sign and the wrong level. C and D link the signs to sodium, which is wrong.",
+      "videoTimestamp": "1:16"
+    },
+    {
+      "id": "ep06-sodium-calcium-q08",
+      "type": "single_best_answer",
+      "stem": "On day one after a thyroidectomy, the client says, \"My lips are tingling.\" What should the nurse do first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Reassure the client it is normal"
+        },
+        {
+          "id": "B",
+          "text": "Check for Chvostek's and Trousseau's signs"
+        },
+        {
+          "id": "C",
+          "text": "Encourage fluids"
+        },
+        {
+          "id": "D",
+          "text": "Give pain medication"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: tingling around the mouth after thyroid surgery is an early sign of low calcium, so assess for the signs, then notify the provider. A dismisses it. C and D don't address low calcium.",
+      "videoTimestamp": "2:21"
+    },
+    {
+      "id": "ep06-sodium-calcium-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which findings fit high calcium? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Muscle weakness"
+        },
+        {
+          "id": "B",
+          "text": "Confusion"
+        },
+        {
+          "id": "C",
+          "text": "Kidney stones"
+        },
+        {
+          "id": "D",
+          "text": "Constipation"
+        },
+        {
+          "id": "E",
+          "text": "Tetany"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: high calcium is sluggish, with weakness, confusion, kidney stones, and constipation. E, tetany, is low calcium.",
+      "videoTimestamp": "1:08"
+    },
+    {
+      "id": "ep06-sodium-calcium-q10",
+      "type": "single_best_answer",
+      "stem": "A client with high calcium is on bed rest. Which nursing action fits the treatment taught?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Restrict all fluids"
+        },
+        {
+          "id": "B",
+          "text": "Give fluids and get the client moving"
+        },
+        {
+          "id": "C",
+          "text": "Give intravenous calcium"
+        },
+        {
+          "id": "D",
+          "text": "Keep the client on strict bed rest"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: treat high calcium with fluids and get the client moving. A, restricting fluids, is the opposite. C, intravenous calcium, treats low calcium. D keeps the client immobile.",
+      "videoTimestamp": "2:12"
+    }
+  ]
+}
