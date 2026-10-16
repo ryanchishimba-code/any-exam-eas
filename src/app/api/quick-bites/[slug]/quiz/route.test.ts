@@ -14,6 +14,7 @@ vi.mock("@/lib/api-access", () => ({
   requireAuthenticatedApi: async () => authState.result,
 }));
 
+import { getQuickBiteQuiz } from "@/lib/quick-bites/quiz-data";
 import { GET, POST } from "./route";
 
 function asAccess(
@@ -52,7 +53,7 @@ describe("GET/POST /api/quick-bites/[slug]/quiz", () => {
     expect(body.questions).toHaveLength(10);
     expect(body.questions[0]).toMatchObject({
       id: "ep02-nclex-works-q01",
-      type: "single",
+      type: "single-answer",
       videoTimestamp: "1:09",
     });
     expect(body.questions[0]).not.toHaveProperty("keys");
@@ -62,23 +63,28 @@ describe("GET/POST /api/quick-bites/[slug]/quiz", () => {
   });
 
   it("locks the explanation until the answer is submitted", async () => {
+    const quiz = getQuickBiteQuiz("quick-bites-ep02-nclex-works")!;
+    const single = quiz.questions[0]!;
+    const sata = quiz.questions.find((question) => question.id === "ep02-nclex-works-q09")!;
+    const wrongOption = sata.options.find((option) => !sata.keys.includes(option.id))!;
+
     const correct = await POST(
       quizRequest("quick-bites-ep02-nclex-works", {
         method: "POST",
-        body: JSON.stringify({ questionId: "ep02-nclex-works-q01", selected: ["C"] }),
+        body: JSON.stringify({ questionId: single.id, selected: single.keys }),
       }),
       { params: Promise.resolve({ slug: "quick-bites-ep02-nclex-works" }) }
     );
     expect(correct.status).toBe(200);
     expect(await correct.json()).toMatchObject({
       correct: true,
-      keys: ["C"],
+      keys: single.keys,
     });
 
     const wrong = await POST(
       quizRequest("quick-bites-ep02-nclex-works", {
         method: "POST",
-        body: JSON.stringify({ questionId: "ep02-nclex-works-q09", selected: ["A"] }),
+        body: JSON.stringify({ questionId: sata.id, selected: [wrongOption.id] }),
       }),
       { params: Promise.resolve({ slug: "quick-bites-ep02-nclex-works" }) }
     );
@@ -90,8 +96,8 @@ describe("GET/POST /api/quick-bites/[slug]/quiz", () => {
       quizRequest("quick-bites-ep02-nclex-works", {
         method: "POST",
         body: JSON.stringify({
-          questionId: "ep02-nclex-works-q09",
-          selected: ["D", "A", "C", "B"],
+          questionId: sata.id,
+          selected: [...sata.keys].reverse(),
         }),
       }),
       { params: Promise.resolve({ slug: "quick-bites-ep02-nclex-works" }) }
@@ -145,7 +151,7 @@ describe("GET/POST /api/quick-bites/[slug]/quiz", () => {
     const bad = await POST(
       quizRequest("quick-bites-ep02-nclex-works", {
         method: "POST",
-        body: JSON.stringify({ questionId: "ep02-nclex-works-q01", selected: ["C", "A"] }),
+        body: JSON.stringify({ questionId: "ep02-nclex-works-q01", selected: ["A", "B"] }),
       }),
       { params: Promise.resolve({ slug: "quick-bites-ep02-nclex-works" }) }
     );

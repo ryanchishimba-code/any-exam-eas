@@ -1,28 +1,18 @@
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import path from "node:path";
 import { QUICK_BITE_EPISODES } from "@/lib/quick-bites/catalog";
-import acidBase from "@/lib/quick-bites/quizzes/ep07-acid-base.json";
-import bonusLabs from "@/lib/quick-bites/quizzes/bonus-labs-examday.json";
-import cardiac from "@/lib/quick-bites/quizzes/ep08-cardiac.json";
-import delegation from "@/lib/quick-bites/quizzes/ep04-delegation.json";
-import endocrine from "@/lib/quick-bites/quizzes/ep10-endocrine.json";
-import highAlert from "@/lib/quick-bites/quizzes/ep12-high-alert-pharm.json";
-import isolation from "@/lib/quick-bites/quizzes/ep05-isolation.json";
-import maternity from "@/lib/quick-bites/quizzes/ep14-maternity.json";
-import nclexWorks from "@/lib/quick-bites/quizzes/ep02-nclex-works.json";
-import neuro from "@/lib/quick-bites/quizzes/ep11-neuro.json";
-import peds from "@/lib/quick-bites/quizzes/ep15-peds.json";
-import potassium from "@/lib/quick-bites/quizzes/potassium.json";
-import priority from "@/lib/quick-bites/quizzes/ep03-priority.json";
-import psych from "@/lib/quick-bites/quizzes/ep13-psych.json";
-import respiratory from "@/lib/quick-bites/quizzes/ep09-respiratory.json";
-import sodiumCalcium from "@/lib/quick-bites/quizzes/ep06-sodium-calcium.json";
 import { parseVideoTimestamp } from "@/lib/quick-bites/timestamp";
 
 /**
- * Server-side quiz bank. Do not import this module from a client component.
- * Premium members receive a copy through the quiz route; free members never do.
+ * Server-side quiz bank. Quizzes are read from JSON files in `quizzes/`
+ * so a reviewed file can replace the current one without a code change.
+ * Do not import this module from a client component.
  */
 
-export type QuickBiteAnswerType = "single" | "sata";
+const QUIZ_DIR = path.join(process.cwd(), "src/lib/quick-bites/quizzes");
+const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+export type QuickBiteAnswerType = "single-answer" | "sata";
 
 export type PublicQuickBiteQuestion = {
   id: string;
@@ -46,44 +36,92 @@ export type StoredQuickBiteQuiz = {
   questions: StoredQuickBiteQuestion[];
 };
 
+type RawOption = { id: string; text: string };
+
+type RawQuestion = {
+  id: string;
+  type: string;
+  stem: string;
+  options: RawOption[];
+  keys: string[];
+  explanation: string;
+  videoTimestamp: string;
+};
+
 type RawQuiz = {
   episode: string;
   title: string;
   video: string;
-  questions: Array<{
-    id: string;
-    type: string;
-    stem: string;
-    options: { id: string; text: string }[];
-    keys: string[];
-    explanation: string;
-    videoTimestamp: string;
-  }>;
+  questions: RawQuestion[];
 };
 
-const FILES: RawQuiz[] = [
-  nclexWorks,
-  priority,
-  delegation,
-  isolation,
-  cardiac,
-  respiratory,
-  endocrine,
-  neuro,
-  highAlert,
-  maternity,
-  peds,
-  psych,
-  potassium,
-  sodiumCalcium,
-  acidBase,
-  bonusLabs,
-];
-
-function answerType(type: string): QuickBiteAnswerType | null {
-  if (type === "single" || type === "single_best_answer") return "single";
-  if (type === "sata" || type === "select_all_that_apply") return "sata";
+/** `single_best_answer` is one radio choice. `select_all_that_apply` is SATA. */
+export function mapQuickBiteAnswerType(type: string): QuickBiteAnswerType | null {
+  if (type === "single_best_answer") return "single-answer";
+  if (type === "select_all_that_apply") return "sata";
   return null;
+}
+
+function hashSeed(value: string): number {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function mulberry32(seed: number): () => number {
+  let state = seed;
+  return () => {
+    state = (state + 0x6d2b79f5) | 0;
+    let next = Math.imul(state ^ (state >>> 15), 1 | state);
+    next = (next + Math.imul(next ^ (next >>> 7), 61 | next)) ^ next;
+    return ((next ^ (next >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function seededShuffle<T>(items: readonly T[], seedKey: string): T[] {
+  const random = mulberry32(hashSeed(seedKey));
+  const copy = [...items];
+  for (let index = copy.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(random() * (index + 1));
+    const current = copy[index]!;
+    copy[index] = copy[swapIndex]!;
+    copy[swapIndex] = current;
+  }
+  return copy;
+}
+
+function presentQuestion(question: RawQuestion, type: QuickBiteAnswerType): StoredQuickBiteQuestion {
+  const shuffled = seededShuffle(question.options, question.id);
+  const letterForOriginal = new Map<string, string>();
+  const options = shuffled.map((option, index) => {
+    const id = LETTERS[index];
+    if (!id) throw new Error(`Quiz question ${question.id} has too many options.`);
+    letterForOriginal.set(option.id, id);
+    return { id, text: option.text };
+  });
+  const keys = [...question.keys]
+    .map((key) => {
+      const next = letterForOriginal.get(key);
+      if (!next) throw new Error(`Quiz question ${question.id} is missing key ${key}.`);
+      return next;
+    })
+    .sort();
+  const originalIds = new Set(question.options.map((option) => option.id));
+  const explanation = question.explanation.replace(/\b[A-Z]\b/g, (letter) =>
+    originalIds.has(letter) ? (letterForOriginal.get(letter) ?? letter) : letter
+  );
+  return {
+    id: question.id,
+    type,
+    stem: question.stem,
+    options,
+    keys,
+    explanation,
+    videoTimestamp: question.videoTimestamp,
+  };
 }
 
 function normalize(file: RawQuiz): StoredQuickBiteQuiz {
@@ -96,7 +134,7 @@ function normalize(file: RawQuiz): StoredQuickBiteQuiz {
   }
 
   const questions = file.questions.map((question, index) => {
-    const type = answerType(question.type);
+    const type = mapQuickBiteAnswerType(question.type);
     if (!type) throw new Error(`Quiz ${file.episode} question ${index + 1} has an unknown type.`);
     if (!question.id || !question.stem.trim() || !question.explanation.trim()) {
       throw new Error(`Quiz ${file.episode} question ${index + 1} is incomplete.`);
@@ -115,41 +153,61 @@ function normalize(file: RawQuiz): StoredQuickBiteQuiz {
     if (keys.length !== question.keys.length || keys.some((key) => !optionIds.includes(key))) {
       throw new Error(`Quiz ${file.episode} question ${index + 1} has bad keys.`);
     }
-    if (type === "single" && keys.length !== 1) {
+    if (type === "single-answer" && keys.length !== 1) {
       throw new Error(`Quiz ${file.episode} question ${index + 1} must have one key.`);
     }
     if (type === "sata" && keys.length < 2) {
       throw new Error(`Quiz ${file.episode} question ${index + 1} must have at least two keys.`);
     }
-    return {
-      id: question.id,
-      type,
-      stem: question.stem,
-      options: question.options.map((option) => ({ id: option.id, text: option.text })),
-      keys,
-      explanation: question.explanation,
-      videoTimestamp: question.videoTimestamp,
-    };
+    return presentQuestion({ ...question, keys }, type);
   });
 
   return { slug, questions };
 }
 
-const BY_SLUG = new Map<string, StoredQuickBiteQuiz>();
-for (const file of FILES) {
-  const quiz = normalize(file);
-  if (BY_SLUG.has(quiz.slug)) throw new Error(`Duplicate quiz for ${quiz.slug}.`);
-  BY_SLUG.set(quiz.slug, quiz);
+function quizStamp(): string {
+  return readdirSync(QUIZ_DIR)
+    .filter((name) => name.endsWith(".json"))
+    .sort()
+    .map((name) => {
+      const stat = statSync(path.join(QUIZ_DIR, name));
+      return `${name}:${stat.mtimeMs}:${stat.size}`;
+    })
+    .join("|");
 }
-for (const episode of QUICK_BITE_EPISODES) {
-  if (!BY_SLUG.has(episode.slug)) throw new Error(`Missing quiz for ${episode.slug}.`);
+
+function readQuizBank(): Map<string, StoredQuickBiteQuiz> {
+  const bySlug = new Map<string, StoredQuickBiteQuiz>();
+  const names = readdirSync(QUIZ_DIR)
+    .filter((name) => name.endsWith(".json"))
+    .sort();
+  for (const name of names) {
+    const raw = JSON.parse(readFileSync(path.join(QUIZ_DIR, name), "utf8")) as RawQuiz;
+    const quiz = normalize(raw);
+    if (bySlug.has(quiz.slug)) throw new Error(`Duplicate quiz for ${quiz.slug}.`);
+    bySlug.set(quiz.slug, quiz);
+  }
+  for (const episode of QUICK_BITE_EPISODES) {
+    if (!bySlug.has(episode.slug)) throw new Error(`Missing quiz for ${episode.slug}.`);
+  }
+  if (bySlug.size !== QUICK_BITE_EPISODES.length) {
+    throw new Error("Quiz bank does not match the episode catalog.");
+  }
+  return bySlug;
 }
-if (BY_SLUG.size !== QUICK_BITE_EPISODES.length) {
-  throw new Error("Quiz bank does not match the episode catalog.");
+
+let cache: { stamp: string; bySlug: Map<string, StoredQuickBiteQuiz> } | null = null;
+
+function bank(): Map<string, StoredQuickBiteQuiz> {
+  const stamp = quizStamp();
+  if (cache?.stamp === stamp) return cache.bySlug;
+  const bySlug = readQuizBank();
+  cache = { stamp, bySlug };
+  return bySlug;
 }
 
 export function getQuickBiteQuiz(slug: string): StoredQuickBiteQuiz | null {
-  return BY_SLUG.get(slug) ?? null;
+  return bank().get(slug) ?? null;
 }
 
 export function publicQuickBiteQuiz(quiz: StoredQuickBiteQuiz): PublicQuickBiteQuiz {
@@ -171,7 +229,7 @@ export function gradeQuickBiteAnswer(
   const unique = [...new Set(selected)];
   const optionIds = new Set(question.options.map((option) => option.id));
   if (unique.some((id) => !optionIds.has(id))) return null;
-  if (question.type === "single" && unique.length !== 1) return null;
+  if (question.type === "single-answer" && unique.length !== 1) return null;
   if (question.type === "sata" && unique.length < 1) return null;
 
   const chosen = [...unique].sort();

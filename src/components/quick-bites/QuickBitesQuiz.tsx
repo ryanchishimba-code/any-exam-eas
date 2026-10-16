@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 type PublicQuestion = {
   id: string;
-  type: "single" | "sata";
+  type: "single-answer" | "sata";
   stem: string;
   options: { id: string; text: string }[];
   videoTimestamp: string;
@@ -120,7 +120,7 @@ export function QuickBitesQuiz({
     setPhase({
       ...phase,
       selected:
-        question.type === "single"
+        question.type === "single-answer"
           ? [optionId]
           : phase.selected.includes(optionId)
             ? phase.selected.filter((id) => id !== optionId)
@@ -217,7 +217,7 @@ export function QuickBitesQuiz({
                     )}
                   >
                     <input
-                      type={question.type === "single" ? "radio" : "checkbox"}
+                      type={question.type === "sata" ? "checkbox" : "radio"}
                       name={question.id}
                       value={option.id}
                       checked={selected}

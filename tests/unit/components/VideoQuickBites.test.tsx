@@ -43,7 +43,7 @@ describe("Video Quick Bites", () => {
             questions: [
               {
                 id: "q1",
-                type: "single",
+                type: "single-answer",
                 stem: "A candidate's nursing board exam ends at question 85. What does this mean?",
                 options: [{ id: "C", text: "The result can't be told from the length" }],
                 videoTimestamp: "1:09",

@@ -7,7 +7,7 @@ import { getQuickBiteBySlug } from "@/lib/quick-bites/catalog";
 const QUESTIONS = [
   {
     id: "q1",
-    type: "single",
+    type: "single-answer",
     stem: "A candidate's nursing board exam ends at question 85. What does this mean?",
     options: [
       { id: "A", text: "The candidate passed" },
