@@ -28,7 +28,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: oxygen is given if the saturation is below 90%, and 96% is above that. A and D give oxygen routinely. C adds a rule that isn't taught.",
+      "explanation": "B is correct: oxygen is given if the saturation is below 90%, and 96% is above that. A and D give oxygen routinely, which doesn't help when saturation is normal. C is wrong because oxygen depends on the saturation, not on nitroglycerin.",
       "videoTimestamp": "0:24"
     },
     {
@@ -293,7 +293,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: low potassium makes digoxin toxicity more likely. A and D understate the risk. C is not the concern taught.",
+      "explanation": "B is correct: low potassium makes digoxin toxicity more likely. A and D understate the risk: low potassium increases digoxin's effect on the heart. C is wrong because low potassium doesn't cause high blood pressure.",
       "videoTimestamp": "1:42"
     }
   ]

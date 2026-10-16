@@ -237,7 +237,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: put on gown, mask, goggles, then gloves. A, C, and D put the items out of order.",
+      "explanation": "B is correct: put on gown, mask, goggles, then gloves. A and D put gloves on early, so the gloves can't cover the gown cuffs and get dirty while you finish. C puts on gloves before the gown and leaves goggles last.",
       "videoTimestamp": "2:14"
     },
     {
@@ -265,7 +265,7 @@
       "keys": [
         "C"
       ],
-      "explanation": "C is correct: gloves are the dirtiest, so they come off first. The order is gloves, goggles, gown, then mask. A, B, and D come off later, with the mask last, after leaving the room.",
+      "explanation": "C is correct: gloves are the dirtiest, so they come off first. The order is gloves, goggles, gown, then mask, all before leaving the room; only a respirator is removed after leaving the room and closing the door. A, the gown, B, the mask, and D, the goggles, come off after the gloves.",
       "videoTimestamp": "2:19"
     },
     {

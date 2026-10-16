@@ -146,7 +146,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: rising and falling with each breath, called tidaling, is expected. A, constant bubbling, would be a leak. C and D aren't what tidaling means.",
+      "explanation": "B is correct: rising and falling with each breath, called tidaling, is expected. A, an air leak, shows as constant bubbling. C is wrong because a blocked tube stops tidaling. D is wrong because suction is seen in the suction chamber, not as tidaling.",
       "videoTimestamp": "1:01"
     },
     {
@@ -174,7 +174,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: constant bubbling in the water seal means an air leak, so check the connections and notify the provider. A calls it normal. C, clamping, isn't the taught step. D is wrong because the unit stays below the chest.",
+      "explanation": "B is correct: constant bubbling in the water seal means an air leak, so check the connections and notify the provider. A calls an air leak normal. C is unsafe: clamping can trap air in the chest and cause a tension pneumothorax. D is wrong because the unit stays below the chest so it can drain.",
       "videoTimestamp": "1:11"
     },
     {
@@ -300,7 +300,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: stay with the client, sit them up, give oxygen, and call the rapid response team. A leaves the client. C delays care. D isn't taught and adds strain.",
+      "explanation": "B is correct: stay with the client, sit them up, give oxygen, and call the rapid response team. A leaves the client alone. C delays care. D is wrong because walking raises oxygen needs in a client who is already short of breath.",
       "videoTimestamp": "1:46"
     }
   ]

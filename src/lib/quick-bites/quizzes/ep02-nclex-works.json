@@ -84,7 +84,7 @@
       "keys": [
         "C"
       ],
-      "explanation": "C is correct: the exam gives between 85 and 150 questions. A, B, and D don't match the current range.",
+      "explanation": "C is correct: the exam gives between 85 and 150 questions. A is too short a range. B was an older range that is no longer used. D is wrong because the adaptive exam's length varies.",
       "videoTimestamp": "0:21"
     },
     {
@@ -140,7 +140,7 @@
       "keys": [
         "A"
       ],
-      "explanation": "A is correct: when you get a question right, the next one is a little harder. B happens after a wrong answer. C and D don't describe how the adaptive test adjusts.",
+      "explanation": "A is correct: when you get a question right, the next one is a little harder. B happens after a wrong answer. C is wrong because one right answer doesn't end the exam. D is wrong because the adaptive test changes difficulty after each answer.",
       "videoTimestamp": "0:43"
     },
     {
@@ -196,7 +196,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: the adaptive test gets harder after right answers, so hard questions are normal and can be a good sign. A assumes failure. C: difficulty doesn't fix the length. D isn't the strategy taught; the video says to keep going.",
+      "explanation": "B is correct: the adaptive test gets harder after right answers, so hard questions are normal and can be a good sign. A assumes failure. C is wrong because difficulty doesn't set the length. D is wrong because candidates cannot skip questions or go back.",
       "videoTimestamp": "1:00"
     },
     {
@@ -224,7 +224,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: you get three case studies, each with six questions, for 18 items. A and C don't match that structure. D: stand-alone judgment items are about 10%, in addition to the case studies.",
+      "explanation": "B is correct: you get three case studies, each with six questions, for 18 items. A and C don't match that structure. D is wrong because the exam includes case studies, not only stand-alone items.",
       "videoTimestamp": "1:28"
     },
     {

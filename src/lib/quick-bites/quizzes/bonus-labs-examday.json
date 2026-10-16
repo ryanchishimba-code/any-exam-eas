@@ -112,7 +112,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: the danger for potassium is heart rhythm. A is the danger for sodium. C is the danger for a high international normalized ratio on warfarin. D isn't the potassium danger taught.",
+      "explanation": "B is correct: the danger for potassium is heart rhythm. A, seizures, is the danger for sodium. C, bleeding, is the danger for a high international normalized ratio on warfarin. D, kidney stones, goes with high calcium, not potassium.",
       "videoTimestamp": "0:21"
     },
     {
@@ -140,7 +140,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: 128 is below 135, and the danger for sodium is the brain and seizures. A, C, and D aren't the sodium danger taught.",
+      "explanation": "B is correct: 128 is below 135, and the danger for low sodium is the brain and seizures. A, bleeding, goes with a high international normalized ratio. C, high blood sugar, isn't caused by low sodium. D, heart rhythm problems, is the main danger for potassium.",
       "videoTimestamp": "0:23"
     },
     {
@@ -168,7 +168,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: too high means bleeding. A is the risk if it's too low. C and D aren't the danger taught for this lab.",
+      "explanation": "B is correct: too high means bleeding. A, clots, is the risk if it's too low. C, low blood sugar, isn't related to warfarin's effect. D, seizures, goes with sodium problems.",
       "videoTimestamp": "0:32"
     },
     {
@@ -230,7 +230,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: a trend tells you more than a single number. A, C, and D are not true or not taught.",
+      "explanation": "B is correct: a trend tells you more than a single number. A and D are false: single values can be right and can be abnormal. C is false: no law requires trending; it's a clinical judgment practice.",
       "videoTimestamp": "0:44"
     },
     {
@@ -265,7 +265,7 @@
         "C",
         "D"
       ],
-      "explanation": "A, B, C, and D are correct: bring your authorization to test and a matching identification, sleep, eat, and arrive early. E is not on the checklist.",
+      "explanation": "A, B, C, and D are correct: bring your authorization to test and an identification whose first and last names match it, sleep, eat, and arrive early. E is wrong because study notes can't be used during the exam.",
       "videoTimestamp": "1:16"
     },
     {
@@ -293,7 +293,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: judge each option on its own, true or false. A, C, and D are not the strategy taught.",
+      "explanation": "B is correct: judge each option on its own, true or false. A is wrong because the number of correct options varies. C is wrong because length doesn't make an option true. D only puts off the item and doesn't help you answer it.",
       "videoTimestamp": "1:27"
     }
   ]
