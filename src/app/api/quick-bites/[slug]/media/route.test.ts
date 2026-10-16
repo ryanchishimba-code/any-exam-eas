@@ -128,15 +128,26 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     expect(getBlob).not.toHaveBeenCalled();
   });
 
-  it("does not sign a held episode", async () => {
+  it("signs acid-base and high-alert media for a paid subscriber", async () => {
     asAccess("subscriber", "active", true);
     const video = await mediaRequest("quick-bites-ep07-acid-base");
+    expect(video.status).toBe(200);
+    expect(signPrivateQuickBiteGet).toHaveBeenCalledWith(
+      "quick-bites/quick-bites-ep07-acid-base-web.mp4"
+    );
+    const stream = new ReadableStream({
+      start(controller) {
+        controller.enqueue(new TextEncoder().encode("WEBVTT\n"));
+        controller.close();
+      },
+    });
+    getBlob.mockResolvedValue({ statusCode: 200, stream, blob: { contentType: "text/vtt" } });
     const captions = await mediaRequest("quick-bites-ep12-high-alert-pharm", "captions");
-    expect(video.status).toBe(404);
-    expect(captions.status).toBe(404);
-    expect(await video.text()).not.toContain("vercel-blob-signature");
-    expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
-    expect(getBlob).not.toHaveBeenCalled();
+    expect(captions.status).toBe(200);
+    expect(await captions.text()).toContain("WEBVTT");
+    expect(getBlob).toHaveBeenCalledWith("quick-bites/quick-bites-ep12-high-alert-pharm.vtt", {
+      access: "private",
+    });
   });
 
   it("returns 404 for an unknown episode after the paid check", async () => {

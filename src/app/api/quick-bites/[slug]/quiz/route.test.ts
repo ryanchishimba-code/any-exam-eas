@@ -142,21 +142,27 @@ describe("GET/POST /api/quick-bites/[slug]/quiz", () => {
     expect(await free.text()).not.toContain("the computer was confident");
   });
 
-  it("does not serve a held episode quiz", async () => {
-    const response = await GET(quizRequest("quick-bites-ep12-high-alert-pharm"), {
+  it("serves acid-base and high-alert quizzes to a paid subscriber", async () => {
+    const highAlert = await GET(quizRequest("quick-bites-ep12-high-alert-pharm"), {
       params: Promise.resolve({ slug: "quick-bites-ep12-high-alert-pharm" }),
     });
-    expect(response.status).toBe(404);
-    expect(await response.text()).not.toContain("heparin");
+    expect(highAlert.status).toBe(200);
+    const highAlertBody = await highAlert.json();
+    expect(highAlertBody.questions).toHaveLength(10);
+    expect(highAlertBody.questions[0]).not.toHaveProperty("keys");
+    expect(highAlertBody.questions[0]).not.toHaveProperty("explanation");
+
+    const acidBase = getQuickBiteQuiz("quick-bites-ep07-acid-base")!;
+    const first = acidBase.questions[0]!;
     const posted = await POST(
       quizRequest("quick-bites-ep07-acid-base", {
         method: "POST",
-        body: JSON.stringify({ questionId: "ep07-acid-base-q01", selected: ["B"] }),
+        body: JSON.stringify({ questionId: first.id, selected: first.keys }),
       }),
       { params: Promise.resolve({ slug: "quick-bites-ep07-acid-base" }) }
     );
-    expect(posted.status).toBe(404);
-    expect(await posted.text()).not.toContain("is correct");
+    expect(posted.status).toBe(200);
+    expect(await posted.json()).toMatchObject({ correct: true, keys: first.keys });
   });
 
   it("returns 404 for an unknown episode and 400 for a bad answer", async () => {

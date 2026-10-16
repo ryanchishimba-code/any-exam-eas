@@ -38,9 +38,9 @@ describe("Quick Bites catalog", () => {
     expect(QUICK_BITE_EPISODES.map((episode) => episode.number)).toEqual(
       ORDER.map((_, index) => index + 1)
     );
-    expect(
-      QUICK_BITE_EPISODES.filter((episode) => episode.held).map((episode) => episode.slug)
-    ).toEqual(["quick-bites-ep12-high-alert-pharm", "quick-bites-ep07-acid-base"]);
+    expect(QUICK_BITE_EPISODES.filter((episode) => episode.held)).toEqual([]);
+    expect(getQuickBiteBySlug("quick-bites-ep07-acid-base")?.duration).toBe("3:25");
+    expect(getQuickBiteBySlug("quick-bites-ep12-high-alert-pharm")?.duration).toBe("2:44");
     expect(QUICK_BITE_GROUPS.map((group) => group.title)).toEqual([
       "How the Exam Works",
       "Core Frameworks",

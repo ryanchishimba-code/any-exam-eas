@@ -23,7 +23,9 @@ describe("Video Quick Bites", () => {
     expect(screen.getByText("How the Nursing Boards Work")).toBeInTheDocument();
     expect(screen.getByText("Danger-Zone Labs & Exam-Day Plan")).toBeInTheDocument();
     expect(screen.getAllByText("Locked")).toHaveLength(QUICK_BITE_EPISODES.length);
-    expect(screen.getAllByText("Coming soon")).toHaveLength(2);
+    expect(screen.queryByText("Coming soon")).not.toBeInTheDocument();
+    expect(screen.getByText("2:44")).toBeInTheDocument();
+    expect(screen.getByText("3:25")).toBeInTheDocument();
     expect(screen.getByText("High-Alert Medications")).toBeInTheDocument();
     expect(screen.getByText("Acid-Base Made Simple")).toBeInTheDocument();
     expect(screen.queryByText(/Question 1 of/)).not.toBeInTheDocument();
@@ -78,11 +80,9 @@ describe("Video Quick Bites", () => {
     expect(fetchMock).not.toHaveBeenCalled();
     expect(document.querySelector("video")).toBeNull();
     expect(screen.queryByRole("link", { name: "Upgrade to watch" })).not.toBeInTheDocument();
-    expect(screen.getByText("High-Alert Medications")).toBeInTheDocument();
-    expect(screen.getByText("Acid-Base Made Simple")).toBeInTheDocument();
-    expect(screen.getAllByText("Coming soon")).toHaveLength(2);
-    expect(screen.queryByRole("button", { name: "Play 9. High-Alert Medications" })).not.toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Play 15. Acid-Base Made Simple" })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Play 9. High-Alert Medications" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Play 15. Acid-Base Made Simple" })).toBeInTheDocument();
+    expect(screen.queryByText("Coming soon")).not.toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "Play 1. How the Nursing Boards Work" }));
 
