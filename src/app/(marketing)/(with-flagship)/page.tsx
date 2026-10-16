@@ -7,6 +7,7 @@ import { HomeProofStrip } from "@/components/marketing/elevation/HomeProofStrip"
 import { PublicHome } from "@/components/marketing/elevation/PublicHome";
 import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
+import { mergeHomeTestimonials } from "@/lib/testimonials/home-stories";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
 
@@ -34,8 +35,8 @@ async function HomeProofLive() {
 }
 
 async function HomeQuoteLive() {
-  const testimonials = await getCachedPublishedTestimonials(2);
-  return <HomeQuote stories={testimonials} />;
+  const testimonials = await getCachedPublishedTestimonials(6);
+  return <HomeQuote stories={mergeHomeTestimonials(testimonials)} />;
 }
 
 export default async function HomePage() {

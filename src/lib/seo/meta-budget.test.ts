@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import type { Metadata } from "next";
 import { formatRoundedDownQuestionCount, publishedSiteQuestionCounts } from "@/lib/counts";
 import { buildHomeMetadata } from "@/lib/seo";
+import { buildHowToPassMetadata } from "@/lib/marketing/how-to-pass-metadata";
 import {
   buildAboutMetadata,
   buildCompareMetadata,
@@ -96,6 +97,7 @@ describe("public marketing metadata budgets", () => {
       ),
     },
     { label: "compare", meta: buildCompareMetadata() },
+    { label: "how-to-pass", meta: buildHowToPassMetadata() },
     ...EXAM_SEO_KEYS.map((key) => ({
       label: `exam:${key}`,
       meta: buildExamMetadata(key),

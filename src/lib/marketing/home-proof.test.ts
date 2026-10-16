@@ -8,11 +8,9 @@ import {
   type BoardQuestionUnits,
   type CountBoardSlug,
 } from "@/lib/counts";
-import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
 import type { QuestionBankCountsSnapshot } from "@/lib/marketing/question-bank-counts";
 import { formatNclexPrepPriceComparison } from "@/lib/marketing/price-comparison";
-import { formatMonthlyPrice } from "@/lib/site";
 
 function units(slug: CountBoardSlug, bankItems: number, clinical?: BoardQuestionUnits): BoardQuestionUnits {
   if (clinical) return clinical;
@@ -62,19 +60,12 @@ describe("homepage proof facts", () => {
     expect(questions?.text).toBe("43,338 practice questions");
   });
 
-  it("names the nursing reviewer and the six-board price, with no pass rate", () => {
+  it("names live questions and NGN, and keeps the price out of the strip", () => {
     const facts = buildHomeProofFacts(siteQuestionCounts(FIXTURE));
-    const reviewer = CLINICAL_REVIEWERS.find((person) => person.id === "nursing");
-    expect(facts.map((fact) => fact.text)).toContain(
-      `NCLEX content review led by ${reviewer?.displayName}`
-    );
+    expect(facts.map((fact) => fact.id)).toEqual(["questions", "ngn"]);
     expect(facts.map((fact) => fact.text)).toContain("NGN case studies included");
-    expect(facts.map((fact) => fact.text)).toContain(
-      `${formatMonthlyPrice("pro")}/mo covers all six boards`
-    );
     const joined = facts.map((fact) => fact.text).join(" ");
-    expect(joined).not.toMatch(/pass rate|% passed|stars|users/i);
-    expect(reviewer?.displayName).toMatch(/Ileen Chishimba, RN/);
+    expect(joined).not.toMatch(/\$|\/mo|pass rate|% passed|stars|users|24\/7/i);
   });
 
   it("omits the NGN line when NCLEX has no case studies", () => {
@@ -94,14 +85,16 @@ describe("homepage proof facts", () => {
   it("omits bank facts when the snapshot is degraded", () => {
     expect(siteCountsFromSnapshot(snapshot(FIXTURE, true))).toBeNull();
     const facts = buildHomeProofFacts(null);
-    expect(facts.map((fact) => fact.id)).toEqual(["reviewer", "price"]);
+    expect(facts).toEqual([]);
   });
 
   it("does not hard-code the fixture total in the homepage components", () => {
     const files = [
       "src/components/marketing/elevation/PublicHome.tsx",
       "src/components/marketing/elevation/HomeProofStrip.tsx",
+      "src/components/marketing/elevation/HomePassVideo.tsx",
       "src/app/(marketing)/(with-flagship)/page.tsx",
+      "src/app/(marketing)/(with-flagship)/how-to-pass/page.tsx",
     ];
     for (const file of files) {
       const text = readFileSync(path.resolve(process.cwd(), file), "utf8");

@@ -10,6 +10,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "", priority: 1, changeFrequency: "weekly" },
   { path: "/about", priority: 0.85, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/how-to-pass", priority: 0.7, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.6, changeFrequency: "yearly" },
   { path: "/how-questions-are-reviewed", priority: 0.8, changeFrequency: "monthly" },
   { path: "/pricing", priority: 0.9, changeFrequency: "weekly" },
