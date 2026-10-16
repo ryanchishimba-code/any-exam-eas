@@ -327,7 +327,8 @@
 
 .home-video__play {
   position: absolute;
-  top: 50%;
+  /* Sits in the open field above the poster title, not on the type. */
+  top: 38%;
   left: 50%;
   z-index: 1;
   display: grid;
