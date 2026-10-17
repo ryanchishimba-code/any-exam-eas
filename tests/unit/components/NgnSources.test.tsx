@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { RationalePanel } from "@/components/ngn/RationalePanel";
 import { SourcesDisclosure } from "@/components/ngn/SourcesDisclosure";
+import { sourcesToggleLabel } from "@/components/study/questions/CollapsibleSources";
 import { sourceRegistry } from "@/lib/assessment/sources";
 import type { PilotDocument } from "@/lib/assessment/types";
 
@@ -24,8 +25,9 @@ describe("NGN sources disclosure", () => {
       />
     );
 
-    const toggle = screen.getByRole("button", { name: "Sources (4)" });
+    const toggle = screen.getByRole("button", { name: sourcesToggleLabel(4) });
     expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByText("Guideline-checked")).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /NCSBN 2026 NCLEX-RN Test Plan/ })).not.toBeInTheDocument();
 
     toggle.focus();
@@ -45,6 +47,14 @@ describe("NGN sources disclosure", () => {
     expect(screen.getByText("This case")).toBeInTheDocument();
   });
 
+  it("shows nothing when the item and case have no citations", () => {
+    render(
+      <SourcesDisclosure itemReferences={[]} caseReferences={[]} sourcesById={{}} />
+    );
+    expect(screen.queryByRole("button", { name: /Guideline-checked/ })).not.toBeInTheDocument();
+    expect(screen.queryByText("This item")).not.toBeInTheDocument();
+  });
+
   it("shows the same sources on the rationale panel without opening Show more", async () => {
     if (!caseDoc || !item) throw new Error("missing C01");
     const user = userEvent.setup();
@@ -57,7 +67,7 @@ describe("NGN sources disclosure", () => {
       />
     );
 
-    const toggle = screen.getByRole("button", { name: "Sources (4)" });
+    const toggle = screen.getByRole("button", { name: sourcesToggleLabel(4) });
     expect(toggle).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByText("Takeaway")).not.toBeInTheDocument();
 

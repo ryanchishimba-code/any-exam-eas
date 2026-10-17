@@ -6,6 +6,7 @@ import {
   RationaleDisclosureText,
 } from "@/components/study/questions/CollapsibleRationale";
 import { ExplanationPanel } from "@/components/study/questions/QuestionRenderer";
+import { sourcesToggleLabel } from "@/components/study/questions/CollapsibleSources";
 import { sampleNclexQuestion } from "../../fixtures/questions";
 
 const access = vi.hoisted(() => ({ role: null as string | null }));
@@ -121,7 +122,7 @@ describe("ExplanationPanel", () => {
 
     expect(screen.getByText(/Charting is not the first action/)).toBeInTheDocument();
     expect(screen.getByText(/Why each distractor fails/)).toBeInTheDocument();
-    const sources = screen.getByRole("button", { name: "Sources (1)" });
+    const sources = screen.getByRole("button", { name: sourcesToggleLabel(1) });
     expect(sources).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByText("Open RN — priority setting")).not.toBeInTheDocument();
 
@@ -154,7 +155,7 @@ describe("ExplanationPanel", () => {
     );
 
     expect(screen.getByText("ABCs take priority in acute assessment.")).toBeInTheDocument();
-    const sources = screen.getByRole("button", { name: "Sources (2)" });
+    const sources = screen.getByRole("button", { name: sourcesToggleLabel(2) });
     expect(sources).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByText("ADA Standards of Care")).not.toBeInTheDocument();
 

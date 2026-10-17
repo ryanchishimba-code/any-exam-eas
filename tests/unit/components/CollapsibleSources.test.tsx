@@ -3,7 +3,10 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { HeroNgnFrame } from "@/components/marketing/elevation/HeroNgnFrame";
 import { PublicSampleSet } from "@/components/marketing/PublicSampleSet";
-import { CollapsibleSources } from "@/components/study/questions/CollapsibleSources";
+import {
+  CollapsibleSources,
+  sourcesToggleLabel,
+} from "@/components/study/questions/CollapsibleSources";
 
 describe("CollapsibleSources", () => {
   it("starts collapsed, toggles with the keyboard, and resets on the next item", async () => {
@@ -17,8 +20,10 @@ describe("CollapsibleSources", () => {
       </CollapsibleSources>
     );
 
-    const toggle = screen.getByRole("button", { name: "Sources (2)" });
+    const toggle = screen.getByRole("button", { name: sourcesToggleLabel(2) });
     expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(toggle.querySelector("svg")).toHaveClass("text-[var(--study-accent)]");
+    expect(screen.getByText("Guideline-checked")).toBeInTheDocument();
     expect(screen.queryByText("ADA Standards of Care")).not.toBeInTheDocument();
 
     toggle.focus();
@@ -36,8 +41,18 @@ describe("CollapsibleSources", () => {
         <p>Open RN</p>
       </CollapsibleSources>
     );
-    expect(screen.getByRole("button", { name: "Sources (1)" })).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByRole("button", { name: sourcesToggleLabel(1) })).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByText("Open RN")).not.toBeInTheDocument();
+  });
+
+  it("renders nothing when the item has no sources", () => {
+    render(
+      <CollapsibleSources count={0}>
+        <p>ADA Standards of Care</p>
+      </CollapsibleSources>
+    );
+    expect(screen.queryByRole("button", { name: /Guideline-checked/ })).not.toBeInTheDocument();
+    expect(screen.queryByText("ADA Standards of Care")).not.toBeInTheDocument();
   });
 });
 
@@ -64,7 +79,7 @@ describe("sources under a question", () => {
     await user.click(screen.getByRole("button", { name: /Assess airway/ }));
     await user.click(screen.getByRole("button", { name: "Check answer" }));
 
-    const sources = screen.getByRole("button", { name: "Sources (2)" });
+    const sources = screen.getByRole("button", { name: sourcesToggleLabel(2) });
     expect(sources).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByText("NCSBN NCLEX-RN Test Plan")).not.toBeInTheDocument();
 
@@ -92,7 +107,7 @@ describe("sources under a question", () => {
       />
     );
 
-    const sources = screen.getByRole("button", { name: "Sources (2)" });
+    const sources = screen.getByRole("button", { name: sourcesToggleLabel(2) });
     expect(sources).toHaveAttribute("aria-expanded", "false");
     expect(screen.queryByText(/NCSBN 2026 NCLEX-RN Test Plan/)).not.toBeInTheDocument();
 
