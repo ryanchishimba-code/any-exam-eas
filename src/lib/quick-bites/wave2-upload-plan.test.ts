@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { QUICK_BITE_EPISODES, quickBiteVideoPath } from "@/lib/quick-bites/catalog";
+import {
+  QUICK_BITE_EPISODES,
+  quickBiteCaptionsPath,
+  quickBiteVideoPath,
+} from "@/lib/quick-bites/catalog";
 import {
   PHARMACY_QUICK_BITE_EPISODES,
   pharmacyQuickBiteCaptionsPath,
@@ -73,22 +77,44 @@ describe("Quick Bites wave 2 upload plan", () => {
     expect(QB_WAVE2_MAX_UPLOAD_BYTES).toBe(60 * 1024 * 1024);
   });
 
-  it("follows the catalog paths for nursing 17-25, pharmacy 17-26, and ep07 v2 only", () => {
+  it("follows the catalog paths for the new slugs and pharmacy ep07 v2 only", () => {
+    const nursingWave2 = new Set([
+      "quick-bites-ep17-gi-bleed-obstruction",
+      "quick-bites-ep18-liver-pancreas",
+      "quick-bites-ep19-kidneys-dialysis",
+      "quick-bites-ep20-transfusion",
+      "quick-bites-ep21-neutropenia-sickle-cell",
+      "quick-bites-ep22-surgery-wounds",
+      "quick-bites-ep23-burns",
+      "quick-bites-ep24-ortho",
+      "quick-bites-ep25-dosage-calc",
+    ]);
+    const pharmacyWave2 = new Set([
+      "quick-bites-pharm-ep17-antiseizure",
+      "quick-bites-pharm-ep18-antidepressants",
+      "quick-bites-pharm-ep19-antipsychotics-lithium",
+      "quick-bites-pharm-ep20-thyroid",
+      "quick-bites-pharm-ep21-oncology",
+      "quick-bites-pharm-ep22-hiv",
+      "quick-bites-pharm-ep23-pain-opioids",
+      "quick-bites-pharm-ep24-pediatric-dosing",
+      "quick-bites-pharm-ep25-pregnancy-lactation",
+      "quick-bites-pharm-ep26-antidotes",
+      "quick-bites-pharm-ep07-insulin",
+    ]);
     for (const episode of QUICK_BITE_EPISODES) {
       const video = quickBiteVideoPath(episode.slug);
-      if (episode.number >= 17) {
-        expect(QB_WAVE2_UPLOAD_PATHS.has(video)).toBe(true);
-      } else {
-        expect(QB_WAVE2_UPLOAD_PATHS.has(video)).toBe(false);
-      }
+      const captions = quickBiteCaptionsPath(episode.slug);
+      const included = nursingWave2.has(episode.slug);
+      expect(QB_WAVE2_UPLOAD_PATHS.has(video)).toBe(included);
+      expect(QB_WAVE2_UPLOAD_PATHS.has(captions)).toBe(included);
     }
     for (const episode of PHARMACY_QUICK_BITE_EPISODES) {
       const video = pharmacyQuickBiteVideoPath(episode.slug);
       const captions = pharmacyQuickBiteCaptionsPath(episode.slug);
-      const included = episode.number >= 17 && episode.number <= 26;
-      const ep07 = episode.slug === "quick-bites-pharm-ep07-insulin";
-      expect(QB_WAVE2_UPLOAD_PATHS.has(video)).toBe(included || ep07);
-      expect(QB_WAVE2_UPLOAD_PATHS.has(captions)).toBe(included || ep07);
+      const included = pharmacyWave2.has(episode.slug);
+      expect(QB_WAVE2_UPLOAD_PATHS.has(video)).toBe(included);
+      expect(QB_WAVE2_UPLOAD_PATHS.has(captions)).toBe(included);
     }
     expect(
       QB_WAVE2_UPLOAD_PATHS.has("quick-bites-pharmacy/quick-bites-pharm-ep07-insulin-web.mp4")

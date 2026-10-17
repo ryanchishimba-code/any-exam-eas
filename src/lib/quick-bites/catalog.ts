@@ -1,6 +1,7 @@
 /**
  * Video Quick Bites for the nursing boards (NCLEX track only).
- * Episodes 1-16 are wave 1. Episodes 17-25 are wave 2 and follow them in study-guide order.
+ * Episodes follow the NCLEX study guide: frameworks, then systems, then the exam-day close.
+ * Wave 2 fills the renal, GI, hematology, musculoskeletal, surgical, and dosage chapters.
  * Posters are public. MP4 and VTT files live in a private Blob store
  * and are never linked without a signature.
  */
@@ -174,48 +175,58 @@ const GROUPS: { title: string; episodes: EpisodeSeed[] }[] = [
     ],
   },
   {
-    title: "Exam Day",
+    title: "Kidneys",
     episodes: [
-      {
-        slug: "quick-bites-bonus-labs-examday",
-        number: 16,
-        title: "Danger-Zone Labs & Exam-Day Plan",
-        duration: "2:35",
-      },
-    ],
-  },
-  {
-    title: "Med-Surg: GI, Liver & Kidneys",
-    episodes: [
-      {
-        slug: "quick-bites-ep17-gi-bleed-obstruction",
-        number: 17,
-        title: "GI Bleeds & Bowel Obstruction",
-        duration: "3:23",
-      },
-      {
-        slug: "quick-bites-ep18-liver-pancreas",
-        number: 18,
-        title: "Liver & Pancreas: Cirrhosis vs Pancreatitis",
-        duration: "3:53",
-      },
       {
         slug: "quick-bites-ep19-kidneys-dialysis",
-        number: 19,
+        number: 16,
         title: "Kidneys: Acute vs Chronic & Dialysis",
         duration: "3:53",
       },
     ],
   },
   {
-    title: "Hematology & Oncology",
+    title: "Blood Transfusions",
     episodes: [
       {
         slug: "quick-bites-ep20-transfusion",
-        number: 20,
+        number: 17,
         title: "Blood Transfusions: Safe Setup & Reactions",
         duration: "3:38",
       },
+    ],
+  },
+  {
+    title: "Med-Surg: GI & Liver",
+    episodes: [
+      {
+        slug: "quick-bites-ep17-gi-bleed-obstruction",
+        number: 18,
+        title: "GI Bleeds & Bowel Obstruction",
+        duration: "3:23",
+      },
+      {
+        slug: "quick-bites-ep18-liver-pancreas",
+        number: 19,
+        title: "Liver & Pancreas: Cirrhosis vs Pancreatitis",
+        duration: "3:53",
+      },
+    ],
+  },
+  {
+    title: "Musculoskeletal",
+    episodes: [
+      {
+        slug: "quick-bites-ep24-ortho",
+        number: 20,
+        title: "Orthopedics: Compartment Syndrome, Fat Embolism, Hip Precautions",
+        duration: "3:32",
+      },
+    ],
+  },
+  {
+    title: "Hematology & Oncology",
+    episodes: [
       {
         slug: "quick-bites-ep21-neutropenia-sickle-cell",
         number: 21,
@@ -242,24 +253,24 @@ const GROUPS: { title: string; episodes: EpisodeSeed[] }[] = [
     ],
   },
   {
-    title: "Musculoskeletal",
-    episodes: [
-      {
-        slug: "quick-bites-ep24-ortho",
-        number: 24,
-        title: "Orthopedics: Compartment Syndrome, Fat Embolism, Hip Precautions",
-        duration: "3:32",
-      },
-    ],
-  },
-  {
     title: "Dosage Calculations",
     episodes: [
       {
         slug: "quick-bites-ep25-dosage-calc",
-        number: 25,
+        number: 24,
         title: "Dosage Calculations: Drip Rates & Weight-Based Dosing",
         duration: "4:44",
+      },
+    ],
+  },
+  {
+    title: "Exam Day",
+    episodes: [
+      {
+        slug: "quick-bites-bonus-labs-examday",
+        number: 25,
+        title: "Danger-Zone Labs & Exam-Day Plan",
+        duration: "2:35",
       },
     ],
   },

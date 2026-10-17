@@ -31,13 +31,13 @@ const ORDER = [
   ["High-Alert Medications", "quick-bites-pharm-ep14-high-alert", "2:42"],
   ["Vaccines: Live vs Inactivated", "quick-bites-pharm-ep15-vaccines", "2:57"],
   ["Older Adults: Beers Criteria", "quick-bites-pharm-ep16-beers", "2:58"],
-  ["Antiseizure Drugs: Levels, Rashes + Pregnancy", "quick-bites-pharm-ep17-antiseizure", "4:04"],
+  ["HIV Drugs: Starting, PrEP + PEP", "quick-bites-pharm-ep22-hiv", "4:01"],
+  ["Thyroid Drugs: Timing, Brakes + Pregnancy", "quick-bites-pharm-ep20-thyroid", "3:54"],
   ["Antidepressants: First Line, Washouts + Serotonin Syndrome", "quick-bites-pharm-ep18-antidepressants", "4:07"],
   ["Antipsychotics + Lithium", "quick-bites-pharm-ep19-antipsychotics-lithium", "4:12"],
-  ["Thyroid Drugs: Timing, Brakes + Pregnancy", "quick-bites-pharm-ep20-thyroid", "3:54"],
-  ["Chemotherapy Safety: Toxicities, Rescues + Fatal Errors", "quick-bites-pharm-ep21-oncology", "3:47"],
-  ["HIV Drugs: Starting, PrEP + PEP", "quick-bites-pharm-ep22-hiv", "4:01"],
+  ["Antiseizure Drugs: Levels, Rashes + Pregnancy", "quick-bites-pharm-ep17-antiseizure", "4:04"],
   ["Pain + Opioids: Limits, Equivalents + Switches", "quick-bites-pharm-ep23-pain-opioids", "3:49"],
+  ["Chemotherapy Safety: Toxicities, Rescues + Fatal Errors", "quick-bites-pharm-ep21-oncology", "3:47"],
   ["Pediatric Dosing: Weight Math + the Never List", "quick-bites-pharm-ep24-pediatric-dosing", "3:51"],
   ["Pregnancy + Lactation: Labels, Avoids + Swaps", "quick-bites-pharm-ep25-pregnancy-lactation", "3:47"],
   ["Toxicology: The Nomogram + Key Antidotes", "quick-bites-pharm-ep26-antidotes", "4:07"],
@@ -58,7 +58,7 @@ describe("Quick Bites: Pharmacy catalog", () => {
     expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-ep01-anticoagulants", false)).toBeNull();
     expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-bonus-exam-format", true)).toBeNull();
     expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-ep16-beers", true)?.slug).toBe(
-      "quick-bites-pharm-ep17-antiseizure"
+      "quick-bites-pharm-ep22-hiv"
     );
     expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-ep26-antidotes", true)?.slug).toBe(
       "quick-bites-pharm-bonus-exam-format"

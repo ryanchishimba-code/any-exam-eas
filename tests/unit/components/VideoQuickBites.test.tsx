@@ -359,8 +359,8 @@ describe("Video Quick Bites", () => {
           status: 200,
           json: async () => ({
             videoUrl:
-              "https://iiuq2awk7g8oulze.private.blob.vercel-storage.com/quick-bites/quick-bites-ep25-dosage-calc-web.mp4?vercel-blob-signature=test",
-            captionsUrl: "/api/quick-bites/quick-bites-ep25-dosage-calc/media?part=captions",
+              "https://iiuq2awk7g8oulze.private.blob.vercel-storage.com/quick-bites/quick-bites-bonus-labs-examday-web.mp4?vercel-blob-signature=test",
+            captionsUrl: "/api/quick-bites/quick-bites-bonus-labs-examday/media?part=captions",
           }),
         };
       })
@@ -375,16 +375,14 @@ describe("Video Quick Bites", () => {
     );
 
     await user.click(
-      screen.getByRole("button", { name: "Play 25. Dosage Calculations: Drip Rates & Weight-Based Dosing" })
+      screen.getByRole("button", { name: "Play 25. Danger-Zone Labs & Exam-Day Plan" })
     );
     expect(screen.queryByText("Which lab needs a call before the exam?")).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Next episode" })).not.toBeInTheDocument();
     await user.click(await screen.findByRole("button", { name: "Take the quiz" }));
     expect(await screen.findByText("Which lab needs a call before the exam?")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Next episode" })).not.toBeInTheDocument();
-    expect(
-      screen.getByLabelText("Dosage Calculations: Drip Rates & Weight-Based Dosing video")
-    ).toBeInTheDocument();
+    expect(screen.getByLabelText("Danger-Zone Labs & Exam-Day Plan video")).toBeInTheDocument();
   });
 
   it("keeps the page still while a quiz is opened, answered, scored, and closed", async () => {

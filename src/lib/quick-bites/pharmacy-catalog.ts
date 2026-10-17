@@ -1,6 +1,8 @@
 /**
  * Quick Bites: Pharmacy for the NAPLEX track only.
- * Episodes 1-26 in order, then the bonus episode last.
+ * Episodes 1-16 stay in the released order. Episodes 17-26 follow the NAPLEX
+ * study guide (infectious disease, endocrine, neuro/psych, oncology, special
+ * populations, toxicology). The bonus stays last.
  * Posters are public so locked cards can render. MP4 and VTT files stay private.
  */
 
@@ -120,46 +122,46 @@ const EPISODES: EpisodeSeed[] = [
     duration: "2:58",
   },
   {
-    slug: "quick-bites-pharm-ep17-antiseizure",
+    slug: "quick-bites-pharm-ep22-hiv",
     number: 17,
-    title: "Antiseizure Drugs: Levels, Rashes + Pregnancy",
-    duration: "4:04",
+    title: "HIV Drugs: Starting, PrEP + PEP",
+    duration: "4:01",
+  },
+  {
+    slug: "quick-bites-pharm-ep20-thyroid",
+    number: 18,
+    title: "Thyroid Drugs: Timing, Brakes + Pregnancy",
+    duration: "3:54",
   },
   {
     slug: "quick-bites-pharm-ep18-antidepressants",
-    number: 18,
+    number: 19,
     title: "Antidepressants: First Line, Washouts + Serotonin Syndrome",
     duration: "4:07",
   },
   {
     slug: "quick-bites-pharm-ep19-antipsychotics-lithium",
-    number: 19,
+    number: 20,
     title: "Antipsychotics + Lithium",
     duration: "4:12",
   },
   {
-    slug: "quick-bites-pharm-ep20-thyroid",
-    number: 20,
-    title: "Thyroid Drugs: Timing, Brakes + Pregnancy",
-    duration: "3:54",
-  },
-  {
-    slug: "quick-bites-pharm-ep21-oncology",
+    slug: "quick-bites-pharm-ep17-antiseizure",
     number: 21,
-    title: "Chemotherapy Safety: Toxicities, Rescues + Fatal Errors",
-    duration: "3:47",
-  },
-  {
-    slug: "quick-bites-pharm-ep22-hiv",
-    number: 22,
-    title: "HIV Drugs: Starting, PrEP + PEP",
-    duration: "4:01",
+    title: "Antiseizure Drugs: Levels, Rashes + Pregnancy",
+    duration: "4:04",
   },
   {
     slug: "quick-bites-pharm-ep23-pain-opioids",
-    number: 23,
+    number: 22,
     title: "Pain + Opioids: Limits, Equivalents + Switches",
     duration: "3:49",
+  },
+  {
+    slug: "quick-bites-pharm-ep21-oncology",
+    number: 23,
+    title: "Chemotherapy Safety: Toxicities, Rescues + Fatal Errors",
+    duration: "3:47",
   },
   {
     slug: "quick-bites-pharm-ep24-pediatric-dosing",

@@ -30,11 +30,15 @@ const ORDER = [
   ["Fluids, Electrolytes & Acid-Base", "Potassium: Highs, Lows & the Heart", "quick-bites-potassium"],
   ["Fluids, Electrolytes & Acid-Base", "Sodium & Calcium", "quick-bites-ep06-sodium-calcium"],
   ["Fluids, Electrolytes & Acid-Base", "Acid-Base Made Simple", "quick-bites-ep07-acid-base"],
-  ["Exam Day", "Danger-Zone Labs & Exam-Day Plan", "quick-bites-bonus-labs-examday"],
-  ["Med-Surg: GI, Liver & Kidneys", "GI Bleeds & Bowel Obstruction", "quick-bites-ep17-gi-bleed-obstruction"],
-  ["Med-Surg: GI, Liver & Kidneys", "Liver & Pancreas: Cirrhosis vs Pancreatitis", "quick-bites-ep18-liver-pancreas"],
-  ["Med-Surg: GI, Liver & Kidneys", "Kidneys: Acute vs Chronic & Dialysis", "quick-bites-ep19-kidneys-dialysis"],
-  ["Hematology & Oncology", "Blood Transfusions: Safe Setup & Reactions", "quick-bites-ep20-transfusion"],
+  ["Kidneys", "Kidneys: Acute vs Chronic & Dialysis", "quick-bites-ep19-kidneys-dialysis"],
+  ["Blood Transfusions", "Blood Transfusions: Safe Setup & Reactions", "quick-bites-ep20-transfusion"],
+  ["Med-Surg: GI & Liver", "GI Bleeds & Bowel Obstruction", "quick-bites-ep17-gi-bleed-obstruction"],
+  ["Med-Surg: GI & Liver", "Liver & Pancreas: Cirrhosis vs Pancreatitis", "quick-bites-ep18-liver-pancreas"],
+  [
+    "Musculoskeletal",
+    "Orthopedics: Compartment Syndrome, Fat Embolism, Hip Precautions",
+    "quick-bites-ep24-ortho",
+  ],
   [
     "Hematology & Oncology",
     "Cancer Care & Sickle Cell: Neutropenia, Low Platelets, Crisis",
@@ -46,16 +50,12 @@ const ORDER = [
     "quick-bites-ep22-surgery-wounds",
   ],
   ["Surgery, Wounds & Burns", "Burns: Airway, Rule of Nines, Fluids", "quick-bites-ep23-burns"],
-  [
-    "Musculoskeletal",
-    "Orthopedics: Compartment Syndrome, Fat Embolism, Hip Precautions",
-    "quick-bites-ep24-ortho",
-  ],
   ["Dosage Calculations", "Dosage Calculations: Drip Rates & Weight-Based Dosing", "quick-bites-ep25-dosage-calc"],
+  ["Exam Day", "Danger-Zone Labs & Exam-Day Plan", "quick-bites-bonus-labs-examday"],
 ] as const;
 
 describe("Quick Bites catalog", () => {
-  it("lists the 16 wave-1 episodes, then wave 2 (17-25), in the approved order", () => {
+  it("lists 25 episodes in study-guide order, with exam day last", () => {
     expect(QUICK_BITE_EPISODES).toHaveLength(25);
     expect(QUICK_BITE_EPISODES.map((episode) => [episode.group, episode.title, episode.slug])).toEqual(
       ORDER.map((row) => [...row])
@@ -71,14 +71,15 @@ describe("Quick Bites catalog", () => {
     expect(QUICK_BITE_EPISODES.filter((episode) => isOpenQuickBite(episode.slug))).toHaveLength(1);
     expect(nextPlayableQuickBite(OPEN_QUICK_BITE_SLUG, true)?.slug).toBe("quick-bites-ep03-priority");
     expect(nextPlayableQuickBite(OPEN_QUICK_BITE_SLUG, false)).toBeNull();
-    expect(nextPlayableQuickBite("quick-bites-ep07-acid-base", true)?.title).toBe(
-      "Danger-Zone Labs & Exam-Day Plan"
+    expect(nextPlayableQuickBite("quick-bites-ep07-acid-base", true)?.slug).toBe(
+      "quick-bites-ep19-kidneys-dialysis"
     );
-    expect(nextPlayableQuickBite("quick-bites-bonus-labs-examday", true)?.slug).toBe(
-      "quick-bites-ep17-gi-bleed-obstruction"
+    expect(nextPlayableQuickBite("quick-bites-ep25-dosage-calc", true)?.slug).toBe(
+      "quick-bites-bonus-labs-examday"
     );
-    expect(nextPlayableQuickBite("quick-bites-ep25-dosage-calc", true)).toBeNull();
-    for (const episode of QUICK_BITE_EPISODES.slice(16)) {
+    expect(nextPlayableQuickBite("quick-bites-bonus-labs-examday", true)).toBeNull();
+    for (const episode of QUICK_BITE_EPISODES) {
+      if (episode.slug === OPEN_QUICK_BITE_SLUG) continue;
       expect(isOpenQuickBite(episode.slug)).toBe(false);
       expect(isQuickBiteEpisodePlayable(episode, false)).toBe(false);
       expect(isQuickBiteEpisodePlayable(episode, true)).toBe(true);
@@ -97,12 +98,14 @@ describe("Quick Bites catalog", () => {
       "Pediatrics",
       "Psych / Mental Health",
       "Fluids, Electrolytes & Acid-Base",
-      "Exam Day",
-      "Med-Surg: GI, Liver & Kidneys",
+      "Kidneys",
+      "Blood Transfusions",
+      "Med-Surg: GI & Liver",
+      "Musculoskeletal",
       "Hematology & Oncology",
       "Surgery, Wounds & Burns",
-      "Musculoskeletal",
       "Dosage Calculations",
+      "Exam Day",
     ]);
   });
 
