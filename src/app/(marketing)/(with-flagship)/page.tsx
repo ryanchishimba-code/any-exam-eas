@@ -40,7 +40,8 @@ async function HomeQuoteLive() {
 }
 
 export default async function HomePage() {
-  const { display } = await loadPublicQuestionCounts({ dynamic: false });
+  const { display, bundle } = await loadPublicQuestionCounts({ dynamic: false });
+  const site = siteCountsFromSnapshot(bundle.snapshot);
   return (
     <>
       <Suspense fallback={null}>
@@ -48,6 +49,7 @@ export default async function HomePage() {
       </Suspense>
       <HomeExperience bankCounts={display}>
         <PublicHome
+          ngnCaseStudies={Boolean(site && site.boards.nclex.caseStudies > 0)}
           proof={
             <Suspense fallback={null}>
               <HomeProofLive />

@@ -2,7 +2,9 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
+import { HomeCompare } from "@/components/marketing/elevation/HomeCompare";
 import { HomePassVideo } from "@/components/marketing/elevation/HomePassVideo";
+import { HomeQuickBites } from "@/components/marketing/elevation/HomeQuickBites";
 import { HomeStickyCta } from "@/components/marketing/elevation/HomeStickyCta";
 import { IconCases, IconCheck, IconReviewers } from "@/components/marketing/elevation/home-icons";
 import "@/styles/home-visual.css";
@@ -33,9 +35,12 @@ const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
 export function PublicHome({
   proof,
   quote,
+  ngnCaseStudies = false,
 }: {
   proof?: ReactNode;
   quote?: ReactNode;
+  /** Set when the same snapshot has published NCLEX case studies. */
+  ngnCaseStudies?: boolean;
 }) {
   const cta = homeTrialCtaLabel();
   const headlineBreak = HOME_PRACTICE_HEADLINE.lastIndexOf(". ");
@@ -137,6 +142,9 @@ export function PublicHome({
           </div>
         </div>
       </section>
+
+      <HomeQuickBites />
+      <HomeCompare ngnCaseStudies={ngnCaseStudies} />
 
       <section className="home-section home-section--mist home-rise" aria-labelledby="price-heading">
         <h2 id="price-heading">Six boards. One price.</h2>

@@ -93,6 +93,9 @@ describe("homepage proof facts", () => {
       "src/components/marketing/elevation/PublicHome.tsx",
       "src/components/marketing/elevation/HomeProofStrip.tsx",
       "src/components/marketing/elevation/HomePassVideo.tsx",
+      "src/components/marketing/elevation/HomeQuickBites.tsx",
+      "src/components/marketing/elevation/HomeCompare.tsx",
+      "src/lib/marketing/home-compare.ts",
       "src/app/(marketing)/(with-flagship)/page.tsx",
       "src/app/(marketing)/(with-flagship)/how-to-pass/page.tsx",
     ];

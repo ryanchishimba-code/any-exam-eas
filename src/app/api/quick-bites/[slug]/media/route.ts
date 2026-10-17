@@ -4,6 +4,7 @@ import { requireAuthenticatedApi } from "@/lib/api-access";
 import { canPlayQuickBiteEpisode } from "@/lib/quick-bites/access";
 import {
   getQuickBiteBySlug,
+  isOpenQuickBite,
   isQuickBiteHeld,
   quickBiteCaptionsPath,
   quickBiteVideoPath,
@@ -22,15 +23,18 @@ export async function GET(
   request: Request,
   ctx: { params: Promise<{ slug: string }> }
 ) {
-  const authResult = await requireAuthenticatedApi(request);
-  if (!authResult.ok) return authResult.response;
-
   const { slug } = await ctx.params;
-  if (!canPlayQuickBiteEpisode(authResult.access, slug)) {
-    return NextResponse.json(LOCKED, { status: 403 });
+  const episode = getQuickBiteBySlug(slug);
+  const sample = Boolean(episode && episode.held !== true && isOpenQuickBite(slug));
+
+  if (!sample) {
+    const authResult = await requireAuthenticatedApi(request);
+    if (!authResult.ok) return authResult.response;
+    if (!canPlayQuickBiteEpisode(authResult.access, slug)) {
+      return NextResponse.json(LOCKED, { status: 403 });
+    }
   }
 
-  const episode = getQuickBiteBySlug(slug);
   if (!episode || isQuickBiteHeld(slug)) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
   }

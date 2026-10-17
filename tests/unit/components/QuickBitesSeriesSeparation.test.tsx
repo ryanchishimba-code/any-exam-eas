@@ -23,7 +23,7 @@ describe("Quick Bites series separation (rendered)", () => {
     expect(screen.getAllByText("Locked")).toHaveLength(QUICK_BITE_EPISODES.length - 1);
   });
 
-  it("the NAPLEX section lists every pharmacy episode and no nursing episode, all locked when not paid", () => {
+  it("the NAPLEX section lists every pharmacy episode and locks every episode except the sample", () => {
     const { container } = render(
       <VideoQuickBitesSection
         series="pharmacy"
@@ -42,6 +42,6 @@ describe("Quick Bites series separation (rendered)", () => {
       expect(screen.queryByText(episode.title)).not.toBeInTheDocument();
     }
     expect(container.innerHTML).not.toMatch(/\/quick-bites\/quick-bites-(?!pharm-)/);
-    expect(screen.getAllByText("Locked")).toHaveLength(PHARMACY_QUICK_BITE_EPISODES.length);
+    expect(screen.getAllByText("Locked")).toHaveLength(PHARMACY_QUICK_BITE_EPISODES.length - 1);
   });
 });

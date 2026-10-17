@@ -58,7 +58,8 @@ const PHARMACY_SERIES: QuickBiteSeries = {
   title: "Quick Bites: Pharmacy",
   subtitle: "Short chalkboard explainers for the pharmacy boards.",
   note: null,
-  lockedMessage: "Paid members can watch every episode.",
+  lockedMessage:
+    "Anticoagulants: Warfarin vs Heparins vs DOACs is free. Paid members can watch every other episode.",
   groups: [{ title: "", episodes: PHARMACY_QUICK_BITE_EPISODES }],
   poster: pharmacyQuickBitePoster,
   apiBase: "/api/quick-bites-pharmacy",

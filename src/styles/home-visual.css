@@ -80,6 +80,11 @@
 .home-quote figcaption,
 .home-faq summary,
 .home-faq p,
+.home-bites__episode,
+.home-bites__board,
+.home-compare th,
+.home-compare td,
+.home-compare__detail,
 .home-proof,
 .home-share__status,
 .home-video__status {
@@ -689,6 +694,164 @@
   text-underline-offset: 0.18em;
 }
 
+.home-bites {
+  display: grid;
+  gap: 3rem;
+  width: min(56rem, 100%);
+  margin: 2.75rem auto 0;
+  text-align: left;
+}
+
+.home-bites h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+}
+
+.home-bites__board {
+  color: var(--home-muted);
+  font-weight: 500;
+}
+
+.home-bites__episode {
+  margin: 0.35rem 0 0;
+  color: var(--home-muted);
+}
+
+.home-bites__play,
+.home-bites__video {
+  display: block;
+  width: 100%;
+  margin-top: 1.15rem;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(10, 37, 64, 0.08);
+  background: var(--home-navy);
+}
+
+.home-bites__play {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.home-bites__play img,
+.home-bites__video {
+  object-fit: cover;
+}
+
+.home-bites__play img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-bites__play-mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: -1.625rem 0 0 -1.625rem;
+  border-radius: 999px;
+  background: rgba(10, 37, 64, 0.72);
+  color: #fff;
+}
+
+.home-bites__play-note {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.7rem 0.9rem;
+  background: rgba(10, 37, 64, 0.82);
+  color: #fff;
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.home-bites__cta {
+  margin: 2rem 0 0;
+  text-align: center;
+}
+
+.home-bites__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0 0.25rem;
+  color: var(--home-teal);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.home-bites__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+#compare-heading {
+  max-width: 22rem;
+}
+
+.home-compare-wrap {
+  width: min(46rem, 100%);
+  margin: 2.5rem auto 0;
+  text-align: left;
+}
+
+.home-compare {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.home-compare th,
+.home-compare td {
+  padding: 0.95rem 0.65rem;
+  border-bottom: 1px solid rgba(10, 37, 64, 0.08);
+  vertical-align: top;
+  font-weight: 500;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.home-compare thead th {
+  padding-top: 0;
+  font-weight: 600;
+  color: var(--home-muted);
+}
+
+.home-compare th[scope="row"] {
+  font-weight: 600;
+  color: var(--home-ink);
+}
+
+.home-compare td:nth-child(2) {
+  width: 8.5rem;
+  text-align: center;
+}
+
+.home-compare__detail {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--home-muted);
+  font-weight: 400;
+}
+
+.home-compare svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--home-teal);
+}
+
 .home-close {
   padding: 4rem 1.25rem 4.5rem;
   text-align: center;
@@ -746,6 +909,53 @@
   body:has(.home-has-sticky) {
     padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
   }
+
+  .home-compare,
+  .home-compare tbody,
+  .home-compare tr,
+  .home-compare th,
+  .home-compare td {
+    display: block;
+    width: auto;
+  }
+
+  .home-compare {
+    table-layout: auto;
+  }
+
+  .home-compare thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .home-compare tr {
+    padding: 1.15rem 0;
+    border-bottom: 1px solid rgba(10, 37, 64, 0.08);
+  }
+
+  .home-compare th,
+  .home-compare td {
+    border: 0;
+    padding: 0.15rem 0;
+    text-align: left;
+  }
+
+  .home-compare td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-top: 0.55rem;
+    margin-bottom: 0.15rem;
+    color: var(--home-muted);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
 }
 
 @media (max-width: 767px) {
@@ -788,6 +998,12 @@
   .home-reviewers,
   .home-quote__list {
     grid-template-columns: 1fr;
+  }
+
+  .home-bites {
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: start;
   }
 
   .home-sticky {
