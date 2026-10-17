@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { X } from "lucide-react";
-import { QuickBitesQuiz } from "@/components/quick-bites/QuickBitesQuiz";
+import { NextEpisodeButton, QuickBitesQuiz } from "@/components/quick-bites/QuickBitesQuiz";
 import {
   getQuickBiteBySlug,
   quickBitePoster,
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
 import { parseVideoTimestamp } from "@/lib/quick-bites/timestamp";
+import { dbUi } from "@/lib/study/dashboard-ui";
+import { cn } from "@/lib/utils";
 
 type LoadState =
   | { status: "loading" }
@@ -18,36 +20,42 @@ type LoadState =
 
 export function QuickBitesPlayer({
   episode,
-  nextEpisode,
   onClose,
   onNext,
+  playbackNonce = 0,
+  library,
 }: {
-  episode: QuickBiteEpisode;
-  nextEpisode: QuickBiteEpisode | null;
+  episode: QuickBiteEpisode | null;
   onClose: () => void;
-  onNext: () => void;
+  onNext?: () => void;
+  /** Changes when the student picks an episode. Resets the quiz without remounting the page. */
+  playbackNonce?: number;
+  library?: ReactNode;
 }) {
-  const [state, setState] = useState<LoadState>({ status: "loading" });
+  const slug = episode ? (getQuickBiteBySlug(episode.slug) ?? episode).slug : "";
+  const [media, setMedia] = useState<{ slug: string; state: LoadState }>({
+    slug: "",
+    state: { status: "loading" },
+  });
+  const state = media.slug === slug ? media.state : { status: "loading" };
+  const identity = `${episode?.slug ?? ""}:${playbackNonce}`;
+  const [quizSession, setQuizSession] = useState({ id: identity, open: false });
+  const quizOpen = quizSession.id === identity && quizSession.open;
   const videoRef = useRef<HTMLVideoElement>(null);
-  const poster = quickBitePoster(episode.slug);
+  const playedToken = useRef("");
+  const known = episode ? (getQuickBiteBySlug(episode.slug) ?? episode) : null;
+  const poster = known ? quickBitePoster(known.slug) : null;
 
   function rewatch(timestamp: string) {
     const video = videoRef.current;
     const seconds = parseVideoTimestamp(timestamp);
     if (!video || seconds == null) return;
-    try {
-      video.scrollIntoView({ block: "nearest" });
-    } catch {
-      // Some test environments do not implement scrolling.
-    }
     const seek = () => {
       try {
         video.currentTime = seconds;
       } catch {
         // jsdom media elements may reject seeking.
       }
-      const play = video.play?.();
-      if (play && typeof play.catch === "function") play.catch(() => {});
     };
     seek();
     if (video.readyState < 1) {
@@ -56,126 +64,175 @@ export function QuickBitesPlayer({
   }
 
   useEffect(() => {
+    if (!slug) return;
     const controller = new AbortController();
-    setState({ status: "loading" });
+    let active = true;
 
-    fetch(`/api/quick-bites/${episode.slug}/media`, { signal: controller.signal })
+    fetch(`/api/quick-bites/${slug}/media`, { signal: controller.signal })
       .then(async (response) => {
+        if (!active) return;
         if (response.status === 401 || response.status === 403) {
-          setState({ status: "locked" });
+          setMedia({ slug, state: { status: "locked" } });
           return;
         }
         if (!response.ok) {
-          setState({ status: "failed" });
+          setMedia({ slug, state: { status: "failed" } });
           return;
         }
         const body = (await response.json()) as { videoUrl?: string; captionsUrl?: string };
+        if (!active) return;
         if (!body.videoUrl || !body.captionsUrl) {
-          setState({ status: "failed" });
+          setMedia({ slug, state: { status: "failed" } });
           return;
         }
-        setState({ status: "ready", videoUrl: body.videoUrl, captionsUrl: body.captionsUrl });
+        setMedia({
+          slug,
+          state: { status: "ready", videoUrl: body.videoUrl, captionsUrl: body.captionsUrl },
+        });
       })
       .catch((error: unknown) => {
+        if (!active) return;
         if (error instanceof DOMException && error.name === "AbortError") return;
-        setState({ status: "failed" });
+        setMedia({ slug, state: { status: "failed" } });
       });
 
-    return () => controller.abort();
-  }, [episode.slug]);
+    return () => {
+      active = false;
+      controller.abort();
+    };
+  }, [slug]);
 
   useEffect(() => {
-    const node = document.getElementById("quick-bites-player");
-    if (!node) return;
-    const heading = node.querySelector("h3");
-    if (heading instanceof HTMLElement) {
-      heading.tabIndex = -1;
-      try {
-        heading.focus({ preventScroll: true });
-      } catch {
-        // jsdom may not implement preventScroll.
-      }
-    }
-    if (typeof node.scrollIntoView !== "function") return;
+    if (!known || state.status !== "ready") return;
+    const video = videoRef.current;
+    if (!video) return;
+    const token = `${known.slug}:${playbackNonce}`;
+    if (playedToken.current === token) return;
+    playedToken.current = token;
     try {
-      node.scrollIntoView({ block: "nearest" });
+      const pending = video.play?.();
+      if (pending && typeof pending.catch === "function") pending.catch(() => {});
     } catch {
-      // Some test environments do not implement scrolling.
+      // Autoplay can be blocked. The controls stay available.
     }
-  }, [episode.slug]);
-
-  const known = getQuickBiteBySlug(episode.slug) ?? episode;
+  }, [known, state.status, playbackNonce]);
 
   return (
-    <div id="quick-bites-player" className="scroll-mt-28 space-y-3">
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--color-ink-muted)]">
-            Now playing
-          </p>
-          <h3 className="text-[18px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
-            {known.number}. {known.title}
-          </h3>
+    <div className="contents">
+      <div
+        id="quick-bites-player"
+        className="scroll-mt-28 [grid-area:player] [overflow-anchor:none]"
+        style={{ overflowAnchor: "none" }}
+      >
+        <div className="flex h-[4.5rem] items-start justify-between gap-3">
+          {known ? (
+            <>
+              <div className="min-w-0 pt-0.5">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--color-ink-muted)]">
+                  Now playing
+                </p>
+                <h3 className="line-clamp-2 text-[18px] font-semibold leading-snug tracking-[-0.02em] text-[var(--color-ink)]">
+                  {known.number}. {known.title}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={onClose}
+                className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+              >
+                <X className="h-4 w-4" aria-hidden />
+                <span className="sr-only">Close player</span>
+              </button>
+            </>
+          ) : (
+            <p className="text-[14px] text-[var(--color-ink-muted)]">Nothing playing yet.</p>
+          )}
         </div>
-        <button
-          type="button"
-          onClick={onClose}
-          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-[var(--color-border)] text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
-        >
-          <X className="h-4 w-4" aria-hidden />
-          <span className="sr-only">Close player</span>
-        </button>
+
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-[#14120f] shadow-[var(--shadow-apple-md)]">
+          {known && poster && state.status === "ready" ? (
+            <video
+              key={known.slug}
+              ref={videoRef}
+              controls
+              preload="none"
+              playsInline
+              poster={poster.webp}
+              width={1920}
+              height={1080}
+              src={state.videoUrl}
+              aria-label={`${known.title} video`}
+              className="absolute inset-0 h-full w-full bg-black object-contain"
+            >
+              <track kind="captions" src={state.captionsUrl} srcLang="en" label="English" />
+            </video>
+          ) : (
+            <div className="absolute inset-0">
+              {poster ? (
+                <picture>
+                  <source srcSet={poster.webp} type="image/webp" />
+                  <img
+                    src={poster.jpg}
+                    alt=""
+                    width={1280}
+                    height={720}
+                    className="h-full w-full object-cover"
+                  />
+                </picture>
+              ) : null}
+              <p className="absolute inset-x-0 bottom-0 bg-black/55 px-4 py-3 text-[13px] text-white">
+                {!known
+                  ? "Your episode plays here."
+                  : state.status === "loading"
+                    ? "Preparing your episode..."
+                    : state.status === "locked"
+                      ? "This episode is part of a paid membership."
+                      : "This episode did not load. Close it and try again."}
+              </p>
+            </div>
+          )}
+        </div>
+        <p className="mt-3 min-h-8 text-[12px] leading-8 text-[var(--color-ink-muted)]">
+          {known ? "Captions are available from the player. They match the words already on screen." : "\u00a0"}
+        </p>
+        <div className="flex min-h-11 flex-wrap items-center gap-2">
+          {known ? (
+            <button
+              type="button"
+              aria-expanded={quizOpen}
+              aria-controls="quick-bites-quiz-panel"
+              onClick={() => setQuizSession({ id: identity, open: !quizOpen })}
+              className={cn(quizOpen ? dbUi.ghostBtn : dbUi.primaryBtn, "min-h-11 px-4")}
+            >
+              {quizOpen ? "Close quiz" : "Take the quiz"}
+            </button>
+          ) : null}
+          {known && onNext && !quizOpen ? (
+            <NextEpisodeButton onNext={onNext} emphasis="quiet" />
+          ) : null}
+        </div>
       </div>
 
-      <div className="overflow-hidden rounded-2xl bg-[#14120f] shadow-[var(--shadow-apple-md)]">
-        {state.status === "ready" ? (
-          <video
-            key={known.slug}
-            ref={videoRef}
-            controls
-            preload="none"
-            playsInline
-            poster={poster.webp}
-            width={1920}
-            height={1080}
-            src={state.videoUrl}
-            aria-label={`${known.title} video`}
-            className="aspect-video h-auto w-full bg-black"
-          >
-            <track kind="captions" src={state.captionsUrl} srcLang="en" label="English" />
-          </video>
-        ) : (
-          <div className="relative aspect-video w-full bg-black">
-            <picture>
-              <source srcSet={poster.webp} type="image/webp" />
-              <img
-                src={poster.jpg}
-                alt=""
-                width={1280}
-                height={720}
-                className="h-full w-full object-cover"
-              />
-            </picture>
-            <p className="absolute inset-x-0 bottom-0 bg-black/55 px-4 py-3 text-[13px] text-white">
-              {state.status === "loading"
-                ? "Preparing your episode..."
-                : state.status === "locked"
-                  ? "This episode is part of a paid membership."
-                  : "This episode did not load. Close it and try again."}
+      {library}
+
+      <div
+        id="quick-bites-quiz-panel"
+        data-state={quizOpen ? "open" : "closed"}
+        className="h-[min(16rem,28dvh)] max-h-[min(16rem,28dvh)] min-h-0 overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] [grid-area:quiz] [overflow-anchor:none]"
+        style={{ overflowAnchor: "none" }}
+      >
+        <div className="h-full overflow-y-auto p-4 [scrollbar-gutter:stable]">
+          {known && quizOpen ? (
+            <QuickBitesQuiz slug={known.slug} onRewatch={rewatch} onNext={onNext} />
+          ) : (
+            <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+              {known
+                ? "The quiz stays in this panel so the video can keep playing."
+                : "Choose an episode. Questions stay closed until you take the quiz."}
             </p>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-      <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
-        Captions are available from the player. They match the words already on screen.
-      </p>
-      <QuickBitesQuiz
-        key={known.slug}
-        slug={known.slug}
-        onRewatch={rewatch}
-        onDone={onClose}
-        onNext={nextEpisode ? onNext : undefined}
-      />
     </div>
   );
 }
