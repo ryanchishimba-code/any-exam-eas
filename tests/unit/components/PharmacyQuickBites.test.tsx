@@ -24,9 +24,16 @@ describe("Quick Bites: Pharmacy", () => {
 
     expect(screen.getByRole("heading", { name: "Quick Bites: Pharmacy" })).toBeInTheDocument();
     expect(screen.queryByText("How the Nursing Boards Work is free. Paid members can watch every episode.")).not.toBeInTheDocument();
-    expect(screen.getByText("Paid members can watch every episode.")).toBeInTheDocument();
-    expect(screen.getAllByText("Locked")).toHaveLength(PHARMACY_QUICK_BITE_EPISODES.length);
-    expect(screen.queryByRole("button", { name: /Play / })).not.toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Anticoagulants: Warfarin vs Heparins vs DOACs is free. Paid members can watch every other episode."
+      )
+    ).toBeInTheDocument();
+    expect(screen.getAllByText("Locked")).toHaveLength(PHARMACY_QUICK_BITE_EPISODES.length - 1);
+    expect(
+      screen.getByRole("button", { name: "Play 1. Anticoagulants: Warfarin vs Heparins vs DOACs" })
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Play 2. ACE Inhibitors vs ARBs vs ARNI" })).not.toBeInTheDocument();
     expect(screen.getAllByRole("link")).toHaveLength(1);
     expect(screen.getByRole("link", { name: "Subscribe to watch" })).toHaveAttribute(
       "href",

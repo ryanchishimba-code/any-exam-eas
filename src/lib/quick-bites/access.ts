@@ -18,8 +18,9 @@ export function canPlayQuickBites(access: QuickBiteAccess): boolean {
 }
 
 /**
- * Episode 1 is open to every signed-in member. Every other nursing episode (2–25) stays on the paid check.
- * Call this only after authentication. Logged-out requests stay 401.
+ * The nursing sample is playable without a paid plan.
+ * Every other nursing episode stays on the paid check.
+ * The media route serves that one sample with no session. This helper is for a signed-in caller.
  */
 export function canPlayQuickBiteEpisode(access: QuickBiteAccess, slug: string): boolean {
   if (isOpenQuickBite(slug)) return true;

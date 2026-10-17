@@ -95,7 +95,7 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     });
   });
 
-  it("returns 401 when logged out", async () => {
+  it("signs the public sample when logged out", async () => {
     authState.result = {
       ok: false,
       userId: "",
@@ -106,8 +106,36 @@ describe("GET /api/quick-bites/[slug]/media", () => {
       }),
     };
     const response = await mediaRequest("quick-bites-ep02-nclex-works");
+    expect(response.status).toBe(200);
+    expect(signPrivateQuickBiteGet).toHaveBeenCalledWith(
+      "quick-bites/quick-bites-ep02-nclex-works-web.mp4"
+    );
+    const stream = new ReadableStream({
+      start(controller) {
+        controller.enqueue(new TextEncoder().encode("WEBVTT\n"));
+        controller.close();
+      },
+    });
+    getBlob.mockResolvedValue({ statusCode: 200, stream, blob: { contentType: "text/vtt" } });
+    const captions = await mediaRequest("quick-bites-ep02-nclex-works", "captions");
+    expect(captions.status).toBe(200);
+    expect(await captions.text()).toContain("WEBVTT");
+  });
+
+  it("keeps a non-sample episode gated when logged out", async () => {
+    authState.result = {
+      ok: false,
+      userId: "",
+      access: {} as UserAccess,
+      response: new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { "content-type": "application/json" },
+      }),
+    };
+    const response = await mediaRequest("quick-bites-ep03-priority");
     expect(response.status).toBe(401);
     expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
+    expect(getBlob).not.toHaveBeenCalled();
   });
 
   it("signs the open episode for a free or trial member and keeps the rest locked", async () => {

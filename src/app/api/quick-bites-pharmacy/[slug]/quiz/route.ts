@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuthenticatedApi } from "@/lib/api-access";
 import { canPlayQuickBites } from "@/lib/quick-bites/access";
-import { getPharmacyQuickBiteBySlug } from "@/lib/quick-bites/pharmacy-catalog";
+import { getPharmacyQuickBiteBySlug, isOpenPharmacyQuickBite } from "@/lib/quick-bites/pharmacy-catalog";
 import { getPharmacyQuickBiteQuiz } from "@/lib/quick-bites/pharmacy-quiz-data";
 import { gradeQuickBiteAnswer, publicQuickBiteQuiz } from "@/lib/quick-bites/quiz-data";
 
@@ -15,9 +15,13 @@ const LOCKED = {
 
 const PRIVATE = { "Cache-Control": "private, no-store" };
 
-async function requirePlayer(request: Request) {
+async function requirePlayer(request: Request, slug: string) {
   const authResult = await requireAuthenticatedApi(request);
   if (!authResult.ok) return authResult;
+  const episode = getPharmacyQuickBiteBySlug(slug);
+  if (episode && episode.held !== true && isOpenPharmacyQuickBite(slug)) {
+    return { ok: true as const };
+  }
   if (!canPlayQuickBites(authResult.access)) {
     return { ok: false as const, response: NextResponse.json(LOCKED, { status: 403 }) };
   }
@@ -29,7 +33,7 @@ export async function GET(
   ctx: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await ctx.params;
-  const gate = await requirePlayer(request);
+  const gate = await requirePlayer(request, slug);
   if (!gate.ok) return gate.response;
 
   const episode = getPharmacyQuickBiteBySlug(slug);
@@ -49,7 +53,7 @@ export async function POST(
   ctx: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await ctx.params;
-  const gate = await requirePlayer(request);
+  const gate = await requirePlayer(request, slug);
   if (!gate.ok) return gate.response;
 
   const episode = getPharmacyQuickBiteBySlug(slug);

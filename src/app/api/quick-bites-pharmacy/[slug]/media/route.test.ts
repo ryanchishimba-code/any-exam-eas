@@ -73,22 +73,7 @@ describe("GET /api/quick-bites-pharmacy/[slug]/media", () => {
     );
   });
 
-  it("keeps episode 1 locked for free and trial members", async () => {
-    asAccess("free", "trial_expired", false);
-    const freeVideo = await mediaRequest("quick-bites-pharm-ep01-anticoagulants");
-    const freeCaptions = await mediaRequest("quick-bites-pharm-ep01-anticoagulants", "captions");
-    expect(freeVideo.status).toBe(403);
-    expect(freeCaptions.status).toBe(403);
-    expect(await freeVideo.json()).toMatchObject({ code: "PHARMACY_QUICK_BITES_LOCKED" });
-
-    asAccess("trial", "trialing", true);
-    const trial = await mediaRequest("quick-bites-pharm-ep02-raas");
-    expect(trial.status).toBe(403);
-    expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
-    expect(getBlob).not.toHaveBeenCalled();
-  });
-
-  it("returns 401 when logged out and 404 for a nursing slug", async () => {
+  it("signs the public sample for a logged-out visitor and a free member", async () => {
     authState.result = {
       ok: false,
       userId: "",
@@ -96,9 +81,44 @@ describe("GET /api/quick-bites-pharmacy/[slug]/media", () => {
       response: new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 }),
     };
     const loggedOut = await mediaRequest("quick-bites-pharm-ep01-anticoagulants");
+    expect(loggedOut.status).toBe(200);
+    expect(signPrivateQuickBiteGet).toHaveBeenCalledWith(
+      "quick-bites-pharmacy/quick-bites-pharm-ep01-anticoagulants-web.mp4"
+    );
+
+    signPrivateQuickBiteGet.mockClear();
+    asAccess("free", "trial_expired", false);
+    const freeVideo = await mediaRequest("quick-bites-pharm-ep01-anticoagulants");
+    expect(freeVideo.status).toBe(200);
+    expect(signPrivateQuickBiteGet).toHaveBeenCalledTimes(1);
+  });
+
+  it("keeps a non-sample episode gated for logged-out visitors and free or trial members", async () => {
+    authState.result = {
+      ok: false,
+      userId: "",
+      access: {} as UserAccess,
+      response: new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 }),
+    };
+    const loggedOut = await mediaRequest("quick-bites-pharm-ep02-raas");
     expect(loggedOut.status).toBe(401);
     expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
 
+    asAccess("free", "trial_expired", false);
+    const freeVideo = await mediaRequest("quick-bites-pharm-ep02-raas");
+    const freeCaptions = await mediaRequest("quick-bites-pharm-ep02-raas", "captions");
+    expect(freeVideo.status).toBe(403);
+    expect(freeCaptions.status).toBe(403);
+    expect(await freeVideo.json()).toMatchObject({ code: "PHARMACY_QUICK_BITES_LOCKED" });
+
+    asAccess("trial", "trialing", true);
+    const trial = await mediaRequest("quick-bites-pharm-ep26-antidotes");
+    expect(trial.status).toBe(403);
+    expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
+    expect(getBlob).not.toHaveBeenCalled();
+  });
+
+  it("returns 404 for a nursing slug", async () => {
     asAccess("subscriber", "active", true);
     const nursing = await mediaRequest("quick-bites-ep02-nclex-works");
     expect(nursing.status).toBe(404);

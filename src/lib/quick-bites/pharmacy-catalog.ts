@@ -200,12 +200,19 @@ export function getPharmacyQuickBiteBySlug(slug: string): QuickBiteEpisode | und
   return BY_SLUG.get(slug);
 }
 
-/** Every pharmacy episode stays behind the paid check. There is no open episode. */
+/** Public sample: Anticoagulants: Warfarin vs Heparins vs DOACs. */
+export const OPEN_PHARMACY_QUICK_BITE_SLUG = "quick-bites-pharm-ep01-anticoagulants";
+
+export function isOpenPharmacyQuickBite(slug: string): boolean {
+  return slug === OPEN_PHARMACY_QUICK_BITE_SLUG;
+}
+
+/** The sample plays without a paid plan. Every other pharmacy episode stays on that check. */
 export function isPharmacyQuickBitePlayable(
   episode: QuickBiteEpisode,
   canPlayLibrary: boolean
 ): boolean {
-  return episode.held !== true && canPlayLibrary;
+  return episode.held !== true && (canPlayLibrary || isOpenPharmacyQuickBite(episode.slug));
 }
 
 export function nextPlayablePharmacyQuickBite(

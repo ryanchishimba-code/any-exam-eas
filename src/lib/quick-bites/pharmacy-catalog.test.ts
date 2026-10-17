@@ -6,6 +6,8 @@ import { publicQuickBiteQuiz } from "@/lib/quick-bites/quiz-data";
 import {
   PHARMACY_QUICK_BITE_EPISODES,
   getPharmacyQuickBiteBySlug,
+  OPEN_PHARMACY_QUICK_BITE_SLUG,
+  isOpenPharmacyQuickBite,
   isPharmacyQuickBitePlayable,
   nextPlayablePharmacyQuickBite,
   pharmacyQuickBiteCaptionsPath,
@@ -55,7 +57,7 @@ describe("Quick Bites: Pharmacy catalog", () => {
     expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-ep01-anticoagulants", true)?.title).toBe(
       "ACE Inhibitors vs ARBs vs ARNI"
     );
-    expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-ep01-anticoagulants", false)).toBeNull();
+    expect(nextPlayablePharmacyQuickBite(OPEN_PHARMACY_QUICK_BITE_SLUG, false)).toBeNull();
     expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-bonus-exam-format", true)).toBeNull();
     expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-ep16-beers", true)?.slug).toBe(
       "quick-bites-pharm-ep22-hiv"
@@ -64,11 +66,14 @@ describe("Quick Bites: Pharmacy catalog", () => {
       "quick-bites-pharm-bonus-exam-format"
     );
     expect(PHARMACY_QUICK_BITE_EPISODES.at(-1)?.slug).toBe("quick-bites-pharm-bonus-exam-format");
+    expect(PHARMACY_QUICK_BITE_EPISODES.filter((episode) => isOpenPharmacyQuickBite(episode.slug))).toHaveLength(1);
     for (const episode of PHARMACY_QUICK_BITE_EPISODES) {
-      expect(isPharmacyQuickBitePlayable(episode, false)).toBe(false);
+      const sample = episode.slug === OPEN_PHARMACY_QUICK_BITE_SLUG;
+      expect(isPharmacyQuickBitePlayable(episode, false)).toBe(sample);
+      expect(isOpenPharmacyQuickBite(episode.slug)).toBe(sample);
     }
-    expect(isPharmacyQuickBitePlayable(PHARMACY_QUICK_BITE_EPISODES[0]!, false)).toBe(false);
     expect(isPharmacyQuickBitePlayable(PHARMACY_QUICK_BITE_EPISODES[0]!, true)).toBe(true);
+    expect(isPharmacyQuickBitePlayable(PHARMACY_QUICK_BITE_EPISODES[1]!, false)).toBe(false);
   });
 
   it("keeps pharmacy media on a private prefix and posters public", () => {

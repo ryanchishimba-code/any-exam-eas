@@ -9,7 +9,7 @@
 /** How long a playback URL stays valid. Long enough to watch, short enough to expire. */
 export const QUICK_BITES_URL_TTL_MS = 20 * 60 * 1000;
 
-/** First episode. Signed-in members can play this one without a paid plan. */
+/** Public sample: How the Nursing Boards Work. Everyone else stays on the paid check. */
 export const OPEN_QUICK_BITE_SLUG = "quick-bites-ep02-nclex-works";
 
 export function isOpenQuickBite(slug: string): boolean {

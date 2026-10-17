@@ -4,6 +4,7 @@ import { requireAuthenticatedApi } from "@/lib/api-access";
 import { canPlayQuickBites } from "@/lib/quick-bites/access";
 import {
   getPharmacyQuickBiteBySlug,
+  isOpenPharmacyQuickBite,
   pharmacyQuickBiteCaptionsPath,
   pharmacyQuickBiteVideoPath,
 } from "@/lib/quick-bites/pharmacy-catalog";
@@ -21,15 +22,18 @@ export async function GET(
   request: Request,
   ctx: { params: Promise<{ slug: string }> }
 ) {
-  const authResult = await requireAuthenticatedApi(request);
-  if (!authResult.ok) return authResult.response;
-
   const { slug } = await ctx.params;
-  if (!canPlayQuickBites(authResult.access)) {
-    return NextResponse.json(LOCKED, { status: 403 });
+  const episode = getPharmacyQuickBiteBySlug(slug);
+  const sample = Boolean(episode && episode.held !== true && isOpenPharmacyQuickBite(slug));
+
+  if (!sample) {
+    const authResult = await requireAuthenticatedApi(request);
+    if (!authResult.ok) return authResult.response;
+    if (!canPlayQuickBites(authResult.access)) {
+      return NextResponse.json(LOCKED, { status: 403 });
+    }
   }
 
-  const episode = getPharmacyQuickBiteBySlug(slug);
   if (!episode || episode.held) {
     return NextResponse.json({ error: "Episode not found" }, { status: 404 });
   }

@@ -70,13 +70,19 @@ describe("GET/POST /api/quick-bites-pharmacy/[slug]/quiz", () => {
     expect(await response.json()).toMatchObject({ correct: true, keys: first.keys });
   });
 
-  it("locks episode 1 for a free member and ignores the nursing open episode", async () => {
+  it("serves the sample quiz to a signed-in free member and keeps a non-sample gated", async () => {
     asAccess("free", "trial_expired", false);
-    const response = await GET(quizRequest("quick-bites-pharm-ep01-anticoagulants"), {
+    const sample = await GET(quizRequest("quick-bites-pharm-ep01-anticoagulants"), {
       params: Promise.resolve({ slug: "quick-bites-pharm-ep01-anticoagulants" }),
     });
-    expect(response.status).toBe(403);
-    const body = JSON.stringify(await response.json());
+    expect(sample.status).toBe(200);
+    expect(JSON.stringify(await sample.json())).not.toContain('"keys"');
+
+    const locked = await GET(quizRequest("quick-bites-pharm-ep02-raas"), {
+      params: Promise.resolve({ slug: "quick-bites-pharm-ep02-raas" }),
+    });
+    expect(locked.status).toBe(403);
+    const body = JSON.stringify(await locked.json());
     expect(body).toContain("PHARMACY_QUICK_BITES_LOCKED");
     expect(body).not.toContain("Warfarin");
 

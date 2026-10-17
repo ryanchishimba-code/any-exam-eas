@@ -1,48 +1,42 @@
 import Link from "next/link";
-import { homeQuickBiteTracks } from "@/lib/marketing/home-quick-bites";
+import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
+import { homeQuickBiteSamples } from "@/lib/marketing/home-quick-bites";
 import { ROUTES } from "@/lib/routes";
 
 /**
- * Public posters and catalog counts. No player, no signed media URL.
+ * Two public samples. The video file loads after a click.
  * The link is text, not a second primary button.
  */
 export function HomeQuickBites() {
-  const tracks = homeQuickBiteTracks();
+  const samples = homeQuickBiteSamples();
   return (
     <section className="home-section home-section--mist home-rise" aria-labelledby="quick-bites-heading">
       <h2 id="quick-bites-heading">Quick Bites</h2>
-      <p className="home-lead">Short animated lessons with quizzes. Premium.</p>
+      <p className="home-lead">Watch a sample.</p>
       <div className="home-bites">
-        {tracks.map((track) => (
-          <article key={track.id} aria-labelledby={`quick-bites-${track.id}`}>
-            <h3 id={`quick-bites-${track.id}`}>
-              {track.title}
-              <span className="home-bites__board">{` · ${track.board}`}</span>
+        {samples.map((sample) => (
+          <article key={sample.id} aria-labelledby={`quick-bites-${sample.id}`}>
+            <h3 id={`quick-bites-${sample.id}`}>
+              {sample.title}
+              <span className="home-bites__board">{` · ${sample.board}`}</span>
             </h3>
-            <p className="home-bites__count">{track.countLabel}</p>
-            <ul className="home-bites__posters">
-              {track.posters.map((poster) => (
-                <li key={poster.slug}>
-                  <picture>
-                    <source srcSet={poster.webp} type="image/webp" />
-                    <img
-                      src={poster.jpg}
-                      alt={poster.title}
-                      width={1280}
-                      height={720}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </picture>
-                </li>
-              ))}
-            </ul>
+            <p className="home-bites__episode">
+              {sample.episodeTitle}
+              <span className="home-bites__duration">{` · ${sample.duration}`}</span>
+            </p>
+            <HomeSamplePlayer
+              title={sample.episodeTitle}
+              webp={sample.webp}
+              jpg={sample.jpg}
+              mediaUrl={sample.mediaUrl}
+              captions={sample.captions}
+            />
           </article>
         ))}
       </div>
       <p className="home-bites__cta">
         <Link className="home-bites__link" href={ROUTES.pricing}>
-          See plans
+          Get full access
         </Link>
       </p>
     </section>
