@@ -55,7 +55,7 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     signPrivateQuickBiteGet.mockReset();
     getBlob.mockReset();
     signPrivateQuickBiteGet.mockResolvedValue(
-      "https://iiuq2awk7g8oulze.private.blob.vercel-storage.com/quick-bites/quick-bites-ep02-nclex-works-web.mp4?vercel-blob-signature=test"
+      "https://iiuq2awk7g8oulze.private.blob.vercel-storage.com/quick-bites/v2-20261017/quick-bites-ep02-nclex-works-web.mp4?vercel-blob-signature=test"
     );
   });
 
@@ -66,13 +66,13 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     const body = await response.json();
     expect(body.videoUrl).toContain("vercel-blob-signature=");
     expect(body.videoUrl).not.toBe(
-      "https://iiuq2awk7g8oulze.private.blob.vercel-storage.com/quick-bites/quick-bites-ep02-nclex-works-web.mp4"
+      "https://iiuq2awk7g8oulze.private.blob.vercel-storage.com/quick-bites/v2-20261017/quick-bites-ep02-nclex-works-web.mp4"
     );
     expect(body.captionsUrl).toBe(
       "/api/quick-bites/quick-bites-ep02-nclex-works/media?part=captions"
     );
     expect(signPrivateQuickBiteGet).toHaveBeenCalledWith(
-      "quick-bites/quick-bites-ep02-nclex-works-web.mp4"
+      "quick-bites/v2-20261017/quick-bites-ep02-nclex-works-web.mp4"
     );
     expect(response.headers.get("cache-control")).toContain("private");
   });
@@ -90,7 +90,7 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     expect(response.status).toBe(200);
     expect(response.headers.get("content-type")).toContain("text/vtt");
     expect(await response.text()).toContain("WEBVTT");
-    expect(getBlob).toHaveBeenCalledWith("quick-bites/quick-bites-potassium.vtt", {
+    expect(getBlob).toHaveBeenCalledWith("quick-bites/v2-20261017/quick-bites-potassium.vtt", {
       access: "private",
     });
   });
@@ -108,7 +108,7 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     const response = await mediaRequest("quick-bites-ep02-nclex-works");
     expect(response.status).toBe(200);
     expect(signPrivateQuickBiteGet).toHaveBeenCalledWith(
-      "quick-bites/quick-bites-ep02-nclex-works-web.mp4"
+      "quick-bites/v2-20261017/quick-bites-ep02-nclex-works-web.mp4"
     );
     const stream = new ReadableStream({
       start(controller) {
@@ -120,6 +120,10 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     const captions = await mediaRequest("quick-bites-ep02-nclex-works", "captions");
     expect(captions.status).toBe(200);
     expect(await captions.text()).toContain("WEBVTT");
+    expect(getBlob).toHaveBeenCalledWith(
+      "quick-bites/v2-20261017/quick-bites-ep02-nclex-works.vtt",
+      { access: "private" }
+    );
   });
 
   it("keeps a non-sample episode gated when logged out", async () => {
@@ -143,7 +147,7 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     const open = await mediaRequest("quick-bites-ep02-nclex-works");
     expect(open.status).toBe(200);
     expect(signPrivateQuickBiteGet).toHaveBeenCalledWith(
-      "quick-bites/quick-bites-ep02-nclex-works-web.mp4"
+      "quick-bites/v2-20261017/quick-bites-ep02-nclex-works-web.mp4"
     );
     const stream = new ReadableStream({
       start(controller) {
@@ -189,7 +193,7 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     const video = await mediaRequest("quick-bites-ep07-acid-base");
     expect(video.status).toBe(200);
     expect(signPrivateQuickBiteGet).toHaveBeenCalledWith(
-      "quick-bites/quick-bites-ep07-acid-base-web.mp4"
+      "quick-bites/v2-20261017/quick-bites-ep07-acid-base-web.mp4"
     );
     const stream = new ReadableStream({
       start(controller) {
@@ -201,9 +205,10 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     const captions = await mediaRequest("quick-bites-ep12-high-alert-pharm", "captions");
     expect(captions.status).toBe(200);
     expect(await captions.text()).toContain("WEBVTT");
-    expect(getBlob).toHaveBeenCalledWith("quick-bites/quick-bites-ep12-high-alert-pharm.vtt", {
-      access: "private",
-    });
+    expect(getBlob).toHaveBeenCalledWith(
+      "quick-bites/v2-20261017/quick-bites-ep12-high-alert-pharm.vtt",
+      { access: "private" }
+    );
   });
 
   it("returns 404 for an unknown episode after the paid check", async () => {

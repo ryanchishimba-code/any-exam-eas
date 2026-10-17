@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
+  NURSING_WAVE1_MEDIA_VERSION,
   OPEN_QUICK_BITE_SLUG,
   QUICK_BITE_EPISODES,
   QUICK_BITE_GROUPS,
@@ -12,7 +13,44 @@ import {
   quickBitePoster,
   quickBiteVideoPath,
 } from "./catalog";
+import {
+  PHARMACY_EP07_MEDIA_VERSION,
+  PHARMACY_QUICK_BITE_EPISODES,
+  pharmacyQuickBiteCaptionsPath,
+  pharmacyQuickBiteVideoPath,
+} from "./pharmacy-catalog";
 import { unsignedQuickBiteUrl } from "./private-store";
+
+const WAVE1_V2_SLUGS = [
+  "quick-bites-potassium",
+  "quick-bites-ep02-nclex-works",
+  "quick-bites-ep03-priority",
+  "quick-bites-ep04-delegation",
+  "quick-bites-ep05-isolation",
+  "quick-bites-ep06-sodium-calcium",
+  "quick-bites-ep07-acid-base",
+  "quick-bites-ep08-cardiac",
+  "quick-bites-ep09-respiratory",
+  "quick-bites-ep10-endocrine",
+  "quick-bites-ep11-neuro",
+  "quick-bites-ep12-high-alert-pharm",
+  "quick-bites-ep13-psych",
+  "quick-bites-ep14-maternity",
+  "quick-bites-ep15-peds",
+  "quick-bites-bonus-labs-examday",
+] as const;
+
+const WAVE2_UNVERSIONED_SLUGS = [
+  "quick-bites-ep17-gi-bleed-obstruction",
+  "quick-bites-ep18-liver-pancreas",
+  "quick-bites-ep19-kidneys-dialysis",
+  "quick-bites-ep20-transfusion",
+  "quick-bites-ep21-neutropenia-sickle-cell",
+  "quick-bites-ep22-surgery-wounds",
+  "quick-bites-ep23-burns",
+  "quick-bites-ep24-ortho",
+  "quick-bites-ep25-dosage-calc",
+] as const;
 
 const ORDER = [
   ["How the Exam Works", "How the Nursing Boards Work", "quick-bites-ep02-nclex-works"],
@@ -112,8 +150,12 @@ describe("Quick Bites catalog", () => {
   it("keeps video and caption paths private and posters public", () => {
     const episode = getQuickBiteBySlug("quick-bites-potassium");
     expect(episode?.title).toBe("Potassium: Highs, Lows & the Heart");
-    expect(quickBiteVideoPath("quick-bites-potassium")).toBe("quick-bites/quick-bites-potassium-web.mp4");
-    expect(quickBiteCaptionsPath("quick-bites-potassium")).toBe("quick-bites/quick-bites-potassium.vtt");
+    expect(quickBiteVideoPath("quick-bites-potassium")).toBe(
+      "quick-bites/v2-20261017/quick-bites-potassium-web.mp4"
+    );
+    expect(quickBiteCaptionsPath("quick-bites-potassium")).toBe(
+      "quick-bites/v2-20261017/quick-bites-potassium.vtt"
+    );
     expect(quickBitePoster("quick-bites-potassium").webp).toBe(
       "/quick-bites/quick-bites-potassium-poster.webp"
     );
@@ -122,6 +164,50 @@ describe("Quick Bites catalog", () => {
     expect(bare).not.toContain("vercel-blob-signature");
     expect(bare.startsWith("https://")).toBe(true);
     expect(bare).toContain(".private.blob.vercel-storage.com/");
+  });
+
+  it("versions the 16 re-rendered episodes and leaves 17-25 and pharmacy unchanged", () => {
+    expect(NURSING_WAVE1_MEDIA_VERSION).toBe("v2-20261017");
+    expect(WAVE1_V2_SLUGS).toHaveLength(16);
+    expect(WAVE2_UNVERSIONED_SLUGS).toHaveLength(9);
+    expect([...WAVE1_V2_SLUGS, ...WAVE2_UNVERSIONED_SLUGS].sort()).toEqual(
+      QUICK_BITE_EPISODES.map((episode) => episode.slug).sort()
+    );
+
+    for (const slug of WAVE1_V2_SLUGS) {
+      const episode = getQuickBiteBySlug(slug);
+      expect(episode?.mediaVersion).toBe(NURSING_WAVE1_MEDIA_VERSION);
+      expect(quickBiteVideoPath(slug)).toBe(
+        `quick-bites/${NURSING_WAVE1_MEDIA_VERSION}/${slug}-web.mp4`
+      );
+      expect(quickBiteCaptionsPath(slug)).toBe(
+        `quick-bites/${NURSING_WAVE1_MEDIA_VERSION}/${slug}.vtt`
+      );
+      expect(quickBitePoster(slug)).toEqual({
+        webp: `/quick-bites/${slug}-poster.webp`,
+        jpg: `/quick-bites/${slug}-poster.jpg`,
+      });
+    }
+
+    for (const slug of WAVE2_UNVERSIONED_SLUGS) {
+      expect(getQuickBiteBySlug(slug)?.mediaVersion).toBeUndefined();
+      expect(quickBiteVideoPath(slug)).toBe(`quick-bites/${slug}-web.mp4`);
+      expect(quickBiteCaptionsPath(slug)).toBe(`quick-bites/${slug}.vtt`);
+    }
+
+    expect(OPEN_QUICK_BITE_SLUG).toBe("quick-bites-ep02-nclex-works");
+    expect(isOpenQuickBite(OPEN_QUICK_BITE_SLUG)).toBe(true);
+
+    for (const episode of PHARMACY_QUICK_BITE_EPISODES) {
+      const versioned = episode.slug === "quick-bites-pharm-ep07-insulin";
+      const folder = versioned
+        ? `quick-bites-pharmacy/${PHARMACY_EP07_MEDIA_VERSION}`
+        : "quick-bites-pharmacy";
+      expect(episode.mediaVersion).toBe(versioned ? PHARMACY_EP07_MEDIA_VERSION : undefined);
+      expect(pharmacyQuickBiteVideoPath(episode.slug)).toBe(`${folder}/${episode.slug}-web.mp4`);
+      expect(pharmacyQuickBiteCaptionsPath(episode.slug)).toBe(`${folder}/${episode.slug}.vtt`);
+      expect(pharmacyQuickBiteVideoPath(episode.slug).startsWith("quick-bites/")).toBe(false);
+    }
   });
 
   it("is mounted on the NCLEX dashboard only", () => {
