@@ -35,13 +35,10 @@ const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
 export function PublicHome({
   proof,
   quote,
-  exams = [],
   ngnCaseStudies = false,
 }: {
   proof?: ReactNode;
   quote?: ReactNode;
-  /** Live scored-item labels. Empty when the bank lookup failed. */
-  exams?: readonly { slug: string; countLabel: string }[];
   /** Set when the same snapshot has published NCLEX case studies. */
   ngnCaseStudies?: boolean;
 }) {
@@ -147,7 +144,7 @@ export function PublicHome({
       </section>
 
       <HomeQuickBites />
-      <HomeCompare exams={exams} ngnCaseStudies={ngnCaseStudies} />
+      <HomeCompare ngnCaseStudies={ngnCaseStudies} />
 
       <section className="home-section home-section--mist home-rise" aria-labelledby="price-heading">
         <h2 id="price-heading">Six boards. One price.</h2>

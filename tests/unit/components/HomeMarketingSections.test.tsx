@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { HomeCompare } from "@/components/marketing/elevation/HomeCompare";
 import { HomeQuickBites } from "@/components/marketing/elevation/HomeQuickBites";
 import { PublicHome } from "@/components/marketing/elevation/PublicHome";
-import { HOME_COMPARE_OTHER } from "@/lib/marketing/home-compare";
+import { homeCompareRows } from "@/lib/marketing/home-compare";
 import { homeQuickBiteTracks } from "@/lib/marketing/home-quick-bites";
 import { ROUTES } from "@/lib/routes";
 
@@ -55,37 +55,31 @@ describe("homepage marketing sections", () => {
     expect(container.innerHTML).not.toMatch(MEDIA_URL);
   });
 
-  it("renders a two-column checklist and omits a count the live display does not have", () => {
-    render(
-      <HomeCompare
-        exams={[
-          { slug: "nclex", countLabel: "5,483" },
-          { slug: "naplex", countLabel: "1" },
-        ]}
-        ngnCaseStudies
-      />
-    );
+  it("renders a three-column table without per-board question counts", () => {
+    render(<HomeCompare ngnCaseStudies />);
+    const rows = homeCompareRows(true);
 
     expect(
       screen.getByRole("heading", { name: "AnyExamEasy vs. typical prep sites" })
     ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "AnyExamEasy" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Typical prep sites" })).toBeInTheDocument();
-    expect(screen.getByText(HOME_COMPARE_OTHER)).toBeInTheDocument();
-    expect(screen.getByText("NCLEX · 5,483 questions")).toBeInTheDocument();
-    expect(screen.getByText("NAPLEX · 1 question")).toBeInTheDocument();
-    expect(screen.getByText("USMLE")).toBeInTheDocument();
-    expect(screen.getByText("NGN case studies")).toBeInTheDocument();
-    expect(screen.getByText("NCLEX exam mode")).toBeInTheDocument();
-    expect(screen.getByText("Guideline-checked explanations with sources")).toBeInTheDocument();
-    expect(screen.getByText("Quick Bites videos")).toBeInTheDocument();
-    expect(screen.getByText("Practice readiness")).toBeInTheDocument();
-    expect(screen.getByText("Question of the Day")).toBeInTheDocument();
+    expect(screen.getByRole("columnheader", { name: "Feature" })).toBeInTheDocument();
+    expect(screen.getByRole("columnheader", { name: "AnyExamEasy" })).toBeInTheDocument();
+    expect(screen.getByRole("columnheader", { name: "Typical prep sites" })).toBeInTheDocument();
+    expect(screen.getAllByRole("row")).toHaveLength(rows.length + 1);
+    for (const row of rows) {
+      expect(screen.getByRole("rowheader", { name: new RegExp(row.feature) })).toBeInTheDocument();
+    }
+    expect(screen.getByText("Often one exam per subscription")).toBeInTheDocument();
+    expect(screen.getByText("Not always shown")).toBeInTheDocument();
+    expect(screen.getByText("Often a separate purchase")).toBeInTheDocument();
+    expect(screen.getAllByText("Varies")).toHaveLength(3);
+    expect(screen.getAllByText("Included")).toHaveLength(rows.length);
+    expect(screen.queryByText(/questions/i)).toBeNull();
     expect(screen.queryByRole("link", { name: "See plans" })).toBeNull();
   });
 
   it("places both sections on the public home page for logged-out visitors", () => {
-    const { container } = render(<PublicHome exams={[{ slug: "nclex", countLabel: "5,483" }]} ngnCaseStudies />);
+    const { container } = render(<PublicHome ngnCaseStudies />);
     expect(screen.getByRole("heading", { name: "Quick Bites" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "AnyExamEasy vs. typical prep sites" })).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: /free trial/i }).length).toBeGreaterThan(0);

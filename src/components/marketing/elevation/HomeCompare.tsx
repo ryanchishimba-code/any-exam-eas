@@ -1,33 +1,37 @@
 import { IconCheck } from "@/components/marketing/elevation/home-icons";
-import { HOME_COMPARE_OTHER, homeCompareItems } from "@/lib/marketing/home-compare";
+import { homeCompareRows } from "@/lib/marketing/home-compare";
 
-export function HomeCompare({
-  exams = [],
-  ngnCaseStudies = false,
-}: {
-  exams?: readonly { slug: string; countLabel: string }[];
-  ngnCaseStudies?: boolean;
-}) {
-  const items = homeCompareItems(exams, ngnCaseStudies);
+export function HomeCompare({ ngnCaseStudies = false }: { ngnCaseStudies?: boolean }) {
+  const rows = homeCompareRows(ngnCaseStudies);
   return (
     <section className="home-section home-rise" aria-labelledby="compare-heading">
       <h2 id="compare-heading">AnyExamEasy vs. typical prep sites</h2>
-      <div className="home-compare">
-        <div>
-          <h3>AnyExamEasy</h3>
-          <ul>
-            {items.map((item) => (
-              <li key={item.id}>
-                <IconCheck />
-                <span>{item.text}</span>
-              </li>
+      <div className="home-compare-wrap">
+        <table className="home-compare">
+          <caption className="sr-only">AnyExamEasy compared with typical prep sites</caption>
+          <thead>
+            <tr>
+              <th scope="col">Feature</th>
+              <th scope="col">AnyExamEasy</th>
+              <th scope="col">Typical prep sites</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.id}>
+                <th scope="row">
+                  {row.feature}
+                  {row.detail ? <span className="home-compare__detail">{row.detail}</span> : null}
+                </th>
+                <td data-label="AnyExamEasy">
+                  <span className="sr-only">Included</span>
+                  <IconCheck />
+                </td>
+                <td data-label="Typical prep sites">{row.typical}</td>
+              </tr>
             ))}
-          </ul>
-        </div>
-        <div>
-          <h3>Typical prep sites</h3>
-          <p className="home-compare__other">{HOME_COMPARE_OTHER}</p>
-        </div>
+          </tbody>
+        </table>
       </div>
     </section>
   );

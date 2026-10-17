@@ -3,53 +3,50 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { GUIDELINE_CHECKED_LABEL } from "@/components/study/questions/CollapsibleSources";
 import { LANDING_HERO_EXAMS } from "@/lib/landing/content";
-import {
-  HOME_COMPARE_OTHER,
-  HOME_GUIDELINE_LINE,
-  homeCompareItems,
-} from "@/lib/marketing/home-compare";
+import { HOME_GUIDELINE_LINE, homeCompareRows } from "@/lib/marketing/home-compare";
 
 const FORBIDDEN =
-  /Kaplan|Archer|UWorld|AMBOSS|RxPrep|BoardVitals|Hurst|\bonly\b|\bbest\b|#1|\$\d|pass rate/i;
+  /Kaplan|Archer|UWorld|AMBOSS|RxPrep|BoardVitals|Hurst|\bonly\b|\bbest\b|\bnever\b|#1|\$\d|pass rate|\d[\d,]* questions/i;
 
 describe("homepage comparison rows", () => {
-  it("lists each board and appends a live count only when one is present", () => {
-    const items = homeCompareItems(
-      [
-        { slug: "nclex", countLabel: "5,483" },
-        { slug: "naplex", countLabel: "7,300" },
-        { slug: "usmle", countLabel: "" },
-      ],
-      false
-    );
-    expect(items.find((item) => item.id === "nclex")?.text).toBe("NCLEX · 5,483 questions");
-    expect(items.find((item) => item.id === "naplex")?.text).toBe("NAPLEX · 7,300 questions");
-    expect(items.find((item) => item.id === "usmle")?.text).toBe("USMLE");
-    expect(items.map((item) => item.id).slice(0, LANDING_HERO_EXAMS.length)).toEqual(
-      LANDING_HERO_EXAMS.map((exam) => exam.slug)
-    );
-    expect(items.some((item) => item.id === "ngn")).toBe(false);
+  it("uses one subscription row and leaves question totals out", () => {
+    const rows = homeCompareRows(true);
+    expect(rows).toHaveLength(6);
+    expect(rows.map((row) => row.id)).toEqual([
+      "boards",
+      "sources",
+      "ngn",
+      "videos",
+      "readiness",
+      "qotd",
+    ]);
+    expect(rows[0]).toMatchObject({
+      feature: `${LANDING_HERO_EXAMS.length} boards in one subscription`,
+      detail: LANDING_HERO_EXAMS.map((exam) => exam.label).join(", "),
+      typical: "Often one exam per subscription",
+    });
+    expect(rows.map((row) => row.feature).join(" ")).not.toMatch(/\d[\d,]* questions/);
   });
 
-  it("adds NGN case studies only when the snapshot has them", () => {
-    const items = homeCompareItems([], true);
-    expect(items.find((item) => item.id === "ngn")?.text).toBe("NGN case studies");
+  it("names NGN case studies when the snapshot has them", () => {
+    expect(homeCompareRows(true).find((row) => row.id === "ngn")?.feature).toBe(
+      "NGN case studies and NCLEX exam mode"
+    );
+    expect(homeCompareRows(false).find((row) => row.id === "ngn")?.feature).toBe("NCLEX exam mode");
   });
 
-  it("uses the product label for cited rationales and a fair other column", () => {
-    const items = homeCompareItems([], false);
+  it("keeps the other column short and neutral", () => {
+    const rows = homeCompareRows(true);
     expect(HOME_GUIDELINE_LINE.startsWith(GUIDELINE_CHECKED_LABEL)).toBe(true);
-    expect(items.map((item) => item.text)).toEqual(
-      expect.arrayContaining([
-        HOME_GUIDELINE_LINE,
-        "NCLEX exam mode",
-        "Quick Bites videos",
-        "Practice readiness",
-        "Question of the Day",
-      ])
-    );
-    expect(HOME_COMPARE_OTHER).toBe("Often extra or not included");
-    const joined = [...items.map((item) => item.text), HOME_COMPARE_OTHER].join(" ");
+    expect(rows.map((row) => row.typical)).toEqual([
+      "Often one exam per subscription",
+      "Not always shown",
+      "Varies",
+      "Often a separate purchase",
+      "Varies",
+      "Varies",
+    ]);
+    const joined = rows.flatMap((row) => [row.feature, row.detail, row.typical]).join(" ");
     expect(joined).not.toMatch(FORBIDDEN);
   });
 
@@ -61,7 +58,7 @@ describe("homepage comparison rows", () => {
     ];
     for (const file of files) {
       const text = readFileSync(path.resolve(process.cwd(), file), "utf8");
-      expect(text, file).not.toMatch(/Kaplan|Archer|UWorld|AMBOSS|RxPrep|BoardVitals|Hurst|#1|\$\d|pass rate/i);
+      expect(text, file).not.toMatch(/Kaplan|Archer|UWorld|AMBOSS|RxPrep|BoardVitals|Hurst|#1|\$\d|pass rate|\bnever\b/i);
       expect(text, file).not.toMatch(/43,348|43348|43,338|43338/);
     }
   });

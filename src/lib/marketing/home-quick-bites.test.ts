@@ -5,28 +5,35 @@ import { PHARMACY_QUICK_BITE_EPISODES } from "@/lib/quick-bites/pharmacy-catalog
 import { QUICK_BITE_EPISODES } from "@/lib/quick-bites/catalog";
 import {
   homeQuickBiteTracks,
-  quickBiteLessonLabel,
-  releasedQuickBiteCount,
+  isQuickBiteBonus,
+  quickBiteCountLabel,
+  releasedQuickBites,
 } from "@/lib/marketing/home-quick-bites";
 
 const MEDIA_URL = /\.mp4|\.vtt|\/api\/quick-bites|blob\.vercel-storage|quickBiteVideoPath|quickBiteCaptionsPath/i;
 
 describe("homepage Quick Bites", () => {
-  it("counts released catalog episodes instead of a fixed number", () => {
+  it("counts lessons and keeps a Bonus title beside the lesson count", () => {
+    expect(quickBiteCountLabel([{ title: "Cardiac" }, { title: "Bonus: format" }])).toBe(
+      "1 lesson + bonus"
+    );
+    expect(quickBiteCountLabel([{ title: "Cardiac", held: true }, { title: "Neuro" }])).toBe(
+      "1 lesson"
+    );
+    expect(isQuickBiteBonus({ title: "Danger-Zone Labs & Exam-Day Plan" })).toBe(false);
+    expect(isQuickBiteBonus({ title: "Bonus: How the Pharmacy Boards Work" })).toBe(true);
+
     const tracks = homeQuickBiteTracks();
     const nursing = tracks.find((track) => track.id === "nursing");
     const pharmacy = tracks.find((track) => track.id === "pharmacy");
     expect(nursing?.board).toBe("NCLEX");
     expect(pharmacy?.board).toBe("NAPLEX");
-    expect(nursing?.count).toBe(releasedQuickBiteCount(QUICK_BITE_EPISODES));
-    expect(pharmacy?.count).toBe(releasedQuickBiteCount(PHARMACY_QUICK_BITE_EPISODES));
-    expect(nursing?.count).toBe(QUICK_BITE_EPISODES.filter((episode) => episode.held !== true).length);
-    expect(pharmacy?.count).toBe(
-      PHARMACY_QUICK_BITE_EPISODES.filter((episode) => episode.held !== true).length
-    );
-    expect(nursing?.countLabel).toBe(quickBiteLessonLabel(nursing?.count ?? 0));
-    expect(nursing?.count).toBeGreaterThan(0);
-    expect(pharmacy?.count).toBeGreaterThan(0);
+    expect(nursing?.countLabel).toBe(quickBiteCountLabel(QUICK_BITE_EPISODES));
+    expect(pharmacy?.countLabel).toBe(quickBiteCountLabel(PHARMACY_QUICK_BITE_EPISODES));
+    expect(releasedQuickBites(QUICK_BITE_EPISODES).filter((episode) => !isQuickBiteBonus(episode))).toHaveLength(25);
+    expect(releasedQuickBites(PHARMACY_QUICK_BITE_EPISODES).filter(isQuickBiteBonus)).toHaveLength(1);
+    expect(nursing?.countLabel).toBe("25 lessons");
+    expect(pharmacy?.countLabel).toBe("26 lessons + bonus");
   });
 
   it("uses public poster files and never a media URL", () => {
@@ -37,11 +44,11 @@ describe("homepage Quick Bites", () => {
       expect(poster.webp).toMatch(/-poster\.webp$/);
       expect(poster.jpg).toMatch(/-poster\.jpg$/);
       expect(`${poster.webp} ${poster.jpg}`).not.toMatch(MEDIA_URL);
+      expect(isQuickBiteBonus(poster)).toBe(false);
     }
     const nursing = tracks.find((track) => track.id === "nursing");
-    expect(nursing?.posters[0]?.webp).toBe(
-      `/quick-bites/${QUICK_BITE_EPISODES.find((episode) => episode.held !== true)?.slug}-poster.webp`
-    );
+    const firstLesson = releasedQuickBites(QUICK_BITE_EPISODES).find((episode) => !isQuickBiteBonus(episode));
+    expect(nursing?.posters[0]?.webp).toBe(`/quick-bites/${firstLesson?.slug}-poster.webp`);
   });
 
   it("does not hard-code episode totals or media paths in the homepage section", () => {
@@ -53,7 +60,7 @@ describe("homepage Quick Bites", () => {
     for (const file of files) {
       const text = readFileSync(path.resolve(process.cwd(), file), "utf8");
       expect(text, file).not.toMatch(MEDIA_URL);
-      expect(text, file).not.toMatch(/\b16 lessons\b|\b17 lessons\b/);
+      expect(text, file).not.toMatch(/\b(?:16|17|25|26|27) lessons\b/);
     }
   });
 });

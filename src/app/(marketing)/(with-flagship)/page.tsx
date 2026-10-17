@@ -49,7 +49,6 @@ export default async function HomePage() {
       </Suspense>
       <HomeExperience bankCounts={display}>
         <PublicHome
-          exams={display.degraded ? [] : display.exams}
           ngnCaseStudies={Boolean(site && site.boards.nclex.caseStudies > 0)}
           proof={
             <Suspense fallback={null}>

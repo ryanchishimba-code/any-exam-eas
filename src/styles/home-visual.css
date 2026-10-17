@@ -82,8 +82,9 @@
 .home-faq p,
 .home-bites__count,
 .home-bites__board,
-.home-compare li,
-.home-compare__other,
+.home-compare th,
+.home-compare td,
+.home-compare__detail,
 .home-proof,
 .home-share__status,
 .home-video__status {
@@ -764,52 +765,55 @@
   max-width: 22rem;
 }
 
-.home-compare {
-  display: grid;
-  gap: 2.75rem;
-  width: min(52rem, 100%);
-  margin: 2.75rem auto 0;
+.home-compare-wrap {
+  width: min(46rem, 100%);
+  margin: 2.5rem auto 0;
   text-align: left;
 }
 
-.home-compare h3 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+.home-compare {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
 
-.home-compare ul {
-  margin: 1.15rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.home-compare li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.7rem;
-  padding: 0.85rem 0;
-  border-top: 1px solid rgba(10, 37, 64, 0.08);
-  font-weight: 500;
-}
-
-.home-compare li:last-child {
+.home-compare th,
+.home-compare td {
+  padding: 0.95rem 0.65rem;
   border-bottom: 1px solid rgba(10, 37, 64, 0.08);
+  vertical-align: top;
+  font-weight: 500;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.home-compare thead th {
+  padding-top: 0;
+  font-weight: 600;
+  color: var(--home-muted);
+}
+
+.home-compare th[scope="row"] {
+  font-weight: 600;
+  color: var(--home-ink);
+}
+
+.home-compare td:nth-child(2) {
+  width: 8.5rem;
+  text-align: center;
+}
+
+.home-compare__detail {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--home-muted);
+  font-weight: 400;
 }
 
 .home-compare svg {
-  flex: none;
   width: 1.15rem;
   height: 1.15rem;
-  margin-top: 0.15rem;
   color: var(--home-teal);
-}
-
-.home-compare__other {
-  margin: 1.15rem 0 0;
-  max-width: 16rem;
-  color: var(--home-muted);
 }
 
 .home-close {
@@ -869,6 +873,53 @@
   body:has(.home-has-sticky) {
     padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
   }
+
+  .home-compare,
+  .home-compare tbody,
+  .home-compare tr,
+  .home-compare th,
+  .home-compare td {
+    display: block;
+    width: auto;
+  }
+
+  .home-compare {
+    table-layout: auto;
+  }
+
+  .home-compare thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .home-compare tr {
+    padding: 1.15rem 0;
+    border-bottom: 1px solid rgba(10, 37, 64, 0.08);
+  }
+
+  .home-compare th,
+  .home-compare td {
+    border: 0;
+    padding: 0.15rem 0;
+    text-align: left;
+  }
+
+  .home-compare td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-top: 0.55rem;
+    margin-bottom: 0.15rem;
+    color: var(--home-muted);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
 }
 
 @media (max-width: 767px) {
@@ -913,8 +964,7 @@
     grid-template-columns: 1fr;
   }
 
-  .home-bites,
-  .home-compare {
+  .home-bites {
     grid-template-columns: 1fr 1fr;
     gap: 3.5rem;
     align-items: start;
