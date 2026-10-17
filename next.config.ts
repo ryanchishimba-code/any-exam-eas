@@ -73,6 +73,7 @@ const nextConfig: NextConfig = {
   // Quiz JSON is read from disk at request time so a reviewed file can be swapped in.
   outputFileTracingIncludes: {
     "/api/quick-bites/[slug]/quiz": ["./src/lib/quick-bites/quizzes/**/*"],
+    "/api/quick-bites-pharmacy/[slug]/quiz": ["./src/lib/quick-bites/quizzes-pharmacy/**/*"],
   },
   serverExternalPackages: ["stripe"],
   // CI runs lint + typecheck; skipping both on Vercel avoids build OOM on this app.

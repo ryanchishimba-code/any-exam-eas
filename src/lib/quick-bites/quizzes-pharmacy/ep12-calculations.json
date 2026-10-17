@@ -1,0 +1,299 @@
+{
+  "episode": "ep12-calculations",
+  "title": "Calculations Survival Kit",
+  "video": "quick-bites-pharm-ep12-calculations-web.mp4",
+  "questions": [
+    {
+      "id": "ep12-calculations-q01",
+      "type": "single_best_answer",
+      "stem": "How many milligrams per milliliter are in 2% lidocaine?",
+      "options": [
+        {
+          "id": "A",
+          "text": "2 mg/mL"
+        },
+        {
+          "id": "B",
+          "text": "0.2 mg/mL"
+        },
+        {
+          "id": "C",
+          "text": "200 mg/mL"
+        },
+        {
+          "id": "D",
+          "text": "20 mg/mL"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: 1% is 10 mg/mL, so 2% is 20 mg/mL. A forgets that 1% is 10 mg/mL, not 1 mg/mL. C is a tenfold slip upward. B is a hundredfold slip downward.",
+      "videoTimestamp": "0:45"
+    },
+    {
+      "id": "ep12-calculations-q02",
+      "type": "single_best_answer",
+      "stem": "How many milligrams per milliliter are in a 0.5% solution?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.5 mg/mL"
+        },
+        {
+          "id": "B",
+          "text": "50 mg/mL"
+        },
+        {
+          "id": "C",
+          "text": "5 mg/mL"
+        },
+        {
+          "id": "D",
+          "text": "0.05 mg/mL"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: 1% is 10 mg/mL, so 0.5% is 5 mg/mL. A forgets the factor of 10. B is a tenfold slip upward. D is a hundredfold slip downward.",
+      "videoTimestamp": "0:29"
+    },
+    {
+      "id": "ep12-calculations-q03",
+      "type": "single_best_answer",
+      "stem": "An anaphylaxis order is epinephrine 0.3 mg into the muscle using the 1:1000 strength. What volume is given?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.03 mL"
+        },
+        {
+          "id": "B",
+          "text": "3 mL"
+        },
+        {
+          "id": "C",
+          "text": "0.3 mL"
+        },
+        {
+          "id": "D",
+          "text": "30 mL"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: 1:1000 is 1 mg/mL, so 0.3 mg is 0.3 mL. A is a tenfold underdose. B is a tenfold overdose. D is a hundredfold overdose.",
+      "videoTimestamp": "0:58"
+    },
+    {
+      "id": "ep12-calculations-q04",
+      "type": "single_best_answer",
+      "stem": "Dopamine is ordered at 5 mcg/kg/min for an 80 kg patient. The bag is 1600 mcg/mL. What is the rate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "15 mL/hr"
+        },
+        {
+          "id": "B",
+          "text": "1.5 mL/hr"
+        },
+        {
+          "id": "C",
+          "text": "150 mL/hr"
+        },
+        {
+          "id": "D",
+          "text": "25 mL/hr"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: 5 x 80 = 400 mcg/min, x 60 = 24,000 mcg/hr, divided by 1600 = 15 mL/hr. B and C are tenfold slips. D does not follow from the setup.",
+      "videoTimestamp": "1:07"
+    },
+    {
+      "id": "ep12-calculations-q05",
+      "type": "single_best_answer",
+      "stem": "Dopamine is ordered at 3 mcg/kg/min for a 70 kg patient. The bag is 1600 mcg/mL. What is the rate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "78.8 mL/hr"
+        },
+        {
+          "id": "B",
+          "text": "7.9 mL/hr"
+        },
+        {
+          "id": "C",
+          "text": "0.8 mL/hr"
+        },
+        {
+          "id": "D",
+          "text": "13.1 mL/hr"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: 3 x 70 = 210 mcg/min, x 60 = 12,600 mcg/hr, divided by 1600 = 7.875, about 7.9 mL/hr. A is a tenfold slip upward. C is a tenfold slip downward. D uses 5 mcg/kg/min instead of 3: 5 x 70 = 350 mcg/min, which gives 13.1 mL/hr.",
+      "videoTimestamp": "1:12"
+    },
+    {
+      "id": "ep12-calculations-q06",
+      "type": "single_best_answer",
+      "stem": "A student calculates 150 mL/hr for dopamine 5 mcg/kg/min, 80 kg, with a 1600 mcg/mL bag. What is the best conclusion?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The answer is correct"
+        },
+        {
+          "id": "B",
+          "text": "Round it to 100 mL/hr"
+        },
+        {
+          "id": "C",
+          "text": "It is a twofold error; the correct rate is 75 mL/hr"
+        },
+        {
+          "id": "D",
+          "text": "It is a tenfold error; the correct rate is 15 mL/hr"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: 24,000 mcg/hr divided by 1600 is 15 mL/hr, so 150 is a tenfold slip. A accepts the slip. C does not match the math. B rounds a wrong answer.",
+      "videoTimestamp": "2:26"
+    },
+    {
+      "id": "ep12-calculations-q07",
+      "type": "single_best_answer",
+      "stem": "How many grams of 10% ointment and 2% ointment are mixed to make 400 g of 5% ointment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "150 g of 10% and 250 g of 2%"
+        },
+        {
+          "id": "B",
+          "text": "250 g of 10% and 150 g of 2%"
+        },
+        {
+          "id": "C",
+          "text": "200 g of each"
+        },
+        {
+          "id": "D",
+          "text": "100 g of 10% and 300 g of 2%"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: by alligation, parts of 10% = 5 - 2 = 3 and parts of 2% = 10 - 5 = 5, for 8 parts; 3/8 of 400 = 150 g of 10% and 5/8 of 400 = 250 g of 2%. Check: (150 x 10 + 250 x 2) / 400 = 5%. B swaps the parts and gives 7%. C gives 6%. D gives 4%.",
+      "videoTimestamp": "1:28"
+    },
+    {
+      "id": "ep12-calculations-q08",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about strength expressions are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Percent weight in volume means grams per 100 mL"
+        },
+        {
+          "id": "B",
+          "text": "2% equals 200 mg/mL"
+        },
+        {
+          "id": "C",
+          "text": "1% equals 10 mg/mL"
+        },
+        {
+          "id": "D",
+          "text": "1:1000 means 1 g in 1000 mL"
+        },
+        {
+          "id": "E",
+          "text": "1% equals 1 mg/mL"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "A, C, and D are correct: percent weight in volume is grams per 100 mL, so 1% is 10 mg/mL, and 1:1000 is 1 g in 1000 mL. B is a tenfold slip; 2% is 20 mg/mL. E confuses 1% with the 1:1000 strength, which is 1 mg/mL.",
+      "videoTimestamp": "0:16"
+    },
+    {
+      "id": "ep12-calculations-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which of these equal 1 mg/mL? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "1:1000"
+        },
+        {
+          "id": "B",
+          "text": "1%"
+        },
+        {
+          "id": "C",
+          "text": "0.1%"
+        },
+        {
+          "id": "D",
+          "text": "1 g in 1000 mL"
+        },
+        {
+          "id": "E",
+          "text": "10 mg/mL"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "A, C, and D are correct: 1:1000 is 1 g in 1000 mL, which is 1 mg/mL, and 0.1% is 0.1 g per 100 mL, also 1 mg/mL. B, 1%, is 10 mg/mL. E is 10 mg/mL.",
+      "videoTimestamp": "0:54"
+    },
+    {
+      "id": "ep12-calculations-q10",
+      "type": "single_best_answer",
+      "stem": "When mixing 10% and 2% products by alligation, which final strength is possible?",
+      "options": [
+        {
+          "id": "A",
+          "text": "12%"
+        },
+        {
+          "id": "B",
+          "text": "6%"
+        },
+        {
+          "id": "C",
+          "text": "1%"
+        },
+        {
+          "id": "D",
+          "text": "20%"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the final strength must land between the two starting strengths, and 6% is between 2% and 10%. A, C, and D fall outside that range.",
+      "videoTimestamp": "1:30"
+    }
+  ]
+}

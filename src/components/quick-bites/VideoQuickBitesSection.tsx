@@ -11,11 +11,64 @@ import {
   quickBitePoster,
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
+import {
+  PHARMACY_QUICK_BITE_EPISODES,
+  isPharmacyQuickBitePlayable,
+  nextPlayablePharmacyQuickBite,
+  pharmacyQuickBitePoster,
+} from "@/lib/quick-bites/pharmacy-catalog";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 
-function Poster({ slug }: { slug: string }) {
-  const poster = quickBitePoster(slug);
+type QuickBiteSeries = {
+  id: string;
+  headingId: string;
+  title: string;
+  subtitle: string;
+  note: string | null;
+  lockedMessage: string;
+  groups: { title: string; episodes: QuickBiteEpisode[] }[];
+  poster: (slug: string) => { webp: string; jpg: string };
+  apiBase: string;
+  includeCaptionsTrack: boolean;
+  captionsNote: string;
+  isPlayable: (episode: QuickBiteEpisode, canPlayLibrary: boolean) => boolean;
+  nextEpisode: (slug: string, canPlayLibrary: boolean) => QuickBiteEpisode | null;
+};
+
+const NURSING_SERIES: QuickBiteSeries = {
+  id: "video-quick-bites",
+  headingId: "video-quick-bites-heading",
+  title: "Video Quick Bites",
+  subtitle: "Short chalkboard explainers for the nursing boards.",
+  note: "Lab ranges vary by lab.",
+  lockedMessage: "How the Nursing Boards Work is free. Paid members can watch every episode.",
+  groups: QUICK_BITE_GROUPS,
+  poster: quickBitePoster,
+  apiBase: "/api/quick-bites",
+  includeCaptionsTrack: true,
+  captionsNote: "Captions are available from the player. They match the words already on screen.",
+  isPlayable: isQuickBiteEpisodePlayable,
+  nextEpisode: nextPlayableQuickBite,
+};
+
+const PHARMACY_SERIES: QuickBiteSeries = {
+  id: "video-quick-bites-pharmacy",
+  headingId: "video-quick-bites-pharmacy-heading",
+  title: "Quick Bites: Pharmacy",
+  subtitle: "Short chalkboard explainers for the pharmacy boards.",
+  note: null,
+  lockedMessage: "Paid members can watch every episode.",
+  groups: [{ title: "", episodes: PHARMACY_QUICK_BITE_EPISODES }],
+  poster: pharmacyQuickBitePoster,
+  apiBase: "/api/quick-bites-pharmacy",
+  includeCaptionsTrack: false,
+  captionsNote: "Captions are already on the video.",
+  isPlayable: isPharmacyQuickBitePlayable,
+  nextEpisode: nextPlayablePharmacyQuickBite,
+};
+
+function Poster({ poster }: { poster: { webp: string; jpg: string } }) {
   return (
     <picture>
       <source srcSet={poster.webp} type="image/webp" />
@@ -62,19 +115,22 @@ export function VideoQuickBitesSection({
   canPlay,
   upgradeHref,
   upgradeLabel,
+  series = "nursing",
 }: {
   canPlay: boolean;
   upgradeHref: string;
   upgradeLabel: string;
+  series?: "nursing" | "pharmacy";
 }) {
+  const config = series === "pharmacy" ? PHARMACY_SERIES : NURSING_SERIES;
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const [session, setSession] = useState(0);
   const scrollRequest = useRef(false);
   const active =
-    QUICK_BITE_GROUPS.flatMap((group) => group.episodes).find(
-      (episode) => episode.slug === activeSlug && isQuickBiteEpisodePlayable(episode, canPlay)
-    ) ?? null;
-  const nextEpisode = active ? nextPlayableQuickBite(active.slug, canPlay) : null;
+    config.groups
+      .flatMap((group) => group.episodes)
+      .find((episode) => episode.slug === activeSlug && config.isPlayable(episode, canPlay)) ?? null;
+  const nextEpisode = active ? config.nextEpisode(active.slug, canPlay) : null;
 
   function selectFromLibrary(slug: string) {
     const player = document.getElementById("quick-bites-player");
@@ -105,38 +161,31 @@ export function VideoQuickBitesSection({
 
   return (
     <section
-      id="video-quick-bites"
-      aria-labelledby="video-quick-bites-heading"
+      id={config.id}
+      aria-labelledby={config.headingId}
       className={cn(dbUi.surface, "scroll-mt-28 space-y-5 p-4 [overflow-anchor:none] sm:p-6")}
       style={{ overflowAnchor: "none" }}
     >
       <div className="space-y-2">
         <p className={dbUi.eyebrow}>Quick Bites by AnyExamEasy</p>
         <h2
-          id="video-quick-bites-heading"
+          id={config.headingId}
           className="text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]"
         >
-          Video Quick Bites
+          {config.title}
         </h2>
-        <p className={dbUi.subtitle}>
-          Short chalkboard explainers for the nursing boards.
-        </p>
-        <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
-          Lab ranges vary by lab.
-        </p>
+        <p className={dbUi.subtitle}>{config.subtitle}</p>
+        {config.note ? (
+          <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">{config.note}</p>
+        ) : null}
       </div>
 
       {canPlay ? (
         <p className="text-[13px] text-[var(--color-ink-muted)]">Choose an episode to play.</p>
       ) : (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[14px] leading-relaxed text-[var(--color-ink)]">
-            How the Nursing Boards Work is free. Paid members can watch every episode.
-          </p>
-          <Link
-            href={upgradeHref}
-            className={cn(dbUi.primaryBtn, "min-h-11 w-full sm:w-auto")}
-          >
+          <p className="text-[14px] leading-relaxed text-[var(--color-ink)]">{config.lockedMessage}</p>
+          <Link href={upgradeHref} className={cn(dbUi.primaryBtn, "min-h-11 w-full sm:w-auto")}>
             {upgradeLabel}
           </Link>
         </div>
@@ -152,6 +201,10 @@ export function VideoQuickBitesSection({
           onClose={() => setActiveSlug(null)}
           onNext={nextEpisode ? selectNext : undefined}
           playbackNonce={session}
+          apiBase={config.apiBase}
+          poster={active ? config.poster(active.slug) : undefined}
+          includeCaptionsTrack={config.includeCaptionsTrack}
+          captionsNote={config.captionsNote}
           library={
             <div
               id="quick-bites-library"
@@ -159,15 +212,17 @@ export function VideoQuickBitesSection({
               style={{ overflowAnchor: "none" }}
             >
               <div className="flex w-max items-start gap-3 lg:block lg:w-auto lg:space-y-6">
-                {QUICK_BITE_GROUPS.map((group) => (
-                  <div key={group.title} className="flex gap-3 lg:block">
-                    <h3 className="sr-only text-[13px] font-semibold tracking-[-0.01em] text-[var(--color-ink)] lg:not-sr-only lg:mb-2.5">
-                      {group.title}
-                    </h3>
+                {config.groups.map((group) => (
+                  <div key={group.title || config.id} className="flex gap-3 lg:block">
+                    {group.title ? (
+                      <h3 className="sr-only text-[13px] font-semibold tracking-[-0.01em] text-[var(--color-ink)] lg:not-sr-only lg:mb-2.5">
+                        {group.title}
+                      </h3>
+                    ) : null}
                     <ul className="flex gap-3 lg:grid lg:grid-cols-1">
                       {group.episodes.map((episode) => (
                         <li key={episode.slug} className="w-36 shrink-0 lg:w-auto">
-                          {isQuickBiteEpisodePlayable(episode, canPlay) ? (
+                          {config.isPlayable(episode, canPlay) ? (
                             <button
                               type="button"
                               aria-pressed={active?.slug === episode.slug}
@@ -177,7 +232,7 @@ export function VideoQuickBitesSection({
                               className="flex min-h-11 w-full flex-col overflow-hidden rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)] text-left transition hover:border-[var(--color-accent)]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2"
                             >
                               <span className="relative block">
-                                <Poster slug={episode.slug} />
+                                <Poster poster={config.poster(episode.slug)} />
                                 <span className="absolute bottom-2 left-2 inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-black/70 text-white">
                                   <Play className="h-4 w-4" aria-hidden />
                                 </span>
@@ -187,7 +242,7 @@ export function VideoQuickBitesSection({
                           ) : (
                             <figure className="overflow-hidden rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)]">
                               <div className="relative">
-                                <Poster slug={episode.slug} />
+                                <Poster poster={config.poster(episode.slug)} />
                                 {canPlay ? null : (
                                   <div className="absolute inset-0 flex items-center justify-center bg-black/45">
                                     <span className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-black/70 text-white">

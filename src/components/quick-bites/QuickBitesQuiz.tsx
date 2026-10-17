@@ -58,10 +58,12 @@ export function QuickBitesQuiz({
   slug,
   onRewatch,
   onNext,
+  apiBase = "/api/quick-bites",
 }: {
   slug: string;
   onRewatch: (timestamp: string) => void;
   onNext?: () => void;
+  apiBase?: string;
 }) {
   const [phase, setPhase] = useState<Phase>({ name: "loading" });
   const [questions, setQuestions] = useState<PublicQuestion[]>([]);
@@ -75,7 +77,7 @@ export function QuickBitesQuiz({
     setQuestions([]);
     setSendError(false);
 
-    fetch(`/api/quick-bites/${slug}/quiz`, { signal: controller.signal, cache: "no-store" })
+    fetch(`${apiBase}/${slug}/quiz`, { signal: controller.signal, cache: "no-store" })
       .then(async (response) => {
         if (!active) return;
         if (!response.ok) {
@@ -101,7 +103,7 @@ export function QuickBitesQuiz({
       active = false;
       controller.abort();
     };
-  }, [slug]);
+  }, [apiBase, slug]);
 
   if (phase.name === "loading") {
     return (
@@ -167,7 +169,7 @@ export function QuickBitesQuiz({
     setPending(true);
     setSendError(false);
     try {
-      const response = await fetch(`/api/quick-bites/${slug}/quiz`, {
+      const response = await fetch(`${apiBase}/${slug}/quiz`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         cache: "no-store",

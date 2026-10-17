@@ -1,0 +1,304 @@
+{
+  "episode": "ep15-vaccines",
+  "title": "Vaccines: Live vs Inactivated",
+  "video": "quick-bites-pharm-ep15-vaccines-web.mp4",
+  "questions": [
+    {
+      "id": "ep15-vaccines-q01",
+      "type": "single_best_answer",
+      "stem": "A pregnant patient is not immune to rubella. When should she get the measles, mumps, and rubella (MMR) vaccine?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Now, in the second trimester"
+        },
+        {
+          "id": "B",
+          "text": "Now, at half dose"
+        },
+        {
+          "id": "C",
+          "text": "Never"
+        },
+        {
+          "id": "D",
+          "text": "After delivery, before discharge"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: MMR is a live vaccine, so it is not given in pregnancy; give it after delivery, before discharge. A and B give a live vaccine during pregnancy. C misses the chance to protect her after delivery.",
+      "videoTimestamp": "1:08"
+    },
+    {
+      "id": "ep15-vaccines-q02",
+      "type": "select_all_that_apply",
+      "stem": "Which vaccines are live? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Measles, mumps, and rubella"
+        },
+        {
+          "id": "B",
+          "text": "Shingrix"
+        },
+        {
+          "id": "C",
+          "text": "Varicella (chickenpox)"
+        },
+        {
+          "id": "D",
+          "text": "Nasal flu spray"
+        },
+        {
+          "id": "E",
+          "text": "Yellow fever"
+        },
+        {
+          "id": "F",
+          "text": "Injected flu shot"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, C, D, and E are correct: MMR, varicella, the nasal flu spray, and yellow fever are live. B, Shingrix, is not live. F, the injected flu shot, is inactivated.",
+      "videoTimestamp": "0:35"
+    },
+    {
+      "id": "ep15-vaccines-q03",
+      "type": "single_best_answer",
+      "stem": "A patient on high-dose steroids asks for the nasal flu spray. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give the injected flu shot instead"
+        },
+        {
+          "id": "B",
+          "text": "Give it"
+        },
+        {
+          "id": "C",
+          "text": "Skip flu vaccine this year"
+        },
+        {
+          "id": "D",
+          "text": "Give both"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: the nasal spray is live, so avoid it in immunosuppressed patients; the injected flu shot is inactivated and recommended. B and D give a live vaccine to an immunosuppressed patient. C leaves the patient without protection when a safe vaccine exists.",
+      "videoTimestamp": "2:30"
+    },
+    {
+      "id": "ep15-vaccines-q04",
+      "type": "single_best_answer",
+      "stem": "A patient got the MMR vaccine 14 days ago. Today they get the varicella vaccine. What is the best plan?",
+      "options": [
+        {
+          "id": "A",
+          "text": "No action needed"
+        },
+        {
+          "id": "B",
+          "text": "Repeat the varicella vaccine at least 28 days after it was given"
+        },
+        {
+          "id": "C",
+          "text": "Repeat MMR today"
+        },
+        {
+          "id": "D",
+          "text": "Give varicella again tomorrow"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: two live injected vaccines go on the same day or at least 28 days apart; 14 days is too close, so the second one may not work and is repeated. A ignores the spacing rule. C repeats the wrong vaccine. D is still too close.",
+      "videoTimestamp": "1:16"
+    },
+    {
+      "id": "ep15-vaccines-q05",
+      "type": "single_best_answer",
+      "stem": "After the MMR vaccine, how long should a patient avoid getting pregnant?",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 week"
+        },
+        {
+          "id": "B",
+          "text": "No wait needed"
+        },
+        {
+          "id": "C",
+          "text": "6 months"
+        },
+        {
+          "id": "D",
+          "text": "4 weeks"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: after the vaccine, avoid getting pregnant for 4 weeks. A is too short. C is longer than taught. B ignores the rule for this live vaccine.",
+      "videoTimestamp": "1:11"
+    },
+    {
+      "id": "ep15-vaccines-q06",
+      "type": "single_best_answer",
+      "stem": "Which statement about Shingrix is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It is a live vaccine"
+        },
+        {
+          "id": "B",
+          "text": "It is not live, so it can be used in many immunocompromised adults"
+        },
+        {
+          "id": "C",
+          "text": "It is a single dose"
+        },
+        {
+          "id": "D",
+          "text": "It starts at age 75"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: Shingrix is not live, so it can be used in many immunocompromised adults. A is wrong because it is not live. C is wrong because it is 2 doses. D is wrong because it starts at 50.",
+      "videoTimestamp": "0:45"
+    },
+    {
+      "id": "ep15-vaccines-q07",
+      "type": "single_best_answer",
+      "stem": "A healthy 52-year-old has never had a pneumococcal vaccine. What is recommended?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pneumococcal vaccine now"
+        },
+        {
+          "id": "B",
+          "text": "Wait until age 65"
+        },
+        {
+          "id": "C",
+          "text": "Only if they have lung disease"
+        },
+        {
+          "id": "D",
+          "text": "Not recommended"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: pneumococcal vaccine is for all adults 50 and older. B uses an older age cutoff. C limits it to a risk group, but at 50 and older it is for everyone. D ignores the recommendation.",
+      "videoTimestamp": "1:30"
+    },
+    {
+      "id": "ep15-vaccines-q08",
+      "type": "single_best_answer",
+      "stem": "A healthy 68-year-old with no risk factors asks about the respiratory syncytial virus (RSV) vaccine. What fits the schedule taught?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Routinely recommended at 68"
+        },
+        {
+          "id": "B",
+          "text": "Only for children"
+        },
+        {
+          "id": "C",
+          "text": "Given every year"
+        },
+        {
+          "id": "D",
+          "text": "Recommended at 75, or at 50 to 74 if at higher risk"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: RSV vaccine is for everyone 75 and older and for ages 50 to 74 at higher risk, as one dose. A is wrong because this patient has no risk factors and is under 75. C is wrong because it is one dose. B is wrong because adults are included.",
+      "videoTimestamp": "1:35"
+    },
+    {
+      "id": "ep15-vaccines-q09",
+      "type": "single_best_answer",
+      "stem": "When should the tetanus, diphtheria, and whooping cough booster (Tdap) be given in pregnancy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "In every pregnancy"
+        },
+        {
+          "id": "B",
+          "text": "Only in the first pregnancy"
+        },
+        {
+          "id": "C",
+          "text": "Never in pregnancy"
+        },
+        {
+          "id": "D",
+          "text": "Only after delivery"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: give the booster in every pregnancy. B misses later pregnancies. C and D skip it during pregnancy, when it is recommended.",
+      "videoTimestamp": "1:47"
+    },
+    {
+      "id": "ep15-vaccines-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about live and inactivated vaccines are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Live vaccines are avoided in pregnancy"
+        },
+        {
+          "id": "B",
+          "text": "Live vaccines are avoided in people with weak immune systems"
+        },
+        {
+          "id": "C",
+          "text": "Inactivated vaccines can be given any time relative to other vaccines"
+        },
+        {
+          "id": "D",
+          "text": "Two live vaccines must be 6 months apart"
+        },
+        {
+          "id": "E",
+          "text": "Shingrix is live"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: live vaccines are avoided in pregnancy and weak immune systems, and inactivated vaccines can be given any time. D is wrong because two live vaccines go the same day or at least 28 days apart. E is wrong because Shingrix is not live.",
+      "videoTimestamp": "0:28"
+    }
+  ]
+}

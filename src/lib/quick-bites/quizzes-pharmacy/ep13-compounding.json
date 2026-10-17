@@ -1,0 +1,301 @@
+{
+  "episode": "ep13-compounding",
+  "title": "Compounding Safety: USP 797 vs 800",
+  "video": "quick-bites-pharm-ep13-compounding-web.mp4",
+  "questions": [
+    {
+      "id": "ep13-compounding-q01",
+      "type": "single_best_answer",
+      "stem": "A Category 1 compounded sterile preparation is made in a hood in an unclassified area. Can it get a 4-day beyond-use date?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, at room temperature"
+        },
+        {
+          "id": "B",
+          "text": "Yes, if refrigerated"
+        },
+        {
+          "id": "C",
+          "text": "No; the maximum is 12 hours at room temperature or 24 hours refrigerated"
+        },
+        {
+          "id": "D",
+          "text": "Yes, if frozen"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: Category 1 maxes out at 12 hours at room temperature or 24 hours refrigerated. A and B go beyond those limits. D is wrong because Category 1 has no 4-day frozen option.",
+      "videoTimestamp": "1:10"
+    },
+    {
+      "id": "ep13-compounding-q02",
+      "type": "single_best_answer",
+      "stem": "What is the maximum refrigerated beyond-use date for a Category 1 preparation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "12 hours"
+        },
+        {
+          "id": "B",
+          "text": "10 days"
+        },
+        {
+          "id": "C",
+          "text": "4 days"
+        },
+        {
+          "id": "D",
+          "text": "24 hours"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: Category 1 is up to 24 hours refrigerated. A, 12 hours, is the room-temperature limit. C and B are Category 2 example dates.",
+      "videoTimestamp": "0:41"
+    },
+    {
+      "id": "ep13-compounding-q03",
+      "type": "single_best_answer",
+      "stem": "A Category 2 preparation is made aseptically from sterile ingredients, with no sterility test, and stored in the refrigerator. What is the beyond-use date?",
+      "options": [
+        {
+          "id": "A",
+          "text": "24 hours"
+        },
+        {
+          "id": "B",
+          "text": "4 days"
+        },
+        {
+          "id": "C",
+          "text": "10 days"
+        },
+        {
+          "id": "D",
+          "text": "45 days"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: this common Category 2 example is 4 days at room temperature or 10 days in the fridge. A is the Category 1 refrigerated limit. B is the room-temperature date. D is far longer than the 10-day refrigerated date for this example.",
+      "videoTimestamp": "0:53"
+    },
+    {
+      "id": "ep13-compounding-q04",
+      "type": "single_best_answer",
+      "stem": "Which category allows the longest beyond-use dates?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Category 1"
+        },
+        {
+          "id": "B",
+          "text": "Category 2"
+        },
+        {
+          "id": "C",
+          "text": "Category 3, with extra testing"
+        },
+        {
+          "id": "D",
+          "text": "All categories are the same"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: Category 3 adds extra testing for the longest dates. A has the shortest dates. B is in between. D is wrong because the dates differ by category.",
+      "videoTimestamp": "0:57"
+    },
+    {
+      "id": "ep13-compounding-q05",
+      "type": "single_best_answer",
+      "stem": "What pressure should a room for compounding hazardous drugs have?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Negative"
+        },
+        {
+          "id": "B",
+          "text": "Positive"
+        },
+        {
+          "id": "C",
+          "text": "Neutral"
+        },
+        {
+          "id": "D",
+          "text": "It does not matter"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: negative pressure keeps hazardous drug particles from leaking out into the pharmacy. B, positive pressure, pushes air out and is used to keep germs away from sterile work. C and D do not contain the drug.",
+      "videoTimestamp": "1:29"
+    },
+    {
+      "id": "ep13-compounding-q06",
+      "type": "select_all_that_apply",
+      "stem": "A pharmacist compounds a hazardous chemotherapy drug. Which protections apply? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Positive pressure room"
+        },
+        {
+          "id": "B",
+          "text": "Two pairs of chemotherapy-tested gloves"
+        },
+        {
+          "id": "C",
+          "text": "A protective gown"
+        },
+        {
+          "id": "D",
+          "text": "A negative pressure room"
+        },
+        {
+          "id": "E",
+          "text": "A hood vented to the outside"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "B, C, D, and E are correct: two pairs of chemotherapy-tested gloves, a protective gown, a negative pressure room, and a hood vented to the outside. A is wrong because positive pressure would push drug particles out.",
+      "videoTimestamp": "1:24"
+    },
+    {
+      "id": "ep13-compounding-q07",
+      "type": "single_best_answer",
+      "stem": "Which statement best describes the purpose of USP chapter 800?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It protects the worker from hazardous drugs"
+        },
+        {
+          "id": "B",
+          "text": "It sets beyond-use dates for sterile preparations"
+        },
+        {
+          "id": "C",
+          "text": "It covers nonsterile compounding only"
+        },
+        {
+          "id": "D",
+          "text": "It protects the patient from germs"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: chapter 800 protects the worker. B and D describe chapter 797, which protects the patient and sets sterile beyond-use dates. C is wrong because chapter 800 covers hazardous drugs.",
+      "videoTimestamp": "1:18"
+    },
+    {
+      "id": "ep13-compounding-q08",
+      "type": "single_best_answer",
+      "stem": "Who sets the beyond-use date on a compounded preparation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The manufacturer"
+        },
+        {
+          "id": "B",
+          "text": "The compounder"
+        },
+        {
+          "id": "C",
+          "text": "The patient"
+        },
+        {
+          "id": "D",
+          "text": "The wholesaler"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the beyond-use date is set by the compounder for the preparation they made. A, the manufacturer, sets the expiration date for the original product. C and D do not set dating.",
+      "videoTimestamp": "1:56"
+    },
+    {
+      "id": "ep13-compounding-q09",
+      "type": "single_best_answer",
+      "stem": "Sterile compounding work happens inside which environment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "An ISO Class 5 hood"
+        },
+        {
+          "id": "B",
+          "text": "Any clean countertop"
+        },
+        {
+          "id": "C",
+          "text": "A home kitchen"
+        },
+        {
+          "id": "D",
+          "text": "A standard refrigerator"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: sterile work happens inside a hood with very clean air, International Organization for Standardization Class 5. B, C, and D lack the clean air the chapter requires.",
+      "videoTimestamp": "0:28"
+    },
+    {
+      "id": "ep13-compounding-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about USP chapter 797 are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Category 2 preparations are made in a cleanroom suite"
+        },
+        {
+          "id": "B",
+          "text": "Category 1 maxes out at 12 hours at room temperature"
+        },
+        {
+          "id": "C",
+          "text": "A common Category 2 example lasts 4 days at room temperature"
+        },
+        {
+          "id": "D",
+          "text": "Category 1 can get 10 days in the refrigerator"
+        },
+        {
+          "id": "E",
+          "text": "Chapter 797 protects the patient"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "A, B, C, and E are correct: Category 2 is made in a cleanroom suite, Category 1 maxes out at 12 hours at room temperature, a common Category 2 example lasts 4 days at room temperature, and chapter 797 protects the patient. D is wrong because Category 1 maxes out at 24 hours refrigerated.",
+      "videoTimestamp": "0:37"
+    }
+  ]
+}

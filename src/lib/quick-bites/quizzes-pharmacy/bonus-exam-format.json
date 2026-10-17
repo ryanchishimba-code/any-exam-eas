@@ -1,0 +1,305 @@
+{
+  "episode": "bonus-exam-format",
+  "title": "Bonus: How the Pharmacy Boards Work",
+  "video": "quick-bites-pharm-bonus-exam-format-web.mp4",
+  "questions": [
+    {
+      "id": "bonus-exam-format-q01",
+      "type": "single_best_answer",
+      "stem": "Is the pharmacy board exam adaptive, like the nursing boards?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, it stops early when the computer is sure"
+        },
+        {
+          "id": "B",
+          "text": "No, it is a fixed form; everyone answers all questions"
+        },
+        {
+          "id": "C",
+          "text": "It is adaptive only in the second half"
+        },
+        {
+          "id": "D",
+          "text": "It depends on the state"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the pharmacy board exam is a fixed form, and everyone answers all 225 questions. A describes an adaptive exam. C and D are not how the exam works.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "bonus-exam-format-q02",
+      "type": "single_best_answer",
+      "stem": "How many questions and how much time does the pharmacy board exam have?",
+      "options": [
+        {
+          "id": "A",
+          "text": "150 questions in 5 hours"
+        },
+        {
+          "id": "B",
+          "text": "85 to 150 questions in 5 hours"
+        },
+        {
+          "id": "C",
+          "text": "250 questions in 8 hours"
+        },
+        {
+          "id": "D",
+          "text": "225 questions in 6 hours"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: 225 questions in 6 hours. A and C do not match the published format. B is a variable-length range, but the pharmacy board exam is a fixed 225 questions.",
+      "videoTimestamp": "0:23"
+    },
+    {
+      "id": "bonus-exam-format-q03",
+      "type": "single_best_answer",
+      "stem": "About how long is there for each question?",
+      "options": [
+        {
+          "id": "A",
+          "text": "About 30 seconds"
+        },
+        {
+          "id": "B",
+          "text": "About 1.6 minutes"
+        },
+        {
+          "id": "C",
+          "text": "About 4 minutes"
+        },
+        {
+          "id": "D",
+          "text": "About 6 minutes"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: 360 minutes divided by 225 questions is 1.6 minutes, about one and a half minutes each. A is far too short. C and D are far too long for 225 questions in 6 hours.",
+      "videoTimestamp": "1:51"
+    },
+    {
+      "id": "bonus-exam-format-q04",
+      "type": "single_best_answer",
+      "stem": "Which statement about exam attempts is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Unlimited attempts"
+        },
+        {
+          "id": "B",
+          "text": "3 attempts total"
+        },
+        {
+          "id": "C",
+          "text": "1 attempt per year"
+        },
+        {
+          "id": "D",
+          "text": "5 attempts total, with no more than 3 in a 12-month period"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: candidates are allowed 5 attempts, and the bulletin limits attempts to 3 in a 12-month period. A is wrong because attempts are limited. C and B do not match the published limits.",
+      "videoTimestamp": "0:46"
+    },
+    {
+      "id": "bonus-exam-format-q05",
+      "type": "single_best_answer",
+      "stem": "How are pharmacy board results reported?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A percent score"
+        },
+        {
+          "id": "B",
+          "text": "A percentile rank"
+        },
+        {
+          "id": "C",
+          "text": "Pass or fail"
+        },
+        {
+          "id": "D",
+          "text": "A letter grade"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: results are pass or fail. A, B, and D are not how results are reported.",
+      "videoTimestamp": "0:27"
+    },
+    {
+      "id": "bonus-exam-format-q06",
+      "type": "single_best_answer",
+      "stem": "Which statement about the law exam is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It is separate and focuses on your state's pharmacy law"
+        },
+        {
+          "id": "B",
+          "text": "It is part of the clinical board exam"
+        },
+        {
+          "id": "C",
+          "text": "It is national with no state content"
+        },
+        {
+          "id": "D",
+          "text": "It covers calculations only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: the law exam is separate from the clinical board exam and focuses on your state's pharmacy law; your state board decides which law exam you take. B is wrong because it is a separate exam. C describes the clinical board exam. D describes part of the clinical board exam's content.",
+      "videoTimestamp": "1:15"
+    },
+    {
+      "id": "bonus-exam-format-q07",
+      "type": "select_all_that_apply",
+      "stem": "Which exam-day steps are recommended? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Make sure your identification matches your registration name"
+        },
+        {
+          "id": "B",
+          "text": "Bring study notes to review during breaks inside the exam"
+        },
+        {
+          "id": "C",
+          "text": "Arrive early"
+        },
+        {
+          "id": "D",
+          "text": "Use the optional breaks to reset"
+        },
+        {
+          "id": "E",
+          "text": "Write units on every calculation step"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, C, D, and E are correct: matching identification, arriving early, using the optional breaks, and writing units on every calculation step. B is wrong because study notes and other study materials are not allowed in the exam, including during breaks.",
+      "videoTimestamp": "1:20"
+    },
+    {
+      "id": "bonus-exam-format-q08",
+      "type": "single_best_answer",
+      "stem": "One hard calculation has taken 10 minutes. What is the best strategy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Keep working until it is solved"
+        },
+        {
+          "id": "B",
+          "text": "Make your best answer and keep moving"
+        },
+        {
+          "id": "C",
+          "text": "Skip it and come back at the end"
+        },
+        {
+          "id": "D",
+          "text": "Leave it blank"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: don't let one hard calculation eat 10 minutes; make your best answer and keep moving. A uses up time needed for later questions. C is wrong because the exam does not let you skip a question and come back to it later. D wastes the chance to earn the point.",
+      "videoTimestamp": "1:05"
+    },
+    {
+      "id": "bonus-exam-format-q09",
+      "type": "single_best_answer",
+      "stem": "A candidate answers questions well early on. Will the exam stop early?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, at 85 questions"
+        },
+        {
+          "id": "B",
+          "text": "Yes, once a passing score is reached"
+        },
+        {
+          "id": "C",
+          "text": "No, it does not stop early"
+        },
+        {
+          "id": "D",
+          "text": "Only if time runs out"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: the exam does not stop early; everyone answers all 225 questions. A and B describe an adaptive exam. D is wrong because finishing early is not about running out of time.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "bonus-exam-format-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about the pharmacy board exam format are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "225 questions"
+        },
+        {
+          "id": "B",
+          "text": "6 hours"
+        },
+        {
+          "id": "C",
+          "text": "Fixed form"
+        },
+        {
+          "id": "D",
+          "text": "Adaptive"
+        },
+        {
+          "id": "E",
+          "text": "Pass or fail results"
+        },
+        {
+          "id": "F",
+          "text": "Results reported as a percentile"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "A, B, C, and E are correct: 225 questions, 6 hours, a fixed form, and pass or fail results. D is wrong because the exam is not adaptive. F is wrong because results are pass or fail, not a percentile.",
+      "videoTimestamp": "0:23"
+    }
+  ]
+}

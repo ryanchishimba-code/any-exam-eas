@@ -1,0 +1,305 @@
+{
+  "episode": "ep10-cyp-interactions",
+  "title": "Drug Interactions: CYP Inhibitors vs Inducers",
+  "video": "quick-bites-pharm-ep10-cyp-interactions-web.mp4",
+  "questions": [
+    {
+      "id": "ep10-cyp-interactions-q01",
+      "type": "single_best_answer",
+      "stem": "A patient stable on warfarin starts rifampin. What dose change will likely be needed?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Warfarin dose up"
+        },
+        {
+          "id": "B",
+          "text": "Warfarin dose down"
+        },
+        {
+          "id": "C",
+          "text": "No change"
+        },
+        {
+          "id": "D",
+          "text": "Stop warfarin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: rifampin is an inducer, so warfarin levels fall and the clotting test drops; monitor closely and raise the dose. B is what an inhibitor would need. C misses a strong interaction. D removes needed protection from clots.",
+      "videoTimestamp": "1:18"
+    },
+    {
+      "id": "ep10-cyp-interactions-q02",
+      "type": "single_best_answer",
+      "stem": "The same patient later stops rifampin. What happens to the warfarin dose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lower it again"
+        },
+        {
+          "id": "B",
+          "text": "Raise it further"
+        },
+        {
+          "id": "C",
+          "text": "No change"
+        },
+        {
+          "id": "D",
+          "text": "Switch to a twice-daily schedule"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: when rifampin stops, lower the warfarin dose again, because the extra enzyme wears off and warfarin levels rise. B would push levels even higher and raise bleeding risk. C ignores the loss of induction. D changes timing but not the amount.",
+      "videoTimestamp": "1:26"
+    },
+    {
+      "id": "ep10-cyp-interactions-q03",
+      "type": "select_all_that_apply",
+      "stem": "Which of these can push up the level of another drug cleared by liver enzymes? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rifampin"
+        },
+        {
+          "id": "B",
+          "text": "Clarithromycin"
+        },
+        {
+          "id": "C",
+          "text": "Itraconazole"
+        },
+        {
+          "id": "D",
+          "text": "St John's wort"
+        },
+        {
+          "id": "E",
+          "text": "Ketoconazole"
+        },
+        {
+          "id": "F",
+          "text": "Grapefruit juice"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "E",
+        "F"
+      ],
+      "explanation": "B, C, E, and F are correct: clarithromycin, itraconazole, ketoconazole, and grapefruit juice inhibit the enzyme, so other drugs pile up. A, rifampin, and D, Saint John's wort, are inducers that push levels down.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "ep10-cyp-interactions-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which are classic strong inducers? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Clarithromycin"
+        },
+        {
+          "id": "B",
+          "text": "Carbamazepine"
+        },
+        {
+          "id": "C",
+          "text": "Phenytoin"
+        },
+        {
+          "id": "D",
+          "text": "St John's wort"
+        },
+        {
+          "id": "E",
+          "text": "Rifampin"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "B, C, D, and E are correct: rifampin, carbamazepine, phenytoin, and Saint John's wort are strong inducers. A, clarithromycin, is a strong inhibitor.",
+      "videoTimestamp": "1:00"
+    },
+    {
+      "id": "ep10-cyp-interactions-q05",
+      "type": "single_best_answer",
+      "stem": "A patient on simvastatin is prescribed clarithromycin. What is the main risk?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Statin failure"
+        },
+        {
+          "id": "B",
+          "text": "Low blood sugar"
+        },
+        {
+          "id": "C",
+          "text": "Clotting"
+        },
+        {
+          "id": "D",
+          "text": "Muscle breakdown"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: clarithromycin is a strong inhibitor, so simvastatin piles up and raises the risk of muscle breakdown. A, statin failure, is the risk with an inducer, not an inhibitor. B and C are not effects of a raised simvastatin level.",
+      "videoTimestamp": "2:23"
+    },
+    {
+      "id": "ep10-cyp-interactions-q06",
+      "type": "single_best_answer",
+      "stem": "Rifampin is started today in a patient on a drug cleared by liver enzymes. When is the full drop in that drug's level expected?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Within an hour"
+        },
+        {
+          "id": "B",
+          "text": "About 1 to 2 weeks"
+        },
+        {
+          "id": "C",
+          "text": "The same day"
+        },
+        {
+          "id": "D",
+          "text": "Never; inducers act only on the first dose"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: induction is slow, often about 1 to 2 weeks to build up and to wear off. A and C describe a much faster change; even inhibitors take days. D is wrong because induction builds over time and lasts while the inducer is taken.",
+      "videoTimestamp": "0:56"
+    },
+    {
+      "id": "ep10-cyp-interactions-q07",
+      "type": "single_best_answer",
+      "stem": "A patient taking a combined birth control pill starts rifampin. What is the main concern?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Birth control failure"
+        },
+        {
+          "id": "B",
+          "text": "Birth control toxicity"
+        },
+        {
+          "id": "C",
+          "text": "Bleeding"
+        },
+        {
+          "id": "D",
+          "text": "No concern"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: an inducer pushes the other drug down, with a risk of drug failure, like a failed birth control pill. B is the risk with an inhibitor. C is not the effect taught for this pair. D misses a known interaction.",
+      "videoTimestamp": "1:38"
+    },
+    {
+      "id": "ep10-cyp-interactions-q08",
+      "type": "single_best_answer",
+      "stem": "A patient takes ciprofloxacin and an antacid at the same time each morning. What is the best advice?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Take them together with milk"
+        },
+        {
+          "id": "B",
+          "text": "No change needed"
+        },
+        {
+          "id": "C",
+          "text": "Double the ciprofloxacin dose"
+        },
+        {
+          "id": "D",
+          "text": "Separate the doses by several hours"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: calcium, magnesium, iron, and antacids bind fluoroquinolones in the gut, so separate the doses by several hours. A adds calcium, which also binds ciprofloxacin. C raises the dose instead of fixing the binding. B lets the binding continue.",
+      "videoTimestamp": "1:57"
+    },
+    {
+      "id": "ep10-cyp-interactions-q09",
+      "type": "single_best_answer",
+      "stem": "A patient takes levothyroxine and an iron tablet together every morning. Why is this a problem?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Iron binds levothyroxine, so less is absorbed"
+        },
+        {
+          "id": "B",
+          "text": "Iron induces liver enzymes"
+        },
+        {
+          "id": "C",
+          "text": "Levothyroxine blocks iron's enzyme"
+        },
+        {
+          "id": "D",
+          "text": "There is no problem"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: iron binds levothyroxine in the gut, so less gets absorbed. B and C describe enzyme effects, but this interaction is binding, not enzymes. D misses the interaction.",
+      "videoTimestamp": "1:47"
+    },
+    {
+      "id": "ep10-cyp-interactions-q10",
+      "type": "single_best_answer",
+      "stem": "A strong enzyme inhibitor is added to a patient's regimen. What is the main risk for the other drug?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Level falls and the drug fails"
+        },
+        {
+          "id": "B",
+          "text": "Level rises and toxicity risk goes up"
+        },
+        {
+          "id": "C",
+          "text": "Nothing changes for 1 to 2 weeks"
+        },
+        {
+          "id": "D",
+          "text": "The drug binds in the gut"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: an inhibitor pushes the other drug level up, fast, with toxicity risk. A describes an inducer. C describes the slow timing of induction, while inhibitors act within days. D describes binding with cations, a different interaction.",
+      "videoTimestamp": "1:30"
+    }
+  ]
+}

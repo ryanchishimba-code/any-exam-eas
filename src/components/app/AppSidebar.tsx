@@ -96,6 +96,13 @@ const NAV_SECTIONS: NavSection[] = [
         exams: ["nclex"],
       },
       {
+        id: "quick-bites-pharmacy",
+        href: `${ROUTES.dashboard}#video-quick-bites-pharmacy`,
+        label: "Quick Bites: Pharmacy",
+        icon: Clapperboard,
+        exams: ["naplex"],
+      },
+      {
         id: "high-yield",
         href: ROUTES.highYieldTopics,
         label: "High-Yield Topics",

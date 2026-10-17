@@ -1,0 +1,301 @@
+{
+  "episode": "ep16-beers",
+  "title": "Older Adults: Beers Criteria",
+  "video": "quick-bites-pharm-ep16-beers-web.mp4",
+  "questions": [
+    {
+      "id": "ep16-beers-q01",
+      "type": "single_best_answer",
+      "stem": "An 80-year-old cannot sleep and asks about diphenhydramine. What is the best advice?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Take diphenhydramine nightly"
+        },
+        {
+          "id": "B",
+          "text": "Avoid it; start with sleep habits and behavioral therapy"
+        },
+        {
+          "id": "C",
+          "text": "Take double the dose"
+        },
+        {
+          "id": "D",
+          "text": "Use hydroxyzine instead"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: diphenhydramine is strongly anticholinergic, so avoid it and start with sleep habits and behavioral therapy. A and C use a drug to avoid. D, hydroxyzine, is also a strong anticholinergic to avoid.",
+      "videoTimestamp": "1:05"
+    },
+    {
+      "id": "ep16-beers-q02",
+      "type": "select_all_that_apply",
+      "stem": "Which effects do strong anticholinergic drugs cause in older adults? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Confusion"
+        },
+        {
+          "id": "B",
+          "text": "Constipation"
+        },
+        {
+          "id": "C",
+          "text": "Trouble urinating"
+        },
+        {
+          "id": "D",
+          "text": "Falls"
+        },
+        {
+          "id": "E",
+          "text": "Diarrhea"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: confusion, constipation, trouble urinating, and falls. E is wrong because anticholinergics slow the gut and cause constipation, not diarrhea.",
+      "videoTimestamp": "0:23"
+    },
+    {
+      "id": "ep16-beers-q03",
+      "type": "single_best_answer",
+      "stem": "An 82-year-old asks for zolpidem for sleep. What is the main concern?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Falls, fractures, and confusion"
+        },
+        {
+          "id": "B",
+          "text": "Low blood sugar"
+        },
+        {
+          "id": "C",
+          "text": "Weight loss"
+        },
+        {
+          "id": "D",
+          "text": "Thrush"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: sleep drugs like zolpidem raise the risk of falls, fractures, confusion, and car crashes. B is linked to sulfonylureas. C is not the risk taught for sedatives. D is a side effect of inhaled steroids.",
+      "videoTimestamp": "0:42"
+    },
+    {
+      "id": "ep16-beers-q04",
+      "type": "single_best_answer",
+      "stem": "A 78-year-old has type 2 diabetes. Which drug do the Beers Criteria list to avoid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Metformin"
+        },
+        {
+          "id": "B",
+          "text": "Linagliptin"
+        },
+        {
+          "id": "C",
+          "text": "Empagliflozin"
+        },
+        {
+          "id": "D",
+          "text": "Glyburide"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: glyburide is a long-acting sulfonylurea with a high risk of prolonged low blood sugar. A, B, and C are not sulfonylureas.",
+      "videoTimestamp": "1:57"
+    },
+    {
+      "id": "ep16-beers-q05",
+      "type": "single_best_answer",
+      "stem": "A sulfonylurea is truly needed for an older adult. Which choice is preferred?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Glyburide"
+        },
+        {
+          "id": "B",
+          "text": "The longest-acting option"
+        },
+        {
+          "id": "C",
+          "text": "Two sulfonylureas together"
+        },
+        {
+          "id": "D",
+          "text": "Glipizide"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: if one is needed, prefer a short-acting sulfonylurea like glipizide. A, glyburide, is long-acting and should be avoided. C doubles the low-sugar risk. B is the opposite of what is preferred.",
+      "videoTimestamp": "1:17"
+    },
+    {
+      "id": "ep16-beers-q06",
+      "type": "single_best_answer",
+      "stem": "A 79-year-old has taken a proton pump inhibitor daily for 2 years with no clear reason. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue indefinitely"
+        },
+        {
+          "id": "B",
+          "text": "Double the dose"
+        },
+        {
+          "id": "C",
+          "text": "Review it: avoid regular use past 8 weeks without a strong reason"
+        },
+        {
+          "id": "D",
+          "text": "Add a second acid reducer"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: avoid regular proton pump inhibitor use past 8 weeks unless there is a strong reason. A keeps a drug to avoid without a reason. B and D add more acid suppression without a reason.",
+      "videoTimestamp": "1:24"
+    },
+    {
+      "id": "ep16-beers-q07",
+      "type": "single_best_answer",
+      "stem": "A healthy 76-year-old with no heart disease asks about starting daily aspirin to prevent a first heart attack. What is the best advice?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start it now"
+        },
+        {
+          "id": "B",
+          "text": "Do not start it; bleeding risk outweighs benefit"
+        },
+        {
+          "id": "C",
+          "text": "Start it at double dose"
+        },
+        {
+          "id": "D",
+          "text": "Start it only with ibuprofen"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: do not start aspirin to prevent a first heart attack or stroke in older adults; bleeding risk outweighs benefit. A and C start it anyway. D adds a long-term anti-inflammatory pain reliever, which also raises bleeding risk.",
+      "videoTimestamp": "1:37"
+    },
+    {
+      "id": "ep16-beers-q08",
+      "type": "single_best_answer",
+      "stem": "An 80-year-old takes aspirin after a heart attack 3 years ago. Should it be stopped because of the Beers Criteria?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, all older adults should stop aspirin"
+        },
+        {
+          "id": "B",
+          "text": "Yes, at age 80 automatically"
+        },
+        {
+          "id": "C",
+          "text": "Yes, switch to ibuprofen"
+        },
+        {
+          "id": "D",
+          "text": "No, aspirin is still used after a heart attack or stroke"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: if they already had a heart attack or stroke, aspirin is still used. A and B apply the first-event prevention rule to the wrong patient. C swaps to a long-term anti-inflammatory pain reliever, which raises stomach bleeding and kidney injury risk.",
+      "videoTimestamp": "1:45"
+    },
+    {
+      "id": "ep16-beers-q09",
+      "type": "single_best_answer",
+      "stem": "An older adult takes diphenhydramine for seasonal allergies. Which swap is best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Loratadine"
+        },
+        {
+          "id": "B",
+          "text": "Hydroxyzine"
+        },
+        {
+          "id": "C",
+          "text": "Zolpidem"
+        },
+        {
+          "id": "D",
+          "text": "Glyburide"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: swap diphenhydramine for a non-sedating antihistamine like loratadine or cetirizine. B is another strong anticholinergic. C is a sleep drug to avoid. D is a diabetes drug.",
+      "videoTimestamp": "1:50"
+    },
+    {
+      "id": "ep16-beers-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which medicines are on the Beers avoid list for older adults? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Long-term ibuprofen"
+        },
+        {
+          "id": "B",
+          "text": "Diphenhydramine for sleep"
+        },
+        {
+          "id": "C",
+          "text": "Zolpidem"
+        },
+        {
+          "id": "D",
+          "text": "Loratadine for allergies"
+        },
+        {
+          "id": "E",
+          "text": "Glyburide"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "A, B, C, and E are correct: long-term anti-inflammatory pain relievers, diphenhydramine, sleep drugs like zolpidem, and glyburide. D, loratadine, is the safer non-sedating swap.",
+      "videoTimestamp": "2:33"
+    }
+  ]
+}

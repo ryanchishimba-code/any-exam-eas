@@ -81,6 +81,13 @@ describe("Study Guide in Study Tools", () => {
     cleanup();
     renderFor("naplex");
     expect(screen.queryByRole("link", { name: "Video Quick Bites" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Quick Bites: Pharmacy" })).toHaveAttribute(
+      "href",
+      "/dashboard#video-quick-bites-pharmacy"
+    );
+    cleanup();
+    renderFor("nclex");
+    expect(screen.queryByRole("link", { name: "Quick Bites: Pharmacy" })).not.toBeInTheDocument();
   });
 
   it("still shows for an NCLEX learner and points at the NCLEX book", () => {

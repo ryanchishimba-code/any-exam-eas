@@ -24,6 +24,10 @@ export function QuickBitesPlayer({
   onNext,
   playbackNonce = 0,
   library,
+  apiBase = "/api/quick-bites",
+  poster: posterOverride,
+  includeCaptionsTrack = true,
+  captionsNote = "Captions are available from the player. They match the words already on screen.",
 }: {
   episode: QuickBiteEpisode | null;
   onClose: () => void;
@@ -31,6 +35,10 @@ export function QuickBitesPlayer({
   /** Changes when the student picks an episode. Resets the quiz without remounting the page. */
   playbackNonce?: number;
   library?: ReactNode;
+  apiBase?: string;
+  poster?: { webp: string; jpg: string };
+  includeCaptionsTrack?: boolean;
+  captionsNote?: string;
 }) {
   const slug = episode ? (getQuickBiteBySlug(episode.slug) ?? episode).slug : "";
   const [media, setMedia] = useState<{ slug: string; state: LoadState }>({
@@ -67,7 +75,7 @@ export function QuickBitesPlayer({
     };
   }, [quizOpen]);
   const known = episode ? (getQuickBiteBySlug(episode.slug) ?? episode) : null;
-  const poster = known ? quickBitePoster(known.slug) : null;
+  const poster = known ? (posterOverride ?? quickBitePoster(known.slug)) : null;
 
   function rewatch(timestamp: string) {
     const video = videoRef.current;
@@ -91,7 +99,7 @@ export function QuickBitesPlayer({
     const controller = new AbortController();
     let active = true;
 
-    fetch(`/api/quick-bites/${slug}/media`, { signal: controller.signal })
+    fetch(`${apiBase}/${slug}/media`, { signal: controller.signal })
       .then(async (response) => {
         if (!active) return;
         if (response.status === 401 || response.status === 403) {
@@ -123,7 +131,7 @@ export function QuickBitesPlayer({
       active = false;
       controller.abort();
     };
-  }, [slug]);
+  }, [apiBase, slug]);
 
   useEffect(() => {
     if (!known || state.status !== "ready") return;
@@ -208,7 +216,9 @@ export function QuickBitesPlayer({
               aria-label={`${known.title} video`}
               className="absolute inset-0 h-full w-full bg-black object-contain"
             >
-              <track kind="captions" src={state.captionsUrl} srcLang="en" label="English" />
+              {includeCaptionsTrack ? (
+                <track kind="captions" src={state.captionsUrl} srcLang="en" label="English" />
+              ) : null}
             </video>
           ) : (
             <div className="absolute inset-0">
@@ -237,7 +247,7 @@ export function QuickBitesPlayer({
           )}
         </div>
         <p className="mt-3 h-16 overflow-hidden text-[12px] leading-8 text-[var(--color-ink-muted)]">
-          {known ? "Captions are available from the player. They match the words already on screen." : "\u00a0"}
+          {known ? captionsNote : "\u00a0"}
         </p>
       </div>
 
@@ -251,7 +261,7 @@ export function QuickBitesPlayer({
       >
         <div className="h-full overflow-y-auto p-4 [scrollbar-gutter:stable]">
           {known && quizOpen ? (
-            <QuickBitesQuiz slug={known.slug} onRewatch={rewatch} onNext={onNext} />
+            <QuickBitesQuiz slug={known.slug} apiBase={apiBase} onRewatch={rewatch} onNext={onNext} />
           ) : (
             <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
               {known
