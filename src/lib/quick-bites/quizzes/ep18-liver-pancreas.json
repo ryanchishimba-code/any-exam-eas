@@ -1,0 +1,305 @@
+{
+  "episode": "ep18-liver-pancreas",
+  "title": "Liver + Pancreas: Cirrhosis vs Pancreatitis",
+  "video": "quick-bites-ep18-liver-pancreas-web.mp4",
+  "questions": [
+    {
+      "id": "ep18-liver-pancreas-q01",
+      "type": "single_best_answer",
+      "stem": "A client with cirrhosis is confused, and the hands flap when held out. Which medicine helps?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lactulose"
+        },
+        {
+          "id": "B",
+          "text": "A sedative"
+        },
+        {
+          "id": "C",
+          "text": "A high-protein shake"
+        },
+        {
+          "id": "D",
+          "text": "An opioid"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: lactulose pulls ammonia out through the stool. B: sedatives should be avoided. C is food, not a medicine, and doesn't clear ammonia. D is not taught for this and can add sedation.",
+      "videoTimestamp": "0:44"
+    },
+    {
+      "id": "ep18-liver-pancreas-q02",
+      "type": "single_best_answer",
+      "stem": "A client with cirrhosis takes lactulose. What is the stool goal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "One hard stool every two days"
+        },
+        {
+          "id": "B",
+          "text": "Two to three soft stools a day"
+        },
+        {
+          "id": "C",
+          "text": "Six or more watery stools a day"
+        },
+        {
+          "id": "D",
+          "text": "No stools until confusion clears"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the goal is two to three soft stools a day. A and D are too few, so ammonia builds. C is too many and causes dehydration.",
+      "videoTimestamp": "0:48"
+    },
+    {
+      "id": "ep18-liver-pancreas-q03",
+      "type": "single_best_answer",
+      "stem": "Which plan fits a client with cirrhosis and confusion from ammonia?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Restrict protein and give a sedative at night"
+        },
+        {
+          "id": "B",
+          "text": "Keep protein in the diet and avoid sedatives"
+        },
+        {
+          "id": "C",
+          "text": "Hold lactulose while the client is confused"
+        },
+        {
+          "id": "D",
+          "text": "Restrict all fluids"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: don't restrict protein, and avoid sedatives. A does both things the video says not to do. C stops the medicine that clears ammonia. D is not taught and risks dehydration.",
+      "videoTimestamp": "0:51"
+    },
+    {
+      "id": "ep18-liver-pancreas-q04",
+      "type": "select_all_that_apply",
+      "stem": "A scarred liver can't do its four jobs. Which problems result? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Confusion, from ammonia that isn't cleared"
+        },
+        {
+          "id": "B",
+          "text": "Bleeding, from too few clotting factors"
+        },
+        {
+          "id": "C",
+          "text": "Fluid in the belly, from low albumin and backed-up pressure"
+        },
+        {
+          "id": "D",
+          "text": "Yellow skin, from bilirubin that isn't cleared"
+        },
+        {
+          "id": "E",
+          "text": "Low calcium, from an inflamed pancreas"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: the four jobs are clearing ammonia, making clotting factors, making albumin, and clearing bilirubin. E is a pancreatitis problem, not a liver job.",
+      "videoTimestamp": "0:15"
+    },
+    {
+      "id": "ep18-liver-pancreas-q05",
+      "type": "single_best_answer",
+      "stem": "A client with ascites is about to have a paracentesis. What should the nurse have the client do first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Drink two glasses of water"
+        },
+        {
+          "id": "B",
+          "text": "Empty the bladder"
+        },
+        {
+          "id": "C",
+          "text": "Lie flat with legs raised"
+        },
+        {
+          "id": "D",
+          "text": "Walk for ten minutes"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: have the client empty their bladder, and check vital signs before and after. A, C, and D are not part of the preparation taught.",
+      "videoTimestamp": "1:33"
+    },
+    {
+      "id": "ep18-liver-pancreas-q06",
+      "type": "single_best_answer",
+      "stem": "A client with cirrhosis vomits blood. What does this most likely mean?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Expected effect of lactulose"
+        },
+        {
+          "id": "B",
+          "text": "Possible bleeding varices, an emergency"
+        },
+        {
+          "id": "C",
+          "text": "Mild gastritis to recheck tomorrow"
+        },
+        {
+          "id": "D",
+          "text": "Low albumin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the liver can't clot, so vomiting blood may mean bleeding varices, swollen veins in the esophagus. That's an emergency. A and C miss the danger. D causes ascites, not vomiting blood.",
+      "videoTimestamp": "1:46"
+    },
+    {
+      "id": "ep18-liver-pancreas-q07",
+      "type": "single_best_answer",
+      "stem": "Which plan fits a client with fluid in the belly from cirrhosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Daily weight, belly measurement, and about 2 grams of sodium a day"
+        },
+        {
+          "id": "B",
+          "text": "Weekly weight and a high-sodium diet"
+        },
+        {
+          "id": "C",
+          "text": "Restrict protein and encourage salt"
+        },
+        {
+          "id": "D",
+          "text": "Measure belly size only when short of breath"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: a daily weight and belly measurement, plus a low-sodium diet, about 2 grams a day. B and C add sodium. D checks too rarely.",
+      "videoTimestamp": "1:27"
+    },
+    {
+      "id": "ep18-liver-pancreas-q08",
+      "type": "single_best_answer",
+      "stem": "Which finding fits acute pancreatitis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Flapping hands and confusion"
+        },
+        {
+          "id": "B",
+          "text": "Severe upper belly pain that bores through to the back, with lipase 3 or more times normal"
+        },
+        {
+          "id": "C",
+          "text": "Yellow skin with a slowly growing belly over months"
+        },
+        {
+          "id": "D",
+          "text": "A liver scarred slowly over many years"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: severe upper belly pain through to the back, and lipase three or more times normal. A, C, and D describe cirrhosis, which is chronic; pancreatitis is sudden.",
+      "videoTimestamp": "1:59"
+    },
+    {
+      "id": "ep18-liver-pancreas-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which are part of care for acute pancreatitis? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fluids into a vein, often lactated Ringer's"
+        },
+        {
+          "id": "B",
+          "text": "Pain control"
+        },
+        {
+          "id": "C",
+          "text": "A calcium check"
+        },
+        {
+          "id": "D",
+          "text": "Nothing by mouth at first, while vomiting or in severe pain"
+        },
+        {
+          "id": "E",
+          "text": "Restrict fluids to protect the heart"
+        },
+        {
+          "id": "F",
+          "text": "A high-fat meal right away"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: fluids, pain control, a calcium check because calcium can drop, and nothing by mouth at first. E is wrong: big fluid shifts can cause shock early. F is wrong: mild cases start low-fat eating as tolerated.",
+      "videoTimestamp": "2:04"
+    },
+    {
+      "id": "ep18-liver-pancreas-q10",
+      "type": "single_best_answer",
+      "stem": "A client with cirrhosis on lactulose has had six watery stools today and feels dizzy. What is the priority?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give the next dose on time"
+        },
+        {
+          "id": "B",
+          "text": "Hold and clarify the next dose, check fluid status, and notify the provider"
+        },
+        {
+          "id": "C",
+          "text": "Start a low-protein diet"
+        },
+        {
+          "id": "D",
+          "text": "Double the next dose"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: six watery stools is too much; dehydration and low potassium can make confusion worse, so hold, clarify, and notify. A and D give more of what caused the problem. C: the video says don't restrict protein.",
+      "videoTimestamp": "3:06"
+    }
+  ]
+}

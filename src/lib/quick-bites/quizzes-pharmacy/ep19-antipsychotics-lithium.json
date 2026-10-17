@@ -1,0 +1,279 @@
+{
+  "episode": "ep19-antipsychotics-lithium",
+  "title": "Antipsychotics + Lithium",
+  "video": "quick-bites-pharm-ep19-antipsychotics-lithium-web.mp4",
+  "questions": [
+    {
+      "id": "ep19-antipsychotics-lithium-q01",
+      "type": "single_best_answer",
+      "stem": "A patient stable on lithium starts daily ibuprofen and develops a coarse tremor and diarrhea. Why?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ibuprofen lowers the lithium level"
+        },
+        {
+          "id": "B",
+          "text": "Ibuprofen raised the lithium level"
+        },
+        {
+          "id": "C",
+          "text": "This is tardive dyskinesia"
+        },
+        {
+          "id": "D",
+          "text": "This is a normal lithium start-up effect"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: daily ibuprofen raised the lithium level, causing early toxicity. A is the opposite. C is a long-term antipsychotic effect. D ignores the new drug.",
+      "videoTimestamp": "2:41"
+    },
+    {
+      "id": "ep19-antipsychotics-lithium-q02",
+      "type": "select_all_that_apply",
+      "stem": "Which raise lithium levels? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Thiazide diuretics"
+        },
+        {
+          "id": "B",
+          "text": "Dehydration"
+        },
+        {
+          "id": "C",
+          "text": "Drinking extra water with normal salt intake"
+        },
+        {
+          "id": "D",
+          "text": "Ibuprofen and other anti-inflammatory pain relievers"
+        },
+        {
+          "id": "E",
+          "text": "Ace inhibitors"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "explanation": "A, B, D, and E are correct: anything that makes the kidneys hold on to lithium raises the level. C is not taught as raising lithium.",
+      "videoTimestamp": "2:12"
+    },
+    {
+      "id": "ep19-antipsychotics-lithium-q03",
+      "type": "single_best_answer",
+      "stem": "A lithium patient starts hydrochlorothiazide. What happens to the lithium level?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It goes down"
+        },
+        {
+          "id": "B",
+          "text": "No change"
+        },
+        {
+          "id": "C",
+          "text": "It becomes impossible to measure"
+        },
+        {
+          "id": "D",
+          "text": "It goes up"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: the kidneys hold on to more lithium, so the level goes up. A and B are wrong for a thiazide. C is not a real effect.",
+      "videoTimestamp": "2:36"
+    },
+    {
+      "id": "ep19-antipsychotics-lithium-q04",
+      "type": "single_best_answer",
+      "stem": "Shortly after starting haloperidol, a patient has a sudden spasm of the neck. What treatment is taught?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Valbenazine"
+        },
+        {
+          "id": "B",
+          "text": "Diphenhydramine or benztropine"
+        },
+        {
+          "id": "C",
+          "text": "Clozapine"
+        },
+        {
+          "id": "D",
+          "text": "Lithium"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: acute dystonia is treated with diphenhydramine or benztropine. A treats tardive dyskinesia. C and D are not treatments for dystonia.",
+      "videoTimestamp": "0:31"
+    },
+    {
+      "id": "ep19-antipsychotics-lithium-q05",
+      "type": "select_all_that_apply",
+      "stem": "Which are metabolic effects of second-generation antipsychotics? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Weight gain"
+        },
+        {
+          "id": "B",
+          "text": "High blood sugar"
+        },
+        {
+          "id": "C",
+          "text": "High cholesterol"
+        },
+        {
+          "id": "D",
+          "text": "Low blood sugar"
+        },
+        {
+          "id": "E",
+          "text": "Weight loss"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: weight gain, high blood sugar, and high cholesterol, worst with olanzapine and clozapine. D and E are the opposite of what these drugs cause.",
+      "videoTimestamp": "0:56"
+    },
+    {
+      "id": "ep19-antipsychotics-lithium-q06",
+      "type": "single_best_answer",
+      "stem": "Which second-generation antipsychotics carry the highest metabolic risk?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Olanzapine and clozapine"
+        },
+        {
+          "id": "B",
+          "text": "Aripiprazole and ziprasidone"
+        },
+        {
+          "id": "C",
+          "text": "Lurasidone and aripiprazole"
+        },
+        {
+          "id": "D",
+          "text": "Haloperidol and lurasidone"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: olanzapine and clozapine are the worst. B and C list lower-risk drugs. D includes haloperidol, a first-generation drug known for movement effects.",
+      "videoTimestamp": "0:59"
+    },
+    {
+      "id": "ep19-antipsychotics-lithium-q07",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about clozapine are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "It can cause seizures and severe constipation"
+        },
+        {
+          "id": "B",
+          "text": "No blood tests are needed anymore"
+        },
+        {
+          "id": "C",
+          "text": "It can wipe out neutrophils"
+        },
+        {
+          "id": "D",
+          "text": "The special safety program was removed in June 2025"
+        },
+        {
+          "id": "E",
+          "text": "Neutrophil counts are still checked per the label"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, C, D, and E are correct as taught. B is wrong: no program does not mean no blood tests.",
+      "videoTimestamp": "1:40"
+    },
+    {
+      "id": "ep19-antipsychotics-lithium-q08",
+      "type": "single_best_answer",
+      "stem": "All antipsychotics carry a boxed warning for which group?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Children under 12"
+        },
+        {
+          "id": "B",
+          "text": "Pregnant patients"
+        },
+        {
+          "id": "C",
+          "text": "Patients with diabetes"
+        },
+        {
+          "id": "D",
+          "text": "Older adults with dementia-related psychosis"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: there is a higher risk of death in older adults with dementia-related psychosis. A, B, and C are not the groups in this boxed warning.",
+      "videoTimestamp": "1:14"
+    },
+    {
+      "id": "ep19-antipsychotics-lithium-q09",
+      "type": "single_best_answer",
+      "stem": "A patient in week 5 of clozapine has a fever and a sore throat. What is the best first action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Check the absolute neutrophil count now"
+        },
+        {
+          "id": "B",
+          "text": "Wait for the next scheduled lab"
+        },
+        {
+          "id": "C",
+          "text": "Double the clozapine dose"
+        },
+        {
+          "id": "D",
+          "text": "Start an antidepressant"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: fever or sore throat on clozapine can mean severe neutropenia, so check the count now and hold the drug if it is low. B delays a dangerous problem. C and D do not address it.",
+      "videoTimestamp": "3:30"
+    }
+  ]
+}

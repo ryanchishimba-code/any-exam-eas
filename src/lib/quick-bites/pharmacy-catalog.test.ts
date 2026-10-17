@@ -21,7 +21,7 @@ const ORDER = [
   ["Heart Failure: The Four Pillars", "quick-bites-pharm-ep04-heart-failure", "3:42"],
   ["Statins: Intensity, Goals + Safety", "quick-bites-pharm-ep05-lipids", "4:03"],
   ["Type 2 Diabetes: Pick by the Patient", "quick-bites-pharm-ep06-diabetes", "4:07"],
-  ["Insulin: Onset, Peak + Safety", "quick-bites-pharm-ep07-insulin", "3:53"],
+  ["Insulin: Onset, Peak + Safety", "quick-bites-pharm-ep07-insulin", "3:55"],
   ["Asthma vs COPD Inhalers", "quick-bites-pharm-ep08-asthma-copd", "4:06"],
   ["Antibiotics: Bug-Drug Match", "quick-bites-pharm-ep09-antibiotics", "3:02"],
   ["Drug Interactions: CYP Inhibitors vs Inducers", "quick-bites-pharm-ep10-cyp-interactions", "2:57"],
@@ -31,11 +31,21 @@ const ORDER = [
   ["High-Alert Medications", "quick-bites-pharm-ep14-high-alert", "2:42"],
   ["Vaccines: Live vs Inactivated", "quick-bites-pharm-ep15-vaccines", "2:57"],
   ["Older Adults: Beers Criteria", "quick-bites-pharm-ep16-beers", "2:58"],
+  ["HIV Drugs: Starting, PrEP + PEP", "quick-bites-pharm-ep22-hiv", "4:01"],
+  ["Thyroid Drugs: Timing, Brakes + Pregnancy", "quick-bites-pharm-ep20-thyroid", "3:54"],
+  ["Antidepressants: First Line, Washouts + Serotonin Syndrome", "quick-bites-pharm-ep18-antidepressants", "4:07"],
+  ["Antipsychotics + Lithium", "quick-bites-pharm-ep19-antipsychotics-lithium", "4:12"],
+  ["Antiseizure Drugs: Levels, Rashes + Pregnancy", "quick-bites-pharm-ep17-antiseizure", "4:04"],
+  ["Pain + Opioids: Limits, Equivalents + Switches", "quick-bites-pharm-ep23-pain-opioids", "3:49"],
+  ["Chemotherapy Safety: Toxicities, Rescues + Fatal Errors", "quick-bites-pharm-ep21-oncology", "3:47"],
+  ["Pediatric Dosing: Weight Math + the Never List", "quick-bites-pharm-ep24-pediatric-dosing", "3:51"],
+  ["Pregnancy + Lactation: Labels, Avoids + Swaps", "quick-bites-pharm-ep25-pregnancy-lactation", "3:47"],
+  ["Toxicology: The Nomogram + Key Antidotes", "quick-bites-pharm-ep26-antidotes", "4:07"],
   ["Bonus: How the Pharmacy Boards Work", "quick-bites-pharm-bonus-exam-format", "2:18"],
 ] as const;
 
 describe("Quick Bites: Pharmacy catalog", () => {
-  it("lists episodes 1-16 and the bonus last", () => {
+  it("lists episodes 1-26 and the bonus last", () => {
     expect(PHARMACY_QUICK_BITE_EPISODES.map((episode) => [episode.title, episode.slug, episode.duration])).toEqual(
       ORDER.map((row) => [...row])
     );
@@ -47,25 +57,41 @@ describe("Quick Bites: Pharmacy catalog", () => {
     );
     expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-ep01-anticoagulants", false)).toBeNull();
     expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-bonus-exam-format", true)).toBeNull();
+    expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-ep16-beers", true)?.slug).toBe(
+      "quick-bites-pharm-ep22-hiv"
+    );
+    expect(nextPlayablePharmacyQuickBite("quick-bites-pharm-ep26-antidotes", true)?.slug).toBe(
+      "quick-bites-pharm-bonus-exam-format"
+    );
+    expect(PHARMACY_QUICK_BITE_EPISODES.at(-1)?.slug).toBe("quick-bites-pharm-bonus-exam-format");
+    for (const episode of PHARMACY_QUICK_BITE_EPISODES) {
+      expect(isPharmacyQuickBitePlayable(episode, false)).toBe(false);
+    }
     expect(isPharmacyQuickBitePlayable(PHARMACY_QUICK_BITE_EPISODES[0]!, false)).toBe(false);
     expect(isPharmacyQuickBitePlayable(PHARMACY_QUICK_BITE_EPISODES[0]!, true)).toBe(true);
   });
 
   it("keeps pharmacy media on a private prefix and posters public", () => {
     const slug = "quick-bites-pharm-ep07-insulin";
-    expect(pharmacyQuickBiteVideoPath(slug)).toBe(`quick-bites-pharmacy/${slug}-web.mp4`);
-    expect(pharmacyQuickBiteCaptionsPath(slug)).toBe(`quick-bites-pharmacy/${slug}.vtt`);
+    // The re-rendered ep07 lives under a new folder so the old file is never overwritten.
+    expect(pharmacyQuickBiteVideoPath(slug)).toBe(`quick-bites-pharmacy/v2-20261017/${slug}-web.mp4`);
+    expect(pharmacyQuickBiteCaptionsPath(slug)).toBe(`quick-bites-pharmacy/v2-20261017/${slug}.vtt`);
     expect(pharmacyQuickBitePoster(slug).webp).toBe(`/quick-bites-pharmacy/${slug}-poster.webp`);
+    const beers = "quick-bites-pharm-ep16-beers";
+    expect(pharmacyQuickBiteVideoPath(beers)).toBe(`quick-bites-pharmacy/${beers}-web.mp4`);
+    const antidotes = "quick-bites-pharm-ep26-antidotes";
+    expect(pharmacyQuickBiteVideoPath(antidotes)).toBe(`quick-bites-pharmacy/${antidotes}-web.mp4`);
     const bare = unsignedQuickBiteUrl(pharmacyQuickBiteVideoPath(slug));
     expect(bare).not.toContain("vercel-blob-signature");
     expect(bare).toContain("/quick-bites-pharmacy/");
     expect(bare).not.toContain("/quick-bites/quick-bites-pharm");
   });
 
-  it("serves a 10-question quiz per episode from the pharmacy JSON directory", () => {
+  it("serves a quiz per episode from the pharmacy JSON directory", () => {
     for (const episode of PHARMACY_QUICK_BITE_EPISODES) {
       const quiz = getPharmacyQuickBiteQuiz(episode.slug);
-      expect(quiz?.questions).toHaveLength(10);
+      const expectedCount = episode.slug === "quick-bites-pharm-ep19-antipsychotics-lithium" ? 9 : 10;
+      expect(quiz?.questions).toHaveLength(expectedCount);
       const published = JSON.stringify(publicQuickBiteQuiz(quiz!));
       expect(published).not.toContain('"keys"');
       expect(published).not.toContain('"explanation"');
@@ -107,6 +133,22 @@ describe("Quick Bites: Pharmacy catalog", () => {
       .join("\n");
     expect(rawQuizzes).not.toContain("reviewNote");
     expect(rawQuizzes).not.toContain("needs Ryan");
+    expect(rawQuizzes).not.toContain("What is the label range for lithium during maintenance?");
+    const lithium = getPharmacyQuickBiteQuiz("quick-bites-pharm-ep19-antipsychotics-lithium")!;
+    expect(lithium.questions.map((question) => question.id)).toEqual([
+      "ep19-antipsychotics-lithium-q01",
+      "ep19-antipsychotics-lithium-q02",
+      "ep19-antipsychotics-lithium-q03",
+      "ep19-antipsychotics-lithium-q04",
+      "ep19-antipsychotics-lithium-q05",
+      "ep19-antipsychotics-lithium-q06",
+      "ep19-antipsychotics-lithium-q07",
+      "ep19-antipsychotics-lithium-q08",
+      "ep19-antipsychotics-lithium-q09",
+    ]);
+    expect(lithium.questions[2]?.stem).toBe(
+      "A lithium patient starts hydrochlorothiazide. What happens to the lithium level?"
+    );
     expect(parseVideoTimestamp("0:47")).toBe(47);
     expect(parseVideoTimestamp("0:55")).toBe(55);
     expect(getPharmacyQuickBiteBySlug("quick-bites-ep02-nclex-works")).toBeUndefined();

@@ -1,0 +1,298 @@
+{
+  "episode": "ep20-transfusion",
+  "title": "Blood Transfusions: Safe Setup + Reactions",
+  "video": "quick-bites-ep20-transfusion-web.mp4",
+  "questions": [
+    {
+      "id": "ep20-transfusion-q01",
+      "type": "single_best_answer",
+      "stem": "Ten minutes into a unit of red blood cells, a client has chills, back pain, and a falling blood pressure. What is the first action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Slow the transfusion and recheck in 15 minutes"
+        },
+        {
+          "id": "B",
+          "text": "Stop the transfusion"
+        },
+        {
+          "id": "C",
+          "text": "Give acetaminophen and continue"
+        },
+        {
+          "id": "D",
+          "text": "Speed up to finish the unit"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: for any suspected reaction, stop the transfusion first. A and C keep blood running. D gives more of the blood causing the reaction.",
+      "videoTimestamp": "1:23"
+    },
+    {
+      "id": "ep20-transfusion-q02",
+      "type": "single_best_answer",
+      "stem": "Before hanging a unit of blood, how is the client matched to the unit?",
+      "options": [
+        {
+          "id": "A",
+          "text": "One identifier, checked at the nurses' station"
+        },
+        {
+          "id": "B",
+          "text": "Two client identifiers matched at the bedside, with a second qualified checker or a barcode scan, per policy"
+        },
+        {
+          "id": "C",
+          "text": "The room number on the unit label"
+        },
+        {
+          "id": "D",
+          "text": "The client states their blood type"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: match two client identifiers to the unit at the bedside, with a second qualified checker or a barcode scan, per policy. A uses only one identifier, away from the bedside. C and D are not safe identifiers.",
+      "videoTimestamp": "0:16"
+    },
+    {
+      "id": "ep20-transfusion-q03",
+      "type": "single_best_answer",
+      "stem": "Which fluid may run on the same line as a blood transfusion?",
+      "options": [
+        {
+          "id": "A",
+          "text": "5% dextrose in water"
+        },
+        {
+          "id": "B",
+          "text": "Lactated Ringer's"
+        },
+        {
+          "id": "C",
+          "text": "0.9% saline"
+        },
+        {
+          "id": "D",
+          "text": "Any fluid already hanging"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: use filter tubing, with only 0.9% saline on the line. A, B, and D are not the fluid the video allows.",
+      "videoTimestamp": "0:28"
+    },
+    {
+      "id": "ep20-transfusion-q04",
+      "type": "single_best_answer",
+      "stem": "How long should the nurse stay with the client after starting a transfusion?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The first 5 minutes"
+        },
+        {
+          "id": "B",
+          "text": "The first 15 minutes, per policy"
+        },
+        {
+          "id": "C",
+          "text": "Only until the vital signs are taken"
+        },
+        {
+          "id": "D",
+          "text": "The whole four hours"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: start slowly and stay with the client for the first 15 minutes, per your policy, because the most dangerous reactions show up in the first few minutes. A is too short. C isn't a time rule. D is not what is taught.",
+      "videoTimestamp": "0:44"
+    },
+    {
+      "id": "ep20-transfusion-q05",
+      "type": "single_best_answer",
+      "stem": "Each unit of blood should be finished within what time?",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 hour"
+        },
+        {
+          "id": "B",
+          "text": "2 hours"
+        },
+        {
+          "id": "C",
+          "text": "4 hours"
+        },
+        {
+          "id": "D",
+          "text": "8 hours"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: finish each unit within four hours. A and B are not the limit taught. D is too long.",
+      "videoTimestamp": "0:50"
+    },
+    {
+      "id": "ep20-transfusion-q06",
+      "type": "select_all_that_apply",
+      "stem": "A transfusion reaction is suspected and the transfusion has been stopped. Which are next steps? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Keep the vein open with new tubing and normal saline"
+        },
+        {
+          "id": "B",
+          "text": "Stay and check vital signs"
+        },
+        {
+          "id": "C",
+          "text": "Notify the provider and the blood bank"
+        },
+        {
+          "id": "D",
+          "text": "Send back the bag and tubing, plus samples, per policy"
+        },
+        {
+          "id": "E",
+          "text": "Flush the old blood tubing to keep it open"
+        },
+        {
+          "id": "F",
+          "text": "Restart the unit once the client feels better"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: new tubing and saline, stay, check vital signs, notify the provider and blood bank, and send back the bag and tubing. E pushes more blood in from the old tubing. F restarts the blood that caused the reaction.",
+      "videoTimestamp": "1:02"
+    },
+    {
+      "id": "ep20-transfusion-q07",
+      "type": "single_best_answer",
+      "stem": "During a transfusion, a client has fever, chills, flank pain, low blood pressure, and dark urine. Which reaction fits best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Febrile reaction"
+        },
+        {
+          "id": "B",
+          "text": "Allergic reaction"
+        },
+        {
+          "id": "C",
+          "text": "Acute hemolytic reaction"
+        },
+        {
+          "id": "D",
+          "text": "Circulatory overload"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: acute hemolytic reactions cause fever, chills, back or flank pain, low blood pressure, and dark urine, usually from a blood type mismatch. A is fever and chills only. B is hives and itching. D raises blood pressure.",
+      "videoTimestamp": "1:42"
+    },
+    {
+      "id": "ep20-transfusion-q08",
+      "type": "single_best_answer",
+      "stem": "During a transfusion, a client develops wheezing, trouble breathing, and low blood pressure. After stopping the transfusion, what is expected?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Epinephrine per protocol"
+        },
+        {
+          "id": "B",
+          "text": "A diuretic"
+        },
+        {
+          "id": "C",
+          "text": "Continue at a slower rate"
+        },
+        {
+          "id": "D",
+          "text": "Treat as hives only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: this is anaphylaxis, so give epinephrine per protocol. B is for circulatory overload. C keeps blood running. D: hives alone and wheezing with low blood pressure are very different emergencies.",
+      "videoTimestamp": "1:53"
+    },
+    {
+      "id": "ep20-transfusion-q09",
+      "type": "single_best_answer",
+      "stem": "An older client with heart failure on a second unit has new crackles, a blood pressure of 168/94, and swollen neck veins. What is the priority?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Speed up to finish the unit"
+        },
+        {
+          "id": "B",
+          "text": "Stop it, sit the client upright, and notify"
+        },
+        {
+          "id": "C",
+          "text": "Lay the client flat with legs raised"
+        },
+        {
+          "id": "D",
+          "text": "Give acetaminophen and continue"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: this is likely circulatory overload, so stop, sit them up, notify, and give a diuretic per order. A adds more volume. C worsens breathing with fluid overload. D treats fever, not overload.",
+      "videoTimestamp": "2:56"
+    },
+    {
+      "id": "ep20-transfusion-q10",
+      "type": "single_best_answer",
+      "stem": "Which finding points to transfusion lung injury rather than circulatory overload?",
+      "options": [
+        {
+          "id": "A",
+          "text": "High blood pressure and swollen neck veins"
+        },
+        {
+          "id": "B",
+          "text": "Sudden low oxygen within six hours, often with fever and low blood pressure, and no swollen neck veins"
+        },
+        {
+          "id": "C",
+          "text": "Hives and itching only"
+        },
+        {
+          "id": "D",
+          "text": "Improvement after a diuretic"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: transfusion lung injury brings sudden low oxygen within six hours, often with fever and low blood pressure, and no swollen neck veins. A is circulatory overload. C is an allergic reaction. D: a diuretic won't help lung injury.",
+      "videoTimestamp": "2:21"
+    }
+  ]
+}

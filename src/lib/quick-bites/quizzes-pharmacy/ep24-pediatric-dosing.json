@@ -1,0 +1,301 @@
+{
+  "episode": "ep24-pediatric-dosing",
+  "title": "Pediatric Dosing: Weight Math + the Never List",
+  "video": "quick-bites-pharm-ep24-pediatric-dosing-web.mp4",
+  "questions": [
+    {
+      "id": "ep24-pediatric-dosing-q01",
+      "type": "single_best_answer",
+      "stem": "A 5-year-old just had tonsil surgery. Is codeine an option for pain?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, at a low dose"
+        },
+        {
+          "id": "B",
+          "text": "Yes, if given with food"
+        },
+        {
+          "id": "C",
+          "text": "Never: it is on the never list"
+        },
+        {
+          "id": "D",
+          "text": "Only at bedtime"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: codeine is off-limits under 12, and under 18 after tonsil surgery, because fast metabolizers can stop breathing. A, B, and D ignore the danger.",
+      "videoTimestamp": "1:45"
+    },
+    {
+      "id": "ep24-pediatric-dosing-q02",
+      "type": "single_best_answer",
+      "stem": "A child weighs 44 pounds. What is the weight in kilograms?",
+      "options": [
+        {
+          "id": "A",
+          "text": "20 kg"
+        },
+        {
+          "id": "B",
+          "text": "97 kg"
+        },
+        {
+          "id": "C",
+          "text": "44 kg"
+        },
+        {
+          "id": "D",
+          "text": "10 kg"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: 44 divided by 2.2 is 20 kilograms. B multiplies instead of dividing. C skips the conversion. D halves the right answer.",
+      "videoTimestamp": "0:21"
+    },
+    {
+      "id": "ep24-pediatric-dosing-q03",
+      "type": "single_best_answer",
+      "stem": "How should liquid medicines for children be measured?",
+      "options": [
+        {
+          "id": "A",
+          "text": "With a kitchen spoon"
+        },
+        {
+          "id": "B",
+          "text": "By guessing a capful"
+        },
+        {
+          "id": "C",
+          "text": "With an oral syringe in milliliters"
+        },
+        {
+          "id": "D",
+          "text": "With a teacup"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: measure with an oral syringe in milliliters, never a kitchen spoon. A, B, and D invite dosing errors.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "ep24-pediatric-dosing-q04",
+      "type": "single_best_answer",
+      "stem": "A 22 kg child needs acetaminophen 15 mg/kg using 160 mg per 5 mL liquid. About how many milliliters?",
+      "options": [
+        {
+          "id": "A",
+          "text": "5 mL"
+        },
+        {
+          "id": "B",
+          "text": "10 mL"
+        },
+        {
+          "id": "C",
+          "text": "22 mL"
+        },
+        {
+          "id": "D",
+          "text": "33 mL"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: 22 times 15 is 330 mg, and 330 divided by 160, times 5, is about 10 mL. A is half the dose. C and D come from mixing up the numbers.",
+      "videoTimestamp": "1:32"
+    },
+    {
+      "id": "ep24-pediatric-dosing-q05",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about children's fever medicines are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ibuprofen is only from 6 months of age"
+        },
+        {
+          "id": "B",
+          "text": "No aspirin in children or teens with viral illness"
+        },
+        {
+          "id": "C",
+          "text": "Aspirin is the first choice for children's fever"
+        },
+        {
+          "id": "D",
+          "text": "Acetaminophen dose is up to 15 mg/kg every 4 to 6 hours"
+        },
+        {
+          "id": "E",
+          "text": "Ibuprofen is 10 mg/kg"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "explanation": "A, B, D, and E are correct as taught. C is wrong because aspirin can cause Reye syndrome.",
+      "videoTimestamp": "0:53"
+    },
+    {
+      "id": "ep24-pediatric-dosing-q06",
+      "type": "select_all_that_apply",
+      "stem": "Which items are on the never list? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Codeine and tramadol under 12"
+        },
+        {
+          "id": "B",
+          "text": "Tetracyclines under 8, except short doxycycline courses"
+        },
+        {
+          "id": "C",
+          "text": "Ceftriaxone plus intravenous calcium in newborns"
+        },
+        {
+          "id": "D",
+          "text": "Over-the-counter cough and cold medicines under 2"
+        },
+        {
+          "id": "E",
+          "text": "Acetaminophen at 15 mg/kg"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are on the never list as taught. E is a normal acetaminophen dose.",
+      "videoTimestamp": "1:35"
+    },
+    {
+      "id": "ep24-pediatric-dosing-q07",
+      "type": "single_best_answer",
+      "stem": "Why are tetracyclines avoided under age 8?",
+      "options": [
+        {
+          "id": "A",
+          "text": "They cause hearing loss"
+        },
+        {
+          "id": "B",
+          "text": "They stain growing teeth"
+        },
+        {
+          "id": "C",
+          "text": "They cause Reye syndrome"
+        },
+        {
+          "id": "D",
+          "text": "They form crystals with calcium"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: tetracyclines stain growing teeth under 8. A is not taught for them. C is an aspirin risk. D is the ceftriaxone and calcium problem in newborns.",
+      "videoTimestamp": "1:47"
+    },
+    {
+      "id": "ep24-pediatric-dosing-q08",
+      "type": "single_best_answer",
+      "stem": "A 20 kg child needs high-dose amoxicillin at 90 mg/kg/day, split twice daily. What is each dose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "1,800 mg"
+        },
+        {
+          "id": "B",
+          "text": "450 mg"
+        },
+        {
+          "id": "C",
+          "text": "180 mg"
+        },
+        {
+          "id": "D",
+          "text": "900 mg"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: 20 times 90 is 1,800 mg per day, divided by 2 doses is 900 mg per dose. A is the whole day. B divides by 4. C is a tenfold error.",
+      "videoTimestamp": "2:21"
+    },
+    {
+      "id": "ep24-pediatric-dosing-q09",
+      "type": "single_best_answer",
+      "stem": "For a large teen, the weight-based calculation comes out above the adult dose. What should be given?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The full weight-based dose"
+        },
+        {
+          "id": "B",
+          "text": "The adult maximum dose"
+        },
+        {
+          "id": "C",
+          "text": "Double the adult dose"
+        },
+        {
+          "id": "D",
+          "text": "Half the child dose"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: never exceed the adult maximum dose; it caps the weight math. A and C go past the adult maximum. D underdoses without reason.",
+      "videoTimestamp": "0:34"
+    },
+    {
+      "id": "ep24-pediatric-dosing-q10",
+      "type": "single_best_answer",
+      "stem": "Amoxicillin 900 mg per dose is needed, and the liquid is 400 mg per 5 mL. How many milliliters per dose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "22.5 mL"
+        },
+        {
+          "id": "B",
+          "text": "5.6 mL"
+        },
+        {
+          "id": "C",
+          "text": "11.25 mL"
+        },
+        {
+          "id": "D",
+          "text": "45 mL"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: 900 divided by 400, times 5, is 11.25 mL. A is the whole day's amount. B is half of one dose. D is double the full-day volume (22.5 \u00d7 2).",
+      "videoTimestamp": "3:13"
+    }
+  ]
+}

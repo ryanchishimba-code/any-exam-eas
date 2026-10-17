@@ -374,7 +374,9 @@ describe("Video Quick Bites", () => {
       />
     );
 
-    await user.click(screen.getByRole("button", { name: "Play 16. Danger-Zone Labs & Exam-Day Plan" }));
+    await user.click(
+      screen.getByRole("button", { name: "Play 25. Danger-Zone Labs & Exam-Day Plan" })
+    );
     expect(screen.queryByText("Which lab needs a call before the exam?")).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Next episode" })).not.toBeInTheDocument();
     await user.click(await screen.findByRole("button", { name: "Take the quiz" }));

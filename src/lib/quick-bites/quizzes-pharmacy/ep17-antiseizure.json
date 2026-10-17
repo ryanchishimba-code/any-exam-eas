@@ -1,0 +1,306 @@
+{
+  "episode": "ep17-antiseizure",
+  "title": "Antiseizure Drugs: Levels, Rashes + Pregnancy",
+  "video": "quick-bites-pharm-ep17-antiseizure-web.mp4",
+  "questions": [
+    {
+      "id": "ep17-antiseizure-q01",
+      "type": "single_best_answer",
+      "stem": "A patient on valproate is starting lamotrigine. How should lamotrigine be dosed?",
+      "options": [
+        {
+          "id": "A",
+          "text": "About half the usual dose, with a slower climb"
+        },
+        {
+          "id": "B",
+          "text": "The usual dose and pace"
+        },
+        {
+          "id": "C",
+          "text": "About double the usual dose"
+        },
+        {
+          "id": "D",
+          "text": "One full dose on day 1, no titration"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: valproate blocks lamotrigine breakdown and raises its level, so use about half the dose and a slower climb. B ignores the interaction. C is what strong inducers like carbamazepine need. D skips the slow climb, which is the main rash risk.",
+      "videoTimestamp": "1:45"
+    },
+    {
+      "id": "ep17-antiseizure-q02",
+      "type": "single_best_answer",
+      "stem": "Albumin is low and the total phenytoin level reads 9 mcg/mL. What is the best next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Raise the dose right away"
+        },
+        {
+          "id": "B",
+          "text": "Stop phenytoin"
+        },
+        {
+          "id": "C",
+          "text": "Ignore the level"
+        },
+        {
+          "id": "D",
+          "text": "Correct the level for albumin, or check a free level"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: with low albumin more of the drug is free and active, so a low-looking total level can actually be in range. A could cause toxicity. B and C ignore what the level means.",
+      "videoTimestamp": "1:24"
+    },
+    {
+      "id": "ep17-antiseizure-q03",
+      "type": "select_all_that_apply",
+      "stem": "Which are signs or effects of phenytoin? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Weight loss from appetite suppression"
+        },
+        {
+          "id": "B",
+          "text": "Shaky eyes"
+        },
+        {
+          "id": "C",
+          "text": "Unsteady walk"
+        },
+        {
+          "id": "D",
+          "text": "Gum overgrowth"
+        },
+        {
+          "id": "E",
+          "text": "Low blood pressure from rapid IV push, so no faster than 50 mg/min"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "B, C, D, and E are correct: toxicity shows as shaky eyes and an unsteady walk, phenytoin causes gum overgrowth, and into a vein it goes no faster than 50 mg a minute. Weight loss from appetite suppression fits topiramate, not phenytoin.",
+      "videoTimestamp": "0:38"
+    },
+    {
+      "id": "ep17-antiseizure-q04",
+      "type": "single_best_answer",
+      "stem": "Before starting carbamazepine in a patient of Asian ancestry, what should be done?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Check a lithium level"
+        },
+        {
+          "id": "B",
+          "text": "Order a gene test for severe rash risk"
+        },
+        {
+          "id": "C",
+          "text": "Start at double the dose"
+        },
+        {
+          "id": "D",
+          "text": "Give folic acid only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a gene test for the risk of a severe, blistering rash comes first; a positive test means avoid the drug. A, C, and D do not address that risk.",
+      "videoTimestamp": "0:53"
+    },
+    {
+      "id": "ep17-antiseizure-q05",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about carbamazepine are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Levels drift down early in therapy"
+        },
+        {
+          "id": "B",
+          "text": "It raises lamotrigine levels"
+        },
+        {
+          "id": "C",
+          "text": "It needs no testing in any patient"
+        },
+        {
+          "id": "D",
+          "text": "It can lower sodium"
+        },
+        {
+          "id": "E",
+          "text": "It speeds up its own breakdown over the first few weeks"
+        }
+      ],
+      "keys": [
+        "A",
+        "D",
+        "E"
+      ],
+      "explanation": "A, D, and E are correct: carbamazepine can lower sodium and speeds up its own breakdown, so levels drift down. B is wrong because as an inducer it lowers lamotrigine levels. C is wrong because at-risk patients need a gene test first.",
+      "videoTimestamp": "0:59"
+    },
+    {
+      "id": "ep17-antiseizure-q06",
+      "type": "single_best_answer",
+      "stem": "Lamotrigine was stopped for longer than about five half-lives. How should it be restarted?",
+      "options": [
+        {
+          "id": "A",
+          "text": "At the last full dose"
+        },
+        {
+          "id": "B",
+          "text": "At double the last dose"
+        },
+        {
+          "id": "C",
+          "text": "Restart the slow climb from the beginning"
+        },
+        {
+          "id": "D",
+          "text": "It can never be restarted"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: after more than about five half-lives off, restart the slow climb from the beginning to lower rash risk. A and B risk the boxed-warning rash. D is too strict.",
+      "videoTimestamp": "2:02"
+    },
+    {
+      "id": "ep17-antiseizure-q07",
+      "type": "single_best_answer",
+      "stem": "A patient who could become pregnant needs an antiseizure drug. Which choice fits the video's advice?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Valproate as first choice"
+        },
+        {
+          "id": "B",
+          "text": "Lamotrigine or levetiracetam, plus folic acid"
+        },
+        {
+          "id": "C",
+          "text": "No folic acid needed"
+        },
+        {
+          "id": "D",
+          "text": "Carbamazepine without testing"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: lamotrigine or levetiracetam are preferred, plus at least 0.4 mg of folic acid daily. A is avoided because of birth defects. C is wrong because folic acid is advised. D skips the gene test in at-risk patients.",
+      "videoTimestamp": "2:17"
+    },
+    {
+      "id": "ep17-antiseizure-q08",
+      "type": "single_best_answer",
+      "stem": "A seizure will not stop (status epilepticus). Which drug comes first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Levetiracetam"
+        },
+        {
+          "id": "B",
+          "text": "Valproate"
+        },
+        {
+          "id": "C",
+          "text": "Anesthesia in intensive care"
+        },
+        {
+          "id": "D",
+          "text": "A benzodiazepine"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: a benzodiazepine always comes first. A and B are second-step options that work about equally well. C follows only if seizures continue.",
+      "videoTimestamp": "2:26"
+    },
+    {
+      "id": "ep17-antiseizure-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which are boxed warnings for valproate? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Liver injury"
+        },
+        {
+          "id": "B",
+          "text": "Pancreatitis"
+        },
+        {
+          "id": "C",
+          "text": "Birth defects"
+        },
+        {
+          "id": "D",
+          "text": "Gum overgrowth"
+        },
+        {
+          "id": "E",
+          "text": "Low sodium"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: valproate has boxed warnings for liver injury, pancreatitis, and birth defects. D is a phenytoin effect. E is a carbamazepine effect.",
+      "videoTimestamp": "2:07"
+    },
+    {
+      "id": "ep17-antiseizure-q10",
+      "type": "single_best_answer",
+      "stem": "A patient planning pregnancy is seizure-free on valproate. What is the best recommendation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Plan a switch with the neurologist before conception, plus folic acid"
+        },
+        {
+          "id": "B",
+          "text": "Stop valproate today"
+        },
+        {
+          "id": "C",
+          "text": "Double the valproate dose"
+        },
+        {
+          "id": "D",
+          "text": "No change is needed"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: plan a switch to a safer drug before conception, with folic acid. B risks seizures, which are dangerous for mother and baby. C and D keep the birth defect risk.",
+      "videoTimestamp": "3:23"
+    }
+  ]
+}

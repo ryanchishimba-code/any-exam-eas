@@ -1,5 +1,7 @@
 /**
- * Video Quick Bites for the nursing boards.
+ * Video Quick Bites for the nursing boards (NCLEX track only).
+ * Episodes follow the NCLEX study guide: frameworks, then systems, then the exam-day close.
+ * Wave 2 fills the renal, GI, hematology, musculoskeletal, surgical, and dosage chapters.
  * Posters are public. MP4 and VTT files live in a private Blob store
  * and are never linked without a signature.
  */
@@ -22,6 +24,11 @@ export type QuickBiteEpisode = {
   group: string;
   /** Slot stays visible. The current video is not uploaded or playable. */
   held?: boolean;
+  /**
+   * Private Blob subfolder for a re-rendered video. Set only when a replacement was
+   * uploaded under a new path so the old file keeps serving until this ships.
+   */
+  mediaVersion?: string;
 };
 
 type EpisodeSeed = {
@@ -168,11 +175,100 @@ const GROUPS: { title: string; episodes: EpisodeSeed[] }[] = [
     ],
   },
   {
+    title: "Kidneys",
+    episodes: [
+      {
+        slug: "quick-bites-ep19-kidneys-dialysis",
+        number: 16,
+        title: "Kidneys: Acute vs Chronic & Dialysis",
+        duration: "3:53",
+      },
+    ],
+  },
+  {
+    title: "Blood Transfusions",
+    episodes: [
+      {
+        slug: "quick-bites-ep20-transfusion",
+        number: 17,
+        title: "Blood Transfusions: Safe Setup & Reactions",
+        duration: "3:38",
+      },
+    ],
+  },
+  {
+    title: "Med-Surg: GI & Liver",
+    episodes: [
+      {
+        slug: "quick-bites-ep17-gi-bleed-obstruction",
+        number: 18,
+        title: "GI Bleeds & Bowel Obstruction",
+        duration: "3:23",
+      },
+      {
+        slug: "quick-bites-ep18-liver-pancreas",
+        number: 19,
+        title: "Liver & Pancreas: Cirrhosis vs Pancreatitis",
+        duration: "3:53",
+      },
+    ],
+  },
+  {
+    title: "Musculoskeletal",
+    episodes: [
+      {
+        slug: "quick-bites-ep24-ortho",
+        number: 20,
+        title: "Orthopedics: Compartment Syndrome, Fat Embolism, Hip Precautions",
+        duration: "3:32",
+      },
+    ],
+  },
+  {
+    title: "Hematology & Oncology",
+    episodes: [
+      {
+        slug: "quick-bites-ep21-neutropenia-sickle-cell",
+        number: 21,
+        title: "Cancer Care & Sickle Cell: Neutropenia, Low Platelets, Crisis",
+        duration: "4:07",
+      },
+    ],
+  },
+  {
+    title: "Surgery, Wounds & Burns",
+    episodes: [
+      {
+        slug: "quick-bites-ep22-surgery-wounds",
+        number: 22,
+        title: "Surgery & Wounds: Pre-Op, Post-Op, Pressure Injuries",
+        duration: "4:08",
+      },
+      {
+        slug: "quick-bites-ep23-burns",
+        number: 23,
+        title: "Burns: Airway, Rule of Nines, Fluids",
+        duration: "3:33",
+      },
+    ],
+  },
+  {
+    title: "Dosage Calculations",
+    episodes: [
+      {
+        slug: "quick-bites-ep25-dosage-calc",
+        number: 24,
+        title: "Dosage Calculations: Drip Rates & Weight-Based Dosing",
+        duration: "4:44",
+      },
+    ],
+  },
+  {
     title: "Exam Day",
     episodes: [
       {
         slug: "quick-bites-bonus-labs-examday",
-        number: 16,
+        number: 25,
         title: "Danger-Zone Labs & Exam-Day Plan",
         duration: "2:35",
       },

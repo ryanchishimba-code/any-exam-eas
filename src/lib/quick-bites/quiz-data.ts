@@ -128,8 +128,10 @@ function normalize(file: RawQuiz, slug: string): StoredQuickBiteQuiz {
   if (file.video !== `${slug}-web.mp4`) {
     throw new Error(`Quiz ${file.episode} does not match its video file.`);
   }
-  if (file.questions.length !== 10) {
-    throw new Error(`Quiz ${file.episode} must have 10 questions.`);
+  // The lithium label-range item was removed. Every other quiz stays at 10.
+  const requiredCount = file.episode === "ep19-antipsychotics-lithium" ? 9 : 10;
+  if (file.questions.length !== requiredCount) {
+    throw new Error(`Quiz ${file.episode} must have ${requiredCount} questions.`);
   }
 
   const questions = file.questions.map((question, index) => {

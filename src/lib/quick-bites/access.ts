@@ -18,7 +18,7 @@ export function canPlayQuickBites(access: QuickBiteAccess): boolean {
 }
 
 /**
- * Episode 1 is open to every signed-in member. Episodes 2–16 stay on the paid check.
+ * Episode 1 is open to every signed-in member. Every other nursing episode (2–25) stays on the paid check.
  * Call this only after authentication. Logged-out requests stay 401.
  */
 export function canPlayQuickBiteEpisode(access: QuickBiteAccess, slug: string): boolean {

@@ -22,7 +22,7 @@ function walk(dir: string): string[] {
 
 describe("Video Quick Bites quizzes", () => {
   it("has a 10-question quiz for every episode and keeps answers off the public copy", () => {
-    expect(QUICK_BITE_EPISODES).toHaveLength(16);
+    expect(QUICK_BITE_EPISODES).toHaveLength(25);
     for (const episode of QUICK_BITE_EPISODES) {
       const quiz = getQuickBiteQuiz(episode.slug);
       expect(quiz?.questions).toHaveLength(10);
@@ -42,6 +42,19 @@ describe("Video Quick Bites quizzes", () => {
     });
     expect(JSON.stringify(publicQuickBiteQuiz(getQuickBiteQuiz("quick-bites-ep02-nclex-works")!))).not.toContain(
       "the computer was confident"
+    );
+  });
+
+  it("keeps the acute kidney injury keys and states the 1.5-times rule as or more", () => {
+    const raw = JSON.parse(
+      readFileSync(path.join(process.cwd(), "src/lib/quick-bites/quizzes/ep19-kidneys-dialysis.json"), "utf8")
+    ) as {
+      questions: { id: string; keys: string[]; options: { id: string; text: string }[] }[];
+    };
+    const question = raw.questions.find((item) => item.id === "ep19-kidneys-dialysis-q04");
+    expect(question?.keys).toEqual(["A", "B", "C"]);
+    expect(question?.options.find((option) => option.id === "B")?.text).toBe(
+      "Creatinine rising to 1.5 times baseline or more within 7 days"
     );
   });
 

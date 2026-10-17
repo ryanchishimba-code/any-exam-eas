@@ -30,12 +30,33 @@ const ORDER = [
   ["Fluids, Electrolytes & Acid-Base", "Potassium: Highs, Lows & the Heart", "quick-bites-potassium"],
   ["Fluids, Electrolytes & Acid-Base", "Sodium & Calcium", "quick-bites-ep06-sodium-calcium"],
   ["Fluids, Electrolytes & Acid-Base", "Acid-Base Made Simple", "quick-bites-ep07-acid-base"],
+  ["Kidneys", "Kidneys: Acute vs Chronic & Dialysis", "quick-bites-ep19-kidneys-dialysis"],
+  ["Blood Transfusions", "Blood Transfusions: Safe Setup & Reactions", "quick-bites-ep20-transfusion"],
+  ["Med-Surg: GI & Liver", "GI Bleeds & Bowel Obstruction", "quick-bites-ep17-gi-bleed-obstruction"],
+  ["Med-Surg: GI & Liver", "Liver & Pancreas: Cirrhosis vs Pancreatitis", "quick-bites-ep18-liver-pancreas"],
+  [
+    "Musculoskeletal",
+    "Orthopedics: Compartment Syndrome, Fat Embolism, Hip Precautions",
+    "quick-bites-ep24-ortho",
+  ],
+  [
+    "Hematology & Oncology",
+    "Cancer Care & Sickle Cell: Neutropenia, Low Platelets, Crisis",
+    "quick-bites-ep21-neutropenia-sickle-cell",
+  ],
+  [
+    "Surgery, Wounds & Burns",
+    "Surgery & Wounds: Pre-Op, Post-Op, Pressure Injuries",
+    "quick-bites-ep22-surgery-wounds",
+  ],
+  ["Surgery, Wounds & Burns", "Burns: Airway, Rule of Nines, Fluids", "quick-bites-ep23-burns"],
+  ["Dosage Calculations", "Dosage Calculations: Drip Rates & Weight-Based Dosing", "quick-bites-ep25-dosage-calc"],
   ["Exam Day", "Danger-Zone Labs & Exam-Day Plan", "quick-bites-bonus-labs-examday"],
 ] as const;
 
 describe("Quick Bites catalog", () => {
-  it("lists the 16 nursing-board episodes in the approved order", () => {
-    expect(QUICK_BITE_EPISODES).toHaveLength(16);
+  it("lists 25 episodes in study-guide order, with exam day last", () => {
+    expect(QUICK_BITE_EPISODES).toHaveLength(25);
     expect(QUICK_BITE_EPISODES.map((episode) => [episode.group, episode.title, episode.slug])).toEqual(
       ORDER.map((row) => [...row])
     );
@@ -50,10 +71,19 @@ describe("Quick Bites catalog", () => {
     expect(QUICK_BITE_EPISODES.filter((episode) => isOpenQuickBite(episode.slug))).toHaveLength(1);
     expect(nextPlayableQuickBite(OPEN_QUICK_BITE_SLUG, true)?.slug).toBe("quick-bites-ep03-priority");
     expect(nextPlayableQuickBite(OPEN_QUICK_BITE_SLUG, false)).toBeNull();
-    expect(nextPlayableQuickBite("quick-bites-ep07-acid-base", true)?.title).toBe(
-      "Danger-Zone Labs & Exam-Day Plan"
+    expect(nextPlayableQuickBite("quick-bites-ep07-acid-base", true)?.slug).toBe(
+      "quick-bites-ep19-kidneys-dialysis"
+    );
+    expect(nextPlayableQuickBite("quick-bites-ep25-dosage-calc", true)?.slug).toBe(
+      "quick-bites-bonus-labs-examday"
     );
     expect(nextPlayableQuickBite("quick-bites-bonus-labs-examday", true)).toBeNull();
+    for (const episode of QUICK_BITE_EPISODES) {
+      if (episode.slug === OPEN_QUICK_BITE_SLUG) continue;
+      expect(isOpenQuickBite(episode.slug)).toBe(false);
+      expect(isQuickBiteEpisodePlayable(episode, false)).toBe(false);
+      expect(isQuickBiteEpisodePlayable(episode, true)).toBe(true);
+    }
     expect(isQuickBiteEpisodePlayable(QUICK_BITE_EPISODES[0]!, false)).toBe(true);
     expect(isQuickBiteEpisodePlayable(QUICK_BITE_EPISODES[1]!, false)).toBe(false);
     expect(getQuickBiteBySlug("quick-bites-ep07-acid-base")?.duration).toBe("3:25");
@@ -68,6 +98,13 @@ describe("Quick Bites catalog", () => {
       "Pediatrics",
       "Psych / Mental Health",
       "Fluids, Electrolytes & Acid-Base",
+      "Kidneys",
+      "Blood Transfusions",
+      "Med-Surg: GI & Liver",
+      "Musculoskeletal",
+      "Hematology & Oncology",
+      "Surgery, Wounds & Burns",
+      "Dosage Calculations",
       "Exam Day",
     ]);
   });

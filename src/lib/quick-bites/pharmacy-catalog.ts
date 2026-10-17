@@ -1,5 +1,8 @@
 /**
- * Quick Bites: Pharmacy for the NAPLEX track.
+ * Quick Bites: Pharmacy for the NAPLEX track only.
+ * Episodes 1-16 stay in the released order. Episodes 17-26 follow the NAPLEX
+ * study guide (infectious disease, endocrine, neuro/psych, oncology, special
+ * populations, toxicology). The bonus stays last.
  * Posters are public so locked cards can render. MP4 and VTT files stay private.
  */
 
@@ -10,7 +13,15 @@ type EpisodeSeed = {
   number: number;
   title: string;
   duration: string;
+  mediaVersion?: string;
 };
+
+/**
+ * ep07 was re-rendered on Oct 17, 2026 so the audio says "can last up to about
+ * twenty-four hours", matching quiz Q4. The new MP4 and VTT live under this subfolder;
+ * the original files stay at the old path untouched.
+ */
+export const PHARMACY_EP07_MEDIA_VERSION = "v2-20261017";
 
 const EPISODES: EpisodeSeed[] = [
   {
@@ -53,7 +64,8 @@ const EPISODES: EpisodeSeed[] = [
     slug: "quick-bites-pharm-ep07-insulin",
     number: 7,
     title: "Insulin: Onset, Peak + Safety",
-    duration: "3:53",
+    duration: "3:55",
+    mediaVersion: PHARMACY_EP07_MEDIA_VERSION,
   },
   {
     slug: "quick-bites-pharm-ep08-asthma-copd",
@@ -110,8 +122,68 @@ const EPISODES: EpisodeSeed[] = [
     duration: "2:58",
   },
   {
-    slug: "quick-bites-pharm-bonus-exam-format",
+    slug: "quick-bites-pharm-ep22-hiv",
     number: 17,
+    title: "HIV Drugs: Starting, PrEP + PEP",
+    duration: "4:01",
+  },
+  {
+    slug: "quick-bites-pharm-ep20-thyroid",
+    number: 18,
+    title: "Thyroid Drugs: Timing, Brakes + Pregnancy",
+    duration: "3:54",
+  },
+  {
+    slug: "quick-bites-pharm-ep18-antidepressants",
+    number: 19,
+    title: "Antidepressants: First Line, Washouts + Serotonin Syndrome",
+    duration: "4:07",
+  },
+  {
+    slug: "quick-bites-pharm-ep19-antipsychotics-lithium",
+    number: 20,
+    title: "Antipsychotics + Lithium",
+    duration: "4:12",
+  },
+  {
+    slug: "quick-bites-pharm-ep17-antiseizure",
+    number: 21,
+    title: "Antiseizure Drugs: Levels, Rashes + Pregnancy",
+    duration: "4:04",
+  },
+  {
+    slug: "quick-bites-pharm-ep23-pain-opioids",
+    number: 22,
+    title: "Pain + Opioids: Limits, Equivalents + Switches",
+    duration: "3:49",
+  },
+  {
+    slug: "quick-bites-pharm-ep21-oncology",
+    number: 23,
+    title: "Chemotherapy Safety: Toxicities, Rescues + Fatal Errors",
+    duration: "3:47",
+  },
+  {
+    slug: "quick-bites-pharm-ep24-pediatric-dosing",
+    number: 24,
+    title: "Pediatric Dosing: Weight Math + the Never List",
+    duration: "3:51",
+  },
+  {
+    slug: "quick-bites-pharm-ep25-pregnancy-lactation",
+    number: 25,
+    title: "Pregnancy + Lactation: Labels, Avoids + Swaps",
+    duration: "3:47",
+  },
+  {
+    slug: "quick-bites-pharm-ep26-antidotes",
+    number: 26,
+    title: "Toxicology: The Nomogram + Key Antidotes",
+    duration: "4:07",
+  },
+  {
+    slug: "quick-bites-pharm-bonus-exam-format",
+    number: 27,
     title: "Bonus: How the Pharmacy Boards Work",
     duration: "2:18",
   },
@@ -148,12 +220,17 @@ export function nextPlayablePharmacyQuickBite(
   return null;
 }
 
+function pharmacyMediaFolder(slug: string): string {
+  const version = BY_SLUG.get(slug)?.mediaVersion;
+  return version ? `quick-bites-pharmacy/${version}` : "quick-bites-pharmacy";
+}
+
 export function pharmacyQuickBiteVideoPath(slug: string): string {
-  return `quick-bites-pharmacy/${slug}-web.mp4`;
+  return `${pharmacyMediaFolder(slug)}/${slug}-web.mp4`;
 }
 
 export function pharmacyQuickBiteCaptionsPath(slug: string): string {
-  return `quick-bites-pharmacy/${slug}.vtt`;
+  return `${pharmacyMediaFolder(slug)}/${slug}.vtt`;
 }
 
 export function pharmacyQuickBitePoster(slug: string): { webp: string; jpg: string } {

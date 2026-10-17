@@ -1,0 +1,307 @@
+{
+  "episode": "ep20-thyroid",
+  "title": "Thyroid Drugs: Timing, Brakes + Pregnancy",
+  "video": "quick-bites-pharm-ep20-thyroid-web.mp4",
+  "questions": [
+    {
+      "id": "ep20-thyroid-q01",
+      "type": "single_best_answer",
+      "stem": "A patient takes levothyroxine with coffee and a calcium chew, and the thyroid-stimulating hormone keeps climbing. What is the best first step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Double the dose"
+        },
+        {
+          "id": "B",
+          "text": "Fix the timing before changing the dose"
+        },
+        {
+          "id": "C",
+          "text": "Switch to methimazole"
+        },
+        {
+          "id": "D",
+          "text": "Stop the levothyroxine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the coffee and calcium were blocking absorption, so fix the timing before changing the dose. A treats the wrong problem. C treats an overactive thyroid. D is unsafe.",
+      "videoTimestamp": "2:43"
+    },
+    {
+      "id": "ep20-thyroid-q02",
+      "type": "select_all_that_apply",
+      "stem": "How should levothyroxine be taken? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "30 to 60 minutes before breakfast"
+        },
+        {
+          "id": "B",
+          "text": "Or at bedtime, at least 3 hours after the last meal"
+        },
+        {
+          "id": "C",
+          "text": "About 4 hours apart from calcium, iron, and antacids"
+        },
+        {
+          "id": "D",
+          "text": "With morning coffee to help absorption"
+        },
+        {
+          "id": "E",
+          "text": "On an empty stomach with water"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "A, B, C, and E are correct as taught. D is wrong because coffee grabs the drug in the gut and lowers absorption.",
+      "videoTimestamp": "0:29"
+    },
+    {
+      "id": "ep20-thyroid-q03",
+      "type": "single_best_answer",
+      "stem": "What is the full replacement dose of levothyroxine for a healthy younger adult?",
+      "options": [
+        {
+          "id": "A",
+          "text": "About 1.6 mcg/kg per day"
+        },
+        {
+          "id": "B",
+          "text": "About 16 mcg/kg per day"
+        },
+        {
+          "id": "C",
+          "text": "12.5 mcg per day for everyone"
+        },
+        {
+          "id": "D",
+          "text": "About 0.16 mcg/kg per day"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: about 1.6 micrograms per kilogram per day. B and D are tenfold errors. C is a low starting dose for older or cardiac patients, not full replacement.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep20-thyroid-q04",
+      "type": "single_best_answer",
+      "stem": "An 80-year-old with heart disease starts levothyroxine. How should it be started?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Full dose of 1.6 mcg/kg per day"
+        },
+        {
+          "id": "B",
+          "text": "Start low at 12.5 to 25 mcg and climb slowly"
+        },
+        {
+          "id": "C",
+          "text": "Start with methimazole first"
+        },
+        {
+          "id": "D",
+          "text": "No need for thyroid monitoring"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: for older adults or anyone with heart disease, start low at 12.5 to 25 micrograms and climb slowly. A risks heart problems. C is for an overactive thyroid. D is wrong because doses are rechecked.",
+      "videoTimestamp": "0:50"
+    },
+    {
+      "id": "ep20-thyroid-q05",
+      "type": "single_best_answer",
+      "stem": "The levothyroxine dose was raised today. When should the level be rechecked?",
+      "options": [
+        {
+          "id": "A",
+          "text": "In 1 week"
+        },
+        {
+          "id": "B",
+          "text": "In 2 days"
+        },
+        {
+          "id": "C",
+          "text": "In 6 months"
+        },
+        {
+          "id": "D",
+          "text": "In 6 to 8 weeks"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: the drug takes 6 to 8 weeks to settle. A and B give misleading results and invite the wrong dose change. C waits too long.",
+      "videoTimestamp": "0:57"
+    },
+    {
+      "id": "ep20-thyroid-q06",
+      "type": "select_all_that_apply",
+      "stem": "Which effects can too much levothyroxine cause? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Slow heart rate"
+        },
+        {
+          "id": "B",
+          "text": "Fast heart"
+        },
+        {
+          "id": "C",
+          "text": "Abnormal rhythms"
+        },
+        {
+          "id": "D",
+          "text": "Bone loss"
+        },
+        {
+          "id": "E",
+          "text": "Weight gain and sleepiness"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "B, C, and D are correct: too much causes a fast heart, abnormal rhythms, and bone loss. E and A fit too little thyroid hormone, not too much.",
+      "videoTimestamp": "1:05"
+    },
+    {
+      "id": "ep20-thyroid-q07",
+      "type": "single_best_answer",
+      "stem": "Which antithyroid drug is the first choice for most patients with an overactive thyroid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Propylthiouracil"
+        },
+        {
+          "id": "B",
+          "text": "Levothyroxine"
+        },
+        {
+          "id": "C",
+          "text": "Methimazole"
+        },
+        {
+          "id": "D",
+          "text": "Lithium"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: methimazole is the first choice for most patients. A is saved for special cases because of its liver warning. B treats an underactive thyroid. D is not taught as an antithyroid drug.",
+      "videoTimestamp": "1:32"
+    },
+    {
+      "id": "ep20-thyroid-q08",
+      "type": "single_best_answer",
+      "stem": "A patient on methimazole develops a sore throat with fever. What should happen?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stop the drug and check a white count now"
+        },
+        {
+          "id": "B",
+          "text": "Double the dose"
+        },
+        {
+          "id": "C",
+          "text": "Take a throat lozenge and continue"
+        },
+        {
+          "id": "D",
+          "text": "Switch to levothyroxine"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: both antithyroid drugs can rarely wipe out white blood cells. B and C ignore a possible emergency. D treats an underactive thyroid.",
+      "videoTimestamp": "1:46"
+    },
+    {
+      "id": "ep20-thyroid-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about thyroid drugs in pregnancy are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Raise levothyroxine as soon as pregnancy is confirmed"
+        },
+        {
+          "id": "B",
+          "text": "Recheck about every 4 weeks through the first half of pregnancy"
+        },
+        {
+          "id": "C",
+          "text": "Levothyroxine needs drop in pregnancy"
+        },
+        {
+          "id": "D",
+          "text": "Propylthiouracil is preferred in the first trimester"
+        },
+        {
+          "id": "E",
+          "text": "Methimazole can cause birth defects early in pregnancy"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "explanation": "A, B, D, and E are correct as taught. C is wrong because levothyroxine needs go up in pregnancy.",
+      "videoTimestamp": "1:55"
+    },
+    {
+      "id": "ep20-thyroid-q10",
+      "type": "single_best_answer",
+      "stem": "A patient on methimazole for Graves' disease is planning pregnancy in a few months. What is the best recommendation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stop all treatment"
+        },
+        {
+          "id": "B",
+          "text": "Double the methimazole"
+        },
+        {
+          "id": "C",
+          "text": "Add levothyroxine"
+        },
+        {
+          "id": "D",
+          "text": "Switch to propylthiouracil before conception"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: current guidance says to switch before conception so the first trimester is covered. A risks uncontrolled disease. B raises birth defect risk. C does not treat an overactive thyroid.",
+      "videoTimestamp": "3:13"
+    }
+  ]
+}
