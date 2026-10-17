@@ -62,7 +62,7 @@
     {
       "id": "ep17-antiseizure-q03",
       "type": "select_all_that_apply",
-      "stem": "Which are signs or effects of phenytoin taught in the video? Select all that apply.",
+      "stem": "Which are signs or effects of phenytoin? Select all that apply.",
       "options": [
         {
           "id": "A",
@@ -91,7 +91,7 @@
         "D",
         "E"
       ],
-      "explanation": "B, C, D, and E are correct: toxicity shows as shaky eyes and an unsteady walk, phenytoin causes gum overgrowth, and into a vein it goes no faster than 50 mg a minute. A is not an effect taught for phenytoin.",
+      "explanation": "B, C, D, and E are correct: toxicity shows as shaky eyes and an unsteady walk, phenytoin causes gum overgrowth, and into a vein it goes no faster than 50 mg a minute. Weight loss from appetite suppression fits topiramate, not phenytoin.",
       "videoTimestamp": "0:38"
     },
     {

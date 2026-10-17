@@ -69,34 +69,6 @@
     {
       "id": "ep19-antipsychotics-lithium-q03",
       "type": "single_best_answer",
-      "stem": "What is the label range for lithium during maintenance?",
-      "options": [
-        {
-          "id": "A",
-          "text": "0.2 to 0.4 mEq/L"
-        },
-        {
-          "id": "B",
-          "text": "1.5 to 2.0 mEq/L"
-        },
-        {
-          "id": "C",
-          "text": "0.8 to 1.0 mEq/L"
-        },
-        {
-          "id": "D",
-          "text": "2.5 to 3.0 mEq/L"
-        }
-      ],
-      "keys": [
-        "C"
-      ],
-      "explanation": "C is correct: the label maintenance range is 0.8 to 1.0 mEq/L, drawn as a trough 12 hours after the dose. A is too low. B and D are in the toxic range, which starts at 1.5.",
-      "videoTimestamp": "1:58"
-    },
-    {
-      "id": "ep19-antipsychotics-lithium-q04",
-      "type": "single_best_answer",
       "stem": "A lithium patient starts hydrochlorothiazide. What happens to the lithium level?",
       "options": [
         {
@@ -123,7 +95,7 @@
       "videoTimestamp": "2:36"
     },
     {
-      "id": "ep19-antipsychotics-lithium-q05",
+      "id": "ep19-antipsychotics-lithium-q04",
       "type": "single_best_answer",
       "stem": "Shortly after starting haloperidol, a patient has a sudden spasm of the neck. What treatment is taught?",
       "options": [
@@ -151,7 +123,7 @@
       "videoTimestamp": "0:31"
     },
     {
-      "id": "ep19-antipsychotics-lithium-q06",
+      "id": "ep19-antipsychotics-lithium-q05",
       "type": "select_all_that_apply",
       "stem": "Which are metabolic effects of second-generation antipsychotics? Select all that apply.",
       "options": [
@@ -185,7 +157,7 @@
       "videoTimestamp": "0:56"
     },
     {
-      "id": "ep19-antipsychotics-lithium-q07",
+      "id": "ep19-antipsychotics-lithium-q06",
       "type": "single_best_answer",
       "stem": "Which second-generation antipsychotics carry the highest metabolic risk?",
       "options": [
@@ -213,7 +185,7 @@
       "videoTimestamp": "0:59"
     },
     {
-      "id": "ep19-antipsychotics-lithium-q08",
+      "id": "ep19-antipsychotics-lithium-q07",
       "type": "select_all_that_apply",
       "stem": "Which statements about clozapine are correct? Select all that apply.",
       "options": [
@@ -248,7 +220,7 @@
       "videoTimestamp": "1:40"
     },
     {
-      "id": "ep19-antipsychotics-lithium-q09",
+      "id": "ep19-antipsychotics-lithium-q08",
       "type": "single_best_answer",
       "stem": "All antipsychotics carry a boxed warning for which group?",
       "options": [
@@ -276,7 +248,7 @@
       "videoTimestamp": "1:14"
     },
     {
-      "id": "ep19-antipsychotics-lithium-q10",
+      "id": "ep19-antipsychotics-lithium-q09",
       "type": "single_best_answer",
       "stem": "A patient in week 5 of clozapine has a fever and a sore throat. What is the best first action?",
       "options": [

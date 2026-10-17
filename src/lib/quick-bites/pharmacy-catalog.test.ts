@@ -87,10 +87,11 @@ describe("Quick Bites: Pharmacy catalog", () => {
     expect(bare).not.toContain("/quick-bites/quick-bites-pharm");
   });
 
-  it("serves a 10-question quiz per episode from the pharmacy JSON directory", () => {
+  it("serves a quiz per episode from the pharmacy JSON directory", () => {
     for (const episode of PHARMACY_QUICK_BITE_EPISODES) {
       const quiz = getPharmacyQuickBiteQuiz(episode.slug);
-      expect(quiz?.questions).toHaveLength(10);
+      const expectedCount = episode.slug === "quick-bites-pharm-ep19-antipsychotics-lithium" ? 9 : 10;
+      expect(quiz?.questions).toHaveLength(expectedCount);
       const published = JSON.stringify(publicQuickBiteQuiz(quiz!));
       expect(published).not.toContain('"keys"');
       expect(published).not.toContain('"explanation"');
@@ -132,6 +133,22 @@ describe("Quick Bites: Pharmacy catalog", () => {
       .join("\n");
     expect(rawQuizzes).not.toContain("reviewNote");
     expect(rawQuizzes).not.toContain("needs Ryan");
+    expect(rawQuizzes).not.toContain("What is the label range for lithium during maintenance?");
+    const lithium = getPharmacyQuickBiteQuiz("quick-bites-pharm-ep19-antipsychotics-lithium")!;
+    expect(lithium.questions.map((question) => question.id)).toEqual([
+      "ep19-antipsychotics-lithium-q01",
+      "ep19-antipsychotics-lithium-q02",
+      "ep19-antipsychotics-lithium-q03",
+      "ep19-antipsychotics-lithium-q04",
+      "ep19-antipsychotics-lithium-q05",
+      "ep19-antipsychotics-lithium-q06",
+      "ep19-antipsychotics-lithium-q07",
+      "ep19-antipsychotics-lithium-q08",
+      "ep19-antipsychotics-lithium-q09",
+    ]);
+    expect(lithium.questions[2]?.stem).toBe(
+      "A lithium patient starts hydrochlorothiazide. What happens to the lithium level?"
+    );
     expect(parseVideoTimestamp("0:47")).toBe(47);
     expect(parseVideoTimestamp("0:55")).toBe(55);
     expect(getPharmacyQuickBiteBySlug("quick-bites-ep02-nclex-works")).toBeUndefined();

@@ -280,7 +280,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: 33 / 2.2 = 15 kg; 10 x 15 = 150 mg; 150 / 100 x 5 = 7.5 mL. A skips the dose step. C is the weight in kg. D uses pounds instead of kilograms.",
+      "explanation": "B is correct: 33 / 2.2 = 15 kg; 10 x 15 = 150 mg; 150 / 100 x 5 = 7.5 mL. A uses pounds (330 mg) and leaves out the \u00d75 mL step. C is the weight in kg. D uses pounds instead of kilograms.",
       "videoTimestamp": "3:55"
     }
   ]

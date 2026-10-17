@@ -45,6 +45,19 @@ describe("Video Quick Bites quizzes", () => {
     );
   });
 
+  it("keeps the acute kidney injury keys and states the 1.5-times rule as or more", () => {
+    const raw = JSON.parse(
+      readFileSync(path.join(process.cwd(), "src/lib/quick-bites/quizzes/ep19-kidneys-dialysis.json"), "utf8")
+    ) as {
+      questions: { id: string; keys: string[]; options: { id: string; text: string }[] }[];
+    };
+    const question = raw.questions.find((item) => item.id === "ep19-kidneys-dialysis-q04");
+    expect(question?.keys).toEqual(["A", "B", "C"]);
+    expect(question?.options.find((option) => option.id === "B")?.text).toBe(
+      "Creatinine rising to 1.5 times baseline or more within 7 days"
+    );
+  });
+
   it("scores an exact set match and rejects a partial select-all answer", () => {
     const quiz = getQuickBiteQuiz("quick-bites-ep02-nclex-works")!;
     const single = quiz.questions[0]!;
