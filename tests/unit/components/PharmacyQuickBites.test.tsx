@@ -6,7 +6,10 @@ import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBites
 
 describe("Quick Bites: Pharmacy", () => {
   beforeEach(() => {
+    vi.restoreAllMocks();
     vi.unstubAllGlobals();
+    HTMLMediaElement.prototype.play = () => Promise.resolve();
+    HTMLMediaElement.prototype.pause = () => {};
   });
 
   it("shows locked posters and one upgrade action to a free member", () => {
@@ -89,7 +92,13 @@ describe("Quick Bites: Pharmacy", () => {
     );
     expect(video.querySelector("track")).toBeNull();
     expect(screen.getByText("Captions are already on the video.")).toBeInTheDocument();
+    expect(screen.queryByText("Stem for quick-bites-pharm-ep01-anticoagulants")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Take the quiz" })).toHaveAttribute("aria-expanded", "false");
+    expect(document.getElementById("quick-bites-quiz-panel")).toHaveAttribute("data-state", "closed");
+
+    await user.click(screen.getByRole("button", { name: "Take the quiz" }));
     expect(await screen.findByText("Stem for quick-bites-pharm-ep01-anticoagulants")).toBeInTheDocument();
+    expect(screen.getByLabelText("Anticoagulants: Warfarin vs Heparins vs DOACs video")).toBe(video);
     const next = screen.getByRole("button", { name: "Next episode" });
     expect(
       next.compareDocumentPosition(screen.getByText("Quiz · Question 1 of 1")) &
@@ -98,14 +107,18 @@ describe("Quick Bites: Pharmacy", () => {
 
     await user.click(next);
     expect(await screen.findByRole("heading", { name: "2. ACE Inhibitors vs ARBs vs ARNI" })).toBeInTheDocument();
-    expect(await screen.findByText("Stem for quick-bites-pharm-ep02-raas")).toBeInTheDocument();
     expect(screen.queryByText("Stem for quick-bites-pharm-ep01-anticoagulants")).not.toBeInTheDocument();
+    expect(screen.queryByText("Stem for quick-bites-pharm-ep02-raas")).not.toBeInTheDocument();
+    expect(document.getElementById("quick-bites-quiz-panel")).toHaveAttribute("data-state", "closed");
     expect(screen.getByLabelText("ACE Inhibitors vs ARBs vs ARNI video")).toHaveAttribute(
       "src",
       expect.stringContaining("quick-bites-pharmacy/quick-bites-pharm-ep02-raas-web.mp4")
     );
 
     await user.click(screen.getByRole("button", { name: "Play 17. Bonus: How the Pharmacy Boards Work" }));
+    expect(screen.queryByRole("button", { name: "Next episode" })).not.toBeInTheDocument();
+    expect(screen.queryByText("Stem for quick-bites-pharm-bonus-exam-format")).not.toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Take the quiz" }));
     expect(await screen.findByText("Stem for quick-bites-pharm-bonus-exam-format")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Next episode" })).not.toBeInTheDocument();
   });
