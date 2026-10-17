@@ -72,15 +72,26 @@ describe("Quick Bites quiz", () => {
       })
     );
 
+    const scrollIntoView = vi.fn();
+    HTMLElement.prototype.scrollIntoView = scrollIntoView;
+
     render(
       <QuickBitesPlayer
         episode={getQuickBiteBySlug("quick-bites-ep02-nclex-works")!}
-        nextEpisode={getQuickBiteBySlug("quick-bites-ep03-priority")!}
         onClose={onClose}
         onNext={onNext}
       />
     );
 
+    const video = await screen.findByLabelText("How the Nursing Boards Work video");
+    expect(screen.queryByText(QUESTIONS[0]!.stem)).not.toBeInTheDocument();
+    video.dispatchEvent(new Event("timeupdate"));
+    video.dispatchEvent(new Event("ended"));
+    video.dispatchEvent(new Event("play"));
+    expect(screen.queryByText(QUESTIONS[0]!.stem)).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Take the quiz" })).toHaveAttribute("aria-expanded", "false");
+
+    await user.click(screen.getByRole("button", { name: "Take the quiz" }));
     expect(await screen.findByText(QUESTIONS[0]!.stem)).toBeInTheDocument();
     const nextEpisode = screen.getByRole("button", { name: "Next episode" });
     expect(nextEpisode.className).toContain("min-h-11");
@@ -102,9 +113,10 @@ describe("Quick Bites quiz", () => {
     expect(screen.getByRole("radio", { name: /The candidate passed/ })).toBeDisabled();
     expect(screen.queryByRole("button", { name: "Check answer" })).not.toBeInTheDocument();
 
-    const video = screen.getByLabelText("How the Nursing Boards Work video");
     await user.click(screen.getByRole("button", { name: "Rewatch this part" }));
     expect(video).toHaveProperty("currentTime", 69);
+    expect(scrollIntoView).not.toHaveBeenCalled();
+    expect(video).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: "Next question" }));
     expect(screen.getByText("Select all that apply")).toBeInTheDocument();
@@ -125,7 +137,12 @@ describe("Quick Bites quiz", () => {
     await user.click(nextAfterScore);
     expect(onNext).toHaveBeenCalledOnce();
     expect(onClose).not.toHaveBeenCalled();
-    await user.click(screen.getByRole("button", { name: "Back to episodes" }));
+    expect(video).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Close quiz" }));
+    expect(screen.queryByRole("heading", { name: "You got 1 of 2." })).not.toBeInTheDocument();
+    expect(screen.getByLabelText("How the Nursing Boards Work video")).toBe(video);
+    expect(onClose).not.toHaveBeenCalled();
+    await user.click(screen.getByRole("button", { name: "Close player" }));
     expect(onClose).toHaveBeenCalledOnce();
   });
 });

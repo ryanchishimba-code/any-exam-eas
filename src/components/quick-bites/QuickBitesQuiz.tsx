@@ -31,7 +31,7 @@ type Phase =
     }
   | { name: "score"; correctCount: number; total: number };
 
-function NextEpisodeButton({
+export function NextEpisodeButton({
   onNext,
   emphasis,
 }: {
@@ -41,6 +41,7 @@ function NextEpisodeButton({
   return (
     <button
       type="button"
+      onMouseDown={(event) => event.preventDefault()}
       onClick={onNext}
       className={
         emphasis === "primary"
@@ -56,12 +57,10 @@ function NextEpisodeButton({
 export function QuickBitesQuiz({
   slug,
   onRewatch,
-  onDone,
   onNext,
 }: {
   slug: string;
   onRewatch: (timestamp: string) => void;
-  onDone: () => void;
   onNext?: () => void;
 }) {
   const [phase, setPhase] = useState<Phase>({ name: "loading" });
@@ -135,20 +134,11 @@ export function QuickBitesQuiz({
         >
           You got {phase.correctCount} of {phase.total}.
         </h3>
-        <div className="flex flex-col gap-2 sm:flex-row">
-          {onNext ? <NextEpisodeButton onNext={onNext} emphasis="primary" /> : null}
-          <button
-            type="button"
-            onClick={onDone}
-            className={
-              onNext
-                ? "inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[var(--color-border)] px-4 text-[14px] font-semibold text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] sm:w-auto"
-                : cn(dbUi.primaryBtn, "min-h-11 w-full sm:w-auto")
-            }
-          >
-            Back to episodes
-          </button>
-        </div>
+        {onNext ? (
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <NextEpisodeButton onNext={onNext} emphasis="primary" />
+          </div>
+        ) : null}
       </section>
     );
   }
