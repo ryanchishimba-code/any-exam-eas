@@ -710,7 +710,6 @@
 }
 
 .home-bites__board {
-  margin-left: 0.55rem;
   color: var(--home-muted);
   font-weight: 500;
 }
