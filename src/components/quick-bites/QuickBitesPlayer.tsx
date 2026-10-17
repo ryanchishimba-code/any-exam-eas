@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { X } from "lucide-react";
 import { NextEpisodeButton, QuickBitesQuiz } from "@/components/quick-bites/QuickBitesQuiz";
 import {
@@ -43,6 +43,29 @@ export function QuickBitesPlayer({
   const quizOpen = quizSession.id === identity && quizSession.open;
   const videoRef = useRef<HTMLVideoElement>(null);
   const playedToken = useRef("");
+  const scrollLock = useRef<number | null>(null);
+
+  function holdScroll() {
+    scrollLock.current = window.scrollY;
+  }
+
+  useLayoutEffect(() => {
+    const y = scrollLock.current;
+    if (y == null) return;
+    const restore = () => {
+      if (Math.abs(window.scrollY - y) > 1) window.scrollTo(0, y);
+    };
+    restore();
+    const frame = requestAnimationFrame(restore);
+    const timer = window.setTimeout(() => {
+      restore();
+      scrollLock.current = null;
+    }, 60);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+    };
+  }, [quizOpen]);
   const known = episode ? (getQuickBiteBySlug(episode.slug) ?? episode) : null;
   const poster = known ? quickBitePoster(known.slug) : null;
 
@@ -135,14 +158,35 @@ export function QuickBitesPlayer({
                   {known.number}. {known.title}
                 </h3>
               </div>
-              <button
-                type="button"
-                onClick={onClose}
-                className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
-              >
-                <X className="h-4 w-4" aria-hidden />
-                <span className="sr-only">Close player</span>
-              </button>
+              <div className="flex shrink-0 items-center gap-2">
+                <button
+                  type="button"
+                  aria-expanded={quizOpen}
+                  aria-controls="quick-bites-quiz-panel"
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => {
+                    holdScroll();
+                    setQuizSession({ id: identity, open: !quizOpen });
+                  }}
+                  className={cn(quizOpen ? dbUi.ghostBtn : dbUi.primaryBtn, "min-h-11 px-3 sm:px-4")}
+                >
+                  {quizOpen ? "Close quiz" : "Take the quiz"}
+                </button>
+                {onNext && !quizOpen ? (
+                  <span className="hidden sm:inline-flex">
+                    <NextEpisodeButton onNext={onNext} emphasis="quiet" />
+                  </span>
+                ) : null}
+                <button
+                  type="button"
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={onClose}
+                  className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-[var(--color-border)] text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+                >
+                  <X className="h-4 w-4" aria-hidden />
+                  <span className="sr-only">Close player</span>
+                </button>
+              </div>
             </>
           ) : (
             <p className="text-[14px] text-[var(--color-ink-muted)]">Nothing playing yet.</p>
@@ -195,22 +239,6 @@ export function QuickBitesPlayer({
         <p className="mt-3 min-h-8 text-[12px] leading-8 text-[var(--color-ink-muted)]">
           {known ? "Captions are available from the player. They match the words already on screen." : "\u00a0"}
         </p>
-        <div className="flex min-h-11 flex-wrap items-center gap-2">
-          {known ? (
-            <button
-              type="button"
-              aria-expanded={quizOpen}
-              aria-controls="quick-bites-quiz-panel"
-              onClick={() => setQuizSession({ id: identity, open: !quizOpen })}
-              className={cn(quizOpen ? dbUi.ghostBtn : dbUi.primaryBtn, "min-h-11 px-4")}
-            >
-              {quizOpen ? "Close quiz" : "Take the quiz"}
-            </button>
-          ) : null}
-          {known && onNext && !quizOpen ? (
-            <NextEpisodeButton onNext={onNext} emphasis="quiet" />
-          ) : null}
-        </div>
       </div>
 
       {library}

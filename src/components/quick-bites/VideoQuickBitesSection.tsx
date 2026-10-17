@@ -172,6 +172,7 @@ export function VideoQuickBitesSection({
                               type="button"
                               aria-pressed={active?.slug === episode.slug}
                               aria-label={`Play ${episode.number}. ${episode.title}`}
+                              onMouseDown={(event) => event.preventDefault()}
                               onClick={() => selectFromLibrary(episode.slug)}
                               className="flex min-h-11 w-full flex-col overflow-hidden rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)] text-left transition hover:border-[var(--color-accent)]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2"
                             >

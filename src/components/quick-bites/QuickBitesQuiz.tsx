@@ -41,6 +41,7 @@ export function NextEpisodeButton({
   return (
     <button
       type="button"
+      onMouseDown={(event) => event.preventDefault()}
       onClick={onNext}
       className={
         emphasis === "primary"
