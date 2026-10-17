@@ -18,10 +18,14 @@ type LoadState =
 
 export function QuickBitesPlayer({
   episode,
+  nextEpisode,
   onClose,
+  onNext,
 }: {
   episode: QuickBiteEpisode;
+  nextEpisode: QuickBiteEpisode | null;
   onClose: () => void;
+  onNext: () => void;
 }) {
   const [state, setState] = useState<LoadState>({ status: "loading" });
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -82,7 +86,17 @@ export function QuickBitesPlayer({
 
   useEffect(() => {
     const node = document.getElementById("quick-bites-player");
-    if (!node || typeof node.scrollIntoView !== "function") return;
+    if (!node) return;
+    const heading = node.querySelector("h3");
+    if (heading instanceof HTMLElement) {
+      heading.tabIndex = -1;
+      try {
+        heading.focus({ preventScroll: true });
+      } catch {
+        // jsdom may not implement preventScroll.
+      }
+    }
+    if (typeof node.scrollIntoView !== "function") return;
     try {
       node.scrollIntoView({ block: "nearest" });
     } catch {
@@ -155,7 +169,13 @@ export function QuickBitesPlayer({
       <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
         Captions are available from the player. They match the words already on screen.
       </p>
-      <QuickBitesQuiz slug={known.slug} onRewatch={rewatch} onDone={onClose} />
+      <QuickBitesQuiz
+        key={known.slug}
+        slug={known.slug}
+        onRewatch={rewatch}
+        onDone={onClose}
+        onNext={nextEpisode ? onNext : undefined}
+      />
     </div>
   );
 }

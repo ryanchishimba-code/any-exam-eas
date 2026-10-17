@@ -201,6 +201,24 @@ export function isQuickBiteHeld(slug: string): boolean {
   return BY_SLUG.get(slug)?.held === true;
 }
 
+/** Paid members can play every released episode. Anyone signed in can play the open one. */
+export function isQuickBiteEpisodePlayable(episode: QuickBiteEpisode, canPlayLibrary: boolean): boolean {
+  return episode.held !== true && (canPlayLibrary || isOpenQuickBite(episode.slug));
+}
+
+/** The next released episode this viewer is allowed to play, if there is one. */
+export function nextPlayableQuickBite(
+  slug: string,
+  canPlayLibrary: boolean
+): QuickBiteEpisode | null {
+  const start = QUICK_BITE_EPISODES.findIndex((episode) => episode.slug === slug);
+  if (start < 0) return null;
+  for (const episode of QUICK_BITE_EPISODES.slice(start + 1)) {
+    if (isQuickBiteEpisodePlayable(episode, canPlayLibrary)) return episode;
+  }
+  return null;
+}
+
 export function quickBiteVideoPath(slug: string): string {
   return `quick-bites/${slug}-web.mp4`;
 }
