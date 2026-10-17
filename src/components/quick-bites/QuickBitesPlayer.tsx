@@ -236,7 +236,7 @@ export function QuickBitesPlayer({
             </div>
           )}
         </div>
-        <p className="mt-3 min-h-8 text-[12px] leading-8 text-[var(--color-ink-muted)]">
+        <p className="mt-3 h-16 overflow-hidden text-[12px] leading-8 text-[var(--color-ink-muted)]">
           {known ? "Captions are available from the player. They match the words already on screen." : "\u00a0"}
         </p>
       </div>

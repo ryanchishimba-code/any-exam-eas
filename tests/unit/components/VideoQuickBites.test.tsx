@@ -66,6 +66,7 @@ describe("Video Quick Bites", () => {
     expect(fetchMock.mock.calls.some((call) => String(call[0]).includes("/quiz"))).toBe(false);
     expect(screen.queryByText(/Question 1 of/)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Take the quiz" })).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByText(/Captions are available from the player/)).toHaveClass("h-16");
     video.dispatchEvent(new Event("play"));
     video.dispatchEvent(new Event("timeupdate"));
     video.dispatchEvent(new Event("ended"));
