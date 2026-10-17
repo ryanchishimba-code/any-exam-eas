@@ -17,7 +17,7 @@ export function HomeQuickBites() {
           <article key={track.id} aria-labelledby={`quick-bites-${track.id}`}>
             <h3 id={`quick-bites-${track.id}`}>
               {track.title}
-              <span className="home-bites__board"> · {track.board}</span>
+              <span className="home-bites__board">{` · ${track.board}`}</span>
             </h3>
             <p className="home-bites__count">{track.countLabel}</p>
             <ul className="home-bites__posters">
