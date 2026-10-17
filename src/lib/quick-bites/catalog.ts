@@ -38,6 +38,32 @@ type EpisodeSeed = {
   duration: string;
 };
 
+/**
+ * Wave 1 (potassium, ep02-ep15, bonus) was re-rendered on Oct 17, 2026 with corrected
+ * caption timing. Narration, durations and VTT text are unchanged. The new MP4 and VTT
+ * files live under this subfolder; the originals stay at quick-bites/<slug>-* untouched.
+ */
+export const NURSING_WAVE1_MEDIA_VERSION = "v2-20261017";
+
+const NURSING_WAVE1_V2_SLUGS: ReadonlySet<string> = new Set([
+  "quick-bites-potassium",
+  "quick-bites-ep02-nclex-works",
+  "quick-bites-ep03-priority",
+  "quick-bites-ep04-delegation",
+  "quick-bites-ep05-isolation",
+  "quick-bites-ep06-sodium-calcium",
+  "quick-bites-ep07-acid-base",
+  "quick-bites-ep08-cardiac",
+  "quick-bites-ep09-respiratory",
+  "quick-bites-ep10-endocrine",
+  "quick-bites-ep11-neuro",
+  "quick-bites-ep12-high-alert-pharm",
+  "quick-bites-ep13-psych",
+  "quick-bites-ep14-maternity",
+  "quick-bites-ep15-peds",
+  "quick-bites-bonus-labs-examday",
+]);
+
 const GROUPS: { title: string; episodes: EpisodeSeed[] }[] = [
   {
     title: "How the Exam Works",
@@ -279,7 +305,13 @@ const GROUPS: { title: string; episodes: EpisodeSeed[] }[] = [
 export const QUICK_BITE_GROUPS: { title: string; episodes: QuickBiteEpisode[] }[] = GROUPS.map(
   (group) => ({
     title: group.title,
-    episodes: group.episodes.map((episode) => ({ ...episode, group: group.title })),
+    episodes: group.episodes.map((episode) => ({
+      ...episode,
+      group: group.title,
+      ...(NURSING_WAVE1_V2_SLUGS.has(episode.slug)
+        ? { mediaVersion: NURSING_WAVE1_MEDIA_VERSION }
+        : {}),
+    })),
   })
 );
 
@@ -315,12 +347,17 @@ export function nextPlayableQuickBite(
   return null;
 }
 
+function nursingMediaFolder(slug: string): string {
+  const version = BY_SLUG.get(slug)?.mediaVersion;
+  return version ? `quick-bites/${version}` : "quick-bites";
+}
+
 export function quickBiteVideoPath(slug: string): string {
-  return `quick-bites/${slug}-web.mp4`;
+  return `${nursingMediaFolder(slug)}/${slug}-web.mp4`;
 }
 
 export function quickBiteCaptionsPath(slug: string): string {
-  return `quick-bites/${slug}.vtt`;
+  return `${nursingMediaFolder(slug)}/${slug}.vtt`;
 }
 
 export function quickBitePoster(slug: string): { webp: string; jpg: string } {
