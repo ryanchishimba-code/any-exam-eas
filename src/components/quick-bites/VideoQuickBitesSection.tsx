@@ -6,7 +6,8 @@ import { useState } from "react";
 import { Lock, Play } from "lucide-react";
 import {
   QUICK_BITE_GROUPS,
-  isOpenQuickBite,
+  isQuickBiteEpisodePlayable,
+  nextPlayableQuickBite,
   quickBitePoster,
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
@@ -44,10 +45,6 @@ function Poster({ slug }: { slug: string }) {
   );
 }
 
-function episodeIsPlayable(episode: QuickBiteEpisode, canPlayLibrary: boolean) {
-  return !episode.held && (canPlayLibrary || isOpenQuickBite(episode.slug));
-}
-
 function EpisodeMeta({ episode }: { episode: QuickBiteEpisode }) {
   return (
     <span className="flex min-h-11 items-center gap-3 px-3.5 py-2.5">
@@ -76,8 +73,9 @@ export function VideoQuickBitesSection({
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const active =
     QUICK_BITE_GROUPS.flatMap((group) => group.episodes).find(
-      (episode) => episode.slug === activeSlug && episodeIsPlayable(episode, canPlay)
+      (episode) => episode.slug === activeSlug && isQuickBiteEpisodePlayable(episode, canPlay)
     ) ?? null;
+  const nextEpisode = active ? nextPlayableQuickBite(active.slug, canPlay) : null;
 
   return (
     <section
@@ -117,7 +115,17 @@ export function VideoQuickBitesSection({
         </div>
       )}
 
-      {active ? <QuickBitesPlayer episode={active} onClose={() => setActiveSlug(null)} /> : null}
+      {active ? (
+        <QuickBitesPlayer
+          key={active.slug}
+          episode={active}
+          nextEpisode={nextEpisode}
+          onClose={() => setActiveSlug(null)}
+          onNext={() => {
+            if (nextEpisode) setActiveSlug(nextEpisode.slug);
+          }}
+        />
+      ) : null}
 
       <div className="space-y-6">
         {QUICK_BITE_GROUPS.map((group) => (
@@ -128,7 +136,7 @@ export function VideoQuickBitesSection({
             <ul className="mt-2.5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {group.episodes.map((episode) => (
                 <li key={episode.slug}>
-                  {episodeIsPlayable(episode, canPlay) ? (
+                  {isQuickBiteEpisodePlayable(episode, canPlay) ? (
                     <button
                       type="button"
                       aria-pressed={active?.slug === episode.slug}

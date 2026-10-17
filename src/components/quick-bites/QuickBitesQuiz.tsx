@@ -31,14 +31,38 @@ type Phase =
     }
   | { name: "score"; correctCount: number; total: number };
 
+function NextEpisodeButton({
+  onNext,
+  emphasis,
+}: {
+  onNext: () => void;
+  emphasis: "primary" | "quiet";
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onNext}
+      className={
+        emphasis === "primary"
+          ? cn(dbUi.primaryBtn, "min-h-11 w-full sm:w-auto")
+          : "inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[var(--color-border)] px-4 text-[14px] font-semibold text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] sm:w-auto"
+      }
+    >
+      Next episode
+    </button>
+  );
+}
+
 export function QuickBitesQuiz({
   slug,
   onRewatch,
   onDone,
+  onNext,
 }: {
   slug: string;
   onRewatch: (timestamp: string) => void;
   onDone: () => void;
+  onNext?: () => void;
 }) {
   const [phase, setPhase] = useState<Phase>({ name: "loading" });
   const [questions, setQuestions] = useState<PublicQuestion[]>([]);
@@ -47,17 +71,20 @@ export function QuickBitesQuiz({
 
   useEffect(() => {
     const controller = new AbortController();
+    let active = true;
     setPhase({ name: "loading" });
     setQuestions([]);
     setSendError(false);
 
     fetch(`/api/quick-bites/${slug}/quiz`, { signal: controller.signal, cache: "no-store" })
       .then(async (response) => {
+        if (!active) return;
         if (!response.ok) {
           setPhase({ name: "unavailable" });
           return;
         }
         const body = (await response.json()) as { questions?: PublicQuestion[] };
+        if (!active) return;
         if (!body.questions?.length) {
           setPhase({ name: "unavailable" });
           return;
@@ -66,26 +93,36 @@ export function QuickBitesQuiz({
         setPhase({ name: "question", index: 0, selected: [], correctCount: 0 });
       })
       .catch((error: unknown) => {
+        if (!active) return;
         if (error instanceof DOMException && error.name === "AbortError") return;
         setPhase({ name: "unavailable" });
       });
 
-    return () => controller.abort();
+    return () => {
+      active = false;
+      controller.abort();
+    };
   }, [slug]);
 
   if (phase.name === "loading") {
     return (
-      <p className="text-[13px] text-[var(--color-ink-muted)]" role="status">
-        Loading quiz...
-      </p>
+      <div className="space-y-4">
+        {onNext ? <NextEpisodeButton onNext={onNext} emphasis="quiet" /> : null}
+        <p className="text-[13px] text-[var(--color-ink-muted)]" role="status">
+          Loading quiz...
+        </p>
+      </div>
     );
   }
 
   if (phase.name === "unavailable") {
     return (
-      <p className="text-[13px] text-[var(--color-ink-muted)]">
-        This quiz is part of a paid membership.
-      </p>
+      <div className="space-y-4">
+        {onNext ? <NextEpisodeButton onNext={onNext} emphasis="quiet" /> : null}
+        <p className="text-[13px] text-[var(--color-ink-muted)]">
+          This quiz is part of a paid membership.
+        </p>
+      </div>
     );
   }
 
@@ -98,13 +135,20 @@ export function QuickBitesQuiz({
         >
           You got {phase.correctCount} of {phase.total}.
         </h3>
-        <button
-          type="button"
-          onClick={onDone}
-          className={cn(dbUi.primaryBtn, "min-h-11 w-full sm:w-auto")}
-        >
-          Back to episodes
-        </button>
+        <div className="flex flex-col gap-2 sm:flex-row">
+          {onNext ? <NextEpisodeButton onNext={onNext} emphasis="primary" /> : null}
+          <button
+            type="button"
+            onClick={onDone}
+            className={
+              onNext
+                ? "inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[var(--color-border)] px-4 text-[14px] font-semibold text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] sm:w-auto"
+                : cn(dbUi.primaryBtn, "min-h-11 w-full sm:w-auto")
+            }
+          >
+            Back to episodes
+          </button>
+        </div>
       </section>
     );
   }
@@ -183,6 +227,7 @@ export function QuickBitesQuiz({
 
   return (
     <section aria-labelledby="quick-bites-quiz-heading" className="space-y-4">
+      {onNext ? <NextEpisodeButton onNext={onNext} emphasis="quiet" /> : null}
       <div className="space-y-2">
         <p id="quick-bites-quiz-heading" className={dbUi.eyebrow}>
           {`Quiz · Question ${phase.index + 1} of ${questions.length}`}

@@ -6,6 +6,8 @@ import {
   QUICK_BITE_GROUPS,
   getQuickBiteBySlug,
   isOpenQuickBite,
+  isQuickBiteEpisodePlayable,
+  nextPlayableQuickBite,
   quickBiteCaptionsPath,
   quickBitePoster,
   quickBiteVideoPath,
@@ -46,6 +48,14 @@ describe("Quick Bites catalog", () => {
       title: "How the Nursing Boards Work",
     });
     expect(QUICK_BITE_EPISODES.filter((episode) => isOpenQuickBite(episode.slug))).toHaveLength(1);
+    expect(nextPlayableQuickBite(OPEN_QUICK_BITE_SLUG, true)?.slug).toBe("quick-bites-ep03-priority");
+    expect(nextPlayableQuickBite(OPEN_QUICK_BITE_SLUG, false)).toBeNull();
+    expect(nextPlayableQuickBite("quick-bites-ep07-acid-base", true)?.title).toBe(
+      "Danger-Zone Labs & Exam-Day Plan"
+    );
+    expect(nextPlayableQuickBite("quick-bites-bonus-labs-examday", true)).toBeNull();
+    expect(isQuickBiteEpisodePlayable(QUICK_BITE_EPISODES[0]!, false)).toBe(true);
+    expect(isQuickBiteEpisodePlayable(QUICK_BITE_EPISODES[1]!, false)).toBe(false);
     expect(getQuickBiteBySlug("quick-bites-ep07-acid-base")?.duration).toBe("3:25");
     expect(getQuickBiteBySlug("quick-bites-ep12-high-alert-pharm")?.duration).toBe("2:44");
     expect(QUICK_BITE_GROUPS.map((group) => group.title)).toEqual([
