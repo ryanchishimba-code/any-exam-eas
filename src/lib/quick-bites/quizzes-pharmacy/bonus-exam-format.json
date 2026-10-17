@@ -168,7 +168,7 @@
       "keys": [
         "A"
       ],
-      "explanation": "A is correct: the law exam is separate and focuses on your state's pharmacy law. B is wrong because it is a separate exam. C describes the clinical board exam. D describes part of the clinical board exam's content.",
+      "explanation": "A is correct: the law exam is separate from the clinical board exam and focuses on your state's pharmacy law; your state board decides which law exam you take. B is wrong because it is a separate exam. C describes the clinical board exam. D describes part of the clinical board exam's content.",
       "videoTimestamp": "1:15"
     },
     {
@@ -203,7 +203,7 @@
         "D",
         "E"
       ],
-      "explanation": "A, C, D, and E are correct: matching identification, arriving early, using the optional breaks, and writing units on every calculation step. B is not one of the exam-day steps; the steps are matching identification, arriving early, using breaks, and writing units.",
+      "explanation": "A, C, D, and E are correct: matching identification, arriving early, using the optional breaks, and writing units on every calculation step. B is wrong because study notes and other study materials are not allowed in the exam, including during breaks.",
       "videoTimestamp": "1:20"
     },
     {
@@ -231,7 +231,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: don't let one hard calculation eat 10 minutes; make your best answer and keep moving. A uses up time needed for later questions. C still leaves 10 minutes lost on one item; the advice is to make your best answer now and keep moving. D wastes the chance to earn the point.",
+      "explanation": "B is correct: don't let one hard calculation eat 10 minutes; make your best answer and keep moving. A uses up time needed for later questions. C is wrong because the exam does not let you skip a question and come back to it later. D wastes the chance to earn the point.",
       "videoTimestamp": "1:05"
     },
     {
@@ -299,7 +299,7 @@
         "E"
       ],
       "explanation": "A, B, C, and E are correct: 225 questions, 6 hours, a fixed form, and pass or fail results. D is wrong because the exam is not adaptive. F is wrong because results are pass or fail, not a percentile.",
-      "videoTimestamp": "0:25"
+      "videoTimestamp": "0:23"
     }
   ]
 }

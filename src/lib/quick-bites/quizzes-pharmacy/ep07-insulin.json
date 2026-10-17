@@ -29,7 +29,7 @@
         "B"
       ],
       "explanation": "B is correct: 3 PM is 8 hours after the 7 AM dose, inside isophane's 4 to 12 hour peak. A is wrong because rapid-acting insulin lasts about 3 to 5 hours and was gone by late morning. C is wrong because insulin causes low sugar. D ignores the timing: only isophane is still peaking.",
-      "videoTimestamp": "1:27"
+      "videoTimestamp": "1:25"
     },
     {
       "id": "ep07-insulin-q02",
@@ -110,7 +110,7 @@
         },
         {
           "id": "E",
-          "text": "It lasts up to about 18 hours"
+          "text": "It can last up to about 24 hours"
         }
       ],
       "keys": [
@@ -119,8 +119,8 @@
         "D",
         "E"
       ],
-      "explanation": "B, C, D, and E are correct: isophane is cloudy, is rolled gently, peaks around 4 to 12 hours, and lasts up to about 18 hours. A is wrong: the flat, no-peak pattern describes long-acting basal insulins like glargine.",
-      "videoTimestamp": "0:58"
+      "explanation": "B, C, D, and E are correct: isophane is cloudy, is rolled gently, peaks around 4 to 12 hours, and can last up to about 24 hours. A is wrong: the flat, no-peak pattern describes long-acting basal insulins like glargine.",
+      "videoTimestamp": "0:55"
     },
     {
       "id": "ep07-insulin-q05",
@@ -232,7 +232,7 @@
         "D"
       ],
       "explanation": "D is correct: a letter U can be misread as a zero, turning 10 units into 100, so clarify and have units written in full. A dispenses an error-prone order. C makes the exact misreading the rule is meant to prevent. B changes the drug without a reason.",
-      "videoTimestamp": "3:11"
+      "videoTimestamp": "2:14"
     },
     {
       "id": "ep07-insulin-q09",

@@ -119,7 +119,7 @@
       "keys": [
         "D"
       ],
-      "explanation": "D is correct: concentrated insulin needs its own dedicated syringe or pen. A risks a fivefold dosing error. C and B are not how this insulin is given.",
+      "explanation": "D is correct: concentrated insulin needs its own dedicated syringe or pen. A risks a fivefold dosing error. B is wrong because this insulin must never be given IV. C is not how this insulin is given.",
       "videoTimestamp": "1:00"
     },
     {
@@ -176,7 +176,7 @@
         "C"
       ],
       "explanation": "C is correct: fentanyl patches are only for opioid-tolerant patients. A dispenses an unsafe start. B is wrong because a patch must never be cut. D adds naloxone but still starts an unsafe drug.",
-      "videoTimestamp": "2:13"
+      "videoTimestamp": "1:22"
     },
     {
       "id": "ep14-high-alert-q07",

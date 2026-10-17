@@ -96,7 +96,7 @@
         "A"
       ],
       "explanation": "A is correct: the nasal spray is live, so avoid it in immunosuppressed patients; the injected flu shot is inactivated and recommended. B and D give a live vaccine to an immunosuppressed patient. C leaves the patient without protection when a safe vaccine exists.",
-      "videoTimestamp": "2:32"
+      "videoTimestamp": "2:30"
     },
     {
       "id": "ep15-vaccines-q04",
@@ -124,7 +124,7 @@
         "B"
       ],
       "explanation": "B is correct: two live injected vaccines go on the same day or at least 28 days apart; 14 days is too close, so the second one may not work and is repeated. A ignores the spacing rule. C repeats the wrong vaccine. D is still too close.",
-      "videoTimestamp": "1:23"
+      "videoTimestamp": "1:16"
     },
     {
       "id": "ep15-vaccines-q05",
@@ -298,7 +298,7 @@
         "C"
       ],
       "explanation": "A, B, and C are correct: live vaccines are avoided in pregnancy and weak immune systems, and inactivated vaccines can be given any time. D is wrong because two live vaccines go the same day or at least 28 days apart. E is wrong because Shingrix is not live.",
-      "videoTimestamp": "1:25"
+      "videoTimestamp": "0:28"
     }
   ]
 }

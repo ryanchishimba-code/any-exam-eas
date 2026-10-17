@@ -113,7 +113,7 @@
         "A"
       ],
       "explanation": "A is correct: 5 x 80 = 400 mcg/min, x 60 = 24,000 mcg/hr, divided by 1600 = 15 mL/hr. B and C are tenfold slips. D does not follow from the setup.",
-      "videoTimestamp": "2:02"
+      "videoTimestamp": "1:07"
     },
     {
       "id": "ep12-calculations-q05",
@@ -140,7 +140,7 @@
       "keys": [
         "B"
       ],
-      "explanation": "B is correct: 3 x 70 = 210 mcg/min, x 60 = 12,600 mcg/hr, divided by 1600 = 7.875, about 7.9 mL/hr. A is a tenfold slip upward. C is a tenfold slip downward. D leaves out the weight: 3 x 70 is 210, not 350.",
+      "explanation": "B is correct: 3 x 70 = 210 mcg/min, x 60 = 12,600 mcg/hr, divided by 1600 = 7.875, about 7.9 mL/hr. A is a tenfold slip upward. C is a tenfold slip downward. D uses 5 mcg/kg/min instead of 3: 5 x 70 = 350 mcg/min, which gives 13.1 mL/hr.",
       "videoTimestamp": "1:12"
     },
     {
@@ -196,7 +196,7 @@
       "keys": [
         "A"
       ],
-      "explanation": "A is correct: by alligation, parts of 10% = 5 - 2 = 3 and parts of 2% = 10 - 5 = 5, for 8 parts; 3/8 of 400 = 150 g of 10% and 5/8 of 400 = 250 g of 2%. Check: (150 x 10 + 250 x 2) / 400 = 5%. B swaps the parts and gives 6.5%. C gives 6%. D gives 4%.",
+      "explanation": "A is correct: by alligation, parts of 10% = 5 - 2 = 3 and parts of 2% = 10 - 5 = 5, for 8 parts; 3/8 of 400 = 150 g of 10% and 5/8 of 400 = 250 g of 2%. Check: (150 x 10 + 250 x 2) / 400 = 5%. B swaps the parts and gives 7%. C gives 6%. D gives 4%.",
       "videoTimestamp": "1:28"
     },
     {

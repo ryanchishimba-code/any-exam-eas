@@ -267,7 +267,7 @@
         "E"
       ],
       "explanation": "B, C, D, and E are correct: sacubitril blocks neprilysin, valsartan blocks the receptor, the drug is for heart failure with reduced ejection fraction, and blocking neprilysin raises angioedema risk. A is wrong because it can never be taken with an ACE inhibitor at any dose.",
-      "videoTimestamp": "2:57"
+      "videoTimestamp": "2:52"
     },
     {
       "id": "ep02-raas-q10",
@@ -294,7 +294,7 @@
       "keys": [
         "A"
       ],
-      "explanation": "A is correct: angiotensin receptor blockers end in sartan, like losartan and valsartan. B and D end in pril, so they are ACE inhibitors. C, aliskiren, is a different drug that must never be added to these drugs in diabetes.",
+      "explanation": "A is correct: angiotensin receptor blockers end in sartan, like losartan and valsartan. B and D end in pril, so they are ACE inhibitors. C, aliskiren, is a direct renin inhibitor, not an angiotensin receptor blocker, and must never be added to these drugs in diabetes.",
       "videoTimestamp": "1:44"
     }
   ]

@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { parseVideoTimestamp } from "@/lib/quick-bites/timestamp";
 import { getPharmacyQuickBiteQuiz } from "@/lib/quick-bites/pharmacy-quiz-data";
@@ -74,7 +74,41 @@ describe("Quick Bites: Pharmacy catalog", () => {
     expect(insulin.questions.find((question) => question.id === "ep07-insulin-q03")?.videoTimestamp).toBe(
       "0:47"
     );
+    const insulinFile = JSON.parse(
+      readFileSync(new URL("./quizzes-pharmacy/ep07-insulin.json", import.meta.url), "utf8")
+    ) as {
+      questions: {
+        id: string;
+        keys: string[];
+        options: { id: string; text: string }[];
+        videoTimestamp: string;
+      }[];
+    };
+    const sourceIsophane = insulinFile.questions.find((question) => question.id === "ep07-insulin-q04");
+    expect(sourceIsophane?.options.find((option) => option.id === "E")?.text).toBe(
+      "It can last up to about 24 hours"
+    );
+    expect(sourceIsophane?.keys).toEqual(["B", "C", "D", "E"]);
+    expect(sourceIsophane?.videoTimestamp).toBe("0:55");
+    const isophane = insulin.questions.find((question) => question.id === "ep07-insulin-q04");
+    const durationOption = isophane?.options.find(
+      (option) => option.text === "It can last up to about 24 hours"
+    );
+    expect(durationOption?.id).toBeTruthy();
+    expect(isophane?.keys).toContain(durationOption?.id);
+    expect(isophane?.videoTimestamp).toBe("0:55");
+    expect(isophane?.explanation).toContain("up to about 24 hours");
+    expect(JSON.stringify(publicQuickBiteQuiz(insulin))).toContain("It can last up to about 24 hours");
+    expect(JSON.stringify(publicQuickBiteQuiz(insulin))).not.toContain("18 hours");
+    const quizDir = new URL("./quizzes-pharmacy/", import.meta.url);
+    const rawQuizzes = readdirSync(quizDir)
+      .filter((name) => name.endsWith(".json"))
+      .map((name) => readFileSync(new URL(name, quizDir), "utf8"))
+      .join("\n");
+    expect(rawQuizzes).not.toContain("reviewNote");
+    expect(rawQuizzes).not.toContain("needs Ryan");
     expect(parseVideoTimestamp("0:47")).toBe(47);
+    expect(parseVideoTimestamp("0:55")).toBe(55);
     expect(getPharmacyQuickBiteBySlug("quick-bites-ep02-nclex-works")).toBeUndefined();
   });
 
