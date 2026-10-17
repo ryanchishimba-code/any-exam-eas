@@ -21,15 +21,23 @@ export function QuickBitesPlayer({
   nextEpisode,
   onClose,
   onNext,
+  apiBase = "/api/quick-bites",
+  poster: posterOverride,
+  includeCaptionsTrack = true,
+  captionsNote = "Captions are available from the player. They match the words already on screen.",
 }: {
   episode: QuickBiteEpisode;
   nextEpisode: QuickBiteEpisode | null;
   onClose: () => void;
   onNext: () => void;
+  apiBase?: string;
+  poster?: { webp: string; jpg: string };
+  includeCaptionsTrack?: boolean;
+  captionsNote?: string;
 }) {
   const [state, setState] = useState<LoadState>({ status: "loading" });
   const videoRef = useRef<HTMLVideoElement>(null);
-  const poster = quickBitePoster(episode.slug);
+  const poster = posterOverride ?? quickBitePoster(episode.slug);
 
   function rewatch(timestamp: string) {
     const video = videoRef.current;
@@ -59,7 +67,7 @@ export function QuickBitesPlayer({
     const controller = new AbortController();
     setState({ status: "loading" });
 
-    fetch(`/api/quick-bites/${episode.slug}/media`, { signal: controller.signal })
+    fetch(`${apiBase}/${episode.slug}/media`, { signal: controller.signal })
       .then(async (response) => {
         if (response.status === 401 || response.status === 403) {
           setState({ status: "locked" });
@@ -82,7 +90,7 @@ export function QuickBitesPlayer({
       });
 
     return () => controller.abort();
-  }, [episode.slug]);
+  }, [apiBase, episode.slug]);
 
   useEffect(() => {
     const node = document.getElementById("quick-bites-player");
@@ -142,7 +150,9 @@ export function QuickBitesPlayer({
             aria-label={`${known.title} video`}
             className="aspect-video h-auto w-full bg-black"
           >
-            <track kind="captions" src={state.captionsUrl} srcLang="en" label="English" />
+            {includeCaptionsTrack ? (
+              <track kind="captions" src={state.captionsUrl} srcLang="en" label="English" />
+            ) : null}
           </video>
         ) : (
           <div className="relative aspect-video w-full bg-black">
@@ -166,12 +176,11 @@ export function QuickBitesPlayer({
           </div>
         )}
       </div>
-      <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
-        Captions are available from the player. They match the words already on screen.
-      </p>
+      <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">{captionsNote}</p>
       <QuickBitesQuiz
         key={known.slug}
         slug={known.slug}
+        apiBase={apiBase}
         onRewatch={rewatch}
         onDone={onClose}
         onNext={nextEpisode ? onNext : undefined}

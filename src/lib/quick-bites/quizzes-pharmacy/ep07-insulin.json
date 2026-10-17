@@ -1,0 +1,300 @@
+{
+  "episode": "ep07-insulin",
+  "title": "Insulin: Onset, Peak + Safety",
+  "video": "quick-bites-pharm-ep07-insulin-web.mp4",
+  "questions": [
+    {
+      "id": "ep07-insulin-q01",
+      "type": "single_best_answer",
+      "stem": "A patient takes isophane insulin at 7 AM plus rapid-acting insulin with breakfast. Low blood sugar happens around 3 PM. Which insulin is the likely cause?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rapid-acting insulin from breakfast"
+        },
+        {
+          "id": "B",
+          "text": "Morning isophane insulin"
+        },
+        {
+          "id": "C",
+          "text": "Neither insulin; insulin cannot cause this"
+        },
+        {
+          "id": "D",
+          "text": "Both insulins equally"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: 3 PM is 8 hours after the 7 AM dose, inside isophane's 4 to 12 hour peak. A is wrong because rapid-acting insulin lasts about 3 to 5 hours and was gone by late morning. C is wrong because insulin causes low sugar. D ignores the timing: only isophane is still peaking.",
+      "videoTimestamp": "1:27"
+    },
+    {
+      "id": "ep07-insulin-q02",
+      "type": "single_best_answer",
+      "stem": "When should lispro be given for a meal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "About 1 hour before the meal"
+        },
+        {
+          "id": "B",
+          "text": "2 hours after the meal"
+        },
+        {
+          "id": "C",
+          "text": "At bedtime only"
+        },
+        {
+          "id": "D",
+          "text": "Right before the meal"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: rapid-acting insulins like lispro start in about 15 minutes, so give them right before the meal. A is too early; sugar can drop before food arrives. C is the wrong time for a mealtime insulin. B is too late to cover the meal.",
+      "videoTimestamp": "0:38"
+    },
+    {
+      "id": "ep07-insulin-q03",
+      "type": "single_best_answer",
+      "stem": "When should regular insulin be given for a meal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "About 30 minutes before eating"
+        },
+        {
+          "id": "B",
+          "text": "Right after the meal"
+        },
+        {
+          "id": "C",
+          "text": "12 hours before eating"
+        },
+        {
+          "id": "D",
+          "text": "With the bedtime snack only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: regular insulin starts in about 30 minutes, so give it about 30 minutes before eating. B is too late to cover the meal. C is far too early; regular lasts only up to about 8 hours. D does not cover the meal.",
+      "videoTimestamp": "0:47"
+    },
+    {
+      "id": "ep07-insulin-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about isophane insulin are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "It has no peak"
+        },
+        {
+          "id": "B",
+          "text": "It is cloudy"
+        },
+        {
+          "id": "C",
+          "text": "Roll the vial or pen gently; do not shake it"
+        },
+        {
+          "id": "D",
+          "text": "It peaks about 4 to 12 hours after the dose"
+        },
+        {
+          "id": "E",
+          "text": "It lasts up to about 18 hours"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "B, C, D, and E are correct: isophane is cloudy, is rolled gently, peaks around 4 to 12 hours, and lasts up to about 18 hours. A is wrong: the flat, no-peak pattern describes long-acting basal insulins like glargine.",
+      "videoTimestamp": "0:58"
+    },
+    {
+      "id": "ep07-insulin-q05",
+      "type": "single_best_answer",
+      "stem": "Regular insulin and isophane insulin are being mixed in one syringe. Which is drawn up first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Isophane (cloudy) first"
+        },
+        {
+          "id": "B",
+          "text": "Regular (clear) first"
+        },
+        {
+          "id": "C",
+          "text": "Either order"
+        },
+        {
+          "id": "D",
+          "text": "They must never be mixed"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: draw up clear before cloudy, so regular goes first. A reverses the order and can put cloudy insulin into the clear vial. C ignores the rule. D is wrong because regular and isophane can be mixed; it is glargine that must never be mixed.",
+      "videoTimestamp": "2:19"
+    },
+    {
+      "id": "ep07-insulin-q06",
+      "type": "single_best_answer",
+      "stem": "A patient asks to mix glargine with lispro in one syringe to cut down on injections. What is the best response?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Mix them, clear before cloudy"
+        },
+        {
+          "id": "B",
+          "text": "Mix them only at bedtime"
+        },
+        {
+          "id": "C",
+          "text": "Never mix glargine with any other insulin"
+        },
+        {
+          "id": "D",
+          "text": "Mix them only in a pen"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: never mix glargine in the same syringe with any other insulin. A applies the regular-and-isophane mixing rule to glargine, which must not be mixed. B and D still mix glargine.",
+      "videoTimestamp": "1:50"
+    },
+    {
+      "id": "ep07-insulin-q07",
+      "type": "single_best_answer",
+      "stem": "A prescriber orders 100 units of concentrated regular insulin, 500 units per mL, using its dedicated syringe. What volume is that?",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 mL"
+        },
+        {
+          "id": "B",
+          "text": "0.5 mL"
+        },
+        {
+          "id": "C",
+          "text": "0.2 mL"
+        },
+        {
+          "id": "D",
+          "text": "2 mL"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: 100 units divided by 500 units per mL is 0.2 mL. A is the volume for standard 100 units per mL insulin, which would be five times too much here. B and D do not match 100 divided by 500.",
+      "videoTimestamp": "2:03"
+    },
+    {
+      "id": "ep07-insulin-q08",
+      "type": "single_best_answer",
+      "stem": "An order reads: insulin regular 10 U subcutaneously. What is the best pharmacist action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dispense as written"
+        },
+        {
+          "id": "B",
+          "text": "Switch to glargine"
+        },
+        {
+          "id": "C",
+          "text": "Change it to 100 units"
+        },
+        {
+          "id": "D",
+          "text": "Clarify the order so units is written in full"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: a letter U can be misread as a zero, turning 10 units into 100, so clarify and have units written in full. A dispenses an error-prone order. C makes the exact misreading the rule is meant to prevent. B changes the drug without a reason.",
+      "videoTimestamp": "3:11"
+    },
+    {
+      "id": "ep07-insulin-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which insulin storage teaching is correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Opened insulin must stay frozen"
+        },
+        {
+          "id": "B",
+          "text": "Keep unopened insulin in the refrigerator"
+        },
+        {
+          "id": "C",
+          "text": "Never freeze insulin"
+        },
+        {
+          "id": "D",
+          "text": "Most opened pens and vials are good at room temperature for about 28 days; check each label"
+        },
+        {
+          "id": "E",
+          "text": "All opened insulins last 90 days"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "B, C, and D are correct: unopened insulin goes in the refrigerator, never the freezer, and most opened pens and vials last about 28 days at room temperature, checking each label. A is wrong because insulin must never be frozen. E is wrong because most opened products last about 28 days, not 90.",
+      "videoTimestamp": "2:22"
+    },
+    {
+      "id": "ep07-insulin-q10",
+      "type": "single_best_answer",
+      "stem": "A patient on insulin has low blood sugar and cannot swallow safely. What is the best treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Glucagon"
+        },
+        {
+          "id": "B",
+          "text": "15 grams of juice by mouth"
+        },
+        {
+          "id": "C",
+          "text": "An extra insulin dose"
+        },
+        {
+          "id": "D",
+          "text": "Wait 15 minutes and recheck"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: if the patient cannot swallow safely, give glucagon. B gives sugar by mouth to someone who cannot swallow safely. C lowers sugar further. D delays treatment while sugar stays low.",
+      "videoTimestamp": "2:42"
+    }
+  ]
+}

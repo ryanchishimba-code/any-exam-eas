@@ -1,0 +1,310 @@
+{
+  "episode": "ep01-anticoagulants",
+  "title": "Anticoagulants: Warfarin vs Heparins vs DOACs",
+  "video": "quick-bites-pharm-ep01-anticoagulants-web.mp4",
+  "questions": [
+    {
+      "id": "ep01-anticoagulants-q01",
+      "type": "single_best_answer",
+      "stem": "A patient has atrial fibrillation and a mechanical mitral valve. Which anticoagulant is best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Apixaban"
+        },
+        {
+          "id": "B",
+          "text": "Dabigatran"
+        },
+        {
+          "id": "C",
+          "text": "Rivaroxaban"
+        },
+        {
+          "id": "D",
+          "text": "Warfarin"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: with a mechanical heart valve, warfarin is the choice. A, apixaban, and C, rivaroxaban, are direct oral anticoagulants, which are not used with mechanical valves. B, dabigatran, is also a direct oral anticoagulant and was even harmful in patients with mechanical valves.",
+      "videoTimestamp": "4:10"
+    },
+    {
+      "id": "ep01-anticoagulants-q02",
+      "type": "single_best_answer",
+      "stem": "A patient with atrial fibrillation and no heart valve problem starts warfarin. What is the usual international normalized ratio (INR) goal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "2 to 3"
+        },
+        {
+          "id": "B",
+          "text": "1 to 1.5"
+        },
+        {
+          "id": "C",
+          "text": "3.5 to 4.5"
+        },
+        {
+          "id": "D",
+          "text": "No INR goal; warfarin needs no blood tests"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: for most patients, like atrial fibrillation or a blood clot in a vein, the goal is 2 to 3. B is close to a normal, untreated value and gives too little protection. C is above the usual goal and raises bleeding risk. D is wrong because warfarin is followed with the INR blood test.",
+      "videoTimestamp": "1:04"
+    },
+    {
+      "id": "ep01-anticoagulants-q03",
+      "type": "select_all_that_apply",
+      "stem": "A patient stable on warfarin is started on a new drug. Which of these are expected to push the INR up? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sulfamethoxazole-trimethoprim"
+        },
+        {
+          "id": "B",
+          "text": "Rifampin"
+        },
+        {
+          "id": "C",
+          "text": "Metronidazole"
+        },
+        {
+          "id": "D",
+          "text": "Fluconazole"
+        },
+        {
+          "id": "E",
+          "text": "Carbamazepine"
+        },
+        {
+          "id": "F",
+          "text": "Amiodarone"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "F"
+      ],
+      "explanation": "A, C, D, and F are correct: sulfamethoxazole-trimethoprim, metronidazole, fluconazole, and amiodarone all push the INR up, raising bleeding risk. B, rifampin, and E, carbamazepine, pull the INR down, so the clot risk rises instead.",
+      "videoTimestamp": "1:10"
+    },
+    {
+      "id": "ep01-anticoagulants-q04",
+      "type": "single_best_answer",
+      "stem": "A patient on warfarin loves salads and asks whether to give up leafy greens. What is the best counseling?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stop eating all leafy greens"
+        },
+        {
+          "id": "B",
+          "text": "Eat as many greens as possible to protect the liver"
+        },
+        {
+          "id": "C",
+          "text": "Keep vitamin K intake steady from week to week"
+        },
+        {
+          "id": "D",
+          "text": "Take a daily vitamin K supplement with each dose"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: keep vitamin K intake steady, not zero, so the INR stays stable. A is wrong because zero is not the goal; a sudden drop in greens can push the INR up. B, a big jump in greens, adds vitamin K and pulls the INR down. D adds vitamin K directly, which works against warfarin.",
+      "videoTimestamp": "1:28"
+    },
+    {
+      "id": "ep01-anticoagulants-q05",
+      "type": "single_best_answer",
+      "stem": "On day 7 of a heparin infusion, a patient's platelets have fallen by more than half. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lower the heparin infusion rate"
+        },
+        {
+          "id": "B",
+          "text": "Switch to enoxaparin"
+        },
+        {
+          "id": "C",
+          "text": "Stop all heparin, including flushes, and start argatroban"
+        },
+        {
+          "id": "D",
+          "text": "Continue heparin because low platelets lower clot risk"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: this points to heparin-induced thrombocytopenia, so stop all heparin, even flushes, and start a non-heparin anticoagulant such as argatroban. A keeps giving heparin, which keeps the immune reaction going. B is wrong because enoxaparin is also a heparin and must be stopped too. D is wrong because in this reaction low platelets actually raise the risk of clots.",
+      "videoTimestamp": "2:16"
+    },
+    {
+      "id": "ep01-anticoagulants-q06",
+      "type": "select_all_that_apply",
+      "stem": "Heparin-induced thrombocytopenia is suspected in a patient on a heparin infusion with heparin line flushes. Which actions are appropriate? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stop the heparin infusion"
+        },
+        {
+          "id": "B",
+          "text": "Continue the heparin flushes"
+        },
+        {
+          "id": "C",
+          "text": "Stop the heparin line flushes"
+        },
+        {
+          "id": "D",
+          "text": "Switch to enoxaparin"
+        },
+        {
+          "id": "E",
+          "text": "Start a non-heparin anticoagulant such as argatroban"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "E"
+      ],
+      "explanation": "A, C, and E are correct: stop all heparin, including the flushes, and start a non-heparin anticoagulant such as argatroban. B is wrong because even the small amount of heparin in flushes keeps the reaction going. D is wrong because enoxaparin is a heparin and must be stopped too.",
+      "videoTimestamp": "2:21"
+    },
+    {
+      "id": "ep01-anticoagulants-q07",
+      "type": "single_best_answer",
+      "stem": "A patient on enoxaparin has a creatinine clearance of 24 mL/min. What change is needed?",
+      "options": [
+        {
+          "id": "A",
+          "text": "No change; enoxaparin is not affected by the kidneys"
+        },
+        {
+          "id": "B",
+          "text": "Double the dose to make up for faster clearance"
+        },
+        {
+          "id": "C",
+          "text": "Switch to INR monitoring"
+        },
+        {
+          "id": "D",
+          "text": "Lower the enoxaparin dose"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: the enoxaparin dose is lowered when creatinine clearance is below 30, and 24 is below 30. A is wrong because enoxaparin builds up when the kidneys are weak. C is wrong because the INR follows warfarin, not enoxaparin. B is wrong because weak kidneys clear enoxaparin more slowly, not faster, so doubling raises bleeding risk.",
+      "videoTimestamp": "1:56"
+    },
+    {
+      "id": "ep01-anticoagulants-q08",
+      "type": "single_best_answer",
+      "stem": "Which lab test is used to adjust an IV unfractionated heparin infusion?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Activated partial thromboplastin time or a factor ten (anti-Xa) level"
+        },
+        {
+          "id": "B",
+          "text": "International normalized ratio"
+        },
+        {
+          "id": "C",
+          "text": "Creatinine clearance only"
+        },
+        {
+          "id": "D",
+          "text": "No routine lab test is needed"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: regular heparin given in the vein is checked with the activated partial thromboplastin time, or a factor ten blood level. B, the INR, follows warfarin. C, kidney function, guides direct oral anticoagulant and enoxaparin doses, not the heparin rate. D describes enoxaparin, not an IV heparin infusion.",
+      "videoTimestamp": "1:48"
+    },
+    {
+      "id": "ep01-anticoagulants-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which anticoagulant and reversal pairings are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Heparin: vitamin K"
+        },
+        {
+          "id": "B",
+          "text": "Dabigatran: idarucizumab"
+        },
+        {
+          "id": "C",
+          "text": "Warfarin: vitamin K, plus four-factor prothrombin complex concentrate for a serious bleed"
+        },
+        {
+          "id": "D",
+          "text": "Apixaban: protamine"
+        },
+        {
+          "id": "E",
+          "text": "Heparin: protamine"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "B, C, and E are correct: idarucizumab reverses dabigatran, vitamin K (plus four-factor prothrombin complex concentrate for a serious bleed) reverses warfarin, and protamine reverses heparin. A is wrong because vitamin K reverses warfarin, not heparin. D is wrong because protamine is for heparin; for factor ten blockers like apixaban, most hospitals now use four-factor prothrombin complex concentrate by protocol.",
+      "videoTimestamp": "3:48"
+    },
+    {
+      "id": "ep01-anticoagulants-q10",
+      "type": "single_best_answer",
+      "stem": "A patient is starting apixaban for atrial fibrillation. Which monitoring guides the dose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Weekly INR"
+        },
+        {
+          "id": "B",
+          "text": "Kidney function"
+        },
+        {
+          "id": "C",
+          "text": "Activated partial thromboplastin time"
+        },
+        {
+          "id": "D",
+          "text": "Daily platelet counts"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: direct oral anticoagulants need no routine INR checks, but you always check kidney function to choose the dose. A, the INR, follows warfarin. C follows IV heparin. D, platelet watching, is for heparin-induced thrombocytopenia on heparin.",
+      "videoTimestamp": "2:50"
+    }
+  ]
+}

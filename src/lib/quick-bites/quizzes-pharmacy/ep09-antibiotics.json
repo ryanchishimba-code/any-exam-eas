@@ -1,0 +1,304 @@
+{
+  "episode": "ep09-antibiotics",
+  "title": "Antibiotics: Bug-Drug Match",
+  "video": "quick-bites-pharm-ep09-antibiotics-web.mp4",
+  "questions": [
+    {
+      "id": "ep09-antibiotics-q01",
+      "type": "single_best_answer",
+      "stem": "A hospitalized patient has pneumonia caused by methicillin-resistant Staphylococcus aureus (MRSA). Which drug is appropriate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Daptomycin"
+        },
+        {
+          "id": "B",
+          "text": "Ertapenem"
+        },
+        {
+          "id": "C",
+          "text": "Oral vancomycin"
+        },
+        {
+          "id": "D",
+          "text": "Linezolid"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: for MRSA pneumonia, choose vancomycin or linezolid. A, daptomycin, is not indicated for pneumonia because lung surfactant switches it off. B, ertapenem, is not one of the MRSA drugs. C, oral vancomycin, stays in the gut; that is why it works for colon infection, not pneumonia.",
+      "videoTimestamp": "1:13"
+    },
+    {
+      "id": "ep09-antibiotics-q02",
+      "type": "single_best_answer",
+      "stem": "Why is daptomycin not used for pneumonia?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lung surfactant binds it and switches it off"
+        },
+        {
+          "id": "B",
+          "text": "It cannot reach the blood"
+        },
+        {
+          "id": "C",
+          "text": "It only covers Pseudomonas"
+        },
+        {
+          "id": "D",
+          "text": "It causes thrush"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: lung surfactant binds daptomycin and switches it off. B is wrong because daptomycin is given IV and reaches the blood. C is wrong because daptomycin is an MRSA drug, not a Pseudomonas drug. D, thrush, is a side effect of inhaled steroids.",
+      "videoTimestamp": "0:28"
+    },
+    {
+      "id": "ep09-antibiotics-q03",
+      "type": "single_best_answer",
+      "stem": "A patient starts daptomycin for an MRSA bloodstream infection. Which lab should be checked weekly?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Creatine kinase"
+        },
+        {
+          "id": "B",
+          "text": "International normalized ratio"
+        },
+        {
+          "id": "C",
+          "text": "Thyroid tests"
+        },
+        {
+          "id": "D",
+          "text": "Blood eosinophils"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: watch daptomycin for muscle breakdown, so check creatine kinase weekly. B follows warfarin. C is not the daptomycin muscle check. D guides inhaled steroid use in COPD.",
+      "videoTimestamp": "0:34"
+    },
+    {
+      "id": "ep09-antibiotics-q04",
+      "type": "select_all_that_apply",
+      "stem": "A hospitalized patient needs coverage for Pseudomonas. Which drugs cover it? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cefepime"
+        },
+        {
+          "id": "B",
+          "text": "Ertapenem"
+        },
+        {
+          "id": "C",
+          "text": "Meropenem"
+        },
+        {
+          "id": "D",
+          "text": "Piperacillin-tazobactam"
+        },
+        {
+          "id": "E",
+          "text": "Ciprofloxacin"
+        },
+        {
+          "id": "F",
+          "text": "Linezolid"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, C, D, and E are correct: cefepime, meropenem, piperacillin-tazobactam, and ciprofloxacin cover Pseudomonas. B, ertapenem, is the carbapenem that misses Pseudomonas. F, linezolid, is one of the resistant staph drugs and does not cover this gram-negative bug.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep09-antibiotics-q05",
+      "type": "single_best_answer",
+      "stem": "A hospital patient with pneumonia is at risk for Pseudomonas. Which drug does NOT cover Pseudomonas?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cefepime"
+        },
+        {
+          "id": "B",
+          "text": "Meropenem"
+        },
+        {
+          "id": "C",
+          "text": "Piperacillin-tazobactam"
+        },
+        {
+          "id": "D",
+          "text": "Ertapenem"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: ertapenem is the carbapenem that misses Pseudomonas. A, cefepime, B, meropenem, and C, piperacillin-tazobactam, all cover it.",
+      "videoTimestamp": "2:19"
+    },
+    {
+      "id": "ep09-antibiotics-q06",
+      "type": "single_best_answer",
+      "stem": "A patient has a first episode of Clostridioides difficile infection. Which treatment is preferred?",
+      "options": [
+        {
+          "id": "A",
+          "text": "IV vancomycin"
+        },
+        {
+          "id": "B",
+          "text": "Ertapenem"
+        },
+        {
+          "id": "C",
+          "text": "IV daptomycin"
+        },
+        {
+          "id": "D",
+          "text": "Fidaxomicin"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: the 2021 guideline update prefers fidaxomicin for a first episode, with oral vancomycin as an acceptable alternative. A is wrong because IV vancomycin does not reach the colon. C, daptomycin, is an MRSA drug given IV and is not used for this colon infection. B is a broad antibiotic, not a treatment for this colon infection.",
+      "videoTimestamp": "1:22"
+    },
+    {
+      "id": "ep09-antibiotics-q07",
+      "type": "single_best_answer",
+      "stem": "Fidaxomicin is unavailable for a patient with a first episode of Clostridioides difficile infection. Which vancomycin regimen should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "IV vancomycin"
+        },
+        {
+          "id": "B",
+          "text": "Oral vancomycin"
+        },
+        {
+          "id": "C",
+          "text": "Vancomycin eye drops"
+        },
+        {
+          "id": "D",
+          "text": "Inhaled vancomycin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: vancomycin must be given by mouth for this infection. A is wrong because the IV form does not reach the colon. C and D do not deliver the drug to the colon.",
+      "videoTimestamp": "1:30"
+    },
+    {
+      "id": "ep09-antibiotics-q08",
+      "type": "select_all_that_apply",
+      "stem": "Which statements correctly compare vancomycin and daptomycin? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vancomycin can be used for pneumonia"
+        },
+        {
+          "id": "B",
+          "text": "Daptomycin requires creatine kinase monitoring"
+        },
+        {
+          "id": "C",
+          "text": "Vancomycin requires watching the kidneys and drug levels"
+        },
+        {
+          "id": "D",
+          "text": "Daptomycin has an oral form for colon infection"
+        },
+        {
+          "id": "E",
+          "text": "Daptomycin works well for pneumonia"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: vancomycin works for pneumonia, vancomycin needs kidney and level checks, and daptomycin needs creatine kinase checks. D is wrong because only vancomycin has an oral use, for Clostridioides difficile. E is wrong because daptomycin does not work for pneumonia.",
+      "videoTimestamp": "1:39"
+    },
+    {
+      "id": "ep09-antibiotics-q09",
+      "type": "single_best_answer",
+      "stem": "A septic patient started broad antibiotics. Cultures now show a bug that is sensitive to a narrow drug. What is the best next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Keep the broad antibiotics for safety"
+        },
+        {
+          "id": "B",
+          "text": "Stop all antibiotics even though infection is confirmed"
+        },
+        {
+          "id": "C",
+          "text": "Add a second broad antibiotic"
+        },
+        {
+          "id": "D",
+          "text": "Narrow to the most targeted drug"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: when results come back, narrow to the most targeted drug. A keeps broad coverage that raises resistance and colon infection risk. C adds even more coverage that is not needed. B is wrong because the infection is confirmed; stopping is for when there is no infection.",
+      "videoTimestamp": "2:01"
+    },
+    {
+      "id": "ep09-antibiotics-q10",
+      "type": "single_best_answer",
+      "stem": "A very sick patient needs antibiotics now. What should happen before the first broad dose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Get cultures first"
+        },
+        {
+          "id": "B",
+          "text": "Wait for culture results before any antibiotic"
+        },
+        {
+          "id": "C",
+          "text": "Start the narrowest drug possible"
+        },
+        {
+          "id": "D",
+          "text": "Check a creatine kinase level"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: in a very sick patient, start broad, but get cultures first. B delays treatment in a very sick patient. C is wrong because a very sick patient starts broad and is narrowed later. D is a daptomycin monitoring test, not a step before starting antibiotics.",
+      "videoTimestamp": "2:01"
+    }
+  ]
+}

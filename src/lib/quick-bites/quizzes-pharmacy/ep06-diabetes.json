@@ -1,0 +1,304 @@
+{
+  "episode": "ep06-diabetes",
+  "title": "Type 2 Diabetes: Pick by the Patient",
+  "video": "quick-bites-pharm-ep06-diabetes-web.mp4",
+  "questions": [
+    {
+      "id": "ep06-diabetes-q01",
+      "type": "single_best_answer",
+      "stem": "A patient with type 2 diabetes and heart failure with reduced ejection fraction has a glycated hemoglobin (A1C) of 7.8% on metformin. Which is the best addition?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Glipizide"
+        },
+        {
+          "id": "B",
+          "text": "Pioglitazone"
+        },
+        {
+          "id": "C",
+          "text": "Dapagliflozin"
+        },
+        {
+          "id": "D",
+          "text": "Saxagliptin"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: with heart failure, a sodium-glucose drug lowers sugar and keeps patients out of the hospital. A adds low-sugar risk without heart protection. B and D both carry heart failure warnings.",
+      "videoTimestamp": "3:08"
+    },
+    {
+      "id": "ep06-diabetes-q02",
+      "type": "single_best_answer",
+      "stem": "A patient with type 2 diabetes has an estimated kidney filtration rate (eGFR) of 40 and is not on metformin. Should metformin be started?",
+      "options": [
+        {
+          "id": "A",
+          "text": "No, do not start metformin below 45"
+        },
+        {
+          "id": "B",
+          "text": "Yes, at full dose"
+        },
+        {
+          "id": "C",
+          "text": "Yes, metformin is safe at any kidney function"
+        },
+        {
+          "id": "D",
+          "text": "Yes, if taken with food"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: do not start metformin below 45, and 40 is below 45. B and C ignore the kidney rule. D is wrong because food helps stomach upset, not the kidney limit.",
+      "videoTimestamp": "0:35"
+    },
+    {
+      "id": "ep06-diabetes-q03",
+      "type": "single_best_answer",
+      "stem": "A patient has taken metformin for years. Their eGFR has now fallen to 28. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue the same dose"
+        },
+        {
+          "id": "B",
+          "text": "Double the dose"
+        },
+        {
+          "id": "C",
+          "text": "Stop metformin"
+        },
+        {
+          "id": "D",
+          "text": "Switch metformin to bedtime"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: stop metformin below 30, and 28 is below 30. A and D keep metformin past the stop point. B raises the dose when it should be stopped.",
+      "videoTimestamp": "0:38"
+    },
+    {
+      "id": "ep06-diabetes-q04",
+      "type": "select_all_that_apply",
+      "stem": "A patient starts dapagliflozin. Which counseling points are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Genital yeast infections can occur, so teach hygiene"
+        },
+        {
+          "id": "B",
+          "text": "It commonly causes low blood sugar on its own"
+        },
+        {
+          "id": "C",
+          "text": "Ketoacidosis can occur even with near-normal sugar"
+        },
+        {
+          "id": "D",
+          "text": "Hold it when sick and not eating"
+        },
+        {
+          "id": "E",
+          "text": "Hold it at least 3 days before planned surgery"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, C, D, and E are correct: genital yeast infections, rare ketoacidosis even with near-normal sugar, and holding the drug when sick and not eating or at least 3 days before surgery. B is wrong because the sodium-glucose drugs carry a low risk of low sugar on their own.",
+      "videoTimestamp": "1:24"
+    },
+    {
+      "id": "ep06-diabetes-q05",
+      "type": "single_best_answer",
+      "stem": "A patient with type 2 diabetes wants semaglutide for diabetes and weight. Their mother had medullary thyroid cancer. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start semaglutide at a low dose"
+        },
+        {
+          "id": "B",
+          "text": "Start tirzepatide instead"
+        },
+        {
+          "id": "C",
+          "text": "Start semaglutide and check thyroid tests yearly"
+        },
+        {
+          "id": "D",
+          "text": "Do not start it; choose another option, such as a sodium-glucose drug"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: a family history of medullary thyroid cancer is a contraindication for every glucagon-like peptide one drug. A is wrong because a low dose does not remove the contraindication. B is wrong because tirzepatide carries the same contraindication. C still uses a contraindicated drug.",
+      "videoTimestamp": "2:17"
+    },
+    {
+      "id": "ep06-diabetes-q06",
+      "type": "select_all_that_apply",
+      "stem": "Which diabetes drugs can cause low blood sugar on their own? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Metformin"
+        },
+        {
+          "id": "B",
+          "text": "Glyburide"
+        },
+        {
+          "id": "C",
+          "text": "Semaglutide"
+        },
+        {
+          "id": "D",
+          "text": "Insulin"
+        },
+        {
+          "id": "E",
+          "text": "Dapagliflozin"
+        },
+        {
+          "id": "F",
+          "text": "Glipizide"
+        }
+      ],
+      "keys": [
+        "B",
+        "D",
+        "F"
+      ],
+      "explanation": "B, D, and F are correct: insulin and sulfonylureas like glyburide and glipizide can cause low blood sugar. A, metformin, C, semaglutide, and E, dapagliflozin, carry a low risk on their own; the risk rises when they are added to insulin or a sulfonylurea.",
+      "videoTimestamp": "2:30"
+    },
+    {
+      "id": "ep06-diabetes-q07",
+      "type": "single_best_answer",
+      "stem": "A patient on glipizide feels shaky. Fingerstick glucose is 62 mg/dL, and the patient is alert and swallowing normally. What is the best first step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "15 grams of fast sugar, then recheck in 15 minutes"
+        },
+        {
+          "id": "B",
+          "text": "Give glucagon now"
+        },
+        {
+          "id": "C",
+          "text": "Skip the next meal"
+        },
+        {
+          "id": "D",
+          "text": "Take an extra glipizide dose"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: use the rule of 15: 15 grams of fast sugar, then recheck in 15 minutes. B is for a patient who cannot swallow safely, and this patient can. C makes low sugar worse. D, more glipizide, lowers sugar further.",
+      "videoTimestamp": "2:46"
+    },
+    {
+      "id": "ep06-diabetes-q08",
+      "type": "single_best_answer",
+      "stem": "A patient with type 2 diabetes and chronic kidney disease needs a drug chosen for protection. Which fits best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dapagliflozin"
+        },
+        {
+          "id": "B",
+          "text": "Glipizide"
+        },
+        {
+          "id": "C",
+          "text": "Pioglitazone"
+        },
+        {
+          "id": "D",
+          "text": "Saxagliptin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: for kidney disease, choose a sodium-glucose drug, or a glucagon-like peptide one agonist with proven kidney benefit. B adds low-sugar risk without protection. C causes fluid retention and carries a heart failure warning. D carries a heart failure warning and is not one of the protective choices taught.",
+      "videoTimestamp": "0:55"
+    },
+    {
+      "id": "ep06-diabetes-q09",
+      "type": "single_best_answer",
+      "stem": "Which long-term problem should be watched for with metformin?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vitamin B12 deficiency"
+        },
+        {
+          "id": "B",
+          "text": "Genital yeast infections"
+        },
+        {
+          "id": "C",
+          "text": "Thyroid tumors"
+        },
+        {
+          "id": "D",
+          "text": "Weight gain"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: metformin can cause long-term vitamin B12 deficiency. B is a sodium-glucose drug side effect. C is the boxed warning for glucagon-like peptide one drugs. D is wrong because metformin is not the drug linked to weight gain here.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep06-diabetes-q10",
+      "type": "single_best_answer",
+      "stem": "Which effect helps semaglutide lower weight?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It sends sugar out in the urine"
+        },
+        {
+          "id": "B",
+          "text": "It blocks the liver's cholesterol enzyme"
+        },
+        {
+          "id": "C",
+          "text": "It slows the stomach and reduces hunger"
+        },
+        {
+          "id": "D",
+          "text": "It releases insulin even when the patient has not eaten"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: glucagon-like peptide one agonists slow the stomach and reduce hunger, so weight goes down. A describes the sodium-glucose drugs. B describes statins. D is wrong because these drugs release insulin when you eat.",
+      "videoTimestamp": "1:47"
+    }
+  ]
+}

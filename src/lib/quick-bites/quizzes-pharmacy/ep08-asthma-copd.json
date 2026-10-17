@@ -1,0 +1,299 @@
+{
+  "episode": "ep08-asthma-copd",
+  "title": "Asthma vs COPD Inhalers",
+  "video": "quick-bites-pharm-ep08-asthma-copd-web.mp4",
+  "questions": [
+    {
+      "id": "ep08-asthma-copd-q01",
+      "type": "single_best_answer",
+      "stem": "A new patient has mild asthma with symptoms twice a month. What is the preferred treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Albuterol alone as needed"
+        },
+        {
+          "id": "B",
+          "text": "Salmeterol alone"
+        },
+        {
+          "id": "C",
+          "text": "As-needed budesonide-formoterol"
+        },
+        {
+          "id": "D",
+          "text": "Tiotropium plus olodaterol"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: for mild asthma, the preferred track is as-needed budesonide-formoterol, which puts a steroid into every rescue puff. A gives no inhaled steroid and raises the risk of severe attacks. B uses a long-acting bronchodilator alone, which is never done in asthma. D is the two-bronchodilator start for COPD.",
+      "videoTimestamp": "0:50"
+    },
+    {
+      "id": "ep08-asthma-copd-q02",
+      "type": "single_best_answer",
+      "stem": "Why is albuterol alone, with no inhaled steroid, no longer recommended for asthma?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It raises the risk of severe attacks"
+        },
+        {
+          "id": "B",
+          "text": "It causes thrush"
+        },
+        {
+          "id": "C",
+          "text": "It is too expensive"
+        },
+        {
+          "id": "D",
+          "text": "It only works in COPD"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: treating asthma with albuterol alone raises the risk of severe attacks, because asthma is inflammation that needs an inhaled steroid. B, thrush, is a side effect of inhaled steroids. C, cost, is not the reason. D is wrong because albuterol is a rescue inhaler in both asthma and COPD.",
+      "videoTimestamp": "0:38"
+    },
+    {
+      "id": "ep08-asthma-copd-q03",
+      "type": "single_best_answer",
+      "stem": "A patient has moderate asthma on the preferred track. Which regimen fits?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Budesonide-formoterol every day, plus extra puffs as needed"
+        },
+        {
+          "id": "B",
+          "text": "Albuterol alone as needed"
+        },
+        {
+          "id": "C",
+          "text": "Salmeterol twice daily alone"
+        },
+        {
+          "id": "D",
+          "text": "Oral steroids every day"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: for moderate asthma, use budesonide-formoterol every day plus extra puffs when needed, called maintenance and reliever therapy. B has no inhaled steroid. C is a long-acting bronchodilator alone, never used in asthma. D is not a step on the preferred track for moderate asthma.",
+      "videoTimestamp": "1:00"
+    },
+    {
+      "id": "ep08-asthma-copd-q04",
+      "type": "single_best_answer",
+      "stem": "A patient with asthma brings a new prescription for salmeterol alone, with no inhaled steroid. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dispense it as written"
+        },
+        {
+          "id": "B",
+          "text": "Tell the patient to stop their rescue inhaler"
+        },
+        {
+          "id": "C",
+          "text": "Contact the prescriber: asthma needs an inhaled steroid with any long-acting bronchodilator"
+        },
+        {
+          "id": "D",
+          "text": "Dispense it and add albuterol"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: never use a long-acting bronchodilator alone in asthma, without a steroid. A dispenses an unsafe regimen. B removes rescue therapy. D adds a rescue inhaler but still leaves out the inhaled steroid.",
+      "videoTimestamp": "1:30"
+    },
+    {
+      "id": "ep08-asthma-copd-q05",
+      "type": "single_best_answer",
+      "stem": "A patient with COPD had one hospital stay for a flare last year. Blood eosinophils are 120 cells/µL. What is the best starting therapy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Salmeterol-fluticasone"
+        },
+        {
+          "id": "B",
+          "text": "Tiotropium plus olodaterol"
+        },
+        {
+          "id": "C",
+          "text": "Albuterol as needed only"
+        },
+        {
+          "id": "D",
+          "text": "Montelukast"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: start two long-acting bronchodilators, and eosinophils are low, so no inhaled steroid yet. A is a steroid plus beta agonist combination, which is not encouraged as a start in COPD. C is not enough for a patient with a past flare. D is not one of the long-acting bronchodilators that come first in COPD.",
+      "videoTimestamp": "3:06"
+    },
+    {
+      "id": "ep08-asthma-copd-q06",
+      "type": "single_best_answer",
+      "stem": "A patient with COPD on tiotropium plus olodaterol keeps having flares. Blood eosinophils are 350 cells/µL. What is the best next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Add an inhaled steroid (triple therapy)"
+        },
+        {
+          "id": "B",
+          "text": "Stop the bronchodilators and use albuterol only"
+        },
+        {
+          "id": "C",
+          "text": "Switch to salmeterol alone"
+        },
+        {
+          "id": "D",
+          "text": "No change"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: add an inhaled steroid when eosinophils are 300 or more or flares keep happening; this patient has both. B removes the long-acting bronchodilators that come first in COPD. C drops to a single bronchodilator. D ignores repeated flares.",
+      "videoTimestamp": "1:58"
+    },
+    {
+      "id": "ep08-asthma-copd-q07",
+      "type": "select_all_that_apply",
+      "stem": "Which statements correctly compare asthma and COPD treatment? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "In COPD, starting with only a steroid plus a long-acting beta agonist is encouraged"
+        },
+        {
+          "id": "B",
+          "text": "In asthma, the inhaled steroid comes first"
+        },
+        {
+          "id": "C",
+          "text": "In COPD, two long-acting bronchodilators come first"
+        },
+        {
+          "id": "D",
+          "text": "In asthma, never use a long-acting beta agonist alone"
+        },
+        {
+          "id": "E",
+          "text": "In COPD, airflow fully reverses"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "B, C, and D are correct: asthma is inflammation, so the inhaled steroid comes first and a long-acting beta agonist is never used alone; in COPD, two long-acting bronchodilators come first. A is wrong because a steroid plus long-acting beta agonist start is not encouraged in COPD; if a steroid is needed, use triple therapy. E is wrong because COPD airflow does not fully reverse.",
+      "videoTimestamp": "2:05"
+    },
+    {
+      "id": "ep08-asthma-copd-q08",
+      "type": "single_best_answer",
+      "stem": "What should a patient do after each dose of an inhaled steroid?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rinse the mouth and spit"
+        },
+        {
+          "id": "B",
+          "text": "Hold their breath for 1 minute"
+        },
+        {
+          "id": "C",
+          "text": "Take a rescue puff"
+        },
+        {
+          "id": "D",
+          "text": "Drink milk"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: rinse and spit after any inhaled steroid to prevent thrush, a yeast infection. B is not the counseling point taught for steroid side effects. C adds a drug that is not needed. D does not remove steroid from the mouth.",
+      "videoTimestamp": "2:31"
+    },
+    {
+      "id": "ep08-asthma-copd-q09",
+      "type": "select_all_that_apply",
+      "stem": "A man with an enlarged prostate starts tiotropium. Which statements are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Tiotropium is a long-acting muscarinic antagonist"
+        },
+        {
+          "id": "B",
+          "text": "It can cause dry mouth"
+        },
+        {
+          "id": "C",
+          "text": "It can cause trouble urinating"
+        },
+        {
+          "id": "D",
+          "text": "It is an inhaled steroid"
+        },
+        {
+          "id": "E",
+          "text": "Rinsing after it prevents thrush"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: tiotropium is a muscarinic antagonist that can cause dry mouth and trouble urinating, especially with an enlarged prostate. D is wrong because tiotropium is a bronchodilator, not a steroid. E applies to inhaled steroids, which cause thrush.",
+      "videoTimestamp": "2:38"
+    },
+    {
+      "id": "ep08-asthma-copd-q10",
+      "type": "single_best_answer",
+      "stem": "A patient's asthma is not controlled on their current inhaler. What should be checked before stepping up therapy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Inhaler technique"
+        },
+        {
+          "id": "B",
+          "text": "Liver enzymes"
+        },
+        {
+          "id": "C",
+          "text": "Blood sugar"
+        },
+        {
+          "id": "D",
+          "text": "Platelet count"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: before stepping up, check inhaler technique, because poor technique looks just like drug failure. B, C, and D are not the checks that explain an inhaler not working.",
+      "videoTimestamp": "2:46"
+    }
+  ]
+}

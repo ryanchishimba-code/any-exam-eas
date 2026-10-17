@@ -1,0 +1,299 @@
+{
+  "episode": "ep14-high-alert",
+  "title": "High-Alert Medications",
+  "video": "quick-bites-pharm-ep14-high-alert-web.mp4",
+  "questions": [
+    {
+      "id": "ep14-high-alert-q01",
+      "type": "single_best_answer",
+      "stem": "A prescription reads methotrexate 2.5 mg daily for rheumatoid arthritis. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dispense as written"
+        },
+        {
+          "id": "B",
+          "text": "Dispense and add a calendar"
+        },
+        {
+          "id": "C",
+          "text": "Call the prescriber: it should be weekly for arthritis"
+        },
+        {
+          "id": "D",
+          "text": "Change it to twice daily"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: for non-cancer uses like arthritis, oral methotrexate is weekly; daily dosing by mistake has caused deaths. A and B dispense a daily regimen. D makes the dosing even more frequent.",
+      "videoTimestamp": "0:44"
+    },
+    {
+      "id": "ep14-high-alert-q02",
+      "type": "select_all_that_apply",
+      "stem": "Which practices help prevent oral methotrexate errors? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Default orders to weekly"
+        },
+        {
+          "id": "B",
+          "text": "Name the day of the week"
+        },
+        {
+          "id": "C",
+          "text": "Use teach-back with the patient"
+        },
+        {
+          "id": "D",
+          "text": "Dispense daily for arthritis if the patient insists"
+        },
+        {
+          "id": "E",
+          "text": "Reserve daily oral dosing for specific cancer regimens"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "A, B, C, and E are correct: default to weekly, name the day, teach back, and keep daily oral methotrexate for specific cancer regimens. D is wrong because daily dosing for arthritis is a dangerous error, no matter who asks.",
+      "videoTimestamp": "0:27"
+    },
+    {
+      "id": "ep14-high-alert-q03",
+      "type": "single_best_answer",
+      "stem": "Why should units be written out in insulin orders instead of the letter U?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The letter U can look like a zero"
+        },
+        {
+          "id": "B",
+          "text": "U means a different drug"
+        },
+        {
+          "id": "C",
+          "text": "Insurance requires it"
+        },
+        {
+          "id": "D",
+          "text": "It sets the insulin type"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: the letter U can look like a zero, turning 10 units into 100. B, C, and D are not the reason for the rule.",
+      "videoTimestamp": "0:59"
+    },
+    {
+      "id": "ep14-high-alert-q04",
+      "type": "single_best_answer",
+      "stem": "How should concentrated insulin, 500 units per mL, be given?",
+      "options": [
+        {
+          "id": "A",
+          "text": "With a standard insulin syringe"
+        },
+        {
+          "id": "B",
+          "text": "Only by IV push"
+        },
+        {
+          "id": "C",
+          "text": "Diluted in juice"
+        },
+        {
+          "id": "D",
+          "text": "With its own dedicated syringe or pen"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: concentrated insulin needs its own dedicated syringe or pen. A risks a fivefold dosing error. C and B are not how this insulin is given.",
+      "videoTimestamp": "1:00"
+    },
+    {
+      "id": "ep14-high-alert-q05",
+      "type": "single_best_answer",
+      "stem": "An order reads: concentrated potassium chloride by IV push. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give it slowly over 1 minute"
+        },
+        {
+          "id": "B",
+          "text": "Give it as ordered"
+        },
+        {
+          "id": "C",
+          "text": "Never give it by IV push; it must be diluted"
+        },
+        {
+          "id": "D",
+          "text": "Give it into the muscle instead"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: concentrated potassium chloride is never pushed into a vein; it must be diluted. A is still an IV push. B follows a dangerous order. D is not how potassium chloride is given.",
+      "videoTimestamp": "1:06"
+    },
+    {
+      "id": "ep14-high-alert-q06",
+      "type": "single_best_answer",
+      "stem": "A fentanyl patch is prescribed for a patient who has never taken opioids. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dispense it"
+        },
+        {
+          "id": "B",
+          "text": "Cut the patch in half"
+        },
+        {
+          "id": "C",
+          "text": "Call the prescriber because the patient is not opioid tolerant"
+        },
+        {
+          "id": "D",
+          "text": "Dispense it with naloxone"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: fentanyl patches are only for opioid-tolerant patients. A dispenses an unsafe start. B is wrong because a patch must never be cut. D adds naloxone but still starts an unsafe drug.",
+      "videoTimestamp": "2:13"
+    },
+    {
+      "id": "ep14-high-alert-q07",
+      "type": "single_best_answer",
+      "stem": "A patient asks if they can cut a fentanyl patch to use a smaller dose. What is the best answer?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, with clean scissors"
+        },
+        {
+          "id": "B",
+          "text": "Yes, but only in half"
+        },
+        {
+          "id": "C",
+          "text": "No, never cut a patch"
+        },
+        {
+          "id": "D",
+          "text": "Yes, if covered with tape"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: never cut a patch. A, B, and D all cut the patch.",
+      "videoTimestamp": "2:18"
+    },
+    {
+      "id": "ep14-high-alert-q08",
+      "type": "select_all_that_apply",
+      "stem": "Which patients on opioids should be prescribed or offered naloxone? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "A patient on high opioid doses"
+        },
+        {
+          "id": "B",
+          "text": "A patient taking an opioid with a benzodiazepine"
+        },
+        {
+          "id": "C",
+          "text": "A patient on ibuprofen only"
+        },
+        {
+          "id": "D",
+          "text": "A patient on no medicines"
+        },
+        {
+          "id": "E",
+          "text": "A patient using topical lidocaine only"
+        }
+      ],
+      "keys": [
+        "A",
+        "B"
+      ],
+      "explanation": "A and B are correct: naloxone is offered to patients at higher risk of overdose, such as high doses or use with benzodiazepines. C, D, and E are not taking opioids.",
+      "videoTimestamp": "1:18"
+    },
+    {
+      "id": "ep14-high-alert-q09",
+      "type": "single_best_answer",
+      "stem": "Why are names printed as hydrOXYzine and hydrALAZINE?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Tall-man lettering shows the difference between look-alike names"
+        },
+        {
+          "id": "B",
+          "text": "The capital letters show the dose"
+        },
+        {
+          "id": "C",
+          "text": "They are brand names"
+        },
+        {
+          "id": "D",
+          "text": "They show the drug is high-alert"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: tall-man lettering uses capital letters to show the difference between look-alike names. B, C, and D are not what the capital letters mean.",
+      "videoTimestamp": "1:44"
+    },
+    {
+      "id": "ep14-high-alert-q10",
+      "type": "single_best_answer",
+      "stem": "A drug usually taken once weekly arrives with directions for daily use. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dispense as written"
+        },
+        {
+          "id": "B",
+          "text": "Stop and call the prescriber"
+        },
+        {
+          "id": "C",
+          "text": "Change it to weekly yourself"
+        },
+        {
+          "id": "D",
+          "text": "Dispense half the tablets"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: when a weekly drug shows up as daily, stop and call. A dispenses a possible overdose. C changes the order without the prescriber. D does not fix the directions.",
+      "videoTimestamp": "1:39"
+    }
+  ]
+}

@@ -1,0 +1,310 @@
+{
+  "episode": "ep04-heart-failure",
+  "title": "Heart Failure: The Four Pillars",
+  "video": "quick-bites-pharm-ep04-heart-failure-web.mp4",
+  "questions": [
+    {
+      "id": "ep04-heart-failure-q01",
+      "type": "single_best_answer",
+      "stem": "A patient with heart failure with reduced ejection fraction asks whether furosemide will help them live longer. What is the best answer?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, it is one of the four pillars"
+        },
+        {
+          "id": "B",
+          "text": "Only at high doses"
+        },
+        {
+          "id": "C",
+          "text": "Only when combined with digoxin"
+        },
+        {
+          "id": "D",
+          "text": "No, it eases breathing but does not help patients live longer"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: loop diuretics like furosemide remove fluid and ease breathing, but they do not help patients live longer. A is wrong because furosemide is not a pillar. B is wrong because higher doses add fluid loss, not survival; the goal is the lowest dose that keeps the patient dry. C is wrong because digoxin does not lower death either.",
+      "videoTimestamp": "1:25"
+    },
+    {
+      "id": "ep04-heart-failure-q02",
+      "type": "single_best_answer",
+      "stem": "Which ejection fraction meets the definition of reduced ejection fraction?",
+      "options": [
+        {
+          "id": "A",
+          "text": "60%"
+        },
+        {
+          "id": "B",
+          "text": "50%"
+        },
+        {
+          "id": "C",
+          "text": "38%"
+        },
+        {
+          "id": "D",
+          "text": "45%"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: an ejection fraction of 40% or less is reduced, and 38% is below 40%. A, B, and D are all above 40%.",
+      "videoTimestamp": "0:27"
+    },
+    {
+      "id": "ep04-heart-failure-q03",
+      "type": "select_all_that_apply",
+      "stem": "Which drugs are part of the four pillars for heart failure with reduced ejection fraction? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Furosemide"
+        },
+        {
+          "id": "B",
+          "text": "Dapagliflozin"
+        },
+        {
+          "id": "C",
+          "text": "Spironolactone"
+        },
+        {
+          "id": "D",
+          "text": "Digoxin"
+        },
+        {
+          "id": "E",
+          "text": "Sacubitril-valsartan"
+        },
+        {
+          "id": "F",
+          "text": "Carvedilol"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "E",
+        "F"
+      ],
+      "explanation": "B, C, E, and F are correct: the pillars are sacubitril-valsartan, a proven beta-blocker like carvedilol, a mineralocorticoid receptor antagonist like spironolactone, and a sodium-glucose cotransporter two inhibitor like dapagliflozin. A, furosemide, eases congestion but does not help patients live longer. D, digoxin, can reduce hospital stays but does not lower death.",
+      "videoTimestamp": "0:42"
+    },
+    {
+      "id": "ep04-heart-failure-q04",
+      "type": "single_best_answer",
+      "stem": "Which beta-blocker is proven in heart failure with reduced ejection fraction?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Metoprolol tartrate"
+        },
+        {
+          "id": "B",
+          "text": "Atenolol"
+        },
+        {
+          "id": "C",
+          "text": "Bisoprolol"
+        },
+        {
+          "id": "D",
+          "text": "Propranolol"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: only carvedilol, metoprolol succinate, and bisoprolol are proven. A, metoprolol tartrate, is the short-acting form and is not proven. B, atenolol, and D, propranolol, are not among the three proven beta-blockers.",
+      "videoTimestamp": "1:35"
+    },
+    {
+      "id": "ep04-heart-failure-q05",
+      "type": "single_best_answer",
+      "stem": "A patient with heart failure with reduced ejection fraction takes metoprolol tartrate twice daily. What should the pharmacist recommend?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue metoprolol tartrate"
+        },
+        {
+          "id": "B",
+          "text": "Switch to metoprolol succinate"
+        },
+        {
+          "id": "C",
+          "text": "Switch to atenolol"
+        },
+        {
+          "id": "D",
+          "text": "Stop the beta-blocker"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: metoprolol succinate, the long-acting form, is proven; metoprolol tartrate is a different product and is not proven. A keeps an unproven product. C switches to a beta-blocker that is not among the three proven ones. D removes a pillar that helps patients live longer.",
+      "videoTimestamp": "1:44"
+    },
+    {
+      "id": "ep04-heart-failure-q06",
+      "type": "single_best_answer",
+      "stem": "A patient with heart failure with reduced ejection fraction has potassium 5.3 mEq/L and an estimated kidney filtration rate of 50. Should spironolactone be started now?",
+      "options": [
+        {
+          "id": "A",
+          "text": "No, potassium must be below 5.0 first"
+        },
+        {
+          "id": "B",
+          "text": "Yes, kidney filtration is above 30"
+        },
+        {
+          "id": "C",
+          "text": "Yes, at a double dose"
+        },
+        {
+          "id": "D",
+          "text": "Yes, with a potassium supplement"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: start a mineralocorticoid receptor antagonist only if potassium is below 5 and kidney filtration is above 30; 5.3 fails the potassium rule. B is wrong because both rules must be met, not just filtration. C makes high potassium more likely. D adds more potassium to a level that is already high.",
+      "videoTimestamp": "1:58"
+    },
+    {
+      "id": "ep04-heart-failure-q07",
+      "type": "single_best_answer",
+      "stem": "Spironolactone was just started. When should potassium and kidney function be rechecked?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Within 1 week"
+        },
+        {
+          "id": "B",
+          "text": "In 3 months"
+        },
+        {
+          "id": "C",
+          "text": "In 1 year"
+        },
+        {
+          "id": "D",
+          "text": "Only if the patient feels palpitations"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: recheck potassium and kidney function within a week, then regularly. B and C wait too long to catch rising potassium. D waits for symptoms, but high potassium can cause dangerous heart rhythms first.",
+      "videoTimestamp": "2:03"
+    },
+    {
+      "id": "ep04-heart-failure-q08",
+      "type": "select_all_that_apply",
+      "stem": "Which drugs can make heart failure with reduced ejection fraction worse? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dapagliflozin"
+        },
+        {
+          "id": "B",
+          "text": "Ibuprofen"
+        },
+        {
+          "id": "C",
+          "text": "Naproxen"
+        },
+        {
+          "id": "D",
+          "text": "Diltiazem"
+        },
+        {
+          "id": "E",
+          "text": "Verapamil"
+        },
+        {
+          "id": "F",
+          "text": "Pioglitazone"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "explanation": "B, C, D, E, and F are correct: ibuprofen and naproxen hold salt and water, diltiazem and verapamil weaken the squeeze, and pioglitazone causes fluid retention. A, dapagliflozin, is one of the four pillars and helps.",
+      "videoTimestamp": "2:14"
+    },
+    {
+      "id": "ep04-heart-failure-q09",
+      "type": "single_best_answer",
+      "stem": "A patient with reduced ejection fraction takes sacubitril-valsartan, metoprolol succinate, spironolactone, and furosemide. Which addition lowers the risk of death?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Digoxin"
+        },
+        {
+          "id": "B",
+          "text": "Diltiazem"
+        },
+        {
+          "id": "C",
+          "text": "Dapagliflozin"
+        },
+        {
+          "id": "D",
+          "text": "Metoprolol tartrate"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: dapagliflozin completes the fourth pillar. A, digoxin, can reduce hospital stays but does not lower death. B, diltiazem, worsens heart failure. D, metoprolol tartrate, is not the proven form, and the patient already takes a proven beta-blocker.",
+      "videoTimestamp": "2:42"
+    },
+    {
+      "id": "ep04-heart-failure-q10",
+      "type": "single_best_answer",
+      "stem": "Why are diltiazem and verapamil avoided in heart failure with reduced ejection fraction?",
+      "options": [
+        {
+          "id": "A",
+          "text": "They weaken the heart's squeeze"
+        },
+        {
+          "id": "B",
+          "text": "They hold potassium"
+        },
+        {
+          "id": "C",
+          "text": "They cause genital yeast infections"
+        },
+        {
+          "id": "D",
+          "text": "They block neprilysin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: diltiazem and verapamil weaken the squeeze. B describes mineralocorticoid receptor antagonists like spironolactone. C is a side effect of the sodium-glucose drugs. D describes sacubitril.",
+      "videoTimestamp": "2:22"
+    }
+  ]
+}

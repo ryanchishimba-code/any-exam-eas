@@ -199,6 +199,15 @@ export function DashboardPageContent({
         />
       ) : null}
 
+      {examSlug === "naplex" && quickBites ? (
+        <VideoQuickBitesSection
+          series="pharmacy"
+          canPlay={quickBites.canPlay}
+          upgradeHref={quickBites.upgradeHref}
+          upgradeLabel={quickBites.upgradeLabel}
+        />
+      ) : null}
+
       <DashboardProgressFold plan={examDayPlan} studyLocked={studyLocked}>
         <RemediationPanel
           examName={exam.name}

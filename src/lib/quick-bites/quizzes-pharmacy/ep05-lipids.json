@@ -1,0 +1,303 @@
+{
+  "episode": "ep05-lipids",
+  "title": "Statins: Intensity, Goals + Safety",
+  "video": "quick-bites-pharm-ep05-lipids-web.mp4",
+  "questions": [
+    {
+      "id": "ep05-lipids-q01",
+      "type": "single_best_answer",
+      "stem": "A patient who had a heart attack last year takes a high-intensity statin. Their low-density lipoprotein (LDL) cholesterol is 88 mg/dL. Is this at goal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, it is below 100"
+        },
+        {
+          "id": "B",
+          "text": "Yes, cholesterol goals are no longer used"
+        },
+        {
+          "id": "C",
+          "text": "No, the goal is below 70, or below 55 if very high risk"
+        },
+        {
+          "id": "D",
+          "text": "No, the goal is below 40"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: after a heart attack, the goal is below 70, or below 55 if very high risk; 88 is above both. A uses the goal for adults 40 to 75 with diabetes. B is wrong because goals are back in 2026. D is not the goal taught.",
+      "videoTimestamp": "1:51"
+    },
+    {
+      "id": "ep05-lipids-q02",
+      "type": "select_all_that_apply",
+      "stem": "Which statin regimens are high intensity? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Simvastatin 40 mg"
+        },
+        {
+          "id": "B",
+          "text": "Atorvastatin 80 mg"
+        },
+        {
+          "id": "C",
+          "text": "Rosuvastatin 10 mg"
+        },
+        {
+          "id": "D",
+          "text": "Rosuvastatin 20 mg"
+        },
+        {
+          "id": "E",
+          "text": "Pravastatin 80 mg"
+        },
+        {
+          "id": "F",
+          "text": "Atorvastatin 40 mg"
+        }
+      ],
+      "keys": [
+        "B",
+        "D",
+        "F"
+      ],
+      "explanation": "B, D, and F are correct: high intensity is atorvastatin 40 to 80 mg or rosuvastatin 20 to 40 mg. A, simvastatin 40, and E, pravastatin 80, are moderate intensity; only atorvastatin and rosuvastatin reach high intensity. C, rosuvastatin 10, is in the moderate range of 5 to 10.",
+      "videoTimestamp": "1:06"
+    },
+    {
+      "id": "ep05-lipids-q03",
+      "type": "single_best_answer",
+      "stem": "A patient had a stroke from blocked arteries 3 months ago and is starting a statin. Which regimen is best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Atorvastatin 10 mg"
+        },
+        {
+          "id": "B",
+          "text": "Pravastatin 40 mg"
+        },
+        {
+          "id": "C",
+          "text": "Simvastatin 20 mg"
+        },
+        {
+          "id": "D",
+          "text": "Rosuvastatin 20 mg"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: after a stroke from blocked arteries, the patient needs a high-intensity statin, and rosuvastatin 20 is high intensity. A, B, and C are moderate intensity.",
+      "videoTimestamp": "3:02"
+    },
+    {
+      "id": "ep05-lipids-q04",
+      "type": "single_best_answer",
+      "stem": "A 55-year-old with diabetes and no heart disease is starting a statin. What fits the 2026 guideline taught?",
+      "options": [
+        {
+          "id": "A",
+          "text": "At least a moderate-intensity statin, with an LDL goal below 100"
+        },
+        {
+          "id": "B",
+          "text": "No statin until a heart attack occurs"
+        },
+        {
+          "id": "C",
+          "text": "An LDL goal below 55"
+        },
+        {
+          "id": "D",
+          "text": "Diet only; statins are not used in diabetes"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: adults 40 to 75 with diabetes get at least a moderate-intensity statin, with a goal below 100. B waits for an event the statin is meant to prevent. C is the goal for very high risk after a heart attack, stroke, or blocked arteries. D is wrong because statins are recommended for this age group with diabetes.",
+      "videoTimestamp": "1:26"
+    },
+    {
+      "id": "ep05-lipids-q05",
+      "type": "single_best_answer",
+      "stem": "A patient with a past heart attack takes atorvastatin 80 mg every day as prescribed. LDL is still above goal. What is the next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Switch to pravastatin"
+        },
+        {
+          "id": "B",
+          "text": "Lower the atorvastatin dose"
+        },
+        {
+          "id": "C",
+          "text": "Stop the statin"
+        },
+        {
+          "id": "D",
+          "text": "Add ezetimibe"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: once a high-intensity statin is confirmed and taken, add ezetimibe. A switches to a moderate-intensity statin, which lowers LDL less. C removes the main heart protection. B also lowers LDL less.",
+      "videoTimestamp": "2:01"
+    },
+    {
+      "id": "ep05-lipids-q06",
+      "type": "single_best_answer",
+      "stem": "A patient on a statin reports new muscle weakness and dark urine. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue the statin and add a pain reliever"
+        },
+        {
+          "id": "B",
+          "text": "Double the statin dose"
+        },
+        {
+          "id": "C",
+          "text": "Stop the statin and check creatine kinase"
+        },
+        {
+          "id": "D",
+          "text": "Switch the dose to the morning"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: weakness and dark urine suggest rare muscle breakdown, so stop the statin and check creatine kinase. A keeps the drug that may be causing the damage. B makes muscle injury more likely. D changes timing but leaves the muscle breakdown untreated.",
+      "videoTimestamp": "2:15"
+    },
+    {
+      "id": "ep05-lipids-q07",
+      "type": "single_best_answer",
+      "stem": "A patient on simvastatin is prescribed clarithromycin. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dispense both; no interaction"
+        },
+        {
+          "id": "B",
+          "text": "Double the simvastatin dose"
+        },
+        {
+          "id": "C",
+          "text": "Take clarithromycin at bedtime"
+        },
+        {
+          "id": "D",
+          "text": "Do not combine them; hold the statin or choose another antibiotic"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: simvastatin must not be combined with strong liver-enzyme blockers like clarithromycin. A misses a serious interaction. B raises the simvastatin level even more. C changes timing but does not stop the enzyme block.",
+      "videoTimestamp": "2:19"
+    },
+    {
+      "id": "ep05-lipids-q08",
+      "type": "select_all_that_apply",
+      "stem": "Which statins are much less affected by drugs that block their liver enzyme? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Simvastatin"
+        },
+        {
+          "id": "B",
+          "text": "Rosuvastatin"
+        },
+        {
+          "id": "C",
+          "text": "Lovastatin"
+        },
+        {
+          "id": "D",
+          "text": "Pravastatin"
+        },
+        {
+          "id": "E",
+          "text": "Pitavastatin"
+        }
+      ],
+      "keys": [
+        "B",
+        "D",
+        "E"
+      ],
+      "explanation": "B, D, and E are correct: rosuvastatin, pravastatin, and pitavastatin are much less affected. A, simvastatin, and C, lovastatin, are broken down by the liver enzyme that many drugs block, so their levels rise a lot.",
+      "videoTimestamp": "2:39"
+    },
+    {
+      "id": "ep05-lipids-q09",
+      "type": "single_best_answer",
+      "stem": "Which statin is best taken in the evening?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Atorvastatin"
+        },
+        {
+          "id": "B",
+          "text": "Rosuvastatin"
+        },
+        {
+          "id": "C",
+          "text": "Simvastatin"
+        },
+        {
+          "id": "D",
+          "text": "None; timing matters for every statin equally"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: short-acting simvastatin is best taken in the evening. A and B work any time of day. D is wrong because atorvastatin and rosuvastatin work any time, while simvastatin is best in the evening.",
+      "videoTimestamp": "2:46"
+    },
+    {
+      "id": "ep05-lipids-q10",
+      "type": "single_best_answer",
+      "stem": "How much does a moderate-intensity statin lower LDL cholesterol?",
+      "options": [
+        {
+          "id": "A",
+          "text": "30% to 49%"
+        },
+        {
+          "id": "B",
+          "text": "50% or more"
+        },
+        {
+          "id": "C",
+          "text": "10% to 20%"
+        },
+        {
+          "id": "D",
+          "text": "Under 10%"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: moderate intensity lowers LDL by 30% to 49%. B is high intensity. C and D are smaller than either intensity level.",
+      "videoTimestamp": "0:53"
+    }
+  ]
+}

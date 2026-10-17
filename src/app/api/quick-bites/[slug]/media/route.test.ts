@@ -184,4 +184,11 @@ describe("GET /api/quick-bites/[slug]/media", () => {
     expect(response.status).toBe(404);
     expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
   });
+
+  it("does not sign a pharmacy episode from the nursing route", async () => {
+    asAccess("subscriber", "active", true);
+    const response = await mediaRequest("quick-bites-pharm-ep01-anticoagulants");
+    expect(response.status).toBe(404);
+    expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
+  });
 });

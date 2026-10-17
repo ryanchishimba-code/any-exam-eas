@@ -1,0 +1,301 @@
+{
+  "episode": "ep03-hypertension",
+  "title": "Hypertension: Who Gets Which Drug",
+  "video": "quick-bites-pharm-ep03-hypertension-web.mp4",
+  "questions": [
+    {
+      "id": "ep03-hypertension-q01",
+      "type": "single_best_answer",
+      "stem": "A new patient with no other conditions has an average blood pressure of 152/96. What is the best start?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Two first-line drugs from different groups, ideally in one pill"
+        },
+        {
+          "id": "B",
+          "text": "Lifestyle changes alone for 3 to 6 months"
+        },
+        {
+          "id": "C",
+          "text": "One first-line drug"
+        },
+        {
+          "id": "D",
+          "text": "A beta-blocker"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: 152/96 is stage 2, so start two first-line drugs from different groups, ideally in one single pill. B is the plan for lower-risk stage 1, not stage 2. C is less than the stage 2 starting plan. D is wrong because beta-blockers are not first-line without another reason.",
+      "videoTimestamp": "1:36"
+    },
+    {
+      "id": "ep03-hypertension-q02",
+      "type": "single_best_answer",
+      "stem": "A patient's average blood pressure is 134/78. Which stage is this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Normal"
+        },
+        {
+          "id": "B",
+          "text": "Elevated"
+        },
+        {
+          "id": "C",
+          "text": "Stage 1"
+        },
+        {
+          "id": "D",
+          "text": "Stage 2"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: stage 1 is a top number of 130 to 139, or a bottom number of 80 to 89, and 134 is in that range. A, normal, is below 120/80. B, elevated, is a top number of 120 to 129. D, stage 2, starts at 140 on top or 90 on the bottom.",
+      "videoTimestamp": "0:29"
+    },
+    {
+      "id": "ep03-hypertension-q03",
+      "type": "single_best_answer",
+      "stem": "A patient's average blood pressure is 126/78. Which stage is this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stage 1"
+        },
+        {
+          "id": "B",
+          "text": "Elevated"
+        },
+        {
+          "id": "C",
+          "text": "Normal"
+        },
+        {
+          "id": "D",
+          "text": "Stage 2"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: elevated is a top number of 120 to 129 with a bottom number below 80. A, stage 1, starts at 130 on top or 80 on the bottom. C, normal, is below 120/80. D, stage 2, starts at 140/90.",
+      "videoTimestamp": "0:26"
+    },
+    {
+      "id": "ep03-hypertension-q04",
+      "type": "single_best_answer",
+      "stem": "A patient with diabetes has an average blood pressure of 136/84. What is the best plan?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lifestyle changes alone for 3 to 6 months"
+        },
+        {
+          "id": "B",
+          "text": "Recheck in 1 year"
+        },
+        {
+          "id": "C",
+          "text": "Two drugs in one pill right away"
+        },
+        {
+          "id": "D",
+          "text": "Start medicine now, plus lifestyle changes"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: 136/84 is stage 1, and with diabetes, medicine starts now along with lifestyle changes. A is the plan only for stage 1 without heart disease, diabetes, kidney disease, or high risk. B leaves high blood pressure untreated. C is the stage 2 plan.",
+      "videoTimestamp": "0:47"
+    },
+    {
+      "id": "ep03-hypertension-q05",
+      "type": "single_best_answer",
+      "stem": "A patient has stage 1 blood pressure, no heart disease, diabetes, or kidney disease, and a 10-year heart risk of 4% on the PREVENT calculator. What is the best plan?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start two drugs in one pill"
+        },
+        {
+          "id": "B",
+          "text": "No action needed"
+        },
+        {
+          "id": "C",
+          "text": "Start a beta-blocker"
+        },
+        {
+          "id": "D",
+          "text": "Try 3 to 6 months of lifestyle changes first"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: without those conditions and with a risk below 7.5%, try 3 to 6 months of lifestyle changes first. A is the stage 2 plan. C is wrong because beta-blockers are not first-line without another reason. B is wrong because stage 1 still needs lifestyle treatment and follow-up.",
+      "videoTimestamp": "0:59"
+    },
+    {
+      "id": "ep03-hypertension-q06",
+      "type": "select_all_that_apply",
+      "stem": "Which drugs belong to the four first-line groups for high blood pressure? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Chlorthalidone"
+        },
+        {
+          "id": "B",
+          "text": "Metoprolol"
+        },
+        {
+          "id": "C",
+          "text": "Amlodipine"
+        },
+        {
+          "id": "D",
+          "text": "Losartan"
+        },
+        {
+          "id": "E",
+          "text": "Lisinopril"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, C, D, and E are correct: the four first-line groups are a thiazide-type diuretic like chlorthalidone, a long-acting calcium channel blocker like amlodipine, an angiotensin receptor blocker like losartan, and an ACE inhibitor like lisinopril. B, metoprolol, is a beta-blocker, which is not first-line unless there is another reason, like coronary disease or heart failure.",
+      "videoTimestamp": "1:04"
+    },
+    {
+      "id": "ep03-hypertension-q07",
+      "type": "single_best_answer",
+      "stem": "A patient with diabetes and kidney disease has a high urine albumin level. Blood pressure is 138/86. Which is the best first drug?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amlodipine"
+        },
+        {
+          "id": "B",
+          "text": "Metoprolol"
+        },
+        {
+          "id": "C",
+          "text": "Lisinopril plus losartan"
+        },
+        {
+          "id": "D",
+          "text": "Lisinopril"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: with kidney disease and albumin in the urine, an ACE inhibitor or an angiotensin receptor blocker protects the kidneys. A lowers blood pressure but lacks that kidney protection. B is not first-line without another reason. C combines an ACE inhibitor with an angiotensin receptor blocker, which should never be done.",
+      "videoTimestamp": "2:47"
+    },
+    {
+      "id": "ep03-hypertension-q08",
+      "type": "single_best_answer",
+      "stem": "A patient taking losartan for high blood pressure learns she is pregnant. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stop losartan and have the prescriber choose a drug that is safe in pregnancy"
+        },
+        {
+          "id": "B",
+          "text": "Continue losartan"
+        },
+        {
+          "id": "C",
+          "text": "Switch to lisinopril"
+        },
+        {
+          "id": "D",
+          "text": "Add aliskiren"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: pregnancy is a hard stop for angiotensin receptor blockers. B continues a drug that can harm the baby. C switches to an ACE inhibitor, which is also not used in pregnancy. D adds aliskiren, which is also not used in pregnancy.",
+      "videoTimestamp": "2:09"
+    },
+    {
+      "id": "ep03-hypertension-q09",
+      "type": "single_best_answer",
+      "stem": "A patient with heart failure with reduced ejection fraction takes metoprolol and needs more blood pressure lowering. Which calcium channel blocker fits best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Verapamil"
+        },
+        {
+          "id": "B",
+          "text": "Diltiazem"
+        },
+        {
+          "id": "C",
+          "text": "Amlodipine"
+        },
+        {
+          "id": "D",
+          "text": "Verapamil plus diltiazem"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: amlodipine mostly relaxes arteries and is first-line for blood pressure. A and B slow the heart rate and should be avoided with a beta-blocker and in heart failure with reduced ejection fraction. D combines both of those drugs.",
+      "videoTimestamp": "2:17"
+    },
+    {
+      "id": "ep03-hypertension-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about calcium channel blockers are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Verapamil is a good add-on to metoprolol"
+        },
+        {
+          "id": "B",
+          "text": "Amlodipine can cause ankle swelling"
+        },
+        {
+          "id": "C",
+          "text": "Verapamil can cause constipation"
+        },
+        {
+          "id": "D",
+          "text": "Diltiazem slows the heart rate"
+        },
+        {
+          "id": "E",
+          "text": "Amlodipine is first-line for blood pressure"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "B, C, D, and E are correct: amlodipine can cause ankle swelling and is first-line for blood pressure, verapamil causes constipation, and diltiazem slows the heart rate. A is wrong because verapamil and diltiazem should not be combined with a beta-blocker like metoprolol.",
+      "videoTimestamp": "2:29"
+    }
+  ]
+}

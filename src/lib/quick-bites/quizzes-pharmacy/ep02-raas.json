@@ -1,0 +1,301 @@
+{
+  "episode": "ep02-raas",
+  "title": "ACE Inhibitors vs ARBs vs ARNI",
+  "video": "quick-bites-pharm-ep02-raas-web.mp4",
+  "questions": [
+    {
+      "id": "ep02-raas-q01",
+      "type": "single_best_answer",
+      "stem": "A patient started lisinopril 2 months ago and now has a dry, tickly cough that will not go away. What is the best change?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Switch to enalapril"
+        },
+        {
+          "id": "B",
+          "text": "Stop all blood pressure medicine"
+        },
+        {
+          "id": "C",
+          "text": "Keep lisinopril and add a cough syrup"
+        },
+        {
+          "id": "D",
+          "text": "Switch to losartan"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: the cough comes from bradykinin, and angiotensin receptor blockers like losartan do not raise bradykinin, so cough is much less common. A is wrong because enalapril is another ACE inhibitor, and the cough is a class effect. C keeps the drug that causes the cough. B leaves the blood pressure untreated when a good alternative exists.",
+      "videoTimestamp": "1:22"
+    },
+    {
+      "id": "ep02-raas-q02",
+      "type": "single_best_answer",
+      "stem": "Why do ACE inhibitors cause a dry cough?",
+      "options": [
+        {
+          "id": "A",
+          "text": "They block the angiotensin II receptor"
+        },
+        {
+          "id": "B",
+          "text": "They raise potassium"
+        },
+        {
+          "id": "C",
+          "text": "Bradykinin is no longer broken down and builds up"
+        },
+        {
+          "id": "D",
+          "text": "They release aldosterone"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: the ACE enzyme also breaks down bradykinin, so blocking it lets bradykinin build up and cause cough. A describes angiotensin receptor blockers, which rarely cause cough. B is a real effect, but it causes heart rhythm risk, not cough. D is wrong because ACE inhibitors lower aldosterone, not raise it.",
+      "videoTimestamp": "1:01"
+    },
+    {
+      "id": "ep02-raas-q03",
+      "type": "single_best_answer",
+      "stem": "A patient on lisinopril arrives with swelling of the lips and tongue. What is the best plan for lisinopril?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lower the dose"
+        },
+        {
+          "id": "B",
+          "text": "Switch to enalapril"
+        },
+        {
+          "id": "C",
+          "text": "Continue it with an antihistamine"
+        },
+        {
+          "id": "D",
+          "text": "Stop it and never restart it"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: this is angioedema, which can block the airway, so stop the drug and never restart it. A still exposes the patient to the drug. B is another ACE inhibitor with the same bradykinin effect. C keeps the drug that caused the swelling.",
+      "videoTimestamp": "1:15"
+    },
+    {
+      "id": "ep02-raas-q04",
+      "type": "single_best_answer",
+      "stem": "A patient with heart failure with reduced ejection fraction takes enalapril and is switching to sacubitril-valsartan. When can the first sacubitril-valsartan dose be given?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The same day"
+        },
+        {
+          "id": "B",
+          "text": "12 hours after the last enalapril dose"
+        },
+        {
+          "id": "C",
+          "text": "36 hours after the last enalapril dose"
+        },
+        {
+          "id": "D",
+          "text": "7 days after the last enalapril dose"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: stop the ACE inhibitor and wait 36 hours, because overlapping neprilysin blocking and ACE blocking raises angioedema risk. A and B are too soon and allow that overlap. D waits longer than needed and leaves the heart failure undertreated.",
+      "videoTimestamp": "3:17"
+    },
+    {
+      "id": "ep02-raas-q05",
+      "type": "select_all_that_apply",
+      "stem": "Which of these should be avoided? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Combining an ACE inhibitor with an angiotensin receptor blocker"
+        },
+        {
+          "id": "B",
+          "text": "Switching to losartan after an ACE inhibitor cough"
+        },
+        {
+          "id": "C",
+          "text": "Continuing an angiotensin receptor blocker after pregnancy is found"
+        },
+        {
+          "id": "D",
+          "text": "Adding aliskiren to an ACE inhibitor in a patient with diabetes"
+        },
+        {
+          "id": "E",
+          "text": "Sacubitril-valsartan in a patient who had angioedema from an ACE inhibitor"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, C, D, and E are correct: never combine an ACE inhibitor and an angiotensin receptor blocker, stop these drugs when pregnancy is found (boxed warning), never add aliskiren in diabetes, and never use sacubitril-valsartan after angioedema from an ACE inhibitor. B is the recommended switch for an ACE inhibitor cough, so it should not be avoided.",
+      "videoTimestamp": "2:29"
+    },
+    {
+      "id": "ep02-raas-q06",
+      "type": "single_best_answer",
+      "stem": "Two weeks after lisinopril is started, a patient's creatinine rises from 1.0 to 1.15 mg/dL. Potassium is normal. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue lisinopril and keep monitoring"
+        },
+        {
+          "id": "B",
+          "text": "Stop lisinopril now"
+        },
+        {
+          "id": "C",
+          "text": "Add losartan"
+        },
+        {
+          "id": "D",
+          "text": "Double the lisinopril dose to protect the kidney"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: a 15% rise is expected because filtration pressure drops; a rise of more than 30% needs a closer look. B stops a helpful drug for an expected change. C is wrong because an ACE inhibitor and an angiotensin receptor blocker should never be combined. D raises the dose in response to a lab check, which can push creatinine and potassium higher.",
+      "videoTimestamp": "2:09"
+    },
+    {
+      "id": "ep02-raas-q07",
+      "type": "single_best_answer",
+      "stem": "After starting or raising the dose of an ACE inhibitor, when should creatinine and potassium be checked?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only if symptoms appear"
+        },
+        {
+          "id": "B",
+          "text": "In 6 months with the lipid panel"
+        },
+        {
+          "id": "C",
+          "text": "Once a year"
+        },
+        {
+          "id": "D",
+          "text": "Within 2 to 4 weeks"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: check creatinine and potassium within 2 to 4 weeks of starting or raising the dose. A waits for symptoms, which can miss high potassium before it causes heart rhythm problems. B and C wait far too long to catch an early rise.",
+      "videoTimestamp": "2:11"
+    },
+    {
+      "id": "ep02-raas-q08",
+      "type": "single_best_answer",
+      "stem": "Why does potassium tend to rise on ACE inhibitors and angiotensin receptor blockers?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Less aldosterone, so the kidney keeps potassium"
+        },
+        {
+          "id": "B",
+          "text": "More bradykinin pulls potassium into the blood"
+        },
+        {
+          "id": "C",
+          "text": "The drugs contain potassium"
+        },
+        {
+          "id": "D",
+          "text": "Higher filtration pressure"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: less aldosterone means the kidney keeps potassium. B is wrong because bradykinin explains cough and angioedema, not potassium. C is wrong because these drugs do not contain potassium. D is the opposite of what happens: filtration pressure drops.",
+      "videoTimestamp": "2:22"
+    },
+    {
+      "id": "ep02-raas-q09",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about sacubitril-valsartan are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "It can be combined with an ACE inhibitor at lower doses"
+        },
+        {
+          "id": "B",
+          "text": "Sacubitril blocks neprilysin"
+        },
+        {
+          "id": "C",
+          "text": "Valsartan blocks the angiotensin II receptor"
+        },
+        {
+          "id": "D",
+          "text": "It is used for heart failure with reduced ejection fraction"
+        },
+        {
+          "id": "E",
+          "text": "Blocking neprilysin raises angioedema risk because neprilysin breaks down bradykinin"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "B, C, D, and E are correct: sacubitril blocks neprilysin, valsartan blocks the receptor, the drug is for heart failure with reduced ejection fraction, and blocking neprilysin raises angioedema risk. A is wrong because it can never be taken with an ACE inhibitor at any dose.",
+      "videoTimestamp": "2:57"
+    },
+    {
+      "id": "ep02-raas-q10",
+      "type": "single_best_answer",
+      "stem": "Which drug is an angiotensin receptor blocker?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Valsartan"
+        },
+        {
+          "id": "B",
+          "text": "Enalapril"
+        },
+        {
+          "id": "C",
+          "text": "Aliskiren"
+        },
+        {
+          "id": "D",
+          "text": "Lisinopril"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: angiotensin receptor blockers end in sartan, like losartan and valsartan. B and D end in pril, so they are ACE inhibitors. C, aliskiren, is a different drug that must never be added to these drugs in diabetes.",
+      "videoTimestamp": "1:44"
+    }
+  ]
+}

@@ -124,8 +124,7 @@ function presentQuestion(question: RawQuestion, type: QuickBiteAnswerType): Stor
   };
 }
 
-function normalize(file: RawQuiz): StoredQuickBiteQuiz {
-  const slug = `quick-bites-${file.episode}`;
+function normalize(file: RawQuiz, slug: string): StoredQuickBiteQuiz {
   if (file.video !== `${slug}-web.mp4`) {
     throw new Error(`Quiz ${file.episode} does not match its video file.`);
   }
@@ -176,24 +175,32 @@ function quizStamp(): string {
     .join("|");
 }
 
-function readQuizBank(): Map<string, StoredQuickBiteQuiz> {
+export function readQuickBiteQuizDirectory(
+  dir: string,
+  episodes: readonly { slug: string }[],
+  slugFor: (file: { episode: string; video: string }) => string
+): Map<string, StoredQuickBiteQuiz> {
   const bySlug = new Map<string, StoredQuickBiteQuiz>();
-  const names = readdirSync(QUIZ_DIR)
+  const names = readdirSync(dir)
     .filter((name) => name.endsWith(".json"))
     .sort();
   for (const name of names) {
-    const raw = JSON.parse(readFileSync(path.join(QUIZ_DIR, name), "utf8")) as RawQuiz;
-    const quiz = normalize(raw);
+    const raw = JSON.parse(readFileSync(path.join(dir, name), "utf8")) as RawQuiz;
+    const quiz = normalize(raw, slugFor(raw));
     if (bySlug.has(quiz.slug)) throw new Error(`Duplicate quiz for ${quiz.slug}.`);
     bySlug.set(quiz.slug, quiz);
   }
-  for (const episode of QUICK_BITE_EPISODES) {
+  for (const episode of episodes) {
     if (!bySlug.has(episode.slug)) throw new Error(`Missing quiz for ${episode.slug}.`);
   }
-  if (bySlug.size !== QUICK_BITE_EPISODES.length) {
+  if (bySlug.size !== episodes.length) {
     throw new Error("Quiz bank does not match the episode catalog.");
   }
   return bySlug;
+}
+
+function readQuizBank(): Map<string, StoredQuickBiteQuiz> {
+  return readQuickBiteQuizDirectory(QUIZ_DIR, QUICK_BITE_EPISODES, (file) => `quick-bites-${file.episode}`);
 }
 
 let cache: { stamp: string; bySlug: Map<string, StoredQuickBiteQuiz> } | null = null;

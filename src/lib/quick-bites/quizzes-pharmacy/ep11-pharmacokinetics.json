@@ -1,0 +1,300 @@
+{
+  "episode": "ep11-pharmacokinetics",
+  "title": "Pharmacokinetics in Pictures",
+  "video": "quick-bites-pharm-ep11-pharmacokinetics-web.mp4",
+  "questions": [
+    {
+      "id": "ep11-pharmacokinetics-q01",
+      "type": "single_best_answer",
+      "stem": "A drug has a half-life of 6 hours. The level is 80 mg/L now. With no more doses, what is the level after 12 hours?",
+      "options": [
+        {
+          "id": "A",
+          "text": "40 mg/L"
+        },
+        {
+          "id": "B",
+          "text": "60 mg/L"
+        },
+        {
+          "id": "C",
+          "text": "10 mg/L"
+        },
+        {
+          "id": "D",
+          "text": "20 mg/L"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: 12 hours is 2 half-lives, so 80 halves to 40, then to 20. A is after only 1 half-life. C is after 3 half-lives. B treats the decline as a fixed 20 mg/L drop rather than halving.",
+      "videoTimestamp": "0:18"
+    },
+    {
+      "id": "ep11-pharmacokinetics-q02",
+      "type": "single_best_answer",
+      "stem": "A drug has a half-life of 8 hours. About when does it reach steady state on regular dosing?",
+      "options": [
+        {
+          "id": "A",
+          "text": "8 hours"
+        },
+        {
+          "id": "B",
+          "text": "16 hours"
+        },
+        {
+          "id": "C",
+          "text": "32 to 40 hours"
+        },
+        {
+          "id": "D",
+          "text": "Steady state is never reached"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: steady state takes about 4 to 5 half-lives, and 8 hours times 4 to 5 is 32 to 40 hours. A is 1 half-life. B is 2 half-lives. D is wrong because regular doses do climb and flatten at steady state.",
+      "videoTimestamp": "1:01"
+    },
+    {
+      "id": "ep11-pharmacokinetics-q03",
+      "type": "single_best_answer",
+      "stem": "With no more doses, what percent of a drug remains after 3 half-lives?",
+      "options": [
+        {
+          "id": "A",
+          "text": "50%"
+        },
+        {
+          "id": "B",
+          "text": "25%"
+        },
+        {
+          "id": "C",
+          "text": "12.5%"
+        },
+        {
+          "id": "D",
+          "text": "0%"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: 100 becomes 50, then 25, then 12.5 after 3 half-lives. A is after 1 half-life. B is after 2. D is wrong because each half-life only halves the level; it takes about 4 to 5 half-lives for the drug to be mostly gone.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep11-pharmacokinetics-q04",
+      "type": "single_best_answer",
+      "stem": "When should a drug level be checked after starting regular doses (no loading dose)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "At steady state"
+        },
+        {
+          "id": "B",
+          "text": "After the first dose"
+        },
+        {
+          "id": "C",
+          "text": "Before the first dose only"
+        },
+        {
+          "id": "D",
+          "text": "Timing does not matter"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: check drug levels at steady state, not after the first dose. B is too early; the level is still climbing. C gives no information about the drug's effect. D is wrong because the level keeps rising until steady state.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "ep11-pharmacokinetics-q05",
+      "type": "single_best_answer",
+      "stem": "A patient's phenytoin dose is raised by a small amount. What is the likely effect on the level?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A proportional, small rise"
+        },
+        {
+          "id": "B",
+          "text": "A big jump, possibly into toxicity"
+        },
+        {
+          "id": "C",
+          "text": "The level falls"
+        },
+        {
+          "id": "D",
+          "text": "No change"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: phenytoin's enzymes get saturated, so a small dose increase can cause a big jump in level. A describes a linear drug. C and D are wrong because a dose increase raises the level.",
+      "videoTimestamp": "1:09"
+    },
+    {
+      "id": "ep11-pharmacokinetics-q06",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about phenytoin are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Its enzymes can become saturated"
+        },
+        {
+          "id": "B",
+          "text": "Doubling the dose simply doubles the level"
+        },
+        {
+          "id": "C",
+          "text": "A small dose increase can cause a big jump in level"
+        },
+        {
+          "id": "D",
+          "text": "Its half-life gets longer at higher levels"
+        },
+        {
+          "id": "E",
+          "text": "Toxicity can show as shaky eyes and stumbling"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, C, D, and E are correct: phenytoin's enzymes saturate, small increases can cause big jumps, its half-life gets longer at higher levels, and toxicity shows as shaky eyes and stumbling. B describes a linear drug, not phenytoin.",
+      "videoTimestamp": "1:09"
+    },
+    {
+      "id": "ep11-pharmacokinetics-q07",
+      "type": "single_best_answer",
+      "stem": "A therapeutic level is needed quickly. Which parameter mainly sets the loading dose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Clearance"
+        },
+        {
+          "id": "B",
+          "text": "Half-life"
+        },
+        {
+          "id": "C",
+          "text": "Volume of distribution"
+        },
+        {
+          "id": "D",
+          "text": "Bioavailability only"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: the loading dose fills the volume of distribution. A, clearance, sets the maintenance dose. B, half-life, sets how long it takes to reach steady state. D adjusts for absorption but does not set the size of the tank to fill.",
+      "videoTimestamp": "1:31"
+    },
+    {
+      "id": "ep11-pharmacokinetics-q08",
+      "type": "select_all_that_apply",
+      "stem": "A pharmacist is planning doses for a new patient. Which statements are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "The maintenance dose depends on clearance"
+        },
+        {
+          "id": "B",
+          "text": "The loading dose depends on clearance"
+        },
+        {
+          "id": "C",
+          "text": "The loading dose depends on volume of distribution"
+        },
+        {
+          "id": "D",
+          "text": "Steady state takes about four to five half-lives"
+        },
+        {
+          "id": "E",
+          "text": "A loading dose shortens the drug's half-life"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "A, C, and D are correct: the maintenance dose replaces what clearance removes, the loading dose fills the volume, and steady state takes about four to five half-lives. B is wrong because the loading dose follows volume, not clearance. E is wrong because a loading dose gets the level up faster without changing the half-life.",
+      "videoTimestamp": "1:33"
+    },
+    {
+      "id": "ep11-pharmacokinetics-q09",
+      "type": "single_best_answer",
+      "stem": "A drug has a volume of distribution of 0.7 L/kg. For a 70 kg patient with a target level of 10 mg/L, what is the loading dose? (Loading dose = volume x target level.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "49 mg"
+        },
+        {
+          "id": "B",
+          "text": "100 mg"
+        },
+        {
+          "id": "C",
+          "text": "4900 mg"
+        },
+        {
+          "id": "D",
+          "text": "490 mg"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: 0.7 L/kg x 70 kg = 49 L, and 49 L x 10 mg/L = 490 mg. A forgets to multiply by the target level. C is a tenfold slip. B does not use the volume.",
+      "videoTimestamp": "1:28"
+    },
+    {
+      "id": "ep11-pharmacokinetics-q10",
+      "type": "single_best_answer",
+      "stem": "A drug has a very large volume of distribution. What does that mean?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It stays only in the blood"
+        },
+        {
+          "id": "B",
+          "text": "It spreads into tissues, so a bigger loading dose is needed"
+        },
+        {
+          "id": "C",
+          "text": "It needs a smaller loading dose"
+        },
+        {
+          "id": "D",
+          "text": "It is cleared faster"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a big volume means the drug spreads into tissues, so a bigger loading dose is needed to fill the tank. A describes a small volume. C is the opposite of what a big volume needs. D confuses volume with clearance.",
+      "videoTimestamp": "1:25"
+    }
+  ]
+}
