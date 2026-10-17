@@ -1,0 +1,308 @@
+{
+  "episode": "ep23-pain-opioids",
+  "title": "Pain + Opioids: Limits, Equivalents + Switches",
+  "video": "quick-bites-pharm-ep23-pain-opioids-web.mp4",
+  "questions": [
+    {
+      "id": "ep23-pain-opioids-q01",
+      "type": "single_best_answer",
+      "stem": "What is the maximum daily acetaminophen dose for adults taught in the video?",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 gram"
+        },
+        {
+          "id": "B",
+          "text": "4 grams"
+        },
+        {
+          "id": "C",
+          "text": "8 grams"
+        },
+        {
+          "id": "D",
+          "text": "10 grams"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the maximum for adults is 4 grams a day, counting every source. A is far below the maximum. C and D are dangerous overdoses.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep23-pain-opioids-q02",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about acetaminophen are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Many clinicians cap it lower with liver disease or heavy alcohol use"
+        },
+        {
+          "id": "B",
+          "text": "Overdose damages the kidneys first and spares the liver"
+        },
+        {
+          "id": "C",
+          "text": "It hides in combination pain pills"
+        },
+        {
+          "id": "D",
+          "text": "It is in some cold medicines"
+        },
+        {
+          "id": "E",
+          "text": "Add up every source"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, C, D, and E are correct as taught. B is wrong because overdose destroys the liver, quietly at first.",
+      "videoTimestamp": "0:26"
+    },
+    {
+      "id": "ep23-pain-opioids-q03",
+      "type": "single_best_answer",
+      "stem": "A patient takes oxycodone 20 mg four times a day. How many morphine equivalents per day is that?",
+      "options": [
+        {
+          "id": "A",
+          "text": "80"
+        },
+        {
+          "id": "B",
+          "text": "30"
+        },
+        {
+          "id": "C",
+          "text": "120"
+        },
+        {
+          "id": "D",
+          "text": "53"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: 80 mg a day times 1.5 is 120 per day. A is the oxycodone total without the factor. B and D come from using the wrong math.",
+      "videoTimestamp": "0:51"
+    },
+    {
+      "id": "ep23-pain-opioids-q04",
+      "type": "single_best_answer",
+      "stem": "Oral hydromorphone 4 mg six times a day, factor 5. How many morphine equivalents per day?",
+      "options": [
+        {
+          "id": "A",
+          "text": "120"
+        },
+        {
+          "id": "B",
+          "text": "24"
+        },
+        {
+          "id": "C",
+          "text": "20"
+        },
+        {
+          "id": "D",
+          "text": "480"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: 4 times 6 is 24 mg a day, and 24 times 5 is 120 per day. B is the hydromorphone total without the factor. C uses only one dose. D multiplies the wrong numbers.",
+      "videoTimestamp": "1:25"
+    },
+    {
+      "id": "ep23-pain-opioids-q05",
+      "type": "single_best_answer",
+      "stem": "How does the video frame 50 or more morphine equivalents per day?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A hard dose cap that can never be passed"
+        },
+        {
+          "id": "B",
+          "text": "A cue to offer naloxone"
+        },
+        {
+          "id": "C",
+          "text": "The dose where opioids must be stopped"
+        },
+        {
+          "id": "D",
+          "text": "A safe dose needing no extra steps"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: it is not a dose cap, but 50 or more per day, or other risks like a benzodiazepine, is a cue to offer naloxone. A and C are wrong because the video says it is not a dose cap. D ignores the naloxone cue.",
+      "videoTimestamp": "1:04"
+    },
+    {
+      "id": "ep23-pain-opioids-q06",
+      "type": "single_best_answer",
+      "stem": "When switching to a new opioid, why is the calculated dose cut by 25 to 50 percent?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The new drug is always weaker"
+        },
+        {
+          "id": "B",
+          "text": "To save money"
+        },
+        {
+          "id": "C",
+          "text": "Tolerance does not fully carry over to a new drug"
+        },
+        {
+          "id": "D",
+          "text": "Because the table is always wrong"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: tolerance to a new opioid is only partial. A, B, and D are not the reason taught.",
+      "videoTimestamp": "1:43"
+    },
+    {
+      "id": "ep23-pain-opioids-q07",
+      "type": "select_all_that_apply",
+      "stem": "Which are among the four steps for switching opioids? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use the conversion table"
+        },
+        {
+          "id": "B",
+          "text": "Cut 25 to 50 percent, per your protocol"
+        },
+        {
+          "id": "C",
+          "text": "Divide it into doses"
+        },
+        {
+          "id": "D",
+          "text": "Double the dose for safety"
+        },
+        {
+          "id": "E",
+          "text": "Add up the total daily dose"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "A, B, C, and E are correct: these are the four steps taught. D is wrong because the dose is cut, not raised.",
+      "videoTimestamp": "1:34"
+    },
+    {
+      "id": "ep23-pain-opioids-q08",
+      "type": "select_all_that_apply",
+      "stem": "Which safety checks for opioids are taught? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Tolerance to constipation develops in a week"
+        },
+        {
+          "id": "B",
+          "text": "Fast metabolizers can overdose on codeine or tramadol"
+        },
+        {
+          "id": "C",
+          "text": "Every patient needs a stimulant laxative"
+        },
+        {
+          "id": "D",
+          "text": "Buprenorphine for opioid use disorder no longer needs a special waiver"
+        },
+        {
+          "id": "E",
+          "text": "Opioids with benzodiazepines carry a boxed warning"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "B, C, D, and E are correct as taught. A is wrong because tolerance to constipation never comes.",
+      "videoTimestamp": "1:57"
+    },
+    {
+      "id": "ep23-pain-opioids-q09",
+      "type": "single_best_answer",
+      "stem": "Which opioid conversions does the video say belong to experienced clinicians?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Methadone and the fentanyl patch"
+        },
+        {
+          "id": "B",
+          "text": "Oxycodone and morphine"
+        },
+        {
+          "id": "C",
+          "text": "Hydromorphone and oxycodone"
+        },
+        {
+          "id": "D",
+          "text": "Codeine and acetaminophen"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: methadone and the fentanyl patch do not follow simple tables. B, C, and D use standard table factors.",
+      "videoTimestamp": "1:48"
+    },
+    {
+      "id": "ep23-pain-opioids-q10",
+      "type": "single_best_answer",
+      "stem": "A patient takes 60 mg of oral morphine per day and switches to oral oxycodone with a 25 percent reduction. What is the daily oxycodone dose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "40 mg"
+        },
+        {
+          "id": "B",
+          "text": "30 mg"
+        },
+        {
+          "id": "C",
+          "text": "90 mg"
+        },
+        {
+          "id": "D",
+          "text": "60 mg"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: 60 divided by 1.5 is 40 mg of oxycodone, and cutting 25 percent gives 30 mg per day. A skips the reduction. C multiplies instead of dividing. D ignores the conversion.",
+      "videoTimestamp": "3:11"
+    }
+  ]
+}

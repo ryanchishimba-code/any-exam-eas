@@ -22,7 +22,7 @@ function walk(dir: string): string[] {
 
 describe("Video Quick Bites quizzes", () => {
   it("has a 10-question quiz for every episode and keeps answers off the public copy", () => {
-    expect(QUICK_BITE_EPISODES).toHaveLength(16);
+    expect(QUICK_BITE_EPISODES).toHaveLength(25);
     for (const episode of QUICK_BITE_EPISODES) {
       const quiz = getQuickBiteQuiz(episode.slug);
       expect(quiz?.questions).toHaveLength(10);

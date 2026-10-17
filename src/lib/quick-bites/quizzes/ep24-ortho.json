@@ -1,0 +1,311 @@
+{
+  "episode": "ep24-ortho",
+  "title": "Orthopedics: Compartment Syndrome, Fat Embolism, Hip Precautions",
+  "video": "quick-bites-ep24-ortho-web.mp4",
+  "questions": [
+    {
+      "id": "ep24-ortho-q01",
+      "type": "single_best_answer",
+      "stem": "A client with a new leg cast has pain not relieved by morphine that gets worse when the toes are gently stretched. What is most likely happening?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Expected postoperative pain"
+        },
+        {
+          "id": "B",
+          "text": "Compartment syndrome"
+        },
+        {
+          "id": "C",
+          "text": "Fat embolism"
+        },
+        {
+          "id": "D",
+          "text": "Hip dislocation"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: pain out of proportion and pain on passive stretch are early signs of compartment syndrome. A misses the danger. C causes confusion, low oxygen, and a rash. D is a hip replacement problem.",
+      "videoTimestamp": "0:17"
+    },
+    {
+      "id": "ep24-ortho-q02",
+      "type": "select_all_that_apply",
+      "stem": "Which are early signs of compartment syndrome? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pain out of proportion to the injury"
+        },
+        {
+          "id": "B",
+          "text": "Pain when the muscle is passively stretched"
+        },
+        {
+          "id": "C",
+          "text": "Tightness"
+        },
+        {
+          "id": "D",
+          "text": "Tingling"
+        },
+        {
+          "id": "E",
+          "text": "A lost pulse"
+        },
+        {
+          "id": "F",
+          "text": "Paralysis"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: these are the early signs. E and F are late signs; by the time the pulse is gone, the muscle may be dying.",
+      "videoTimestamp": "0:25"
+    },
+    {
+      "id": "ep24-ortho-q03",
+      "type": "single_best_answer",
+      "stem": "A client shows early signs of compartment syndrome. How should the limb be positioned?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Raised above the heart"
+        },
+        {
+          "id": "B",
+          "text": "At heart level"
+        },
+        {
+          "id": "C",
+          "text": "Below the waist, hanging down"
+        },
+        {
+          "id": "D",
+          "text": "Packed in ice"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: keep the limb at heart level, not raised. A and D both cut blood flow to a starving compartment. C is not taught.",
+      "videoTimestamp": "0:42"
+    },
+    {
+      "id": "ep24-ortho-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which actions fit compartment syndrome care? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Notify the provider immediately"
+        },
+        {
+          "id": "B",
+          "text": "Remove ice"
+        },
+        {
+          "id": "C",
+          "text": "Loosen the dressing or cast, per order"
+        },
+        {
+          "id": "D",
+          "text": "Recheck circulation, movement, and feeling often"
+        },
+        {
+          "id": "E",
+          "text": "Wait until the pulse is lost before calling"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: notify, remove ice, loosen per order, recheck often, and prepare for surgery. E waits for a late sign.",
+      "videoTimestamp": "0:42"
+    },
+    {
+      "id": "ep24-ortho-q05",
+      "type": "single_best_answer",
+      "stem": "When does fat embolism usually appear after a long-bone or pelvic fracture?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Within minutes"
+        },
+        {
+          "id": "B",
+          "text": "One to three days after"
+        },
+        {
+          "id": "C",
+          "text": "Two weeks after"
+        },
+        {
+          "id": "D",
+          "text": "Only after surgery"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: fat embolism shows up one to three days after a long-bone or pelvic fracture. A, C, and D are not the timing taught.",
+      "videoTimestamp": "1:19"
+    },
+    {
+      "id": "ep24-ortho-q06",
+      "type": "single_best_answer",
+      "stem": "Which finding helps separate fat embolism from a blood clot in the lungs?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fast breathing"
+        },
+        {
+          "id": "B",
+          "text": "Low oxygen"
+        },
+        {
+          "id": "C",
+          "text": "Tiny red spots on the chest and neck"
+        },
+        {
+          "id": "D",
+          "text": "Chest pain"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: the rash of tiny red spots on the chest and neck separates fat embolism from a blood clot in the lungs. A, B, and D can occur with both.",
+      "videoTimestamp": "1:40"
+    },
+    {
+      "id": "ep24-ortho-q07",
+      "type": "single_best_answer",
+      "stem": "Two days after a femur fracture, a client has new confusion, an oxygen saturation of 88%, and red spots on the chest. What is the first action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give oxygen, then call rapid response"
+        },
+        {
+          "id": "B",
+          "text": "Reorient and recheck in one hour"
+        },
+        {
+          "id": "C",
+          "text": "Lay the client flat"
+        },
+        {
+          "id": "D",
+          "text": "Give a sedative for agitation"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: this is likely fat embolism, so oxygen first, sit them up, and get help fast. B delays care. C: sit them upright. D can hide worsening confusion and breathing.",
+      "videoTimestamp": "2:47"
+    },
+    {
+      "id": "ep24-ortho-q08",
+      "type": "select_all_that_apply",
+      "stem": "After a posterior-approach hip replacement, which are classic precautions? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Don't bend the hip past 90 degrees"
+        },
+        {
+          "id": "B",
+          "text": "Don't cross the legs"
+        },
+        {
+          "id": "C",
+          "text": "Don't turn the toes inward"
+        },
+        {
+          "id": "D",
+          "text": "Use a low toilet seat"
+        },
+        {
+          "id": "E",
+          "text": "Sit in a low, soft chair"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: no bending past 90 degrees, no crossing the legs, and no turning the toes inward, always per the surgeon's orders. D and E are wrong: use a raised toilet seat and a high chair.",
+      "videoTimestamp": "1:47"
+    },
+    {
+      "id": "ep24-ortho-q09",
+      "type": "single_best_answer",
+      "stem": "After a hip replacement, which finding suggests the new hip has popped out?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A shortened, rotated leg"
+        },
+        {
+          "id": "B",
+          "text": "Mild bruising at the incision"
+        },
+        {
+          "id": "C",
+          "text": "Tingling in the hands"
+        },
+        {
+          "id": "D",
+          "text": "Warm toes"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: watch for a shortened, rotated leg. B, C, and D are not the dislocation sign taught.",
+      "videoTimestamp": "2:08"
+    },
+    {
+      "id": "ep24-ortho-q10",
+      "type": "single_best_answer",
+      "stem": "Which equipment helps keep a new hip in place after a posterior-approach replacement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "An abduction pillow"
+        },
+        {
+          "id": "B",
+          "text": "A low stool"
+        },
+        {
+          "id": "C",
+          "text": "Ice on the hip at all times"
+        },
+        {
+          "id": "D",
+          "text": "A pillow under the knees to bend the hip"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: use an abduction pillow, a raised toilet seat, and a high chair. B and D bend the hip too far. C is not a hip precaution.",
+      "videoTimestamp": "1:55"
+    }
+  ]
+}

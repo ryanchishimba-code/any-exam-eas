@@ -1,0 +1,305 @@
+{
+  "episode": "ep17-gi-bleed-obstruction",
+  "title": "GI Bleeds + Bowel Obstruction",
+  "video": "quick-bites-ep17-gi-bleed-obstruction-web.mp4",
+  "questions": [
+    {
+      "id": "ep17-gi-bleed-obstruction-q01",
+      "type": "single_best_answer",
+      "stem": "A client vomits dark material that looks like coffee grounds. Where is the bleeding most likely coming from?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The rectum"
+        },
+        {
+          "id": "B",
+          "text": "The upper digestive tract: esophagus, stomach, or first part of the small intestine"
+        },
+        {
+          "id": "C",
+          "text": "The large bowel"
+        },
+        {
+          "id": "D",
+          "text": "The bladder"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: coffee-ground vomit and black, tarry stool both point to an upper bleed. A and C describe a lower bleed, which shows bright red or maroon blood from the rectum. D is not part of the digestive tract.",
+      "videoTimestamp": "0:18"
+    },
+    {
+      "id": "ep17-gi-bleed-obstruction-q02",
+      "type": "select_all_that_apply",
+      "stem": "A client has an active bleed in the digestive tract. Which are first moves? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Check airway, breathing, and circulation"
+        },
+        {
+          "id": "B",
+          "text": "Place two large-bore lines into a vein"
+        },
+        {
+          "id": "C",
+          "text": "Keep the client nothing by mouth"
+        },
+        {
+          "id": "D",
+          "text": "Send a type and crossmatch"
+        },
+        {
+          "id": "E",
+          "text": "Give small sips of water for comfort"
+        },
+        {
+          "id": "F",
+          "text": "Walk the client to check for dizziness"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: airway, breathing, circulation, two large-bore lines, nothing by mouth, and a type and crossmatch. E breaks the nothing-by-mouth rule. F risks a faint; standing vital signs are checked only if it's safe.",
+      "videoTimestamp": "0:36"
+    },
+    {
+      "id": "ep17-gi-bleed-obstruction-q03",
+      "type": "single_best_answer",
+      "stem": "The nurse checks vital signs lying down, then standing. Which change suggests volume loss?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The top number drops by 5"
+        },
+        {
+          "id": "B",
+          "text": "The top number drops by 20"
+        },
+        {
+          "id": "C",
+          "text": "The heart rate drops by 5"
+        },
+        {
+          "id": "D",
+          "text": "The bottom number rises by 10"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a drop of 20 in the top number, 10 in the bottom number, or a jump in heart rate means volume loss. A is too small a change. C and D go the wrong direction.",
+      "videoTimestamp": "0:44"
+    },
+    {
+      "id": "ep17-gi-bleed-obstruction-q04",
+      "type": "single_best_answer",
+      "stem": "A bleeding client without heart disease has a hemoglobin result. Below what level is blood usually given?",
+      "options": [
+        {
+          "id": "A",
+          "text": "5"
+        },
+        {
+          "id": "B",
+          "text": "7"
+        },
+        {
+          "id": "C",
+          "text": "10"
+        },
+        {
+          "id": "D",
+          "text": "12"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: blood is usually given below a hemoglobin of 7, or 8 with heart disease. A is lower than the usual threshold. C and D are above it.",
+      "videoTimestamp": "0:54"
+    },
+    {
+      "id": "ep17-gi-bleed-obstruction-q05",
+      "type": "single_best_answer",
+      "stem": "In a client who is losing blood, which vital sign often changes first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Temperature rises"
+        },
+        {
+          "id": "B",
+          "text": "Heart rate rises"
+        },
+        {
+          "id": "C",
+          "text": "Blood pressure falls"
+        },
+        {
+          "id": "D",
+          "text": "Breathing slows"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the heart rate often rises before the blood pressure falls. C usually comes later. A and D are not the early sign taught.",
+      "videoTimestamp": "1:01"
+    },
+    {
+      "id": "ep17-gi-bleed-obstruction-q06",
+      "type": "single_best_answer",
+      "stem": "A bleeding client has a heart rate of 118 and a blood pressure of 96/60, and asks for water. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give small sips of water"
+        },
+        {
+          "id": "B",
+          "text": "Keep nothing by mouth, check the line, and notify the provider"
+        },
+        {
+          "id": "C",
+          "text": "Walk the client to the bathroom to check the stool"
+        },
+        {
+          "id": "D",
+          "text": "Recheck vital signs in an hour"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a fast pulse and low blood pressure mean volume loss, so keep nothing by mouth and notify; fluids or blood can be given per order. A breaks nothing by mouth. C could make the client faint. D delays care.",
+      "videoTimestamp": "2:38"
+    },
+    {
+      "id": "ep17-gi-bleed-obstruction-q07",
+      "type": "select_all_that_apply",
+      "stem": "Which findings fit a bowel obstruction? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cramping"
+        },
+        {
+          "id": "B",
+          "text": "A swollen belly"
+        },
+        {
+          "id": "C",
+          "text": "Vomiting"
+        },
+        {
+          "id": "D",
+          "text": "No stool or gas"
+        },
+        {
+          "id": "E",
+          "text": "Frequent loose stools"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: cramping, a swollen belly, vomiting, and no stool or gas. E doesn't fit: gas and stool back up behind the blockage.",
+      "videoTimestamp": "1:27"
+    },
+    {
+      "id": "ep17-gi-bleed-obstruction-q08",
+      "type": "single_best_answer",
+      "stem": "A client with a bowel obstruction develops sudden, constant, severe pain with fever and a rigid belly. What should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give a laxative"
+        },
+        {
+          "id": "B",
+          "text": "Call the provider now"
+        },
+        {
+          "id": "C",
+          "text": "Encourage walking"
+        },
+        {
+          "id": "D",
+          "text": "Recheck in four hours"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: this can mean the bowel is dying or torn, so call the provider now. A and C are not taught and could cause harm. D delays an emergency.",
+      "videoTimestamp": "1:37"
+    },
+    {
+      "id": "ep17-gi-bleed-obstruction-q09",
+      "type": "single_best_answer",
+      "stem": "A client with a bowel obstruction has a tube through the nose to low suction. Which lab problem should the nurse watch for?",
+      "options": [
+        {
+          "id": "A",
+          "text": "High potassium"
+        },
+        {
+          "id": "B",
+          "text": "Low potassium"
+        },
+        {
+          "id": "C",
+          "text": "High hemoglobin"
+        },
+        {
+          "id": "D",
+          "text": "High blood sugar"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: suction pulls out fluid and electrolytes, so watch for low potassium. A is the opposite direction. C and D are not what the video teaches for suction.",
+      "videoTimestamp": "1:59"
+    },
+    {
+      "id": "ep17-gi-bleed-obstruction-q10",
+      "type": "single_best_answer",
+      "stem": "A client with a bowel obstruction has vomiting that started early and comes often, with cramping waves of pain. Which type fits best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Small bowel obstruction"
+        },
+        {
+          "id": "B",
+          "text": "Large bowel obstruction"
+        },
+        {
+          "id": "C",
+          "text": "Upper bleed"
+        },
+        {
+          "id": "D",
+          "text": "Lower bleed"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: in small bowel obstruction, vomiting comes early and often with cramping waves. B has late vomiting with big belly swelling and constipation. C and D are bleeds, not obstructions.",
+      "videoTimestamp": "2:06"
+    }
+  ]
+}

@@ -1,0 +1,305 @@
+{
+  "episode": "ep21-neutropenia-sickle-cell",
+  "title": "Cancer Care + Sickle Cell: Neutropenia, Low Platelets, Crisis",
+  "video": "quick-bites-ep21-neutropenia-sickle-cell-web.mp4",
+  "questions": [
+    {
+      "id": "ep21-neutropenia-sickle-cell-q01",
+      "type": "single_best_answer",
+      "stem": "A client on chemotherapy has a neutrophil count of 400 and a temperature of 38.4 but says they feel fine. What should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Recheck the temperature in four hours"
+        },
+        {
+          "id": "B",
+          "text": "Treat it as urgent: cultures, then the first antibiotic within one hour"
+        },
+        {
+          "id": "C",
+          "text": "Give acetaminophen and wait"
+        },
+        {
+          "id": "D",
+          "text": "Document it, since the client feels fine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: this is neutropenic fever, an emergency, even though they feel fine. A, C, and D delay treatment while sepsis can develop within hours.",
+      "videoTimestamp": "1:20"
+    },
+    {
+      "id": "ep21-neutropenia-sickle-cell-q02",
+      "type": "single_best_answer",
+      "stem": "What absolute neutrophil count is severe?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Below 5,000"
+        },
+        {
+          "id": "B",
+          "text": "Below 1,500"
+        },
+        {
+          "id": "C",
+          "text": "Below 500"
+        },
+        {
+          "id": "D",
+          "text": "Below 10,000"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: below 1,500 is low, and below 500 is severe. B is the cutoff for low, not severe. A and D are not the cutoffs taught.",
+      "videoTimestamp": "0:30"
+    },
+    {
+      "id": "ep21-neutropenia-sickle-cell-q03",
+      "type": "single_best_answer",
+      "stem": "Why might a fever be the only sign of infection in a client with very few neutrophils?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fever is caused by chemotherapy"
+        },
+        {
+          "id": "B",
+          "text": "With almost no neutrophils, there is little pus or redness"
+        },
+        {
+          "id": "C",
+          "text": "Antibiotics hide other signs"
+        },
+        {
+          "id": "D",
+          "text": "Neutrophils cause fever"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: with almost no neutrophils, there's little pus or redness, so a fever may be the only sign of a deadly infection. A, C, and D are not what the video teaches.",
+      "videoTimestamp": "0:34"
+    },
+    {
+      "id": "ep21-neutropenia-sickle-cell-q04",
+      "type": "single_best_answer",
+      "stem": "Which temperature defines neutropenic fever?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A single 37.8"
+        },
+        {
+          "id": "B",
+          "text": "A single 38.3, or 38.0 lasting over an hour"
+        },
+        {
+          "id": "C",
+          "text": "Only a temperature of 39 or higher"
+        },
+        {
+          "id": "D",
+          "text": "38.0 lasting 10 minutes"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: a single 38.3, or 38.0 lasting over an hour. A is below the cutoff. C waits too long. D is too short for the 38.0 rule.",
+      "videoTimestamp": "0:45"
+    },
+    {
+      "id": "ep21-neutropenia-sickle-cell-q05",
+      "type": "select_all_that_apply",
+      "stem": "Which are common precautions for a client with low white cells? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Clean hands first"
+        },
+        {
+          "id": "B",
+          "text": "A private room"
+        },
+        {
+          "id": "C",
+          "text": "No sick visitors"
+        },
+        {
+          "id": "D",
+          "text": "No rectal temperatures or suppositories"
+        },
+        {
+          "id": "E",
+          "text": "Rectal temperatures for accuracy"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: clean hands, a private room, no sick visitors, and no rectal temperatures or suppositories, per your facility. E is exactly what to avoid.",
+      "videoTimestamp": "0:57"
+    },
+    {
+      "id": "ep21-neutropenia-sickle-cell-q06",
+      "type": "select_all_that_apply",
+      "stem": "A client has low platelets. Which actions fit bleeding precautions? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Soft toothbrush"
+        },
+        {
+          "id": "B",
+          "text": "Electric razor"
+        },
+        {
+          "id": "C",
+          "text": "Hold pressure on puncture sites"
+        },
+        {
+          "id": "D",
+          "text": "Prevent falls and straining"
+        },
+        {
+          "id": "E",
+          "text": "Give medicines as shots into the muscle"
+        },
+        {
+          "id": "F",
+          "text": "Give rectal medicines"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: soft toothbrush, electric razor, hold pressure on punctures, and prevent falls and straining. E and F are avoided with low platelets.",
+      "videoTimestamp": "1:37"
+    },
+    {
+      "id": "ep21-neutropenia-sickle-cell-q07",
+      "type": "single_best_answer",
+      "stem": "A client in sickle cell crisis arrives at the emergency department in severe pain. When should pain medicine be given?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Within one hour of arrival"
+        },
+        {
+          "id": "B",
+          "text": "After all labs result"
+        },
+        {
+          "id": "C",
+          "text": "Only if the pain lasts more than four hours"
+        },
+        {
+          "id": "D",
+          "text": "At the next scheduled time"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: give pain medicine within one hour of arrival, and reassess every 30 to 60 minutes. B, C, and D undertreat pain, a classic danger.",
+      "videoTimestamp": "2:18"
+    },
+    {
+      "id": "ep21-neutropenia-sickle-cell-q08",
+      "type": "single_best_answer",
+      "stem": "Which action is correct during a sickle cell crisis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Apply cold packs to painful joints"
+        },
+        {
+          "id": "B",
+          "text": "Keep the client warm and use the incentive spirometer"
+        },
+        {
+          "id": "C",
+          "text": "Give meperidine for pain"
+        },
+        {
+          "id": "D",
+          "text": "Restrict fluids"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: keep the client warm, never cold packs, and use the incentive spirometer. A: cold makes sickling worse. C: avoid meperidine. D: give fluids, without overloading.",
+      "videoTimestamp": "2:27"
+    },
+    {
+      "id": "ep21-neutropenia-sickle-cell-q09",
+      "type": "single_best_answer",
+      "stem": "A client in sickle cell crisis has sudden chest pain, a temperature of 38.5, and an oxygen saturation of 91%. What is the priority?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give oxygen and notify the provider now"
+        },
+        {
+          "id": "B",
+          "text": "Put cold packs on the chest"
+        },
+        {
+          "id": "C",
+          "text": "Walk in the hall to open the lungs"
+        },
+        {
+          "id": "D",
+          "text": "Recheck in one hour"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: chest pain, fever, and low oxygen mean possible acute chest syndrome, an emergency. B: cold makes sickling worse. C and D delay care.",
+      "videoTimestamp": "3:21"
+    },
+    {
+      "id": "ep21-neutropenia-sickle-cell-q10",
+      "type": "single_best_answer",
+      "stem": "For a client in sickle cell crisis, when should oxygen be given?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only if saturation is below 85%"
+        },
+        {
+          "id": "B",
+          "text": "If saturation is below 95%"
+        },
+        {
+          "id": "C",
+          "text": "Always at 100%, regardless of saturation"
+        },
+        {
+          "id": "D",
+          "text": "Never; it hides acute chest syndrome"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: give oxygen if the saturation is below 95%. A waits too long. C and D are not what the video teaches.",
+      "videoTimestamp": "2:24"
+    }
+  ]
+}

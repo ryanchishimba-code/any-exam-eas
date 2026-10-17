@@ -115,7 +115,7 @@ describe("Quick Bites: Pharmacy", () => {
       expect.stringContaining("quick-bites-pharmacy/quick-bites-pharm-ep02-raas-web.mp4")
     );
 
-    await user.click(screen.getByRole("button", { name: "Play 17. Bonus: How the Pharmacy Boards Work" }));
+    await user.click(screen.getByRole("button", { name: "Play 27. Bonus: How the Pharmacy Boards Work" }));
     expect(screen.queryByRole("button", { name: "Next episode" })).not.toBeInTheDocument();
     expect(screen.queryByText("Stem for quick-bites-pharm-bonus-exam-format")).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Take the quiz" }));

@@ -1,0 +1,307 @@
+{
+  "episode": "ep22-hiv",
+  "title": "HIV Drugs: Starting, PrEP + PEP",
+  "video": "quick-bites-pharm-ep22-hiv-web.mp4",
+  "questions": [
+    {
+      "id": "ep22-hiv-q01",
+      "type": "single_best_answer",
+      "stem": "A patient with a new HIV diagnosis wants dolutegravir plus lamivudine starting today. Which test must come first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hepatitis B test"
+        },
+        {
+          "id": "B",
+          "text": "Lithium level"
+        },
+        {
+          "id": "C",
+          "text": "Thyroid test"
+        },
+        {
+          "id": "D",
+          "text": "Pregnancy test only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: test for hepatitis B first, because several backbone drugs also treat it and the two-drug pill is only for patients with hepatitis B ruled out. B, C, and D are not the key test taught.",
+      "videoTimestamp": "1:30"
+    },
+    {
+      "id": "ep22-hiv-q02",
+      "type": "single_best_answer",
+      "stem": "What do most patients start for HIV?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A protease inhibitor alone"
+        },
+        {
+          "id": "B",
+          "text": "Two entry blockers"
+        },
+        {
+          "id": "C",
+          "text": "An integrase inhibitor plus two backbone drugs"
+        },
+        {
+          "id": "D",
+          "text": "One backbone drug alone"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: most patients start an integrase inhibitor, like bictegravir or dolutegravir, plus two backbone drugs, often in one pill. A, B, and D are not the usual starting regimen.",
+      "videoTimestamp": "0:41"
+    },
+    {
+      "id": "ep22-hiv-q03",
+      "type": "select_all_that_apply",
+      "stem": "Match each drug class to the step it blocks. Which statements are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Integrase inhibitors stop it getting in"
+        },
+        {
+          "id": "B",
+          "text": "Entry blockers stop the virus getting in"
+        },
+        {
+          "id": "C",
+          "text": "Backbone drugs stop it copying its genes"
+        },
+        {
+          "id": "D",
+          "text": "Integrase inhibitors stop it inserting genes into our cells"
+        },
+        {
+          "id": "E",
+          "text": "Protease inhibitors stop it building new virus"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "B, C, D, and E are correct as taught. A is wrong because entry blockers stop the virus getting in.",
+      "videoTimestamp": "0:29"
+    },
+    {
+      "id": "ep22-hiv-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which are among the five rules before starting HIV treatment? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Check the gene test before abacavir"
+        },
+        {
+          "id": "B",
+          "text": "Check rifampin and other interactions"
+        },
+        {
+          "id": "C",
+          "text": "Skip testing if the patient feels well"
+        },
+        {
+          "id": "D",
+          "text": "Test for hepatitis B"
+        },
+        {
+          "id": "E",
+          "text": "Send a resistance test at baseline"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "explanation": "A, B, D, and E are correct as taught; spacing from antacids, calcium, and iron is the fifth. C is wrong because testing comes first.",
+      "videoTimestamp": "0:58"
+    },
+    {
+      "id": "ep22-hiv-q05",
+      "type": "single_best_answer",
+      "stem": "Which statement about prevention before exposure is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It can start without an HIV test"
+        },
+        {
+          "id": "B",
+          "text": "Confirm a negative test first, and retest regularly"
+        },
+        {
+          "id": "C",
+          "text": "It is only a 28-day course"
+        },
+        {
+          "id": "D",
+          "text": "It must start within 72 hours of one exposure"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: confirm a negative test first and retest regularly; using prevention doses in someone already infected breeds resistance. A is unsafe. C and D describe prevention after exposure.",
+      "videoTimestamp": "1:47"
+    },
+    {
+      "id": "ep22-hiv-q06",
+      "type": "select_all_that_apply",
+      "stem": "Which prevention-before-exposure options are taught? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "A daily pill"
+        },
+        {
+          "id": "B",
+          "text": "A cabotegravir shot every 2 months after starter doses"
+        },
+        {
+          "id": "C",
+          "text": "A lenacapavir shot every 6 months after starting"
+        },
+        {
+          "id": "D",
+          "text": "A weekly pill"
+        },
+        {
+          "id": "E",
+          "text": "A yearly shot"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct as taught. D and E are not options described in the video.",
+      "videoTimestamp": "1:38"
+    },
+    {
+      "id": "ep22-hiv-q07",
+      "type": "single_best_answer",
+      "stem": "When must prevention after exposure start, and for how long?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Within 7 days, for 1 week"
+        },
+        {
+          "id": "B",
+          "text": "Any time, for life"
+        },
+        {
+          "id": "C",
+          "text": "Within 72 hours, for 28 days"
+        },
+        {
+          "id": "D",
+          "text": "Within 24 hours, for 3 days"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: start as soon as possible, no later than 72 hours, then take it for 28 days. A starts too late and is too short. B describes ongoing treatment. D is too short.",
+      "videoTimestamp": "2:00"
+    },
+    {
+      "id": "ep22-hiv-q08",
+      "type": "single_best_answer",
+      "stem": "An exposure happened 80 hours ago. Should prevention after exposure start now?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, double dose"
+        },
+        {
+          "id": "B",
+          "text": "Yes, it always helps"
+        },
+        {
+          "id": "C",
+          "text": "Generally no; test now, test later, and offer ongoing prevention"
+        },
+        {
+          "id": "D",
+          "text": "Yes, for 6 months"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: past 72 hours, starting is not expected to help, so test now, test again later, and offer ongoing prevention if risk continues. A, B, and D ignore the 72-hour limit.",
+      "videoTimestamp": "2:26"
+    },
+    {
+      "id": "ep22-hiv-q09",
+      "type": "single_best_answer",
+      "stem": "A patient on the bictegravir combination pill starts a calcium supplement. What is the best advice?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Take them together on an empty stomach"
+        },
+        {
+          "id": "B",
+          "text": "Take them together with food"
+        },
+        {
+          "id": "C",
+          "text": "Stop the calcium for good"
+        },
+        {
+          "id": "D",
+          "text": "Double the bictegravir dose"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: calcium or iron can be taken together with bictegravir if food is on board. A lowers absorption. C is unnecessary. D is not the fix.",
+      "videoTimestamp": "3:19"
+    },
+    {
+      "id": "ep22-hiv-q10",
+      "type": "single_best_answer",
+      "stem": "How should bictegravir be spaced from aluminum or magnesium antacids?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Take them together with food"
+        },
+        {
+          "id": "B",
+          "text": "Take bictegravir 2 hours before or 6 hours after"
+        },
+        {
+          "id": "C",
+          "text": "No spacing needed"
+        },
+        {
+          "id": "D",
+          "text": "Take bictegravir 12 hours after"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: take bictegravir 2 hours before or 6 hours after aluminum or magnesium antacids. A applies to calcium or iron, not these antacids. C ignores the interaction. D is not the taught spacing.",
+      "videoTimestamp": "3:29"
+    }
+  ]
+}

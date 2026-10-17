@@ -1,0 +1,294 @@
+{
+  "episode": "ep23-burns",
+  "title": "Burns: Airway, Rule of Nines, Fluids",
+  "video": "quick-bites-ep23-burns-web.mp4",
+  "questions": [
+    {
+      "id": "ep23-burns-q01",
+      "type": "select_all_that_apply",
+      "stem": "Which findings suggest inhalation injury in a burned client? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Soot around the mouth or nose"
+        },
+        {
+          "id": "B",
+          "text": "Singed nose hairs"
+        },
+        {
+          "id": "C",
+          "text": "A hoarse voice"
+        },
+        {
+          "id": "D",
+          "text": "Noisy breathing called stridor"
+        },
+        {
+          "id": "E",
+          "text": "Red skin on one forearm with no blisters"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct: soot, singed nose hairs, a hoarse voice, stridor, and face and neck burns suggest inhalation injury. E is a superficial burn away from the airway.",
+      "videoTimestamp": "0:19"
+    },
+    {
+      "id": "ep23-burns-q02",
+      "type": "single_best_answer",
+      "stem": "A client with carbon monoxide exposure has a pulse oximeter reading of 99%. What should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Remove oxygen; the reading is normal"
+        },
+        {
+          "id": "B",
+          "text": "Give 100% oxygen; the pulse oximeter can read falsely normal"
+        },
+        {
+          "id": "C",
+          "text": "Recheck the reading in four hours"
+        },
+        {
+          "id": "D",
+          "text": "Give oxygen only if the reading drops below 90%"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: for carbon monoxide, give 100% oxygen, and remember the pulse oximeter can read falsely normal. A, C, and D trust a misleading reading.",
+      "videoTimestamp": "0:36"
+    },
+    {
+      "id": "ep23-burns-q03",
+      "type": "single_best_answer",
+      "stem": "In a burned client, what comes first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The fluid math"
+        },
+        {
+          "id": "B",
+          "text": "The airway"
+        },
+        {
+          "id": "C",
+          "text": "Tetanus status"
+        },
+        {
+          "id": "D",
+          "text": "Pain medicine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the airway comes before the fluid math, because it can swell shut within hours. A, C, and D come after the airway.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "ep23-burns-q04",
+      "type": "single_best_answer",
+      "stem": "Using the adult rule of nines, what percent is one whole leg?",
+      "options": [
+        {
+          "id": "A",
+          "text": "9%"
+        },
+        {
+          "id": "B",
+          "text": "18%"
+        },
+        {
+          "id": "C",
+          "text": "27%"
+        },
+        {
+          "id": "D",
+          "text": "36%"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: each leg is 18%. A is the head or one arm. C and D are not single body parts in the rule of nines.",
+      "videoTimestamp": "0:55"
+    },
+    {
+      "id": "ep23-burns-q05",
+      "type": "single_best_answer",
+      "stem": "An adult has burns on the front of both legs and the front of the trunk. What percent is burned?",
+      "options": [
+        {
+          "id": "A",
+          "text": "27%"
+        },
+        {
+          "id": "B",
+          "text": "36%"
+        },
+        {
+          "id": "C",
+          "text": "45%"
+        },
+        {
+          "id": "D",
+          "text": "54%"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the front of each leg is half of 18, so 9 plus 9, plus 18 for the front of the trunk, is 36%. A, C, and D add the regions wrong.",
+      "videoTimestamp": "1:15"
+    },
+    {
+      "id": "ep23-burns-q06",
+      "type": "single_best_answer",
+      "stem": "Which burns are not counted when estimating the percent burned?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Superficial burns, red with no blisters"
+        },
+        {
+          "id": "B",
+          "text": "Burns on the hands"
+        },
+        {
+          "id": "C",
+          "text": "Burns on the back"
+        },
+        {
+          "id": "D",
+          "text": "Burns with blisters"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: superficial burns, red with no blisters, aren't counted. B, C, and D are counted.",
+      "videoTimestamp": "0:59"
+    },
+    {
+      "id": "ep23-burns-q07",
+      "type": "single_best_answer",
+      "stem": "Using the classic Parkland formula, a 70 kg client has 40% burns. How much fluid goes in per hour during the first eight hours?",
+      "options": [
+        {
+          "id": "A",
+          "text": "350 mL"
+        },
+        {
+          "id": "B",
+          "text": "700 mL"
+        },
+        {
+          "id": "C",
+          "text": "1,400 mL"
+        },
+        {
+          "id": "D",
+          "text": "11,200 mL"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: 4 x 70 x 40 is 11,200 mL; half is 5,600 mL over eight hours, or 700 mL an hour. A uses half again. C doubles it. D is the 24-hour total.",
+      "videoTimestamp": "1:42"
+    },
+    {
+      "id": "ep23-burns-q08",
+      "type": "single_best_answer",
+      "stem": "A client was burned at 2 p.m. and arrives at 4 p.m. with no fluids yet. The first half of the fluid goes in over how long?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Eight hours from arrival"
+        },
+        {
+          "id": "B",
+          "text": "The remaining six hours"
+        },
+        {
+          "id": "C",
+          "text": "Sixteen hours"
+        },
+        {
+          "id": "D",
+          "text": "Twenty-four hours"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the clock starts at the burn, not arrival, so the first half goes in over the remaining six hours, adjusted to urine output. A starts the clock at arrival. C is the second half. D is the whole day.",
+      "videoTimestamp": "2:50"
+    },
+    {
+      "id": "ep23-burns-q09",
+      "type": "single_best_answer",
+      "stem": "During burn fluid resuscitation in an adult, what urine output is the goal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "About 0.5 mL per kg per hour, or 30 to 50 mL an hour"
+        },
+        {
+          "id": "B",
+          "text": "About 5 mL per kg per hour"
+        },
+        {
+          "id": "C",
+          "text": "Under 10 mL an hour"
+        },
+        {
+          "id": "D",
+          "text": "Over 200 mL an hour"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: aim for urine of about 0.5 mL per kg per hour, 30 to 50 mL an hour in adults. B and D suggest too much fluid, which causes dangerous swelling. C suggests too little, which means shock.",
+      "videoTimestamp": "1:55"
+    },
+    {
+      "id": "ep23-burns-q10",
+      "type": "single_best_answer",
+      "stem": "How should the nurse estimate the burn size for a young child?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use the adult rule of nines"
+        },
+        {
+          "id": "B",
+          "text": "Use a child burn chart"
+        },
+        {
+          "id": "C",
+          "text": "Count only the leg burns"
+        },
+        {
+          "id": "D",
+          "text": "Use the adult numbers and add 10%"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: children have a bigger head and smaller legs, so the adult numbers don't fit; use a child burn chart. A and D use adult numbers. C ignores other burns.",
+      "videoTimestamp": "2:33"
+    }
+  ]
+}

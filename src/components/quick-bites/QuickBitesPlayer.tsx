@@ -45,7 +45,7 @@ export function QuickBitesPlayer({
     slug: "",
     state: { status: "loading" },
   });
-  const state = media.slug === slug ? media.state : { status: "loading" };
+  const state: LoadState = media.slug === slug ? media.state : { status: "loading" };
   const identity = `${episode?.slug ?? ""}:${playbackNonce}`;
   const [quizSession, setQuizSession] = useState({ id: identity, open: false });
   const quizOpen = quizSession.id === identity && quizSession.open;

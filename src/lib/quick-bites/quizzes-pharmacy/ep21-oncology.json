@@ -1,0 +1,308 @@
+{
+  "episode": "ep21-oncology",
+  "title": "Chemotherapy Safety: Toxicities, Rescues + Fatal Errors",
+  "video": "quick-bites-pharm-ep21-oncology-web.mp4",
+  "questions": [
+    {
+      "id": "ep21-oncology-q01",
+      "type": "single_best_answer",
+      "stem": "Ifosfamide is ordered with no partner drug. What is the main risk?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bleeding bladder"
+        },
+        {
+          "id": "B",
+          "text": "Hearing loss"
+        },
+        {
+          "id": "C",
+          "text": "Lung scarring"
+        },
+        {
+          "id": "D",
+          "text": "Numb hands"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: ifosfamide without mesna risks a bleeding bladder. B is a cisplatin effect. C is a bleomycin effect. D is a vincristine effect.",
+      "videoTimestamp": "2:38"
+    },
+    {
+      "id": "ep21-oncology-q02",
+      "type": "select_all_that_apply",
+      "stem": "Match each drug to the organ it hits hardest. Which pairs are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Doxorubicin: heart"
+        },
+        {
+          "id": "B",
+          "text": "Bleomycin: lungs"
+        },
+        {
+          "id": "C",
+          "text": "Cisplatin: kidneys and hearing"
+        },
+        {
+          "id": "D",
+          "text": "Vincristine: nerves"
+        },
+        {
+          "id": "E",
+          "text": "Ifosfamide: heart"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "A, B, C, and D are correct as taught. E is wrong because ifosfamide makes the bladder bleed.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep21-oncology-q03",
+      "type": "single_best_answer",
+      "stem": "For doxorubicin, around what lifetime total dose does heart risk climb sharply?",
+      "options": [
+        {
+          "id": "A",
+          "text": "About 45 to 55 mg per square meter"
+        },
+        {
+          "id": "B",
+          "text": "About 450 to 550 mg per square meter"
+        },
+        {
+          "id": "C",
+          "text": "About 4,500 mg per square meter"
+        },
+        {
+          "id": "D",
+          "text": "There is no lifetime limit"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: heart risk climbs sharply around 450 to 550 milligrams per square meter. A and C are tenfold errors. D is wrong because the lifetime total is tracked.",
+      "videoTimestamp": "0:40"
+    },
+    {
+      "id": "ep21-oncology-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which toxic drug and partner pairs are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cisplatin with aggressive hydration"
+        },
+        {
+          "id": "B",
+          "text": "Vincristine with mesna"
+        },
+        {
+          "id": "C",
+          "text": "Ifosfamide with mesna"
+        },
+        {
+          "id": "D",
+          "text": "High-dose methotrexate with leucovorin"
+        },
+        {
+          "id": "E",
+          "text": "Doxorubicin with dexrazoxane"
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A, C, D, and E are correct as taught. B is wrong because mesna protects the bladder from ifosfamide.",
+      "videoTimestamp": "0:51"
+    },
+    {
+      "id": "ep21-oncology-q05",
+      "type": "single_best_answer",
+      "stem": "Which rescue drug follows high-dose methotrexate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Mesna"
+        },
+        {
+          "id": "B",
+          "text": "Plain folic acid"
+        },
+        {
+          "id": "C",
+          "text": "Leucovorin"
+        },
+        {
+          "id": "D",
+          "text": "Dexrazoxane"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: leucovorin skips the step methotrexate blocks, so healthy cells recover. A protects the bladder. B is not the rescue drug. D protects the heart.",
+      "videoTimestamp": "1:25"
+    },
+    {
+      "id": "ep21-oncology-q06",
+      "type": "single_best_answer",
+      "stem": "Methotrexate is clearing too slowly because the kidneys failed. Which drug breaks it down?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Glucarpidase"
+        },
+        {
+          "id": "B",
+          "text": "Amifostine"
+        },
+        {
+          "id": "C",
+          "text": "Rasburicase"
+        },
+        {
+          "id": "D",
+          "text": "Ondansetron"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: glucarpidase breaks methotrexate down. B is used with cisplatin. C lowers uric acid. D treats nausea.",
+      "videoTimestamp": "1:10"
+    },
+    {
+      "id": "ep21-oncology-q07",
+      "type": "single_best_answer",
+      "stem": "How should vincristine be dispensed to prevent a fatal error?",
+      "options": [
+        {
+          "id": "A",
+          "text": "In a syringe labeled for spinal use"
+        },
+        {
+          "id": "B",
+          "text": "In any syringe"
+        },
+        {
+          "id": "C",
+          "text": "In a small intravenous bag, called a minibag"
+        },
+        {
+          "id": "D",
+          "text": "Mixed with the spinal chemotherapy"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: dispense vincristine in a minibag, never in a syringe that could be mistaken for a spinal dose, because into the spinal fluid it is almost always fatal. A, B, and D raise that risk.",
+      "videoTimestamp": "1:41"
+    },
+    {
+      "id": "ep21-oncology-q08",
+      "type": "select_all_that_apply",
+      "stem": "Highly nauseating chemotherapy, like cisplatin, gets which four drugs before the first dose? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "An ondansetron-type drug"
+        },
+        {
+          "id": "B",
+          "text": "Dexamethasone"
+        },
+        {
+          "id": "C",
+          "text": "Olanzapine"
+        },
+        {
+          "id": "D",
+          "text": "Mesna"
+        },
+        {
+          "id": "E",
+          "text": "An aprepitant-type drug"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "A, B, C, and E are correct: the four-drug stack. D protects the bladder and is not an anti-nausea drug.",
+      "videoTimestamp": "2:01"
+    },
+    {
+      "id": "ep21-oncology-q09",
+      "type": "single_best_answer",
+      "stem": "Tumor lysis floods the blood with which substances?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sodium, glucose, and calcium"
+        },
+        {
+          "id": "B",
+          "text": "Potassium, phosphate, and uric acid"
+        },
+        {
+          "id": "C",
+          "text": "Iron, copper, and zinc"
+        },
+        {
+          "id": "D",
+          "text": "Albumin and cholesterol"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: tumor lysis floods the blood with potassium, phosphate, and uric acid. A, C, and D are not what is released.",
+      "videoTimestamp": "2:07"
+    },
+    {
+      "id": "ep21-oncology-q10",
+      "type": "single_best_answer",
+      "stem": "A lymphoma patient at high tumor lysis risk is ordered rasburicase. The enzyme status is unknown. What is the best action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give it now"
+        },
+        {
+          "id": "B",
+          "text": "Give a double dose"
+        },
+        {
+          "id": "C",
+          "text": "Skip hydration"
+        },
+        {
+          "id": "D",
+          "text": "Test first, and use allopurinol with hydration meanwhile"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: in patients missing the enzyme, rasburicase destroys red cells, so test first. A and B risk that harm. C removes a key prevention step.",
+      "videoTimestamp": "3:07"
+    }
+  ]
+}

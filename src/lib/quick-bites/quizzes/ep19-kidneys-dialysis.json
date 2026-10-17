@@ -1,0 +1,299 @@
+{
+  "episode": "ep19-kidneys-dialysis",
+  "title": "Kidneys: Acute vs Chronic + Dialysis",
+  "video": "quick-bites-ep19-kidneys-dialysis-web.mp4",
+  "questions": [
+    {
+      "id": "ep19-kidneys-dialysis-q01",
+      "type": "single_best_answer",
+      "stem": "A client's creatinine has doubled in two days, and urine output is 15 mL an hour. What does this suggest?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Acute kidney injury"
+        },
+        {
+          "id": "B",
+          "text": "Chronic kidney disease"
+        },
+        {
+          "id": "C",
+          "text": "Normal kidney function"
+        },
+        {
+          "id": "D",
+          "text": "Peritonitis"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: a rapid rise over hours to days, with low urine output, is acute kidney injury. B means damage or low function for more than three months. C and D don't fit.",
+      "videoTimestamp": "1:09"
+    },
+    {
+      "id": "ep19-kidneys-dialysis-q02",
+      "type": "single_best_answer",
+      "stem": "A client's kidneys are failing from severe dehydration. Using the plumbing model, where is the problem?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Before the kidney"
+        },
+        {
+          "id": "B",
+          "text": "In the kidney"
+        },
+        {
+          "id": "C",
+          "text": "After the kidney"
+        },
+        {
+          "id": "D",
+          "text": "In the fistula"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: before the kidney means not enough blood flow, from dehydration, bleeding, or shock. B is direct damage, like certain drugs or contrast dye. C is a blockage. D is a dialysis access, not a cause.",
+      "videoTimestamp": "0:20"
+    },
+    {
+      "id": "ep19-kidneys-dialysis-q03",
+      "type": "single_best_answer",
+      "stem": "An enlarged prostate is blocking urine flow. Where is the kidney problem?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Before the kidney"
+        },
+        {
+          "id": "B",
+          "text": "In the kidney"
+        },
+        {
+          "id": "C",
+          "text": "After the kidney"
+        },
+        {
+          "id": "D",
+          "text": "It is chronic kidney disease by definition"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: after the kidney means a blockage, like an enlarged prostate or a stone. A is low blood flow. B is direct damage. D is wrong: chronic is about time, more than three months.",
+      "videoTimestamp": "0:30"
+    },
+    {
+      "id": "ep19-kidneys-dialysis-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which findings meet the definition of acute kidney injury? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Creatinine up by 0.3 within 48 hours"
+        },
+        {
+          "id": "B",
+          "text": "Creatinine up to 1.5 times baseline within 7 days"
+        },
+        {
+          "id": "C",
+          "text": "Urine below 0.5 mL per kg per hour for 6 hours"
+        },
+        {
+          "id": "D",
+          "text": "Low kidney function for more than three months"
+        },
+        {
+          "id": "E",
+          "text": "A filtration rate below 60 for one day"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: any one of these three defines acute kidney injury. D defines chronic kidney disease. E: a filtration rate below 60 means chronic disease only when it lasts more than three months.",
+      "videoTimestamp": "0:44"
+    },
+    {
+      "id": "ep19-kidneys-dialysis-q05",
+      "type": "single_best_answer",
+      "stem": "A client with acute kidney injury has rising potassium. Why is this a priority?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It causes yellow skin"
+        },
+        {
+          "id": "B",
+          "text": "Rising potassium can stop the heart"
+        },
+        {
+          "id": "C",
+          "text": "It causes cloudy urine"
+        },
+        {
+          "id": "D",
+          "text": "It lowers blood sugar"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: rising potassium can stop the heart. A, C, and D are not effects taught in the video.",
+      "videoTimestamp": "1:06"
+    },
+    {
+      "id": "ep19-kidneys-dialysis-q06",
+      "type": "single_best_answer",
+      "stem": "A client with kidney disease has a filtration rate below 15. What does this mean?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Normal function"
+        },
+        {
+          "id": "B",
+          "text": "Kidney failure"
+        },
+        {
+          "id": "C",
+          "text": "Mild acute injury"
+        },
+        {
+          "id": "D",
+          "text": "Peritonitis"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: below 60 is chronic disease, and below 15 is kidney failure. A, C, and D don't match this number.",
+      "videoTimestamp": "1:21"
+    },
+    {
+      "id": "ep19-kidneys-dialysis-q07",
+      "type": "single_best_answer",
+      "stem": "Which action is correct for a client's arm with a hemodialysis fistula?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Take the blood pressure in that arm"
+        },
+        {
+          "id": "B",
+          "text": "Feel for a buzz and listen for a whoosh"
+        },
+        {
+          "id": "C",
+          "text": "Draw morning labs from that arm"
+        },
+        {
+          "id": "D",
+          "text": "Start a new line in that arm"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: feel for the thrill, a buzz, and listen for the bruit, a whoosh. A, C, and D are never done in the fistula arm.",
+      "videoTimestamp": "1:39"
+    },
+    {
+      "id": "ep19-kidneys-dialysis-q08",
+      "type": "single_best_answer",
+      "stem": "The nurse feels no thrill and hears no bruit at a client's fistula. What should the nurse do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Recheck at the next shift"
+        },
+        {
+          "id": "B",
+          "text": "Notify the provider right away"
+        },
+        {
+          "id": "C",
+          "text": "Apply a warm pack and wait"
+        },
+        {
+          "id": "D",
+          "text": "Document it as expected"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: notify the provider right away; it can mean a clot, and fast treatment may save the access. A, C, and D delay treatment.",
+      "videoTimestamp": "2:04"
+    },
+    {
+      "id": "ep19-kidneys-dialysis-q09",
+      "type": "single_best_answer",
+      "stem": "A client on peritoneal dialysis has cloudy outflow, mild belly pain, and a temperature of 38.2. What is the priority?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Slow down the next fill"
+        },
+        {
+          "id": "B",
+          "text": "Notify the provider and send an outflow sample"
+        },
+        {
+          "id": "C",
+          "text": "Reposition and recheck in two hours"
+        },
+        {
+          "id": "D",
+          "text": "Document it as expected"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: cloudy outflow, belly pain, and fever point to peritonitis, so notify and send a sample so treatment can start. A and C delay care. D: cloudy outflow means infection until proven otherwise.",
+      "videoTimestamp": "3:09"
+    },
+    {
+      "id": "ep19-kidneys-dialysis-q10",
+      "type": "select_all_that_apply",
+      "stem": "Peritoneal dialysis fluid is draining out slowly. Which actions should the nurse take? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Check the tubing for kinks"
+        },
+        {
+          "id": "B",
+          "text": "Keep the drain bag below the belly"
+        },
+        {
+          "id": "C",
+          "text": "Help the client change position"
+        },
+        {
+          "id": "D",
+          "text": "Raise the drain bag above the belly"
+        },
+        {
+          "id": "E",
+          "text": "Send the client for emergency surgery"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A, B, and C are correct: check for kinks, keep the bag below the belly, and help the client change position. D works against gravity. E is not taught for slow outflow.",
+      "videoTimestamp": "2:23"
+    }
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "episode": "ep25-pregnancy-lactation",
+  "title": "Pregnancy + Lactation: Labels, Avoids + Swaps",
+  "video": "quick-bites-pharm-ep25-pregnancy-lactation-web.mp4",
+  "questions": [
+    {
+      "id": "ep25-pregnancy-lactation-q01",
+      "type": "single_best_answer",
+      "stem": "A newly pregnant patient with high blood pressure takes lisinopril. What should happen?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Swap lisinopril now"
+        },
+        {
+          "id": "B",
+          "text": "Keep lisinopril"
+        },
+        {
+          "id": "C",
+          "text": "Double lisinopril"
+        },
+        {
+          "id": "D",
+          "text": "Stop all blood pressure treatment"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: lisinopril, an Ace inhibitor, damages fetal kidneys, so swap it now. B and C keep the harm. D leaves high blood pressure untreated.",
+      "videoTimestamp": "2:43"
+    },
+    {
+      "id": "ep25-pregnancy-lactation-q02",
+      "type": "select_all_that_apply",
+      "stem": "Which label sections replaced the old letter categories? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pediatric dosing"
+        },
+        {
+          "id": "B",
+          "text": "Overdose"
+        },
+        {
+          "id": "C",
+          "text": "Pregnancy"
+        },
+        {
+          "id": "D",
+          "text": "Lactation"
+        },
+        {
+          "id": "E",
+          "text": "Females and males of reproductive potential"
+        }
+      ],
+      "keys": [
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "C, D, and E are correct: read three label sections, pregnancy, lactation, and females and males of reproductive potential. A and B are not the sections that replaced the categories.",
+      "videoTimestamp": "0:28"
+    },
+    {
+      "id": "ep25-pregnancy-lactation-q03",
+      "type": "single_best_answer",
+      "stem": "What changed for statins in pregnancy in 2021?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Statins became first-line in pregnancy"
+        },
+        {
+          "id": "B",
+          "text": "The blanket pregnancy contraindication was removed, though most still stop"
+        },
+        {
+          "id": "C",
+          "text": "Statins were banned in all adults"
+        },
+        {
+          "id": "D",
+          "text": "Statins became required in pregnancy"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: the agency removed the blanket pregnancy contraindication, though most patients still stop them when pregnant. A, C, and D are not what changed.",
+      "videoTimestamp": "0:40"
+    },
+    {
+      "id": "ep25-pregnancy-lactation-q04",
+      "type": "select_all_that_apply",
+      "stem": "Which drugs harm the baby, as taught? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Valproate"
+        },
+        {
+          "id": "B",
+          "text": "Warfarin"
+        },
+        {
+          "id": "C",
+          "text": "Lisinopril"
+        },
+        {
+          "id": "D",
+          "text": "Labetalol"
+        },
+        {
+          "id": "E",
+          "text": "Isotretinoin"
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "A, B, C, and E are correct as taught. D, labetalol, is a safer swap for blood pressure.",
+      "videoTimestamp": "0:50"
+    },
+    {
+      "id": "ep25-pregnancy-lactation-q05",
+      "type": "single_best_answer",
+      "stem": "Which blood pressure drugs are the safer swaps in pregnancy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lisinopril or losartan"
+        },
+        {
+          "id": "B",
+          "text": "Warfarin or heparin"
+        },
+        {
+          "id": "C",
+          "text": "Labetalol or nifedipine"
+        },
+        {
+          "id": "D",
+          "text": "Isotretinoin or valproate"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "C is correct: switch to labetalol or nifedipine; methyldopa is an older option. A damages fetal kidneys. B are blood thinners. D are drugs that harm the baby.",
+      "videoTimestamp": "1:13"
+    },
+    {
+      "id": "ep25-pregnancy-lactation-q06",
+      "type": "single_best_answer",
+      "stem": "A pregnant patient has a new blood clot. Which blood thinner is preferred?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Low molecular weight heparin, like enoxaparin"
+        },
+        {
+          "id": "B",
+          "text": "Warfarin"
+        },
+        {
+          "id": "C",
+          "text": "A newer oral blood thinner"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin alone"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: enoxaparin does not cross the placenta. B causes birth defects. C should be avoided. D is not the clot treatment taught.",
+      "videoTimestamp": "1:23"
+    },
+    {
+      "id": "ep25-pregnancy-lactation-q07",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about pregnancy prevention steps are correct? Select all that apply.",
+      "options": [
+        {
+          "id": "A",
+          "text": "Warfarin is preferred for clots"
+        },
+        {
+          "id": "B",
+          "text": "Folic acid 0.4 to 0.8 mg daily for anyone who could become pregnant"
+        },
+        {
+          "id": "C",
+          "text": "Aspirin 81 mg daily for high preeclampsia risk, starting after 12 weeks"
+        },
+        {
+          "id": "D",
+          "text": "Insulin is preferred for diabetes"
+        },
+        {
+          "id": "E",
+          "text": "Methyldopa is an older blood pressure option"
+        }
+      ],
+      "keys": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "B, C, D, and E are correct as taught. A is wrong because warfarin causes birth defects.",
+      "videoTimestamp": "1:27"
+    },
+    {
+      "id": "ep25-pregnancy-lactation-q08",
+      "type": "single_best_answer",
+      "stem": "In breastfeeding, what relative infant dose is usually acceptable?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Under 10 percent"
+        },
+        {
+          "id": "B",
+          "text": "Under 50 percent"
+        },
+        {
+          "id": "C",
+          "text": "Any amount"
+        },
+        {
+          "id": "D",
+          "text": "Over 25 percent"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A is correct: under 10 percent is usually acceptable. B, C, and D allow far more drug to reach the baby than taught.",
+      "videoTimestamp": "2:10"
+    },
+    {
+      "id": "ep25-pregnancy-lactation-q09",
+      "type": "single_best_answer",
+      "stem": "Which resource does the video recommend for drugs in breastfeeding?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A pediatric growth chart"
+        },
+        {
+          "id": "B",
+          "text": "The LactMed database, from the National Library of Medicine"
+        },
+        {
+          "id": "C",
+          "text": "The pregnancy letter categories"
+        },
+        {
+          "id": "D",
+          "text": "A drug price list"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B is correct: check the LactMed database from the National Library of Medicine. A and D are not drug lactation resources. C was replaced by written label summaries.",
+      "videoTimestamp": "2:14"
+    },
+    {
+      "id": "ep25-pregnancy-lactation-q10",
+      "type": "single_best_answer",
+      "stem": "A breastfeeding mother with dental pain asks about codeine. What is the best advice?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Codeine is fine"
+        },
+        {
+          "id": "B",
+          "text": "Codeine, but pump and discard"
+        },
+        {
+          "id": "C",
+          "text": "Stop breastfeeding for a week"
+        },
+        {
+          "id": "D",
+          "text": "Avoid codeine; use acetaminophen or ibuprofen"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "D is correct: codeine can sedate or stop the baby's breathing, and acetaminophen and ibuprofen are preferred. A and B still expose the baby. C is unnecessary.",
+      "videoTimestamp": "3:09"
+    }
+  ]
+}

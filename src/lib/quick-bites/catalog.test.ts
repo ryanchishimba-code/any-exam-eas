@@ -31,11 +31,32 @@ const ORDER = [
   ["Fluids, Electrolytes & Acid-Base", "Sodium & Calcium", "quick-bites-ep06-sodium-calcium"],
   ["Fluids, Electrolytes & Acid-Base", "Acid-Base Made Simple", "quick-bites-ep07-acid-base"],
   ["Exam Day", "Danger-Zone Labs & Exam-Day Plan", "quick-bites-bonus-labs-examday"],
+  ["Med-Surg: GI, Liver & Kidneys", "GI Bleeds & Bowel Obstruction", "quick-bites-ep17-gi-bleed-obstruction"],
+  ["Med-Surg: GI, Liver & Kidneys", "Liver & Pancreas: Cirrhosis vs Pancreatitis", "quick-bites-ep18-liver-pancreas"],
+  ["Med-Surg: GI, Liver & Kidneys", "Kidneys: Acute vs Chronic & Dialysis", "quick-bites-ep19-kidneys-dialysis"],
+  ["Hematology & Oncology", "Blood Transfusions: Safe Setup & Reactions", "quick-bites-ep20-transfusion"],
+  [
+    "Hematology & Oncology",
+    "Cancer Care & Sickle Cell: Neutropenia, Low Platelets, Crisis",
+    "quick-bites-ep21-neutropenia-sickle-cell",
+  ],
+  [
+    "Surgery, Wounds & Burns",
+    "Surgery & Wounds: Pre-Op, Post-Op, Pressure Injuries",
+    "quick-bites-ep22-surgery-wounds",
+  ],
+  ["Surgery, Wounds & Burns", "Burns: Airway, Rule of Nines, Fluids", "quick-bites-ep23-burns"],
+  [
+    "Musculoskeletal",
+    "Orthopedics: Compartment Syndrome, Fat Embolism, Hip Precautions",
+    "quick-bites-ep24-ortho",
+  ],
+  ["Dosage Calculations", "Dosage Calculations: Drip Rates & Weight-Based Dosing", "quick-bites-ep25-dosage-calc"],
 ] as const;
 
 describe("Quick Bites catalog", () => {
-  it("lists the 16 nursing-board episodes in the approved order", () => {
-    expect(QUICK_BITE_EPISODES).toHaveLength(16);
+  it("lists the 16 wave-1 episodes, then wave 2 (17-25), in the approved order", () => {
+    expect(QUICK_BITE_EPISODES).toHaveLength(25);
     expect(QUICK_BITE_EPISODES.map((episode) => [episode.group, episode.title, episode.slug])).toEqual(
       ORDER.map((row) => [...row])
     );
@@ -53,7 +74,15 @@ describe("Quick Bites catalog", () => {
     expect(nextPlayableQuickBite("quick-bites-ep07-acid-base", true)?.title).toBe(
       "Danger-Zone Labs & Exam-Day Plan"
     );
-    expect(nextPlayableQuickBite("quick-bites-bonus-labs-examday", true)).toBeNull();
+    expect(nextPlayableQuickBite("quick-bites-bonus-labs-examday", true)?.slug).toBe(
+      "quick-bites-ep17-gi-bleed-obstruction"
+    );
+    expect(nextPlayableQuickBite("quick-bites-ep25-dosage-calc", true)).toBeNull();
+    for (const episode of QUICK_BITE_EPISODES.slice(16)) {
+      expect(isOpenQuickBite(episode.slug)).toBe(false);
+      expect(isQuickBiteEpisodePlayable(episode, false)).toBe(false);
+      expect(isQuickBiteEpisodePlayable(episode, true)).toBe(true);
+    }
     expect(isQuickBiteEpisodePlayable(QUICK_BITE_EPISODES[0]!, false)).toBe(true);
     expect(isQuickBiteEpisodePlayable(QUICK_BITE_EPISODES[1]!, false)).toBe(false);
     expect(getQuickBiteBySlug("quick-bites-ep07-acid-base")?.duration).toBe("3:25");
@@ -69,6 +98,11 @@ describe("Quick Bites catalog", () => {
       "Psych / Mental Health",
       "Fluids, Electrolytes & Acid-Base",
       "Exam Day",
+      "Med-Surg: GI, Liver & Kidneys",
+      "Hematology & Oncology",
+      "Surgery, Wounds & Burns",
+      "Musculoskeletal",
+      "Dosage Calculations",
     ]);
   });
 
