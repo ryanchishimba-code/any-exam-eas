@@ -56,7 +56,7 @@ describe("NCLEX landing model", () => {
       bankNgnStyle: 9,
       bankCaseStyle: 0,
     });
-    expect(cards.map((card) => card.title)).toEqual(["NGN-style items", "Published NGN standalones"]);
+    expect(cards.map((card) => card.title)).toEqual(["NGN-style items", "Standalone NGN items"]);
     expect(JSON.stringify(cards)).not.toMatch(/bow-tie|matrix/i);
   });
 

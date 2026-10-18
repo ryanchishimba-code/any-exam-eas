@@ -244,7 +244,7 @@ export function nclexFormatCards(input: {
   if (input.standaloneNgn > 0) {
     cards.push({
       id: "standalone",
-      title: "Published NGN standalones",
+      title: "Standalone NGN items",
       detail: `${formatExactQuestionCount(input.standaloneNgn)} published standalone NGN items, counted apart from the question bank.`,
     });
   }
@@ -342,8 +342,13 @@ function nclexFaqs(units: BoardQuestionUnits | null, formats: BoardFormatCard[])
   const howMany = units
     ? `AnyExamEasy currently serves ${formatBoardQuestionSentence(units)} for NCLEX. That total is the live scored bank, not a rounded marketing claim.`
     : "The live NCLEX question count is shown on this page when the bank lookup succeeds. We do not publish a guessed total.";
+  const ngnNames = formats.map((card) => card.title);
+  const ngnList =
+    ngnNames.length <= 1
+      ? (ngnNames[0] ?? "")
+      : `${ngnNames.slice(0, -1).join(", ")}, and ${ngnNames[ngnNames.length - 1]}`;
   const ngn = formats.length
-    ? `Yes. Live Next Gen NCLEX practice on this page includes ${formats.map((card) => card.title.toLowerCase()).join(", ")}. Empty item types are hidden.`
+    ? `Yes. Live Next Gen NCLEX practice on this page includes ${ngnList}. Item types with no live questions stay off this page.`
     : "Next Gen item types are listed on this page only when the live bank is serving them. Classic NCLEX-RN practice questions stay on the Pro plan.";
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
