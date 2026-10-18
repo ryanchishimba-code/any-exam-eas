@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { HomeCompare } from "@/components/marketing/elevation/HomeCompare";
@@ -109,5 +109,23 @@ describe("homepage marketing sections", () => {
     expect(container.querySelector(".aee-flagship-cta")).toBeTruthy();
     expect(container.querySelector("video")).toBeNull();
     expect(container.innerHTML).not.toMatch(MEDIA_FILE);
+  });
+
+  it("links each first-screen board tile to that board page", () => {
+    render(<PublicHome />);
+    const tiles = within(screen.getByRole("navigation", { name: "Board exams" }));
+    const expected: [string, string][] = [
+      ["NCLEX", "/nclex"],
+      ["NAPLEX", "/naplex"],
+      ["USMLE", "/usmle"],
+      ["FNP", "/aanp-fnp"],
+      ["PANCE", "/pance"],
+      ["NPTE-PT", "/npte-pt"],
+    ];
+    for (const [name, href] of expected) {
+      const link = tiles.getByRole("link", { name });
+      expect(link.tagName).toBe("A");
+      expect(link).toHaveAttribute("href", href);
+    }
   });
 });
