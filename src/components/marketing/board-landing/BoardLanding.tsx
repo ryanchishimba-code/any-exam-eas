@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { HeroScene } from "@/components/marketing/board-landing/HeroScene";
+import { PharmacyHero } from "@/components/marketing/board-landing/PharmacyHero";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import { SamplePractice } from "@/components/marketing/board-landing/SamplePractice";
 import { CollapsibleSources } from "@/components/study/questions/CollapsibleSources";
 import type { HeroCaseScene } from "@/lib/marketing/board-landing/hero-case";
+import type { PharmacyHeroScene } from "@/lib/marketing/board-landing/pharmacy-case";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
 import { RATIONALE_STUDY_NOTE } from "@/lib/marketing/legal-copy";
 import { ROUTES } from "@/lib/routes";
@@ -32,9 +34,11 @@ function SampleQuestion({ model }: { model: BoardLandingModel }) {
 export function BoardLanding({
   model,
   scene = null,
+  pharmacy = null,
 }: {
   model: BoardLandingModel;
   scene?: HeroCaseScene | null;
+  pharmacy?: PharmacyHeroScene | null;
 }) {
   const questionCount = model.stats.find((stat) => stat.label === "Questions")?.value ?? null;
   return (
@@ -50,7 +54,7 @@ export function BoardLanding({
             {model.h1Lead} <span>{model.h1Accent}</span>
           </h1>
           <p className="bl-lede">{model.lede}</p>
-          {scene ? null : (
+          {scene || pharmacy ? null : (
             <div className="bl-actions">
               <LandingCta href={model.trialHref} ctaName={model.heroCtaName} location={model.heroCtaLocation}>
                 {model.trialLabel}
@@ -68,7 +72,15 @@ export function BoardLanding({
             ))}
           </ul>
         </div>
-        {scene ? (
+        {pharmacy ? (
+          <PharmacyHero
+            hero={pharmacy}
+            trialHref={model.trialHref}
+            trialLabel={model.trialLabel}
+            ctaName={model.heroCtaName}
+            ctaLocation={model.heroCtaLocation}
+          />
+        ) : scene ? (
           <HeroScene
             scene={scene}
             trialHref={model.trialHref}
@@ -85,7 +97,7 @@ export function BoardLanding({
         ) : null}
       </section>
 
-      {scene && model.sample ? (
+      {(scene || pharmacy) && model.sample ? (
         <div className="bl-sample-wrap">
           <SampleQuestion model={model} />
         </div>

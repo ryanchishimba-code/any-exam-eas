@@ -702,6 +702,74 @@
   }
 }
 
+.bl-rx-scene {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.bl-rx {
+  position: relative;
+  border: 1px solid var(--bl-line);
+  border-left: 6px solid var(--bl-teal);
+  border-radius: 1.25rem;
+  background: #fff;
+  padding: 1rem 1rem 1.05rem 1.1rem;
+  box-shadow: 0 16px 36px rgba(10, 37, 64, 0.08);
+}
+
+.bl-rx-mark {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.95rem;
+  margin: 0;
+  color: var(--bl-teal);
+  font-size: 0.8rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.bl-rx h2 {
+  margin: 0.2rem 0 0;
+  font-size: 1.15rem;
+}
+
+.bl-rx p,
+.bl-rx li {
+  margin: 0.45rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.bl-rx ol {
+  margin: 0.55rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.bl-rx-drug {
+  font-weight: 750;
+}
+
+.bl-rx-drug span,
+.bl-rx-scene .bl-float p span {
+  color: var(--bl-muted);
+  font-weight: 560;
+}
+
+.bl-rx-scene .bl-actions {
+  flex-direction: column;
+}
+
+.bl-rx-scene .bl-actions > a,
+.bl-rx-scene .aee-flagship-cta {
+  width: 100%;
+}
+
+.bl-rx-scene a:focus-visible {
+  outline: 3px solid var(--bl-teal);
+  outline-offset: 3px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bl-float li {
     animation: none;
@@ -717,12 +785,15 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .bl-scene .bl-actions {
+  .bl-scene .bl-actions,
+  .bl-rx-scene .bl-actions {
     flex-direction: row;
   }
 
   .bl-scene .bl-actions > a,
-  .bl-scene .aee-flagship-cta {
+  .bl-scene .aee-flagship-cta,
+  .bl-rx-scene .bl-actions > a,
+  .bl-rx-scene .aee-flagship-cta {
     width: auto;
     flex: 1 1 0;
   }

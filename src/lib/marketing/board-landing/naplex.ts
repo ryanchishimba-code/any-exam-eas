@@ -264,7 +264,7 @@ export function buildNaplexLandingModel(input: {
   return {
     h1Lead: "Pass the NAPLEX on your",
     h1Accent: "first try.",
-    lede: "Answer a real NAPLEX practice question before you create an account. See the keyed answer, a reason for each wrong option when the item has one, and the price before you start.",
+    lede: "Built for PharmD candidates. Work a real NAPLEX dosing question before you create an account, then read the calculation and a reason for each other choice.",
     trialHref,
     trialLabel: homeTrialCtaLabel(),
     trust: ["No payment method to start", "Cancel anytime in Settings", "Written to the NABP content outline"],

@@ -1,23 +1,35 @@
 import { unstable_cache } from "next/cache";
 import { sqlQuery } from "@/lib/db";
+import { TOP_500_COUNT, TOP_500_DRUGS } from "@/lib/drugs300/catalog";
 import { collectedDistractorReasons, contentFromStoredItem } from "@/lib/exam-prep/item-qa/rationale-schema";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 import { ACTIVE_INVENTORY_CACHE_TAG } from "@/lib/inventory/active-inventory-cache";
-import type { HeroCaseScene } from "@/lib/marketing/board-landing/hero-case";
 import { landingQuestionFromPublic, type LandingQuestion } from "@/lib/marketing/board-landing/model";
 import { readStoredCitations, type PublicSampleQuestion } from "@/lib/marketing/public-sample";
 
 const QUERY_TIMEOUT_MS = 5_000;
-const UNIT =
-  "mEq\\/L|mg\\/dL|g\\/dL|mcg\\/mL|ng\\/mL|mmol\\/L|mm Hg|mL\\/min|U\\/L|bpm|\\/mm3|%";
-const MEASURE = new RegExp(
-  `(?:^|[,;]|\\band\\b)\\s*([A-Za-z][A-Za-z0-9⁺+\\/\\-\\s]{0,48}?)(?:\\s+of)?\\s+(\\d[\\d,]*(?:\\.\\d+)?(?:\\/\\d+)?)\\s*(${UNIT})`,
-  "gi"
-);
+
+export type PharmacyMonograph = {
+  generic: string;
+  brand: string;
+  className: string;
+  line: string;
+};
+
+/** Pharmacy device. Not the nursing case frame. */
+export type PharmacyHeroScene = {
+  kicker: "Dosing calculation" | "Drug interaction";
+  stem: string;
+  options: string[];
+  keyedAnswer: string;
+  work: string;
+  monograph: PharmacyMonograph | null;
+  topDrugCount: number;
+};
 
 export type NaplexPractice = {
   sample: LandingQuestion;
-  scene: HeroCaseScene | null;
+  hero: PharmacyHeroScene | null;
 };
 
 type PracticeRow = {
@@ -29,81 +41,54 @@ type PracticeRow = {
   references: unknown;
 };
 
-function sentences(text: string): string[] {
-  return text
-    .split(/\n+/)
-    .flatMap((part) => part.split(/(?<=[.!?])\s+/))
-    .map((part) => part.trim())
-    .filter(Boolean);
+function plainExplanation(explanation: string): string {
+  return explanation.replace(/[#*`]/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function cleanMeasureName(raw: string): string {
-  return raw
-    .replace(/^.*\b(?:show|shows|indicate|indicates|reveal|reveals|include|includes)\s+/i, "")
-    .replace(/^(?:his|her|the|a|an)\s+/i, "")
-    .replace(/\s+/g, " ")
-    .trim();
+/** The stored calculation sentence, not a rewritten formula. */
+export function dosingWork(explanation: string): string {
+  const plain = plainExplanation(explanation);
+  const sentences = plain.split(/(?<=\.)\s+/).filter(Boolean);
+  const math =
+    sentences.find((sentence) => sentence.length > 40 && /[=]|mg\/kg|mL/.test(sentence)) ?? sentences[0] ?? plain;
+  if (math.length <= 240) return math;
+  return `${math.slice(0, 237).replace(/\s+\S*$/, "")}…`;
 }
 
-function measuresIn(sentence: string): string[][] {
-  const rows: string[][] = [];
-  for (const match of sentence.matchAll(MEASURE)) {
-    const name = cleanMeasureName(match[1] ?? "");
-    const unit = match[3] ?? "";
-    const value = `${match[2] ?? ""}${unit.startsWith("/") ? "" : " "}${unit}`.replace(/\s+/g, " ").trim();
-    if (name.length < 2 || name.length > 48 || !value) continue;
-    rows.push([name, value]);
-  }
-  return rows;
-}
-
-/** Narrative notes plus a lab or vital table copied from the stem. Null when the stem has neither. */
-export function pharmacyChartFromStem(stem: string): {
-  setting: string;
-  notes: string[];
-  tableLabel: string;
-  columns: string[];
-  rows: string[][];
-  question: string;
-} | null {
-  const parts = sentences(stem);
-  if (parts.length < 2) return null;
-  const question = [...parts].reverse().find((part) => part.endsWith("?")) ?? "";
-  const body = parts.filter((part) => part !== question);
-  const chartSentences = body.filter((part) => /\b(?:labs?|laboratory|vital signs)\b/i.test(part));
-  const rows = chartSentences.flatMap(measuresIn);
-  const notes = body.filter((part) => !chartSentences.includes(part));
-  if (!question || notes.length === 0 || rows.length < 2) return null;
-  const hasLabs = chartSentences.some((part) => /\blabs?|laboratory\b/i.test(part));
-  const hasVitals = chartSentences.some((part) => /vital signs/i.test(part));
-  const tableLabel = hasLabs && hasVitals ? "Labs and vitals" : hasVitals ? "Vital signs" : "Laboratory values";
+export function monographForStem(stem: string): PharmacyMonograph | null {
+  const hay = stem.toLowerCase();
+  const match = TOP_500_DRUGS.filter(
+    (drug) => drug.generic.length >= 5 && hay.includes(drug.generic.toLowerCase())
+  ).sort((a, b) => b.generic.length - a.generic.length)[0];
+  if (!match) return null;
+  const indication = match.indications.split(",")[0]?.trim() ?? "";
   return {
-    setting: notes[0]!.slice(0, 180),
-    notes: notes.slice(0, 3),
-    tableLabel,
-    columns: ["Measure", "Result"],
-    rows: rows.slice(0, 6),
-    question,
+    generic: match.generic,
+    brand: match.brand,
+    className: match.therapeuticClass,
+    line: indication ? `${match.therapeuticClass}. ${indication}.` : match.therapeuticClass,
   };
 }
 
-export function pharmacyHeroFromQuestion(question: LandingQuestion): HeroCaseScene | null {
-  const chart = pharmacyChartFromStem(question.stem);
-  if (!chart) return null;
+function heroKind(stem: string): PharmacyHeroScene["kicker"] | null {
+  if (/mg\/kg|mL\/hr|how many mL|round to/i.test(stem)) return "Dosing calculation";
+  if (/\binteraction\b/i.test(stem)) return "Drug interaction";
+  return null;
+}
+
+export function pharmacyHeroFromQuestion(question: LandingQuestion): PharmacyHeroScene | null {
+  const kicker = heroKind(question.stem);
   const keyed = question.options.find((option) => option.correct)?.text.trim() ?? "";
-  const whyNot = question.options.find((option) => !option.correct && option.rationale)?.rationale ?? null;
-  if (!keyed) return null;
+  const work = dosingWork(question.rationale);
+  if (!kicker || !keyed || work.length < 20) return null;
   return {
-    setting: chart.setting,
-    notesLabel: "Patient case",
-    notes: chart.notes,
-    vitalsLabel: chart.tableLabel,
-    columns: chart.columns,
-    rows: chart.rows,
-    stem: chart.question,
+    kicker,
+    stem: question.stem,
     options: question.options.map((option) => option.text),
     keyedAnswer: keyed,
-    whyNot,
+    work,
+    monograph: monographForStem(question.stem),
+    topDrugCount: TOP_500_COUNT,
   };
 }
 
@@ -164,14 +149,14 @@ export function selectNaplexPractice(rows: readonly PracticeRow[]): NaplexPracti
     const wrong = sample.options.filter((option) => !option.correct);
     const explained = wrong.filter((option) => option.rationale).length;
     if (explained === 0) return [];
-    return [{ sample, scene: pharmacyHeroFromQuestion(sample), explained }];
+    return [{ sample, hero: pharmacyHeroFromQuestion(sample), explained }];
   });
   const best =
-    ready.find((row) => row.scene && row.explained === row.sample.options.filter((option) => !option.correct).length) ??
-    ready.find((row) => row.scene) ??
+    ready.find((row) => row.hero && row.explained === row.sample.options.filter((option) => !option.correct).length) ??
+    ready.find((row) => row.hero) ??
     ready[0];
   if (!best) return null;
-  return { sample: best.sample, scene: best.scene };
+  return { sample: best.sample, hero: best.hero };
 }
 
 async function readNaplexPractice(): Promise<NaplexPractice | null> {
@@ -183,18 +168,23 @@ async function readNaplexPractice(): Promise<NaplexPractice | null> {
       AND "qaPassed" = true
       AND "fieldId" = 'pharmacy'
       AND "itemType" IN ('mcq', 'vignette')
-      AND length(btrim(question)) BETWEEN 80 AND 900
+      AND length(btrim(question)) BETWEEN 120 AND 650
       AND length(btrim(explanation)) BETWEEN 80 AND 1600
       AND position('|||' IN "correctAnswer") = 0
       AND "references" IS NOT NULL
       AND jsonb_typeof("references") = 'array'
       AND jsonb_array_length("references") > 0
-      AND question ~* 'lab(oratory|s)?|vital signs'
+      AND (
+        question ~* 'mg/kg'
+        OR question ~* 'how many mL'
+        OR question ~* 'mL/hr'
+        OR question ~* 'interaction'
+      )
       ${studentEligibleAndSql()}
     ORDER BY
-      CASE WHEN explanation ILIKE '%other options%' OR options::text ILIKE '%distractorRationale%' THEN 0 ELSE 1 END,
-      length(explanation) DESC
-    LIMIT 12
+      CASE WHEN question ~* 'mg/kg' AND question ~* 'mL' THEN 0 ELSE 1 END,
+      length(question) ASC
+    LIMIT 8
     `,
     [],
     { timeoutMs: QUERY_TIMEOUT_MS }
@@ -202,7 +192,7 @@ async function readNaplexPractice(): Promise<NaplexPractice | null> {
   return selectNaplexPractice(Array.isArray(rows) ? rows : []);
 }
 
-const loadCachedNaplexPractice = unstable_cache(readNaplexPractice, ["naplex-landing-practice-v1"], {
+const loadCachedNaplexPractice = unstable_cache(readNaplexPractice, ["naplex-landing-practice-v2"], {
   revalidate: 300,
   tags: [ACTIVE_INVENTORY_CACHE_TAG],
 });

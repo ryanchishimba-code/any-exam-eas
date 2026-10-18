@@ -37,7 +37,7 @@ export default async function NaplexHubPage() {
   return (
     <>
       <JsonLdScript data={model.jsonLd} />
-      <BoardLanding model={model} scene={practice?.scene ?? null} />
+      <BoardLanding model={model} pharmacy={practice?.hero ?? null} />
     </>
   );
 }

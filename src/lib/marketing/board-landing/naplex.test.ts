@@ -10,39 +10,28 @@ import {
   naplexMetaDescription,
   naplexMetaTitle,
 } from "./naplex";
-import { pharmacyChartFromStem, pharmacyHeroFromQuestion, selectNaplexPractice } from "./pharmacy-case";
+import { TOP_500_COUNT } from "@/lib/drugs300/catalog";
+import { pharmacyHeroFromQuestion, selectNaplexPractice } from "./pharmacy-case";
 import type { LandingQuestion } from "./model";
 
 const BANNED = /uworld|archer|kaplan|rxprep|amboss/i;
 
 const STEM =
-  "A 55-year-old man with atrial fibrillation takes rivaroxaban 20 mg daily and amlodipine. His labs show creatinine clearance 50 mL/min, hemoglobin 14 g/dL, platelets 250,000/mm3 and ALT 30 U/L. Which laboratory value warrants a therapeutic change?";
+  "A 6-year-old boy weighing 20 kg with acute otitis media is prescribed amoxicillin 90 mg/kg/day by mouth divided every 12 hours. The pharmacy stocks amoxicillin oral suspension 400 mg/5 mL. How many mL should be given per dose? Round to one decimal place.";
+
+const WORK =
+  "Correct answer: C. 11.3 mL. The daily dose is 90 mg/kg x 20 kg = 1,800 mg, so each 12-hour dose is 900 mg; 900 mg x 5 mL/400 mg = 11.25 mL, which rounds to 11.3 mL.";
 
 function sample(): LandingQuestion {
   return {
     id: "naplex-sample",
     stem: STEM,
-    rationale: "At a creatinine clearance of 50 mL/min the atrial fibrillation dose changes.",
-    sources: ["Product labeling — rivaroxaban dosing by renal function"],
+    rationale: WORK,
+    sources: ["NABP NAPLEX Content Outline (2025)"],
     options: [
-      {
-        id: "a",
-        text: "Creatinine clearance 50 mL/min",
-        correct: true,
-        rationale: "At a creatinine clearance of 50 mL/min the atrial fibrillation dose changes.",
-      },
-      {
-        id: "b",
-        text: "Hemoglobin 14 g/dL",
-        correct: false,
-        rationale: "A hemoglobin of 14 g/dL is within a typical adult range and does not change this dose.",
-      },
-      {
-        id: "c",
-        text: "ALT 30 U/L",
-        correct: false,
-        rationale: "An ALT of 30 U/L is within a typical range and does not change this dose.",
-      },
+      { id: "a", text: "22.5 mL", correct: false, rationale: "22.5 mL is the whole daily dose given at once." },
+      { id: "b", text: "11.3 mL", correct: true, rationale: WORK },
+      { id: "c", text: "7.5 mL", correct: false, rationale: "7.5 mL is the daily dose divided into three doses." },
     ],
   };
 }
@@ -119,21 +108,20 @@ describe("NAPLEX landing model", () => {
   });
 });
 
-describe("pharmacy hero chart", () => {
-  it("copies labs from the stem and keeps a stored wrong-option reason", () => {
-    const chart = pharmacyChartFromStem(STEM);
-    expect(chart?.rows).toEqual([
-      ["creatinine clearance", "50 mL/min"],
-      ["hemoglobin", "14 g/dL"],
-      ["platelets", "250,000/mm3"],
-      ["ALT", "30 U/L"],
-    ]);
-    expect(chart?.notes[0]).toMatch(/atrial fibrillation/);
-    expect(chart?.question).toMatch(/Which laboratory value/);
-    const scene = pharmacyHeroFromQuestion(sample());
-    expect(scene?.keyedAnswer).toBe("Creatinine clearance 50 mL/min");
-    expect(scene?.whyNot).toMatch(/hemoglobin of 14/);
-    expect(scene?.vitalsLabel).toBe("Laboratory values");
+describe("pharmacy dosing hero", () => {
+  it("uses the stored calculation, the catalog monograph, and the real drug-deck count", () => {
+    const hero = pharmacyHeroFromQuestion(sample());
+    expect(hero?.kicker).toBe("Dosing calculation");
+    expect(hero?.keyedAnswer).toBe("11.3 mL");
+    expect(hero?.work).toMatch(/1,800 mg/);
+    expect(hero?.monograph).toMatchObject({
+      generic: "Amoxicillin",
+      brand: "Amoxil",
+      className: "Aminopenicillin",
+    });
+    expect(hero?.topDrugCount).toBe(TOP_500_COUNT);
+    expect(hero?.topDrugCount).toBeGreaterThanOrEqual(500);
+    expect(JSON.stringify(hero)).not.toMatch(/nurse|vital signs/i);
   });
 
   it("reads lettered reasons stored in the explanation", () => {
@@ -141,17 +129,16 @@ describe("pharmacy hero chart", () => {
       {
         id: "row-1",
         question: STEM,
-        options: JSON.stringify(["Creatinine clearance 50 mL/min", "Hemoglobin 14 g/dL", "ALT 30 U/L"]),
-        correctAnswer: "Creatinine clearance 50 mL/min",
+        options: JSON.stringify(["22.5 mL", "11.3 mL", "7.5 mL"]),
+        correctAnswer: "11.3 mL",
         explanation:
-          "Correct answer: the renal result changes the dose. Why the other options are wrong: B. A hemoglobin of 14 g/dL is within a typical adult range and does not change this dose. C. An ALT of 30 U/L is within a typical range and does not change this dose.",
-        references: [{ label: "Product labeling", citation: "Rivaroxaban renal dosing" }],
+          "Correct answer: B. 11.3 mL. The daily dose is 90 mg/kg x 20 kg = 1,800 mg. Why the other options are wrong: A. 22.5 mL is the whole daily dose given at once instead of split. C. 7.5 mL splits the daily dose into three doses instead of two.",
+        references: [{ label: "NABP NAPLEX Content Outline (2025)" }],
       },
     ]);
-    expect(picked?.sample.options.find((option) => option.text.startsWith("Hemoglobin"))?.rationale).toMatch(
-      /does not change this dose/
-    );
-    expect(picked?.scene?.rows).toHaveLength(4);
+    expect(picked?.sample.options.find((option) => option.text === "22.5 mL")?.rationale).toMatch(/whole daily dose/);
+    expect(picked?.hero?.keyedAnswer).toBe("11.3 mL");
+    expect(picked?.hero?.monograph?.generic).toBe("Amoxicillin");
   });
 });
 
