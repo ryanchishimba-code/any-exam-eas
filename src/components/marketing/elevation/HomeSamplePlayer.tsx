@@ -13,12 +13,15 @@ export function HomeSamplePlayer({
   jpg,
   mediaUrl,
   captions,
+  imageAlt = "",
 }: {
   title: string;
   webp: string;
   jpg: string;
   mediaUrl: string;
   captions: boolean;
+  /** Poster alt. Empty keeps the image decorative when the play button already names the video. */
+  imageAlt?: string;
 }) {
   const [phase, setPhase] = useState<Phase>("poster");
   const [videoUrl, setVideoUrl] = useState("");
@@ -78,7 +81,7 @@ export function HomeSamplePlayer({
     <button type="button" className="home-bites__play" onClick={start} aria-label={`Play ${title}`}>
       <picture>
         <source srcSet={webp} type="image/webp" />
-        <img src={jpg} alt="" width={1280} height={720} loading="lazy" decoding="async" />
+        <img src={jpg} alt={imageAlt} width={1280} height={720} loading="lazy" decoding="async" />
       </picture>
       <span className="home-bites__play-mark" aria-hidden>
         <svg viewBox="0 0 24 24" width="22" height="22">

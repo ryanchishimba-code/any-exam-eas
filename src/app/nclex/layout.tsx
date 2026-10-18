@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import "@/styles/landing-theme.css";
 import "@/styles/landing-flagship.css";
+import "@/styles/board-landing.css";
 
 /** Marketing chrome for the public NCLEX hub (`/nclex`).
  *  The study guide reader lives in the `(app)` group so it gets the app shell.
