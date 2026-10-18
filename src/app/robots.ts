@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: ["/", "/nclex"],
+      allow: ["/", "/nclex", "/naplex"],
       disallow: [
         "/api/",
         "/employee/",

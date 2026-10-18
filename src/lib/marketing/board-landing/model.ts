@@ -92,7 +92,7 @@ export type BoardLandingModel = {
   priceHeading: string;
   priceLede: string;
   prices: { id: string; label: string; amount: string; detail: string; featured: boolean }[];
-  sample: LandingQuestion;
+  sample: LandingQuestion | null;
   formatHeading: string;
   formatLede: string;
   formats: BoardFormatCard[];
@@ -104,6 +104,18 @@ export type BoardLandingModel = {
   links: { href: string; label: string }[];
   finalHeading: string;
   finalLede: string;
+  boardName: string;
+  sampleKicker: string;
+  explainedTitle: string;
+  statsLabel: string;
+  linksHeading: string;
+  formatAnchor: string;
+  sceneKicker: string;
+  sceneIdPrefix: string;
+  heroCtaName: string;
+  heroCtaLocation: string;
+  finalCtaName: string;
+  finalCtaLocation: string;
   jsonLd: Record<string, unknown>;
 };
 
@@ -391,14 +403,14 @@ function nclexStats(units: BoardQuestionUnits | null): { value: string; label: s
   return stats;
 }
 
-function videoObject(bite: BoardQuickBite | null): Record<string, unknown> | null {
+export function boardVideoNode(bite: BoardQuickBite | null, pagePath: string): Record<string, unknown> | null {
   if (!bite) return null;
   const node: Record<string, unknown> = {
     "@type": "VideoObject",
     name: bite.title,
     description: `Free sample Quick Bites video: ${bite.title}.`,
     thumbnailUrl: absoluteUrl(bite.webp),
-    embedUrl: absoluteUrl("/nclex#quick-bites"),
+    embedUrl: absoluteUrl(`${pagePath}#quick-bites`),
   };
   if (bite.uploadDate) node.uploadDate = bite.uploadDate;
   if (bite.isoDuration) node.duration = bite.isoDuration;
@@ -444,7 +456,7 @@ export function buildNclexLandingModel(input: {
     { href: "/practice/nclex", label: "NCLEX practice" },
     { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
   ];
-  const video = videoObject(quickBite);
+  const video = boardVideoNode(quickBite, "/nclex");
   const graph: Record<string, unknown>[] = [
     {
       "@type": "Organization",
@@ -540,6 +552,18 @@ export function buildNclexLandingModel(input: {
     links,
     finalHeading: homeTrialCloseHeading(),
     finalLede: "No payment method required. Cancel anytime in Settings.",
+    boardName: "NCLEX",
+    sampleKicker: "Free NCLEX practice question",
+    explainedTitle: "Sample NCLEX question",
+    statsLabel: "Live NCLEX bank counts",
+    linksHeading: "More NCLEX practice",
+    formatAnchor: "next-gen",
+    sceneKicker: "Next Gen case",
+    sceneIdPrefix: "nclex",
+    heroCtaName: "nclex_hero_trial",
+    heroCtaLocation: "nclex_hero",
+    finalCtaName: "nclex_final_trial",
+    finalCtaLocation: "nclex_final",
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
   };
 }

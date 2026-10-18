@@ -7,6 +7,10 @@ type HeroSceneProps = {
   trialLabel: string;
   questionCount: string | null;
   reviewers: { id: string; name: string }[];
+  kicker?: string;
+  idPrefix?: string;
+  ctaName?: string;
+  ctaLocation?: string;
 };
 
 function plain(text: string): string {
@@ -14,31 +18,43 @@ function plain(text: string): string {
 }
 
 /** Server-rendered product scene. Chrome is decorative; the case text is HTML. */
-export function HeroScene({ scene, trialHref, trialLabel, questionCount, reviewers }: HeroSceneProps) {
+export function HeroScene({
+  scene,
+  trialHref,
+  trialLabel,
+  questionCount,
+  reviewers,
+  kicker = "Next Gen case",
+  idPrefix = "nclex",
+  ctaName = "nclex_hero_trial",
+  ctaLocation = "nclex_hero",
+}: HeroSceneProps) {
+  const notesId = `${idPrefix}-notes`;
+  const tableId = `${idPrefix}-table`;
   return (
     <div className="bl-scene">
-      <article className="bl-device" aria-labelledby="nclex-case-heading">
+      <article className="bl-device" aria-labelledby={`${idPrefix}-case-heading`}>
         <div className="bl-device-chrome" aria-hidden="true">
           <span className="bl-device-cam" />
           <span className="bl-device-speaker" />
         </div>
         <div className="bl-device-screen">
-          <p id="nclex-case-heading" className="bl-device-kicker">
-            Next Gen case
+          <p id={`${idPrefix}-case-heading`} className="bl-device-kicker">
+            {kicker}
           </p>
           <p className="bl-device-setting">{scene.setting}</p>
           <nav className="bl-device-tabs" aria-label="Case chart">
-            <a href="#nclex-nurses-notes">{scene.notesLabel}</a>
-            <a href="#nclex-vitals">{scene.vitalsLabel}</a>
+            <a href={`#${notesId}`}>{scene.notesLabel}</a>
+            <a href={`#${tableId}`}>{scene.vitalsLabel}</a>
           </nav>
-          <section id="nclex-nurses-notes" aria-labelledby="nclex-notes-heading">
-            <h2 id="nclex-notes-heading">{scene.notesLabel}</h2>
+          <section id={notesId} aria-labelledby={`${idPrefix}-notes-heading`}>
+            <h2 id={`${idPrefix}-notes-heading`}>{scene.notesLabel}</h2>
             {scene.notes.map((note) => (
               <p key={note}>{plain(note)}</p>
             ))}
           </section>
-          <section id="nclex-vitals" aria-labelledby="nclex-vitals-heading">
-            <h2 id="nclex-vitals-heading">{scene.vitalsLabel}</h2>
+          <section id={tableId} aria-labelledby={`${idPrefix}-table-heading`}>
+            <h2 id={`${idPrefix}-table-heading`}>{scene.vitalsLabel}</h2>
             <div className="bl-vital-scroll">
               <table>
                 <thead>
@@ -62,8 +78,8 @@ export function HeroScene({ scene, trialHref, trialLabel, questionCount, reviewe
               </table>
             </div>
           </section>
-          <section className="bl-device-question" aria-labelledby="nclex-case-question">
-            <h2 id="nclex-case-question">Case question</h2>
+          <section className="bl-device-question" aria-labelledby={`${idPrefix}-case-question`}>
+            <h2 id={`${idPrefix}-case-question`}>Case question</h2>
             <p>{plain(scene.stem)}</p>
             <ol>
               {scene.options.map((option) => (
@@ -117,7 +133,7 @@ export function HeroScene({ scene, trialHref, trialLabel, questionCount, reviewe
       </ul>
 
       <div className="bl-actions">
-        <LandingCta href={trialHref} ctaName="nclex_hero_trial" location="nclex_hero">
+        <LandingCta href={trialHref} ctaName={ctaName} location={ctaLocation}>
           {trialLabel}
         </LandingCta>
         <a className="bl-button bl-button-secondary" href="#sample-question">
