@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BoardLanding } from "@/components/marketing/board-landing/BoardLanding";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { loadNursingBankTypeCounts } from "@/lib/marketing/board-landing/bank-types";
+import { loadNclexHeroCase } from "@/lib/marketing/board-landing/hero-case";
 import { buildNclexLandingMetadata, buildNclexLandingModel } from "@/lib/marketing/board-landing/model";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
@@ -18,11 +19,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NclexHubPage() {
-  const [{ bundle, display }, testimonials, samples, bankTypes] = await Promise.all([
+  const [{ bundle, display }, testimonials, samples, bankTypes, scene] = await Promise.all([
     loadPublicQuestionCounts({ dynamic: false }),
     getCachedPublishedTestimonials(6),
     getPublicSampleQuestions(),
     loadNursingBankTypeCounts(),
+    loadNclexHeroCase(),
   ]);
   const exam = display.exams.find((row) => row.slug === "nclex");
   const live = !display.degraded && (exam?.served ?? 0) > 0;
@@ -37,7 +39,7 @@ export default async function NclexHubPage() {
   return (
     <>
       <JsonLdScript data={model.jsonLd} />
-      <BoardLanding model={model} />
+      <BoardLanding model={model} scene={scene} />
     </>
   );
 }

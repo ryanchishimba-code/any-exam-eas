@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { HeroScene } from "@/components/marketing/board-landing/HeroScene";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import { SamplePractice } from "@/components/marketing/board-landing/SamplePractice";
 import { CollapsibleSources } from "@/components/study/questions/CollapsibleSources";
+import type { HeroCaseScene } from "@/lib/marketing/board-landing/hero-case";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
 import { RATIONALE_STUDY_NOTE } from "@/lib/marketing/legal-copy";
 import { ROUTES } from "@/lib/routes";
@@ -13,7 +15,27 @@ const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
  * Board marketing page. Copy and counts come from the model so a later
  * pharmacy page can pass its own content through the same sections.
  */
-export function BoardLanding({ model }: { model: BoardLandingModel }) {
+function SampleQuestion({ model }: { model: BoardLandingModel }) {
+  return (
+    <article className="bl-card" id="sample-question" aria-labelledby="sample-heading">
+      <p className="bl-kicker" id="sample-heading">
+        Free NCLEX practice question
+      </p>
+      <h2 className="bl-card-title">Try it before you sign up.</h2>
+      <p className="bl-stem">{model.sample.stem}</p>
+      <SamplePractice sample={model.sample} />
+    </article>
+  );
+}
+
+export function BoardLanding({
+  model,
+  scene = null,
+}: {
+  model: BoardLandingModel;
+  scene?: HeroCaseScene | null;
+}) {
+  const questionCount = model.stats.find((stat) => stat.label === "Questions")?.value ?? null;
   return (
     <div className="board-landing">
       <section className="bl-hero" aria-labelledby="board-hero-heading">
@@ -27,29 +49,40 @@ export function BoardLanding({ model }: { model: BoardLandingModel }) {
             {model.h1Lead} <span>{model.h1Accent}</span>
           </h1>
           <p className="bl-lede">{model.lede}</p>
-          <div className="bl-actions">
-            <LandingCta href={model.trialHref} ctaName="nclex_hero_trial" location="nclex_hero">
-              {model.trialLabel}
-            </LandingCta>
-            <a className="bl-button bl-button-secondary" href="#sample-question">
-              Try a free question
-            </a>
-          </div>
+          {scene ? null : (
+            <div className="bl-actions">
+              <LandingCta href={model.trialHref} ctaName="nclex_hero_trial" location="nclex_hero">
+                {model.trialLabel}
+              </LandingCta>
+              <a className="bl-button bl-button-secondary" href="#sample-question">
+                Try a free question
+              </a>
+            </div>
+          )}
           <ul className="bl-trust">
             {model.trust.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
-        <article className="bl-card" id="sample-question" aria-labelledby="sample-heading">
-          <p className="bl-kicker" id="sample-heading">
-            Free NCLEX practice question
-          </p>
-          <h2 className="bl-card-title">Try it before you sign up.</h2>
-          <p className="bl-stem">{model.sample.stem}</p>
-          <SamplePractice sample={model.sample} />
-        </article>
+        {scene ? (
+          <HeroScene
+            scene={scene}
+            trialHref={model.trialHref}
+            trialLabel={model.trialLabel}
+            questionCount={questionCount}
+            reviewers={model.reviewers}
+          />
+        ) : (
+          <SampleQuestion model={model} />
+        )}
       </section>
+
+      {scene ? (
+        <div className="bl-sample-wrap">
+          <SampleQuestion model={model} />
+        </div>
+      ) : null}
 
       {model.stats.length > 0 ? (
         <section className="bl-stats" aria-label="Live NCLEX bank counts">
