@@ -19,7 +19,7 @@ import {
 import { howToPassSharePath } from "@/lib/marketing/home-video";
 import { boardReviewBadge, HOME_PRACTICE_HEADLINE, RATIONALE_STUDY_NOTE } from "@/lib/marketing/legal-copy";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
-import { examMarketingPath } from "@/lib/seo/exam-config";
+import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { absoluteUrl } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
 import { formatMonthlyPrice } from "@/lib/site";
@@ -31,6 +31,16 @@ const TRUST = [
 ] as const;
 
 const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
+
+/** First-screen board tiles. Labels match the hero; hrefs are the public board pages. */
+const HERO_BOARD_TILES: { slug: ExamSeoKey; label: string }[] = [
+  { slug: "nclex", label: "NCLEX" },
+  { slug: "naplex", label: "NAPLEX" },
+  { slug: "usmle", label: "USMLE" },
+  { slug: "aanp-fnp", label: "FNP" },
+  { slug: "pance", label: "PANCE" },
+  { slug: "npte-pt", label: "NPTE-PT" },
+];
 
 export function PublicHome({
   proof,
@@ -57,17 +67,16 @@ export function PublicHome({
             <span className="home-hero__line">{headlineLead}</span>{" "}
             <span className="home-hero__accent">{headlineAccent}</span>
           </h1>
-          <p className="home-hero__sub">
-            <strong>
-              <span className="whitespace-nowrap">NCLEX ·</span>{" "}
-              <span className="whitespace-nowrap">NAPLEX ·</span>{" "}
-              <span className="whitespace-nowrap">USMLE ·</span>{" "}
-              <span className="whitespace-nowrap">FNP ·</span>{" "}
-              <span className="whitespace-nowrap">PANCE ·</span>{" "}
-              <span className="whitespace-nowrap">NPTE-PT.</span>
-            </strong>{" "}
-            Every exam, every rationale, one plan.
-          </p>
+          <nav className="home-hero__boards" aria-label="Board exams">
+            <ul>
+              {HERO_BOARD_TILES.map((board) => (
+                <li key={board.slug}>
+                  <Link href={examMarketingPath(board.slug)}>{board.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <p className="home-hero__sub">Every exam, every rationale, one plan.</p>
           <div className="home-hero__actions">
             <LandingCta href={LANDING_TRIAL_HREF} ctaName="hero_trial" location="hero">
               {cta}
