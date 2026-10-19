@@ -100,8 +100,8 @@ describe("NCLEX landing model", () => {
     expect(types).toEqual(
       expect.arrayContaining(["Organization", "BreadcrumbList", "Product", "FAQPage", "VideoObject"])
     );
-    expect(model.sample.stem.length).toBeGreaterThan(40);
-    expect(model.sample.options.some((option) => option.correct && option.rationale)).toBe(true);
+    expect(model.sample?.stem.length).toBeGreaterThan(40);
+    expect(model.sample?.options.some((option) => option.correct && option.rationale)).toBe(true);
   });
 
   it("omits numeric stats when the bank lookup failed", () => {

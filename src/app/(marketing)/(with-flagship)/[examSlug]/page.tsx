@@ -34,8 +34,8 @@ const STATIC_SLUGS = [
 ];
 
 export function generateStaticParams() {
-  // `/nclex` is owned by the product hub at `src/app/nclex` (Study Guide entry).
-  return STATIC_SLUGS.filter((examSlug) => examSlug !== "nclex").map((examSlug) => ({
+  // `/nclex` and `/naplex` are owned by the product hubs at `src/app/nclex` and `src/app/naplex`.
+  return STATIC_SLUGS.filter((examSlug) => examSlug !== "nclex" && examSlug !== "naplex").map((examSlug) => ({
     examSlug,
   }));
 }
