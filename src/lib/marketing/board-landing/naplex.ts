@@ -268,6 +268,7 @@ export function buildNaplexLandingModel(input: {
     trialHref,
     trialLabel: homeTrialCtaLabel(),
     trust: ["No payment method to start", "Cancel anytime in Settings", "Written to the NABP content outline"],
+    proofPoints: [],
     stats: naplexStats(units, input.degraded ? {} : input.bankTypes),
     countLine: units ? formatBoardQuestionSentence(units) : null,
     priceHeading: "NAPLEX prep, side by side.",
