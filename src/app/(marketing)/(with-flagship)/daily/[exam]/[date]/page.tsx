@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { connection } from "next/server";
 import type { Metadata } from "next";
 import { QotdPractice } from "@/components/marketing/QotdPractice";
 import {
@@ -8,39 +7,32 @@ import {
   parseQotdDate,
   qotdAbsoluteUrl,
   qotdPath,
-  todayIsoCentral,
   toPublicQotd,
 } from "@/lib/demo/qotd";
-import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getSiteUrl } from "@/lib/seo";
 
 type Props = { params: Promise<{ exam: string; date: string }> };
 
 /**
- * A dated URL is that America/Chicago calendar day. Today’s six share links
- * are prerendered; any other past or current date is cached for a day after
- * the first request. Future and invalid dates 404 without caching, so a URL
- * that is still tomorrow is not stuck as a not-found page after midnight.
+ * A dated URL is one America/Chicago calendar day. Whether that day is still
+ * ahead of today depends on the clock, so this segment renders on each request.
+ *
+ * Do not opt this segment into ISR and then call the Next connection API to
+ * uncache a 404. That throws DYNAMIC_SERVER_USAGE during the static render, and
+ * the live route returns 500 before notFound runs. `force-dynamic` reads
+ * Central time per request:
+ * invalid and future dates 404, and a URL that becomes today at midnight is
+ * not stuck on a cached not-found page.
  */
-export const revalidate = 86400;
-export const dynamicParams = true;
-
-export function generateStaticParams() {
-  const today = todayIsoCentral();
-  return EXAM_SLUGS.map((exam) => ({ exam, date: today }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { exam, date } = await params;
-  if (!isQotdExamSlug(exam) || !parseQotdDate(date)) {
-    await connection();
-    return {};
-  }
-  const item = getQotdForExam(exam, date);
-  if (!item) {
-    await connection();
-    return {};
-  }
+  const now = new Date();
+  if (!isQotdExamSlug(exam) || !parseQotdDate(date, now)) return {};
+  const item = getQotdForExam(exam, date, now);
+  if (!item) return {};
   const name = EXAM_CATALOG[exam].shortName;
   const canonical = qotdAbsoluteUrl(exam, date);
   const description =
@@ -69,16 +61,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function DailyExamDatedPage({ params }: Props) {
   const { exam, date } = await params;
-  if (!isQotdExamSlug(exam) || !parseQotdDate(date)) {
-    await connection();
-    notFound();
-  }
+  const now = new Date();
+  if (!isQotdExamSlug(exam) || !parseQotdDate(date, now)) notFound();
 
-  const item = getQotdForExam(exam, date);
-  if (!item) {
-    await connection();
-    notFound();
-  }
+  const item = getQotdForExam(exam, date, now);
+  if (!item) notFound();
   const absoluteShareUrl = qotdAbsoluteUrl(exam, date);
 
   return (
