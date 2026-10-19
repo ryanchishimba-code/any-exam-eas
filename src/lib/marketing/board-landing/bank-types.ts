@@ -52,3 +52,36 @@ export async function loadNursingBankTypeCounts(): Promise<Record<string, number
     return {};
   }
 }
+
+async function readPharmacyBankTypeCounts(): Promise<Record<string, number>> {
+  try {
+    const rows = await sqlQuery<TypeCountRow[]>(
+      `
+      SELECT "itemType", SUM("count")::int AS count
+      FROM "ActiveInventoryCount"
+      WHERE "fieldId" = 'pharmacy'
+      GROUP BY 1
+      `,
+      [],
+      { timeoutMs: 5_000 }
+    );
+    return sumBankTypeCounts(Array.isArray(rows) ? rows : []);
+  } catch {
+    return {};
+  }
+}
+
+const loadCachedPharmacyBankTypeCounts = unstable_cache(
+  readPharmacyBankTypeCounts,
+  ["naplex-landing-bank-types-v1"],
+  { revalidate: 300, tags: [ACTIVE_INVENTORY_CACHE_TAG] }
+);
+
+/** Live pharmacy item-type counts from the same inventory table as the bank totals. */
+export async function loadPharmacyBankTypeCounts(): Promise<Record<string, number>> {
+  try {
+    return await loadCachedPharmacyBankTypeCounts();
+  } catch {
+    return {};
+  }
+}

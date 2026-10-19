@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { HeroScene } from "@/components/marketing/board-landing/HeroScene";
+import { PharmacyHero } from "@/components/marketing/board-landing/PharmacyHero";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import { SamplePractice } from "@/components/marketing/board-landing/SamplePractice";
 import { CollapsibleSources } from "@/components/study/questions/CollapsibleSources";
 import type { HeroCaseScene } from "@/lib/marketing/board-landing/hero-case";
+import type { PharmacyHeroScene } from "@/lib/marketing/board-landing/pharmacy-case";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
 import { RATIONALE_STUDY_NOTE } from "@/lib/marketing/legal-copy";
 import { ROUTES } from "@/lib/routes";
@@ -16,10 +18,11 @@ const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
  * pharmacy page can pass its own content through the same sections.
  */
 function SampleQuestion({ model }: { model: BoardLandingModel }) {
+  if (!model.sample) return null;
   return (
     <article className="bl-card" id="sample-question" aria-labelledby="sample-heading">
       <p className="bl-kicker" id="sample-heading">
-        Free NCLEX practice question
+        {model.sampleKicker}
       </p>
       <h2 className="bl-card-title">Try it before you sign up.</h2>
       <p className="bl-stem">{model.sample.stem}</p>
@@ -31,9 +34,11 @@ function SampleQuestion({ model }: { model: BoardLandingModel }) {
 export function BoardLanding({
   model,
   scene = null,
+  pharmacy = null,
 }: {
   model: BoardLandingModel;
   scene?: HeroCaseScene | null;
+  pharmacy?: PharmacyHeroScene | null;
 }) {
   const questionCount = model.stats.find((stat) => stat.label === "Questions")?.value ?? null;
   return (
@@ -43,20 +48,22 @@ export function BoardLanding({
           <p className="bl-kicker">
             <Link href="/">Home</Link>
             <span aria-hidden> / </span>
-            <span>NCLEX</span>
+            <span>{model.boardName}</span>
           </p>
           <h1 id="board-hero-heading">
             {model.h1Lead} <span>{model.h1Accent}</span>
           </h1>
           <p className="bl-lede">{model.lede}</p>
-          {scene ? null : (
+          {scene || pharmacy ? null : (
             <div className="bl-actions">
-              <LandingCta href={model.trialHref} ctaName="nclex_hero_trial" location="nclex_hero">
+              <LandingCta href={model.trialHref} ctaName={model.heroCtaName} location={model.heroCtaLocation}>
                 {model.trialLabel}
               </LandingCta>
-              <a className="bl-button bl-button-secondary" href="#sample-question">
-                Try a free question
-              </a>
+              {model.sample ? (
+                <a className="bl-button bl-button-secondary" href="#sample-question">
+                  Try a free question
+                </a>
+              ) : null}
             </div>
           )}
           <ul className="bl-trust">
@@ -65,27 +72,39 @@ export function BoardLanding({
             ))}
           </ul>
         </div>
-        {scene ? (
+        {pharmacy ? (
+          <PharmacyHero
+            hero={pharmacy}
+            trialHref={model.trialHref}
+            trialLabel={model.trialLabel}
+            ctaName={model.heroCtaName}
+            ctaLocation={model.heroCtaLocation}
+          />
+        ) : scene ? (
           <HeroScene
             scene={scene}
             trialHref={model.trialHref}
             trialLabel={model.trialLabel}
             questionCount={questionCount}
             reviewers={model.reviewers}
+            kicker={model.sceneKicker}
+            idPrefix={model.sceneIdPrefix}
+            ctaName={model.heroCtaName}
+            ctaLocation={model.heroCtaLocation}
           />
-        ) : (
+        ) : model.sample ? (
           <SampleQuestion model={model} />
-        )}
+        ) : null}
       </section>
 
-      {scene ? (
+      {(scene || pharmacy) && model.sample ? (
         <div className="bl-sample-wrap">
           <SampleQuestion model={model} />
         </div>
       ) : null}
 
       {model.stats.length > 0 ? (
-        <section className="bl-stats" aria-label="Live NCLEX bank counts">
+        <section className="bl-stats" aria-label={model.statsLabel}>
           <dl>
             {model.stats.map((stat) => (
               <div key={stat.label}>
@@ -97,7 +116,7 @@ export function BoardLanding({
           {model.countLine ? <p>{model.countLine}</p> : null}
         </section>
       ) : (
-        <section className="bl-stats" aria-label="Live NCLEX bank counts">
+        <section className="bl-stats" aria-label={model.statsLabel}>
           <p>Live question counts are unavailable right now.</p>
         </section>
       )}
@@ -116,13 +135,14 @@ export function BoardLanding({
         </div>
       </section>
 
+      {model.sample ? (
       <section className="bl-section" aria-labelledby="explained-heading">
         <h2 id="explained-heading">Every question explained.</h2>
         <p className="bl-section-lede">
           The keyed answer and each stored reason are on the page. A check mark opens the sources.
         </p>
         <article className="bl-card bl-explained">
-          <h3>Sample NCLEX question</h3>
+          <h3>{model.explainedTitle}</h3>
           <p className="bl-stem">{model.sample.stem}</p>
           <ol className="bl-explained-list">
             {model.sample.options.map((option, index) => (
@@ -158,9 +178,10 @@ export function BoardLanding({
           ) : null}
         </article>
       </section>
+      ) : null}
 
       {model.formats.length > 0 ? (
-        <section className="bl-section" id="next-gen" aria-labelledby="ngn-heading">
+        <section className="bl-section" id={model.formatAnchor} aria-labelledby="ngn-heading">
           <h2 id="ngn-heading">{model.formatHeading}</h2>
           <p className="bl-section-lede">{model.formatLede}</p>
           <ul className="bl-format-grid">
@@ -239,7 +260,7 @@ export function BoardLanding({
       ) : null}
 
       <section className="bl-section" aria-labelledby="links-heading">
-        <h2 id="links-heading">More NCLEX practice</h2>
+        <h2 id="links-heading">{model.linksHeading}</h2>
         <ul className="bl-links">
           {model.links.map((link) => (
             <li key={link.href}>
@@ -266,7 +287,7 @@ export function BoardLanding({
       <section className="bl-final" aria-labelledby="final-heading">
         <h2 id="final-heading">{model.finalHeading}</h2>
         <p>{model.finalLede}</p>
-        <LandingCta href={model.trialHref} ctaName="nclex_final_trial" location="nclex_final">
+        <LandingCta href={model.trialHref} ctaName={model.finalCtaName} location={model.finalCtaLocation}>
           {model.trialLabel}
         </LandingCta>
       </section>
