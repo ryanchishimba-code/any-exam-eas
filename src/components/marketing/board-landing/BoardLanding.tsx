@@ -5,6 +5,29 @@ import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePla
 import { SamplePractice } from "@/components/marketing/board-landing/SamplePractice";
 import type { HeroCaseScene } from "@/lib/marketing/board-landing/hero-case";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
+function HeroOfferBand({ offer }: { offer: BoardLandingModel["heroOffer"] }) {
+  return (
+    <div className="bl-hero-band" aria-label="Live bank size and pricing">
+      <p className="bl-hero-band__count">
+        {offer.liveQuestions ? (
+          <>
+            <span className="bl-hero-band__value">{offer.liveQuestions}</span>
+            <span className="bl-hero-band__label"> live NCLEX questions</span>
+          </>
+        ) : (
+          <span className="bl-hero-band__label">Live NCLEX question bank</span>
+        )}
+      </p>
+      <p className="bl-hero-band__prices">
+        <span className="bl-hero-band__ours">{offer.proPrice}</span>
+        <span className="bl-hero-band__vs" aria-hidden> · </span>
+        <span className="bl-hero-band__typical">vs {offer.typicalPrice} typical 30-day prep</span>
+      </p>
+      <p className="bl-hero-band__trial">{offer.trialLine}</p>
+    </div>
+  );
+}
+
 function SampleQuestion({ model }: { model: BoardLandingModel }) {
   return (
     <article className="bl-card" id="sample-question" aria-labelledby="sample-heading">
@@ -35,6 +58,7 @@ export function BoardLanding({
           <h1 id="board-hero-heading">
             {model.h1Lead} <span>{model.h1Accent}</span>
           </h1>
+          <HeroOfferBand offer={model.heroOffer} />
           <p className="bl-lede">{model.lede}</p>
           {scene ? null : (
             <div className="bl-actions">
@@ -77,20 +101,6 @@ export function BoardLanding({
             <li key={point}>{point}</li>
           ))}
         </ul>
-      </section>
-
-      <section className="bl-price" aria-labelledby="price-heading">
-        <h2 id="price-heading">{model.priceHeading}</h2>
-        <p>{model.priceLede}</p>
-        <div className="bl-price-grid">
-          {model.prices.map((price) => (
-            <article key={price.id} className={price.featured ? "is-featured" : undefined}>
-              <h3>{price.label}</h3>
-              <p className="bl-amount">{price.amount}</p>
-              <p>{price.detail}</p>
-            </article>
-          ))}
-        </div>
       </section>
 
       {model.quickBite ? (

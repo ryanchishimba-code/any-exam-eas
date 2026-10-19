@@ -11,7 +11,7 @@ import { landingTrialHrefForExam } from "@/lib/landing/trial-href";
 import { COMPETITOR_PRICE_AS_OF } from "@/lib/marketing/legal-copy";
 import { collectedDistractorReasons } from "@/lib/exam-prep/item-qa/rationale-schema";
 import { HOME_EXPLAINED_SAMPLE } from "@/lib/marketing/home-explained";
-import { homeTrialCloseHeading, homeTrialCtaLabel } from "@/lib/marketing/home-cta";
+import { homeTrialCtaLabel } from "@/lib/marketing/home-cta";
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import { COMPETITOR_PRICING } from "@/lib/seo/competitor-comparison";
@@ -83,6 +83,12 @@ export type BoardLandingModel = {
   trialHref: string;
   trialLabel: string;
   trust: string[];
+  heroOffer: {
+    liveQuestions: string | null;
+    proPrice: string;
+    typicalPrice: string;
+    trialLine: string;
+  };
   proofPoints: string[];
   stats: { value: string; label: string }[];
   countLine: string | null;
@@ -371,11 +377,19 @@ function nclexFaqs(units: BoardQuestionUnits | null): { question: string; answer
   ];
 }
 
-function nclexProofPoints(units: BoardQuestionUnits | null): string[] {
-  const count = units
-    ? `${formatExactQuestionCount(scoredQuestionCount(units))} live NCLEX questions`
-    : "Live NCLEX question bank";
-  return [count, "Reviewed by RN and PharmD clinicians", "Every answer explained"];
+function nclexProofPoints(): string[] {
+  return ["Reviewed by RN and PharmD clinicians", "Every answer explained"];
+}
+
+function nclexHeroOffer(units: BoardQuestionUnits | null): BoardLandingModel["heroOffer"] {
+  const price = formatMonthlyPrice("pro");
+  const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
+  return {
+    liveQuestions: units ? formatExactQuestionCount(scoredQuestionCount(units)) : null,
+    proPrice: `${price}/mo`,
+    typicalPrice: typical,
+    trialLine: `${TRIAL_DAYS}-day free trial · no payment method to start`,
+  };
 }
 
 function nclexStats(units: BoardQuestionUnits | null): { value: string; label: string }[] {
@@ -418,7 +432,8 @@ export function buildNclexLandingModel(input: {
   const sample = input.sample ? landingQuestionFromPublic(input.sample) : fallbackNclexQuestion();
   const stories: BoardLandingModel["stories"] = [];
   const faqs = nclexFaqs(units);
-  const proofPoints = nclexProofPoints(units);
+  const proofPoints = nclexProofPoints();
+  const heroOffer = nclexHeroOffer(units);
   const quickBite = openBoardQuickBite("nursing");
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
@@ -479,6 +494,7 @@ export function buildNclexLandingModel(input: {
     trialHref,
     trialLabel: homeTrialCtaLabel(),
     trust: ["5-day free trial", "No payment method to start", "Cancel in Settings"],
+    heroOffer,
     proofPoints,
     stats: nclexStats(units),
     countLine: null,
