@@ -243,6 +243,27 @@
   margin-bottom: 1rem;
 }
 
+.bl-feature-spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.85rem;
+  margin: 0 0 0.9rem;
+  padding: 0;
+  list-style: none;
+  min-height: 9.5rem;
+}
+
+@media (min-width: 720px) {
+  .bl-feature-spotlight {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 8.75rem;
+  }
+}
+
+.bl-feature-item {
+  min-width: 0;
+}
+
 .bl-feature-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.5rem), 1fr));
@@ -252,20 +273,36 @@
   list-style: none;
 }
 
-.bl-feature-card {
+.bl-feature-card,
+a.bl-feature-card {
+  display: block;
   min-height: 7.25rem;
   padding: 1rem 1.05rem 1.05rem;
   border: 1px solid var(--bl-line);
   border-radius: 1.1rem;
   background: var(--bl-card);
   box-shadow: 0 10px 28px rgba(10, 37, 64, 0.04);
+  color: inherit;
+  text-decoration: none;
   transition:
     border-color 0.18s ease,
     box-shadow 0.18s ease,
     transform 0.18s ease;
 }
 
-.bl-feature-card:hover {
+.bl-feature-card--spotlight,
+a.bl-feature-card--spotlight {
+  min-height: 8.5rem;
+  padding: 1.15rem 1.15rem 1.2rem;
+  border-color: rgba(15, 118, 110, 0.22);
+  background:
+    linear-gradient(155deg, rgba(15, 118, 110, 0.09) 0%, rgba(255, 255, 255, 0.98) 52%),
+    var(--bl-card);
+  box-shadow: 0 14px 36px rgba(10, 37, 64, 0.07);
+}
+
+.bl-feature-card:hover,
+a.bl-feature-card:hover {
   border-color: rgba(15, 118, 110, 0.28);
   box-shadow: 0 14px 36px rgba(10, 37, 64, 0.08);
   transform: translateY(-2px);
@@ -283,13 +320,26 @@
   background: rgba(15, 118, 110, 0.1);
 }
 
-.bl-feature-card h3 {
+.bl-feature-card--spotlight .bl-feature-icon,
+a.bl-feature-card--spotlight .bl-feature-icon {
+  width: 2.85rem;
+  height: 2.85rem;
+}
+
+.bl-feature-card h3,
+a.bl-feature-card h3 {
   font-size: 0.98rem;
   font-weight: 700;
   line-height: 1.25;
 }
 
-.bl-feature-card p {
+.bl-feature-card--spotlight h3,
+a.bl-feature-card--spotlight h3 {
+  font-size: 1.05rem;
+}
+
+.bl-feature-card p,
+a.bl-feature-card p {
   margin: 0.35rem 0 0;
   font-size: 0.88rem;
   line-height: 1.45;

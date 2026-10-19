@@ -1,6 +1,7 @@
 import type { BoardQuestionUnits } from "@/lib/counts";
 import type { BoardFormatCard, BoardQuickBite } from "@/lib/marketing/board-landing/model";
 import { nclexFormatCards } from "@/lib/marketing/board-landing/model";
+import { ROUTES } from "@/lib/routes";
 
 export type BoardFeatureIconId =
   | "ngn"
@@ -10,14 +11,19 @@ export type BoardFeatureIconId =
   | "quick-bites"
   | "qotd"
   | "review"
-  | "mobile";
+  | "mobile"
+  | "anatomy";
 
 export type BoardFeatureCard = {
   id: string;
   title: string;
   line: string;
   icon: BoardFeatureIconId;
+  href?: string;
+  spotlight?: boolean;
 };
+
+const NCLEX_QUICK_BITES_HREF = `${ROUTES.dashboard}#video-quick-bites`;
 
 /** One crawlable sentence listing live NGN buckets (from nclexFormatCards titles only). */
 export function ngnFeatureLineFromFormatCards(cards: BoardFormatCard[]): string {
@@ -52,6 +58,27 @@ export function nclexFeatureCards(input: {
   quickBite: BoardQuickBite | null;
 }): BoardFeatureCard[] {
   const cards: BoardFeatureCard[] = [];
+
+  cards.push({
+    id: "anatomy-explorer",
+    title: "Anatomy Explorer",
+    line: "Orbit 3D structures and jump to board-style practice.",
+    icon: "anatomy",
+    href: ROUTES.anatomy,
+    spotlight: true,
+  });
+
+  if (input.quickBite) {
+    cards.push({
+      id: "quick-bites-lectures",
+      title: "Quick Bites video lectures",
+      line: "Short teaching videos with captions and follow-up quizzes.",
+      icon: "quick-bites",
+      href: NCLEX_QUICK_BITES_HREF,
+      spotlight: true,
+    });
+  }
+
   const ngnCards = nclexFormatCards(nclexNgnInput(input.units, input.bankTypes));
   const ngnLine = ngnFeatureLineFromFormatCards(ngnCards);
   if (ngnLine) {
@@ -83,15 +110,6 @@ export function nclexFeatureCards(input: {
     line: "Keyed answer, distractor reasons, and sources behind a check mark.",
     icon: "explained",
   });
-
-  if (input.quickBite) {
-    cards.push({
-      id: "quick-bites",
-      title: "Quick Bites",
-      line: "Short teaching videos—sample one on this page.",
-      icon: "quick-bites",
-    });
-  }
 
   cards.push({
     id: "qotd",

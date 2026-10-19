@@ -69,6 +69,14 @@ export function BoardFeatureIcon({ id }: { id: BoardFeatureIconId }) {
           <path d="M10 18h4" {...stroke} />
         </svg>
       );
+    case "anatomy":
+      return (
+        <svg viewBox="0 0 24 24" width={24} height={24} aria-hidden>
+          <circle cx="12" cy="6.5" r="2.5" {...stroke} />
+          <path d="M8 10c0 3 1.5 5 4 7 2.5-2 4-4 4-7" {...stroke} />
+          <path d="M7 21h10M9 14v7M15 14v7" {...stroke} />
+        </svg>
+      );
     default:
       return null;
   }

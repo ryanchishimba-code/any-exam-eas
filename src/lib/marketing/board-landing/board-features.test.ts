@@ -25,7 +25,17 @@ describe("board feature cards", () => {
       quickBite,
     });
     expect(features.some((card) => card.id === "ngn")).toBe(true);
-    expect(features.some((card) => card.id === "quick-bites")).toBe(Boolean(quickBite));
+    expect(features.find((card) => card.id === "anatomy-explorer")).toMatchObject({
+      href: "/anatomy",
+      spotlight: true,
+    });
+    if (quickBite) {
+      expect(features.find((card) => card.id === "quick-bites-lectures")).toMatchObject({
+        href: "/dashboard#video-quick-bites",
+        spotlight: true,
+      });
+    }
+    expect(features.some((card) => card.id === "quick-bites")).toBe(false);
     expect(features.find((card) => card.id === "adaptive")?.line).toMatch(/CAT/i);
   });
 });
