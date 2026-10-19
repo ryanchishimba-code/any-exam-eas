@@ -122,6 +122,32 @@
   font-weight: 700;
 }
 
+.bl-proof {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto 1.25rem;
+}
+
+.bl-proof ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--bl-muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.bl-proof li::before {
+  content: "✓ ";
+  color: var(--bl-teal);
+}
+
+.bl-section--tight {
+  padding-top: 1.5rem;
+}
+
 .bl-card {
   border: 1px solid var(--bl-line);
   border-radius: 1.25rem;

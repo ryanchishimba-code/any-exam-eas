@@ -78,7 +78,8 @@ describe("NCLEX landing model", () => {
     expect(serialized).not.toMatch(/aggregateRating|reviewCount|ratingValue/);
     expect(serialized).not.toMatch(/\b\d+ lessons\b/);
     expect(model.prices.map((price) => price.amount)).toEqual(["$139", "$27.99/mo"]);
-    expect(model.prices[0]?.label).toBe("Typical NCLEX prep");
+    expect(model.prices[0]?.label).toBe("Typical 30-day prep");
+    expect(model.proofPoints).toHaveLength(3);
     expect(model.stats.map((stat) => stat.label)).toEqual([
       "Questions",
       "Case studies",
@@ -86,12 +87,12 @@ describe("NCLEX landing model", () => {
       "NCSBN test plan",
     ]);
     expect(model.stats[0]?.value).toBe("108");
-    expect(model.stories.map((story) => story.name)).toEqual(["Nathan C.", "Priscilla J."]);
+    expect(model.stories).toEqual([]);
+    expect(model.formats).toEqual([]);
+    expect(model.faqs).toHaveLength(6);
     expect(model.quickBite?.slug).toBe(OPEN_QUICK_BITE_SLUG);
     expect(model.quickBite?.mediaUrl).toBe(`/api/quick-bites/${OPEN_QUICK_BITE_SLUG}/media`);
-    expect(model.faqs.map((faq) => faq.question).join(" ")).toMatch(
-      /how many|Next Gen|first try|cost|free/i
-    );
+    expect(model.faqs.map((faq) => faq.question).join(" ")).toMatch(/how many|Next Gen|cost|trial|rationales|reviews/i);
     const types = (model.jsonLd["@graph"] as { "@type": string }[]).map((node) => node["@type"]);
     expect(types).toEqual(
       expect.arrayContaining(["Organization", "BreadcrumbList", "Product", "FAQPage", "VideoObject"])
@@ -136,8 +137,8 @@ describe("Quick Bites sample", () => {
       "utf8"
     );
     expect(landing).not.toMatch(/QUICK_BITE_EPISODES|lessons|locked/i);
-    expect(landing).toMatch(/Get full access/);
     expect(landing).toMatch(/HomeSamplePlayer/);
+    expect(landing).toMatch(/bl-proof/);
   });
 });
 

@@ -8,16 +8,13 @@ import {
 } from "@/lib/counts";
 import type { LandingSuccessStory } from "@/lib/landing/content";
 import { landingTrialHrefForExam } from "@/lib/landing/trial-href";
-import { COMPETITOR_PRICE_AS_OF, TESTIMONIAL_RESULTS_NOTE } from "@/lib/marketing/legal-copy";
-import { formatNclexPrepPriceComparison } from "@/lib/marketing/price-comparison";
+import { COMPETITOR_PRICE_AS_OF } from "@/lib/marketing/legal-copy";
 import { collectedDistractorReasons } from "@/lib/exam-prep/item-qa/rationale-schema";
 import { HOME_EXPLAINED_SAMPLE } from "@/lib/marketing/home-explained";
 import { homeTrialCloseHeading, homeTrialCtaLabel } from "@/lib/marketing/home-cta";
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import { COMPETITOR_PRICING } from "@/lib/seo/competitor-comparison";
-import { testimonialsForBoard } from "@/lib/marketing/why-trust-it";
-import { mergeHomeTestimonials } from "@/lib/testimonials/home-stories";
 import {
   OPEN_PHARMACY_QUICK_BITE_SLUG,
   getPharmacyQuickBiteBySlug,
@@ -43,7 +40,6 @@ import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
 import { SITE_NAME, formatMonthlyPrice } from "@/lib/site";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { formatPlanUsd } from "@/lib/billing-plans";
-import { qotdPath } from "@/lib/demo/qotd-public";
 
 export type LandingOption = {
   id: string;
@@ -87,6 +83,7 @@ export type BoardLandingModel = {
   trialHref: string;
   trialLabel: string;
   trust: string[];
+  proofPoints: string[];
   stats: { value: string; label: string }[];
   countLine: string | null;
   priceHeading: string;
@@ -338,43 +335,47 @@ function liveUnits(units: BoardQuestionUnits | null, degraded: boolean): BoardQu
   return units;
 }
 
-function nclexFaqs(units: BoardQuestionUnits | null, formats: BoardFormatCard[]): { question: string; answer: string }[] {
-  const howMany = units
-    ? `AnyExamEasy currently serves ${formatBoardQuestionSentence(units)} for NCLEX. That total is the live scored bank, not a rounded marketing claim.`
-    : "The live NCLEX question count is shown on this page when the bank lookup succeeds. We do not publish a guessed total.";
-  const ngnNames = formats.map((card) => card.title);
-  const ngnList =
-    ngnNames.length <= 1
-      ? (ngnNames[0] ?? "")
-      : `${ngnNames.slice(0, -1).join(", ")}, and ${ngnNames[ngnNames.length - 1]}`;
-  const ngn = formats.length
-    ? `Yes. Live Next Gen NCLEX practice on this page includes ${ngnList}. Item types with no live questions stay off this page.`
-    : "Next Gen item types are listed on this page only when the live bank is serving them. Classic NCLEX-RN practice questions stay on the Pro plan.";
+function nclexFaqs(units: BoardQuestionUnits | null): { question: string; answer: string }[] {
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
+  const howMany = units
+    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for NCLEX-RN.`
+    : "We show the live total on this page when the bank lookup succeeds; we do not guess a number.";
   return [
     {
-      question: "How many NCLEX practice questions does AnyExamEasy have?",
+      question: "How many NCLEX practice questions are included?",
       answer: howMany,
     },
     {
-      question: "Does AnyExamEasy include Next Gen NCLEX and NGN case studies?",
-      answer: ngn,
-    },
-    {
-      question: "How do I pass the NCLEX on my first try?",
+      question: "Does this include Next Gen NCLEX (NGN)?",
       answer:
-        "Practice from a live question, read why the keyed answer is right, and read a reason for each wrong option when the item has one. Then use timed sets and review misses before test day. A practice score is not a prediction of a license result.",
+        "Yes. Pro includes NGN case studies and standalone NGN items alongside classic NCLEX-RN questions.",
     },
     {
       question: "How much does NCLEX prep cost?",
-      answer: `AnyExamEasy Pro is ${price} a month and includes NCLEX with five other boards. ${formatNclexPrepPriceComparison(price)} A typical public NCLEX list price we checked is ${typical} for 30 days, as of ${COMPETITOR_PRICE_AS_OF}.`,
+      answer: `Pro is ${price}/mo for NCLEX plus five other boards. Typical 30-day NCLEX prep we checked lists around ${typical} (as of ${COMPETITOR_PRICE_AS_OF}).`,
     },
     {
-      question: "Can I try a free NCLEX practice question before I pay?",
-      answer: `Yes. One NCLEX question on this page can be answered with no account. The ${TRIAL_DAYS}-day free trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions and does not ask for a payment method. Cancel in Settings before it ends and you are not charged.`,
+      question: "Is there a free trial?",
+      answer: `Start a ${TRIAL_DAYS}-day trial with ${TRIAL_LIFETIME_QUESTIONS} practice questions. No payment method required; cancel in Settings anytime.`,
+    },
+    {
+      question: "Are rationales included?",
+      answer:
+        "Every scored item shows the keyed answer and a short reason for each distractor when one is stored.",
+    },
+    {
+      question: "Who reviews the content?",
+      answer: "Clinical pharmacists and nurses review items before they ship in the live bank.",
     },
   ];
+}
+
+function nclexProofPoints(units: BoardQuestionUnits | null): string[] {
+  const count = units
+    ? `${formatExactQuestionCount(scoredQuestionCount(units))} live NCLEX questions`
+    : "Live NCLEX question bank";
+  return [count, "Reviewed by RN and PharmD clinicians", "Every answer explained"];
 }
 
 function nclexStats(units: BoardQuestionUnits | null): { value: string; label: string }[] {
@@ -408,42 +409,23 @@ function videoObject(bite: BoardQuickBite | null): Record<string, unknown> | nul
 export function buildNclexLandingModel(input: {
   degraded: boolean;
   units: BoardQuestionUnits | null;
-  bankTypes: Record<string, number>;
+  bankTypes?: Record<string, number>;
   sample: PublicSampleQuestion | null;
-  testimonials: LandingSuccessStory[];
+  testimonials?: LandingSuccessStory[];
 }): BoardLandingModel {
   const units = liveUnits(input.units, input.degraded);
-  const formats = nclexFormatCards({
-    bankTypes: input.bankTypes,
-    caseStudies: units?.caseStudies ?? 0,
-    caseItems: units?.caseItems ?? 0,
-    standaloneNgn: units?.standaloneNgn ?? 0,
-    bankNgnStyle: units?.bankNgnStyle ?? 0,
-    bankCaseStyle: units?.bankCaseStyle ?? 0,
-  });
+  const formats: BoardFormatCard[] = [];
   const sample = input.sample ? landingQuestionFromPublic(input.sample) : fallbackNclexQuestion();
-  const stories = testimonialsForBoard(mergeHomeTestimonials(input.testimonials), "nclex").map((story) => ({
-    name: story.name,
-    exam: story.exam,
-    quote: story.quote,
-    initials: story.initials,
-  }));
-  const faqs = nclexFaqs(units, formats);
+  const stories: BoardLandingModel["stories"] = [];
+  const faqs = nclexFaqs(units);
+  const proofPoints = nclexProofPoints(units);
   const quickBite = openBoardQuickBite("nursing");
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
   const trialHref = landingTrialHrefForExam("nclex");
   const pageUrl = absoluteUrl("/nclex");
   const site = getSiteUrl();
-  const links = [
-    { href: "#sample-question", label: "Free NCLEX practice question" },
-    { href: qotdPath("nclex"), label: "Question of the Day" },
-    { href: ROUTES.pricing, label: "Pricing" },
-    ...(formats.length > 0 ? [{ href: "#next-gen", label: "Next Gen NCLEX" }] : []),
-    { href: ROUTES.nclexStudyGuide, label: "NCLEX study guide" },
-    { href: "/practice/nclex", label: "NCLEX practice" },
-    { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
-  ];
+  const links: BoardLandingModel["links"] = [];
   const video = videoObject(quickBite);
   const graph: Record<string, unknown>[] = [
     {
@@ -493,37 +475,34 @@ export function buildNclexLandingModel(input: {
   return {
     h1Lead: "Pass the NCLEX on your",
     h1Accent: "first try.",
-    lede: "Answer a real NCLEX practice question before you create an account. See the keyed answer, a reason for each wrong option when the item has one, and the price before you start.",
+    lede: "Try a real question free. Start a 5-day trial when you are ready.",
     trialHref,
     trialLabel: homeTrialCtaLabel(),
-    trust: [
-      "No payment method to start",
-      "Cancel anytime in Settings",
-      "Written to the NCSBN test plan",
-    ],
+    trust: ["5-day free trial", "No payment method to start", "Cancel in Settings"],
+    proofPoints,
     stats: nclexStats(units),
-    countLine: units ? formatBoardQuestionSentence(units) : null,
-    priceHeading: "Same practice. A fraction of the price.",
-    priceLede: `Pro is ${price} a month for NCLEX and five other boards. ${formatNclexPrepPriceComparison(price)}`,
+    countLine: null,
+    priceHeading: "Simple pricing.",
+    priceLede: `${price}/mo for NCLEX and five other boards after your ${TRIAL_DAYS}-day trial.`,
     prices: [
       {
         id: "typical",
-        label: "Typical NCLEX prep",
+        label: "Typical 30-day prep",
         amount: typical,
-        detail: `30 days · public list price as of ${COMPETITOR_PRICE_AS_OF}`,
+        detail: `Public list prices we checked · ${COMPETITOR_PRICE_AS_OF}`,
         featured: false,
       },
       {
         id: "ours",
-        label: "AnyExamEasy",
+        label: "AnyExamEasy Pro",
         amount: `${price}/mo`,
-        detail: `${TRIAL_DAYS}-day free trial · six boards · cancel anytime`,
+        detail: `${TRIAL_DAYS}-day free trial · cancel anytime`,
         featured: true,
       },
     ],
     sample,
-    formatHeading: "Built for the Next Gen NCLEX.",
-    formatLede: "Only item types with live questions are listed.",
+    formatHeading: "",
+    formatLede: "",
     formats,
     quickBite,
     reviewers: CLINICAL_REVIEWERS.map((reviewer) => ({
@@ -535,11 +514,11 @@ export function buildNclexLandingModel(input: {
       color: reviewer.avatar.color,
     })),
     stories,
-    storyNote: TESTIMONIAL_RESULTS_NOTE,
+    storyNote: "",
     faqs,
     links,
-    finalHeading: homeTrialCloseHeading(),
-    finalLede: "No payment method required. Cancel anytime in Settings.",
+    finalHeading: "Start your free trial.",
+    finalLede: "No payment method required.",
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
   };
 }

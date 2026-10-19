@@ -3,25 +3,12 @@ import { LandingCta } from "@/components/landing/LandingCta";
 import { HeroScene } from "@/components/marketing/board-landing/HeroScene";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import { SamplePractice } from "@/components/marketing/board-landing/SamplePractice";
-import { CollapsibleSources } from "@/components/study/questions/CollapsibleSources";
 import type { HeroCaseScene } from "@/lib/marketing/board-landing/hero-case";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
-import { RATIONALE_STUDY_NOTE } from "@/lib/marketing/legal-copy";
-import { ROUTES } from "@/lib/routes";
-
-const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
-
-/**
- * Board marketing page. Copy and counts come from the model so a later
- * pharmacy page can pass its own content through the same sections.
- */
 function SampleQuestion({ model }: { model: BoardLandingModel }) {
   return (
     <article className="bl-card" id="sample-question" aria-labelledby="sample-heading">
-      <p className="bl-kicker" id="sample-heading">
-        Free NCLEX practice question
-      </p>
-      <h2 className="bl-card-title">Try it before you sign up.</h2>
+      <h2 className="bl-card-title" id="sample-heading">Free sample question</h2>
       <p className="bl-stem">{model.sample.stem}</p>
       <SamplePractice sample={model.sample} />
     </article>
@@ -84,23 +71,13 @@ export function BoardLanding({
         </div>
       ) : null}
 
-      {model.stats.length > 0 ? (
-        <section className="bl-stats" aria-label="Live NCLEX bank counts">
-          <dl>
-            {model.stats.map((stat) => (
-              <div key={stat.label}>
-                <dt>{stat.label}</dt>
-                <dd>{stat.value}</dd>
-              </div>
-            ))}
-          </dl>
-          {model.countLine ? <p>{model.countLine}</p> : null}
-        </section>
-      ) : (
-        <section className="bl-stats" aria-label="Live NCLEX bank counts">
-          <p>Live question counts are unavailable right now.</p>
-        </section>
-      )}
+      <section className="bl-proof" aria-label="Why students use AnyExamEasy">
+        <ul>
+          {model.proofPoints.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+      </section>
 
       <section className="bl-price" aria-labelledby="price-heading">
         <h2 id="price-heading">{model.priceHeading}</h2>
@@ -116,68 +93,9 @@ export function BoardLanding({
         </div>
       </section>
 
-      <section className="bl-section" aria-labelledby="explained-heading">
-        <h2 id="explained-heading">Every question explained.</h2>
-        <p className="bl-section-lede">
-          The keyed answer and each stored reason are on the page. A check mark opens the sources.
-        </p>
-        <article className="bl-card bl-explained">
-          <h3>Sample NCLEX question</h3>
-          <p className="bl-stem">{model.sample.stem}</p>
-          <ol className="bl-explained-list">
-            {model.sample.options.map((option, index) => (
-              <li key={option.id} className={option.correct ? "is-correct" : undefined}>
-                <p>
-                  <span className="bl-letter" aria-hidden>
-                    {LETTERS[index] ?? index + 1}
-                  </span>
-                  {option.text}
-                </p>
-                {option.rationale ? (
-                  <p className="bl-reason">
-                    <span className="bl-reason-label">{option.correct ? "Correct. " : "Why not. "}</span>
-                    {option.rationale}
-                  </p>
-                ) : (
-                  <p className="bl-reason">This option is not the keyed answer.</p>
-                )}
-              </li>
-            ))}
-          </ol>
-          <p className="bl-study-note">{RATIONALE_STUDY_NOTE}</p>
-          {model.sample.sources.length > 0 ? (
-            <CollapsibleSources count={model.sample.sources.length} resetKey={`${model.sample.id}-static`}>
-              <ul>
-                {model.sample.sources.map((source) => (
-                  <li key={source}>
-                    <cite>{source}</cite>
-                  </li>
-                ))}
-              </ul>
-            </CollapsibleSources>
-          ) : null}
-        </article>
-      </section>
-
-      {model.formats.length > 0 ? (
-        <section className="bl-section" id="next-gen" aria-labelledby="ngn-heading">
-          <h2 id="ngn-heading">{model.formatHeading}</h2>
-          <p className="bl-section-lede">{model.formatLede}</p>
-          <ul className="bl-format-grid">
-            {model.formats.map((card) => (
-              <li key={card.id}>
-                <h3>{card.title}</h3>
-                <p>{card.detail}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
       {model.quickBite ? (
-        <section className="bl-section" id="quick-bites" aria-labelledby="quick-bites-heading">
-          <h2 id="quick-bites-heading">Quick Bites</h2>
-          <p className="bl-section-lede">Watch one free sample. The video file loads after you press play.</p>
+        <section className="bl-section bl-section--tight" id="quick-bites" aria-labelledby="quick-bites-heading">
+          <h2 id="quick-bites-heading">Quick Bites sample</h2>
           <article className="bl-card">
             <h3>
               {model.quickBite.title}
@@ -191,66 +109,12 @@ export function BoardLanding({
               captions={model.quickBite.captions}
               imageAlt={model.quickBite.imageAlt}
             />
-            <p className="bl-bite-cta">
-              <Link href={ROUTES.pricing}>Get full access</Link>
-            </p>
           </article>
         </section>
       ) : null}
 
-      <section className="bl-section" aria-labelledby="reviewers-heading">
-        <h2 id="reviewers-heading">Content review.</h2>
-        <ul className="bl-reviewers">
-          {model.reviewers.map((reviewer) => (
-            <li key={reviewer.id}>
-              <span
-                className="bl-avatar"
-                style={{ background: reviewer.background, color: reviewer.color }}
-                aria-hidden
-              >
-                {reviewer.initials}
-              </span>
-              <h3>{reviewer.name}</h3>
-              <p>{reviewer.role}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {model.stories.length > 0 ? (
-        <section className="bl-section" aria-labelledby="stories-heading">
-          <h2 id="stories-heading">From students.</h2>
-          <p className="bl-section-lede">{model.storyNote}</p>
-          <ul className="bl-stories">
-            {model.stories.map((story) => (
-              <li key={story.name}>
-                <blockquote>
-                  <p>{story.quote}</p>
-                </blockquote>
-                <p className="bl-story-by">
-                  <span aria-hidden>{story.initials}</span>
-                  {story.name}
-                  <span> · {story.exam}</span>
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
-      <section className="bl-section" aria-labelledby="links-heading">
-        <h2 id="links-heading">More NCLEX practice</h2>
-        <ul className="bl-links">
-          {model.links.map((link) => (
-            <li key={link.href}>
-              <Link href={link.href}>{link.label}</Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="bl-section" id="faq" aria-labelledby="faq-heading">
-        <h2 id="faq-heading">Questions.</h2>
+      <section className="bl-section bl-section--tight" id="faq" aria-labelledby="faq-heading">
+        <h2 id="faq-heading">FAQ</h2>
         <div className="bl-faq">
           {model.faqs.map((faq) => (
             <details key={faq.question}>

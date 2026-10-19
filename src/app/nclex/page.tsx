@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { BoardLanding } from "@/components/marketing/board-landing/BoardLanding";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { loadNursingBankTypeCounts } from "@/lib/marketing/board-landing/bank-types";
 import { loadNclexHeroCase } from "@/lib/marketing/board-landing/hero-case";
 import { buildNclexLandingMetadata, buildNclexLandingModel } from "@/lib/marketing/board-landing/model";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
-import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 
 /**
  * Five-minute ISR. This must stay a numeric literal (Next cannot analyze an
@@ -19,11 +17,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NclexHubPage() {
-  const [{ bundle, display }, testimonials, samples, bankTypes, scene] = await Promise.all([
+  const [{ bundle, display }, samples, scene] = await Promise.all([
     loadPublicQuestionCounts({ dynamic: false }),
-    getCachedPublishedTestimonials(6),
     getPublicSampleQuestions(),
-    loadNursingBankTypeCounts(),
     loadNclexHeroCase(),
   ]);
   const exam = display.exams.find((row) => row.slug === "nclex");
@@ -31,9 +27,7 @@ export default async function NclexHubPage() {
   const model = buildNclexLandingModel({
     degraded: !live,
     units: live ? (bundle.snapshot.boards?.nclex ?? null) : null,
-    bankTypes,
     sample: samples.find((item) => item.fieldId === "nursing") ?? null,
-    testimonials,
   });
 
   return (
