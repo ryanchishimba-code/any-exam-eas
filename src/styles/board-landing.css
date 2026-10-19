@@ -629,6 +629,19 @@
   padding-left: 1.2rem;
 }
 
+.bl-vitals-details {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.bl-vitals-summary {
+  margin-top: 0.9rem;
+  font-size: 1rem;
+  font-weight: 750;
+  color: var(--bl-navy);
+  cursor: pointer;
+}
+
 .bl-vital-scroll {
   max-width: 100%;
   min-width: 0;
@@ -639,8 +652,6 @@
 .bl-device-screen table {
   border-collapse: collapse;
   width: 100%;
-  max-width: 100%;
-  table-layout: fixed;
   font-size: 0.82rem;
 }
 
@@ -649,8 +660,36 @@
   padding: 0.35rem 0.4rem;
   border-bottom: 1px solid var(--bl-line);
   text-align: left;
-  white-space: normal;
-  overflow-wrap: break-word;
+  white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  .bl-vitals-title {
+    display: none;
+  }
+
+  .bl-vitals-details .bl-vital-scroll {
+    margin-top: 0.35rem;
+  }
+
+  .bl-vitals-details table {
+    table-layout: fixed;
+    max-width: 100%;
+    font-size: 0.75rem;
+  }
+
+  .bl-vitals-details th,
+  .bl-vitals-details td {
+    padding: 0.3rem 0.2rem;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+}
+
+@media (min-width: 640px) {
+  .bl-vitals-summary {
+    display: none;
+  }
 }
 
 .bl-device-why span {
@@ -738,12 +777,6 @@
 
   .bl-device-screen {
     padding: 0.75rem 0.7rem 0.9rem;
-  }
-
-  .bl-device-screen th,
-  .bl-device-screen td {
-    padding: 0.3rem 0.2rem;
-    font-size: 0.75rem;
   }
 }
 
