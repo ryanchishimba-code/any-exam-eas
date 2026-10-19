@@ -13,9 +13,28 @@ import { RATIONALE_STUDY_NOTE } from "@/lib/marketing/legal-copy";
 
 const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
 
-function HeroOfferBand({ offer }: { offer: NonNullable<BoardLandingModel["heroOffer"]> }) {
+function HeroDifferentiatorChips({ chips }: { chips: NonNullable<BoardLandingModel["heroChips"]> }) {
   return (
-    <div className="bl-hero-band" aria-label="Live bank size and pricing">
+    <ul className="bl-hero-chips" aria-label="Why students choose AnyExamEasy over other question banks">
+      {chips.map((chip) => (
+        <li key={chip.id}>{chip.text}</li>
+      ))}
+    </ul>
+  );
+}
+
+function HeroOfferBand({
+  offer,
+  chipsAbove,
+}: {
+  offer: NonNullable<BoardLandingModel["heroOffer"]>;
+  chipsAbove?: boolean;
+}) {
+  return (
+    <div
+      className={`bl-hero-band${chipsAbove ? " bl-hero-band--count-only" : ""}`}
+      aria-label={chipsAbove ? "Live NCLEX question bank size" : "Live bank size and pricing"}
+    >
       <p className="bl-hero-band__count">
         {offer.liveQuestions ? (
           <>
@@ -26,12 +45,18 @@ function HeroOfferBand({ offer }: { offer: NonNullable<BoardLandingModel["heroOf
           <span className="bl-hero-band__label">Live NCLEX question bank</span>
         )}
       </p>
-      <p className="bl-hero-band__prices">
-        <span className="bl-hero-band__ours">{offer.proPrice}</span>
-        <span className="bl-hero-band__vs" aria-hidden> · </span>
-        <span className="bl-hero-band__typical">vs {offer.typicalPrice} typical 30-day prep</span>
-      </p>
-      <p className="bl-hero-band__trial">{offer.trialLine}</p>
+      {chipsAbove ? (
+        <p className="bl-hero-band__trial">{offer.trialLine}</p>
+      ) : (
+        <>
+          <p className="bl-hero-band__prices">
+            <span className="bl-hero-band__ours">{offer.proPrice}</span>
+            <span className="bl-hero-band__vs" aria-hidden> · </span>
+            <span className="bl-hero-band__typical">vs {offer.typicalPrice} typical 30-day prep</span>
+          </p>
+          <p className="bl-hero-band__trial">{offer.trialLine}</p>
+        </>
+      )}
     </div>
   );
 }
@@ -78,8 +103,11 @@ export function BoardLanding({
           <h1 id="board-hero-heading">
             {model.h1Lead} <span>{model.h1Accent}</span>
           </h1>
-          {model.heroOffer ? <HeroOfferBand offer={model.heroOffer} /> : null}
-          <p className="bl-lede">{model.lede}</p>
+          {model.heroChips?.length ? <HeroDifferentiatorChips chips={model.heroChips} /> : null}
+          {model.heroOffer ? (
+            <HeroOfferBand offer={model.heroOffer} chipsAbove={Boolean(model.heroChips?.length)} />
+          ) : null}
+          {lean ? null : <p className="bl-lede">{model.lede}</p>}
           {scene || pharmacy ? null : (
             <div className="bl-actions">
               <LandingCta href={model.trialHref} ctaName={model.heroCtaName} location={model.heroCtaLocation}>
@@ -92,11 +120,13 @@ export function BoardLanding({
               ) : null}
             </div>
           )}
-          <ul className="bl-trust">
-            {model.trust.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+          {model.heroChips?.length ? null : (
+            <ul className="bl-trust">
+              {model.trust.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          )}
         </div>
         {pharmacy ? (
           <PharmacyHero
@@ -127,16 +157,6 @@ export function BoardLanding({
         <div className="bl-sample-wrap">
           <SampleQuestion model={model} />
         </div>
-      ) : null}
-
-      {lean ? (
-        <section className="bl-proof" aria-label="Why students use AnyExamEasy">
-          <ul>
-            {model.proofPoints.map((point) => (
-              <li key={point}>{point}</li>
-            ))}
-          </ul>
-        </section>
       ) : null}
 
       {model.features.length > 0 ? (

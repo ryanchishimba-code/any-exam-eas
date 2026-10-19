@@ -11,6 +11,7 @@ import {
   iso8601Duration,
   mediaVersionUploadDate,
   nclexFormatCards,
+  nclexHeroChips,
   nclexMetaDescription,
   nclexMetaTitle,
   openBoardQuickBite,
@@ -79,7 +80,11 @@ describe("NCLEX landing model", () => {
     expect(serialized).not.toMatch(/\b\d+ lessons\b/);
     expect(model.prices.map((price) => price.amount)).toEqual(["$139", "$27.99/mo"]);
     expect(model.prices[0]?.label).toBe("Typical 30-day prep");
-    expect(model.proofPoints).toHaveLength(2);
+    expect(model.proofPoints).toEqual([]);
+    expect(model.heroChips).toHaveLength(3);
+    expect(model.heroChips?.[0]?.text).toMatch(/\$27\.99\/mo vs \$139/);
+    expect(model.heroChips?.[1]?.text).toMatch(/guideline references/i);
+    expect(nclexHeroChips(model.heroOffer!)[2]?.text).toMatch(/NGN case studies/i);
     expect(model.features.map((feature) => feature.id)).toEqual(
       expect.arrayContaining(["adaptive", "readiness", "explained", "qotd", "review", "mobile"])
     );
@@ -145,7 +150,7 @@ describe("Quick Bites sample", () => {
     );
     expect(landing).not.toMatch(/QUICK_BITE_EPISODES|lessons|locked/i);
     expect(landing).toMatch(/HomeSamplePlayer/);
-    expect(landing).toMatch(/bl-proof/);
+    expect(landing).toMatch(/bl-hero-chips/);
     expect(landing).toMatch(/bl-hero-band/);
     expect(landing).toMatch(/BoardFeatureGrid/);
   });

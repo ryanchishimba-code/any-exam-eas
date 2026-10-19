@@ -90,6 +90,8 @@ export type BoardLandingModel = {
     typicalPrice: string;
     trialLine: string;
   };
+  /** Short above-the-fold differentiators (lean NCLEX hero). */
+  heroChips?: { id: string; text: string }[];
   proofPoints: string[];
   features: BoardFeatureCard[];
   stats: { value: string; label: string }[];
@@ -406,6 +408,24 @@ function nclexHeroOffer(units: BoardQuestionUnits | null): BoardLandingModel["he
   };
 }
 
+/** Three verifiable differentiators for the lean NCLEX hero (pricing comes from live config). */
+export function nclexHeroChips(offer: NonNullable<BoardLandingModel["heroOffer"]>): BoardLandingModel["heroChips"] {
+  return [
+    {
+      id: "price",
+      text: `${offer.proPrice} vs ${offer.typicalPrice} typical 30-day prep · ${TRIAL_DAYS}-day free trial`,
+    },
+    {
+      id: "explained",
+      text: "Every answer explained, with sources and guideline references on bank items.",
+    },
+    {
+      id: "included",
+      text: "NGN case studies, CAT-style exams, and readiness score—no add-ons.",
+    },
+  ];
+}
+
 function nclexStats(units: BoardQuestionUnits | null): { value: string; label: string }[] {
   if (!units) return [];
   const stats = [{ value: formatExactQuestionCount(scoredQuestionCount(units)), label: "Questions" }];
@@ -448,6 +468,7 @@ export function buildNclexLandingModel(input: {
   const faqs = nclexFaqs(units);
   const proofPoints = nclexProofPoints();
   const heroOffer = nclexHeroOffer(units);
+  const heroChips = nclexHeroChips(heroOffer);
   const bankTypes = input.bankTypes ?? {};
   const quickBite = openBoardQuickBite("nursing");
   const features = nclexFeatureCards({ units, bankTypes, quickBite });
@@ -506,12 +527,13 @@ export function buildNclexLandingModel(input: {
   return {
     h1Lead: "Pass the NCLEX on your",
     h1Accent: "first try.",
-    lede: "Try a real question free. Start a 5-day trial when you are ready.",
+    lede: "Try the free sample below, then start your trial when you are ready.",
     trialHref,
     trialLabel: homeTrialCtaLabel(),
     trust: ["5-day free trial", "No payment method to start", "Cancel in Settings"],
     heroOffer,
-    proofPoints,
+    heroChips,
+    proofPoints: [],
     features,
     stats: nclexStats(units),
     countLine: null,

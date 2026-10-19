@@ -69,6 +69,42 @@
   color: var(--bl-teal);
 }
 
+.bl-hero-chips {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  list-style: none;
+  min-height: 5.1rem;
+  max-width: 36rem;
+}
+
+.bl-hero-chips li {
+  position: relative;
+  padding: 0.48rem 0.65rem 0.48rem 1.65rem;
+  border: 1px solid var(--bl-line);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 6px 18px rgba(10, 37, 64, 0.04);
+  color: var(--bl-navy);
+  font-size: clamp(0.78rem, 2.6vw, 0.88rem);
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.bl-hero-chips li::before {
+  content: "";
+  position: absolute;
+  left: 0.65rem;
+  top: 0.62rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--bl-teal);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+}
+
 .bl-hero-band {
   margin-top: 0.85rem;
   min-height: 5.75rem;
@@ -120,6 +156,11 @@
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--bl-muted);
+}
+
+.bl-hero-band--count-only {
+  min-height: 3.35rem;
+  margin-top: 0.65rem;
 }
 
 .bl-lede,
