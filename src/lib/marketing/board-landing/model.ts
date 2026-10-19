@@ -26,6 +26,7 @@ import {
   quickBitePoster,
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
+import { nclexFeatureCards, type BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
 import { ROUTES } from "@/lib/routes";
 import {
   DEFAULT_OG_IMAGE_HEIGHT,
@@ -90,6 +91,7 @@ export type BoardLandingModel = {
     trialLine: string;
   };
   proofPoints: string[];
+  features: BoardFeatureCard[];
   stats: { value: string; label: string }[];
   countLine: string | null;
   priceHeading: string;
@@ -446,7 +448,9 @@ export function buildNclexLandingModel(input: {
   const faqs = nclexFaqs(units);
   const proofPoints = nclexProofPoints();
   const heroOffer = nclexHeroOffer(units);
+  const bankTypes = input.bankTypes ?? {};
   const quickBite = openBoardQuickBite("nursing");
+  const features = nclexFeatureCards({ units, bankTypes, quickBite });
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
   const trialHref = landingTrialHrefForExam("nclex");
@@ -508,6 +512,7 @@ export function buildNclexLandingModel(input: {
     trust: ["5-day free trial", "No payment method to start", "Cancel in Settings"],
     heroOffer,
     proofPoints,
+    features,
     stats: nclexStats(units),
     countLine: null,
     priceHeading: "Simple pricing.",

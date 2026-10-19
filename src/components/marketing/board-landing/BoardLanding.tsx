@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
 import { HeroScene } from "@/components/marketing/board-landing/HeroScene";
 import { PharmacyHero } from "@/components/marketing/board-landing/PharmacyHero";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
@@ -136,7 +137,13 @@ export function BoardLanding({
             ))}
           </ul>
         </section>
-      ) : (
+      ) : null}
+
+      {model.features.length > 0 ? (
+        <BoardFeatureGrid cards={model.features} tight={lean} />
+      ) : null}
+
+      {lean ? null : (
         <>
           {model.stats.length > 0 ? (
             <section className="bl-stats" aria-label={model.statsLabel}>

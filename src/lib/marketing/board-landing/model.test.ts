@@ -80,6 +80,10 @@ describe("NCLEX landing model", () => {
     expect(model.prices.map((price) => price.amount)).toEqual(["$139", "$27.99/mo"]);
     expect(model.prices[0]?.label).toBe("Typical 30-day prep");
     expect(model.proofPoints).toHaveLength(2);
+    expect(model.features.map((feature) => feature.id)).toEqual(
+      expect.arrayContaining(["adaptive", "readiness", "explained", "qotd", "review", "mobile"])
+    );
+    expect(model.features.find((feature) => feature.id === "ngn")?.line).toMatch(/select all that apply/i);
     expect(model.heroOffer.liveQuestions).toBe("108");
     expect(model.heroOffer.proPrice).toBe("$27.99/mo");
     expect(model.heroOffer.typicalPrice).toBe("$139");
@@ -143,6 +147,7 @@ describe("Quick Bites sample", () => {
     expect(landing).toMatch(/HomeSamplePlayer/);
     expect(landing).toMatch(/bl-proof/);
     expect(landing).toMatch(/bl-hero-band/);
+    expect(landing).toMatch(/BoardFeatureGrid/);
   });
 });
 

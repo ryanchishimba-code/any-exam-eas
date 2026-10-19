@@ -13,6 +13,10 @@ import { landingTrialHrefForExam } from "@/lib/landing/trial-href";
 import { TESTIMONIAL_RESULTS_NOTE } from "@/lib/marketing/legal-copy";
 import { homeTrialCloseHeading, homeTrialCtaLabel } from "@/lib/marketing/home-cta";
 import {
+  ngnFeatureLineFromFormatCards,
+  type BoardFeatureCard,
+} from "@/lib/marketing/board-landing/board-features";
+import {
   boardVideoNode,
   openBoardQuickBite,
   type BoardFormatCard,
@@ -58,6 +62,57 @@ function countForTypes(counts: Record<string, number>, types: readonly string[])
 }
 
 /** Cards for pharmacy item types that have a live inventory count. Zero counts stay off the page. */
+export function naplexLandingFeatures(input: {
+  degraded: boolean;
+  bankTypes: Record<string, number>;
+  quickBite: ReturnType<typeof openBoardQuickBite>;
+}): BoardFeatureCard[] {
+  const formats = input.degraded ? [] : naplexFormatCards(input.bankTypes);
+  const cards: BoardFeatureCard[] = [];
+  const formatLine = ngnFeatureLineFromFormatCards(formats);
+  if (formatLine) {
+    cards.push({
+      id: "formats",
+      title: "NAPLEX item types",
+      line: formatLine,
+      icon: "ngn",
+    });
+  }
+  cards.push({
+    id: "explained",
+    title: "Every answer explained",
+    line: "Calculation walkthroughs and reasons for each distractor.",
+    icon: "explained",
+  });
+  if (input.quickBite) {
+    cards.push({
+      id: "quick-bites",
+      title: "Quick Bites",
+      line: "Short pharmacy teaching clips—sample below.",
+      icon: "quick-bites",
+    });
+  }
+  cards.push({
+    id: "qotd",
+    title: "Question of the Day",
+    line: "One fresh NAPLEX question daily—free to try.",
+    icon: "qotd",
+  });
+  cards.push({
+    id: "readiness",
+    title: "Readiness score",
+    line: "Practice progress and a baseline check—in-app only.",
+    icon: "readiness",
+  });
+  cards.push({
+    id: "mobile",
+    title: "Mobile-friendly",
+    line: "Practice on your phone without sideways scroll.",
+    icon: "mobile",
+  });
+  return cards;
+}
+
 export function naplexFormatCards(bankTypes: Record<string, number>): BoardFormatCard[] {
   const cards: BoardFormatCard[] = [];
   for (const group of PHARMACY_TYPE_GROUPS) {
@@ -200,6 +255,11 @@ export function buildNaplexLandingModel(input: {
   }));
   const faqs = naplexFaqs(units);
   const quickBite = openBoardQuickBite("pharmacy");
+  const features = naplexLandingFeatures({
+    degraded: input.degraded,
+    bankTypes: input.bankTypes,
+    quickBite,
+  });
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(NAPLEX_TYPICAL_LIST_PRICE_USD);
   const trialHref = landingTrialHrefForExam("naplex");
@@ -269,6 +329,7 @@ export function buildNaplexLandingModel(input: {
     trialLabel: homeTrialCtaLabel(),
     trust: ["No payment method to start", "Cancel anytime in Settings", "Written to the NABP content outline"],
     proofPoints: [],
+    features,
     stats: naplexStats(units, input.degraded ? {} : input.bankTypes),
     countLine: units ? formatBoardQuestionSentence(units) : null,
     priceHeading: "NAPLEX prep, side by side.",
