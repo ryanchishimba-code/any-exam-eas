@@ -34,8 +34,14 @@
 
 .bl-hero {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
   padding: calc(var(--nav-height, 3.25rem) + 1.25rem) 0 2rem;
+}
+
+.bl-hero > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .bl-kicker {
@@ -222,6 +228,12 @@
   margin: 0;
 }
 
+.bl-stats div,
+.bl-price article {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .bl-stats div {
   display: flex;
   flex-direction: column-reverse;
@@ -266,6 +278,7 @@
 
 .bl-price-grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
   margin-top: 1.1rem;
 }
@@ -509,11 +522,19 @@
 
 .bl-scene {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
   min-width: 0;
+  max-width: 100%;
+}
+
+.bl-scene > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .bl-device {
+  width: 100%;
   border: 10px solid var(--bl-navy);
   border-radius: 1.75rem;
   background: var(--bl-navy);
@@ -547,12 +568,16 @@
 }
 
 .bl-device-screen {
+  max-width: 100%;
+  min-width: 0;
   max-height: 22rem;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   border-radius: 1.1rem;
   background: #fff;
   padding: 0.85rem 0.9rem 1rem;
   color: var(--bl-navy);
+  overflow-wrap: break-word;
 }
 
 .bl-device-kicker,
@@ -612,6 +637,8 @@
 }
 
 .bl-vital-scroll {
+  max-width: 100%;
+  min-width: 0;
   margin-top: 0.45rem;
   overflow-x: auto;
 }
@@ -619,6 +646,8 @@
 .bl-device-screen table {
   border-collapse: collapse;
   width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
   font-size: 0.82rem;
 }
 
@@ -627,7 +656,8 @@
   padding: 0.35rem 0.4rem;
   border-bottom: 1px solid var(--bl-line);
   text-align: left;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .bl-device-why span {
@@ -636,6 +666,7 @@
 
 .bl-float {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.6rem;
   margin: 0;
   padding: 0;
@@ -643,11 +674,14 @@
 }
 
 .bl-float li {
+  min-width: 0;
+  max-width: 100%;
   padding: 0.8rem 0.85rem;
   border: 1px solid var(--bl-line);
   border-radius: 1rem;
   background: #fff;
   box-shadow: 0 10px 24px rgba(10, 37, 64, 0.06);
+  overflow-wrap: break-word;
   animation: bl-float 6s ease-in-out infinite alternate;
 }
 
@@ -680,6 +714,10 @@
 .bl-scene .bl-actions > a,
 .bl-scene .aee-flagship-cta {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
 }
 
 .bl-scene a:focus-visible {
@@ -699,6 +737,20 @@
 @media (max-width: 719px) {
   .bl-float-desktop {
     display: none;
+  }
+
+  .bl-device {
+    border-width: 8px;
+  }
+
+  .bl-device-screen {
+    padding: 0.75rem 0.7rem 0.9rem;
+  }
+
+  .bl-device-screen th,
+  .bl-device-screen td {
+    padding: 0.3rem 0.2rem;
+    font-size: 0.75rem;
   }
 }
 
