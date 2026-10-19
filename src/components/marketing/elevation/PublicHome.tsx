@@ -6,7 +6,7 @@ import { HomeCompare } from "@/components/marketing/elevation/HomeCompare";
 import { HomePassVideo } from "@/components/marketing/elevation/HomePassVideo";
 import { HomeQuickBites } from "@/components/marketing/elevation/HomeQuickBites";
 import { HomeStickyCta } from "@/components/marketing/elevation/HomeStickyCta";
-import { IconCases, IconCheck, IconReviewers } from "@/components/marketing/elevation/home-icons";
+import { IconCases } from "@/components/marketing/elevation/home-icons";
 import "@/styles/home-visual.css";
 import { LANDING_HERO_EXAMS, LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { HOME_EXPLAINED_SAMPLE } from "@/lib/marketing/home-explained";
@@ -22,13 +22,8 @@ import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { absoluteUrl } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
-import { formatMonthlyPrice } from "@/lib/site";
-
-const TRUST = [
-  { icon: IconCheck, label: "Rationale for every option" },
-  { icon: IconReviewers, label: "Named clinical reviewers" },
-  { icon: IconCases, label: "NGN and case questions" },
-] as const;
+import { formatExactQuestionCount } from "@/lib/counts";
+import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 
 const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
 
@@ -43,16 +38,22 @@ const HERO_BOARD_TILES: { slug: ExamSeoKey; label: string }[] = [
 ];
 
 export function PublicHome({
-  proof,
   quote,
   ngnCaseStudies = false,
+  questionCount = null,
 }: {
-  proof?: ReactNode;
   quote?: ReactNode;
   /** Set when the same snapshot has published NCLEX case studies. */
   ngnCaseStudies?: boolean;
+  /** Live scored-item total from the same snapshot as /api/marketing/bank-counts. */
+  questionCount?: number | null;
 }) {
   const cta = homeTrialCtaLabel();
+  const monthly = formatMonthlyPrice("pro");
+  const questionLine =
+    questionCount != null && questionCount > 0
+      ? `${formatExactQuestionCount(questionCount)} practice questions`
+      : null;
   const headlineBreak = HOME_PRACTICE_HEADLINE.lastIndexOf(". ");
   const headlineLead =
     headlineBreak === -1 ? HOME_PRACTICE_HEADLINE : HOME_PRACTICE_HEADLINE.slice(0, headlineBreak + 1);
@@ -67,7 +68,7 @@ export function PublicHome({
             <span className="home-hero__line">{headlineLead}</span>{" "}
             <span className="home-hero__accent">{headlineAccent}</span>
           </h1>
-          <nav className="home-hero__boards" aria-label="Board exams">
+          <nav className="home-hero__sub home-hero__boards" aria-label="Board exams">
             <ul>
               {HERO_BOARD_TILES.map((board) => (
                 <li key={board.slug}>
@@ -76,25 +77,26 @@ export function PublicHome({
               ))}
             </ul>
           </nav>
-          <p className="home-hero__sub">Every exam, every rationale, one plan.</p>
+          <ul className="home-hero__points" aria-label="Plan facts">
+            {questionLine ? <li>{questionLine}</li> : null}
+            <li>{monthly}/mo vs typical prep</li>
+            <li>{formatTrialLabel()}</li>
+          </ul>
           <div className="home-hero__actions">
             <LandingCta href={LANDING_TRIAL_HREF} ctaName="hero_trial" location="hero">
               {cta}
             </LandingCta>
+            <LandingCta
+              href={ROUTES.pricing}
+              variant="secondary"
+              ctaName="hero_pricing"
+              location="hero"
+            >
+              See pricing
+            </LandingCta>
           </div>
-          <p className="home-hero__note">{HOME_NO_PAYMENT_LINE}</p>
-          <ul className="home-trust" aria-label="What is included">
-            {TRUST.map((item) => (
-              <li key={item.label}>
-                <item.icon />
-                <span>{item.label}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
-
-      {proof}
 
       <section className="home-section home-rise" aria-labelledby="explained-heading">
         <h2 id="explained-heading">Every question explained.</h2>
@@ -159,7 +161,7 @@ export function PublicHome({
         <h2 id="price-heading">Six boards. One price.</h2>
         <article className="home-price">
           <p className="home-price__plan">Pro</p>
-          <p className="home-price__amount">{formatMonthlyPrice("pro")}</p>
+          <p className="home-price__amount">{monthly}</p>
           <p className="home-price__period">a month</p>
           <p className="home-price__trial">{HOME_NO_PAYMENT_LINE}</p>
           <ul className="home-boards">

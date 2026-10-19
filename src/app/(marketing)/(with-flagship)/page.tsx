@@ -3,9 +3,8 @@ import { Suspense } from "react";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeExperience } from "@/components/home/HomeExperience";
 import { HomeQuote } from "@/components/marketing/elevation/HomeQuote";
-import { HomeProofStrip } from "@/components/marketing/elevation/HomeProofStrip";
 import { PublicHome } from "@/components/marketing/elevation/PublicHome";
-import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
+import { siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { mergeHomeTestimonials } from "@/lib/testimonials/home-stories";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
@@ -29,11 +28,6 @@ async function HomeJsonLdLive() {
   return <HomeJsonLd totalLabel={exactLabel || undefined} />;
 }
 
-async function HomeProofLive() {
-  const { bundle } = await loadPublicQuestionCounts({ dynamic: false });
-  return <HomeProofStrip facts={buildHomeProofFacts(siteCountsFromSnapshot(bundle.snapshot))} />;
-}
-
 async function HomeQuoteLive() {
   const testimonials = await getCachedPublishedTestimonials(6);
   return <HomeQuote stories={mergeHomeTestimonials(testimonials)} />;
@@ -50,11 +44,7 @@ export default async function HomePage() {
       <HomeExperience bankCounts={display}>
         <PublicHome
           ngnCaseStudies={Boolean(site && site.boards.nclex.caseStudies > 0)}
-          proof={
-            <Suspense fallback={null}>
-              <HomeProofLive />
-            </Suspense>
-          }
+          questionCount={site?.totalQuestions ?? null}
           quote={
             <Suspense fallback={null}>
               <HomeQuoteLive />

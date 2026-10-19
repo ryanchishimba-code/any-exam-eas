@@ -111,6 +111,29 @@ describe("homepage marketing sections", () => {
     expect(container.innerHTML).not.toMatch(MEDIA_FILE);
   });
 
+  it("puts the benefit, boards, proof, and both actions in the hero", () => {
+    render(<PublicHome questionCount={43210} />);
+    const hero = document.querySelector(".home-hero");
+    expect(hero).toBeTruthy();
+    expect(
+      screen.getByRole("heading", {
+        name: "Pass your boards on your first try. Every question explained, checked to current guidelines.",
+      })
+    ).toBeInTheDocument();
+    const facts = within(screen.getByRole("list", { name: "Plan facts" }));
+    expect(facts.getByText("43,210 practice questions")).toBeInTheDocument();
+    expect(facts.getByText("$27.99/mo vs typical prep")).toBeInTheDocument();
+    expect(facts.getByText("5-day free trial")).toBeInTheDocument();
+    const heroRegion = within(hero as HTMLElement);
+    expect(heroRegion.getByRole("link", { name: "Start 5-day free trial" })).toHaveAttribute(
+      "href",
+      "/signup?plan=trial&interval=monthly&tier=pro"
+    );
+    expect(heroRegion.getByRole("link", { name: "See pricing" })).toHaveAttribute("href", ROUTES.pricing);
+    expect(hero?.querySelector("img")).toBeNull();
+    expect(hero?.textContent).not.toMatch(/UWorld|Kaplan|Archer|RxPrep|AMBOSS/i);
+  });
+
   it("links each first-screen board tile to that board page", () => {
     render(<PublicHome />);
     const tiles = within(screen.getByRole("navigation", { name: "Board exams" }));

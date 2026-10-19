@@ -85,8 +85,9 @@ export function requestClientIp(req: Request): string | null {
   return req.headers.get("x-real-ip");
 }
 
-/** Home hero. No outcome promise. */
-export const HOME_PRACTICE_HEADLINE = "One study system. Six boards.";
+/** Home hero. A benefit line, not a pass guarantee. */
+export const HOME_PRACTICE_HEADLINE =
+  "Pass your boards on your first try. Every question explained, checked to current guidelines.";
 
 /** Readiness panel. The picture is a practice estimate, not a pass prediction. */
 export const HOME_READINESS_HEADING = "A practice estimate.";
