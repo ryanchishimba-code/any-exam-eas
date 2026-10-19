@@ -1,30 +1,17 @@
-import Link from "next/link";
 import { BoardFeatureIcon } from "@/components/marketing/board-landing/BoardFeatureIcons";
 import type { BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
 
 function FeatureCard({ card }: { card: BoardFeatureCard }) {
   const className = `bl-feature-card${card.spotlight ? " bl-feature-card--spotlight" : ""}`;
-  const content = (
-    <>
-      <span className="bl-feature-icon" aria-hidden>
-        <BoardFeatureIcon id={card.icon} />
-      </span>
-      <h3>{card.title}</h3>
-      <p>{card.line}</p>
-    </>
-  );
-  if (card.href) {
-    return (
-      <li className="bl-feature-item">
-        <Link href={card.href} className={className}>
-          {content}
-        </Link>
-      </li>
-    );
-  }
   return (
     <li className="bl-feature-item">
-      <div className={className}>{content}</div>
+      <div className={className}>
+        <span className="bl-feature-icon" aria-hidden>
+          <BoardFeatureIcon id={card.icon} />
+        </span>
+        <h3>{card.title}</h3>
+        <p>{card.line}</p>
+      </div>
     </li>
   );
 }

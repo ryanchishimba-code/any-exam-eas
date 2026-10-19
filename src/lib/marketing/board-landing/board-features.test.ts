@@ -26,13 +26,13 @@ describe("board feature cards", () => {
     });
     expect(features.some((card) => card.id === "ngn")).toBe(true);
     expect(features.find((card) => card.id === "anatomy-explorer")).toMatchObject({
-      href: "/anatomy",
       spotlight: true,
+      title: "Anatomy Explorer",
     });
     if (quickBite) {
       expect(features.find((card) => card.id === "quick-bites-lectures")).toMatchObject({
-        href: "/dashboard#video-quick-bites",
         spotlight: true,
+        title: "Quick Bites video lectures",
       });
     }
     expect(features.some((card) => card.id === "quick-bites")).toBe(false);

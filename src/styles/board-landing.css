@@ -273,8 +273,7 @@
   list-style: none;
 }
 
-.bl-feature-card,
-a.bl-feature-card {
+.bl-feature-card {
   display: block;
   min-height: 7.25rem;
   padding: 1rem 1.05rem 1.05rem;
@@ -282,16 +281,13 @@ a.bl-feature-card {
   border-radius: 1.1rem;
   background: var(--bl-card);
   box-shadow: 0 10px 28px rgba(10, 37, 64, 0.04);
-  color: inherit;
-  text-decoration: none;
   transition:
     border-color 0.18s ease,
     box-shadow 0.18s ease,
     transform 0.18s ease;
 }
 
-.bl-feature-card--spotlight,
-a.bl-feature-card--spotlight {
+.bl-feature-card--spotlight {
   min-height: 8.5rem;
   padding: 1.15rem 1.15rem 1.2rem;
   border-color: rgba(15, 118, 110, 0.22);
@@ -301,8 +297,7 @@ a.bl-feature-card--spotlight {
   box-shadow: 0 14px 36px rgba(10, 37, 64, 0.07);
 }
 
-.bl-feature-card:hover,
-a.bl-feature-card:hover {
+.bl-feature-card:hover {
   border-color: rgba(15, 118, 110, 0.28);
   box-shadow: 0 14px 36px rgba(10, 37, 64, 0.08);
   transform: translateY(-2px);
@@ -320,26 +315,22 @@ a.bl-feature-card:hover {
   background: rgba(15, 118, 110, 0.1);
 }
 
-.bl-feature-card--spotlight .bl-feature-icon,
-a.bl-feature-card--spotlight .bl-feature-icon {
+.bl-feature-card--spotlight .bl-feature-icon {
   width: 2.85rem;
   height: 2.85rem;
 }
 
-.bl-feature-card h3,
-a.bl-feature-card h3 {
+.bl-feature-card h3 {
   font-size: 0.98rem;
   font-weight: 700;
   line-height: 1.25;
 }
 
-.bl-feature-card--spotlight h3,
-a.bl-feature-card--spotlight h3 {
+.bl-feature-card--spotlight h3 {
   font-size: 1.05rem;
 }
 
-.bl-feature-card p,
-a.bl-feature-card p {
+.bl-feature-card p {
   margin: 0.35rem 0 0;
   font-size: 0.88rem;
   line-height: 1.45;

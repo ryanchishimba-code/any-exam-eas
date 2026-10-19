@@ -1,7 +1,6 @@
 import type { BoardQuestionUnits } from "@/lib/counts";
 import type { BoardFormatCard, BoardQuickBite } from "@/lib/marketing/board-landing/model";
 import { nclexFormatCards } from "@/lib/marketing/board-landing/model";
-import { ROUTES } from "@/lib/routes";
 
 export type BoardFeatureIconId =
   | "ngn"
@@ -19,11 +18,8 @@ export type BoardFeatureCard = {
   title: string;
   line: string;
   icon: BoardFeatureIconId;
-  href?: string;
   spotlight?: boolean;
 };
-
-const NCLEX_QUICK_BITES_HREF = `${ROUTES.dashboard}#video-quick-bites`;
 
 /** One crawlable sentence listing live NGN buckets (from nclexFormatCards titles only). */
 export function ngnFeatureLineFromFormatCards(cards: BoardFormatCard[]): string {
@@ -64,7 +60,6 @@ export function nclexFeatureCards(input: {
     title: "Anatomy Explorer",
     line: "Orbit 3D structures and jump to board-style practice.",
     icon: "anatomy",
-    href: ROUTES.anatomy,
     spotlight: true,
   });
 
@@ -74,7 +69,6 @@ export function nclexFeatureCards(input: {
       title: "Quick Bites video lectures",
       line: "Short teaching videos with captions and follow-up quizzes.",
       icon: "quick-bites",
-      href: NCLEX_QUICK_BITES_HREF,
       spotlight: true,
     });
   }
