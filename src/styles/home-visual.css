@@ -27,14 +27,14 @@
 }
 
 .home-hero {
-  padding: calc(var(--nav-height) + 2.5rem) 1.25rem 3rem;
+  padding: calc(var(--nav-height) + 1.75rem) 1.25rem 2rem;
   background:
     radial-gradient(120% 70% at 50% -10%, rgba(15, 118, 110, 0.16), transparent 58%),
     linear-gradient(180deg, #f3faf9 0%, #ffffff 72%);
 }
 
 .home-hero__panel {
-  width: min(36rem, 100%);
+  width: min(40rem, 100%);
   margin-inline: auto;
   padding: 1.75rem 1.25rem 1.5rem;
   border-radius: 1.75rem;
@@ -48,11 +48,10 @@
 
 .home-hero h1 {
   margin: 0;
-  /* Sized so "One study system." stays on one line inside the panel. */
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
   font-weight: 600;
   letter-spacing: -0.04em;
-  line-height: 1.08;
+  line-height: 1.12;
   text-wrap: balance;
 }
 
@@ -97,50 +96,70 @@
 }
 
 .home-hero__boards ul {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.7rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.home-hero__boards a {
-  display: flex;
+.home-hero__boards li {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-height: 2.75rem;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid rgba(10, 37, 64, 0.12);
-  border-radius: 0.85rem;
-  background: var(--home-mist);
-  color: var(--home-ink);
+  gap: 0.7rem;
+}
+
+.home-hero__boards li:not(:last-child)::after {
+  content: "·";
+  color: var(--home-teal);
+  font-weight: 600;
+}
+
+.home-hero__boards a {
+  color: var(--home-muted);
   font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 1.5;
   text-decoration: none;
 }
 
 .home-hero__boards a:hover {
-  border-color: rgba(15, 118, 110, 0.45);
   color: var(--home-teal);
 }
 
-@media (min-width: 520px) {
-  .home-hero__boards ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.home-hero__sub {
+  margin: 1.25rem auto 0;
+  max-width: 36rem;
+  color: var(--home-muted);
 }
 
-.home-hero__sub {
-  margin: 1rem auto 0;
-  max-width: 34rem;
+.home-hero__points {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 0;
+  margin: 1.25rem auto 0;
+  max-width: 36rem;
+  padding: 0;
+  list-style: none;
+  font-weight: 600;
   color: var(--home-muted);
+}
+
+.home-hero__points li + li::before {
+  content: "·";
+  margin-inline: 0.55rem;
+  color: var(--home-teal);
 }
 
 .home-hero__actions {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 0.75rem;
   margin-top: 1.5rem;
 }
 
@@ -1006,18 +1025,13 @@
 
 @media (min-width: 768px) {
   .home-hero {
-    padding: calc(var(--nav-height) + 3.5rem) 2rem 4rem;
+    padding: calc(var(--nav-height) + 2.5rem) 2rem 2.5rem;
   }
 
   .home-hero__panel {
     width: min(46rem, 100%);
-    padding: 2.75rem 2.75rem 2.25rem;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(16px);
-  }
-
-  .home-hero h1 {
-    font-size: clamp(2.75rem, 4.2vw, 3.5rem);
+    padding: 2.25rem 2.5rem 2rem;
+    background: #ffffff;
   }
 
   .home-section,

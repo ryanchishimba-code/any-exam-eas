@@ -74,7 +74,9 @@ describe("legal copy", () => {
 
 describe("home legal copy", () => {
   it("keeps the home headline and practice estimate in the shared module", () => {
-    expect(HOME_PRACTICE_HEADLINE).toBe("One study system. Six boards.");
+    expect(HOME_PRACTICE_HEADLINE).toBe(
+      "Pass your boards on your first try. Every question explained, checked to current guidelines."
+    );
     expect(HOME_READINESS_HEADING).toMatch(/practice estimate/i);
     expect(HOME_READINESS_LINE).toMatch(/questions you answer/i);
     const ours = [HOME_PRACTICE_HEADLINE, HOME_READINESS_HEADING, HOME_READINESS_LINE].join(" ");
