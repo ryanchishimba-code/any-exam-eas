@@ -54,29 +54,39 @@ export function HeroScene({
             ))}
           </section>
           <section id={tableId} aria-labelledby={`${idPrefix}-table-heading`}>
-            <h2 id={`${idPrefix}-table-heading`}>{scene.vitalsLabel}</h2>
-            <div className="bl-vital-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    {scene.columns.map((column) => (
-                      <th key={column} scope="col">
-                        {column}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {scene.rows.map((row) => (
-                    <tr key={row.join("|")}>
-                      {scene.columns.map((column, index) => (
-                        <td key={column}>{row[index] ?? ""}</td>
+            <h2 id={`${idPrefix}-table-heading`} className="bl-vitals-title">
+              {scene.vitalsLabel}
+            </h2>
+            <details id={`${idPrefix}-vitals-details`} className="bl-vitals-details">
+              <summary className="bl-vitals-summary">Vital signs</summary>
+              <div className="bl-vital-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      {scene.columns.map((column) => (
+                        <th key={column} scope="col">
+                          {column}
+                        </th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {scene.rows.map((row) => (
+                      <tr key={row.join("|")}>
+                        {scene.columns.map((column, index) => (
+                          <td key={column}>{row[index] ?? ""}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </details>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `(function(){var d=document.getElementById('${idPrefix}-vitals-details');if(!d)return;var m=window.matchMedia('(min-width: 640px)');function s(){if(m.matches)d.setAttribute('open','');else d.removeAttribute('open');}s();m.addEventListener('change',s);})();`,
+              }}
+            />
           </section>
           <section className="bl-device-question" aria-labelledby={`${idPrefix}-case-question`}>
             <h2 id={`${idPrefix}-case-question`}>Case question</h2>
