@@ -147,8 +147,8 @@ export function Navigation() {
           priority={pathname !== "/"}
         />
 
-        <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-4" role="list">
-          <li>
+        <ul className="aee-nav-links hidden lg:flex lg:h-full lg:items-center lg:gap-4" role="list">
+          <li className="flex self-stretch">
             <ExamsDropdown />
           </li>
           {links.map((l) => {
