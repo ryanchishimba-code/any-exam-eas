@@ -42,7 +42,7 @@ export function practiceResultsTotals(input: {
   delivered: number;
   answers?: ScoredAnswer[] | null;
   cat?: boolean;
-}): { denominator: number; answered: number; unanswered: number } {
+}): { denominator: number; delivered: number; answered: number; unanswered: number } {
   const delivered = Math.max(0, Math.floor(input.delivered) || 0);
   const answeredIndexes = new Set<number>();
   for (const answer of input.answers ?? []) {
@@ -54,21 +54,28 @@ export function practiceResultsTotals(input: {
     }
   }
   const answered = answeredIndexes.size;
-  if (input.cat) {
-    return {
-      denominator: answered,
-      answered,
-      unanswered: Math.max(0, delivered - answered),
-    };
-  }
+  void input.cat;
   return {
-    denominator: delivered,
+    delivered,
     answered,
     unanswered: Math.max(0, delivered - answered),
+    /** Headline score and pass bands: correct ÷ attempted (not the full form length). */
+    denominator: answered,
   };
 }
 
-/** Percent correct over administered items. Unanswered administered items count as misses. */
+/** Secondary results line under the headline percent. */
+export function practiceResultsProgressLine(
+  correct: number,
+  totals: Pick<ReturnType<typeof practiceResultsTotals>, "delivered" | "answered">
+): string {
+  const hits = Math.max(0, Math.floor(correct) || 0);
+  const answered = Math.max(0, totals.answered);
+  const delivered = Math.max(answered, totals.delivered);
+  return `Answered ${answered} of ${delivered} · ${hits} correct`;
+}
+
+/** Percent correct over attempted items (non-blank selections). */
 export function practiceScorePercent(correct: number, administered: number): number {
   const total = Math.max(0, Math.floor(administered) || 0);
   if (total <= 0) return 0;

@@ -28,7 +28,11 @@ import {
   serializeCorrectAnswer,
   serializeExamSelection,
 } from "@/lib/full-exam/answer-serialize";
-import { isNaturalCatStop } from "@/lib/full-exam/administered-score";
+import {
+  isNaturalCatStop,
+  practiceResultsTotals,
+  practiceScorePercent,
+} from "@/lib/full-exam/administered-score";
 import { fullExamResultsHref } from "@/lib/full-exam/config";
 import { nclexCatQuestionRange, nclexFullPracticeLengthLabel } from "@/lib/full-exam/nclex-length-label";
 import {
@@ -41,10 +45,7 @@ import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
 import { takeFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
-import {
-  calculateExamScorePercent,
-  mergeExamAnswers,
-} from "@/lib/exam-sessions/scoring";
+import { mergeExamAnswers } from "@/lib/exam-sessions/scoring";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { parseBowTieLayout, parseMatrixKey, toggleBowTieSelection } from "@/lib/questions/ngn-structures";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
@@ -813,7 +814,13 @@ export function FullExamSimulator({
       }
 
       const log = buildAnswerLog();
-      const score = calculateExamScorePercent(log, scored.length);
+      const totals = practiceResultsTotals({
+        delivered: scored.length,
+        answers: log,
+        cat: isCatMode,
+      });
+      const correctCount = log.filter((row) => row.correct && row.selected?.trim()).length;
+      const score = practiceScorePercent(correctCount, totals.denominator || totals.answered);
       const topicBreakdown = buildTopicBreakdown(scored, log);
       const pauseInProgress =
         pauseStarted.current != null

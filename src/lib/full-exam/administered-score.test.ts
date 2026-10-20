@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   administeredQuestionCount,
+  practiceResultsTotals,
   practiceScorePercent,
 } from "@/lib/full-exam/administered-score";
 
@@ -36,14 +37,15 @@ describe("full exam score denominator", () => {
     expect(practiceScorePercent(120, administered)).toBe(80);
   });
 
-  it("scores a true early end of a fixed form over the form, so blanks count as misses", () => {
-    const administered = administeredQuestionCount({
-      plannedCount: 225,
-      snapshotCount: 225,
-      answers: Array.from({ length: 40 }, (_, questionIndex) => ({ questionIndex })),
-    });
-    expect(administered).toBe(225);
-    expect(practiceScorePercent(30, administered)).toBe(13);
+  it("scores an early-ended fixed form over items the student answered", () => {
+    const answers = Array.from({ length: 86 }, (_, questionIndex) => ({
+      questionIndex,
+      selected: questionIndex < 74 ? "250" : "0",
+    }));
+    const totals = practiceResultsTotals({ delivered: 225, answers, cat: false });
+    expect(totals).toMatchObject({ delivered: 225, answered: 86, denominator: 86 });
+    expect(practiceScorePercent(74, totals.denominator)).toBe(86);
+    expect(practiceScorePercent(74, totals.delivered)).toBe(33);
   });
 
   it("scores a CAT the student stopped before the engine did over items they were given", () => {

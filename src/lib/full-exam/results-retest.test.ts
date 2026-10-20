@@ -25,10 +25,10 @@ describe("ended-early results", () => {
     expect(totals.denominator - 9).toBe(23);
   });
 
-  it("keeps a fixed form denominator and reports unanswered separately", () => {
+  it("scores a fixed form from answered items and reports unanswered separately", () => {
     const answers = Array.from({ length: 32 }, (_, i) => answer(i, i < 9, "2026-10-06T12:00:00.000Z"));
     const totals = practiceResultsTotals({ delivered: 50, answers, cat: false });
-    expect(totals).toMatchObject({ denominator: 50, answered: 32, unanswered: 18 });
+    expect(totals).toMatchObject({ denominator: 32, delivered: 50, answered: 32, unanswered: 18 });
   });
 
   it("percentages use answered items and keep a psychosocial row", () => {
