@@ -14,16 +14,22 @@ function boardActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-/** Desktop exams menu. Esc closes. Arrow keys move through the boards. */
+/** Desktop exams menu. Click toggles. Esc, an outside click, or a board link closes. */
 export function ExamsDropdown() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
+  const outsideReady = useRef(false);
   const close = useCallback(() => setOpen(false), []);
+  // The opening tap can emit a follow-up pointerdown. Ignore outside closes until the next frame.
+  const closeFromOutside = useCallback(() => {
+    if (!outsideReady.current) return;
+    setOpen(false);
+  }, []);
 
-  useClickOutside(rootRef, close, open);
+  useClickOutside(rootRef, closeFromOutside, open);
 
   const anyActive = MARKETING_BOARD_LINKS.some((board) => boardActive(pathname, board.href));
 
@@ -33,9 +39,10 @@ export function ExamsDropdown() {
 
   useEffect(() => {
     if (!open) return;
-    const menu = menuRef.current;
-    const first = menu?.querySelector<HTMLAnchorElement>('[role="menuitem"]');
-    first?.focus();
+    outsideReady.current = false;
+    const frame = requestAnimationFrame(() => {
+      outsideReady.current = true;
+    });
 
     function onKeyDown(event: globalThis.KeyboardEvent) {
       if (event.key === "Escape") {
@@ -46,7 +53,11 @@ export function ExamsDropdown() {
     }
 
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    return () => {
+      cancelAnimationFrame(frame);
+      outsideReady.current = false;
+      document.removeEventListener("keydown", onKeyDown);
+    };
   }, [open]);
 
   useEffect(() => {
@@ -92,11 +103,33 @@ export function ExamsDropdown() {
         aria-expanded={open}
         aria-haspopup="menu"
         aria-controls={MENU_ID}
-        onClick={() => setOpen((value) => !value)}
+        onPointerDown={(event) => {
+          // Keep the mouse click from moving focus before the toggle runs.
+          if (event.pointerType === "mouse") event.preventDefault();
+        }}
+        onClick={(event) => {
+          const fromKeyboard = event.detail === 0;
+          setOpen((value) => {
+            const next = !value;
+            if (next && fromKeyboard) {
+              requestAnimationFrame(() => {
+                menuRef.current
+                  ?.querySelector<HTMLAnchorElement>('[role="menuitem"]')
+                  ?.focus({ preventScroll: true });
+              });
+            }
+            return next;
+          });
+        }}
         onKeyDown={(event) => {
           if (event.key === "ArrowDown" && !open) {
             event.preventDefault();
             setOpen(true);
+            requestAnimationFrame(() => {
+              menuRef.current
+                ?.querySelector<HTMLAnchorElement>('[role="menuitem"]')
+                ?.focus({ preventScroll: true });
+            });
           }
         }}
       >
@@ -107,35 +140,37 @@ export function ExamsDropdown() {
         />
       </button>
       {open ? (
-        <ul
-          ref={menuRef}
-          id={MENU_ID}
-          role="menu"
-          aria-label="Exams"
-          onKeyDown={onMenuKeyDown}
-          className="absolute left-0 top-full z-[60] mt-2 w-56 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-black/[0.08] bg-white py-1 shadow-[var(--shadow-apple-md)]"
-        >
-          {MARKETING_BOARD_LINKS.map((board) => {
-            const active = boardActive(pathname, board.href);
-            return (
-              <li key={board.href} role="none">
-                <Link
-                  href={board.href}
-                  role="menuitem"
-                  prefetch={false}
-                  aria-current={active ? "page" : undefined}
-                  className={cn(
-                    "block min-h-11 px-3 py-2.5 text-sm text-[var(--color-ink)] hover:bg-black/[0.04]",
-                    active && "font-semibold text-[var(--color-accent)]"
-                  )}
-                  onClick={close}
-                >
-                  {board.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="absolute left-0 top-full z-[60] pt-2">
+          <ul
+            ref={menuRef}
+            id={MENU_ID}
+            role="menu"
+            aria-label="Exams"
+            onKeyDown={onMenuKeyDown}
+            className="w-56 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-black/[0.08] bg-white py-1 shadow-[var(--shadow-apple-md)]"
+          >
+            {MARKETING_BOARD_LINKS.map((board) => {
+              const active = boardActive(pathname, board.href);
+              return (
+                <li key={board.href} role="none">
+                  <Link
+                    href={board.href}
+                    role="menuitem"
+                    prefetch={false}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "block min-h-11 px-3 py-2.5 text-sm text-[var(--color-ink)] hover:bg-black/[0.04]",
+                      active && "font-semibold text-[var(--color-accent)]"
+                    )}
+                    onClick={close}
+                  >
+                    {board.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       ) : null}
     </div>
   );
