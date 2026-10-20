@@ -649,9 +649,15 @@ async function main() {
   console.log(`\nApplied ${toApply.length} updates. Backup: ${BACKUP_TABLE}`);
 }
 
-main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(() => prisma.$disconnect());
+const isDirectRun =
+  typeof process.argv[1] === "string" &&
+  process.argv[1].replace(/\\/g, "/").endsWith("letter-rationale-fix-20261020.ts");
+
+if (isDirectRun) {
+  main()
+    .catch((e) => {
+      console.error(e);
+      process.exit(1);
+    })
+    .finally(() => prisma.$disconnect());
+}
