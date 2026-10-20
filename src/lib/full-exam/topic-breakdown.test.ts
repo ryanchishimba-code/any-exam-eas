@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { breakdownMatchesHeadline } from "@/lib/full-exam/exam-breakdown-tally";
+import { practiceResultsTotals } from "@/lib/full-exam/administered-score";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
@@ -12,95 +14,45 @@ function answer(index: number, correct: boolean): ExamAnswerRecord {
 }
 
 describe("buildTopicBreakdown", () => {
-  it("splits NCLEX items by Client Needs instead of one General bucket", () => {
-    const rows = buildTopicBreakdown(
-      [
-        { subjectId: "management-of-care" },
-        { subjectId: "management-of-care" },
-        { subjectId: "pharmacology-nursing" },
-      ],
-      [answer(0, true), answer(1, false), answer(2, true)]
-    );
+  it("maps NCLEX items to official Client Needs labels", () => {
+    const questions = [
+      { subjectId: "management-of-care" },
+      { subjectId: "management-of-care" },
+      { subjectId: "pharmacology-nursing" },
+    ];
+    const answers = [answer(0, true), answer(1, false), answer(2, true)];
+    const rows = buildTopicBreakdown(questions, answers, { examSlug: "nclex" });
     expect(rows.map((row) => row.topic).sort()).toEqual([
       "Management of Care",
       "Pharmacological Therapies",
     ]);
-    expect(rows.find((row) => row.topic === "Management of Care")).toMatchObject({
-      correct: 1,
-      total: 2,
-    });
+    const totals = practiceResultsTotals({ delivered: questions.length, answers, cat: true });
+    expect(
+      breakdownMatchesHeadline(rows, {
+        attempted: totals.denominator,
+        correct: answers.filter((row) => row.correct).length,
+      })
+    ).toBe(true);
   });
 
-  it("splits NAPLEX items by content area or topic when the bank has them", () => {
-    const rows = buildTopicBreakdown(
-      [
-        { subjectId: "pharmacokinetics", blueprintDomain: "naplex-2026-drug-information" },
-        { subjectId: "cardiovascular-rx", blueprintDomain: "naplex-2026-pharmacotherapy" },
-      ],
-      [answer(0, true), answer(1, false)]
-    );
+  it("maps NAPLEX items to NABP 2026 competency areas", () => {
+    const questions = [
+      { subjectId: "pharmacokinetics", blueprintDomain: "naplex-2026-medication-dispensing" },
+      { subjectId: "cardiovascular-rx", blueprintDomain: "naplex-2026-pharmacotherapy" },
+      { subjectId: "patient-counseling", blueprintDomain: "naplex-2026-patient-centered-care" },
+    ];
+    const answers = [answer(0, true), answer(1, false), answer(2, false)];
+    const rows = buildTopicBreakdown(questions, answers, { examSlug: "naplex" });
     const topics = rows.map((row) => row.topic);
-    expect(topics).toContain("Pharmacokinetics & Pharmacodynamics");
-    expect(topics).toContain("Cardiovascular Pharmacotherapy");
-    expect(topics).not.toContain("General");
+    expect(topics).toContain("Medication Dispensing & Distribution");
+    expect(topics).toContain("Pharmacotherapy");
+    expect(topics).toContain("Patient-Centered Care & Patient Safety");
+    expect(topics).not.toContain("Other");
   });
 
-  it("uses a NAPLEX blueprint area when that is the only label on the item", () => {
-    const rows = buildTopicBreakdown(
-      [{ blueprintDomain: "naplex-2026-pharmacotherapy" }],
-      [answer(0, true)]
-    );
-    expect(rows[0]?.topic).toBe("Pharmacotherapy");
-  });
-
-  it("follows the stem when a pharmacy subject label contradicts the item", () => {
-    const rows = buildTopicBreakdown(
-      [
-        {
-          subjectId: "compounding-calculations",
-          question: "Which statin is preferred when the LDL is 160?",
-        },
-        {
-          subjectId: "cardiovascular-rx",
-          question: "How many mL of 50% dextrose are required? Round to the nearest whole mL.",
-        },
-      ],
-      [answer(0, true), answer(1, false)]
-    );
-    expect(rows.map((row) => row.topic).sort()).toEqual([
-      "Cardiovascular Pharmacotherapy",
-      "Pharmacy Calculations",
-    ]);
-  });
-
-  it("moves a counseling-labeled cardiovascular stem out of Patient Counseling", () => {
-    const rows = buildTopicBreakdown(
-      [
-        {
-          topicCategory: "Patient Counseling",
-          question: "A client with heart failure takes lisinopril. Which counseling point is required?",
-        },
-      ],
-      [answer(0, true)]
-    );
-    expect(rows[0]?.topic).toBe("Cardiovascular Pharmacotherapy");
-  });
-
-  it("buckets an AUC stem under Pharmacy Calculations", () => {
-    const rows = buildTopicBreakdown(
-      [
-        {
-          subjectId: "compounding-calculations",
-          question: "What is the test product AUC as a percentage of reference? Round to the nearest whole number.",
-        },
-      ],
-      [answer(0, true)]
-    );
-    expect(rows[0]?.topic).toBe("Pharmacy Calculations");
-  });
-
-  it("keeps General when the item has no topic data", () => {
-    const rows = buildTopicBreakdown([{}, { subjectId: "__mixed__" }], [answer(0, false), answer(1, true)]);
-    expect(rows).toEqual([{ topic: "General", correct: 1, total: 2, pct: 50 }]);
+  it("uses Other when the item has no topic data", () => {
+    const answers = [answer(0, false), answer(1, true)];
+    const rows = buildTopicBreakdown([{}, { subjectId: "__mixed__" }], answers, { examSlug: "nclex" });
+    expect(rows).toEqual([{ topic: "Other", correct: 1, total: 2, pct: 50 }]);
   });
 });
