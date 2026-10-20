@@ -199,7 +199,7 @@ export function ExamsDropdown() {
         />
       </button>
       {open ? (
-        <div className="exams-dropdown__panel absolute left-0 top-full z-[60]">
+        <div className="exams-dropdown__panel absolute left-0 top-full z-[100]">
           <ul
             ref={menuRef}
             id={MENU_ID}

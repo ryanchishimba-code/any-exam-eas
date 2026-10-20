@@ -2034,7 +2034,8 @@ body {
 
 .aee-nav {
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  overflow-x: clip;
+  /* Do not clip overflow-x here: it forces overflow-y to auto and cuts off the Exams menu. */
+  overflow: visible;
 }
 
 /* Light public header, including the top of the homepage hero. A transparent
@@ -2203,6 +2204,11 @@ body {
   height: 3rem;
   min-width: 0;
   width: 100%;
+  overflow: visible;
+}
+
+.aee-nav-links > li {
+  overflow: visible;
 }
 
 @media (min-width: 768px) {
