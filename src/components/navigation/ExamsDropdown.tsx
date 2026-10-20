@@ -5,37 +5,78 @@ import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import {
+  examsMenuAfterClick,
+  examsMenuAfterDismiss,
+  examsMenuAfterHoverClose,
+  examsMenuAfterPointerEnter,
+} from "@/components/navigation/exams-dropdown-logic";
 import { MARKETING_BOARD_LINKS } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 const MENU_ID = "site-exams-menu";
+const HOVER_CLOSE_MS = 300;
 
 function boardActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-/** Desktop exams menu. Click toggles. Esc, an outside click, or a board link closes. */
+/** Desktop exams menu. Hover or click opens; click pins until outside click, Esc, or a link. */
 export function ExamsDropdown() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [pinned, setPinned] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
   const outsideReady = useRef(false);
-  const close = useCallback(() => setOpen(false), []);
+  const hoverCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const menuStateRef = useRef({ open, pinned });
+  menuStateRef.current = { open, pinned };
+
+  const dismiss = useCallback(() => {
+    const next = examsMenuAfterDismiss();
+    setOpen(next.open);
+    setPinned(next.pinned);
+  }, []);
+
+  const close = useCallback(() => dismiss(), [dismiss]);
+
+  const clearHoverClose = useCallback(() => {
+    if (hoverCloseTimer.current) {
+      clearTimeout(hoverCloseTimer.current);
+      hoverCloseTimer.current = null;
+    }
+  }, []);
+
+  const scheduleHoverClose = useCallback(() => {
+    clearHoverClose();
+    hoverCloseTimer.current = setTimeout(() => {
+      hoverCloseTimer.current = null;
+      const next = examsMenuAfterHoverClose(menuStateRef.current);
+      if (!next) return;
+      setOpen(next.open);
+      setPinned(next.pinned);
+    }, HOVER_CLOSE_MS);
+  }, [clearHoverClose]);
+
   // The opening tap can emit a follow-up pointerdown. Ignore outside closes until the next frame.
   const closeFromOutside = useCallback(() => {
     if (!outsideReady.current) return;
-    setOpen(false);
-  }, []);
+    dismiss();
+  }, [dismiss]);
 
   useClickOutside(rootRef, closeFromOutside, open);
 
   const anyActive = MARKETING_BOARD_LINKS.some((board) => boardActive(pathname, board.href));
 
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+    dismiss();
+  }, [dismiss, pathname]);
+
+  useEffect(() => {
+    return () => clearHoverClose();
+  }, [clearHoverClose]);
 
   useEffect(() => {
     if (!open) return;
@@ -47,7 +88,7 @@ export function ExamsDropdown() {
     function onKeyDown(event: globalThis.KeyboardEvent) {
       if (event.key === "Escape") {
         event.preventDefault();
-        setOpen(false);
+        dismiss();
         buttonRef.current?.focus();
       }
     }
@@ -58,15 +99,15 @@ export function ExamsDropdown() {
       outsideReady.current = false;
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [open]);
+  }, [dismiss, open]);
 
   useEffect(() => {
     function onCloseMenus() {
-      setOpen(false);
+      dismiss();
     }
     document.addEventListener("aee:close-menus", onCloseMenus);
     return () => document.removeEventListener("aee:close-menus", onCloseMenus);
-  }, []);
+  }, [dismiss]);
 
   function onMenuKeyDown(event: KeyboardEvent<HTMLUListElement>) {
     const items = Array.from(
@@ -89,8 +130,24 @@ export function ExamsDropdown() {
     }
   }
 
+  function onRootPointerEnter() {
+    clearHoverClose();
+    const next = examsMenuAfterPointerEnter({ open, pinned });
+    setOpen(next.open);
+    setPinned(next.pinned);
+  }
+
+  function onRootPointerLeave() {
+    scheduleHoverClose();
+  }
+
   return (
-    <div ref={rootRef} className="relative">
+    <div
+      ref={rootRef}
+      className="relative"
+      onPointerEnter={onRootPointerEnter}
+      onPointerLeave={onRootPointerLeave}
+    >
       <button
         ref={buttonRef}
         type="button"
@@ -109,22 +166,24 @@ export function ExamsDropdown() {
         }}
         onClick={(event) => {
           const fromKeyboard = event.detail === 0;
-          setOpen((value) => {
-            const next = !value;
-            if (next && fromKeyboard) {
-              requestAnimationFrame(() => {
-                menuRef.current
-                  ?.querySelector<HTMLAnchorElement>('[role="menuitem"]')
-                  ?.focus({ preventScroll: true });
-              });
-            }
-            return next;
-          });
+          clearHoverClose();
+          const next = examsMenuAfterClick({ open, pinned });
+          setOpen(next.open);
+          setPinned(next.pinned);
+          if (next.open && fromKeyboard) {
+            requestAnimationFrame(() => {
+              menuRef.current
+                ?.querySelector<HTMLAnchorElement>('[role="menuitem"]')
+                ?.focus({ preventScroll: true });
+            });
+          }
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowDown" && !open) {
             event.preventDefault();
+            clearHoverClose();
             setOpen(true);
+            setPinned(true);
             requestAnimationFrame(() => {
               menuRef.current
                 ?.querySelector<HTMLAnchorElement>('[role="menuitem"]')
@@ -140,7 +199,7 @@ export function ExamsDropdown() {
         />
       </button>
       {open ? (
-        <div className="absolute left-0 top-full z-[60] pt-2">
+        <div className="exams-dropdown__panel absolute left-0 top-full z-[60]">
           <ul
             ref={menuRef}
             id={MENU_ID}

@@ -2023,6 +2023,15 @@ body {
 
 /* ——— Premium nav & avatar ——— */
 
+.exams-dropdown__panel::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  right: 0;
+  left: 0;
+  height: 0.5rem;
+}
+
 .aee-nav {
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   overflow-x: clip;
