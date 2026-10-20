@@ -9,6 +9,8 @@
  *   npx tsx scripts/letter-rationale-fix-20261020.ts
  *   npx tsx scripts/letter-rationale-fix-20261020.ts --apply
  */
+import { mkdirSync, writeFileSync } from "node:fs";
+import path from "node:path";
 import { loadEnvFiles, ensureDatabaseUrlEnv } from "./resolve-database-url.mjs";
 
 loadEnvFiles();
@@ -19,6 +21,10 @@ import { cleanOptionText } from "@/lib/question-format";
 import { shuffleDeliveryChoices } from "@/lib/questions/shuffle-delivery";
 
 const BACKUP_TABLE = "qbi_letter_rationale_fix_backup_20261020";
+const MISMATCH_JSON = path.join(
+  process.cwd(),
+  "scripts/data/letter-mismatch-23.json"
+);
 
 const prisma = new PrismaClient();
 
@@ -483,8 +489,21 @@ async function main() {
     mismatch: {} as Record<string, number>,
   };
   const legacyByKind = { fixable: 0, ambiguous: 0, mismatch: 0, skip: 0 };
+  const legacyByField = {
+    fixable: {} as Record<string, number>,
+    ambiguous: {} as Record<string, number>,
+    mismatch: {} as Record<string, number>,
+  };
   const samples: { id: string; fieldId: string; before: string; after: string }[] = [];
   const toApply: { id: string; explanation: string; options: string }[] = [];
+  const mismatchRows: {
+    id: string;
+    fieldId: string;
+    claimedLetters: string[];
+    correctAnswer: string;
+    keyedOptions: string[];
+    detail: string;
+  }[] = [];
 
   let shufflableLetterRows = 0;
 
@@ -504,10 +523,25 @@ async function main() {
 
     const result = processRow(row);
     if (inLegacy411Scope(row, payload)) {
-      if (result.kind === "fixable") legacyByKind.fixable += 1;
-      else if (result.kind === "ambiguous") legacyByKind.ambiguous += 1;
-      else if (result.kind === "mismatch") legacyByKind.mismatch += 1;
-      else legacyByKind.skip += 1;
+      if (result.kind === "fixable") {
+        legacyByKind.fixable += 1;
+        legacyByField.fixable[row.fieldId] = (legacyByField.fixable[row.fieldId] ?? 0) + 1;
+      } else if (result.kind === "ambiguous") {
+        legacyByKind.ambiguous += 1;
+        legacyByField.ambiguous[row.fieldId] = (legacyByField.ambiguous[row.fieldId] ?? 0) + 1;
+      } else if (result.kind === "mismatch") {
+        legacyByKind.mismatch += 1;
+        legacyByField.mismatch[row.fieldId] = (legacyByField.mismatch[row.fieldId] ?? 0) + 1;
+        const { masked } = maskProtectedPhrases(legacyLetterBlob(row, payload));
+        mismatchRows.push({
+          id: row.id,
+          fieldId: row.fieldId,
+          claimedLetters: claimedCorrectLetters(masked),
+          correctAnswer: row.correctAnswer,
+          keyedOptions: keyedOptionTexts(payload.options, row.correctAnswer),
+          detail: result.reason,
+        });
+      } else legacyByKind.skip += 1;
     }
 
     if (result.kind === "fixable") {
@@ -540,15 +574,13 @@ async function main() {
     `letter-signal numbered MCQs with serve shuffle possible: ${shufflableLetterRows} (excluded from fixable set)`
   );
 
-  console.log("\nPrior audit scope (~411 numbered MCQs, legacy letter detector):");
+  console.log("\nPrior audit scope (411 numbered MCQs, legacy letter detector):");
   console.log(
     `  fixable ${legacyByKind.fixable}, skipped-ambiguous ${legacyByKind.ambiguous}, mismatch ${legacyByKind.mismatch}`
   );
-
-  console.log("\nCounts by board (broader letter detector + expert rationale text):");
-  console.log(`  fixable: ${sum(byField.fixable)}`, byField.fixable);
-  console.log(`  skipped-ambiguous: ${sum(byField.ambiguous)}`, byField.ambiguous);
-  console.log(`  mismatch: ${sum(byField.mismatch)}`, byField.mismatch);
+  console.log("  fixable by board:", legacyByField.fixable);
+  console.log("  skipped-ambiguous by board:", legacyByField.ambiguous);
+  console.log("  mismatch by board:", legacyByField.mismatch);
 
   if (samples.length) {
     console.log("\nSamples (before → after snippet):");
@@ -563,9 +595,31 @@ async function main() {
   console.log(`backup table (apply): ${BACKUP_TABLE}`);
   console.log("apply command: npx tsx scripts/letter-rationale-fix-20261020.ts --apply");
 
+  mkdirSync(path.dirname(MISMATCH_JSON), { recursive: true });
+  writeFileSync(
+    MISMATCH_JSON,
+    JSON.stringify(
+      {
+        generatedAt: new Date().toISOString(),
+        count: mismatchRows.length,
+        rows: mismatchRows,
+      },
+      null,
+      2
+    ) + "\n"
+  );
+  console.log(`mismatch report: ${MISMATCH_JSON} (${mismatchRows.length} rows)`);
+
   if (!apply) {
     console.log("\nNo writes.");
     return;
+  }
+
+  if (Math.abs(legacyByKind.fixable - 147) > 2) {
+    console.error(
+      `STOP: fixable count ${legacyByKind.fixable} differs from approved 147 by more than 2.`
+    );
+    process.exit(1);
   }
 
   await prisma.$executeRawUnsafe(`

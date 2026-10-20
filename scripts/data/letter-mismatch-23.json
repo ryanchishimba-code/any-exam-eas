@@ -1,0 +1,305 @@
+{
+  "generatedAt": "2026-10-20T22:41:49.941Z",
+  "count": 23,
+  "rows": [
+    {
+      "id": "cmr8lc7c700ah1ygikzpf6hrj",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Asthma exacerbation",
+      "keyedOptions": [
+        "Asthma exacerbation"
+      ],
+      "detail": "claims A (Chronic obstructive pulmonary disease (C…) vs key Asthma exacerbation"
+    },
+    {
+      "id": "cmtpxc6lk005a1ymuoynwlet9",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "C"
+      ],
+      "correctAnswer": "Initiate broad-spectrum antibiotics",
+      "keyedOptions": [
+        "Initiate broad-spectrum antibiotics"
+      ],
+      "detail": "claims A (Start intravenous furosemide…) vs key Initiate broad-spectrum antibiotics"
+    },
+    {
+      "id": "cmqgyyqqb00071ybct7gkgska",
+      "fieldId": "pance",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Pneumonia",
+      "keyedOptions": [
+        "Pneumonia"
+      ],
+      "detail": "claims A (Acute bronchiolitis…) vs key Pneumonia"
+    },
+    {
+      "id": "cmqgz18wh001d1ybc9bceh5ax",
+      "fieldId": "pance",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Pneumonia",
+      "keyedOptions": [
+        "Pneumonia"
+      ],
+      "detail": "claims A (Acute bronchitis…) vs key Pneumonia"
+    },
+    {
+      "id": "cmqxdeqlj00am1ymatehtfnit",
+      "fieldId": "usmle-step-2",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Nephrology for management of chronic kidney disease",
+      "keyedOptions": [
+        "Nephrology for management of chronic kidney disease"
+      ],
+      "detail": "claims A (Hematology for further evaluation of ane…) vs key Nephrology for management of chronic kid"
+    },
+    {
+      "id": "cmru3ug2i00i21y7warg7i61l",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Conduct a comprehensive psychiatric evaluation",
+      "keyedOptions": [
+        "Conduct a comprehensive psychiatric evaluation"
+      ],
+      "detail": "claims A (Initiate outpatient psychotherapy sessio…) vs key Conduct a comprehensive psychiatric eval"
+    },
+    {
+      "id": "cmr8ayppq00w51yw2mjye68ze",
+      "fieldId": "usmle-step-1",
+      "claimedLetters": [
+        "A",
+        "D"
+      ],
+      "correctAnswer": "Idiopathic generalized epilepsy",
+      "keyedOptions": [
+        "Idiopathic generalized epilepsy"
+      ],
+      "detail": "claims A (Hyponatremia-induced seizure…) vs key Idiopathic generalized epilepsy"
+    },
+    {
+      "id": "cmqxe017n00e01ymaz8ibn55f",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Pyelonephritis",
+      "keyedOptions": [
+        "Pyelonephritis"
+      ],
+      "detail": "claims A (Acute cystitis…) vs key Pyelonephritis"
+    },
+    {
+      "id": "cmr8bg2y8010h1yw2s7cl5utz",
+      "fieldId": "usmle-step-1",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Deficiency of the enzyme branched-chain alpha-keto acid dehydrogenase",
+      "keyedOptions": [
+        "Deficiency of the enzyme branched-chain alpha-keto acid dehydrogenase"
+      ],
+      "detail": "claims A (Deficiency of the enzyme phenylalanine h…) vs key Deficiency of the enzyme branched-chain "
+    },
+    {
+      "id": "cmru8v393000g1y0swju93rft",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "E"
+      ],
+      "correctAnswer": "Advise the mother to introduce more vegetables gradually",
+      "keyedOptions": [
+        "Advise the mother to introduce more vegetables gradually"
+      ],
+      "detail": "claims A (Recommend a multivitamin supplement cont…) vs key Advise the mother to introduce more vege"
+    },
+    {
+      "id": "cmr4bnyc100b91yky2q1kbwzq",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Recommend lifestyle modifications only",
+      "keyedOptions": [
+        "Recommend lifestyle modifications only"
+      ],
+      "detail": "claims A (Initiate statin therapy…) vs key Recommend lifestyle modifications only"
+    },
+    {
+      "id": "cmrrv65vn00of1y8wc8y115ir",
+      "fieldId": "usmle-step-1",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Decreased alveolar ventilation due to airway obstruction",
+      "keyedOptions": [
+        "Decreased alveolar ventilation due to airway obstruction"
+      ],
+      "detail": "claims A (Increased pulmonary capillary permeabili…) vs key Decreased alveolar ventilation due to ai"
+    },
+    {
+      "id": "cmr99reqf00x81ywybvz7tel0",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Prescribe oral antibiotics",
+      "keyedOptions": [
+        "Prescribe oral antibiotics"
+      ],
+      "detail": "claims A (Start intravenous antibiotics…) vs key Prescribe oral antibiotics"
+    },
+    {
+      "id": "cmrtgrgdl000h1yaxqcv2dci2",
+      "fieldId": "usmle-step-1",
+      "claimedLetters": [
+        "A",
+        "C"
+      ],
+      "correctAnswer": "Refer for surgical debridement",
+      "keyedOptions": [
+        "Refer for surgical debridement"
+      ],
+      "detail": "claims A (Optimize glycemic control…) vs key Refer for surgical debridement"
+    },
+    {
+      "id": "cmr8h1dy501wv1ylognb7ljej",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Perform a lumbar puncture",
+      "keyedOptions": [
+        "Perform a lumbar puncture"
+      ],
+      "detail": "claims A (Administer intravenous labetalol…) vs key Perform a lumbar puncture"
+    },
+    {
+      "id": "cmr8j9r9t02kd1yloj44dqg23",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "D"
+      ],
+      "correctAnswer": "Advise lifestyle modifications only",
+      "keyedOptions": [
+        "Advise lifestyle modifications only"
+      ],
+      "detail": "claims A (Start a statin…) vs key Advise lifestyle modifications only"
+    },
+    {
+      "id": "cmru9d007007o1y0s01umbrfa",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "C"
+      ],
+      "correctAnswer": "Order an HbA1c test",
+      "keyedOptions": [
+        "Order an HbA1c test"
+      ],
+      "detail": "claims A (Initiate lifestyle modifications…) vs key Order an HbA1c test"
+    },
+    {
+      "id": "cmr8ei2c701bb1ylo8ch2qh9f",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "C"
+      ],
+      "correctAnswer": "Prepare for exploratory laparotomy",
+      "keyedOptions": [
+        "Prepare for exploratory laparotomy"
+      ],
+      "detail": "claims A (Administer IV fluids…) vs key Prepare for exploratory laparotomy"
+    },
+    {
+      "id": "cmr99ilfg00v61ywys9q24bx7",
+      "fieldId": "usmle-step-3",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Invasive ductal carcinoma",
+      "keyedOptions": [
+        "Invasive ductal carcinoma"
+      ],
+      "detail": "claims A (Benign breast disease…) vs key Invasive ductal carcinoma"
+    },
+    {
+      "id": "cmrtf2ok0000s1y30t2jptqxz",
+      "fieldId": "usmle-step-2",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Acute lymphoblastic leukemia (ALL)",
+      "keyedOptions": [
+        "Acute lymphoblastic leukemia (ALL)"
+      ],
+      "detail": "claims A (Immune thrombocytopenic purpura (ITP)…) vs key Acute lymphoblastic leukemia (ALL)"
+    },
+    {
+      "id": "cmr88s46v00uc1yr9sbofxwxx",
+      "fieldId": "usmle-step-2",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Apply a tourniquet",
+      "keyedOptions": [
+        "Apply a tourniquet"
+      ],
+      "detail": "claims A (Administer IV fluids…) vs key Apply a tourniquet"
+    },
+    {
+      "id": "cmr89zxxb00r21yw2tw9ixbef",
+      "fieldId": "usmle-step-1",
+      "claimedLetters": [
+        "A",
+        "B"
+      ],
+      "correctAnswer": "Re-entry circuit within the atria",
+      "keyedOptions": [
+        "Re-entry circuit within the atria"
+      ],
+      "detail": "claims A (Increased automaticity of pacemaker cell…) vs key Re-entry circuit within the atria"
+    },
+    {
+      "id": "cmqh0gczx00231yl62wdv1k24",
+      "fieldId": "npte-pt",
+      "claimedLetters": [
+        "A",
+        "C"
+      ],
+      "correctAnswer": "Blood pressure measurement",
+      "keyedOptions": [
+        "Blood pressure measurement"
+      ],
+      "detail": "claims A (6-Minute Walk Test…) vs key Blood pressure measurement"
+    }
+  ]
+}
