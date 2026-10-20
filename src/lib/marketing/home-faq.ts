@@ -1,5 +1,5 @@
-import { TRIAL_DAYS } from "@/lib/billing-config";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
+import { formatLandingTrialScopeSentence } from "@/lib/site";
 
 /**
  * Short homepage FAQ. The price stays in the pricing card, and this list
@@ -12,7 +12,7 @@ export const HOME_FAQ = [
   },
   {
     q: "Do I need a payment method to start?",
-    a: `No. The ${TRIAL_DAYS}-day free trial starts without a payment method. Cancel in Settings before it ends and you are not charged.`,
+    a: `No. ${formatLandingTrialScopeSentence()}. Cancel in Settings before it ends and you are not charged.`,
   },
   {
     q: "Can I cancel anytime?",

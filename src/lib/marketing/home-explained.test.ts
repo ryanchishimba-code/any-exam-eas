@@ -22,7 +22,8 @@ describe("homepage explained sample", () => {
 describe("homepage faq and price placement", () => {
   it("keeps the short FAQ free of hours, prices, and bank counts", () => {
     const joined = HOME_FAQ.map((item) => `${item.q} ${item.a}`).join(" ");
-    expect(joined).not.toMatch(/24\/7|support hours|\$\d|questions across/i);
+    expect(joined).not.toMatch(/24\/7|support hours|\$\d|\d+,\d+\+?\s*questions/i);
+    expect(joined).toMatch(/500 practice questions across all six boards/i);
     expect(HOME_FAQ.length).toBeLessThanOrEqual(4);
   });
 

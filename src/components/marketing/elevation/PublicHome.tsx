@@ -30,7 +30,7 @@ import { ROUTES } from "@/lib/routes";
 import { formatMonthlyPrice } from "@/lib/site";
 
 const TRUST = [
-  { icon: IconCheck, label: "Rationale for every option" },
+  { icon: IconCheck, label: "Detailed rationales on scored items" },
   { icon: IconReviewers, label: "Named clinical reviewers" },
   { icon: IconCases, label: "NGN and case questions" },
 ] as const;

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 import { formatPlanUsd } from "@/lib/billing-plans";
 import {
   formatBoardQuestionSentence,
@@ -33,7 +33,11 @@ import {
 import { getExamSeoConfig, examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
 import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
-import { SITE_NAME, formatMonthlyPrice } from "@/lib/site";
+import {
+  SITE_NAME,
+  formatLandingTrialFaqAnswer,
+  formatMonthlyPrice,
+} from "@/lib/site";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { qotdPath } from "@/lib/demo/qotd-public";
 
@@ -155,12 +159,12 @@ function hubFaqs(
     },
     {
       question: "Is there a free trial?",
-      answer: `Start a ${TRIAL_DAYS}-day trial with ${TRIAL_LIFETIME_QUESTIONS} practice questions. No payment method required; cancel in Settings anytime.`,
+      answer: formatLandingTrialFaqAnswer(),
     },
     {
       question: "Are rationales included?",
       answer:
-        "Every scored item shows the keyed answer and a short reason for each distractor when one is stored.",
+        "Keyed answer, distractor reasons, and cited sources on scored bank items.",
     },
   ];
   if (examKey === "usmle") {

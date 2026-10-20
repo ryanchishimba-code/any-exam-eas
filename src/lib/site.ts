@@ -97,6 +97,21 @@ export function formatTrialQuestionLimit(): string {
   return `${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial`;
 }
 
+/** Home and board landing hero bands — one short, accurate trial line. */
+export function formatLandingHeroTrialLine(): string {
+  return `${TRIAL_DAYS}-day trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · no payment method`;
+}
+
+/** Trial scope — same facts as {@link formatLandingHeroTrialLine}. */
+export function formatLandingTrialScopeSentence(): string {
+  return `The ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards with no payment method`;
+}
+
+/** Board landing FAQ — same trial facts as the hero line. */
+export function formatLandingTrialFaqAnswer(): string {
+  return `Start a ${TRIAL_DAYS}-day trial with ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards. No payment method required; cancel in Settings anytime.`;
+}
+
 /**
  * Signup trial scope. The liability pass uses this same sentence.
  * Count comes from TRIAL_LIFETIME_QUESTIONS (500 unless overridden).
