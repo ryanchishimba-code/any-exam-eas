@@ -20,6 +20,9 @@ export function itemTypeToNgnFormat(itemType?: string): string | undefined {
       return "ordered_response";
     case "select_all":
       return "select_all";
+    case "constructed_response":
+    case "calculation":
+      return "constructed_response";
     case "ngn_dropdown":
       return "dropdown";
     case "vignette":
@@ -33,6 +36,7 @@ export function itemTypeToNgnFormat(itemType?: string): string | undefined {
 export function itemTypeToExamType(itemType?: string): ExamQuestion["type"] {
   const fmt = itemTypeToNgnFormat(itemType);
   if (!fmt) return "multiple_choice";
+  if (fmt === "constructed_response") return "short_answer";
   if (
     fmt === "bow_tie" ||
     fmt === "matrix" ||

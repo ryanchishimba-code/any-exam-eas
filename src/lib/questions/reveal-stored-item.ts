@@ -6,11 +6,24 @@ import { findServedItem } from "@/lib/assessment/serve-db";
 import { openStudentRef } from "@/lib/assessment/student-item-ref";
 import { bankItemFromClinicalServeItem } from "@/lib/full-exam/catalog-exam-items";
 import { bankItemToRawQuestion } from "@/lib/exam-prep/ngn-bank-bridge";
+import { bankItemToNaplexRaw } from "@/lib/exam-prep/naplex-bank-bridge";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
+import type { BankItem } from "@/lib/question-bank";
 import { prisma } from "@/lib/prisma";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import { revealStudyAnswer, type RevealedAnswerFields } from "@/lib/questions/reveal-study-answer";
 import type { StudyQuestion } from "@/lib/questions/types";
+
+function bankItemToStoredRaw(item: BankItem) {
+  if (
+    item.fieldId === "pharmacy" ||
+    item.itemType === "constructed_response" ||
+    item.itemType === "calculation"
+  ) {
+    return bankItemToNaplexRaw(item, 0);
+  }
+  return bankItemToRawQuestion(item, 0);
+}
 
 function catalogRef(itemId: string): { id: string; version: number } | null {
   const canonical = canonicalStoredQuestionKey(itemId);
@@ -27,7 +40,7 @@ export async function loadStoredStudyQuestion(itemId: string): Promise<StudyQues
     if (clinical) {
       const bank = bankItemFromClinicalServeItem(clinical);
       if (!bank) return null;
-      return examQuestionToStudy(bankItemToRawQuestion(bank, 0), 0, { shuffleOptions: false });
+      return examQuestionToStudy(bankItemToStoredRaw(bank), 0, { shuffleOptions: false });
     }
   }
 
@@ -39,7 +52,7 @@ export async function loadStoredStudyQuestion(itemId: string): Promise<StudyQues
       : await prisma.questionBankItem.findUnique({ where: { id: itemId } }));
   if (!row) return null;
   const item = enrichBankItemFromRow(row);
-  return examQuestionToStudy(bankItemToRawQuestion(item, 0), 0, { shuffleOptions: false });
+  return examQuestionToStudy(bankItemToStoredRaw(item), 0, { shuffleOptions: false });
 }
 
 export async function revealStoredItem(input: {
