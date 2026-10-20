@@ -132,8 +132,20 @@ async function regradeSessionNumeric(
   return { answers, upgrades, skippedUnloadable };
 }
 
+async function ensureBackupTable() {
+  await prisma.$executeRawUnsafe(`
+    CREATE TABLE IF NOT EXISTS "${BACKUP_TABLE}" AS
+    SELECT id, "userId", score, answers, analysis, "updatedAt", now() AS backed_up_at
+    FROM exam_sessions
+    WHERE false
+  `);
+}
+
 async function main() {
   const apply = process.argv.includes("--apply");
+  if (apply) {
+    await ensureBackupTable();
+  }
   const sessions = (await prisma.$queryRawUnsafe(`
     SELECT id, "userId", score, answers, analysis, "questionCount", status
     FROM exam_sessions
