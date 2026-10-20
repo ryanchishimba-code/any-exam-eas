@@ -74,7 +74,7 @@ function normKey(text: string): string {
   return cleanOptionText(text).toLowerCase().replace(/\s+/g, " ").trim();
 }
 
-function parseOptionsPayload(raw: string): OptionsPayload {
+export function parseOptionsPayload(raw: string): OptionsPayload {
   const base: OptionsPayload = { raw, options: [] };
   try {
     const parsed = JSON.parse(raw) as unknown;
@@ -137,7 +137,7 @@ function numForLetter(letter: string, optionCount: number): string | null {
   return String(idx + 1);
 }
 
-function rewriteLettersToNumbers(text: string, optionCount: number): { text: string; changed: boolean } {
+export function rewriteLettersToNumbers(text: string, optionCount: number): { text: string; changed: boolean } {
   if (!text?.trim() || optionCount < 2) return { text, changed: false };
   const { masked, tokens } = maskProtectedPhrases(text);
   let changed = false;
@@ -305,7 +305,7 @@ function serveOrderLocked(
   return true;
 }
 
-function rewriteUnknown(value: unknown, optionCount: number): { value: unknown; changed: boolean } {
+export function rewriteUnknown(value: unknown, optionCount: number): { value: unknown; changed: boolean } {
   if (typeof value === "string") {
     const r = rewriteLettersToNumbers(value, optionCount);
     return { value: r.text, changed: r.changed };
@@ -338,7 +338,7 @@ function rewriteUnknown(value: unknown, optionCount: number): { value: unknown; 
   return { value: out, changed };
 }
 
-function rebuildOptionsRaw(payload: OptionsPayload): string {
+export function rebuildOptionsRaw(payload: OptionsPayload): string {
   try {
     const parsed = JSON.parse(payload.raw) as unknown;
     if (Array.isArray(parsed)) return JSON.stringify(payload.options);

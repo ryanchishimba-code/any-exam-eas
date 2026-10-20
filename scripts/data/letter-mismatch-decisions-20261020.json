@@ -1,0 +1,212 @@
+{
+  "generatedAt": "2026-10-20T22:50:00.000Z",
+  "decisions": [
+    {
+      "id": "cmqh0gczx00231yl62wdv1k24",
+      "fieldId": "npte-pt",
+      "action": "relabel",
+      "correctAnswer": "Blood pressure measurement",
+      "newCorrectAnswer": null,
+      "reason": "Key matches rationale (vitals before exercise testing in decompensated CHF); letter labels only.",
+      "source": "APTA cardiovascular monitoring / defer exercise test when HF decompensation suspected"
+    },
+    {
+      "id": "cmqgyyqqb00071ybct7gkgska",
+      "fieldId": "pance",
+      "action": "relabel",
+      "correctAnswer": "Pneumonia",
+      "newCorrectAnswer": null,
+      "reason": "Fever, crackles, hypoxemia and infiltrates in a 7-year-old = pneumonia; rationale letter matches key.",
+      "source": "AAP community-acquired pneumonia clinical practice"
+    },
+    {
+      "id": "cmqgz18wh001d1ybc9bceh5ax",
+      "fieldId": "pance",
+      "action": "relabel",
+      "correctAnswer": "Pneumonia",
+      "newCorrectAnswer": null,
+      "reason": "Same CAP pattern in a 5-year-old; keyed pneumonia aligns with explanation.",
+      "source": "AAP community-acquired pneumonia clinical practice"
+    },
+    {
+      "id": "cmr89zxxb00r21yw2tw9ixbef",
+      "fieldId": "usmle-step-1",
+      "action": "hide",
+      "correctAnswer": "Re-entry circuit within the atria",
+      "newCorrectAnswer": null,
+      "reason": "Explanation supports re-entry but embedded distractor/clinicalReasoning argues automaticity—unsafe contradiction.",
+      "source": "ACC/AHA SVT mechanism teaching (re-entry vs automaticity)"
+    },
+    {
+      "id": "cmr8ayppq00w51yw2mjye68ze",
+      "fieldId": "usmle-step-1",
+      "action": "hide",
+      "correctAnswer": "Idiopathic generalized epilepsy",
+      "newCorrectAnswer": null,
+      "reason": "Headline rationale favors known epilepsy; clinicalReasoning/distractors push hyponatremia despite mild Na 130—ambiguous.",
+      "source": "ILAE epilepsy classification; hyponatremic seizures typically <125 mEq/L"
+    },
+    {
+      "id": "cmr8bg2y8010h1yw2s7cl5utz",
+      "fieldId": "usmle-step-1",
+      "action": "hide",
+      "correctAnswer": "Deficiency of the enzyme branched-chain alpha-keto acid dehydrogenase",
+      "newCorrectAnswer": null,
+      "reason": "Vignette mixes hyperammonemia with sweet urine; explanation vs clinicalReasoning disagree (MSUD vs urea cycle).",
+      "source": "Nelson Pediatrics inborn errors (MSUD vs urea cycle disorders)"
+    },
+    {
+      "id": "cmrrv65vn00of1y8wc8y115ir",
+      "fieldId": "usmle-step-1",
+      "action": "hide",
+      "correctAnswer": "Decreased alveolar ventilation due to airway obstruction",
+      "newCorrectAnswer": null,
+      "reason": "Explanation describes COPD hypercapnic failure but clinicalReasoning argues ARDS permeability—conflicting pathophysiology.",
+      "source": "GOLD COPD exacerbation vs ARDS Berlin criteria"
+    },
+    {
+      "id": "cmrtgrgdl000h1yaxqcv2dci2",
+      "fieldId": "usmle-step-1",
+      "action": "relabel",
+      "correctAnswer": "Refer for surgical debridement",
+      "newCorrectAnswer": null,
+      "reason": "Uninfected neuropathic ulcer with callus needs debridement/offloading per IWGDF; rationale letter matches key.",
+      "source": "IWGDF 2023 diabetic foot ulcer guidance"
+    },
+    {
+      "id": "cmqxdeqlj00am1ymatehtfnit",
+      "fieldId": "usmle-step-2",
+      "action": "relabel",
+      "correctAnswer": "Nephrology for management of chronic kidney disease",
+      "newCorrectAnswer": null,
+      "reason": "Anemia of CKD in known CKD—nephrology/KDIGO management is appropriate; rationale matches key.",
+      "source": "KDIGO 2012 anemia in CKD"
+    },
+    {
+      "id": "cmr88s46v00uc1yr9sbofxwxx",
+      "fieldId": "usmle-step-2",
+      "action": "relabel",
+      "correctAnswer": "Apply a tourniquet",
+      "newCorrectAnswer": null,
+      "reason": "Exsanguinating extremity hemorrhage with shock—hemorrhage control per ATLS; keyed tourniquet matches explanation.",
+      "source": "ATLS xABCDE hemorrhage control"
+    },
+    {
+      "id": "cmrtf2ok0000s1y30t2jptqxz",
+      "fieldId": "usmle-step-2",
+      "action": "relabel",
+      "correctAnswer": "Acute lymphoblastic leukemia (ALL)",
+      "newCorrectAnswer": null,
+      "reason": "Anemia + severe thrombocytopenia + systemic symptoms suggests marrow infiltration (ALL), not isolated ITP.",
+      "source": "ASH pediatric ITP vs leukemia red flags"
+    },
+    {
+      "id": "cmqxe017n00e01ymaz8ibn55f",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Pyelonephritis",
+      "newCorrectAnswer": null,
+      "reason": "Febrile UTI in child is treated as pyelonephritis; rationale letter matches key.",
+      "source": "AAP UTI clinical practice guideline"
+    },
+    {
+      "id": "cmr4bnyc100b91yky2q1kbwzq",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Recommend lifestyle modifications only",
+      "newCorrectAnswer": null,
+      "reason": "Young adult LDL 140 without enhancers—lifestyle first, not statin; key matches explanation.",
+      "source": "ACC/AHA 2018 cholesterol guideline primary prevention"
+    },
+    {
+      "id": "cmr8ei2c701bb1ylo8ch2qh9f",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Prepare for exploratory laparotomy",
+      "newCorrectAnswer": null,
+      "reason": "Unstable trauma with FAST-positive free fluid needs operative control per ATLS.",
+      "source": "ATLS unstable blunt abdominal trauma"
+    },
+    {
+      "id": "cmr8h1dy501wv1ylognb7ljej",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Perform a lumbar puncture",
+      "newCorrectAnswer": null,
+      "reason": "Thunderclap headache with negative CT requires LP/CTA to exclude SAH.",
+      "source": "AHA/ASA 2023 SAH guideline"
+    },
+    {
+      "id": "cmr8j9r9t02kd1yloj44dqg23",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Advise lifestyle modifications only",
+      "newCorrectAnswer": null,
+      "reason": "Healthy young woman LDL 160 without risk enhancers—lifestyle therapy first.",
+      "source": "ACC/AHA 2018 cholesterol guideline"
+    },
+    {
+      "id": "cmr8lc7c700ah1ygikzpf6hrj",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Asthma exacerbation",
+      "newCorrectAnswer": null,
+      "reason": "Known asthma with wheeze and obstructive pattern—asthma exacerbation, not new COPD.",
+      "source": "GINA asthma exacerbation management"
+    },
+    {
+      "id": "cmr99ilfg00v61ywys9q24bx7",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Invasive ductal carcinoma",
+      "newCorrectAnswer": null,
+      "reason": "Suspicious mammographic mass in mid-40s is most often invasive ductal carcinoma.",
+      "source": "ACR BI-RADS / breast cancer epidemiology"
+    },
+    {
+      "id": "cmr99reqf00x81ywybvz7tel0",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Prescribe oral antibiotics",
+      "newCorrectAnswer": null,
+      "reason": "Healthy outpatient CAP (low severity)—oral empiric antibiotics.",
+      "source": "ATS/IDSA 2019 CAP guideline"
+    },
+    {
+      "id": "cmru3ug2i00i21y7warg7i61l",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Conduct a comprehensive psychiatric evaluation",
+      "newCorrectAnswer": null,
+      "reason": "Active suicidal ideation requires formal suicide-risk psychiatric evaluation before disposition.",
+      "source": "APA practice guideline suicide risk assessment"
+    },
+    {
+      "id": "cmru8v393000g1y0swju93rft",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Advise the mother to introduce more vegetables gradually",
+      "newCorrectAnswer": null,
+      "reason": "Normal-growth picky toddler—gradual dietary exposure without labs or supplements.",
+      "source": "AAP well-child nutrition guidance"
+    },
+    {
+      "id": "cmru9d007007o1y0s01umbrfa",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Order an HbA1c test",
+      "newCorrectAnswer": null,
+      "reason": "Single fasting glucose 126 mg/dL needs confirmatory testing before diabetes diagnosis.",
+      "source": "ADA Standards of Care diabetes diagnosis"
+    },
+    {
+      "id": "cmtpxc6lk005a1ymuoynwlet9",
+      "fieldId": "usmle-step-3",
+      "action": "relabel",
+      "correctAnswer": "Initiate broad-spectrum antibiotics",
+      "newCorrectAnswer": null,
+      "reason": "Hypoxemic bilateral infiltrates without volume-overload signs—empiric CAP antibiotics; hyperkalemia contraindicates diuresis narrative.",
+      "source": "ATS/IDSA 2019 CAP guideline"
+    }
+  ]
+}
