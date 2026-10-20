@@ -1,3 +1,8 @@
+import {
+  administeredQuestionIdAtIndex,
+  alignAnswersToPrefetched,
+  alignSnapshotIdsToPrefetched,
+} from "@/lib/exam-sessions/align-administered-items";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { deserializeExamSelection } from "@/lib/full-exam/answer-serialize";
 import { loadStoredStudyQuestion } from "@/lib/questions/reveal-stored-item";
@@ -102,28 +107,34 @@ export async function gradeExamAnswerRecords(
  */
 export async function overlayServerRationales(
   analysis: unknown,
-  answers: ExamAnswerRecord[]
+  answers: ExamAnswerRecord[],
+  prefetchedQuestionIds?: readonly string[] | null
 ): Promise<unknown> {
   const base =
     analysis && typeof analysis === "object" && !Array.isArray(analysis)
       ? { ...(analysis as Record<string, unknown>) }
       : {};
-  const snapshots = Array.isArray(base.questionSnapshots)
-    ? (base.questionSnapshots as unknown[])
-    : [];
-  const details = new Map<string, StoredAnswerDetail>();
-  for (const answer of answers) {
-    const questionId = answer.questionId?.trim();
-    if (!questionId || details.has(questionId)) continue;
+  const alignedAnswers = alignAnswersToPrefetched(answers, prefetchedQuestionIds);
+  const snapshots = alignSnapshotIdsToPrefetched(
+    Array.isArray(base.questionSnapshots) ? (base.questionSnapshots as unknown[]) : [],
+    prefetchedQuestionIds
+  );
+  const detailsByIndex = new Map<number, StoredAnswerDetail>();
+  for (const answer of alignedAnswers) {
+    const questionId = administeredQuestionIdAtIndex(
+      answer.questionIndex,
+      answer.questionId,
+      prefetchedQuestionIds
+    );
+    if (!questionId || detailsByIndex.has(answer.questionIndex)) continue;
     const detail = await loadStoredAnswerDetail(questionId, answer.selected ?? "");
-    if (detail) details.set(questionId, detail);
+    if (detail) detailsByIndex.set(answer.questionIndex, detail);
   }
 
-  const nextSnapshots = snapshots.map((row) => {
+  const nextSnapshots = snapshots.map((row, index) => {
     if (!row || typeof row !== "object") return row;
     const snapshot = { ...(row as Record<string, unknown>) };
-    const id = typeof snapshot.id === "string" ? snapshot.id.trim() : "";
-    const detail = id ? details.get(id) : undefined;
+    const detail = detailsByIndex.get(index);
     if (!detail) return snapshot;
     snapshot.correctAnswer = detail.correctAnswer;
     snapshot.explanation = detail.explanation;
@@ -139,10 +150,14 @@ export async function overlayServerRationales(
       )
       .filter(Boolean)
   );
-  for (const answer of answers) {
-    const questionId = answer.questionId?.trim();
+  for (const answer of alignedAnswers) {
+    const questionId = administeredQuestionIdAtIndex(
+      answer.questionIndex,
+      answer.questionId,
+      prefetchedQuestionIds
+    );
     if (!questionId || seen.has(questionId)) continue;
-    const detail = details.get(questionId);
+    const detail = detailsByIndex.get(answer.questionIndex);
     if (!detail) continue;
     nextSnapshots.push({
       id: questionId,

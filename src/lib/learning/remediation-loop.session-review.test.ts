@@ -18,6 +18,14 @@ describe("exam-scoped review incorrect", () => {
       ],
       ["pre-0", "pre-1", "pre-2", "pre-3", "pre-4"]
     );
-    expect(ids).toEqual(["miss-1", "miss-2", "pre-3"]);
+    expect(ids).toEqual(["pre-0", "pre-2", "pre-3", "pre-4"]);
+  });
+
+  it("prefers the prefetched id at the index when a sibling shares the same stem family", () => {
+    const ids = missedIdsForExamSession(
+      [{ questionIndex: 1, questionId: "metoprolol-sibling-wrong", correct: false }],
+      ["naplex-metoprolol-a", "naplex-metoprolol-b"]
+    );
+    expect(ids).toEqual(["naplex-metoprolol-b"]);
   });
 });

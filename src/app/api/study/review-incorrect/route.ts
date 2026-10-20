@@ -3,6 +3,7 @@ import { z } from "zod";
 import type { ExamQuestion } from "@/lib/ai";
 import { loadBankItemsByIds } from "@/lib/full-exam/load-bank-items-by-ids";
 import { loadStillIncorrectBankItemIds } from "@/lib/learning/review-incorrect";
+import { examMissReviewQuestionsFromSnapshots } from "@/lib/exam-sessions/review-from-snapshots";
 import { missedIdsForExamSession } from "@/lib/learning/remediation-loop";
 import { isUnfinishedExamActive } from "@/lib/exam-sessions/reveal-policy";
 import { getExamSession } from "@/lib/exam-sessions/service";
@@ -115,7 +116,10 @@ export async function POST(req: Request) {
           { status: 409 }
         );
       }
-      const analysis = (examSession.analysis ?? {}) as { prefetchedQuestionIds?: string[] };
+      const analysis = (examSession.analysis ?? {}) as {
+        prefetchedQuestionIds?: string[];
+        questionSnapshots?: unknown[];
+      };
       const answers = Array.isArray(examSession.answers)
         ? (examSession.answers as ExamAnswerRecord[])
         : [];
@@ -166,6 +170,43 @@ export async function POST(req: Request) {
           resolveQuestionBankSessionCount(Math.min(requestedCount, usageCheck.allowedCount)),
           incorrectIds.length
         );
+
+    if (scopedToExam && body.examSessionId) {
+      const examSession = await getExamSession(body.examSessionId, premium.userId);
+      const examAnalysis = (examSession?.analysis ?? {}) as {
+        prefetchedQuestionIds?: string[];
+        questionSnapshots?: unknown[];
+      };
+      const examAnswers = Array.isArray(examSession?.answers)
+        ? (examSession!.answers as ExamAnswerRecord[])
+        : [];
+      const fromSnapshots = examMissReviewQuestionsFromSnapshots({
+        answers: examAnswers,
+        prefetchedQuestionIds: examAnalysis.prefetchedQuestionIds,
+        snapshots: examAnalysis.questionSnapshots,
+      });
+      if (fromSnapshots.questions.length > 0) {
+        const effectiveSubject = subjectId ?? MIXED_SUBJECT_ID;
+        const delivered = sealStudentFacingIds(fromSnapshots.questions, fromSnapshots.bankItemIds);
+        await recordStudyQuestionsServed(
+          premium.userId,
+          delivered.questions.length,
+          "bank",
+          usageCheck.plan
+        );
+        return reviewQueueResponse(
+          {
+            field: body.field,
+            fieldId,
+            subjectId: effectiveSubject,
+            mode: "review_incorrect",
+            questions: delivered.questions,
+            bankItemIds: delivered.bankItemIds,
+          },
+          incorrectIds.length
+        );
+      }
+    }
 
     const { omitItemsInActiveExams } = await import("@/lib/exam-sessions/reveal-guard");
     const pickIds = (await omitItemsInActiveExams(premium.userId, incorrectIds)).slice(0, sessionCount);
