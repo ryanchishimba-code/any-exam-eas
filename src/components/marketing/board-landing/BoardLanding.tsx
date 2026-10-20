@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
+import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import { HeroScene } from "@/components/marketing/board-landing/HeroScene";
 import { PharmacyHero } from "@/components/marketing/board-landing/PharmacyHero";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
@@ -173,6 +174,8 @@ export function BoardLanding({
         <BoardFeatureGrid cards={model.features} tight={lean} />
       ) : null}
 
+      <BoardLandingTestimonials stories={model.stories} />
+
       {lean ? null : (
         <>
           {model.stats.length > 0 ? (
@@ -311,27 +314,6 @@ export function BoardLanding({
                 </span>
                 <h3>{reviewer.name}</h3>
                 <p>{reviewer.role}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
-      {!lean && model.stories.length > 0 ? (
-        <section className="bl-section" aria-labelledby="stories-heading">
-          <h2 id="stories-heading">From students.</h2>
-          <p className="bl-section-lede">{model.storyNote}</p>
-          <ul className="bl-stories">
-            {model.stories.map((story) => (
-              <li key={story.name}>
-                <blockquote>
-                  <p>{story.quote}</p>
-                </blockquote>
-                <p className="bl-story-by">
-                  <span aria-hidden>{story.initials}</span>
-                  {story.name}
-                  <span> · {story.exam}</span>
-                </p>
               </li>
             ))}
           </ul>

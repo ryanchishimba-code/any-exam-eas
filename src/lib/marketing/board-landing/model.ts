@@ -27,6 +27,7 @@ import {
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
 import { nclexFeatureCards, type BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
+import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { ROUTES } from "@/lib/routes";
 import {
   DEFAULT_OG_IMAGE_HEIGHT,
@@ -470,7 +471,7 @@ export function buildNclexLandingModel(input: {
   const units = liveUnits(input.units, input.degraded);
   const formats: BoardFormatCard[] = [];
   const sample = input.sample ? landingQuestionFromPublic(input.sample) : fallbackNclexQuestion();
-  const stories: BoardLandingModel["stories"] = [];
+  const stories = landingTestimonialStories(input.testimonials ?? [], "nclex");
   const faqs = nclexFaqs(units);
   const proofPoints = nclexProofPoints();
   const heroOffer = nclexHeroOffer(units);

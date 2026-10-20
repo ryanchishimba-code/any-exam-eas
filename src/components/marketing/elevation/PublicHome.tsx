@@ -2,7 +2,9 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
+import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import type { BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
+import type { LandingTestimonialCard } from "@/lib/testimonials/landing-stories";
 import { buildHomeHeroChips, type HomeHeroBand } from "@/lib/marketing/board-landing/home-hero";
 import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
 import { HomeCompare } from "@/components/marketing/elevation/HomeCompare";
@@ -47,17 +49,17 @@ const HERO_BOARD_TILES: { slug: ExamSeoKey; label: string }[] = [
 
 export function PublicHome({
   proof,
-  quote,
   ngnCaseStudies = false,
   heroBand,
   featureCards = [],
+  testimonialStories = [],
 }: {
   proof?: ReactNode;
-  quote?: ReactNode;
   /** Set when the same snapshot has published NCLEX case studies. */
   ngnCaseStudies?: boolean;
   heroBand?: HomeHeroBand;
   featureCards?: BoardFeatureCard[];
+  testimonialStories?: LandingTestimonialCard[];
 }) {
   const cta = homeTrialCtaLabel();
   const headlineBreak = HOME_PRACTICE_HEADLINE.lastIndexOf(". ");
@@ -145,9 +147,10 @@ export function PublicHome({
 
       {proof}
 
-      {featureCards.length > 0 ? (
+      {featureCards.length > 0 || testimonialStories.length > 0 ? (
         <div className="home-features board-landing">
-          <BoardFeatureGrid cards={featureCards} tight />
+          {featureCards.length > 0 ? <BoardFeatureGrid cards={featureCards} tight /> : null}
+          <BoardLandingTestimonials stories={testimonialStories} />
         </div>
       ) : null}
 
@@ -244,8 +247,6 @@ export function PublicHome({
           ))}
         </ul>
       </section>
-
-      {quote}
 
       <section className="home-section home-section--mist home-faq home-rise" aria-labelledby="faq-heading">
         <h2 id="faq-heading">Questions.</h2>

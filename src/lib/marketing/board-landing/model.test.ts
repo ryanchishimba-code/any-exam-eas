@@ -99,7 +99,8 @@ describe("NCLEX landing model", () => {
       "NCSBN test plan",
     ]);
     expect(model.stats[0]?.value).toBe("108");
-    expect(model.stories).toEqual([]);
+    expect(model.stories.length).toBeGreaterThan(0);
+    expect(model.stories.some((story) => story.name === "Nathan C.")).toBe(true);
     expect(model.formats).toEqual([]);
     expect(model.faqs).toHaveLength(6);
     expect(model.quickBite?.slug).toBe(OPEN_QUICK_BITE_SLUG);

@@ -20,6 +20,7 @@ import { typicalPrepForExam } from "@/lib/marketing/board-landing/typical-prep";
 import { CLINICAL_REVIEWERS, clinicalReviewerForExam } from "@/lib/marketing/company";
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { homeTrialCtaLabel } from "@/lib/marketing/home-cta";
+import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 import {
   DEFAULT_OG_IMAGE_HEIGHT,
@@ -219,6 +220,7 @@ export function buildHubLandingModel(input: {
   degraded: boolean;
   units: BoardQuestionUnits | null;
   sample: PublicSampleQuestion | null;
+  testimonials?: LandingSuccessStory[];
   usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
 }): BoardLandingModel {
   const config = getExamSeoConfig(input.examKey);
@@ -353,7 +355,7 @@ export function buildHubLandingModel(input: {
           background: row.avatar.background,
           color: row.avatar.color,
         })),
-    stories: [],
+    stories: landingTestimonialStories(input.testimonials ?? [], input.examKey),
     storyNote: "",
     faqs,
     links,
