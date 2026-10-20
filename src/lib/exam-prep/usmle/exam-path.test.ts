@@ -83,9 +83,10 @@ describe("USMLE self-assessment form", () => {
     const rows = buildTopicBreakdown(
       [{ subjectId: "cardiology" }, { subjectId: "pulmonology" }],
       [
-        { questionIndex: 0, correct: true, answeredAt: "2026-01-01T00:00:00.000Z" },
-        { questionIndex: 1, correct: false, answeredAt: "2026-01-01T00:00:00.000Z" },
-      ]
+        { questionIndex: 0, selected: "A", correct: true, answeredAt: "2026-01-01T00:00:00.000Z" },
+        { questionIndex: 1, selected: "B", correct: false, answeredAt: "2026-01-01T00:00:00.000Z" },
+      ],
+      { examSlug: "usmle" }
     );
     expect(rows.length).toBe(2);
     expect(rows.some((r) => /cardio|cv|resp|renal/i.test(r.topic))).toBe(true);

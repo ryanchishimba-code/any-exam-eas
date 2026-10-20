@@ -97,7 +97,7 @@ async function FullExamResultsContent({
   const analysisForResults: FullExamResultsAnalysis = {
     ...analysis,
     timeUsedSec,
-    topicBreakdown: buildTopicBreakdown(questions, answers),
+    topicBreakdown: buildTopicBreakdown(questions, answers, { examSlug }),
   };
   const treatsAsEndedEarly = fullExamTreatsAsEndedEarly({
     endedEarly: examSession.status === "ended_early",

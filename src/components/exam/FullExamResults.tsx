@@ -39,7 +39,10 @@ import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { resolveQuestionStudyLinks } from "@/lib/library/question-study-links";
 import { bowTieReviewColumns, type BowTieReviewChoice } from "@/lib/questions/bow-tie-review";
 import { studentFacingStem } from "@/lib/questions/student-display-text";
-import { clientNeedLabel, genericJudgmentLabel, tallyLabeledScores } from "@/lib/full-exam/nclex-exam-labels";
+import {
+  buildClientNeedBreakdown,
+  buildClinicalJudgmentBreakdown,
+} from "@/lib/full-exam/exam-breakdown-tally";
 
 type ReviewView = "summary" | "overview" | "question";
 
@@ -620,18 +623,8 @@ function NclexExamBreakdown({
   questions: FullExamQuestion[];
   answers: ExamAnswerRecord[];
 }) {
-  const rows = questions.map((question, index) => {
-    const answer = answers.find((entry) => entry.questionIndex === index);
-    const selected = typeof answer?.selected === "string" ? answer.selected.trim() : "";
-    return {
-      answered: selected.length > 0,
-      correct: answer?.correct === true,
-      step: genericJudgmentLabel(question.caseStep),
-      need: clientNeedLabel(question.topicCategory, question.subjectId, question.blueprintDomain),
-    };
-  });
-  const steps = tallyLabeledScores(rows.map((row) => ({ label: row.step, answered: row.answered, correct: row.correct })));
-  const needs = tallyLabeledScores(rows.map((row) => ({ label: row.need, answered: row.answered, correct: row.correct })));
+  const steps = buildClinicalJudgmentBreakdown(questions, answers);
+  const needs = buildClientNeedBreakdown(questions, answers);
   if (steps.length === 0 && needs.length === 0) return null;
   return (
     <div className="grid gap-4 lg:grid-cols-2">

@@ -31,9 +31,10 @@ function subjectFallback(subjectId?: string | null): NaplexBlueprintAreaId {
   if (sid === "otc-self-care") return "naplex-2026-health-wellness";
   if (sid === "pharmacy-law") return "naplex-2026-pharmacist-tasks";
   if (sid === "patient-counseling") return "naplex-2026-patient-centered-care";
-  if (sid === "pharmacology" || sid === "pharmacokinetics") {
-    return "naplex-2026-drug-information";
+  if (sid === "pharmacokinetics" || sid === "pharmaceutics" || sid === "compounding-calculations") {
+    return "naplex-2026-medication-dispensing";
   }
+  if (sid === "pharmacology") return "naplex-2026-drug-information";
   return "naplex-2026-pharmacotherapy";
 }
 

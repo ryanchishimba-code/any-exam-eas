@@ -821,7 +821,7 @@ export function FullExamSimulator({
       });
       const correctCount = log.filter((row) => row.correct && row.selected?.trim()).length;
       const score = practiceScorePercent(correctCount, totals.denominator || totals.answered);
-      const topicBreakdown = buildTopicBreakdown(scored, log);
+      const topicBreakdown = buildTopicBreakdown(scored, log, { examSlug });
       const pauseInProgress =
         pauseStarted.current != null
           ? Math.max(0, Math.floor((Date.now() - pauseStarted.current) / 1000))

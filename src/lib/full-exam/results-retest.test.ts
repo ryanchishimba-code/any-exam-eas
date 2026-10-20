@@ -38,14 +38,14 @@ describe("ended-early results", () => {
       { subjectId: "reduction-risk", question: "Postoperative bleeding is increasing." },
       { subjectId: "basic-care-comfort", question: "The client needs help with bathing." },
     ];
-    const rows = buildTopicBreakdown(questions, [
+    const answers = [
       answer(0, false, "2026-10-06T12:00:00.000Z"),
       answer(1, true, "2026-10-06T12:01:00.000Z"),
-    ]);
+    ];
+    const rows = buildTopicBreakdown(questions, answers, { examSlug: "nclex" });
     const psych = rows.find((row) => row.topic === "Psychosocial Integrity");
     expect(psych).toMatchObject({ correct: 1, total: 2, pct: 50 });
-    const unanswered = rows.reduce((sum, row) => sum + (row.unanswered ?? 0), 0);
-    expect(unanswered).toBe(2);
+    expect(rows.reduce((sum, row) => sum + row.total, 0)).toBe(answers.length);
     expect(rows.every((row) => row.total === 0 || row.pct === Math.round((row.correct / row.total) * 100))).toBe(
       true
     );

@@ -86,7 +86,8 @@ describe("shuffled delivery and NGN CAT results", () => {
           correct: true,
           answeredAt: "2026-10-06T00:00:00.000Z",
         },
-      ]
+      ],
+      { examSlug: "nclex" }
     );
     expect(topics.map((row) => row.topic)).toEqual(["Management of Care"]);
   });
@@ -127,7 +128,8 @@ describe("shuffled delivery and NGN CAT results", () => {
           correct: true,
           answeredAt: "2026-10-06T00:00:00.000Z",
         },
-      ]
+      ],
+      { examSlug: "nclex" }
     );
     expect(topics[0]?.topic).toBe("Pharmacological Therapies");
     expect(practiceScorePercent(1, 1)).toBe(100);
