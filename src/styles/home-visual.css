@@ -33,6 +33,34 @@
     linear-gradient(180deg, #f3faf9 0%, #ffffff 72%);
 }
 
+/* Laptop frame — decorative chrome only; hero copy stays in the DOM for crawlers. */
+.home-laptop {
+  width: min(100%, 56rem);
+  margin-inline: auto;
+  max-width: 100%;
+}
+
+.home-laptop__lid {
+  max-width: 100%;
+}
+
+.home-laptop__bezel {
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  border-radius: 1rem;
+  padding: 0;
+  background: transparent;
+}
+
+.home-laptop__camera,
+.home-laptop__hinge,
+.home-laptop__base {
+  display: none;
+}
+
+.home-laptop__screen {
+  min-width: 0;
+}
+
 .home-hero__panel {
   width: min(36rem, 100%);
   margin-inline: auto;
@@ -44,6 +72,7 @@
     0 1px 2px rgba(10, 37, 64, 0.04),
     0 24px 50px rgba(10, 37, 64, 0.08);
   text-align: center;
+  box-sizing: border-box;
 }
 
 .home-hero h1 {
@@ -1064,6 +1093,64 @@
 
   .home-sticky {
     display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-laptop__bezel {
+    padding: 0.65rem 0.65rem 0.85rem;
+    border: none;
+    border-radius: 1.1rem 1.1rem 0 0;
+    background: linear-gradient(165deg, #2a2f3a 0%, #12151c 55%, #0c0e14 100%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 28px 60px rgba(10, 37, 64, 0.18);
+  }
+
+  .home-laptop__camera {
+    display: block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin: 0 auto 0.45rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #4b5563, #0f1419 70%);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45);
+  }
+
+  .home-laptop__screen {
+    border-radius: 0.35rem;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35) inset;
+  }
+
+  .home-laptop__hinge {
+    display: block;
+    height: 0.35rem;
+    margin-top: -0.05rem;
+    border-radius: 0 0 0.15rem 0.15rem;
+    background: linear-gradient(180deg, #3d4452, #1a1f28);
+  }
+
+  .home-laptop__base {
+    display: block;
+    width: min(94%, 52rem);
+    height: 0.65rem;
+    margin: 0 auto;
+    border-radius: 0 0 0.65rem 0.65rem;
+    background: linear-gradient(180deg, #2a303c 0%, #141820 100%);
+    box-shadow: 0 10px 28px rgba(10, 37, 64, 0.12);
+  }
+
+  .home-hero__panel {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: #ffffff;
+    backdrop-filter: none;
   }
 }
 

@@ -71,7 +71,12 @@ export function PublicHome({
   return (
     <div className="home-visual home-has-sticky">
       <section className="home-hero" aria-labelledby="hero-heading">
-        <div className="home-hero__panel">
+        <div className="home-laptop">
+          <div className="home-laptop__lid">
+            <div className="home-laptop__bezel">
+              <span className="home-laptop__camera" aria-hidden="true" />
+              <div className="home-laptop__screen">
+                <div className="home-hero__panel">
           <h1 id="hero-heading">
             <span className="home-hero__line">{headlineLead}</span>{" "}
             <span className="home-hero__accent">{headlineAccent}</span>
@@ -129,6 +134,12 @@ export function PublicHome({
               </li>
             ))}
           </ul>
+                </div>
+              </div>
+            </div>
+            <div className="home-laptop__hinge" aria-hidden="true" />
+          </div>
+          <div className="home-laptop__base" aria-hidden="true" />
         </div>
       </section>
 
