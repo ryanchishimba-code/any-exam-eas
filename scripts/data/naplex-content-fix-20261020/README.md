@@ -1,6 +1,6 @@
 # NAPLEX content fix prep (2026-10-20)
 
-**Status:** prepare only — no production writes until Ryan approves.
+**Status:** content fix **applied** 2026-10-20 (backup `qbi_naplex_content_fix_backup_20261020`, 5 rows). Re-score **not** applied.
 
 ## Located items (by stem / key, not exam order)
 
