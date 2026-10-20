@@ -1,6 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
+import type { BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
+import { buildHomeHeroChips, type HomeHeroBand } from "@/lib/marketing/board-landing/home-hero";
 import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
 import { HomeCompare } from "@/components/marketing/elevation/HomeCompare";
 import { HomePassVideo } from "@/components/marketing/elevation/HomePassVideo";
@@ -46,11 +49,15 @@ export function PublicHome({
   proof,
   quote,
   ngnCaseStudies = false,
+  heroBand,
+  featureCards = [],
 }: {
   proof?: ReactNode;
   quote?: ReactNode;
   /** Set when the same snapshot has published NCLEX case studies. */
   ngnCaseStudies?: boolean;
+  heroBand?: HomeHeroBand;
+  featureCards?: BoardFeatureCard[];
 }) {
   const cta = homeTrialCtaLabel();
   const headlineBreak = HOME_PRACTICE_HEADLINE.lastIndexOf(". ");
@@ -58,6 +65,8 @@ export function PublicHome({
     headlineBreak === -1 ? HOME_PRACTICE_HEADLINE : HOME_PRACTICE_HEADLINE.slice(0, headlineBreak + 1);
   const headlineAccent =
     headlineBreak === -1 ? "" : HOME_PRACTICE_HEADLINE.slice(headlineBreak + 2);
+  const band = heroBand ?? null;
+  const heroChips = band ? buildHomeHeroChips(band) : [];
 
   return (
     <div className="home-visual home-has-sticky">
@@ -67,6 +76,35 @@ export function PublicHome({
             <span className="home-hero__line">{headlineLead}</span>{" "}
             <span className="home-hero__accent">{headlineAccent}</span>
           </h1>
+          {heroChips.length > 0 ? (
+            <ul className="bl-hero-chips home-hero__chips" aria-label="Why students choose AnyExamEasy">
+              {heroChips.map((chip) => (
+                <li key={chip.id}>{chip.text}</li>
+              ))}
+            </ul>
+          ) : null}
+          {band ? (
+            <div className="bl-hero-band bl-hero-band--count-only home-hero__band" aria-label="Live bank size and pricing">
+              <p className="bl-hero-band__count">
+                {band.liveTotal ? (
+                  <>
+                    <span className="bl-hero-band__value">{band.liveTotal}</span>
+                    <span className="bl-hero-band__label"> live board-style questions</span>
+                  </>
+                ) : (
+                  <span className="bl-hero-band__label">Live question bank</span>
+                )}
+              </p>
+              <p className="bl-hero-band__prices">
+                <span className="bl-hero-band__ours">{band.proPrice}</span>
+                <span className="bl-hero-band__vs" aria-hidden> · </span>
+                <span className="bl-hero-band__typical">
+                  vs {band.typicalPrice} typical {band.typicalPeriod}
+                </span>
+              </p>
+              <p className="bl-hero-band__trial">{band.trialLine}</p>
+            </div>
+          ) : null}
           <nav className="home-hero__boards" aria-label="Board exams">
             <ul>
               {HERO_BOARD_TILES.map((board) => (
@@ -95,6 +133,12 @@ export function PublicHome({
       </section>
 
       {proof}
+
+      {featureCards.length > 0 ? (
+        <div className="home-features board-landing">
+          <BoardFeatureGrid cards={featureCards} tight />
+        </div>
+      ) : null}
 
       <section className="home-section home-rise" aria-labelledby="explained-heading">
         <h2 id="explained-heading">Every question explained.</h2>

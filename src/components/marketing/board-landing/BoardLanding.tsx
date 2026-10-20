@@ -26,23 +26,27 @@ function HeroDifferentiatorChips({ chips }: { chips: NonNullable<BoardLandingMod
 function HeroOfferBand({
   offer,
   chipsAbove,
+  boardName,
 }: {
   offer: NonNullable<BoardLandingModel["heroOffer"]>;
   chipsAbove?: boolean;
+  boardName: string;
 }) {
+  const questionLabel = offer.questionNoun ?? "questions";
+  const typicalPeriod = offer.typicalPeriod ?? "30-day prep";
   return (
     <div
       className={`bl-hero-band${chipsAbove ? " bl-hero-band--count-only" : ""}`}
-      aria-label={chipsAbove ? "Live NCLEX question bank size" : "Live bank size and pricing"}
+      aria-label={chipsAbove ? `Live ${boardName} question bank size` : "Live bank size and pricing"}
     >
       <p className="bl-hero-band__count">
         {offer.liveQuestions ? (
           <>
             <span className="bl-hero-band__value">{offer.liveQuestions}</span>
-            <span className="bl-hero-band__label"> live NCLEX questions</span>
+            <span className="bl-hero-band__label"> live {questionLabel}</span>
           </>
         ) : (
-          <span className="bl-hero-band__label">Live NCLEX question bank</span>
+          <span className="bl-hero-band__label">Live {boardName} question bank</span>
         )}
       </p>
       {chipsAbove ? (
@@ -52,7 +56,9 @@ function HeroOfferBand({
           <p className="bl-hero-band__prices">
             <span className="bl-hero-band__ours">{offer.proPrice}</span>
             <span className="bl-hero-band__vs" aria-hidden> · </span>
-            <span className="bl-hero-band__typical">vs {offer.typicalPrice} typical 30-day prep</span>
+            <span className="bl-hero-band__typical">
+              vs {offer.typicalPrice} typical {typicalPeriod}
+            </span>
           </p>
           <p className="bl-hero-band__trial">{offer.trialLine}</p>
         </>
@@ -105,7 +111,11 @@ export function BoardLanding({
           </h1>
           {model.heroChips?.length ? <HeroDifferentiatorChips chips={model.heroChips} /> : null}
           {model.heroOffer ? (
-            <HeroOfferBand offer={model.heroOffer} chipsAbove={Boolean(model.heroChips?.length)} />
+            <HeroOfferBand
+              offer={model.heroOffer}
+              chipsAbove={Boolean(model.heroChips?.length)}
+              boardName={model.boardName}
+            />
           ) : null}
           {lean ? null : <p className="bl-lede">{model.lede}</p>}
           {scene || pharmacy ? null : (

@@ -13,6 +13,7 @@ import {
   enforceMetaDescription,
   enforceMetaTitle,
 } from "@/lib/seo/meta-budget";
+import { HOME_FAQ } from "@/lib/marketing/home-faq";
 
 const PRODUCTION_SITE_URL = `https://www.${SITE_DOMAIN}`;
 
@@ -191,6 +192,15 @@ export function buildRootMetadata(): Metadata {
 /** JSON-LD for homepage — Organization + WebSite with search action. */
 export function buildHomeJsonLd(totalQuestionsLabel?: string) {
   const url = getSiteUrl();
+  const faqPage = {
+    "@type": "FAQPage",
+    "@id": `${url}/#faq`,
+    mainEntity: HOME_FAQ.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -283,6 +293,7 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
           },
         ],
       },
+      faqPage,
     ],
   };
 }

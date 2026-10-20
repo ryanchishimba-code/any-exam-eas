@@ -33,9 +33,17 @@ const STATIC_SLUGS = [
   ...Object.keys(EXAM_SEO_SLUG_ALIASES),
 ];
 
+const OWNED_HUB_SLUGS = new Set([
+  "nclex",
+  "naplex",
+  "usmle",
+  "pance",
+  "aanp-fnp",
+  "npte-pt",
+]);
+
 export function generateStaticParams() {
-  // `/nclex` and `/naplex` are owned by the product hubs at `src/app/nclex` and `src/app/naplex`.
-  return STATIC_SLUGS.filter((examSlug) => examSlug !== "nclex" && examSlug !== "naplex").map((examSlug) => ({
+  return STATIC_SLUGS.filter((examSlug) => !OWNED_HUB_SLUGS.has(examSlug)).map((examSlug) => ({
     examSlug,
   }));
 }

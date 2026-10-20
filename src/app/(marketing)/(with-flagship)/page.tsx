@@ -5,8 +5,12 @@ import { HomeExperience } from "@/components/home/HomeExperience";
 import { HomeQuote } from "@/components/marketing/elevation/HomeQuote";
 import { HomeProofStrip } from "@/components/marketing/elevation/HomeProofStrip";
 import { PublicHome } from "@/components/marketing/elevation/PublicHome";
+import { homeFeatureCards } from "@/lib/marketing/board-landing/board-features";
+import { buildHomeHeroBand } from "@/lib/marketing/board-landing/home-hero";
+import { openBoardQuickBite } from "@/lib/marketing/board-landing/model";
 import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
+import "@/styles/board-landing.css";
 import { mergeHomeTestimonials } from "@/lib/testimonials/home-stories";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
@@ -40,8 +44,14 @@ async function HomeQuoteLive() {
 }
 
 export default async function HomePage() {
-  const { display, bundle } = await loadPublicQuestionCounts({ dynamic: false });
+  const { display, bundle, exactLabel } = await loadPublicQuestionCounts({ dynamic: false });
   const site = siteCountsFromSnapshot(bundle.snapshot);
+  const homeHeroBand = buildHomeHeroBand(exactLabel);
+  const homeFeatures = homeFeatureCards({
+    ngnCaseStudies: Boolean(site && site.boards.nclex.caseStudies > 0),
+    nursingQuickBite: openBoardQuickBite("nursing"),
+    pharmacyQuickBite: openBoardQuickBite("pharmacy"),
+  });
   return (
     <>
       <Suspense fallback={null}>
@@ -50,6 +60,8 @@ export default async function HomePage() {
       <HomeExperience bankCounts={display}>
         <PublicHome
           ngnCaseStudies={Boolean(site && site.boards.nclex.caseStudies > 0)}
+          heroBand={homeHeroBand}
+          featureCards={homeFeatures}
           proof={
             <Suspense fallback={null}>
               <HomeProofLive />
