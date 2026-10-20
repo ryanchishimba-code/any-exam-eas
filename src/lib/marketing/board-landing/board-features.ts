@@ -1,6 +1,9 @@
 import type { BoardQuestionUnits } from "@/lib/counts";
+import { getStudyGuideConfig, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
 import type { BoardFormatCard, BoardQuickBite } from "@/lib/marketing/board-landing/model";
 import { nclexFormatCards } from "@/lib/marketing/board-landing/model";
+import type { ExamSeoKey } from "@/lib/seo/exam-config";
+import { naplexFormatCards } from "@/lib/marketing/board-landing/naplex";
 
 export type BoardFeatureIconId =
   | "ngn"
@@ -127,4 +130,257 @@ export function nclexFeatureCards(input: {
   });
 
   return cards;
+}
+
+function studyGuideExamForKey(examKey: ExamSeoKey): StudyGuideExam | null {
+  const guide = getStudyGuideConfig(examKey);
+  return guide?.exam ?? null;
+}
+
+function anatomyFeatureCard(): BoardFeatureCard {
+  return {
+    id: "anatomy-explorer",
+    title: "Anatomy Explorer",
+    line: "Orbit 3D structures and jump to board-style practice.",
+    icon: "anatomy",
+    spotlight: true,
+  };
+}
+
+function quickBitesLectureCard(): BoardFeatureCard {
+  return {
+    id: "quick-bites-lectures",
+    title: "Quick Bites video lectures",
+    line: "Short teaching videos with captions and follow-up quizzes.",
+    icon: "quick-bites",
+    spotlight: true,
+  };
+}
+
+function explainedCard(boardShort: string): BoardFeatureCard {
+  return {
+    id: "explained",
+    title: "Every answer explained",
+    line: "Keyed answer and a reason for each distractor when one is stored.",
+    icon: "explained",
+  };
+}
+
+function qotdCard(boardShort: string): BoardFeatureCard {
+  return {
+    id: "qotd",
+    title: "Question of the Day",
+    line: `One fresh ${boardShort} question daily—free to try.`,
+    icon: "qotd",
+  };
+}
+
+function readinessCard(): BoardFeatureCard {
+  return {
+    id: "readiness",
+    title: "Readiness score",
+    line: "Practice progress and a baseline check—in-app only.",
+    icon: "readiness",
+  };
+}
+
+function mobileCard(): BoardFeatureCard {
+  return {
+    id: "mobile",
+    title: "Mobile-friendly",
+    line: "Study on your phone without sideways scroll.",
+    icon: "mobile",
+  };
+}
+
+function practiceExamsCard(boardShort: string): BoardFeatureCard {
+  return {
+    id: "practice-exams",
+    title: "Practice & full exams",
+    line: `Timed sets and full-length mocks for ${boardShort}.`,
+    icon: "adaptive",
+  };
+}
+
+function studyGuideCard(boardShort: string): BoardFeatureCard {
+  return {
+    id: "study-guide",
+    title: `${boardShort} study guide`,
+    line: "Blueprint-aligned reference chapters included with Pro.",
+    icon: "review",
+    spotlight: true,
+  };
+}
+
+/** Verified NAPLEX product features for the board landing grid. */
+export function naplexFeatureCards(input: {
+  degraded: boolean;
+  bankTypes: Record<string, number>;
+  quickBite: BoardQuickBite | null;
+}): BoardFeatureCard[] {
+  const cards: BoardFeatureCard[] = [];
+  const formats = input.degraded ? [] : naplexFormatCards(input.bankTypes);
+  const formatLine = ngnFeatureLineFromFormatCards(formats);
+  if (formatLine) {
+    cards.push({
+      id: "formats",
+      title: "NAPLEX item types",
+      line: formatLine,
+      icon: "ngn",
+    });
+  }
+  if (input.quickBite) {
+    cards.push(quickBitesLectureCard());
+  }
+  cards.push(
+    {
+      id: "calc",
+      title: "Pharmacy calculations",
+      line: "Dosing and compounding walkthroughs on scored items.",
+      icon: "explained",
+    },
+    qotdCard("NAPLEX"),
+    readinessCard(),
+    practiceExamsCard("NAPLEX"),
+    mobileCard()
+  );
+  return cards;
+}
+
+export function usmleFeatureCards(input: {
+  quickBite: BoardQuickBite | null;
+  stepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
+}): BoardFeatureCard[] {
+  const cards: BoardFeatureCard[] = [anatomyFeatureCard()];
+  const steps = (["step1", "step2", "step3"] as const)
+    .filter((step) => (input.stepCounts?.[step] ?? 0) > 0)
+    .map((step) => (step === "step1" ? "Step 1" : step === "step2" ? "Step 2 CK" : "Step 3"));
+  if (steps.length > 0) {
+    cards.push({
+      id: "steps",
+      title: "All three USMLE steps",
+      line: `${steps.join(", ")} banks on one Pro plan.`,
+      icon: "ngn",
+    });
+  }
+  cards.push(
+    explainedCard("USMLE"),
+    qotdCard("USMLE"),
+    readinessCard(),
+    practiceExamsCard("USMLE"),
+    mobileCard()
+  );
+  return cards;
+}
+
+export function panceFeatureCards(): BoardFeatureCard[] {
+  return [
+    anatomyFeatureCard(),
+    explainedCard("PANCE"),
+    qotdCard("PANCE"),
+    readinessCard(),
+    practiceExamsCard("PANCE"),
+    mobileCard(),
+  ];
+}
+
+export function aanpFnpFeatureCards(): BoardFeatureCard[] {
+  const cards: BoardFeatureCard[] = [];
+  if (studyGuideExamForKey("aanp-fnp")) {
+    cards.push(studyGuideCard("AANP FNP"));
+  }
+  cards.push(
+    anatomyFeatureCard(),
+    explainedCard("AANP FNP"),
+    qotdCard("AANP FNP"),
+    readinessCard(),
+    practiceExamsCard("AANP FNP"),
+    mobileCard()
+  );
+  return cards;
+}
+
+export function npteFeatureCards(): BoardFeatureCard[] {
+  return [
+    anatomyFeatureCard(),
+    explainedCard("NPTE-PT"),
+    qotdCard("NPTE-PT"),
+    readinessCard(),
+    practiceExamsCard("NPTE-PT"),
+    mobileCard(),
+  ];
+}
+
+export function homeFeatureCards(input: {
+  ngnCaseStudies: boolean;
+  nursingQuickBite: BoardQuickBite | null;
+  pharmacyQuickBite: BoardQuickBite | null;
+}): BoardFeatureCard[] {
+  const cards: BoardFeatureCard[] = [
+    {
+      id: "six-boards",
+      title: "Six boards, one plan",
+      line: "NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT on Pro.",
+      icon: "adaptive",
+      spotlight: true,
+    },
+    anatomyFeatureCard(),
+  ];
+  if (input.nursingQuickBite || input.pharmacyQuickBite) {
+    cards.push(quickBitesLectureCard());
+  }
+  if (input.ngnCaseStudies) {
+    cards.push({
+      id: "ngn",
+      title: "Next Gen NCLEX",
+      line: "Published NGN case studies and CAT-style exams for nursing.",
+      icon: "ngn",
+    });
+  }
+  cards.push(
+    explainedCard("board"),
+    qotdCard("board"),
+    readinessCard(),
+    mobileCard()
+  );
+  return cards;
+}
+
+export function boardFeatureCardsForExam(
+  examKey: ExamSeoKey,
+  input: {
+    degraded: boolean;
+    units: BoardQuestionUnits | null;
+    bankTypes: Record<string, number>;
+    quickBite: BoardQuickBite | null;
+    usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
+  }
+): BoardFeatureCard[] {
+  switch (examKey) {
+    case "nclex":
+      return nclexFeatureCards({
+        units: input.units,
+        bankTypes: input.bankTypes,
+        quickBite: input.quickBite,
+      });
+    case "naplex":
+      return naplexFeatureCards({
+        degraded: input.degraded,
+        bankTypes: input.bankTypes,
+        quickBite: input.quickBite,
+      });
+    case "usmle":
+      return usmleFeatureCards({
+        quickBite: input.quickBite,
+        stepCounts: input.usmleStepCounts,
+      });
+    case "pance":
+      return panceFeatureCards();
+    case "aanp-fnp":
+      return aanpFnpFeatureCards();
+    case "npte-pt":
+      return npteFeatureCards();
+    default:
+      return [];
+  }
 }

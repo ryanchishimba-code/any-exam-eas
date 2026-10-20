@@ -127,7 +127,7 @@ describe("NCLEX landing model", () => {
     });
     expect(model.stats).toEqual([]);
     expect(model.countLine).toBeNull();
-    expect(model.faqs[0]?.answer).toMatch(/do not publish a guessed total/i);
+    expect(model.faqs[0]?.answer).toMatch(/do not guess a number/i);
   });
 });
 

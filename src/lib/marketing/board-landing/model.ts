@@ -88,6 +88,8 @@ export type BoardLandingModel = {
     liveQuestions: string | null;
     proPrice: string;
     typicalPrice: string;
+    typicalPeriod?: string;
+    questionNoun?: string;
     trialLine: string;
   };
   /** Short above-the-fold differentiators (lean NCLEX hero). */
@@ -397,13 +399,17 @@ function nclexProofPoints(): string[] {
   return ["Reviewed by RN and PharmD clinicians", "Every answer explained"];
 }
 
-function nclexHeroOffer(units: BoardQuestionUnits | null): BoardLandingModel["heroOffer"] {
+function nclexHeroOffer(
+  units: BoardQuestionUnits | null
+): NonNullable<BoardLandingModel["heroOffer"]> {
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
   return {
     liveQuestions: units ? formatExactQuestionCount(scoredQuestionCount(units)) : null,
     proPrice: `${price}/mo`,
     typicalPrice: typical,
+    typicalPeriod: "30-day prep",
+    questionNoun: "NCLEX questions",
     trialLine: `${TRIAL_DAYS}-day free trial · no payment method to start`,
   };
 }

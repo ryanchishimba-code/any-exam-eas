@@ -92,6 +92,22 @@
   line-height: 1.5;
 }
 
+.home-hero__chips {
+  margin: 1rem auto 0;
+  max-width: 32rem;
+  text-align: left;
+}
+
+.home-hero__band {
+  margin: 1rem auto 0;
+  max-width: 22rem;
+  text-align: left;
+}
+
+.home-features.board-landing {
+  padding-inline: 1.25rem;
+}
+
 .home-hero__boards {
   margin: 1.25rem 0 0;
 }
