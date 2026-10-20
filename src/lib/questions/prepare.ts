@@ -445,6 +445,15 @@ export function isAnswerCorrect(
     );
   }
 
+  if (normalizedSelected.length === 1 && normalizedCorrect.length >= 1) {
+    const graded = gradeNumericAnswer(
+      normalizedSelected[0] ?? "",
+      normalizedCorrect[0] ?? "",
+      question.stem
+    );
+    if (graded !== null) return graded;
+  }
+
   return normalizedSelected.some((s) =>
     normalizedCorrect.some((c) => s.toLowerCase() === c.toLowerCase())
   );

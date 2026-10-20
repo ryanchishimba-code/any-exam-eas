@@ -48,6 +48,18 @@ describe("gradeStudySelection", () => {
       "Cough|||No",
     ]);
   });
+
+  it("grades NAPLEX numeric entry when the study row was typed as multiple_choice", () => {
+    const item = study({
+      type: "multiple_choice",
+      options: [],
+      stem: "How many mL per hour should the IV run?",
+      correctAnswers: ["250"],
+    });
+    expect(gradeStudySelection(item, "250")).toBe(true);
+    expect(gradeStudySelection(item, "250 mL/hr")).toBe(true);
+    expect(gradeStudySelection(item, "9.20")).toBe(false);
+  });
 });
 
 describe("weakAreasFromGradedAnswers", () => {
