@@ -6,6 +6,7 @@ import { loadNursingBankTypeCounts } from "@/lib/marketing/board-landing/bank-ty
 import { buildNclexLandingMetadata, buildNclexLandingModel } from "@/lib/marketing/board-landing/model";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
+import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 
 /**
  * Five-minute ISR. This must stay a numeric literal (Next cannot analyze an
@@ -18,11 +19,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NclexHubPage() {
-  const [{ bundle, display }, samples, scene, bankTypes] = await Promise.all([
+  const [{ bundle, display }, samples, scene, bankTypes, testimonials] = await Promise.all([
     loadPublicQuestionCounts({ dynamic: false }),
     getPublicSampleQuestions(),
     loadNclexHeroCase(),
     loadNursingBankTypeCounts(),
+    getCachedPublishedTestimonials(6),
   ]);
   const exam = display.exams.find((row) => row.slug === "nclex");
   const live = !display.degraded && (exam?.served ?? 0) > 0;
@@ -31,6 +33,7 @@ export default async function NclexHubPage() {
     units: live ? (bundle.snapshot.boards?.nclex ?? null) : null,
     bankTypes: live ? bankTypes : {},
     sample: samples.find((item) => item.fieldId === "nursing") ?? null,
+    testimonials,
   });
 
   return (

@@ -22,8 +22,7 @@ import {
   type LandingQuestion,
 } from "@/lib/marketing/board-landing/model";
 import { clinicalReviewerForExam } from "@/lib/marketing/company";
-import { testimonialsForBoard } from "@/lib/marketing/why-trust-it";
-import { mergeHomeTestimonials } from "@/lib/testimonials/home-stories";
+import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { qotdPath } from "@/lib/demo/qotd-public";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -193,12 +192,7 @@ export function buildNaplexLandingModel(input: {
 }): BoardLandingModel {
   const units = liveUnits(input.units, input.degraded);
   const formats = input.degraded ? [] : naplexFormatCards(input.bankTypes);
-  const stories = testimonialsForBoard(mergeHomeTestimonials(input.testimonials), "naplex").map((story) => ({
-    name: story.name,
-    exam: story.exam,
-    quote: story.quote,
-    initials: story.initials,
-  }));
+  const stories = landingTestimonialStories(input.testimonials, "naplex");
   const faqs = naplexFaqs(units);
   const quickBite = openBoardQuickBite("pharmacy");
   const features = naplexFeatureCards({

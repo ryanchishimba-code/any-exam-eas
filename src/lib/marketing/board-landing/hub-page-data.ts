@@ -1,11 +1,13 @@
 import { buildHubLandingModel, hubSampleFieldId, type HubExamKey } from "@/lib/marketing/board-landing/hub-model";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
+import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 
 export async function loadHubBoardLanding(examKey: HubExamKey) {
-  const [{ bundle, display }, samples] = await Promise.all([
+  const [{ bundle, display }, samples, testimonials] = await Promise.all([
     loadPublicQuestionCounts({ dynamic: false }),
     getPublicSampleQuestions(),
+    getCachedPublishedTestimonials(6),
   ]);
   const exam = display.exams.find((row) => row.slug === examKey);
   const live = !display.degraded && (exam?.served ?? 0) > 0;
@@ -26,6 +28,7 @@ export async function loadHubBoardLanding(examKey: HubExamKey) {
     degraded: !live,
     units: live ? (bundle.snapshot.boards?.[examKey] ?? null) : null,
     sample,
+    testimonials,
     usmleStepCounts,
   });
 

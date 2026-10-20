@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeExperience } from "@/components/home/HomeExperience";
-import { HomeQuote } from "@/components/marketing/elevation/HomeQuote";
 import { HomeProofStrip } from "@/components/marketing/elevation/HomeProofStrip";
 import { PublicHome } from "@/components/marketing/elevation/PublicHome";
 import { homeFeatureCards } from "@/lib/marketing/board-landing/board-features";
@@ -11,8 +10,8 @@ import { openBoardQuickBite } from "@/lib/marketing/board-landing/model";
 import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import "@/styles/board-landing.css";
-import { mergeHomeTestimonials } from "@/lib/testimonials/home-stories";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
+import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { buildHomeMetadata } from "@/lib/seo";
 
 /**
@@ -38,13 +37,11 @@ async function HomeProofLive() {
   return <HomeProofStrip facts={buildHomeProofFacts(siteCountsFromSnapshot(bundle.snapshot))} />;
 }
 
-async function HomeQuoteLive() {
-  const testimonials = await getCachedPublishedTestimonials(6);
-  return <HomeQuote stories={mergeHomeTestimonials(testimonials)} />;
-}
-
 export default async function HomePage() {
-  const { display, bundle, exactLabel } = await loadPublicQuestionCounts({ dynamic: false });
+  const [{ display, bundle, exactLabel }, testimonials] = await Promise.all([
+    loadPublicQuestionCounts({ dynamic: false }),
+    getCachedPublishedTestimonials(6),
+  ]);
   const site = siteCountsFromSnapshot(bundle.snapshot);
   const homeHeroBand = buildHomeHeroBand(exactLabel);
   const homeFeatures = homeFeatureCards({
@@ -52,6 +49,7 @@ export default async function HomePage() {
     nursingQuickBite: openBoardQuickBite("nursing"),
     pharmacyQuickBite: openBoardQuickBite("pharmacy"),
   });
+  const testimonialStories = landingTestimonialStories(testimonials);
   return (
     <>
       <Suspense fallback={null}>
@@ -62,14 +60,10 @@ export default async function HomePage() {
           ngnCaseStudies={Boolean(site && site.boards.nclex.caseStudies > 0)}
           heroBand={homeHeroBand}
           featureCards={homeFeatures}
+          testimonialStories={testimonialStories}
           proof={
             <Suspense fallback={null}>
               <HomeProofLive />
-            </Suspense>
-          }
-          quote={
-            <Suspense fallback={null}>
-              <HomeQuoteLive />
             </Suspense>
           }
         />
