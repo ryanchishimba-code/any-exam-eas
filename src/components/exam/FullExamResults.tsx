@@ -112,13 +112,13 @@ export function FullExamResults({
   endedEarly = false,
 }: Props) {
   const exam = EXAM_CATALOG[examSlug];
-  const correct = answers.filter((a) => a.correct).length;
+  const correct = answers.filter((a) => a.correct && a.selected?.trim()).length;
   const totals = practiceResultsTotals({
     delivered: questions.length,
     answers,
     cat: Boolean(analysis.catOutcome),
   });
-  const scoreTotal = totals.denominator > 0 ? totals.denominator : questions.length;
+  const scoreTotal = totals.answered > 0 ? totals.answered : questions.length;
   const sessionEndedEarly = fullExamTreatsAsEndedEarly({
     endedEarly,
     analysisEndedEarly: analysis.endedEarly === true,

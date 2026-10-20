@@ -76,7 +76,7 @@ async function FullExamResultsContent({
 
   const exam = EXAM_CATALOG[examSlug];
   const fieldId = examSession.fieldId ?? exam.fieldId;
-  const correct = answers.filter((a) => a.correct).length;
+  const correct = answers.filter((a) => a.correct && a.selected?.trim()).length;
   const totals = practiceResultsTotals({
     delivered: questions.length,
     answers,
@@ -127,7 +127,8 @@ async function FullExamResultsContent({
         examShortName={exam.shortName}
         score={displayScore}
         correct={correct}
-        questionCount={totals.denominator > 0 ? totals.denominator : questions.length}
+        questionCount={totals.answered > 0 ? totals.answered : totals.denominator}
+        deliveredCount={totals.delivered > 0 ? totals.delivered : questions.length}
         summary={analysis.summary}
         endedEarly={examSession.status === "ended_early"}
         analysisEndedEarly={analysis.endedEarly === true}

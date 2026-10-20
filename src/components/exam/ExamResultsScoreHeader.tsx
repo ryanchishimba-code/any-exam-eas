@@ -1,3 +1,4 @@
+import { practiceResultsProgressLine } from "@/lib/full-exam/administered-score";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { resolveFullExamResultsTitle } from "@/lib/full-exam/results-title";
 import { cn } from "@/lib/utils";
@@ -17,7 +18,10 @@ export function ExamResultsScoreHeader({
   examShortName,
   score,
   correct,
+  /** Attempted items (denominator for the headline percent). */
   questionCount,
+  /** Full form or delivered item count (e.g. 225 on NAPLEX). */
+  deliveredCount,
   summary,
   endedEarly = false,
   analysisEndedEarly = false,
@@ -30,8 +34,9 @@ export function ExamResultsScoreHeader({
   examShortName: string;
   score: number;
   correct: number;
-  /** Items the student was given. Not the CAT prefetch pool. */
+  /** Attempted items — denominator for the headline score. */
   questionCount: number;
+  deliveredCount?: number;
   summary: string;
   endedEarly?: boolean;
   analysisEndedEarly?: boolean;
@@ -52,6 +57,11 @@ export function ExamResultsScoreHeader({
   });
   const scoreColor =
     score >= 80 ? "text-teal-600" : score >= 65 ? "text-amber-600" : "text-rose-600";
+  const delivered = deliveredCount ?? questionCount;
+  const progressLine = practiceResultsProgressLine(correct, {
+    delivered,
+    answered: questionCount,
+  });
 
   return (
     <div className={feUi.pageShell}>
@@ -73,9 +83,9 @@ export function ExamResultsScoreHeader({
           {summary}
         </p>
         <p className="mt-1 hidden text-[13px] text-[var(--color-ink-muted)] sm:block">{examName}</p>
-        <p className="mt-1 text-[13px] tracking-[-0.01em] text-[var(--color-ink-muted)] sm:mt-2 sm:text-sm">
-          {correct} / {questionCount} correct
-          <span className="sm:hidden"> · {examShortName}</span>
+        <p className="mt-1 text-[13px] font-medium tracking-[-0.01em] text-[var(--color-ink)] sm:mt-2 sm:text-sm">
+          {progressLine}
+          <span className="font-normal text-[var(--color-ink-muted)] sm:hidden"> · {examShortName}</span>
         </p>
       </div>
     </div>
