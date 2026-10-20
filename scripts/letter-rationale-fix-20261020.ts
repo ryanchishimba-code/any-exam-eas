@@ -203,7 +203,11 @@ export function rewriteLettersToNumbers(text: string, optionCount: number): { te
         const n = numForLetter(letter, optionCount);
         return n ? bump(full.replace(letter, n), full) : full;
       }
-    );
+    )
+    .replace(/\b([A-F])\s+\(/g, (full, letter: string) => {
+      const n = numForLetter(letter, optionCount);
+      return n ? bump(full.replace(letter, n), full) : full;
+    });
 
   out = unmask(out, tokens);
   return { text: out, changed };

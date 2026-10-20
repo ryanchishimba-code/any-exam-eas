@@ -1,0 +1,12 @@
+{
+  "updatedAt": "2026-10-20T22:55:00.000Z",
+  "items": [
+    {
+      "id": "cmr8j9r9t02kd1yloj44dqg23",
+      "fieldId": "usmle-step-3",
+      "reason": "LDL 160 mg/dL with 'lifestyle only' key — LDL ≥160 mg/dL is an ACC/AHA 2018 risk enhancer; statin/shared decision-making may be indicated.",
+      "source": "ACC/AHA 2018 cholesterol guideline (risk enhancers)",
+      "addedAt": "2026-10-20T22:55:00.000Z"
+    }
+  ]
+}
