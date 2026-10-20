@@ -39,6 +39,7 @@ import {
   isUntaggedOpenSubject,
   OTHER_OPEN_SUBJECT_ID,
 } from "@/lib/learning/other-open-subject";
+import { administeredQuestionIdAtIndex } from "@/lib/exam-sessions/align-administered-items";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -349,7 +350,7 @@ export type ExamMissAnswer = {
   questionIndex?: number | null;
 };
 
-/** Misses from one sitting. Prefetched ids fill answers that omitted questionId. */
+/** Misses from one sitting. Prefetched ids are authoritative per question index. */
 export function missedIdsForExamSession(
   answers: readonly ExamMissAnswer[],
   prefetchedQuestionIds?: readonly string[] | null
@@ -358,10 +359,11 @@ export function missedIdsForExamSession(
   const seen = new Set<string>();
   for (const answer of answers) {
     if (answer.correct !== false) continue;
-    const direct = answer.questionId?.trim();
-    const fromIndex =
-      answer.questionIndex != null ? prefetchedQuestionIds?.[answer.questionIndex]?.trim() : undefined;
-    const id = direct || fromIndex;
+    const id = administeredQuestionIdAtIndex(
+      answer.questionIndex,
+      answer.questionId,
+      prefetchedQuestionIds
+    );
     if (!id || seen.has(id)) continue;
     seen.add(id);
     ids.push(id);

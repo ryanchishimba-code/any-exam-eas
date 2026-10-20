@@ -28,6 +28,7 @@ import {
 import { persistCompletedSessionAttempts } from "@/lib/learning/persist-session-attempts";
 import { summarySaysEndedEarly } from "@/lib/full-exam/results-title";
 import { preservePresetFormOnAnalysis } from "@/lib/exam-prep/preset-form-progress";
+import { alignAnswersToPrefetched } from "@/lib/exam-sessions/align-administered-items";
 import {
   gradeExamAnswerRecords,
   overlayServerRationales,
@@ -64,7 +65,13 @@ export async function PATCH(
         ? submitted.reduce((acc, answer) => mergeExamAnswers(acc, answer), stored)
         : stored
     ) as ExamAnswerRecord[];
-    const answers = await gradeExamAnswerRecords(merged);
+    const prefetchedQuestionIds = (
+      session.analysis as { prefetchedQuestionIds?: string[] } | null
+    )?.prefetchedQuestionIds;
+    const answers = alignAnswersToPrefetched(
+      await gradeExamAnswerRecords(merged),
+      prefetchedQuestionIds
+    );
     const snapshots = snapshotsFromAnalysis(body.analysis);
     const drafts = draftsFromFullExamAnswers({
       answers,
@@ -79,7 +86,8 @@ export async function PATCH(
     );
     const gradedAnalysis = await overlayServerRationales(
       analysisWithAnsweredCount(body.analysis, drafts.length),
-      answers
+      answers,
+      prefetchedQuestionIds
     );
     const analysis = preservePresetFormOnAnalysis(session.analysis, {
       ...(gradedAnalysis as Record<string, unknown>),
@@ -185,10 +193,17 @@ export async function PATCH(
     return NextResponse.json({ lockedThrough: nextLock });
   }
 
+  const prefetchedQuestionIds = (
+    session.analysis as { prefetchedQuestionIds?: string[] } | null
+  )?.prefetchedQuestionIds;
+  const questionIndex = Number(body.questionIndex);
+  const rawQuestionId = typeof body.questionId === "string" ? body.questionId : undefined;
+  const canonicalId =
+    prefetchedQuestionIds?.[questionIndex]?.trim() || rawQuestionId?.trim() || undefined;
   const [graded] = await gradeExamAnswerRecords([
     {
-      questionIndex: Number(body.questionIndex),
-      questionId: typeof body.questionId === "string" ? body.questionId : undefined,
+      questionIndex,
+      questionId: canonicalId,
       selected: incomingSelected,
       correct: false,
       flagged: Boolean(body.flagged),
