@@ -6,7 +6,9 @@ test.describe("Landing page", () => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
     await expect(page.locator(".home-hero")).toBeVisible();
-    await expect(page.getByRole("heading", { name: "One study system. Six boards." })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: /NCLEX, NAPLEX, USMLE & more\. One plan/i })
+    ).toBeVisible();
     await expect(page.getByRole("link", { name: /start 5-day free trial/i }).first()).toBeVisible();
     await expect(page.getByRole("link", { name: /try a free question/i })).toHaveCount(0);
     await expect(page.getByRole("navigation", { name: /main navigation/i })).toBeVisible();

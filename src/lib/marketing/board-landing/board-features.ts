@@ -97,14 +97,14 @@ export function nclexFeatureCards(input: {
   cards.push({
     id: "readiness",
     title: "Readiness score",
-    line: "Practice progress and a baseline check—in-app only.",
+    line: "Track practice progress and your readiness score in the dashboard.",
     icon: "readiness",
   });
 
   cards.push({
     id: "explained",
     title: "Every answer explained",
-    line: "Keyed answer, distractor reasons, and sources behind a check mark.",
+    line: "Keyed answer, distractor reasons, and cited sources on scored items.",
     icon: "explained",
   });
 
@@ -161,7 +161,7 @@ function explainedCard(boardShort: string): BoardFeatureCard {
   return {
     id: "explained",
     title: "Every answer explained",
-    line: "Keyed answer and a reason for each distractor when one is stored.",
+    line: "Keyed answer, distractor reasons, and cited sources on scored items.",
     icon: "explained",
   };
 }
@@ -179,7 +179,7 @@ function readinessCard(): BoardFeatureCard {
   return {
     id: "readiness",
     title: "Readiness score",
-    line: "Practice progress and a baseline check—in-app only.",
+    line: "Track practice progress and your readiness score in the dashboard.",
     icon: "readiness",
   };
 }

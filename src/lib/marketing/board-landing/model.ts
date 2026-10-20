@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   formatBoardQuestionSentence,
   formatExactQuestionCount,
@@ -39,7 +39,12 @@ import {
 } from "@/lib/seo";
 import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
 import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
-import { SITE_NAME, formatMonthlyPrice } from "@/lib/site";
+import {
+  SITE_NAME,
+  formatLandingHeroTrialLine,
+  formatLandingTrialFaqAnswer,
+  formatMonthlyPrice,
+} from "@/lib/site";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { formatPlanUsd } from "@/lib/billing-plans";
 
@@ -382,12 +387,12 @@ function nclexFaqs(units: BoardQuestionUnits | null): { question: string; answer
     },
     {
       question: "Is there a free trial?",
-      answer: `Start a ${TRIAL_DAYS}-day trial with ${TRIAL_LIFETIME_QUESTIONS} practice questions. No payment method required; cancel in Settings anytime.`,
+      answer: formatLandingTrialFaqAnswer(),
     },
     {
       question: "Are rationales included?",
       answer:
-        "Every scored item shows the keyed answer and a short reason for each distractor when one is stored.",
+        "Keyed answer, distractor reasons, and cited sources on scored bank items.",
     },
     {
       question: "Who reviews the content?",
@@ -411,7 +416,7 @@ function nclexHeroOffer(
     typicalPrice: typical,
     typicalPeriod: "30-day prep",
     questionNoun: "NCLEX questions",
-    trialLine: `${TRIAL_DAYS}-day free trial · no payment method to start`,
+    trialLine: formatLandingHeroTrialLine(),
   };
 }
 
@@ -424,11 +429,11 @@ export function nclexHeroChips(offer: NonNullable<BoardLandingModel["heroOffer"]
     },
     {
       id: "explained",
-      text: "Every answer explained, with sources and guideline references on bank items.",
+      text: "Detailed rationales with sources on scored bank items.",
     },
     {
       id: "included",
-      text: "NGN case studies, CAT-style exams, and readiness score—no add-ons.",
+      text: "NGN case studies, CAT-style exams, and readiness in your dashboard—no add-ons.",
     },
   ];
 }

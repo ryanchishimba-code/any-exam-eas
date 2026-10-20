@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   SITE_DOMAIN,
   SITE_NAME,
+  formatLandingHeroTrialLine,
   formatMonthlyPrice,
   formatPricingCheckoutTrialOffer,
   formatTrialLabel,
@@ -101,14 +102,14 @@ export function buildHomeMetadata(
   nclexFormats?: FormatCounts | null
 ): Metadata {
   const count = totalQuestionsLabel?.trim();
-  const title = enforceMetaTitle(
-    count ? `One Study System. Six Boards. — ${count} Questions` : "One Study System. Six Boards.",
-    "home"
-  );
+  const pro = formatMonthlyPrice("pro");
+  const baseTitle = `NCLEX, NAPLEX, USMLE & More — One Plan, ${pro}/mo`;
+  const title = enforceMetaTitle(baseTitle, "home");
+  const trialLine = formatLandingHeroTrialLine();
   const description = enforceMetaDescription(
     count
-      ? `${count} active questions with Roadmap & mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. ${formatTrialLabel()} · no payment method required.`
-      : `Roadmap and mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP and NPTE-PT. ${formatTrialLabel()} · no payment method required. One plan covers six boards.`,
+      ? `${count} scored questions across six boards on one ${pro} plan with Roadmap and mocks. ${TRIAL_DAYS}-day trial, ${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment method.`
+      : `USMLE, NCLEX, NAPLEX, PANCE, AANP FNP and NPTE-PT on one ${pro} plan with Roadmap and mocks. ${trialLine}.`,
     "home"
   );
   const url = getSiteUrl();
