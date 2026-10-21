@@ -9,6 +9,9 @@ import {
 } from "@/lib/exam-prep/nclex/topic-registry";
 import type { NclexClientNeedsDomain } from "@/lib/exam-prep/nclex/topic-registry";
 import { genericJudgmentLabel } from "@/lib/full-exam/nclex-exam-labels";
+import { AANP_FNP_2026_TOPIC_GROUPS } from "@/lib/exam-prep/aanp-fnp/blueprint-topics-2026";
+import { PANCE_KNOWLEDGE_AREAS } from "@/lib/exam-prep/pance/content-outline";
+import { NPTE_PT_2026_TOPIC_GROUPS } from "@/lib/exam-prep/npte-pt/blueprint-topics-2026";
 import { resolveOrganSystemId } from "@/lib/exam-prep/usmle/content-spine";
 import { organSystemById } from "@/lib/exam-prep/usmle/official-content-model";
 import { getSubjectArea } from "@/lib/subjects/subject-catalog";
@@ -16,7 +19,43 @@ import type { ExamSlug } from "@/types/edtech";
 
 export const BREAKDOWN_OTHER_LABEL = "Other";
 
-const PLACEHOLDERS = new Set(["", "general", "__mixed__", "mixed", "unknown"]);
+const PLACEHOLDERS = new Set([
+  "",
+  "general",
+  "__mixed__",
+  "mixed",
+  "unknown",
+  // USMLE/NGN item kinds stored on non-USMLE rows — not board taxonomy labels.
+  "ethics",
+  "biostats",
+  "biostatistics",
+  "exhibit",
+  "matrix",
+  "bow_tie",
+  "highlight",
+  "drag_drop",
+  "select_all",
+  "ordered_response",
+  "calculation",
+  "numeric",
+  "numeric_entry",
+  "constructed_response",
+  "short_answer",
+  "vignette",
+  "mcq",
+  "multiple_choice",
+]);
+
+const PRACTICE_FIELD_BY_EXAM: Partial<Record<ExamSlug, string>> = {
+  pance: "pance",
+  "aanp-fnp": "aanp-fnp",
+  "npte-pt": "npte-pt",
+};
+
+const SUBJECT_ALIASES: Record<string, Record<string, string>> = {
+  pance: { ethics: "professional-practice" },
+  "npte-pt": { ethics: "professional-responsibilities" },
+};
 
 const NCLEX_DOMAIN_IDS = new Set(
   NCLEX_CLIENT_NEEDS_DOMAINS.map((domain) => domain.id)
@@ -58,6 +97,77 @@ function nursingSubjectLabel(id: string): string | null {
   if (!id || isPlaceholder(id)) return null;
   const area = getSubjectArea("nursing", id);
   return area?.label ?? null;
+}
+
+function practiceSubjectLabel(fieldId: string, rawId: string): string | null {
+  if (!rawId || isPlaceholder(rawId)) return null;
+  const alias = SUBJECT_ALIASES[fieldId]?.[rawId.toLowerCase()];
+  const subjectId = alias ?? rawId;
+  const area = getSubjectArea(fieldId, subjectId);
+  return area?.label ?? null;
+}
+
+function panceKnowledgeLabel(rawId: string): string | null {
+  if (!rawId || isPlaceholder(rawId)) return null;
+  const key = rawId.toLowerCase();
+  const area = PANCE_KNOWLEDGE_AREAS.find(
+    (row) => row.id === key || row.subjectIds.some((id) => id.toLowerCase() === key)
+  );
+  return area?.label ?? null;
+}
+
+function aanpFnpSystemLabel(rawId: string): string | null {
+  if (!rawId || isPlaceholder(rawId)) return null;
+  const key = rawId.toLowerCase();
+  const systemId = key.startsWith("aanp-system-") ? key.slice("aanp-system-".length) : key;
+  const group = AANP_FNP_2026_TOPIC_GROUPS.find((row) => row.categoryId === systemId);
+  return group?.label ?? null;
+}
+
+function npteCategoryLabel(rawId: string): string | null {
+  if (!rawId || isPlaceholder(rawId)) return null;
+  const key = rawId.toLowerCase();
+  const group = NPTE_PT_2026_TOPIC_GROUPS.find((row) => row.categoryId === key);
+  return group?.label ?? null;
+}
+
+/** PANCE / AANP FNP / NPTE-PT — official subject-area labels, not NCLEX Client Needs. */
+export function resolvePracticeBoardTopicLabel(
+  fieldId: string,
+  q: BreakdownQuestion
+): string {
+  const keys = [
+    clean(q.subjectId),
+    clean(q.topicCategory),
+    clean(q.blueprintTopic),
+    clean(q.blueprintDomain),
+  ];
+
+  for (const key of keys) {
+    const fromCatalog = practiceSubjectLabel(fieldId, key);
+    if (fromCatalog) return fromCatalog;
+    if (fieldId === "pance") {
+      const fromKnowledge = panceKnowledgeLabel(key);
+      if (fromKnowledge) return fromKnowledge;
+    }
+    if (fieldId === "aanp-fnp") {
+      const fromSystem = aanpFnpSystemLabel(key);
+      if (fromSystem) return fromSystem;
+    }
+    if (fieldId === "npte-pt") {
+      const fromCategory = npteCategoryLabel(key);
+      if (fromCategory) return fromCategory;
+    }
+  }
+
+  const written =
+    humanTopic(clean(q.topicCategory)) ??
+    humanTopic(clean(q.blueprintTopic)) ??
+    humanTopic(clean(q.subjectId));
+  if (written) return written;
+
+  const raw = keys.find((value) => value && !isPlaceholder(value));
+  return raw ? displayLabel(raw) : BREAKDOWN_OTHER_LABEL;
 }
 
 function domainIdFromFields(...values: string[]): NclexClientNeedsDomain["id"] | null {
@@ -192,6 +302,8 @@ export function resolveExamTopicLabel(examSlug: ExamSlug | undefined, q: Breakdo
   if (examSlug === "nclex") return resolveNclexClientNeedLabel(q);
   if (examSlug === "naplex") return resolveNaplexBlueprintLabel(q);
   if (examSlug === "usmle") return resolveUsmleOrganLabel(q);
+  const fieldId = examSlug ? PRACTICE_FIELD_BY_EXAM[examSlug] : undefined;
+  if (fieldId) return resolvePracticeBoardTopicLabel(fieldId, q);
   return resolveNclexTopicLabel(q);
 }
 

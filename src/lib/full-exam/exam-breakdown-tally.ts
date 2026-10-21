@@ -16,22 +16,34 @@ export type BreakdownScoreRow = {
   pct: number;
 };
 
+function answeredByIndex(answers: ExamAnswerRecord[]): Map<number, ExamAnswerRecord> {
+  const byIndex = new Map<number, ExamAnswerRecord>();
+  for (const row of answers) {
+    if (typeof row.questionIndex !== "number" || !Number.isFinite(row.questionIndex)) continue;
+    const selected = typeof row.selected === "string" ? row.selected.trim() : "";
+    if (!selected) continue;
+    const index = Math.floor(row.questionIndex);
+    if (!byIndex.has(index)) byIndex.set(index, row);
+  }
+  return byIndex;
+}
+
 function tallyRows(
   questions: BreakdownQuestion[],
   answers: ExamAnswerRecord[],
   labelFor: (q: BreakdownQuestion) => string | null
 ): BreakdownScoreRow[] {
   const buckets = new Map<string, { correct: number; total: number }>();
-
+  const questionsByIndex = new Map<number, BreakdownQuestion>();
   for (let i = 0; i < questions.length; i++) {
-    const ans = answers.find((row) => row.questionIndex === i);
-    const selected = typeof ans?.selected === "string" ? ans.selected.trim() : "";
-    if (!selected) continue;
+    questionsByIndex.set(i, questions[i] ?? {});
+  }
 
-    const label = labelFor(questions[i] ?? {})?.trim() || BREAKDOWN_OTHER_LABEL;
+  for (const [index, ans] of answeredByIndex(answers)) {
+    const label = labelFor(questionsByIndex.get(index) ?? {})?.trim() || BREAKDOWN_OTHER_LABEL;
     const bucket = buckets.get(label) ?? { correct: 0, total: 0 };
     bucket.total += 1;
-    if (ans?.correct) bucket.correct += 1;
+    if (ans.correct) bucket.correct += 1;
     buckets.set(label, bucket);
   }
 
