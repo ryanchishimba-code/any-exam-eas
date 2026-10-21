@@ -5,7 +5,10 @@ import {
 } from "@/lib/exam-sessions/align-administered-items";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { deserializeExamSelection } from "@/lib/full-exam/answer-serialize";
-import { loadStoredStudyQuestion } from "@/lib/questions/reveal-stored-item";
+import {
+  loadStoredStudyQuestion,
+  loadStoredStudyQuestionsBatch,
+} from "@/lib/questions/reveal-stored-item";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { revealStudyAnswer } from "@/lib/questions/reveal-study-answer";
 import type { StudyQuestion } from "@/lib/questions/types";
@@ -62,12 +65,10 @@ export type StoredAnswerDetail = {
   options: string[];
 };
 
-export async function loadStoredAnswerDetail(
-  questionId: string,
+export function storedAnswerDetailFromStudy(
+  study: StudyQuestion,
   stored: string
-): Promise<StoredAnswerDetail | null> {
-  const study = await loadStoredStudyQuestion(questionId);
-  if (!study) return null;
+): StoredAnswerDetail {
   const selected = selectionForGrading(study.type, stored);
   const revealed = revealStudyAnswer(study, { selected });
   return {
@@ -79,11 +80,32 @@ export async function loadStoredAnswerDetail(
   };
 }
 
-export async function gradeExamAnswerRecords(
+export async function loadStoredAnswerDetail(
+  questionId: string,
+  stored: string
+): Promise<StoredAnswerDetail | null> {
+  const study = await loadStoredStudyQuestion(questionId);
+  if (!study) return null;
+  return storedAnswerDetailFromStudy(study, stored);
+}
+
+export type GradedExamAnswers = {
+  graded: ExamAnswerRecord[];
+  /** Latest selection detail per question id (for snapshot overlay). */
+  detailsByQuestionId: Map<string, StoredAnswerDetail>;
+};
+
+export async function gradeExamAnswerRecordsWithDetails(
   records: ExamAnswerRecord[]
-): Promise<ExamAnswerRecord[]> {
-  const cache = new Map<string, StoredAnswerDetail | null>();
+): Promise<GradedExamAnswers> {
+  const questionIds = [
+    ...new Set(records.map((r) => r.questionId?.trim() ?? "").filter(Boolean)),
+  ];
+  const studies = await loadStoredStudyQuestionsBatch(questionIds);
+  const selectionCache = new Map<string, StoredAnswerDetail | null>();
+  const detailsByQuestionId = new Map<string, StoredAnswerDetail>();
   const graded: ExamAnswerRecord[] = [];
+
   for (const record of records) {
     const questionId = record.questionId?.trim() ?? "";
     const selected = record.selected?.trim() ?? "";
@@ -92,12 +114,25 @@ export async function gradeExamAnswerRecords(
       continue;
     }
     const cacheKey = `${questionId}\n${selected}`;
-    if (!cache.has(cacheKey)) {
-      cache.set(cacheKey, await loadStoredAnswerDetail(questionId, selected));
+    if (!selectionCache.has(cacheKey)) {
+      const study = studies.get(questionId);
+      selectionCache.set(
+        cacheKey,
+        study ? storedAnswerDetailFromStudy(study, selected) : null
+      );
     }
-    const detail = cache.get(cacheKey);
+    const detail = selectionCache.get(cacheKey);
+    if (detail) detailsByQuestionId.set(questionId, detail);
     graded.push({ ...record, correct: detail?.correct === true });
   }
+
+  return { graded, detailsByQuestionId };
+}
+
+export async function gradeExamAnswerRecords(
+  records: ExamAnswerRecord[]
+): Promise<ExamAnswerRecord[]> {
+  const { graded } = await gradeExamAnswerRecordsWithDetails(records);
   return graded;
 }
 
@@ -108,7 +143,8 @@ export async function gradeExamAnswerRecords(
 export async function overlayServerRationales(
   analysis: unknown,
   answers: ExamAnswerRecord[],
-  prefetchedQuestionIds?: readonly string[] | null
+  prefetchedQuestionIds?: readonly string[] | null,
+  preloadedDetails?: Map<string, StoredAnswerDetail>
 ): Promise<unknown> {
   const base =
     analysis && typeof analysis === "object" && !Array.isArray(analysis)
@@ -119,6 +155,7 @@ export async function overlayServerRationales(
     Array.isArray(base.questionSnapshots) ? (base.questionSnapshots as unknown[]) : [],
     prefetchedQuestionIds
   );
+  const preloaded = preloadedDetails ?? new Map<string, StoredAnswerDetail>();
   const detailsByIndex = new Map<number, StoredAnswerDetail>();
   for (const answer of alignedAnswers) {
     const questionId = administeredQuestionIdAtIndex(
@@ -127,7 +164,9 @@ export async function overlayServerRationales(
       prefetchedQuestionIds
     );
     if (!questionId || detailsByIndex.has(answer.questionIndex)) continue;
-    const detail = await loadStoredAnswerDetail(questionId, answer.selected ?? "");
+    const detail =
+      preloaded.get(questionId) ??
+      (await loadStoredAnswerDetail(questionId, answer.selected ?? ""));
     if (detail) detailsByIndex.set(answer.questionIndex, detail);
   }
 

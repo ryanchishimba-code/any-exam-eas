@@ -1,5 +1,19 @@
-import { describe, expect, it } from "vitest";
-import { gradeStudySelection, selectionForGrading, weakAreasFromGradedAnswers } from "./grade-stored-answer";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  gradeExamAnswerRecordsWithDetails,
+  gradeStudySelection,
+  selectionForGrading,
+  storedAnswerDetailFromStudy,
+  weakAreasFromGradedAnswers,
+} from "./grade-stored-answer";
+import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
+
+vi.mock("@/lib/questions/reveal-stored-item", () => ({
+  loadStoredStudyQuestionsBatch: vi.fn(),
+  loadStoredStudyQuestion: vi.fn(),
+}));
+
+import { loadStoredStudyQuestionsBatch } from "@/lib/questions/reveal-stored-item";
 import type { StudyQuestion } from "@/lib/questions/types";
 
 function study(partial: Partial<StudyQuestion> & Pick<StudyQuestion, "type" | "correctAnswers">): StudyQuestion {
@@ -59,6 +73,32 @@ describe("gradeStudySelection", () => {
     expect(gradeStudySelection(item, "250")).toBe(true);
     expect(gradeStudySelection(item, "250 mL/hr")).toBe(true);
     expect(gradeStudySelection(item, "9.20")).toBe(false);
+  });
+});
+
+describe("gradeExamAnswerRecordsWithDetails", () => {
+  beforeEach(() => {
+    vi.mocked(loadStoredStudyQuestionsBatch).mockReset();
+  });
+
+  it("grades every record with one batch load", async () => {
+    const item = study({ type: "multiple_choice", correctAnswers: ["Alpha"] });
+    vi.mocked(loadStoredStudyQuestionsBatch).mockResolvedValue(new Map([["bank-1", item]]));
+
+    const records: ExamAnswerRecord[] = Array.from({ length: 5 }, (_, i) => ({
+      questionIndex: i,
+      questionId: "bank-1",
+      selected: i % 2 === 0 ? "Alpha" : "Beta",
+      correct: false,
+      answeredAt: "2026-10-21T00:00:00.000Z",
+    }));
+
+    const { graded, detailsByQuestionId } = await gradeExamAnswerRecordsWithDetails(records);
+    expect(loadStoredStudyQuestionsBatch).toHaveBeenCalledTimes(1);
+    expect(graded.filter((r) => r.correct).length).toBe(3);
+    expect(detailsByQuestionId.get("bank-1")?.correctAnswer).toBe(
+      storedAnswerDetailFromStudy(item, "Alpha").correctAnswer
+    );
   });
 });
 
