@@ -33,6 +33,64 @@ function catalogRef(itemId: string): { id: string; version: number } | null {
 }
 
 /** Bank or published clinical row as the study question the server grades. */
+/** Load many bank/clinical items in a small number of DB round-trips (submit grading). */
+export async function loadStoredStudyQuestionsBatch(
+  itemIds: string[]
+): Promise<Map<string, StudyQuestion>> {
+  const out = new Map<string, StudyQuestion>();
+  const unique = [...new Set(itemIds.map((id) => id.trim()).filter(Boolean))];
+  if (unique.length === 0) return out;
+
+  const bankLookupIds = new Set<string>();
+  const clinical: { originalId: string; ref: { id: string; version: number } }[] = [];
+
+  for (const itemId of unique) {
+    const ref = catalogRef(itemId);
+    if (ref) {
+      clinical.push({ originalId: itemId, ref });
+      bankLookupIds.add(`ngn:${ref.id}:v${ref.version}`);
+    }
+    bankLookupIds.add(itemId);
+  }
+
+  const rows = await prisma.questionBankItem.findMany({
+    where: { id: { in: [...bankLookupIds] } },
+  });
+  const rowById = new Map(rows.map((row) => [row.id, row]));
+
+  function studyFromBankRow(row: (typeof rows)[number]): StudyQuestion {
+    const item = enrichBankItemFromRow(row);
+    return examQuestionToStudy(bankItemToRawQuestion(item, 0), 0, { shuffleOptions: false });
+  }
+
+  for (const itemId of unique) {
+    const ref = catalogRef(itemId);
+    const bankId = ref ? `ngn:${ref.id}:v${ref.version}` : itemId;
+    const row = rowById.get(bankId) ?? rowById.get(itemId);
+    if (row) {
+      out.set(itemId, studyFromBankRow(row));
+    }
+  }
+
+  const clinicalPending = clinical.filter((c) => !out.has(c.originalId));
+  if (clinicalPending.length > 0) {
+    await Promise.all(
+      clinicalPending.map(async ({ originalId, ref }) => {
+        const clinicalItem = await findServedItem(ref.id, ref.version);
+        if (!clinicalItem) return;
+        const bank = bankItemFromClinicalServeItem(clinicalItem);
+        if (!bank) return;
+        out.set(
+          originalId,
+          examQuestionToStudy(bankItemToRawQuestion(bank, 0), 0, { shuffleOptions: false })
+        );
+      })
+    );
+  }
+
+  return out;
+}
+
 export async function loadStoredStudyQuestion(itemId: string): Promise<StudyQuestion | null> {
   const ref = catalogRef(itemId);
   if (ref) {

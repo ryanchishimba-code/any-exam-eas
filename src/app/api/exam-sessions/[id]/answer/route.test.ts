@@ -2,8 +2,11 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const appendExamAnswer = vi.hoisted(() => vi.fn());
 const gradeExamAnswerRecords = vi.hoisted(() => vi.fn());
+const gradeExamAnswerRecordsWithDetails = vi.hoisted(() => vi.fn());
 const getExamSession = vi.hoisted(() => vi.fn());
 const updateExamSessionAnalysis = vi.hoisted(() => vi.fn());
+const completeExamSession = vi.hoisted(() => vi.fn());
+const persistCompletedSessionAttempts = vi.hoisted(() => vi.fn());
 
 vi.mock("@/lib/api-access", () => ({
   requirePremiumApi: async () => ({
@@ -17,11 +20,16 @@ vi.mock("@/lib/exam-sessions/service", () => ({
   appendExamAnswer,
   getExamSession,
   updateExamSessionAnalysis,
-  completeExamSession: vi.fn(),
+  completeExamSession,
+}));
+
+vi.mock("@/lib/learning/persist-session-attempts", () => ({
+  persistCompletedSessionAttempts,
 }));
 
 vi.mock("@/lib/exam-sessions/grade-stored-answer", () => ({
   gradeExamAnswerRecords,
+  gradeExamAnswerRecordsWithDetails,
   overlayServerRationales: vi.fn(async (analysis: unknown) => analysis),
   weakAreasFromGradedAnswers: vi.fn(() => []),
 }));
@@ -48,17 +56,56 @@ describe("PATCH /api/exam-sessions/[id]/answer", () => {
   beforeEach(() => {
     appendExamAnswer.mockReset();
     gradeExamAnswerRecords.mockReset();
+    gradeExamAnswerRecordsWithDetails.mockReset();
     getExamSession.mockReset();
     updateExamSessionAnalysis.mockReset();
+    completeExamSession.mockReset();
+    persistCompletedSessionAttempts.mockReset();
     gradeExamAnswerRecords.mockImplementation(async (records: { correct: boolean; selected: string }[]) =>
       records.map((record) => ({ ...record, correct: record.selected === "Alpha" }))
     );
+    gradeExamAnswerRecordsWithDetails.mockImplementation(
+      async (records: { correct: boolean; selected: string }[]) => ({
+        graded: records.map((record) => ({
+          ...record,
+          correct: record.selected === "Alpha",
+        })),
+        detailsByQuestionId: new Map(),
+      })
+    );
+    persistCompletedSessionAttempts.mockResolvedValue({
+      attemptsSaved: 0,
+      reviewIncorrectHref: "/review",
+    });
     getExamSession.mockResolvedValue({
       id: "sess-1",
       status: "in_progress",
       analysis: {},
       answers: [],
     });
+  });
+
+  it("returns ok when complete is retried on an already finished session", async () => {
+    getExamSession.mockResolvedValue({
+      id: "sess-1",
+      status: "completed",
+      score: 88,
+      examType: "usmle-step-1",
+      fieldId: "usmle-step-1",
+      questionCount: 10,
+      answers: [],
+      analysis: {},
+    });
+
+    const response = await patch({ complete: true, answers: [], analysis: {} });
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toMatchObject({
+      ok: true,
+      alreadyCompleted: true,
+      score: 88,
+    });
+    expect(gradeExamAnswerRecordsWithDetails).not.toHaveBeenCalled();
+    expect(completeExamSession).not.toHaveBeenCalled();
   });
 
   it("stores the server grade and ignores the client correct flag", async () => {

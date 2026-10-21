@@ -31,13 +31,14 @@ import { preservePresetFormOnAnalysis } from "@/lib/exam-prep/preset-form-progre
 import { alignAnswersToPrefetched } from "@/lib/exam-sessions/align-administered-items";
 import {
   gradeExamAnswerRecords,
+  gradeExamAnswerRecordsWithDetails,
   overlayServerRationales,
   weakAreasFromGradedAnswers,
 } from "@/lib/exam-sessions/grade-stored-answer";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 export async function PATCH(
   req: Request,
@@ -56,22 +57,29 @@ export async function PATCH(
       return NextResponse.json({ error: "Session not found" }, { status: 404 });
     }
 
+    if (session.status !== "in_progress") {
+      return NextResponse.json({
+        ok: true,
+        alreadyCompleted: true,
+        score: session.score ?? 0,
+      });
+    }
+
     const stored = (Array.isArray(session.answers)
       ? session.answers
       : []) as ExamAnswerRecord[];
     const submitted = parseFullExamAnswerLog(body.answers);
     const merged = (
-      submitted
+      submitted && submitted.length > 0
         ? submitted.reduce((acc, answer) => mergeExamAnswers(acc, answer), stored)
         : stored
     ) as ExamAnswerRecord[];
     const prefetchedQuestionIds = (
       session.analysis as { prefetchedQuestionIds?: string[] } | null
     )?.prefetchedQuestionIds;
-    const answers = alignAnswersToPrefetched(
-      await gradeExamAnswerRecords(merged),
-      prefetchedQuestionIds
-    );
+    const { graded, detailsByQuestionId } =
+      await gradeExamAnswerRecordsWithDetails(merged);
+    const answers = alignAnswersToPrefetched(graded, prefetchedQuestionIds);
     const snapshots = snapshotsFromAnalysis(body.analysis);
     const drafts = draftsFromFullExamAnswers({
       answers,
@@ -87,7 +95,8 @@ export async function PATCH(
     const gradedAnalysis = await overlayServerRationales(
       analysisWithAnsweredCount(body.analysis, drafts.length),
       answers,
-      prefetchedQuestionIds
+      prefetchedQuestionIds,
+      detailsByQuestionId
     );
     const analysis = preservePresetFormOnAnalysis(session.analysis, {
       ...(gradedAnalysis as Record<string, unknown>),

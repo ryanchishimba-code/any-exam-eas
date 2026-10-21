@@ -43,6 +43,8 @@ import { sittingAskKey, sittingCapEntityKey, sittingCapTags } from "@/lib/exam-p
 import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
+import { patchCompleteExamSession } from "@/lib/full-exam/complete-exam-client";
+import { restoreCatSessionFromAnswers } from "@/lib/full-exam/restore-cat-session";
 import { takeFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
 import { mergeExamAnswers } from "@/lib/exam-sessions/scoring";
@@ -262,6 +264,7 @@ export function FullExamSimulator({
   const [pauseDialog, setPauseDialog] = useState(false);
   const [timeUp, setTimeUp] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitPhase, setSubmitPhase] = useState<"idle" | "finalizing" | "grading">("idle");
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [notesOpen, setNotesOpen] = useState(false);
   const [phase, setPhase] = useState<"exam" | "review">("exam");
@@ -312,10 +315,19 @@ export function FullExamSimulator({
     [answers]
   );
 
+  const persistedAnsweredCount = useMemo(
+    () => initialAnswers.filter((row) => hasSelection(deserializeExamSelection(row.selected))).length,
+    [initialAnswers]
+  );
+
   const answeredCount = useMemo(
     () => Object.values(answers).filter((a) => hasSelection(a.selected)).length,
     [answers]
   );
+
+  const displayAnsweredCount = loading
+    ? Math.max(answeredCount, persistedAnsweredCount)
+    : answeredCount;
 
   const unansweredIndices = useMemo(
     () =>
@@ -411,11 +423,25 @@ export function FullExamSimulator({
             setIndex(0);
             return;
           }
+          setCatPool(pool);
+          const restored = restoreCatSessionFromAnswers({
+            pool,
+            records: initialAnswers,
+            bandForQuestion: (q) => mapDifficultyToCatBand(q.difficulty, 0),
+          });
+          if (restored) {
+            Object.assign(serverCorrectRef.current, restored.serverCorrect);
+            setCatState(restored.catState);
+            setCatCommittedCount(restored.committed);
+            setQuestions(restored.questions);
+            setIndex(restored.index);
+            setAnswers((prev) => ({ ...prev, ...hydrateAnswers(initialAnswers) }));
+            return;
+          }
           const first = pickCatNext(initCatSession(), pool, new Set(), Math.random, catFormatHint(pool, []));
           if (!first) {
             throw new Error("Could not start practice CAT — empty question pool.");
           }
-          setCatPool(pool);
           setCatState(initCatSession());
           setCatCommittedCount(0);
           setQuestions([first]);
@@ -485,7 +511,20 @@ export function FullExamSimulator({
     return () => {
       cancelled = true;
     };
-  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.focusAreas, config.nclexCat, config.nclexExamMode, loadAttempt, sessionId, isCatMode, initialLockedThrough]);
+  }, [
+    fieldId,
+    config.questionCount,
+    config.adaptive,
+    config.nclexLength,
+    config.focusAreas,
+    config.nclexCat,
+    config.nclexExamMode,
+    loadAttempt,
+    sessionId,
+    isCatMode,
+    initialLockedThrough,
+    initialAnswers,
+  ]);
 
   // Practice CAT telemetry — start once the first item is ready.
   useEffect(() => {
@@ -590,7 +629,13 @@ export function FullExamSimulator({
         const q = qs[i];
         const a = ans[i] ?? defaultAnswer();
         if (!q || !hasSelection(a.selected)) break;
-        const correct = serverCorrectRef.current[i] === true;
+        const serverKnown = serverCorrectRef.current[i];
+        const correct =
+          serverKnown === true
+            ? true
+            : serverKnown === false
+              ? false
+              : isAnswerCorrect(q, a.selected);
         nextState = updateCatSession(nextState, correct, bandForQuestion(q));
         nextCommitted = i + 1;
       }
@@ -620,7 +665,11 @@ export function FullExamSimulator({
     const ans = answers[index] ?? defaultAnswer();
     if (!hasSelection(ans.selected)) return;
 
-    await persistAnswer(index, ans);
+    const persistWithTimeout = Promise.race([
+      persistAnswer(index, ans),
+      new Promise<null>((resolve) => setTimeout(() => resolve(null), 12_000)),
+    ]);
+    await persistWithTimeout;
     const { state, committed } = commitCatThrough(
       index,
       catState,
@@ -788,12 +837,16 @@ export function FullExamSimulator({
     async (endedEarly = false) => {
       if (submitting) return;
       setSubmitting(true);
+      setSubmitPhase("finalizing");
       setSubmitError(null);
       await new Promise((resolve) => setTimeout(resolve, 0));
 
-      for (let i = 0; i < questions.length; i++) {
-        const state = answers[i];
-        if (state && hasSelection(state.selected)) await persistAnswer(i, state);
+      const currentState = answers[index];
+      if (currentState && hasSelection(currentState.selected)) {
+        await Promise.race([
+          persistAnswer(index, currentState),
+          new Promise((resolve) => setTimeout(resolve, 8_000)),
+        ]);
       }
       const scored = questions;
 
@@ -857,75 +910,66 @@ export function FullExamSimulator({
         analytics.ctaClicked(`nclex_cat_stopped_${reason}`, "full_exam_cat");
       }
 
-      try {
-        const res = await fetch(`/api/exam-sessions/${sessionId}/answer`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            complete: true,
-            endedEarly: markEndedEarly,
-            score,
-            answers: log,
-            weakAreas: topicBreakdown
-              .filter((t) => t.pct < 70)
-              .map((t) => ({ topic: t.topic, weight: t.total - t.correct })),
-            analysis: {
-              sessionConfig: config,
-              timeUsedSec,
-              clientOpenedAt: new Date(openedAtMs.current).toISOString(),
-              topicBreakdown,
-              questionIds: scored.map((q) => q.bankItemId ?? q.id),
-              questionSnapshots: scored.map((q) => {
-                const bowTie =
-                  q.type === "bow_tie" || q.ngnFormat === "bow_tie" ? parseBowTieLayout(q) : null;
-                return {
-                  id: q.bankItemId ?? q.id,
-                  question: q.stem,
-                  options: q.options,
-                  correctAnswer: serializeCorrectAnswer(q),
-                  explanation: q.explanation,
-                  ...questionTopicFields(q),
-                  ...(bowTie
-                    ? {
-                        ngnFormat: "bow_tie" as const,
-                        bowTie: {
-                          condition: bowTie.condition,
-                          conditionOptions: bowTie.conditionOptions,
-                          actions: bowTie.actions,
-                          monitors: bowTie.monitors,
-                        },
-                      }
-                    : {}),
-                  ...(() => {
-                    const step =
-                      q.caseStep ??
-                      (q.ngnPayload as { stepIndex?: number } | undefined)?.stepIndex;
-                    return typeof step === "number" ? { caseStep: step } : {};
-                  })(),
-                };
-              }),
-              endedEarly: markEndedEarly,
-              summary: markEndedEarly
-                ? "Session ended early. Your saved answers were scored."
-                : isCatMode
-                  ? `Completed ${exam.name} practice CAT — ${catSessionStopSummary(finalCatState)}`
-                  : `Completed ${exam.name} simulation.`,
-              ...(catOutcome ? { catOutcome } : {}),
-            },
+      const completePayload = {
+        complete: true as const,
+        endedEarly: markEndedEarly,
+        score,
+        answers: log,
+        weakAreas: topicBreakdown
+          .filter((t) => t.pct < 70)
+          .map((t) => ({ topic: t.topic, weight: t.total - t.correct })),
+        analysis: {
+          sessionConfig: config,
+          timeUsedSec,
+          clientOpenedAt: new Date(openedAtMs.current).toISOString(),
+          topicBreakdown,
+          questionIds: scored.map((q) => q.bankItemId ?? q.id),
+          questionSnapshots: scored.map((q) => {
+            const bowTie =
+              q.type === "bow_tie" || q.ngnFormat === "bow_tie" ? parseBowTieLayout(q) : null;
+            return {
+              id: q.bankItemId ?? q.id,
+              question: q.stem,
+              options: q.options,
+              correctAnswer: serializeCorrectAnswer(q),
+              explanation: q.explanation,
+              ...questionTopicFields(q),
+              ...(bowTie
+                ? {
+                    ngnFormat: "bow_tie" as const,
+                    bowTie: {
+                      condition: bowTie.condition,
+                      conditionOptions: bowTie.conditionOptions,
+                      actions: bowTie.actions,
+                      monitors: bowTie.monitors,
+                    },
+                  }
+                : {}),
+              ...(() => {
+                const step =
+                  q.caseStep ?? (q.ngnPayload as { stepIndex?: number } | undefined)?.stepIndex;
+                return typeof step === "number" ? { caseStep: step } : {};
+              })(),
+            };
           }),
-        });
+          endedEarly: markEndedEarly,
+          summary: markEndedEarly
+            ? "Session ended early. Your saved answers were scored."
+            : isCatMode
+              ? `Completed ${exam.name} practice CAT — ${catSessionStopSummary(finalCatState)}`
+              : `Completed ${exam.name} simulation.`,
+          ...(catOutcome ? { catOutcome } : {}),
+        },
+      };
 
-        if (!res.ok) {
-          const data = (await res.json().catch(() => ({}))) as { error?: string };
-          throw new Error(data.error ?? "Could not submit exam");
-        }
-
-        // Document load: soft navigation reuses the in-memory results module, which
-        // painted a hardcoded "Exam complete" beside this early-end summary.
+      try {
+        setSubmitPhase("grading");
+        await patchCompleteExamSession(sessionId, completePayload);
         window.location.assign(fullExamResultsHref(examSlug, sessionId));
       } catch (e) {
         setSubmitError(e instanceof Error ? e.message : "Could not submit exam");
         setSubmitting(false);
+        setSubmitPhase("idle");
       }
     },
     [
@@ -1109,7 +1153,7 @@ export function FullExamSimulator({
           elapsedSec={0}
           timed={config.timed}
           paused={false}
-          questionsCompleted={0}
+          questionsCompleted={persistedAnsweredCount}
           questionsTotal={config.questionCount}
         />
         <div className="mx-auto max-w-2xl space-y-6 px-4 py-20 sm:px-6">
@@ -1196,7 +1240,7 @@ export function FullExamSimulator({
           elapsedSec={elapsedSec}
           timed={config.timed}
           paused={paused}
-          questionsCompleted={answeredCount}
+          questionsCompleted={displayAnsweredCount}
           questionsTotal={isCatMode ? CAT_MAX_QUESTIONS : questions.length}
         />
 
@@ -1274,7 +1318,11 @@ export function FullExamSimulator({
               onClick={() => void submitExam()}
               className={cn(feUi.footerBtnPrimary, "flex-1")}
             >
-              {submitting ? "Submitting…" : "Submit exam"}
+              {submitting
+                ? submitPhase === "grading"
+                  ? "Scoring exam…"
+                  : "Preparing submit…"
+                : "Submit exam"}
             </button>
           </div>
         </main>
@@ -1311,7 +1359,7 @@ export function FullExamSimulator({
         elapsedSec={elapsedSec}
         timed={config.timed}
         paused={paused}
-        questionsCompleted={answeredCount}
+        questionsCompleted={displayAnsweredCount}
         questionsTotal={displayTotal}
       />
 
