@@ -199,6 +199,7 @@ export function gradeNumericAnswer(
   const student = parseNumericEntry(studentRaw);
   const key = parseNumericSpan(keyRaw);
   if (student == null && key == null) return null;
-  if (student == null || key == null) return false;
+  // One side is not numeric (e.g. MCQ option "4-5 half-lives") — let text matching decide.
+  if (student == null || key == null) return null;
   return numericValuesMatch(student, key.min, key.max, instruction, keyRaw);
 }

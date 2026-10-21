@@ -126,4 +126,18 @@ describe("isAnswerCorrect numeric agreement", () => {
     expect(isAnswerCorrect(q, ["30.4"])).toBe(true);
     expect(isAnswerCorrect(q, ["29.4"])).toBe(false);
   });
+
+  it("does not treat a hyphenated MCQ option as a numeric range", () => {
+    const q: StudyQuestion = {
+      id: "half-life",
+      sourceIndex: 0,
+      type: "multiple_choice",
+      stem: "After how many half-lives will the drug reach steady-state concentration?",
+      options: ["1-2 half-lives", "3-4 half-lives", "4-5 half-lives", "6-7 half-lives"],
+      correctAnswers: ["4-5 half-lives"],
+      explanation: "",
+    };
+    expect(isAnswerCorrect(q, ["4-5 half-lives"])).toBe(true);
+    expect(isAnswerCorrect(q, ["3-4 half-lives"])).toBe(false);
+  });
 });
