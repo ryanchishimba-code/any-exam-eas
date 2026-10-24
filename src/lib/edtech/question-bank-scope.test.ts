@@ -11,6 +11,7 @@ vi.mock("@/lib/edtech/user-metadata", () => ({
 }));
 
 import { getUserExamPreferenceFresh } from "@/lib/edtech/exam-preference";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import {
   canonicalPracticeFieldId,
   enforceQuestionBankFieldAccess,
@@ -118,5 +119,25 @@ describe("question-bank-scope", () => {
     expect(canonicalPracticeFieldId("usmle", "usmle-step-1")).toBe("usmle-step-1");
     expect(canonicalPracticeFieldId("usmle", null)).toBe("usmle-step-2");
     expect(canonicalPracticeFieldId("pance")).toBe("pance");
+  });
+
+  it("allows exam-scoped review for a USMLE step that differs from the saved step", async () => {
+    vi.mocked(getUserExamPreferenceFresh).mockResolvedValue({
+      userId: "user-1",
+      examSlug: "usmle",
+      lastStudiedAt: null,
+    });
+    vi.mocked(getUserEdtechMetadata).mockResolvedValue({ usmleFieldId: "usmle-step-2" });
+
+    const denied = await enforceQuestionBankFieldAccess("user-1", "usmle-step-1");
+    expect(denied.ok).toBe(false);
+
+    const allowed = await enforceQuestionBankFieldAccess("user-1", "usmle-step-1", {
+      trustedSessionFieldId: "usmle-step-1",
+    });
+    expect(allowed.ok).toBe(true);
+    if (allowed.ok) {
+      expect(allowed.fieldId).toBe("usmle-step-1");
+    }
   });
 });

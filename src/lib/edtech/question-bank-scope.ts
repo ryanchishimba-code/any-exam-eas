@@ -112,10 +112,19 @@ export type QuestionBankFieldAccess =
   | { ok: true; examSlug: ExamSlug; fieldId: string }
   | { ok: false; response: NextResponse };
 
+export type QuestionBankFieldAccessOptions = {
+  /**
+   * When review is scoped to a finished exam sitting, allow that session's
+   * practice field even if the saved USMLE step differs (Step 1 results link).
+   */
+  trustedSessionFieldId?: string | null;
+};
+
 /** Allow question requests for board exams; reject fields outside the user's selected exam. */
 export async function enforceQuestionBankFieldAccess(
   userId: string,
-  field: string
+  field: string,
+  opts?: QuestionBankFieldAccessOptions
 ): Promise<QuestionBankFieldAccess> {
   const pref = await getUserExamPreferenceFresh(userId);
   if (!pref) {
@@ -128,7 +137,11 @@ export async function enforceQuestionBankFieldAccess(
     };
   }
 
-  const fieldId = resolveQuestionBankFieldId(field);
+  const trusted = opts?.trustedSessionFieldId?.trim();
+  const fieldId =
+    trusted && isPracticeFieldId(trusted)
+      ? normalizeFieldId(trusted)
+      : resolveQuestionBankFieldId(field);
   const targetSlug = examSlugForFieldId(fieldId);
 
   if (!targetSlug || !isPracticeFieldId(fieldId)) {
@@ -161,6 +174,11 @@ export async function enforceQuestionBankFieldAccess(
 
   const canonicalFieldId = await resolveCanonicalPracticeFieldId(userId, pref.examSlug);
   if (fieldId !== canonicalFieldId) {
+    const trustedFieldId =
+      trusted && isPracticeFieldId(trusted) ? normalizeFieldId(trusted) : null;
+    if (trustedFieldId && fieldId === trustedFieldId) {
+      return { ok: true, examSlug: pref.examSlug, fieldId: trustedFieldId };
+    }
     return {
       ok: false,
       response: NextResponse.json(

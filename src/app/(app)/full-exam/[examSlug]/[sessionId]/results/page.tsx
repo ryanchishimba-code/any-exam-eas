@@ -20,6 +20,7 @@ import type { ExamSlug } from "@/types/edtech";
 import { practiceResultsTotals, practiceScorePercent } from "@/lib/full-exam/administered-score";
 import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
+import { practiceFieldIdForExamSession } from "@/lib/full-exam/practice-field-id";
 import { fullExamTreatsAsEndedEarly } from "@/lib/full-exam/results-title";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
@@ -75,7 +76,7 @@ async function FullExamResultsContent({
         }));
 
   const exam = EXAM_CATALOG[examSlug];
-  const fieldId = examSession.fieldId ?? exam.fieldId;
+  const fieldId = practiceFieldIdForExamSession(examSession, examSlug);
   const correct = answers.filter((a) => a.correct && a.selected?.trim()).length;
   const totals = practiceResultsTotals({
     delivered: questions.length,
