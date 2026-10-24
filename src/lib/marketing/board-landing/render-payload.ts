@@ -1,3 +1,4 @@
+import type { BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
 import type { BoardLandingModel, LandingQuestion } from "@/lib/marketing/board-landing/model";
 import { buildLandingQuestionMock, type LandingQuestionMockModel } from "@/lib/marketing/landing-question-mock";
 import {
@@ -17,6 +18,11 @@ const NAPLEX_FAQ_LIMIT = BOARD_FAQ_LIMIT;
 
 const MAX_OPTION_RATIONALE = 140;
 const MAX_SOURCES = 2;
+
+/** Drop long feature blurbs from RSC flight (visual grid uses sr-only one-liners). */
+export function trimFeaturesForFlight(cards: BoardFeatureCard[]): BoardFeatureCard[] {
+  return cards.map((card) => ({ ...card, line: "" }));
+}
 
 /** Shorter sample copy for landing HTML + flight (full bank rationales stay in-app). */
 export function trimLandingSample(question: LandingQuestion | null): LandingQuestion | null {
@@ -151,7 +157,7 @@ export function boardLandingRenderModel(
     lede: model.lede,
     trialHref: model.trialHref,
     trialLabel: model.trialLabel,
-    features: model.features,
+    features: trimFeaturesForFlight(model.features),
     stats: model.stats,
     statsLabel: model.statsLabel,
     sample: trimmedSample,

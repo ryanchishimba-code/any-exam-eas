@@ -22,6 +22,8 @@ import { HOME_OWNER_VALUE_LINE } from "@/lib/marketing/owner-value-line";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { ROUTES } from "@/lib/routes";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { PrepPriceBarChart } from "@/components/marketing/PrepPriceBarChart";
+import { buildHomePrepPriceBarChartData } from "@/lib/marketing/prep-price-bar-chart";
 
 /** First-screen board tiles. Labels match the hero; hrefs are the public board pages. */
 const HERO_BOARD_TILES: { slug: ExamSeoKey; label: string }[] = [
@@ -45,6 +47,7 @@ export function PublicHome({
   testimonialStories?: LandingTestimonialCard[];
 }) {
   const stickyLabel = homeStickyCtaLabel();
+  const homePriceChart = buildHomePrepPriceBarChartData();
   const headlineBreak = HOME_PRACTICE_HEADLINE.lastIndexOf(". ");
   const headlineLead =
     headlineBreak === -1 ? HOME_PRACTICE_HEADLINE : HOME_PRACTICE_HEADLINE.slice(0, headlineBreak + 1);
@@ -110,6 +113,10 @@ export function PublicHome({
       ) : null}
 
       <HomeQuickBites />
+
+      <div className="home-section home-rise board-landing">
+        <PrepPriceBarChart data={homePriceChart} />
+      </div>
 
       <section
         id="faq"

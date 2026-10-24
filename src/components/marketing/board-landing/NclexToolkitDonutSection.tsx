@@ -50,7 +50,7 @@ export function NclexToolkitDonutSection(props: NclexDonutRenderInput) {
                 <span className="bl-ace-donut__swatch" style={{ backgroundColor: segment.color }} aria-hidden />
                 <span className="bl-ace-donut__legend-text">
                   <span className="bl-ace-donut__legend-label">{segment.label}</span>
-                  <span className="bl-ace-donut__legend-detail">{segment.detail}</span>
+                  <span className="sr-only">{segment.detail}</span>
                 </span>
               </span>
             </li>

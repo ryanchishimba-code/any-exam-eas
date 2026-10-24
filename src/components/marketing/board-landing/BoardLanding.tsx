@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
+import { BoardPainIcons } from "@/components/marketing/board-landing/BoardPainIcons";
+import { BoardPriceCompare } from "@/components/marketing/board-landing/BoardPriceCompare";
 import { NclexLandingCompareChart } from "@/components/marketing/board-landing/NclexLandingCompareChart";
 import { NclexStudentTrustBadge } from "@/components/marketing/board-landing/NclexStudentTrustBadge";
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
+import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/PracticeReviewPassFlow";
 import { NaplexAceDonutSection } from "@/components/marketing/board-landing/NaplexAceDonutSection";
 import { BoardStatStrip } from "@/components/marketing/board-landing/BoardStatStrip";
 import { HeroScene } from "@/components/marketing/board-landing/HeroScene";
@@ -67,6 +70,7 @@ export function BoardLanding({
           <h1 id="board-hero-heading">
             {model.h1Lead} <span>{model.h1Accent}</span>
           </h1>
+          {showHeroActions ? <p className="bl-hero-lede">{model.heroWhyUs}</p> : null}
           {showHeroActions ? (
             <MarketingHeroActions
               trialHref={model.trialHref}
@@ -74,6 +78,7 @@ export function BoardLanding({
               ctaLocation={model.heroCtaLocation}
               seeQuestionsHref={seeQuestionsHref}
               showSeeQuestions={Boolean(model.sample)}
+              trialMicrocopy={model.ctaMicrocopy}
             />
           ) : null}
         </div>
@@ -109,6 +114,8 @@ export function BoardLanding({
 
       <BoardStatStrip stats={model.stats} label={model.statsLabel} />
 
+      <BoardPainIcons points={model.painPoints} />
+
       {nclexConversion ? (
         <>
           <BoardLandingTestimonials stories={model.stories} prominent />
@@ -141,7 +148,9 @@ export function BoardLanding({
         </div>
       ) : null}
 
-      {model.features.length > 0 ? <BoardFeatureGrid cards={model.features} tight /> : null}
+      {model.features.length > 0 ? <BoardFeatureGrid cards={model.features} tight visual /> : null}
+
+      <PracticeReviewPassFlow />
 
       {nclexConversion ? null : <BoardLandingTestimonials stories={model.stories} minimal />}
 
@@ -164,6 +173,8 @@ export function BoardLanding({
           </article>
         </section>
       ) : null}
+
+      <BoardPriceCompare chart={model.priceChart} />
 
       <section className="bl-section bl-section--tight" id="faq" aria-labelledby="faq-heading">
         <h2 id="faq-heading">FAQ</h2>

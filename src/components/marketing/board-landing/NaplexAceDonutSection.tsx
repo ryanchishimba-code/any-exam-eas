@@ -17,10 +17,6 @@ export function NaplexAceDonutSection(props: NaplexDonutRenderInput) {
   return (
     <section className="bl-ace-donut bl-section" aria-labelledby="naplex-ace-heading">
       <h2 id="naplex-ace-heading">Built to help you ace the NAPLEX</h2>
-      <p className="bl-section-lede bl-ace-donut__lede">
-        Question bank, calculations, Top 500 drugs, mocks, and study guide—one plan.
-      </p>
-
       <div className="bl-ace-donut__layout">
         <figure className="bl-ace-donut__figure" aria-label="NAPLEX study tools included with Pro">
           <svg
@@ -61,7 +57,7 @@ export function NaplexAceDonutSection(props: NaplexDonutRenderInput) {
                 <span className="bl-ace-donut__swatch" style={{ backgroundColor: segment.color }} aria-hidden />
                 <span className="bl-ace-donut__legend-text">
                   <span className="bl-ace-donut__legend-label">{segment.label}</span>
-                  <span className="bl-ace-donut__legend-detail">{segment.detail}</span>
+                  <span className="sr-only">{segment.detail}</span>
                 </span>
               </button>
             </li>
