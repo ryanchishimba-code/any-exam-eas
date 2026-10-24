@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { enforceRateLimit } from "@/lib/api-rate-limit";
 import {
-  getPublicFreeQuiz,
+  getFreeQuizBank,
   isFreeQuizBoardSlug,
+  toPublicFreeQuizPayload,
   type FreeQuizBoardSlug,
 } from "@/lib/marketing/free-quiz";
 
@@ -24,7 +25,7 @@ export async function GET(req: Request) {
   const board = boardParam as FreeQuizBoardSlug;
 
   try {
-    const payload = await getPublicFreeQuiz(board);
+    const payload = toPublicFreeQuizPayload(await getFreeQuizBank(board));
     return NextResponse.json(payload, {
       headers: {
         "Cache-Control": PUBLIC_CACHE,

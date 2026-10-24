@@ -2493,3 +2493,137 @@
 .bl-free-quiz__study-note {
   margin-top: 0.5rem;
 }
+
+.bl-free-quiz__sata-hint {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bl-muted);
+}
+
+.bl-free-quiz__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.bl-free-quiz__nav-btn {
+  flex: 1 1 8rem;
+  justify-content: center;
+}
+
+.bl-free-quiz__warn {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #92400e;
+}
+
+.bl-free-quiz__review-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.bl-free-quiz__review-qnum {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bl-muted);
+}
+
+.bl-free-quiz__review-item {
+  border-top: 1px solid var(--bl-line);
+  padding-top: 0.75rem;
+}
+
+.bl-free-quiz__review-stem {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.bl-free-quiz__review-verdict {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.bl-free-quiz__review-verdict.is-correct {
+  color: var(--bl-teal);
+}
+
+.bl-free-quiz__review-verdict.is-wrong {
+  color: #b91c1c;
+}
+
+.bl-free-quiz__review-answers {
+  margin: 0.5rem 0 0;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.bl-free-quiz__review-answers dt {
+  font-weight: 650;
+  color: var(--bl-muted);
+}
+
+.bl-free-quiz__review-answers dd {
+  margin: 0.1rem 0 0;
+}
+
+.bl-free-quiz__upsell {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--bl-line);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.bl-free-quiz__upsell-lead {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: var(--bl-ink);
+}
+
+.bl-free-quiz__upsell-btn {
+  border-radius: 999px;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding-inline: 1.1rem;
+  font-size: 0.9rem;
+}
+
+.bl-free-quiz__trial-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.bl-free-quiz__trial-btn {
+  border-radius: 999px;
+  justify-content: center;
+  min-width: min(100%, 16rem);
+}
+
+.bl-free-quiz__trial-note {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--bl-muted);
+}
