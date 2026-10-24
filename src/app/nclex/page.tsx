@@ -5,6 +5,7 @@ import { loadNursingBankTypeCounts } from "@/lib/marketing/board-landing/bank-ty
 import { buildNclexNgnTypeChartRows } from "@/lib/marketing/board-landing/nclex-ngn-type-chart";
 import { buildNclexLandingMetadata, buildNclexLandingModel } from "@/lib/marketing/board-landing/model";
 import { nclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { loadBoardPageQuestionUnits } from "@/lib/marketing/live-board-counts";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { scoredQuestionCount } from "@/lib/counts";
 import { getCachedNclexTrustAudienceCount } from "@/lib/marketing/student-trust-count";
@@ -27,9 +28,9 @@ export default async function NclexHubPage() {
     getCachedPublishedTestimonials(6),
     getCachedNclexTrustAudienceCount(),
   ]);
-  const exam = display.exams.find((row) => row.slug === "nclex");
-  const live = !display.degraded && (exam?.served ?? 0) > 0;
-  const units = live ? (bundle.snapshot.boards?.nclex ?? null) : null;
+  const snapshotUnits = !display.degraded ? (bundle.snapshot.boards?.nclex ?? null) : null;
+  const units = await loadBoardPageQuestionUnits("nclex", snapshotUnits);
+  const live = units != null && scoredQuestionCount(units) > 0;
   const full = buildNclexLandingModel({
     degraded: !live,
     units,
