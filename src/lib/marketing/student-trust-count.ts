@@ -1,9 +1,22 @@
 import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import type { Prisma } from "@prisma/client";
 
 const TRUST_TIERS = [100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000] as const;
 
 export const NURSING_TRUST_AUDIENCE = "nurses and nursing students";
+
+/** NCLEX board slug on {@link UserExamPreference}. */
+export const NCLEX_TRUST_EXAM_SLUG = "nclex";
+
+/**
+ * Active users who selected NCLEX as their primary board in UserExamPreference.
+ * Users without a preference row are excluded.
+ */
+export const nclexTrustAudienceCountWhere: Prisma.UserWhereInput = {
+  accountStatus: "active",
+  examPreference: { examSlug: NCLEX_TRUST_EXAM_SLUG },
+};
 
 /** Rounds down to the largest marketing tier at or below the real count. */
 export function floorStudentTrustTier(count: number): number | null {
@@ -23,23 +36,23 @@ export function studentTrustLabelFromCount(count: number): string {
   return `Trusted by ${NURSING_TRUST_AUDIENCE}`;
 }
 
-async function readActiveAccountCount(): Promise<number> {
+async function readNclexTrustAudienceCount(): Promise<number> {
   try {
-    return await prisma.user.count({ where: { accountStatus: "active" } });
+    return await prisma.user.count({ where: nclexTrustAudienceCountWhere });
   } catch {
     return 0;
   }
 }
 
-const loadCachedActiveAccountCount = unstable_cache(
-  readActiveAccountCount,
-  ["marketing-active-account-count-v1"],
-  { revalidate: 300, tags: ["marketing-active-account-count"] }
+const loadCachedNclexTrustAudienceCount = unstable_cache(
+  readNclexTrustAudienceCount,
+  ["marketing-nclex-trust-audience-count-v1"],
+  { revalidate: 300, tags: ["marketing-nclex-trust-audience-count"] }
 );
 
-/** Cached active account total for public trust badges (ISR-aligned 5 min). */
-export async function getCachedActiveAccountCount(): Promise<number> {
-  return loadCachedActiveAccountCount();
+/** Cached NCLEX-preference account total for the public trust badge (ISR-aligned 5 min). */
+export async function getCachedNclexTrustAudienceCount(): Promise<number> {
+  return loadCachedNclexTrustAudienceCount();
 }
 
 export type StudentTrustBadge = {
@@ -48,7 +61,7 @@ export type StudentTrustBadge = {
   label: string;
 };
 
-/** Always returns a label — with N+ only when the real active account count is ≥ 100. */
+/** Always returns a label — with N+ only when the NCLEX audience count is ≥ 100. */
 export function studentTrustBadgeFromCount(count: number): StudentTrustBadge {
   return {
     tier: floorStudentTrustTier(count),

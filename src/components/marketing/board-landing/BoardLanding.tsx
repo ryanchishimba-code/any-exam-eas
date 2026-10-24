@@ -199,8 +199,8 @@ export function BoardLanding({
 
       {nclexConversion ? (
         <>
-          <NclexStudentTrustBadge badge={model.studentTrustBadge!} />
           <BoardLandingTestimonials stories={model.stories} prominent />
+          <NclexStudentTrustBadge badge={model.studentTrustBadge!} />
           <NclexLandingCompareChart data={model.nclexCompare!} />
         </>
       ) : null}

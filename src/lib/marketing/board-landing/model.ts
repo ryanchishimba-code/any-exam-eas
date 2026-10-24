@@ -493,7 +493,7 @@ export function buildNclexLandingModel(input: {
   sample: PublicSampleQuestion | null;
   sampleSecondary?: LandingQuestion | null;
   testimonials?: LandingSuccessStory[];
-  activeAccountCount?: number;
+  nclexTrustAudienceCount?: number;
 }): BoardLandingModel {
   const units = liveUnits(input.units, input.degraded);
   const formats: BoardFormatCard[] = [];
@@ -600,7 +600,7 @@ export function buildNclexLandingModel(input: {
     visuals,
     sampleSecondary: secondary,
     nclexCompare: buildNclexCompareChartData(units),
-    studentTrustBadge: studentTrustBadgeFromCount(input.activeAccountCount ?? 0),
+    studentTrustBadge: studentTrustBadgeFromCount(input.nclexTrustAudienceCount ?? 0),
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
   };
 }

@@ -6,7 +6,7 @@ import { loadNursingBankTypeCounts } from "@/lib/marketing/board-landing/bank-ty
 import { buildNclexLandingMetadata, buildNclexLandingModel } from "@/lib/marketing/board-landing/model";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
-import { getCachedActiveAccountCount } from "@/lib/marketing/student-trust-count";
+import { getCachedNclexTrustAudienceCount } from "@/lib/marketing/student-trust-count";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 
 /**
@@ -20,14 +20,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NclexHubPage() {
-  const [{ bundle, display }, samples, scene, bankTypes, testimonials, activeAccountCount] =
+  const [{ bundle, display }, samples, scene, bankTypes, testimonials, nclexTrustAudienceCount] =
     await Promise.all([
       loadPublicQuestionCounts({ dynamic: false }),
       getPublicSampleQuestions(),
       loadNclexHeroCase(),
       loadNursingBankTypeCounts(),
       getCachedPublishedTestimonials(6),
-      getCachedActiveAccountCount(),
+      getCachedNclexTrustAudienceCount(),
     ]);
   const exam = display.exams.find((row) => row.slug === "nclex");
   const live = !display.degraded && (exam?.served ?? 0) > 0;
@@ -38,7 +38,7 @@ export default async function NclexHubPage() {
     sample: samples.find((item) => item.fieldId === "nursing") ?? null,
     sampleSecondary: scene ? heroCaseToLandingQuestion(scene) : null,
     testimonials,
-    activeAccountCount,
+    nclexTrustAudienceCount,
   });
 
   return (
