@@ -3009,26 +3009,14 @@ button.aee-flagship-cta {
   min-width: 0;
 }
 
-.aee-hero-exam-chips__link {
+.aee-hero-exam-chips__link.aee-board-pill {
   font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  opacity: 0.92;
-  transition: opacity 0.15s ease;
-}
-
-.aee-hero-exam-chips__link:hover {
-  opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.85rem;
 }
 
 .aee-hero-exam-chips__link--selected {
-  opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-  text-decoration-thickness: 2px;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.9);
 }
 
 .aee-hero-beat__actions {

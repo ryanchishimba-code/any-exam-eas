@@ -19,7 +19,8 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 import { ROUTES, MARKETING_BOARD_LINKS } from "@/lib/routes";
 import { LANDING_TRIAL_HREF, landingTrialHrefForExam } from "@/lib/landing/trial-href";
 import { formatTrialCtaLabel } from "@/lib/site";
-import { marketingExamKeyFromPath } from "@/lib/marketing/board-paths";
+import { isMarketingLandingPath, marketingExamKeyFromPath } from "@/lib/marketing/board-paths";
+import { HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 // Only signed-in visitors ever see this, and it needs framer-motion for its
@@ -135,9 +136,14 @@ export function Navigation() {
   const guestTrialHref = examFromPath
     ? landingTrialHrefForExam(examFromPath)
     : LANDING_TRIAL_HREF;
+  const landingMinimal = isMarketingLandingPath(pathname);
+  const hideMobileNavTrialCta = landingMinimal && pathname === "/";
 
   return (
-    <header ref={headerRef} className="aee-nav apple-glass fixed top-0 z-50 w-full">
+    <header
+      ref={headerRef}
+      className={`aee-nav apple-glass fixed top-0 z-50 w-full${landingMinimal ? " aee-nav--landing-minimal" : ""}${hideMobileNavTrialCta ? " aee-nav--hide-mobile-trial-cta" : ""}`}
+    >
       <nav className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6" aria-label="Main navigation">
         <BrandLogo
           href={brandHref}
@@ -151,7 +157,7 @@ export function Navigation() {
           <li>
             <ExamsDropdown />
           </li>
-          {links.map((l) => {
+          {(landingMinimal && !isAuthenticated ? [] : links).map((l) => {
             const linkActive =
               l.href === ROUTES.dashboard ? practiceActive : isActive(l.href);
             return (
@@ -188,21 +194,29 @@ export function Navigation() {
             </>
           ) : (
             <div className="aee-nav-auth-group">
-              <LoginModalTrigger
-                callbackUrl={ROUTES.dashboard}
-                className="aee-nav-login"
-                aria-label="Log in to your account"
-              >
-                <LogIn className="aee-nav-login__icon h-4 w-4" strokeWidth={2.25} aria-hidden />
-                <span>Log in</span>
-              </LoginModalTrigger>
+              {landingMinimal ? null : (
+                <LoginModalTrigger
+                  callbackUrl={ROUTES.dashboard}
+                  className="aee-nav-login"
+                  aria-label="Log in to your account"
+                >
+                  <LogIn className="aee-nav-login__icon h-4 w-4" strokeWidth={2.25} aria-hidden />
+                  <span>Log in</span>
+                </LoginModalTrigger>
+              )}
               <Link
                 href={guestTrialHref}
                 className="aee-nav-cta"
-                aria-label={formatTrialCtaLabel()}
+                aria-label={landingMinimal ? HERO_TRIAL_CTA_LABEL : formatTrialCtaLabel()}
               >
-                <span className="md:hidden">Free trial</span>
-                <span className="hidden md:inline">{formatTrialCtaLabel()}</span>
+                {landingMinimal ? (
+                  HERO_TRIAL_CTA_LABEL
+                ) : (
+                  <>
+                    <span className="md:hidden">Free trial</span>
+                    <span className="hidden md:inline">{formatTrialCtaLabel()}</span>
+                  </>
+                )}
               </Link>
             </div>
           )}

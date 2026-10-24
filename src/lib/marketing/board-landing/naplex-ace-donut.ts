@@ -1,4 +1,4 @@
-import { formatExactQuestionCount, scoredQuestionCount, type BoardQuestionUnits } from "@/lib/counts";
+import { formatExactQuestionCount } from "@/lib/counts";
 import { TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 
 export type NaplexAceDonutSegment = {
@@ -30,13 +30,13 @@ function colorAt(index: number): string {
 
 /** Equal-size donut slices — verified NAPLEX / pharmacy product surfaces only. */
 export function buildNaplexAceDonutSegments(input: {
-  units: BoardQuestionUnits | null;
+  liveQuestionCount: number;
   includeQuickBite: boolean;
   includeItemTypes: boolean;
 }): NaplexAceDonutSegment[] {
   const segments: Omit<NaplexAceDonutSegment, "color">[] = [];
 
-  const liveTotal = input.units ? scoredQuestionCount(input.units) : 0;
+  const liveTotal = input.liveQuestionCount;
   segments.push({
     id: "question-bank",
     label: "NAPLEX question bank",
@@ -121,7 +121,7 @@ export type NaplexAceDonutModel = {
 };
 
 export function buildNaplexAceDonutModel(input: {
-  units: BoardQuestionUnits | null;
+  liveQuestionCount: number;
   includeQuickBite: boolean;
   includeItemTypes: boolean;
 }): NaplexAceDonutModel {

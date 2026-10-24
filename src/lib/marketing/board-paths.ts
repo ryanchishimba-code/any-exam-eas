@@ -21,3 +21,12 @@ export function marketingExamKeyFromPath(pathname: string): MarketingBoardSlug |
     ? (slug as MarketingBoardSlug)
     : null;
 }
+
+export function marketingLandingPath(pathname: string): string {
+  return (pathname || "/").split("?")[0] || "/";
+}
+
+/** Home and the six public board landing pages (Tesla-style minimal chrome). */
+export function isMarketingLandingPath(pathname: string): boolean {
+  return MARKETING_DARK_HERO_PATHS.has(marketingLandingPath(pathname));
+}

@@ -3,13 +3,10 @@ import { boardQuestionUnits } from "@/lib/counts";
 import { buildNclexCompareChartData } from "@/lib/marketing/board-landing/nclex-compare-chart";
 
 describe("buildNclexCompareChartData", () => {
-  it("uses real Pro and typical prep prices without vendor names", () => {
+  it("omits bars when units are missing", () => {
     const data = buildNclexCompareChartData(null);
-    const serialized = JSON.stringify(data);
-    expect(serialized).toMatch(/\$27\.99\/mo/);
-    expect(serialized).toMatch(/\$139/);
-    expect(serialized).not.toMatch(/uworld|archer|kaplan/i);
-    expect(data.bars.some((bar) => bar.id === "pro-monthly")).toBe(true);
+    expect(data.bars).toEqual([]);
+    expect(JSON.stringify(data)).not.toMatch(/uworld|archer|kaplan/i);
   });
 
   it("adds live bank bars when units are present", () => {

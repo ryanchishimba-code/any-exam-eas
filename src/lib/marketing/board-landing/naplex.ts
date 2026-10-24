@@ -46,7 +46,6 @@ import {
   formatHeroCtaMicrocopy,
   heroWhyUs,
 } from "@/lib/marketing/board-landing/board-theme";
-import { buildNaplexAceDonutModel } from "@/lib/marketing/board-landing/naplex-ace-donut";
 import { SITE_NAME, formatMonthlyPrice } from "@/lib/site";
 
 /**
@@ -166,7 +165,7 @@ function naplexFaqs(units: BoardQuestionUnits | null): { question: string; answe
     },
     {
       question: "Can I try a free NAPLEX practice question before I pay?",
-      answer: `Yes. One NAPLEX question on this page can be answered with no account. The ${TRIAL_DAYS}-day free trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions and does not ask for a payment method. Cancel in Settings before it ends and you are not charged.`,
+      answer: `Yes. Open NAPLEX practice for a scored sample with no account. The ${TRIAL_DAYS}-day free trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions and does not ask for a payment method. Cancel in Settings before it ends and you are not charged.`,
     },
     {
       question: "What is on the NAPLEX?",
@@ -217,7 +216,7 @@ export function buildNaplexLandingModel(input: {
   const trialHref = landingTrialHrefForExam("naplex");
   const reviewer = clinicalReviewerForExam("naplex");
   const links = [
-    ...(input.sample ? [{ href: "#sample-question", label: "Free NAPLEX practice question" }] : []),
+    { href: "/practice/naplex", label: "Free NAPLEX practice question" },
     { href: qotdPath("naplex"), label: "Question of the Day" },
     { href: ROUTES.pricing, label: "Pricing" },
     ...(formats.length > 0 ? [{ href: "#naplex-formats", label: "NAPLEX item types" }] : []),
@@ -246,7 +245,7 @@ export function buildNaplexLandingModel(input: {
   return {
     h1Lead: "Pass the NAPLEX on your",
     h1Accent: "first try.",
-    lede: "Try the free sample below, then start your trial when you are ready.",
+    lede: heroWhyUs("naplex"),
     trialHref,
     trialLabel: homeTrialCtaLabel(),
     trust: ["5-day free trial", "No payment method to start", "Cancel in Settings"],
@@ -316,11 +315,6 @@ export function buildNaplexLandingModel(input: {
     painPoints: boardPainPoints("naplex"),
     visuals,
     sampleSecondary: null,
-    aceDonut: buildNaplexAceDonutModel({
-      units,
-      includeQuickBite: Boolean(quickBite),
-      includeItemTypes: formats.length > 0,
-    }),
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
   };
 }

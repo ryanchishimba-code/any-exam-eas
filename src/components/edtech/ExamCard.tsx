@@ -71,10 +71,7 @@ export function ExamCard({
       >
         {/* Gradient face — swap gradient classes in exam-selection-theme.ts */}
         <div
-          className={cn(
-            "absolute inset-0 bg-gradient-to-br",
-            theme.gradient
-          )}
+          className={cn("absolute inset-0 exam-select-card__face", `exam-select-card__face--${slug}`)}
           aria-hidden
         />
 

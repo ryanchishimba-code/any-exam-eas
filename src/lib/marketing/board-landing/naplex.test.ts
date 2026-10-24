@@ -87,8 +87,6 @@ describe("NAPLEX landing model", () => {
       (node) => node["@type"] === "VideoObject"
     );
     expect(video?.embedUrl).toMatch(/\/naplex#quick-bites$/);
-    expect(model.aceDonut?.segments.length).toBeGreaterThanOrEqual(10);
-    expect(model.aceDonut?.segments.some((s) => s.id === "quick-bites")).toBe(true);
   });
 
   it("omits the question total when the bank lookup failed", () => {

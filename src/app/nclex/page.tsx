@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { BoardLanding } from "@/components/marketing/board-landing/BoardLanding";
+import { NclexBoardLanding } from "@/components/marketing/board-landing/NclexBoardLanding";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { heroCaseToLandingQuestion, loadNclexHeroCase } from "@/lib/marketing/board-landing/hero-case";
 import { loadNursingBankTypeCounts } from "@/lib/marketing/board-landing/bank-types";
+import { buildNclexNgnTypeChartRows } from "@/lib/marketing/board-landing/nclex-ngn-type-chart";
 import { buildNclexLandingMetadata, buildNclexLandingModel } from "@/lib/marketing/board-landing/model";
+import { nclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
-import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
+import { scoredQuestionCount } from "@/lib/counts";
 import { getCachedNclexTrustAudienceCount } from "@/lib/marketing/student-trust-count";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 
@@ -20,31 +21,47 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NclexHubPage() {
-  const [{ bundle, display }, samples, scene, bankTypes, testimonials, nclexTrustAudienceCount] =
-    await Promise.all([
-      loadPublicQuestionCounts({ dynamic: false }),
-      getPublicSampleQuestions(),
-      loadNclexHeroCase(),
-      loadNursingBankTypeCounts(),
-      getCachedPublishedTestimonials(6),
-      getCachedNclexTrustAudienceCount(),
-    ]);
+  const [{ bundle, display }, bankTypes, testimonials, nclexTrustAudienceCount] = await Promise.all([
+    loadPublicQuestionCounts({ dynamic: false }),
+    loadNursingBankTypeCounts(),
+    getCachedPublishedTestimonials(6),
+    getCachedNclexTrustAudienceCount(),
+  ]);
   const exam = display.exams.find((row) => row.slug === "nclex");
   const live = !display.degraded && (exam?.served ?? 0) > 0;
-  const model = buildNclexLandingModel({
+  const units = live ? (bundle.snapshot.boards?.nclex ?? null) : null;
+  const full = buildNclexLandingModel({
     degraded: !live,
-    units: live ? (bundle.snapshot.boards?.nclex ?? null) : null,
+    units,
     bankTypes: live ? bankTypes : {},
-    sample: samples.find((item) => item.fieldId === "nursing") ?? null,
-    sampleSecondary: scene ? heroCaseToLandingQuestion(scene) : null,
+    sample: null,
+    sampleSecondary: null,
     testimonials,
     nclexTrustAudienceCount,
+  });
+  const ngnTypeRows = live && units
+    ? buildNclexNgnTypeChartRows({
+        bankTypes,
+        caseStudies: units.caseStudies,
+        caseItems: units.caseItems,
+        standaloneNgn: units.standaloneNgn,
+        bankNgnStyle: units.bankNgnStyle,
+        bankCaseStyle: units.bankCaseStyle,
+      })
+    : [];
+  const render = nclexBoardLandingRenderModel(full, {
+    nclexDonut: {
+      liveQuestionCount: units ? scoredQuestionCount(units) : 0,
+      includeQuickBite: Boolean(full.quickBite),
+      includeNgn: ngnTypeRows.length > 0,
+    },
+    ngnTypeRows,
   });
 
   return (
     <>
-      <JsonLdScript data={model.jsonLd} />
-      <BoardLanding model={model} scene={scene} />
+      <JsonLdScript data={full.jsonLd} />
+      <NclexBoardLanding model={render} />
     </>
   );
 }

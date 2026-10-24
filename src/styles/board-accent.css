@@ -1,0 +1,148 @@
+/**
+ * Board accent pills — single source for marketing pickers (#255 palette).
+ * Import after :root color tokens in globals.css.
+ */
+:root {
+  --board-accent-nclex: #0f766e;
+  --board-accent-nclex-hover: #115e59;
+  --board-accent-naplex: #1d4ed8;
+  --board-accent-naplex-hover: #1e40af;
+  --board-accent-usmle: #6d28d9;
+  --board-accent-usmle-hover: #5b21b6;
+  --board-accent-aanp-fnp: #be185d;
+  --board-accent-aanp-fnp-hover: #9d174d;
+  --board-accent-pance: #c2410c;
+  --board-accent-pance-hover: #9a3412;
+  --board-accent-npte-pt: #047857;
+  --board-accent-npte-pt-hover: #065f46;
+}
+
+.aee-board-pill {
+  --board-pill-bg: var(--board-accent-nclex);
+  --board-pill-bg-hover: var(--board-accent-nclex-hover);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--board-pill-bg) 88%, #000);
+  border-radius: 0.85rem;
+  background: var(--board-pill-bg);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.aee-board-pill:hover {
+  background: var(--board-pill-bg-hover);
+  border-color: color-mix(in srgb, var(--board-pill-bg-hover) 88%, #000);
+  color: #fff;
+}
+
+.aee-board-pill:focus-visible {
+  outline: 2px solid var(--color-ring, #005fcc);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--board-pill-bg) 40%, transparent);
+}
+
+.aee-board-pill--nclex {
+  --board-pill-bg: var(--board-accent-nclex);
+  --board-pill-bg-hover: var(--board-accent-nclex-hover);
+}
+
+.aee-board-pill--naplex {
+  --board-pill-bg: var(--board-accent-naplex);
+  --board-pill-bg-hover: var(--board-accent-naplex-hover);
+}
+
+.aee-board-pill--usmle {
+  --board-pill-bg: var(--board-accent-usmle);
+  --board-pill-bg-hover: var(--board-accent-usmle-hover);
+}
+
+.aee-board-pill--aanp-fnp {
+  --board-pill-bg: var(--board-accent-aanp-fnp);
+  --board-pill-bg-hover: var(--board-accent-aanp-fnp-hover);
+}
+
+.aee-board-pill--pance {
+  --board-pill-bg: var(--board-accent-pance);
+  --board-pill-bg-hover: var(--board-accent-pance-hover);
+}
+
+.aee-board-pill--npte-pt {
+  --board-pill-bg: var(--board-accent-npte-pt);
+  --board-pill-bg-hover: var(--board-accent-npte-pt-hover);
+}
+
+/* Compact row in the Exams dropdown — same tokens, smaller tap target. */
+.exams-dropdown__board-link.aee-board-pill {
+  display: block;
+  width: auto;
+  margin: 0.2rem 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.65rem;
+  text-align: left;
+}
+
+.exams-dropdown__board-link.aee-board-pill[aria-current="page"] {
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.85);
+}
+
+/* Select-exam cards — gradient face uses board accent tokens (CSS only). */
+.exam-select-card__face--nclex {
+  background: linear-gradient(
+    135deg,
+    var(--board-accent-nclex) 0%,
+    var(--board-accent-nclex-hover) 100%
+  );
+}
+
+.exam-select-card__face--naplex {
+  background: linear-gradient(
+    135deg,
+    var(--board-accent-naplex) 0%,
+    var(--board-accent-naplex-hover) 100%
+  );
+}
+
+.exam-select-card__face--usmle {
+  background: linear-gradient(
+    135deg,
+    var(--board-accent-usmle) 0%,
+    var(--board-accent-usmle-hover) 100%
+  );
+}
+
+.exam-select-card__face--aanp-fnp {
+  background: linear-gradient(
+    135deg,
+    var(--board-accent-aanp-fnp) 0%,
+    var(--board-accent-aanp-fnp-hover) 100%
+  );
+}
+
+.exam-select-card__face--pance {
+  background: linear-gradient(
+    135deg,
+    var(--board-accent-pance) 0%,
+    var(--board-accent-pance-hover) 100%
+  );
+}
+
+.exam-select-card__face--npte-pt {
+  background: linear-gradient(
+    135deg,
+    var(--board-accent-npte-pt) 0%,
+    var(--board-accent-npte-pt-hover) 100%
+  );
+}

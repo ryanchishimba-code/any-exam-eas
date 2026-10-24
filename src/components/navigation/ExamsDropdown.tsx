@@ -11,6 +11,7 @@ import {
   examsMenuAfterHoverClose,
   examsMenuAfterPointerEnter,
 } from "@/components/navigation/exams-dropdown-logic";
+import { boardAccentFromHref, boardAccentPillClass } from "@/lib/marketing/board-accent";
 import { MARKETING_BOARD_LINKS } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -210,6 +211,7 @@ export function ExamsDropdown() {
           >
             {MARKETING_BOARD_LINKS.map((board) => {
               const active = boardActive(pathname, board.href);
+              const slug = boardAccentFromHref(board.href);
               return (
                 <li key={board.href} role="none">
                   <Link
@@ -218,8 +220,8 @@ export function ExamsDropdown() {
                     prefetch={false}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "block min-h-11 px-3 py-2.5 text-sm text-[var(--color-ink)] hover:bg-black/[0.04]",
-                      active && "font-semibold text-[var(--color-accent)]"
+                      "exams-dropdown__board-link",
+                      slug ? boardAccentPillClass(slug) : "aee-board-pill"
                     )}
                     onClick={close}
                   >
