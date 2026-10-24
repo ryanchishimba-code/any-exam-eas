@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
+import { BoardLandingHero } from "@/components/marketing/board-landing/BoardLandingHero";
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import { BoardLiveCountBarChart } from "@/components/marketing/board-landing/BoardLiveCountBarChart";
 import { BoardPainIcons } from "@/components/marketing/board-landing/BoardPainIcons";
@@ -9,7 +9,6 @@ import { BoardStatStrip } from "@/components/marketing/board-landing/BoardStatSt
 import { HubBoardDonutSection } from "@/components/marketing/board-landing/HubBoardDonutSection";
 import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/PracticeReviewPassFlow";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
-import { MarketingHeroActions } from "@/components/marketing/MarketingHeroActions";
 import { hubLiveBarChartHeading } from "@/lib/marketing/board-landing/hub-live-bar-chart";
 import type { HubBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
@@ -27,27 +26,14 @@ export function HubBoardLanding({
 
   return (
     <div className={`board-landing board-landing--tesla board-landing--board-flow ${model.themeClass}`}>
-      <section className="bl-hero bl-hero--single" aria-labelledby="board-hero-heading">
-        <div className="bl-hero-copy">
-          <p className="bl-kicker">
-            <Link href="/">Home</Link>
-            <span aria-hidden> / </span>
-            <span>{model.boardName}</span>
-            <span className="bl-updated"> · Updated {model.contentYear}</span>
-          </p>
-          <h1 id="board-hero-heading">
-            {model.h1Lead} <span>{model.h1Accent}</span>
-          </h1>
-          <p className="bl-hero-lede">{model.heroWhyUs}</p>
-          <MarketingHeroActions
-            trialHref={model.trialHref}
-            ctaName={model.heroCtaName}
-            ctaLocation={model.heroCtaLocation}
-            seeQuestionsHref={model.seeQuestionsHref}
-            trialMicrocopy={model.ctaMicrocopy}
-          />
-        </div>
-      </section>
+      <BoardLandingHero
+        headline={model.h1Lead}
+        subline={model.heroWhyUs}
+        testimonial={model.heroTestimonial}
+        trialHref={model.trialHref}
+        heroCtaName={model.heroCtaName}
+        heroCtaLocation={model.heroCtaLocation}
+      />
 
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
