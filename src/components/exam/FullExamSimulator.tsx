@@ -253,6 +253,11 @@ export function FullExamSimulator({
   const [answers, setAnswers] = useState<Record<number, FullExamAnswerState>>(() =>
     hydrateAnswers(initialAnswers)
   );
+  const answersRef = useRef(answers);
+  const persistSeqRef = useRef<Record<number, number>>({});
+  useEffect(() => {
+    answersRef.current = answers;
+  }, [answers]);
   const [remainingSec, setRemainingSec] = useState(() =>
     initialRemainingSec(config, startedAt)
   );
@@ -296,6 +301,17 @@ export function FullExamSimulator({
       firstAnsweredAt.current[qi] = new Date().toISOString();
     }
   }, []);
+  const patchAnswerState = useCallback(
+    (qi: number, patch: Partial<FullExamAnswerState>) => {
+      const prev = answersRef.current;
+      const next = { ...prev[qi] ?? defaultAnswer(), ...patch };
+      const merged = { ...prev, [qi]: next };
+      answersRef.current = merged;
+      setAnswers(merged);
+      return next;
+    },
+    []
+  );
   const pauseStarted = useRef<number | null>(null);
 
   const current = questions[index];
@@ -577,6 +593,9 @@ export function FullExamSimulator({
       if (!q) return null;
       if (!hasSelection(state.selected) && !state.flagged && !state.notes) return null;
 
+      const persistSeq = (persistSeqRef.current[qi] ?? 0) + 1;
+      persistSeqRef.current[qi] = persistSeq;
+
       const selectedSerialized = serializeExamSelection(q, state.selected);
       const res = await fetch(`/api/exam-sessions/${sessionId}/answer`, {
         method: "PATCH",
@@ -589,14 +608,17 @@ export function FullExamSimulator({
           eliminated: state.eliminated,
           notes: state.notes,
           topicCategory: questionTopicFields(q).topicCategory,
+          persistSeq,
         } satisfies Partial<ExamAnswerRecord>),
       });
       if (!res.ok) return null;
+      if (persistSeqRef.current[qi] !== persistSeq) return null;
       const data = (await res.json().catch(() => null)) as {
         answers?: ExamAnswerRecord[];
       } | null;
       const saved = data?.answers?.find((answer) => answer.questionIndex === qi);
       if (saved && hasSelection(state.selected)) {
+        if (persistSeqRef.current[qi] !== persistSeq) return null;
         serverCorrectRef.current[qi] = saved.correct === true;
         setServerGradeTick((tick) => tick + 1);
         return saved.correct === true;
@@ -662,7 +684,7 @@ export function FullExamSimulator({
       return;
     }
 
-    const ans = answers[index] ?? defaultAnswer();
+    const ans = answersRef.current[index] ?? defaultAnswer();
     if (!hasSelection(ans.selected)) return;
 
     const persistWithTimeout = Promise.race([
@@ -675,7 +697,7 @@ export function FullExamSimulator({
       catState,
       catCommittedCount,
       questions,
-      answers
+      answersRef.current
     );
     setCatCommittedCount(committed);
     setCatState(state);
@@ -781,41 +803,45 @@ export function FullExamSimulator({
       }
 
       if (hasSelection(nextSelected)) rememberAnsweredAt(index);
-      setAnswers((prev) => {
-        const next = { ...prev[index], ...currentAnswer, selected: nextSelected };
-        const merged = { ...prev, [index]: next };
-        void persistAnswer(index, next);
-        return merged;
-      });
+      const next = patchAnswerState(index, { ...currentAnswer, selected: nextSelected });
+      void persistAnswer(index, next);
     },
-    [current, currentAnswer, examMode, index, lockedThrough, persistAnswer, rememberAnsweredAt, submitting, timeUp]
+    [
+      current,
+      currentAnswer,
+      examMode,
+      index,
+      lockedThrough,
+      patchAnswerState,
+      persistAnswer,
+      rememberAnsweredAt,
+      submitting,
+      timeUp,
+    ]
   );
 
   const updateAnswer = useCallback(
     (patch: Partial<FullExamAnswerState>) => {
-      setAnswers((prev) => {
-        const next = { ...prev[index], ...patch };
-        const merged = { ...prev, [index]: next };
-        if (patch.selected !== undefined && hasSelection(next.selected)) {
-          rememberAnsweredAt(index);
-        }
-        if (
-          patch.selected !== undefined ||
-          patch.flagged !== undefined ||
-          patch.notes !== undefined
-        ) {
-          void persistAnswer(index, next);
-        }
-        return merged;
-      });
+      const next = patchAnswerState(index, patch);
+      if (patch.selected !== undefined && hasSelection(next.selected)) {
+        rememberAnsweredAt(index);
+      }
+      if (
+        patch.selected !== undefined ||
+        patch.flagged !== undefined ||
+        patch.notes !== undefined
+      ) {
+        void persistAnswer(index, next);
+      }
     },
-    [index, persistAnswer, rememberAnsweredAt]
+    [index, patchAnswerState, persistAnswer, rememberAnsweredAt]
   );
 
   const buildAnswerLog = useCallback((): ExamAnswerRecord[] => {
     let log: ExamAnswerRecord[] = [];
+    const answerState = answersRef.current;
     for (let i = 0; i < questions.length; i++) {
-      const st = answers[i];
+      const st = answerState[i];
       if (!st || !hasSelection(st.selected)) continue;
       const q = questions[i];
       log = mergeExamAnswers(log, {
@@ -831,7 +857,7 @@ export function FullExamSimulator({
       });
     }
     return log;
-  }, [answers, questions, serverGradeTick]);
+  }, [questions, serverGradeTick]);
 
   const submitExam = useCallback(
     async (endedEarly = false) => {
@@ -841,7 +867,7 @@ export function FullExamSimulator({
       setSubmitError(null);
       await new Promise((resolve) => setTimeout(resolve, 0));
 
-      const currentState = answers[index];
+      const currentState = answersRef.current[index];
       if (currentState && hasSelection(currentState.selected)) {
         await Promise.race([
           persistAnswer(index, currentState),
@@ -858,7 +884,7 @@ export function FullExamSimulator({
           catState,
           catCommittedCount,
           scored,
-          answers
+          answersRef.current
         );
         finalCatState = finalized.state;
         finalCommitted = finalized.committed;
@@ -1114,14 +1140,20 @@ export function FullExamSimulator({
   }
 
   function goExamNext() {
-    const ans = answers[index] ?? defaultAnswer();
+    const ans = answersRef.current[index] ?? defaultAnswer();
     if (!hasSelection(ans.selected)) return;
     if (!examAnswerEditable(index, lockedThrough)) return;
     void (async () => {
     let stop = false;
     if (isCatMode) {
       await persistAnswer(index, ans);
-      const committed = commitCatThrough(index, catState, catCommittedCount, questions, answers);
+      const committed = commitCatThrough(
+        index,
+        catState,
+        catCommittedCount,
+        questions,
+        answersRef.current
+      );
       setCatCommittedCount(committed.committed);
       setCatState(committed.state);
       stop = committed.state.isComplete;

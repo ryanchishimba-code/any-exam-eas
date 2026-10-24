@@ -209,6 +209,10 @@ export async function PATCH(
   const rawQuestionId = typeof body.questionId === "string" ? body.questionId : undefined;
   const canonicalId =
     prefetchedQuestionIds?.[questionIndex]?.trim() || rawQuestionId?.trim() || undefined;
+  const persistSeq =
+    typeof body.persistSeq === "number" && Number.isFinite(body.persistSeq)
+      ? Math.max(0, Math.floor(body.persistSeq))
+      : undefined;
   const [graded] = await gradeExamAnswerRecords([
     {
       questionIndex,
@@ -220,6 +224,7 @@ export async function PATCH(
       notes: typeof body.notes === "string" ? body.notes : undefined,
       topicCategory: typeof body.topicCategory === "string" ? body.topicCategory : undefined,
       answeredAt: new Date().toISOString(),
+      persistSeq,
     },
   ]);
   const answers = await appendExamAnswer(id, premium.userId, graded!);

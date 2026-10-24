@@ -21,6 +21,13 @@ export function mergeExamAnswers(
   answer: ExamAnswerRecord
 ): ExamAnswerRecord[] {
   const previous = answers.find((row) => row.questionIndex === answer.questionIndex);
+  if (
+    previous?.persistSeq != null &&
+    answer.persistSeq != null &&
+    answer.persistSeq < previous.persistSeq
+  ) {
+    return answers;
+  }
   const next = previous
     ? { ...answer, answeredAt: earlierAnsweredAt(previous.answeredAt, answer.answeredAt) }
     : answer;
