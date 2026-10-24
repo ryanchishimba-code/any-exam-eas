@@ -16,6 +16,8 @@ import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { InlineBold } from "@/components/ngn/InlineBold";
 import { formatAnswerDisplay, storedAnswerIncludesChoice } from "@/lib/full-exam/answer-serialize";
+import { shouldUseNgnReviewDisplay } from "@/lib/full-exam/ngn-review-display";
+import { NgnReviewAnswerList } from "@/components/exam/NgnReviewAnswerList";
 import { practiceResultsTotals } from "@/lib/full-exam/administered-score";
 import { formatHms } from "@/lib/full-exam/config";
 import { fullExamTreatsAsEndedEarly } from "@/lib/full-exam/results-title";
@@ -153,6 +155,14 @@ export function FullExamResults({
         bowTie: current.bowTie,
       })
     : null;
+  const ngnStructuredReview =
+    current &&
+    shouldUseNgnReviewDisplay({
+      ngnFormat: current.ngnFormat,
+      optionsLength: current.options.length,
+      selected: currentAnswer?.selected ?? "",
+      correctAnswer: current.correctAnswer,
+    });
   const isCorrect = currentAnswer?.correct ?? false;
   const clinicalText = current ? studentFacingStem(current.question) : undefined;
   const studyLinks = resolveQuestionStudyLinks(examSlug, {
@@ -240,6 +250,13 @@ export function FullExamResults({
                 </ul>
               ) : null}
             </div>
+          ) : ngnStructuredReview ? (
+            <NgnReviewAnswerList
+              selected={currentAnswer?.selected ?? ""}
+              correctAnswer={current.correctAnswer}
+              ngnFormat={current.ngnFormat}
+              optionsLength={current.options.length}
+            />
           ) : current.options.length > 0 ? (
             <ul className="mt-6 space-y-2">
               {current.options.map((opt) => {
@@ -267,13 +284,15 @@ export function FullExamResults({
               <p>
                 <span className="font-semibold text-slate-600">Your answer: </span>
                 <span className={isCorrect ? "text-teal-700" : "text-rose-700"}>
-                  <InlineBold text={formatAnswerDisplay(currentAnswer?.selected ?? "")} />
+                  <InlineBold
+                    text={formatAnswerDisplay(currentAnswer?.selected ?? "", current.ngnFormat)}
+                  />
                 </span>
               </p>
               <p>
                 <span className="font-semibold text-slate-600">Correct: </span>
                 <span className="text-teal-800">
-                  <InlineBold text={formatAnswerDisplay(current.correctAnswer)} />
+                  <InlineBold text={formatAnswerDisplay(current.correctAnswer, current.ngnFormat)} />
                 </span>
               </p>
             </div>

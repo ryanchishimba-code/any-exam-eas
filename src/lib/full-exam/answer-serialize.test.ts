@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { deserializeExamSelection, serializeExamSelection } from "./answer-serialize";
+import {
+  deserializeExamSelection,
+  serializeCorrectAnswer,
+  serializeExamSelection,
+} from "./answer-serialize";
 import type { StudyQuestion } from "@/lib/questions/types";
 
 function question(type: StudyQuestion["type"]): StudyQuestion {
@@ -23,5 +27,15 @@ describe("matrix exam selections", () => {
     const stored = serializeExamSelection(question("select_all"), ["Draw cultures", "Start oxygen"]);
     expect(stored).toBe("Draw cultures|||Start oxygen");
     expect(deserializeExamSelection(stored)).toEqual(["Draw cultures", "Start oxygen"]);
+  });
+});
+
+describe("serializeCorrectAnswer", () => {
+  it("joins matrix cells with ;; so review can split row|||column pairs", () => {
+    const q = {
+      ...question("matrix"),
+      correctAnswers: ["Fever|||Yes", "Cough|||No"],
+    };
+    expect(serializeCorrectAnswer(q)).toBe("Fever|||Yes;;Cough|||No");
   });
 });

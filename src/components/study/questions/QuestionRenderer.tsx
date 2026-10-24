@@ -215,11 +215,15 @@ export const QuestionRenderer = memo(function QuestionRenderer({
       <p className="text-lg font-medium leading-snug text-[var(--color-ink)] sm:text-xl">
         <InlineBold text={stemText} />
       </p>
-      <ItemProvenanceNote
-        sourceLabel={question.sourceLabel}
-        sourceUrl={question.sourceUrl}
-        reviewedAt={question.reviewedAt}
-      />
+      {revealed && (question.sourceLabel || question.reviewedAt) ? (
+        <CollapsibleSources count={1} resetKey={`${question.id}-provenance`}>
+          <ItemProvenanceNote
+            sourceLabel={question.sourceLabel}
+            sourceUrl={question.sourceUrl}
+            reviewedAt={question.reviewedAt}
+          />
+        </CollapsibleSources>
+      ) : null}
 
       {question.type === "bow_tie" && (
         <BowTieQuestion

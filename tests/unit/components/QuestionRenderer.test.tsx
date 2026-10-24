@@ -70,7 +70,7 @@ describe("QuestionRenderer", () => {
     expect(onToggle).not.toHaveBeenCalled();
   });
 
-  it("shows a source and review date when the bank item has them", () => {
+  it("hides bank source lines until the item is revealed", () => {
     render(
       <QuestionRenderer
         question={{
@@ -84,6 +84,27 @@ describe("QuestionRenderer", () => {
       />
     );
 
+    expect(screen.queryByText("Surviving Sepsis Campaign · 2021 update")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("item-provenance")).not.toBeInTheDocument();
+  });
+
+  it("shows a source behind the guideline check after reveal", async () => {
+    const user = userEvent.setup();
+    render(
+      <QuestionRenderer
+        question={{
+          ...sampleNclexQuestion,
+          sourceLabel: "Surviving Sepsis Campaign · 2021 update",
+          reviewedAt: "2026-06-01T00:00:00.000Z",
+        }}
+        selected={[]}
+        revealed={true}
+        onToggle={vi.fn()}
+      />
+    );
+
+    const toggle = screen.getByRole("button", { name: /Guideline-checked/i });
+    await user.click(toggle);
     expect(screen.getByText("Surviving Sepsis Campaign · 2021 update")).toBeInTheDocument();
     expect(screen.getByText("Reviewed")).toBeInTheDocument();
     expect(screen.queryByText(/Reviewed\s+(?:Jun|June|Oct|October)/)).not.toBeInTheDocument();
