@@ -29,6 +29,8 @@ import type { DomainMapTile } from "@/components/dashboard/DomainMap";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 import { isTodayEngineNaplexEnabled, isTodayEngineUsmleEnabled } from "@/lib/engine/mastery/feature-flag";
 import { FirstLoginTour } from "@/components/onboarding/FirstLoginTour";
+import { TrialStartHerePath } from "@/components/trial/TrialStartHerePath";
+import type { TrialStartHereRecord } from "@/lib/trial/trial-start-here";
 import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBitesSection";
 import { ReadinessDashboardCard } from "@/components/readiness/ReadinessDashboardCard";
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
@@ -77,6 +79,7 @@ export function DashboardPageContent({
   todaySet = null,
   deferTodayMix = false,
   quickBites = null,
+  trialStartHere = null,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -108,6 +111,11 @@ export function DashboardPageContent({
     canPlay: boolean;
     upgradeHref: string;
     upgradeLabel: string;
+  } | null;
+  trialStartHere?: {
+    record: TrialStartHereRecord | null;
+    step: 1 | 2 | 3;
+    show: boolean;
   } | null;
 }) {
   const exam = EXAM_CATALOG[examSlug];
@@ -144,7 +152,22 @@ export function DashboardPageContent({
         boardAttempts={boardAttempts}
       />
 
-      {upgrade ? <DashboardUpgradeBanner {...upgrade} /> : null}
+      {upgrade && upgrade.variant !== "trial" ? (
+        <DashboardUpgradeBanner {...upgrade} />
+      ) : null}
+
+      {trialStartHere?.show ? (
+        <TrialStartHerePath
+          examSlug={examSlug}
+          boardName={exam.shortName}
+          fieldId={fieldId}
+          record={trialStartHere.record}
+          step={trialStartHere.step}
+          questionsAnswered={stats.questionsAnswered}
+          accuracyPct={stats.accuracyPct}
+          reviewIncorrectHref={incorrectHref}
+        />
+      ) : null}
 
       <div
         data-dashboard-secondary

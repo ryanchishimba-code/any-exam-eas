@@ -4,6 +4,7 @@ import {
   type BillingInterval,
 } from "@/lib/billing-config";
 import { formatPlanUsd, getBillingPlanTier } from "@/lib/billing-plans";
+import { PRO_MONTHLY_PRICE_USD } from "@/lib/pricing-defaults";
 import { appBaseUrl, isEmailConfigured } from "@/lib/email/config";
 import {
   emailParagraph,
@@ -136,6 +137,54 @@ export function buildTrialEndingBillingNote(params: {
     ),
     text: `\nPayment note: ${amount} for ${tier.label} may be charged at trial end unless you cancel.\n`,
   };
+}
+
+export async function sendTrialDay4ReminderEmail(
+  params: TrialEmailParams & { trialEndsAt: Date }
+): Promise<EmailDeliveryResult> {
+  if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
+
+  const dashboardUrl = dashboardEmailUrl();
+  const upgradeUrl = upgradeEmailUrl("trial-ending");
+  const when = formatEmailDate(params.trialEndsAt);
+
+  const bodyHtml = [
+    emailParagraph(`${greeting(params.name)}`),
+    emailParagraph(
+      `You are halfway through your ${TRIAL_DAYS}-day AnyExamEasy trial. You still have access to your dashboard, practice progress, and the rest of your ${TRIAL_LIFETIME_QUESTIONS} question allowance until <strong>${when}</strong>.`
+    ),
+    emailParagraph(
+      "If the question bank and explanations are helping, upgrade now to keep unlimited practice, adaptive mocks, and analytics without losing your streak or history."
+    ),
+  ].join("");
+
+  const text = [
+    greeting(params.name),
+    "",
+    `Your trial continues until ${when}.`,
+    `You still have questions left in your ${TRIAL_LIFETIME_QUESTIONS}-question trial allowance.`,
+    "",
+    `Upgrade: ${upgradeUrl}`,
+    `Dashboard: ${dashboardUrl}`,
+  ].join("\n");
+
+  const html = transactionalEmailLayout({
+    title: "Two days left to explore — then upgrade to keep going",
+    preheader: `Your trial ends soon — keep your progress for ${formatPlanUsd(PRO_MONTHLY_PRICE_USD)}/mo`,
+    bodyHtml,
+    primaryCta: { label: "Upgrade — keep my progress", url: upgradeUrl },
+    secondaryCta: { label: "Open Dashboard", url: dashboardUrl },
+    footerNote:
+      "You're receiving this because you started an AnyExamEasy trial. Manage email in account settings.",
+  });
+
+  return sendTransactionalEmail({
+    to: params.to,
+    subject: "Your AnyExamEasy trial — keep your momentum",
+    html,
+    text,
+    tags: [{ name: "category", value: "trial-day4" }],
+  });
 }
 
 export async function sendTrialEndingUpgradeEmail(

@@ -332,7 +332,8 @@ export type StudyUsageCheckResult =
 
 function upgradeUrl(plan: StudyUsagePlan, reason: string): string {
   if (plan === "trial" || plan === "free") {
-    return `/pricing?upgrade=subscribe&reason=${encodeURIComponent(reason)}`;
+    const params = new URLSearchParams({ reason });
+    return `/upgrade?${params.toString()}`;
   }
   return `/pricing?upgrade=pro&reason=${encodeURIComponent(reason)}`;
 }

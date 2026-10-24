@@ -29,10 +29,16 @@ import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-pla
 import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
 import { ROUTES } from "@/lib/routes";
 import { StudyHubSessionSummary } from "@/components/study-hub/StudyHubSessionSummary";
+import { DashboardUpgradeRedirect } from "@/app/(app)/dashboard/upgrade-redirect";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { enrichWeakTopicsWithStudyLinks } from "@/lib/learning/enrich-weak-topics";
 import { runPageDb } from "@/lib/page-access-error";
 import type { ExamSlug } from "@/types/edtech";
+import {
+  inferTrialStartHereStep,
+  readTrialStartHereRecord,
+  shouldShowTrialStartHerePath,
+} from "@/lib/trial/trial-start-here";
 
 export const metadata = {
   title: "Dashboard — Any Exam Easy",
@@ -175,6 +181,15 @@ async function DashboardContent({
     { fieldId }
   );
 
+  const startHereRecord = metadata
+    ? readTrialStartHereRecord(metadata, examSlug)
+    : null;
+  const showStartHere = shouldShowTrialStartHerePath({ access, record: startHereRecord });
+  const startHereStep = inferTrialStartHereStep({
+    record: startHereRecord,
+    accountAttemptCount,
+  });
+
   return (
     <DashboardPageContent
       examSlug={examSlug}
@@ -208,6 +223,15 @@ async function DashboardContent({
             : trialUpgradeCheckoutHref(ROUTES.dashboard),
         upgradeLabel: access.role === "free" ? "Subscribe to watch" : "Upgrade to watch",
       }}
+      trialStartHere={
+        showStartHere
+          ? {
+              record: startHereRecord,
+              step: startHereStep,
+              show: true,
+            }
+          : null
+      }
     />
   );
 }
@@ -235,6 +259,7 @@ export default async function DashboardPage() {
   return (
     <>
       <Suspense fallback={null}>
+        <DashboardUpgradeRedirect />
         <div className="mx-auto w-full min-w-0 max-w-5xl">
           <StudyHubSessionSummary />
         </div>
