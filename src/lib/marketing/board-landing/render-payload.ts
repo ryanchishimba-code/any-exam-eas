@@ -6,6 +6,9 @@ import {
   type PrepPriceBarChartData,
 } from "@/lib/marketing/prep-price-bar-chart";
 import type { NclexNgnTypeRow } from "@/lib/marketing/board-landing/nclex-ngn-type-chart";
+import type { HubBoardDonutRenderInput } from "@/lib/marketing/board-landing/hub-board-donut";
+import type { HubExamKey } from "@/lib/marketing/board-landing/hub-model";
+import type { HubLiveBarRow } from "@/lib/marketing/board-landing/hub-live-bar-chart";
 import { practiceHref } from "@/lib/routes";
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
 
@@ -109,6 +112,43 @@ export type NclexBoardLandingRenderModel = BoardLandingRenderModel & {
   nclexDonut: NclexDonutRenderInput;
   ngnTypeRows: NclexNgnTypeRow[];
 };
+
+const HUB_TESTIMONIALS_HEADING: Record<HubExamKey, string> = {
+  usmle: "What medical students say",
+  pance: "What PA students say",
+  "aanp-fnp": "What FNP students say",
+  "npte-pt": "What PT students say",
+};
+
+export type HubBoardLandingRenderModel = BoardLandingRenderModel & {
+  layout: HubExamKey;
+  seeQuestionsHref: string;
+  testimonialsHeading: string;
+  hubDonut: HubBoardDonutRenderInput;
+  liveBarRows: HubLiveBarRow[];
+};
+
+export function hubBoardLandingRenderModel(
+  model: BoardLandingModel,
+  input: {
+    examKey: HubExamKey;
+    hubDonut: HubBoardDonutRenderInput;
+    liveBarRows: HubLiveBarRow[];
+  }
+): HubBoardLandingRenderModel {
+  const base = boardLandingRenderModel(model, { examKey: input.examKey });
+  return {
+    ...base,
+    layout: input.examKey,
+    sample: null,
+    sampleSecondary: null,
+    faqs: model.faqs.slice(0, BOARD_FAQ_LIMIT),
+    seeQuestionsHref: practiceHref(input.examKey),
+    testimonialsHeading: HUB_TESTIMONIALS_HEADING[input.examKey],
+    hubDonut: input.hubDonut,
+    liveBarRows: input.liveBarRows,
+  };
+}
 
 export function nclexBoardLandingRenderModel(
   model: BoardLandingModel,
