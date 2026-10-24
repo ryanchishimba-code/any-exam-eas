@@ -21,6 +21,20 @@ export type UserEdtechMetadata = {
   };
   /** Baseline-check invite dismissals, keyed by exam slug. */
   readinessOffers?: Record<string, { skippedAt: string }>;
+  /** Trial onboarding paths (e.g. dashboard Start here). */
+  trialStartHere?: Record<
+    string,
+    {
+      status: "active" | "practice_done" | "completed" | "dismissed";
+      step: number;
+      at: string;
+      examSlug?: string;
+    }
+  >;
+  /** Trial lifecycle email dedupe — no schema migration. */
+  trialReminders?: {
+    day4ForEndsAt?: string;
+  };
 };
 
 function parseMetadata(raw: string | null | undefined): UserEdtechMetadata {

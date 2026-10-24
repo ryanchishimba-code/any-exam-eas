@@ -5,6 +5,7 @@ import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { AppShell } from "@/components/app/AppShell";
 import { AppQueryNotices } from "@/components/app/AppQueryNotices";
 import { PassCheckInSlot } from "@/components/app/PassCheckInSlot";
+import { TrialStatusBarSlot } from "@/components/trial/TrialStatusBarSlot";
 import { TrialWelcomeRoot } from "@/components/auth/TrialWelcomeRoot";
 import { SiteBottomBar } from "@/components/layout/SiteBottomBar";
 import type { ExamSlug } from "@/types/edtech";
@@ -28,6 +29,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   return (
     <AppPreferencesProvider initialExamSlug={prefExamSlug}>
       <TrialWelcomeRoot>
+        {session?.user?.id ? (
+          <Suspense fallback={null}>
+            <TrialStatusBarSlot userId={session.user.id} />
+          </Suspense>
+        ) : null}
         <AppShell
           footer={<SiteBottomBar className="mt-10 border-black/[0.05] pt-8" />}
         >

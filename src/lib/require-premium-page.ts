@@ -64,7 +64,7 @@ export async function requireStudyPage(callbackPath = "/study"): Promise<UserAcc
 
   if (!access.hasStudyAccess) {
     if (access.hasFreeTierAccess) {
-      redirect(`/dashboard?upgrade=1&return=${encodeURIComponent(callbackPath)}`);
+      redirect(`/upgrade?return=${encodeURIComponent(callbackPath)}`);
     }
     const destination = await resolvePaywallRedirect(
       session!.user!.id,
@@ -131,7 +131,7 @@ export async function requirePremiumPage(
 
   if (!access.hasPremiumAccess) {
     if (access.hasFreeTierAccess) {
-      redirect(`/dashboard?upgrade=1&return=${encodeURIComponent(callbackPath)}`);
+      redirect(`/upgrade?return=${encodeURIComponent(callbackPath)}`);
     }
     const destination = await resolvePaywallRedirect(
       session!.user!.id,

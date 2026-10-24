@@ -6,6 +6,7 @@ import {
   sendNextBillingReminderEmail,
 } from "@/lib/email/billing-emails";
 import { sendTrialEndingUpgradeEmail } from "@/lib/email/trial-lifecycle-emails";
+import { runTrialDay4ReminderEmails } from "@/lib/billing/trial-day4-reminder";
 import { getSubscriptionBillingDetails } from "@/lib/stripe";
 import { isStripeConfigured } from "@/lib/payments";
 
@@ -16,6 +17,7 @@ const ANNUAL_REMINDER_MAX_DAYS = 31;
 
 export type BillingReminderRunResult = {
   trialRemindersSent: number;
+  trialDay4RemindersSent: number;
   billingRemindersSent: number;
   annualRenewalRemindersSent: number;
   errors: string[];
@@ -38,10 +40,15 @@ export async function runBillingReminderEmails(
 ): Promise<BillingReminderRunResult> {
   const result: BillingReminderRunResult = {
     trialRemindersSent: 0,
+    trialDay4RemindersSent: 0,
     billingRemindersSent: 0,
     annualRenewalRemindersSent: 0,
     errors: [],
   };
+
+  const day4 = await runTrialDay4ReminderEmails(now);
+  result.trialDay4RemindersSent = day4.sent;
+  result.errors.push(...day4.errors);
 
   const trialCandidates = await prisma.subscription.findMany({
     where: {

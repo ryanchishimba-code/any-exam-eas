@@ -2,6 +2,7 @@ import type { Subscription } from "@prisma/client";
 import type { BillingInterval } from "@/lib/billing-config";
 import type { SubscriptionAccess } from "@/lib/subscription-access";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
+import { trialUpgradeScreenHref } from "@/lib/trial/upgrade-path";
 
 export type ReactivationMethod = "checkout" | "update_payment";
 
@@ -71,7 +72,10 @@ export async function getReactivationInfo(params: {
   }
 
   const checkoutPlan = trialAvailable ? "trial" : "subscribe";
-  const checkoutPath = buildCheckoutPath(checkoutPlan);
+  const checkoutPath =
+    params.access.status === "trial_expired"
+      ? trialUpgradeScreenHref("/dashboard")
+      : buildCheckoutPath(checkoutPlan);
 
   const isCanceled =
     params.access.status === "canceled" || params.subscription?.status === "canceled";
