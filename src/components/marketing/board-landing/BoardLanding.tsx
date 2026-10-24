@@ -4,6 +4,7 @@ import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeat
 import { BoardLandingInfographics } from "@/components/marketing/board-landing/BoardLandingInfographics";
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import { BoardPainPoints } from "@/components/marketing/board-landing/BoardPainPoints";
+import { NaplexAceDonutSection } from "@/components/marketing/board-landing/NaplexAceDonutSection";
 import { HeroScene } from "@/components/marketing/board-landing/HeroScene";
 import { PharmacyHero } from "@/components/marketing/board-landing/PharmacyHero";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
@@ -198,6 +199,7 @@ export function BoardLanding({
         <>
           <BoardLandingInfographics visuals={model.visuals} />
           <BoardPainPoints points={model.painPoints} />
+          {model.aceDonut ? <NaplexAceDonutSection model={model.aceDonut} /> : null}
         </>
       ) : null}
 
