@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { sqlQuery } from "@/lib/db";
 import { ACTIVE_INVENTORY_CACHE_TAG } from "@/lib/inventory/active-inventory-cache";
+import { loadLiveItemTypes } from "@/lib/marketing/live-board-counts";
 
 type TypeCountRow = { itemType: string | null; count: number | string };
 
@@ -44,8 +45,10 @@ const loadCachedNursingBankTypeCounts = unstable_cache(
   { revalidate: 300, tags: [ACTIVE_INVENTORY_CACHE_TAG] }
 );
 
-/** Live nursing item-type counts. Empty when the stored groups cannot be read. */
+/** Live nursing item-type counts. The stored snapshot is only a fallback. */
 export async function loadNursingBankTypeCounts(): Promise<Record<string, number>> {
+  const live = await loadLiveItemTypes("nursing");
+  if (live) return live;
   try {
     return await loadCachedNursingBankTypeCounts();
   } catch {
@@ -77,8 +80,10 @@ const loadCachedPharmacyBankTypeCounts = unstable_cache(
   { revalidate: 300, tags: [ACTIVE_INVENTORY_CACHE_TAG] }
 );
 
-/** Live pharmacy item-type counts from the same inventory table as the bank totals. */
+/** Live pharmacy item-type counts. The stored snapshot is only a fallback. */
 export async function loadPharmacyBankTypeCounts(): Promise<Record<string, number>> {
+  const live = await loadLiveItemTypes("pharmacy");
+  if (live) return live;
   try {
     return await loadCachedPharmacyBankTypeCounts();
   } catch {
@@ -114,6 +119,8 @@ function cachedFieldBankTypeCounts(fieldId: string) {
 
 /** Live item-type counts for a single bank field (hub landings). */
 export async function loadFieldBankTypeCounts(fieldId: string): Promise<Record<string, number>> {
+  const live = await loadLiveItemTypes(fieldId);
+  if (live) return live;
   try {
     return await cachedFieldBankTypeCounts(fieldId)();
   } catch {

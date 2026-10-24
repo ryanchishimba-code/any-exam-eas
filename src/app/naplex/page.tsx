@@ -8,6 +8,7 @@ import {
   naplexFormatCards,
 } from "@/lib/marketing/board-landing/naplex";
 import { naplexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { loadBoardPageQuestionUnits } from "@/lib/marketing/live-board-counts";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { scoredQuestionCount } from "@/lib/counts";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
@@ -28,9 +29,9 @@ export default async function NaplexHubPage() {
     getCachedPublishedTestimonials(6),
     loadPharmacyBankTypeCounts(),
   ]);
-  const exam = display.exams.find((row) => row.slug === "naplex");
-  const live = !display.degraded && (exam?.served ?? 0) > 0;
-  const units = live ? (bundle.snapshot.boards?.naplex ?? null) : null;
+  const snapshotUnits = !display.degraded ? (bundle.snapshot.boards?.naplex ?? null) : null;
+  const units = await loadBoardPageQuestionUnits("naplex", snapshotUnits);
+  const live = units != null && scoredQuestionCount(units) > 0;
   const full = buildNaplexLandingModel({
     degraded: !live,
     units,
