@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { MARKETING_BOARD_SLUGS } from "@/lib/marketing/board-paths";
 import {
   FREE_QUIZ_QUESTION_COUNT,
+  FREE_QUIZ_QUESTION_IDS,
+  FREE_QUIZ_ROTATION_KEY,
   composeFreeQuizStem,
   freeQuizRotationKey,
   gradeFreeQuizAnswers,
@@ -34,8 +36,25 @@ function mockCandidateRow(id: string, overrides: Partial<FreeQuizCandidateRow> =
 }
 
 describe("freeQuizRotationKey", () => {
-  it("uses a UTC date bucket", () => {
-    expect(freeQuizRotationKey(new Date("2026-10-24T15:30:00.000Z"))).toBe("2026-10-24");
+  it("stays on one fixed set instead of a daily bucket", () => {
+    expect(freeQuizRotationKey()).toBe(FREE_QUIZ_ROTATION_KEY);
+    expect(freeQuizRotationKey()).toBe("fixed");
+  });
+});
+
+describe("FREE_QUIZ_QUESTION_IDS", () => {
+  it.each(MARKETING_BOARD_SLUGS)("%s has exactly 10 unique ids", (board) => {
+    const ids = FREE_QUIZ_QUESTION_IDS[board];
+    expect(ids).toHaveLength(FREE_QUIZ_QUESTION_COUNT);
+    expect(new Set(ids).size).toBe(FREE_QUIZ_QUESTION_COUNT);
+    for (const id of ids) {
+      expect(id).toMatch(/^[a-z0-9]+$/);
+    }
+  });
+
+  it("does not repeat an id on more than one board", () => {
+    const ids = MARKETING_BOARD_SLUGS.flatMap((board) => [...FREE_QUIZ_QUESTION_IDS[board]]);
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });
 
