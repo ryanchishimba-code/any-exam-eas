@@ -61,7 +61,13 @@ function TypeIcon({ id }: { id: string }) {
   }
 }
 
-export function BoardLandingInfographics({ visuals }: { visuals: BoardLandingVisuals }) {
+export function BoardLandingInfographics({
+  visuals,
+  hidePriceBars = false,
+}: {
+  visuals: BoardLandingVisuals;
+  hidePriceBars?: boolean;
+}) {
   const maxBar = 100;
   const ours = 27.99;
   const rangeParts = visuals.typicalRange.replace(/\$/g, "").split("–");
@@ -73,6 +79,7 @@ export function BoardLandingInfographics({ visuals }: { visuals: BoardLandingVis
     <section className="bl-visuals" aria-labelledby="bl-visuals-heading">
       <h2 id="bl-visuals-heading" className="bl-visuals__sr">Prep at a glance</h2>
 
+      {hidePriceBars ? null : (
       <div className="bl-visuals__price" aria-label="Monthly Pro price compared with typical prep spend">
         <div className="bl-visuals__price-head">
           <span className="bl-visuals__price-label">AnyExamEasy Pro</span>
@@ -93,6 +100,7 @@ export function BoardLandingInfographics({ visuals }: { visuals: BoardLandingVis
           </div>
         </div>
       </div>
+      )}
 
       <ol className="bl-visuals__steps" aria-label="Practice, review, and pass">
         {visuals.steps.map((step, index) => (

@@ -602,6 +602,8 @@ export type LandingSuccessStory = {
   photoUrl?: string;
   /** ISO date consent was recorded. Shown only when present. */
   publishedOn?: string;
+  /** Optional 1–5 stars from the testimonials table — never invented. */
+  rating?: number;
 };
 
 /** Platform stats for the social proof band — factual, no pass-rate claims. */

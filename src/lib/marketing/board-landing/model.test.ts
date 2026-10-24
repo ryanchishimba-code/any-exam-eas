@@ -101,6 +101,8 @@ describe("NCLEX landing model", () => {
     expect(model.stats[0]?.value).toBe("108");
     expect(model.stories.length).toBeGreaterThan(0);
     expect(model.stories.some((story) => story.name === "Nathan C.")).toBe(true);
+    expect(model.nclexCompare?.bars.length).toBeGreaterThan(2);
+    expect(model.studentTrustBadge?.label).toMatch(/Trusted by nurses and nursing students/);
     expect(model.formats).toEqual([]);
     expect(model.faqs).toHaveLength(5);
     expect(JSON.stringify(model.jsonLd)).toMatch(/dateModified/);
