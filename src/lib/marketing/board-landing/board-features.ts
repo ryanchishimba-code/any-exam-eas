@@ -339,6 +339,18 @@ export function homeFeatureCards(input: {
   }
   cards.push(
     explainedCard("board"),
+    {
+      id: "content-review",
+      title: "Content review",
+      line: "Named clinical reviewers on scored bank items.",
+      icon: "review",
+    },
+    {
+      id: "how-to-pass",
+      title: "How to pass in 3 minutes",
+      line: "Short walkthrough of Roadmap, Deep Dive, and mock exams.",
+      icon: "adaptive",
+    },
     qotdCard("board"),
     readinessCard(),
     mobileCard()
