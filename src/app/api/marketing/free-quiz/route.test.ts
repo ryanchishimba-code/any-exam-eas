@@ -32,7 +32,7 @@ vi.mock("@/lib/api-rate-limit", () => ({
 
 import { GET } from "./route";
 import { POST as POST_GRADE } from "./grade/route";
-import { gradeFreeQuizAnswers } from "@/lib/marketing/free-quiz";
+import { FREE_QUIZ_QUESTION_COUNT, gradeFreeQuizAnswers } from "@/lib/marketing/free-quiz";
 
 function getRequest(board = "nclex") {
   return new Request(`https://example.test/api/marketing/free-quiz?board=${board}`);
@@ -146,5 +146,46 @@ describe("POST /api/marketing/free-quiz/grade", () => {
     if (!graded.ok) return;
     expect(graded.payload.score).toBe(1);
     expect(graded.payload.results[1]?.correct).toBe(false);
+  });
+
+  it("grades a full ten-answer submission end to end", async () => {
+    const questions = Array.from({ length: FREE_QUIZ_QUESTION_COUNT }, (_, index) => ({
+      id: `q-${index + 1}`,
+      stem: `Vignette ${index + 1}: A client presents with clinical findings that require nursing judgment.`,
+      options: ["Priority action A", "Priority action B", "Priority action C"],
+      selection: "single" as const,
+      correct: ["Priority action A"],
+      rationale: "Action A is first because it stabilizes the client before other steps.",
+      sources: ["Clinical reference"],
+    }));
+
+    bankState.bank = {
+      board: "pance",
+      rotationKey: "2026-10-24",
+      questions,
+    };
+
+    const answers = questions.map((question, index) => ({
+      id: question.id,
+      selected: index % 2 === 0 ? question.correct : ["Priority action B"],
+    }));
+
+    const response = await POST_GRADE(
+      gradeRequest({
+        board: "pance",
+        rotationKey: "2026-10-24",
+        answers,
+      })
+    );
+    expect(response.status).toBe(200);
+    const body = await response.json();
+    expect(body).toMatchObject({ total: FREE_QUIZ_QUESTION_COUNT, score: 5 });
+    expect(body.results).toHaveLength(FREE_QUIZ_QUESTION_COUNT);
+    expect(body.results[0]).toMatchObject({
+      id: "q-1",
+      selected: ["Priority action A"],
+      correctAnswers: ["Priority action A"],
+      correct: true,
+    });
   });
 });

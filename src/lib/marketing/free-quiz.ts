@@ -2,6 +2,11 @@ import { unstable_cache } from "next/cache";
 import { parseBankOptions } from "@/lib/mpje/parse-bank-options";
 import { parseSelectAllCorrectAnswers, selectAllAnswersMatchOptions } from "@/lib/question-format";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
+import {
+  resolveExhibitTable,
+  type ExhibitTablePayload,
+} from "@/lib/exam-prep/exhibit-normalize";
+import { splitUsmleBankItem } from "@/lib/exam-prep/usmle-bank-split";
 import { sqlQuery } from "@/lib/db";
 import type { BoardMarketingSlug } from "@/lib/landing/tokens";
 import { MARKETING_BOARD_SLUGS } from "@/lib/marketing/board-paths";
@@ -9,8 +14,25 @@ import { readStoredCitations } from "@/lib/marketing/public-sample";
 import { gradeSelection } from "@/lib/learning/readiness-check/present";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import type { StudyQuestion } from "@/lib/questions/types";
+import type { BankItem } from "@/lib/question-bank";
 
 export const FREE_QUIZ_QUESTION_COUNT = 10;
+
+/** How many bank rows to pull before filtering to ten unique, text-only items. */
+export const FREE_QUIZ_CANDIDATE_PULL = 250;
+
+const MIN_PUBLIC_STEM_CHARS = 40;
+const MAX_PUBLIC_STEM_CHARS = 2000;
+
+const VISUAL_DEPENDENCY_PATTERNS: RegExp[] = [
+  /!\[[^\]]*\]\([^)]+\)/,
+  /<img\b/i,
+  /\bsee (the )?exhibit\b/i,
+  /\brefer to (the )?(figure|image|diagram|chart|illustration|radiograph|x-?ray)\b/i,
+  /\bshown in (the )?(figure|image|diagram|exhibit|radiograph)\b/i,
+  /\bas (shown|depicted|illustrated) (in|below)\b/i,
+  /\b(image|figure|diagram|exhibit) (above|below)\b/i,
+];
 
 export type FreeQuizBoardSlug = BoardMarketingSlug;
 
@@ -70,16 +92,19 @@ export type FreeQuizGradePayload = {
   results: FreeQuizGradeResultItem[];
 };
 
-type QuizRow = {
+export type FreeQuizCandidateRow = {
   id: string;
   fieldId: string;
   itemType: string;
+  scenario: string | null;
   question: string;
   options: string;
   correctAnswer: string;
   explanation: string;
   references: unknown;
 };
+
+type QuizRow = FreeQuizCandidateRow;
 
 const BOARD_FIELD_IDS: Record<FreeQuizBoardSlug, readonly string[]> = {
   nclex: ["nursing"],
@@ -140,11 +165,94 @@ function bankQuestionToStudy(question: FreeQuizBankQuestion): StudyQuestion {
   };
 }
 
+function asRecord(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : null;
+}
+
+function ngnPayloadFromRow(row: QuizRow): Record<string, unknown> | undefined {
+  const parsed = parseBankOptions(row.options ?? "");
+  return parsed.ngnPayload ? (parsed.ngnPayload as Record<string, unknown>) : undefined;
+}
+
+function freeQuizRowRequiresImage(row: QuizRow): boolean {
+  const ngn = ngnPayloadFromRow(row);
+  if (ngn) {
+    const media = ngn.media;
+    if (Array.isArray(media) && media.length > 0) return true;
+    if (ngn.figure || ngn.imageUrl || ngn.svg || ngn.stemMedia) return true;
+    const exhibit = asRecord(ngn.exhibit);
+    if (exhibit?.svg || exhibit?.imageUrl || exhibit?.figureId) return true;
+  }
+  const text = [row.scenario, row.question].filter(Boolean).join("\n");
+  return VISUAL_DEPENDENCY_PATTERNS.some((pattern) => pattern.test(text));
+}
+
+function formatExhibitTablePlainText(table: ExhibitTablePayload): string {
+  const lines: string[] = [];
+  if (table.title?.trim()) lines.push(table.title.trim());
+  lines.push(table.headers.join(" | "));
+  for (const row of table.rows) {
+    lines.push(row.join(" | "));
+  }
+  return lines.join("\n");
+}
+
+/** Full patient context + lead-in (+ plain-text lab table when stored in options JSON). */
+export function composeFreeQuizStem(row: Pick<QuizRow, "scenario" | "question" | "options">): string {
+  const bankItem: BankItem = {
+    id: "compose",
+    subjectId: "marketing",
+    scenario: row.scenario?.trim() || undefined,
+    vignette: row.scenario?.trim() || undefined,
+    question: row.question?.trim() ?? "",
+    options: [],
+    correctAnswer: "",
+    explanation: "",
+  };
+  const { vignette, stem: leadIn } = splitUsmleBankItem(bankItem);
+  const parts: string[] = [];
+  if (vignette?.trim()) parts.push(vignette.trim());
+
+  const ngn = ngnPayloadFromRow(row as QuizRow);
+  const table = resolveExhibitTable(ngn);
+  if (table && !freeQuizRowRequiresImage(row as QuizRow)) {
+    parts.push(formatExhibitTablePlainText(table));
+  }
+
+  if (leadIn?.trim()) {
+    const normalizedLeadIn = leadIn.trim();
+    if (!vignette || !vignette.includes(normalizedLeadIn)) {
+      parts.push(normalizedLeadIn);
+    }
+  }
+
+  return parts.join("\n\n").trim();
+}
+
+export function pickFreeQuizQuestionsFromRows(rows: QuizRow[]): FreeQuizBankQuestion[] {
+  const seen = new Set<string>();
+  const questions: FreeQuizBankQuestion[] = [];
+  for (const row of rows) {
+    if (seen.has(row.id)) continue;
+    const question = rowToQuizQuestion(row);
+    if (!question) continue;
+    seen.add(row.id);
+    questions.push(question);
+    if (questions.length >= FREE_QUIZ_QUESTION_COUNT) break;
+  }
+  return questions;
+}
+
 function rowToQuizQuestion(row: QuizRow): FreeQuizBankQuestion | null {
-  const stem = row.question?.trim() ?? "";
+  if (freeQuizRowRequiresImage(row)) return null;
+
+  const stem = composeFreeQuizStem(row);
   const rationale = row.explanation?.trim() ?? "";
   const sources = readStoredCitations(row.references);
-  if (!stem || !rationale) return null;
+  if (!stem || stem.length < MIN_PUBLIC_STEM_CHARS || stem.length > MAX_PUBLIC_STEM_CHARS) return null;
+  if (!rationale) return null;
 
   const parsed = parseBankOptions(row.options ?? "");
   const options = parsed.options.map((option) => option.trim()).filter(Boolean);
@@ -187,19 +295,34 @@ function rowToQuizQuestion(row: QuizRow): FreeQuizBankQuestion | null {
   };
 }
 
-async function queryFreeQuizRows(board: FreeQuizBoardSlug, rotationKey: string): Promise<QuizRow[]> {
+async function queryFreeQuizRows(
+  board: FreeQuizBoardSlug,
+  rotationKey: string,
+  opts?: { excludeIds?: readonly string[]; seedSuffix?: string; limit?: number }
+): Promise<QuizRow[]> {
   const fieldIds = BOARD_FIELD_IDS[board];
   const fieldList = fieldIds.map((id) => `'${id}'`).join(", ");
-  const seed = rotationKey.replace(/'/g, "");
+  const seed = `${rotationKey}${opts?.seedSuffix ?? ""}`.replace(/'/g, "");
+  const limit = opts?.limit ?? FREE_QUIZ_CANDIDATE_PULL;
+  const excludeIds = opts?.excludeIds ?? [];
+  const excludeSql =
+    excludeIds.length > 0
+      ? `AND id NOT IN (${excludeIds.map((id) => `'${id.replace(/'/g, "")}'`).join(", ")})`
+      : "";
   return sqlQuery<QuizRow[]>(
     `
-    SELECT id, "fieldId", "itemType", question, options, "correctAnswer", explanation, "references"
+    SELECT id, "fieldId", "itemType", scenario, question, options, "correctAnswer", explanation, "references"
     FROM "QuestionBankItem"
     WHERE active = true
       AND "qaPassed" = true
       AND "itemType" IN ('mcq', 'vignette', 'select_all')
       AND "fieldId" IN (${fieldList})
-      AND length(btrim(question)) BETWEEN 40 AND 900
+      AND length(btrim(question)) >= 12
+      AND length(
+        btrim(
+          COALESCE(scenario, '') || CASE WHEN scenario IS NOT NULL AND btrim(scenario) <> '' THEN E'\\n\\n' ELSE '' END || question
+        )
+      ) BETWEEN ${MIN_PUBLIC_STEM_CHARS} AND ${MAX_PUBLIC_STEM_CHARS}
       AND length(btrim(explanation)) BETWEEN 80 AND 1600
       AND (
         position('|||' IN "correctAnswer") = 0
@@ -208,10 +331,11 @@ async function queryFreeQuizRows(board: FreeQuizBoardSlug, rotationKey: string):
       AND "references" IS NOT NULL
       AND jsonb_typeof("references") = 'array'
       AND jsonb_array_length("references") > 0
+      ${excludeSql}
       ${usmleStepScopeSql()}
       ${studentEligibleAndSql()}
     ORDER BY md5(id || '${seed}')
-    LIMIT ${FREE_QUIZ_QUESTION_COUNT}
+    LIMIT ${limit}
     `,
     []
   );
@@ -220,10 +344,18 @@ async function queryFreeQuizRows(board: FreeQuizBoardSlug, rotationKey: string):
 async function loadFreeQuizPayload(board: FreeQuizBoardSlug): Promise<FreeQuizBankPayload> {
   const rotationKey = freeQuizRotationKey();
   try {
-    const rows = await queryFreeQuizRows(board, rotationKey);
-    const questions = rows
-      .map((row) => rowToQuizQuestion(row))
-      .filter((item): item is FreeQuizBankQuestion => item !== null);
+    let rows = await queryFreeQuizRows(board, rotationKey);
+    let questions = pickFreeQuizQuestionsFromRows(rows);
+    if (questions.length < FREE_QUIZ_QUESTION_COUNT) {
+      const seenIds = new Set(questions.map((question) => question.id));
+      const extra = await queryFreeQuizRows(board, rotationKey, {
+        excludeIds: [...seenIds],
+        seedSuffix: "-fill",
+        limit: FREE_QUIZ_CANDIDATE_PULL,
+      });
+      rows = [...rows, ...extra];
+      questions = pickFreeQuizQuestionsFromRows(rows);
+    }
     return { board, rotationKey, questions };
   } catch {
     return { board, rotationKey, questions: [] };
@@ -232,7 +364,7 @@ async function loadFreeQuizPayload(board: FreeQuizBoardSlug): Promise<FreeQuizBa
 
 const loadCachedFreeQuiz = unstable_cache(
   async (board: FreeQuizBoardSlug) => loadFreeQuizPayload(board),
-  ["public-free-quiz-v2"],
+  ["public-free-quiz-v3"],
   { revalidate: 3600 }
 );
 
@@ -275,7 +407,13 @@ export function gradeFreeQuizAnswers(
     }
 
     const study = bankQuestionToStudy(question);
-    const cleaned = (entry.selected ?? []).map((value) => value.trim()).filter(Boolean);
+    const cleaned = (entry.selected ?? [])
+      .map((value) => {
+        if (typeof value === "string") return value.trim();
+        if (typeof value === "number" && Number.isFinite(value)) return String(value);
+        return "";
+      })
+      .filter(Boolean);
     const unique = [...new Set(cleaned)];
     const allowed = new Set(question.options);
     if (unique.some((value) => !allowed.has(value))) {

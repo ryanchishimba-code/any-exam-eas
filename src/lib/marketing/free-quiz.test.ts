@@ -1,11 +1,37 @@
 import { describe, expect, it } from "vitest";
+import { MARKETING_BOARD_SLUGS } from "@/lib/marketing/board-paths";
 import {
+  FREE_QUIZ_QUESTION_COUNT,
+  composeFreeQuizStem,
   freeQuizRotationKey,
   gradeFreeQuizAnswers,
   isFreeQuizBoardSlug,
+  pickFreeQuizQuestionsFromRows,
   toPublicFreeQuizPayload,
   type FreeQuizBankPayload,
+  type FreeQuizCandidateRow,
 } from "@/lib/marketing/free-quiz";
+
+const SCENARIO =
+  "A 58-year-old man with type 2 diabetes and hypertension presents to the emergency department with 2 days of nausea, vomiting, and polyuria. He appears lethargic. Temperature 37.1°C (98.8°F), pulse 118/min, respirations 24/min, blood pressure 92/58 mm Hg. Dry mucous membranes and poor skin turgor are noted. Fingerstick glucose is 412 mg/dL. Serum studies show sodium 128 mEq/L, potassium 5.4 mEq/L, bicarbonate 10 mEq/L, and anion gap 22.";
+
+function mockCandidateRow(id: string, overrides: Partial<FreeQuizCandidateRow> = {}): FreeQuizCandidateRow {
+  return {
+    id,
+    fieldId: "pance",
+    itemType: "vignette",
+    scenario: SCENARIO,
+    question: "Which action should the clinician take first?",
+    options: JSON.stringify({
+      options: ["Start IV 0.9% sodium chloride", "Administer subcutaneous insulin only", "Discharge with oral fluids"],
+    }),
+    correctAnswer: "Start IV 0.9% sodium chloride",
+    explanation:
+      "This presentation is consistent with diabetic ketoacidosis with hypovolemia; isotonic IV fluids are the priority before insulin therapy.",
+    references: [{ label: "Endocrine emergencies", citation: "ACEP clinical policy" }],
+    ...overrides,
+  };
+}
 
 describe("freeQuizRotationKey", () => {
   it("uses a UTC date bucket", () => {
@@ -49,6 +75,59 @@ describe("toPublicFreeQuizPayload", () => {
     expect(publicPayload.questions[0]).not.toHaveProperty("correct");
     expect(publicPayload.questions[0]).not.toHaveProperty("rationale");
     expect(publicPayload.questions[0]).not.toHaveProperty("sources");
+  });
+});
+
+describe("composeFreeQuizStem", () => {
+  it("includes the stored scenario with the lead-in question", () => {
+    const row = mockCandidateRow("stem-1");
+    const stem = composeFreeQuizStem(row);
+    expect(stem).toContain("58-year-old man");
+    expect(stem).toContain("Which action should the clinician take first?");
+    expect(stem.length).toBeGreaterThan(150);
+  });
+
+  it("appends plain-text exhibit tables from options JSON", () => {
+    const row = mockCandidateRow("table-1", {
+      options: JSON.stringify({
+        options: ["Option A", "Option B", "Option C"],
+        table: {
+          title: "Laboratory studies",
+          headers: ["Test", "Result"],
+          rows: [["Glucose", "412 mg/dL"], ["Bicarbonate", "10 mEq/L"]],
+        },
+      }),
+    });
+    const stem = composeFreeQuizStem(row);
+    expect(stem).toContain("Laboratory studies");
+    expect(stem).toContain("Glucose | 412 mg/dL");
+  });
+});
+
+describe("pickFreeQuizQuestionsFromRows", () => {
+  it("returns ten unique items when enough eligible rows exist", () => {
+    const rows = Array.from({ length: 14 }, (_, index) => mockCandidateRow(`q-${index}`));
+    const picked = pickFreeQuizQuestionsFromRows(rows);
+    expect(picked).toHaveLength(FREE_QUIZ_QUESTION_COUNT);
+    expect(new Set(picked.map((item) => item.id)).size).toBe(FREE_QUIZ_QUESTION_COUNT);
+    for (const item of picked) {
+      expect(item.stem.length).toBeGreaterThan(150);
+    }
+  });
+
+  it.each(MARKETING_BOARD_SLUGS)("fills %s marketing boards to ten from eligible rows", (board) => {
+    const fieldId =
+      board === "nclex"
+        ? "nursing"
+        : board === "naplex"
+          ? "pharmacy"
+          : board === "usmle"
+            ? "usmle-step-2"
+            : board;
+    const rows = Array.from({ length: 12 }, (_, index) =>
+      mockCandidateRow(`${board}-${index}`, { fieldId })
+    );
+    expect(pickFreeQuizQuestionsFromRows(rows)).toHaveLength(FREE_QUIZ_QUESTION_COUNT);
   });
 });
 
