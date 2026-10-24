@@ -21,6 +21,8 @@ export type ExamAnswerRecord = {
   notes?: string;
   topicCategory?: string;
   answeredAt: string;
+  /** Monotonic client write id; stale autosaves are ignored when both sides have a seq. */
+  persistSeq?: number;
 };
 
 export async function createExamSession(

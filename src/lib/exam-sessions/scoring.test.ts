@@ -46,6 +46,29 @@ describe("mergeExamAnswers", () => {
     expect(submitted[0]?.answeredAt).toBe("2026-10-06T12:00:00.000Z");
     expect(submitted[0]?.selected).toBe("right");
   });
+
+  it("ignores autosaves with a lower persistSeq than the stored row", () => {
+    const stored = mergeExamAnswers([], {
+      ...answer(0, true, "latest"),
+      persistSeq: 4,
+    });
+    const stale = mergeExamAnswers(stored, {
+      ...answer(0, false, "stale"),
+      persistSeq: 2,
+    });
+    expect(stale[0]?.selected).toBe("latest");
+    expect(stale[0]?.persistSeq).toBe(4);
+  });
+
+  it("applies submit rows that omit persistSeq even when autosaves used seq", () => {
+    const stored = mergeExamAnswers([], {
+      ...answer(0, true, "autosaved"),
+      persistSeq: 9,
+    });
+    const submitted = mergeExamAnswers(stored, answer(0, true, "submit-log"));
+    expect(submitted[0]?.selected).toBe("submit-log");
+    expect(submitted[0]?.persistSeq).toBeUndefined();
+  });
 });
 
 describe("calculateExamScorePercent", () => {
