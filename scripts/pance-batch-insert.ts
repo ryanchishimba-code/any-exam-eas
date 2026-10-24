@@ -23,6 +23,10 @@
  *   npx tsx scripts/pance-batch-insert.ts <file.json>
  *   npx tsx scripts/pance-batch-insert.ts <file.json> --expect-live 2856
  *   npx tsx scripts/pance-batch-insert.ts <file.json> --apply --expect-live 2856
+ *   npx tsx scripts/pance-batch-insert.ts <file.json> --label batch1-80 --expect-live 2876
+ *
+ * --label writes a separate backup, report, and undo manifest so a later
+ * batch does not replace an earlier batch's files.
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -122,13 +126,21 @@ function displayPath(file: string): string {
   return relative.startsWith("..") || path.isAbsolute(relative) ? path.resolve(file) : relative;
 }
 
+function reportPathFor(apply: boolean, label?: string): string {
+  const base = apply ? "apply-report" : "dry-run-report";
+  return path.join(DATA_DIR, label ? `${base}-${label}.json` : `${base}.json`);
+}
+
 function parseArgs(argv: string[]) {
   let file: string | undefined;
   let apply = false;
   let dryRunFlag = false;
   let expectLive: number | undefined;
+  let label: string | undefined;
   let backupPath = path.join(DATA_DIR, "pance-pre-insert-backup.json");
   let manifestPath = path.join(DATA_DIR, "inserted-ids.json");
+  let backupSet = false;
+  let manifestSet = false;
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
@@ -141,14 +153,22 @@ function parseArgs(argv: string[]) {
         throw new Error("--expect-live needs a non-negative integer.");
       }
       expectLive = value;
+    } else if (arg === "--label") {
+      const value = argv[++i];
+      if (!value || !/^[a-z0-9][a-z0-9-]*$/.test(value)) {
+        throw new Error("--label needs a lowercase slug.");
+      }
+      label = value;
     } else if (arg === "--backup") {
       const value = argv[++i];
       if (!value) throw new Error("--backup needs a file path.");
       backupPath = value;
+      backupSet = true;
     } else if (arg === "--manifest") {
       const value = argv[++i];
       if (!value) throw new Error("--manifest needs a file path.");
       manifestPath = value;
+      manifestSet = true;
     } else if (arg?.startsWith("-")) {
       throw new Error(`Unknown argument: ${arg}`);
     } else if (!file) {
@@ -160,7 +180,9 @@ function parseArgs(argv: string[]) {
 
   if (!file) throw new Error("Input JSON path is required.");
   if (apply && dryRunFlag) throw new Error("Pass either --apply or --dry-run, not both.");
-  return { file, apply, expectLive, backupPath, manifestPath };
+  if (label && !backupSet) backupPath = path.join(DATA_DIR, `pance-pre-insert-backup-${label}.json`);
+  if (label && !manifestSet) manifestPath = path.join(DATA_DIR, `inserted-ids-${label}.json`);
+  return { file, apply, expectLive, backupPath, manifestPath, label };
 }
 
 function stemKey(question: string): string {
@@ -555,7 +577,7 @@ async function main() {
     report.liveAfter = before.live;
     printReport();
     console.log("Stopped. No rows written.");
-    const reportPath = path.join(DATA_DIR, args.apply ? "apply-report.json" : "dry-run-report.json");
+    const reportPath = reportPathFor(args.apply, args.label);
     mkdirSync(DATA_DIR, { recursive: true });
     writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log(`report: ${reportPath}`);
@@ -609,7 +631,7 @@ async function main() {
       report.liveAfter = afterFailure.live;
       printReport();
       console.log("Insert failed and the transaction was rolled back. No rows kept.");
-      const reportPath = path.join(DATA_DIR, args.apply ? "apply-report.json" : "dry-run-report.json");
+      const reportPath = reportPathFor(args.apply, args.label);
       writeFileSync(reportPath, JSON.stringify(report, null, 2));
       console.log(`report: ${reportPath}`);
       process.exitCode = 1;
@@ -632,7 +654,7 @@ async function main() {
     }
     printReport();
     console.log("Dry run rolled back. No rows kept.");
-    const reportPath = path.join(DATA_DIR, "dry-run-report.json");
+    const reportPath = reportPathFor(false, args.label);
     writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log(`report: ${reportPath}`);
     console.log(`backup: ${backupPath}`);
@@ -693,7 +715,7 @@ async function main() {
   printReport();
   console.log(`Inserted ${inserted.length} rows.`);
   console.log(`manifest: ${manifestPath}`);
-  const reportPath = path.join(DATA_DIR, "apply-report.json");
+  const reportPath = reportPathFor(true, args.label);
   writeFileSync(reportPath, JSON.stringify(report, null, 2));
   console.log(`report: ${reportPath}`);
   console.log(`backup: ${backupPath}`);

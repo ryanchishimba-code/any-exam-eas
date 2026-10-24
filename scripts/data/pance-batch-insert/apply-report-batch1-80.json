@@ -1,0 +1,651 @@
+{
+  "mode": "apply",
+  "inputFile": "scripts/data/pance-batch-insert/batch1-80.json",
+  "rowsInFile": 80,
+  "validationErrors": [],
+  "duplicates": [],
+  "wouldInsert": [
+    {
+      "index": 0,
+      "blueprintTopic": "coccidioidomycosis",
+      "contentHash": "c93f802451b724e076c3f45c8a0d04a20f57d1b997da94c08bd9195cae431b29",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 1,
+      "blueprintTopic": "blastomycosis",
+      "contentHash": "858e03156e015db2498ea489e22c781306b454994855e7993bc2bbdd150bcb31",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 2,
+      "blueprintTopic": "toxoplasmosis encephalitis",
+      "contentHash": "19aa2a2b7ba3e47ef743744251ff8e19232b2bad2ab2ab824b9693537cded195",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 3,
+      "blueprintTopic": "leptospirosis",
+      "contentHash": "8001565d0fe87b45b7869282591612935d3bb9bf0861e66825d9fa819e034a1a",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 4,
+      "blueprintTopic": "tularemia",
+      "contentHash": "6a57ed8aa67bc8c9a9122ccb20b7941d7e710f50b3bd5f1abf850e64331af9b4",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 5,
+      "blueprintTopic": "mucormycosis",
+      "contentHash": "5f75db0ccc20872dea1e86d4b92d226057b3b1c82150cace7b35f8de86b6aab9",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 6,
+      "blueprintTopic": "CMV retinitis",
+      "contentHash": "38d33a69cdb672473dd4f642318fb2e99da94acd905ed634fbc17ede380fcb24",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 7,
+      "blueprintTopic": "hand-foot-and-mouth disease",
+      "contentHash": "5bc635b647b37ca3d587368f05952c72515ed66f563586d5e7fbb5ae41589e38",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 8,
+      "blueprintTopic": "parvovirus B19",
+      "contentHash": "28082a9685fa08fa6d4e335d20ad5377f1d374b412d4306a9142203beb00cb91",
+      "stem": "Which of the following is the most likely cause of this rash?"
+    },
+    {
+      "index": 9,
+      "blueprintTopic": "diphtheria",
+      "contentHash": "56c51254cdeeba2383506b4ec92282b810d4d2901a4d0dad5ddae738ad834f94",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 10,
+      "blueprintTopic": "chancroid",
+      "contentHash": "88b5d913f92d934c6982e0cf634e4e2cde43aba58ed2188ef4ec1ac5398f0de9",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 11,
+      "blueprintTopic": "neurocysticercosis",
+      "contentHash": "e584d2002dbdb7aefe1f378b610f79eac4886a63a480a373b1b0bb33249e8883",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 12,
+      "blueprintTopic": "hantavirus pulmonary syndrome",
+      "contentHash": "44881aed929686bafb7ef14e4403324fd6bceed36d2520cd29100c27fc6731d6",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 13,
+      "blueprintTopic": "brucellosis",
+      "contentHash": "654a49d150f202c38219cb5d516f07b8827513cac9b3b43deed2b6ecf85db921",
+      "stem": "Which of the following questions is most likely to reveal the cause of his illness?"
+    },
+    {
+      "index": 14,
+      "blueprintTopic": "cutaneous anthrax",
+      "contentHash": "30f5dba96e7aa267846b0fd41247cb5b28bffdda37f8dad40e1ecc134aebd6f2",
+      "stem": "Which additional examination finding is most characteristic of the suspected diagnosis?"
+    },
+    {
+      "index": 15,
+      "blueprintTopic": "secondary syphilis",
+      "contentHash": "c896580c380442342332ec1f183a22e965938550139d7a74f4b70c3c7591e7f5",
+      "stem": "Which of the following additional findings is most likely on examination?"
+    },
+    {
+      "index": 16,
+      "blueprintTopic": "trichinellosis",
+      "contentHash": "2e784a8db671577205d61f699509533bb9a6912858055dfbfbdeb8f3bf3e81ec",
+      "stem": "Which of the following exposures in his history most likely explains these findings?"
+    },
+    {
+      "index": 17,
+      "blueprintTopic": "malaria",
+      "contentHash": "3c94e556ff274f3ae27ac189402da729adde8ca2f953c993ff9dcf29c8ff5904",
+      "stem": "Which of the following is the most appropriate initial diagnostic test?"
+    },
+    {
+      "index": 18,
+      "blueprintTopic": "HIV diagnostic testing algorithm",
+      "contentHash": "a144bb5fc041147688dab20cca960715f67d86bf905bbbc90a17307bde724964",
+      "stem": "Which of the following is the most appropriate next diagnostic test?"
+    },
+    {
+      "index": 19,
+      "blueprintTopic": "latent TB testing (IGRA)",
+      "contentHash": "4d57e208fa6fd5c6ef7b6c50cd7fa644db012ad6c6675bc997e6641c77ba69c0",
+      "stem": "Which of the following is the most appropriate test for tuberculosis infection in this patient?"
+    },
+    {
+      "index": 20,
+      "blueprintTopic": "diabetic foot osteomyelitis",
+      "contentHash": "a8984e161e154ee47ab5170b20630e8a64df06d79544e94032ab5324cc3295e0",
+      "stem": "Which of the following is the most appropriate next imaging study?"
+    },
+    {
+      "index": 21,
+      "blueprintTopic": "West Nile virus neuroinvasive disease",
+      "contentHash": "12ec3fd5a3ff51ea7f2081212da9859d08a7f1739e167b2c9021f1fa96932861",
+      "stem": "Which of the following tests is most appropriate to confirm the suspected diagnosis?"
+    },
+    {
+      "index": 22,
+      "blueprintTopic": "syphilis reverse-sequence testing",
+      "contentHash": "d8279dd9c2921d70406bd4e7dc79d9e1799e5d80fe45c18638fe9e00bdc34e22",
+      "stem": "Which of the following is the most appropriate next step in evaluation?"
+    },
+    {
+      "index": 23,
+      "blueprintTopic": "cryptococcal meningitis",
+      "contentHash": "3a610c8990dcb997f21c45cc19662d3f0fe8416203df3d64cdaa1f24eb5c3795",
+      "stem": "Which of the following is the most appropriate induction antifungal regimen?"
+    },
+    {
+      "index": 24,
+      "blueprintTopic": "pinworm (enterobiasis)",
+      "contentHash": "01a421a5303537b2d360aef19944c2b6d906f6d6a861479784f6c9abd5860866",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 25,
+      "blueprintTopic": "giardiasis",
+      "contentHash": "40215a5570c3afb385f0adc137fe8af899b54013f7f4aa6c5551847e3c9361f6",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 26,
+      "blueprintTopic": "esophageal candidiasis",
+      "contentHash": "a8bc7f3a65beee42e932f71c749f5cd8cde2bd18a08b45099e9f686960dba9ee",
+      "stem": "Which of the following is the most appropriate initial treatment?"
+    },
+    {
+      "index": 27,
+      "blueprintTopic": "candidemia",
+      "contentHash": "3169d2563602355be1f40f2f418f48fd2109acc6ad71b92082eeb596a370fbe2",
+      "stem": "Which of the following is the most appropriate initial antifungal therapy?"
+    },
+    {
+      "index": 28,
+      "blueprintTopic": "invasive aspergillosis",
+      "contentHash": "31f925c48f4449109b18502050e1f5956bc4dfeeff3f76943e441956eeb32032",
+      "stem": "Which of the following is the most appropriate antifungal therapy?"
+    },
+    {
+      "index": 29,
+      "blueprintTopic": "HSV encephalitis",
+      "contentHash": "360181cd83998eb572603601bd092658441ba098294ed854eeb7db2d85697975",
+      "stem": "Which of the following is the most appropriate antimicrobial therapy now?"
+    },
+    {
+      "index": 30,
+      "blueprintTopic": "chlamydia",
+      "contentHash": "f38c166921e04f22fd90d6c52e3fe0793221972909815ad3304afaaac70971ef",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 31,
+      "blueprintTopic": "neurosyphilis",
+      "contentHash": "b598f0b90a7ff09118727eb21f730fad1ed7804e1718c16684c7d2080431f25f",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 32,
+      "blueprintTopic": "dog bite wound prophylaxis",
+      "contentHash": "cf27e625f817489008b1c6409393d62fe23bc85022257f157b5c1787b33b7aa5",
+      "stem": "Which of the following is the most appropriate antibiotic management?"
+    },
+    {
+      "index": 33,
+      "blueprintTopic": "HIV nonoccupational post-exposure prophylaxis",
+      "contentHash": "eaf7f295a2a5329899b1d3c6086c80538534c87025ac98836d783b19e6e85b4b",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 34,
+      "blueprintTopic": "Strongyloides before corticosteroids",
+      "contentHash": "678f1e475f8a89fd555903a768250dc7be49713c8a728b43c2275348215d0b65",
+      "stem": "Which of the following is the most appropriate action before starting prednisone?"
+    },
+    {
+      "index": 35,
+      "blueprintTopic": "Shiga toxin-producing E. coli",
+      "contentHash": "f3a27536d53e9e73fdccc988079ae760484e0502f9b780d4723a095f819b2f2b",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 36,
+      "blueprintTopic": "meningococcal chemoprophylaxis",
+      "contentHash": "442f5b372c4a89b7711b02d7ff721efd159f75d4a99f4c4b7e59fd7813dca945",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 37,
+      "blueprintTopic": "necrotizing fasciitis",
+      "contentHash": "59424d45e9b69d70e02bd800878987c4c3bc6b9536b37aa48aee1c65b27bb8cc",
+      "stem": "Which of the following is the most appropriate next step in management?"
+    },
+    {
+      "index": 38,
+      "blueprintTopic": "Pneumocystis prophylaxis in HIV",
+      "contentHash": "ea55bb8dc92c8dfdbeb39b4216dd7af8697efd7412adc0fa73b9834619899fb9",
+      "stem": "Which of the following is the most appropriate additional medication to prevent opportunistic infection?"
+    },
+    {
+      "index": 39,
+      "blueprintTopic": "HIV pre-exposure prophylaxis",
+      "contentHash": "98d014ff0343ae869f68dd0cf1c3fa11574df33de1bc409c8f186c7f25ab9016",
+      "stem": "Which of the following must be documented before oral PrEP is prescribed?"
+    },
+    {
+      "index": 40,
+      "blueprintTopic": "rubella immunity postpartum",
+      "contentHash": "8e18aece0a4ecc583b774083907611e5f3198b64971877841a59319a0c615aeb",
+      "stem": "Which of the following is the most appropriate recommendation regarding rubella immunization?"
+    },
+    {
+      "index": 41,
+      "blueprintTopic": "malaria chemoprophylaxis",
+      "contentHash": "9d498ba17361b685db2a308a512629825cf929454bde0d0bded2c9040033c79c",
+      "stem": "Which of the following is the most appropriate malaria chemoprophylaxis regimen?"
+    },
+    {
+      "index": 42,
+      "blueprintTopic": "pneumococcal vaccination adults",
+      "contentHash": "d5074d1d6de91cd1e84d825b107556c2443bd19e27150930f8b2cecac0746ea4",
+      "stem": "Which of the following is the most appropriate recommendation regarding pneumococcal vaccination?"
+    },
+    {
+      "index": 43,
+      "blueprintTopic": "Tdap in pregnancy",
+      "contentHash": "09ba41a4a7e80b02a249a3780472fc3512e1b1a61851f9a6182040faacb62e00",
+      "stem": "Which of the following is the most appropriate recommendation regarding tetanus, diphtheria, and pertussis vaccination?"
+    },
+    {
+      "index": 44,
+      "blueprintTopic": "isoniazid neuropathy and pyridoxine",
+      "contentHash": "469631baeba95e3916a932996f533cec3c9c60ffd7e5ae2901ed8bfc274f7a0d",
+      "stem": "Which of the following mechanisms best explains her new symptoms?"
+    },
+    {
+      "index": 45,
+      "blueprintTopic": "MRSA resistance mechanism",
+      "contentHash": "43dc791de6715d13e5236b3678069cf6a4ed57a39b9873fe2bc805252f12c1fa",
+      "stem": "Which of the following mechanisms best explains this organism's resistance to oxacillin?"
+    },
+    {
+      "index": 46,
+      "blueprintTopic": "Plasmodium vivax hypnozoites",
+      "contentHash": "6cb9d23dc00269ca3d12c6272a92280e60e589f3b5d0958dbe4b3afd0869a6a8",
+      "stem": "Which of the following best explains this recurrence?"
+    },
+    {
+      "index": 47,
+      "blueprintTopic": "HIV CCR5 coreceptor",
+      "contentHash": "aa9b0a04e0b1e08c4c40fec8b0af96434a5b12b4cfa09a563af6d95c5689db64",
+      "stem": "Maraviroc prevents HIV entry by binding to which of the following?"
+    },
+    {
+      "index": 48,
+      "blueprintTopic": "Guillain-Barré syndrome",
+      "contentHash": "18fc1a4aba870434d11c314de776e90567ea9015877c6ac6e97e477aa85d56af",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 49,
+      "blueprintTopic": "multiple sclerosis",
+      "contentHash": "eff87813967e2210ee4c18a2028629701f90d249fa291ed7a38d5142ae76421f",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 50,
+      "blueprintTopic": "Parkinson disease",
+      "contentHash": "7016fb0ec95682dd4b8f9fa1337676a8cf9b01430d826eade9cd9ee6b019ad37",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 51,
+      "blueprintTopic": "normal pressure hydrocephalus",
+      "contentHash": "dfb69481d1a8fd3305dbe6a5bc35111c4d0788b16e311acdfc2dd7fbb296e6b4",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 52,
+      "blueprintTopic": "amyotrophic lateral sclerosis",
+      "contentHash": "b4bc0905ac6d38e279b49ac2654ae755d9c997dfc7bf6834a8dd1f9ca4e1e810",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 53,
+      "blueprintTopic": "trigeminal neuralgia",
+      "contentHash": "7a1b24af2a67d2e22d78c25fee2d4aa7b8b2d853daca14e43852d539bd317ef0",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 54,
+      "blueprintTopic": "epidural hematoma",
+      "contentHash": "a0b26025097572c0bda328e20cc5aa391b58b1d77dc577beae6016ca3291b819",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 55,
+      "blueprintTopic": "Creutzfeldt-Jakob disease",
+      "contentHash": "f8c5cd3a6f8dc18c024ddc0cdd5234a7acae2e483734afe89364aa0800c176b2",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 56,
+      "blueprintTopic": "childhood absence epilepsy",
+      "contentHash": "437138897bbc19974515eb6064a2c129ea5568fa1c27be36a5ca3c67ad13658d",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 57,
+      "blueprintTopic": "Lambert-Eaton myasthenic syndrome",
+      "contentHash": "abff0558e05e1835515499592d687dc9069499d3c762c59daca225260d14dd05",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 58,
+      "blueprintTopic": "cerebral venous thrombosis",
+      "contentHash": "05541709087ebfe17a2e2d8af94025dc21bb568222e07e8001e4959b139f3635",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 59,
+      "blueprintTopic": "Bell palsy versus central facial palsy",
+      "contentHash": "178860492c168bcfdaea26cd74b6e8cba3641193dd6f2c219a96116516ddb646",
+      "stem": "Which additional finding would best support a peripheral (lower motor neuron) facial nerve palsy rather than a central lesion such as a stroke?"
+    },
+    {
+      "index": 60,
+      "blueprintTopic": "Brown-Séquard syndrome",
+      "contentHash": "72476d2b70e28b278dc7b8ec878c71e6b502a0ac9332ecd8ba65542870ca02d9",
+      "stem": "Which of the following patterns of findings is most likely?"
+    },
+    {
+      "index": 61,
+      "blueprintTopic": "essential tremor",
+      "contentHash": "adf33c90f091f16af104b7e27e8a7f0150a28208bf08c598461e4340c9fe080b",
+      "stem": "Which additional finding from the history or examination most strongly supports the most likely diagnosis?"
+    },
+    {
+      "index": 62,
+      "blueprintTopic": "uncal herniation",
+      "contentHash": "c61f0ea383ad4ea4e4bc0418bd3ded6b180d57d4a38afc949f1b029ff8be6351",
+      "stem": "Which of the following examination findings would most indicate that he is developing transtentorial (uncal) herniation?"
+    },
+    {
+      "index": 63,
+      "blueprintTopic": "carotid artery dissection with Horner syndrome",
+      "contentHash": "74d07360d88dffb9a9a08f43113a38cbdb7c0d22d2ef66af1f8e38c3e11bb3b0",
+      "stem": "Which additional finding is most likely on examination of the left eye?"
+    },
+    {
+      "index": 64,
+      "blueprintTopic": "myasthenia gravis",
+      "contentHash": "865aa571c6336a42482f64a81f813863e9ffa2b8498d2460a9f210c7b250fc7d",
+      "stem": "Which of the following is the most appropriate initial serologic test to confirm the suspected diagnosis?"
+    },
+    {
+      "index": 65,
+      "blueprintTopic": "idiopathic intracranial hypertension",
+      "contentHash": "eb3de6b04da69bffb2fd9f60074dbcad04962286072fb8d9bb575b36649baf30",
+      "stem": "Which of the following is the most appropriate next diagnostic test?"
+    },
+    {
+      "index": 66,
+      "blueprintTopic": "subarachnoid hemorrhage with negative CT",
+      "contentHash": "8e70e9a7d440f44529fb084204f0dbffa5e39d29a2ece78d73e88ec7ae79656e",
+      "stem": "Which of the following is the most appropriate next diagnostic step?"
+    },
+    {
+      "index": 67,
+      "blueprintTopic": "acute ischemic stroke initial imaging",
+      "contentHash": "4b839e85b998526f25f0a15db6baa05fdc6bda691a97357f7a8c568b302d6294",
+      "stem": "Which of the following is the most appropriate next diagnostic study?"
+    },
+    {
+      "index": 68,
+      "blueprintTopic": "status epilepticus",
+      "contentHash": "9ac1048d06276d4e3d217ebf09c640b2399a9bbe74b3906f458ffe9a8da35a11",
+      "stem": "Which of the following is the most appropriate initial medication?"
+    },
+    {
+      "index": 69,
+      "blueprintTopic": "migraine in the emergency department",
+      "contentHash": "22b5bf174d1ec908baf046548672b7c03e52c595e412810301b4cc7b083ac985",
+      "stem": "Which of the following is the most appropriate parenteral treatment?"
+    },
+    {
+      "index": 70,
+      "blueprintTopic": "IV thrombolysis dosing in acute ischemic stroke",
+      "contentHash": "67c8f561d8b62a7e9436f4b094b522c3d78f533152dfcf4b6248dfeac8e80826",
+      "stem": "Which of the following is the correct thrombolytic regimen?"
+    },
+    {
+      "index": 71,
+      "blueprintTopic": "antiseizure medication before pregnancy",
+      "contentHash": "72385db9342a0991a39d3c25c08211eac856e58683a5d3d66ffd2c43cf453831",
+      "stem": "Which of the following is the most appropriate recommendation?"
+    },
+    {
+      "index": 72,
+      "blueprintTopic": "dual antiplatelet therapy after minor stroke",
+      "contentHash": "0994363bd39a4f7ab88c47ca9d219c3c3c5b18445dd5ad89a6582e2e3602e69c",
+      "stem": "Which of the following is the most appropriate antithrombotic therapy?"
+    },
+    {
+      "index": 73,
+      "blueprintTopic": "Wernicke encephalopathy",
+      "contentHash": "7c499aa578f426040fd28ee26522ec2fadce63f72ee3b4bf27da2a7c40867990",
+      "stem": "Which of the following is the most appropriate immediate intervention?"
+    },
+    {
+      "index": 74,
+      "blueprintTopic": "blood pressure before thrombolysis",
+      "contentHash": "7f1b8bfd2cc6e41557a6e6a8a3531aa84ba9bf053a681debdec0a82bcc70bf82",
+      "stem": "Which of the following is the most appropriate next step in management?"
+    },
+    {
+      "index": 75,
+      "blueprintTopic": "cluster headache acute treatment",
+      "contentHash": "4376f175303d3dded55ee77450b12c7a3a7b355bf8a0b730a18b3b0538658efc",
+      "stem": "Which of the following is the most appropriate acute treatment?"
+    },
+    {
+      "index": 76,
+      "blueprintTopic": "mechanical thrombectomy late window",
+      "contentHash": "0536e80561d08fd1b6a7e036a12f974aa9821b996eabd53b6c4221d87098a279",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 77,
+      "blueprintTopic": "sport-related concussion",
+      "contentHash": "8775b2c4809ceaf0043c4e8f82d64037f0954e36bc81c33c45c82f8f3c777d18",
+      "stem": "Which of the following is the most appropriate recommendation?"
+    },
+    {
+      "index": 78,
+      "blueprintTopic": "Huntington disease genetics",
+      "contentHash": "0a30d870fcd25bde52e2f5662c840133e229c715b3897f185473c546b8a025ae",
+      "stem": "Which of the following best explains why this patient's symptoms began at a younger age than his father's?"
+    },
+    {
+      "index": 79,
+      "blueprintTopic": "carbidopa mechanism",
+      "contentHash": "15316bbd52f9d45beab088da081b105e1ce1ec34a752a1ad77f3115a00cf6eab",
+      "stem": "Which of the following best describes the mechanism of carbidopa in this combination?"
+    }
+  ],
+  "sharedLeadInsInBatch": [
+    {
+      "stem": "Which of the following is the most likely diagnosis?",
+      "topics": [
+        "coccidioidomycosis",
+        "blastomycosis",
+        "toxoplasmosis encephalitis",
+        "leptospirosis",
+        "tularemia",
+        "mucormycosis",
+        "CMV retinitis",
+        "hand-foot-and-mouth disease",
+        "diphtheria",
+        "chancroid",
+        "neurocysticercosis",
+        "hantavirus pulmonary syndrome",
+        "Guillain-Barré syndrome",
+        "multiple sclerosis",
+        "Parkinson disease",
+        "normal pressure hydrocephalus",
+        "amyotrophic lateral sclerosis",
+        "trigeminal neuralgia",
+        "epidural hematoma",
+        "Creutzfeldt-Jakob disease",
+        "childhood absence epilepsy",
+        "Lambert-Eaton myasthenic syndrome",
+        "cerebral venous thrombosis"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate next diagnostic test?",
+      "topics": [
+        "HIV diagnostic testing algorithm",
+        "idiopathic intracranial hypertension"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate treatment?",
+      "topics": [
+        "pinworm (enterobiasis)",
+        "giardiasis",
+        "chlamydia",
+        "neurosyphilis"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate management?",
+      "topics": [
+        "HIV nonoccupational post-exposure prophylaxis",
+        "Shiga toxin-producing E. coli",
+        "meningococcal chemoprophylaxis",
+        "mechanical thrombectomy late window"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate next step in management?",
+      "topics": [
+        "necrotizing fasciitis",
+        "blood pressure before thrombolysis"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate recommendation?",
+      "topics": [
+        "antiseizure medication before pregnancy",
+        "sport-related concussion"
+      ]
+    }
+  ],
+  "inputContentHashRecomputed": 80,
+  "schemaErrors": [],
+  "countsBefore": {
+    "total": 3405,
+    "live": 2876,
+    "activeNotQa": 31,
+    "inactive": 498
+  },
+  "liveAfterInTransaction": 2956,
+  "liveAfter": 2956,
+  "insertedIds": [
+    "cmvmjhkcu0000jsaeitxfe5r3",
+    "cmvmjhkd20001jsae8hlg5kme",
+    "cmvmjhkd50002jsae4ssoz933",
+    "cmvmjhkd90003jsae379oadvk",
+    "cmvmjhkdd0004jsaepmmn5ow1",
+    "cmvmjhkdg0005jsaemsftunk9",
+    "cmvmjhkdk0006jsaeimvyuvb7",
+    "cmvmjhkdo0007jsaeqnxwgpwo",
+    "cmvmjhkds0008jsae5l921z8w",
+    "cmvmjhkdx0009jsaeoi2wmwix",
+    "cmvmjhke1000ajsaewmpeby96",
+    "cmvmjhke5000bjsaephetk3zk",
+    "cmvmjhke9000cjsaenu2a6f4x",
+    "cmvmjhkec000djsae5l7jgapl",
+    "cmvmjhkeg000ejsae5tej7gwx",
+    "cmvmjhkek000fjsaecufd4m70",
+    "cmvmjhkeo000gjsaegx1ayvi0",
+    "cmvmjhkes000hjsaem0yfpv46",
+    "cmvmjhkev000ijsaej2q21ujx",
+    "cmvmjhkey000jjsaequ2cp4vk",
+    "cmvmjhkf2000kjsaetgr7fsuj",
+    "cmvmjhkf5000ljsaeztxpopo8",
+    "cmvmjhkf8000mjsaex8r3z1u8",
+    "cmvmjhkfd000njsaefymx2ts7",
+    "cmvmjhkfg000ojsae6ewzvmxz",
+    "cmvmjhkfk000pjsae919gjni8",
+    "cmvmjhkfn000qjsaefuxfsyfj",
+    "cmvmjhkfq000rjsae948zhwwb",
+    "cmvmjhkfu000sjsaefqe6qw77",
+    "cmvmjhkfx000tjsae7tenjecc",
+    "cmvmjhkg1000ujsaey8tlmn69",
+    "cmvmjhkg4000vjsaecos32cea",
+    "cmvmjhkg8000wjsaeitm6xpf9",
+    "cmvmjhkgc000xjsae4whf9gkt",
+    "cmvmjhkgf000yjsaelss0agxl",
+    "cmvmjhkgi000zjsaeqpgn3by4",
+    "cmvmjhkgm0010jsae2fypkk60",
+    "cmvmjhkgq0011jsaelydg24ku",
+    "cmvmjhkgu0012jsaem2da9jye",
+    "cmvmjhkgx0013jsaehadd9169",
+    "cmvmjhkh10014jsae14hndjbm",
+    "cmvmjhkh40015jsaeq89qhh6r",
+    "cmvmjhkh80016jsaep2xtex61",
+    "cmvmjhkhc0017jsaensyp83d7",
+    "cmvmjhkhg0018jsaeux8ytjpk",
+    "cmvmjhkhk0019jsaey0e7jdy8",
+    "cmvmjhkho001ajsaet1cfcqwa",
+    "cmvmjhkht001bjsaeeleckdr4",
+    "cmvmjhkhx001cjsaeldllbeim",
+    "cmvmjhki0001djsaeqvbnroox",
+    "cmvmjhki4001ejsaexa2qq26x",
+    "cmvmjhki7001fjsaepokghr97",
+    "cmvmjhkia001gjsaep43o1d1z",
+    "cmvmjhkie001hjsaejcrpnv9d",
+    "cmvmjhkii001ijsaexan05o34",
+    "cmvmjhkil001jjsae5rgm8fmw",
+    "cmvmjhkip001kjsaei84sagzy",
+    "cmvmjhkis001ljsaephzxwxg7",
+    "cmvmjhkiw001mjsaelokgydya",
+    "cmvmjhkiz001njsaezcstjpgy",
+    "cmvmjhkj4001ojsaeyveui4mn",
+    "cmvmjhkj9001pjsaew6pfzt5s",
+    "cmvmjhkjd001qjsaeo85032ih",
+    "cmvmjhkjg001rjsaewoj74ely",
+    "cmvmjhkjk001sjsae0yqp6cih",
+    "cmvmjhkjo001tjsae7yt3gw5a",
+    "cmvmjhkjs001ujsae40se9krb",
+    "cmvmjhkjv001vjsae9udz1k63",
+    "cmvmjhkjz001wjsae9ehtq6hf",
+    "cmvmjhkk3001xjsae0j5pue42",
+    "cmvmjhkk6001yjsae4dh0nyg7",
+    "cmvmjhkka001zjsaek3bmali5",
+    "cmvmjhkkd0020jsaenbhr92oh",
+    "cmvmjhkkh0021jsae13z1gcr0",
+    "cmvmjhkkk0022jsae29ubcotp",
+    "cmvmjhkkp0023jsaecn5hmkwz",
+    "cmvmjhkks0024jsaeypj57lyj",
+    "cmvmjhkkw0025jsaes448jf0v",
+    "cmvmjhkl00026jsaeetsjgkzc",
+    "cmvmjhkl40027jsaeyhxjr4rs"
+  ],
+  "backup": "scripts/data/pance-batch-insert/pance-pre-insert-backup-batch1-80.json"
+}
