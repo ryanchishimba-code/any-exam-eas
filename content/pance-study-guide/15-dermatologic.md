@@ -8,11 +8,6 @@
 4. Burns
 5. Drug rashes (SJS)
 
-**Checklist**
-
-- [ ] **Suspicious mole:** narrow **excisional biopsy** with 1–3 mm margins (AAD 2019). [C56]
-- [ ] **Abscess → I&D.** Cellulitis → antibiotics covering strep. [C35]
-
 **Look-alike: scaly rash (classic teaching points)**
 
 | Feature | Psoriasis | Eczema |

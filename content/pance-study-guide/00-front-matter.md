@@ -1,6 +1,6 @@
 # Free PANCE Study Guide (2026): Blueprint-Weighted Plans, Frameworks & High-Yield Topic Index
 
-**Built to help you pass. Weighted to the official blueprint. Every clinical rule checked against a current guideline.**
+**Built to help you pass. Weighted to the official blueprint.**
 
 This is **AnyExamEasy's free PANCE Study Guide**.
 
@@ -8,7 +8,7 @@ It gives you a plan, the 3 question types PANCE asks most, and a topic map where
 
 [**Try PANCE practice free →**](/signup?plan=trial&interval=monthly&tier=pro&exam=pance)
 
-> **Study aid only.** This guide helps you prepare for an exam. It is **not** medical advice. It does not replace your PA program, your preceptors, or official **NCCPA** documents. Clinical points come from the guidelines named in Appendix B (checked October 2026).
+> **Study aid only.** This guide helps you prepare for an exam. It is **not** medical advice. It does not replace your PA program, your preceptors, or official **NCCPA** documents. A rule that names a source was checked against that page in October 2026. Confirm the current official page before you use a rule in clinic.
 
 > **MUST KNOW**
 > - **300 questions**, in **5 blocks of 60**
@@ -24,10 +24,10 @@ It gives you a plan, the 3 question types PANCE asks most, and a topic map where
 - **The official blueprint:** all 15 content areas and 7 task areas
 - **3 core frameworks:** diagnosis, next step, first-line treatment
 - **Topic index**, ordered by exam weight
-- **15 system checklists**, each with a Top 5, a look-alike table, and an "Important to remember" box
-- **Algorithms** for chest pain, PE, stroke, and more
+- **System chapters** with a Top 5, look-alike tables, and the rules that name a source
+- **Diagrams** for blood pressure, exam day, and selected workups
 - **Traps + error log**, exam day, a 7-day sprint
-- **Quick refs, FAQ,** and a **numbered sources appendix**
+- **Quick refs, FAQ,** and a **sources appendix**
 
 **Path note:** This guide is for **PANCE**, the first certification exam after PA school. **PANRE** and **PANRE-LA** are NCCPA's *recertification* exams for PAs who are already certified. See the FAQ.
 
@@ -43,7 +43,7 @@ It gives you a plan, the 3 question types PANCE asks most, and a topic map where
 ## Why this guide is different
 
 - **Weighted to points.** Big systems get big sections.
-- **Checked against current guidelines.** Every rule has a number you can look up.
+- **Sources are named on the line.** If a rule has no source link, it is a study tactic or a recognition clue, not a treatment dose.
 - **Short and scannable.** Tables, not walls of text.
 - **No fake claims.** No made-up pass rates or reviews.
 
@@ -93,7 +93,6 @@ AnyExamEasy is **one study system for six boards** (NCLEX, USMLE, NAPLEX, PANCE,
 ---
 
 ## Study plans
-
 
 ![Timeline bars for the 2-, 6- and 12-week plans, showing build, apply and peak phases and mock exam weeks.](visuals/03-study-plan-timeline.svg)
 

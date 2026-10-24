@@ -16,6 +16,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/pricing", priority: 0.9, changeFrequency: "weekly" },
   { path: "/compare", priority: 0.88, changeFrequency: "weekly" },
   { path: "/toolkit", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/pance-study-guide", priority: 0.85, changeFrequency: "monthly" },
   { path: "/daily", priority: 0.88, changeFrequency: "daily" },
   { path: "/signup", priority: 0.8, changeFrequency: "monthly" },
   { path: "/login", priority: 0.5, changeFrequency: "monthly" },

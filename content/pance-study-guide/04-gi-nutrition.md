@@ -12,19 +12,7 @@
 
 **Checklist**
 
-- [ ] **Pancreatitis = 2 of 3:** typical pain, lipase/amylase **>3× ULN**, typical imaging. [C22]
-- [ ] **Lipase is preferred over amylase.** [C22]
-- [ ] **H. pylori, first treatment:** bismuth quadruple therapy for **14 days** (PPI + bismuth + tetracycline + metronidazole). [C23]
-- [ ] **CRC screening:** ages **45–75**. [C20]
-
-**Hepatitis B blood tests [C21]**
-
-| HBsAg | Anti-HBc | Anti-HBs | Meaning |
-| --- | --- | --- | --- |
-| + | + (IgM +) | − | **Acute** infection |
-| + | + (IgM −) | − | **Chronic** infection |
-| − | + | + | Past infection, now immune |
-| − | − | + | **Immune from vaccine** |
+- [ ] **Colorectal cancer screening:** ages **45–75**. ([USPSTF](https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening))
 
 **Look-alike: RUQ pain (classic teaching points)**
 
@@ -33,9 +21,5 @@
 | Biliary colic | Pain after fatty meal, resolves | No fever |
 | Cholecystitis | Persistent pain, fever, Murphy sign | Inflamed gallbladder |
 | Cholangitis | Fever + jaundice + RUQ pain | Infected bile duct |
-
-> **Important to remember**
-> - **Pancreatitis needs 2 of 3**, not all 3.
-> - **Vaccine immunity = anti-HBs only.** Core antibody means past infection.
 
 ---

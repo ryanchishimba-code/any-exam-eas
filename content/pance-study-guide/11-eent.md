@@ -10,12 +10,6 @@
 
 **Abbreviations:** GAS = group A strep. RADT = rapid strep test. AOM = acute otitis media.
 
-**Checklist**
-
-- [ ] **Sore throat:** use a clinical score to decide who to test. [C51]
-- [ ] **Confirmed strep:** penicillin or amoxicillin × **10 days**. [C51]
-- [ ] **AOM needing antibiotics:** **high-dose amoxicillin** (80–90 mg/kg/day). [C52]
-
 **Look-alike: red eye (classic teaching points)**
 
 | Disease | Classic clue | Urgent? |

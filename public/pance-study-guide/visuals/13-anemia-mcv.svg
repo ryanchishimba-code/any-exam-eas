@@ -124,7 +124,7 @@ z
     <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1a3d6d" x="280.243945" y="26.225569" transform="rotate(-0 280.243945 26.225569)">Anemia by MCV: classic causes (teaching aid)</text>
    </g>
    <g id="text_2">
-    <text style="font-style: italic; font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="280.243945" y="307.269042" transform="rotate(-0 280.243945 307.269042)">Source: Standard textbook classification; iron cut-off: AGA 2020 Iron Deficiency Anemia Guideline  ·  AnyExamEasy study aid, not medical advice</text>
+    <text style="font-style: italic; font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="280.243945" y="307.269042" transform="rotate(-0 280.243945 307.269042)">Source: Standard textbook classification of anemia by red-cell size  ·  AnyExamEasy study aid, not medical advice</text>
    </g>
    <g id="text_3">
     <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="280.243945" y="58.325442" transform="rotate(-0 280.243945 58.325442)">Anemia → check MCV</text>
@@ -135,7 +135,7 @@ z
    </g>
    <g id="text_5">
     <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(106.175711 207.548854)">Iron deficiency</text>
-    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(109.507312 217.751178)">(ferritin &lt;45)</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(109.507312 217.751178)">(low ferritin)</text>
     <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(100.533836 227.953502)">Thalassemia trait</text>
     <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(103.777781 238.155826)">Chronic disease</text>
    </g>

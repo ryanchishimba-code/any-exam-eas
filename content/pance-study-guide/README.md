@@ -17,6 +17,6 @@ npm run ingest:pance-guide
 | `00`–`21` `*.md` | Numbered chapters (ingest source) |
 | `visuals/` | SVG diagrams referenced as `visuals/...` |
 
-The claims table (C1–C60) is not in the manuscript. Exam-fact sources stay in the back-matter chapter, the same place other books keep an official-source section.
+Numbered claim markers are not in the manuscript. A clinical line stays only when it names the official page it was checked against. Exam-fact sources stay in the back-matter chapter.
 
 **Study aid only.** Not clinical advice. Independent of NCCPA — no affiliation or pass-rate claims.

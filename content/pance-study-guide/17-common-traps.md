@@ -6,7 +6,7 @@
 | Missing pregnancy, kidney disease, or allergy | Scan the stem before choosing |
 | Studying small systems first | Work the index from the top |
 | Ignoring kids (12–15%) and surgery (8–10%) | Tag those questions weekly |
-| Using old guideline answers | Learn Appendix B rules |
+| Using a rule with no source on the line | Open the linked official page before you memorize a dose |
 | Fading in blocks 4–5 | Do at least 2 full mocks |
 
 ### The 4-box error log

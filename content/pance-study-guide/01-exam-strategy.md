@@ -21,8 +21,7 @@
 | Who can take it | Grads of ARC-PA–accredited programs |
 | Attempt limit | **6 tries within 6 years** |
 | Retake spacing | Once per 90 days; max 3 per year |
-| Fee | $550 |
-
+| Fee | **$550** application payment ([NCCPA Become Certified](https://www.nccpa.net/become-certified/)) |
 
 ![Timeline of exam day: 15-minute tutorial, then five 60-minute blocks with 45 minutes of break time split between them.](visuals/04-exam-day-timeline.svg)
 
@@ -73,7 +72,6 @@
 
 **What this means for you:** Treatment-type tasks (drugs + intervention + prevention) are **42%**. Diagnosis + history and physical are **34%**. **Know what it is and what to do next.**
 
-
 ![Bar chart of PANCE content areas: Cardiovascular 11%, Pulmonary 9%, GI 8%, MSK 8%, Infectious, Neuro, Psych and Reproductive 7% each, Endocrine, EENT and Professional Practice 6%, Heme and Renal 5%, Derm and GU 4%.](visuals/01-blueprint-weights.svg)
 
 *Figure: PANCE content weights. NCCPA blueprint, effective January 2025.*
@@ -104,7 +102,6 @@ Every question is a short patient story. Then it asks one of three things.
 
 - Pick the **guideline** first-line choice.
 - Then check the stem for **traps**: pregnancy, kidney function, allergy, age.
-
 
 ![Four-step framework: clues, most likely diagnosis, next step, first-line treatment.](visuals/02-question-framework.svg)
 
