@@ -413,7 +413,8 @@ function clampPct(value: number): number {
 export function domainUrgency(topic: ExamDayTopicInput): number {
   const weight = Math.max(0, topic.blueprintWeightPct);
   const high = weight >= HIGH_WEIGHT_PCT;
-  const untouched = topic.attempts <= 0;
+  const seen = Math.max(0, Math.round(topic.seen ?? 0) || 0);
+  const untouched = topic.attempts <= 0 && seen <= 0;
   const accuracy = topic.accuracyPct;
   if (untouched && high) return Math.min(100, 70 + weight);
   if (untouched) return Math.min(70, 35 + weight);
@@ -718,9 +719,11 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
   });
   const ranked = rankTopics(topics, heatmap);
   const qbankTopic = ranked[0] ?? null;
+  const isUnpracticed = (topic: ExamDayTopicInput) =>
+    topic.attempts <= 0 && Math.max(0, Math.round(topic.seen ?? 0) || 0) <= 0;
   const guideTopic =
-    ranked.find((topic) => topic.attempts === 0 && topic.id !== qbankTopic?.id) ??
-    ranked.find((topic) => topic.attempts === 0) ??
+    ranked.find((topic) => isUnpracticed(topic) && topic.id !== qbankTopic?.id) ??
+    ranked.find((topic) => isUnpracticed(topic)) ??
     qbankTopic;
 
   const qbankHref = qbankTopic
@@ -844,6 +847,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     daysUntilExam,
     now,
     gapLabel: qbankTopic?.label ?? null,
+    gapUntouched: qbankTopic ? isUnpracticed(qbankTopic) : false,
     openKnown,
     openIncorrect,
     incorrectTarget: openKnown ? incorrectCount : 0,

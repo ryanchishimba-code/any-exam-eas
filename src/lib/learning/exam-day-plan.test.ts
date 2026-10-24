@@ -664,6 +664,35 @@ describe("week countdown plan", () => {
     expect(planText(dated)).not.toMatch(/you will pass/i);
   });
 
+  it("does not call a practiced gap topic unpracticed in the week plan", () => {
+    const plan = buildExamDayPlan({
+      examSlug: "npte-pt",
+      examName: "NPTE-PT",
+      fieldId: "npte-pt",
+      testDate: "2026-11-03",
+      now,
+      totalAttempts: 120,
+      recentAccuracyPct: 80,
+      openIncorrect: 0,
+      questionsToday: 0,
+      topics: [
+        topic({
+          id: "musculoskeletal",
+          label: "Musculoskeletal System",
+          blueprintWeightPct: 28,
+          attempts: 40,
+          accuracyPct: 88,
+          coveragePct: 92,
+          seen: 180,
+          available: 200,
+        }),
+      ],
+    });
+    const coverageGoal = plan.weekPlan.goals.find((goal) => goal.id === "coverage");
+    expect(coverageGoal?.detail).not.toMatch(/haven't practiced yet/i);
+    expect(plan.weekPlan.todayLine).not.toMatch(/haven't practiced yet/i);
+  });
+
   it("ticks the coverage goal after today's Qbank block is saved", () => {
     const plan = buildExamDayPlan({
       examSlug: "pance",
