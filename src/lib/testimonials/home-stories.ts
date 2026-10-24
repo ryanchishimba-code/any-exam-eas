@@ -28,7 +28,8 @@ function fromSeed(seed: (typeof CONSENTED_TESTIMONIAL_SEEDS)[number]): LandingSu
 export function mergeHomeTestimonials(published: LandingSuccessStory[]): LandingSuccessStory[] {
   const approved = published.filter((story) => story.quote?.trim() && story.name?.trim());
   const byName = new Map(approved.map((story) => [story.name.trim().toLowerCase(), story]));
-  const stories: LandingSuccessStory[] = CONSENTED_TESTIMONIAL_SEEDS.map((seed) => {
+  const homeSeeds = CONSENTED_TESTIMONIAL_SEEDS.filter((seed) => seed.showOnHome !== false);
+  const stories: LandingSuccessStory[] = homeSeeds.map((seed) => {
     return byName.get(seed.name.trim().toLowerCase()) ?? fromSeed(seed);
   });
 

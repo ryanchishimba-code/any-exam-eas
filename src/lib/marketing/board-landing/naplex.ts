@@ -13,7 +13,13 @@ import { landingTrialHrefForExam } from "@/lib/landing/trial-href";
 import { TESTIMONIAL_RESULTS_NOTE } from "@/lib/marketing/legal-copy";
 import { homeTrialCtaLabel } from "@/lib/marketing/home-cta";
 import { naplexFeatureCards } from "@/lib/marketing/board-landing/board-features";
-import { boardHeroChips, boardHeroOffer } from "@/lib/marketing/board-landing/hero";
+import { BOARD_LANDING_FINAL_HEADING } from "@/lib/marketing/board-landing/board-landing-copy";
+import {
+  boardHeroChips,
+  boardHeroOffer,
+  boardLandingHeroHeadline,
+  boardLandingTrustPills,
+} from "@/lib/marketing/board-landing/hero";
 import {
   boardVideoNode,
   openBoardQuickBite,
@@ -155,7 +161,7 @@ function naplexFaqs(units: BoardQuestionUnits | null): { question: string; answe
       answer: howMany,
     },
     {
-      question: "How do I pass the NAPLEX on my first try?",
+      question: "How should I prepare for the NAPLEX?",
       answer:
         "Practice from a live question, including calculations, read why the keyed answer is right, and read a reason for each wrong option when the item has one. Then review misses before test day. A practice score is not a prediction of a license result.",
     },
@@ -209,7 +215,7 @@ export function buildNaplexLandingModel(input: {
   const heroChips = boardHeroChips(
     heroOffer,
     "Calculation walkthroughs and distractor reasons on scored pharmacy items.",
-    "NAPLEX item types, toolkit, and timed practice—no per-exam add-ons."
+    "NAPLEX item types, toolkit, and timed practice — no per-exam add-ons."
   );
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(NAPLEX_TYPICAL_LIST_PRICE_USD);
@@ -229,7 +235,7 @@ export function buildNaplexLandingModel(input: {
     pagePath: "/naplex",
     breadcrumbName: "NAPLEX",
     pageName: naplexMetaTitle(),
-    productDescription: `NAPLEX practice questions, pharmacy calculations, and five other boards on one plan at ${price} a month.`,
+    productDescription: `NAPLEX practice questions, pharmacy calculations, and five other boards on one plan at ${price}/mo.`,
     trialHref,
     faqs,
   });
@@ -242,13 +248,15 @@ export function buildNaplexLandingModel(input: {
     bankTypes: input.degraded ? {} : input.bankTypes,
   });
 
+  const headline = boardLandingHeroHeadline("NAPLEX", units);
+
   return {
-    h1Lead: "Pass the NAPLEX on your",
-    h1Accent: "first try.",
+    h1Lead: headline.h1Lead,
+    h1Accent: headline.h1Accent,
     lede: heroWhyUs("naplex"),
     trialHref,
     trialLabel: homeTrialCtaLabel(),
-    trust: ["5-day free trial", "No payment method to start", "Cancel in Settings"],
+    trust: boardLandingTrustPills(),
     heroOffer,
     heroChips,
     proofPoints: [],
@@ -294,7 +302,7 @@ export function buildNaplexLandingModel(input: {
     storyNote: TESTIMONIAL_RESULTS_NOTE,
     faqs,
     links,
-    finalHeading: "Start your free trial.",
+    finalHeading: BOARD_LANDING_FINAL_HEADING,
     finalLede: "No payment method required.",
     boardName: "NAPLEX",
     sampleKicker: "Free NAPLEX practice question",

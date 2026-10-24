@@ -33,7 +33,7 @@ export function buildNclexToolkitDonutSegments(input: {
 
   segments.push({
     id: "qbank",
-    label: "NCLEX question bank",
+    label: "NCLEX-RN question bank",
     detail: live > 0 ? `${formatExactQuestionCount(live)} live scored questions.` : "Live NCLEX-RN questions on Pro.",
   });
 

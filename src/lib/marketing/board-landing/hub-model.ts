@@ -10,7 +10,16 @@ import {
 import type { LandingSuccessStory } from "@/lib/landing/content";
 import { landingTrialHrefForExam } from "@/lib/landing/trial-href";
 import { boardFeatureCardsForExam } from "@/lib/marketing/board-landing/board-features";
-import { boardHeroChips, boardHeroOffer } from "@/lib/marketing/board-landing/hero";
+import {
+  BOARD_LANDING_FINAL_HEADING,
+  boardLandingBreadcrumbName,
+} from "@/lib/marketing/board-landing/board-landing-copy";
+import {
+  boardHeroChips,
+  boardHeroOffer,
+  boardLandingHeroHeadline,
+  boardLandingTrustPills,
+} from "@/lib/marketing/board-landing/hero";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
 import { typicalPrepForExam } from "@/lib/marketing/board-landing/typical-prep";
 import { CLINICAL_REVIEWERS, clinicalReviewerForExam } from "@/lib/marketing/company";
@@ -55,8 +64,6 @@ export function isHubExamKey(key: ExamSeoKey): key is HubExamKey {
 }
 
 type HubCopy = {
-  h1Lead: string;
-  h1Accent: string;
   chipMiddle: string;
   chipThird: string;
   questionNoun: string;
@@ -74,10 +81,8 @@ const HUB_META_LABEL: Record<HubExamKey, string> = {
 
 const HUB_COPY: Record<HubExamKey, HubCopy> = {
   usmle: {
-    h1Lead: "Pass USMLE steps on your",
-    h1Accent: "first try.",
     chipMiddle: "Step 1, Step 2 CK, and Step 3 banks with teachable rationales.",
-    chipThird: "Anatomy Explorer, timed blocks, and readiness score—one Pro plan.",
+    chipThird: "Anatomy Explorer, timed blocks, and readiness score — one Pro plan.",
     questionNoun: "USMLE questions",
     metaBoardLabel: HUB_META_LABEL.usmle,
     metaDescription: `USMLE practice questions for Step 1, Step 2 CK, and Step 3 in one qbank. Try a free sample question. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial. Cancel anytime.`,
@@ -90,8 +95,6 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     ],
   },
   pance: {
-    h1Lead: "Pass the PANCE on your",
-    h1Accent: "first try.",
     chipMiddle: "Board-style vignettes with keyed answers and distractor reasons.",
     chipThird: "Timed practice, readiness score, and six boards on one plan.",
     questionNoun: "PANCE questions",
@@ -106,8 +109,6 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     ],
   },
   "aanp-fnp": {
-    h1Lead: "Pass the AANP FNP on your",
-    h1Accent: "first try.",
     chipMiddle: "FNP vignettes with teachable rationales and an included study guide.",
     chipThird: "Question of the Day, readiness score, and timed full exams.",
     questionNoun: "AANP FNP questions",
@@ -122,8 +123,6 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     ],
   },
   "npte-pt": {
-    h1Lead: "Pass the NPTE-PT on your",
-    h1Accent: "first try.",
     chipMiddle: "Physical therapy items with explanations for each answer choice.",
     chipThird: "Anatomy Explorer, timed sets, and six boards on Pro.",
     questionNoun: "NPTE-PT questions",
@@ -147,23 +146,23 @@ function liveUnits(units: BoardQuestionUnits | null, degraded: boolean): BoardQu
 
 function hubFaqs(
   examKey: HubExamKey,
-  units: BoardQuestionUnits | null,
-  config: ReturnType<typeof getExamSeoConfig>
+  units: BoardQuestionUnits | null
 ): { question: string; answer: string }[] {
+  const boardLabel = boardLandingBreadcrumbName(examKey);
   const price = formatMonthlyPrice("pro");
   const typical = typicalPrepForExam(examKey);
   const typicalLabel = formatPlanUsd(typical.amountUsd);
   const howMany = units
-    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for ${config.shortName}.`
+    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for ${boardLabel}.`
     : "We show the live total on this page when the bank lookup succeeds; we do not guess a number.";
   const base = [
     {
-      question: `How many ${config.shortName} practice questions are included?`,
+      question: `How many ${boardLabel} practice questions are included?`,
       answer: howMany,
     },
     {
       question: "How much does prep cost?",
-      answer: `Pro is ${price}/mo for ${config.shortName} plus five other boards. Typical ${typical.periodLabel} we checked lists around ${typicalLabel} (as of ${typical.asOf}).`,
+      answer: `Pro is ${price}/mo for ${boardLabel} plus five other boards. Typical ${typical.periodLabel} we checked lists around ${typicalLabel} (as of ${typical.asOf}).`,
     },
     {
       question: "Is there a free trial?",
@@ -236,6 +235,7 @@ export function buildHubLandingModel(input: {
 }): BoardLandingModel {
   const config = getExamSeoConfig(input.examKey);
   const copy = HUB_COPY[input.examKey];
+  const boardLabel = boardLandingBreadcrumbName(input.examKey);
   const units = liveUnits(input.units, input.degraded);
   const path = examMarketingPath(input.examKey);
   const trialHref = landingTrialHrefForExam(input.examKey);
@@ -251,11 +251,11 @@ export function buildHubLandingModel(input: {
     quickBite: null,
     usmleStepCounts: input.usmleStepCounts,
   });
-  const faqs = hubFaqs(input.examKey, units, config);
+  const faqs = hubFaqs(input.examKey, units);
   const nav = EXAM_NAV_ITEMS.find((item) => item.slug === input.examKey);
   const reviewer = clinicalReviewerForExam(input.examKey);
   const links = [
-    { href: nav?.practiceHref ?? `/practice/${input.examKey}`, label: `${config.shortName} practice` },
+    { href: nav?.practiceHref ?? `/practice/${input.examKey}`, label: `${boardLabel} practice` },
     { href: qotdPath(input.examKey), label: "Question of the Day" },
     { href: ROUTES.pricing, label: "Pricing" },
     { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
@@ -279,9 +279,9 @@ export function buildHubLandingModel(input: {
   }
   const graph = boardLandingBaseGraph({
     pagePath: path,
-    breadcrumbName: config.shortName,
+    breadcrumbName: boardLabel,
     pageName: enforceMetaTitle(freeBoardMetaTitle(copy.metaBoardLabel), path),
-    productDescription: `${config.shortName} practice questions and five other boards on one plan at ${price} a month.`,
+    productDescription: `${boardLabel} practice questions and five other boards on one plan at ${price}/mo.`,
     trialHref,
     faqs,
   });
@@ -293,14 +293,15 @@ export function buildHubLandingModel(input: {
     offer: heroOffer,
     bankTypes: {},
   });
+  const headline = boardLandingHeroHeadline(boardLabel, units);
 
   return {
-    h1Lead: copy.h1Lead,
-    h1Accent: copy.h1Accent,
+    h1Lead: headline.h1Lead,
+    h1Accent: headline.h1Accent,
     lede: "Start your free trial, then drill the live bank with teachable rationales.",
     trialHref,
     trialLabel: homeTrialCtaLabel(),
-    trust: ["5-day free trial", "No payment method to start", "Cancel in Settings"],
+    trust: boardLandingTrustPills(),
     heroOffer,
     heroChips,
     proofPoints: [],
@@ -308,7 +309,7 @@ export function buildHubLandingModel(input: {
     stats,
     countLine: null,
     priceHeading: "Simple pricing.",
-    priceLede: `${price}/mo for ${config.shortName} and five other boards after your ${TRIAL_DAYS}-day trial.`,
+    priceLede: `${price}/mo for ${boardLabel} and five other boards after your ${TRIAL_DAYS}-day trial.`,
     prices: [
       {
         id: "typical",
@@ -353,15 +354,15 @@ export function buildHubLandingModel(input: {
     storyNote: "",
     faqs,
     links,
-    finalHeading: "Start your free trial.",
+    finalHeading: BOARD_LANDING_FINAL_HEADING,
     finalLede: "No payment method required.",
-    boardName: config.shortName,
-    sampleKicker: `Free ${config.shortName} practice question`,
-    explainedTitle: `Sample ${config.shortName} question`,
-    statsLabel: `Live ${config.shortName} bank counts`,
-    linksHeading: `More ${config.shortName} practice`,
+    boardName: boardLabel,
+    sampleKicker: `Free ${boardLabel} practice question`,
+    explainedTitle: `Sample ${boardLabel} question`,
+    statsLabel: `Live ${boardLabel} bank counts`,
+    linksHeading: `More ${boardLabel} practice`,
     formatAnchor: "formats",
-    sceneKicker: `${config.shortName} case`,
+    sceneKicker: `${boardLabel} case`,
     sceneIdPrefix: input.examKey.replace(/[^a-z0-9]/g, "-"),
     heroCtaName: `${input.examKey.replace(/-/g, "_")}_hero_trial`,
     heroCtaLocation: `${input.examKey}_hero`,

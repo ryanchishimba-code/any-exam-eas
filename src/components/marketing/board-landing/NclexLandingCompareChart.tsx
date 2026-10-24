@@ -50,7 +50,7 @@ export function NclexLandingCompareChart({ data }: { data: NclexCompareChartData
 
       <p id="bl-nclex-chart-alt" className="bl-nclex-chart__alt">{data.textAlternative}</p>
       <p className="bl-nclex-chart__fine">
-        Bar lengths scale to internal serve targets for layout only—not a competitor comparison.
+        Bar lengths scale to internal serve targets for layout only — not a competitor comparison.
       </p>
     </section>
   );

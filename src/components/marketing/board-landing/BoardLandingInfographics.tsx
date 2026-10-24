@@ -142,7 +142,7 @@ export function BoardLandingInfographics({
           </div>
           <div className="bl-visuals__device-screen">
             <p className="bl-device-kicker">Practice UI</p>
-            <p className="bl-visuals__device-stem">Stem, choices, and rationales—same layout as study mode.</p>
+            <p className="bl-visuals__device-stem">Stem, choices, and rationales — same layout as study mode.</p>
             <div className="bl-visuals__device-options">
               <span />
               <span className="is-keyed" />
