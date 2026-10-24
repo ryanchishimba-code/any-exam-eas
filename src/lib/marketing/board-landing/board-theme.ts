@@ -156,7 +156,7 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
           id: "breadth",
           shortLabel: "Every system",
           worry: "Every organ system is fair game",
-          fix: "Rotate PANCE vignettes by blueprint area and review misses by topic.",
+          fix: "Blueprint topic drills plus an included PANCE study guide for weak areas.",
         },
         {
           id: "pace",

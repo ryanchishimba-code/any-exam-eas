@@ -16,7 +16,7 @@ describe("study guide offer copy", () => {
 
   it("sends each book to trial or sign-in, not the manuscript", () => {
     const cards = studyGuideOfferCards();
-    expect(cards.map((card) => card.exam)).toEqual(["nclex", "naplex", "aanp-fnp"]);
+    expect(cards.map((card) => card.exam)).toEqual(["nclex", "naplex", "aanp-fnp", "pance"]);
     for (const card of cards) {
       expect(card.trialHref).toContain("/signup?plan=trial");
       expect(card.trialHref).not.toContain("/study-guide");
@@ -29,6 +29,7 @@ describe("study guide offer copy", () => {
   it("recognizes study-guide login callbacks", () => {
     expect(isStudyGuideCallback("/nclex/study-guide/cardiac")).toBe(true);
     expect(isStudyGuideCallback("/naplex/study-guide")).toBe(true);
+    expect(isStudyGuideCallback("/pance/study-guide/cardiovascular")).toBe(true);
     expect(isStudyGuideCallback("/dashboard")).toBe(false);
   });
 });

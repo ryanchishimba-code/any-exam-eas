@@ -101,13 +101,14 @@ export function buildResourcesHubMetadata(): Metadata {
 
 export function buildFreeGuidesMetadata(): Metadata {
   const title = "Free Tools & Premium Books";
-  const description = `Drug cards, anatomy, and six board hubs stay free. NCLEX, NAPLEX, and FNP books include bookmarks and highlights on a ${formatTrialLabel()}, then Pro at ${formatMonthlyPrice("pro")}/mo.`;
+  const description = `Drug cards, anatomy, and six board hubs stay free. NCLEX, NAPLEX, FNP, and PANCE books include highlights on a ${formatTrialLabel()}, then Pro at ${formatMonthlyPrice("pro")}/mo.`;
   return {
     ...baseOpenGraph(title, description, "/free-guides", { absoluteTitle: true }),
     keywords: [
       "NCLEX reference book",
       "NAPLEX reference book",
       "FNP reference book",
+      "PANCE reference book",
       "board exam toolkit",
       "free NCLEX practice",
     ],

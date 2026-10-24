@@ -61,7 +61,7 @@ describe("figure emission", () => {
 describe("shipped visual assets", () => {
   // Every guide's figures must be measurable at ingest, or that book goes back
   // to reflowing mid-scroll. Covers each exam so a new one cannot skip the check.
-  it.each(["nclex-study-guide", "naplex-study-guide"])(
+  it.each(["nclex-study-guide", "naplex-study-guide", "pance-study-guide"])(
     "exposes readable dimensions for every figure in %s",
     (guideDir) => {
       const dir = path.join(process.cwd(), "public", guideDir, "visuals");

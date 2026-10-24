@@ -39,10 +39,10 @@ const content = [
   ),
   h3("Reference books are not a free download"),
   p(
-    `The NCLEX, NAPLEX, and AANP FNP study guides are reference books inside the product. They open for a signed-in trial or Pro account. When the trial ends, they close with the rest of the study tools. Bookmarks and highlights stay on the account if you continue. There is no separate “free PDF” that replaces the book.`
+    `The NCLEX, NAPLEX, AANP FNP, and PANCE study guides are reference books inside the product. They open for a signed-in trial or Pro account. When the trial ends, they close with the rest of the study tools. Bookmarks and highlights stay on the account if you continue. There is no separate “free PDF” that replaces the book.`
   ),
   p(
-    `Open them from ${a("/nclex/study-guide", "NCLEX")}, ${a("/naplex/study-guide", "NAPLEX")}, or ${a("/aanp-fnp/study-guide", "AANP FNP")} after you start. USMLE, PANCE, and NPTE-PT prep on this plan is the question bank, Roadmap, and exams, not a matching reference book.`
+    `Open them from ${a("/nclex/study-guide", "NCLEX")}, ${a("/naplex/study-guide", "NAPLEX")}, ${a("/aanp-fnp/study-guide", "AANP FNP")}, or ${a("/pance/study-guide", "PANCE")} after you start. USMLE and NPTE-PT prep on this plan is the question bank, Roadmap, and exams, not a matching reference book.`
   ),
 
   h2("NCLEX item types in the bank"),
@@ -101,7 +101,7 @@ const content = [
     },
     {
       q: "Are the study guides free?",
-      a: "No. The NCLEX, NAPLEX, and AANP FNP reference books are included during the trial and on Pro. They are not available as a free download after the trial ends.",
+      a: "No. The NCLEX, NAPLEX, AANP FNP, and PANCE reference books are included during the trial and on Pro. They are not available as a free download after the trial ends.",
     },
     {
       q: "Does the NCLEX bank include Next Generation items?",

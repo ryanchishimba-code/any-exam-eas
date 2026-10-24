@@ -166,10 +166,40 @@ const AANP_FNP_CHAPTER_TOPICS: ChapterTopicMap = {
   "back-matter": [],
 };
 
+/**
+ * PANCE mapping — one high-yield module per system chapter. Navigational
+ * chapters (plans, traps, exam day, FAQ, sources) stay empty on purpose.
+ */
+const PANCE_CHAPTER_TOPICS: ChapterTopicMap = {
+  "front-matter": [],
+  "exam-strategy": [],
+  cardiovascular: ["cardiovascular"],
+  pulmonary: ["pulmonary"],
+  "gi-nutrition": ["gastrointestinal"],
+  musculoskeletal: ["musculoskeletal"],
+  "infectious-disease": ["infectious-diseases"],
+  neurologic: ["neurologic"],
+  psychiatry: ["psychiatry"],
+  reproductive: ["reproductive"],
+  endocrine: ["endocrine"],
+  eent: ["eent"],
+  "professional-practice": ["professional-practice"],
+  hematologic: ["hematologic"],
+  renal: ["renal"],
+  dermatologic: ["dermatologic"],
+  genitourinary: ["genitourinary"],
+  "common-traps": [],
+  "exam-day": [],
+  "quick-reference": [],
+  faq: [],
+  "back-matter": [],
+};
+
 export const CHAPTER_TOPICS_BY_EXAM: Record<StudyGuideExam, ChapterTopicMap> = {
   nclex: NCLEX_CHAPTER_TOPICS,
   naplex: NAPLEX_CHAPTER_TOPICS,
   "aanp-fnp": AANP_FNP_CHAPTER_TOPICS,
+  pance: PANCE_CHAPTER_TOPICS,
 };
 
 export function getTopicSlugsForChapter(

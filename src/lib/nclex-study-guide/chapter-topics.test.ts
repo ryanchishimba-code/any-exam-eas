@@ -1,3 +1,5 @@
+import { readdirSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { NCLEX_TOPIC_REGISTRY } from "@/lib/exam-prep/nclex/topic-registry";
 import { NAPLEX_TOPIC_REGISTRY } from "@/lib/exam-prep/naplex/topic-registry";
@@ -265,6 +267,58 @@ describe("AANP FNP chapter → topic map", () => {
   it("never emits a related-topic entry without a usable link", () => {
     for (const chapter of AANP_FNP_CHAPTER_SLUGS) {
       for (const t of getChapterRelatedTopics("aanp-fnp", chapter)) {
+        const hasLink = Boolean(t.deepDiveHref || t.libraryHref || t.anatomyHref);
+        expect(hasLink, `${chapter} → ${t.slug} has no link`).toBe(true);
+        expect(t.title.trim()).not.toBe("");
+      }
+    }
+  });
+});
+
+/** PANCE chapters from content/pance-study-guide (slugFromFilename). */
+const PANCE_CHAPTER_SLUGS = readdirSync(path.join(process.cwd(), "content/pance-study-guide"))
+  .filter((file) => /^\d{2}-.+\.md$/i.test(file))
+  .map((file) =>
+    file
+      .replace(/\.md$/i, "")
+      .replace(/^\d{2}-/, "")
+      .replace(/[^a-z0-9]+/gi, "-")
+      .toLowerCase()
+      .replace(/^-|-$/g, "")
+  )
+  .sort();
+
+describe("PANCE chapter → topic map", () => {
+  it("only references topics that exist in the PANCE high-yield seeds", () => {
+    const known = new Set(getHighYieldTopics("pance").map((t) => t.slug));
+    const unknown: string[] = [];
+    for (const [chapter, slugs] of Object.entries(CHAPTER_TOPICS_BY_EXAM.pance)) {
+      for (const slug of slugs) {
+        if (!known.has(slug)) unknown.push(`${chapter} → ${slug}`);
+      }
+    }
+    expect(unknown).toEqual([]);
+  });
+
+  it("covers every chapter the ingest produces", () => {
+    expect(Object.keys(CHAPTER_TOPICS_BY_EXAM.pance).sort()).toEqual(PANCE_CHAPTER_SLUGS);
+  });
+
+  it("does not repeat a topic within one chapter", () => {
+    for (const [chapter, slugs] of Object.entries(CHAPTER_TOPICS_BY_EXAM.pance)) {
+      expect(new Set(slugs).size, `${chapter} has duplicates`).toBe(slugs.length);
+    }
+  });
+
+  it("returns no topics for navigational chapters", () => {
+    expect(getTopicSlugsForChapter("pance", "front-matter")).toEqual([]);
+    expect(getTopicSlugsForChapter("pance", "faq")).toEqual([]);
+    expect(getTopicSlugsForChapter("pance", "back-matter")).toEqual([]);
+  });
+
+  it("never emits a related-topic entry without a usable link", () => {
+    for (const chapter of PANCE_CHAPTER_SLUGS) {
+      for (const t of getChapterRelatedTopics("pance", chapter)) {
         const hasLink = Boolean(t.deepDiveHref || t.libraryHref || t.anatomyHref);
         expect(hasLink, `${chapter} → ${t.slug} has no link`).toBe(true);
         expect(t.title.trim()).not.toBe("");

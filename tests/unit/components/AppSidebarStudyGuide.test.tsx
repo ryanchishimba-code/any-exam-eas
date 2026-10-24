@@ -104,6 +104,13 @@ describe("Study Guide in Study Tools", () => {
     expect(link).toHaveAttribute("href", "/aanp-fnp/study-guide");
   });
 
+  it("shows for a PANCE learner and points at the PANCE book", () => {
+    renderFor("pance");
+    const link = studyGuideLink();
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute("href", "/pance/study-guide");
+  });
+
   it("stays under the Study Tools heading", () => {
     renderFor("naplex");
     expect(screen.getByText(/study tools/i)).toBeInTheDocument();

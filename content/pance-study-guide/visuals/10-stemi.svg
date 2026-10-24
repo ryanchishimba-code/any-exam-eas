@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="537.952734pt" height="319.32pt" viewBox="0 0 537.952734 319.32" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-24T08:34:48.186205</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 319.32 
+L 537.952734 319.32 
+L 537.952734 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 162.286767 70.92828 
+L 375.665967 70.92828 
+Q 382.361967 70.92828 382.361967 66.35448 
+L 382.361967 45.61992 
+Q 382.361967 41.04612 375.665967 41.04612 
+L 162.286767 41.04612 
+Q 155.590767 41.04612 155.590767 45.61992 
+L 155.590767 66.35448 
+Q 155.590767 70.92828 162.286767 70.92828 
+z
+" clip-path="url(#pe6161cd14d)" style="fill: #fff4e0; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 171.214767 134.96148 
+L 366.737967 134.96148 
+Q 373.433967 134.96148 373.433967 130.38768 
+L 373.433967 103.55472 
+Q 373.433967 98.98092 366.737967 98.98092 
+L 171.214767 98.98092 
+Q 164.518767 98.98092 164.518767 103.55472 
+L 164.518767 130.38768 
+Q 164.518767 134.96148 171.214767 134.96148 
+z
+" clip-path="url(#pe6161cd14d)" style="fill: #fff4e0; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 81.934767 214.24068 
+L 188.177967 214.24068 
+Q 194.873967 214.24068 194.873967 209.66688 
+L 194.873967 182.83392 
+Q 194.873967 178.26012 188.177967 178.26012 
+L 81.934767 178.26012 
+Q 75.238767 178.26012 75.238767 182.83392 
+L 75.238767 209.66688 
+Q 75.238767 214.24068 81.934767 214.24068 
+z
+" clip-path="url(#pe6161cd14d)" style="fill: #e6f4ea; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 327.454767 220.33908 
+L 460.481967 220.33908 
+Q 467.177967 220.33908 467.177967 215.76528 
+L 467.177967 176.73552 
+Q 467.177967 172.16172 460.481967 172.16172 
+L 327.454767 172.16172 
+Q 320.758767 172.16172 320.758767 176.73552 
+L 320.758767 215.76528 
+Q 320.758767 220.33908 327.454767 220.33908 
+z
+" clip-path="url(#pe6161cd14d)" style="fill: #eaf1fa; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 331.918767 285.89688 
+L 456.017967 285.89688 
+Q 462.713967 285.89688 462.713967 281.32308 
+L 462.713967 257.53932 
+Q 462.713967 252.96552 456.017967 252.96552 
+L 331.918767 252.96552 
+Q 325.222767 252.96552 325.222767 257.53932 
+L 325.222767 281.32308 
+Q 325.222767 285.89688 331.918767 285.89688 
+z
+" clip-path="url(#pe6161cd14d)" style="fill: #eaf1fa; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1a3d6d" x="268.976367" y="26.225569" transform="rotate(-0 268.976367 26.225569)">STEMI reperfusion (2025 ACS guideline)</text>
+   </g>
+   <g id="text_2">
+    <text style="font-style: italic; font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="268.976367" y="307.269042" transform="rotate(-0 268.976367 307.269042)">Source: 2025 ACC/AHA/ACEP/NAEMSP/SCAI ACS Guideline; 2013 ACCF/AHA STEMI Guideline  ·  AnyExamEasy study aid, not medical advice</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="268.976367" y="58.325442" transform="rotate(-0 268.976367 58.325442)">Chest pain → ECG shows ST elevation</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(195.382383 113.908212)">PCI within 90 min of first contact</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(217.335352 124.710673)">(≤120 min if transfer)?</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 268.976367 73.233121 
+Q 268.976367 84.956039 268.976367 95.337317 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 270.976367 91.337317 
+L 268.976367 95.337317 
+L 266.976367 91.337317 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(109.054102 193.187412)">Primary PCI</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(113.402227 203.989873)">(cath lab)</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(353.323523 187.786181)">Symptoms &lt;12 h,</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(348.905086 198.588642)">no contraindication:</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(349.326961 209.391103)">fibrinolytic ≤30 min</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 213.723469 133.296163 
+Q 179.695648 155.08666 146.797662 176.153642 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 151.24473 175.680794 
+L 146.797662 176.153642 
+L 149.087624 172.312279 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1a3d6d" x="143.984367" y="157.164325" transform="rotate(-0 143.984367 157.164325)">Yes</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 324.23417 133.288998 
+Q 353.792944 152.037366 382.218757 170.067125 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 379.912156 166.23573 
+L 382.218757 170.067125 
+L 377.76968 169.613569 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1a3d6d" x="360.488367" y="154.115125" transform="rotate(-0 360.488367 154.115125)">No</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(363.546258 266.368212)">Then transfer</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(358.968211 277.170673)">for PCI strategy</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 393.968367 222.646154 
+Q 393.968367 237.416607 393.968367 250.845419 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 395.968367 246.845419 
+L 393.968367 250.845419 
+L 391.968367 246.845419 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pe6161cd14d">
+   <rect x="45.776367" y="7.2" width="446.4" height="304.92"/>
+  </clipPath>
+ </defs>
+</svg>

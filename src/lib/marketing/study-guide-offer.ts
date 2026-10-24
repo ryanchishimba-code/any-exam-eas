@@ -1,5 +1,9 @@
 import { landingTrialHrefForExam } from "@/lib/landing/content";
-import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
+import {
+  STUDY_GUIDES,
+  studyGuideRouteBases,
+  type StudyGuideExam,
+} from "@/lib/nclex-study-guide/guide-registry";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 /** Honest offer for the premium reference books. No discount percentages. */
@@ -33,5 +37,8 @@ export function studyGuideOfferCards(): StudyGuideOfferCard[] {
 }
 
 export function isStudyGuideCallback(callbackUrl: string): boolean {
-  return /\/(nclex|naplex|aanp-fnp)\/study-guide(\/|$|\?)/.test(callbackUrl);
+  const path = callbackUrl.split("?")[0] ?? callbackUrl;
+  return studyGuideRouteBases().some(
+    (base) => path === base || path.startsWith(`${base}/`)
+  );
 }

@@ -22,6 +22,16 @@ describe("buildHubBoardDonutSegments", () => {
     });
     expect(segments.map((s) => s.id)).toContain("study-guide");
   });
+
+  it("adds a PANCE study guide slice when configured", () => {
+    const segments = buildHubBoardDonutSegments({
+      examKey: "pance",
+      liveQuestionCount: 400,
+      includeStudyGuide: true,
+      includeAllUsmleSteps: false,
+    });
+    expect(segments.map((s) => s.label)).toContain("PANCE study guide");
+  });
 });
 
 describe("hubBoardDonutSlicePath", () => {

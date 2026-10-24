@@ -12,7 +12,7 @@
  */
 
 /** Exams that ship a study guide book. A subset of `ExamSlug`. */
-export type StudyGuideExam = "nclex" | "naplex" | "aanp-fnp";
+export type StudyGuideExam = "nclex" | "naplex" | "aanp-fnp" | "pance";
 
 export type StudyGuideConfig = {
   exam: StudyGuideExam;
@@ -100,6 +100,22 @@ export const STUDY_GUIDES: Record<StudyGuideExam, StudyGuideConfig> = {
       examName: "AANP FNP",
       owner: "AANPCB",
       programNoun: "nurse practitioner program",
+    },
+  },
+  pance: {
+    exam: "pance",
+    track: "std",
+    guideId: "sg_guide_pance_std",
+    title: "PANCE Study Guide",
+    bookTitle: "AnyExamEasy PANCE Reference Book",
+    routeBase: "/pance/study-guide",
+    hubHref: "/pance",
+    contentDir: "pance-study-guide",
+    visualsPrefix: "/pance-study-guide/visuals/",
+    legal: {
+      examName: "PANCE",
+      owner: "NCCPA",
+      programNoun: "PA program",
     },
   },
 };

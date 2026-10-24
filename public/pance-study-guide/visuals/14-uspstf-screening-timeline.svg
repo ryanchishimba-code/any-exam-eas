@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="667.06665pt" height="295.520039pt" viewBox="0 0 667.06665 295.520039" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-24T08:34:48.321741</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 295.520039 
+L 667.06665 295.520039 
+L 667.06665 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 111.802578 243.318281 
+L 586.102578 243.318281 
+L 586.102578 21.558281 
+L 111.802578 21.558281 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 166.008292 31.638281 
+L 518.345435 31.638281 
+L 518.345435 46.571615 
+L 166.008292 46.571615 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 147.939721 50.304948 
+L 400.899721 50.304948 
+L 400.899721 65.238281 
+L 147.939721 65.238281 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 179.559721 68.971615 
+L 405.416864 68.971615 
+L 405.416864 83.904948 
+L 179.559721 83.904948 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 206.662578 87.638281 
+L 405.416864 87.638281 
+L 405.416864 102.571615 
+L 206.662578 102.571615 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 292.488292 106.304948 
+L 446.07115 106.304948 
+L 446.07115 121.238281 
+L 292.488292 121.238281 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 315.074007 124.971615 
+L 450.588292 124.971615 
+L 450.588292 139.904948 
+L 315.074007 139.904948 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 269.902578 143.638281 
+L 428.002578 143.638281 
+L 428.002578 158.571615 
+L 269.902578 158.571615 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 337.659721 162.304948 
+L 473.174007 162.304948 
+L 473.174007 177.238281 
+L 337.659721 177.238281 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 360.245435 180.971615 
+L 423.485435 180.971615 
+L 423.485435 195.904948 
+L 360.245435 195.904948 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 405.416864 199.638281 
+L 450.588292 199.638281 
+L 450.588292 214.571615 
+L 405.416864 214.571615 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 405.416864 218.304948 
+L 518.345435 218.304948 
+L 518.345435 233.238281 
+L 405.416864 233.238281 
+z
+" clip-path="url(#p9e2d756563)" style="fill: #2b5797"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m6189d09574" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m6189d09574" x="111.802578" y="243.318281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="111.802578" y="257.915938" transform="rotate(-0 111.802578 257.915938)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m6189d09574" x="202.145435" y="243.318281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="202.145435" y="257.915938" transform="rotate(-0 202.145435 257.915938)">20</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m6189d09574" x="292.488292" y="243.318281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="292.488292" y="257.915938" transform="rotate(-0 292.488292 257.915938)">40</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m6189d09574" x="382.83115" y="243.318281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="382.83115" y="257.915938" transform="rotate(-0 382.83115 257.915938)">60</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m6189d09574" x="473.174007" y="243.318281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="473.174007" y="257.915938" transform="rotate(-0 473.174007 257.915938)">80</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m6189d09574" x="563.516864" y="243.318281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="563.516864" y="257.915938" transform="rotate(-0 563.516864 257.915938)">100</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="348.952578" y="271.915938" transform="rotate(-0 348.952578 271.915938)">Age (years)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_7">
+      <defs>
+       <path id="m929c9df122" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="39.104948" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="42.334284" transform="rotate(-0 104.802578 42.334284)">Depression (12+)</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="57.771615" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="61.000951" transform="rotate(-0 104.802578 61.000951)">Anxiety</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="76.438281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="79.667285" transform="rotate(-0 104.802578 79.667285)">HIV</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="95.104948" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="98.334284" transform="rotate(-0 104.802578 98.334284)">Cervical</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="113.771615" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="117.000618" transform="rotate(-0 104.802578 117.000618)">Breast (every 2 y)</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="132.438281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="135.667617" transform="rotate(-0 104.802578 135.667617)">Colorectal</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="151.104948" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="154.334284" transform="rotate(-0 104.802578 154.334284)">Diabetes (overweight)</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="169.771615" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_15">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="173.000951" transform="rotate(-0 104.802578 173.000951)">Lung LDCT (≥20 pk-yr)</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="188.438281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_16">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="191.667617" transform="rotate(-0 104.802578 191.667617)">PSA (shared decision)</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="207.104948" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_17">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="210.334284" transform="rotate(-0 104.802578 210.334284)">AAA (ever smoked)</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#m929c9df122" x="111.802578" y="225.771615" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_18">
+      <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: end" x="104.802578" y="229.000951" transform="rotate(-0 104.802578 229.000951)">Osteoporosis (DXA)</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_14">
+    <path d="M 111.802578 243.318281 
+L 111.802578 21.558281 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 111.802578 243.318281 
+L 586.102578 243.318281 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="521.95915" y="41.183073" transform="rotate(-0 521.95915 41.183073)">12–+  </text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="404.513435" y="59.850052" transform="rotate(-0 404.513435 59.850052)">8–64  youth 8–18 + adults ≤64</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="409.030578" y="78.516406" transform="rotate(-0 409.030578 78.516406)">15–65  </text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="409.030578" y="97.183385" transform="rotate(-0 409.030578 97.183385)">21–65  Pap / hrHPV</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="449.684864" y="115.84974" transform="rotate(-0 449.684864 115.84974)">40–74  </text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="454.202007" y="134.516406" transform="rotate(-0 454.202007 134.516406)">45–75  </text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="431.616292" y="153.183073" transform="rotate(-0 431.616292 153.183073)">35–70  </text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="476.787721" y="171.84974" transform="rotate(-0 476.787721 171.84974)">50–80  </text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="427.09915" y="190.516406" transform="rotate(-0 427.09915 190.516406)">55–69  men</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="454.202007" y="209.183073" transform="rotate(-0 454.202007 209.183073)">65–75  men, once</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: start" x="521.95915" y="227.850052" transform="rotate(-0 521.95915 227.850052)">65–+  women; younger if high risk</text>
+   </g>
+   <g id="text_30">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1a3d6d" x="348.952578" y="15.558281" transform="rotate(-0 348.952578 15.558281)">USPSTF screening by age (A/B recommendations; PSA = C)</text>
+   </g>
+  </g>
+  <g id="text_31">
+   <text style="font-style: italic; font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="341.302578" y="286.518281" transform="rotate(-0 341.302578 286.518281)">Source: USPSTF, uspreventiveservicestaskforce.org (2018–2025 recommendations)</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p9e2d756563">
+   <rect x="111.802578" y="21.558281" width="474.3" height="221.76"/>
+  </clipPath>
+ </defs>
+</svg>

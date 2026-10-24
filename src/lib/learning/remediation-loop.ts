@@ -3,8 +3,8 @@
  *
  * Open items use the shared mastery machine in `item-mastery.ts`: a miss stays
  * open through one correct (pending re-proof) until a spaced re-ask or a
- * confirmed mark-mastered. Study-guide chapters exist for NCLEX, NAPLEX, and
- * AANP FNP. USMLE, PANCE, and NPTE-PT inherit the same loop and omit the guide
+ * confirmed mark-mastered. Study-guide chapters exist for NCLEX, NAPLEX,
+ * AANP FNP, and PANCE. USMLE and NPTE-PT inherit the same loop and omit the guide
  * link when no chapter is mapped. Drug and card links appear only when a
  * catalog match exists.
  */
@@ -84,6 +84,11 @@ const CHAPTER_TITLES: Record<string, string> = {
   "msk-derm": "MSK & Derm",
   "ent-eyes-heme-id": "ENT, Eyes, Heme & ID",
   "pharmacology-prescribing": "Pharmacology & Prescribing",
+  "gi-nutrition": "GI & Nutrition",
+  "professional-practice": "Professional Practice",
+  "common-traps": "Common Traps",
+  "exam-day": "Exam Day",
+  faq: "FAQ",
 };
 
 /**

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="516.6pt" height="269.424pt" viewBox="0 0 516.6 269.424" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-24T08:34:48.116327</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 269.424 
+L 516.6 269.424 
+L 516.6 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 30.3012 212.239296 
+L 124.7148 212.239296 
+Q 132.2478 212.239296 132.2478 208.413936 
+L 132.2478 163.019664 
+Q 132.2478 159.194304 124.7148 159.194304 
+L 30.3012 159.194304 
+Q 22.7682 159.194304 22.7682 163.019664 
+L 22.7682 208.413936 
+Q 22.7682 212.239296 30.3012 212.239296 
+z
+" clip-path="url(#p08417fec95)" style="fill: #e6f4ea; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 150.8292 181.636416 
+L 245.2428 181.636416 
+Q 252.7758 181.636416 252.7758 177.811056 
+L 252.7758 132.416784 
+Q 252.7758 128.591424 245.2428 128.591424 
+L 150.8292 128.591424 
+Q 143.2962 128.591424 143.2962 132.416784 
+L 143.2962 177.811056 
+Q 143.2962 181.636416 150.8292 181.636416 
+z
+" clip-path="url(#p08417fec95)" style="fill: #eaf1fa; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 271.3572 151.033536 
+L 365.7708 151.033536 
+Q 373.3038 151.033536 373.3038 147.208176 
+L 373.3038 101.813904 
+Q 373.3038 97.988544 365.7708 97.988544 
+L 271.3572 97.988544 
+Q 263.8242 97.988544 263.8242 101.813904 
+L 263.8242 147.208176 
+Q 263.8242 151.033536 271.3572 151.033536 
+z
+" clip-path="url(#p08417fec95)" style="fill: #eaf1fa; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 391.8852 120.430656 
+L 486.2988 120.430656 
+Q 493.8318 120.430656 493.8318 116.605296 
+L 493.8318 71.211024 
+Q 493.8318 67.385664 486.2988 67.385664 
+L 391.8852 67.385664 
+Q 384.3522 67.385664 384.3522 71.211024 
+L 384.3522 116.605296 
+Q 384.3522 120.430656 391.8852 120.430656 
+z
+" clip-path="url(#p08417fec95)" style="fill: #fdecea; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1a3d6d" x="258.3" y="24.728689" transform="rotate(-0 258.3 24.728689)">Asthma, ages 12+: GINA Track 1 (preferred) steps</text>
+   </g>
+   <g id="text_2">
+    <text style="font-style: italic; font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="258.3" y="257.872002" transform="rotate(-0 258.3 257.872002)">Source: GINA 2026 Strategy / Summary Guide, ginasthma.org  ·  AnyExamEasy study aid, not medical advice</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(56.732805 177.722484)">Steps 1–2</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(34.65007 187.924808)">As-needed low-dose</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(46.829641 198.127132)">ICS-formoterol</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(184.303852 142.018441)">Step 3</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(178.005219 152.220766)">Low-dose</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(167.357641 162.42309)">ICS-formoterol</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(147.807641 172.625414)">maintenance + reliever</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(304.831852 111.415561)">Step 4</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(289.909039 121.617886)">Medium-dose</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(287.885641 131.82021)">ICS-formoterol</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(268.335641 142.022534)">maintenance + reliever</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(425.359852 80.812681)">Step 5</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(397.461258 91.015006)">Add LAMA; refer for</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(395.428562 101.21733)">phenotype; consider</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(397.556219 111.419654)">high-dose / biologic</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1a3d6d" x="258.3" y="231.62112" transform="rotate(-0 258.3 231.62112)">Reliever at every step: as-needed low-dose ICS-formoterol  ·  No SABA-only treatment</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p08417fec95">
+   <rect x="7.2" y="7.2" width="502.2" height="255.024"/>
+  </clipPath>
+ </defs>
+</svg>

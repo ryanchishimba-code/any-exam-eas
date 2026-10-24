@@ -98,6 +98,14 @@ export function buildHubBoardDonutSegments(input: HubBoardDonutRenderInput): Hub
     });
   }
 
+  if (input.includeStudyGuide && input.examKey === "pance") {
+    segments.push({
+      id: "study-guide",
+      label: "PANCE study guide",
+      detail: "Blueprint-aligned reference chapters included with Pro.",
+    });
+  }
+
   segments.push({
     id: "anatomy",
     label: "Anatomy Explorer",

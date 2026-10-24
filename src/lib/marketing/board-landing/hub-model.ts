@@ -55,6 +55,7 @@ import {
   formatMonthlyPrice,
 } from "@/lib/site";
 import { qotdPath } from "@/lib/demo/qotd-public";
+import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 
 const HUB_EXAM_KEYS = ["usmle", "pance", "aanp-fnp", "npte-pt"] as const;
 export type HubExamKey = (typeof HUB_EXAM_KEYS)[number];
@@ -95,7 +96,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     ],
   },
   pance: {
-    chipMiddle: "Board-style vignettes with keyed answers and distractor reasons.",
+    chipMiddle: "Board-style vignettes with teachable rationales and an included study guide.",
     chipThird: "Timed practice, readiness score, and six boards on one plan.",
     questionNoun: "PANCE questions",
     metaBoardLabel: HUB_META_LABEL.pance,
@@ -187,6 +188,12 @@ function hubFaqs(
       answer: "Yes. Blueprint-aligned study guide chapters are included with Pro.",
     });
   }
+  if (examKey === "pance") {
+    base.push({
+      question: "Is there a PANCE study guide?",
+      answer: "Yes. Blueprint-aligned study guide chapters are included with Pro.",
+    });
+  }
   return base.slice(0, 5);
 }
 
@@ -254,10 +261,12 @@ export function buildHubLandingModel(input: {
   const faqs = hubFaqs(input.examKey, units);
   const nav = EXAM_NAV_ITEMS.find((item) => item.slug === input.examKey);
   const reviewer = clinicalReviewerForExam(input.examKey);
+  const guide = getStudyGuideConfig(input.examKey);
   const links = [
     { href: nav?.practiceHref ?? `/practice/${input.examKey}`, label: `${boardLabel} practice` },
     { href: qotdPath(input.examKey), label: "Question of the Day" },
     { href: ROUTES.pricing, label: "Pricing" },
+    ...(guide ? [{ href: guide.routeBase, label: `${boardLabel} study guide` }] : []),
     { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
   ];
   const stats: { value: string; label: string }[] = [];
