@@ -63,6 +63,12 @@
   font-size: clamp(2.4rem, 8vw, 4.4rem);
   font-weight: 760;
   line-height: 0.98;
+  text-wrap: balance;
+}
+
+.board-landing--board-flow .bl-hero h1,
+.board-landing--naplex-flow .bl-hero h1 {
+  max-width: min(18em, 100%);
 }
 
 .bl-hero h1 span {

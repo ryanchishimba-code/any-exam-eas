@@ -101,6 +101,7 @@ describe("NCLEX landing model", () => {
     expect(model.stats[0]?.value).toBe("108");
     expect(model.stories.length).toBeGreaterThan(0);
     expect(model.stories.some((story) => story.name === "Nathan C.")).toBe(true);
+    expect(`${model.h1Lead} ${model.h1Accent}`).toBe("108 NCLEX-RN questions explained · $27.99/mo");
     expect(model.nclexCompare?.bars.length).toBeGreaterThan(2);
     expect(model.studentTrustBadge?.label).toMatch(/Trusted by nurses and nursing students/);
     expect(model.formats).toEqual([]);

@@ -107,7 +107,7 @@ export function BoardLanding({
             question={model.sample}
             anchorId="sample-question"
             headingId="sample-heading"
-            title="Free sample question"
+            title="Free sample practice question"
           />
         ) : null}
       </section>

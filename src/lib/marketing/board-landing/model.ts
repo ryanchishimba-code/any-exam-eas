@@ -28,6 +28,12 @@ import {
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
 import { nclexFeatureCards, type BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
+import {
+  BOARD_LANDING_FINAL_HEADING,
+  boardLandingBreadcrumbName,
+  boardLandingQuestionNoun,
+} from "@/lib/marketing/board-landing/board-landing-copy";
+import { boardLandingHeroHeadline, boardLandingTrustPills } from "@/lib/marketing/board-landing/hero";
 import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -186,7 +192,7 @@ export function mediaVersionUploadDate(mediaVersion: string | undefined): string
 }
 
 export function nclexMetaTitle(): string {
-  return enforceMetaTitle(freeBoardMetaTitle("NCLEX"), "/nclex");
+  return enforceMetaTitle(freeBoardMetaTitle(boardLandingBreadcrumbName("nclex")), "/nclex");
 }
 
 export function nclexMetaDescription(): string {
@@ -456,7 +462,7 @@ export function nclexHeroChips(offer: NonNullable<BoardLandingModel["heroOffer"]
     },
     {
       id: "included",
-      text: "NGN case studies, CAT-style exams, and readiness in your dashboard—no add-ons.",
+      text: "NGN case studies, CAT-style exams, and readiness in your dashboard — no add-ons.",
     },
   ];
 }
@@ -512,13 +518,14 @@ export function buildNclexLandingModel(input: {
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
   const trialHref = landingTrialHrefForExam("nclex");
+  const nclexLabel = boardLandingBreadcrumbName("nclex");
   const links: BoardLandingModel["links"] = [];
   const video = boardVideoNode(quickBite, "/nclex");
   const graph = boardLandingBaseGraph({
     pagePath: "/nclex",
-    breadcrumbName: "NCLEX",
+    breadcrumbName: nclexLabel,
     pageName: nclexMetaTitle(),
-    productDescription: `NCLEX-RN practice questions, Next Gen NCLEX practice, and five other boards on one plan at ${price} a month.`,
+    productDescription: `NCLEX-RN practice questions, Next Gen NCLEX practice, and five other boards on one plan at ${price}/mo.`,
     trialHref,
     faqs,
   });
@@ -532,14 +539,17 @@ export function buildNclexLandingModel(input: {
   });
   const secondary =
     input.sampleSecondary && input.sampleSecondary.stem !== sample.stem ? input.sampleSecondary : null;
+  const headline = boardLandingHeroHeadline(nclexLabel, units, {
+    questionNoun: boardLandingQuestionNoun("nclex"),
+  });
 
   return {
-    h1Lead: "Pass the NCLEX on your",
-    h1Accent: "first try.",
+    h1Lead: headline.h1Lead,
+    h1Accent: headline.h1Accent,
     lede: heroWhyUs("nclex"),
     trialHref,
     trialLabel: homeTrialCtaLabel(),
-    trust: ["5-day free trial", "No payment method to start", "Cancel in Settings"],
+    trust: boardLandingTrustPills(),
     heroOffer,
     heroChips,
     proofPoints: [],
@@ -581,12 +591,12 @@ export function buildNclexLandingModel(input: {
     storyNote: "",
     faqs,
     links,
-    finalHeading: "Start your free trial.",
+    finalHeading: BOARD_LANDING_FINAL_HEADING,
     finalLede: "No payment method required.",
-    boardName: "NCLEX",
-    sampleKicker: "Free NCLEX practice question",
-    explainedTitle: "Sample NCLEX question",
-    statsLabel: "Live NCLEX bank counts",
+    boardName: nclexLabel,
+    sampleKicker: "Free NCLEX-RN practice question",
+    explainedTitle: "Sample NCLEX-RN question",
+    statsLabel: "Live NCLEX-RN bank counts",
     linksHeading: "More NCLEX practice",
     formatAnchor: "next-gen",
     sceneKicker: "Next Gen case",

@@ -83,7 +83,7 @@ export function buildNaplexAceDonutSegments(input: {
     {
       id: "qotd",
       label: "Question of the Day",
-      detail: "One fresh NAPLEX question daily—free to try.",
+      detail: "One fresh NAPLEX question daily — free to try.",
     },
     {
       id: "explained",

@@ -111,7 +111,7 @@ export function nclexFeatureCards(input: {
   cards.push({
     id: "qotd",
     title: "Question of the Day",
-    line: "One fresh NCLEX question daily—free to try.",
+    line: "One fresh NCLEX-RN question daily — free to try.",
     icon: "qotd",
   });
 
@@ -170,7 +170,7 @@ function qotdCard(boardShort: string): BoardFeatureCard {
   return {
     id: "qotd",
     title: "Question of the Day",
-    line: `One fresh ${boardShort} question daily—free to try.`,
+    line: `One fresh ${boardShort} question daily — free to try.`,
     icon: "qotd",
   };
 }

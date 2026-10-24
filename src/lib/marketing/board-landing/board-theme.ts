@@ -48,9 +48,9 @@ export function boardThemeClass(slug: BoardSlug): string {
 export function heroWhyUs(slug: BoardSlug): string {
   switch (slug) {
     case "nclex":
-      return "NGN formats, CAT-style exams, and teachable rationales—on one Pro plan.";
+      return "NGN formats, CAT-style exams, and teachable rationales — on one Pro plan.";
     case "naplex":
-      return "Calculations, top-drug vignettes, and pharmacy law—without stacking subscriptions.";
+      return "Calculations, top-drug vignettes, and pharmacy law — without stacking subscriptions.";
     case "usmle":
       return "Step 1, Step 2 CK, and Step 3 banks with Anatomy Explorer on one monthly plan.";
     case "aanp-fnp":
@@ -189,7 +189,7 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
           id: "cost",
           shortLabel: "Window pricing",
           worry: "PT prep priced per access window",
-          fix: `NPTE-PT is included on Pro at ${formatMonthlyPrice("pro")}/mo—no separate PT pass.`,
+          fix: `NPTE-PT is included on Pro at ${formatMonthlyPrice("pro")}/mo — no separate PT pass.`,
         },
       ];
     default:
@@ -258,5 +258,5 @@ export function buildBoardVisuals(input: {
 
 export function formatHeroCtaMicrocopy(liveCount: string | null): string {
   const countPart = liveCount ? `${liveCount} live questions` : "Live question bank";
-  return `${countPart} · ${TRIAL_DAYS}-day trial · no payment method`;
+  return `${countPart} · ${TRIAL_DAYS}-day trial · No payment method`;
 }

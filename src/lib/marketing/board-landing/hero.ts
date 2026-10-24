@@ -8,7 +8,27 @@ import {
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
 import { typicalPrepForExam } from "@/lib/marketing/board-landing/typical-prep";
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
-import { formatLandingHeroTrialLine, formatMonthlyPrice } from "@/lib/site";
+import { formatLandingHeroTrialLine, formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+
+/** Factual board-landing H1 — live count when known, never a pass guarantee. */
+export function boardLandingHeroHeadline(
+  boardLabel: string,
+  units: BoardQuestionUnits | null,
+  options?: { questionNoun?: string }
+): { h1Lead: string; h1Accent: string } {
+  const price = formatMonthlyPrice("pro");
+  const h1Accent = `explained · ${price}/mo`;
+  const noun = options?.questionNoun ?? `${boardLabel} questions`;
+  if (units && scoredQuestionCount(units) > 0) {
+    const count = formatExactQuestionCount(scoredQuestionCount(units));
+    return { h1Lead: `${count} ${noun}`, h1Accent };
+  }
+  return { h1Lead: `${boardLabel} practice questions`, h1Accent };
+}
+
+export function boardLandingTrustPills(): string[] {
+  return [formatTrialLabel(), "No payment method to start", "Cancel in Settings"];
+}
 
 export function boardHeroOffer(
   examKey: ExamSeoKey,

@@ -7,9 +7,23 @@ describe("landingTestimonialStories", () => {
     expect(stories.map((story) => story.name)).toEqual(["Nathan C.", "Priscilla J."]);
   });
 
-  it("falls back to general quotes when a board has no match", () => {
+  it("shows no quotes when the board has no matching exam field", () => {
     const stories = landingTestimonialStories([], "pance");
-    expect(stories.length).toBeGreaterThan(0);
-    expect(stories[0]?.name).toBe("Nathan C.");
+    expect(stories).toEqual([]);
+  });
+
+  it("shows NAPLEX seeds on /naplex only", () => {
+    const stories = landingTestimonialStories([], "naplex");
+    expect(stories.map((story) => story.name)).toEqual(["Steven", "Frank C."]);
+    expect(stories.map((story) => story.quote)).toEqual([
+      "Easy to study and amazing prep.",
+      "The drug cards were a game changer.",
+    ]);
+  });
+
+  it("shows AANP FNP seeds on /aanp-fnp only", () => {
+    const stories = landingTestimonialStories([], "aanp-fnp");
+    expect(stories.map((story) => story.name)).toEqual(["Mag B."]);
+    expect(stories[0]?.quote).toBe("I couldn't believe the price for everything I got.");
   });
 });
