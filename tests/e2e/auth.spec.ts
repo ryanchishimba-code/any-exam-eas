@@ -1,7 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { DEV_USER, loginWithCredentials } from "./fixtures/auth";
 import { isAuthBackendReady } from "./helpers/auth-health";
-import { fillDateOfBirth } from "./helpers/forms";
 
 test.describe("Authentication", () => {
   test("login page renders", async ({ page }) => {
@@ -38,7 +37,6 @@ test.describe("Authentication", () => {
     await page.getByRole("button", { name: "Continue" }).click();
     await page.getByLabel("First name").fill("QA");
     await page.getByLabel("Last name").fill("Tester");
-    await fillDateOfBirth(page, "1995-06-15");
 
     const submit = page.getByRole("button", { name: /start.*trial|create account/i });
     await submit.click();

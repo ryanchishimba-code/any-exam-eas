@@ -4,6 +4,7 @@ import {
   CONSENT_ATTESTATION_VERSION,
   getSignupConsentAttestations,
 } from "@/lib/legal/consent-attestations";
+import { formatAgeVerificationForConsent } from "@/lib/age-attestation";
 
 export type ConsentSignupMethod = "credentials" | "google" | "apple" | "linkedin";
 
@@ -113,7 +114,10 @@ export async function getUserConsentSnapshot(userId: string): Promise<UserConsen
       userId: user.id,
       email: user.email,
       name: user.name,
-      dateOfBirth: user.dateOfBirth.toISOString().slice(0, 10),
+      dateOfBirth: formatAgeVerificationForConsent({
+        dateOfBirth: user.dateOfBirth,
+        metadata,
+      }),
       accountCreatedAt: user.createdAt.toISOString(),
       termsVersion: user.legalConsent.termsVersion,
       privacyVersion: user.legalConsent.privacyVersion,
@@ -132,7 +136,10 @@ export async function getUserConsentSnapshot(userId: string): Promise<UserConsen
     userId: user.id,
     email: user.email,
     name: user.name,
-    dateOfBirth: user.dateOfBirth.toISOString().slice(0, 10),
+    dateOfBirth: formatAgeVerificationForConsent({
+      dateOfBirth: user.dateOfBirth,
+      metadata: null,
+    }),
     accountCreatedAt: user.createdAt.toISOString(),
     termsVersion: LEGAL_LAST_UPDATED,
     privacyVersion: LEGAL_LAST_UPDATED,
