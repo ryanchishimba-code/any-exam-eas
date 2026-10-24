@@ -32,13 +32,24 @@ import {
 } from "@/lib/seo";
 import { getExamSeoConfig, examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
-import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
+import {
+  BOARD_LANDING_CONTENT_YEAR,
+  boardLandingBaseGraph,
+  freeBoardMetaTitle,
+} from "@/lib/marketing/board-landing/board-schema";
+import {
+  boardPainPoints,
+  boardThemeClass,
+  buildBoardVisuals,
+  formatHeroCtaMicrocopy,
+  heroWhyUs,
+  type BoardSlug,
+} from "@/lib/marketing/board-landing/board-theme";
 import {
   SITE_NAME,
   formatLandingTrialFaqAnswer,
   formatMonthlyPrice,
 } from "@/lib/site";
-import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { qotdPath } from "@/lib/demo/qotd-public";
 
 const HUB_EXAM_KEYS = ["usmle", "pance", "aanp-fnp", "npte-pt"] as const;
@@ -54,9 +65,16 @@ type HubCopy = {
   chipMiddle: string;
   chipThird: string;
   questionNoun: string;
-  metaTitle: string;
+  metaBoardLabel: string;
   metaDescription: string;
   keywords: string[];
+};
+
+const HUB_META_LABEL: Record<HubExamKey, string> = {
+  usmle: "USMLE",
+  pance: "PANCE",
+  "aanp-fnp": "AANP FNP",
+  "npte-pt": "NPTE-PT",
 };
 
 const HUB_COPY: Record<HubExamKey, HubCopy> = {
@@ -66,7 +84,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     chipMiddle: "Step 1, Step 2 CK, and Step 3 banks with teachable rationales.",
     chipThird: "Anatomy Explorer, timed blocks, and readiness score—one Pro plan.",
     questionNoun: "USMLE questions",
-    metaTitle: "USMLE Practice Questions for Step 1, Step 2 CK & Step 3",
+    metaBoardLabel: HUB_META_LABEL.usmle,
     metaDescription: `USMLE practice questions for Step 1, Step 2 CK, and Step 3 in one qbank. Try a free sample question. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial. Cancel anytime.`,
     keywords: [
       "USMLE practice questions",
@@ -82,7 +100,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     chipMiddle: "Board-style vignettes with keyed answers and distractor reasons.",
     chipThird: "Timed practice, readiness score, and six boards on one plan.",
     questionNoun: "PANCE questions",
-    metaTitle: "PANCE Practice Questions and Physician Assistant Qbank",
+    metaBoardLabel: HUB_META_LABEL.pance,
     metaDescription: `PANCE practice questions and physician assistant board prep in a live qbank. Try a free sample question. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial.`,
     keywords: [
       "PANCE practice questions",
@@ -98,7 +116,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     chipMiddle: "FNP vignettes with teachable rationales and an included study guide.",
     chipThird: "Question of the Day, readiness score, and timed full exams.",
     questionNoun: "AANP FNP questions",
-    metaTitle: "AANP FNP Practice Questions and Nurse Practitioner Qbank",
+    metaBoardLabel: HUB_META_LABEL["aanp-fnp"],
     metaDescription: `AANP FNP practice questions, nurse practitioner vignettes, and study guide chapters. Try a free sample. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial.`,
     keywords: [
       "AANP FNP practice questions",
@@ -114,7 +132,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     chipMiddle: "Physical therapy items with explanations for each answer choice.",
     chipThird: "Anatomy Explorer, timed sets, and six boards on Pro.",
     questionNoun: "NPTE-PT questions",
-    metaTitle: "NPTE-PT Practice Questions and Physical Therapy Qbank",
+    metaBoardLabel: HUB_META_LABEL["npte-pt"],
     metaDescription: `NPTE-PT practice questions and physical therapy board prep in a live qbank. Try a free sample question. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial.`,
     keywords: [
       "NPTE practice questions",
@@ -180,16 +198,16 @@ function hubFaqs(
       answer: "Yes. Blueprint-aligned study guide chapters are included with Pro.",
     });
   }
-  return base.slice(0, 6);
+  return base.slice(0, 5);
 }
 
 export function buildHubLandingMetadata(examKey: HubExamKey): Metadata {
   const copy = HUB_COPY[examKey];
   const path = examMarketingPath(examKey);
-  const title = enforceMetaTitle(copy.metaTitle, path);
+  const title = enforceMetaTitle(freeBoardMetaTitle(copy.metaBoardLabel), path);
   const description = enforceMetaDescription(copy.metaDescription, path);
   const image = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
-  const imageAlt = `AnyExamEasy ${copy.metaTitle}`;
+  const imageAlt = `AnyExamEasy ${copy.metaBoardLabel} practice questions`;
   return {
     title: { absolute: title },
     description,
@@ -231,8 +249,6 @@ export function buildHubLandingModel(input: {
   const copy = HUB_COPY[input.examKey];
   const units = liveUnits(input.units, input.degraded);
   const path = examMarketingPath(input.examKey);
-  const pageUrl = absoluteUrl(path);
-  const site = getSiteUrl();
   const trialHref = landingTrialHrefForExam(input.examKey);
   const price = formatMonthlyPrice("pro");
   const typical = typicalPrepForExam(input.examKey);
@@ -260,49 +276,22 @@ export function buildHubLandingModel(input: {
   const stats = units
     ? [{ value: formatExactQuestionCount(scoredQuestionCount(units)), label: "Questions" }]
     : [];
-  const graph: Record<string, unknown>[] = [
-    {
-      "@type": "Organization",
-      "@id": `${site}/#organization`,
-      name: LEGAL_ENTITY.companyName,
-      legalName: LEGAL_ENTITY.companyName,
-      url: site,
-      logo: absoluteUrl("/icons/icon-192.png"),
-      contactPoint: organizationContactPoint(),
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: site },
-        { "@type": "ListItem", position: 2, name: config.shortName, item: pageUrl },
-      ],
-    },
-    {
-      "@type": "Product",
-      name: `${SITE_NAME} Pro`,
-      description: `${config.shortName} practice questions and five other boards on one plan at ${price} a month.`,
-      image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
-      brand: { "@type": "Brand", name: SITE_NAME },
-      url: absoluteUrl(ROUTES.pricing),
-      offers: {
-        "@type": "Offer",
-        price: TIER_MONTHLY_USD.pro.toFixed(2),
-        priceCurrency: "USD",
-        availability: "https://schema.org/InStock",
-        url: absoluteUrl(trialHref),
-        description: `${TRIAL_DAYS}-day free trial, then ${price} a month. No payment method to start.`,
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "@id": `${pageUrl}#faq`,
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    },
-  ];
+  const graph = boardLandingBaseGraph({
+    pagePath: path,
+    breadcrumbName: config.shortName,
+    pageName: enforceMetaTitle(freeBoardMetaTitle(copy.metaBoardLabel), path),
+    productDescription: `${config.shortName} practice questions and five other boards on one plan at ${price} a month.`,
+    trialHref,
+    faqs,
+  });
+  const hubSlug = input.examKey as BoardSlug;
+  const visuals = buildBoardVisuals({
+    slug: hubSlug,
+    examKey: input.examKey,
+    units,
+    offer: heroOffer,
+    bankTypes: {},
+  });
 
   return {
     h1Lead: copy.h1Lead,
@@ -377,6 +366,13 @@ export function buildHubLandingModel(input: {
     heroCtaLocation: `${input.examKey}_hero`,
     finalCtaName: `${input.examKey.replace(/-/g, "_")}_final_trial`,
     finalCtaLocation: `${input.examKey}_final`,
+    themeClass: boardThemeClass(hubSlug),
+    heroWhyUs: heroWhyUs(hubSlug),
+    ctaMicrocopy: formatHeroCtaMicrocopy(heroOffer.liveQuestions),
+    contentYear: BOARD_LANDING_CONTENT_YEAR,
+    painPoints: boardPainPoints(hubSlug),
+    visuals,
+    sampleSecondary: null,
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
   };
 }

@@ -11,6 +11,7 @@ type HeroSceneProps = {
   idPrefix?: string;
   ctaName?: string;
   ctaLocation?: string;
+  ctaMicrocopy?: string;
 };
 
 function plain(text: string): string {
@@ -28,6 +29,7 @@ export function HeroScene({
   idPrefix = "nclex",
   ctaName = "nclex_hero_trial",
   ctaLocation = "nclex_hero",
+  ctaMicrocopy,
 }: HeroSceneProps) {
   const notesId = `${idPrefix}-notes`;
   const tableId = `${idPrefix}-table`;
@@ -150,6 +152,7 @@ export function HeroScene({
           Try a free question
         </a>
       </div>
+      {ctaMicrocopy ? <p className="bl-cta-micro">{ctaMicrocopy}</p> : null}
     </div>
   );
 }

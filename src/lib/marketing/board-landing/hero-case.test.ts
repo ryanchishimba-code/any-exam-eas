@@ -48,6 +48,7 @@ describe("buildHeroCaseScene", () => {
       columns: ["Time", "HR", "BP"],
       rows: [["0700", "118/min", "86/52 mm Hg"]],
       options: ["Start the prescribed fluid bolus", "Wait for the next set of vitals"],
+      keyedOptionText: "Start the prescribed fluid bolus",
       keyedAnswer: "Start the prescribed fluid bolus for hypoperfusion.",
       whyNot: "Waiting leaves the hypotension untreated.",
     });
