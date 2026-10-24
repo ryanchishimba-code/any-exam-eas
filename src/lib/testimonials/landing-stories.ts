@@ -8,14 +8,18 @@ export type LandingTestimonialCard = {
   exam: string;
   quote: string;
   initials: string;
+  rating?: number;
 };
 
 function toCard(story: LandingSuccessStory): LandingTestimonialCard {
+  const rating = story.rating;
   return {
     name: story.name,
     exam: story.exam,
     quote: story.quote,
     initials: story.initials,
+    rating:
+      typeof rating === "number" && rating >= 1 && rating <= 5 ? Math.round(rating) : undefined,
   };
 }
 

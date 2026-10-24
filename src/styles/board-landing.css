@@ -1727,3 +1727,218 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+.bl-student-trust-slot {
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
+  padding: 0.35rem 0 0;
+  min-height: 2.25rem;
+}
+
+.bl-student-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(15, 118, 110, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--bl-navy);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  box-shadow: 0 6px 18px rgba(10, 37, 64, 0.06);
+}
+
+.bl-student-trust__icon {
+  flex-shrink: 0;
+  color: var(--bl-teal);
+}
+
+.bl-testimonials--hero {
+  padding-top: 0.75rem;
+}
+
+.bl-testimonials--hero h2 {
+  font-size: clamp(1.45rem, 4.2vw, 2rem);
+}
+
+.bl-testimonials--hero .bl-testimonials__card blockquote p {
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.bl-testimonials__stars {
+  margin: 0 0 0.4rem;
+  color: #d97706;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.bl-nclex-chart {
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
+  padding: 0.75rem 0 0.25rem;
+}
+
+.bl-nclex-chart__panel {
+  position: relative;
+  overflow: hidden;
+  padding: 1.15rem 1.1rem 1.35rem;
+  border: 1px solid var(--bl-line);
+  border-radius: 1.25rem;
+  background: linear-gradient(165deg, #fff 0%, rgba(15, 118, 110, 0.04) 100%);
+  box-shadow: 0 14px 40px rgba(10, 37, 64, 0.08);
+}
+
+.bl-nclex-chart__kicker {
+  margin: 0;
+  color: var(--bl-teal);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.bl-nclex-chart__panel h2 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.35rem, 3.8vw, 1.85rem);
+  line-height: 1.12;
+}
+
+.bl-nclex-chart__lede {
+  margin: 0.45rem 0 0;
+  max-width: 42rem;
+  color: var(--bl-muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.bl-nclex-chart__bars {
+  display: grid;
+  gap: 1rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bl-nclex-chart__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 0.75rem;
+  align-items: baseline;
+}
+
+.bl-nclex-chart__label {
+  font-size: 0.88rem;
+  font-weight: 750;
+  color: var(--bl-navy);
+}
+
+.bl-nclex-chart__amount {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--bl-muted);
+}
+
+.bl-nclex-chart__amount--ours {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--bl-teal);
+}
+
+.bl-nclex-chart__track {
+  position: relative;
+  margin-top: 0.45rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: rgba(10, 37, 64, 0.07);
+  overflow: hidden;
+}
+
+.bl-nclex-chart__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--bar-end, 0%);
+  border-radius: 999px;
+  background: rgba(10, 37, 64, 0.38);
+  transform-origin: left center;
+}
+
+.bl-nclex-chart__fill--ours {
+  background: linear-gradient(90deg, var(--bl-teal), var(--bl-accent, #14b8a6));
+  box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.15);
+}
+
+.bl-nclex-chart__fill--range {
+  background: rgba(10, 37, 64, 0.14);
+  z-index: 0;
+}
+
+.bl-nclex-chart__fill:not(.bl-nclex-chart__fill--range) {
+  z-index: 1;
+}
+
+.bl-nclex-chart__sub {
+  margin: 0.35rem 0 0;
+  color: var(--bl-muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.bl-nclex-chart__accent {
+  display: block;
+  width: 100%;
+  height: 2rem;
+  margin-top: 0.85rem;
+  opacity: 0.85;
+}
+
+.bl-nclex-chart__alt {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.bl-nclex-chart__fine {
+  margin: 0.55rem 0 0;
+  color: var(--bl-muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .bl-nclex-chart__fill {
+    animation: bl-nclex-bar-grow 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--bar-delay, 0ms);
+  }
+
+  .bl-nclex-chart__panel {
+    animation: bl-fade-in 0.5s ease both;
+  }
+}
+
+@keyframes bl-nclex-bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bl-nclex-chart__fill {
+    animation: none;
+    transform: none;
+  }
+}

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
 import { BoardLandingInfographics } from "@/components/marketing/board-landing/BoardLandingInfographics";
+import { NclexLandingCompareChart } from "@/components/marketing/board-landing/NclexLandingCompareChart";
+import { NclexStudentTrustBadge } from "@/components/marketing/board-landing/NclexStudentTrustBadge";
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import { BoardPainPoints } from "@/components/marketing/board-landing/BoardPainPoints";
 import { NaplexAceDonutSection } from "@/components/marketing/board-landing/NaplexAceDonutSection";
@@ -115,6 +117,7 @@ export function BoardLanding({
   pharmacy?: PharmacyHeroScene | null;
 }) {
   const lean = Boolean(model.heroOffer);
+  const nclexConversion = Boolean(model.nclexCompare && model.studentTrustBadge);
   const questionCount = model.stats.find((stat) => stat.label === "Questions")?.value ?? null;
   return (
     <div className={`board-landing ${model.themeClass}`}>
@@ -195,9 +198,17 @@ export function BoardLanding({
         ) : null}
       </section>
 
+      {nclexConversion ? (
+        <>
+          <BoardLandingTestimonials stories={model.stories} prominent />
+          <NclexStudentTrustBadge badge={model.studentTrustBadge!} />
+          <NclexLandingCompareChart data={model.nclexCompare!} />
+        </>
+      ) : null}
+
       {lean ? (
         <>
-          <BoardLandingInfographics visuals={model.visuals} />
+          <BoardLandingInfographics visuals={model.visuals} hidePriceBars={nclexConversion} />
           <BoardPainPoints points={model.painPoints} />
           {model.aceDonut ? <NaplexAceDonutSection model={model.aceDonut} /> : null}
         </>
@@ -231,7 +242,7 @@ export function BoardLanding({
         <BoardFeatureGrid cards={model.features} tight={lean} />
       ) : null}
 
-      <BoardLandingTestimonials stories={model.stories} />
+      {nclexConversion ? null : <BoardLandingTestimonials stories={model.stories} />}
 
       {lean ? null : (
         <>

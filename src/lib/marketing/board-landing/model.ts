@@ -53,6 +53,8 @@ import {
   type BoardLandingVisuals,
   type BoardPainPoint,
 } from "@/lib/marketing/board-landing/board-theme";
+import { buildNclexCompareChartData, type NclexCompareChartData } from "@/lib/marketing/board-landing/nclex-compare-chart";
+import { studentTrustBadgeFromCount, type StudentTrustBadge } from "@/lib/marketing/student-trust-count";
 import {
   SITE_NAME,
   formatLandingHeroTrialLine,
@@ -153,6 +155,9 @@ export type BoardLandingModel = {
   sampleSecondary: LandingQuestion | null;
   /** NAPLEX-only feature donut on `/naplex`. */
   aceDonut?: NaplexAceDonutModel;
+  /** NCLEX-only conversion band (compare chart + trust badge). */
+  nclexCompare?: NclexCompareChartData;
+  studentTrustBadge?: StudentTrustBadge;
   jsonLd: Record<string, unknown>;
 };
 
@@ -491,6 +496,7 @@ export function buildNclexLandingModel(input: {
   sample: PublicSampleQuestion | null;
   sampleSecondary?: LandingQuestion | null;
   testimonials?: LandingSuccessStory[];
+  nclexTrustAudienceCount?: number;
 }): BoardLandingModel {
   const units = liveUnits(input.units, input.degraded);
   const formats: BoardFormatCard[] = [];
@@ -596,6 +602,8 @@ export function buildNclexLandingModel(input: {
     painPoints: boardPainPoints("nclex"),
     visuals,
     sampleSecondary: secondary,
+    nclexCompare: buildNclexCompareChartData(units),
+    studentTrustBadge: studentTrustBadgeFromCount(input.nclexTrustAudienceCount ?? 0),
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
   };
 }
