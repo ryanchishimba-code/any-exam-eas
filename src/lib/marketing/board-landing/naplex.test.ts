@@ -71,8 +71,9 @@ describe("NAPLEX landing model", () => {
     expect(serialized).not.toMatch(BANNED);
     expect(serialized).not.toMatch(/aggregateRating|reviewCount|Ileen/);
     expect(serialized).not.toMatch(/\b\d+ lessons\b/);
-    expect(model.h1Lead).toBe("NAPLEX Practice Questions");
-    expect(model.h1Accent).toBe("80 questions · explained · $27.99/mo");
+    expect(model.h1Lead).toBe("Know every drug the NAPLEX asks about.");
+    expect(model.h1Accent).toBe("");
+    expect(model.heroTestimonial?.name).toBe("Frank C.");
     expect(model.prices.map((price) => price.amount)).toEqual(["$299", "$27.99/mo"]);
     expect(model.prices[0]?.label).toBe("Typical NAPLEX prep");
     expect(model.reviewers.map((reviewer) => reviewer.name)).toEqual(["Ryan Chishimba, PharmD"]);

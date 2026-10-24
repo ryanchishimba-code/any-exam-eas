@@ -79,6 +79,7 @@ export type BoardLandingRenderModel = Pick<
   | "reviewers"
   | "painPoints"
   | "heroWhyUs"
+  | "heroTestimonial"
   | "ctaMicrocopy"
 > & {
   lean: true;
@@ -207,6 +208,7 @@ export function boardLandingRenderModel(
     faqs: model.faqs.slice(0, BOARD_FAQ_LIMIT),
     painPoints: model.painPoints,
     heroWhyUs: model.heroWhyUs,
+    heroTestimonial: model.heroTestimonial,
     ctaMicrocopy: model.ctaMicrocopy,
     priceChart: buildPrepPriceBarChartData(examKey),
     questionMock: buildLandingQuestionMock(trimmedSample),

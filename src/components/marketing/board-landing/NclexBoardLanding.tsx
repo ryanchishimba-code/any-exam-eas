@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
+import { BoardLandingHero } from "@/components/marketing/board-landing/BoardLandingHero";
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import { BoardPainIcons } from "@/components/marketing/board-landing/BoardPainIcons";
 import { BoardPriceCompare } from "@/components/marketing/board-landing/BoardPriceCompare";
@@ -11,7 +11,6 @@ import { NclexStudentTrustBadge } from "@/components/marketing/board-landing/Ncl
 import { NclexToolkitDonutSection } from "@/components/marketing/board-landing/NclexToolkitDonutSection";
 import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/PracticeReviewPassFlow";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
-import { MarketingHeroActions } from "@/components/marketing/MarketingHeroActions";
 import type { NclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
@@ -21,26 +20,14 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
 
   return (
     <div className={`board-landing board-landing--tesla board-landing--board-flow ${model.themeClass}`}>
-      <section className="bl-hero bl-hero--single" aria-labelledby="board-hero-heading">
-        <div className="bl-hero-copy">
-          <p className="bl-kicker">
-            <Link href="/">Home</Link>
-            <span aria-hidden> / </span>
-            <span>{model.boardName}</span>
-            <span className="bl-updated"> · Updated {model.contentYear}</span>
-          </p>
-          <h1 id="board-hero-heading">{model.h1Lead}</h1>
-          <p className="bl-hero-factual">{model.h1Accent}</p>
-          <p className="bl-hero-lede">{model.heroWhyUs}</p>
-          <MarketingHeroActions
-            trialHref={model.trialHref}
-            ctaName={model.heroCtaName}
-            ctaLocation={model.heroCtaLocation}
-            seeQuestionsHref={model.seeQuestionsHref}
-            trialMicrocopy={model.ctaMicrocopy}
-          />
-        </div>
-      </section>
+      <BoardLandingHero
+        headline={model.h1Lead}
+        subline={model.heroWhyUs}
+        testimonial={model.heroTestimonial}
+        trialHref={model.trialHref}
+        heroCtaName={model.heroCtaName}
+        heroCtaLocation={model.heroCtaLocation}
+      />
 
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />

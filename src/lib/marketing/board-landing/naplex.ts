@@ -14,10 +14,10 @@ import { TESTIMONIAL_RESULTS_NOTE } from "@/lib/marketing/legal-copy";
 import { homeTrialCtaLabel } from "@/lib/marketing/home-cta";
 import { naplexFeatureCards } from "@/lib/marketing/board-landing/board-features";
 import { BOARD_LANDING_FINAL_HEADING } from "@/lib/marketing/board-landing/board-landing-copy";
+import { withBoardHeroMarketing } from "@/lib/marketing/board-landing/board-hero-marketing";
 import {
   boardHeroChips,
   boardHeroOffer,
-  boardLandingHeroHeadline,
   boardLandingTrustPills,
 } from "@/lib/marketing/board-landing/hero";
 import {
@@ -248,11 +248,9 @@ export function buildNaplexLandingModel(input: {
     bankTypes: input.degraded ? {} : input.bankTypes,
   });
 
-  const headline = boardLandingHeroHeadline("NAPLEX", units);
-
-  return {
-    h1Lead: headline.h1Lead,
-    h1Accent: headline.h1Accent,
+  return withBoardHeroMarketing("naplex", {
+    h1Lead: "",
+    h1Accent: "",
     lede: heroWhyUs("naplex"),
     trialHref,
     trialLabel: homeTrialCtaLabel(),
@@ -318,11 +316,12 @@ export function buildNaplexLandingModel(input: {
     finalCtaLocation: "naplex_final",
     themeClass: boardThemeClass("naplex"),
     heroWhyUs: heroWhyUs("naplex"),
+    heroTestimonial: null,
     ctaMicrocopy: formatHeroCtaMicrocopy(heroOffer.liveQuestions),
     contentYear: BOARD_LANDING_CONTENT_YEAR,
     painPoints: boardPainPoints("naplex"),
     visuals,
     sampleSecondary: null,
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
-  };
+  });
 }

@@ -32,7 +32,8 @@ import {
   BOARD_LANDING_FINAL_HEADING,
   boardLandingBreadcrumbName,
 } from "@/lib/marketing/board-landing/board-landing-copy";
-import { boardLandingHeroHeadline, boardLandingTrustPills } from "@/lib/marketing/board-landing/hero";
+import { withBoardHeroMarketing } from "@/lib/marketing/board-landing/board-hero-marketing";
+import { boardLandingTrustPills } from "@/lib/marketing/board-landing/hero";
 import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -153,6 +154,8 @@ export type BoardLandingModel = {
   finalCtaLocation: string;
   themeClass: string;
   heroWhyUs: string;
+  /** Consented quote shown in the hero when present. */
+  heroTestimonial: { name: string; quote: string } | null;
   ctaMicrocopy: string;
   contentYear: number;
   painPoints: BoardPainPoint[];
@@ -538,11 +541,9 @@ export function buildNclexLandingModel(input: {
   });
   const secondary =
     input.sampleSecondary && input.sampleSecondary.stem !== sample.stem ? input.sampleSecondary : null;
-  const headline = boardLandingHeroHeadline(nclexLabel, units);
-
-  return {
-    h1Lead: headline.h1Lead,
-    h1Accent: headline.h1Accent,
+  return withBoardHeroMarketing("nclex", {
+    h1Lead: "",
+    h1Accent: "",
     lede: heroWhyUs("nclex"),
     trialHref,
     trialLabel: homeTrialCtaLabel(),
@@ -604,6 +605,7 @@ export function buildNclexLandingModel(input: {
     finalCtaLocation: "nclex_final",
     themeClass: boardThemeClass("nclex"),
     heroWhyUs: heroWhyUs("nclex"),
+    heroTestimonial: null,
     ctaMicrocopy: formatHeroCtaMicrocopy(heroOffer.liveQuestions),
     contentYear: BOARD_LANDING_CONTENT_YEAR,
     painPoints: boardPainPoints("nclex"),
@@ -612,5 +614,5 @@ export function buildNclexLandingModel(input: {
     nclexCompare: buildNclexCompareChartData(units),
     studentTrustBadge: studentTrustBadgeFromCount(input.nclexTrustAudienceCount ?? 0),
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
-  };
+  });
 }

@@ -14,10 +14,10 @@ import {
   BOARD_LANDING_FINAL_HEADING,
   boardLandingBreadcrumbName,
 } from "@/lib/marketing/board-landing/board-landing-copy";
+import { withBoardHeroMarketing } from "@/lib/marketing/board-landing/board-hero-marketing";
 import {
   boardHeroChips,
   boardHeroOffer,
-  boardLandingHeroHeadline,
   boardLandingTrustPills,
 } from "@/lib/marketing/board-landing/hero";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
@@ -293,11 +293,9 @@ export function buildHubLandingModel(input: {
     offer: heroOffer,
     bankTypes: {},
   });
-  const headline = boardLandingHeroHeadline(boardLabel, units);
-
-  return {
-    h1Lead: headline.h1Lead,
-    h1Accent: headline.h1Accent,
+  return withBoardHeroMarketing(hubSlug, {
+    h1Lead: "",
+    h1Accent: "",
     lede: "Start your free trial, then drill the live bank with teachable rationales.",
     trialHref,
     trialLabel: homeTrialCtaLabel(),
@@ -370,13 +368,14 @@ export function buildHubLandingModel(input: {
     finalCtaLocation: `${input.examKey}_final`,
     themeClass: boardThemeClass(hubSlug),
     heroWhyUs: heroWhyUs(hubSlug),
+    heroTestimonial: null,
     ctaMicrocopy: formatHeroCtaMicrocopy(heroOffer.liveQuestions),
     contentYear: BOARD_LANDING_CONTENT_YEAR,
     painPoints: boardPainPoints(hubSlug),
     visuals,
     sampleSecondary: null,
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
-  };
+  });
 }
 
 /** Bank field id for inventory lookups on each hub exam. */
