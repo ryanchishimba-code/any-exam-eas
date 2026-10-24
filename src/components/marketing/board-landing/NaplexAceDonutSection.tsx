@@ -1,25 +1,22 @@
 import {
+  buildNaplexAceDonutSegments,
   naplexAceDonutSlicePath,
-  type NaplexAceDonutModel,
 } from "@/lib/marketing/board-landing/naplex-ace-donut";
+import type { NaplexDonutRenderInput } from "@/lib/marketing/board-landing/render-payload";
 
 const CX = 100;
 const CY = 100;
 const OUTER_R = 88;
 const INNER_R = 54;
 
-export function NaplexAceDonutSection({ model }: { model: NaplexAceDonutModel }) {
-  const { segments } = model;
+/** Segments are built here so RSC does not duplicate donut copy in the page model. */
+export function NaplexAceDonutSection(props: NaplexDonutRenderInput) {
+  const segments = buildNaplexAceDonutSegments(props);
   const sliceDeg = 360 / segments.length;
 
   return (
     <section className="bl-ace-donut bl-section" aria-labelledby="naplex-ace-heading">
       <h2 id="naplex-ace-heading">Built to help you ace the NAPLEX</h2>
-      <p className="bl-section-lede bl-ace-donut__lede">
-        Every slice is a real tool in AnyExamEasy for pharmacy students—question bank, calculations,
-        drugs, mocks, and more on one Pro plan.
-      </p>
-
       <div className="bl-ace-donut__layout">
         <figure className="bl-ace-donut__figure" aria-label="NAPLEX study tools included with Pro">
           <svg
@@ -60,7 +57,7 @@ export function NaplexAceDonutSection({ model }: { model: NaplexAceDonutModel })
                 <span className="bl-ace-donut__swatch" style={{ backgroundColor: segment.color }} aria-hidden />
                 <span className="bl-ace-donut__legend-text">
                   <span className="bl-ace-donut__legend-label">{segment.label}</span>
-                  <span className="bl-ace-donut__legend-detail">{segment.detail}</span>
+                  <span className="sr-only">{segment.detail}</span>
                 </span>
               </button>
             </li>

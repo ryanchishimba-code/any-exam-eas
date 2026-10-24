@@ -536,7 +536,7 @@ export function buildNclexLandingModel(input: {
   return {
     h1Lead: "Pass the NCLEX on your",
     h1Accent: "first try.",
-    lede: "Try the free sample below, then start your trial when you are ready.",
+    lede: heroWhyUs("nclex"),
     trialHref,
     trialLabel: homeTrialCtaLabel(),
     trust: ["5-day free trial", "No payment method to start", "Cancel in Settings"],

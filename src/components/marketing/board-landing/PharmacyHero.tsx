@@ -1,27 +1,25 @@
-import { LandingCta } from "@/components/landing/LandingCta";
+import { MarketingHeroActions } from "@/components/marketing/MarketingHeroActions";
 import type { PharmacyHeroScene } from "@/lib/marketing/board-landing/pharmacy-case";
 
 type PharmacyHeroProps = {
   hero: PharmacyHeroScene;
   trialHref: string;
-  trialLabel: string;
   ctaName: string;
   ctaLocation: string;
-  ctaMicrocopy?: string;
+  seeQuestionsHref: string;
 };
 
 /** Server-rendered pharmacy device. The Rx mark is decorative; the question is HTML. */
 export function PharmacyHero({
   hero,
   trialHref,
-  trialLabel,
   ctaName,
   ctaLocation,
-  ctaMicrocopy,
+  seeQuestionsHref,
 }: PharmacyHeroProps) {
   return (
     <div className="bl-rx-scene">
-      <article className="bl-rx" aria-labelledby="naplex-calc-heading">
+      <article className="bl-rx" id="sample-question" aria-labelledby="naplex-calc-heading">
         <p className="bl-rx-mark" aria-hidden="true">
           Rx
         </p>
@@ -58,15 +56,12 @@ export function PharmacyHero({
         </li>
       </ul>
 
-      <div className="bl-actions">
-        <LandingCta href={trialHref} ctaName={ctaName} location={ctaLocation}>
-          {trialLabel}
-        </LandingCta>
-        <a className="bl-button bl-button-secondary" href="#sample-question">
-          Try a free question
-        </a>
-      </div>
-      {ctaMicrocopy ? <p className="bl-cta-micro">{ctaMicrocopy}</p> : null}
+      <MarketingHeroActions
+        trialHref={trialHref}
+        ctaName={ctaName}
+        ctaLocation={ctaLocation}
+        seeQuestionsHref={seeQuestionsHref}
+      />
     </div>
   );
 }

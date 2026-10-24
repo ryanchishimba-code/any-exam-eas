@@ -1,17 +1,16 @@
-import { LandingCta } from "@/components/landing/LandingCta";
+import { MarketingHeroActions } from "@/components/marketing/MarketingHeroActions";
 import type { HeroCaseScene } from "@/lib/marketing/board-landing/hero-case";
 
 type HeroSceneProps = {
   scene: HeroCaseScene;
   trialHref: string;
-  trialLabel: string;
   questionCount: string | null;
   reviewers: { id: string; name: string }[];
   kicker?: string;
   idPrefix?: string;
   ctaName?: string;
   ctaLocation?: string;
-  ctaMicrocopy?: string;
+  seeQuestionsHref: string;
 };
 
 function plain(text: string): string {
@@ -22,14 +21,13 @@ function plain(text: string): string {
 export function HeroScene({
   scene,
   trialHref,
-  trialLabel,
   questionCount,
   reviewers,
   kicker = "Next Gen case",
   idPrefix = "nclex",
   ctaName = "nclex_hero_trial",
   ctaLocation = "nclex_hero",
-  ctaMicrocopy,
+  seeQuestionsHref,
 }: HeroSceneProps) {
   const notesId = `${idPrefix}-notes`;
   const tableId = `${idPrefix}-table`;
@@ -144,15 +142,12 @@ export function HeroScene({
         ) : null}
       </ul>
 
-      <div className="bl-actions">
-        <LandingCta href={trialHref} ctaName={ctaName} location={ctaLocation}>
-          {trialLabel}
-        </LandingCta>
-        <a className="bl-button bl-button-secondary" href="#sample-question">
-          Try a free question
-        </a>
-      </div>
-      {ctaMicrocopy ? <p className="bl-cta-micro">{ctaMicrocopy}</p> : null}
+      <MarketingHeroActions
+        trialHref={trialHref}
+        ctaName={ctaName}
+        ctaLocation={ctaLocation}
+        seeQuestionsHref={seeQuestionsHref}
+      />
     </div>
   );
 }

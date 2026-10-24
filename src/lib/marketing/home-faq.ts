@@ -1,9 +1,9 @@
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
-import { formatLandingTrialScopeSentence } from "@/lib/site";
+import { HOME_GUIDELINE_LINE } from "@/lib/marketing/home-compare";
+import { formatLandingTrialScopeSentence, formatMonthlyPrice } from "@/lib/site";
 
 /**
- * Short homepage FAQ. The price stays in the pricing card, and this list
- * does not state support hours or a bank-wide question count.
+ * Short homepage FAQ. Longer marketing copy lives here instead of on the page body.
  */
 export const HOME_FAQ = [
   {
@@ -11,8 +11,16 @@ export const HOME_FAQ = [
     a: `All six are on one subscription: ${PLATFORM_EXAM_LIST}. USMLE covers Step 1, Step 2 CK, and Step 3.`,
   },
   {
+    q: "How does AnyExamEasy compare to typical prep sites?",
+    a: `One Pro plan covers all six boards. ${HOME_GUIDELINE_LINE} on scored items, Quick Bites video lessons, NCLEX exam mode, and readiness tools are included—not sold per exam.`,
+  },
+  {
     q: "Do I need a payment method to start?",
     a: `No. ${formatLandingTrialScopeSentence()}. Cancel in Settings before it ends and you are not charged.`,
+  },
+  {
+    q: "What does Pro cost after the trial?",
+    a: `${formatMonthlyPrice("pro")}/mo for every board. Cancel anytime in Settings to stop the next charge.`,
   },
   {
     q: "Can I cancel anytime?",

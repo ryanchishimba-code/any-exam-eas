@@ -7,6 +7,7 @@ import { PublicHome } from "@/components/marketing/elevation/PublicHome";
 import { homeCompareRows } from "@/lib/marketing/home-compare";
 import { homeQuickBiteSamples } from "@/lib/marketing/home-quick-bites";
 import { ROUTES } from "@/lib/routes";
+import { HOME_OWNER_VALUE_LINE } from "@/lib/marketing/owner-value-line";
 
 const MEDIA_FILE = /\.mp4|\.vtt|blob\.vercel-storage/i;
 
@@ -100,11 +101,12 @@ describe("homepage marketing sections", () => {
     expect(screen.queryByRole("link", { name: "Get full access" })).toBeNull();
   });
 
-  it("places both sections on the public home page for logged-out visitors", () => {
+  it("places Quick Bites and the owner value line on the public home page", () => {
     const { container } = render(<PublicHome ngnCaseStudies />);
     expect(screen.getByRole("heading", { name: "Quick Bites" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "AnyExamEasy vs. typical prep sites" })).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /free trial/i }).length).toBeGreaterThan(0);
+    expect(screen.getByText(HOME_OWNER_VALUE_LINE)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "See questions" })).toHaveAttribute("href", "#quick-bites-heading");
+    expect(screen.getAllByRole("link", { name: /Start free trial/i }).length).toBeGreaterThan(0);
     expect(container.querySelector("#quick-bites-heading")).toBeTruthy();
     expect(container.querySelector(".aee-flagship-cta")).toBeTruthy();
     expect(container.querySelector("video")).toBeNull();

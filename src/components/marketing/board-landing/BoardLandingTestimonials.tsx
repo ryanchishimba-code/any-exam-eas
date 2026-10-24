@@ -12,9 +12,13 @@ function TestimonialStars({ rating }: { rating: number }) {
 export function BoardLandingTestimonials({
   stories,
   prominent = false,
+  minimal = false,
+  heading,
 }: {
   stories: LandingTestimonialCard[];
   prominent?: boolean;
+  minimal?: boolean;
+  heading?: string;
 }) {
   if (stories.length === 0) return null;
 
@@ -23,8 +27,10 @@ export function BoardLandingTestimonials({
       className={`bl-section bl-section--tight bl-testimonials${prominent ? " bl-testimonials--hero" : ""}`}
       aria-labelledby="bl-testimonials-heading"
     >
-      <h2 id="bl-testimonials-heading">{prominent ? "What nursing students say" : "From students"}</h2>
-      <p className="bl-testimonials__note">{TESTIMONIAL_RESULTS_NOTE}</p>
+      <h2 id="bl-testimonials-heading">
+        {heading ?? (prominent ? "What nursing students say" : "From students")}
+      </h2>
+      {minimal ? null : <p className="bl-testimonials__note">{TESTIMONIAL_RESULTS_NOTE}</p>}
       <ul className="bl-testimonials__row">
         {stories.map((story) => (
           <li key={`${story.name}-${story.exam}`} className="bl-testimonials__card">

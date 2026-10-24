@@ -14,6 +14,7 @@ import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-cou
 import { analytics } from "@/lib/analytics";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
 import type { ExamSlug } from "@/types/edtech";
+import { boardAccentPillClass } from "@/lib/marketing/board-accent";
 import { cn } from "@/lib/utils";
 
 type LandingHeroExamStripProps = {
@@ -69,10 +70,10 @@ export function LandingHeroExamStrip({
               href={landingTrialHrefForExam(exam.slug)}
               prefetch={false}
               className={cn(
+                boardAccentPillClass(exam.slug),
                 "aee-hero-exam-chips__link",
                 isSelected && "aee-hero-exam-chips__link--selected"
               )}
-              style={{ color: exam.color }}
               aria-current={isSelected ? "true" : undefined}
               onClick={(e) => {
                 if (selectable) {

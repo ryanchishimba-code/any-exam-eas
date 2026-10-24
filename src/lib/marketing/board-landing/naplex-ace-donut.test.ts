@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { boardQuestionUnits } from "@/lib/counts";
 import { TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 import {
   buildNaplexAceDonutSegments,
@@ -8,13 +7,8 @@ import {
 
 describe("buildNaplexAceDonutSegments", () => {
   it("uses equal segment count and only verified labels", () => {
-    const units = boardQuestionUnits({
-      slug: "naplex",
-      bankItems: 120,
-      formats: { mcq: 120, ngn: 0, case: 0 },
-    });
     const segments = buildNaplexAceDonutSegments({
-      units,
+      liveQuestionCount: 120,
       includeQuickBite: true,
       includeItemTypes: true,
     });
@@ -31,7 +25,7 @@ describe("buildNaplexAceDonutSegments", () => {
 
   it("omits optional slices when flags are false", () => {
     const segments = buildNaplexAceDonutSegments({
-      units: null,
+      liveQuestionCount: 0,
       includeQuickBite: false,
       includeItemTypes: false,
     });

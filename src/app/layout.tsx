@@ -4,6 +4,7 @@ import { DeferredPlatformScripts } from "@/components/analytics/DeferredPlatform
 import { SiteShell } from "@/components/layout/SiteShell";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { ThemeScript } from "@/components/theme/ThemeScript";
+import { inter, marketingFontVariables } from "@/lib/fonts/marketing-fonts";
 import { buildRootMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildRootMetadata();
@@ -14,11 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className={`scroll-smooth ${marketingFontVariables}`} suppressHydrationWarning>
       <head>
         <ThemeScript />
       </head>
-      <body className="min-h-screen bg-[var(--color-bg)] font-sans antialiased text-[var(--color-ink)]">
+      <body
+        className={`${inter.className} min-h-screen bg-[var(--color-bg)] font-sans antialiased text-[var(--color-ink)]`}
+      >
         <a href="#main-content" className="skip-link sr-only">
           Skip to main content
         </a>

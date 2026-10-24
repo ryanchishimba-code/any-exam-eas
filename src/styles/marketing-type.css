@@ -1,0 +1,84 @@
+/**
+ * Marketing typography — scoped to public landings + slim nav chrome.
+ * Fonts loaded in root layout; display family preloaded only.
+ */
+
+.aee-marketing,
+.aee-nav--landing-minimal {
+  --mkt-gradient-from: var(--board-accent-nclex, #0f766e);
+  --mkt-gradient-to: var(--board-accent-nclex-hover, #115e59);
+  --mkt-gradient-fallback: var(--mkt-gradient-from);
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.aee-marketing h1,
+.aee-marketing h2,
+.aee-marketing h3,
+.aee-marketing .mkt-display,
+.aee-nav--landing-minimal .aee-nav-wordmark__text,
+.aee-nav--landing-minimal .aee-nav-cta {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+.aee-marketing h2,
+.aee-marketing h3 {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.aee-marketing .mkt-gradient-text,
+.aee-marketing .home-hero__accent,
+.aee-marketing .bl-hero h1 > span,
+.aee-marketing .bl-stat-strip__cell dd {
+  color: var(--mkt-gradient-fallback);
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .aee-marketing .mkt-gradient-text,
+  .aee-marketing .home-hero__accent,
+  .aee-marketing .bl-hero h1 > span {
+    background-image: linear-gradient(
+      125deg,
+      var(--mkt-gradient-from) 0%,
+      color-mix(in srgb, var(--mkt-gradient-to) 88%, #0f172a) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.board-landing--naplex {
+  --mkt-gradient-from: var(--board-accent-naplex);
+  --mkt-gradient-to: var(--board-accent-naplex-hover);
+}
+
+.board-landing--usmle {
+  --mkt-gradient-from: var(--board-accent-usmle);
+  --mkt-gradient-to: var(--board-accent-usmle-hover);
+}
+
+.board-landing--aanp-fnp {
+  --mkt-gradient-from: var(--board-accent-aanp-fnp);
+  --mkt-gradient-to: var(--board-accent-aanp-fnp-hover);
+}
+
+.board-landing--pance {
+  --mkt-gradient-from: var(--board-accent-pance);
+  --mkt-gradient-to: var(--board-accent-pance-hover);
+}
+
+.board-landing--npte-pt {
+  --mkt-gradient-from: var(--board-accent-npte-pt);
+  --mkt-gradient-to: var(--board-accent-npte-pt-hover);
+}
+
+.aee-nav--landing-minimal .aee-nav-link {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
+}

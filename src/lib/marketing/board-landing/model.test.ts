@@ -154,8 +154,8 @@ describe("Quick Bites sample", () => {
     );
     expect(landing).not.toMatch(/QUICK_BITE_EPISODES|lessons|locked/i);
     expect(landing).toMatch(/HomeSamplePlayer/);
-    expect(landing).toMatch(/bl-hero-chips/);
-    expect(landing).toMatch(/bl-hero-band/);
+    expect(landing).toMatch(/BoardStatStrip/);
+    expect(landing).toMatch(/MarketingHeroActions/);
     expect(landing).toMatch(/BoardFeatureGrid/);
   });
 });
