@@ -17,14 +17,17 @@ describe("hub board landing model", () => {
         formats: { mcq: 500, ngn: 0, case: 0 },
         clinical: { standaloneNgn: 0, caseStudies: 0, caseItems: 0 },
       }),
-      sample: null,
       usmleStepCounts: { step1: 100, step2: 200, step3: 50 },
     });
     const serialized = JSON.stringify(model);
     expect(serialized).not.toMatch(BANNED);
     expect(model.heroOffer?.proPrice).toMatch(/\$27\.99\/mo/);
+    expect(model.h1Lead).toBe("USMLE Practice Questions");
+    expect(model.h1Accent).toBe("500 questions · explained · $27.99/mo");
     expect(model.heroChips).toHaveLength(3);
     expect(model.features.some((card) => card.id === "anatomy-explorer")).toBe(true);
+    expect(model.sample).toBeNull();
+    expect(model.stats.map((stat) => stat.label)).toEqual(["Questions", "Step 1", "Step 2 CK", "Step 3"]);
     expect(model.faqs.length).toBeGreaterThanOrEqual(4);
     expect(serialized).toMatch(/FAQPage/);
   });

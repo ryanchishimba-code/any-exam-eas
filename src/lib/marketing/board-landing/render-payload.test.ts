@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { boardLandingRenderModel, naplexBoardLandingRenderModel, trimLandingSample } from "./render-payload";
+import {
+  boardLandingRenderModel,
+  hubBoardLandingRenderModel,
+  naplexBoardLandingRenderModel,
+  trimLandingSample,
+} from "./render-payload";
 import { buildNaplexLandingModel } from "./naplex";
+import { buildHubLandingModel } from "./hub-model";
 import { boardQuestionUnits } from "@/lib/counts";
 
 describe("boardLandingRenderModel", () => {
@@ -50,6 +56,35 @@ describe("boardLandingRenderModel", () => {
     expect(render.seeQuestionsHref).toBe("/practice/naplex");
     expect(render.painPoints.length).toBeGreaterThan(0);
     expect(render.priceChart.bars.length).toBeGreaterThan(0);
+  });
+});
+
+describe("hubBoardLandingRenderModel", () => {
+  it("strips inline samples and links See questions to practice", () => {
+    const full = buildHubLandingModel({
+      examKey: "pance",
+      degraded: false,
+      units: boardQuestionUnits({
+        slug: "pance",
+        bankItems: 200,
+        formats: { mcq: 200, ngn: 0, case: 0 },
+      }),
+    });
+    const render = hubBoardLandingRenderModel(full, {
+      examKey: "pance",
+      hubDonut: {
+        examKey: "pance",
+        liveQuestionCount: 200,
+        includeStudyGuide: false,
+        includeAllUsmleSteps: false,
+      },
+      liveBarRows: [{ id: "vignette", label: "Vignettes", count: 200 }],
+    });
+    expect(render.layout).toBe("pance");
+    expect(render.sample).toBeNull();
+    expect(render.seeQuestionsHref).toBe("/practice/pance");
+    expect(render.liveBarRows).toHaveLength(1);
+    expect(render.faqs.length).toBeLessThanOrEqual(4);
   });
 });
 

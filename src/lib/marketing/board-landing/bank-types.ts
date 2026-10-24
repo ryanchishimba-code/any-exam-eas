@@ -85,3 +85,38 @@ export async function loadPharmacyBankTypeCounts(): Promise<Record<string, numbe
     return {};
   }
 }
+
+async function readFieldBankTypeCounts(fieldId: string): Promise<Record<string, number>> {
+  try {
+    const rows = await sqlQuery<TypeCountRow[]>(
+      `
+      SELECT "itemType", SUM("count")::int AS count
+      FROM "ActiveInventoryCount"
+      WHERE "fieldId" = $1
+      GROUP BY 1
+      `,
+      [fieldId],
+      { timeoutMs: 5_000 }
+    );
+    return sumBankTypeCounts(Array.isArray(rows) ? rows : []);
+  } catch {
+    return {};
+  }
+}
+
+function cachedFieldBankTypeCounts(fieldId: string) {
+  return unstable_cache(
+    () => readFieldBankTypeCounts(fieldId),
+    [`hub-landing-bank-types-${fieldId}-v1`],
+    { revalidate: 300, tags: [ACTIVE_INVENTORY_CACHE_TAG] }
+  );
+}
+
+/** Live item-type counts for a single bank field (hub landings). */
+export async function loadFieldBankTypeCounts(fieldId: string): Promise<Record<string, number>> {
+  try {
+    return await cachedFieldBankTypeCounts(fieldId)();
+  } catch {
+    return {};
+  }
+}

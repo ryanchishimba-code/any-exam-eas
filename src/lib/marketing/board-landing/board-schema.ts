@@ -4,15 +4,16 @@ import { DEFAULT_OG_IMAGE_PATH } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
+import { boardLandingMetaTitle } from "@/lib/marketing/board-landing/board-landing-copy";
 import { SITE_NAME, formatMonthlyPrice } from "@/lib/site";
 
 /** Stamped on board landing JSON-LD and the visible “Updated” marker. */
 export const BOARD_LANDING_DATE_MODIFIED = "2026-10-24";
 export const BOARD_LANDING_CONTENT_YEAR = 2026;
 
+/** @deprecated Use {@link boardLandingMetaTitle} — kept as alias for imports. */
 export function freeBoardMetaTitle(boardLabel: string): string {
-  const price = formatMonthlyPrice("pro");
-  return `Free ${boardLabel} Practice Questions & Qbank (${BOARD_LANDING_CONTENT_YEAR}) | ${price}/mo`;
+  return boardLandingMetaTitle(boardLabel);
 }
 
 type GraphNode = Record<string, unknown>;

@@ -1,18 +1,35 @@
-import { buildHubLandingModel, hubSampleFieldId, type HubExamKey } from "@/lib/marketing/board-landing/hub-model";
+import { scoredQuestionCount } from "@/lib/counts";
+import { loadFieldBankTypeCounts } from "@/lib/marketing/board-landing/bank-types";
+import {
+  hubBoardIncludesStudyGuide,
+  type HubBoardDonutRenderInput,
+} from "@/lib/marketing/board-landing/hub-board-donut";
+import { buildHubLiveBarRows } from "@/lib/marketing/board-landing/hub-live-bar-chart";
+import {
+  buildHubLandingModel,
+  hubSampleFieldId,
+  type HubExamKey,
+} from "@/lib/marketing/board-landing/hub-model";
+import { hubBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
-import { getPublicSampleQuestions } from "@/lib/marketing/public-sample";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 
+function usmleStepsPopulated(
+  stepCounts: Partial<Record<"step1" | "step2" | "step3", number>>
+): boolean {
+  return (["step1", "step2", "step3"] as const).every((step) => (stepCounts[step] ?? 0) > 0);
+}
+
 export async function loadHubBoardLanding(examKey: HubExamKey) {
-  const [{ bundle, display }, samples, testimonials] = await Promise.all([
+  const fieldId = hubSampleFieldId(examKey);
+  const [{ bundle, display }, testimonials, bankTypes] = await Promise.all([
     loadPublicQuestionCounts({ dynamic: false }),
-    getPublicSampleQuestions(),
     getCachedPublishedTestimonials(6),
+    examKey === "usmle" ? Promise.resolve({}) : loadFieldBankTypeCounts(fieldId),
   ]);
   const exam = display.exams.find((row) => row.slug === examKey);
   const live = !display.degraded && (exam?.served ?? 0) > 0;
-  const fieldId = hubSampleFieldId(examKey);
-  const sample = samples.find((item) => item.fieldId === fieldId) ?? null;
+  const units = live ? (bundle.snapshot.boards?.[examKey] ?? null) : null;
 
   const usmleStepCounts =
     examKey === "usmle" && !bundle.inventory.degraded
@@ -26,11 +43,27 @@ export async function loadHubBoardLanding(examKey: HubExamKey) {
   const model = buildHubLandingModel({
     examKey,
     degraded: !live,
-    units: live ? (bundle.snapshot.boards?.[examKey] ?? null) : null,
-    sample,
+    units,
     testimonials,
     usmleStepCounts,
   });
 
-  return { model };
+  const liveQuestionCount = units ? scoredQuestionCount(units) : 0;
+  const hubDonut: HubBoardDonutRenderInput = {
+    examKey,
+    liveQuestionCount,
+    includeStudyGuide: hubBoardIncludesStudyGuide(examKey),
+    includeAllUsmleSteps: examKey === "usmle" && usmleStepsPopulated(usmleStepCounts ?? {}),
+  };
+  const liveBarRows = buildHubLiveBarRows(examKey, {
+    usmleStepCounts,
+    bankTypes,
+  });
+  const render = hubBoardLandingRenderModel(model, {
+    examKey,
+    hubDonut,
+    liveBarRows,
+  });
+
+  return { model, render };
 }

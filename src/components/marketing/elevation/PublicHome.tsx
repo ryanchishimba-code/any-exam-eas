@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
+import { HomeFeatureCarousel } from "@/components/marketing/elevation/HomeFeatureCarousel";
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import { MarketingHeroActions } from "@/components/marketing/MarketingHeroActions";
 import type { BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
@@ -103,7 +103,7 @@ export function PublicHome({
 
       {featureCards.length > 0 ? (
         <div className="home-features board-landing">
-          <BoardFeatureGrid cards={featureCards} tight />
+          <HomeFeatureCarousel cards={featureCards} />
         </div>
       ) : null}
 

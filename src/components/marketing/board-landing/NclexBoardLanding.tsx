@@ -29,9 +29,8 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
             <span>{model.boardName}</span>
             <span className="bl-updated"> · Updated {model.contentYear}</span>
           </p>
-          <h1 id="board-hero-heading">
-            {model.h1Lead} <span>{model.h1Accent}</span>
-          </h1>
+          <h1 id="board-hero-heading">{model.h1Lead}</h1>
+          <p className="bl-hero-factual">{model.h1Accent}</p>
           <p className="bl-hero-lede">{model.heroWhyUs}</p>
           <MarketingHeroActions
             trialHref={model.trialHref}
