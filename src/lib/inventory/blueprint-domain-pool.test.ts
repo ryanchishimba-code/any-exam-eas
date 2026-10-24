@@ -4,6 +4,7 @@ import {
   activeBlueprintAreaWhere,
   blueprintAreaCountFromTopics,
   blueprintAreaSelectsSingleTopic,
+  blueprintCategoryIdForQuestion,
   exclusiveSubjectsForBlueprintCategory,
   questionInBlueprintArea,
   topicRowCountQualifier,
@@ -76,6 +77,21 @@ function rowsFromTopics(fieldId: string, counts: Record<string, number>): Active
 }
 
 describe("blueprint area and topic counts", () => {
+  it("ignores clientNeeds that are not blueprint area ids", () => {
+    expect(
+      blueprintCategoryIdForQuestion("nursing", {
+        subjectId: "pharmacology-nursing",
+        clientNeeds: "not-a-blueprint-area",
+      })
+    ).toBe("pharmacology");
+    expect(
+      blueprintCategoryIdForQuestion("nursing", {
+        subjectId: "pharmacology-nursing",
+        clientNeeds: "pharmacology",
+      })
+    ).toBe("pharmacology");
+  });
+
   it("uses the active topic count for an AANP topic and the area rollup for its chip", () => {
     const total = Object.values(AANP_TOPIC_COUNTS).reduce((sum, n) => sum + n, 0);
     expect(total).toBe(6105);
