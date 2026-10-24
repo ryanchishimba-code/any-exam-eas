@@ -10,6 +10,7 @@ import type {
   ConceptMasterySnapshot,
   LearningProfileSnapshot,
 } from "./types";
+import { resolveAttemptCorrect } from "@/lib/learning/attempt-selection";
 import { analyzeMistake } from "./mistake-analysis";
 import type { AttemptInput } from "./types";
 import { tagsToJson } from "./weakness";
@@ -57,13 +58,20 @@ export async function recordAttemptWithMastery(
   opts?: { refreshProfile?: boolean; skipExistenceCheck?: boolean }
 ): Promise<{ attemptId: string; alreadySaved: boolean }> {
   const storedTags = tagsForStoredAttempt(input.question.tags, input.practiceFormat);
-  const analysis = analyzeMistake({
+  const correct = resolveAttemptCorrect(
+    input.question,
+    input.selectedAnswer,
+    input.correct
+  );
+  const gradedInput: AttemptInput = {
     ...input,
+    correct,
     question: {
       ...input.question,
       tags: storedTags.filter((tag) => !tag.startsWith("practice-format:")),
     },
-  });
+  };
+  const analysis = analyzeMistake(gradedInput);
   const tagsJson = tagsToJson(storedTags);
   const questionKey = input.question.bankItemId ?? input.question.id;
 
@@ -92,13 +100,13 @@ export async function recordAttemptWithMastery(
         subjectId: input.question.subjectId ?? null,
         questionType: input.question.type,
         stemPreview: input.question.stem.slice(0, 200),
-        correct: input.correct,
+        correct,
         confidence: input.confidence ?? null,
         durationMs: input.durationMs ?? null,
         selectedAnswer: input.selectedAnswer ?? null,
         sessionId: input.sessionId ?? null,
         tagsJson,
-        mistakeCategory: input.correct ? null : analysis.category,
+        mistakeCategory: correct ? null : analysis.category,
         guessedCorrect: analysis.guessedCorrect,
         difficultyAtAttempt: input.question.difficulty ?? null,
       },
@@ -137,7 +145,7 @@ export async function recordAttemptWithMastery(
     const current = existing?.masteryScore ?? 0;
     const delta = computeMasteryDelta({
       currentScore: current,
-      correct: input.correct,
+      correct,
       confidence: input.confidence,
       mistakeCategory: analysis.category,
     });
@@ -158,7 +166,7 @@ export async function recordAttemptWithMastery(
         retentionStrength: delta.retentionStrength,
         confidenceReliability: delta.confidenceReliability,
         attempts: 1,
-        correct: input.correct ? 1 : 0,
+        correct: correct ? 1 : 0,
         lastAttemptAt: new Date(),
       },
       update: {
@@ -166,7 +174,7 @@ export async function recordAttemptWithMastery(
         retentionStrength: delta.retentionStrength,
         confidenceReliability: delta.confidenceReliability,
         attempts: { increment: 1 },
-        correct: input.correct ? { increment: 1 } : undefined,
+        correct: correct ? { increment: 1 } : undefined,
         lastAttemptAt: new Date(),
       },
     });
@@ -174,7 +182,7 @@ export async function recordAttemptWithMastery(
 
   try {
     await persistQuestionMastery(input.userId, input.fieldId, questionKey, {
-      correct: input.correct,
+      correct,
       confidence: input.confidence,
       durationMs: input.durationMs,
       timePressure: input.durationMs != null && input.durationMs < 15_000,

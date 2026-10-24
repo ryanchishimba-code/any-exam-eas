@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Flag, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ShareModal } from "@/components/share/ShareModal";
@@ -9,6 +9,7 @@ import { ExamActionBar } from "@/components/exam/ExamActionBar";
 import { RationaleDisclosureText } from "@/components/study/questions/CollapsibleRationale";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { buildReportContext } from "@/components/study/ReportQuestionDialog";
+import { fetchRevealedAnswer } from "@/lib/client/fetch-revealed-answer";
 import { formatHms } from "@/lib/full-exam/config";
 import { assertExactQuestionCount } from "@/lib/exam/session-count";
 import {
@@ -55,6 +56,7 @@ export function TimedPracticeExam({
   const [shareOpen, setShareOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const serverCorrectByIndex = useRef<Record<number, boolean>>({});
 
   useEffect(() => {
     const qs = new URLSearchParams({
@@ -109,18 +111,38 @@ export function TimedPracticeExam({
   }, [finished, loading]);
 
   const persistAnswer = useCallback(
-    async (correct: boolean, choice: string) => {
-      await fetch(`/api/exam-sessions/${sessionId}/answer`, {
+    async (
+      choice: string
+    ): Promise<{ correct: boolean; correctAnswer?: string; explanation?: string } | null> => {
+      const current = questions[index];
+      if (!current) return null;
+      const res = await fetch(`/api/exam-sessions/${sessionId}/answer`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           questionIndex: index,
-          questionId: questions[index]?.id,
+          questionId: current.id,
           selected: choice,
-          correct,
+          correct: false,
           flagged: flagged.has(index),
         }),
       });
+      if (!res.ok) return null;
+      const data = (await res.json().catch(() => null)) as {
+        answers?: ExamAnswerRecord[];
+      } | null;
+      const saved = data?.answers?.find((row) => row.questionIndex === index);
+      const revealed = await fetchRevealedAnswer({
+        itemId: current.id,
+        selected: [choice],
+        options: current.options,
+        sessionId,
+      });
+      return {
+        correct: saved?.correct === true,
+        correctAnswer: revealed?.answer.correctAnswer,
+        explanation: revealed?.answer.explanation,
+      };
     },
     [sessionId, index, questions, flagged]
   );
@@ -175,9 +197,7 @@ export function TimedPracticeExam({
     };
   }
 
-  function submitChoice(choice: string) {
-    setSelected(choice);
-    const correct = choice === questions[index]?.correctAnswer;
+  function mergeGradedChoice(choice: string, correct: boolean): ExamAnswerRecord[] {
     const record: ExamAnswerRecord = {
       questionIndex: index,
       questionId: questions[index]?.id,
@@ -186,21 +206,43 @@ export function TimedPracticeExam({
       flagged: flagged.has(index),
       answeredAt: new Date().toISOString(),
     };
-    setAnswerLog((prev) => mergeExamAnswers(prev, record));
-    void persistAnswer(correct, choice);
+    return mergeExamAnswers(answerLog, record);
+  }
+
+  async function submitChoice(choice: string) {
+    setSelected(choice);
+    const graded = await persistAnswer(choice);
+    const correct = graded?.correct === true;
+    serverCorrectByIndex.current[index] = correct;
+    if (graded?.correctAnswer) {
+      setQuestions((prev) =>
+        prev.map((item, qi) =>
+          qi === index
+            ? {
+                ...item,
+                correctAnswer: graded.correctAnswer ?? item.correctAnswer,
+                explanation: graded.explanation ?? item.explanation,
+              }
+            : item
+        )
+      );
+    }
+    setAnswerLog((prev) =>
+      mergeExamAnswers(prev, {
+        questionIndex: index,
+        questionId: questions[index]?.id,
+        selected: choice,
+        correct,
+        flagged: flagged.has(index),
+        answeredAt: new Date().toISOString(),
+      })
+    );
   }
 
   function answersForScore(): ExamAnswerRecord[] {
     if (!selected) return answerLog;
-    const correct = selected === questions[index]?.correctAnswer;
-    return mergeExamAnswers(answerLog, {
-      questionIndex: index,
-      questionId: questions[index]?.id,
-      selected,
-      correct,
-      flagged: flagged.has(index),
-      answeredAt: new Date().toISOString(),
-    });
+    const correct = serverCorrectByIndex.current[index] === true;
+    return mergeGradedChoice(selected, correct);
   }
 
   function next() {

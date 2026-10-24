@@ -12,6 +12,7 @@ import {
 } from "@/lib/questions/session-engine";
 import { fetchRevealedAnswer } from "@/lib/client/fetch-revealed-answer";
 import { applyRevealedAnswer } from "@/lib/questions/apply-revealed-answer";
+import { serializeStudySelectedAnswer } from "@/lib/learning/attempt-selection";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { requiredSelectionCount } from "@/lib/questions/required-selections";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
@@ -390,7 +391,7 @@ export function StudySessionPlayer({
           correct,
           confidence,
           durationMs,
-          selectedAnswer: choices.join(", "),
+          selectedAnswer: serializeStudySelectedAnswer(q, choices),
           sessionId: sessionState.sessionId,
           studyMode: sessionState.mode,
           ...(sessionState.practiceFormat
@@ -779,7 +780,10 @@ export function StudySessionPlayer({
     sessionId: sessionState.sessionId,
     sessionMode: sessionState.mode,
     question: current,
-    selectedAnswer: answer?.selected?.join(", "),
+    selectedAnswer:
+      answer?.selected?.length
+        ? serializeStudySelectedAnswer(current, answer.selected)
+        : undefined,
   });
 
   const toggleFlag = () => {
