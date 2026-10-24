@@ -114,13 +114,24 @@ export function domainsLabelForField(fieldId: string): CoverageHeatmap["domainsL
   return fieldId === "nursing" ? "Client Needs" : "Blueprint topics";
 }
 
+function domainHasAnsweredItems(domain: {
+  attempts: number;
+  seen?: number;
+}): boolean {
+  const attempts = Math.max(0, Math.round(domain.attempts) || 0);
+  const seen = domain.seen != null ? Math.max(0, Math.round(domain.seen) || 0) : 0;
+  return attempts > 0 || seen > 0;
+}
+
 export function touchCoveragePct(
-  topics: { blueprintWeightPct: number; attempts: number }[]
+  topics: { blueprintWeightPct: number; attempts: number; seen?: number }[]
 ): number {
   const weight = topics.reduce((sum, topic) => sum + Math.max(0, topic.blueprintWeightPct), 0);
   if (weight <= 0) return 0;
   const touched = topics.reduce(
-    (sum, topic) => sum + (topic.attempts > 0 ? Math.max(0, topic.blueprintWeightPct) : 0),
+    (sum, topic) =>
+      sum +
+      (domainHasAnsweredItems(topic) ? Math.max(0, topic.blueprintWeightPct) : 0),
     0
   );
   return Math.round((touched / weight) * 100);
@@ -241,7 +252,8 @@ export function buildCoverageHeatmap(input: {
       coveragePct: topic.coveragePct ?? 0,
     });
     const attempts = Math.max(0, Math.round(topic.attempts) || 0);
-    const untouched = attempts <= 0;
+    const seenCount = topic.seen != null ? Math.max(0, Math.round(topic.seen) || 0) : 0;
+    const untouched = !domainHasAnsweredItems({ attempts, seen: seenCount });
     const veryLow = !untouched && bank.bankCoveragePct < COVERAGE_VERY_LOW_PCT;
     const blueprintWeightPct = Math.max(0, topic.blueprintWeightPct);
     const highWeight = blueprintWeightPct >= COVERAGE_HIGH_WEIGHT_PCT;

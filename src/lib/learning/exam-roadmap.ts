@@ -59,11 +59,13 @@ import type { OpenRemediationSummary } from "@/lib/learning/remediation-loop";
 import { getSubjectArea } from "@/lib/subjects/subject-catalog";
 import { prisma } from "@/lib/prisma";
 import {
+  aggregateAttemptsByBlueprintCategory,
+  hydrateAttemptAreaFromBank,
+} from "@/lib/learning/attempt-blueprint-attribution";
+import {
   computeCoveragePct,
-  countSeenBySubjectFromAttempts,
   countServeBankBySubject,
   getUserExamHistory,
-  sumCategoryPushCoverage,
 } from "@/lib/learning/exam-progress";
 
 export type RoadmapReadinessKey = "strong" | "needs_review" | "needs_more_work";
@@ -220,22 +222,15 @@ export function aggregateAttemptsBySubject(
   return map;
 }
 
-function sumStatsForSubjects(
+function sumServeAvailable(
   subjectIds: string[] | undefined,
-  attemptMap: Map<string, SubjectStats>
-): SubjectStats {
-  const ids = subjectIds ?? [];
-  return ids.reduce(
-    (acc, id) => {
-      const row = attemptMap.get(id);
-      if (!row) return acc;
-      return {
-        attempts: acc.attempts + row.attempts,
-        correct: acc.correct + row.correct,
-      };
-    },
-    { attempts: 0, correct: 0 }
-  );
+  serveBySubject: Map<string, number>
+): number {
+  let available = 0;
+  for (const id of subjectIds ?? []) {
+    available += serveBySubject.get(id) ?? 0;
+  }
+  return available;
 }
 
 function masteryForSubjects(
@@ -374,16 +369,21 @@ function buildTopicRow(
 export function buildRoadmapTopics(
   blueprint: ExamBlueprint,
   examSlug: ExamSlug,
-  attemptMap: Map<string, SubjectStats>,
+  statsByCategory: Map<string, SubjectStats>,
+  seenByCategory: Map<string, number>,
   masteryMap: Map<string, number>,
-  bySubject?: Parameters<typeof sumCategoryPushCoverage>[1]
+  serveBySubject: Map<string, number>
 ): RoadmapTopicRow[] {
   return blueprint.categories.map((category) => {
-    const stats = sumStatsForSubjects(category.subjectIds, attemptMap);
+    const stats = statsByCategory.get(category.id) ?? { attempts: 0, correct: 0 };
     const masteryScores = masteryForSubjects(category.subjectIds, masteryMap);
-    const coverage = bySubject
-      ? sumCategoryPushCoverage(category.subjectIds, bySubject)
-      : { pushesCompleted: 0, pushesAvailable: 0, pushCoveragePct: 0 };
+    const pushesCompleted = seenByCategory.get(category.id) ?? 0;
+    const pushesAvailable = sumServeAvailable(category.subjectIds, serveBySubject);
+    const coverage = {
+      pushesCompleted,
+      pushesAvailable,
+      pushCoveragePct: computeCoveragePct(pushesCompleted, pushesAvailable),
+    };
     return buildTopicRow(
       category,
       stats,
@@ -524,27 +524,17 @@ async function loadExamRoadmapData(
     attemptsBySession.set(sessionId, (attemptsBySession.get(sessionId) ?? 0) + 1);
   }
 
-  const seenBySubject = countSeenBySubjectFromAttempts(attempts);
-  const attemptMap = aggregateAttemptsBySubject(attempts);
+  const hydratedAttempts = await hydrateAttemptAreaFromBank(attempts);
+  const { statsByCategory, seenByCategory } = aggregateAttemptsByBlueprintCategory(
+    fieldId,
+    hydratedAttempts
+  );
   const masteryMap = new Map(
     masteries.map((m) => [m.conceptKey, m.masteryScore] as const)
   );
 
   let pushesAvailable = 0;
   for (const n of serveBySubject.values()) pushesAvailable += n;
-
-  const bySubject: Record<
-    string,
-    { seen: number; available: number; coveragePct: number }
-  > = {};
-  for (const [subjectId, available] of serveBySubject) {
-    const seen = seenBySubject.get(subjectId) ?? 0;
-    bySubject[subjectId] = {
-      seen,
-      available,
-      coveragePct: computeCoveragePct(seen, available),
-    };
-  }
 
   const uniqueKeys = new Set<string>();
   for (const row of attempts) {
@@ -572,9 +562,10 @@ async function loadExamRoadmapData(
   const topics = buildRoadmapTopics(
     blueprint,
     examSlug,
-    attemptMap,
+    statsByCategory,
+    seenByCategory,
     masteryMap,
-    bySubject
+    serveBySubject
   );
   const overallReadiness = computeOverallRoadmapReadiness(topics);
   const overallPushCoveragePct = computeOverallPushCoverage(topics);
@@ -646,7 +637,7 @@ export async function getExamRoadmapData(
       ? options.usmleFieldId
       : examSlug;
   return cacheGetOrSet(
-    cacheKey(["exam-roadmap-v8", userId, fieldKey]),
+    cacheKey(["exam-roadmap-v9", userId, fieldKey]),
     CACHE_TTL.learningDashboard,
     () => loadExamRoadmapData(userId, examSlug, options),
     { staleTtlMs: CACHE_STALE.learningDashboard, skipFreshL1: true }

@@ -79,6 +79,8 @@ export type WeekCountdownInput = {
   now: Date;
   /** Largest blueprint gap, when categories loaded. */
   gapLabel: string | null;
+  /** True when the gap category has no saved answers yet. */
+  gapUntouched?: boolean;
   openKnown: boolean;
   openIncorrect: number;
   /** Review-incorrect row size for today, already capped. */
@@ -261,6 +263,7 @@ function activePlan(
     goalFor(id, {
       ...ctx,
       gap,
+      gapUntouched: input.gapUntouched === true,
       dayCount: mix[id],
       openKnown: input.openKnown,
       openIncorrect: input.openIncorrect,
@@ -327,6 +330,7 @@ function goalFor(
     coverageCounted: number;
     incorrectCounted: number;
     gap: string;
+    gapUntouched: boolean;
     dayCount: number;
     openKnown: boolean;
     openIncorrect: number;
@@ -393,11 +397,14 @@ function goalFor(
       ? "today"
       : "later";
   const namedTopic = ctx.gap !== "mixed topics";
+  const untouchedGap = ctx.gapUntouched === true;
   return {
     id,
     title: namedTopic ? `Practice ${ctx.gap}` : "Topics you haven't practiced yet",
     detail: namedTopic
-      ? `${daysOn(ctx.dayCount, ctx.gap)}. That's a topic you haven't practiced yet. Today's set is ${COVERAGE_QUESTION_TARGET} questions.`
+      ? untouchedGap
+        ? `${daysOn(ctx.dayCount, ctx.gap)}. That's a topic you haven't practiced yet. Today's set is ${COVERAGE_QUESTION_TARGET} questions.`
+        : `${daysOn(ctx.dayCount, ctx.gap)}. Today's set is ${COVERAGE_QUESTION_TARGET} questions on your largest blueprint gap.`
       : `${daysOn(ctx.dayCount, "topics you haven't practiced yet")}. Today's set is ${COVERAGE_QUESTION_TARGET} questions.`,
     dayCount: ctx.dayCount,
     progress:
@@ -431,9 +438,8 @@ function todayLine(
       ? "Today's review is done."
       : "Today: questions you missed.";
   }
-  return done.qbankDone
-    ? `Today's practice on ${gap} is done.`
-    : `Today: practice ${gap}, a topic you haven't practiced yet.`;
+  if (done.qbankDone) return `Today's practice on ${gap} is done.`;
+  return `Today: practice ${gap}.`;
 }
 
 function daysOn(count: number, what: string): string {
