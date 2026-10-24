@@ -18,6 +18,8 @@ import type { HeroCaseScene } from "@/lib/marketing/board-landing/hero-case";
 import type { PharmacyHeroScene } from "@/lib/marketing/board-landing/pharmacy-case";
 import type { LandingQuestion } from "@/lib/marketing/board-landing/model";
 import type { BoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
+import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
 import {
   HERO_TRIAL_CTA_LABEL,
   boardSeeQuestionsHref,
@@ -48,10 +50,12 @@ export function BoardLanding({
   model,
   scene = null,
   pharmacy = null,
+  freeQuizBoard,
 }: {
   model: BoardLandingRenderModel;
   scene?: HeroCaseScene | null;
   pharmacy?: PharmacyHeroScene | null;
+  freeQuizBoard: FreeQuizBoardSlug;
 }) {
   const nclexConversion = Boolean(model.nclexCompare && model.studentTrustBadge);
   const seeQuestionsHref = boardSeeQuestionsHref(Boolean(model.sample));
@@ -150,6 +154,10 @@ export function BoardLanding({
       {model.features.length > 0 ? <BoardFeatureGrid cards={model.features} tight visual /> : null}
 
       <PracticeReviewPassFlow />
+
+      <div className="bl-band">
+        <BoardFreeQuizLazy board={freeQuizBoard} />
+      </div>
 
       {nclexConversion ? null : <BoardLandingTestimonials stories={model.stories} minimal />}
 

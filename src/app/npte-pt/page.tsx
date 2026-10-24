@@ -15,7 +15,7 @@ export default async function NptePtHubPage() {
   return (
     <>
       <JsonLdScript data={model.jsonLd} />
-      <HubBoardLanding model={render} />
+      <HubBoardLanding model={render} freeQuizBoard="npte-pt" />
     </>
   );
 }

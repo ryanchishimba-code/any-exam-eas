@@ -12,9 +12,17 @@ import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePla
 import { MarketingHeroActions } from "@/components/marketing/MarketingHeroActions";
 import { hubLiveBarChartHeading } from "@/lib/marketing/board-landing/hub-live-bar-chart";
 import type { HubBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
+import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
 
-export function HubBoardLanding({ model }: { model: HubBoardLandingRenderModel }) {
+export function HubBoardLanding({
+  model,
+  freeQuizBoard,
+}: {
+  model: HubBoardLandingRenderModel;
+  freeQuizBoard: FreeQuizBoardSlug;
+}) {
   const barHeadingId = `hub-bar-${model.layout.replace(/[^a-z0-9]/g, "-")}`;
 
   return (
@@ -65,6 +73,10 @@ export function HubBoardLanding({ model }: { model: HubBoardLandingRenderModel }
 
       <div className="bl-band bl-band--alt">
         <BoardPainIcons points={model.painPoints} />
+      </div>
+
+      <div className="bl-band">
+        <BoardFreeQuizLazy board={freeQuizBoard} />
       </div>
 
       {model.features.length > 0 ? (

@@ -10,6 +10,7 @@ import { BoardStatStrip } from "@/components/marketing/board-landing/BoardStatSt
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import { MarketingHeroActions } from "@/components/marketing/MarketingHeroActions";
 import type { NaplexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
 
 export function NaplexBoardLanding({ model }: { model: NaplexBoardLandingRenderModel }) {
@@ -58,6 +59,10 @@ export function NaplexBoardLanding({ model }: { model: NaplexBoardLandingRenderM
 
       <div className="bl-band bl-band--alt">
         <BoardPainIcons points={model.painPoints} />
+      </div>
+
+      <div className="bl-band">
+        <BoardFreeQuizLazy board="naplex" />
       </div>
 
       {model.features.length > 0 ? (
