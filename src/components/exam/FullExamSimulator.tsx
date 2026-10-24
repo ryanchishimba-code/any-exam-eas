@@ -953,6 +953,10 @@ export function FullExamSimulator({
           questionSnapshots: scored.map((q) => {
             const bowTie =
               q.type === "bow_tie" || q.ngnFormat === "bow_tie" ? parseBowTieLayout(q) : null;
+            const ngnFormat =
+              bowTie
+                ? ("bow_tie" as const)
+                : (q.ngnFormat ?? (q.type !== "multiple_choice" ? q.type : undefined));
             return {
               id: q.bankItemId ?? q.id,
               question: q.stem,
@@ -960,9 +964,9 @@ export function FullExamSimulator({
               correctAnswer: serializeCorrectAnswer(q),
               explanation: q.explanation,
               ...questionTopicFields(q),
+              ...(ngnFormat ? { ngnFormat } : {}),
               ...(bowTie
                 ? {
-                    ngnFormat: "bow_tie" as const,
                     bowTie: {
                       condition: bowTie.condition,
                       conditionOptions: bowTie.conditionOptions,

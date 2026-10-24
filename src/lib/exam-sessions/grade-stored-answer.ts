@@ -4,7 +4,7 @@ import {
   alignSnapshotIdsToPrefetched,
 } from "@/lib/exam-sessions/align-administered-items";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
-import { deserializeExamSelection } from "@/lib/full-exam/answer-serialize";
+import { selectionForGrading } from "@/lib/full-exam/answer-serialize";
 import {
   loadStoredStudyQuestion,
   loadStoredStudyQuestionsBatch,
@@ -13,44 +13,7 @@ import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { revealStudyAnswer } from "@/lib/questions/reveal-study-answer";
 import type { StudyQuestion } from "@/lib/questions/types";
 
-/**
- * Matrix cells are stored as `row|||column`. Joining those cells with `|||`
- * cannot be split back into pairs, so a `;;` join is the durable form and an
- * even `|||` split is accepted for logs already saved that way.
- */
-export function selectionForGrading(type: string, stored: string): string[] {
-  const trimmed = stored.trim();
-  if (!trimmed) return [];
-  if (type !== "matrix") return deserializeExamSelection(trimmed);
-  if (trimmed.startsWith("[")) {
-    try {
-      const parsed = JSON.parse(trimmed) as unknown;
-      if (Array.isArray(parsed) && parsed.every((part) => typeof part === "string")) {
-        return parsed.map((part) => part.trim()).filter(Boolean);
-      }
-    } catch {
-      /* fall through */
-    }
-  }
-  if (trimmed.includes(";;")) {
-    return trimmed
-      .split(";;")
-      .map((part) => part.trim())
-      .filter(Boolean);
-  }
-  const parts = trimmed
-    .split("|||")
-    .map((part) => part.trim())
-    .filter(Boolean);
-  if (parts.length >= 2 && parts.length % 2 === 0) {
-    const cells: string[] = [];
-    for (let i = 0; i < parts.length; i += 2) {
-      cells.push(`${parts[i]}|||${parts[i + 1]}`);
-    }
-    return cells;
-  }
-  return [trimmed];
-}
+export { selectionForGrading } from "@/lib/full-exam/answer-serialize";
 
 /** Grade one saved selection from the stored key. The client correct flag is ignored. */
 export function gradeStudySelection(study: StudyQuestion, stored: string): boolean {
