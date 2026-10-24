@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, type KeyboardEvent } from "react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import {
   freeQuizSignupHref,
@@ -13,9 +13,87 @@ import {
 
 const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
 
-function formatAnswerList(values: string[]): string {
-  if (!values.length) return "No answer";
-  return values.join(", ");
+function optionClassName(flags: { selected: boolean; correct: boolean; wrong: boolean }): string | undefined {
+  const names = [
+    flags.correct ? "is-correct" : flags.wrong ? "is-wrong" : null,
+    flags.selected ? "is-selected" : null,
+  ].filter((name): name is string => Boolean(name));
+  return names.length ? names.join(" ") : undefined;
+}
+
+function ChoiceList({
+  questionId,
+  options,
+  selected,
+  correctAnswers,
+  multi,
+  locked,
+  onToggle,
+}: {
+  questionId: string;
+  options: string[];
+  selected: readonly string[];
+  correctAnswers?: readonly string[];
+  multi: boolean;
+  locked: boolean;
+  onToggle?: (option: string) => void;
+}) {
+  const selectedSet = new Set(selected);
+  const correctSet = new Set(correctAnswers ?? []);
+
+  const moveFocus = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (locked) return;
+    if (event.key !== "ArrowDown" && event.key !== "ArrowUp" && event.key !== "ArrowRight" && event.key !== "ArrowLeft") {
+      return;
+    }
+    event.preventDefault();
+    const delta = event.key === "ArrowDown" || event.key === "ArrowRight" ? 1 : -1;
+    const nextIndex = (index + delta + options.length) % options.length;
+    const nextOption = options[nextIndex];
+    const buttons = event.currentTarget.closest("ul")?.querySelectorAll("button");
+    const target = buttons?.[nextIndex];
+    target?.focus();
+    if (!multi && nextOption && onToggle) onToggle(nextOption);
+  };
+
+  return (
+    <ul
+      className="bl-options"
+      role={multi ? "group" : "radiogroup"}
+      aria-label={multi ? "Select all that apply" : "Answer choices"}
+    >
+      {options.map((option, index) => {
+        const isSelected = selectedSet.has(option);
+        const isCorrect = locked && correctSet.has(option);
+        const isWrong = locked && isSelected && !isCorrect;
+        return (
+          <li key={`${questionId}-${index}`}>
+            <button
+              type="button"
+              role={multi ? "checkbox" : "radio"}
+              className={optionClassName({ selected: isSelected, correct: isCorrect, wrong: isWrong })}
+              aria-checked={isSelected}
+              aria-pressed={isSelected}
+              disabled={locked}
+              onClick={() => onToggle?.(option)}
+              onKeyDown={(event) => moveFocus(event, index)}
+            >
+              <span
+                className={multi ? "bl-free-quiz__marker bl-free-quiz__marker--multi" : "bl-free-quiz__marker"}
+                aria-hidden
+              />
+              <span className="bl-letter" aria-hidden>
+                {LETTERS[index] ?? index + 1}
+              </span>
+              <span className="bl-free-quiz__choice-text">{option}</span>
+              {locked && isSelected ? <span className="bl-free-quiz__choice-tag">Your answer</span> : null}
+              {locked && isCorrect ? <span className="bl-free-quiz__choice-tag">Correct</span> : null}
+            </button>
+          </li>
+        );
+      })}
+    </ul>
+  );
 }
 
 function QuestionStep({
@@ -31,7 +109,7 @@ function QuestionStep({
 
   const toggle = (option: string) => {
     if (multi) {
-      onChange(selected.includes(option) ? selected.filter((o) => o !== option) : [...selected, option]);
+      onChange(selected.includes(option) ? selected.filter((value) => value !== option) : [...selected, option]);
       return;
     }
     onChange([option]);
@@ -39,39 +117,32 @@ function QuestionStep({
 
   return (
     <article className="bl-card bl-free-quiz__card">
-      {multi ? (
-        <p className="bl-free-quiz__sata-hint">Select all that apply.</p>
-      ) : null}
+      {multi ? <p className="bl-free-quiz__sata-hint">Select all that apply.</p> : null}
       <p className="bl-stem">{item.stem}</p>
-      <ul className="bl-options" aria-label={multi ? "Select all that apply" : "Answer choices"}>
-        {item.options.map((option, index) => {
-          const isSelected = selected.includes(option);
-          return (
-            <li key={option}>
-              <button
-                type="button"
-                className={isSelected ? "is-selected" : undefined}
-                aria-pressed={isSelected}
-                onClick={() => toggle(option)}
-              >
-                <span className="bl-letter" aria-hidden>
-                  {LETTERS[index] ?? index + 1}
-                </span>
-                <span>{option}</span>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <ChoiceList
+        questionId={item.id}
+        options={item.options}
+        selected={selected}
+        multi={multi}
+        locked={false}
+        onToggle={toggle}
+      />
     </article>
   );
 }
 
+function reviewOptions(item: FreeQuizGradeResultItem, fromQuiz: string[] | undefined): string[] {
+  if (fromQuiz && fromQuiz.length >= 2) return fromQuiz;
+  return [...new Set([...item.correctAnswers, ...item.selected])];
+}
+
 function ReviewItem({
   item,
+  options,
   board,
 }: {
   item: FreeQuizGradeResultItem;
+  options: string[];
   board: FreeQuizBoardSlug;
 }) {
   const signupHref = freeQuizSignupHref(board);
@@ -82,16 +153,14 @@ function ReviewItem({
       <p className={`bl-free-quiz__review-verdict${item.correct ? " is-correct" : " is-wrong"}`}>
         {item.correct ? "Correct" : "Incorrect"}
       </p>
-      <dl className="bl-free-quiz__review-answers">
-        <div>
-          <dt>Your answer</dt>
-          <dd>{formatAnswerList(item.selected)}</dd>
-        </div>
-        <div>
-          <dt>Correct answer</dt>
-          <dd>{formatAnswerList(item.correctAnswers)}</dd>
-        </div>
-      </dl>
+      <ChoiceList
+        questionId={item.id}
+        options={options}
+        selected={item.selected}
+        correctAnswers={item.correctAnswers}
+        multi={item.selection === "multi"}
+        locked
+      />
       <div className="bl-free-quiz__upsell">
         <p className="bl-free-quiz__upsell-lead">Want explanations?</p>
         <LandingCta
@@ -156,7 +225,7 @@ export function FreeQuizPlayer({ board }: { board: FreeQuizBoardSlug }) {
     };
   }, [board]);
 
-  const questions = payload?.questions ?? [];
+  const questions = useMemo(() => payload?.questions ?? [], [payload]);
   const current = questions[index];
 
   const currentSelected = current ? answers[current.id] ?? [] : [];
@@ -236,7 +305,11 @@ export function FreeQuizPlayer({ board }: { board: FreeQuizBoardSlug }) {
           {grade.results.map((item, position) => (
             <li key={item.id}>
               <span className="bl-free-quiz__review-qnum">Question {position + 1}</span>
-              <ReviewItem item={item} board={board} />
+              <ReviewItem
+                item={item}
+                board={board}
+                options={reviewOptions(item, questions.find((question) => question.id === item.id)?.options)}
+              />
             </li>
           ))}
         </ol>
@@ -263,7 +336,7 @@ export function FreeQuizPlayer({ board }: { board: FreeQuizBoardSlug }) {
         Question {index + 1} of {questions.length}
       </p>
       {current ? (
-        <QuestionStep item={current} selected={currentSelected} onChange={setCurrentSelected} />
+        <QuestionStep key={current.id} item={current} selected={currentSelected} onChange={setCurrentSelected} />
       ) : null}
       {unansweredWarn ? (
         <p className="bl-free-quiz__warn" role="alert">

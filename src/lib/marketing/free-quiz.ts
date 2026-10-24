@@ -10,6 +10,7 @@ import { splitUsmleBankItem } from "@/lib/exam-prep/usmle-bank-split";
 import { sqlQuery } from "@/lib/db";
 import type { BoardMarketingSlug } from "@/lib/landing/tokens";
 import { MARKETING_BOARD_SLUGS } from "@/lib/marketing/board-paths";
+import { FREE_QUIZ_QUESTION_IDS, FREE_QUIZ_ROTATION_KEY } from "@/lib/marketing/free-quiz-set";
 import { readStoredCitations } from "@/lib/marketing/public-sample";
 import { gradeSelection } from "@/lib/learning/readiness-check/present";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
@@ -18,8 +19,7 @@ import type { BankItem } from "@/lib/question-bank";
 
 export const FREE_QUIZ_QUESTION_COUNT = 10;
 
-/** How many bank rows to pull before filtering to ten unique, text-only items. */
-export const FREE_QUIZ_CANDIDATE_PULL = 250;
+export { FREE_QUIZ_QUESTION_IDS, FREE_QUIZ_ROTATION_KEY };
 
 const MIN_PUBLIC_STEM_CHARS = 40;
 const MAX_PUBLIC_STEM_CHARS = 2000;
@@ -52,7 +52,7 @@ export type PublicFreeQuizQuestion = {
 
 export type PublicFreeQuizPayload = {
   board: FreeQuizBoardSlug;
-  /** UTC date bucket for the served set (rotates daily). */
+  /** Stable set id (`fixed`). Kept so grading can reject a stale client payload. */
   rotationKey: string;
   questions: PublicFreeQuizQuestion[];
 };
@@ -115,12 +115,9 @@ const BOARD_FIELD_IDS: Record<FreeQuizBoardSlug, readonly string[]> = {
   "npte-pt": ["npte-pt"],
 };
 
-/** Daily UTC rotation so the public set changes without exposing the full bank. */
-export function freeQuizRotationKey(now = new Date()): string {
-  const y = now.getUTCFullYear();
-  const m = String(now.getUTCMonth() + 1).padStart(2, "0");
-  const d = String(now.getUTCDate()).padStart(2, "0");
-  return `${y}-${m}-${d}`;
+/** Stable key for the fixed public set. The quiz does not rotate by day. */
+export function freeQuizRotationKey(): string {
+  return FREE_QUIZ_ROTATION_KEY;
 }
 
 function usmleStepScopeSql(): string {
@@ -295,67 +292,45 @@ function rowToQuizQuestion(row: QuizRow): FreeQuizBankQuestion | null {
   };
 }
 
-async function queryFreeQuizRows(
-  board: FreeQuizBoardSlug,
-  rotationKey: string,
-  opts?: { excludeIds?: readonly string[]; seedSuffix?: string; limit?: number }
-): Promise<QuizRow[]> {
+function sqlTextIdList(ids: readonly string[]): string {
+  return ids
+    .map((id) => {
+      if (!/^[a-z0-9]+$/i.test(id)) {
+        throw new Error("Invalid free quiz question id.");
+      }
+      return `'${id}'`;
+    })
+    .join(", ");
+}
+
+/** Load the hardcoded set. Order follows FREE_QUIZ_QUESTION_IDS, not a daily hash. */
+async function queryFixedFreeQuizRows(board: FreeQuizBoardSlug): Promise<QuizRow[]> {
+  const ids = FREE_QUIZ_QUESTION_IDS[board];
   const fieldIds = BOARD_FIELD_IDS[board];
   const fieldList = fieldIds.map((id) => `'${id}'`).join(", ");
-  const seed = `${rotationKey}${opts?.seedSuffix ?? ""}`.replace(/'/g, "");
-  const limit = opts?.limit ?? FREE_QUIZ_CANDIDATE_PULL;
-  const excludeIds = opts?.excludeIds ?? [];
-  const excludeSql =
-    excludeIds.length > 0
-      ? `AND id NOT IN (${excludeIds.map((id) => `'${id.replace(/'/g, "")}'`).join(", ")})`
-      : "";
-  return sqlQuery<QuizRow[]>(
+  const rows = await sqlQuery<QuizRow[]>(
     `
     SELECT id, "fieldId", "itemType", scenario, question, options, "correctAnswer", explanation, "references"
     FROM "QuestionBankItem"
-    WHERE active = true
+    WHERE id IN (${sqlTextIdList(ids)})
+      AND active = true
       AND "qaPassed" = true
-      AND "itemType" IN ('mcq', 'vignette', 'select_all')
+      AND "itemType" IN ('mcq', 'vignette')
       AND "fieldId" IN (${fieldList})
-      AND length(btrim(question)) >= 12
-      AND length(
-        btrim(
-          COALESCE(scenario, '') || CASE WHEN scenario IS NOT NULL AND btrim(scenario) <> '' THEN E'\\n\\n' ELSE '' END || question
-        )
-      ) BETWEEN ${MIN_PUBLIC_STEM_CHARS} AND ${MAX_PUBLIC_STEM_CHARS}
-      AND length(btrim(explanation)) BETWEEN 80 AND 1600
-      AND (
-        position('|||' IN "correctAnswer") = 0
-        OR "itemType" = 'select_all'
-      )
-      AND "references" IS NOT NULL
-      AND jsonb_typeof("references") = 'array'
-      AND jsonb_array_length("references") > 0
-      ${excludeSql}
       ${usmleStepScopeSql()}
       ${studentEligibleAndSql()}
-    ORDER BY md5(id || '${seed}')
-    LIMIT ${limit}
     `,
     []
   );
+  const order = new Map(ids.map((id, index) => [id, index]));
+  return [...rows].sort((a, b) => (order.get(a.id) ?? 999) - (order.get(b.id) ?? 999));
 }
 
 async function loadFreeQuizPayload(board: FreeQuizBoardSlug): Promise<FreeQuizBankPayload> {
   const rotationKey = freeQuizRotationKey();
   try {
-    let rows = await queryFreeQuizRows(board, rotationKey);
-    let questions = pickFreeQuizQuestionsFromRows(rows);
-    if (questions.length < FREE_QUIZ_QUESTION_COUNT) {
-      const seenIds = new Set(questions.map((question) => question.id));
-      const extra = await queryFreeQuizRows(board, rotationKey, {
-        excludeIds: [...seenIds],
-        seedSuffix: "-fill",
-        limit: FREE_QUIZ_CANDIDATE_PULL,
-      });
-      rows = [...rows, ...extra];
-      questions = pickFreeQuizQuestionsFromRows(rows);
-    }
+    const rows = await queryFixedFreeQuizRows(board);
+    const questions = pickFreeQuizQuestionsFromRows(rows);
     return { board, rotationKey, questions };
   } catch {
     return { board, rotationKey, questions: [] };
@@ -364,7 +339,7 @@ async function loadFreeQuizPayload(board: FreeQuizBoardSlug): Promise<FreeQuizBa
 
 const loadCachedFreeQuiz = unstable_cache(
   async (board: FreeQuizBoardSlug) => loadFreeQuizPayload(board),
-  ["public-free-quiz-v3"],
+  ["public-free-quiz-fixed-v1"],
   { revalidate: 3600 }
 );
 
@@ -385,7 +360,7 @@ export function gradeFreeQuizAnswers(
   if (bank.rotationKey !== rotationKey) {
     return {
       ok: false,
-      error: "This quiz set has expired. Refresh the page to load today's questions.",
+      error: "This quiz set is out of date. Refresh the page and try again.",
       status: 400,
     };
   }
