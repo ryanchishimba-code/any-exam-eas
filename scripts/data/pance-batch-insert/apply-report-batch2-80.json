@@ -1,0 +1,686 @@
+{
+  "mode": "apply",
+  "inputFile": "scripts/data/pance-batch-insert/batch2-80.json",
+  "rowsInFile": 80,
+  "validationErrors": [],
+  "duplicates": [],
+  "wouldInsert": [
+    {
+      "index": 0,
+      "blueprintTopic": "chronic subdural hematoma",
+      "contentHash": "aac22c8d052834f9a9351db158be99ec546697cb27f6112ee0888fb06ed3ef9d",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 1,
+      "blueprintTopic": "dementia with Lewy bodies",
+      "contentHash": "7f78a4b25a3c1a5422f995c00b8b2ed72e3b0973a99b390aa995cbc298d3b749",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 2,
+      "blueprintTopic": "behavioral variant frontotemporal dementia",
+      "contentHash": "2ead022370f6ffa5caf1674c7c95e1431d8e579de8d3c814d4275543f2f5d328",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 3,
+      "blueprintTopic": "Tourette syndrome",
+      "contentHash": "46d25cc07a343fffe24e2960f4bd38d85e62ed056effe2690e91c9387c7a6bfc",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 4,
+      "blueprintTopic": "tension-type headache",
+      "contentHash": "c95bac41afeb76f15646b4bee0d7ff69143d3b5acd4cb37418981796481ca6ac",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 5,
+      "blueprintTopic": "juvenile myoclonic epilepsy",
+      "contentHash": "d69116abc4fe0b23f790ff8ea008310290327c01fc6675b5e7db442700276f23",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 6,
+      "blueprintTopic": "bacterial meningitis empiric therapy in older adults",
+      "contentHash": "04919e9206d42b2a0c2ae44cd06e7044f7048dedb224778ce81d811a9b6e37c8",
+      "stem": "Which of the following is the most appropriate empiric therapy?"
+    },
+    {
+      "index": 7,
+      "blueprintTopic": "complex regional pain syndrome",
+      "contentHash": "56eb14c83654a259e2267c82f4aa696de3c1ddd98a383e57c185a07592a55983",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 8,
+      "blueprintTopic": "painful diabetic neuropathy",
+      "contentHash": "61c08eda789a8539130e1d3150701a231f1df0c70e87e89ce8db3ca341347807",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 9,
+      "blueprintTopic": "vasovagal syncope",
+      "contentHash": "6fffefbb0efd40ba983acf61b3b16cd3d316921c584240f5189414e88ef88ca3",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 10,
+      "blueprintTopic": "restless legs syndrome",
+      "contentHash": "5613d42fb8efaf5a90faa8811c5d74bc63b07fcd51aba85178c108896f551fb9",
+      "stem": "Which of the following is the most appropriate next step in evaluation?"
+    },
+    {
+      "index": 11,
+      "blueprintTopic": "Alzheimer disease initial pharmacotherapy",
+      "contentHash": "8aab8ca323a031f166059d350f6c632d6264aa279e84b4e7beae71b105c2c9ad",
+      "stem": "Which of the following is the most appropriate initial pharmacotherapy?"
+    },
+    {
+      "index": 12,
+      "blueprintTopic": "lecanemab pretreatment evaluation",
+      "contentHash": "63f2ebc404b51b0dc672a8bf8531ba8d8951223afe2da50666d9d4d503894179",
+      "stem": "Which of the following must be obtained before initiating therapy?"
+    },
+    {
+      "index": 13,
+      "blueprintTopic": "symptomatic carotid stenosis",
+      "contentHash": "8403ed3247da942d0eb44c46ae50a75efe3442b507cbf3f506e2de4f6255c2fb",
+      "stem": "In addition to medical therapy, which of the following is the most appropriate management?"
+    },
+    {
+      "index": 14,
+      "blueprintTopic": "warfarin-associated intracerebral hemorrhage",
+      "contentHash": "cccc01f13d4feed7c08290d5525efcf82efd9f12c3fffe7cdb50677f3b48c904",
+      "stem": "Which of the following is the most appropriate treatment to reverse anticoagulation?"
+    },
+    {
+      "index": 15,
+      "blueprintTopic": "blood pressure management in intracerebral hemorrhage",
+      "contentHash": "c303c5410247b6734269c2f14a53e253f4678b95c1a1426cb3aec9b63ff3adfd",
+      "stem": "Which of the following is the most appropriate blood pressure goal?"
+    },
+    {
+      "index": 16,
+      "blueprintTopic": "nimodipine in aneurysmal subarachnoid hemorrhage",
+      "contentHash": "452a6bb6cc28eab7a16466fc19114240a6b8191e0ff39b0cb4ee65979fbc083e",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 17,
+      "blueprintTopic": "multiple sclerosis relapse",
+      "contentHash": "ad1d9ff3cd2cc9ba22212271322258a6d04d696ab955a1bfe91500e25978e869",
+      "stem": "Which of the following is the most appropriate treatment for this episode?"
+    },
+    {
+      "index": 18,
+      "blueprintTopic": "spastic diplegic cerebral palsy",
+      "contentHash": "0b8e77382b6c6dce962e8e8a88a2debcf5766c62e1fea341ea461ad3731d4a74",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 19,
+      "blueprintTopic": "glioblastoma",
+      "contentHash": "6700800b2b2bbe3f265184dafc0495d950351990a6f3bac96656e276b1b58d82",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 20,
+      "blueprintTopic": "subacute combined degeneration from vitamin B12 deficiency",
+      "contentHash": "d8fc60d7e1aa75f5217232b2d5909ecaec7e2d472f3b41c5070f6f5e778f2470",
+      "stem": "Which of the following findings is most likely on neurologic examination?"
+    },
+    {
+      "index": 21,
+      "blueprintTopic": "simple febrile seizure",
+      "contentHash": "b1d17be7d3834b05288dde49f2496c197e5307618d2a3479899c0a4107b64ea3",
+      "stem": "Which of the following is the most appropriate next step in management?"
+    },
+    {
+      "index": 22,
+      "blueprintTopic": "first unprovoked seizure in an adult",
+      "contentHash": "54dedd961bab5f80b06b199a6ec2462bee42f2887a32e822b40fb62a154c7fe5",
+      "stem": "Which of the following is the most appropriate next step in evaluation?"
+    },
+    {
+      "index": 23,
+      "blueprintTopic": "metastatic spinal cord compression",
+      "contentHash": "72ba683fceecab023b2893049ffcb45d09a184ad7e221a0242748452fe8e73ba",
+      "stem": "Which of the following is the most appropriate next step in management?"
+    },
+    {
+      "index": 24,
+      "blueprintTopic": "medication-overuse headache",
+      "contentHash": "ba12319f8c2a6175e4430d70136a725a058f56184d997930fc8d57ee5ac592b4",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 25,
+      "blueprintTopic": "migraine with aura and combined hormonal contraception",
+      "contentHash": "3011dc298832d40bb05086344810ac3d8034aa2d1eed21159adafeb82b357791",
+      "stem": "Which of the following is the most appropriate recommendation?"
+    },
+    {
+      "index": 26,
+      "blueprintTopic": "Broca aphasia localization",
+      "contentHash": "88a76b6d7ae740424a2aea825e4ce51a5131d2ee3e8b5f277879a0cd3a94beab",
+      "stem": "A lesion in which of the following locations most likely explains his language findings?"
+    },
+    {
+      "index": 27,
+      "blueprintTopic": "lateral medullary (Wallenberg) syndrome",
+      "contentHash": "6d49b227dad986ad9616c66f0e37ed78c9e164b424ebbe63970646cb32a8c316",
+      "stem": "Which of the following additional findings is most likely on sensory examination?"
+    },
+    {
+      "index": 28,
+      "blueprintTopic": "brain death determination ancillary testing",
+      "contentHash": "8c623a22f50cda2103817875a4a2ef074a26cbfa42873b4ab6ae0d9809d90508",
+      "stem": "Which of the following is the most appropriate next step in determining brain death?"
+    },
+    {
+      "index": 29,
+      "blueprintTopic": "atrial fibrillation after ischemic stroke",
+      "contentHash": "47e5edbd915b10e5a1509f406aa8d741f9f92273fd2c154f7677082565bab85e",
+      "stem": "Which of the following is the most appropriate long-term secondary prevention?"
+    },
+    {
+      "index": 30,
+      "blueprintTopic": "bipolar II disorder",
+      "contentHash": "98ea0e81d79f580be9c9641fa161bb5301ca61ccf62e58d660066871cec2d345",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 31,
+      "blueprintTopic": "cyclothymic disorder",
+      "contentHash": "4d6220f79764fbe224fc4f23d1306bb891ca60cc665bc565cfbf82a8a93f8fc5",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 32,
+      "blueprintTopic": "persistent depressive disorder",
+      "contentHash": "6871bc8cde567b3ba8cfe6e0a50476e76fae9ab9c4a39e9ff4d6a22ca86fc879",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 33,
+      "blueprintTopic": "premenstrual dysphoric disorder",
+      "contentHash": "7a8328c8ba5fa3ef88ac964bd70d920a137233a3562bfcc31be71bb4fee8f51e",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 34,
+      "blueprintTopic": "schizophreniform disorder",
+      "contentHash": "3ba9ac2e1ebe8ff9d9174062d0ecc86188af9472c97971a6d3e292c3791b8ddf",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 35,
+      "blueprintTopic": "brief psychotic disorder",
+      "contentHash": "c99f3d63cb284eba16664f19ad81f21badfa9771fe87bfde45e033fdda7ebece",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 36,
+      "blueprintTopic": "delusional disorder",
+      "contentHash": "0e064ee2c447d07d9c60d13e10cf00d8862214fb73b37d0d54ed2c3e5ec141c9",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 37,
+      "blueprintTopic": "schizoaffective disorder",
+      "contentHash": "948895dfd672ff43e2ec07bd95c8b02933e0773554ff1ac25186d2dd989df47a",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 38,
+      "blueprintTopic": "borderline personality disorder",
+      "contentHash": "83eca379bdafe46010332128443eaf45905ba1c700892e2fd575845b495b5639",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 39,
+      "blueprintTopic": "avoidant personality disorder",
+      "contentHash": "4aea094f10aabfe05e02e166681aec1a89b7f650c1d76b7cf100d26cf6401ac3",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 40,
+      "blueprintTopic": "illness anxiety disorder",
+      "contentHash": "061ec77e30528f12e518ac8a3183732082b99c5b679cca832cf7ca54494cdbfd",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 41,
+      "blueprintTopic": "functional neurological symptom disorder",
+      "contentHash": "b34c408cbf0001dfd380b49202a397b7a37dbc6960fdd5790207bd8ec248b168",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 42,
+      "blueprintTopic": "factitious disorder imposed on self",
+      "contentHash": "2bac26bd7424cbe9ddbaddbb56d12e575c873398cc7d41ae8f8c99bdf3ac5fbc",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 43,
+      "blueprintTopic": "body dysmorphic disorder",
+      "contentHash": "b66905f70639cfa3c57d0b58a337bf182b6a2dbe0cf266510b9461f48777da38",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 44,
+      "blueprintTopic": "acute stress disorder",
+      "contentHash": "58b5199de78d81a3ed3a23b0786881d0c9399b87363b60807d0979ae4b838273",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 45,
+      "blueprintTopic": "adjustment disorder",
+      "contentHash": "34862d7817f0933a3957686b9bab3b358e55d3f846ebc664fb666d65b7657d67",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 46,
+      "blueprintTopic": "prolonged grief disorder",
+      "contentHash": "d078c3fa54cb6781e4193e79a66c534c2cf9efaff7ee52cf2b4a6de23772830f",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 47,
+      "blueprintTopic": "neuroleptic malignant syndrome",
+      "contentHash": "67fb3460c8b189a430d286bc72b00bf7f8ff92fbdbb9e98306023e7763836896",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 48,
+      "blueprintTopic": "serotonin syndrome",
+      "contentHash": "4ab277a965fb6e47bba3e2822edb70498bb869cfc034fa57ad0559b1eea2b4e8",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 49,
+      "blueprintTopic": "autism spectrum disorder",
+      "contentHash": "0330f8e7408cb14ffd8f2d4c2fd6f2fb1735e70d5ef4f28c099305545f6f3e49",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 50,
+      "blueprintTopic": "binge-eating disorder pharmacotherapy",
+      "contentHash": "e27a6a0728632e7658de782c62214b1dfa48c83b8fa0297597d52cf2f1de4349",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 51,
+      "blueprintTopic": "treatment-resistant schizophrenia",
+      "contentHash": "e44c19ad649a1d6d4f3eb23748a609f0706801e8ec82efb0dd1791d032f61991",
+      "stem": "Which of the following is the most appropriate next step in pharmacotherapy?"
+    },
+    {
+      "index": 52,
+      "blueprintTopic": "tardive dyskinesia",
+      "contentHash": "bffecee7a4ce248823cd800b0d8b39693098559809bc046548313b8272852ade",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 53,
+      "blueprintTopic": "acute dystonic reaction",
+      "contentHash": "b8ade9ab4ef673e66d90b5beebb0408af2718a2a7957469b0aa6045bf1dacbcf",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 54,
+      "blueprintTopic": "antipsychotic-induced akathisia",
+      "contentHash": "d585b140ce6e0f0389c51db1c9f53109064db255a248f0284818a725ab2f78e9",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 55,
+      "blueprintTopic": "bipolar I depression",
+      "contentHash": "2c3461ce5a9fffad7ded72aec09b2ec9498c317bc613dc764eaac9d811d09e95",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 56,
+      "blueprintTopic": "alcohol withdrawal management",
+      "contentHash": "038efb0ed65bff7be9ecf4023352170c741428f884c5159aee9e337c6c31c885",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 57,
+      "blueprintTopic": "alcohol use disorder with concurrent opioid agonist therapy",
+      "contentHash": "35d9c478ab13033ad68a5cd7fe2924c5f1166bb00562c743f89f4123e6314cda",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 58,
+      "blueprintTopic": "tobacco cessation pharmacotherapy",
+      "contentHash": "52116b438076342ebbe9d9d3915a1b257959434d67e37e8d885f4fded8d7905c",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 59,
+      "blueprintTopic": "postpartum depression zuranolone dosing",
+      "contentHash": "7b3e837282e023fc728a97014923b14d59c25b0193cc7c092a2650762bcb037a",
+      "stem": "Which of the following is the correct regimen?"
+    },
+    {
+      "index": 60,
+      "blueprintTopic": "generalized anxiety disorder pharmacotherapy",
+      "contentHash": "0c6d5f5f5865ead09025549d8322e346b7b4df094e716ebcc052d064eab1eed6",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 61,
+      "blueprintTopic": "obsessive-compulsive disorder pharmacotherapy",
+      "contentHash": "aa95bdf1aedc6a260dcce818ea121131ad408149acc760f30ca172b9fae9ce90",
+      "stem": "Which of the following is the most appropriate next step in pharmacotherapy?"
+    },
+    {
+      "index": 62,
+      "blueprintTopic": "refeeding syndrome in anorexia nervosa",
+      "contentHash": "499e7f50e507887b3bd4b1c03ebbba8775db7e8160a8069b45cf287e7f975696",
+      "stem": "Which of the following serum laboratory values is most likely to be markedly abnormal?"
+    },
+    {
+      "index": 63,
+      "blueprintTopic": "lithium pretreatment laboratory evaluation",
+      "contentHash": "57313b92b4c3a675af2e8414718656fb56fafd0c548715cd501af21b7a456ddb",
+      "stem": "Which of the following sets of tests is most appropriate before starting lithium?"
+    },
+    {
+      "index": 64,
+      "blueprintTopic": "bulimia nervosa physical findings",
+      "contentHash": "77dde9f08bf0d469053f8aecd69db26061b2730042865e3c0d6306c7eefa064f",
+      "stem": "Which of the following findings is most likely on physical examination?"
+    },
+    {
+      "index": 65,
+      "blueprintTopic": "sentinel bruising in suspected child physical abuse",
+      "contentHash": "34abb130176c158fd4db0c71577e76e8a5579297eff881ea7d9e50fbb2a170b2",
+      "stem": "Which of the following findings is most concerning for physical abuse?"
+    },
+    {
+      "index": 66,
+      "blueprintTopic": "lithium toxicity with impaired kidney function",
+      "contentHash": "5961739a3a18ebd56d1bb9a62db7353093e925eb686a06a6056528ab22445a2d",
+      "stem": "Which of the following is the most appropriate next step in management?"
+    },
+    {
+      "index": 67,
+      "blueprintTopic": "buprenorphine induction for opioid use disorder",
+      "contentHash": "f1d97628b68e75897526acb1addb78d00cb540358fe45749608ccee17fec5034",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 68,
+      "blueprintTopic": "cocaine-associated chest pain",
+      "contentHash": "19ed9fb963e02ff625c5f360b728f00139d030d2675fda461550c46bf34d0456",
+      "stem": "Which of the following is the most appropriate next step in management?"
+    },
+    {
+      "index": 69,
+      "blueprintTopic": "outpatient suicide risk management",
+      "contentHash": "c96b52ba028f107e6ef34860663b070c89bd337876552cedd06061f2e6118abf",
+      "stem": "In addition to optimizing depression treatment, which of the following is the most appropriate intervention?"
+    },
+    {
+      "index": 70,
+      "blueprintTopic": "buprenorphine prescribing after X-waiver elimination",
+      "contentHash": "4b02640680eff4521cb05054c631c5718fce8b0bce510fc3526b11bae9bc210f",
+      "stem": "Under current federal rules, which of the following is required for her to prescribe buprenorphine for opioid use disorder?"
+    },
+    {
+      "index": 71,
+      "blueprintTopic": "decision-making capacity",
+      "contentHash": "b760a3c5ffb13d07f0983c68e9e43abc1845a669a071bb02892c58aa6de069a3",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 72,
+      "blueprintTopic": "naloxone co-prescribing",
+      "contentHash": "74f3cee07f3b83834c58b95e68f47c2bea2301468702c4e546c4ff408f6495d3",
+      "stem": "Which of the following is the most appropriate intervention to add now?"
+    },
+    {
+      "index": 73,
+      "blueprintTopic": "anxiety screening in adults",
+      "contentHash": "938d3fccc71e0a5da534d330a9d8d0dce59bd90868d52751d630976d215fde91",
+      "stem": "According to current USPSTF recommendations, which of the following is most appropriate regarding anxiety?"
+    },
+    {
+      "index": 74,
+      "blueprintTopic": "prevention of perinatal depression",
+      "contentHash": "5921d20b08a489cd5b17362906929db9ed7fc99441157dad9b097785a1f5b71e",
+      "stem": "Which of the following is the most appropriate recommendation?"
+    },
+    {
+      "index": 75,
+      "blueprintTopic": "posttraumatic stress disorder first-line treatment",
+      "contentHash": "5a5ebc1801c858dbc954f6649d12bab63e60b5ac438e9f908dc249e23c8f0783",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 76,
+      "blueprintTopic": "preschool ADHD initial treatment",
+      "contentHash": "cacfdb03db995c4f00fe6d8ebf122e47384d34640f903cc7d342e3478a3d46da",
+      "stem": "Which of the following is the most appropriate initial treatment?"
+    },
+    {
+      "index": 77,
+      "blueprintTopic": "chronic insomnia initial treatment",
+      "contentHash": "39247f321ce698392e9a6389f50d0b7d4f60d92600f7217ae82de3c4d9b273b8",
+      "stem": "Which of the following is the most appropriate initial treatment?"
+    },
+    {
+      "index": 78,
+      "blueprintTopic": "antipsychotic-induced hyperprolactinemia mechanism",
+      "contentHash": "9885f7e5d3e848c7eba6e203615f2459920ce1676514800565a8054c965b5f3d",
+      "stem": "Blockade of dopamine D2 receptors in which of the following pathways is most responsible for her new symptoms?"
+    },
+    {
+      "index": 79,
+      "blueprintTopic": "disulfiram mechanism",
+      "contentHash": "18303b05c574dfa5734a1d064e4db2eeccc77187a2e169ed42cb166242ea9896",
+      "stem": "The medication most likely causes this reaction by which of the following mechanisms?"
+    }
+  ],
+  "sharedLeadInsInBatch": [
+    {
+      "stem": "Which of the following is the most likely diagnosis?",
+      "topics": [
+        "chronic subdural hematoma",
+        "dementia with Lewy bodies",
+        "behavioral variant frontotemporal dementia",
+        "Tourette syndrome",
+        "tension-type headache",
+        "juvenile myoclonic epilepsy",
+        "complex regional pain syndrome",
+        "vasovagal syncope",
+        "spastic diplegic cerebral palsy",
+        "glioblastoma",
+        "medication-overuse headache",
+        "bipolar II disorder",
+        "cyclothymic disorder",
+        "persistent depressive disorder",
+        "premenstrual dysphoric disorder",
+        "schizophreniform disorder",
+        "brief psychotic disorder",
+        "delusional disorder",
+        "schizoaffective disorder",
+        "borderline personality disorder",
+        "avoidant personality disorder",
+        "illness anxiety disorder",
+        "functional neurological symptom disorder",
+        "factitious disorder imposed on self",
+        "body dysmorphic disorder",
+        "acute stress disorder",
+        "adjustment disorder",
+        "prolonged grief disorder",
+        "neuroleptic malignant syndrome",
+        "serotonin syndrome",
+        "autism spectrum disorder"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate pharmacotherapy?",
+      "topics": [
+        "painful diabetic neuropathy",
+        "nimodipine in aneurysmal subarachnoid hemorrhage",
+        "binge-eating disorder pharmacotherapy",
+        "tardive dyskinesia",
+        "antipsychotic-induced akathisia",
+        "bipolar I depression",
+        "alcohol withdrawal management",
+        "alcohol use disorder with concurrent opioid agonist therapy",
+        "tobacco cessation pharmacotherapy",
+        "generalized anxiety disorder pharmacotherapy"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate next step in evaluation?",
+      "topics": [
+        "restless legs syndrome",
+        "first unprovoked seizure in an adult"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate next step in management?",
+      "topics": [
+        "simple febrile seizure",
+        "metastatic spinal cord compression",
+        "lithium toxicity with impaired kidney function",
+        "cocaine-associated chest pain"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate recommendation?",
+      "topics": [
+        "migraine with aura and combined hormonal contraception",
+        "prevention of perinatal depression"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate next step in pharmacotherapy?",
+      "topics": [
+        "treatment-resistant schizophrenia",
+        "obsessive-compulsive disorder pharmacotherapy"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate treatment?",
+      "topics": [
+        "acute dystonic reaction",
+        "posttraumatic stress disorder first-line treatment"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate next step?",
+      "topics": [
+        "buprenorphine induction for opioid use disorder",
+        "decision-making capacity"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate initial treatment?",
+      "topics": [
+        "preschool ADHD initial treatment",
+        "chronic insomnia initial treatment"
+      ]
+    }
+  ],
+  "inputContentHashRecomputed": 80,
+  "schemaErrors": [],
+  "countsBefore": {
+    "total": 3485,
+    "live": 2956,
+    "activeNotQa": 31,
+    "inactive": 498
+  },
+  "liveAfterInTransaction": 3036,
+  "liveAfter": 3036,
+  "insertedIds": [
+    "cmvmkf3p60000jst881tkj3u4",
+    "cmvmkf3pd0001jst8l92sokds",
+    "cmvmkf3ph0002jst8ja33hjrd",
+    "cmvmkf3pk0003jst80lpgaxna",
+    "cmvmkf3po0004jst8p03dg7nq",
+    "cmvmkf3ps0005jst8tzs6ep27",
+    "cmvmkf3pv0006jst88jatbnvn",
+    "cmvmkf3pz0007jst84i8tytp8",
+    "cmvmkf3q20008jst8hzll59lw",
+    "cmvmkf3q50009jst8l9fh42iy",
+    "cmvmkf3q9000ajst8xjqf23c7",
+    "cmvmkf3qc000bjst8dzf8qnnz",
+    "cmvmkf3qf000cjst8stosn5rh",
+    "cmvmkf3qi000djst8qkmekgaz",
+    "cmvmkf3ql000ejst83ro3criq",
+    "cmvmkf3qo000fjst8hnjempuo",
+    "cmvmkf3qs000gjst88e2qr6c8",
+    "cmvmkf3qv000hjst8g6s65wj3",
+    "cmvmkf3qy000ijst83ti78icz",
+    "cmvmkf3r2000jjst854p7terg",
+    "cmvmkf3r5000kjst8zbkjatxr",
+    "cmvmkf3r8000ljst8ucf2xa1f",
+    "cmvmkf3rb000mjst8iqqfw69q",
+    "cmvmkf3re000njst8nfb49wnj",
+    "cmvmkf3rh000ojst84a2arani",
+    "cmvmkf3rk000pjst83gicwapf",
+    "cmvmkf3rn000qjst8h748n45y",
+    "cmvmkf3rq000rjst8vq11wgjy",
+    "cmvmkf3ru000sjst88lzkps48",
+    "cmvmkf3rx000tjst8phdw04pi",
+    "cmvmkf3s1000ujst8ak6cx1ig",
+    "cmvmkf3s4000vjst8h82cueu5",
+    "cmvmkf3s7000wjst8dmhzgv5c",
+    "cmvmkf3sb000xjst8pie3d4pr",
+    "cmvmkf3se000yjst83n6ks2gw",
+    "cmvmkf3si000zjst8ugt8smpu",
+    "cmvmkf3sl0010jst8miayqzsb",
+    "cmvmkf3sp0011jst8znfcg528",
+    "cmvmkf3ss0012jst84g980dp9",
+    "cmvmkf3sv0013jst8ecqigc3z",
+    "cmvmkf3sz0014jst8gnyk3q3a",
+    "cmvmkf3t20015jst8rfxyhik1",
+    "cmvmkf3t50016jst8nxjlabhh",
+    "cmvmkf3t80017jst8o6h7k20y",
+    "cmvmkf3tb0018jst8jp7xp0rw",
+    "cmvmkf3tf0019jst8yj9yedjr",
+    "cmvmkf3ti001ajst8h81jz9i3",
+    "cmvmkf3tl001bjst85sl12obf",
+    "cmvmkf3tp001cjst8h2tpccl8",
+    "cmvmkf3ts001djst8e5z8njes",
+    "cmvmkf3tv001ejst8f07bpmsq",
+    "cmvmkf3tz001fjst86yauo5o3",
+    "cmvmkf3u2001gjst8niobri8a",
+    "cmvmkf3u6001hjst86gp3yyia",
+    "cmvmkf3u9001ijst8bx49i44r",
+    "cmvmkf3ue001jjst8hgqbcisr",
+    "cmvmkf3uj001kjst8itz3s4ij",
+    "cmvmkf3um001ljst84iot0rej",
+    "cmvmkf3up001mjst81a9an32y",
+    "cmvmkf3us001njst8l3ifcbsm",
+    "cmvmkf3uv001ojst8xnubfksy",
+    "cmvmkf3uz001pjst8j4k8ykld",
+    "cmvmkf3v2001qjst824p15mm8",
+    "cmvmkf3v5001rjst8j6ms2e52",
+    "cmvmkf3v9001sjst8m9onka2w",
+    "cmvmkf3vc001tjst8s7dk5bho",
+    "cmvmkf3vf001ujst8rrtxq81y",
+    "cmvmkf3vj001vjst8wkaomqgo",
+    "cmvmkf3vm001wjst8v51atgau",
+    "cmvmkf3vq001xjst82l0h7rwv",
+    "cmvmkf3vu001yjst87qkaw67n",
+    "cmvmkf3vx001zjst81gjzdu07",
+    "cmvmkf3w10020jst8hb6et16i",
+    "cmvmkf3w50021jst83r1p72jb",
+    "cmvmkf3w80022jst8sr8iue48",
+    "cmvmkf3wc0023jst8bdaa0hte",
+    "cmvmkf3wg0024jst82pnoxwrf",
+    "cmvmkf3wk0025jst8u37jue2l",
+    "cmvmkf3wo0026jst8l5les5mg",
+    "cmvmkf3wr0027jst81w01btp2"
+  ],
+  "backup": "scripts/data/pance-batch-insert/pance-pre-insert-backup-batch2-80.json"
+}

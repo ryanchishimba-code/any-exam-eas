@@ -14,10 +14,11 @@
  *   patientAgeGroup = null
  *   updatedAt = now
  *
- * A row is skipped when its lead-in stem (QuestionBankItem.question, trimmed
- * and lowercased) already exists on a pance row, or when its content hash
- * already exists. contentHash is bankItemContentHash(fieldId, subjectId,
- * scenario, question) — the same digest the rest of the bank uses.
+ * A row is skipped when the full item (scenario + question, case-folded with
+ * whitespace collapsed) already exists on a pance row, or when its content
+ * hash already exists on a pance row. A shared lead-in alone is not a
+ * duplicate. contentHash is bankItemContentHash(fieldId, subjectId, scenario,
+ * question) — the same digest the rest of the bank uses.
  *
  * Usage:
  *   npx tsx scripts/pance-batch-insert.ts <file.json>
@@ -95,6 +96,7 @@ type PlannedRow = {
   blueprintTopic: string | null;
   question: string;
   stemKey: string;
+  itemKey: string;
   contentHash: string;
   inputContentHash: string;
   data: Prisma.QuestionBankItemCreateInput;
@@ -103,7 +105,7 @@ type PlannedRow = {
 type Duplicate = {
   index: number;
   blueprintTopic: string | null;
-  reason: "stem" | "contentHash";
+  reason: "item" | "contentHash";
   existingId: string;
 };
 
@@ -187,6 +189,11 @@ function parseArgs(argv: string[]) {
 
 function stemKey(question: string): string {
   return question.trim().toLowerCase();
+}
+
+/** Full item identity: scenario plus lead-in, case-folded, whitespace collapsed. */
+function fullItemKey(scenario: string, question: string): string {
+  return `${scenario}\n${question}`.trim().toLowerCase().replace(/\s+/g, " ");
 }
 
 function asNullableString(value: unknown, label: string, errors: string[]): string | null {
@@ -326,6 +333,7 @@ function validateRow(raw: unknown, index: number): { errors: string[]; planned?:
       blueprintTopic,
       question: row.question,
       stemKey: stemKey(row.question),
+      itemKey: fullItemKey(row.scenario, row.question),
       contentHash,
       inputContentHash: typeof row.contentHash === "string" ? row.contentHash : "",
       data: {
@@ -415,34 +423,35 @@ async function writeBackup(backupPath: string, counts: Counts): Promise<number> 
 }
 
 async function findConflicts(planned: PlannedRow[]): Promise<Duplicate[]> {
-  const stems = [...new Set(planned.map((row) => row.stemKey))];
+  const itemKeys = [...new Set(planned.map((row) => row.itemKey))];
   const hashes = [...new Set(planned.map((row) => row.contentHash))];
-  const hits = await prisma.$queryRaw<Array<{ id: string; stem: string; hash: string }>>`
+  const hits = await prisma.$queryRaw<Array<{ id: string; itemKey: string; hash: string }>>`
     SELECT id,
-           lower(btrim(question)) AS stem,
+           lower(regexp_replace(btrim(coalesce(scenario, '') || chr(10) || question), '[[:space:]]+', ' ', 'g')) AS "itemKey",
            "contentHash" AS hash
     FROM "QuestionBankItem"
-    WHERE "contentHash" IN (${Prisma.join(hashes)})
-       OR ("fieldId" = ${FIELD_ID} AND lower(btrim(question)) IN (${Prisma.join(stems)}))
+    WHERE "fieldId" = ${FIELD_ID}
+      AND (
+        "contentHash" IN (${Prisma.join(hashes)})
+        OR lower(regexp_replace(btrim(coalesce(scenario, '') || chr(10) || question), '[[:space:]]+', ' ', 'g')) IN (${Prisma.join(itemKeys)})
+      )
   `;
-  const stemIds = new Map<string, string[]>();
+  const itemIds = new Map<string, string>();
   const hashIds = new Map<string, string>();
   for (const hit of hits) {
-    const list = stemIds.get(hit.stem) ?? [];
-    list.push(hit.id);
-    stemIds.set(hit.stem, list);
+    itemIds.set(hit.itemKey, hit.id);
     hashIds.set(hit.hash, hit.id);
   }
 
   const duplicates: Duplicate[] = [];
   for (const row of planned) {
-    const existingStem = stemIds.get(row.stemKey)?.[0];
-    if (existingStem) {
+    const existingItem = itemIds.get(row.itemKey);
+    if (existingItem) {
       duplicates.push({
         index: row.index,
         blueprintTopic: row.blueprintTopic,
-        reason: "stem",
-        existingId: existingStem,
+        reason: "item",
+        existingId: existingItem,
       });
     }
     const existingHash = hashIds.get(row.contentHash);
@@ -496,12 +505,12 @@ async function main() {
       });
       return;
     }
-    const fullKey = `${result.planned.data.scenario ?? ""}\n${result.planned.stemKey}`;
+    const fullKey = result.planned.itemKey;
     const priorFull = seenFull.get(fullKey);
     if (priorFull != null) {
       validationErrors.push({
         index,
-        message: `scenario and stem duplicate row ${priorFull} in this file.`,
+        message: `full item (scenario + question) duplicates row ${priorFull} in this file.`,
       });
       return;
     }
