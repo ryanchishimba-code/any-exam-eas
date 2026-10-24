@@ -86,20 +86,18 @@ export async function POST(req: Request) {
     const { resolveQuestionBankFieldId, enforceQuestionBankFieldAccess } = await import(
       "@/lib/edtech/question-bank-scope"
     );
-    const fieldId = resolveQuestionBankFieldId(body.field);
-
-    const access = await enforceQuestionBankFieldAccess(premium.userId, body.field);
-    if (!access.ok) return access.response;
 
     const subjectId =
       body.subjectId && body.subjectId !== MIXED_SUBJECT_ID ? body.subjectId : null;
 
     let incorrectIds: string[];
+    let trustedSessionFieldId: string | null = null;
     if (body.examSessionId) {
       const examSession = await getExamSession(body.examSessionId, premium.userId);
       if (!examSession) {
         return NextResponse.json({ error: "Exam session not found." }, { status: 404 });
       }
+      trustedSessionFieldId = examSession.fieldId;
       if (
         isUnfinishedExamActive({
           status: examSession.status,
@@ -125,6 +123,7 @@ export async function POST(req: Request) {
         : [];
       incorrectIds = missedIdsForExamSession(answers, analysis.prefetchedQuestionIds);
     } else {
+      const fieldId = resolveQuestionBankFieldId(body.field);
       incorrectIds = await loadStillIncorrectBankItemIds({
         userId: premium.userId,
         fieldId,
@@ -132,6 +131,12 @@ export async function POST(req: Request) {
         limit: 300,
       });
     }
+
+    const access = await enforceQuestionBankFieldAccess(premium.userId, body.field, {
+      trustedSessionFieldId,
+    });
+    if (!access.ok) return access.response;
+    const fieldId = access.fieldId;
 
     if (body.preflight || incorrectIds.length === 0) {
       return reviewQueueResponse(
