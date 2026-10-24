@@ -1,6 +1,11 @@
 import { scoredQuestionCount } from "@/lib/counts";
 import { loadFieldBankTypeCounts } from "@/lib/marketing/board-landing/bank-types";
 import {
+  boardPageQuestionUnits,
+  liveUsmleStepCounts,
+  loadLiveBoardQuestionCounts,
+} from "@/lib/marketing/live-board-counts";
+import {
   hubBoardIncludesStudyGuide,
   type HubBoardDonutRenderInput,
 } from "@/lib/marketing/board-landing/hub-board-donut";
@@ -22,16 +27,17 @@ function usmleStepsPopulated(
 
 export async function loadHubBoardLanding(examKey: HubExamKey) {
   const fieldId = hubSampleFieldId(examKey);
-  const [{ bundle, display }, testimonials, bankTypes] = await Promise.all([
+  const [{ bundle, display }, testimonials, bankTypes, liveCounts] = await Promise.all([
     loadPublicQuestionCounts({ dynamic: false }),
     getCachedPublishedTestimonials(6),
     examKey === "usmle" ? Promise.resolve({}) : loadFieldBankTypeCounts(fieldId),
+    loadLiveBoardQuestionCounts(),
   ]);
-  const exam = display.exams.find((row) => row.slug === examKey);
-  const live = !display.degraded && (exam?.served ?? 0) > 0;
-  const units = live ? (bundle.snapshot.boards?.[examKey] ?? null) : null;
+  const snapshotUnits = !display.degraded ? (bundle.snapshot.boards?.[examKey] ?? null) : null;
+  const units = boardPageQuestionUnits({ slug: examKey, snapshotUnits, live: liveCounts });
+  const counted = units != null && scoredQuestionCount(units) > 0;
 
-  const usmleStepCounts =
+  const inventorySteps =
     examKey === "usmle" && !bundle.inventory.degraded
       ? {
           step1: bundle.inventory.fields["usmle-step-1"]?.active ?? 0,
@@ -39,10 +45,12 @@ export async function loadHubBoardLanding(examKey: HubExamKey) {
           step3: bundle.inventory.fields["usmle-step-3"]?.active ?? 0,
         }
       : undefined;
+  const usmleStepCounts =
+    examKey === "usmle" ? (liveUsmleStepCounts(liveCounts) ?? inventorySteps) : undefined;
 
   const model = buildHubLandingModel({
     examKey,
-    degraded: !live,
+    degraded: !counted,
     units,
     testimonials,
     usmleStepCounts,

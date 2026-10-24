@@ -418,6 +418,12 @@
   background: #fff1f2;
 }
 
+.bl-options button.is-selected {
+  border-color: var(--bl-teal);
+  background: color-mix(in srgb, var(--bl-teal) 12%, #fff);
+  box-shadow: 0 0 0 1px var(--bl-teal);
+}
+
 .bl-letter {
   flex: none;
   width: 1.25rem;
@@ -2493,6 +2499,97 @@
   border: none;
   box-shadow: none;
   padding: 0;
+}
+
+.bl-free-quiz .bl-options button {
+  align-items: flex-start;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bl-free-quiz .bl-options button:focus-visible {
+  outline: 3px solid var(--bl-teal);
+  outline-offset: 2px;
+}
+
+.bl-free-quiz .bl-options button.is-selected {
+  border-color: var(--bl-teal);
+  background: color-mix(in srgb, var(--bl-teal) 14%, #fff);
+  box-shadow: 0 0 0 1px var(--bl-teal);
+}
+
+.bl-free-quiz .bl-options button.is-correct {
+  border-color: var(--bl-teal);
+  background: color-mix(in srgb, var(--bl-teal) 12%, #fff);
+}
+
+.bl-free-quiz .bl-options button.is-wrong.is-selected {
+  border-color: #e11d48;
+  background: #fff1f2;
+  box-shadow: 0 0 0 1px #e11d48;
+}
+
+.bl-free-quiz__marker {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.12rem;
+  border: 2px solid var(--bl-line);
+  border-radius: 999px;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bl-free-quiz__marker--multi {
+  border-radius: 0.28rem;
+}
+
+.bl-free-quiz .bl-options button.is-selected .bl-free-quiz__marker {
+  border-color: var(--bl-teal);
+  background: var(--bl-teal);
+}
+
+.bl-free-quiz .bl-options button.is-selected .bl-free-quiz__marker::after {
+  content: "";
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: inherit;
+  background: #fff;
+}
+
+.bl-free-quiz .bl-options button.is-selected .bl-free-quiz__marker--multi::after {
+  width: 0.42rem;
+  height: 0.2rem;
+  border-radius: 0;
+  background: transparent;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+}
+
+.bl-free-quiz .bl-options button.is-wrong.is-selected .bl-free-quiz__marker {
+  border-color: #e11d48;
+  background: #e11d48;
+}
+
+.bl-free-quiz__choice-text {
+  flex: 1 1 auto;
+}
+
+.bl-free-quiz__choice-tag {
+  margin-left: auto;
+  flex: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bl-teal);
+}
+
+.bl-free-quiz .bl-options button.is-wrong .bl-free-quiz__choice-tag {
+  color: #9f1239;
 }
 
 .bl-free-quiz__check {
