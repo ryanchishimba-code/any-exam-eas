@@ -31,7 +31,6 @@ import { nclexFeatureCards, type BoardFeatureCard } from "@/lib/marketing/board-
 import {
   BOARD_LANDING_FINAL_HEADING,
   boardLandingBreadcrumbName,
-  boardLandingQuestionNoun,
 } from "@/lib/marketing/board-landing/board-landing-copy";
 import { boardLandingHeroHeadline, boardLandingTrustPills } from "@/lib/marketing/board-landing/hero";
 import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
@@ -539,9 +538,7 @@ export function buildNclexLandingModel(input: {
   });
   const secondary =
     input.sampleSecondary && input.sampleSecondary.stem !== sample.stem ? input.sampleSecondary : null;
-  const headline = boardLandingHeroHeadline(nclexLabel, units, {
-    questionNoun: boardLandingQuestionNoun("nclex"),
-  });
+  const headline = boardLandingHeroHeadline(nclexLabel, units);
 
   return {
     h1Lead: headline.h1Lead,

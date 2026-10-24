@@ -27,3 +27,8 @@ export function boardLandingBreadcrumbName(examKey: ExamSeoKey): string {
 export function boardLandingQuestionNoun(examKey: ExamSeoKey): string {
   return `${boardLandingBreadcrumbName(examKey)} questions`;
 }
+
+/** SEO H1 — board keyword + “Practice Questions”. */
+export function boardLandingH1(boardLabel: string): string {
+  return `${boardLabel} Practice Questions`;
+}

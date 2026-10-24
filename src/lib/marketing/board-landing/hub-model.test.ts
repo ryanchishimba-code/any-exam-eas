@@ -23,7 +23,8 @@ describe("hub board landing model", () => {
     const serialized = JSON.stringify(model);
     expect(serialized).not.toMatch(BANNED);
     expect(model.heroOffer?.proPrice).toMatch(/\$27\.99\/mo/);
-    expect(`${model.h1Lead} ${model.h1Accent}`).toBe("500 USMLE questions explained · $27.99/mo");
+    expect(model.h1Lead).toBe("USMLE Practice Questions");
+    expect(model.h1Accent).toBe("500 questions · explained · $27.99/mo");
     expect(model.heroChips).toHaveLength(3);
     expect(model.features.some((card) => card.id === "anatomy-explorer")).toBe(true);
     expect(model.faqs.length).toBeGreaterThanOrEqual(4);

@@ -13,7 +13,6 @@ import { boardFeatureCardsForExam } from "@/lib/marketing/board-landing/board-fe
 import {
   BOARD_LANDING_FINAL_HEADING,
   boardLandingBreadcrumbName,
-  boardLandingQuestionNoun,
 } from "@/lib/marketing/board-landing/board-landing-copy";
 import {
   boardHeroChips,
@@ -293,9 +292,7 @@ export function buildHubLandingModel(input: {
     offer: heroOffer,
     bankTypes: {},
   });
-  const headline = boardLandingHeroHeadline(boardLabel, units, {
-    questionNoun: boardLandingQuestionNoun(input.examKey),
-  });
+  const headline = boardLandingHeroHeadline(boardLabel, units);
 
   return {
     h1Lead: headline.h1Lead,

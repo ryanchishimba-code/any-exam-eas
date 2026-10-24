@@ -8,22 +8,21 @@ import {
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
 import { typicalPrepForExam } from "@/lib/marketing/board-landing/typical-prep";
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
+import { boardLandingH1 } from "@/lib/marketing/board-landing/board-landing-copy";
 import { formatLandingHeroTrialLine, formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 
-/** Factual board-landing H1 — live count when known, never a pass guarantee. */
+/** SEO H1 plus factual subline (count when known — never a pass guarantee). */
 export function boardLandingHeroHeadline(
   boardLabel: string,
-  units: BoardQuestionUnits | null,
-  options?: { questionNoun?: string }
+  units: BoardQuestionUnits | null
 ): { h1Lead: string; h1Accent: string } {
   const price = formatMonthlyPrice("pro");
-  const h1Accent = `explained · ${price}/mo`;
-  const noun = options?.questionNoun ?? `${boardLabel} questions`;
+  const h1Lead = boardLandingH1(boardLabel);
   if (units && scoredQuestionCount(units) > 0) {
     const count = formatExactQuestionCount(scoredQuestionCount(units));
-    return { h1Lead: `${count} ${noun}`, h1Accent };
+    return { h1Lead, h1Accent: `${count} questions · explained · ${price}/mo` };
   }
-  return { h1Lead: `${boardLabel} practice questions`, h1Accent };
+  return { h1Lead, h1Accent: `Explained rationales · ${price}/mo` };
 }
 
 export function boardLandingTrustPills(): string[] {

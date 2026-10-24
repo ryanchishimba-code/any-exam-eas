@@ -68,11 +68,16 @@
 
 .board-landing--board-flow .bl-hero h1,
 .board-landing--naplex-flow .bl-hero h1 {
-  max-width: min(18em, 100%);
+  max-width: min(22em, 100%);
 }
 
-.bl-hero h1 span {
-  color: var(--bl-teal);
+.bl-hero-factual {
+  margin: 0.4rem 0 0;
+  max-width: min(38rem, 100%);
+  font-size: clamp(1.05rem, 2.8vw, 1.28rem);
+  font-weight: 550;
+  line-height: 1.4;
+  color: var(--bl-muted);
 }
 
 .bl-hero-chips {

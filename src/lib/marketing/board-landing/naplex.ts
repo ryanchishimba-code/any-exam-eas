@@ -248,7 +248,7 @@ export function buildNaplexLandingModel(input: {
     bankTypes: input.degraded ? {} : input.bankTypes,
   });
 
-  const headline = boardLandingHeroHeadline("NAPLEX", units, { questionNoun: "NAPLEX questions" });
+  const headline = boardLandingHeroHeadline("NAPLEX", units);
 
   return {
     h1Lead: headline.h1Lead,
