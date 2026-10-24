@@ -22,7 +22,9 @@ export function blueprintCategoryIdForQuestion(
   source: QuestionAreaSource
 ): string | null {
   const explicit = source.clientNeeds?.trim();
-  if (explicit) return explicit;
+  if (explicit) {
+    if (isBlueprintAreaId(fieldId, explicit)) return explicit;
+  }
   const subjectId = source.subjectId?.trim() || "unassigned";
   const categories = getExamBlueprint(fieldId)?.categories ?? [];
   const match = categories.find(

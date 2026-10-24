@@ -1389,11 +1389,12 @@ export function StudyBankPractice({
         }
 
         const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
+        const subjectIds = (data.subjectIds as Array<string | null> | undefined) ?? [];
         const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
           ...q,
           id: i + 1,
           field,
-          subjectId: "__mixed__",
+          subjectId: subjectIds[i] || q.subjectId || MIXED_SUBJECT_ID,
           bankItemId: metaIds[i] ?? `bank-${fieldId}-${i}`,
         }));
         if (raw.length === 0) {
@@ -1900,11 +1901,12 @@ export function StudyBankPractice({
       }
 
       const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
+      const subjectIds = (data.subjectIds as Array<string | null> | undefined) ?? [];
       const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
         ...q,
         id: i + 1,
         field,
-        subjectId: effectiveSubjectId,
+        subjectId: subjectIds[i] || q.subjectId || effectiveSubjectId,
         bankItemId: metaIds[i] ?? `bank-${fieldId}-${i}`,
       }));
       if (raw.length === 0) {

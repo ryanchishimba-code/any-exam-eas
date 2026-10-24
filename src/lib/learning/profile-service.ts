@@ -17,6 +17,7 @@ import {
   tagsForStoredAttempt,
   tagsJsonIncludesPracticeFormat,
 } from "@/lib/study/practice-format";
+import { isMappedAttemptSubjectId } from "@/lib/learning/attempt-blueprint-attribution";
 
 export async function upsertLearningProfile(userId: string): Promise<void> {
   await prisma.learningProfile.upsert({
@@ -89,7 +90,9 @@ export async function recordAttemptWithMastery(
         questionKey,
         bankItemId: input.question.bankItemId ?? null,
         fieldId: input.fieldId,
-        subjectId: input.question.subjectId ?? null,
+        subjectId: isMappedAttemptSubjectId(input.question.subjectId)
+          ? input.question.subjectId!.trim()
+          : null,
         questionType: input.question.type,
         stemPreview: input.question.stem.slice(0, 200),
         correct: input.correct,

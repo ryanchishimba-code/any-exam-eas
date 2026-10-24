@@ -39,9 +39,22 @@ function clean(value: string | null | undefined): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
+export function isMappedAttemptSubjectId(subjectId: string | null | undefined): boolean {
+  const key = clean(subjectId).toLowerCase();
+  return key.length > 0 && !UNMAPPED_SUBJECTS.has(key);
+}
+
 function isUsableSubject(subjectId: string): boolean {
-  const key = subjectId.toLowerCase();
-  return !UNMAPPED_SUBJECTS.has(key);
+  return isMappedAttemptSubjectId(subjectId);
+}
+
+function attemptNeedsBankArea(row: {
+  subjectId?: string | null;
+  clientNeeds?: string | null;
+}): boolean {
+  if (isMappedAttemptSubjectId(row.subjectId)) return false;
+  if (!clean(row.subjectId) && clean(row.clientNeeds)) return false;
+  return true;
 }
 
 /** Resolve one attempt row to a blueprint category id, or null when unmapped. */
@@ -155,7 +168,7 @@ export async function hydrateAttemptAreaFromBank<
 >(attempts: T[]): Promise<T[]> {
   const missingIds = new Set<string>();
   for (const row of attempts) {
-    if (clean(row.subjectId) || clean(row.clientNeeds)) continue;
+    if (!attemptNeedsBankArea(row)) continue;
     const id = clean(row.bankItemId) || clean(row.questionKey);
     if (id) missingIds.add(id);
   }
@@ -175,14 +188,15 @@ export async function hydrateAttemptAreaFromBank<
   const byId = new Map(bankRows.map((row) => [row.id, row]));
 
   return attempts.map((row) => {
-    if (clean(row.subjectId) || clean(row.clientNeeds)) return row;
+    if (!attemptNeedsBankArea(row)) return row;
     const id = clean(row.bankItemId) || clean(row.questionKey);
     if (!id) return row;
     const bank = byId.get(id);
     if (!bank) return row;
+    const replaceSubject = !isMappedAttemptSubjectId(row.subjectId);
     return {
       ...row,
-      subjectId: row.subjectId ?? bank.subjectId,
+      subjectId: replaceSubject ? bank.subjectId : (row.subjectId ?? bank.subjectId),
       clientNeeds: row.clientNeeds ?? bank.clientNeeds,
       topicCategory: row.topicCategory ?? bank.topicCategory,
       blueprintDomain: row.blueprintDomain ?? bank.blueprintDomain,
