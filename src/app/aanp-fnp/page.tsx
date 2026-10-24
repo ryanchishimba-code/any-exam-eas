@@ -17,7 +17,7 @@ export default async function AanpFnpHubPage() {
   return (
     <>
       <JsonLdScript data={model.jsonLd} />
-      <BoardLanding model={render} />
+      <BoardLanding model={render} freeQuizBoard="aanp-fnp" />
     </>
   );
 }

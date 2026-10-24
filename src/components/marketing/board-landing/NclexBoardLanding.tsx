@@ -13,6 +13,7 @@ import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/Pra
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import { MarketingHeroActions } from "@/components/marketing/MarketingHeroActions";
 import type { NclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
 
 export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderModel }) {
@@ -60,6 +61,10 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
 
       <div className="bl-band bl-band--alt">
         <BoardPainIcons points={model.painPoints} />
+      </div>
+
+      <div className="bl-band">
+        <BoardFreeQuizLazy board="nclex" />
       </div>
 
       {model.features.length > 0 ? (

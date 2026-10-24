@@ -321,6 +321,24 @@
   text-wrap: balance;
 }
 
+.home-free-quiz__lede {
+  margin: 0.85rem auto 0;
+  max-width: 36rem;
+  color: var(--home-muted);
+  line-height: 1.55;
+}
+
+.home-free-quiz__boards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 1.5rem auto 0;
+  padding: 0;
+  list-style: none;
+  max-width: 40rem;
+}
+
 .home-lead {
   margin: 0.85rem auto 0;
   max-width: 36rem;

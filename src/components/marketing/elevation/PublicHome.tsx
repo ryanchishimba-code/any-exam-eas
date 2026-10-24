@@ -6,6 +6,7 @@ import { MarketingHeroActions } from "@/components/marketing/MarketingHeroAction
 import type { BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
 import type { LandingTestimonialCard } from "@/lib/testimonials/landing-stories";
 import { HomeQuickBites } from "@/components/marketing/elevation/HomeQuickBites";
+import { HomeFreeQuizSection } from "@/components/marketing/free-quiz/HomeFreeQuizSection";
 import { HomeStickyCta } from "@/components/marketing/elevation/HomeStickyCta";
 import "@/styles/home-visual.css";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
@@ -113,6 +114,8 @@ export function PublicHome({
       ) : null}
 
       <HomeQuickBites />
+
+      <HomeFreeQuizSection />
 
       <div className="home-section home-rise board-landing">
         <PrepPriceBarChart data={homePriceChart} />
