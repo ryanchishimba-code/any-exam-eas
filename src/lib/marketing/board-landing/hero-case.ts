@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { sqlQuery } from "@/lib/db";
 import { ACTIVE_INVENTORY_CACHE_TAG } from "@/lib/inventory/active-inventory-cache";
+import type { LandingQuestion } from "@/lib/marketing/board-landing/model";
 
 export type HeroCaseScene = {
   setting: string;
@@ -11,6 +12,7 @@ export type HeroCaseScene = {
   rows: string[][];
   stem: string;
   options: string[];
+  keyedOptionText: string;
   keyedAnswer: string;
   whyNot: string | null;
 };
@@ -130,6 +132,8 @@ export function buildHeroCaseScene(input: {
         .find((text): text is string => Boolean(text)) ?? null;
     const keyedAnswer = rationaleShort(item.rationale) || keyed.map((option) => option.text).join(" ");
     if (!keyedAnswer) continue;
+    const keyedOptionText = keyed[0]?.text ?? "";
+    if (!keyedOptionText) continue;
     return {
       setting: input.setting?.trim() || "Next Gen NCLEX case",
       notesLabel: String(notesTab.label),
@@ -139,6 +143,7 @@ export function buildHeroCaseScene(input: {
       rows: vitals.rows,
       stem,
       options: options.map((option) => option.text),
+      keyedOptionText,
       keyedAnswer,
       whyNot,
     };
@@ -190,6 +195,27 @@ const loadCachedNclexHeroCase = unstable_cache(readNclexHeroCase, ["nclex-hero-c
   revalidate: 300,
   tags: [ACTIVE_INVENTORY_CACHE_TAG],
 });
+
+export function heroCaseToLandingQuestion(scene: HeroCaseScene): LandingQuestion {
+  const id = "nclex-ngn-hero-case";
+  return {
+    id,
+    stem: scene.stem,
+    rationale: scene.keyedAnswer,
+    sources: [],
+    options: scene.options.map((text, index) => ({
+      id: `${id}-${index}`,
+      text,
+      correct: text === scene.keyedOptionText,
+      rationale:
+        text === scene.keyedOptionText
+          ? scene.keyedAnswer
+          : scene.whyNot && index === scene.options.findIndex((opt) => opt !== scene.keyedOptionText)
+            ? scene.whyNot
+            : null,
+    })),
+  };
+}
 
 /** One live Next Gen case for the NCLEX hero. Null when the bank cannot be read. */
 export async function loadNclexHeroCase(): Promise<HeroCaseScene | null> {

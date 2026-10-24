@@ -7,10 +7,18 @@ type PharmacyHeroProps = {
   trialLabel: string;
   ctaName: string;
   ctaLocation: string;
+  ctaMicrocopy?: string;
 };
 
 /** Server-rendered pharmacy device. The Rx mark is decorative; the question is HTML. */
-export function PharmacyHero({ hero, trialHref, trialLabel, ctaName, ctaLocation }: PharmacyHeroProps) {
+export function PharmacyHero({
+  hero,
+  trialHref,
+  trialLabel,
+  ctaName,
+  ctaLocation,
+  ctaMicrocopy,
+}: PharmacyHeroProps) {
   return (
     <div className="bl-rx-scene">
       <article className="bl-rx" aria-labelledby="naplex-calc-heading">
@@ -58,6 +66,7 @@ export function PharmacyHero({ hero, trialHref, trialLabel, ctaName, ctaLocation
           Try a free question
         </a>
       </div>
+      {ctaMicrocopy ? <p className="bl-cta-micro">{ctaMicrocopy}</p> : null}
     </div>
   );
 }

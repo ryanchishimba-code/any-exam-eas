@@ -34,9 +34,19 @@ import {
   getSiteUrl,
 } from "@/lib/seo";
 import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
-import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
+import {
+  BOARD_LANDING_CONTENT_YEAR,
+  boardLandingBaseGraph,
+  freeBoardMetaTitle,
+} from "@/lib/marketing/board-landing/board-schema";
+import {
+  boardPainPoints,
+  boardThemeClass,
+  buildBoardVisuals,
+  formatHeroCtaMicrocopy,
+  heroWhyUs,
+} from "@/lib/marketing/board-landing/board-theme";
 import { SITE_NAME, formatMonthlyPrice } from "@/lib/site";
-import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 
 /**
  * Public 60-day NAPLEX QBank list price.
@@ -73,7 +83,7 @@ export function naplexFormatCards(bankTypes: Record<string, number>): BoardForma
 }
 
 export function naplexMetaTitle(): string {
-  return enforceMetaTitle("NAPLEX Practice Questions and Pharmacy Calculations", "/naplex");
+  return enforceMetaTitle(freeBoardMetaTitle("NAPLEX"), "/naplex");
 }
 
 export function naplexMetaDescription(): string {
@@ -161,11 +171,6 @@ function naplexFaqs(units: BoardQuestionUnits | null): { question: string; answe
       question: "What is on the NAPLEX?",
       answer: `The ${NAPLEX_OUTLINE_SOURCE} has five areas: ${domains}.`,
     },
-    {
-      question: "How long is the NAPLEX?",
-      answer:
-        "The NAPLEX is 225 questions over 6 hours. Two hundred questions are scored and 25 are pretest.",
-    },
   ];
 }
 
@@ -209,8 +214,6 @@ export function buildNaplexLandingModel(input: {
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(NAPLEX_TYPICAL_LIST_PRICE_USD);
   const trialHref = landingTrialHrefForExam("naplex");
-  const pageUrl = absoluteUrl("/naplex");
-  const site = getSiteUrl();
   const reviewer = clinicalReviewerForExam("naplex");
   const links = [
     ...(input.sample ? [{ href: "#sample-question", label: "Free NAPLEX practice question" }] : []),
@@ -222,50 +225,22 @@ export function buildNaplexLandingModel(input: {
     { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
   ];
   const video = boardVideoNode(quickBite, "/naplex");
-  const graph: Record<string, unknown>[] = [
-    {
-      "@type": "Organization",
-      "@id": `${site}/#organization`,
-      name: LEGAL_ENTITY.companyName,
-      legalName: LEGAL_ENTITY.companyName,
-      url: site,
-      logo: absoluteUrl("/icons/icon-192.png"),
-      contactPoint: organizationContactPoint(),
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: site },
-        { "@type": "ListItem", position: 2, name: "NAPLEX", item: pageUrl },
-      ],
-    },
-    {
-      "@type": "Product",
-      name: `${SITE_NAME} Pro`,
-      description: `NAPLEX practice questions, pharmacy calculations, and five other boards on one plan at ${price} a month.`,
-      image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
-      brand: { "@type": "Brand", name: SITE_NAME },
-      url: absoluteUrl(ROUTES.pricing),
-      offers: {
-        "@type": "Offer",
-        price: TIER_MONTHLY_USD.pro.toFixed(2),
-        priceCurrency: "USD",
-        availability: "https://schema.org/InStock",
-        url: absoluteUrl(trialHref),
-        description: `${TRIAL_DAYS}-day free trial, then ${price} a month. No payment method to start.`,
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "@id": `${pageUrl}#faq`,
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    },
-  ];
+  const graph = boardLandingBaseGraph({
+    pagePath: "/naplex",
+    breadcrumbName: "NAPLEX",
+    pageName: naplexMetaTitle(),
+    productDescription: `NAPLEX practice questions, pharmacy calculations, and five other boards on one plan at ${price} a month.`,
+    trialHref,
+    faqs,
+  });
   if (video) graph.push(video);
+  const visuals = buildBoardVisuals({
+    slug: "naplex",
+    examKey: "naplex",
+    units,
+    offer: heroOffer,
+    bankTypes: input.degraded ? {} : input.bankTypes,
+  });
 
   return {
     h1Lead: "Pass the NAPLEX on your",
@@ -333,6 +308,13 @@ export function buildNaplexLandingModel(input: {
     heroCtaLocation: "naplex_hero",
     finalCtaName: "naplex_final_trial",
     finalCtaLocation: "naplex_final",
+    themeClass: boardThemeClass("naplex"),
+    heroWhyUs: heroWhyUs("naplex"),
+    ctaMicrocopy: formatHeroCtaMicrocopy(heroOffer.liveQuestions),
+    contentYear: BOARD_LANDING_CONTENT_YEAR,
+    painPoints: boardPainPoints("naplex"),
+    visuals,
+    sampleSecondary: null,
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
   };
 }

@@ -102,7 +102,8 @@ describe("NCLEX landing model", () => {
     expect(model.stories.length).toBeGreaterThan(0);
     expect(model.stories.some((story) => story.name === "Nathan C.")).toBe(true);
     expect(model.formats).toEqual([]);
-    expect(model.faqs).toHaveLength(6);
+    expect(model.faqs).toHaveLength(5);
+    expect(JSON.stringify(model.jsonLd)).toMatch(/dateModified/);
     expect(model.quickBite?.slug).toBe(OPEN_QUICK_BITE_SLUG);
     expect(model.quickBite?.mediaUrl).toBe(`/api/quick-bites/${OPEN_QUICK_BITE_SLUG}/media`);
     expect(model.faqs.map((faq) => faq.question).join(" ")).toMatch(/how many|Next Gen|cost|trial|rationales|reviews/i);

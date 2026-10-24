@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeatureGrid";
+import { BoardLandingInfographics } from "@/components/marketing/board-landing/BoardLandingInfographics";
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
+import { BoardPainPoints } from "@/components/marketing/board-landing/BoardPainPoints";
 import { HeroScene } from "@/components/marketing/board-landing/HeroScene";
 import { PharmacyHero } from "@/components/marketing/board-landing/PharmacyHero";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
@@ -68,21 +70,36 @@ function HeroOfferBand({
   );
 }
 
-function SampleQuestion({ model }: { model: BoardLandingModel }) {
-  if (!model.sample) return null;
+function HeroCtaMicrocopy({ text }: { text: string }) {
+  return <p className="bl-cta-micro">{text}</p>;
+}
+
+function SampleQuestion({
+  model,
+  question,
+  headingId,
+  anchorId,
+  title,
+}: {
+  model: BoardLandingModel;
+  question: NonNullable<BoardLandingModel["sample"]>;
+  headingId: string;
+  anchorId: string;
+  title: string;
+}) {
   const lean = Boolean(model.heroOffer);
   return (
-    <article className="bl-card" id="sample-question" aria-labelledby="sample-heading">
+    <article className="bl-card" id={anchorId} aria-labelledby={headingId}>
       {lean ? (
-        <h2 className="bl-card-title" id="sample-heading">Free sample question</h2>
+        <h2 className="bl-card-title" id={headingId}>{title}</h2>
       ) : (
         <>
-          <p className="bl-kicker" id="sample-heading">{model.sampleKicker}</p>
+          <p className="bl-kicker" id={headingId}>{model.sampleKicker}</p>
           <h2 className="bl-card-title">Try it before you sign up.</h2>
         </>
       )}
-      <p className="bl-stem">{model.sample.stem}</p>
-      <SamplePractice sample={model.sample} />
+      <p className="bl-stem">{question.stem}</p>
+      <SamplePractice sample={question} />
     </article>
   );
 }
@@ -99,17 +116,19 @@ export function BoardLanding({
   const lean = Boolean(model.heroOffer);
   const questionCount = model.stats.find((stat) => stat.label === "Questions")?.value ?? null;
   return (
-    <div className="board-landing">
+    <div className={`board-landing ${model.themeClass}`}>
       <section className="bl-hero" aria-labelledby="board-hero-heading">
         <div className="bl-hero-copy">
           <p className="bl-kicker">
             <Link href="/">Home</Link>
             <span aria-hidden> / </span>
             <span>{model.boardName}</span>
+            <span className="bl-updated"> · Updated {model.contentYear}</span>
           </p>
           <h1 id="board-hero-heading">
             {model.h1Lead} <span>{model.h1Accent}</span>
           </h1>
+          {lean && model.heroWhyUs ? <p className="bl-hero-why">{model.heroWhyUs}</p> : null}
           {model.heroChips?.length ? <HeroDifferentiatorChips chips={model.heroChips} /> : null}
           {model.heroOffer ? (
             <HeroOfferBand
@@ -120,16 +139,19 @@ export function BoardLanding({
           ) : null}
           {lean ? null : <p className="bl-lede">{model.lede}</p>}
           {scene || pharmacy ? null : (
-            <div className="bl-actions">
-              <LandingCta href={model.trialHref} ctaName={model.heroCtaName} location={model.heroCtaLocation}>
-                {model.trialLabel}
-              </LandingCta>
-              {model.sample ? (
-                <a className="bl-button bl-button-secondary" href="#sample-question">
-                  Try a free question
-                </a>
-              ) : null}
-            </div>
+            <>
+              <div className="bl-actions">
+                <LandingCta href={model.trialHref} ctaName={model.heroCtaName} location={model.heroCtaLocation}>
+                  {model.trialLabel}
+                </LandingCta>
+                {model.sample ? (
+                  <a className="bl-button bl-button-secondary" href="#sample-question">
+                    Try a free question
+                  </a>
+                ) : null}
+              </div>
+              {lean && model.ctaMicrocopy ? <HeroCtaMicrocopy text={model.ctaMicrocopy} /> : null}
+            </>
           )}
           {model.heroChips?.length ? null : (
             <ul className="bl-trust">
@@ -146,6 +168,7 @@ export function BoardLanding({
             trialLabel={model.trialLabel}
             ctaName={model.heroCtaName}
             ctaLocation={model.heroCtaLocation}
+            ctaMicrocopy={lean ? model.ctaMicrocopy : undefined}
           />
         ) : scene ? (
           <HeroScene
@@ -158,15 +181,47 @@ export function BoardLanding({
             idPrefix={model.sceneIdPrefix}
             ctaName={model.heroCtaName}
             ctaLocation={model.heroCtaLocation}
+            ctaMicrocopy={lean ? model.ctaMicrocopy : undefined}
           />
         ) : model.sample ? (
-          <SampleQuestion model={model} />
+          <SampleQuestion
+            model={model}
+            question={model.sample}
+            anchorId="sample-question"
+            headingId="sample-heading"
+            title="Free sample question"
+          />
         ) : null}
       </section>
 
+      {lean ? (
+        <>
+          <BoardLandingInfographics visuals={model.visuals} />
+          <BoardPainPoints points={model.painPoints} />
+        </>
+      ) : null}
+
       {(scene || pharmacy) && model.sample ? (
         <div className="bl-sample-wrap">
-          <SampleQuestion model={model} />
+          <SampleQuestion
+            model={model}
+            question={model.sample}
+            anchorId="sample-question"
+            headingId="sample-heading"
+            title="Free sample question"
+          />
+        </div>
+      ) : null}
+
+      {model.sampleSecondary ? (
+        <div className="bl-sample-wrap">
+          <SampleQuestion
+            model={model}
+            question={model.sampleSecondary}
+            anchorId="sample-question-ngn"
+            headingId="sample-heading-ngn"
+            title="Next Gen sample question"
+          />
         </div>
       ) : null}
 
@@ -353,6 +408,7 @@ export function BoardLanding({
         <LandingCta href={model.trialHref} ctaName={model.finalCtaName} location={model.finalCtaLocation}>
           {model.trialLabel}
         </LandingCta>
+        {lean && model.ctaMicrocopy ? <HeroCtaMicrocopy text={model.ctaMicrocopy} /> : null}
       </section>
     </div>
   );

@@ -38,14 +38,26 @@ import {
   getSiteUrl,
 } from "@/lib/seo";
 import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
-import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
+import {
+  BOARD_LANDING_CONTENT_YEAR,
+  boardLandingBaseGraph,
+  freeBoardMetaTitle,
+} from "@/lib/marketing/board-landing/board-schema";
+import {
+  boardPainPoints,
+  boardThemeClass,
+  buildBoardVisuals,
+  formatHeroCtaMicrocopy,
+  heroWhyUs,
+  type BoardLandingVisuals,
+  type BoardPainPoint,
+} from "@/lib/marketing/board-landing/board-theme";
 import {
   SITE_NAME,
   formatLandingHeroTrialLine,
   formatLandingTrialFaqAnswer,
   formatMonthlyPrice,
 } from "@/lib/site";
-import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { formatPlanUsd } from "@/lib/billing-plans";
 
 export type LandingOption = {
@@ -131,6 +143,13 @@ export type BoardLandingModel = {
   heroCtaLocation: string;
   finalCtaName: string;
   finalCtaLocation: string;
+  themeClass: string;
+  heroWhyUs: string;
+  ctaMicrocopy: string;
+  contentYear: number;
+  painPoints: BoardPainPoint[];
+  visuals: BoardLandingVisuals;
+  sampleSecondary: LandingQuestion | null;
   jsonLd: Record<string, unknown>;
 };
 
@@ -159,7 +178,7 @@ export function mediaVersionUploadDate(mediaVersion: string | undefined): string
 }
 
 export function nclexMetaTitle(): string {
-  return enforceMetaTitle("NCLEX-RN Practice Questions & Next Gen NCLEX Qbank", "/nclex");
+  return enforceMetaTitle(freeBoardMetaTitle("NCLEX"), "/nclex");
 }
 
 export function nclexMetaDescription(): string {
@@ -394,10 +413,6 @@ function nclexFaqs(units: BoardQuestionUnits | null): { question: string; answer
       answer:
         "Keyed answer, distractor reasons, and cited sources on scored bank items.",
     },
-    {
-      question: "Who reviews the content?",
-      answer: "Clinical pharmacists and nurses review items before they ship in the live bank.",
-    },
   ];
 }
 
@@ -471,6 +486,7 @@ export function buildNclexLandingModel(input: {
   units: BoardQuestionUnits | null;
   bankTypes?: Record<string, number>;
   sample: PublicSampleQuestion | null;
+  sampleSecondary?: LandingQuestion | null;
   testimonials?: LandingSuccessStory[];
 }): BoardLandingModel {
   const units = liveUnits(input.units, input.degraded);
@@ -487,54 +503,26 @@ export function buildNclexLandingModel(input: {
   const price = formatMonthlyPrice("pro");
   const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
   const trialHref = landingTrialHrefForExam("nclex");
-  const pageUrl = absoluteUrl("/nclex");
-  const site = getSiteUrl();
   const links: BoardLandingModel["links"] = [];
   const video = boardVideoNode(quickBite, "/nclex");
-  const graph: Record<string, unknown>[] = [
-    {
-      "@type": "Organization",
-      "@id": `${site}/#organization`,
-      name: LEGAL_ENTITY.companyName,
-      legalName: LEGAL_ENTITY.companyName,
-      url: site,
-      logo: absoluteUrl("/icons/icon-192.png"),
-      contactPoint: organizationContactPoint(),
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: site },
-        { "@type": "ListItem", position: 2, name: "NCLEX", item: pageUrl },
-      ],
-    },
-    {
-      "@type": "Product",
-      name: `${SITE_NAME} Pro`,
-      description: `NCLEX-RN practice questions, Next Gen NCLEX practice, and five other boards on one plan at ${price} a month.`,
-      image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
-      brand: { "@type": "Brand", name: SITE_NAME },
-      url: absoluteUrl(ROUTES.pricing),
-      offers: {
-        "@type": "Offer",
-        price: TIER_MONTHLY_USD.pro.toFixed(2),
-        priceCurrency: "USD",
-        availability: "https://schema.org/InStock",
-        url: absoluteUrl(trialHref),
-        description: `${TRIAL_DAYS}-day free trial, then ${price} a month. No payment method to start.`,
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "@id": `${pageUrl}#faq`,
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    },
-  ];
+  const graph = boardLandingBaseGraph({
+    pagePath: "/nclex",
+    breadcrumbName: "NCLEX",
+    pageName: nclexMetaTitle(),
+    productDescription: `NCLEX-RN practice questions, Next Gen NCLEX practice, and five other boards on one plan at ${price} a month.`,
+    trialHref,
+    faqs,
+  });
   if (video) graph.push(video);
+  const visuals = buildBoardVisuals({
+    slug: "nclex",
+    examKey: "nclex",
+    units,
+    offer: heroOffer,
+    bankTypes,
+  });
+  const secondary =
+    input.sampleSecondary && input.sampleSecondary.stem !== sample.stem ? input.sampleSecondary : null;
 
   return {
     h1Lead: "Pass the NCLEX on your",
@@ -598,6 +586,13 @@ export function buildNclexLandingModel(input: {
     heroCtaLocation: "nclex_hero",
     finalCtaName: "nclex_final_trial",
     finalCtaLocation: "nclex_final",
+    themeClass: boardThemeClass("nclex"),
+    heroWhyUs: heroWhyUs("nclex"),
+    ctaMicrocopy: formatHeroCtaMicrocopy(heroOffer.liveQuestions),
+    contentYear: BOARD_LANDING_CONTENT_YEAR,
+    painPoints: boardPainPoints("nclex"),
+    visuals,
+    sampleSecondary: secondary,
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
   };
 }

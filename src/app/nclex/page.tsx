@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BoardLanding } from "@/components/marketing/board-landing/BoardLanding";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { loadNclexHeroCase } from "@/lib/marketing/board-landing/hero-case";
+import { heroCaseToLandingQuestion, loadNclexHeroCase } from "@/lib/marketing/board-landing/hero-case";
 import { loadNursingBankTypeCounts } from "@/lib/marketing/board-landing/bank-types";
 import { buildNclexLandingMetadata, buildNclexLandingModel } from "@/lib/marketing/board-landing/model";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
@@ -33,6 +33,7 @@ export default async function NclexHubPage() {
     units: live ? (bundle.snapshot.boards?.nclex ?? null) : null,
     bankTypes: live ? bankTypes : {},
     sample: samples.find((item) => item.fieldId === "nursing") ?? null,
+    sampleSecondary: scene ? heroCaseToLandingQuestion(scene) : null,
     testimonials,
   });
 
