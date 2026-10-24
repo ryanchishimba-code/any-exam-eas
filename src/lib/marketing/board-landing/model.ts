@@ -12,6 +12,7 @@ import { COMPETITOR_PRICE_AS_OF } from "@/lib/marketing/legal-copy";
 import { collectedDistractorReasons } from "@/lib/exam-prep/item-qa/rationale-schema";
 import { HOME_EXPLAINED_SAMPLE } from "@/lib/marketing/home-explained";
 import { homeTrialCtaLabel } from "@/lib/marketing/home-cta";
+import type { NaplexAceDonutModel } from "@/lib/marketing/board-landing/naplex-ace-donut";
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import { COMPETITOR_PRICING } from "@/lib/seo/competitor-comparison";
@@ -152,6 +153,8 @@ export type BoardLandingModel = {
   painPoints: BoardPainPoint[];
   visuals: BoardLandingVisuals;
   sampleSecondary: LandingQuestion | null;
+  /** NAPLEX-only feature donut on `/naplex`. */
+  aceDonut?: NaplexAceDonutModel;
   /** NCLEX-only conversion band (compare chart + trust badge). */
   nclexCompare?: NclexCompareChartData;
   studentTrustBadge?: StudentTrustBadge;

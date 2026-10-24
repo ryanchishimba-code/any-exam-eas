@@ -46,6 +46,7 @@ import {
   formatHeroCtaMicrocopy,
   heroWhyUs,
 } from "@/lib/marketing/board-landing/board-theme";
+import { buildNaplexAceDonutModel } from "@/lib/marketing/board-landing/naplex-ace-donut";
 import { SITE_NAME, formatMonthlyPrice } from "@/lib/site";
 
 /**
@@ -315,6 +316,11 @@ export function buildNaplexLandingModel(input: {
     painPoints: boardPainPoints("naplex"),
     visuals,
     sampleSecondary: null,
+    aceDonut: buildNaplexAceDonutModel({
+      units,
+      includeQuickBite: Boolean(quickBite),
+      includeItemTypes: formats.length > 0,
+    }),
     jsonLd: { "@context": "https://schema.org", "@graph": graph },
   };
 }
