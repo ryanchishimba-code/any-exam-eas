@@ -117,6 +117,11 @@ type IdRow = {
   reviewStatus: string | null;
 };
 
+function displayPath(file: string): string {
+  const relative = path.relative(process.cwd(), path.resolve(file));
+  return relative.startsWith("..") || path.isAbsolute(relative) ? path.resolve(file) : relative;
+}
+
 function parseArgs(argv: string[]) {
   let file: string | undefined;
   let apply = false;
@@ -448,7 +453,9 @@ function sharedLeadIns(planned: PlannedRow[]): Array<{ stem: string; topics: Arr
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const inputPath = path.resolve(args.file);
+  const inputPath = displayPath(args.file);
+  const backupPath = displayPath(args.backupPath);
+  const manifestPath = displayPath(args.manifestPath);
   const { rows } = loadRows(inputPath);
   const validationErrors: ValidationError[] = [];
   const planned: PlannedRow[] = [];
@@ -482,7 +489,7 @@ async function main() {
   });
 
   const before = await readCounts();
-  const liveIds = await writeBackup(args.backupPath, before);
+  const liveIds = await writeBackup(backupPath, before);
   if (liveIds !== before.live) {
     throw new Error(`Backup live ids ${liveIds} do not match live count ${before.live}.`);
   }
@@ -517,7 +524,7 @@ async function main() {
     liveAfterInTransaction: null as number | null,
     liveAfter: null as number | null,
     insertedIds: [] as string[],
-    backup: args.backupPath,
+    backup: backupPath,
   };
 
   const printReport = () => {
@@ -552,7 +559,7 @@ async function main() {
     mkdirSync(DATA_DIR, { recursive: true });
     writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log(`report: ${reportPath}`);
-    console.log(`backup: ${args.backupPath}`);
+    console.log(`backup: ${backupPath}`);
     process.exitCode = 1;
     return;
   }
@@ -628,7 +635,7 @@ async function main() {
     const reportPath = path.join(DATA_DIR, "dry-run-report.json");
     writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log(`report: ${reportPath}`);
-    console.log(`backup: ${args.backupPath}`);
+    console.log(`backup: ${backupPath}`);
     return;
   }
 
@@ -681,15 +688,15 @@ async function main() {
       source: SOURCE,
     })),
   };
-  mkdirSync(path.dirname(args.manifestPath), { recursive: true });
-  writeFileSync(args.manifestPath, JSON.stringify(manifest, null, 2));
+  mkdirSync(path.dirname(manifestPath), { recursive: true });
+  writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
   printReport();
   console.log(`Inserted ${inserted.length} rows.`);
-  console.log(`manifest: ${args.manifestPath}`);
+  console.log(`manifest: ${manifestPath}`);
   const reportPath = path.join(DATA_DIR, "apply-report.json");
   writeFileSync(reportPath, JSON.stringify(report, null, 2));
   console.log(`report: ${reportPath}`);
-  console.log(`backup: ${args.backupPath}`);
+  console.log(`backup: ${backupPath}`);
 }
 
 main()

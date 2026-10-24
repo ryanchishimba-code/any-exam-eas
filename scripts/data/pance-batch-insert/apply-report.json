@@ -1,0 +1,171 @@
+{
+  "mode": "apply",
+  "inputFile": "scripts/data/pance-batch-insert/final-20.json",
+  "rowsInFile": 20,
+  "validationErrors": [],
+  "duplicates": [],
+  "wouldInsert": [
+    {
+      "index": 0,
+      "blueprintTopic": "measles",
+      "contentHash": "a7f951f5349e468a1ba27715d40570f9e1ccd5e2f1bf27925dd0df570e396e76",
+      "stem": "Which infection best accounts for this child's presentation?"
+    },
+    {
+      "index": 1,
+      "blueprintTopic": "Rocky Mountain spotted fever",
+      "contentHash": "0f5f838d49c26a8c015a827b57532ff1aae34369c38719161e3e71e7ea3c8f88",
+      "stem": "Which infection is most likely responsible for these findings?"
+    },
+    {
+      "index": 2,
+      "blueprintTopic": "botulism",
+      "contentHash": "df0a89f2d22c7036a4f09829bc8ad2d0084da090a4f4d492d2c261b259985d97",
+      "stem": "Which condition is the most likely cause of her neurologic findings?"
+    },
+    {
+      "index": 3,
+      "blueprintTopic": "typhoid fever",
+      "contentHash": "8c9f19e2798cc72bbdd92f25725be601e918b560d00db4b697fe6e18b3f90698",
+      "stem": "These findings are most consistent with which infection?"
+    },
+    {
+      "index": 4,
+      "blueprintTopic": "Clostridioides difficile infection",
+      "contentHash": "33d58f6650740223ab233ab777885b88f99f2214f6a48d45d87c5e44399109ce",
+      "stem": "Which diagnosis best explains her diarrhea?"
+    },
+    {
+      "index": 5,
+      "blueprintTopic": "histoplasmosis",
+      "contentHash": "06d5cf6557247f95df89e3304bdea7a2e551b96374282b85fa0397cfc449ee0a",
+      "stem": "Which infection is most likely responsible for his illness?"
+    },
+    {
+      "index": 6,
+      "blueprintTopic": "pertussis",
+      "contentHash": "a1533cdd747cb86945f82c8086fd768955b365db042a9f037be5f1266a3776fd",
+      "stem": "Which condition best explains her cough?"
+    },
+    {
+      "index": 7,
+      "blueprintTopic": "Lyme disease",
+      "contentHash": "611d1c3b277ee4af89282391007fcc215339ececd0bf03c82c790d298639d298",
+      "stem": "Which diagnosis accounts for this patient's facial weakness?"
+    },
+    {
+      "index": 8,
+      "blueprintTopic": "syphilis",
+      "contentHash": "64b5cd0429323defed0dd77d20a9ef35215bf952a9104621f8e12ca4728e8e58",
+      "stem": "Which treatment approach is most appropriate for this patient's infection?"
+    },
+    {
+      "index": 9,
+      "blueprintTopic": "gonorrhea",
+      "contentHash": "03b661155711b05d5b57c043c652f4d40da020849da2780a41cde8022e070b64",
+      "stem": "Which antimicrobial regimen is recommended for this patient?"
+    },
+    {
+      "index": 10,
+      "blueprintTopic": "influenza",
+      "contentHash": "84215e10f7126a7b84aaa0fb2ea66ba78ad2e8088842652950049a72096e79e5",
+      "stem": "In addition to bronchodilators and supportive care, which antiviral therapy should be started?"
+    },
+    {
+      "index": 11,
+      "blueprintTopic": "herpes zoster",
+      "contentHash": "67bf586d72ded64beb07f06b9a5da95efcd79cded52dc10db5c9e34ebb2c34f1",
+      "stem": "Which medication regimen is most appropriate to treat this rash?"
+    },
+    {
+      "index": 12,
+      "blueprintTopic": "varicella",
+      "contentHash": "78a6746edccfc567aeae371da9ba998b6ea018f35be0f6aa9e7dff0698970145",
+      "stem": "Which skin finding is expected on examination in this child?"
+    },
+    {
+      "index": 13,
+      "blueprintTopic": "mumps",
+      "contentHash": "2014fc019ea39571e8cbd249d117822bb99a783186f091de9e9f242506163dd1",
+      "stem": "Which additional exam finding would most support the suspected diagnosis?"
+    },
+    {
+      "index": 14,
+      "blueprintTopic": "toxic shock syndrome",
+      "contentHash": "f829933dfffbd2d8a6f797528623ac1596336b0840143b0424d271401bc6d22f",
+      "stem": "If this patient survives the acute illness, which skin finding is most characteristic later in the course?"
+    },
+    {
+      "index": 15,
+      "blueprintTopic": "rabies",
+      "contentHash": "dc974f1e09cf6ca1708b9124684abc79ef8fa13c247f4e916a14c434c482d08d",
+      "stem": "Which management is recommended for this patient?"
+    },
+    {
+      "index": 16,
+      "blueprintTopic": "tetanus",
+      "contentHash": "9c4805a7db0bfa890a3472a78dde19fb40c0ef88611110643d0d092008426d74",
+      "stem": "Which tetanus prophylaxis is recommended for this patient today?"
+    },
+    {
+      "index": 17,
+      "blueprintTopic": "dengue",
+      "contentHash": "077be401fb0a39a8657cdec59ef2eaba644386197afef72c97ab7aea263b4f1d",
+      "stem": "Which management plan is most appropriate at this time?"
+    },
+    {
+      "index": 18,
+      "blueprintTopic": "babesiosis",
+      "contentHash": "e435a52505fb8e44feb6f5e4174b7224c27f74cf2b07a978569100e965ed06db",
+      "stem": "Which test is most appropriate to confirm the suspected diagnosis?"
+    },
+    {
+      "index": 19,
+      "blueprintTopic": "cat-scratch disease",
+      "contentHash": "87704ccda05a9f12df86850ef21bfd78b3d272a049c03285ee622b452f9ed2a4",
+      "stem": "Which test is most appropriate to confirm the suspected diagnosis?"
+    }
+  ],
+  "sharedLeadInsInBatch": [
+    {
+      "stem": "Which test is most appropriate to confirm the suspected diagnosis?",
+      "topics": [
+        "babesiosis",
+        "cat-scratch disease"
+      ]
+    }
+  ],
+  "inputContentHashRecomputed": 20,
+  "schemaErrors": [],
+  "countsBefore": {
+    "total": 3385,
+    "live": 2856,
+    "activeNotQa": 31,
+    "inactive": 498
+  },
+  "liveAfterInTransaction": 2876,
+  "liveAfter": 2876,
+  "insertedIds": [
+    "cmvmje2lx0000jsy4dzcg2l1k",
+    "cmvmje2m50001jsy41a1qicgl",
+    "cmvmje2m90002jsy4wst04v3z",
+    "cmvmje2md0003jsy4rvy7wa3u",
+    "cmvmje2mk0004jsy4pu8axl80",
+    "cmvmje2mo0005jsy4gunldy13",
+    "cmvmje2ms0006jsy487euyyc1",
+    "cmvmje2mw0007jsy4rja7jnav",
+    "cmvmje2mz0008jsy40fqju7c5",
+    "cmvmje2n30009jsy4kjxwb75v",
+    "cmvmje2n7000ajsy4wwrbe2v3",
+    "cmvmje2na000bjsy45397t1rl",
+    "cmvmje2nd000cjsy4du9rhinv",
+    "cmvmje2nh000djsy4ud89jhh3",
+    "cmvmje2nk000ejsy4jd4pmkvp",
+    "cmvmje2no000fjsy4o5izs76z",
+    "cmvmje2ns000gjsy425kvsgwz",
+    "cmvmje2nv000hjsy4rguac023",
+    "cmvmje2nz000ijsy4dpipz8ed",
+    "cmvmje2o3000jjsy4ef96cdrt"
+  ],
+  "backup": "scripts/data/pance-batch-insert/pance-pre-insert-backup.json"
+}
