@@ -202,7 +202,7 @@ export default function ToolkitPage() {
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
               Live study instruments — open them where you already practice. In-product study
-              guides exist for NCLEX, NAPLEX, and AANP FNP. USMLE, PANCE, and NPTE-PT do not have
+              guides exist for NCLEX, NAPLEX, AANP FNP, and PANCE. USMLE and NPTE-PT do not have
               an in-product study guide; they use the question bank and practice exams.
             </p>
             <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" role="list">

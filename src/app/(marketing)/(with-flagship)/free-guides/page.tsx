@@ -123,7 +123,7 @@ export default async function FreeGuidesPage() {
               The study guide is included with the 5-day free trial. Bookmarks and highlights save
               on the trial or Pro plan.
             </p>
-            <ul className="mt-12 grid gap-6 sm:grid-cols-3" role="list">
+            <ul className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4" role="list">
               {studyGuideOfferCards().map((item) => (
                 <li key={item.exam}>
                   <article className="flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6">

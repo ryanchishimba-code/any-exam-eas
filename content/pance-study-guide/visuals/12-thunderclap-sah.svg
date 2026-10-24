@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="466.587891pt" height="319.32pt" viewBox="0 0 466.587891 319.32" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-24T08:34:48.240666</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 319.32 
+L 466.587891 319.32 
+L 466.587891 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 113.212345 70.92828 
+L 353.375545 70.92828 
+Q 360.071545 70.92828 360.071545 66.35448 
+L 360.071545 45.61992 
+Q 360.071545 41.04612 353.375545 41.04612 
+L 113.212345 41.04612 
+Q 106.516345 41.04612 106.516345 45.61992 
+L 106.516345 66.35448 
+Q 106.516345 70.92828 113.212345 70.92828 
+z
+" clip-path="url(#p824db968db)" style="fill: #fff4e0; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 41.788345 147.15828 
+L 156.959545 147.15828 
+Q 163.655545 147.15828 163.655545 142.58448 
+L 163.655545 115.75152 
+Q 163.655545 111.17772 156.959545 111.17772 
+L 41.788345 111.17772 
+Q 35.092345 111.17772 35.092345 115.75152 
+L 35.092345 142.58448 
+Q 35.092345 147.15828 41.788345 147.15828 
+z
+" clip-path="url(#p824db968db)" style="fill: #fdecea; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 282.844345 141.05988 
+L 380.159545 141.05988 
+Q 386.855545 141.05988 386.855545 136.48608 
+L 386.855545 121.84992 
+Q 386.855545 117.27612 380.159545 117.27612 
+L 282.844345 117.27612 
+Q 276.148345 117.27612 276.148345 121.84992 
+L 276.148345 136.48608 
+Q 276.148345 141.05988 282.844345 141.05988 
+z
+" clip-path="url(#p824db968db)" style="fill: #fff4e0; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 198.028345 238.63428 
+L 313.199545 238.63428 
+Q 319.895545 238.63428 319.895545 234.06048 
+L 319.895545 195.03072 
+Q 319.895545 190.45692 313.199545 190.45692 
+L 198.028345 190.45692 
+Q 191.332345 190.45692 191.332345 195.03072 
+L 191.332345 234.06048 
+Q 191.332345 238.63428 198.028345 238.63428 
+z
+" clip-path="url(#p824db968db)" style="fill: #e6f4ea; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 349.804345 238.63428 
+L 438.191545 238.63428 
+Q 444.887545 238.63428 444.887545 234.06048 
+L 444.887545 195.03072 
+Q 444.887545 190.45692 438.191545 190.45692 
+L 349.804345 190.45692 
+Q 343.108345 190.45692 343.108345 195.03072 
+L 343.108345 234.06048 
+Q 343.108345 238.63428 349.804345 238.63428 
+z
+" clip-path="url(#p824db968db)" style="fill: #eaf1fa; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1a3d6d" x="233.293945" y="26.225569" transform="rotate(-0 233.293945 26.225569)">Thunderclap headache: rule out SAH (2023)</text>
+   </g>
+   <g id="text_2">
+    <text style="font-style: italic; font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="233.293945" y="307.269042" transform="rotate(-0 233.293945 307.269042)">Source: 2023 AHA/ASA Aneurysmal Subarachnoid Hemorrhage Guideline  ·  AnyExamEasy study aid, not medical advice</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="233.293945" y="58.325442" transform="rotate(-0 233.293945 58.325442)">Sudden 'worst' headache → non-contrast head CT</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(70.638633 126.105012)">Blood → SAH</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(63.308555 136.907473)">→ CTA for cause</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="331.501945" y="131.506242" transform="rotate(-0 331.501945 131.506242)">CT negative</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 186.861425 72.117494 
+Q 148.479528 91.052219 111.300827 109.393378 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 115.772899 109.417325 
+L 111.300827 109.393378 
+L 114.003228 105.830089 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 279.33167 72.665304 
+Q 300.254713 94.102987 320.240668 114.580531 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 318.878098 110.321023 
+L 320.240668 114.580531 
+L 316.01552 113.114882 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(219.423398 206.081381)">&lt;6 h, no deficit,</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(215.705273 216.883842)">high-quality read:</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(224.447227 227.686303)">SAH excluded</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(366.31732 206.081733)">&gt;6 h or new</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(378.533414 216.884194)">deficit:</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(388.777242 227.685952)">LP</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 312.228331 142.773268 
+Q 289.093856 165.758489 266.91113 187.798101 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 271.158325 186.397625 
+L 266.91113 187.798101 
+L 268.339066 183.560059 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 350.537156 142.975754 
+Q 367.212337 165.756203 383.095062 187.454055 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 382.346256 183.045054 
+L 383.095062 187.454055 
+L 379.118578 185.407699 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p824db968db">
+   <rect x="10.093945" y="7.2" width="446.4" height="304.92"/>
+  </clipPath>
+ </defs>
+</svg>

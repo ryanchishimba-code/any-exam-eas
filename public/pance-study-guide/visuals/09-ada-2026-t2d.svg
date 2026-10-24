@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="488.7pt" height="347.04pt" viewBox="0 0 488.7 347.04" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-24T08:34:48.151394</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 347.04 
+L 488.7 347.04 
+L 488.7 -0 
+L 0 -0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 116.7633 70.06896 
+L 371.9367 70.06896 
+Q 379.0512 70.06896 379.0512 65.07936 
+L 379.0512 42.45984 
+Q 379.0512 37.47024 371.9367 37.47024 
+L 116.7633 37.47024 
+Q 109.6488 37.47024 109.6488 42.45984 
+L 109.6488 65.07936 
+Q 109.6488 70.06896 116.7633 70.06896 
+z
+" clip-path="url(#p099322f18d)" style="fill: #fff4e0; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 24.2748 154.89216 
+L 113.4432 154.89216 
+Q 120.5577 154.89216 120.5577 149.90256 
+L 120.5577 117.30384 
+Q 120.5577 112.31424 113.4432 112.31424 
+L 24.2748 112.31424 
+Q 17.1603 112.31424 17.1603 117.30384 
+L 17.1603 149.90256 
+Q 17.1603 154.89216 24.2748 154.89216 
+z
+" clip-path="url(#p099322f18d)" style="fill: #fff4e0; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 24.2748 241.37856 
+L 113.4432 241.37856 
+Q 120.5577 241.37856 120.5577 236.38896 
+L 120.5577 203.79024 
+Q 120.5577 198.80064 113.4432 198.80064 
+L 24.2748 198.80064 
+Q 17.1603 198.80064 17.1603 203.79024 
+L 17.1603 236.38896 
+Q 17.1603 241.37856 24.2748 241.37856 
+z
+" clip-path="url(#p099322f18d)" style="fill: #e6f4ea; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 140.4783 154.89216 
+L 229.6467 154.89216 
+Q 236.7612 154.89216 236.7612 149.90256 
+L 236.7612 117.30384 
+Q 236.7612 112.31424 229.6467 112.31424 
+L 140.4783 112.31424 
+Q 133.3638 112.31424 133.3638 117.30384 
+L 133.3638 149.90256 
+Q 133.3638 154.89216 140.4783 154.89216 
+z
+" clip-path="url(#p099322f18d)" style="fill: #fff4e0; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 140.4783 241.37856 
+L 229.6467 241.37856 
+Q 236.7612 241.37856 236.7612 236.38896 
+L 236.7612 203.79024 
+Q 236.7612 198.80064 229.6467 198.80064 
+L 140.4783 198.80064 
+Q 133.3638 198.80064 133.3638 203.79024 
+L 133.3638 236.38896 
+Q 133.3638 241.37856 140.4783 241.37856 
+z
+" clip-path="url(#p099322f18d)" style="fill: #e6f4ea; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 256.6818 154.89216 
+L 345.8502 154.89216 
+Q 352.9647 154.89216 352.9647 149.90256 
+L 352.9647 117.30384 
+Q 352.9647 112.31424 345.8502 112.31424 
+L 256.6818 112.31424 
+Q 249.5673 112.31424 249.5673 117.30384 
+L 249.5673 149.90256 
+Q 249.5673 154.89216 256.6818 154.89216 
+z
+" clip-path="url(#p099322f18d)" style="fill: #fff4e0; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 256.6818 241.37856 
+L 345.8502 241.37856 
+Q 352.9647 241.37856 352.9647 236.38896 
+L 352.9647 203.79024 
+Q 352.9647 198.80064 345.8502 198.80064 
+L 256.6818 198.80064 
+Q 249.5673 198.80064 249.5673 203.79024 
+L 249.5673 236.38896 
+Q 249.5673 241.37856 256.6818 241.37856 
+z
+" clip-path="url(#p099322f18d)" style="fill: #e6f4ea; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 372.8853 154.89216 
+L 462.0537 154.89216 
+Q 469.1682 154.89216 469.1682 149.90256 
+L 469.1682 117.30384 
+Q 469.1682 112.31424 462.0537 112.31424 
+L 372.8853 112.31424 
+Q 365.7708 112.31424 365.7708 117.30384 
+L 365.7708 149.90256 
+Q 365.7708 154.89216 372.8853 154.89216 
+z
+" clip-path="url(#p099322f18d)" style="fill: #fff4e0; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 372.8853 241.37856 
+L 462.0537 241.37856 
+Q 469.1682 241.37856 469.1682 236.38896 
+L 469.1682 203.79024 
+Q 469.1682 198.80064 462.0537 198.80064 
+L 372.8853 198.80064 
+Q 365.7708 198.80064 365.7708 203.79024 
+L 365.7708 236.38896 
+Q 365.7708 241.37856 372.8853 241.37856 
+z
+" clip-path="url(#p099322f18d)" style="fill: #eaf1fa; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 59.8473 311.23296 
+L 428.8527 311.23296 
+Q 435.9672 311.23296 435.9672 306.24336 
+L 435.9672 286.95024 
+Q 435.9672 281.96064 428.8527 281.96064 
+L 59.8473 281.96064 
+Q 52.7328 281.96064 52.7328 286.95024 
+L 52.7328 306.24336 
+Q 52.7328 311.23296 59.8473 311.23296 
+z
+" clip-path="url(#p099322f18d)" style="fill: #eaf1fa; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1a3d6d" x="244.35" y="27.057169" transform="rotate(-0 244.35 27.057169)">Type 2 diabetes: choose drugs by comorbidity (ADA 2026)</text>
+   </g>
+   <g id="text_2">
+    <text style="font-style: italic; font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="244.35" y="334.711842" transform="rotate(-0 244.35 334.711842)">Source: ADA Standards of Care in Diabetes—2026, Section 9  ·  AnyExamEasy study aid, not medical advice</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="244.35" y="56.107842" transform="rotate(-0 244.35 56.107842)">Type 2 diabetes: lifestyle + person-centered goals</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(48.407867 130.710046)">ASCVD or</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(43.414117 140.91237)">high CV risk</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(34.326422 217.196778)">GLP-1 RA and/or</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(54.604234 227.399102)">SGLT2i</text>
+   </g>
+   <g id="patch_12">
+    <path d="M 242.408609 70.879983 
+Q 156.604354 92.023236 72.102774 112.845493 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 76.465112 113.830382 
+L 72.102774 112.845493 
+L 75.508088 109.946556 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 68.859 155.559795 
+Q 68.859 176.845742 68.859 196.790049 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 70.859 192.790049 
+L 68.859 196.790049 
+L 66.859 192.790049 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="185.0625" y="135.81154" transform="rotate(-0 185.0625 135.81154)">Heart failure</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="185.0625" y="222.29794" transform="rotate(-0 185.0625 222.29794)">SGLT2i</text>
+   </g>
+   <g id="patch_14">
+    <path d="M 242.732476 71.581392 
+Q 214.705304 92.02389 187.762077 111.675779 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 192.172348 110.934487 
+L 187.762077 111.675779 
+L 189.815206 107.702787 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 185.0625 155.559795 
+Q 185.0625 176.845742 185.0625 196.790049 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 187.0625 192.790049 
+L 185.0625 196.790049 
+L 183.0625 192.790049 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(292.238734 130.710378)">CKD</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(272.352055 140.912038)">(eGFR 20–60)</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(281.312914 217.19711)">SGLT2i or</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(281.859438 227.39877)">GLP-1 RA</text>
+   </g>
+   <g id="patch_16">
+    <path d="M 245.94451 71.613064 
+Q 272.810076 92.024777 298.607361 111.62484 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 296.6323 107.612468 
+L 298.607361 111.62484 
+L 294.212427 110.797466 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 301.266 155.559795 
+Q 301.266 176.845742 301.266 196.790049 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 303.266 192.790049 
+L 301.266 196.790049 
+L 299.266 192.790049 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="417.4695" y="135.81154" transform="rotate(-0 417.4695 135.81154)">None of these</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(369.6995 217.196778)">Metformin is common;</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(371.638563 227.399102)">consider combination</text>
+   </g>
+   <g id="patch_18">
+    <path d="M 246.291572 70.886582 
+Q 330.91019 92.02331 414.22716 112.834902 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 410.831081 109.925152 
+L 414.22716 112.834902 
+L 409.861713 113.805915 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 417.4695 155.559795 
+Q 417.4695 176.845742 417.4695 196.790049 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 419.4695 192.790049 
+L 417.4695 196.790049 
+L 415.4695 192.790049 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="244.35" y="298.80514" transform="rotate(-0 244.35 298.80514)">These are chosen regardless of A1C  ·  eGFR &lt;30: GLP-1 RA preferred</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p099322f18d">
+   <rect x="7.2" y="7.2" width="474.3" height="332.64"/>
+  </clipPath>
+ </defs>
+</svg>

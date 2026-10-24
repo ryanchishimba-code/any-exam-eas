@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="373.353437pt" height="347.04pt" viewBox="0 0 373.353437 347.04" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-24T08:34:48.359110</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 347.04 
+L 373.353437 347.04 
+L 373.353437 -0 
+L 0 -0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 143.152719 303.2496 
+L 230.200719 303.2496 
+Q 256.984719 303.2496 256.984719 276.6384 
+L 256.984719 83.7072 
+Q 256.984719 57.096 230.200719 57.096 
+L 143.152719 57.096 
+Q 116.368719 57.096 116.368719 83.7072 
+L 116.368719 276.6384 
+Q 116.368719 303.2496 143.152719 303.2496 
+z
+" clip-path="url(#p628cf248bc)" style="fill: #f7f7f7; stroke: #666666; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 166.588719 106.992 
+C 168.364519 106.992 170.067826 106.291019 171.323506 105.04344 
+C 172.579186 103.795861 173.284719 102.103543 173.284719 100.3392 
+C 173.284719 98.574857 172.579186 96.882539 171.323506 95.63496 
+C 170.067826 94.387381 168.364519 93.6864 166.588719 93.6864 
+C 164.812919 93.6864 163.109612 94.387381 161.853932 95.63496 
+C 160.598252 96.882539 159.892719 98.574857 159.892719 100.3392 
+C 159.892719 102.103543 160.598252 103.795861 161.853932 105.04344 
+C 163.109612 106.291019 164.812919 106.992 166.588719 106.992 
+z
+" clip-path="url(#p628cf248bc)" style="fill: #1a3d6d; stroke: #1a3d6d; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 206.764719 106.992 
+C 208.540519 106.992 210.243826 106.291019 211.499506 105.04344 
+C 212.755186 103.795861 213.460719 102.103543 213.460719 100.3392 
+C 213.460719 98.574857 212.755186 96.882539 211.499506 95.63496 
+C 210.243826 94.387381 208.540519 93.6864 206.764719 93.6864 
+C 204.988919 93.6864 203.285612 94.387381 202.029932 95.63496 
+C 200.774252 96.882539 200.068719 98.574857 200.068719 100.3392 
+C 200.068719 102.103543 200.774252 103.795861 202.029932 105.04344 
+C 203.285612 106.291019 204.988919 106.992 206.764719 106.992 
+z
+" clip-path="url(#p628cf248bc)" style="fill: #1a3d6d; stroke: #1a3d6d; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 200.068719 186.8256 
+C 201.844519 186.8256 203.547826 186.124619 204.803506 184.87704 
+C 206.059186 183.629461 206.764719 181.937143 206.764719 180.1728 
+C 206.764719 178.408457 206.059186 176.716139 204.803506 175.46856 
+C 203.547826 174.220981 201.844519 173.52 200.068719 173.52 
+C 198.292919 173.52 196.589612 174.220981 195.333932 175.46856 
+C 194.078252 176.716139 193.372719 178.408457 193.372719 180.1728 
+C 193.372719 181.937143 194.078252 183.629461 195.333932 184.87704 
+C 196.589612 186.124619 198.292919 186.8256 200.068719 186.8256 
+z
+" clip-path="url(#p628cf248bc)" style="fill: #1a3d6d; stroke: #1a3d6d; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 233.548719 226.7424 
+C 235.324519 226.7424 237.027826 226.041419 238.283506 224.79384 
+C 239.539186 223.546261 240.244719 221.853943 240.244719 220.0896 
+C 240.244719 218.325257 239.539186 216.632939 238.283506 215.38536 
+C 237.027826 214.137781 235.324519 213.4368 233.548719 213.4368 
+C 231.772919 213.4368 230.069612 214.137781 228.813932 215.38536 
+C 227.558252 216.632939 226.852719 218.325257 226.852719 220.0896 
+C 226.852719 221.853943 227.558252 223.546261 228.813932 224.79384 
+C 230.069612 226.041419 231.772919 226.7424 233.548719 226.7424 
+z
+" clip-path="url(#p628cf248bc)" style="fill: #1a3d6d; stroke: #1a3d6d; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 186.676719 273.312 
+L 186.676719 73.728 
+" clip-path="url(#p628cf248bc)" style="fill: none; stroke: #666666; stroke-opacity: 0.3; stroke-width: 6; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1a3d6d" x="186.676719" y="27.057169" transform="rotate(-0 186.676719 27.057169)">Auscultation areas ("All Physicians Take Money")</text>
+   </g>
+   <g id="text_2">
+    <text style="font-style: italic; font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="186.676719" y="334.711842" transform="rotate(-0 186.676719 334.711842)">Source: Standard physical-exam teaching  ·  AnyExamEasy study aid, not medical advice</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="186.676719" y="67.0752" transform="rotate(-0 186.676719 67.0752)">sternum</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'" transform="translate(128.468359 97.446378)">Aortic</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'" transform="translate(111.8575 107.648702)">2nd R ICS</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'" transform="translate(220.156719 97.446378)">Pulmonic</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'" transform="translate(220.156719 107.648702)">2nd L ICS</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'" transform="translate(213.460719 177.279978)">Tricuspid</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'" transform="translate(213.460719 187.482302)">4th L ICS, LSB</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'" transform="translate(246.940719 217.196778)">Mitral (apex)</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'" transform="translate(246.940719 227.399102)">5th ICS, MCL</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="186.676719" y="319.8816" transform="rotate(-0 186.676719 319.8816)">ICS = intercostal space · LSB = left sternal border · MCL = midclavicular line · R/L = patient's right/left</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p628cf248bc">
+   <rect x="19.276719" y="7.2" width="334.8" height="332.64"/>
+  </clipPath>
+ </defs>
+</svg>

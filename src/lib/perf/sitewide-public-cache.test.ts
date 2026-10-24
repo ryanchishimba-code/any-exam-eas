@@ -54,6 +54,7 @@ describe("public pages for every board stay cacheable", () => {
       "src/app/(app)/nclex/study-guide/page.tsx",
       "src/app/(app)/naplex/study-guide/page.tsx",
       "src/app/(app)/aanp-fnp/study-guide/page.tsx",
+      "src/app/(app)/pance/study-guide/page.tsx",
       "src/app/signup/page.tsx",
     ]) {
       expect(source(file), file).toContain('dynamic = "force-dynamic"');

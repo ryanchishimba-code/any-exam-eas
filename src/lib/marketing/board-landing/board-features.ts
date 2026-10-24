@@ -274,14 +274,19 @@ export function usmleFeatureCards(input: {
 }
 
 export function panceFeatureCards(): BoardFeatureCard[] {
-  return [
+  const cards: BoardFeatureCard[] = [];
+  if (studyGuideExamForKey("pance")) {
+    cards.push(studyGuideCard("PANCE"));
+  }
+  cards.push(
     anatomyFeatureCard(),
     explainedCard("PANCE"),
     qotdCard("PANCE"),
     readinessCard(),
     practiceExamsCard("PANCE"),
-    mobileCard(),
-  ];
+    mobileCard()
+  );
+  return cards;
 }
 
 export function aanpFnpFeatureCards(): BoardFeatureCard[] {

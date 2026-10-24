@@ -29,10 +29,11 @@ describe("exam hub marketing helpers", () => {
   });
 
   it("builds a three-card start-here band", () => {
-    const links = examHubProductLinks("pance");
+    const links = examHubProductLinks("npte-pt");
     expect(links).toHaveLength(2);
     expect(links[0]?.title).toMatch(/question bank/i);
     expect(examHubProductLinks("nclex")).toHaveLength(3);
+    expect(examHubProductLinks("pance")[0]?.href).toBe("/pance/study-guide");
     expect(examHubProductLinks("naplex").some((link) => link.href === "/toolkit")).toBe(true);
   });
 });

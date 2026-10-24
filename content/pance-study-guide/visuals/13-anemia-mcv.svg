@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="560.487891pt" height="319.32pt" viewBox="0 0 560.487891 319.32" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-24T08:34:48.268425</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 319.32 
+L 560.487891 319.32 
+L 560.487891 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 209.266345 70.92828 
+L 351.221545 70.92828 
+Q 357.917545 70.92828 357.917545 66.35448 
+L 357.917545 45.61992 
+Q 357.917545 41.04612 351.221545 41.04612 
+L 209.266345 41.04612 
+Q 202.570345 41.04612 202.570345 45.61992 
+L 202.570345 66.35448 
+Q 202.570345 70.92828 209.266345 70.92828 
+z
+" clip-path="url(#p478dfbf950)" style="fill: #fff4e0; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 88.738345 141.05988 
+L 186.053545 141.05988 
+Q 192.749545 141.05988 192.749545 136.48608 
+L 192.749545 109.65312 
+Q 192.749545 105.07932 186.053545 105.07932 
+L 88.738345 105.07932 
+Q 82.042345 105.07932 82.042345 109.65312 
+L 82.042345 136.48608 
+Q 82.042345 141.05988 88.738345 141.05988 
+z
+" clip-path="url(#p478dfbf950)" style="fill: #eaf1fa; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 84.274345 261.50328 
+L 190.517545 261.50328 
+Q 197.213545 261.50328 197.213545 256.92948 
+L 197.213545 184.35852 
+Q 197.213545 179.78472 190.517545 179.78472 
+L 84.274345 179.78472 
+Q 77.578345 179.78472 77.578345 184.35852 
+L 77.578345 256.92948 
+Q 77.578345 261.50328 84.274345 261.50328 
+z
+" clip-path="url(#p478dfbf950)" style="fill: #ffffff; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 231.586345 141.05988 
+L 328.901545 141.05988 
+Q 335.597545 141.05988 335.597545 136.48608 
+L 335.597545 109.65312 
+Q 335.597545 105.07932 328.901545 105.07932 
+L 231.586345 105.07932 
+Q 224.890345 105.07932 224.890345 109.65312 
+L 224.890345 136.48608 
+Q 224.890345 141.05988 231.586345 141.05988 
+z
+" clip-path="url(#p478dfbf950)" style="fill: #eaf1fa; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 227.122345 261.50328 
+L 333.365545 261.50328 
+Q 340.061545 261.50328 340.061545 256.92948 
+L 340.061545 184.35852 
+Q 340.061545 179.78472 333.365545 179.78472 
+L 227.122345 179.78472 
+Q 220.426345 179.78472 220.426345 184.35852 
+L 220.426345 256.92948 
+Q 220.426345 261.50328 227.122345 261.50328 
+z
+" clip-path="url(#p478dfbf950)" style="fill: #ffffff; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 374.434345 141.05988 
+L 471.749545 141.05988 
+Q 478.445545 141.05988 478.445545 136.48608 
+L 478.445545 109.65312 
+Q 478.445545 105.07932 471.749545 105.07932 
+L 374.434345 105.07932 
+Q 367.738345 105.07932 367.738345 109.65312 
+L 367.738345 136.48608 
+Q 367.738345 141.05988 374.434345 141.05988 
+z
+" clip-path="url(#p478dfbf950)" style="fill: #eaf1fa; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 369.970345 261.50328 
+L 476.213545 261.50328 
+Q 482.909545 261.50328 482.909545 256.92948 
+L 482.909545 184.35852 
+Q 482.909545 179.78472 476.213545 179.78472 
+L 369.970345 179.78472 
+Q 363.274345 179.78472 363.274345 184.35852 
+L 363.274345 256.92948 
+Q 363.274345 261.50328 369.970345 261.50328 
+z
+" clip-path="url(#p478dfbf950)" style="fill: #ffffff; stroke: #2b5797; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1a3d6d" x="280.243945" y="26.225569" transform="rotate(-0 280.243945 26.225569)">Anemia by MCV: classic causes (teaching aid)</text>
+   </g>
+   <g id="text_2">
+    <text style="font-style: italic; font-size: 7.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #666666" x="280.243945" y="307.269042" transform="rotate(-0 280.243945 307.269042)">Source: Standard textbook classification; iron cut-off: AGA 2020 Iron Deficiency Anemia Guideline  ·  AnyExamEasy study aid, not medical advice</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #222222" x="280.243945" y="58.325442" transform="rotate(-0 280.243945 58.325442)">Anemia → check MCV</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(114.658289 120.006612)">Microcytic</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(122.377195 130.809073)">&lt;80 fL</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(106.175711 207.548854)">Iron deficiency</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(109.507312 217.751178)">(ferritin &lt;45)</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(100.533836 227.953502)">Thalassemia trait</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(103.777781 238.155826)">Chronic disease</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 278.295305 71.690747 
+Q 208.819554 88.003892 140.649922 104.010355 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 145.00119 105.043056 
+L 140.649922 104.010355 
+L 144.086843 101.148961 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 137.395945 143.361371 
+Q 137.395945 159.659574 137.395945 174.616137 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 139.395945 170.616137 
+L 137.395945 174.616137 
+L 135.395945 170.616137 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(254.589727 120.006612)">Normocytic</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(258.15668 130.809073)">80–100 fL</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(245.411211 207.549186)">Acute blood loss</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(246.625781 217.75151)">Chronic disease</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(271.21668 227.95317)">CKD</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(258.387656 238.155494)">Hemolysis</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 280.243945 73.235354 
+Q 280.243945 88.005807 280.243945 101.434619 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 282.243945 97.434619 
+L 280.243945 101.434619 
+L 278.243945 97.434619 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 280.243945 143.361371 
+Q 280.243945 159.659574 280.243945 174.616137 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 282.243945 170.616137 
+L 280.243945 174.616137 
+L 278.243945 170.616137 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(398.846789 120.006612)">Macrocytic</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(405.21007 130.809073)">&gt;100 fL</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(398.471828 207.549186)">B12 / folate</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(401.423586 217.75151)">deficiency</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(395.651555 227.953834)">Alcohol, liver</text>
+    <text style="font-size: 8.5px; font-family: 'DejaVu Sans'; fill: #222222" transform="translate(410.466789 238.155494)">Drugs</text>
+   </g>
+   <g id="patch_13">
+    <path d="M 282.192586 71.690747 
+Q 351.668337 88.003892 419.837968 104.010355 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 416.401047 101.148961 
+L 419.837968 104.010355 
+L 415.486701 105.043056 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 423.091945 143.361371 
+Q 423.091945 159.659574 423.091945 174.616137 
+" style="fill: none; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 425.091945 170.616137 
+L 423.091945 174.616137 
+L 421.091945 170.616137 
+z
+" style="fill: #2b5797; stroke: #2b5797; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p478dfbf950">
+   <rect x="57.043945" y="7.2" width="446.4" height="304.92"/>
+  </clipPath>
+ </defs>
+</svg>

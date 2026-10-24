@@ -15,9 +15,7 @@ export const APP_SHELL_PREFIXES = [
   "/anatomy",
   "/settings",
   "/study/drugs300",
-  "/nclex/study-guide",
-  "/naplex/study-guide",
-  "/aanp-fnp/study-guide",
+  ...studyGuideRouteBases(),
 ] as const;
 
 export const MINIMAL_CHROME_PREFIXES = [

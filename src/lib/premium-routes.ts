@@ -1,4 +1,5 @@
 import { isGuestPreviewPage } from "@/lib/guest-preview";
+import { studyGuideRouteBases } from "@/lib/nclex-study-guide/guide-registry";
 
 /** Edge-safe premium route list (no Prisma). */
 export const PREMIUM_PAGE_PREFIXES = [
@@ -18,20 +19,13 @@ export const PREMIUM_PAGE_PREFIXES = [
   "/anatomy",
   "/study-hub",
   "/studygub",
-  "/nclex/study-guide",
-  "/naplex/study-guide",
-  "/aanp-fnp/study-guide",
+  ...studyGuideRouteBases(),
 ] as const;
 
 /** Reference books render their own trial upsell. Middleware must not send them to login. */
 export function isStudyGuidePath(path: string): boolean {
-  return (
-    path === "/nclex/study-guide" ||
-    path.startsWith("/nclex/study-guide/") ||
-    path === "/naplex/study-guide" ||
-    path.startsWith("/naplex/study-guide/") ||
-    path === "/aanp-fnp/study-guide" ||
-    path.startsWith("/aanp-fnp/study-guide/")
+  return studyGuideRouteBases().some(
+    (base) => path === base || path.startsWith(`${base}/`)
   );
 }
 
