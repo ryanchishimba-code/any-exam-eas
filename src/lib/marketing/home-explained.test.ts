@@ -35,7 +35,8 @@ describe("homepage faq and price placement", () => {
     expect(source.match(/formatMonthlyPrice\(/g)).toHaveLength(1);
     expect(source).toContain(formatMonthlyPrice.name);
     expect(source).not.toMatch(/24\/7|support hours|Quality exam prep shouldn't/);
-    expect(source).toContain("boardReviewBadge");
+    expect(source).toContain("HOME_NO_CARD_LINE");
+    expect(source).toContain("buildHomeHeroBenefitLine");
     expect(source).toContain("HOME_PRACTICE_HEADLINE");
   });
 });

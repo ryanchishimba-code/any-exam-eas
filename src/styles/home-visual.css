@@ -113,6 +113,41 @@
   text-wrap: balance;
 }
 
+.home-hero__benefit {
+  margin: 0.35rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--home-muted);
+  font-weight: 500;
+}
+
+.home-hero__proof {
+  margin: 1.25rem auto 0;
+  max-width: 36rem;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--home-muted);
+}
+
+.home-hero__proof-quote {
+  display: block;
+  font-style: italic;
+  color: var(--home-ink);
+}
+
+.home-hero__proof-by {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.875rem;
+}
+
+.home-mid-cta {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 1rem 1.75rem;
+}
+
 .home-hero__line,
 .home-hero__accent {
   display: block;

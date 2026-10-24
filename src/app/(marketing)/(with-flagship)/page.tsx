@@ -38,12 +38,13 @@ async function HomeProofLive() {
 }
 
 export default async function HomePage() {
-  const [{ display, bundle, exactLabel }, testimonials] = await Promise.all([
+  const [{ display, bundle, exactLabel, staticLabel }, testimonials] = await Promise.all([
     loadPublicQuestionCounts({ dynamic: false }),
     getCachedPublishedTestimonials(6),
   ]);
   const site = siteCountsFromSnapshot(bundle.snapshot);
-  const homeHeroBand = buildHomeHeroBand(exactLabel);
+  const heroCountLabel = exactLabel.trim() || staticLabel.trim() || "";
+  const homeHeroBand = buildHomeHeroBand(heroCountLabel || null);
   const homeFeatures = homeFeatureCards({
     ngnCaseStudies: Boolean(site && site.boards.nclex.caseStudies > 0),
     nursingQuickBite: openBoardQuickBite("nursing"),

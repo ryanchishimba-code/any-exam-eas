@@ -14,18 +14,19 @@ test.describe("Landing page", () => {
     await expect(page.getByRole("navigation", { name: /main navigation/i })).toBeVisible();
     await expect(page.getByText(/prisca m\.|gerard n\./i)).toHaveCount(0);
     await expect(page.getByRole("heading", { name: "A practice estimate." })).toHaveCount(0);
-    await expect(page.getByRole("heading", { name: "Every question explained." })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "How to pass any board exam — in 3 minutes" })).toBeVisible();
-    await expect(page.getByText("Nathan C.")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Every question explained." })).toHaveCount(0);
+    await expect(page.getByRole("heading", { name: "How to pass any board exam — in 3 minutes" })).toHaveCount(0);
+    await expect(page.getByRole("heading", { name: "Content review." })).toHaveCount(0);
+    await expect(page.locator(".home-hero__proof")).toContainText("Nathan C.");
     await expect(page.getByText("Priscilla J.")).toBeVisible();
     await expect(page.getByText("Quality exam prep shouldn't be out of reach")).toHaveCount(0);
     await expect(page.getByText(/24\/7|support hours/i)).toHaveCount(0);
-    await expect(page.getByText("NCLEX content review led by Ileen Chishimba, RN")).toBeAttached();
-    await expect(page.getByRole("heading", { name: "Ryan Chishimba, PharmD" })).toBeVisible();
+    await expect(page.getByText("No card needed.")).toBeVisible();
     await expect(
       page.getByText("5-day free trial · no payment method required · then $27.99/mo").first()
     ).toBeVisible();
-    await expect(page.getByText(/\bno[- ]card\b/i)).toHaveCount(0);
+    await expect(page.getByRole("heading", { name: "How to pass in 3 minutes", exact: true })).toBeVisible();
+    await expect(page.locator("#faq")).toBeVisible();
     await expect(page.getByRole("button", { name: /share your progress/i })).toHaveCount(0);
     await expect(
       page.getByRole("navigation", { name: /main navigation/i }).locator('a[href="/pricing"]')
@@ -104,7 +105,7 @@ test.describe("Landing page", () => {
       if (request.url().includes("how-to-pass.mp4")) videoRequests.push(request.url());
     });
 
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.goto("/how-to-pass", { waitUntil: "domcontentloaded" });
     const play = page.getByRole("button", { name: /play video/i });
     await expect(play).toBeVisible();
     await expect(play).toHaveAttribute("data-ready", "true");
@@ -153,10 +154,12 @@ test.describe("Landing page", () => {
         };
         const cta = document.querySelector(".home-hero__actions a");
         const box = cta?.getBoundingClientRect();
+        const benefitEl = document.querySelector(".home-hero__benefit");
         return {
           overflows: doc.scrollWidth > doc.clientWidth + 1,
           sub: bodySize(".home-hero__sub"),
-          why: bodySize(".home-q__why"),
+          benefit: benefitEl ? bodySize(".home-hero__benefit") : 16,
+          hasBenefit: Boolean(benefitEl),
           ctaHeight: box?.height ?? 0,
           ctaWidth: box?.width ?? 0,
         };
@@ -164,7 +167,9 @@ test.describe("Landing page", () => {
 
       expect(metrics.overflows, `overflow at ${width}`).toBe(false);
       expect(metrics.sub, `hero type at ${width}`).toBeGreaterThanOrEqual(16);
-      expect(metrics.why, `rationale type at ${width}`).toBeGreaterThanOrEqual(16);
+      if (metrics.hasBenefit) {
+        expect(metrics.benefit, `hero benefit type at ${width}`).toBeGreaterThanOrEqual(16);
+      }
       expect(metrics.ctaHeight, `cta height at ${width}`).toBeGreaterThanOrEqual(44);
       expect(metrics.ctaWidth, `cta width at ${width}`).toBeGreaterThanOrEqual(44);
     }
@@ -175,6 +180,7 @@ test.describe("Landing page", () => {
     await page.evaluate(() => window.scrollTo(0, 900));
     const sticky = page.locator(".home-sticky a");
     await expect(sticky).toBeVisible();
+    await expect(sticky).toContainText(/\$27\.99\/mo · start free trial/i);
     const stickyBox = await sticky.boundingBox();
     expect(stickyBox?.height ?? 0).toBeGreaterThanOrEqual(44);
 

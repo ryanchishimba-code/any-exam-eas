@@ -5,37 +5,35 @@ import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeat
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import type { BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
 import type { LandingTestimonialCard } from "@/lib/testimonials/landing-stories";
-import { buildHomeHeroChips, type HomeHeroBand } from "@/lib/marketing/board-landing/home-hero";
-import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
+import {
+  buildHomeHeroBenefitLine,
+  buildHomeHeroChips,
+  type HomeHeroBand,
+} from "@/lib/marketing/board-landing/home-hero";
 import { HomeCompare } from "@/components/marketing/elevation/HomeCompare";
-import { HomePassVideo } from "@/components/marketing/elevation/HomePassVideo";
 import { HomeQuickBites } from "@/components/marketing/elevation/HomeQuickBites";
+import { HomeRepeatTrialCta } from "@/components/marketing/elevation/HomeRepeatTrialCta";
 import { HomeStickyCta } from "@/components/marketing/elevation/HomeStickyCta";
-import { IconCases, IconCheck, IconReviewers } from "@/components/marketing/elevation/home-icons";
+import { IconCheck, IconReviewers } from "@/components/marketing/elevation/home-icons";
 import "@/styles/home-visual.css";
 import { LANDING_HERO_EXAMS, LANDING_TRIAL_HREF } from "@/lib/landing/content";
-import { HOME_EXPLAINED_SAMPLE } from "@/lib/marketing/home-explained";
 import { HOME_FAQ } from "@/lib/marketing/home-faq";
 import {
+  HOME_NO_CARD_LINE,
   HOME_NO_PAYMENT_LINE,
+  homeStickyCtaLabel,
   homeTrialCloseHeading,
   homeTrialCtaLabel,
 } from "@/lib/marketing/home-cta";
-import { howToPassSharePath } from "@/lib/marketing/home-video";
-import { boardReviewBadge, HOME_PRACTICE_HEADLINE, RATIONALE_STUDY_NOTE } from "@/lib/marketing/legal-copy";
-import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
+import { HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
-import { absoluteUrl } from "@/lib/seo";
 import { ROUTES } from "@/lib/routes";
 import { formatMonthlyPrice } from "@/lib/site";
 
 const TRUST = [
   { icon: IconCheck, label: "Detailed rationales on scored items" },
   { icon: IconReviewers, label: "Named clinical reviewers" },
-  { icon: IconCases, label: "NGN and case questions" },
 ] as const;
-
-const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
 
 /** First-screen board tiles. Labels match the hero; hrefs are the public board pages. */
 const HERO_BOARD_TILES: { slug: ExamSeoKey; label: string }[] = [
@@ -46,6 +44,11 @@ const HERO_BOARD_TILES: { slug: ExamSeoKey; label: string }[] = [
   { slug: "pance", label: "PANCE" },
   { slug: "npte-pt", label: "NPTE-PT" },
 ];
+
+function heroProofStory(stories: LandingTestimonialCard[]): LandingTestimonialCard | null {
+  const nathan = stories.find((story) => story.name === "Nathan C.");
+  return nathan ?? stories[0] ?? null;
+}
 
 export function PublicHome({
   proof,
@@ -62,6 +65,7 @@ export function PublicHome({
   testimonialStories?: LandingTestimonialCard[];
 }) {
   const cta = homeTrialCtaLabel();
+  const stickyLabel = homeStickyCtaLabel();
   const headlineBreak = HOME_PRACTICE_HEADLINE.lastIndexOf(". ");
   const headlineLead =
     headlineBreak === -1 ? HOME_PRACTICE_HEADLINE : HOME_PRACTICE_HEADLINE.slice(0, headlineBreak + 1);
@@ -69,6 +73,8 @@ export function PublicHome({
     headlineBreak === -1 ? "" : HOME_PRACTICE_HEADLINE.slice(headlineBreak + 2);
   const band = heroBand ?? null;
   const heroChips = band ? buildHomeHeroChips(band) : [];
+  const benefitLine = band ? buildHomeHeroBenefitLine(band.liveTotal) : null;
+  const proofStory = heroProofStory(testimonialStories);
 
   return (
     <div className="home-visual home-has-sticky">
@@ -79,63 +85,57 @@ export function PublicHome({
               <span className="home-laptop__camera" aria-hidden="true" />
               <div className="home-laptop__screen">
                 <div className="home-hero__panel">
-          <h1 id="hero-heading">
-            <span className="home-hero__line">{headlineLead}</span>{" "}
-            <span className="home-hero__accent">{headlineAccent}</span>
-          </h1>
-          {heroChips.length > 0 ? (
-            <ul className="bl-hero-chips home-hero__chips" aria-label="Why students choose AnyExamEasy">
-              {heroChips.map((chip) => (
-                <li key={chip.id}>{chip.text}</li>
-              ))}
-            </ul>
-          ) : null}
-          {band ? (
-            <div className="bl-hero-band bl-hero-band--count-only home-hero__band" aria-label="Live bank size and pricing">
-              <p className="bl-hero-band__count">
-                {band.liveTotal ? (
-                  <>
-                    <span className="bl-hero-band__value">{band.liveTotal}</span>
-                    <span className="bl-hero-band__label"> live board-style questions</span>
-                  </>
-                ) : (
-                  <span className="bl-hero-band__label">Live question bank</span>
-                )}
-              </p>
-              <p className="bl-hero-band__prices">
-                <span className="bl-hero-band__ours">{band.proPrice}</span>
-                <span className="bl-hero-band__vs" aria-hidden> · </span>
-                <span className="bl-hero-band__typical">
-                  vs {band.typicalPrice} typical {band.typicalPeriod}
-                </span>
-              </p>
-              <p className="bl-hero-band__trial">{band.trialLine}</p>
-            </div>
-          ) : null}
-          <nav className="home-hero__boards" aria-label="Board exams">
-            <ul>
-              {HERO_BOARD_TILES.map((board) => (
-                <li key={board.slug}>
-                  <Link href={examMarketingPath(board.slug)}>{board.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <p className="home-hero__sub">Every exam, every rationale, one plan.</p>
-          <div className="home-hero__actions">
-            <LandingCta href={LANDING_TRIAL_HREF} ctaName="hero_trial" location="hero">
-              {cta}
-            </LandingCta>
-          </div>
-          <p className="home-hero__note">{HOME_NO_PAYMENT_LINE}</p>
-          <ul className="home-trust" aria-label="What is included">
-            {TRUST.map((item) => (
-              <li key={item.label}>
-                <item.icon />
-                <span>{item.label}</span>
-              </li>
-            ))}
-          </ul>
+                  <h1 id="hero-heading">
+                    <span className="home-hero__line">{headlineLead}</span>{" "}
+                    <span className="home-hero__accent">{headlineAccent}</span>
+                  </h1>
+                  {benefitLine ? <p className="home-hero__benefit">{benefitLine}</p> : null}
+                  {heroChips.length > 0 ? (
+                    <ul className="bl-hero-chips home-hero__chips" aria-label="Why students choose AnyExamEasy">
+                      {heroChips.map((chip) => (
+                        <li key={chip.id}>{chip.text}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {band ? (
+                    <div
+                      className="bl-hero-band bl-hero-band--count-only home-hero__band"
+                      aria-label="Live bank size and pricing"
+                    >
+                      <p className="bl-hero-band__prices">
+                        <span className="bl-hero-band__ours">{band.proPrice}</span>
+                        <span className="bl-hero-band__vs" aria-hidden> · </span>
+                        <span className="bl-hero-band__typical">
+                          vs {band.typicalPrice} typical {band.typicalPeriod}
+                        </span>
+                      </p>
+                      <p className="bl-hero-band__trial">{band.trialLine}</p>
+                    </div>
+                  ) : null}
+                  <nav className="home-hero__boards" aria-label="Board exams">
+                    <ul>
+                      {HERO_BOARD_TILES.map((board) => (
+                        <li key={board.slug}>
+                          <Link href={examMarketingPath(board.slug)}>{board.label}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                  <p className="home-hero__sub">Every exam, every rationale, one plan.</p>
+                  <div className="home-hero__actions">
+                    <LandingCta href={LANDING_TRIAL_HREF} ctaName="hero_trial" location="hero">
+                      {cta}
+                    </LandingCta>
+                  </div>
+                  <p className="home-hero__note">{HOME_NO_CARD_LINE}</p>
+                  <ul className="home-trust" aria-label="What is included">
+                    {TRUST.map((item) => (
+                      <li key={item.label}>
+                        <item.icon />
+                        <span>{item.label}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -143,75 +143,32 @@ export function PublicHome({
           </div>
           <div className="home-laptop__base" aria-hidden="true" />
         </div>
+        {proofStory ? (
+          <p className="home-hero__proof">
+            <span className="home-hero__proof-quote">&ldquo;{proofStory.quote}&rdquo;</span>
+            <span className="home-hero__proof-by">— {proofStory.name}</span>
+          </p>
+        ) : null}
       </section>
 
       {proof}
 
-      {featureCards.length > 0 || testimonialStories.length > 0 ? (
+      {featureCards.length > 0 ? (
         <div className="home-features board-landing">
-          {featureCards.length > 0 ? <BoardFeatureGrid cards={featureCards} tight /> : null}
-          <BoardLandingTestimonials stories={testimonialStories} />
+          <BoardFeatureGrid cards={featureCards} tight />
         </div>
       ) : null}
 
-      <section className="home-section home-rise" aria-labelledby="explained-heading">
-        <h2 id="explained-heading">Every question explained.</h2>
-        <p className="home-lead">The right choice and each wrong one, in plain language.</p>
-        <div className="home-device">
-          <div className="home-device__back" aria-hidden />
-          <article className="home-device__screen">
-            <header className="home-device__chrome">
-              <span className="home-device__dots" aria-hidden>
-                <span />
-                <span />
-                <span />
-              </span>
-              <p>{HOME_EXPLAINED_SAMPLE.exam} sample</p>
-            </header>
-            <div className="home-q">
-              <p className="home-q__stem">{HOME_EXPLAINED_SAMPLE.stem}</p>
-              <ol className="home-q__options">
-                {HOME_EXPLAINED_SAMPLE.options.map((option, index) => (
-                  <li
-                    key={option.text}
-                    className={option.correct ? "home-q__option is-correct" : "home-q__option"}
-                  >
-                    <p className="home-q__choice">
-                      <span className="home-q__letter">{LETTERS[index] ?? index + 1}</span>
-                      <span>
-                        {option.correct ? <span className="sr-only">Correct answer. </span> : null}
-                        {option.text}
-                      </span>
-                    </p>
-                    <p className="home-q__why">{option.rationale}</p>
-                  </li>
-                ))}
-              </ol>
-              <p className="home-q__note">{RATIONALE_STUDY_NOTE}</p>
-            </div>
-          </article>
+      {testimonialStories.length > 0 ? (
+        <div className="board-landing">
+          <BoardLandingTestimonials stories={testimonialStories} />
+          <HomeRepeatTrialCta label={cta} ctaName="home_testimonials_trial" location="home_testimonials" />
         </div>
-      </section>
-
-      <HomePassVideo
-        shareUrl={absoluteUrl(howToPassSharePath())}
-        heading="h2"
-      />
-
-      <section className="home-section home-rise" aria-labelledby="ngn-heading">
-        <div className="home-strip">
-          <span className="home-strip__icon" aria-hidden>
-            <IconCases />
-          </span>
-          <div>
-            <h2 id="ngn-heading">Practice the new format.</h2>
-            <p>NGN and case questions, including bow-tie items.</p>
-          </div>
-        </div>
-      </section>
+      ) : null}
 
       <HomeQuickBites />
       <HomeCompare ngnCaseStudies={ngnCaseStudies} />
+      <HomeRepeatTrialCta label={cta} ctaName="home_compare_trial" location="home_compare" />
 
       <section className="home-section home-section--mist home-rise" aria-labelledby="price-heading">
         <h2 id="price-heading">Six boards. One price.</h2>
@@ -233,22 +190,11 @@ export function PublicHome({
         </article>
       </section>
 
-      <section className="home-section home-review home-rise" aria-labelledby="reviewers-heading">
-        <h2 id="reviewers-heading">Content review.</h2>
-        <ul className="home-reviewers">
-          {CLINICAL_REVIEWERS.map((reviewer) => (
-            <li key={reviewer.id} className="home-reviewer">
-              <ClinicalReviewerAvatar reviewer={reviewer} size="sm" />
-              <div>
-                <h3>{reviewer.displayName}</h3>
-                <p>{boardReviewBadge(reviewer.examKeys[0] ?? "", reviewer.displayName)}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="home-section home-section--mist home-faq home-rise" aria-labelledby="faq-heading">
+      <section
+        id="faq"
+        className="home-section home-section--mist home-faq home-rise"
+        aria-labelledby="faq-heading"
+      >
         <h2 id="faq-heading">Questions.</h2>
         <div className="home-faq__list">
           {HOME_FAQ.map((item) => (
@@ -273,7 +219,7 @@ export function PublicHome({
         </LandingCta>
       </section>
 
-      <HomeStickyCta label={cta} />
+      <HomeStickyCta label={stickyLabel} />
     </div>
   );
 }

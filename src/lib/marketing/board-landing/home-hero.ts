@@ -23,6 +23,13 @@ export function buildHomeHeroBand(liveTotal: string | null): HomeHeroBand {
   };
 }
 
+/** One line under the H1 — uses the same live total label as metadata/JSON-LD. */
+export function buildHomeHeroBenefitLine(liveTotal: string | null): string | null {
+  const count = liveTotal?.trim();
+  if (!count) return null;
+  return `${count} board-style questions across six exams on one plan.`;
+}
+
 export function buildHomeHeroChips(_band: HomeHeroBand): { id: string; text: string }[] {
   return [
     {
