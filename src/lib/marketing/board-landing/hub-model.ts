@@ -11,14 +11,9 @@ import type { LandingSuccessStory } from "@/lib/landing/content";
 import { landingTrialHrefForExam } from "@/lib/landing/trial-href";
 import { boardFeatureCardsForExam } from "@/lib/marketing/board-landing/board-features";
 import { boardHeroChips, boardHeroOffer } from "@/lib/marketing/board-landing/hero";
-import {
-  landingQuestionFromPublic,
-  type BoardLandingModel,
-  type LandingQuestion,
-} from "@/lib/marketing/board-landing/model";
+import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
 import { typicalPrepForExam } from "@/lib/marketing/board-landing/typical-prep";
 import { CLINICAL_REVIEWERS, clinicalReviewerForExam } from "@/lib/marketing/company";
-import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { homeTrialCtaLabel } from "@/lib/marketing/home-cta";
 import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
@@ -150,11 +145,6 @@ function liveUnits(units: BoardQuestionUnits | null, degraded: boolean): BoardQu
   return units;
 }
 
-function sampleForExam(sample: PublicSampleQuestion | null): LandingQuestion | null {
-  if (!sample) return null;
-  return landingQuestionFromPublic(sample);
-}
-
 function hubFaqs(
   examKey: HubExamKey,
   units: BoardQuestionUnits | null,
@@ -241,7 +231,6 @@ export function buildHubLandingModel(input: {
   examKey: HubExamKey;
   degraded: boolean;
   units: BoardQuestionUnits | null;
-  sample: PublicSampleQuestion | null;
   testimonials?: LandingSuccessStory[];
   usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
 }): BoardLandingModel {
@@ -262,20 +251,32 @@ export function buildHubLandingModel(input: {
     quickBite: null,
     usmleStepCounts: input.usmleStepCounts,
   });
-  const sample = sampleForExam(input.sample);
   const faqs = hubFaqs(input.examKey, units, config);
   const nav = EXAM_NAV_ITEMS.find((item) => item.slug === input.examKey);
   const reviewer = clinicalReviewerForExam(input.examKey);
   const links = [
-    ...(sample ? [{ href: "#sample-question", label: `Free ${config.shortName} practice question` }] : []),
+    { href: nav?.practiceHref ?? `/practice/${input.examKey}`, label: `${config.shortName} practice` },
     { href: qotdPath(input.examKey), label: "Question of the Day" },
     { href: ROUTES.pricing, label: "Pricing" },
-    { href: nav?.practiceHref ?? `/practice/${input.examKey}`, label: `${config.shortName} practice` },
     { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
   ];
-  const stats = units
-    ? [{ value: formatExactQuestionCount(scoredQuestionCount(units)), label: "Questions" }]
-    : [];
+  const stats: { value: string; label: string }[] = [];
+  if (units) {
+    stats.push({ value: formatExactQuestionCount(scoredQuestionCount(units)), label: "Questions" });
+  }
+  if (input.examKey === "usmle" && input.usmleStepCounts) {
+    const stepLabels: { key: "step1" | "step2" | "step3"; label: string }[] = [
+      { key: "step1", label: "Step 1" },
+      { key: "step2", label: "Step 2 CK" },
+      { key: "step3", label: "Step 3" },
+    ];
+    for (const step of stepLabels) {
+      const count = input.usmleStepCounts[step.key] ?? 0;
+      if (count > 0) {
+        stats.push({ value: formatExactQuestionCount(count), label: step.label });
+      }
+    }
+  }
   const graph = boardLandingBaseGraph({
     pagePath: path,
     breadcrumbName: config.shortName,
@@ -296,7 +297,7 @@ export function buildHubLandingModel(input: {
   return {
     h1Lead: copy.h1Lead,
     h1Accent: copy.h1Accent,
-    lede: "Try the free sample below, then start your trial when you are ready.",
+    lede: "Start your free trial, then drill the live bank with teachable rationales.",
     trialHref,
     trialLabel: homeTrialCtaLabel(),
     trust: ["5-day free trial", "No payment method to start", "Cancel in Settings"],
@@ -324,7 +325,7 @@ export function buildHubLandingModel(input: {
         featured: true,
       },
     ],
-    sample,
+    sample: null,
     formatHeading: "",
     formatLede: "",
     formats: [],
@@ -377,7 +378,7 @@ export function buildHubLandingModel(input: {
   };
 }
 
-/** Field id used in `getPublicSampleQuestions` for each hub exam. */
+/** Bank field id for inventory lookups on each hub exam. */
 export function hubSampleFieldId(examKey: HubExamKey): string {
   return EXAM_NAV_ITEMS.find((item) => item.slug === examKey)?.fieldId ?? examKey;
 }
