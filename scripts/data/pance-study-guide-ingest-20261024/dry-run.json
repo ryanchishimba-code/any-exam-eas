@@ -1,0 +1,50 @@
+{
+  "dryRun": true,
+  "rolledBack": true,
+  "exam": "pance",
+  "guideId": "sg_guide_pance_std",
+  "guide": {
+    "id": "sg_guide_pance_std",
+    "examSlug": "pance",
+    "examTrack": "std",
+    "title": "AnyExamEasy PANCE Reference Book",
+    "edition": "1",
+    "version": "1.0.0"
+  },
+  "chapterCount": 22,
+  "removedObsolete": 0,
+  "figuresSized": "16/16",
+  "duplicateSlugs": false,
+  "emptyHtml": [],
+  "otherExamsUnchanged": true,
+  "otherExams": [
+    { "examSlug": "aanp-fnp", "chapters": 17 },
+    { "examSlug": "naplex", "chapters": 17 },
+    { "examSlug": "nclex", "chapters": 17 }
+  ],
+  "panceQuestionBankItems": 4124,
+  "chapters": [
+    { "sortOrder": 1, "slug": "front-matter", "title": "Free PANCE Study Guide (2026): Blueprint-Weighted Plans, Frameworks & High-Yield Topic Index", "bodyMdChars": 5446, "bodyHtmlChars": 8193 },
+    { "sortOrder": 2, "slug": "exam-strategy", "title": "How PANCE works", "bodyMdChars": 5588, "bodyHtmlChars": 9104 },
+    { "sortOrder": 3, "slug": "cardiovascular", "title": "Cardiovascular (11%): your biggest block", "bodyMdChars": 4476, "bodyHtmlChars": 7296 },
+    { "sortOrder": 4, "slug": "pulmonary", "title": "Pulmonary (9%)", "bodyMdChars": 1801, "bodyHtmlChars": 3197 },
+    { "sortOrder": 5, "slug": "gi-nutrition", "title": "GI / Nutrition (8%)", "bodyMdChars": 895, "bodyHtmlChars": 1258 },
+    { "sortOrder": 6, "slug": "musculoskeletal", "title": "Musculoskeletal (8%)", "bodyMdChars": 731, "bodyHtmlChars": 1055 },
+    { "sortOrder": 7, "slug": "infectious-disease", "title": "Infectious Diseases (7%)", "bodyMdChars": 2677, "bodyHtmlChars": 3390 },
+    { "sortOrder": 8, "slug": "neurologic", "title": "Neurologic (7%)", "bodyMdChars": 1051, "bodyHtmlChars": 1674 },
+    { "sortOrder": 9, "slug": "psychiatry", "title": "Psychiatry / Behavioral (7%)", "bodyMdChars": 452, "bodyHtmlChars": 616 },
+    { "sortOrder": 10, "slug": "reproductive", "title": "Reproductive (7%)", "bodyMdChars": 742, "bodyHtmlChars": 1106 },
+    { "sortOrder": 11, "slug": "endocrine", "title": "Endocrine (6%)", "bodyMdChars": 734, "bodyHtmlChars": 1192 },
+    { "sortOrder": 12, "slug": "eent", "title": "EENT (6%)", "bodyMdChars": 695, "bodyHtmlChars": 993 },
+    { "sortOrder": 13, "slug": "professional-practice", "title": "Professional Practice (6%)", "bodyMdChars": 691, "bodyHtmlChars": 1051 },
+    { "sortOrder": 14, "slug": "hematologic", "title": "Hematologic (5%)", "bodyMdChars": 1026, "bodyHtmlChars": 1722 },
+    { "sortOrder": 15, "slug": "renal", "title": "Renal (5%)", "bodyMdChars": 295, "bodyHtmlChars": 385 },
+    { "sortOrder": 16, "slug": "dermatologic", "title": "Dermatologic (4%)", "bodyMdChars": 475, "bodyHtmlChars": 725 },
+    { "sortOrder": 17, "slug": "genitourinary", "title": "Genitourinary (4%)", "bodyMdChars": 1024, "bodyHtmlChars": 1443 },
+    { "sortOrder": 18, "slug": "common-traps", "title": "Common traps", "bodyMdChars": 992, "bodyHtmlChars": 1405 },
+    { "sortOrder": 19, "slug": "exam-day", "title": "Exam day + final sprint", "bodyMdChars": 738, "bodyHtmlChars": 1308 },
+    { "sortOrder": 20, "slug": "quick-reference", "title": "Quick refs", "bodyMdChars": 868, "bodyHtmlChars": 1495 },
+    { "sortOrder": 21, "slug": "faq", "title": "FAQ", "bodyMdChars": 1358, "bodyHtmlChars": 1769 },
+    { "sortOrder": 22, "slug": "back-matter", "title": "You've got this", "bodyMdChars": 1618, "bodyHtmlChars": 2188 }
+  ]
+}

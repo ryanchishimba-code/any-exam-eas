@@ -1,0 +1,36 @@
+{
+  "createdAt": "2026-10-24T21:21:46.136Z",
+  "description": "Undo the 2026-10-24 PANCE study-guide ingest. Deletes only sg_guide_pance_std when its examSlug is pance. Chapters, highlights, bookmarks, notes, and reading progress for that guide cascade. Does not touch other exams or the question bank.",
+  "sql": "DELETE FROM sg_guides WHERE id = 'sg_guide_pance_std' AND \"examSlug\" = 'pance';",
+  "inserted": {
+    "guideId": "sg_guide_pance_std",
+    "examSlug": "pance",
+    "examTrack": "std",
+    "title": "AnyExamEasy PANCE Reference Book",
+    "chapterCount": 22,
+    "chapters": [
+      { "id": "cmvmwmakc0001jsh1hkv475fg", "sortOrder": 1, "slug": "front-matter" },
+      { "id": "cmvmwmakp0003jsh17s96dll1", "sortOrder": 2, "slug": "exam-strategy" },
+      { "id": "cmvmwmakx0005jsh1j7fcl05o", "sortOrder": 3, "slug": "cardiovascular" },
+      { "id": "cmvmwmal20007jsh1oh0qfsjt", "sortOrder": 4, "slug": "pulmonary" },
+      { "id": "cmvmwmal80009jsh1hrizaq4i", "sortOrder": 5, "slug": "gi-nutrition" },
+      { "id": "cmvmwmald000bjsh1gshad0we", "sortOrder": 6, "slug": "musculoskeletal" },
+      { "id": "cmvmwmali000djsh1ist9qhtf", "sortOrder": 7, "slug": "infectious-disease" },
+      { "id": "cmvmwmaln000fjsh1xcxv04ne", "sortOrder": 8, "slug": "neurologic" },
+      { "id": "cmvmwmals000hjsh14x1dng06", "sortOrder": 9, "slug": "psychiatry" },
+      { "id": "cmvmwmalw000jjsh1ttqc9ibx", "sortOrder": 10, "slug": "reproductive" },
+      { "id": "cmvmwmam1000ljsh1zmdyrgds", "sortOrder": 11, "slug": "endocrine" },
+      { "id": "cmvmwmam5000njsh1ii96efkv", "sortOrder": 12, "slug": "eent" },
+      { "id": "cmvmwmama000pjsh1vwu76o9w", "sortOrder": 13, "slug": "professional-practice" },
+      { "id": "cmvmwmame000rjsh1l0c68c4z", "sortOrder": 14, "slug": "hematologic" },
+      { "id": "cmvmwmami000tjsh161ouq0hm", "sortOrder": 15, "slug": "renal" },
+      { "id": "cmvmwmamm000vjsh1wdx83m3a", "sortOrder": 16, "slug": "dermatologic" },
+      { "id": "cmvmwmamr000xjsh15uwianqe", "sortOrder": 17, "slug": "genitourinary" },
+      { "id": "cmvmwmamv000zjsh13zqsmo7v", "sortOrder": 18, "slug": "common-traps" },
+      { "id": "cmvmwman10011jsh1a0aoe5e6", "sortOrder": 19, "slug": "exam-day" },
+      { "id": "cmvmwman50013jsh1a0h7fyhx", "sortOrder": 20, "slug": "quick-reference" },
+      { "id": "cmvmwman90015jsh10p393bnb", "sortOrder": 21, "slug": "faq" },
+      { "id": "cmvmwmane0017jsh17r5ag8pr", "sortOrder": 22, "slug": "back-matter" }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "takenAt": "2026-10-24T21:20:00Z",
+  "purpose": "Pre-ingest snapshot of PANCE study-guide rows only. Other exams and the question bank were not copied and must not be modified.",
+  "database": {
+    "projectId": "lively-silence-56893462",
+    "projectName": "any-exam-easy",
+    "branchId": "br-super-frog-apuqj2ol",
+    "branchName": "main",
+    "database": "anyexameasy"
+  },
+  "scope": {
+    "guideId": "sg_guide_pance_std",
+    "examSlug": "pance"
+  },
+  "baselineCounts": {
+    "sg_guides": 3,
+    "sg_chapters": 51,
+    "panceQuestionBankItems": 4124,
+    "guides": [
+      {
+        "id": "sg_guide_aanp_fnp_std",
+        "examSlug": "aanp-fnp",
+        "examTrack": "std",
+        "chapterCount": 17
+      },
+      {
+        "id": "sg_guide_naplex_std",
+        "examSlug": "naplex",
+        "examTrack": "std",
+        "chapterCount": 17
+      },
+      {
+        "id": "sg_guide_nclex_rn_placeholder",
+        "examSlug": "nclex",
+        "examTrack": "rn",
+        "chapterCount": 17
+      }
+    ]
+  },
+  "rows": {
+    "sg_guides": [],
+    "sg_chapters": [],
+    "sg_reading_progress": [],
+    "sg_highlights": [],
+    "sg_bookmarks": [],
+    "sg_notes": []
+  }
+}
