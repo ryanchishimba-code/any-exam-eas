@@ -7,9 +7,12 @@ describe("landingTestimonialStories", () => {
     expect(stories.map((story) => story.name)).toEqual(["Nathan C.", "Priscilla J."]);
   });
 
-  it("shows no quotes when the board has no matching exam field", () => {
+  it("shows PANCE seeds on /pance only", () => {
     const stories = landingTestimonialStories([], "pance");
-    expect(stories).toEqual([]);
+    expect(stories.map((story) => story.name)).toEqual(["Nick B."]);
+    expect(stories[0]?.quote).toBe(
+      "With everything premium becoming expensive, it's a welcome sight to see premium material."
+    );
   });
 
   it("shows NAPLEX seeds on /naplex only", () => {

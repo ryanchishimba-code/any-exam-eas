@@ -68,6 +68,17 @@ export const CONSENTED_TESTIMONIAL_SEEDS: readonly ConsentedTestimonialSeed[] = 
     sortOrder: 3,
     showOnHome: false,
   },
+  {
+    id: "seed_testimonials_2026_10_24_nick_b",
+    batchId: CONSENTED_TESTIMONIAL_BATCH_ID_2026_10_24,
+    consentedAt: "2026-10-24T00:00:00.000Z",
+    name: "Nick B.",
+    exam: "PANCE student",
+    quote:
+      "With everything premium becoming expensive, it's a welcome sight to see premium material.",
+    sortOrder: 4,
+    showOnHome: false,
+  },
 ];
 
 export const CONSENTED_TESTIMONIAL_BATCH_IDS = [

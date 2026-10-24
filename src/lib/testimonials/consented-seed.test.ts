@@ -21,11 +21,12 @@ describe("consented testimonial seed", () => {
 
   it("stores the Oct 2026 board-only batch with exact owner strings", () => {
     const batch = consentedSeedsForBatch(CONSENTED_TESTIMONIAL_BATCH_ID_2026_10_24);
-    expect(batch.map((row) => row.name)).toEqual(["Steven", "Mag B.", "Frank C."]);
+    expect(batch.map((row) => row.name)).toEqual(["Steven", "Mag B.", "Frank C.", "Nick B."]);
     expect(batch.map((row) => row.quote)).toEqual([
       "Easy to study and amazing prep.",
       "I couldn't believe the price for everything I got.",
       "The drug cards were a game changer.",
+      "With everything premium becoming expensive, it's a welcome sight to see premium material.",
     ]);
     expect(batch.every((row) => row.showOnHome === false)).toBe(true);
   });
