@@ -1,0 +1,651 @@
+{
+  "appliedAt": "2026-10-24T16:15:34.630Z",
+  "inputFile": "scripts/data/pance-batch-insert/batch3-80.json",
+  "fieldId": "pance",
+  "source": "generated",
+  "reviewStatus": "approved",
+  "liveBefore": 3036,
+  "liveAfter": 3116,
+  "rows": [
+    {
+      "id": "cmvmloiq00000js41apnrxa0v",
+      "fieldId": "pance",
+      "contentHash": "30fa50c9dfe27075c87e3f3200e942e651f74c5cf0bdbe21da33ba3e75fb249c",
+      "question": "Which of the following best classifies this patient's kidney injury?",
+      "blueprintTopic": "KDIGO AKI staging",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiq60001js41r5gg2idc",
+      "fieldId": "pance",
+      "contentHash": "7858bcd9b5f1169970b4f86eab9017c99447c2e1286be86e0c3e9852cad9d140",
+      "question": "Which of the following is the most likely cause of this patient's acute kidney injury?",
+      "blueprintTopic": "prerenal azotemia from volume depletion",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiq90002js41yoeo6nod",
+      "fieldId": "pance",
+      "contentHash": "4011601aade3b92b7d1ecb68700589da136f98c69cbe92c9741c13cf3c16e796",
+      "question": "Which of the following is the most appropriate measure to reduce his risk of contrast-associated acute kidney injury?",
+      "blueprintTopic": "contrast-associated AKI prophylaxis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiqc0003js41gd7avdmr",
+      "fieldId": "pance",
+      "contentHash": "bd481e32732bc5a2805e5a9873d34b57377289631449aa9947a8a741161f94b1",
+      "question": "Which of the following is the most appropriate next step to manage her acute kidney injury?",
+      "blueprintTopic": "AKI fluid choice and avoidance of diuretics",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiqh0004js412qzyl5e7",
+      "fieldId": "pance",
+      "contentHash": "f0d382cca0dfef99744f929d4586d8a355b45a1402b1c1e98cbf92d8de5ae7cf",
+      "question": "Which of the following is the correct KDIGO classification of this patient's chronic kidney disease?",
+      "blueprintTopic": "CKD GFR and albuminuria classification",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiqk0005js41qgn8rx39",
+      "fieldId": "pance",
+      "contentHash": "e9d3291b60db21be770e6c6e78d9db845449de477878a7d5a4bce2101825efd4",
+      "question": "Which of the following is the most appropriate addition to his regimen to slow CKD progression?",
+      "blueprintTopic": "SGLT2 inhibitor for nondiabetic albuminuric CKD",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiqn0006js41trchkz83",
+      "fieldId": "pance",
+      "contentHash": "6697584e972ada7d1f76effbca346f219602085f09431b8b9ac41b08da5eadd9",
+      "question": "Which of the following is the most appropriate next step in management?",
+      "blueprintTopic": "creatinine rise after ACE inhibitor initiation",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiqr0007js41qxc85egd",
+      "fieldId": "pance",
+      "contentHash": "8ec13900bcdab1fbc1a8220d692e80c91023a171494ceedb64af64106d868ec1",
+      "question": "Which of the following is the most appropriate management of his serum bicarbonate?",
+      "blueprintTopic": "metabolic acidosis of CKD",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiqu0008js41kj5jgp6q",
+      "fieldId": "pance",
+      "contentHash": "00565c2201ff582e0420154708dcdf30e92b37cc120c84a304057eab50a4d517",
+      "question": "According to KDIGO 2022 diabetes-in-CKD dosing guidance, which of the following is the most appropriate change to his metformin therapy?",
+      "blueprintTopic": "metformin dosing in CKD",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiqy0009js419nvdnhk3",
+      "fieldId": "pance",
+      "contentHash": "77867a5c631d906e49e091f7019432fe6f8a7da5e65513fb721c05743c6380b5",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "nephrology referral criteria in CKD",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloir1000ajs41rkdaly65",
+      "fieldId": "pance",
+      "contentHash": "cd05282d97968a6eec026d377376a7f74cde44e94b5b350bf62102cc426eebdb",
+      "question": "Which of the following is the most appropriate initial treatment?",
+      "blueprintTopic": "hyperkalemia with ECG changes",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloir5000bjs41sjese3b8",
+      "fieldId": "pance",
+      "contentHash": "cde7eb707b44d6c96f8e00198a966197f994a3255f488bb6b26839b25a9d1e64",
+      "question": "Which of the following is the most likely cause of this patient's hyponatremia?",
+      "blueprintTopic": "SIADH from small cell lung cancer",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloir8000cjs41jc7qccf8",
+      "fieldId": "pance",
+      "contentHash": "1389f59c132076dd4fe5f18888ff7f94006dfcce3b238e312c509c7e4ee96906",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "overcorrection of chronic hyponatremia",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloirc000djs41glqdnh2n",
+      "fieldId": "pance",
+      "contentHash": "713fa05600fb0a6ce2c9a91ed65abe722b8f741fe85a5755324c0be251e4a058",
+      "question": "Which of the following is the most appropriate initial treatment regimen?",
+      "blueprintTopic": "severe hypercalcemia of malignancy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloirf000ejs41t70hmju3",
+      "fieldId": "pance",
+      "contentHash": "12387ba7378ec8237af9359e112423910b560693b512ef55360e76c49e1e4c66",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "primary membranous nephropathy (anti-PLA2R)",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiri000fjs41jxi81tay",
+      "fieldId": "pance",
+      "contentHash": "b1e2951d2c88adeceffc3da6829d27ba1b301bd634c452da94418fa81da6d2a5",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "IgA nephropathy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloirl000gjs415viwjm5l",
+      "fieldId": "pance",
+      "contentHash": "ad5fda540c96439164ae2946dc093069d162d821815098fc9d21379b3d26131c",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "poststreptococcal glomerulonephritis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiro000hjs41mxew0srs",
+      "fieldId": "pance",
+      "contentHash": "430703e66f29f7d00cab707403b3cb2b0ef973a342648c9be30b101fb198ac26",
+      "question": "Which of the following is the most appropriate management now?",
+      "blueprintTopic": "anti-GBM disease treatment",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloirr000ijs41wuxkagmb",
+      "fieldId": "pance",
+      "contentHash": "6ab9e5e698a6f378b397475830df74a837b4b02fd6c457477e92038f2fc96139",
+      "question": "Which of the following is the most appropriate initial treatment?",
+      "blueprintTopic": "ANCA-associated vasculitis induction therapy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiru000jjs41qicsxlcc",
+      "fieldId": "pance",
+      "contentHash": "95a60f04de67c3c67e8d845471dcdb24087d99a113cd304dc65d14cc7fa98b6c",
+      "question": "Which of the following is the most appropriate initial treatment?",
+      "blueprintTopic": "childhood idiopathic nephrotic syndrome initial therapy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloirx000kjs41l3sgeatu",
+      "fieldId": "pance",
+      "contentHash": "7d27d32e76e5b8c192ee8620ef978219a43b6aa609d308dacb66c64cdf88d35f",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "ADPKD ultrasound diagnostic criteria",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmlois1000ljs419ntfg34b",
+      "fieldId": "pance",
+      "contentHash": "0c9b62386bc62d651300e77a7a7420326c8f693a2c6faacb42e6b99b0b2bc150",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "renal artery fibromuscular dysplasia",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmlois4000mjs41ubwx94nu",
+      "fieldId": "pance",
+      "contentHash": "02861af304144b4b2b738b6e8aa60fe6e379d18c52309a122331588e41c5b20a",
+      "question": "Which of the following is the most likely cause of his findings?",
+      "blueprintTopic": "ethylene glycol poisoning",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmlois7000njs419ag6uofy",
+      "fieldId": "pance",
+      "contentHash": "3a1f1fc2fe11d3e743b4c1a48a67d267d7cc74bb1c9fc1b52dbc5baeff27334b",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "renal cell carcinoma presentation",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloisa000ojs416r7c8q3i",
+      "fieldId": "pance",
+      "contentHash": "f838446e1b9a32fce6429982429d45e98574f96e140ad3f6ed144951332749f4",
+      "question": "Which of the following is the most appropriate kidney screening strategy?",
+      "blueprintTopic": "diabetic kidney disease screening",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloisd000pjs41zhm8gda5",
+      "fieldId": "pance",
+      "contentHash": "f17760736760cda31737fdcce0336e53183cf43c9223400768a800b0adbbe3f0",
+      "question": "Which of the following is the most appropriate blood pressure management?",
+      "blueprintTopic": "blood pressure target in CKD",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloish000qjs41r5aquflx",
+      "fieldId": "pance",
+      "contentHash": "934265ce5769dd30fbb0247dd98ea52b593a5b2f35109b02499c88ee018e5384",
+      "question": "Which of the following is the most appropriate next step in management?",
+      "blueprintTopic": "BPH combination therapy with 5-alpha reductase inhibitor",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloisk000rjs41iaoxsqqu",
+      "fieldId": "pance",
+      "contentHash": "5dd50a6a0f4275ba8e536ebc4d3eee2f4ccb03c207f67a3230ac0881d5b1c9a9",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "testicular torsion",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloisn000sjs419g409r29",
+      "fieldId": "pance",
+      "contentHash": "17e35d533052437f00cbb061076e25590e5bd4f667eb9b4cd41202f9abaab0d5",
+      "question": "Which of the following is the most appropriate treatment?",
+      "blueprintTopic": "acute epididymitis treatment",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloisq000tjs41uql3ny4l",
+      "fieldId": "pance",
+      "contentHash": "3d6f1f82c226781ad2520b9314ca319f85120832b45f3d7cad93ea4312c30179",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "acute bacterial prostatitis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloisu000ujs41anjv8n3n",
+      "fieldId": "pance",
+      "contentHash": "ee8c8a904f02abe302201cd2ff2c5d1aa2d63a28e7c65847ecba0d9aac9f3cae",
+      "question": "Which of the following is the most appropriate approach?",
+      "blueprintTopic": "PSA screening shared decision-making",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloisx000vjs41jxwlhz9u",
+      "fieldId": "pance",
+      "contentHash": "1f910dc1ac1d6463e5cfbb197644e13ad19f4f8a18c9457364c0050d75ef8692",
+      "question": "Which of the following is the most appropriate next step in management?",
+      "blueprintTopic": "testicular mass management",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloit0000wjs41mhooau4n",
+      "fieldId": "pance",
+      "contentHash": "04501d07f8875efdde2879bab016e388266f3090cfe1c937fddcc632f3f1cca5",
+      "question": "Which of the following is the most appropriate evaluation?",
+      "blueprintTopic": "high-risk microhematuria evaluation",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloit2000xjs41cmqu5l1o",
+      "fieldId": "pance",
+      "contentHash": "b97c7949b2b498fde04fa62b37913784419fe569def7590c60aaa01b9cd576f3",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "varicocele",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloit5000yjs41n14ykquv",
+      "fieldId": "pance",
+      "contentHash": "85c4da8f8a6bfb70f06e4234954ed1de966a5e5a01ef340c87bd517a17ff0bb8",
+      "question": "Which of the following is the most appropriate treatment for his erectile dysfunction?",
+      "blueprintTopic": "erectile dysfunction with nitrate therapy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloit8000zjs41eji2kxer",
+      "fieldId": "pance",
+      "contentHash": "8125627e9295a2661c24d93feb55eb81cbd2377ec4a0c404e210c6daf4e0c1ee",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "undescended testis referral timing",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloitb0010js41mxdl5cdn",
+      "fieldId": "pance",
+      "contentHash": "8ecd14f689485dc75c023163f17a896d95dd763338de850ec8a506fbf3c1ad75",
+      "question": "Which of the following is the most appropriate treatment?",
+      "blueprintTopic": "acute uncomplicated cystitis antibiotic choice",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloitf0011js41hvprrld3",
+      "fieldId": "pance",
+      "contentHash": "13a96c666d9a334a954ae1681d69eaaa07628e3c444fc3c28e040dd93930ce5d",
+      "question": "Which of the following is the most appropriate management?",
+      "blueprintTopic": "asymptomatic bacteriuria in older adults",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloith0012js41czl739ic",
+      "fieldId": "pance",
+      "contentHash": "3adbd3e3f5303f5a8cf16156af58485cb452cadeab4bb9fd4fcbdf13f152c3f2",
+      "question": "Which of the following is the most appropriate pharmacotherapy?",
+      "blueprintTopic": "overactive bladder pharmacotherapy in cognitive impairment",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloitk0013js41r571vlt9",
+      "fieldId": "pance",
+      "contentHash": "c13b8198e34c1b82cfd02323b3311b30518e09a6800983c60b58b12231699b0d",
+      "question": "Which of the following is the most appropriate initial management?",
+      "blueprintTopic": "stress urinary incontinence first-line therapy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloito0014js41n1biflj9",
+      "fieldId": "pance",
+      "contentHash": "85d1ffd2fe1940314d9c78be727afb2d771c9c33eb14a112896b655b2961d880",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "acute ischemic priapism",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloitr0015js41d8s6deca",
+      "fieldId": "pance",
+      "contentHash": "f435090729d547acedf2f017ebfc4b004e0c3ed7452f3708ff9786d5df84d103",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "posterior urethral injury after pelvic fracture",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloitu0016js4133nmbxfn",
+      "fieldId": "pance",
+      "contentHash": "68432f4c90f7952fc1567dc33d629ff25c2346ab23a3827a996f381c7111fe41",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "Peyronie disease",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloitx0017js41uws196e4",
+      "fieldId": "pance",
+      "contentHash": "465f2cdb08c870ee79268e7be97e9125c781db8fb2a11b0e1e2040d030338e0a",
+      "question": "Which of the following is the most appropriate preventive measure?",
+      "blueprintTopic": "recurrent UTI prevention in postmenopausal women",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiu10018js418ymzwyci",
+      "fieldId": "pance",
+      "contentHash": "d529f03169501a60d9a30123a9d239774e0d48a00c2ac01cc7c5ba74cb03ff99",
+      "question": "What is the sensitivity of the new test?",
+      "blueprintTopic": "calculating sensitivity",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiu40019js414w3hkvjx",
+      "fieldId": "pance",
+      "contentHash": "04d56c95b264a2ce166afca40d19342018328e5f7d1930fdf9a05baa0e299292",
+      "question": "Which test's positive result would most strongly confirm the diagnosis?",
+      "blueprintTopic": "specificity and ruling in disease",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiu7001ajs41vsjyn025",
+      "fieldId": "pance",
+      "contentHash": "2954011f2d30f641341af011a752a561ea064cdc2545e0c384c9e84d96730f51",
+      "question": "Which of the following best describes the test's performance in the general population compared with the specialty clinic?",
+      "blueprintTopic": "effect of prevalence on predictive value",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiu9001bjs41zfz26t19",
+      "fieldId": "pance",
+      "contentHash": "75f6da98a1e7c8834b32a9a0cc77f30d4b827409f48d478a480f25fb3b639356",
+      "question": "What is the positive likelihood ratio of this rule?",
+      "blueprintTopic": "positive likelihood ratio",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiuc001cjs41gmhpndu0",
+      "fieldId": "pance",
+      "contentHash": "84ff2a253e76d17e3c5e436ccd006529c76b9950abe840f4691af47099b175c6",
+      "question": "How many patients must be treated for 2 years to prevent one hospitalization for heart failure?",
+      "blueprintTopic": "number needed to treat",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiuf001djs41vp0cizpm",
+      "fieldId": "pance",
+      "contentHash": "2a84ac4ce3390511f790e7cc7904b8ad209961129a838e56bb3597b7b3327ed4",
+      "question": "What is the relative risk of chronic kidney disease associated with regular high-dose NSAID use?",
+      "blueprintTopic": "relative risk in a cohort study",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiui001ejs41kt0mu2ar",
+      "fieldId": "pance",
+      "contentHash": "b6d44ada8626435a3c200c623f8bfb16600955ff8d4e167b1b4468d7b3b44f01",
+      "question": "Which of the following is the odds ratio for the association between proton pump inhibitor use and acute interstitial nephritis?",
+      "blueprintTopic": "odds ratio in a case-control study",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiul001fjs41j0ub7ojn",
+      "fieldId": "pance",
+      "contentHash": "2ffa54b2c198c5fa88fe3e825c53231e0b03a7b06668d33aec78c51db762dc04",
+      "question": "Which of the following best explains the apparent survival benefit of screening?",
+      "blueprintTopic": "lead-time bias",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiup001gjs41dqodtbg6",
+      "fieldId": "pance",
+      "contentHash": "af254e0175dd42d7a942da29edfe05de0bd09fac485ebb1e4e8a2741e6819a1c",
+      "question": "Which of the following biases most likely contributes to the better outcomes seen in the screen-detected group?",
+      "blueprintTopic": "length-time bias",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloius001hjs41im1t13wb",
+      "fieldId": "pance",
+      "contentHash": "c2a26e793456a271bc6349747630b80138a7abda69754d8153a5d0c9bba2f91f",
+      "question": "Which of the following best describes the error in the first trial?",
+      "blueprintTopic": "type I error",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiuv001ijs41erhn0qbq",
+      "fieldId": "pance",
+      "contentHash": "7ae084c051fca476cae279280750b65d68712020ad2cad65042e11b01949f5f5",
+      "question": "Which of the following is the most accurate interpretation of these results?",
+      "blueprintTopic": "interpreting a confidence interval for a risk ratio",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiuz001jjs414g8w6ls0",
+      "fieldId": "pance",
+      "contentHash": "98091bae79cf1c260510102550eb764a075743d1d1a0a0e1c19c1ed2879cac79",
+      "question": "Which of the following changes in disease frequency is most likely to occur?",
+      "blueprintTopic": "incidence versus prevalence",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiv2001kjs41fg56s57w",
+      "fieldId": "pance",
+      "contentHash": "113feff881bdd9abeb9ced2202be66a3cb9e1f939e904ea9b147b2875c160bef",
+      "question": "Which of the following analytic approaches is most appropriate for the primary analysis?",
+      "blueprintTopic": "intention-to-treat analysis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiv5001ljs41ovn18ch8",
+      "fieldId": "pance",
+      "contentHash": "0fd90984fdbd50527d2001c8d0596e070416ef789016f761d4e53fd42a8473ec",
+      "question": "Which of the following is the most appropriate recommendation regarding lung cancer screening?",
+      "blueprintTopic": "lung cancer screening eligibility",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiv8001mjs4130ccvz8f",
+      "fieldId": "pance",
+      "contentHash": "3329d26e652e594d11e2f03d0548377683c5ba6d5ee06ee0a242116af378ef41",
+      "question": "Which of the following is the most appropriate recommendation for this man?",
+      "blueprintTopic": "abdominal aortic aneurysm screening",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloivb001njs41qamonywf",
+      "fieldId": "pance",
+      "contentHash": "dd772a653e21e7e97b0bdf3dc639ed24895ab90812300723a36ff4a6f6027d1b",
+      "question": "Which of the following is the most appropriate recommendation according to the USPSTF?",
+      "blueprintTopic": "breast cancer screening age and interval",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloive001ojs41h7jzl90n",
+      "fieldId": "pance",
+      "contentHash": "3ebfcb3d160a15baddbec9e66e55c28725e857350be1a747b9d3062351558392",
+      "question": "Which of the following is the most appropriate approach to consent?",
+      "blueprintTopic": "emergency exception to informed consent",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloivh001pjs410zrj7jfz",
+      "fieldId": "pance",
+      "contentHash": "785a3494dde1ae3727c40526d0eab83d57ed1cc99ff4925e9f348531204b6980",
+      "question": "Which of the following is the most appropriate approach?",
+      "blueprintTopic": "minor consent for confidential STI care",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloivk001qjs41pwp9brsf",
+      "fieldId": "pance",
+      "contentHash": "3a1cde5eecc3210b35bf80b508dca61d58cee63595c2b2132e277d3331c0ecd3",
+      "question": "Whose decision should guide the plan of care?",
+      "blueprintTopic": "durable power of attorney for health care",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloivn001rjs41ei54g3gf",
+      "fieldId": "pance",
+      "contentHash": "ae2f25b8ec2a08a1b6585c9ae5e9a9a1b8c591f2d1e5d8fddd35362cb21a5c6f",
+      "question": "Which of the following is the most appropriate action?",
+      "blueprintTopic": "adult Jehovah's Witness refusal of transfusion",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloivq001sjs41huix49zd",
+      "fieldId": "pance",
+      "contentHash": "22c7f4ce0d8d7cb460cfd2e2acef5923e6c53d44676b28d773555ae0bbb78a8c",
+      "question": "Which of the following is the most appropriate action?",
+      "blueprintTopic": "emergency transfusion of a child over parental refusal",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloivu001tjs41ki5lv9l6",
+      "fieldId": "pance",
+      "contentHash": "c8e018aa9871d9151c5c237da537b9a15d9b28435abe021b0343ecee4c24eae3",
+      "question": "Which of the following is the most accurate statement about the practice's obligations under the HIPAA Privacy Rule?",
+      "blueprintTopic": "HIPAA right of access to medical records",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloivx001ujs418c9sj68q",
+      "fieldId": "pance",
+      "contentHash": "c22df1ed3660fea95c48dc7c9bb9ec08b5f63c87af8162bc8f01723aa917d3f1",
+      "question": "Which of the following is the most appropriate action?",
+      "blueprintTopic": "duty to protect and HIPAA serious-threat disclosure",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiw1001vjs41ehpwe0i2",
+      "fieldId": "pance",
+      "contentHash": "1a83a32d61042b3bb57f7a002a373772a8fed91c1549935d4027467eb3bd7c8b",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "suspected elder neglect reporting",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiw5001wjs4197i9h2vg",
+      "fieldId": "pance",
+      "contentHash": "eed56d01844158381d8611d946c0af38b402dbadcfba961a794c83c91b88c990",
+      "question": "Which of the following is the most appropriate response?",
+      "blueprintTopic": "disclosure of a medical error",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiw8001xjs41rp8x4idc",
+      "fieldId": "pance",
+      "contentHash": "5af2d8650df99e5ef3a3090e4034574536954c14f0db671e6d89d35bbc6e4a3f",
+      "question": "Which of the following is the most appropriate approach to this event?",
+      "blueprintTopic": "root cause analysis after a sentinel event",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiwb001yjs41thz5y3kb",
+      "fieldId": "pance",
+      "contentHash": "15b63c0425e415ba5ad46a9b4ac5419f19bf995d23c314cfdf497f33f7e8dea3",
+      "question": "Which of the following is required immediately before the procedure begins?",
+      "blueprintTopic": "Universal Protocol surgical time-out",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiwf001zjs41r1wao1q8",
+      "fieldId": "pance",
+      "contentHash": "0f7a9e524553893feb5da6ba8452987a0e26e4e958233196039b5e5bae0dc1ae",
+      "question": "Which of the following is the most appropriate method to confirm patient identity before drawing the specimen?",
+      "blueprintTopic": "two patient identifiers",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiwi0020js41fcv6fr0k",
+      "fieldId": "pance",
+      "contentHash": "7c8fdc67852a8ecd54941dc6920b445ad648c3b848e7e439e6dceba7bd2ff61a",
+      "question": "Which element of this order poses the greatest risk of a 10-fold dosing error?",
+      "blueprintTopic": "error-prone abbreviations",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiwm0021js41g28tus3x",
+      "fieldId": "pance",
+      "contentHash": "ead85ec032b3339f2c28fa049bb44a956bacd4252a1f3f5e65fad731e5858df5",
+      "question": "Which of the following is the most appropriate approach to communication?",
+      "blueprintTopic": "qualified medical interpreter",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiwp0022js41hb9fs07t",
+      "fieldId": "pance",
+      "contentHash": "5c8c3e633b939565c0f0b12121441d39d33aa50570cb6f96b7ac194be67fb4f3",
+      "question": "Which of the following is the most appropriate action?",
+      "blueprintTopic": "EMTALA screening and stabilization",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiws0023js4195xznwu7",
+      "fieldId": "pance",
+      "contentHash": "69d3dc71040a0e64dc62971dcabacbcc04d6c5ec9a58d8184496a172ed274e00",
+      "question": "Which of the following best describes NCCPA certification maintenance requirements?",
+      "blueprintTopic": "NCCPA certification maintenance",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloiww0024js41jpvpynkd",
+      "fieldId": "pance",
+      "contentHash": "b11233042230ed9556266560508974a2aab115e32f359c92eaf6c98e430f8dc0",
+      "question": "Which step of the Model for Improvement does testing the change with one clinician's patients for 2 weeks represent?",
+      "blueprintTopic": "Plan-Do-Study-Act cycle",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloix00025js41cr9egb0r",
+      "fieldId": "pance",
+      "contentHash": "f7821aa2c92fd58da8108f823dc5dcf5882b7dfba2dab180a3fadff010b6033e",
+      "question": "Which of the following is the most accurate assessment of this offer?",
+      "blueprintTopic": "Anti-Kickback Statute and industry payments",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloix40026js41f29b3fbw",
+      "fieldId": "pance",
+      "contentHash": "6240e4e34d6660448a7ba3de9aad5a5d09ad234cf6b8b564d5d0955a74e263b2",
+      "question": "Which of the following infection-control measures is most appropriate?",
+      "blueprintTopic": "Clostridioides difficile infection control",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmloix70027js416zj8nyop",
+      "fieldId": "pance",
+      "contentHash": "c323f1de82386bf5ef0bcb28deec97af20f815b6891fd583ec00b7f57a36202b",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "occupational HIV post-exposure prophylaxis",
+      "source": "generated"
+    }
+  ]
+}

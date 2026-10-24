@@ -1,0 +1,650 @@
+{
+  "mode": "dry-run",
+  "inputFile": "scripts/data/pance-batch-insert/batch3-80.json",
+  "rowsInFile": 80,
+  "validationErrors": [],
+  "duplicates": [],
+  "wouldInsert": [
+    {
+      "index": 0,
+      "blueprintTopic": "KDIGO AKI staging",
+      "contentHash": "30fa50c9dfe27075c87e3f3200e942e651f74c5cf0bdbe21da33ba3e75fb249c",
+      "stem": "Which of the following best classifies this patient's kidney injury?"
+    },
+    {
+      "index": 1,
+      "blueprintTopic": "prerenal azotemia from volume depletion",
+      "contentHash": "7858bcd9b5f1169970b4f86eab9017c99447c2e1286be86e0c3e9852cad9d140",
+      "stem": "Which of the following is the most likely cause of this patient's acute kidney injury?"
+    },
+    {
+      "index": 2,
+      "blueprintTopic": "contrast-associated AKI prophylaxis",
+      "contentHash": "4011601aade3b92b7d1ecb68700589da136f98c69cbe92c9741c13cf3c16e796",
+      "stem": "Which of the following is the most appropriate measure to reduce his risk of contrast-associated acute kidney injury?"
+    },
+    {
+      "index": 3,
+      "blueprintTopic": "AKI fluid choice and avoidance of diuretics",
+      "contentHash": "bd481e32732bc5a2805e5a9873d34b57377289631449aa9947a8a741161f94b1",
+      "stem": "Which of the following is the most appropriate next step to manage her acute kidney injury?"
+    },
+    {
+      "index": 4,
+      "blueprintTopic": "CKD GFR and albuminuria classification",
+      "contentHash": "f0d382cca0dfef99744f929d4586d8a355b45a1402b1c1e98cbf92d8de5ae7cf",
+      "stem": "Which of the following is the correct KDIGO classification of this patient's chronic kidney disease?"
+    },
+    {
+      "index": 5,
+      "blueprintTopic": "SGLT2 inhibitor for nondiabetic albuminuric CKD",
+      "contentHash": "e9d3291b60db21be770e6c6e78d9db845449de477878a7d5a4bce2101825efd4",
+      "stem": "Which of the following is the most appropriate addition to his regimen to slow CKD progression?"
+    },
+    {
+      "index": 6,
+      "blueprintTopic": "creatinine rise after ACE inhibitor initiation",
+      "contentHash": "6697584e972ada7d1f76effbca346f219602085f09431b8b9ac41b08da5eadd9",
+      "stem": "Which of the following is the most appropriate next step in management?"
+    },
+    {
+      "index": 7,
+      "blueprintTopic": "metabolic acidosis of CKD",
+      "contentHash": "8ec13900bcdab1fbc1a8220d692e80c91023a171494ceedb64af64106d868ec1",
+      "stem": "Which of the following is the most appropriate management of his serum bicarbonate?"
+    },
+    {
+      "index": 8,
+      "blueprintTopic": "metformin dosing in CKD",
+      "contentHash": "00565c2201ff582e0420154708dcdf30e92b37cc120c84a304057eab50a4d517",
+      "stem": "According to KDIGO 2022 diabetes-in-CKD dosing guidance, which of the following is the most appropriate change to his metformin therapy?"
+    },
+    {
+      "index": 9,
+      "blueprintTopic": "nephrology referral criteria in CKD",
+      "contentHash": "77867a5c631d906e49e091f7019432fe6f8a7da5e65513fb721c05743c6380b5",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 10,
+      "blueprintTopic": "hyperkalemia with ECG changes",
+      "contentHash": "cd05282d97968a6eec026d377376a7f74cde44e94b5b350bf62102cc426eebdb",
+      "stem": "Which of the following is the most appropriate initial treatment?"
+    },
+    {
+      "index": 11,
+      "blueprintTopic": "SIADH from small cell lung cancer",
+      "contentHash": "cde7eb707b44d6c96f8e00198a966197f994a3255f488bb6b26839b25a9d1e64",
+      "stem": "Which of the following is the most likely cause of this patient's hyponatremia?"
+    },
+    {
+      "index": 12,
+      "blueprintTopic": "overcorrection of chronic hyponatremia",
+      "contentHash": "1389f59c132076dd4fe5f18888ff7f94006dfcce3b238e312c509c7e4ee96906",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 13,
+      "blueprintTopic": "severe hypercalcemia of malignancy",
+      "contentHash": "713fa05600fb0a6ce2c9a91ed65abe722b8f741fe85a5755324c0be251e4a058",
+      "stem": "Which of the following is the most appropriate initial treatment regimen?"
+    },
+    {
+      "index": 14,
+      "blueprintTopic": "primary membranous nephropathy (anti-PLA2R)",
+      "contentHash": "12387ba7378ec8237af9359e112423910b560693b512ef55360e76c49e1e4c66",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 15,
+      "blueprintTopic": "IgA nephropathy",
+      "contentHash": "b1e2951d2c88adeceffc3da6829d27ba1b301bd634c452da94418fa81da6d2a5",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 16,
+      "blueprintTopic": "poststreptococcal glomerulonephritis",
+      "contentHash": "ad5fda540c96439164ae2946dc093069d162d821815098fc9d21379b3d26131c",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 17,
+      "blueprintTopic": "anti-GBM disease treatment",
+      "contentHash": "430703e66f29f7d00cab707403b3cb2b0ef973a342648c9be30b101fb198ac26",
+      "stem": "Which of the following is the most appropriate management now?"
+    },
+    {
+      "index": 18,
+      "blueprintTopic": "ANCA-associated vasculitis induction therapy",
+      "contentHash": "6ab9e5e698a6f378b397475830df74a837b4b02fd6c457477e92038f2fc96139",
+      "stem": "Which of the following is the most appropriate initial treatment?"
+    },
+    {
+      "index": 19,
+      "blueprintTopic": "childhood idiopathic nephrotic syndrome initial therapy",
+      "contentHash": "95a60f04de67c3c67e8d845471dcdb24087d99a113cd304dc65d14cc7fa98b6c",
+      "stem": "Which of the following is the most appropriate initial treatment?"
+    },
+    {
+      "index": 20,
+      "blueprintTopic": "ADPKD ultrasound diagnostic criteria",
+      "contentHash": "7d27d32e76e5b8c192ee8620ef978219a43b6aa609d308dacb66c64cdf88d35f",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 21,
+      "blueprintTopic": "renal artery fibromuscular dysplasia",
+      "contentHash": "0c9b62386bc62d651300e77a7a7420326c8f693a2c6faacb42e6b99b0b2bc150",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 22,
+      "blueprintTopic": "ethylene glycol poisoning",
+      "contentHash": "02861af304144b4b2b738b6e8aa60fe6e379d18c52309a122331588e41c5b20a",
+      "stem": "Which of the following is the most likely cause of his findings?"
+    },
+    {
+      "index": 23,
+      "blueprintTopic": "renal cell carcinoma presentation",
+      "contentHash": "3a1f1fc2fe11d3e743b4c1a48a67d267d7cc74bb1c9fc1b52dbc5baeff27334b",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 24,
+      "blueprintTopic": "diabetic kidney disease screening",
+      "contentHash": "f838446e1b9a32fce6429982429d45e98574f96e140ad3f6ed144951332749f4",
+      "stem": "Which of the following is the most appropriate kidney screening strategy?"
+    },
+    {
+      "index": 25,
+      "blueprintTopic": "blood pressure target in CKD",
+      "contentHash": "f17760736760cda31737fdcce0336e53183cf43c9223400768a800b0adbbe3f0",
+      "stem": "Which of the following is the most appropriate blood pressure management?"
+    },
+    {
+      "index": 26,
+      "blueprintTopic": "BPH combination therapy with 5-alpha reductase inhibitor",
+      "contentHash": "934265ce5769dd30fbb0247dd98ea52b593a5b2f35109b02499c88ee018e5384",
+      "stem": "Which of the following is the most appropriate next step in management?"
+    },
+    {
+      "index": 27,
+      "blueprintTopic": "testicular torsion",
+      "contentHash": "5dd50a6a0f4275ba8e536ebc4d3eee2f4ccb03c207f67a3230ac0881d5b1c9a9",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 28,
+      "blueprintTopic": "acute epididymitis treatment",
+      "contentHash": "17e35d533052437f00cbb061076e25590e5bd4f667eb9b4cd41202f9abaab0d5",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 29,
+      "blueprintTopic": "acute bacterial prostatitis",
+      "contentHash": "3d6f1f82c226781ad2520b9314ca319f85120832b45f3d7cad93ea4312c30179",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 30,
+      "blueprintTopic": "PSA screening shared decision-making",
+      "contentHash": "ee8c8a904f02abe302201cd2ff2c5d1aa2d63a28e7c65847ecba0d9aac9f3cae",
+      "stem": "Which of the following is the most appropriate approach?"
+    },
+    {
+      "index": 31,
+      "blueprintTopic": "testicular mass management",
+      "contentHash": "1f910dc1ac1d6463e5cfbb197644e13ad19f4f8a18c9457364c0050d75ef8692",
+      "stem": "Which of the following is the most appropriate next step in management?"
+    },
+    {
+      "index": 32,
+      "blueprintTopic": "high-risk microhematuria evaluation",
+      "contentHash": "04501d07f8875efdde2879bab016e388266f3090cfe1c937fddcc632f3f1cca5",
+      "stem": "Which of the following is the most appropriate evaluation?"
+    },
+    {
+      "index": 33,
+      "blueprintTopic": "varicocele",
+      "contentHash": "b97c7949b2b498fde04fa62b37913784419fe569def7590c60aaa01b9cd576f3",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 34,
+      "blueprintTopic": "erectile dysfunction with nitrate therapy",
+      "contentHash": "85c4da8f8a6bfb70f06e4234954ed1de966a5e5a01ef340c87bd517a17ff0bb8",
+      "stem": "Which of the following is the most appropriate treatment for his erectile dysfunction?"
+    },
+    {
+      "index": 35,
+      "blueprintTopic": "undescended testis referral timing",
+      "contentHash": "8125627e9295a2661c24d93feb55eb81cbd2377ec4a0c404e210c6daf4e0c1ee",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 36,
+      "blueprintTopic": "acute uncomplicated cystitis antibiotic choice",
+      "contentHash": "8ecd14f689485dc75c023163f17a896d95dd763338de850ec8a506fbf3c1ad75",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 37,
+      "blueprintTopic": "asymptomatic bacteriuria in older adults",
+      "contentHash": "13a96c666d9a334a954ae1681d69eaaa07628e3c444fc3c28e040dd93930ce5d",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 38,
+      "blueprintTopic": "overactive bladder pharmacotherapy in cognitive impairment",
+      "contentHash": "3adbd3e3f5303f5a8cf16156af58485cb452cadeab4bb9fd4fcbdf13f152c3f2",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 39,
+      "blueprintTopic": "stress urinary incontinence first-line therapy",
+      "contentHash": "c13b8198e34c1b82cfd02323b3311b30518e09a6800983c60b58b12231699b0d",
+      "stem": "Which of the following is the most appropriate initial management?"
+    },
+    {
+      "index": 40,
+      "blueprintTopic": "acute ischemic priapism",
+      "contentHash": "85d1ffd2fe1940314d9c78be727afb2d771c9c33eb14a112896b655b2961d880",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 41,
+      "blueprintTopic": "posterior urethral injury after pelvic fracture",
+      "contentHash": "f435090729d547acedf2f017ebfc4b004e0c3ed7452f3708ff9786d5df84d103",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 42,
+      "blueprintTopic": "Peyronie disease",
+      "contentHash": "68432f4c90f7952fc1567dc33d629ff25c2346ab23a3827a996f381c7111fe41",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 43,
+      "blueprintTopic": "recurrent UTI prevention in postmenopausal women",
+      "contentHash": "465f2cdb08c870ee79268e7be97e9125c781db8fb2a11b0e1e2040d030338e0a",
+      "stem": "Which of the following is the most appropriate preventive measure?"
+    },
+    {
+      "index": 44,
+      "blueprintTopic": "calculating sensitivity",
+      "contentHash": "d529f03169501a60d9a30123a9d239774e0d48a00c2ac01cc7c5ba74cb03ff99",
+      "stem": "What is the sensitivity of the new test?"
+    },
+    {
+      "index": 45,
+      "blueprintTopic": "specificity and ruling in disease",
+      "contentHash": "04d56c95b264a2ce166afca40d19342018328e5f7d1930fdf9a05baa0e299292",
+      "stem": "Which test's positive result would most strongly confirm the diagnosis?"
+    },
+    {
+      "index": 46,
+      "blueprintTopic": "effect of prevalence on predictive value",
+      "contentHash": "2954011f2d30f641341af011a752a561ea064cdc2545e0c384c9e84d96730f51",
+      "stem": "Which of the following best describes the test's performance in the general population compared with the specialty clinic?"
+    },
+    {
+      "index": 47,
+      "blueprintTopic": "positive likelihood ratio",
+      "contentHash": "75f6da98a1e7c8834b32a9a0cc77f30d4b827409f48d478a480f25fb3b639356",
+      "stem": "What is the positive likelihood ratio of this rule?"
+    },
+    {
+      "index": 48,
+      "blueprintTopic": "number needed to treat",
+      "contentHash": "84ff2a253e76d17e3c5e436ccd006529c76b9950abe840f4691af47099b175c6",
+      "stem": "How many patients must be treated for 2 years to prevent one hospitalization for heart failure?"
+    },
+    {
+      "index": 49,
+      "blueprintTopic": "relative risk in a cohort study",
+      "contentHash": "2a84ac4ce3390511f790e7cc7904b8ad209961129a838e56bb3597b7b3327ed4",
+      "stem": "What is the relative risk of chronic kidney disease associated with regular high-dose NSAID use?"
+    },
+    {
+      "index": 50,
+      "blueprintTopic": "odds ratio in a case-control study",
+      "contentHash": "b6d44ada8626435a3c200c623f8bfb16600955ff8d4e167b1b4468d7b3b44f01",
+      "stem": "Which of the following is the odds ratio for the association between proton pump inhibitor use and acute interstitial nephritis?"
+    },
+    {
+      "index": 51,
+      "blueprintTopic": "lead-time bias",
+      "contentHash": "2ffa54b2c198c5fa88fe3e825c53231e0b03a7b06668d33aec78c51db762dc04",
+      "stem": "Which of the following best explains the apparent survival benefit of screening?"
+    },
+    {
+      "index": 52,
+      "blueprintTopic": "length-time bias",
+      "contentHash": "af254e0175dd42d7a942da29edfe05de0bd09fac485ebb1e4e8a2741e6819a1c",
+      "stem": "Which of the following biases most likely contributes to the better outcomes seen in the screen-detected group?"
+    },
+    {
+      "index": 53,
+      "blueprintTopic": "type I error",
+      "contentHash": "c2a26e793456a271bc6349747630b80138a7abda69754d8153a5d0c9bba2f91f",
+      "stem": "Which of the following best describes the error in the first trial?"
+    },
+    {
+      "index": 54,
+      "blueprintTopic": "interpreting a confidence interval for a risk ratio",
+      "contentHash": "7ae084c051fca476cae279280750b65d68712020ad2cad65042e11b01949f5f5",
+      "stem": "Which of the following is the most accurate interpretation of these results?"
+    },
+    {
+      "index": 55,
+      "blueprintTopic": "incidence versus prevalence",
+      "contentHash": "98091bae79cf1c260510102550eb764a075743d1d1a0a0e1c19c1ed2879cac79",
+      "stem": "Which of the following changes in disease frequency is most likely to occur?"
+    },
+    {
+      "index": 56,
+      "blueprintTopic": "intention-to-treat analysis",
+      "contentHash": "113feff881bdd9abeb9ced2202be66a3cb9e1f939e904ea9b147b2875c160bef",
+      "stem": "Which of the following analytic approaches is most appropriate for the primary analysis?"
+    },
+    {
+      "index": 57,
+      "blueprintTopic": "lung cancer screening eligibility",
+      "contentHash": "0fd90984fdbd50527d2001c8d0596e070416ef789016f761d4e53fd42a8473ec",
+      "stem": "Which of the following is the most appropriate recommendation regarding lung cancer screening?"
+    },
+    {
+      "index": 58,
+      "blueprintTopic": "abdominal aortic aneurysm screening",
+      "contentHash": "3329d26e652e594d11e2f03d0548377683c5ba6d5ee06ee0a242116af378ef41",
+      "stem": "Which of the following is the most appropriate recommendation for this man?"
+    },
+    {
+      "index": 59,
+      "blueprintTopic": "breast cancer screening age and interval",
+      "contentHash": "dd772a653e21e7e97b0bdf3dc639ed24895ab90812300723a36ff4a6f6027d1b",
+      "stem": "Which of the following is the most appropriate recommendation according to the USPSTF?"
+    },
+    {
+      "index": 60,
+      "blueprintTopic": "emergency exception to informed consent",
+      "contentHash": "3ebfcb3d160a15baddbec9e66e55c28725e857350be1a747b9d3062351558392",
+      "stem": "Which of the following is the most appropriate approach to consent?"
+    },
+    {
+      "index": 61,
+      "blueprintTopic": "minor consent for confidential STI care",
+      "contentHash": "785a3494dde1ae3727c40526d0eab83d57ed1cc99ff4925e9f348531204b6980",
+      "stem": "Which of the following is the most appropriate approach?"
+    },
+    {
+      "index": 62,
+      "blueprintTopic": "durable power of attorney for health care",
+      "contentHash": "3a1cde5eecc3210b35bf80b508dca61d58cee63595c2b2132e277d3331c0ecd3",
+      "stem": "Whose decision should guide the plan of care?"
+    },
+    {
+      "index": 63,
+      "blueprintTopic": "adult Jehovah's Witness refusal of transfusion",
+      "contentHash": "ae2f25b8ec2a08a1b6585c9ae5e9a9a1b8c591f2d1e5d8fddd35362cb21a5c6f",
+      "stem": "Which of the following is the most appropriate action?"
+    },
+    {
+      "index": 64,
+      "blueprintTopic": "emergency transfusion of a child over parental refusal",
+      "contentHash": "22c7f4ce0d8d7cb460cfd2e2acef5923e6c53d44676b28d773555ae0bbb78a8c",
+      "stem": "Which of the following is the most appropriate action?"
+    },
+    {
+      "index": 65,
+      "blueprintTopic": "HIPAA right of access to medical records",
+      "contentHash": "c8e018aa9871d9151c5c237da537b9a15d9b28435abe021b0343ecee4c24eae3",
+      "stem": "Which of the following is the most accurate statement about the practice's obligations under the HIPAA Privacy Rule?"
+    },
+    {
+      "index": 66,
+      "blueprintTopic": "duty to protect and HIPAA serious-threat disclosure",
+      "contentHash": "c22df1ed3660fea95c48dc7c9bb9ec08b5f63c87af8162bc8f01723aa917d3f1",
+      "stem": "Which of the following is the most appropriate action?"
+    },
+    {
+      "index": 67,
+      "blueprintTopic": "suspected elder neglect reporting",
+      "contentHash": "1a83a32d61042b3bb57f7a002a373772a8fed91c1549935d4027467eb3bd7c8b",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 68,
+      "blueprintTopic": "disclosure of a medical error",
+      "contentHash": "eed56d01844158381d8611d946c0af38b402dbadcfba961a794c83c91b88c990",
+      "stem": "Which of the following is the most appropriate response?"
+    },
+    {
+      "index": 69,
+      "blueprintTopic": "root cause analysis after a sentinel event",
+      "contentHash": "5af2d8650df99e5ef3a3090e4034574536954c14f0db671e6d89d35bbc6e4a3f",
+      "stem": "Which of the following is the most appropriate approach to this event?"
+    },
+    {
+      "index": 70,
+      "blueprintTopic": "Universal Protocol surgical time-out",
+      "contentHash": "15b63c0425e415ba5ad46a9b4ac5419f19bf995d23c314cfdf497f33f7e8dea3",
+      "stem": "Which of the following is required immediately before the procedure begins?"
+    },
+    {
+      "index": 71,
+      "blueprintTopic": "two patient identifiers",
+      "contentHash": "0f7a9e524553893feb5da6ba8452987a0e26e4e958233196039b5e5bae0dc1ae",
+      "stem": "Which of the following is the most appropriate method to confirm patient identity before drawing the specimen?"
+    },
+    {
+      "index": 72,
+      "blueprintTopic": "error-prone abbreviations",
+      "contentHash": "7c8fdc67852a8ecd54941dc6920b445ad648c3b848e7e439e6dceba7bd2ff61a",
+      "stem": "Which element of this order poses the greatest risk of a 10-fold dosing error?"
+    },
+    {
+      "index": 73,
+      "blueprintTopic": "qualified medical interpreter",
+      "contentHash": "ead85ec032b3339f2c28fa049bb44a956bacd4252a1f3f5e65fad731e5858df5",
+      "stem": "Which of the following is the most appropriate approach to communication?"
+    },
+    {
+      "index": 74,
+      "blueprintTopic": "EMTALA screening and stabilization",
+      "contentHash": "5c8c3e633b939565c0f0b12121441d39d33aa50570cb6f96b7ac194be67fb4f3",
+      "stem": "Which of the following is the most appropriate action?"
+    },
+    {
+      "index": 75,
+      "blueprintTopic": "NCCPA certification maintenance",
+      "contentHash": "69d3dc71040a0e64dc62971dcabacbcc04d6c5ec9a58d8184496a172ed274e00",
+      "stem": "Which of the following best describes NCCPA certification maintenance requirements?"
+    },
+    {
+      "index": 76,
+      "blueprintTopic": "Plan-Do-Study-Act cycle",
+      "contentHash": "b11233042230ed9556266560508974a2aab115e32f359c92eaf6c98e430f8dc0",
+      "stem": "Which step of the Model for Improvement does testing the change with one clinician's patients for 2 weeks represent?"
+    },
+    {
+      "index": 77,
+      "blueprintTopic": "Anti-Kickback Statute and industry payments",
+      "contentHash": "f7821aa2c92fd58da8108f823dc5dcf5882b7dfba2dab180a3fadff010b6033e",
+      "stem": "Which of the following is the most accurate assessment of this offer?"
+    },
+    {
+      "index": 78,
+      "blueprintTopic": "Clostridioides difficile infection control",
+      "contentHash": "6240e4e34d6660448a7ba3de9aad5a5d09ad234cf6b8b564d5d0955a74e263b2",
+      "stem": "Which of the following infection-control measures is most appropriate?"
+    },
+    {
+      "index": 79,
+      "blueprintTopic": "occupational HIV post-exposure prophylaxis",
+      "contentHash": "c323f1de82386bf5ef0bcb28deec97af20f815b6891fd583ec00b7f57a36202b",
+      "stem": "Which of the following is the most appropriate next step?"
+    }
+  ],
+  "sharedLeadInsInBatch": [
+    {
+      "stem": "Which of the following is the most appropriate next step in management?",
+      "topics": [
+        "creatinine rise after ACE inhibitor initiation",
+        "BPH combination therapy with 5-alpha reductase inhibitor",
+        "testicular mass management"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate next step?",
+      "topics": [
+        "nephrology referral criteria in CKD",
+        "overcorrection of chronic hyponatremia",
+        "undescended testis referral timing",
+        "acute ischemic priapism",
+        "posterior urethral injury after pelvic fracture",
+        "suspected elder neglect reporting",
+        "occupational HIV post-exposure prophylaxis"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate initial treatment?",
+      "topics": [
+        "hyperkalemia with ECG changes",
+        "ANCA-associated vasculitis induction therapy",
+        "childhood idiopathic nephrotic syndrome initial therapy"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most likely diagnosis?",
+      "topics": [
+        "primary membranous nephropathy (anti-PLA2R)",
+        "IgA nephropathy",
+        "poststreptococcal glomerulonephritis",
+        "ADPKD ultrasound diagnostic criteria",
+        "renal artery fibromuscular dysplasia",
+        "renal cell carcinoma presentation",
+        "testicular torsion",
+        "acute bacterial prostatitis",
+        "varicocele",
+        "Peyronie disease"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate treatment?",
+      "topics": [
+        "acute epididymitis treatment",
+        "acute uncomplicated cystitis antibiotic choice"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate approach?",
+      "topics": [
+        "PSA screening shared decision-making",
+        "minor consent for confidential STI care"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate action?",
+      "topics": [
+        "adult Jehovah's Witness refusal of transfusion",
+        "emergency transfusion of a child over parental refusal",
+        "duty to protect and HIPAA serious-threat disclosure",
+        "EMTALA screening and stabilization"
+      ]
+    }
+  ],
+  "inputContentHashRecomputed": 80,
+  "schemaErrors": [],
+  "countsBefore": {
+    "total": 3565,
+    "live": 3036,
+    "activeNotQa": 31,
+    "inactive": 498
+  },
+  "liveAfterInTransaction": 3116,
+  "liveAfter": 3036,
+  "insertedIds": [
+    "cmvmloebq0000js2e97exjxj5",
+    "cmvmloebx0001js2e5djydn83",
+    "cmvmloec00002js2ehvvucl0z",
+    "cmvmloec30003js2endjdpwrc",
+    "cmvmloec70004js2emw4vmelh",
+    "cmvmloeca0005js2e2v7jtgc0",
+    "cmvmloece0006js2ejltddox9",
+    "cmvmloech0007js2et09a76r7",
+    "cmvmloeck0008js2ex9yzoiqb",
+    "cmvmloeco0009js2enu943o78",
+    "cmvmloect000ajs2eyd4h2kzs",
+    "cmvmloecw000bjs2eqaroyue3",
+    "cmvmloed0000cjs2edvojcmbm",
+    "cmvmloed3000djs2ealh2hbvo",
+    "cmvmloed6000ejs2ec4y27fjq",
+    "cmvmloed9000fjs2ex59p2n1j",
+    "cmvmloedd000gjs2ebbjvhphp",
+    "cmvmloedg000hjs2e2dsd2617",
+    "cmvmloedk000ijs2e383qavvk",
+    "cmvmloedn000jjs2ennocello",
+    "cmvmloedq000kjs2evic6bqng",
+    "cmvmloedu000ljs2e3pbdcv9l",
+    "cmvmloedx000mjs2ek0jstsxq",
+    "cmvmloee0000njs2erqa4fvsf",
+    "cmvmloee3000ojs2evssgkkm3",
+    "cmvmloee7000pjs2efolmxcm1",
+    "cmvmloeeb000qjs2e6rdhss9p",
+    "cmvmloeef000rjs2e0mblfj1w",
+    "cmvmloeei000sjs2ewp19zhl6",
+    "cmvmloeem000tjs2elea36cj8",
+    "cmvmloeeq000ujs2e2zldbnjc",
+    "cmvmloeev000vjs2euu9s8cr8",
+    "cmvmloeey000wjs2ea5y81hg5",
+    "cmvmloef1000xjs2ee982tfhv",
+    "cmvmloef4000yjs2eg1z3dcmw",
+    "cmvmloef7000zjs2ea37et73c",
+    "cmvmloefb0010js2epszs8spa",
+    "cmvmloefe0011js2e94fsfeqt",
+    "cmvmloefh0012js2e0q73yzfk",
+    "cmvmloefl0013js2elrhdf2jz",
+    "cmvmloefp0014js2ecg752mi6",
+    "cmvmloefs0015js2exedtge3l",
+    "cmvmloefw0016js2edtk698mt",
+    "cmvmloefz0017js2e7extgka7",
+    "cmvmloeg30018js2ekc818lqd",
+    "cmvmloeg90019js2eog75gcvh",
+    "cmvmloegc001ajs2ea9oo2qcu",
+    "cmvmloegg001bjs2ew3a1rp6r",
+    "cmvmloegj001cjs2eodo64r8s",
+    "cmvmloegm001djs2e7udrtlw3",
+    "cmvmloegp001ejs2eok1ocj36",
+    "cmvmloegs001fjs2eij754imj",
+    "cmvmloegv001gjs2eikip97i3",
+    "cmvmloegz001hjs2evssa51ns",
+    "cmvmloeh3001ijs2e7k56y3ux",
+    "cmvmloeh6001jjs2eye3ez1ed",
+    "cmvmloeha001kjs2eniv9fvdm",
+    "cmvmloehg001ljs2ewxuce5da",
+    "cmvmloehk001mjs2emlsp66ag",
+    "cmvmloehn001njs2eu92flm5t",
+    "cmvmloehq001ojs2eg7ijq7g5",
+    "cmvmloeht001pjs2ekkymac3c",
+    "cmvmloehw001qjs2eqw2zr5ck",
+    "cmvmloei0001rjs2eunpot002",
+    "cmvmloei3001sjs2erfq5pc9a",
+    "cmvmloei6001tjs2er16xgx91",
+    "cmvmloeia001ujs2enrwg20nd",
+    "cmvmloeie001vjs2ee0vghvds",
+    "cmvmloeii001wjs2ed7di3x1i",
+    "cmvmloeil001xjs2e7k5ox5vs",
+    "cmvmloeio001yjs2elk7gn8gq",
+    "cmvmloeir001zjs2emhsidxmw",
+    "cmvmloeiu0020js2enoy3jro0",
+    "cmvmloeiy0021js2emcg440ia",
+    "cmvmloej10022js2e9wiwee4i",
+    "cmvmloej60023js2elquivx2m",
+    "cmvmloeja0024js2e33gemj3f",
+    "cmvmloeje0025js2eqm42co73",
+    "cmvmloeji0026js2etml91ywp",
+    "cmvmloejm0027js2eqex1cv8v"
+  ],
+  "backup": "scripts/data/pance-batch-insert/pance-pre-insert-backup-batch3-80.json"
+}
