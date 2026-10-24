@@ -31,6 +31,7 @@ export async function getPublishedTestimonials(
       avatarGradient: row.avatarGradient || gradientForName(row.name),
       photoUrl: row.photoUrl ?? undefined,
       publishedOn: row.consentedAt?.toISOString(),
+      rating: row.rating ?? undefined,
     }));
   } catch {
     return [];
