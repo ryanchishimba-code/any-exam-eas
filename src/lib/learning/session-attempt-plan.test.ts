@@ -42,6 +42,26 @@ describe("session attempt plan", () => {
     expect(drafts.map((draft) => draft.questionKey)).toEqual(["bank-1", "bank-2"]);
     expect(drafts[0]?.confidence).toBeUndefined();
     expect(drafts[0]?.correct).toBe(false);
+    expect(drafts[0]?.selectedAnswer).toBe("A");
+  });
+
+  it("stores multi-select answers with the same delimiter as timed exams", () => {
+    const drafts = draftsFromSession(
+      {
+        answers: {
+          "1": { revealed: true, correct: true, selected: ["Alpha", "Gamma"] },
+        },
+      },
+      [
+        {
+          id: "1",
+          bankItemId: "bank-1",
+          type: "select_all",
+          stem: "Select all.",
+        },
+      ]
+    );
+    expect(drafts[0]?.selectedAnswer).toBe("Alpha|||Gamma");
   });
 
   it("counts each answered item once and keeps accuracy on a duplicate end", () => {
