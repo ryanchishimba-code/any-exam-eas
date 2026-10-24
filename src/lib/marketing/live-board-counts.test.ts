@@ -9,6 +9,7 @@ import {
 } from "@/lib/counts";
 import { buildHubBoardDonutSegments } from "@/lib/marketing/board-landing/hub-board-donut";
 import {
+  LIVE_BOARD_COUNT_QUERY_TIMEOUT_MS,
   LIVE_BOARD_COUNT_REVALIDATE_SECONDS,
   LIVE_BOARD_COUNT_SQL,
   applyLiveBankItemCount,
@@ -24,16 +25,23 @@ function counts(rows: { fieldId: string; itemType: string; count: number }[]): L
 }
 
 describe("live board question counts", () => {
-  it("counts active qaPassed QuestionBankItem rows and caches them for an hour", () => {
+  it("uses the snapshot serve filter and caches it for an hour", () => {
     const source = readFileSync(path.join(process.cwd(), "src/lib/marketing/live-board-counts.ts"), "utf8");
+    const snapshot = readFileSync(path.join(process.cwd(), "src/lib/inventory/active-questions.ts"), "utf8");
     expect(LIVE_BOARD_COUNT_REVALIDATE_SECONDS).toBe(3600);
+    expect(LIVE_BOARD_COUNT_QUERY_TIMEOUT_MS).toBeGreaterThan(5_000);
     expect(source).toContain("revalidate: LIVE_BOARD_COUNT_REVALIDATE_SECONDS");
     expect(source).toContain("unstable_cache");
+    expect(source).toContain("studentEligibleAndSql()");
+    expect(source).toContain("EFFECTIVE_MCQ_SQL");
     expect(source).not.toMatch(/unstable_noStore|connection\(/);
     expect(LIVE_BOARD_COUNT_SQL).toContain("active = true");
     expect(LIVE_BOARD_COUNT_SQL).toContain('"qaPassed" = true');
     expect(LIVE_BOARD_COUNT_SQL).toContain('FROM "QuestionBankItem"');
-    expect(LIVE_BOARD_COUNT_SQL).not.toMatch(/ActiveInventoryCount|studentEligibility|options::jsonb/);
+    expect(LIVE_BOARD_COUNT_SQL).toContain(`"fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3'`);
+    expect(LIVE_BOARD_COUNT_SQL).toContain("studentEligibility");
+    expect(LIVE_BOARD_COUNT_SQL).not.toContain("ActiveInventoryCount");
+    expect(snapshot).toContain("studentEligibleAndSql()");
     for (const fieldId of ["nursing", "pharmacy", "pance", "aanp-fnp", "npte-pt", "usmle-step-1", "usmle-step-2", "usmle-step-3"]) {
       expect(LIVE_BOARD_COUNT_SQL).toContain(`'${fieldId}'`);
     }
@@ -42,21 +50,21 @@ describe("live board question counts", () => {
   it("sums USMLE steps and keeps each other board on its own field", () => {
     const live = counts([
       { fieldId: "pance", itemType: "vignette", count: 3276 },
-      { fieldId: "nursing", itemType: "vignette", count: 4510 },
-      { fieldId: "pharmacy", itemType: "vignette", count: 8600 },
-      { fieldId: "aanp-fnp", itemType: "vignette", count: 5332 },
+      { fieldId: "nursing", itemType: "vignette", count: 3754 },
+      { fieldId: "pharmacy", itemType: "vignette", count: 5620 },
+      { fieldId: "aanp-fnp", itemType: "vignette", count: 5328 },
       { fieldId: "npte-pt", itemType: "vignette", count: 1748 },
       { fieldId: "usmle-step-1", itemType: "mcq", count: 3170 },
-      { fieldId: "usmle-step-2", itemType: "mcq", count: 5464 },
+      { fieldId: "usmle-step-2", itemType: "mcq", count: 5165 },
       { fieldId: "usmle-step-3", itemType: "mcq", count: 8407 },
     ]);
     expect(liveBankItemCount(live, "pance")).toBe(3276);
-    expect(liveBankItemCount(live, "nclex")).toBe(4510);
-    expect(liveBankItemCount(live, "naplex")).toBe(8600);
-    expect(liveBankItemCount(live, "aanp-fnp")).toBe(5332);
+    expect(liveBankItemCount(live, "nclex")).toBe(3754);
+    expect(liveBankItemCount(live, "naplex")).toBe(5620);
+    expect(liveBankItemCount(live, "aanp-fnp")).toBe(5328);
     expect(liveBankItemCount(live, "npte-pt")).toBe(1748);
-    expect(liveBankItemCount(live, "usmle")).toBe(17041);
-    expect(liveUsmleStepCounts(live)).toEqual({ step1: 3170, step2: 5464, step3: 8407 });
+    expect(liveBankItemCount(live, "usmle")).toBe(16742);
+    expect(liveUsmleStepCounts(live)).toEqual({ step1: 3170, step2: 5165, step3: 8407 });
     expect(formatExactQuestionCount(liveBankItemCount(live, "pance"))).toBe("3,276");
   });
 
@@ -87,11 +95,11 @@ describe("live board question counts", () => {
         formats: { mcq: 3754, ngn: 0, case: 0 },
         clinical: { standaloneNgn: 57, caseStudies: 37, caseItems: 222 },
       }),
-      4510
+      3754
     );
-    expect(scoredQuestionCount(nclex)).toBe(4789);
+    expect(scoredQuestionCount(nclex)).toBe(4033);
     expect(formatBoardQuestionSentence(nclex)).toBe(
-      "4,789 questions, including 222 items in 37 case studies and 57 standalone NGN items"
+      "4,033 questions, including 222 items in 37 case studies and 57 standalone NGN items"
     );
   });
 

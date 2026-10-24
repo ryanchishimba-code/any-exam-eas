@@ -2,11 +2,12 @@
  * Scored totals for the six board pages.
  *
  * Those pages used to print ActiveInventoryCount, the snapshot the
- * sync-question-bank cron writes. That row lags QuestionBankItem (PANCE stayed
- * at 2,856 after the bank reached 3,276). This read counts active, qaPassed
- * rows and caches the result for an hour. It does not parse option JSON, and
- * it does not write. ISR pages call it from `unstable_cache` only, so the
- * route stays static.
+ * sync-question-bank cron writes. That snapshot lags rows inserted after
+ * the last refresh (PANCE stayed at 2,856). This read uses the
+ * same WHERE and item-type rule as `ACTIVE_INVENTORY_ROWS_SQL`: active,
+ * qaPassed, the eight inventory fields, no legacy Step 3 rows on Step 2,
+ * and `studentEligibleAndSql()`. It does not write. The result is cached
+ * for an hour so ISR stays static.
  */
 import { unstable_cache } from "next/cache";
 import {
@@ -16,15 +17,20 @@ import {
   type CountBoardSlug,
 } from "@/lib/counts";
 import { sqlQuery } from "@/lib/db";
+import { EFFECTIVE_MCQ_SQL } from "@/lib/exam-prep/effective-type-sql";
+import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
-import {
-  ACTIVE_INVENTORY_CACHE_TAG,
-  BANK_COUNTS_QUERY_TIMEOUT_MS,
-} from "@/lib/inventory/active-inventory-cache";
+import { ACTIVE_INVENTORY_CACHE_TAG } from "@/lib/inventory/active-inventory-cache";
 import { INVENTORY_FIELD_IDS } from "@/lib/inventory/active-questions";
 
 /** Hourly is enough for public copy and keeps ISR off a per-request bank scan. */
 export const LIVE_BOARD_COUNT_REVALIDATE_SECONDS = 60 * 60;
+
+/**
+ * The eligibility predicate reads option JSON. A warm read is a few seconds.
+ * This ceiling is only for the hourly cache fill, not the 5s interactive budget.
+ */
+export const LIVE_BOARD_COUNT_QUERY_TIMEOUT_MS = 20_000;
 
 const INVENTORY_FIELD_SET = new Set<string>(INVENTORY_FIELD_IDS);
 
@@ -40,12 +46,17 @@ const BOARD_COUNT_FIELDS: Record<CountBoardSlug, readonly string[]> = {
 export const LIVE_BOARD_COUNT_SQL = `
     SELECT
       "fieldId",
-      COALESCE(NULLIF(BTRIM("itemType"), ''), 'mcq') AS "itemType",
+      CASE
+        WHEN ${EFFECTIVE_MCQ_SQL} THEN 'mcq'
+        ELSE COALESCE(NULLIF(BTRIM("itemType"), ''), 'mcq')
+      END AS "itemType",
       COUNT(*)::int AS count
     FROM "QuestionBankItem"
     WHERE active = true
       AND "qaPassed" = true
       AND "fieldId" IN (${INVENTORY_FIELD_IDS.map((fieldId) => `'${fieldId}'`).join(", ")})
+      AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${studentEligibleAndSql()}
     GROUP BY 1, 2
     `;
 
@@ -136,7 +147,7 @@ export function boardPageQuestionUnits(input: {
 
 async function readLiveBoardQuestionCounts(): Promise<LiveBoardQuestionCounts> {
   const rows = await sqlQuery<LiveCountRow[]>(LIVE_BOARD_COUNT_SQL, [], {
-    timeoutMs: BANK_COUNTS_QUERY_TIMEOUT_MS,
+    timeoutMs: LIVE_BOARD_COUNT_QUERY_TIMEOUT_MS,
   });
   const counts = liveBoardQuestionCountsFromRows(Array.isArray(rows) ? rows : []);
   if (liveBoardCountTotal(counts) <= 0) {
@@ -147,7 +158,7 @@ async function readLiveBoardQuestionCounts(): Promise<LiveBoardQuestionCounts> {
 
 const readCachedLiveBoardQuestionCounts = unstable_cache(
   readLiveBoardQuestionCounts,
-  ["live-board-question-counts-v1"],
+  ["live-board-question-counts-v2"],
   {
     revalidate: LIVE_BOARD_COUNT_REVALIDATE_SECONDS,
     tags: [ACTIVE_INVENTORY_CACHE_TAG],
