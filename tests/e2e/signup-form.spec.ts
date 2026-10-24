@@ -1,5 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
-import { fillControlledInput, fillDateOfBirth } from "./helpers/forms";
+import { fillControlledInput } from "./helpers/forms";
 
 async function expectNoHorizontalOverflow(page: Page) {
   const overflow = await page.evaluate(() => {
@@ -105,16 +105,7 @@ test.describe("Signup form", () => {
     await page.getByLabel("Last name").fill("Lee");
     await page.getByRole("radio", { name: /NCLEX/i }).click();
     await expect(page.getByRole("radio", { name: /NCLEX/i })).toBeChecked();
-
-    const dob = page.locator("#signup-dob");
-    await dob.click();
-    await dob.fill("");
-    await dob.pressSequentially("01012010", { delay: 20 });
-    await expect(dob).toHaveValue("01/01/2010");
-    await expect(page.getByText("You must be at least 18 years old")).toBeVisible();
-
-    await fillDateOfBirth(page, "1992-03-20");
-    await expect(page.getByText("You must be at least 18 years old")).toHaveCount(0);
+    await expect(page.locator("#signup-dob")).toHaveCount(0);
 
     const terms = page.getByRole("checkbox");
     await expect(terms).not.toBeChecked();

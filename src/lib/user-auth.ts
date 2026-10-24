@@ -3,6 +3,7 @@ import type { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { executeWithRetry, isTransientDbError } from "@/lib/db-resilience";
 import { isAtLeast18 } from "@/lib/age";
+import { AGE_ATTESTATION_PLACEHOLDER_DOB } from "@/lib/age-attestation";
 import {
   assertPublicSignupEmailAllowed,
   clearAccountDeviceSessions,
@@ -155,8 +156,10 @@ export async function registerUser(
     blockDisposable: parsed.plan === "trial",
   });
 
-  const dob = new Date(parsed.dateOfBirth);
-  if (!isAtLeast18(dob)) {
+  const dob = parsed.dateOfBirth
+    ? new Date(parsed.dateOfBirth)
+    : AGE_ATTESTATION_PLACEHOLDER_DOB;
+  if (parsed.dateOfBirth && !isAtLeast18(dob)) {
     throw new Error("You must be at least 18 years old to create an account.");
   }
 

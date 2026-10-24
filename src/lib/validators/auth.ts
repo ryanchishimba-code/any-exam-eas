@@ -35,7 +35,11 @@ export const signUpSchema = z.object({
     .trim()
     .min(1, "Last name is required.")
     .max(60, "Last name is too long."),
-  dateOfBirth: z.string().min(1, "Date of birth is required."),
+  dateOfBirth: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Enter a valid date.")
+    .refine((d) => !Number.isNaN(Date.parse(d)), "Enter a valid date.")
+    .optional(),
   acceptedTerms: z.literal(true, {
     errorMap: () => ({ message: "You must accept the terms to create an account." }),
   }),

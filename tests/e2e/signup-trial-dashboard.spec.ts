@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { test as authTest, hasAuthStorage } from "./fixtures/auth";
-import { acceptSignupTerms, fillDateOfBirth } from "./helpers/forms";
+import { acceptSignupTerms } from "./helpers/forms";
 
 /**
  * Critical revenue path: signup intent → checkout → authenticated study hub.
@@ -20,7 +20,6 @@ test.describe("Signup → trial → dashboard", () => {
     await expect(page.getByText(/preparing for nclex/i)).toBeVisible();
     await page.getByLabel("First name").fill("E2E");
     await page.getByLabel("Last name").fill("Trial");
-    await fillDateOfBirth(page, "1992-03-20");
     await acceptSignupTerms(page);
 
     const submit = page.getByRole("button", { name: /start.*trial|create account/i });

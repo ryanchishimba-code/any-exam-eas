@@ -3,11 +3,10 @@ import { assertPublicSignupEmailAllowed, isAccountDisabled, OAuthAccountDisabled
 import { normalizeEmail } from "@/lib/validators/auth";
 import { normalizeStoredName } from "@/lib/display-name";
 import { isAtLeast18 } from "@/lib/age";
+import { AGE_ATTESTATION_PLACEHOLDER_DOB } from "@/lib/age-attestation";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
 import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
-
-const DEFAULT_DOB = new Date("1990-01-01");
 
 /** Thrown when OAuth sign-in targets an email/password account without an explicit link. */
 export class OAuthLinkBlockedError extends Error {
@@ -90,7 +89,7 @@ export async function findOrCreateGoogleUser(params: {
       name: normalizeStoredName(params.name),
       image: params.image ?? null,
       emailVerified: new Date(),
-      dateOfBirth: DEFAULT_DOB,
+      dateOfBirth: AGE_ATTESTATION_PLACEHOLDER_DOB,
       subscription: {
         create: subscriptionCreate,
       },

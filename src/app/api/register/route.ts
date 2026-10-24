@@ -8,6 +8,7 @@ import { formatTrialSource } from "@/lib/billing/trial-alert-content";
 import { saveTypedConversion } from "@/lib/analytics/conversions";
 import { CONVERSION_EVENTS } from "@/lib/analytics/conversion-types";
 import { EVENT_TYPES } from "@/lib/analytics/types";
+import { ageAttestationDateIso } from "@/lib/age-attestation";
 
 export const runtime = "nodejs";
 
@@ -41,6 +42,8 @@ export async function POST(req: Request) {
           examSlug: input.examSlug,
           tier: input.tier,
           interval: input.interval,
+          dateOfBirthProvided: Boolean(input.dateOfBirth),
+          ageAttestedAt: ageAttestationDateIso(),
         },
       })
     );

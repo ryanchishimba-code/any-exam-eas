@@ -22,12 +22,7 @@ import {
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { ExamSlug } from "@/types/edtech";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
-import {
-  defaultExamDatePreview,
-  eighteenYearsAgoIso,
-  oldestBirthDateIso,
-  todayIso,
-} from "@/lib/edtech/exam-date-utils";
+import { defaultExamDatePreview, todayIso } from "@/lib/edtech/exam-date-utils";
 import { ExamDatePicker } from "@/components/edtech/ExamDatePicker";
 import {
   fetchAuthHealthWarning,
@@ -64,7 +59,6 @@ export function SignupForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [dob, setDob] = useState("");
   const [examSlug, setExamSlug] = useState<ExamSlug | "">(initialExam);
   const [testDate, setTestDate] = useState("");
   const [showTestDate, setShowTestDate] = useState(false);
@@ -74,7 +68,6 @@ export function SignupForm({
   const [passwordMessage, setPasswordMessage] = useState("");
   const [nameMessage, setNameMessage] = useState("");
   const [examMessage, setExamMessage] = useState("");
-  const [dobMessage, setDobMessage] = useState("");
   const [configWarning, setConfigWarning] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
@@ -109,8 +102,6 @@ export function SignupForm({
 
   const today = useMemo(() => todayIso(), []);
   const examDatePreview = useMemo(() => defaultExamDatePreview(today), [today]);
-  const birthMin = useMemo(() => oldestBirthDateIso(today), [today]);
-  const birthMax = useMemo(() => eighteenYearsAgoIso(today), [today]);
   const lockedExam = examLocked && examSlug ? EXAM_CATALOG[examSlug] : null;
 
   function emailProblem(value: string): string {
@@ -132,10 +123,9 @@ export function SignupForm({
     const missingName = !firstName.trim() || !lastName.trim();
     setNameMessage(missingName ? "Enter your first and last name." : "");
     setExamMessage(examSlug ? "" : "Choose the exam you're preparing for.");
-    setDobMessage(dob ? "" : "Enter your date of birth. You must be 18 or older.");
     if (!accepted) setError("Accept the terms to continue.");
     else setError("");
-    return Boolean(firstName.trim() && lastName.trim() && examSlug && dob && accepted);
+    return Boolean(firstName.trim() && lastName.trim() && examSlug && accepted);
   }
 
   function focusExam(slug: ExamSlug) {
@@ -179,7 +169,6 @@ export function SignupForm({
           lastName: trimmedLast,
           email: trimmedEmail,
           password,
-          dateOfBirth: dob,
           acceptedTerms: accepted,
           plan,
           tier: initialTier,
@@ -514,29 +503,6 @@ export function SignupForm({
               ) : null}
             </fieldset>
 
-            <div>
-              <p id="signup-dob-hint" className="mb-2 text-sm text-[#334155]">
-                You must be 18 or older.
-              </p>
-              <ExamDatePicker
-                id="signup-dob"
-                value={dob}
-                minDate={birthMin}
-                maxDate={birthMax}
-                ariaLabel="Date of birth"
-                variant="compact"
-                onChange={(value) => {
-                  setDob(value);
-                  setDobMessage("");
-                }}
-              />
-              {dobMessage ? (
-                <p className="aee-auth-error" role="alert">
-                  {dobMessage}
-                </p>
-              ) : null}
-            </div>
-
             {examSlug ? (
               <div>
                 <button
@@ -569,6 +535,7 @@ export function SignupForm({
               </div>
             ) : null}
 
+            <p className="text-sm text-[#334155]">You must be 18 or older.</p>
             <LegalCheckbox
               checked={accepted}
               onChange={(value) => {
