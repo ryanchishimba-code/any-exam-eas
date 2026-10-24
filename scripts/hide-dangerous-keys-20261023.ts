@@ -19,6 +19,13 @@ const BACKUP_TABLE = "qbi_dangerous_hide_backup_20261023";
 
 const USMLE_FIELDS = new Set(["usmle-step-1", "usmle-step-2", "usmle-step-3"]);
 
+/** Ryan-approved explicit hides beyond pattern auto-match (2026-10-24). */
+const APPROVED_EXPLICIT_HIDE_IDS = new Set([
+  "cmr86y3wz006m1yw2cbbfn8f8", // USMLE: warfarin, no INR in stem, keyed IV thrombolytics
+]);
+
+const EXPECTED_HIDE_COUNT = 12;
+
 const prisma = new PrismaClient();
 
 type Row = {
@@ -196,11 +203,14 @@ function categoryUsmleStrokeThrombolysisDespiteContra(r: Row): Hit | null {
   const contra = documentedStrokeThrombolysisContraindication(stem);
   if (!contra) {
     if (/\bwarfarin\b/i.test(stem) && !/\bINR\b/i.test(stem)) {
+      const approved = APPROVED_EXPLICIT_HIDE_IDS.has(r.id);
       return makeHit(
         r,
         "usmle_stroke_thrombolysis_warfarin_no_inr",
-        "On warfarin without INR in stem but keyed IV thrombolysis (needs manual INR check).",
-        true
+        approved
+          ? "On warfarin without INR in stem; keyed IV thrombolysis (approved hide)."
+          : "On warfarin without INR in stem but keyed IV thrombolysis (needs manual INR check).",
+        !approved
       );
     }
     return null;
@@ -411,6 +421,14 @@ async function main() {
   const beforeTotal = rows.length;
   const beforeBoard = await boardCounts(true);
   const { hits, hideSet, nearCopies } = audit(rows);
+
+  if (hideSet.size !== EXPECTED_HIDE_COUNT) {
+    console.error(
+      `Abort: expected exactly ${EXPECTED_HIDE_COUNT} hides, got ${hideSet.size}. No changes.`
+    );
+    console.error(`hide ids: ${[...hideSet].sort().join(", ")}`);
+    process.exit(1);
+  }
 
   const byCategory: Record<string, Hit[]> = {};
   for (const h of hits) {
