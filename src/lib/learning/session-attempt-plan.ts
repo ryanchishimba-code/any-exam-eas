@@ -1,5 +1,7 @@
+import { serializeStudySelectedAnswer } from "@/lib/learning/attempt-selection";
 import { formatConceptLabel, isInternalMasteryConceptKey } from "@/lib/learning/concept-labels";
 import { reviewIncorrectHref } from "@/lib/learning/remediation-loop";
+import type { StudyQuestion } from "@/lib/questions/types";
 
 /** One revealed answer, ready to upsert into QuestionAttempt. */
 export type SessionAttemptDraft = {
@@ -73,7 +75,9 @@ export function draftsFromSession(
       correct: answer.correct === true,
       confidence: answer.confidence,
       durationMs: answer.durationMs,
-      selectedAnswer: answer.selected?.length ? answer.selected.join(", ") : undefined,
+      selectedAnswer: answer.selected?.length
+        ? serializeStudySelectedAnswer(question as StudyQuestion, answer.selected)
+        : undefined,
       tags: question.tags,
       difficulty: question.difficulty,
     });

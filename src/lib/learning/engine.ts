@@ -1,3 +1,4 @@
+import { resolveAttemptCorrect } from "@/lib/learning/attempt-selection";
 import { runAdaptiveSelection } from "@/lib/core/prisma-adapter";
 import { prioritizeForReview } from "@/lib/questions/adaptive";
 import type { StudyQuestion } from "@/lib/questions/types";
@@ -15,14 +16,20 @@ import { buildTopicWeakness } from "./weakness";
 export async function processLearningAttempt(
   input: AttemptInput
 ): Promise<ProcessAttemptResult> {
-  const mistake = analyzeMistake(input);
-  const insight = buildLearningInsight(input, mistake);
+  const correct = resolveAttemptCorrect(
+    input.question,
+    input.selectedAnswer,
+    input.correct
+  );
+  const gradedInput: AttemptInput = { ...input, correct };
+  const mistake = analyzeMistake(gradedInput);
+  const insight = buildLearningInsight(gradedInput, mistake);
 
   let attemptId: string | undefined;
   let persisted = false;
   let alreadySaved = false;
   try {
-    const result = await recordAttemptWithMastery(input);
+    const result = await recordAttemptWithMastery(gradedInput);
     attemptId = result.attemptId;
     persisted = true;
     alreadySaved = result.alreadySaved;
@@ -55,7 +62,7 @@ export async function processLearningAttempt(
   const remediation = buildRemediationRecommendations({
     fieldId: input.fieldId,
     subjectId: input.question.subjectId,
-    correct: input.correct,
+    correct,
     mistakeCategory: mistake.category,
     weakConcepts: mistake.weakConcepts,
     weakest: profile.weakestConcepts.filter((c) => c.fieldId === input.fieldId),

@@ -14,6 +14,7 @@ import {
   updateCatSession,
   type CatSessionState,
 } from "@/lib/questions/cat-engine";
+import { serializeStudySelectedAnswer } from "@/lib/learning/attempt-selection";
 import { examQuestionToStudy, isAnswerCorrect } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import type { StudyQuestion } from "@/lib/questions/types";
@@ -168,7 +169,7 @@ export function CatMockPractice() {
         correct,
         confidence,
         durationMs,
-        selectedAnswer: selected.join(", "),
+        selectedAnswer: serializeStudySelectedAnswer(current, selected),
       }),
     }).then(async (res) => {
       if (res.ok) {
