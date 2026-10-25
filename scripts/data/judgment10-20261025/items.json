@@ -1,0 +1,290 @@
+[
+  {
+    "id": "NCLEX-01",
+    "board": "NCLEX-RN",
+    "format": "NGN bow-tie",
+    "topic": "DKA initial management – potassium gate before insulin",
+    "stem": "A 24-year-old with type 1 diabetes arrives with vomiting and abdominal pain for 2 days. Chart excerpt:\n\nVS: HR 124, BP 98/60, RR 30 deep, SpO2 98% RA, T 37.9 C\nLabs (0915): glucose 486 mg/dL; venous pH 7.12; HCO3 9 mmol/L (below 10 mmol/L); beta-hydroxybutyrate 6.8 mmol/L; Na 131 mEq/L; K 3.3 mEq/L; creatinine 1.4 mg/dL\nECG: sinus tachycardia, U waves noted\nOrders (0930): 0.9% NaCl 1,000 mL/h; regular insulin infusion 0.1 units/kg/h; KCl 10 mEq/h IV; repeat BMP in 2 h\n\nComplete the bow-tie: choose the condition the client is most likely experiencing, 2 actions the nurse should take, and 2 parameters to monitor.",
+    "bowtie": {
+      "condition_options": [
+        "Severe diabetic ketoacidosis",
+        "Hyperosmolar hyperglycemic state",
+        "Mild diabetic ketoacidosis",
+        "Euglycemic ketoacidosis"
+      ],
+      "action_options": [
+        "Begin the 0.9% NaCl infusion at the ordered rate",
+        "Start the insulin infusion now while potassium runs",
+        "Hold the insulin infusion and clarify the order with the provider",
+        "Give sodium bicarbonate 100 mmol IV",
+        "Add 5% dextrose to the maintenance fluid now"
+      ],
+      "parameter_options": [
+        "Serum potassium and cardiac rhythm",
+        "Capillary glucose every 1–2 hours",
+        "Urine ketones to judge resolution",
+        "Hemoglobin A1c to guide insulin titration",
+        "Daily weight"
+      ]
+    },
+    "answer": {
+      "condition": "Severe diabetic ketoacidosis",
+      "actions": [
+        "Begin the 0.9% NaCl infusion at the ordered rate",
+        "Hold the insulin infusion and clarify the order with the provider"
+      ],
+      "parameters": [
+        "Serum potassium and cardiac rhythm",
+        "Capillary glucose every 1–2 hours"
+      ]
+    },
+    "explanation": "Severity: HCO3 9 mmol/L is below 10, which classifies DKA as severe per the 2024 ADA/EASD consensus even though pH is 7.12 (BHB 6.8 also qualifies). HHS lacks major ketoacidosis; euglycemic DKA needs glucose <200; mild DKA needs HCO3 >=15. Fluids start immediately. The consensus says if K <3.5: replace K and delay insulin until K >3.5, so K 3.3 with U waves makes the insulin order unsafe—hold and clarify (the older 3.3 cutoff is a trap). Bicarbonate only for pH <7.0; dextrose when glucose <250. Monitor K/rhythm and glucose q1–2h. Urine ketones lag (acetoacetate, not BHB) and are not a resolution marker; HbA1c reflects ~3 months and cannot guide an infusion. Takeaway: no insulin until K >3.5.",
+    "sources": [
+      {
+        "name": "Umpierrez GE et al. Hyperglycemic Crises in Adults With Diabetes: A Consensus Report. Diabetes Care 2024;47:1257-1275",
+        "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A"
+      },
+      {
+        "name": "PubMed 39052901",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39052901/"
+      }
+    ],
+    "why_hard": "K 3.3 sits between the old (3.3) and new (3.5) insulin-delay thresholds; severity hinges on HCO3 <10, not pH; urine ketones look like a resolution marker but are not."
+  },
+  {
+    "id": "NCLEX-02",
+    "board": "NCLEX-RN",
+    "format": "NGN matrix (multiple response grid)",
+    "topic": "Magnesium sulfate for preeclampsia with severe features – toxicity vs expected findings",
+    "stem": "A 31-year-old at 35 weeks' gestation with preeclampsia with severe features is receiving magnesium sulfate 2 g/h IV after a 4-g load. Nurse's 4-hour flowsheet:\n\n1200: BP 158/104, RR 18, patellar reflex 2+, urine output (0800–1200) 140 mL, alert\n1600: BP 150/98, RR 16, patellar reflex absent bilaterally, urine output (1200–1600) 85 mL, drowsy\nLab (1530): serum Mg 9.6 mg/dL; creatinine 1.3 mg/dL (0.8 on admission)\n\nFor each 1600 finding, indicate whether it requires immediate follow-up or is expected/acceptable for this therapy.",
+    "matrix": {
+      "columns": [
+        "Requires immediate follow-up",
+        "Expected/acceptable"
+      ],
+      "rows": [
+        "RR 16/min",
+        "Absent patellar reflexes",
+        "Urine output 85 mL over 4 h",
+        "Serum Mg 9.6 mg/dL",
+        "Creatinine 1.3 mg/dL"
+      ]
+    },
+    "answer": {
+      "RR 16/min": "Expected/acceptable",
+      "Absent patellar reflexes": "Requires immediate follow-up",
+      "Urine output 85 mL over 4 h": "Requires immediate follow-up",
+      "Serum Mg 9.6 mg/dL": "Requires immediate follow-up",
+      "Creatinine 1.3 mg/dL": "Requires immediate follow-up"
+    },
+    "explanation": "The magnesium sulfate label lists a present patellar reflex and RR of ~16/min or more as signs of a safe regimen; RR 16 meets that floor, so alone it is acceptable. Loss of the patellar reflex is the label's early sign of intoxication. The label requires urine output >=100 mL per 4 h because Mg is cleared only renally, so 85 mL plus rising creatinine (0.8 to 1.3) signals accumulation. The usual therapeutic range is about 4.8–8.4 mg/dL (4–7 mEq/L); 9.6 mg/dL is clearly above it and, with absent reflexes, is toxicity requiring immediate follow-up. Takeaway: reflexes present, RR >=16, UO >=100 mL/4 h—renal decline is the buried driver of the high level.",
+    "sources": [
+      {
+        "name": "Magnesium Sulfate in Water for Injection – FDA label (Hospira), DailyMed",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=22ca78b4-f5a3-4144-cf89-5f633acf1e6d"
+      }
+    ],
+    "why_hard": "RR exactly at the label floor tempts over-calling; UO 85 mL looks 'okay' unless the 100 mL/4 h threshold is known; rising creatinine is the buried cause of accumulation."
+  },
+  {
+    "id": "NCLEX-03",
+    "board": "NCLEX-RN",
+    "format": "Standard MCQ",
+    "topic": "Therapeutic enoxaparin timing after epidural catheter removal",
+    "stem": "A 68-year-old client is post-op day 2 after open colectomy. Weight 82 kg; CrCl 64 mL/min. Lumbar epidural analgesia was used; the client received prophylactic enoxaparin 40 mg subcut daily (last dose POD1 2100). The anesthesia team removed the epidural catheter today at 1000, catheter tip intact. At 1030 a new proximal DVT is confirmed, and the provider orders: 'Enoxaparin 80 mg subcut every 12 h, first dose now.'\n\nIt is now 1100. Which nursing action is most appropriate?",
+    "options": {
+      "A": "Give the first dose now, because more than 12 hours have passed since the last prophylactic dose",
+      "B": "Give the first dose now, as long as the post-removal neurologic check is normal",
+      "C": "Hold the dose and clarify; give the first therapeutic dose no earlier than 1400 (at least 4 hours after removal), with ongoing neuro checks",
+      "D": "Hold therapeutic enoxaparin until 1000 tomorrow, 24 hours after catheter removal"
+    },
+    "answer": "C",
+    "explanation": "ASRA (2018) and the Lovenox label: after neuraxial catheter removal, the next/first LMWH dose should be given no sooner than 4 hours after removal. Removal at 1000 was safe (13 h after a prophylactic dose, meeting the 12-h interval), but the order 'first dose now' at 1100 is only 1 h after removal, so the nurse holds, clarifies, and gives the first treatment dose at or after 1400 while monitoring for epidural hematoma signs (C). A applies the pre-removal interval to the wrong decision. B substitutes a normal neuro check for the required interval. D applies the 24-h pre-removal interval for treatment dosing to post-removal timing, needlessly delaying DVT therapy. Takeaway: before removal, 12 h (prophylactic)/24 h (therapeutic); after removal, wait >=4 h.",
+    "sources": [
+      {
+        "name": "Horlocker TT et al. Regional Anesthesia in the Patient Receiving Antithrombotic or Thrombolytic Therapy: ASRA Evidence-Based Guidelines (4th ed). Reg Anesth Pain Med 2018;43:263-309",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29561531/"
+      },
+      {
+        "name": "LOVENOX (enoxaparin) – FDA label, Boxed Warning/Warnings (spinal/epidural hematoma), DailyMed",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5017a927-2a24-4f27-89f9-27c805bf7d59"
+      }
+    ],
+    "why_hard": "Every option uses a real ASRA/label number (12 h, 24 h, 4 h); the solver must match the interval to the right event (before vs after removal) and resist a 'normal neuro check' shortcut."
+  },
+  {
+    "id": "NCLEX-04",
+    "board": "NCLEX-RN",
+    "format": "NGN matrix (multiple response grid)",
+    "topic": "Digoxin toxicity risk after amiodarone start in HF/AF",
+    "stem": "An 83-year-old client (weight 52 kg) with HFrEF and atrial fibrillation was started on amiodarone 400 mg PO BID 6 days ago. Home meds: digoxin 0.125 mg daily, furosemide 40 mg BID, apixaban 2.5 mg BID, carvedilol 6.25 mg BID.\n\nToday: HR 54 irregular, BP 108/64; reports nausea, poor appetite, and 'everything looks a bit yellow'\nLabs: K 3.2 mEq/L; Mg 1.5 mg/dL; Ca 9.4 mg/dL; creatinine 1.6 mg/dL (baseline 1.1); digoxin level drawn this morning, result pending\nDigoxin 0.125 mg is due now.\n\nFor each finding, indicate whether it increases this client's risk of digoxin toxicity or does not.",
+    "matrix": {
+      "columns": [
+        "Increases toxicity risk",
+        "Does not increase toxicity risk"
+      ],
+      "rows": [
+        "Recent amiodarone initiation",
+        "Potassium 3.2 mEq/L",
+        "Magnesium 1.5 mg/dL",
+        "Calcium 9.4 mg/dL",
+        "Creatinine rise to 1.6 mg/dL",
+        "Age 83 and weight 52 kg"
+      ]
+    },
+    "answer": {
+      "Recent amiodarone initiation": "Increases toxicity risk",
+      "Potassium 3.2 mEq/L": "Increases toxicity risk",
+      "Magnesium 1.5 mg/dL": "Increases toxicity risk",
+      "Calcium 9.4 mg/dL": "Does not increase toxicity risk",
+      "Creatinine rise to 1.6 mg/dL": "Increases toxicity risk",
+      "Age 83 and weight 52 kg": "Increases toxicity risk"
+    },
+    "explanation": "The Lanoxin label states low body weight, advanced age, impaired renal function, hypokalemia, hypercalcemia, or hypomagnesemia may predispose to digoxin toxicity, and lists amiodarone as raising serum digoxin ~70%, advising a level before co-administration and a 30–50% dose reduction. Every listed finding except calcium is a risk; Ca 9.4 mg/dL is normal (only hypercalcemia matters), which is the near-miss. The visual change, nausea, and bradycardia with a pending level mean the nurse should hold the due dose and notify the provider. Takeaway: after amiodarone starts, digoxin exposure rises while diuretic-driven low K/Mg and AKI amplify toxicity.",
+    "sources": [
+      {
+        "name": "LANOXIN (digoxin) tablets – FDA label, DailyMed",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d91e3646-4c63-4512-ab22-db39c085c4dc"
+      }
+    ],
+    "why_hard": "Five of six rows are true risk factors spread across med list, demographics, and labs; the trap is calcium (only HYPERcalcemia is a risk), and the amiodarone interaction is buried in a 6-day-old start."
+  },
+  {
+    "id": "NCLEX-05",
+    "board": "NCLEX-RN",
+    "format": "SATA",
+    "topic": "Switching ACE inhibitor to sacubitril/valsartan – safety checks",
+    "stem": "A 66-year-old client with HFrEF (EF 30%) is admitted for diuresis. Today the provider discontinued lisinopril 10 mg daily (last dose this morning at 0800) and ordered sacubitril/valsartan 24 mg/26 mg PO BID, 'first dose at 2100 tonight.' Chart: eGFR 52 mL/min/1.73 m2; K 4.8 mEq/L; BP 112/70. Allergy/intolerance list: 'lisinopril – lip swelling, 2019 (rechallenged 2020 without problems per clinic note)'. Spironolactone 25 mg daily is also ordered.\n\nWhich actions should the nurse take? Select all that apply.",
+    "options": {
+      "A": "Hold tonight's dose; the first dose may be given no earlier than 2000 tomorrow (36 hours after the 0800 lisinopril dose)",
+      "B": "Report the 2019 lip-swelling history to the provider as a possible contraindication before any dose is given",
+      "C": "Give the 2100 dose as ordered, since a half starting dose reduces the interaction risk",
+      "D": "Monitor serum potassium and creatinine after initiation",
+      "E": "Withhold spironolactone today because K is above 4.5 mEq/L",
+      "F": "Accept the clinic note's rechallenge as proof that sacubitril/valsartan is safe for this client"
+    },
+    "answer": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanation": "The Entresto label requires a 36-hour washout when switching from an ACE inhibitor and contraindicates use with ACE inhibitors within that window (A correct; C wrong—dose size does not remove the angioedema risk). The label also contraindicates sacubitril/valsartan in patients with a history of angioedema related to previous ACE inhibitor or ARB therapy, so the documented lip swelling must be reported to the provider before any dose (B); a later uneventful lisinopril rechallenge does not negate that history or predict neprilysin-related angioedema (F wrong). Hyperkalemia and renal function changes are labeled risks, so monitor K and creatinine (D). K 4.8 does not by itself require holding spironolactone (E). Takeaway: timing AND angioedema history are both gates.",
+    "sources": [
+      {
+        "name": "ENTRESTO (sacubitril/valsartan) – FDA label, DailyMed",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=000dc81d-ab91-450c-8eae-8eb74e72296f"
+      }
+    ],
+    "why_hard": "Order uses the correct reduced starting dose, which lends false legitimacy; washout timing arithmetic and an allergy entry softened by a 'rechallenge' note both have to be caught; E is a plausible over-correction."
+  },
+  {
+    "id": "NAPLEX-01",
+    "board": "NAPLEX",
+    "format": "MCQ (4-option)",
+    "topic": "Apixaban dose criteria plus clarithromycin interaction exception",
+    "stem": "A 81-year-old man with nonvalvular atrial fibrillation takes apixaban 5 mg PO BID. Weight 64 kg; SCr 1.3 mg/dL (stable). He is diagnosed with community-acquired pneumonia and prescribed clarithromycin 500 mg PO BID for 7 days. Other meds: amlodipine 5 mg daily, atorvastatin 20 mg daily. Which recommendation regarding apixaban is most appropriate?",
+    "options": {
+      "A": "Continue apixaban 5 mg BID without dose change during the clarithromycin course",
+      "B": "Reduce apixaban to 2.5 mg BID for the clarithromycin course, then resume 5 mg BID",
+      "C": "Reduce apixaban to 2.5 mg BID indefinitely, because the patient is older than 80 years",
+      "D": "Hold apixaban and give enoxaparin 1 mg/kg q12h until clarithromycin is finished"
+    },
+    "answer": "A",
+    "explanation": "The Eliquis label reduces the AF dose to 2.5 mg BID only when at least 2 of: age ≥80, weight ≤60 kg, SCr ≥1.5 mg/dL. He meets only age, so 5 mg BID is correct (C wrong). The label generally halves apixaban with combined P-gp and strong CYP3A4 inhibitors, which makes B tempting, but it specifically states that although clarithromycin is a combined P-gp and strong CYP3A4 inhibitor, pharmacokinetic data suggest no dose adjustment is necessary. Interrupting a DOAC for LMWH (D) adds bleeding and transition risk without an indication. Takeaway: know the named label exception, and count dose-reduction criteria exactly.",
+    "sources": [
+      {
+        "name": "ELIQUIS (apixaban) – FDA label (Bristol-Myers Squibb), DailyMed",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e9481622-7cc6-418a-acb6-c5450daae9b0"
+      }
+    ],
+    "why_hard": "Two label rules collide: the general strong-inhibitor halving rule (B) vs the clarithromycin-specific exception; age >80 alone tempts C; weight 64 and SCr 1.3 sit just outside thresholds."
+  },
+  {
+    "id": "NAPLEX-02",
+    "board": "NAPLEX",
+    "format": "MCQ (4-option)",
+    "topic": "Nirmatrelvir/ritonavir renal dosing and statin management",
+    "stem": "A 72-year-old woman with mild-to-moderate COVID-19 (symptom onset 2 days ago) is at high risk for progression. Labs: eGFR 41 mL/min/1.73 m2 (stable). Medications: simvastatin 40 mg nightly, metoprolol succinate 50 mg daily, lisinopril 10 mg daily. The prescriber wants to start Paxlovid. Which plan is most appropriate?",
+    "options": {
+      "A": "Nirmatrelvir 300 mg/ritonavir 100 mg BID x5 days; hold simvastatin during treatment and restart the day after the last dose",
+      "B": "Nirmatrelvir 150 mg/ritonavir 100 mg BID x5 days; continue simvastatin at half dose (20 mg) during treatment",
+      "C": "Nirmatrelvir 150 mg/ritonavir 100 mg BID x5 days; stop simvastatin at least 12 h before the first dose and resume 5 days after the last dose",
+      "D": "Nirmatrelvir 300 mg/ritonavir 100 mg on day 1, then 150 mg/100 mg daily days 2–5; stop simvastatin 12 h before and resume 5 days after"
+    },
+    "answer": "C",
+    "explanation": "Per the Paxlovid label, moderate renal impairment (eGFR ≥30 to <60) requires 150 mg nirmatrelvir with 100 mg ritonavir BID for 5 days, so A (full dose) is wrong. D is the severe renal impairment (eGFR <30) regimen. Simvastatin and lovastatin are contraindicated with Paxlovid; if Paxlovid is needed, the label says discontinue them at least 12 hours before initiation, during the 5 days, and for 5 days after completion. A resumes too early and B continues a contraindicated statin (dose reduction is not an option). Takeaway: renal band determines dose; simvastatin needs a 12-h pre-hold and a 5-day post-hold.",
+    "sources": [
+      {
+        "name": "PAXLOVID (nirmatrelvir; ritonavir) – FDA label (Pfizer), DailyMed",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a"
+      }
+    ],
+    "why_hard": "Each distractor is a real label regimen or a real-sounding statin plan; correct answer requires both the renal band and the exact pre/post simvastatin hold windows."
+  },
+  {
+    "id": "NAPLEX-03",
+    "board": "NAPLEX",
+    "format": "MCQ (4-option)",
+    "topic": "Lamotrigine titration with valproate plus an enzyme inducer (bipolar I)",
+    "stem": "A 34-year-old man with bipolar I disorder is stabilized after a mixed episode. Current medications: divalproex ER 1,500 mg daily, carbamazepine ER 400 mg BID (started years ago for trigeminal neuralgia; neurology wants it continued), and quetiapine 100 mg at bedtime. The psychiatrist adds lamotrigine for maintenance. Which titration schedule matches the FDA labeling for this patient?",
+    "options": {
+      "A": "25 mg every other day for weeks 1–2, 25 mg daily for weeks 3–4, 50 mg daily week 5, then 100 mg daily target at week 6",
+      "B": "25 mg daily for weeks 1–2, 50 mg daily for weeks 3–4, 100 mg daily week 5, then 200 mg daily target at week 6",
+      "C": "50 mg daily for weeks 1–2, 100 mg daily (divided) for weeks 3–4, 200 mg week 5, then 300 mg daily target at week 6",
+      "D": "25 mg every other day for weeks 1–2, 25 mg daily for weeks 3–4, 100 mg daily week 5, then 200 mg daily target at week 6"
+    },
+    "answer": "A",
+    "explanation": "The Lamictal label's bipolar escalation table has three columns: patients taking valproate; patients taking carbamazepine, phenytoin, phenobarbital, or primidone AND not taking valproate; and patients on neither. Because the inducer column applies only when valproate is NOT co-administered, valproate's inhibition of glucuronidation governs: 25 mg every other day weeks 1–2, 25 mg daily weeks 3–4, 50 mg daily week 5, 100 mg daily week 6 (A). B is the no-interacting-drug schedule; C is the inducer-without-valproate schedule; D starts correctly but escalates on the standard path, doubling exposure. Exceeding recommended initial dose/escalation raises serious rash risk (boxed warning). Takeaway: valproate overrides co-administered inducers when selecting lamotrigine titration.",
+    "sources": [
+      {
+        "name": "LAMICTAL (lamotrigine) – FDA label (GlaxoSmithKline), DailyMed",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d7e3572d-56fe-4727-2bb4-013ccca22678"
+      }
+    ],
+    "why_hard": "Patient takes both an inhibitor and an inducer; a solver must know the inducer column is defined as 'and NOT taking valproate'; D shares A's first 4 weeks."
+  },
+  {
+    "id": "NAPLEX-04",
+    "board": "NAPLEX",
+    "format": "MCQ (4-option, calculation with judgment)",
+    "topic": "Dofetilide initiation – which weight in Cockcroft-Gault, and interacting drugs",
+    "stem": "A 74-year-old woman with persistent atrial fibrillation is admitted for dofetilide initiation. Height 160 cm (IBW 52.4 kg); actual weight 88 kg. SCr 1.4 mg/dL (stable). Baseline QTc 428 msec, normal QRS. K 4.3 mEq/L; Mg 2.1 mg/dL. Medications: apixaban 5 mg BID, metformin 1,000 mg BID, metoprolol succinate 50 mg daily, omeprazole 20 mg daily. Per the manufacturer labeling, which starting dose is most appropriate?",
+    "options": {
+      "A": "500 mcg PO twice daily",
+      "B": "250 mcg PO twice daily",
+      "C": "125 mcg PO twice daily",
+      "D": "Dofetilide is contraindicated with this medication list"
+    },
+    "answer": "B",
+    "explanation": "The Tikosyn label requires Cockcroft-Gault with ACTUAL body weight, ×0.85 for females: (140−74)×88×0.85 / (72×1.4) ≈ 49 mL/min → 40–60 band → 250 mcg BID (B). Using IBW (≈29 mL/min) gives 125 mcg BID (C), a common habit the label does not use here; 500 mcg (A) is for CrCl >60. QTc 428 is below the 440-msec limit. The label contraindicates verapamil, cimetidine, trimethoprim, ketoconazole, HCTZ and others, but metformin (renally secreted) is only 'co-administer with care,' and omeprazole is the label's suggested anti-ulcer option, so D is wrong. Takeaway: dofetilide uses actual weight, and metformin is a caution, not a contraindication.",
+    "sources": [
+      {
+        "name": "TIKOSYN (dofetilide) – FDA label (Pfizer), DailyMed",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02438044-d6a3-49e9-a1ac-3aad21ef2c8c"
+      }
+    ],
+    "why_hard": "The single calc item: arithmetic is easy, but the answer flips on the judgment of actual vs ideal body weight (label-specific), and the med list contains a renally secreted 'caution' drug that mimics a contraindication."
+  },
+  {
+    "id": "NAPLEX-05",
+    "board": "NAPLEX",
+    "format": "MCQ (4-option)",
+    "topic": "Switching an ARB to sacubitril/valsartan in severe CKD",
+    "stem": "A 70-year-old man with HFrEF (EF 28%), NYHA class II, takes valsartan 40 mg PO BID, carvedilol 12.5 mg BID, dapagliflozin 10 mg daily, and furosemide 20 mg daily. Labs: eGFR 27 mL/min/1.73 m2; K 4.6 mEq/L; BP 118/72. No history of angioedema. The cardiologist asks for a sacubitril/valsartan recommendation. Which plan is most appropriate?",
+    "options": {
+      "A": "Stop valsartan; start sacubitril/valsartan 24 mg/26 mg BID at the time of the next scheduled valsartan dose",
+      "B": "Stop valsartan; wait 36 hours, then start sacubitril/valsartan 24 mg/26 mg BID",
+      "C": "Stop valsartan; start sacubitril/valsartan 49 mg/51 mg BID at the time of the next scheduled valsartan dose",
+      "D": "Stop valsartan; wait 36 hours, then start sacubitril/valsartan 49 mg/51 mg BID"
+    },
+    "answer": "A",
+    "explanation": "The Entresto label's 36-hour washout applies to switching from or to an ACE inhibitor (neprilysin plus ACE inhibition raises angioedema risk); it does not apply to ARBs, so B and D delay therapy unnecessarily. The usual adult HF starting dose is 49/51 mg BID, but the label recommends half the usual starting dose (24/26 mg BID) both for patients previously on low-dose ACEi/ARB and for severe renal impairment (eGFR <30). Valsartan 40 mg BID is a low dose and eGFR is 27, so 24/26 mg BID (A); C and D overdose the start. Valsartan must be stopped because Entresto already contains it. Takeaway: washout is an ACE-inhibitor rule; start low for low prior RAS dose or eGFR <30.",
+    "sources": [
+      {
+        "name": "ENTRESTO (sacubitril/valsartan) – FDA label (Novartis), DailyMed",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=000dc81d-ab91-450c-8eae-8eb74e72296f"
+      }
+    ],
+    "why_hard": "Strong solvers reflexively apply the 36-h washout to any RAS switch; two independent half-dose triggers must be recognized; options are a symmetric 2×2 so no wording cue."
+  }
+]

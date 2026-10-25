@@ -22,6 +22,12 @@ function norm(text: string): string {
 }
 
 function splitMatrixPairs(correctAnswer: string): string[] {
+  if (correctAnswer.includes(";;")) {
+    return correctAnswer
+      .split(";;")
+      .map((part) => part.trim())
+      .filter(Boolean);
+  }
   return correctAnswer
     .split(/,(?=[^,]+\|\|\|)/)
     .map((part) => part.trim())
@@ -86,11 +92,19 @@ function validateBowTieAnswer(item: BankItem): boolean {
   const payload = item.ngnPayload ?? {};
   const actions = Array.isArray(payload.actions) ? payload.actions.map(String) : [];
   const monitors = Array.isArray(payload.monitors) ? payload.monitors.map(String) : [];
+  const actionPick = Number(payload.actionPickCount ?? 1) || 1;
+  const monitorPick = Number(payload.monitorPickCount ?? 2) || 2;
   const parts = splitCompositeAnswer(item.correctAnswer);
-  if (parts.length < 3 || actions.length === 0 || monitors.length === 0) return false;
+  if (parts.length < actionPick + monitorPick || actions.length === 0 || monitors.length === 0) {
+    return false;
+  }
 
-  const actionOk = actions.some((action) => norm(action) === norm(parts[0]!));
-  const monitorOk = parts.slice(1).every((part) => monitors.some((monitor) => norm(monitor) === norm(part)));
+  const actionParts = parts.slice(0, actionPick);
+  const monitorParts = parts.slice(actionPick, actionPick + monitorPick);
+  const actionOk = actionParts.every((part) => actions.some((action) => norm(action) === norm(part)));
+  const monitorOk = monitorParts.every((part) =>
+    monitors.some((monitor) => norm(monitor) === norm(part))
+  );
   return actionOk && monitorOk;
 }
 

@@ -15,9 +15,15 @@ export function isNclexCuratedItem(
   if (tags.includes("cjmm-polished")) return true;
   if (tags.includes("nclex-ngn")) return true;
   if (tags.includes("high-yield") && !tags.includes("generated")) return true;
-  if (item.source === "ai-curated" || item.source === "curated" || item.source === "polished") {
+  if (
+    item.source === "ai-curated" ||
+    item.source === "curated" ||
+    item.source === "polished" ||
+    item.source === "judgment-pilot"
+  ) {
     return true;
   }
+  if (tags.includes("judgment-pilot")) return true;
   return false;
 }
 
