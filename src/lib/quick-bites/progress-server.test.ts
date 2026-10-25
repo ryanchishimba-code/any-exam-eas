@@ -97,7 +97,7 @@ describe("upsertQuickBiteProgress", () => {
     );
   });
 
-  it("ignores spurious zero playbackPositionSec from resume seek pause", async () => {
+  it("ignores spurious zero playbackPositionSec on position-only saves", async () => {
     prismaMock.quickBiteProgress.findUnique.mockResolvedValue({
       watchPct: 78,
       playbackPositionSec: 59,
@@ -115,7 +115,7 @@ describe("upsertQuickBiteProgress", () => {
 
     await upsertQuickBiteProgress("user-1", "quick-bites-fnp-ep03-diabetes", {
       playbackPositionSec: 0,
-      momentWatchPct: 0,
+      momentWatchPct: 24,
       watchSecondsDelta: 0,
     });
 
@@ -123,6 +123,37 @@ describe("upsertQuickBiteProgress", () => {
       expect.objectContaining({
         update: expect.objectContaining({
           playbackPositionSec: 59,
+        }),
+      })
+    );
+  });
+
+  it("still saves an intentional seek backward", async () => {
+    prismaMock.quickBiteProgress.findUnique.mockResolvedValue({
+      watchPct: 78,
+      playbackPositionSec: 58,
+      watchSeconds: 200,
+      completedAt: null,
+      updatedAt: new Date(Date.now() - 60_000),
+    });
+    prismaMock.quickBiteProgress.upsert.mockResolvedValue({
+      watchPct: 78,
+      playbackPositionSec: 10,
+      watchSeconds: 200,
+      completedAt: null,
+      updatedAt: new Date(),
+    });
+
+    await upsertQuickBiteProgress("user-1", "quick-bites-fnp-ep03-diabetes", {
+      playbackPositionSec: 10,
+      momentWatchPct: 5,
+      watchSecondsDelta: 0,
+    });
+
+    expect(prismaMock.quickBiteProgress.upsert).toHaveBeenCalledWith(
+      expect.objectContaining({
+        update: expect.objectContaining({
+          playbackPositionSec: 10,
         }),
       })
     );

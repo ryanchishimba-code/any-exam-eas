@@ -14,6 +14,14 @@ const PROGRESS_INTERVAL_MS = 10_000;
 const TIMEUPDATE_MIN_MS = 8_000;
 const WATCH_PCT_COMPLETE = COMPLETION_RULES_V2.quickBiteWatchPctComplete;
 
+function isSpuriousHeadPositionSave(
+  playbackPositionSec: number,
+  maxMomentWatchPct: number,
+  force: boolean
+): boolean {
+  return force && playbackPositionSec <= 0.5 && maxMomentWatchPct > 3;
+}
+
 export type QuickBiteProgressClient = {
   watchPct: number;
   playbackPositionSec: number;
@@ -182,20 +190,23 @@ export function scheduleQuickBiteResumeSeek(
     if (!Number.isFinite(video.duration) || video.duration <= 0) return;
     const onSeeked = () => {
       video.removeEventListener("seeked", onSeeked);
+      window.clearTimeout(seekTimeout);
       finish();
     };
+    const seekTimeout = window.setTimeout(() => {
+      video.removeEventListener("seeked", onSeeked);
+      finish();
+    }, 2_000);
     video.addEventListener("seeked", onSeeked);
     try {
       if (options?.suppressProgressFlush) options.suppressProgressFlush.current = true;
       video.pause();
       video.currentTime = seconds;
       if (Math.abs(video.currentTime - seconds) < 0.35) {
-        video.removeEventListener("seeked", onSeeked);
-        finish();
+        onSeeked();
       }
     } catch {
-      video.removeEventListener("seeked", onSeeked);
-      finish();
+      onSeeked();
     }
   };
 
@@ -263,6 +274,11 @@ export function useQuickBiteProgressReporter({
       const playbackPositionSec = video.currentTime;
       const momentWatchPct = Math.min(100, (playbackPositionSec / duration) * 100);
       lastMaxWatchPctRef.current = Math.max(lastMaxWatchPctRef.current, momentWatchPct);
+      if (
+        isSpuriousHeadPositionSave(playbackPositionSec, lastMaxWatchPctRef.current, force)
+      ) {
+        return;
+      }
       if (!force && watchSecondsDelta <= 0) return;
       lastSentAtRef.current = Date.now();
       const payload = JSON.stringify({
@@ -343,7 +359,7 @@ export function useQuickBiteProgressReporter({
       video.removeEventListener("seeked", onSeeked);
       video.removeEventListener("timeupdate", onTimeupdate);
       window.removeEventListener("pagehide", onPageHide);
-      flushElapsed(true, true);
+      if (video.currentTime > 0.5) flushElapsed(true, true);
     };
   }, [enabled, sendProgress, slug, videoElement]);
 }
