@@ -63,13 +63,13 @@ export function MarketingPhotoHero({
           <source type="image/webp" srcSet={marketingPhotoHeroSrc(heroId, "desktop", "webp")} />
           <img
             className="mkt-photo-hero__img"
-            src={marketingPhotoHeroSrc(heroId, "desktop", "webp")}
+            src={marketingPhotoHeroSrc(heroId, "mobile", "webp")}
             alt=""
-            decoding="async"
+            decoding={priority ? "sync" : "async"}
             fetchPriority={priority ? "high" : "auto"}
             loading={priority ? "eager" : "lazy"}
-            width={1440}
-            height={810}
+            width={768}
+            height={432}
           />
         </picture>
       </div>
