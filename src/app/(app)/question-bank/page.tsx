@@ -73,11 +73,13 @@ async function QuestionBankContent({
   examSlug,
   fieldParam,
   usmleStepLabel,
+  blueprintTopics = [],
 }: {
   userId: string;
   examSlug: ExamSlug;
   fieldParam: string;
   usmleStepLabel?: string;
+  blueprintTopics?: string[];
 }) {
   // Retries live in the loader / Neon HTTP path. After they are exhausted,
   // this throws into question-bank/error.tsx (final fallback UI).
@@ -87,6 +89,7 @@ async function QuestionBankContent({
       examSlug={examSlug}
       fieldParam={fieldParam}
       usmleStepLabel={usmleStepLabel}
+      blueprintTopics={blueprintTopics}
     />
   );
 }
@@ -111,6 +114,11 @@ export default async function QuestionBankPage({
   const style = firstParam(sp.style);
   const subjectId = firstParam(sp.subjectId);
   const examSessionId = firstParam(sp.examSessionId);
+  const blueprintTopics =
+    firstParam(sp.blueprintTopics)
+      ?.split(",")
+      .map((part) => part.trim())
+      .filter(Boolean) ?? [];
 
   // Same preflight for Review incorrect and Weak areas: 0 eligible returns the
   // empty notice here, before the practice Suspense skeleton.
@@ -159,7 +167,11 @@ export default async function QuestionBankPage({
         <CanonicalQuestionBankUrl fieldId={route.fieldParam} />
       </Suspense>
       <Suspense fallback={<QuestionBankPracticeSkeleton />}>
-        <QuestionBankContent userId={session.user.id} {...route} />
+        <QuestionBankContent
+          userId={session.user.id}
+          {...route}
+          blueprintTopics={blueprintTopics}
+        />
       </Suspense>
     </div>
   );

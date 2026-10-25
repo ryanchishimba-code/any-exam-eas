@@ -95,6 +95,7 @@ export async function fetchTopicPracticePoolCount(
   });
   const res = await fetch(`/api/questions/subject-counts?${qs.toString()}`, {
     cache: "no-store",
+    credentials: "include",
   });
   if (!res.ok) return null;
   const data = (await res.json()) as { topicPracticePoolCount?: unknown };

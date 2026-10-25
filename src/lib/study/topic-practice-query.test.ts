@@ -1,7 +1,8 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   appendTopicPracticeFiltersToQuery,
   mergeTopicPracticeFiltersIntoQuery,
+  topicPracticeLaunchSearchParams,
 } from "./topic-practice-query";
 
 describe("topic practice query helpers", () => {
@@ -33,5 +34,16 @@ describe("topic practice query helpers", () => {
     mergeTopicPracticeFiltersIntoQuery(target, source);
     expect(target.get("blueprintTopics")).toBe("gi-disorders");
     expect(target.get("usmleTopic")).toBe("gastrointestinal");
+  });
+
+  it("merges blueprintTopics from the browser when the hook omits them", () => {
+    vi.stubGlobal("window", {
+      location: { search: "?blueprintTopics=cardiac-emergencies" },
+    });
+    const hook = new URLSearchParams("field=nursing&style=standard");
+    expect(topicPracticeLaunchSearchParams(hook).get("blueprintTopics")).toBe(
+      "cardiac-emergencies"
+    );
+    vi.unstubAllGlobals();
   });
 });

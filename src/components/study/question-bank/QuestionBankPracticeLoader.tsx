@@ -1,5 +1,8 @@
 import { StudyBankPracticeLazy } from "@/components/study/StudyBankPracticeLazy";
-import { loadSubjectCountsForUser } from "@/lib/study/load-subject-counts";
+import {
+  loadSubjectCountsForUser,
+  loadTopicPracticePoolCountForUser,
+} from "@/lib/study/load-subject-counts";
 import type { ExamSlug } from "@/types/edtech";
 
 export type QuestionBankHubStats = {
@@ -13,18 +16,24 @@ export async function QuestionBankPracticeLoader({
   fieldParam,
   hubStats,
   usmleStepLabel,
+  blueprintTopics = [],
 }: {
   userId: string;
   examSlug: ExamSlug;
   fieldParam: string;
   hubStats?: QuestionBankHubStats;
   usmleStepLabel?: string;
+  blueprintTopics?: string[];
 }) {
   // Counts are the topic list. Weak marks, coverage chips, and the open
   // review total arrive from /api/learning/coverage after this HTML closes.
   // Critical path retries inside loadSubjectCountsForUser / Neon HTTP.
   // After they are exhausted, let the error bubble to question-bank/error.tsx.
   const countsPayload = await loadSubjectCountsForUser(userId, fieldParam);
+  const initialTopicPracticePoolCount =
+    blueprintTopics.length > 0
+      ? await loadTopicPracticePoolCountForUser(userId, fieldParam, blueprintTopics)
+      : null;
 
   const totalQuestions = countsPayload ? countsPayload.total : null;
   const initialInventory = countsPayload
@@ -57,6 +66,7 @@ export async function QuestionBankPracticeLoader({
       topicCount={countsPayload?.counts ? Object.keys(countsPayload.counts).length : null}
       totalQuestions={totalQuestions}
       boardOpenRemediationCount={null}
+      initialTopicPracticePoolCount={initialTopicPracticePoolCount}
     />
   );
 }

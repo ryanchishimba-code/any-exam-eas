@@ -22,8 +22,8 @@ export const runtime = "nodejs";
  * serve-path subject counts so the topic picker still matches what practice draws.
  */
 export async function GET(req: Request) {
-  const { requirePremiumApi } = await import("@/lib/api-access");
-  const premium = await requirePremiumApi();
+  const { requireStudyApi } = await import("@/lib/api-access");
+  const premium = await requireStudyApi();
   if (!premium.ok) return premium.response;
 
   const url = new URL(req.url);

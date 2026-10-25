@@ -86,6 +86,7 @@ import {
 import {
   appendTopicPracticeFiltersToQuery,
   mergeTopicPracticeFiltersIntoQuery,
+  topicPracticeLaunchSearchParams,
 } from "@/lib/study/topic-practice-query";
 import {
   parseTopicPracticeLaunchFilters,
@@ -333,6 +334,7 @@ export function StudyBankPractice({
   usmleStepLabel,
   totalQuestions = null,
   boardOpenRemediationCount = null,
+  initialTopicPracticePoolCount = null,
 }: {
   preferredExamSlug?: ExamSlug;
   lockExam?: boolean;
@@ -357,6 +359,8 @@ export function StudyBankPractice({
    * shows. A capped sitting must not replace it.
    */
   boardOpenRemediationCount?: number | null;
+  /** SSR topic-practice pool (blueprintTopics=) so the launcher count is correct before client fetch. */
+  initialTopicPracticePoolCount?: number | null;
 } = {}) {
   const router = useRouter();
   const pathname = usePathname();
@@ -434,9 +438,13 @@ export function StudyBankPractice({
     () => parsePracticeReturn(searchParams),
     [searchParams]
   );
-  const topicPracticeFilters = useMemo(
-    () => parseTopicPracticeLaunchFilters(searchParams),
+  const launchSearchParams = useMemo(
+    () => topicPracticeLaunchSearchParams(searchParams),
     [searchParams]
+  );
+  const topicPracticeFilters = useMemo(
+    () => parseTopicPracticeLaunchFilters(launchSearchParams),
+    [launchSearchParams]
   );
   const topicPracticeLaunch = topicPracticeFiltersActive(topicPracticeFilters);
   const topicPracticeBlueprintTopics = topicPracticeFilters.blueprintTopics;
@@ -449,12 +457,14 @@ export function StudyBankPractice({
     return resolveFieldId(field);
   }, [field, fieldParam]);
 
-  const { data: topicPracticePoolCount = null } = useQuery({
+  const { data: topicPracticePoolCount = initialTopicPracticePoolCount } = useQuery({
     queryKey: ["topic-practice-pool", fieldId, topicPracticeBlueprintTopics?.join(",") ?? ""],
     queryFn: () =>
       fetchTopicPracticePoolCount(fieldId, topicPracticeBlueprintTopics ?? []),
     enabled: Boolean(topicPracticeBlueprintTopics?.length) && !isTimedExam,
     staleTime: 5 * 60 * 1000,
+    initialData:
+      initialTopicPracticePoolCount != null ? initialTopicPracticePoolCount : undefined,
   });
 
   const examScopeKey = useMemo(
@@ -1277,9 +1287,10 @@ export function StudyBankPractice({
           : validateQuestionBankSession({
               subjectId: sessionSubjectId,
               questionCount,
-              subjectCounts: sessionCounts,
+              subjectCounts: topicAwareSessionCounts,
               bankStyle: areaSession ? "standard" : activeStyle,
               taskCategory: isPance ? taskCategory : null,
+              allowPartialTopicPractice: topicPracticeLaunch,
             });
       if (!validation.ok) {
         setError(validation.message ?? "Cannot start this session.");
@@ -1959,7 +1970,7 @@ export function StudyBankPractice({
       }
       const difficultyTierParam = searchParams.get("difficultyTier");
       if (difficultyTierParam) qs.set("difficultyTier", difficultyTierParam);
-      appendTopicPracticeFiltersToQuery(qs, searchParams);
+      appendTopicPracticeFiltersToQuery(qs, launchSearchParams);
 
       const res = await fetch(`/api/questions?${qs.toString()}`);
       const data = await res.json();
