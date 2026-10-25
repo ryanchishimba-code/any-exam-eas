@@ -93,6 +93,19 @@ function seededShuffle<T>(items: readonly T[], seedKey: string): T[] {
   return copy;
 }
 
+/** Nursing/pharmacy explanations cite answer letters ("B is correct"). FNP/PANCE use clinical text with other capitals (USPSTF grades). */
+export function remapExplanationOptionLetters(
+  explanation: string,
+  originalIds: Set<string>,
+  letterForOriginal: Map<string, string>
+): string {
+  const citesAnswerLetters = / is correct:| is wrong:| are correct:/i.test(explanation);
+  if (!citesAnswerLetters) return explanation;
+  return explanation.replace(/\b[A-Z]\b/g, (letter) =>
+    originalIds.has(letter) ? (letterForOriginal.get(letter) ?? letter) : letter
+  );
+}
+
 function presentQuestion(question: RawQuestion, type: QuickBiteAnswerType): StoredQuickBiteQuestion {
   const shuffled = seededShuffle(question.options, question.id);
   const letterForOriginal = new Map<string, string>();
@@ -110,8 +123,10 @@ function presentQuestion(question: RawQuestion, type: QuickBiteAnswerType): Stor
     })
     .sort();
   const originalIds = new Set(question.options.map((option) => option.id));
-  const explanation = question.explanation.replace(/\b[A-Z]\b/g, (letter) =>
-    originalIds.has(letter) ? (letterForOriginal.get(letter) ?? letter) : letter
+  const explanation = remapExplanationOptionLetters(
+    question.explanation,
+    originalIds,
+    letterForOriginal
   );
   return {
     id: question.id,

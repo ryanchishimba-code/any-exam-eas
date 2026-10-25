@@ -1,8 +1,10 @@
 import { prisma } from "@/lib/prisma";
 import { COMPLETION_RULES_V2 } from "@/lib/learning/study-completion/completion-rules-v2";
+import type { QuickBiteProgressBody } from "@/lib/quick-bites/progress-body";
 
 export type QuickBiteProgressRow = {
   watchPct: number;
+  playbackPositionSec: number;
   watchSeconds: number;
   completedAt: Date | null;
   updatedAt: Date;
@@ -29,6 +31,7 @@ export function isQuickBiteComplete(watchPct: number, rules = COMPLETION_RULES_V
 
 export type QuickBiteProgressSnapshot = {
   watchPct: number;
+  playbackPositionSec: number;
   watchSeconds: number;
   completedAt: string | null;
 };
@@ -43,6 +46,7 @@ export async function listQuickBiteProgressForUser(
     select: {
       slug: true,
       watchPct: true,
+      playbackPositionSec: true,
       watchSeconds: true,
       completedAt: true,
     },
@@ -51,6 +55,7 @@ export async function listQuickBiteProgressForUser(
   for (const row of rows) {
     out[row.slug] = {
       watchPct: row.watchPct,
+      playbackPositionSec: row.playbackPositionSec,
       watchSeconds: row.watchSeconds,
       completedAt: row.completedAt?.toISOString() ?? null,
     };
@@ -61,7 +66,7 @@ export async function listQuickBiteProgressForUser(
 export async function upsertQuickBiteProgress(
   userId: string,
   slug: string,
-  input: { watchPct: number; watchSecondsDelta: number }
+  input: QuickBiteProgressBody
 ): Promise<QuickBiteProgressRow> {
   const existing = await prisma.quickBiteProgress.findUnique({
     where: { userId_slug: { userId, slug } },
@@ -71,7 +76,11 @@ export async function upsertQuickBiteProgress(
     input.watchSecondsDelta,
     existing?.updatedAt ?? null
   );
-  const watchPct = Math.max(existing?.watchPct ?? 0, Math.min(100, input.watchPct));
+  const watchPct = Math.max(
+    existing?.watchPct ?? 0,
+    Math.min(100, input.momentWatchPct)
+  );
+  const playbackPositionSec = Math.max(0, input.playbackPositionSec);
   const watchSeconds = (existing?.watchSeconds ?? 0) + increment;
   const completed =
     isQuickBiteComplete(watchPct) || Boolean(existing?.completedAt);
@@ -82,11 +91,13 @@ export async function upsertQuickBiteProgress(
       userId,
       slug,
       watchPct,
+      playbackPositionSec,
       watchSeconds,
       completedAt: completed ? new Date() : null,
     },
     update: {
       watchPct,
+      playbackPositionSec,
       watchSeconds,
       completedAt: completed ? (existing?.completedAt ?? new Date()) : null,
     },

@@ -1828,11 +1828,14 @@ model SgChapterProgress {
 
 /// Video Quick Bite watch progress (per user and episode slug).
 model QuickBiteProgress {
-  userId       String
-  slug         String
-  watchPct     Float     @default(0)
-  watchSeconds Int       @default(0)
-  completedAt  DateTime?
+  userId              String
+  slug                String
+  /// Furthest point reached in the episode (0–100), for completion credit.
+  watchPct            Float     @default(0)
+  /// Last playback head in seconds (resume point).
+  playbackPositionSec Float     @default(0)
+  watchSeconds        Int       @default(0)
+  completedAt         DateTime?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 

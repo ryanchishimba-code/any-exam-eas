@@ -31,7 +31,10 @@ import {
 } from "@/lib/quick-bites/pharmacy-catalog";
 import {
   isQuickBiteWatched,
+  quickBiteListProgressPercent,
   useQuickBiteProgressMap,
+  useQuickBiteResumeSnapshot,
+  type QuickBiteProgressClient,
 } from "@/lib/quick-bites/use-quick-bite-progress";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
@@ -95,8 +98,8 @@ const FNP_SERIES: QuickBiteSeries = {
   groups: [{ title: "", episodes: FNP_QUICK_BITE_EPISODES }],
   poster: fnpQuickBitePoster,
   apiBase: "/api/quick-bites-fnp",
-  includeCaptionsTrack: true,
-  captionsNote: "Captions are available from the player. They match the words already on screen.",
+  includeCaptionsTrack: false,
+  captionsNote: "Captions are burned into the video.",
   isPlayable: isFnpQuickBitePlayable,
   nextEpisode: nextPlayableFnpQuickBite,
 };
@@ -111,8 +114,8 @@ const PANCE_SERIES: QuickBiteSeries = {
   groups: [{ title: "", episodes: PANCE_QUICK_BITE_EPISODES }],
   poster: panceQuickBitePoster,
   apiBase: "/api/quick-bites-pance",
-  includeCaptionsTrack: true,
-  captionsNote: "Captions are available from the player. They match the words already on screen.",
+  includeCaptionsTrack: false,
+  captionsNote: "Captions are burned into the video.",
   isPlayable: isPanceQuickBitePlayable,
   nextEpisode: nextPlayablePanceQuickBite,
 };
@@ -134,23 +137,53 @@ function Poster({ poster }: { poster: { webp: string; jpg: string } }) {
   );
 }
 
+function EpisodeWatchBar({ percent }: { percent: number }) {
+  if (percent <= 0) return null;
+  return (
+    <div
+      className="h-1 w-full bg-[var(--color-border)]/60"
+      role="progressbar"
+      aria-valuenow={percent}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label={`${percent}% watched`}
+    >
+      <div
+        className="h-full bg-[var(--color-accent)] transition-[width] duration-300"
+        style={{ width: `${percent}%` }}
+      />
+    </div>
+  );
+}
+
 function EpisodeMeta({
   episode,
-  watched,
+  progress,
 }: {
   episode: QuickBiteEpisode;
-  watched?: boolean;
+  progress?: QuickBiteProgressClient;
 }) {
+  const watched = isQuickBiteWatched(progress);
+  const listPct = quickBiteListProgressPercent(progress);
   return (
-    <span className="flex min-h-11 items-center gap-3 px-3.5 py-2.5">
-      <span className="w-6 shrink-0 text-[13px] font-semibold tabular-nums text-[var(--color-ink-muted)]">
-        {episode.number}
-      </span>
-      <span className="min-w-0 flex-1 text-[14px] font-semibold leading-snug tracking-[-0.01em] text-[var(--color-ink)]">
-        {episode.title}
-      </span>
-      <span className="shrink-0 text-[12px] tabular-nums text-[var(--color-ink-muted)]">
-        {watched ? "Watched" : episode.held ? "Coming soon" : episode.duration}
+    <span className="flex min-h-11 flex-col">
+      <EpisodeWatchBar percent={listPct} />
+      <span className="flex items-center gap-3 px-3.5 py-2.5">
+        <span className="w-6 shrink-0 text-[13px] font-semibold tabular-nums text-[var(--color-ink-muted)]">
+          {episode.number}
+        </span>
+        <span className="min-w-0 flex-1 text-[14px] font-semibold leading-snug tracking-[-0.01em] text-[var(--color-ink)]">
+          {episode.title}
+        </span>
+        <span className="shrink-0 text-[12px] tabular-nums text-[var(--color-ink-muted)]">
+          {watched
+            ? "Watched"
+            : listPct > 0
+              ? `${listPct}%`
+              : episode.held
+                ? "Coming soon"
+                : episode.duration}
+        </span>
       </span>
     </span>
   );
@@ -197,6 +230,11 @@ export function VideoQuickBitesSection({
     apiBase: config.apiBase,
     enabled: canPlay,
   });
+  const resumeSnapshot = useQuickBiteResumeSnapshot(
+    active ? `${session}:${active.slug}` : "",
+    active?.slug ?? "",
+    progress
+  );
 
   function selectFromLibrary(slug: string) {
     const player = document.getElementById("quick-bites-player");
@@ -274,7 +312,7 @@ export function VideoQuickBitesSection({
           poster={active ? config.poster(active.slug) : undefined}
           includeCaptionsTrack={config.includeCaptionsTrack}
           captionsNote={config.captionsNote}
-          resumeWatchPct={active ? (progress[active.slug]?.watchPct ?? 0) : 0}
+          resumeSnapshot={resumeSnapshot}
           onProgressSaved={mergeProgress}
           library={
             <div
@@ -292,7 +330,7 @@ export function VideoQuickBitesSection({
                     ) : null}
                     <ul className="flex gap-3 lg:grid lg:grid-cols-1">
                       {group.episodes.map((episode) => {
-                        const watched = isQuickBiteWatched(progress[episode.slug]);
+                        const episodeProgress = progress[episode.slug];
                         return (
                         <li key={episode.slug} className="w-36 shrink-0 lg:w-auto">
                           {config.isPlayable(episode, canPlay) ? (
@@ -310,7 +348,7 @@ export function VideoQuickBitesSection({
                                   <Play className="h-4 w-4" aria-hidden />
                                 </span>
                               </span>
-                              <EpisodeMeta episode={episode} watched={watched} />
+                              <EpisodeMeta episode={episode} progress={episodeProgress} />
                             </button>
                           ) : (
                             <figure className="overflow-hidden rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)]">
@@ -326,7 +364,7 @@ export function VideoQuickBitesSection({
                                 )}
                               </div>
                               <figcaption>
-                                <EpisodeMeta episode={episode} watched={watched} />
+                                <EpisodeMeta episode={episode} progress={episodeProgress} />
                               </figcaption>
                             </figure>
                           )}

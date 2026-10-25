@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { X } from "lucide-react";
 import { NextEpisodeButton, QuickBitesQuiz } from "@/components/quick-bites/QuickBitesQuiz";
 import {
@@ -10,8 +10,10 @@ import {
 } from "@/lib/quick-bites/catalog";
 import { parseVideoTimestamp } from "@/lib/quick-bites/timestamp";
 import {
+  scheduleQuickBiteResumeSeek,
   useQuickBiteProgressReporter,
   type QuickBiteProgressClient,
+  type QuickBiteResumeSnapshot,
 } from "@/lib/quick-bites/use-quick-bite-progress";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
@@ -32,7 +34,7 @@ export function QuickBitesPlayer({
   poster: posterOverride,
   includeCaptionsTrack = true,
   captionsNote = "Captions are available from the player. They match the words already on screen.",
-  resumeWatchPct = 0,
+  resumeSnapshot = { playbackPositionSec: 0, completed: false },
   onProgressSaved,
 }: {
   episode: QuickBiteEpisode | null;
@@ -45,7 +47,7 @@ export function QuickBitesPlayer({
   poster?: { webp: string; jpg: string };
   includeCaptionsTrack?: boolean;
   captionsNote?: string;
-  resumeWatchPct?: number;
+  resumeSnapshot?: QuickBiteResumeSnapshot;
   onProgressSaved?: (slug: string, row: QuickBiteProgressClient) => void;
 }) {
   const slug = episode ? (getQuickBiteBySlug(episode.slug) ?? episode).slug : "";
@@ -58,7 +60,12 @@ export function QuickBitesPlayer({
   const [quizSession, setQuizSession] = useState({ id: identity, open: false });
   const quizOpen = quizSession.id === identity && quizSession.open;
   const videoRef = useRef<HTMLVideoElement>(null);
-  const playedToken = useRef("");
+  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(null);
+  const bindVideoRef = useCallback((node: HTMLVideoElement | null) => {
+    videoRef.current = node;
+    setVideoElement(node);
+  }, []);
+  const playbackStartToken = useRef("");
   const scrollLock = useRef<number | null>(null);
   const [captionsOn, setCaptionsOn] = useState(false);
 
@@ -91,7 +98,7 @@ export function QuickBitesPlayer({
     apiBase,
     enabled: state.status === "ready" && Boolean(known),
     videoRef,
-    resumeWatchPct,
+    videoElement,
     onSaved: onProgressSaved,
   });
 
@@ -122,6 +129,7 @@ export function QuickBitesPlayer({
 
   useEffect(() => {
     setCaptionsOn(false);
+    setVideoElement(null);
   }, [slug, playbackNonce]);
 
   useEffect(() => {
@@ -168,19 +176,24 @@ export function QuickBitesPlayer({
   }, [apiBase, slug]);
 
   useEffect(() => {
-    if (!known || state.status !== "ready") return;
-    const video = videoRef.current;
-    if (!video) return;
-    const token = `${known.slug}:${playbackNonce}`;
-    if (playedToken.current === token) return;
-    playedToken.current = token;
-    try {
-      const pending = video.play?.();
-      if (pending && typeof pending.catch === "function") pending.catch(() => {});
-    } catch {
-      // Autoplay can be blocked. The controls stay available.
-    }
-  }, [known, state.status, playbackNonce]);
+    if (!known || state.status !== "ready" || !videoElement) return;
+    const video = videoElement;
+    const token = `${known.slug}:${playbackNonce}:${resumeSnapshot.playbackPositionSec}:${resumeSnapshot.completed}`;
+    if (playbackStartToken.current === token) return;
+
+    const startPlayback = () => {
+      if (playbackStartToken.current === token) return;
+      playbackStartToken.current = token;
+      try {
+        const pending = video.play?.();
+        if (pending && typeof pending.catch === "function") pending.catch(() => {});
+      } catch {
+        // Autoplay can be blocked. The controls stay available.
+      }
+    };
+
+    return scheduleQuickBiteResumeSeek(video, resumeSnapshot, startPlayback);
+  }, [known, playbackNonce, resumeSnapshot, state.status, videoElement]);
 
   return (
     <div className="contents">
@@ -255,7 +268,7 @@ export function QuickBitesPlayer({
           {known && poster && state.status === "ready" ? (
             <video
               key={known.slug}
-              ref={videoRef}
+              ref={bindVideoRef}
               controls
               preload="metadata"
               playsInline
