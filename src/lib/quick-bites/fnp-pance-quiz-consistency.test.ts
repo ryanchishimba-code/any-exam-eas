@@ -44,6 +44,14 @@ describe("FNP and PANCE Quick Bites quiz consistency", () => {
     }
   });
 
+  it("does not shuffle USPSTF grade letters in served explanations", () => {
+    const quiz = getFnpQuickBiteQuiz("quick-bites-fnp-ep01-screening")!;
+    const served = quiz.questions.find((question) => question.id === "ep01-screening-q01")!;
+    expect(served.explanation).toMatch(/Grades A and B mean offer or provide/i);
+    expect(served.explanation).toMatch(/Grade C means offer selectively/i);
+    expect(served.explanation).not.toMatch(/Grades C and D mean offer/i);
+  });
+
   it("keeps USPSTF grade explanations aligned with keyed answers", () => {
     const raw = readRawQuizzes(path.join(process.cwd(), "src/lib/quick-bites/quizzes-fnp"));
     const screening = raw.find((file) =>

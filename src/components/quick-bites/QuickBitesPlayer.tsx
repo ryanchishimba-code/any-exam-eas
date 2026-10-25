@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { X } from "lucide-react";
 import { NextEpisodeButton, QuickBitesQuiz } from "@/components/quick-bites/QuickBitesQuiz";
 import {
@@ -58,6 +58,11 @@ export function QuickBitesPlayer({
   const [quizSession, setQuizSession] = useState({ id: identity, open: false });
   const quizOpen = quizSession.id === identity && quizSession.open;
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(null);
+  const bindVideoRef = useCallback((node: HTMLVideoElement | null) => {
+    videoRef.current = node;
+    setVideoElement(node);
+  }, []);
   const playedToken = useRef("");
   const scrollLock = useRef<number | null>(null);
   const [captionsOn, setCaptionsOn] = useState(false);
@@ -91,6 +96,7 @@ export function QuickBitesPlayer({
     apiBase,
     enabled: state.status === "ready" && Boolean(known),
     videoRef,
+    videoElement,
     resumeWatchPct,
     onSaved: onProgressSaved,
   });
@@ -122,6 +128,7 @@ export function QuickBitesPlayer({
 
   useEffect(() => {
     setCaptionsOn(false);
+    setVideoElement(null);
   }, [slug, playbackNonce]);
 
   useEffect(() => {
@@ -255,7 +262,7 @@ export function QuickBitesPlayer({
           {known && poster && state.status === "ready" ? (
             <video
               key={known.slug}
-              ref={videoRef}
+              ref={bindVideoRef}
               controls
               preload="metadata"
               playsInline
