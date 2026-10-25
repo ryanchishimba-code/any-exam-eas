@@ -286,8 +286,8 @@ function assertFileRewrites(items: RewriteItem[]): void {
   }
   const gerd = byId.get("cmrovw8ya000m1yu3299ty2aj");
   if (!gerd) throw new Error("GERD rewrite is missing");
-  if (!/prescription/i.test(gerd.correctAnswer)) throw new Error("the 8-week omeprazole course must be a prescription");
-  if (!/14 days/i.test(gerd.explanation) || !/prescription/i.test(gerd.explanation)) {
+  if (!/prescri/i.test(gerd.correctAnswer)) throw new Error("the 8-week omeprazole course must be a prescriber referral");
+  if (!/14 days/i.test(gerd.explanation) || !/prescri/i.test(gerd.explanation)) {
     throw new Error("GERD rationale must contrast the prescription course with the 14-day OTC label");
   }
   const coughIds = [

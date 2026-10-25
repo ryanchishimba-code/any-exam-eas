@@ -1,6 +1,6 @@
 {
   "published": false,
-  "note": "Twelve items were republished to QuestionBankItem on 2026-10-25, including the three blood-pressure items. cmr7zzhz2000m1yafsbg3xkeh stays hidden as a retired near-duplicate. Two items were revised again and must not be published; keyless stems are in blind-solve3.json.",
+  "note": "Twelve items were republished to QuestionBankItem on 2026-10-25. The GERD and phenytoin items are approved for republish. cmr7zzhz2000m1yafsbg3xkeh stays hidden as a retired near-duplicate.",
   "items": [
     {
       "id": "cmr815qlj00161ynm2bog3q9j",
@@ -22,7 +22,7 @@
     },
     {
       "id": "cmrovw8ya000m1yu3299ty2aj",
-      "status": "file-only",
+      "status": "republished",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
       "topic": "Recurrent GERD after a completed OTC PPI course",
@@ -33,15 +33,15 @@
       "options": [
         "Calcium carbonate 750 mg by mouth only after meals",
         "Recommend another OTC omeprazole 20 mg daily for 14 days of self-care, then stop",
-        "A prescription for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
+        "Refer to a prescriber for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
         "Ask her to restart ranitidine 150 mg by mouth twice daily"
       ],
-      "correctAnswer": "A prescription for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
-      "explanation": "Heartburn returned 6 weeks after a completed 14-day OTC omeprazole course. That is recurrence within 4 months, so this is no longer an OTC self-care problem and she needs prescriber care. The OTC label limits self-care to 14 days and does not support another self-care course this soon. Prescribe omeprazole 20 mg once daily before breakfast for 8 weeks, the ACG once-daily PPI trial for frequent symptoms. Another 14-day OTC course repeats a plan that did not give a lasting response. The FDA asked manufacturers to withdraw all ranitidine in 2020 because of NDMA, so it cannot be restarted. Calcium carbonate 750 mg after meals only neutralizes acid briefly and does not treat recurrent GERD. Takeaway: recurrence within 4 months of a 14-day OTC course gets an 8-week prescription PPI; ranitidine stays withdrawn."
+      "correctAnswer": "Refer to a prescriber for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
+      "explanation": "Heartburn returned 6 weeks after a completed 14-day OTC omeprazole course. That is recurrence within 4 months, so she needs a prescriber rather than another self-care purchase. Refer to a prescriber for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks. That is the ACG once-daily PPI trial for frequent symptoms. Another 14-day OTC course repeats a plan that did not last, and the OTC label does not support another self-care course this soon. The FDA asked manufacturers to withdraw all ranitidine in 2020 because of NDMA, so it cannot be restarted. Calcium carbonate 750 mg after meals only neutralizes acid briefly and does not treat recurrent GERD. Takeaway: after recurrence within 4 months of a 14-day OTC course, refer to a prescriber for an 8-week omeprazole course; ranitidine stays withdrawn."
     },
     {
       "id": "cmroigcz3000j1y7n1rmsnzr4",
-      "status": "file-only",
+      "status": "republished",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
       "topic": "Subtherapeutic phenytoin and nonlinear kinetics",
