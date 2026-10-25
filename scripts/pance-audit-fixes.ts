@@ -12,9 +12,13 @@
  * has 5 options, the key among those options, and an explanation of at most
  * 1000 characters.
  *
+ * A batch label of "b7" matches source batch "7". Pass --label to write a
+ * separate undo file and reports so a later run does not replace an earlier backup.
+ *
  * Usage:
  *   npx tsx scripts/pance-audit-fixes.ts scripts/data/pance-batch-insert/audit-fixes.json
  *   npx tsx scripts/pance-audit-fixes.ts scripts/data/pance-batch-insert/audit-fixes.json --apply --expect-live 3795
+ *   npx tsx scripts/pance-audit-fixes.ts scripts/data/pance-batch-insert/audit-fixes-citations.json --label citations --expect-live 3795
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -116,6 +120,7 @@ type BankRow = {
   source: string;
   patientAgeGroup: string | null;
   itemType: string;
+  blueprintTopic: string | null;
 };
 
 type PlannedUpdate = {
@@ -137,6 +142,7 @@ function parseArgs(argv: string[]) {
   let file: string | undefined;
   let apply = false;
   let expectLive: number | undefined;
+  let label: string | undefined;
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === "--apply") apply = true;
@@ -145,11 +151,39 @@ function parseArgs(argv: string[]) {
       const value = Number(argv[++i]);
       if (!Number.isInteger(value) || value < 0) throw new Error("--expect-live needs a non-negative integer.");
       expectLive = value;
+    } else if (arg === "--label") {
+      const value = argv[++i];
+      if (!value || !/^[a-z0-9][a-z0-9-]{0,40}$/.test(value)) {
+        throw new Error("--label needs a short lowercase name.");
+      }
+      label = value;
     } else if (!arg.startsWith("--") && !file) file = arg;
     else throw new Error(`Unknown argument: ${arg}`);
   }
   if (!file) throw new Error("Pass the fixes JSON file.");
-  return { file, apply, expectLive };
+  return { file, apply, expectLive, label };
+}
+
+function batchLabel(value: string | number): string {
+  return String(value).replace(/^b(?=\d)/, "");
+}
+
+function artifactName(base: string, label: string | undefined): string {
+  if (!label) return base;
+  return base.replace(/\.json$/, `-${label}.json`);
+}
+
+function reportName(apply: boolean, label: string | undefined): string {
+  return artifactName(apply ? "audit-fixes-apply-report.json" : "audit-fixes-dry-run-report.json", label);
+}
+
+function keyTakeawayOf(options: string): string | null {
+  try {
+    const parsed = JSON.parse(options) as { keyTakeaway?: unknown };
+    return typeof parsed.keyTakeaway === "string" ? parsed.keyTakeaway : null;
+  } catch {
+    return null;
+  }
 }
 
 function loadFixes(file: string): FixEntry[] {
@@ -264,7 +298,7 @@ async function main() {
       skips.push({ itemId: fix.itemId, fingerprint: fix.contentHash, reason: "taskCategory does not match the source item" });
       continue;
     }
-    const batchKey = String(fix.batch);
+    const batchKey = batchLabel(fix.batch);
     if (batchKey !== source.batchKey) {
       skips.push({ itemId: fix.itemId, fingerprint: fix.contentHash, reason: `batch ${batchKey} does not match source batch ${source.batchKey}` });
       continue;
@@ -308,6 +342,7 @@ async function main() {
       source: true,
       patientAgeGroup: true,
       itemType: true,
+      blueprintTopic: true,
     },
   });
   const bankByHash = new Map(bankRows.map((row) => [row.contentHash, row]));
@@ -488,7 +523,7 @@ async function main() {
   if (blocked) {
     report.liveAfter = before.live;
     report.eligibleAfter = before.eligible;
-    const reportPath = path.join(DATA_DIR, args.apply ? "audit-fixes-apply-report.json" : "audit-fixes-dry-run-report.json");
+    const reportPath = path.join(DATA_DIR, reportName(args.apply, args.label));
     writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log("Stopped. No rows written.");
     console.log(`report: ${displayPath(reportPath)}`);
@@ -518,11 +553,14 @@ async function main() {
         tags: update.bank.tags,
         difficulty: update.bank.difficulty,
         manualCorrection: update.bank.manualCorrection,
+        blueprintTopic: update.bank.blueprintTopic,
+        keyTakeaway: keyTakeawayOf(update.bank.options),
       },
       afterContentHash: update.next.contentHash,
+      afterKeyTakeaway: keyTakeawayOf(update.next.options),
     })),
   };
-  const undoPath = path.join(DATA_DIR, "audit-fixes-undo.json");
+  const undoPath = path.join(DATA_DIR, artifactName("audit-fixes-undo.json", args.label));
   writeFileSync(undoPath, JSON.stringify(undo, null, 2));
   console.log(`backup: ${displayPath(undoPath)} (${undo.rows.length} rows)`);
 
@@ -601,7 +639,7 @@ async function main() {
       const afterFailure = await readCounts();
       report.liveAfter = afterFailure.live;
       report.eligibleAfter = afterFailure.eligible;
-      const reportPath = path.join(DATA_DIR, args.apply ? "audit-fixes-apply-report.json" : "audit-fixes-dry-run-report.json");
+      const reportPath = path.join(DATA_DIR, reportName(args.apply, args.label));
       writeFileSync(reportPath, JSON.stringify({ ...report, schemaError: message }, null, 2));
       console.log("Update failed and the transaction was rolled back. No rows kept.");
       console.log(`report: ${displayPath(reportPath)}`);
@@ -621,7 +659,7 @@ async function main() {
     if (after.live !== before.live || after.eligible !== before.eligible) {
       throw new Error(`Dry-run rollback failed. Live ${before.live} -> ${after.live}, eligible ${before.eligible} -> ${after.eligible}.`);
     }
-    const reportPath = path.join(DATA_DIR, "audit-fixes-dry-run-report.json");
+    const reportPath = path.join(DATA_DIR, reportName(false, args.label));
     writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log("Dry run rolled back. No rows kept.");
     console.log(`report: ${displayPath(reportPath)}`);
@@ -632,7 +670,9 @@ async function main() {
     throw new Error(`Counts changed after commit. Live ${after.live}, student-eligible ${after.eligible}.`);
   }
 
-  const sample = planned.filter((_, index) => index % Math.floor(planned.length / 10) === 0).slice(0, 10);
+  const sampleSize = Math.min(10, planned.length);
+  const stride = Math.max(1, Math.floor(planned.length / sampleSize));
+  const sample = planned.filter((_, index) => index % stride === 0).slice(0, sampleSize);
   const reread = await prisma.questionBankItem.findMany({
     where: { id: { in: sample.map((update) => update.bank.id) } },
     select: {
@@ -663,13 +703,13 @@ async function main() {
     );
     return { itemId: update.fix.itemId, id: update.bank.id, ok };
   });
-  if (sampleReport.length !== 10 || sampleReport.some((row) => !row.ok)) {
+  if (sampleReport.length !== sampleSize || sampleReport.some((row) => !row.ok)) {
     throw new Error(`Random re-read failed: ${JSON.stringify(sampleReport)}`);
   }
   report.sample = sampleReport;
-  const reportPath = path.join(DATA_DIR, "audit-fixes-apply-report.json");
+  const reportPath = path.join(DATA_DIR, reportName(true, args.label));
   writeFileSync(reportPath, JSON.stringify(report, null, 2));
-  console.log(`Re-read 10 updated rows: all matched.`);
+  console.log(`Re-read ${sampleReport.length} updated rows: all matched.`);
   for (const row of sampleReport) console.log(`  ${row.itemId} ${row.id}`);
   console.log(`Updated ${planned.length} rows. Skips: ${skips.length}.`);
   console.log(`report: ${displayPath(reportPath)}`);
