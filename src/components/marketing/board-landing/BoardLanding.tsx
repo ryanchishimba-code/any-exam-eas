@@ -19,6 +19,7 @@ import type { PharmacyHeroScene } from "@/lib/marketing/board-landing/pharmacy-c
 import type { LandingQuestion } from "@/lib/marketing/board-landing/model";
 import type { BoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
+import { FinishLineBoardFaqItem } from "@/components/marketing/finish-line/FinishLineBoardFaqItem";
 import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
 import {
   HERO_TRIAL_CTA_LABEL,
@@ -82,6 +83,7 @@ export function BoardLanding({
               seeQuestionsHref={seeQuestionsHref}
               showSeeQuestions={Boolean(model.sample)}
               trialMicrocopy={model.ctaMicrocopy}
+              showFinishLineOffer
             />
           ) : null}
         </div>
@@ -194,6 +196,7 @@ export function BoardLanding({
               <p>{faq.answer}</p>
             </details>
           ))}
+          <FinishLineBoardFaqItem />
         </div>
       </section>
 

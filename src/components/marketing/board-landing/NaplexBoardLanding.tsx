@@ -11,6 +11,7 @@ import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePla
 import type { NaplexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
+import { FinishLineBoardFaqItem } from "@/components/marketing/finish-line/FinishLineBoardFaqItem";
 
 export function NaplexBoardLanding({ model }: { model: NaplexBoardLandingRenderModel }) {
   const donut = model.naplexDonut;
@@ -105,6 +106,7 @@ export function NaplexBoardLanding({ model }: { model: NaplexBoardLandingRenderM
                 <p>{faq.answer}</p>
               </details>
             ))}
+            <FinishLineBoardFaqItem />
           </div>
         </section>
       </div>

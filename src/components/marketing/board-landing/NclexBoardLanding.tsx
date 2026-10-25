@@ -13,6 +13,7 @@ import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/Pra
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import type { NclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
+import { FinishLineBoardFaqItem } from "@/components/marketing/finish-line/FinishLineBoardFaqItem";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
 
 export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderModel }) {
@@ -102,6 +103,7 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
                 <p>{faq.answer}</p>
               </details>
             ))}
+            <FinishLineBoardFaqItem />
           </div>
         </section>
       </div>

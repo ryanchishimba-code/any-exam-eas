@@ -1,4 +1,5 @@
 import { LandingCta } from "@/components/landing/LandingCta";
+import { FinishLineBadge } from "@/components/marketing/FinishLineBadge";
 import {
   BOARD_LANDING_HERO_QUIZ_HREF,
   BOARD_LANDING_HERO_QUIZ_LABEL,
@@ -25,6 +26,7 @@ export function BoardHubHeroActions({ trialHref, ctaName, ctaLocation }: BoardHu
         <span className="bl-hero-no-card">{HOME_NO_CARD_LINE}</span>
       </div>
       <p className="bl-hero-price">{price}</p>
+      <FinishLineBadge variant="hero" className="bl-hero-finish-line" />
       <a className="bl-hero-text-link" href={BOARD_LANDING_HERO_QUIZ_HREF}>
         {BOARD_LANDING_HERO_QUIZ_LABEL}
       </a>

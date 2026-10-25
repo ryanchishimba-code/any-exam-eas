@@ -22,6 +22,8 @@ import { CancelAnytimeNote } from "@/components/pricing/CancelAnytimeNote";
 import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { Button } from "@/components/ui/Button";
+import { FinishLineOfferMarkup } from "@/components/marketing/finish-line/FinishLineOfferMarkup";
+import { isFinishLineEligibleInterval } from "@/lib/marketing/finish-line-offer";
 import { cn } from "@/lib/utils";
 
 type AccessInfo = {
@@ -35,6 +37,7 @@ type AccessInfo = {
 
 type PricingTiersProps = {
   className?: string;
+  finishLineOfferEnabled?: boolean;
 };
 
 /**
@@ -42,7 +45,7 @@ type PricingTiersProps = {
  * competitor tables, and "no payment required" banners live elsewhere (or
  * nowhere); repeating them here only slowed the decision.
  */
-export function PricingTiers({ className }: PricingTiersProps) {
+export function PricingTiers({ className, finishLineOfferEnabled = false }: PricingTiersProps) {
   const { data: session } = useSession();
   const [interval, setInterval] = useState<BillingInterval>("monthly");
   const [paymentMode, setPaymentMode] = useState<PaymentMode>(DEFAULT_PAYMENT_MODE);
@@ -169,6 +172,13 @@ export function PricingTiers({ className }: PricingTiersProps) {
           variant="card"
         />
       )}
+
+      {finishLineOfferEnabled ? (
+        <FinishLineOfferMarkup
+          variant="pricing"
+          ineligiblePlan={!isFinishLineEligibleInterval(interval)}
+        />
+      ) : null}
 
       <Button
         href={checkoutHref}

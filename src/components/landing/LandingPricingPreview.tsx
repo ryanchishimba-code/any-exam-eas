@@ -20,10 +20,18 @@ import {
 } from "@/lib/subscription-tiers";
 import { formatMonthlyPrice, formatTrialCtaLabel } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
+import { FinishLineOfferMarkup } from "@/components/marketing/finish-line/FinishLineOfferMarkup";
+import { isFinishLineEligibleInterval } from "@/lib/marketing/finish-line-offer";
 
 const INTERVALS: BillingInterval[] = ["monthly", "quarterly", "semiannual", "yearly"];
 
-function PreviewProCard({ interval }: { interval: BillingInterval }) {
+function PreviewProCard({
+  interval,
+  finishLineOfferEnabled,
+}: {
+  interval: BillingInterval;
+  finishLineOfferEnabled: boolean;
+}) {
   const def = TIER_DEFINITIONS.pro;
   const plan = getBillingPlanTier("pro", interval);
   const yearlyBadge = interval === "yearly" ? factualYearlySavingsBadge("pro") : null;
@@ -71,6 +79,14 @@ function PreviewProCard({ interval }: { interval: BillingInterval }) {
         {formatTrialCtaLabel()}
       </LandingCta>
 
+      {finishLineOfferEnabled ? (
+        <FinishLineOfferMarkup
+          variant="pricing"
+          className="mt-4"
+          ineligiblePlan={!isFinishLineEligibleInterval(interval)}
+        />
+      ) : null}
+
       <ul className="aee-landing-pricing-card__features">
         {PRO_FEATURES.slice(0, 8).map((item) => (
           <li key={item}>
@@ -83,7 +99,11 @@ function PreviewProCard({ interval }: { interval: BillingInterval }) {
   );
 }
 
-export function LandingPricingPreview() {
+export function LandingPricingPreview({
+  finishLineOfferEnabled = false,
+}: {
+  finishLineOfferEnabled?: boolean;
+}) {
   const [interval, setInterval] = useState<BillingInterval>("monthly");
 
   return (
@@ -111,7 +131,7 @@ export function LandingPricingPreview() {
       </div>
 
       <div className="aee-landing-pricing__grid aee-landing-pricing__grid--single">
-        <PreviewProCard interval={interval} />
+        <PreviewProCard interval={interval} finishLineOfferEnabled={finishLineOfferEnabled} />
       </div>
 
       <div className="aee-landing-pricing__table-wrap">

@@ -5,6 +5,7 @@ import { NOT_FOR_PATIENT_CARE_LINE } from "@/lib/marketing/legal-copy";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
 import { MARKETING_BOARD_LINKS, ROUTES } from "@/lib/routes";
 import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER } from "@/lib/site";
+import { isFinishLineOfferEnabled } from "@/lib/marketing/finish-line-offer";
 
 const EXPLORE_LINKS = [
   { href: ROUTES.blog, label: "Blog" },
@@ -16,12 +17,18 @@ const EXPLORE_LINKS = [
   { href: ROUTES.contact, label: "Contact" },
 ] as const;
 
-const LEGAL_LINKS = [
-  { href: "/legal/terms", label: "Terms of Service" },
-  { href: "/legal/privacy", label: "Privacy Policy" },
-  { href: "/legal/refunds", label: "Refunds and cancellation" },
-  { href: "/legal/disclaimer", label: "Disclaimer" },
-] as const;
+function legalFooterLinks(): { href: string; label: string }[] {
+  const links = [
+    { href: "/legal/terms", label: "Terms of Service" },
+    { href: "/legal/privacy", label: "Privacy Policy" },
+    { href: "/legal/refunds", label: "Refunds and cancellation" },
+    { href: "/legal/disclaimer", label: "Disclaimer" },
+  ];
+  if (isFinishLineOfferEnabled()) {
+    links.push({ href: ROUTES.finishLineRefundTerms, label: "Finish Line Refund terms" });
+  }
+  return links;
+}
 
 const ACCOUNT_LINKS = [
   { href: "/auth/login", label: "Log in" },
@@ -61,6 +68,7 @@ function FooterColumn({
 
 /** One footer for the homepage and inner marketing pages. */
 export function Footer() {
+  const legalLinks = legalFooterLinks();
   return (
     <footer
       className="apple-footer overflow-x-clip border-t border-black/[0.08] py-10 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))] dark:border-white/[0.08]"
@@ -86,7 +94,7 @@ export function Footer() {
           <FooterColumn title="Exams" label="Exam links" links={MARKETING_BOARD_LINKS} />
           <FooterColumn title="Explore" label="Explore links" links={EXPLORE_LINKS} />
           <FooterColumn title="Account" label="Account links" links={ACCOUNT_LINKS} />
-          <FooterColumn title="Legal" label="Legal links" links={LEGAL_LINKS} />
+          <FooterColumn title="Legal" label="Legal links" links={legalLinks} />
         </div>
         <div className="mt-8 space-y-2 border-t border-black/[0.06] pt-6 text-xs leading-relaxed text-[var(--color-ink-muted)] dark:border-white/[0.08]">
           <p>{MARKETING_DISCLAIMER}</p>

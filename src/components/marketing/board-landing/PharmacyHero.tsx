@@ -61,6 +61,7 @@ export function PharmacyHero({
         ctaName={ctaName}
         ctaLocation={ctaLocation}
         seeQuestionsHref={seeQuestionsHref}
+        showFinishLineOffer
       />
     </div>
   );

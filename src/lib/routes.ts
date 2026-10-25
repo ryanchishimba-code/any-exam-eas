@@ -38,6 +38,7 @@ export const ROUTES = {
   compare: "/compare",
   employers: "/employers",
   pricing: "/pricing",
+  finishLineRefundTerms: "/finish-line-refund-terms",
   upgrade: "/upgrade",
   /** Public contact form. `/feedback` 301s here. */
   feedback: "/contact",

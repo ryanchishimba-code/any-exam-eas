@@ -14,6 +14,7 @@ import type { HubBoardLandingRenderModel } from "@/lib/marketing/board-landing/r
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
+import { FinishLineBoardFaqItem } from "@/components/marketing/finish-line/FinishLineBoardFaqItem";
 
 export function HubBoardLanding({
   model,
@@ -114,6 +115,7 @@ export function HubBoardLanding({
                 <p>{faq.answer}</p>
               </details>
             ))}
+            <FinishLineBoardFaqItem />
           </div>
         </section>
       </div>

@@ -1,5 +1,8 @@
+import Link from "next/link";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { StudyCompletionResult } from "@/lib/learning/study-completion/compute-study-completion";
+import { isFinishLineOfferEnabled } from "@/lib/marketing/finish-line-offer";
+import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 function formatCount(n: number): string {
@@ -45,6 +48,18 @@ export function StudyProgressCard({ data }: { data: StudyCompletionResult }) {
           </h2>
           <p className="mt-1 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
             Only activity saved to your account counts.
+            {isFinishLineOfferEnabled() ? (
+              <>
+                {" "}
+                <Link
+                  href={ROUTES.finishLineRefundTerms}
+                  prefetch={false}
+                  className="font-medium text-[var(--color-accent)] underline underline-offset-2"
+                >
+                  Finish Line Refund progress
+                </Link>
+              </>
+            ) : null}
           </p>
         </div>
         <p

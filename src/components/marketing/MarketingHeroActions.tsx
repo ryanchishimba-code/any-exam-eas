@@ -1,4 +1,5 @@
 import { LandingCta } from "@/components/landing/LandingCta";
+import { FinishLineBadge } from "@/components/marketing/FinishLineBadge";
 import {
   HERO_TRIAL_CTA_LABEL,
   SEE_QUESTIONS_CTA_LABEL,
@@ -13,6 +14,8 @@ type MarketingHeroActionsProps = {
   showSeeQuestions?: boolean;
   /** Trial line under the primary CTA (e.g. live count + no card). */
   trialMicrocopy?: string;
+  /** Board landings only — keeps the homepage hero unchanged. */
+  showFinishLineOffer?: boolean;
   className?: string;
 };
 
@@ -23,6 +26,7 @@ export function MarketingHeroActions({
   seeQuestionsHref,
   showSeeQuestions = true,
   trialMicrocopy,
+  showFinishLineOffer = false,
   className = "bl-actions",
 }: MarketingHeroActionsProps) {
   return (
@@ -32,6 +36,7 @@ export function MarketingHeroActions({
           {HERO_TRIAL_CTA_LABEL}
         </LandingCta>
         <p className="bl-hero-price">{heroTrialPriceLine()}</p>
+        {showFinishLineOffer ? <FinishLineBadge variant="hero" className="bl-hero-finish-line" /> : null}
         {trialMicrocopy ? <p className="bl-hero-micro">{trialMicrocopy}</p> : null}
       </div>
       {showSeeQuestions ? (

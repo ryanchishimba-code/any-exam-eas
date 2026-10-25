@@ -28,6 +28,7 @@ import { formatCheckoutContinueCta } from "@/lib/site";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { SignupPlan } from "@/lib/validators/auth";
 import { Button } from "@/components/ui/Button";
+import { FinishLineCheckoutNote } from "@/components/marketing/finish-line/FinishLineCheckoutNote";
 
 type CheckoutReviewProps = {
   initialPlan: SignupPlan;
@@ -46,6 +47,7 @@ type CheckoutReviewProps = {
   ) => void | Promise<void>;
   initialPromo?: string;
   continueBusy?: boolean;
+  finishLineOfferEnabled?: boolean;
 };
 
 export function CheckoutReview({
@@ -57,6 +59,7 @@ export function CheckoutReview({
   onContinue,
   initialPromo = "",
   continueBusy = false,
+  finishLineOfferEnabled = false,
 }: CheckoutReviewProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -176,6 +179,9 @@ export function CheckoutReview({
           />
           <span>{renewalConsentCopy}</span>
         </label>
+      ) : null}
+      {finishLineOfferEnabled && isUpgrade ? (
+        <FinishLineCheckoutNote enabled interval={interval} />
       ) : null}
       <Button
         type="button"

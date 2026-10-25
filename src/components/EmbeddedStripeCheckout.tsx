@@ -26,7 +26,13 @@ import type { SignupPlan } from "@/lib/validators/auth";
  * (and Google Pay) whenever the shopper's device supports them, which is what
  * "easy checkout" needs.
  */
-export function EmbeddedStripeCheckout() {
+type EmbeddedStripeCheckoutProps = {
+  finishLineOfferEnabled?: boolean;
+};
+
+export function EmbeddedStripeCheckout({
+  finishLineOfferEnabled = false,
+}: EmbeddedStripeCheckoutProps = {}) {
   const searchParams = useSearchParams();
   // Trials never collect a card here. A stale plan=trial query is ignored.
   const plan: SignupPlan = "subscribe";
@@ -191,6 +197,7 @@ export function EmbeddedStripeCheckout() {
         initialPromo={initialPromo}
         onContinue={handleContinueToPayment}
         continueBusy={upgradeBusy}
+        finishLineOfferEnabled={finishLineOfferEnabled}
       />
       <div className="mx-auto mt-6 max-w-lg space-y-2">
         <PaymentMethodBadges className="justify-center" size="sm" />

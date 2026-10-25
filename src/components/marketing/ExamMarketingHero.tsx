@@ -24,6 +24,7 @@ type Props = {
   formats?: FormatCounts | null;
   /** Real product visual. Omitted when we do not have one for this board. */
   visual?: ReactNode;
+  finishLineOffer?: ReactNode;
 };
 
 function ExamMarketingHeroCopy({
@@ -32,6 +33,7 @@ function ExamMarketingHeroCopy({
   countSource,
   activeCount,
   visual = null,
+  finishLineOffer = null,
 }: Props) {
   const trialHref = landingTrialHrefForExam(examKey);
 
@@ -76,6 +78,8 @@ function ExamMarketingHeroCopy({
             {formatExamHeroTrialOffer()}
           </p>
 
+          {finishLineOffer}
+
           {questionCountLine ? (
             <p
               className="aee-hero-beat__countline"
@@ -105,6 +109,7 @@ export function ExamMarketingHero({
   activeCount,
   formats = null,
   visual = null,
+  finishLineOffer = null,
 }: Props) {
   return (
     <LandingExamSelectionProvider
@@ -118,6 +123,7 @@ export function ExamMarketingHero({
         activeCount={activeCount}
         formats={formats}
         visual={visual}
+        finishLineOffer={finishLineOffer}
       />
     </LandingExamSelectionProvider>
   );

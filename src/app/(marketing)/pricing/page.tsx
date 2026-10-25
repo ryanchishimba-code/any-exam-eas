@@ -12,6 +12,7 @@ import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { formatMonthlyPrice } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
+import { isFinishLineOfferEnabled } from "@/lib/marketing/finish-line-offer";
 
 /**
  * Five-minute ISR. Query-string headlines and paywall notices render in
@@ -49,6 +50,7 @@ const PricingQueryNotices = dynamic(() =>
 
 export default async function PricingPage() {
   const { exactLabel } = await loadPublicQuestionCounts({ dynamic: false });
+  const finishLineOfferEnabled = isFinishLineOfferEnabled();
 
   return (
     <>
@@ -73,7 +75,7 @@ export default async function PricingPage() {
 
         <div className="mt-6" data-pricing-fold>
           <Suspense fallback={null}>
-            <PricingTiers />
+            <PricingTiers finishLineOfferEnabled={finishLineOfferEnabled} />
           </Suspense>
         </div>
 

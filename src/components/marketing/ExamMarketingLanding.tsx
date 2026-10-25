@@ -37,6 +37,9 @@ import { UsmleStepShowcaseLazy } from "@/components/marketing/ExamMarketingSecti
 import { testimonialsForBoard } from "@/lib/marketing/why-trust-it";
 import { ROUTES } from "@/lib/routes";
 import { boardReviewBadge } from "@/lib/marketing/legal-copy";
+import { FinishLineBadge } from "@/components/marketing/FinishLineBadge";
+import { FinishLineExamFaqItem } from "@/components/marketing/finish-line/FinishLineBoardFaqItem";
+import { isFinishLineOfferEnabled } from "@/lib/marketing/finish-line-offer";
 
 type Props = {
   examKey: ExamSeoKey;
@@ -75,6 +78,7 @@ export async function ExamMarketingLanding({
   const reviewer = clinicalReviewerForExam(examKey);
   const formatFact = BOARD_FORMAT_FACTS[examKey];
   const heroFrame = examKey === "nclex" ? await getHeroNgnFrame() : null;
+  const finishLineOfferEnabled = isFinishLineOfferEnabled();
 
   return (
     <div className="aee-exam-marketing">
@@ -85,6 +89,9 @@ export async function ExamMarketingLanding({
         activeCount={inventory?.activeCount}
         formats={inventory?.formats ?? null}
         visual={heroFrame ? <HeroNgnFrame frame={heroFrame} /> : null}
+        finishLineOffer={
+          finishLineOfferEnabled ? <FinishLineBadge variant="hero" className="mt-4 max-w-md" /> : null
+        }
       />
 
       <section className="mx-auto max-w-3xl px-5 py-12 sm:px-6">
@@ -210,6 +217,7 @@ export async function ExamMarketingLanding({
                 </dd>
               </div>
             ))}
+            <FinishLineExamFaqItem />
           </dl>
         </section>
 

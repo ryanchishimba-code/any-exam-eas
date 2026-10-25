@@ -15,6 +15,7 @@ import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { ROUTES } from "@/lib/routes";
+import { isFinishLineOfferEnabled } from "@/lib/marketing/finish-line-offer";
 
 export const metadata = {
   title: "Checkout — Any Exam Easy",
@@ -91,6 +92,7 @@ export default async function CheckoutPage({
   }
 
   const isReactivate = reactivate === "1";
+  const finishLineOfferEnabled = isFinishLineOfferEnabled();
 
   return (
     <PageShell
@@ -105,7 +107,7 @@ export default async function CheckoutPage({
     >
       <PurchaseTrustNotes className="mt-4" showTrialOffer={false} />
       <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
-        <EmbeddedStripeCheckout />
+        <EmbeddedStripeCheckout finishLineOfferEnabled={finishLineOfferEnabled} />
       </Suspense>
     </PageShell>
   );
