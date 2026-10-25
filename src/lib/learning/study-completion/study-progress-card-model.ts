@@ -50,9 +50,11 @@ export type StudyProgressNextStep = {
 };
 
 export function studyProgressMicrocopy(overallPercent: number): string {
-  if (overallPercent >= 90) return "Almost there!";
-  if (overallPercent >= 50) return "Halfway there!";
-  if (overallPercent >= 15) return "Nice momentum!";
+  const p = Math.min(100, Math.max(0, Math.round(overallPercent)));
+  if (p >= 100) return "All done. Nice work!";
+  if (p >= 75) return "Almost there!";
+  if (p >= 50) return "Halfway there!";
+  if (p >= 25) return "Nice momentum!";
   return "Great start!";
 }
 
@@ -85,9 +87,10 @@ function remaining(pillar: StudyCompletionPillar): number {
   return Math.max(0, pillar.target - Math.min(pillar.done, pillar.target));
 }
 
-function formatRemainingPhrase(count: number, noun: string): string {
-  if (count === 1) return `1 more ${noun}`;
-  return `${count.toLocaleString("en-US")} more ${noun}`;
+/** @internal Exported for copy tests. */
+export function formatCountMore(count: number, singular: string, plural: string): string {
+  if (count === 1) return `1 more ${singular}`;
+  return `${count.toLocaleString("en-US")} more ${plural}`;
 }
 
 function nextStepForPillar(
@@ -99,17 +102,17 @@ function nextStepForPillar(
   switch (pillar.id) {
     case "unique_question_coverage":
       return {
-        label: `Next: answer ${formatRemainingPhrase(left, "unique questions")} →`,
+        label: `Next: answer ${formatCountMore(left, "unique question", "unique questions")} →`,
         href: ROUTES.questionBank,
       };
     case "full_length_exams":
       return {
-        label: `Next: complete ${formatRemainingPhrase(left, "full-length exams")} →`,
+        label: `Next: complete ${formatCountMore(left, "full-length exam", "full-length exams")} →`,
         href: ROUTES.fullExam,
       };
     case "quick_bites":
       return {
-        label: `Next: finish ${formatRemainingPhrase(left, "Quick Bites")} →`,
+        label: `Next: finish ${formatCountMore(left, "Quick Bite", "Quick Bites")} →`,
         href:
           examSlug === "naplex"
             ? `${ROUTES.dashboard}#video-quick-bites-pharmacy`
@@ -118,13 +121,13 @@ function nextStepForPillar(
     case "study_guide_chapters": {
       const guide = STUDY_GUIDES[examSlug as StudyGuideExam];
       return {
-        label: `Next: finish ${formatRemainingPhrase(left, "study guide chapters")} →`,
+        label: `Next: finish ${formatCountMore(left, "study guide chapter", "study guide chapters")} →`,
         href: guide?.routeBase ?? ROUTES.dashboard,
       };
     }
     case "readiness_checks":
       return {
-        label: `Next: complete ${formatRemainingPhrase(left, "readiness checks")} →`,
+        label: `Next: complete ${formatCountMore(left, "readiness check", "readiness checks")} →`,
         href: ROUTES.readiness,
       };
     default:
@@ -140,7 +143,7 @@ export function studyProgressNextStep(data: StudyCompletionResult): StudyProgres
     if (step) return step;
   }
   return {
-    label: "Next: keep your streak going in Today’s plan →",
+    label: "Next: keep going in Today’s plan →",
     href: ROUTES.dashboard,
   };
 }

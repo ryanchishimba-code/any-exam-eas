@@ -81,26 +81,20 @@ export function StudyProgressCard({ data }: { data: StudyCompletionResult }) {
         </Link>
       </p>
 
-      <p className="mt-2.5 text-[11px] leading-snug text-[var(--color-ink-muted)]">
+      <div className="mt-2.5 text-[11px] leading-snug">
         {estimate.status === "insufficient_data" ? (
-          <span>{estimate.message}</span>
+          <p className="text-[var(--color-ink-muted)]">{estimate.message}</p>
         ) : (
-          <span
-            title={estimate.disclaimer}
-            className="inline-flex max-w-full flex-wrap items-center gap-1.5"
-          >
-            <span
-              className="rounded-md bg-[var(--color-border)]/40 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]"
-            >
-              Readiness estimate
-            </span>
-            <span className="tabular-nums text-[var(--color-ink)]">
-              {estimate.score}/100 · {estimate.band}
-            </span>
-            <span className="text-[10px] text-[var(--color-ink-muted)]">(not a prediction)</span>
-          </span>
+          <>
+            <p className="text-[12px] text-[var(--color-ink)]">
+              Readiness estimate: {estimate.score}/100 · {estimate.band}
+            </p>
+            <p className="mt-1 text-[10px] leading-snug text-[var(--color-ink-muted)]">
+              {estimate.disclaimer}
+            </p>
+          </>
         )}
-      </p>
+      </div>
     </section>
   );
 }
