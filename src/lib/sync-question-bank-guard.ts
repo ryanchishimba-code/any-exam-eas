@@ -27,6 +27,10 @@ export const KEYFIX_BACKUP_TABLES = [
   // 2026-10-05 batch 1. Holds the pre-rewrite hashes so a later seed match
   // cannot insert a second copy after the live contentHash moved.
   "qbi_fixes_task5_backup_20261005",
+  // 2026-10-25 NCLEX fixes. Ids and pre-change hashes stay protected so the
+  // nightly seed sync cannot overwrite those rows or insert the old stem.
+  "qbi_nclex_fix_20261025_backup",
+  "qbi_nclex_loose_20261025_backup",
 ] as const;
 
 export type SeedExistingRow = {

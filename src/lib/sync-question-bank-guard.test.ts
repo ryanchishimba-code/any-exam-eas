@@ -39,6 +39,11 @@ describe("KEYFIX_BACKUP_TABLES", () => {
   it("includes the 2026-10-05 batch 1 backup", () => {
     expect(KEYFIX_BACKUP_TABLES).toContain("qbi_fixes_task5_backup_20261005");
   });
+
+  it("includes the 2026-10-25 NCLEX backups", () => {
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_fix_20261025_backup");
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_loose_20261025_backup");
+  });
 });
 
 describe("decideSeedUpsert", () => {
