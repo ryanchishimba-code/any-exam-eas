@@ -1,0 +1,743 @@
+{
+  "generatedAt": "2026-10-25T16:17:20.590Z",
+  "rows": [
+    {
+      "id": "cmqwl59dz000i1yqxptqro3pn",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-full-2026-06-27-9e3nlp\",\"ai-curated\",\"cjmm-polished\"]",
+      "active": true
+    },
+    {
+      "id": "cmqwm3b0i000f1yqmzl2fbi8x",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-full-2026-06-27-5t2gfr\",\"ai-curated\",\"cjmm-polished\"]",
+      "active": true
+    },
+    {
+      "id": "cmqws4ipb000j1ymf2q5qm23y",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-full-2026-06-27-3ve1d4\",\"ai-curated\",\"cjmm-polished\"]",
+      "active": true
+    },
+    {
+      "id": "cmqwsl3r0000g1yplfhkx1na8",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-full-2026-06-27-v9gvg3\",\"ai-curated\",\"cjmm-polished\"]",
+      "active": true
+    },
+    {
+      "id": "cmqwtouoe000g1ygdlierx2w8",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-full-2026-06-27-m6k21a\",\"ai-curated\",\"cjmm-polished\"]",
+      "active": true
+    },
+    {
+      "id": "cmqwu1yzm000k1yop2x9x9x09",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-full-2026-06-27-7qh9cq\",\"ai-curated\",\"cjmm-polished\"]",
+      "active": true
+    },
+    {
+      "id": "cmqwvzmh8000l1y06m75voper",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-full-2026-06-27-as5gvt\",\"ai-curated\",\"cjmm-polished\"]",
+      "active": true
+    },
+    {
+      "id": "cmqwwuolf000h1y25mfw0zbvi",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\", \"curated\", \"full-exam-generated\", \"exam-1\", \"physiological-adaptation\", \"batch-nclex-full-2026-06-27-sd4ydr\", \"ai-curated\", \"cjmm-polished\", \"elimination-bowel\"]",
+      "active": true
+    },
+    {
+      "id": "cmqwx6o75000h1y2m5ug005hw",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-full-2026-06-27-zeehme\",\"ai-curated\",\"cjmm-polished\"]",
+      "active": true
+    },
+    {
+      "id": "cmqwxkifn000h1ytv2oitodmm",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-full-2026-06-27-6nfmfq\",\"ai-curated\",\"cjmm-polished\"]",
+      "active": true
+    },
+    {
+      "id": "cmqwxvj77000k1y0gz69dut2s",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-full-2026-06-27-i4ps21\",\"ai-curated\",\"cjmm-polished\"]",
+      "active": true
+    },
+    {
+      "id": "cmqxagktq00081yn6uyv223jf",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-full-2026-06-28-q75qc0\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmqxdzbld000e1y9jszjsmj9j",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-1\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-full-2026-06-28-fxwmpv\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr0tcmah003t1y8qqwzu7w68",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9003\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-gap-2026-06-30-fx3hn7\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr0ttmkj006p1y8qrkbtf7im",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9005\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-06-30-tcq5ac\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr0ufp8t00221y7oxn7ggr1i",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9002\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-06-30-33wy2p\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr0vhdrw000q1ymh296w4gi8",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\", \"curated\", \"full-exam-generated\", \"exam-9001\", \"physiological-adaptation\", \"heart-failure\", \"batch-nclex-gap-2026-06-30-3i6evf\", \"ai-curated\", \"manual_correction\"]",
+      "active": true
+    },
+    {
+      "id": "cmr0wa86v006e1ymhgpx3g0jq",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9004\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-gap-2026-06-30-xiah83\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr0yyo8100031yba38b8373y",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9001\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-06-30-jo8qyi\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr137mc000031ygq6hre8ose",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9001\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-06-30-v24hdi\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr143vpn00a71ygqocmbrof8",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-gap-2026-06-30-jgpwb5\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr16cdo4004j1yy55ux22v6h",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\", \"curated\", \"full-exam-generated\", \"exam-9003\", \"batch-nclex-gap-2026-06-30-eaz10k\", \"ai-curated\", \"pharmacology-nursing\", \"endocrine-meds\", \"manual_correction\"]",
+      "active": true
+    },
+    {
+      "id": "cmr16skh600ac1yy53vxvbwmm",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-gap-2026-06-30-e2hl86\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr75tbk800j51ywudh2w870j",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9011\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-oas3nn\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7jl1jb00bq1y66i2lh5f4v",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9007\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-ocrkxm\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8otxcc006e1y5nuw771tit",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9004\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-ausp9q\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmra6zrpr005e1ylws979df77",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9210\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-07-9wnq85\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmra75ryv00651ylwh4ko9vrv",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9211\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-07-gwxwfd\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlyrywo00051yno2mxi3s1m",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-6rt3cg\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlyrz0700061ynotdacr0z7",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-6rt3cg\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlyyq1000071yf1v9chmpaj",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-kht26n\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlz5bf200141yf1ymoxi95q",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9202\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-vv26lv\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlz5blr00161yf15m2wdk7m",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9202\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-vv26lv\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm1eh2b000c1yga09i1gcsi",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-s1zq86\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm1eh5v000d1ygar7rsjtqw",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-s1zq86\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm1eh9c000e1ygajvm3d026",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-s1zq86\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm1lbk0001p1ygabk1ph7oq",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9202\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-2fke8j\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm1lbmv001q1yga0n0esvbs",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9202\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-2fke8j\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm4romz00051y9w70g6x39z",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-d4visx\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm59k1d00361ynomhpftm4i",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9202\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-ujsyoi\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrmt9de300131y3jqwu6zjkp",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-16-7z50yv\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrmtcyq700371y3j86cylvd9",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9202\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-16-z51pbf\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrmu0ao300gj1y3jgomomgfa",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9208\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-16-c8fecd\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrmug21d00on1y3js6bfpzaw",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9212\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-16-9dpiku\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmroequub009y1ybzv0522zl3",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9304\",\"med-surg\",\"cardiac-emergencies\",\"batch-nclex-lifespan-med-surg-9304\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmroevnn700c21ybzq4t3n6el",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9305\",\"med-surg\",\"cardiac-emergencies\",\"batch-nclex-lifespan-med-surg-9305\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrogsi3l00bo1ymr6phoglo7",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9405\",\"med-surg\",\"cardiac-emergencies\",\"batch-nclex-lifespan-med-surg-9405\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrogsjpr00c61ymrvvs7kox3",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9405\",\"med-surg\",\"cardiac-emergencies\",\"batch-nclex-lifespan-med-surg-9405\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr74s4w3007y1ywu9mw8puga",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9005\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-u074k7\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr75yx8l00l81ywu50mamwvw",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9012\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-oyljae\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7aeok000841ybbuqzejl4p",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9005\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-3x7gyn\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr77v45p01411ywubakzagct",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9023\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-4efpn2\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7gpyry00cv1y59jqeonggp",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9008\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-894xzu\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8utd9u00cy1y0yqy718txa",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9008\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-g19se3\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7giodd00ar1y59w8h97g4g",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9007\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-tr6s9p\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7jl03d00b81y66f466xh7v",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9007\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-ocrkxm\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8rd69i005v1ye3x92nlo4l",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9004\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-0yyj0f\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7ifyfe000x1y66k5epyukh",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9001\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-jjqdsr\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr75tc9p00je1ywuv8zvomcc",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9011\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-oas3nn\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7exzfq00c31y9tjba86g0i",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9007\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-xlfs2j\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr748boe002x1ywuew3jne92",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9002\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-zebe1r\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7fttfi005j1y59c98o0ct4",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9004\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-1rzwpg\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8vubeg00781yabdgxnyjd6",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-cgvle2\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8tu6zy00451y0yfvh4xjqd",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9003\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-i0oa8y\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrmuc9gn00mt1y3jx50vqkqc",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9211\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-16-3yu0xz\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8rp5wl009m1ye3kuo1j1a4",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-tv1jj9\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8w3mhv00981yab0xown4ka",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9007\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-6r4o8l\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8mns8q00aj1yay11eikk2l",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-euu9h2\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr76ua2e00t11ywu3bavf9wk",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9017\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-qlb4i1\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlz5bif00151yf1d7p6hxgw",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9202\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-vv26lv\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7i8kp100cr1yx3m0lc3o3t",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9008\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-mb14qi\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmroevmzc00bw1ybzyx253e3y",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9305\",\"med-surg\",\"cardiac-emergencies\",\"batch-nclex-lifespan-med-surg-9305\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmroeqrvf009a1ybz1715wn52",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9304\",\"med-surg\",\"cardiac-emergencies\",\"batch-nclex-lifespan-med-surg-9304\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8s0f9k00dd1ye3df5yura7",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9008\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-yy5rq4\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr74ymh3009v1ywus2bhi4l5",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-veo3sf\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7cs751000g1yvxkvib0mob",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9001\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-0n27kb\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr781zww015k1ywu7c4bkgma",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9024\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-aib1c6\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8nlrkk00651yh6eegve0cd",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9004\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-28xvjd\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm5w1ch00gk1ynol6rhxxrz",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9208\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-2tuf3e\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8si01y00411y9nsgh2niu4",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9003\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-98jbb3\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7jyd0l00091yvu3par1kwm",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9001\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-bmqfwn\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlav1l1001w1ypt3sie7wzt",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9203\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-14-dg8wbn\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlyyqgh000a1yf1c8wy6qmm",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-kht26n\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8rjdps008e1ye3cmnjymvi",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9005\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-935ub6\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr75ta5000in1ywuz2y5oc9b",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\", \"curated\", \"full-exam-generated\", \"exam-9011\", \"physiological-adaptation\", \"cardiac-emergencies\", \"batch-nclex-gap-2026-07-05-oas3nn\", \"ai-curated\", \"manual_correction\"]",
+      "active": true
+    },
+    {
+      "id": "cmr76u7oh00s71ywukmmvehtf",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\", \"curated\", \"full-exam-generated\", \"exam-9017\", \"physiological-adaptation\", \"cardiac-emergencies\", \"batch-nclex-gap-2026-07-05-qlb4i1\", \"ai-curated\", \"manual_correction\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlz5bbo00131yf1qeckgxnt",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9202\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-vv26lv\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrmtwsni00eg1y3jp5zmuyr4",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9207\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-16-uh24sl\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrogsk7d00cb1ymrz8cwdghe",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9405\",\"med-surg\",\"cardiac-emergencies\",\"batch-nclex-lifespan-med-surg-9405\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmroevm9t00bq1ybz2da9h1ai",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9305\",\"med-surg\",\"cardiac-emergencies\",\"batch-nclex-lifespan-med-surg-9305\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlb0f2c002k1yptw14j5umw",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9204\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-14-jeyuln\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7esea200a81y9tlinee1n2",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-0hhzmc\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8qvdvi000q1ye3wdnpvrv1",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9001\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-461dpi\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7ify4n000u1y66xriwwmdk",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9001\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-jjqdsr\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8t4zz200ar1y9nh9j45z5x",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9007\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-l4v2rq\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8p5d2m00a21y5nmxtqzspa",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-beitjg\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7deaj300741yvxipf4zpqx",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9005\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-2clgn3\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm59hnj002c1ynou3183t13",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9202\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-ujsyoi\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmra5t838001i1ylwh3di0sa7",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9203\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-07-rfco4y\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8vlxje005o1yab7fyn51i7",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9005\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-c46vqx\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7emwms008h1y9tglagv0t4",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9005\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-xfuh0h\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7jeghz009c1y66t2s3ows3",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-qyc6qc\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmra7t0pn00931ylwa0aaut3j",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9215\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-07-dk5gf7\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8p5bcp009g1y5n69rqylkk",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-beitjg\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7exx5w00bl1y9tbq3si6fk",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9007\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-xlfs2j\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7aqsqd00bb1ybb8lrb5koo",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9007\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-704gcm\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrogo32p00921ymrlhpxg3nu",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9404\",\"med-surg\",\"cardiac-emergencies\",\"batch-nclex-lifespan-med-surg-9404\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8nxl80009r1yh6c8s7i2ax",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9006\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-bkbkoa\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr165x9e002c1yy5wez51xce",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9002\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-gap-2026-06-30-jvdi3i\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlyyqjc000b1yf1ab346xjb",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-kht26n\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr8nlspg006g1yh6oqld9a2b",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9004\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-06-28xvjd\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7fnmyn004e1y596w5b1nyu",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9003\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-4hnpmf\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr0wa63p005t1ymhk9nyg2ua",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9004\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-gap-2026-06-30-xiah83\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7inwfj002x1y6656sy093e",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9002\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-x4gpw0\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr10kq2r001z1y8alhutnpd7",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9002\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-gap-2026-06-30-0ju8u8\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm1ehcn000f1ygabzbymsho",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-s1zq86\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmroeqr5l00941ybzqawm9p4t",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9304\",\"med-surg\",\"cardiac-emergencies\",\"batch-nclex-lifespan-med-surg-9304\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm1egyx000b1ygapcamkg5v",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-s1zq86\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr0uxuxf00601y7o69v5xiu3",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9004\",\"physiological-adaptation\",\"heart-failure\",\"batch-nclex-gap-2026-06-30-up0wys\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrm1ehfz000g1ygajfjywjua",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-s1zq86\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmr7jydlo000f1yvua3ocwium",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9001\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-gap-2026-07-05-bmqfwn\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrlyyq5800081yf1c9n4ul5f",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-15-kht26n\",\"ai-curated\"]",
+      "active": true
+    },
+    {
+      "id": "cmrocau58000j1ybku192ad14",
+      "blueprintTopic": "cardiac-emergencies",
+      "tags": "[\"nclex-ngn\",\"curated\",\"full-exam-generated\",\"exam-9201\",\"physiological-adaptation\",\"cardiac-emergencies\",\"batch-nclex-ngn-2026-07-17-ofvf3p\",\"ai-curated\"]",
+      "active": true
+    }
+  ]
+}
