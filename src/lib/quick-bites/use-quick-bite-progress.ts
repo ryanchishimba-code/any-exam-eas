@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from "react";
 import { COMPLETION_RULES_V2 } from "@/lib/learning/study-completion/completion-rules-v2";
 
 const PROGRESS_INTERVAL_MS = 10_000;
@@ -96,14 +103,126 @@ export function useQuickBiteProgressMap({
   return { progress, mergeProgress };
 }
 
+export type QuickBiteResumeSnapshot = {
+  playbackPositionSec: number;
+  completed: boolean;
+};
+
+/**
+ * Freeze resume inputs for one episode open (library click / next episode).
+ * Ignores later progress POSTs so the reporter does not re-seek mid-playback.
+ */
+export function useQuickBiteResumeSnapshot(
+  sessionKey: string,
+  slug: string,
+  progress: Record<string, QuickBiteProgressClient>
+): QuickBiteResumeSnapshot {
+  const lockedSessionRef = useRef<string | null>(null);
+  const [snapshot, setSnapshot] = useState<QuickBiteResumeSnapshot>({
+    playbackPositionSec: 0,
+    completed: false,
+  });
+
+  useLayoutEffect(() => {
+    if (!slug || !sessionKey) return;
+    const row = progress[slug];
+
+    if (lockedSessionRef.current !== sessionKey) {
+      lockedSessionRef.current = sessionKey;
+      setSnapshot({
+        playbackPositionSec: row?.playbackPositionSec ?? 0,
+        completed: row ? isQuickBiteWatched(row) : false,
+      });
+      return;
+    }
+
+    setSnapshot((current) => {
+      if (current.playbackPositionSec > 0.5 || !row) return current;
+      const position = row.playbackPositionSec ?? 0;
+      if (position <= 0.5) return current;
+      return {
+        playbackPositionSec: position,
+        completed: isQuickBiteWatched(row),
+      };
+    });
+  }, [sessionKey, slug, progress]);
+
+  return snapshot;
+}
+
+/** Seek once when metadata/buffer is ready; calls onReady after seek settles or when no seek is needed. */
+export function scheduleQuickBiteResumeSeek(
+  video: HTMLVideoElement,
+  snapshot: QuickBiteResumeSnapshot,
+  onReady: () => void
+): () => void {
+  let settled = false;
+  const finish = () => {
+    if (settled) return;
+    settled = true;
+    onReady();
+  };
+
+  const attemptSeek = () => {
+    if (settled) return;
+    const seconds = quickBiteResumeSeconds(
+      snapshot.playbackPositionSec,
+      video.duration,
+      snapshot.completed
+    );
+    if (seconds == null) {
+      finish();
+      return;
+    }
+    if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+    const onSeeked = () => {
+      video.removeEventListener("seeked", onSeeked);
+      finish();
+    };
+    video.addEventListener("seeked", onSeeked);
+    try {
+      video.pause();
+      video.currentTime = seconds;
+      if (Math.abs(video.currentTime - seconds) < 0.35) {
+        video.removeEventListener("seeked", onSeeked);
+        finish();
+      }
+    } catch {
+      video.removeEventListener("seeked", onSeeked);
+      finish();
+    }
+  };
+
+  const attemptReady = () => {
+    if (settled) return;
+    const needsSeek =
+      quickBiteResumeSeconds(
+        snapshot.playbackPositionSec,
+        Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 999_999,
+        snapshot.completed
+      ) != null;
+    if (!needsSeek) {
+      finish();
+      return;
+    }
+    attemptSeek();
+  };
+
+  video.addEventListener("loadedmetadata", attemptReady, { once: true });
+  video.addEventListener("canplay", attemptSeek, { once: true });
+  attemptReady();
+
+  return () => {
+    settled = true;
+  };
+}
+
 export function useQuickBiteProgressReporter({
   slug,
   apiBase,
   enabled,
   videoRef,
   videoElement,
-  resumePlaybackPositionSec = 0,
-  resumeCompleted = false,
   onSaved,
 }: {
   slug: string;
@@ -112,20 +231,16 @@ export function useQuickBiteProgressReporter({
   videoRef: RefObject<HTMLVideoElement | null>;
   /** Set via callback ref so listeners attach when the <video> mounts. */
   videoElement: HTMLVideoElement | null;
-  resumePlaybackPositionSec?: number;
-  resumeCompleted?: boolean;
   onSaved?: (slug: string, row: QuickBiteProgressClient) => void;
 }) {
   const lastSentAtRef = useRef<number>(Date.now());
   const lastTimeupdateSentRef = useRef<number>(0);
   const lastMaxWatchPctRef = useRef(0);
-  const resumeAppliedRef = useRef("");
 
   useEffect(() => {
     lastSentAtRef.current = Date.now();
     lastTimeupdateSentRef.current = 0;
     lastMaxWatchPctRef.current = 0;
-    resumeAppliedRef.current = "";
   }, [slug]);
 
   const sendProgress = useCallback(
@@ -181,23 +296,6 @@ export function useQuickBiteProgressReporter({
     if (!enabled || !slug || !videoElement) return;
     const video = videoElement;
 
-    const applyResume = () => {
-      const token = `${slug}:${resumePlaybackPositionSec}:${resumeCompleted}`;
-      if (resumeAppliedRef.current === token) return;
-      const seconds = quickBiteResumeSeconds(
-        resumePlaybackPositionSec,
-        video.duration,
-        resumeCompleted
-      );
-      if (seconds == null) return;
-      resumeAppliedRef.current = token;
-      try {
-        video.currentTime = seconds;
-      } catch {
-        // jsdom may reject seeking.
-      }
-    };
-
     const flushElapsed = (useKeepalive = false, force = false) => {
       const elapsed = Math.max(0, Math.round((Date.now() - lastSentAtRef.current) / 1000));
       if (elapsed > 0) sendProgress(elapsed, useKeepalive, force);
@@ -212,7 +310,6 @@ export function useQuickBiteProgressReporter({
     const onPause = () => flushElapsed(false, true);
     const onEnded = onPause;
     const onSeeked = () => flushElapsed(false, true);
-    const onLoadedMetadata = () => applyResume();
     const onTimeupdate = () => {
       const now = Date.now();
       if (now - lastTimeupdateSentRef.current < TIMEUPDATE_MIN_MS) return;
@@ -222,17 +319,14 @@ export function useQuickBiteProgressReporter({
     };
     const onPageHide = () => flushElapsed(true, true);
 
-    video.addEventListener("loadedmetadata", onLoadedMetadata);
     video.addEventListener("pause", onPause);
     video.addEventListener("ended", onEnded);
     video.addEventListener("seeked", onSeeked);
     video.addEventListener("timeupdate", onTimeupdate);
     window.addEventListener("pagehide", onPageHide);
-    if (video.readyState >= 1) applyResume();
 
     return () => {
       window.clearInterval(interval);
-      video.removeEventListener("loadedmetadata", onLoadedMetadata);
       video.removeEventListener("pause", onPause);
       video.removeEventListener("ended", onEnded);
       video.removeEventListener("seeked", onSeeked);
@@ -240,13 +334,5 @@ export function useQuickBiteProgressReporter({
       window.removeEventListener("pagehide", onPageHide);
       flushElapsed(true, true);
     };
-  }, [
-    apiBase,
-    enabled,
-    resumeCompleted,
-    resumePlaybackPositionSec,
-    sendProgress,
-    slug,
-    videoElement,
-  ]);
+  }, [enabled, sendProgress, slug, videoElement]);
 }
