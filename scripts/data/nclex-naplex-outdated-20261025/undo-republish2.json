@@ -1,0 +1,272 @@
+{
+  "backedUpAt": "2026-10-25T03:16:05.856Z",
+  "table": "QuestionBankItem",
+  "reason": "Pre-image before three approved blood-pressure rewrites were published.",
+  "ids": [
+    "cmqxaus7p001f1ypr2elqbs2e",
+    "cmr7tqqg2001n1yivy4gi52qz",
+    "cmr7xthmz001n1yikcwuott43"
+  ],
+  "columnTypes": {
+    "id": "text",
+    "fieldId": "text",
+    "subjectId": "text",
+    "question": "text",
+    "options": "text",
+    "correctAnswer": "text",
+    "explanation": "text",
+    "solutionSteps": "text",
+    "tags": "text",
+    "source": "text",
+    "contentHash": "text",
+    "active": "bool",
+    "createdAt": "timestamp",
+    "updatedAt": "timestamp",
+    "stateCode": "bpchar",
+    "difficulty": "int2",
+    "topicCategory": "text",
+    "blueprintDomain": "text",
+    "itemType": "text",
+    "references": "jsonb",
+    "scenario": "text",
+    "stepLevel": "text",
+    "qaPassed": "bool",
+    "qaAuditedAt": "timestamp",
+    "taskCategory": "text",
+    "blueprintTopic": "text",
+    "generationVersion": "text",
+    "reviewStatus": "text",
+    "lastReviewedAt": "timestamp",
+    "generationMeta": "jsonb",
+    "patientAgeGroup": "text",
+    "embedding": "vector",
+    "quality_score": "float8",
+    "cluster_id": "text",
+    "keep_recommendation": "bool",
+    "review_flag": "bool",
+    "curation_meta": "jsonb",
+    "clientNeeds": "text",
+    "cjmmFunction": "text",
+    "manual_correction": "bool"
+  },
+  "studentEligibleBefore": {
+    "nursing": 3754,
+    "usmle-step-1": 3170,
+    "usmle-step-2": 5165,
+    "usmle-step-3": 8407,
+    "pharmacy": 5614,
+    "pance": 3755,
+    "aanp-fnp": 5279,
+    "npte-pt": 1748
+  },
+  "rows": [
+    {
+      "id": "cmqxaus7p001f1ypr2elqbs2e",
+      "fieldId": "pharmacy",
+      "subjectId": "pharmacology",
+      "question": "Which finding requires immediate follow-up?",
+      "options": "{\"options\":[\"Persistent dry cough after starting lisinopril.\",\"Blood pressure of 130/85 mm Hg.\",\"Refill request for atorvastatin.\",\"No known drug allergies.\"],\"distractorRationale\":{\"Blood pressure of 130/85 mm Hg.\":\"This option is incorrect because the blood pressure is within the normal range and does not require any immediate follow-up.\",\"Refill request for atorvastatin.\":\"This option is incorrect as it is a routine request and does not indicate any immediate clinical concern.\",\"No known drug allergies.\":\"This option is incorrect because having no known drug allergies is a standard finding and does not necessitate follow-up.\"},\"clinicalReasoning\":\"Assess the patient's current symptoms and medication history. Analyze the significance of the dry cough in relation to lisinopril use. Recommend discussing the cough with the prescriber to consider alternative medications. Counsel the patient on potential side effects and monitoring. Monitor blood pressure and renal function regularly.\",\"keyTakeaways\":[\"When a patient on lisinopril reports a persistent dry cough, prioritize follow-up to evaluate the need for medication adjustment.\"],\"kind\":\"highlight\",\"blueprintTopic\":\"NNT/NNH\",\"blueprintSystem\":\"naplex-2026-drug-information\",\"generationMeta\":{\"model\":\"gpt-4o-mini\",\"batchId\":\"naplex-full-2026-06-28-ifv1kx\",\"qcScore\":0.8999999999999999,\"slotIndex\":59,\"examNumber\":1,\"generatedAt\":\"2026-06-28T04:34:40.110Z\",\"pipelineVersion\":\"gpt-4o-mini-naplex-full-exam-v1\"},\"blueprintArea\":\"naplex-2026-drug-information\",\"segments\":[{\"id\":\"1\",\"text\":\"persistent dry cough\"},{\"id\":\"2\",\"text\":\"lisinopril\"}]}",
+      "correctAnswer": "Persistent dry cough after starting lisinopril.",
+      "explanation": "## Why this answer is correct\nThe persistent dry cough after starting lisinopril requires immediate follow-up due to its potential significance.\n• **Lisinopril** is an ACE inhibitor known to cause a dry cough in some patients.\n• This side effect may necessitate a **change in medication** to avoid further complications.\n• Monitoring for adverse effects is crucial in managing **hypertension** effectively.\n**In practice:** On the unit, recognizing and addressing side effects like a dry cough can prevent unnecessary complications and improve patient adherence to treatment.\n## Why the other options are wrong\n\n\n\n**Blood pressure of 130/85 mm Hg.**\n• Trap: Students may think that any abnormal blood pressure reading requires follow-up.\n• Why it fails here: However, a blood pressure of 130/85 mm Hg is considered within the normal range and does not indicate an immediate need for intervention.\n• Remember: Understanding normal blood pressure ranges helps prioritize which findings need urgent attention.\n\n**Refill request for atorvastatin.**\n• Trap: Some may confuse routine medication refills with urgent clinical issues.\n• Why it fails here: A refill request for atorvastatin is standard practice for managing hyperlipidemia and does not signal an immediate concern.\n• Remember: Recognizing routine medication management helps differentiate between urgent and non-urgent issues.\n\n**No known drug allergies.**\n• Trap: Students might assume that the absence of drug allergies is a red flag requiring follow-up.\n• Why it fails here: In fact, having no known drug allergies is a common and reassuring finding that does not necessitate further action.\n• Remember: Understanding patient history is essential for assessing risk factors and determining follow-up needs.\n## Key takeaway\n**When a patient on lisinopril reports a persistent dry cough, prioritize follow-up to evaluate the need for medication adjustment.**\n\n**Memory hook:** Think 'Cough and Change' when a patient on lisinopril reports a dry cough.",
+      "solutionSteps": null,
+      "tags": "[\"naplex-full-exam\",\"NAPLEX-2026\",\"curated\",\"full-exam-generated\",\"exam-1\",\"naplex-2026-drug-information\",\"pharmacology\",\"NNT/NNH\",\"batch-naplex-full-2026-06-28-ifv1kx\",\"ai-curated\"]",
+      "source": "ai-curated",
+      "contentHash": "97a3b3dc13c069ef98017f2e681f63136fffce73ad731c5186fa627abceba37d",
+      "active": false,
+      "createdAt": "2026-06-28T04:39:27.062Z",
+      "updatedAt": "2026-10-25T02:49:59.179Z",
+      "stateCode": null,
+      "difficulty": 4,
+      "topicCategory": "Drug Information & Literature Evaluation",
+      "blueprintDomain": "naplex-area1-foundations",
+      "itemType": "vignette",
+      "references": [
+        {
+          "label": "NABP NAPLEX 2026"
+        },
+        {
+          "label": "JNC 8 Hypertension Guidelines"
+        }
+      ],
+      "scenario": "A 42-year-old male patient with a history of hypertension and hyperlipidemia comes to the pharmacy to refill his lisinopril and atorvastatin prescriptions. He mentions that he has been experiencing a persistent dry cough for the past week. His blood pressure is 130/85 mm Hg, and he has no known drug allergies.",
+      "stepLevel": null,
+      "qaPassed": true,
+      "qaAuditedAt": "2026-09-07T03:59:51.843Z",
+      "taskCategory": null,
+      "blueprintTopic": "NNT/NNH",
+      "generationVersion": "gpt-4o-mini-naplex-full-exam-v1",
+      "reviewStatus": "approved",
+      "lastReviewedAt": null,
+      "generationMeta": {
+        "model": "gpt-4o-mini",
+        "batchId": "naplex-full-2026-06-28-ifv1kx",
+        "qcScore": 0.8999999999999999,
+        "slotIndex": 59,
+        "examNumber": 1,
+        "generatedAt": "2026-06-28T04:34:40.110Z",
+        "rationaleModel": "gpt-4o-mini",
+        "pipelineVersion": "gpt-4o-mini-naplex-full-exam-v1",
+        "elevateRationaleV2": true,
+        "rationaleEnrichedAt": "2026-07-17T04:09:49.462Z",
+        "structuredRationale": {
+          "memoryHook": "Think 'Cough and Change' when a patient on lisinopril reports a dry cough.",
+          "whyCorrect": {
+            "headline": "The persistent dry cough after starting lisinopril requires immediate follow-up due to its potential significance.",
+            "clinicalContext": "On the unit, recognizing and addressing side effects like a dry cough can prevent unnecessary complications and improve patient adherence to treatment.",
+            "conceptBreakdown": [
+              "**Lisinopril** is an ACE inhibitor known to cause a dry cough in some patients.",
+              "This side effect may necessitate a **change in medication** to avoid further complications.",
+              "Monitoring for adverse effects is crucial in managing **hypertension** effectively."
+            ]
+          },
+          "keyTakeaway": "When a patient on lisinopril reports a persistent dry cough, prioritize follow-up to evaluate the need for medication adjustment.",
+          "whyIncorrect": [
+            {
+              "option": "Blood pressure of 130/85 mm Hg.",
+              "correction": "However, a blood pressure of 130/85 mm Hg is considered within the normal range and does not indicate an immediate need for intervention.",
+              "conceptLink": "Understanding normal blood pressure ranges helps prioritize which findings need urgent attention.",
+              "misconception": "Students may think that any abnormal blood pressure reading requires follow-up."
+            },
+            {
+              "option": "Refill request for atorvastatin.",
+              "correction": "A refill request for atorvastatin is standard practice for managing hyperlipidemia and does not signal an immediate concern.",
+              "conceptLink": "Recognizing routine medication management helps differentiate between urgent and non-urgent issues.",
+              "misconception": "Some may confuse routine medication refills with urgent clinical issues."
+            },
+            {
+              "option": "No known drug allergies.",
+              "correction": "In fact, having no known drug allergies is a common and reassuring finding that does not necessitate further action.",
+              "conceptLink": "Understanding patient history is essential for assessing risk factors and determining follow-up needs.",
+              "misconception": "Students might assume that the absence of drug allergies is a red flag requiring follow-up."
+            }
+          ]
+        },
+        "rationaleQualityScore": 100
+      },
+      "patientAgeGroup": null,
+      "embedding": null,
+      "quality_score": null,
+      "cluster_id": null,
+      "keep_recommendation": null,
+      "review_flag": null,
+      "curation_meta": null,
+      "clientNeeds": null,
+      "cjmmFunction": null,
+      "manual_correction": true
+    },
+    {
+      "id": "cmr7tqqg2001n1yivy4gi52qz",
+      "fieldId": "pharmacy",
+      "subjectId": "otc-self-care",
+      "question": "Which finding requires immediate follow-up?",
+      "options": "{\"options\":[\"Persistent dry cough\",\"Blood pressure of 130/85 mm Hg\",\"LDL cholesterol at 90 mg/dL\",\"No medication changes needed\"],\"distractorRationale\":{\"Blood pressure of 130/85 mm Hg\":\"This reading is within the normal range and does not require follow-up.\",\"LDL cholesterol at 90 mg/dL\":\"This is an acceptable level and does not necessitate changes.\",\"No medication changes needed\":\"This is incorrect as the cough may require a change in therapy.\"},\"clinicalReasoning\":\"Assess the patient's symptoms and medication adherence. Analyze the side effects of lisinopril. Recommend evaluating the cough and considering alternative antihypertensive therapy. Counsel the patient on potential side effects and monitor for resolution of symptoms.\",\"keyTakeaways\":[\"When a patient on lisinopril presents with a persistent dry cough, prioritize evaluating the need for a medication change.\"],\"kind\":\"highlight\",\"blueprintTopic\":\"health disparities\",\"blueprintSystem\":\"naplex-area3-treatment-planning\",\"generationMeta\":{\"model\":\"gpt-4o-mini\",\"batchId\":\"naplex-full-2026-07-05-dj6iaz\",\"qcScore\":0.8999999999999999,\"slotIndex\":79,\"examNumber\":1,\"generatedAt\":\"2026-07-05T13:18:37.541Z\",\"pipelineVersion\":\"gpt-4o-mini-naplex-full-exam-v1\"},\"blueprintArea\":\"naplex-2026-health-wellness\",\"segments\":[{\"id\":\"cough\",\"text\":\"Persistent dry cough\"}]}",
+      "correctAnswer": "Persistent dry cough",
+      "explanation": "## Why this answer is correct\nThe persistent dry cough requires immediate follow-up due to its potential link to lisinopril.\n• **Persistent dry cough** is a known side effect of **ACE inhibitors** like lisinopril.\n• This symptom may indicate the need for a **medication change** to improve patient comfort.\n• Monitoring for side effects is crucial in managing **hypertension** effectively.\n**In practice:** On the unit, identifying and addressing side effects like a dry cough can prevent patient discomfort and ensure adherence to treatment. It’s important to evaluate medication regimens regularly.\n## Why the other options are wrong\n\n\n\n**Blood pressure of 130/85 mm Hg**\n• Trap: Students might think any abnormal reading requires follow-up.\n• Why it fails here: This blood pressure reading is within the normal range (120-129 systolic and <80 diastolic), indicating that no immediate action is needed.\n• Remember: Understanding normal blood pressure ranges helps prioritize which findings need follow-up.\n\n**LDL cholesterol at 90 mg/dL**\n• Trap: Some may believe any cholesterol level outside of ideal ranges requires intervention.\n• Why it fails here: An LDL cholesterol level of 90 mg/dL is considered acceptable and often meets treatment goals for many patients, so no follow-up is necessary.\n• Remember: Recognizing target cholesterol levels is essential for effective management of hyperlipidemia.\n\n**No medication changes needed**\n• Trap: Students might assume that if other values are normal, no changes are warranted.\n• Why it fails here: The persistent dry cough indicates a potential side effect of lisinopril, which may require a change in therapy to enhance patient comfort.\n• Remember: Awareness of medication side effects is critical in ensuring optimal patient care.\n## Key takeaway\n**When a patient on lisinopril presents with a persistent dry cough, prioritize evaluating the need for a medication change.**\n\n**Memory hook:** Cough with lisinopril? Think 'switch' for comfort!",
+      "solutionSteps": null,
+      "tags": "[\"naplex-full-exam\",\"NAPLEX-2026\",\"curated\",\"full-exam-generated\",\"exam-1\",\"naplex-2026-health-wellness\",\"otc-self-care\",\"health-disparities\",\"batch-naplex-full-2026-07-05-dj6iaz\",\"ai-curated\"]",
+      "source": "ai-curated",
+      "contentHash": "f03a83bd6e3fb4056ed483197fef611f34d0509ee8a3268d464417a6d008a380",
+      "active": false,
+      "createdAt": "2026-07-05T13:25:52.610Z",
+      "updatedAt": "2026-10-25T02:49:59.179Z",
+      "stateCode": null,
+      "difficulty": 4,
+      "topicCategory": "Health & Wellness / Population Health",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "itemType": "vignette",
+      "references": [
+        {
+          "label": "NABP NAPLEX 2026"
+        },
+        {
+          "label": "JNC 8 Hypertension Guidelines"
+        }
+      ],
+      "scenario": "A 50-year-old male with a history of hypertension and hyperlipidemia presents to the pharmacy to refill his lisinopril and atorvastatin prescriptions. He reports feeling well but mentions he has been experiencing a persistent dry cough. His blood pressure is 130/85 mm Hg, and his lipid panel shows LDL cholesterol at 90 mg/dL.",
+      "stepLevel": null,
+      "qaPassed": true,
+      "qaAuditedAt": "2026-09-07T04:00:01.416Z",
+      "taskCategory": null,
+      "blueprintTopic": "health disparities",
+      "generationVersion": "gpt-4o-mini-naplex-full-exam-v1",
+      "reviewStatus": "approved",
+      "lastReviewedAt": null,
+      "generationMeta": {
+        "model": "gpt-4o-mini",
+        "batchId": "naplex-full-2026-07-05-dj6iaz",
+        "qcScore": 0.8999999999999999,
+        "slotIndex": 79,
+        "examNumber": 1,
+        "generatedAt": "2026-07-05T13:18:37.541Z",
+        "rationaleModel": "gpt-4o-mini",
+        "pipelineVersion": "gpt-4o-mini-naplex-full-exam-v1",
+        "rationaleEnrichedAt": "2026-07-18T13:56:29.758Z",
+        "rationaleQualityScore": 100
+      },
+      "patientAgeGroup": null,
+      "embedding": null,
+      "quality_score": null,
+      "cluster_id": null,
+      "keep_recommendation": null,
+      "review_flag": null,
+      "curation_meta": null,
+      "clientNeeds": null,
+      "cjmmFunction": null,
+      "manual_correction": true
+    },
+    {
+      "id": "cmr7xthmz001n1yikcwuott43",
+      "fieldId": "pharmacy",
+      "subjectId": "otc-self-care",
+      "question": "Which finding requires immediate follow-up?",
+      "options": "{\"options\":[\"The patient's blood pressure is 130/85 mmHg.\",\"The patient reports a persistent dry cough.\",\"The patient has a family history of hypertension.\",\"The patient has a body mass index (BMI) of 27.\"],\"distractorRationale\":{\"The patient's blood pressure is 130/85 mmHg.\":\"This blood pressure reading is acceptable for a patient starting on antihypertensive therapy.\",\"The patient has a family history of hypertension.\":\"While relevant, a family history does not require immediate follow-up unless it affects current treatment.\",\"The patient has a body mass index (BMI) of 27.\":\"A BMI of 27 indicates overweight status but does not necessitate immediate follow-up in this scenario.\"},\"clinicalReasoning\":\"Assess the patient's symptoms and medication history, analyze the significance of the reported cough, recommend follow-up for potential medication side effects, counsel the patient on what to monitor, and ensure regular follow-ups to manage her hypertension effectively.\",\"kind\":\"highlight\",\"blueprintArea\":\"naplex-2026-health-wellness\",\"blueprintTopic\":\"health disparities\",\"generationMeta\":{\"batchId\":\"naplex-full-2026-07-05-yjkpgd\",\"examNumber\":1,\"slotIndex\":79,\"model\":\"gpt-4o-mini\",\"pipelineVersion\":\"gpt-4o-mini-naplex-full-exam-v1\",\"qcScore\":0.8999999999999999,\"generatedAt\":\"2026-07-05T15:12:05.439Z\"},\"segments\":[{\"id\":\"cough\",\"text\":\"persistent dry cough\"}]}",
+      "correctAnswer": "The patient reports a persistent dry cough.",
+      "explanation": "The correct answer is that the patient reports a persistent dry cough, which is a common side effect of ACE inhibitors like lisinopril. This requires immediate follow-up as it may necessitate a change in medication to avoid further discomfort or complications. The blood pressure reading is within a reasonable range for someone starting treatment. A family history of hypertension is relevant but does not require immediate action. A BMI of 27 indicates overweight status but is not an immediate concern in this context. The key takeaway is to monitor for side effects of medications, especially when starting new therapies.\n\nClinical reasoning: Assess the patient's symptoms and medication history, analyze the significance of the reported cough, recommend follow-up for potential medication side effects, counsel the patient on what to monitor, and ensure regular follow-ups to manage her hypertension effectively.\n\nWhy other options are incorrect:\n• The patient's blood pressure is 130/85 mmHg.: This blood pressure reading is acceptable for a patient starting on antihypertensive therapy.\n• The patient has a family history of hypertension.: While relevant, a family history does not require immediate follow-up unless it affects current treatment.\n• The patient has a body mass index (BMI) of 27.: A BMI of 27 indicates overweight status but does not necessitate immediate follow-up in this scenario.",
+      "solutionSteps": null,
+      "tags": "[\"naplex-full-exam\",\"NAPLEX-2026\",\"curated\",\"full-exam-generated\",\"exam-1\",\"naplex-2026-health-wellness\",\"otc-self-care\",\"health-disparities\",\"batch-naplex-full-2026-07-05-yjkpgd\",\"ai-curated\"]",
+      "source": "ai-curated",
+      "contentHash": "00fb656d188f65b40fd8ffce88ad77126ff92609b9fa42f8bb609b57f61aa6f8",
+      "active": false,
+      "createdAt": "2026-07-05T15:19:59.628Z",
+      "updatedAt": "2026-10-25T02:49:59.179Z",
+      "stateCode": null,
+      "difficulty": 4,
+      "topicCategory": "Health & Wellness / Population Health",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "itemType": "vignette",
+      "references": [
+        {
+          "label": "JNC 8 Hypertension Guidelines"
+        }
+      ],
+      "scenario": "A 45-year-old female presents to the pharmacy with a prescription for lisinopril 20 mg daily for her newly diagnosed hypertension. She mentions that her father had a history of heart disease, and she is concerned about her own cardiovascular health. She has no known drug allergies and is currently not taking any other medications.",
+      "stepLevel": null,
+      "qaPassed": true,
+      "qaAuditedAt": "2026-09-07T04:00:02.002Z",
+      "taskCategory": null,
+      "blueprintTopic": "health disparities",
+      "generationVersion": "gpt-4o-mini-naplex-full-exam-v1",
+      "reviewStatus": "approved",
+      "lastReviewedAt": null,
+      "generationMeta": {
+        "model": "gpt-4o-mini",
+        "batchId": "naplex-full-2026-07-05-yjkpgd",
+        "qcScore": 0.8999999999999999,
+        "slotIndex": 79,
+        "examNumber": 1,
+        "generatedAt": "2026-07-05T15:12:05.439Z",
+        "pipelineVersion": "gpt-4o-mini-naplex-full-exam-v1"
+      },
+      "patientAgeGroup": null,
+      "embedding": null,
+      "quality_score": null,
+      "cluster_id": null,
+      "keep_recommendation": null,
+      "review_flag": null,
+      "curation_meta": null,
+      "clientNeeds": null,
+      "cjmmFunction": null,
+      "manual_correction": true
+    }
+  ]
+}

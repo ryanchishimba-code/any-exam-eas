@@ -1,0 +1,29 @@
+{
+  "note": "Keyless stems for a third independent blind solve. No correct answers and no rationales are in this file.",
+  "items": [
+    {
+      "id": "cmroigcz3000j1y7n1rmsnzr4",
+      "board": "NAPLEX",
+      "scenario": "A 30-year-old man takes phenytoin 300 mg by mouth daily, as 100 mg three times daily, for epilepsy. Seizures have increased. The total phenytoin level is 8 mcg/mL and albumin is 4.2 g/dL. He started omeprazole 20 mg daily for GERD one week ago.",
+      "question": "Which action best addresses the increased seizures?",
+      "options": [
+        "Increase phenytoin to 350 mg daily and recheck the level in about 2 weeks",
+        "Switch omeprazole to famotidine 20 mg twice daily and keep phenytoin at 300 mg daily",
+        "Add levetiracetam 500 mg twice daily and keep phenytoin at 300 mg daily",
+        "Stop omeprazole and keep phenytoin at 300 mg daily"
+      ]
+    },
+    {
+      "id": "cmrovw8ya000m1yu3299ty2aj",
+      "board": "NAPLEX",
+      "scenario": "A 40-year-old woman has heartburn at least 3 days a week. Six weeks ago she finished a 14-day course of OTC omeprazole 20 mg daily, and the heartburn has returned. She has no trouble swallowing, bleeding, weight loss, or vomiting, and she is not pregnant. Years ago she took OTC ranitidine, which was later withdrawn from the market. She asks whether she should buy another 14-day box.",
+      "question": "Which recommendation is most appropriate now?",
+      "options": [
+        "A prescription for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
+        "Recommend another OTC omeprazole 20 mg daily for 14 days of self-care, then stop",
+        "Ask her to restart ranitidine 150 mg by mouth twice daily",
+        "Calcium carbonate 750 mg by mouth only after meals"
+      ]
+    }
+  ]
+}
