@@ -1,0 +1,37 @@
+{
+  "backupTable": "qbi_naplex_fix2_20261025_backup",
+  "csv": "scripts/data/naplex-fix2-20261025/backup.csv",
+  "csvSha256": "724f928b127258b38a1b66f38e410a146a88726612cfd3106c70d5776321f8a8",
+  "rows": 339,
+  "columns": 40,
+  "counts": {
+    "retire": 335,
+    "rewrite": 4
+  },
+  "rewrites": [
+    {
+      "ref": "U721-b00-42",
+      "id": "cmqgt789d001v1y3qb68ccpph",
+      "key": "D"
+    },
+    {
+      "ref": "U721-b00-124",
+      "id": "cmqvkc08j000n1ym36hvb7e0w",
+      "key": "B"
+    },
+    {
+      "ref": "U721-b01-40",
+      "id": "cmqvmk3g8001b1ydnqgymwtll",
+      "key": "C"
+    },
+    {
+      "ref": "U721-b03-49",
+      "id": "cmqvv55ad00181y3yzhnweklm",
+      "key": "B"
+    }
+  ],
+  "skips": [],
+  "servedBefore": 4753,
+  "undo": "scripts/restore-naplex-fix2-20261025.ts",
+  "note": "Snapshot taken before question text was changed. Every id resolved to exactly one served NAPLEX question. Retire sets active=false. Rewrite updates scenario, question, options, correctAnswer, explanation, and references, and sets manual_correction=true. contentHash is left unchanged. No rows are deleted."
+}
