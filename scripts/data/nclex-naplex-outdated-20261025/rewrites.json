@@ -1,6 +1,6 @@
 {
   "published": false,
-  "note": "Unpublished rewrites for items hidden on 2026-10-25. Do not load these into QuestionBankItem until an independent blind solve agrees.",
+  "note": "Nine items are approved for republish. cmr7zzhz2000m1yafsbg3xkeh stays hidden as a retired near-duplicate. Five items were revised again and must not be published; keyless stems are in blind-solve2.json.",
   "items": [
     {
       "id": "cmr815qlj00161ynm2bog3q9j",
@@ -22,27 +22,29 @@
     },
     {
       "id": "cmrovw8ya000m1yu3299ty2aj",
+      "status": "file-only",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
-      "topic": "Frequent GERD after ranitidine withdrawal",
-      "guideline": "ACG Clinical Guideline for the Diagnosis and Management of Gastroesophageal Reflux Disease (2022); FDA ranitidine market removal (2020)",
+      "topic": "Prescription PPI course after ranitidine withdrawal",
+      "guideline": "ACG Clinical Guideline for the Diagnosis and Management of Gastroesophageal Reflux Disease (2022); FDA ranitidine market removal (2020); OTC omeprazole Drug Facts label",
       "guidelineUrl": "https://journals.lww.com/ajg/fulltext/2022/01000/acg_clinical_guideline_for_the_diagnosis_and.14.aspx",
-      "scenario": "A 40-year-old woman has heartburn at least 3 days a week for 2 months. She had taken OTC ranitidine until products containing it were removed from the market. She has no trouble swallowing, bleeding, weight loss, or vomiting, and she is not pregnant.",
+      "scenario": "A 40-year-old woman has heartburn at least 3 days a week for 2 months. She had taken OTC ranitidine until products containing it were removed from the market. She has no trouble swallowing, bleeding, weight loss, or vomiting, and she is not pregnant. She asks whether she should buy another OTC acid reducer.",
       "question": "Which recommendation is most appropriate now?",
       "options": [
         "Calcium carbonate 750 mg by mouth only after meals",
-        "Famotidine 10 mg by mouth once daily as needed",
-        "Omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
+        "Recommend OTC omeprazole 20 mg daily for 14 days of self-care, then stop",
+        "A prescription for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
         "Ask her to restart ranitidine 150 mg by mouth twice daily"
       ],
-      "correctAnswer": "Omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
-      "explanation": "Omeprazole 20 mg once daily before breakfast for 8 weeks is appropriate for heartburn on 3 or more days a week. The ACG GERD guideline uses a once-daily PPI for frequent symptoms, taken before a meal. The FDA asked manufacturers to withdraw all ranitidine in 2020 because of NDMA, so it cannot be restarted. Famotidine 10 mg once daily as needed is too little for symptoms this frequent. Calcium carbonate after meals only neutralizes acid briefly and does not heal frequent GERD. Takeaway: frequent heartburn gets a once-daily PPI; ranitidine stays off the market."
+      "correctAnswer": "A prescription for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
+      "explanation": "Heartburn on at least 3 days a week for 2 months needs an 8-week trial of omeprazole 20 mg once daily before breakfast. The ACG GERD guideline uses that once-daily PPI course for frequent symptoms, and an 8-week course is a prescription. The OTC omeprazole label is 14 days of self-care, so a 14-day OTC course is too short and is not this recommendation. The FDA asked manufacturers to withdraw all ranitidine in 2020 because of NDMA, so it cannot be restarted. Calcium carbonate 750 mg after meals only neutralizes acid briefly and does not heal frequent GERD. Takeaway: prescribe omeprazole for 8 weeks; do not send her out with a 14-day OTC course, and do not restart ranitidine."
     },
     {
       "id": "cmroigcz3000j1y7n1rmsnzr4",
+      "status": "file-only",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
-      "topic": "Subtherapeutic phenytoin",
+      "topic": "Subtherapeutic phenytoin and nonlinear kinetics",
       "guideline": "DailyMed phenytoin prescribing information, therapeutic range and nonlinear kinetics",
       "guidelineUrl": "https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=phenytoin",
       "scenario": "A 30-year-old man takes phenytoin 300 mg by mouth daily, as 100 mg three times daily, for epilepsy. Seizures have increased. The total phenytoin level is 8 mcg/mL and albumin is 4.2 g/dL. He started omeprazole 20 mg daily for GERD one week ago.",
@@ -51,10 +53,10 @@
         "Stop omeprazole and keep phenytoin at 300 mg daily",
         "Add levetiracetam 500 mg twice daily and keep phenytoin at 300 mg daily",
         "Switch omeprazole to famotidine 20 mg twice daily and keep phenytoin at 300 mg daily",
-        "Increase phenytoin to 330 mg daily and recheck the level in 7 days"
+        "Increase phenytoin to 330 mg daily and recheck the level in about 2 weeks"
       ],
-      "correctAnswer": "Increase phenytoin to 330 mg daily and recheck the level in 7 days",
-      "explanation": "A total phenytoin level of 8 mcg/mL is below the usual 10–20 mcg/mL range, and albumin 4.2 g/dL means the total level is interpretable. Phenytoin is nonlinear, so raise the dose by 30 mg, to 330 mg daily, and recheck in 7 days rather than jumping to 400 mg. Omeprazole can raise phenytoin levels; stopping it or switching to famotidine 20 mg twice daily does not correct a level of 8. Adding levetiracetam 500 mg twice daily leaves the subtherapeutic phenytoin untreated. Takeaway: a level of 8 mcg/mL needs a small phenytoin increase and a repeat level, not an H2-blocker swap."
+      "correctAnswer": "Increase phenytoin to 330 mg daily and recheck the level in about 2 weeks",
+      "explanation": "A total phenytoin level of 8 mcg/mL is below the usual 10–20 mcg/mL range, and albumin 4.2 g/dL means the total level is interpretable. Phenytoin has nonlinear kinetics, so the new steady state after a dose change takes about 2 weeks. Raise the dose by 30 mg, to 330 mg daily, and recheck the level then rather than in 7 days or by jumping to 400 mg. Omeprazole raises phenytoin, so a level of 8 mcg/mL is not caused by the PPI. Stopping omeprazole or switching to famotidine 20 mg twice daily does not correct that level. Adding levetiracetam 500 mg twice daily leaves the subtherapeutic phenytoin untreated. Takeaway: make a small phenytoin increase and recheck in about 2 weeks, because omeprazole raises phenytoin."
     },
     {
       "id": "cmsfy8gct001h1yth5rdikpww",
@@ -131,6 +133,8 @@
     },
     {
       "id": "cmr7zzhz2000m1yafsbg3xkeh",
+      "status": "retired",
+      "retiredReason": "Near-duplicate of cmr7zccnn000n1y1wdgqlj70o. Left hidden.",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
       "topic": "Egg allergy and influenza vaccine counseling",
@@ -149,21 +153,22 @@
     },
     {
       "id": "cmqxaus7p001f1ypr2elqbs2e",
+      "status": "file-only",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
-      "topic": "ACE inhibitor cough versus stage 1 blood pressure",
+      "topic": "Switching an ACE inhibitor cough to an ARB",
       "guideline": "2025 AHA/ACC High Blood Pressure Guideline",
       "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/HYP.0000000000000249",
-      "scenario": "A 42-year-old man refills lisinopril 20 mg daily and atorvastatin 20 mg daily. For the past week he has had a persistent dry cough that started after lisinopril. Blood pressure today is 130/85 mm Hg. He has no known drug allergies.",
-      "question": "Which finding needs action before the refill is treated as routine?",
+      "scenario": "A 42-year-old man has taken lisinopril 20 mg by mouth daily for 6 weeks and atorvastatin 20 mg daily. A persistent dry cough began in week 3 and is still present. Home blood pressure is 124/76 mm Hg. He has no known drug allergies.",
+      "question": "Which change is most appropriate?",
       "options": [
-        "Blood pressure of 130/85 mm Hg",
-        "Persistent dry cough after starting lisinopril",
-        "Request to refill atorvastatin",
-        "No known drug allergies"
+        "Continue lisinopril 20 mg daily and add dextromethorphan 30 mg at bedtime",
+        "Stop lisinopril and start losartan 50 mg by mouth daily",
+        "Raise lisinopril to 40 mg daily",
+        "Stop atorvastatin 20 mg daily and continue lisinopril 20 mg daily"
       ],
-      "correctAnswer": "Persistent dry cough after starting lisinopril",
-      "explanation": "A new dry cough on lisinopril 20 mg daily is the adverse effect to act on; switch to an ARB such as losartan 50 mg daily if the cough is intolerable, rather than refilling the ACE inhibitor as routine. Blood pressure 130/85 mm Hg is stage 1 hypertension under the 2025 AHA/ACC guideline (130–139 or 80–89) and is above the treatment goal of below 130/80, so it needs planned follow-up, but it is not an emergency and it is not a normal reading. An atorvastatin refill and the absence of drug allergies need no urgent change. Takeaway: the cough is the immediate problem; 130/85 is above goal, not normal."
+      "correctAnswer": "Stop lisinopril and start losartan 50 mg by mouth daily",
+      "explanation": "The dry cough began in week 3 of lisinopril 20 mg daily, which is the usual window for an ACE-inhibitor cough. Home blood pressure is 124/76 mm Hg, already below the 2025 AHA/ACC goal of below 130/80, so the dose should not be increased. Stop lisinopril and start losartan 50 mg by mouth daily. An ARB is the substitute and rarely causes the same cough. Dextromethorphan 30 mg at bedtime only covers the cough and leaves the ACE inhibitor in place. Raising lisinopril to 40 mg daily does not stop the cough. Stopping atorvastatin 20 mg daily does not treat it. Takeaway: with blood pressure already below goal, switch the ACE inhibitor to losartan 50 mg rather than suppressing the cough."
     },
     {
       "id": "cmr0mlg1o001d1y34lanynyn7",
@@ -185,21 +190,22 @@
     },
     {
       "id": "cmr7tqqg2001n1yivy4gi52qz",
+      "status": "file-only",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
-      "topic": "ACE inhibitor cough, stage 1 blood pressure, and LDL",
+      "topic": "Classifying blood pressure of 130/85 mm Hg",
       "guideline": "2025 AHA/ACC High Blood Pressure Guideline",
       "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/HYP.0000000000000249",
-      "scenario": "A 50-year-old man refills lisinopril 20 mg daily and atorvastatin 40 mg daily. He feels well except for a persistent dry cough. Blood pressure is 130/85 mm Hg and LDL cholesterol is 90 mg/dL.",
-      "question": "Which finding should the pharmacist address before calling the visit routine?",
+      "scenario": "A 50-year-old man takes lisinopril 10 mg by mouth daily and atorvastatin 40 mg daily. He has no cough, no dizziness, and no known drug allergies. Blood pressure today is 130/85 mm Hg. LDL cholesterol is 90 mg/dL.",
+      "question": "Which statement about this blood pressure is correct?",
       "options": [
-        "LDL cholesterol of 90 mg/dL",
-        "Blood pressure of 130/85 mm Hg",
-        "Persistent dry cough",
-        "No medicine change of any kind"
+        "130/85 mm Hg is normal, so stop lisinopril",
+        "130/85 mm Hg is stage 1 hypertension and above the goal of below 130/80",
+        "130/85 mm Hg is already at the 2025 treatment goal, so make no blood-pressure change",
+        "LDL cholesterol of 90 mg/dL shows the blood pressure is controlled"
       ],
-      "correctAnswer": "Persistent dry cough",
-      "explanation": "A persistent dry cough on lisinopril is an ACE-inhibitor effect. Offer a switch to an ARB, for example losartan 50 mg daily, if the cough is bothersome. Blood pressure 130/85 mm Hg is not normal: the 2025 AHA/ACC categories put 130–139 or 80–89 in stage 1 hypertension, and the treatment goal is below 130/80. It can be rechecked and adjusted at follow-up; it is not the acute issue. LDL 90 mg/dL is at a typical statin goal and does not need a same-day change. Takeaway: do not call 130/85 normal, and do not ignore an ACE-inhibitor cough."
+      "correctAnswer": "130/85 mm Hg is stage 1 hypertension and above the goal of below 130/80",
+      "explanation": "The 2025 AHA/ACC guideline defines hypertension as a systolic pressure of 130 mm Hg or higher or a diastolic pressure of 80 mm Hg or higher. Stage 1 is 130–139 or 80–89, and the treatment goal is below 130/80. A reading of 130/85 mm Hg is stage 1 hypertension and above that goal. It is not normal, and it is not already at goal. Stopping lisinopril because someone calls 130/85 normal would leave stage 1 untreated. LDL cholesterol of 90 mg/dL is a lipid result and does not show that the blood pressure is controlled. He has no cough and no dizziness, so this question is only the blood-pressure category. Takeaway: 130/85 mm Hg is stage 1 and above the goal of below 130/80."
     },
     {
       "id": "cmr7ugujq001n1yt3ee4zaua9",
@@ -221,21 +227,22 @@
     },
     {
       "id": "cmr7xthmz001n1yikcwuott43",
+      "status": "file-only",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
-      "topic": "New ACE inhibitor, cough, and stage 1 blood pressure",
+      "topic": "Timing of an ACE inhibitor cough",
       "guideline": "2025 AHA/ACC High Blood Pressure Guideline",
       "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/HYP.0000000000000249",
-      "scenario": "A 45-year-old woman is starting lisinopril 20 mg by mouth daily for hypertension. She reports a persistent dry cough, blood pressure 130/85 mm Hg, a father with hypertension, and a body mass index of 27 kg/m². She takes no other medicines and has no known drug allergies.",
-      "question": "Which finding should change the plan today?",
+      "scenario": "A 45-year-old woman has taken lisinopril 20 mg by mouth daily for 6 weeks. She had no cough before the first dose. A persistent dry cough began in week 3. Blood pressure today is 136/86 mm Hg. Her father has hypertension, and her body mass index is 27 kg/m². She takes no other medicines.",
+      "question": "Which history best supports an ACE-inhibitor cough?",
       "options": [
-        "Body mass index of 27 kg/m²",
-        "Family history of hypertension",
-        "Blood pressure of 130/85 mm Hg",
-        "Persistent dry cough"
+        "The cough was already present on the day lisinopril was first prescribed",
+        "She had no cough before the first dose, and the cough began in week 3",
+        "Blood pressure of 136/86 mm Hg shows the cough is from lisinopril",
+        "A body mass index of 27 kg/m² explains the cough"
       ],
-      "correctAnswer": "Persistent dry cough",
-      "explanation": "A persistent dry cough is a reason to stop lisinopril 20 mg daily and use an ARB instead, such as losartan 50 mg daily. Blood pressure 130/85 mm Hg is stage 1 hypertension (130–139 or 80–89) and above the 2025 goal of below 130/80. It shows treatment is not finished, but it is an acceptable reason for follow-up rather than proof that the current reading is normal. Body mass index 27 kg/m² and a family history matter for long-term risk and do not require a same-day drug change. Takeaway: the cough changes today's drug; 130/85 is above goal, not a normal result."
+      "correctAnswer": "She had no cough before the first dose, and the cough began in week 3",
+      "explanation": "An ACE-inhibitor cough begins days to weeks after the first dose. It is not a cough the patient already had when the prescription was written. She had no cough before the first dose of lisinopril 20 mg daily, and the dry cough began in week 3 of a 6-week course, which matches that timeline. A cough already present on the day lisinopril was prescribed has a different cause. Blood pressure of 136/86 mm Hg is still above the 2025 goal of below 130/80, but the reading does not prove what caused the cough. A body mass index of 27 kg/m² does not time the cough. Takeaway: call it an ACE-inhibitor cough only when it starts after the first dose, not before lisinopril."
     },
     {
       "id": "cmqw33qs5001c1yawc9sc5grf",
