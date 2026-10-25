@@ -12,6 +12,18 @@ import {
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
 import {
+  FNP_QUICK_BITE_EPISODES,
+  fnpQuickBitePoster,
+  isFnpQuickBitePlayable,
+  nextPlayableFnpQuickBite,
+} from "@/lib/quick-bites/fnp-catalog";
+import {
+  PANCE_QUICK_BITE_EPISODES,
+  isPanceQuickBitePlayable,
+  nextPlayablePanceQuickBite,
+  panceQuickBitePoster,
+} from "@/lib/quick-bites/pance-catalog";
+import {
   PHARMACY_QUICK_BITE_EPISODES,
   isPharmacyQuickBitePlayable,
   nextPlayablePharmacyQuickBite,
@@ -69,6 +81,38 @@ const PHARMACY_SERIES: QuickBiteSeries = {
   nextEpisode: nextPlayablePharmacyQuickBite,
 };
 
+const FNP_SERIES: QuickBiteSeries = {
+  id: "video-quick-bites-fnp",
+  headingId: "video-quick-bites-fnp-heading",
+  title: "Quick Bites: FNP",
+  subtitle: "Short chalkboard explainers for the AANP FNP boards.",
+  note: null,
+  lockedMessage: "Quick Bites are included with a paid membership. Subscribe to watch every episode.",
+  groups: [{ title: "", episodes: FNP_QUICK_BITE_EPISODES }],
+  poster: fnpQuickBitePoster,
+  apiBase: "/api/quick-bites-fnp",
+  includeCaptionsTrack: true,
+  captionsNote: "Captions are available from the player. They match the words already on screen.",
+  isPlayable: isFnpQuickBitePlayable,
+  nextEpisode: nextPlayableFnpQuickBite,
+};
+
+const PANCE_SERIES: QuickBiteSeries = {
+  id: "video-quick-bites-pance",
+  headingId: "video-quick-bites-pance-heading",
+  title: "Quick Bites: PANCE",
+  subtitle: "Short chalkboard explainers for the PANCE boards.",
+  note: null,
+  lockedMessage: "Quick Bites are included with a paid membership. Subscribe to watch every episode.",
+  groups: [{ title: "", episodes: PANCE_QUICK_BITE_EPISODES }],
+  poster: panceQuickBitePoster,
+  apiBase: "/api/quick-bites-pance",
+  includeCaptionsTrack: true,
+  captionsNote: "Captions are available from the player. They match the words already on screen.",
+  isPlayable: isPanceQuickBitePlayable,
+  nextEpisode: nextPlayablePanceQuickBite,
+};
+
 function Poster({ poster }: { poster: { webp: string; jpg: string } }) {
   return (
     <picture>
@@ -121,9 +165,16 @@ export function VideoQuickBitesSection({
   canPlay: boolean;
   upgradeHref: string;
   upgradeLabel: string;
-  series?: "nursing" | "pharmacy";
+  series?: "nursing" | "pharmacy" | "fnp" | "pance";
 }) {
-  const config = series === "pharmacy" ? PHARMACY_SERIES : NURSING_SERIES;
+  const config =
+    series === "pharmacy"
+      ? PHARMACY_SERIES
+      : series === "fnp"
+        ? FNP_SERIES
+        : series === "pance"
+          ? PANCE_SERIES
+          : NURSING_SERIES;
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const [session, setSession] = useState(0);
   const scrollRequest = useRef(false);

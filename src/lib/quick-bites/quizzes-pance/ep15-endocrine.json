@@ -1,0 +1,287 @@
+{
+  "episode": "ep15-endocrine",
+  "title": "Glands and Hormones",
+  "video": "quick-bites-pance-ep15-endocrine-web.mp4",
+  "questions": [
+    {
+      "id": "ep15-endocrine-q01",
+      "type": "single_best_answer",
+      "stem": "First-line drug for a prolactinoma:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Desmopressin"
+        },
+        {
+          "id": "B",
+          "text": "Hydrocortisone"
+        },
+        {
+          "id": "C",
+          "text": "Cabergoline"
+        },
+        {
+          "id": "D",
+          "text": "Levothyroxine"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Cabergoline",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-endocrine-q02",
+      "type": "single_best_answer",
+      "stem": "Medullary thyroid cancer plus pheochromocytoma suggests:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Addison disease"
+        },
+        {
+          "id": "B",
+          "text": "Graves disease"
+        },
+        {
+          "id": "C",
+          "text": "Multiple endocrine neoplasia type 2"
+        },
+        {
+          "id": "D",
+          "text": "Type 1 diabetes"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Test for the ret gene.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-endocrine-q03",
+      "type": "single_best_answer",
+      "stem": "Type 2 diabetes with heart failure: add?",
+      "options": [
+        {
+          "id": "A",
+          "text": "SGLT2 inhibitor"
+        },
+        {
+          "id": "B",
+          "text": "Nothing"
+        },
+        {
+          "id": "C",
+          "text": "Pioglitazone"
+        },
+        {
+          "id": "D",
+          "text": "Sulfonylurea"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Fewer heart failure stays.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-endocrine-q04",
+      "type": "single_best_answer",
+      "stem": "Asymptomatic primary hyperparathyroidism: which is a surgery criterion?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Age over 70"
+        },
+        {
+          "id": "B",
+          "text": "Any headache"
+        },
+        {
+          "id": "C",
+          "text": "Age under 50"
+        },
+        {
+          "id": "D",
+          "text": "Calcium at upper normal"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Also calcium more than 1 above normal, osteoporosis, kidney function under 60 or stones.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-endocrine-q05",
+      "type": "single_best_answer",
+      "stem": "DKA with potassium 3.1: first step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start insulin"
+        },
+        {
+          "id": "B",
+          "text": "Discharge"
+        },
+        {
+          "id": "C",
+          "text": "Replace potassium"
+        },
+        {
+          "id": "D",
+          "text": "Give bicarbonate"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Replace potassium",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-endocrine-q06",
+      "type": "single_best_answer",
+      "stem": "First-line drug for Graves disease?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Methimazole"
+        },
+        {
+          "id": "B",
+          "text": "Radioactive iodine always"
+        },
+        {
+          "id": "C",
+          "text": "Propylthiouracil"
+        },
+        {
+          "id": "D",
+          "text": "Levothyroxine"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Methimazole",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-endocrine-q07",
+      "type": "single_best_answer",
+      "stem": "Hyperthyroid in the first trimester:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Propylthiouracil"
+        },
+        {
+          "id": "B",
+          "text": "No treatment"
+        },
+        {
+          "id": "C",
+          "text": "Methimazole"
+        },
+        {
+          "id": "D",
+          "text": "Iodine"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Propylthiouracil",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-endocrine-q08",
+      "type": "single_best_answer",
+      "stem": "After a levothyroxine dose change, recheck the stimulating hormone in:",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 year"
+        },
+        {
+          "id": "B",
+          "text": "1 week"
+        },
+        {
+          "id": "C",
+          "text": "6-8 weeks"
+        },
+        {
+          "id": "D",
+          "text": "6 months"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "6-8 weeks",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-endocrine-q09",
+      "type": "single_best_answer",
+      "stem": "Headaches, sweats, palpitations, severe hypertension. First test?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Plasma free metanephrines"
+        },
+        {
+          "id": "B",
+          "text": "Cortisol"
+        },
+        {
+          "id": "C",
+          "text": "A1C"
+        },
+        {
+          "id": "D",
+          "text": "TSH"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Pheochromocytoma.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-endocrine-q10",
+      "type": "single_best_answer",
+      "stem": "Before pheochromocytoma surgery, start:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Beta blocker first"
+        },
+        {
+          "id": "B",
+          "text": "Nothing"
+        },
+        {
+          "id": "C",
+          "text": "Diuretic"
+        },
+        {
+          "id": "D",
+          "text": "Alpha blocker first"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Alpha before beta.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "episode": "ep08-reproductive",
+  "title": "Contraception, Pregnancy and Menopause",
+  "video": "quick-bites-fnp-ep08-reproductive-web.mp4",
+  "questions": [
+    {
+      "id": "ep08-reproductive-q01",
+      "type": "single_best_answer",
+      "stem": "A 28-year-old with migraine with aura wants contraception. Which is contraindicated?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Levonorgestrel IUD"
+        },
+        {
+          "id": "B",
+          "text": "Combined pill"
+        },
+        {
+          "id": "C",
+          "text": "Implant"
+        },
+        {
+          "id": "D",
+          "text": "Copper IUD"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Migraine with aura is US MEC category 4 for estrogen.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-reproductive-q02",
+      "type": "single_best_answer",
+      "stem": "A 36-year-old smokes 20 cigarettes a day. Best method?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Combined pill"
+        },
+        {
+          "id": "B",
+          "text": "Patch"
+        },
+        {
+          "id": "C",
+          "text": "Ring"
+        },
+        {
+          "id": "D",
+          "text": "Levonorgestrel IUD"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "35+ and 15+ cigarettes per day: no estrogen.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-reproductive-q03",
+      "type": "single_best_answer",
+      "stem": "Most effective emergency contraception?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Levonorgestrel pill"
+        },
+        {
+          "id": "B",
+          "text": "Copper IUD within 5 days"
+        },
+        {
+          "id": "C",
+          "text": "Ulipristal"
+        },
+        {
+          "id": "D",
+          "text": "Condom"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Copper IUD is most effective.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-reproductive-q04",
+      "type": "single_best_answer",
+      "stem": "Day 4 after unprotected sex, no IUD wanted. Best pill?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Levonorgestrel"
+        },
+        {
+          "id": "B",
+          "text": "Ulipristal"
+        },
+        {
+          "id": "C",
+          "text": "Combined pill"
+        },
+        {
+          "id": "D",
+          "text": "None works"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Ulipristal works up to 5 days; levonorgestrel best within 3.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-reproductive-q05",
+      "type": "single_best_answer",
+      "stem": "When does folic acid start?",
+      "options": [
+        {
+          "id": "A",
+          "text": "At 12 weeks"
+        },
+        {
+          "id": "B",
+          "text": "Before pregnancy"
+        },
+        {
+          "id": "C",
+          "text": "At 20 weeks"
+        },
+        {
+          "id": "D",
+          "text": "Only if anemic"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "0.4-0.8 mg daily for anyone who could become pregnant.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-reproductive-q06",
+      "type": "single_best_answer",
+      "stem": "Aspirin 81 mg for high preeclampsia risk starts:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Before conception"
+        },
+        {
+          "id": "B",
+          "text": "After 12 weeks"
+        },
+        {
+          "id": "C",
+          "text": "At 28 weeks"
+        },
+        {
+          "id": "D",
+          "text": "At 36 weeks"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "USPSTF: after 12 weeks.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-reproductive-q07",
+      "type": "single_best_answer",
+      "stem": "Tdap in pregnancy is given:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only if never vaccinated"
+        },
+        {
+          "id": "B",
+          "text": "27-36 weeks, every pregnancy"
+        },
+        {
+          "id": "C",
+          "text": "Postpartum only"
+        },
+        {
+          "id": "D",
+          "text": "First trimester"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Each pregnancy, 27-36 weeks.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-reproductive-q08",
+      "type": "single_best_answer",
+      "stem": "Group B strep swab timing:",
+      "options": [
+        {
+          "id": "A",
+          "text": "24-28 weeks"
+        },
+        {
+          "id": "B",
+          "text": "36-37 weeks"
+        },
+        {
+          "id": "C",
+          "text": "At delivery only"
+        },
+        {
+          "id": "D",
+          "text": "First visit"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "36 0/7 to 37 6/7 weeks.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-reproductive-q09",
+      "type": "single_best_answer",
+      "stem": "30 weeks, BP 150/96 and severe headache. Next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Recheck in 1 week"
+        },
+        {
+          "id": "B",
+          "text": "Same-day obstetric evaluation"
+        },
+        {
+          "id": "C",
+          "text": "Start aspirin"
+        },
+        {
+          "id": "D",
+          "text": "Reassure"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Possible preeclampsia with a severe feature.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-reproductive-q10",
+      "type": "single_best_answer",
+      "stem": "Woman with a uterus starting systemic estrogen needs:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Nothing else"
+        },
+        {
+          "id": "B",
+          "text": "A progestogen"
+        },
+        {
+          "id": "C",
+          "text": "Testosterone"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Progestogen protects the endometrium.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

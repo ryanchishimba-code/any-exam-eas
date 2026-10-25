@@ -1,0 +1,287 @@
+{
+  "episode": "ep05-lung-infections-kids",
+  "title": "Lung Infections and Breathing in Kids",
+  "video": "quick-bites-pance-ep05-lung-infections-kids-web.mp4",
+  "questions": [
+    {
+      "id": "ep05-lung-infections-kids-q01",
+      "type": "single_best_answer",
+      "stem": "A healthy 30-year-old outpatient with pneumonia, no comorbidities. Best treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Levofloxacin"
+        },
+        {
+          "id": "B",
+          "text": "Amoxicillin"
+        },
+        {
+          "id": "C",
+          "text": "Vancomycin"
+        },
+        {
+          "id": "D",
+          "text": "Ceftriaxone IV"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Or doxycycline.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-lung-infections-kids-q02",
+      "type": "single_best_answer",
+      "stem": "A 68-year-old with diabetes and COPD, outpatient pneumonia. Option?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Doxycycline alone"
+        },
+        {
+          "id": "B",
+          "text": "No antibiotic"
+        },
+        {
+          "id": "C",
+          "text": "Amoxicillin-clavulanate plus a macrolide"
+        },
+        {
+          "id": "D",
+          "text": "Amoxicillin alone"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Or a respiratory fluoroquinolone.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-lung-infections-kids-q03",
+      "type": "single_best_answer",
+      "stem": "Hospitalized (non-ICU) pneumonia. Regimen?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Macrolide alone"
+        },
+        {
+          "id": "B",
+          "text": "Amoxicillin alone"
+        },
+        {
+          "id": "C",
+          "text": "Vancomycin alone"
+        },
+        {
+          "id": "D",
+          "text": "Beta-lactam plus macrolide"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Inpatient standard.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-lung-infections-kids-q04",
+      "type": "single_best_answer",
+      "stem": "A health care worker has 12 mm induration on skin test. Interpretation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Repeat in 1 year"
+        },
+        {
+          "id": "B",
+          "text": "Negative"
+        },
+        {
+          "id": "C",
+          "text": "Positive (10 mm cutoff)"
+        },
+        {
+          "id": "D",
+          "text": "Positive only if 15 mm"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "10 mm for high-risk groups.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-lung-infections-kids-q05",
+      "type": "single_best_answer",
+      "stem": "Latent tuberculosis, normal chest X-ray. Preferred short regimen?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rifampin daily for 4 months"
+        },
+        {
+          "id": "B",
+          "text": "Isoniazid 9 months only"
+        },
+        {
+          "id": "C",
+          "text": "Four drugs for 6 months"
+        },
+        {
+          "id": "D",
+          "text": "No treatment"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Or weekly isoniazid-rifapentine for 3 months.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-lung-infections-kids-q06",
+      "type": "single_best_answer",
+      "stem": "Hospitalized with influenza, symptoms began 4 days ago. Oseltamivir?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only if child"
+        },
+        {
+          "id": "B",
+          "text": "Only if vaccinated"
+        },
+        {
+          "id": "C",
+          "text": "No, beyond 48 hours"
+        },
+        {
+          "id": "D",
+          "text": "Yes, treat regardless of duration"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Hospitalized: treat regardless of duration.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-lung-infections-kids-q07",
+      "type": "single_best_answer",
+      "stem": "A 2-year-old has barking cough and stridor at rest. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amoxicillin"
+        },
+        {
+          "id": "B",
+          "text": "Albuterol"
+        },
+        {
+          "id": "C",
+          "text": "Dexamethasone plus nebulized epinephrine"
+        },
+        {
+          "id": "D",
+          "text": "Intubation"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Croup; steeple sign.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-lung-infections-kids-q08",
+      "type": "single_best_answer",
+      "stem": "A 6-month-old with RSV bronchiolitis, mild hypoxia. Management?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Supportive: suction, oxygen, fluids"
+        },
+        {
+          "id": "B",
+          "text": "Prednisolone"
+        },
+        {
+          "id": "C",
+          "text": "Albuterol"
+        },
+        {
+          "id": "D",
+          "text": "Azithromycin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "No albuterol or steroids.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-lung-infections-kids-q09",
+      "type": "single_best_answer",
+      "stem": "A 3-year-old drooling, tripod, high fever, muffled voice. Next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Throat exam with tongue blade"
+        },
+        {
+          "id": "B",
+          "text": "Oral antibiotics"
+        },
+        {
+          "id": "C",
+          "text": "Lateral neck X-ray first"
+        },
+        {
+          "id": "D",
+          "text": "Secure airway in the operating room"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Epiglottitis.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-lung-infections-kids-q10",
+      "type": "single_best_answer",
+      "stem": "HIV, CD4 120, dry cough, hypoxia, diffuse infiltrates. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Oseltamivir"
+        },
+        {
+          "id": "B",
+          "text": "Fluconazole"
+        },
+        {
+          "id": "C",
+          "text": "Azithromycin"
+        },
+        {
+          "id": "D",
+          "text": "TMP-SMX, plus steroids if hypoxic"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Pneumocystis.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

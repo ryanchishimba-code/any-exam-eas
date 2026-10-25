@@ -1,0 +1,287 @@
+{
+  "episode": "ep01-coronary-failure-shock",
+  "title": "Coronary Disease, Heart Failure and Shock",
+  "video": "quick-bites-pance-ep01-coronary-failure-shock-web.mp4",
+  "questions": [
+    {
+      "id": "ep01-coronary-failure-shock-q01",
+      "type": "single_best_answer",
+      "stem": "A 58-year-old has 30 minutes of crushing chest pain. ECG shows ST elevation in V2-V4. The nearest PCI center is 40 minutes away. Best next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Serial troponins for 6 hours"
+        },
+        {
+          "id": "B",
+          "text": "Fibrinolytic now"
+        },
+        {
+          "id": "C",
+          "text": "Stress test"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin and transfer for primary PCI"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "PCI within 90 minutes of first contact is achievable.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep01-coronary-failure-shock-q02",
+      "type": "single_best_answer",
+      "stem": "A 62-year-old with chest pain has a nondiagnostic ECG. When should high-sensitivity troponin be repeated?",
+      "options": [
+        {
+          "id": "A",
+          "text": "At 24 hours"
+        },
+        {
+          "id": "B",
+          "text": "At 1-2 hours"
+        },
+        {
+          "id": "C",
+          "text": "At 12 hours"
+        },
+        {
+          "id": "D",
+          "text": "Only if pain recurs"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "0 and 1-2 hour protocol.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep01-coronary-failure-shock-q03",
+      "type": "single_best_answer",
+      "stem": "Inferior ST-elevation myocardial infarction with right ventricular involvement. Blood pressure 92/60 mmHg. Which intervention should be avoided?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Aspirin"
+        },
+        {
+          "id": "B",
+          "text": "Heparin"
+        },
+        {
+          "id": "C",
+          "text": "Nitroglycerin"
+        },
+        {
+          "id": "D",
+          "text": "Intravenous fluids"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Right ventricular infarction is preload dependent: avoid nitrates and give fluids.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep01-coronary-failure-shock-q04",
+      "type": "single_best_answer",
+      "stem": "A 66-year-old with diabetes has three-vessel coronary disease on angiography. Preferred revascularization?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Medical therapy only"
+        },
+        {
+          "id": "B",
+          "text": "Thrombolysis"
+        },
+        {
+          "id": "C",
+          "text": "PCI of all vessels"
+        },
+        {
+          "id": "D",
+          "text": "Coronary artery bypass grafting"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Three-vessel disease plus diabetes: bypass.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep01-coronary-failure-shock-q05",
+      "type": "single_best_answer",
+      "stem": "A 70-year-old has dyspnea, edema and crackles. Which test best supports heart failure before echocardiography?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Troponin I"
+        },
+        {
+          "id": "B",
+          "text": "Lipase"
+        },
+        {
+          "id": "C",
+          "text": "Natriuretic peptide"
+        },
+        {
+          "id": "D",
+          "text": "D-dimer"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Natriuretic peptide up; echo confirms.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep01-coronary-failure-shock-q06",
+      "type": "single_best_answer",
+      "stem": "A 17-year-old athlete faints while running. A systolic murmur gets louder with Valsalva and softer with squatting. First-line therapy if symptomatic?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Digoxin"
+        },
+        {
+          "id": "B",
+          "text": "Beta blocker"
+        },
+        {
+          "id": "C",
+          "text": "Hydrochlorothiazide"
+        },
+        {
+          "id": "D",
+          "text": "Nitroglycerin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Hypertrophic cardiomyopathy: beta blocker, avoid dehydration, screen family.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep01-coronary-failure-shock-q07",
+      "type": "single_best_answer",
+      "stem": "A 3-year-old has 6 days of fever, conjunctival injection without exudate, strawberry tongue, and swollen hands. Most feared complication?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Coronary artery aneurysm"
+        },
+        {
+          "id": "B",
+          "text": "Mitral stenosis"
+        },
+        {
+          "id": "C",
+          "text": "Pericardial constriction"
+        },
+        {
+          "id": "D",
+          "text": "Aortic dissection"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Kawasaki: IVIG plus aspirin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep01-coronary-failure-shock-q08",
+      "type": "single_best_answer",
+      "stem": "Treatment for the child above?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ibuprofen only"
+        },
+        {
+          "id": "B",
+          "text": "Prednisone alone"
+        },
+        {
+          "id": "C",
+          "text": "IVIG plus aspirin"
+        },
+        {
+          "id": "D",
+          "text": "Oral amoxicillin"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "IVIG plus aspirin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep01-coronary-failure-shock-q09",
+      "type": "single_best_answer",
+      "stem": "Fever, warm extremities, blood pressure 78/40 after a urinary infection. After 30 mL/kg crystalloid the pressure stays low. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Norepinephrine"
+        },
+        {
+          "id": "B",
+          "text": "More fluids, 60 mL/kg"
+        },
+        {
+          "id": "C",
+          "text": "Dobutamine"
+        },
+        {
+          "id": "D",
+          "text": "Dopamine"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Norepinephrine is first-line vasopressor.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep01-coronary-failure-shock-q10",
+      "type": "single_best_answer",
+      "stem": "Ejection fraction 30% on an ACE inhibitor and beta blocker. Which addition is appropriate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Spironolactone"
+        },
+        {
+          "id": "B",
+          "text": "Diltiazem"
+        },
+        {
+          "id": "C",
+          "text": "Verapamil"
+        },
+        {
+          "id": "D",
+          "text": "NSAID"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Complete the pillars; avoid nondihydropyridine calcium blockers.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

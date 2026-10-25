@@ -1,0 +1,287 @@
+{
+  "episode": "ep17-mens-kidney",
+  "title": "Men's and Kidney Health",
+  "video": "quick-bites-fnp-ep17-mens-kidney-web.mp4",
+  "questions": [
+    {
+      "id": "ep17-mens-kidney-q01",
+      "type": "single_best_answer",
+      "stem": "Age 68, nocturia, weak stream:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Prostate cancer"
+        },
+        {
+          "id": "B",
+          "text": "Benign enlargement"
+        },
+        {
+          "id": "C",
+          "text": "Bladder cancer"
+        },
+        {
+          "id": "D",
+          "text": "UTI"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "BPH.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-mens-kidney-q02",
+      "type": "single_best_answer",
+      "stem": "Symptom relief for BPH:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Alpha blocker"
+        },
+        {
+          "id": "B",
+          "text": "Antibiotic"
+        },
+        {
+          "id": "C",
+          "text": "Steroid"
+        },
+        {
+          "id": "D",
+          "text": "Opioid"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Tamsulosin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-mens-kidney-q03",
+      "type": "single_best_answer",
+      "stem": "PSA screening at 75:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Annual"
+        },
+        {
+          "id": "B",
+          "text": "Not recommended"
+        },
+        {
+          "id": "C",
+          "text": "Shared decision"
+        },
+        {
+          "id": "D",
+          "text": "Biopsy"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "USPSTF D.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-mens-kidney-q04",
+      "type": "single_best_answer",
+      "stem": "PSA screening at 60:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Mandatory"
+        },
+        {
+          "id": "B",
+          "text": "Shared decision"
+        },
+        {
+          "id": "C",
+          "text": "Not allowed"
+        },
+        {
+          "id": "D",
+          "text": "Only with symptoms"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Grade C.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-mens-kidney-q05",
+      "type": "single_best_answer",
+      "stem": "Urge incontinence first step:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Surgery"
+        },
+        {
+          "id": "B",
+          "text": "Bladder training"
+        },
+        {
+          "id": "C",
+          "text": "Catheter"
+        },
+        {
+          "id": "D",
+          "text": "Antibiotic"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "AUA/SUFU.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-mens-kidney-q06",
+      "type": "single_best_answer",
+      "stem": "A healthy sixty-year-old asks about prostate cancer screening. What is the best next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Order prostate-specific antigen testing without discussion"
+        },
+        {
+          "id": "B",
+          "text": "Shared decision conversation about screening"
+        },
+        {
+          "id": "C",
+          "text": "Refuse all screening"
+        },
+        {
+          "id": "D",
+          "text": "Proceed directly to biopsy"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "From ages fifty-five to sixty-nine, prostate-specific antigen screening is an individual shared decision, not an automatic order.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-mens-kidney-q07",
+      "type": "single_best_answer",
+      "stem": "Sudden testicle pain, vomiting, age 14:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Antibiotics"
+        },
+        {
+          "id": "B",
+          "text": "Emergency urology"
+        },
+        {
+          "id": "C",
+          "text": "Ice and rest"
+        },
+        {
+          "id": "D",
+          "text": "Ultrasound next week"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Torsion.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-mens-kidney-q08",
+      "type": "single_best_answer",
+      "stem": "CKD diagnosis needs:",
+      "options": [
+        {
+          "id": "A",
+          "text": "One low eGFR"
+        },
+        {
+          "id": "B",
+          "text": "eGFR + urine albumin for 3+ months"
+        },
+        {
+          "id": "C",
+          "text": "Creatinine only"
+        },
+        {
+          "id": "D",
+          "text": "Ultrasound"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "KDIGO.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-mens-kidney-q09",
+      "type": "single_best_answer",
+      "stem": "Metformin contraindicated below eGFR:",
+      "options": [
+        {
+          "id": "A",
+          "text": "60"
+        },
+        {
+          "id": "B",
+          "text": "45"
+        },
+        {
+          "id": "C",
+          "text": "30"
+        },
+        {
+          "id": "D",
+          "text": "15"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "ADA.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-mens-kidney-q10",
+      "type": "single_best_answer",
+      "stem": "Start SGLT2 inhibitor in CKD if eGFR is at least:",
+      "options": [
+        {
+          "id": "A",
+          "text": "60"
+        },
+        {
+          "id": "B",
+          "text": "45"
+        },
+        {
+          "id": "C",
+          "text": "20"
+        },
+        {
+          "id": "D",
+          "text": "10"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "KDIGO 2024.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

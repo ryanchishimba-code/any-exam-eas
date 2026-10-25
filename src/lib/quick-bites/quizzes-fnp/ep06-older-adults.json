@@ -1,0 +1,287 @@
+{
+  "episode": "ep06-older-adults",
+  "title": "Older Adults",
+  "video": "quick-bites-fnp-ep06-older-adults-web.mp4",
+  "questions": [
+    {
+      "id": "ep06-older-adults-q01",
+      "type": "single_best_answer",
+      "stem": "Which drug should an 82-year-old avoid for sleep?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Melatonin"
+        },
+        {
+          "id": "B",
+          "text": "Diphenhydramine"
+        },
+        {
+          "id": "C",
+          "text": "Sleep hygiene"
+        },
+        {
+          "id": "D",
+          "text": "CBT for insomnia"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Strong anticholinergic on Beers.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-older-adults-q02",
+      "type": "single_best_answer",
+      "stem": "Beers also says avoid:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Benzodiazepines for sleep"
+        },
+        {
+          "id": "B",
+          "text": "Statins"
+        },
+        {
+          "id": "C",
+          "text": "Acetaminophen"
+        },
+        {
+          "id": "D",
+          "text": "Vitamin B12"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Benzodiazepines.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-older-adults-q03",
+      "type": "single_best_answer",
+      "stem": "Sudden overnight confusion with fluctuating attention is most likely:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Dementia"
+        },
+        {
+          "id": "B",
+          "text": "Delirium"
+        },
+        {
+          "id": "C",
+          "text": "Normal aging"
+        },
+        {
+          "id": "D",
+          "text": "Depression"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Delirium = acute and fluctuating.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-older-adults-q04",
+      "type": "single_best_answer",
+      "stem": "First priority in delirium:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start donepezil"
+        },
+        {
+          "id": "B",
+          "text": "Find the cause"
+        },
+        {
+          "id": "C",
+          "text": "Long-term care"
+        },
+        {
+          "id": "D",
+          "text": "Ignore"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Look for infection, drugs, retention, hypoxia.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-older-adults-q05",
+      "type": "single_best_answer",
+      "stem": "Timed Up and Go result indicating fall risk:",
+      "options": [
+        {
+          "id": "A",
+          "text": "6 seconds"
+        },
+        {
+          "id": "B",
+          "text": "8 seconds"
+        },
+        {
+          "id": "C",
+          "text": "12 seconds or more"
+        },
+        {
+          "id": "D",
+          "text": "Any time"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "≥12 s.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-older-adults-q06",
+      "type": "single_best_answer",
+      "stem": "Best evidence intervention for 65+ at fall risk:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Exercise"
+        },
+        {
+          "id": "B",
+          "text": "Bed rest"
+        },
+        {
+          "id": "C",
+          "text": "Hip protectors only"
+        },
+        {
+          "id": "D",
+          "text": "Restraints"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "USPSTF B for exercise.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-older-adults-q07",
+      "type": "single_best_answer",
+      "stem": "Alendronate should be taken:",
+      "options": [
+        {
+          "id": "A",
+          "text": "With breakfast"
+        },
+        {
+          "id": "B",
+          "text": "At bedtime lying down"
+        },
+        {
+          "id": "C",
+          "text": "Empty stomach, full glass water, upright 30 min"
+        },
+        {
+          "id": "D",
+          "text": "With milk"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Label instructions.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-older-adults-q08",
+      "type": "single_best_answer",
+      "stem": "Who cannot take alendronate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Patient unable to sit upright 30 min"
+        },
+        {
+          "id": "B",
+          "text": "Patient over 65"
+        },
+        {
+          "id": "C",
+          "text": "Patient with osteopenia"
+        },
+        {
+          "id": "D",
+          "text": "Postmenopausal women"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Contraindication.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-older-adults-q09",
+      "type": "single_best_answer",
+      "stem": "T-score defining osteoporosis:",
+      "options": [
+        {
+          "id": "A",
+          "text": "-1.0"
+        },
+        {
+          "id": "B",
+          "text": "-1.5"
+        },
+        {
+          "id": "C",
+          "text": "-2.5 or lower"
+        },
+        {
+          "id": "D",
+          "text": "+1.0"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "≤-2.5.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-older-adults-q10",
+      "type": "single_best_answer",
+      "stem": "Osteoporosis screening is recommended for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Women 65+"
+        },
+        {
+          "id": "B",
+          "text": "Men 50+ routinely"
+        },
+        {
+          "id": "C",
+          "text": "Women 40+"
+        },
+        {
+          "id": "D",
+          "text": "No one"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Women 65+ and younger at-risk postmenopausal.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

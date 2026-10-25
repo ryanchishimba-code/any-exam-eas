@@ -1,0 +1,287 @@
+{
+  "episode": "ep19-mens-health-skin",
+  "title": "Men's Health and Skin",
+  "video": "quick-bites-pance-ep19-mens-health-skin-web.mp4",
+  "questions": [
+    {
+      "id": "ep19-mens-health-skin-q01",
+      "type": "single_best_answer",
+      "stem": "Teen with sudden testicle pain, high-riding:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Antibiotics"
+        },
+        {
+          "id": "B",
+          "text": "Ultrasound next week"
+        },
+        {
+          "id": "C",
+          "text": "Ice and wait"
+        },
+        {
+          "id": "D",
+          "text": "Surgery without delay"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Torsion.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-mens-health-skin-q02",
+      "type": "single_best_answer",
+      "stem": "Testicular salvage is best within:",
+      "options": [
+        {
+          "id": "A",
+          "text": "6 hours"
+        },
+        {
+          "id": "B",
+          "text": "3 days"
+        },
+        {
+          "id": "C",
+          "text": "1 week"
+        },
+        {
+          "id": "D",
+          "text": "24 hours"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "6 hours",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-mens-health-skin-q03",
+      "type": "single_best_answer",
+      "stem": "Enlarged prostate with urinary symptoms: first drug?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Antibiotic"
+        },
+        {
+          "id": "B",
+          "text": "Alpha blocker"
+        },
+        {
+          "id": "C",
+          "text": "Opioid"
+        },
+        {
+          "id": "D",
+          "text": "Testosterone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Alpha blocker",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-mens-health-skin-q04",
+      "type": "single_best_answer",
+      "stem": "Erectile dysfunction pill is never combined with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vitamin D"
+        },
+        {
+          "id": "B",
+          "text": "Statins"
+        },
+        {
+          "id": "C",
+          "text": "Nitrates"
+        },
+        {
+          "id": "D",
+          "text": "Metformin"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Nitrates",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-mens-health-skin-q05",
+      "type": "single_best_answer",
+      "stem": "Prostate screening at 55-69:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Shared decision"
+        },
+        {
+          "id": "B",
+          "text": "Never"
+        },
+        {
+          "id": "C",
+          "text": "Mandatory yearly"
+        },
+        {
+          "id": "D",
+          "text": "Only with symptoms"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Shared decision",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-mens-health-skin-q06",
+      "type": "single_best_answer",
+      "stem": "Ischemic priapism treatment:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ice only"
+        },
+        {
+          "id": "B",
+          "text": "Antibiotics"
+        },
+        {
+          "id": "C",
+          "text": "Observe 24 hours"
+        },
+        {
+          "id": "D",
+          "text": "Aspirate and phenylephrine"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Aspirate and phenylephrine",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-mens-health-skin-q07",
+      "type": "single_best_answer",
+      "stem": "Pearly papule with a rolled edge:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Seborrheic keratosis"
+        },
+        {
+          "id": "B",
+          "text": "Psoriasis"
+        },
+        {
+          "id": "C",
+          "text": "Vitiligo"
+        },
+        {
+          "id": "D",
+          "text": "Basal cell carcinoma"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Basal cell carcinoma",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-mens-health-skin-q08",
+      "type": "single_best_answer",
+      "stem": "Isotretinoin requires:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Daily blood transfusion"
+        },
+        {
+          "id": "B",
+          "text": "Sun tanning"
+        },
+        {
+          "id": "C",
+          "text": "No monitoring"
+        },
+        {
+          "id": "D",
+          "text": "Strict pregnancy prevention"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Strict pregnancy prevention",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-mens-health-skin-q09",
+      "type": "single_best_answer",
+      "stem": "Blistering and mouth sores after carbamazepine:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Add allopurinol"
+        },
+        {
+          "id": "B",
+          "text": "Stop carbamazepine"
+        },
+        {
+          "id": "C",
+          "text": "Double the dose"
+        },
+        {
+          "id": "D",
+          "text": "Topical steroid only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Stevens-Johnson.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-mens-health-skin-q10",
+      "type": "single_best_answer",
+      "stem": "70 kg, 20% burn. Parkland 24-hour volume?",
+      "options": [
+        {
+          "id": "A",
+          "text": "8,400 mL"
+        },
+        {
+          "id": "B",
+          "text": "1,400 mL"
+        },
+        {
+          "id": "C",
+          "text": "5,600 mL"
+        },
+        {
+          "id": "D",
+          "text": "2,800 mL"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "4 x 70 x 20.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

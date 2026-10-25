@@ -1,0 +1,287 @@
+{
+  "episode": "ep17-heme",
+  "title": "Blood: Anemia, Clotting and Cancers",
+  "video": "quick-bites-pance-ep17-heme-web.mp4",
+  "questions": [
+    {
+      "id": "ep17-heme-q01",
+      "type": "single_best_answer",
+      "stem": "Low ferritin means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Iron deficiency"
+        },
+        {
+          "id": "B",
+          "text": "Hemolysis"
+        },
+        {
+          "id": "C",
+          "text": "B12 deficiency"
+        },
+        {
+          "id": "D",
+          "text": "Thalassemia"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Find the blood loss.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-heme-q02",
+      "type": "single_best_answer",
+      "stem": "Macrocytic anemia with numb feet: give first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Transfusion"
+        },
+        {
+          "id": "B",
+          "text": "B12"
+        },
+        {
+          "id": "C",
+          "text": "Folate alone"
+        },
+        {
+          "id": "D",
+          "text": "Iron"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "B12",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-heme-q03",
+      "type": "single_best_answer",
+      "stem": "High calcium, kidney injury, anemia and bone lesions:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hodgkin lymphoma"
+        },
+        {
+          "id": "B",
+          "text": "Iron deficiency"
+        },
+        {
+          "id": "C",
+          "text": "Polycythemia"
+        },
+        {
+          "id": "D",
+          "text": "Multiple myeloma"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Multiple myeloma",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-heme-q04",
+      "type": "single_best_answer",
+      "stem": "Sickle cell drug that cuts pain crises:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hydroxyurea"
+        },
+        {
+          "id": "B",
+          "text": "Iron"
+        },
+        {
+          "id": "C",
+          "text": "Heparin"
+        },
+        {
+          "id": "D",
+          "text": "Folate alone"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Hydroxyurea",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-heme-q05",
+      "type": "single_best_answer",
+      "stem": "Platelets halve on day 7 of heparin with new clot:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue heparin"
+        },
+        {
+          "id": "B",
+          "text": "Stop heparin, start argatroban"
+        },
+        {
+          "id": "C",
+          "text": "Warfarin now alone"
+        },
+        {
+          "id": "D",
+          "text": "Give platelets"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Stop heparin, start argatroban",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-heme-q06",
+      "type": "single_best_answer",
+      "stem": "Thrombotic purpura treatment:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Plasma exchange"
+        },
+        {
+          "id": "B",
+          "text": "Aspirin alone"
+        },
+        {
+          "id": "C",
+          "text": "Platelet transfusion"
+        },
+        {
+          "id": "D",
+          "text": "Observation"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Plasma exchange",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-heme-q07",
+      "type": "single_best_answer",
+      "stem": "In thrombotic purpura avoid:",
+      "options": [
+        {
+          "id": "A",
+          "text": "ADAMTS13 test"
+        },
+        {
+          "id": "B",
+          "text": "Steroids"
+        },
+        {
+          "id": "C",
+          "text": "Plasma exchange"
+        },
+        {
+          "id": "D",
+          "text": "Platelet transfusion"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Platelet transfusion",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-heme-q08",
+      "type": "single_best_answer",
+      "stem": "Immune thrombocytopenia, platelets under 30 thousand:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Heparin"
+        },
+        {
+          "id": "B",
+          "text": "Steroids"
+        },
+        {
+          "id": "C",
+          "text": "Nothing"
+        },
+        {
+          "id": "D",
+          "text": "Splenectomy first"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Steroids",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-heme-q09",
+      "type": "single_best_answer",
+      "stem": "Fever, back pain, dark urine during transfusion: first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Add second unit"
+        },
+        {
+          "id": "B",
+          "text": "Give acetaminophen and continue"
+        },
+        {
+          "id": "C",
+          "text": "Slow it"
+        },
+        {
+          "id": "D",
+          "text": "Stop transfusion"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Stop transfusion",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep17-heme-q10",
+      "type": "single_best_answer",
+      "stem": "Philadelphia chromosome leukemia is treated with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Folate"
+        },
+        {
+          "id": "B",
+          "text": "Hydroxyurea"
+        },
+        {
+          "id": "C",
+          "text": "Heparin"
+        },
+        {
+          "id": "D",
+          "text": "Imatinib"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Chronic myeloid leukemia.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

@@ -103,6 +103,20 @@ const NAV_SECTIONS: NavSection[] = [
         exams: ["naplex"],
       },
       {
+        id: "quick-bites-fnp",
+        href: `${ROUTES.dashboard}#video-quick-bites-fnp`,
+        label: "Quick Bites: FNP",
+        icon: Clapperboard,
+        exams: ["aanp-fnp"],
+      },
+      {
+        id: "quick-bites-pance",
+        href: `${ROUTES.dashboard}#video-quick-bites-pance`,
+        label: "Quick Bites: PANCE",
+        icon: Clapperboard,
+        exams: ["pance"],
+      },
+      {
         id: "high-yield",
         href: ROUTES.highYieldTopics,
         label: "High-Yield Topics",

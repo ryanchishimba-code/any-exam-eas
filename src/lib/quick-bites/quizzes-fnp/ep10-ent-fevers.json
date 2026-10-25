@@ -1,0 +1,287 @@
+{
+  "episode": "ep10-ent-fevers",
+  "title": "Ears, Throats, Eyes and Fevers",
+  "video": "quick-bites-fnp-ep10-ent-fevers-web.mp4",
+  "questions": [
+    {
+      "id": "ep10-ent-fevers-q01",
+      "type": "single_best_answer",
+      "stem": "2-year-old, mild ear pain 1 day, low fever, one bulging drum:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Antibiotic mandatory"
+        },
+        {
+          "id": "B",
+          "text": "Observation 48-72 h is an option"
+        },
+        {
+          "id": "C",
+          "text": "Ear tubes"
+        },
+        {
+          "id": "D",
+          "text": "Steroids"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Nonsevere at 24 months+.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-ent-fevers-q02",
+      "type": "single_best_answer",
+      "stem": "Required for otitis media diagnosis:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Red drum alone"
+        },
+        {
+          "id": "B",
+          "text": "Bulging drum"
+        },
+        {
+          "id": "C",
+          "text": "Fever"
+        },
+        {
+          "id": "D",
+          "text": "Ear tugging"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Bulging tympanic membrane.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-ent-fevers-q03",
+      "type": "single_best_answer",
+      "stem": "First-line otitis media dose:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amoxicillin 40 mg/kg/day"
+        },
+        {
+          "id": "B",
+          "text": "Amoxicillin 80-90 mg/kg/day"
+        },
+        {
+          "id": "C",
+          "text": "Azithromycin"
+        },
+        {
+          "id": "D",
+          "text": "Cefdinir"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "High-dose amoxicillin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-ent-fevers-q04",
+      "type": "single_best_answer",
+      "stem": "Strep throat treatment:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azithromycin 3 days"
+        },
+        {
+          "id": "B",
+          "text": "Penicillin or amoxicillin 10 days"
+        },
+        {
+          "id": "C",
+          "text": "No treatment"
+        },
+        {
+          "id": "D",
+          "text": "Ciprofloxacin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "IDSA 2012.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-ent-fevers-q05",
+      "type": "single_best_answer",
+      "stem": "Routine strep testing not needed in:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Under 3"
+        },
+        {
+          "id": "B",
+          "text": "Teens"
+        },
+        {
+          "id": "C",
+          "text": "Adults"
+        },
+        {
+          "id": "D",
+          "text": "School-age"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Under age 3.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-ent-fevers-q06",
+      "type": "single_best_answer",
+      "stem": "Adult congestion 12 days, not improving:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amoxicillin-clavulanate"
+        },
+        {
+          "id": "B",
+          "text": "No antibiotics ever"
+        },
+        {
+          "id": "C",
+          "text": "Azithromycin"
+        },
+        {
+          "id": "D",
+          "text": "Steroid shot"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "10+ days without improvement.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-ent-fevers-q07",
+      "type": "single_best_answer",
+      "stem": "Halos, eye pain, mid-dilated pupil:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Antibiotic drops"
+        },
+        {
+          "id": "B",
+          "text": "Same-day ophthalmology"
+        },
+        {
+          "id": "C",
+          "text": "Warm compress"
+        },
+        {
+          "id": "D",
+          "text": "Antihistamine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Acute angle closure.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-ent-fevers-q08",
+      "type": "single_best_answer",
+      "stem": "Weber to the bad ear and bone louder than air means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sensorineural"
+        },
+        {
+          "id": "B",
+          "text": "Conductive"
+        },
+        {
+          "id": "C",
+          "text": "Normal"
+        },
+        {
+          "id": "D",
+          "text": "Malingering"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Conductive loss.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-ent-fevers-q09",
+      "type": "single_best_answer",
+      "stem": "Fever 6 days, red eyes, cracked lips, rash:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Roseola"
+        },
+        {
+          "id": "B",
+          "text": "Kawasaki disease"
+        },
+        {
+          "id": "C",
+          "text": "Fifth disease"
+        },
+        {
+          "id": "D",
+          "text": "Strep"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Kawasaki criteria.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-ent-fevers-q10",
+      "type": "single_best_answer",
+      "stem": "Rash appearing as high fever breaks:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Measles"
+        },
+        {
+          "id": "B",
+          "text": "Roseola"
+        },
+        {
+          "id": "C",
+          "text": "Fifth disease"
+        },
+        {
+          "id": "D",
+          "text": "Kawasaki"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Roseola.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

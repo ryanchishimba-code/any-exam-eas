@@ -1,0 +1,287 @@
+{
+  "episode": "ep03-pressure-lipids-vessels",
+  "title": "Pressure, Lipids and Vessels",
+  "video": "quick-bites-pance-ep03-pressure-lipids-vessels-web.mp4",
+  "questions": [
+    {
+      "id": "ep03-pressure-lipids-vessels-q01",
+      "type": "single_best_answer",
+      "stem": "Two visits average 136/84. Category?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Elevated"
+        },
+        {
+          "id": "B",
+          "text": "Normal"
+        },
+        {
+          "id": "C",
+          "text": "Stage 2 hypertension"
+        },
+        {
+          "id": "D",
+          "text": "Stage 1 hypertension"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "130-139/80-89.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-pressure-lipids-vessels-q02",
+      "type": "single_best_answer",
+      "stem": "BP 210/130 with confusion and papilledema, no dissection. First-hour goal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Normalize to 120/80"
+        },
+        {
+          "id": "B",
+          "text": "Lower by no more than 25%"
+        },
+        {
+          "id": "C",
+          "text": "No treatment"
+        },
+        {
+          "id": "D",
+          "text": "Lower by 50%"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Hypertensive emergency.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-pressure-lipids-vessels-q03",
+      "type": "single_best_answer",
+      "stem": "A 14-year-old has repeated BP 132/82. Classification?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stage 1 hypertension (adult cutoffs)"
+        },
+        {
+          "id": "B",
+          "text": "Hypotension"
+        },
+        {
+          "id": "C",
+          "text": "Use percentile only"
+        },
+        {
+          "id": "D",
+          "text": "Normal"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Age 13+: adult cutoffs.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-pressure-lipids-vessels-q04",
+      "type": "single_best_answer",
+      "stem": "A 9-year-old has hypertension in the arms and weak femoral pulses. Next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start lisinopril"
+        },
+        {
+          "id": "B",
+          "text": "Repeat in 1 year"
+        },
+        {
+          "id": "C",
+          "text": "Compare arm and leg pressures; echo for coarctation"
+        },
+        {
+          "id": "D",
+          "text": "Renal biopsy"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Coarctation.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-pressure-lipids-vessels-q05",
+      "type": "single_best_answer",
+      "stem": "Standing, BP drops from 132/80 to 108/76 within 3 minutes. Diagnosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vasovagal syncope"
+        },
+        {
+          "id": "B",
+          "text": "Aortic stenosis"
+        },
+        {
+          "id": "C",
+          "text": "Normal"
+        },
+        {
+          "id": "D",
+          "text": "Orthostatic hypotension"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Systolic drop of 20 or more.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-pressure-lipids-vessels-q06",
+      "type": "single_best_answer",
+      "stem": "A 45-year-old has LDL 210 mg/dL. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Niacin"
+        },
+        {
+          "id": "B",
+          "text": "Diet only"
+        },
+        {
+          "id": "C",
+          "text": "High-intensity statin"
+        },
+        {
+          "id": "D",
+          "text": "Recheck in 5 years"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "LDL 190+: high-intensity statin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-pressure-lipids-vessels-q07",
+      "type": "single_best_answer",
+      "stem": "A 74-year-old has new temporal headache, jaw claudication and blurry vision. Best next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "NSAID"
+        },
+        {
+          "id": "B",
+          "text": "Biopsy first, then steroids"
+        },
+        {
+          "id": "C",
+          "text": "MRI brain"
+        },
+        {
+          "id": "D",
+          "text": "High-dose steroids now"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Steroids before biopsy to prevent blindness.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-pressure-lipids-vessels-q08",
+      "type": "single_best_answer",
+      "stem": "Tearing chest pain to the back, arm BP difference, CT shows ascending aortic dissection. Management?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Emergency surgery"
+        },
+        {
+          "id": "B",
+          "text": "Beta blocker only"
+        },
+        {
+          "id": "C",
+          "text": "Thrombolysis"
+        },
+        {
+          "id": "D",
+          "text": "Outpatient follow-up"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Type A: surgery.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-pressure-lipids-vessels-q09",
+      "type": "single_best_answer",
+      "stem": "Which patient should get a one-time abdominal aortic ultrasound?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Man 68, former smoker"
+        },
+        {
+          "id": "B",
+          "text": "Man 55, smoker"
+        },
+        {
+          "id": "C",
+          "text": "Man 80, never smoked"
+        },
+        {
+          "id": "D",
+          "text": "Woman 70, never smoked"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Men 65-75 who ever smoked.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-pressure-lipids-vessels-q10",
+      "type": "single_best_answer",
+      "stem": "Calf pain on walking, ankle-brachial index 0.6. First therapy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cilostazol only"
+        },
+        {
+          "id": "B",
+          "text": "Statin, antiplatelet and supervised walking"
+        },
+        {
+          "id": "C",
+          "text": "Bypass surgery"
+        },
+        {
+          "id": "D",
+          "text": "Warfarin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Plus stop smoking.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

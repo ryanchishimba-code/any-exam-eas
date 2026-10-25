@@ -1,0 +1,287 @@
+{
+  "episode": "ep11-office-infections",
+  "title": "Office Infections: STIs, Urinary, Pneumonia, TB",
+  "video": "quick-bites-fnp-ep11-office-infections-web.mp4",
+  "questions": [
+    {
+      "id": "ep11-office-infections-q01",
+      "type": "single_best_answer",
+      "stem": "Urethral discharge with gram-negative diplococci:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azithromycin 1 g"
+        },
+        {
+          "id": "B",
+          "text": "Ceftriaxone 500 mg IM once"
+        },
+        {
+          "id": "C",
+          "text": "Penicillin"
+        },
+        {
+          "id": "D",
+          "text": "Doxycycline only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "CDC 2021.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep11-office-infections-q02",
+      "type": "single_best_answer",
+      "stem": "Gonorrhea, chlamydia not excluded. Add:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azithromycin"
+        },
+        {
+          "id": "B",
+          "text": "Doxycycline 7 days"
+        },
+        {
+          "id": "C",
+          "text": "Metronidazole"
+        },
+        {
+          "id": "D",
+          "text": "Nothing"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Doxycycline 100 mg BID x7.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep11-office-infections-q03",
+      "type": "single_best_answer",
+      "stem": "Chlamydia in pregnancy:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Doxycycline"
+        },
+        {
+          "id": "B",
+          "text": "Azithromycin"
+        },
+        {
+          "id": "C",
+          "text": "Levofloxacin"
+        },
+        {
+          "id": "D",
+          "text": "Ceftriaxone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Azithromycin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep11-office-infections-q04",
+      "type": "single_best_answer",
+      "stem": "Primary syphilis:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Benzathine penicillin once"
+        },
+        {
+          "id": "B",
+          "text": "Weekly x3"
+        },
+        {
+          "id": "C",
+          "text": "Doxycycline 7 days"
+        },
+        {
+          "id": "D",
+          "text": "Ceftriaxone"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "2.4 million units once.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep11-office-infections-q05",
+      "type": "single_best_answer",
+      "stem": "Doxy-PEP dose:",
+      "options": [
+        {
+          "id": "A",
+          "text": "100 mg daily"
+        },
+        {
+          "id": "B",
+          "text": "200 mg within 72 h after sex"
+        },
+        {
+          "id": "C",
+          "text": "Weekly"
+        },
+        {
+          "id": "D",
+          "text": "Before sex only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "CDC 2024.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep11-office-infections-q06",
+      "type": "single_best_answer",
+      "stem": "Uncomplicated cystitis first-line:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ciprofloxacin"
+        },
+        {
+          "id": "B",
+          "text": "Nitrofurantoin 5 days"
+        },
+        {
+          "id": "C",
+          "text": "Amoxicillin"
+        },
+        {
+          "id": "D",
+          "text": "Cephalexin 14 days"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "IDSA.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep11-office-infections-q07",
+      "type": "single_best_answer",
+      "stem": "Fever, flank pain, vomiting:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Nitrofurantoin"
+        },
+        {
+          "id": "B",
+          "text": "Culture + fluoroquinolone"
+        },
+        {
+          "id": "C",
+          "text": "Fosfomycin"
+        },
+        {
+          "id": "D",
+          "text": "Watch"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Pyelonephritis.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep11-office-infections-q08",
+      "type": "single_best_answer",
+      "stem": "Healthy outpatient pneumonia:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Levofloxacin"
+        },
+        {
+          "id": "B",
+          "text": "Amoxicillin 1 g TID"
+        },
+        {
+          "id": "C",
+          "text": "Ceftriaxone IV"
+        },
+        {
+          "id": "D",
+          "text": "No antibiotic"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "ATS/IDSA 2019.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep11-office-infections-q09",
+      "type": "single_best_answer",
+      "stem": "Positive IGRA, no symptoms. Next:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Treat now"
+        },
+        {
+          "id": "B",
+          "text": "Chest x-ray"
+        },
+        {
+          "id": "C",
+          "text": "Repeat test"
+        },
+        {
+          "id": "D",
+          "text": "Sputum only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Rule out active TB.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep11-office-infections-q10",
+      "type": "single_best_answer",
+      "stem": "Preferred latent TB regimen:",
+      "options": [
+        {
+          "id": "A",
+          "text": "9 months isoniazid"
+        },
+        {
+          "id": "B",
+          "text": "3 months weekly isoniazid + rifapentine"
+        },
+        {
+          "id": "C",
+          "text": "4-drug therapy"
+        },
+        {
+          "id": "D",
+          "text": "None"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Short rifamycin regimens.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

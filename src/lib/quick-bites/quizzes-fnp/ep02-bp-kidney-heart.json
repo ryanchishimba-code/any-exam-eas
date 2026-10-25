@@ -1,0 +1,287 @@
+{
+  "episode": "ep02-bp-kidney-heart",
+  "title": "Blood Pressure, Kidneys and Heart Risk",
+  "video": "quick-bites-fnp-ep02-bp-kidney-heart-web.mp4",
+  "questions": [
+    {
+      "id": "ep02-bp-kidney-heart-q01",
+      "type": "single_best_answer",
+      "stem": "Stage 1 hypertension under the 2025 guideline is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "120-129/<80"
+        },
+        {
+          "id": "B",
+          "text": "130-139 or 80-89"
+        },
+        {
+          "id": "C",
+          "text": "140-159 or 90-99"
+        },
+        {
+          "id": "D",
+          "text": "≥140/90"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Stage 1 is 130-139 systolic or 80-89 diastolic.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-bp-kidney-heart-q02",
+      "type": "single_best_answer",
+      "stem": "Stage 1, no diabetes/CKD/CVD, PREVENT risk 4%. Next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start two drugs"
+        },
+        {
+          "id": "B",
+          "text": "Lifestyle 3-6 months, then reassess"
+        },
+        {
+          "id": "C",
+          "text": "Beta blocker"
+        },
+        {
+          "id": "D",
+          "text": "No follow-up"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Lower risk stage 1 gets 3-6 months of lifestyle first.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-bp-kidney-heart-q03",
+      "type": "single_best_answer",
+      "stem": "Stage 1 with diabetes. Best plan?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lifestyle only for a year"
+        },
+        {
+          "id": "B",
+          "text": "Start one first-line drug now with lifestyle"
+        },
+        {
+          "id": "C",
+          "text": "Two-drug pill"
+        },
+        {
+          "id": "D",
+          "text": "Recheck in 2 years"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Diabetes, CKD, CVD or PREVENT ≥7.5% = start medicine at ≥130/80.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-bp-kidney-heart-q04",
+      "type": "single_best_answer",
+      "stem": "Average BP 148/94, no other disease. Best start?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lifestyle only, 6 months"
+        },
+        {
+          "id": "B",
+          "text": "Beta blocker"
+        },
+        {
+          "id": "C",
+          "text": "ACE inhibitor + thiazide single pill"
+        },
+        {
+          "id": "D",
+          "text": "ACE inhibitor + ARB"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Stage 2 = two first-line classes, ideally one pill.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-bp-kidney-heart-q05",
+      "type": "single_best_answer",
+      "stem": "Which combination should never be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "ACE inhibitor + thiazide"
+        },
+        {
+          "id": "B",
+          "text": "ARB + calcium channel blocker"
+        },
+        {
+          "id": "C",
+          "text": "ACE inhibitor + ARB"
+        },
+        {
+          "id": "D",
+          "text": "Thiazide + calcium channel blocker"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Never combine ACE inhibitor and ARB.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-bp-kidney-heart-q06",
+      "type": "single_best_answer",
+      "stem": "Albuminuria in hypertension: preferred class?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Calcium channel blocker"
+        },
+        {
+          "id": "B",
+          "text": "ACE inhibitor or ARB"
+        },
+        {
+          "id": "C",
+          "text": "Thiazide"
+        },
+        {
+          "id": "D",
+          "text": "Beta blocker"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Albuminuria = ACE inhibitor or ARB.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-bp-kidney-heart-q07",
+      "type": "single_best_answer",
+      "stem": "CKD with albuminuria already on ACE inhibitor. Add?",
+      "options": [
+        {
+          "id": "A",
+          "text": "ARB"
+        },
+        {
+          "id": "B",
+          "text": "SGLT2 inhibitor"
+        },
+        {
+          "id": "C",
+          "text": "Loop diuretic"
+        },
+        {
+          "id": "D",
+          "text": "Sulfonylurea"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Add an SGLT2 inhibitor for kidney protection.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-bp-kidney-heart-q08",
+      "type": "single_best_answer",
+      "stem": "Refer CKD to nephrology when eGFR falls below:",
+      "options": [
+        {
+          "id": "A",
+          "text": "60"
+        },
+        {
+          "id": "B",
+          "text": "45"
+        },
+        {
+          "id": "C",
+          "text": "30"
+        },
+        {
+          "id": "D",
+          "text": "90"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Refer below 30.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-bp-kidney-heart-q09",
+      "type": "single_best_answer",
+      "stem": "LDL 196, age 45, no other risk. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Calculate risk first"
+        },
+        {
+          "id": "B",
+          "text": "High-intensity statin"
+        },
+        {
+          "id": "C",
+          "text": "Recheck in 5 years"
+        },
+        {
+          "id": "D",
+          "text": "Fish oil"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "LDL ≥190 skips the calculator.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-bp-kidney-heart-q10",
+      "type": "single_best_answer",
+      "stem": "How often should lipoprotein(a) be checked in adults?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Never"
+        },
+        {
+          "id": "B",
+          "text": "At least once"
+        },
+        {
+          "id": "C",
+          "text": "Every year"
+        },
+        {
+          "id": "D",
+          "text": "Only in children"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Lipoprotein(a) at least once.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

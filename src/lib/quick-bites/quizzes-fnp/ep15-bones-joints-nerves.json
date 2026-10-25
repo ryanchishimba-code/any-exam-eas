@@ -1,0 +1,287 @@
+{
+  "episode": "ep15-bones-joints-nerves",
+  "title": "Bones, Joints and Nerves",
+  "video": "quick-bites-fnp-ep15-bones-joints-nerves-web.mp4",
+  "questions": [
+    {
+      "id": "ep15-bones-joints-nerves-q01",
+      "type": "single_best_answer",
+      "stem": "Back pain 1 week, no red flags. Imaging?",
+      "options": [
+        {
+          "id": "A",
+          "text": "MRI"
+        },
+        {
+          "id": "B",
+          "text": "X-ray"
+        },
+        {
+          "id": "C",
+          "text": "None"
+        },
+        {
+          "id": "D",
+          "text": "CT"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "ACP.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-bones-joints-nerves-q02",
+      "type": "single_best_answer",
+      "stem": "First treatment for acute back pain:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Opioid"
+        },
+        {
+          "id": "B",
+          "text": "Heat or massage"
+        },
+        {
+          "id": "C",
+          "text": "Bed rest"
+        },
+        {
+          "id": "D",
+          "text": "Steroid shot"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Nonpharm first.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-bones-joints-nerves-q03",
+      "type": "single_best_answer",
+      "stem": "Ottawa ankle: x-ray if",
+      "options": [
+        {
+          "id": "A",
+          "text": "Swelling"
+        },
+        {
+          "id": "B",
+          "text": "Cannot take 4 steps"
+        },
+        {
+          "id": "C",
+          "text": "Bruising"
+        },
+        {
+          "id": "D",
+          "text": "Pain at rest only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Or malleolar bone tenderness.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-bones-joints-nerves-q04",
+      "type": "single_best_answer",
+      "stem": "Morning stiffness 2 hours, both hands:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Osteoarthritis"
+        },
+        {
+          "id": "B",
+          "text": "Rheumatoid arthritis"
+        },
+        {
+          "id": "C",
+          "text": "Gout"
+        },
+        {
+          "id": "D",
+          "text": "Tendinitis"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Inflammatory.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-bones-joints-nerves-q05",
+      "type": "single_best_answer",
+      "stem": "First DMARD for moderate RA:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hydroxychloroquine"
+        },
+        {
+          "id": "B",
+          "text": "Methotrexate"
+        },
+        {
+          "id": "C",
+          "text": "Prednisone alone"
+        },
+        {
+          "id": "D",
+          "text": "Biologic"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "ACR 2021.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-bones-joints-nerves-q06",
+      "type": "single_best_answer",
+      "stem": "First-line gout urate-lowering drug:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Febuxostat"
+        },
+        {
+          "id": "B",
+          "text": "Allopurinol"
+        },
+        {
+          "id": "C",
+          "text": "Probenecid"
+        },
+        {
+          "id": "D",
+          "text": "Pegloticase"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "ACR 2020.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-bones-joints-nerves-q07",
+      "type": "single_best_answer",
+      "stem": "Urate target:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Under 8"
+        },
+        {
+          "id": "B",
+          "text": "Under 6"
+        },
+        {
+          "id": "C",
+          "text": "Under 4"
+        },
+        {
+          "id": "D",
+          "text": "Normal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Treat to target.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-bones-joints-nerves-q08",
+      "type": "single_best_answer",
+      "stem": "Worst headache of life, sudden:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Triptan"
+        },
+        {
+          "id": "B",
+          "text": "Emergency department"
+        },
+        {
+          "id": "C",
+          "text": "Ibuprofen"
+        },
+        {
+          "id": "D",
+          "text": "Follow up next week"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Thunderclap.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-bones-joints-nerves-q09",
+      "type": "single_best_answer",
+      "stem": "Triptan contraindication:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Asthma"
+        },
+        {
+          "id": "B",
+          "text": "Coronary disease"
+        },
+        {
+          "id": "C",
+          "text": "Diabetes"
+        },
+        {
+          "id": "D",
+          "text": "Age 30"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Label.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep15-bones-joints-nerves-q10",
+      "type": "single_best_answer",
+      "stem": "Bell palsy within 72 h:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Antiviral alone"
+        },
+        {
+          "id": "B",
+          "text": "Oral steroids"
+        },
+        {
+          "id": "C",
+          "text": "Imaging"
+        },
+        {
+          "id": "D",
+          "text": "Nothing"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "AAO-HNS.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "episode": "ep09-rheum-bone",
+  "title": "Joints, Rheumatology and Bone",
+  "video": "quick-bites-pance-ep09-rheum-bone-web.mp4",
+  "questions": [
+    {
+      "id": "ep09-rheum-bone-q01",
+      "type": "single_best_answer",
+      "stem": "Joint fluid with over 50,000 white cells means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Osteoarthritis"
+        },
+        {
+          "id": "B",
+          "text": "Septic arthritis until proven otherwise"
+        },
+        {
+          "id": "C",
+          "text": "Gout ruled out"
+        },
+        {
+          "id": "D",
+          "text": "Normal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Septic until proven.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-rheum-bone-q02",
+      "type": "single_best_answer",
+      "stem": "Needle-shaped, negatively birefringent crystals indicate:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Gout"
+        },
+        {
+          "id": "B",
+          "text": "Lupus"
+        },
+        {
+          "id": "C",
+          "text": "Pseudogout"
+        },
+        {
+          "id": "D",
+          "text": "Septic arthritis"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Gout.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-rheum-bone-q03",
+      "type": "single_best_answer",
+      "stem": "Rhomboid, positively birefringent crystals indicate:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Septic arthritis"
+        },
+        {
+          "id": "B",
+          "text": "Rheumatoid arthritis"
+        },
+        {
+          "id": "C",
+          "text": "Pseudogout"
+        },
+        {
+          "id": "D",
+          "text": "Gout"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Calcium pyrophosphate.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-rheum-bone-q04",
+      "type": "single_best_answer",
+      "stem": "A sexually active 22-year-old with a hot knee and urethral discharge most likely has:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pseudomonas"
+        },
+        {
+          "id": "B",
+          "text": "Lyme"
+        },
+        {
+          "id": "C",
+          "text": "Gonococcus"
+        },
+        {
+          "id": "D",
+          "text": "Staph aureus"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Gonococcal arthritis.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-rheum-bone-q05",
+      "type": "single_best_answer",
+      "stem": "First-line urate-lowering drug and starting dose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Probenecid"
+        },
+        {
+          "id": "B",
+          "text": "Allopurinol 100 mg or less"
+        },
+        {
+          "id": "C",
+          "text": "Febuxostat 80 mg"
+        },
+        {
+          "id": "D",
+          "text": "Colchicine daily"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Low-dose allopurinol.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-rheum-bone-q06",
+      "type": "single_best_answer",
+      "stem": "Urate target on therapy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Under 6"
+        },
+        {
+          "id": "B",
+          "text": "Under 8"
+        },
+        {
+          "id": "C",
+          "text": "Under 4"
+        },
+        {
+          "id": "D",
+          "text": "Under 10"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Under 6.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-rheum-bone-q07",
+      "type": "single_best_answer",
+      "stem": "First-line drug for rheumatoid arthritis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Allopurinol"
+        },
+        {
+          "id": "B",
+          "text": "Hydroxychloroquine"
+        },
+        {
+          "id": "C",
+          "text": "Methotrexate"
+        },
+        {
+          "id": "D",
+          "text": "Prednisone alone"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Methotrexate.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-rheum-bone-q08",
+      "type": "single_best_answer",
+      "stem": "Which drug is recommended for every patient with lupus?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Denosumab"
+        },
+        {
+          "id": "B",
+          "text": "Methotrexate"
+        },
+        {
+          "id": "C",
+          "text": "Colchicine"
+        },
+        {
+          "id": "D",
+          "text": "Hydroxychloroquine"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Hydroxychloroquine.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-rheum-bone-q09",
+      "type": "single_best_answer",
+      "stem": "Ankylosing spondylitis still active on NSAIDs. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "TNF inhibitor"
+        },
+        {
+          "id": "B",
+          "text": "Opioid"
+        },
+        {
+          "id": "C",
+          "text": "Allopurinol"
+        },
+        {
+          "id": "D",
+          "text": "Bisphosphonate"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Tumor necrosis factor inhibitor.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-rheum-bone-q10",
+      "type": "single_best_answer",
+      "stem": "Osteoporosis screening at the wellness visit is recommended for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Women 65 and older"
+        },
+        {
+          "id": "B",
+          "text": "Everyone over 40"
+        },
+        {
+          "id": "C",
+          "text": "All men over 50"
+        },
+        {
+          "id": "D",
+          "text": "Women only after a fracture"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Plus younger high-risk postmenopausal women.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

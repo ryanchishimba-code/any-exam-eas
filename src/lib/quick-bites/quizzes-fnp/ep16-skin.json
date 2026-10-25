@@ -1,0 +1,287 @@
+{
+  "episode": "ep16-skin",
+  "title": "Skin Across Ages",
+  "video": "quick-bites-fnp-ep16-skin-web.mp4",
+  "questions": [
+    {
+      "id": "ep16-skin-q01",
+      "type": "single_best_answer",
+      "stem": "Most important melanoma letter:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Asymmetry"
+        },
+        {
+          "id": "B",
+          "text": "Evolving"
+        },
+        {
+          "id": "C",
+          "text": "Color"
+        },
+        {
+          "id": "D",
+          "text": "Border"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Change.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-skin-q02",
+      "type": "single_best_answer",
+      "stem": "Diameter warning size:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Over 2 mm"
+        },
+        {
+          "id": "B",
+          "text": "Over 6 mm"
+        },
+        {
+          "id": "C",
+          "text": "Over 15 mm"
+        },
+        {
+          "id": "D",
+          "text": "Any"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "AAD.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-skin-q03",
+      "type": "single_best_answer",
+      "stem": "Acne first-line:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Topical antibiotic alone"
+        },
+        {
+          "id": "B",
+          "text": "Retinoid + benzoyl peroxide"
+        },
+        {
+          "id": "C",
+          "text": "Isotretinoin"
+        },
+        {
+          "id": "D",
+          "text": "Steroid"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "AAD 2024.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-skin-q04",
+      "type": "single_best_answer",
+      "stem": "Isotretinoin requires:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Nothing"
+        },
+        {
+          "id": "B",
+          "text": "Pregnancy prevention program"
+        },
+        {
+          "id": "C",
+          "text": "Liver biopsy"
+        },
+        {
+          "id": "D",
+          "text": "Hospital stay"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "iPLEDGE.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-skin-q05",
+      "type": "single_best_answer",
+      "stem": "Nonpurulent cellulitis covers:",
+      "options": [
+        {
+          "id": "A",
+          "text": "MRSA only"
+        },
+        {
+          "id": "B",
+          "text": "Streptococci"
+        },
+        {
+          "id": "C",
+          "text": "Gram negatives"
+        },
+        {
+          "id": "D",
+          "text": "Fungi"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "IDSA.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-skin-q06",
+      "type": "single_best_answer",
+      "stem": "Abscess key treatment:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Antibiotic alone"
+        },
+        {
+          "id": "B",
+          "text": "Incision and drainage"
+        },
+        {
+          "id": "C",
+          "text": "Steroid"
+        },
+        {
+          "id": "D",
+          "text": "Watch"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "IDSA.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-skin-q07",
+      "type": "single_best_answer",
+      "stem": "Impetigo limited:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Oral ciprofloxacin"
+        },
+        {
+          "id": "B",
+          "text": "Topical mupirocin"
+        },
+        {
+          "id": "C",
+          "text": "Steroid"
+        },
+        {
+          "id": "D",
+          "text": "Antifungal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "IDSA.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-skin-q08",
+      "type": "single_best_answer",
+      "stem": "Shingles vaccine:",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 dose at 60"
+        },
+        {
+          "id": "B",
+          "text": "2 doses at 50+"
+        },
+        {
+          "id": "C",
+          "text": "Live vaccine"
+        },
+        {
+          "id": "D",
+          "text": "Only after shingles"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "CDC.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-skin-q09",
+      "type": "single_best_answer",
+      "stem": "Scabies first-line:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hydrocortisone"
+        },
+        {
+          "id": "B",
+          "text": "Permethrin 5%"
+        },
+        {
+          "id": "C",
+          "text": "Nystatin"
+        },
+        {
+          "id": "D",
+          "text": "Mupirocin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "CDC.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-skin-q10",
+      "type": "single_best_answer",
+      "stem": "Silvery plaques on elbows:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Eczema"
+        },
+        {
+          "id": "B",
+          "text": "Psoriasis"
+        },
+        {
+          "id": "C",
+          "text": "Tinea"
+        },
+        {
+          "id": "D",
+          "text": "Scabies"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Psoriasis.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

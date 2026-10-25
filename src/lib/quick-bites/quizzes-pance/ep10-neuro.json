@@ -1,0 +1,287 @@
+{
+  "episode": "ep10-neuro",
+  "title": "Brain, Nerves and Headaches",
+  "video": "quick-bites-pance-ep10-neuro-web.mp4",
+  "questions": [
+    {
+      "id": "ep10-neuro-q01",
+      "type": "single_best_answer",
+      "stem": "Window for alteplase or tenecteplase in ischemic stroke?",
+      "options": [
+        {
+          "id": "A",
+          "text": "24 hours"
+        },
+        {
+          "id": "B",
+          "text": "6 hours"
+        },
+        {
+          "id": "C",
+          "text": "4.5 hours"
+        },
+        {
+          "id": "D",
+          "text": "3 hours"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "4.5 hours.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-neuro-q02",
+      "type": "single_best_answer",
+      "stem": "Tenecteplase stroke dose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.5 mg/kg, max 50 mg"
+        },
+        {
+          "id": "B",
+          "text": "0.9 mg/kg, max 90 mg"
+        },
+        {
+          "id": "C",
+          "text": "1 mg/kg"
+        },
+        {
+          "id": "D",
+          "text": "0.25 mg/kg, max 25 mg"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "0.25 mg/kg.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-neuro-q03",
+      "type": "single_best_answer",
+      "stem": "Blood pressure goal before lytic therapy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Under 220/120"
+        },
+        {
+          "id": "B",
+          "text": "Under 140/90"
+        },
+        {
+          "id": "C",
+          "text": "Under 185/110"
+        },
+        {
+          "id": "D",
+          "text": "Under 160/100"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Then under 180/105.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-neuro-q04",
+      "type": "single_best_answer",
+      "stem": "A teen hit in the temple seems fine, then becomes drowsy. Which bleed?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Intraventricular"
+        },
+        {
+          "id": "B",
+          "text": "Epidural"
+        },
+        {
+          "id": "C",
+          "text": "Subarachnoid"
+        },
+        {
+          "id": "D",
+          "text": "Subdural"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Middle meningeal artery.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-neuro-q05",
+      "type": "single_best_answer",
+      "stem": "Thunderclap headache, negative head CT, 10 hours after onset. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lumbar puncture"
+        },
+        {
+          "id": "B",
+          "text": "Triptan"
+        },
+        {
+          "id": "C",
+          "text": "Discharge"
+        },
+        {
+          "id": "D",
+          "text": "MRI in a month"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "LP if over 6 hours.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-neuro-q06",
+      "type": "single_best_answer",
+      "stem": "Status epilepticus at 5 minutes. First drug?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Propofol"
+        },
+        {
+          "id": "B",
+          "text": "A benzodiazepine"
+        },
+        {
+          "id": "C",
+          "text": "Levetiracetam"
+        },
+        {
+          "id": "D",
+          "text": "Phenobarbital"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Benzodiazepine.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-neuro-q07",
+      "type": "single_best_answer",
+      "stem": "Ascending weakness with lost reflexes. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pyridostigmine"
+        },
+        {
+          "id": "B",
+          "text": "Propranolol"
+        },
+        {
+          "id": "C",
+          "text": "Levodopa"
+        },
+        {
+          "id": "D",
+          "text": "Immune globulin or plasma exchange"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Guillain-Barre.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-neuro-q08",
+      "type": "single_best_answer",
+      "stem": "Facial palsy sparing the forehead suggests:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bell palsy"
+        },
+        {
+          "id": "B",
+          "text": "Lyme only"
+        },
+        {
+          "id": "C",
+          "text": "Stroke"
+        },
+        {
+          "id": "D",
+          "text": "Myasthenia"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Central lesion.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-neuro-q09",
+      "type": "single_best_answer",
+      "stem": "Acute cluster headache treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Lumbar puncture"
+        },
+        {
+          "id": "B",
+          "text": "100% oxygen or injected sumatriptan"
+        },
+        {
+          "id": "C",
+          "text": "Opioids"
+        },
+        {
+          "id": "D",
+          "text": "Propranolol"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Oxygen or sumatriptan.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep10-neuro-q10",
+      "type": "single_best_answer",
+      "stem": "Suspected meningitis with papilledema. Before imaging?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Wait for scan"
+        },
+        {
+          "id": "B",
+          "text": "Blood cultures and antibiotics"
+        },
+        {
+          "id": "C",
+          "text": "Steroid alone"
+        },
+        {
+          "id": "D",
+          "text": "Lumbar puncture"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Never delay antibiotics.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

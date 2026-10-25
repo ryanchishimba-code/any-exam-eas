@@ -1,0 +1,287 @@
+{
+  "episode": "ep18-renal-gu",
+  "title": "Kidneys, Fluids and the Urinary Tract",
+  "video": "quick-bites-pance-ep18-renal-gu-web.mp4",
+  "questions": [
+    {
+      "id": "ep18-renal-gu-q01",
+      "type": "single_best_answer",
+      "stem": "Potassium 7 with peaked T waves. First?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Furosemide"
+        },
+        {
+          "id": "B",
+          "text": "Recheck"
+        },
+        {
+          "id": "C",
+          "text": "Sodium polystyrene"
+        },
+        {
+          "id": "D",
+          "text": "Calcium gluconate"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Calcium gluconate",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-renal-gu-q02",
+      "type": "single_best_answer",
+      "stem": "Which defines acute kidney injury?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Creatinine up 0.1 in a week"
+        },
+        {
+          "id": "B",
+          "text": "Urine output over 2 L"
+        },
+        {
+          "id": "C",
+          "text": "Creatinine up 0.3 in 48 hours"
+        },
+        {
+          "id": "D",
+          "text": "Any proteinuria"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Or 1.5 times in 7 days, or low urine for 6 hours.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-renal-gu-q03",
+      "type": "single_best_answer",
+      "stem": "After calcium, shift potassium with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Insulin and glucose"
+        },
+        {
+          "id": "B",
+          "text": "Saline"
+        },
+        {
+          "id": "C",
+          "text": "Calcium again"
+        },
+        {
+          "id": "D",
+          "text": "Antibiotics"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Insulin and glucose",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-renal-gu-q04",
+      "type": "single_best_answer",
+      "stem": "Chronic kidney disease without diabetes: add?",
+      "options": [
+        {
+          "id": "A",
+          "text": "SGLT2 inhibitor"
+        },
+        {
+          "id": "B",
+          "text": "NSAID"
+        },
+        {
+          "id": "C",
+          "text": "Nothing"
+        },
+        {
+          "id": "D",
+          "text": "Sulfonylurea"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "SGLT2 inhibitor",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-renal-gu-q05",
+      "type": "single_best_answer",
+      "stem": "Chronic low sodium: never raise it more than this in a day:",
+      "options": [
+        {
+          "id": "A",
+          "text": "30"
+        },
+        {
+          "id": "B",
+          "text": "10-12"
+        },
+        {
+          "id": "C",
+          "text": "20"
+        },
+        {
+          "id": "D",
+          "text": "No limit"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Aim for about 4-8 a day.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-renal-gu-q06",
+      "type": "single_best_answer",
+      "stem": "Distal ureteral stone 5-10 mm:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Immediate surgery"
+        },
+        {
+          "id": "B",
+          "text": "Tamsulosin"
+        },
+        {
+          "id": "C",
+          "text": "Steroids"
+        },
+        {
+          "id": "D",
+          "text": "Antibiotics"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Tamsulosin",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-renal-gu-q07",
+      "type": "single_best_answer",
+      "stem": "Uncomplicated cystitis drug:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ciprofloxacin 14 days"
+        },
+        {
+          "id": "B",
+          "text": "Nitrofurantoin 5 days"
+        },
+        {
+          "id": "C",
+          "text": "IV ceftriaxone"
+        },
+        {
+          "id": "D",
+          "text": "No treatment"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Nitrofurantoin 5 days",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-renal-gu-q08",
+      "type": "single_best_answer",
+      "stem": "Avoid nitrofurantoin when creatinine clearance is under:",
+      "options": [
+        {
+          "id": "A",
+          "text": "120"
+        },
+        {
+          "id": "B",
+          "text": "90"
+        },
+        {
+          "id": "C",
+          "text": "30"
+        },
+        {
+          "id": "D",
+          "text": "60"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "30",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-renal-gu-q09",
+      "type": "single_best_answer",
+      "stem": "Diarrhea causes which acidosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Normal anion gap"
+        },
+        {
+          "id": "B",
+          "text": "None"
+        },
+        {
+          "id": "C",
+          "text": "Respiratory"
+        },
+        {
+          "id": "D",
+          "text": "High anion gap"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Normal anion gap",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-renal-gu-q10",
+      "type": "single_best_answer",
+      "stem": "Peaked T waves sequence:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Calcium, then insulin-glucose, then remove"
+        },
+        {
+          "id": "B",
+          "text": "Wait"
+        },
+        {
+          "id": "C",
+          "text": "Insulin first only"
+        },
+        {
+          "id": "D",
+          "text": "Remove first"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Calcium, then insulin-glucose, then remove",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

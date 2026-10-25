@@ -1,0 +1,287 @@
+{
+  "episode": "ep04-breathing",
+  "title": "Breathing Across Ages",
+  "video": "quick-bites-fnp-ep04-breathing-web.mp4",
+  "questions": [
+    {
+      "id": "ep04-breathing-q01",
+      "type": "single_best_answer",
+      "stem": "New mild asthma, age 30. Preferred reliever approach?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Albuterol alone"
+        },
+        {
+          "id": "B",
+          "text": "As-needed low-dose ICS-formoterol"
+        },
+        {
+          "id": "C",
+          "text": "Oral steroids"
+        },
+        {
+          "id": "D",
+          "text": "Montelukast alone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "No SABA alone at 12+; Track 1 ICS-formoterol.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-breathing-q02",
+      "type": "single_best_answer",
+      "stem": "Positive bronchodilator response:",
+      "options": [
+        {
+          "id": "A",
+          "text": "FEV1 up 5%"
+        },
+        {
+          "id": "B",
+          "text": "FEV1 up ≥12% and ≥200 mL"
+        },
+        {
+          "id": "C",
+          "text": "FEV1/FVC <0.7"
+        },
+        {
+          "id": "D",
+          "text": "PEF down 20%"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "≥12% and ≥200 mL.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-breathing-q03",
+      "type": "single_best_answer",
+      "stem": "COPD is confirmed by:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Chest x-ray"
+        },
+        {
+          "id": "B",
+          "text": "Post-bronchodilator FEV1/FVC <0.7"
+        },
+        {
+          "id": "C",
+          "text": "Oxygen saturation <92%"
+        },
+        {
+          "id": "D",
+          "text": "CT scan"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Spirometry ratio <0.7 after bronchodilator.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-breathing-q04",
+      "type": "single_best_answer",
+      "stem": "Under GOLD 2026, group E requires at least:",
+      "options": [
+        {
+          "id": "A",
+          "text": "2 moderate flares"
+        },
+        {
+          "id": "B",
+          "text": "1 moderate flare in past year"
+        },
+        {
+          "id": "C",
+          "text": "3 hospitalizations"
+        },
+        {
+          "id": "D",
+          "text": "Eosinophils ≥300"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "One moderate flare now qualifies.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-breathing-q05",
+      "type": "single_best_answer",
+      "stem": "Group B initial therapy:",
+      "options": [
+        {
+          "id": "A",
+          "text": "ICS alone"
+        },
+        {
+          "id": "B",
+          "text": "LABA + LAMA"
+        },
+        {
+          "id": "C",
+          "text": "LABA + ICS"
+        },
+        {
+          "id": "D",
+          "text": "No therapy"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Dual long-acting bronchodilators.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-breathing-q06",
+      "type": "single_best_answer",
+      "stem": "COPD, 1 moderate flare, eos 350, treatment-naive. Start (GOLD 2026)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "LAMA alone"
+        },
+        {
+          "id": "B",
+          "text": "LABA + ICS"
+        },
+        {
+          "id": "C",
+          "text": "LABA + LAMA + ICS"
+        },
+        {
+          "id": "D",
+          "text": "Albuterol only"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Group E with eos ≥300: consider triple.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-breathing-q07",
+      "type": "single_best_answer",
+      "stem": "Steroid for a COPD flare at home:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Prednisone 40 mg x 5 days"
+        },
+        {
+          "id": "B",
+          "text": "Prednisone 10 mg x 1 month"
+        },
+        {
+          "id": "C",
+          "text": "No steroid"
+        },
+        {
+          "id": "D",
+          "text": "IV only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "40 mg for 5 days.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-breathing-q08",
+      "type": "single_best_answer",
+      "stem": "8-month-old with bronchiolitis, sat 95%. Plan?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Albuterol trial"
+        },
+        {
+          "id": "B",
+          "text": "Supportive care"
+        },
+        {
+          "id": "C",
+          "text": "Oral steroids"
+        },
+        {
+          "id": "D",
+          "text": "Amoxicillin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Supportive care only.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-breathing-q09",
+      "type": "single_best_answer",
+      "stem": "Barking cough and stridor in a toddler. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Antibiotics"
+        },
+        {
+          "id": "B",
+          "text": "Single dose dexamethasone"
+        },
+        {
+          "id": "C",
+          "text": "Albuterol"
+        },
+        {
+          "id": "D",
+          "text": "Throat culture first"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Croup = dexamethasone.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-breathing-q10",
+      "type": "single_best_answer",
+      "stem": "Drooling, tripod position, toxic child. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Examine throat with tongue blade"
+        },
+        {
+          "id": "B",
+          "text": "Emergency transfer, protect airway"
+        },
+        {
+          "id": "C",
+          "text": "Home dexamethasone"
+        },
+        {
+          "id": "D",
+          "text": "Rapid strep"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Suspect epiglottitis; do not examine the throat.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}
