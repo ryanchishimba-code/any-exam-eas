@@ -10,9 +10,16 @@
   },
   "skips": [],
   "servedBefore": 5625,
+  "servedAfter": 4753,
+  "applied": {
+    "retire": 872,
+    "rewrite": 69,
+    "edit": 21,
+    "skipped": 0
+  },
   "explanationLeftUnchanged": [
     "cmr7v70i7001h1y2zj6se0asg"
   ],
   "undo": "scripts/restore-naplex-fix-20261025.ts",
-  "note": "Snapshot taken before question text was changed. Retire sets active=false. Rewrite and edit update scenario, question, options, correctAnswer, explanation, and references, and set manual_correction=true."
+  "note": "Snapshot taken before question text was changed. Applied after a rolled-back dry run: retire sets active=false; rewrite and edit update scenario, question, options, correctAnswer, explanation, and references, and set manual_correction=true. contentHash was left unchanged. cmr7v70i7001h1y2zj6se0asg had an empty explanation in the csv and a stem-only change log, so its explanation was left as it was."
 }
