@@ -1,0 +1,272 @@
+{
+  "fnp": [
+    {
+      "number": 1,
+      "slug": "quick-bites-fnp-ep01-screening",
+      "title": "Screening and Prevention Across the Lifespan",
+      "duration": "4:20",
+      "episodeKey": "ep01-screening"
+    },
+    {
+      "number": 2,
+      "slug": "quick-bites-fnp-ep02-bp-kidney-heart",
+      "title": "Blood Pressure, Kidneys and Heart Risk",
+      "duration": "4:28",
+      "episodeKey": "ep02-bp-kidney-heart"
+    },
+    {
+      "number": 3,
+      "slug": "quick-bites-fnp-ep03-diabetes",
+      "title": "Diabetes from Diagnosis to Insulin",
+      "duration": "4:05",
+      "episodeKey": "ep03-diabetes"
+    },
+    {
+      "number": 4,
+      "slug": "quick-bites-fnp-ep04-breathing",
+      "title": "Breathing Across Ages",
+      "duration": "4:04",
+      "episodeKey": "ep04-breathing"
+    },
+    {
+      "number": 5,
+      "slug": "quick-bites-fnp-ep05-mind-mood",
+      "title": "Mind and Mood",
+      "duration": "3:44",
+      "episodeKey": "ep05-mind-mood"
+    },
+    {
+      "number": 6,
+      "slug": "quick-bites-fnp-ep06-older-adults",
+      "title": "Older Adults",
+      "duration": "3:44",
+      "episodeKey": "ep06-older-adults"
+    },
+    {
+      "number": 7,
+      "slug": "quick-bites-fnp-ep07-board-strategy",
+      "title": "How the Boards Work",
+      "duration": "3:12",
+      "episodeKey": "ep07-board-strategy"
+    },
+    {
+      "number": 8,
+      "slug": "quick-bites-fnp-ep08-reproductive",
+      "title": "Contraception, Pregnancy and Menopause",
+      "duration": "4:05",
+      "episodeKey": "ep08-reproductive"
+    },
+    {
+      "number": 9,
+      "slug": "quick-bites-fnp-ep09-children-growth-vaccines",
+      "title": "Children: Growth, Development and Vaccines",
+      "duration": "3:37",
+      "episodeKey": "ep09-children-growth-vaccines"
+    },
+    {
+      "number": 10,
+      "slug": "quick-bites-fnp-ep10-ent-fevers",
+      "title": "Ears, Throats, Eyes and Fevers",
+      "duration": "3:55",
+      "episodeKey": "ep10-ent-fevers"
+    },
+    {
+      "number": 11,
+      "slug": "quick-bites-fnp-ep11-office-infections",
+      "title": "Office Infections: STIs, Urinary, Pneumonia, TB",
+      "duration": "4:04",
+      "episodeKey": "ep11-office-infections"
+    },
+    {
+      "number": 12,
+      "slug": "quick-bites-fnp-ep12-heart-beyond-bp",
+      "title": "Heart Failure, Atrial Fibrillation, Murmurs, Chest Pain",
+      "duration": "3:52",
+      "episodeKey": "ep12-heart-beyond-bp"
+    },
+    {
+      "number": 13,
+      "slug": "quick-bites-fnp-ep13-thyroid-anemia",
+      "title": "Thyroid and Anemia",
+      "duration": "3:42",
+      "episodeKey": "ep13-thyroid-anemia"
+    },
+    {
+      "number": 14,
+      "slug": "quick-bites-fnp-ep14-gut-liver",
+      "title": "Gut, Liver and Abdomen",
+      "duration": "3:39",
+      "episodeKey": "ep14-gut-liver"
+    },
+    {
+      "number": 15,
+      "slug": "quick-bites-fnp-ep15-bones-joints-nerves",
+      "title": "Bones, Joints and Nerves",
+      "duration": "3:36",
+      "episodeKey": "ep15-bones-joints-nerves"
+    },
+    {
+      "number": 16,
+      "slug": "quick-bites-fnp-ep16-skin",
+      "title": "Skin Across Ages",
+      "duration": "3:16",
+      "episodeKey": "ep16-skin"
+    },
+    {
+      "number": 17,
+      "slug": "quick-bites-fnp-ep17-mens-kidney",
+      "title": "Men's and Kidney Health",
+      "duration": "3:16",
+      "episodeKey": "ep17-mens-kidney"
+    },
+    {
+      "number": 18,
+      "slug": "quick-bites-fnp-ep18-role-law-evidence",
+      "title": "Role, Law, Ethics and Evidence",
+      "duration": "3:17",
+      "episodeKey": "ep18-role-law-evidence"
+    }
+  ],
+  "pance": [
+    {
+      "number": 1,
+      "slug": "quick-bites-pance-ep01-coronary-failure-shock",
+      "title": "Coronary Disease, Heart Failure and Shock",
+      "duration": "4:34",
+      "episodeKey": "ep01-coronary-failure-shock"
+    },
+    {
+      "number": 2,
+      "slug": "quick-bites-pance-ep02-rhythms-valves-congenital",
+      "title": "Rhythms, Valves and Congenital Hearts",
+      "duration": "4:31",
+      "episodeKey": "ep02-rhythms-valves-congenital"
+    },
+    {
+      "number": 3,
+      "slug": "quick-bites-pance-ep03-pressure-lipids-vessels",
+      "title": "Pressure, Lipids and Vessels",
+      "duration": "4:21",
+      "episodeKey": "ep03-pressure-lipids-vessels"
+    },
+    {
+      "number": 4,
+      "slug": "quick-bites-pance-ep04-airways-lung-circulation",
+      "title": "Airways and Lung Circulation",
+      "duration": "4:23",
+      "episodeKey": "ep04-airways-lung-circulation"
+    },
+    {
+      "number": 5,
+      "slug": "quick-bites-pance-ep05-lung-infections-kids",
+      "title": "Lung Infections and Breathing in Kids",
+      "duration": "4:09",
+      "episodeKey": "ep05-lung-infections-kids"
+    },
+    {
+      "number": 6,
+      "slug": "quick-bites-pance-ep06-upper-gi-liver-pancreas",
+      "title": "Upper Gut, Liver, Gallbladder and Pancreas",
+      "duration": "3:55",
+      "episodeKey": "ep06-upper-gi-liver-pancreas"
+    },
+    {
+      "number": 7,
+      "slug": "quick-bites-pance-ep07-lower-gi-nutrition",
+      "title": "Lower Gut, Surgical Abdomen and Nutrition",
+      "duration": "4:14",
+      "episodeKey": "ep07-lower-gi-nutrition"
+    },
+    {
+      "number": 8,
+      "slug": "quick-bites-pance-ep08-fractures-spine-injuries",
+      "title": "Fractures, Spine and Sports Injuries",
+      "duration": "3:30",
+      "episodeKey": "ep08-fractures-spine-injuries"
+    },
+    {
+      "number": 9,
+      "slug": "quick-bites-pance-ep09-rheum-bone",
+      "title": "Joints, Rheumatology and Bone",
+      "duration": "2:57",
+      "episodeKey": "ep09-rheum-bone"
+    },
+    {
+      "number": 10,
+      "slug": "quick-bites-pance-ep10-neuro",
+      "title": "Brain, Nerves and Headaches",
+      "duration": "3:22",
+      "episodeKey": "ep10-neuro"
+    },
+    {
+      "number": 11,
+      "slug": "quick-bites-pance-ep11-psych-behavior",
+      "title": "Mind and Behavior",
+      "duration": "2:50",
+      "episodeKey": "ep11-psych-behavior"
+    },
+    {
+      "number": 12,
+      "slug": "quick-bites-pance-ep12-pregnancy",
+      "title": "Pregnancy, Labor and Postpartum",
+      "duration": "3:05",
+      "episodeKey": "ep12-pregnancy"
+    },
+    {
+      "number": 13,
+      "slug": "quick-bites-pance-ep13-gyn-breast",
+      "title": "Gynecology, Breast and Contraception",
+      "duration": "2:57",
+      "episodeKey": "ep13-gyn-breast"
+    },
+    {
+      "number": 14,
+      "slug": "quick-bites-pance-ep14-infectious",
+      "title": "Infections Across the Body",
+      "duration": "2:58",
+      "episodeKey": "ep14-infectious"
+    },
+    {
+      "number": 15,
+      "slug": "quick-bites-pance-ep15-endocrine",
+      "title": "Glands and Hormones",
+      "duration": "4:13",
+      "episodeKey": "ep15-endocrine"
+    },
+    {
+      "number": 16,
+      "slug": "quick-bites-pance-ep16-eent",
+      "title": "Eyes, Ears, Nose and Throat",
+      "duration": "4:29",
+      "episodeKey": "ep16-eent"
+    },
+    {
+      "number": 17,
+      "slug": "quick-bites-pance-ep17-heme",
+      "title": "Blood: Anemia, Clotting and Cancers",
+      "duration": "4:04",
+      "episodeKey": "ep17-heme"
+    },
+    {
+      "number": 18,
+      "slug": "quick-bites-pance-ep18-renal-gu",
+      "title": "Kidneys, Fluids and the Urinary Tract",
+      "duration": "4:02",
+      "episodeKey": "ep18-renal-gu"
+    },
+    {
+      "number": 19,
+      "slug": "quick-bites-pance-ep19-mens-health-skin",
+      "title": "Men's Health and Skin",
+      "duration": "4:40",
+      "episodeKey": "ep19-mens-health-skin"
+    },
+    {
+      "number": 20,
+      "slug": "quick-bites-pance-ep20-professional-practice",
+      "title": "Professional Practice and Board Strategy",
+      "duration": "3:40",
+      "episodeKey": "ep20-professional-practice"
+    }
+  ]
+}
