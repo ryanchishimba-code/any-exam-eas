@@ -95,8 +95,8 @@ const FNP_SERIES: QuickBiteSeries = {
   groups: [{ title: "", episodes: FNP_QUICK_BITE_EPISODES }],
   poster: fnpQuickBitePoster,
   apiBase: "/api/quick-bites-fnp",
-  includeCaptionsTrack: true,
-  captionsNote: "Captions are available from the player. They match the words already on screen.",
+  includeCaptionsTrack: false,
+  captionsNote: "Captions are burned into the video.",
   isPlayable: isFnpQuickBitePlayable,
   nextEpisode: nextPlayableFnpQuickBite,
 };
@@ -111,8 +111,8 @@ const PANCE_SERIES: QuickBiteSeries = {
   groups: [{ title: "", episodes: PANCE_QUICK_BITE_EPISODES }],
   poster: panceQuickBitePoster,
   apiBase: "/api/quick-bites-pance",
-  includeCaptionsTrack: true,
-  captionsNote: "Captions are available from the player. They match the words already on screen.",
+  includeCaptionsTrack: false,
+  captionsNote: "Captions are burned into the video.",
   isPlayable: isPanceQuickBitePlayable,
   nextEpisode: nextPlayablePanceQuickBite,
 };

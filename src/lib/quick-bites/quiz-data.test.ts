@@ -7,7 +7,9 @@ import {
   gradeQuickBiteAnswer,
   mapQuickBiteAnswerType,
   publicQuickBiteQuiz,
+  remapExplanationOptionLetters,
 } from "@/lib/quick-bites/quiz-data";
+import { getFnpQuickBiteQuiz } from "@/lib/quick-bites/fnp-quiz-data";
 import { parseVideoTimestamp } from "@/lib/quick-bites/timestamp";
 
 function walk(dir: string): string[] {
@@ -124,6 +126,25 @@ describe("Video Quick Bites quizzes", () => {
     expect(readFileSync(path.join(process.cwd(), "src/lib/quick-bites/quiz-data.ts"), "utf8")).not.toMatch(
       /quizzes\/.+\.json/
     );
+  });
+
+  it("remaps answer citations but not USPSTF grade letters in FNP explanations", () => {
+    const remapped = remapExplanationOptionLetters(
+      "B is correct: example. A and C are wrong.",
+      new Set(["A", "B", "C", "D"]),
+      new Map([
+        ["A", "D"],
+        ["B", "A"],
+        ["C", "B"],
+        ["D", "C"],
+      ])
+    );
+    expect(remapped).toBe("A is correct: example. D and B are wrong.");
+
+    const quiz = getFnpQuickBiteQuiz("quick-bites-fnp-ep01-screening")!;
+    const q1 = quiz.questions.find((question) => question.id === "ep01-screening-q01")!;
+    expect(q1.explanation).toContain("Grades A and B mean offer or provide");
+    expect(q1.explanation).not.toMatch(/Grades C and D mean offer/i);
   });
 
   it("parses m:ss timestamps", () => {
