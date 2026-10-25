@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 /**
+ * NOTE: The temporary /api/internal/qb-fnp-pance-upload route was removed after
+ * the v1-20261025 production upload. Restore it from PR #292 before reusing
+ * this script.
+ *
  * Upload FNP + PANCE Quick Bites private media via the temporary preview route.
  *
  *   BASE_URL=https://<preview-host> \
