@@ -1,0 +1,766 @@
+{
+  "generatedAt": "2026-10-25T16:15:00Z",
+  "methodology": {
+    "wrongTag": "Manual clinical review of stem + keyed answer; primary problem must be acute cardiac (ACS/STEMI, HF decompensation, dysrhythmia/toxicity, hypertensive emergency), not incidental vitals.",
+    "nearDuplicates": "Grouped by shared clinical scenario archetype and the same decision (e.g. inferior STEMI → priority ST elevation; ACS → first 12-lead ECG). Keeper = richest stem/vitals/ECG detail and longest rationale among clones. Item QA findNearDuplicatePairs found 4 extra lexical near-stem pairs (subset of these groups)."
+  },
+  "query": {
+    "fieldId": "nursing",
+    "active": true,
+    "qaPassed": true,
+    "blueprintTopicMatchers": [
+      "cardiac-emergencies",
+      "heart failure",
+      "heart-failure",
+      "heart-failure-exacerbation",
+      "cardiac emergencies"
+    ],
+    "note": "Tag-only match per countActiveQuestionBankItemsByBlueprintTopics (all 152 rows stored as cardiac-emergencies)."
+  },
+  "counts": {
+    "totalTaggedLive": 152,
+    "wrongTag": 48,
+    "afterWrongTagRemoval": 104,
+    "nearDuplicateGroups": 18,
+    "nearDuplicateHide": 75,
+    "singletonsNotInDupGroups": 11,
+    "cleanCardiacRemaining": 29
+  },
+  "wrongTag": [
+    {
+      "id": "cmqwl59dz000i1yqxptqro3pn",
+      "stemSummary": "A 30-year-old female client presents to the emergency department with severe abdominal pain and vomiting. She has a history of gallstones an\u2026",
+      "actuallyTests": "Post-cholecystectomy complication (fever, tachycardia, abdominal distention)",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Elevated heart rate"
+    },
+    {
+      "id": "cmqwm3b0i000f1yqmzl2fbi8x",
+      "stemSummary": "A 30-year-old female client in the post-anesthesia care unit (PACU) is recovering from laparoscopic cholecystectomy. She is alert but report\u2026",
+      "actuallyTests": "PACU laparoscopic cholecystectomy pain management",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Administer prescribed analgesics for pain relief"
+    },
+    {
+      "id": "cmqws4ipb000j1ymf2q5qm23y",
+      "stemSummary": "A 40-year-old male presents to the emergency department with severe abdominal pain and vomiting. He reports a history of alcohol use disorde\u2026",
+      "actuallyTests": "Acute pancreatitis: priority finding (vomiting/dehydration)",
+      "suggestedBlueprintTopic": "shock-sepsis",
+      "correctAnswer": "Vomiting and dehydration."
+    },
+    {
+      "id": "cmqwsl3r0000g1yplfhkx1na8",
+      "stemSummary": "A 50-year-old male client presents to the emergency department with severe abdominal pain and vomiting. He has a history of chronic pancreat\u2026",
+      "actuallyTests": "Acute pancreatitis: hemodynamic instability",
+      "suggestedBlueprintTopic": "shock-sepsis",
+      "correctAnswer": "Hypotension and tachycardia."
+    },
+    {
+      "id": "cmqwtouoe000g1ygdlierx2w8",
+      "stemSummary": "A 30-year-old client with type 1 diabetes is admitted with suspected sepsis from pneumonia. Her temperature is 39.2 \u00b0C (102.6 \u00b0F), heart rat\u2026",
+      "actuallyTests": "Sepsis bundle \u2014 blood cultures before antibiotics",
+      "suggestedBlueprintTopic": "shock-sepsis",
+      "correctAnswer": "Obtain blood cultures before antibiotics."
+    },
+    {
+      "id": "cmqwu1yzm000k1yop2x9x9x09",
+      "stemSummary": "A 75-year-old female with a history of hypertension and diabetes is admitted to the hospital with septic shock. She is currently on broad-sp\u2026",
+      "actuallyTests": "Septic shock \u2014 hypotension priority",
+      "suggestedBlueprintTopic": "shock-sepsis",
+      "correctAnswer": "Blood pressure of 80/50 mmHg"
+    },
+    {
+      "id": "cmqwvzmh8000l1y06m75voper",
+      "stemSummary": "A 40-year-old female client is admitted to the hospital with a diagnosis of acute pancreatitis after a weekend of heavy drinking. She presen\u2026",
+      "actuallyTests": "Acute pancreatitis \u2014 hypotension priority",
+      "suggestedBlueprintTopic": "shock-sepsis",
+      "correctAnswer": "Blood pressure of 88/54 mmHg"
+    },
+    {
+      "id": "cmqwwuolf000h1y25mfw0zbvi",
+      "stemSummary": "A 62-year-old male client is recovering from a total knee replacement. He is currently on a regimen of opioids for pain management. The nurs\u2026",
+      "actuallyTests": "Post-TKR opioid constipation",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Assess the client's abdomen for distention"
+    },
+    {
+      "id": "cmqwx6o75000h1y2m5ug005hw",
+      "stemSummary": "A 30-year-old female client presents to the emergency department with a severe headache, nausea, and photophobia. She has a history of migra\u2026",
+      "actuallyTests": "Suspected meningitis \u2014 neck stiffness priority",
+      "suggestedBlueprintTopic": "transmission-based-precautions",
+      "correctAnswer": "Neck stiffness"
+    },
+    {
+      "id": "cmqwxkifn000h1ytv2oitodmm",
+      "stemSummary": "A 54-year-old female presents to the emergency department with a severe headache, nausea, and photophobia. She has a history of migraines bu\u2026",
+      "actuallyTests": "Suspected meningitis \u2014 droplet precautions",
+      "suggestedBlueprintTopic": "transmission-based-precautions",
+      "correctAnswer": "Initiate droplet precautions"
+    },
+    {
+      "id": "cmqwxvj77000k1y0gz69dut2s",
+      "stemSummary": "A 70-year-old male is admitted to the hospital with septic shock secondary to pneumonia. He is currently on broad-spectrum antibiotics and I\u2026",
+      "actuallyTests": "Septic shock \u2014 IV fluid resuscitation",
+      "suggestedBlueprintTopic": "shock-sepsis",
+      "correctAnswer": "Administer IV fluids as prescribed"
+    },
+    {
+      "id": "cmqxagktq00081yn6uyv223jf",
+      "stemSummary": "A 45-year-old female client is admitted to the medical-surgical unit after undergoing a laparoscopic cholecystectomy. She has a history of h\u2026",
+      "actuallyTests": "Post-laparoscopic cholecystectomy analgesia",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Administer the prescribed analgesics as needed."
+    },
+    {
+      "id": "cmqxdzbld000e1y9jszjsmj9j",
+      "stemSummary": "A 45-year-old male client is admitted to the medical-surgical unit after undergoing a right hemicolectomy for colon cancer. He has a history\u2026",
+      "actuallyTests": "Post-hemicolectomy NG tube assessment",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Assess the nasogastric tube for patency."
+    },
+    {
+      "id": "cmr0tcmah003t1y8qqwzu7w68",
+      "stemSummary": "A 40-year-old female is admitted to the psychiatric unit following a recent divorce. She reports feelings of sadness, hopelessness, and diff\u2026",
+      "actuallyTests": "Psychiatric psychosocial assessment / therapeutic communication",
+      "suggestedBlueprintTopic": "therapeutic-communication",
+      "correctAnswer": "Ask the client to describe her feelings and experiences."
+    },
+    {
+      "id": "cmr0ttmkj006p1y8qrkbtf7im",
+      "stemSummary": "A 28-year-old pregnant client at 10 weeks gestation visits the clinic for a routine prenatal check-up. She has no significant medical histor\u2026",
+      "actuallyTests": "Prenatal folic acid education",
+      "suggestedBlueprintTopic": "prenatal-fetal-development",
+      "correctAnswer": "Take folic acid supplements to prevent neural tube defects."
+    },
+    {
+      "id": "cmr0ufp8t00221y7oxn7ggr1i",
+      "stemSummary": "A 45-year-old male with a history of hypertension and type 2 diabetes is admitted to the medical-surgical unit following an appendectomy. He\u2026",
+      "actuallyTests": "Post-appendectomy orthostatic dizziness",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Assist the client to a sitting position and monitor for dizziness"
+    },
+    {
+      "id": "cmr0vhdrw000q1ymh296w4gi8",
+      "stemSummary": "A 65-year-old female client with type 2 diabetes is admitted for a foot ulcer. She is on metformin and insulin glargine. Her blood glucose i\u2026",
+      "actuallyTests": "Diabetes foot ulcer \u2014 hypoglycemia vs hyperglycemia workup",
+      "suggestedBlueprintTopic": "endocrine-emergencies",
+      "correctAnswer": "Check the client's blood pressure"
+    },
+    {
+      "id": "cmr0wa86v006e1ymhgpx3g0jq",
+      "stemSummary": "A 70-year-old female client is admitted to the hospital with dehydration and confusion. She has a history of chronic kidney disease and repo\u2026",
+      "actuallyTests": "CKD/dehydration sleep hygiene",
+      "suggestedBlueprintTopic": "renal-urinary",
+      "correctAnswer": "Encourage a warm bath before bedtime to promote relaxation."
+    },
+    {
+      "id": "cmr0yyo8100031yba38b8373y",
+      "stemSummary": "A 25-year-old female client visits the clinic for a routine health check-up. She is a smoker and has a family history of breast cancer. She \u2026",
+      "actuallyTests": "Routine cancer screening (Pap smear)",
+      "suggestedBlueprintTopic": "health-screening",
+      "correctAnswer": "Pap smear"
+    },
+    {
+      "id": "cmr137mc000031ygq6hre8ose",
+      "stemSummary": "A 28-year-old pregnant client at 10 weeks gestation visits the clinic for her first prenatal appointment. She is a smoker and has a history \u2026",
+      "actuallyTests": "Prenatal smoking cessation counseling",
+      "suggestedBlueprintTopic": "prenatal-fetal-development",
+      "correctAnswer": "Advise the client to quit smoking to reduce risks to the fetus."
+    },
+    {
+      "id": "cmr143vpn00a71ygqocmbrof8",
+      "stemSummary": "A 50-year-old female client is recovering from a total hip replacement. She is on bed rest and has a history of deep vein thrombosis (DVT). \u2026",
+      "actuallyTests": "Post-hip replacement DVT signs",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Calf pain and swelling"
+    },
+    {
+      "id": "cmr16cdo4004j1yy55ux22v6h",
+      "stemSummary": "A 50-year-old male client with type 2 diabetes is admitted for management of hyperglycemia. He is prescribed insulin glargine (Lantus) once \u2026",
+      "actuallyTests": "Insulin glargine teaching",
+      "suggestedBlueprintTopic": "endocrine-meds",
+      "correctAnswer": "Take Lantus at the same time every day."
+    },
+    {
+      "id": "cmr16skh600ac1yy53vxvbwmm",
+      "stemSummary": "A 6-month-old infant is brought to the pediatric clinic for a routine check-up. The mother reports that the infant has been irritable and ha\u2026",
+      "actuallyTests": "Infant immunization administration",
+      "suggestedBlueprintTopic": "immunization-schedules",
+      "correctAnswer": "Administer the scheduled vaccinations"
+    },
+    {
+      "id": "cmr75tbk800j51ywudh2w870j",
+      "stemSummary": "A 50-year-old male with type 2 diabetes is admitted for uncontrolled blood glucose levels. He is prescribed metformin and insulin. The clien\u2026",
+      "actuallyTests": "Type 2 diabetes \u2014 hypoglycemia assessment",
+      "suggestedBlueprintTopic": "endocrine-emergencies",
+      "correctAnswer": "Check the client's blood glucose level"
+    },
+    {
+      "id": "cmr7jl1jb00bq1y66i2lh5f4v",
+      "stemSummary": "A 60-year-old female client with a history of osteoarthritis is admitted for pain management. She reports pain in her knees rated 8/10 despi\u2026",
+      "actuallyTests": "Osteoarthritis pain \u2014 tramadol",
+      "suggestedBlueprintTopic": "pain-management",
+      "correctAnswer": "Administer prescribed tramadol as needed"
+    },
+    {
+      "id": "cmr8otxcc006e1y5nuw771tit",
+      "stemSummary": "A 45-year-old female client is admitted to the medical-surgical unit following a cholecystectomy. She is currently on bed rest and has a nas\u2026",
+      "actuallyTests": "Post-cholecystectomy ileus/NG tube",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Assess the nasogastric tube for patency and proper placement"
+    },
+    {
+      "id": "cmra6zrpr005e1ylws979df77",
+      "stemSummary": "A 65-year-old male with a history of chronic kidney disease is admitted for evaluation of electrolyte imbalances. His laboratory results sho\u2026",
+      "actuallyTests": "Hyperkalemia in CKD \u2014 calcium gluconate",
+      "suggestedBlueprintTopic": "fluid-balance-io",
+      "correctAnswer": "Administer intravenous calcium gluconate"
+    },
+    {
+      "id": "cmra75ryv00651ylwh4ko9vrv",
+      "stemSummary": "A 28-year-old pregnant client at 32 weeks gestation visits the clinic for a routine prenatal check-up. She reports occasional headaches and \u2026",
+      "actuallyTests": "Prenatal preeclampsia screening (proteinuria)",
+      "suggestedBlueprintTopic": "prenatal-fetal-development",
+      "correctAnswer": "Perform a urine dipstick test for protein"
+    },
+    {
+      "id": "cmrlyrywo00051yno2mxi3s1m",
+      "stemSummary": "A 60-year-old female is recovering from a total hip replacement surgery performed yesterday. She is on opioid analgesics for pain management\u2026",
+      "actuallyTests": "Post-hip replacement ileus/ambulation",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Encourage early ambulation"
+    },
+    {
+      "id": "cmrlyrz0700061ynotdacr0z7",
+      "stemSummary": "The 60-year-old female recovering from hip replacement surgery is now experiencing increased pain despite receiving her scheduled opioid ana\u2026",
+      "actuallyTests": "Post-hip replacement uncontrolled pain",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Increased pain despite analgesics"
+    },
+    {
+      "id": "cmrlyyq1000071yf1v9chmpaj",
+      "stemSummary": "A 55-year-old male client with hypertension is prescribed lisinopril. He reports a persistent dry cough since starting the medication. The n\u2026",
+      "actuallyTests": "ACE-inhibitor dry cough (lisinopril)",
+      "suggestedBlueprintTopic": "cardiovascular-meds",
+      "correctAnswer": "Inform the client that the cough is a common side effect"
+    },
+    {
+      "id": "cmrlz5bf200141yf1ymoxi95q",
+      "stemSummary": "A 45-year-old male with a history of alcohol use disorder is admitted for detoxification. He reports anxiety, tremors, and nausea. Vitals: B\u2026",
+      "actuallyTests": "Alcohol withdrawal \u2014 benzodiazepine",
+      "suggestedBlueprintTopic": "substance-use-withdrawal",
+      "correctAnswer": "Administer lorazepam as prescribed"
+    },
+    {
+      "id": "cmrlz5blr00161yf15m2wdk7m",
+      "stemSummary": "A 50-year-old female with type 2 diabetes is prescribed metformin. She reports experiencing gastrointestinal upset after starting the medica\u2026",
+      "actuallyTests": "Metformin GI upset counseling",
+      "suggestedBlueprintTopic": "endocrine-meds",
+      "correctAnswer": "Take metformin with meals"
+    },
+    {
+      "id": "cmrm1eh2b000c1yga09i1gcsi",
+      "stemSummary": "A 65-year-old female client is post-operative day 1 after an open cholecystectomy. She is experiencing nausea and has not passed flatus. Her\u2026",
+      "actuallyTests": "Post-cholecystectomy ileus \u2014 ambulation",
+      "suggestedBlueprintTopic": "postoperative-monitoring",
+      "correctAnswer": "Encourage the client to ambulate"
+    },
+    {
+      "id": "cmrm1eh5v000d1ygar7rsjtqw",
+      "stemSummary": "A 78-year-old male client with a history of COPD presents to the emergency department with increased shortness of breath and productive coug\u2026",
+      "actuallyTests": "COPD exacerbation positioning",
+      "suggestedBlueprintTopic": "respiratory-emergencies",
+      "correctAnswer": "Position the client in high Fowler's position"
+    },
+    {
+      "id": "cmrm1eh9c000e1ygajvm3d026",
+      "stemSummary": "A 45-year-old female client with type 2 diabetes is admitted for management of diabetic ketoacidosis (DKA). She is on an insulin infusion an\u2026",
+      "actuallyTests": "DKA management \u2014 potassium monitoring",
+      "suggestedBlueprintTopic": "endocrine-emergencies",
+      "correctAnswer": "Check the client's serum potassium level."
+    },
+    {
+      "id": "cmrm1lbk0001p1ygabk1ph7oq",
+      "stemSummary": "A 60-year-old female with chronic osteoarthritis reports increased joint pain despite taking acetaminophen as prescribed. She is considering\u2026",
+      "actuallyTests": "Osteoarthritis topical NSAID teaching",
+      "suggestedBlueprintTopic": "pain-management",
+      "correctAnswer": "Apply the topical NSAID only to the affected joints"
+    },
+    {
+      "id": "cmrm1lbmv001q1yga0n0esvbs",
+      "stemSummary": "A 55-year-old male with type 2 diabetes is prescribed metformin and lisinopril. He presents with muscle pain and weakness, and his laborator\u2026",
+      "actuallyTests": "Statin-associated myopathy",
+      "suggestedBlueprintTopic": "cardiovascular-meds",
+      "correctAnswer": "Atorvastatin"
+    },
+    {
+      "id": "cmrm4romz00051y9w70g6x39z",
+      "stemSummary": "A 70-year-old male with a history of COPD is admitted with an acute exacerbation. He is on 2 L/min oxygen via nasal cannula. His ABG results\u2026",
+      "actuallyTests": "COPD exacerbation ABG interpretation",
+      "suggestedBlueprintTopic": "respiratory-emergencies",
+      "correctAnswer": "PaO2 of 60 mmHg"
+    },
+    {
+      "id": "cmrm59k1d00361ynomhpftm4i",
+      "stemSummary": "A 35-year-old male client with a history of depression is admitted to the psychiatric unit following a suicide attempt. He is currently on s\u2026",
+      "actuallyTests": "Psychiatric suicide risk \u2014 therapeutic response",
+      "suggestedBlueprintTopic": "suicide-risk",
+      "correctAnswer": "\"Let's talk about what you're feeling right now.\""
+    },
+    {
+      "id": "cmrmt9de300131y3jqwu6zjkp",
+      "stemSummary": "A 60-year-old male client with a history of type 1 diabetes is admitted to the emergency department with confusion and lethargy. His blood g\u2026",
+      "actuallyTests": "Hypoglycemia \u2014 IV dextrose",
+      "suggestedBlueprintTopic": "endocrine-emergencies",
+      "correctAnswer": "Administer 50% dextrose intravenously."
+    },
+    {
+      "id": "cmrmtcyq700371y3j86cylvd9",
+      "stemSummary": "A 30-year-old female client is in her second trimester of pregnancy and visits the clinic for a routine check-up. She expresses concerns abo\u2026",
+      "actuallyTests": "Prenatal Tdap vaccine teaching",
+      "suggestedBlueprintTopic": "immunization-schedules",
+      "correctAnswer": "The Tdap vaccine is not necessary if I received it before pregnancy."
+    },
+    {
+      "id": "cmrmu0ao300gj1y3jgomomgfa",
+      "stemSummary": "A 40-year-old client with a history of depression is admitted to the psychiatric unit after expressing suicidal ideation. The client has a p\u2026",
+      "actuallyTests": "Suicide precautions \u2014 1:1 observation",
+      "suggestedBlueprintTopic": "suicide-risk",
+      "correctAnswer": "Assign a sitter for continuous observation"
+    },
+    {
+      "id": "cmrmug21d00on1y3js6bfpzaw",
+      "stemSummary": "A 70-year-old female with a history of heart failure is admitted to the hospital with worsening shortness of breath and peripheral edema. Sh\u2026",
+      "actuallyTests": "Therapeutic communication (anxiety in HF patient)",
+      "suggestedBlueprintTopic": "therapeutic-communication",
+      "correctAnswer": "\"Let's talk about what's making you feel anxious.\""
+    },
+    {
+      "id": "cmroequub009y1ybzv0522zl3",
+      "stemSummary": "A 40-year-old male with a history of depression is admitted to the psychiatric unit for suicidal ideation. He reports feeling hopeless and h\u2026",
+      "actuallyTests": "Psychiatric suicidal ideation \u2014 therapeutic response",
+      "suggestedBlueprintTopic": "suicide-risk",
+      "correctAnswer": "\"Let's talk about what you're feeling right now.\""
+    },
+    {
+      "id": "cmroevnn700c21ybzq4t3n6el",
+      "stemSummary": "A 35-year-old female with a history of depression is admitted to the psychiatric unit after expressing suicidal thoughts. She reports feelin\u2026",
+      "actuallyTests": "Suicide risk assessment priority",
+      "suggestedBlueprintTopic": "suicide-risk",
+      "correctAnswer": "Conduct a thorough suicide risk assessment"
+    },
+    {
+      "id": "cmrogsi3l00bo1ymr6phoglo7",
+      "stemSummary": "A 60-year-old female client with a history of osteoarthritis presents to the clinic with complaints of joint pain and stiffness. She states \u2026",
+      "actuallyTests": "Osteoarthritis nonpharmacologic relief",
+      "suggestedBlueprintTopic": "pain-management",
+      "correctAnswer": "Apply warm compresses to affected joints"
+    },
+    {
+      "id": "cmrogsjpr00c61ymrvvs7kox3",
+      "stemSummary": "A 32-year-old female client is admitted to the psychiatric unit with a diagnosis of major depressive disorder. She reports feeling hopeless \u2026",
+      "actuallyTests": "Psychiatric depression \u2014 therapeutic response",
+      "suggestedBlueprintTopic": "therapeutic-communication",
+      "correctAnswer": "\"It sounds like you're feeling overwhelmed.\""
+    }
+  ],
+  "nearDuplicateGroups": [
+    {
+      "groupId": "Acute HF exacerbation | Priority finding: SpO2 ~88%",
+      "theme": "Acute HF exacerbation",
+      "decision": "Priority finding: SpO2 ~88%",
+      "ids": [
+        "cmr74s4w3007y1ywu9mw8puga",
+        "cmr75yx8l00l81ywu50mamwvw",
+        "cmr77v45p01411ywubakzagct",
+        "cmr7aeok000841ybbuqzejl4p",
+        "cmr7f9wqq000j1y59yrz1bl3x",
+        "cmr7giodd00ar1y59w8h97g4g",
+        "cmr7gpyry00cv1y59jqeonggp",
+        "cmr7ifyfe000x1y66k5epyukh",
+        "cmr7jl03d00b81y66f466xh7v",
+        "cmr8rd69i005v1ye3x92nlo4l",
+        "cmr8utd9u00cy1y0yqy718txa"
+      ],
+      "keep": "cmr7f9wqq000j1y59yrz1bl3x",
+      "hide": [
+        "cmr74s4w3007y1ywu9mw8puga",
+        "cmr75yx8l00l81ywu50mamwvw",
+        "cmr7aeok000841ybbuqzejl4p",
+        "cmr77v45p01411ywubakzagct",
+        "cmr7gpyry00cv1y59jqeonggp",
+        "cmr8utd9u00cy1y0yqy718txa",
+        "cmr7giodd00ar1y59w8h97g4g",
+        "cmr7jl03d00b81y66f466xh7v",
+        "cmr8rd69i005v1ye3x92nlo4l",
+        "cmr7ifyfe000x1y66k5epyukh"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "inferior STEMI | Priority finding: ST elevation II/III/aVF",
+      "theme": "inferior STEMI",
+      "decision": "Priority finding: ST elevation II/III/aVF",
+      "ids": [
+        "cmr748boe002x1ywuew3jne92",
+        "cmr75tc9p00je1ywuv8zvomcc",
+        "cmr77v2rk013k1ywu188fj8zs",
+        "cmr7exzfq00c31y9tjba86g0i",
+        "cmr7fttfi005j1y59c98o0ct4",
+        "cmr8mns8q00aj1yay11eikk2l",
+        "cmr8rp5wl009m1ye3kuo1j1a4",
+        "cmr8tu6zy00451y0yfvh4xjqd",
+        "cmr8vubeg00781yabdgxnyjd6",
+        "cmr8w3mhv00981yab0xown4ka",
+        "cmrmuc9gn00mt1y3jx50vqkqc"
+      ],
+      "keep": "cmr77v2rk013k1ywu188fj8zs",
+      "hide": [
+        "cmr75tc9p00je1ywuv8zvomcc",
+        "cmr7exzfq00c31y9tjba86g0i",
+        "cmr748boe002x1ywuew3jne92",
+        "cmr7fttfi005j1y59c98o0ct4",
+        "cmr8vubeg00781yabdgxnyjd6",
+        "cmr8tu6zy00451y0yfvh4xjqd",
+        "cmrmuc9gn00mt1y3jx50vqkqc",
+        "cmr8rp5wl009m1ye3kuo1j1a4",
+        "cmr8w3mhv00981yab0xown4ka",
+        "cmr8mns8q00aj1yay11eikk2l"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "ACS chest pain | First action: obtain 12-lead ECG",
+      "theme": "ACS chest pain",
+      "decision": "First action: obtain 12-lead ECG",
+      "ids": [
+        "cmr74ymh3009v1ywus2bhi4l5",
+        "cmr7648ky00me1ywuu550erhl",
+        "cmr76ua2e00t11ywu3bavf9wk",
+        "cmr7i8kp100cr1yx3m0lc3o3t",
+        "cmr8s0f9k00dd1ye3df5yura7",
+        "cmrlz5bif00151yf1d7p6hxgw",
+        "cmroeqrvf009a1ybz1715wn52",
+        "cmroevmzc00bw1ybzyx253e3y"
+      ],
+      "keep": "cmr7648ky00me1ywuu550erhl",
+      "hide": [
+        "cmr76ua2e00t11ywu3bavf9wk",
+        "cmrlz5bif00151yf1d7p6hxgw",
+        "cmr7i8kp100cr1yx3m0lc3o3t",
+        "cmroevmzc00bw1ybzyx253e3y",
+        "cmroeqrvf009a1ybz1715wn52",
+        "cmr8s0f9k00dd1ye3df5yura7",
+        "cmr74ymh3009v1ywus2bhi4l5"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "ACS chest pain | Priority finding: chest pain radiating to arm",
+      "theme": "ACS chest pain",
+      "decision": "Priority finding: chest pain radiating to arm",
+      "ids": [
+        "cmr781zww015k1ywu7c4bkgma",
+        "cmr7cs751000g1yvxkvib0mob",
+        "cmr7emvfz00821y9tr24p4253",
+        "cmr7jyd0l00091yvu3par1kwm",
+        "cmr8nlrkk00651yh6eegve0cd",
+        "cmr8si01y00411y9nsgh2niu4",
+        "cmrm5w1ch00gk1ynol6rhxxrz"
+      ],
+      "keep": "cmr7emvfz00821y9tr24p4253",
+      "hide": [
+        "cmr7cs751000g1yvxkvib0mob",
+        "cmr781zww015k1ywu7c4bkgma",
+        "cmr8nlrkk00651yh6eegve0cd",
+        "cmrm5w1ch00gk1ynol6rhxxrz",
+        "cmr8si01y00411y9nsgh2niu4",
+        "cmr7jyd0l00091yvu3par1kwm"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "Acute HF exacerbation | First action: administer oxygen",
+      "theme": "Acute HF exacerbation",
+      "decision": "First action: administer oxygen",
+      "ids": [
+        "cmr75ta5000in1ywuz2y5oc9b",
+        "cmr76nzbw00r81ywugsijha6x",
+        "cmr76u7oh00s71ywukmmvehtf",
+        "cmr8rjdps008e1ye3cmnjymvi",
+        "cmrlav1l1001w1ypt3sie7wzt",
+        "cmrlyyqgh000a1yf1c8wy6qmm"
+      ],
+      "keep": "cmr76nzbw00r81ywugsijha6x",
+      "hide": [
+        "cmrlav1l1001w1ypt3sie7wzt",
+        "cmrlyyqgh000a1yf1c8wy6qmm",
+        "cmr8rjdps008e1ye3cmnjymvi",
+        "cmr75ta5000in1ywuz2y5oc9b",
+        "cmr76u7oh00s71ywukmmvehtf"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "Acute HF exacerbation | First action: diuretic",
+      "theme": "Acute HF exacerbation",
+      "decision": "First action: diuretic",
+      "ids": [
+        "cmr787zhy016o1ywusnox9yos",
+        "cmrlb0f2c002k1yptw14j5umw",
+        "cmrlz5bbo00131yf1qeckgxnt",
+        "cmrmtwsni00eg1y3jp5zmuyr4",
+        "cmroevm9t00bq1ybz2da9h1ai",
+        "cmrogsk7d00cb1ymrz8cwdghe"
+      ],
+      "keep": "cmr787zhy016o1ywusnox9yos",
+      "hide": [
+        "cmrlz5bbo00131yf1qeckgxnt",
+        "cmrmtwsni00eg1y3jp5zmuyr4",
+        "cmrogsk7d00cb1ymrz8cwdghe",
+        "cmroevm9t00bq1ybz2da9h1ai",
+        "cmrlb0f2c002k1yptw14j5umw"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "inferior STEMI | First action: oxygen",
+      "theme": "inferior STEMI",
+      "decision": "First action: oxygen",
+      "ids": [
+        "cmr77cay600z21ywuuel4ifzq",
+        "cmr7esea200a81y9tlinee1n2",
+        "cmr7ify4n000u1y66xriwwmdk",
+        "cmr8p5d2m00a21y5nmxtqzspa",
+        "cmr8qvdvi000q1ye3wdnpvrv1",
+        "cmr8t4zz200ar1y9nh9j45z5x"
+      ],
+      "keep": "cmr77cay600z21ywuuel4ifzq",
+      "hide": [
+        "cmr7esea200a81y9tlinee1n2",
+        "cmr8qvdvi000q1ye3wdnpvrv1",
+        "cmr7ify4n000u1y66xriwwmdk",
+        "cmr8t4zz200ar1y9nh9j45z5x",
+        "cmr8p5d2m00a21y5nmxtqzspa"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "ACS chest pain | First action: oxygen",
+      "theme": "ACS chest pain",
+      "decision": "First action: oxygen",
+      "ids": [
+        "cmr7a26ur00551ybb7ynx3gaq",
+        "cmr7deaj300741yvxipf4zpqx",
+        "cmr8vlxje005o1yab7fyn51i7",
+        "cmra5t838001i1ylwh3di0sa7",
+        "cmrm59hnj002c1ynou3183t13"
+      ],
+      "keep": "cmr7a26ur00551ybb7ynx3gaq",
+      "hide": [
+        "cmr7deaj300741yvxipf4zpqx",
+        "cmrm59hnj002c1ynou3183t13",
+        "cmra5t838001i1ylwh3di0sa7",
+        "cmr8vlxje005o1yab7fyn51i7"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "Acute HF exacerbation | Priority finding: shortness of breath",
+      "theme": "Acute HF exacerbation",
+      "decision": "Priority finding: shortness of breath",
+      "ids": [
+        "cmqwnb137000i1ynhv150tuqk",
+        "cmr7emwms008h1y9tglagv0t4",
+        "cmr7jeghz009c1y66t2s3ows3",
+        "cmr8p5bcp009g1y5n69rqylkk",
+        "cmra7t0pn00931ylwa0aaut3j"
+      ],
+      "keep": "cmqwnb137000i1ynhv150tuqk",
+      "hide": [
+        "cmr7emwms008h1y9tglagv0t4",
+        "cmr7jeghz009c1y66t2s3ows3",
+        "cmra7t0pn00931ylwa0aaut3j",
+        "cmr8p5bcp009g1y5n69rqylkk"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "Acute HF exacerbation | Priority finding: crackles",
+      "theme": "Acute HF exacerbation",
+      "decision": "Priority finding: crackles",
+      "ids": [
+        "cmr79p17v000h1ybbdym6b6my",
+        "cmr7aqsqd00bb1ybb8lrb5koo",
+        "cmr7exx5w00bl1y9tbq3si6fk",
+        "cmr8nxl80009r1yh6c8s7i2ax",
+        "cmrogo32p00921ymrlhpxg3nu"
+      ],
+      "keep": "cmr79p17v000h1ybbdym6b6my",
+      "hide": [
+        "cmr7exx5w00bl1y9tbq3si6fk",
+        "cmr7aqsqd00bb1ybb8lrb5koo",
+        "cmrogo32p00921ymrlhpxg3nu",
+        "cmr8nxl80009r1yh6c8s7i2ax"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "Acute HF exacerbation | Notify provider (decompensation)",
+      "theme": "Acute HF exacerbation",
+      "decision": "Notify provider (decompensation)",
+      "ids": [
+        "cmqwv1gl9000g1ys2wmgmh1nh",
+        "cmr165x9e002c1yy5wez51xce",
+        "cmr8nlspg006g1yh6oqld9a2b",
+        "cmrlyyqjc000b1yf1ab346xjb"
+      ],
+      "keep": "cmqwv1gl9000g1ys2wmgmh1nh",
+      "hide": [
+        "cmr165x9e002c1yy5wez51xce",
+        "cmrlyyqjc000b1yf1ab346xjb",
+        "cmr8nlspg006g1yh6oqld9a2b"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "Acute HF exacerbation | Priority finding: elevated RR",
+      "theme": "Acute HF exacerbation",
+      "decision": "Priority finding: elevated RR",
+      "ids": [
+        "cmr0wa63p005t1ymhk9nyg2ua",
+        "cmr7echni00521y9t66njriyu",
+        "cmr7fnmyn004e1y596w5b1nyu",
+        "cmr7inwfj002x1y6656sy093e"
+      ],
+      "keep": "cmr7echni00521y9t66njriyu",
+      "hide": [
+        "cmr7fnmyn004e1y596w5b1nyu",
+        "cmr0wa63p005t1ymhk9nyg2ua",
+        "cmr7inwfj002x1y6656sy093e"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "Acute HF exacerbation | Patient teaching: diet/meds",
+      "theme": "Acute HF exacerbation",
+      "decision": "Patient teaching: diet/meds",
+      "ids": [
+        "cmr10kq2r001z1y8alhutnpd7",
+        "cmr11x4c3002f1y1ub19rs890",
+        "cmrm1ehcn000f1ygabzbymsho",
+        "cmroeqr5l00941ybzqawm9p4t"
+      ],
+      "keep": "cmr11x4c3002f1y1ub19rs890",
+      "hide": [
+        "cmr10kq2r001z1y8alhutnpd7",
+        "cmrm1ehcn000f1ygabzbymsho",
+        "cmroeqr5l00941ybzqawm9p4t"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "Acute HF exacerbation | Hypokalemia on diuretics: replace K+",
+      "theme": "Acute HF exacerbation",
+      "decision": "Hypokalemia on diuretics: replace K+",
+      "ids": [
+        "cmqwkaygw000g1ylpz71q59kk",
+        "cmr0uxuxf00601y7o69v5xiu3",
+        "cmrm1egyx000b1ygapcamkg5v"
+      ],
+      "keep": "cmqwkaygw000g1ylpz71q59kk",
+      "hide": [
+        "cmrm1egyx000b1ygapcamkg5v",
+        "cmr0uxuxf00601y7o69v5xiu3"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "ACS chest pain | Notify provider",
+      "theme": "ACS chest pain",
+      "decision": "Notify provider",
+      "ids": [
+        "cmr76a8kd00oc1ywuspp3qoet",
+        "cmrm1ehfz000g1ygajfjywjua"
+      ],
+      "keep": "cmr76a8kd00oc1ywuspp3qoet",
+      "hide": [
+        "cmrm1ehfz000g1ygajfjywjua"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "ACS chest pain | Priority finding: hypotension",
+      "theme": "ACS chest pain",
+      "decision": "Priority finding: hypotension",
+      "ids": [
+        "cmr7jydlo000f1yvua3ocwium",
+        "cmr8otvt0005v1y5nql4ogwc2"
+      ],
+      "keep": "cmr8otvt0005v1y5nql4ogwc2",
+      "hide": [
+        "cmr7jydlo000f1yvua3ocwium"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "Acute HF exacerbation | First action: high Fowler positioning",
+      "theme": "Acute HF exacerbation",
+      "decision": "First action: high Fowler positioning",
+      "ids": [
+        "cmrlyyq5800081yf1c9n4ul5f",
+        "cmrocawh700131ybkh036rwiw"
+      ],
+      "keep": "cmrocawh700131ybkh036rwiw",
+      "hide": [
+        "cmrlyyq5800081yf1c9n4ul5f"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    },
+    {
+      "groupId": "inferior STEMI | First action: aspirin",
+      "theme": "inferior STEMI",
+      "decision": "First action: aspirin",
+      "ids": [
+        "cmrlyrz3i00071yno5xn96ssp",
+        "cmrocau58000j1ybku192ad14"
+      ],
+      "keep": "cmrlyrz3i00071yno5xn96ssp",
+      "hide": [
+        "cmrocau58000j1ybku192ad14"
+      ],
+      "keepRationale": "Highest composite score (stem/vitals/ECG detail + explanation length) among near-identical scenario/decision clones."
+    }
+  ],
+  "cleanItemIds": [
+    "cmqwkaygw000g1ylpz71q59kk",
+    "cmqwnb137000i1ynhv150tuqk",
+    "cmqwv1gl9000g1ys2wmgmh1nh",
+    "cmr11x4c3002f1y1ub19rs890",
+    "cmr75n9wm00gx1ywutogx3kd9",
+    "cmr7648ky00me1ywuu550erhl",
+    "cmr76a8kd00oc1ywuspp3qoet",
+    "cmr76nzbw00r81ywugsijha6x",
+    "cmr77cay600z21ywuuel4ifzq",
+    "cmr77v2rk013k1ywu188fj8zs",
+    "cmr787zhy016o1ywusnox9yos",
+    "cmr79p17v000h1ybbdym6b6my",
+    "cmr7a26ur00551ybb7ynx3gaq",
+    "cmr7a891300731ybbjvqux7yj",
+    "cmr7djwj700951yvxbf9hj81r",
+    "cmr7echni00521y9t66njriyu",
+    "cmr7emvfz00821y9tr24p4253",
+    "cmr7f9wqq000j1y59yrz1bl3x",
+    "cmr7hoc3q007s1yx3yuxsu02x",
+    "cmr7i1ewd00bc1yx3l1v7s84o",
+    "cmr7j1hnj00681y66brmknscm",
+    "cmr8otvt0005v1y5nql4ogwc2",
+    "cmr8w3l3h008q1yab51wrtwh8",
+    "cmra5zprm00271ylwvmy7p2zz",
+    "cmrlyrz3i00071yno5xn96ssp",
+    "cmrm4iahf00011yzrrgjibssn",
+    "cmrm557dd000j1yno8xfm70qk",
+    "cmrm5sbo900ei1ynoztf7wcbu",
+    "cmrocawh700131ybkh036rwiw"
+  ]
+}
