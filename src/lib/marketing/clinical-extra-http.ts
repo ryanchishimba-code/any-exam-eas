@@ -6,6 +6,7 @@
  * loads the id/status columns over Neon HTTP (one short request, no pool
  * slot) and runs the same `selectPublishedCatalog` filter.
  */
+import { unstable_cache } from "next/cache";
 import { boardProfilesForField } from "@/lib/assessment/board-field";
 import {
   selectPublishedCatalog,
@@ -18,7 +19,10 @@ import {
   type CountBoardSlug,
 } from "@/lib/counts";
 import { sqlQuery } from "@/lib/db";
-import { BANK_COUNTS_QUERY_TIMEOUT_MS } from "@/lib/inventory/active-inventory-cache";
+import {
+  ACTIVE_INVENTORY_CACHE_TAG,
+  BANK_COUNTS_QUERY_TIMEOUT_MS,
+} from "@/lib/inventory/active-inventory-cache";
 
 export type ClinicalItemRow = {
   id: string;
@@ -81,19 +85,39 @@ function asCase(row: ClinicalCaseRow): ServeCase {
   } as ServeCase;
 }
 
+function publishedCatalogFromRows(input: {
+  items: readonly ClinicalItemRow[];
+  cases: readonly ClinicalCaseRow[];
+}) {
+  return selectPublishedCatalog({
+    items: input.items.map(asItem),
+    cases: input.cases.map(asCase),
+    subjects: [],
+    fieldId: "nursing",
+  });
+}
+
 /** Same inclusion rules as the published student catalog. */
 export function clinicalExtraFromCatalogRows(input: {
   items: readonly ClinicalItemRow[];
   cases: readonly ClinicalCaseRow[];
 }): ClinicalQuestionExtra {
-  return clinicalExtraFromCatalog(
-    selectPublishedCatalog({
-      items: input.items.map(asItem),
-      cases: input.cases.map(asCase),
-      subjects: [],
-      fieldId: "nursing",
-    })
-  );
+  return clinicalExtraFromCatalog(publishedCatalogFromRows(input));
+}
+
+/** Published standalone NGN items by catalog item type (bow-tie, trend, …). */
+export function publishedStandaloneNgnTypeCountsFromRows(input: {
+  items: readonly ClinicalItemRow[];
+  cases: readonly ClinicalCaseRow[];
+}): Record<string, number> {
+  const catalog = publishedCatalogFromRows(input);
+  const counts: Record<string, number> = {};
+  for (const unit of catalog.standalones) {
+    const key = unit.item.itemType.trim().toLowerCase();
+    if (!key) continue;
+    counts[key] = (counts[key] ?? 0) + 1;
+  }
+  return counts;
 }
 
 export async function loadClinicalExtrasOverHttp(): Promise<
@@ -108,11 +132,12 @@ export async function loadClinicalExtrasOverHttp(): Promise<
   }
 }
 
-async function queryClinicalExtrasOverHttp(): Promise<
-  Partial<Record<CountBoardSlug, ClinicalQuestionExtra>>
-> {
+async function readNursingNgnCatalogRows(): Promise<{
+  items: ClinicalItemRow[];
+  cases: ClinicalCaseRow[];
+} | null> {
   const profiles = boardProfilesForField("nursing");
-  if (profiles.length === 0) return {};
+  if (profiles.length === 0) return null;
   const timeout = { timeoutMs: BANK_COUNTS_QUERY_TIMEOUT_MS };
   const batches = await sqlQuery<Array<{ batchId: string }>>(
     `
@@ -126,7 +151,7 @@ async function queryClinicalExtrasOverHttp(): Promise<
   const batchIds = batches
     .map((row) => row.batchId)
     .filter((id): id is string => typeof id === "string" && id.length > 0);
-  if (batchIds.length === 0) return {};
+  if (batchIds.length === 0) return null;
 
   const [items, cases] = await Promise.all([
     sqlQuery<ClinicalItemRow[]>(
@@ -152,7 +177,34 @@ async function queryClinicalExtrasOverHttp(): Promise<
       timeout
     ),
   ]);
-  const extra = clinicalExtraFromCatalogRows({ items: items ?? [], cases: cases ?? [] });
+  return { items: items ?? [], cases: cases ?? [] };
+}
+
+async function queryClinicalExtrasOverHttp(): Promise<
+  Partial<Record<CountBoardSlug, ClinicalQuestionExtra>>
+> {
+  const rows = await readNursingNgnCatalogRows();
+  if (!rows) return {};
+  const extra = clinicalExtraFromCatalogRows(rows);
   if (extra.standaloneNgn === 0 && extra.caseStudies === 0 && extra.caseItems === 0) return {};
   return { nclex: extra };
+}
+
+const loadCachedNursingStandaloneNgnTypes = unstable_cache(
+  async () => {
+    const rows = await readNursingNgnCatalogRows();
+    if (!rows) return {};
+    return publishedStandaloneNgnTypeCountsFromRows(rows);
+  },
+  ["nclex-landing-standalone-ngn-types-v1"],
+  { revalidate: 300, tags: [ACTIVE_INVENTORY_CACHE_TAG] }
+);
+
+/** Live published standalone NGN types for the NCLEX hub chart (bow-tie, trend). */
+export async function loadNursingPublishedStandaloneNgnTypes(): Promise<Record<string, number>> {
+  try {
+    return await loadCachedNursingStandaloneNgnTypes();
+  } catch {
+    return {};
+  }
 }

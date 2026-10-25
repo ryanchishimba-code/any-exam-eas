@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { clinicalExtraFromCatalogRows } from "@/lib/marketing/clinical-extra-http";
+import {
+  clinicalExtraFromCatalogRows,
+  publishedStandaloneNgnTypeCountsFromRows,
+} from "@/lib/marketing/clinical-extra-http";
 
 describe("clinicalExtraFromCatalogRows", () => {
   it("counts published standalones and drops a case with a draft step", () => {
@@ -76,5 +79,28 @@ describe("clinicalExtraFromCatalogRows", () => {
     });
 
     expect(extra).toEqual({ standaloneNgn: 2, caseStudies: 1, caseItems: 1 });
+    expect(publishedStandaloneNgnTypeCountsFromRows({
+      items: [
+        {
+          id: "bow",
+          version: 1,
+          status: "published",
+          caseId: null,
+          caseVersion: null,
+          caseStep: null,
+          itemType: "bowtie",
+        },
+        {
+          id: "trend",
+          version: 2,
+          status: "published",
+          caseId: null,
+          caseVersion: null,
+          caseStep: null,
+          itemType: "trend",
+        },
+      ],
+      cases: [],
+    })).toEqual({ bowtie: 1, trend: 1 });
   });
 });

@@ -19,5 +19,9 @@ describe("buildNclexCompareChartData", () => {
     const data = buildNclexCompareChartData(units);
     expect(data.bars.some((bar) => bar.id === "live-questions")).toBe(true);
     expect(data.inventoryNote).toMatch(/live questions/i);
+    const ngnBar = data.bars.find((bar) => bar.id === "live-ngn");
+    expect(ngnBar?.amountLabel).toBe("8");
+    expect(ngnBar?.label).toBe("Published NGN items");
+    expect(data.textAlternative).toMatch(/8 published NGN items/);
   });
 });

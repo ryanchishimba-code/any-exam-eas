@@ -40,7 +40,7 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
 
       <div className="bl-band bl-charts">
         <NclexToolkitDonutSection {...model.nclexDonut} />
-        <NclexNgnTypeChart rows={model.ngnTypeRows} />
+        <NclexNgnTypeChart rows={model.ngnTypeRows} altText={model.ngnTypeChartAlt} />
         {depthChart ? <NclexLandingCompareChart data={depthChart} /> : null}
         <PracticeReviewPassFlow />
       </div>

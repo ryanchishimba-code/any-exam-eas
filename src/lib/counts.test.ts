@@ -8,6 +8,7 @@ import {
   formatExactQuestionCount,
   formatRoundedDownQuestionCount,
   scoredQuestionCount,
+  publishedNgnItemCount,
   publishedSiteQuestionCounts,
   PUBLISHED_BOARD_UNITS,
   type BoardQuestionUnits,
@@ -31,6 +32,10 @@ const NCLEX_UNITS = boardQuestionUnits({
 });
 
 describe("scored question counts", () => {
+  it("counts published NGN items without bank SATA", () => {
+    expect(publishedNgnItemCount(NCLEX_UNITS)).toBe(70);
+  });
+
   it("counts case-study items and does not count the case shell", () => {
     expect(scoredQuestionCount(NCLEX_UNITS)).toBe(5495);
     expect(formatBoardQuestionSentence(NCLEX_UNITS)).toBe(
