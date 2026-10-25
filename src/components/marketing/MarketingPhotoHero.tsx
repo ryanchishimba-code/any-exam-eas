@@ -1,10 +1,22 @@
 import type { CSSProperties, ReactNode } from "react";
+import { preload } from "react-dom";
 import {
   type MarketingPhotoHeroId,
   MARKETING_PHOTO_HEROES,
   marketingPhotoHeroSrc,
 } from "@/lib/marketing/marketing-photo-heroes";
 import "@/styles/marketing-photo-hero.css";
+
+function preloadHeroArt(heroId: MarketingPhotoHeroId) {
+  preload(marketingPhotoHeroSrc(heroId, "mobile", "avif"), {
+    as: "image",
+    fetchPriority: "high",
+  });
+  preload(marketingPhotoHeroSrc(heroId, "desktop", "avif"), {
+    as: "image",
+    fetchPriority: "high",
+  });
+}
 
 type MarketingPhotoHeroProps = {
   heroId: MarketingPhotoHeroId;
@@ -24,6 +36,9 @@ export function MarketingPhotoHero({
 }: MarketingPhotoHeroProps) {
   const config = MARKETING_PHOTO_HEROES[heroId];
   const examAttr = heroId === "home" ? undefined : heroId;
+  if (priority) {
+    preloadHeroArt(heroId);
+  }
 
   return (
     <section

@@ -29,8 +29,10 @@ export function BoardLandingHero({
       ariaLabelledBy="board-hero-heading"
     >
       <div className="bl-hero-copy">
-        <h1 id="board-hero-heading" className="mkt-photo-hero__stagger">{headline}</h1>
-        <p className="bl-hero-lede mkt-photo-hero__stagger">{subline}</p>
+        <h1 id="board-hero-heading" className="mkt-photo-hero__stagger mkt-photo-hero__stagger--lcp">
+          {headline}
+        </h1>
+        <p className="bl-hero-lede mkt-photo-hero__stagger mkt-photo-hero__stagger--lcp">{subline}</p>
         {testimonial ? (
           <figure className="bl-hero-quote mkt-photo-hero__stagger">
             <blockquote>

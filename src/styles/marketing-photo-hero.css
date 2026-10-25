@@ -51,8 +51,13 @@
   min-width: 0;
 }
 
+/* LCP-safe: never start hero copy at opacity 0 (delays LCP when the H1 is largest). */
 .mkt-photo-hero__reveal > .mkt-photo-hero__stagger {
   animation: mkt-hero-rise 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.mkt-photo-hero__reveal > .mkt-photo-hero__stagger--lcp {
+  animation: mkt-hero-rise-lcp 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .mkt-photo-hero__reveal > .mkt-photo-hero__stagger:nth-child(1) {
@@ -105,8 +110,18 @@
   }
 }
 
+@keyframes mkt-hero-rise-lcp {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mkt-photo-hero__reveal > .mkt-photo-hero__stagger,
+  .mkt-photo-hero__reveal > .mkt-photo-hero__stagger--lcp,
   .mkt-photo-hero__reveal .home-hero__boards li {
     animation: none;
   }

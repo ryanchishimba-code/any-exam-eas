@@ -62,11 +62,13 @@ export function PublicHome({
     <div className="home-visual home-has-sticky">
       <MarketingPhotoHero heroId="home" className="home-hero" ariaLabelledBy="hero-heading">
         <div className="home-hero__panel">
-          <h1 id="hero-heading" className="mkt-photo-hero__stagger">
+          <h1 id="hero-heading" className="mkt-photo-hero__stagger mkt-photo-hero__stagger--lcp">
             <span className="home-hero__line">{headlineLead}</span>{" "}
             <span className="home-hero__accent">{headlineAccent}</span>
           </h1>
-          <p className="home-hero__value mkt-photo-hero__stagger">{heroSubline}</p>
+          <p className="home-hero__value mkt-photo-hero__stagger mkt-photo-hero__stagger--lcp">
+            {heroSubline}
+          </p>
           <nav className="home-hero__boards mkt-photo-hero__stagger" aria-label="Board exams">
             <ul>
               {HERO_BOARD_TILES.map((board) => (
