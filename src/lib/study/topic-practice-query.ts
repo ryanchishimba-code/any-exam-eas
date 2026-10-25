@@ -30,3 +30,28 @@ export function mergeTopicPracticeFiltersIntoQuery(
 ): void {
   appendTopicPracticeFiltersToQuery(target, source);
 }
+
+/**
+ * Launcher params for topic-practice deep links.
+ * Prefer the browser address bar so Next.js hook lag cannot drop blueprintTopics.
+ */
+export function topicPracticeLaunchSearchParams(
+  searchParams: Pick<URLSearchParams, "get" | "toString">
+): URLSearchParams {
+  const fromHook = new URLSearchParams(searchParams.toString());
+  if (typeof window === "undefined") return fromHook;
+  const fromBrowser = new URLSearchParams(window.location.search);
+  const merged = new URLSearchParams(fromHook.toString());
+  for (const key of TOPIC_PRACTICE_FILTER_PARAMS) {
+    const value = fromBrowser.get(key)?.trim() || fromHook.get(key)?.trim();
+    if (value) merged.set(key, value);
+  }
+  const subjectFromBrowser = fromBrowser.get("subjectId")?.trim();
+  const subjectFromHook = fromHook.get("subjectId")?.trim();
+  if (subjectFromBrowser && !merged.get("subjectId")) {
+    merged.set("subjectId", subjectFromBrowser);
+  } else if (subjectFromHook && !merged.get("subjectId")) {
+    merged.set("subjectId", subjectFromHook);
+  }
+  return merged;
+}

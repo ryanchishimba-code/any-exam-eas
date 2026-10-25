@@ -9,7 +9,11 @@ import {
   type FormatCounts,
   type InventoryCategoryCount,
 } from "@/lib/inventory/active-questions";
-import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
+import {
+  countActiveQuestionBankItemsByBlueprintTopics,
+  getSubjectServedCountsWithRetry,
+} from "@/lib/question-bank-db";
+import { nclexBlueprintTopicsForCount } from "@/lib/study/topic-practice-filters";
 
 export type SubjectCountsPayload = {
   fieldId: string;
@@ -100,4 +104,26 @@ export async function loadSubjectCountsForUser(
     caseItems: 0,
     standaloneNgn: 0,
   };
+}
+
+/** Serve-ready count for blueprintTopics= deep links (tag-only, same as subject-counts API). */
+export async function loadTopicPracticePoolCountForUser(
+  userId: string,
+  fieldParam: string,
+  blueprintTopics: string[]
+): Promise<number | null> {
+  const topics = blueprintTopics.map((t) => t.trim()).filter(Boolean);
+  if (topics.length === 0) return null;
+
+  const access = await withDbRetry(
+    () => resolveQuestionBankReadAccess(userId, fieldParam),
+    "qb-topic-practice-count-access"
+  );
+  if (!access.ok) return null;
+  if (access.fieldId !== "nursing") return null;
+
+  return countActiveQuestionBankItemsByBlueprintTopics({
+    fieldId: access.fieldId,
+    blueprintTopics: nclexBlueprintTopicsForCount(topics),
+  });
 }
