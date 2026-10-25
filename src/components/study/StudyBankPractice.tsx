@@ -88,6 +88,13 @@ import {
   mergeTopicPracticeFiltersIntoQuery,
 } from "@/lib/study/topic-practice-query";
 import {
+  parseTopicPracticeLaunchFilters,
+  topicPracticeFiltersActive,
+  topicPracticePreviewTitle,
+} from "@/lib/study/topic-practice-filters";
+import { fetchTopicPracticePoolCount } from "@/lib/study/subject-counts-client";
+import { useQuery } from "@tanstack/react-query";
+import {
   blueprintAreaCountFromTopics,
   blueprintAreaLabel,
   isBlueprintAreaId,
@@ -427,6 +434,12 @@ export function StudyBankPractice({
     () => parsePracticeReturn(searchParams),
     [searchParams]
   );
+  const topicPracticeFilters = useMemo(
+    () => parseTopicPracticeLaunchFilters(searchParams),
+    [searchParams]
+  );
+  const topicPracticeLaunch = topicPracticeFiltersActive(topicPracticeFilters);
+  const topicPracticeBlueprintTopics = topicPracticeFilters.blueprintTopics;
 
   const fieldId = useMemo(() => {
     if (fieldParam) {
@@ -435,6 +448,14 @@ export function StudyBankPractice({
     }
     return resolveFieldId(field);
   }, [field, fieldParam]);
+
+  const { data: topicPracticePoolCount = null } = useQuery({
+    queryKey: ["topic-practice-pool", fieldId, topicPracticeBlueprintTopics?.join(",") ?? ""],
+    queryFn: () =>
+      fetchTopicPracticePoolCount(fieldId, topicPracticeBlueprintTopics ?? []),
+    enabled: Boolean(topicPracticeBlueprintTopics?.length) && !isTimedExam,
+    staleTime: 5 * 60 * 1000,
+  });
 
   const examScopeKey = useMemo(
     () => `${effectiveExamSlug ?? "open"}:${fieldId}`,
@@ -592,6 +613,16 @@ export function StudyBankPractice({
         : subjectCounts,
     [blueprintAreaId, blueprintAreaCount, subjectCounts]
   );
+  const topicAwareSessionCounts = useMemo(() => {
+    if (
+      topicPracticeLaunch &&
+      typeof topicPracticePoolCount === "number" &&
+      sessionSubjectId
+    ) {
+      return { [sessionSubjectId]: topicPracticePoolCount };
+    }
+    return sessionCounts;
+  }, [sessionCounts, sessionSubjectId, topicPracticeLaunch, topicPracticePoolCount]);
 
   const isNclex = useMemo(() => isNclexField(field), [field]);
   const isMpje = useMemo(() => isMpjeField(fieldId), [fieldId]);
@@ -775,6 +806,7 @@ export function StudyBankPractice({
       formatParam: resolvePracticeSearchParam(searchParams, "format"),
       persistedStyle: persisted?.style,
       persistedFormat: persisted?.format,
+      topicPracticeLaunch,
     });
     const ids = getSubjectsForFieldId(fieldId).map((subject) => subject.id);
     const subjectParamNow = resolveSubjectParam(searchParams);
@@ -811,11 +843,13 @@ export function StudyBankPractice({
         persistedFormat: persisted?.format,
         subjectId: blueprint ? "" : resolvedSubject,
         blueprintArea: blueprint,
+        topicPracticeLaunch,
         fallbackStyle: current,
       })
     );
     if (resolved.format) setPracticeFormat(resolved.format);
-  }, [fieldId, isTimedExam, searchParams]);
+    else if (topicPracticeLaunch) setPracticeFormat("all");
+  }, [fieldId, isTimedExam, searchParams, topicPracticeLaunch]);
 
   const subjectParam = searchParams.get("subjectId");
   const blueprintAreaParam = searchParams.get("blueprintArea");
@@ -893,6 +927,7 @@ export function StudyBankPractice({
     // A stripped stale subject lands on all topics. Do not replace that with
     // the first domain that has inventory and write it back into the URL.
     if (isMixedSubjectId(subjectId) && !resolveSubjectParam(searchParams)) return;
+    if (topicPracticeLaunch) return;
 
     zeroPoolFallbackAppliedRef.current = true;
 
@@ -918,7 +953,16 @@ export function StudyBankPractice({
     fieldId,
     searchParams,
     effectiveBankStyle,
+    topicPracticeLaunch,
   ]);
+
+  useEffect(() => {
+    if (!topicPracticeLaunch || isTimedExam) return;
+    if (practiceFormat === "all") return;
+    setPracticeFormat("all");
+    syncPracticeUrl({ format: "all" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [topicPracticeLaunch, isTimedExam, practiceFormat]);
 
   // Snap count to a valid 25 / 50 / 75 preset for the current topic pool.
   // Keep short retest counts (5 / 10 / 25) when the pool can still fill them.
@@ -1168,6 +1212,7 @@ export function StudyBankPractice({
   }
 
   function expectExactSessionCount(received: number, expected: number) {
+    if (topicPracticeLaunch && received > 0 && received < expected) return;
     assertExactQuestionCount(received, expected);
   }
 
@@ -1212,7 +1257,9 @@ export function StudyBankPractice({
     const activeStyle = effectiveBankStyle;
     if (isMpje || !isTimedExam) syncPracticeUrl({ historyOnly: true });
 
-    const deliberateFormat = deliberateFormatForLaunch(activeStyle, sessionFormatRef.current);
+    const deliberateFormat = deliberateFormatForLaunch(activeStyle, sessionFormatRef.current, {
+      topicPracticeLaunch,
+    });
     // A blueprint-area chip is its own pool. Format and style filters would
     // serve a different set than the count on the chip.
     const areaSession = Boolean(blueprintAreaId);
@@ -1259,22 +1306,35 @@ export function StudyBankPractice({
     setAdaptiveMeta(null);
     setSessionEpoch((epoch) => epoch + 1);
     try {
-      const limit = isTimedExam
+      const topicPoolMax =
+        topicPracticeLaunch && typeof topicPracticePoolCount === "number"
+          ? topicPracticePoolCount
+          : availableQuestionCount(sessionSubjectId, topicAwareSessionCounts);
+      let limit = isTimedExam
         ? timedCount
         : deliberateFormat !== null
           ? questionCount
-          : resolveQuestionBankSessionCount(
-              questionCount,
-              availableQuestionCount(sessionSubjectId, sessionCounts)
-            );
+          : resolveQuestionBankSessionCount(questionCount, topicPoolMax);
+      if (
+        !isTimedExam &&
+        topicPracticeLaunch &&
+        topicPoolMax != null &&
+        topicPoolMax > 0 &&
+        limit > topicPoolMax
+      ) {
+        limit = topicPoolMax;
+      }
 
       if (!isTimedExam && deliberateFormat && !blueprintAreaId) {
-        const qs = buildDeliberateFormatQuestionQuery({
-          fieldId,
-          subjectId,
-          format: deliberateFormat,
-          limit,
-        });
+        const qs = buildDeliberateFormatQuestionQuery(
+          {
+            fieldId,
+            subjectId,
+            format: deliberateFormat,
+            limit,
+          },
+          searchParams
+        );
         if (!qs) {
           throw new Error(
             deliberateFormat === "case"
@@ -2017,7 +2077,9 @@ export function StudyBankPractice({
     countsLoading,
   ]);
 
-  const launchFormat = deliberateFormatForLaunch(effectiveBankStyle, sessionFormat);
+  const launchFormat = deliberateFormatForLaunch(effectiveBankStyle, sessionFormat, {
+    topicPracticeLaunch,
+  });
 
   const bankSessionValidation = useMemo(
     () =>
@@ -2035,9 +2097,10 @@ export function StudyBankPractice({
           : validateQuestionBankSession({
               subjectId: sessionSubjectId,
               questionCount,
-              subjectCounts: sessionCounts,
+              subjectCounts: topicAwareSessionCounts,
               bankStyle: blueprintAreaId ? "standard" : effectiveBankStyle,
               taskCategory: isPance ? taskCategory : null,
+              allowPartialTopicPractice: topicPracticeLaunch,
             }),
     [
       isTimedExam,
@@ -2046,7 +2109,7 @@ export function StudyBankPractice({
       sessionSubjectId,
       subjectId,
       questionCount,
-      sessionCounts,
+      topicAwareSessionCounts,
       effectiveBankStyle,
       isPance,
       taskCategory,
@@ -2071,8 +2134,29 @@ export function StudyBankPractice({
         : subjectId === OTHER_OPEN_SUBJECT_ID
           ? "Other"
           : subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
-    return isPance ? sessionLabelWithTask(base, taskCategory) : base;
-  }, [blueprintAreaId, field, fieldId, isTimedExam, launchFormat, ngnLabel, subjectId, subjects, isPance, taskCategory]);
+    const scoped = isPance ? sessionLabelWithTask(base, taskCategory) : base;
+    if (topicPracticeLaunch) {
+      return topicPracticePreviewTitle({
+        fieldId,
+        subjectLabel: scoped,
+        filters: topicPracticeFilters,
+      });
+    }
+    return scoped;
+  }, [
+    blueprintAreaId,
+    field,
+    fieldId,
+    isTimedExam,
+    launchFormat,
+    ngnLabel,
+    subjectId,
+    subjects,
+    isPance,
+    taskCategory,
+    topicPracticeFilters,
+    topicPracticeLaunch,
+  ]);
 
   const previewAvailableCount = useMemo(() => {
     if (isTimedExam) return null;
@@ -2080,6 +2164,9 @@ export function StudyBankPractice({
       return practiceFormatPoolCount(launchFormat, scopeFormats);
     }
     if (blueprintAreaId) return blueprintAreaCount;
+    if (topicPracticeLaunch && typeof topicPracticePoolCount === "number") {
+      return topicPracticePoolCount;
+    }
     return availablePoolForQuestionBankStyle({
       style: effectiveBankStyle,
       subjectId,
@@ -2096,6 +2183,8 @@ export function StudyBankPractice({
     scopeFormats,
     subjectCounts,
     subjectId,
+    topicPracticeLaunch,
+    topicPracticePoolCount,
   ]);
 
   const previewEstimatedMinutes = useMemo(

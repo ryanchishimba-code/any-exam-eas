@@ -1,4 +1,9 @@
 import { describe, expect, it } from "vitest";
+import { getAllAnatomyStructures } from "@/lib/anatomy/systems/catalog/queries";
+import {
+  parseTopicPracticeLaunchFilters,
+  topicPracticeFiltersActive,
+} from "@/lib/study/topic-practice-filters";
 import {
   resolveAnatomyStructurePractice,
   structurePracticeHref,
@@ -40,6 +45,21 @@ describe("structurePracticeHref", () => {
     expect(url.searchParams.get("style")).toBe("standard");
     expect(url.searchParams.get("returnStructure")).toBe("heart");
     expect(url.searchParams.get("returnStructureName")).toBe("Heart");
+  });
+
+  it("encodes blueprintTopics on every NCLEX structure practice link when resolved", () => {
+    for (const structure of getAllAnatomyStructures()) {
+      const { filters } = resolveAnatomyStructurePractice("nclex", structure.practiceTopicSlug);
+      const href = structurePracticeHref("nclex", structure, 10);
+      const url = new URL(href, "http://localhost");
+      const parsed = parseTopicPracticeLaunchFilters(url.searchParams);
+      if (filters.blueprintTopics?.length) {
+        expect(url.searchParams.get("blueprintTopics")).toBeTruthy();
+        expect(parsed.blueprintTopics?.length).toBeGreaterThan(0);
+        expect(topicPracticeFiltersActive(parsed)).toBe(true);
+      }
+      expect(url.searchParams.get("style")).toBe("standard");
+    }
   });
 
   it("uses USMLE board field and cardiovascular filters for heart", () => {

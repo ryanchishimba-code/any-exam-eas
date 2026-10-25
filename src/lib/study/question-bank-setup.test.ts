@@ -360,6 +360,7 @@ describe("question-bank-setup", () => {
     ).toEqual({ style: "standard", format: "ngn" });
     expect(deliberateFormatForLaunch("standard", "ngn")).toBe("ngn");
     expect(deliberateFormatForLaunch("adaptive", "case")).toBe("case");
+    expect(deliberateFormatForLaunch("standard", "ngn", { topicPracticeLaunch: true })).toBeNull();
     expect(
       resolveQuestionBankStyleAndFormat({
         styleParam: null,

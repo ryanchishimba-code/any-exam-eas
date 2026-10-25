@@ -16,6 +16,8 @@ export type SubjectCountsClient = {
   caseStudies: number;
   caseItems: number;
   standaloneNgn: number;
+  /** Tag-only pool for blueprintTopics= on the subject-counts API. */
+  topicPracticePoolCount?: number | null;
 };
 
 function parseFormatCounts(value: unknown): FormatCounts | null {
@@ -77,7 +79,26 @@ function parseSubjectCounts(data: unknown): SubjectCountsClient | null {
     caseStudies: typeof row.caseStudies === "number" ? row.caseStudies : 0,
     caseItems: typeof row.caseItems === "number" ? row.caseItems : 0,
     standaloneNgn: typeof row.standaloneNgn === "number" ? row.standaloneNgn : 0,
+    topicPracticePoolCount:
+      typeof row.topicPracticePoolCount === "number" ? row.topicPracticePoolCount : null,
   };
+}
+
+export async function fetchTopicPracticePoolCount(
+  fieldId: string,
+  blueprintTopics: string[]
+): Promise<number | null> {
+  if (!blueprintTopics.length) return null;
+  const qs = new URLSearchParams({
+    field: fieldId,
+    blueprintTopics: blueprintTopics.join(","),
+  });
+  const res = await fetch(`/api/questions/subject-counts?${qs.toString()}`, {
+    cache: "no-store",
+  });
+  if (!res.ok) return null;
+  const data = (await res.json()) as { topicPracticePoolCount?: unknown };
+  return typeof data.topicPracticePoolCount === "number" ? data.topicPracticePoolCount : null;
 }
 
 export async function fetchSubjectCounts(fieldId: string): Promise<SubjectCountsClient> {
