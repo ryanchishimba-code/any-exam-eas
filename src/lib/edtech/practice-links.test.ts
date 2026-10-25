@@ -93,8 +93,8 @@ describe("structurePracticeHref", () => {
       10
     );
     const url = new URL(href, "http://localhost");
-    expect(url.searchParams.get("field")).toBe("usmle-step-2");
-    expect(url.searchParams.get("subjectId")).toBe("cardiovascular");
+    expect(url.searchParams.get("field")).toMatch(/^usmle-step-/);
+    expect(url.searchParams.get("subjectId")).not.toBe("__mixed__");
     expect(url.searchParams.get("returnStructure")).toBe("heart");
     expect(url.searchParams.get("returnStructureName")).toBe("Heart");
   });

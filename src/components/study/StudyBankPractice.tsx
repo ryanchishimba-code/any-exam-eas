@@ -84,6 +84,10 @@ import {
   subjectIdForPracticeUrl,
 } from "@/lib/study/question-bank-filters";
 import {
+  appendTopicPracticeFiltersToQuery,
+  mergeTopicPracticeFiltersIntoQuery,
+} from "@/lib/study/topic-practice-query";
+import {
   blueprintAreaCountFromTopics,
   blueprintAreaLabel,
   isBlueprintAreaId,
@@ -265,6 +269,9 @@ function buildBankPracticeUrl(
   if (params.mpjeState) {
     qs.set("state", params.mpjeState);
     qs.set("mpjeState", params.mpjeState);
+  }
+  if (typeof window !== "undefined" && window.location.search) {
+    mergeTopicPracticeFiltersIntoQuery(qs, new URLSearchParams(window.location.search));
   }
   return `${base}?${qs.toString()}`;
 }
@@ -1892,6 +1899,7 @@ export function StudyBankPractice({
       }
       const difficultyTierParam = searchParams.get("difficultyTier");
       if (difficultyTierParam) qs.set("difficultyTier", difficultyTierParam);
+      appendTopicPracticeFiltersToQuery(qs, searchParams);
 
       const res = await fetch(`/api/questions?${qs.toString()}`);
       const data = await res.json();

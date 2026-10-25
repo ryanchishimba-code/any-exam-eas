@@ -7,8 +7,9 @@ import type { MemoryCard } from "@/lib/library/types";
 import {
   anatomyPracticeHref,
   highYieldTopicHref,
-  practiceTopicHref,
 } from "@/lib/edtech/practice-links";
+import { resolveAnatomyStructurePractice } from "@/lib/anatomy/structure-practice";
+import { practiceTopicHref } from "@/lib/edtech/practice-links-core";
 import type { ExamSlug } from "@/types/edtech";
 import { getAnatomyStructure } from "../catalog";
 import type { AnatomyStructure } from "../kernel/types";
@@ -29,7 +30,11 @@ export function getPracticeHrefForStructure(
   structure: AnatomyStructure,
   examSlug: ExamSlug
 ): string {
-  return practiceTopicHref(examSlug, structure.practiceTopicSlug);
+  const { subjectId, filters } = resolveAnatomyStructurePractice(
+    examSlug,
+    structure.practiceTopicSlug
+  );
+  return practiceTopicHref(examSlug, subjectId, 10, undefined, filters);
 }
 
 export function getAnatomyPracticeHref(examSlug: ExamSlug): string {

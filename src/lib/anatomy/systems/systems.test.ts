@@ -108,7 +108,8 @@ describe("anatomy systems — links (isolated)", () => {
     expect(heart).toBeDefined();
     const href = links.getPracticeHrefForStructure(heart!, "usmle");
     expect(href).toContain("question-bank");
-    expect(href).toContain(heart!.practiceTopicSlug);
+    expect(href).toContain("subjectId=");
+    expect(href).not.toContain("subjectId=__mixed__");
   });
 });
 
