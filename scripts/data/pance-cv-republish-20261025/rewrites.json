@@ -1,0 +1,439 @@
+{
+ "generatedAt": "2026-10-24",
+ "source": "PR #276 scripts/data/pance-cv-flags-20261025/undo.json @9548c95",
+ "note": "Draft only; not applied. 'changes' holds fields in row format (options is a JSON text string with the original non-option keys preserved, plus keyTakeaway). No restore-as-is items.",
+ "items": [
+  {
+   "id": "cmqgvma6r00091yifddt48bsd",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Start a beta-blocker",
+   "changes": {
+    "scenario": "A 68-year-old woman with hypertension and type 2 diabetes mellitus arrives for an elective laparoscopic cholecystectomy scheduled for this morning. She takes amlodipine 10 mg and metformin daily and has no history of coronary disease, heart failure, or stroke. She climbs two flights of stairs without symptoms. On repeat measurement BP is 160/95 mm Hg and HR is 78/min. ECG shows normal sinus rhythm.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Start metoprolol succinate 100 mg orally before induction\", \"Administer IV labetalol to lower BP below 140/90 mm Hg before induction\", \"Proceed with surgery and continue her usual amlodipine\", \"Postpone surgery and obtain pharmacologic stress testing\", \"Postpone surgery for 4 weeks to achieve BP below 130/80 mm Hg\"], \"taskCategory\": \"intervention\", \"blueprintTopic\": \"hypertension\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-sda63n\", \"slotIndex\": 1, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T16:48:34.373Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Do not start a beta-blocker on the day of surgery. Continue chronic BP medications and proceed when BP is below 180/110.\"}",
+    "correctAnswer": "Proceed with surgery and continue her usual amlodipine",
+    "explanation": "BP below 180/110 mm Hg is not a reason to delay elective surgery. She has good functional capacity and no active cardiac condition, so she can proceed on her usual antihypertensive.\n\nWhy others are wrong:\n• Starting a beta-blocker on the day of surgery increases stroke and death (POISE). The 2024 guideline labels this harmful.\n• Rapid IV lowering of asymptomatic BP before induction risks hypotension and has no benefit.\n• Stress testing does not help a patient who can do 4 or more METs without symptoms.\n• Delaying surgery for stage 2 BP below 180/110 is not recommended.\n\nTakeaway: Do not start a beta-blocker on the day of surgery. Continue chronic BP medications and proceed when BP is below 180/110."
+   },
+   "newKeyLetter": "C",
+   "guideline": "2024 AHA/ACC/ACS/ASNC/HRS/SCA/SCCT/SCMR/SVM Guideline for Perioperative Cardiovascular Management for Noncardiac Surgery",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001285",
+   "explanationChars": 707
+  },
+  {
+   "id": "cmqgvmafd000c1yifsn8q2hs5",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Administer intravenous antihypertensives",
+   "changes": {
+    "scenario": "A 70-year-old woman is scheduled for elective total hip arthroplasty. She takes lisinopril 10 mg and atorvastatin 20 mg daily. In the preoperative area her BP is 188/114 mm Hg on three readings over 30 minutes. She has no headache, chest pain, dyspnea, visual change, or neurologic deficit. Fundoscopic examination is normal, serum creatinine is at her baseline, and ECG is unchanged from last year.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Give IV labetalol now and proceed with surgery\", \"Start a nicardipine infusion and admit to the ICU\", \"Give sublingual nifedipine and proceed once BP is below 160/100 mm Hg\", \"Proceed with surgery as scheduled\", \"Postpone the elective surgery and intensify her oral antihypertensive therapy\"], \"taskCategory\": \"foundational\", \"blueprintTopic\": \"hypertension\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-sda63n\", \"slotIndex\": 1, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 5, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T16:48:35.425Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Severe hypertension without organ damage is treated with oral agents. Elective surgery can wait until BP is controlled.\"}",
+    "correctAnswer": "Postpone the elective surgery and intensify her oral antihypertensive therapy",
+    "explanation": "BP of 180/110 or higher with no acute target-organ damage is severe asymptomatic hypertension, not an emergency. For elective major surgery, guidelines support deferring the case and controlling BP with oral therapy over days to weeks.\n\nWhy others are wrong:\n• IV antihypertensives are for hypertensive emergency (acute organ damage). Here they add risk without benefit.\n• An ICU infusion is for hypertensive emergency.\n• Sublingual nifedipine causes unpredictable, precipitous BP drops and is not used.\n• Proceeding at 188/114 for an elective case ignores the recommendation to defer and optimize.\n\nTakeaway: Severe hypertension without organ damage is treated with oral agents. Elective surgery can wait until BP is controlled."
+   },
+   "newKeyLetter": "E",
+   "guideline": "2017 ACC/AHA/AAPA/ABC/ACPM/AGS/APhA/ASH/ASPC/NMA/PCNA High Blood Pressure Guideline (deferring elective major surgery may be considered for SBP >=180 or DBP >=110; no IV therapy for severe HTN without acute target-organ damage); consistent with 2025 AHA/ACC High BP Guideline",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/HYP.0000000000000065",
+   "explanationChars": 729
+  },
+  {
+   "id": "cmqgz7bj200241yqym4qf4bmx",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Initiate thrombolytic therapy",
+   "changes": {
+    "scenario": "A 28-year-old woman presents 3 days after a 12-hour flight with pleuritic chest pain and mild dyspnea. She takes no medications, has no prior VTE, and a urine hCG is negative. BP is 124/78 mm Hg, HR 96/min, and SpO2 96% on room air. CT pulmonary angiography shows a right lower lobe segmental embolus with a normal RV/LV ratio. Troponin is normal. Creatinine and CBC are normal, and she has no bleeding risk factors.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Administer alteplase 100 mg IV over 2 hours\", \"Start apixaban 10 mg orally twice daily for 7 days, then 5 mg twice daily\", \"Refer for surgical embolectomy\", \"Place an inferior vena cava filter\", \"Start warfarin 5 mg orally daily without parenteral overlap\"], \"taskCategory\": \"prevention\", \"blueprintTopic\": \"arrhythmias\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-15whhx\", \"slotIndex\": 5, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T18:28:49.278Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Hemodynamically stable PE without RV strain is treated with anticoagulation, preferably a DOAC. Lytics are not used.\"}",
+    "correctAnswer": "Start apixaban 10 mg orally twice daily for 7 days, then 5 mg twice daily",
+    "explanation": "She is normotensive, with no RV strain and a normal troponin, so this is low-risk PE. Anticoagulation alone is the treatment, and a DOAC such as apixaban (10 mg twice daily for 7 days, then 5 mg twice daily) is preferred over warfarin.\n\nWhy others are wrong:\n• Systemic thrombolysis is not recommended for normotensive low-risk PE. Bleeding risk outweighs any benefit.\n• Embolectomy is reserved for high-risk PE when lysis fails or is contraindicated.\n• An IVC filter is only for patients who cannot be anticoagulated.\n• Warfarin alone has no immediate effect and needs overlap with parenteral heparin.\n\nTakeaway: Hemodynamically stable PE without RV strain is treated with anticoagulation, preferably a DOAC. Lytics are not used."
+   },
+   "newKeyLetter": "B",
+   "guideline": "2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults; apixaban dose per FDA label",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001415",
+   "explanationChars": 730
+  },
+  {
+   "id": "cmr829gx2005j1y8wwgm5is8w",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Administer thrombolytics",
+   "changes": {
+    "scenario": "A 30-year-old woman at 24 weeks' gestation presents with 1 day of pleuritic chest pain and dyspnea. BP is 118/72 mm Hg, HR 104/min, and SpO2 95% on room air. CT pulmonary angiography shows a segmental embolus in the right lower lobe with a normal RV/LV ratio. Troponin is normal. She weighs 80 kg, and platelet count and creatinine are normal.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Start warfarin with a target INR of 2.0 to 3.0\", \"Start apixaban 10 mg orally twice daily\", \"Administer alteplase 100 mg IV over 2 hours\", \"Start enoxaparin 1 mg/kg subcutaneously every 12 hours\", \"Place an inferior vena cava filter\"], \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"PE/DVT\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-07-05-4u6k7h\", \"slotIndex\": 1, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 5, \"qcScore\": 9, \"generatedAt\": \"2026-07-05T17:24:21.098Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Treat VTE in pregnancy with LMWH. Avoid warfarin and DOACs.\"}",
+    "correctAnswer": "Start enoxaparin 1 mg/kg subcutaneously every 12 hours",
+    "explanation": "This is hemodynamically stable PE in pregnancy. ASH recommends LMWH, such as enoxaparin 1 mg/kg subcutaneously every 12 hours, over unfractionated heparin. LMWH does not cross the placenta and is effective.\n\nWhy others are wrong:\n• Warfarin crosses the placenta and is teratogenic and fetotoxic. Avoid it in pregnancy.\n• DOACs cross the placenta and lack safety data in pregnancy. Avoid them.\n• Thrombolysis is reserved for PE with hypotension. She is stable.\n• An IVC filter is only for patients who cannot be anticoagulated.\n\nTakeaway: Treat VTE in pregnancy with LMWH. Avoid warfarin and DOACs."
+   },
+   "newKeyLetter": "D",
+   "guideline": "American Society of Hematology 2018 Guidelines for Management of Venous Thromboembolism: VTE in the Context of Pregnancy (LMWH over UFH; avoid DOACs and warfarin)",
+   "guidelineUrl": "https://doi.org/10.1182/bloodadvances.2018024802",
+   "explanationChars": 597
+  },
+  {
+   "id": "cmqwuk1kk000j1yzexc9gap72",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Hold warfarin and administer prothrombin complex concentrate",
+   "changes": {
+    "scenario": "A 70-year-old man with nonvalvular atrial fibrillation takes warfarin, and his INR today is 2.5. He has hypertension and type 2 diabetes mellitus (CHA2DS2-VASc score 3) and no history of stroke, TIA, or valve disease. Creatinine clearance is 75 mL/min. He is scheduled in 7 days for an elective colonoscopy with likely removal of a 2-cm polyp, a high-bleeding-risk procedure.",
+    "question": "Which of the following is the most appropriate periprocedural anticoagulation plan?",
+    "options": "{\"options\": [\"Stop warfarin 5 days before the procedure without bridging\", \"Continue warfarin without interruption\", \"Stop warfarin 5 days before and bridge with enoxaparin 1 mg/kg subcutaneously every 12 hours\", \"Give 4-factor prothrombin complex concentrate the morning of the procedure\", \"Give vitamin K 10 mg IV the morning of the procedure\"], \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"valvular disease\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-27-7e5roo\", \"slotIndex\": 3, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-27T21:02:56.354Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Elective procedure on warfarin for low-risk nonvalvular AF: hold warfarin about 5 days. Do not bridge, and do not use reversal agents.\"}",
+    "correctAnswer": "Stop warfarin 5 days before the procedure without bridging",
+    "explanation": "A high-bleeding-risk procedure requires interrupting warfarin, usually about 5 days ahead so the INR normalizes. With nonvalvular AF, CHA2DS2-VASc of 3, and no prior stroke or TIA, thrombotic risk is low. The 2017 ACC pathway advises against bridging, which raises bleeding without lowering stroke risk (BRIDGE trial).\n\nWhy others are wrong:\n• Uninterrupted warfarin is acceptable only for low-bleeding-risk procedures.\n• Bridging in low-thrombotic-risk AF increases major bleeding.\n• PCC is for urgent reversal or life-threatening bleeding, not planned procedures.\n• IV vitamin K is for urgent reversal. Simply holding warfarin is enough for an elective case.\n\nTakeaway: Elective procedure on warfarin for low-risk nonvalvular AF: hold warfarin about 5 days. Do not bridge, and do not use reversal agents."
+   },
+   "newKeyLetter": "A",
+   "guideline": "2017 ACC Expert Consensus Decision Pathway for Periprocedural Management of Anticoagulation in Patients With Nonvalvular Atrial Fibrillation",
+   "guidelineUrl": "https://www.jacc.org/doi/10.1016/j.jacc.2016.11.024",
+   "explanationChars": 806
+  },
+  {
+   "id": "cmqwuofew007j1yzeq4ci76vc",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Administer prothrombin complex concentrate",
+   "changes": {
+    "scenario": "A 62-year-old man with a bileaflet mechanical mitral valve and atrial fibrillation takes warfarin, and his INR today is 3.1. He is scheduled for elective total hip arthroplasty in 10 days. Creatinine clearance is 80 mL/min, and he has no bleeding history.",
+    "question": "Which of the following is the most appropriate periprocedural anticoagulation plan?",
+    "options": "{\"options\": [\"Continue warfarin through surgery\", \"Stop warfarin 5 days before surgery without bridging\", \"Stop warfarin about 5 days before surgery and bridge with enoxaparin 1 mg/kg every 12 hours, giving the last dose 24 hours before surgery\", \"Switch to apixaban 5 mg orally twice daily until 48 hours before surgery\", \"Give 4-factor prothrombin complex concentrate the morning of surgery\"], \"taskCategory\": \"labs\", \"blueprintTopic\": \"arrhythmias\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-27-7e5roo\", \"slotIndex\": 3, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 5, \"qcScore\": 9, \"generatedAt\": \"2026-06-27T21:06:24.958Z\", \"qcFlags\": []}, \"keyTakeaway\": \"A mechanical mitral valve, or a mechanical AVR with risk factors, needs heparin bridging when warfarin is held. Never use a DOAC.\"}",
+    "correctAnswer": "Stop warfarin about 5 days before surgery and bridge with enoxaparin 1 mg/kg every 12 hours, giving the last dose 24 hours before surgery",
+    "explanation": "Hip arthroplasty requires interrupting warfarin. A mechanical mitral valve, especially with AF, carries high thrombotic risk. The 2020 VHD guideline recommends bridging with heparin while the INR is subtherapeutic, then resuming after hemostasis.\n\nWhy others are wrong:\n• A therapeutic INR is unsafe for major orthopedic surgery.\n• Interrupting without bridging leaves a high-risk mechanical mitral valve unprotected.\n• DOACs are contraindicated with mechanical valves.\n• PCC is for emergency reversal, not elective surgery.\n\nTakeaway: A mechanical mitral valve, or a mechanical AVR with risk factors, needs heparin bridging when warfarin is held. Never use a DOAC."
+   },
+   "newKeyLetter": "C",
+   "guideline": "2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000923",
+   "explanationChars": 665
+  },
+  {
+   "id": "cmr82598o001x1y8w5cxwvrax",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Administer intravenous heparin",
+   "changes": {
+    "scenario": "A 72-year-old man had a bileaflet mechanical aortic valve replacement 6 months ago. He takes warfarin and metoprolol. At a routine visit an ECG shows new atrial fibrillation with a ventricular rate of 84/min. He is asymptomatic, BP is 128/76 mm Hg, and INR is 2.8. He has no bleeding history.",
+    "question": "Which of the following is the most appropriate anticoagulation management?",
+    "options": "{\"options\": [\"Add a continuous IV unfractionated heparin infusion\", \"Switch warfarin to dabigatran 150 mg orally twice daily\", \"Switch warfarin to apixaban 5 mg orally twice daily\", \"Add clopidogrel 75 mg orally daily\", \"Continue warfarin, targeting an INR of 3.0 (range 2.5 to 3.5)\"], \"taskCategory\": \"foundational\", \"blueprintTopic\": \"valvular disease\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-07-05-4u6k7h\", \"slotIndex\": 3, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 5, \"qcScore\": 9, \"generatedAt\": \"2026-07-05T17:20:53.639Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Mechanical valve plus AF means warfarin only, with the INR target raised to 3.0. Never use a DOAC.\"}",
+    "correctAnswer": "Continue warfarin, targeting an INR of 3.0 (range 2.5 to 3.5)",
+    "explanation": "Warfarin is the only appropriate anticoagulant for a mechanical valve. With a mechanical AVR plus a thromboembolic risk factor such as AF, the 2020 VHD guideline target INR is 3.0. His INR of 2.8 is in range, so he continues warfarin.\n\nWhy others are wrong:\n• Adding heparin to a therapeutic INR is double anticoagulation with a high bleeding risk.\n• Dabigatran caused excess thrombosis and bleeding with mechanical valves (RE-ALIGN) and is contraindicated.\n• Apixaban is likewise contraindicated with mechanical valves.\n• Adding a P2Y12 inhibitor raises bleeding without proven benefit here.\n\nTakeaway: Mechanical valve plus AF means warfarin only, with the INR target raised to 3.0. Never use a DOAC."
+   },
+   "newKeyLetter": "E",
+   "guideline": "2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease; 2023 ACC/AHA/ACCP/HRS AF Guideline (DOACs contraindicated with mechanical valves)",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000923",
+   "explanationChars": 702
+  },
+  {
+   "id": "cmr81xain001w1y54vnol1p4l",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Alteplase",
+   "changes": {
+    "scenario": "A 55-year-old man presents to the emergency department of a hospital with a 24-hour cardiac catheterization laboratory, 40 minutes after onset of crushing chest pain. He takes no medications and has no allergies or bleeding history. BP is 96/60 mm Hg, HR 104/min, jugular venous pressure is elevated, and lungs are clear. ECG shows ST-segment elevation in II, III, aVF, and V4R. The cath lab has been activated.",
+    "question": "Which of the following medications should be given immediately?",
+    "options": "{\"options\": [\"Sublingual nitroglycerin 0.4 mg\", \"Metoprolol 5 mg IV\", \"Alteplase 15 mg IV bolus followed by infusion\", \"Non-enteric-coated aspirin 325 mg chewed\", \"Furosemide 40 mg IV\"], \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"ACS\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-07-05-ylku65\", \"slotIndex\": 3, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-07-05T17:14:52.664Z\", \"qcFlags\": []}, \"keyTakeaway\": \"In STEMI, give aspirin at once and send for primary PCI. With RV infarction, avoid nitrates and diuretics.\"}",
+    "correctAnswer": "Non-enteric-coated aspirin 325 mg chewed",
+    "explanation": "This is an inferior STEMI with right ventricular involvement at a PCI-capable center. Chewed aspirin 162 to 325 mg should be given immediately to every ACS patient without contraindication, while primary PCI proceeds.\n\nWhy others are wrong:\n• Nitrates are avoided in RV infarction and hypotension because they are preload dependent.\n• An IV beta-blocker in hypotension or at risk of shock can precipitate cardiogenic shock.\n• Fibrinolysis is not indicated when timely primary PCI is available.\n• Diuresis drops preload further in RV infarction with clear lungs.\n\nTakeaway: In STEMI, give aspirin at once and send for primary PCI. With RV infarction, avoid nitrates and diuretics."
+   },
+   "newKeyLetter": "D",
+   "guideline": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001309",
+   "explanationChars": 679
+  },
+  {
+   "id": "cmr81qria003j1y08hoobujgp",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Initiate thrombolytic therapy",
+   "changes": {
+    "scenario": "A 60-year-old man presents to a rural emergency department without PCI capability, 60 minutes after onset of substernal chest pressure. He weighs 84 kg and has no history of stroke, bleeding, recent surgery, or trauma. BP is 150/90 mm Hg in both arms and HR 96/min. ECG shows ST-segment elevation in II, III, and aVF. He has chewed aspirin 325 mg. Because of weather, transfer to the nearest PCI center will take 150 minutes.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Administer tenecteplase 45 mg IV bolus\", \"Transfer for primary PCI and withhold fibrinolysis\", \"Repeat high-sensitivity troponin in 2 hours\", \"Start a nitroglycerin infusion and observe\", \"Obtain CT angiography of the chest\"], \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"hypertension\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-07-05-wtpaq2\", \"slotIndex\": 1, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 5, \"qcScore\": 9, \"generatedAt\": \"2026-07-05T17:09:47.547Z\", \"qcFlags\": []}, \"keyTakeaway\": \"STEMI with PCI more than 120 minutes away: give fibrinolytic within 30 minutes if no contraindication, then transfer.\"}",
+    "correctAnswer": "Administer tenecteplase 45 mg IV bolus",
+    "explanation": "This is STEMI within 12 hours of onset, and expected first-contact-to-device time exceeds 120 minutes. With no contraindications, the ACS guideline recommends fibrinolysis, ideally within 30 minutes of arrival, followed by transfer to a PCI center. Tenecteplase is weight-based, 45 mg for 80 to <90 kg.\n\nWhy others are wrong:\n• Waiting 150 minutes for PCI exceeds the 120-minute window in which PCI is preferred.\n• STEMI is diagnosed by ECG. Waiting for biomarkers delays reperfusion.\n• Nitroglycerin relieves symptoms but does not reperfuse.\n• Equal arm BPs make dissection unlikely, and imaging delays reperfusion.\n\nTakeaway: STEMI with PCI more than 120 minutes away: give fibrinolytic within 30 minutes if no contraindication, then transfer."
+   },
+   "newKeyLetter": "A",
+   "guideline": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes; tenecteplase weight-based dose per FDA label",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001309",
+   "explanationChars": 745
+  },
+  {
+   "id": "cmqgz4dq900411ybct8x3ruib",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Initiate thrombolytic therapy",
+   "changes": {
+    "scenario": "A 65-year-old woman with diabetes and hyperlipidemia presents to the emergency department of a hospital with a 24-hour cardiac catheterization laboratory, 2 hours after onset of chest pressure and dyspnea. BP is 140/90 mm Hg in both arms, HR 95/min, and lungs are clear. ECG shows 2-mm ST-segment elevation in II, III, and aVF with reciprocal depression in aVL. She has chewed aspirin 325 mg and received heparin.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Administer tenecteplase\", \"Start metoprolol 5 mg IV every 5 minutes for 3 doses\", \"Admit for serial troponin measurement and stress testing in the morning\", \"Obtain a transthoracic echocardiogram before deciding on reperfusion\", \"Perform emergent coronary angiography with primary PCI\"], \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"ACS\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-ha1khj\", \"slotIndex\": 7, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 5, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T18:26:35.651Z\", \"qcFlags\": []}, \"keyTakeaway\": \"With STEMI at a PCI-capable hospital, go to the cath lab within 90 minutes of first contact.\"}",
+    "correctAnswer": "Perform emergent coronary angiography with primary PCI",
+    "explanation": "This is an inferior STEMI presenting within 12 hours to a PCI-capable center. Primary PCI is the preferred reperfusion strategy, with a first-medical-contact-to-device goal of 90 minutes or less.\n\nWhy others are wrong:\n• Fibrinolysis is used only when timely PCI is not available.\n• An early IV beta-blocker does not reperfuse and can precipitate shock.\n• Waiting for troponin or a stress test is appropriate for low-risk chest pain, not STEMI.\n• Echocardiography should not delay reperfusion.\n\nTakeaway: With STEMI at a PCI-capable hospital, go to the cath lab within 90 minutes of first contact."
+   },
+   "newKeyLetter": "E",
+   "guideline": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001309",
+   "explanationChars": 597
+  },
+  {
+   "id": "cmr81yvde003i1y5478ka0bq0",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Activate the cath lab for primary PCI",
+   "changes": {
+    "scenario": "A 58-year-old man with coronary artery disease is brought to the emergency department 30 minutes after onset of pressure-like chest pain radiating to his left arm. He is diaphoretic. BP is 150/90 mm Hg in both arms, HR 100/min, and lungs are clear. No ECG has been obtained yet.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Activate the cardiac catheterization laboratory\", \"Obtain a 12-lead ECG\", \"Order CT angiography of the chest\", \"Start a heparin infusion\", \"Measure high-sensitivity troponin and wait for the result\"], \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"ACS\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-07-05-ylku65\", \"slotIndex\": 1, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 2, \"qcScore\": 9, \"generatedAt\": \"2026-07-05T17:15:58.455Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Get an ECG within 10 minutes in anyone with possible ACS, before any other decision.\"}",
+    "correctAnswer": "Obtain a 12-lead ECG",
+    "explanation": "Suspected ACS requires a 12-lead ECG within 10 minutes of arrival. The ECG decides between STEMI, which needs reperfusion, and NSTE-ACS, which needs risk stratification. Every other management step depends on it.\n\nWhy others are wrong:\n• The cath lab is activated based on ECG findings, which are not yet available.\n• CT angiography is for suspected dissection or PE, and equal arm BPs make dissection unlikely.\n• Anticoagulation follows the ECG-based diagnosis.\n• Troponin helps, but the ECG must come first and must not wait on labs.\n\nTakeaway: Get an ECG within 10 minutes in anyone with possible ACS, before any other decision."
+   },
+   "newKeyLetter": "B",
+   "guideline": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001309",
+   "explanationChars": 631
+  },
+  {
+   "id": "cmqgvxhxe00091y4tt41ysdvy",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Electrocardiogram",
+   "changes": {
+    "scenario": "A 60-year-old woman presents with 3 weeks of intermittent palpitations. She has no prior cardiac history. BP is 130/80 mm Hg and heart rate is 88/min and irregularly irregular. A 12-lead ECG obtained today confirms atrial fibrillation with no other abnormalities. TSH, CBC, and basic metabolic panel are normal.",
+    "question": "Which of the following is the most appropriate next diagnostic study?",
+    "options": "{\"options\": [\"Repeat 12-lead ECG\", \"Chest CT angiography\", \"Transthoracic echocardiogram\", \"Exercise stress test\", \"Electroencephalogram\"], \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"arrhythmias\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-cxww33\", \"slotIndex\": 2, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 4, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T16:57:19.571Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Once AF is confirmed on ECG, get a TTE, plus TSH and basic labs, to look for structural heart disease.\"}",
+    "correctAnswer": "Transthoracic echocardiogram",
+    "explanation": "In newly diagnosed AF, the 2023 AF guideline recommends TTE to assess valve disease, LV size and function, atrial size, and pulmonary pressures. These findings guide stroke risk, rhythm strategy, and drug choice.\n\nWhy others are wrong:\n• AF has already been documented. Repeating the ECG adds nothing.\n• Nothing suggests PE or an aortic process.\n• A stress test is not the first study without anginal symptoms.\n• No neurologic symptoms are present.\n\nTakeaway: Once AF is confirmed on ECG, get a TTE, plus TSH and basic labs, to look for structural heart disease."
+   },
+   "newKeyLetter": "C",
+   "guideline": "2023 ACC/AHA/ACCP/HRS Guideline for the Diagnosis and Management of Atrial Fibrillation",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001193",
+   "explanationChars": 562
+  },
+  {
+   "id": "cmqgz1cc4001w1ybcxunq6q68",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Electrocardiogram",
+   "changes": {
+    "scenario": "A 72-year-old woman with hypertension is seen 1 week after an ECG confirmed new nonvalvular atrial fibrillation. Her heart rate is controlled on metoprolol. She has no history of stroke, heart failure, diabetes, vascular disease, or bleeding. She weighs 70 kg, serum creatinine is 0.9 mg/dL, and transthoracic echocardiogram shows no valve disease.",
+    "question": "Which of the following is the most appropriate stroke-prevention therapy?",
+    "options": "{\"options\": [\"No antithrombotic therapy\", \"Aspirin 81 mg orally daily\", \"Aspirin 81 mg plus clopidogrel 75 mg orally daily\", \"Apixaban 2.5 mg orally twice daily\", \"Apixaban 5 mg orally twice daily\"], \"taskCategory\": \"intervention\", \"blueprintTopic\": \"arrhythmias\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-ha1khj\", \"slotIndex\": 2, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 5, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T18:24:01.299Z\", \"qcFlags\": []}, \"keyTakeaway\": \"In AF with CHA2DS2-VASc of 2 or more (men) or 3 or more (women), start a DOAC at the full label dose. Do not use aspirin.\"}",
+    "correctAnswer": "Apixaban 5 mg orally twice daily",
+    "explanation": "Her CHA2DS2-VASc score is 3 (age 65-74, female, hypertension), so the 2023 AF guideline recommends oral anticoagulation, with a DOAC preferred over warfarin. Per the FDA label, apixaban is 5 mg twice daily. Reduce to 2.5 mg only if she has 2 of these: age 80 or older, weight 60 kg or less, creatinine 1.5 or higher. She has none.\n\nWhy others are wrong:\n• A score of 3 in a woman carries enough stroke risk to warrant anticoagulation.\n• Aspirin alone is not recommended for stroke prevention in AF.\n• Aspirin plus clopidogrel is less effective than anticoagulation and still causes bleeding.\n• Underdosing apixaban without the label criteria raises stroke risk.\n\nTakeaway: In AF with CHA2DS2-VASc of 2 or more (men) or 3 or more (women), start a DOAC at the full label dose. Do not use aspirin."
+   },
+   "newKeyLetter": "E",
+   "guideline": "2023 ACC/AHA/ACCP/HRS Guideline for the Diagnosis and Management of Atrial Fibrillation; FDA Eliquis (apixaban) prescribing information: https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/202155s034lbl.pdf",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001193",
+   "explanationChars": 794
+  },
+  {
+   "id": "cmqgyx423000h1yfa7134dahi",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Prophylactic antibiotics before dental procedures",
+   "changes": {
+    "scenario": "A 74-year-old man underwent transcatheter aortic valve replacement for severe aortic stenosis 1 year ago. He is scheduled for extraction of a molar with gingival manipulation next week. He has no drug allergies and takes aspirin 81 mg daily.",
+    "question": "Which of the following is the most appropriate preventive measure before the dental procedure?",
+    "options": "{\"options\": [\"No antibiotic prophylaxis is needed\", \"Amoxicillin 2 g orally 30 to 60 minutes before the procedure\", \"Amoxicillin 500 mg orally three times daily for 7 days after the procedure\", \"Clindamycin 600 mg orally 30 to 60 minutes before the procedure\", \"Hold aspirin for 7 days before the procedure\"], \"taskCategory\": \"foundational\", \"blueprintTopic\": \"valvular disease\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-iv6tjc\", \"slotIndex\": 5, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 4, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T18:21:00.019Z\", \"qcFlags\": []}, \"keyTakeaway\": \"For prosthetic valves, prior IE, certain CHD, or a cardiac transplant with valvulopathy, give amoxicillin 2 g once before gingival work.\"}",
+    "correctAnswer": "Amoxicillin 2 g orally 30 to 60 minutes before the procedure",
+    "explanation": "Prosthetic valves, including transcatheter valves, are among the highest-risk conditions for infective endocarditis. Prophylaxis is reasonable before dental procedures that manipulate gingiva. The regimen is a single dose of amoxicillin 2 g orally 30 to 60 minutes beforehand.\n\nWhy others are wrong:\n• A prosthetic valve is a high-risk condition that warrants prophylaxis.\n• A post-procedure course is not the regimen. Prophylaxis is a single pre-procedure dose.\n• The 2021 AHA statement no longer recommends clindamycin, because of C. difficile risk.\n• Low-dose aspirin is generally continued for dental extraction.\n\nTakeaway: For prosthetic valves, prior IE, certain CHD, or a cardiac transplant with valvulopathy, give amoxicillin 2 g once before gingival work."
+   },
+   "newKeyLetter": "B",
+   "guideline": "AHA 2021 Scientific Statement: Prevention of Viridans Group Streptococcal Infective Endocarditis",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000969",
+   "explanationChars": 764
+  },
+  {
+   "id": "cmqwuviao00gu1yzew5u8ll3z",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Prophylactic antibiotics before dental procedures",
+   "changes": {
+    "scenario": "A 70-year-old man with moderate native-valve aortic stenosis presents for a routine visit before a scheduled dental cleaning with scaling. He has no history of endocarditis, prosthetic valve, congenital heart disease, or cardiac transplant. BP is 128/74 mm Hg, and a grade 2/6 systolic ejection murmur is heard at the right upper sternal border.",
+    "question": "Which of the following is the most appropriate recommendation regarding endocarditis prophylaxis?",
+    "options": "{\"options\": [\"Amoxicillin 2 g orally 30 to 60 minutes before the procedure\", \"Clindamycin 600 mg orally before the procedure\", \"Azithromycin 500 mg orally before the procedure\", \"No antibiotic prophylaxis; maintain good oral hygiene\", \"Amoxicillin 2 g orally before the procedure and 1 g 6 hours after\"], \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"valvular disease\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-27-7e5roo\", \"slotIndex\": 5, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 4, \"qcScore\": 9, \"generatedAt\": \"2026-06-27T21:12:01.950Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Native aortic stenosis or mitral regurgitation without high-risk features needs no dental prophylaxis.\"}",
+    "correctAnswer": "No antibiotic prophylaxis; maintain good oral hygiene",
+    "explanation": "Native valve disease without prior IE, a prosthetic valve, specific congenital heart disease, or a transplant with valvulopathy is not high risk. The AHA does not recommend dental prophylaxis for these patients. Good oral hygiene and regular dental care prevent more IE than antibiotics do.\n\nWhy others are wrong:\n• Amoxicillin prophylaxis is reserved for highest-risk conditions.\n• Clindamycin is not indicated here and is no longer recommended at all.\n• Azithromycin is a penicillin-allergy option, but only for highest-risk patients.\n• Post-procedure doses were dropped from guidance years ago.\n\nTakeaway: Native aortic stenosis or mitral regurgitation without high-risk features needs no dental prophylaxis."
+   },
+   "newKeyLetter": "D",
+   "guideline": "AHA 2021 Scientific Statement: Prevention of Viridans Group Streptococcal Infective Endocarditis",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000969",
+   "explanationChars": 711
+  },
+  {
+   "id": "cmqgz63sh00171yqy95ljye2p",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Prophylactic antibiotics for dental procedures",
+   "changes": {
+    "scenario": "A 68-year-old woman with known primary mitral regurgitation presents for routine follow-up. She is asymptomatic. BP is 130/80 mm Hg and HR 72/min, with a grade 2/6 holosystolic apical murmur. Transthoracic echocardiography shows moderate MR, normal LV size, and LVEF 65%. She has no history of endocarditis or prosthetic valve.",
+    "question": "Which of the following is the most appropriate management?",
+    "options": "{\"options\": [\"Amoxicillin 2 g orally before dental procedures\", \"Begin metoprolol succinate 25 mg daily\", \"Refer for mitral valve surgery\", \"Repeat transthoracic echocardiography every 1 to 2 years\", \"Start warfarin with a target INR of 2.5\"], \"taskCategory\": \"labs\", \"blueprintTopic\": \"valvular disease\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-15whhx\", \"slotIndex\": 5, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T18:27:43.223Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Primary MR surveillance: echo every 1 to 2 years if moderate, and every 6 to 12 months if severe and asymptomatic.\"}",
+    "correctAnswer": "Repeat transthoracic echocardiography every 1 to 2 years",
+    "explanation": "This is asymptomatic moderate primary MR (stage B) with normal LV size and function. The 2020 VHD guideline recommends surveillance TTE every 1 to 2 years, so a decline in LV function or progression to severe MR is caught early.\n\nWhy others are wrong:\n• Native MR without prior IE is not a highest-risk condition.\n• No drug alters the course of primary MR.\n• Surgery is for severe MR with symptoms or LV dysfunction.\n• There is no indication for anticoagulation in sinus rhythm.\n\nTakeaway: Primary MR surveillance: echo every 1 to 2 years if moderate, and every 6 to 12 months if severe and asymptomatic."
+   },
+   "newKeyLetter": "D",
+   "guideline": "2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000923",
+   "explanationChars": 604
+  },
+  {
+   "id": "cmqgzdut8000v1ydk4egvw90f",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Start anticoagulation therapy",
+   "changes": {
+    "scenario": "A 66-year-old woman with primary mitral regurgitation from mitral valve prolapse is asymptomatic and in sinus rhythm. BP is 130/80 mm Hg and HR 76/min. Transthoracic echocardiography shows severe MR with a flail posterior leaflet, LVEF 55% (previously 66%), LV end-systolic diameter 42 mm, and left atrial enlargement. She takes no medications.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Start warfarin with a target INR of 2.5\", \"Begin lisinopril 10 mg daily to reduce regurgitant volume\", \"Refer for mitral valve surgery (repair)\", \"Repeat echocardiography in 12 months\", \"Begin metoprolol succinate 25 mg daily\"], \"taskCategory\": \"labs\", \"blueprintTopic\": \"valvular disease\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-7ptd23\", \"slotIndex\": 5, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T18:33:37.406Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Severe primary MR with LVEF 60% or lower or LVESD 40 mm or larger needs surgery now, even when asymptomatic.\"}",
+    "correctAnswer": "Refer for mitral valve surgery (repair)",
+    "explanation": "This is severe primary MR with early LV dysfunction: LVEF 60% or lower or LVESD 40 mm or larger. Mitral valve surgery is recommended even without symptoms, and repair is preferred over replacement for a posterior-leaflet flail.\n\nWhy others are wrong:\n• Anticoagulation is not indicated in sinus rhythm without another indication.\n• Vasodilators do not alter the course of primary MR in normotensive patients.\n• Waiting allows irreversible LV dysfunction.\n• Beta-blockers do not delay the need for surgery in primary MR.\n\nTakeaway: Severe primary MR with LVEF 60% or lower or LVESD 40 mm or larger needs surgery now, even when asymptomatic."
+   },
+   "newKeyLetter": "C",
+   "guideline": "2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000923",
+   "explanationChars": 639
+  },
+  {
+   "id": "cmqwupu9i008c1yzexalinw2a",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Statins",
+   "changes": {
+    "scenario": "A 68-year-old woman with hyperlipidemia treated with atorvastatin 40 mg daily is found to have a systolic ejection murmur. She is asymptomatic and walks 3 miles daily. Transthoracic echocardiography shows moderate calcific aortic stenosis (peak velocity 3.4 m/s) with LVEF 65%. Average home BP over 2 weeks is 152/92 mm Hg, matching office readings. Creatinine and potassium are normal.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Increase atorvastatin to 80 mg daily to slow valve progression\", \"Refer for aortic valve replacement\", \"Start isosorbide mononitrate 30 mg daily\", \"Defer antihypertensive therapy because of the aortic stenosis\", \"Start lisinopril 5 mg daily and titrate gradually\"], \"taskCategory\": \"intervention\", \"blueprintTopic\": \"valvular disease\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-27-7e5roo\", \"slotIndex\": 3, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-27T21:07:35.771Z\", \"qcFlags\": []}, \"keyTakeaway\": \"No drug slows aortic stenosis. Treat coexisting hypertension cautiously, and time valve replacement by symptoms and severity.\"}",
+    "correctAnswer": "Start lisinopril 5 mg daily and titrate gradually",
+    "explanation": "Hypertension should be treated in patients with aortic stenosis. The 2020 VHD guideline recommends standard antihypertensive therapy, started at a low dose and titrated gradually. A low-dose ACE inhibitor is a reasonable first choice.\n\nWhy others are wrong:\n• Statins do not slow AS progression. Treat lipids for ASCVD risk, not for the valve.\n• Valve replacement is not indicated for asymptomatic moderate AS.\n• Nitrates risk hypotension in AS and do not treat hypertension.\n• AS is not a reason to leave hypertension untreated.\n\nTakeaway: No drug slows aortic stenosis. Treat coexisting hypertension cautiously, and time valve replacement by symptoms and severity."
+   },
+   "newKeyLetter": "E",
+   "guideline": "2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000923",
+   "explanationChars": 666
+  },
+  {
+   "id": "cmqxaw5m5000b1yl26mbe12s5",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Beta-blockers",
+   "changes": {
+    "scenario": "A 70-year-old man has 6 months of progressive exertional dyspnea and fatigue. BP is 110/70 mm Hg and HR 80/min. A grade 3/6 late-peaking systolic ejection murmur is heard at the right upper sternal border, and S2 is single. Transthoracic echocardiography shows severe calcific aortic stenosis (peak velocity 4.6 m/s, mean gradient 48 mm Hg, valve area 0.7 cm2), LV hypertrophy, and LVEF 60%.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Start metoprolol succinate 25 mg daily\", \"Start lisinopril 10 mg daily\", \"Start isosorbide mononitrate 30 mg daily\", \"Refer to a heart valve team for aortic valve replacement\", \"Repeat echocardiography in 6 months\"], \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"valvular disease\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-28-o7h6ug\", \"slotIndex\": 3, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-28T04:40:20.630Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Symptomatic severe AS calls for valve replacement, not medication.\"}",
+    "correctAnswer": "Refer to a heart valve team for aortic valve replacement",
+    "explanation": "This is symptomatic severe AS (stage D1). Aortic valve replacement, surgical or transcatheter as chosen by the heart valve team, is recommended. No medication improves survival, and prognosis without AVR is poor.\n\nWhy others are wrong:\n• Beta-blockers do not treat AS and can worsen low-output symptoms.\n• ACE inhibitors do not relieve fixed outflow obstruction.\n• Nitrates can cause severe hypotension in severe AS.\n• Surveillance is for asymptomatic disease. Symptoms mean intervention.\n\nTakeaway: Symptomatic severe AS calls for valve replacement, not medication."
+   },
+   "newKeyLetter": "D",
+   "guideline": "2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000923",
+   "explanationChars": 566
+  },
+  {
+   "id": "cmr81ytsf00321y54fnyfuegd",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Beta-blockers",
+   "changes": {
+    "scenario": "A 55-year-old man is found to have a murmur at a routine visit. He is asymptomatic. BP is 162/58 mm Hg and HR 72/min. A grade 3/6 high-pitched, blowing, decrescendo early diastolic murmur is heard at the left sternal border with the patient leaning forward. Transthoracic echocardiography shows severe chronic aortic regurgitation from a bicuspid valve, LVEF 62%, LV end-systolic diameter 42 mm (indexed 21 mm/m2; BSA 2.0 m2), LV end-diastolic diameter 58 mm, and ascending aorta 38 mm, all unchanged from an echocardiogram 1 year ago.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Start metoprolol succinate 50 mg daily\", \"Start amlodipine 5 mg daily\", \"Refer for aortic valve replacement\", \"Start furosemide 40 mg daily\", \"Start digoxin 0.125 mg daily\"], \"taskCategory\": \"foundational\", \"blueprintTopic\": \"valvular disease\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-07-05-ylku65\", \"slotIndex\": 3, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 4, \"qcScore\": 9, \"generatedAt\": \"2026-07-05T17:16:00.004Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Treat hypertension in chronic AR with vasodilating agents and avoid beta-blockers. Time surgery by symptoms or LV dysfunction.\"}",
+    "correctAnswer": "Start amlodipine 5 mg daily",
+    "explanation": "This is asymptomatic severe chronic AR with preserved LV function (LVEF above 55%, LVESD 50 mm or less and indexed 25 mm/m2 or less, LVEDD below 65 mm, stable), so surgery is not yet indicated. He has hypertension. The VHD guideline recommends antihypertensive therapy, preferably a dihydropyridine calcium channel blocker, ACE inhibitor, or ARB.\n\nWhy others are wrong:\n• Beta-blockers slow the heart rate and lengthen diastole, which increases regurgitant volume.\n• AVR is for symptoms, LVEF 55% or lower, LVESD above 50 mm (or above 25 mm/m2), or progressive LV dilation.\n• He has no volume overload to treat.\n• Digoxin has no role with a normal EF and sinus rhythm.\n\nTakeaway: Treat hypertension in chronic AR with vasodilating agents and avoid beta-blockers. Time surgery by symptoms or LV dysfunction."
+   },
+   "newKeyLetter": "B",
+   "guideline": "2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000923",
+   "explanationChars": 806
+  },
+  {
+   "id": "cmr81tnxb005v1y08y4v3ahpn",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Add ezetimibe to his regimen",
+   "changes": {
+    "scenario": "A 60-year-old man had a myocardial infarction treated with PCI 2 years ago. He takes atorvastatin 20 mg daily with full adherence and no muscle symptoms. Fasting lipid panel shows LDL-C 160 mg/dL, HDL-C 40 mg/dL, and triglycerides 200 mg/dL. Hepatic panel is normal.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Add ezetimibe 10 mg daily\", \"Add fenofibrate 145 mg daily\", \"Increase atorvastatin to 80 mg daily\", \"Switch to pravastatin 40 mg daily\", \"Continue current therapy and recheck lipids in 6 months\"], \"taskCategory\": \"intervention\", \"blueprintTopic\": \"hyperlipidemia\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-07-05-wtpaq2\", \"slotIndex\": 1, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-07-05T17:11:57.709Z\", \"qcFlags\": []}, \"keyTakeaway\": \"In ASCVD, maximize statin intensity first, then add ezetimibe if LDL-C is still above goal.\"}",
+    "correctAnswer": "Increase atorvastatin to 80 mg daily",
+    "explanation": "In clinical ASCVD, high-intensity statin therapy is first-line. Atorvastatin 20 mg is moderate intensity, so it should be intensified to 80 mg before adding non-statin therapy. Recheck lipids in 4 to 12 weeks.\n\nWhy others are wrong:\n• Ezetimibe is added when LDL-C stays above goal on a maximally tolerated statin.\n• Fibrates do not reduce ASCVD events on top of a statin and do not lower LDL-C adequately.\n• Pravastatin 40 mg is moderate intensity.\n• Leaving LDL-C at 160 after MI is undertreatment.\n\nTakeaway: In ASCVD, maximize statin intensity first, then add ezetimibe if LDL-C is still above goal."
+   },
+   "newKeyLetter": "C",
+   "guideline": "2026 ACC/AHA/AACVPR/ABC/ACPM/ADA/AGS/APhA/ASPC/NLA/PCNA Guideline on the Management of Dyslipidemia",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
+   "explanationChars": 603
+  },
+  {
+   "id": "cmr829grr005h1y8w6ivtffd4",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Add ezetimibe to her regimen",
+   "changes": {
+    "scenario": "A 50-year-old woman with primary hypercholesterolemia had an untreated LDL-C of 210 mg/dL. She has taken rosuvastatin 5 mg daily for 6 months with good adherence and no muscle symptoms. Repeat LDL-C is 160 mg/dL. She has no ASCVD or diabetes, and hepatic panel and TSH are normal. BP is 124/78 mm Hg.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Increase rosuvastatin to 20 to 40 mg daily\", \"Add ezetimibe 10 mg daily to the current dose\", \"Continue the current dose with lifestyle changes alone\", \"Start a PCSK9 inhibitor\", \"Add omega-3 fatty acid supplements\"], \"taskCategory\": \"intervention\", \"blueprintTopic\": \"hyperlipidemia\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-07-05-4u6k7h\", \"slotIndex\": 5, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 4, \"qcScore\": 9, \"generatedAt\": \"2026-07-05T17:24:22.477Z\", \"qcFlags\": []}, \"keyTakeaway\": \"With LDL-C of 190 or higher, start or escalate to a high-intensity statin before any add-on.\"}",
+    "correctAnswer": "Increase rosuvastatin to 20 to 40 mg daily",
+    "explanation": "An untreated LDL-C of 190 mg/dL or higher (severe hypercholesterolemia) calls for high-intensity statin therapy. Rosuvastatin 5 mg is moderate intensity, so it should be increased to 20 to 40 mg before any non-statin is added.\n\nWhy others are wrong:\n• Ezetimibe is the add-on after a maximally tolerated statin.\n• Lifestyle change is an adjunct and will not lower LDL-C enough.\n• PCSK9 inhibitors come after statin plus ezetimibe fail.\n• Omega-3 supplements do not lower LDL-C.\n\nTakeaway: With LDL-C of 190 or higher, start or escalate to a high-intensity statin before any add-on."
+   },
+   "newKeyLetter": "A",
+   "guideline": "2026 ACC/AHA/AACVPR/ABC/ACPM/ADA/AGS/APhA/ASPC/NLA/PCNA Guideline on the Management of Dyslipidemia",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
+   "explanationChars": 581
+  },
+  {
+   "id": "cmqgyzzjk000u1ybcgbqmxrxe",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Viral Bronchiolitis",
+   "changes": {
+    "scenario": "A 5-year-old boy with known asthma is brought to the emergency department with 2 days of cough, rhinorrhea, low-grade fever, and worsening wheeze after a cold at daycare. He has used his albuterol inhaler every 3 hours today. RR is 34/min, SpO2 93% on room air, and he has diffuse expiratory wheezes with prolonged expiration and subcostal retractions. There are no focal crackles, and there was no choking episode.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Asthma exacerbation\", \"Community-acquired pneumonia\", \"Foreign body aspiration\", \"Viral bronchiolitis\", \"Croup\"], \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"arrhythmias\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-ha1khj\", \"slotIndex\": 8, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 4, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T18:23:06.795Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Viral-triggered diffuse wheeze in a known asthmatic over age 2 is an asthma exacerbation, not bronchiolitis.\"}",
+    "correctAnswer": "Asthma exacerbation",
+    "explanation": "A child with known asthma who has diffuse bilateral wheeze, prolonged expiration, and rising albuterol use after a viral infection is having an asthma exacerbation, which viral URIs commonly trigger. Treat with short-acting beta-agonist, systemic corticosteroids, and oxygen as needed.\n\nWhy others are wrong:\n• Pneumonia would cause focal crackles or consolidation, not diffuse wheeze.\n• Aspiration causes unilateral or focal findings after a choking episode.\n• Bronchiolitis is a diagnosis in children under 2 years.\n• Croup causes a barking cough and inspiratory stridor, not expiratory wheeze.\n\nTakeaway: Viral-triggered diffuse wheeze in a known asthmatic over age 2 is an asthma exacerbation, not bronchiolitis."
+   },
+   "newKeyLetter": "A",
+   "guideline": "NAEPP 2020 Focused Updates to the Asthma Management Guidelines (NHLBI); AAP 2014 Bronchiolitis CPG (bronchiolitis defined in children <2 years)",
+   "guidelineUrl": "https://www.nhlbi.nih.gov/resources/2020-focused-updates-asthma-management-guidelines",
+   "explanationChars": 716
+  },
+  {
+   "id": "cmr828am5004g1y8wbt34ljsp",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Supraventricular tachycardia",
+   "changes": {
+    "scenario": "A 24-year-old woman presents with 2 days of vomiting and diarrhea and poor oral intake. She feels lightheaded on standing but has no palpitations. Temperature is 38.3°C (100.9°F), BP 104/66 mm Hg, and HR 122/min and regular. Mucous membranes are dry. ECG shows a regular rhythm at 122/min with an upright P wave before each QRS in leads I, II, and aVF, PR 0.14 s, and narrow QRS.",
+    "question": "Which of the following is the most likely rhythm?",
+    "options": "{\"options\": [\"Atrial flutter with 2:1 conduction\", \"Sinus tachycardia\", \"Atrioventricular nodal reentrant tachycardia\", \"Ventricular tachycardia\", \"Multifocal atrial tachycardia\"], \"taskCategory\": \"prevention\", \"blueprintTopic\": \"AFib\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-07-05-4u6k7h\", \"slotIndex\": 4, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 4, \"qcScore\": 9, \"generatedAt\": \"2026-07-05T17:23:13.824Z\", \"qcFlags\": []}, \"keyTakeaway\": \"A regular narrow-complex tachycardia with normal upright P waves and an obvious trigger is sinus tachycardia. Treat the cause.\"}",
+    "correctAnswer": "Sinus tachycardia",
+    "explanation": "Upright P waves in I, II, and aVF before every QRS, a normal PR, and a rate of 122 with a clear cause (fever and volume depletion) define sinus tachycardia. Treat the underlying cause with fluids and antipyretics.\n\nWhy others are wrong:\n• Flutter shows sawtooth waves, usually with a ventricular rate near 150.\n• AVNRT is abrupt and usually faster than 150, with P waves hidden or retrograde.\n• VT has a wide QRS.\n• MAT has 3 or more P-wave morphologies with an irregular rhythm.\n\nTakeaway: A regular narrow-complex tachycardia with normal upright P waves and an obvious trigger is sinus tachycardia. Treat the cause."
+   },
+   "newKeyLetter": "B",
+   "guideline": "2015 ACC/AHA/HRS Guideline for the Management of Adult Patients With Supraventricular Tachycardia (sinus tachycardia: identify and treat the cause)",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000311",
+   "explanationChars": 617
+  },
+  {
+   "id": "cmqgynz1n00071yhy06bh7m6c",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Start a low-dose aspirin regimen",
+   "changes": {
+    "scenario": "A 65-year-old woman with hypertension and hyperlipidemia presents for a routine visit. She has no ASCVD or diabetes. She takes lisinopril 20 mg and atorvastatin 10 mg daily with full adherence and no muscle symptoms. BP is 126/78 mm Hg. LDL-C is 150 mg/dL, and her 10-year ASCVD risk by the PREVENT equations is 11%. Hepatic panel is normal.",
+    "question": "Which of the following is the most appropriate next step in management?",
+    "options": "{\"options\": [\"Start aspirin 81 mg daily\", \"Add fenofibrate 145 mg daily\", \"Add icosapent ethyl 2 g twice daily\", \"Increase atorvastatin to 40 to 80 mg daily\", \"Switch to niacin extended-release 500 mg nightly\"], \"taskCategory\": \"prevention\", \"blueprintTopic\": \"valvular disease\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-3pngla\", \"slotIndex\": 1, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 2, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T18:13:52.440Z\", \"qcFlags\": []}, \"keyTakeaway\": \"In primary prevention at 60 or older, intensify the statin and do not start aspirin.\"}",
+    "correctAnswer": "Increase atorvastatin to 40 to 80 mg daily",
+    "explanation": "She has high (10% or greater) PREVENT risk and is on a moderate-intensity statin with LDL-C of 150, so statin intensification is the next step. USPSTF recommends against starting aspirin for primary prevention at age 60 or older, because bleeding risk offsets the benefit.\n\nWhy others are wrong:\n• Grade D at 60 or older: do not start aspirin for primary prevention.\n• Fibrates do not lower ASCVD events on top of a statin.\n• Icosapent ethyl is for persistent hypertriglyceridemia, not this LDL-C problem.\n• Niacin adds no ASCVD benefit and has adverse effects.\n\nTakeaway: In primary prevention at 60 or older, intensify the statin and do not start aspirin."
+   },
+   "newKeyLetter": "D",
+   "guideline": "2026 ACC/AHA/AACVPR/ABC/ACPM/ADA/AGS/APhA/ASPC/NLA/PCNA Guideline on the Management of Dyslipidemia; USPSTF 2022 Aspirin for primary prevention (https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-to-prevent-cardiovascular-disease-preventive-medication)",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
+   "explanationChars": 657
+  },
+  {
+   "id": "cmqgz650m001n1yqyvvy0tf34",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Start a low-dose aspirin regimen",
+   "changes": {
+    "scenario": "A 60-year-old woman with hypertension and hyperlipidemia presents for follow-up. She takes amlodipine 5 mg and rosuvastatin 20 mg daily with good adherence. She has no ASCVD, diabetes, or chronic kidney disease. Office BP is 150/95 mm Hg, and her 2-week home average is 148/92 mm Hg. Creatinine and electrolytes are normal.",
+    "question": "Which of the following is the most appropriate next step to reduce her cardiovascular risk?",
+    "options": "{\"options\": [\"Start aspirin 81 mg daily\", \"Increase amlodipine to 10 mg daily\", \"Recheck BP in 12 months\", \"Refer to cardiology\", \"Start clonidine 0.1 mg twice daily\"], \"taskCategory\": \"foundational\", \"blueprintTopic\": \"hypertension\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-15whhx\", \"slotIndex\": 5, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T18:27:56.533Z\", \"qcFlags\": []}, \"keyTakeaway\": \"Uncontrolled BP means intensifying first-line therapy toward below 130/80. Aspirin is not a primary-prevention tool at 60 or older.\"}",
+    "correctAnswer": "Increase amlodipine to 10 mg daily",
+    "explanation": "Home and office readings confirm that her BP is above the 2025 AHA/ACC goal of below 130/80 mm Hg on a submaximal first-line agent. Uptitrating amlodipine, along with sodium restriction and lifestyle change, is the evidence-based way to lower her CV risk.\n\nWhy others are wrong:\n• USPSTF advises against starting aspirin for primary prevention at 60 or older.\n• Uncontrolled BP needs follow-up within about a month after a medication change.\n• Primary care can manage uncomplicated hypertension.\n• Clonidine is not first-line and causes rebound hypertension.\n\nTakeaway: Uncontrolled BP means intensifying first-line therapy toward below 130/80. Aspirin is not a primary-prevention tool at 60 or older."
+   },
+   "newKeyLetter": "B",
+   "guideline": "2025 AHA/ACC/AANP/AAPA/ABC/ACCP/ACPM/AGS/AMA/ASPC/NMA/PCNA/SGIM Guideline for High Blood Pressure in Adults (BP goal <130/80); USPSTF 2022 aspirin recommendation",
+   "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
+   "explanationChars": 701
+  },
+  {
+   "id": "cmqgz8sxg00431yqybdl8n6yr",
+   "fieldId": "pance",
+   "oldCorrectAnswer": "Start low-dose aspirin",
+   "changes": {
+    "scenario": "A 62-year-old man with hypertension and hyperlipidemia presents for a routine visit and asks whether he should take a daily aspirin to prevent a heart attack. He has no chest pain, ASCVD, diabetes, or bleeding history. He takes lisinopril and atorvastatin, BP is 128/78 mm Hg, and LDL-C is 95 mg/dL.",
+    "question": "Which of the following is the most appropriate recommendation regarding antiplatelet therapy?",
+    "options": "{\"options\": [\"Do not start aspirin for primary prevention\", \"Start aspirin 325 mg daily\", \"Start clopidogrel 75 mg daily instead of aspirin\", \"Start aspirin 81 mg daily\", \"Start aspirin 81 mg plus clopidogrel 75 mg daily\"], \"taskCategory\": \"prevention\", \"blueprintTopic\": \"ACS\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-15whhx\", \"slotIndex\": 1, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T18:29:59.297Z\", \"qcFlags\": []}, \"keyTakeaway\": \"For adults 60 or older without ASCVD, do not start aspirin. Focus on BP, lipids, and lifestyle.\"}",
+    "correctAnswer": "Do not start aspirin for primary prevention",
+    "explanation": "USPSTF 2022 recommends against starting low-dose aspirin for primary prevention of CVD in adults aged 60 or older (Grade D). Any reduction in MI is offset by increased GI and intracranial bleeding.\n\nWhy others are wrong:\n• A higher dose adds bleeding without added benefit.\n• Clopidogrel has no primary-prevention indication.\n• Grade D for initiation at 60 or older.\n• Dual antiplatelet therapy is for ACS or stents, and the bleeding risk is high.\n\nTakeaway: For adults 60 or older without ASCVD, do not start aspirin. Focus on BP, lipids, and lifestyle."
+   },
+   "newKeyLetter": "A",
+   "guideline": "USPSTF 2022 Recommendation: Aspirin Use to Prevent Cardiovascular Disease (age >=60: recommend against initiating, Grade D)",
+   "guidelineUrl": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-to-prevent-cardiovascular-disease-preventive-medication",
+   "explanationChars": 554
+  }
+ ]
+}
