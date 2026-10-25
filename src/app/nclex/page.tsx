@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { NclexBoardLanding } from "@/components/marketing/board-landing/NclexBoardLanding";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { loadNursingBankTypeCounts } from "@/lib/marketing/board-landing/bank-types";
-import { buildNclexNgnTypeChartRows } from "@/lib/marketing/board-landing/nclex-ngn-type-chart";
+import { loadNursingPublishedStandaloneNgnTypes } from "@/lib/marketing/clinical-extra-http";
+import {
+  buildNclexNgnTypeChartAltText,
+  buildNclexNgnTypeChartRows,
+} from "@/lib/marketing/board-landing/nclex-ngn-type-chart";
 import { buildNclexLandingMetadata, buildNclexLandingModel } from "@/lib/marketing/board-landing/model";
 import { nclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { loadBoardPageQuestionUnits } from "@/lib/marketing/live-board-counts";
@@ -22,12 +26,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NclexHubPage() {
-  const [{ bundle, display }, bankTypes, testimonials, nclexTrustAudienceCount] = await Promise.all([
-    loadPublicQuestionCounts({ dynamic: false }),
-    loadNursingBankTypeCounts(),
-    getCachedPublishedTestimonials(6),
-    getCachedNclexTrustAudienceCount(),
-  ]);
+  const [{ bundle, display }, bankTypes, publishedStandaloneNgnTypes, testimonials, nclexTrustAudienceCount] =
+    await Promise.all([
+      loadPublicQuestionCounts({ dynamic: false }),
+      loadNursingBankTypeCounts(),
+      loadNursingPublishedStandaloneNgnTypes(),
+      getCachedPublishedTestimonials(6),
+      getCachedNclexTrustAudienceCount(),
+    ]);
   const snapshotUnits = !display.degraded ? (bundle.snapshot.boards?.nclex ?? null) : null;
   const units = await loadBoardPageQuestionUnits("nclex", snapshotUnits);
   const live = units != null && scoredQuestionCount(units) > 0;
@@ -40,16 +46,19 @@ export default async function NclexHubPage() {
     testimonials,
     nclexTrustAudienceCount,
   });
-  const ngnTypeRows = live && units
-    ? buildNclexNgnTypeChartRows({
-        bankTypes,
-        caseStudies: units.caseStudies,
-        caseItems: units.caseItems,
-        standaloneNgn: units.standaloneNgn,
-        bankNgnStyle: units.bankNgnStyle,
-        bankCaseStyle: units.bankCaseStyle,
-      })
-    : [];
+  const ngnTypeRows =
+    live && units
+      ? buildNclexNgnTypeChartRows({
+          caseItems: units.caseItems,
+          standaloneNgn: units.standaloneNgn,
+          publishedStandaloneTypes: publishedStandaloneNgnTypes,
+        })
+      : [];
+  const ngnTypeChartAlt =
+    units && ngnTypeRows.length > 0
+      ? buildNclexNgnTypeChartAltText(ngnTypeRows, units)
+      : buildNclexNgnTypeChartAltText([], { standaloneNgn: 0, caseItems: 0 });
+
   const render = nclexBoardLandingRenderModel(full, {
     nclexDonut: {
       liveQuestionCount: units ? scoredQuestionCount(units) : 0,
@@ -57,6 +66,7 @@ export default async function NclexHubPage() {
       includeNgn: ngnTypeRows.length > 0,
     },
     ngnTypeRows,
+    ngnTypeChartAlt,
   });
 
   return (

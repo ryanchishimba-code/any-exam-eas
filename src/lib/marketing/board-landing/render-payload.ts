@@ -112,6 +112,7 @@ export type NclexBoardLandingRenderModel = BoardLandingRenderModel & {
   testimonialsHeading: string;
   nclexDonut: NclexDonutRenderInput;
   ngnTypeRows: NclexNgnTypeRow[];
+  ngnTypeChartAlt: string;
 };
 
 const HUB_TESTIMONIALS_HEADING: Record<HubExamKey, string> = {
@@ -153,7 +154,11 @@ export function hubBoardLandingRenderModel(
 
 export function nclexBoardLandingRenderModel(
   model: BoardLandingModel,
-  input: { nclexDonut: NclexDonutRenderInput; ngnTypeRows: NclexNgnTypeRow[] }
+  input: {
+    nclexDonut: NclexDonutRenderInput;
+    ngnTypeRows: NclexNgnTypeRow[];
+    ngnTypeChartAlt: string;
+  }
 ): NclexBoardLandingRenderModel {
   const base = boardLandingRenderModel(model, { examKey: "nclex" });
   return {
@@ -166,6 +171,7 @@ export function nclexBoardLandingRenderModel(
     testimonialsHeading: "What nursing students say",
     nclexDonut: input.nclexDonut,
     ngnTypeRows: input.ngnTypeRows,
+    ngnTypeChartAlt: input.ngnTypeChartAlt,
   };
 }
 

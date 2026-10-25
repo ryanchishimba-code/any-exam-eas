@@ -57,6 +57,18 @@ export function scoredQuestionCount(
   return units.bankItems + units.standaloneNgn + units.caseItems;
 }
 
+/**
+ * Published Next Gen items students can answer outside classic bank rows:
+ * scored items inside published case studies plus published standalone NGN catalog
+ * items (bow-tie, trend, etc.). Bank SATA and other NGN-style QuestionBankItem rows
+ * stay inside `bankItems` and are not counted again here.
+ */
+export function publishedNgnItemCount(
+  units: Pick<BoardQuestionUnits, "standaloneNgn" | "caseItems">
+): number {
+  return Math.max(0, units.standaloneNgn) + Math.max(0, units.caseItems);
+}
+
 export function formatExactQuestionCount(count: number): string {
   return Math.max(0, Math.floor(count)).toLocaleString("en-US");
 }

@@ -1,5 +1,6 @@
 import {
   formatExactQuestionCount,
+  publishedNgnItemCount,
   scoredQuestionCount,
   type BoardQuestionUnits,
 } from "@/lib/counts";
@@ -39,7 +40,7 @@ export function buildNclexCompareChartData(units: BoardQuestionUnits | null): Nc
 
   if (units && scoredQuestionCount(units) > 0) {
     const total = scoredQuestionCount(units);
-    const ngn = units.bankNgnStyle + units.standaloneNgn;
+    const ngn = publishedNgnItemCount(units);
     const cases = units.caseStudies;
     const caseTarget = NCLEX_NGN_SERVE_TARGETS.case_study ?? 180;
 
@@ -54,8 +55,8 @@ export function buildNclexCompareChartData(units: BoardQuestionUnits | null): Nc
       },
       {
         id: "live-ngn",
-        label: "NGN-style items",
-        sublabel: "Standalone and case-linked NGN",
+        label: "Published NGN items",
+        sublabel: "Scored case-study items plus standalone bow-tie and trend",
         amountLabel: formatExactQuestionCount(ngn),
         fillPct: ngn > 0 ? clampPct((ngn / NGN_VISUAL_TARGET) * 100) : 0,
         highlight: true,
@@ -73,7 +74,7 @@ export function buildNclexCompareChartData(units: BoardQuestionUnits | null): Nc
       });
     }
 
-    inventoryNote = `${formatExactQuestionCount(total)} live questions, ${formatExactQuestionCount(ngn)} NGN-style items${
+    inventoryNote = `${formatExactQuestionCount(total)} live questions, ${formatExactQuestionCount(ngn)} published NGN items${
       cases > 0 ? `, ${formatExactQuestionCount(cases)} case studies` : ""
     }.`;
   }

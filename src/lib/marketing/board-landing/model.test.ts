@@ -95,9 +95,10 @@ describe("NCLEX landing model", () => {
     expect(model.stats.map((stat) => stat.label)).toEqual([
       "Questions",
       "Case studies",
-      "NGN items",
+      "Published NGN items",
       "NCSBN test plan",
     ]);
+    expect(model.stats[2]?.value).toBe("8");
     expect(model.stats[0]?.value).toBe("108");
     expect(model.stories.length).toBeGreaterThan(0);
     expect(model.stories.some((story) => story.name === "Nathan C.")).toBe(true);

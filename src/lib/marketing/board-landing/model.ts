@@ -3,6 +3,7 @@ import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   formatBoardQuestionSentence,
   formatExactQuestionCount,
+  publishedNgnItemCount,
   scoredQuestionCount,
   type BoardQuestionUnits,
 } from "@/lib/counts";
@@ -475,9 +476,9 @@ function nclexStats(units: BoardQuestionUnits | null): { value: string; label: s
   if (units.caseStudies > 0) {
     stats.push({ value: formatExactQuestionCount(units.caseStudies), label: "Case studies" });
   }
-  const ngn = units.bankNgnStyle + units.standaloneNgn;
+  const ngn = publishedNgnItemCount(units);
   if (ngn > 0) {
-    stats.push({ value: formatExactQuestionCount(ngn), label: "NGN items" });
+    stats.push({ value: formatExactQuestionCount(ngn), label: "Published NGN items" });
   }
   stats.push({ value: "Aligned", label: "NCSBN test plan" });
   return stats;
