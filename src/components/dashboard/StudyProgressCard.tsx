@@ -1,65 +1,100 @@
+import type { CSSProperties } from "react";
+import Link from "next/link";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { StudyCompletionResult } from "@/lib/learning/study-completion/compute-study-completion";
+import {
+  studyProgressCardRows,
+  studyProgressMicrocopy,
+  studyProgressNextStep,
+  studyProgressRingPercent,
+} from "@/lib/learning/study-completion/study-progress-card-model";
 import { cn } from "@/lib/utils";
-
-function formatCount(n: number): string {
-  return n.toLocaleString("en-US");
-}
-
-function PillarRow({ pillar }: { pillar: StudyCompletionResult["pillars"][number] }) {
-  const pct = pillar.target > 0 ? Math.min(100, Math.round((pillar.done / pillar.target) * 100)) : 0;
-  return (
-    <li className="space-y-1.5">
-      <div className="flex items-baseline justify-between gap-3 text-[13px]">
-        <span className="font-medium text-[var(--color-ink)]">{pillar.label}</span>
-        <span
-          className={cn(
-            "shrink-0 tabular-nums text-[12px]",
-            pillar.met ? "font-semibold text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"
-          )}
-        >
-          {formatCount(pillar.done)} / {formatCount(pillar.target)}
-        </span>
-      </div>
-      <div className={dbUi.sparkTrack} aria-hidden>
-        <div
-          className={cn(dbUi.sparkBar, pillar.met ? "bg-[var(--color-accent)]" : "bg-[var(--color-ink-muted)]/45")}
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-    </li>
-  );
-}
+import "./study-progress-card.css";
 
 export function StudyProgressCard({ data }: { data: StudyCompletionResult }) {
+  const rows = studyProgressCardRows(data);
+  const ringPct = studyProgressRingPercent(data.overallPercent);
+  const microcopy = studyProgressMicrocopy(ringPct);
+  const nextStep = studyProgressNextStep(data);
+  const estimate = data.readinessEstimate;
+
   return (
     <section
-      className={cn(dbUi.surface, "p-5 sm:p-6")}
+      className={cn(dbUi.surface, "p-4 sm:p-5")}
       aria-labelledby="study-progress-title"
       data-study-progress-card="true"
     >
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h2 id="study-progress-title" className={dbUi.sectionTitle}>
-            Study progress
-          </h2>
-          <p className="mt-1 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
-            Only activity saved to your account counts.
-          </p>
-        </div>
-        <p
-          className="text-2xl font-semibold tabular-nums tracking-tight text-[var(--color-ink)]"
-          aria-label={`Overall study progress ${data.overallPercent} percent`}
+      <div className="flex items-start gap-4">
+        <div
+          className="study-progress-card__ring study-progress-card__ring--animate"
+          style={
+            {
+              "--study-progress-ring-pct": ringPct,
+              "--study-progress-ring-target": ringPct,
+            } as CSSProperties
+          }
+          role="img"
+          aria-label={`Overall study progress ${ringPct} percent`}
         >
-          {data.overallPercent}%
-        </p>
+          <span className="study-progress-card__ring-value">{ringPct}%</span>
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <p id="study-progress-title" className="text-[15px] font-semibold tracking-tight text-[var(--color-ink)]">
+            Study progress
+          </p>
+          <p className="mt-0.5 text-[12px] leading-snug text-[var(--color-ink-muted)]">{microcopy}</p>
+
+          <ul className="mt-3 space-y-2" aria-label="Study milestones">
+            {rows.map((row) => (
+              <li key={row.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-0.5">
+                <div className="flex min-w-0 items-center gap-2">
+                  <span className="truncate text-[12px] font-medium text-[var(--color-ink)]">{row.label}</span>
+                  <div
+                    className={cn(
+                      "study-progress-card__row-bar min-w-[3.5rem] flex-1 max-w-[5.5rem]",
+                      row.met && "study-progress-card__row-bar--met"
+                    )}
+                    aria-hidden
+                  >
+                    <span style={{ width: `${row.progressPercent}%` }} />
+                  </div>
+                </div>
+                <span
+                  className={cn(
+                    "shrink-0 text-[11px] tabular-nums",
+                    row.met ? "font-semibold text-emerald-700" : "text-[var(--color-ink-muted)]"
+                  )}
+                >
+                  {row.done}/{row.target}
+                  {row.met ? " ✓" : ""}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
-      <ul className="mt-5 space-y-4" aria-label="Study completion pillars">
-        {data.pillars.map((pillar) => (
-          <PillarRow key={pillar.id} pillar={pillar} />
-        ))}
-      </ul>
+      <p className="mt-3 text-[12px] leading-snug">
+        <Link href={nextStep.href} className="font-medium text-[var(--color-accent)] hover:underline">
+          {nextStep.label}
+        </Link>
+      </p>
+
+      <div className="mt-2.5 text-[11px] leading-snug">
+        {estimate.status === "insufficient_data" ? (
+          <p className="text-[var(--color-ink-muted)]">{estimate.message}</p>
+        ) : (
+          <>
+            <p className="text-[12px] text-[var(--color-ink)]">
+              Readiness estimate: {estimate.score}/100 · {estimate.band}
+            </p>
+            <p className="mt-1 text-[10px] leading-snug text-[var(--color-ink-muted)]">
+              {estimate.disclaimer}
+            </p>
+          </>
+        )}
+      </div>
     </section>
   );
 }

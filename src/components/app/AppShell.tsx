@@ -9,6 +9,7 @@ import { MobileBottomNav } from "@/components/app/MobileBottomNav";
 import { shellUi } from "@/lib/layout/shell-ui";
 import { SHELL_LAYOUT_TRANSITION } from "@/lib/layout/nav-motion";
 import { isImmersiveAppRoute } from "@/lib/navigation/app-shell";
+import { EngagementHeartbeat } from "@/components/engagement/EngagementHeartbeat";
 import { cn } from "@/lib/utils";
 
 const SIDEBAR_WIDTH_CLASS = "w-60";
@@ -28,6 +29,7 @@ export function AppShell({
 
   return (
     <div className="study-home-accent min-h-screen bg-[var(--color-bg)] [background-image:radial-gradient(ellipse_80%_50%_at_50%_-20%,color-mix(in_srgb,var(--study-accent)_7%,transparent),transparent)]">
+      <EngagementHeartbeat />
       <AppTopNav onMenuClick={openDrawer} />
       <AppMobileDrawer open={drawerOpen} onClose={closeDrawer} />
       <div

@@ -79,6 +79,10 @@ model User {
   sgBookmarks        SgBookmark[]
   sgNotes            SgNote[]
   sgReadingProgress  SgReadingProgress[]
+  sgChapterProgress  SgChapterProgress[]
+  quickBiteProgress  QuickBiteProgress[]
+  studyEngagementDaily StudyEngagementDaily[]
+  studyEngagementHeartbeatMeta StudyEngagementHeartbeatMeta?
   readinessChecks    ReadinessCheck[]
   examOutcomes       ExamOutcome[]
   examPassCheckIns   ExamPassCheckIn[]
@@ -1629,6 +1633,7 @@ model SgChapter {
   bookmarks  SgBookmark[]
   notes      SgNote[]
   progress   SgReadingProgress[]
+  chapterProgress SgChapterProgress[]
 
   @@unique([guideId, slug])
   @@index([guideId, sortOrder])
@@ -1802,6 +1807,67 @@ model SgReadingProgress {
   @@id([userId, guideId])
   @@index([userId, chapterId])
   @@map("sg_reading_progress")
+}
+
+/// Per-chapter study guide progress (scroll + verified reading time).
+model SgChapterProgress {
+  userId          String
+  chapterId       String
+  scrollPct       Float    @default(0)
+  verifiedSeconds Int      @default(0)
+  lastReadAt      DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chapter SgChapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@id([userId, chapterId])
+  @@index([userId, lastReadAt])
+  @@map("sg_chapter_progress")
+}
+
+/// Video Quick Bite watch progress (per user and episode slug).
+model QuickBiteProgress {
+  userId       String
+  slug         String
+  watchPct     Float     @default(0)
+  watchSeconds Int       @default(0)
+  completedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, slug])
+  @@index([userId, updatedAt])
+  @@map("quick_bite_progress")
+}
+
+/// Daily active seconds per study surface (US Central calendar date).
+model StudyEngagementDaily {
+  userId        String
+  date          DateTime @db.Date
+  surface       String
+  activeSeconds Int      @default(0)
+  updatedAt     DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, date, surface])
+  @@index([userId, date])
+  @@map("study_engagement_daily")
+}
+
+/// Last accepted engagement heartbeat (rate-limit + integrity).
+model StudyEngagementHeartbeatMeta {
+  userId              String    @id
+  lastAcceptedAt      DateTime?
+  ignoredTooFastCount Int       @default(0)
+  updatedAt           DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("study_engagement_heartbeat_meta")
 }
 
 /// Pilot import receipt. Not a question-bank row.

@@ -6,8 +6,11 @@ import { CustomerServiceTools } from "@/components/admin/CustomerServiceTools";
 import { displayFirstLastInitial } from "@/lib/display-name";
 import { getCachedSession } from "@/lib/auth/session";
 import { hasPermission } from "@/lib/permissions";
-import { computeAdminStudyCompletionBreakdown } from "@/lib/learning/study-completion/compute-study-completion";
+import { logAdminAction } from "@/lib/audit";
+import { loadAdminStudyProof } from "@/lib/engagement/admin-study-proof";
+import { AdminStudyProofPanel } from "@/components/admin/AdminStudyProofPanel";
 import { AdminStudyCompletionPanel } from "@/components/admin/AdminStudyCompletionPanel";
+import { computeAdminStudyCompletionBreakdown } from "@/lib/learning/study-completion/compute-study-completion";
 
 export const metadata = {
   title: "User Profile — Admin",
@@ -33,10 +36,21 @@ export default async function AdminUserProfilePage({ params }: Props) {
     );
   }
 
-  const [billing, studyCompletionBoards] = await Promise.all([
+  const canViewProof = hasPermission(session?.user?.role, "crm.view_users");
+  const [billing, studyCompletionBoards, studyProof] = await Promise.all([
     Promise.resolve(summarizeBillingCycle(profile.subscription)),
     computeAdminStudyCompletionBreakdown(userId),
+    canViewProof ? loadAdminStudyProof(userId) : Promise.resolve(null),
   ]);
+
+  if (canViewProof && session?.user?.id) {
+    void logAdminAction({
+      actorId: session.user.id,
+      action: "VIEW_STUDY_PROOF",
+      targetType: "user",
+      targetId: userId,
+    });
+  }
   const subscriptionLabel = `${billing.label} — ${billing.detail}`;
   const displayName = displayFirstLastInitial(profile.user.name, profile.user.email);
   const canManageStaff = hasPermission(session?.user?.role, "admin.actions");
@@ -68,6 +82,8 @@ export default async function AdminUserProfilePage({ params }: Props) {
         lastActiveAt={profile.user.lastActiveAt}
         activityTimeline={profile.activityTimeline ?? []}
       />
+
+      {studyProof ? <AdminStudyProofPanel proof={studyProof} userId={userId} /> : null}
 
       <AdminStudyCompletionPanel boards={studyCompletionBoards} />
 
