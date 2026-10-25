@@ -100,7 +100,11 @@ function applyFixes(track, episodeKey, quiz) {
 
   if (track === "fnp" && episodeKey === "ep15-bones-joints-nerves") {
     const item = q("ep15-bones-joints-nerves-q03");
-    if (item) item.stem = item.stem.replace(/Can not/g, "Cannot");
+    if (item) {
+      for (const option of item.options) {
+        option.text = option.text.replace(/Can not/g, "Cannot");
+      }
+    }
   }
 
   if (track === "fnp" && episodeKey === "ep17-mens-kidney") {
