@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { rafThrottle } from "@/lib/client/scroll-listener";
 
 type HomeFeatureCarouselShellProps = {
   trackId: string;
@@ -91,11 +92,12 @@ export function HomeFeatureCarouselShell({
       }
     }
 
-    track.addEventListener("scroll", updateCentered, { passive: true });
+    const onScroll = rafThrottle(updateCentered);
+    track.addEventListener("scroll", onScroll, { passive: true });
     updateCentered();
 
     return () => {
-      track.removeEventListener("scroll", updateCentered);
+      track.removeEventListener("scroll", onScroll);
       observer?.disconnect();
     };
   }, [slideCount, syncSlideRefs]);
