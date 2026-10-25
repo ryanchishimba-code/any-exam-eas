@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import { boardQuestionUnits, formatBoardQuestionSentence } from "@/lib/counts";
 import { getScoredFieldInventory } from "@/lib/inventory/scored-field-inventory";
-import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
+import {
+  countActiveQuestionBankItemsByBlueprintTopics,
+  getSubjectServedCountsWithRetry,
+} from "@/lib/question-bank-db";
+import { nclexBlueprintTopicsForCount } from "@/lib/study/topic-practice-filters";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
 import { ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL } from "@/lib/inventory/active-inventory-cache";
 import { CACHE_TTL, CACHE_STALE } from "@/lib/cache";
@@ -22,16 +26,32 @@ export async function GET(req: Request) {
   const premium = await requirePremiumApi();
   if (!premium.ok) return premium.response;
 
-  const field = new URL(req.url).searchParams.get("field");
+  const url = new URL(req.url);
+  const field = url.searchParams.get("field");
   if (!field) {
     return NextResponse.json({ error: "Missing field" }, { status: 400 });
   }
+  const blueprintTopicsParam = url.searchParams.get("blueprintTopics")?.trim();
+  const blueprintTopics = blueprintTopicsParam
+    ? blueprintTopicsParam
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean)
+    : undefined;
 
   const { resolveQuestionBankReadAccess } = await import("@/lib/edtech/question-bank-scope");
   const access = await resolveQuestionBankReadAccess(premium.userId, field);
   if (!access.ok) return access.response;
 
   const fieldId = access.fieldId;
+
+  let topicPracticePoolCount: number | undefined;
+  if (blueprintTopics?.length && fieldId === "nursing") {
+    topicPracticePoolCount = await countActiveQuestionBankItemsByBlueprintTopics({
+      fieldId,
+      blueprintTopics: nclexBlueprintTopicsForCount(blueprintTopics),
+    });
+  }
 
   try {
     const fromInventory = await getScoredFieldInventory(fieldId);
@@ -62,6 +82,9 @@ export async function GET(req: Request) {
           caseStudies: scored.clinical.caseStudies,
           caseItems: scored.clinical.caseItems,
           standaloneNgn: scored.clinical.standaloneNgn,
+          ...(topicPracticePoolCount != null
+            ? { topicPracticePoolCount }
+            : {}),
         },
         {
           headers: { "Cache-Control": ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL },
@@ -92,6 +115,7 @@ export async function GET(req: Request) {
       caseStudies: 0,
       caseItems: 0,
       standaloneNgn: 0,
+      ...(topicPracticePoolCount != null ? { topicPracticePoolCount } : {}),
     });
   } catch (error) {
     const dbResponse = respondDbUnavailable(error);

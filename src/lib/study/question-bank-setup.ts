@@ -256,6 +256,7 @@ export function questionBankStyleFromSources(params: {
   persistedFormat?: string | null;
   subjectId?: string | null;
   blueprintArea?: boolean;
+  topicPracticeLaunch?: boolean;
   /** Used when the URL and saved setup name no style. The chip defaults to Adaptive. */
   fallbackStyle?: QuestionBankStyle;
 }): QuestionBankStyle {
@@ -264,6 +265,7 @@ export function questionBankStyleFromSources(params: {
     formatParam: params.formatParam,
     persistedStyle: params.persistedStyle,
     persistedFormat: params.persistedFormat,
+    topicPracticeLaunch: params.topicPracticeLaunch,
   });
   const requested = resolved.style ?? params.fallbackStyle ?? "adaptive";
   return effectiveQuestionBankStyle(requested, {
@@ -348,6 +350,8 @@ export function validateQuestionBankSession(params: {
   subjectCounts: Record<string, number> | null | undefined;
   bankStyle: QuestionBankStyle;
   taskCategory?: string | null;
+  /** Study Hub / anatomy blueprint links may start with fewer than the launcher count. */
+  allowPartialTopicPractice?: boolean;
 }): QuestionBankSessionValidation {
   const { subjectId, questionCount, subjectCounts, bankStyle, taskCategory } = params;
 
@@ -410,6 +414,14 @@ export function validateQuestionBankSession(params: {
 
   // Closed-loop retests (5 / 10 / 25) — allow when the topic pool can fill them.
   if (isRetestSessionCount(count) && maxAvailable >= count) {
+    return { ok: true, maxAvailable };
+  }
+  if (
+    params.allowPartialTopicPractice &&
+    isRetestSessionCount(count) &&
+    maxAvailable > 0 &&
+    maxAvailable < count
+  ) {
     return { ok: true, maxAvailable };
   }
 
@@ -532,9 +544,28 @@ export function resolveQuestionBankStyleAndFormat(params: {
   formatParam: string | null | undefined;
   persistedStyle?: string | null;
   persistedFormat?: string | null;
+  /** Anatomy / Study Hub links — never inherit a remembered NGN/case format. */
+  topicPracticeLaunch?: boolean;
 }): { style: QuestionBankStyle | null; format: PracticeFormatMode | null } {
   if (isLockedBankLaunchStyle(params.styleParam)) {
     return { style: params.styleParam, format: "all" };
+  }
+
+  if (params.styleParam === "standard") {
+    const style = parseQuestionBankStyle("standard");
+    const format = params.formatParam
+      ? parsePracticeFormat(params.formatParam)
+      : "all";
+    return { style, format };
+  }
+
+  if (params.topicPracticeLaunch && !params.formatParam) {
+    const style = params.styleParam
+      ? parseQuestionBankStyle(params.styleParam)
+      : params.persistedStyle
+        ? parseQuestionBankStyle(params.persistedStyle)
+        : null;
+    return { style, format: "all" };
   }
 
   const style = params.styleParam
@@ -607,11 +638,13 @@ export function studyModeForQuestionBankLaunch(params: {
  */
 export function deliberateFormatForLaunch(
   style: QuestionBankStyle,
-  format: PracticeFormatMode
+  format: PracticeFormatMode,
+  opts?: { topicPracticeLaunch?: boolean }
 ): "ngn" | "case" | null {
   // Remediation deep links build their own set. A lagging NGN/case format must
   // not turn them into a Standard format fetch.
   if (style === "weak_areas" || style === "review_incorrect" || style === "daily_set") return null;
+  if (opts?.topicPracticeLaunch) return null;
   if (format === "ngn" || format === "case") return format;
   return null;
 }

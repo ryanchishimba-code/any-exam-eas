@@ -1074,3 +1074,26 @@ export async function sampleQuestionBankItemsByBlueprintTopics(params: {
   const rows = await sampleQuestionBankRows({ where, pull, total });
   return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
 }
+
+/** Serve-ready rows tagged with any of the blueprint topic matchers (tag-only). */
+export async function countActiveQuestionBankItemsByBlueprintTopics(params: {
+  fieldId: string;
+  blueprintTopics: string[];
+}): Promise<number> {
+  const topics = params.blueprintTopics.map((t) => t.trim()).filter(Boolean);
+  if (topics.length === 0) return 0;
+
+  const { ineligibleServedIds } = await import("@/lib/exam-prep/student-eligibility");
+  const blocked = await ineligibleServedIds(params.fieldId);
+
+  return prisma.questionBankItem.count({
+    where: {
+      fieldId: params.fieldId,
+      active: true as const,
+      qaPassed: true as const,
+      blueprintTopic: { in: topics },
+      ...usmleStepSeparationWhere(params.fieldId),
+      ...(blocked.length > 0 ? { id: { notIn: blocked } } : {}),
+    },
+  });
+}

@@ -212,7 +212,28 @@ export async function GET(req: Request) {
     ? parseDeliberatePracticeFormat(searchParams.get("format"))
     : null;
 
-  if (formatBucket && questionBank && !timedExam && !blueprintAreaId && (mixed || subjectId)) {
+  const topicPracticeLaunch =
+    questionBank &&
+    !timedExam &&
+    Boolean(
+      blueprintTopics?.length ||
+        naplexTopic ||
+        usmleTopic ||
+        panceTopic ||
+        aanpFnpTopic ||
+        nptePtTopic ||
+        nclexPresetConfig ||
+        aanpFnpPresetConfig
+    );
+
+  if (
+    formatBucket &&
+    questionBank &&
+    !timedExam &&
+    !topicPracticeLaunch &&
+    !blueprintAreaId &&
+    (mixed || subjectId)
+  ) {
     const { tryClinicalSessionResponse } = await import("@/lib/assessment/clinical-session-response");
     const clinical = await tryClinicalSessionResponse({
       field,
@@ -320,7 +341,7 @@ export async function GET(req: Request) {
       };
     }
 
-    if (formatBucket && questionBank && !timedExam) {
+    if (formatBucket && questionBank && !timedExam && !topicPracticeLaunch) {
       return {
         kind: "ok" as const,
         items: await sampleActiveItemsByFormat({
@@ -649,7 +670,10 @@ export async function GET(req: Request) {
       ? MIXED_SUBJECT_ID
       : subjectId!;
 
-  if (bankPractice && items.length < limit) {
+  const sessionLimit =
+    topicPracticeLaunch && items.length > 0 && items.length < limit ? items.length : limit;
+
+  if (bankPractice && items.length < limit && !topicPracticeLaunch) {
     const formatNoun =
       formatBucket === "case" ? "case" : formatBucket === "ngn" ? (fieldId === "nursing" ? "NGN" : "NGN-style") : null;
     return NextResponse.json(
@@ -734,14 +758,22 @@ export async function GET(req: Request) {
         );
       }
     } else {
-      const finalized = finalizeExamSessionQuestions(rawInputs, limit, {
+      const finalized = finalizeExamSessionQuestions(rawInputs, sessionLimit, {
         fieldId,
         topicPractice,
       });
       prepared = finalized.prepared;
       sessionQuality = finalized.quality;
     }
-    assertExamSessionReady(sessionQuality, fieldId);
+    if (
+      topicPracticeLaunch &&
+      sessionQuality.returned > 0 &&
+      sessionQuality.returned < limit
+    ) {
+      // Topic practice may return fewer than the launcher count when the pool is small.
+    } else {
+      assertExamSessionReady(sessionQuality, fieldId);
+    }
   } catch (e) {
     const message =
       e instanceof Error ? e.message : "Could not build exam session at the requested length";
@@ -760,13 +792,17 @@ export async function GET(req: Request) {
   }
 
   if (prepared.length !== limit) {
-    return NextResponse.json(
-      {
-        error: `Not enough ${fieldId} questions available (${prepared.length}/${limit}). Try a shorter exam length.`,
-        code: timedExam ? "EXAM_SESSION_UNAVAILABLE" : "SESSION_UNAVAILABLE",
-      },
-      { status: 503 }
-    );
+    if (topicPracticeLaunch && prepared.length > 0) {
+      // Served a shorter topic-practice session.
+    } else {
+      return NextResponse.json(
+        {
+          error: `Not enough ${fieldId} questions available (${prepared.length}/${limit}). Try a shorter exam length.`,
+          code: timedExam ? "EXAM_SESSION_UNAVAILABLE" : "SESSION_UNAVAILABLE",
+        },
+        { status: 503 }
+      );
+    }
   }
 
   const delivered = sealStudentFacingIds(

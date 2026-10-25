@@ -6,6 +6,7 @@ import {
   type QuestionFormatBucket,
 } from "@/lib/inventory/question-format";
 import type { QuestionBankStyle } from "@/lib/exam/modes";
+import { appendTopicPracticeFiltersToQuery } from "@/lib/study/topic-practice-query";
 
 /** Deliberate Qbank format. "all" keeps the existing topic session. */
 export type PracticeFormatMode = "all" | QuestionFormatBucket;
@@ -171,14 +172,17 @@ export function practiceFormatScopeCounts(params: {
  * Mixed sends subjectId=__mixed__ so the API samples the field. It does not
  * send scope=field — question-bank mode rejects that parameter.
  */
-export function buildDeliberateFormatQuestionQuery(params: {
-  fieldId: string;
-  subjectId: string | null | undefined;
-  format: DeliberatePracticeFormat;
-  limit: number;
-}): URLSearchParams | null {
+export function buildDeliberateFormatQuestionQuery(
+  params: {
+    fieldId: string;
+    subjectId: string | null | undefined;
+    format: DeliberatePracticeFormat;
+    limit: number;
+  },
+  topicFilters?: Pick<URLSearchParams, "get">
+): URLSearchParams | null {
   if (!isPracticeFormatSubject(params.subjectId)) return null;
-  return new URLSearchParams({
+  const qs = new URLSearchParams({
     field: params.fieldId,
     subjectId: params.subjectId!.trim(),
     limit: String(params.limit),
@@ -186,6 +190,10 @@ export function buildDeliberateFormatQuestionQuery(params: {
     format: params.format,
     meta: "0",
   });
+  if (topicFilters) {
+    appendTopicPracticeFiltersToQuery(qs, topicFilters);
+  }
+  return qs;
 }
 
 export type PracticeFormatValidation = {
