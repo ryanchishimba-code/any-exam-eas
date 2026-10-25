@@ -87,9 +87,9 @@ export const CROSS_EXAM_COMPARISON: CrossExamComparisonRow[] = [
     duration: "3 hours",
     format: "Single-best-answer primary care vignettes",
     primaryFocus: "Primary care across lifespan — assess, diagnose, plan, evaluate",
-    blueprintAxis: "AANPCB cognitive domains + 12 body-system modules",
+    blueprintAxis: "NPCB cognitive domains + 12 body-system modules",
     keyDifferentiator: "Outpatient primary care; pediatrics & geriatrics emphasis",
-    officialBoard: "AANPCB",
+    officialBoard: "NPCB",
   },
   {
     id: "npte-pt",

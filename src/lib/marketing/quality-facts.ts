@@ -42,7 +42,7 @@ export const OFFICIAL_TEST_PLANS = [
     board: "AANP FNP",
     detail: AANP_FNP_BLUEPRINT_SOURCE,
     href: "https://www.aanpcert.org/certs/fnp",
-    linkLabel: "AANPCB FNP content outline",
+    linkLabel: "NPCB FNP content outline",
   },
   {
     board: "PANCE",

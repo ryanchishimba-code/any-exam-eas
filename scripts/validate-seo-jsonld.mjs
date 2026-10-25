@@ -23,9 +23,9 @@ async function main() {
       { label: "/pricing", data: builders.buildPricingJsonLd() },
       { label: "/nclex", data: builders.buildExamJsonLd("nclex") },
       {
-        label: "/resources/uworld-alternative-multi-exam-prep-2026",
+        label: "/resources/multi-exam-board-prep-2026",
         data: builders.buildArticleJsonLd(
-          getResourceArticle("uworld-alternative-multi-exam-prep-2026")
+          getResourceArticle("multi-exam-board-prep-2026")
         ),
       },
       { label: "/ (home)", data: seo.buildHomeJsonLd() },
@@ -44,7 +44,7 @@ async function main() {
       const required = {
         "/pricing": ["BreadcrumbList", "Product", "FAQPage"],
         "/nclex": ["BreadcrumbList", "Course", "FAQPage", "HowTo"],
-        "/resources/uworld-alternative-multi-exam-prep-2026": ["BreadcrumbList", "Article"],
+        "/resources/multi-exam-board-prep-2026": ["BreadcrumbList", "Article", "FAQPage"],
         "/ (home)": ["Organization", "WebSite", "SoftwareApplication", "Product", "HowTo"],
       };
       for (const t of required[label] ?? []) {

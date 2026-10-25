@@ -1,6 +1,6 @@
 # Chapter 13 — ENT / Eyes / Heme / ID
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current IDSA/AAO-HNS/ophthalmology-aligned and related guidance, USPSTF/ACIP themes, FDA labeling, and the AANPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current IDSA/AAO-HNS/ophthalmology-aligned and related guidance, USPSTF/ACIP themes, FDA labeling, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
 
 ![Anemia workup tree](visuals/anemia-workup-tree.jpg)
 
@@ -42,8 +42,8 @@ Expect stems on acute bacterial rhinosinusitis criteria, GAS pharyngitis testing
 | Domain I process | What it looks like in these stems |
 | --- | --- |
 | **Assess (32%)** | Duration/pattern of URI, Centor features, otoscopic exam, visual acuity, photophobia, contact-lens use, pallor/bleeding, sexual history, travel/exposures, vaccination, pregnancy, SDoH (can they fill antivirals / return for labs?) |
-| **Diagnose (26.5%)** | Viral vs bacterial sinusitis; GAS vs viral vs mono; AOM vs OME; infectious vs urgent red eye; micro/normo/macrocytic anemia lanes; cystitis vs pyelo; mono vs strep overlap |
-| **Plan (26.5%)** | Watchful waiting vs treat; test-before-treat when indicated; first-line abx stewardship; urgent ophtho/ED; anemia workup cascade; offer HIV/hep screening; antivirals when timing/risk fit |
+| **Diagnose (27%)** | Viral vs bacterial sinusitis; GAS vs viral vs mono; AOM vs OME; infectious vs urgent red eye; micro/normo/macrocytic anemia lanes; cystitis vs pyelo; mono vs strep overlap |
+| **Plan (27%)** | Watchful waiting vs treat; test-before-treat when indicated; first-line abx stewardship; urgent ophtho/ED; anemia workup cascade; offer HIV/hep screening; antivirals when timing/risk fit |
 | **Evaluate (15%)** | Symptom failure at 48–72h; Hb/ferritin follow-up; STI partner treatment; TB test interpretation next steps; vaccine adverse-event counseling |
 
 **Red-flag filter first:** sudden vision loss, severe eye pain with halos/vomiting, proptosis/ophthalmoplegia, stridor/drooling, neck stiffness with fever, petechial rash with toxicity, severe anemia symptoms, pyelo in pregnancy, neonatal fever → disposition before clever outpatient scripts.
@@ -396,7 +396,7 @@ Don’t miss bacterial pneumonia, PE, HF, or ACS hiding under “viral” labels
 - Domain II: YA* owns STI/mono/prenatal infection; Older Adult owns atypical infection and anemia-source hunts.
 - Stewardship is Plan — not optional flavor text.
 - Teaching regimens change — verify guidelines and labels.
-- Independent study aid — not AANPCB/AANP; no pass guarantee.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 **Next practice move:** Drill sinusitis, Centor/GAS, mono, AOM, red-eye emergencies, anemia, UTI/ASB, HIV/hep screening, and flu/COVID items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
@@ -454,7 +454,7 @@ A. Hydration  B. Empiric aminopenicillin for “just in case strep” when mono 
 
 > **TRAP** — Skipping Evaluate (ophtho kept appointment, endoscopy done, HIV result disclosed with linkage).
 
-> **TRAP** — Using ANCC weights while sitting AANPCB (or the reverse).
+> **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
 
 ---
 

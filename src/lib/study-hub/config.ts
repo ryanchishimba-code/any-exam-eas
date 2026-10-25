@@ -24,7 +24,7 @@ const HUB_DESCRIPTIONS: Record<(typeof EXAM_SLUGS)[number], string> = {
   usmle: "Clinical vignettes with mechanism-first rationales.",
   naplex: "Pharmacy calculations, cases, and pharmacotherapy.",
   pance: "Physician assistant clinical vignettes — NCCPA 2026 blueprint across 14 knowledge areas and 8 task areas.",
-  "aanp-fnp": "Family nurse practitioner vignettes — AANPCB Assess, Diagnose, Plan, Evaluate across the lifespan.",
+  "aanp-fnp": "Family nurse practitioner vignettes — NPCB Assess, Diagnose, Plan, Evaluate across the lifespan.",
   "npte-pt": "Physical therapy clinical scenarios — FSBPT musculoskeletal, neuromuscular, cardiopulmonary, and practice systems.",
 };
 

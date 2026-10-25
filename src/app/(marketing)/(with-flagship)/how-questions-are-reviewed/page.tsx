@@ -101,7 +101,7 @@ export default async function HowQuestionsAreReviewedPage() {
           <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
             Timed practice forms pull student-eligible items into the official category weights:
             NCSBN Client Needs for NCLEX-RN, NABP domain weights for NAPLEX, NBME and FSMB
-            organ-system ranges for USMLE, AANPCB domain and age-group weights for AANP FNP, the
+            organ-system ranges for USMLE, NPCB domain and age-group weights for AANP FNP, the
             NCCPA blueprint for PANCE, and the FSBPT outline for NPTE-PT. A form that cannot fill
             those weights is not padded with a made-up mix.
           </p>

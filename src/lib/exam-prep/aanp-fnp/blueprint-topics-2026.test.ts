@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   AANP_FNP_2026_TOPIC_GROUPS,
   AANP_FNP_CLINICAL_SYSTEM_IDS,
-  AANP_FNP_CONTENT_CATEGORIES,
-  AANP_FNP_LIFESPAN_BANDS,
+  AANP_FNP_OFFICIAL_AGE_ROWS,
+  AANP_FNP_OFFICIAL_DOMAIN_ROWS,
   allAanpFnp2026TopicSlugs,
   pickAanpFnp2026BlueprintTopic,
   pickAanpFnp2026ClinicalSystem,
@@ -17,13 +17,13 @@ describe("AANP FNP 2026 topic catalog", () => {
     expect(cv?.topics.length).toBeGreaterThanOrEqual(6);
   });
 
-  it("content category weights sum to 1", () => {
-    const sum = AANP_FNP_CONTENT_CATEGORIES.reduce((acc, c) => acc + c.weight, 0);
+  it("official NPCB domain weights sum to 1", () => {
+    const sum = AANP_FNP_OFFICIAL_DOMAIN_ROWS.reduce((acc, c) => acc + c.weight, 0);
     expect(sum).toBeCloseTo(1, 2);
   });
 
-  it("lifespan band weights sum to 1", () => {
-    const sum = AANP_FNP_LIFESPAN_BANDS.reduce((acc, b) => acc + b.weight, 0);
+  it("official NPCB age-group weights sum to 1", () => {
+    const sum = AANP_FNP_OFFICIAL_AGE_ROWS.reduce((acc, b) => acc + b.weight, 0);
     expect(sum).toBeCloseTo(1, 2);
   });
 

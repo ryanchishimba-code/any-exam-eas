@@ -7,7 +7,7 @@ const OUT_FNP = path.join(process.cwd(), "src/lib/quick-bites/quizzes-fnp");
 const OUT_PANCE = path.join(process.cwd(), "src/lib/quick-bites/quizzes-pance");
 
 const BLUEPRINT =
-  "On the AANPCB FNP exam blueprint (current edition)";
+  "On the NPCB FNP exam blueprint (current edition)";
 
 function vttDuration(slug) {
   const vtt = readFileSync(path.join(VTT_DIR, `${slug}.vtt`), "utf8");

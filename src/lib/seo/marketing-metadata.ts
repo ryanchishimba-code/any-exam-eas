@@ -363,6 +363,18 @@ export function buildArticleJsonLd(article: ResourceArticle) {
         inLanguage: "en-US",
         keywords: dedupeKeywords(article.keywords).join(", "),
       },
+      ...(article.faq?.length
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: article.faq.map((item) => ({
+                "@type": "Question",
+                name: item.question,
+                acceptedAnswer: { "@type": "Answer", text: item.answer },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 }

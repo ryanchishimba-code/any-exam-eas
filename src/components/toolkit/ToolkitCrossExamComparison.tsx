@@ -87,7 +87,7 @@ export function ToolkitCrossExamComparison() {
         </div>
 
         <p className="mt-6 text-center text-xs text-[var(--color-ink-muted)]">
-          Blueprint axes: organ systems, client needs, NABP domains, NCCPA task areas, AANPCB
+          Blueprint axes: organ systems, client needs, NABP domains, NCCPA task areas, NPCB
           cognitive domains, and FSBPT body systems — each exam has dedicated roadmap tracking.
         </p>
 

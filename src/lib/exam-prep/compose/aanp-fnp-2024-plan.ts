@@ -13,7 +13,7 @@ import {
 /**
  * AANP FNP practice forms.
  *
- * Source: AANPCB FNP Content Outline (2024+ blueprint),
+ * Source: NPCB FNP Content Outline (2024+ blueprint),
  * https://www.aanpcert.org/certs/fnp — domain and age-group weights in
  * `AANP_FNP_BLUEPRINT_SOURCE`. Both axes sum to 100% and are fill quotas.
  * The weights are points, not published ranges. Each quota is the rounded

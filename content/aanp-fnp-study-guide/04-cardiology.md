@@ -1,6 +1,6 @@
 # Chapter 4 — Cardiology
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current ACC/AHA-aligned and related guidance, FDA labeling, and the AANPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current ACC/AHA-aligned and related guidance, FDA labeling, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
 
 ![HTN cascade](visuals/htn-cascade.jpg)
 
@@ -30,7 +30,7 @@
 
 ## Why this chapter matters
 
-Cardiology is the backbone of outpatient adult primary care — and it sits squarely where AANPCB puts the most Domain II weight: **Middle Adult 26%** and **Older Adult 30%**, with **Young Adult\* 22%** (including prenatal hypertensive disorders themes). Domain I still grades every item by process: Did you **Assess** BP correctly and catch instability? **Diagnose** urgency vs emergency and the right differential lane? **Plan** lifestyle + compelling-indication therapy? **Evaluate** labs, home readings, and adherence?
+Cardiology is the backbone of outpatient adult primary care — and it sits squarely where NPCB puts the most Domain II weight: **Middle Adult 26%** and **Older Adult 30%**, with **Young Adult\* 22%** (including prenatal hypertensive disorders themes). Domain I still grades every item by process: Did you **Assess** BP correctly and catch instability? **Diagnose** urgency vs emergency and the right differential lane? **Plan** lifestyle + compelling-indication therapy? **Evaluate** labs, home readings, and adherence?
 
 Expect stems on hypertension cascades, statin risk conversations, chest-pain triage, heart-failure congestion vs perfusion, atrial fibrillation rate-vs-anticoagulation decisions, and syncope red flags. Candidates who memorize drug lists without ADPE lose easy points; candidates who send unstable patients home with “trial of PPI” lose dangerous ones.
 
@@ -43,8 +43,8 @@ Expect stems on hypertension cascades, statin risk conversations, chest-pain tri
 | Domain I process | What it looks like in cardio stems |
 | --- | --- |
 | **Assess (32%)** | BP technique, orthostatics, volume exam, murmur timing, pulse deficit, edema, home logs, med/NSAID/stimulant history, pregnancy status, SDoH (can they afford DOAC?), fall risk on anticoag |
-| **Diagnose (26.5%)** | HTN stage/resistant/secondary cues; ACS vs PE vs dissection vs MSK; HFrEF vs HFpEF suspicion; AF vs SVT themes; urgency vs emergency |
-| **Plan (26.5%)** | Lifestyle + first-line classes; statin intensity themes; ED vs outpatient; anticoagulation shared decision; teach nitro/weights/bleed precautions |
+| **Diagnose (27%)** | HTN stage/resistant/secondary cues; ACS vs PE vs dissection vs MSK; HFrEF vs HFpEF suspicion; AF vs SVT themes; urgency vs emergency |
+| **Plan (27%)** | Lifestyle + first-line classes; statin intensity themes; ED vs outpatient; anticoagulation shared decision; teach nitro/weights/bleed precautions |
 | **Evaluate (15%)** | K/Cr after ACEI/ARB/MRA; BP response; statin tolerance after interaction check; weight trajectory in HF; DOAC adherence/refills; when to revise diagnosis |
 
 **Red-flag filter first:** hypoxia, hypotension, ongoing ischemic pain, neuro deficit, tearing severe chest/back pain, syncope with exertional or cardiac features → disposition before clever outpatient titration.
@@ -388,7 +388,7 @@ Claudication, pulse deficits, wound healing issues; high-intensity statin themes
 - Domain II reality: most cardio stems live in middle/older adult — atypical ACS is still ACS.  
 - ADPE order: stability and can’t-miss differentials before clever titration.  
 - Teaching doses/intervals change — verify guidelines and labels.  
-- Independent study aid — not AANPCB/AANP; no pass guarantee.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 **Next practice move:** Drill HTN, lipids, chest pain triage, HF, and AF items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
@@ -493,7 +493,7 @@ A. Yes, always  B. No — anticoagulation decision follows stroke-risk/indicatio
 
 > **TRAP** — Skipping Evaluate (monitoring/follow-up) because the prescription felt complete.
 
-> **TRAP** — Using ANCC weights while sitting AANPCB (or the reverse).
+> **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
 
 
 ---

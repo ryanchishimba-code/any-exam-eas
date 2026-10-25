@@ -21,7 +21,15 @@ Endocrine stems reward **regimen design**, hypo prevention, device counseling, s
 ### Key concepts
 
 - Lifestyle + metformin foundation for many (if tolerated/eGFR allows).  
-- Add agents by comorbidity: **ASCVD/HF/CKD → SGLT2 and/or GLP-1 RA themes** independent of A1C in modern algorithms (confirm current ADA Standards).  
+- **Metformin and kidney function — AnyExamEasy dosing rule (based on FDA labeling and KDIGO); verify current label:**
+
+| eGFR (mL/min/1.73 m²) | Metformin use |
+| --- | --- |
+| **≥45** | Full dose when otherwise appropriate |
+| **30–44** | Do **not** start; if already on metformin, **halve the dose** (maximum **1,000 mg/day**) |
+| **&lt;30** | **Discontinue** |
+
+- Add agents by comorbidity: **ASCVD/HF/CKD → SGLT2 and/or GLP-1 RA themes** independent of A1C in modern algorithms (confirm current ADA Standards and FDA labeling).  
 - Avoid therapeutic inertia; also avoid stacking hypo-prone agents carelessly.  
 - Injection technique and storage for GLP-1 RAs / insulin.  
 - Weight, cost, hypoglycemia risk, and patient preference still matter.

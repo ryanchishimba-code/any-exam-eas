@@ -4,6 +4,7 @@ import {
   seoTrialHeading,
   seoTrialResourceParagraph,
 } from "@/lib/seo/trial-copy";
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { SEO_LIVE_STATS, SEO_VALUE_PROPS } from "@/lib/seo/seo-copy";
 import { formatMonthlyPrice } from "@/lib/site";
 import { clampMetaDescription, clampMetaTitle } from "@/lib/seo/meta-budget";
@@ -40,81 +41,69 @@ function article(
   };
 }
 
-/** SEO articles targeting UWorld alternative, Roadmap/Full Exams/Deep Dives, and long-tail queries. */
+/** SEO resource articles — multi-exam prep, Roadmap/Full Exams/Deep Dives, and long-tail queries. */
 export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   article({
-    slug: "uworld-alternative-multi-exam-prep-2026",
-    title: "A UWorld Alternative for Multi-Exam Prep (2026)",
-    metaDescription: `Compare AnyExamEasy vs UWorld for NCLEX, USMLE and NAPLEX — one Pro plan from ${formatMonthlyPrice("pro")}/mo with Roadmap, Deep Dives and Full Exams.`,
-    examTags: ["nclex", "usmle", "naplex"],
+    slug: "multi-exam-board-prep-2026",
+    title: "Multi-Exam Board Prep in One Subscription (2026)",
+    metaDescription: `One Pro plan at ${formatMonthlyPrice("pro")}/mo for unlimited access, Deep Dives, and Full Exams across NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE-PT. ${TRIAL_DAYS}-day free trial: ${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment required.`,
+    examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
     keywords: [
-      "UWorld alternative",
-      "UWorld alternative 2026",
-      "affordable multi-exam prep",
-      "affordable board exam Qbank",
+      "multi-exam board prep",
+      "six board exams one subscription",
+      "affordable board exam prep",
       "Roadmap board prep",
+      "NCLEX USMLE NAPLEX one plan",
     ],
-    readingMinutes: 9,
+    readingMinutes: 6,
     intro:
-      "Stacking separate UWorld subscriptions for NCLEX, USMLE, and NAPLEX can exceed $1,000/year. A multi-exam platform with QA-gated questions, Roadmap, Deep Dives, and Full Exam simulations changes the cost equation.",
+      `If you are preparing for more than one licensing exam, separate per-exam subscriptions add cost and context switching. AnyExamEasy keeps NCLEX, USMLE (Steps 1–3), NAPLEX, PANCE, AANP FNP, and NPTE-PT on one Pro plan with a shared study system. Start with a ${TRIAL_DAYS}-day free trial (${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment required), then upgrade to Pro for unlimited bank access.`,
+    faq: [
+      {
+        question: "Which board exams are included on one Pro subscription?",
+        answer:
+          "NCLEX, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT — each with its own question bank, Roadmap, and blueprint-aligned practice tools on the same account.",
+      },
+      {
+        question: "How much does Pro cost after the trial?",
+        answer: `Pro is ${formatMonthlyPrice("pro")}/month on the monthly plan (see pricing for other billing intervals). Subscribe after your ${TRIAL_DAYS}-day trial when you want unlimited question-bank access, Deep Dive modules, and Full Exam simulations.`,
+      },
+      {
+        question: "What is included in the free trial?",
+        answer: `${TRIAL_DAYS} days with ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmap and reference tools. No payment method required at signup. The trial is a capped sample — not the full live banks. Deep Dives and Full Exam simulations unlock on Pro.`,
+      },
+      {
+        question: "How should I study across multiple exams?",
+        answer:
+          "Pick one primary exam in the Roadmap, run timed practice, open Deep Dive modules on missed topics, and use Full Exam simulations to rehearse pacing. Switch boards anytime without a second checkout.",
+      },
+    ],
     sections: [
       {
-        heading: "Why students search for a UWorld alternative",
+        heading: "Six boards, one study system",
         paragraphs: [
-          "UWorld remains a gold-standard reference, but per-exam pricing adds up fast when you need nursing, medical, and pharmacy prep in the same study window.",
-          "Multi-track students — RN-to-MD pipelines, dual-degree programs, or clinicians adding certifications — benefit most from one integrated Qbank with a single study system.",
+          SEO_VALUE_PROPS.multiExam,
+          "Use the same workflow everywhere: practice questions with teachable rationales, a blueprint-aligned Roadmap, Deep Dive review on misses, and timed Full Exam blocks when you are ready to rehearse test day.",
         ],
       },
       {
-        heading: "AnyExamEasy vs typical per-exam QBanks",
-        paragraphs: [
-          "The table below summarizes how a unified platform compares on features students care about for 2026 board prep.",
-        ],
-        comparisonRows: [
-          {
-            feature: "Exams included",
-            anyExamEasy: "NCLEX, USMLE (Steps 1–3), NAPLEX, PANCE, AANP FNP, NPTE-PT",
-            typicalQbank: "One exam per subscription",
-          },
-          {
-            feature: "Question volume",
-            anyExamEasy: "QA-gated questions across six boards",
-            typicalQbank: "Varies; often 2,000–4,000 per exam",
-          },
-          {
-            feature: "Adaptive study path",
-            anyExamEasy: "Roadmap per exam",
-            typicalQbank: "Performance stats; limited roadmap",
-          },
-          {
-            feature: "Miss review",
-            anyExamEasy: "Deep Dive modules from missed questions",
-            typicalQbank: "See each product's explanations",
-          },
-          {
-            feature: "Exam-day rehearsal",
-            anyExamEasy: "Timed Full Exam simulations + weak-area focus",
-            typicalQbank: "Mocks vary; often add-on",
-          },
-          {
-            feature: "Free trial",
-            anyExamEasy: `${SEO_LIVE_STATS.trialDays}-day free trial · no payment method required`,
-            typicalQbank: "See each vendor's current trial terms",
-          },
-        ],
-      },
-      {
-        heading: "Study system: Roadmap → Deep Dive → Full Exam",
+        heading: "What you get on Pro",
         bullets: [
+          "Unlimited access to the live question banks on all six boards (trial is capped at " +
+            `${TRIAL_LIFETIME_QUESTIONS} practice questions).`,
+          SEO_VALUE_PROPS.qaGated,
           SEO_VALUE_PROPS.adaptiveRoadmap,
           SEO_VALUE_PROPS.deepDives,
           SEO_VALUE_PROPS.fullExam,
-          "One Pro checkout covers all six boards — no stacking renewals.",
+          "Library, Memory Cards, lab values, and clinical calculators across boards.",
+          `One monthly price — ${formatMonthlyPrice("pro")}/mo on the monthly plan.`,
         ],
       },
       {
         heading: seoTrialHeading(),
-        paragraphs: [seoSixBoardTrialParagraph()],
+        paragraphs: [
+          `No payment method required at signup. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across every board track, plus Roadmap and reference tools. Upgrade to Pro when you want unlimited bank access, Deep Dives, and Full Exam simulations.`,
+        ],
       },
     ],
   }),

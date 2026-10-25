@@ -1,12 +1,12 @@
 import type { SubjectArea } from "../types";
 
-/** AANPCB FNP blueprint domains + high-yield clinical systems (2024+ test plan). */
+/** NPCB FNP blueprint domains + high-yield clinical systems (2024+ test plan). */
 export const AANP_FNP_SUBJECTS: SubjectArea[] = [
   {
     id: "assess",
     label: "Assess",
     contentArea: "AANP FNP — Domain I: Assess (32%)",
-    textbookRefs: "Open RN Assessment, AANPCB FNP Content Outline",
+    textbookRefs: "Open RN Assessment, NPCB FNP Content Outline",
     examHints:
       "history, ROS, physical exam, screening, diagnostic test selection, lifespan assessment",
     keywords: ["assessment", "history", "physical exam", "screening", "diagnostics"],
@@ -15,8 +15,8 @@ export const AANP_FNP_SUBJECTS: SubjectArea[] = [
   {
     id: "diagnose",
     label: "Diagnose",
-    contentArea: "AANP FNP — Domain II: Diagnose (26.5%)",
-    textbookRefs: "AANPCB FNP Content Outline, clinical reasoning",
+    contentArea: "AANP FNP — Domain II: Diagnose (27%)",
+    textbookRefs: "NPCB FNP Content Outline, clinical reasoning",
     examHints: "differential diagnosis, primary diagnosis, data synthesis, red flags",
     keywords: ["diagnosis", "differential", "interpretation", "clinical reasoning"],
     focusPlaceholder: "e.g. Chest pain differential",
@@ -24,8 +24,8 @@ export const AANP_FNP_SUBJECTS: SubjectArea[] = [
   {
     id: "plan",
     label: "Plan",
-    contentArea: "AANP FNP — Domain III: Plan (26.5%)",
-    textbookRefs: "AANPCB FNP Content Outline, pharmacology, guidelines",
+    contentArea: "AANP FNP — Domain III: Plan (27%)",
+    textbookRefs: "NPCB FNP Content Outline, pharmacology, guidelines",
     examHints:
       "pharmacologic and non-pharmacologic therapy, referrals, patient education, preventive care",
     keywords: ["plan", "treatment", "prescribe", "counseling", "referral"],
@@ -35,7 +35,7 @@ export const AANP_FNP_SUBJECTS: SubjectArea[] = [
     id: "evaluate",
     label: "Evaluate",
     contentArea: "AANP FNP — Domain IV: Evaluate (15%)",
-    textbookRefs: "AANPCB FNP Content Outline, outcomes monitoring",
+    textbookRefs: "NPCB FNP Content Outline, outcomes monitoring",
     examHints: "treatment response, adverse effects, care plan modification, follow-up",
     keywords: ["evaluate", "monitor", "follow-up", "outcomes", "adherence"],
     focusPlaceholder: "e.g. Monitoring on statin therapy",

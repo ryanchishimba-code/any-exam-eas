@@ -1,6 +1,6 @@
 # Chapter 12 — MSK / Dermatology
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current AAOS/ACR/AAD-aligned and related guidance, FDA labeling, and the AANPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current AAOS/ACR/AAD-aligned and related guidance, FDA labeling, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
 
 ![Back pain red flags](visuals/back-pain-red-flags.jpg)
 
@@ -42,8 +42,8 @@ Expect stems on low-back red flags and cauda equina, OA vs inflammatory arthriti
 | Domain I process | What it looks like in MSK/derm stems |
 | --- | --- |
 | **Assess (32%)** | Trauma mechanism, neuro exam (saddle, strength, reflexes), fever, joint warmth/ROM, skin ABCDE + mucosal check, meds (NSAIDs, steroids, immunosuppressants, recent new drug), pregnancy status, fall risk, SDoH (can they afford PT / biologics specialty path?) |
-| **Diagnose (26.5%)** | Mechanical LBP vs cauda/cord/infection/cancer; sprain vs fracture; OA vs crystal vs septic; eczema vs psoriasis vs infection; cellulitis vs stasis vs DVT cues; benign nevus vs melanoma concern |
-| **Plan (26.5%)** | Early activity for mechanical back pain; selective imaging; Ottawa themes; joint aspiration pathway if septic possible; topical potency teaching; derm referral; ED for SJS/TEN / necrotizing cues |
+| **Diagnose (27%)** | Mechanical LBP vs cauda/cord/infection/cancer; sprain vs fracture; OA vs crystal vs septic; eczema vs psoriasis vs infection; cellulitis vs stasis vs DVT cues; benign nevus vs melanoma concern |
+| **Plan (27%)** | Early activity for mechanical back pain; selective imaging; Ottawa themes; joint aspiration pathway if septic possible; topical potency teaching; derm referral; ED for SJS/TEN / necrotizing cues |
 | **Evaluate (15%)** | Red-flag progression return precautions; wound/antibiotic response; steroid side-effect check; biopsy follow-through; deprescribe chronic NSAIDs harming kidneys/GI/HF |
 
 **Red-flag filter first:** saddle anesthesia, bowel/bladder retention or incontinence with back pain, progressive motor deficit, hot joint + systemic toxicity, rapidly progressive painful rash with mucosal involvement, elder fall + unable to bear weight → disposition before clever outpatient titration.
@@ -412,7 +412,7 @@ Necrotizing fasciitis cues (pain out of proportion, rapid spread, crepitus, toxi
 - Domain II reality: Older Adult MSK/derm stems love occult fracture, stasis vs cellulitis, and NSAID harm.
 - ADPE order: can’t-miss joint/spine/skin emergencies before clever outpatient scripts.
 - Teaching doses/intervals change — verify guidelines and labels.
-- Independent study aid — not AANPCB/AANP; no pass guarantee.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 **Next practice move:** Drill back-pain red flags, septic joint, Ottawa/elder fracture, gout, cellulitis vs stasis, ABCDE, and SJS/TEN items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
@@ -498,7 +498,7 @@ A. Home diphenhydramine  B. ED for SJS/TEN pathway  C. Increase the dose  D. All
 
 > **TRAP** — Skipping Evaluate (48-hour cellulitis recheck, biopsy results, culture follow-up) because the prescription felt complete.
 
-> **TRAP** — Using ANCC weights while sitting AANPCB (or the reverse).
+> **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
 
 ---
 

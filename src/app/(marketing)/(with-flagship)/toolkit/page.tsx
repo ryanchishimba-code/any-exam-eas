@@ -296,7 +296,7 @@ export default function ToolkitPage() {
                     links: [
                       {
                         href: BOARD_FORMAT_FACTS["aanp-fnp"].href,
-                        label: "AANPCB FNP certification",
+                        label: "NPCB FNP certification",
                       },
                     ],
                   },

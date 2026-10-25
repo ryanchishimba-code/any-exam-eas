@@ -5,7 +5,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "cardiovascular",
     label: "Cardiovascular System",
-    contentArea: "Cardiovascular (13%)",
+    contentArea: "Cardiovascular (11%)",
     textbookRefs: "OpenStax Anatomy & Physiology, ACC/AHA guidelines",
     examHints: "ACS, heart failure, arrhythmias, hypertension, valvular disease, shock",
     keywords: ["cardiology", "ECG", "chest pain", "heart failure", "arrhythmia"],
@@ -15,7 +15,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "pulmonary",
     label: "Pulmonary System",
-    contentArea: "Pulmonary (10%)",
+    contentArea: "Pulmonary (9%)",
     textbookRefs: "OpenStax, GOLD COPD, asthma guidelines",
     examHints: "COPD, asthma, pneumonia, PE, pleural disease, oxygen therapy",
     keywords: ["pulmonary", "COPD", "asthma", "pneumonia", "PE", "dyspnea"],

@@ -54,7 +54,7 @@ export function HubBoardLanding({
           headingId={barHeadingId}
           rows={model.liveBarRows}
         />
-        <PracticeReviewPassFlow />
+        <PracticeReviewPassFlow boardSlug={model.layout} />
       </div>
 
       <div className="bl-band bl-band--alt">

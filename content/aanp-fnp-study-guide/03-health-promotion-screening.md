@@ -1,6 +1,6 @@
 # Chapter 3 — Health Promotion & Screening
 
-> **Study aid only.** Screening and immunization themes follow USPSTF-style and ACIP-style thinking for exam judgment. Recommendations change — verify current USPSTF, ACIP/CDC, specialty guidance, and AANPCB handbook before clinical use.
+> **Study aid only.** Screening and immunization themes follow USPSTF-style and ACIP-style thinking for exam judgment. Recommendations change — verify current USPSTF, ACIP/CDC, specialty guidance, and NPCB handbook before clinical use.
 
 ![USPSTF-style lifespan screening strip](visuals/uspstf-lifespan-strip.jpg)
 

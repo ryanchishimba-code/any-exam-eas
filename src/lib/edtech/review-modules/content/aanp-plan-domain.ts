@@ -1,7 +1,7 @@
 import type { ReviewModuleContent } from "../types";
 import { REVIEW_MODULE_DEFAULT_TITLES as T } from "../types";
 
-/** AANPCB Domain III — Plan (26.5% of FNP exam). */
+/** NPCB Domain III — Plan (27% of FNP exam). */
 export const AANP_PLAN_MODULE: ReviewModuleContent = {
   sections: [
     {
@@ -89,7 +89,7 @@ export const AANP_PLAN_MODULE: ReviewModuleContent = {
       id: "quick-summary",
       title: T["quick-summary"],
       bullets: [
-        "Plan = 26.5% — first-line therapy, counseling, prevention, referrals",
+        "Plan = 27% — first-line therapy, counseling, prevention, referrals",
         "Guidelines drive answers: ACC/AHA, ADA, GOLD, IDSA, APA",
         "Match treatment to comorbidity and lifespan (peds dosing, geriatric Beers)",
         "Scope and safety: when to escalate to ED/specialist",

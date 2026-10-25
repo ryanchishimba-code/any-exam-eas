@@ -92,8 +92,8 @@
 ## 4. PASS summary — what’s solid
 
 ### A. Blueprint / claims
-- Official numbers correct where stated: **150 total; 135 scored + 15 pretest**; Domain I **Assess 43 (32%) / Diagnose 36 (26.5%) / Plan 36 (26.5%) / Evaluate 20 (15%)**; Domain II **2 / 3 / 4 / 4 / 9 / 22 / 26 / 30**; Older Adult **30%** repeated accurately.
-- Exam owner framing is **AANPCB/AANP-first**; ANCC FNP-BC soft callout present and correctly separated.
+- Official numbers correct where stated: **150 total; 135 scored + 15 pretest**; Domain I **Assess 43 (32%) / Diagnose 36 (27%) / Plan 36 (27%) / Evaluate 20 (15%)**; Domain II **2 / 3 / 4 / 4 / 9 / 22 / 26 / 30**; Older Adult **30%** repeated accurately.
+- Exam owner framing is **NPCB/AANP-first**; ANCC FNP-BC soft callout present and correctly separated.
 - No NCSBN/NABP misuse; no pass-rate / Qbank-size invention.
 
 ### B. Leftover padding

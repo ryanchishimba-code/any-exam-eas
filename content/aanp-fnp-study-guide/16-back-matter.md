@@ -4,17 +4,17 @@
 
 ## FAQ
 
-### How many questions are on the AANP FNP exam (AANPCB FNP-C)?
+### How many questions are on the AANP FNP exam (NPCB FNP-C)?
 
-**150** total — **135 scored** + **15 pretest**. You will not know which items are pretest, so treat every question seriously. Confirm current details in the official AANPCB Candidate Handbook.
+**150** total — **135 scored** + **15 pretest**. You will not know which items are pretest, so treat every question seriously. Confirm current details in the official NPCB Candidate Handbook.
 
 ### What are the official Domain I weights?
 
 | Process | Items | Weight |
 | --- | ---: | ---: |
 | Assess | 43 | **32%** |
-| Diagnose | 36 | **26.5%** |
-| Plan | 36 | **26.5%** |
+| Diagnose | 36 | **27%** |
+| Plan | 36 | **27%** |
 | Evaluate | 20 | **15%** |
 
 Coach tip: if you habitually jump to a drug name, you are under-practicing Assess and Diagnose — the majority of Domain I.
@@ -36,7 +36,7 @@ Coach tip: if you habitually jump to a drug name, you are under-practicing Asses
 
 ### Is this book for ANCC FNP-BC too?
 
-It is **AANP/AANPCB-first**. ANCC uses a separate content outline and scoring approach. If you sit ANCC, use ANCC’s official outline for weights and domains. Clinical ADPE chapters still strengthen judgment across either exam, but do **not** memorize AANPCB percents for an ANCC attempt (or the reverse).
+It is **AANP/NPCB-first**. ANCC uses a separate content outline and scoring approach. If you sit ANCC, use ANCC’s official outline for weights and domains. Clinical ADPE chapters still strengthen judgment across either exam, but do **not** memorize NPCB percents for an ANCC attempt (or the reverse).
 
 ### How long should I study?
 
@@ -60,7 +60,7 @@ If your Qbank shows a weak Domain I process (e.g., Evaluate), deliberately hunt 
 
 ### Can AnyExamEasy help?
 
-Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style AANP FNP practice, rationales, Roadmap, and mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. Independent — **not affiliated with AANPCB or AANP**. No pass guarantee.
+Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style AANP FNP practice, rationales, Roadmap, and mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. Independent — **not affiliated with NPCB or AANP**. No pass guarantee.
 
 ### What if I fail or feel far from ready?
 
@@ -114,7 +114,7 @@ Confidence is not swagger — it’s pattern recognition you earned with deliber
 
 ## Soft handoff checklist before you close the book
 
-- [ ] Official AANPCB Candidate Handbook downloaded / skimmed  
+- [ ] Official NPCB Candidate Handbook downloaded / skimmed  
 - [ ] Domain I and II tables recited from memory  
 - [ ] Error log has at least one week of tagged misses  
 - [ ] Chapter 15 sprint calendar on your phone  
@@ -126,12 +126,12 @@ Confidence is not swagger — it’s pattern recognition you earned with deliber
 
 ## Legal / disclaimer footer
 
-*AnyExamEasy and this study guide are **independent** and **not affiliated with**, endorsed by, or sponsored by AANPCB, AANP, ANCC, Pearson VUE, or any other exam owner, certifying board, or testing vendor. Exam names and trademarks belong to their respective owners.*
+*AnyExamEasy and this study guide are **independent** and **not affiliated with**, endorsed by, or sponsored by NPCB, AANP, ANCC, Pearson VUE, or any other exam owner, certifying board, or testing vendor. Exam names and trademarks belong to their respective owners.*
 
 *This book is a **study aid** for educational purposes only. It is **not** clinical advice, not a protocol, not legal advice, and not a substitute for professional judgment, preceptorship, institutional policy, or current primary sources (guidelines, FDA labeling, state/DEA rules, and the official candidate handbook).*
 
 *We do **not** guarantee exam results, certification, licensure, employment, or board outcomes. Drug names, intervals, and decision themes are teaching devices — **verify** against current guidance before any clinical use.*
 
-*Always confirm current eligibility, blueprint weights, exam policies, and scheduling rules in the official AANPCB Candidate Handbook and FNP materials at [aanpcert.org](https://www.aanpcert.org).*
+*Always confirm current eligibility, blueprint weights, exam policies, and scheduling rules in the official NPCB Candidate Handbook and FNP materials at [aanpcert.org](https://www.aanpcert.org).*
 
 *© AnyExamEasy. All rights reserved. Pricing shown (5-day free trial, no payment method; then Pro at $27.99/mo) may change — confirm current subscription details on [anyexameasy.com](https://anyexameasy.com).*

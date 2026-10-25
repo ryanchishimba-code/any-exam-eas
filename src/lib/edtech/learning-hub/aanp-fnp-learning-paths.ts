@@ -1,5 +1,5 @@
 /**
- * AANPCB FNP learning paths — domain foundations + 12 system-based clinical modules.
+ * NPCB FNP learning paths — domain foundations + 12 system-based clinical modules.
  */
 import {
   AANP_FNP_2026_TOPIC_GROUPS,
@@ -8,7 +8,7 @@ import {
 import type { AanpFnpClinicalSystemId } from "@/lib/exam-prep/aanp-fnp/types";
 import type { TopicModuleDefinition, TopicModuleStage } from "./topic-module-template";
 
-/** AANPCB FNP patient age groups — cross-cutting blueprint dimension. */
+/** NPCB FNP patient age groups — cross-cutting blueprint dimension. */
 export const AANP_FNP_AGE_GROUPS = [
   { id: "newborn", label: "Newborn (0–28 days)", weight: 0.02 },
   { id: "infant", label: "Infant (1–12 months)", weight: 0.03 },
@@ -31,7 +31,7 @@ export const AANP_FNP_LEARNING_STAGES: AanpFnpLearningStage[] = [
   {
     id: "domain-foundations",
     label: "Domain foundations",
-    description: "Assess, Diagnose, Plan, and Evaluate skills weighted to the AANPCB blueprint.",
+    description: "Assess, Diagnose, Plan, and Evaluate skills weighted to the NPCB blueprint.",
     audience: "Didactic / early clinical",
   },
   {
@@ -72,7 +72,7 @@ const DOMAIN_MODULES: TopicModuleDefinition[] = [
     stage: "clinical-application",
     system: "Diagnose",
     title: "Diagnosis & Clinical Reasoning",
-    overview: "Differential diagnosis and data synthesis — Domain II (26.5%).",
+    overview: "Differential diagnosis and data synthesis — Domain II (27%).",
     skills: ["diagnosis"],
     estimatedMinutes: 35,
     reviewTopicSlug: "aanp-diagnose-domain",
@@ -87,7 +87,7 @@ const DOMAIN_MODULES: TopicModuleDefinition[] = [
     stage: "clinical-application",
     system: "Plan",
     title: "Therapeutics & Care Planning",
-    overview: "Pharmacologic and non-pharmacologic management — Domain III (26.5%).",
+    overview: "Pharmacologic and non-pharmacologic management — Domain III (27%).",
     skills: ["next_step"],
     estimatedMinutes: 35,
     reviewTopicSlug: "aanp-plan-domain",

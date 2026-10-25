@@ -652,7 +652,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     teaser: "Load 25–30 mg/kg → AUC/MIC 400–600; never trough-only for serious MRSA.",
     kind: "table",
     tags: ["vancomycin", "AUC", "loading dose", "MRSA", "nephrotoxicity"],
-    body: "Vancomycin requires loading dose, renal-based interval adjustment, and AUC/MIC-guided monitoring for serious MRSA. Red man syndrome is prevented by infusing ≥60 minutes.",
+    body: "Vancomycin requires loading dose, renal-based interval adjustment, and AUC/MIC-guided monitoring for serious MRSA. Vancomycin infusion reaction is prevented by infusing ≥60 minutes.",
     table: {
       headers: ["Step", "Guideline", "NAPLEX pearl"],
       rows: [
@@ -660,7 +660,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
         ["Maintenance", "Start q12 h if CrCl ≥50; extend as CrCl falls", "Use Cockcroft-Gault CrCl — not eGFR alone"],
         ["Monitoring", "AUC/MIC 400–600 mg·h/L (MIC=1)", "Bayesian or two-level sampling preferred"],
         ["Trough surrogate", "15–20 mg/L only if AUC unavailable", "Single trough × 12 ≈ rough AUC estimate"],
-        ["Toxicity", "Nephrotoxicity + red man syndrome", "Slow infusion; avoid pip-tazo + vanc combo when possible"],
+        ["Toxicity", "Nephrotoxicity + vancomycin infusion reaction", "Slow infusion; avoid pip-tazo + vanc combo when possible"],
       ],
     },
     bullets: [
@@ -957,11 +957,11 @@ export const MEMORY_CARDS: MemoryCard[] = [
     examSlug: "nclex",
     subject: "Pharmacology",
     topic: "Vancomycin",
-    title: "Red Man Syndrome",
+    title: "Vancomycin infusion reaction",
     teaser: "Slow infusion ≥60 min — rate-related, not allergy.",
     kind: "pearl",
-    tags: ["vancomycin", "red-man", "infusion"],
-    body: "Red man syndrome is a rate-related histamine flush during rapid vancomycin infusion — flushing, pruritus, hypotension. Infuse over ≥60 minutes.",
+    tags: ["vancomycin", "vancomycin-infusion-reaction", "infusion"],
+    body: "Vancomycin infusion reaction is a rate-related histamine flush during rapid vancomycin infusion — flushing, pruritus, hypotension. Infuse over ≥60 minutes.",
     bullets: [
       "Stop infusion and notify provider if reaction occurs",
       "Not a true IgE-mediated allergy — different management",

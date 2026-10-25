@@ -1,10 +1,10 @@
 # AnyExamEasy AANP FNP Reference Book
 
-**Subtitle:** Pass-Focused Primary Care Companion for the AANPCB Family Nurse Practitioner (FNP-C) Exam
+**Subtitle:** Primary Care Companion for the NPCB Family Nurse Practitioner (FNP-C) Exam
 
-**For:** FNP candidates preparing for AANPCB FNP-C certification  
+**For:** FNP candidates preparing for NPCB FNP-C certification  
 **From:** [AnyExamEasy](https://anyexameasy.com)  
-**Edition framing:** AANPCB Domain I (Practice) + Domain II (Patient Age) blueprint — verify current Candidate Handbook at [aanpcert.org](https://www.aanpcert.org)
+**Edition framing:** NPCB Domain I (Practice) + Domain II (Patient Age) blueprint — verify current Candidate Handbook at [aanpcert.org](https://www.aanpcert.org)
 
 ![AnyExamEasy AANP FNP Reference Book cover](visuals/fnp-book-cover.jpg)
 
@@ -12,9 +12,9 @@
 
 ## Study-aid disclaimer (read this)
 
-> **MUST KNOW** — This is a study aid only — not clinical advice, not AANPCB, no pass guarantee.
+> **MUST KNOW** — This is a study aid only — not clinical advice, not NPCB, no pass guarantee.
 
-> **HIGHLIGHT** — Official blueprint: 150 Qs (135 scored + 15 pretest); Domain I Assess 32% / Diagnose 26.5% / Plan 26.5% / Evaluate 15%; Older Adult 30%.
+> **HIGHLIGHT** — Official blueprint: 150 Qs (135 scored + 15 pretest); Domain I Assess 32% / Diagnose 27% / Plan 27% / Evaluate 15%; Older Adult 30%.
 
 > **TRAP** — Studying only adult chronic disease and skipping prenatal (YA*) and Older Adult multimorbidity.
 
@@ -26,11 +26,11 @@ This book is a **study aid for exam preparation**. It is **not**:
 
 - Clinical advice, a treatment protocol, or a substitute for individualized patient care  
 - A substitute for your NP program, clinical preceptors, collaborating/supervising agreements, or employer policy  
-- An official **AANPCB** or **AANP** publication or replacement for the Candidate Handbook / FNP exam blueprint  
+- An official **NPCB** or **AANP** publication or replacement for the Candidate Handbook / FNP exam blueprint  
 
-**Always verify** guidelines, dosing, immunization schedules, screening recommendations, controlled-substance rules, and state scope-of-practice requirements with current official sources (AANPCB, USPSTF, ACIP/CDC, major specialty guidelines, FDA labeling, DEA/state boards). When dosing or guidelines are mentioned, treat them as **teaching themes to verify** — not standing orders.
+**Always verify** guidelines, dosing, immunization schedules, screening recommendations, controlled-substance rules, and state scope-of-practice requirements with current official sources (NPCB, USPSTF, ACIP/CDC, major specialty guidelines, FDA labeling, DEA/state boards). When dosing or guidelines are mentioned, treat them as **teaching themes to verify** — not standing orders.
 
-AnyExamEasy does **not** guarantee exam results, certification, licensure, or employment. We are **independent** and not affiliated with AANPCB, AANP, ANCC, or Pearson VUE. Exam names and trademarks belong to their owners.
+AnyExamEasy does **not** guarantee exam results, certification, licensure, or employment. We are **independent** and not affiliated with NPCB, AANP, ANCC, or Pearson VUE. Exam names and trademarks belong to their owners.
 
 ---
 
@@ -46,36 +46,36 @@ AnyExamEasy does **not** guarantee exam results, certification, licensure, or em
 
 ---
 
-## Path note — AANP (AANPCB) vs ANCC
+## Path note — AANP (NPCB) vs ANCC
 
-This book is **AANP/AANPCB-first** (FNP-C).
+This book is **AANP/NPCB-first** (FNP-C).
 
 | Exam | Credential | This book |
 | --- | --- | --- |
-| **AANPCB FNP** | FNP-C | **Yes — primary focus** |
+| **NPCB FNP** | FNP-C | **Yes — primary focus** |
 | **ANCC FNP** | FNP-BC | **Short callout only** — separate blueprint; if you’re taking ANCC, use ANCC’s official test content outline as your weight map and still practice ADPE clinical judgment |
 
 Both exams test entry-level FNP competence; blueprints, emphasis, and item styles differ. Confirm your chosen board’s current handbook before you lock a study plan.
 
-![AANP vs ANCC soft callout](visuals/aanp-vs-ancc-callout.jpg)
+![NPCB FNP-C vs ANCC FNP-BC blueprint comparison callout](visuals/aanp-vs-ancc-callout.svg)
 
 ---
 
 ## Official source of truth
 
-- **AANPCB FNP exam blueprint** — Domain I Practice + Domain II Patient Age weights  
-- **AANPCB Candidate Handbook** — eligibility, format, test-day rules, attempts  
+- **NPCB FNP exam blueprint** — Domain I Practice + Domain II Patient Age weights  
+- **NPCB Candidate Handbook** — eligibility, format, test-day rules, attempts  
 - Primary site: [aanpcert.org](https://www.aanpcert.org)
 
-Third-party guides (including this one) prepare you — they do **not** replace AANPCB documents.
+Third-party guides (including this one) prepare you — they do **not** replace NPCB documents.
 
 ### Blueprint numbers used in this book (do not invent others)
 
 | Domain I Practice | Items (approx.) | Weight |
 | --- | ---: | ---: |
 | Assess | 43 | 32% |
-| Diagnose | 36 | 26.5% |
-| Plan | 36 | 26.5% |
+| Diagnose | 36 | 27% |
+| Plan | 36 | 27% |
 | Evaluate | 20 | 15% |
 
 | Domain II Patient Age | Weight |
@@ -89,7 +89,7 @@ Third-party guides (including this one) prepare you — they do **not** replace 
 | Middle Adult | 26% |
 | Older Adult | 30% |
 
-\*Includes prenatal. Age parameters are not fixed by AANPCB.
+\*Includes prenatal. Age parameters are not fixed by NPCB.
 
 **Exam length:** 150 questions total (135 scored + 15 pretest).
 

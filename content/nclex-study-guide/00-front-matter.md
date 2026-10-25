@@ -2,7 +2,7 @@
 
 # AnyExamEasy NCLEX Reference Book
 
-**Subtitle:** Pass-Focused Clinical Judgment Companion for the 2026 Next Gen NCLEX
+**Subtitle:** Clinical Judgment Companion for the 2026 Next Gen NCLEX
 
 **For:** NCLEX-RN and NCLEX-PN candidates  
 **From:** [AnyExamEasy](https://anyexameasy.com)  

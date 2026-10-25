@@ -73,7 +73,14 @@ A1c, fasting lipids, BMP/eGFR, UACR, TSH if indicated, liver enzymes before some
 ### Plan themes (verify current ADA Standards)
 
 1. **Lifestyle** always: nutrition pattern, activity, sleep, tobacco.  
-2. **Metformin** remains common foundational theme if tolerated/eGFR allows — verify.  
+2. **Metformin** remains common foundational theme if tolerated/eGFR allows — **AnyExamEasy dosing rule (based on FDA labeling and KDIGO)**:
+
+| eGFR (mL/min/1.73 m²) | Metformin use |
+| --- | --- |
+| **≥45** | Full dose when otherwise appropriate |
+| **30–44** | Do **not** start; if already on metformin, **halve the dose** (maximum **1,000 mg/day**) |
+| **&lt;30** | **Discontinue** |
+
 3. **Comorbidity-driven add-ons:** ASCVD / HF / CKD → SGLT2 and/or GLP-1 RA themes often preferred regardless of A1c in modern paradigms — **verify current**.  
 4. Insulin when catabolic, severe hyperglycemia, or not at goal on orals/GLP-1 — teach hypo.  
 5. BP and statin risk reduction are part of diabetes Plan.  

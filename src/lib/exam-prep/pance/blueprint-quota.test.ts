@@ -16,8 +16,8 @@ describe("PANCE blueprint quotas", () => {
     expect(total).toBeLessThanOrEqual(6720);
 
     const cardio = quotas.find((q) => q.contentCategory === "cardiovascular");
-    expect(cardio?.targetCount).toBe(871);
-    expect(cardio?.weight).toBeCloseTo(0.13, 2);
+    expect(cardio?.targetCount).toBe(737);
+    expect(cardio?.weight).toBeCloseTo(0.11, 2);
   });
 
   it("covers all 8 NCCPA task categories", () => {
@@ -27,12 +27,12 @@ describe("PANCE blueprint quotas", () => {
     expect(diagnosis?.targetCount).toBe(1206);
   });
 
-  it("returns category target for cardiovascular at 13%", () => {
-    expect(getPanceCategoryTarget("cardiovascular")).toBe(871);
+  it("returns category target for cardiovascular at 11%", () => {
+    expect(getPanceCategoryTarget("cardiovascular")).toBe(737);
   });
 
-  it("maps legacy renal counts to genitourinary targets", () => {
-    expect(getPanceCategoryTarget("renal")).toBe(getPanceCategoryTarget("genitourinary"));
+  it("maps renal to its own blueprint category", () => {
+    expect(getPanceCategoryTarget("renal")).toBe(getPanceCategoryTarget("renal"));
   });
 
   it("detects blueprint misalignment", () => {

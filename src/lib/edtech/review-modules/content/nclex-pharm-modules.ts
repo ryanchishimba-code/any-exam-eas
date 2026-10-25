@@ -132,7 +132,7 @@ export const ANTIBIOTICS_NCLEX_MODULE = buildNclexReviewModule({
   concepts: [
     "Obtain blood cultures before antibiotics when sepsis suspected — do not delay antibiotics in severe sepsis per protocol",
     "Penicillin allergy: clarify reaction type; true anaphylaxis vs rash; cephalosporin cross-reactivity lower with newer generations",
-    "Vancomycin: red man syndrome with rapid infusion — slow rate; trough levels per protocol; nephrotoxicity monitoring",
+    "Vancomycin: vancomycin infusion reaction with rapid infusion — slow rate; trough levels per protocol; nephrotoxicity monitoring",
     "Aminoglycosides: peak/trough; nephrotoxicity and ototoxicity — avoid with other nephrotoxins when possible",
     "Fluoroquinolones: tendon rupture risk; QT prolongation; avoid in pregnancy; C. diff risk",
     "Metronidazole: no alcohol (disulfiram reaction); metallic taste; C. diff treatment",
@@ -170,7 +170,7 @@ export const ANTIBIOTICS_NCLEX_MODULE = buildNclexReviewModule({
     "Assuming all penicillin allergies mean cephalosporin contraindication",
   ],
   pearls: [
-    "Red man syndrome is infusion rate — not true allergy necessarily",
+    "Vancomycin infusion reaction is infusion rate — not true allergy necessarily",
     "Monitor WBC and fever curve during abx therapy",
     "Teach patients not to share or hoard antibiotics",
   ],

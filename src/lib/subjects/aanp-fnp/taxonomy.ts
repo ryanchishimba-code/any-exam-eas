@@ -11,8 +11,8 @@ const ROOT: TaxonomyNode = {
       label: "AANP Blueprint Domains",
       children: [
         { id: "assess", label: "Assess (32%)", subjectId: "assess" },
-        { id: "diagnose", label: "Diagnose (26.5%)", subjectId: "diagnose" },
-        { id: "plan", label: "Plan (26.5%)", subjectId: "plan" },
+        { id: "diagnose", label: "Diagnose (27%)", subjectId: "diagnose" },
+        { id: "plan", label: "Plan (27%)", subjectId: "plan" },
         { id: "evaluate", label: "Evaluate (15%)", subjectId: "evaluate" },
       ],
     },

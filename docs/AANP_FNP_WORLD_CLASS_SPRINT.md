@@ -2,7 +2,7 @@
 
 Track the path from solid scaffold → competitive FNP QBank (BoardVitals / APEA / Barkley packaging bar).
 
-**Product rule:** No AANPCB affiliation claims. No guaranteed pass rates. No fake NCLEX NGN.
+**Product rule:** No NPCB affiliation claims. No guaranteed pass rates. No fake NCLEX NGN.
 
 ---
 

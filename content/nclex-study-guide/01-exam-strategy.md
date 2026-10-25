@@ -2,7 +2,7 @@
 
 > **Study aid only.** Strategy framing for the 2026 Next Gen NCLEX. Confirm current rules in the official NCSBN test plan and Candidate Bulletin. Not affiliated with NCSBN.
 
-![CAT and NGN overview diagram](visuals/cat-ngn-overview.jpg)
+![CAT and NGN overview diagram](visuals/cat-ngn-overview.svg)
 
 ---
 
@@ -48,7 +48,7 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 
 ![Six clinical judgment steps](visuals/cjmm-six-steps.jpg)
 
-![NGN bow-tie template](visuals/bow-tie-ngn-example.jpg)
+![NGN bow-tie template: two actions to take, one condition, two parameters to monitor](visuals/bow-tie-ngn-example.svg)
 
 ![Maslow pyramid for NCLEX priority](visuals/maslow-pyramid-nclex.jpg)
 
@@ -61,13 +61,15 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 
 #### Common NGN item flavors
 
-- Extended multiple response / **SATA**  
-- **Matrix / grid**  
-- **Bow-tie** (condition ↔ actions ↔ monitors)  
-- **Trend** (data over time)  
-- Drag-and-drop / ordering  
-- Highlight (hot spot)  
-- Cloze / drop-down  
+**Stand-alone NGN types (NCSBN):** **Bow-tie** and **Trend** only.
+
+**Often inside unfolding case studies (6 items per case):**
+
+- Extended multiple response  
+- Enhanced hot spot (highlighting)  
+- Extended drag and drop  
+- Cloze (drop-down)  
+- Matrix / grid (case-study context, not stand-alone)  
 
 **Remember this:** NGN rewards *thinking like a nurse*, not trivia dump. Practice the *steps*, not just the labels.
 

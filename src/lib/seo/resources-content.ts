@@ -39,6 +39,11 @@ export type ResourceSection = {
   competitorLabel?: string;
 };
 
+export type ResourceArticleFaqItem = {
+  question: string;
+  answer: string;
+};
+
 export type ResourceArticle = {
   slug: string;
   title: string;
@@ -51,6 +56,8 @@ export type ResourceArticle = {
   intro: string;
   sections: ResourceSection[];
   primaryExam?: ExamSeoKey;
+  /** Optional FAQ block — rendered on-page and in FAQPage JSON-LD when set. */
+  faq?: ResourceArticleFaqItem[];
 };
 
 export const RESOURCE_DOWNLOADS: ResourceDownload[] = [
@@ -364,7 +371,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "pance-study-guide-nccpa-blueprint",
     title: "PANCE Study Guide — NCCPA Roadmap (2026)",
     metaDescription:
-      "PANCE study guide aligned to the NCCPA task areas and organ-system weights — cardiovascular (13%), treatment tasks, and primary care across the lifespan.",
+      "PANCE study guide aligned to the NCCPA task areas and organ-system weights — cardiovascular (11%), treatment tasks, and primary care across the lifespan.",
     examTags: ["pance"],
     primaryExam: "pance",
     keywords: ["PANCE study guide", "NCCPA blueprint PANCE", "PANCE content outline 2026"],
@@ -408,10 +415,10 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "best-aanp-fnp-practice-questions-2026",
     title: "AANP FNP Practice Questions in 2026",
     metaDescription:
-      "AANPCB FNP certification prep — primary care vignettes across Assess, Diagnose, Plan, and Evaluate domains.",
+      "NPCB FNP certification prep — primary care vignettes across Assess, Diagnose, Plan, and Evaluate domains.",
     examTags: ["aanp-fnp"],
     primaryExam: "aanp-fnp",
-    keywords: ["AANP FNP practice questions 2026", "AANPCB FNP prep"],
+    keywords: ["AANP FNP practice questions 2026", "NPCB FNP prep"],
     sections: [
       {
         heading: "Domain-balanced practice",
@@ -425,10 +432,10 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "aanp-fnp-study-guide-blueprint",
     title: "AANP FNP Study Guide & Certification Blueprint",
     metaDescription:
-      "AANPCB FNP study guide with domain tracking — Assess, Diagnose, Plan, Evaluate, and professional role.",
+      "NPCB FNP study guide with domain tracking — Assess, Diagnose, Plan, Evaluate, and professional role.",
     examTags: ["aanp-fnp"],
     primaryExam: "aanp-fnp",
-    keywords: ["AANP FNP study guide", "AANPCB blueprint"],
+    keywords: ["AANP FNP study guide", "NPCB blueprint"],
     sections: [
       {
         heading: "Weekly domain rotation",
@@ -534,6 +541,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
 export function articleReadingMinutes(article: ResourceArticle): number {
   const words = [
     article.intro,
+    ...(article.faq ?? []).flatMap((item) => [item.question, item.answer]),
     ...article.sections.flatMap((section) => [
       section.heading,
       ...(section.paragraphs ?? []),

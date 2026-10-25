@@ -1,6 +1,6 @@
 # Free PANCE Study Guide (2026): Blueprint-Weighted Plans, Frameworks & High-Yield Topic Index
 
-**Built to help you pass. Weighted to the official blueprint.**
+**Aligned to the official NCCPA blueprint. Weighted for study planning.**
 
 This is **AnyExamEasy's free PANCE Study Guide**.
 
@@ -43,9 +43,6 @@ It gives you a plan, the 3 question types PANCE asks most, and a topic map where
 ## Why this guide is different
 
 - **Weighted to points.** Big systems get big sections.
-- **Sources are named on the line.** If a rule has no source link, it is a study tactic or a recognition clue, not a treatment dose.
-- **Short and scannable.** Tables, not walls of text.
-- **No fake claims.** No made-up pass rates or reviews.
 
 AnyExamEasy is **one study system for six boards** (NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, NPTE-PT).
 

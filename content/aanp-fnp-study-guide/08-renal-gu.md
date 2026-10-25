@@ -1,6 +1,6 @@
 # Chapter 8 — Renal / GU
 
-> **Study aid only.** High-yield FNP primary-care themes for exam judgment — not a protocol. Verify current guidelines, USPSTF/ACIP when relevant, and drug labels. Teaching themes only where drugs appear. Independent of AANPCB/AANP.
+> **Study aid only.** High-yield FNP primary-care themes for exam judgment — not a protocol. Verify current guidelines, USPSTF/ACIP when relevant, and drug labels. Teaching themes only where drugs appear. Independent of NPCB/AANP.
 
 ---
 
@@ -236,7 +236,7 @@ Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if p
 - [ ] Teach-back / Evaluate plan stated  
 - [ ] Verify current guidelines before clinical use  
 
-**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice. Independent of AANPCB/AANP; no pass guarantee.
+**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice. Independent of NPCB/AANP; no pass guarantee.
 
 
 ---

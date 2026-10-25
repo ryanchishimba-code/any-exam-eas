@@ -65,7 +65,7 @@ const content = [
   h2("What this subscription does not do"),
   ul([
     `It does not promise a license, a score, or a job.`,
-    `It is not affiliated with NCSBN, NABP, NBME, FSMB, NCCPA, AANPCB, or FSBPT.`,
+    `It is not affiliated with NCSBN, NABP, NBME, FSMB, NCCPA, NPCB, or FSBPT.`,
     `It does not set your eligibility. Your board or medical authority does.`,
     `It does not replace the official test plan, content outline, or candidate bulletin. Those stay the source of exam rules. The ${a("/blog/nclex-study-plan-rn-pn", "NCLEX guide")} and ${a("/blog/okay", "NAPLEX guide")} link them.`,
   ]),
@@ -83,7 +83,7 @@ const content = [
     `${a("https://nabp.pharmacy/programs/examinations/naplex/take-the-naplex-exam/", "NABP, Take the NAPLEX", true)}.`,
     `${a("https://www.usmle.org/", "USMLE", true)} for Step 1, Step 2 CK, and Step 3.`,
     `${a("https://www.nccpa.net/", "NCCPA", true)} for the PANCE.`,
-    `${a("https://www.aanpcert.org/", "AANPCB", true)} for the FNP certification exam.`,
+    `${a("https://www.aanpcert.org/", "NPCB", true)} for the FNP certification exam.`,
     `${a("https://www.fsbpt.org/", "FSBPT", true)} for the NPTE-PT.`,
   ]),
   p(

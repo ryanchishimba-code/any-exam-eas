@@ -616,7 +616,7 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
     sourceUrl: "https://www.ama-assn.org/",
     lastReviewedAt: "2026-06-01",
   },
-  // AANP FNP (AANPCB content outline + clinical guidelines)
+  // AANP FNP (NPCB content outline + clinical guidelines)
   "fnp-hypertension-first-line": {
     sourceLabel: "ACC/AHA hypertension guideline — first-line therapy",
     sourceUrl: "https://www.acc.org/",
@@ -783,7 +783,7 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
     lastReviewedAt: "2026-06-16",
   },
   "fnp-assess-next-best-test": {
-    sourceLabel: "AANPCB FNP Content Outline — assessment domain",
+    sourceLabel: "NPCB FNP Content Outline — assessment domain",
     sourceUrl: "https://www.aanpcert.org/",
     lastReviewedAt: "2026-06-16",
   },
@@ -803,12 +803,12 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
     lastReviewedAt: "2026-06-16",
   },
   "fnp-plan-referral-triggers": {
-    sourceLabel: "AANPCB FNP Content Outline — scope and referral",
+    sourceLabel: "NPCB FNP Content Outline — scope and referral",
     sourceUrl: "https://www.aanpcert.org/",
     lastReviewedAt: "2026-06-16",
   },
   "fnp-plan-scope-limits": {
-    sourceLabel: "AANPCB FNP scope of practice",
+    sourceLabel: "NPCB FNP scope of practice",
     sourceUrl: "https://www.aanpcert.org/",
     lastReviewedAt: "2026-06-16",
   },
@@ -878,7 +878,7 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
     lastReviewedAt: "2026-06-16",
   },
   "fnp-diagnose-differential-priority": {
-    sourceLabel: "AANPCB FNP Content Outline — diagnose domain",
+    sourceLabel: "NPCB FNP Content Outline — diagnose domain",
     sourceUrl: "https://www.aanpcert.org/",
     lastReviewedAt: "2026-06-16",
   },
@@ -928,7 +928,7 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
     lastReviewedAt: "2026-06-16",
   },
   "fnp-evaluate-adherence-first": {
-    sourceLabel: "AANPCB FNP Content Outline — evaluate domain",
+    sourceLabel: "NPCB FNP Content Outline — evaluate domain",
     sourceUrl: "https://www.aanpcert.org/",
     lastReviewedAt: "2026-06-16",
   },

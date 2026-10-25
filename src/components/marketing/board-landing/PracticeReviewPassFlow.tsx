@@ -1,5 +1,8 @@
 import type { ReactElement } from "react";
-import { boardPracticeFlowSteps } from "@/lib/marketing/board-landing/board-theme";
+import {
+  boardPracticeFlowSteps,
+  type BoardSlug,
+} from "@/lib/marketing/board-landing/board-theme";
 
 const ICONS: Record<string, () => ReactElement> = {
   practice: () => (
@@ -20,12 +23,19 @@ const ICONS: Record<string, () => ReactElement> = {
       <path d="M6 26h20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   ),
+  prepare: () => (
+    <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden>
+      <path d="M8 20l4 4 12-14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M6 26h20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  ),
 };
 
-export function PracticeReviewPassFlow() {
+export function PracticeReviewPassFlow({ boardSlug: _boardSlug }: { boardSlug?: BoardSlug }) {
   const steps = boardPracticeFlowSteps();
+  const flowLabel = "Practice, review, and prepare";
   return (
-    <section className="bl-flow" aria-label="Practice, review, and pass">
+    <section className="bl-flow" aria-label={flowLabel}>
       <ol className="bl-flow__steps">
         {steps.map((step, index) => {
           const Icon = ICONS[step.id] ?? ICONS.practice;

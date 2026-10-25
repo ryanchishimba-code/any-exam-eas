@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 640" role="img" aria-labelledby="aanp-ancc-title">
+  <title id="aanp-ancc-title">NPCB FNP-C vs ANCC FNP-BC blueprint comparison</title>
+  <rect width="375" height="640" fill="#f8fafc"/>
+  <text x="187.5" y="32" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#0f172a">NPCB (FNP-C) vs ANCC (FNP-BC)</text>
+  <text x="187.5" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#475569">Both test entry-level FNP competence &#8212; blueprints differ</text>
+
+  <rect x="16" y="72" width="343" height="220" rx="10" fill="#fff" stroke="#0d9488" stroke-width="2"/>
+  <rect x="16" y="72" width="343" height="40" rx="10" fill="#0d9488"/>
+  <text x="187.5" y="98" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#fff">NPCB FNP-C (this book)</text>
+  <text x="28" y="132" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Domain I: Assess / Diagnose / Plan / Evaluate</text>
+  <text x="28" y="154" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Domain II: patient age bands (official %)</text>
+  <text x="28" y="176" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; 150 items (135 scored + 15 pretest)</text>
+  <text x="28" y="198" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; 3-hour testing appointment</text>
+  <text x="28" y="220" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Verify aanpcert.org Candidate Handbook</text>
+  <text x="28" y="242" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Study to NPCB weights in this guide</text>
+
+  <rect x="16" y="308" width="343" height="200" rx="10" fill="#fff" stroke="#f97316" stroke-width="2"/>
+  <rect x="16" y="308" width="343" height="40" rx="10" fill="#f97316"/>
+  <text x="187.5" y="334" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#fff">ANCC FNP-BC</text>
+  <text x="28" y="368" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Different official content outline</text>
+  <text x="28" y="390" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Clinical overlap &#8212; weights do not match</text>
+  <text x="28" y="412" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Recalibrate study time to ANCC outline</text>
+  <text x="28" y="434" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Do not import NPCB % onto ANCC</text>
+  <text x="28" y="456" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; ADPE depth still useful</text>
+
+  <rect x="16" y="524" width="343" height="88" rx="8" fill="#ccfbf1"/>
+  <text x="187.5" y="552" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#0f766e">TRAP: Treating the two blueprints as identical.</text>
+  <text x="187.5" y="574" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#0f766e">Confirm your board handbook before test day.</text>
+</svg>

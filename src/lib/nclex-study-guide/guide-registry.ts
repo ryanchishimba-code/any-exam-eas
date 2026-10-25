@@ -98,7 +98,7 @@ export const STUDY_GUIDES: Record<StudyGuideExam, StudyGuideConfig> = {
     visualsPrefix: "/aanp-fnp-study-guide/visuals/",
     legal: {
       examName: "AANP FNP",
-      owner: "AANPCB",
+      owner: "NPCB",
       programNoun: "nurse practitioner program",
     },
   },

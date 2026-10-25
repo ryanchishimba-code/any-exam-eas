@@ -48,7 +48,8 @@ export type PanceContentCategoryId =
   | "hematologic"
   | "dermatologic"
   | "genitourinary"
-  | "other";
+  | "renal"
+  | "professional-practice";
 
 export type PanceGenerationSlot = {
   contentCategory: PanceContentCategoryId;

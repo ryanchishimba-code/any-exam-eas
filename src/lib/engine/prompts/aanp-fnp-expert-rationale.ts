@@ -72,7 +72,7 @@ Use stepByStepReasoning as numbered NP process:
 3. Plan (first-line Rx, non-pharm, counseling — cite guideline families when relevant: ADA, ACC/AHA, GINA/GOLD, USPSTF, IDSA, CDC)
 4. Evaluate / follow-up (monitoring, red flags, referral thresholds)
 
-Do NOT invent official AANPCB item text or claim AANP endorsement. Do NOT invent precise guideline year numbers unless you are highly confident; prefer "current ADA / ACC guidance" style.
+Do NOT invent official NPCB item text or claim AANP endorsement. Do NOT invent precise guideline year numbers unless you are highly confident; prefer "current ADA / ACC guidance" style.
 
 ## Pharmacology (when relevant)
 For medication items include pharmacologyTieIn:
@@ -103,7 +103,7 @@ Quality bar:
 - stepByStepReasoning must reference specific vignette data (age, findings, meds, labs).
 - pharmacologyTieIn must be substantive when any option mentions a drug.
 - Prefer lifespan-aware teaching (peds / adult / geri / women's health) when the vignette provides age/sex context.
-- Never copy proprietary AANPCB or competitor item text.`;
+- Never copy proprietary NPCB or competitor item text.`;
 }
 
 export function buildAanpFnpExpertUserPrompt(input: RationaleGenerationInput): string {

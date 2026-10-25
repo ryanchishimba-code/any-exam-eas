@@ -77,7 +77,7 @@ const CONFIGS: Record<BlueprintTimedExamSlug, ExamComposeConfig> = {
     slug: "aanp-fnp",
     fieldId: "aanp-fnp",
     examName: "AANP FNP",
-    boardReference: "AANPCB FNP Test Content Outline — patient age groups + domains",
+    boardReference: "NPCB FNP Test Content Outline — patient age groups + domains",
     minutesPerItem: 1.2,
     gate: aanpFnpItemPassesTimedExamGate,
     prepareItem: prepareAanpFnpBankItem,
