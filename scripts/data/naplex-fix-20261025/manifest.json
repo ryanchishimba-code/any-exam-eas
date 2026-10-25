@@ -1,0 +1,18 @@
+{
+  "backupTable": "qbi_naplex_fix_20261025_backup",
+  "csv": "scripts/data/naplex-fix-20261025/backup.csv",
+  "csvSha256": "7e9caa2a74dc6b32be145d131294df7115a4c839f91cbdc282ed6a503bb5f472",
+  "rows": 962,
+  "counts": {
+    "retire": 872,
+    "rewrite": 69,
+    "edit": 21
+  },
+  "skips": [],
+  "servedBefore": 5625,
+  "explanationLeftUnchanged": [
+    "cmr7v70i7001h1y2zj6se0asg"
+  ],
+  "undo": "scripts/restore-naplex-fix-20261025.ts",
+  "note": "Snapshot taken before question text was changed. Retire sets active=false. Rewrite and edit update scenario, question, options, correctAnswer, explanation, and references, and set manual_correction=true."
+}
