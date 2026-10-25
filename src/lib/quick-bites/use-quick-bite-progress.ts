@@ -63,12 +63,15 @@ export function useQuickBiteProgressMap({
   enabled: boolean;
 }) {
   const [progress, setProgress] = useState<Record<string, QuickBiteProgressClient>>({});
+  const [progressLoaded, setProgressLoaded] = useState(false);
 
   useEffect(() => {
     if (!enabled) {
       setProgress({});
+      setProgressLoaded(false);
       return;
     }
+    setProgressLoaded(false);
     const controller = new AbortController();
     let active = true;
     void fetch(`${apiBase}/progress`, {
@@ -83,9 +86,13 @@ export function useQuickBiteProgressMap({
         };
         if (!active || !body.progress) return;
         setProgress(body.progress);
+        setProgressLoaded(true);
       })
       .catch(() => {
         /* best-effort */
+      })
+      .finally(() => {
+        if (active) setProgressLoaded(true);
       });
     return () => {
       active = false;
@@ -108,7 +115,7 @@ export function useQuickBiteProgressMap({
     }));
   }, []);
 
-  return { progress, mergeProgress };
+  return { progress, mergeProgress, progressLoaded };
 }
 
 export type QuickBiteResumeSnapshot = {
@@ -123,16 +130,25 @@ export type QuickBiteResumeSnapshot = {
 export function useQuickBiteResumeSnapshot(
   sessionKey: string,
   slug: string,
-  progress: Record<string, QuickBiteProgressClient>
-): QuickBiteResumeSnapshot {
+  progress: Record<string, QuickBiteProgressClient>,
+  progressLoaded: boolean
+): { snapshot: QuickBiteResumeSnapshot; ready: boolean } {
   const lockedSessionRef = useRef<string | null>(null);
   const [snapshot, setSnapshot] = useState<QuickBiteResumeSnapshot>({
     playbackPositionSec: 0,
     completed: false,
   });
+  const [ready, setReady] = useState(false);
 
   useLayoutEffect(() => {
-    if (!slug || !sessionKey) return;
+    if (!slug || !sessionKey) {
+      setReady(false);
+      return;
+    }
+    if (!progressLoaded) {
+      setReady(false);
+      return;
+    }
     const row = progress[slug];
 
     if (lockedSessionRef.current !== sessionKey) {
@@ -141,6 +157,7 @@ export function useQuickBiteResumeSnapshot(
         playbackPositionSec: row?.playbackPositionSec ?? 0,
         completed: row ? isQuickBiteWatched(row) : false,
       });
+      setReady(true);
       return;
     }
 
@@ -153,9 +170,10 @@ export function useQuickBiteResumeSnapshot(
         completed: isQuickBiteWatched(row),
       };
     });
-  }, [sessionKey, slug, progress]);
+    setReady(true);
+  }, [sessionKey, slug, progress, progressLoaded]);
 
-  return snapshot;
+  return { snapshot, ready };
 }
 
 /** Seek once when metadata/buffer is ready; calls onReady after seek settles or when no seek is needed. */
@@ -227,7 +245,7 @@ export function scheduleQuickBiteResumeSeek(
 
   video.addEventListener("loadedmetadata", attemptReady, { once: true });
   video.addEventListener("canplay", attemptSeek, { once: true });
-  attemptReady();
+  if (video.readyState >= 1) attemptReady();
 
   return () => {
     settled = true;
@@ -242,6 +260,7 @@ export function useQuickBiteProgressReporter({
   videoRef,
   videoElement,
   suppressProgressFlushRef,
+  resumeSeekCompletedRef,
   onSaved,
 }: {
   slug: string;
@@ -252,6 +271,8 @@ export function useQuickBiteProgressReporter({
   videoElement: HTMLVideoElement | null;
   /** Skip pause/pagehide saves while the player seeks to the resume point. */
   suppressProgressFlushRef?: { current: boolean };
+  /** False until initial resume seek (if any) has finished. */
+  resumeSeekCompletedRef?: { current: boolean };
   onSaved?: (slug: string, row: QuickBiteProgressClient) => void;
 }) {
   const lastSentAtRef = useRef<number>(Date.now());
@@ -266,6 +287,7 @@ export function useQuickBiteProgressReporter({
 
   const sendProgress = useCallback(
     (watchSecondsDelta: number, useKeepalive = false, force = false) => {
+      if (resumeSeekCompletedRef && !resumeSeekCompletedRef.current) return;
       if (suppressProgressFlushRef?.current) return;
       const video = videoRef.current ?? videoElement;
       if (!slug || !video || !enabled) return;
@@ -316,7 +338,16 @@ export function useQuickBiteProgressReporter({
           /* best-effort */
         });
     },
-    [apiBase, enabled, onSaved, slug, suppressProgressFlushRef, videoElement, videoRef]
+    [
+      apiBase,
+      enabled,
+      onSaved,
+      resumeSeekCompletedRef,
+      slug,
+      suppressProgressFlushRef,
+      videoElement,
+      videoRef,
+    ]
   );
 
   useEffect(() => {
