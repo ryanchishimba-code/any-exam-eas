@@ -18,12 +18,12 @@ import {
   homeTrialCloseHeading,
 } from "@/lib/marketing/home-cta";
 import { formatHomeHeroSubline, HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
-import { boardAccentPillClass } from "@/lib/marketing/board-accent";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { ROUTES } from "@/lib/routes";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { PrepPriceBarChart } from "@/components/marketing/PrepPriceBarChart";
 import { buildHomePrepPriceBarChartData } from "@/lib/marketing/prep-price-bar-chart";
+import { MarketingPhotoHero } from "@/components/marketing/MarketingPhotoHero";
 
 /** First-screen board tiles. Labels match the hero; hrefs are the public board pages. */
 const HERO_BOARD_TILES: { slug: ExamSeoKey; label: string }[] = [
@@ -60,47 +60,33 @@ export function PublicHome({
 
   return (
     <div className="home-visual home-has-sticky">
-      <section className="home-hero" aria-labelledby="hero-heading">
-        <div className="home-laptop">
-          <div className="home-laptop__lid">
-            <div className="home-laptop__bezel">
-              <span className="home-laptop__camera" aria-hidden="true" />
-              <div className="home-laptop__screen">
-                <div className="home-hero__panel">
-                  <h1 id="hero-heading">
-                    <span className="home-hero__line">{headlineLead}</span>{" "}
-                    <span className="home-hero__accent">{headlineAccent}</span>
-                  </h1>
-                  <p className="home-hero__value">{heroSubline}</p>
-                  <nav className="home-hero__boards" aria-label="Board exams">
-                    <ul>
-                      {HERO_BOARD_TILES.map((board) => (
-                        <li key={board.slug}>
-                          <Link
-                            href={examMarketingPath(board.slug)}
-                            className={boardAccentPillClass(board.slug)}
-                          >
-                            {board.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                  <MarketingHeroActions
-                    trialHref={LANDING_TRIAL_HREF}
-                    ctaName="hero_trial"
-                    ctaLocation="hero"
-                    seeQuestionsHref={HOME_SEE_QUESTIONS_HREF}
-                    className="home-hero__actions bl-actions"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="home-laptop__hinge" aria-hidden="true" />
-          </div>
-          <div className="home-laptop__base" aria-hidden="true" />
+      <MarketingPhotoHero heroId="home" className="home-hero" ariaLabelledBy="hero-heading">
+        <div className="home-hero__panel">
+          <h1 id="hero-heading" className="mkt-photo-hero__stagger">
+            <span className="home-hero__line">{headlineLead}</span>{" "}
+            <span className="home-hero__accent">{headlineAccent}</span>
+          </h1>
+          <p className="home-hero__value mkt-photo-hero__stagger">{heroSubline}</p>
+          <nav className="home-hero__boards mkt-photo-hero__stagger" aria-label="Board exams">
+            <ul>
+              {HERO_BOARD_TILES.map((board) => (
+                <li key={board.slug}>
+                  <Link href={examMarketingPath(board.slug)} className="home-hero__board-link">
+                    {board.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <MarketingHeroActions
+            trialHref={LANDING_TRIAL_HREF}
+            ctaName="hero_trial"
+            ctaLocation="hero"
+            seeQuestionsHref={HOME_SEE_QUESTIONS_HREF}
+            className="home-hero__actions bl-actions mkt-photo-hero__stagger"
+          />
         </div>
-      </section>
+      </MarketingPhotoHero>
 
       {proof}
 
