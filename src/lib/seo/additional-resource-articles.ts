@@ -108,54 +108,80 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     ],
   }),
   article({
-    slug: "nclex-vs-uworld-comparison-2026",
-    title: "NCLEX vs UWorld: Which Qbank Is Better in 2026?",
-    metaDescription:
-      "NCLEX prep comparison — NGN types, clinical judgment, Roadmap, Deep Dives, Full Exams, pricing, and when a multi-exam plan wins.",
+    slug: "nclex-single-exam-qbank-comparison-2026",
+    title: "NCLEX Prep: Single-Exam QBank vs One Plan (2026)",
+    metaDescription: `Compare NCLEX study workflows — NGN formats, Roadmap, Deep Dives, and Full Exams on Pro at ${formatMonthlyPrice("pro")}/mo with six boards. ${TRIAL_DAYS}-day trial: ${TRIAL_LIFETIME_QUESTIONS} questions.`,
     examTags: ["nclex"],
     primaryExam: "nclex",
-    keywords: ["NCLEX vs UWorld", "UWorld NCLEX alternative", "NCLEX Qbank 2026"],
+    keywords: [
+      "NCLEX Qbank comparison 2026",
+      "NCLEX prep options",
+      "affordable NCLEX Qbank",
+      "NGN NCLEX practice",
+    ],
     readingMinutes: 8,
     intro:
-      "Both platforms can prepare you for NCLEX-RN — the decision comes down to NGN coverage, study workflow (Roadmap + Deep Dives + Full Exams), and whether you need other board exams on the same subscription.",
+      `NCLEX-RN prep often starts with a premium single-exam QBank focused on clinical judgment and rationales. AnyExamEasy is built for candidates who want NCLEX on the same Pro plan as USMLE, NAPLEX, PANCE, FNP, and NPTE — with Roadmap, Deep Dives, and Full Exam simulations. Pro is ${formatMonthlyPrice("pro")}/month after a ${TRIAL_DAYS}-day free trial (${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment required).`,
+    faq: [
+      {
+        question: "Does AnyExamEasy include NCLEX NGN question types?",
+        answer:
+          "Yes. The NCLEX bank includes SATA, bow-tie, matrix, and other NGN-style formats alongside classic vignettes, mapped to NCSBN Client Needs in your Roadmap.",
+      },
+      {
+        question: "When is a premium single-exam QBank enough?",
+        answer:
+          "If NCLEX is your only licensing exam and you prefer a product built exclusively for that board, a dedicated single-exam QBank may fit. Compare trial access, explanation depth, and whether you want live review or self-directed study.",
+      },
+      {
+        question: "When does a multi-exam Pro plan make sense for NCLEX?",
+        answer: `If you also sit USMLE, NAPLEX, PANCE, FNP, or NPTE on a similar timeline, one Pro subscription at ${formatMonthlyPrice("pro")}/mo covers all six boards with the same Roadmap and review workflow — instead of separate renewals per exam.`,
+      },
+    ],
     sections: [
       {
         heading: "NGN and clinical judgment coverage",
         paragraphs: [
-          "Next Generation NCLEX rewards prioritization and clinical judgment. Prioritize banks with SATA, bow-tie, matrix, and unfolding case formats — not recall-only stems.",
+          "Next Generation NCLEX rewards prioritization and clinical judgment. Look for SATA, bow-tie, matrix, and unfolding case formats — not recall-only stems.",
           "AnyExamEasy NCLEX items are QA-gated and mapped to NCSBN Client Needs categories in your Roadmap.",
         ],
       },
       {
-        heading: "Study workflow: Roadmap vs random sets",
+        heading: "Study workflow: self-directed vs integrated Roadmap",
         bullets: [
-          "UWorld: Strong rationales and performance analytics; study path is largely self-directed.",
+          "Typical premium single-exam QBank: Strong rationales and analytics; you choose what to study next.",
           "AnyExamEasy: Roadmap surfaces weak Client Needs after each session.",
           "AnyExamEasy: Deep Dive modules open from missed questions for structured review.",
           "AnyExamEasy: Timed Full Exam simulations rehearse board pacing with weak-area focus.",
         ],
       },
       {
-        heading: "Pricing for multi-exam students",
+        heading: "NCLEX on one plan with five other boards",
         paragraphs: [
-          "If NCLEX is your only licensing exam, compare trial access and explanation depth side by side.",
-          "If you also need USMLE, NAPLEX, or PA/FNP/PT prep, a single Pro subscription avoids stacking $200–400+ per-exam renewals (public prices as of Sep 27, 2026).",
+          "If NCLEX is your only licensing exam, weigh trial access and explanation depth against any dedicated single-board product.",
+          "If you also need another board on a similar calendar, Pro bundles NCLEX with USMLE (Steps 1–3), NAPLEX, PANCE, FNP, and NPTE on one account.",
         ],
+        competitorLabel: "Typical single-exam prep",
         comparisonRows: [
           {
-            feature: "NCLEX-only focus",
-            anyExamEasy: "Full NCLEX bank + 5 other exams included",
-            typicalQbank: "NCLEX-only; other exams extra",
+            feature: "Exam coverage",
+            anyExamEasy: "NCLEX plus five other boards on Pro",
+            typicalQbank: "Usually one exam per subscription",
           },
           {
             feature: "Study system",
             anyExamEasy: "Roadmap + Deep Dives + Full Exams",
-            typicalQbank: "QBank + analytics",
+            typicalQbank: "QBank plus analytics; schedule is self-directed",
           },
           {
             feature: "Trial",
-            anyExamEasy: `${SEO_LIVE_STATS.trialDays}-day free trial`,
-            typicalQbank: "Varies",
+            anyExamEasy: `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} questions`,
+            typicalQbank: "Trial terms vary by provider",
+          },
+          {
+            feature: "Pro price",
+            anyExamEasy: `${formatMonthlyPrice("pro")}/mo monthly plan · six boards`,
+            typicalQbank: "Pricing varies by provider and term",
           },
         ],
       },
@@ -339,44 +365,54 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     ],
   }),
   article({
-    slug: "nclex-vs-archer-comparison-2026",
-    title: "NCLEX vs Archer Review: Better Value in 2026?",
-    metaDescription:
-      "NCLEX prep comparison — Archer vs AnyExamEasy on price, CAT, NGN coverage, Roadmap, Deep Dives, Full Exams, and multi-exam savings.",
+    slug: "nclex-cat-workflow-prep-comparison-2026",
+    title: "NCLEX Prep: CAT Practice vs Multi-Exam Workflow (2026)",
+    metaDescription: `NCLEX CAT-style practice, NGN coverage, and Roadmap workflow on Pro at ${formatMonthlyPrice("pro")}/mo with six boards. ${TRIAL_DAYS}-day trial with ${TRIAL_LIFETIME_QUESTIONS} questions.`,
     examTags: ["nclex"],
     primaryExam: "nclex",
     keywords: [
-      "NCLEX vs Archer",
-      "Archer Review NCLEX alternative",
-      "Archer vs AnyExamEasy",
-      "NCLEX Qbank budget 2026",
+      "NCLEX CAT practice",
+      "NCLEX prep comparison 2026",
+      "affordable NCLEX study plan",
+      "NCLEX Roadmap prep",
     ],
     readingMinutes: 8,
     intro:
-      "Archer Review is a popular budget NCLEX option with unlimited CAT and strong mobile ratings. AnyExamEasy competes on multi-exam value — NCLEX plus USMLE, NAPLEX, and more on one subscription with Roadmap, Deep Dives, and Full Exam simulations.",
+      `Some NCLEX products emphasize unlimited computer-adaptive practice and mobile study. AnyExamEasy emphasizes a multi-exam workflow — NCLEX with USMLE, NAPLEX, PANCE, FNP, and NPTE on one Pro plan at ${formatMonthlyPrice("pro")}/month, plus Roadmap, Deep Dives, and Full Exam simulations. Start with a ${TRIAL_DAYS}-day free trial (${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment required).`,
+    faq: [
+      {
+        question: "Does AnyExamEasy replace official NCLEX CAT software?",
+        answer:
+          "Full Exam simulations rehearse timed pacing and weak-area focus; they are study tools, not a duplicate of the NCSBN candidate tutorial or live exam delivery. Always review official NCSBN materials before test day.",
+      },
+      {
+        question: "When is unlimited CAT-style practice the priority?",
+        answer:
+          "If NCLEX is your only exam and you learn best by cycling adaptive-length practice with minimal cross-board planning, a dedicated single-exam product built around CAT may fit your workflow.",
+      },
+      {
+        question: "What does Pro include for NCLEX?",
+        answer: `NCLEX practice with Roadmap, Deep Dives opened from misses, and Full Exam blocks on the same account as five other boards — ${formatMonthlyPrice("pro")}/mo on the monthly plan after your ${TRIAL_DAYS}-day trial.`,
+      },
+    ],
     sections: [
       {
-        heading: "Price: NCLEX-only vs six exams on one plan",
+        heading: "NCLEX-only prep vs six boards on one plan",
         paragraphs: [
-          "Archer QBank + CAT starts around $79/month for NCLEX-RN only (as of Sep 27, 2026). Sure PASS and Intense PREP tiers add live review and coaching at $159–$399+.",
+          "Budget-focused NCLEX options often sell one exam per subscription with heavy emphasis on adaptive practice volume.",
           "AnyExamEasy Pro includes NCLEX and five other board exams — useful if you are RN-to-NP, dual-track, or planning USMLE or NAPLEX on the same timeline.",
         ],
-        competitorLabel: "Archer Review",
+        competitorLabel: "Typical single-exam prep",
         comparisonRows: [
-          {
-            feature: "Entry price",
-            anyExamEasy: `Pro from ${SEO_LIVE_STATS.trialDays}-day free trial · all 6 exams`,
-            typicalQbank: "QBank + CAT from ~$79/mo (NCLEX only, as of Sep 27, 2026)",
-          },
           {
             feature: "Exam coverage",
             anyExamEasy: "NCLEX + USMLE + NAPLEX + PANCE + FNP + NPTE",
-            typicalQbank: "NCLEX-RN only",
+            typicalQbank: "Usually NCLEX-only",
           },
           {
-            feature: "CAT / exam-day rehearsal",
+            feature: "Exam-day rehearsal",
             anyExamEasy: "Timed Full Exams + Roadmap-driven sets",
-            typicalQbank: "Unlimited CAT (strong Archer strength)",
+            typicalQbank: "Often CAT-style practice; details vary",
           },
           {
             feature: "Adaptive study path",
@@ -386,24 +422,29 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           {
             feature: "Miss review",
             anyExamEasy: "Deep Dive modules from missed items",
-            typicalQbank: "Rationales on base QBank tier",
+            typicalQbank: "Rationales; depth varies by tier",
+          },
+          {
+            feature: "Pro price",
+            anyExamEasy: `${formatMonthlyPrice("pro")}/mo · six boards`,
+            typicalQbank: "Pricing varies by provider",
           },
         ],
       },
       {
-        heading: "When Archer wins",
+        heading: "When a dedicated single-exam product may fit better",
         bullets: [
-          "NCLEX is your only licensing exam and budget is the top priority.",
-          "You want unlimited CAT without thinking about other board subscriptions.",
-          "Mobile-first study with Archer’s highly rated app is your primary workflow.",
+          "NCLEX is your only licensing exam and you want the narrowest product scope.",
+          "Unlimited adaptive practice volume is your primary study habit.",
+          "Mobile-first QBank study is your main workflow and you do not need other boards on the same plan.",
         ],
       },
       {
-        heading: "When AnyExamEasy wins",
+        heading: "When AnyExamEasy fits better",
         bullets: [
           "You need NCLEX plus another board (USMLE, NAPLEX, PANCE, FNP, or NPTE).",
           "You want Roadmap, Deep Dives, and Full Exams in one workflow.",
-          `${SEO_LIVE_STATS.trialDays}-day free trial, no payment method required, then cancel anytime in Settings.`,
+          `${TRIAL_DAYS}-day free trial, no payment method required, then cancel anytime in Settings.`,
         ],
       },
       {
@@ -413,71 +454,91 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     ],
   }),
   article({
-    slug: "naplex-vs-rxprep-comparison-2026",
-    title: "NAPLEX vs RxPrep: Qbank and Price (2026)",
-    metaDescription:
-      "Compare AnyExamEasy vs RxPrep for NAPLEX — calculations, Roadmap, Deep Dives, Full Exams, pricing, and when a multi-exam plan wins.",
+    slug: "naplex-single-exam-qbank-comparison-2026",
+    title: "NAPLEX Prep: Pharmacy QBank vs Multi-Exam Plan (2026)",
+    metaDescription: `NAPLEX calculations, Roadmap, Deep Dives, and Full Exams on Pro at ${formatMonthlyPrice("pro")}/mo with six boards. ${TRIAL_DAYS}-day trial: ${TRIAL_LIFETIME_QUESTIONS} questions.`,
     examTags: ["naplex"],
     primaryExam: "naplex",
     keywords: [
-      "NAPLEX vs RxPrep",
-      "RxPrep alternative",
       "NAPLEX Qbank comparison 2026",
-      "NAPLEX prep comparison",
+      "NAPLEX prep options",
+      "NAPLEX calculations prep",
+      "affordable NAPLEX study",
     ],
     readingMinutes: 9,
     intro:
-      "RxPrep (UWorld Pharmacy) is the established NAPLEX brand with a calc-heavy QBank and premium video course. AnyExamEasy bundles NAPLEX with nursing and medical boards — plus calculation drills, Roadmap, Deep Dives, and Full Exam practice on one Pro plan.",
+      `Many pharmacy graduates start with a premium single-exam NAPLEX QBank or video course. AnyExamEasy bundles NAPLEX with NCLEX, USMLE, PANCE, FNP, and NPTE on Pro at ${formatMonthlyPrice("pro")}/month — with calculation drills, Roadmap, Deep Dives, and Full Exam practice. Try ${TRIAL_DAYS} days free (${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment required).`,
+    faq: [
+      {
+        question: "Does AnyExamEasy cover NAPLEX calculations?",
+        answer:
+          "Yes. The NAPLEX bank includes calculation and case-based items with teachable rationales, plus Roadmap tracking across NABP content domains.",
+      },
+      {
+        question: "When is a pharmacy-only prep product enough?",
+        answer:
+          "If NAPLEX is your only licensing exam and you want a product scoped entirely to pharmacy — especially with bundled video lectures — a dedicated single-exam offering may match your workflow.",
+      },
+      {
+        question: "When does multi-exam Pro help for NAPLEX?",
+        answer: `Dual-degree students and clinicians adding nursing, medical, or PA boards can keep NAPLEX on the same Pro plan as five other exams — ${formatMonthlyPrice("pro")}/mo on the monthly plan after the ${TRIAL_DAYS}-day trial.`,
+      },
+    ],
     sections: [
       {
-        heading: "Pricing: pharmacy-only vs multi-exam Pro",
+        heading: "Pharmacy-only prep vs multi-exam Pro",
         paragraphs: [
-          "RxPrep NAPLEX QBank starts at $299 for 60-day access (as of Sep 27, 2026); the full online course runs $999+ for 180 days with video lectures and course book.",
+          "Established NAPLEX products often pair a calc-heavy QBank with optional video courses sold on their own renewal cycle.",
           "AnyExamEasy Pro covers NAPLEX alongside NCLEX, USMLE, PANCE, FNP, and NPTE — relevant for dual-degree students or clinicians adding certifications.",
         ],
-        competitorLabel: "RxPrep (UWorld)",
+        competitorLabel: "Typical single-exam prep",
         comparisonRows: [
           {
             feature: "NAPLEX QBank access",
-            anyExamEasy: "Included in Pro · NABP Roadmap",
-            typicalQbank: "QBank from $299/60d · Course from $999/180d (as of Sep 27, 2026)",
+            anyExamEasy: "Included in Pro · NABP-aligned Roadmap",
+            typicalQbank: "Usually pharmacy-only subscription",
           },
           {
             feature: "Calculations prep",
             anyExamEasy: "Daily calc drills + timed Full Exam-style mixed blocks",
-            typicalQbank: "Strong calc coverage in RxPrep QBank",
+            typicalQbank: "Calc sets vary by provider",
           },
           {
             feature: "Miss review",
             anyExamEasy: "Deep Dive modules from missed questions",
-            typicalQbank: "Course book + drug tables in premium tiers",
+            typicalQbank: "Rationales; add-on review bundles vary",
           },
           {
             feature: "Structured teaching",
             anyExamEasy: "Deep Dives + teachable rationales",
-            typicalQbank: "Full video course (premium RxPrep tier)",
+            typicalQbank: "Often separate video or course tiers",
           },
           {
             feature: "Other board exams",
-            anyExamEasy: "5 additional exams on same subscription",
-            typicalQbank: "Pharmacy-only",
+            anyExamEasy: "Five additional exams on same subscription",
+            typicalQbank: "Typically one licensing exam per product",
+          },
+          {
+            feature: "Pro price",
+            anyExamEasy: `${formatMonthlyPrice("pro")}/mo · six boards`,
+            typicalQbank: "Pricing varies by provider",
           },
         ],
       },
       {
-        heading: "When RxPrep wins",
+        heading: "When a dedicated pharmacy prep product may fit better",
         bullets: [
-          "NAPLEX is your only exam and you want the pharmacy category leader with video course + course book.",
-          "Institutional or faculty recommendation specifically names RxPrep as the standard.",
-          "Budget allows $999+ for the full 180-day online course with lectures.",
+          "NAPLEX is your only exam and you want the narrowest pharmacy-focused scope.",
+          "Your program recommends a specific pharmacy QBank or course bundle.",
+          "Video lectures and a printed course book are must-haves for your study style.",
         ],
       },
       {
-        heading: "When AnyExamEasy wins",
+        heading: "When AnyExamEasy fits better",
         bullets: [
-          "You are PharmD plus RN, PA, or MD track and need more than pharmacy prep.",
+          "You are on a PharmD plus RN, PA, or MD track and need more than pharmacy prep.",
           "You want Roadmap, Deep Dives, and Full Exams integrated with NAPLEX practice.",
-          "Pro monthly pricing beats stacking RxPrep QBank with separate nursing or medical subscriptions.",
+          `One Pro price at ${formatMonthlyPrice("pro")}/mo instead of separate subscriptions per board.`,
         ],
       },
       {
@@ -486,9 +547,21 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           "Pair 15–20 untimed calculation items daily with case-based pharmacotherapy blocks. AnyExamEasy Roadmap surfaces weak NABP domains after each session.",
         ],
         comparisonRows: [
-          { feature: "Mon–Wed", anyExamEasy: "Calc drills + Deep Dive on misses", typicalQbank: "RxPrep math sets" },
-          { feature: "Thu–Fri", anyExamEasy: "Mixed patient cases + timed calcs", typicalQbank: "QBank case sets" },
-          { feature: "Sat", anyExamEasy: "Full Exam timed mock block", typicalQbank: "Self-assessment (add-on)" },
+          {
+            feature: "Mon–Wed",
+            anyExamEasy: "Calc drills + Deep Dive on misses",
+            typicalQbank: "Self-selected math sets",
+          },
+          {
+            feature: "Thu–Fri",
+            anyExamEasy: "Mixed patient cases + timed calcs",
+            typicalQbank: "Case-based QBank blocks",
+          },
+          {
+            feature: "Sat",
+            anyExamEasy: "Full Exam timed mock block",
+            typicalQbank: "Optional mock or self-assessment",
+          },
         ],
         competitorLabel: "Typical schedule",
       },

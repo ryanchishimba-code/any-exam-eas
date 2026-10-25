@@ -519,7 +519,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     metaDescription:
       "Why students switch from per-exam QBanks to AnyExamEasy — six licensing tracks, Roadmap, Deep Dives, and one Pro plan.",
     examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
-    keywords: ["board exam prep subscription", "UWorld alternative", "affordable board prep"],
+    keywords: ["board exam prep subscription", "affordable multi-exam board prep", "affordable board prep"],
     readingMinutes: 8,
     intro:
       "Stacking separate NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE subscriptions can cost thousands per year. One integrated platform changes the math.",

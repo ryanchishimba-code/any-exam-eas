@@ -230,6 +230,21 @@ const nextConfig: NextConfig = {
         statusCode: 301,
       },
       {
+        source: "/resources/nclex-vs-uworld-comparison-2026",
+        destination: "/resources/nclex-single-exam-qbank-comparison-2026",
+        statusCode: 301,
+      },
+      {
+        source: "/resources/nclex-vs-archer-comparison-2026",
+        destination: "/resources/nclex-cat-workflow-prep-comparison-2026",
+        statusCode: 301,
+      },
+      {
+        source: "/resources/naplex-vs-rxprep-comparison-2026",
+        destination: "/resources/naplex-single-exam-qbank-comparison-2026",
+        statusCode: 301,
+      },
+      {
         source: "/resources",
         destination: "/toolkit",
         permanent: true,

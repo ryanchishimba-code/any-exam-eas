@@ -11,6 +11,7 @@ import {
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
+import { getComparePageFaq } from "@/lib/seo/compare-faq";
 import { formatMonthlyPrice, formatPricingCheckoutTrialOffer, formatTrialCtaLabel } from "@/lib/site";
 
 function ComparisonTable({
@@ -172,7 +173,7 @@ export function ComparePageContent({
           Related study guides
         </h2>
         <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          Deeper reads for NCLEX, NAPLEX, and multi-exam value
+          NCLEX, NAPLEX, and multi-exam planning guides
         </p>
         <ul className="mt-5 grid gap-3 sm:grid-cols-2" role="list">
           {EXAM_ONE_PAGER_LINKS.map((link) => (
@@ -192,6 +193,26 @@ export function ComparePageContent({
                   aria-hidden
                 />
               </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-12" aria-labelledby="compare-faq-heading">
+        <h2 id="compare-faq-heading" className="text-xl font-bold text-[var(--color-ink)]">
+          Frequently asked questions
+        </h2>
+        <ul className="mt-5 divide-y divide-[var(--color-border)] rounded-2xl border border-[var(--color-border)]">
+          {getComparePageFaq().map((item) => (
+            <li key={item.question}>
+              <details className="group px-4 py-3 sm:px-5">
+                <summary className="cursor-pointer list-none text-sm font-semibold text-[var(--color-ink)] marker:content-none [&::-webkit-details-marker]:hidden">
+                  {item.question}
+                </summary>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+                  {item.answer}
+                </p>
+              </details>
             </li>
           ))}
         </ul>

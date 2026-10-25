@@ -26,6 +26,7 @@ import {
   formatTrialQuestionLimit,
 } from "@/lib/site";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
+import { comparePageFaqJsonLdEntities } from "@/lib/seo/compare-faq";
 import { SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { formatUsd } from "@/lib/seo/competitor-comparison";
@@ -195,32 +196,7 @@ export function buildCompareJsonLd() {
       },
       {
         "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "How does AnyExamEasy pricing work for multiple exams?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: `AnyExamEasy Pro is ${formatMonthlyPrice("pro")}/month on the monthly plan and includes NCLEX, USMLE (Steps 1–3), NAPLEX, PANCE, FNP, and NPTE on one subscription — instead of buying separate single-exam products for each board.`,
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Is AnyExamEasy a good fit if I need more than one board exam?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: `${seoPlatformPitch()} One Pro subscription covers six boards with Roadmap, Deep Dive modules, and Full Exam simulations on the same account.`,
-            },
-          },
-          {
-            "@type": "Question",
-            name: "When is a single-exam prep product a better fit?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "If you are only sitting one board and want a product built exclusively for that exam, a premium single-exam QBank or live review course may match your workflow. AnyExamEasy is designed for candidates who want multiple boards on one plan.",
-            },
-          },
-        ],
+        mainEntity: comparePageFaqJsonLdEntities(),
       },
     ],
   };

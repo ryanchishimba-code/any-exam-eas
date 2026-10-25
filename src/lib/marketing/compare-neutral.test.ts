@@ -2,23 +2,40 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildCompareJsonLd, buildCompareMetadata } from "@/lib/seo/marketing-metadata";
+import { getComparePageFaq } from "@/lib/seo/compare-faq";
 
 const FORBIDDEN =
-  /Kaplan|Archer Review|\bUWorld\b|AMBOSS|RxPrep|BoardVitals|Rosh Review|Hurst/i;
+  /Kaplan|Archer Review|\bArcher\b|BoardVitals|Rosh Review|\bRosh\b|Hurst|\bUWorld\b|AMBOSS|RxPrep|Boards and Beyond|Picmonic|Sketchy|TrueLearn|Bootcamp|Pocket Prep|\bAPEA\b|Fitzgerald|Barron|\bPEAT\b|Scorebuilders|Pass the PT/i;
 
-const NEUTRAL_COMPARE_SOURCES = [
+/** Student-facing UI/SEO modules checked for competitor brand names (vs-* articles excluded). */
+const NEUTRAL_STUDENT_FACING_SOURCES = [
   "src/lib/seo/competitor-comparison.ts",
-  "src/components/compare/ComparePageContent.tsx",
+  "src/lib/seo/compare-faq.ts",
+  "src/lib/seo/seo-copy.ts",
+  "src/lib/seo/exam-config.ts",
+  "src/lib/seo/resources-content.ts",
   "src/lib/seo/marketing-metadata.ts",
+  "src/components/compare/ComparePageContent.tsx",
   "src/lib/landing/content.ts",
   "src/components/home/HowWeCompare.tsx",
+  "src/components/home/LandingCompact.tsx",
+  "src/components/home/LandingDifferentiators.tsx",
   "src/components/landing/CostComparisonChart.tsx",
   "src/components/landing/flagship/LandingWhyChoose.tsx",
   "src/components/landing/v2/LandingWhyChooseV2.tsx",
   "src/components/landing/v2/LandingFaqV2.tsx",
+  "src/components/toolkit/ToolkitStudyGuides.tsx",
   "src/components/marketing/board-landing/NclexToolkitDonutSection.tsx",
   "src/components/marketing/board-landing/NaplexAceDonutSection.tsx",
+  "src/lib/seo/additional-resource-articles.ts",
 ];
+
+function stripDeprecatedAliases(source: string): string {
+  return source
+    .split("\n")
+    .filter((line) => !/UWORLD_COMPARE_ROWS/.test(line))
+    .join("\n");
+}
 
 describe("neutral compare surfaces", () => {
   it("keeps compare metadata and JSON-LD free of competitor brands", () => {
@@ -29,14 +46,23 @@ describe("neutral compare surfaces", () => {
     expect(blob).toMatch(/affordable multi-exam board prep/i);
   });
 
-  it("keeps compare-related UI modules free of competitor brands", () => {
-    for (const file of NEUTRAL_COMPARE_SOURCES) {
-      const text = readFileSync(path.resolve(process.cwd(), file), "utf8");
-      const withoutResourceSlugs = text
-        .split("\n")
-        .filter((line) => !/slug:\s*"/.test(line))
-        .join("\n");
-      expect(withoutResourceSlugs, file).not.toMatch(FORBIDDEN);
+  it("matches visible /compare FAQ copy to JSON-LD FAQ entities", () => {
+    const faq = getComparePageFaq();
+    const jsonLd = buildCompareJsonLd();
+    const faqPage = jsonLd["@graph"].find(
+      (node: { "@type"?: string }) => node["@type"] === "FAQPage"
+    ) as { mainEntity: { name: string; acceptedAnswer: { text: string } }[] };
+    expect(faqPage.mainEntity).toHaveLength(faq.length);
+    for (let i = 0; i < faq.length; i++) {
+      expect(faqPage.mainEntity[i].name).toBe(faq[i].question);
+      expect(faqPage.mainEntity[i].acceptedAnswer.text).toBe(faq[i].answer);
+    }
+  });
+
+  it("keeps student-facing modules free of competitor brands", () => {
+    for (const file of NEUTRAL_STUDENT_FACING_SOURCES) {
+      const text = stripDeprecatedAliases(readFileSync(path.resolve(process.cwd(), file), "utf8"));
+      expect(text, file).not.toMatch(FORBIDDEN);
     }
   });
 

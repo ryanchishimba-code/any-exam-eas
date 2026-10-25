@@ -1,4 +1,3 @@
-import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { TIER_ANNUAL_USD, TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { formatMonthlyPrice } from "@/lib/site";
@@ -115,27 +114,22 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
     anyExamEasy: `${TRIAL_DAYS}-day · ${TRIAL_LIFETIME_QUESTIONS} questions · no payment`,
     competitor: "Trial terms vary by provider",
   },
-  {
-    feature: "Quality commitment",
-    anyExamEasy: `${SEO_LIVE_STATS.moneyBackDays}-day support window (not a refund)`,
-    competitor: "Policies vary by provider",
-  },
 ];
 
 export const EXAM_ONE_PAGER_LINKS = [
   {
-    slug: "nclex-vs-uworld-comparison-2026",
-    title: "NCLEX prep comparison guide",
+    slug: "nclex-single-exam-qbank-comparison-2026",
+    title: "NCLEX prep: single-exam QBank vs one plan",
     exam: "NCLEX",
   },
   {
-    slug: "nclex-vs-archer-comparison-2026",
-    title: "NCLEX value comparison guide",
+    slug: "nclex-cat-workflow-prep-comparison-2026",
+    title: "NCLEX CAT-style practice vs multi-exam workflow",
     exam: "NCLEX",
   },
   {
-    slug: "naplex-vs-rxprep-comparison-2026",
-    title: "NAPLEX prep comparison guide",
+    slug: "naplex-single-exam-qbank-comparison-2026",
+    title: "NAPLEX prep: pharmacy QBank vs multi-exam plan",
     exam: "NAPLEX",
   },
   {
