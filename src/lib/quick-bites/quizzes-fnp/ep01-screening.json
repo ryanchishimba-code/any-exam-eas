@@ -1,0 +1,287 @@
+{
+  "episode": "ep01-screening",
+  "title": "Screening and Prevention Across the Lifespan",
+  "video": "quick-bites-fnp-ep01-screening-web.mp4",
+  "questions": [
+    {
+      "id": "ep01-screening-q01",
+      "type": "single_best_answer",
+      "stem": "Which USPSTF grades mean the clinician should offer the screening?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A and B only"
+        },
+        {
+          "id": "B",
+          "text": "A, B and C to all patients"
+        },
+        {
+          "id": "C",
+          "text": "D and I"
+        },
+        {
+          "id": "D",
+          "text": "Only A"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Grades A and B mean offer the service. C is selective, D recommends against, and I means evidence is insufficient.",
+      "videoTimestamp": "1:00"
+    },
+    {
+      "id": "ep01-screening-q02",
+      "type": "single_best_answer",
+      "stem": "At what age does average-risk colorectal screening start?",
+      "options": [
+        {
+          "id": "A",
+          "text": "40"
+        },
+        {
+          "id": "B",
+          "text": "45"
+        },
+        {
+          "id": "C",
+          "text": "50"
+        },
+        {
+          "id": "D",
+          "text": "55"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Colorectal screening runs from 45 to 75.",
+      "videoTimestamp": "1:30"
+    },
+    {
+      "id": "ep01-screening-q03",
+      "type": "single_best_answer",
+      "stem": "Which cervical screening plan fits a 25-year-old at average risk per USPSTF?",
+      "options": [
+        {
+          "id": "A",
+          "text": "HPV test every 5 years"
+        },
+        {
+          "id": "B",
+          "text": "Cytology every 3 years"
+        },
+        {
+          "id": "C",
+          "text": "Cytology every year"
+        },
+        {
+          "id": "D",
+          "text": "No screening until 30"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Ages 21-29 get cytology every 3 years. HPV testing starts as an option at 30.",
+      "videoTimestamp": "1:25"
+    },
+    {
+      "id": "ep01-screening-q04",
+      "type": "single_best_answer",
+      "stem": "How often is mammography recommended for women aged 40-74?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Every year"
+        },
+        {
+          "id": "B",
+          "text": "Every 2 years"
+        },
+        {
+          "id": "C",
+          "text": "Every 3 years"
+        },
+        {
+          "id": "D",
+          "text": "Only after 50"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Screening mammography is every 2 years from 40 to 74.",
+      "videoTimestamp": "1:35"
+    },
+    {
+      "id": "ep01-screening-q05",
+      "type": "single_best_answer",
+      "stem": "A 60-year-old smoked 2 packs a day for 10 years and quit 5 years ago. Lung screening?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, yearly low-dose CT"
+        },
+        {
+          "id": "B",
+          "text": "No, fewer than 30 pack-years"
+        },
+        {
+          "id": "C",
+          "text": "No, she quit"
+        },
+        {
+          "id": "D",
+          "text": "Chest x-ray yearly"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "2 x 10 = 20 pack-years, age 50-80, quit within 15 years, so she qualifies.",
+      "videoTimestamp": "2:05"
+    },
+    {
+      "id": "ep01-screening-q06",
+      "type": "single_best_answer",
+      "stem": "A 68-year-old man quit smoking 20 years ago. Which screening applies?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yearly low-dose CT"
+        },
+        {
+          "id": "B",
+          "text": "One-time abdominal aortic ultrasound"
+        },
+        {
+          "id": "C",
+          "text": "Both"
+        },
+        {
+          "id": "D",
+          "text": "Neither"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Men 65-75 who ever smoked get one AAA ultrasound. He quit over 15 years ago, so no lung CT.",
+      "videoTimestamp": "2:30"
+    },
+    {
+      "id": "ep01-screening-q07",
+      "type": "single_best_answer",
+      "stem": "Which hepatitis C screening statement is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only people who inject drugs"
+        },
+        {
+          "id": "B",
+          "text": "Adults 18-79 at least once"
+        },
+        {
+          "id": "C",
+          "text": "Every year after 50"
+        },
+        {
+          "id": "D",
+          "text": "Only during pregnancy"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "All adults 18-79 are screened at least once.",
+      "videoTimestamp": "2:55"
+    },
+    {
+      "id": "ep01-screening-q08",
+      "type": "single_best_answer",
+      "stem": "Which adult should be screened for prediabetes and diabetes?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Age 30, normal weight"
+        },
+        {
+          "id": "B",
+          "text": "Age 40, overweight"
+        },
+        {
+          "id": "C",
+          "text": "Age 75, normal weight"
+        },
+        {
+          "id": "D",
+          "text": "Any adult yearly"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Screening covers adults 35-70 with overweight or obesity.",
+      "videoTimestamp": "3:05"
+    },
+    {
+      "id": "ep01-screening-q09",
+      "type": "single_best_answer",
+      "stem": "A 72-year-old man asks for a PSA test. The recommendation is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Screen yearly"
+        },
+        {
+          "id": "B",
+          "text": "Shared decision"
+        },
+        {
+          "id": "C",
+          "text": "Do not screen (grade D)"
+        },
+        {
+          "id": "D",
+          "text": "Screen every 2 years"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "PSA testing is a shared decision at 55-69. At 70 and older, it is grade D.",
+      "videoTimestamp": "3:30"
+    },
+    {
+      "id": "ep01-screening-q10",
+      "type": "single_best_answer",
+      "stem": "A 66-year-old woman with normal Pap results for decades asks about cervical screening. Best response?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Continue every 3 years"
+        },
+        {
+          "id": "B",
+          "text": "Stop screening"
+        },
+        {
+          "id": "C",
+          "text": "Switch to a yearly HPV test"
+        },
+        {
+          "id": "D",
+          "text": "Screen until 75"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Stop after 65 when prior screening was adequate and normal.",
+      "videoTimestamp": "3:40"
+    }
+  ]
+}

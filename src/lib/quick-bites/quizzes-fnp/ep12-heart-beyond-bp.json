@@ -1,0 +1,287 @@
+{
+  "episode": "ep12-heart-beyond-bp",
+  "title": "Heart Failure, Atrial Fibrillation, Murmurs, Chest Pain",
+  "video": "quick-bites-fnp-ep12-heart-beyond-bp-web.mp4",
+  "questions": [
+    {
+      "id": "ep12-heart-beyond-bp-q01",
+      "type": "single_best_answer",
+      "stem": "76-year-old, hypertension, new AF:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Aspirin"
+        },
+        {
+          "id": "B",
+          "text": "Anticoagulate (score 3)"
+        },
+        {
+          "id": "C",
+          "text": "No therapy"
+        },
+        {
+          "id": "D",
+          "text": "Warfarin only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Age 75 = 2, HTN = 1.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-heart-beyond-bp-q02",
+      "type": "single_best_answer",
+      "stem": "Preferred anticoagulant in nonvalvular AF:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Warfarin"
+        },
+        {
+          "id": "B",
+          "text": "DOAC"
+        },
+        {
+          "id": "C",
+          "text": "Aspirin"
+        },
+        {
+          "id": "D",
+          "text": "Clopidogrel"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "2023 AF.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-heart-beyond-bp-q03",
+      "type": "single_best_answer",
+      "stem": "Warfarin over DOAC with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hypertension"
+        },
+        {
+          "id": "B",
+          "text": "Mechanical valve"
+        },
+        {
+          "id": "C",
+          "text": "Diabetes"
+        },
+        {
+          "id": "D",
+          "text": "Age 80"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Mechanical valve.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-heart-beyond-bp-q04",
+      "type": "single_best_answer",
+      "stem": "EF 30% four pillars include all EXCEPT:",
+      "options": [
+        {
+          "id": "A",
+          "text": "ARNI"
+        },
+        {
+          "id": "B",
+          "text": "Beta blocker"
+        },
+        {
+          "id": "C",
+          "text": "Diltiazem"
+        },
+        {
+          "id": "D",
+          "text": "SGLT2 inhibitor"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Avoid diltiazem in HFrEF.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-heart-beyond-bp-q05",
+      "type": "single_best_answer",
+      "stem": "HFpEF EF 55% drug with benefit:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Digoxin"
+        },
+        {
+          "id": "B",
+          "text": "SGLT2 inhibitor"
+        },
+        {
+          "id": "C",
+          "text": "Diltiazem"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Class 2a.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-heart-beyond-bp-q06",
+      "type": "single_best_answer",
+      "stem": "Crescendo-decrescendo at right upper sternal border to carotids:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Mitral regurgitation"
+        },
+        {
+          "id": "B",
+          "text": "Aortic stenosis"
+        },
+        {
+          "id": "C",
+          "text": "VSD"
+        },
+        {
+          "id": "D",
+          "text": "Mitral stenosis"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "AS.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-heart-beyond-bp-q07",
+      "type": "single_best_answer",
+      "stem": "Holosystolic apical murmur to axilla:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Aortic stenosis"
+        },
+        {
+          "id": "B",
+          "text": "Mitral regurgitation"
+        },
+        {
+          "id": "C",
+          "text": "Aortic regurgitation"
+        },
+        {
+          "id": "D",
+          "text": "Innocent"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "MR.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-heart-beyond-bp-q08",
+      "type": "single_best_answer",
+      "stem": "Possible heart attack in the office:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Order troponin and wait"
+        },
+        {
+          "id": "B",
+          "text": "Send by EMS"
+        },
+        {
+          "id": "C",
+          "text": "Drive home"
+        },
+        {
+          "id": "D",
+          "text": "Stress test next week"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "2021 chest pain.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-heart-beyond-bp-q09",
+      "type": "single_best_answer",
+      "stem": "Fainting red flag:",
+      "options": [
+        {
+          "id": "A",
+          "text": "After standing up fast"
+        },
+        {
+          "id": "B",
+          "text": "During exertion"
+        },
+        {
+          "id": "C",
+          "text": "With blood draw"
+        },
+        {
+          "id": "D",
+          "text": "After long standing"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Exertional syncope.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-heart-beyond-bp-q10",
+      "type": "single_best_answer",
+      "stem": "Woman 68, AF, HTN, diabetes:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Aspirin"
+        },
+        {
+          "id": "B",
+          "text": "Apixaban"
+        },
+        {
+          "id": "C",
+          "text": "Nothing"
+        },
+        {
+          "id": "D",
+          "text": "Warfarin first"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Score 4.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

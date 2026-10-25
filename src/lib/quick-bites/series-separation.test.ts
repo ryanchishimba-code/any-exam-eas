@@ -8,6 +8,20 @@ import {
   quickBiteVideoPath,
 } from "@/lib/quick-bites/catalog";
 import {
+  FNP_QUICK_BITE_EPISODES,
+  fnpQuickBiteCaptionsPath,
+  fnpQuickBitePoster,
+  fnpQuickBiteVideoPath,
+  getFnpQuickBiteBySlug,
+} from "@/lib/quick-bites/fnp-catalog";
+import {
+  PANCE_QUICK_BITE_EPISODES,
+  getPanceQuickBiteBySlug,
+  panceQuickBiteCaptionsPath,
+  panceQuickBitePoster,
+  panceQuickBiteVideoPath,
+} from "@/lib/quick-bites/pance-catalog";
+import {
   PHARMACY_QUICK_BITE_EPISODES,
   getPharmacyQuickBiteBySlug,
   pharmacyQuickBiteCaptionsPath,
@@ -15,14 +29,28 @@ import {
   pharmacyQuickBiteVideoPath,
 } from "@/lib/quick-bites/pharmacy-catalog";
 
-/**
- * Hard rule: nursing episodes and quizzes appear on the NCLEX track only,
- * pharmacy episodes and quizzes on the NAPLEX track only.
- * Note the nursing slug "quick-bites-ep12-high-alert-pharm" ends in "pharm"; the series
- * marker is the "quick-bites-pharm-" prefix, never a substring match.
- */
 const PHARM_PREFIX = "quick-bites-pharm-";
+const FNP_PREFIX = "quick-bites-fnp-";
+const PANCE_PREFIX = "quick-bites-pance-";
+
 const isPharmacySlug = (slug: string) => slug.startsWith(PHARM_PREFIX);
+const isFnpSlug = (slug: string) => slug.startsWith(FNP_PREFIX);
+const isPanceSlug = (slug: string) => slug.startsWith(PANCE_PREFIX);
+
+const OTHER_LOOKUPS = [
+  getPharmacyQuickBiteBySlug,
+  getFnpQuickBiteBySlug,
+  getPanceQuickBiteBySlug,
+] as const;
+
+function assertNursingOnly(slug: string) {
+  expect(isPharmacySlug(slug), slug).toBe(false);
+  expect(isFnpSlug(slug), slug).toBe(false);
+  expect(isPanceSlug(slug), slug).toBe(false);
+  for (const lookup of OTHER_LOOKUPS) {
+    expect(lookup(slug), slug).toBeUndefined();
+  }
+}
 
 type RawQuiz = { episode: string; video: string };
 
@@ -33,67 +61,131 @@ function readQuizzes(dir: string): RawQuiz[] {
     .map((name) => JSON.parse(readFileSync(new URL(name, url), "utf8")) as RawQuiz);
 }
 
-describe("Quick Bites series separation (NCLEX vs NAPLEX)", () => {
-  it("has no pharmacy episode in the nursing catalog and no nursing episode in the pharmacy catalog", () => {
-    expect(QUICK_BITE_EPISODES.length).toBeGreaterThan(0);
-    expect(PHARMACY_QUICK_BITE_EPISODES.length).toBeGreaterThan(0);
+const ALL_SERIES = [
+  {
+    label: "nursing",
+    episodes: QUICK_BITE_EPISODES,
+    quizzes: () => readQuizzes("quizzes"),
+    slugFromQuiz: (quiz: RawQuiz) => `quick-bites-${quiz.episode}`,
+    isOwn: (slug: string) => !isPharmacySlug(slug) && !isFnpSlug(slug) && !isPanceSlug(slug),
+    lookup: getQuickBiteBySlug,
+    videoPath: quickBiteVideoPath,
+    captionsPath: quickBiteCaptionsPath,
+    poster: quickBitePoster,
+    blobPrefix: "quick-bites/",
+    publicPrefix: "/quick-bites/",
+  },
+  {
+    label: "pharmacy",
+    episodes: PHARMACY_QUICK_BITE_EPISODES,
+    quizzes: () => readQuizzes("quizzes-pharmacy"),
+    slugFromQuiz: (quiz: RawQuiz) => quiz.video.replace(/-web\.mp4$/, ""),
+    isOwn: isPharmacySlug,
+    lookup: getPharmacyQuickBiteBySlug,
+    videoPath: pharmacyQuickBiteVideoPath,
+    captionsPath: pharmacyQuickBiteCaptionsPath,
+    poster: pharmacyQuickBitePoster,
+    blobPrefix: "quick-bites-pharmacy/",
+    publicPrefix: "/quick-bites-pharmacy/",
+  },
+  {
+    label: "fnp",
+    episodes: FNP_QUICK_BITE_EPISODES,
+    quizzes: () => readQuizzes("quizzes-fnp"),
+    slugFromQuiz: (quiz: RawQuiz) => quiz.video.replace(/-web\.mp4$/, ""),
+    isOwn: isFnpSlug,
+    lookup: getFnpQuickBiteBySlug,
+    videoPath: fnpQuickBiteVideoPath,
+    captionsPath: fnpQuickBiteCaptionsPath,
+    poster: fnpQuickBitePoster,
+    blobPrefix: "quick-bites-fnp/",
+    publicPrefix: "/quick-bites-fnp/",
+  },
+  {
+    label: "pance",
+    episodes: PANCE_QUICK_BITE_EPISODES,
+    quizzes: () => readQuizzes("quizzes-pance"),
+    slugFromQuiz: (quiz: RawQuiz) => quiz.video.replace(/-web\.mp4$/, ""),
+    isOwn: isPanceSlug,
+    lookup: getPanceQuickBiteBySlug,
+    videoPath: panceQuickBiteVideoPath,
+    captionsPath: panceQuickBiteCaptionsPath,
+    poster: panceQuickBitePoster,
+    blobPrefix: "quick-bites-pance/",
+    publicPrefix: "/quick-bites-pance/",
+  },
+] as const;
+
+describe("Quick Bites series separation", () => {
+  it("keeps each catalog disjoint from the other three", () => {
+    const slugs = ALL_SERIES.map((series) => series.episodes.map((episode) => episode.slug));
+    for (let i = 0; i < ALL_SERIES.length; i += 1) {
+      for (let j = i + 1; j < ALL_SERIES.length; j += 1) {
+        const overlap = slugs[i].filter((slug) => slugs[j].includes(slug));
+        expect(overlap, `${ALL_SERIES[i].label} vs ${ALL_SERIES[j].label}`).toEqual([]);
+      }
+    }
+
     for (const episode of QUICK_BITE_EPISODES) {
-      expect(isPharmacySlug(episode.slug), episode.slug).toBe(false);
-      expect(getPharmacyQuickBiteBySlug(episode.slug), episode.slug).toBeUndefined();
+      assertNursingOnly(episode.slug);
     }
     for (const episode of PHARMACY_QUICK_BITE_EPISODES) {
-      expect(isPharmacySlug(episode.slug), episode.slug).toBe(true);
-      expect(getQuickBiteBySlug(episode.slug), episode.slug).toBeUndefined();
+      expect(isPharmacySlug(episode.slug)).toBe(true);
+      expect(getQuickBiteBySlug(episode.slug)).toBeUndefined();
+      expect(getFnpQuickBiteBySlug(episode.slug)).toBeUndefined();
+      expect(getPanceQuickBiteBySlug(episode.slug)).toBeUndefined();
     }
-    const nursing = new Set(QUICK_BITE_EPISODES.map((episode) => episode.slug));
-    expect(PHARMACY_QUICK_BITE_EPISODES.filter((episode) => nursing.has(episode.slug))).toEqual([]);
-    // Both live series have a distinct episode titled "High-Alert Medications". That is the only shared title.
-    const nursingTitles = new Set(QUICK_BITE_EPISODES.map((episode) => episode.title));
-    expect(
-      PHARMACY_QUICK_BITE_EPISODES.filter((episode) => nursingTitles.has(episode.title)).map((e) => e.title)
-    ).toEqual(["High-Alert Medications"]);
+    for (const episode of FNP_QUICK_BITE_EPISODES) {
+      expect(isFnpSlug(episode.slug)).toBe(true);
+      expect(getQuickBiteBySlug(episode.slug)).toBeUndefined();
+      expect(getPharmacyQuickBiteBySlug(episode.slug)).toBeUndefined();
+      expect(getPanceQuickBiteBySlug(episode.slug)).toBeUndefined();
+    }
+    for (const episode of PANCE_QUICK_BITE_EPISODES) {
+      expect(isPanceSlug(episode.slug)).toBe(true);
+      expect(getQuickBiteBySlug(episode.slug)).toBeUndefined();
+      expect(getPharmacyQuickBiteBySlug(episode.slug)).toBeUndefined();
+      expect(getFnpQuickBiteBySlug(episode.slug)).toBeUndefined();
+    }
   });
 
   it("keeps each series' quizzes in its own directory", () => {
-    const nursingQuizzes = readQuizzes("quizzes");
-    const pharmacyQuizzes = readQuizzes("quizzes-pharmacy");
-    expect(nursingQuizzes).toHaveLength(QUICK_BITE_EPISODES.length);
-    expect(pharmacyQuizzes).toHaveLength(PHARMACY_QUICK_BITE_EPISODES.length);
-    for (const quiz of nursingQuizzes) {
-      expect(isPharmacySlug(quiz.video.replace(/-web\.mp4$/, "")), quiz.video).toBe(false);
-      expect(getQuickBiteBySlug(`quick-bites-${quiz.episode}`), quiz.episode).toBeDefined();
-    }
-    for (const quiz of pharmacyQuizzes) {
-      const slug = quiz.video.replace(/-web\.mp4$/, "");
-      expect(isPharmacySlug(slug), quiz.video).toBe(true);
-      expect(getPharmacyQuickBiteBySlug(slug), quiz.video).toBeDefined();
+    for (const series of ALL_SERIES) {
+      const quizzes = series.quizzes();
+      expect(quizzes).toHaveLength(series.episodes.length);
+      for (const quiz of quizzes) {
+        const slug = series.slugFromQuiz(quiz);
+        expect(series.isOwn(slug), quiz.video).toBe(true);
+        expect(series.lookup(slug), quiz.video).toBeDefined();
+      }
     }
   });
 
   it("serves each series' media and posters from its own prefix", () => {
-    for (const episode of QUICK_BITE_EPISODES) {
-      expect(quickBiteVideoPath(episode.slug).startsWith("quick-bites/")).toBe(true);
-      expect(quickBiteCaptionsPath(episode.slug).startsWith("quick-bites/")).toBe(true);
-      expect(quickBitePoster(episode.slug).webp.startsWith("/quick-bites/")).toBe(true);
-    }
-    for (const episode of PHARMACY_QUICK_BITE_EPISODES) {
-      expect(pharmacyQuickBiteVideoPath(episode.slug).startsWith("quick-bites-pharmacy/")).toBe(true);
-      expect(pharmacyQuickBiteCaptionsPath(episode.slug).startsWith("quick-bites-pharmacy/")).toBe(true);
-      expect(pharmacyQuickBitePoster(episode.slug).webp.startsWith("/quick-bites-pharmacy/")).toBe(true);
+    for (const series of ALL_SERIES) {
+      for (const episode of series.episodes) {
+        expect(series.videoPath(episode.slug).startsWith(series.blobPrefix)).toBe(true);
+        expect(series.captionsPath(episode.slug).startsWith(series.blobPrefix)).toBe(true);
+        expect(series.poster(episode.slug).webp.startsWith(series.publicPrefix)).toBe(true);
+      }
     }
   });
 
-  it("mounts the nursing series on NCLEX only and the pharmacy series on NAPLEX only", () => {
+  it("mounts one Quick Bites section per board track on the dashboard", () => {
     const dashboard = readFileSync(
       new URL("../../components/app/DashboardPageContent.tsx", import.meta.url),
       "utf8"
     );
-    const blocks = [...dashboard.matchAll(/\{examSlug === "(\w+)" && quickBites \? \(([\s\S]*?)\) : null\}/g)];
+    const blocks = [
+      ...dashboard.matchAll(/\{examSlug === "([\w-]+)" && quickBites \? \(([\s\S]*?)\) : null\}/g),
+    ];
     const byExam = new Map(blocks.map((match) => [match[1], match[2] ?? ""]));
-    expect([...byExam.keys()].sort()).toEqual(["naplex", "nclex"]);
+    expect([...byExam.keys()].sort()).toEqual(["aanp-fnp", "naplex", "nclex", "pance"]);
     expect(byExam.get("nclex")).toContain("<VideoQuickBitesSection");
     expect(byExam.get("nclex")).not.toContain("series=");
     expect(byExam.get("naplex")).toContain('series="pharmacy"');
-    expect(dashboard.match(/<VideoQuickBitesSection/g)).toHaveLength(2);
+    expect(byExam.get("aanp-fnp")).toContain('series="fnp"');
+    expect(byExam.get("pance")).toContain('series="pance"');
+    expect(dashboard.match(/<VideoQuickBitesSection/g)).toHaveLength(4);
   });
 });

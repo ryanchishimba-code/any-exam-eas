@@ -237,6 +237,24 @@ export function DashboardPageContent({
         />
       ) : null}
 
+      {examSlug === "aanp-fnp" && quickBites ? (
+        <VideoQuickBitesSection
+          series="fnp"
+          canPlay={quickBites.canPlay}
+          upgradeHref={quickBites.upgradeHref}
+          upgradeLabel={quickBites.upgradeLabel}
+        />
+      ) : null}
+
+      {examSlug === "pance" && quickBites ? (
+        <VideoQuickBitesSection
+          series="pance"
+          canPlay={quickBites.canPlay}
+          upgradeHref={quickBites.upgradeHref}
+          upgradeLabel={quickBites.upgradeLabel}
+        />
+      ) : null}
+
       <DashboardProgressFold plan={examDayPlan} studyLocked={studyLocked}>
         <RemediationPanel
           examName={exam.name}

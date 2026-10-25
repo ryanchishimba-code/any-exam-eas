@@ -1,0 +1,287 @@
+{
+  "episode": "ep16-eent",
+  "title": "Eyes, Ears, Nose and Throat",
+  "video": "quick-bites-pance-ep16-eent-web.mp4",
+  "questions": [
+    {
+      "id": "ep16-eent-q01",
+      "type": "single_best_answer",
+      "stem": "Sudden painless monocular loss with cherry red spot:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Retinal detachment"
+        },
+        {
+          "id": "B",
+          "text": "Optic neuritis"
+        },
+        {
+          "id": "C",
+          "text": "Central retinal artery occlusion"
+        },
+        {
+          "id": "D",
+          "text": "Angle closure"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Treat like stroke.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-eent-q02",
+      "type": "single_best_answer",
+      "stem": "Halos, painful red eye, mid-dilated pupil:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Detachment"
+        },
+        {
+          "id": "B",
+          "text": "Acute angle closure"
+        },
+        {
+          "id": "C",
+          "text": "Conjunctivitis"
+        },
+        {
+          "id": "D",
+          "text": "Iritis"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Acute angle closure",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-eent-q03",
+      "type": "single_best_answer",
+      "stem": "Nosebleed first step:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ice on the neck"
+        },
+        {
+          "id": "B",
+          "text": "Head tilted back"
+        },
+        {
+          "id": "C",
+          "text": "Firm pressure for at least 5 minutes"
+        },
+        {
+          "id": "D",
+          "text": "Antibiotics"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Then packing.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-eent-q04",
+      "type": "single_best_answer",
+      "stem": "Muffled voice, uvula pushed to one side:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Epiglottitis"
+        },
+        {
+          "id": "B",
+          "text": "Angioedema"
+        },
+        {
+          "id": "C",
+          "text": "Peritonsillar abscess"
+        },
+        {
+          "id": "D",
+          "text": "Strep only"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Drain it.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-eent-q05",
+      "type": "single_best_answer",
+      "stem": "Suspected globe rupture:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Eye drops"
+        },
+        {
+          "id": "B",
+          "text": "Measure eye pressure"
+        },
+        {
+          "id": "C",
+          "text": "Rigid shield, no pressure"
+        },
+        {
+          "id": "D",
+          "text": "Pressure patch"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Rigid shield, no pressure",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-eent-q06",
+      "type": "single_best_answer",
+      "stem": "Child with otitis media, no recent antibiotics:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azithromycin"
+        },
+        {
+          "id": "B",
+          "text": "Amoxicillin"
+        },
+        {
+          "id": "C",
+          "text": "Cefdinir"
+        },
+        {
+          "id": "D",
+          "text": "Ciprofloxacin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Amoxicillin",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-eent-q07",
+      "type": "single_best_answer",
+      "stem": "Bacterial sinusitis, if treating:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ciprofloxacin"
+        },
+        {
+          "id": "B",
+          "text": "Steroids alone"
+        },
+        {
+          "id": "C",
+          "text": "Amoxicillin, with or without clavulanate"
+        },
+        {
+          "id": "D",
+          "text": "Azithromycin"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Watchful waiting is also an option.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-eent-q08",
+      "type": "single_best_answer",
+      "stem": "Sudden sensorineural hearing loss:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Antibiotics"
+        },
+        {
+          "id": "B",
+          "text": "Wait 3 months"
+        },
+        {
+          "id": "C",
+          "text": "Steroids within 2 weeks"
+        },
+        {
+          "id": "D",
+          "text": "Ear tubes"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Steroids within 2 weeks",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-eent-q09",
+      "type": "single_best_answer",
+      "stem": "Positional vertigo treatment:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Surgery"
+        },
+        {
+          "id": "B",
+          "text": "MRI first"
+        },
+        {
+          "id": "C",
+          "text": "Meclizine forever"
+        },
+        {
+          "id": "D",
+          "text": "Epley maneuver"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Dix-Hallpike to diagnose.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep16-eent-q10",
+      "type": "single_best_answer",
+      "stem": "Strep throat treatment:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ciprofloxacin"
+        },
+        {
+          "id": "B",
+          "text": "Azithromycin 3 days"
+        },
+        {
+          "id": "C",
+          "text": "Penicillin or amoxicillin 10 days"
+        },
+        {
+          "id": "D",
+          "text": "No antibiotic"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Penicillin or amoxicillin 10 days",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "episode": "ep02-rhythms-valves-congenital",
+  "title": "Rhythms, Valves and Congenital Hearts",
+  "video": "quick-bites-pance-ep02-rhythms-valves-congenital-web.mp4",
+  "questions": [
+    {
+      "id": "ep02-rhythms-valves-congenital-q01",
+      "type": "single_best_answer",
+      "stem": "Heart rate 190, narrow regular, BP 70/40, confused. Best next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Synchronized cardioversion"
+        },
+        {
+          "id": "B",
+          "text": "Diltiazem"
+        },
+        {
+          "id": "C",
+          "text": "Observation"
+        },
+        {
+          "id": "D",
+          "text": "Adenosine"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Unstable: synchronized cardioversion.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-rhythms-valves-congenital-q02",
+      "type": "single_best_answer",
+      "stem": "Heart rate 180, narrow regular, BP 128/80, alert. First step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Defibrillation"
+        },
+        {
+          "id": "B",
+          "text": "Vagal maneuvers"
+        },
+        {
+          "id": "C",
+          "text": "Cardioversion"
+        },
+        {
+          "id": "D",
+          "text": "Amiodarone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Stable: vagal maneuvers, then adenosine.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-rhythms-valves-congenital-q03",
+      "type": "single_best_answer",
+      "stem": "Pulseless with ventricular fibrillation on the monitor. Immediate action?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Defibrillation and CPR"
+        },
+        {
+          "id": "B",
+          "text": "Atropine"
+        },
+        {
+          "id": "C",
+          "text": "Synchronized cardioversion"
+        },
+        {
+          "id": "D",
+          "text": "Adenosine"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Shockable rhythm.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-rhythms-valves-congenital-q04",
+      "type": "single_best_answer",
+      "stem": "A 72-year-old woman with hypertension has new atrial fibrillation. Best stroke prevention?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Direct oral anticoagulant"
+        },
+        {
+          "id": "B",
+          "text": "Clopidogrel"
+        },
+        {
+          "id": "C",
+          "text": "No therapy"
+        },
+        {
+          "id": "D",
+          "text": "Aspirin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Score 3 in a woman: anticoagulate.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-rhythms-valves-congenital-q05",
+      "type": "single_best_answer",
+      "stem": "ECG shows regular sawtooth waves in II, III, aVF at rate 150. Diagnosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Atrial fibrillation"
+        },
+        {
+          "id": "B",
+          "text": "Atrial flutter"
+        },
+        {
+          "id": "C",
+          "text": "Sinus tachycardia"
+        },
+        {
+          "id": "D",
+          "text": "Torsades"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Sawtooth flutter waves.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-rhythms-valves-congenital-q06",
+      "type": "single_best_answer",
+      "stem": "Rate 38, dizzy, BP 84/50. First drug?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Adenosine 6 mg"
+        },
+        {
+          "id": "B",
+          "text": "Atropine 1 mg"
+        },
+        {
+          "id": "C",
+          "text": "Amiodarone"
+        },
+        {
+          "id": "D",
+          "text": "Metoprolol"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Atropine 1 mg, then pacing.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-rhythms-valves-congenital-q07",
+      "type": "single_best_answer",
+      "stem": "On azithromycin and ondansetron, a patient develops sustained polymorphic VT with a long QT and no pulse. Immediate treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Unsynchronized shock (defibrillation)"
+        },
+        {
+          "id": "B",
+          "text": "Procainamide"
+        },
+        {
+          "id": "C",
+          "text": "Synchronized cardioversion"
+        },
+        {
+          "id": "D",
+          "text": "Adenosine"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Sustained torsades: shock; magnesium for recurrences.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-rhythms-valves-congenital-q08",
+      "type": "single_best_answer",
+      "stem": "A cyanotic newborn has transposition of the great arteries. Which drug keeps the ductus open?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Indomethacin"
+        },
+        {
+          "id": "B",
+          "text": "Digoxin"
+        },
+        {
+          "id": "C",
+          "text": "Prostaglandin E1"
+        },
+        {
+          "id": "D",
+          "text": "Ibuprofen"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Alprostadil keeps the ductus open.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-rhythms-valves-congenital-q09",
+      "type": "single_best_answer",
+      "stem": "Sharp chest pain better leaning forward, diffuse ST elevation and PR depression. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Thrombolysis"
+        },
+        {
+          "id": "B",
+          "text": "Heparin"
+        },
+        {
+          "id": "C",
+          "text": "NSAID plus colchicine"
+        },
+        {
+          "id": "D",
+          "text": "Nitrates"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Pericarditis.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep02-rhythms-valves-congenital-q10",
+      "type": "single_best_answer",
+      "stem": "Rate 38, P waves unrelated to QRS, dizzy. Definitive treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Beta blocker"
+        },
+        {
+          "id": "B",
+          "text": "Permanent pacemaker"
+        },
+        {
+          "id": "C",
+          "text": "Atropine alone"
+        },
+        {
+          "id": "D",
+          "text": "Observation"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Third-degree block: pacemaker.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

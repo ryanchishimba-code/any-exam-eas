@@ -9,6 +9,20 @@ import {
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
 import {
+  FNP_QUICK_BITE_EPISODES,
+  FNP_QUICK_BITES_MEDIA_VERSION,
+  fnpQuickBiteCaptionsPath,
+  fnpQuickBitePoster,
+  fnpQuickBiteVideoPath,
+} from "@/lib/quick-bites/fnp-catalog";
+import {
+  PANCE_QUICK_BITE_EPISODES,
+  PANCE_QUICK_BITES_MEDIA_VERSION,
+  panceQuickBiteCaptionsPath,
+  panceQuickBitePoster,
+  panceQuickBiteVideoPath,
+} from "@/lib/quick-bites/pance-catalog";
+import {
   PHARMACY_QUICK_BITE_EPISODES,
   pharmacyQuickBiteCaptionsPath,
   pharmacyQuickBitePoster,
@@ -73,6 +87,24 @@ describe("Quick Bites catalog integrity", () => {
       pharmacyQuickBiteCaptionsPath,
       pharmacyQuickBitePoster
     );
+    assertContinuousUniqueCatalog(
+      FNP_QUICK_BITE_EPISODES,
+      fnpQuickBiteVideoPath,
+      fnpQuickBiteCaptionsPath,
+      fnpQuickBitePoster
+    );
+    assertContinuousUniqueCatalog(
+      PANCE_QUICK_BITE_EPISODES,
+      panceQuickBiteVideoPath,
+      panceQuickBiteCaptionsPath,
+      panceQuickBitePoster
+    );
+    expect(fnpQuickBiteVideoPath(FNP_QUICK_BITE_EPISODES[0]!.slug)).toBe(
+      `quick-bites-fnp/${FNP_QUICK_BITES_MEDIA_VERSION}/${FNP_QUICK_BITE_EPISODES[0]!.slug}-web.mp4`
+    );
+    expect(panceQuickBiteVideoPath(PANCE_QUICK_BITE_EPISODES[0]!.slug)).toBe(
+      `quick-bites-pance/${PANCE_QUICK_BITES_MEDIA_VERSION}/${PANCE_QUICK_BITE_EPISODES[0]!.slug}-web.mp4`
+    );
     expect(PHARMACY_QUICK_BITE_EPISODES.at(-1)?.slug).toBe("quick-bites-pharm-bonus-exam-format");
     expect(PHARMACY_QUICK_BITE_EPISODES.filter((episode) => episode.slug.includes("ep07"))).toHaveLength(1);
     expect(pharmacyQuickBiteVideoPath("quick-bites-pharm-ep07-insulin")).toBe(
@@ -84,16 +116,26 @@ describe("Quick Bites catalog integrity", () => {
     const root = path.join(process.cwd(), "src/lib/quick-bites");
     const nursingQuizzes = readQuizzes(path.join(root, "quizzes"));
     const pharmacyQuizzes = readQuizzes(path.join(root, "quizzes-pharmacy"));
+    const fnpQuizzes = readQuizzes(path.join(root, "quizzes-fnp"));
+    const panceQuizzes = readQuizzes(path.join(root, "quizzes-pance"));
     const nursingSlugs = nursingQuizzes.map((quiz) => `quick-bites-${quiz.episode}`);
     const pharmacySlugs = pharmacyQuizzes.map((quiz) => quiz.video.replace(/-web\.mp4$/, ""));
+    const fnpSlugs = fnpQuizzes.map((quiz) => quiz.video.replace(/-web\.mp4$/, ""));
+    const panceSlugs = panceQuizzes.map((quiz) => quiz.video.replace(/-web\.mp4$/, ""));
     expect(duplicates(nursingSlugs)).toEqual([]);
     expect(duplicates(pharmacySlugs)).toEqual([]);
+    expect(duplicates(fnpSlugs)).toEqual([]);
+    expect(duplicates(panceSlugs)).toEqual([]);
     expect(nursingSlugs.sort()).toEqual(QUICK_BITE_EPISODES.map((episode) => episode.slug).sort());
     expect(pharmacySlugs.sort()).toEqual(PHARMACY_QUICK_BITE_EPISODES.map((episode) => episode.slug).sort());
+    expect(fnpSlugs.sort()).toEqual(FNP_QUICK_BITE_EPISODES.map((episode) => episode.slug).sort());
+    expect(panceSlugs.sort()).toEqual(PANCE_QUICK_BITE_EPISODES.map((episode) => episode.slug).sort());
 
     for (const [quizzes, label] of [
       [nursingQuizzes, "nursing"],
       [pharmacyQuizzes, "pharmacy"],
+      [fnpQuizzes, "fnp"],
+      [panceQuizzes, "pance"],
     ] as const) {
       const stems = quizzes.flatMap((quiz) => quiz.questions.map((question) => normalizeStem(question.stem)));
       expect(duplicates(stems), label).toEqual([]);
@@ -102,6 +144,8 @@ describe("Quick Bites catalog integrity", () => {
     for (const [dir, episodes, posterFor] of [
       ["public/quick-bites", QUICK_BITE_EPISODES, quickBitePoster],
       ["public/quick-bites-pharmacy", PHARMACY_QUICK_BITE_EPISODES, pharmacyQuickBitePoster],
+      ["public/quick-bites-fnp", FNP_QUICK_BITE_EPISODES, fnpQuickBitePoster],
+      ["public/quick-bites-pance", PANCE_QUICK_BITE_EPISODES, panceQuickBitePoster],
     ] as const) {
       const onDisk = readdirSync(dir).filter((name) => name.includes("-poster."));
       const expected = episodes.flatMap((episode) => {

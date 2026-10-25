@@ -1,0 +1,287 @@
+{
+  "episode": "ep14-gut-liver",
+  "title": "Gut, Liver and Abdomen",
+  "video": "quick-bites-fnp-ep14-gut-liver-web.mp4",
+  "questions": [
+    {
+      "id": "ep14-gut-liver-q01",
+      "type": "single_best_answer",
+      "stem": "Heartburn 6 weeks, no alarm signs. First step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Endoscopy"
+        },
+        {
+          "id": "B",
+          "text": "8-week PPI trial"
+        },
+        {
+          "id": "C",
+          "text": "Barium swallow"
+        },
+        {
+          "id": "D",
+          "text": "Surgery"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "ACG 2022.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-gut-liver-q02",
+      "type": "single_best_answer",
+      "stem": "Which is an alarm sign?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Burping"
+        },
+        {
+          "id": "B",
+          "text": "Trouble swallowing"
+        },
+        {
+          "id": "C",
+          "text": "Heartburn after meals"
+        },
+        {
+          "id": "D",
+          "text": "Sour taste"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Dysphagia = endoscopy.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-gut-liver-q03",
+      "type": "single_best_answer",
+      "stem": "First-line H. pylori regimen (unknown susceptibility):",
+      "options": [
+        {
+          "id": "A",
+          "text": "Clarithromycin triple 7 days"
+        },
+        {
+          "id": "B",
+          "text": "Bismuth quadruple 14 days"
+        },
+        {
+          "id": "C",
+          "text": "Amoxicillin alone"
+        },
+        {
+          "id": "D",
+          "text": "PPI alone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "ACG 2024.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-gut-liver-q04",
+      "type": "single_best_answer",
+      "stem": "After H. pylori treatment:",
+      "options": [
+        {
+          "id": "A",
+          "text": "No follow-up"
+        },
+        {
+          "id": "B",
+          "text": "Test of cure"
+        },
+        {
+          "id": "C",
+          "text": "Repeat endoscopy always"
+        },
+        {
+          "id": "D",
+          "text": "Serology"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Breath or stool test.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-gut-liver-q05",
+      "type": "single_best_answer",
+      "stem": "Celiac first test:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stool culture"
+        },
+        {
+          "id": "B",
+          "text": "tTG-IgA plus total IgA"
+        },
+        {
+          "id": "C",
+          "text": "Colonoscopy"
+        },
+        {
+          "id": "D",
+          "text": "Gluten-free trial"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "On gluten.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-gut-liver-q06",
+      "type": "single_best_answer",
+      "stem": "Before celiac testing the patient should:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stop gluten"
+        },
+        {
+          "id": "B",
+          "text": "Keep eating gluten"
+        },
+        {
+          "id": "C",
+          "text": "Fast 24 h"
+        },
+        {
+          "id": "D",
+          "text": "Take PPI"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Serology falls on a gluten-free diet.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-gut-liver-q07",
+      "type": "single_best_answer",
+      "stem": "Night diarrhea with blood and weight loss suggests:",
+      "options": [
+        {
+          "id": "A",
+          "text": "IBS"
+        },
+        {
+          "id": "B",
+          "text": "Inflammatory bowel disease"
+        },
+        {
+          "id": "C",
+          "text": "Lactose intolerance"
+        },
+        {
+          "id": "D",
+          "text": "Normal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Alarm features.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-gut-liver-q08",
+      "type": "single_best_answer",
+      "stem": "HBsAg neg, anti-HBc pos, anti-HBs pos:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vaccinated"
+        },
+        {
+          "id": "B",
+          "text": "Resolved infection, immune"
+        },
+        {
+          "id": "C",
+          "text": "Chronic"
+        },
+        {
+          "id": "D",
+          "text": "Susceptible"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "CDC.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-gut-liver-q09",
+      "type": "single_best_answer",
+      "stem": "Fatty liver first fibrosis test:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Biopsy"
+        },
+        {
+          "id": "B",
+          "text": "FIB-4"
+        },
+        {
+          "id": "C",
+          "text": "MRI"
+        },
+        {
+          "id": "D",
+          "text": "CT"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "AASLD.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-gut-liver-q10",
+      "type": "single_best_answer",
+      "stem": "FIB-4 of 1.0 means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Advanced fibrosis"
+        },
+        {
+          "id": "B",
+          "text": "Low risk"
+        },
+        {
+          "id": "C",
+          "text": "Needs biopsy"
+        },
+        {
+          "id": "D",
+          "text": "Cirrhosis"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Under 1.3.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

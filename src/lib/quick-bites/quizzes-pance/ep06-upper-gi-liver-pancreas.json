@@ -1,0 +1,287 @@
+{
+  "episode": "ep06-upper-gi-liver-pancreas",
+  "title": "Upper Gut, Liver, Gallbladder and Pancreas",
+  "video": "quick-bites-pance-ep06-upper-gi-liver-pancreas-web.mp4",
+  "questions": [
+    {
+      "id": "ep06-upper-gi-liver-pancreas-q01",
+      "type": "single_best_answer",
+      "stem": "Typical heartburn, no alarm signs. Initial management?",
+      "options": [
+        {
+          "id": "A",
+          "text": "H. pylori breath test only"
+        },
+        {
+          "id": "B",
+          "text": "Fundoplication"
+        },
+        {
+          "id": "C",
+          "text": "PPI for 8 weeks"
+        },
+        {
+          "id": "D",
+          "text": "Endoscopy now"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Alarm signs need endoscopy.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-upper-gi-liver-pancreas-q02",
+      "type": "single_best_answer",
+      "stem": "Heartburn plus weight loss and trouble swallowing. Next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Upper endoscopy"
+        },
+        {
+          "id": "B",
+          "text": "Barium only"
+        },
+        {
+          "id": "C",
+          "text": "Reassure"
+        },
+        {
+          "id": "D",
+          "text": "PPI trial"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Alarm signs.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-upper-gi-liver-pancreas-q03",
+      "type": "single_best_answer",
+      "stem": "H. pylori positive, no prior treatment. Regimen?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Clarithromycin triple 7 days"
+        },
+        {
+          "id": "B",
+          "text": "Bismuth quadruple for 14 days"
+        },
+        {
+          "id": "C",
+          "text": "Amoxicillin alone"
+        },
+        {
+          "id": "D",
+          "text": "PPI alone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Then test of cure.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-upper-gi-liver-pancreas-q04",
+      "type": "single_best_answer",
+      "stem": "Upper GI bleed, stable after fluids, hemoglobin 7.6, no heart disease. Transfuse?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only platelets"
+        },
+        {
+          "id": "B",
+          "text": "No; transfuse if under 7"
+        },
+        {
+          "id": "C",
+          "text": "Yes, target 10"
+        },
+        {
+          "id": "D",
+          "text": "Yes, always 2 units"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Restrictive threshold.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-upper-gi-liver-pancreas-q05",
+      "type": "single_best_answer",
+      "stem": "Cirrhosis with hematemesis. Which combination is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Propranolol IV bolus only"
+        },
+        {
+          "id": "B",
+          "text": "Heparin and aspirin"
+        },
+        {
+          "id": "C",
+          "text": "Octreotide, ceftriaxone, endoscopic banding"
+        },
+        {
+          "id": "D",
+          "text": "Surgery first"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Varices bundle.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-upper-gi-liver-pancreas-q06",
+      "type": "single_best_answer",
+      "stem": "Cirrhosis, ascites, fever. Paracentesis shows 400 neutrophils/mm3. Diagnosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cirrhosis only"
+        },
+        {
+          "id": "B",
+          "text": "Spontaneous bacterial peritonitis"
+        },
+        {
+          "id": "C",
+          "text": "Pancreatitis"
+        },
+        {
+          "id": "D",
+          "text": "Normal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "250 or more.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-upper-gi-liver-pancreas-q07",
+      "type": "single_best_answer",
+      "stem": "Fever, right upper quadrant pain, jaundice. After antibiotics, definitive treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Observation"
+        },
+        {
+          "id": "B",
+          "text": "HIDA scan only"
+        },
+        {
+          "id": "C",
+          "text": "ERCP biliary drainage"
+        },
+        {
+          "id": "D",
+          "text": "Lap cholecystectomy today"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Cholangitis.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-upper-gi-liver-pancreas-q08",
+      "type": "single_best_answer",
+      "stem": "Epigastric pain to the back, lipase 4 times normal. Diagnosis needs?",
+      "options": [
+        {
+          "id": "A",
+          "text": "ERCP"
+        },
+        {
+          "id": "B",
+          "text": "Biopsy"
+        },
+        {
+          "id": "C",
+          "text": "Two of three criteria are already met"
+        },
+        {
+          "id": "D",
+          "text": "CT always"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Pain plus lipase 3x.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-upper-gi-liver-pancreas-q09",
+      "type": "single_best_answer",
+      "stem": "A 2-year-old swallowed a coin-shaped object; X-ray shows a double ring (halo) in the esophagus. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Repeat X-ray tomorrow"
+        },
+        {
+          "id": "B",
+          "text": "Observe 24 hours"
+        },
+        {
+          "id": "C",
+          "text": "Emergency endoscopic removal"
+        },
+        {
+          "id": "D",
+          "text": "Laxative"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Button battery burns within 2 hours.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep06-upper-gi-liver-pancreas-q10",
+      "type": "single_best_answer",
+      "stem": "Took 40 acetaminophen tablets 6 hours ago, feels fine. Next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Discharge"
+        },
+        {
+          "id": "B",
+          "text": "Liver biopsy"
+        },
+        {
+          "id": "C",
+          "text": "Activated charcoal only"
+        },
+        {
+          "id": "D",
+          "text": "Acetaminophen level, then N-acetylcysteine per nomogram"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Best within 8 hours.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

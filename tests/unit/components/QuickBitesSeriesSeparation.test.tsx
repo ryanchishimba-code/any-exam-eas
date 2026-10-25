@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { QUICK_BITE_EPISODES } from "@/lib/quick-bites/catalog";
+import { FNP_QUICK_BITE_EPISODES } from "@/lib/quick-bites/fnp-catalog";
+import { PANCE_QUICK_BITE_EPISODES } from "@/lib/quick-bites/pance-catalog";
 import { PHARMACY_QUICK_BITE_EPISODES } from "@/lib/quick-bites/pharmacy-catalog";
 import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBitesSection";
 
@@ -43,5 +45,38 @@ describe("Quick Bites series separation (rendered)", () => {
     }
     expect(container.innerHTML).not.toMatch(/\/quick-bites\/quick-bites-(?!pharm-)/);
     expect(screen.getAllByText("Locked")).toHaveLength(PHARMACY_QUICK_BITE_EPISODES.length - 1);
+  });
+
+  it("the AANP-FNP section lists every FNP episode and locks all when not paid", () => {
+    const { container } = render(
+      <VideoQuickBitesSection
+        series="fnp"
+        canPlay={false}
+        upgradeHref="/checkout"
+        upgradeLabel="Subscribe to watch"
+      />
+    );
+    for (const episode of FNP_QUICK_BITE_EPISODES) {
+      expect(screen.getByText(episode.title)).toBeInTheDocument();
+    }
+    expect(container.innerHTML).not.toContain("quick-bites-pharm-");
+    expect(container.innerHTML).not.toContain("quick-bites-pance-");
+    expect(screen.getAllByText("Locked")).toHaveLength(FNP_QUICK_BITE_EPISODES.length);
+  });
+
+  it("the PANCE section lists every PANCE episode and locks all when not paid", () => {
+    const { container } = render(
+      <VideoQuickBitesSection
+        series="pance"
+        canPlay={false}
+        upgradeHref="/checkout"
+        upgradeLabel="Subscribe to watch"
+      />
+    );
+    for (const episode of PANCE_QUICK_BITE_EPISODES) {
+      expect(screen.getByText(episode.title)).toBeInTheDocument();
+    }
+    expect(container.innerHTML).not.toContain("quick-bites-fnp-");
+    expect(screen.getAllByText("Locked")).toHaveLength(PANCE_QUICK_BITE_EPISODES.length);
   });
 });

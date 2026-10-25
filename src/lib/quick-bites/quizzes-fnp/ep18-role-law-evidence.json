@@ -1,0 +1,287 @@
+{
+  "episode": "ep18-role-law-evidence",
+  "title": "Role, Law, Ethics and Evidence",
+  "video": "quick-bites-fnp-ep18-role-law-evidence-web.mp4",
+  "questions": [
+    {
+      "id": "ep18-role-law-evidence-q01",
+      "type": "single_best_answer",
+      "stem": "Patient asks you to share results with husband:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Never"
+        },
+        {
+          "id": "B",
+          "text": "Yes, with her agreement"
+        },
+        {
+          "id": "C",
+          "text": "Only in writing from husband"
+        },
+        {
+          "id": "D",
+          "text": "Only if married 5 years"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "HHS.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-role-law-evidence-q02",
+      "type": "single_best_answer",
+      "stem": "Suspected child abuse:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ask parent"
+        },
+        {
+          "id": "B",
+          "text": "Report"
+        },
+        {
+          "id": "C",
+          "text": "Wait for proof"
+        },
+        {
+          "id": "D",
+          "text": "Need patient consent"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Mandated.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-role-law-evidence-q03",
+      "type": "single_best_answer",
+      "stem": "HIPAA and state abuse reporting:",
+      "options": [
+        {
+          "id": "A",
+          "text": "HIPAA blocks it"
+        },
+        {
+          "id": "B",
+          "text": "HIPAA allows it"
+        },
+        {
+          "id": "C",
+          "text": "Only with court order"
+        },
+        {
+          "id": "D",
+          "text": "Only adults"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "No preemption.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-role-law-evidence-q04",
+      "type": "single_best_answer",
+      "stem": "Minor confidential care is set by:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Parents"
+        },
+        {
+          "id": "B",
+          "text": "State law"
+        },
+        {
+          "id": "C",
+          "text": "Federal law only"
+        },
+        {
+          "id": "D",
+          "text": "The NP"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "HHS.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-role-law-evidence-q05",
+      "type": "single_best_answer",
+      "stem": "Capacity element:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Agrees with you"
+        },
+        {
+          "id": "B",
+          "text": "Understands"
+        },
+        {
+          "id": "C",
+          "text": "Age over 65"
+        },
+        {
+          "id": "D",
+          "text": "Has family present"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Four elements.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-role-law-evidence-q06",
+      "type": "single_best_answer",
+      "stem": "Refusing treatment alone means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Incapacity"
+        },
+        {
+          "id": "B",
+          "text": "Not incapacity"
+        },
+        {
+          "id": "C",
+          "text": "Needs psych hold"
+        },
+        {
+          "id": "D",
+          "text": "Needs guardian"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Decision-specific.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-role-law-evidence-q07",
+      "type": "single_best_answer",
+      "stem": "Controlled drug prescribing requires:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Nothing"
+        },
+        {
+          "id": "B",
+          "text": "DEA registration"
+        },
+        {
+          "id": "C",
+          "text": "Physician cosign always"
+        },
+        {
+          "id": "D",
+          "text": "Hospital privileges"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Federal.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-role-law-evidence-q08",
+      "type": "single_best_answer",
+      "stem": "Risk 10% to 6%. NNT?",
+      "options": [
+        {
+          "id": "A",
+          "text": "4"
+        },
+        {
+          "id": "B",
+          "text": "10"
+        },
+        {
+          "id": "C",
+          "text": "25"
+        },
+        {
+          "id": "D",
+          "text": "60"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "1/0.04.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-role-law-evidence-q09",
+      "type": "single_best_answer",
+      "stem": "High sensitivity test negative:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rules in"
+        },
+        {
+          "id": "B",
+          "text": "Rules out"
+        },
+        {
+          "id": "C",
+          "text": "Useless"
+        },
+        {
+          "id": "D",
+          "text": "Needs repeat"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "SnNout.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep18-role-law-evidence-q10",
+      "type": "single_best_answer",
+      "stem": "Teach-back means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give a handout"
+        },
+        {
+          "id": "B",
+          "text": "Patient explains plan in own words"
+        },
+        {
+          "id": "C",
+          "text": "Repeat instructions louder"
+        },
+        {
+          "id": "D",
+          "text": "Quiz later"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Check understanding.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

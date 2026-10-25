@@ -116,7 +116,11 @@ function nextStepForPillar(
         href:
           examSlug === "naplex"
             ? `${ROUTES.dashboard}#video-quick-bites-pharmacy`
-            : `${ROUTES.dashboard}#video-quick-bites`,
+            : examSlug === "aanp-fnp"
+              ? `${ROUTES.dashboard}#video-quick-bites-fnp`
+              : examSlug === "pance"
+                ? `${ROUTES.dashboard}#video-quick-bites-pance`
+                : `${ROUTES.dashboard}#video-quick-bites`,
       };
     case "study_guide_chapters": {
       const guide = STUDY_GUIDES[examSlug as StudyGuideExam];

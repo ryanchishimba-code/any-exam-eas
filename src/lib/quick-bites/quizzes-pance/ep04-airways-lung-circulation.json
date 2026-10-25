@@ -1,0 +1,287 @@
+{
+  "episode": "ep04-airways-lung-circulation",
+  "title": "Airways and Lung Circulation",
+  "video": "quick-bites-pance-ep04-airways-lung-circulation-web.mp4",
+  "questions": [
+    {
+      "id": "ep04-airways-lung-circulation-q01",
+      "type": "single_best_answer",
+      "stem": "A 25-year-old has episodic wheeze. Spirometry FEV1 rises 15% and 250 mL after albuterol. Diagnosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Restrictive disease"
+        },
+        {
+          "id": "B",
+          "text": "COPD"
+        },
+        {
+          "id": "C",
+          "text": "Normal"
+        },
+        {
+          "id": "D",
+          "text": "Asthma"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "12% and 200 mL.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-airways-lung-circulation-q02",
+      "type": "single_best_answer",
+      "stem": "A 16-year-old with asthma uses albuterol alone. Best plan?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Oral prednisone daily"
+        },
+        {
+          "id": "B",
+          "text": "Continue albuterol alone"
+        },
+        {
+          "id": "C",
+          "text": "ICS-formoterol as reliever"
+        },
+        {
+          "id": "D",
+          "text": "Montelukast alone"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Short-acting reliever alone increases severe attacks.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-airways-lung-circulation-q03",
+      "type": "single_best_answer",
+      "stem": "A 65-year-old smoker has post-bronchodilator FEV1/FVC 0.62. Diagnosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "COPD"
+        },
+        {
+          "id": "B",
+          "text": "Pulmonary fibrosis"
+        },
+        {
+          "id": "C",
+          "text": "Normal"
+        },
+        {
+          "id": "D",
+          "text": "Asthma"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Ratio under 0.7.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-airways-lung-circulation-q04",
+      "type": "single_best_answer",
+      "stem": "COPD exacerbation in the emergency department. Steroid regimen?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Prednisone 40 mg for 5 days"
+        },
+        {
+          "id": "B",
+          "text": "Prednisone 60 mg for 14 days"
+        },
+        {
+          "id": "C",
+          "text": "Inhaled steroid only"
+        },
+        {
+          "id": "D",
+          "text": "No steroids"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Five-day course.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-airways-lung-circulation-q05",
+      "type": "single_best_answer",
+      "stem": "A 4-year-old has poor growth, greasy stools and nasal polyps. Confirmatory test?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stool culture"
+        },
+        {
+          "id": "B",
+          "text": "Sweat chloride"
+        },
+        {
+          "id": "C",
+          "text": "Allergy testing"
+        },
+        {
+          "id": "D",
+          "text": "Chest CT"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "60 or more is diagnostic.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-airways-lung-circulation-q06",
+      "type": "single_best_answer",
+      "stem": "After surgery, sudden dyspnea, BP 80/50, CT shows saddle embolus. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Systemic thrombolysis"
+        },
+        {
+          "id": "B",
+          "text": "Diuretic"
+        },
+        {
+          "id": "C",
+          "text": "Aspirin"
+        },
+        {
+          "id": "D",
+          "text": "Compression stockings"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Massive embolism.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-airways-lung-circulation-q07",
+      "type": "single_best_answer",
+      "stem": "Pleural fluid/serum protein ratio 0.7. Classification?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Exudate"
+        },
+        {
+          "id": "B",
+          "text": "Normal"
+        },
+        {
+          "id": "C",
+          "text": "Transudate"
+        },
+        {
+          "id": "D",
+          "text": "Chylothorax"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Light: over 0.5.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-airways-lung-circulation-q08",
+      "type": "single_best_answer",
+      "stem": "Stab wound, absent breath sounds on the left, tracheal shift right, BP 70/40. First step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Intubation only"
+        },
+        {
+          "id": "B",
+          "text": "Chest X-ray"
+        },
+        {
+          "id": "C",
+          "text": "Needle decompression"
+        },
+        {
+          "id": "D",
+          "text": "CT chest"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Clinical diagnosis; then chest tube.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-airways-lung-circulation-q09",
+      "type": "single_best_answer",
+      "stem": "Mechanically ventilated ARDS patient. Tidal volume target?",
+      "options": [
+        {
+          "id": "A",
+          "text": "10-12 mL/kg"
+        },
+        {
+          "id": "B",
+          "text": "15 mL/kg"
+        },
+        {
+          "id": "C",
+          "text": "Whatever keeps pH normal"
+        },
+        {
+          "id": "D",
+          "text": "About 6 mL/kg predicted weight"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Low tidal volume.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep04-airways-lung-circulation-q10",
+      "type": "single_best_answer",
+      "stem": "Who qualifies for lung cancer screening?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Age 85, current smoker"
+        },
+        {
+          "id": "B",
+          "text": "Age 60, 25 pack-years, quit 10 years ago"
+        },
+        {
+          "id": "C",
+          "text": "Age 45, 30 pack-years"
+        },
+        {
+          "id": "D",
+          "text": "Age 70, quit 20 years ago"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "50-80, 20 pack-years, within 15 years.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

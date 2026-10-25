@@ -1,0 +1,287 @@
+{
+  "episode": "ep12-pregnancy",
+  "title": "Pregnancy, Labor and Postpartum",
+  "video": "quick-bites-pance-ep12-pregnancy-web.mp4",
+  "questions": [
+    {
+      "id": "ep12-pregnancy-q01",
+      "type": "single_best_answer",
+      "stem": "Folic acid dose for all who may become pregnant?",
+      "options": [
+        {
+          "id": "A",
+          "text": "4 mg"
+        },
+        {
+          "id": "B",
+          "text": "10 mg"
+        },
+        {
+          "id": "C",
+          "text": "0.4-0.8 mg"
+        },
+        {
+          "id": "D",
+          "text": "None"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "0.4-0.8 mg.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-pregnancy-q02",
+      "type": "single_best_answer",
+      "stem": "Low-dose aspirin for high preeclampsia risk starts after:",
+      "options": [
+        {
+          "id": "A",
+          "text": "28 weeks"
+        },
+        {
+          "id": "B",
+          "text": "6 weeks"
+        },
+        {
+          "id": "C",
+          "text": "36 weeks"
+        },
+        {
+          "id": "D",
+          "text": "12 weeks"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "After 12 weeks.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-pregnancy-q03",
+      "type": "single_best_answer",
+      "stem": "Group B strep swab timing?",
+      "options": [
+        {
+          "id": "A",
+          "text": "28 weeks"
+        },
+        {
+          "id": "B",
+          "text": "At delivery"
+        },
+        {
+          "id": "C",
+          "text": "36-37 weeks"
+        },
+        {
+          "id": "D",
+          "text": "40 weeks"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "36-37 weeks.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-pregnancy-q04",
+      "type": "single_best_answer",
+      "stem": "Blood pressure 166/112 twice in pregnancy. Best step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "IV labetalol now"
+        },
+        {
+          "id": "B",
+          "text": "Recheck in 4 hours"
+        },
+        {
+          "id": "C",
+          "text": "Lisinopril"
+        },
+        {
+          "id": "D",
+          "text": "Bed rest"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Treat within 30-60 min.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-pregnancy-q05",
+      "type": "single_best_answer",
+      "stem": "Magnesium loading dose for preeclampsia?",
+      "options": [
+        {
+          "id": "A",
+          "text": "4-6 g"
+        },
+        {
+          "id": "B",
+          "text": "20 g"
+        },
+        {
+          "id": "C",
+          "text": "10 g"
+        },
+        {
+          "id": "D",
+          "text": "1 g"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Then 1-2 g/h.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-pregnancy-q06",
+      "type": "single_best_answer",
+      "stem": "On magnesium: lost reflexes and slow breathing. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Give labetalol"
+        },
+        {
+          "id": "B",
+          "text": "Increase the dose"
+        },
+        {
+          "id": "C",
+          "text": "Stop magnesium; give calcium gluconate"
+        },
+        {
+          "id": "D",
+          "text": "Observe"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Magnesium toxicity.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-pregnancy-q07",
+      "type": "single_best_answer",
+      "stem": "Painless bright red bleeding at 32 weeks. Avoid:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Digital vaginal exam"
+        },
+        {
+          "id": "B",
+          "text": "Fetal monitoring"
+        },
+        {
+          "id": "C",
+          "text": "Ultrasound"
+        },
+        {
+          "id": "D",
+          "text": "IV access"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Placenta previa.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-pregnancy-q08",
+      "type": "single_best_answer",
+      "stem": "Painful bleeding with a rigid uterus suggests:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Molar pregnancy"
+        },
+        {
+          "id": "B",
+          "text": "Ectopic"
+        },
+        {
+          "id": "C",
+          "text": "Previa"
+        },
+        {
+          "id": "D",
+          "text": "Abruption"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Abruption.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-pregnancy-q09",
+      "type": "single_best_answer",
+      "stem": "Shoulder dystocia first maneuvers?",
+      "options": [
+        {
+          "id": "A",
+          "text": "McRoberts plus suprapubic pressure"
+        },
+        {
+          "id": "B",
+          "text": "Forceps"
+        },
+        {
+          "id": "C",
+          "text": "Fundal pressure"
+        },
+        {
+          "id": "D",
+          "text": "Wait"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "McRoberts.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep12-pregnancy-q10",
+      "type": "single_best_answer",
+      "stem": "Postpartum hemorrhage is blood loss of at least (ACOG):",
+      "options": [
+        {
+          "id": "A",
+          "text": "1000 mL"
+        },
+        {
+          "id": "B",
+          "text": "250 mL"
+        },
+        {
+          "id": "C",
+          "text": "2000 mL"
+        },
+        {
+          "id": "D",
+          "text": "500 mL"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "1000 mL.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

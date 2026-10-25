@@ -1,0 +1,287 @@
+{
+  "episode": "ep07-lower-gi-nutrition",
+  "title": "Lower Gut, Surgical Abdomen and Nutrition",
+  "video": "quick-bites-pance-ep07-lower-gi-nutrition-web.mp4",
+  "questions": [
+    {
+      "id": "ep07-lower-gi-nutrition-q01",
+      "type": "single_best_answer",
+      "stem": "A 22-year-old has periumbilical pain moving to the right lower quadrant, fever. Best imaging?",
+      "options": [
+        {
+          "id": "A",
+          "text": "X-ray"
+        },
+        {
+          "id": "B",
+          "text": "CT abdomen"
+        },
+        {
+          "id": "C",
+          "text": "Ultrasound"
+        },
+        {
+          "id": "D",
+          "text": "MRI"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "CT in adults.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep07-lower-gi-nutrition-q02",
+      "type": "single_best_answer",
+      "stem": "A 9-year-old with suspected appendicitis. First imaging?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ultrasound"
+        },
+        {
+          "id": "B",
+          "text": "MRI"
+        },
+        {
+          "id": "C",
+          "text": "Barium enema"
+        },
+        {
+          "id": "D",
+          "text": "CT"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Ultrasound first in children.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep07-lower-gi-nutrition-q03",
+      "type": "single_best_answer",
+      "stem": "Prior surgery, vomiting, distension, air-fluid levels. Initial management?",
+      "options": [
+        {
+          "id": "A",
+          "text": "NPO, nasogastric tube, fluids"
+        },
+        {
+          "id": "B",
+          "text": "Laxatives"
+        },
+        {
+          "id": "C",
+          "text": "Oral contrast and discharge"
+        },
+        {
+          "id": "D",
+          "text": "Colonoscopy"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Small bowel obstruction.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep07-lower-gi-nutrition-q04",
+      "type": "single_best_answer",
+      "stem": "Bloody diarrhea, continuous colon involvement from the rectum. Diagnosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Celiac"
+        },
+        {
+          "id": "B",
+          "text": "Irritable bowel"
+        },
+        {
+          "id": "C",
+          "text": "Crohn disease"
+        },
+        {
+          "id": "D",
+          "text": "Ulcerative colitis"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Crohn skips and is transmural.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep07-lower-gi-nutrition-q05",
+      "type": "single_best_answer",
+      "stem": "Suspected celiac disease. Initial test?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stool culture"
+        },
+        {
+          "id": "B",
+          "text": "Biopsy without serology"
+        },
+        {
+          "id": "C",
+          "text": "tTG-IgA plus total IgA"
+        },
+        {
+          "id": "D",
+          "text": "Gluten challenge only"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "tTG-IgA plus total IgA",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep07-lower-gi-nutrition-q06",
+      "type": "single_best_answer",
+      "stem": "A 50-year-old with average risk asks about colon screening. Answer?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Not needed"
+        },
+        {
+          "id": "B",
+          "text": "Only if symptomatic"
+        },
+        {
+          "id": "C",
+          "text": "Start at 60"
+        },
+        {
+          "id": "D",
+          "text": "Screen now (45-75)"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Screen now (45-75)",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep07-lower-gi-nutrition-q07",
+      "type": "single_best_answer",
+      "stem": "A 72-year-old has new iron-deficiency anemia. Next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Colonoscopy (and upper endoscopy)"
+        },
+        {
+          "id": "B",
+          "text": "Bone marrow biopsy"
+        },
+        {
+          "id": "C",
+          "text": "Observe"
+        },
+        {
+          "id": "D",
+          "text": "Iron only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Rule out cancer.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep07-lower-gi-nutrition-q08",
+      "type": "single_best_answer",
+      "stem": "A 5-week-old has projectile nonbilious vomiting and an olive mass. Expected labs?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Normal"
+        },
+        {
+          "id": "B",
+          "text": "High chloride, acidosis"
+        },
+        {
+          "id": "C",
+          "text": "Hyperkalemia"
+        },
+        {
+          "id": "D",
+          "text": "Low chloride, low potassium, metabolic alkalosis"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Pyloric stenosis; ultrasound; pyloromyotomy.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep07-lower-gi-nutrition-q09",
+      "type": "single_best_answer",
+      "stem": "A 1-year-old with episodic crying, currant jelly stool, target sign on ultrasound. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Air enema"
+        },
+        {
+          "id": "B",
+          "text": "Antibiotics"
+        },
+        {
+          "id": "C",
+          "text": "Surgery first"
+        },
+        {
+          "id": "D",
+          "text": "Observation"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Intussusception.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep07-lower-gi-nutrition-q10",
+      "type": "single_best_answer",
+      "stem": "A malnourished patient starts feeding and develops weakness and heart failure. Which electrolyte fell?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Phosphate"
+        },
+        {
+          "id": "B",
+          "text": "Chloride"
+        },
+        {
+          "id": "C",
+          "text": "Calcium"
+        },
+        {
+          "id": "D",
+          "text": "Sodium"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Refeeding: start low, go slow, thiamine.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

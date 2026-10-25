@@ -1,0 +1,287 @@
+{
+  "episode": "ep03-diabetes",
+  "title": "Diabetes from Diagnosis to Insulin",
+  "video": "quick-bites-fnp-ep03-diabetes-web.mp4",
+  "questions": [
+    {
+      "id": "ep03-diabetes-q01",
+      "type": "single_best_answer",
+      "stem": "Which A1c is diagnostic of diabetes?",
+      "options": [
+        {
+          "id": "A",
+          "text": "5.7%"
+        },
+        {
+          "id": "B",
+          "text": "6.0%"
+        },
+        {
+          "id": "C",
+          "text": "6.5%"
+        },
+        {
+          "id": "D",
+          "text": "7.0% only"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "A1c ≥6.5%.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-diabetes-q02",
+      "type": "single_best_answer",
+      "stem": "Fasting glucose diagnostic threshold:",
+      "options": [
+        {
+          "id": "A",
+          "text": "100"
+        },
+        {
+          "id": "B",
+          "text": "110"
+        },
+        {
+          "id": "C",
+          "text": "126"
+        },
+        {
+          "id": "D",
+          "text": "140"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Fasting ≥126.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-diabetes-q03",
+      "type": "single_best_answer",
+      "stem": "Random glucose 240 with thirst and weight loss. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Repeat test before diagnosing"
+        },
+        {
+          "id": "B",
+          "text": "Diagnosis made"
+        },
+        {
+          "id": "C",
+          "text": "Order OGTT"
+        },
+        {
+          "id": "D",
+          "text": "Recheck in 1 year"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Random ≥200 with classic symptoms is diagnostic alone.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-diabetes-q04",
+      "type": "single_best_answer",
+      "stem": "Type 2 diabetes + heart failure, A1c 7.2. Add?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sulfonylurea"
+        },
+        {
+          "id": "B",
+          "text": "Pioglitazone"
+        },
+        {
+          "id": "C",
+          "text": "SGLT2 inhibitor"
+        },
+        {
+          "id": "D",
+          "text": "Nothing"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "SGLT2i irrespective of A1c in HF.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-diabetes-q05",
+      "type": "single_best_answer",
+      "stem": "New type 2, eGFR 28. Avoid starting?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Metformin"
+        },
+        {
+          "id": "B",
+          "text": "GLP-1 agonist"
+        },
+        {
+          "id": "C",
+          "text": "Basal insulin"
+        },
+        {
+          "id": "D",
+          "text": "SGLT2 inhibitor"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Do not start metformin below 45.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-diabetes-q06",
+      "type": "single_best_answer",
+      "stem": "A1c 11%, weight loss, thirst. Start?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Metformin alone"
+        },
+        {
+          "id": "B",
+          "text": "Insulin"
+        },
+        {
+          "id": "C",
+          "text": "Diet only"
+        },
+        {
+          "id": "D",
+          "text": "Pioglitazone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A1c >10% or catabolic symptoms = insulin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-diabetes-q07",
+      "type": "single_best_answer",
+      "stem": "Usual basal insulin starting dose:",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 unit/kg"
+        },
+        {
+          "id": "B",
+          "text": "0.1-0.2 units/kg/day"
+        },
+        {
+          "id": "C",
+          "text": "50 units"
+        },
+        {
+          "id": "D",
+          "text": "0.5 units/kg twice daily"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "0.1-0.2 units/kg/day, titrate to fasting glucose.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-diabetes-q08",
+      "type": "single_best_answer",
+      "stem": "Glucose 58, awake, can swallow. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Glucagon"
+        },
+        {
+          "id": "B",
+          "text": "15 g fast sugar, recheck 15 min"
+        },
+        {
+          "id": "C",
+          "text": "Insulin"
+        },
+        {
+          "id": "D",
+          "text": "Wait 1 hour"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Rule of 15.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-diabetes-q09",
+      "type": "single_best_answer",
+      "stem": "Typical A1c goal for an older adult with complex health:",
+      "options": [
+        {
+          "id": "A",
+          "text": "<6%"
+        },
+        {
+          "id": "B",
+          "text": "<6.5%"
+        },
+        {
+          "id": "C",
+          "text": "<7%"
+        },
+        {
+          "id": "D",
+          "text": "<8%"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "<8.0% is reasonable.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep03-diabetes-q10",
+      "type": "single_best_answer",
+      "stem": "Gestational diabetes screening window:",
+      "options": [
+        {
+          "id": "A",
+          "text": "8-12 weeks"
+        },
+        {
+          "id": "B",
+          "text": "16-20 weeks"
+        },
+        {
+          "id": "C",
+          "text": "24-28 weeks"
+        },
+        {
+          "id": "D",
+          "text": "36-40 weeks"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "24-28 weeks.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "episode": "ep14-infectious",
+  "title": "Infections Across the Body",
+  "video": "quick-bites-pance-ep14-infectious-web.mp4",
+  "questions": [
+    {
+      "id": "ep14-infectious-q01",
+      "type": "single_best_answer",
+      "stem": "A 6-year-old with suspected Rocky Mountain spotted fever. Drug?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Doxycycline"
+        },
+        {
+          "id": "B",
+          "text": "Azithromycin"
+        },
+        {
+          "id": "C",
+          "text": "Wait for titers"
+        },
+        {
+          "id": "D",
+          "text": "Amoxicillin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Any age.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-infectious-q02",
+      "type": "single_best_answer",
+      "stem": "Lyme bull's-eye rash. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Doxycycline 10 days"
+        },
+        {
+          "id": "B",
+          "text": "Serology first"
+        },
+        {
+          "id": "C",
+          "text": "No treatment"
+        },
+        {
+          "id": "D",
+          "text": "Ceftriaxone IV"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "No blood test needed.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-infectious-q03",
+      "type": "single_best_answer",
+      "stem": "Syphilis treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Benzathine penicillin 2.4 million units"
+        },
+        {
+          "id": "B",
+          "text": "Ceftriaxone"
+        },
+        {
+          "id": "C",
+          "text": "Azithromycin"
+        },
+        {
+          "id": "D",
+          "text": "Doxycycline 1 day"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Benzathine penicillin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-infectious-q04",
+      "type": "single_best_answer",
+      "stem": "Gonorrhea treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ceftriaxone 500 mg"
+        },
+        {
+          "id": "B",
+          "text": "Metronidazole"
+        },
+        {
+          "id": "C",
+          "text": "Penicillin"
+        },
+        {
+          "id": "D",
+          "text": "Fluconazole"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Ceftriaxone 500 mg.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-infectious-q05",
+      "type": "single_best_answer",
+      "stem": "HIV screening at the wellness visit ages?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Over 65 only"
+        },
+        {
+          "id": "B",
+          "text": "15-65"
+        },
+        {
+          "id": "C",
+          "text": "18-50"
+        },
+        {
+          "id": "D",
+          "text": "High risk only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Plus PrEP if at risk.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-infectious-q06",
+      "type": "single_best_answer",
+      "stem": "Skin abscess. Key treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Warm soaks only"
+        },
+        {
+          "id": "B",
+          "text": "Incision and drainage"
+        },
+        {
+          "id": "C",
+          "text": "Antibiotics alone"
+        },
+        {
+          "id": "D",
+          "text": "Steroid"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Drain it.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-infectious-q07",
+      "type": "single_best_answer",
+      "stem": "Preferred drug for C. difficile?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Metronidazole"
+        },
+        {
+          "id": "B",
+          "text": "Clindamycin"
+        },
+        {
+          "id": "C",
+          "text": "Fidaxomicin"
+        },
+        {
+          "id": "D",
+          "text": "Ciprofloxacin"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Or oral vancomycin.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-infectious-q08",
+      "type": "single_best_answer",
+      "stem": "Rash appears as high fever breaks in a toddler:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fifth disease"
+        },
+        {
+          "id": "B",
+          "text": "Scarlet fever"
+        },
+        {
+          "id": "C",
+          "text": "Measles"
+        },
+        {
+          "id": "D",
+          "text": "Roseola"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Roseola.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-infectious-q09",
+      "type": "single_best_answer",
+      "stem": "Rabies post-exposure, unvaccinated:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Observe the patient"
+        },
+        {
+          "id": "B",
+          "text": "Antibiotics"
+        },
+        {
+          "id": "C",
+          "text": "Vaccine only"
+        },
+        {
+          "id": "D",
+          "text": "Immune globulin plus vaccine days 0,3,7,14"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Four doses.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-infectious-q10",
+      "type": "single_best_answer",
+      "stem": "Severe falciparum malaria with confusion. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Supportive only"
+        },
+        {
+          "id": "B",
+          "text": "IV artesunate"
+        },
+        {
+          "id": "C",
+          "text": "Doxycycline alone"
+        },
+        {
+          "id": "D",
+          "text": "Oral chloroquine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Artesunate.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

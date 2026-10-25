@@ -1,0 +1,287 @@
+{
+  "episode": "ep20-professional-practice",
+  "title": "Professional Practice and Board Strategy",
+  "video": "quick-bites-pance-ep20-professional-practice-web.mp4",
+  "questions": [
+    {
+      "id": "ep20-professional-practice-q01",
+      "type": "single_best_answer",
+      "stem": "Unconscious bleeding man, no family:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Call a court"
+        },
+        {
+          "id": "B",
+          "text": "Wait for consent"
+        },
+        {
+          "id": "C",
+          "text": "Refuse care"
+        },
+        {
+          "id": "D",
+          "text": "Treat now, consent later"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Emergency exception.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-professional-practice-q02",
+      "type": "single_best_answer",
+      "stem": "Do not resuscitate means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Do not treat"
+        },
+        {
+          "id": "B",
+          "text": "No chest compressions, still treat"
+        },
+        {
+          "id": "C",
+          "text": "No antibiotics"
+        },
+        {
+          "id": "D",
+          "text": "Comfort only always"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "No chest compressions, still treat",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-professional-practice-q03",
+      "type": "single_best_answer",
+      "stem": "Which is a capacity element?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Having family present"
+        },
+        {
+          "id": "B",
+          "text": "Being over 65"
+        },
+        {
+          "id": "C",
+          "text": "Agreeing with the doctor"
+        },
+        {
+          "id": "D",
+          "text": "Appreciating consequences"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Appreciating consequences",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-professional-practice-q04",
+      "type": "single_best_answer",
+      "stem": "A capable patient refuses surgery:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Operate anyway"
+        },
+        {
+          "id": "B",
+          "text": "Ask family to override"
+        },
+        {
+          "id": "C",
+          "text": "Sedate her"
+        },
+        {
+          "id": "D",
+          "text": "She may refuse; document"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "She may refuse; document",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-professional-practice-q05",
+      "type": "single_best_answer",
+      "stem": "Suspected child abuse:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Must report"
+        },
+        {
+          "id": "B",
+          "text": "Ignore"
+        },
+        {
+          "id": "C",
+          "text": "Optional"
+        },
+        {
+          "id": "D",
+          "text": "Only with parent consent"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Must report",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-professional-practice-q06",
+      "type": "single_best_answer",
+      "stem": "Billing clerk asks for the whole chart:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Minimum necessary"
+        },
+        {
+          "id": "B",
+          "text": "Nothing ever"
+        },
+        {
+          "id": "C",
+          "text": "Everything"
+        },
+        {
+          "id": "D",
+          "text": "Court order only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Minimum necessary",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-professional-practice-q07",
+      "type": "single_best_answer",
+      "stem": "Malpractice requires duty, breach, damage and:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Direct cause"
+        },
+        {
+          "id": "B",
+          "text": "A bad outcome alone"
+        },
+        {
+          "id": "C",
+          "text": "A second opinion"
+        },
+        {
+          "id": "D",
+          "text": "Patient anger"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Direct cause",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-professional-practice-q08",
+      "type": "single_best_answer",
+      "stem": "Before every procedure:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Nothing"
+        },
+        {
+          "id": "B",
+          "text": "Time-out"
+        },
+        {
+          "id": "C",
+          "text": "Lunch"
+        },
+        {
+          "id": "D",
+          "text": "Discharge"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Time-out",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-professional-practice-q09",
+      "type": "single_best_answer",
+      "stem": "Swiss cheese model says errors come from:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Bad luck only"
+        },
+        {
+          "id": "B",
+          "text": "Lined-up system holes"
+        },
+        {
+          "id": "C",
+          "text": "One bad person"
+        },
+        {
+          "id": "D",
+          "text": "Patients"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Fix the system.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep20-professional-practice-q10",
+      "type": "single_best_answer",
+      "stem": "Board strategy: read which part first?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The first sentence"
+        },
+        {
+          "id": "B",
+          "text": "The last line"
+        },
+        {
+          "id": "C",
+          "text": "The answer choices"
+        },
+        {
+          "id": "D",
+          "text": "The vitals"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The last line",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

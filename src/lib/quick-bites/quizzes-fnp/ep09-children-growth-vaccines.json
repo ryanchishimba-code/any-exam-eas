@@ -1,0 +1,287 @@
+{
+  "episode": "ep09-children-growth-vaccines",
+  "title": "Children: Growth, Development and Vaccines",
+  "video": "quick-bites-fnp-ep09-children-growth-vaccines-web.mp4",
+  "questions": [
+    {
+      "id": "ep09-children-growth-vaccines-q01",
+      "type": "single_best_answer",
+      "stem": "4-month-old with a runny nose, no fever, due for vaccines:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Delay 2 weeks"
+        },
+        {
+          "id": "B",
+          "text": "Vaccinate today"
+        },
+        {
+          "id": "C",
+          "text": "Give only oral vaccines"
+        },
+        {
+          "id": "D",
+          "text": "Antibiotic first"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Mild illness is not a contraindication.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-children-growth-vaccines-q02",
+      "type": "single_best_answer",
+      "stem": "A milestone expected by 2 months:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sits alone"
+        },
+        {
+          "id": "B",
+          "text": "Smiles when you talk"
+        },
+        {
+          "id": "C",
+          "text": "Says mama"
+        },
+        {
+          "id": "D",
+          "text": "Walks"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "CDC 2022 checklist.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-children-growth-vaccines-q03",
+      "type": "single_best_answer",
+      "stem": "By 24 months a child should:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Read letters"
+        },
+        {
+          "id": "B",
+          "text": "Put two words together"
+        },
+        {
+          "id": "C",
+          "text": "Ride a bike"
+        },
+        {
+          "id": "D",
+          "text": "Say 3-word sentences only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Two words together, like \"more milk\".",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-children-growth-vaccines-q04",
+      "type": "single_best_answer",
+      "stem": "Autism-specific screening ages:",
+      "options": [
+        {
+          "id": "A",
+          "text": "6 and 12 months"
+        },
+        {
+          "id": "B",
+          "text": "18 and 24 months"
+        },
+        {
+          "id": "C",
+          "text": "3 and 4 years"
+        },
+        {
+          "id": "D",
+          "text": "Only if parents worry"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "AAP: 18 and 24 months.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-children-growth-vaccines-q05",
+      "type": "single_best_answer",
+      "stem": "Jaundice at 18 hours of life. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Reassure"
+        },
+        {
+          "id": "B",
+          "text": "Measure bilirubin now"
+        },
+        {
+          "id": "C",
+          "text": "Sunlight"
+        },
+        {
+          "id": "D",
+          "text": "Recheck at 1 week"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Under 24 hours: measure, think hemolysis.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-children-growth-vaccines-q06",
+      "type": "single_best_answer",
+      "stem": "Safe sleep advice:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Side sleeping"
+        },
+        {
+          "id": "B",
+          "text": "Back, firm flat surface, own bed in room"
+        },
+        {
+          "id": "C",
+          "text": "Bed-sharing"
+        },
+        {
+          "id": "D",
+          "text": "Inclined sleeper"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "AAP 2022.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-children-growth-vaccines-q07",
+      "type": "single_best_answer",
+      "stem": "True vaccine contraindication:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Low fever"
+        },
+        {
+          "id": "B",
+          "text": "On antibiotics"
+        },
+        {
+          "id": "C",
+          "text": "Anaphylaxis to prior dose"
+        },
+        {
+          "id": "D",
+          "text": "Cold"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Severe allergy to a prior dose or component.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-children-growth-vaccines-q08",
+      "type": "single_best_answer",
+      "stem": "Live vaccines due at 12-15 months:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Rotavirus and polio"
+        },
+        {
+          "id": "B",
+          "text": "MMR and varicella"
+        },
+        {
+          "id": "C",
+          "text": "Tdap and HPV"
+        },
+        {
+          "id": "D",
+          "text": "Hepatitis B"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Both schedules agree.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-children-growth-vaccines-q09",
+      "type": "single_best_answer",
+      "stem": "Live vaccines are avoided in:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Breastfeeding"
+        },
+        {
+          "id": "B",
+          "text": "Pregnancy"
+        },
+        {
+          "id": "C",
+          "text": "Mild illness"
+        },
+        {
+          "id": "D",
+          "text": "Antibiotic use"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Pregnancy and severe immune compromise.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep09-children-growth-vaccines-q10",
+      "type": "single_best_answer",
+      "stem": "Teen visit best practice:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Parent always present"
+        },
+        {
+          "id": "B",
+          "text": "Time alone, explain confidentiality limits"
+        },
+        {
+          "id": "C",
+          "text": "Skip sexual history"
+        },
+        {
+          "id": "D",
+          "text": "Only physical exam"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Psychosocial interview with time alone.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

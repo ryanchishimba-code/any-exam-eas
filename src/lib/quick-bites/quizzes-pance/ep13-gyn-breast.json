@@ -1,0 +1,287 @@
+{
+  "episode": "ep13-gyn-breast",
+  "title": "Gynecology, Breast and Contraception",
+  "video": "quick-bites-pance-ep13-gyn-breast-web.mp4",
+  "questions": [
+    {
+      "id": "ep13-gyn-breast-q01",
+      "type": "single_best_answer",
+      "stem": "Migraine with aura wants contraception. Avoid:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Levonorgestrel IUD"
+        },
+        {
+          "id": "B",
+          "text": "Copper IUD"
+        },
+        {
+          "id": "C",
+          "text": "Combined estrogen pill"
+        },
+        {
+          "id": "D",
+          "text": "Progestin implant"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Estrogen contraindicated.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-gyn-breast-q02",
+      "type": "single_best_answer",
+      "stem": "Combined estrogen is avoided postpartum before:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Never"
+        },
+        {
+          "id": "B",
+          "text": "21 days"
+        },
+        {
+          "id": "C",
+          "text": "1 year"
+        },
+        {
+          "id": "D",
+          "text": "6 months"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Under 21 days.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-gyn-breast-q03",
+      "type": "single_best_answer",
+      "stem": "Cervical screening ages 21-29?",
+      "options": [
+        {
+          "id": "A",
+          "text": "None"
+        },
+        {
+          "id": "B",
+          "text": "Yearly cytology"
+        },
+        {
+          "id": "C",
+          "text": "HPV every 5"
+        },
+        {
+          "id": "D",
+          "text": "Cytology every 3 years"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Every 3 years.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-gyn-breast-q04",
+      "type": "single_best_answer",
+      "stem": "A 35-year-old with a normal history. Which cervical screening plan is appropriate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Colposcopy"
+        },
+        {
+          "id": "B",
+          "text": "Stop screening"
+        },
+        {
+          "id": "C",
+          "text": "Yearly cytology"
+        },
+        {
+          "id": "D",
+          "text": "HPV testing every 5 years"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "One option, alongside cotesting every 5 or cytology every 3.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-gyn-breast-q05",
+      "type": "single_best_answer",
+      "stem": "Mammography interval and ages?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Every 5 years"
+        },
+        {
+          "id": "B",
+          "text": "Every 2 years 40-74"
+        },
+        {
+          "id": "C",
+          "text": "Yearly 50-74"
+        },
+        {
+          "id": "D",
+          "text": "Every 3 years 30-70"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "40-74.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-gyn-breast-q06",
+      "type": "single_best_answer",
+      "stem": "Breast lump in a 25-year-old. First imaging?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Biopsy"
+        },
+        {
+          "id": "B",
+          "text": "Mammogram"
+        },
+        {
+          "id": "C",
+          "text": "MRI"
+        },
+        {
+          "id": "D",
+          "text": "Ultrasound"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Under 30: ultrasound.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-gyn-breast-q07",
+      "type": "single_best_answer",
+      "stem": "First drug for ovulation induction in polycystic ovary syndrome?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Letrozole"
+        },
+        {
+          "id": "B",
+          "text": "Estrogen"
+        },
+        {
+          "id": "C",
+          "text": "Clomiphene"
+        },
+        {
+          "id": "D",
+          "text": "Metformin"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Letrozole.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-gyn-breast-q08",
+      "type": "single_best_answer",
+      "stem": "Sudden pelvic pain, vomiting, adnexal mass. Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "CT in a week"
+        },
+        {
+          "id": "B",
+          "text": "Observation"
+        },
+        {
+          "id": "C",
+          "text": "Laparoscopy; detorse and save the ovary"
+        },
+        {
+          "id": "D",
+          "text": "Oophorectomy always"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Torsion.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-gyn-breast-q09",
+      "type": "single_best_answer",
+      "stem": "Clue cells and pH over 4.5. Treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fluconazole"
+        },
+        {
+          "id": "B",
+          "text": "Ceftriaxone"
+        },
+        {
+          "id": "C",
+          "text": "No treatment"
+        },
+        {
+          "id": "D",
+          "text": "Metronidazole"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Bacterial vaginosis.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-gyn-breast-q10",
+      "type": "single_best_answer",
+      "stem": "Menopause hormone therapy in a woman with a uterus requires:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Testosterone"
+        },
+        {
+          "id": "B",
+          "text": "Thyroid"
+        },
+        {
+          "id": "C",
+          "text": "Nothing extra"
+        },
+        {
+          "id": "D",
+          "text": "A progestin"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Protect the endometrium.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

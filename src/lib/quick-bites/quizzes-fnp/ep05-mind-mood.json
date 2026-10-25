@@ -1,0 +1,287 @@
+{
+  "episode": "ep05-mind-mood",
+  "title": "Mind and Mood",
+  "video": "quick-bites-fnp-ep05-mind-mood-web.mp4",
+  "questions": [
+    {
+      "id": "ep05-mind-mood-q01",
+      "type": "single_best_answer",
+      "stem": "Depression screening per USPSTF applies to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only adults over 65"
+        },
+        {
+          "id": "B",
+          "text": "All adults"
+        },
+        {
+          "id": "C",
+          "text": "Only postpartum"
+        },
+        {
+          "id": "D",
+          "text": "No one"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "All adults (B).",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-mind-mood-q02",
+      "type": "single_best_answer",
+      "stem": "Anxiety screening is recommended for adults aged:",
+      "options": [
+        {
+          "id": "A",
+          "text": "64 and younger"
+        },
+        {
+          "id": "B",
+          "text": "65 and older"
+        },
+        {
+          "id": "C",
+          "text": "All ages"
+        },
+        {
+          "id": "D",
+          "text": "Only teens"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Adults 64 or younger.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-mind-mood-q03",
+      "type": "single_best_answer",
+      "stem": "Before starting an antidepressant you must ask about:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Mania history"
+        },
+        {
+          "id": "B",
+          "text": "Allergies to penicillin"
+        },
+        {
+          "id": "C",
+          "text": "Vision"
+        },
+        {
+          "id": "D",
+          "text": "Diet"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Antidepressant alone can trigger mania in bipolar disorder.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-mind-mood-q04",
+      "type": "single_best_answer",
+      "stem": "Low mood 3 weeks plus past week of no sleep and big spending. Best step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start SSRI today"
+        },
+        {
+          "id": "B",
+          "text": "Evaluate for bipolar disorder"
+        },
+        {
+          "id": "C",
+          "text": "Reassure"
+        },
+        {
+          "id": "D",
+          "text": "Start benzodiazepine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Past mania = evaluate for bipolar first.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-mind-mood-q05",
+      "type": "single_best_answer",
+      "stem": "Time to full SSRI effect:",
+      "options": [
+        {
+          "id": "A",
+          "text": "1-2 days"
+        },
+        {
+          "id": "B",
+          "text": "1 week"
+        },
+        {
+          "id": "C",
+          "text": "4-8 weeks"
+        },
+        {
+          "id": "D",
+          "text": "6 months"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "4-8 weeks.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-mind-mood-q06",
+      "type": "single_best_answer",
+      "stem": "Antidepressant boxed warning concerns suicidal thoughts in patients:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Under 25"
+        },
+        {
+          "id": "B",
+          "text": "Over 65"
+        },
+        {
+          "id": "C",
+          "text": "Pregnant only"
+        },
+        {
+          "id": "D",
+          "text": "All ages equally"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Through age 24.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-mind-mood-q07",
+      "type": "single_best_answer",
+      "stem": "\"I have a plan and pills saved.\" Next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "SSRI, recheck 4 weeks"
+        },
+        {
+          "id": "B",
+          "text": "Hotline card only"
+        },
+        {
+          "id": "C",
+          "text": "Same-day emergency evaluation"
+        },
+        {
+          "id": "D",
+          "text": "Therapy referral"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Plan + means = emergency today.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-mind-mood-q08",
+      "type": "single_best_answer",
+      "stem": "SSRI + tramadol: fever, clonus, agitation. Diagnosis?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Neuroleptic malignant syndrome"
+        },
+        {
+          "id": "B",
+          "text": "Serotonin syndrome"
+        },
+        {
+          "id": "C",
+          "text": "Anticholinergic toxicity"
+        },
+        {
+          "id": "D",
+          "text": "Panic attack"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Serotonin syndrome from combining a selective serotonin reuptake inhibitor with tramadol; stop serotonergic drugs and treat supportively.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-mind-mood-q09",
+      "type": "single_best_answer",
+      "stem": "First-line medicine for tobacco cessation:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Varenicline or combination NRT"
+        },
+        {
+          "id": "B",
+          "text": "Benzodiazepine"
+        },
+        {
+          "id": "C",
+          "text": "Bupropion plus alcohol"
+        },
+        {
+          "id": "D",
+          "text": "None"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Varenicline or patch + short-acting NRT.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep05-mind-mood-q10",
+      "type": "single_best_answer",
+      "stem": "Buprenorphine for opioid use disorder now requires:",
+      "options": [
+        {
+          "id": "A",
+          "text": "X-waiver"
+        },
+        {
+          "id": "B",
+          "text": "Standard DEA registration with Schedule III"
+        },
+        {
+          "id": "C",
+          "text": "Hospital only"
+        },
+        {
+          "id": "D",
+          "text": "Methadone clinic"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Waiver eliminated end of 2022.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "episode": "ep08-fractures-spine-injuries",
+  "title": "Fractures, Spine and Sports Injuries",
+  "video": "quick-bites-pance-ep08-fractures-spine-injuries-web.mp4",
+  "questions": [
+    {
+      "id": "ep08-fractures-spine-injuries-q01",
+      "type": "single_best_answer",
+      "stem": "After a fall on an outstretched hand there is anatomic snuffbox tenderness and normal radiographs. Best management?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Reassure and discharge"
+        },
+        {
+          "id": "B",
+          "text": "Sling only"
+        },
+        {
+          "id": "C",
+          "text": "Corticosteroid injection"
+        },
+        {
+          "id": "D",
+          "text": "Thumb spica and MRI or repeat films in 10-14 days"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Occult scaphoid fracture risks avascular necrosis.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-fractures-spine-injuries-q02",
+      "type": "single_best_answer",
+      "stem": "A child with a supracondylar elbow fracture is at risk of injury to which vessel?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Axillary artery"
+        },
+        {
+          "id": "B",
+          "text": "Ulnar artery"
+        },
+        {
+          "id": "C",
+          "text": "Radial artery"
+        },
+        {
+          "id": "D",
+          "text": "Brachial artery"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Check the pulses.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-fractures-spine-injuries-q03",
+      "type": "single_best_answer",
+      "stem": "Which tool decides who needs an ankle radiograph?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Wells score"
+        },
+        {
+          "id": "B",
+          "text": "Centor criteria"
+        },
+        {
+          "id": "C",
+          "text": "CURB score"
+        },
+        {
+          "id": "D",
+          "text": "Ottawa ankle rules"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Ottawa ankle rules.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-fractures-spine-injuries-q04",
+      "type": "single_best_answer",
+      "stem": "An older adult with a hip fracture should have surgery within:",
+      "options": [
+        {
+          "id": "A",
+          "text": "1 week"
+        },
+        {
+          "id": "B",
+          "text": "6 hours"
+        },
+        {
+          "id": "C",
+          "text": "2 weeks"
+        },
+        {
+          "id": "D",
+          "text": "48 hours"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Better outcomes within 48 hours.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-fractures-spine-injuries-q05",
+      "type": "single_best_answer",
+      "stem": "A casted forearm fracture has severe pain on passive finger stretch. Next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Elevate and add opioids"
+        },
+        {
+          "id": "B",
+          "text": "Repeat radiograph tomorrow"
+        },
+        {
+          "id": "C",
+          "text": "Remove the cast and check compartment pressures"
+        },
+        {
+          "id": "D",
+          "text": "Ice only"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Fasciotomy if compartment syndrome.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-fractures-spine-injuries-q06",
+      "type": "single_best_answer",
+      "stem": "A delta pressure (diastolic minus compartment) under what value supports fasciotomy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "50"
+        },
+        {
+          "id": "B",
+          "text": "10"
+        },
+        {
+          "id": "C",
+          "text": "30"
+        },
+        {
+          "id": "D",
+          "text": "70"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Under 30.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-fractures-spine-injuries-q07",
+      "type": "single_best_answer",
+      "stem": "Saddle numbness and urinary retention. Next step?",
+      "options": [
+        {
+          "id": "A",
+          "text": "NSAID and recheck in 6 weeks"
+        },
+        {
+          "id": "B",
+          "text": "Emergency MRI and surgical decompression"
+        },
+        {
+          "id": "C",
+          "text": "Physical therapy"
+        },
+        {
+          "id": "D",
+          "text": "Epidural steroid"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Cauda equina syndrome.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-fractures-spine-injuries-q08",
+      "type": "single_best_answer",
+      "stem": "Leg pain on walking that improves leaning forward suggests:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cauda equina"
+        },
+        {
+          "id": "B",
+          "text": "Scaphoid fracture"
+        },
+        {
+          "id": "C",
+          "text": "Spinal stenosis"
+        },
+        {
+          "id": "D",
+          "text": "Ankylosing spondylitis"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Stenosis.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-fractures-spine-injuries-q09",
+      "type": "single_best_answer",
+      "stem": "First-line therapy for acute low back pain without red flags?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Opioids"
+        },
+        {
+          "id": "B",
+          "text": "Lumbar MRI"
+        },
+        {
+          "id": "C",
+          "text": "Heat, massage, acupuncture or spinal manipulation"
+        },
+        {
+          "id": "D",
+          "text": "Bed rest"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Then NSAID or muscle relaxant.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep08-fractures-spine-injuries-q10",
+      "type": "single_best_answer",
+      "stem": "An obese 13-year-old has knee pain and a limp. Management?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Observation"
+        },
+        {
+          "id": "B",
+          "text": "Stop weight bearing; surgical pinning"
+        },
+        {
+          "id": "C",
+          "text": "Pavlik harness"
+        },
+        {
+          "id": "D",
+          "text": "Knee arthroscopy"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Slipped capital femoral epiphysis.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}
