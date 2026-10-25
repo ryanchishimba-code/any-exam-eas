@@ -260,7 +260,7 @@ export function LandingCompact() {
                   href="#how-we-compare"
                   className="mt-3 block text-center text-xs font-semibold text-teal-700 hover:text-teal-600"
                 >
-                  See how we compare to UWorld &amp; others →
+                  See how multi-exam value compares →
                 </Link>
               </div>
             </article>

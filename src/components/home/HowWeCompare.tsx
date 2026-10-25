@@ -8,7 +8,7 @@ import { ArrowRight, Check, Minus } from "lucide-react";
 import {
   LANDING_TRIAL_HREF,
   PLATFORM_TAGLINE,
-  UWORLD_COMPARE_ROWS,
+  PREP_COMPARE_ROWS,
 } from "@/lib/landing/content";
 import {
   COMPARE_HONESTY_DISCLAIMER,
@@ -21,7 +21,7 @@ import {
   TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
 
-const inlineRows = UWORLD_COMPARE_ROWS.slice(0, 4);
+const inlineRows = PREP_COMPARE_ROWS.slice(0, 4);
 
 export function CompareSectionHeading({
   id = "compare-heading",
@@ -50,8 +50,8 @@ export function CompareSectionHeading({
         </span>
       </h2>
       <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
-        {PLATFORM_TAGLINE} We win on one plan for six boards — not by claiming UWorld parity or
-        unverified pass rates.
+        {PLATFORM_TAGLINE} We win on one plan for six boards — not by claiming parity with other
+        prep brands or unverified pass rates.
       </p>
     </div>
   );
@@ -64,7 +64,7 @@ type HowWeCompareProps = {
 export function HowWeCompare({ variant = "default" }: HowWeCompareProps) {
   const isInline = variant === "hero-inline";
   const isOverlap = variant === "hero-overlap";
-  const visibleRows = isInline ? inlineRows : UWORLD_COMPARE_ROWS;
+  const visibleRows = isInline ? inlineRows : PREP_COMPARE_ROWS;
 
   return (
     <section
@@ -97,7 +97,7 @@ export function HowWeCompare({ variant = "default" }: HowWeCompareProps) {
           }
         >
           <CompareUsCard rows={visibleRows} compact={isInline} />
-          <CompareUWorldCard rows={visibleRows} compact={isInline} />
+          <CompareTypicalPrepCard rows={visibleRows} compact={isInline} />
         </motion.div>
 
         <CompareFooter isInline={isInline} isOverlap={isOverlap} />
@@ -110,7 +110,7 @@ function CompareUsCard({
   rows: visibleRows,
   compact,
 }: {
-  rows: typeof UWORLD_COMPARE_ROWS | typeof inlineRows;
+  rows: typeof PREP_COMPARE_ROWS | typeof inlineRows;
   compact?: boolean;
 }) {
   return (
@@ -147,30 +147,30 @@ function CompareUsCard({
   );
 }
 
-function CompareUWorldCard({
+function CompareTypicalPrepCard({
   rows: visibleRows,
   compact,
 }: {
-  rows: typeof UWORLD_COMPARE_ROWS | typeof inlineRows;
+  rows: typeof PREP_COMPARE_ROWS | typeof inlineRows;
   compact?: boolean;
 }) {
   return (
     <article className="aee-hero-compare-card aee-hero-compare-card--them flex h-full flex-col rounded-2xl border p-4 sm:p-4">
       <header>
         <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
-          Typical UWorld pricing
+          Typical single-exam prep
         </p>
         <p className="mt-2">
           <span className="rounded-md bg-[var(--color-surface-elevated)] px-2.5 py-1 text-sm font-semibold text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
-            UWorld
+            Premium single-board QBank
           </span>
         </p>
         <p
-          className={`font-black tracking-tight text-[var(--color-ink-muted)] line-through ${compact ? "mt-2 text-2xl" : "mt-3 text-3xl sm:text-4xl"}`}
+          className={`font-semibold tracking-tight text-[var(--color-ink-muted)] ${compact ? "mt-2 text-sm" : "mt-3 text-base sm:text-lg"}`}
         >
-          $200–400+
+          Pricing varies by provider, exam, and term length
         </p>
-        <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">Per exam · separate subscriptions</p>
+        <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">Usually one exam per subscription</p>
       </header>
 
       <ul
@@ -245,7 +245,7 @@ function WhenTheyWin({ compact }: { compact?: boolean }) {
           compact ? "text-[0.6rem]" : "text-xs"
         }`}
       >
-        When UWorld (or another specialist) may win
+        When a dedicated single-exam product may win
       </p>
       <ul className={`mt-2 space-y-1.5 ${compact ? "text-[0.7rem]" : "text-sm"}`} role="list">
         {COMPETITOR_MAY_WIN.map((item) => (

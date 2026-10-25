@@ -26,12 +26,10 @@ import {
   formatTrialQuestionLimit,
 } from "@/lib/site";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
+import { comparePageFaqJsonLdEntities } from "@/lib/seo/compare-faq";
 import { SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
 import { TRIAL_DAYS } from "@/lib/billing-config";
-import {
-  formatUsd,
-  UWORLD_THREE_EXAM_MIN,
-} from "@/lib/seo/competitor-comparison";
+import { formatUsd } from "@/lib/seo/competitor-comparison";
 import {
   enforceMetaDescription,
   enforceMetaTitle,
@@ -158,7 +156,7 @@ export function buildPricingMetadata(totalLabel?: string): Metadata {
   return {
     ...baseOpenGraph(title, description, "/pricing", { absoluteTitle: true }),
     keywords: [
-      "UWorld alternative pricing",
+      "affordable multi-exam board prep",
       "affordable multi-exam prep",
       "affordable NCLEX Qbank",
       "USMLE question bank price",
@@ -168,18 +166,17 @@ export function buildPricingMetadata(totalLabel?: string): Metadata {
 }
 
 export function buildCompareMetadata(): Metadata {
-  const title = "Compare — vs UWorld, Archer, Kaplan & RxPrep";
+  const title = "Compare — multi-exam board prep";
   const description =
-    "AnyExamEasy vs UWorld, Archer, Kaplan & RxPrep: six boards on one Pro plan. Compare features, pricing & multi-exam value. Start a free trial.";
+    `See how AnyExamEasy Pro (${formatMonthlyPrice("pro")}/mo) covers six boards with Roadmap, Deep Dives, and Full Exams — versus typical single-exam prep. Start a ${SEO_LIVE_STATS.trialDays}-day free trial.`;
   return {
     ...baseOpenGraph(title, description, "/compare", { absoluteTitle: true }),
     keywords: [
-      "AnyExamEasy vs UWorld",
-      "NCLEX vs Archer",
-      "NAPLEX vs RxPrep",
-      "UWorld alternative comparison",
-      "affordable board exam prep 2026",
+      "affordable multi-exam board prep",
       "multi-exam Qbank comparison",
+      "six board exams one subscription",
+      "affordable board exam prep 2026",
+      "NCLEX USMLE NAPLEX one plan",
     ],
   };
 }
@@ -199,32 +196,7 @@ export function buildCompareJsonLd() {
       },
       {
         "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "How does AnyExamEasy compare to UWorld on price?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: `AnyExamEasy Pro is ${formatMonthlyPrice("pro")}/month for all six board exams. Stacking UWorld for NCLEX, USMLE Step 2 CK, and NAPLEX QBank costs at least ${formatUsd(UWORLD_THREE_EXAM_MIN)} at shortest public tiers (Jul 2026 listings). Competitor prices change.`,
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Is AnyExamEasy a good UWorld alternative for multi-exam prep?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: `${seoPlatformPitch()} One Pro subscription covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE with adaptive Roadmap and Deep Dive modules — without buying separate per-exam subscriptions.`,
-            },
-          },
-          {
-            "@type": "Question",
-            name: "NCLEX vs Archer Review — which is better value?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Archer Review starts around $79/month for NCLEX-only QBank + CAT. AnyExamEasy includes NCLEX plus five other board exams on one plan with Roadmap, Deep Dives, and Full Exams — better value if you need more than one licensing exam.",
-            },
-          },
-        ],
+        mainEntity: comparePageFaqJsonLdEntities(),
       },
     ],
   };
@@ -412,10 +384,10 @@ export function buildPricingJsonLd(totalLabel?: string) {
         mainEntity: [
           {
             "@type": "Question",
-            name: "Is AnyExamEasy a UWorld alternative?",
+            name: "Does AnyExamEasy cover multiple board exams on one plan?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: `Yes — ${SITE_NAME} Pro includes NCLEX, USMLE (Steps 1–3), NAPLEX, PANCE, AANP FNP, and NPTE-PT on one subscription at ${formatMonthlyPrice("pro")}/mo instead of paying per exam.`,
+              text: `Yes — ${SITE_NAME} Pro includes NCLEX, USMLE (Steps 1–3), NAPLEX, PANCE, AANP FNP, and NPTE-PT on one subscription at ${formatMonthlyPrice("pro")}/mo instead of buying separate single-exam products for each board.`,
             },
           },
           {

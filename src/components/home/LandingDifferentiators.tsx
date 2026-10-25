@@ -121,7 +121,7 @@ export function LandingDifferentiators() {
         </ul>
 
         <p className="mt-5 text-[0.625rem] text-[var(--color-ink-muted)]">
-          UWorld is a registered trademark of its respective owner. Not affiliated or endorsed.
+          AnyExamEasy is independent and not affiliated with licensing boards or other prep providers.
         </p>
       </div>
     </section>

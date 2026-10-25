@@ -21,9 +21,9 @@ export const SEO_VALUE_PROPS = {
   adaptiveRoadmap: "Roadmap tied to each licensing exam",
   qaGated: "QA-gated, blueprint-aligned question bank",
   multiExam: "NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE-PT in one subscription",
-  /** Honest content claim — formats + rationales, not UWorld parity or pass rates. */
+  /** Honest content claim — formats + rationales, not parity claims or pass rates. */
   ngnAndRationales:
-    "NGN formats on NCLEX and teachable rationales across NCLEX/NAPLEX — not a UWorld clone claim",
+    "NGN formats on NCLEX and teachable rationales across NCLEX/NAPLEX — not a clone of another prep brand",
 } as const;
 
 /** High-intent keywords clustered for metadata helpers. */
@@ -33,7 +33,7 @@ export const SEO_KEYWORD_CLUSTERS = {
     "NCLEX practice questions",
     "NCLEX prep 2026",
     "NGN NCLEX questions",
-    "UWorld NCLEX alternative",
+    "affordable NCLEX Qbank",
     "NCLEX Qbank",
   ],
   naplex: [
@@ -46,12 +46,12 @@ export const SEO_KEYWORD_CLUSTERS = {
     "USMLE question bank",
     "USMLE practice questions",
     "USMLE Step 2 CK Qbank",
-    "UWorld USMLE alternative",
+    "affordable USMLE Qbank",
   ],
   multiExam: [
     "one subscription six exams",
     "affordable multi-exam prep",
-    "UWorld alternative",
+    "affordable multi-exam board prep",
     "Roadmap board prep",
     "multi-exam board prep 2026",
   ],

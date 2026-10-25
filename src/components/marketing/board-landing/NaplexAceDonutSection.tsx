@@ -16,7 +16,7 @@ export function NaplexAceDonutSection(props: NaplexDonutRenderInput) {
 
   return (
     <section className="bl-ace-donut bl-section" aria-labelledby="naplex-ace-heading">
-      <h2 id="naplex-ace-heading">Built to help you ace the NAPLEX</h2>
+      <h2 id="naplex-ace-heading">Structured NAPLEX prep across the NABP content outline</h2>
       <div className="bl-ace-donut__layout">
         <figure className="bl-ace-donut__figure" aria-label="NAPLEX study tools included with Pro">
           <svg

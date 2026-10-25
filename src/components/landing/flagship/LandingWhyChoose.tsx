@@ -2,7 +2,7 @@
 
 /**
  * LandingWhyChoose — the persuasion block.
- * Benefit cards → UWorld comparison → brief, honest social proof.
+ * Benefit cards → neutral prep comparison → brief, honest social proof.
  */
 
 import type { ReactNode } from "react";
@@ -11,8 +11,9 @@ import { Check, Minus } from "lucide-react";
 import {
   LANDING_UNIQUE_FEATURES,
   LANDING_SOCIAL_PROOF,
-  UWORLD_COMPARE_ROWS,
+  PREP_COMPARE_ROWS,
 } from "@/lib/landing/content";
+import { COMPARE_HONESTY_DISCLAIMER } from "@/lib/seo/competitor-comparison";
 import { MarketingHonestProof } from "@/components/marketing/MarketingHonestProof";
 import { CostComparisonChart } from "@/components/landing/CostComparisonChart";
 
@@ -103,10 +104,10 @@ export function LandingWhyChoose() {
             <div className="hidden gap-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] px-7 py-4 text-sm font-bold sm:grid sm:grid-cols-[1.2fr_1fr_1fr]">
               <span className="text-[var(--color-ink-muted)]">How we compare</span>
               <span className="text-[var(--color-accent)]">AnyExamEasy</span>
-              <span className="text-[var(--color-ink-muted)]">UWorld</span>
+              <span className="text-[var(--color-ink-muted)]">Typical single-exam prep</span>
             </div>
             <ul className="divide-y divide-[var(--color-border)] sm:divide-y-0">
-              {UWORLD_COMPARE_ROWS.map((row, i) => (
+              {PREP_COMPARE_ROWS.map((row, i) => (
                 <li
                   key={row.label}
                   className={`grid grid-cols-1 gap-x-2 gap-y-2 px-5 py-4 text-sm sm:grid-cols-[1.2fr_1fr_1fr] sm:px-7 ${
@@ -131,7 +132,7 @@ export function LandingWhyChoose() {
                   <span className="flex items-start gap-1.5 text-[var(--color-ink-muted)]">
                     <Minus className="mt-0.5 h-4 w-4 shrink-0 opacity-50" aria-hidden />
                     <span>
-                      <span className="font-semibold sm:hidden">UWorld: </span>
+                      <span className="font-semibold sm:hidden">Typical prep: </span>
                       {row.them}
                     </span>
                   </span>
@@ -140,8 +141,7 @@ export function LandingWhyChoose() {
             </ul>
           </div>
           <p className="mt-3 text-center text-xs text-[var(--color-ink-muted)]">
-            Comparison reflects publicly advertised UWorld per-exam pricing and feature scope;
-            UWorld is a trademark of its respective owner and is not affiliated with AnyExamEasy.
+            {COMPARE_HONESTY_DISCLAIMER}
           </p>
         </Reveal>
 

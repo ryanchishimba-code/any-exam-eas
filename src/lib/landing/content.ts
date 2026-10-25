@@ -330,7 +330,7 @@ export const LANDING_OFFERING_PILLARS = [
   },
 ] as const;
 
-/** Subtle trust signals below hero subheadline — no pass-rate or UWorld-parity claims. */
+/** Subtle trust signals below hero subheadline — no pass-rate or parity claims vs other brands. */
 export const LANDING_HERO_TRUST_SIGNALS = [
   "QA-gated before it is served",
   "NGN formats on NCLEX",
@@ -379,7 +379,7 @@ export const LANDING_UNIQUE_FEATURES = [
     icon: ShieldCheck,
     title: "Board-Style Question Quality",
     detail:
-      "Clinical vignettes with teachable rationales, plus NGN formats (bow-tie, matrix, SATA) on NCLEX — not template-swapped distractors. We do not claim UWorld parity or verified pass rates.",
+      "Clinical vignettes with teachable rationales, plus NGN formats (bow-tie, matrix, SATA) on NCLEX — not template-swapped distractors. We do not claim parity with other prep brands or verified pass rates.",
     proOnly: false,
   },
 ] as const;
@@ -626,12 +626,12 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [];
 /** @deprecated Use LANDING_SUCCESS_STORIES */
 export const LANDING_TESTIMONIALS = LANDING_SUCCESS_STORIES;
 
-/** UWorld comparison rows — price, multi-exam, integrated Roadmap. */
-export const UWORLD_COMPARE_ROWS = [
+/** Neutral prep comparison rows — multi-exam value vs typical single-exam products. */
+export const PREP_COMPARE_ROWS = [
   {
     label: "Monthly price",
     us: `Pro at ${monthly()}/mo — all 6 exams included`,
-    them: "$200–400+ per exam (UWorld sells each board separately, as of Sep 27, 2026)",
+    them: "Often sold per exam with separate renewals",
   },
   {
     label: "Exam coverage",
@@ -659,3 +659,6 @@ export const UWORLD_COMPARE_ROWS = [
     them: "Self-assembly or separate mock products",
   },
 ] as const;
+
+/** @deprecated Use PREP_COMPARE_ROWS */
+export const UWORLD_COMPARE_ROWS = PREP_COMPARE_ROWS;
