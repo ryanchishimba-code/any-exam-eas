@@ -154,12 +154,17 @@ export function useQuickBiteResumeSnapshot(
 export function scheduleQuickBiteResumeSeek(
   video: HTMLVideoElement,
   snapshot: QuickBiteResumeSnapshot,
-  onReady: () => void
+  onReady: () => void,
+  options?: { suppressProgressFlush?: { current: boolean } }
 ): () => void {
   let settled = false;
+  const releaseSuppress = () => {
+    if (options?.suppressProgressFlush) options.suppressProgressFlush.current = false;
+  };
   const finish = () => {
     if (settled) return;
     settled = true;
+    releaseSuppress();
     onReady();
   };
 
@@ -181,6 +186,7 @@ export function scheduleQuickBiteResumeSeek(
     };
     video.addEventListener("seeked", onSeeked);
     try {
+      if (options?.suppressProgressFlush) options.suppressProgressFlush.current = true;
       video.pause();
       video.currentTime = seconds;
       if (Math.abs(video.currentTime - seconds) < 0.35) {
@@ -214,6 +220,7 @@ export function scheduleQuickBiteResumeSeek(
 
   return () => {
     settled = true;
+    releaseSuppress();
   };
 }
 
@@ -223,6 +230,7 @@ export function useQuickBiteProgressReporter({
   enabled,
   videoRef,
   videoElement,
+  suppressProgressFlushRef,
   onSaved,
 }: {
   slug: string;
@@ -231,6 +239,8 @@ export function useQuickBiteProgressReporter({
   videoRef: RefObject<HTMLVideoElement | null>;
   /** Set via callback ref so listeners attach when the <video> mounts. */
   videoElement: HTMLVideoElement | null;
+  /** Skip pause/pagehide saves while the player seeks to the resume point. */
+  suppressProgressFlushRef?: { current: boolean };
   onSaved?: (slug: string, row: QuickBiteProgressClient) => void;
 }) {
   const lastSentAtRef = useRef<number>(Date.now());
@@ -245,6 +255,7 @@ export function useQuickBiteProgressReporter({
 
   const sendProgress = useCallback(
     (watchSecondsDelta: number, useKeepalive = false, force = false) => {
+      if (suppressProgressFlushRef?.current) return;
       const video = videoRef.current ?? videoElement;
       if (!slug || !video || !enabled) return;
       const duration = video.duration;
@@ -289,7 +300,7 @@ export function useQuickBiteProgressReporter({
           /* best-effort */
         });
     },
-    [apiBase, enabled, onSaved, slug, videoElement, videoRef]
+    [apiBase, enabled, onSaved, slug, suppressProgressFlushRef, videoElement, videoRef]
   );
 
   useEffect(() => {
