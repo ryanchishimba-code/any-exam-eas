@@ -7,9 +7,11 @@ describe("boardHeroMarketingCopy", () => {
       "NCLEX-RN practice that feels like the real exam."
     );
     expect(boardHeroMarketingCopy("nclex").subline).toBe(
-      "Next Gen case studies, real explanations and a 5-day free trial."
+      "NGN case studies, explained rationales and timed mocks. $27.99/mo after a 5-day free trial."
     );
-    expect(boardHeroMarketingCopy("naplex").headline).toBe("Know every drug the NAPLEX asks about.");
+    expect(boardHeroMarketingCopy("naplex").headline).toBe(
+      "NAPLEX practice with every answer explained."
+    );
     expect(boardHeroMarketingCopy("usmle").testimonial).toBeNull();
     expect(boardHeroMarketingCopy("npte-pt").testimonial).toBeNull();
     expect(boardHeroMarketingCopy("pance").testimonial?.quote).toBe(

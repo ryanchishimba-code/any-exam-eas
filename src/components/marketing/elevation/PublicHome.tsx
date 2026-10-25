@@ -17,9 +17,8 @@ import {
   homeStickyCtaLabel,
   homeTrialCloseHeading,
 } from "@/lib/marketing/home-cta";
-import { HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
+import { formatHomeHeroSubline, HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
 import { boardAccentPillClass } from "@/lib/marketing/board-accent";
-import { HOME_OWNER_VALUE_LINE } from "@/lib/marketing/owner-value-line";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { ROUTES } from "@/lib/routes";
 import { LandingCta } from "@/components/landing/LandingCta";
@@ -40,15 +39,19 @@ export function PublicHome({
   proof,
   featureCards = [],
   testimonialStories = [],
+  heroQuestionCountLabel = null,
 }: {
   proof?: ReactNode;
   ngnCaseStudies?: boolean;
   heroBand?: unknown;
   featureCards?: BoardFeatureCard[];
   testimonialStories?: LandingTestimonialCard[];
+  /** Floored live total — same label family as homepage metadata. */
+  heroQuestionCountLabel?: string | null;
 }) {
   const stickyLabel = homeStickyCtaLabel();
   const homePriceChart = buildHomePrepPriceBarChartData();
+  const heroSubline = formatHomeHeroSubline(heroQuestionCountLabel);
   const headlineBreak = HOME_PRACTICE_HEADLINE.lastIndexOf(". ");
   const headlineLead =
     headlineBreak === -1 ? HOME_PRACTICE_HEADLINE : HOME_PRACTICE_HEADLINE.slice(0, headlineBreak + 1);
@@ -68,7 +71,7 @@ export function PublicHome({
                     <span className="home-hero__line">{headlineLead}</span>{" "}
                     <span className="home-hero__accent">{headlineAccent}</span>
                   </h1>
-                  <p className="home-hero__value">{HOME_OWNER_VALUE_LINE}</p>
+                  <p className="home-hero__value">{heroSubline}</p>
                   <nav className="home-hero__boards" aria-label="Board exams">
                     <ul>
                       {HERO_BOARD_TILES.map((board) => (

@@ -1,6 +1,13 @@
+import { TRIAL_DAYS } from "@/lib/billing-config";
+import { formatPlanUsd } from "@/lib/billing-plans";
 import type { BoardSlug } from "@/lib/marketing/board-landing/board-theme";
+import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 
 export const BOARD_LANDING_HERO_TRIAL_LABEL = "Start 5-day free trial";
+
+function boardHeroPriceTrialSuffix(): string {
+  return `${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo after a ${TRIAL_DAYS}-day free trial.`;
+}
 
 export const BOARD_LANDING_HERO_QUIZ_LABEL = "Try 10 free questions";
 
@@ -20,15 +27,15 @@ export type BoardHeroMarketingCopy = {
 const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   nclex: {
     headline: "NCLEX-RN practice that feels like the real exam.",
-    subline: "Next Gen case studies, real explanations and a 5-day free trial.",
+    subline: `NGN case studies, explained rationales and timed mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: {
       name: "Nathan C.",
       quote: "The best questions I've found for NCLEX prep.",
     },
   },
   naplex: {
-    headline: "Know every drug the NAPLEX asks about.",
-    subline: "Drug cards, calculations and explanations for $27.99/mo.",
+    headline: "NAPLEX practice with every answer explained.",
+    subline: `Drug questions, calculations and timed mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: {
       name: "Frank C.",
       quote: "The drug cards were a game changer.",
@@ -36,13 +43,12 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   usmle: {
     headline: "Every USMLE answer, explained like a tutor would.",
-    subline:
-      "Step 1 and Step 2 practice questions with a full explanation for every answer.",
+    subline: `Step-style vignettes, explained rationales and timed mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: null,
   },
   "aanp-fnp": {
     headline: "Premium FNP prep without the premium price.",
-    subline: "AANP FNP practice questions across the lifespan, explained, for $27.99/mo.",
+    subline: `Lifespan vignettes with explained rationales and mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: {
       name: "Mag B.",
       quote: "I couldn't believe the price for everything I got.",
@@ -50,7 +56,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   pance: {
     headline: "Premium PANCE prep that won't break your budget.",
-    subline: "Practice questions mapped to every organ system on the PANCE blueprint.",
+    subline: `Organ-system vignettes, explained rationales and mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: {
       name: "Nick B.",
       quote:
@@ -59,7 +65,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   "npte-pt": {
     headline: "NPTE-PT practice built for PTs, not borrowed from other exams.",
-    subline: "PT-specific questions, explanations and a full adaptive mock exam.",
+    subline: `PT-specific scenarios, explained rationales and a full mock. ${boardHeroPriceTrialSuffix()}`,
     testimonial: null,
   },
 };

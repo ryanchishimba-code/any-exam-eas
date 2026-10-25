@@ -85,8 +85,17 @@ export function requestClientIp(req: Request): string | null {
   return req.headers.get("x-real-ip");
 }
 
-/** Home hero. No outcome promise. */
-export const HOME_PRACTICE_HEADLINE = `NCLEX, NAPLEX, USMLE & more. One plan, ${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo.`;
+/** Home hero H1. No outcome promise. */
+export const HOME_PRACTICE_HEADLINE = `Board prep for six exams, one plan at ${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo.`;
+
+/**
+ * Home hero subline under the H1. Uses the same floored total as metadata when provided.
+ */
+export function formatHomeHeroSubline(questionCountLabel?: string | null): string {
+  const count = questionCountLabel?.trim();
+  const countLead = count ? `${count} explained questions` : "Explained questions";
+  return `${countLead}, mock exams and a readiness score. ${TRIAL_DAYS}-day free trial, no payment method required.`;
+}
 
 /** Readiness panel. The picture is a practice estimate, not a pass prediction. */
 export const HOME_READINESS_HEADING = "A practice estimate.";

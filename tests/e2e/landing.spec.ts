@@ -7,7 +7,7 @@ test.describe("Landing page", () => {
 
     await expect(page.locator(".home-hero")).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: /NCLEX, NAPLEX, USMLE & more\. One plan/i })
+      page.getByRole("heading", { name: /Board prep for six exams, one plan/i })
     ).toBeVisible();
     await expect(page.getByRole("link", { name: /start 5-day free trial/i }).first()).toBeVisible();
     await expect(page.getByRole("link", { name: /try a free question/i })).toHaveCount(0);
@@ -21,7 +21,7 @@ test.describe("Landing page", () => {
     await expect(page.getByText("Priscilla J.")).toBeVisible();
     await expect(page.getByText("Quality exam prep shouldn't be out of reach")).toHaveCount(0);
     await expect(page.getByText(/24\/7|support hours/i)).toHaveCount(0);
-    await expect(page.getByText("No card needed.")).toBeVisible();
+    await expect(page.getByText(/no payment method required/i).first()).toBeVisible();
     await expect(
       page.getByText("5-day free trial · no payment method required · then $27.99/mo").first()
     ).toBeVisible();

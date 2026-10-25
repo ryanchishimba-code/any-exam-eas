@@ -261,5 +261,5 @@ export function buildBoardVisuals(input: {
 
 export function formatHeroCtaMicrocopy(liveCount: string | null): string {
   const countPart = liveCount ? `${liveCount} live questions` : "Live question bank";
-  return `${countPart} · ${TRIAL_DAYS}-day trial · No payment method`;
+  return `${countPart} · ${TRIAL_DAYS}-day trial · no payment method required`;
 }

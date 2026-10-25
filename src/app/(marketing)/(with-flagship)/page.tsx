@@ -60,6 +60,7 @@ export default async function HomePage() {
         <PublicHome
           ngnCaseStudies={Boolean(site && site.boards.nclex.caseStudies > 0)}
           heroBand={homeHeroBand}
+          heroQuestionCountLabel={staticLabel.trim() || exactLabel.trim() || null}
           featureCards={homeFeatures}
           testimonialStories={testimonialStories}
           proof={
