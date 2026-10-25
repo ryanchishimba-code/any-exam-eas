@@ -32,6 +32,12 @@
   ],
   "skips": [],
   "servedBefore": 4753,
+  "servedAfter": 4418,
+  "applied": {
+    "retire": 335,
+    "rewrite": 4,
+    "skipped": 0
+  },
   "undo": "scripts/restore-naplex-fix2-20261025.ts",
-  "note": "Snapshot taken before question text was changed. Every id resolved to exactly one served NAPLEX question. Retire sets active=false. Rewrite updates scenario, question, options, correctAnswer, explanation, and references, and sets manual_correction=true. contentHash is left unchanged. No rows are deleted."
+  "note": "Snapshot taken before question text was changed. Applied after a rolled-back dry run: every id resolved to exactly one served NAPLEX question. Retire sets active=false. Rewrite updates scenario, question, options, correctAnswer, explanation, and references, and sets manual_correction=true. contentHash was left unchanged. No rows were deleted."
 }
