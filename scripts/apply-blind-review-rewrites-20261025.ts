@@ -462,7 +462,10 @@ async function main() {
     const row = liveById.get(item.id);
     if (!row) throw new Error(`missing row ${item.id}`);
     if (row.fieldId !== item.fieldId) throw new Error(`${item.id} is on ${String(row.fieldId)}`);
-    if (row.correctAnswer !== item.oldCorrectAnswer) throw new Error(`${item.id} live key is not the hidden wrong key`);
+    const expectedKey = verify ? item.changes.correctAnswer : item.oldCorrectAnswer;
+    if (row.correctAnswer !== expectedKey) {
+      throw new Error(`${item.id} live key does not match the ${verify ? "rewritten" : "hidden"} answer`);
+    }
   }
 
   const plans = buildPlans(items, liveById);
