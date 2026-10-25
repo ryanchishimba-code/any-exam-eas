@@ -231,30 +231,6 @@ export function anatomyPracticeHref(examSlug: ExamSlug, count = 10): string {
   return practiceTopicHref(examSlug, "anatomy", count);
 }
 
-type StructurePracticeInput = {
-  id: string;
-  name: string;
-  practiceTopicSlug: string;
-};
-
-export function structurePracticeHref(
-  examSlug: ExamSlug,
-  structure: StructurePracticeInput,
-  count = 10
-): string {
-  const fieldId = topicFieldId(examSlug, structure.practiceTopicSlug);
-  const qs = new URLSearchParams({
-    field: fieldId,
-    mode: "bank",
-    subjectId: structure.practiceTopicSlug,
-    count: String(count),
-    returnExam: examSlug,
-    returnStructure: structure.id,
-    returnStructureName: structure.name,
-  });
-  return `${ROUTES.questionBank}?${qs.toString()}`;
-}
-
 export function parseAnatomyPracticeReturn(
   params: Pick<URLSearchParams, "get">
 ): { href: string; label: string } | null {
