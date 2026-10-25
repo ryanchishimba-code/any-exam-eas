@@ -2,9 +2,9 @@
 
 > **Study aid only.** Pocket sheets for the final sprint — verify the official NPCB Candidate Handbook, current guidelines, and FDA labeling. No invented weights. Teaching themes only.
 
-![Domain I weights](visuals/fnp-domain-i-weights.jpg)
+![NPCB Domain I Practice weights: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15%](visuals/fnp-domain-i-weights.svg)
 
-![Domain II age mix](visuals/fnp-domain-ii-age-mix.jpg)
+![NPCB Domain II patient age mix with Older Adult 30% and Young Adult prenatal themes](visuals/fnp-domain-ii-age-mix.svg)
 
 ![Final sprint calendar](visuals/fnp-final-sprint.jpg)
 
@@ -244,7 +244,7 @@ Fix patterns, not only single facts.
 ## Night-before logistics checklist
 
 - [ ] Government ID + appointment confirmation / Pearson VUE rules skimmed
-- [ ] Domain I table (32 / 26.5 / 26.5 / 15) recited
+- [ ] Domain I table (32 / 27 / 27 / 15) recited
 - [ ] Domain II table (esp. OA 30, MA 26, YA 22) recited
 - [ ] Can’t-miss ED list skimmed once
 - [ ] Prenatal do-nots skimmed once

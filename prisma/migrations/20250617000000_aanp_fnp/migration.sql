@@ -10,7 +10,7 @@ CREATE INDEX IF NOT EXISTS "QuestionBankItem_fieldId_patientAgeGroup_active_idx"
 CREATE INDEX IF NOT EXISTS "QuestionBankItem_fieldId_blueprintDomain_patientAgeGroup_active_idx"
   ON "QuestionBankItem" ("fieldId", "blueprintDomain", "patientAgeGroup", "active");
 
--- Official AANPCB FNP blueprint categories (domains + patient age groups + clinical systems).
+-- Official NPCB FNP blueprint categories (domains + patient age groups + clinical systems).
 CREATE TABLE IF NOT EXISTS "aanp_fnp_blueprint_categories" (
   "id"          TEXT NOT NULL,
   "slug"        TEXT NOT NULL,
@@ -51,7 +51,7 @@ CREATE INDEX IF NOT EXISTS "aanp_fnp_topics_domainSlug_sortOrder_idx"
 CREATE INDEX IF NOT EXISTS "aanp_fnp_topics_subjectId_idx"
   ON "aanp_fnp_topics"("subjectId");
 
--- Seed blueprint domains (AANPCB 2024+ content outline).
+-- Seed blueprint domains (NPCB 2024+ content outline).
 INSERT INTO "aanp_fnp_blueprint_categories" ("id", "slug", "kind", "label", "weight", "sortOrder", "description")
 VALUES
   ('aanp-dom-assess',   'assess',   'domain', 'Assess',   0.32,   0, 'Domain I — health assessment, screening, diagnostic selection'),

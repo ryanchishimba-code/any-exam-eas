@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 420" role="img" aria-labelledby="fnp-d2-title fnp-d2-desc">
+  <title id="fnp-d2-title">NPCB FNP Domain II patient age mix</title>
+  <desc id="fnp-d2-desc">Horizontal bar chart of Domain II age-band weights on the NPCB FNP exam, from newborn through older adult, including prenatal content in young adult.</desc>
+  <rect width="375" height="420" fill="#f8fafc"/>
+  <text x="187.5" y="28" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#0f172a">Domain II &#8212; Patient Age (NPCB)</text>
+  <text x="187.5" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#475569">Official % by age band &#183; YA* includes prenatal</text>
+
+  <g font-family="system-ui,sans-serif" font-size="11" fill="#334155">
+    <text x="16" y="78">Newborn 2%</text>
+    <rect x="120" y="66" width="14" height="16" rx="3" fill="#0d9488"/>
+    <text x="16" y="104">Infant 3%</text>
+    <rect x="120" y="92" width="21" height="16" rx="3" fill="#0d9488"/>
+    <text x="16" y="130">Toddler 4%</text>
+    <rect x="120" y="118" width="28" height="16" rx="3" fill="#0d9488"/>
+    <text x="16" y="156">Child 4%</text>
+    <rect x="120" y="144" width="28" height="16" rx="3" fill="#0d9488"/>
+    <text x="16" y="182">Adolescent 9%</text>
+    <rect x="120" y="170" width="63" height="16" rx="3" fill="#14b8a6"/>
+    <text x="16" y="208">Young adult* 22%</text>
+    <rect x="120" y="196" width="154" height="16" rx="3" fill="#2563eb"/>
+    <text x="16" y="234">Middle adult 26%</text>
+    <rect x="120" y="222" width="182" height="16" rx="3" fill="#1e3a5f"/>
+    <text x="16" y="260">Older adult 30%</text>
+    <rect x="120" y="248" width="210" height="16" rx="3" fill="#f97316"/>
+  </g>
+
+  <rect x="16" y="288" width="343" height="56" rx="8" fill="#fef3c7" stroke="#d97706"/>
+  <text x="187.5" y="312" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#92400e">Older Adult 30% is largest band</text>
+  <text x="187.5" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#78350f">Do not skip prenatal themes in Young Adult*</text>
+
+  <text x="187.5" y="372" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Study aid &#183; AnyExamEasy</text>
+</svg>

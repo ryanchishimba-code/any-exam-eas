@@ -719,7 +719,7 @@ model AanpFnpFullPracticeExamQuestion {
   @@map("aanp_fnp_full_practice_exam_questions")
 }
 
-/// Official AANPCB FNP blueprint domains, age groups, and clinical systems.
+/// Official NPCB FNP blueprint domains, age groups, and clinical systems.
 model AanpFnpBlueprintCategory {
   id          String   @id @default(cuid())
   slug        String   @unique

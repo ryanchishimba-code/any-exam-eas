@@ -1,7 +1,7 @@
 import type { ReviewModuleContent } from "../types";
 import { REVIEW_MODULE_DEFAULT_TITLES as T } from "../types";
 
-/** AANPCB Domain IV — Evaluate (15% of FNP exam). */
+/** NPCB Domain IV — Evaluate (15% of FNP exam). */
 export const AANP_EVALUATE_MODULE: ReviewModuleContent = {
   sections: [
     {

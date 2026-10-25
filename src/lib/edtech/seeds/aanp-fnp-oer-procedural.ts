@@ -1,6 +1,6 @@
 /**
  * Open-source AANP FNP procedural items — public-domain primary care scenarios
- * aligned to AANPCB 2024+ domains (Assess / Diagnose / Plan / Evaluate).
+ * aligned to NPCB 2024+ domains (Assess / Diagnose / Plan / Evaluate).
  */
 import type { EnrichedBankItem } from "@/lib/exam-prep/seed-helpers";
 import { aanpFnpVignette } from "@/lib/exam-prep/aanp-fnp-seed-factory";

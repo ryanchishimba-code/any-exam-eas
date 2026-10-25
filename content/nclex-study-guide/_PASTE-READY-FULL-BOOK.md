@@ -5255,7 +5255,7 @@ Garlic/ginkgo/ginseng/ginger → bleeding risk with anticoags. St. John’s wort
 
 **Stem:** Vanc started 20 minutes ago; client flushed, itchy, BP stable, no wheeze; infusion was running “wide open.”
 
-**What to do first:** Stop/slow infusion per protocol, assess airway (rule out anaphylaxis), notify provider, anticipate antihistamine and slower restart — don’t automatically give IM epinephrine without assessment if this is a classic rate-related flushing reaction (formerly called “red man syndrome”) with a stable airway.
+**What to do first:** Stop/slow infusion per protocol, assess airway (rule out anaphylaxis), notify provider, anticipate antihistamine and slower restart — don’t automatically give IM epinephrine without assessment if this is a classic vancomycin infusion reaction (rate-related flushing; formerly called “red man syndrome”) with a stable airway.
 
 **Why:** Differentiate the flushing reaction (rate-related) from true anaphylaxis (airway/hypotension/wheeze) — both need respect; anaphylaxis needs epi.
 

@@ -359,7 +359,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     keywords: [
       "AANP FNP prep 2026",
       "AANP FNP practice questions",
-      "AANPCB FNP certification",
+      "NPCB FNP certification",
       "FNP board review",
       "how to pass AANP FNP first try",
       "free AANP FNP practice questions",
@@ -368,13 +368,13 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     ],
     h1: "AANP FNP Certification Prep — Primary Care Practice Questions",
     heroSubline:
-      "AANPCB-aligned FNP vignettes spanning the lifespan, plus integrated Roadmap, Deep Dive modules, and six-exam subscription value for NP students.",
+      "NPCB-aligned FNP vignettes spanning the lifespan, plus integrated Roadmap, Deep Dive modules, and six-exam subscription value for NP students.",
     accentColor: EXAM_ACCENTS.aanpFnp,
-    blueprintLabel: "AANPCB FNP certification blueprint",
+    blueprintLabel: "NPCB FNP certification blueprint",
     features: [
       {
         title: "Assess · Diagnose · Plan · Evaluate",
-        detail: "Items mapped to AANPCB domains with primary-care management focus.",
+        detail: "Items mapped to NPCB domains with primary-care management focus.",
       },
       {
         title: "Lifespan primary care",
@@ -397,8 +397,8 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     ],
     faqs: [
       {
-        question: "Is this for AANPCB FNP certification?",
-        answer: "Yes. Our AANP FNP track targets AANPCB-style primary care vignettes and domain coverage.",
+        question: "Is this for NPCB FNP certification?",
+        answer: "Yes. Our AANP FNP track targets NPCB-style primary care vignettes and domain coverage.",
       },
       {
         question: "Do I get NCLEX and FNP prep together?",

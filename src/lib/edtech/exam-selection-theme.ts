@@ -81,7 +81,7 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
   "aanp-fnp": {
     slug: "aanp-fnp",
     tagline:
-      "AANPCB FNP blueprint primary care — Assess, Diagnose, Plan, and Evaluate across the lifespan.",
+      "NPCB FNP blueprint primary care — Assess, Diagnose, Plan, and Evaluate across the lifespan.",
     stats: ["Question bank", "Roadmap", "Full simulations"],
     icon: HeartPulse,
     gradient: "from-violet-600/90 via-purple-600/85 to-fuchsia-700/90",

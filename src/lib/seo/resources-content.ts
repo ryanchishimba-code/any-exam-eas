@@ -408,10 +408,10 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "best-aanp-fnp-practice-questions-2026",
     title: "AANP FNP Practice Questions in 2026",
     metaDescription:
-      "AANPCB FNP certification prep — primary care vignettes across Assess, Diagnose, Plan, and Evaluate domains.",
+      "NPCB FNP certification prep — primary care vignettes across Assess, Diagnose, Plan, and Evaluate domains.",
     examTags: ["aanp-fnp"],
     primaryExam: "aanp-fnp",
-    keywords: ["AANP FNP practice questions 2026", "AANPCB FNP prep"],
+    keywords: ["AANP FNP practice questions 2026", "NPCB FNP prep"],
     sections: [
       {
         heading: "Domain-balanced practice",
@@ -425,10 +425,10 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "aanp-fnp-study-guide-blueprint",
     title: "AANP FNP Study Guide & Certification Blueprint",
     metaDescription:
-      "AANPCB FNP study guide with domain tracking — Assess, Diagnose, Plan, Evaluate, and professional role.",
+      "NPCB FNP study guide with domain tracking — Assess, Diagnose, Plan, Evaluate, and professional role.",
     examTags: ["aanp-fnp"],
     primaryExam: "aanp-fnp",
-    keywords: ["AANP FNP study guide", "AANPCB blueprint"],
+    keywords: ["AANP FNP study guide", "NPCB blueprint"],
     sections: [
       {
         heading: "Weekly domain rotation",

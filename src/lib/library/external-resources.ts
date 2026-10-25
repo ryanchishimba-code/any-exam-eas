@@ -124,7 +124,7 @@ export const LIBRARY_EXTERNAL_RESOURCES: Partial<Record<ExamSlug, LibraryExterna
   "aanp-fnp": [
     {
       label: "AANP Certification",
-      description: "AANPCB FNP exam blueprint and candidate handbook",
+      description: "NPCB FNP exam blueprint and candidate handbook",
       url: "https://www.aanpcert.org/certs/np",
     },
     {

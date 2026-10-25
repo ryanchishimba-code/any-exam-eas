@@ -2,9 +2,9 @@
 
 > **Study aid only.** Strategy framing for the NPCB FNP-C exam. Confirm current rules in the official Candidate Handbook at [aanpcert.org](https://www.aanpcert.org). Independent — not affiliated with NPCB or AANP. No certification guarantee.
 
-![Domain I Practice weights](visuals/fnp-domain-i-weights.jpg)
+![NPCB Domain I Practice weights: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15%](visuals/fnp-domain-i-weights.svg)
 
-![Domain II Patient Age mix](visuals/fnp-domain-ii-age-mix.jpg)
+![NPCB Domain II patient age mix with Older Adult 30% and Young Adult prenatal themes](visuals/fnp-domain-ii-age-mix.svg)
 
 ![ADPE decision loop](visuals/adpe-loop.jpg)
 

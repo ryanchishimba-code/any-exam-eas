@@ -113,7 +113,7 @@ export const TOOLKIT_EXAMS: ToolkitExamBreakdown[] = [
     duration: "3 hours",
     questions: "150 questions (135 scored)",
     detailBullets: [
-      "AANPCB domains: Assess, Diagnose, Plan, and Evaluate",
+      "NPCB domains: Assess, Diagnose, Plan, and Evaluate",
       "Primary care across the lifespan — newborn through older adult",
       "150 items in 3 hours (135 scored + 15 pretest)",
       "Certifies Family Nurse Practitioners (FNP-BC)",

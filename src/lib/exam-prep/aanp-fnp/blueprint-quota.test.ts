@@ -9,7 +9,7 @@ import {
 import { AANP_FNP_TARGET_TOTAL } from "./types";
 
 describe("AANP FNP blueprint quotas", () => {
-  it("allocates 6000 questions proportional to AANPCB domain weights", () => {
+  it("allocates 6000 questions proportional to NPCB domain weights", () => {
     const quotas = computeAanpFnpDomainQuotas(6000);
     const total = quotas.reduce((s, q) => s + q.targetCount, 0);
     expect(total).toBeGreaterThanOrEqual(5990);

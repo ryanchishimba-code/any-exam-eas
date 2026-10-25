@@ -11,8 +11,8 @@ Prioritized diagram list for the AnyExamEasy AANP FNP Reference Book. Drop PNGs 
 | # | Filename | Chapter | One-line brief for image gen |
 | --- | ---: | --- | --- |
 | 1 | `fnp-book-cover.png` | 00 | Branded cover: AnyExamEasy AANP FNP Reference Book, teal/navy hero, ADPE subtitle, no fake stats |
-| 2 | `fnp-domain-i-weights.png` | 01, 15 | Domain I Practice donut/bars: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15% |
-| 3 | `fnp-domain-ii-age-mix.png` | 01, 15 | Domain II age mix stacked bar: NB 2 / Inf 3 / Tod 4 / Child 4 / Adol 9 / YA 22 / Mid 26 / Older 30; note *prenatal in YA |
+| 2 | `fnp-domain-i-weights.svg` | 01, 15 | Domain I Practice bars: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15% |
+| 3 | `fnp-domain-ii-age-mix.svg` | 01, 15 | Domain II age mix bars: NB 2 / Inf 3 / Tod 4 / Child 4 / Adol 9 / YA 22 / Mid 26 / Older 30; note *prenatal in YA |
 | 4 | `adpe-loop.png` | 01, 02 | Circular loop: Assess → Diagnose → Plan → Evaluate with arrows back |
 | 5 | `htn-cascade.png` | 04 | HTN assessment→diagnosis→first-line themes→resistant workup cascade |
 | 6 | `diabetes-stepwise-themes.png` | 06 | T2DM comorbidity-driven add-on map (ASCVD/HF/CKD → SGLT2/GLP-1 themes) |

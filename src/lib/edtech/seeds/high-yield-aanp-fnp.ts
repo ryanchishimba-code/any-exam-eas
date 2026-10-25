@@ -35,11 +35,11 @@ export const AANP_FNP_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp" satisfies 
   },
   {
     slug: "aanp-diagnose-domain",
-    category: "Diagnose (26.5%)",
+    category: "Diagnose (27%)",
     title: "Diagnosis & Clinical Reasoning",
     overview: "Synthesize data into a prioritized differential and most likely diagnosis — AANP Domain II.",
     summary:
-      "Domain II (26.5%, ~36 items) requires analyzing subjective and objective data to build a differential, prioritize the most likely diagnosis, and recognize when presentation does not fit a single organ system.\n\nExpect primary-care bread-and-butter: HTN, diabetes, COPD/asthma, UTI, depression, common rashes, musculoskeletal complaints, and pediatric URI vs serious bacterial infection.",
+      "Domain II (27%, ~36 items) requires analyzing subjective and objective data to build a differential, prioritize the most likely diagnosis, and recognize when presentation does not fit a single organ system.\n\nExpect primary-care bread-and-butter: HTN, diabetes, COPD/asthma, UTI, depression, common rashes, musculoskeletal complaints, and pediatric URI vs serious bacterial infection.",
     keyConcepts: [
       "Problem representation and differential generation",
       "Discriminating findings that rule in/out diagnoses",
@@ -53,11 +53,11 @@ export const AANP_FNP_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp" satisfies 
   },
   {
     slug: "aanp-plan-domain",
-    category: "Plan (26.5%)",
+    category: "Plan (27%)",
     title: "Therapeutics & Care Planning",
     overview: "Evidence-based pharmacologic and non-pharmacologic plans, referrals, and patient education — Domain III.",
     summary:
-      "Domain III (26.5%, ~36 items) covers first-line therapies, contraindications, counseling, preventive interventions, and referrals. NP scope is central — know what you can prescribe, monitor, and when to escalate.\n\nHigh-yield: antihypertensives, diabetes agents, asthma/COPD inhalers, antibiotics by syndrome, contraception, vaccines, SSRI selection, and geriatric dose adjustments.",
+      "Domain III (27%, ~36 items) covers first-line therapies, contraindications, counseling, preventive interventions, and referrals. NP scope is central — know what you can prescribe, monitor, and when to escalate.\n\nHigh-yield: antihypertensives, diabetes agents, asthma/COPD inhalers, antibiotics by syndrome, contraception, vaccines, SSRI selection, and geriatric dose adjustments.",
     keyConcepts: [
       "First-line vs second-line therapy by guideline",
       "Contraindications and drug interactions",

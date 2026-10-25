@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 320" role="img" aria-labelledby="fnp-d1-title fnp-d1-desc">
+  <title id="fnp-d1-title">NPCB FNP Domain I Practice weights</title>
+  <desc id="fnp-d1-desc">Bar chart of official Domain I process weights: Assess 32 percent, Diagnose 27 percent, Plan 27 percent, Evaluate 15 percent on the NPCB FNP exam.</desc>
+  <rect width="375" height="320" fill="#f8fafc"/>
+  <text x="187.5" y="28" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#0f172a">Domain I &#8212; Practice (NPCB)</text>
+  <text x="187.5" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#475569">135 scored items &#183; verify Candidate Handbook</text>
+
+  <text x="24" y="88" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#334155">Assess</text>
+  <rect x="88" y="74" width="200" height="22" rx="4" fill="#e2e8f0"/>
+  <rect x="88" y="74" width="200" height="22" rx="4" fill="#0d9488"/>
+  <text x="296" y="90" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#0f766e">32%</text>
+
+  <text x="24" y="128" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#334155">Diagnose</text>
+  <rect x="88" y="114" width="200" height="22" rx="4" fill="#e2e8f0"/>
+  <rect x="88" y="114" width="169" height="22" rx="4" fill="#1e3a5f"/>
+  <text x="296" y="130" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#1e3a5f">27%</text>
+
+  <text x="24" y="168" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#334155">Plan</text>
+  <rect x="88" y="154" width="200" height="22" rx="4" fill="#e2e8f0"/>
+  <rect x="88" y="154" width="169" height="22" rx="4" fill="#2563eb"/>
+  <text x="296" y="170" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#1d4ed8">27%</text>
+
+  <text x="24" y="208" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#334155">Evaluate</text>
+  <rect x="88" y="194" width="200" height="22" rx="4" fill="#e2e8f0"/>
+  <rect x="88" y="194" width="94" height="22" rx="4" fill="#f97316"/>
+  <text x="296" y="210" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#c2410c">15%</text>
+
+  <text x="187.5" y="252" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">~43 / 36 / 36 / 20 items at 150 total</text>
+  <text x="187.5" y="272" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Study aid &#183; AnyExamEasy</text>
+</svg>

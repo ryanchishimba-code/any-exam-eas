@@ -81,7 +81,7 @@ export const INFECTION_CONTROL_NCLEX_MODULE: ReviewModuleContent = {
             ["Trough", "Immediately before next scheduled dose at steady state", "Vancomycin, aminoglycosides", "Document draw time; verify steady state (~4th–5th dose for vanc)"],
             ["Peak", "~30 min after IV infusion ends", "Aminoglycosides (concentration-dependent)", "Report subtherapeutic peak or nephrotoxic trough trend"],
             ["Random level", "Not standard for monitoring", "Avoid unless protocol specifies", "Clarify order — trough timing errors change dosing decisions"],
-            ["Red man syndrome", "During rapid vancomycin infusion", "Vancomycin rate-related histamine release", "Slow infusion to ≥60 min; stop and notify if reaction occurs"],
+            ["Vancomycin infusion reaction", "During rapid vancomycin infusion", "Vancomycin rate-related histamine release", "Slow infusion to ≥60 min; stop and notify if reaction occurs"],
           ],
         },
       ],
@@ -104,7 +104,7 @@ export const INFECTION_CONTROL_NCLEX_MODULE: ReviewModuleContent = {
       bullets: [
         "Alcohol hand gel is sufficient after C. diff care — spores survive ABHR; soap and water mechanically removes spores",
         "MRSA requires airborne isolation — MRSA is contact precaution unless special circumstances (e.g., burn unit policy); not N95 for routine MRSA",
-        "Red man syndrome means vancomycin allergy — it is rate-related histamine release; slow infusion; true IgE allergy is different presentation",
+        "Vancomycin infusion reaction is not true vancomycin allergy — it is rate-related histamine release; slow infusion; true IgE allergy is a different presentation",
         "Draw vancomycin trough right after infusion — trough is pre-dose at steady state; post-infusion peak is not standard trough monitoring",
         "Neutropenic precautions protect staff from the patient — reverse isolation protects the immunocompromised patient from environmental organisms",
         "Wait for culture results before antibiotics in sepsis — hour-1 bundle requires empiric antibiotics within 1 hour; cultures before abx but never delay abx",

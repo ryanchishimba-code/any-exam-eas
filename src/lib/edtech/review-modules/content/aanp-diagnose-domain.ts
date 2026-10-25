@@ -1,7 +1,7 @@
 import type { ReviewModuleContent } from "../types";
 import { REVIEW_MODULE_DEFAULT_TITLES as T } from "../types";
 
-/** AANPCB Domain II — Diagnose (26.5% of FNP exam). */
+/** NPCB Domain II — Diagnose (27% of FNP exam). */
 export const AANP_DIAGNOSE_MODULE: ReviewModuleContent = {
   sections: [
     {
@@ -89,7 +89,7 @@ export const AANP_DIAGNOSE_MODULE: ReviewModuleContent = {
       id: "quick-summary",
       title: T["quick-summary"],
       bullets: [
-        "Diagnose = 26.5% — pattern recognition and clinical reasoning",
+        "Diagnose = 27% — pattern recognition and clinical reasoning",
         "Build differential from epidemiology + tempo + key finding",
         "Common conditions first; zebras only when data support",
         "Atypical presentations in elderly, women, and immunocompromised",

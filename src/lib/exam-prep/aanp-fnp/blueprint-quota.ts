@@ -1,5 +1,5 @@
 /**
- * AANPCB FNP blueprint — proportional quotas and generation slot planning.
+ * NPCB FNP blueprint — proportional quotas and generation slot planning.
  */
 import {
   computeAanpFnpClinicalSystemWeightMap,

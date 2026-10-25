@@ -63,7 +63,7 @@ const KEYWORD_REVIEW_MODULES: Array<{ slug: string; pattern: RegExp }> = [
     pattern: /\b(?:PCA pump|opioid.*respiratory|naloxone|multimodal analgesia|bowel regimen.*opioid|extended.release opioid)\b/i,
   },
   { slug: "anticoagulation-nursing", pattern: /\b(?:warfarin|INR|heparin|enoxaparin|DOAC|apixaban|rivaroxaban|HIT|protamine)\b/i },
-  { slug: "antibiotics-nursing", pattern: /\b(?:vancomycin|C\.?\s*diff|blood culture.*antibiotic|red man syndrome|aminoglycoside)\b/i },
+  { slug: "antibiotics-nursing", pattern: /\b(?:vancomycin|C\.?\s*diff|blood culture.*antibiotic|vancomycin infusion reaction|aminoglycoside)\b/i },
   { slug: "psychotropics-nursing", pattern: /\b(?:serotonin syndrome|extrapyramidal|EPS|lithium level|MAOI|tyramine)\b/i },
   { slug: "dosage-calculations", pattern: /\b(?:mg\/kg|mL\/hr|drip rate|reconstitut|units\/mL|weight-based dose)\b/i },
   { slug: "sata-mastery", pattern: /\bselect all that apply|SATA\b/i },

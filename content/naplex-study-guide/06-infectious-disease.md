@@ -240,7 +240,7 @@ A. Continue IV for tradition  B. Switch to PO when clinically appropriate  C. St
 
 ### Vancomycin practical
 
-Modern practice favors AUC-guided dosing themes over trough-only in many centers — know both concepts. Red man syndrome → slow infusion, antihistamine per protocol; true allergy differs. Rising SCr → reassess dose/interval and concomitant nephrotoxins.
+Modern practice favors AUC-guided dosing themes over trough-only in many centers — know both concepts. Vancomycin infusion reaction → slow infusion, antihistamine per protocol; true allergy differs. Rising SCr → reassess dose/interval and concomitant nephrotoxins.
 
 ### Aminoglycoside practical
 

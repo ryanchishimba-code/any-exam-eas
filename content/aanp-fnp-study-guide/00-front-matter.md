@@ -57,7 +57,7 @@ This book is **AANP/NPCB-first** (FNP-C).
 
 Both exams test entry-level FNP competence; blueprints, emphasis, and item styles differ. Confirm your chosen board’s current handbook before you lock a study plan.
 
-![AANP vs ANCC soft callout](visuals/aanp-vs-ancc-callout.jpg)
+![NPCB FNP-C vs ANCC FNP-BC blueprint comparison callout](visuals/aanp-vs-ancc-callout.svg)
 
 ---
 

@@ -108,7 +108,7 @@ export const EXAM_FIELD_OPTIONS: {
     label: "AANP FNP",
     fieldParam: "aanp-fnp",
     description:
-      "AANPCB blueprint primary care — Assess, Diagnose, Plan, Evaluate across the lifespan.",
+      "NPCB blueprint primary care — Assess, Diagnose, Plan, Evaluate across the lifespan.",
     timing: "135 questions · 3.5 hours",
     format: "Clinical vignette MCQs",
   },

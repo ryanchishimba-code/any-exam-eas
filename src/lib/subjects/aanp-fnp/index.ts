@@ -1,4 +1,4 @@
-/** AANP FNP module — primary care across the lifespan (AANPCB 2024+ blueprint). */
+/** AANP FNP module — primary care across the lifespan (NPCB 2024+ blueprint). */
 import type { SubjectModule } from "../types";
 import { AANP_FNP_SUBJECTS } from "./subjects";
 import { AANP_FNP_DISTRACTOR_PATTERNS } from "./distractors";

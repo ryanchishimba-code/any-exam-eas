@@ -81,7 +81,7 @@ export const LANDING_EXAMS: LandingExam[] = [
   {
     id: "aanp-fnp",
     label: "AANP FNP",
-    blurb: "AANPCB FNP blueprint · primary care vignettes",
+    blurb: "NPCB FNP blueprint · primary care vignettes",
     href: examMarketingPath("aanp-fnp"),
     icon: HeartPulse,
     color: EXAM_ACCENTS.aanpFnp,

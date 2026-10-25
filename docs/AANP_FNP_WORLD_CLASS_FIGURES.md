@@ -2,7 +2,7 @@
 
 **Goal:** Match BoardVitals / APEA-class clinical exhibit density for high-yield FNP stems — teaching schematics first; no unreviewed generative clinical photos as authority.
 
-**Product rule:** Figures teach; they do not predict AANP pass rates or imply AANPCB affiliation.
+**Product rule:** Figures teach; they do not predict AANP pass rates or imply NPCB affiliation.
 
 **Status (2026-09-10):** Wave 1 Phase 0 + starter SVG catalog **shipped** (parallel to NCLEX/NAPLEX).
 

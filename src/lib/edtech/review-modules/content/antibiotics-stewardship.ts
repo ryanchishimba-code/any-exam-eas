@@ -80,7 +80,7 @@ export const ANTIBIOTICS_STEWARDSHIP_MODULE: ReviewModuleContent = {
             ["CrCl 10–29", "q24–48 h", "High nephrotoxicity risk with pip-tazo or aminoglycosides"],
             ["AUC/MIC target", "400–600 mg·h/L (MIC = 1)", "Preferred over trough-only monitoring"],
             ["Steady state", "Level before 4th–5th dose", "Too early a trough misleads dose adjustment"],
-            ["Red man syndrome", "Infuse over ≥60 min", "Rate-related histamine — not true allergy"],
+            ["Vancomycin infusion reaction", "Infuse over ≥60 min", "Rate-related histamine — not true allergy"],
           ],
         },
         {
