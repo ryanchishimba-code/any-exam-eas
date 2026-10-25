@@ -14,6 +14,8 @@ import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { PRO_ANNUAL_SAVINGS_PERCENT } from "@/lib/pricing-defaults";
+import { PaidChargesNonRefundablePhrase } from "@/components/marketing/finish-line/PaymentsNonRefundablePhrase";
+import { cancelAnytimeFaqAnswerLanding } from "@/lib/marketing/payments-refundable-copy";
 import { formatMonthlyPrice, formatSignupTrialScope } from "@/lib/site";
 
 const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail} or call ${LEGAL_ENTITY.supportPhone.display}.`;
@@ -45,7 +47,7 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. Cancel anytime in Settings. That opens Stripe billing and stops the next charge. Canceling before a trial ends means you are not charged. Paid charges are non-refundable except where the law requires a refund.",
+    a: cancelAnytimeFaqAnswerLanding(false),
   },
   {
     q: "Why not just buy UWorld for the one exam I'm taking?",
@@ -82,12 +84,29 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
 export function LandingFaqV2({
   scope = "all",
   pageHeading = false,
+  finishLineOfferEnabled = false,
 }: {
   scope?: "all" | "home";
   /** Dedicated /faq page. Other embeds keep the section heading as an h2. */
   pageHeading?: boolean;
+  finishLineOfferEnabled?: boolean;
 }) {
-  const items = scope === "home" ? FAQ.filter((item) => item.home) : FAQ;
+  const base = scope === "home" ? FAQ.filter((item) => item.home) : FAQ;
+  const items = base.map((item) => {
+    if (item.q !== "Can I cancel anytime?") return item;
+    const lead =
+      "Yes. Cancel anytime in Settings. That opens Stripe billing and stops the next charge. Canceling before a trial ends means you are not charged.";
+    return {
+      ...item,
+      a: cancelAnytimeFaqAnswerLanding(finishLineOfferEnabled),
+      body: finishLineOfferEnabled ? (
+        <>
+          {lead}{" "}
+          <PaidChargesNonRefundablePhrase finishLineOfferEnabled />
+        </>
+      ) : item.body,
+    };
+  });
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",

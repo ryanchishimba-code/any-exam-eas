@@ -14,6 +14,8 @@ import {
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
+import { paidChargesNonRefundableSentence } from "@/lib/marketing/payments-refundable-copy";
+import { isFinishLineOfferEnabled } from "@/lib/marketing/finish-line-offer";
 import { formatMonthlyPrice, formatPricingCheckoutTrialOffer, formatTrialCtaLabel } from "@/lib/site";
 
 function ComparisonTable({
@@ -62,6 +64,7 @@ export function ComparePageContent({
   questionCountLabel?: string;
   nclexFormats?: FormatCounts | null;
 } = {}) {
+  const finishLineOfferEnabled = isFinishLineOfferEnabled();
   const featureRows = MASTER_FEATURE_ROWS.filter(
     (row) =>
       scrubPublicFormatCopy(row.feature, nclexFormats) === row.feature &&
@@ -221,7 +224,7 @@ export function ComparePageContent({
           {[
             "You need more than one board exam on the same timeline (RN + NP, PharmD + side cert, Step 1 + Step 2).",
             "You want Roadmap, Deep Dives, and Full Exams — not QBank-only prep.",
-            `${formatPricingCheckoutTrialOffer()} Cancel anytime in Settings. Paid charges are non-refundable except where the law requires a refund.`,
+            `${formatPricingCheckoutTrialOffer()} Cancel anytime in Settings. ${paidChargesNonRefundableSentence(finishLineOfferEnabled)}`,
             questionCountLabel
               ? `${questionCountLabel} active questions across six exams on one plan — not six separate QBanks.`
               : "Six exams on one plan — not six separate QBanks.",

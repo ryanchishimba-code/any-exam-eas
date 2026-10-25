@@ -18,7 +18,7 @@ describe("FinishLineBadge", () => {
     vi.stubEnv("OFFER_FINISH_LINE_ENABLED", "true");
     render(<FinishLineBadge />);
     expect(screen.getByText(FINISH_LINE_HERO_LINE)).toBeInTheDocument();
-    expect(screen.getByText(/Meet every condition/i)).toBeInTheDocument();
+    expect(screen.getByText(/On 4-month or longer plans/i)).toBeInTheDocument();
     const terms = screen.getByRole("link", { name: "See terms" });
     expect(terms).toHaveAttribute("href", "/finish-line-refund-terms");
   });

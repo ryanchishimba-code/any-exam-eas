@@ -8,11 +8,9 @@ export const FINISH_LINE_MIN_PLAN_MONTHS = 4;
 export const FINISH_LINE_HERO_LINE =
   "Do the work. If you don't pass, get your plan price back.";
 
-export const FINISH_LINE_FINE_PRINT_PREFIX =
-  "Meet every condition. Taxes and fees excluded.";
-
-export const FINISH_LINE_SHORTER_PLAN_LINE =
-  "Choose a 4-month or longer plan to qualify.";
+/** Shown under the hero line on every badge (before the See terms link). */
+export const FINISH_LINE_FINE_PRINT_BEFORE_TERMS =
+  "On 4-month or longer plans. Meet every condition. Taxes and fees excluded.";
 
 export const FINISH_LINE_FAQ_QUESTION = "Does this mean I'm guaranteed to pass?";
 

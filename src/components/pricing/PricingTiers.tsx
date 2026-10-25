@@ -12,9 +12,10 @@ import {
 import {
   DEFAULT_PAYMENT_MODE,
   isPaymentModeChoiceEnabled,
-  ONE_TIME_POLICY_SHORT,
+  oneTimePolicyShort,
   type PaymentMode,
 } from "@/lib/billing-payment-mode";
+import { pricingTrialFootnoteSentence } from "@/lib/marketing/payments-refundable-copy";
 import { PRICING_TRIAL_OFFER_LINE } from "@/lib/marketing/legal-copy";
 import { TRIAL_CTA_LABEL } from "@/lib/site";
 import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
@@ -23,7 +24,7 @@ import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoi
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { Button } from "@/components/ui/Button";
 import { FinishLineOfferMarkup } from "@/components/marketing/finish-line/FinishLineOfferMarkup";
-import { isFinishLineEligibleInterval } from "@/lib/marketing/finish-line-offer";
+import { PaymentsNonRefundablePhrase } from "@/components/marketing/finish-line/PaymentsNonRefundablePhrase";
 import { cn } from "@/lib/utils";
 
 type AccessInfo = {
@@ -173,12 +174,7 @@ export function PricingTiers({ className, finishLineOfferEnabled = false }: Pric
         />
       )}
 
-      {finishLineOfferEnabled ? (
-        <FinishLineOfferMarkup
-          variant="pricing"
-          ineligiblePlan={!isFinishLineEligibleInterval(interval)}
-        />
-      ) : null}
+      {finishLineOfferEnabled ? <FinishLineOfferMarkup variant="pricing" /> : null}
 
       <Button
         href={checkoutHref}
@@ -210,9 +206,11 @@ export function PricingTiers({ className, finishLineOfferEnabled = false }: Pric
       <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
         {isUpgrade
           ? showPaymentMode && paymentMode === "manual"
-            ? ONE_TIME_POLICY_SHORT
-            : renewalTermsLine("pro", interval)
-          : "Payments are non-refundable (except where required by law). Found a flawed question? Report it and we'll review it. This is not a refund."}
+            ? oneTimePolicyShort(finishLineOfferEnabled)
+            : renewalTermsLine("pro", interval, finishLineOfferEnabled)
+          : finishLineOfferEnabled
+            ? <PaymentsNonRefundablePhrase finishLineOfferEnabled />
+            : pricingTrialFootnoteSentence(false)}
       </p>
 
       <PaymentMethodBadges className="justify-center" size="sm" />

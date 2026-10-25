@@ -21,7 +21,6 @@ import {
 import { formatMonthlyPrice, formatTrialCtaLabel } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 import { FinishLineOfferMarkup } from "@/components/marketing/finish-line/FinishLineOfferMarkup";
-import { isFinishLineEligibleInterval } from "@/lib/marketing/finish-line-offer";
 
 const INTERVALS: BillingInterval[] = ["monthly", "quarterly", "semiannual", "yearly"];
 
@@ -80,11 +79,7 @@ function PreviewProCard({
       </LandingCta>
 
       {finishLineOfferEnabled ? (
-        <FinishLineOfferMarkup
-          variant="pricing"
-          className="mt-4"
-          ineligiblePlan={!isFinishLineEligibleInterval(interval)}
-        />
+        <FinishLineOfferMarkup variant="pricing" className="mt-4" />
       ) : null}
 
       <ul className="aee-landing-pricing-card__features">

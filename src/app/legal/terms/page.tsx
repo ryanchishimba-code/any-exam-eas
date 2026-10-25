@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
+import { refundsAndAccessLegalParagraph } from "@/lib/marketing/payments-refundable-copy";
 import { purchasableBillingIntervalPhrase } from "@/lib/stripe-prices";
 
 export const metadata: Metadata = {
@@ -76,7 +77,7 @@ export default function TermsPage() {
         <p className="mt-2">{LEGAL_DISCLAIMERS.stripeProcessor}</p>
 
         <h3 className="mt-4 font-semibold text-[var(--color-ink)]">4.3 Refunds and access after cancellation</h3>
-        <p className="mt-2">{LEGAL_DISCLAIMERS.refundsAndAccess}</p>
+        <p className="mt-2">{refundsAndAccessLegalParagraph()}</p>
 
         <h3 className="mt-4 font-semibold text-[var(--color-ink)]">4.4 Plan changes</h3>
         <p className="mt-2">{LEGAL_DISCLAIMERS.planChanges}</p>

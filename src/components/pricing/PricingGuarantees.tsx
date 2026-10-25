@@ -4,16 +4,22 @@ import { Check } from "lucide-react";
 import {
   BILLING_GUARANTEE_HEADLINE,
   BILLING_GUARANTEE_POINTS,
-  BILLING_POLICY_SHORT,
 } from "@/lib/billing-plans";
+import { billingPolicyShort } from "@/lib/marketing/payments-refundable-copy";
 import { cn } from "@/lib/utils";
 
 type PricingGuaranteesProps = {
   className?: string;
   variant?: "full" | "compact";
+  finishLineOfferEnabled?: boolean;
 };
 
-export function PricingGuarantees({ className, variant = "full" }: PricingGuaranteesProps) {
+export function PricingGuarantees({
+  className,
+  variant = "full",
+  finishLineOfferEnabled = false,
+}: PricingGuaranteesProps) {
+  const policyShort = billingPolicyShort(finishLineOfferEnabled);
   if (variant === "compact") {
     return (
       <section
@@ -38,7 +44,7 @@ export function PricingGuarantees({ className, variant = "full" }: PricingGuaran
           ))}
         </ul>
         <p className="mt-3 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-          {BILLING_POLICY_SHORT}
+          {policyShort}
         </p>
       </section>
     );
@@ -77,7 +83,7 @@ export function PricingGuarantees({ className, variant = "full" }: PricingGuaran
       </ul>
 
       <p className="mt-6 rounded-2xl border border-black/[0.06] bg-white/80 px-4 py-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
-        {BILLING_POLICY_SHORT}
+        {policyShort}
       </p>
     </section>
   );

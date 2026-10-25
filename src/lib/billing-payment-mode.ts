@@ -87,6 +87,8 @@ export function oneTimeSummaryLabel(
 export const ONE_TIME_POLICY_SHORT =
   "One charge, no auto-renewal. Payments are non-refundable — access runs to the end of the period you bought.";
 
+export { oneTimePolicyShort } from "@/lib/marketing/payments-refundable-copy";
+
 export function paymentModeDetail(
   mode: PaymentMode,
   tier: SubscriptionTier,

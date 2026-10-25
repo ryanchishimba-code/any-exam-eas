@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LandingFaqV2 } from "@/components/landing/v2/LandingFaqV2";
+import { isFinishLineOfferEnabled } from "@/lib/marketing/finish-line-offer";
 
 export const metadata: Metadata = {
   title: { absolute: "FAQ — Pricing, Trial & Exam Coverage | Any Exam Easy" },
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function FaqPage() {
   return (
     <div className="bg-[var(--color-bg)] pt-[var(--nav-height)]">
-      <LandingFaqV2 pageHeading />
+      <LandingFaqV2 pageHeading finishLineOfferEnabled={isFinishLineOfferEnabled()} />
     </div>
   );
 }

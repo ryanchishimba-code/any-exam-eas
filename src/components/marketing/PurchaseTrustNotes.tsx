@@ -2,6 +2,8 @@ import Link from "next/link";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
+import { isFinishLineOfferEnabled } from "@/lib/marketing/finish-line-offer";
+import { PaidChargesNonRefundablePhrase } from "@/components/marketing/finish-line/PaymentsNonRefundablePhrase";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 /**
@@ -21,6 +23,7 @@ export function PurchaseTrustNotes({
   const ink = tone === "onDark" ? "text-white" : "text-[var(--color-ink)]";
   const muted = tone === "onDark" ? "text-white/75" : "text-[var(--color-ink-muted)]";
   const link = tone === "onDark" ? "text-white underline" : "text-[var(--color-accent)] hover:underline";
+  const finishLineOfferEnabled = isFinishLineOfferEnabled();
   return (
     <div className={`mx-auto max-w-xl text-center ${className}`} data-purchase-trust>
       {showTrialOffer ? (
@@ -30,8 +33,10 @@ export function PurchaseTrustNotes({
       ) : null}
       <p className={`mt-2 text-sm leading-relaxed ${muted}`}>
         Cancel anytime in Settings. Card payments go through Stripe — we do not store full card
-        numbers. Paid charges are non-refundable except where the law requires a refund, and access
-        runs through the period already paid.
+        numbers.{" "}
+        <PaidChargesNonRefundablePhrase finishLineOfferEnabled={finishLineOfferEnabled} />
+        {" "}
+        Access runs through the period already paid.
       </p>
       <p className={`mt-2 text-sm ${muted}`}>
         <Link href="/legal/refunds" className={`font-semibold ${link}`}>

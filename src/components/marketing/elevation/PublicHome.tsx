@@ -10,7 +10,8 @@ import { HomeFreeQuizSection } from "@/components/marketing/free-quiz/HomeFreeQu
 import { HomeStickyCta } from "@/components/marketing/elevation/HomeStickyCta";
 import "@/styles/home-visual.css";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
-import { HOME_FAQ } from "@/lib/marketing/home-faq";
+import { homeFaq } from "@/lib/marketing/home-faq";
+import { isFinishLineOfferEnabled } from "@/lib/marketing/finish-line-offer";
 import {
   HERO_TRIAL_CTA_LABEL,
   HOME_SEE_QUESTIONS_HREF,
@@ -49,6 +50,7 @@ export function PublicHome({
 }) {
   const stickyLabel = homeStickyCtaLabel();
   const homePriceChart = buildHomePrepPriceBarChartData();
+  const faqItems = homeFaq(isFinishLineOfferEnabled());
   const headlineBreak = HOME_PRACTICE_HEADLINE.lastIndexOf(". ");
   const headlineLead =
     headlineBreak === -1 ? HOME_PRACTICE_HEADLINE : HOME_PRACTICE_HEADLINE.slice(0, headlineBreak + 1);
@@ -128,7 +130,7 @@ export function PublicHome({
       >
         <h2 id="faq-heading">Questions.</h2>
         <div className="home-faq__list">
-          {HOME_FAQ.map((item) => (
+          {faqItems.map((item) => (
             <details key={item.q}>
               <summary>{item.q}</summary>
               <p>{item.a}</p>

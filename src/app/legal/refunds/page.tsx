@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
+import { refundsAndAccessLegalParagraph } from "@/lib/marketing/payments-refundable-copy";
 export const metadata: Metadata = {
   title: { absolute: "Refunds and cancellation — Any Exam Easy" },
   description:
@@ -33,7 +34,7 @@ export default function RefundsPage() {
               portal, where you can cancel a renewing subscription. Canceling stops the next
               charge. It does not erase the period you have already paid for.
             </p>
-            <p className="mt-2">{LEGAL_DISCLAIMERS.refundsAndAccess}</p>
+            <p className="mt-2">{refundsAndAccessLegalParagraph()}</p>
           </section>
           <section>
             <h2 className="text-base font-semibold text-[var(--color-ink)]">Payments</h2>

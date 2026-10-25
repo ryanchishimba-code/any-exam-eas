@@ -5,6 +5,7 @@ import {
   type EmailDeliveryResult,
 } from "@/lib/email/config";
 import { formatPlanUsd, getBillingPlanTier, renewalIntervalWord } from "@/lib/billing-plans";
+import { paymentsNonRefundableSentence } from "@/lib/marketing/payments-refundable-copy";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { displayFirstName } from "@/lib/display-name";
 import type { BillingInterval } from "@/lib/billing-config";
@@ -142,7 +143,7 @@ export async function sendNextBillingReminderEmail(
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your Any Exam Easy subscription renews in about 24 hours (<strong>${when}</strong>).</p>
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your saved payment method will be charged <strong>${amount}</strong> for your ${tier.label} plan.</p>
-    <p style="margin:0;font-size:14px;color:#64748b;">Update your payment method or cancel anytime in Settings before renewal. Payments are non-refundable.</p>`;
+    <p style="margin:0;font-size:14px;color:#64748b;">Update your payment method or cancel anytime in Settings before renewal. ${paymentsNonRefundableSentence()}</p>`;
 
   const text = [
     greeting(params.name),
@@ -186,7 +187,7 @@ export async function sendSubscriptionActiveEmail(
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your AnyExamEasy subscription is active.</p>
     <p style="margin:0 0 16px;font-size:15px;color:#475569;"><strong>${params.planLabel}</strong> · ${amount}. Next charge: ${nextCharge}.</p>
-    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Cancel anytime in Settings. Canceling stops the next charge. Payments are non-refundable except where required by law.</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Cancel anytime in Settings. Canceling stops the next charge. ${paymentsNonRefundableSentence()}</p>
     <p style="margin:0;font-size:14px;color:#64748b;">Refund policy: <a href="${refundsUrl}">${refundsUrl}</a><br/>Support: ${support}</p>`;
 
   const text = [
@@ -232,7 +233,7 @@ export async function sendAnnualRenewalReminderEmail(
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your Any Exam Easy annual subscription renews in about 30 days (<strong>${when}</strong>).</p>
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your saved payment method will be charged <strong>${amount}</strong> for your ${tier.label} plan.</p>
-    <p style="margin:0;font-size:14px;color:#64748b;">Update your payment method or cancel anytime in Settings before renewal. Payments are non-refundable.</p>`;
+    <p style="margin:0;font-size:14px;color:#64748b;">Update your payment method or cancel anytime in Settings before renewal. ${paymentsNonRefundableSentence()}</p>`;
 
   const text = [
     greeting(params.name),

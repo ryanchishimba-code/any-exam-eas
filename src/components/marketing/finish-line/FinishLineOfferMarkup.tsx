@@ -1,8 +1,7 @@
 import Link from "next/link";
 import {
-  FINISH_LINE_FINE_PRINT_PREFIX,
+  FINISH_LINE_FINE_PRINT_BEFORE_TERMS,
   FINISH_LINE_HERO_LINE,
-  FINISH_LINE_SHORTER_PLAN_LINE,
   FINISH_LINE_TERMS_PATH,
 } from "@/lib/marketing/finish-line-offer";
 import { cn } from "@/lib/utils";
@@ -12,8 +11,6 @@ export type FinishLineOfferVariant = "hero" | "pricing" | "checkout" | "inline";
 type Props = {
   variant?: FinishLineOfferVariant;
   className?: string;
-  /** Shown on pricing/checkout when the selected plan is under 4 months. */
-  ineligiblePlan?: boolean;
 };
 
 const variantClass: Record<FinishLineOfferVariant, string> = {
@@ -26,23 +23,7 @@ const variantClass: Record<FinishLineOfferVariant, string> = {
 export function FinishLineOfferMarkup({
   variant = "hero",
   className,
-  ineligiblePlan = false,
 }: Props) {
-  if (ineligiblePlan) {
-    return (
-      <p
-        className={cn(
-          "text-xs leading-snug text-[var(--color-ink-muted)]",
-          variantClass[variant],
-          className
-        )}
-        data-finish-line-offer="ineligible"
-      >
-        {FINISH_LINE_SHORTER_PLAN_LINE}
-      </p>
-    );
-  }
-
   return (
     <aside
       className={cn(
@@ -57,7 +38,7 @@ export function FinishLineOfferMarkup({
         {FINISH_LINE_HERO_LINE}
       </p>
       <p className="mt-1 text-xs leading-snug text-[var(--color-ink-muted)]">
-        {FINISH_LINE_FINE_PRINT_PREFIX}{" "}
+        {FINISH_LINE_FINE_PRINT_BEFORE_TERMS}{" "}
         <Link
           href={FINISH_LINE_TERMS_PATH}
           prefetch={false}

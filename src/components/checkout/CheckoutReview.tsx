@@ -180,9 +180,7 @@ export function CheckoutReview({
           <span>{renewalConsentCopy}</span>
         </label>
       ) : null}
-      {finishLineOfferEnabled && isUpgrade ? (
-        <FinishLineCheckoutNote enabled interval={interval} />
-      ) : null}
+      {finishLineOfferEnabled && isUpgrade ? <FinishLineCheckoutNote enabled /> : null}
       <Button
         type="button"
         className="w-full gap-2"
@@ -236,6 +234,7 @@ export function CheckoutReview({
           interval={interval}
           tier={tier}
           paymentMode={effectivePaymentMode}
+          finishLineOfferEnabled={finishLineOfferEnabled}
         />
 
         <CheckoutDiscountSection
@@ -263,6 +262,7 @@ export function CheckoutReview({
         discount={discount}
         interval={interval}
         tier={tier}
+        finishLineOfferEnabled={finishLineOfferEnabled}
       />
 
       <CheckoutDiscountSection

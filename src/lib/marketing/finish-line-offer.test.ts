@@ -1,11 +1,13 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
+  FINISH_LINE_FINE_PRINT_BEFORE_TERMS,
   FINISH_LINE_HERO_LINE,
   FINISH_LINE_TERMS_PATH,
   assertFinishLineCopySafe,
   isFinishLineEligibleInterval,
   isFinishLineOfferEnabled,
 } from "@/lib/marketing/finish-line-offer";
+import { paymentsNonRefundableSentence } from "@/lib/marketing/payments-refundable-copy";
 import {
   buildFinishLineTermsHtml,
   resolveFinishLineTermsPlaceholders,
@@ -37,7 +39,14 @@ describe("finish line offer flag", () => {
 
   it("keeps hero copy free of forbidden guarantee language", () => {
     assertFinishLineCopySafe(FINISH_LINE_HERO_LINE);
+    assertFinishLineCopySafe(FINISH_LINE_FINE_PRINT_BEFORE_TERMS);
     expect(FINISH_LINE_TERMS_PATH).toBe("/finish-line-refund-terms");
+  });
+
+  it("uses finish-line-aware non-refundable copy when the flag is on", () => {
+    vi.stubEnv("OFFER_FINISH_LINE_ENABLED", "true");
+    expect(paymentsNonRefundableSentence()).toContain("Finish Line Refund terms");
+    expect(paymentsNonRefundableSentence()).toContain(FINISH_LINE_TERMS_PATH);
   });
 });
 

@@ -1,11 +1,12 @@
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 import { HOME_GUIDELINE_LINE } from "@/lib/marketing/home-compare";
+import { cancelAnytimeFaqAnswerHome } from "@/lib/marketing/payments-refundable-copy";
 import { formatLandingTrialScopeSentence, formatMonthlyPrice } from "@/lib/site";
 
 /**
  * Short homepage FAQ. Longer marketing copy lives here instead of on the page body.
  */
-export const HOME_FAQ = [
+const HOME_FAQ_BASE = [
   {
     q: "Which exams are included?",
     a: `All six are on one subscription: ${PLATFORM_EXAM_LIST}. USMLE covers Step 1, Step 2 CK, and Step 3.`,
@@ -24,10 +25,21 @@ export const HOME_FAQ = [
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. Cancel anytime in Settings. That stops the next charge. Paid charges are non-refundable except where the law requires a refund.",
+    a: cancelAnytimeFaqAnswerHome(false),
   },
   {
     q: "Are you affiliated with the exam boards?",
     a: "No. AnyExamEasy is independent. We are not affiliated with NCSBN, NABP, NBME, or the organizations that own the other board exams.",
   },
 ] as const;
+
+export function homeFaq(finishLineOfferEnabled = false) {
+  return HOME_FAQ_BASE.map((item) =>
+    item.q === "Can I cancel anytime?"
+      ? { ...item, a: cancelAnytimeFaqAnswerHome(finishLineOfferEnabled) }
+      : item
+  );
+}
+
+/** @deprecated Use homeFaq() for flag-aware copy. */
+export const HOME_FAQ = HOME_FAQ_BASE;

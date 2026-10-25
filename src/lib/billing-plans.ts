@@ -5,6 +5,7 @@ import {
   TRIAL_LIFETIME_QUESTIONS,
   type BillingInterval,
 } from "@/lib/billing-config";
+import { renewalTermsLineNonRefundableClause } from "@/lib/marketing/payments-refundable-copy";
 import {
   TIER_ANNUAL_USD,
   TIER_MONTHLY_USD,
@@ -47,12 +48,13 @@ export const CANCEL_ANYTIME_LABEL = "Cancel anytime in Settings";
  */
 export function renewalTermsLine(
   tier: SubscriptionTier,
-  interval: BillingInterval
+  interval: BillingInterval,
+  finishLineOfferEnabled = false
 ): string {
   const plan = getBillingPlanTier(tier, interval);
   const cadence =
     plan.months === 1 ? "month" : plan.months === 12 ? "year" : `${plan.months} months`;
-  return `Renews at ${formatPlanUsd(plan.totalUsd)}/${cadence}. Non-refundable.`;
+  return `Renews at ${formatPlanUsd(plan.totalUsd)}/${cadence}. ${renewalTermsLineNonRefundableClause(finishLineOfferEnabled)}`;
 }
 
 export const BILLING_TRIAL_DISCLOSURE =

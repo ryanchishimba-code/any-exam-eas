@@ -8,7 +8,7 @@ import { CANCEL_ANYTIME_LABEL, renewalTermsLine } from "@/lib/billing-plans";
 import type { DiscountValidation } from "@/lib/discount/types";
 import {
   DEFAULT_PAYMENT_MODE,
-  ONE_TIME_POLICY_SHORT,
+  oneTimePolicyShort,
   type PaymentMode,
 } from "@/lib/billing-payment-mode";
 import { formatPricingCheckoutTrialOffer, formatTrialLabel } from "@/lib/site";
@@ -24,6 +24,7 @@ type CheckoutOrderSummaryProps = {
   paymentMode?: PaymentMode;
   className?: string;
   sticky?: boolean;
+  finishLineOfferEnabled?: boolean;
 };
 
 export function CheckoutOrderSummary({
@@ -34,6 +35,7 @@ export function CheckoutOrderSummary({
   paymentMode = DEFAULT_PAYMENT_MODE,
   className,
   sticky = false,
+  finishLineOfferEnabled = false,
 }: CheckoutOrderSummaryProps) {
   const discounted = discount?.valid && hasDiscount(pricing);
   const oneTime = paymentMode === "manual";
@@ -50,8 +52,8 @@ export function CheckoutOrderSummary({
       ? formatPricingCheckoutTrialOffer()
       : `${formatTrialLabel()} · no payment method required`
     : oneTime
-      ? ONE_TIME_POLICY_SHORT
-      : renewalTermsLine(tier, interval);
+      ? oneTimePolicyShort(finishLineOfferEnabled)
+      : renewalTermsLine(tier, interval, finishLineOfferEnabled);
 
   return (
     <section

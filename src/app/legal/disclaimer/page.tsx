@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED, PUBLIC_DISCLAIMER_KEYS } from "@/lib/legal";
+import { refundsAndAccessLegalParagraph } from "@/lib/marketing/payments-refundable-copy";
 
 export const metadata: Metadata = {
   title: { absolute: "Disclaimers — Any Exam Easy" },
@@ -61,7 +62,7 @@ export default function DisclaimerPage() {
                   {DISCLAIMER_LABELS[key]}
                 </p>
               )}
-              {LEGAL_DISCLAIMERS[key]}
+              {key === "refundsAndAccess" ? refundsAndAccessLegalParagraph() : LEGAL_DISCLAIMERS[key]}
             </li>
           ))}
         </ul>

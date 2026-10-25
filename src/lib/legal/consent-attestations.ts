@@ -1,4 +1,8 @@
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
+import {
+  FINISH_LINE_TERMS_PATH,
+  isFinishLineOfferEnabled,
+} from "@/lib/marketing/finish-line-offer";
 
 /** Bump when signup/consent attestation language changes — stored on each consent record. */
 export const CONSENT_ATTESTATION_VERSION = "2026-07-05";
@@ -23,7 +27,9 @@ export function getSignupConsentAttestations(): string[] {
     LEGAL_DISCLAIMERS.userResponsibility,
     LEGAL_DISCLAIMERS.ageRequirement,
     `Legal documents: I have read and agree to the Terms of Service, Privacy Policy, and Educational Disclaimers (version ${LEGAL_LAST_UPDATED}).`,
-    `Billing acknowledgement: I understand subscription, auto-renewal, and non-refundable payment terms described in the Terms of Service unless required otherwise by applicable law.`,
+    isFinishLineOfferEnabled()
+      ? `Billing acknowledgement: I understand subscription, auto-renewal, and payment terms described in the Terms of Service, including the Finish Line Refund terms (${FINISH_LINE_TERMS_PATH}) where applicable, unless required otherwise by applicable law.`
+      : `Billing acknowledgement: I understand subscription, auto-renewal, and non-refundable payment terms described in the Terms of Service unless required otherwise by applicable law.`,
     `Dispute resolution & liability: I acknowledge the limitation of liability, indemnification, and binding individual arbitration provisions described in the Terms of Service and Disclaimers.`,
   ];
 }

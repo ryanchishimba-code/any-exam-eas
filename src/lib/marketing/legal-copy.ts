@@ -1,5 +1,7 @@
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { formatPlanUsd } from "@/lib/billing-plans";
+import { isFinishLineOfferEnabled } from "@/lib/marketing/finish-line-offer";
+import { paymentsNonRefundableSentence } from "@/lib/marketing/payments-refundable-copy";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY } from "@/lib/legal";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 
@@ -73,7 +75,8 @@ export function quoteShareConsentLabel(): string {
 export const PAID_RENEWAL_CONSENT_VERSION = "2026-09-27";
 
 export function paidRenewalConsentText(price: string, interval: string): string {
-  return `I agree that my subscription renews automatically at ${price}/${interval} until I cancel in Settings. Payments are non-refundable except where required by law.`;
+  const refundLine = paymentsNonRefundableSentence(isFinishLineOfferEnabled());
+  return `I agree that my subscription renews automatically at ${price}/${interval} until I cancel in Settings. ${refundLine}`;
 }
 
 export function requestClientIp(req: Request): string | null {
