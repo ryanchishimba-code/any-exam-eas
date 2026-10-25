@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { boardQuestionUnits, formatBoardQuestionSentence } from "@/lib/counts";
 import { getScoredFieldInventory } from "@/lib/inventory/scored-field-inventory";
 import {
-  countActiveQuestionBankItemsByBlueprintTopics,
+  countBlueprintTopicPracticeInventory,
   getSubjectServedCountsWithRetry,
 } from "@/lib/question-bank-db";
 import { nclexBlueprintTopicsForCount } from "@/lib/study/topic-practice-filters";
@@ -46,11 +46,16 @@ export async function GET(req: Request) {
   const fieldId = access.fieldId;
 
   let topicPracticePoolCount: number | undefined;
+  let topicPracticeFormats:
+    | Awaited<ReturnType<typeof countBlueprintTopicPracticeInventory>>["formats"]
+    | undefined;
   if (blueprintTopics?.length && fieldId === "nursing") {
-    topicPracticePoolCount = await countActiveQuestionBankItemsByBlueprintTopics({
+    const inventory = await countBlueprintTopicPracticeInventory({
       fieldId,
       blueprintTopics: nclexBlueprintTopicsForCount(blueprintTopics),
     });
+    topicPracticePoolCount = inventory.total;
+    topicPracticeFormats = inventory.formats;
   }
 
   try {
@@ -83,7 +88,10 @@ export async function GET(req: Request) {
           caseItems: scored.clinical.caseItems,
           standaloneNgn: scored.clinical.standaloneNgn,
           ...(topicPracticePoolCount != null
-            ? { topicPracticePoolCount }
+            ? {
+                topicPracticePoolCount,
+                ...(topicPracticeFormats ? { topicPracticeFormats } : {}),
+              }
             : {}),
         },
         {
@@ -115,7 +123,12 @@ export async function GET(req: Request) {
       caseStudies: 0,
       caseItems: 0,
       standaloneNgn: 0,
-      ...(topicPracticePoolCount != null ? { topicPracticePoolCount } : {}),
+      ...(topicPracticePoolCount != null
+        ? {
+            topicPracticePoolCount,
+            ...(topicPracticeFormats ? { topicPracticeFormats } : {}),
+          }
+        : {}),
     });
   } catch (error) {
     const dbResponse = respondDbUnavailable(error);

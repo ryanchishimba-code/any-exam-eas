@@ -93,7 +93,11 @@ import {
   topicPracticeFiltersActive,
   topicPracticePreviewTitle,
 } from "@/lib/study/topic-practice-filters";
-import { fetchTopicPracticePoolCount } from "@/lib/study/subject-counts-client";
+import {
+  fetchTopicPracticeInventory,
+  type TopicPracticeInventoryClient,
+} from "@/lib/study/subject-counts-client";
+import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { useQuery } from "@tanstack/react-query";
 import {
   blueprintAreaCountFromTopics,
@@ -258,6 +262,7 @@ function buildBankPracticeUrl(
     taskCategory?: PanceTaskAreaId | null;
     format?: PracticeFormatMode;
     examSessionId?: string | null;
+    topicPracticeLaunch?: boolean;
   },
   base = ROUTES.questionBank
 ) {
@@ -271,7 +276,12 @@ function buildBankPracticeUrl(
   if (params.subjectId) qs.set("subjectId", params.subjectId);
   if (params.blueprintAreaId) qs.set("blueprintArea", params.blueprintAreaId);
   if (params.format && params.format !== "all") qs.set("format", params.format);
-  if (params.style && params.style !== "standard") qs.set("style", params.style);
+  if (
+    params.style &&
+    (params.style !== "standard" || params.topicPracticeLaunch)
+  ) {
+    qs.set("style", params.style);
+  }
   if (params.taskCategory) qs.set("taskCategory", params.taskCategory);
   if (params.mpjeVariant) qs.set("mpjeVariant", params.mpjeVariant);
   if (params.mpjeState) {
@@ -335,6 +345,7 @@ export function StudyBankPractice({
   totalQuestions = null,
   boardOpenRemediationCount = null,
   initialTopicPracticePoolCount = null,
+  initialTopicPracticeFormats = null,
 }: {
   preferredExamSlug?: ExamSlug;
   lockExam?: boolean;
@@ -361,6 +372,7 @@ export function StudyBankPractice({
   boardOpenRemediationCount?: number | null;
   /** SSR topic-practice pool (blueprintTopics=) so the launcher count is correct before client fetch. */
   initialTopicPracticePoolCount?: number | null;
+  initialTopicPracticeFormats?: FormatCounts | null;
 } = {}) {
   const router = useRouter();
   const pathname = usePathname();
@@ -457,15 +469,20 @@ export function StudyBankPractice({
     return resolveFieldId(field);
   }, [field, fieldParam]);
 
-  const { data: topicPracticePoolCount = initialTopicPracticePoolCount } = useQuery({
+  const initialTopicPracticeInventory: TopicPracticeInventoryClient | null =
+    initialTopicPracticePoolCount != null && initialTopicPracticeFormats
+      ? { poolCount: initialTopicPracticePoolCount, formats: initialTopicPracticeFormats }
+      : null;
+  const { data: topicPracticeInventory = initialTopicPracticeInventory } = useQuery({
     queryKey: ["topic-practice-pool", fieldId, topicPracticeBlueprintTopics?.join(",") ?? ""],
     queryFn: () =>
-      fetchTopicPracticePoolCount(fieldId, topicPracticeBlueprintTopics ?? []),
+      fetchTopicPracticeInventory(fieldId, topicPracticeBlueprintTopics ?? []),
     enabled: Boolean(topicPracticeBlueprintTopics?.length) && !isTimedExam,
     staleTime: 5 * 60 * 1000,
-    initialData:
-      initialTopicPracticePoolCount != null ? initialTopicPracticePoolCount : undefined,
+    initialData: initialTopicPracticeInventory ?? undefined,
   });
+  const topicPracticePoolCount = topicPracticeInventory?.poolCount ?? null;
+  const topicPracticeFormats = topicPracticeInventory?.formats ?? null;
 
   const examScopeKey = useMemo(
     () => `${effectiveExamSlug ?? "open"}:${fieldId}`,
@@ -538,15 +555,22 @@ export function StudyBankPractice({
         : null;
   const activeFormats = subjectCountPayload?.formats ?? null;
   const topicFormats = subjectCountPayload?.topicFormats ?? null;
-  const scopeFormats = useMemo(
-    () =>
-      practiceFormatScopeCounts({
-        subjectId,
-        formats: activeFormats,
-        topicFormats,
-      }),
-    [activeFormats, subjectId, topicFormats]
-  );
+  const scopeFormats = useMemo(() => {
+    if (topicPracticeLaunch && topicPracticeFormats) {
+      return topicPracticeFormats;
+    }
+    return practiceFormatScopeCounts({
+      subjectId,
+      formats: activeFormats,
+      topicFormats,
+    });
+  }, [
+    activeFormats,
+    subjectId,
+    topicFormats,
+    topicPracticeLaunch,
+    topicPracticeFormats,
+  ]);
   const sessionFormat =
     countsLoading || !scopeFormats
       ? practiceFormat
@@ -633,6 +657,20 @@ export function StudyBankPractice({
     }
     return sessionCounts;
   }, [sessionCounts, sessionSubjectId, topicPracticeLaunch, topicPracticePoolCount]);
+  const topicLauncherSubjectCounts = useMemo(() => {
+    if (
+      topicPracticeLaunch &&
+      typeof topicPracticePoolCount === "number" &&
+      sessionSubjectId
+    ) {
+      return { [sessionSubjectId]: topicPracticePoolCount };
+    }
+    return null;
+  }, [topicPracticeLaunch, topicPracticePoolCount, sessionSubjectId]);
+  const launcherScoredTotal =
+    topicPracticeLaunch && typeof topicPracticePoolCount === "number"
+      ? topicPracticePoolCount
+      : activeTotal;
 
   const isNclex = useMemo(() => isNclexField(field), [field]);
   const isMpje = useMemo(() => isMpjeField(fieldId), [fieldId]);
@@ -1199,6 +1237,7 @@ export function StudyBankPractice({
             ? resolvedState
             : undefined,
         examSessionId: searchParams.get("examSessionId"),
+        topicPracticeLaunch,
       },
       practiceBase
     );
@@ -2507,7 +2546,7 @@ export function StudyBankPractice({
             <QuestionBankSetup
               subjects={subjects}
               subjectId={blueprintAreaId ? "" : subjectId || openingSubjectId}
-              subjectCounts={subjectCounts}
+              subjectCounts={topicLauncherSubjectCounts ?? subjectCounts}
               fieldId={fieldId}
               examLabel={pageExam?.shortName ?? activeExamOption?.label}
               onSubjectChange={(id) => {
@@ -2561,8 +2600,8 @@ export function StudyBankPractice({
               countsLoading={countsLoading}
               practiceFormat={sessionFormat}
               formats={scopeFormats}
-              scoredTotal={activeTotal}
-              sessionCounts={subjectCountPayload?.sessionCounts}
+              scoredTotal={launcherScoredTotal}
+              sessionCounts={topicLauncherSubjectCounts ?? subjectCountPayload?.sessionCounts}
               caseItemCount={subjectCountPayload?.caseItems}
               ngnLabel={ngnLabel}
               onPracticeFormatChange={(next) => {

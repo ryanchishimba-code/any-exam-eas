@@ -10,7 +10,7 @@ import {
   type InventoryCategoryCount,
 } from "@/lib/inventory/active-questions";
 import {
-  countActiveQuestionBankItemsByBlueprintTopics,
+  countBlueprintTopicPracticeInventory,
   getSubjectServedCountsWithRetry,
 } from "@/lib/question-bank-db";
 import { nclexBlueprintTopicsForCount } from "@/lib/study/topic-practice-filters";
@@ -106,12 +106,17 @@ export async function loadSubjectCountsForUser(
   };
 }
 
-/** Serve-ready count for blueprintTopics= deep links (tag-only, same as subject-counts API). */
-export async function loadTopicPracticePoolCountForUser(
+export type TopicPracticeInventory = {
+  poolCount: number;
+  formats: FormatCounts;
+};
+
+/** Serve-ready tag-only pool + format split for blueprintTopics= deep links. */
+export async function loadTopicPracticeInventoryForUser(
   userId: string,
   fieldParam: string,
   blueprintTopics: string[]
-): Promise<number | null> {
+): Promise<TopicPracticeInventory | null> {
   const topics = blueprintTopics.map((t) => t.trim()).filter(Boolean);
   if (topics.length === 0) return null;
 
@@ -122,8 +127,19 @@ export async function loadTopicPracticePoolCountForUser(
   if (!access.ok) return null;
   if (access.fieldId !== "nursing") return null;
 
-  return countActiveQuestionBankItemsByBlueprintTopics({
+  const inventory = await countBlueprintTopicPracticeInventory({
     fieldId: access.fieldId,
     blueprintTopics: nclexBlueprintTopicsForCount(topics),
   });
+  return { poolCount: inventory.total, formats: inventory.formats };
+}
+
+/** @deprecated Use loadTopicPracticeInventoryForUser */
+export async function loadTopicPracticePoolCountForUser(
+  userId: string,
+  fieldParam: string,
+  blueprintTopics: string[]
+): Promise<number | null> {
+  const inventory = await loadTopicPracticeInventoryForUser(userId, fieldParam, blueprintTopics);
+  return inventory?.poolCount ?? null;
 }

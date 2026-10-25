@@ -82,7 +82,7 @@ describe("NCLEX topic practice serve filter", () => {
     explanation: "Stress-dose steroids for adrenal crisis.",
   };
 
-  it("serves only items matching the requested blueprint topic", () => {
+  it("serves only tag-matched items for the requested blueprint topic", () => {
     const filtered = filterItemsForNclexTopicPractice(
       [cardiacItem, adrenalItem],
       { blueprintTopics: ["cardiac-emergencies"] },

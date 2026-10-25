@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { structurePracticeHref } from "@/lib/anatomy/structure-practice";
 import type { BankItem } from "@/lib/question-bank";
+import { bankItemMatchesNclexBlueprintTopicTags } from "@/lib/exam-prep/nclex/topic-blueprint-match";
 import { filterItemsForNclexTopicPractice } from "@/lib/exam-prep/nclex/topic-practice-filter";
 import {
   parseTopicPracticeLaunchFilters,
@@ -81,6 +82,11 @@ describe("anatomy heart topic-practice launch flow", () => {
     );
     expect(filtered).toHaveLength(1);
     expect(filtered[0]?.blueprintTopic).toBe("cardiac-emergencies");
+    for (const item of filtered) {
+      expect(bankItemMatchesNclexBlueprintTopicTags(item, filters.blueprintTopics ?? [])).toBe(
+        true
+      );
+    }
   });
 });
 

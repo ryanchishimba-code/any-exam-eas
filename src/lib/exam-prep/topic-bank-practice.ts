@@ -424,10 +424,10 @@ async function gatherNclexBlueprintTopicPool(params: {
     filterItemsForNclexBlueprintTopics(
       filterBankItemsForSessionPool({ fieldId: params.fieldId, items }),
       params.blueprintTopics,
-      { contentMatch: true }
+      { tagOnly: true }
     );
 
-  // 1) Tag-first across the whole nursing field — subject filing cannot hide on-topic items.
+  // Tag-only pulls — never widen to untagged subject/field rows.
   mergeAligned(
     align(
       await sampleQuestionBankItemsByBlueprintTopics({
@@ -442,7 +442,6 @@ async function gatherNclexBlueprintTopicPool(params: {
     return dedupeBankItemsById(merged).slice(0, params.poolTarget);
   }
 
-  // 2) Preferred Client Needs subject + tag (including alias labels).
   for (let round = 0; round < TOPIC_GATHER_MAX_ROUNDS; round++) {
     const pull = await sampleQuestionBankItems({
       fieldId: params.fieldId,
@@ -457,37 +456,6 @@ async function gatherNclexBlueprintTopicPool(params: {
     if (merged.length >= params.minVetted) break;
     if (merged.length >= params.sessionLimit) break;
   }
-
-  if (merged.length >= params.minVetted || merged.length >= params.sessionLimit) {
-    return dedupeBankItemsById(merged).slice(0, params.poolTarget);
-  }
-
-  // 3) Subject widen with content match (sparse tags).
-  for (let round = 0; round < TOPIC_GATHER_MAX_ROUNDS; round++) {
-    const pull = await sampleQuestionBankItems({
-      fieldId: params.fieldId,
-      subjectId: params.subjectId,
-      count: params.poolTarget,
-      poolMultiplier: 3,
-      taskCategory: params.taskCategory,
-      stateCode: params.stateCode,
-    });
-    mergeAligned(align(pull));
-    if (merged.length >= params.minVetted) break;
-    if (merged.length >= params.sessionLimit) break;
-  }
-
-  if (merged.length >= params.sessionLimit) {
-    return dedupeBankItemsById(merged).slice(0, params.poolTarget);
-  }
-
-  // 4) Field-wide content match — still blueprint-aligned, never off-topic dilute.
-  const fieldPull = await sampleQuestionBankItemsForField({
-    fieldId: params.fieldId,
-    count: Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, params.poolTarget * 3),
-    taskCategory: params.taskCategory,
-  });
-  mergeAligned(align(fieldPull));
 
   return dedupeBankItemsById(merged).slice(0, params.poolTarget);
 }
@@ -642,7 +610,7 @@ export async function gatherTopicBankSessionPool(params: {
       });
 
       const blueprintFiltered = filterItemsForNclexBlueprintTopics(vetted, blueprintTopics, {
-        contentMatch: true,
+        tagOnly: true,
       });
       mergeVetted(blueprintFiltered);
 

@@ -18,6 +18,12 @@ export type SubjectCountsClient = {
   standaloneNgn: number;
   /** Tag-only pool for blueprintTopics= on the subject-counts API. */
   topicPracticePoolCount?: number | null;
+  topicPracticeFormats?: FormatCounts | null;
+};
+
+export type TopicPracticeInventoryClient = {
+  poolCount: number;
+  formats: FormatCounts;
 };
 
 function parseFormatCounts(value: unknown): FormatCounts | null {
@@ -81,13 +87,16 @@ function parseSubjectCounts(data: unknown): SubjectCountsClient | null {
     standaloneNgn: typeof row.standaloneNgn === "number" ? row.standaloneNgn : 0,
     topicPracticePoolCount:
       typeof row.topicPracticePoolCount === "number" ? row.topicPracticePoolCount : null,
+    topicPracticeFormats: parseFormatCounts(
+      (row as { topicPracticeFormats?: unknown }).topicPracticeFormats
+    ),
   };
 }
 
-export async function fetchTopicPracticePoolCount(
+export async function fetchTopicPracticeInventory(
   fieldId: string,
   blueprintTopics: string[]
-): Promise<number | null> {
+): Promise<TopicPracticeInventoryClient | null> {
   if (!blueprintTopics.length) return null;
   const qs = new URLSearchParams({
     field: fieldId,
@@ -98,8 +107,23 @@ export async function fetchTopicPracticePoolCount(
     credentials: "include",
   });
   if (!res.ok) return null;
-  const data = (await res.json()) as { topicPracticePoolCount?: unknown };
-  return typeof data.topicPracticePoolCount === "number" ? data.topicPracticePoolCount : null;
+  const data = (await res.json()) as {
+    topicPracticePoolCount?: unknown;
+    topicPracticeFormats?: unknown;
+  };
+  const poolCount =
+    typeof data.topicPracticePoolCount === "number" ? data.topicPracticePoolCount : null;
+  const formats = parseFormatCounts(data.topicPracticeFormats);
+  if (poolCount == null || !formats) return null;
+  return { poolCount, formats };
+}
+
+export async function fetchTopicPracticePoolCount(
+  fieldId: string,
+  blueprintTopics: string[]
+): Promise<number | null> {
+  const inventory = await fetchTopicPracticeInventory(fieldId, blueprintTopics);
+  return inventory?.poolCount ?? null;
 }
 
 export async function fetchSubjectCounts(fieldId: string): Promise<SubjectCountsClient> {
