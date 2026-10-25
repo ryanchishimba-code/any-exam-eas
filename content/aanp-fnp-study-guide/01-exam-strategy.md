@@ -116,7 +116,7 @@ Habits:
 - Age-band modifiers (developmental stage, pregnancy potential, frailty).  
 - Ask: what information is missing before I act?
 
-### 2) Diagnose (26.5%)
+### 2) Diagnose (27%)
 
 Habits:
 - Hold three lanes: most likely · most dangerous · common mimics.  
@@ -124,7 +124,7 @@ Habits:
 - Know when clinical diagnosis is enough (many viral URIs, uncomplicated MSK).  
 - Separate screening from diagnostic testing for symptomatic patients.
 
-### 3) Plan (26.5%)
+### 3) Plan (27%)
 
 Habits:
 - Nonpharm + pharm themes; verify current guidelines/doses before clinical use.  
@@ -348,7 +348,7 @@ Practice percentage is **not** an official exam score. Trends matter: better rat
 ## Remember this
 
 - 150 questions = 135 scored + 15 pretest — take all seriously.  
-- Domain I: Assess 32%, Diagnose 26.5%, Plan 26.5%, Evaluate 15%.  
+- Domain I: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15%.  
 - Domain II: Older Adult 30% largest; prenatal lives in Young Adult\*.  
 - AANP/NPCB-first; ANCC is a separate outline.  
 - Application loop: topic → questions → error log → weak area.

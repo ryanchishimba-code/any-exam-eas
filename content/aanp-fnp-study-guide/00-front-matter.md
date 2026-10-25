@@ -14,7 +14,7 @@
 
 > **MUST KNOW** — This is a study aid only — not clinical advice, not NPCB, no pass guarantee.
 
-> **HIGHLIGHT** — Official blueprint: 150 Qs (135 scored + 15 pretest); Domain I Assess 32% / Diagnose 26.5% / Plan 26.5% / Evaluate 15%; Older Adult 30%.
+> **HIGHLIGHT** — Official blueprint: 150 Qs (135 scored + 15 pretest); Domain I Assess 32% / Diagnose 27% / Plan 27% / Evaluate 15%; Older Adult 30%.
 
 > **TRAP** — Studying only adult chronic disease and skipping prenatal (YA*) and Older Adult multimorbidity.
 
@@ -74,8 +74,8 @@ Third-party guides (including this one) prepare you — they do **not** replace 
 | Domain I Practice | Items (approx.) | Weight |
 | --- | ---: | ---: |
 | Assess | 43 | 32% |
-| Diagnose | 36 | 26.5% |
-| Plan | 36 | 26.5% |
+| Diagnose | 36 | 27% |
+| Plan | 36 | 27% |
 | Evaluate | 20 | 15% |
 
 | Domain II Patient Age | Weight |

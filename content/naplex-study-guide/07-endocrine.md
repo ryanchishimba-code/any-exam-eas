@@ -21,7 +21,7 @@ Endocrine stems reward **regimen design**, hypo prevention, device counseling, s
 ### Key concepts
 
 - Lifestyle + metformin foundation for many (if tolerated/eGFR allows).  
-- **Metformin and kidney function (FDA labeling — verify current label):**
+- **Metformin and kidney function — AnyExamEasy dosing rule (based on FDA labeling and KDIGO); verify current label:**
 
 | eGFR (mL/min/1.73 m²) | Metformin use |
 | --- | --- |

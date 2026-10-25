@@ -65,7 +65,7 @@ export const VANCO_TDM_PATHWAY = svgDataUri(`
   <rect x="270" y="200" width="220" height="100" rx="12" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
   <text x="380" y="228" text-anchor="middle" font-family="${FIG_FONT}" font-size="13" font-weight="900" fill="#9a3412">High → toxicity risk</text>
   <text x="380" y="252" text-anchor="middle" font-family="${FIG_FONT}" font-size="12" fill="#9a3412">Hold / ↓ dose / stretch</text>
-  <text x="380" y="276" text-anchor="middle" font-family="${FIG_FONT}" font-size="11" fill="#c2410c">Check SCr · red man ≠ level</text>
+  <text x="380" y="276" text-anchor="middle" font-family="${FIG_FONT}" font-size="11" fill="#c2410c">Check SCr · infusion rxn ≠ level</text>
 
   <rect x="510" y="200" width="220" height="100" rx="12" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
   <text x="620" y="228" text-anchor="middle" font-family="${FIG_FONT}" font-size="13" font-weight="900" fill="#065f46">On target</text>

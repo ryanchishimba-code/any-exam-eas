@@ -141,7 +141,8 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
     weight: npteWeightFromItemRange(44, 54),
     weightLabel: "44–54 items",
     scoredItemRange: { min: 44, max: 54 },
-    summary: "Highest-yield system — spine, shoulder, knee, hip, ankle, arthritis, fractures, manual therapy.",
+    summary:
+      "Highest-yield system — spine, shoulder, knee, hip, ankle, arthritis, fractures, manual therapy. FSBPT content outline: 44–54 scored items; the NPTE-PT Candidate Handbook lists 45–54 for musculoskeletal — verify current publications.",
     topics: [
       "Spine — low back pain, cervical radiculopathy, spinal stenosis, scoliosis",
       "Shoulder — rotator cuff, impingement, instability, special tests",

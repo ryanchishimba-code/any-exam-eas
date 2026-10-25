@@ -59,7 +59,7 @@ const EXAMS = [
   {
     id: "aanp-fnp",
     label: "AANP FNP",
-    blurb: "Primary care · AANPCB",
+    blurb: "Primary care · NPCB",
     href: "/question-bank?field=aanp-fnp",
     icon: UserRound,
     color: "#db2777",

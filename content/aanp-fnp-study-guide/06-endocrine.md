@@ -73,7 +73,7 @@ A1c, fasting lipids, BMP/eGFR, UACR, TSH if indicated, liver enzymes before some
 ### Plan themes (verify current ADA Standards)
 
 1. **Lifestyle** always: nutrition pattern, activity, sleep, tobacco.  
-2. **Metformin** remains common foundational theme if tolerated/eGFR allows — verify FDA labeling:
+2. **Metformin** remains common foundational theme if tolerated/eGFR allows — **AnyExamEasy dosing rule (based on FDA labeling and KDIGO)**:
 
 | eGFR (mL/min/1.73 m²) | Metformin use |
 | --- | --- |

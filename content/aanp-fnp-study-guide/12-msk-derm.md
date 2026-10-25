@@ -42,8 +42,8 @@ Expect stems on low-back red flags and cauda equina, OA vs inflammatory arthriti
 | Domain I process | What it looks like in MSK/derm stems |
 | --- | --- |
 | **Assess (32%)** | Trauma mechanism, neuro exam (saddle, strength, reflexes), fever, joint warmth/ROM, skin ABCDE + mucosal check, meds (NSAIDs, steroids, immunosuppressants, recent new drug), pregnancy status, fall risk, SDoH (can they afford PT / biologics specialty path?) |
-| **Diagnose (26.5%)** | Mechanical LBP vs cauda/cord/infection/cancer; sprain vs fracture; OA vs crystal vs septic; eczema vs psoriasis vs infection; cellulitis vs stasis vs DVT cues; benign nevus vs melanoma concern |
-| **Plan (26.5%)** | Early activity for mechanical back pain; selective imaging; Ottawa themes; joint aspiration pathway if septic possible; topical potency teaching; derm referral; ED for SJS/TEN / necrotizing cues |
+| **Diagnose (27%)** | Mechanical LBP vs cauda/cord/infection/cancer; sprain vs fracture; OA vs crystal vs septic; eczema vs psoriasis vs infection; cellulitis vs stasis vs DVT cues; benign nevus vs melanoma concern |
+| **Plan (27%)** | Early activity for mechanical back pain; selective imaging; Ottawa themes; joint aspiration pathway if septic possible; topical potency teaching; derm referral; ED for SJS/TEN / necrotizing cues |
 | **Evaluate (15%)** | Red-flag progression return precautions; wound/antibiotic response; steroid side-effect check; biopsy follow-through; deprescribe chronic NSAIDs harming kidneys/GI/HF |
 
 **Red-flag filter first:** saddle anesthesia, bowel/bladder retention or incontinence with back pain, progressive motor deficit, hot joint + systemic toxicity, rapidly progressive painful rash with mucosal involvement, elder fall + unable to bear weight → disposition before clever outpatient titration.

@@ -36,7 +36,7 @@ function colorAt(index: number): string {
 
 const DONUT_HEADING: Record<HubExamKey, string> = {
   usmle: "Built to help you ace the USMLE",
-  pance: "Built to help you ace the PANCE",
+  pance: "Structured PANCE prep across the NCCPA blueprint",
   "aanp-fnp": "Built to help you ace the AANP FNP",
   "npte-pt": "Built to help you ace the NPTE-PT",
 };

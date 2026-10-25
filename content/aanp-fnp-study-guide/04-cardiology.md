@@ -43,8 +43,8 @@ Expect stems on hypertension cascades, statin risk conversations, chest-pain tri
 | Domain I process | What it looks like in cardio stems |
 | --- | --- |
 | **Assess (32%)** | BP technique, orthostatics, volume exam, murmur timing, pulse deficit, edema, home logs, med/NSAID/stimulant history, pregnancy status, SDoH (can they afford DOAC?), fall risk on anticoag |
-| **Diagnose (26.5%)** | HTN stage/resistant/secondary cues; ACS vs PE vs dissection vs MSK; HFrEF vs HFpEF suspicion; AF vs SVT themes; urgency vs emergency |
-| **Plan (26.5%)** | Lifestyle + first-line classes; statin intensity themes; ED vs outpatient; anticoagulation shared decision; teach nitro/weights/bleed precautions |
+| **Diagnose (27%)** | HTN stage/resistant/secondary cues; ACS vs PE vs dissection vs MSK; HFrEF vs HFpEF suspicion; AF vs SVT themes; urgency vs emergency |
+| **Plan (27%)** | Lifestyle + first-line classes; statin intensity themes; ED vs outpatient; anticoagulation shared decision; teach nitro/weights/bleed precautions |
 | **Evaluate (15%)** | K/Cr after ACEI/ARB/MRA; BP response; statin tolerance after interaction check; weight trajectory in HF; DOAC adherence/refills; when to revise diagnosis |
 
 **Red-flag filter first:** hypoxia, hypotension, ongoing ischemic pain, neuro deficit, tearing severe chest/back pain, syncope with exertional or cardiac features → disposition before clever outpatient titration.

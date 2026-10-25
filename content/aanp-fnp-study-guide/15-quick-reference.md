@@ -34,8 +34,8 @@
 | Process | Items | Weight | What “right” feels like on a stem |
 | --- | ---: | ---: | --- |
 | **Assess** | 43 | **32%** | Missing data, stability, pregnancy, meds, SDoH, focused exam |
-| **Diagnose** | 36 | **26.5%** | Likely vs can’t-miss vs mimics; urgency label |
-| **Plan** | 36 | **26.5%** | Treat, teach, refer, prevent; safety filters |
+| **Diagnose** | 36 | **27%** | Likely vs can’t-miss vs mimics; urgency label |
+| **Plan** | 36 | **27%** | Treat, teach, refer, prevent; safety filters |
 | **Evaluate** | 20 | **15%** | Labs, adherence, revise diagnosis, transitions |
 
 **Coach cue:** Before you pick a drug, name the ADPE verb the item is testing.
@@ -275,7 +275,7 @@ Finish weak areas with exam-style AANP FNP items and full rationales on [AnyExam
 
 ## Critical callouts — quick ref (scan tonight)
 
-> **MUST KNOW** — Domain I: Assess 32%, Diagnose 26.5%, Plan 26.5%, Evaluate 15%.
+> **MUST KNOW** — Domain I: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15%.
 
 > **MUST KNOW** — Domain II: Older Adult **30%**, Middle Adult **26%**, Young Adult* **22%**.
 

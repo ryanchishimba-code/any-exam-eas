@@ -31,7 +31,7 @@
 
 ## Why this chapter matters
 
-Newborn through adolescent care is a smaller Domain II slice than middle/older adult — and that is exactly why candidates under-study it. NPCB still scores **Assess / Diagnose / Plan / Evaluate** (32% / 26.5% / 26.5% / 15%) on well-child visits, fever triage, AOM stewardship, asthma, ADHD, sports clearance, dehydration, bronchiolitis, vaccines, and adolescent risk. Miss a neonate fever disposition or clear an athlete with exertional syncope and you fail the item the way you’d fail the child.
+Newborn through adolescent care is a smaller Domain II slice than middle/older adult — and that is exactly why candidates under-study it. NPCB still scores **Assess / Diagnose / Plan / Evaluate** (32% / 27% / 27% / 15%) on well-child visits, fever triage, AOM stewardship, asthma, ADHD, sports clearance, dehydration, bronchiolitis, vaccines, and adolescent risk. Miss a neonate fever disposition or clear an athlete with exertional syncope and you fail the item the way you’d fail the child.
 
 **Pair with practice:** Tag every miss with age band (newborn/infant/child/adolescent*) + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
@@ -42,8 +42,8 @@ Newborn through adolescent care is a smaller Domain II slice than middle/older a
 | Domain I process | What it looks like in peds stems |
 | --- | --- |
 | **Assess (32%)** | Appearance (toxic vs well), hydration (tears, urine, fontanelle, CRT), work of breathing, growth chart trajectory, development surveillance, caregiver reliability, vaccine record, HEADDSS privately in teens, cardiac red flags for sports |
-| **Diagnose (26.5%)** | Serious bacterial infection risk by age; AOM vs OME; bronchiolitis vs asthma; ADHD vs sleep/anxiety mimics; concussion themes; appendicitis atypical in young |
-| **Plan (26.5%)** | Watchful waiting vs abx; supportive RSV care; asthma action plan + spacer; stimulant teaching; hold sports clearance; vaccine catch-up; safety/anticipatory guidance |
+| **Diagnose (27%)** | Serious bacterial infection risk by age; AOM vs OME; bronchiolitis vs asthma; ADHD vs sleep/anxiety mimics; concussion themes; appendicitis atypical in young |
+| **Plan (27%)** | Watchful waiting vs abx; supportive RSV care; asthma action plan + spacer; stimulant teaching; hold sports clearance; vaccine catch-up; safety/anticipatory guidance |
 | **Evaluate (15%)** | Weight regain after illness; asthma control; ADHD rating scales; vaccine adverse event teaching; return precautions timed to age |
 
 **Red-flag filter first:** neonate fever, infant lethargy/poor perfusion, severe respiratory distress, petechiae/purpura with illness, dehydration with altered mentation, suicidal ideation with plan → ED/safety pathway before clever outpatient plans.
@@ -484,7 +484,7 @@ A. Clear for championship  B. Hold sports + cardiac pathway  C. Increase caffein
 **Answer:** B.
 
 **3.** Domain I weight for Assess on NPCB?  
-A. 15%  B. 26.5%  C. 32%  D. 30%  
+A. 15%  B. 27%  C. 32%  D. 30%  
 **Answer:** C (Assess 32%; Older Adult is Domain II 30%).
 
 ---
@@ -511,4 +511,4 @@ Diaper dermatitis vs candida (satellite lesions). Atopic dermatitis: moisturize 
 
 Older Adult is ~30% of Domain II — study it heavily elsewhere — but neonatal fever, bronchiolitis hypoxia, and adolescent SI are high-regret misses. A smart study plan still schedules deliberate pediatrics blocks weekly.
 
-**Official process weights reminder:** Assess 32%, Diagnose 26.5%, Plan 26.5%, Evaluate 15%.
+**Official process weights reminder:** Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15%.

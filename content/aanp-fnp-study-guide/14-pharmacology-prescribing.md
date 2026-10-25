@@ -29,7 +29,7 @@
 
 ## Why this chapter matters
 
-Therapeutics is not a siloed “pharm chapter” on the NPCB exam — it is woven through **Plan (26.5%)** and **Evaluate (15%)** on nearly every adult stem, and Domain II makes **Older Adult 30%** a Beers/polypharmacy reality check. Prenatal content inside **Young Adult\* 22%** means ACEI/ARB, isotretinoin systems, valproate, warfarin, methotrexate, and tetracycline/fluoroquinolone themes are high-stakes filters, not trivia.
+Therapeutics is not a siloed “pharm chapter” on the NPCB exam — it is woven through **Plan (27%)** and **Evaluate (15%)** on nearly every adult stem, and Domain II makes **Older Adult 30%** a Beers/polypharmacy reality check. Prenatal content inside **Young Adult\* 22%** means ACEI/ARB, isotretinoin systems, valproate, warfarin, methotrexate, and tetracycline/fluoroquinolone themes are high-stakes filters, not trivia.
 
 Expect stems on prescribing principles, geriatric potentially inappropriate meds, pregnancy/lactation teratogen awareness, CYP/QT/bleed interactions, controlled-substance judgment (PDMP, naloxone, opioid+benzo risk), antibiotic stewardship, systemic steroid counseling, insulin safety, and adherence/cost/SDoH barriers. Candidates who recall a drug name but skip monitoring lose Evaluate points; candidates who prescribe ACEI to a pregnant patient lose dangerous ones.
 
@@ -42,8 +42,8 @@ Expect stems on prescribing principles, geriatric potentially inappropriate meds
 | Domain I process | What it looks like in pharm stems |
 | --- | --- |
 | **Assess (32%)** | Med reconciliation (including OTC/herbals), true allergy vs intolerance, pregnancy/pregnancy potential, CrCl/hepatic clues, QT risk factors, fall risk, substance use, SDoH (cost, literacy, pharmacy access), PDMP when controlled substances considered |
-| **Diagnose (26.5%)** | Is the drug even indicated? Adverse drug effect vs new disease? Therapeutic failure vs nonadherence vs wrong diagnosis? |
-| **Plan (26.5%)** | Right drug/dose/duration; safer alternative on Beers; teratogen avoidance; interaction check; teach-back; naloxone when opioid risk; stewardship duration |
+| **Diagnose (27%)** | Is the drug even indicated? Adverse drug effect vs new disease? Therapeutic failure vs nonadherence vs wrong diagnosis? |
+| **Plan (27%)** | Right drug/dose/duration; safer alternative on Beers; teratogen avoidance; interaction check; teach-back; naloxone when opioid risk; stewardship duration |
 | **Evaluate (15%)** | Labs (K/Cr, INR, A1c, LFTs, drug levels when used), refill gaps, adverse effects, deprescribing opportunities, revise regimen |
 
 **Red-flag filter first:** anaphylaxis, Stevens–Johnson cues, serotonin syndrome/NMS themes, hypoglycemia unresponsiveness, major bleed on anticoag, overdose — ED before clever outpatient titration.

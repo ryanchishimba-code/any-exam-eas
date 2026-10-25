@@ -24,7 +24,7 @@
 
 ## Why this chapter matters
 
-Domain I is literally a reasoning blueprint: **Assess 32% / Diagnose 26.5% / Plan 26.5% / Evaluate 15%**. System chapters teach *what* disease patterns look like; this chapter teaches *how* not to miss the dangerous ones, how to choose the next test, and how to disposition patients without under- or over-triage. Most exam heartbreak is reasoning heartbreak: premature closure, therapy-first thinking, age-blind priors, or sending hypoxia home with “supportive care.”
+Domain I is literally a reasoning blueprint: **Assess 32% / Diagnose 27% / Plan 27% / Evaluate 15%**. System chapters teach *what* disease patterns look like; this chapter teaches *how* not to miss the dangerous ones, how to choose the next test, and how to disposition patients without under- or over-triage. Most exam heartbreak is reasoning heartbreak: premature closure, therapy-first thinking, age-blind priors, or sending hypoxia home with “supportive care.”
 
 **Pair with practice:** After this chapter, do mixed “next step” and “most likely diagnosis” sets and force yourself to name the ADPE verb before answering. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 

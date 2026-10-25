@@ -42,8 +42,8 @@ Expect stems on acute bacterial rhinosinusitis criteria, GAS pharyngitis testing
 | Domain I process | What it looks like in these stems |
 | --- | --- |
 | **Assess (32%)** | Duration/pattern of URI, Centor features, otoscopic exam, visual acuity, photophobia, contact-lens use, pallor/bleeding, sexual history, travel/exposures, vaccination, pregnancy, SDoH (can they fill antivirals / return for labs?) |
-| **Diagnose (26.5%)** | Viral vs bacterial sinusitis; GAS vs viral vs mono; AOM vs OME; infectious vs urgent red eye; micro/normo/macrocytic anemia lanes; cystitis vs pyelo; mono vs strep overlap |
-| **Plan (26.5%)** | Watchful waiting vs treat; test-before-treat when indicated; first-line abx stewardship; urgent ophtho/ED; anemia workup cascade; offer HIV/hep screening; antivirals when timing/risk fit |
+| **Diagnose (27%)** | Viral vs bacterial sinusitis; GAS vs viral vs mono; AOM vs OME; infectious vs urgent red eye; micro/normo/macrocytic anemia lanes; cystitis vs pyelo; mono vs strep overlap |
+| **Plan (27%)** | Watchful waiting vs treat; test-before-treat when indicated; first-line abx stewardship; urgent ophtho/ED; anemia workup cascade; offer HIV/hep screening; antivirals when timing/risk fit |
 | **Evaluate (15%)** | Symptom failure at 48–72h; Hb/ferritin follow-up; STI partner treatment; TB test interpretation next steps; vaccine adverse-event counseling |
 
 **Red-flag filter first:** sudden vision loss, severe eye pain with halos/vomiting, proptosis/ophthalmoplegia, stridor/drooling, neck stiffness with fever, petechial rash with toxicity, severe anemia symptoms, pyelo in pregnancy, neonatal fever → disposition before clever outpatient scripts.

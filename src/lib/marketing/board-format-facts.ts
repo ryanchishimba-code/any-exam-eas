@@ -27,8 +27,8 @@ export const BOARD_FORMAT_FACTS: Record<
     href: "https://www.nccpa.net/pance-content-blueprint/",
   },
   "aanp-fnp": {
-    fact: "AANP FNP practice uses the AANPCB domain and age-group weights.",
-    sourceLabel: "AANPCB FNP content outline",
+    fact: "AANP FNP practice uses the NPCB domain and age-group weights.",
+    sourceLabel: "NPCB FNP content outline",
     href: "https://www.aanpcert.org/certs/fnp",
   },
   "npte-pt": {

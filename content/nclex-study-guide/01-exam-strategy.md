@@ -61,13 +61,15 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 
 #### Common NGN item flavors
 
-- Extended multiple response / **SATA**  
-- **Matrix / grid**  
-- **Bow-tie** (condition ↔ actions ↔ monitors)  
-- **Trend** (data over time)  
-- Drag-and-drop / ordering  
-- Highlight (hot spot)  
-- Cloze / drop-down  
+**Stand-alone NGN types (NCSBN):** **Bow-tie** and **Trend** only.
+
+**Often inside unfolding case studies (6 items per case):**
+
+- Extended multiple response  
+- Enhanced hot spot (highlighting)  
+- Extended drag and drop  
+- Cloze (drop-down)  
+- Matrix / grid (case-study context, not stand-alone)  
 
 **Remember this:** NGN rewards *thinking like a nurse*, not trivia dump. Practice the *steps*, not just the labels.
 

@@ -1,32 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="bow-tie-title bow-tie-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 720" role="img" aria-labelledby="bow-tie-title bow-tie-desc">
   <title id="bow-tie-title">NGN bow-tie item layout</title>
   <desc id="bow-tie-desc">Next Generation NCLEX bow-tie format: select two actions to take, one client condition in the center, and two parameters to monitor.</desc>
-  <rect width="720" height="420" fill="#f8fafc"/>
-  <text x="360" y="36" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#0f172a">NGN Bow-Tie Template</text>
-  <text x="360" y="58" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#475569">2 actions · 1 condition · 2 parameters to monitor (NCSBN NGN)</text>
+  <rect width="375" height="720" fill="#f8fafc"/>
+  <text x="187.5" y="36" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#0f172a">NGN Bow-Tie Template</text>
+  <text x="187.5" y="58" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#475569">2 actions &#183; 1 condition &#183; 2 parameters (NCSBN NGN)</text>
 
-  <rect x="24" y="88" width="200" height="260" rx="10" fill="#0d9488" fill-opacity="0.12" stroke="#0d9488" stroke-width="2"/>
-  <text x="124" y="118" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#0f766e">Actions to take</text>
-  <text x="124" y="138" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Select 2</text>
-  <rect x="44" y="156" width="160" height="44" rx="6" fill="#fff" stroke="#94a3b8"/>
-  <text x="124" y="184" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Action 1</text>
-  <rect x="44" y="212" width="160" height="44" rx="6" fill="#fff" stroke="#94a3b8"/>
-  <text x="124" y="240" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Action 2</text>
+  <rect x="20" y="78" width="335" height="168" rx="10" fill="#0d9488" fill-opacity="0.12" stroke="#0d9488" stroke-width="2"/>
+  <text x="187.5" y="108" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#0f766e">Actions to take</text>
+  <text x="187.5" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Select 2</text>
+  <rect x="40" y="142" width="295" height="40" rx="6" fill="#fff" stroke="#94a3b8"/>
+  <text x="187.5" y="168" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Action 1</text>
+  <rect x="40" y="190" width="295" height="40" rx="6" fill="#fff" stroke="#94a3b8"/>
+  <text x="187.5" y="216" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Action 2</text>
 
-  <polygon points="260,218 300,198 300,238" fill="#0d9488"/>
-  <rect x="300" y="148" width="120" height="140" rx="10" fill="#1e3a5f" stroke="#1e3a5f"/>
-  <text x="360" y="188" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#fff">Condition</text>
-  <text x="360" y="210" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#cbd5e1">Clinical problem</text>
-  <rect x="318" y="224" width="84" height="48" rx="6" fill="#fff" fill-opacity="0.95"/>
-  <polygon points="420,218 460,198 460,238" fill="#1e3a5f"/>
+  <polygon points="167.5,262 187.5,252 207.5,262 187.5,272" fill="#0d9488"/>
+  <line x1="187.5" y1="248" x2="187.5" y2="262" stroke="#0d9488" stroke-width="2"/>
 
-  <rect x="496" y="88" width="200" height="260" rx="10" fill="#1e3a5f" fill-opacity="0.08" stroke="#1e3a5f" stroke-width="2"/>
-  <text x="596" y="118" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Parameters to monitor</text>
-  <text x="596" y="138" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Select 2</text>
-  <rect x="516" y="156" width="160" height="44" rx="6" fill="#fff" stroke="#94a3b8"/>
-  <text x="596" y="184" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Parameter 1</text>
-  <rect x="516" y="212" width="160" height="44" rx="6" fill="#fff" stroke="#94a3b8"/>
-  <text x="596" y="240" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Parameter 2</text>
+  <rect x="87.5" y="278" width="200" height="120" rx="10" fill="#1e3a5f" stroke="#1e3a5f"/>
+  <text x="187.5" y="308" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#fff">Condition</text>
+  <text x="187.5" y="328" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#cbd5e1">Clinical problem</text>
+  <text x="187.5" y="348" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Select 1</text>
+  <rect x="107.5" y="358" width="160" height="28" rx="6" fill="#fff" fill-opacity="0.95"/>
 
-  <text x="360" y="378" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Study aid  AnyExamEasy · Verify current NCSBN NGN item types</text>
+  <polygon points="167.5,412 187.5,402 207.5,412 187.5,422" fill="#1e3a5f"/>
+  <line x1="187.5" y1="398" x2="187.5" y2="412" stroke="#1e3a5f" stroke-width="2"/>
+
+  <rect x="20" y="428" width="335" height="168" rx="10" fill="#1e3a5f" fill-opacity="0.08" stroke="#1e3a5f" stroke-width="2"/>
+  <text x="187.5" y="458" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Parameters to monitor</text>
+  <text x="187.5" y="478" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Select 2</text>
+  <rect x="40" y="492" width="295" height="40" rx="6" fill="#fff" stroke="#94a3b8"/>
+  <text x="187.5" y="518" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Parameter 1</text>
+  <rect x="40" y="540" width="295" height="40" rx="6" fill="#fff" stroke="#94a3b8"/>
+  <text x="187.5" y="566" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Parameter 2</text>
+
+  <text x="187.5" y="640" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Study aid &#183; AnyExamEasy</text>
+  <text x="187.5" y="660" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Verify current NCSBN NGN item types</text>
 </svg>

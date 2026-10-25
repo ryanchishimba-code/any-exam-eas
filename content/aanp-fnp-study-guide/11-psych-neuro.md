@@ -44,8 +44,8 @@ Candidates who prescribe sertraline without asking about mania or suicide lose p
 | Domain I process | What it looks like in stems |
 | --- | --- |
 | **Assess (32%)** | PHQ/GAD themes, SI/HI/means/access, mania cues, substance, sleep, trauma, neuro exam (focal deficits, mentation), meds (anticholinergics, benzos, opioids), fall risk, SDoH, pregnancy |
-| **Diagnose (26.5%)** | MDD vs bipolar vs adjustment; GAD/panic vs medical mimics; migraine vs secondary HA; TIA vs migraine aura vs seizure; delirium vs dementia vs depression (pseudo-dementia themes) |
-| **Plan (26.5%)** | Safety planning / ED; psychotherapy referral; SSRI/SNRI themes; avoid benzo-first chronic anxiety; EMS for stroke; treat reversible delirium causes |
+| **Diagnose (27%)** | MDD vs bipolar vs adjustment; GAD/panic vs medical mimics; migraine vs secondary HA; TIA vs migraine aura vs seizure; delirium vs dementia vs depression (pseudo-dementia themes) |
+| **Plan (27%)** | Safety planning / ED; psychotherapy referral; SSRI/SNRI themes; avoid benzo-first chronic anxiety; EMS for stroke; treat reversible delirium causes |
 | **Evaluate (15%)** | Early follow-up after antidepressant start/escalation; Na in older adults; cognition trend; migraine days / med overuse; secondary prevention after TIA |
 
 **Red-flag filter first:** SI with plan/intent, psychosis with danger, thunderclap HA, acute focal neuro deficit, meningismus with fever, status seizure themes, sudden AMS → emergency pathway before clever outpatient titration.
@@ -493,8 +493,8 @@ If patient already on lithium: Na/volume changes, NSAID interactions, levels, th
 | Domain | Weight |
 | --- | --- |
 | Assess | 32% |
-| Diagnose | 26.5% |
-| Plan | 26.5% |
+| Diagnose | 27% |
+| Plan | 27% |
 | Evaluate | 15% |
 | Older Adult (Domain II) | ~30% |
 

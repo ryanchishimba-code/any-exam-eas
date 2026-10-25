@@ -54,7 +54,7 @@ const exams: { id: string; title: string; href: string; icon: LucideIcon; benefi
     title: "AANP FNP",
     href: "/question-bank?field=aanp-fnp",
     icon: UserRound,
-    benefit: "Primary care · AANPCB blueprint",
+    benefit: "Primary care · NPCB blueprint",
   },
   {
     id: "npte-pt",

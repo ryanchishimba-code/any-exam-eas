@@ -28,13 +28,28 @@ export type BoardLandingVisuals = {
   showPracticeDevice: boolean;
 };
 
-const STEPS = [
+export type BoardPracticeFlowStep = {
+  id: string;
+  label: string;
+  detail: string;
+};
+
+const STEPS: readonly BoardPracticeFlowStep[] = [
   { id: "practice", label: "Practice", detail: "Timed sets and full exams from the live bank." },
   { id: "review", label: "Review", detail: "Keyed answers, distractor reasons, and sources." },
   { id: "pass", label: "Pass", detail: "Track readiness and weak areas before test day." },
-] as const;
+];
 
-export function boardPracticeFlowSteps(): readonly (typeof STEPS)[number][] {
+const PANCE_FINAL_STEP: BoardPracticeFlowStep = {
+  id: "prepare",
+  label: "Prepare",
+  detail: "Spot weak blueprint areas and build stamina before exam day.",
+};
+
+export function boardPracticeFlowSteps(slug?: BoardSlug): readonly BoardPracticeFlowStep[] {
+  if (slug === "pance") {
+    return [STEPS[0], STEPS[1], PANCE_FINAL_STEP];
+  }
   return STEPS;
 }
 

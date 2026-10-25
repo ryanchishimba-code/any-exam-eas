@@ -13,8 +13,8 @@
 | Process | Items | Weight |
 | --- | ---: | ---: |
 | Assess | 43 | **32%** |
-| Diagnose | 36 | **26.5%** |
-| Plan | 36 | **26.5%** |
+| Diagnose | 36 | **27%** |
+| Plan | 36 | **27%** |
 | Evaluate | 20 | **15%** |
 
 Coach tip: if you habitually jump to a drug name, you are under-practicing Assess and Diagnose — the majority of Domain I.

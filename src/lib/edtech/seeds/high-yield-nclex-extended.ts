@@ -297,7 +297,7 @@ export const NCLEX_EXTENDED_TOPICS = defineExamTopics("nclex", [
     title: "Anti-infectives & Stewardship",
     overview: "Culture timing, C. diff precautions, vancomycin monitoring, and allergy assessment.",
     summary:
-      "Anti-infective nursing prioritizes cultures before antibiotics when feasible without delaying sepsis care, monitoring for C. diff on broad-spectrum agents, and slow vancomycin infusion to prevent red man syndrome.\n\nFinish prescribed courses. Contact precautions and hand washing for C. diff — alcohol gel insufficient for spores.",
+      "Anti-infective nursing prioritizes cultures before antibiotics when feasible without delaying sepsis care, monitoring for C. diff on broad-spectrum agents, and slow vancomycin infusion to prevent vancomycin infusion reaction.\n\nFinish prescribed courses. Contact precautions and hand washing for C. diff — alcohol gel insufficient for spores.",
     keyConcepts: [
       "Blood cultures before antibiotics in sepsis when possible",
       "C. diff: contact precautions, oral vancomycin/fidaxomicin for CDI",
@@ -305,7 +305,7 @@ export const NCLEX_EXTENDED_TOPICS = defineExamTopics("nclex", [
       "Assess penicillin allergy type before charting",
       "Monitor renal function with aminoglycosides and vancomycin",
     ],
-    mustKnowFacts: ["Stop/slow vancomycin for red man syndrome during infusion"],
+    mustKnowFacts: ["Stop/slow vancomycin for vancomycin infusion reaction during infusion"],
     pearls: ["Teach patients not to share antibiotics"],
     pitfalls: ["Alcohol hand gel only after C. diff care"],
     practiceTopicSlug: "pharmacology-nursing",

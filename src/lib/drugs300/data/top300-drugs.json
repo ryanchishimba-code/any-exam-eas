@@ -6491,8 +6491,8 @@
       "brand": "Vancocin",
       "class": "Glycopeptide antibiotic",
       "indications": "MRSA, C. diff (oral), serious gram-positive infections",
-      "sideEffects": "Nephrotoxicity, Red Man syndrome (rapid infusion), ototoxicity",
-      "mnemonic": "Vancocin = VANcomycin MRSA — trough 15–20, slow IV Red Man",
+      "sideEffects": "Nephrotoxicity, vancomycin infusion reaction (rapid infusion), ototoxicity",
+      "mnemonic": "Vancocin = VANcomycin MRSA — trough 15–20, slow IV infusion",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
