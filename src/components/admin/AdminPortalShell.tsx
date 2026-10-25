@@ -30,6 +30,7 @@ const navItems = [
   { href: "/admin/content", label: "Content", icon: FileText },
   { href: "/admin/blog", label: "Blog", icon: FileText },
   { href: "/admin/questions", label: "Question bank", icon: ListChecks },
+  { href: "/admin/judgment-pilot", label: "Judgment pilot", icon: Stethoscope },
   { href: "/admin/testimonials", label: "Testimonials", icon: Quote },
   { href: "/admin/social", label: "Social & community", icon: Share2 },
   { href: "/admin/users", label: "Users", icon: Users },
