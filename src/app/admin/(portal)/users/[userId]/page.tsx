@@ -6,6 +6,8 @@ import { CustomerServiceTools } from "@/components/admin/CustomerServiceTools";
 import { displayFirstLastInitial } from "@/lib/display-name";
 import { getCachedSession } from "@/lib/auth/session";
 import { hasPermission } from "@/lib/permissions";
+import { computeAdminStudyCompletionBreakdown } from "@/lib/learning/study-completion/compute-study-completion";
+import { AdminStudyCompletionPanel } from "@/components/admin/AdminStudyCompletionPanel";
 
 export const metadata = {
   title: "User Profile — Admin",
@@ -31,7 +33,10 @@ export default async function AdminUserProfilePage({ params }: Props) {
     );
   }
 
-  const billing = summarizeBillingCycle(profile.subscription);
+  const [billing, studyCompletionBoards] = await Promise.all([
+    Promise.resolve(summarizeBillingCycle(profile.subscription)),
+    computeAdminStudyCompletionBreakdown(userId),
+  ]);
   const subscriptionLabel = `${billing.label} — ${billing.detail}`;
   const displayName = displayFirstLastInitial(profile.user.name, profile.user.email);
   const canManageStaff = hasPermission(session?.user?.role, "admin.actions");
@@ -63,6 +68,8 @@ export default async function AdminUserProfilePage({ params }: Props) {
         lastActiveAt={profile.user.lastActiveAt}
         activityTimeline={profile.activityTimeline ?? []}
       />
+
+      <AdminStudyCompletionPanel boards={studyCompletionBoards} />
 
       <UserProfileCRM
         profile={profile}

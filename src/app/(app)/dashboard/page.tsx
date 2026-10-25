@@ -39,6 +39,10 @@ import {
   readTrialStartHereRecord,
   shouldShowTrialStartHerePath,
 } from "@/lib/trial/trial-start-here";
+import {
+  computeStudyCompletion,
+  studyCompletionSupportedForExam,
+} from "@/lib/learning/study-completion/compute-study-completion";
 
 export const metadata = {
   title: "Dashboard — Any Exam Easy",
@@ -190,6 +194,10 @@ async function DashboardContent({
     accountAttemptCount,
   });
 
+  const studyCompletion = studyCompletionSupportedForExam(examSlug)
+    ? await settled(computeStudyCompletion(userId, examSlug), null, "study completion")
+    : null;
+
   return (
     <DashboardPageContent
       examSlug={examSlug}
@@ -232,6 +240,7 @@ async function DashboardContent({
             }
           : null
       }
+      studyCompletion={studyCompletion}
     />
   );
 }

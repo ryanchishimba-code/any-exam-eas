@@ -34,6 +34,8 @@ import type { TrialStartHereRecord } from "@/lib/trial/trial-start-here";
 import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBitesSection";
 import { ReadinessDashboardCard } from "@/components/readiness/ReadinessDashboardCard";
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
+import { StudyProgressCard } from "@/components/dashboard/StudyProgressCard";
+import type { StudyCompletionResult } from "@/lib/learning/study-completion/compute-study-completion";
 
 export type DashboardHeadline = {
   readinessScore: number;
@@ -80,6 +82,7 @@ export function DashboardPageContent({
   deferTodayMix = false,
   quickBites = null,
   trialStartHere = null,
+  studyCompletion = null,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -117,6 +120,7 @@ export function DashboardPageContent({
     step: 1 | 2 | 3;
     show: boolean;
   } | null;
+  studyCompletion?: StudyCompletionResult | null;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
@@ -213,6 +217,8 @@ export function DashboardPageContent({
           deferMix={deferTodayMix}
         />
       ) : null}
+
+      {studyCompletion ? <StudyProgressCard data={studyCompletion} /> : null}
 
       {examSlug === "nclex" && quickBites ? (
         <VideoQuickBitesSection
