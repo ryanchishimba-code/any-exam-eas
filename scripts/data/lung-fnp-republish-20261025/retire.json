@@ -1,0 +1,44 @@
+[
+ {
+  "id": "cmqgvv4p4002l1ytjtal7cxgy",
+  "fieldId": "aanp-fnp",
+  "status": "retire",
+  "reason": "duplicate: near-identical prolonged-jaundice item keyed to total + direct bilirubin; kept cmr847p7600601yzbtcmyq07m (breastfed, 3 wk) and cmr861n43009w1yz6dd9o52lr (formula-fed, 2 wk)"
+ },
+ {
+  "id": "cmqxb0bfl001j1y7rbl98j1m4",
+  "fieldId": "aanp-fnp",
+  "status": "retire",
+  "reason": "duplicate: near-identical prolonged-jaundice item keyed to total + direct bilirubin; kept cmr847p7600601yzbtcmyq07m (breastfed, 3 wk) and cmr861n43009w1yz6dd9o52lr (formula-fed, 2 wk)"
+ },
+ {
+  "id": "cmr83gb1400191yq5gk7ek8q0",
+  "fieldId": "aanp-fnp",
+  "status": "retire",
+  "reason": "duplicate: near-identical prolonged-jaundice item keyed to total + direct bilirubin; kept cmr847p7600601yzbtcmyq07m (breastfed, 3 wk) and cmr861n43009w1yz6dd9o52lr (formula-fed, 2 wk)"
+ },
+ {
+  "id": "cmr8518uy00bi1y5twaisyp3h",
+  "fieldId": "aanp-fnp",
+  "status": "retire",
+  "reason": "duplicate: near-identical prolonged-jaundice item keyed to total + direct bilirubin; kept cmr847p7600601yzbtcmyq07m (breastfed, 3 wk) and cmr861n43009w1yz6dd9o52lr (formula-fed, 2 wk)"
+ },
+ {
+  "id": "cmr85vku400701yz657d405cg",
+  "fieldId": "aanp-fnp",
+  "status": "retire",
+  "reason": "duplicate: near-identical prolonged-jaundice item keyed to total + direct bilirubin; kept cmr847p7600601yzbtcmyq07m (breastfed, 3 wk) and cmr861n43009w1yz6dd9o52lr (formula-fed, 2 wk)"
+ },
+ {
+  "id": "cmqgrvrgr00001yi4jt73as80",
+  "fieldId": "aanp-fnp",
+  "status": "retire",
+  "reason": "duplicate: near-identical prolonged-jaundice item keyed to total + direct bilirubin; kept cmr847p7600601yzbtcmyq07m (breastfed, 3 wk) and cmr861n43009w1yz6dd9o52lr (formula-fed, 2 wk)"
+ },
+ {
+  "id": "cmr85aqot005j1y9i0ufk3177",
+  "fieldId": "aanp-fnp",
+  "status": "retire",
+  "reason": "Lethargic 3-week-old tiring with feeds: correct action is same-day evaluation (cardiac/metabolic/sepsis) but no named guideline supports a single keyed option; original blueprint metadata (endocrine/diabetes, adolescent) is also wrong. Recommend writing a new CHD/heart-failure item from scratch rather than salvaging."
+ }
+]
