@@ -296,7 +296,7 @@ function assertFileRewrites(items: RewriteItem[]): void {
   if (!/14 days/i.test(gerd.explanation) || !/prescription/i.test(gerd.explanation)) {
     throw new Error("GERD rationale must contrast the prescription course with the 14-day OTC label");
   }
-  if (!/6 weeks/i.test(gerd.scenario) || !/14-day course/i.test(gerd.scenario) || !/within 4 months/i.test(gerd.explanation)) {
+  if (!/six weeks|6 weeks/i.test(gerd.scenario) || !/14-day course/i.test(gerd.scenario) || !/within 4 months/i.test(gerd.explanation)) {
     throw new Error("GERD stem must be recurrence within 4 months of a completed 14-day OTC course");
   }
   if (!/withdrawn|cannot be restarted/i.test(gerd.explanation)) {
