@@ -449,6 +449,13 @@ describe("Video Quick Bites", () => {
             }),
           };
         }
+        if (url.endsWith("/progress")) {
+          return {
+            ok: true,
+            status: 200,
+            json: async () => ({ progress: {} }),
+          };
+        }
         const slug = url.split("/api/quick-bites/")[1]?.split("/")[0] ?? "episode";
         return {
           ok: true,
@@ -471,6 +478,9 @@ describe("Video Quick Bites", () => {
 
     await user.click(screen.getByRole("button", { name: "Play 1. How the Nursing Boards Work" }));
     const video = await screen.findByLabelText("How the Nursing Boards Work video");
+    Object.defineProperty(video, "readyState", { configurable: true, value: 1 });
+    Object.defineProperty(video, "duration", { configurable: true, value: 200 });
+    video.dispatchEvent(new Event("loadedmetadata"));
     expect(video).toHaveProperty("paused", false);
     expect(scrollIntoView).not.toHaveBeenCalled();
     expect(scrollTo).not.toHaveBeenCalled();

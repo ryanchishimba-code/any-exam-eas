@@ -35,6 +35,7 @@ export function QuickBitesPlayer({
   includeCaptionsTrack = true,
   captionsNote = "Captions are available from the player. They match the words already on screen.",
   resumeSnapshot = { playbackPositionSec: 0, completed: false },
+  resumeSnapshotReady = false,
   onProgressSaved,
 }: {
   episode: QuickBiteEpisode | null;
@@ -48,6 +49,7 @@ export function QuickBitesPlayer({
   includeCaptionsTrack?: boolean;
   captionsNote?: string;
   resumeSnapshot?: QuickBiteResumeSnapshot;
+  resumeSnapshotReady?: boolean;
   onProgressSaved?: (slug: string, row: QuickBiteProgressClient) => void;
 }) {
   const slug = episode ? (getQuickBiteBySlug(episode.slug) ?? episode).slug : "";
@@ -67,6 +69,7 @@ export function QuickBitesPlayer({
   }, []);
   const playbackStartToken = useRef("");
   const suppressProgressFlushRef = useRef(false);
+  const resumeSeekCompletedRef = useRef(false);
   const scrollLock = useRef<number | null>(null);
   const [captionsOn, setCaptionsOn] = useState(false);
 
@@ -101,6 +104,7 @@ export function QuickBitesPlayer({
     videoRef,
     videoElement,
     suppressProgressFlushRef,
+    resumeSeekCompletedRef,
     onSaved: onProgressSaved,
   });
 
@@ -132,6 +136,7 @@ export function QuickBitesPlayer({
   useEffect(() => {
     setCaptionsOn(false);
     setVideoElement(null);
+    resumeSeekCompletedRef.current = false;
   }, [slug, playbackNonce]);
 
   useEffect(() => {
@@ -178,14 +183,17 @@ export function QuickBitesPlayer({
   }, [apiBase, slug]);
 
   useEffect(() => {
-    if (!known || state.status !== "ready" || !videoElement) return;
+    if (!known || state.status !== "ready" || !videoElement || !resumeSnapshotReady) return;
     const video = videoElement;
     const token = `${known.slug}:${playbackNonce}:${resumeSnapshot.playbackPositionSec}:${resumeSnapshot.completed}`;
     if (playbackStartToken.current === token) return;
 
+    resumeSeekCompletedRef.current = false;
+
     const startPlayback = () => {
       if (playbackStartToken.current === token) return;
       playbackStartToken.current = token;
+      resumeSeekCompletedRef.current = true;
       try {
         const pending = video.play?.();
         if (pending && typeof pending.catch === "function") pending.catch(() => {});
@@ -197,7 +205,14 @@ export function QuickBitesPlayer({
     return scheduleQuickBiteResumeSeek(video, resumeSnapshot, startPlayback, {
       suppressProgressFlush: suppressProgressFlushRef,
     });
-  }, [known, playbackNonce, resumeSnapshot, state.status, videoElement]);
+  }, [
+    known,
+    playbackNonce,
+    resumeSnapshot,
+    resumeSnapshotReady,
+    state.status,
+    videoElement,
+  ]);
 
   return (
     <div className="contents">

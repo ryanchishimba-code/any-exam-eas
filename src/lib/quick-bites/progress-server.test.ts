@@ -128,6 +128,69 @@ describe("upsertQuickBiteProgress", () => {
     );
   });
 
+  it("rejects near-zero head when saved position is far in and delta is small", async () => {
+    prismaMock.quickBiteProgress.findUnique.mockResolvedValue({
+      watchPct: 78,
+      playbackPositionSec: 47.167,
+      watchSeconds: 200,
+      completedAt: null,
+      updatedAt: new Date(Date.now() - 5_000),
+    });
+    prismaMock.quickBiteProgress.upsert.mockResolvedValue({
+      watchPct: 78,
+      playbackPositionSec: 47.167,
+      watchSeconds: 201,
+      completedAt: null,
+      updatedAt: new Date(),
+    });
+
+    await upsertQuickBiteProgress("user-1", "quick-bites-fnp-ep03-diabetes", {
+      playbackPositionSec: 0.15,
+      momentWatchPct: 0.06,
+      watchSecondsDelta: 1,
+    });
+
+    expect(prismaMock.quickBiteProgress.upsert).toHaveBeenCalledWith(
+      expect.objectContaining({
+        update: expect.objectContaining({
+          playbackPositionSec: 47.167,
+        }),
+      })
+    );
+  });
+
+  it("allows start over when restartFromBeginning is set", async () => {
+    prismaMock.quickBiteProgress.findUnique.mockResolvedValue({
+      watchPct: 78,
+      playbackPositionSec: 47.167,
+      watchSeconds: 200,
+      completedAt: null,
+      updatedAt: new Date(Date.now() - 5_000),
+    });
+    prismaMock.quickBiteProgress.upsert.mockResolvedValue({
+      watchPct: 78,
+      playbackPositionSec: 0,
+      watchSeconds: 200,
+      completedAt: null,
+      updatedAt: new Date(),
+    });
+
+    await upsertQuickBiteProgress("user-1", "quick-bites-fnp-ep03-diabetes", {
+      playbackPositionSec: 0,
+      momentWatchPct: 0,
+      watchSecondsDelta: 0,
+      restartFromBeginning: true,
+    });
+
+    expect(prismaMock.quickBiteProgress.upsert).toHaveBeenCalledWith(
+      expect.objectContaining({
+        update: expect.objectContaining({
+          playbackPositionSec: 0,
+        }),
+      })
+    );
+  });
+
   it("still saves an intentional seek backward", async () => {
     prismaMock.quickBiteProgress.findUnique.mockResolvedValue({
       watchPct: 78,

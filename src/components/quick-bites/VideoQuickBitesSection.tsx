@@ -226,14 +226,15 @@ export function VideoQuickBitesSection({
       .flatMap((group) => group.episodes)
       .find((episode) => episode.slug === activeSlug && config.isPlayable(episode, canPlay)) ?? null;
   const nextEpisode = active ? config.nextEpisode(active.slug, canPlay) : null;
-  const { progress, mergeProgress } = useQuickBiteProgressMap({
+  const { progress, mergeProgress, progressLoaded } = useQuickBiteProgressMap({
     apiBase: config.apiBase,
     enabled: canPlay,
   });
-  const resumeSnapshot = useQuickBiteResumeSnapshot(
+  const { snapshot: resumeSnapshot, ready: resumeSnapshotReady } = useQuickBiteResumeSnapshot(
     active ? `${session}:${active.slug}` : "",
     active?.slug ?? "",
-    progress
+    progress,
+    progressLoaded
   );
 
   function selectFromLibrary(slug: string) {
@@ -313,6 +314,7 @@ export function VideoQuickBitesSection({
           includeCaptionsTrack={config.includeCaptionsTrack}
           captionsNote={config.captionsNote}
           resumeSnapshot={resumeSnapshot}
+          resumeSnapshotReady={resumeSnapshotReady}
           onProgressSaved={mergeProgress}
           library={
             <div

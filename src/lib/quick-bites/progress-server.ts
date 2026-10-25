@@ -82,12 +82,21 @@ export async function upsertQuickBiteProgress(
   );
   let playbackPositionSec = Math.max(0, input.playbackPositionSec);
   const existingPosition = existing?.playbackPositionSec ?? 0;
-  if (
-    playbackPositionSec <= 0.5 &&
-    existingPosition > 0.5 &&
-    input.watchSecondsDelta === 0
-  ) {
-    playbackPositionSec = existingPosition;
+  if (!input.restartFromBeginning) {
+    if (
+      playbackPositionSec <= 0.5 &&
+      existingPosition > 0.5 &&
+      input.watchSecondsDelta === 0
+    ) {
+      playbackPositionSec = existingPosition;
+    }
+    if (
+      existingPosition > 5 &&
+      playbackPositionSec < 2 &&
+      input.watchSecondsDelta <= 1
+    ) {
+      playbackPositionSec = existingPosition;
+    }
   }
   const watchSeconds = (existing?.watchSeconds ?? 0) + increment;
   const completed =
