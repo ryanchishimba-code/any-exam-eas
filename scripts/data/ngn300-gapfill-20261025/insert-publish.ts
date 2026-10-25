@@ -27,7 +27,6 @@ import {
   validateGapfillForPublish,
 } from "./gapfill-lib";
 import { catalogCountsFromRows, type ServeCase, type ServeItem } from "./catalog-counts";
-import type { SourceRef } from "@/lib/assessment/types";
 import { loadEnvFiles } from "../../load-env";
 
 const CONFIRM_ENV = "NGN_GAPFILL_CONFIRM";
