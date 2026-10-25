@@ -72,7 +72,7 @@ Prioritized diagram list for the AnyExamEasy AANP FNP Reference Book. Drop PNGs 
 
 ## Notes for generators
 
-- Do **not** invent AANPCB pass rates, student counts, or Qbank sizes.  
+- Do **not** invent NPCB pass rates, student counts, or Qbank sizes.  
 - Prefer labeled clinical diagrams over photorealistic gore.  
 - Keep text large enough for mobile web chapters.  
 - In this complete package, diagrams are compressed `.jpg` (same stems). Source book may still list `.png` catalog names.  

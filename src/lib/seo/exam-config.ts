@@ -308,7 +308,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     features: [
       {
         title: "14 knowledge-area Roadmap",
-        detail: "Track readiness across NCCPA organ-system weights — cardiovascular (13%), pulmonary (10%), and more.",
+        detail: "Track readiness across NCCPA organ-system weights — cardiovascular (11%), pulmonary (9%), and more.",
       },
       {
         title: "Task-area vignette bank",

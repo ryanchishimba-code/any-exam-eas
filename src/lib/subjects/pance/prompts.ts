@@ -20,7 +20,7 @@ PANCE (Physician Assistant National Certifying Examination) — ${PANCE_OUTLINE_
 - Clinical vignettes with 2–4 sentence scenarios; stem is the lead-in question only ("A 45-year-old presents with…").
 - Task areas: ${TASK_SUMMARY}.
 - Knowledge areas (organ systems): ${KNOWLEDGE_SUMMARY}.
-- Cardiovascular (13%) and pulmonary (10%) are highest-yield systems; include pediatrics, women's health, and emergency stabilization in mixed blocks.
+- Cardiovascular (11%) and pulmonary (9%) are highest-yield systems; include pediatrics, women's health, and emergency stabilization in mixed blocks.
 - Integrate pharmacology (indications, contraindications, monitoring, adverse effects) across all systems.
 - Distractors must be plausible alternatives a PA student would consider — never joke answers or mutually exclusive nonsense.
 - Apply batch diversity: no two questions in a set should test the same diagnosis, drug class, or management step.

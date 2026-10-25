@@ -1,6 +1,6 @@
 # AnyExamEasy NAPLEX Reference Book
 
-**Subtitle:** Pass-Focused Pharmacist Judgment Companion for the NAPLEX (2025+ Content Outline)
+**Subtitle:** Pharmacist Judgment Companion for the NAPLEX (2025+ Content Outline)
 
 **For:** NAPLEX candidates (PharmD graduates and FPGEC-certified foreign-educated pharmacists)  
 **From:** [AnyExamEasy](https://anyexameasy.com)  

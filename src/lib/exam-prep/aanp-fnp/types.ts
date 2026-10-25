@@ -1,10 +1,10 @@
 /**
- * AANPCB FNP Content Outline (2024+ blueprint).
- * Source: https://www.aanpcert.org/certs/fnp
+ * NPCB (Nurse Practitioner Certification Board) FNP Content Outline (2024+ blueprint).
+ * Source: https://www.aanpcert.org/certs/fnp and FNP Candidate Handbook Appendix A.
  */
 
 export const AANP_FNP_BLUEPRINT_SOURCE =
-  "AANPCB FNP Content Outline (2024+ blueprint)";
+  "NPCB FNP Content Outline (2024+ blueprint)";
 
 /** Official target for the curated + AI-generated AANP FNP bank. */
 export const AANP_FNP_TARGET_TOTAL = 6000;
@@ -119,15 +119,15 @@ export type AanpFnpAgeGroupQuotaRow = {
   deficit?: number;
 };
 
-/** Official domain weights (AANPCB 2024+). */
+/** Official domain weights (NPCB 2024+ handbook; Diagnose/Plan = 36/135 scored items). */
 export const AANP_FNP_DOMAIN_WEIGHTS: Record<AanpFnpDomainId, number> = {
-  assess: 0.32,
-  diagnose: 0.265,
-  plan: 0.265,
-  evaluate: 0.15,
+  assess: 43 / 135,
+  diagnose: 36 / 135,
+  plan: 36 / 135,
+  evaluate: 20 / 135,
 };
 
-/** Official patient age group weights (AANPCB 2024+). */
+/** Official patient age group weights (NPCB 2024+). */
 export const AANP_FNP_AGE_GROUP_WEIGHTS: Record<AanpFnpPatientAgeGroupId, number> = {
   newborn: 0.02,
   infant: 0.03,

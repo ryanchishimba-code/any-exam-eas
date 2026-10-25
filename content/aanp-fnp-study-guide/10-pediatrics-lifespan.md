@@ -1,6 +1,6 @@
 # Chapter 10 — Pediatrics & Lifespan
 
-> **Study aid only.** Pediatric and adolescent primary-care themes for FNP exam judgment — not a protocol. Verify current AAP Bright Futures–aligned well-child themes, ACIP vaccine schedules, otitis/asthma guidance, and drug labels. Teaching themes only. Independent of AANPCB/AANP.
+> **Study aid only.** Pediatric and adolescent primary-care themes for FNP exam judgment — not a protocol. Verify current AAP Bright Futures–aligned well-child themes, ACIP vaccine schedules, otitis/asthma guidance, and drug labels. Teaching themes only. Independent of NPCB/AANP.
 
 ![Well-child visit grid](visuals/well-child-visit-grid.jpg)
 
@@ -31,7 +31,7 @@
 
 ## Why this chapter matters
 
-Newborn through adolescent care is a smaller Domain II slice than middle/older adult — and that is exactly why candidates under-study it. AANPCB still scores **Assess / Diagnose / Plan / Evaluate** (32% / 26.5% / 26.5% / 15%) on well-child visits, fever triage, AOM stewardship, asthma, ADHD, sports clearance, dehydration, bronchiolitis, vaccines, and adolescent risk. Miss a neonate fever disposition or clear an athlete with exertional syncope and you fail the item the way you’d fail the child.
+Newborn through adolescent care is a smaller Domain II slice than middle/older adult — and that is exactly why candidates under-study it. NPCB still scores **Assess / Diagnose / Plan / Evaluate** (32% / 26.5% / 26.5% / 15%) on well-child visits, fever triage, AOM stewardship, asthma, ADHD, sports clearance, dehydration, bronchiolitis, vaccines, and adolescent risk. Miss a neonate fever disposition or clear an athlete with exertional syncope and you fail the item the way you’d fail the child.
 
 **Pair with practice:** Tag every miss with age band (newborn/infant/child/adolescent*) + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
@@ -363,7 +363,7 @@ ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable
 - Smaller Domain II % ≠ skippable — high-regret items cluster here.  
 - ADPE: toxic appearance and age-based fever rules beat recipe memorization.  
 - Verify vaccine schedules and abx durations — they update.  
-- Independent study aid — not AANPCB/AANP; no pass guarantee.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 **Next practice move:** Drill neonatal fever, AOM stewardship, asthma, sports cardiac screens, and adolescent safety items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
@@ -483,7 +483,7 @@ A. Home antipyretic and f/u 48h  B. ED/protocol evaluation  C. Oral cefdinir  D.
 A. Clear for championship  B. Hold sports + cardiac pathway  C. Increase caffeine  D. Iron only and clear  
 **Answer:** B.
 
-**3.** Domain I weight for Assess on AANPCB?  
+**3.** Domain I weight for Assess on NPCB?  
 A. 15%  B. 26.5%  C. 32%  D. 30%  
 **Answer:** C (Assess 32%; Older Adult is Domain II 30%).
 

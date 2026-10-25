@@ -1,6 +1,6 @@
 # Chapter 13 — ENT / Eyes / Heme / ID
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current IDSA/AAO-HNS/ophthalmology-aligned and related guidance, USPSTF/ACIP themes, FDA labeling, and the AANPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current IDSA/AAO-HNS/ophthalmology-aligned and related guidance, USPSTF/ACIP themes, FDA labeling, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
 
 ![Anemia workup tree](visuals/anemia-workup-tree.jpg)
 
@@ -396,7 +396,7 @@ Don’t miss bacterial pneumonia, PE, HF, or ACS hiding under “viral” labels
 - Domain II: YA* owns STI/mono/prenatal infection; Older Adult owns atypical infection and anemia-source hunts.
 - Stewardship is Plan — not optional flavor text.
 - Teaching regimens change — verify guidelines and labels.
-- Independent study aid — not AANPCB/AANP; no pass guarantee.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 **Next practice move:** Drill sinusitis, Centor/GAS, mono, AOM, red-eye emergencies, anemia, UTI/ASB, HIV/hep screening, and flu/COVID items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
@@ -454,7 +454,7 @@ A. Hydration  B. Empiric aminopenicillin for “just in case strep” when mono 
 
 > **TRAP** — Skipping Evaluate (ophtho kept appointment, endoscopy done, HIV result disclosed with linkage).
 
-> **TRAP** — Using ANCC weights while sitting AANPCB (or the reverse).
+> **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
 
 ---
 

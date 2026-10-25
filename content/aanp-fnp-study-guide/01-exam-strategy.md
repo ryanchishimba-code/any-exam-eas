@@ -1,6 +1,6 @@
 # Chapter 1 — Exam Strategy (Part I)
 
-> **Study aid only.** Strategy framing for the AANPCB FNP-C exam. Confirm current rules in the official Candidate Handbook at [aanpcert.org](https://www.aanpcert.org). Independent — not affiliated with AANPCB or AANP. No pass guarantee.
+> **Study aid only.** Strategy framing for the NPCB FNP-C exam. Confirm current rules in the official Candidate Handbook at [aanpcert.org](https://www.aanpcert.org). Independent — not affiliated with NPCB or AANP. No certification guarantee.
 
 ![Domain I Practice weights](visuals/fnp-domain-i-weights.jpg)
 
@@ -8,7 +8,7 @@
 
 ![ADPE decision loop](visuals/adpe-loop.jpg)
 
-![AANP vs ANCC soft callout](visuals/aanp-vs-ancc-callout.jpg)
+![NPCB FNP-C vs ANCC FNP-BC blueprint comparison](visuals/aanp-vs-ancc-callout.svg)
 
 ---
 
@@ -36,11 +36,11 @@ This chapter locks the official numbers, teaches the ADPE habit, gives study pla
 
 ---
 
-> **MUST KNOW** — Domain I: Assess 32%, Diagnose 26.5%, Plan 26.5%, Evaluate 15%. Exam length 150 (135+15).
+> **MUST KNOW** — Domain I: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15% (handbook table; 36/135 scored items each for Diagnose and Plan). Exam length 150 (135+15) in a **3-hour** appointment.
 
 > **HIGHLIGHT** — Label every practice item with ADPE verb + Domain II age band.
 
-> **TRAP** — Treating AANPCB and ANCC blueprints as identical.
+> **TRAP** — Treating NPCB and ANCC blueprints as identical.
 
 > **LIFESPAN** — Force Older Adult and prenatal (YA*) reps weekly — blueprint gravity.
 
@@ -56,23 +56,24 @@ This chapter locks the official numbers, teaches the ADPE habit, gives study pla
 
 ### The big picture
 
-| Fact | Detail (verify in current AANPCB Candidate Handbook) |
+| Fact | Detail (verify in current NPCB Candidate Handbook) |
 | --- | --- |
-| Credential path | AANPCB **FNP-C** (this book’s primary focus) |
+| Credential path | NPCB **FNP-C** (this book’s primary focus) |
 | Delivery | Computer-based testing (commonly Pearson VUE — confirm handbook) |
+| Time | **3 hours** for the examination appointment |
 | Length | **150** questions total — **135 scored** + **15 pretest** |
 | What you can’t do | Spot pretest items — treat every question seriously |
 | Scored organization | **Domain I Practice** processes × **Domain II Patient Age** |
 | Knowledge areas woven through items | Health Assessment, Pathophysiology, Therapeutics, Evidence-informed Practice (diagnostic reasoning, health promotion, SDoH, legal/ethical, procedures, transitions of care, etc.) |
-| Result | Certification decision per AANPCB rules; attempt/retake policies — confirm handbook |
+| Result | Certification decision per NPCB rules; attempt/retake policies — confirm handbook |
 
 ### Domain I — Practice (official — do not invent other percents)
 
 | Process | Approx. scored items | Weight | Stem “feel” |
 | --- | ---: | ---: | --- |
 | **Assess** | 43 | **32%** | What else do you need? History, exam, risk, SDoH, stability |
-| **Diagnose** | 36 | **26.5%** | Most likely vs must-not-miss; best next test |
-| **Plan** | 36 | **26.5%** | Pharm/nonpharm, education, referral, shared decisions |
+| **Diagnose** | 36 | **27%** (36/135) | Most likely vs must-not-miss; best next test |
+| **Plan** | 36 | **27%** (36/135) | Pharm/nonpharm, education, referral, shared decisions |
 | **Evaluate** | 20 | **15%** | Did it work? Monitor what? Revise when? |
 
 **Study implication:** Assess + Diagnose + Plan ≈ **85%** of Domain I. Evaluate is smaller but high-yield for monitoring, follow-up timing, adherence, and “therapy failed — rethink diagnosis.”
@@ -90,7 +91,7 @@ This chapter locks the official numbers, teaches the ADPE habit, gives study pla
 | Middle Adult | **26%** | Prevention + chronic disease peak |
 | Older Adult | **30%** | Largest band — multimorbidity, Beers themes, falls, cognition, atypical presentations |
 
-\*Includes prenatal. Age parameters are not fixed by AANPCB.
+\*Includes prenatal. Age parameters are not fixed by NPCB.
 
 ### Knowledge areas (how content sneaks into ADPE)
 
@@ -98,7 +99,7 @@ You will not see a separate “SDoH section score,” but SDoH appears inside As
 
 ### If you’re taking ANCC (FNP-BC) — short callout only
 
-ANCC’s **FNP-BC** uses a **different** test content outline. Clinical judgment overlaps; **weights and emphasis do not magically match AANPCB**. If ANCC is your exam, download ANCC’s official outline and use it as your weight map. This book remains useful for ADPE primary-care depth — recalibrate time allocation, don’t assume identical blueprints.
+ANCC’s **FNP-BC** uses a **different** test content outline. Clinical judgment overlaps; **weights and emphasis do not magically match NPCB**. If ANCC is your exam, download ANCC’s official outline and use it as your weight map. This book remains useful for ADPE primary-care depth — recalibrate time allocation, don’t assume identical blueprints.
 
 ---
 
@@ -325,7 +326,7 @@ Practice percentage is **not** an official exam score. Trends matter: better rat
 
 ### After
 - [ ] Don’t reconstruct every item  
-- [ ] Follow AANPCB results process per handbook  
+- [ ] Follow NPCB results process per handbook  
 
 ---
 
@@ -349,7 +350,7 @@ Practice percentage is **not** an official exam score. Trends matter: better rat
 - 150 questions = 135 scored + 15 pretest — take all seriously.  
 - Domain I: Assess 32%, Diagnose 26.5%, Plan 26.5%, Evaluate 15%.  
 - Domain II: Older Adult 30% largest; prenatal lives in Young Adult\*.  
-- AANP/AANPCB-first; ANCC is a separate outline.  
+- AANP/NPCB-first; ANCC is a separate outline.  
 - Application loop: topic → questions → error log → weak area.
 
 **Soft CTA:** Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.

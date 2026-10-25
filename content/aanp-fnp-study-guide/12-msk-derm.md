@@ -1,6 +1,6 @@
 # Chapter 12 — MSK / Dermatology
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current AAOS/ACR/AAD-aligned and related guidance, FDA labeling, and the AANPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current AAOS/ACR/AAD-aligned and related guidance, FDA labeling, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
 
 ![Back pain red flags](visuals/back-pain-red-flags.jpg)
 
@@ -412,7 +412,7 @@ Necrotizing fasciitis cues (pain out of proportion, rapid spread, crepitus, toxi
 - Domain II reality: Older Adult MSK/derm stems love occult fracture, stasis vs cellulitis, and NSAID harm.
 - ADPE order: can’t-miss joint/spine/skin emergencies before clever outpatient scripts.
 - Teaching doses/intervals change — verify guidelines and labels.
-- Independent study aid — not AANPCB/AANP; no pass guarantee.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 **Next practice move:** Drill back-pain red flags, septic joint, Ottawa/elder fracture, gout, cellulitis vs stasis, ABCDE, and SJS/TEN items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
@@ -498,7 +498,7 @@ A. Home diphenhydramine  B. ED for SJS/TEN pathway  C. Increase the dose  D. All
 
 > **TRAP** — Skipping Evaluate (48-hour cellulitis recheck, biopsy results, culture follow-up) because the prescription felt complete.
 
-> **TRAP** — Using ANCC weights while sitting AANPCB (or the reverse).
+> **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
 
 ---
 

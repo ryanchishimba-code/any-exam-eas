@@ -1,6 +1,6 @@
 # Chapter 9 — Women’s Health
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current CDC MEC, USPSTF, ACOG-aligned prenatal themes, STI treatment guidance, FDA labeling, and the AANPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current CDC MEC, USPSTF, ACOG-aligned prenatal themes, STI treatment guidance, FDA labeling, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
 
 ![Contraception decision map](visuals/contraception-decision-map.jpg)
 
@@ -16,7 +16,7 @@
 
 > **MUST KNOW** — Pregnancy test early when it changes imaging, hormones, or disposition. Ectopic and PID toxicity leave the clinic.
 
-> **HIGHLIGHT** — Young Adult* includes **prenatal** on AANPCB — do not skip Ob basics.
+> **HIGHLIGHT** — Young Adult* includes **prenatal** on NPCB — do not skip Ob basics.
 
 > **TRAP** — Combined hormonal contraception with migraine with aura, or ACEI/ARB in pregnancy.
 
@@ -31,7 +31,7 @@
 
 ## Why this chapter matters
 
-Women’s health is not a “niche elective” on AANPCB — it is everyday primary care scored across Domain I (**Assess 32%, Diagnose 26.5%, Plan 26.5%, Evaluate 15%**) and Domain II age bands, with **Young Adult\*** carrying prenatal content. Expect stems on contraception counseling, STI syndromes, PCOS, abnormal uterine bleeding (AUB), menopause, breast/cervical screening conversations, and pregnancy red flags (ectopic, teratogens, hypertensive disorders).
+Women’s health is not a “niche elective” on NPCB — it is everyday primary care scored across Domain I (**Assess 32%, Diagnose 26.5%, Plan 26.5%, Evaluate 15%**) and Domain II age bands, with **Young Adult\*** carrying prenatal content. Expect stems on contraception counseling, STI syndromes, PCOS, abnormal uterine bleeding (AUB), menopause, breast/cervical screening conversations, and pregnancy red flags (ectopic, teratogens, hypertensive disorders).
 
 Candidates who memorize pill brands without medical-eligibility thinking lose easy points. Candidates who send unilateral first-trimester pain home without an ectopic plan lose dangerous ones.
 
@@ -400,7 +400,7 @@ Shared decision mammography start age themes; don’t ignore palpable mass regar
 - Domain II: prenatal lives inside **Young Adult\*** — study it on purpose.  
 - ADPE order: stability and can’t-miss pregnancy complications before clever hormone titration.  
 - Teaching doses/intervals change — verify CDC/USPSTF/ACOG-aligned sources and labels.  
-- Independent study aid — not AANPCB/AANP; no pass guarantee.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 **Next practice move:** Drill contraception MEC, STI/PID, AUB/PCOS, prenatal red flags, and screening items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 

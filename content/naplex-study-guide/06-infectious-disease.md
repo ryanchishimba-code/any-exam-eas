@@ -50,7 +50,7 @@ ID items test **bug-drug-patient** matching, allergy assessment, organ dosing, i
 | Class | Hooks |
 | --- | --- |
 | Beta-lactams | Time-dependent; allergy nuances; seizures at high doses/renal failure |
-| Vancomycin | AUC/trough monitoring themes; nephrotoxicity; Red Man (infusion rate) |
+| Vancomycin | AUC/trough monitoring themes; nephrotoxicity; vancomycin infusion reaction (infusion rate) |
 | Aminoglycosides | Concentration-dependent; levels; oto/nephro toxicity |
 | Macrolides | QT; CYP3A interactions; GI |
 | Fluoroquinolones | Tendon, CNS, QT, aortic/hypoglycemia warnings — reserve appropriately |

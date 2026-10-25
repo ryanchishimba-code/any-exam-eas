@@ -20,4 +20,4 @@ Copies `visuals/` into `public/aanp-fnp-study-guide/visuals/` must stay in sync 
 | `VISUALS-NEEDED.md` | Figure catalog (complete) |
 | `QA-REPORT.md` | Package QA notes |
 
-**Study aid only.** Not clinical advice. Independent of AANPCB — no affiliation or pass-rate claims.
+**Study aid only.** Not clinical advice. Independent of NPCB — no affiliation or pass-rate claims.

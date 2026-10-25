@@ -108,7 +108,7 @@ function pickTaskForSlot(
   contentCategory: PanceContentCategoryId,
   index: number
 ): PanceTaskCategoryId {
-  if (contentCategory === "other") return "professional";
+  if (contentCategory === "professional-practice") return "professional";
   const tasks = TASK_IDS.filter((t) => t !== "professional");
   return tasks[index % tasks.length]!;
 }

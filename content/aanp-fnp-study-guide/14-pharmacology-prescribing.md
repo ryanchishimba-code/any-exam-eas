@@ -1,6 +1,6 @@
 # Chapter 14 — Pharmacology & Prescribing
 
-> **Study aid only.** Prescribing principles for exam judgment — not individualized therapy, not legal advice, not a protocol. Verify DEA/state rules, Beers Criteria updates, pregnancy/lactation resources (PLLR labeling), FDA labeling, renal/hepatic dosing references, and the AANPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Prescribing principles for exam judgment — not individualized therapy, not legal advice, not a protocol. Verify DEA/state rules, Beers Criteria updates, pregnancy/lactation resources (PLLR labeling), FDA labeling, renal/hepatic dosing references, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
 
 ![Beers prescribing card](visuals/beers-prescribing-card.jpg)
 
@@ -29,7 +29,7 @@
 
 ## Why this chapter matters
 
-Therapeutics is not a siloed “pharm chapter” on the AANPCB exam — it is woven through **Plan (26.5%)** and **Evaluate (15%)** on nearly every adult stem, and Domain II makes **Older Adult 30%** a Beers/polypharmacy reality check. Prenatal content inside **Young Adult\* 22%** means ACEI/ARB, isotretinoin systems, valproate, warfarin, methotrexate, and tetracycline/fluoroquinolone themes are high-stakes filters, not trivia.
+Therapeutics is not a siloed “pharm chapter” on the NPCB exam — it is woven through **Plan (26.5%)** and **Evaluate (15%)** on nearly every adult stem, and Domain II makes **Older Adult 30%** a Beers/polypharmacy reality check. Prenatal content inside **Young Adult\* 22%** means ACEI/ARB, isotretinoin systems, valproate, warfarin, methotrexate, and tetracycline/fluoroquinolone themes are high-stakes filters, not trivia.
 
 Expect stems on prescribing principles, geriatric potentially inappropriate meds, pregnancy/lactation teratogen awareness, CYP/QT/bleed interactions, controlled-substance judgment (PDMP, naloxone, opioid+benzo risk), antibiotic stewardship, systemic steroid counseling, insulin safety, and adherence/cost/SDoH barriers. Candidates who recall a drug name but skip monitoring lose Evaluate points; candidates who prescribe ACEI to a pregnant patient lose dangerous ones.
 
@@ -398,7 +398,7 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 - Pharm is Plan + Evaluate across the blueprint — not a memorized orphan list.
 - Older Adult 30% makes Beers and deprescribing high-yield.
 - Prenatal-in-YA* makes teratogen filters non-optional.
-- Independent study aid — not AANPCB/AANP; no pass guarantee.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 **Next practice move:** Drill Beers, teratogens, interactions, stewardship, steroid/insulin safety, and controlled-substance judgment items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
@@ -468,7 +468,7 @@ A. Azithromycin “just in case”  B. Supportive care + return precautions  C. 
 
 > **TRAP** — Skipping Evaluate (INR, BMP, A1c, refill gaps) because the e-Rx felt complete.
 
-> **TRAP** — Using ANCC weights while sitting AANPCB (or the reverse).
+> **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
 
 ---
 

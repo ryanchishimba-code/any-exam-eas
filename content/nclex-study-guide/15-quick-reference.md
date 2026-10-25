@@ -214,7 +214,7 @@ Soap/water for C. diff · Mask for droplet · N95+room for airborne
 
 Practice this aloud on every case study — even when the item format differs.
 
-![Bow-tie NGN template](visuals/bow-tie-ngn-example.jpg)
+![Bow-tie NGN template: two actions, one condition, two parameters to monitor](visuals/bow-tie-ngn-example.svg)
 
 ---
 

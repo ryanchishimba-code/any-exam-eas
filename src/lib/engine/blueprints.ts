@@ -13,6 +13,10 @@ import {
   PANCE_KNOWLEDGE_AREAS,
   PANCE_OUTLINE_SOURCE,
 } from "@/lib/exam-prep/pance/content-outline";
+import {
+  NPTE_PT_BODY_SYSTEMS,
+  NPTE_PT_OUTLINE_SOURCE,
+} from "@/lib/exam-prep/npte-pt/content-outline";
 import { buildSpineExamBlueprint } from "@/lib/exam-prep/usmle/content-spine";
 
 export type BlueprintCategory = {
@@ -257,169 +261,57 @@ const PANCE: ExamBlueprint = {
   })),
 };
 
-/** AANPCB FNP Content Outline (2024+ blueprint). */
+/** NPCB FNP Content Outline (2024+ blueprint). */
 const AANP_FNP: ExamBlueprint = {
   fieldId: "aanp-fnp",
   examName: "AANP FNP-C",
-  sourceNote: "AANPCB FNP Content Outline (2024+ blueprint) — Assess, Diagnose, Plan, Evaluate",
+  sourceNote: "NPCB FNP Content Outline (2024+ blueprint) — Assess, Diagnose, Plan, Evaluate",
   vignetteMinRatio: 0.85,
   categories: [
     {
       id: "assess",
       label: "Assess",
-      weight: 0.32,
+      weight: 43 / 135,
       subjectIds: ["assess", "pediatrics", "geriatrics", "womens-health"],
       highYieldTopics: ["history", "physical exam", "screening", "diagnostics", "lifespan assessment"],
     },
     {
       id: "diagnose",
       label: "Diagnose",
-      weight: 0.265,
+      weight: 36 / 135,
       subjectIds: ["diagnose", "cardiovascular", "pulmonary", "endocrine", "infectious-disease"],
       highYieldTopics: ["differential diagnosis", "clinical reasoning", "red flags", "data synthesis"],
     },
     {
       id: "plan",
       label: "Plan",
-      weight: 0.265,
+      weight: 36 / 135,
       subjectIds: ["plan", "psychiatry-behavioral", "womens-health", "endocrine"],
       highYieldTopics: ["pharmacotherapy", "patient education", "referrals", "preventive care"],
     },
     {
       id: "evaluate",
       label: "Evaluate",
-      weight: 0.15,
+      weight: 20 / 135,
       subjectIds: ["evaluate", "geriatrics", "psychiatry-behavioral"],
       highYieldTopics: ["treatment response", "adverse effects", "follow-up", "care plan modification"],
     },
   ],
 };
 
-/** FSBPT NPTE-PT Test Content Outline (current for 2026). */
-/** Raw FSBPT content-area shares sum to ~72%; normalized to 100% for roadmap weighting. */
-const NPTE_PT_CONTENT_WEIGHT_SUM = 0.72;
-
+/** FSBPT NPTE-PT Test Content Outline (effective January 2024). */
 const NPTE_PT: ExamBlueprint = {
   fieldId: "npte-pt",
   examName: "NPTE-PT",
-  sourceNote: "FSBPT NPTE-PT Test Content Outline (current for 2026) — body systems & non-systems",
+  sourceNote: `${NPTE_PT_OUTLINE_SOURCE} — body systems & non-systems`,
   vignetteMinRatio: 0.9,
-  categories: [
-    {
-      id: "musculoskeletal",
-      label: "Musculoskeletal System",
-      weight: 0.2 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["musculoskeletal"],
-      highYieldTopics: [
-        "low back pain",
-        "rotator cuff",
-        "ACL rehab",
-        "TKA/THA",
-        "manual therapy",
-        "special tests",
-        "gait deviations",
-      ],
-    },
-    {
-      id: "neuromuscular-nervous",
-      label: "Neuromuscular & Nervous Systems",
-      weight: 0.17 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["neuromuscular-nervous"],
-      highYieldTopics: [
-        "stroke",
-        "SCI",
-        "Parkinson",
-        "vestibular",
-        "balance",
-        "gait training",
-        "peripheral nerve",
-      ],
-    },
-    {
-      id: "cardiovascular-pulmonary",
-      label: "Cardiovascular & Pulmonary Systems",
-      weight: 0.1 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["cardiovascular-pulmonary"],
-      highYieldTopics: ["COPD", "CHF", "post-MI rehab", "oxygen titration", "airway clearance"],
-    },
-    {
-      id: "integumentary",
-      label: "Integumentary System",
-      weight: 0.04 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["integumentary"],
-      highYieldTopics: ["pressure injuries", "wound care", "burns"],
-    },
-    {
-      id: "metabolic-endocrine",
-      label: "Metabolic & Endocrine Systems",
-      weight: 0.02 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["metabolic-endocrine"],
-      highYieldTopics: ["diabetes exercise", "osteoporosis"],
-    },
-    {
-      id: "gastrointestinal",
-      label: "Gastrointestinal System",
-      weight: 0.018 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["gastrointestinal"],
-      highYieldTopics: ["post-abdominal surgery", "pelvic floor"],
-    },
-    {
-      id: "genitourinary",
-      label: "Genitourinary System",
-      weight: 0.014 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["genitourinary"],
-      highYieldTopics: ["incontinence", "pelvic floor training"],
-    },
-    {
-      id: "lymphatic",
-      label: "Lymphatic System",
-      weight: 0.022 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["lymphatic"],
-      highYieldTopics: ["lymphedema", "CDT", "compression"],
-    },
-    {
-      id: "system-interactions",
-      label: "System Interactions",
-      weight: 0.036 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["system-interactions"],
-      highYieldTopics: ["comorbidities", "frailty", "multi-system deconditioning"],
-    },
-    {
-      id: "equipment-devices",
-      label: "Equipment, Devices & Technologies",
-      weight: 0.022 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["equipment-devices"],
-      highYieldTopics: ["wheelchair", "ambulatory aids", "prosthetics", "orthotics"],
-    },
-    {
-      id: "therapeutic-modalities",
-      label: "Therapeutic Modalities",
-      weight: 0.02 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["therapeutic-modalities"],
-      highYieldTopics: ["ultrasound", "TENS", "NMES", "cryotherapy", "heat"],
-    },
-    {
-      id: "safety-protection",
-      label: "Safety & Protection",
-      weight: 0.024 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["safety-protection"],
-      highYieldTopics: ["falls", "body mechanics", "infection control", "BBP"],
-    },
-    {
-      id: "professional-responsibilities",
-      label: "Professional Responsibilities",
-      weight: 0.018 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["professional-responsibilities"],
-      highYieldTopics: ["ethics", "documentation", "supervision", "scope"],
-    },
-    {
-      id: "research-evidence",
-      label: "Research & Evidence-Based Practice",
-      weight: 0.016 / NPTE_PT_CONTENT_WEIGHT_SUM,
-      subjectIds: ["research-evidence"],
-      highYieldTopics: ["sensitivity", "specificity", "outcome measures", "RCT appraisal"],
-    },
-  ],
+  categories: NPTE_PT_BODY_SYSTEMS.map((area) => ({
+    id: area.id,
+    label: area.label,
+    weight: area.weight,
+    subjectIds: area.subjectIds,
+    highYieldTopics: area.highYieldTopics,
+  })),
 };
 
 const BLUEPRINTS: Record<string, ExamBlueprint> = {

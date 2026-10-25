@@ -24,12 +24,13 @@ export type PanceKnowledgeAreaId =
   | "reproductive"
   | "endocrine"
   | "genitourinary"
+  | "renal"
   | "neurologic"
   | "psychiatry"
   | "dermatologic"
   | "hematologic"
   | "infectious-diseases"
-  | "other";
+  | "professional-practice";
 
 export type PanceTaskArea = {
   id: PanceTaskAreaId;
@@ -116,8 +117,8 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "cardiovascular",
     label: "Cardiovascular",
-    weight: 0.13,
-    weightLabel: "13%",
+    weight: 0.11,
+    weightLabel: "11%",
     summary: "Highest-yield system — HTN, ACS, heart failure, arrhythmias, and vascular disease.",
     topics: [
       "Hypertension & hypertensive crisis",
@@ -142,8 +143,8 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "pulmonary",
     label: "Pulmonary",
-    weight: 0.1,
-    weightLabel: "10%",
+    weight: 0.09,
+    weightLabel: "9%",
     summary: "Asthma, COPD, pneumonia, PE, pleural disease, and lung cancer workup.",
     topics: [
       "Asthma & COPD",
@@ -159,8 +160,8 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "gastrointestinal",
     label: "Gastrointestinal / Nutritional",
-    weight: 0.09,
-    weightLabel: "9%",
+    weight: 0.08,
+    weightLabel: "8%",
     summary: "Upper and lower GI disease, liver, pancreas, nutrition, and cancer screening.",
     topics: [
       "GERD & peptic ulcer disease",
@@ -177,8 +178,8 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "musculoskeletal",
     label: "Musculoskeletal",
-    weight: 0.09,
-    weightLabel: "9%",
+    weight: 0.08,
+    weightLabel: "8%",
     summary: "Arthritis, back pain, fractures, soft-tissue injury, and osteoporosis.",
     topics: [
       "Osteoarthritis & rheumatoid arthritis",
@@ -239,17 +240,32 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "genitourinary",
     label: "Genitourinary",
-    weight: 0.06,
-    weightLabel: "6%",
-    summary: "UTI, BPH, prostate cancer, renal disease, electrolytes, and STIs.",
+    weight: 0.04,
+    weightLabel: "4%",
+    summary: "UTI, BPH, prostate cancer, STIs, and male/female GU presentations.",
     topics: [
       "Benign prostatic hyperplasia & prostate cancer",
       "Urinary tract infections & pyelonephritis",
       "STI evaluation & treatment",
-      "AKI, CKD, electrolytes, and acid-base",
+      "Nephrolithiasis workup themes",
     ],
-    highYieldTopics: ["UTI", "BPH", "prostate cancer", "AKI", "STI", "nephrolithiasis"],
-    subjectIds: ["genitourinary", "renal"],
+    highYieldTopics: ["UTI", "BPH", "prostate cancer", "STI", "nephrolithiasis"],
+    subjectIds: ["genitourinary"],
+  },
+  {
+    id: "renal",
+    label: "Renal",
+    weight: 0.05,
+    weightLabel: "5%",
+    summary: "AKI, CKD, electrolytes, acid-base, and nephrology referral themes.",
+    topics: [
+      "Acute kidney injury",
+      "Chronic kidney disease staging themes",
+      "Electrolyte disorders",
+      "Acid-base disturbances",
+    ],
+    highYieldTopics: ["AKI", "CKD", "hyperkalemia", "hyponatremia", "acid-base"],
+    subjectIds: ["renal"],
   },
   {
     id: "neurologic",
@@ -286,8 +302,8 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "dermatologic",
     label: "Dermatologic",
-    weight: 0.05,
-    weightLabel: "5%",
+    weight: 0.04,
+    weightLabel: "4%",
     summary: "Common rashes, acne, rosacea, skin cancer, and cutaneous infections.",
     topics: [
       "Common rashes (eczema, psoriasis, contact dermatitis)",
@@ -314,8 +330,8 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "infectious-diseases",
     label: "Infectious Diseases",
-    weight: 0.05,
-    weightLabel: "5%",
+    weight: 0.07,
+    weightLabel: "7%",
     summary: "Antibiotic selection, HIV, vaccinations, and sepsis.",
     topics: [
       "Antibiotic selection",
@@ -327,27 +343,19 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
     subjectIds: ["infectious-diseases"],
   },
   {
-    id: "other",
-    label: "Other (Pediatrics, Emergency Medicine, Professional Practice)",
-    weight: 0.15,
-    weightLabel: "~15%",
-    summary:
-      "Pediatrics, emergency stabilization, procedures, ethics, and cross-cutting primary care topics.",
+    id: "professional-practice",
+    label: "Professional Practice",
+    weight: 0.06,
+    weightLabel: "6%",
+    summary: "Ethics, consent, scope of practice, documentation, patient safety, and legal themes.",
     topics: [
-      "Pediatric presentations & well-child care",
-      "Emergency medicine — stabilization & referral",
-      "Common PA procedures (indications)",
-      "Professional practice — ethics, consent, scope, documentation",
-      "Geriatric considerations",
+      "Informed consent & capacity",
+      "Scope of practice & supervision",
+      "Documentation & medical records",
+      "Patient safety & error disclosure",
+      "Controlled substances & prescribing compliance",
     ],
-    highYieldTopics: [
-      "pediatrics",
-      "emergency stabilization",
-      "procedures",
-      "ethics",
-      "consent",
-      "geriatrics",
-    ],
+    highYieldTopics: ["ethics", "consent", "scope", "documentation", "patient safety"],
     subjectIds: ["professional-practice"],
   },
 ];
@@ -356,8 +364,7 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
 export const PANCE_LEGACY_CONTENT_ALIASES: Partial<
   Record<string, PanceKnowledgeAreaId>
 > = {
-  renal: "genitourinary",
-  "professional-practice": "other",
+  other: "professional-practice",
 };
 
 /** Cross-system high-yield focus for study planning and marketing copy. */
@@ -399,5 +406,5 @@ export function normalizePanceContentCategory(category: string): PanceKnowledgeA
   if (alias) return alias;
   const match = PANCE_KNOWLEDGE_AREAS.find((d) => d.id === category);
   if (match) return match.id;
-  return "other";
+  return "professional-practice";
 }

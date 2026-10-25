@@ -1,6 +1,6 @@
 # Free PANCE Study Guide (2026): Blueprint-Weighted Plans, Frameworks & High-Yield Topic Index
 
-**Built to help you pass. Weighted to the official blueprint.**
+**Aligned to the official NCCPA blueprint. Weighted for study planning.**
 
 This is **AnyExamEasy's free PANCE Study Guide**.
 

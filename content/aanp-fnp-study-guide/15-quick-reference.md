@@ -1,6 +1,6 @@
 # Chapter 15 — Quick Reference
 
-> **Study aid only.** Pocket sheets for the final sprint — verify the official AANPCB Candidate Handbook, current guidelines, and FDA labeling. No invented weights. Teaching themes only.
+> **Study aid only.** Pocket sheets for the final sprint — verify the official NPCB Candidate Handbook, current guidelines, and FDA labeling. No invented weights. Teaching themes only.
 
 ![Domain I weights](visuals/fnp-domain-i-weights.jpg)
 
@@ -18,7 +18,7 @@
 
 > **HIGHLIGHT** — Older + Middle + Young Adult\* ≈ most of Domain II weight. Evaluate is only 15% — still scored; don’t skip follow-up answers.
 
-> **TRAP** — Cramming new specialty minutiae at midnight; using ANCC weights on an AANPCB exam (or the reverse).
+> **TRAP** — Cramming new specialty minutiae at midnight; using ANCC weights on an NPCB exam (or the reverse).
 
 > **LIFESPAN** — If you only studied “healthy 45-year-old,” reopen Older Adult and prenatal cards tonight.
 
@@ -29,7 +29,7 @@
 
 ---
 
-## Domain I — Practice (official AANPCB)
+## Domain I — Practice (official NPCB)
 
 | Process | Items | Weight | What “right” feels like on a stem |
 | --- | ---: | ---: | --- |
@@ -42,7 +42,7 @@
 
 ---
 
-## Domain II — Patient Age (official AANPCB)
+## Domain II — Patient Age (official NPCB)
 
 | Age band | Weight | Sprint hooks |
 | --- | ---: | --- |
@@ -269,7 +269,7 @@ Fix patterns, not only single facts.
 
 ## Soft CTA — last practice sets
 
-Finish weak areas with exam-style AANP FNP items and full rationales on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Independent study aid — not affiliated with AANPCB or AANP; no pass guarantee.
+Finish weak areas with exam-style AANP FNP items and full rationales on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Independent study aid — not affiliated with NPCB or AANP; no pass guarantee.
 
 ---
 

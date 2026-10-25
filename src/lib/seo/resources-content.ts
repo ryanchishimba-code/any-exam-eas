@@ -364,7 +364,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "pance-study-guide-nccpa-blueprint",
     title: "PANCE Study Guide — NCCPA Roadmap (2026)",
     metaDescription:
-      "PANCE study guide aligned to the NCCPA task areas and organ-system weights — cardiovascular (13%), treatment tasks, and primary care across the lifespan.",
+      "PANCE study guide aligned to the NCCPA task areas and organ-system weights — cardiovascular (11%), treatment tasks, and primary care across the lifespan.",
     examTags: ["pance"],
     primaryExam: "pance",
     keywords: ["PANCE study guide", "NCCPA blueprint PANCE", "PANCE content outline 2026"],

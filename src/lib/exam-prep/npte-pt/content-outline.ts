@@ -29,11 +29,19 @@ export type NptePtTaskArea = {
   summary: string;
 };
 
+const NPTE_SCORED_ITEMS = 180;
+
+function npteWeightFromItemRange(min: number, max: number): number {
+  return (min + max) / 2 / NPTE_SCORED_ITEMS;
+}
+
 export type NptePtBodySystemArea = {
   id: NptePtContentCategoryId;
   label: string;
   weight: number;
   weightLabel: string;
+  /** FSBPT NPTE-PT content outline scored-item range (180 scored items). */
+  scoredItemRange: { min: number; max: number };
   summary: string;
   topics: string[];
   highYieldTopics: string[];
@@ -130,8 +138,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "musculoskeletal",
     label: "Musculoskeletal System",
-    weight: 0.278,
-    weightLabel: "~28%",
+    weight: npteWeightFromItemRange(44, 54),
+    weightLabel: "44–54 items",
+    scoredItemRange: { min: 44, max: 54 },
     summary: "Highest-yield system — spine, shoulder, knee, hip, ankle, arthritis, fractures, manual therapy.",
     topics: [
       "Spine — low back pain, cervical radiculopathy, spinal stenosis, scoliosis",
@@ -156,8 +165,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "neuromuscular-nervous",
     label: "Neuromuscular & Nervous Systems",
-    weight: 0.236,
-    weightLabel: "~24%",
+    weight: npteWeightFromItemRange(39, 48),
+    weightLabel: "39–48 items",
+    scoredItemRange: { min: 39, max: 48 },
     summary: "Stroke, SCI, MS, Parkinson, peripheral nerve injuries, balance & vestibular disorders.",
     topics: [
       "Stroke (CVA) & hemiplegia management",
@@ -174,8 +184,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "cardiovascular-pulmonary",
     label: "Cardiovascular & Pulmonary Systems",
-    weight: 0.139,
-    weightLabel: "~14%",
+    weight: npteWeightFromItemRange(22, 27),
+    weightLabel: "22–27 items",
+    scoredItemRange: { min: 22, max: 27 },
     summary: "Cardiac rehab, pulmonary rehab, exercise physiology, vital signs, and contraindications.",
     topics: [
       "Cardiac rehab — post-MI, CABG, CHF",
@@ -189,8 +200,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "integumentary",
     label: "Integumentary System",
-    weight: 0.056,
-    weightLabel: "~6%",
+    weight: npteWeightFromItemRange(8, 11),
+    weightLabel: "8–11 items",
+    scoredItemRange: { min: 8, max: 11 },
     summary: "Wound care, pressure ulcers, burns, and diabetic foot ulcers.",
     topics: [
       "Wound healing phases",
@@ -204,8 +216,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "system-interactions",
     label: "System Interactions",
-    weight: 0.05,
-    weightLabel: "~5%",
+    weight: npteWeightFromItemRange(8, 10),
+    weightLabel: "8–10 items",
+    scoredItemRange: { min: 8, max: 10 },
     summary: "Pediatrics, geriatrics, acute care, oncology, and multi-system comorbidity.",
     topics: [
       "Pediatrics — CP, torticollis, developmental delays, scoliosis",
@@ -220,8 +233,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "safety-protection",
     label: "Safety & Protection",
-    weight: 0.033,
-    weightLabel: "~3%",
+    weight: npteWeightFromItemRange(5, 7),
+    weightLabel: "5–7 items",
+    scoredItemRange: { min: 5, max: 7 },
     summary: "Fall risk, infection control, body mechanics, and exercise contraindications.",
     topics: [
       "Fall risk assessment",
@@ -235,8 +249,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "therapeutic-modalities",
     label: "Therapeutic Modalities",
-    weight: 0.028,
-    weightLabel: "~3%",
+    weight: npteWeightFromItemRange(4, 6),
+    weightLabel: "4–6 items",
+    scoredItemRange: { min: 4, max: 6 },
     summary: "Ultrasound, TENS, heat/cold, iontophoresis — parameters and contraindications.",
     topics: [
       "Ultrasound parameters & contraindications",
@@ -250,8 +265,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "equipment-devices",
     label: "Equipment, Devices & Technologies",
-    weight: 0.031,
-    weightLabel: "~3%",
+    weight: npteWeightFromItemRange(5, 6),
+    weightLabel: "5–6 items",
+    scoredItemRange: { min: 5, max: 6 },
     summary: "Wheelchairs, ambulatory aids, prosthetics, and orthotics.",
     topics: [
       "Wheelchair fitting & prosthetic gait",
@@ -264,8 +280,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "lymphatic",
     label: "Lymphatic System",
-    weight: 0.031,
-    weightLabel: "~3%",
+    weight: npteWeightFromItemRange(4, 7),
+    weightLabel: "4–7 items",
+    scoredItemRange: { min: 4, max: 7 },
     summary: "Lymphedema management, CDT, and compression.",
     topics: ["Lymphedema & CDT", "Compression bandaging", "Oncology-related lymphedema"],
     highYieldTopics: ["lymphedema", "CDT", "compression"],
@@ -274,8 +291,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "genitourinary",
     label: "Genitourinary System",
-    weight: 0.019,
-    weightLabel: "~2%",
+    weight: npteWeightFromItemRange(2, 5),
+    weightLabel: "2–5 items",
+    scoredItemRange: { min: 2, max: 5 },
     summary: "Incontinence, pelvic floor training, and pregnancy-related pain.",
     topics: [
       "Urinary incontinence types",
@@ -288,8 +306,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "metabolic-endocrine",
     label: "Metabolic & Endocrine Systems",
-    weight: 0.028,
-    weightLabel: "~3%",
+    weight: npteWeightFromItemRange(4, 6),
+    weightLabel: "4–6 items",
+    scoredItemRange: { min: 4, max: 6 },
     summary: "Diabetes exercise, osteoporosis, and obesity management.",
     topics: ["Diabetes & exercise", "Osteoporosis", "Obesity exercise prescription"],
     highYieldTopics: ["diabetes exercise", "osteoporosis"],
@@ -298,8 +317,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "gastrointestinal",
     label: "Gastrointestinal System",
-    weight: 0.025,
-    weightLabel: "~2%",
+    weight: npteWeightFromItemRange(3, 6),
+    weightLabel: "3–6 items",
+    scoredItemRange: { min: 3, max: 6 },
     summary: "Post-abdominal surgery mobility and pelvic floor GI presentations.",
     topics: ["Post-abdominal surgery", "Pelvic floor GI", "Core stabilization"],
     highYieldTopics: ["post-abdominal surgery", "pelvic floor"],
@@ -308,8 +328,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "professional-responsibilities",
     label: "Professional Responsibilities",
-    weight: 0.025,
-    weightLabel: "~2%",
+    weight: npteWeightFromItemRange(4, 5),
+    weightLabel: "4–5 items",
+    scoredItemRange: { min: 4, max: 5 },
     summary: "Ethics, scope, documentation, supervision, and billing.",
     topics: ["Scope of practice", "Ethics & consent", "Documentation", "Billing"],
     highYieldTopics: ["ethics", "documentation", "supervision", "scope"],
@@ -318,8 +339,9 @@ export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "research-evidence",
     label: "Research & Evidence-Based Practice",
-    weight: 0.022,
-    weightLabel: "~2%",
+    weight: npteWeightFromItemRange(3, 5),
+    weightLabel: "3–5 items",
+    scoredItemRange: { min: 3, max: 5 },
     summary: "Sensitivity/specificity, outcome measures, MCID, and RCT appraisal.",
     topics: [
       "Sensitivity & specificity",
@@ -352,7 +374,7 @@ export const NPTE_PT_PLATFORM_STUDY_FEATURES = [
 ] as const;
 
 export const NPTE_PT_OUTLINE_SOURCE =
-  "FSBPT NPTE-PT Test Content Outline (current for 2026) — 250 questions, 5 hours";
+  "FSBPT NPTE-PT Test Content Outline (effective January 2024) — 225 items, 180 scored";
 
 export function getNptePtExamDomain(id: NptePtExamDomainId): NptePtExamDomain | undefined {
   return NPTE_PT_EXAM_DOMAINS.find((d) => d.id === id);

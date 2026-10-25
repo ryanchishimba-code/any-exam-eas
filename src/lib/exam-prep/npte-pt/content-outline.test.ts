@@ -29,7 +29,8 @@ describe("NPTE-PT content outline", () => {
   it("defines 14 body-system areas with musculoskeletal as highest weight", () => {
     expect(NPTE_PT_BODY_SYSTEMS).toHaveLength(14);
     const msk = getNptePtBodySystem("musculoskeletal");
-    expect(msk?.weight).toBeGreaterThan(0.25);
+    expect(msk?.scoredItemRange).toEqual({ min: 44, max: 54 });
+    expect(msk?.weightLabel).toBe("44–54 items");
     expect(msk?.topics.some((t) => /ACL/i.test(t))).toBe(true);
     expect(msk?.topics.some((t) => /rotator cuff/i.test(t))).toBe(true);
   });
@@ -50,8 +51,8 @@ describe("NPTE-PT content outline", () => {
     expect(NPTE_PT_PLATFORM_STUDY_FEATURES.some((f) => /250/i.test(f))).toBe(true);
   });
 
-  it("references the 2026 FSBPT blueprint with 250 questions", () => {
-    expect(NPTE_PT_OUTLINE_SOURCE).toContain("2026");
-    expect(NPTE_PT_OUTLINE_SOURCE).toContain("250");
+  it("references the FSBPT blueprint with 180 scored items", () => {
+    expect(NPTE_PT_OUTLINE_SOURCE).toContain("2024");
+    expect(NPTE_PT_OUTLINE_SOURCE).toContain("180 scored");
   });
 });

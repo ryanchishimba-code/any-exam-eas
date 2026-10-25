@@ -1,6 +1,6 @@
 # Chapter 11 — Psych / Neuro
 
-> **Study aid only.** Mental health and neurologic themes for FNP exam judgment — not psychotherapy protocol or stroke-center standing orders. Verify current guidelines, FDA labeling (including boxed warnings), and local crisis pathways. Independent of AANPCB/AANP.
+> **Study aid only.** Mental health and neurologic themes for FNP exam judgment — not psychotherapy protocol or stroke-center standing orders. Verify current guidelines, FDA labeling (including boxed warnings), and local crisis pathways. Independent of NPCB/AANP.
 
 ![Psych safety screen](visuals/psych-safety-screen.jpg)
 
@@ -31,7 +31,7 @@
 
 ## Why this chapter matters
 
-Depression, anxiety, bipolar cues, migraine, TIA/stroke, and dementia/delirium sit at the center of middle- and older-adult primary care — and Older Adult is roughly **30%** of AANPCB Domain II. Domain I still grades the verb: Did you **Assess** safety and neuro deficits? **Diagnose** unipolar vs bipolar cues and primary vs secondary headache? **Plan** therapy + meds + EMS when needed? **Evaluate** worsening SI, sodium in elders on SSRIs, and cognition trends?
+Depression, anxiety, bipolar cues, migraine, TIA/stroke, and dementia/delirium sit at the center of middle- and older-adult primary care — and Older Adult is roughly **30%** of NPCB Domain II. Domain I still grades the verb: Did you **Assess** safety and neuro deficits? **Diagnose** unipolar vs bipolar cues and primary vs secondary headache? **Plan** therapy + meds + EMS when needed? **Evaluate** worsening SI, sodium in elders on SSRIs, and cognition trends?
 
 Candidates who prescribe sertraline without asking about mania or suicide lose points. Candidates who send thunderclap headache home with sumatriptan lose dangerous ones.
 
@@ -326,7 +326,7 @@ First unprovoked seizure → urgent evaluation; status → EMS. Syncope with neu
 - Older Adult **30%** loves delirium, stroke, and drug-sensitive depression care.  
 - Safety disposition is Domain I Assess/Plan — not optional soft skills.  
 - Verify psychopharmacology labels and stroke guidance — they evolve.  
-- Independent study aid — not AANPCB/AANP; no pass guarantee.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 **Next practice move:** Drill SI safety, antidepressant starts, migraine vs secondary HA, stroke/TIA, and delirium items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
@@ -488,7 +488,7 @@ If patient already on lithium: Na/volume changes, NSAID interactions, levels, th
 
 ---
 
-## Official AANPCB numbers (keep straight)
+## Official NPCB numbers (keep straight)
 
 | Domain | Weight |
 | --- | --- |

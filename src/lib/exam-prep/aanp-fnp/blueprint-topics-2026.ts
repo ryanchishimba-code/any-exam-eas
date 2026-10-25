@@ -3,14 +3,16 @@
  * content categories, and cross-cutting areas for AnyExamEasy generation.
  *
  * Organized for primary-care outpatient vignettes and guideline-directed therapy.
- * Cognitive domains (Assess/Diagnose/Plan/Evaluate) remain the official AANPCB axis;
- * content categories here align study modules and topic rotation.
+ * Cognitive domains (Assess/Diagnose/Plan/Evaluate) remain the official NPCB axis;
+ * study modules rotate clinical systems — not alternate invented exam weights.
  */
-import type {
-  AanpFnpClinicalSystemId,
-  AanpFnpContentCategoryId,
-  AanpFnpDomainId,
-  AanpFnpLifespanBandId,
+import type { AanpFnpClinicalSystemId, AanpFnpDomainId } from "./types";
+import {
+  AANP_FNP_AGE_GROUP_LABELS,
+  AANP_FNP_AGE_GROUP_WEIGHTS,
+  AANP_FNP_DOMAIN_LABELS,
+  AANP_FNP_DOMAIN_WEIGHTS,
+  type AanpFnpPatientAgeGroupId,
 } from "./types";
 
 export type AanpFnp2026Topic = {
@@ -26,99 +28,50 @@ export type AanpFnp2026TopicGroup = {
   topics: AanpFnp2026Topic[];
 };
 
-export type AanpFnpContentCategory = {
-  id: AanpFnpContentCategoryId;
+export type AanpFnpOfficialBlueprintRow = {
+  id: string;
   label: string;
   weight: number;
   weightLabel: string;
-  summary: string;
-  /** Maps to AANPCB cognitive domains for generation tagging. */
-  domainHints: AanpFnpDomainId[];
-};
-
-export type AanpFnpLifespanBand = {
-  id: AanpFnpLifespanBandId;
-  label: string;
-  weight: number;
-  weightLabel: string;
-  summary: string;
+  scoredItems?: number;
 };
 
 function topic(slug: string, label: string): AanpFnp2026Topic {
   return { slug, label };
 }
 
-/** Study-oriented content categories (approximate AANP FNP exam weights). */
-export const AANP_FNP_CONTENT_CATEGORIES: AanpFnpContentCategory[] = [
-  {
-    id: "assessment-diagnosis",
-    label: "Assessment & Diagnosis",
-    weight: 0.275,
-    weightLabel: "25–30%",
-    summary:
-      "History, physical exam, screening, diagnostic test selection, differential diagnosis, and data synthesis.",
-    domainHints: ["assess", "diagnose"],
-  },
-  {
-    id: "management-pharmacotherapeutics",
-    label: "Management & Pharmacotherapeutics",
-    weight: 0.375,
-    weightLabel: "35–40%",
-    summary:
-      "Guideline-directed pharmacologic and non-pharmacologic therapy, referrals, monitoring, and next-best-step management.",
-    domainHints: ["plan"],
-  },
-  {
-    id: "professional-role-health-policy",
-    label: "Professional Role & Health Policy",
-    weight: 0.125,
-    weightLabel: "10–15%",
-    summary:
-      "Scope of practice, ethics, billing, collaboration, regulatory compliance, and interprofessional care.",
-    domainHints: ["assess", "evaluate"],
-  },
-  {
-    id: "health-promotion-disease-prevention",
-    label: "Health Promotion & Disease Prevention",
-    weight: 0.175,
-    weightLabel: "15–20%",
-    summary:
-      "USPSTF screening, immunizations, lifestyle counseling, preventive pharmacotherapy, and patient education.",
-    domainHints: ["plan", "evaluate"],
-  },
-];
+function pctLabel(weight: number): string {
+  const pct = Math.round(weight * 1000) / 10;
+  return `${pct}%`;
+}
 
-/** Lifespan coverage bands for vignette variety and roadmap weighting. */
-export const AANP_FNP_LIFESPAN_BANDS: AanpFnpLifespanBand[] = [
-  {
-    id: "pediatrics",
-    label: "Pediatrics",
-    weight: 0.225,
-    weightLabel: "~20–25%",
-    summary: "Newborn through adolescent — well-child, immunizations, developmental milestones, common pediatric illness.",
-  },
-  {
-    id: "adults",
-    label: "Adults",
-    weight: 0.425,
-    weightLabel: "~40–45%",
-    summary: "Young and middle adult primary care — chronic disease, acute complaints, preventive visits.",
-  },
-  {
-    id: "geriatrics",
-    label: "Geriatrics",
-    weight: 0.175,
-    weightLabel: "~15–20%",
-    summary: "Older adult care — falls, frailty, polypharmacy, dementia, delirium, advance directives.",
-  },
-  {
-    id: "womens-health",
-    label: "Women's Health",
-    weight: 0.125,
-    weightLabel: "~10–15%",
-    summary: "Contraception, prenatal care, menstrual disorders, menopause, breast and cervical screening.",
-  },
-];
+/** Official NPCB Domain I weights (2024+ FNP blueprint). */
+export const AANP_FNP_OFFICIAL_DOMAIN_ROWS: AanpFnpOfficialBlueprintRow[] = (
+  Object.keys(AANP_FNP_DOMAIN_WEIGHTS) as AanpFnpDomainId[]
+).map((id) => ({
+  id,
+  label: AANP_FNP_DOMAIN_LABELS[id],
+  weight: AANP_FNP_DOMAIN_WEIGHTS[id],
+  weightLabel: id === "diagnose" || id === "plan" ? "27% (36/135)" : pctLabel(AANP_FNP_DOMAIN_WEIGHTS[id]),
+  scoredItems:
+    id === "assess"
+      ? 43
+      : id === "diagnose" || id === "plan"
+        ? 36
+        : id === "evaluate"
+          ? 20
+          : undefined,
+}));
+
+/** Official NPCB Domain II patient age weights (2024+ FNP blueprint). */
+export const AANP_FNP_OFFICIAL_AGE_ROWS: AanpFnpOfficialBlueprintRow[] = (
+  Object.keys(AANP_FNP_AGE_GROUP_WEIGHTS) as AanpFnpPatientAgeGroupId[]
+).map((id) => ({
+  id,
+  label: AANP_FNP_AGE_GROUP_LABELS[id],
+  weight: AANP_FNP_AGE_GROUP_WEIGHTS[id],
+  weightLabel: pctLabel(AANP_FNP_AGE_GROUP_WEIGHTS[id]),
+}));
 
 /** High-yield system-based topic registry (11 body-system modules). */
 export const AANP_FNP_2026_TOPIC_GROUPS: AanpFnp2026TopicGroup[] = [
@@ -390,12 +343,10 @@ export function highYieldTopicsForSystem(clinicalSystem: AanpFnpClinicalSystemId
 }
 
 export function buildAanpFnp2026TopicCatalogBlock(): string {
-  const categoryLines = AANP_FNP_CONTENT_CATEGORIES.map(
-    (c) => `${c.label} (${c.weightLabel}): ${c.summary}`
+  const domainLines = AANP_FNP_OFFICIAL_DOMAIN_ROWS.map(
+    (d) => `${d.label} (${d.weightLabel}${d.scoredItems ? `, ${d.scoredItems} scored items` : ""})`
   );
-  const lifespanLines = AANP_FNP_LIFESPAN_BANDS.map(
-    (b) => `${b.label} (${b.weightLabel}): ${b.summary}`
-  );
+  const ageLines = AANP_FNP_OFFICIAL_AGE_ROWS.map((a) => `${a.label} (${a.weightLabel})`);
   const systemLines = AANP_FNP_2026_TOPIC_GROUPS.map((g) => {
     const topicList = g.topics.map((t) => `${t.slug}: ${t.label}`).join("; ");
     return `${g.label} [${g.yield}] (${g.categoryId}): ${topicList}`;
@@ -404,11 +355,11 @@ export function buildAanpFnp2026TopicCatalogBlock(): string {
   return [
     "AANP FNP 2026 HIGH-YIELD CONTENT OUTLINE (assign blueprintTopic slug; primary-care vignettes required):",
     "",
-    "Content categories:",
-    ...categoryLines,
+    "Official NPCB Domain I (Practice):",
+    ...domainLines,
     "",
-    "Lifespan coverage:",
-    ...lifespanLines,
+    "Official NPCB Domain II (Patient age):",
+    ...ageLines,
     "",
     "System modules:",
     ...systemLines,

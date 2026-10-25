@@ -1,6 +1,6 @@
 # Chapter 2 — Clinical Reasoning
 
-> **Study aid only.** Reasoning frameworks for AANP FNP exam judgment — not individualized clinical advice. Verify guidelines, imaging pathways, and local referral standards. Independent of AANPCB/AANP.
+> **Study aid only.** Reasoning frameworks for AANP FNP exam judgment — not individualized clinical advice. Verify guidelines, imaging pathways, and local referral standards. Independent of NPCB/AANP.
 
 ![ADPE decision loop](visuals/adpe-loop.jpg)
 
@@ -404,7 +404,7 @@ A correct diagnosis with no follow-up plan fails Evaluate. Write the monitoring 
 
 > **TRAP** — Skipping Evaluate (monitoring/follow-up) because the prescription felt complete.
 
-> **TRAP** — Using ANCC weights while sitting AANPCB (or the reverse).
+> **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
 
 
 ---

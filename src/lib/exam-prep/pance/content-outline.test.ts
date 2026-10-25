@@ -8,17 +8,17 @@ import {
 } from "./content-outline";
 
 describe("PANCE content outline", () => {
-  it("defines 14 NCCPA knowledge areas that sum to 100%", () => {
-    expect(PANCE_KNOWLEDGE_AREAS).toHaveLength(14);
+  it("defines 15 NCCPA knowledge areas that sum to 100%", () => {
+    expect(PANCE_KNOWLEDGE_AREAS).toHaveLength(15);
     const total = PANCE_KNOWLEDGE_AREAS.reduce((sum, d) => sum + d.weight, 0);
     expect(total).toBeCloseTo(1, 5);
   });
 
-  it("weights cardiovascular as the heaviest organ system (13%)", () => {
+  it("weights cardiovascular as the heaviest organ system (11%)", () => {
     const cardio = PANCE_KNOWLEDGE_AREAS.find((d) => d.id === "cardiovascular");
-    expect(cardio?.weight).toBe(0.13);
+    expect(cardio?.weight).toBe(0.11);
     expect(cardio?.topics.some((t) => /hypertension/i.test(t))).toBe(true);
-    expect(cardio?.topics.some((t) => /ACS/i.test(t))).toBe(true);
+    expect(cardio?.topics.some((t) => /acute coronary/i.test(t))).toBe(true);
   });
 
   it("covers eight NCCPA task areas that sum to 100%", () => {
@@ -29,9 +29,10 @@ describe("PANCE content outline", () => {
     expect(diagnosis?.weight).toBe(0.18);
   });
 
-  it("maps legacy renal and professional-practice slugs", () => {
-    expect(normalizePanceContentCategory("renal")).toBe("genitourinary");
-    expect(normalizePanceContentCategory("professional-practice")).toBe("other");
+  it("maps legacy other slug to professional-practice", () => {
+    expect(normalizePanceContentCategory("renal")).toBe("renal");
+    expect(normalizePanceContentCategory("professional-practice")).toBe("professional-practice");
+    expect(normalizePanceContentCategory("other")).toBe("professional-practice");
     expect(normalizePanceContentCategory("cardiovascular")).toBe("cardiovascular");
   });
 
