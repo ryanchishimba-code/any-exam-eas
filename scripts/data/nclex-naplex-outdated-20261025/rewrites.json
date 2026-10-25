@@ -1,6 +1,6 @@
 {
   "published": false,
-  "note": "Nine items were republished to QuestionBankItem on 2026-10-25. cmr7zzhz2000m1yafsbg3xkeh stays hidden as a retired near-duplicate. Five items were revised again and must not be published; keyless stems are in blind-solve2.json.",
+  "note": "Nine items were republished to QuestionBankItem on 2026-10-25. Three more blood-pressure items are approved for republish. cmr7zzhz2000m1yafsbg3xkeh stays hidden as a retired near-duplicate. Two items were revised again and must not be published; keyless stems are in blind-solve3.json.",
   "items": [
     {
       "id": "cmr815qlj00161ynm2bog3q9j",
@@ -25,19 +25,19 @@
       "status": "file-only",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
-      "topic": "Prescription PPI course after ranitidine withdrawal",
+      "topic": "Recurrent GERD after a completed OTC PPI course",
       "guideline": "ACG Clinical Guideline for the Diagnosis and Management of Gastroesophageal Reflux Disease (2022); FDA ranitidine market removal (2020); OTC omeprazole Drug Facts label",
       "guidelineUrl": "https://journals.lww.com/ajg/fulltext/2022/01000/acg_clinical_guideline_for_the_diagnosis_and.14.aspx",
-      "scenario": "A 40-year-old woman has heartburn at least 3 days a week for 2 months. She had taken OTC ranitidine until products containing it were removed from the market. She has no trouble swallowing, bleeding, weight loss, or vomiting, and she is not pregnant. She asks whether she should buy another OTC acid reducer.",
+      "scenario": "A 40-year-old woman has heartburn at least 3 days a week. Six weeks ago she finished a 14-day course of OTC omeprazole 20 mg daily, and the heartburn has returned. She has no trouble swallowing, bleeding, weight loss, or vomiting, and she is not pregnant. Years ago she took OTC ranitidine, which was later withdrawn from the market. She asks whether she should buy another 14-day box.",
       "question": "Which recommendation is most appropriate now?",
       "options": [
         "Calcium carbonate 750 mg by mouth only after meals",
-        "Recommend OTC omeprazole 20 mg daily for 14 days of self-care, then stop",
+        "Recommend another OTC omeprazole 20 mg daily for 14 days of self-care, then stop",
         "A prescription for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
         "Ask her to restart ranitidine 150 mg by mouth twice daily"
       ],
       "correctAnswer": "A prescription for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
-      "explanation": "Heartburn on at least 3 days a week for 2 months needs an 8-week trial of omeprazole 20 mg once daily before breakfast. The ACG GERD guideline uses that once-daily PPI course for frequent symptoms, and an 8-week course is a prescription. The OTC omeprazole label is 14 days of self-care, so a 14-day OTC course is too short and is not this recommendation. The FDA asked manufacturers to withdraw all ranitidine in 2020 because of NDMA, so it cannot be restarted. Calcium carbonate 750 mg after meals only neutralizes acid briefly and does not heal frequent GERD. Takeaway: prescribe omeprazole for 8 weeks; do not send her out with a 14-day OTC course, and do not restart ranitidine."
+      "explanation": "Heartburn returned 6 weeks after a completed 14-day OTC omeprazole course. That is recurrence within 4 months, so this is no longer an OTC self-care problem and she needs prescriber care. The OTC label limits self-care to 14 days and does not support another self-care course this soon. Prescribe omeprazole 20 mg once daily before breakfast for 8 weeks, the ACG once-daily PPI trial for frequent symptoms. Another 14-day OTC course repeats a plan that did not give a lasting response. The FDA asked manufacturers to withdraw all ranitidine in 2020 because of NDMA, so it cannot be restarted. Calcium carbonate 750 mg after meals only neutralizes acid briefly and does not treat recurrent GERD. Takeaway: recurrence within 4 months of a 14-day OTC course gets an 8-week prescription PPI; ranitidine stays withdrawn."
     },
     {
       "id": "cmroigcz3000j1y7n1rmsnzr4",
@@ -53,10 +53,10 @@
         "Stop omeprazole and keep phenytoin at 300 mg daily",
         "Add levetiracetam 500 mg twice daily and keep phenytoin at 300 mg daily",
         "Switch omeprazole to famotidine 20 mg twice daily and keep phenytoin at 300 mg daily",
-        "Increase phenytoin to 330 mg daily and recheck the level in about 2 weeks"
+        "Increase phenytoin to 350 mg daily and recheck the level in about 2 weeks"
       ],
-      "correctAnswer": "Increase phenytoin to 330 mg daily and recheck the level in about 2 weeks",
-      "explanation": "A total phenytoin level of 8 mcg/mL is below the usual 10–20 mcg/mL range, and albumin 4.2 g/dL means the total level is interpretable. Phenytoin has nonlinear kinetics, so the new steady state after a dose change takes about 2 weeks. Raise the dose by 30 mg, to 330 mg daily, and recheck the level then rather than in 7 days or by jumping to 400 mg. Omeprazole raises phenytoin, so a level of 8 mcg/mL is not caused by the PPI. Stopping omeprazole or switching to famotidine 20 mg twice daily does not correct that level. Adding levetiracetam 500 mg twice daily leaves the subtherapeutic phenytoin untreated. Takeaway: make a small phenytoin increase and recheck in about 2 weeks, because omeprazole raises phenytoin."
+      "correctAnswer": "Increase phenytoin to 350 mg daily and recheck the level in about 2 weeks",
+      "explanation": "A total phenytoin level of 8 mcg/mL is below the usual 10–20 mcg/mL range, and albumin 4.2 g/dL means the total level is interpretable. At a level around 8, the usual dose step is about 50 mg/day, so raise 300 mg to 350 mg daily rather than by 30 mg or by jumping to 400 mg. Phenytoin has nonlinear kinetics, so the new steady state after that change takes about 2 weeks; recheck the level then. Omeprazole raises phenytoin, so a level of 8 mcg/mL is not caused by the PPI. Stopping omeprazole or switching to famotidine 20 mg twice daily does not correct that level. Adding levetiracetam 500 mg twice daily leaves the subtherapeutic phenytoin untreated. Takeaway: increase phenytoin by about 50 mg, to 350 mg daily, and recheck in about 2 weeks, because omeprazole raises phenytoin."
     },
     {
       "id": "cmsfy8gct001h1yth5rdikpww",
@@ -153,7 +153,7 @@
     },
     {
       "id": "cmqxaus7p001f1ypr2elqbs2e",
-      "status": "file-only",
+      "status": "republished",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
       "topic": "Switching an ACE inhibitor cough to an ARB",
@@ -190,22 +190,22 @@
     },
     {
       "id": "cmr7tqqg2001n1yivy4gi52qz",
-      "status": "file-only",
+      "status": "republished",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
-      "topic": "Classifying blood pressure of 130/85 mm Hg",
+      "topic": "Treated blood pressure above the goal",
       "guideline": "2025 AHA/ACC High Blood Pressure Guideline",
       "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/HYP.0000000000000249",
       "scenario": "A 50-year-old man takes lisinopril 10 mg by mouth daily and atorvastatin 40 mg daily. He has no cough, no dizziness, and no known drug allergies. Blood pressure today is 130/85 mm Hg. LDL cholesterol is 90 mg/dL.",
       "question": "Which statement about this blood pressure is correct?",
       "options": [
         "130/85 mm Hg is normal, so stop lisinopril",
-        "130/85 mm Hg is stage 1 hypertension and above the goal of below 130/80",
+        "130/85 mm Hg is above goal (<130/80); BP not controlled",
         "130/85 mm Hg is already at the 2025 treatment goal, so make no blood-pressure change",
         "LDL cholesterol of 90 mg/dL shows the blood pressure is controlled"
       ],
-      "correctAnswer": "130/85 mm Hg is stage 1 hypertension and above the goal of below 130/80",
-      "explanation": "The 2025 AHA/ACC guideline defines hypertension as a systolic pressure of 130 mm Hg or higher or a diastolic pressure of 80 mm Hg or higher. Stage 1 is 130–139 or 80–89, and the treatment goal is below 130/80. A reading of 130/85 mm Hg is stage 1 hypertension and above that goal. It is not normal, and it is not already at goal. Stopping lisinopril because someone calls 130/85 normal would leave stage 1 untreated. LDL cholesterol of 90 mg/dL is a lipid result and does not show that the blood pressure is controlled. He has no cough and no dizziness, so this question is only the blood-pressure category. Takeaway: 130/85 mm Hg is stage 1 and above the goal of below 130/80."
+      "correctAnswer": "130/85 mm Hg is above goal (<130/80); BP not controlled",
+      "explanation": "He already takes lisinopril 10 mg daily, so the question is whether treatment has reached the goal. The 2025 AHA/ACC goal is below 130/80. A reading of 130/85 mm Hg is above goal (<130/80); BP not controlled. It is not normal, and it is not already at goal. Stopping lisinopril because someone calls 130/85 normal would leave the blood pressure untreated. Calling 130/85 already at the treatment goal uses a looser target than below 130/80. LDL cholesterol of 90 mg/dL is a lipid result and does not show that the blood pressure is controlled. He has no cough and no dizziness. Takeaway: on treatment, 130/85 mm Hg is above goal (<130/80); BP not controlled."
     },
     {
       "id": "cmr7ugujq001n1yt3ee4zaua9",
@@ -227,22 +227,22 @@
     },
     {
       "id": "cmr7xthmz001n1yikcwuott43",
-      "status": "file-only",
+      "status": "republished",
       "board": "NAPLEX",
       "fieldId": "pharmacy",
       "topic": "Timing of an ACE inhibitor cough",
       "guideline": "2025 AHA/ACC High Blood Pressure Guideline",
       "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/HYP.0000000000000249",
-      "scenario": "A 45-year-old woman has taken lisinopril 20 mg by mouth daily for 6 weeks. She had no cough before the first dose. A persistent dry cough began in week 3. Blood pressure today is 136/86 mm Hg. Her father has hypertension, and her body mass index is 27 kg/m². She takes no other medicines.",
+      "scenario": "A 45-year-old woman has taken lisinopril 20 mg by mouth daily for 6 weeks. She had no cough before the first dose. A persistent dry cough began in week 3. She takes no other medicines.",
       "question": "Which history best supports an ACE-inhibitor cough?",
       "options": [
         "The cough was already present on the day lisinopril was first prescribed",
         "She had no cough before the first dose, and the cough began in week 3",
-        "Blood pressure of 136/86 mm Hg shows the cough is from lisinopril",
-        "A body mass index of 27 kg/m² explains the cough"
+        "A productive cough and fever began in week 3",
+        "A dry cough had been present for a year and did not change after the first dose"
       ],
       "correctAnswer": "She had no cough before the first dose, and the cough began in week 3",
-      "explanation": "An ACE-inhibitor cough begins days to weeks after the first dose. It is not a cough the patient already had when the prescription was written. She had no cough before the first dose of lisinopril 20 mg daily, and the dry cough began in week 3 of a 6-week course, which matches that timeline. A cough already present on the day lisinopril was prescribed has a different cause. Blood pressure of 136/86 mm Hg is still above the 2025 goal of below 130/80, but the reading does not prove what caused the cough. A body mass index of 27 kg/m² does not time the cough. Takeaway: call it an ACE-inhibitor cough only when it starts after the first dose, not before lisinopril."
+      "explanation": "An ACE-inhibitor cough is dry, without fever, and it begins days to weeks after the first dose. She had no cough before the first dose of lisinopril 20 mg daily, and the dry cough began in week 3 of a 6-week course, which matches that timeline. A cough already present on the day lisinopril was prescribed has a different cause. A productive cough with fever in week 3 suggests infection, not the drug. A dry cough that had been present for a year and did not change after the first dose is not a new ACE-inhibitor effect. Takeaway: call it an ACE-inhibitor cough only when a dry cough starts after the first dose, not before lisinopril."
     },
     {
       "id": "cmqw33qs5001c1yawc9sc5grf",
