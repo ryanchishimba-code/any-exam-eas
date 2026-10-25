@@ -21,7 +21,7 @@ export function filterItemsForNclexTopicPractice(
 
   if (params.blueprintTopics?.length) {
     filtered = filterItemsForNclexBlueprintTopics(filtered, params.blueprintTopics, {
-      contentMatch: true,
+      tagOnly: true,
     });
   }
 

@@ -579,7 +579,10 @@ export async function GET(req: Request) {
       "@/lib/exam-prep/nclex/topic-blueprint-match"
     );
     const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
-    const pool = filterItemsForNclexBlueprintTopics(items, blueprintTopics, { contentMatch: true });
+    const pool = filterItemsForNclexBlueprintTopics(items, blueprintTopics, {
+      tagOnly: topicPracticeLaunch,
+      contentMatch: !topicPracticeLaunch,
+    });
     const minPool = Math.min(5, limit);
     if (bankPractice || pool.length >= minPool) {
       items = shuffleBankItems(pool).slice(0, limit);
@@ -685,6 +688,20 @@ export async function GET(req: Request) {
         ...(formatBucket ? { practiceFormat: formatBucket } : {}),
       },
       { status: 503 }
+    );
+  }
+
+  if (
+    topicPracticeLaunch &&
+    fieldId === "nursing" &&
+    blueprintTopics?.length &&
+    bankPractice
+  ) {
+    const { bankItemMatchesNclexBlueprintTopicTags } = await import(
+      "@/lib/exam-prep/nclex/topic-blueprint-match"
+    );
+    items = items.filter((item) =>
+      bankItemMatchesNclexBlueprintTopicTags(item, blueprintTopics)
     );
   }
 

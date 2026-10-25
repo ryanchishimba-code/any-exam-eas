@@ -208,7 +208,8 @@ const BLUEPRINT_EXCLUSIONS: Partial<Record<string, RegExp>> = {
   "postpartum-bubble-he": /\b(?:6\d|7\d|8\d)[- ]?year[- ]?old|\bmedical-surgical unit/i,
   "newborn-apgar-reflexes": /\b(?:1[8-9]|[2-9]\d)[- ]?year[- ]?old|\bmedical-surgical/i,
   "prenatal-fetal-development": /\b(?:6\d|7\d|8\d)[- ]?year[- ]?old|\bmedical-surgical unit/i,
-  "cardiac-emergencies": /\bpediatric emergency|\b8-month-old|\bnewborn/i,
+  "cardiac-emergencies":
+    /\bpediatric emergency|\b8-month-old|\bnewborn|\b(?:MDD|major depressive)\b|\bsertraline\b|\bfluoxetine\b|\bantidepressant\b|\bantipsychotic\b|\bsuicid|\bself-harm\b|\bpsychiatric unit\b|\bmood disorder\b/i,
   "neurological-emergencies": /\bprenatal|\bimmuniz|\bTdap|\blisinopril|\bhip fracture|\bpneumonia|\bCOPD|\bheart failure|\bpressure injur/i,
   "gi-disorders": /\bpsychiatric|\bdepression|\bmetformin|\bprenatal|\bimmuniz|\btuberculosis/i,
   "renal-urinary": /\binsulin glargine|\bhyperglycemia(?!.*kidney)/i,
@@ -297,13 +298,68 @@ export function matchesNclexBlueprintTopic(item: BankItem, blueprintSlug: string
   return contentMatch || inferredMatch;
 }
 
+function itemBlueprintTags(item: BankItem): string[] {
+  const out: string[] = [];
+  if (item.blueprintTopic?.trim()) out.push(item.blueprintTopic.trim());
+  for (const tag of item.tags ?? []) {
+    const trimmed = tag?.trim();
+    if (trimmed) out.push(trimmed);
+  }
+  return out;
+}
+
+function itemPassesTaggedBlueprintWithExclusions(
+  item: BankItem,
+  allowed: Set<string>,
+  canonicalSlugs: string[]
+): boolean {
+  const tags = itemBlueprintTags(item);
+  if (tags.length === 0) return false;
+  const matchedCanonical = tags.some((tag) => {
+    const canon = canonicalizeNclexBlueprintTopic(tag) ?? tag;
+    return allowed.has(tag) || allowed.has(canon);
+  });
+  if (!matchedCanonical) return false;
+  for (const slug of canonicalSlugs) {
+    const tagHit = tags.some((tag) => {
+      const canon = canonicalizeNclexBlueprintTopic(tag) ?? tag;
+      return slug === canon || slug === tag;
+    });
+    if (!tagHit) continue;
+    const exclusion = BLUEPRINT_EXCLUSIONS[slug];
+    if (exclusion?.test(itemText(item))) return false;
+  }
+  return true;
+}
+
+/** Tag-only match for topic-practice launches (no vignette keyword inference). */
+export function bankItemMatchesNclexBlueprintTopicTags(
+  item: BankItem,
+  blueprintTopics: string[]
+): boolean {
+  if (blueprintTopics.length === 0) return false;
+  const allowed = new Set(expandNclexBlueprintTopicMatchers(blueprintTopics));
+  const canonicalSlugs = [
+    ...new Set(
+      blueprintTopics
+        .map((slug) => canonicalizeNclexBlueprintTopic(slug) ?? slug.trim())
+        .filter(Boolean)
+    ),
+  ];
+  return itemPassesTaggedBlueprintWithExclusions(item, allowed, canonicalSlugs);
+}
+
 /** Keep items matching any allowed blueprint slug (tag or content). */
 export function filterItemsForNclexBlueprintTopics(
   items: BankItem[],
   blueprintTopics: string[],
-  opts?: { contentMatch?: boolean }
+  opts?: { contentMatch?: boolean; tagOnly?: boolean }
 ): BankItem[] {
   if (blueprintTopics.length === 0) return items;
+  const tagOnly = opts?.tagOnly === true || opts?.contentMatch === false;
+  if (tagOnly) {
+    return items.filter((item) => bankItemMatchesNclexBlueprintTopicTags(item, blueprintTopics));
+  }
   const allowed = new Set(expandNclexBlueprintTopicMatchers(blueprintTopics));
   const contentSlugs = [
     ...new Set(

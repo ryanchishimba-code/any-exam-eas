@@ -1,7 +1,7 @@
 import { StudyBankPracticeLazy } from "@/components/study/StudyBankPracticeLazy";
 import {
   loadSubjectCountsForUser,
-  loadTopicPracticePoolCountForUser,
+  loadTopicPracticeInventoryForUser,
 } from "@/lib/study/load-subject-counts";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -30,9 +30,9 @@ export async function QuestionBankPracticeLoader({
   // Critical path retries inside loadSubjectCountsForUser / Neon HTTP.
   // After they are exhausted, let the error bubble to question-bank/error.tsx.
   const countsPayload = await loadSubjectCountsForUser(userId, fieldParam);
-  const initialTopicPracticePoolCount =
+  const initialTopicPracticeInventory =
     blueprintTopics.length > 0
-      ? await loadTopicPracticePoolCountForUser(userId, fieldParam, blueprintTopics)
+      ? await loadTopicPracticeInventoryForUser(userId, fieldParam, blueprintTopics)
       : null;
 
   const totalQuestions = countsPayload ? countsPayload.total : null;
@@ -66,7 +66,8 @@ export async function QuestionBankPracticeLoader({
       topicCount={countsPayload?.counts ? Object.keys(countsPayload.counts).length : null}
       totalQuestions={totalQuestions}
       boardOpenRemediationCount={null}
-      initialTopicPracticePoolCount={initialTopicPracticePoolCount}
+      initialTopicPracticePoolCount={initialTopicPracticeInventory?.poolCount ?? null}
+      initialTopicPracticeFormats={initialTopicPracticeInventory?.formats ?? null}
     />
   );
 }

@@ -29,6 +29,11 @@ import {
   isNursingFieldId,
 } from "@/lib/question-bank/nclex-curated";
 import {
+  classifyQuestionFormat,
+  emptyFormatCounts,
+  type FormatCounts,
+} from "@/lib/inventory/question-format";
+import {
   curatedPanceWhereClause,
   curatedSampleTarget as panceCuratedSampleTarget,
 } from "@/lib/question-bank/pance-curated";
@@ -1096,4 +1101,37 @@ export async function countActiveQuestionBankItemsByBlueprintTopics(params: {
       ...(blocked.length > 0 ? { id: { notIn: blocked } } : {}),
     },
   });
+}
+
+/** Tag-only blueprint topic pool split by deliberate-practice format buckets. */
+export async function countBlueprintTopicPracticeInventory(params: {
+  fieldId: string;
+  blueprintTopics: string[];
+}): Promise<{ total: number; formats: FormatCounts }> {
+  const topics = params.blueprintTopics.map((t) => t.trim()).filter(Boolean);
+  if (topics.length === 0) {
+    return { total: 0, formats: emptyFormatCounts() };
+  }
+
+  const { ineligibleServedIds } = await import("@/lib/exam-prep/student-eligibility");
+  const blocked = await ineligibleServedIds(params.fieldId);
+
+  const rows = await prisma.questionBankItem.findMany({
+    where: {
+      fieldId: params.fieldId,
+      active: true as const,
+      qaPassed: true as const,
+      blueprintTopic: { in: topics },
+      ...usmleStepSeparationWhere(params.fieldId),
+      ...(blocked.length > 0 ? { id: { notIn: blocked } } : {}),
+    },
+    select: { itemType: true },
+  });
+
+  const formats = emptyFormatCounts();
+  for (const row of rows) {
+    const bucket = classifyQuestionFormat(row.itemType, false);
+    formats[bucket] += 1;
+  }
+  return { total: rows.length, formats };
 }
