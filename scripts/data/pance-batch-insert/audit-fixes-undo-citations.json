@@ -1,0 +1,152 @@
+{
+  "backedUpAt": "2026-10-25T00:19:05.408Z",
+  "fieldId": "pance",
+  "inputFile": "scripts/data/pance-batch-insert/audit-fixes-citations.json",
+  "liveBefore": 3795,
+  "eligibleBefore": 3795,
+  "rows": [
+    {
+      "itemId": "b7-q21",
+      "fingerprint": "9a19b404e82504c5701d9b9fc99715666bced71dff8213a7eccd942d94738b8a",
+      "id": "cmvmrsz1c000kjsco4rlwgedk",
+      "fieldId": "pance",
+      "before": {
+        "contentHash": "b6557176f4a6e79ccfd5d0e430d900f0d61b96f0941174d3ab0f8075f70392ec",
+        "scenario": "A 64-year-old man with a 45-pack-year smoking history has 1 year of exertional dyspnea; he stops to catch his breath after walking 100 meters on level ground (mMRC grade 2). He has had 1 exacerbation in the past year, treated as an outpatient. Post-bronchodilator FEV1/FVC is 0.58 and FEV1 is 62% predicted. Blood eosinophil count is 150/microL. He uses albuterol as needed about once daily and has no history of asthma.",
+        "question": "Which of the following is the most appropriate maintenance pharmacotherapy?",
+        "options": "{\"options\": [\"Long-acting muscarinic antagonist plus long-acting beta2-agonist (LAMA-LABA) combination inhaler\", \"Roflumilast\", \"Inhaled corticosteroid plus long-acting beta2-agonist (ICS-LABA)\", \"Inhaled corticosteroid monotherapy\", \"Daily azithromycin\"], \"blueprintSystem\": \"pulmonary\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"initial maintenance therapy for symptomatic COPD with few exacerbations\", \"keyTakeaway\": \"COPD group B (0-1 non-hospitalized exacerbations, mMRC >=2/CAT >=10): start LAMA+LABA single inhaler; ICS only with eos >=300 and exacerbations.\", \"kind\": \"vignette\"}",
+        "correctAnswer": "Long-acting muscarinic antagonist plus long-acting beta2-agonist (LAMA-LABA) combination inhaler",
+        "explanation": "LAMA-LABA is correct: in the GOLD 2026 report, a patient with 0-1 moderate exacerbations not leading to hospitalization and a high symptom burden (mMRC of 2 or more or CAT of 10 or more) is group B, for whom initial dual long-acting bronchodilation (LAMA plus LABA, preferably in a single inhaler) is recommended, with a short-acting bronchodilator for rescue. ICS monotherapy is not recommended in COPD and increases pneumonia risk. ICS-LABA is not encouraged in COPD; if ICS is indicated (eosinophils of 300/microL or more with exacerbations), LABA+LAMA+ICS is preferred. Roflumilast is reserved for FEV1 below 50% with chronic bronchitis and exacerbations despite therapy. Azithromycin is added for exacerbations despite optimal inhaled therapy, mainly in former smokers. Takeaway: GOLD group B (symptomatic, few exacerbations) = start LAMA+LABA.",
+        "references": [
+          {
+            "url": "https://goldcopd.org/2026-gold-report/",
+            "label": "Global Initiative for Chronic Obstructive Lung Disease. 2026 GOLD Report"
+          }
+        ],
+        "tags": "[\"pance\", \"PANCE-2025\", \"pulmonary\", \"pharmacotherapy\", \"initial-maintenance-therapy-for-symptomatic-copd-with-few-exacerbations\", \"clinical-vignette\", \"pance-batch7-2026-10\"]",
+        "difficulty": 2,
+        "manualCorrection": false,
+        "blueprintTopic": "initial maintenance therapy for symptomatic COPD with few exacerbations",
+        "keyTakeaway": "COPD group B (0-1 non-hospitalized exacerbations, mMRC >=2/CAT >=10): start LAMA+LABA single inhaler; ICS only with eos >=300 and exacerbations."
+      },
+      "afterContentHash": "b6557176f4a6e79ccfd5d0e430d900f0d61b96f0941174d3ab0f8075f70392ec",
+      "afterKeyTakeaway": "GOLD 2026: >=1 moderate exacerbation = group E; start LABA+LAMA single inhaler; add ICS only if eosinophils >=300."
+    },
+    {
+      "itemId": "b8-q51",
+      "fingerprint": "a3db819ed8e69689052541e646168c05142b29fe6744b6d452de33836e583524",
+      "id": "cmvmswbms001ejsrz7o73gg7e",
+      "fieldId": "pance",
+      "before": {
+        "contentHash": "1a25bdc53d3541ad7631fe7dd9c7e7a4ea9d2e9c784dd5c8877abd1fa3cf871e",
+        "scenario": "A 38-year-old man has right flank pain radiating to the groin that began 8 hours ago. Pain is controlled with ketorolac. He is afebrile. Urinalysis shows hematuria without pyuria or nitrites. Creatinine is 0.9 mg/dL. Noncontrast CT shows a 6-mm stone in the distal right ureter with mild hydronephrosis. He has a normal left kidney and no history of stones.",
+        "question": "Which of the following is the most appropriate management?",
+        "options": "{\"options\": [\"Emergency ureteral stent placement under anesthesia today\", \"Immediate percutaneous nephrolithotomy for stone removal\", \"Tamsulosin 0.4 mg daily with analgesics and follow-up imaging\", \"Ciprofloxacin 500 mg twice daily for 7 days with analgesics\", \"Potassium citrate orally to dissolve the stone over 4 weeks\"], \"blueprintSystem\": \"genitourinary\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"tamsulosin medical expulsive therapy for a distal ureteral stone\", \"keyTakeaway\": \"Uncomplicated distal ureteral stone <=10 mm: medical expulsive therapy with tamsulosin; urgent decompression if obstructed + infected.\", \"kind\": \"vignette\"}",
+        "correctAnswer": "Tamsulosin 0.4 mg daily with analgesics and follow-up imaging",
+        "explanation": "Tamsulosin is correct: the AUA/Endourological Society stone surgery guideline (2016; superseded by the 2026 AUA guideline series) recommends offering observation with an alpha-blocker (medical expulsive therapy) to patients with uncomplicated distal ureteral stones 10 mm or smaller whose pain is controlled, with no infection and adequate renal function, and follow-up imaging within about 4-6 weeks; ureteroscopy or shock wave lithotripsy follows if the stone does not pass. Emergency decompression is reserved for obstruction with infection, intractable pain, or renal failure. Antibiotics are not indicated without infection. Potassium citrate does not dissolve calcium stones; it is used for prevention and uric acid stones. PCNL is for large renal stones. Takeaway: uncomplicated distal ureteral stone <=10 mm: tamsulosin and observation; decompress if infected.",
+        "references": [
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41263323/",
+            "label": "Pearle MS et al. Surgical Management of Kidney and Ureteral Stones: AUA Guideline (2026) Part I. J Urol 2026"
+          },
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/27238616/",
+            "label": "Assimos D et al. Surgical Management of Stones: AUA/Endourological Society Guideline, Part I. J Urol 2016"
+          }
+        ],
+        "tags": "[\"pance\", \"PANCE-2025\", \"genitourinary\", \"pharmacotherapy\", \"tamsulosin-medical-expulsive-therapy-for-a-distal-ureteral-stone\", \"clinical-vignette\", \"pance-batch8-2026-10\"]",
+        "difficulty": 2,
+        "manualCorrection": true,
+        "blueprintTopic": "tamsulosin medical expulsive therapy for a distal ureteral stone",
+        "keyTakeaway": "Uncomplicated distal ureteral stone <=10 mm: medical expulsive therapy with tamsulosin; urgent decompression if obstructed + infected."
+      },
+      "afterContentHash": "1a25bdc53d3541ad7631fe7dd9c7e7a4ea9d2e9c784dd5c8877abd1fa3cf871e",
+      "afterKeyTakeaway": "Uncomplicated distal ureteral stone <=10 mm: medical expulsive therapy with tamsulosin; urgent decompression if obstructed + infected."
+    },
+    {
+      "itemId": "b10-q75",
+      "fingerprint": "b4ef415c56477edeb17c8ae507c6125108fd433aff6dc07bdb8b9795863dbc4c",
+      "id": "cmvmypux70022jshqtitdwx6c",
+      "fieldId": "pance",
+      "before": {
+        "contentHash": "151e60d7cb719dab9515ddde2d9ac2722ae6ff5e920f893410b1d4d83c96365c",
+        "scenario": "A 70-year-old man is brought to the emergency department with 2 days of dysuria and fever and new confusion. Temperature is 39.3 C, pulse is 122/min, respiratory rate is 26/min, and blood pressure is 78/42 mm Hg. Lactate is 4.6 mmol/L. Urinalysis shows pyuria and bacteriuria. IV access is established.",
+        "question": "Which of the following is the most appropriate immediate management?",
+        "options": "{\"options\": [\"Obtain CT of the abdomen and pelvis with contrast before giving any antibiotics or IV fluids\", \"Wait for urine and blood culture results to return before giving any antibiotics or IV fluids\", \"Obtain blood cultures and give broad-spectrum IV antibiotics within 1 hour, and start balanced crystalloid 30 mL/kg\", \"Start dopamine as the first-line vasopressor before giving any IV fluids\", \"Give oral ciprofloxacin and observe in the emergency department for 6 hours\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"intervention\", \"blueprintTopic\": \"cultures and antimicrobials within 1 hour for septic shock\", \"keyTakeaway\": \"Septic shock: blood cultures, broad-spectrum IV antibiotics within 1 hour, 30 mL/kg balanced crystalloid, norepinephrine for MAP >=65.\", \"kind\": \"vignette\"}",
+        "correctAnswer": "Obtain blood cultures and give broad-spectrum IV antibiotics within 1 hour, and start balanced crystalloid 30 mL/kg",
+        "explanation": "Cultures, IV antibiotics within 1 hour, and 30 mL/kg crystalloid are correct. The Surviving Sepsis Campaign adult guidelines (2021, with the 2026 update) recommend giving antimicrobials immediately, ideally within 1 hour, in possible septic shock, after obtaining blood cultures if this does not delay therapy, plus at least 30 mL/kg IV crystalloid (balanced solutions preferred) within the first 3 hours for hypoperfusion, and norepinephrine as first-line vasopressor for MAP of at least 65 mm Hg. Waiting for urine culture results delays lifesaving treatment. Oral antibiotics are inadequate in shock. Dopamine is not first line and causes more arrhythmias. Imaging may help with source control but should not delay antibiotics. Takeaway: septic shock = cultures, antibiotics within 1 hour, 30 mL/kg crystalloid, norepinephrine.",
+        "references": [
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34599691/",
+            "label": "Evans L et al. Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021. Intensive Care Med 2021"
+          },
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41869847/",
+            "label": "Prescott HC et al. Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026. Crit Care Med 2026"
+          }
+        ],
+        "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"intervention\", \"cultures-and-antimicrobials-within-1-hour-for-septic-shock\", \"clinical-vignette\", \"pance-batch10-2026-10\"]",
+        "difficulty": 2,
+        "manualCorrection": true,
+        "blueprintTopic": "cultures and antimicrobials within 1 hour for septic shock",
+        "keyTakeaway": "Septic shock: blood cultures, broad-spectrum IV antibiotics within 1 hour, 30 mL/kg balanced crystalloid, norepinephrine for MAP >=65."
+      },
+      "afterContentHash": "151e60d7cb719dab9515ddde2d9ac2722ae6ff5e920f893410b1d4d83c96365c",
+      "afterKeyTakeaway": "Septic shock: blood cultures, broad-spectrum IV antibiotics within 1 hour, 30 mL/kg balanced crystalloid, norepinephrine for MAP >=65."
+    },
+    {
+      "itemId": "b1-q77",
+      "fingerprint": "dd14f296a45f4bee0827fa8744c373e718acf562d5dcce85ad7a134d2e703f52",
+      "id": "cmvmjhkks0024jsaeypj57lyj",
+      "fieldId": "pance",
+      "before": {
+        "contentHash": "0536e80561d08fd1b6a7e036a12f974aa9821b996eabd53b6c4221d87098a279",
+        "scenario": "A 72-year-old woman was last known well at 10 PM and was found by her husband at 7 AM with left-sided weakness and inattention to her left side; she arrives at a comprehensive stroke center at 8 AM, 10 hours after she was last known well. Before this she lived independently. NIH Stroke Scale score is 17. Blood pressure is 162/88 mm Hg, glucose 118 mg/dL. Noncontrast CT shows no hemorrhage and an ASPECTS of 8. CT angiography shows occlusion of the right middle cerebral artery M1 segment. CT perfusion shows a small ischemic core of 18 mL with a large surrounding area of hypoperfused but salvageable tissue.",
+        "question": "Which of the following is the most appropriate management?",
+        "options": "{\"options\": [\"Unfractionated heparin infusion\", \"Carotid endarterectomy within 48 hours\", \"Repeat CT perfusion in 6 hours to assess progression\", \"Endovascular mechanical thrombectomy\", \"Admission for aspirin and permissive hypertension only\"], \"blueprintSystem\": \"neurologic\", \"taskCategory\": \"intervention\", \"blueprintTopic\": \"mechanical thrombectomy late window\", \"keyTakeaway\": \"Anterior large vessel occlusion 6-24 hours from last known well + small core/large penumbra (DAWN/DEFUSE 3 criteria) + good baseline function = mechanical thrombectomy.\", \"kind\": \"vignette\"}",
+        "correctAnswer": "Endovascular mechanical thrombectomy",
+        "explanation": "Endovascular mechanical thrombectomy is correct: the AHA/ASA 2026 acute ischemic stroke guideline recommends thrombectomy for selected patients with an anterior circulation large vessel occlusion (ICA or M1) presenting 6-24 hours after last known well who meet imaging criteria such as those in the DAWN or DEFUSE 3 trials (small core with a large mismatch of salvageable tissue), because it greatly improves functional outcome. Aspirin with permissive hypertension alone is incorrect because it forgoes a highly effective reperfusion therapy for a patient who qualifies. Heparin infusion is incorrect because acute anticoagulation does not improve outcomes and increases hemorrhage. Repeating perfusion imaging is incorrect because delay leads to loss of the penumbra. Carotid endarterectomy is incorrect because the occlusion is intracranial, and endarterectomy addresses symptomatic cervical carotid stenosis. Takeaway: M1 occlusion + small core with mismatch at 6-24 hours = thrombectomy.",
+        "references": [
+          {
+            "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+            "label": "AHA/ASA. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke. Stroke 2026; Section 4.7.2 (Endovascular Thrombectomy for Adults)"
+          }
+        ],
+        "tags": "[\"pance\", \"PANCE-2025\", \"neurologic\", \"intervention\", \"mechanical-thrombectomy-late-window\", \"clinical-vignette\", \"pance-batch1-2026-10\"]",
+        "difficulty": 4,
+        "manualCorrection": false,
+        "blueprintTopic": "mechanical thrombectomy late window",
+        "keyTakeaway": "Anterior large vessel occlusion 6-24 hours from last known well + small core/large penumbra (DAWN/DEFUSE 3 criteria) + good baseline function = mechanical thrombectomy."
+      },
+      "afterContentHash": "0536e80561d08fd1b6a7e036a12f974aa9821b996eabd53b6c4221d87098a279",
+      "afterKeyTakeaway": "6-24 h anterior LVO (ICA/M1) + NIHSS >=6 + prestroke mRS 0-1 + ASPECTS >=6 = mechanical thrombectomy (AHA/ASA 2026)."
+    },
+    {
+      "itemId": "b6-q19",
+      "fingerprint": "77129a5636e3f3c6e6d6a8e9c02f6bad906e80ada7956e394d1470034c53675e",
+      "id": "cmvmq1db1000ijs214r273c82",
+      "fieldId": "pance",
+      "before": {
+        "contentHash": "75c2ef426ec03e7e265c15ab6e0f6eb7d3fd24b4a8f0ce70fc6b45e5ad9ae6cd",
+        "scenario": "A 42-year-old man who smoked half a pack per day for 10 years, quitting 8 years ago, has progressive exertional dyspnea. Post-bronchodilator FEV1/FVC is 0.56 and FEV1 is 52% of predicted. Chest CT shows panlobular emphysema most pronounced in the lower lobes. ALT is mildly elevated at 62 U/L. His father died of cirrhosis at age 58 and did not drink alcohol.",
+        "question": "Which of the following is the most appropriate test to establish the underlying cause?",
+        "options": "{\"options\": [\"Sweat chloride test for cystic fibrosis\", \"Serum alpha-1 antitrypsin level with phenotyping or genotyping\", \"Hepatitis C antibody testing only, without other studies\", \"Serum angiotensin-converting enzyme level for sarcoidosis\", \"Fractional exhaled nitric oxide measurement for asthma\"], \"blueprintSystem\": \"pulmonary\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"alpha-1 antitrypsin deficiency testing in early-onset emphysema\", \"keyTakeaway\": \"Early-onset, lower-lobe panlobular emphysema + liver disease = alpha-1 antitrypsin deficiency; GOLD: screen every COPD patient once.\", \"kind\": \"vignette\"}",
+        "correctAnswer": "Serum alpha-1 antitrypsin level with phenotyping or genotyping",
+        "explanation": "Serum alpha-1 antitrypsin level with phenotyping or genotyping is correct: early-onset COPD with modest smoking, basilar panlobular emphysema, unexplained liver disease, and a family history of cirrhosis suggest AATD, most often the PiZZ genotype; the 2026 GOLD report endorses the WHO recommendation that every patient with COPD be screened once for AATD, especially in areas of high prevalence, and confirmed severe deficiency can justify augmentation therapy and family testing. Sweat chloride tests for CF, which causes bronchiectasis and upper-lobe disease rather than basilar emphysema. ACE level is nonspecific for sarcoidosis, which is restrictive and not emphysematous. Hepatitis C serology may explain abnormal ALT but not basilar emphysema. Exhaled nitric oxide measures type 2 airway inflammation in asthma. Takeaway: COPD before 45, basilar emphysema, or liver disease = test AAT level and genotype.",
+        "references": [
+          {
+            "url": "https://goldcopd.org/2026-gold-report/",
+            "label": "Global Initiative for Chronic Obstructive Lung Disease (GOLD). 2026 GOLD Report"
+          }
+        ],
+        "tags": "[\"pance\", \"PANCE-2025\", \"pulmonary\", \"diagnosis\", \"alpha-1-antitrypsin-deficiency-testing-in-early-onset-emphysema\", \"clinical-vignette\", \"pance-batch6-2026-10\"]",
+        "difficulty": 2,
+        "manualCorrection": true,
+        "blueprintTopic": "alpha-1 antitrypsin deficiency testing in early-onset emphysema",
+        "keyTakeaway": "Early-onset, lower-lobe panlobular emphysema + liver disease = alpha-1 antitrypsin deficiency; GOLD: screen every COPD patient once."
+      },
+      "afterContentHash": "75c2ef426ec03e7e265c15ab6e0f6eb7d3fd24b4a8f0ce70fc6b45e5ad9ae6cd",
+      "afterKeyTakeaway": "Early-onset, lower-lobe panlobular emphysema + liver disease = alpha-1 antitrypsin deficiency; GOLD: screen every COPD patient once."
+    }
+  ]
+}

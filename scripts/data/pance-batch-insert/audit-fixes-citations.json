@@ -1,0 +1,84 @@
+[
+ {
+  "batch": "b7",
+  "itemId": "b7-q21",
+  "sourceFile": "b7",
+  "contentHash": "9a19b404e82504c5701d9b9fc99715666bced71dff8213a7eccd942d94738b8a",
+  "tags": "[\"pance\", \"PANCE-2025\", \"pulmonary\", \"pharmacotherapy\", \"initial-maintenance-therapy-for-symptomatic-copd-with-few-exacerbations\", \"clinical-vignette\", \"pance-batch7-2026-10\"]",
+  "subjectId": "pulmonary",
+  "taskCategory": "pharmacotherapy",
+  "originalQuestion": "Which of the following is the most appropriate maintenance pharmacotherapy?",
+  "fixTypes": [
+   "fix-citation-2026"
+  ],
+  "changedFields": {
+   "explanation": "LAMA-LABA is correct. The GOLD 2026 report revised the ABE groups: even 1 moderate exacerbation in the past year now places a patient in group E. For a treatment-naive group E patient, initial therapy is LABA+LAMA, preferably in a single inhaler, with a short-acting bronchodilator for rescue; adding ICS (LABA+LAMA+ICS) is considered only when blood eosinophils are 300/microL or more. His count is 150/microL. ICS monotherapy is not recommended in COPD and increases pneumonia risk. ICS-LABA is not encouraged in COPD; if ICS is indicated, LABA+LAMA+ICS is preferred. Roflumilast is reserved for FEV1 below 50% with chronic bronchitis and exacerbations despite therapy. Azithromycin is added for exacerbations despite optimal inhaled therapy, mainly in former smokers. Takeaway: GOLD 2026: 1 or more moderate exacerbations = group E; start LABA+LAMA, add ICS only if eosinophils >=300.",
+   "options": "{\"options\": [\"Long-acting muscarinic antagonist plus long-acting beta2-agonist (LAMA-LABA) combination inhaler\", \"Roflumilast\", \"Inhaled corticosteroid plus long-acting beta2-agonist (ICS-LABA)\", \"Inhaled corticosteroid monotherapy\", \"Daily azithromycin\"], \"blueprintSystem\": \"pulmonary\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"initial maintenance therapy for symptomatic COPD with few exacerbations\", \"keyTakeaway\": \"GOLD 2026: >=1 moderate exacerbation = group E; start LABA+LAMA single inhaler; add ICS only if eosinophils >=300.\", \"kind\": \"vignette\"}"
+  }
+ },
+ {
+  "batch": "b8",
+  "itemId": "b8-q51",
+  "sourceFile": "b8",
+  "contentHash": "a3db819ed8e69689052541e646168c05142b29fe6744b6d452de33836e583524",
+  "tags": "[\"pance\", \"PANCE-2025\", \"genitourinary\", \"pharmacotherapy\", \"tamsulosin-medical-expulsive-therapy-for-a-distal-ureteral-stone\", \"clinical-vignette\", \"pance-batch8-2026-10\"]",
+  "subjectId": "genitourinary",
+  "taskCategory": "pharmacotherapy",
+  "originalQuestion": "Which of the following is the most appropriate management?",
+  "fixTypes": [
+   "fix-citation-2026"
+  ],
+  "changedFields": {
+   "explanation": "Tamsulosin is correct: the AUA Surgical Management of Kidney and Ureteral Stones guideline (2026) recommends offering medical expulsive therapy with an alpha-blocker to patients with uncomplicated distal ureteral stones 10 mm or smaller whose pain is controlled, with no infection and adequate renal function, and reimaging if passage is not confirmed after about 30 days; ureteroscopy or shock wave lithotripsy follows if the stone does not pass. Emergency decompression is reserved for obstruction with infection, intractable pain, or renal failure. Antibiotics are not indicated without infection. Potassium citrate does not dissolve calcium stones; it is used for prevention and uric acid stones. PCNL is for large renal stones. Takeaway: uncomplicated distal ureteral stone <=10 mm: tamsulosin and observation; decompress if infected."
+  }
+ },
+ {
+  "batch": "b10",
+  "itemId": "b10-q75",
+  "sourceFile": "b10",
+  "contentHash": "b4ef415c56477edeb17c8ae507c6125108fd433aff6dc07bdb8b9795863dbc4c",
+  "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"intervention\", \"cultures-and-antimicrobials-within-1-hour-for-septic-shock\", \"clinical-vignette\", \"pance-batch10-2026-10\"]",
+  "subjectId": "infectious-diseases",
+  "taskCategory": "intervention",
+  "originalQuestion": "Which of the following is the most appropriate immediate management?",
+  "fixTypes": [
+   "fix-citation-2026"
+  ],
+  "changedFields": {
+   "explanation": "Cultures, IV antibiotics within 1 hour, and 30 mL/kg crystalloid are correct. The Surviving Sepsis Campaign 2026 adult guidelines recommend giving antimicrobials immediately, ideally within 1 hour, in possible septic shock, after obtaining blood cultures if this does not delay therapy, plus at least 30 mL/kg IV crystalloid within the first 3 hours for hypoperfusion (balanced crystalloids suggested over saline), and norepinephrine as first-line vasopressor. Waiting for urine culture results delays lifesaving treatment. Oral antibiotics are inadequate in shock. Dopamine is not first line and causes more arrhythmias. Imaging may help with source control but should not delay antibiotics. Takeaway: septic shock = cultures, antibiotics within 1 hour, 30 mL/kg crystalloid, norepinephrine."
+  }
+ },
+ {
+  "batch": "b1",
+  "itemId": "b1-q77",
+  "sourceFile": "b1",
+  "contentHash": "dd14f296a45f4bee0827fa8744c373e718acf562d5dcce85ad7a134d2e703f52",
+  "tags": "[\"pance\", \"PANCE-2025\", \"neurologic\", \"intervention\", \"mechanical-thrombectomy-late-window\", \"clinical-vignette\", \"pance-batch1-2026-10\"]",
+  "subjectId": "neurologic",
+  "taskCategory": "intervention",
+  "originalQuestion": "Which of the following is the most appropriate management?",
+  "fixTypes": [
+   "fix-citation-2026"
+  ],
+  "changedFields": {
+   "explanation": "Endovascular mechanical thrombectomy is correct: the AHA/ASA 2026 acute ischemic stroke guideline recommends (Class 1) thrombectomy for anterior circulation large vessel occlusion of the ICA or M1 presenting 6-24 hours after onset or last known well with NIHSS 6 or more, prestroke mRS 0-1, and ASPECTS 6 or more. She has an M1 occlusion, NIHSS 17, independent baseline, and ASPECTS 8; her small core with large penumbra is also favorable. Aspirin with permissive hypertension alone is incorrect because it forgoes a highly effective reperfusion therapy. Heparin infusion is incorrect because acute anticoagulation does not improve outcomes and increases hemorrhage. Repeating perfusion imaging is incorrect because delay loses penumbra. Carotid endarterectomy is incorrect because the occlusion is intracranial. Takeaway: ICA/M1 occlusion at 6-24 hours + NIHSS >=6 + ASPECTS >=6 + good baseline = thrombectomy.",
+   "options": "{\"options\": [\"Unfractionated heparin infusion\", \"Carotid endarterectomy within 48 hours\", \"Repeat CT perfusion in 6 hours to assess progression\", \"Endovascular mechanical thrombectomy\", \"Admission for aspirin and permissive hypertension only\"], \"blueprintSystem\": \"neurologic\", \"taskCategory\": \"intervention\", \"blueprintTopic\": \"mechanical thrombectomy late window\", \"keyTakeaway\": \"6-24 h anterior LVO (ICA/M1) + NIHSS >=6 + prestroke mRS 0-1 + ASPECTS >=6 = mechanical thrombectomy (AHA/ASA 2026).\", \"kind\": \"vignette\"}"
+  }
+ },
+ {
+  "batch": "b6",
+  "itemId": "b6-q19",
+  "sourceFile": "b6",
+  "contentHash": "77129a5636e3f3c6e6d6a8e9c02f6bad906e80ada7956e394d1470034c53675e",
+  "tags": "[\"pance\", \"PANCE-2025\", \"pulmonary\", \"diagnosis\", \"alpha-1-antitrypsin-deficiency-testing-in-early-onset-emphysema\", \"clinical-vignette\", \"pance-batch6-2026-10\"]",
+  "subjectId": "pulmonary",
+  "taskCategory": "diagnosis",
+  "originalQuestion": "Which of the following is the most appropriate test to establish the underlying cause?",
+  "fixTypes": [
+   "fix-citation-2026"
+  ],
+  "changedFields": {
+   "explanation": "Serum alpha-1 antitrypsin level with phenotyping or genotyping is correct: early-onset COPD with modest smoking, basilar panlobular emphysema, unexplained liver disease, and a family history of cirrhosis suggest AATD, most often PiZZ. The 2026 GOLD report recommends that all patients with a diagnosis of COPD be tested for AATD, and confirmed severe deficiency can justify augmentation therapy and family testing. Sweat chloride tests for CF, which causes bronchiectasis and upper-lobe disease rather than basilar emphysema. ACE level is nonspecific for sarcoidosis, which is restrictive and not emphysematous. Hepatitis C serology may explain abnormal ALT but not basilar emphysema. Exhaled nitric oxide measures type 2 airway inflammation in asthma. Takeaway: COPD before 45, basilar emphysema, or liver disease = test AAT level and genotype."
+  }
+ }
+]

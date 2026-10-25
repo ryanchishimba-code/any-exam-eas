@@ -1,0 +1,19 @@
+{
+  "mode": "dry-run",
+  "inputFile": "scripts/data/pance-batch-insert/audit-fixes-citations2.json",
+  "fixes": 3,
+  "matched": 3,
+  "skips": [],
+  "notes": [],
+  "validationErrors": [],
+  "hashChanges": [],
+  "countsBefore": {
+    "live": 3795,
+    "eligible": 3795,
+    "total": 4324
+  },
+  "liveAfterInTransaction": 3795,
+  "eligibleAfterInTransaction": 3795,
+  "liveAfter": 3795,
+  "eligibleAfter": 3795
+}
