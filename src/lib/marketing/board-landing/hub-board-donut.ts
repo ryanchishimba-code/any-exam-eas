@@ -35,10 +35,10 @@ function colorAt(index: number): string {
 }
 
 const DONUT_HEADING: Record<HubExamKey, string> = {
-  usmle: "Built to help you ace the USMLE",
+  usmle: "Structured USMLE prep across Steps 1–3",
   pance: "Structured PANCE prep across the NCCPA blueprint",
-  "aanp-fnp": "Built to help you ace the AANP FNP",
-  "npte-pt": "Built to help you ace the NPTE-PT",
+  "aanp-fnp": "Structured FNP prep across the NPCB blueprint",
+  "npte-pt": "Structured NPTE-PT prep across the FSBPT outline",
 };
 
 const DONUT_CENTER: Record<HubExamKey, string> = {

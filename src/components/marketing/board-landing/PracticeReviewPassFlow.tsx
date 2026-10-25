@@ -31,10 +31,9 @@ const ICONS: Record<string, () => ReactElement> = {
   ),
 };
 
-export function PracticeReviewPassFlow({ boardSlug }: { boardSlug?: BoardSlug }) {
-  const steps = boardPracticeFlowSteps(boardSlug);
-  const flowLabel =
-    boardSlug === "pance" ? "Practice, review, and prepare" : "Practice, review, and pass";
+export function PracticeReviewPassFlow({ boardSlug: _boardSlug }: { boardSlug?: BoardSlug }) {
+  const steps = boardPracticeFlowSteps();
+  const flowLabel = "Practice, review, and prepare";
   return (
     <section className="bl-flow" aria-label={flowLabel}>
       <ol className="bl-flow__steps">

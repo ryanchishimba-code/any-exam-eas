@@ -4,6 +4,7 @@ import {
   seoTrialHeading,
   seoTrialResourceParagraph,
 } from "@/lib/seo/trial-copy";
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { SEO_LIVE_STATS, SEO_VALUE_PROPS } from "@/lib/seo/seo-copy";
 import { formatMonthlyPrice } from "@/lib/site";
 import { clampMetaDescription, clampMetaTitle } from "@/lib/seo/meta-budget";
@@ -45,7 +46,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   article({
     slug: "multi-exam-board-prep-2026",
     title: "Multi-Exam Board Prep in One Subscription (2026)",
-    metaDescription: `One Pro plan at ${formatMonthlyPrice("pro")}/mo covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE-PT with Roadmap, Deep Dives, and Full Exams. Start a ${SEO_LIVE_STATS.trialDays}-day free trial.`,
+    metaDescription: `One Pro plan at ${formatMonthlyPrice("pro")}/mo for unlimited access, Deep Dives, and Full Exams across NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE-PT. ${TRIAL_DAYS}-day free trial: ${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment required.`,
     examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
     keywords: [
       "multi-exam board prep",
@@ -56,7 +57,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     ],
     readingMinutes: 6,
     intro:
-      "If you are preparing for more than one licensing exam, separate per-exam subscriptions add cost and context switching. AnyExamEasy keeps NCLEX, USMLE (Steps 1–3), NAPLEX, PANCE, AANP FNP, and NPTE-PT on one Pro plan with a shared study system.",
+      `If you are preparing for more than one licensing exam, separate per-exam subscriptions add cost and context switching. AnyExamEasy keeps NCLEX, USMLE (Steps 1–3), NAPLEX, PANCE, AANP FNP, and NPTE-PT on one Pro plan with a shared study system. Start with a ${TRIAL_DAYS}-day free trial (${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment required), then upgrade to Pro for unlimited bank access.`,
     faq: [
       {
         question: "Which board exams are included on one Pro subscription?",
@@ -65,11 +66,11 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       },
       {
         question: "How much does Pro cost after the trial?",
-        answer: `Pro is ${formatMonthlyPrice("pro")}/month on the monthly plan (see pricing for other billing intervals). You can start with a ${SEO_LIVE_STATS.trialDays}-day free trial before you subscribe.`,
+        answer: `Pro is ${formatMonthlyPrice("pro")}/month on the monthly plan (see pricing for other billing intervals). Subscribe after your ${TRIAL_DAYS}-day trial when you want unlimited question-bank access, Deep Dive modules, and Full Exam simulations.`,
       },
       {
         question: "What is included in the free trial?",
-        answer: seoTrialResourceParagraph(),
+        answer: `${TRIAL_DAYS} days with ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmap and reference tools. No payment method required at signup. The trial is a capped sample — not the full live banks. Deep Dives and Full Exam simulations unlock on Pro.`,
       },
       {
         question: "How should I study across multiple exams?",
@@ -88,6 +89,8 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "What you get on Pro",
         bullets: [
+          "Unlimited access to the live question banks on all six boards (trial is capped at " +
+            `${TRIAL_LIFETIME_QUESTIONS} practice questions).`,
           SEO_VALUE_PROPS.qaGated,
           SEO_VALUE_PROPS.adaptiveRoadmap,
           SEO_VALUE_PROPS.deepDives,
@@ -98,7 +101,9 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       },
       {
         heading: seoTrialHeading(),
-        paragraphs: [seoSixBoardTrialParagraph()],
+        paragraphs: [
+          `No payment method required at signup. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across every board track, plus Roadmap and reference tools. Upgrade to Pro when you want unlimited bank access, Deep Dives, and Full Exam simulations.`,
+        ],
       },
     ],
   }),

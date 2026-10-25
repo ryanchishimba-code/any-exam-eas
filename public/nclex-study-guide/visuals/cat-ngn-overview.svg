@@ -10,7 +10,8 @@
   <text x="187.5" y="118" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#ecfdf5">Difficulty adapts after each response.</text>
   <rect x="32" y="136" width="88" height="36" rx="6" fill="#fff" fill-opacity="0.95"/>
   <text x="76" y="160" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#0f172a">Start</text>
-  <text x="132" y="160" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#fff">&#8594;</text>
+  <line x1="122" y1="154" x2="136" y2="154" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+  <polygon points="136,154 150,146 150,162" fill="#fff"/>
   <rect x="148" y="136" width="195" height="36" rx="6" fill="#fff" fill-opacity="0.95"/>
   <text x="245.5" y="160" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#0f172a">Harder / easier items</text>
   <text x="187.5" y="200" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#ecfdf5">Stops when the computer is confident</text>

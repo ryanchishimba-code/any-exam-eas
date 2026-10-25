@@ -195,8 +195,8 @@ export const EXAM_ONE_PAGER_LINKS = [
     exam: "NAPLEX",
   },
   {
-    slug: "uworld-alternative-multi-exam-prep-2026",
-    title: "UWorld alternative (multi-exam)",
+    slug: "multi-exam-board-prep-2026",
+    title: "Multi-exam board prep (one subscription)",
     exam: "All",
   },
 ] as const;
