@@ -1,0 +1,68 @@
+[
+  {
+    "id": "ADA_HC24",
+    "title": "ADA/EASD Hyperglycemic Crises in Adults With Diabetes (2024 consensus)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11272983/",
+    "verification": "full_text"
+  },
+  {
+    "id": "NHLBI_SCD14",
+    "title": "NHLBI Evidence-Based Management of Sickle Cell Disease (2014 expert panel report)",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK2698/",
+    "verification": "full_text"
+  },
+  {
+    "id": "FDA_ZOLOFT",
+    "title": "Sertraline hydrochloride (Zoloft) prescribing information",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fda754f6-d0f3-4dce-a17a-927d64f912f7",
+    "verification": "full_text"
+  },
+  {
+    "id": "ES_PAI16",
+    "title": "Endocrine Society clinical practice guideline: diagnosis and treatment of primary adrenal insufficiency",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4880116/",
+    "verification": "full_text"
+  },
+  {
+    "id": "FDA_VANCO",
+    "title": "Vancomycin hydrochloride prescribing information",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00946db3-d6c5-4534-a870-1ec6e63eda43",
+    "verification": "full_text"
+  },
+  {
+    "id": "FDA_NOREPI",
+    "title": "Norepinephrine injection prescribing information",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0ea48ab6-e166-df31-b132-70ef982a2d02",
+    "verification": "full_text"
+  },
+  {
+    "id": "FDA_PHENYTOIN",
+    "title": "Phenytoin sodium prescribing information",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=035a8d4e-2063-4240-83cb-d7eebcabe301",
+    "verification": "full_text"
+  },
+  {
+    "id": "FDA_METHIMAZOLE",
+    "title": "Methimazole prescribing information",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=05a8fed7-f805-4c59-8840-630174b6d130",
+    "verification": "full_text"
+  },
+  {
+    "id": "FDA_HALOPERIDOL",
+    "title": "Haloperidol lactate injection prescribing information",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00bb61c8-db35-4c04-9ef7-47d447d2496b",
+    "verification": "full_text"
+  },
+  {
+    "id": "ADA_SOC26_S15",
+    "title": "ADA Standards of Care 2026, Section 15 (diabetes in pregnancy)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12690179/",
+    "verification": "full_text"
+  },
+  {
+    "id": "NCSBN_TP26",
+    "title": "NCSBN 2026 NCLEX-RN Test Plan",
+    "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+    "verification": "full_text"
+  }
+]
