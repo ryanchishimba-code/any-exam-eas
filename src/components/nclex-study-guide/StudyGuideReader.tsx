@@ -128,6 +128,8 @@ function readPaperSelection(root: HTMLElement | null): TextSelection | null {
 const PROGRESS_FLUSH_MS = 2000;
 /** Throttle for the synchronous localStorage progress write during scroll. */
 const PROGRESS_LOCAL_MS = 1000;
+/** Server heartbeat while the tab stays visible (ms). */
+const PROGRESS_HEARTBEAT_MS = 15_000;
 
 /** Tailwind `lg`. Below this the drawer overlays the page instead of splitting the row. */
 const DESKTOP_QUERY = "(min-width: 1024px)";
@@ -445,9 +447,10 @@ export function StudyGuideReader({
     void restoreScroll(chapter);
   }, [chapter.id, restoreScroll]);
 
-  const flushProgress = useStableCallback(() => {
+  const flushProgress = useStableCallback((options?: { heartbeatSeconds?: number }) => {
     const pct = scrollPctRef.current;
     const chapterId = chapterRef.current.id;
+    const tabVisible = document.visibilityState === "visible";
     try {
       localStorage.setItem(`sg-progress:${guideId}:${chapterId}`, String(pct));
     } catch {
@@ -460,6 +463,8 @@ export function StudyGuideReader({
         guideId,
         chapterId,
         scrollPct: pct,
+        heartbeatSeconds: options?.heartbeatSeconds ?? 0,
+        tabVisible,
       }),
     }).then((res) => {
       if (res.status === 401) {
@@ -509,14 +514,23 @@ export function StudyGuideReader({
   );
 
   useEffect(() => {
+    const heartbeat = window.setInterval(() => {
+      if (document.visibilityState !== "visible") return;
+      flushProgress({ heartbeatSeconds: Math.round(PROGRESS_HEARTBEAT_MS / 1000) });
+    }, PROGRESS_HEARTBEAT_MS);
+    return () => window.clearInterval(heartbeat);
+  }, [flushProgress]);
+
+  useEffect(() => {
     const onHide = () => {
       if (document.visibilityState === "hidden") flushProgress();
     };
+    const onPageHide = () => flushProgress();
     document.addEventListener("visibilitychange", onHide);
-    window.addEventListener("pagehide", flushProgress);
+    window.addEventListener("pagehide", onPageHide);
     return () => {
       document.removeEventListener("visibilitychange", onHide);
-      window.removeEventListener("pagehide", flushProgress);
+      window.removeEventListener("pagehide", onPageHide);
     };
   }, [flushProgress]);
 

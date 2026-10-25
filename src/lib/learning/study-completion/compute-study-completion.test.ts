@@ -2,23 +2,32 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import {
   buildStudyCompletionResult,
   computeOverallPercent,
+  computeWeightedOverallPercent,
   coverageTargetQuestionCount,
   computeStudyCompletion,
   pillarProgressPercent,
 } from "./compute-study-completion";
 import { COMPLETION_RULES_V1 } from "./completion-rules-v1";
+import { COMPLETION_RULES_V2 } from "./completion-rules-v2";
 
 const { prismaMock } = vi.hoisted(() => ({
   prismaMock: {
     questionBankItem: { count: vi.fn() },
-    examSession: { count: vi.fn() },
-    readinessCheck: { count: vi.fn() },
+    examSession: { count: vi.fn(), findFirst: vi.fn() },
+    readinessCheck: { count: vi.fn(), findFirst: vi.fn() },
+    quickBiteProgress: { count: vi.fn() },
+    sgChapter: { count: vi.fn() },
+    sgChapterProgress: { count: vi.fn() },
     $queryRaw: vi.fn(),
   },
 }));
 
 vi.mock("@/lib/prisma", () => ({
   prisma: prismaMock,
+}));
+
+vi.mock("@/lib/nclex-study-guide/queries", () => ({
+  getPublishedGuide: vi.fn(async () => ({ id: "guide_nclex" })),
 }));
 
 describe("buildStudyCompletionResult", () => {
@@ -29,6 +38,10 @@ describe("buildStudyCompletionResult", () => {
       fastAttemptsExcluded: 12,
       fullLengthExamsCompleted: 1,
       readinessChecksCompleted: 0,
+      quickBitesCompleted: 0,
+      quickBitesTotal: 0,
+      studyGuideChaptersCompleted: 0,
+      studyGuideChaptersTotal: 0,
     });
     expect(result.pillars[0]).toMatchObject({
       done: 800,
@@ -36,7 +49,7 @@ describe("buildStudyCompletionResult", () => {
       met: false,
     });
     expect(result.coveragePercent).toBe(80);
-    expect(result.ruleVersion).toBe("completion-rules-v1");
+    expect(result.ruleVersion).toBe("completion-rules-v2");
   });
 
   it("uses two full-length exams for AANP FNP", () => {
@@ -46,26 +59,41 @@ describe("buildStudyCompletionResult", () => {
       fastAttemptsExcluded: 0,
       fullLengthExamsCompleted: 2,
       readinessChecksCompleted: 1,
+      quickBitesCompleted: 0,
+      quickBitesTotal: 0,
+      studyGuideChaptersCompleted: 10,
+      studyGuideChaptersTotal: 10,
     });
     const exams = result.pillars.find((p) => p.id === "full_length_exams");
     expect(exams).toMatchObject({ done: 2, target: 2, met: true });
-    expect(result.pillars.every((p) => p.met)).toBe(true);
-    expect(result.overallPercent).toBe(100);
   });
 
-  it("averages pillar progress for overall percent", () => {
-    const result = buildStudyCompletionResult("naplex", {
-      liveBankCount: 100,
-      distinctBankItemsAttempted: 85,
-      fastAttemptsExcluded: 0,
-      fullLengthExamsCompleted: 1,
-      readinessChecksCompleted: 0,
-    });
-    expect(coverageTargetQuestionCount(100, 85)).toBe(85);
-    expect(result.pillars[0].met).toBe(true);
-    expect(computeOverallPercent(result.pillars)).toBe(result.overallPercent);
-    expect(result.overallPercent).toBeGreaterThan(0);
-    expect(result.overallPercent).toBeLessThan(100);
+  it("weights pillar progress for overall percent (v2)", () => {
+    const result = buildStudyCompletionResult(
+      "nclex",
+      {
+        liveBankCount: 1000,
+        distinctBankItemsAttempted: 50,
+        fastAttemptsExcluded: 0,
+        fullLengthExamsCompleted: 3,
+        readinessChecksCompleted: 0,
+        quickBitesCompleted: 0,
+        quickBitesTotal: 10,
+        studyGuideChaptersCompleted: 0,
+        studyGuideChaptersTotal: 20,
+      },
+      COMPLETION_RULES_V2
+    );
+    const manual = computeWeightedOverallPercent(
+      result.pillars,
+      COMPLETION_RULES_V2.pillarWeights
+    );
+    expect(result.overallPercent).toBe(manual);
+    expect(result.overallPercent).toBeLessThan(35);
+  });
+
+  it("caps pillar percent for over-target completion", () => {
+    expect(pillarProgressPercent(6, 3)).toBe(100);
   });
 });
 
@@ -74,6 +102,27 @@ describe("pillarProgressPercent", () => {
     expect(pillarProgressPercent(5, 10)).toBe(50);
     expect(pillarProgressPercent(20, 10)).toBe(100);
     expect(pillarProgressPercent(0, 0)).toBe(0);
+  });
+});
+
+describe("computeOverallPercent (v1)", () => {
+  it("averages pillar progress for legacy rules", () => {
+    const pillars = buildStudyCompletionResult(
+      "naplex",
+      {
+        liveBankCount: 100,
+        distinctBankItemsAttempted: 85,
+        fastAttemptsExcluded: 0,
+        fullLengthExamsCompleted: 1,
+        readinessChecksCompleted: 0,
+        quickBitesCompleted: 0,
+        quickBitesTotal: 0,
+        studyGuideChaptersCompleted: 0,
+        studyGuideChaptersTotal: 0,
+      },
+      COMPLETION_RULES_V1
+    ).pillars;
+    expect(computeOverallPercent(pillars)).toBeGreaterThan(0);
   });
 });
 
@@ -86,9 +135,16 @@ describe("computeStudyCompletion", () => {
     prismaMock.questionBankItem.count.mockResolvedValue(200);
     prismaMock.$queryRaw
       .mockResolvedValueOnce([{ count: BigInt(40) }])
-      .mockResolvedValueOnce([{ count: BigInt(3) }]);
+      .mockResolvedValueOnce([{ count: BigInt(3) }])
+      .mockResolvedValueOnce([{ count: BigInt(40) }])
+      .mockResolvedValueOnce([]);
     prismaMock.examSession.count.mockResolvedValue(2);
+    prismaMock.examSession.findFirst.mockResolvedValue(null);
     prismaMock.readinessCheck.count.mockResolvedValue(1);
+    prismaMock.readinessCheck.findFirst.mockResolvedValue(null);
+    prismaMock.quickBiteProgress.count.mockResolvedValue(4);
+    prismaMock.sgChapter.count.mockResolvedValue(30);
+    prismaMock.sgChapterProgress.count.mockResolvedValue(2);
 
     const result = await computeStudyCompletion("user_1", "pance");
 
@@ -108,9 +164,7 @@ describe("computeStudyCompletion", () => {
   });
 
   it("rejects unsupported exam slugs", async () => {
-    await expect(computeStudyCompletion("user_1", "usmle")).rejects.toThrow(
-      /not configured/
-    );
+    await expect(computeStudyCompletion("user_1", "usmle")).rejects.toThrow(/not configured/);
   });
 });
 

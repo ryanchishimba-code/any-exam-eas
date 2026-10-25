@@ -1,0 +1,79 @@
+@property --study-progress-ring-pct {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.study-progress-card__ring {
+  --study-progress-ring-size: 4.75rem;
+  --study-progress-ring-track: color-mix(in srgb, var(--color-ink-muted) 22%, transparent);
+  width: var(--study-progress-ring-size);
+  height: var(--study-progress-ring-size);
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(
+    var(--color-accent) calc(var(--study-progress-ring-pct) * 1%),
+    var(--study-progress-ring-track) 0
+  );
+  position: relative;
+}
+
+.study-progress-card__ring::after {
+  content: "";
+  position: absolute;
+  inset: 0.45rem;
+  border-radius: 50%;
+  background: var(--color-surface);
+}
+
+.study-progress-card__ring-value {
+  position: relative;
+  z-index: 1;
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-progress-card__ring--animate {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .study-progress-card__ring--animate {
+    animation: study-progress-ring-fill 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+@keyframes study-progress-ring-fill {
+  from {
+    --study-progress-ring-pct: 0;
+  }
+  to {
+    --study-progress-ring-pct: var(--study-progress-ring-target);
+  }
+}
+
+.study-progress-card__row-bar {
+  height: 0.25rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-ink-muted) 20%, transparent);
+  overflow: hidden;
+}
+
+.study-progress-card__row-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-accent);
+}
+
+.study-progress-card__row-bar--met > span {
+  background: #059669;
+}

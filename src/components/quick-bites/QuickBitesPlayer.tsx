@@ -9,6 +9,7 @@ import {
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
 import { parseVideoTimestamp } from "@/lib/quick-bites/timestamp";
+import { useQuickBiteProgressReporter } from "@/lib/quick-bites/use-quick-bite-progress";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 
@@ -76,6 +77,13 @@ export function QuickBitesPlayer({
   }, [quizOpen]);
   const known = episode ? (getQuickBiteBySlug(episode.slug) ?? episode) : null;
   const poster = known ? (posterOverride ?? quickBitePoster(known.slug)) : null;
+
+  useQuickBiteProgressReporter({
+    slug,
+    apiBase,
+    enabled: state.status === "ready" && Boolean(known),
+    videoRef,
+  });
 
   function rewatch(timestamp: string) {
     const video = videoRef.current;
