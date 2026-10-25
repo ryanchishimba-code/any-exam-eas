@@ -131,7 +131,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "nclex-study-guide-roadmap",
       "nclex-vs-uworld-comparison-2026",
       "nclex-vs-archer-comparison-2026",
-      "uworld-alternative-multi-exam-prep-2026",
+      "multi-exam-board-prep-2026",
     ],
   },
   usmle: {
@@ -208,7 +208,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "usmle-step-2-study-guide-roadmap",
       "how-to-pass-usmle-step-2-first-try",
       "usmle-step-1-practice-questions-2026",
-      "uworld-alternative-multi-exam-prep-2026",
+      "multi-exam-board-prep-2026",
     ],
   },
   naplex: {
@@ -280,7 +280,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "naplex-study-guide-blueprint",
       "naplex-calculations-study-guide-2026",
       "naplex-vs-rxprep-comparison-2026",
-      "uworld-alternative-multi-exam-prep-2026",
+      "multi-exam-board-prep-2026",
     ],
   },
   pance: {

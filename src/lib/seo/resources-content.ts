@@ -39,6 +39,11 @@ export type ResourceSection = {
   competitorLabel?: string;
 };
 
+export type ResourceArticleFaqItem = {
+  question: string;
+  answer: string;
+};
+
 export type ResourceArticle = {
   slug: string;
   title: string;
@@ -51,6 +56,8 @@ export type ResourceArticle = {
   intro: string;
   sections: ResourceSection[];
   primaryExam?: ExamSeoKey;
+  /** Optional FAQ block — rendered on-page and in FAQPage JSON-LD when set. */
+  faq?: ResourceArticleFaqItem[];
 };
 
 export const RESOURCE_DOWNLOADS: ResourceDownload[] = [
@@ -534,6 +541,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
 export function articleReadingMinutes(article: ResourceArticle): number {
   const words = [
     article.intro,
+    ...(article.faq ?? []).flatMap((item) => [item.question, item.answer]),
     ...article.sections.flatMap((section) => [
       section.heading,
       ...(section.paragraphs ?? []),

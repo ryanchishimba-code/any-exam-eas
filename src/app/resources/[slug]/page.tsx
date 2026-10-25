@@ -99,6 +99,25 @@ export default async function ResourceArticlePage({ params }: Props) {
           ))}
         </div>
 
+        {article.faq && article.faq.length > 0 ? (
+          <section className="mt-10" aria-labelledby="resource-faq-heading">
+            <h2
+              id="resource-faq-heading"
+              className="text-xl font-bold tracking-tight text-[var(--color-ink)]"
+            >
+              Frequently asked questions
+            </h2>
+            <dl className="mt-4 space-y-5">
+              {article.faq.map((item) => (
+                <div key={item.question}>
+                  <dt className="font-semibold text-[var(--color-ink)]">{item.question}</dt>
+                  <dd className="mt-1 text-[var(--color-ink-muted)]">{item.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
+
         {relatedArticles.length > 0 ? (
           <nav className="mt-10 rounded-2xl border border-[var(--color-border)] p-6" aria-label="Related study guides">
             <h2 className="text-sm font-semibold uppercase tracking-wide text-[var(--color-ink)]">

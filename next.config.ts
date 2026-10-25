@@ -225,6 +225,11 @@ const nextConfig: NextConfig = {
         statusCode: 301,
       },
       {
+        source: "/resources/uworld-alternative-multi-exam-prep-2026",
+        destination: "/resources/multi-exam-board-prep-2026",
+        statusCode: 301,
+      },
+      {
         source: "/resources",
         destination: "/toolkit",
         permanent: true,
