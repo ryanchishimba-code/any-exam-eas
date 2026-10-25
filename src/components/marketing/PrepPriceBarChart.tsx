@@ -11,7 +11,6 @@ export function PrepPriceBarChart({ data }: { data: PrepPriceBarChartData }) {
       <div className="bl-prep-bars__panel">
         <h2 id="bl-prep-bars-heading">{data.heading}</h2>
         {data.lede ? <p className="bl-prep-bars__lede">{data.lede}</p> : null}
-        {data.saveLabel ? <p className="bl-prep-bars__save">{data.saveLabel}</p> : null}
 
         <ul className="bl-prep-bars__list" role="list">
           {data.bars.map((bar, index) => (
@@ -47,7 +46,6 @@ export function PrepPriceBarChart({ data }: { data: PrepPriceBarChartData }) {
         </ul>
       </div>
       <p id="bl-prep-bars-alt" className="bl-prep-bars__alt">{data.textAlternative}</p>
-      <p className="bl-prep-bars__fine">Typical prep from public listings ({data.priceAsOf}). No vendor names.</p>
     </section>
   );
 }

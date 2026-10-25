@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
-import { formatPlanUsd } from "@/lib/billing-plans";
 import {
   formatBoardQuestionSentence,
   formatExactQuestionCount,
@@ -53,15 +52,6 @@ import {
   heroWhyUs,
 } from "@/lib/marketing/board-landing/board-theme";
 import { SITE_NAME, formatMonthlyPrice } from "@/lib/site";
-
-/**
- * Public 60-day NAPLEX QBank list price.
- * Checked on the vendor's NAPLEX test-bank page on Oct 18, 2026. The page shows
- * 60-day access at $299 and the course page lists the QBank starting at $299.
- * The sentence on this site does not name that vendor.
- */
-export const NAPLEX_TYPICAL_LIST_PRICE_USD = 299;
-export const NAPLEX_TYPICAL_LIST_PRICE_AS_OF = "Oct 18, 2026";
 
 const PHARMACY_TYPE_GROUPS: { id: string; title: string; types: string[] }[] = [
   { id: "vignette", title: "Patient vignettes", types: ["vignette"] },
@@ -150,7 +140,6 @@ function liveUnits(units: BoardQuestionUnits | null, degraded: boolean): BoardQu
 
 function naplexFaqs(units: BoardQuestionUnits | null): { question: string; answer: string }[] {
   const price = formatMonthlyPrice("pro");
-  const typical = formatPlanUsd(NAPLEX_TYPICAL_LIST_PRICE_USD);
   const howMany = units
     ? `AnyExamEasy currently serves ${formatBoardQuestionSentence(units)} for NAPLEX. That total is the live scored bank, not a rounded marketing claim.`
     : "The live NAPLEX question count is shown on this page when the bank lookup succeeds. We do not publish a guessed total.";
@@ -167,7 +156,7 @@ function naplexFaqs(units: BoardQuestionUnits | null): { question: string; answe
     },
     {
       question: "How much does NAPLEX prep cost?",
-      answer: `AnyExamEasy Pro is ${price} a month and includes NAPLEX with five other boards. A typical public NAPLEX list price we checked is ${typical} for 60 days, as of ${NAPLEX_TYPICAL_LIST_PRICE_AS_OF}.`,
+      answer: `AnyExamEasy Pro is ${price} a month and includes NAPLEX with five other boards after your ${TRIAL_DAYS}-day free trial.`,
     },
     {
       question: "Can I try a free NAPLEX practice question before I pay?",
@@ -218,7 +207,6 @@ export function buildNaplexLandingModel(input: {
     "NAPLEX item types, toolkit, and timed practice — no per-exam add-ons."
   );
   const price = formatMonthlyPrice("pro");
-  const typical = formatPlanUsd(NAPLEX_TYPICAL_LIST_PRICE_USD);
   const trialHref = landingTrialHrefForExam("naplex");
   const reviewer = clinicalReviewerForExam("naplex");
   const links = [
@@ -261,19 +249,12 @@ export function buildNaplexLandingModel(input: {
     features,
     stats: naplexStats(units, input.degraded ? {} : input.bankTypes),
     countLine: null,
-    priceHeading: "NAPLEX prep, side by side.",
-    priceLede: `Pro is ${price} a month for NAPLEX and five other boards. A typical public NAPLEX list price we checked is ${typical} for 60 days, as of ${NAPLEX_TYPICAL_LIST_PRICE_AS_OF}.`,
+    priceHeading: "Simple pricing.",
+    priceLede: `Pro is ${price} a month for NAPLEX and five other boards after your ${TRIAL_DAYS}-day trial.`,
     prices: [
       {
-        id: "typical",
-        label: "Typical NAPLEX prep",
-        amount: typical,
-        detail: `60 days · public list price as of ${NAPLEX_TYPICAL_LIST_PRICE_AS_OF}`,
-        featured: false,
-      },
-      {
         id: "ours",
-        label: "AnyExamEasy",
+        label: "AnyExamEasy Pro",
         amount: `${price}/mo`,
         detail: `${TRIAL_DAYS}-day free trial · six boards · cancel anytime`,
         featured: true,

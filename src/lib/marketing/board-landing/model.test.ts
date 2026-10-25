@@ -78,11 +78,11 @@ describe("NCLEX landing model", () => {
     expect(serialized).not.toMatch(BANNED);
     expect(serialized).not.toMatch(/aggregateRating|reviewCount|ratingValue/);
     expect(serialized).not.toMatch(/\b\d+ lessons\b/);
-    expect(model.prices.map((price) => price.amount)).toEqual(["$139", "$27.99/mo"]);
-    expect(model.prices[0]?.label).toBe("Typical 30-day prep");
+    expect(model.prices.map((price) => price.amount)).toEqual(["$27.99/mo"]);
+    expect(model.prices[0]?.label).toBe("AnyExamEasy Pro");
     expect(model.proofPoints).toEqual([]);
     expect(model.heroChips).toHaveLength(3);
-    expect(model.heroChips?.[0]?.text).toMatch(/\$27\.99\/mo vs \$139/);
+    expect(model.heroChips?.[0]?.text).toMatch(/\$27\.99\/mo · 5-day free trial/);
     expect(model.heroChips?.[1]?.text).toMatch(/Detailed rationales/i);
     expect(nclexHeroChips(model.heroOffer!)[2]?.text).toMatch(/NGN case studies/i);
     expect(model.features.map((feature) => feature.id)).toEqual(
@@ -91,7 +91,7 @@ describe("NCLEX landing model", () => {
     expect(model.features.find((feature) => feature.id === "ngn")?.line).toMatch(/select all that apply/i);
     expect(model.heroOffer.liveQuestions).toBe("108");
     expect(model.heroOffer.proPrice).toBe("$27.99/mo");
-    expect(model.heroOffer.typicalPrice).toBe("$139");
+    expect(serialized).not.toMatch(/\$139|\$349|Save \$|typical 30-day prep/i);
     expect(model.stats.map((stat) => stat.label)).toEqual([
       "Questions",
       "Case studies",

@@ -1,7 +1,6 @@
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { formatExactQuestionCount, scoredQuestionCount, type BoardQuestionUnits } from "@/lib/counts";
-import { formatTypicalPrepRangeLabel, naplexTypicalPrepRangeLabel } from "@/lib/marketing/board-landing/typical-prep-range";
 import { formatMonthlyPrice } from "@/lib/site";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
 
@@ -23,8 +22,6 @@ export type BoardQuestionTypeIcon = {
 
 export type BoardLandingVisuals = {
   proPrice: string;
-  typicalRange: string;
-  typicalPeriod: string;
   liveCount: string | null;
   steps: { id: string; label: string; detail: string }[];
   questionTypes: BoardQuestionTypeIcon[];
@@ -235,8 +232,6 @@ export function buildBoardVisuals(input: {
   offer: NonNullable<BoardLandingModel["heroOffer"]>;
   bankTypes?: Record<string, number>;
 }): BoardLandingVisuals {
-  const typicalRange =
-    input.slug === "naplex" ? naplexTypicalPrepRangeLabel() : formatTypicalPrepRangeLabel(input.examKey);
   let questionTypes: BoardQuestionTypeIcon[] = [];
   if (input.slug === "nclex") {
     questionTypes = nclexQuestionTypes(input.bankTypes ?? {});
@@ -247,8 +242,6 @@ export function buildBoardVisuals(input: {
   }
   return {
     proPrice: input.offer.proPrice,
-    typicalRange,
-    typicalPeriod: input.offer.typicalPeriod ?? "30-day prep",
     liveCount: input.units ? formatExactQuestionCount(scoredQuestionCount(input.units)) : input.offer.liveQuestions,
     steps: [...STEPS],
     questionTypes,
