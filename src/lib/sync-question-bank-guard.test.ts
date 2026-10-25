@@ -38,6 +38,7 @@ function existing(overrides: Partial<SeedExistingRow> = {}): SeedExistingRow {
 describe("KEYFIX_BACKUP_TABLES", () => {
   it("includes the 2026-10-05 batch 1 backup", () => {
     expect(KEYFIX_BACKUP_TABLES).toContain("qbi_fixes_task5_backup_20261005");
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_fix_20261025_backup");
   });
 });
 
