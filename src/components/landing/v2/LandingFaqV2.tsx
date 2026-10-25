@@ -35,8 +35,8 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
     a: `Yes. ${formatSignupTrialScope()} No payment method required at signup. Upgrade anytime for unlimited questions, Deep Dive modules, and advanced analytics.`,
   },
   {
-    q: "How is this different from UWorld or AMBOSS?",
-    a: `UWorld sells a separate subscription per exam, and AMBOSS focuses primarily on USMLE/medical. AnyExamEasy gives you six boards under one plan, with an integrated Roadmap, Deep Dive review modules opened from missed questions, timed Full Exams, and a 3D Anatomy Explorer.`,
+    q: "How is this different from typical single-exam prep?",
+    a: `Many QBanks are sold one exam at a time. AnyExamEasy gives you six boards under one plan, with an integrated Roadmap, Deep Dive review modules opened from missed questions, timed Full Exams, and a 3D Anatomy Explorer.`,
   },
   {
     home: true,
@@ -48,8 +48,8 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
     a: "Yes. Cancel anytime in Settings. That opens Stripe billing and stops the next charge. Canceling before a trial ends means you are not charged. Paid charges are non-refundable except where the law requires a refund.",
   },
   {
-    q: "Why not just buy UWorld for the one exam I'm taking?",
-    a: "Other Qbanks are often sold one exam at a time. AnyExamEasy is one plan for six boards, with a Roadmap, review opened from the questions you miss, and timed practice exams.",
+    q: "Why not just buy a single-exam QBank for the one board I'm taking?",
+    a: "If you only need one exam, a dedicated single-board product may fit. AnyExamEasy is built for candidates who want six boards on one plan, with a Roadmap, review opened from the questions you miss, and timed practice exams.",
   },
   {
     q: "Is this genuinely enough to pass my board exam?",
@@ -57,8 +57,8 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   },
   {
     home: true,
-    q: "Are you affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep?",
-    a: "No. AnyExamEasy is independent. We are not affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep. Official board documents belong to those organizations — always read their materials before your exam.",
+    q: "Are you affiliated with NCSBN, NABP, or NBME?",
+    a: "No. AnyExamEasy is independent. We are not affiliated with NCSBN, NABP, or NBME. Official board documents belong to those organizations — always read their materials before your exam.",
   },
   {
     home: true,

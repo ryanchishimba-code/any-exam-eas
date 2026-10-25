@@ -15,7 +15,7 @@ export function NclexToolkitDonutSection(props: NclexDonutRenderInput) {
 
   return (
     <section className="bl-ace-donut bl-section" aria-labelledby="nclex-toolkit-heading">
-      <h2 id="nclex-toolkit-heading">Built to help you ace the NCLEX</h2>
+      <h2 id="nclex-toolkit-heading">Structured NCLEX prep across the NCSBN test plan</h2>
 
       <div className="bl-ace-donut__layout">
         <figure className="bl-ace-donut__figure" aria-label="NCLEX study tools included with Pro">

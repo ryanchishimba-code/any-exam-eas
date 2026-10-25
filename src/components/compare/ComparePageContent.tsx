@@ -1,15 +1,12 @@
 import Link from "next/link";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import {
-  AEE_MONTHLY,
   AEE_YEARLY,
   COMPARE_HONESTY_DISCLAIMER,
   COMPETITOR_MAY_WIN,
-  COMPETITOR_PROFILES,
   EXAM_ONE_PAGER_LINKS,
   MASTER_FEATURE_ROWS,
-  UWORLD_THREE_EXAM_MIN,
-  formatUsd,
+  PREP_APPROACH_PROFILES,
 } from "@/lib/seo/competitor-comparison";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
@@ -79,22 +76,22 @@ export function ComparePageContent({
 
       <header className="mt-6 max-w-3xl">
         <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
-          Competitor comparison · 2026
+          Multi-exam prep · 2026
         </p>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-[var(--color-ink)] sm:text-4xl">
-          AnyExamEasy vs UWorld, Archer, Kaplan &amp; RxPrep
+          Compare AnyExamEasy to typical board prep options
         </h1>
         <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-muted)]">
           One Pro plan covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE — with Roadmap,
-          Deep Dive modules, and Full Exam simulations. We compare on price, features, and
-          multi-exam value — without claiming UWorld parity or unverified pass rates.
+          Deep Dive modules, and Full Exam simulations. This page describes product scope and
+          workflow differences, not third-party brand parity or pass-rate claims.
         </p>
         <p className="mt-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
           {COMPARE_HONESTY_DISCLAIMER}
         </p>
       </header>
 
-      <section className="mt-10 grid gap-4 sm:grid-cols-3" aria-label="Pricing highlights">
+      <section className="mt-10 grid gap-4 sm:grid-cols-2" aria-label="Pricing highlights">
         <div className="rounded-2xl border-2 border-teal-500/40 bg-teal-50/30 p-5 dark:border-teal-400/30 dark:bg-teal-950/20">
           <p className="text-xs font-bold uppercase tracking-wide text-teal-700 dark:text-teal-300">
             AnyExamEasy Pro
@@ -104,31 +101,19 @@ export function ComparePageContent({
             <span className="text-base font-semibold text-[var(--color-ink-muted)]">/mo</span>
           </p>
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            {formatUsd(AEE_YEARLY)}/yr · all 6 exams
+            {formatMonthlyPrice("pro")} monthly or annual billing · all 6 exams on one plan
           </p>
         </div>
         <div className="rounded-2xl border border-[var(--color-border)] p-5">
           <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            UWorld 3-exam minimum
+            Typical single-exam prep
           </p>
-          <p className="mt-2 text-3xl font-black text-[var(--color-ink-muted)]">
-            {formatUsd(UWORLD_THREE_EXAM_MIN)}
-          </p>
-          <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            NCLEX + Step 2 CK + NAPLEX QBank (shortest tiers)
-          </p>
-        </div>
-        <div className="rounded-2xl border border-[var(--color-border)] p-5">
-          <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            Same study window
-          </p>
-          <p className="mt-2 text-3xl font-black text-[var(--color-ink)]">
-            One Pro plan
+          <p className="mt-2 text-lg font-bold text-[var(--color-ink)]">
+            One exam per subscription
           </p>
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            3 months of Pro ({formatUsd(AEE_MONTHLY * 3)}) vs public UWorld
-            shortest-tier NCLEX + Step 2 CK + NAPLEX ({formatUsd(UWORLD_THREE_EXAM_MIN)},
-            as of Sep 27, 2026). Competitor prices change.
+            Many candidates stack separate QBanks or courses when they sit more than one board.
+            Pricing and trial terms vary by provider and plan length.
           </p>
         </div>
       </section>
@@ -138,28 +123,30 @@ export function ComparePageContent({
           Feature comparison
         </h2>
         <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          AnyExamEasy vs typical per-exam competitors · Public pricing as of Sep 27, 2026
+          AnyExamEasy vs typical premium single-exam prep
         </p>
         <div className="mt-5">
-          <ComparisonTable rows={featureRows} competitorHeader="Typical competitor" />
+          <ComparisonTable rows={featureRows} competitorHeader="Typical single-exam prep" />
         </div>
       </section>
 
-      <section className="mt-12" aria-labelledby="competitors-heading">
-        <h2 id="competitors-heading" className="text-xl font-bold text-[var(--color-ink)]">
-          Competitor profiles
+      <section className="mt-12" aria-labelledby="prep-approaches-heading">
+        <h2 id="prep-approaches-heading" className="text-xl font-bold text-[var(--color-ink)]">
+          Common prep approaches
         </h2>
+        <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
+          Neutral descriptions — not endorsements of any third-party product
+        </p>
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          {COMPETITOR_PROFILES.map((profile) => (
+          {PREP_APPROACH_PROFILES.map((profile) => (
             <article
               key={profile.id}
               className="rounded-2xl border border-[var(--color-border)] p-5"
             >
-              <h3 className="text-lg font-bold text-[var(--color-ink)]">{profile.name}</h3>
+              <h3 className="text-lg font-bold text-[var(--color-ink)]">{profile.title}</h3>
               <p className="mt-1 text-sm font-medium text-[var(--color-accent)]">
                 {profile.tagline}
               </p>
-              <p className="mt-2 text-xs text-[var(--color-ink-muted)]">{profile.pricingNote}</p>
               <ul className="mt-4 space-y-2" role="list">
                 {profile.strengths.map((item) => (
                   <li key={item} className="flex gap-2 text-sm text-[var(--color-ink-muted)]">
@@ -182,10 +169,10 @@ export function ComparePageContent({
 
       <section className="mt-12" aria-labelledby="one-pagers-heading">
         <h2 id="one-pagers-heading" className="text-xl font-bold text-[var(--color-ink)]">
-          Exam-specific comparisons
+          Related study guides
         </h2>
         <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          Deep dives for NCLEX, NAPLEX, and multi-exam value
+          Deeper reads for NCLEX, NAPLEX, and multi-exam value
         </p>
         <ul className="mt-5 grid gap-3 sm:grid-cols-2" role="list">
           {EXAM_ONE_PAGER_LINKS.map((link) => (
@@ -237,7 +224,7 @@ export function ComparePageContent({
         </ul>
         <ul className="mt-6 space-y-3 border-t border-[var(--color-border)] pt-6" role="list">
           <li className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            When a competitor may win
+            When another prep approach may fit better
           </li>
           {COMPETITOR_MAY_WIN.map((item) => (
             <li key={item} className="flex gap-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">

@@ -3,9 +3,8 @@
 /**
  * LandingWhyChooseV2 — the persuasion block.
  *
- * Value cards → a three-way comparison (AnyExamEasy vs UWorld vs AMBOSS) →
- * honest stat band + product facts (no invented quotes). Comparison data is defined here
- * (self-contained) and reflects publicly advertised competitor positioning.
+ * Value cards → neutral two-way comparison (AnyExamEasy vs typical single-exam prep) →
+ * honest stat band + product facts (no invented quotes).
  */
 
 import { Check, Minus } from "lucide-react";
@@ -16,54 +15,21 @@ import {
   buildLandingSocialProofStats,
   type LandingBankCountsDisplay,
 } from "@/lib/marketing/question-bank-counts";
-import { formatMonthlyPrice } from "@/lib/site";
+import { PREP_COMPARE_ROWS } from "@/lib/landing/content";
+import { COMPARE_HONESTY_DISCLAIMER } from "@/lib/seo/competitor-comparison";
 
 type CompareValue = { text: string; positive?: boolean };
 type CompareRow = {
   label: string;
   us: CompareValue;
-  uworld: CompareValue;
-  amboss: CompareValue;
+  typical: CompareValue;
 };
 
-const COMPARE_ROWS: CompareRow[] = [
-  {
-    label: "Exams per subscription",
-    us: { text: "All 6 boards in one plan", positive: true },
-    uworld: { text: "One exam per subscription" },
-    amboss: { text: "Primarily USMLE / medical" },
-  },
-  {
-    label: "Monthly price",
-    us: { text: `Pro at ${formatMonthlyPrice("pro")}/mo`, positive: true },
-    uworld: { text: "$200–400+ per exam" },
-    amboss: { text: "~$30–60/mo per track" },
-  },
-  {
-    label: "Integrated Roadmap",
-    us: { text: "Per-exam plan built in", positive: true },
-    uworld: { text: "QBank only — plan it yourself" },
-    amboss: { text: "Library + QBank, no unified plan" },
-  },
-  {
-    label: "Deep Dive review modules",
-    us: { text: "Opened from missed questions", positive: true },
-    uworld: { text: "Separate video bundles" },
-    amboss: { text: "Article library (add-on tiers)" },
-  },
-  {
-    label: "Anatomy Explorer (3D + CT)",
-    us: { text: "Included", positive: true },
-    uworld: { text: "Not included" },
-    amboss: { text: "Not included" },
-  },
-  {
-    label: "Full Exam simulation",
-    us: { text: "Timed mocks · weak-area focus", positive: true },
-    uworld: { text: "Self-assembly / separate mocks" },
-    amboss: { text: "Varies by product" },
-  },
-];
+const COMPARE_ROWS: CompareRow[] = PREP_COMPARE_ROWS.map((row) => ({
+  label: row.label,
+  us: { text: row.us, positive: true },
+  typical: { text: row.them },
+}));
 
 function Cell({ value, isUs }: { value: CompareValue; isUs?: boolean }) {
   return (
@@ -139,20 +105,19 @@ export function LandingWhyChooseV2({
           })}
         </div>
 
-        {/* Three-way comparison */}
+        {/* Two-way comparison */}
         <Reveal className="mt-16">
           <div className="overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-apple-md)]">
-            <div className="hidden gap-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] px-7 py-4 text-sm font-bold sm:grid sm:grid-cols-[1.1fr_1.1fr_1fr_1fr]">
+            <div className="hidden gap-2 border-b border-[var(--color-border)] bg-[var(--color-surface)] px-7 py-4 text-sm font-bold sm:grid sm:grid-cols-[1.2fr_1fr_1fr]">
               <span className="text-[var(--color-ink-muted)]">How we compare</span>
               <span className="text-[var(--color-accent)]">AnyExamEasy</span>
-              <span className="text-[var(--color-ink-muted)]">UWorld</span>
-              <span className="text-[var(--color-ink-muted)]">AMBOSS</span>
+              <span className="text-[var(--color-ink-muted)]">Typical single-exam prep</span>
             </div>
             <ul className="divide-y divide-[var(--color-border)] sm:divide-y-0">
               {COMPARE_ROWS.map((row, i) => (
                 <li
                   key={row.label}
-                  className={`grid grid-cols-1 gap-x-2 gap-y-2 px-5 py-4 text-sm sm:grid-cols-[1.1fr_1.1fr_1fr_1fr] sm:px-7 ${
+                  className={`grid grid-cols-1 gap-x-2 gap-y-2 px-5 py-4 text-sm sm:grid-cols-[1.2fr_1fr_1fr] sm:px-7 ${
                     i % 2 === 1 ? "sm:bg-[var(--color-surface)]/40" : ""
                   }`}
                 >
@@ -167,24 +132,16 @@ export function LandingWhyChooseV2({
                   </span>
                   <span>
                     <span className="font-semibold text-[var(--color-ink-muted)] sm:hidden">
-                      UWorld:{" "}
+                      Typical prep:{" "}
                     </span>
-                    <Cell value={row.uworld} />
-                  </span>
-                  <span>
-                    <span className="font-semibold text-[var(--color-ink-muted)] sm:hidden">
-                      AMBOSS:{" "}
-                    </span>
-                    <Cell value={row.amboss} />
+                    <Cell value={row.typical} />
                   </span>
                 </li>
               ))}
             </ul>
           </div>
           <p className="mt-3 text-center text-xs text-[var(--color-ink-muted)]">
-            Comparison reflects publicly advertised competitor pricing and feature scope. UWorld and
-            AMBOSS are trademarks of their respective owners and are not affiliated with
-            AnyExamEasy.
+            {COMPARE_HONESTY_DISCLAIMER}
           </p>
         </Reveal>
 

@@ -1,13 +1,9 @@
 "use client";
 
 /**
- * CostComparisonChart — competitor cost analysis as a horizontal bar graph.
- *
- * Honesty note: the only competitor figure the site asserts anywhere is the
- * "$200–400+ per exam" per-exam-bank range (see UWORLD_COMPARE_ROWS). This chart
- * is derived purely from that asserted range × 6 boards versus our REAL annual
- * Pro price (TIER_ANNUAL_USD) — no invented competitor numbers — so it stays
- * consistent with the rest of the page and the disclaimer below.
+ * CostComparisonChart — multi-exam value without third-party price claims.
+ * Shows only the current AnyExamEasy Pro annual price alongside a qualitative
+ * note that stacking single-exam products usually costs more overall.
  */
 
 import Link from "next/link";
@@ -15,21 +11,11 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Crown } from "lucide-react";
 import { TIER_ANNUAL_USD } from "@/lib/subscription-tiers";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { COMPARE_HONESTY_DISCLAIMER } from "@/lib/seo/competitor-comparison";
 import { formatTrialCtaLabel } from "@/lib/site";
 
 const EXAM_COUNT = 6;
-const PER_EXAM_LOW = 200;
-const PER_EXAM_HIGH = 400;
-
-const ANYEXAM_ANNUAL = TIER_ANNUAL_USD.pro; // real Pro yearly total
-const SEPARATE_LOW = PER_EXAM_LOW * EXAM_COUNT; // 6 banks, low end
-const SEPARATE_HIGH = PER_EXAM_HIGH * EXAM_COUNT; // 6 banks, high end
-const CHART_MAX = SEPARATE_HIGH;
-
-// "Up to" is the legally safest savings claim form: it caps the comparison at
-// the high end of the publicly advertised per-exam range under stated assumptions.
-const SAVINGS_HIGH = SEPARATE_HIGH - ANYEXAM_ANNUAL;
-const PRICING_YEAR = new Date().getFullYear();
+const ANYEXAM_ANNUAL = TIER_ANNUAL_USD.pro;
 
 const usd = (n: number) => `$${Math.round(n).toLocaleString()}`;
 
@@ -37,27 +23,23 @@ type Bar = {
   name: string;
   sublabel: string;
   amountLabel: string;
-  /** Fill width as a % of CHART_MAX. */
   pct: number;
-  /** Optional lighter "range" extension width as a % of CHART_MAX. */
-  rangePct?: number;
   highlight: boolean;
 };
 
 const BARS: Bar[] = [
   {
     name: "AnyExamEasy",
-    sublabel: "One plan · all 6 boards",
+    sublabel: `One plan · all ${EXAM_COUNT} boards`,
     amountLabel: `${usd(ANYEXAM_ANNUAL)}/yr`,
-    pct: (ANYEXAM_ANNUAL / CHART_MAX) * 100,
+    pct: 38,
     highlight: true,
   },
   {
-    name: "Separate exam banks",
-    sublabel: `6 boards × ${usd(PER_EXAM_LOW)}–${usd(PER_EXAM_HIGH)} each`,
-    amountLabel: `${usd(SEPARATE_LOW)}–${usd(SEPARATE_HIGH)}+`,
-    pct: (SEPARATE_LOW / CHART_MAX) * 100,
-    rangePct: ((SEPARATE_HIGH - SEPARATE_LOW) / CHART_MAX) * 100,
+    name: "Typical single-exam stack",
+    sublabel: `${EXAM_COUNT} separate products — pricing varies widely`,
+    amountLabel: "Varies by provider",
+    pct: 100,
     highlight: false,
   },
 ];
@@ -80,15 +62,12 @@ export function CostComparisonChart() {
               id="cost-compare-heading"
               className="mt-2 text-2xl font-bold tracking-tight text-[var(--color-ink)] sm:text-3xl"
             >
-              One plan vs. six subscriptions
+              One plan vs. stacking single-exam prep
             </h3>
             <p className="mt-1.5 text-sm text-[var(--color-ink-muted)]">
-              Annual cost to prep for all six boards.
+              Annual Pro covers every board on the platform — no per-exam renewals.
             </p>
           </div>
-          <span className="inline-flex items-center rounded-full bg-[var(--color-accent)]/10 px-3 py-1.5 text-sm font-bold text-[var(--color-accent)]">
-            Save up to {usd(SAVINGS_HIGH)}/yr*
-          </span>
         </div>
 
         <ul className="mt-7 space-y-6" role="list">
@@ -115,23 +94,13 @@ export function CostComparisonChart() {
               <div
                 className="relative h-9 w-full overflow-hidden rounded-full bg-[var(--color-surface)]"
                 role="img"
-                aria-label={`${bar.name}: ${bar.amountLabel} for all six boards`}
+                aria-label={`${bar.name}: ${bar.amountLabel}`}
               >
-                {/* Range extension (lighter) behind the solid fill */}
-                {bar.rangePct ? (
-                  <motion.div
-                    className="absolute inset-y-0 left-0 rounded-full bg-[var(--color-ink)]/10"
-                    initial={reduceMotion ? false : { width: 0 }}
-                    whileInView={{ width: `${Math.min(bar.pct + bar.rangePct, 100)}%` }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  />
-                ) : null}
                 <motion.div
                   className={
                     bar.highlight
                       ? "absolute inset-y-0 left-0 rounded-full bg-[var(--color-accent)]"
-                      : "absolute inset-y-0 left-0 rounded-full bg-[var(--color-ink)]/35"
+                      : "absolute inset-y-0 left-0 rounded-full bg-[var(--color-ink)]/20"
                   }
                   initial={reduceMotion ? false : { width: 0 }}
                   whileInView={{ width: `${Math.max(bar.pct, 6)}%` }}
@@ -147,7 +116,7 @@ export function CostComparisonChart() {
 
         <div className="mt-7 flex flex-col items-start gap-3 border-t border-[var(--color-border)] pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm font-medium text-[var(--color-ink)]">
-            Six licensing exams, one subscription — for less than a single per-exam bank.
+            Six licensing exams on one subscription — built for multi-board timelines.
           </p>
           <Link
             href={LANDING_TRIAL_HREF}
@@ -160,13 +129,7 @@ export function CostComparisonChart() {
       </div>
 
       <p className="mt-3 text-center text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
-        *Illustrative comparison for general information only — an estimate, not a quote. Per-exam
-        question-bank pricing reflects publicly advertised ranges ($200–400+ per board) as of{" "}
-        {PRICING_YEAR} and varies by provider, promotion, and subscription length; actual savings
-        depend on which and how many exams you buy. The AnyExamEasy figure is the current annual Pro
-        plan price. All product names, logos, and brands are property of their respective owners;
-        AnyExamEasy is independent and is not affiliated with, endorsed by, or sponsored by any other
-        provider.
+        {COMPARE_HONESTY_DISCLAIMER} Bar lengths are illustrative, not quotes from other providers.
       </p>
     </section>
   );
