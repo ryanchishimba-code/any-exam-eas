@@ -1,6 +1,6 @@
 {
   "published": false,
-  "note": "Twelve items were republished to QuestionBankItem on 2026-10-25. The GERD and phenytoin items are approved for republish. cmr7zzhz2000m1yafsbg3xkeh stays hidden as a retired near-duplicate.",
+  "note": "Fourteen items were republished to QuestionBankItem on 2026-10-25, including the GERD referral and the phenytoin dose step. cmr7zzhz2000m1yafsbg3xkeh stays hidden as a retired near-duplicate.",
   "items": [
     {
       "id": "cmr815qlj00161ynm2bog3q9j",
@@ -37,7 +37,7 @@
         "Ask her to restart ranitidine 150 mg by mouth twice daily"
       ],
       "correctAnswer": "Refer to a prescriber for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
-      "explanation": "Heartburn returned 6 weeks after a completed 14-day OTC omeprazole course. That is recurrence within 4 months, so she needs a prescriber rather than another self-care purchase. Refer to a prescriber for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks. That is the ACG once-daily PPI trial for frequent symptoms. Another 14-day OTC course repeats a plan that did not last, and the OTC label does not support another self-care course this soon. The FDA asked manufacturers to withdraw all ranitidine in 2020 because of NDMA, so it cannot be restarted. Calcium carbonate 750 mg after meals only neutralizes acid briefly and does not treat recurrent GERD. Takeaway: after recurrence within 4 months of a 14-day OTC course, refer to a prescriber for an 8-week omeprazole course; ranitidine stays withdrawn."
+      "explanation": "Heartburn returned 6 weeks after a completed 14-day OTC omeprazole course. That is recurrence within 4 months, so she needs a prescriber rather than another self-care purchase. Refer to a prescriber for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks. That is the ACG once-daily PPI trial for frequent symptoms. Another 14-day OTC course repeats a plan that did not last. The OTC label is 14 days of self-care and does not support another course this soon. The FDA asked manufacturers to withdraw all ranitidine in 2020 because of NDMA, so it cannot be restarted. Calcium carbonate 750 mg after meals only neutralizes acid briefly and does not treat recurrent GERD. Takeaway: after recurrence within 4 months of a 14-day OTC course, refer to a prescriber for an 8-week omeprazole course; ranitidine stays withdrawn."
     },
     {
       "id": "cmroigcz3000j1y7n1rmsnzr4",
