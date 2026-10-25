@@ -30,6 +30,7 @@ describe("GET /api/quick-bites-fnp/progress", () => {
     listQuickBiteProgressForUser.mockResolvedValue({
       "quick-bites-fnp-ep01-screening": {
         watchPct: 42,
+        playbackPositionSec: 74,
         watchSeconds: 90,
         completedAt: null,
       },

@@ -46,6 +46,7 @@ describe("useQuickBiteProgressReporter", () => {
       expect.objectContaining({
         method: "POST",
         credentials: "same-origin",
+        body: expect.stringContaining("playbackPositionSec"),
       })
     );
     vi.useRealTimers();

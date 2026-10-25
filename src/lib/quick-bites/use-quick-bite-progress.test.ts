@@ -1,13 +1,38 @@
 import { describe, expect, it } from "vitest";
-import { quickBiteResumeSeconds } from "@/lib/quick-bites/use-quick-bite-progress";
+import {
+  quickBiteListProgressPercent,
+  quickBiteResumeSeconds,
+} from "@/lib/quick-bites/use-quick-bite-progress";
 
 describe("quickBiteResumeSeconds", () => {
-  it("resumes partial watch position from percent watched", () => {
-    expect(quickBiteResumeSeconds(45, 200)).toBe(90);
+  it("resumes from the last saved playback head, not max watch percent", () => {
+    expect(quickBiteResumeSeconds(74, 245, false)).toBe(74);
   });
 
-  it("skips resume when already complete or at the start", () => {
-    expect(quickBiteResumeSeconds(0, 200)).toBeNull();
-    expect(quickBiteResumeSeconds(99, 200)).toBeNull();
+  it("skips resume when complete or at the start/end", () => {
+    expect(quickBiteResumeSeconds(0, 200, false)).toBeNull();
+    expect(quickBiteResumeSeconds(74, 200, true)).toBeNull();
+    expect(quickBiteResumeSeconds(199, 200, false)).toBeNull();
+  });
+});
+
+describe("quickBiteListProgressPercent", () => {
+  it("shows list progress from max watchPct until complete", () => {
+    expect(
+      quickBiteListProgressPercent({
+        watchPct: 42,
+        playbackPositionSec: 74,
+        watchSeconds: 100,
+        completedAt: null,
+      })
+    ).toBe(42);
+    expect(
+      quickBiteListProgressPercent({
+        watchPct: 95,
+        playbackPositionSec: 10,
+        watchSeconds: 200,
+        completedAt: new Date().toISOString(),
+      })
+    ).toBe(0);
   });
 });
