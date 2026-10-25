@@ -74,8 +74,9 @@ describe("NAPLEX landing model", () => {
     expect(model.h1Lead).toBe("Know every drug the NAPLEX asks about.");
     expect(model.h1Accent).toBe("");
     expect(model.heroTestimonial?.name).toBe("Frank C.");
-    expect(model.prices.map((price) => price.amount)).toEqual(["$299", "$27.99/mo"]);
-    expect(model.prices[0]?.label).toBe("Typical NAPLEX prep");
+    expect(model.prices.map((price) => price.amount)).toEqual(["$27.99/mo"]);
+    expect(model.prices[0]?.label).toBe("AnyExamEasy Pro");
+    expect(serialized).not.toMatch(/\$299 typical|Save \$|typical public NAPLEX/i);
     expect(model.reviewers.map((reviewer) => reviewer.name)).toEqual(["Ryan Chishimba, PharmD"]);
     expect(model.quickBite?.slug).toBe(OPEN_PHARMACY_QUICK_BITE_SLUG);
     expect(model.quickBite?.track).toBe("pharmacy");

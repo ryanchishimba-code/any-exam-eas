@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { TRIAL_DAYS } from "@/lib/billing-config";
-import { formatPlanUsd } from "@/lib/billing-plans";
 import {
   formatBoardQuestionSentence,
   formatExactQuestionCount,
@@ -21,7 +20,6 @@ import {
   boardLandingTrustPills,
 } from "@/lib/marketing/board-landing/hero";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
-import { typicalPrepForExam } from "@/lib/marketing/board-landing/typical-prep";
 import { CLINICAL_REVIEWERS, clinicalReviewerForExam } from "@/lib/marketing/company";
 import { homeTrialCtaLabel } from "@/lib/marketing/home-cta";
 import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
@@ -151,8 +149,6 @@ function hubFaqs(
 ): { question: string; answer: string }[] {
   const boardLabel = boardLandingBreadcrumbName(examKey);
   const price = formatMonthlyPrice("pro");
-  const typical = typicalPrepForExam(examKey);
-  const typicalLabel = formatPlanUsd(typical.amountUsd);
   const howMany = units
     ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for ${boardLabel}.`
     : "We show the live total on this page when the bank lookup succeeds; we do not guess a number.";
@@ -163,7 +159,7 @@ function hubFaqs(
     },
     {
       question: "How much does prep cost?",
-      answer: `Pro is ${price}/mo for ${boardLabel} plus five other boards. Typical ${typical.periodLabel} we checked lists around ${typicalLabel} (as of ${typical.asOf}).`,
+      answer: `Pro is ${price}/mo for ${boardLabel} plus five other boards after your ${TRIAL_DAYS}-day free trial.`,
     },
     {
       question: "Is there a free trial?",
@@ -247,8 +243,6 @@ export function buildHubLandingModel(input: {
   const path = examMarketingPath(input.examKey);
   const trialHref = landingTrialHrefForExam(input.examKey);
   const price = formatMonthlyPrice("pro");
-  const typical = typicalPrepForExam(input.examKey);
-  const typicalLabel = formatPlanUsd(typical.amountUsd);
   const heroOffer = boardHeroOffer(input.examKey, units, { questionNoun: copy.questionNoun });
   const heroChips = boardHeroChips(heroOffer, copy.chipMiddle, copy.chipThird);
   const features = boardFeatureCardsForExam(input.examKey, {
@@ -318,13 +312,6 @@ export function buildHubLandingModel(input: {
     priceHeading: "Simple pricing.",
     priceLede: `${price}/mo for ${boardLabel} and five other boards after your ${TRIAL_DAYS}-day trial.`,
     prices: [
-      {
-        id: "typical",
-        label: `Typical ${typical.periodLabel}`,
-        amount: typicalLabel,
-        detail: `Public list prices we checked · ${typical.asOf}`,
-        featured: false,
-      },
       {
         id: "ours",
         label: "AnyExamEasy Pro",

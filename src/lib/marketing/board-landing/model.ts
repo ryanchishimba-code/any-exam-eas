@@ -9,14 +9,12 @@ import {
 } from "@/lib/counts";
 import type { LandingSuccessStory } from "@/lib/landing/content";
 import { landingTrialHrefForExam } from "@/lib/landing/trial-href";
-import { COMPETITOR_PRICE_AS_OF } from "@/lib/marketing/legal-copy";
 import { collectedDistractorReasons } from "@/lib/exam-prep/item-qa/rationale-schema";
 import { HOME_EXPLAINED_SAMPLE } from "@/lib/marketing/home-explained";
 import { homeTrialCtaLabel } from "@/lib/marketing/home-cta";
 import type { NaplexAceDonutModel } from "@/lib/marketing/board-landing/naplex-ace-donut";
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
-import { COMPETITOR_PRICING } from "@/lib/seo/competitor-comparison";
 import {
   OPEN_PHARMACY_QUICK_BITE_SLUG,
   getPharmacyQuickBiteBySlug,
@@ -68,8 +66,6 @@ import {
   formatLandingTrialFaqAnswer,
   formatMonthlyPrice,
 } from "@/lib/site";
-import { formatPlanUsd } from "@/lib/billing-plans";
-
 export type LandingOption = {
   id: string;
   text: string;
@@ -115,8 +111,6 @@ export type BoardLandingModel = {
   heroOffer?: {
     liveQuestions: string | null;
     proPrice: string;
-    typicalPrice: string;
-    typicalPeriod?: string;
     questionNoun?: string;
     trialLine: string;
   };
@@ -403,7 +397,6 @@ function liveUnits(units: BoardQuestionUnits | null, degraded: boolean): BoardQu
 
 function nclexFaqs(units: BoardQuestionUnits | null): { question: string; answer: string }[] {
   const price = formatMonthlyPrice("pro");
-  const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
   const howMany = units
     ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for NCLEX-RN.`
     : "We show the live total on this page when the bank lookup succeeds; we do not guess a number.";
@@ -419,7 +412,7 @@ function nclexFaqs(units: BoardQuestionUnits | null): { question: string; answer
     },
     {
       question: "How much does NCLEX prep cost?",
-      answer: `Pro is ${price}/mo for NCLEX plus five other boards. Typical 30-day NCLEX prep we checked lists around ${typical} (as of ${COMPETITOR_PRICE_AS_OF}).`,
+      answer: `Pro is ${price}/mo for NCLEX plus five other boards after your ${TRIAL_DAYS}-day free trial.`,
     },
     {
       question: "Is there a free trial?",
@@ -441,12 +434,9 @@ function nclexHeroOffer(
   units: BoardQuestionUnits | null
 ): NonNullable<BoardLandingModel["heroOffer"]> {
   const price = formatMonthlyPrice("pro");
-  const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
   return {
     liveQuestions: units ? formatExactQuestionCount(scoredQuestionCount(units)) : null,
     proPrice: `${price}/mo`,
-    typicalPrice: typical,
-    typicalPeriod: "30-day prep",
     questionNoun: "NCLEX questions",
     trialLine: formatLandingHeroTrialLine(),
   };
@@ -457,7 +447,7 @@ export function nclexHeroChips(offer: NonNullable<BoardLandingModel["heroOffer"]
   return [
     {
       id: "price",
-      text: `${offer.proPrice} vs ${offer.typicalPrice} typical 30-day prep · ${TRIAL_DAYS}-day free trial`,
+      text: `${offer.proPrice} · ${TRIAL_DAYS}-day free trial`,
     },
     {
       id: "explained",
@@ -519,7 +509,6 @@ export function buildNclexLandingModel(input: {
   const quickBite = openBoardQuickBite("nursing");
   const features = nclexFeatureCards({ units, bankTypes, quickBite });
   const price = formatMonthlyPrice("pro");
-  const typical = formatPlanUsd(COMPETITOR_PRICING.uworldNclex30d);
   const trialHref = landingTrialHrefForExam("nclex");
   const nclexLabel = boardLandingBreadcrumbName("nclex");
   const links: BoardLandingModel["links"] = [];
@@ -558,13 +547,6 @@ export function buildNclexLandingModel(input: {
     priceHeading: "Simple pricing.",
     priceLede: `${price}/mo for NCLEX and five other boards after your ${TRIAL_DAYS}-day trial.`,
     prices: [
-      {
-        id: "typical",
-        label: "Typical 30-day prep",
-        amount: typical,
-        detail: `Public list prices we checked · ${COMPETITOR_PRICE_AS_OF}`,
-        featured: false,
-      },
       {
         id: "ours",
         label: "AnyExamEasy Pro",

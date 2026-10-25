@@ -10,7 +10,7 @@ import {
 } from "@/lib/counts";
 import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
 import type { QuestionBankCountsSnapshot } from "@/lib/marketing/question-bank-counts";
-import { formatNclexPrepPriceComparison } from "@/lib/marketing/price-comparison";
+import { buildHomePrepPriceBarChartData } from "@/lib/marketing/prep-price-bar-chart";
 
 function units(slug: CountBoardSlug, bankItems: number, clinical?: BoardQuestionUnits): BoardQuestionUnits {
   if (clinical) return clinical;
@@ -106,18 +106,12 @@ describe("homepage proof facts", () => {
   });
 });
 
-describe("homepage price comparison", () => {
-  it("states the public range and the monthly price, with no competitor names", () => {
-    const line = formatNclexPrepPriceComparison();
-    expect(line).toBe(
-      "Other NCLEX prep we checked lists at $79 to $399 (public prices, Sep 27, 2026). AnyExamEasy is $27.99 a month, cancel anytime."
-    );
-    expect(line).not.toMatch(/Kaplan|Archer|UWorld|AMBOSS/i);
-    const source = readFileSync(
-      path.resolve(process.cwd(), "src/lib/marketing/price-comparison.ts"),
-      "utf8"
-    );
-    expect(source).toMatch(/Kaplan \$99–\$399 course list, Archer \$79–\$399/);
-    expect(source).toMatch(/2026-09-27/);
+describe("homepage pricing band", () => {
+  it("states Pro monthly pricing without third-party price comparisons", () => {
+    const data = buildHomePrepPriceBarChartData();
+    const serialized = JSON.stringify(data);
+    expect(serialized).toMatch(/\$27\.99\/mo/);
+    expect(serialized).not.toMatch(/\$139|\$349|Save \$|typical prep/i);
+    expect(data.bars).toHaveLength(1);
   });
 });

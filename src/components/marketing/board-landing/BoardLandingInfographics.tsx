@@ -68,38 +68,22 @@ export function BoardLandingInfographics({
   visuals: BoardLandingVisuals;
   hidePriceBars?: boolean;
 }) {
-  const maxBar = 100;
-  const ours = 27.99;
-  const rangeParts = visuals.typicalRange.replace(/\$/g, "").split("–");
-  const highTypical = Number.parseFloat(rangeParts[rangeParts.length - 1]?.replace(/,/g, "") ?? "299");
-  const oursWidth = Math.max(12, Math.round((ours / highTypical) * maxBar));
-  const typicalWidth = maxBar;
-
   return (
     <section className="bl-visuals" aria-labelledby="bl-visuals-heading">
       <h2 id="bl-visuals-heading" className="bl-visuals__sr">Prep at a glance</h2>
 
       {hidePriceBars ? null : (
-      <div className="bl-visuals__price" aria-label="Monthly Pro price compared with typical prep spend">
-        <div className="bl-visuals__price-head">
-          <span className="bl-visuals__price-label">AnyExamEasy Pro</span>
-          <span className="bl-visuals__price-ours">{visuals.proPrice}</span>
-        </div>
-        <div className="bl-visuals__bar-wrap">
-          <div className="bl-visuals__bar bl-visuals__bar--ours" style={{ width: `${oursWidth}%` }}>
-            <span>Pro</span>
+        <div className="bl-visuals__price" aria-label="AnyExamEasy Pro monthly price">
+          <div className="bl-visuals__price-head">
+            <span className="bl-visuals__price-label">AnyExamEasy Pro</span>
+            <span className="bl-visuals__price-ours">{visuals.proPrice}</span>
+          </div>
+          <div className="bl-visuals__bar-wrap">
+            <div className="bl-visuals__bar bl-visuals__bar--ours" style={{ width: "100%" }}>
+              <span>Pro</span>
+            </div>
           </div>
         </div>
-        <div className="bl-visuals__price-head bl-visuals__price-head--typical">
-          <span className="bl-visuals__price-label">Typical {visuals.typicalPeriod}</span>
-          <span className="bl-visuals__price-typical">{visuals.typicalRange}</span>
-        </div>
-        <div className="bl-visuals__bar-wrap">
-          <div className="bl-visuals__bar bl-visuals__bar--typical" style={{ width: `${typicalWidth}%` }}>
-            <span>Typical prep</span>
-          </div>
-        </div>
-      </div>
       )}
 
       <ol className="bl-visuals__steps" aria-label="Practice, review, and pass">
