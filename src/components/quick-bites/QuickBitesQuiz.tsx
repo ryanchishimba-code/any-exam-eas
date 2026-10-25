@@ -218,7 +218,10 @@ export function QuickBitesQuiz({
   }
 
   return (
-    <section aria-labelledby="quick-bites-quiz-heading" className="space-y-4">
+    <section
+      aria-labelledby="quick-bites-quiz-heading"
+      className="scroll-mt-[calc(var(--nav-height)+1rem)] space-y-4"
+    >
       {onNext ? <NextEpisodeButton onNext={onNext} emphasis="quiet" /> : null}
       <div className="space-y-2">
         <p id="quick-bites-quiz-heading" className={dbUi.eyebrow}>

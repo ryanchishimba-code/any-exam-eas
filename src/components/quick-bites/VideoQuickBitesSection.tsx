@@ -29,6 +29,10 @@ import {
   nextPlayablePharmacyQuickBite,
   pharmacyQuickBitePoster,
 } from "@/lib/quick-bites/pharmacy-catalog";
+import {
+  isQuickBiteWatched,
+  useQuickBiteProgressMap,
+} from "@/lib/quick-bites/use-quick-bite-progress";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 
@@ -130,7 +134,13 @@ function Poster({ poster }: { poster: { webp: string; jpg: string } }) {
   );
 }
 
-function EpisodeMeta({ episode }: { episode: QuickBiteEpisode }) {
+function EpisodeMeta({
+  episode,
+  watched,
+}: {
+  episode: QuickBiteEpisode;
+  watched?: boolean;
+}) {
   return (
     <span className="flex min-h-11 items-center gap-3 px-3.5 py-2.5">
       <span className="w-6 shrink-0 text-[13px] font-semibold tabular-nums text-[var(--color-ink-muted)]">
@@ -140,7 +150,7 @@ function EpisodeMeta({ episode }: { episode: QuickBiteEpisode }) {
         {episode.title}
       </span>
       <span className="shrink-0 text-[12px] tabular-nums text-[var(--color-ink-muted)]">
-        {episode.held ? "Coming soon" : episode.duration}
+        {watched ? "Watched" : episode.held ? "Coming soon" : episode.duration}
       </span>
     </span>
   );
@@ -183,6 +193,10 @@ export function VideoQuickBitesSection({
       .flatMap((group) => group.episodes)
       .find((episode) => episode.slug === activeSlug && config.isPlayable(episode, canPlay)) ?? null;
   const nextEpisode = active ? config.nextEpisode(active.slug, canPlay) : null;
+  const { progress, mergeProgress } = useQuickBiteProgressMap({
+    apiBase: config.apiBase,
+    enabled: canPlay,
+  });
 
   function selectFromLibrary(slug: string) {
     const player = document.getElementById("quick-bites-player");
@@ -215,7 +229,10 @@ export function VideoQuickBitesSection({
     <section
       id={config.id}
       aria-labelledby={config.headingId}
-      className={cn(dbUi.surface, "scroll-mt-28 space-y-5 p-4 [overflow-anchor:none] sm:p-6")}
+      className={cn(
+        dbUi.surface,
+        "scroll-mt-28 space-y-5 p-4 pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] [overflow-anchor:none] sm:p-6 lg:pb-6"
+      )}
       style={{ overflowAnchor: "none" }}
     >
       <div className="space-y-2">
@@ -257,6 +274,8 @@ export function VideoQuickBitesSection({
           poster={active ? config.poster(active.slug) : undefined}
           includeCaptionsTrack={config.includeCaptionsTrack}
           captionsNote={config.captionsNote}
+          resumeWatchPct={active ? (progress[active.slug]?.watchPct ?? 0) : 0}
+          onProgressSaved={mergeProgress}
           library={
             <div
               id="quick-bites-library"
@@ -272,7 +291,9 @@ export function VideoQuickBitesSection({
                       </h3>
                     ) : null}
                     <ul className="flex gap-3 lg:grid lg:grid-cols-1">
-                      {group.episodes.map((episode) => (
+                      {group.episodes.map((episode) => {
+                        const watched = isQuickBiteWatched(progress[episode.slug]);
+                        return (
                         <li key={episode.slug} className="w-36 shrink-0 lg:w-auto">
                           {config.isPlayable(episode, canPlay) ? (
                             <button
@@ -289,7 +310,7 @@ export function VideoQuickBitesSection({
                                   <Play className="h-4 w-4" aria-hidden />
                                 </span>
                               </span>
-                              <EpisodeMeta episode={episode} />
+                              <EpisodeMeta episode={episode} watched={watched} />
                             </button>
                           ) : (
                             <figure className="overflow-hidden rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)]">
@@ -305,12 +326,13 @@ export function VideoQuickBitesSection({
                                 )}
                               </div>
                               <figcaption>
-                                <EpisodeMeta episode={episode} />
+                                <EpisodeMeta episode={episode} watched={watched} />
                               </figcaption>
                             </figure>
                           )}
                         </li>
-                      ))}
+                        );
+                      })}
                     </ul>
                   </div>
                 ))}

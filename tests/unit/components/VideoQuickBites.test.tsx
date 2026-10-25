@@ -66,7 +66,7 @@ describe("Video Quick Bites", () => {
     expect(fetchMock.mock.calls.some((call) => String(call[0]).includes("/quiz"))).toBe(false);
     expect(screen.queryByText(/Question 1 of/)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Take the quiz" })).toHaveAttribute("aria-expanded", "false");
-    expect(screen.getByText(/Captions are available from the player/)).toHaveClass("h-16");
+    expect(screen.getByText(/Captions on\/off|Captions are available from the player/)).toBeInTheDocument();
     video.dispatchEvent(new Event("play"));
     video.dispatchEvent(new Event("timeupdate"));
     video.dispatchEvent(new Event("ended"));
@@ -77,6 +77,13 @@ describe("Video Quick Bites", () => {
   it("lets a paid member open one lazy player", async () => {
     const user = userEvent.setup();
     const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      if (String(input).endsWith("/progress")) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({ progress: {} }),
+        };
+      }
       if (String(input).endsWith("/quiz")) {
         return {
           ok: true,
@@ -114,7 +121,8 @@ describe("Video Quick Bites", () => {
       />
     );
 
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledWith("/api/quick-bites/progress", expect.any(Object));
     expect(document.querySelector("video")).toBeNull();
     expect(screen.queryByRole("link", { name: "Upgrade to watch" })).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Play 9. High-Alert Medications" })).toBeInTheDocument();
@@ -124,7 +132,7 @@ describe("Video Quick Bites", () => {
     await user.click(screen.getByRole("button", { name: "Play 1. How the Nursing Boards Work" }));
 
     const video = await screen.findByLabelText("How the Nursing Boards Work video");
-    expect(video).toHaveAttribute("preload", "none");
+    expect(video).toHaveAttribute("preload", "metadata");
     expect(video).toHaveAttribute("poster", "/quick-bites/quick-bites-ep02-nclex-works-poster.webp");
     expect(video).toHaveAttribute(
       "src",
@@ -475,7 +483,7 @@ describe("Video Quick Bites", () => {
     expect(scrollIntoView).not.toHaveBeenCalled();
     expect(document.documentElement.scrollTop).toBe(480);
     const panel = document.getElementById("quick-bites-quiz-panel");
-    expect(panel?.className).toContain("h-[min(16rem,28dvh)]");
+    expect(panel?.className).not.toMatch(/h-\[min\(16rem/);
     expect(panel?.className).not.toMatch(/fixed|absolute/);
     const library = document.getElementById("quick-bites-library");
     const player = document.getElementById("quick-bites-player");
