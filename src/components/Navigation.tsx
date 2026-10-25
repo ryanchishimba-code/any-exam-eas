@@ -194,23 +194,24 @@ export function Navigation() {
             </>
           ) : (
             <div className="aee-nav-auth-group">
-              {landingMinimal ? null : (
-                <LoginModalTrigger
-                  callbackUrl={ROUTES.dashboard}
-                  className="aee-nav-login"
-                  aria-label="Log in to your account"
-                >
-                  <LogIn className="aee-nav-login__icon h-4 w-4" strokeWidth={2.25} aria-hidden />
-                  <span>Log in</span>
-                </LoginModalTrigger>
-              )}
+              <LoginModalTrigger
+                callbackUrl={ROUTES.dashboard}
+                className="aee-nav-login"
+                aria-label="Log in to your account"
+              >
+                <LogIn className="aee-nav-login__icon h-4 w-4" strokeWidth={2.25} aria-hidden />
+                <span>Log in</span>
+              </LoginModalTrigger>
               <Link
                 href={guestTrialHref}
                 className="aee-nav-cta"
                 aria-label={landingMinimal ? HERO_TRIAL_CTA_LABEL : formatTrialCtaLabel()}
               >
                 {landingMinimal ? (
-                  HERO_TRIAL_CTA_LABEL
+                  <>
+                    <span className="md:hidden">Free trial</span>
+                    <span className="hidden md:inline">{HERO_TRIAL_CTA_LABEL}</span>
+                  </>
                 ) : (
                   <>
                     <span className="md:hidden">Free trial</span>

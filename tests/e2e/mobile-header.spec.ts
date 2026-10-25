@@ -39,47 +39,76 @@ async function headerBoxes(page: Page) {
   });
 }
 
+function assertHeaderParts(
+  parts: readonly (readonly [string, { display: string; height: number; width: number; left: number; right: number; scrollWidth: number; clientWidth: number } | null])[],
+  width: number
+) {
+  for (const [name, box] of parts) {
+    expect(box, `${name} is in the header`).not.toBeNull();
+    const item = box!;
+    expect(item.display, `${name} is visible`).not.toBe("none");
+    expect(item.height, `${name} tap target`).toBeGreaterThanOrEqual(44);
+    expect(item.width, `${name} tap target`).toBeGreaterThanOrEqual(44);
+    expect(item.left, `${name} stays on screen`).toBeGreaterThanOrEqual(-1);
+    expect(item.right, `${name} stays on screen`).toBeLessThanOrEqual(width + 1);
+    expect(item.scrollWidth, `${name} is not truncated`).toBeLessThanOrEqual(item.clientWidth + 1);
+  }
+
+  const ordered = parts.map(([, box]) => box!);
+  for (let i = 0; i < ordered.length; i += 1) {
+    for (let j = i + 1; j < ordered.length; j += 1) {
+      expect(overlaps(ordered[i], ordered[j]), `${parts[i][0]} overlaps ${parts[j][0]}`).toBe(false);
+    }
+  }
+  for (let i = 0; i < ordered.length - 1; i += 1) {
+    const gap = ordered[i + 1].left - ordered[i].right;
+    expect(gap, `gap after ${parts[i][0]}`).toBeGreaterThanOrEqual(6);
+  }
+}
+
 test.describe("mobile header does not overlap", () => {
   for (const width of WIDTHS) {
-    test(`logo, Log in, trial, and menu stay apart at ${width}px`, async ({ page }) => {
+    test(`home: logo, Log in, and menu stay apart at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 844 });
       await page.goto("/", { waitUntil: "domcontentloaded" });
+      await expect(page.locator("header .aee-nav-login").first()).toBeVisible();
+
+      const boxes = await headerBoxes(page);
+      expect(boxes.wordmark?.display, "wordmark stays hidden under 768px").toBe("none");
+      expect(boxes.signIn?.text).toContain("Log in");
+      // Homepage keeps the hero trial CTA primary; nav trial is hidden on phones.
+      expect(boxes.cta?.display).toBe("none");
+
+      assertHeaderParts(
+        [
+          ["logo", boxes.logo],
+          ["Log in", boxes.signIn],
+          ["menu", boxes.menu],
+        ],
+        width
+      );
+    });
+
+    test(`board landing: logo, Log in, trial, and menu stay apart at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto("/nclex", { waitUntil: "domcontentloaded" });
       await expect(page.locator("header .aee-nav-login").first()).toBeVisible();
       await expect(page.locator("header .aee-nav-cta").first()).toBeVisible();
 
       const boxes = await headerBoxes(page);
       expect(boxes.wordmark?.display, "wordmark stays hidden under 768px").toBe("none");
-
-      const parts = [
-        ["logo", boxes.logo],
-        ["Log in", boxes.signIn],
-        ["trial", boxes.cta],
-        ["menu", boxes.menu],
-      ] as const;
-
-      for (const [name, box] of parts) {
-        expect(box, `${name} is in the header`).not.toBeNull();
-        const item = box!;
-        expect(item.height, `${name} tap target`).toBeGreaterThanOrEqual(44);
-        expect(item.width, `${name} tap target`).toBeGreaterThanOrEqual(44);
-        expect(item.left, `${name} stays on screen`).toBeGreaterThanOrEqual(-1);
-        expect(item.right, `${name} stays on screen`).toBeLessThanOrEqual(width + 1);
-        expect(item.scrollWidth, `${name} is not truncated`).toBeLessThanOrEqual(item.clientWidth + 1);
-      }
-
-      const ordered = parts.map(([, box]) => box!);
-      for (let i = 0; i < ordered.length; i += 1) {
-        for (let j = i + 1; j < ordered.length; j += 1) {
-          expect(overlaps(ordered[i], ordered[j]), `${parts[i][0]} overlaps ${parts[j][0]}`).toBe(false);
-        }
-      }
-      for (let i = 0; i < ordered.length - 1; i += 1) {
-        const gap = ordered[i + 1].left - ordered[i].right;
-        expect(gap, `gap after ${parts[i][0]}`).toBeGreaterThanOrEqual(6);
-      }
-
       expect(boxes.signIn?.text).toContain("Log in");
       expect(boxes.cta?.text).toBe("Free trial");
+
+      assertHeaderParts(
+        [
+          ["logo", boxes.logo],
+          ["Log in", boxes.signIn],
+          ["trial", boxes.cta],
+          ["menu", boxes.menu],
+        ],
+        width
+      );
     });
   }
 });
