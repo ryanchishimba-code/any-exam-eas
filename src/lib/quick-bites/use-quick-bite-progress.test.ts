@@ -1,7 +1,11 @@
-import { describe, expect, it } from "vitest";
+/** @vitest-environment jsdom */
+import { renderHook, waitFor } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import {
   quickBiteListProgressPercent,
   quickBiteResumeSeconds,
+  scheduleQuickBiteResumeSeek,
+  useQuickBiteResumeSnapshot,
 } from "@/lib/quick-bites/use-quick-bite-progress";
 
 describe("quickBiteResumeSeconds", () => {
@@ -34,5 +38,100 @@ describe("quickBiteListProgressPercent", () => {
         completedAt: new Date().toISOString(),
       })
     ).toBe(0);
+  });
+});
+
+describe("useQuickBiteResumeSnapshot", () => {
+  it("locks resume position per session and ignores later progress POSTs", async () => {
+    const progress = {
+      "ep-3": {
+        watchPct: 78,
+        playbackPositionSec: 74,
+        watchSeconds: 200,
+        completedAt: null,
+      },
+    };
+    const { result, rerender } = renderHook(
+      ({ sessionKey, slug, map }) => useQuickBiteResumeSnapshot(sessionKey, slug, map),
+      {
+        initialProps: {
+          sessionKey: "1:ep-3",
+          slug: "ep-3",
+          map: progress,
+        },
+      }
+    );
+
+    expect(result.current.playbackPositionSec).toBe(74);
+
+    rerender({
+      sessionKey: "1:ep-3",
+      slug: "ep-3",
+      map: {
+        "ep-3": {
+          ...progress["ep-3"],
+          playbackPositionSec: 12,
+        },
+      },
+    });
+
+    expect(result.current.playbackPositionSec).toBe(74);
+  });
+
+  it("fills async progress once before resume is applied", async () => {
+    const { result, rerender } = renderHook(
+      ({ sessionKey, slug, map }) => useQuickBiteResumeSnapshot(sessionKey, slug, map),
+      {
+        initialProps: {
+          sessionKey: "2:ep-3",
+          slug: "ep-3",
+          map: {} as Record<string, never>,
+        },
+      }
+    );
+
+    expect(result.current.playbackPositionSec).toBe(0);
+
+    rerender({
+      sessionKey: "2:ep-3",
+      slug: "ep-3",
+      map: {
+        "ep-3": {
+          watchPct: 78,
+          playbackPositionSec: 74,
+          watchSeconds: 0,
+          completedAt: null,
+        },
+      },
+    });
+
+    await waitFor(() => {
+      expect(result.current.playbackPositionSec).toBe(74);
+    });
+  });
+});
+
+describe("scheduleQuickBiteResumeSeek", () => {
+  it("seeks before calling onReady", () => {
+    const video = document.createElement("video");
+    Object.defineProperty(video, "duration", { value: 246, configurable: true });
+    Object.defineProperty(video, "currentTime", {
+      value: 0,
+      configurable: true,
+      writable: true,
+    });
+    Object.defineProperty(video, "readyState", { value: 1, configurable: true });
+    const pause = vi.spyOn(video, "pause").mockImplementation(() => {});
+    const onReady = vi.fn();
+
+    scheduleQuickBiteResumeSeek(
+      video,
+      { playbackPositionSec: 74, completed: false },
+      onReady
+    );
+
+    expect(pause).toHaveBeenCalled();
+    expect(video.currentTime).toBe(74);
+    expect(onReady).toHaveBeenCalledTimes(1);
   });
 });

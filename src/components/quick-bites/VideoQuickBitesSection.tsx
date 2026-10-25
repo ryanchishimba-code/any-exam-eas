@@ -33,6 +33,7 @@ import {
   isQuickBiteWatched,
   quickBiteListProgressPercent,
   useQuickBiteProgressMap,
+  useQuickBiteResumeSnapshot,
   type QuickBiteProgressClient,
 } from "@/lib/quick-bites/use-quick-bite-progress";
 import { dbUi } from "@/lib/study/dashboard-ui";
@@ -229,6 +230,11 @@ export function VideoQuickBitesSection({
     apiBase: config.apiBase,
     enabled: canPlay,
   });
+  const resumeSnapshot = useQuickBiteResumeSnapshot(
+    active ? `${session}:${active.slug}` : "",
+    active?.slug ?? "",
+    progress
+  );
 
   function selectFromLibrary(slug: string) {
     const player = document.getElementById("quick-bites-player");
@@ -306,10 +312,7 @@ export function VideoQuickBitesSection({
           poster={active ? config.poster(active.slug) : undefined}
           includeCaptionsTrack={config.includeCaptionsTrack}
           captionsNote={config.captionsNote}
-          resumePlaybackPositionSec={
-            active ? (progress[active.slug]?.playbackPositionSec ?? 0) : 0
-          }
-          resumeCompleted={active ? isQuickBiteWatched(progress[active.slug]) : false}
+          resumeSnapshot={resumeSnapshot}
           onProgressSaved={mergeProgress}
           library={
             <div
