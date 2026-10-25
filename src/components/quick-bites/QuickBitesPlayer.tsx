@@ -32,7 +32,8 @@ export function QuickBitesPlayer({
   poster: posterOverride,
   includeCaptionsTrack = true,
   captionsNote = "Captions are available from the player. They match the words already on screen.",
-  resumeWatchPct = 0,
+  resumePlaybackPositionSec = 0,
+  resumeCompleted = false,
   onProgressSaved,
 }: {
   episode: QuickBiteEpisode | null;
@@ -45,7 +46,8 @@ export function QuickBitesPlayer({
   poster?: { webp: string; jpg: string };
   includeCaptionsTrack?: boolean;
   captionsNote?: string;
-  resumeWatchPct?: number;
+  resumePlaybackPositionSec?: number;
+  resumeCompleted?: boolean;
   onProgressSaved?: (slug: string, row: QuickBiteProgressClient) => void;
 }) {
   const slug = episode ? (getQuickBiteBySlug(episode.slug) ?? episode).slug : "";
@@ -97,7 +99,8 @@ export function QuickBitesPlayer({
     enabled: state.status === "ready" && Boolean(known),
     videoRef,
     videoElement,
-    resumeWatchPct,
+    resumePlaybackPositionSec,
+    resumeCompleted,
     onSaved: onProgressSaved,
   });
 
