@@ -1,0 +1,175 @@
+{
+  "generatedAt": "2026-10-24",
+  "source": "PR #276 undo.json @277361a",
+  "note": "Draft only; not applied. 'changes' holds fields in row format (options is a JSON text string with the original non-option keys preserved).",
+  "items": [
+    {
+      "id": "cmqgquzft00071y4vvxz3dhhm",
+      "fieldId": "pance",
+      "oldCorrectAnswer": "Administer intravenous heparin",
+      "changes": {
+        "scenario": "A 58-year-old woman is brought to the emergency department 2 days after a 14-hour flight with sudden dyspnea and pleuritic chest pain. She has no history of bleeding, stroke, recent surgery, or trauma. After a 1-L crystalloid bolus, BP is 78/50 mm Hg, HR 128/min, RR 30/min, and SpO2 92% on 6 L/min nasal cannula. CT pulmonary angiography shows a saddle embolus with an RV/LV diameter ratio of 1.4. A weight-based unfractionated heparin infusion has been started.",
+        "question": "Which of the following is the most appropriate next step in management?",
+        "options": "{\"options\": [\"Administer alteplase 100 mg IV over 2 hours\", \"Switch to enoxaparin 1 mg/kg subcutaneously every 12 hours and continue monitoring\", \"Start apixaban 10 mg orally twice daily\", \"Place an inferior vena cava filter\", \"Obtain a D-dimer level\"], \"distractorRationale\": {\"Switch to enoxaparin 1 mg/kg subcutaneously every 12 hours and continue monitoring\": \"Anticoagulation alone does not relieve obstruction in PE with persistent hypotension.\", \"Start apixaban 10 mg orally twice daily\": \"Oral anticoagulants are not initial therapy for hemodynamically unstable PE.\", \"Place an inferior vena cava filter\": \"IVC filters are for patients who cannot receive anticoagulation and do not restore perfusion.\", \"Obtain a D-dimer level\": \"D-dimer adds nothing once PE is confirmed on CTPA.\"}, \"clinicalReasoning\": \"Confirmed PE with persistent hypotension (high risk) and no contraindication to lysis requires systemic thrombolysis plus anticoagulation.\", \"taskCategory\": \"foundational\", \"blueprintTopic\": \"coagulopathy\", \"blueprintSystem\": \"hematologic\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-vss1ft\", \"slotIndex\": 1, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T14:28:37.665Z\", \"qcFlags\": []}}",
+        "correctAnswer": "Administer alteplase 100 mg IV over 2 hours",
+        "explanation": "Persistent hypotension from PE is AHA/ACC PE Category E (high risk). With no contraindication, reperfusion with systemic thrombolysis plus anticoagulation reduces death; alteplase 100 mg IV over 2 hours is the labeled regimen.\n\nWhy others are wrong:\n• Enoxaparin alone: LMWH is preferred for stable PE, but anticoagulation alone does not relieve obstruction in shock.\n• Apixaban: oral agents are for stable patients after initial treatment.\n• IVC filter: only for those who cannot be anticoagulated; it does not restore perfusion.\n• D-dimer: PE is already confirmed on CTPA.\n\nTakeaway: PE with persistent hypotension needs reperfusion now (systemic thrombolysis, or catheter/surgical therapy if lytics are contraindicated) on top of anticoagulation."
+      },
+      "newKeyLetter": "A",
+      "guideline": "2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults (advanced therapy incl. systemic thrombolysis reasonable for Category E1); alteplase dose per FDA label",
+      "guidelineUrl": "https://www.jacc.org/doi/10.1016/j.jacc.2025.11.005",
+      "blindSolve": {
+        "answer": "A",
+        "reason": "Confirmed PE with BP 78/50 despite fluids = high-risk/obstructive shock; no bleeding contraindication, so reperfusion. B/C are anticoagulation only, D for anticoagulation contraindication, E unnecessary after CTPA.",
+        "matchesKey": true
+      },
+      "explanationChars": 749
+    },
+    {
+      "id": "cmqwusvhh00e41yzeqhklmstn",
+      "fieldId": "pance",
+      "oldCorrectAnswer": "Troponin levels",
+      "changes": {
+        "scenario": "A 60-year-old man with hypertension and hyperlipidemia presents to the emergency department of a hospital with a 24-hour cardiac catheterization laboratory 45 minutes after the onset of crushing substernal chest pressure radiating to his left arm while gardening. He is diaphoretic. BP is 148/88 mm Hg in both arms and HR is 96/min. Lungs are clear and pulses are equal. ECG shows 2-mm ST-segment elevation in leads II, III, and aVF with reciprocal ST depression in I and aVL. He has chewed aspirin 325 mg.",
+        "question": "Which of the following is the most appropriate next step in management?",
+        "options": "{\"options\": [\"Measure high-sensitivity troponin and repeat in 1 to 3 hours before deciding on reperfusion\", \"Obtain a transthoracic echocardiogram\", \"Perform emergent coronary angiography with primary PCI\", \"Administer tenecteplase\", \"Obtain CT angiography of the chest\"], \"taskCategory\": \"foundational\", \"blueprintTopic\": \"ACS\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-27-7e5roo\", \"slotIndex\": 2, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 9, \"generatedAt\": \"2026-06-27T21:09:49.438Z\", \"qcFlags\": []}}",
+        "correctAnswer": "Perform emergent coronary angiography with primary PCI",
+        "explanation": "This is an inferior STEMI at a PCI-capable center. Primary PCI is the preferred reperfusion strategy, with a first-medical-contact-to-device goal of 90 minutes or less, and the ECG alone is enough to activate the cath lab.\n\nWhy others are wrong:\n• Serial troponin: biomarkers are not needed to diagnose STEMI, and waiting delays reperfusion.\n• Echocardiogram: may help later but should not delay the cath lab.\n• Tenecteplase: fibrinolysis is for when timely PCI is not available.\n• CT angiography: equal arm BPs and pulses make aortic dissection unlikely; imaging would delay reperfusion.\n\nTakeaway: ST elevation in two contiguous leads with ischemic symptoms means immediate reperfusion. Do not wait for troponin."
+      },
+      "newKeyLetter": "C",
+      "guideline": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes (PPCI preferred; FMC-to-device <=90 min)",
+      "guidelineUrl": "https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009",
+      "blindSolve": {
+        "answer": "C",
+        "reason": "Diagnostic inferior STEMI on ECG with ongoing symptoms at a PCI-capable hospital needs immediate primary PCI; troponin/echo/CT delay reperfusion, lytics are second-line when PCI is available.",
+        "matchesKey": true
+      },
+      "explanationChars": 714
+    },
+    {
+      "id": "cmqgw4lml000b1ytkjfwhid47",
+      "fieldId": "pance",
+      "oldCorrectAnswer": "Initiate iron supplementation",
+      "changes": {
+        "scenario": "A 10-year-old girl is brought to the clinic after two episodes of fainting while running at soccer practice, both without warning symptoms. Her paternal uncle died suddenly at age 32. BP is 102/64 mm Hg and HR 88/min. A grade 3/6 harsh systolic ejection murmur at the left lower sternal border gets louder when she stands from squatting and with Valsalva, and softer with sustained handgrip. Hemoglobin is 11.2 g/dL with MCV 76 fL. A 12-lead ECG shows left ventricular hypertrophy with deep, narrow Q waves in the inferolateral leads.",
+        "question": "Which of the following is the most appropriate next step in evaluation?",
+        "options": "{\"options\": [\"Order a transthoracic echocardiogram\", \"Start oral ferrous sulfate and reassess in 4 weeks\", \"Order tilt-table testing\", \"Order an electroencephalogram\", \"Clear her to return to sports with increased fluid and salt intake\"], \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"hypertension\", \"blueprintSystem\": \"cardiovascular\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-mukqun\", \"slotIndex\": 7, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 5, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T17:02:42.348Z\", \"qcFlags\": []}}",
+        "correctAnswer": "Order a transthoracic echocardiogram",
+        "explanation": "Syncope during exertion, a family history of sudden death, a murmur that gets louder with lower preload, and LVH with deep narrow Q waves all point to hypertrophic cardiomyopathy. TTE is the recommended first imaging test for suspected HCM. She should be held out of sports until cardiology evaluates her.\n\nWhy others are wrong:\n• Iron: mild microcytic anemia does not explain exertional syncope or the murmur. Treating it first delays a diagnosis that can kill.\n• Tilt-table: for suspected reflex syncope, which happens with prodrome, not during exertion.\n• EEG: nothing suggests a seizure.\n• Return to sports: unsafe until HCM is excluded.\n\nTakeaway: syncope during exertion is cardiac until proven otherwise. Get an ECG and echocardiogram."
+      },
+      "newKeyLetter": "A",
+      "guideline": "2024 AHA/ACC/AMSSM/HRS/PACES/SCMR Guideline for the Management of Hypertrophic Cardiomyopathy (TTE recommended in initial evaluation of suspected HCM); 2017 ACC/AHA/HRS Syncope Guideline (exertional syncope = high-risk feature)",
+      "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001250",
+      "blindSolve": {
+        "answer": "A",
+        "reason": "Exertional syncope without prodrome, sudden-death family history, dynamic murmur louder with Valsalva/standing, LVH with Q waves = HCM; echo next. Anemia is mild and incidental; tilt/EEG/clearance wrong.",
+        "matchesKey": true
+      },
+      "explanationChars": 742
+    },
+    {
+      "id": "cmqwuk81u001v1yzeosaa79ai",
+      "fieldId": "pance",
+      "oldCorrectAnswer": "Cephalexin",
+      "changes": {
+        "scenario": "A 50-year-old man with type 2 diabetes treated with metformin (eGFR 85 mL/min/1.73 m2) presents with 3 days of a painful swelling on his left thigh. Examination shows a 4-cm tender, fluctuant mass with 3 cm of surrounding erythema and warmth. Temperature is 38.4°C (101.1°F), HR 98/min, BP 132/80 mm Hg, and RR 16/min. He has no drug allergies.",
+        "question": "Which of the following is the most appropriate management?",
+        "options": "{\"options\": [\"Cephalexin 500 mg orally four times daily alone\", \"Incision and drainage plus trimethoprim-sulfamethoxazole 1 double-strength tablet (160/800 mg) orally twice daily\", \"Incision and drainage plus cephalexin 500 mg orally four times daily\", \"Hospital admission for IV vancomycin without drainage\", \"Warm compresses and recheck in 48 hours\"], \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"cellulitis\", \"blueprintSystem\": \"dermatologic\", \"generationMeta\": {\"batchId\": \"pance-2026-06-27-7e5roo\", \"slotIndex\": 3, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 2, \"qcScore\": 9, \"generatedAt\": \"2026-06-27T21:03:02.626Z\", \"qcFlags\": []}}",
+        "correctAnswer": "Incision and drainage plus trimethoprim-sulfamethoxazole 1 double-strength tablet (160/800 mg) orally twice daily",
+        "explanation": "A fluctuant mass is an abscess, a purulent SSTI. Fever above 38°C with HR above 90 meets SIRS criteria, making this a moderate purulent infection. IDSA recommends incision and drainage plus empiric MRSA-active oral therapy such as TMP-SMX (1 to 2 DS tablets twice daily) or doxycycline.\n\nWhy others are wrong:\n• Cephalexin alone: no source control and no MRSA coverage. Cephalexin targets streptococci in nonpurulent cellulitis.\n• I&D plus cephalexin: source control is right, but the antibiotic misses community-acquired MRSA.\n• IV vancomycin without drainage: an abscess needs drainage, and he is not severely ill.\n• Warm compresses: undertreats a febrile patient with a drainable abscess.\n\nTakeaway: drain purulent infections. Add MRSA-active antibiotics when systemic signs or risk factors are present."
+      },
+      "newKeyLetter": "B",
+      "guideline": "IDSA 2014 Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections (purulent SSTI algorithm: moderate = I&D + empiric TMP-SMX or doxycycline; TMP-SMX 1-2 DS tabs bid)",
+      "guidelineUrl": "https://academic.oup.com/cid/article/59/2/e10/2895845",
+      "blindSolve": {
+        "answer": "B",
+        "reason": "Fluctuant 4 cm = abscess needing I&D; fever 38.4 + HR 98 = SIRS so add antibiotic; purulent infection → MRSA coverage, so TMP-SMX over cephalexin. Normal eGFR, no allergy, so TMP-SMX safe.",
+        "matchesKey": true
+      },
+      "explanationChars": 806
+    },
+    {
+      "id": "cmqgreoy100091yxdedz1asuu",
+      "fieldId": "pance",
+      "oldCorrectAnswer": "Perform tympanostomy tube placement",
+      "changes": {
+        "scenario": "A 10-year-old girl (32 kg) is brought to the emergency department with 2 days of severe right ear pain and a temperature of 39.3°C (102.7°F). The right tympanic membrane is erythematous, bulging, and immobile, and tympanometry is flat (type B). She had three episodes of acute otitis media over the past 2 years, the most recent 8 months ago. She has taken no antibiotics in the past 30 days, has no drug allergies, and has no conjunctivitis or postauricular swelling.",
+        "question": "Which of the following is the most appropriate next step in management?",
+        "options": "{\"options\": [\"High-dose amoxicillin 90 mg/kg/day orally in 2 divided doses plus ibuprofen for pain\", \"Ibuprofen alone with observation for 48 to 72 hours\", \"Tympanostomy tube placement\", \"CT of the temporal bones\", \"Ciprofloxacin-dexamethasone otic drops\"], \"taskCategory\": \"labs\", \"blueprintTopic\": \"otitis\", \"blueprintSystem\": \"eent\", \"generationMeta\": {\"batchId\": \"pance-2026-06-16-2tjksb\", \"slotIndex\": 1, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-pance-v1\", \"blueprintAligned\": true, \"difficultyRating\": 5, \"qcScore\": 9, \"generatedAt\": \"2026-06-16T14:50:44.289Z\", \"qcFlags\": []}}",
+        "correctAnswer": "High-dose amoxicillin 90 mg/kg/day orally in 2 divided doses plus ibuprofen for pain",
+        "explanation": "A bulging TM with severe otalgia and fever of 39°C or higher is severe AOM. AAP recommends antibiotics rather than observation and analgesia for every child. First-line therapy is high-dose amoxicillin at 80 to 90 mg/kg/day in 2 divided doses when there has been no amoxicillin in the past 30 days and no concurrent purulent conjunctivitis.\n\nWhy others are wrong:\n• Observation: an option only for nonsevere AOM, not with high fever and severe pain.\n• Tympanostomy tubes: an elective option for recurrent AOM (3 episodes in 6 months, or 4 in 12 months with 1 in the past 6). She does not meet this, and tubes do not treat an acute episode.\n• CT: only if a complication such as mastoiditis is suspected.\n• Otic drops: for otitis externa or tube otorrhea with an intact canal path, not AOM behind an intact TM.\n\nTakeaway: treat severe AOM with high-dose amoxicillin plus analgesia."
+      },
+      "newKeyLetter": "A",
+      "guideline": "AAP Clinical Practice Guideline: The Diagnosis and Management of Acute Otitis Media (Lieberthal et al., Pediatrics 2013)",
+      "guidelineUrl": "https://publications.aap.org/pediatrics/article/131/3/e964/30912",
+      "blindSolve": {
+        "answer": "A",
+        "reason": "Bulging TM + fever 39.3 + severe pain = severe AOM → antibiotics, not observation; no recent amoxicillin/conjunctivitis → high-dose amoxicillin; 3 episodes/2 yr doesn't meet tube criteria; no complication for CT; drops don't treat AOM.",
+        "matchesKey": true
+      },
+      "explanationChars": 879
+    },
+    {
+      "id": "cmr83i5y4003h1yq5tr8no1s5",
+      "fieldId": "aanp-fnp",
+      "oldCorrectAnswer": "Physiologic jaundice",
+      "changes": {
+        "scenario": "A 2-week-old male infant born at 39 weeks is brought for a routine visit. He is exclusively formula-fed, taking 3 oz every 3 hours, and has regained his birth weight. His mother reports he has been jaundiced since day 3 and thinks it is getting worse. He is alert and active, with scleral icterus and jaundice extending to the abdomen. A transcutaneous bilirubin is 12 mg/dL.",
+        "question": "Which of the following is the most appropriate next step?",
+        "options": "{\"options\": [\"Reassure the parents that this is physiologic jaundice\", \"Measure total and direct (conjugated) serum bilirubin\", \"Switch to a soy-based formula\", \"Start home phototherapy\"], \"distractorRationale\": {\"Reassure the parents that this is physiologic jaundice\": \"Incorrect: persistent, worsening jaundice at 2 weeks in a formula-fed infant is not physiologic until cholestasis is excluded.\", \"Measure total and direct (conjugated) serum bilirubin\": \"Correct: AAP 2022 recommends total and direct/conjugated bilirubin for formula-fed infants still jaundiced at 2 weeks.\", \"Switch to a soy-based formula\": \"Incorrect: no evidence of formula intolerance, and it does not evaluate cholestasis.\", \"Start home phototherapy\": \"Incorrect: 12 mg/dL is below phototherapy thresholds at 2 weeks, and phototherapy does not treat conjugated hyperbilirubinemia.\"}, \"clinicalReasoning\": \"Assess: formula-fed 2-week-old with persistent, worsening jaundice. Diagnose: prolonged jaundice; cholestasis must be excluded. Plan: total and direct/conjugated bilirubin. Evaluate: urgent referral if direct bilirubin is elevated.\", \"blueprintTopic\": \"hypertension-jnc-acc\", \"blueprintSystem\": \"assess\", \"generationMeta\": {\"batchId\": \"aanp-mr83crfx\", \"slotIndex\": 0, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-aanp-fnp-v3-hybrid\", \"blueprintAligned\": true, \"difficultyRating\": 2, \"qcScore\": 100, \"generatedAt\": \"2026-07-05T17:58:51.804Z\", \"qcFlags\": [], \"repairMethod\": \"deterministic\", \"hybridGate\": \"ready\"}, \"clinicalSystem\": \"cardiovascular\", \"patientAgeGroup\": \"newborn\", \"blueprintDomain\": \"assess\", \"reviewModuleSlug\": \"aanp-system-cardiovascular\", \"memoryCardIds\": [\"fnp-hypertension-first-line\", \"fnp-stemi-reperfusion\", \"fnp-chest-pain-next-step\", \"fnp-nstemi-medical-therapy\"], \"structureIds\": [\"heart\", \"aorta\", \"carotid-artery\"]}",
+        "correctAnswer": "Measure total and direct (conjugated) serum bilirubin",
+        "explanation": "Physiologic jaundice should be gone by 2 weeks in a formula-fed infant. AAP 2022 recommends measuring total and direct (or conjugated) bilirubin in formula-fed infants still jaundiced at 2 weeks, and breastfed infants at 3 to 4 weeks, to detect cholestasis such as biliary atresia. Outcomes in biliary atresia depend on early surgery.\n\nWhy others are wrong:\n• Reassurance: persistent, worsening jaundice at 2 weeks is not physiologic and needs fractionation first.\n• Soy formula: no evidence of milk-protein intolerance, and it does not address cholestasis.\n• Phototherapy: 12 mg/dL is below treatment thresholds at this age, and phototherapy does nothing for conjugated hyperbilirubinemia.\n\nTakeaway: jaundice at 2 weeks (formula-fed) or 3 to 4 weeks (breastfed) means total plus direct bilirubin."
+      },
+      "newKeyLetter": "B",
+      "guideline": "AAP 2022 Clinical Practice Guideline Revision: Management of Hyperbilirubinemia in the Newborn Infant >=35 Weeks of Gestation (KAS 9)",
+      "guidelineUrl": "https://publications.aap.org/pediatrics/article/150/3/e2022058859/188443",
+      "blindSolve": {
+        "answer": "B",
+        "reason": "Formula-fed, still jaundiced and worsening at 2 weeks: must exclude cholestasis/biliary atresia by fractionating bilirubin before any reassurance; 12 is below phototherapy thresholds; soy irrelevant.",
+        "matchesKey": true
+      },
+      "explanationChars": 798
+    },
+    {
+      "id": "cmqgvc7on00081yssvph08zgn",
+      "fieldId": "aanp-fnp",
+      "oldCorrectAnswer": "Obesity",
+      "changes": {
+        "scenario": "A 25-year-old woman presents to the primary care clinic with concerns about her weight. Her height is 165 cm (5 ft 5 in) and weight is 79 kg (174 lb), giving a BMI of 29.0 kg/m2. She reports difficulty losing weight despite diet and exercise. She has regular menses and denies fatigue, cold intolerance, easy bruising, or episodes of loss-of-control eating. She takes no medications. Family history is notable for obesity and type 2 diabetes. BP is 120/80 mm Hg, and examination shows no striae or proximal muscle weakness.",
+        "question": "Which of the following best classifies this patient's weight status?",
+        "options": "{\"options\": [\"Normal weight\", \"Overweight\", \"Class 1 obesity\", \"Class 2 obesity\"], \"distractorRationale\": {\"Normal weight\": \"Incorrect because normal weight is a BMI of 18.5 to <25.\", \"Class 1 obesity\": \"Incorrect because class 1 obesity begins at a BMI of 30.\", \"Class 2 obesity\": \"Incorrect because class 2 obesity is a BMI of 35 to <40.\"}, \"clinicalReasoning\": \"Assess: BMI 29.0 with no features of secondary causes. Diagnose: overweight (BMI 25-29.9). Plan: lifestyle counseling and cardiometabolic risk screening. Evaluate: track weight and metabolic measures over time.\", \"blueprintTopic\": \"pneumonia\", \"blueprintSystem\": \"assess\", \"generationMeta\": {\"batchId\": \"aanp-mqgv9glf\", \"slotIndex\": 7, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-aanp-fnp-v3-hybrid\", \"blueprintAligned\": true, \"difficultyRating\": 3, \"qcScore\": 100, \"generatedAt\": \"2026-06-16T16:40:21.625Z\", \"qcFlags\": [], \"repairMethod\": \"ai\", \"hybridGate\": \"ready\"}, \"clinicalSystem\": \"pulmonary\", \"patientAgeGroup\": \"middle-adult\", \"blueprintDomain\": \"assess\", \"reviewModuleSlug\": \"infectious-disease\", \"memoryCardIds\": [\"fnp-cap-outpatient\", \"fnp-uti-pyelonephritis\", \"fnp-strep-pharyngitis\", \"fnp-mrsa-skin\"]}",
+        "correctAnswer": "Overweight",
+        "explanation": "For adults, CDC defines BMI 25.0 to <30 as overweight, 30 to <35 as class 1 obesity, 35 to <40 as class 2, and 40 or higher as class 3. At 29.0 she is overweight. The history and exam give no reason to suspect hypothyroidism, Cushing syndrome, or binge eating disorder.\n\nWhy others are wrong:\n• Normal weight: 18.5 to <25.\n• Class 1 obesity: starts at 30.\n• Class 2 obesity: 35 to <40.\n\nTakeaway: classify adult weight by BMI cut points. A BMI of 25 to 29.9 is overweight, not obesity. With a family history of type 2 diabetes, this is a chance to counsel on lifestyle and consider diabetes screening."
+      },
+      "newKeyLetter": "B",
+      "guideline": "CDC Adult BMI Categories (Centers for Disease Control and Prevention)",
+      "guidelineUrl": "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html",
+      "blindSolve": {
+        "answer": "B",
+        "reason": "BMI 29.0 falls in 25-29.9 = overweight; obesity begins at 30.",
+        "matchesKey": true
+      },
+      "explanationChars": 601
+    },
+    {
+      "id": "cmr8311al003d1ykz36fuoljt",
+      "fieldId": "aanp-fnp",
+      "oldCorrectAnswer": "Add ezetimibe",
+      "changes": {
+        "scenario": "A 55-year-old man without known atherosclerotic cardiovascular disease or diabetes presents for follow-up. His estimated 10-year ASCVD risk by the PREVENT equations is 12%. He has taken atorvastatin 10 mg daily for 1 year, reports full adherence, and has no muscle symptoms. His LDL-C is 160 mg/dL, and hepatic panel and CK are normal. He has not made significant lifestyle changes. BP is 130/80 mm Hg.",
+        "question": "Which of the following is the most appropriate next step in management?",
+        "options": "{\"options\": [\"Increase atorvastatin to 40 to 80 mg daily\", \"Add ezetimibe 10 mg daily to the current dose\", \"Continue the current dose and intensify lifestyle changes alone\", \"Switch to pravastatin 40 mg daily\"], \"distractorRationale\": {\"Add ezetimibe 10 mg daily to the current dose\": \"Incorrect because ezetimibe is added only after a maximally tolerated statin fails to reach the LDL-C goal.\", \"Continue the current dose and intensify lifestyle changes alone\": \"Incorrect because lifestyle change is an adjunct and will not lower LDL-C from 160 to below 70 mg/dL.\", \"Switch to pravastatin 40 mg daily\": \"Incorrect because pravastatin 40 mg is moderate intensity and gives no intensification.\"}, \"clinicalReasoning\": \"Assess: high PREVENT risk (12%) on moderate-intensity atorvastatin with LDL-C 160. Diagnose: undertreated dyslipidemia. Plan: increase to high-intensity atorvastatin 40-80 mg plus lifestyle changes. Evaluate: recheck lipids in 4-12 weeks and add ezetimibe if LDL-C is still 70 or higher.\", \"blueprintTopic\": \"valvular-disease-murmurs\", \"blueprintSystem\": \"plan\", \"generationMeta\": {\"batchId\": \"aanp-mr82veyu\", \"slotIndex\": 8, \"model\": \"gpt-4o-mini\", \"pipelineVersion\": \"gpt-4o-mini-aanp-fnp-v3-hybrid\", \"blueprintAligned\": true, \"difficultyRating\": 4, \"qcScore\": 100, \"generatedAt\": \"2026-07-05T17:45:37.505Z\", \"qcFlags\": [], \"repairMethod\": \"deterministic\", \"hybridGate\": \"ready\"}, \"clinicalSystem\": \"cardiovascular\", \"patientAgeGroup\": \"young-adult\", \"blueprintDomain\": \"plan\", \"reviewModuleSlug\": \"aanp-system-cardiovascular\", \"memoryCardIds\": [\"fnp-hypertension-first-line\", \"fnp-stemi-reperfusion\", \"fnp-chest-pain-next-step\", \"fnp-nstemi-medical-therapy\"], \"top500Drugs\": [\"Atorvastatin (Lipitor)\", \"Ezetimibe (Zetia)\"], \"structureIds\": [\"heart\", \"aorta\", \"carotid-artery\"]}",
+        "correctAnswer": "Increase atorvastatin to 40 to 80 mg daily",
+        "explanation": "Atorvastatin 10 mg is a moderate-intensity statin. For a primary-prevention adult at high (10% or greater) PREVENT risk, the 2026 ACC/AHA dyslipidemia guideline recommends a high-intensity statin, such as atorvastatin 40 to 80 mg, with an LDL-C goal below 70 mg/dL, alongside lifestyle therapy. Non-statin agents are added only if the goal is not reached on the maximally tolerated statin.\n\nWhy others are wrong:\n• Ezetimibe now: skips statin intensification. Ezetimibe is the add-on after maximal tolerated statin therapy.\n• Lifestyle alone: important as an adjunct but will not bring LDL-C from 160 to below 70.\n• Pravastatin 40 mg: also moderate intensity, so no gain.\n\nTakeaway: maximize statin intensity before adding non-statin therapy."
+      },
+      "newKeyLetter": "A",
+      "guideline": "2026 ACC/AHA/AACVPR/ABC/ACPM/ADA/AGS/APhA/ASPC/NLA/PCNA Guideline on the Management of Dyslipidemia (high PREVENT risk >=10%: high-intensity statin, LDL-C goal <70 mg/dL; add ezetimibe if goal unmet)",
+      "guidelineUrl": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
+      "blindSolve": {
+        "answer": "A",
+        "reason": "On moderate-intensity atorvastatin 10 mg, tolerating it, high-risk primary prevention, LDL far above goal → step up to high-intensity statin first; ezetimibe only after maximal statin; pravastatin 40 is still moderate; lifestyle alone insufficient.",
+        "matchesKey": true
+      },
+      "explanationChars": 742
+    }
+  ]
+}
