@@ -24,7 +24,7 @@ function allMetMetrics() {
     liveBankCount: 100,
     distinctBankItemsAttempted: 100,
     fastAttemptsExcluded: 0,
-    fullLengthExamsCompleted: 3,
+    fullLengthExamsCompleted: 10,
     readinessChecksCompleted: 1,
     quickBitesCompleted: 5,
     quickBitesTotal: 5,
@@ -67,8 +67,8 @@ describe("studyProgressCardRows", () => {
     ]);
     expect(rows.find((row) => row.id === "full_length_exams")).toMatchObject({
       done: 3,
-      target: 3,
-      met: true,
+      target: 10,
+      met: false,
     });
   });
 });
@@ -111,7 +111,7 @@ describe("studyProgressNextStep", () => {
       fullLengthExamsCompleted: 1,
     });
     const step = studyProgressNextStep(data);
-    expect(step.label).toBe("Next: complete 2 more full-length exams →");
+    expect(step.label).toBe("Next: complete 9 more full-length exams →");
   });
 
   it("links Quick Bites on the dashboard for NAPLEX with singular copy", () => {

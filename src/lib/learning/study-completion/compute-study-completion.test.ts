@@ -52,12 +52,12 @@ describe("buildStudyCompletionResult", () => {
     expect(result.ruleVersion).toBe("completion-rules-v2");
   });
 
-  it("uses two full-length exams for AANP FNP", () => {
+  it("uses ten full-length exams for every board including AANP FNP (v2)", () => {
     const result = buildStudyCompletionResult("aanp-fnp", {
       liveBankCount: 500,
       distinctBankItemsAttempted: 500,
       fastAttemptsExcluded: 0,
-      fullLengthExamsCompleted: 2,
+      fullLengthExamsCompleted: 10,
       readinessChecksCompleted: 1,
       quickBitesCompleted: 0,
       quickBitesTotal: 0,
@@ -65,7 +65,7 @@ describe("buildStudyCompletionResult", () => {
       studyGuideChaptersTotal: 10,
     });
     const exams = result.pillars.find((p) => p.id === "full_length_exams");
-    expect(exams).toMatchObject({ done: 2, target: 2, met: true });
+    expect(exams).toMatchObject({ done: 10, target: 10, met: true });
   });
 
   it("weights pillar progress for overall percent (v2)", () => {
@@ -173,5 +173,12 @@ describe("COMPLETION_RULES_V1", () => {
     expect(COMPLETION_RULES_V1.version).toBe("completion-rules-v1");
     expect(COMPLETION_RULES_V1.coveragePercentTarget).toBe(85);
     expect(COMPLETION_RULES_V1.perExam["aanp-fnp"]?.fullLengthExamsTarget).toBe(2);
+  });
+});
+
+describe("COMPLETION_RULES_V2", () => {
+  it("requires ten full-length exams on every board", () => {
+    expect(COMPLETION_RULES_V2.fullLengthExamsTarget).toBe(10);
+    expect(COMPLETION_RULES_V2.perExam["aanp-fnp"]?.fullLengthExamsTarget).toBeUndefined();
   });
 });

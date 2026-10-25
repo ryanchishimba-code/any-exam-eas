@@ -52,7 +52,7 @@ export const COMPLETION_RULES_V2: CompletionRulesV2 = {
   version: "completion-rules-v2",
   minAttemptDurationMs: COMPLETION_RULES_V1.minAttemptDurationMs,
   coveragePercentTarget: COMPLETION_RULES_V1.coveragePercentTarget,
-  fullLengthExamsTarget: COMPLETION_RULES_V1.fullLengthExamsTarget,
+  fullLengthExamsTarget: 10,
   readinessChecksTarget: COMPLETION_RULES_V1.readinessChecksTarget,
   quickBiteWatchPctComplete: 90,
   chapterScrollPctComplete: 90,
@@ -71,7 +71,6 @@ export const COMPLETION_RULES_V2: CompletionRulesV2 = {
   },
   perExam: {
     "aanp-fnp": {
-      fullLengthExamsTarget: 2,
       pillarWeights: {
         unique_question_coverage: 0.5,
         full_length_exams: 0.15,
