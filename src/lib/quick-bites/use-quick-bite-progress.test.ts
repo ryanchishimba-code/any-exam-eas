@@ -112,6 +112,57 @@ describe("useQuickBiteResumeSnapshot", () => {
   });
 });
 
+describe("useQuickBiteProgressReporter unmount flush", () => {
+  it("does not POST a zero head position after the student watched further", async () => {
+    vi.useFakeTimers();
+    const fetchMock = vi.fn(async () => ({
+      ok: true,
+      json: async () => ({
+        progress: {
+          watchPct: 25,
+          playbackPositionSec: 58,
+          watchSeconds: 10,
+          completedAt: null,
+        },
+      }),
+    }));
+    vi.stubGlobal("fetch", fetchMock);
+
+    const video = document.createElement("video");
+    Object.defineProperty(video, "duration", { value: 246, configurable: true });
+    let time = 58;
+    Object.defineProperty(video, "currentTime", {
+      get: () => time,
+      set: (value: number) => {
+        time = value;
+      },
+      configurable: true,
+    });
+    Object.defineProperty(video, "paused", { value: true, configurable: true });
+    Object.defineProperty(video, "ended", { value: false, configurable: true });
+
+    const videoRef = { current: video };
+    const { unmount } = renderHook(() =>
+      useQuickBiteProgressReporter({
+        slug: "quick-bites-fnp-ep03-diabetes",
+        apiBase: "/api/quick-bites-fnp",
+        enabled: true,
+        videoRef,
+        videoElement: video,
+      })
+    );
+
+    await vi.advanceTimersByTimeAsync(11_000);
+    fetchMock.mockClear();
+    time = 0;
+    unmount();
+
+    expect(fetchMock).not.toHaveBeenCalled();
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+  });
+});
+
 describe("scheduleQuickBiteResumeSeek", () => {
   it("does not POST progress when pause fires during resume seek", async () => {
     vi.useFakeTimers();

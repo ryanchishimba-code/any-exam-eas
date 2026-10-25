@@ -85,8 +85,7 @@ export async function upsertQuickBiteProgress(
   if (
     playbackPositionSec <= 0.5 &&
     existingPosition > 0.5 &&
-    input.watchSecondsDelta === 0 &&
-    input.momentWatchPct <= 1
+    input.watchSecondsDelta === 0
   ) {
     playbackPositionSec = existingPosition;
   }
