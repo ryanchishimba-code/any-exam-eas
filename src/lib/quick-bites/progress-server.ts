@@ -27,6 +27,37 @@ export function isQuickBiteComplete(watchPct: number, rules = COMPLETION_RULES_V
   return watchPct >= rules.quickBiteWatchPctComplete;
 }
 
+export type QuickBiteProgressSnapshot = {
+  watchPct: number;
+  watchSeconds: number;
+  completedAt: string | null;
+};
+
+export async function listQuickBiteProgressForUser(
+  userId: string,
+  slugs: readonly string[]
+): Promise<Record<string, QuickBiteProgressSnapshot>> {
+  if (slugs.length === 0) return {};
+  const rows = await prisma.quickBiteProgress.findMany({
+    where: { userId, slug: { in: [...slugs] } },
+    select: {
+      slug: true,
+      watchPct: true,
+      watchSeconds: true,
+      completedAt: true,
+    },
+  });
+  const out: Record<string, QuickBiteProgressSnapshot> = {};
+  for (const row of rows) {
+    out[row.slug] = {
+      watchPct: row.watchPct,
+      watchSeconds: row.watchSeconds,
+      completedAt: row.completedAt?.toISOString() ?? null,
+    };
+  }
+  return out;
+}
+
 export async function upsertQuickBiteProgress(
   userId: string,
   slug: string,

@@ -9,13 +9,16 @@ import {
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
 import { parseVideoTimestamp } from "@/lib/quick-bites/timestamp";
-import { useQuickBiteProgressReporter } from "@/lib/quick-bites/use-quick-bite-progress";
+import {
+  useQuickBiteProgressReporter,
+  type QuickBiteProgressClient,
+} from "@/lib/quick-bites/use-quick-bite-progress";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 
 type LoadState =
   | { status: "loading" }
-  | { status: "ready"; videoUrl: string; captionsUrl: string }
+  | { status: "ready"; videoUrl: string; captionsUrl?: string }
   | { status: "locked" }
   | { status: "failed" };
 
@@ -29,6 +32,8 @@ export function QuickBitesPlayer({
   poster: posterOverride,
   includeCaptionsTrack = true,
   captionsNote = "Captions are available from the player. They match the words already on screen.",
+  resumeWatchPct = 0,
+  onProgressSaved,
 }: {
   episode: QuickBiteEpisode | null;
   onClose: () => void;
@@ -40,6 +45,8 @@ export function QuickBitesPlayer({
   poster?: { webp: string; jpg: string };
   includeCaptionsTrack?: boolean;
   captionsNote?: string;
+  resumeWatchPct?: number;
+  onProgressSaved?: (slug: string, row: QuickBiteProgressClient) => void;
 }) {
   const slug = episode ? (getQuickBiteBySlug(episode.slug) ?? episode).slug : "";
   const [media, setMedia] = useState<{ slug: string; state: LoadState }>({
@@ -53,6 +60,7 @@ export function QuickBitesPlayer({
   const videoRef = useRef<HTMLVideoElement>(null);
   const playedToken = useRef("");
   const scrollLock = useRef<number | null>(null);
+  const [captionsOn, setCaptionsOn] = useState(false);
 
   function holdScroll() {
     scrollLock.current = window.scrollY;
@@ -83,7 +91,17 @@ export function QuickBitesPlayer({
     apiBase,
     enabled: state.status === "ready" && Boolean(known),
     videoRef,
+    resumeWatchPct,
+    onSaved: onProgressSaved,
   });
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    for (const track of Array.from(video.textTracks)) {
+      track.mode = captionsOn ? "showing" : "disabled";
+    }
+  }, [captionsOn, state.status, known?.slug]);
 
   function rewatch(timestamp: string) {
     const video = videoRef.current;
@@ -103,6 +121,10 @@ export function QuickBitesPlayer({
   }
 
   useEffect(() => {
+    setCaptionsOn(false);
+  }, [slug, playbackNonce]);
+
+  useEffect(() => {
     if (!slug) return;
     const controller = new AbortController();
     let active = true;
@@ -120,13 +142,17 @@ export function QuickBitesPlayer({
         }
         const body = (await response.json()) as { videoUrl?: string; captionsUrl?: string };
         if (!active) return;
-        if (!body.videoUrl || !body.captionsUrl) {
+        if (!body.videoUrl) {
           setMedia({ slug, state: { status: "failed" } });
           return;
         }
         setMedia({
           slug,
-          state: { status: "ready", videoUrl: body.videoUrl, captionsUrl: body.captionsUrl },
+          state: {
+            status: "ready",
+            videoUrl: body.videoUrl,
+            captionsUrl: body.captionsUrl,
+          },
         });
       })
       .catch((error: unknown) => {
@@ -160,10 +186,10 @@ export function QuickBitesPlayer({
     <div className="contents">
       <div
         id="quick-bites-player"
-        className="scroll-mt-28 [grid-area:player] [overflow-anchor:none]"
+        className="scroll-mt-[calc(var(--nav-height)+1rem)] [grid-area:player] [overflow-anchor:none]"
         style={{ overflowAnchor: "none" }}
       >
-        <div className="flex h-[4.5rem] items-start justify-between gap-3">
+        <div className="flex min-h-[4.5rem] scroll-mt-[calc(var(--nav-height)+0.5rem)] items-start justify-between gap-3">
           {known ? (
             <>
               <div className="min-w-0 pt-0.5">
@@ -174,7 +200,18 @@ export function QuickBitesPlayer({
                   {known.number}. {known.title}
                 </h3>
               </div>
-              <div className="flex shrink-0 items-center gap-2">
+              <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+                {includeCaptionsTrack && state.status === "ready" && state.captionsUrl ? (
+                  <button
+                    type="button"
+                    aria-pressed={captionsOn}
+                    onMouseDown={(event) => event.preventDefault()}
+                    onClick={() => setCaptionsOn((current) => !current)}
+                    className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--color-border)] px-3 text-[13px] font-semibold text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+                  >
+                    {captionsOn ? "Captions off" : "Captions on"}
+                  </button>
+                ) : null}
                 <button
                   type="button"
                   aria-expanded={quizOpen}
@@ -209,14 +246,20 @@ export function QuickBitesPlayer({
           )}
         </div>
 
-        <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-[#14120f] shadow-[var(--shadow-apple-md)]">
+        <div
+          className="relative aspect-video w-full overflow-hidden rounded-2xl bg-[#14120f] shadow-[var(--shadow-apple-md)]"
+          onPointerDown={() => {
+            videoRef.current?.focus({ preventScroll: true });
+          }}
+        >
           {known && poster && state.status === "ready" ? (
             <video
               key={known.slug}
               ref={videoRef}
               controls
-              preload="none"
+              preload="metadata"
               playsInline
+              tabIndex={0}
               poster={poster.webp}
               width={1920}
               height={1080}
@@ -224,8 +267,8 @@ export function QuickBitesPlayer({
               aria-label={`${known.title} video`}
               className="absolute inset-0 h-full w-full bg-black object-contain"
             >
-              {includeCaptionsTrack ? (
-                <track kind="captions" src={state.captionsUrl} srcLang="en" label="English" />
+              {includeCaptionsTrack && state.captionsUrl ? (
+                <track kind="captions" src={state.captionsUrl} srcLang="en" label="English" default />
               ) : null}
             </video>
           ) : (
@@ -254,8 +297,12 @@ export function QuickBitesPlayer({
             </div>
           )}
         </div>
-        <p className="mt-3 h-16 overflow-hidden text-[12px] leading-8 text-[var(--color-ink-muted)]">
-          {known ? captionsNote : "\u00a0"}
+        <p className="mt-3 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
+          {known
+            ? includeCaptionsTrack && state.status === "ready" && state.captionsUrl
+              ? "Use Captions on/off above, or the CC control in the player."
+              : captionsNote
+            : "\u00a0"}
         </p>
       </div>
 
@@ -264,10 +311,10 @@ export function QuickBitesPlayer({
       <div
         id="quick-bites-quiz-panel"
         data-state={quizOpen ? "open" : "closed"}
-        className="h-[min(16rem,28dvh)] max-h-[min(16rem,28dvh)] min-h-0 overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] [grid-area:quiz] [overflow-anchor:none]"
+        className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] [grid-area:quiz] [overflow-anchor:none]"
         style={{ overflowAnchor: "none" }}
       >
-        <div className="h-full overflow-y-auto p-4 [scrollbar-gutter:stable]">
+        <div className="p-4 sm:p-5">
           {known && quizOpen ? (
             <QuickBitesQuiz slug={known.slug} apiBase={apiBase} onRewatch={rewatch} onNext={onNext} />
           ) : (

@@ -72,20 +72,20 @@ export const COMPLETION_RULES_V2: CompletionRulesV2 = {
   perExam: {
     "aanp-fnp": {
       pillarWeights: {
-        unique_question_coverage: 0.5,
+        unique_question_coverage: 0.45,
         full_length_exams: 0.15,
         readiness_checks: 0.1,
-        quick_bites: 0,
-        study_guide_chapters: 0.25,
+        quick_bites: 0.15,
+        study_guide_chapters: 0.15,
       },
     },
     pance: {
       pillarWeights: {
-        unique_question_coverage: 0.5,
+        unique_question_coverage: 0.45,
         full_length_exams: 0.15,
         readiness_checks: 0.1,
-        quick_bites: 0,
-        study_guide_chapters: 0.25,
+        quick_bites: 0.15,
+        study_guide_chapters: 0.15,
       },
     },
     naplex: {
