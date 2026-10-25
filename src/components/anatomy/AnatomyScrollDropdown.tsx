@@ -4,6 +4,7 @@ import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "re
 import { createPortal } from "react-dom";
 import { Check, ChevronDown } from "lucide-react";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
+import { addPassiveScrollListener } from "@/lib/client/scroll-listener";
 import { cn } from "@/lib/utils";
 
 export type AnatomyDropdownItem = {
@@ -112,10 +113,10 @@ export function AnatomyScrollDropdown({
     updateMenuPosition();
     const onLayout = () => updateMenuPosition();
     window.addEventListener("resize", onLayout);
-    window.addEventListener("scroll", onLayout, true);
+    const removeScroll = addPassiveScrollListener(window, onLayout, { capture: true });
     return () => {
       window.removeEventListener("resize", onLayout);
-      window.removeEventListener("scroll", onLayout, true);
+      removeScroll();
     };
   }, [open, menuHeight, placement]);
 

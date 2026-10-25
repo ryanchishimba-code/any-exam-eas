@@ -238,7 +238,7 @@ export function Navigation() {
       {open ? (
           <div
             id={MOBILE_MENU_ID}
-            className="aee-mobile-nav-panel aee-mobile-nav max-w-full overflow-x-hidden border-t border-black/[0.04] bg-[color-mix(in_srgb,var(--color-surface-elevated)_98%,transparent)] px-4 backdrop-blur-xl lg:hidden"
+            className="aee-mobile-nav-panel aee-mobile-nav max-w-full overflow-x-hidden border-t border-black/[0.04] bg-[var(--color-surface-elevated)] px-4 lg:hidden"
           >
             <div className="max-w-full overflow-x-hidden py-4">
               <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">

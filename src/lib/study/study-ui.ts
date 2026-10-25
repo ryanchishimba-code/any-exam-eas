@@ -20,7 +20,7 @@ export const studyUi = {
   chartPanel:
     "rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] p-4 sm:p-5",
   stickyBar:
-    "sticky top-[calc(var(--nav-height)+0.35rem)] z-20 flex flex-col gap-2 rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/85 p-2 shadow-[0_1px_0_rgba(0,0,0,0.04)] backdrop-blur-lg sm:p-2.5",
+    "sticky top-[calc(var(--nav-height)+0.35rem)] z-20 flex flex-col gap-2 rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)] p-2 shadow-[0_1px_0_rgba(0,0,0,0.04)] max-md:backdrop-blur-none sm:bg-[var(--color-surface)]/92 sm:backdrop-blur-md sm:p-2.5",
   chipRow:
     "flex gap-1.5 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
   filterPill:

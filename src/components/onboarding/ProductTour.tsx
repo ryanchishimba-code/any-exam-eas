@@ -17,6 +17,7 @@ import {
   type TourStepDef,
   type TourViewport,
 } from "@/lib/onboarding/first-login-tour";
+import { addPassiveScrollListener } from "@/lib/client/scroll-listener";
 import {
   findVisibleTourAnchor,
   isTourAnchorVisible,
@@ -168,10 +169,10 @@ export function ProductTour({
 
     apply();
     window.addEventListener("resize", apply);
-    window.addEventListener("scroll", apply, true);
+    const removeScroll = addPassiveScrollListener(window, apply, { capture: true });
     return () => {
       window.removeEventListener("resize", apply);
-      window.removeEventListener("scroll", apply, true);
+      removeScroll();
     };
   }, [open, step, index, steps, freeze, onComplete, onDismiss, onStepMissing]);
 

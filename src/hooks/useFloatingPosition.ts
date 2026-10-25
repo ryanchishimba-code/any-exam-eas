@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useLayoutEffect, useState, type CSSProperties, type RefObject } from "react";
+import { addPassiveScrollListener } from "@/lib/client/scroll-listener";
 
 type FloatingPosition = CSSProperties & {
   width: number;
@@ -40,10 +41,10 @@ export function useFloatingPosition(
     update();
 
     window.addEventListener("resize", update);
-    window.addEventListener("scroll", update, true);
+    const removeScroll = addPassiveScrollListener(window, update, { capture: true });
     return () => {
       window.removeEventListener("resize", update);
-      window.removeEventListener("scroll", update, true);
+      removeScroll();
     };
   }, [open, update]);
 

@@ -11,7 +11,11 @@ export function LandingHashScroll() {
     const id = hash.slice(1);
     const scrollToTarget = () => {
       const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (!el) return;
+      const smooth =
+        typeof window.matchMedia === "function" &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      el.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
     };
 
     // Defer until layout paints so scroll-margin-top is respected.

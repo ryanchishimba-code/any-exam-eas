@@ -12,7 +12,7 @@ const Navigation = dynamic(
     ssr: true,
     loading: () => (
       <header
-        className="sticky top-0 z-50 h-[var(--nav-height)] border-b border-[var(--color-border)] bg-[var(--color-bg)]/90 backdrop-blur-md"
+        className="sticky top-0 z-50 h-[var(--nav-height)] border-b border-[var(--color-border)] bg-[var(--color-bg)]"
         aria-hidden
       />
     ),
