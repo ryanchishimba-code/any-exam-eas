@@ -66,6 +66,7 @@ export function QuickBitesPlayer({
     setVideoElement(node);
   }, []);
   const playbackStartToken = useRef("");
+  const suppressProgressFlushRef = useRef(false);
   const scrollLock = useRef<number | null>(null);
   const [captionsOn, setCaptionsOn] = useState(false);
 
@@ -99,6 +100,7 @@ export function QuickBitesPlayer({
     enabled: state.status === "ready" && Boolean(known),
     videoRef,
     videoElement,
+    suppressProgressFlushRef,
     onSaved: onProgressSaved,
   });
 
@@ -192,7 +194,9 @@ export function QuickBitesPlayer({
       }
     };
 
-    return scheduleQuickBiteResumeSeek(video, resumeSnapshot, startPlayback);
+    return scheduleQuickBiteResumeSeek(video, resumeSnapshot, startPlayback, {
+      suppressProgressFlush: suppressProgressFlushRef,
+    });
   }, [known, playbackNonce, resumeSnapshot, state.status, videoElement]);
 
   return (

@@ -5,6 +5,7 @@ import {
   quickBiteListProgressPercent,
   quickBiteResumeSeconds,
   scheduleQuickBiteResumeSeek,
+  useQuickBiteProgressReporter,
   useQuickBiteResumeSnapshot,
 } from "@/lib/quick-bites/use-quick-bite-progress";
 
@@ -112,6 +113,65 @@ describe("useQuickBiteResumeSnapshot", () => {
 });
 
 describe("scheduleQuickBiteResumeSeek", () => {
+  it("does not POST progress when pause fires during resume seek", async () => {
+    vi.useFakeTimers();
+    const fetchMock = vi.fn(async () => ({
+      ok: true,
+      json: async () => ({
+        progress: {
+          watchPct: 78,
+          playbackPositionSec: 59,
+          watchSeconds: 0,
+          completedAt: null,
+        },
+      }),
+    }));
+    vi.stubGlobal("fetch", fetchMock);
+
+    const video = document.createElement("video");
+    Object.defineProperty(video, "duration", { value: 246, configurable: true });
+    let time = 0;
+    Object.defineProperty(video, "currentTime", {
+      get: () => time,
+      set: (value: number) => {
+        time = value;
+      },
+      configurable: true,
+    });
+    Object.defineProperty(video, "readyState", { value: 1, configurable: true });
+    Object.defineProperty(video, "paused", { value: true, configurable: true });
+    Object.defineProperty(video, "ended", { value: false, configurable: true });
+    vi.spyOn(video, "pause").mockImplementation(function pause(this: HTMLVideoElement) {
+      this.dispatchEvent(new Event("pause"));
+    });
+
+    const suppressProgressFlushRef = { current: false };
+    const videoRef = { current: video };
+    const { unmount } = renderHook(() =>
+      useQuickBiteProgressReporter({
+        slug: "quick-bites-fnp-ep03-diabetes",
+        apiBase: "/api/quick-bites-fnp",
+        enabled: true,
+        videoRef,
+        videoElement: video,
+        suppressProgressFlushRef,
+      })
+    );
+
+    scheduleQuickBiteResumeSeek(
+      video,
+      { playbackPositionSec: 59, completed: false },
+      () => {},
+      { suppressProgressFlush: suppressProgressFlushRef }
+    );
+
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(time).toBe(59);
+    unmount();
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+  });
+
   it("seeks before calling onReady", () => {
     const video = document.createElement("video");
     Object.defineProperty(video, "duration", { value: 246, configurable: true });

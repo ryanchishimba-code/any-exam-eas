@@ -97,6 +97,37 @@ describe("upsertQuickBiteProgress", () => {
     );
   });
 
+  it("ignores spurious zero playbackPositionSec from resume seek pause", async () => {
+    prismaMock.quickBiteProgress.findUnique.mockResolvedValue({
+      watchPct: 78,
+      playbackPositionSec: 59,
+      watchSeconds: 200,
+      completedAt: null,
+      updatedAt: new Date(Date.now() - 60_000),
+    });
+    prismaMock.quickBiteProgress.upsert.mockResolvedValue({
+      watchPct: 78,
+      playbackPositionSec: 59,
+      watchSeconds: 200,
+      completedAt: null,
+      updatedAt: new Date(),
+    });
+
+    await upsertQuickBiteProgress("user-1", "quick-bites-fnp-ep03-diabetes", {
+      playbackPositionSec: 0,
+      momentWatchPct: 0,
+      watchSecondsDelta: 0,
+    });
+
+    expect(prismaMock.quickBiteProgress.upsert).toHaveBeenCalledWith(
+      expect.objectContaining({
+        update: expect.objectContaining({
+          playbackPositionSec: 59,
+        }),
+      })
+    );
+  });
+
   it("raises max watchPct when the student seeks further ahead", async () => {
     prismaMock.quickBiteProgress.findUnique.mockResolvedValue({
       watchPct: 30,

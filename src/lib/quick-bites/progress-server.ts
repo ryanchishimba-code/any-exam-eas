@@ -80,7 +80,16 @@ export async function upsertQuickBiteProgress(
     existing?.watchPct ?? 0,
     Math.min(100, input.momentWatchPct)
   );
-  const playbackPositionSec = Math.max(0, input.playbackPositionSec);
+  let playbackPositionSec = Math.max(0, input.playbackPositionSec);
+  const existingPosition = existing?.playbackPositionSec ?? 0;
+  if (
+    playbackPositionSec <= 0.5 &&
+    existingPosition > 0.5 &&
+    input.watchSecondsDelta === 0 &&
+    input.momentWatchPct <= 1
+  ) {
+    playbackPositionSec = existingPosition;
+  }
   const watchSeconds = (existing?.watchSeconds ?? 0) + increment;
   const completed =
     isQuickBiteComplete(watchPct) || Boolean(existing?.completedAt);
