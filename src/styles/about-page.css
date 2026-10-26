@@ -23,7 +23,11 @@ body:has(.aee-about) {
 .aee-about-hero.mkt-photo-hero,
 .aee-about-hero .mkt-photo-hero__sub,
 .aee-about-hero .mkt-hero-foot,
-.aee-about-hero .bl-hero-price,
+.aee-about-hero.mkt-photo-hero .bl-hero-price {
+  color: #ffffff;
+  text-shadow: 0 1px 2px #061220;
+}
+
 .aee-about-hero .bl-button,
 .aee-about-hero .aee-flagship-cta {
   font-family: var(--font-display), system-ui, sans-serif;
@@ -67,6 +71,18 @@ body:has(.aee-about) {
   border-radius: 999px;
   font-weight: 700;
   text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .aee-about-hero .mkt-photo-hero__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(6, 18, 32, 0.92) 0%,
+      rgba(6, 18, 32, 0.88) 60%,
+      rgba(6, 18, 32, 0.32) 80%,
+      rgba(6, 18, 32, 0.58) 100%
+    );
+  }
 }
 
 .aee-about-hero .mkt-photo-hero__photo {

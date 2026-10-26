@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
+import { DeferredHeroPhoto } from "@/components/marketing/DeferredHeroPhoto";
 import {
   type MarketingPhotoHeroId,
   MARKETING_PHOTO_HERO_BOX_ASPECT,
@@ -120,14 +121,7 @@ export function MarketingPhotoHero({
         }
       `}</style>
       <div className="mkt-photo-hero__photo" aria-hidden="true" />
-      {deferPhoto ? (
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              '(function(){function a(){var h=document.querySelector(\'[data-hero="about"]\');if(!h)return;var m=h.getAttribute("data-mkt-mobile");var d=h.getAttribute("data-mkt-desktop");if(m)h.style.setProperty("--mkt-hero-mobile",m);if(d)h.style.setProperty("--mkt-hero-desktop",d);h.classList.add("is-photo")}setTimeout(a,400);setTimeout(a,1200)})();',
-          }}
-        />
-      ) : null}
+      {deferPhoto ? <DeferredHeroPhoto heroId={heroId} /> : null}
       <div className="mkt-photo-hero__scrim" aria-hidden="true" />
       <div className="mkt-photo-hero__inner">{children}</div>
       {foot}
