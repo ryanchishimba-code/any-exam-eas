@@ -50,7 +50,7 @@ const PAGES = [
   {
     id: "about",
     focalY: 0.42,
-    lines: ["Reviewed by a pharmacist", "and a nurse."],
+    lines: ["Quality exam prep", "shouldn't be out of reach."],
   },
 ];
 

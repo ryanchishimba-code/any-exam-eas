@@ -81,7 +81,10 @@ describe("landing share images", () => {
     expect(aboutLd).toContain('"@type":"AboutPage"');
     expect(aboutLd).toContain('"@type":"Organization"');
     expect(aboutLd).toContain('"@type":"Person"');
-    expect(aboutLd).toContain("Ryan Chishimba, PharmD");
+    expect(aboutLd).toContain("Ryan Chishimba, PharmD, RPh");
+    expect(aboutLd).toContain('"jobTitle":"Founder and Pharmacy Manager"');
+    expect(aboutLd).toContain("#founder");
+    expect(aboutLd).toContain('"founder":{"@id":');
     expect(aboutLd).toContain("Ileen Chishimba, RN");
     expect(aboutLd).not.toContain("hoursAvailable");
     expect(aboutLd).not.toContain("worksFor");

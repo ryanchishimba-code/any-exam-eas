@@ -35,7 +35,8 @@ import {
   enforceMetaTitle,
 } from "@/lib/seo/meta-budget";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
-import { CLINICAL_REVIEWERS, clinicalReviewerPersonNodes } from "@/lib/marketing/company";
+import { ABOUT_FOUNDER } from "@/lib/marketing/about-copy";
+import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import { landingOgImage } from "@/lib/seo/landing-og-image";
 import { publicExamSeo } from "@/lib/marketing/public-format-copy";
 
@@ -419,13 +420,22 @@ export function buildAboutJsonLd() {
   const url = absoluteUrl("/about");
   const site = getSiteUrl();
   const organizationId = `${site}#organization`;
-  const people = clinicalReviewerPersonNodes().map((person) => {
-    const reviewer = CLINICAL_REVIEWERS.find((item) => item.displayName === person.name);
-    return {
-      ...person,
-      "@id": `${url}#${reviewer?.id ?? "reviewer"}`,
-    };
-  });
+  const founderId = `${url}#founder`;
+  const nursing = CLINICAL_REVIEWERS.find((reviewer) => reviewer.id === "nursing");
+  const people = [
+    {
+      "@type": "Person" as const,
+      "@id": founderId,
+      name: ABOUT_FOUNDER.name,
+      jobTitle: ABOUT_FOUNDER.jobTitle,
+    },
+    {
+      "@type": "Person" as const,
+      "@id": `${url}#nursing`,
+      name: nursing?.displayName ?? "Ileen Chishimba, RN",
+      jobTitle: nursing?.jobTitle ?? "Nursing content review lead (NCLEX-RN/PN)",
+    },
+  ];
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -455,6 +465,7 @@ export function buildAboutJsonLd() {
         logo: absoluteUrl("/icons/icon-192.png"),
         description: seoPlatformPitch(),
         foundingLocation: { "@type": "Place", name: "Texas, USA" },
+        founder: { "@id": founderId },
         contactPoint: organizationContactPoint(),
       },
       ...people,
