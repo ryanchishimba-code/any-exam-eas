@@ -24,14 +24,8 @@ import { CLINICAL_REVIEWERS, clinicalReviewerForExam } from "@/lib/marketing/com
 import { homeTrialCtaLabel } from "@/lib/marketing/home-cta";
 import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
-import {
-  DEFAULT_OG_IMAGE_HEIGHT,
-  DEFAULT_OG_IMAGE_PATH,
-  DEFAULT_OG_IMAGE_WIDTH,
-  absoluteUrl,
-  dedupeKeywords,
-  getSiteUrl,
-} from "@/lib/seo";
+import { absoluteUrl, dedupeKeywords, getSiteUrl } from "@/lib/seo";
+import { landingOgImage } from "@/lib/seo/landing-og-image";
 import { getExamSeoConfig, examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
 import {
@@ -198,8 +192,7 @@ export function buildHubLandingMetadata(examKey: HubExamKey): Metadata {
   const path = examMarketingPath(examKey);
   const title = enforceMetaTitle(freeBoardMetaTitle(copy.metaBoardLabel), path);
   const description = enforceMetaDescription(copy.metaDescription, path);
-  const image = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
-  const imageAlt = `AnyExamEasy ${copy.metaBoardLabel} practice questions`;
+  const image = landingOgImage(examKey);
   return {
     title: { absolute: title },
     description,
@@ -213,13 +206,13 @@ export function buildHubLandingMetadata(examKey: HubExamKey): Metadata {
       siteName: SITE_NAME,
       title,
       description,
-      images: [{ url: image, width: DEFAULT_OG_IMAGE_WIDTH, height: DEFAULT_OG_IMAGE_HEIGHT, alt: imageAlt }],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      images: [image.url],
     },
     robots: {
       index: true,

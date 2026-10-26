@@ -15,6 +15,7 @@ import {
   enforceMetaTitle,
 } from "@/lib/seo/meta-budget";
 import { HOME_FAQ } from "@/lib/marketing/home-faq";
+import { landingOgImage } from "@/lib/seo/landing-og-image";
 
 const PRODUCTION_SITE_URL = `https://www.${SITE_DOMAIN}`;
 
@@ -113,7 +114,7 @@ export function buildHomeMetadata(
     "home"
   );
   const url = getSiteUrl();
-  const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
+  const ogImage = landingOgImage("home");
 
   return {
     title: { absolute: title },
@@ -137,20 +138,13 @@ export function buildHomeMetadata(
       siteName: SITE_NAME,
       title,
       description,
-      images: [
-        {
-          url: ogImage,
-          width: DEFAULT_OG_IMAGE_WIDTH,
-          height: DEFAULT_OG_IMAGE_HEIGHT,
-          alt: "AnyExamEasy — one subscription for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT",
-        },
-      ],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [ogImage],
+      images: [ogImage.url],
     },
     robots: {
       index: true,

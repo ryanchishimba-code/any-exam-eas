@@ -35,14 +35,8 @@ import { withBoardHeroMarketing } from "@/lib/marketing/board-landing/board-hero
 import { boardLandingTrustPills } from "@/lib/marketing/board-landing/hero";
 import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { ROUTES } from "@/lib/routes";
-import {
-  DEFAULT_OG_IMAGE_HEIGHT,
-  DEFAULT_OG_IMAGE_PATH,
-  DEFAULT_OG_IMAGE_WIDTH,
-  absoluteUrl,
-  dedupeKeywords,
-  getSiteUrl,
-} from "@/lib/seo";
+import { absoluteUrl, dedupeKeywords, getSiteUrl } from "@/lib/seo";
+import { landingOgImage } from "@/lib/seo/landing-og-image";
 import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
 import {
   BOARD_LANDING_CONTENT_YEAR,
@@ -203,8 +197,7 @@ export function buildNclexLandingMetadata(): Metadata {
   const title = nclexMetaTitle();
   const description = nclexMetaDescription();
   const path = "/nclex";
-  const image = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
-  const imageAlt = "AnyExamEasy NCLEX-RN practice questions and Next Gen NCLEX qbank";
+  const image = landingOgImage("nclex");
   return {
     title: { absolute: title },
     description,
@@ -226,13 +219,13 @@ export function buildNclexLandingMetadata(): Metadata {
       siteName: SITE_NAME,
       title,
       description,
-      images: [{ url: image, width: DEFAULT_OG_IMAGE_WIDTH, height: DEFAULT_OG_IMAGE_HEIGHT, alt: imageAlt }],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      images: [image.url],
     },
     robots: {
       index: true,

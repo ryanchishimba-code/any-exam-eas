@@ -1,0 +1,65 @@
+import { describe, expect, it } from "vitest";
+import { buildNaplexLandingMetadata } from "@/lib/marketing/board-landing/naplex";
+import { buildHubLandingMetadata } from "@/lib/marketing/board-landing/hub-model";
+import { buildNclexLandingMetadata } from "@/lib/marketing/board-landing/model";
+import { boardHeroMarketingCopy } from "@/lib/marketing/board-landing/board-hero-marketing";
+import { HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
+import { buildHomeJsonLd, buildHomeMetadata, buildRootMetadata, DEFAULT_OG_IMAGE_PATH } from "@/lib/seo";
+import {
+  LANDING_OG_HEIGHT,
+  LANDING_OG_IDS,
+  LANDING_OG_ORIGIN,
+  LANDING_OG_WIDTH,
+  landingOgImage,
+} from "@/lib/seo/landing-og-image";
+
+function imageUrl(meta: { openGraph?: { images?: unknown } }): string {
+  const images = meta.openGraph?.images;
+  const first = Array.isArray(images) ? images[0] : images;
+  if (typeof first === "string") return first;
+  if (first && typeof first === "object" && "url" in first) return String(first.url);
+  return "";
+}
+
+describe("landing share images", () => {
+  it("gives each landing its own production JPEG and leaves layout metadata without an image", () => {
+    const root = buildRootMetadata();
+    expect(root.openGraph?.images).toBeUndefined();
+
+    const pages = [
+      ["/", buildHomeMetadata()],
+      ["/nclex", buildNclexLandingMetadata()],
+      ["/naplex", buildNaplexLandingMetadata()],
+      ["/usmle", buildHubLandingMetadata("usmle")],
+      ["/pance", buildHubLandingMetadata("pance")],
+      ["/aanp-fnp", buildHubLandingMetadata("aanp-fnp")],
+      ["/npte-pt", buildHubLandingMetadata("npte-pt")],
+    ] as const;
+
+    const urls = pages.map(([, meta]) => imageUrl(meta));
+    expect(new Set(urls).size).toBe(pages.length);
+
+    for (const [index, [, meta]] of pages.entries()) {
+      const id = LANDING_OG_IDS[index];
+      const card = landingOgImage(id);
+      expect(imageUrl(meta)).toBe(`${LANDING_OG_ORIGIN}/images/og/${id}.jpg`);
+      expect(meta.openGraph?.images).toEqual([card]);
+      expect(card.width).toBe(LANDING_OG_WIDTH);
+      expect(card.height).toBe(LANDING_OG_HEIGHT);
+      expect(card.type).toBe("image/jpeg");
+      expect(meta.twitter?.card).toBe("summary_large_image");
+      expect(meta.twitter?.images).toEqual([card.url]);
+    }
+  });
+
+  it("uses the page H1 as alt text and keeps JSON-LD on the shared default image", () => {
+    expect(landingOgImage("home").alt).toBe(HOME_PRACTICE_HEADLINE);
+    for (const id of ["nclex", "naplex", "usmle", "pance", "aanp-fnp", "npte-pt"] as const) {
+      expect(landingOgImage(id).alt).toBe(boardHeroMarketingCopy(id).headline);
+      expect(landingOgImage(id).alt.toLowerCase()).not.toMatch(/\bpass\b/);
+    }
+    const jsonLd = JSON.stringify(buildHomeJsonLd());
+    expect(jsonLd).toContain(DEFAULT_OG_IMAGE_PATH);
+    expect(jsonLd).not.toContain("/images/og/home.jpg");
+  });
+});
