@@ -13,6 +13,7 @@ export function ThemeToggle({ className }: Props) {
         "h-9 w-9 items-center justify-center rounded-xl text-[var(--color-ink)]",
         className ?? "inline-flex"
       )}
+      role="img"
       aria-label="Light theme"
       title="Light theme"
     >
