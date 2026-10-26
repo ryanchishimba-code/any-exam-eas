@@ -114,7 +114,7 @@ export function ExamLanding({ slug }: Props) {
                 NCCPA blueprint on Study Hub
               </h2>
               <p className="mt-1 max-w-xl text-sm text-[var(--color-ink-muted)]">
-                Track readiness across 14 NCCPA knowledge areas and 8 task areas — cardiovascular,
+                Track readiness across 15 NCCPA content categories and 8 task areas — cardiovascular,
                 pulmonary, diagnosis, pharmacotherapy, and more.
               </p>
             </div>

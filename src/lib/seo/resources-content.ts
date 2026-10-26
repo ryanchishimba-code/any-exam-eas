@@ -10,6 +10,7 @@ import {
   PANCE_KNOWLEDGE_AREAS,
   PANCE_OUTLINE_SOURCE,
   PANCE_PLATFORM_STUDY_FEATURES,
+  PANCE_TASK_AREAS,
 } from "@/lib/exam-prep/pance/content-outline";
 import {
   seoSixBoardTrialParagraph,
@@ -362,7 +363,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "NCCPA category coverage",
         paragraphs: [
-          "Ensure your bank spans all 14 NCCPA knowledge areas — overweighting one system creates surprise gaps on exam day.",
+          "Ensure your bank spans all 15 NCCPA content categories — overweighting one system creates surprise gaps on exam day.",
         ],
       },
     ],
@@ -377,11 +378,12 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     keywords: ["PANCE study guide", "NCCPA blueprint PANCE", "PANCE content outline 2026"],
     sections: [
       {
-        heading: "Organ-system weights (2026 blueprint)",
+        heading: "Organ-system and task-area weights (NCCPA blueprint, effective January 2025)",
         paragraphs: [
           PANCE_KNOWLEDGE_AREAS.map(
             (d) => `${d.label} (${d.weightLabel}): ${d.topics.slice(0, 2).join("; ")}.`
           ).join(" "),
+          `Task areas: ${PANCE_TASK_AREAS.map((t) => `${t.label} (${t.weightLabel})`).join("; ")}.`,
         ],
       },
       {

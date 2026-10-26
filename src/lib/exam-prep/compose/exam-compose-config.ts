@@ -69,7 +69,7 @@ const CONFIGS: Record<BlueprintTimedExamSlug, ExamComposeConfig> = {
     slug: "pance",
     fieldId: "pance",
     examName: "PANCE",
-    boardReference: "NCCPA PANCE Content Blueprint (2026) — task areas + organ systems",
+    boardReference: "NCCPA PANCE Content Blueprint (effective January 2025) — task areas + organ systems",
     minutesPerItem: 1.0,
     gate: usmleGate("pance"),
   },

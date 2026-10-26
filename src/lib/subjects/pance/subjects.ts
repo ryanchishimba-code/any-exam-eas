@@ -1,6 +1,6 @@
 import type { SubjectArea } from "../types";
 
-/** NCCPA PANCE content categories (2026 blueprint). */
+/** NCCPA PANCE content categories (blueprint effective January 2025). */
 export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "cardiovascular",
@@ -25,7 +25,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "gastrointestinal",
     label: "Gastrointestinal / Nutrition",
-    contentArea: "GI & Nutrition (9%)",
+    contentArea: "GI & Nutrition (8%)",
     textbookRefs: "OpenStax, ACG guidelines",
     examHints: "GERD, pancreatitis, hepatitis, IBD, GI bleeding, malnutrition",
     keywords: ["GI", "liver", "pancreas", "IBD", "bleeding", "nutrition"],
@@ -35,7 +35,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "musculoskeletal",
     label: "Musculoskeletal System",
-    contentArea: "Musculoskeletal (9%)",
+    contentArea: "Musculoskeletal (8%)",
     textbookRefs: "OpenStax, AAOS references",
     examHints: "fractures, arthritis, back pain, compartment syndrome, gout",
     keywords: ["MSK", "fracture", "arthritis", "back pain", "orthopedic"],
@@ -45,7 +45,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "infectious-diseases",
     label: "Infectious Diseases",
-    contentArea: "Infectious Diseases (5%)",
+    contentArea: "Infectious Diseases (7%)",
     textbookRefs: "IDSA guidelines, CDC",
     examHints: "sepsis, HIV, TB, meningitis, skin infections, antibiotic selection",
     keywords: ["infection", "sepsis", "antibiotic", "HIV", "meningitis"],
@@ -55,7 +55,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "neurologic",
     label: "Neurologic System",
-    contentArea: "Neurologic (6%)",
+    contentArea: "Neurologic (7%)",
     textbookRefs: "OpenStax, AAN guidelines",
     examHints: "stroke, seizure, headache, MS, peripheral neuropathy",
     keywords: ["neurology", "stroke", "seizure", "headache", "neuropathy"],
@@ -65,7 +65,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "psychiatry",
     label: "Psychiatry / Behavioral Science",
-    contentArea: "Psychiatry & Behavioral (6%)",
+    contentArea: "Psychiatry & Behavioral (7%)",
     textbookRefs: "DSM-5-TR, APA guidelines",
     examHints: "depression, anxiety, psychosis, substance use, suicide risk",
     keywords: ["psychiatry", "depression", "anxiety", "bipolar", "substance"],
@@ -85,7 +85,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "endocrine",
     label: "Endocrine System",
-    contentArea: "Endocrine (7%)",
+    contentArea: "Endocrine (6%)",
     textbookRefs: "ADA, Endocrine Society guidelines",
     examHints: "diabetes, thyroid, adrenal, DKA, hypoglycemia",
     keywords: ["endocrine", "diabetes", "thyroid", "DKA", "insulin"],
@@ -95,7 +95,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "eent",
     label: "Eyes, Ears, Nose & Throat",
-    contentArea: "EENT (7%)",
+    contentArea: "EENT (6%)",
     textbookRefs: "OpenStax, AAFP references",
     examHints: "red eye, hearing loss, sinusitis, pharyngitis, vertigo",
     keywords: ["EENT", "eye", "ear", "sinus", "pharyngitis"],
@@ -115,7 +115,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "renal",
     label: "Renal System",
-    contentArea: "Renal (within Genitourinary 6%)",
+    contentArea: "Renal (5%)",
     textbookRefs: "KDIGO guidelines",
     examHints: "AKI, CKD, electrolytes, acid-base, dialysis indications",
     keywords: ["renal", "AKI", "CKD", "electrolyte", "dialysis"],
@@ -125,7 +125,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "dermatologic",
     label: "Dermatologic System",
-    contentArea: "Dermatologic (5%)",
+    contentArea: "Dermatologic (4%)",
     textbookRefs: "AAD references",
     examHints: "rash patterns, cellulitis, melanoma screening, drug eruptions",
     keywords: ["dermatology", "rash", "cellulitis", "skin"],
@@ -135,7 +135,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "genitourinary",
     label: "Genitourinary System",
-    contentArea: "Genitourinary (6%)",
+    contentArea: "Genitourinary (4%)",
     textbookRefs: "AUA guidelines",
     examHints: "UTI, BPH, nephrolithiasis, urologic emergencies",
     keywords: ["GU", "UTI", "BPH", "kidney stone", "urology"],
@@ -145,7 +145,7 @@ export const PANCE_SUBJECTS: SubjectArea[] = [
   {
     id: "professional-practice",
     label: "Professional Practice",
-    contentArea: "Professional Practice (within Other ~15%)",
+    contentArea: "Professional Practice (6%)",
     textbookRefs: "NCCPA professional practice outline",
     examHints: "ethics, informed consent, scope of practice, patient safety, documentation",
     keywords: ["ethics", "consent", "scope", "safety", "documentation"],

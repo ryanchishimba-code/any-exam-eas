@@ -173,16 +173,20 @@ describe("exam roadmap", () => {
     expect(pharm?.pushesCompleted).toBe(25);
   });
 
-  it("builds PANCE roadmap from NCCPA 2026 blueprint (14 knowledge areas)", () => {
+  it("builds PANCE roadmap from the NCCPA blueprint effective January 2025 (15 content categories)", () => {
     const blueprint = getExamBlueprint("pance")!;
-    expect(blueprint.categories).toHaveLength(14);
+    expect(blueprint.categories).toHaveLength(15);
     const weightSum = blueprint.categories.reduce((s, c) => s + c.weight, 0);
-    expect(weightSum).toBeGreaterThan(0.9);
+    expect(weightSum).toBeCloseTo(1, 5);
 
     const topics = buildRoadmapTopics(blueprint, "pance", new Map(), new Map(), new Map(), new Map());
-    expect(topics).toHaveLength(14);
-    expect(topics.find((t) => t.categoryId === "cardiovascular")?.blueprintWeightPct).toBe(13);
-    expect(topics.find((t) => t.categoryId === "pulmonary")?.blueprintWeightPct).toBe(10);
+    expect(topics).toHaveLength(15);
+    expect(topics.find((t) => t.categoryId === "cardiovascular")?.blueprintWeightPct).toBe(11);
+    expect(topics.find((t) => t.categoryId === "pulmonary")?.blueprintWeightPct).toBe(9);
+    expect(topics.find((t) => t.categoryId === "eent")?.blueprintWeightPct).toBe(6);
+    expect(topics.find((t) => t.categoryId === "endocrine")?.blueprintWeightPct).toBe(6);
+    expect(topics.find((t) => t.categoryId === "neurologic")?.blueprintWeightPct).toBe(7);
+    expect(topics.find((t) => t.categoryId === "psychiatry")?.blueprintWeightPct).toBe(7);
   });
 
   it("builds NPTE-PT roadmap from FSBPT 2024 blueprint (14 categories)", () => {
