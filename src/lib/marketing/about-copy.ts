@@ -1,9 +1,9 @@
-/** About hero headline. Ryan's line. No pass claim. */
-export const ABOUT_HERO_HEADLINE = "Quality exam prep shouldn't be out of reach.";
+/** One H1: brand, exam-prep intent, and founder intent. No pass claim. */
+export const ABOUT_HERO_HEADLINE = "Any Exam Easy exam prep from the founder";
 
-export const ABOUT_HERO_LEAD = "Quality exam prep";
+export const ABOUT_HERO_LEAD = "Any Exam Easy";
 
-export const ABOUT_HERO_ACCENT = "shouldn't be out of reach.";
+export const ABOUT_HERO_ACCENT = "exam prep from the founder";
 
 /** Pull quote lifted from the founder story. The paragraph keeps the sentence too. */
 export const ABOUT_PULL_QUOTE = "This is my gift to my former self.";

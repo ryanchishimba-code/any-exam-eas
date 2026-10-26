@@ -50,7 +50,7 @@ const PAGES = [
   {
     id: "about",
     focalY: 0.42,
-    lines: ["Quality exam prep", "shouldn't be out of reach."],
+    lines: ["Any Exam Easy", "exam prep from the founder"],
   },
 ];
 

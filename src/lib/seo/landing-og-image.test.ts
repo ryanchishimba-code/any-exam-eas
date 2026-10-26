@@ -74,6 +74,18 @@ describe("landing share images", () => {
     expect(landingOgImage("home").alt).toBe(HOME_PRACTICE_HEADLINE);
     expect(landingOgImage("about").alt).toBe(ABOUT_HERO_HEADLINE);
     expect(landingOgImage("about").alt.toLowerCase()).not.toMatch(/\bpass\b/);
+    expect(ABOUT_HERO_HEADLINE).toMatch(/Any Exam Easy/);
+    expect(ABOUT_HERO_HEADLINE.toLowerCase()).toMatch(/exam prep/);
+    expect(ABOUT_HERO_HEADLINE.toLowerCase()).toMatch(/founder/);
+    const aboutTitle = buildAboutMetadata().title;
+    const aboutTitleText =
+      typeof aboutTitle === "object" && aboutTitle && "absolute" in aboutTitle
+        ? String(aboutTitle.absolute)
+        : String(aboutTitle);
+    const aboutDescription = String(buildAboutMetadata().description);
+    expect(aboutTitleText.length).toBeLessThanOrEqual(60);
+    expect(aboutDescription.length).toBeLessThanOrEqual(155);
+    expect(aboutDescription.length).toBeGreaterThanOrEqual(140);
     expect(imageUrl(buildAboutMetadata())).toBe(
       `${LANDING_OG_ORIGIN}/images/og/about.jpg?v=${LANDING_OG_VERSION}`
     );

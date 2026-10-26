@@ -109,8 +109,8 @@ export default async function AboutPage() {
 
         <section className="aee-about-band aee-about-story" aria-labelledby="about-story-heading">
           <div className="aee-about-band__inner">
-            <p className="aee-about-kicker">From the founder</p>
-            <h2 id="about-story-heading">Ryan Chishimba, PharmD, RPh</h2>
+            <h2 id="about-story-heading">From the founder</h2>
+            <p className="aee-about-byline">Ryan Chishimba, PharmD, RPh</p>
             {opening.map((paragraph) => (
               <p key={paragraph.slice(0, 24)} className="aee-about-prose">
                 {paragraph}

@@ -204,9 +204,9 @@ export function buildCompareJsonLd() {
   };
 }
 
-const ABOUT_TITLE = `About ${SITE_NAME} — 6-Board Qbank`;
+const ABOUT_TITLE = "Any Exam Easy Exam Prep from the Founder";
 const ABOUT_DESCRIPTION =
-  "Independent NCLEX and USMLE Qbank plus NAPLEX, PANCE, FNP and NPTE on one Pro plan. QA-gated items with Roadmap, Deep Dives, and sources when stored.";
+  "Any Exam Easy exam prep from founder Ryan Chishimba, PharmD. One plan for NCLEX, NAPLEX, USMLE, PANCE, FNP, and NPTE-PT. Start a 5-day free trial.";
 
 export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
   const title = ABOUT_TITLE;
