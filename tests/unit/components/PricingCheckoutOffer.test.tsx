@@ -28,9 +28,11 @@ describe("pricing and checkout offer copy", () => {
     const offer = screen.getByText(APPROVED);
     expect(screen.getAllByText(APPROVED)).toHaveLength(1);
     expect(offer.className).toContain("text-sm");
-    const trialButton = screen.getByRole("link", { name: /start your free trial/i });
-    const cancel = screen.getByText(/cancel anytime in settings/i);
-    expect(trialButton.compareDocumentPosition(offer) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    const trialButtons = screen.getAllByRole("link", { name: /start your free trial/i });
+    expect(trialButtons[0]).toHaveAttribute("href", expect.stringContaining("interval=monthly"));
+    expect(trialButtons.some((link) => link.getAttribute("href")?.includes("interval=yearly"))).toBe(true);
+    const cancel = screen.getAllByText(/cancel anytime in settings/i)[0];
+    expect(trialButtons[0].compareDocumentPosition(offer) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(offer.compareDocumentPosition(cancel) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(screen.getByText(/payments are non-refundable/i)).toBeInTheDocument();
     expect(screen.queryByText(/no card/i)).not.toBeInTheDocument();
@@ -40,7 +42,7 @@ describe("pricing and checkout offer copy", () => {
     expect(screen.getByText("$27.99/mo")).toBeInTheDocument();
     expect(screen.getByText("$235.12 · ≈ $19.59/mo")).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: /other billing options/i }));
+    await user.click(screen.getByText("Other billing options"));
     expect(screen.getAllByText("Save 30%")).toHaveLength(1);
     expect(screen.getByText("$147.79 · ≈ $24.63/mo")).toBeInTheDocument();
     expect(screen.getByText("$79.77 · ≈ $26.59/mo")).toBeInTheDocument();

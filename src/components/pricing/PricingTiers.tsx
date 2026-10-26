@@ -1,223 +1,197 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 import type { BillingInterval } from "@/lib/billing-config";
 import {
+  factualYearlySavingsBadge,
+  formatIntervalEquivalentLine,
   formatPlanUsd,
   getBillingPlanTier,
-  renewalTermsLine,
 } from "@/lib/billing-plans";
-import {
-  DEFAULT_PAYMENT_MODE,
-  isPaymentModeChoiceEnabled,
-  ONE_TIME_POLICY_SHORT,
-  type PaymentMode,
-} from "@/lib/billing-payment-mode";
-import { PRICING_TRIAL_OFFER_LINE } from "@/lib/marketing/legal-copy";
+import { PRICING_TRIAL_OFFER_LINE, TESTIMONIAL_RESULTS_NOTE } from "@/lib/marketing/legal-copy";
+import { pricingFaqItems } from "@/lib/marketing/pricing-faq";
+import { CONSENTED_TESTIMONIAL_SEEDS } from "@/lib/testimonials/consented-seed";
 import { TRIAL_CTA_LABEL } from "@/lib/site";
-import { PaymentModeToggle } from "@/components/pricing/PaymentModeToggle";
-import { CancelAnytimeNote } from "@/components/pricing/CancelAnytimeNote";
-import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
-import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
-import { Button } from "@/components/ui/Button";
+import { ROUTES } from "@/lib/routes";
+import { LEGAL_ENTITY } from "@/lib/legal";
+import { PricingViewBeacon } from "@/components/pricing/PricingViewBeacon";
 import { cn } from "@/lib/utils";
 
-type AccessInfo = {
-  hasAccess: boolean;
-  hasAppAccess?: boolean;
-  status: string;
-  daysRemaining: number | null;
-  needsPaymentMethod?: boolean;
-  planTier?: string;
-};
+const INTERVALS: BillingInterval[] = ["monthly", "yearly", "semiannual", "quarterly"];
+const PRIMARY: BillingInterval[] = ["monthly", "yearly"];
+const MORE: BillingInterval[] = ["semiannual", "quarterly"];
+
+const PROOF_ORDER = ["Mag B.", "Nathan C.", "Priscilla J.", "Frank C.", "Steven", "Nick B."] as const;
+
+const CARD_REFUND =
+  "Payments are non-refundable (except where required by law). Found a flawed question? Report it and we'll review it. This is not a refund.";
 
 type PricingTiersProps = {
   className?: string;
 };
 
+function trialHref(interval: BillingInterval): string {
+  const params = new URLSearchParams({ plan: "trial", tier: "pro", interval });
+  return `/signup?${params.toString()}`;
+}
+
+function examShort(exam: string): string {
+  if (exam.startsWith("NCLEX")) return "NCLEX";
+  if (exam.startsWith("NAPLEX")) return "NAPLEX";
+  if (exam.startsWith("PANCE")) return "PANCE";
+  if (exam.includes("FNP")) return "FNP";
+  return exam;
+}
+
+function unitLabel(interval: BillingInterval): string {
+  if (interval === "monthly") return "per month";
+  if (interval === "yearly") return "per year";
+  if (interval === "semiannual") return "every 6 months";
+  return "every 3 months";
+}
+
 /**
- * Half-screen buy card. Price, cycle, CTA — nothing else. Feature lists,
- * competitor tables, and "no payment required" banners live elsewhere (or
- * nowhere); repeating them here only slowed the decision.
+ * Server-rendered Pro offer. The billing radios are native controls, so the
+ * price and trial link are in the document before the footer.
  */
 export function PricingTiers({ className }: PricingTiersProps) {
-  const { data: session } = useSession();
-  const [interval, setInterval] = useState<BillingInterval>("monthly");
-  const [paymentMode, setPaymentMode] = useState<PaymentMode>(DEFAULT_PAYMENT_MODE);
-  const [access, setAccess] = useState<AccessInfo | null>(null);
-  const [oneTimeAvailable, setOneTimeAvailable] = useState(false);
-  const showPaymentMode = isPaymentModeChoiceEnabled() && oneTimeAvailable;
-
-  useEffect(() => {
-    if (!session?.user) {
-      setAccess(null);
-      return;
-    }
-    fetch("/api/subscription/status")
-      .then((r) => r.json())
-      .then(setAccess)
-      .catch(() => {});
-  }, [session?.user]);
-
-  useEffect(() => {
-    const track = () => {
-      void import("@/lib/analytics").then(({ analytics }) => analytics.pricingViewed("/pricing"));
-    };
-    if (document.readyState === "complete") {
-      const id = window.setTimeout(track, 1500);
-      return () => window.clearTimeout(id);
-    }
-    const onLoad = () => {
-      window.setTimeout(track, 1500);
-    };
-    window.addEventListener("load", onLoad, { once: true });
-    return () => window.removeEventListener("load", onLoad);
-  }, []);
-
-  useEffect(() => {
-    if (!isPaymentModeChoiceEnabled()) return;
-    fetch("/api/stripe/config")
-      .then((r) => r.json())
-      .then((data) => setOneTimeAvailable(data?.oneTimePaymentsAvailable === true))
-      .catch(() => {});
-  }, []);
-
-  const upgradingFromTrial =
-    access?.status === "trialing" ||
-    access?.status === "trial_expired" ||
-    Boolean(access?.hasAppAccess && !access?.hasAccess);
-
-  const plan = getBillingPlanTier("pro", interval);
-
-  if (session?.user && access?.hasAccess && access.status === "active") {
-    return (
-      <div className={cn("mx-auto max-w-sm space-y-4 text-center", className)}>
-        <p className="text-sm text-[var(--color-ink-muted)]">Your Pro plan is active.</p>
-        <Button href="/study" className="w-full">
-          Continue studying
-        </Button>
-        <Link href="/settings" className="block text-sm text-[var(--color-accent)] hover:underline">
-          Manage billing
-        </Link>
-      </div>
-    );
-  }
-
-  const isUpgrade = Boolean(session?.user && upgradingFromTrial);
-  const checkoutHref = (() => {
-    const params = new URLSearchParams({
-      plan: isUpgrade ? "subscribe" : "trial",
-      tier: "pro",
-      interval,
-    });
-    if (isUpgrade && showPaymentMode) params.set("mode", paymentMode);
-    const path = session?.user ? "/checkout" : "/signup";
-    return `${path}?${params.toString()}`;
-  })();
-
-  const timeLeft =
-    isUpgrade && access?.daysRemaining != null
-      ? access.daysRemaining <= 0
-        ? "Trial ended"
-        : access.daysRemaining === 1
-          ? "1 day left"
-          : `${access.daysRemaining} days left`
-      : null;
+  const plans = INTERVALS.map((interval) => getBillingPlanTier("pro", interval));
+  const save = factualYearlySavingsBadge("pro");
+  const featured = CONSENTED_TESTIMONIAL_SEEDS.find((row) => row.name === "Mag B.");
+  const proof = PROOF_ORDER.map((name) => CONSENTED_TESTIMONIAL_SEEDS.find((row) => row.name === name)).filter(
+    (row): row is (typeof CONSENTED_TESTIMONIAL_SEEDS)[number] => Boolean(row)
+  );
 
   return (
-    <div className={cn("mx-auto max-w-lg space-y-5", className)}>
-      {timeLeft && (
-        <p className="text-center text-sm text-[var(--color-ink-muted)]">{timeLeft}</p>
-      )}
+    <div className={cn("aee-pricing-offer", className)} data-pricing-fold>
+      <PricingViewBeacon />
+      <div className="aee-pricing-card">
+        <div className="aee-pricing-figures" aria-live="polite">
+          {plans.map((plan) => (
+            <p key={plan.interval} className="aee-pricing-figure" data-interval={plan.interval}>
+              <span className="aee-pricing-dollars">{formatPlanUsd(plan.totalUsd)}</span>
+              <span className="aee-pricing-unit">{unitLabel(plan.interval)}</span>
+            </p>
+          ))}
+        </div>
 
-      <div className="text-center">
-        <p className="flex items-baseline justify-center gap-1">
-          <span className="text-5xl font-semibold tracking-tight text-[var(--color-ink)]">
-            {isUpgrade ? formatPlanUsd(plan.totalUsd) : "$0"}
-          </span>
-          {!isUpgrade && (
-            <span className="text-sm text-[var(--color-ink-muted)]">today</span>
-          )}
-          {isUpgrade && (
-            <span className="text-sm text-[var(--color-ink-muted)]">
-              {interval === "monthly" ? "/mo" : `/${plan.shortLabel}`}
-            </span>
-          )}
+        <fieldset className="aee-pricing-cycles">
+          <legend>Billing cycle</legend>
+          <div className="aee-pricing-primary">
+            {PRIMARY.map((interval) => {
+              const plan = plans.find((item) => item.interval === interval)!;
+              return (
+                <label key={interval} className="aee-pricing-cycle">
+                  <input
+                    id={`billing-${interval}`}
+                    className="aee-pricing-radio"
+                    type="radio"
+                    name="billing-interval"
+                    value={interval}
+                    defaultChecked={interval === "monthly"}
+                  />
+                  <span className="aee-pricing-cycle__name">
+                    {plan.label}
+                    {interval === "yearly" && save ? <span className="aee-pricing-save">{save}</span> : null}
+                  </span>
+                  <span className="aee-pricing-cycle__price">{formatIntervalEquivalentLine("pro", interval)}</span>
+                </label>
+              );
+            })}
+          </div>
+          <details className="aee-pricing-more">
+            <summary>Other billing options</summary>
+            <div className="aee-pricing-primary">
+              {MORE.map((interval) => {
+                const plan = plans.find((item) => item.interval === interval)!;
+                return (
+                  <label key={interval} className="aee-pricing-cycle">
+                    <input
+                      id={`billing-${interval}`}
+                      className="aee-pricing-radio"
+                      type="radio"
+                      name="billing-interval"
+                      value={interval}
+                    />
+                    <span className="aee-pricing-cycle__name">{plan.label}</span>
+                    <span className="aee-pricing-cycle__price">{formatIntervalEquivalentLine("pro", interval)}</span>
+                  </label>
+                );
+              })}
+            </div>
+          </details>
+        </fieldset>
+
+        {plans.map((plan) => (
+          <a
+            key={plan.interval}
+            className="aee-pricing-cta"
+            data-interval={plan.interval}
+            href={trialHref(plan.interval)}
+          >
+            {TRIAL_CTA_LABEL}
+          </a>
+        ))}
+
+        <p className="aee-pricing-trial text-sm">{PRICING_TRIAL_OFFER_LINE}</p>
+        <p className="aee-pricing-cancel">Cancel anytime in Settings.</p>
+        {featured ? (
+          <blockquote className="aee-pricing-pull">
+            <p>“{featured.quote}”</p>
+            <footer>
+              {featured.name} <span>({examShort(featured.exam)})</span>
+            </footer>
+          </blockquote>
+        ) : null}
+        <p className="aee-pricing-fine">{CARD_REFUND}</p>
+        <p className="aee-pricing-login">
+          Already have an account? <Link href="/login">Log in</Link>
         </p>
-        {!isUpgrade && (
-          <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            Then {formatPlanUsd(plan.totalUsd)}
-            {interval === "monthly" ? "/mo" : `/${plan.shortLabel}`}
-          </p>
-        )}
-        {isUpgrade && interval !== "monthly" && (
-          <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            ≈ {formatPlanUsd(plan.monthlyEquivalentUsd)}/mo
-          </p>
-        )}
       </div>
 
-      <UpgradeIntervalChoice value={interval} onChange={setInterval} tier="pro" />
+      <ul className="aee-pricing-proof" aria-label="From students">
+        {proof
+          .filter((row) => row.name !== "Mag B.")
+          .map((row) => (
+            <li key={row.id}>
+              <p>“{row.quote}”</p>
+              <p>
+                {row.name} <span>({examShort(row.exam)})</span>
+              </p>
+            </li>
+          ))}
+      </ul>
+      <p className="aee-pricing-note">{TESTIMONIAL_RESULTS_NOTE}</p>
 
-      {isUpgrade && showPaymentMode && (
-        <PaymentModeToggle
-          value={paymentMode}
-          onChange={setPaymentMode}
-          interval={interval}
-          variant="card"
-        />
-      )}
+      <ol className="aee-pricing-path">
+        <li>
+          <strong>Roadmap.</strong> A personalized study plan mapped to the official blueprint for your exam.
+        </li>
+        <li>
+          <strong>Deep Dive.</strong> Structured review modules you open from missed questions.
+        </li>
+        <li>
+          <strong>Full Exam.</strong> Timed, full-length practice exams with board-day pacing.
+        </li>
+      </ol>
 
-      <Button
-        href={checkoutHref}
-        className="w-full"
-        variant="primary"
-        onClick={() => {
-          void import("@/lib/analytics").then(({ analytics }) =>
-            analytics.planSelected(`pro_${interval}`, {
-              tier: "pro",
-              interval,
-              ...(isUpgrade && showPaymentMode ? { paymentMode } : {}),
-            })
-          );
-        }}
-      >
-        {isUpgrade ? "Continue to checkout" : TRIAL_CTA_LABEL}
-      </Button>
+      <section className="aee-pricing-faq" aria-labelledby="pricing-faq-heading">
+        <h2 id="pricing-faq-heading">Questions before you start</h2>
+        {pricingFaqItems().map((item) => (
+          <div key={item.question}>
+            <h3>{item.question}</h3>
+            <p>{item.answer}</p>
+          </div>
+        ))}
+      </section>
 
-      {!isUpgrade ? (
-        <p className="text-center text-sm font-medium leading-snug text-[var(--color-ink)]">
-          {PRICING_TRIAL_OFFER_LINE}
-        </p>
-      ) : null}
-
-      <CancelAnytimeNote
-        hidden={Boolean(isUpgrade && showPaymentMode && paymentMode === "manual")}
-      />
-
-      <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-        {isUpgrade
-          ? showPaymentMode && paymentMode === "manual"
-            ? ONE_TIME_POLICY_SHORT
-            : renewalTermsLine("pro", interval)
-          : "Payments are non-refundable (except where required by law). Found a flawed question? Report it and we'll review it. This is not a refund."}
+      <p className="aee-pricing-links">
+        <Link href="/legal/refunds">Refunds and cancellation</Link>
+        <span aria-hidden> · </span>
+        <Link href="/legal/terms">Terms</Link>
+        <span aria-hidden> · </span>
+        <Link href={ROUTES.howQuestionsAreReviewed}>How questions are reviewed</Link>
+        <span aria-hidden> · </span>
+        <a href={`mailto:${LEGAL_ENTITY.supportEmail}`}>{LEGAL_ENTITY.supportEmail}</a>
       </p>
-
-      <PaymentMethodBadges className="justify-center" size="sm" />
-      <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
-        Secured by Stripe
-      </p>
-
-      {!session?.user && (
-        <p className="text-center text-sm text-[var(--color-ink-muted)]">
-          Already have an account?{" "}
-          <Link href="/login" className="font-medium text-[var(--color-accent)] hover:underline">
-            Log in
-          </Link>
-        </p>
-      )}
     </div>
   );
 }

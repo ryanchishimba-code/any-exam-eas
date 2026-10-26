@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
+import { PAID_REFUND_PARAGRAPH } from "@/lib/marketing/legal-copy";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 /**
@@ -27,11 +28,7 @@ export function PurchaseTrustNotes({
           {formatPricingCheckoutTrialOffer()}
         </p>
       ) : null}
-      <p className={`mt-2 text-sm leading-relaxed ${muted}`}>
-        Cancel anytime in Settings. Card payments go through Stripe — we do not store full card
-        numbers. Paid charges are non-refundable except where the law requires a refund, and access
-        runs through the period already paid.
-      </p>
+      <p className={`mt-2 text-sm leading-relaxed ${muted}`}>{PAID_REFUND_PARAGRAPH}</p>
       <p className={`mt-2 text-sm ${muted}`}>
         <Link href="/legal/refunds" className={`font-semibold ${link}`}>
           Refunds and cancellation

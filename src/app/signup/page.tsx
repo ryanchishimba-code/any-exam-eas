@@ -2,9 +2,8 @@ import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { SignupScreen } from "@/components/auth/SignupScreen";
 import { getCachedSession } from "@/lib/auth/session";
-import { resolveSignupIntent } from "@/lib/auth/signup-intent";
+import { resolveSignupIntent, signedInSignupRedirect } from "@/lib/auth/signup-intent";
 import { SITE_NAME } from "@/lib/site";
-import { ROUTES } from "@/lib/routes";
 
 const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
 const SIGNUP_DESCRIPTION =
@@ -39,12 +38,12 @@ export default async function SignupPage({
     exam?: string;
   }>;
 }) {
+  const params = await searchParams;
   const session = await getCachedSession();
   if (session?.user?.id) {
-    redirect(ROUTES.dashboard);
+    redirect(signedInSignupRedirect(params));
   }
 
-  const params = await searchParams;
   const intent = resolveSignupIntent(params);
 
   return (
