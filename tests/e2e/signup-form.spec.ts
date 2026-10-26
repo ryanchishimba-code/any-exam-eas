@@ -63,6 +63,15 @@ test.describe("Signup form", () => {
     await page.goto("/signup?plan=trial", { waitUntil: "domcontentloaded" });
 
     await expect(page.getByRole("heading", { name: "Start your free trial." })).toBeVisible();
+    await expect(page.getByText("Step 1 of 2")).toBeVisible();
+    await expect(page.getByText("Create your account")).toBeVisible();
+    await expect(page.getByText("Step 2: choose your exam")).toHaveCount(0);
+    await expect(page.getByText("(214) 883-6375")).toHaveCount(0);
+    await expect(page.getByLabel("Email")).toHaveAttribute("autocomplete", "email");
+    await expect(page.getByRole("textbox", { name: "Password", exact: true })).toHaveAttribute(
+      "autocomplete",
+      "new-password"
+    );
     await expect(
       page.getByText("5-day free trial · no payment method required · then $27.99/mo")
     ).toBeVisible();
@@ -94,6 +103,10 @@ test.describe("Signup form", () => {
 
     await page.getByRole("button", { name: "Continue" }).click();
     await expect(page.getByTestId("signup-step-profile")).toBeVisible();
+    await expect(page.getByText("Step 2 of 2")).toBeVisible();
+    await expect(page.getByText("Choose your exam")).toBeVisible();
+    await expect(page.getByText("Step 1 of 2")).toHaveCount(0);
+    await expect(page.getByText("Step 2: choose your exam")).toHaveCount(0);
 
     await page.getByRole("button", { name: /start your free trial/i }).click();
     await expect(page.getByText("Enter your first and last name.")).toBeVisible();
@@ -145,6 +158,63 @@ test.describe("Signup form", () => {
       await expectControlsDoNotCollide(page);
     });
   }
+
+  test("query combinations choose trial or Pro checkout, and a duplicate email links to login", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+
+    await page.goto("/signup?plan=lifetime&interval=weekly&tier=enterprise&exam=nope", {
+      waitUntil: "domcontentloaded",
+    });
+    await expect(page.getByRole("heading", { name: "Start your free trial." })).toBeVisible();
+    await expect(page.locator("form")).toHaveAttribute("data-signup-plan", "trial");
+    await expect(page.locator("form")).toHaveAttribute(
+      "data-checkout-path",
+      "/checkout?plan=subscribe&interval=monthly&tier=pro"
+    );
+
+    await page.goto("/signup?plan=subscribe&interval=quarterly&tier=basic&promo=SAVE", {
+      waitUntil: "domcontentloaded",
+    });
+    await expect(page.getByRole("heading", { name: "Create your account." })).toBeVisible();
+    await expect(page.locator("form")).toHaveAttribute("data-signup-plan", "subscribe");
+    await expect(page.locator("form")).toHaveAttribute(
+      "data-checkout-path",
+      "/checkout?plan=subscribe&interval=quarterly&tier=pro&promo=SAVE"
+    );
+    await page.getByRole("button", { name: "Start with the free trial instead" }).click();
+    await expect(page.getByRole("heading", { name: "Start your free trial." })).toBeVisible();
+    await expect(page.locator("form")).toHaveAttribute("data-signup-plan", "trial");
+
+    await page.goto("/signup?plan=trial&interval=yearly&tier=pro", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: "Skip trial — subscribe to Pro" }).click();
+    await expect(page.locator("form")).toHaveAttribute("data-signup-plan", "subscribe");
+    await expect(page.locator("form")).toHaveAttribute(
+      "data-checkout-path",
+      "/checkout?plan=subscribe&interval=yearly&tier=pro"
+    );
+    await expect(page.getByRole("link", { name: "Log in" })).toHaveAttribute("href", "/login");
+
+    await page.route("**/api/register", (route) =>
+      route.fulfill({
+        status: 409,
+        contentType: "application/json",
+        body: JSON.stringify({ error: "An account with this email already exists." }),
+      })
+    );
+    await page.goto("/signup?plan=trial&interval=monthly&tier=pro", { waitUntil: "domcontentloaded" });
+    await fillControlledInput(page.getByLabel("Email"), "student@example.com");
+    await fillControlledInput(page.getByRole("textbox", { name: "Password", exact: true }), "TestPassword1");
+    await page.getByRole("button", { name: "Continue" }).click();
+    await page.getByLabel("First name").fill("Ava");
+    await page.getByLabel("Last name").fill("Lee");
+    await page.getByRole("radio", { name: /NCLEX/i }).click();
+    await page.getByRole("checkbox").check();
+    await page.getByRole("button", { name: /start your free trial/i }).click();
+    await expect(page.getByText("An account with this email already exists.")).toBeVisible();
+    await expect(page.getByRole("link", { name: "Log in" })).toHaveAttribute("href", "/login");
+  });
 
   test("desktop signup keeps the product panel beside the form", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });

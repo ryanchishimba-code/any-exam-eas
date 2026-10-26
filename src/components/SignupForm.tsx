@@ -8,6 +8,11 @@ import { LegalCheckbox } from "./LegalCheckbox";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { SocialLoginButton } from "@/components/social/SocialLoginButton";
 import { AuthLoadingOverlay } from "@/components/ui/AuthLoadingOverlay";
+import {
+  signupStepStatus,
+  signupSubscribeCheckoutPath,
+  signupTrialDestination,
+} from "@/lib/auth/signup-intent";
 import { TRIAL_CTA_LABEL } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import type { BillingInterval } from "@/lib/billing-config";
@@ -75,10 +80,11 @@ export function SignupForm({
   const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
   const linkedinEnabled = process.env.NEXT_PUBLIC_LINKEDIN_AUTH_ENABLED === "true";
 
-  const promoQs = initialPromo.trim()
-    ? `&promo=${encodeURIComponent(initialPromo.trim())}`
-    : "";
-  const subscribeCheckoutPath = `/checkout?plan=subscribe&interval=${initialInterval}&tier=${initialTier}${promoQs}`;
+  const subscribeCheckoutPath = signupSubscribeCheckoutPath({
+    interval: initialInterval,
+    tier: initialTier,
+    promo: initialPromo.trim(),
+  });
   const oauthCallbackUrl = plan === "subscribe" ? subscribeCheckoutPath : "/dashboard";
 
   const passwordChecks = checkPassword(password);
@@ -219,9 +225,7 @@ export function SignupForm({
         window.location.href = subscribeCheckoutPath;
       } else {
         markTrialWelcomePending(TRIAL_DAYS);
-        window.location.href = examSlug
-          ? `/dashboard?welcome=trial&verify=1`
-          : `/select-exam?welcome=trial&verify=1`;
+        window.location.href = signupTrialDestination(examSlug);
       }
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
@@ -231,21 +235,28 @@ export function SignupForm({
   }
 
   const existingAccountError = /already exists|already used a free trial/i.test(error);
+  const stepStatus = signupStepStatus(step);
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="relative">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="relative"
+      data-signup-plan={plan}
+      data-signup-step={step}
+      data-checkout-path={subscribeCheckoutPath}
+    >
       <AuthLoadingOverlay show={loading} message="Creating your account…" className="rounded-2xl" />
 
       <div className="aee-auth-progress" aria-hidden="true">
-        <span data-on={step === 1 ? "true" : "false"} />
+        <span data-on="true" />
         <span data-on={step === 2 ? "true" : "false"} />
       </div>
-      <p className="mt-2 text-center text-sm text-[#334155]" aria-live="polite">
-        Step {step} of 2
+      <p className="aee-auth-step-status" aria-live="polite">
+        <span className="aee-auth-step-count">{stepStatus.count}</span>
+        <span className="aee-auth-step-sep"> · </span>
+        <span className="aee-auth-step-name">{stepStatus.name}</span>
       </p>
-      {step === 1 ? (
-        <p className="text-center text-sm text-[#334155]">Step 2: choose your exam</p>
-      ) : null}
 
       {configWarning ? (
         <p className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
@@ -346,7 +357,9 @@ export function SignupForm({
                   placeholder={passwordRequirements[0]!.label}
                   value={password}
                   aria-invalid={passwordMessage ? true : undefined}
-                  aria-describedby="signup-password-reqs"
+                  aria-describedby={
+                    passwordMessage ? `${passwordErrorId} signup-password-reqs` : "signup-password-reqs"
+                  }
                   onChange={(e) => {
                     setPassword(e.target.value);
                     if (passwordMessage) setPasswordMessage("");
@@ -400,6 +413,7 @@ export function SignupForm({
                   autoComplete="given-name"
                   value={firstName}
                   aria-invalid={nameMessage && !firstName.trim() ? true : undefined}
+                  aria-describedby={nameMessage ? "signup-name-error" : undefined}
                   onChange={(e) => {
                     setFirstName(e.target.value);
                     if (nameMessage) setNameMessage("");
@@ -418,6 +432,7 @@ export function SignupForm({
                   autoComplete="family-name"
                   value={lastName}
                   aria-invalid={nameMessage && !lastName.trim() ? true : undefined}
+                  aria-describedby={nameMessage ? "signup-name-error" : undefined}
                   onChange={(e) => {
                     setLastName(e.target.value);
                     if (nameMessage) setNameMessage("");
@@ -427,7 +442,7 @@ export function SignupForm({
               </div>
             </div>
             {nameMessage ? (
-              <p className="aee-auth-error -mt-2" role="alert">
+              <p id="signup-name-error" className="aee-auth-error -mt-2" role="alert">
                 {nameMessage}
               </p>
             ) : null}
@@ -457,6 +472,7 @@ export function SignupForm({
                   role="radiogroup"
                   aria-label="Exam you are preparing for"
                   aria-invalid={examMessage ? true : undefined}
+                  aria-describedby={examMessage ? "signup-exam-error" : undefined}
                 >
                   {EXAM_SLUGS.map((slug, index) => {
                     const exam = EXAM_CATALOG[slug];
@@ -497,7 +513,7 @@ export function SignupForm({
                 </div>
               )}
               {examMessage ? (
-                <p className="aee-auth-error" role="alert">
+                <p id="signup-exam-error" className="aee-auth-error" role="alert">
                   {examMessage}
                 </p>
               ) : null}
