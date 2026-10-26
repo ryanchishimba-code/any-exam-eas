@@ -71,7 +71,7 @@ describe("NAPLEX landing model", () => {
     expect(serialized).not.toMatch(BANNED);
     expect(serialized).not.toMatch(/aggregateRating|reviewCount|Ileen/);
     expect(serialized).not.toMatch(/\b\d+ lessons\b/);
-    expect(model.h1Lead).toBe("NAPLEX practice with every answer explained.");
+    expect(model.h1Lead).toBe("NAPLEX questions. Every answer explained.");
     expect(model.h1Accent).toBe("");
     expect(model.heroTestimonial?.name).toBe("Frank C.");
     expect(model.prices.map((price) => price.amount)).toEqual(["$27.99/mo"]);

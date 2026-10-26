@@ -13,7 +13,7 @@ function NavigationFallback() {
   const tall = isMarketingLandingPath(pathname || "/");
   return (
     <header
-      className={`pointer-events-none fixed inset-x-0 top-0 z-50 w-full border-b border-[var(--color-border)] bg-[var(--color-bg)] ${tall ? "h-14" : "h-[var(--nav-height)]"}`}
+      className={`pointer-events-none fixed inset-x-0 top-0 z-50 w-full ${tall ? "aee-nav-fallback--over-photo h-14" : "h-[var(--nav-height)] border-b border-[var(--color-border)] bg-[var(--color-bg)]"}`}
       aria-hidden
     />
   );

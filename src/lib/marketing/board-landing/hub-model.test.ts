@@ -22,7 +22,7 @@ describe("hub board landing model", () => {
     const serialized = JSON.stringify(model);
     expect(serialized).not.toMatch(BANNED);
     expect(model.heroOffer?.proPrice).toMatch(/\$27\.99\/mo/);
-    expect(model.h1Lead).toBe("Every USMLE answer, explained like a tutor would.");
+    expect(model.h1Lead).toBe("USMLE practice with every answer explained.");
     expect(model.h1Accent).toBe("");
     expect(model.heroTestimonial).toBeNull();
     expect(model.heroChips).toHaveLength(3);
