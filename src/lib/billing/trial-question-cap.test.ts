@@ -35,13 +35,13 @@ import {
 
 /**
  * Phrases that would advertise a different trial question cap than the one enforced.
- * Clinical doses, Top 500 drugs, and HTTP 500s do not match.
+ * Clinical doses, Top 500 drugs, HTTP 500s, and dollar amounts do not match.
  */
 /** Built so this file does not itself contain the retired trial-cap phrases. */
 const RETIRED_COUNT = "5" + "00";
 const TRIAL_CAP_DRIFT = [
   new RegExp(`${RETIRED_COUNT} practice questions`, "i"),
-  new RegExp("five " + "hundred", "i"),
+  new RegExp("five " + "hundred(?! dollars)", "i"),
   new RegExp(`${RETIRED_COUNT} during the trial`, "i"),
   new RegExp(`${RETIRED_COUNT}-question trial`, "i"),
   new RegExp(`${RETIRED_COUNT} questions run out`, "i"),
@@ -137,6 +137,9 @@ describe("trial question cap", () => {
     }
     files.push(path.join(root, "README.md"), path.join(root, ".env.example"));
     files.push(path.join(root, "scripts", "vercel-pricing-env.mjs"));
+
+    expect("five " + "hundred practice questions").toMatch(TRIAL_CAP_DRIFT[1]);
+    expect("Four to five " + "hundred dollars just to restudy").not.toMatch(TRIAL_CAP_DRIFT[1]);
 
     const hits: string[] = [];
     for (const file of files) {
