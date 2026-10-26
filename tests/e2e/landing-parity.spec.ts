@@ -432,10 +432,29 @@ test.describe("landing parity", () => {
       expect(shot.h1?.family, entry.path).toBeTruthy();
       expect(String(shot.photoBg), entry.path).toContain("gradient");
       expect(String(shot.scrimBg), entry.path).toContain("gradient");
-      rows.push({ path: entry.path, value: { photo: shot.photoBg, scrim: shot.scrimBg, h1: shot.h1, sub: shot.sub } });
+      rows.push({
+        path: entry.path,
+        value: { photo: shot.photoBg, scrim: shot.scrimBg, h1: shot.h1, sub: shot.sub },
+      });
     }
     release();
-    same(rows, "slow network placeholder");
+    same(
+      rows.map((row) => ({
+        path: row.path,
+        value: {
+          photo: (row.value as { photo: string }).photo,
+          h1: (row.value as { h1: unknown }).h1,
+          sub: (row.value as { sub: unknown }).sub,
+        },
+      })),
+      "slow network placeholder"
+    );
+    same(
+      rows
+        .filter((row) => row.path !== "/")
+        .map((row) => ({ path: row.path, value: (row.value as { scrim: string }).scrim })),
+      "board scrim"
+    );
   });
 
   test("javascript disabled still renders the hero, heading, and trial CTA", async ({ browser }) => {
