@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   resolveSignupIntent,
+  signedInSignupRedirect,
   signupStepStatus,
   signupSubscribeCheckoutPath,
   signupTrialDestination,
@@ -71,6 +72,13 @@ describe("signup query intent", () => {
     expect(signupSubscribeCheckoutPath(invalid)).toBe(
       "/checkout?plan=subscribe&interval=monthly&tier=pro"
     );
+  });
+
+  it("sends a signed-in pricing visit to checkout and a bare visit to the dashboard", () => {
+    expect(signedInSignupRedirect({})).toBe("/dashboard");
+    expect(
+      signedInSignupRedirect({ plan: "trial", interval: "yearly", tier: "pro" })
+    ).toBe("/checkout?plan=trial&interval=yearly&tier=pro");
   });
 
   it("names only the step that is on screen", () => {

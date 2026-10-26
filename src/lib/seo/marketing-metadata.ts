@@ -23,8 +23,9 @@ import {
   formatMonthlyPrice,
   formatPricingCheckoutTrialOffer,
   formatTrialLabel,
-  formatTrialQuestionLimit,
 } from "@/lib/site";
+import { getBillingPlanTier } from "@/lib/billing-plans";
+import { pricingFaqItems } from "@/lib/marketing/pricing-faq";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { comparePageFaqJsonLdEntities } from "@/lib/seo/compare-faq";
 import { SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
@@ -382,35 +383,37 @@ export function buildPricingJsonLd(totalLabel?: string) {
         image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
         brand: { "@type": "Brand", name: SITE_NAME },
         url,
-        offers: {
-          "@type": "Offer",
-          price: TIER_MONTHLY_USD.pro.toFixed(2),
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
-          url: absoluteUrl("/signup?plan=trial&tier=pro"),
-          description: formatPricingCheckoutTrialOffer(),
-        },
+        offers: (["monthly", "yearly"] as const).map((interval) => {
+          const plan = getBillingPlanTier("pro", interval);
+          return {
+            "@type": "Offer" as const,
+            name: interval === "monthly" ? `${SITE_NAME} Pro monthly` : `${SITE_NAME} Pro annual`,
+            price: plan.totalUsd.toFixed(2),
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+            url: absoluteUrl(`/signup?plan=trial&tier=pro&interval=${interval}`),
+            description: formatPricingCheckoutTrialOffer(),
+            priceSpecification: {
+              "@type": "UnitPriceSpecification" as const,
+              price: plan.totalUsd.toFixed(2),
+              priceCurrency: "USD",
+              unitCode: interval === "monthly" ? "MON" : "ANN",
+              referenceQuantity: {
+                "@type": "QuantitativeValue" as const,
+                value: 1,
+                unitCode: interval === "monthly" ? "MON" : "ANN",
+              },
+            },
+          };
+        }),
       },
       {
         "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Does AnyExamEasy cover multiple board exams on one plan?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: `Yes — ${SITE_NAME} Pro includes NCLEX, USMLE (Steps 1–3), NAPLEX, PANCE, AANP FNP, and NPTE-PT on one subscription at ${formatMonthlyPrice("pro")}/mo instead of buying separate single-exam products for each board.`,
-            },
-          },
-          {
-            "@type": "Question",
-            name: "What is included in the free trial?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: `${formatTrialLabel()} with ${formatTrialQuestionLimit()} across all six board exams — no payment method required.`,
-            },
-          },
-        ],
+        mainEntity: pricingFaqItems().map((item) => ({
+          "@type": "Question" as const,
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer" as const, text: item.answer },
+        })),
       },
     ],
   };

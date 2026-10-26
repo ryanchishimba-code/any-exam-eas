@@ -32,6 +32,26 @@ export function resolveSignupIntent(input: {
   };
 }
 
+/**
+ * A signed-in visitor who arrived with a plan query should reach checkout
+ * with that query. A bare /signup visit still goes to the dashboard.
+ */
+export function signedInSignupRedirect(input: {
+  plan?: string | null;
+  interval?: string | null;
+  tier?: string | null;
+  promo?: string | null;
+  exam?: string | null;
+}): string {
+  const next = new URLSearchParams();
+  for (const key of ["plan", "interval", "tier", "promo", "exam"] as const) {
+    const value = input[key]?.trim();
+    if (value) next.set(key, value);
+  }
+  const qs = next.toString();
+  return qs ? `/checkout?${qs}` : "/dashboard";
+}
+
 /** Paid path after account creation, or the OAuth return for Skip-trial. */
 export function signupSubscribeCheckoutPath(
   intent: Pick<SignupIntent, "interval" | "tier" | "promo">
