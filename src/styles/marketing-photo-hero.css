@@ -11,22 +11,23 @@
   isolation: isolate;
   width: 100%;
   max-width: 100%;
+  height: 100vh;
+  height: 100svh;
   min-height: 100vh;
   min-height: 100svh;
+  overflow: hidden;
   color: #f8fafc;
   background: #071422;
 }
 
-/* Viewport-tall cover crop. Sticky so a taller stage does not slice the photo. */
+/* One screen. Later bands sit on their own background, not on this photo. */
 .mkt-photo-hero__photo {
-  position: sticky;
-  top: 0;
+  position: absolute;
+  inset: 0;
   z-index: 0;
   width: 100%;
-  height: 100vh;
-  height: 100svh;
-  margin-bottom: -100vh;
-  margin-bottom: -100svh;
+  height: 100%;
+  margin: 0;
   pointer-events: none;
   background:
     radial-gradient(70% 55% at 82% 28%, rgba(15, 118, 110, 0.2), transparent 62%),
@@ -173,9 +174,14 @@
   text-wrap: balance;
 }
 
-.home-hero__line,
-.aee-marketing .mkt-photo-hero .home-hero__accent {
-  text-wrap: balance;
+.home-visual .mkt-photo-hero .home-hero__line,
+.home-visual .mkt-photo-hero .home-hero__accent {
+  display: block;
+}
+
+.home-visual .mkt-photo-hero .home-hero__accent {
+  white-space: nowrap;
+  font-size: clamp(1.45rem, 6.5vw, 3.6rem);
 }
 
 .aee-marketing .mkt-photo-hero .home-hero__accent {
@@ -295,13 +301,35 @@
 }
 
 .mkt-photo-hero .home-proof {
+  justify-content: flex-start;
+  gap: 0.35rem 1rem;
+  padding-inline: 0;
   background: transparent;
   border: 0;
   color: #e2e8f0;
+  text-align: left;
 }
 
 .mkt-photo-hero .home-proof li + li::before {
-  color: #5eead4;
+  content: none;
+}
+
+.home-visual .home-hero .mkt-photo-hero__scrim {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(6, 18, 32, 0.4) 0%,
+      rgba(6, 18, 32, 0.06) 5.5rem,
+      rgba(6, 18, 32, 0.04) 62%,
+      rgba(6, 18, 32, 0.2) 100%
+    ),
+    linear-gradient(
+      100deg,
+      rgba(6, 18, 32, 0.7) 0%,
+      rgba(6, 18, 32, 0.4) 34%,
+      rgba(6, 18, 32, 0.08) 70%,
+      rgba(6, 18, 32, 0) 100%
+    );
 }
 
 .board-landing .mkt-photo-hero__trail .bl-band,

@@ -27,17 +27,17 @@ describe("marketingPhotoHeroSrc", () => {
     );
   });
 
-  it("points a phone preload at that page's own 1x and 2x files", () => {
-    const preload = marketingPhotoHeroMobilePreload("nclex");
-    expect(preload.media).toBe("(max-width: 767px)");
-    expect(preload.href).toBe("/images/marketing/heroes/nclex-mobile-2x.avif");
-    expect(preload.imageSrcSet).toBe(
-      "/images/marketing/heroes/nclex-mobile.avif 360w, /images/marketing/heroes/nclex-mobile-2x.avif 720w"
-    );
-    expect(marketingPhotoHeroMobileImageSet("home")).toContain(
-      'url("/images/marketing/heroes/home-mobile-2x.avif") type("image/avif") 2x'
-    );
-    expect(marketingPhotoHeroMobileImageSet("home")).not.toContain("nclex");
+  it("points a phone preload at the native 720 frame, and 1080 only at DPR 3", () => {
+    const [dpr2, dpr3] = marketingPhotoHeroMobilePreload("nclex");
+    expect(dpr2.media).toBe("(max-width: 767px) and (max-resolution: 2.5dppx)");
+    expect(dpr2.href).toBe("/images/marketing/heroes/nclex-mobile-2x.avif");
+    expect(dpr2.imageSrcSet).toBe("/images/marketing/heroes/nclex-mobile-2x.avif 720w");
+    expect(dpr3.href).toBe("/images/marketing/heroes/nclex-mobile-3x.avif");
+    expect(dpr3.media).toContain("min-resolution: 2.51dppx");
+    const set = marketingPhotoHeroMobileImageSet("home");
+    expect(set).toContain('url("/images/marketing/heroes/home-mobile-2x.avif") type("image/avif") 2x');
+    expect(set).toContain('url("/images/marketing/heroes/home-mobile-3x.avif") type("image/avif") 3x');
+    expect(set).not.toContain("nclex");
   });
 
   it("crops a 16:9 photo to the phone hero the way object-fit cover would", () => {
@@ -59,7 +59,7 @@ describe("marketingPhotoHeroSrc", () => {
     expect(ids).toEqual(["home", "nclex", "naplex", "usmle", "pance", "aanp-fnp", "npte-pt"]);
     const hashes = new Set<string>();
     for (const id of ids) {
-      for (const variant of ["desktop", "mobile", "mobile2x"] as const) {
+      for (const variant of ["desktop", "mobile", "mobile2x", "mobile3x"] as const) {
         for (const format of ["avif", "webp"] as const) {
           const rel = marketingPhotoHeroSrc(id, variant, format).replace(/^\//, "");
           const buf = readFileSync(path.join(process.cwd(), "public", rel));
@@ -69,6 +69,6 @@ describe("marketingPhotoHeroSrc", () => {
         }
       }
     }
-    expect(hashes.size).toBe(42);
+    expect(hashes.size).toBe(56);
   });
 });

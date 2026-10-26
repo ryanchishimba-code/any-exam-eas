@@ -67,7 +67,7 @@ export function MarketingPhotoHero({
   const config = MARKETING_PHOTO_HEROES[heroId];
   const examAttr = heroId === "home" ? undefined : heroId;
   const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
-  const preload = marketingPhotoHeroMobilePreload(heroId);
+  const preloads = marketingPhotoHeroMobilePreload(heroId);
 
   return (
     <section
@@ -93,16 +93,19 @@ export function MarketingPhotoHero({
         } as CSSProperties
       }
     >
-      <link
-        rel="preload"
-        as="image"
-        href={preload.href}
-        type={preload.type}
-        media={preload.media}
-        fetchPriority="high"
-        imageSrcSet={preload.imageSrcSet}
-        imageSizes={preload.imageSizes}
-      />
+      {preloads.map((preload) => (
+        <link
+          key={preload.href}
+          rel="preload"
+          as="image"
+          href={preload.href}
+          type={preload.type}
+          media={preload.media}
+          fetchPriority="high"
+          imageSrcSet={preload.imageSrcSet}
+          imageSizes={preload.imageSizes}
+        />
+      ))}
       <div className="mkt-photo-hero__photo" aria-hidden="true" />
       <div className="mkt-photo-hero__scrim" aria-hidden="true" />
       <div className="mkt-photo-hero__inner">{children}</div>

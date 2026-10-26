@@ -50,12 +50,13 @@ export const MARKETING_PHOTO_HEROES: Record<MarketingPhotoHeroId, MarketingPhoto
   },
 };
 
-export type MarketingPhotoHeroVariant = "desktop" | "mobile" | "mobile2x";
+export type MarketingPhotoHeroVariant = "desktop" | "mobile" | "mobile2x" | "mobile3x";
 
 const VARIANT_FILE: Record<MarketingPhotoHeroVariant, string> = {
   desktop: "desktop",
   mobile: "mobile",
   mobile2x: "mobile-2x",
+  mobile3x: "mobile-3x",
 };
 
 export function marketingPhotoHeroSrc(
@@ -67,8 +68,11 @@ export function marketingPhotoHeroSrc(
   return `${base}-${VARIANT_FILE[variant]}.${format}`;
 }
 
-/** CSS widths for the art-directed phone files. 720 is the native portrait. */
-export const MARKETING_PHOTO_HERO_MOBILE_WIDTH = { x1: 360, x2: 720 } as const;
+/**
+ * Phone files are 9:16. 360 is only for DPR 1. DPR 2 uses the native 720
+ * frame. DPR 3 uses a sharpened 1080 Lanczos enlargement of that frame.
+ */
+export const MARKETING_PHOTO_HERO_MOBILE_WIDTH = { x1: 360, x2: 720, x3: 1080 } as const;
 
 /** Phones only. Desktop keeps the single 1280-wide file. */
 export const MARKETING_PHOTO_HERO_MOBILE_MEDIA = "(max-width: 767px)";
@@ -76,26 +80,39 @@ export const MARKETING_PHOTO_HERO_MOBILE_MEDIA = "(max-width: 767px)";
 export function marketingPhotoHeroMobileImageSet(id: MarketingPhotoHeroId): string {
   const avif1 = marketingPhotoHeroSrc(id, "mobile", "avif");
   const avif2 = marketingPhotoHeroSrc(id, "mobile2x", "avif");
+  const avif3 = marketingPhotoHeroSrc(id, "mobile3x", "avif");
   const webp1 = marketingPhotoHeroSrc(id, "mobile", "webp");
   const webp2 = marketingPhotoHeroSrc(id, "mobile2x", "webp");
+  const webp3 = marketingPhotoHeroSrc(id, "mobile3x", "webp");
   return `image-set(${[
     `url("${avif1}") type("image/avif") 1x`,
     `url("${avif2}") type("image/avif") 2x`,
+    `url("${avif3}") type("image/avif") 3x`,
     `url("${webp1}") type("image/webp") 1x`,
     `url("${webp2}") type("image/webp") 2x`,
+    `url("${webp3}") type("image/webp") 3x`,
   ].join(", ")})`;
 }
 
 export function marketingPhotoHeroMobilePreload(id: MarketingPhotoHeroId) {
-  const avif1 = marketingPhotoHeroSrc(id, "mobile", "avif");
   const avif2 = marketingPhotoHeroSrc(id, "mobile2x", "avif");
-  return {
-    href: avif2,
-    imageSrcSet: `${avif1} ${MARKETING_PHOTO_HERO_MOBILE_WIDTH.x1}w, ${avif2} ${MARKETING_PHOTO_HERO_MOBILE_WIDTH.x2}w`,
-    imageSizes: "100vw",
-    type: "image/avif" as const,
-    media: MARKETING_PHOTO_HERO_MOBILE_MEDIA,
-  };
+  const avif3 = marketingPhotoHeroSrc(id, "mobile3x", "avif");
+  return [
+    {
+      href: avif2,
+      imageSrcSet: `${avif2} ${MARKETING_PHOTO_HERO_MOBILE_WIDTH.x2}w`,
+      imageSizes: "100vw",
+      type: "image/avif" as const,
+      media: `${MARKETING_PHOTO_HERO_MOBILE_MEDIA} and (max-resolution: 2.5dppx)`,
+    },
+    {
+      href: avif3,
+      imageSrcSet: `${avif3} ${MARKETING_PHOTO_HERO_MOBILE_WIDTH.x3}w`,
+      imageSizes: "100vw",
+      type: "image/avif" as const,
+      media: `${MARKETING_PHOTO_HERO_MOBILE_MEDIA} and (min-resolution: 2.51dppx)`,
+    },
+  ];
 }
 
 /**

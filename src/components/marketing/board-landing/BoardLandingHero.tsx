@@ -28,25 +28,24 @@ export function BoardLandingHero({
   trail,
 }: BoardLandingHeroProps) {
   return (
-    <MarketingPhotoHero
-      heroId={photoHeroId}
-      ariaLabelledBy="board-hero-heading"
-      trail={trail}
-    >
-      <MarketingPhotoHeroCopy
-        headingId="board-hero-heading"
-        title={headline}
-        subline={subline}
-        actions={
-          <MarketingHeroActions
-            trialHref={trialHref}
-            ctaName={heroCtaName}
-            ctaLocation={heroCtaLocation}
-            seeQuestionsHref={BOARD_LANDING_HERO_QUIZ_HREF}
-            className="mkt-photo-hero__actions"
-          />
-        }
-      />
-    </MarketingPhotoHero>
+    <>
+      <MarketingPhotoHero heroId={photoHeroId} ariaLabelledBy="board-hero-heading">
+        <MarketingPhotoHeroCopy
+          headingId="board-hero-heading"
+          title={headline}
+          subline={subline}
+          actions={
+            <MarketingHeroActions
+              trialHref={trialHref}
+              ctaName={heroCtaName}
+              ctaLocation={heroCtaLocation}
+              seeQuestionsHref={BOARD_LANDING_HERO_QUIZ_HREF}
+              className="mkt-photo-hero__actions"
+            />
+          }
+        />
+      </MarketingPhotoHero>
+      {trail}
+    </>
   );
 }

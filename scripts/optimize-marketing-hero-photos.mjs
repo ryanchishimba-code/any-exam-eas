@@ -1,7 +1,8 @@
 /**
- * Mobile hero exports from the native 720×1280 portraits.
- * 1x is 360×640. 2x keeps the full 720×1280 frame. Desktop 1280×720
- * files are left as they are. Nothing is enlarged.
+ * Mobile hero exports from the native 720×1280 (9:16) portraits.
+ * 1x is 360 wide for DPR 1. DPR 2 keeps the full 720×1280 frame.
+ * DPR 3 is a Lanczos 1080-wide enlargement of that same frame.
+ * Every phone file is lightly sharpened. Desktop 1280×720 files stay put.
  * Run: node scripts/optimize-marketing-hero-photos.mjs
  */
 import { createHash } from "node:crypto";
@@ -22,34 +23,22 @@ const HEROES = [
   { id: "npte-pt", file: "npte-pt-mobile_d1bb.jpg" },
 ];
 
-const WIDTH = { x1: 360, x2: 720 };
+const WIDTH = { x1: 360, x2: 720, x3: 1080 };
 
 async function encode(input, width, outBase) {
-  const pipeline = sharp(input, { failOn: "none" }).resize({
-    width,
-    withoutEnlargement: true,
-  });
+  const pipeline = sharp(input, { failOn: "none" })
+    .resize({
+      width,
+      kernel: sharp.kernel.lanczos3,
+      withoutEnlargement: width <= WIDTH.x2,
+    })
+    .sharpen({ sigma: 0.8, m1: 1, m2: 0.4 });
   const webpPath = `${outBase}.webp`;
   const avifPath = `${outBase}.avif`;
-  const avifCap = width === WIDTH.x2 ? 56 * 1024 : 22 * 1024;
-  const webpCap = width === WIDTH.x2 ? 96 * 1024 : 36 * 1024;
-
-  let webpQ = width === WIDTH.x2 ? 78 : 80;
-  for (let attempt = 0; attempt < 6; attempt++) {
-    await pipeline.clone().webp({ quality: webpQ, effort: 5 }).toFile(webpPath);
-    if (fs.statSync(webpPath).size <= webpCap || webpQ <= 64) break;
-    webpQ -= 3;
-  }
-
-  let avifQ = width === WIDTH.x2 ? 62 : 58;
-  for (let attempt = 0; attempt < 7; attempt++) {
-    await pipeline
-      .clone()
-      .avif({ quality: avifQ, effort: 6, chromaSubsampling: "4:2:0" })
-      .toFile(avifPath);
-    if (fs.statSync(avifPath).size <= avifCap || avifQ <= 48) break;
-    avifQ -= 3;
-  }
+  const webpQ = 80;
+  const avifQ = 80;
+  await pipeline.clone().webp({ quality: webpQ, effort: 5 }).toFile(webpPath);
+  await pipeline.clone().avif({ quality: avifQ, effort: 6, chromaSubsampling: "4:2:0" }).toFile(avifPath);
 
   const meta = await sharp(avifPath).metadata();
   return {
@@ -74,13 +63,15 @@ for (const hero of HEROES) {
   }
   const x1 = await encode(input, WIDTH.x1, path.join(OUT_DIR, `${hero.id}-mobile`));
   const x2 = await encode(input, WIDTH.x2, path.join(OUT_DIR, `${hero.id}-mobile-2x`));
+  const x3 = await encode(input, WIDTH.x3, path.join(OUT_DIR, `${hero.id}-mobile-3x`));
   report.push({ id: hero.id, variant: "1x", ...x1 });
   report.push({ id: hero.id, variant: "2x", ...x2 });
+  report.push({ id: hero.id, variant: "3x", ...x3 });
 }
 
 const hashes = new Map();
 for (const hero of HEROES) {
-  for (const name of [`${hero.id}-mobile`, `${hero.id}-mobile-2x`]) {
+  for (const name of [`${hero.id}-mobile`, `${hero.id}-mobile-2x`, `${hero.id}-mobile-3x`]) {
     for (const ext of ["avif", "webp"]) {
       const file = path.join(OUT_DIR, `${name}.${ext}`);
       const hash = createHash("sha256").update(fs.readFileSync(file)).digest("hex");

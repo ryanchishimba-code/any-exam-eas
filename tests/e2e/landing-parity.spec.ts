@@ -67,7 +67,8 @@ type Shot = {
   border: string | null;
   preload: string | null;
   preloadMedia: string | null;
-  nextHasFeatures: boolean;
+  sectionH: number | null;
+  photoEndsWithHero: boolean;
   joinGap: number | null;
   featuresBg: string | null;
   featuresPad: number | null;
@@ -152,16 +153,18 @@ async function readLanding(page: Page): Promise<Shot> {
       navBg: nav ? getComputedStyle(nav).backgroundColor : null,
       navCta: navCta ? { ...typeOf(navCta), ...boxOf(navCta) } : null,
       photoH: photo ? Math.round(photo.getBoundingClientRect().height) : null,
+      sectionH: hero ? Math.round(hero.getBoundingClientRect().height) : null,
       svh,
       photoBg: photoStyle?.backgroundImage ?? null,
       scrimBg: scrim ? getComputedStyle(scrim).backgroundImage : null,
       border: photoStyle?.borderImageSource ?? null,
       preload: preload?.getAttribute("href") ?? null,
       preloadMedia: preload?.getAttribute("media") ?? null,
-      nextHasFeatures: Boolean(
-        next?.matches(".home-features, .bl-band") &&
-          next.querySelector(".home-feature-wheel, .bl-features")
-      ),
+      photoEndsWithHero:
+        photo != null &&
+        hero != null &&
+        Math.round(photo.getBoundingClientRect().bottom) <=
+          Math.round(hero.getBoundingClientRect().bottom) + 1,
       joinGap: heroBottom != null && nextTop != null ? Math.round(nextTop - heroBottom) : null,
       featuresBg: nextStyle?.backgroundColor ?? null,
       featuresPad: nextStyle ? px(nextStyle.paddingTop) : null,
@@ -199,10 +202,9 @@ function sharedShot(shot: Shot) {
     navBg: shot.navBg,
     navCta: shot.navCta,
     photoH: shot.photoH,
+    sectionH: shot.sectionH,
     svh: shot.svh,
     photoBg: shot.photoBg,
-    scrimBg: shot.scrimBg,
-    nextHasFeatures: shot.nextHasFeatures,
     joinGap: shot.joinGap,
     featuresBg: shot.featuresBg,
     featuresPad: shot.featuresPad,
@@ -223,14 +225,15 @@ function expectPageIdentity(entry: Landing, shot: Shot) {
   expect(shot.navHref, entry.path).toBe(href);
   expect(shot.secondaryHref, entry.path).toBe(entry.see);
   expect(shot.preload, entry.path).toContain(`/images/marketing/heroes/${entry.hero}-mobile-2x.avif`);
-  expect(shot.preloadMedia, entry.path).toBe("(max-width: 767px)");
+  expect(shot.preloadMedia, entry.path).toBe("(max-width: 767px) and (max-resolution: 2.5dppx)");
   expect(shot.border ?? "", entry.path).toContain(`/images/marketing/heroes/${entry.hero}-`);
   expect(shot.photoH, entry.path).toBe(shot.svh);
+  expect(shot.sectionH, entry.path).toBe(shot.svh);
+  expect(shot.photoEndsWithHero, entry.path).toBe(true);
   expect(shot.heroW, entry.path).toBe(shot.vw);
   expect(shot.overflow, entry.path).toBe(false);
   expect(shot.navOverflow, entry.path).toBe(false);
   expect(shot.joinGap, entry.path).toBe(0);
-  expect(shot.nextHasFeatures, entry.path).toBe(true);
   expect(shot.overPhoto, entry.path).toBe(true);
 }
 
@@ -250,11 +253,14 @@ async function settle(page: Page, path: string) {
   await page.waitForFunction(() => {
     const ready = (el: Element | null) =>
       !!el && Object.getOwnPropertyNames(el).some((key) => key.startsWith("__reactProps"));
-    return (
-      ready(document.querySelector("header.aee-nav")) &&
-      ready(document.querySelector(".mkt-photo-hero a.aee-flagship-cta")) &&
-      ready(document.querySelector(".aee-nav-menu-btn"))
-    );
+    const header = document.querySelector("header.aee-nav");
+    const menu = document.querySelector(".aee-nav-menu-btn");
+    const hero = document.querySelector(".mkt-photo-hero");
+    const cta = document.querySelector(".mkt-photo-hero a.aee-flagship-cta");
+    if (!ready(header) || !ready(menu)) return false;
+    // Logged-in home replaces the marketing hero. Don't wait for a CTA that left.
+    if (!hero) return true;
+    return ready(cta);
   });
   await page.evaluate(() => document.fonts.ready);
 }
