@@ -1,22 +1,10 @@
 import type { CSSProperties, ReactNode } from "react";
-import { preload } from "react-dom";
 import {
   type MarketingPhotoHeroId,
   MARKETING_PHOTO_HEROES,
   marketingPhotoHeroSrc,
 } from "@/lib/marketing/marketing-photo-heroes";
 import "@/styles/marketing-photo-hero.css";
-
-function preloadHeroArt(heroId: MarketingPhotoHeroId) {
-  preload(marketingPhotoHeroSrc(heroId, "mobile", "avif"), {
-    as: "image",
-    fetchPriority: "high",
-  });
-  preload(marketingPhotoHeroSrc(heroId, "desktop", "avif"), {
-    as: "image",
-    fetchPriority: "high",
-  });
-}
 
 type MarketingPhotoHeroProps = {
   heroId: MarketingPhotoHeroId;
@@ -36,45 +24,36 @@ export function MarketingPhotoHero({
 }: MarketingPhotoHeroProps) {
   const config = MARKETING_PHOTO_HEROES[heroId];
   const examAttr = heroId === "home" ? undefined : heroId;
-  if (priority) {
-    preloadHeroArt(heroId);
-  }
+
+  const mobileAvif = marketingPhotoHeroSrc(heroId, "mobile", "avif");
+  const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
 
   return (
-    <section
-      className={`mkt-photo-hero ${className}`.trim()}
-      aria-labelledby={ariaLabelledBy}
-      data-exam-hero={examAttr}
-      style={{ "--mkt-hero-focal": config.focalPosition } as CSSProperties}
-    >
-      <div className="mkt-photo-hero__media" aria-hidden="true">
-        <picture>
-          <source
-            media="(max-width: 767px)"
+    <>
+      {priority ? (
+        <>
+          <link rel="preload" as="image" href={mobileAvif} type="image/avif" fetchPriority="high" />
+          <link
+            rel="preload"
+            as="image"
+            href={desktopAvif}
             type="image/avif"
-            srcSet={marketingPhotoHeroSrc(heroId, "mobile", "avif")}
+            fetchPriority="high"
+            media="(min-width: 768px)"
           />
-          <source
-            media="(max-width: 767px)"
-            type="image/webp"
-            srcSet={marketingPhotoHeroSrc(heroId, "mobile", "webp")}
-          />
-          <source type="image/avif" srcSet={marketingPhotoHeroSrc(heroId, "desktop", "avif")} />
-          <source type="image/webp" srcSet={marketingPhotoHeroSrc(heroId, "desktop", "webp")} />
-          <img
-            className="mkt-photo-hero__img"
-            src={marketingPhotoHeroSrc(heroId, "mobile", "webp")}
-            alt=""
-            decoding={priority ? "sync" : "async"}
-            fetchPriority={priority ? "high" : "auto"}
-            loading={priority ? "eager" : "lazy"}
-            width={768}
-            height={432}
-          />
-        </picture>
-      </div>
-      <div className="mkt-photo-hero__scrim" aria-hidden="true" />
-      <div className="mkt-photo-hero__inner mkt-photo-hero__reveal">{children}</div>
-    </section>
+        </>
+      ) : null}
+      <section
+        className={`mkt-photo-hero ${className}`.trim()}
+        aria-labelledby={ariaLabelledBy}
+        data-exam-hero={examAttr}
+        data-hero={heroId}
+        style={{ "--mkt-hero-focal": config.focalPosition } as CSSProperties}
+      >
+        <div className="mkt-photo-hero__media" aria-hidden="true" />
+        <div className="mkt-photo-hero__scrim" aria-hidden="true" />
+        <div className="mkt-photo-hero__inner mkt-photo-hero__reveal">{children}</div>
+      </section>
+    </>
   );
 }
