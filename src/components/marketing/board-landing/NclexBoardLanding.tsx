@@ -13,10 +13,12 @@ import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/Pra
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import type { NclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
+import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
 
 export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderModel }) {
   const depthChart = model.nclexCompare;
+  const stories = storiesBelowHero(model.stories, model.heroTestimonial?.quote);
 
   return (
     <div className={`board-landing board-landing--tesla board-landing--board-flow ${model.themeClass}`}>
@@ -27,6 +29,9 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
         trialHref={model.trialHref}
         heroCtaName={model.heroCtaName}
         heroCtaLocation={model.heroCtaLocation}
+        testimonial={model.heroTestimonial}
+        proofFacts={boardHeroProofFacts(model.heroOffer)}
+        boardName={model.boardName}
         trail={
           <>
       <div className="bl-band bl-band--stats">
@@ -34,7 +39,9 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
       </div>
 
       <div className="bl-band bl-band--alt">
-        <BoardLandingTestimonials stories={model.stories} prominent heading={model.testimonialsHeading} />
+        {stories.length > 0 ? (
+          <BoardLandingTestimonials stories={stories} prominent heading={model.testimonialsHeading} />
+        ) : null}
         {model.studentTrustBadge ? <NclexStudentTrustBadge badge={model.studentTrustBadge} /> : null}
       </div>
 

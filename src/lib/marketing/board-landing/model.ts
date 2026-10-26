@@ -144,7 +144,7 @@ export type BoardLandingModel = {
   themeClass: string;
   heroWhyUs: string;
   /** Consented quote shown in the hero when present. */
-  heroTestimonial: { name: string; quote: string } | null;
+  heroTestimonial: { name: string; quote: string; board: string } | null;
   ctaMicrocopy: string;
   contentYear: number;
   painPoints: BoardPainPoint[];
