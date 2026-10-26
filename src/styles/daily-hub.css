@@ -1,10 +1,44 @@
-/* Question of the Day hub. Explicit pairs so light and dark both stay readable. */
+/* Question of the Day hub. Explicit pairs so light and dark both stay readable.
+   The hub uses the preloaded display face only. Inter is the site body font;
+   leaving it on this page pulls a second font onto the first paint. */
+
+body:has(.aee-daily) {
+  --font-body: var(--font-display);
+  font-family: var(--font-display), system-ui, sans-serif;
+}
 
 .aee-daily.aee-qotd-hub {
   min-height: 0;
   background: #f8fafc;
   color: #0f172a;
   color-scheme: light;
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.aee-marketing .aee-daily-hero.mkt-photo-hero h1,
+.aee-daily-hero .mkt-photo-hero__sub,
+.aee-daily-hero .mkt-hero-foot,
+.aee-daily-hero .bl-hero-price,
+.aee-daily-hero .bl-button {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.aee-daily-hero .bl-actions__primary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.aee-daily-hero .bl-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .aee-daily-hero .home-hero__line,
@@ -25,6 +59,21 @@
   padding-top: calc(var(--nav-height, 3.5rem) + 0.85rem);
 }
 
+/* Navy gradient shows immediately. The photo is attached after first paint. */
+.aee-daily-hero .mkt-photo-hero__photo {
+  border-image-source: none;
+}
+
+.aee-daily-hero.is-photo .mkt-photo-hero__photo {
+  border-image-source: var(--mkt-hero-mobile);
+}
+
+@media (min-width: 768px) {
+  .aee-daily-hero.is-photo .mkt-photo-hero__photo {
+    border-image-source: var(--mkt-hero-desktop);
+  }
+}
+
 .aee-daily-hero__card {
   background: rgba(7, 18, 32, 0.88);
   color: #f8fafc;
@@ -43,7 +92,7 @@
   margin: 0;
   color: #f8fafc;
   font-size: 0.875rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -90,7 +139,7 @@
 
 .aee-daily-inbox label {
   font-size: 0.9375rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.3;
   color: #0f172a;
 }
@@ -127,7 +176,7 @@
   min-height: 1.25rem;
   margin: 0;
   font-size: 0.875rem;
-  font-weight: 650;
+  font-weight: 600;
   color: #0f766e;
 }
 
