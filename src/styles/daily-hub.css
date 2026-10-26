@@ -15,6 +15,11 @@ body:has(.aee-daily) {
   font-family: var(--font-display), system-ui, sans-serif;
 }
 
+.aee-marketing .aee-daily-hero.mkt-photo-hero h1 {
+  font-size: clamp(1.28rem, 4.4vw, 2.05rem);
+  line-height: 1.12;
+}
+
 .aee-marketing .aee-daily-hero.mkt-photo-hero h1,
 .aee-daily-hero .mkt-photo-hero__sub,
 .aee-daily-hero .mkt-hero-foot,
@@ -48,6 +53,10 @@ body:has(.aee-daily) {
 
 .aee-daily-hero .home-hero__accent {
   color: #5eead4;
+}
+
+.aee-daily-nowrap {
+  white-space: nowrap;
 }
 
 .aee-daily-hero .mkt-photo-hero__copy {
@@ -120,7 +129,9 @@ body:has(.aee-daily) {
   padding: 2.25rem 0 2.5rem;
 }
 
-.aee-daily-band h2 {
+.aee-daily-band h2,
+.aee-daily-q h2,
+.aee-daily-answer h2 {
   margin: 0 0 1rem;
   color: #0f172a;
   font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
@@ -128,6 +139,62 @@ body:has(.aee-daily) {
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
+}
+
+.aee-daily-q h2 {
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+}
+
+.aee-daily-updated,
+.aee-daily-q__stem,
+.aee-daily-q__rationale,
+.aee-daily-q__answer {
+  margin: 0.75rem 0 0;
+  color: #334155;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.aee-daily-q {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.aee-daily-q h3,
+.aee-daily-answer h2 {
+  margin: 1.1rem 0 0;
+  color: #0f172a;
+  font-size: 1.05rem;
+}
+
+.aee-daily-q__options {
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.aee-daily-q__options li {
+  color: #0f172a;
+  line-height: 1.45;
+}
+
+.aee-daily-q__label {
+  font-weight: 700;
+}
+
+.aee-daily-q a,
+.aee-daily-band a {
+  color: #0f766e;
+  font-weight: 700;
+}
+
+.aee-daily-answer {
+  width: min(40rem, 100%);
+  margin: 0 auto 2.5rem;
+  padding: 0 1.25rem;
 }
 
 .aee-daily-inbox {
@@ -300,6 +367,10 @@ body:has(.aee-daily) {
   }
 
   :root:not([data-theme="light"]) .aee-daily-band h2,
+  :root:not([data-theme="light"]) .aee-daily-q h2,
+  :root:not([data-theme="light"]) .aee-daily-q h3,
+  :root:not([data-theme="light"]) .aee-daily-q__options li,
+  :root:not([data-theme="light"]) .aee-daily-answer h2,
   :root:not([data-theme="light"]) .aee-daily-inbox label,
   :root:not([data-theme="light"]) .aee-daily-card,
   :root:not([data-theme="light"]) .aee-daily-card__stem,
@@ -319,6 +390,11 @@ body:has(.aee-daily) {
     border-color: rgba(148, 163, 184, 0.28);
   }
 
+  :root:not([data-theme="light"]) .aee-daily-q {
+    border-top-color: #334155;
+  }
+
+  :root:not([data-theme="light"]) .aee-daily-q a,
   :root:not([data-theme="light"]) .aee-daily-card__exam,
   :root:not([data-theme="light"]) .aee-daily-card__cta,
   :root:not([data-theme="light"]) .aee-qotd-page .aee-qotd__eyebrow,
@@ -326,6 +402,10 @@ body:has(.aee-daily) {
     color: #5eead4;
   }
 
+  :root:not([data-theme="light"]) .aee-daily-q__stem,
+  :root:not([data-theme="light"]) .aee-daily-q__rationale,
+  :root:not([data-theme="light"]) .aee-daily-q__answer,
+  :root:not([data-theme="light"]) .aee-daily-updated,
   :root:not([data-theme="light"]) .aee-qotd-page .aee-qotd__lede,
   :root:not([data-theme="light"]) .aee-qotd-page .aee-qotd__date,
   :root:not([data-theme="light"]) .aee-qotd-page .aee-qotd__cta-meta {
@@ -341,6 +421,10 @@ body:has(.aee-daily) {
 }
 
 [data-theme="dark"] .aee-daily-band h2,
+[data-theme="dark"] .aee-daily-q h2,
+[data-theme="dark"] .aee-daily-q h3,
+[data-theme="dark"] .aee-daily-q__options li,
+[data-theme="dark"] .aee-daily-answer h2,
 [data-theme="dark"] .aee-daily-inbox label,
 [data-theme="dark"] .aee-daily-card,
 [data-theme="dark"] .aee-daily-card__stem,
@@ -360,6 +444,18 @@ body:has(.aee-daily) {
   border-color: rgba(148, 163, 184, 0.28);
 }
 
+[data-theme="dark"] .aee-daily-q__stem,
+[data-theme="dark"] .aee-daily-q__rationale,
+[data-theme="dark"] .aee-daily-q__answer,
+[data-theme="dark"] .aee-daily-updated {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .aee-daily-q {
+  border-top-color: #334155;
+}
+
+[data-theme="dark"] .aee-daily-q a,
 [data-theme="dark"] .aee-daily-card__exam,
 [data-theme="dark"] .aee-daily-card__cta {
   color: #5eead4;

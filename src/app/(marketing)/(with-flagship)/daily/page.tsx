@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DailyInboxCapture } from "@/components/marketing/DailyInboxCapture";
+import { DailyQuestionArticle } from "@/components/marketing/DailyQuestionArticle";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { MarketingPhotoHero, MarketingPhotoHeroCopy } from "@/components/marketing/MarketingPhotoHero";
 import { LandingCta } from "@/components/landing/LandingCta";
 import {
@@ -14,43 +16,40 @@ import {
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { landingTrialHrefForExam } from "@/lib/landing/content";
 import {
-  DAILY_HERO_HEADLINE,
-  DAILY_OG_DESCRIPTION,
+  DAILY_HERO_LEAD,
   DAILY_PAGE_DESCRIPTION,
   DAILY_PAGE_TITLE,
 } from "@/lib/marketing/daily-copy";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
 import { getSiteUrl } from "@/lib/seo";
-import { SITE_NAME } from "@/lib/site";
+import { buildDailyHubJsonLd } from "@/lib/seo/daily-jsonld";
 import { landingOgImage } from "@/lib/seo/landing-og-image";
-import type { ExamSlug } from "@/types/edtech";
 
 /**
  * Today’s six-board set follows the America/Chicago calendar date. A one-minute
  * cache keeps the hub off the dynamic path; it rotates within a minute of
  * midnight Central instead of waiting for the next deploy.
- * Question rich-result markup is omitted: it requires the accepted answer,
- * which would publish the key in the HTML.
  */
 export const revalidate = 60;
 
 const ogImage = landingOgImage("daily");
+const dailyCanonical = `${getSiteUrl()}/daily`;
 
 export const metadata: Metadata = {
-  title: DAILY_PAGE_TITLE,
+  title: { absolute: DAILY_PAGE_TITLE },
   description: DAILY_PAGE_DESCRIPTION,
-  alternates: { canonical: `${getSiteUrl()}/daily` },
+  alternates: { canonical: dailyCanonical },
   openGraph: {
-    title: `${DAILY_PAGE_TITLE} | ${SITE_NAME}`,
-    description: DAILY_OG_DESCRIPTION,
-    url: `${getSiteUrl()}/daily`,
+    title: DAILY_PAGE_TITLE,
+    description: DAILY_PAGE_DESCRIPTION,
+    url: dailyCanonical,
     type: "website",
     images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${DAILY_PAGE_TITLE} | ${SITE_NAME}`,
-    description: DAILY_OG_DESCRIPTION,
+    title: DAILY_PAGE_TITLE,
+    description: DAILY_PAGE_DESCRIPTION,
     images: [ogImage.url],
   },
 };
@@ -61,15 +60,15 @@ export default function DailyHubPage() {
   const featuredItem = featured ? getQotdForExam(featured, today) : null;
   if (!featured || !featuredItem) notFound();
   const featuredName = EXAM_CATALOG[featured].shortName;
-  const answerHref = qotdPath(featured, today);
-  const headlineBreak = DAILY_HERO_HEADLINE.lastIndexOf(", ");
-  const headlineLead =
-    headlineBreak === -1 ? DAILY_HERO_HEADLINE : DAILY_HERO_HEADLINE.slice(0, headlineBreak + 1);
-  const headlineAccent =
-    headlineBreak === -1 ? "" : DAILY_HERO_HEADLINE.slice(headlineBreak + 2);
+  const answerHref = qotdPath(featured);
+  const questions = EXAM_SLUGS.flatMap((slug) => {
+    const item = getQotdForExam(slug, today);
+    return item ? [item] : [];
+  });
 
   return (
     <div className="aee-daily aee-qotd-hub">
+      <JsonLdScript data={buildDailyHubJsonLd(questions, today)} />
       <MarketingPhotoHero
         heroId="daily"
         className="aee-daily-hero"
@@ -92,12 +91,14 @@ export default function DailyHubPage() {
       >
         <MarketingPhotoHeroCopy
           headingId="daily-hero-heading"
-          title={
-            <>
-              <span className="home-hero__line">{headlineLead} </span>
-              <span className="home-hero__accent">{headlineAccent}</span>
-            </>
-          }
+            title={
+              <>
+                <span className="home-hero__line">{DAILY_HERO_LEAD}</span>
+                <span className="home-hero__accent">
+                  USMLE, FNP, <span className="aee-daily-nowrap">NPTE-PT</span> practice question
+                </span>
+              </>
+            }
           subline={`${formatQotdDisplayDate(today)} · Six boards, no account to answer.`}
           actions={
             <div className="mkt-photo-hero__actions">
@@ -130,28 +131,13 @@ export default function DailyHubPage() {
         </div>
       </section>
 
-      <section className="aee-daily-band aee-daily-band--cards" aria-labelledby="all-boards-qotd">
+      <section className="aee-daily-band aee-daily-band--cards" aria-labelledby="daily-questions-heading">
         <div className="aee-daily-band__inner">
-          <h2 id="all-boards-qotd">All six boards today</h2>
-          <ul className="aee-daily-grid">
-            {EXAM_SLUGS.map((slug: ExamSlug) => {
-              const item = getQotdForExam(slug, today);
-              if (!item) return null;
-              return (
-                <li key={slug}>
-                  <Link
-                    href={qotdPath(slug, today)}
-                    prefetch={false}
-                    className="aee-daily-card"
-                  >
-                    <span className="aee-daily-card__exam">{EXAM_CATALOG[slug].shortName}</span>
-                    <span className="aee-daily-card__stem">{item.stem}</span>
-                    <span className="aee-daily-card__cta">Answer →</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <h2 id="daily-questions-heading">Today’s questions and rationales</h2>
+          <p className="aee-daily-updated">Updated {formatQotdDisplayDate(today)}.</p>
+          {questions.map((item) => (
+            <DailyQuestionArticle key={item.examSlug} item={item} />
+          ))}
         </div>
       </section>
     </div>

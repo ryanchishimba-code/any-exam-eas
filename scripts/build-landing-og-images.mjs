@@ -50,7 +50,7 @@ const PAGES = [
   {
     id: "daily",
     focalY: 0.42,
-    lines: ["A free board question,", "every day."],
+    lines: ["Free daily NCLEX, NAPLEX,", "PANCE, USMLE, FNP, NPTE-PT", "practice question"],
   },
 ];
 

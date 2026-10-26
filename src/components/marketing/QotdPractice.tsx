@@ -66,7 +66,7 @@ export function QotdPractice({
     <div className="aee-qotd">
       <header className="aee-qotd__hero">
         <p className="aee-qotd__eyebrow">AnyExamEasy · Question of the Day</p>
-        <h1 className="aee-qotd__title">
+        <p>
           <span
             className="aee-qotd__exam-chip"
             style={{
@@ -76,9 +76,9 @@ export function QotdPractice({
             }}
           >
             {item.examLabel}
-          </span>{" "}
-          practice question
-        </h1>
+          </span>
+        </p>
+        <h1 className="aee-qotd__title">Free daily {examName} practice question</h1>
         <p className="aee-qotd__date">{formatQotdDisplayDate(dateIso)}</p>
         <p className="aee-qotd__lede">
           Answer free — no account needed. Then try the full {examName} bank.
