@@ -36,9 +36,19 @@ async function encode(input, width, outBase) {
   const webpPath = `${outBase}.webp`;
   const avifPath = `${outBase}.avif`;
   const webpQ = 80;
-  const avifQ = 80;
-  await pipeline.clone().webp({ quality: webpQ, effort: 5 }).toFile(webpPath);
-  await pipeline.clone().avif({ quality: avifQ, effort: 6, chromaSubsampling: "4:2:0" }).toFile(avifPath);
+  let avifQ = 60;
+  const avifCap = width === WIDTH.x2 ? 15 * 1024 : 40 * 1024;
+  if (process.env.AVIF_ONLY !== "1") {
+    await pipeline.clone().webp({ quality: webpQ, effort: 5 }).toFile(webpPath);
+  }
+  for (let attempt = 0; attempt < 4; attempt++) {
+    await pipeline
+      .clone()
+      .avif({ quality: avifQ, effort: 6, chromaSubsampling: "4:2:0" })
+      .toFile(avifPath);
+    if (fs.statSync(avifPath).size <= avifCap || avifQ <= 55) break;
+    avifQ -= 2;
+  }
 
   const meta = await sharp(avifPath).metadata();
   return {

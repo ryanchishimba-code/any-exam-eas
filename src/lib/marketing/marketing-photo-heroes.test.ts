@@ -8,7 +8,6 @@ import {
   MARKETING_PHOTO_HERO_IMAGE_ASPECT,
   MARKETING_PHOTO_HERO_MOBILE_FOCAL,
   marketingPhotoHeroMobileImageSet,
-  marketingPhotoHeroMobilePreload,
   marketingPhotoHeroSlice,
   marketingPhotoHeroSrc,
   type MarketingPhotoHeroId,
@@ -27,13 +26,7 @@ describe("marketingPhotoHeroSrc", () => {
     );
   });
 
-  it("points a phone preload at the native 720 frame, and 1080 only at DPR 3", () => {
-    const [dpr2, dpr3] = marketingPhotoHeroMobilePreload("nclex");
-    expect(dpr2.media).toBe("(max-width: 767px) and (max-resolution: 2.5dppx)");
-    expect(dpr2.href).toBe("/images/marketing/heroes/nclex-mobile-2x.avif");
-    expect(dpr2.imageSrcSet).toBe("/images/marketing/heroes/nclex-mobile-2x.avif 720w");
-    expect(dpr3.href).toBe("/images/marketing/heroes/nclex-mobile-3x.avif");
-    expect(dpr3.media).toContain("min-resolution: 2.51dppx");
+  it("serves the native 720 frame at 2x and the 1080 frame only at 3x", () => {
     const set = marketingPhotoHeroMobileImageSet("home");
     expect(set).toContain('url("/images/marketing/heroes/home-mobile-2x.avif") type("image/avif") 2x');
     expect(set).toContain('url("/images/marketing/heroes/home-mobile-3x.avif") type("image/avif") 3x');

@@ -6,7 +6,6 @@ import {
   MARKETING_PHOTO_HERO_MOBILE_FOCAL,
   MARKETING_PHOTO_HEROES,
   marketingPhotoHeroMobileImageSet,
-  marketingPhotoHeroMobilePreload,
   marketingPhotoHeroSlice,
   marketingPhotoHeroSrc,
 } from "@/lib/marketing/marketing-photo-heroes";
@@ -67,7 +66,6 @@ export function MarketingPhotoHero({
   const config = MARKETING_PHOTO_HEROES[heroId];
   const examAttr = heroId === "home" ? undefined : heroId;
   const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
-  const preloads = marketingPhotoHeroMobilePreload(heroId);
 
   return (
     <section
@@ -93,19 +91,11 @@ export function MarketingPhotoHero({
         } as CSSProperties
       }
     >
-      {preloads.map((preload) => (
-        <link
-          key={preload.href}
-          rel="preload"
-          as="image"
-          href={preload.href}
-          type={preload.type}
-          media={preload.media}
-          fetchPriority="high"
-          imageSrcSet={preload.imageSrcSet}
-          imageSizes={preload.imageSizes}
-        />
-      ))}
+      <style href="mkt-photo-hero-critical" precedence="default">{`
+        .mkt-photo-hero{color:#f8fafc;background:#071422;font-family:var(--font-display),var(--font-body),system-ui,sans-serif;font-synthesis:none}
+        .mkt-photo-hero h1{margin:0;color:#fff;font-weight:800;font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.05;letter-spacing:-0.035em}
+        .mkt-photo-hero .mkt-photo-hero__sub{margin:0;color:#e2e8f0;font-weight:600;font-size:1.0625rem;line-height:1.45;letter-spacing:-0.011em}
+      `}</style>
       <div className="mkt-photo-hero__photo" aria-hidden="true" />
       <div className="mkt-photo-hero__scrim" aria-hidden="true" />
       <div className="mkt-photo-hero__inner">{children}</div>

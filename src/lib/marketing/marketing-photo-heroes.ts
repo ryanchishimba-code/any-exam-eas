@@ -94,27 +94,6 @@ export function marketingPhotoHeroMobileImageSet(id: MarketingPhotoHeroId): stri
   ].join(", ")})`;
 }
 
-export function marketingPhotoHeroMobilePreload(id: MarketingPhotoHeroId) {
-  const avif2 = marketingPhotoHeroSrc(id, "mobile2x", "avif");
-  const avif3 = marketingPhotoHeroSrc(id, "mobile3x", "avif");
-  return [
-    {
-      href: avif2,
-      imageSrcSet: `${avif2} ${MARKETING_PHOTO_HERO_MOBILE_WIDTH.x2}w`,
-      imageSizes: "100vw",
-      type: "image/avif" as const,
-      media: `${MARKETING_PHOTO_HERO_MOBILE_MEDIA} and (max-resolution: 2.5dppx)`,
-    },
-    {
-      href: avif3,
-      imageSrcSet: `${avif3} ${MARKETING_PHOTO_HERO_MOBILE_WIDTH.x3}w`,
-      imageSizes: "100vw",
-      type: "image/avif" as const,
-      media: `${MARKETING_PHOTO_HERO_MOBILE_MEDIA} and (min-resolution: 2.51dppx)`,
-    },
-  ];
-}
-
 /**
  * First-screen boxes the cover crop is built for.
  * Phone ~390×780 and desktop 1280×800 match a viewport-tall hero (100svh).

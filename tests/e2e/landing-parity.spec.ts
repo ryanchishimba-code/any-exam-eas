@@ -224,8 +224,7 @@ function expectPageIdentity(entry: Landing, shot: Shot) {
   expect(shot.primaryHref, entry.path).toBe(href);
   expect(shot.navHref, entry.path).toBe(href);
   expect(shot.secondaryHref, entry.path).toBe(entry.see);
-  expect(shot.preload, entry.path).toContain(`/images/marketing/heroes/${entry.hero}-mobile-2x.avif`);
-  expect(shot.preloadMedia, entry.path).toBe("(max-width: 767px) and (max-resolution: 2.5dppx)");
+  expect(shot.preload, entry.path).toBeNull();
   expect(shot.border ?? "", entry.path).toContain(`/images/marketing/heroes/${entry.hero}-`);
   expect(shot.photoH, entry.path).toBe(shot.svh);
   expect(shot.sectionH, entry.path).toBe(shot.svh);

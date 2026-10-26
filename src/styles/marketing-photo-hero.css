@@ -74,11 +74,11 @@
 .mkt-photo-hero__trail {
   position: relative;
   z-index: 2;
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
 }
 
 .mkt-photo-hero__inner {
-  width: min(1120px, calc(100% - 2rem));
-  margin-inline: auto;
   padding: calc(var(--nav-height, 3.5rem) + 1.75rem) 0 2.75rem;
   min-width: 0;
 }
