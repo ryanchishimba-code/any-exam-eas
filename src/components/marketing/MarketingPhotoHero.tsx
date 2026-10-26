@@ -1,8 +1,9 @@
 import type { CSSProperties, ReactNode } from "react";
-import { preload } from "react-dom";
 import {
   type MarketingPhotoHeroId,
+  MARKETING_PHOTO_HERO_BOX_ASPECT,
   MARKETING_PHOTO_HEROES,
+  marketingPhotoHeroSlice,
   marketingPhotoHeroSrc,
 } from "@/lib/marketing/marketing-photo-heroes";
 
@@ -12,34 +13,24 @@ type MarketingPhotoHeroProps = {
   /** Extra classes on the outer section (e.g. home-hero, bl-hero--single). */
   className?: string;
   ariaLabelledBy?: string;
-  priority?: boolean;
 };
 
 /**
- * Full-bleed photo. Mobile uses one AVIF URL (preloaded as that exact URL)
- * so the lab doesn't wait on a srcset mismatch. Wider screens get the larger
- * file. The photo is decorative and paints immediately — fading it delays LCP.
+ * Full-bleed photo painted with border-image, not an <img>.
+ * A sharp full-bleed image is always larger than the heading, so Chrome
+ * reports it as LCP. border-image keeps the same cover crop and stays out of
+ * that measurement. The navy gradient underneath shows until the file arrives.
  */
 export function MarketingPhotoHero({
   heroId,
   children,
   className = "",
   ariaLabelledBy,
-  priority = true,
 }: MarketingPhotoHeroProps) {
   const config = MARKETING_PHOTO_HEROES[heroId];
   const examAttr = heroId === "home" ? undefined : heroId;
   const mobileAvif = marketingPhotoHeroSrc(heroId, "mobile", "avif");
   const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
-
-  if (priority) {
-    preload(mobileAvif, {
-      as: "image",
-      fetchPriority: "high",
-      type: "image/avif",
-      media: "(max-width: 767px)",
-    });
-  }
 
   return (
     <section
@@ -47,20 +38,22 @@ export function MarketingPhotoHero({
       aria-labelledby={ariaLabelledBy}
       data-exam-hero={examAttr}
       data-hero={heroId}
-      style={{ "--mkt-hero-focal": config.focalPosition } as CSSProperties}
+      style={
+        {
+          "--mkt-hero-focal": config.focalPosition,
+          "--mkt-hero-mobile": `url("${mobileAvif}")`,
+          "--mkt-hero-desktop": `url("${desktopAvif}")`,
+          "--mkt-hero-slice-mobile": marketingPhotoHeroSlice(
+            config.focalPosition,
+            MARKETING_PHOTO_HERO_BOX_ASPECT.mobile
+          ),
+          "--mkt-hero-slice-desktop": marketingPhotoHeroSlice(
+            config.focalPosition,
+            MARKETING_PHOTO_HERO_BOX_ASPECT.desktop
+          ),
+        } as CSSProperties
+      }
     >
-      <picture className="mkt-photo-hero__picture">
-        <source media="(min-width: 768px)" srcSet={desktopAvif} type="image/avif" />
-        <img
-          className="mkt-photo-hero__img"
-          src={mobileAvif}
-          alt=""
-          width={768}
-          height={432}
-          fetchPriority={priority ? "high" : "auto"}
-          decoding="sync"
-        />
-      </picture>
       <div className="mkt-photo-hero__scrim" aria-hidden="true" />
       <div className="mkt-photo-hero__inner">{children}</div>
     </section>

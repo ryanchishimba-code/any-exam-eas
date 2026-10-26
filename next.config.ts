@@ -194,25 +194,6 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=86400" },
         ],
       },
-      ...[
-        ["/", "home"],
-        ["/nclex", "nclex"],
-        ["/naplex", "naplex"],
-        ["/usmle", "usmle"],
-        ["/pance", "pance"],
-        ["/aanp-fnp", "aanp-fnp"],
-        ["/npte-pt", "npte-pt"],
-      ].map(([source, id]) => ({
-        source,
-        headers: [
-          {
-            key: "Link",
-            // Starts the mobile hero fetch at the response headers, before HTML parse.
-            // media keeps desktop from downloading the mobile file.
-            value: `</images/marketing/heroes/${id}-mobile.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high; media="(max-width: 767px)"`,
-          },
-        ],
-      })),
       {
         source: "/:path*",
         headers: [

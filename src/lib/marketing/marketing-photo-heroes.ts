@@ -58,3 +58,28 @@ export function marketingPhotoHeroSrc(
   const base = MARKETING_PHOTO_HEROES[id].basePath;
   return `${base}-${variant}.${format}`;
 }
+
+/** Measured hero boxes: phone 390×704, desktop 1280×736. All hero files are 16:9. */
+export const MARKETING_PHOTO_HERO_BOX_ASPECT = {
+  mobile: 390 / 704,
+  desktop: 1280 / 736,
+} as const;
+
+const HERO_IMAGE_ASPECT = 16 / 9;
+
+/**
+ * border-image-slice that matches object-fit: cover + object-position for a box.
+ * The `fill` keyword paints the crop in the hero without making an <img> the LCP element.
+ */
+export function marketingPhotoHeroSlice(focalPosition: string, boxAspect: number): string {
+  const [rawX = "50%", rawY = "50%"] = focalPosition.split(/\s+/);
+  const posX = Number.parseFloat(rawX) / 100;
+  const posY = Number.parseFloat(rawY) / 100;
+  const pct = (n: number) => `${(Math.min(1, Math.max(0, n)) * 100).toFixed(2)}%`;
+  if (HERO_IMAGE_ASPECT > boxAspect) {
+    const crop = 1 - boxAspect / HERO_IMAGE_ASPECT;
+    return `0 ${pct(crop * (1 - posX))} 0 ${pct(crop * posX)} fill`;
+  }
+  const crop = 1 - HERO_IMAGE_ASPECT / boxAspect;
+  return `${pct(crop * posY)} 0 ${pct(crop * (1 - posY))} 0 fill`;
+}

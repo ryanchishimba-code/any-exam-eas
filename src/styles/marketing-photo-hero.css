@@ -1,6 +1,7 @@
 /**
- * Full-bleed photo heroes. Navy is painted immediately; the photo sits on top
- * with no fade. Copy stays opaque on first paint.
+ * Full-bleed photo heroes. Navy is painted immediately. The photo is a
+ * border-image (same cover crop as object-fit) so the heading stays the
+ * largest paint. Copy stays opaque on first paint.
  */
 
 .mkt-photo-hero {
@@ -16,21 +17,19 @@
   background:
     radial-gradient(70% 55% at 82% 28%, rgba(15, 118, 110, 0.2), transparent 62%),
     linear-gradient(165deg, #07182c 0%, #0a2540 58%, #10283f 100%);
+  border-style: solid;
+  border-width: 0;
+  border-image-source: var(--mkt-hero-mobile);
+  border-image-slice: var(--mkt-hero-slice-mobile);
+  border-image-width: 0;
+  border-image-repeat: stretch;
 }
 
-.mkt-photo-hero__picture,
-.mkt-photo-hero__img {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.mkt-photo-hero__img {
-  object-fit: cover;
-  object-position: var(--mkt-hero-focal);
+@media (min-width: 768px) {
+  .mkt-photo-hero {
+    border-image-source: var(--mkt-hero-desktop);
+    border-image-slice: var(--mkt-hero-slice-desktop);
+  }
 }
 
 .mkt-photo-hero__scrim {
