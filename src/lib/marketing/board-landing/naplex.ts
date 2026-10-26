@@ -30,14 +30,8 @@ import { clinicalReviewerForExam } from "@/lib/marketing/company";
 import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { qotdPath } from "@/lib/demo/qotd-public";
 import { ROUTES } from "@/lib/routes";
-import {
-  DEFAULT_OG_IMAGE_HEIGHT,
-  DEFAULT_OG_IMAGE_PATH,
-  DEFAULT_OG_IMAGE_WIDTH,
-  absoluteUrl,
-  dedupeKeywords,
-  getSiteUrl,
-} from "@/lib/seo";
+import { absoluteUrl, dedupeKeywords, getSiteUrl } from "@/lib/seo";
+import { landingOgImage } from "@/lib/seo/landing-og-image";
 import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
 import {
   BOARD_LANDING_CONTENT_YEAR,
@@ -93,8 +87,7 @@ export function buildNaplexLandingMetadata(): Metadata {
   const title = naplexMetaTitle();
   const description = naplexMetaDescription();
   const path = "/naplex";
-  const image = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
-  const imageAlt = "AnyExamEasy NAPLEX practice questions and pharmacy qbank";
+  const image = landingOgImage("naplex");
   return {
     title: { absolute: title },
     description,
@@ -116,13 +109,13 @@ export function buildNaplexLandingMetadata(): Metadata {
       siteName: SITE_NAME,
       title,
       description,
-      images: [{ url: image, width: DEFAULT_OG_IMAGE_WIDTH, height: DEFAULT_OG_IMAGE_HEIGHT, alt: imageAlt }],
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      images: [image.url],
     },
     robots: {
       index: true,

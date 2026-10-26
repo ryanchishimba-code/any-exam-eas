@@ -13,6 +13,7 @@ import { hubLiveBarChartHeading } from "@/lib/marketing/board-landing/hub-live-b
 import type { HubBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
+import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
 
 export function HubBoardLanding({
@@ -23,6 +24,7 @@ export function HubBoardLanding({
   freeQuizBoard: FreeQuizBoardSlug;
 }) {
   const barHeadingId = `hub-bar-${model.layout.replace(/[^a-z0-9]/g, "-")}`;
+  const stories = storiesBelowHero(model.stories, model.heroTestimonial?.quote);
 
   return (
     <div className={`board-landing board-landing--tesla board-landing--board-flow ${model.themeClass}`}>
@@ -33,19 +35,20 @@ export function HubBoardLanding({
         trialHref={model.trialHref}
         heroCtaName={model.heroCtaName}
         heroCtaLocation={model.heroCtaLocation}
+        testimonial={model.heroTestimonial}
+        proofFacts={boardHeroProofFacts(model.heroOffer)}
+        boardName={model.boardName}
         trail={
           <>
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
       </div>
 
-      <div className="bl-band bl-band--alt">
-        <BoardLandingTestimonials
-          stories={model.stories}
-          prominent
-          heading={model.testimonialsHeading}
-        />
-      </div>
+      {stories.length > 0 ? (
+        <div className="bl-band bl-band--alt">
+          <BoardLandingTestimonials stories={stories} prominent heading={model.testimonialsHeading} />
+        </div>
+      ) : null}
 
       <div className="bl-band bl-charts">
         <HubBoardDonutSection {...model.hubDonut} />

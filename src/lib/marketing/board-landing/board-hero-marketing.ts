@@ -16,6 +16,8 @@ export const BOARD_LANDING_HERO_QUIZ_HREF = "#quiz";
 export type BoardHeroTestimonial = {
   name: string;
   quote: string;
+  /** Board label shown beside the name. */
+  board: string;
 };
 
 export type BoardHeroMarketingCopy = {
@@ -31,6 +33,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
     testimonial: {
       name: "Nathan C.",
       quote: "The best questions I've found for NCLEX prep.",
+      board: "NCLEX-RN",
     },
   },
   naplex: {
@@ -39,6 +42,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
     testimonial: {
       name: "Frank C.",
       quote: "The drug cards were a game changer.",
+      board: "NAPLEX",
     },
   },
   usmle: {
@@ -52,6 +56,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
     testimonial: {
       name: "Mag B.",
       quote: "I couldn't believe the price for everything I got.",
+      board: "AANP FNP",
     },
   },
   pance: {
@@ -61,6 +66,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
       name: "Nick B.",
       quote:
         "With everything premium becoming expensive, it's a welcome sight to see premium material.",
+      board: "PANCE",
     },
   },
   "npte-pt": {
@@ -72,6 +78,28 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
 
 export function boardHeroMarketingCopy(slug: BoardSlug): BoardHeroMarketingCopy {
   return BOARD_HERO_MARKETING[slug];
+}
+
+/** Drop the hero quote from the band under the photo so it is not shown twice. */
+export function storiesBelowHero<T extends { quote: string }>(
+  stories: readonly T[],
+  heroQuote: string | null | undefined
+): T[] {
+  if (!heroQuote) return [...stories];
+  return stories.filter((story) => story.quote !== heroQuote);
+}
+
+/** Factual stand-in for boards with no consented review. Omits a count when it is unknown. */
+export function boardHeroProofFacts(
+  offer: { liveQuestions: string | null; proPrice: string } | null | undefined
+): string[] {
+  const facts: string[] = [];
+  const count = offer?.liveQuestions?.trim();
+  if (count) facts.push(`${count} questions`);
+  facts.push("Cited rationales");
+  const price = offer?.proPrice?.trim();
+  if (price) facts.push(price);
+  return facts;
 }
 
 type BoardHeroModelFields = {

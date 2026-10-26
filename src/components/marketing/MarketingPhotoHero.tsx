@@ -13,6 +13,8 @@ import {
 type MarketingPhotoHeroProps = {
   heroId: MarketingPhotoHeroId;
   children: ReactNode;
+  /** Anchored to the bottom of the viewport-tall photo. Board hubs only. */
+  foot?: ReactNode;
   /** Content after the hero copy that should still sit on the photo. */
   trail?: ReactNode;
   /** Extra classes on the outer section (home keeps home-hero for existing hooks). */
@@ -59,6 +61,7 @@ export function MarketingPhotoHeroCopy({
 export function MarketingPhotoHero({
   heroId,
   children,
+  foot,
   trail,
   className = "",
   ariaLabelledBy,
@@ -95,10 +98,19 @@ export function MarketingPhotoHero({
         .mkt-photo-hero{color:#f8fafc;background:#071422;font-family:var(--font-display),var(--font-body),system-ui,sans-serif;font-synthesis:none}
         .mkt-photo-hero h1{margin:0;color:#fff;font-weight:800;font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.05;letter-spacing:-0.035em}
         .mkt-photo-hero .mkt-photo-hero__sub{margin:0;color:#e2e8f0;font-weight:600;font-size:1.0625rem;line-height:1.45;letter-spacing:-0.011em}
+        .mkt-hero-foot{position:absolute;z-index:3;left:0;right:0;bottom:1rem;height:9.75rem}
+        .mkt-hero-foot__slot{width:min(1120px,calc(100% - 2rem));height:100%;margin-inline:auto}
+        .mkt-hero-foot__card{box-sizing:border-box;height:100%;max-width:40rem;overflow:hidden}
+        .mkt-photo-hero:has(.mkt-hero-foot) .mkt-photo-hero__inner{padding-bottom:calc(9.75rem + 1.35rem)}
+        @media (min-width:768px){
+          .mkt-hero-foot{height:8rem;bottom:1.25rem}
+          .mkt-photo-hero:has(.mkt-hero-foot) .mkt-photo-hero__inner{padding-bottom:calc(8rem + 1.5rem)}
+        }
       `}</style>
       <div className="mkt-photo-hero__photo" aria-hidden="true" />
       <div className="mkt-photo-hero__scrim" aria-hidden="true" />
       <div className="mkt-photo-hero__inner">{children}</div>
+      {foot}
       {trail ? <div className="mkt-photo-hero__trail">{trail}</div> : null}
     </section>
   );
