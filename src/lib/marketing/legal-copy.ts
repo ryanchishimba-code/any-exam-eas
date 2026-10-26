@@ -86,7 +86,7 @@ export function requestClientIp(req: Request): string | null {
 }
 
 /** Home hero H1. No outcome promise. */
-export const HOME_PRACTICE_HEADLINE = `Board prep for six exams, one plan at ${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo.`;
+export const HOME_PRACTICE_HEADLINE = `Six board exams. One plan at ${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo.`;
 
 /**
  * Home hero subline under the H1. Uses the same floored total as metadata when provided.

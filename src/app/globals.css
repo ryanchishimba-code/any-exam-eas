@@ -2298,6 +2298,12 @@ body {
   transition: background 0.2s, opacity 0.2s;
 }
 
+@media (min-width: 1024px) {
+  .aee-nav-menu-btn {
+    display: none;
+  }
+}
+
 .aee-nav-menu-btn:hover {
   background: rgba(0, 0, 0, 0.04);
   opacity: 1;
@@ -3621,6 +3627,77 @@ body {
     animation: none;
     transition: none;
   }
+}
+
+/* Marketing landings at the top: the logo sits on the photo. No bar, blur, or box. */
+.aee-nav.apple-glass.aee-nav--over-photo,
+:root:not([data-theme="light"]) .aee-nav.apple-glass.aee-nav--over-photo,
+[data-theme="dark"] .aee-nav.apple-glass.aee-nav--over-photo,
+[data-theme="light"] .aee-nav.apple-glass.aee-nav--over-photo {
+  background: transparent;
+  background-color: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.aee-nav.aee-nav--over-photo .aee-nav-mark__cap {
+  fill: #ffffff;
+}
+
+.aee-nav.aee-nav--over-photo .aee-nav-mark__arch,
+.aee-nav.aee-nav--over-photo .aee-nav-mark__check {
+  stroke: #ffffff;
+}
+
+.aee-nav.aee-nav--over-photo .aee-nav-wordmark__text,
+.aee-nav.aee-nav--over-photo .aee-nav-link,
+.aee-nav.aee-nav--over-photo .aee-nav-link:hover,
+.aee-nav.aee-nav--over-photo .aee-nav-link--active,
+.aee-nav.aee-nav--over-photo .aee-nav-menu-btn,
+.aee-nav.aee-nav--over-photo .aee-nav-actions > button {
+  color: #ffffff;
+}
+
+.aee-nav.aee-nav--over-photo .aee-nav-link--active {
+  text-decoration-color: #99f6e4;
+}
+
+.aee-nav.aee-nav--over-photo .aee-nav-menu-btn:hover,
+.aee-nav.aee-nav--over-photo .aee-nav-actions > button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.aee-nav.aee-nav--over-photo .aee-nav-login,
+:root:not([data-theme="light"]) .aee-nav.aee-nav--over-photo .aee-nav-login,
+[data-theme="dark"] .aee-nav.aee-nav--over-photo .aee-nav-login {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: none;
+}
+
+.aee-nav.aee-nav--over-photo .aee-nav-login:hover,
+:root:not([data-theme="light"]) .aee-nav.aee-nav--over-photo .aee-nav-login:hover,
+[data-theme="dark"] .aee-nav.aee-nav--over-photo .aee-nav-login:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.aee-nav-fallback--over-photo {
+  background: transparent;
+  border-bottom: 0;
+}
+
+.aee-nav--landing-minimal .aee-nav-cta {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  min-height: 2.75rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(6, 16, 32, 0.18);
 }
 
 

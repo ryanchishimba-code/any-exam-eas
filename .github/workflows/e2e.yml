@@ -68,3 +68,42 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
+
+  # Public landings only. Does not boot Postgres and does not set the
+  # placeholder DATABASE_URL the app rejects. Browsers install to the default
+  # cache (the chromium job above uses PLAYWRIGHT_BROWSERS_PATH=0).
+  landing-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prisma generate
+        run: npx prisma generate
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Landing parity (Chromium, Firefox, WebKit)
+        env:
+          NEXTAUTH_SECRET: ci-e2e-secret-min-16-chars
+          NEXTAUTH_URL: http://127.0.0.1:3100
+          PLAYWRIGHT_PORT: "3100"
+          CI: "true"
+        run: npx playwright test tests/e2e/landing-parity.spec.ts --project=parity-chromium --project=parity-firefox --project=parity-webkit
+
+      - name: Upload landing parity report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: landing-parity-report
+          path: playwright-report/
+          retention-days: 7

@@ -69,13 +69,13 @@ export default defineConfig({
     {
       name: "chromium",
       dependencies: ["setup"],
-      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /signup-form\.spec\.ts/],
+      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /landing-parity\.spec\.ts/, /signup-form\.spec\.ts/],
       use: { ...devices["Desktop Chrome"] },
     },
     {
       name: "mobile-chrome",
       dependencies: ["setup"],
-      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /signup-form\.spec\.ts/],
+      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /landing-parity\.spec\.ts/, /signup-form\.spec\.ts/],
       use: { ...devices["Pixel 7"] },
     },
     // Public marketing ATF — no auth/DB. Covers 390px overflow + board-hub hero.
@@ -98,6 +98,22 @@ export default defineConfig({
       name: "marketing-mobile",
       testMatch: /landing\.spec\.ts/,
       use: { ...devices["Pixel 7"] },
+    },
+    // Seven marketing landings, no auth. One project per browser engine.
+    {
+      name: "parity-chromium",
+      testMatch: /landing-parity\.spec\.ts/,
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "parity-firefox",
+      testMatch: /landing-parity\.spec\.ts/,
+      use: { ...devices["Desktop Firefox"] },
+    },
+    {
+      name: "parity-webkit",
+      testMatch: /landing-parity\.spec\.ts/,
+      use: { ...devices["Desktop Safari"] },
     },
   ],
   webServer: process.env.PLAYWRIGHT_SKIP_WEBSERVER

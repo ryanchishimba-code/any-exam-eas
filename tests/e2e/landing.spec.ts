@@ -7,7 +7,7 @@ test.describe("Landing page", () => {
 
     await expect(page.locator(".home-hero")).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: /Board prep for six exams, one plan/i })
+      page.getByRole("heading", { name: /Six board exams. One plan/i })
     ).toBeVisible();
     await expect(page.getByRole("link", { name: /start 5-day free trial/i }).first()).toBeVisible();
     await expect(page.getByRole("link", { name: /try a free question/i })).toHaveCount(0);

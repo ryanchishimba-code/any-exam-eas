@@ -24,12 +24,11 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
         photoHeroId="nclex"
         headline={model.h1Lead}
         subline={model.heroWhyUs}
-        testimonial={model.heroTestimonial}
         trialHref={model.trialHref}
         heroCtaName={model.heroCtaName}
         heroCtaLocation={model.heroCtaLocation}
-      />
-
+        trail={
+          <>
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
       </div>
@@ -53,6 +52,9 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
       <div className="bl-band">
         <BoardFreeQuizLazy board="nclex" />
       </div>
+          </>
+        }
+      />
 
       {model.features.length > 0 ? (
         <div className="bl-band">

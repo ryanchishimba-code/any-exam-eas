@@ -143,7 +143,8 @@
 
 .home-hero__proof-quote {
   display: block;
-  font-style: italic;
+  font-style: normal;
+  font-weight: 600;
   color: var(--home-ink);
 }
 
@@ -442,6 +443,22 @@
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
+}
+
+/* The shared photo hero owns the box. The old panel padding must not come back. */
+.home-visual .home-hero.mkt-photo-hero {
+  padding: 0;
+  background: #071422;
+}
+
+/* Homepage button sizing must not override the shared photo-hero CTA. */
+.home-visual .mkt-photo-hero .aee-flagship-cta {
+  min-height: 2.75rem;
+  padding: 0.875rem 1.625rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 .home-hero__note {

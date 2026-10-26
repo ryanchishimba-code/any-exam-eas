@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { LogIn, LogOut, Menu, Shield, X } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { AdminNavLink } from "@/components/navigation/AdminNavLink";
@@ -57,7 +57,17 @@ const MOBILE_MENU_ID = "site-menu";
 export function Navigation() {
   const headerRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
+  const [pastHeroTop, setPastHeroTop] = useState(false);
   const pathname = usePathname();
+  // The header stays mounted across landings. Reset during render so the first
+  // paint of a new page matches a direct load (transparent bar, menu closed)
+  // instead of keeping the previous page's scrolled or open state.
+  const [heroPath, setHeroPath] = useState(pathname);
+  if (pathname !== heroPath) {
+    setHeroPath(pathname);
+    setPastHeroTop(false);
+    if (open) setOpen(false);
+  }
   const { data: session, status } = useSession();
   const { hasPremiumAccess, hasAppAccess, hasStudyAccess, loading: accessLoading } = useUserAccess();
   const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: "/" });
@@ -100,6 +110,17 @@ export function Navigation() {
   }, [closeMobile, pathname]);
 
   useEffect(() => {
+    if (!isMarketingLandingPath(pathname)) {
+      setPastHeroTop(false);
+      return;
+    }
+    const update = () => setPastHeroTop(window.scrollY > 8);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, [pathname]);
+
+  useEffect(() => {
     if (!open) return;
 
     function onKeyDown(event: KeyboardEvent) {
@@ -116,6 +137,15 @@ export function Navigation() {
       if (next) document.dispatchEvent(new CustomEvent("aee:close-menus"));
       return next;
     });
+  }
+
+  function onMenuKeyDown(event: ReactKeyboardEvent<HTMLButtonElement>) {
+    // Enter and Space must open the menu themselves. preventDefault stops the
+    // browser from also synthesizing a click, which would toggle it shut again,
+    // and stops Space from scrolling the page.
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    toggleMobile();
   }
 
   function handleMobileSignOutRequest() {
@@ -137,12 +167,19 @@ export function Navigation() {
     ? landingTrialHrefForExam(examFromPath)
     : LANDING_TRIAL_HREF;
   const landingMinimal = isMarketingLandingPath(pathname);
-  const hideMobileNavTrialCta = landingMinimal && pathname === "/";
+  // Members on the homepage get the study hub instead of the photo hero.
+  // A transparent bar would put white type on that light page.
+  const subscriberHome =
+    pathname === "/" &&
+    isAuthenticated &&
+    !accessLoading &&
+    (hasPremiumAccess || hasAppAccess);
+  const overPhoto = landingMinimal && !subscriberHome && !pastHeroTop && !open;
 
   return (
     <header
       ref={headerRef}
-      className={`aee-nav apple-glass fixed top-0 z-50 w-full${landingMinimal ? " aee-nav--landing-minimal" : ""}${hideMobileNavTrialCta ? " aee-nav--hide-mobile-trial-cta" : ""}`}
+      className={`aee-nav apple-glass fixed top-0 z-50 w-full${landingMinimal ? " aee-nav--landing-minimal" : ""}${overPhoto ? " aee-nav--over-photo" : ""}`}
     >
       <nav className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6" aria-label="Main navigation">
         <BrandLogo
@@ -226,6 +263,7 @@ export function Navigation() {
             type="button"
             className="aee-nav-menu-btn lg:hidden"
             onClick={toggleMobile}
+            onKeyDown={onMenuKeyDown}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls={MOBILE_MENU_ID}

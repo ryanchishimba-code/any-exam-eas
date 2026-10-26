@@ -1,7 +1,11 @@
 /**
- * Build WebP + AVIF hero assets (desktop ~1440w, mobile ~768w) from approved JPGs.
+ * Mobile hero exports from the native 720×1280 (9:16) portraits.
+ * 1x is 360 wide for DPR 1. DPR 2 keeps the full 720×1280 frame.
+ * DPR 3 is a Lanczos 1080-wide enlargement of that same frame.
+ * Every phone file is lightly sharpened. Desktop 1280×720 files stay put.
  * Run: node scripts/optimize-marketing-hero-photos.mjs
  */
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
@@ -10,47 +14,50 @@ const UPLOAD_DIR = process.env.HERO_UPLOAD_DIR ?? "/home/ubuntu/.cursor/projects
 const OUT_DIR = path.join(process.cwd(), "public/images/marketing/heroes");
 
 const HEROES = [
-  { id: "home", file: "hero-home_a4d4.jpg" },
-  { id: "nclex", file: "hero-nclex_3cfd.jpg" },
-  { id: "naplex", file: "hero-naplex_c503.jpg" },
-  { id: "usmle", file: "hero-usmle_f103.jpg" },
-  { id: "pance", file: "hero-pance_c0f7.jpg" },
-  { id: "aanp-fnp", file: "hero-fnp_3f3e.jpg" },
-  { id: "npte-pt", file: "hero-npte_1bc8.jpg" },
+  { id: "home", file: "home-mobile_a73b.jpg" },
+  { id: "nclex", file: "nclex-mobile_5496.jpg" },
+  { id: "naplex", file: "naplex-mobile_617f.jpg" },
+  { id: "usmle", file: "usmle-mobile_ceba.jpg" },
+  { id: "pance", file: "pance-mobile_ab82.jpg" },
+  { id: "aanp-fnp", file: "aanp-fnp-mobile_f7f3.jpg" },
+  { id: "npte-pt", file: "npte-pt-mobile_d1bb.jpg" },
 ];
 
-const VARIANTS = [
-  { suffix: "desktop", width: 1440 },
-  { suffix: "mobile", width: 768 },
-];
+const WIDTH = { x1: 360, x2: 720, x3: 1080 };
 
-async function encodeVariant(input, outBase, width) {
-  const resized = sharp(input).resize({ width, withoutEnlargement: true });
-
+async function encode(input, width, outBase) {
+  const pipeline = sharp(input, { failOn: "none" })
+    .resize({
+      width,
+      kernel: sharp.kernel.lanczos3,
+      withoutEnlargement: width <= WIDTH.x2,
+    })
+    .sharpen({ sigma: 0.8, m1: 1, m2: 0.4 });
   const webpPath = `${outBase}.webp`;
   const avifPath = `${outBase}.avif`;
-
-  let webpQ = 78;
-  let avifQ = 50;
-  for (let attempt = 0; attempt < 6; attempt++) {
-    await resized.clone().webp({ quality: webpQ, effort: 4 }).toFile(webpPath);
-    const webpSize = fs.statSync(webpPath).size;
-    const webpCap = width >= 1200 ? 150 * 1024 : 60 * 1024;
-    if (webpSize <= webpCap || webpQ <= 52) break;
-    webpQ -= 6;
+  const webpQ = 80;
+  let avifQ = 60;
+  const avifCap = width === WIDTH.x2 ? 15 * 1024 : 40 * 1024;
+  if (process.env.AVIF_ONLY !== "1") {
+    await pipeline.clone().webp({ quality: webpQ, effort: 5 }).toFile(webpPath);
+  }
+  for (let attempt = 0; attempt < 4; attempt++) {
+    await pipeline
+      .clone()
+      .avif({ quality: avifQ, effort: 6, chromaSubsampling: "4:2:0" })
+      .toFile(avifPath);
+    if (fs.statSync(avifPath).size <= avifCap || avifQ <= 55) break;
+    avifQ -= 2;
   }
 
-  for (let attempt = 0; attempt < 6; attempt++) {
-    await resized.clone().avif({ quality: avifQ, effort: 4 }).toFile(avifPath);
-    const avifSize = fs.statSync(avifPath).size;
-    const avifCap = width >= 1200 ? 150 * 1024 : 60 * 1024;
-    if (avifSize <= avifCap || avifQ <= 32) break;
-    avifQ -= 5;
-  }
-
+  const meta = await sharp(avifPath).metadata();
   return {
     webp: fs.statSync(webpPath).size,
     avif: fs.statSync(avifPath).size,
+    width: meta.width,
+    height: meta.height,
+    webpQ,
+    avifQ,
   };
 }
 
@@ -59,13 +66,28 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 const report = [];
 for (const hero of HEROES) {
   const input = path.join(UPLOAD_DIR, hero.file);
-  if (!fs.existsSync(input)) {
-    throw new Error(`Missing upload: ${input}`);
+  if (!fs.existsSync(input)) throw new Error(`Missing upload: ${input}`);
+  const source = await sharp(input).metadata();
+  if (source.width !== 720 || source.height !== 1280) {
+    throw new Error(`${hero.file} is ${source.width}x${source.height}, expected 720x1280`);
   }
-  for (const variant of VARIANTS) {
-    const outBase = path.join(OUT_DIR, `${hero.id}-${variant.suffix}`);
-    const sizes = await encodeVariant(input, outBase, variant.width);
-    report.push({ id: hero.id, variant: variant.suffix, ...sizes });
+  const x1 = await encode(input, WIDTH.x1, path.join(OUT_DIR, `${hero.id}-mobile`));
+  const x2 = await encode(input, WIDTH.x2, path.join(OUT_DIR, `${hero.id}-mobile-2x`));
+  const x3 = await encode(input, WIDTH.x3, path.join(OUT_DIR, `${hero.id}-mobile-3x`));
+  report.push({ id: hero.id, variant: "1x", ...x1 });
+  report.push({ id: hero.id, variant: "2x", ...x2 });
+  report.push({ id: hero.id, variant: "3x", ...x3 });
+}
+
+const hashes = new Map();
+for (const hero of HEROES) {
+  for (const name of [`${hero.id}-mobile`, `${hero.id}-mobile-2x`, `${hero.id}-mobile-3x`]) {
+    for (const ext of ["avif", "webp"]) {
+      const file = path.join(OUT_DIR, `${name}.${ext}`);
+      const hash = createHash("sha256").update(fs.readFileSync(file)).digest("hex");
+      if (hashes.has(hash)) throw new Error(`${file} matches ${hashes.get(hash)}`);
+      hashes.set(hash, file);
+    }
   }
 }
 
@@ -73,7 +95,10 @@ console.table(
   report.map((row) => ({
     hero: row.id,
     variant: row.variant,
+    px: `${row.width}x${row.height}`,
     webp_kb: Math.round(row.webp / 1024),
     avif_kb: Math.round(row.avif / 1024),
+    webpQ: row.webpQ,
+    avifQ: row.avifQ,
   }))
 );
