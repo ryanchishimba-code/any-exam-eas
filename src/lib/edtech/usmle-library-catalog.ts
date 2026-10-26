@@ -1,5 +1,10 @@
 import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
 import { getUsmle2026Topic } from "@/lib/exam-prep/usmle/blueprint-topics-2026";
+import { topicsForOrganSystem } from "@/lib/exam-prep/usmle/content-spine";
+import {
+  USMLE_ORGAN_SYSTEMS,
+  type UsmleOrganSystemId,
+} from "@/lib/exam-prep/usmle/official-content-model";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import type { MemoryCard } from "@/lib/library/types";
 import { usmleFieldIdToStepLevel } from "@/lib/exam-prep/usmle/steps";
@@ -121,6 +126,22 @@ export function getUsmleBoardCoverage(
   if (!blueprint) return [];
 
   const topicBySlug = new Map(topics.map((t) => [t.slug, tagUsmleTopicSteps(t)]));
+  const step = resolveUsmleLibraryStep(fieldId);
+  const organSystemIds = new Set<string>(USMLE_ORGAN_SYSTEMS.map((system) => system.id));
+
+  const flagshipBySystem: Record<UsmleOrganSystemId, string[]> = {
+    "human-development": ["pediatrics", "anatomy-embryology"],
+    "blood-lymph-immune": ["hematology-oncology", "microbiology-immunology", "infectious-disease"],
+    "behavioral-nervous": ["neurology-stroke", "psychiatry"],
+    "msk-skin": ["rheumatology", "dermatology-allergic", "anatomy-embryology"],
+    cardiovascular: ["cardiovascular", "acute-coronary-syndrome"],
+    "respiratory-renal": ["pulmonary", "renal-electrolytes", "physiology-systems"],
+    gastrointestinal: ["gastroenterology"],
+    "reproductive-endocrine": ["endocrine-dm", "obstetrics"],
+    multisystem: ["emergency-toxicology", "pharmacology-moa", "pathology-neoplasia"],
+    "biostats-epi": ["biostatistics-epidemiology", "ethics-biostats", "biochemistry-metabolism"],
+    "social-sciences": ["medical-ethics-legal", "ethics-biostats", "ethics-professionalism", "sdoh-health-equity"],
+  };
 
   const categoryTopicMap: Record<string, string[]> = {
     anatomy: ["anatomy-embryology"],
@@ -148,7 +169,16 @@ export function getUsmleBoardCoverage(
   };
 
   return blueprint.categories.map((cat) => {
-    const slugs = categoryTopicMap[cat.id] ?? [];
+    const spineSlugs = organSystemIds.has(cat.id)
+      ? topicsForOrganSystem(cat.id as UsmleOrganSystemId, step).map((node) => node.slug)
+      : [];
+    const slugs = [
+      ...new Set([
+        ...spineSlugs,
+        ...(flagshipBySystem[cat.id as UsmleOrganSystemId] ?? []),
+        ...(categoryTopicMap[cat.id] ?? []),
+      ]),
+    ];
     const matched = slugs.map((s) => topicBySlug.get(s)).filter(Boolean) as HighYieldTopic[];
     const hasDeepDive = matched.some((t) => Boolean(t.reviewModule));
     const subjectIds = cat.subjectIds ?? [];

@@ -506,4 +506,30 @@ export const USMLE_2026_CONTENT_STEP3: Record<string, Usmle2026StudyContent> = {
       "Starting clozapine without baseline ANC and registry enrollment",
     ],
   },
+  "pharmaceutical-ads-abstracts": {
+    overview:
+      "Critically appraise drug advertisements and journal abstracts — a distinct Step 3 item type.",
+    summary:
+      "Drug ad items test whether claims match evidence. Identify study type (often industry-sponsored RCT), primary endpoint, absolute vs relative benefit, exclusion criteria, and conflicts of interest. Relative risk reduction without absolute event rates is a classic trap. Surrogate endpoints (LDL lowering) may not translate to hard outcomes unless the trial was powered for them.\n\nAbstract appraisal: population, intervention, comparator, outcomes, follow-up duration, dropout rate, intention-to-treat analysis, confidence intervals, and clinical vs statistical significance. Case-control studies cannot establish incidence; cross-sectional studies cannot establish temporality. Meta-analyses depend on included trial quality and heterogeneity.\n\nSafety signals: number needed to harm, confidence intervals that include 1.0, and post-marketing surveillance. Boxed warnings and contraindications override marketing language.",
+    keyConcepts: [
+      "Primary vs secondary endpoints in industry trials",
+      "Absolute vs relative risk in drug marketing",
+      "Surrogate vs hard clinical endpoints",
+      "Intention-to-treat analysis preserves randomization",
+      "Confidence intervals vs p-values",
+      "Conflict of interest and funding source appraisal",
+    ],
+    mustKnowFacts: [
+      "Post-hoc subgroup analyses are hypothesis-generating, not confirmatory",
+      "Non-inferiority trials require a pre-specified margin",
+    ],
+    pearls: [
+      "An ad that states a 50% reduction in events still needs the absolute rates before the drug is recommended.",
+      "An abstract whose primary-outcome confidence interval crosses 1.0 is not statistically significant, even when the point estimate favors the drug.",
+    ],
+    pitfalls: [
+      "Treating a surrogate-endpoint improvement as a patient outcome without hard-endpoint data",
+      "Ignoring loss to follow-up and per-protocol-only results",
+    ],
+  },
 };

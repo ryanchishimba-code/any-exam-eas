@@ -17,11 +17,11 @@ jobs:
         env:
           POSTGRES_USER: build
           POSTGRES_PASSWORD: build
-          POSTGRES_DB: build
+          POSTGRES_DB: anyexam_e2e
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U build -d build"
+          --health-cmd "pg_isready -U build -d anyexam_e2e"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -41,20 +41,24 @@ jobs:
 
       - name: Prepare database schema
         env:
-          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/build
+          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/anyexam_e2e
         run: npx prisma db push
 
       - name: Seed dev user
         env:
-          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/build
+          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/anyexam_e2e
         run: npm run db:seed-user
 
       - name: Install Playwright browsers
+        env:
+          # test:e2e:chromium sets PLAYWRIGHT_BROWSERS_PATH=0, so the binary
+          # must land in node_modules/playwright-core/.local-browsers.
+          PLAYWRIGHT_BROWSERS_PATH: "0"
         run: npx playwright install --with-deps chromium
 
       - name: Run Playwright (chromium)
         env:
-          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/build
+          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/anyexam_e2e
           NEXTAUTH_SECRET: ci-e2e-secret-min-16-chars
           NEXTAUTH_URL: http://127.0.0.1:3100
           PLAYWRIGHT_PORT: "3100"

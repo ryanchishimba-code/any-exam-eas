@@ -11,6 +11,11 @@ import {
   USMLE_STEP3_TOPIC_GROUPS,
   USMLE_CROSS_CUTTING_TOPICS,
 } from "@/lib/exam-prep/usmle/blueprint-topics-2026";
+import { getUsmleTopicNode, topicsForOrganSystem } from "@/lib/exam-prep/usmle/content-spine";
+import {
+  USMLE_ORGAN_SYSTEMS,
+  type UsmleOrganSystemId,
+} from "@/lib/exam-prep/usmle/official-content-model";
 
 export type UsmleStudyDomainId = string;
 
@@ -323,80 +328,52 @@ const USMLE_TOPIC_REGISTRY: Record<string, UsmleTopicMeta> = {
   },
 };
 
+const ORGAN_SYSTEM_IDS = new Set<string>(USMLE_ORGAN_SYSTEMS.map((system) => system.id));
+
+/** Study-hub domain id for a spine organ system. Shared across steps; step lives on the topic. */
+function domainIdForSystem(systemId: UsmleOrganSystemId): UsmleStudyDomainId {
+  return `usmle-${systemId}`;
+}
+
+/**
+ * Official organ-system domain for a 2026 slug.
+ * Legacy helpers such as usmle-s2-cardiopulmonary are not registered domains.
+ */
+function domainFor2026Slug(slug: string, fallback: UsmleStudyDomainId): UsmleStudyDomainId {
+  const systemId = getUsmleTopicNode(slug)?.systemId;
+  return systemId ? domainIdForSystem(systemId) : fallback;
+}
+
 function build2026Registry(): Record<string, UsmleTopicMeta> {
   const out: Record<string, UsmleTopicMeta> = {};
 
   for (const group of USMLE_STEP1_TOPIC_GROUPS) {
-    const domain = STEP1_CATEGORY_DOMAIN[group.categoryId] ?? "usmle-s1-pathology";
+    const fallback = STEP1_CATEGORY_DOMAIN[group.categoryId] ?? "usmle-multisystem";
     for (const t of group.topics) {
-      out[t.slug] = { studyDomain: domain, blueprintTopicSlugs: [t.slug] };
+      out[t.slug] = { studyDomain: domainFor2026Slug(t.slug, fallback), blueprintTopicSlugs: [t.slug] };
     }
   }
   for (const group of USMLE_STEP2_TOPIC_GROUPS) {
-    const domain = STEP2_CATEGORY_DOMAIN[group.categoryId] ?? "usmle-s2-cardiopulmonary";
+    const fallback = STEP2_CATEGORY_DOMAIN[group.categoryId] ?? "usmle-multisystem";
     for (const t of group.topics) {
-      // Refine IM topics to correct organ-system domains
-      const refined = refineStep2InternalMedicineDomain(t.slug, domain);
-      out[t.slug] = { studyDomain: refined, blueprintTopicSlugs: [t.slug] };
+      out[t.slug] = { studyDomain: domainFor2026Slug(t.slug, fallback), blueprintTopicSlugs: [t.slug] };
     }
   }
   for (const group of USMLE_STEP3_TOPIC_GROUPS) {
-    const domain = STEP3_CATEGORY_DOMAIN[group.categoryId] ?? "usmle-s3-ccs";
+    const fallback = STEP3_CATEGORY_DOMAIN[group.categoryId] ?? "usmle-multisystem";
     for (const t of group.topics) {
-      out[t.slug] = { studyDomain: domain, blueprintTopicSlugs: [t.slug] };
+      out[t.slug] = { studyDomain: domainFor2026Slug(t.slug, fallback), blueprintTopicSlugs: [t.slug] };
     }
   }
   for (const t of USMLE_CROSS_CUTTING_TOPICS) {
     if (!out[t.slug]) {
-      out[t.slug] = { studyDomain: "usmle-biostats-epi", blueprintTopicSlugs: [t.slug] };
+      out[t.slug] = {
+        studyDomain: domainFor2026Slug(t.slug, "usmle-biostats-epi"),
+        blueprintTopicSlugs: [t.slug],
+      };
     }
   }
   return out;
-}
-
-function refineStep2InternalMedicineDomain(slug: string, defaultDomain: UsmleStudyDomainId): UsmleStudyDomainId {
-  if (
-    slug.includes("pneumonia") ||
-    slug.includes("copd") ||
-    slug.includes("pe-") ||
-    slug.includes("asthma")
-  ) {
-    return "usmle-s2-cardiopulmonary";
-  }
-  if (
-    slug.includes("aki") ||
-    slug.includes("nephro") ||
-    slug.includes("diabetes") ||
-    slug.includes("thyroid") ||
-    slug.includes("dka") ||
-    slug.includes("electrolyte")
-  ) {
-    return "usmle-s2-nephro-endocrine";
-  }
-  if (
-    slug.includes("gi-") ||
-    slug.includes("pancreatitis") ||
-    slug.includes("hepatitis") ||
-    slug.includes("cirrhosis")
-  ) {
-    return "usmle-s2-gi-hepatology";
-  }
-  if (slug.includes("hiv") || slug.includes("sepsis") || slug.includes("infection")) {
-    return "usmle-s2-infectious";
-  }
-  if (slug.includes("stroke") || slug.includes("seizure") || slug.includes("headache") || slug.includes("dementia")) {
-    return "usmle-s2-neuro";
-  }
-  if (slug.includes("rheumat") || slug.includes("lupus") || slug.includes("autoimmune")) {
-    return "usmle-s2-heme-rheum";
-  }
-  if (slug.includes("acs") || slug.includes("chf") || slug.includes("arrhythmia") || slug.includes("valvular")) {
-    return "usmle-s2-cardiopulmonary";
-  }
-  if (slug.includes("preventive") || slug.includes("screening")) {
-    return "usmle-s2-cardiopulmonary";
-  }
-  return defaultDomain;
 }
 
 const FULL_REGISTRY: Record<string, UsmleTopicMeta> = {
@@ -404,8 +381,18 @@ const FULL_REGISTRY: Record<string, UsmleTopicMeta> = {
   ...USMLE_TOPIC_REGISTRY,
 };
 
-const ALL_DOMAINS = [...USMLE_STEP1_DOMAINS, ...USMLE_STEP2_DOMAINS, ...USMLE_STEP3_DOMAINS];
-const DOMAIN_BY_ID = new Map(ALL_DOMAINS.map((d) => [d.id, d]));
+const FIELD_STEP: Record<string, UsmleStepLevel> = {
+  "usmle-step-1": "step1",
+  "usmle-step-2": "step2",
+  "usmle-step-3": "step3",
+};
+
+/** Prefer the requested step. Shared organ-system ids exist on every step, so a flat map would keep only Step 3. */
+function domainsForStep(step: UsmleStepLevel): UsmleStudyDomain[] {
+  if (step === "step1") return USMLE_STEP1_DOMAINS;
+  if (step === "step3") return USMLE_STEP3_DOMAINS;
+  return USMLE_STEP2_DOMAINS;
+}
 
 /** Blueprint category id → primary topic slug, keyed by USMLE field id. */
 const USMLE_CATEGORY_PRIMARY: Record<string, Record<string, string>> = {
@@ -466,8 +453,16 @@ export function getUsmleStudyDomains(step: UsmleStepLevel): UsmleStudyDomain[] {
   return USMLE_STEP2_DOMAINS;
 }
 
-export function getUsmleStudyDomain(id: string): UsmleStudyDomain | undefined {
-  return DOMAIN_BY_ID.get(id);
+export function getUsmleStudyDomain(
+  id: string,
+  step?: UsmleStepLevel
+): UsmleStudyDomain | undefined {
+  if (step) return domainsForStep(step).find((domain) => domain.id === id);
+  return (
+    domainsForStep("step2").find((domain) => domain.id === id) ??
+    domainsForStep("step1").find((domain) => domain.id === id) ??
+    domainsForStep("step3").find((domain) => domain.id === id)
+  );
 }
 
 export function getUsmleTopicMeta(slug: string): Partial<UsmleTopicMeta> {
@@ -477,7 +472,7 @@ export function getUsmleTopicMeta(slug: string): Partial<UsmleTopicMeta> {
 export function enrichUsmleTopic(topic: HighYieldTopic): HighYieldTopic {
   const meta = FULL_REGISTRY[topic.slug];
   if (!meta) return topic;
-  const domain = getUsmleStudyDomain(meta.studyDomain);
+  const domain = getUsmleStudyDomain(meta.studyDomain, getUsmleTopicNode(topic.slug)?.stepLevel);
   return {
     ...topic,
     category: domain?.label ?? topic.category,
@@ -517,11 +512,33 @@ export function resolveUsmleTopicSlugForBlueprint(blueprintSlug: string): string
   return undefined;
 }
 
+function primarySlugForOrganSystem(
+  systemId: UsmleOrganSystemId,
+  step: UsmleStepLevel
+): string | undefined {
+  const order: UsmleStepLevel[] =
+    step === "step1"
+      ? ["step1", "step2", "step3"]
+      : step === "step3"
+        ? ["step3", "step2", "step1"]
+        : ["step2", "step3", "step1"];
+  for (const candidate of order) {
+    const node = topicsForOrganSystem(systemId, candidate)[0];
+    if (node) return node.slug;
+  }
+  return undefined;
+}
+
 export function resolveUsmleTopicSlugForCategory(
   categoryId: string,
   fieldId: string
 ): string | undefined {
-  return USMLE_CATEGORY_PRIMARY[fieldId]?.[categoryId];
+  const explicit = USMLE_CATEGORY_PRIMARY[fieldId]?.[categoryId];
+  if (explicit) return explicit;
+
+  const step = FIELD_STEP[fieldId];
+  if (!step || !ORGAN_SYSTEM_IDS.has(categoryId)) return undefined;
+  return primarySlugForOrganSystem(categoryId as UsmleOrganSystemId, step);
 }
 
 export function resolveUsmleTopicSlugForSubject(

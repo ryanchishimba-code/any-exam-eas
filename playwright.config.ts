@@ -43,7 +43,9 @@ const webServerEnv: NodeJS.ProcessEnv = {
 };
 
 if (process.env.CI && !webServerEnv.DATABASE_URL) {
-  webServerEnv.DATABASE_URL = "postgresql://build:build@127.0.0.1:5432/build";
+  // Not the build placeholder. The app refuses postgresql://build:build@127.0.0.1:5432/build
+  // so CI can keep that string for production builds while Playwright uses a real local database.
+  webServerEnv.DATABASE_URL = "postgresql://build:build@127.0.0.1:5432/anyexam_e2e";
 }
 
 export default defineConfig({

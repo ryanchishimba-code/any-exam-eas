@@ -62,12 +62,13 @@ const STEP2_SUBJECT_CATEGORY: Record<string, string> = {
   microbiology: "internal-medicine",
 };
 
+/** Step 3 item types land on the organ system that owns that task, not the vignette's subject. */
 const STEP3_ITEM_TYPE_CATEGORY: Record<string, string> = {
-  biostats: "biostatistics",
-  ethics: "ethics",
-  abstract: "pharm-advertising",
-  drug_ad: "pharm-advertising",
-  ccs_prompt: "ccs",
+  biostats: "biostats-epi",
+  ethics: "social-sciences",
+  abstract: "biostats-epi",
+  drug_ad: "biostats-epi",
+  ccs_prompt: "multisystem",
 };
 
 const STEP3_SUBJECT_CATEGORY: Record<string, string> = {
@@ -130,7 +131,7 @@ function resolveStep3Category(row: UsmleBlueprintBankRow): string | null {
   const step3 = getExamBlueprint("usmle-step-3");
   if (!step3) return null;
 
-  if (isUsmleCalculationItem(row)) return "biostatistics";
+  if (isUsmleCalculationItem(row)) return "biostats-epi";
 
   const itemType = row.itemType?.trim().toLowerCase() ?? "mcq";
   if (STEP3_ITEM_TYPE_CATEGORY[itemType]) {
@@ -147,6 +148,12 @@ export function resolveUsmleBlueprintCategory(
   fieldId: string,
   row: UsmleBlueprintBankRow
 ): string | null {
+  if (fieldId === "usmle-step-3") {
+    const itemType = row.itemType?.trim().toLowerCase() ?? "";
+    const fromItemType = STEP3_ITEM_TYPE_CATEGORY[itemType];
+    if (fromItemType) return fromItemType;
+  }
+
   // Prefer official organ-system spine whenever domain/topic/subject can resolve.
   const spine = resolveOrganSystemId(row.blueprintDomain, row.blueprintTopic, row.subjectId);
   if (spine) return spine;
