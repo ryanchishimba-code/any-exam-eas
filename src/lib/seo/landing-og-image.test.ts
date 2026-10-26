@@ -3,8 +3,10 @@ import { buildNaplexLandingMetadata } from "@/lib/marketing/board-landing/naplex
 import { buildHubLandingMetadata } from "@/lib/marketing/board-landing/hub-model";
 import { buildNclexLandingMetadata } from "@/lib/marketing/board-landing/model";
 import { boardHeroMarketingCopy } from "@/lib/marketing/board-landing/board-hero-marketing";
+import { ABOUT_HERO_HEADLINE } from "@/lib/marketing/about-copy";
 import { HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
 import { buildHomeJsonLd, buildHomeMetadata, buildRootMetadata, DEFAULT_OG_IMAGE_PATH } from "@/lib/seo";
+import { buildAboutJsonLd, buildAboutMetadata } from "@/lib/seo/marketing-metadata";
 import {
   LANDING_OG_HEIGHT,
   LANDING_OG_IDS,
@@ -70,6 +72,34 @@ describe("landing share images", () => {
 
   it("uses the page H1 as alt text and keeps JSON-LD on the shared default image", () => {
     expect(landingOgImage("home").alt).toBe(HOME_PRACTICE_HEADLINE);
+    expect(landingOgImage("about").alt).toBe(ABOUT_HERO_HEADLINE);
+    expect(landingOgImage("about").alt.toLowerCase()).not.toMatch(/\bpass\b/);
+    expect(ABOUT_HERO_HEADLINE).toMatch(/Any Exam Easy/);
+    expect(ABOUT_HERO_HEADLINE.toLowerCase()).toMatch(/exam prep/);
+    expect(ABOUT_HERO_HEADLINE.toLowerCase()).toMatch(/founder/);
+    const aboutTitle = buildAboutMetadata().title;
+    const aboutTitleText =
+      typeof aboutTitle === "object" && aboutTitle && "absolute" in aboutTitle
+        ? String(aboutTitle.absolute)
+        : String(aboutTitle);
+    const aboutDescription = String(buildAboutMetadata().description);
+    expect(aboutTitleText.length).toBeLessThanOrEqual(60);
+    expect(aboutDescription.length).toBeLessThanOrEqual(155);
+    expect(aboutDescription.length).toBeGreaterThanOrEqual(140);
+    expect(imageUrl(buildAboutMetadata())).toBe(
+      `${LANDING_OG_ORIGIN}/images/og/about.jpg?v=${LANDING_OG_VERSION}`
+    );
+    const aboutLd = JSON.stringify(buildAboutJsonLd());
+    expect(aboutLd).toContain('"@type":"AboutPage"');
+    expect(aboutLd).toContain('"@type":"Organization"');
+    expect(aboutLd).toContain('"@type":"Person"');
+    expect(aboutLd).toContain("Ryan Chishimba, PharmD, RPh");
+    expect(aboutLd).toContain('"jobTitle":"Founder and Pharmacy Manager"');
+    expect(aboutLd).toContain("#founder");
+    expect(aboutLd).toContain('"founder":{"@id":');
+    expect(aboutLd).toContain("Ileen Chishimba, RN");
+    expect(aboutLd).not.toContain("hoursAvailable");
+    expect(aboutLd).not.toContain("worksFor");
     for (const id of ["nclex", "naplex", "usmle", "pance", "aanp-fnp", "npte-pt"] as const) {
       expect(landingOgImage(id).alt).toBe(boardHeroMarketingCopy(id).headline);
       expect(landingOgImage(id).alt.toLowerCase()).not.toMatch(/\bpass\b/);

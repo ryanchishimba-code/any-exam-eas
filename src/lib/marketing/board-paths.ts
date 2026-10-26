@@ -12,6 +12,7 @@ export type MarketingBoardSlug = (typeof MARKETING_BOARD_SLUGS)[number];
 
 export const MARKETING_DARK_HERO_PATHS = new Set<string>([
   "/",
+  "/about",
   ...MARKETING_BOARD_SLUGS.map((slug) => `/${slug}`),
 ]);
 
@@ -26,7 +27,7 @@ export function marketingLandingPath(pathname: string): string {
   return (pathname || "/").split("?")[0] || "/";
 }
 
-/** Home and the six public board landing pages (Tesla-style minimal chrome). */
+/** Home, about, and the six public board landing pages (logo sits on the photo). */
 export function isMarketingLandingPath(pathname: string): boolean {
   return MARKETING_DARK_HERO_PATHS.has(marketingLandingPath(pathname));
 }

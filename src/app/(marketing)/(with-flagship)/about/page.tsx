@@ -1,20 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
+import { MarketingPhotoHero, MarketingPhotoHeroCopy } from "@/components/marketing/MarketingPhotoHero";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
-import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
-import { FounderNote } from "@/components/marketing/elevation/FounderNote";
-import { COMPANY_PUBLIC } from "@/lib/marketing/company";
+import {
+  ABOUT_AFFILIATION,
+  ABOUT_HERO_ACCENT,
+  ABOUT_HERO_LEAD,
+  ABOUT_PRODUCT_FEATURES,
+  ABOUT_PULL_QUOTE,
+  ABOUT_REVIEW_CAVEAT,
+  ABOUT_REVIEWERS,
+  founderStoryParagraphs,
+} from "@/lib/marketing/about-copy";
+import { CLINICAL_REVIEWERS, COMPANY_PUBLIC } from "@/lib/marketing/company";
+import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { QUALITY_PAGE_UPDATED } from "@/lib/marketing/quality-facts";
 import { ROUTES } from "@/lib/routes";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { buildAboutMetadata, buildAboutJsonLd } from "@/lib/seo/marketing-metadata";
-import { formatPricingCheckoutTrialOffer, formatTrialCtaLabel, SITE_NAME } from "@/lib/site";
+import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
+import "@/styles/marketing-photo-hero.css";
+import "@/styles/about-page.css";
 
 /**
  * Five-minute ISR. This must stay a numeric literal (Next cannot analyze an
@@ -43,93 +55,151 @@ const EXAM_HUB_LINKS = [
 
 export default async function AboutPage() {
   const { label: totalQuestionsLabel, live } = await publishedOrLiveTotalLabel();
+  const story = founderStoryParagraphs(formatMonthlyPrice("pro"));
+  const [opening, priceAndGift, closing] = [story.slice(0, 3), story[3], story[4]];
 
   return (
     <>
       <JsonLdScript data={buildAboutJsonLd()} />
-      <div className="bg-[var(--color-bg)]">
-        <section className="px-6 pb-16 pt-[var(--page-top)] sm:pb-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
-              {SITE_NAME}
-            </p>
-            <h1 className="mt-5 text-balance text-[clamp(2.75rem,7vw,4.5rem)] font-bold leading-[1.02] tracking-tight text-[var(--color-ink)]">
-              Practice that tells you why.
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink)]">
-              {COMPANY_PUBLIC.productName} is one question bank for six boards.
-            </p>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              Operated by {COMPANY_PUBLIC.legalName}.{" "}
-              <a
-                href={`mailto:${COMPANY_PUBLIC.supportEmail}`}
-                className="font-semibold text-[var(--color-accent)] hover:underline"
-              >
-                {COMPANY_PUBLIC.supportEmail}
-              </a>
-            </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <LandingCta href={LANDING_TRIAL_HREF} icon={<ArrowRight className="h-4 w-4" />}>
-                {formatTrialCtaLabel()}
-              </LandingCta>
-              <Link
-                href={ROUTES.howQuestionsAreReviewed}
-                className="text-base font-semibold text-[var(--color-accent)] hover:underline"
-              >
-                How questions are reviewed
-              </Link>
+      <div className="aee-about">
+        <MarketingPhotoHero
+          heroId="about"
+          className="aee-about-hero"
+          ariaLabelledBy="about-heading"
+          foot={
+            <div className="mkt-hero-foot">
+              <div className="mkt-hero-foot__slot">
+                <div className="mkt-hero-foot__card aee-about-hero__card">
+                  {ABOUT_REVIEWERS.map((reviewer) => (
+                    <p key={reviewer.id} className="mkt-hero-foot__by">
+                      {reviewer.name}
+                    </p>
+                  ))}
+                </div>
+              </div>
             </div>
-            <p className="mt-4 text-sm font-medium text-[var(--color-ink)]" data-offer-line>
-              {formatPricingCheckoutTrialOffer()}
-            </p>
-            <div className="mt-8">
-              <PurchaseTrustNotes showTrialOffer={false} />
-            </div>
-            {totalQuestionsLabel ? (
-              <p className="mt-6 text-sm font-medium text-[var(--color-ink-muted)]">{totalQuestionsLabel}</p>
-            ) : null}
-            <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-[var(--color-ink-muted)]">
-              {live
-                ? ACTIVE_QUESTION_DEFINITION
-                : "Live bank count is unavailable, so this page does not show a number."}
-            </p>
+          }
+        >
+          <MarketingPhotoHeroCopy
+            headingId="about-heading"
+            title={
+              <>
+                <span className="home-hero__line">{ABOUT_HERO_LEAD}</span>
+                <span className="home-hero__accent">{ABOUT_HERO_ACCENT}</span>
+              </>
+            }
+            subline={`${COMPANY_PUBLIC.productName} is one question bank for six boards.`}
+            actions={
+              <div className="mkt-photo-hero__actions">
+                <div className="bl-actions__primary">
+                  <LandingCta
+                    href={LANDING_TRIAL_HREF}
+                    ctaName="about_hero_trial"
+                    location="about_hero"
+                  >
+                    {HERO_TRIAL_CTA_LABEL}
+                  </LandingCta>
+                  <p className="bl-hero-price">{heroTrialPriceLine()}</p>
+                </div>
+              </div>
+            }
+          />
+        </MarketingPhotoHero>
+
+        <section className="aee-about-band aee-about-story" aria-labelledby="about-story-heading">
+          <div className="aee-about-band__inner">
+            <h2 id="about-story-heading">From the founder</h2>
+            <p className="aee-about-byline">Ryan Chishimba, PharmD, RPh</p>
+            {opening.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)} className="aee-about-prose">
+                {paragraph}
+              </p>
+            ))}
+            <blockquote className="aee-about-pull">
+              <p>{ABOUT_PULL_QUOTE}</p>
+            </blockquote>
+            {priceAndGift ? <p className="aee-about-prose">{priceAndGift}</p> : null}
+            {closing ? <p className="aee-about-prose">{closing}</p> : null}
           </div>
         </section>
 
-        <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-14">
-          <div className="mx-auto max-w-3xl">
-            <ClinicalReviewers />
-          </div>
-        </section>
-
-        <section className="px-6 py-16" aria-labelledby="about-boards-heading">
-          <div className="mx-auto max-w-3xl">
-            <h2
-              id="about-boards-heading"
-              className="text-[clamp(2rem,4.5vw,3rem)] font-bold tracking-tight text-[var(--color-ink)]"
-            >
-              What the product does
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-[var(--color-ink-muted)]">
-              We are not affiliated with the boards that write these exams.
-            </p>
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2" role="list">
+        <section className="aee-about-band aee-about-band--mist" aria-labelledby="about-product-heading">
+          <div className="aee-about-band__inner">
+            <h2 id="about-product-heading">What the product does</h2>
+            <ul className="aee-about-features">
+              {ABOUT_PRODUCT_FEATURES.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+            <ul className="aee-about-exams" aria-label="Boards on this plan">
               {EXAM_HUB_LINKS.map((exam) => (
                 <li key={exam.href}>
-                  <Link
-                    href={exam.href}
-                    className="flex min-h-11 items-center justify-between border-b border-[var(--color-border)] py-3 text-base font-semibold text-[var(--color-ink)] hover:text-[var(--color-accent)]"
-                  >
+                  <Link href={exam.href}>
                     {exam.label}
                     <span aria-hidden>→</span>
                   </Link>
                 </li>
               ))}
             </ul>
-            <p className="mt-8 text-sm text-[var(--color-ink-muted)]">Last updated {QUALITY_PAGE_UPDATED}</p>
-            <div className="mt-12">
-              <FounderNote />
+          </div>
+        </section>
+
+        <section className="aee-about-band" aria-labelledby="about-reviewers-heading">
+          <div className="aee-about-band__inner">
+            <h2 id="about-reviewers-heading">Who reviews the content</h2>
+            <ul className="aee-about-reviewers">
+              {ABOUT_REVIEWERS.map((reviewer) => {
+                const avatar = CLINICAL_REVIEWERS.find((item) => item.id === reviewer.id);
+                return (
+                  <li key={reviewer.id}>
+                    {avatar ? <ClinicalReviewerAvatar reviewer={avatar} /> : null}
+                    <div>
+                      <p className="aee-about-reviewer-name">{reviewer.name}</p>
+                      <p className="aee-about-prose">{reviewer.body}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="aee-about-copy">
+              {ABOUT_REVIEW_CAVEAT} See our{" "}
+              <Link href={ROUTES.howQuestionsAreReviewed}>review standards page</Link> for the full
+              methodology.
+            </p>
+          </div>
+        </section>
+
+        <section className="aee-about-band aee-about-band--mist" aria-labelledby="about-basics-heading">
+          <div className="aee-about-band__inner">
+            <h2 id="about-basics-heading">The basics</h2>
+            <dl className="aee-about-facts">
+              <div>
+                <dt>Company</dt>
+                <dd>AnyExamEasy (operated by {COMPANY_PUBLIC.legalName})</dd>
+              </div>
+              <div>
+                <dt>Contact</dt>
+                <dd>
+                  <a href={`mailto:${COMPANY_PUBLIC.supportEmail}`}>{COMPANY_PUBLIC.supportEmail}</a>
+                </dd>
+              </div>
+            </dl>
+            <p className="aee-about-offer" data-offer-line>
+              {formatPricingCheckoutTrialOffer()}
+            </p>
+            <div className="aee-about-trust">
+              <PurchaseTrustNotes showTrialOffer={false} />
             </div>
+            <p className="aee-about-copy">{ABOUT_AFFILIATION}</p>
+
+            <h3 id="about-count-heading">How we count questions</h3>
+            {totalQuestionsLabel ? <p className="aee-about-lead">{totalQuestionsLabel}</p> : null}
+            <p className="aee-about-copy">
+              {live
+                ? ACTIVE_QUESTION_DEFINITION
+                : "Live bank count is unavailable, so this page does not show a number."}
+            </p>
+            <p className="aee-about-meta">Last updated {QUALITY_PAGE_UPDATED}</p>
           </div>
         </section>
       </div>
