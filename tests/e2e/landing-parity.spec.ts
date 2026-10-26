@@ -603,14 +603,29 @@ test.describe("landing parity", () => {
       seen.push({ path: new URL(page.url()).pathname, body: route.request().postDataJSON() });
       await route.fulfill({ status: 204, body: "" });
     });
+    // A document fulfill for /signup unloads the landing and races the next
+    // goto. Stop the navigation after the click handler runs. preventDefault
+    // does not skip React's onClick, which is what records the event.
     await page.route("**/signup**", async (route) => {
-      await route.fulfill({ status: 200, contentType: "text/html", body: "<!doctype html><title>signup</title>" });
+      if (route.request().resourceType() === "document") {
+        await route.fulfill({
+          status: 200,
+          contentType: "text/html",
+          body: "<!doctype html><title>signup</title>",
+        });
+        return;
+      }
+      await route.continue();
     });
 
     for (const entry of PAGES) {
       await settle(page, entry.path);
       const before = seen.length;
-      await page.locator(".mkt-photo-hero a.aee-flagship-cta").click();
+      const cta = page.locator(".mkt-photo-hero a.aee-flagship-cta");
+      await cta.evaluate((el) => {
+        el.addEventListener("click", (event) => event.preventDefault(), { capture: true });
+      });
+      await cta.click();
       await expect.poll(() => seen.length, { timeout: 10_000 }).toBeGreaterThan(before);
       const hit = seen[seen.length - 1];
       expect(hit.body.eventName, entry.path).toBe("cta_clicked");
