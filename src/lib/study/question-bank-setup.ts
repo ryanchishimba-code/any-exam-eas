@@ -189,6 +189,7 @@ const MIXED_TOPIC_STYLES = new Set<QuestionBankStyle>([
   "review_incorrect",
   "today",
   "daily_set",
+  "review_misses",
 ]);
 
 /** Remediation styles clear an NGN/case format instead of becoming Standard. */
@@ -196,6 +197,7 @@ const FORMAT_KEPT_STYLES = new Set<QuestionBankStyle>([
   "weak_areas",
   "review_incorrect",
   "daily_set",
+  "review_misses",
 ]);
 
 export const MIXED_TOPIC_STYLE_MESSAGE =
@@ -288,7 +290,9 @@ export function availablePoolForQuestionBankStyle(params: {
   topicCounts?: Record<string, number> | null;
   openRemediationCount?: number | null;
 }): number | null {
-  if (params.style === "today" || params.style === "daily_set") return null;
+  if (params.style === "today" || params.style === "daily_set" || params.style === "review_misses") {
+    return null;
+  }
   const boardWideReview =
     params.style === "review_incorrect" &&
     (!params.subjectId || isMixedSubjectId(params.subjectId));
@@ -355,11 +359,16 @@ export function validateQuestionBankSession(params: {
 }): QuestionBankSessionValidation {
   const { subjectId, questionCount, subjectCounts, bankStyle, taskCategory } = params;
 
-  if (!subjectId && bankStyle !== "today" && bankStyle !== "daily_set") {
+  if (
+    !subjectId &&
+    bankStyle !== "today" &&
+    bankStyle !== "daily_set" &&
+    bankStyle !== "review_misses"
+  ) {
     return { ok: false, message: "Choose a topic before starting." };
   }
 
-  if (bankStyle === "today" || bankStyle === "daily_set") {
+  if (bankStyle === "today" || bankStyle === "daily_set" || bankStyle === "review_misses") {
     return { ok: true };
   }
 
@@ -514,8 +523,8 @@ export function isRemediationUrlStyle(
 /** Remediation deep links and the daily set must not be replaced by a remembered chip. */
 export function isLockedBankLaunchStyle(
   style: string | null | undefined
-): style is "weak_areas" | "review_incorrect" | "daily_set" {
-  return isRemediationUrlStyle(style) || style === "daily_set";
+): style is "weak_areas" | "review_incorrect" | "daily_set" | "review_misses" {
+  return isRemediationUrlStyle(style) || style === "daily_set" || style === "review_misses";
 }
 
 /**
@@ -643,7 +652,14 @@ export function deliberateFormatForLaunch(
 ): "ngn" | "case" | null {
   // Remediation deep links build their own set. A lagging NGN/case format must
   // not turn them into a Standard format fetch.
-  if (style === "weak_areas" || style === "review_incorrect" || style === "daily_set") return null;
+  if (
+    style === "weak_areas" ||
+    style === "review_incorrect" ||
+    style === "daily_set" ||
+    style === "review_misses"
+  ) {
+    return null;
+  }
   if (opts?.topicPracticeLaunch) return null;
   if (format === "ngn" || format === "case") return format;
   return null;

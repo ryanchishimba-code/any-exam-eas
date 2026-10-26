@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useLayoutEffect, useState, type ReactNode } from "react";
+import { ReviewMissesButton } from "@/components/dashboard/ReviewMissesButton";
 import { StartTodaySetButton } from "@/components/dashboard/StartTodaySetButton";
 import { browserStudyTimeZone } from "@/lib/learning/today-set";
 
@@ -143,10 +144,13 @@ export function TodayStartLive({ fieldId }: { fieldId: string }) {
       ? "No questions ready yet"
       : "Start today's set (~15 min)";
   return (
-    <StartTodaySetButton
-      fieldId={fieldId}
-      disabled={Boolean(preview?.empty || preview?.limitReached)}
-      label={label}
-    />
+    <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+      <StartTodaySetButton
+        fieldId={fieldId}
+        disabled={Boolean(preview?.empty || preview?.limitReached)}
+        label={label}
+      />
+      <ReviewMissesButton fieldId={fieldId} />
+    </div>
   );
 }

@@ -1,0 +1,165 @@
+/**
+ * POST /api/study/review-misses
+ *
+ * Personal open misses, then due spaced review. Separate from the shared daily pack.
+ * The day boundary follows the student's timezone.
+ */
+
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { CONVERSION_EVENTS } from "@/lib/analytics/conversion-types";
+import { trackConversionServer } from "@/lib/analytics/conversions";
+import { examSlugForFieldId } from "@/lib/edtech/exam-field-ids";
+import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
+import { sealCatalogQuestionKey, sealStudentFacingIds } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
+import { getFieldMetaById } from "@/lib/fields";
+import { DAILY_PACK_SIZE } from "@/lib/learning/daily-pack";
+import { loadReviewMissesSet } from "@/lib/learning/today-set-plan";
+import { examQuestionToStudy } from "@/lib/questions/prepare";
+import { withholdPreSubmitExamQuestion } from "@/lib/questions/student-payload";
+import { ROUTES } from "@/lib/routes";
+
+export const runtime = "nodejs";
+export const maxDuration = 60;
+
+const bodySchema = z.object({
+  field: z.string().min(1),
+  timeZone: z.string().max(80).optional(),
+});
+
+export async function POST(req: Request) {
+  const { requireStudyApi } = await import("@/lib/api-access");
+  const premium = await requireStudyApi();
+  if (!premium.ok) return premium.response;
+
+  try {
+    const body = bodySchema.parse(await req.json().catch(() => ({})));
+    const { resolveQuestionBankFieldId, enforceQuestionBankFieldAccess } = await import(
+      "@/lib/edtech/question-bank-scope"
+    );
+    const fieldId = resolveQuestionBankFieldId(body.field);
+    const examSlug = examSlugForFieldId(fieldId);
+    if (!examSlug) {
+      return NextResponse.json({ error: "Unknown exam field." }, { status: 400 });
+    }
+
+    const access = await enforceQuestionBankFieldAccess(premium.userId, body.field);
+    if (!access.ok) return access.response;
+
+    const target = DAILY_PACK_SIZE;
+    const { checkStudyQuestionUsage, recordStudyQuestionsServed } = await import(
+      "@/lib/study/usage-limits"
+    );
+    const usageCheck = await checkStudyQuestionUsage({
+      userId: premium.userId,
+      access: premium.access,
+      requestedCount: target,
+      adaptive: false,
+    });
+    if (!usageCheck.ok) return usageCheck.response;
+
+    const size = Math.min(target, usageCheck.allowedCount);
+    const { selection, mix, items } = await loadReviewMissesSet({
+      userId: premium.userId,
+      examSlug,
+      fieldId,
+      size,
+      timeZone: body.timeZone,
+    });
+    if (mix.ids.length === 0) {
+      return NextResponse.json(
+        {
+          error: "No misses to review yet.",
+          code: "EMPTY_REVIEW_MISSES",
+          mixLine: null,
+          reviewCount: 0,
+          newCount: 0,
+        },
+        { status: 404 }
+      );
+    }
+
+    const fieldLabel = getFieldMetaById(fieldId)?.label ?? fieldId;
+    const questions = items.map((item, index) => {
+      const publicId = item.id ? sealCatalogQuestionKey(item.id) : item.id;
+      const study = examQuestionToStudy(
+        bankItemToSessionRaw(
+          fieldId,
+          fieldLabel,
+          item.subjectId ?? MIXED_SUBJECT_ID,
+          item,
+          index
+        ),
+        index,
+        { shuffleOptions: false }
+      );
+      return withholdPreSubmitExamQuestion({
+        ...study,
+        id: publicId,
+        bankItemId: publicId,
+        subjectId: item.subjectId ?? MIXED_SUBJECT_ID,
+        stem: study.stem,
+        question: study.stem,
+        correctAnswer: "",
+      });
+    });
+    const faced = sealStudentFacingIds(
+      questions,
+      questions.map((question) => (typeof question.bankItemId === "string" ? question.bankItemId : undefined))
+    );
+
+    await recordStudyQuestionsServed(premium.userId, questions.length, "bank", usageCheck.plan);
+
+    const topics: TodayTopics = {};
+    for (const id of mix.ids) {
+      const topic = selection.topics[id];
+      if (topic) topics[id] = topic;
+    }
+
+    trackConversionServer({
+      eventName: CONVERSION_EVENTS.TODAY_SET_STARTED,
+      userId: premium.userId,
+      properties: {
+        exam_slug: examSlug,
+        field_id: fieldId,
+        size: questions.length,
+        review_count: mix.reviewCount,
+        spaced_count: mix.spacedReviewIds.length,
+        new_count: mix.newCount,
+        sitting: "review_misses",
+      },
+    });
+
+    const playerHref = `${ROUTES.questionBank}?field=${encodeURIComponent(fieldId)}&mode=bank&style=review_misses&count=${questions.length}&autostart=1`;
+
+    return NextResponse.json({
+      ok: true,
+      examSlug,
+      fieldId,
+      size: questions.length,
+      target: selection.target,
+      tomorrowCount: selection.tomorrowCount,
+      reviewCount: mix.reviewCount,
+      newCount: mix.newCount,
+      mixLine: mix.mixLine,
+      questions: faced.questions,
+      bankItemIds: faced.bankItemIds,
+      todaySet: {
+        examSlug,
+        target: selection.target,
+        tomorrowCount: selection.tomorrowCount,
+        topics,
+      },
+      playerHref,
+    });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+    }
+    console.error("[study/review-misses]", error);
+    return NextResponse.json({ error: "Could not build review misses." }, { status: 500 });
+  }
+}
+
+type TodayTopics = Record<string, { id: string; label: string; href: string }>;

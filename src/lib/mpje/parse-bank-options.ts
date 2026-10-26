@@ -264,6 +264,7 @@ export function enrichBankItemFromRow(row: {
     keyTakeaways,
     source: row.source ?? undefined,
     qaPassed: row.qaPassed ?? undefined,
+    active: row.active ?? undefined,
     curationMeta: isPlainRecord(row.curationMeta) ? row.curationMeta : undefined,
     fieldId: row.fieldId ?? undefined,
   };

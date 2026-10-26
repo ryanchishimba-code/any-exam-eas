@@ -123,6 +123,7 @@ describe("DashboardTodayBlock review CTA", () => {
 
     const start = screen.getByRole("button", { name: /Start today's set/ });
     expect(start).toHaveAttribute("data-tour", "today-start");
+    expect(screen.getByRole("button", { name: "Review misses" })).toBeInTheDocument();
     expect(start.className).toContain("study-home-accent");
     expect(document.querySelector("[data-tour='today']")).not.toBeNull();
     const mix = document.querySelector("[data-today-mix]");

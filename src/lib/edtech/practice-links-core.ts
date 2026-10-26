@@ -161,6 +161,19 @@ export function spacedReviewHref(
 }
 
 /** Mastery Engine Today set — NCLEX Skill Cell queue in the existing player. */
+/** Shared daily pack. Count stays 20; the player serves fewer when the pool is thin. */
+export function dailySetPracticeHref(examSlug: ExamSlug = "nclex", fieldIdOverride?: string): string {
+  const fieldId = fieldIdOverride ?? EXAM_CATALOG[examSlug].fieldId;
+  const qs = new URLSearchParams({
+    field: fieldId,
+    mode: "bank",
+    style: "daily_set",
+    count: "20",
+    autostart: "1",
+  });
+  return `${ROUTES.questionBank}?${qs.toString()}`;
+}
+
 export function todayPracticeHref(
   examSlug: ExamSlug = "nclex",
   count: 20 | 40 | 60 = 40,

@@ -6,6 +6,8 @@ const MAX_AGE_MS = 2 * 60 * 1000;
 export type StashedDailySet = {
   fieldId: string;
   savedAt: number;
+  /** Which sitting this handoff belongs to. Older payloads are today's set. */
+  kind?: "daily" | "review";
   questions: unknown[];
   bankItemIds: string[];
   /** Mix line from the served session. Resume shows this instead of recomputing. */
@@ -27,7 +29,7 @@ export function stashDailySet(payload: StashedDailySet): void {
   }
 }
 
-export function takeDailySet(fieldId: string): StashedDailySet | null {
+export function takeDailySet(fieldId: string, kind: "daily" | "review" = "daily"): StashedDailySet | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = window.sessionStorage.getItem(DAILY_SET_STASH_KEY);
@@ -39,6 +41,7 @@ export function takeDailySet(fieldId: string): StashedDailySet | null {
       return null;
     }
     if (parsed.fieldId !== fieldId) return null;
+    if ((parsed.kind ?? "daily") !== kind) return null;
     window.sessionStorage.removeItem(DAILY_SET_STASH_KEY);
     return parsed;
   } catch {

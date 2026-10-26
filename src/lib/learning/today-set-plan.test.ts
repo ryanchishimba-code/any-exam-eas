@@ -1,16 +1,16 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { prisma } from "@/lib/prisma";
+import { resetSharedDailyPackCache } from "@/lib/learning/daily-pack-serve";
 import {
   invalidateTodayServedCache,
+  loadReviewMissesSet,
   loadServedTodaySet,
   loadTodaySetPreview,
 } from "@/lib/learning/today-set-plan";
 
 const state = vi.hoisted(() => ({
-  windowCall: 0,
-  /** First id page is another field, so a one-window read would backfill all review. */
-  shortWindow: false,
-  dropFirstNew: false,
+  foreignOnly: false,
+  dropRetired: false,
 }));
 
 const openIds = Array.from({ length: 41 }, (_, i) => `miss-${i}`);
@@ -26,11 +26,9 @@ vi.mock("@/lib/learning/review-incorrect", () => ({
 }));
 
 vi.mock("@/lib/full-exam/load-bank-items-by-ids", () => ({
-  loadBankItemsByIds: vi.fn(async (_field: string, ids: string[]) => {
-    const fresh = ids.filter((id) => id.startsWith("new-"));
-    const drop = state.dropFirstNew ? fresh[0] : undefined;
-    return ids.filter((id) => id && id !== drop).map((id) => ({ id }));
-  }),
+  loadBankItemsByIds: vi.fn(async (_field: string, ids: string[]) =>
+    ids.filter((id) => !(state.dropRetired && id === "new-0")).map((id) => ({ id }))
+  ),
 }));
 
 function bankRow(id: string, fieldId: string) {
@@ -57,17 +55,11 @@ vi.mock("@/lib/prisma", () => ({
       findMany: vi.fn(async () => openIds.map((bankItemId) => ({ bankItemId }))),
     },
     questionBankItem: {
-      count: vi.fn(async () => {
-        state.windowCall = 0;
-        return state.shortWindow ? 600 : newIds.length;
-      }),
-      findMany: vi.fn(async (args: { where?: { id?: { in?: string[] } }; take?: number }) => {
+      count: vi.fn(async () => newIds.length),
+      findMany: vi.fn(async (args: { where?: { id?: { in?: string[] } } }) => {
         const ids = args.where?.id?.in;
         if (ids) return ids.map((id) => bankRow(id, "nursing"));
-        state.windowCall += 1;
-        if (state.shortWindow && state.windowCall === 1) {
-          return Array.from({ length: 500 }, (_, i) => bankRow(`other-${i}`, "dentistry"));
-        }
+        if (state.foreignOnly) return [bankRow("other-1", "dentistry")];
         return newIds.map((id) => bankRow(id, "nursing"));
       }),
     },
@@ -75,58 +67,77 @@ vi.mock("@/lib/prisma", () => ({
 }));
 
 const now = new Date("2026-09-25T18:07:00.000Z");
+/** Even Chicago day index, so the first slice includes new-0. */
+const evenDay = new Date("2026-09-26T18:00:00.000Z");
 
-async function dashboardAndServed() {
+async function dashboardAndServed(at = now) {
   const preview = await loadTodaySetPreview({
     userId: "student",
     examSlug: "nclex",
     fieldId: "nursing",
     questionsDone: 0,
-    now,
+    now: at,
   });
   const served = await loadServedTodaySet({
     userId: "student",
     examSlug: "nclex",
     fieldId: "nursing",
     size: 25,
-    now,
+    now: at,
   });
   return { preview, served };
 }
 
 describe("dashboard mix line and the served set", () => {
   beforeEach(async () => {
-    state.windowCall = 0;
-    state.shortWindow = false;
-    state.dropFirstNew = false;
+    state.foreignOnly = false;
+    state.dropRetired = false;
+    resetSharedDailyPackCache();
     await invalidateTodayServedCache("student", "nursing", now);
   });
 
-  it("shows the same 15 review and 10 new line the session serves for 41 open misses", async () => {
+  it("serves the shared pack of 20 and leaves misses out of it", async () => {
     const { preview, served } = await dashboardAndServed();
+    const review = await loadReviewMissesSet({
+      userId: "student",
+      examSlug: "nclex",
+      fieldId: "nursing",
+      size: 20,
+      now,
+    });
 
-    expect(preview.mixLine).toBe("15 to review · 10 new");
+    expect(preview.mixLine).toBe("20 questions");
     expect(preview.mixLine).toBe(served.mix.mixLine);
-    expect(preview.reviewCount).toBe(served.mix.reviewCount);
-    expect(preview.newCount).toBe(served.mix.newCount);
-    expect(preview.reviewCount).toBe(15);
-    expect(preview.newCount).toBe(10);
-    expect(served.mix.ids).toHaveLength(25);
+    expect(preview.target).toBe(20);
+    expect(preview.reviewCount).toBe(0);
+    expect(preview.newCount).toBe(20);
+    expect(served.mix.ids).toHaveLength(20);
+    expect(served.mix.ids.every((id) => id.startsWith("new-"))).toBe(true);
     expect(served.items.map((item) => item.id)).toEqual(served.mix.ids);
+    expect(review.mix.mixLine).toBe("20 to review");
+    expect(review.mix.ids).toHaveLength(20);
+    expect(review.mix.newCount).toBe(0);
+    expect(review.mix.ids.every((id) => id.startsWith("miss-"))).toBe(true);
+    expect(review.mix.ids.filter((id) => served.mix.ids.includes(id))).toEqual([]);
   });
 
-  it("still matches after a bank id drops out of the sitting", async () => {
-    state.dropFirstNew = true;
-    const { preview, served } = await dashboardAndServed();
+  it("replaces a retired id and keeps the pack full", async () => {
+    state.dropRetired = true;
+    const { preview, served } = await dashboardAndServed(evenDay);
 
+    expect(served.mix.ids).toHaveLength(20);
+    expect(served.mix.ids).not.toContain("new-0");
     expect(preview.mixLine).toBe(served.mix.mixLine);
-    expect(preview.mixLine).toBe("15 to review · 9 new");
-    expect(preview.reviewCount).toBe(15);
-    expect(preview.newCount).toBe(9);
+    expect(preview.mixLine).toBe("20 questions");
   });
 
-  it("reuses the served composition for the same student, board, and day", async () => {
-    const findMany = prisma.questionBankItem.findMany as unknown as { mock: { calls: unknown[] } };
+  it("reuses the shared pack after a per-student cache drop", async () => {
+    const findMany = prisma.questionBankItem.findMany as unknown as {
+      mock: { calls: { 0?: { where?: { id?: { in?: string[] } } } }[] };
+    };
+    const sequenceReads = () =>
+      findMany.mock.calls.filter((call) => !call[0]?.where?.id?.in).length;
+
     const first = await loadServedTodaySet({
       userId: "student",
       examSlug: "nclex",
@@ -134,7 +145,7 @@ describe("dashboard mix line and the served set", () => {
       size: 25,
       now,
     });
-    const reads = findMany.mock.calls.length;
+    const reads = sequenceReads();
     const second = await loadServedTodaySet({
       userId: "student",
       examSlug: "nclex",
@@ -144,27 +155,28 @@ describe("dashboard mix line and the served set", () => {
     });
 
     expect(second.mix.ids).toEqual(first.mix.ids);
-    expect(second.mix.mixLine).toBe(first.mix.mixLine);
-    expect(second.mix.mixLine).toBe("15 to review · 10 new");
-    expect(findMany.mock.calls.length).toBe(reads);
+    expect(second.mix.mixLine).toBe("20 questions");
+    expect(sequenceReads()).toBe(reads);
 
     await invalidateTodayServedCache("student", "nursing", now);
-    await loadServedTodaySet({
+    const third = await loadServedTodaySet({
       userId: "student",
       examSlug: "nclex",
       fieldId: "nursing",
       size: 25,
       now,
     });
-    expect(findMany.mock.calls.length).toBeGreaterThan(reads);
+    expect(third.mix.ids).toEqual(first.mix.ids);
+    expect(sequenceReads()).toBe(reads);
   });
 
-  it("does not turn a missed id window into an all-review line when new questions exist", async () => {
-    state.shortWindow = true;
+  it("does not serve another field when that is all the query returns", async () => {
+    state.foreignOnly = true;
     const { preview, served } = await dashboardAndServed();
 
-    expect(preview.mixLine).toBe("15 to review · 10 new");
-    expect(preview.mixLine).toBe(served.mix.mixLine);
-    expect(served.mix.newCount).toBe(10);
+    expect(preview.mixLine).toBeNull();
+    expect(preview.empty).toBe(true);
+    expect(served.mix.ids).toEqual([]);
+    expect(served.items).toEqual([]);
   });
 });

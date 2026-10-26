@@ -52,6 +52,7 @@ export function StartTodaySetButton({
       }
       stashDailySet({
         fieldId: data.fieldId || fieldId,
+        kind: "daily",
         savedAt: Date.now(),
         questions: data.questions,
         bankItemIds: data.bankItemIds ?? [],

@@ -1,6 +1,6 @@
 # Daily questions pipeline
 
-Read-only investigation of how AnyExamEasy builds and serves daily questions, plus a proposed design for about 20 rotating questions per exam. No production data was read or written. No application code was changed.
+The shared pack described below is now implemented on this branch: 20 questions per practice field per Chicago date, a separate Review misses sitting, and the two serve bugs fixed. `/daily` is unchanged. The tables under this note describe the behavior that implementation replaced. No production data was read or written.
 
 There is no single daily-question pipeline. Three mechanisms are live, and a fourth study-plan API exists beside them. None of them is a global, bank-backed pack of about 20 questions.
 
