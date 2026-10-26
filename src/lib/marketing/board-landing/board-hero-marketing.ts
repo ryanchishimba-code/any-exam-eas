@@ -26,37 +26,37 @@ export type BoardHeroMarketingCopy = {
 
 const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   nclex: {
-    headline: "NCLEX-RN practice that feels like the real exam.",
-    subline: `NGN case studies, explained rationales and timed mocks. ${boardHeroPriceTrialSuffix()}`,
+    headline: "NCLEX-RN practice with every answer explained.",
+    subline: `NGN case studies, explained rationales, and timed mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: {
       name: "Nathan C.",
       quote: "The best questions I've found for NCLEX prep.",
     },
   },
   naplex: {
-    headline: "NAPLEX practice with every answer explained.",
-    subline: `Drug questions, calculations and timed mocks. ${boardHeroPriceTrialSuffix()}`,
+    headline: "NAPLEX questions. Every answer explained.",
+    subline: `Drug questions, calculations, and timed mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: {
       name: "Frank C.",
       quote: "The drug cards were a game changer.",
     },
   },
   usmle: {
-    headline: "Every USMLE answer, explained like a tutor would.",
-    subline: `Step-style vignettes, explained rationales and timed mocks. ${boardHeroPriceTrialSuffix()}`,
+    headline: "USMLE practice with every answer explained.",
+    subline: `Step-style vignettes, explained rationales, and timed mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: null,
   },
   "aanp-fnp": {
-    headline: "Premium FNP prep without the premium price.",
-    subline: `Lifespan vignettes with explained rationales and mocks. ${boardHeroPriceTrialSuffix()}`,
+    headline: "FNP practice with every vignette explained.",
+    subline: `Lifespan vignettes, explained rationales, and mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: {
       name: "Mag B.",
       quote: "I couldn't believe the price for everything I got.",
     },
   },
   pance: {
-    headline: "Premium PANCE prep that won't break your budget.",
-    subline: `Organ-system vignettes, explained rationales and mocks. ${boardHeroPriceTrialSuffix()}`,
+    headline: "PANCE practice with every vignette explained.",
+    subline: `Organ-system vignettes, explained rationales, and mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: {
       name: "Nick B.",
       quote:
@@ -64,8 +64,8 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
     },
   },
   "npte-pt": {
-    headline: "NPTE-PT practice built for PTs, not borrowed from other exams.",
-    subline: `PT-specific scenarios, explained rationales and a full mock. ${boardHeroPriceTrialSuffix()}`,
+    headline: "NPTE-PT practice written for physical therapists.",
+    subline: `PT-specific scenarios, explained rationales, and a full mock. ${boardHeroPriceTrialSuffix()}`,
     testimonial: null,
   },
 };

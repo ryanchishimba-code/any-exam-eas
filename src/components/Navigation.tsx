@@ -57,6 +57,7 @@ const MOBILE_MENU_ID = "site-menu";
 export function Navigation() {
   const headerRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
+  const [pastHeroTop, setPastHeroTop] = useState(false);
   const pathname = usePathname();
   const { data: session, status } = useSession();
   const { hasPremiumAccess, hasAppAccess, hasStudyAccess, loading: accessLoading } = useUserAccess();
@@ -100,6 +101,17 @@ export function Navigation() {
   }, [closeMobile, pathname]);
 
   useEffect(() => {
+    if (!isMarketingLandingPath(pathname)) {
+      setPastHeroTop(false);
+      return;
+    }
+    const update = () => setPastHeroTop(window.scrollY > 8);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, [pathname]);
+
+  useEffect(() => {
     if (!open) return;
 
     function onKeyDown(event: KeyboardEvent) {
@@ -138,11 +150,12 @@ export function Navigation() {
     : LANDING_TRIAL_HREF;
   const landingMinimal = isMarketingLandingPath(pathname);
   const hideMobileNavTrialCta = landingMinimal && pathname === "/";
+  const overPhoto = landingMinimal && !pastHeroTop && !open;
 
   return (
     <header
       ref={headerRef}
-      className={`aee-nav apple-glass fixed top-0 z-50 w-full${landingMinimal ? " aee-nav--landing-minimal" : ""}${hideMobileNavTrialCta ? " aee-nav--hide-mobile-trial-cta" : ""}`}
+      className={`aee-nav apple-glass fixed top-0 z-50 w-full${landingMinimal ? " aee-nav--landing-minimal" : ""}${overPhoto ? " aee-nav--over-photo" : ""}${hideMobileNavTrialCta ? " aee-nav--hide-mobile-trial-cta" : ""}`}
     >
       <nav className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6" aria-label="Main navigation">
         <BrandLogo

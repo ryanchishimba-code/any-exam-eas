@@ -30,12 +30,11 @@ export function HubBoardLanding({
         photoHeroId={model.layout}
         headline={model.h1Lead}
         subline={model.heroWhyUs}
-        testimonial={model.heroTestimonial}
         trialHref={model.trialHref}
         heroCtaName={model.heroCtaName}
         heroCtaLocation={model.heroCtaLocation}
-      />
-
+        trail={
+          <>
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
       </div>
@@ -65,6 +64,9 @@ export function HubBoardLanding({
       <div className="bl-band">
         <BoardFreeQuizLazy board={freeQuizBoard} />
       </div>
+          </>
+        }
+      />
 
       {model.features.length > 0 ? (
         <div className="bl-band">

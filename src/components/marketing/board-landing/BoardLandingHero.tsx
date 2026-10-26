@@ -1,52 +1,52 @@
-import { BoardHubHeroActions } from "@/components/marketing/board-landing/BoardHubHeroActions";
-import { MarketingPhotoHero } from "@/components/marketing/MarketingPhotoHero";
-import type { BoardHeroTestimonial } from "@/lib/marketing/board-landing/board-hero-marketing";
+import { MarketingHeroActions } from "@/components/marketing/MarketingHeroActions";
+import {
+  MarketingPhotoHero,
+  MarketingPhotoHeroCopy,
+} from "@/components/marketing/MarketingPhotoHero";
+import { BOARD_LANDING_HERO_QUIZ_HREF } from "@/lib/marketing/board-landing/board-hero-marketing";
 import type { MarketingPhotoHeroId } from "@/lib/marketing/marketing-photo-heroes";
+import type { ReactNode } from "react";
 
 export type BoardLandingHeroProps = {
   photoHeroId: MarketingPhotoHeroId;
   headline: string;
   subline: string;
-  testimonial: BoardHeroTestimonial | null;
   trialHref: string;
   heroCtaName: string;
   heroCtaLocation: string;
+  /** Bands that sit on the photo, ending before the features section. */
+  trail?: ReactNode;
 };
 
 export function BoardLandingHero({
   photoHeroId,
   headline,
   subline,
-  testimonial,
   trialHref,
   heroCtaName,
   heroCtaLocation,
+  trail,
 }: BoardLandingHeroProps) {
   return (
     <MarketingPhotoHero
       heroId={photoHeroId}
-      className="bl-hero bl-hero--single"
       ariaLabelledBy="board-hero-heading"
+      trail={trail}
     >
-      <div className="bl-hero-copy">
-        <h1 id="board-hero-heading">{headline}</h1>
-        <p className="bl-hero-lede">{subline}</p>
-        {testimonial ? (
-          <figure className="bl-hero-quote mkt-photo-hero__soft">
-            <blockquote>
-              <p>{testimonial.quote}</p>
-            </blockquote>
-            <figcaption>{testimonial.name}</figcaption>
-          </figure>
-        ) : null}
-        <div>
-          <BoardHubHeroActions
+      <MarketingPhotoHeroCopy
+        headingId="board-hero-heading"
+        title={headline}
+        subline={subline}
+        actions={
+          <MarketingHeroActions
             trialHref={trialHref}
             ctaName={heroCtaName}
             ctaLocation={heroCtaLocation}
+            seeQuestionsHref={BOARD_LANDING_HERO_QUIZ_HREF}
+            className="mkt-photo-hero__actions"
           />
-        </div>
-      </div>
+        }
+      />
     </MarketingPhotoHero>
   );
 }

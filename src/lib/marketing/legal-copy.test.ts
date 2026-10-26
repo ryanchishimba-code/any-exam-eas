@@ -75,7 +75,7 @@ describe("legal copy", () => {
 
 describe("home legal copy", () => {
   it("keeps the home headline and practice estimate in the shared module", () => {
-    expect(HOME_PRACTICE_HEADLINE).toBe("Board prep for six exams, one plan at $27.99/mo.");
+    expect(HOME_PRACTICE_HEADLINE).toBe("Six board exams. One plan at $27.99/mo.");
     expect(formatHomeHeroSubline("43,300+")).toBe(
       "43,300+ explained questions, mock exams and a readiness score. 5-day free trial, no payment method required."
     );
