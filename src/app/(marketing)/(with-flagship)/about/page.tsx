@@ -3,7 +3,6 @@ import Link from "next/link";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
 import { MarketingPhotoHero, MarketingPhotoHeroCopy } from "@/components/marketing/MarketingPhotoHero";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
@@ -182,8 +181,6 @@ export default async function AboutPage() {
                 <dt>Contact</dt>
                 <dd>
                   <a href={`mailto:${COMPANY_PUBLIC.supportEmail}`}>{COMPANY_PUBLIC.supportEmail}</a>
-                  <span aria-hidden> · </span>
-                  <SupportPhoneLink />
                 </dd>
               </div>
             </dl>
