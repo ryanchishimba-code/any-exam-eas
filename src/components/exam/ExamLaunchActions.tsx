@@ -17,6 +17,7 @@ import { feUi } from "@/lib/study/full-exam-ui";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 import type { ExamQuestion } from "@/lib/ai";
+import { redirectToUpgradeIfTrialCapReached } from "@/lib/study/usage-limit-messages";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -120,6 +121,7 @@ export function ExamLaunchActions({
           bankItemIds?: string[];
         };
         if (!res.ok) {
+          if (redirectToUpgradeIfTrialCapReached(data)) return;
           setError(data.error ?? "Could not start exam");
           startingRef.current = false;
           setPendingMode(null);

@@ -92,7 +92,7 @@ export function formatCheckoutTrialPageDescription(
   return `${base} · then ${formatMonthlyPrice("pro")}/mo`;
 }
 
-/** e.g. "500 practice questions during your 5-day trial" */
+/** e.g. "100 practice questions during your 5-day trial" */
 export function formatTrialQuestionLimit(): string {
   return `${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial`;
 }
@@ -114,7 +114,7 @@ export function formatLandingTrialFaqAnswer(): string {
 
 /**
  * Signup trial scope. The liability pass uses this same sentence.
- * Count comes from TRIAL_LIFETIME_QUESTIONS (500 unless overridden).
+ * Count comes from TRIAL_LIFETIME_QUESTIONS (100 unless overridden).
  */
 export function formatSignupTrialScope(): string {
   return `Your trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmap and Deep Dives.`;

@@ -12,6 +12,7 @@ import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { fetchRevealedAnswer } from "@/lib/client/fetch-revealed-answer";
 import { formatHms } from "@/lib/full-exam/config";
 import { assertExactQuestionCount } from "@/lib/exam/session-count";
+import { redirectToUpgradeIfTrialCapReached } from "@/lib/study/usage-limit-messages";
 import {
   buildWeakAreasFromField,
   calculateExamScorePercent,
@@ -73,6 +74,7 @@ export function TimedPracticeExam({
       .then(async (r) => {
         const d = await r.json();
         if (!r.ok) {
+          if (redirectToUpgradeIfTrialCapReached(d)) return;
           throw new Error(d.error ?? "Could not load timed exam");
         }
         const bankIds: string[] = d.bankItemIds ?? [];

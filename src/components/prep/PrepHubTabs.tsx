@@ -8,6 +8,7 @@ import {
   getExamQuestionCountBySlug,
 } from "@/lib/exam/exam-lengths";
 import { timedExamHref, questionBankHref } from "@/lib/study-hub/config";
+import { redirectToUpgradeIfTrialCapReached } from "@/lib/study/usage-limit-messages";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { NclexStudyPresetsPanel } from "@/components/prep/NclexStudyPresetsPanel";
@@ -60,6 +61,7 @@ export function PrepHubTabs({
         error?: string;
       };
       if (!res.ok) {
+        if (redirectToUpgradeIfTrialCapReached(data)) return;
         setStartError(data.error ?? "Could not start timed exam");
         return;
       }

@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import { SAMPLE_QUESTION_PREVIEWS } from "@/lib/landing/content";
 import { HOME_FAQ } from "@/lib/marketing/home-faq";
 import { HOME_EXPLAINED_SAMPLE } from "@/lib/marketing/home-explained";
+import { TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
 
 describe("homepage explained sample", () => {
@@ -23,7 +24,9 @@ describe("homepage faq and price placement", () => {
   it("keeps the short FAQ free of hours, prices, and bank counts", () => {
     const joined = HOME_FAQ.map((item) => `${item.q} ${item.a}`).join(" ");
     expect(joined).not.toMatch(/24\/7|support hours|\$\d|\d+,\d+\+?\s*questions/i);
-    expect(joined).toMatch(/500 practice questions across all six boards/i);
+    expect(joined).toContain(
+      `${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards`
+    );
     expect(HOME_FAQ.length).toBeLessThanOrEqual(4);
   });
 

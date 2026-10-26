@@ -9,6 +9,7 @@ import {
   planHasQuestionAccessLimits,
   resolveStudyUsagePlan,
   STUDY_USAGE_LIMITS,
+  trialLifetimeCapDecision,
   type StudyUsageLimits,
   type StudyUsagePlan,
 } from "@/lib/study/usage-limits-config";
@@ -20,6 +21,7 @@ export {
   planHasQuestionAccessLimits,
   resolveStudyUsagePlan,
   STUDY_USAGE_LIMITS,
+  trialLifetimeCapDecision,
 } from "@/lib/study/usage-limits-config";
 
 export const STUDY_USAGE_ACTION = "study_questions_served";
@@ -497,31 +499,41 @@ export async function checkStudyQuestionUsage(
   if (
     (plan === "trial" || plan === "free") &&
     limits.trialLifetimeQuestions != null &&
-    snapshot.usedTrialTotal != null &&
-    snapshot.usedTrialTotal + allowedCount > limits.trialLifetimeQuestions
+    snapshot.usedTrialTotal != null
   ) {
-    const remaining = snapshot.remainingTrialTotal ?? 0;
-    const label = plan === "free" ? "Free plan" : "Trial";
-    return {
-      ok: false,
-      response: NextResponse.json(
-        {
-          error:
-            remaining > 0
-              ? `${label} allowance: ${remaining} questions left. Upgrade to keep studying.`
-              : plan === "free"
-                ? `You've used all ${limits.trialLifetimeQuestions} free questions. Upgrade to unlock unlimited practice.`
-                : `You've used all ${limits.trialLifetimeQuestions} trial questions. Subscribe to unlock the full bank.`,
-          code: plan === "free" ? "FREE_LIFETIME_LIMIT" : "TRIAL_LIFETIME_LIMIT",
-          plan,
-          usedTrialTotal: snapshot.usedTrialTotal,
-          trialLimit: limits.trialLifetimeQuestions,
-          remainingTrialTotal: remaining,
-          upgradeUrl: upgradeUrl(plan, plan === "free" ? "free_total" : "trial_total"),
-        },
-        { status: 429 }
-      ),
-    };
+    const used = snapshot.usedTrialTotal;
+    const limit = limits.trialLifetimeQuestions;
+    const decision = trialLifetimeCapDecision(used, allowedCount, limit);
+    if (decision !== "allow") {
+      const remaining = snapshot.remainingTrialTotal ?? Math.max(0, limit - used);
+      const label = plan === "free" ? "Free plan" : "Trial";
+      const questionWord = remaining === 1 ? "question" : "questions";
+      // Already at or past the cap: the upgrade screen, not an error page.
+      // A shorter session that would still cross the cap keeps the allowance note.
+      const trialCapReached = plan === "trial" && decision === "upgrade";
+      return {
+        ok: false,
+        response: NextResponse.json(
+          {
+            error: trialCapReached
+              ? `You've used your ${limit} practice questions.`
+              : remaining > 0
+                ? `${label} allowance: ${remaining} ${questionWord} left. Upgrade to keep studying.`
+                : plan === "free"
+                  ? "You've used your free questions. Upgrade to keep studying."
+                  : `You've used your ${limit} practice questions.`,
+            code: plan === "free" ? "FREE_LIFETIME_LIMIT" : "TRIAL_LIFETIME_LIMIT",
+            plan,
+            usedTrialTotal: used,
+            trialLimit: limit,
+            remainingTrialTotal: remaining,
+            upgradeScreen: trialCapReached,
+            upgradeUrl: upgradeUrl(plan, plan === "free" ? "free_total" : "trial_total"),
+          },
+          { status: trialCapReached ? 403 : 429 }
+        ),
+      };
+    }
   }
 
   return { ok: true, plan, allowedCount, snapshot };

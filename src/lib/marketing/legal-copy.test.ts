@@ -69,7 +69,7 @@ describe("legal copy", () => {
     expect(quoteShareConsentLabel()).toContain("support@anyexameasy.com");
     expect(quoteShareConsentLabel()).toContain("first name, last initial");
     expect(QUOTE_CONSENT_VERSION).toBe("2026-09-27");
-    expect(TRIAL_LIFETIME_QUESTIONS).toBe(500);
+    expect(TRIAL_LIFETIME_QUESTIONS).toBe(100);
   });
 });
 

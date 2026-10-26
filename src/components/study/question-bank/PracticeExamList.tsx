@@ -6,7 +6,10 @@ import { fullExamSessionHref } from "@/lib/full-exam/config";
 import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { fetchFullExamStart } from "@/lib/full-exam/start-client";
 import { navigateHard } from "@/lib/client/navigate-hard";
-import { studyLimitMessage } from "@/lib/study/usage-limit-messages";
+import {
+  redirectToUpgradeIfTrialCapReached,
+  studyLimitMessage,
+} from "@/lib/study/usage-limit-messages";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import {
   PRACTICE_EXAM_PREVIEW_COUNT,
@@ -108,6 +111,7 @@ export function PracticeExamList({
         bankItemIds?: string[];
       };
       if (!res.ok) {
+        if (redirectToUpgradeIfTrialCapReached(data)) return;
         throw new Error(studyLimitMessage(data) || data.error || "Could not start this practice exam");
       }
       const href =

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { CANCEL_ANYTIME_LABEL } from "@/lib/billing-plans";
 import { trialUpgradeKeepFeatures } from "@/lib/trial/upgrade-features";
 import { trialUpgradeCheckoutHref } from "@/lib/dashboard/upgrade-banner";
@@ -16,6 +17,7 @@ export function TrialUpgradeScreen({
   accuracyPct,
   testimonial,
   returnPath = "/dashboard",
+  capReached = false,
 }: {
   examSlug: ExamSlug;
   boardName: string;
@@ -23,6 +25,8 @@ export function TrialUpgradeScreen({
   accuracyPct: number;
   testimonial: ConsentedTestimonialSeed | null;
   returnPath?: string;
+  /** Trial user is already at the question cap. */
+  capReached?: boolean;
 }) {
   const monthly = formatPlanUsd(PRO_MONTHLY_PRICE_USD);
   const checkoutHref = trialUpgradeCheckoutHref(returnPath);
@@ -39,6 +43,11 @@ export function TrialUpgradeScreen({
           Keep studying for {monthly}/mo
         </h1>
         <p className="text-sm text-[var(--color-ink-muted)]">{CANCEL_ANYTIME_LABEL}</p>
+        {capReached ? (
+          <p className="text-sm text-[var(--color-ink-muted)]">
+            Your {TRIAL_DAYS}-day trial includes {TRIAL_LIFETIME_QUESTIONS} practice questions.
+          </p>
+        ) : null}
       </header>
 
       {questionsAnswered > 0 ? (

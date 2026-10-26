@@ -5,9 +5,9 @@ import { PRO_MONTHLY_PRICE_USD } from "@/lib/pricing-defaults";
 /** App-native free trial (days) — starts at signup without a payment method. */
 export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "5");
 
-/** Lifetime question cap during the app-native free trial (500 practice questions, not the full banks). */
+/** Lifetime question cap during the app-native free trial (100 practice questions, not the full banks). */
 export const TRIAL_LIFETIME_QUESTIONS = Number(
-  process.env.TRIAL_LIFETIME_QUESTIONS ?? "500"
+  process.env.TRIAL_LIFETIME_QUESTIONS ?? "100"
 );
 
 /**

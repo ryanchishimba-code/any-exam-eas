@@ -40,6 +40,7 @@ import {
   mockPresetLockedMessage,
   type MockExamAccess,
 } from "@/lib/study/mock-exam-access";
+import { redirectToUpgradeIfTrialCapReached } from "@/lib/study/usage-limit-messages";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -172,6 +173,7 @@ export function FullExamLauncher({
         bankItemIds?: string[];
       };
       if (!res.ok) {
+        if (redirectToUpgradeIfTrialCapReached(data)) return;
         setError(data.error ?? "Could not start exam");
         startingRef.current = false;
         if (opts?.autostart) releaseAutostartLock(lockKey);

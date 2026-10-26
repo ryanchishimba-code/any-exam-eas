@@ -151,7 +151,7 @@ export async function sendTrialDay4ReminderEmail(
   const bodyHtml = [
     emailParagraph(`${greeting(params.name)}`),
     emailParagraph(
-      `You are halfway through your ${TRIAL_DAYS}-day AnyExamEasy trial. You still have access to your dashboard, practice progress, and the rest of your ${TRIAL_LIFETIME_QUESTIONS} question allowance until <strong>${when}</strong>.`
+      `You are halfway through your ${TRIAL_DAYS}-day AnyExamEasy trial. Your allowance is ${TRIAL_LIFETIME_QUESTIONS} practice questions, and your dashboard stays open until <strong>${when}</strong>.`
     ),
     emailParagraph(
       "If the question bank and explanations are helping, upgrade now to keep unlimited practice, adaptive mocks, and analytics without losing your streak or history."
@@ -162,7 +162,7 @@ export async function sendTrialDay4ReminderEmail(
     greeting(params.name),
     "",
     `Your trial continues until ${when}.`,
-    `You still have questions left in your ${TRIAL_LIFETIME_QUESTIONS}-question trial allowance.`,
+    `Your trial allowance is ${TRIAL_LIFETIME_QUESTIONS} practice questions.`,
     "",
     `Upgrade: ${upgradeUrl}`,
     `Dashboard: ${dashboardUrl}`,

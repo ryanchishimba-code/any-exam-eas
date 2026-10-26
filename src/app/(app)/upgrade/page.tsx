@@ -35,6 +35,7 @@ export default async function UpgradePage({
   const sp = await searchParams;
   const returnPath =
     typeof sp.return === "string" && sp.return.startsWith("/") ? sp.return : ROUTES.dashboard;
+  const capReached = sp.reason === "trial_total";
 
   const [access, pref] = await runPageDb(() =>
     Promise.all([
@@ -64,6 +65,7 @@ export default async function UpgradePage({
       accuracyPct={stats.accuracyPct}
       testimonial={testimonial}
       returnPath={returnPath}
+      capReached={capReached}
     />
   );
 }

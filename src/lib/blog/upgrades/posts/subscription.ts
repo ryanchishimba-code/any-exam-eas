@@ -1,3 +1,4 @@
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { a, faq, h2, h3, p, readMinutes, table, ul } from "@/lib/blog/upgrades/html";
 import { TRIAL_HREF, TRIAL_OFFER, TRIAL_QUESTION_LIMIT, trialClose } from "@/lib/blog/upgrades/offer";
 import type { BlogUpgrade } from "@/lib/blog/upgrades/types";
@@ -17,7 +18,7 @@ const content = [
     `Anyone who might sit more than one of these exams, or who wants one login instead of a stack of single-exam products.`,
   ]),
   p(
-    `If you only need a one-week peek, the trial is the honest way to look. Five hundred questions is enough to test rationales, the Roadmap, and a case. It is not enough to finish a full board review. That is what the month is for.`
+    `If you only need a short look, the trial is the honest way to sample the product. ${TRIAL_LIFETIME_QUESTIONS} questions let you try rationales, the Roadmap, and a case. That is a sample, not a full board review.`
   ),
 
   h2("What you can use on the trial, and what Pro adds"),
@@ -25,7 +26,7 @@ const content = [
     ["", "5-day trial", "Pro"],
     [
       ["Exams", "All six banks", "All six banks"],
-      ["Questions", "500 during the trial", "No question cap"],
+      ["Questions", `${TRIAL_LIFETIME_QUESTIONS} during the trial`, "No question cap"],
       ["Full-length adaptive exam", "One", "Included"],
       ["Roadmap and weak-area sets", "Yes", "Yes"],
       ["Deep Dive review after a miss", "Yes", "Yes"],
@@ -72,7 +73,9 @@ const content = [
   p(
     `Price after the trial is $27.99 per month on the monthly plan. Longer billing intervals exist on ${a("/pricing", "pricing")} if you want them. The trial itself does not ask for a payment method. ${a(TRIAL_HREF, "Try for free")} when you want to see a case and a rationale, not a feature list.`
   ),
-  trialClose(`If the fit is right, keep going on Pro when the 500 questions run out.`),
+  trialClose(
+    `If the fit is right, keep going on Pro when the ${TRIAL_LIFETIME_QUESTIONS} questions run out.`
+  ),
 
   h2("Sources for the exams, and for the product"),
   p(
@@ -87,13 +90,13 @@ const content = [
     `${a("https://www.fsbpt.org/", "FSBPT", true)} for the NPTE-PT.`,
   ]),
   p(
-    `Product limits in the table are the ones in this app: a 5-day trial, 500 questions, one full-length adaptive exam on the trial, and reference books only while trial or Pro access is on. If a screen in your account disagrees with this article, believe the screen.`
+    `Product limits in the table are the ones in this app: a ${TRIAL_DAYS}-day trial, ${TRIAL_LIFETIME_QUESTIONS} questions, one full-length adaptive exam on the trial, and reference books only while trial or Pro access is on. If a screen in your account disagrees with this article, believe the screen.`
   ),
 
   faq([
     {
       q: "How much does AnyExamEasy cost?",
-      a: `${TRIAL_OFFER} The trial includes 500 practice questions and one full-length adaptive exam. Pro removes the question cap.`,
+      a: `${TRIAL_OFFER} The trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions and one full-length adaptive exam. Pro removes the question cap.`,
     },
     {
       q: "Which exams are included?",
@@ -121,7 +124,7 @@ export const subscriptionPost: BlogUpgrade = {
   metaDescription:
     `Six exams on one plan: NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE, with a Roadmap. ${TRIAL_OFFER}`,
   excerpt:
-    "What you actually get on one plan: six exam banks, a 500-question trial, one full-length adaptive exam, and reference books that stay with Pro.",
+    `What you actually get on one plan: six exam banks, a ${TRIAL_LIFETIME_QUESTIONS}-question trial, one full-length adaptive exam, and reference books that stay with Pro.`,
   category: "All boards",
   tags: ["board exam subscription", "NCLEX", "USMLE", "NAPLEX", "free trial"],
   primaryKeyword: "six board exams one subscription",

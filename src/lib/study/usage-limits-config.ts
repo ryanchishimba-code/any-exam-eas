@@ -97,3 +97,24 @@ export function clampStudySessionSize(
 export function planHasQuestionAccessLimits(plan: StudyUsagePlan): boolean {
   return plan === "trial" || plan === "free";
 }
+
+/**
+ * How a trial or free lifetime cap applies to one requested session.
+ * `upgrade` means the learner is already at or past the cap — send them to the
+ * upgrade screen. `short` means this session would pass the cap but questions remain.
+ */
+export function trialLifetimeCapDecision(
+  used: number,
+  requested: number,
+  limit: number
+): "allow" | "upgrade" | "short" {
+  if (!Number.isFinite(used) || !Number.isFinite(requested) || !Number.isFinite(limit)) {
+    return "allow";
+  }
+  const usedCount = Math.max(0, Math.floor(used));
+  const requestedCount = Math.max(0, Math.floor(requested));
+  const cap = Math.max(0, Math.floor(limit));
+  if (usedCount >= cap) return "upgrade";
+  if (usedCount + requestedCount > cap) return "short";
+  return "allow";
+}

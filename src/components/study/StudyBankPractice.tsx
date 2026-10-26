@@ -58,7 +58,10 @@ import { QuestionBankSetup } from "./QuestionBankSetup";
 import { QuestionBankHeader } from "./question-bank/QuestionBankHeader";
 import type { QuestionBankHubStats } from "./question-bank/QuestionBankPracticeLoader";
 import { StudyUsageBanner } from "@/components/study/StudyUsageBanner";
-import { studyLimitMessage } from "@/lib/study/usage-limit-messages";
+import {
+  redirectToUpgradeIfTrialCapReached,
+  studyLimitMessage,
+} from "@/lib/study/usage-limit-messages";
 import { QuestionBankSection, QuestionBankSegment } from "./question-bank/QuestionBankSection";
 import { PracticeExamList } from "./question-bank/PracticeExamList";
 import { MpjeVariantSelector } from "./MpjeVariantSelector";
@@ -1395,6 +1398,7 @@ export function StudyBankPractice({
         const res = await fetch(`/api/questions?${qs.toString()}`);
         const data = await res.json();
         if (!res.ok) {
+          if (redirectToUpgradeIfTrialCapReached(data)) return;
           setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
           throw new Error(studyLimitMessage(data) || data.error || "Could not load this format set");
         }
@@ -1459,6 +1463,7 @@ export function StudyBankPractice({
             requested?: number;
           };
           if (!res.ok) {
+            if (redirectToUpgradeIfTrialCapReached(data)) return;
             setUpgradeHref(data.upgradeUrl ?? null);
             throw new Error(studyLimitMessage(data) || data.error || "Could not start timed exam");
           }
@@ -1501,6 +1506,7 @@ export function StudyBankPractice({
         const res = await fetch(`/api/questions?${qs.toString()}`);
         const data = await res.json();
         if (!res.ok) {
+          if (redirectToUpgradeIfTrialCapReached(data)) return;
           setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
           throw new Error(studyLimitMessage(data) || data.error || "Could not load timed exam");
         }
@@ -1585,6 +1591,7 @@ export function StudyBankPractice({
         });
         const data = await res.json();
         if (!res.ok) {
+          if (redirectToUpgradeIfTrialCapReached(data)) return;
           setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
           throw new Error(studyLimitMessage(data) || data.error || "Could not build today's set");
         }
@@ -1650,6 +1657,7 @@ export function StudyBankPractice({
         });
         const data = await res.json();
         if (!res.ok) {
+          if (redirectToUpgradeIfTrialCapReached(data)) return;
           setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
           throw new Error(
             studyLimitMessage(data) || data.error || "Could not build Today set"
@@ -1730,6 +1738,7 @@ export function StudyBankPractice({
             { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true, examSessionId },
             8000
           );
+          if (!preflight.ok && redirectToUpgradeIfTrialCapReached(preflight.data)) return;
           decision = decisionFromRemediationPayload({
             mode: "review_incorrect",
             ok: preflight.ok,
@@ -1746,6 +1755,7 @@ export function StudyBankPractice({
               { field: reviewField, subjectId: reviewSubject, count: limit, preflight: true, examSessionId },
               8000
             );
+            if (!preflight.ok && redirectToUpgradeIfTrialCapReached(preflight.data)) return;
             decision = decisionFromRemediationPayload({
               mode: "review_incorrect",
               ok: preflight.ok,
@@ -1775,6 +1785,7 @@ export function StudyBankPractice({
           20000
         );
         if (!launched.ok) {
+          if (redirectToUpgradeIfTrialCapReached(launched.data)) return;
           setUpgradeHref(
             typeof launched.data.upgradeUrl === "string" ? launched.data.upgradeUrl : null
           );
@@ -1869,6 +1880,7 @@ export function StudyBankPractice({
             },
             8000
           );
+          if (!preflight.ok && redirectToUpgradeIfTrialCapReached(preflight.data)) return;
           const decision = decisionFromRemediationPayload({
             mode: "weak_areas",
             ok: preflight.ok,
@@ -1935,11 +1947,13 @@ export function StudyBankPractice({
             return;
           }
           if (!res.ok && followup.status === "error") {
+            if (redirectToUpgradeIfTrialCapReached(data)) return;
             setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
             throw new Error(followup.message);
           }
         }
         if (!res.ok) {
+          if (redirectToUpgradeIfTrialCapReached(data)) return;
           setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
           throw new Error(studyLimitMessage(data) || data.error || "Could not build adaptive session");
         }
@@ -2014,6 +2028,7 @@ export function StudyBankPractice({
       const res = await fetch(`/api/questions?${qs.toString()}`);
       const data = await res.json();
       if (!res.ok) {
+        if (redirectToUpgradeIfTrialCapReached(data)) return;
         setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
         throw new Error(studyLimitMessage(data) || data.error || "Could not load questions");
       }

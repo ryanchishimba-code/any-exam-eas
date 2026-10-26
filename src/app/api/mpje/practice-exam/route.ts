@@ -41,6 +41,18 @@ export async function GET(req: Request) {
   const premium = await requirePremiumApi();
   if (!premium.ok) return premium.response;
 
+  const { checkStudyQuestionUsage, recordStudyQuestionsServed } = await import(
+    "@/lib/study/usage-limits"
+  );
+  const usageCheck = await checkStudyQuestionUsage({
+    userId: premium.userId,
+    access: premium.access,
+    requestedCount: MPJE_PRACTICE_EXAM_QUESTION_COUNT,
+    timedExam: true,
+    fullLengthMock: MPJE_PRACTICE_EXAM_QUESTION_COUNT >= 100,
+  });
+  if (!usageCheck.ok) return usageCheck.response;
+
   const { searchParams } = new URL(req.url);
   const stateCode = parseMpjeStateParam(
     searchParams.get("state"),
@@ -49,6 +61,12 @@ export async function GET(req: Request) {
 
   try {
     const questions = await buildMpjePracticeExam(stateCode);
+    await recordStudyQuestionsServed(
+      premium.userId,
+      questions.length,
+      "exam_session",
+      usageCheck.plan
+    );
     const examId = createMpjeExamSession(premium.userId, stateCode ?? "", questions);
     const state = stateCode ? getMpjeState(stateCode) : undefined;
 
