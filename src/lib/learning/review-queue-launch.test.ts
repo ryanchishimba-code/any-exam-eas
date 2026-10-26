@@ -220,10 +220,7 @@ describe("review incorrect launch eligibility", () => {
     expect(page).toContain("subjectId: null");
     expect(selectLaunchReviewQueueIds.toString()).not.toMatch(/naplex|nclex/i);
 
-    const analytics = readFileSync(
-      new URL("../../app/(app)/analytics/page.tsx", import.meta.url),
-      "utf8"
-    );
+    const analytics = readFileSync(new URL("./analytics-snapshot.ts", import.meta.url), "utf8");
     const stats = readFileSync(new URL("../edtech/stats.ts", import.meta.url), "utf8");
     const dashboardData = readFileSync(new URL("./student-dashboard.ts", import.meta.url), "utf8");
     expect(analytics).toContain("canonicalPracticeFieldId");

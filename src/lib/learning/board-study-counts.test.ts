@@ -38,10 +38,7 @@ describe("board study counts", () => {
       new URL("../../app/(app)/dashboard/page.tsx", import.meta.url),
       "utf8"
     );
-    const analytics = readFileSync(
-      new URL("../../app/(app)/analytics/page.tsx", import.meta.url),
-      "utf8"
-    );
+    const analytics = readFileSync(new URL("./analytics-snapshot.ts", import.meta.url), "utf8");
     const header = readFileSync(
       new URL("../../components/app/DashboardPageContent.tsx", import.meta.url),
       "utf8"
@@ -49,7 +46,9 @@ describe("board study counts", () => {
     expect(dashboard).toContain("boardStudyCountsFromSources");
     expect(analytics).toContain("boardStudyCountsFromSources");
     expect(dashboard).not.toContain("stats.accuracyPct");
-    expect(header).toContain("boardAttempts");
-    expect(header).not.toContain("questionsAnswered");
+    const headerOpen = header.indexOf("<DashboardHeader");
+    const headerJsx = header.slice(headerOpen, header.indexOf("/>", headerOpen));
+    expect(headerJsx).toContain("boardAttempts={boardAttempts}");
+    expect(headerJsx).not.toContain("questionsAnswered");
   });
 });

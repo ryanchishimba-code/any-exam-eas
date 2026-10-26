@@ -30,8 +30,8 @@ describe("resolveStudyGuideSection", () => {
 
   it("omits a guide link for boards that do not ship a study guide", () => {
     expect(resolveStudyGuideSection("usmle", ["acute-coronary-syndrome"])).toBeNull();
-    expect(resolveStudyGuideSection("pance", ["cardiovascular"])).toBeNull();
     expect(resolveStudyGuideSection("npte-pt", ["musculoskeletal"])).toBeNull();
+    expect(resolveStudyGuideSection("mpje", ["federal-pharmacy-law"])).toBeNull();
   });
 });
 
@@ -157,12 +157,12 @@ describe("groupOpenRemediationLoops", () => {
     );
   });
 
-  it("does not invent a guide chapter for PANCE misses", () => {
+  it("does not invent a guide chapter for boards without a study guide", () => {
     const summary = groupOpenRemediationLoops({
-      examSlug: "pance",
-      fieldId: "pance",
+      examSlug: "usmle",
+      fieldId: "usmle",
       attempts: [
-        { bankItemId: "p1", questionKey: "p1", correct: false, subjectId: "cardiovascular" },
+        { bankItemId: "p1", questionKey: "p1", correct: false, subjectId: "acute-coronary-syndrome" },
       ],
     });
     expect(summary.loops[0]?.guide).toBeNull();

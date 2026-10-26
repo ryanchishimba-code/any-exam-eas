@@ -15,7 +15,8 @@ describe("NPTE-PT blueprint quotas", () => {
     expect(total).toBeLessThanOrEqual(6010);
 
     const msk = quotas.find((q) => q.contentCategory === "musculoskeletal");
-    expect(msk?.targetCount).toBe(1667);
+    // Normalized midpoint of the 44–54 range (49/179 of 6000).
+    expect(msk?.targetCount).toBe(1642);
     expect(msk?.weight).toBeCloseTo(0.2 / 0.72, 2);
   });
 
@@ -27,7 +28,7 @@ describe("NPTE-PT blueprint quotas", () => {
   });
 
   it("returns category target for musculoskeletal at largest body-system weight", () => {
-    expect(getNptePtCategoryTarget("musculoskeletal")).toBe(1667);
+    expect(getNptePtCategoryTarget("musculoskeletal")).toBe(1642);
   });
 
   it("detects blueprint misalignment", () => {

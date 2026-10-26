@@ -17,8 +17,8 @@ describe("filterHighYieldTopics", () => {
   });
 
   it("filters by category", () => {
-    const safety = filterHighYieldTopics(NCLEX_HIGH_YIELD_TOPICS, "", "Safety");
-    expect(safety.every((t) => t.category === "Safety")).toBe(true);
+    const safety = filterHighYieldTopics(NCLEX_HIGH_YIELD_TOPICS, "", "Safety & Infection Control");
+    expect(safety.every((t) => t.category === "Safety & Infection Control")).toBe(true);
     expect(safety.some((t) => t.slug === "infection-control")).toBe(true);
   });
 
@@ -60,8 +60,8 @@ describe("topic selection connects card click to correct topic", () => {
   });
 
   it("maps category-filtered index correctly", () => {
-    const safety = filterHighYieldTopics(NCLEX_HIGH_YIELD_TOPICS, "", "Safety");
-    const id = topicIdForSelection(NCLEX_HIGH_YIELD_TOPICS, "", "Safety", 0);
+    const safety = filterHighYieldTopics(NCLEX_HIGH_YIELD_TOPICS, "", "Safety & Infection Control");
+    const id = topicIdForSelection(NCLEX_HIGH_YIELD_TOPICS, "", "Safety & Infection Control", 0);
     expect(id).toBe(safety[0].id);
   });
 });

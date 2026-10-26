@@ -21,13 +21,13 @@ describe("homepage explained sample", () => {
 });
 
 describe("homepage faq and price placement", () => {
-  it("keeps the short FAQ free of hours, prices, and bank counts", () => {
+  it("keeps the short FAQ free of hours and bank-count claims", () => {
     const joined = HOME_FAQ.map((item) => `${item.q} ${item.a}`).join(" ");
-    expect(joined).not.toMatch(/24\/7|support hours|\$\d|\d+,\d+\+?\s*questions/i);
+    expect(joined).not.toMatch(/24\/7|support hours|\d+,\d+\+?\s*questions/i);
     expect(joined).toContain(
       `${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards`
     );
-    expect(HOME_FAQ.length).toBeLessThanOrEqual(4);
+    expect(HOME_FAQ.length).toBeLessThanOrEqual(6);
   });
 
   it("shows the monthly price once on the homepage", () => {

@@ -204,7 +204,8 @@ describe("exam roadmap", () => {
       new Map()
     );
     expect(topics).toHaveLength(14);
-    expect(topics.find((t) => t.categoryId === "musculoskeletal")?.blueprintWeightPct).toBe(28);
+    // Normalized midpoint of the 44–54 item range rounds to 27%.
+    expect(topics.find((t) => t.categoryId === "musculoskeletal")?.blueprintWeightPct).toBe(27);
     expect(topics.find((t) => t.categoryId === "neuromuscular-nervous")?.blueprintWeightPct).toBe(24);
   });
 });

@@ -43,8 +43,10 @@ describe("progressive exam relaxation framework", () => {
   });
 
   it("scales compose pool limit for long exams", () => {
-    expect(resolveComposePoolLimit(50)).toBeGreaterThanOrEqual(300);
-    expect(resolveComposePoolLimit(100)).toBeGreaterThanOrEqual(600);
+    // Short sessions cap near 2× the exam length; the old 6× pull was retired.
+    expect(resolveComposePoolLimit(50)).toBe(100);
+    expect(resolveComposePoolLimit(100)).toBe(200);
+    expect(resolveComposePoolLimit(100)).toBeGreaterThan(50);
   });
 
   it("fillExamItemsToCount pads to exact count after uniqueness drops items", () => {

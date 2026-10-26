@@ -16,7 +16,8 @@ describe("AANP FNP blueprint quotas", () => {
     expect(total).toBeLessThanOrEqual(6010);
 
     const assess = quotas.find((q) => q.domain === "assess");
-    expect(assess?.targetCount).toBe(1920);
+    // Official assess weight is 43/135 of 6000, which rounds to 1911.
+    expect(assess?.targetCount).toBe(1911);
     expect(assess?.weight).toBeCloseTo(0.32, 2);
   });
 

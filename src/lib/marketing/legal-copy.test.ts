@@ -91,7 +91,12 @@ describe("home legal copy", () => {
     expect(joined).toContain("TRADEMARK_NOTICE");
     expect(joined).toContain("TESTIMONIAL_RESULTS_NOTE");
     expect(joined).toContain("HOME_PRACTICE_HEADLINE");
-    expect(joined).toContain("boardReviewBadge");
+    const landing = readFileSync(
+      path.join(process.cwd(), "src/components/marketing/ExamMarketingLanding.tsx"),
+      "utf8"
+    );
+    expect(landing).toContain("boardReviewBadge");
+    expect(landing).toContain("boardReviewBadge(examKey, reviewer.displayName)");
     expect(joined).toMatch(/\/legal\/refunds/);
     expect(joined).not.toMatch(/HOME_NOT_AFFILIATED|HOME_EDUCATIONAL_USE|HOME_TESTIMONIAL_LABEL/);
   });

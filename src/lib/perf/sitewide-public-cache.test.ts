@@ -34,9 +34,12 @@ describe("public pages for every board stay cacheable", () => {
     const seo = source("src/lib/seo/exam-config.ts");
     for (const slug of ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"]) {
       expect(seo).toContain(`"${slug}"`);
+      const hub = source(`src/app/${slug}/page.tsx`);
+      expect(hub, slug).toContain("export const revalidate = 300");
+      expect(hub, slug).not.toContain('dynamic = "force-dynamic"');
     }
-    expect(hubs).toContain("examSlug !== \"nclex\"");
-    expect(source("src/app/nclex/page.tsx")).toContain("export const revalidate = 300");
+    expect(hubs).toContain("generateStaticParams");
+    expect(hubs).toContain("OWNED_HUB_SLUGS");
     const daily = source("src/app/(marketing)/(with-flagship)/daily/[exam]/page.tsx");
     expect(daily).toContain("EXAM_SLUGS.map");
     expect(daily).toContain("export const revalidate = 60");

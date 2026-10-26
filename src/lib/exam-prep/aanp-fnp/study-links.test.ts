@@ -29,7 +29,7 @@ describe("resolveAanpFnpStudyLinks", () => {
       blueprintTopic: "screening",
       patientAgeGroup: "middle-adult",
     });
-    expect(links.reviewModuleSlug).toBe("aanp-assess-domain");
+    expect(links.reviewModuleSlug).toBe("aanp-system-womens-health");
     expect(links.memoryCardIds?.length).toBeGreaterThan(0);
   });
 
@@ -40,7 +40,7 @@ describe("resolveAanpFnpStudyLinks", () => {
       blueprintTopic: "febrile infant",
       patientAgeGroup: "newborn",
     });
-    expect(links.reviewModuleSlug).toBe("aanp-pediatrics-high-yield");
+    expect(links.reviewModuleSlug).toBe("aanp-system-pediatrics");
     expect(links.memoryCardIds?.some((id) => id.startsWith("fnp-"))).toBe(true);
   });
 
