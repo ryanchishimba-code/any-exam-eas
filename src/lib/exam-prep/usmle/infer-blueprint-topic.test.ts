@@ -48,7 +48,7 @@ describe("inferUsmleBlueprint", () => {
       "usmle-step-2"
     );
     expect(result.blueprintTopic).toBe("acs-management");
-    expect(result.blueprintDomain).toBe("internal-medicine");
+    expect(result.blueprintDomain).toBe("cardiovascular");
     expect(result.source).toBe("existing");
   });
 
@@ -62,7 +62,7 @@ describe("inferUsmleBlueprint", () => {
       "usmle-step-2"
     );
     expect(result.blueprintTopic).toBe("acs-management");
-    expect(result.blueprintDomain).toBe("internal-medicine");
+    expect(result.blueprintDomain).toBe("cardiovascular");
     expect(result.source).toBe("legacy-alias");
   });
 
@@ -89,7 +89,7 @@ describe("inferUsmleBlueprint", () => {
       "usmle-step-3"
     );
     expect(result.blueprintTopic).toMatch(/nnt-arr|sensitivity-specificity-lr|study-design-appraisal/);
-    expect(result.blueprintDomain).toBe("biostatistics");
+    expect(result.blueprintDomain).toBe("biostats-epi");
   });
 
   it("validates catalog slugs", () => {

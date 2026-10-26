@@ -6,7 +6,7 @@ import {
   getUsmle2026Topic,
 } from "./blueprint-topics-2026";
 import { usmlePresetFieldId } from "./study-presets";
-import { getUsmleStudyDomain, getUsmleTopicMeta } from "./topic-registry";
+import { getUsmleTopicMeta } from "./topic-registry";
 import type { UsmleStepLevel } from "./types";
 
 export type UsmleTopicPracticeParams = {
@@ -123,11 +123,10 @@ const TOPIC_SUBJECT_OVERRIDES: Partial<Record<string, string>> = {
 };
 
 function resolveUsmleTopicStepLevel(topic: HighYieldTopic): UsmleStepLevel {
-  const meta = getUsmleTopicMeta(topic.slug);
-  const domainStep = meta.studyDomain
-    ? getUsmleStudyDomain(meta.studyDomain)?.stepLevel
-    : undefined;
-  if (domainStep) return domainStep;
+  // Organ-system domain ids are shared by Steps 1–3, so the domain record cannot
+  // choose the step. A flat id map used to keep only the Step 3 copy.
+  const from2026 = getUsmle2026Topic(topic.slug);
+  if (from2026) return from2026.stepLevel;
 
   const steps = topic.usmleSteps ?? usmleStepsForTopicSlug(topic.slug);
   if (steps.length === 1) return steps[0]!;
