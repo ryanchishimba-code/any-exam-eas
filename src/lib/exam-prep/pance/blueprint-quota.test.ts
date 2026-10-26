@@ -9,7 +9,7 @@ import {
 } from "./blueprint-quota";
 
 describe("PANCE blueprint quotas", () => {
-  it("allocates questions proportional to NCCPA 2026 weights", () => {
+  it("allocates questions proportional to the January 2025 NCCPA weights", () => {
     const quotas = computePanceContentQuotas(PANCE_TARGET_TOTAL);
     const total = quotas.reduce((s, q) => s + q.targetCount, 0);
     expect(total).toBeGreaterThanOrEqual(6680);

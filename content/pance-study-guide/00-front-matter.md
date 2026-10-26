@@ -21,7 +21,7 @@ It gives you a plan, the 3 question types PANCE asks most, and a topic map where
 
 - **3 study plans:** 2, 6, and 12 weeks
 - **How PANCE works:** format, timing, scoring, retake rules
-- **The official blueprint:** all 15 content areas and 7 task areas
+- **The official blueprint:** all 15 content areas and 8 task areas
 - **3 core frameworks:** diagnosis, next step, first-line treatment
 - **Topic index**, ordered by exam weight
 - **System chapters** with a Top 5, look-alike tables, and the rules that name a source

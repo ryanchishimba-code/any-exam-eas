@@ -73,7 +73,7 @@ export const CROSS_EXAM_COMPARISON: CrossExamComparisonRow[] = [
     duration: "5 hours",
     format: "Single-best-answer clinical vignettes",
     primaryFocus: "Entry-level PA competency — diagnosis, pharmacotherapy, intervention",
-    blueprintAxis: "14 organ systems × 8 task areas (NCCPA 2026)",
+    blueprintAxis: "15 content categories × 8 task areas (NCCPA blueprint, effective January 2025)",
     keyDifferentiator: "Integrated pharmacology across organ systems; task-area rotation",
     officialBoard: "NCCPA",
   },

@@ -1,7 +1,7 @@
 import type { TopicModuleDefinition } from "./topic-module-template";
 import { PANCE_TASK_AREAS } from "@/lib/exam-prep/pance/content-outline";
 
-/** NCCPA PANCE task areas (2026 blueprint) — used in prompts and roadmap labels. */
+/** NCCPA PANCE task areas (blueprint effective January 2025) — used in prompts and roadmap labels. */
 export const PANCE_TASK_CATEGORIES = PANCE_TASK_AREAS.map((task) => ({
   id: task.id,
   label: task.label,

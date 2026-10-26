@@ -1,7 +1,9 @@
 /**
- * NCCPA PANCE Content Blueprint — current for 2026.
- * Two dimensions: Task Areas (how PAs apply knowledge) and Knowledge & Skill Areas (organ systems).
+ * NCCPA PANCE Content Blueprint, effective January 2025.
+ * https://www.nccpa.net/become-certified/pance-blueprint/
+ * https://www.nccpa.net/wp-content/uploads/PANCE-Blueprint.pdf
  *
+ * Two dimensions: task categories and medical content categories (organ systems).
  * Used for Roadmap, generation prompts, toolkit copy, and blueprint high-yield tags.
  */
 
@@ -56,7 +58,7 @@ export type PanceKnowledgeArea = {
 export const PANCE_TASK_AREAS: PanceTaskArea[] = [
   {
     id: "history-physical",
-    label: "History Taking & Performing Physical Examination",
+    label: "History Taking and Performing Physical Examination",
     weight: 0.16,
     weightLabel: "16%",
     summary: "Focused history, exam maneuvers, and findings that narrow the differential.",
@@ -70,14 +72,14 @@ export const PANCE_TASK_AREAS: PanceTaskArea[] = [
   },
   {
     id: "labs",
-    label: "Using Diagnostic & Laboratory Studies",
+    label: "Using Diagnostic and Laboratory Studies",
     weight: 0.1,
     weightLabel: "10%",
     summary: "Initial and follow-up testing — labs, imaging, and interpretation.",
   },
   {
     id: "prevention",
-    label: "Health Maintenance",
+    label: "Health Maintenance, Patient Education, and Preventive Measures",
     weight: 0.11,
     weightLabel: "11%",
     summary: "Screening, immunizations, counseling, and preventive care across the lifespan.",
@@ -98,7 +100,7 @@ export const PANCE_TASK_AREAS: PanceTaskArea[] = [
   },
   {
     id: "foundational",
-    label: "Applying Basic Science Concepts",
+    label: "Applying Basic Scientific Concepts",
     weight: 0.08,
     weightLabel: "8%",
     summary: "Pathophysiology, anatomy, microbiology, and mechanism linking science to clinical decisions.",
@@ -112,7 +114,7 @@ export const PANCE_TASK_AREAS: PanceTaskArea[] = [
   },
 ];
 
-/** NCCPA organ-system / knowledge areas with approximate exam weights (2026). */
+/** NCCPA medical content categories. Weights are the January 2025 blueprint allocations. */
 export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "cardiovascular",
@@ -195,8 +197,8 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "eent",
     label: "Eyes, Ears, Nose & Throat (EENT)",
-    weight: 0.07,
-    weightLabel: "7%",
+    weight: 0.06,
+    weightLabel: "6%",
     summary: "Otitis, sinusitis, red eye, glaucoma, hearing loss, and vertigo.",
     topics: [
       "Otitis media & externa",
@@ -225,8 +227,8 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "endocrine",
     label: "Endocrine",
-    weight: 0.07,
-    weightLabel: "7%",
+    weight: 0.06,
+    weightLabel: "6%",
     summary: "Diabetes, thyroid, adrenal/pituitary disorders, and metabolic syndrome.",
     topics: [
       "Diabetes mellitus (type 1 & 2) & complications",
@@ -270,8 +272,8 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "neurologic",
     label: "Neurologic",
-    weight: 0.06,
-    weightLabel: "6%",
+    weight: 0.07,
+    weightLabel: "7%",
     summary: "Headache, stroke, seizure, demyelinating disease, and dementia.",
     topics: [
       "Headache disorders (migraine, tension)",
@@ -286,8 +288,8 @@ export const PANCE_KNOWLEDGE_AREAS: PanceKnowledgeArea[] = [
   {
     id: "psychiatry",
     label: "Psychiatric / Behavioral",
-    weight: 0.06,
-    weightLabel: "6%",
+    weight: 0.07,
+    weightLabel: "7%",
     summary: "Mood, anxiety, psychosis, substance use, ADHD, and suicide risk.",
     topics: [
       "Depression & anxiety",
@@ -388,7 +390,7 @@ export const PANCE_PLATFORM_STUDY_FEATURES = [
 ] as const;
 
 export const PANCE_OUTLINE_SOURCE =
-  "NCCPA PANCE Content Blueprint (current for 2026) — 300 questions, 5 hours";
+  "Source: NCCPA PANCE Content Blueprint, effective January 2025 (https://www.nccpa.net/become-certified/pance-blueprint/; PDF https://www.nccpa.net/wp-content/uploads/PANCE-Blueprint.pdf). The exam is 300 questions over 5 hours. NCCPA states that the specific percentage allocations may vary slightly on exams.";
 
 export function getPanceKnowledgeArea(
   id: PanceKnowledgeAreaId

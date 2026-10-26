@@ -1,5 +1,5 @@
 /**
- * NCCPA 2026 PANCE blueprint — proportional quotas and generation slot planning.
+ * NCCPA PANCE blueprint (effective January 2025) — proportional quotas and generation slot planning.
  */
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { normalizePanceContentCategory } from "@/lib/exam-prep/pance/content-outline";

@@ -78,6 +78,17 @@ describe("public PANCE study guide", () => {
     expect(page.html).toContain("Bicillin L-A");
   });
 
+  it("keeps the January 2025 NCCPA organ-system and task weights", () => {
+    expect(page.html).toContain("effective January 2025");
+    expect(page.html).toContain("https://www.nccpa.net/become-certified/pance-blueprint/");
+    expect(page.html).toContain("Cardiovascular");
+    expect(page.html).toContain("<strong>11%</strong>");
+    expect(page.html).toContain("<strong>9%</strong>");
+    expect(page.html).toContain("8 task areas");
+    expect(page.html).not.toContain("13%");
+    expect(page.html).not.toContain("7 task areas");
+  });
+
   it("is a static marketing route listed in the sitemap", () => {
     const pageSource = readFileSync(
       "src/app/(marketing)/(with-flagship)/pance-study-guide/page.tsx",

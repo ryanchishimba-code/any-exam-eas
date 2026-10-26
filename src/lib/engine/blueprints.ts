@@ -246,11 +246,11 @@ const NAPLEX: ExamBlueprint = {
   })),
 };
 
-/** NCCPA PANCE Content Blueprint (current for 2026). */
+/** NCCPA PANCE Content Blueprint (effective January 2025). */
 const PANCE: ExamBlueprint = {
   fieldId: "pance",
   examName: "PANCE",
-  sourceNote: `${PANCE_OUTLINE_SOURCE} — task areas + 14 knowledge areas`,
+  sourceNote: `${PANCE_OUTLINE_SOURCE} — 8 task areas + 15 content categories`,
   vignetteMinRatio: 0.85,
   categories: PANCE_KNOWLEDGE_AREAS.map((area) => ({
     id: area.id,

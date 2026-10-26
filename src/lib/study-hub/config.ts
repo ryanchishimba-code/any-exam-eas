@@ -23,7 +23,7 @@ const HUB_DESCRIPTIONS: Record<(typeof EXAM_SLUGS)[number], string> = {
   nclex: "Nursing question bank — prioritization, safety, and med-surg.",
   usmle: "Clinical vignettes with mechanism-first rationales.",
   naplex: "Pharmacy calculations, cases, and pharmacotherapy.",
-  pance: "Physician assistant clinical vignettes — NCCPA 2026 blueprint across 14 knowledge areas and 8 task areas.",
+  pance: "Physician assistant clinical vignettes — NCCPA blueprint effective January 2025 across 15 content categories and 8 task areas.",
   "aanp-fnp": "Family nurse practitioner vignettes — NPCB Assess, Diagnose, Plan, Evaluate across the lifespan.",
   "npte-pt": "Physical therapy clinical scenarios — FSBPT musculoskeletal, neuromuscular, cardiopulmonary, and practice systems.",
 };

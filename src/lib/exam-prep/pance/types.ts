@@ -1,5 +1,5 @@
 /**
- * NCCPA PANCE Content Blueprint (current for 2026).
+ * NCCPA PANCE Content Blueprint (effective January 2025).
  * Source: https://www.nccpa.net/pance-content-blueprint/
  */
 

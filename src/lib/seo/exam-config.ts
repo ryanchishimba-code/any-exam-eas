@@ -302,12 +302,12 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     ],
     h1: "PANCE Exam Prep 2026 — NCCPA Blueprint Vignettes",
     heroSubline:
-      "Physician assistant board prep with clinical vignettes, 14 NCCPA knowledge-area Roadmap tracking, task-area practice, and full-length 300-question simulations — one subscription covers six licensing exams.",
+      "Physician assistant board prep with clinical vignettes, 15 NCCPA content-category Roadmap tracking, task-area practice, and full-length 300-question simulations — one subscription covers six licensing exams.",
     accentColor: EXAM_ACCENTS.pance,
-    blueprintLabel: "NCCPA PANCE Content Blueprint (2026)",
+    blueprintLabel: "NCCPA PANCE Content Blueprint (effective January 2025)",
     features: [
       {
-        title: "14 knowledge-area Roadmap",
+        title: "15 content-category Roadmap",
         detail: "Track readiness across NCCPA organ-system weights — cardiovascular (11%), pulmonary (9%), and more.",
       },
       {
