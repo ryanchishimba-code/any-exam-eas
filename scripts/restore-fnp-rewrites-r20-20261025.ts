@@ -6,8 +6,9 @@
  * The snapshot is qbi_fnp_rewrites_r20_20261025_backup. It holds the
  * pre-image of the four released entries: 184; 220 with 485, 487, and 543;
  * 249/309 with 673; and 1516 with 1528, 1543, 1551, 1553, and 1572.
- * 1514 and 1538 stayed held and are not in this backup. The earlier
- * eligible-set rows are restored by scripts/restore-fnp-rewrites-eligible-20261025.ts.
+ * 1514 and 1538 were applied later and are not in this backup; restore those
+ * with scripts/restore-fnp-rewrites-r21-20261025.ts. The earlier eligible-set
+ * rows are restored by scripts/restore-fnp-rewrites-eligible-20261025.ts.
  *
  * Dry run (default) reports how many live rows differ from the backup.
  * It writes nothing.

@@ -8,7 +8,8 @@
  * 1514/1526/1535/1542/1557/1568/1569 and 1538/1549/1566/1571 were not written
  * and are not in this backup. 184, 220/485/487/543, 249/309/673, and
  * 1516/1528/1543/1551/1553/1572 were applied later; restore those with
- * scripts/restore-fnp-rewrites-r20-20261025.ts.
+ * scripts/restore-fnp-rewrites-r20-20261025.ts. 1514 and 1538 were applied
+ * later still; restore those with scripts/restore-fnp-rewrites-r21-20261025.ts.
  *
  * Dry run (default) reports how many live rows differ from the backup.
  * It writes nothing.
