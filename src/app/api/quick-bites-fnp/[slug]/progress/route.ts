@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAuthenticatedApi } from "@/lib/api-access";
 import { canPlayQuickBites } from "@/lib/quick-bites/access";
-import { getFnpQuickBiteBySlug } from "@/lib/quick-bites/fnp-catalog";
+import { getFnpQuickBiteBySlug, isOpenFnpQuickBite } from "@/lib/quick-bites/fnp-catalog";
 import { quickBiteProgressBodySchema } from "@/lib/quick-bites/progress-body";
 import { upsertQuickBiteProgress } from "@/lib/quick-bites/progress-server";
 
@@ -20,7 +20,8 @@ export async function POST(
   const authResult = await requireAuthenticatedApi(request);
   if (!authResult.ok) return authResult.response;
 
-  if (!canPlayQuickBites(authResult.access)) {
+  const sample = isOpenFnpQuickBite(slug);
+  if (!sample && !canPlayQuickBites(authResult.access)) {
     return NextResponse.json({ error: "Quick Bites require a paid membership." }, { status: 403 });
   }
 

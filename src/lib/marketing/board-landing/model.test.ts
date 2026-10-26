@@ -3,6 +3,8 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { boardQuestionUnits } from "@/lib/counts";
 import { OPEN_QUICK_BITE_SLUG } from "@/lib/quick-bites/catalog";
+import { OPEN_FNP_QUICK_BITE_SLUG } from "@/lib/quick-bites/fnp-catalog";
+import { OPEN_PANCE_QUICK_BITE_SLUG } from "@/lib/quick-bites/pance-catalog";
 import { OPEN_PHARMACY_QUICK_BITE_SLUG } from "@/lib/quick-bites/pharmacy-catalog";
 import { SEO_DESC_MAX, SEO_DESC_MIN, SEO_TITLE_MAX } from "@/lib/seo/meta-budget";
 import { sumBankTypeCounts } from "./bank-types";
@@ -143,8 +145,14 @@ describe("Quick Bites sample", () => {
   it("exposes one nursing sample and one pharmacy sample, with no lesson count", () => {
     const nursing = openBoardQuickBite("nursing");
     const pharmacy = openBoardQuickBite("pharmacy");
+    const fnp = openBoardQuickBite("fnp");
+    const pance = openBoardQuickBite("pance");
     expect(nursing?.slug).toBe(OPEN_QUICK_BITE_SLUG);
     expect(pharmacy?.slug).toBe(OPEN_PHARMACY_QUICK_BITE_SLUG);
+    expect(fnp?.slug).toBe(OPEN_FNP_QUICK_BITE_SLUG);
+    expect(pance?.slug).toBe(OPEN_PANCE_QUICK_BITE_SLUG);
+    expect(fnp?.mediaUrl).toBe(`/api/quick-bites-fnp/${OPEN_FNP_QUICK_BITE_SLUG}/media`);
+    expect(pance?.mediaUrl).toBe(`/api/quick-bites-pance/${OPEN_PANCE_QUICK_BITE_SLUG}/media`);
     expect(nursing?.isoDuration).toBe("PT3M15S");
     expect(mediaVersionUploadDate("v2-20261017")).toBe("2026-10-17");
     expect(iso8601Duration("3:15")).toBe("PT3M15S");

@@ -4,6 +4,7 @@ import { requireAuthenticatedApi } from "@/lib/api-access";
 import { canPlayQuickBites } from "@/lib/quick-bites/access";
 import {
   getPanceQuickBiteBySlug,
+  isOpenPanceQuickBite,
   panceQuickBiteCaptionsPath,
   panceQuickBiteVideoPath,
 } from "@/lib/quick-bites/pance-catalog";
@@ -23,11 +24,14 @@ export async function GET(
 ) {
   const { slug } = await ctx.params;
   const episode = getPanceQuickBiteBySlug(slug);
+  const sample = Boolean(episode && episode.held !== true && isOpenPanceQuickBite(slug));
 
-  const authResult = await requireAuthenticatedApi(request);
-  if (!authResult.ok) return authResult.response;
-  if (!canPlayQuickBites(authResult.access)) {
-    return NextResponse.json(LOCKED, { status: 403 });
+  if (!sample) {
+    const authResult = await requireAuthenticatedApi(request);
+    if (!authResult.ok) return authResult.response;
+    if (!canPlayQuickBites(authResult.access)) {
+      return NextResponse.json(LOCKED, { status: 403 });
+    }
   }
 
   if (!episode || episode.held) {

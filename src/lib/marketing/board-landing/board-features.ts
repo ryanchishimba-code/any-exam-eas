@@ -273,10 +273,13 @@ export function usmleFeatureCards(input: {
   return cards;
 }
 
-export function panceFeatureCards(): BoardFeatureCard[] {
+export function panceFeatureCards(input?: { quickBite: BoardQuickBite | null }): BoardFeatureCard[] {
   const cards: BoardFeatureCard[] = [];
   if (studyGuideExamForKey("pance")) {
     cards.push(studyGuideCard("PANCE"));
+  }
+  if (input?.quickBite) {
+    cards.push(quickBitesLectureCard());
   }
   cards.push(
     anatomyFeatureCard(),
@@ -289,10 +292,13 @@ export function panceFeatureCards(): BoardFeatureCard[] {
   return cards;
 }
 
-export function aanpFnpFeatureCards(): BoardFeatureCard[] {
+export function aanpFnpFeatureCards(input?: { quickBite: BoardQuickBite | null }): BoardFeatureCard[] {
   const cards: BoardFeatureCard[] = [];
   if (studyGuideExamForKey("aanp-fnp")) {
     cards.push(studyGuideCard("AANP FNP"));
+  }
+  if (input?.quickBite) {
+    cards.push(quickBitesLectureCard());
   }
   cards.push(
     anatomyFeatureCard(),
@@ -392,9 +398,9 @@ export function boardFeatureCardsForExam(
         stepCounts: input.usmleStepCounts,
       });
     case "pance":
-      return panceFeatureCards();
+      return panceFeatureCards({ quickBite: input.quickBite });
     case "aanp-fnp":
-      return aanpFnpFeatureCards();
+      return aanpFnpFeatureCards({ quickBite: input.quickBite });
     case "npte-pt":
       return npteFeatureCards();
     default:

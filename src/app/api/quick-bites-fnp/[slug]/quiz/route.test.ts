@@ -14,6 +14,7 @@ vi.mock("@/lib/api-access", () => ({
   requireAuthenticatedApi: async () => authState.result,
 }));
 
+import { OPEN_FNP_QUICK_BITE_SLUG } from "@/lib/quick-bites/fnp-catalog";
 import { getFnpQuickBiteQuiz } from "@/lib/quick-bites/fnp-quiz-data";
 import { GET, POST } from "./route";
 
@@ -53,6 +54,17 @@ describe("GET/POST /api/quick-bites-fnp/[slug]/quiz", () => {
     const published = JSON.stringify(body);
     expect(published).not.toContain('"keys"');
     expect(published).not.toContain('"explanation"');
+  });
+
+  it("serves the sample quiz to a trial member and keeps a non-sample gated", async () => {
+    asAccess("trial", "trialing", true);
+    const sample = await GET(quizRequest(OPEN_FNP_QUICK_BITE_SLUG), {
+      params: Promise.resolve({ slug: OPEN_FNP_QUICK_BITE_SLUG }),
+    });
+    expect(sample.status).toBe(200);
+
+    const locked = await GET(quizRequest(SLUG), { params: Promise.resolve({ slug: SLUG }) });
+    expect(locked.status).toBe(403);
   });
 
   it("returns 401 when logged out and 403 for free members", async () => {

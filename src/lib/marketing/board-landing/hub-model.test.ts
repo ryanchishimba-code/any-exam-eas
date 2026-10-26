@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { boardQuestionUnits } from "@/lib/counts";
+import { OPEN_FNP_QUICK_BITE_SLUG } from "@/lib/quick-bites/fnp-catalog";
+import { OPEN_PANCE_QUICK_BITE_SLUG } from "@/lib/quick-bites/pance-catalog";
 import { buildHubLandingModel } from "./hub-model";
 import { SEO_TITLE_MAX } from "@/lib/seo/meta-budget";
 import { buildHubLandingMetadata } from "./hub-model";
@@ -31,6 +33,31 @@ describe("hub board landing model", () => {
     expect(model.stats.map((stat) => stat.label)).toEqual(["Questions", "Step 1", "Step 2 CK", "Step 3"]);
     expect(model.faqs.length).toBeGreaterThanOrEqual(4);
     expect(serialized).toMatch(/FAQPage/);
+  });
+
+  it("attaches one Quick Bites sample on PANCE and AANP FNP hub pages", () => {
+    const pance = buildHubLandingModel({
+      examKey: "pance",
+      degraded: false,
+      units: boardQuestionUnits({
+        slug: "pance",
+        bankItems: 200,
+        formats: { mcq: 200, ngn: 0, case: 0 },
+      }),
+    });
+    expect(pance.quickBite?.slug).toBe(OPEN_PANCE_QUICK_BITE_SLUG);
+    expect(pance.features.some((card) => card.id === "quick-bites-lectures")).toBe(true);
+
+    const fnp = buildHubLandingModel({
+      examKey: "aanp-fnp",
+      degraded: false,
+      units: boardQuestionUnits({
+        slug: "aanp-fnp",
+        bankItems: 200,
+        formats: { mcq: 200, ngn: 0, case: 0 },
+      }),
+    });
+    expect(fnp.quickBite?.slug).toBe(OPEN_FNP_QUICK_BITE_SLUG);
   });
 
   it("keeps hub metadata inside SEO budget", () => {

@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { canPlayQuickBiteEpisode, canPlayQuickBites } from "./access";
+import {
+  canPlayFnpQuickBiteEpisode,
+  canPlayPanceQuickBiteEpisode,
+  canPlayQuickBiteEpisode,
+  canPlayQuickBites,
+} from "./access";
+import { OPEN_FNP_QUICK_BITE_SLUG } from "./fnp-catalog";
+import { OPEN_PANCE_QUICK_BITE_SLUG } from "./pance-catalog";
 import type { UserAccess } from "@/lib/access-control";
 
 function access(
@@ -44,6 +51,19 @@ describe("canPlayQuickBites", () => {
     expect(canPlayQuickBiteEpisode(trial, "quick-bites-ep12-high-alert-pharm")).toBe(false);
     expect(canPlayQuickBiteEpisode(access("subscriber", "active"), "quick-bites-ep07-acid-base")).toBe(
       true
+    );
+  });
+
+  it("opens only the FNP and PANCE trial samples for free and trial members", () => {
+    const free = access("free", "trial_expired", false);
+    const trial = access("trial", "trialing", true);
+    expect(canPlayFnpQuickBiteEpisode(trial, OPEN_FNP_QUICK_BITE_SLUG)).toBe(true);
+    expect(canPlayFnpQuickBiteEpisode(free, OPEN_FNP_QUICK_BITE_SLUG)).toBe(true);
+    expect(canPlayFnpQuickBiteEpisode(trial, "quick-bites-fnp-ep01-screening")).toBe(false);
+    expect(canPlayPanceQuickBiteEpisode(trial, OPEN_PANCE_QUICK_BITE_SLUG)).toBe(true);
+    expect(canPlayPanceQuickBiteEpisode(free, OPEN_PANCE_QUICK_BITE_SLUG)).toBe(true);
+    expect(canPlayPanceQuickBiteEpisode(trial, "quick-bites-pance-ep02-rhythms-valves-congenital")).toBe(
+      false
     );
   });
 });

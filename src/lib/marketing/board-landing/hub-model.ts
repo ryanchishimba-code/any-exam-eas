@@ -20,6 +20,7 @@ import {
   boardLandingTrustPills,
 } from "@/lib/marketing/board-landing/hero";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
+import { openBoardQuickBite } from "@/lib/marketing/board-landing/model";
 import { CLINICAL_REVIEWERS, clinicalReviewerForExam } from "@/lib/marketing/company";
 import { homeTrialCtaLabel } from "@/lib/marketing/home-cta";
 import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
@@ -238,11 +239,17 @@ export function buildHubLandingModel(input: {
   const price = formatMonthlyPrice("pro");
   const heroOffer = boardHeroOffer(input.examKey, units, { questionNoun: copy.questionNoun });
   const heroChips = boardHeroChips(heroOffer, copy.chipMiddle, copy.chipThird);
+  const quickBite =
+    input.examKey === "pance"
+      ? openBoardQuickBite("pance")
+      : input.examKey === "aanp-fnp"
+        ? openBoardQuickBite("fnp")
+        : null;
   const features = boardFeatureCardsForExam(input.examKey, {
     degraded: input.degraded,
     units,
     bankTypes: {},
-    quickBite: null,
+    quickBite,
     usmleStepCounts: input.usmleStepCounts,
   });
   const faqs = hubFaqs(input.examKey, units);
@@ -317,7 +324,7 @@ export function buildHubLandingModel(input: {
     formatHeading: "",
     formatLede: "",
     formats: [],
-    quickBite: null,
+    quickBite,
     reviewers: reviewer
       ? [
           {

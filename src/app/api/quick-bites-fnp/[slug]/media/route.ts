@@ -6,6 +6,7 @@ import {
   fnpQuickBiteCaptionsPath,
   fnpQuickBiteVideoPath,
   getFnpQuickBiteBySlug,
+  isOpenFnpQuickBite,
 } from "@/lib/quick-bites/fnp-catalog";
 import { signPrivateQuickBiteGet } from "@/lib/quick-bites/sign-media";
 
@@ -23,11 +24,14 @@ export async function GET(
 ) {
   const { slug } = await ctx.params;
   const episode = getFnpQuickBiteBySlug(slug);
+  const sample = Boolean(episode && episode.held !== true && isOpenFnpQuickBite(slug));
 
-  const authResult = await requireAuthenticatedApi(request);
-  if (!authResult.ok) return authResult.response;
-  if (!canPlayQuickBites(authResult.access)) {
-    return NextResponse.json(LOCKED, { status: 403 });
+  if (!sample) {
+    const authResult = await requireAuthenticatedApi(request);
+    if (!authResult.ok) return authResult.response;
+    if (!canPlayQuickBites(authResult.access)) {
+      return NextResponse.json(LOCKED, { status: 403 });
+    }
   }
 
   if (!episode || episode.held) {
