@@ -73,15 +73,6 @@ export function PricingTiers({ className }: PricingTiersProps) {
           ))}
         </div>
 
-        {featured ? (
-          <blockquote className="aee-pricing-pull">
-            <p>“{featured.quote}”</p>
-            <footer>
-              {featured.name} <span>({examShort(featured.exam)})</span>
-            </footer>
-          </blockquote>
-        ) : null}
-
         <fieldset className="aee-pricing-cycles">
           <legend>Billing cycle</legend>
           <div className="aee-pricing-primary">
@@ -142,6 +133,14 @@ export function PricingTiers({ className }: PricingTiersProps) {
 
         <p className="aee-pricing-trial text-sm">{PRICING_TRIAL_OFFER_LINE}</p>
         <p className="aee-pricing-cancel">Cancel anytime in Settings.</p>
+        {featured ? (
+          <blockquote className="aee-pricing-pull">
+            <p>“{featured.quote}”</p>
+            <footer>
+              {featured.name} <span>({examShort(featured.exam)})</span>
+            </footer>
+          </blockquote>
+        ) : null}
         <p className="aee-pricing-fine">{CARD_REFUND}</p>
         <p className="aee-pricing-login">
           Already have an account? <Link href="/login">Log in</Link>
@@ -164,7 +163,7 @@ export function PricingTiers({ className }: PricingTiersProps) {
 
       <ol className="aee-pricing-path">
         <li>
-          <strong>Roadmap.</strong> A personalized study plan mapped to your exam's official blueprint.
+          <strong>Roadmap.</strong> A personalized study plan mapped to the official blueprint for your exam.
         </li>
         <li>
           <strong>Deep Dive.</strong> Structured review modules you open from missed questions.
