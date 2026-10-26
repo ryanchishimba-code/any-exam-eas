@@ -27,6 +27,9 @@ export const KEYFIX_BACKUP_TABLES = [
   // 2026-10-05 batch 1. Holds the pre-rewrite hashes so a later seed match
   // cannot insert a second copy after the live contentHash moved.
   "qbi_fixes_task5_backup_20261005",
+  // 2026-10-25 PANCE retire. Holds the pre-retire hashes so a later seed
+  // match cannot insert a second copy of a row that was set inactive.
+  "qbi_pance_retire_20261025_backup",
 ] as const;
 
 export type SeedExistingRow = {
