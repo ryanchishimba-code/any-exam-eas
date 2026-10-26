@@ -74,14 +74,6 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/quick-bites/[slug]/quiz": ["./src/lib/quick-bites/quizzes/**/*"],
     "/api/quick-bites-pharmacy/[slug]/quiz": ["./src/lib/quick-bites/quizzes-pharmacy/**/*"],
-    // Mobile hero AVIFs are read at render time and inlined into the document.
-    "/": ["./public/images/marketing/heroes/*-mobile.avif"],
-    "/nclex": ["./public/images/marketing/heroes/*-mobile.avif"],
-    "/naplex": ["./public/images/marketing/heroes/*-mobile.avif"],
-    "/usmle": ["./public/images/marketing/heroes/*-mobile.avif"],
-    "/pance": ["./public/images/marketing/heroes/*-mobile.avif"],
-    "/aanp-fnp": ["./public/images/marketing/heroes/*-mobile.avif"],
-    "/npte-pt": ["./public/images/marketing/heroes/*-mobile.avif"],
   },
   serverExternalPackages: ["stripe"],
   // CI runs lint + typecheck; skipping both on Vercel avoids build OOM on this app.
@@ -202,6 +194,25 @@ const nextConfig: NextConfig = {
           { key: "Cache-Control", value: "public, max-age=86400" },
         ],
       },
+      ...[
+        ["/", "home"],
+        ["/nclex", "nclex"],
+        ["/naplex", "naplex"],
+        ["/usmle", "usmle"],
+        ["/pance", "pance"],
+        ["/aanp-fnp", "aanp-fnp"],
+        ["/npte-pt", "npte-pt"],
+      ].map(([source, id]) => ({
+        source,
+        headers: [
+          {
+            key: "Link",
+            // Starts the mobile hero fetch at the response headers, before HTML parse.
+            // media keeps desktop from downloading the mobile file.
+            value: `</images/marketing/heroes/${id}-mobile.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high; media="(max-width: 767px)"`,
+          },
+        ],
+      })),
       {
         source: "/:path*",
         headers: [

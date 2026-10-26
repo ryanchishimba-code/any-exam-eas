@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { marketingPhotoHeroMobileDataUri } from "@/lib/marketing/marketing-photo-hero-inline";
+import { preload } from "react-dom";
 import {
   type MarketingPhotoHeroId,
   MARKETING_PHOTO_HEROES,
@@ -16,10 +16,9 @@ type MarketingPhotoHeroProps = {
 };
 
 /**
- * Full-bleed photo. The mobile AVIF is inlined so it paints with the headline
- * (a separate image request was the LCP gap). Desktop keeps the larger file
- * via a media source. The photo is decorative — no text is baked into it.
- * It is not faded in: hiding it delays LCP.
+ * Full-bleed photo. Mobile uses one AVIF URL (preloaded as that exact URL)
+ * so the lab doesn't wait on a srcset mismatch. Wider screens get the larger
+ * file. The photo is decorative and paints immediately — fading it delays LCP.
  */
 export function MarketingPhotoHero({
   heroId,
@@ -30,7 +29,17 @@ export function MarketingPhotoHero({
 }: MarketingPhotoHeroProps) {
   const config = MARKETING_PHOTO_HEROES[heroId];
   const examAttr = heroId === "home" ? undefined : heroId;
+  const mobileAvif = marketingPhotoHeroSrc(heroId, "mobile", "avif");
   const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
+
+  if (priority) {
+    preload(mobileAvif, {
+      as: "image",
+      fetchPriority: "high",
+      type: "image/avif",
+      media: "(max-width: 767px)",
+    });
+  }
 
   return (
     <section
@@ -44,7 +53,7 @@ export function MarketingPhotoHero({
         <source media="(min-width: 768px)" srcSet={desktopAvif} type="image/avif" />
         <img
           className="mkt-photo-hero__img"
-          src={marketingPhotoHeroMobileDataUri(heroId)}
+          src={mobileAvif}
           alt=""
           width={768}
           height={432}
