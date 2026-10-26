@@ -94,6 +94,7 @@ export default function DailyHubPage() {
             title={
               <>
                 <span className="home-hero__line">{DAILY_HERO_LEAD}</span>
+                <br />
                 <span className="home-hero__accent">
                   USMLE, FNP, <span className="aee-daily-nowrap">NPTE-PT</span> practice question
                 </span>

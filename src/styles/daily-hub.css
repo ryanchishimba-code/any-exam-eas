@@ -46,9 +46,12 @@ body:has(.aee-daily) {
   text-decoration: none;
 }
 
+/* Inline, not separate blocks, so the h1 box is the LCP element.
+   Block spans were each smaller than the question stem, so the stem
+   won LCP and waited on a later paint. */
 .aee-daily-hero .home-hero__line,
 .aee-daily-hero .home-hero__accent {
-  display: block;
+  display: inline;
 }
 
 .aee-daily-hero .home-hero__accent {
@@ -100,8 +103,10 @@ body:has(.aee-daily) {
 .aee-daily-hero__stem {
   margin: 0;
   color: #f8fafc;
+  font-family: var(--font-display), system-ui, sans-serif;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 800;
+  font-synthesis: none;
   line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -159,6 +164,8 @@ body:has(.aee-daily) {
   margin-top: 1.75rem;
   padding-top: 1.5rem;
   border-top: 1px solid #e2e8f0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 28rem;
 }
 
 .aee-daily-q h3,
