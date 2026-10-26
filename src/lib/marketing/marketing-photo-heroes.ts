@@ -50,13 +50,52 @@ export const MARKETING_PHOTO_HEROES: Record<MarketingPhotoHeroId, MarketingPhoto
   },
 };
 
+export type MarketingPhotoHeroVariant = "desktop" | "mobile" | "mobile2x";
+
+const VARIANT_FILE: Record<MarketingPhotoHeroVariant, string> = {
+  desktop: "desktop",
+  mobile: "mobile",
+  mobile2x: "mobile-2x",
+};
+
 export function marketingPhotoHeroSrc(
   id: MarketingPhotoHeroId,
-  variant: "desktop" | "mobile",
+  variant: MarketingPhotoHeroVariant,
   format: "webp" | "avif"
 ): string {
   const base = MARKETING_PHOTO_HEROES[id].basePath;
-  return `${base}-${variant}.${format}`;
+  return `${base}-${VARIANT_FILE[variant]}.${format}`;
+}
+
+/** CSS widths for the art-directed phone files. 720 is the native portrait. */
+export const MARKETING_PHOTO_HERO_MOBILE_WIDTH = { x1: 360, x2: 720 } as const;
+
+/** Phones only. Desktop keeps the single 1280-wide file. */
+export const MARKETING_PHOTO_HERO_MOBILE_MEDIA = "(max-width: 767px)";
+
+export function marketingPhotoHeroMobileImageSet(id: MarketingPhotoHeroId): string {
+  const avif1 = marketingPhotoHeroSrc(id, "mobile", "avif");
+  const avif2 = marketingPhotoHeroSrc(id, "mobile2x", "avif");
+  const webp1 = marketingPhotoHeroSrc(id, "mobile", "webp");
+  const webp2 = marketingPhotoHeroSrc(id, "mobile2x", "webp");
+  return `image-set(${[
+    `url("${avif1}") type("image/avif") 1x`,
+    `url("${avif2}") type("image/avif") 2x`,
+    `url("${webp1}") type("image/webp") 1x`,
+    `url("${webp2}") type("image/webp") 2x`,
+  ].join(", ")})`;
+}
+
+export function marketingPhotoHeroMobilePreload(id: MarketingPhotoHeroId) {
+  const avif1 = marketingPhotoHeroSrc(id, "mobile", "avif");
+  const avif2 = marketingPhotoHeroSrc(id, "mobile2x", "avif");
+  return {
+    href: avif2,
+    imageSrcSet: `${avif1} ${MARKETING_PHOTO_HERO_MOBILE_WIDTH.x1}w, ${avif2} ${MARKETING_PHOTO_HERO_MOBILE_WIDTH.x2}w`,
+    imageSizes: "100vw",
+    type: "image/avif" as const,
+    media: MARKETING_PHOTO_HERO_MOBILE_MEDIA,
+  };
 }
 
 /**
@@ -69,13 +108,16 @@ export const MARKETING_PHOTO_HERO_BOX_ASPECT = {
 } as const;
 
 /**
- * Pixel aspect of the shipped file. Mobile is already a portrait crop of the
- * original, so the browser does not slice it again. Desktop stays 16:9.
+ * Pixel aspect of the shipped file. Mobile portraits are native 720×1280.
+ * Desktop stays 16:9.
  */
 export const MARKETING_PHOTO_HERO_IMAGE_ASPECT = {
-  mobile: 360 / 720,
+  mobile: 720 / 1280,
   desktop: 16 / 9,
 } as const;
+
+/** The phone files are already framed. Crop from the center, not the desktop focal. */
+export const MARKETING_PHOTO_HERO_MOBILE_FOCAL = "50% 50%";
 
 /**
  * border-image-slice that matches object-fit: cover + object-position for a box.

@@ -78,7 +78,7 @@
 .mkt-photo-hero__inner {
   width: min(1120px, calc(100% - 2rem));
   margin-inline: auto;
-  padding: calc(var(--nav-height, 3.5rem) + 1.5rem) 0 2.5rem;
+  padding: calc(var(--nav-height, 3.5rem) + 1.75rem) 0 2.75rem;
   min-width: 0;
 }
 
@@ -116,8 +116,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mkt-photo-hero__soft {
+  .mkt-photo-hero__soft,
+  .mkt-photo-hero .aee-flagship-cta,
+  .mkt-photo-hero .bl-button,
+  .aee-nav--landing-minimal {
     animation: none;
+    transition: none;
   }
 }
 
@@ -144,6 +148,10 @@
 }
 
 .mkt-photo-hero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
   max-width: 36rem;
   padding: 0;
   background: transparent;
@@ -155,32 +163,49 @@
 .aee-marketing .mkt-photo-hero h1 {
   color: #ffffff;
   max-width: none;
+  margin: 0;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
   font-size: clamp(2.1rem, 6vw, 3.6rem);
   font-weight: 800;
+  font-style: normal;
   letter-spacing: -0.035em;
   line-height: 1.05;
+  text-wrap: balance;
 }
 
-.mkt-photo-hero .home-hero__accent {
+.home-hero__line,
+.aee-marketing .mkt-photo-hero .home-hero__accent {
+  text-wrap: balance;
+}
+
+.aee-marketing .mkt-photo-hero .home-hero__accent {
   color: #5eead4;
+  background-image: none;
+  background-clip: border-box;
+  -webkit-background-clip: border-box;
+  -webkit-text-fill-color: #5eead4;
+  letter-spacing: -0.035em;
 }
 
 .home-visual .mkt-photo-hero .mkt-photo-hero__sub,
 .board-landing .mkt-photo-hero .mkt-photo-hero__sub {
-  margin: 0.85rem 0 0;
+  margin: 0;
   color: #e2e8f0;
   max-width: 34rem;
   font-size: 1.0625rem;
-  line-height: 1.5;
+  line-height: 1.45;
   letter-spacing: -0.011em;
+  text-wrap: pretty;
   /* Same preloaded face as the headline. The body font arrives later and
      was holding this larger text block past the first paint. */
   font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
   font-weight: 600;
+  font-style: normal;
 }
 
 .mkt-photo-hero .home-hero__boards {
-  margin-top: 1.35rem;
+  margin: 0;
+  width: 100%;
 }
 
 .mkt-photo-hero .home-hero__boards a {
@@ -214,7 +239,8 @@
   justify-content: flex-start;
   width: 100%;
   max-width: 22rem;
-  margin-top: 1.35rem;
+  margin: 0;
+  gap: 0.75rem;
 }
 
 .mkt-photo-hero .bl-button-secondary {
@@ -300,4 +326,71 @@
 .home-visual .home-feature-wheel__slide.is-centered .home-feature-wheel__card {
   background: rgba(255, 255, 255, 0.88);
   border-color: rgba(15, 118, 110, 0.35);
+}
+
+/* First screen uses the preloaded display face only. */
+.mkt-photo-hero {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-synthesis: none;
+}
+
+.mkt-photo-hero .home-hero__boards a {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.mkt-photo-hero .aee-flagship-cta,
+.mkt-photo-hero .bl-button {
+  width: 100%;
+  box-shadow: 0 8px 22px rgba(6, 16, 32, 0.18);
+}
+
+.mkt-photo-hero .bl-hero-price,
+.mkt-photo-hero .bl-hero-micro {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: -0.011em;
+}
+
+.mkt-photo-hero h2,
+.home-visual .home-feature-wheel h2,
+.board-landing .bl-features h2 {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  text-wrap: balance;
+  text-align: left;
+}
+
+.mkt-photo-hero .bl-testimonials__by,
+.aee-marketing .bl-testimonials__by {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  letter-spacing: -0.011em;
+}
+
+.home-visual > .mkt-photo-hero + .home-features,
+.board-landing > .mkt-photo-hero + .bl-band {
+  background: #f7fbfa;
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
+}
+
+.home-visual .home-feature-wheel h2 {
+  padding-inline: 0;
 }

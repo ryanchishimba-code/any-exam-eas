@@ -3,7 +3,10 @@ import {
   type MarketingPhotoHeroId,
   MARKETING_PHOTO_HERO_BOX_ASPECT,
   MARKETING_PHOTO_HERO_IMAGE_ASPECT,
+  MARKETING_PHOTO_HERO_MOBILE_FOCAL,
   MARKETING_PHOTO_HEROES,
+  marketingPhotoHeroMobileImageSet,
+  marketingPhotoHeroMobilePreload,
   marketingPhotoHeroSlice,
   marketingPhotoHeroSrc,
 } from "@/lib/marketing/marketing-photo-heroes";
@@ -63,8 +66,8 @@ export function MarketingPhotoHero({
 }: MarketingPhotoHeroProps) {
   const config = MARKETING_PHOTO_HEROES[heroId];
   const examAttr = heroId === "home" ? undefined : heroId;
-  const mobileAvif = marketingPhotoHeroSrc(heroId, "mobile", "avif");
   const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
+  const preload = marketingPhotoHeroMobilePreload(heroId);
 
   return (
     <section
@@ -75,10 +78,10 @@ export function MarketingPhotoHero({
       style={
         {
           "--mkt-hero-focal": config.focalPosition,
-          "--mkt-hero-mobile": `url("${mobileAvif}")`,
+          "--mkt-hero-mobile": marketingPhotoHeroMobileImageSet(heroId),
           "--mkt-hero-desktop": `url("${desktopAvif}")`,
           "--mkt-hero-slice-mobile": marketingPhotoHeroSlice(
-            config.focalPosition,
+            MARKETING_PHOTO_HERO_MOBILE_FOCAL,
             MARKETING_PHOTO_HERO_BOX_ASPECT.mobile,
             MARKETING_PHOTO_HERO_IMAGE_ASPECT.mobile
           ),
@@ -90,6 +93,16 @@ export function MarketingPhotoHero({
         } as CSSProperties
       }
     >
+      <link
+        rel="preload"
+        as="image"
+        href={preload.href}
+        type={preload.type}
+        media={preload.media}
+        fetchPriority="high"
+        imageSrcSet={preload.imageSrcSet}
+        imageSizes={preload.imageSizes}
+      />
       <div className="mkt-photo-hero__photo" aria-hidden="true" />
       <div className="mkt-photo-hero__scrim" aria-hidden="true" />
       <div className="mkt-photo-hero__inner">{children}</div>

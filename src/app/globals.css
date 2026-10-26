@@ -2298,6 +2298,12 @@ body {
   transition: background 0.2s, opacity 0.2s;
 }
 
+@media (min-width: 1024px) {
+  .aee-nav-menu-btn {
+    display: none;
+  }
+}
+
 .aee-nav-menu-btn:hover {
   background: rgba(0, 0, 0, 0.04);
   opacity: 1;
@@ -3684,6 +3690,14 @@ body {
 .aee-nav-fallback--over-photo {
   background: transparent;
   border-bottom: 0;
+}
+
+.aee-nav--landing-minimal .aee-nav-cta {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  min-height: 2.75rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(6, 16, 32, 0.18);
 }
 
 

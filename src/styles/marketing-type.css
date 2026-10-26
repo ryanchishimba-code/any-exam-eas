@@ -4,11 +4,13 @@
  */
 
 .aee-marketing,
-.aee-nav--landing-minimal {
+.aee-nav--landing-minimal,
+.apple-footer {
   --mkt-gradient-from: var(--board-accent-nclex, #0f766e);
   --mkt-gradient-to: var(--board-accent-nclex-hover, #115e59);
   --mkt-gradient-fallback: var(--mkt-gradient-from);
   font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
 }
 
 .aee-marketing h1,
@@ -78,7 +80,63 @@
   --mkt-gradient-to: var(--board-accent-npte-pt-hover);
 }
 
-.aee-nav--landing-minimal .aee-nav-link {
-  font-family: var(--font-body), system-ui, sans-serif;
+.aee-nav--landing-minimal,
+.aee-nav--landing-minimal .aee-nav-link,
+.aee-nav--landing-minimal .aee-nav-login,
+.aee-nav--landing-minimal .aee-mobile-nav,
+.aee-nav--landing-minimal .aee-nav-menu-btn,
+.aee-nav--landing-minimal .aee-nav-wordmark__text {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
   font-weight: 600;
+  font-style: normal;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  letter-spacing: -0.011em;
+}
+
+.aee-nav--landing-minimal .aee-nav-wordmark__text {
+  letter-spacing: -0.03em;
+}
+
+.aee-nav--landing-minimal .aee-nav-cta,
+.aee-marketing .aee-flagship-cta,
+.aee-marketing .bl-button {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  border-radius: 999px;
+  min-height: 2.75rem;
+}
+
+.aee-marketing .bl-testimonials__card blockquote p {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.45;
+  letter-spacing: -0.011em;
+  text-wrap: pretty;
+}
+
+.apple-footer {
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.apple-footer .font-semibold,
+.apple-footer h2,
+.apple-footer h3 {
+  font-weight: 600;
+  font-style: normal;
+}
+
+.aee-marketing :focus-visible,
+.aee-nav--landing-minimal :focus-visible {
+  outline: 3px solid #0f766e;
+  outline-offset: 3px;
 }
