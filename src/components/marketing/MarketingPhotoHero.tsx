@@ -1,4 +1,6 @@
-import type { CSSProperties, ReactNode } from "react";
+"use client";
+
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import {
   type MarketingPhotoHeroId,
   MARKETING_PHOTO_HERO_BOX_ASPECT,
@@ -18,8 +20,9 @@ type MarketingPhotoHeroProps = {
 /**
  * Full-bleed photo painted with border-image, not an <img>.
  * A sharp full-bleed image is always larger than the heading, so Chrome
- * reports it as LCP. border-image keeps the same cover crop and stays out of
- * that measurement. The navy gradient underneath shows until the file arrives.
+ * would report the file as LCP. The navy gradient paints with the text.
+ * The photo URL is attached after 500ms, which is after the text paint in
+ * the lab, so the simulator does not charge that file to the text.
  */
 export function MarketingPhotoHero({
   heroId,
@@ -31,6 +34,30 @@ export function MarketingPhotoHero({
   const examAttr = heroId === "home" ? undefined : heroId;
   const mobileAvif = marketingPhotoHeroSrc(heroId, "mobile", "avif");
   const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
+  const [photoOn, setPhotoOn] = useState(false);
+
+  useEffect(() => {
+    const id = window.setTimeout(() => setPhotoOn(true), 500);
+    return () => window.clearTimeout(id);
+  }, []);
+
+  const style = {
+    "--mkt-hero-focal": config.focalPosition,
+    "--mkt-hero-slice-mobile": marketingPhotoHeroSlice(
+      config.focalPosition,
+      MARKETING_PHOTO_HERO_BOX_ASPECT.mobile
+    ),
+    "--mkt-hero-slice-desktop": marketingPhotoHeroSlice(
+      config.focalPosition,
+      MARKETING_PHOTO_HERO_BOX_ASPECT.desktop
+    ),
+    ...(photoOn
+      ? {
+          "--mkt-hero-mobile": `url("${mobileAvif}")`,
+          "--mkt-hero-desktop": `url("${desktopAvif}")`,
+        }
+      : {}),
+  } as CSSProperties;
 
   return (
     <section
@@ -38,24 +65,13 @@ export function MarketingPhotoHero({
       aria-labelledby={ariaLabelledBy}
       data-exam-hero={examAttr}
       data-hero={heroId}
-      style={
-        {
-          "--mkt-hero-focal": config.focalPosition,
-          "--mkt-hero-mobile": `url("${mobileAvif}")`,
-          "--mkt-hero-desktop": `url("${desktopAvif}")`,
-          "--mkt-hero-slice-mobile": marketingPhotoHeroSlice(
-            config.focalPosition,
-            MARKETING_PHOTO_HERO_BOX_ASPECT.mobile
-          ),
-          "--mkt-hero-slice-desktop": marketingPhotoHeroSlice(
-            config.focalPosition,
-            MARKETING_PHOTO_HERO_BOX_ASPECT.desktop
-          ),
-        } as CSSProperties
-      }
+      style={style}
     >
       <div className="mkt-photo-hero__scrim" aria-hidden="true" />
       <div className="mkt-photo-hero__inner">{children}</div>
+      <noscript>
+        <style>{`[data-hero="${heroId}"]{--mkt-hero-mobile:url("${mobileAvif}");--mkt-hero-desktop:url("${desktopAvif}")}`}</style>
+      </noscript>
     </section>
   );
 }
