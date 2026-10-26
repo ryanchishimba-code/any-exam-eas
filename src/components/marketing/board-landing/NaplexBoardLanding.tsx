@@ -18,6 +18,7 @@ export function NaplexBoardLanding({ model }: { model: NaplexBoardLandingRenderM
   return (
     <div className={`board-landing board-landing--tesla board-landing--board-flow ${model.themeClass}`}>
       <BoardLandingHero
+        photoHeroId="naplex"
         headline={model.h1Lead}
         subline={model.heroWhyUs}
         testimonial={model.heroTestimonial}

@@ -24,7 +24,7 @@ export function boardLandingHeroHeadline(
 }
 
 export function boardLandingTrustPills(): string[] {
-  return [formatTrialLabel(), "No payment method to start", "Cancel in Settings"];
+  return [formatTrialLabel(), "No payment method required", "Cancel in Settings"];
 }
 
 export function boardHeroOffer(

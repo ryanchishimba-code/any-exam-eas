@@ -3,6 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import {
+  formatHomeHeroSubline,
   HOME_PRACTICE_HEADLINE,
   HOME_READINESS_HEADING,
   HOME_READINESS_LINE,
@@ -74,7 +75,10 @@ describe("legal copy", () => {
 
 describe("home legal copy", () => {
   it("keeps the home headline and practice estimate in the shared module", () => {
-    expect(HOME_PRACTICE_HEADLINE).toBe("NCLEX, NAPLEX, USMLE & more. One plan, $27.99/mo.");
+    expect(HOME_PRACTICE_HEADLINE).toBe("Board prep for six exams, one plan at $27.99/mo.");
+    expect(formatHomeHeroSubline("43,300+")).toBe(
+      "43,300+ explained questions, mock exams and a readiness score. 5-day free trial, no payment method required."
+    );
     expect(HOME_READINESS_HEADING).toMatch(/practice estimate/i);
     expect(HOME_READINESS_LINE).toMatch(/questions you answer/i);
     const ours = [HOME_PRACTICE_HEADLINE, HOME_READINESS_HEADING, HOME_READINESS_LINE].join(" ");

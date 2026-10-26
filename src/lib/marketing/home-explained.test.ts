@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { SAMPLE_QUESTION_PREVIEWS } from "@/lib/landing/content";
 import { HOME_FAQ } from "@/lib/marketing/home-faq";
 import { HOME_EXPLAINED_SAMPLE } from "@/lib/marketing/home-explained";
-import { formatMonthlyPrice } from "@/lib/site";
+import { HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
 
 describe("homepage explained sample", () => {
   it("uses the existing NCLEX preview and explains every option", () => {
@@ -32,11 +32,11 @@ describe("homepage faq and price placement", () => {
       path.resolve(process.cwd(), "src/components/marketing/elevation/PublicHome.tsx"),
       "utf8"
     );
-    expect(source.match(/formatMonthlyPrice\(/g)).toHaveLength(1);
-    expect(source).toContain(formatMonthlyPrice.name);
+    expect(source).not.toMatch(/formatMonthlyPrice\(/);
+    expect(source).toContain("HOME_PRACTICE_HEADLINE");
+    expect(HOME_PRACTICE_HEADLINE).toMatch(/\$27\.99\/mo/);
     expect(source).not.toMatch(/24\/7|support hours|Quality exam prep shouldn't/);
-    expect(source).toContain("HOME_NO_CARD_LINE");
-    expect(source).toContain("buildHomeHeroBenefitLine");
+    expect(source).toContain("formatHomeHeroSubline");
     expect(source).toContain("HOME_PRACTICE_HEADLINE");
   });
 });

@@ -21,6 +21,7 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
   return (
     <div className={`board-landing board-landing--tesla board-landing--board-flow ${model.themeClass}`}>
       <BoardLandingHero
+        photoHeroId="nclex"
         headline={model.h1Lead}
         subline={model.heroWhyUs}
         testimonial={model.heroTestimonial}

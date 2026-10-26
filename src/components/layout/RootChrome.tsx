@@ -3,19 +3,27 @@
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { MARKETING_DARK_HERO_PATHS } from "@/lib/marketing/board-paths";
+import { isMarketingLandingPath, MARKETING_DARK_HERO_PATHS } from "@/lib/marketing/board-paths";
 import { hideMarketingChrome } from "@/lib/navigation/app-shell";
+
+function NavigationFallback() {
+  const pathname = usePathname();
+  // The real bar is fixed. A sticky placeholder sits in the document and the
+  // page jumps up by that height when the client nav replaces it.
+  const tall = isMarketingLandingPath(pathname || "/");
+  return (
+    <header
+      className={`pointer-events-none fixed inset-x-0 top-0 z-50 w-full border-b border-[var(--color-border)] bg-[var(--color-bg)] ${tall ? "h-14" : "h-[var(--nav-height)]"}`}
+      aria-hidden
+    />
+  );
+}
 
 const Navigation = dynamic(
   () => import("@/components/Navigation").then((m) => m.Navigation),
   {
     ssr: true,
-    loading: () => (
-      <header
-        className="sticky top-0 z-50 h-[var(--nav-height)] border-b border-[var(--color-border)] bg-[var(--color-bg)]"
-        aria-hidden
-      />
-    ),
+    loading: () => <NavigationFallback />,
   }
 );
 

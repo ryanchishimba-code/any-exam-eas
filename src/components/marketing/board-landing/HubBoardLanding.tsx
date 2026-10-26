@@ -27,6 +27,7 @@ export function HubBoardLanding({
   return (
     <div className={`board-landing board-landing--tesla board-landing--board-flow ${model.themeClass}`}>
       <BoardLandingHero
+        photoHeroId={model.layout}
         headline={model.h1Lead}
         subline={model.heroWhyUs}
         testimonial={model.heroTestimonial}

@@ -4,7 +4,7 @@ import {
   BOARD_LANDING_HERO_QUIZ_LABEL,
   BOARD_LANDING_HERO_TRIAL_LABEL,
 } from "@/lib/marketing/board-landing/board-hero-marketing";
-import { HOME_NO_CARD_LINE } from "@/lib/marketing/home-cta";
+import { HOME_NO_PAYMENT_LINE } from "@/lib/marketing/home-cta";
 import { formatMonthlyPrice } from "@/lib/site";
 
 type BoardHubHeroActionsProps = {
@@ -22,7 +22,7 @@ export function BoardHubHeroActions({ trialHref, ctaName, ctaLocation }: BoardHu
         <LandingCta href={trialHref} ctaName={ctaName} location={ctaLocation}>
           {BOARD_LANDING_HERO_TRIAL_LABEL}
         </LandingCta>
-        <span className="bl-hero-no-card">{HOME_NO_CARD_LINE}</span>
+        <span className="bl-hero-no-card">{HOME_NO_PAYMENT_LINE}</span>
       </div>
       <p className="bl-hero-price">{price}</p>
       <a className="bl-hero-text-link" href={BOARD_LANDING_HERO_QUIZ_HREF}>
