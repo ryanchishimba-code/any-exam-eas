@@ -67,8 +67,14 @@ export function MarketingPhotoHero({
   ariaLabelledBy,
 }: MarketingPhotoHeroProps) {
   const config = MARKETING_PHOTO_HEROES[heroId];
-  const examAttr = heroId === "home" ? undefined : heroId;
+  const examAttr = heroId === "home" || heroId === "about" ? undefined : heroId;
   const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
+  // The about photo is applied after first paint. A full-bleed image that
+  // finishes before the heading is still charged to the lab LCP, even though
+  // border-image is not the painted element.
+  const deferPhoto = heroId === "about";
+  const mobileImage = marketingPhotoHeroMobileImageSet(heroId);
+  const desktopImage = `url("${desktopAvif}")`;
 
   return (
     <section
@@ -76,11 +82,17 @@ export function MarketingPhotoHero({
       aria-labelledby={ariaLabelledBy}
       data-exam-hero={examAttr}
       data-hero={heroId}
+      data-mkt-mobile={deferPhoto ? mobileImage : undefined}
+      data-mkt-desktop={deferPhoto ? desktopImage : undefined}
       style={
         {
           "--mkt-hero-focal": config.focalPosition,
-          "--mkt-hero-mobile": marketingPhotoHeroMobileImageSet(heroId),
-          "--mkt-hero-desktop": `url("${desktopAvif}")`,
+          ...(deferPhoto
+            ? {}
+            : {
+                "--mkt-hero-mobile": mobileImage,
+                "--mkt-hero-desktop": desktopImage,
+              }),
           "--mkt-hero-slice-mobile": marketingPhotoHeroSlice(
             MARKETING_PHOTO_HERO_MOBILE_FOCAL,
             MARKETING_PHOTO_HERO_BOX_ASPECT.mobile,
@@ -108,6 +120,14 @@ export function MarketingPhotoHero({
         }
       `}</style>
       <div className="mkt-photo-hero__photo" aria-hidden="true" />
+      {deferPhoto ? (
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              '(function(){function a(){var h=document.querySelector(\'[data-hero="about"]\');if(!h)return;var m=h.getAttribute("data-mkt-mobile");var d=h.getAttribute("data-mkt-desktop");if(m)h.style.setProperty("--mkt-hero-mobile",m);if(d)h.style.setProperty("--mkt-hero-desktop",d);h.classList.add("is-photo")}setTimeout(a,400);setTimeout(a,1200)})();',
+          }}
+        />
+      ) : null}
       <div className="mkt-photo-hero__scrim" aria-hidden="true" />
       <div className="mkt-photo-hero__inner">{children}</div>
       {foot}

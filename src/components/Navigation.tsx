@@ -186,8 +186,8 @@ export function Navigation() {
           href={brandHref}
           variant="nav"
           linkClassName="aee-nav-brand"
-          /* Never compete with homepage hero LCP for preload bandwidth. */
-          priority={pathname !== "/"}
+          /* Never compete with a photo-hero H1 for preload bandwidth. */
+          priority={pathname !== "/" && pathname !== "/about"}
         />
 
         <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-4" role="list">

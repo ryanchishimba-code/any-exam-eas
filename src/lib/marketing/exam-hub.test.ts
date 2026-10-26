@@ -9,6 +9,7 @@ import {
 describe("exam hub marketing helpers", () => {
   it("maps board hub paths for dark-hero nav", () => {
     expect(MARKETING_DARK_HERO_PATHS.has("/naplex")).toBe(true);
+    expect(MARKETING_DARK_HERO_PATHS.has("/about")).toBe(true);
     expect(marketingExamKeyFromPath("/usmle")).toBe("usmle");
     expect(marketingExamKeyFromPath("/pricing")).toBeNull();
   });

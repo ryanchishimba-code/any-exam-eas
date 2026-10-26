@@ -35,7 +35,8 @@ import {
   enforceMetaTitle,
 } from "@/lib/seo/meta-budget";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
-import { clinicalReviewerPersonNodes } from "@/lib/marketing/company";
+import { CLINICAL_REVIEWERS, clinicalReviewerPersonNodes } from "@/lib/marketing/company";
+import { landingOgImage } from "@/lib/seo/landing-og-image";
 import { publicExamSeo } from "@/lib/marketing/public-format-copy";
 
 function baseOpenGraph(
@@ -202,14 +203,24 @@ export function buildCompareJsonLd() {
   };
 }
 
+const ABOUT_TITLE = `About ${SITE_NAME} — 6-Board Qbank`;
+const ABOUT_DESCRIPTION =
+  "Independent NCLEX and USMLE Qbank plus NAPLEX, PANCE, FNP and NPTE on one Pro plan. QA-gated items with Roadmap, Deep Dives, and sources when stored.";
+
 export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
-  const title = `About ${SITE_NAME} — 6-Board Qbank`;
+  const title = ABOUT_TITLE;
   // Description stays inside the meta budget without a bank-size slogan.
-  const description =
-    "Independent NCLEX and USMLE Qbank plus NAPLEX, PANCE, FNP and NPTE on one Pro plan. QA-gated items with Roadmap, Deep Dives, and sources when stored.";
+  const description = ABOUT_DESCRIPTION;
   void serveReadyTotalLabel;
+  const card = landingOgImage("about");
+  const base = baseOpenGraph(title, description, "/about", { absoluteTitle: true });
   return {
-    ...baseOpenGraph(title, description, "/about", { absoluteTitle: true }),
+    ...base,
+    authors: [{ name: SITE_NAME, url: getSiteUrl() }],
+    creator: LEGAL_ENTITY.companyName,
+    publisher: LEGAL_ENTITY.companyName,
+    openGraph: base.openGraph ? { ...base.openGraph, images: [card] } : undefined,
+    twitter: base.twitter ? { ...base.twitter, images: [card.url] } : undefined,
     keywords: [
       "about AnyExamEasy",
       "NCLEX question bank",
@@ -407,6 +418,14 @@ export function buildPricingJsonLd(totalLabel?: string) {
 export function buildAboutJsonLd() {
   const url = absoluteUrl("/about");
   const site = getSiteUrl();
+  const organizationId = `${site}#organization`;
+  const people = clinicalReviewerPersonNodes().map((person) => {
+    const reviewer = CLINICAL_REVIEWERS.find((item) => item.displayName === person.name);
+    return {
+      ...person,
+      "@id": `${url}#${reviewer?.id ?? "reviewer"}`,
+    };
+  });
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -418,7 +437,19 @@ export function buildAboutJsonLd() {
         ],
       },
       {
+        "@type": "AboutPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: ABOUT_TITLE,
+        description: ABOUT_DESCRIPTION,
+        isPartOf: { "@type": "WebSite", name: SITE_NAME, url: site },
+        about: { "@id": organizationId },
+        mainEntity: { "@id": organizationId },
+        mentions: people.map((person) => ({ "@id": person["@id"] })),
+      },
+      {
         "@type": "Organization",
+        "@id": organizationId,
         name: LEGAL_ENTITY.companyName,
         url: site,
         logo: absoluteUrl("/icons/icon-192.png"),
@@ -426,7 +457,7 @@ export function buildAboutJsonLd() {
         foundingLocation: { "@type": "Place", name: "Texas, USA" },
         contactPoint: organizationContactPoint(),
       },
-      ...clinicalReviewerPersonNodes(),
+      ...people,
     ],
   };
 }
