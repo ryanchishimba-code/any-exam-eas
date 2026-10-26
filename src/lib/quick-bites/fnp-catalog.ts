@@ -155,12 +155,19 @@ export function getFnpQuickBiteBySlug(slug: string): QuickBiteEpisode | undefine
   return BY_SLUG.get(slug);
 }
 
-/** Premium members only; there is no free sample episode. */
+/** Public sample: Diabetes from Diagnosis to Insulin (trial + landing). */
+export const OPEN_FNP_QUICK_BITE_SLUG = "quick-bites-fnp-ep03-diabetes";
+
+export function isOpenFnpQuickBite(slug: string): boolean {
+  return slug === OPEN_FNP_QUICK_BITE_SLUG;
+}
+
+/** The sample plays without a paid plan. Every other FNP episode stays on that check. */
 export function isFnpQuickBitePlayable(
   episode: QuickBiteEpisode,
   canPlayLibrary: boolean
 ): boolean {
-  return episode.held !== true && canPlayLibrary;
+  return episode.held !== true && (canPlayLibrary || isOpenFnpQuickBite(episode.slug));
 }
 
 export function nextPlayableFnpQuickBite(

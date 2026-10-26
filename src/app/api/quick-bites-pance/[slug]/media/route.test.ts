@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { UserAccess } from "@/lib/access-control";
-import { PANCE_QUICK_BITES_MEDIA_VERSION } from "@/lib/quick-bites/pance-catalog";
+import { OPEN_PANCE_QUICK_BITE_SLUG, PANCE_QUICK_BITES_MEDIA_VERSION } from "@/lib/quick-bites/pance-catalog";
 
 const authState = vi.hoisted(() => ({
   result: {
@@ -28,7 +28,7 @@ vi.mock("@vercel/blob", () => ({
 
 import { GET } from "./route";
 
-const SLUG = "quick-bites-pance-ep01-coronary-failure-shock";
+const SLUG = OPEN_PANCE_QUICK_BITE_SLUG;
 const VIDEO_PATH = `quick-bites-pance/${PANCE_QUICK_BITES_MEDIA_VERSION}/${SLUG}-web.mp4`;
 
 function asAccess(
@@ -73,7 +73,7 @@ describe("GET /api/quick-bites-pance/[slug]/media", () => {
     expect(signPrivateQuickBiteGet).toHaveBeenCalledWith(VIDEO_PATH);
   });
 
-  it("returns 401 when logged out and 403 for free or trial members", async () => {
+  it("signs the public sample for a logged-out visitor, free member, and trial member", async () => {
     authState.result = {
       ok: false,
       userId: "",
@@ -81,21 +81,35 @@ describe("GET /api/quick-bites-pance/[slug]/media", () => {
       response: new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 }),
     };
     const loggedOut = await mediaRequest(SLUG);
-    expect(loggedOut.status).toBe(401);
-    expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
+    expect(loggedOut.status).toBe(200);
+    expect(signPrivateQuickBiteGet).toHaveBeenCalledWith(VIDEO_PATH);
 
+    signPrivateQuickBiteGet.mockClear();
     asAccess("free", "trial_expired", false);
     const freeVideo = await mediaRequest(SLUG);
-    const freeCaptions = await mediaRequest(SLUG, "captions");
-    expect(freeVideo.status).toBe(403);
-    expect(freeCaptions.status).toBe(403);
-    expect(await freeVideo.json()).toMatchObject({ code: "PANCE_QUICK_BITES_LOCKED" });
+    expect(freeVideo.status).toBe(200);
 
+    signPrivateQuickBiteGet.mockClear();
     asAccess("trial", "trialing", true);
     const trial = await mediaRequest(SLUG);
+    expect(trial.status).toBe(200);
+    expect(signPrivateQuickBiteGet).toHaveBeenCalledTimes(1);
+  });
+
+  it("keeps a non-sample episode gated for logged-out visitors and free or trial members", async () => {
+    authState.result = {
+      ok: false,
+      userId: "",
+      access: {} as UserAccess,
+      response: new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 }),
+    };
+    const loggedOut = await mediaRequest("quick-bites-pance-ep02-rhythms-valves-congenital");
+    expect(loggedOut.status).toBe(401);
+
+    asAccess("trial", "trialing", true);
+    const trial = await mediaRequest("quick-bites-pance-ep02-rhythms-valves-congenital");
     expect(trial.status).toBe(403);
     expect(signPrivateQuickBiteGet).not.toHaveBeenCalled();
-    expect(getBlob).not.toHaveBeenCalled();
   });
 
   it("returns 404 for a nursing slug", async () => {

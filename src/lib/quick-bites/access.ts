@@ -1,5 +1,8 @@
 import type { UserAccess } from "@/lib/access-control";
 import { isOpenQuickBite } from "@/lib/quick-bites/catalog";
+import { isOpenFnpQuickBite } from "@/lib/quick-bites/fnp-catalog";
+import { isOpenPanceQuickBite } from "@/lib/quick-bites/pance-catalog";
+import { isOpenPharmacyQuickBite } from "@/lib/quick-bites/pharmacy-catalog";
 
 type QuickBiteAccess = Pick<UserAccess, "role" | "hasPremiumAccess" | "subscription">;
 
@@ -24,5 +27,20 @@ export function canPlayQuickBites(access: QuickBiteAccess): boolean {
  */
 export function canPlayQuickBiteEpisode(access: QuickBiteAccess, slug: string): boolean {
   if (isOpenQuickBite(slug)) return true;
+  return canPlayQuickBites(access);
+}
+
+export function canPlayFnpQuickBiteEpisode(access: QuickBiteAccess, slug: string): boolean {
+  if (isOpenFnpQuickBite(slug)) return true;
+  return canPlayQuickBites(access);
+}
+
+export function canPlayPanceQuickBiteEpisode(access: QuickBiteAccess, slug: string): boolean {
+  if (isOpenPanceQuickBite(slug)) return true;
+  return canPlayQuickBites(access);
+}
+
+export function canPlayPharmacyQuickBiteEpisode(access: QuickBiteAccess, slug: string): boolean {
+  if (isOpenPharmacyQuickBite(slug)) return true;
   return canPlayQuickBites(access);
 }

@@ -169,12 +169,19 @@ export function getPanceQuickBiteBySlug(slug: string): QuickBiteEpisode | undefi
   return BY_SLUG.get(slug);
 }
 
-/** Premium members only; there is no free sample episode. */
+/** Public sample: Coronary Disease, Heart Failure and Shock (trial + landing). */
+export const OPEN_PANCE_QUICK_BITE_SLUG = "quick-bites-pance-ep01-coronary-failure-shock";
+
+export function isOpenPanceQuickBite(slug: string): boolean {
+  return slug === OPEN_PANCE_QUICK_BITE_SLUG;
+}
+
+/** The sample plays without a paid plan. Every other PANCE episode stays on that check. */
 export function isPanceQuickBitePlayable(
   episode: QuickBiteEpisode,
   canPlayLibrary: boolean
 ): boolean {
-  return episode.held !== true && canPlayLibrary;
+  return episode.held !== true && (canPlayLibrary || isOpenPanceQuickBite(episode.slug));
 }
 
 export function nextPlayablePanceQuickBite(

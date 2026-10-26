@@ -16,6 +16,16 @@ import type { NaplexAceDonutModel } from "@/lib/marketing/board-landing/naplex-a
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import {
+  OPEN_FNP_QUICK_BITE_SLUG,
+  fnpQuickBitePoster,
+  getFnpQuickBiteBySlug,
+} from "@/lib/quick-bites/fnp-catalog";
+import {
+  OPEN_PANCE_QUICK_BITE_SLUG,
+  getPanceQuickBiteBySlug,
+  panceQuickBitePoster,
+} from "@/lib/quick-bites/pance-catalog";
+import {
   OPEN_PHARMACY_QUICK_BITE_SLUG,
   getPharmacyQuickBiteBySlug,
   pharmacyQuickBitePoster,
@@ -76,7 +86,7 @@ export type LandingQuestion = {
 };
 
 export type BoardQuickBite = {
-  track: "nursing" | "pharmacy";
+  track: "nursing" | "pharmacy" | "fnp" | "pance";
   title: string;
   duration: string;
   slug: string;
@@ -337,8 +347,15 @@ export function fallbackNclexQuestion(): LandingQuestion {
   };
 }
 
+const OPEN_TRACK_LABEL: Record<BoardQuickBite["track"], string> = {
+  nursing: "nursing",
+  pharmacy: "pharmacy",
+  fnp: "AANP FNP",
+  pance: "PANCE",
+};
+
 function openEpisodeBite(
-  track: "nursing" | "pharmacy",
+  track: BoardQuickBite["track"],
   episode: QuickBiteEpisode | undefined,
   poster: { webp: string; jpg: string },
   mediaUrl: string,
@@ -352,7 +369,7 @@ function openEpisodeBite(
     slug: episode.slug,
     webp: poster.webp,
     jpg: poster.jpg,
-    imageAlt: `Poster for the free ${track === "nursing" ? "nursing" : "pharmacy"} Quick Bites sample, ${episode.title}.`,
+    imageAlt: `Poster for the free ${OPEN_TRACK_LABEL[track]} Quick Bites sample, ${episode.title}.`,
     mediaUrl,
     captions,
     uploadDate: mediaVersionUploadDate(episode.mediaVersion),
@@ -361,7 +378,9 @@ function openEpisodeBite(
 }
 
 /** One public sample for a board. No episode list and no lesson count. */
-export function openBoardQuickBite(track: "nursing" | "pharmacy"): BoardQuickBite | null {
+export function openBoardQuickBite(
+  track: "nursing" | "pharmacy" | "fnp" | "pance"
+): BoardQuickBite | null {
   if (track === "pharmacy") {
     const episode = getPharmacyQuickBiteBySlug(OPEN_PHARMACY_QUICK_BITE_SLUG);
     return openEpisodeBite(
@@ -369,6 +388,26 @@ export function openBoardQuickBite(track: "nursing" | "pharmacy"): BoardQuickBit
       episode,
       episode ? pharmacyQuickBitePoster(episode.slug) : { webp: "", jpg: "" },
       episode ? `/api/quick-bites-pharmacy/${episode.slug}/media` : "",
+      false
+    );
+  }
+  if (track === "fnp") {
+    const episode = getFnpQuickBiteBySlug(OPEN_FNP_QUICK_BITE_SLUG);
+    return openEpisodeBite(
+      "fnp",
+      episode,
+      episode ? fnpQuickBitePoster(episode.slug) : { webp: "", jpg: "" },
+      episode ? `/api/quick-bites-fnp/${episode.slug}/media` : "",
+      false
+    );
+  }
+  if (track === "pance") {
+    const episode = getPanceQuickBiteBySlug(OPEN_PANCE_QUICK_BITE_SLUG);
+    return openEpisodeBite(
+      "pance",
+      episode,
+      episode ? panceQuickBitePoster(episode.slug) : { webp: "", jpg: "" },
+      episode ? `/api/quick-bites-pance/${episode.slug}/media` : "",
       false
     );
   }

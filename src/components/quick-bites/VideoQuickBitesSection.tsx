@@ -94,7 +94,8 @@ const FNP_SERIES: QuickBiteSeries = {
   title: "Quick Bites: FNP",
   subtitle: "Short chalkboard explainers for the AANP FNP boards.",
   note: null,
-  lockedMessage: "Quick Bites are included with a paid membership. Subscribe to watch every episode.",
+  lockedMessage:
+    "Diabetes from Diagnosis to Insulin is free. Paid members can watch every other episode.",
   groups: [{ title: "", episodes: FNP_QUICK_BITE_EPISODES }],
   poster: fnpQuickBitePoster,
   apiBase: "/api/quick-bites-fnp",
@@ -110,7 +111,8 @@ const PANCE_SERIES: QuickBiteSeries = {
   title: "Quick Bites: PANCE",
   subtitle: "Short chalkboard explainers for the PANCE boards.",
   note: null,
-  lockedMessage: "Quick Bites are included with a paid membership. Subscribe to watch every episode.",
+  lockedMessage:
+    "Coronary Disease, Heart Failure and Shock is free. Paid members can watch every other episode.",
   groups: [{ title: "", episodes: PANCE_QUICK_BITE_EPISODES }],
   poster: panceQuickBitePoster,
   apiBase: "/api/quick-bites-pance",

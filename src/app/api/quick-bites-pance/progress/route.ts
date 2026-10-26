@@ -1,6 +1,6 @@
 import { PANCE_QUICK_BITE_EPISODES } from "@/lib/quick-bites/pance-catalog";
 import {
-  canReadPaidQuickBiteProgress,
+  canReadPanceQuickBiteProgress,
   quickBiteProgressListResponse,
 } from "@/lib/quick-bites/progress-api";
 
@@ -13,7 +13,7 @@ const SLUGS = PANCE_QUICK_BITE_EPISODES.filter((episode) => episode.held !== tru
 export async function GET(request: Request) {
   return quickBiteProgressListResponse(request, {
     slugs: SLUGS,
-    canRead: canReadPaidQuickBiteProgress,
+    canRead: (access) => canReadPanceQuickBiteProgress(access, SLUGS),
     lockedMessage: "Quick Bites: PANCE require a paid membership.",
   });
 }

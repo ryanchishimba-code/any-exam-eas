@@ -61,7 +61,7 @@ describe("Quick Bites series separation (rendered)", () => {
     }
     expect(container.innerHTML).not.toContain("quick-bites-pharm-");
     expect(container.innerHTML).not.toContain("quick-bites-pance-");
-    expect(screen.getAllByText("Locked")).toHaveLength(FNP_QUICK_BITE_EPISODES.length);
+    expect(screen.getAllByText("Locked")).toHaveLength(FNP_QUICK_BITE_EPISODES.length - 1);
   });
 
   it("the PANCE section lists every PANCE episode and locks all when not paid", () => {
@@ -77,6 +77,6 @@ describe("Quick Bites series separation (rendered)", () => {
       expect(screen.getByText(episode.title)).toBeInTheDocument();
     }
     expect(container.innerHTML).not.toContain("quick-bites-fnp-");
-    expect(screen.getAllByText("Locked")).toHaveLength(PANCE_QUICK_BITE_EPISODES.length);
+    expect(screen.getAllByText("Locked")).toHaveLength(PANCE_QUICK_BITE_EPISODES.length - 1);
   });
 });
