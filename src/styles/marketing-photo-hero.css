@@ -14,114 +14,15 @@
   color: #f8fafc;
 }
 
-.mkt-photo-hero__media {
+.mkt-photo-hero__img {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: var(--mkt-hero-focal);
-}
-
-/* Decorative hero art — CSS background so copy (H1) stays the LCP element. */
-.mkt-photo-hero[data-hero="home"] .mkt-photo-hero__media {
-  background-image: image-set(
-    url("/images/marketing/heroes/home-mobile.avif") type("image/avif"),
-    url("/images/marketing/heroes/home-mobile.webp") type("image/webp")
-  );
-}
-
-.mkt-photo-hero[data-hero="nclex"] .mkt-photo-hero__media {
-  background-image: image-set(
-    url("/images/marketing/heroes/nclex-mobile.avif") type("image/avif"),
-    url("/images/marketing/heroes/nclex-mobile.webp") type("image/webp")
-  );
-}
-
-.mkt-photo-hero[data-hero="naplex"] .mkt-photo-hero__media {
-  background-image: image-set(
-    url("/images/marketing/heroes/naplex-mobile.avif") type("image/avif"),
-    url("/images/marketing/heroes/naplex-mobile.webp") type("image/webp")
-  );
-}
-
-.mkt-photo-hero[data-hero="usmle"] .mkt-photo-hero__media {
-  background-image: image-set(
-    url("/images/marketing/heroes/usmle-mobile.avif") type("image/avif"),
-    url("/images/marketing/heroes/usmle-mobile.webp") type("image/webp")
-  );
-}
-
-.mkt-photo-hero[data-hero="pance"] .mkt-photo-hero__media {
-  background-image: image-set(
-    url("/images/marketing/heroes/pance-mobile.avif") type("image/avif"),
-    url("/images/marketing/heroes/pance-mobile.webp") type("image/webp")
-  );
-}
-
-.mkt-photo-hero[data-hero="aanp-fnp"] .mkt-photo-hero__media {
-  background-image: image-set(
-    url("/images/marketing/heroes/aanp-fnp-mobile.avif") type("image/avif"),
-    url("/images/marketing/heroes/aanp-fnp-mobile.webp") type("image/webp")
-  );
-}
-
-.mkt-photo-hero[data-hero="npte-pt"] .mkt-photo-hero__media {
-  background-image: image-set(
-    url("/images/marketing/heroes/npte-pt-mobile.avif") type("image/avif"),
-    url("/images/marketing/heroes/npte-pt-mobile.webp") type("image/webp")
-  );
-}
-
-@media (min-width: 768px) {
-  .mkt-photo-hero[data-hero="home"] .mkt-photo-hero__media {
-    background-image: image-set(
-      url("/images/marketing/heroes/home-desktop.avif") type("image/avif"),
-      url("/images/marketing/heroes/home-desktop.webp") type("image/webp")
-    );
-  }
-
-  .mkt-photo-hero[data-hero="nclex"] .mkt-photo-hero__media {
-    background-image: image-set(
-      url("/images/marketing/heroes/nclex-desktop.avif") type("image/avif"),
-      url("/images/marketing/heroes/nclex-desktop.webp") type("image/webp")
-    );
-  }
-
-  .mkt-photo-hero[data-hero="naplex"] .mkt-photo-hero__media {
-    background-image: image-set(
-      url("/images/marketing/heroes/naplex-desktop.avif") type("image/avif"),
-      url("/images/marketing/heroes/naplex-desktop.webp") type("image/webp")
-    );
-  }
-
-  .mkt-photo-hero[data-hero="usmle"] .mkt-photo-hero__media {
-    background-image: image-set(
-      url("/images/marketing/heroes/usmle-desktop.avif") type("image/avif"),
-      url("/images/marketing/heroes/usmle-desktop.webp") type("image/webp")
-    );
-  }
-
-  .mkt-photo-hero[data-hero="pance"] .mkt-photo-hero__media {
-    background-image: image-set(
-      url("/images/marketing/heroes/pance-desktop.avif") type("image/avif"),
-      url("/images/marketing/heroes/pance-desktop.webp") type("image/webp")
-    );
-  }
-
-  .mkt-photo-hero[data-hero="aanp-fnp"] .mkt-photo-hero__media {
-    background-image: image-set(
-      url("/images/marketing/heroes/aanp-fnp-desktop.avif") type("image/avif"),
-      url("/images/marketing/heroes/aanp-fnp-desktop.webp") type("image/webp")
-    );
-  }
-
-  .mkt-photo-hero[data-hero="npte-pt"] .mkt-photo-hero__media {
-    background-image: image-set(
-      url("/images/marketing/heroes/npte-pt-desktop.avif") type("image/avif"),
-      url("/images/marketing/heroes/npte-pt-desktop.webp") type("image/webp")
-    );
-  }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--mkt-hero-focal);
+  pointer-events: none;
 }
 
 .mkt-photo-hero__scrim {
