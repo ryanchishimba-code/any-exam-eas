@@ -7,6 +7,7 @@ import {
   isQotdExamSlug,
   parseQotdDate,
   qotdAbsoluteUrl,
+  qotdMatchesToday,
   qotdPath,
   todayIsoCentral,
   toPublicQotd,
@@ -42,7 +43,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
   const name = EXAM_CATALOG[exam].shortName;
-  const canonical = qotdAbsoluteUrl(exam, date);
+  const selfUrl = qotdAbsoluteUrl(exam, date);
+  const liveUrl = `${getSiteUrl()}${qotdPath(exam)}`;
+  const sameAsLive = qotdMatchesToday(date);
+  const canonical = sameAsLive ? liveUrl : selfUrl;
   const description =
     item.stem.length > 155 ? `${item.stem.slice(0, 152)}…` : item.stem;
   const ogImageUrl = `${getSiteUrl()}${qotdPath(exam, date)}/opengraph-image`;
@@ -51,10 +55,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${name} Question of the Day — ${date}`,
     description,
     alternates: { canonical },
+    robots: sameAsLive ? undefined : { index: false, follow: true },
     openGraph: {
       title: `${name} Question of the Day | AnyExamEasy`,
       description,
-      url: canonical,
+      url: selfUrl,
       type: "website",
       images: [{ url: ogImageUrl, width: 1200, height: 630, alt: `${name} Question of the Day` }],
     },

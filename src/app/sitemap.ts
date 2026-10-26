@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { listPublishedBlogPosts } from "@/lib/blog/public";
-import { qotdPath, todayIsoCentral } from "@/lib/demo/qotd";
+import { qotdPath } from "@/lib/demo/qotd";
 import { EXAM_SLUGS } from "@/lib/edtech/exams";
 import { getSiteUrl } from "@/lib/seo";
 import { getExamMarketingSitemapPaths } from "@/lib/seo/marketing-metadata";
@@ -29,7 +29,6 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
   const now = new Date();
-  const today = todayIsoCentral();
 
   const staticEntries = STATIC_ROUTES.map(({ path, priority, changeFrequency }) => ({
     url: `${base}${path}`,
@@ -45,20 +44,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === "/nclex" || path === "/naplex" ? 0.95 : 0.9,
   }));
 
-  const qotdEntries = EXAM_SLUGS.flatMap((exam) => [
-    {
-      url: `${base}${qotdPath(exam)}`,
-      lastModified: now,
-      changeFrequency: "daily" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${base}${qotdPath(exam, today)}`,
-      lastModified: now,
-      changeFrequency: "daily" as const,
-      priority: 0.85,
-    },
-  ]);
+  // Dated share URLs repeat the same 7 items. Only the hub and the six
+  // undated board URLs belong in the sitemap.
+  const qotdEntries = EXAM_SLUGS.map((exam) => ({
+    url: `${base}${qotdPath(exam)}`,
+    lastModified: now,
+    changeFrequency: "daily" as const,
+    priority: 0.8,
+  }));
 
   const resourceEntries = RESOURCE_ARTICLES.map((article) => ({
     url: `${base}/resources/${article.slug}`,

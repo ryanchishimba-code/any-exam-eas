@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { DailyInboxCapture } from "@/components/marketing/DailyInboxCapture";
+import { MarketingPhotoHero, MarketingPhotoHeroCopy } from "@/components/marketing/MarketingPhotoHero";
+import { LandingCta } from "@/components/landing/LandingCta";
 import {
   formatQotdDisplayDate,
   getQotdForExam,
@@ -11,29 +13,45 @@ import {
 } from "@/lib/demo/qotd";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { landingTrialHrefForExam } from "@/lib/landing/content";
+import {
+  DAILY_HERO_HEADLINE,
+  DAILY_OG_DESCRIPTION,
+  DAILY_PAGE_DESCRIPTION,
+  DAILY_PAGE_TITLE,
+} from "@/lib/marketing/daily-copy";
+import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
 import { getSiteUrl } from "@/lib/seo";
-import { LandingCta } from "@/components/landing/LandingCta";
-import { DailyInboxCapture } from "@/components/marketing/DailyInboxCapture";
+import { SITE_NAME } from "@/lib/site";
+import { landingOgImage } from "@/lib/seo/landing-og-image";
 import type { ExamSlug } from "@/types/edtech";
 
 /**
  * Today’s six-board set follows the America/Chicago calendar date. A one-minute
  * cache keeps the hub off the dynamic path; it rotates within a minute of
  * midnight Central instead of waiting for the next deploy.
+ * Question rich-result markup is omitted: it requires the accepted answer,
+ * which would publish the key in the HTML.
  */
 export const revalidate = 60;
 
+const ogImage = landingOgImage("daily");
+
 export const metadata: Metadata = {
-  title: "Question of the Day — Free Board Exam Practice",
-  description:
-    "A free daily practice question for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. Answer without signup, then start a free trial for your exam.",
+  title: DAILY_PAGE_TITLE,
+  description: DAILY_PAGE_DESCRIPTION,
   alternates: { canonical: `${getSiteUrl()}/daily` },
   openGraph: {
-    title: "Question of the Day | AnyExamEasy",
-    description:
-      "Free daily board-style practice across six exams. Pick your board and try today’s item.",
+    title: `${DAILY_PAGE_TITLE} | ${SITE_NAME}`,
+    description: DAILY_OG_DESCRIPTION,
     url: `${getSiteUrl()}/daily`,
     type: "website",
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${DAILY_PAGE_TITLE} | ${SITE_NAME}`,
+    description: DAILY_OG_DESCRIPTION,
+    images: [ogImage.url],
   },
 };
 
@@ -43,50 +61,79 @@ export default function DailyHubPage() {
   const featuredItem = featured ? getQotdForExam(featured, today) : null;
   if (!featured || !featuredItem) notFound();
   const featuredName = EXAM_CATALOG[featured].shortName;
+  const answerHref = qotdPath(featured, today);
+  const headlineBreak = DAILY_HERO_HEADLINE.lastIndexOf(", ");
+  const headlineLead =
+    headlineBreak === -1 ? DAILY_HERO_HEADLINE : DAILY_HERO_HEADLINE.slice(0, headlineBreak + 1);
+  const headlineAccent =
+    headlineBreak === -1 ? "" : DAILY_HERO_HEADLINE.slice(headlineBreak + 2);
 
   return (
-    <div className="aee-qotd-hub">
-      <div className="aee-qotd-hub__inner">
-        <p className="aee-qotd-hub__eyebrow">AnyExamEasy</p>
-        <h1 className="aee-qotd-hub__title">Question of the Day</h1>
-        <p className="aee-qotd-hub__lede">
-          One free board-style item per exam, every day. No account required to try — share
-          with classmates and start a free trial when you&apos;re ready.
-        </p>
-        <DailyInboxCapture />
-        <p className="aee-qotd-hub__date">{formatQotdDisplayDate(today)}</p>
-
-        <section className="aee-qotd-hub__featured" aria-labelledby="featured-qotd">
-          <p className="aee-qotd-hub__featured-label">Today&apos;s featured board</p>
-          <h2 id="featured-qotd" className="aee-qotd-hub__featured-title">
-            {featuredName}
-          </h2>
-          <p className="aee-qotd-hub__featured-stem">{featuredItem.stem}</p>
-          <div className="aee-qotd-hub__featured-actions">
-            <Link
-              href={qotdPath(featured, today)}
-              prefetch={false}
-              className="aee-flagship-cta aee-flagship-cta--primary aee-flagship-cta--hero group inline-flex items-center gap-2"
-            >
-              Answer today&apos;s {featuredName} question
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-            <LandingCta
-              href={landingTrialHrefForExam(featured)}
-              ctaName={`qotd_hub_trial_${featured}`}
-              location="qotd_hub"
-              variant="secondary"
-            >
-              Try {featuredName} free
-            </LandingCta>
+    <div className="aee-daily aee-qotd-hub">
+      <MarketingPhotoHero
+        heroId="daily"
+        className="aee-daily-hero"
+        ariaLabelledBy="daily-hero-heading"
+        foot={
+          <div className="mkt-hero-foot">
+            <div className="mkt-hero-foot__slot">
+              <Link
+                href={answerHref}
+                prefetch={false}
+                className="mkt-hero-foot__card aee-daily-hero__card"
+              >
+                <p className="mkt-hero-foot__by">Today&apos;s {featuredName} question</p>
+                <p className="aee-daily-hero__stem">{featuredItem.stem}</p>
+                <p className="aee-daily-hero__answer">Answer today&apos;s question</p>
+              </Link>
+            </div>
           </div>
-        </section>
+        }
+      >
+        <MarketingPhotoHeroCopy
+          headingId="daily-hero-heading"
+          title={
+            <>
+              <span className="home-hero__line">{headlineLead} </span>
+              <span className="home-hero__accent">{headlineAccent}</span>
+            </>
+          }
+          subline={`${formatQotdDisplayDate(today)} · Six boards, no account to answer.`}
+          actions={
+            <div className="mkt-photo-hero__actions">
+              <div className="bl-actions__primary">
+                <LandingCta
+                  href={landingTrialHrefForExam(featured)}
+                  ctaName={`qotd_hub_trial_${featured}`}
+                  location="qotd_hub"
+                >
+                  {HERO_TRIAL_CTA_LABEL}
+                </LandingCta>
+                <p className="bl-hero-price">{heroTrialPriceLine()}</p>
+              </div>
+              <Link
+                href={answerHref}
+                prefetch={false}
+                className="bl-button bl-button-secondary"
+              >
+                Answer today&apos;s question
+              </Link>
+            </div>
+          }
+        />
+      </MarketingPhotoHero>
 
-        <section aria-labelledby="all-boards-qotd">
-          <h2 id="all-boards-qotd" className="aee-qotd-hub__grid-title">
-            All boards today
-          </h2>
-          <ul className="aee-qotd-hub__grid">
+      <section className="aee-daily-band" aria-labelledby="daily-inbox-heading">
+        <div className="aee-daily-band__inner">
+          <h2 id="daily-inbox-heading">Get the next question by email</h2>
+          <DailyInboxCapture />
+        </div>
+      </section>
+
+      <section className="aee-daily-band aee-daily-band--cards" aria-labelledby="all-boards-qotd">
+        <div className="aee-daily-band__inner">
+          <h2 id="all-boards-qotd">All six boards today</h2>
+          <ul className="aee-daily-grid">
             {EXAM_SLUGS.map((slug: ExamSlug) => {
               const item = getQotdForExam(slug, today);
               if (!item) return null;
@@ -95,23 +142,18 @@ export default function DailyHubPage() {
                   <Link
                     href={qotdPath(slug, today)}
                     prefetch={false}
-                    className="aee-qotd-hub__card"
+                    className="aee-daily-card"
                   >
-                    <span
-                      className="aee-qotd-hub__card-exam"
-                      style={{ color: item.examColor }}
-                    >
-                      {EXAM_CATALOG[slug].shortName}
-                    </span>
-                    <span className="aee-qotd-hub__card-stem">{item.stem}</span>
-                    <span className="aee-qotd-hub__card-cta">Answer →</span>
+                    <span className="aee-daily-card__exam">{EXAM_CATALOG[slug].shortName}</span>
+                    <span className="aee-daily-card__stem">{item.stem}</span>
+                    <span className="aee-daily-card__cta">Answer →</span>
                   </Link>
                 </li>
               );
             })}
           </ul>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }

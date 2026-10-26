@@ -3,6 +3,7 @@ import { buildNaplexLandingMetadata } from "@/lib/marketing/board-landing/naplex
 import { buildHubLandingMetadata } from "@/lib/marketing/board-landing/hub-model";
 import { buildNclexLandingMetadata } from "@/lib/marketing/board-landing/model";
 import { boardHeroMarketingCopy } from "@/lib/marketing/board-landing/board-hero-marketing";
+import { DAILY_HERO_HEADLINE } from "@/lib/marketing/daily-copy";
 import { HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
 import { buildHomeJsonLd, buildHomeMetadata, buildRootMetadata, DEFAULT_OG_IMAGE_PATH } from "@/lib/seo";
 import {
@@ -70,6 +71,10 @@ describe("landing share images", () => {
 
   it("uses the page H1 as alt text and keeps JSON-LD on the shared default image", () => {
     expect(landingOgImage("home").alt).toBe(HOME_PRACTICE_HEADLINE);
+    expect(landingOgImage("daily").alt).toBe(DAILY_HERO_HEADLINE);
+    expect(landingOgImage("daily").url).toBe(
+      `${LANDING_OG_ORIGIN}/images/og/daily.jpg?v=${LANDING_OG_VERSION}`
+    );
     for (const id of ["nclex", "naplex", "usmle", "pance", "aanp-fnp", "npte-pt"] as const) {
       expect(landingOgImage(id).alt).toBe(boardHeroMarketingCopy(id).headline);
       expect(landingOgImage(id).alt.toLowerCase()).not.toMatch(/\bpass\b/);

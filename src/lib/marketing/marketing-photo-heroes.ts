@@ -1,7 +1,7 @@
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
 
 /** Static hero photo ids — one per homepage and board hub. */
-export type MarketingPhotoHeroId = "home" | ExamSeoKey;
+export type MarketingPhotoHeroId = "home" | "daily" | ExamSeoKey;
 
 export type MarketingPhotoHeroConfig = {
   id: MarketingPhotoHeroId;
@@ -17,6 +17,11 @@ export const MARKETING_PHOTO_HEROES: Record<MarketingPhotoHeroId, MarketingPhoto
     id: "home",
     focalPosition: "42% 38%",
     basePath: `${HERO_BASE}/home`,
+  },
+  daily: {
+    id: "daily",
+    focalPosition: "38% 46%",
+    basePath: `${HERO_BASE}/daily`,
   },
   nclex: {
     id: "nclex",

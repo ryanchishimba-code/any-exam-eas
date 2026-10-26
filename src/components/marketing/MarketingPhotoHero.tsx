@@ -67,7 +67,7 @@ export function MarketingPhotoHero({
   ariaLabelledBy,
 }: MarketingPhotoHeroProps) {
   const config = MARKETING_PHOTO_HEROES[heroId];
-  const examAttr = heroId === "home" ? undefined : heroId;
+  const examAttr = heroId === "home" || heroId === "daily" ? undefined : heroId;
   const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
 
   return (

@@ -7,6 +7,7 @@ import {
   dayIndexFromIso,
   getQotdForExam,
   parseQotdDate,
+  qotdMatchesToday,
   todayIsoCentral,
   toPublicQotd,
 } from "@/lib/demo/qotd";
@@ -100,6 +101,13 @@ describe("question of the day calendar", () => {
       expect(second?.id).not.toBe(first?.id);
     }
   });
+
+  it("treats the 7-day repeat as the same live question and leaves other dates out", () => {
+    expect(qotdMatchesToday("2026-10-11", REVIEW_NOW)).toBe(true);
+    expect(qotdMatchesToday("2026-10-04", REVIEW_NOW)).toBe(true);
+    expect(qotdMatchesToday("2026-10-10", REVIEW_NOW)).toBe(false);
+    expect(qotdMatchesToday("2026-10-12", REVIEW_NOW)).toBe(false);
+  });
 });
 
 describe("question of the day items", () => {
@@ -179,6 +187,14 @@ describe("question of the day items", () => {
     expect(hub).not.toContain(".rationale");
     expect(og).not.toContain("item.correct");
     expect(og).not.toContain("item.rationale");
-    expect(readFileSync("src/app/sitemap.ts", "utf8")).toContain("todayIsoCentral(");
+    const sitemap = readFileSync("src/app/sitemap.ts", "utf8");
+    expect(sitemap).toContain('path: "/daily"');
+    expect(sitemap).toContain("qotdPath(exam)");
+    expect(sitemap).not.toContain("qotdPath(exam, today)");
+    expect(sitemap).not.toContain("todayIsoCentral(");
+    expect(dated).toContain("qotdMatchesToday(");
+    expect(dated).toContain("index: false");
+    expect(hub).not.toContain("QAPage");
+    expect(hub).not.toContain("Quiz");
   });
 });

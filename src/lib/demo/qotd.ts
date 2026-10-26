@@ -20,6 +20,7 @@ export {
   parseQotdDate,
   qotdAbsoluteUrl,
   qotdEntityId,
+  qotdMatchesToday,
   qotdPath,
   qotdShareCaption,
   todayIsoCentral,

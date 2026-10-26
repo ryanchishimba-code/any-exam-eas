@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = getQotdForExam(exam, today);
   if (!item) return {};
   const name = EXAM_CATALOG[exam].shortName;
-  const canonical = qotdAbsoluteUrl(exam, today);
+  const canonical = `${getSiteUrl()}${qotdPath(exam)}`;
   const description =
     item.stem.length > 155 ? `${item.stem.slice(0, 152)}…` : item.stem;
   const ogImage = `${getSiteUrl()}${qotdPath(exam, today)}/opengraph-image`;
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-/** Today’s QOTD for an exam — canonical points at the dated share URL. */
+/** Today’s QOTD for an exam. This undated URL is the indexable canonical. */
 export default async function DailyExamTodayPage({ params }: Props) {
   const { exam } = await params;
   if (!isQotdExamSlug(exam)) notFound();
