@@ -24,9 +24,9 @@ body {
     background: rgba(255, 255, 255, 0.98);
   }
 
-  :root:not([data-theme="light"]) .apple-glass,
-  :root:not([data-theme="light"]) .aee-nav.apple-glass,
-  :root:not([data-theme="light"]) .aee-nav.aee-nav--on-hero,
+  :root[data-theme="dark"] .apple-glass,
+  :root[data-theme="dark"] .aee-nav.apple-glass,
+  :root[data-theme="dark"] .aee-nav.aee-nav--on-hero,
   [data-theme="dark"] .apple-glass,
   [data-theme="dark"] .aee-nav.apple-glass,
   [data-theme="dark"] .aee-nav.aee-nav--on-hero {

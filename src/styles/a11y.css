@@ -230,7 +230,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root[data-theme="dark"] {
     --a11y-focus: #2ee7dc;
     --a11y-success-fg: #bfdbfe;
     --a11y-success-bg: rgba(30, 58, 138, 0.35);

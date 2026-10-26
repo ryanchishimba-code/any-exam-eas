@@ -1159,24 +1159,24 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .aee-price-highlight--hero,
-  .aee-price-highlight--hero-lg,
-  .aee-price-highlight--md,
-  .aee-price-highlight--sm {
+  :root[data-theme="dark"] .aee-price-highlight--hero,
+  :root[data-theme="dark"] .aee-price-highlight--hero-lg,
+  :root[data-theme="dark"] .aee-price-highlight--md,
+  :root[data-theme="dark"] .aee-price-highlight--sm {
     background: color-mix(in srgb, var(--flagship-teal) 14%, var(--flagship-surface));
     box-shadow: 0 4px 24px rgba(0, 212, 200, 0.18);
   }
 
-  .aee-price-highlight--hero-lg .aee-price-highlight__period {
+  :root[data-theme="dark"] .aee-price-highlight--hero-lg .aee-price-highlight__period {
     color: var(--flagship-muted);
   }
 
-  .aee-hero-price-callout {
+  :root[data-theme="dark"] .aee-hero-price-callout {
     background: color-mix(in srgb, var(--flagship-teal) 10%, var(--flagship-surface));
     border-color: color-mix(in srgb, var(--flagship-teal) 40%, var(--flagship-border));
   }
 
-  .aee-flagship-hero__disclosure--prominent {
+  :root[data-theme="dark"] .aee-flagship-hero__disclosure--prominent {
     color: var(--flagship-muted);
     opacity: 1;
   }
@@ -1187,7 +1187,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .aee-hero-trust-pills__item span:last-child {
+  :root[data-theme="dark"] .aee-hero-trust-pills__item span:last-child {
     color: var(--flagship-muted);
   }
 }
@@ -1356,13 +1356,13 @@ button.aee-flagship-cta {
 }
 
 @media (prefers-color-scheme: dark) {
-  .aee-flagship-cta--primary {
+  :root[data-theme="dark"] .aee-flagship-cta--primary {
     background: #0f766e;
     color: #fff;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
 
-  .aee-flagship-cta--primary:hover {
+  :root[data-theme="dark"] .aee-flagship-cta--primary:hover {
     background: #115e59;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   }
@@ -1858,7 +1858,7 @@ button.aee-flagship-cta {
 }
 
 @media (prefers-color-scheme: dark) {
-  .aee-hero-price-value {
+  :root[data-theme="dark"] .aee-hero-price-value {
     --price-card-text: #f1f5f9;
     --price-card-muted: #cbd5e1;
     background:
@@ -2893,7 +2893,7 @@ button.aee-flagship-cta {
       var(--aee-hero-stage-deep) 100%
     ) !important;
   color: var(--aee-hero-ink);
-  color-scheme: dark;
+  color-scheme: light;
   overflow: hidden;
   overflow-x: clip;
 }
@@ -3720,7 +3720,7 @@ button.aee-flagship-cta {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .aee-hero-handoff::before {
+  :root[data-theme="dark"] .aee-hero-handoff::before {
     background: linear-gradient(
       180deg,
       color-mix(in srgb, #071a2c 35%, transparent) 0%,

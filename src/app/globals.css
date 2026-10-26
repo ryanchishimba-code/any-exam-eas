@@ -50,7 +50,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root[data-theme="dark"] {
     --color-ink: #f1f5f9;
     --color-ink-muted: #b8c5d6;
     --color-surface: #0f172a;
@@ -125,7 +125,7 @@
   --flagship-surface-alt: #0a2540;
   --flagship-muted: #b8c5d6;
   --flagship-border: rgba(0, 212, 200, 0.14);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 [data-theme="light"] {
@@ -163,7 +163,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root[data-theme="dark"] {
     --study-accent: #2ee7dc;
     --study-accent-hover: #5eead4;
     --study-accent-soft: #99f6e4;
@@ -181,9 +181,19 @@
 }
 
 html {
-  color-scheme: light dark;
+  /* Light only. `light dark` lets Chrome Android auto-invert text and photos. */
+  color-scheme: light;
+  background-color: #ffffff;
+  color: #0f172a;
   scroll-behavior: smooth;
   scroll-padding-top: var(--page-top);
+}
+
+input,
+textarea,
+select,
+button {
+  color-scheme: light;
 }
 
 /* The offer bar is in flow and already clears the fixed nav. Page padding
@@ -304,10 +314,11 @@ html:has([data-public-offer]) {
 }
 
 .apple-footer {
-  background: var(--color-surface);
+  background: #f8fafc;
   font-size: 0.75rem;
   line-height: 1.33337;
-  color: var(--color-ink-muted);
+  color: #475569;
+  color-scheme: light;
   content-visibility: auto;
   contain-intrinsic-size: auto 28rem;
 }
@@ -435,7 +446,7 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) ::selection {
+  :root[data-theme="dark"] ::selection {
     background: rgba(0, 212, 200, 0.32);
     color: #e8eef4;
   }
@@ -447,35 +458,35 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .apple-glass {
+  :root[data-theme="dark"] .apple-glass {
     background: rgba(7, 26, 44, 0.88);
     border-bottom-color: rgba(0, 212, 200, 0.1);
   }
 
-  :root:not([data-theme="light"]) .apple-hero-premium {
+  :root[data-theme="dark"] .apple-hero-premium {
     background:
       radial-gradient(ellipse 80% 55% at 50% -20%, rgba(0, 212, 200, 0.12), transparent 70%),
       linear-gradient(180deg, #0a2540 0%, #071a2c 72%);
   }
 
-  :root:not([data-theme="light"]) .aee-card:hover {
+  :root[data-theme="dark"] .aee-card:hover {
     border-color: rgba(0, 212, 200, 0.28);
   }
 
-  :root:not([data-theme="light"]) .aee-nav {
+  :root[data-theme="dark"] .aee-nav {
     border-bottom-color: rgba(0, 212, 200, 0.1);
   }
 
-  :root:not([data-theme="light"]) .aee-nav-menu-btn:hover {
+  :root[data-theme="dark"] .aee-nav-menu-btn:hover {
     background: rgba(255, 255, 255, 0.06);
   }
 
-  :root:not([data-theme="light"]) .aee-avatar-trigger {
+  :root[data-theme="dark"] .aee-avatar-trigger {
     border-color: rgba(0, 212, 200, 0.18);
     background: rgba(13, 50, 84, 0.85);
   }
 
-  :root:not([data-theme="light"]) .aee-avatar-trigger:hover {
+  :root[data-theme="dark"] .aee-avatar-trigger:hover {
     border-color: rgba(0, 212, 200, 0.35);
   }
 }
@@ -782,7 +793,7 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .question-bank-ui {
+  :root[data-theme="dark"] .question-bank-ui {
     --qb-card: color-mix(in srgb, var(--color-surface-elevated) 94%, #050b14);
     --qb-line: color-mix(in srgb, var(--color-border) 90%, transparent);
     --qb-cta-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -832,7 +843,7 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .dashboard-ui {
+  :root[data-theme="dark"] .dashboard-ui {
     --db-ready-strong: #14b8a6;
     --db-ready-strong-end: #0d9488;
     --db-ready-review: #f59e0b;
@@ -2046,9 +2057,17 @@ body {
 .aee-nav.apple-glass,
 .aee-nav.aee-nav--on-hero {
   background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+  color-scheme: light;
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.aee-mobile-nav-panel {
+  background-color: #ffffff;
+  color: #0f172a;
+  color-scheme: light;
 }
 
 .aee-nav-link {
@@ -2101,41 +2120,41 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .aee-nav.apple-glass,
-  :root:not([data-theme="light"]) .aee-nav.aee-nav--on-hero {
+  :root[data-theme="dark"] .aee-nav.apple-glass,
+  :root[data-theme="dark"] .aee-nav.aee-nav--on-hero {
     background: rgba(7, 26, 44, 0.96);
     border-bottom-color: rgba(226, 232, 240, 0.18);
   }
 
-  :root:not([data-theme="light"]) .aee-nav-link {
+  :root[data-theme="dark"] .aee-nav-link {
     color: #e2e8f0;
   }
 
-  :root:not([data-theme="light"]) .aee-nav-link:hover,
-  :root:not([data-theme="light"]) .aee-nav-link--active {
+  :root[data-theme="dark"] .aee-nav-link:hover,
+  :root[data-theme="dark"] .aee-nav-link--active {
     color: #ffffff;
   }
 
-  :root:not([data-theme="light"]) .aee-nav-menu-btn,
-  :root:not([data-theme="light"]) .aee-nav--on-hero .aee-nav-menu-btn--on-hero {
+  :root[data-theme="dark"] .aee-nav-menu-btn,
+  :root[data-theme="dark"] .aee-nav--on-hero .aee-nav-menu-btn--on-hero {
     color: #f8fafc;
   }
 
-  :root:not([data-theme="light"]) .aee-nav-mark__cap {
+  :root[data-theme="dark"] .aee-nav-mark__cap {
     fill: #5eead4;
   }
 
-  :root:not([data-theme="light"]) .aee-nav-mark__arch {
+  :root[data-theme="dark"] .aee-nav-mark__arch {
     stroke: #5eead4;
   }
 
-  :root:not([data-theme="light"]) .aee-nav-mark__check,
-  :root:not([data-theme="light"]) .aee-nav-wordmark__text {
+  :root[data-theme="dark"] .aee-nav-mark__check,
+  :root[data-theme="dark"] .aee-nav-wordmark__text {
     stroke: #f8fafc;
     color: #f8fafc;
   }
 
-  :root:not([data-theme="light"]) .aee-nav-auth-skeleton {
+  :root[data-theme="dark"] .aee-nav-auth-skeleton {
     background: rgba(248, 250, 252, 0.16);
   }
 }
@@ -2840,21 +2859,21 @@ body {
 /* Navy header (dark theme, including the transparent hero). Teal outline stays
    secondary to the filled trial CTA. #5eead4 on #071a2c is about 11.9:1. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .aee-nav-login,
-  :root:not([data-theme="light"]) .aee-nav--on-hero .aee-nav-login--on-hero {
+  :root[data-theme="dark"] .aee-nav-login,
+  :root[data-theme="dark"] .aee-nav--on-hero .aee-nav-login--on-hero {
     color: #ffffff;
     border-color: #5eead4;
     background: transparent;
   }
 
-  :root:not([data-theme="light"]) .aee-nav-login:hover,
-  :root:not([data-theme="light"]) .aee-nav--on-hero .aee-nav-login--on-hero:hover {
+  :root[data-theme="dark"] .aee-nav-login:hover,
+  :root[data-theme="dark"] .aee-nav--on-hero .aee-nav-login--on-hero:hover {
     color: #ffffff;
     border-color: #99f6e4;
     background: rgba(255, 255, 255, 0.08);
   }
 
-  :root:not([data-theme="light"]) .aee-nav-login:focus-visible {
+  :root[data-theme="dark"] .aee-nav-login:focus-visible {
     outline-color: #99f6e4;
   }
 }
@@ -3631,7 +3650,7 @@ body {
 
 /* Marketing landings at the top: the logo sits on the photo. No bar, blur, or box. */
 .aee-nav.apple-glass.aee-nav--over-photo,
-:root:not([data-theme="light"]) .aee-nav.apple-glass.aee-nav--over-photo,
+:root[data-theme="dark"] .aee-nav.apple-glass.aee-nav--over-photo,
 [data-theme="dark"] .aee-nav.apple-glass.aee-nav--over-photo,
 [data-theme="light"] .aee-nav.apple-glass.aee-nav--over-photo {
   background: transparent;
@@ -3671,7 +3690,7 @@ body {
 }
 
 .aee-nav.aee-nav--over-photo .aee-nav-login,
-:root:not([data-theme="light"]) .aee-nav.aee-nav--over-photo .aee-nav-login,
+:root[data-theme="dark"] .aee-nav.aee-nav--over-photo .aee-nav-login,
 [data-theme="dark"] .aee-nav.aee-nav--over-photo .aee-nav-login {
   background: transparent;
   color: #ffffff;
@@ -3680,7 +3699,7 @@ body {
 }
 
 .aee-nav.aee-nav--over-photo .aee-nav-login:hover,
-:root:not([data-theme="light"]) .aee-nav.aee-nav--over-photo .aee-nav-login:hover,
+:root[data-theme="dark"] .aee-nav.aee-nav--over-photo .aee-nav-login:hover,
 [data-theme="dark"] .aee-nav.aee-nav--over-photo .aee-nav-login:hover {
   background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
