@@ -158,6 +158,10 @@
   font-size: 1.0625rem;
   line-height: 1.5;
   letter-spacing: -0.011em;
+  /* Same preloaded face as the headline. The body font arrives later and
+     was holding this larger text block past the first paint. */
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
 }
 
 .mkt-photo-hero.home-hero .home-hero__boards {
@@ -275,6 +279,8 @@
   font-size: clamp(1.02rem, 2.4vw, 1.125rem);
   line-height: 1.5;
   letter-spacing: -0.011em;
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
 }
 
 .mkt-photo-hero.bl-hero--single .bl-hero-quote {
