@@ -4,13 +4,15 @@ export type ResolvedTheme = "light" | "dark";
 
 export const THEME_STORAGE_KEY = "aee-theme";
 
+/**
+ * The site stays light. System night mode and the stored preference do not
+ * swap tokens; that partial dark theme made text disappear.
+ */
 export function resolveTheme(
-  mode: ThemeMode,
-  systemDark: boolean
+  _mode: ThemeMode,
+  _systemDark: boolean
 ): ResolvedTheme {
-  if (mode === "light") return "light";
-  if (mode === "dark") return "dark";
-  return systemDark ? "dark" : "light";
+  return "light";
 }
 
 export function isThemeMode(value: string | null): value is ThemeMode {
@@ -27,8 +29,8 @@ export function readStoredThemeMode(): ThemeMode {
   }
 }
 
-export function applyThemeToDocument(theme: ResolvedTheme) {
+export function applyThemeToDocument(_theme: ResolvedTheme) {
   const root = document.documentElement;
-  root.dataset.theme = theme;
-  root.style.colorScheme = theme;
+  root.dataset.theme = "light";
+  root.style.colorScheme = "light";
 }

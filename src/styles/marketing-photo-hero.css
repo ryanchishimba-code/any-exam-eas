@@ -18,6 +18,7 @@
   overflow: hidden;
   color: #f8fafc;
   background: #071422;
+  color-scheme: light;
 }
 
 /* One screen. Later bands sit on their own background, not on this photo. */
@@ -421,14 +422,15 @@
   padding: 0.75rem 1rem 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 16px;
-  background: rgba(7, 18, 32, 0.72);
+  background: rgba(7, 18, 32, 0.88);
   color: #ffffff;
+  color-scheme: light;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
 }
 
 @supports (backdrop-filter: blur(10px)) {
   .mkt-hero-foot__card {
-    background: rgba(7, 18, 32, 0.5);
+    background: rgba(7, 18, 32, 0.88);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
@@ -470,7 +472,7 @@
 
 .mkt-hero-foot__note {
   margin: 0;
-  color: #cbd5e1;
+  color: #f8fafc;
   font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.3;
