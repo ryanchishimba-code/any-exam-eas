@@ -9,6 +9,7 @@ import {
   LANDING_OG_HEIGHT,
   LANDING_OG_IDS,
   LANDING_OG_ORIGIN,
+  LANDING_OG_VERSION,
   LANDING_OG_WIDTH,
   landingOgImage,
 } from "@/lib/seo/landing-og-image";
@@ -36,13 +37,28 @@ describe("landing share images", () => {
       ["/npte-pt", buildHubLandingMetadata("npte-pt")],
     ] as const;
 
+    const titles = [
+      "NCLEX, NAPLEX, USMLE & More — One Plan, $27.99/mo",
+      "NCLEX-RN Practice Questions + 5-Day Free Trial | $27.99/mo",
+      "NAPLEX Practice Questions + 5-Day Free Trial | $27.99/mo",
+      "USMLE Practice Questions + 5-Day Free Trial | $27.99/mo",
+      "PANCE Practice Questions + 5-Day Free Trial | $27.99/mo",
+      "AANP FNP Practice Questions + 5-Day Free Trial | $27.99/mo",
+      "NPTE-PT Practice Questions + 5-Day Free Trial | $27.99/mo",
+    ];
     const urls = pages.map(([, meta]) => imageUrl(meta));
     expect(new Set(urls).size).toBe(pages.length);
 
     for (const [index, [, meta]] of pages.entries()) {
       const id = LANDING_OG_IDS[index];
       const card = landingOgImage(id);
-      expect(imageUrl(meta)).toBe(`${LANDING_OG_ORIGIN}/images/og/${id}.jpg`);
+      const title = typeof meta.title === "object" ? meta.title?.absolute : meta.title;
+      expect(title).toBe(titles[index]);
+      expect(meta.openGraph?.title).toBe(titles[index]);
+      expect(imageUrl(meta)).toBe(
+        `${LANDING_OG_ORIGIN}/images/og/${id}.jpg?v=${LANDING_OG_VERSION}`
+      );
+      expect(imageUrl(meta)).toMatch(/\?v=\d+$/);
       expect(meta.openGraph?.images).toEqual([card]);
       expect(card.width).toBe(LANDING_OG_WIDTH);
       expect(card.height).toBe(LANDING_OG_HEIGHT);

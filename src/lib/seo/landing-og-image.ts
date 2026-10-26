@@ -7,6 +7,12 @@ export const LANDING_OG_ORIGIN = "https://www.anyexameasy.com";
 export const LANDING_OG_WIDTH = 1200;
 export const LANDING_OG_HEIGHT = 630;
 
+/**
+ * Bump when the card art changes. iMessage and Facebook cache the image URL,
+ * so a new query value makes the next scrape fetch the new file.
+ */
+export const LANDING_OG_VERSION = "1";
+
 export const LANDING_OG_IDS = [
   "home",
   "nclex",
@@ -30,7 +36,7 @@ export function landingOgAlt(id: LandingOgId): string {
 
 export function landingOgImage(id: LandingOgId) {
   const alt = landingOgAlt(id);
-  const url = `${LANDING_OG_ORIGIN}${landingOgPath(id)}`;
+  const url = `${LANDING_OG_ORIGIN}${landingOgPath(id)}?v=${LANDING_OG_VERSION}`;
   return {
     url,
     width: LANDING_OG_WIDTH,
