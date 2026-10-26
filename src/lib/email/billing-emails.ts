@@ -180,7 +180,7 @@ export async function sendSubscriptionActiveEmail(
   const refundsUrl = `${appBaseUrl()}/legal/refunds`;
   const amount = `${formatPlanUsd(params.amountUsd)}/${renewalIntervalWord(params.interval)}`;
   const nextCharge = params.nextChargeAt ? formatEmailDate(params.nextChargeAt) : "the end of this billing period";
-  const support = `${LEGAL_ENTITY.supportEmail} · ${LEGAL_ENTITY.supportPhone.display}`;
+  const support = LEGAL_ENTITY.supportEmail;
 
   const bodyHtml = `
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
