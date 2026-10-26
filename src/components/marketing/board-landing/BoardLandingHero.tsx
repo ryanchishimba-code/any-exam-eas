@@ -29,19 +29,17 @@ export function BoardLandingHero({
       ariaLabelledBy="board-hero-heading"
     >
       <div className="bl-hero-copy">
-        <h1 id="board-hero-heading" className="mkt-photo-hero__stagger mkt-photo-hero__stagger--lcp">
-          {headline}
-        </h1>
-        <p className="bl-hero-lede mkt-photo-hero__stagger mkt-photo-hero__stagger--lcp">{subline}</p>
+        <h1 id="board-hero-heading">{headline}</h1>
+        <p className="bl-hero-lede">{subline}</p>
         {testimonial ? (
-          <figure className="bl-hero-quote mkt-photo-hero__stagger">
+          <figure className="bl-hero-quote mkt-photo-hero__soft">
             <blockquote>
               <p>{testimonial.quote}</p>
             </blockquote>
             <figcaption>{testimonial.name}</figcaption>
           </figure>
         ) : null}
-        <div className="mkt-photo-hero__stagger">
+        <div>
           <BoardHubHeroActions
             trialHref={trialHref}
             ctaName={heroCtaName}

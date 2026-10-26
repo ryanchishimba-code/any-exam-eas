@@ -74,6 +74,14 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/quick-bites/[slug]/quiz": ["./src/lib/quick-bites/quizzes/**/*"],
     "/api/quick-bites-pharmacy/[slug]/quiz": ["./src/lib/quick-bites/quizzes-pharmacy/**/*"],
+    // Mobile hero AVIFs are read at render time and inlined into the document.
+    "/": ["./public/images/marketing/heroes/*-mobile.avif"],
+    "/nclex": ["./public/images/marketing/heroes/*-mobile.avif"],
+    "/naplex": ["./public/images/marketing/heroes/*-mobile.avif"],
+    "/usmle": ["./public/images/marketing/heroes/*-mobile.avif"],
+    "/pance": ["./public/images/marketing/heroes/*-mobile.avif"],
+    "/aanp-fnp": ["./public/images/marketing/heroes/*-mobile.avif"],
+    "/npte-pt": ["./public/images/marketing/heroes/*-mobile.avif"],
   },
   serverExternalPackages: ["stripe"],
   // CI runs lint + typecheck; skipping both on Vercel avoids build OOM on this app.

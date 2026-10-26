@@ -62,18 +62,20 @@ export function PublicHome({
     <div className="home-visual home-has-sticky">
       <MarketingPhotoHero heroId="home" className="home-hero" ariaLabelledBy="hero-heading">
         <div className="home-hero__panel">
-          <h1 id="hero-heading" className="mkt-photo-hero__stagger mkt-photo-hero__stagger--lcp">
+          <h1 id="hero-heading">
             <span className="home-hero__line">{headlineLead}</span>{" "}
             <span className="home-hero__accent">{headlineAccent}</span>
           </h1>
-          <p className="home-hero__value mkt-photo-hero__stagger mkt-photo-hero__stagger--lcp">
-            {heroSubline}
-          </p>
-          <nav className="home-hero__boards mkt-photo-hero__stagger" aria-label="Board exams">
+          <p className="home-hero__value">{heroSubline}</p>
+          <nav className="home-hero__boards" aria-label="Board exams">
             <ul>
               {HERO_BOARD_TILES.map((board) => (
-                <li key={board.slug}>
-                  <Link href={examMarketingPath(board.slug)} className="home-hero__board-link">
+                <li key={board.slug} className="mkt-photo-hero__soft">
+                  <Link
+                    href={examMarketingPath(board.slug)}
+                    className="home-hero__board-link"
+                    prefetch={false}
+                  >
                     {board.label}
                   </Link>
                 </li>
@@ -85,7 +87,7 @@ export function PublicHome({
             ctaName="hero_trial"
             ctaLocation="hero"
             seeQuestionsHref={HOME_SEE_QUESTIONS_HREF}
-            className="home-hero__actions bl-actions mkt-photo-hero__stagger"
+            className="home-hero__actions bl-actions"
           />
         </div>
       </MarketingPhotoHero>

@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { preload } from "react-dom";
+import { marketingPhotoHeroMobileDataUri } from "@/lib/marketing/marketing-photo-hero-inline";
 import {
   type MarketingPhotoHeroId,
   MARKETING_PHOTO_HEROES,
@@ -15,6 +15,12 @@ type MarketingPhotoHeroProps = {
   priority?: boolean;
 };
 
+/**
+ * Full-bleed photo. The mobile AVIF is inlined so it paints with the headline
+ * (a separate image request was the LCP gap). Desktop keeps the larger file
+ * via a media source. The photo is decorative — no text is baked into it.
+ * It is not faded in: hiding it delays LCP.
+ */
 export function MarketingPhotoHero({
   heroId,
   children,
@@ -24,18 +30,7 @@ export function MarketingPhotoHero({
 }: MarketingPhotoHeroProps) {
   const config = MARKETING_PHOTO_HEROES[heroId];
   const examAttr = heroId === "home" ? undefined : heroId;
-  const mobileAvif = marketingPhotoHeroSrc(heroId, "mobile", "avif");
   const desktopAvif = marketingPhotoHeroSrc(heroId, "desktop", "avif");
-  const srcSet = `${mobileAvif} 768w, ${desktopAvif} 1440w`;
-
-  if (priority) {
-    preload(mobileAvif, {
-      as: "image",
-      fetchPriority: "high",
-      imageSrcSet: srcSet,
-      imageSizes: "100vw",
-    });
-  }
 
   return (
     <section
@@ -45,19 +40,20 @@ export function MarketingPhotoHero({
       data-hero={heroId}
       style={{ "--mkt-hero-focal": config.focalPosition } as CSSProperties}
     >
-      <img
-        className="mkt-photo-hero__img"
-        src={mobileAvif}
-        srcSet={srcSet}
-        sizes="100vw"
-        alt=""
-        width={768}
-        height={432}
-        fetchPriority={priority ? "high" : "auto"}
-        decoding="sync"
-      />
+      <picture className="mkt-photo-hero__picture">
+        <source media="(min-width: 768px)" srcSet={desktopAvif} type="image/avif" />
+        <img
+          className="mkt-photo-hero__img"
+          src={marketingPhotoHeroMobileDataUri(heroId)}
+          alt=""
+          width={768}
+          height={432}
+          fetchPriority={priority ? "high" : "auto"}
+          decoding="sync"
+        />
+      </picture>
       <div className="mkt-photo-hero__scrim" aria-hidden="true" />
-      <div className="mkt-photo-hero__inner mkt-photo-hero__reveal">{children}</div>
+      <div className="mkt-photo-hero__inner">{children}</div>
     </section>
   );
 }

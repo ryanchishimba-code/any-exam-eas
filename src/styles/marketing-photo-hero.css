@@ -1,9 +1,10 @@
 /**
- * Full-bleed photo heroes — navy scrim, white type, CSS-only reveal motion.
+ * Full-bleed photo heroes. Navy is painted immediately; the photo sits on top
+ * with no fade. Copy stays opaque on first paint.
  */
 
 .mkt-photo-hero {
-  --mkt-hero-navy: #0a2540;
+  --mkt-hero-navy: #071422;
   --mkt-hero-focal: 50% 40%;
   position: relative;
   isolation: isolate;
@@ -12,17 +13,24 @@
   max-width: 100%;
   min-height: min(92vh, 52rem);
   color: #f8fafc;
+  background:
+    radial-gradient(70% 55% at 82% 28%, rgba(15, 118, 110, 0.2), transparent 62%),
+    linear-gradient(165deg, #07182c 0%, #0a2540 58%, #10283f 100%);
 }
 
+.mkt-photo-hero__picture,
 .mkt-photo-hero__img {
   position: absolute;
   inset: 0;
   z-index: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
+}
+
+.mkt-photo-hero__img {
   object-fit: cover;
   object-position: var(--mkt-hero-focal);
-  pointer-events: none;
 }
 
 .mkt-photo-hero__scrim {
@@ -30,13 +38,22 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(
-    102deg,
-    rgba(10, 37, 64, 0.93) 0%,
-    rgba(10, 37, 64, 0.72) 38%,
-    rgba(10, 37, 64, 0.42) 68%,
-    rgba(10, 37, 64, 0.28) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(6, 18, 32, 0.34) 0%,
+      rgba(6, 18, 32, 0) 18%,
+      rgba(6, 18, 32, 0) 70%,
+      rgba(6, 18, 32, 0.4) 100%
+    ),
+    linear-gradient(
+      102deg,
+      rgba(6, 18, 32, 0.94) 0%,
+      rgba(6, 18, 32, 0.84) 24%,
+      rgba(6, 18, 32, 0.5) 50%,
+      rgba(6, 18, 32, 0.18) 76%,
+      rgba(6, 18, 32, 0.26) 100%
+    );
 }
 
 .mkt-photo-hero__inner {
@@ -48,68 +65,33 @@
   min-width: 0;
 }
 
-/* LCP-safe: never start hero copy at opacity 0 (delays LCP when the H1 is largest). */
-.mkt-photo-hero__reveal > .mkt-photo-hero__stagger {
-  animation: mkt-hero-rise 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+/* Secondary pieces only. Transform-only so copy never starts hidden. */
+.mkt-photo-hero__soft {
+  animation: mkt-hero-soft 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.mkt-photo-hero__reveal > .mkt-photo-hero__stagger--lcp {
-  animation: mkt-hero-rise-lcp 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+.mkt-photo-hero .home-hero__boards li:nth-child(1) {
+  animation-delay: 40ms;
 }
-
-.mkt-photo-hero__reveal > .mkt-photo-hero__stagger:nth-child(1) {
-  animation-delay: 0ms;
+.mkt-photo-hero .home-hero__boards li:nth-child(2) {
+  animation-delay: 80ms;
 }
-.mkt-photo-hero__reveal > .mkt-photo-hero__stagger:nth-child(2) {
-  animation-delay: 90ms;
+.mkt-photo-hero .home-hero__boards li:nth-child(3) {
+  animation-delay: 120ms;
 }
-.mkt-photo-hero__reveal > .mkt-photo-hero__stagger:nth-child(3) {
+.mkt-photo-hero .home-hero__boards li:nth-child(4) {
   animation-delay: 160ms;
 }
-.mkt-photo-hero__reveal > .mkt-photo-hero__stagger:nth-child(4) {
-  animation-delay: 230ms;
+.mkt-photo-hero .home-hero__boards li:nth-child(5) {
+  animation-delay: 200ms;
 }
-.mkt-photo-hero__reveal > .mkt-photo-hero__stagger:nth-child(5) {
-  animation-delay: 300ms;
-}
-
-.mkt-photo-hero__reveal .home-hero__boards li {
-  animation: mkt-hero-rise 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+.mkt-photo-hero .home-hero__boards li:nth-child(6) {
+  animation-delay: 240ms;
 }
 
-.mkt-photo-hero__reveal .home-hero__boards li:nth-child(1) {
-  animation-delay: 280ms;
-}
-.mkt-photo-hero__reveal .home-hero__boards li:nth-child(2) {
-  animation-delay: 340ms;
-}
-.mkt-photo-hero__reveal .home-hero__boards li:nth-child(3) {
-  animation-delay: 400ms;
-}
-.mkt-photo-hero__reveal .home-hero__boards li:nth-child(4) {
-  animation-delay: 460ms;
-}
-.mkt-photo-hero__reveal .home-hero__boards li:nth-child(5) {
-  animation-delay: 520ms;
-}
-.mkt-photo-hero__reveal .home-hero__boards li:nth-child(6) {
-  animation-delay: 580ms;
-}
-
-@keyframes mkt-hero-rise {
+@keyframes mkt-hero-soft {
   from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes mkt-hero-rise-lcp {
-  from {
-    transform: translateY(10px);
+    transform: translateY(8px);
   }
   to {
     transform: translateY(0);
@@ -117,9 +99,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mkt-photo-hero__reveal > .mkt-photo-hero__stagger,
-  .mkt-photo-hero__reveal > .mkt-photo-hero__stagger--lcp,
-  .mkt-photo-hero__reveal .home-hero__boards li {
+  .mkt-photo-hero__soft {
     animation: none;
   }
 }
@@ -131,11 +111,11 @@
 
   .mkt-photo-hero__scrim {
     background: linear-gradient(
-      to top,
-      rgba(10, 37, 64, 0.94) 0%,
-      rgba(10, 37, 64, 0.72) 42%,
-      rgba(10, 37, 64, 0.38) 72%,
-      rgba(10, 37, 64, 0.22) 100%
+      180deg,
+      rgba(6, 18, 32, 0.9) 0%,
+      rgba(6, 18, 32, 0.78) 36%,
+      rgba(6, 18, 32, 0.5) 64%,
+      rgba(6, 18, 32, 0.62) 100%
     );
   }
 
@@ -147,8 +127,10 @@
 /* Homepage on photo */
 .mkt-photo-hero.home-hero {
   padding: 0;
-  background: transparent;
   text-align: left;
+  background:
+    radial-gradient(70% 55% at 82% 28%, rgba(15, 118, 110, 0.2), transparent 62%),
+    linear-gradient(165deg, #07182c 0%, #0a2540 58%, #10283f 100%);
 }
 
 .mkt-photo-hero.home-hero .home-hero__panel {
@@ -161,6 +143,9 @@
 .mkt-photo-hero.home-hero h1 {
   color: #ffffff;
   font-size: clamp(1.85rem, 5.5vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
 }
 
 .mkt-photo-hero.home-hero .home-hero__accent {
@@ -168,8 +153,16 @@
 }
 
 .mkt-photo-hero.home-hero .home-hero__value {
+  margin-top: 0.85rem;
   color: #e2e8f0;
   max-width: 34rem;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+}
+
+.mkt-photo-hero.home-hero .home-hero__boards {
+  margin-top: 1.35rem;
 }
 
 .mkt-photo-hero.home-hero .home-hero__boards a {
@@ -177,17 +170,18 @@
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
-  padding: 0.55rem 0.65rem;
-  border-radius: 0.65rem;
-  font-weight: 650;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.7rem;
+  font-weight: 600;
   font-size: 0.92rem;
+  letter-spacing: 0.01em;
   text-decoration: none;
   color: #f8fafc;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 8px 24px rgba(10, 37, 64, 0.2);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 10px 24px rgba(6, 16, 32, 0.22);
 }
 
 .mkt-photo-hero.home-hero .home-hero__boards a:hover {
@@ -201,6 +195,18 @@
   align-items: stretch;
   width: 100%;
   max-width: 22rem;
+}
+
+.mkt-photo-hero .bl-button-secondary {
+  background: #ffffff;
+  color: #0a2540;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 22px rgba(6, 16, 32, 0.18);
+}
+
+.mkt-photo-hero .bl-button-secondary:hover {
+  background: #f8fafc;
+  color: #0a2540;
 }
 
 .mkt-photo-hero.home-hero .bl-hero-price,
@@ -240,6 +246,9 @@
   width: 100%;
   max-width: none;
   padding: 0;
+  background:
+    radial-gradient(70% 55% at 82% 28%, rgba(15, 118, 110, 0.2), transparent 62%),
+    linear-gradient(165deg, #07182c 0%, #0a2540 58%, #10283f 100%);
 }
 
 .mkt-photo-hero.bl-hero--single .bl-hero-copy {
@@ -257,16 +266,22 @@
 .mkt-photo-hero.bl-hero--single h1 {
   color: #ffffff;
   max-width: 18ch;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
 }
 
 .mkt-photo-hero.bl-hero--single .bl-hero-lede {
+  margin-top: 0.85rem;
   color: #e2e8f0;
+  font-size: clamp(1.02rem, 2.4vw, 1.125rem);
+  line-height: 1.5;
+  letter-spacing: -0.011em;
 }
 
 .mkt-photo-hero.bl-hero--single .bl-hero-quote {
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(8, 22, 40, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 .mkt-photo-hero.bl-hero--single .bl-hero-quote blockquote p {
