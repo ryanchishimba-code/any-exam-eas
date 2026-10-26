@@ -1,4 +1,3 @@
-import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
 import { LEGAL_ENTITY } from "@/lib/legal";
 
@@ -18,7 +17,6 @@ export function AuthTrustStrip() {
   return (
     <ul className="aee-auth-trust">
       <li>Content review led by {reviewers}</li>
-      <li>Cancel anytime</li>
       <li>
         <svg viewBox="0 0 16 16" aria-hidden="true">
           <path
@@ -28,11 +26,9 @@ export function AuthTrustStrip() {
         </svg>
         <span>Encrypted sign-in. No payment method until you choose Pro.</span>
       </li>
+      <li>Cancel anytime</li>
       <li>
         <a href={`mailto:${LEGAL_ENTITY.supportEmail}`}>{LEGAL_ENTITY.supportEmail}</a>
-      </li>
-      <li>
-        <SupportPhoneLink />
       </li>
     </ul>
   );

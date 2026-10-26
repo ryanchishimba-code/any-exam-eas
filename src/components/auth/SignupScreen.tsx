@@ -3,11 +3,37 @@
 import { useState } from "react";
 import { AuthFocusLayout } from "@/components/auth/AuthFocusLayout";
 import { SignupForm } from "@/components/SignupForm";
+import { CONSENTED_TESTIMONIAL_SEEDS } from "@/lib/testimonials/consented-seed";
 import { formatPricingCheckoutTrialOffer, formatSignupTrialScope } from "@/lib/site";
 import type { BillingInterval } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { ExamSlug } from "@/types/edtech";
+
+const SIGNUP_PROOF_NAMES = ["Nathan C.", "Priscilla J."] as const;
+
+function SignupProof() {
+  const quotes = SIGNUP_PROOF_NAMES.map((name) =>
+    CONSENTED_TESTIMONIAL_SEEDS.find((row) => row.name === name)
+  ).filter((row) => row != null);
+
+  if (quotes.length === 0) return null;
+
+  return (
+    <section className="aee-auth-proof" aria-label="NCLEX students">
+      {quotes.map((row) => (
+        <figure key={row.id}>
+          <blockquote>
+            <p>{row.quote}</p>
+          </blockquote>
+          <figcaption>
+            {row.name} · {row.exam}
+          </figcaption>
+        </figure>
+      ))}
+    </section>
+  );
+}
 
 export function SignupScreen({
   initialPlan,
@@ -34,6 +60,7 @@ export function SignupScreen({
           ? formatSignupTrialScope()
           : "Create your account, then pay securely at checkout to unlock Pro."
       }
+      after={<SignupProof />}
     >
       <SignupForm
         plan={plan}

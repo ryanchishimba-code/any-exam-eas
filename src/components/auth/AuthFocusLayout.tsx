@@ -11,6 +11,8 @@ type AuthFocusLayoutProps = {
   /** Approved trial sentence. Rendered exactly. */
   offer?: string;
   detail?: string;
+  /** Sits after the trust lines so the form stays first on a phone. */
+  after?: ReactNode;
   children: ReactNode;
 };
 
@@ -18,7 +20,7 @@ type AuthFocusLayoutProps = {
  * Distraction-free auth frame: logo, one headline, form.
  * The product panel is desktop-only.
  */
-export function AuthFocusLayout({ title, offer, detail, children }: AuthFocusLayoutProps) {
+export function AuthFocusLayout({ title, offer, detail, after, children }: AuthFocusLayoutProps) {
   return (
     <div className="aee-marketing aee-auth-focus">
       <main id="main-content" className="aee-auth-main">
@@ -31,6 +33,7 @@ export function AuthFocusLayout({ title, offer, detail, children }: AuthFocusLay
           {detail ? <p className="aee-auth-detail">{detail}</p> : null}
           <div className="aee-auth-form">{children}</div>
           <AuthTrustStrip />
+          {after}
         </div>
       </main>
       <AuthProductVisual />

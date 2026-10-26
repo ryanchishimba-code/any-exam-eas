@@ -2,11 +2,7 @@ import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { SignupScreen } from "@/components/auth/SignupScreen";
 import { getCachedSession } from "@/lib/auth/session";
-import { parseBillingInterval } from "@/lib/billing-plans";
-import { parseSubscriptionTier } from "@/lib/subscription-tiers";
-import { isExamSlug } from "@/lib/edtech/exams";
-import type { ExamSlug } from "@/types/edtech";
-import type { SignupPlan } from "@/lib/validators/auth";
+import { resolveSignupIntent } from "@/lib/auth/signup-intent";
 import { SITE_NAME } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 
@@ -32,15 +28,6 @@ export const metadata: Metadata = {
   },
 };
 
-function parseInitialPlan(plan?: string): SignupPlan | "" {
-  if (plan === "trial" || plan === "subscribe") return plan;
-  return "";
-}
-
-function parseInitialExam(exam?: string): ExamSlug | "" {
-  return exam && isExamSlug(exam) ? exam : "";
-}
-
 export default async function SignupPage({
   searchParams,
 }: {
@@ -57,15 +44,16 @@ export default async function SignupPage({
     redirect(ROUTES.dashboard);
   }
 
-  const { plan, promo, interval, tier, exam } = await searchParams;
+  const params = await searchParams;
+  const intent = resolveSignupIntent(params);
 
   return (
     <SignupScreen
-      initialPlan={parseInitialPlan(plan)}
-      initialPromo={promo?.trim() ?? ""}
-      initialInterval={interval ? parseBillingInterval(interval) : "monthly"}
-      initialTier={parseSubscriptionTier(tier)}
-      initialExam={parseInitialExam(exam)}
+      initialPlan={intent.plan}
+      initialPromo={intent.promo}
+      initialInterval={intent.interval}
+      initialTier={intent.tier}
+      initialExam={intent.exam}
     />
   );
 }
