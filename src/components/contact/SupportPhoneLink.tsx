@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { LEGAL_ENTITY } from "@/lib/legal";
+import { LEGAL_SUPPORT_PHONE } from "@/lib/legal-phone";
 
-/** Tappable support number. Display and href both come from LEGAL_ENTITY. */
+/** Tappable support number. Used on Terms, Privacy, and Refunds only. */
 export function SupportPhoneLink({
   className,
   children,
@@ -10,9 +10,9 @@ export function SupportPhoneLink({
   children?: ReactNode;
 }) {
   return (
-    <a href={LEGAL_ENTITY.supportPhone.tel} className={className}>
+    <a href={LEGAL_SUPPORT_PHONE.tel} className={className}>
       {children}
-      {LEGAL_ENTITY.supportPhone.display}
+      {LEGAL_SUPPORT_PHONE.display}
     </a>
   );
 }

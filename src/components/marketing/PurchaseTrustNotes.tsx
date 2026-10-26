@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
@@ -53,8 +52,6 @@ export function PurchaseTrustNotes({
         <a href={`mailto:${LEGAL_ENTITY.supportEmail}`} className={`font-semibold ${link}`}>
           {LEGAL_ENTITY.supportEmail}
         </a>
-        <span aria-hidden> · </span>
-        <SupportPhoneLink className={`font-semibold ${link}`} />
       </p>
     </div>
   );
