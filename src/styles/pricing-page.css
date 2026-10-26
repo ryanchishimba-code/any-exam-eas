@@ -85,6 +85,11 @@
   display: flex;
 }
 
+.aee-pricing h1,
+.aee-pricing-dollars {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+}
+
 .aee-pricing-dollars {
   font-size: clamp(2.65rem, 11vw, 4.25rem);
   font-weight: 800;

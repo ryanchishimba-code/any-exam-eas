@@ -1,10 +1,10 @@
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 
-/** Body copy — app-wide; not preloaded (display font is LCP priority on marketing). */
+/** Body copy — app-wide. Optional so a late download cannot shift the page. */
 export const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "600"],
-  display: "swap",
+  display: "optional",
   adjustFontFallback: true,
   preload: false,
   variable: "--font-body",
