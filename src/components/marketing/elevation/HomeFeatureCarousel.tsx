@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BoardFeatureIcon } from "@/components/marketing/board-landing/BoardFeatureIcons";
 import type { BoardFeatureCard } from "@/lib/marketing/board-landing/board-features";
 import { homeFeatureShortTitle } from "@/lib/marketing/home-feature-title";
@@ -30,15 +31,29 @@ export function HomeFeatureCarousel({ cards }: { cards: BoardFeatureCard[] }) {
             data-home-feature-slide
             data-index={index}
           >
-            <article
-              className={`home-feature-wheel__card bl-feature-card${card.spotlight ? " bl-feature-card--spotlight" : ""}`}
-            >
-              <span className="bl-feature-icon" aria-hidden>
-                <BoardFeatureIcon id={card.icon} />
-              </span>
-              <h3>{homeFeatureShortTitle(card.title)}</h3>
-              <p className="sr-only">{card.line}</p>
-            </article>
+            {card.href ? (
+              <Link
+                href={card.href}
+                prefetch={false}
+                className={`home-feature-wheel__card bl-feature-card${card.spotlight ? " bl-feature-card--spotlight" : ""}`}
+              >
+                <span className="bl-feature-icon" aria-hidden>
+                  <BoardFeatureIcon id={card.icon} />
+                </span>
+                <h3>{homeFeatureShortTitle(card.title)}</h3>
+                <p className="sr-only">{card.line}</p>
+              </Link>
+            ) : (
+              <article
+                className={`home-feature-wheel__card bl-feature-card${card.spotlight ? " bl-feature-card--spotlight" : ""}`}
+              >
+                <span className="bl-feature-icon" aria-hidden>
+                  <BoardFeatureIcon id={card.icon} />
+                </span>
+                <h3>{homeFeatureShortTitle(card.title)}</h3>
+                <p className="sr-only">{card.line}</p>
+              </article>
+            )}
           </li>
         ))}
       </HomeFeatureCarouselShell>

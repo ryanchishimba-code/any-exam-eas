@@ -286,6 +286,12 @@
   list-style: none;
 }
 
+a.bl-feature-card,
+a.home-feature-wheel__card {
+  color: inherit;
+  text-decoration: none;
+}
+
 .bl-feature-card {
   display: block;
   min-height: 7.25rem;

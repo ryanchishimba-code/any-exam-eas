@@ -7,6 +7,7 @@ import {
   dayIndexFromIso,
   getQotdForExam,
   parseQotdDate,
+  qotdMatchesToday,
   todayIsoCentral,
   toPublicQotd,
 } from "@/lib/demo/qotd";
@@ -100,6 +101,13 @@ describe("question of the day calendar", () => {
       expect(second?.id).not.toBe(first?.id);
     }
   });
+
+  it("treats the 7-day repeat as the same live question and leaves other dates out", () => {
+    expect(qotdMatchesToday("2026-10-11", REVIEW_NOW)).toBe(true);
+    expect(qotdMatchesToday("2026-10-04", REVIEW_NOW)).toBe(true);
+    expect(qotdMatchesToday("2026-10-10", REVIEW_NOW)).toBe(false);
+    expect(qotdMatchesToday("2026-10-12", REVIEW_NOW)).toBe(false);
+  });
 });
 
 describe("question of the day items", () => {
@@ -175,10 +183,24 @@ describe("question of the day items", () => {
     expect(today).toContain("toPublicQotd(");
     expect(today).toContain("todayIsoCentral(");
     expect(hub).toContain("todayIsoCentral(");
-    expect(hub).not.toContain("item.correct");
-    expect(hub).not.toContain(".rationale");
+    expect(hub).toContain("DailyQuestionArticle");
+    expect(hub).toContain("buildDailyHubJsonLd");
+    expect(hub).not.toContain("QAPage");
+    const article = readFileSync("src/components/marketing/DailyQuestionArticle.tsx", "utf8");
+    expect(article).toContain("item.correct");
+    expect(article).toContain("item.rationale");
+    expect(today).toContain("DailyAnswerBlock");
+    expect(dated).toContain("DailyAnswerBlock");
+    expect(readFileSync("src/lib/seo/daily-jsonld.ts", "utf8")).toContain('"@type": "Quiz"');
     expect(og).not.toContain("item.correct");
     expect(og).not.toContain("item.rationale");
-    expect(readFileSync("src/app/sitemap.ts", "utf8")).toContain("todayIsoCentral(");
+    const sitemap = readFileSync("src/app/sitemap.ts", "utf8");
+    expect(sitemap).toContain('path: "/daily"');
+    expect(sitemap).toContain('path: "/about"');
+    expect(sitemap).toContain("qotdPath(exam)");
+    expect(sitemap).not.toContain("qotdPath(exam, today)");
+    expect(sitemap).not.toContain("todayIsoCentral(");
+    expect(dated).toContain("qotdMatchesToday(");
+    expect(dated).toContain("index: false");
   });
 });

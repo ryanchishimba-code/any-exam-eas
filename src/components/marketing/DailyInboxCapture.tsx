@@ -26,7 +26,7 @@ export function DailyInboxCapture() {
   const buttonLabel = status === "done" ? "Subscribed" : "Subscribe";
 
   return (
-    <form className="aee-qotd-hub__inbox" onSubmit={onSubmit}>
+    <form className="aee-daily-inbox" onSubmit={onSubmit}>
       <label htmlFor="daily-inbox-email">Get today&apos;s question in your inbox</label>
       <input
         id="daily-inbox-email"
@@ -35,6 +35,7 @@ export function DailyInboxCapture() {
         required
         autoComplete="email"
         inputMode="email"
+        placeholder="you@example.com"
         value={email}
         disabled={status === "pending" || status === "done"}
         onChange={(event) => {
@@ -45,7 +46,10 @@ export function DailyInboxCapture() {
       <button type="submit" disabled={status === "pending" || status === "done"}>
         {buttonLabel}
       </button>
-      <p className="sr-only" role="status">
+      <p
+        className={`aee-daily-inbox__status${status === "error" ? " is-error" : ""}`}
+        role="status"
+      >
         {status === "done" ? "Subscribed." : status === "error" ? "Could not subscribe. Try again." : ""}
       </p>
     </form>

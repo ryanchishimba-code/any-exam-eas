@@ -95,6 +95,19 @@ export function qotdPath(exam: ExamSlug, dateIso?: string): string {
   return `/daily/${exam}`;
 }
 
+/**
+ * The public pack repeats every 7 Chicago days. A dated URL matches the live
+ * board page when it is today or the same slot in that cycle.
+ */
+export function qotdMatchesToday(dateIso: string, now = new Date()): boolean {
+  const today = todayIsoCentral(now);
+  if (dateIso === today) return true;
+  const todayIndex = dayIndexFromIso(today, now);
+  const dateIndex = dayIndexFromIso(dateIso, now);
+  if (todayIndex == null || dateIndex == null) return false;
+  return todayIndex % 7 === dateIndex % 7;
+}
+
 export function qotdAbsoluteUrl(exam: ExamSlug, dateIso: string): string {
   return `${getSiteUrl()}${qotdPath(exam, dateIso)}`;
 }

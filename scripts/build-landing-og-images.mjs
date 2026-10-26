@@ -47,6 +47,11 @@ const PAGES = [
     focalY: 0.42,
     lines: ["NPTE-PT practice", "written for physical therapists."],
   },
+  {
+    id: "daily",
+    focalY: 0.42,
+    lines: ["Free daily NCLEX, NAPLEX,", "PANCE, USMLE, FNP, NPTE-PT", "practice question"],
+  },
 ];
 
 function escapeXml(value) {
@@ -130,6 +135,8 @@ async function buildOne(page) {
 }
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
+const only = process.argv[2];
 for (const page of PAGES) {
+  if (only && page.id !== only) continue;
   await buildOne(page);
 }

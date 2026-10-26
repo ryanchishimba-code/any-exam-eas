@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { DailyAnswerBlock } from "@/components/marketing/DailyQuestionArticle";
 import { QotdPractice } from "@/components/marketing/QotdPractice";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import {
   getQotdForExam,
   isQotdExamSlug,
@@ -9,7 +11,9 @@ import {
   toPublicQotd,
 } from "@/lib/demo/qotd";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import { dailyExamDescription, dailyExamTitle } from "@/lib/marketing/daily-copy";
 import { getSiteUrl } from "@/lib/seo";
+import { buildDailyExamJsonLd } from "@/lib/seo/daily-jsonld";
 import { qotdPath } from "@/lib/demo/qotd";
 
 type Props = { params: Promise<{ exam: string }> };
@@ -35,32 +39,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = getQotdForExam(exam, today);
   if (!item) return {};
   const name = EXAM_CATALOG[exam].shortName;
-  const canonical = qotdAbsoluteUrl(exam, today);
-  const description =
-    item.stem.length > 155 ? `${item.stem.slice(0, 152)}…` : item.stem;
+  const canonical = `${getSiteUrl()}${qotdPath(exam)}`;
+  const title = dailyExamTitle(name);
+  const description = dailyExamDescription(name, item.stem);
   const ogImage = `${getSiteUrl()}${qotdPath(exam, today)}/opengraph-image`;
 
   return {
-    title: `${name} Question of the Day`,
+    title: { absolute: title },
     description,
     alternates: { canonical },
     openGraph: {
-      title: `${name} Question of the Day | AnyExamEasy`,
+      title,
       description,
       url: canonical,
       type: "website",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: `${name} Question of the Day` }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${name} Question of the Day | AnyExamEasy`,
+      title,
       description,
       images: [ogImage],
     },
   };
 }
 
-/** Today’s QOTD for an exam — canonical points at the dated share URL. */
+/** Today’s QOTD for an exam. This undated URL is the indexable canonical. */
 export default async function DailyExamTodayPage({ params }: Props) {
   const { exam } = await params;
   if (!isQotdExamSlug(exam)) notFound();
@@ -71,12 +75,14 @@ export default async function DailyExamTodayPage({ params }: Props) {
 
   return (
     <div className="aee-qotd-page">
+      <JsonLdScript data={buildDailyExamJsonLd(item, today)} />
       <div className="aee-qotd-page__inner">
         <QotdPractice
           item={toPublicQotd(item)}
           dateIso={today}
           absoluteShareUrl={qotdAbsoluteUrl(exam, today)}
         />
+        <DailyAnswerBlock item={item} />
       </div>
     </div>
   );

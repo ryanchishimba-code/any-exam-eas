@@ -1,4 +1,5 @@
 import { boardHeroMarketingCopy } from "@/lib/marketing/board-landing/board-hero-marketing";
+import { DAILY_HERO_HEADLINE } from "@/lib/marketing/daily-copy";
 import { HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
 
 /** Share cards always advertise the production host, including on preview deploys. */
@@ -21,6 +22,7 @@ export const LANDING_OG_IDS = [
   "pance",
   "aanp-fnp",
   "npte-pt",
+  "daily",
 ] as const;
 
 export type LandingOgId = (typeof LANDING_OG_IDS)[number];
@@ -31,6 +33,7 @@ export function landingOgPath(id: LandingOgId): string {
 
 export function landingOgAlt(id: LandingOgId): string {
   if (id === "home") return HOME_PRACTICE_HEADLINE;
+  if (id === "daily") return DAILY_HERO_HEADLINE;
   return boardHeroMarketingCopy(id).headline;
 }
 

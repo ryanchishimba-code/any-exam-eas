@@ -12,6 +12,7 @@ export type MarketingBoardSlug = (typeof MARKETING_BOARD_SLUGS)[number];
 
 export const MARKETING_DARK_HERO_PATHS = new Set<string>([
   "/",
+  "/daily",
   ...MARKETING_BOARD_SLUGS.map((slug) => `/${slug}`),
 ]);
 

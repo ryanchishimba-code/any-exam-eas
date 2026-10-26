@@ -2,7 +2,9 @@ import type { BoardQuestionUnits } from "@/lib/counts";
 import { getStudyGuideConfig, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
 import type { BoardFormatCard, BoardQuickBite } from "@/lib/marketing/board-landing/model";
 import { nclexFormatCards } from "@/lib/marketing/board-landing/model";
+import { qotdPath } from "@/lib/demo/qotd-public";
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
+import type { ExamSlug } from "@/types/edtech";
 import { naplexFormatCards } from "@/lib/marketing/board-landing/naplex";
 
 export type BoardFeatureIconId =
@@ -22,6 +24,8 @@ export type BoardFeatureCard = {
   line: string;
   icon: BoardFeatureIconId;
   spotlight?: boolean;
+  /** Crawlable destination. Question of the Day cards link to the free hub. */
+  href?: string;
 };
 
 /** One crawlable sentence listing live NGN buckets (from nclexFormatCards titles only). */
@@ -113,6 +117,7 @@ export function nclexFeatureCards(input: {
     title: "Question of the Day",
     line: "One fresh NCLEX-RN question daily — free to try.",
     icon: "qotd",
+    href: qotdPath("nclex"),
   });
 
   cards.push({
@@ -166,12 +171,13 @@ function explainedCard(boardShort: string): BoardFeatureCard {
   };
 }
 
-function qotdCard(boardShort: string): BoardFeatureCard {
+function qotdCard(boardShort: string, exam: ExamSlug | "home"): BoardFeatureCard {
   return {
     id: "qotd",
     title: "Question of the Day",
     line: `One fresh ${boardShort} question daily — free to try.`,
     icon: "qotd",
+    href: exam === "home" ? "/daily" : qotdPath(exam),
   };
 }
 
@@ -239,7 +245,7 @@ export function naplexFeatureCards(input: {
       line: "Dosing and compounding walkthroughs on scored items.",
       icon: "explained",
     },
-    qotdCard("NAPLEX"),
+    qotdCard("NAPLEX", "naplex"),
     readinessCard(),
     practiceExamsCard("NAPLEX"),
     mobileCard()
@@ -265,7 +271,7 @@ export function usmleFeatureCards(input: {
   }
   cards.push(
     explainedCard("USMLE"),
-    qotdCard("USMLE"),
+    qotdCard("USMLE", "usmle"),
     readinessCard(),
     practiceExamsCard("USMLE"),
     mobileCard()
@@ -284,7 +290,7 @@ export function panceFeatureCards(input?: { quickBite: BoardQuickBite | null }):
   cards.push(
     anatomyFeatureCard(),
     explainedCard("PANCE"),
-    qotdCard("PANCE"),
+    qotdCard("PANCE", "pance"),
     readinessCard(),
     practiceExamsCard("PANCE"),
     mobileCard()
@@ -303,7 +309,7 @@ export function aanpFnpFeatureCards(input?: { quickBite: BoardQuickBite | null }
   cards.push(
     anatomyFeatureCard(),
     explainedCard("AANP FNP"),
-    qotdCard("AANP FNP"),
+    qotdCard("AANP FNP", "aanp-fnp"),
     readinessCard(),
     practiceExamsCard("AANP FNP"),
     mobileCard()
@@ -315,7 +321,7 @@ export function npteFeatureCards(): BoardFeatureCard[] {
   return [
     anatomyFeatureCard(),
     explainedCard("NPTE-PT"),
-    qotdCard("NPTE-PT"),
+    qotdCard("NPTE-PT", "npte-pt"),
     readinessCard(),
     practiceExamsCard("NPTE-PT"),
     mobileCard(),
@@ -362,7 +368,7 @@ export function homeFeatureCards(input: {
       line: "Short walkthrough of Roadmap, Deep Dive, and mock exams.",
       icon: "adaptive",
     },
-    qotdCard("board"),
+    qotdCard("board", "home"),
     readinessCard(),
     mobileCard()
   );

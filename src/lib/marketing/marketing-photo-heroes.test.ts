@@ -49,7 +49,7 @@ describe("marketingPhotoHeroSrc", () => {
 
   it("gives every page its own photo file", () => {
     const ids = Object.keys(MARKETING_PHOTO_HEROES) as MarketingPhotoHeroId[];
-    expect(ids).toEqual(["home", "nclex", "naplex", "usmle", "pance", "aanp-fnp", "npte-pt"]);
+    expect(ids).toEqual(["home", "daily", "nclex", "naplex", "usmle", "pance", "aanp-fnp", "npte-pt"]);
     const hashes = new Set<string>();
     for (const id of ids) {
       for (const variant of ["desktop", "mobile", "mobile2x", "mobile3x"] as const) {
@@ -62,6 +62,6 @@ describe("marketingPhotoHeroSrc", () => {
         }
       }
     }
-    expect(hashes.size).toBe(56);
+    expect(hashes.size).toBe(64);
   });
 });
