@@ -41,7 +41,7 @@ describe("trial status math", () => {
     });
     expect(calm.urgent).toBe(false);
     expect(trialStatusBarMessage(calm)).toMatch(/days left in your free trial/);
-    expect(trialStatusBarMessage(calm)).toContain("12 of 500");
+    expect(trialStatusBarMessage(calm)).toContain("12 of 100");
   });
 
   it("detects day-4 email window before urgency", () => {

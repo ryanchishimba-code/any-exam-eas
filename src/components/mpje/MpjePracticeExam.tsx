@@ -25,6 +25,7 @@ import {
 } from "@/lib/mpje/practice-exam-config";
 import type { MpjePracticeExamResult } from "@/lib/mpje/practice-exam-scoring";
 import { parseOptionalMpjeStateParam } from "@/lib/mpje/validators";
+import { redirectToUpgradeIfTrialCapReached } from "@/lib/study/usage-limit-messages";
 import { mpjePracticeExamHref, mpjePracticeHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import {
   parseMpjeStoredAnswer,
@@ -112,7 +113,10 @@ export function MpjePracticeExam() {
       const qs = code ? `?state=${encodeURIComponent(code)}` : "";
       const res = await fetch(`/api/mpje/practice-exam${qs}`);
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Could not load practice exam");
+      if (!res.ok) {
+        if (redirectToUpgradeIfTrialCapReached(data)) return;
+        throw new Error(data.error ?? "Could not load practice exam");
+      }
       setExam(data);
       setSecondsLeft(data.timeLimitSeconds);
       setPhase("intro");

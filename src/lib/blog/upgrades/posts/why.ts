@@ -1,3 +1,4 @@
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { a, faq, h2, h3, ol, p, readMinutes, ul } from "@/lib/blog/upgrades/html";
 import { TRIAL_HREF, TRIAL_OFFER, TRIAL_QUESTION_LIMIT, trialClose } from "@/lib/blog/upgrades/offer";
 import type { BlogUpgrade } from "@/lib/blog/upgrades/types";
@@ -122,7 +123,7 @@ const content = [
     },
     {
       q: "Does AnyExamEasy replace the official test plan?",
-      a: "No. The test plan is the syllabus. The question bank is where you practice the judgment the plan describes. The trial is 5 days, no payment method required, then $27.99 a month, and it includes 500 practice questions plus one full-length adaptive exam.",
+      a: `No. The test plan is the syllabus. The question bank is where you practice the judgment the plan describes. The trial is ${TRIAL_DAYS} days, no payment method required, then $27.99 a month, and it includes ${TRIAL_LIFETIME_QUESTIONS} practice questions plus one full-length adaptive exam.`,
     },
   ]),
 ].join("");

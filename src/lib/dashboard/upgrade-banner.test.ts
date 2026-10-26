@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { UserAccess } from "@/lib/access-control";
+import { TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import type { StudyUsageSnapshot } from "@/lib/study/usage-limits";
 import {
   resolveDashboardUpgradeContext,
@@ -39,7 +40,7 @@ const usage: StudyUsageSnapshot = {
   remainingToday: null,
   limits: {
     dailyQuestions: null,
-    trialLifetimeQuestions: 500,
+    trialLifetimeQuestions: TRIAL_LIFETIME_QUESTIONS,
     maxPerSession: null,
     maxTimedExamLength: null,
     allowPresetExams: true,
@@ -50,7 +51,7 @@ const usage: StudyUsageSnapshot = {
     allowAdaptive: true,
   },
   usedTrialTotal: 40,
-  remainingTrialTotal: 110,
+  remainingTrialTotal: TRIAL_LIFETIME_QUESTIONS - 40,
   mockExamsThisMonth: 0,
   usedTrialMocks: null,
   remainingTrialMocks: null,

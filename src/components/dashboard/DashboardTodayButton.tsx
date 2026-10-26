@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { ROUTES } from "@/lib/routes";
+import { redirectToUpgradeIfTrialCapReached } from "@/lib/study/usage-limit-messages";
 import { cn } from "@/lib/utils";
 
 export const AEE_TODAY_SESSION_KEY = "aee-today-session-v1";
@@ -41,6 +42,7 @@ export function DashboardTodayButton({
       });
       const data = await res.json();
       if (!res.ok) {
+        if (redirectToUpgradeIfTrialCapReached(data)) return;
         throw new Error(data.error || "Could not build Today set");
       }
       if (typeof window !== "undefined") {

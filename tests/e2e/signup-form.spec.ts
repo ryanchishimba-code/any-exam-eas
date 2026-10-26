@@ -77,7 +77,7 @@ test.describe("Signup form", () => {
     ).toBeVisible();
     await expect(
       page.getByText(
-        "Your trial includes 500 practice questions across all six boards, plus Roadmap and Deep Dives."
+        "Your trial includes 100 practice questions across all six boards, plus Roadmap and Deep Dives."
       )
     ).toBeVisible();
     await expect(page.getByRole("navigation", { name: /main navigation/i })).toHaveCount(0);

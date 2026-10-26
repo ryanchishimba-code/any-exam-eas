@@ -6,6 +6,7 @@ import { ArrowRight, Loader2 } from "lucide-react";
 import { browserStudyTimeZone } from "@/lib/learning/today-set";
 import { stashDailySet } from "@/lib/learning/today-set-stash";
 import { dbUi } from "@/lib/study/dashboard-ui";
+import { redirectToUpgradeIfTrialCapReached } from "@/lib/study/usage-limit-messages";
 import { cn } from "@/lib/utils";
 
 const BUTTON_CLASS = `${dbUi.primaryBtn} min-h-11 w-full px-6 sm:w-auto sm:min-w-[17.5rem]`;
@@ -48,6 +49,7 @@ export function StartTodaySetButton({
         };
       };
       if (!res.ok || !data.playerHref || !data.todaySet || !Array.isArray(data.questions)) {
+        if (redirectToUpgradeIfTrialCapReached(data)) return;
         throw new Error(data.error || "Could not start today's set");
       }
       stashDailySet({

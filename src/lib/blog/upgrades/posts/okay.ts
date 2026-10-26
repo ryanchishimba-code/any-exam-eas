@@ -1,3 +1,4 @@
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { a, faq, h2, h3, ol, p, readMinutes, table, ul } from "@/lib/blog/upgrades/html";
 import { TRIAL_QUESTION_LIMIT, trialClose } from "@/lib/blog/upgrades/offer";
 import type { BlogUpgrade } from "@/lib/blog/upgrades/types";
@@ -144,7 +145,7 @@ const content = [
     },
     {
       q: "Does the NAPLEX study guide come with the free trial?",
-      a: "The NAPLEX reference book is available during the 5-day trial and on Pro. It is not a separate free book that stays open after the trial ends. The trial includes 500 practice questions and does not require a payment method.",
+      a: `The NAPLEX reference book is available during the ${TRIAL_DAYS}-day trial and on Pro. It is not a separate free book that stays open after the trial ends. The trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions and does not require a payment method.`,
     },
   ]),
 ].join("");

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { redirectToUpgradeIfTrialCapReached } from "@/lib/study/usage-limit-messages";
 import { FIELD_LABELS } from "@/lib/fields";
 import { getSubjectsForField } from "@/lib/field-subjects";
 import {
@@ -102,7 +103,10 @@ export function CatMockPractice() {
         `/api/questions?field=${encodeURIComponent(field)}&subjectId=${encodeURIComponent(subjectId)}&limit=100&meta=0`
       );
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Could not load questions");
+      if (!res.ok) {
+        if (redirectToUpgradeIfTrialCapReached(data)) return;
+        throw new Error(data.error ?? "Could not load questions");
+      }
 
       const items = (data.questions as ExamQuestion[]).map((q, i) => {
         const prepared = examQuestionToStudy(
