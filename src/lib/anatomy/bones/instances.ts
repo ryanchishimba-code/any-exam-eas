@@ -501,6 +501,7 @@ export const LEGACY_BONE_GROUPS: Record<string, string[]> = {
   skull: buildBoneInstances()
     .filter((b) => b.region === "cranium" || b.region === "face")
     .map((b) => b.id),
+  pelvis: ["innominate-r", "innominate-l"],
   femur: ["femur-r", "femur-l"],
   humerus: ["humerus-r", "humerus-l"],
   tibia: ["tibia-r", "tibia-l"],

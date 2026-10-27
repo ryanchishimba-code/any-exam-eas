@@ -189,6 +189,10 @@ export function isSkillOnlyNclexBlueprintTopic(topic: string | null | undefined)
 export function isBroadNclexBlueprintTopic(topic: string | null | undefined): boolean {
   if (!topic?.trim()) return true;
   const slug = slugifyNclexTopic(topic);
+  // Skill tags stay broad even when a 2026 topic slug reuses the same word.
+  if (NCLEX_SKILL_TAG_SLUGS.has(slug) || NCLEX_SKILL_TAG_SLUGS.has(topic.trim().toLowerCase())) {
+    return true;
+  }
   if (NCLEX_2026_TOPIC_SLUG_SET.has(slug)) return false;
   if (slug.length < 4) return true;
   return NCLEX_BROAD_BLUEPRINT_TOPICS.has(slug) || NCLEX_BROAD_BLUEPRINT_TOPICS.has(topic.trim().toLowerCase());
