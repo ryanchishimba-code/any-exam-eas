@@ -441,5 +441,6 @@ export function gradeFreeQuizAnswers(
 
 /** Signup deep link for the marketing board slug. */
 export function freeQuizSignupHref(board: FreeQuizBoardSlug): string {
-  return `/signup?exam=${encodeURIComponent(board)}`;
+  const slug = encodeURIComponent(board);
+  return `/signup?exam=${slug}&board=${slug}`;
 }

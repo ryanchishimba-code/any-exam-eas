@@ -11,6 +11,7 @@ import {
   messageFromUnknownAuthError,
   resolveSignInFailure,
 } from "@/lib/auth-client";
+import { stampBoardIntentFromLocation } from "@/lib/auth/board-intent";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
 import { ROUTES } from "@/lib/routes";
@@ -101,6 +102,7 @@ export function LoginPanel({
     }
 
     try {
+      stampBoardIntentFromLocation();
       const res = await signIn("credentials", {
         email: trimmedEmail,
         password: password.trim(),

@@ -3,6 +3,8 @@
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import type { LoginMethod } from "@/lib/client/returning-user";
 import { saveReturningUserHint } from "@/lib/client/returning-user";
+import { isExamSlug } from "@/lib/edtech/exams";
+import { stampBoardIntentFromLocation } from "@/lib/auth/board-intent";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { resolvePostLoginDestination as resolveDestination } from "@/lib/client/post-login-routing";
 import { TRIAL_DAYS } from "@/lib/billing-config";
@@ -103,6 +105,32 @@ export function statusFromSessionRouting(
   };
 }
 
+/**
+ * When the session snapshot has no exam, save the board carried on this
+ * page or cookie. onlyIfUnset keeps a board that is already on the account.
+ */
+async function captureUnsetBoardFromBrowser(): Promise<string | null> {
+  if (typeof window === "undefined") return null;
+  const incoming = stampBoardIntentFromLocation();
+  if (!incoming) return null;
+  const res = await fetchWithTimeout(
+    "/api/user/exam-preference",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ examSlug: incoming, onlyIfUnset: true }),
+    },
+    2_500
+  );
+  if (!res?.ok) return null;
+  try {
+    const data = (await res.json()) as { examSlug?: string };
+    return data.examSlug && isExamSlug(data.examSlug) ? data.examSlug : null;
+  } catch {
+    return null;
+  }
+}
+
 /** Best-effort: read JWT session once (no Prisma) for smart post-login routing. */
 async function readSessionRouting(): Promise<SessionLoginRouting | null> {
   try {
@@ -166,9 +194,9 @@ let loginFlowInFlight: Promise<CompleteLoginResult> | null = null;
 
 /**
  * After credentials/OAuth succeed, navigate immediately.
- * Prefer JWT session routing fields (folded in at authorize) — never wait on
- * /api/subscription/status or /api/user/exam-preference. If the session snapshot
- * is missing, go to a safe default; destination pages gate billing/exam.
+ * Prefer JWT session routing fields (folded in at authorize). When that
+ * snapshot has no exam, one short request saves the board carried from the
+ * page — and only if the account does not already have one.
  */
 export async function completeLoginFlow(params: {
   router: AppRouterInstance;
@@ -196,7 +224,10 @@ export async function completeLoginFlow(params: {
       fromParams ?? statusFromSessionRouting(await readSessionRouting());
 
     const status = fromSession?.status ?? null;
-    const examSlug = fromSession?.examSlug ?? null;
+    let examSlug = fromSession?.examSlug ?? null;
+    if (!examSlug || !isExamSlug(examSlug)) {
+      examSlug = await captureUnsetBoardFromBrowser();
+    }
 
     let destination = resolveDestination(safeCallback, status, examSlug);
 

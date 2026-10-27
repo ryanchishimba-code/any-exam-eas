@@ -3,10 +3,13 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
+import { parseBoardSlug, stampBoardIntentFromLocation } from "@/lib/auth/board-intent";
 import { DEFAULT_AUTH_CALLBACK, loginCompleteUrl, sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 
 type GoogleSignInButtonProps = {
   callbackUrl?: string;
+  /** Board already chosen on the signup form, used when the URL has none. */
+  board?: string | null;
   highlighted?: boolean;
   large?: boolean;
   onClick?: () => void;
@@ -15,6 +18,7 @@ type GoogleSignInButtonProps = {
 
 export function GoogleSignInButton({
   callbackUrl = DEFAULT_AUTH_CALLBACK,
+  board,
   highlighted,
   large,
   onClick,
@@ -23,8 +27,6 @@ export function GoogleSignInButton({
   const [loading, setLoading] = useState(false);
 
   if (process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED !== "true") return null;
-
-  const oauthCallback = loginCompleteUrl(sanitizeCallbackUrl(callbackUrl));
 
   return (
     <Button
@@ -37,7 +39,10 @@ export function GoogleSignInButton({
       onClick={() => {
         onClick?.();
         setLoading(true);
-        void signIn("google", { callbackUrl: oauthCallback });
+        const carried = stampBoardIntentFromLocation() ?? parseBoardSlug(board);
+        void signIn("google", {
+          callbackUrl: loginCompleteUrl(sanitizeCallbackUrl(callbackUrl), carried),
+        });
       }}
     >
       <GoogleIcon />

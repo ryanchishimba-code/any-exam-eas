@@ -1,8 +1,10 @@
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { SignupScreen } from "@/components/auth/SignupScreen";
+import { parseBoardSlug } from "@/lib/auth/board-intent";
 import { getCachedSession } from "@/lib/auth/session";
 import { resolveSignupIntent, signedInSignupRedirect } from "@/lib/auth/signup-intent";
+import { assignBoardIfUnset } from "@/lib/edtech/exam-preference";
 import { SITE_NAME } from "@/lib/site";
 
 const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
@@ -36,11 +38,23 @@ export default async function SignupPage({
     interval?: string;
     tier?: string;
     exam?: string;
+    board?: string;
   }>;
 }) {
   const params = await searchParams;
   const session = await getCachedSession();
   if (session?.user?.id) {
+    const board = parseBoardSlug(params.board) ?? parseBoardSlug(params.exam);
+    if (board) {
+      try {
+        await assignBoardIfUnset(session.user.id, board);
+      } catch (error) {
+        console.warn(
+          "[signup] board intent skipped:",
+          error instanceof Error ? error.message : error
+        );
+      }
+    }
     redirect(signedInSignupRedirect(params));
   }
 

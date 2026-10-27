@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { enforceRateLimit } from "@/lib/api-rate-limit";
+import { readServerBoardIntent } from "@/lib/auth/board-intent-server";
 import { registerUser } from "@/lib/user-auth";
 import { signUpSchema } from "@/lib/validators/auth";
 import { ZodError } from "zod";
@@ -19,7 +20,9 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const input = signUpSchema.parse(body);
+    const parsed = signUpSchema.parse(body);
+    const carriedBoard = parsed.examSlug ? null : await readServerBoardIntent(req);
+    const input = carriedBoard ? { ...parsed, examSlug: carriedBoard } : parsed;
     const raw = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
     const text = (key: string) => (typeof raw[key] === "string" ? raw[key] : null);
     const user = await registerUser(input, {

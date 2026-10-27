@@ -40,9 +40,10 @@ describe("homepage hero copy", () => {
 
   it("keeps exam= deep links on board chips", () => {
     expect(landingTrialHrefForExam("nclex")).toBe(
-      "/signup?plan=trial&interval=monthly&tier=pro&exam=nclex"
+      "/signup?plan=trial&interval=monthly&tier=pro&exam=nclex&board=nclex"
     );
     expect(landingTrialHrefForExam("naplex")).toContain("exam=naplex");
+    expect(landingTrialHrefForExam("naplex")).toContain("board=naplex");
   });
 
   it("keeps the trial offer identical to checkout", () => {

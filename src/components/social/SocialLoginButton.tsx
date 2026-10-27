@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
+import { parseBoardSlug, stampBoardIntentFromLocation } from "@/lib/auth/board-intent";
 import { DEFAULT_AUTH_CALLBACK, loginCompleteUrl, sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 
 /**
@@ -25,6 +26,8 @@ const PROVIDER_LABEL: Record<Provider, string> = {
 type SocialLoginButtonProps = {
   provider?: Provider;
   callbackUrl?: string;
+  /** Board already chosen on the signup form, used when the URL has none. */
+  board?: string | null;
   large?: boolean;
   onClick?: () => void;
   className?: string;
@@ -33,6 +36,7 @@ type SocialLoginButtonProps = {
 export function SocialLoginButton({
   provider = "linkedin",
   callbackUrl = DEFAULT_AUTH_CALLBACK,
+  board,
   large,
   onClick,
   className = "",
@@ -40,8 +44,6 @@ export function SocialLoginButton({
   const [loading, setLoading] = useState(false);
 
   if (!PROVIDER_ENABLED[provider]()) return null;
-
-  const oauthCallback = loginCompleteUrl(sanitizeCallbackUrl(callbackUrl));
 
   return (
     <Button
@@ -52,7 +54,10 @@ export function SocialLoginButton({
       onClick={() => {
         onClick?.();
         setLoading(true);
-        void signIn(provider, { callbackUrl: oauthCallback });
+        const carried = stampBoardIntentFromLocation() ?? parseBoardSlug(board);
+        void signIn(provider, {
+          callbackUrl: loginCompleteUrl(sanitizeCallbackUrl(callbackUrl), carried),
+        });
       }}
     >
       <LinkedInIcon />

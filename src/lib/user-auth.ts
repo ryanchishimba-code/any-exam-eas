@@ -221,8 +221,8 @@ export async function registerUser(
 
     if (parsed.examSlug) {
       try {
-        const { setUserExamPreference } = await import("@/lib/edtech/exam-preference");
-        await setUserExamPreference(user.id, parsed.examSlug);
+        const { assignBoardIfUnset } = await import("@/lib/edtech/exam-preference");
+        await assignBoardIfUnset(user.id, parsed.examSlug);
         if (parsed.testDate) {
           const { setUserExamTestDate } = await import("@/lib/edtech/user-metadata");
           await setUserExamTestDate(user.id, parsed.examSlug, parsed.testDate);
@@ -245,7 +245,7 @@ export async function registerUser(
     }
 
     void import("@/lib/email-verification").then((m) =>
-      m.sendEmailVerification(user.id, user.email)
+      m.sendEmailVerification(user.id, user.email, parsed.examSlug ?? null)
     );
 
     // Do not redeem promo codes at signup — that blocked checkout reuse after

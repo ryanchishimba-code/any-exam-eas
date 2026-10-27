@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { isExamSlug } from "@/lib/edtech/exams";
-import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
+import {
+  getUserExamPreference,
+  getUserExamPreferenceFresh,
+  setUserExamPreference,
+} from "@/lib/edtech/exam-preference";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import type { ExamSlug } from "@/types/edtech";
 import { optionalSessionGuard, requireSessionGuard } from "@/lib/session-guard";
@@ -44,16 +48,22 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Invalid request body" }, { status: 400 });
   }
 
-  const examSlug =
-    typeof body === "object" && body !== null && "examSlug" in body
-      ? (body as { examSlug?: unknown }).examSlug
-      : undefined;
+  const record =
+    typeof body === "object" && body !== null ? (body as { examSlug?: unknown; onlyIfUnset?: unknown }) : {};
+  const examSlug = record.examSlug;
+  const onlyIfUnset = record.onlyIfUnset === true;
 
   if (typeof examSlug !== "string" || !isExamSlug(examSlug)) {
     return NextResponse.json({ ok: false, error: "Invalid exam selection" }, { status: 400 });
   }
 
   try {
+    if (onlyIfUnset) {
+      const existing = await getUserExamPreferenceFresh(guard.userId);
+      if (existing) {
+        return NextResponse.json({ ok: true, examSlug: existing.examSlug, kept: true });
+      }
+    }
     await setUserExamPreference(guard.userId, examSlug as ExamSlug);
     revalidatePath("/dashboard", "layout");
     revalidatePath("/question-bank", "layout");
