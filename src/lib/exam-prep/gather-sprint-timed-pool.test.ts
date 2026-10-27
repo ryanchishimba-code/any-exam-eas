@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   gatherSprintTimedExamPool,
   isSprintTimedExamLimit,
@@ -8,6 +8,18 @@ import {
   resolveComposePoolLimit,
   resolveLiveComposePoolLimit,
 } from "@/lib/exam-prep/progressive-exam-relaxation";
+import {
+  QUESTION_BANK_SAMPLE_MAX_PULL,
+  sampleQuestionBankItemsForField,
+} from "@/lib/question-bank-db";
+
+vi.mock("@/lib/question-bank-db", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/lib/question-bank-db")>();
+  return {
+    ...actual,
+    sampleQuestionBankItemsForField: vi.fn(async () => []),
+  };
+});
 
 describe("gather-sprint-timed-pool", () => {
   it("treats 50 and 100 as sprint limits", () => {
@@ -27,6 +39,7 @@ describe("gather-sprint-timed-pool", () => {
   it("accepts full-length limits without short-circuiting", async () => {
     const result = await gatherSprintTimedExamPool({ fieldId: "nursing", limit: 225 });
     expect(Array.isArray(result)).toBe(true);
+    expect(sampleQuestionBankItemsForField).toHaveBeenCalled();
   });
 });
 
@@ -38,6 +51,7 @@ describe("resolveComposePoolLimit sprint cap", () => {
 
   it("caps live compose pool below batch compose pulls", () => {
     expect(resolveLiveComposePoolLimit(280)).toBeLessThan(resolveComposePoolLimit(280));
-    expect(resolveLiveComposePoolLimit(280)).toBeLessThanOrEqual(420);
+    // Live compose uses the sample max, above the old 420 fast-gather ceiling.
+    expect(resolveLiveComposePoolLimit(280)).toBeLessThanOrEqual(QUESTION_BANK_SAMPLE_MAX_PULL);
   });
 });

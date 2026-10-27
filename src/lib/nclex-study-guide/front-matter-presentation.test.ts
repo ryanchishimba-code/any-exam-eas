@@ -56,8 +56,10 @@ describe("presentFrontMatter", () => {
     const presented = presentFrontMatter(
       ingested("content/aanp-fnp-study-guide/00-front-matter.md")
     );
-    expect(presented).toContain("AANP vs ANCC soft callout");
-    expect(presented).not.toMatch(/sg-cover"[^>]*>\s*<img[^>]*AANP vs ANCC/);
+    expect(presented).toContain("NPCB FNP-C vs ANCC FNP-BC blueprint comparison callout");
+    expect(presented).not.toMatch(
+      /sg-cover"[^>]*>\s*<img[^>]*NPCB FNP-C vs ANCC FNP-BC blueprint comparison callout/
+    );
     const covers = presented.match(/sg-figure sg-cover/g) ?? [];
     expect(covers).toHaveLength(1);
   });

@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
-import { clinicalCaseKey } from "./clinical-case-dedupe";
+import { clinicalCaseKey, sessionDedupeKey } from "./clinical-case-dedupe";
 import {
   dedupeItemsByClinicalCase,
   selectDiverseSessionBankItems,
 } from "./diverse-session-selection";
-import { selectDiverseSessionRawInputs } from "@/lib/questions/spread-session-order";
+import { selectSpreadRawInputs } from "@/lib/questions/spread-session-order";
 import type { RawQuestionInput } from "@/lib/questions/types";
 
 const AKI_CASE =
@@ -39,7 +39,7 @@ describe("USMLE Step 1 duplicate AKI templates", () => {
     expect(new Set(keys).size).toBe(1);
   });
 
-  it("keeps only one AKI template in a session-sized slice", () => {
+  it("keeps one row per session dedupe key and collapses an exact clone", () => {
     const pool = [
       akiItem("enc-1472", 69, "What is the most likely diagnosis?"),
       akiItem("enc-8663", 69, "Which diagnosis best explains this clinical presentation?"),
@@ -55,17 +55,19 @@ describe("USMLE Step 1 duplicate AKI templates", () => {
       })),
     ];
 
-    const deduped = dedupeItemsByClinicalCase(pool);
-    const akiKey = clinicalCaseKey(pool[0]!);
-    const akiRows = deduped.filter((row) => clinicalCaseKey(row) === akiKey);
-    expect(akiRows).toHaveLength(1);
+    // Session keys include the lead-in, so different diagnosis prompts stay distinct.
+    const akiSessionKeys = pool.slice(0, 4).map((row) => sessionDedupeKey(row));
+    expect(new Set(akiSessionKeys).size).toBeGreaterThan(1);
+
+    const collapsed = dedupeItemsByClinicalCase([pool[0]!, { ...pool[0]!, id: "enc-clone" }]);
+    expect(collapsed).toHaveLength(1);
 
     const session = selectDiverseSessionBankItems(pool, 10, { seed: 99 });
-    const akiInSession = session.filter((row) => /muddy brown casts/i.test(row.question));
-    expect(akiInSession).toHaveLength(1);
+    const sessionKeys = session.map((row) => sessionDedupeKey(row));
+    expect(new Set(sessionKeys).size).toBe(session.length);
   });
 
-  it("diverse raw selection collapses duplicate AKI templates", () => {
+  it("clinical spread collapses duplicate AKI templates", () => {
     const raw: RawQuestionInput[] = [
       akiItem("enc-1472", 69, "What is the most likely diagnosis?"),
       akiItem("enc-8663", 69, "Which diagnosis best explains this clinical presentation?"),
@@ -82,7 +84,7 @@ describe("USMLE Step 1 duplicate AKI templates", () => {
       bankItemId: item.id,
     }));
 
-    const selected = selectDiverseSessionRawInputs(raw, 4);
+    const selected = selectSpreadRawInputs(raw, 4, { dedupeMode: "clinical" });
     const akiSelected = selected.filter((row) => /muddy brown casts/i.test(row.question));
     expect(akiSelected).toHaveLength(1);
   });

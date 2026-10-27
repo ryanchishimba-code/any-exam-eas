@@ -193,7 +193,8 @@ describe("exam roadmap", () => {
     const blueprint = getExamBlueprint("npte-pt")!;
     expect(blueprint.categories).toHaveLength(14);
     const weightSum = blueprint.categories.reduce((s, c) => s + c.weight, 0);
-    expect(Math.round(weightSum * 100)).toBe(100);
+    // Official item-range midpoints sum to 179 of 180 scored items.
+    expect(Math.round(weightSum * 100)).toBe(99);
 
     const topics = buildRoadmapTopics(
       blueprint,
@@ -204,7 +205,8 @@ describe("exam roadmap", () => {
       new Map()
     );
     expect(topics).toHaveLength(14);
-    expect(topics.find((t) => t.categoryId === "musculoskeletal")?.blueprintWeightPct).toBe(28);
+    // Midpoint of the 44–54 item range (49/180) rounds to 27%.
+    expect(topics.find((t) => t.categoryId === "musculoskeletal")?.blueprintWeightPct).toBe(27);
     expect(topics.find((t) => t.categoryId === "neuromuscular-nervous")?.blueprintWeightPct).toBe(24);
   });
 });

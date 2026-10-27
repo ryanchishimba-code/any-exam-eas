@@ -8,7 +8,10 @@ describe("card-sources", () => {
     for (const card of MEMORY_CARDS) {
       expect(card.sourceLabel?.trim().length).toBeGreaterThan(10);
     }
-    expect(Object.keys(MEMORY_CARD_SOURCES).length).toBeGreaterThanOrEqual(MEMORY_CARDS.length);
+    const cardIds = new Set(MEMORY_CARDS.map((card) => card.id));
+    for (const id of Object.keys(MEMORY_CARD_SOURCES)) {
+      expect(cardIds.has(id)).toBe(true);
+    }
   });
 });
 

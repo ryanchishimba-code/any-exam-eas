@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   buildIntegrityFlags,
   computeFastAnswerStats,
@@ -17,11 +17,17 @@ describe("integrity flags", () => {
   });
 
   it("counts per-minute answer bursts over 30", () => {
-    const now = Date.now();
-    const attempts = Array.from({ length: 35 }, (_, i) => ({
-      createdAt: new Date(now + i * 1000),
-    }));
-    expect(countAnswerBurstsOverLimit(attempts)).toBe(1);
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-10-27T12:00:00.000Z"));
+    try {
+      const now = Date.now();
+      const attempts = Array.from({ length: 35 }, (_, i) => ({
+        createdAt: new Date(now + i * 1000),
+      }));
+      expect(countAnswerBurstsOverLimit(attempts)).toBe(1);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it("builds the full integrity object", () => {
