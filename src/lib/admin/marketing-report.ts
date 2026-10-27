@@ -17,6 +17,32 @@ export type MarketingReport = {
   activeCompUsers: ActiveCompUser[];
 };
 
+/**
+ * People whose access is still the pass. A live paid subscription or an open
+ * pay-once window is excluded so the tracker does not double-count them.
+ * Leftover pass days after a cancel stay on the list.
+ */
+export function activeCompSubscriptionWhere(now: Date) {
+  return {
+    compAccessUntil: { gt: now },
+    AND: [
+      {
+        NOT: {
+          status: { in: ["active", "trialing"] },
+          stripeSubscriptionId: { not: null },
+        },
+      },
+      {
+        NOT: {
+          purchaseType: "one_time",
+          status: "active",
+          accessEndsAt: { gt: now },
+        },
+      },
+    ],
+  };
+}
+
 export async function loadMarketingReport(now = new Date()): Promise<MarketingReport> {
   const [codes, subscriptions] = await Promise.all([
     prisma.promoCode.findMany({
@@ -30,7 +56,7 @@ export async function loadMarketingReport(now = new Date()): Promise<MarketingRe
       orderBy: { code: "asc" },
     }),
     prisma.subscription.findMany({
-      where: { compAccessUntil: { gt: now }, plan: "comp" },
+      where: activeCompSubscriptionWhere(now),
       include: { user: { select: { email: true, promoRedemptions: {
         orderBy: { createdAt: "desc" },
         take: 1,

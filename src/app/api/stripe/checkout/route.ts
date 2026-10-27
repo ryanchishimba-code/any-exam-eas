@@ -6,7 +6,10 @@ import {
   createEmbeddedCheckoutSession,
   isUsableStripeSubscriptionId,
 } from "@/lib/stripe";
-import { getSubscriptionAccess } from "@/lib/subscription-access";
+import {
+  compPassCanStartPaidCheckout,
+  getSubscriptionAccess,
+} from "@/lib/subscription-access";
 import { isStripeConfigured } from "@/lib/payments";
 import {
   formatPlanUsd,
@@ -80,8 +83,13 @@ export async function POST(req: Request) {
       : ("auto" as const);
   const oneTime = paymentMode === "manual";
 
-  if (access.hasAccess && access.status === "active") {
+  if (
+    access.hasAccess &&
+    access.status === "active" &&
+    !compPassCanStartPaidCheckout(access, sub?.stripeSubscriptionId)
+  ) {
     // A pay-once window can be topped up early; it stacks onto the remaining time.
+    // A complimentary pass is not a Stripe subscription, so paid Checkout stays open.
     const extendingOneTime = oneTime && sub?.purchaseType === "one_time";
     if (!extendingOneTime) {
       return NextResponse.json(

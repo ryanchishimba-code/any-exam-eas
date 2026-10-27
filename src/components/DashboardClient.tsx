@@ -109,6 +109,8 @@ export function DashboardClient({
           <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
             {complimentary && compDays
               ? `Pro is unlocked for ${compDays}. No card on file, and nothing will be charged.`
+              : access.status === "inactive" && access.daysRemaining === 0
+                ? "Your pass has ended. Subscribe to keep studying — you are not charged until you pay."
               : access.status === "active"
               ? "Pro plan active."
               : access.status === "past_due"
@@ -125,8 +127,11 @@ export function DashboardClient({
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {complimentary ? (
-              <Button href="/pricing" variant="secondary">
-                View plans
+              <Button
+                href={`/checkout?plan=subscribe&tier=pro&interval=${access.planDuration}`}
+                variant="secondary"
+              >
+                Upgrade to a paid plan
               </Button>
             ) : access.status === "active" ? (
               <>
