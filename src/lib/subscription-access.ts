@@ -115,10 +115,28 @@ export function evaluateSubscriptionAccess(
     : null;
 
   const hasStripeSubscription = Boolean(subscription.stripeSubscriptionId?.trim());
-  const compAccessValid = Boolean(
-    subscription.compAccessUntil && new Date(subscription.compAccessUntil) > new Date()
-  );
+  const compUntil = subscription.compAccessUntil
+    ? new Date(subscription.compAccessUntil)
+    : null;
+  const compAccessValid = Boolean(compUntil && compUntil > new Date());
+  const compLapsed = Boolean(compUntil && compUntil <= new Date());
   const oneTimeValid = oneTimeAccessActive(subscription);
+
+  // A pass or admin grant unlocks Pro with no Stripe subscription and no card.
+  // Stored status stays inactive so the window cannot outlive compAccessUntil.
+  // A live Stripe subscription or pay-once window keeps its own rules.
+  if (compAccessValid && compUntil && !hasStripeSubscription && !oneTimeValid) {
+    return {
+      hasAccess: true,
+      hasFreeAccess: false,
+      status: "active",
+      ...meta,
+      trialEndsAt,
+      daysRemaining: daysUntil(compUntil),
+      canStartCheckout: false,
+      needsPaymentMethod: false,
+    };
+  }
 
   if (subscription.status === "active") {
     // Durable "active" must be backed by a Stripe subscription, a paid pay-once
@@ -131,9 +149,10 @@ export function evaluateSubscriptionAccess(
         status: "inactive",
         ...meta,
         trialEndsAt,
-        daysRemaining: null,
+        daysRemaining: compLapsed ? 0 : null,
         canStartCheckout: true,
-        needsPaymentMethod: true,
+        // A lapsed pass never collected a card. Incomplete checkout is a different state.
+        needsPaymentMethod: !compLapsed,
       };
     }
     return {
@@ -185,9 +204,9 @@ export function evaluateSubscriptionAccess(
       status: "inactive",
       ...meta,
       trialEndsAt,
-      daysRemaining: null,
+      daysRemaining: compLapsed ? 0 : null,
       canStartCheckout: true,
-      needsPaymentMethod: !subscription.stripeSubscriptionId,
+      needsPaymentMethod: compLapsed ? false : !subscription.stripeSubscriptionId,
     };
   }
 
@@ -253,6 +272,21 @@ export function evaluateSubscriptionAccess(
     canStartCheckout: true,
     needsPaymentMethod: false,
   };
+}
+
+/**
+ * Complimentary Pro window: access is on, nothing renews, and checkout is not required.
+ * Pay-once access keeps canStartCheckout true, so it does not match.
+ */
+export function isComplimentaryAccessWindow(
+  access: Pick<SubscriptionAccess, "hasAccess" | "status" | "daysRemaining" | "canStartCheckout">
+): boolean {
+  return (
+    access.hasAccess &&
+    access.status === "active" &&
+    access.daysRemaining != null &&
+    access.canStartCheckout === false
+  );
 }
 
 /** Feature gate for subscription tier (staff/comp should bypass upstream). */

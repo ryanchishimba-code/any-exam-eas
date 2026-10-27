@@ -32,12 +32,14 @@ export async function redeemPromoCode(userId: string, code: string): Promise<voi
     await withDrizzle("promo.redeem", async () => {
       const db = requireDb();
       const [promo] = await db
-        .select({ id: promoCodes.id })
+        .select({ id: promoCodes.id, compDays: promoCodes.compDays })
         .from(promoCodes)
         .where(eq(promoCodes.code, normalized))
         .limit(1);
 
       if (!promo) return;
+      // Access grants are single-use passes redeemed at signup, not after payment.
+      if (promo.compDays != null && promo.compDays > 0) return;
 
       const inserted = await db
         .insert(promoRedemptions)
@@ -58,6 +60,7 @@ export async function redeemPromoCode(userId: string, code: string): Promise<voi
   } catch {
     const promo = await prisma.promoCode.findUnique({ where: { code: normalized } });
     if (!promo) return;
+    if (promo.compDays != null && promo.compDays > 0) return;
 
     try {
       await prisma.promoRedemption.create({

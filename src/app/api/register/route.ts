@@ -75,7 +75,12 @@ export async function POST(req: Request) {
       metadata: { plan: user.plan },
     });
 
-    return NextResponse.json({ ok: true, user, plan: user.plan });
+    return NextResponse.json({
+      ok: true,
+      user,
+      plan: user.passRedeemed ? "pass" : user.plan,
+      passRedeemed: Boolean(user.passRedeemed),
+    });
   } catch (e) {
     if (e instanceof ZodError) {
       const message = e.errors[0]?.message ?? "Invalid registration data.";

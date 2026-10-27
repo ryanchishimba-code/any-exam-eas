@@ -137,7 +137,9 @@ model PasswordResetToken {
   @@index([expiresAt])
 }
 
-/// Discount codes — validated at signup/checkout; redeemed after successful payment.
+/// Discount codes, or single-use access grants when `compDays` is set.
+/// Discounts are validated at checkout and redeemed after payment.
+/// Access grants are redeemed at free registration with no card.
 model PromoCode {
   id               String    @id @default(cuid())
   code             String    @unique
@@ -147,6 +149,12 @@ model PromoCode {
   maxUses          Int?
   currentUses      Int       @default(0)
   stripeCouponId   String?
+  /// When set, this code grants complimentary Pro days instead of a discount.
+  compDays         Int?
+  /// Tracking label only (nursing, pharmacy). Does not limit which boards unlock.
+  audience         String?
+  /// Marketing campaign name. Nullable so older discount codes stay unlabeled.
+  campaign         String?
   active           Boolean   @default(true)
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt

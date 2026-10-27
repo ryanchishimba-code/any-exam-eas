@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { SubscriptionAccess } from "@/lib/subscription-access";
+import { isComplimentaryAccessWindow, type SubscriptionAccess } from "@/lib/subscription-access";
 import { Button } from "./ui/Button";
 import { ManageBillingButton } from "./ManageBillingButton";
 import { ProgressTracker } from "./ProgressTracker";
@@ -61,6 +61,12 @@ export function DashboardClient({
     }
   }
 
+  const complimentary = isComplimentaryAccessWindow(access);
+  const compDays =
+    complimentary && access.daysRemaining != null
+      ? `${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"}`
+      : null;
+
   if (compact && access.hasAccess) {
     return null;
   }
@@ -101,7 +107,9 @@ export function DashboardClient({
         <section className="apple-card p-8">
           <h2 className="text-xl font-semibold tracking-tight">Subscription</h2>
           <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-            {access.status === "active"
+            {complimentary && compDays
+              ? `Pro is unlocked for ${compDays}. No card on file, and nothing will be charged.`
+              : access.status === "active"
               ? "Pro plan active."
               : access.status === "past_due"
                 ? "Your last payment failed — study access is paused until you update your payment method."
@@ -116,7 +124,11 @@ export function DashboardClient({
                         : "Choose a plan to unlock study features."}
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            {access.status === "active" ? (
+            {complimentary ? (
+              <Button href="/pricing" variant="secondary">
+                View plans
+              </Button>
+            ) : access.status === "active" ? (
               <>
                 <ManageBillingButton label="Cancel or manage billing" />
               </>

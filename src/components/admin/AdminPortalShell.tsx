@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import {
   LayoutDashboard,
   BarChart3,
+  Megaphone,
   Users,
   MessageSquare,
   Headphones,
@@ -27,6 +28,7 @@ import { displayFirstLastInitial } from "@/lib/display-name";
 const navItems = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { href: "/admin/analytics", label: "Traffic & analytics", icon: BarChart3 },
+  { href: "/admin/marketing", label: "Marketing", icon: Megaphone },
   { href: "/admin/content", label: "Content", icon: FileText },
   { href: "/admin/blog", label: "Blog", icon: FileText },
   { href: "/admin/questions", label: "Question bank", icon: ListChecks },

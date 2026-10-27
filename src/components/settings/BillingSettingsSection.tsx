@@ -142,9 +142,17 @@ export function BillingSettingsSection() {
       status?.status === "canceled" ||
       status?.reactivation?.method === "checkout");
 
+  const complimentary =
+    Boolean(status?.hasAccess) &&
+    status?.status === "active" &&
+    !status?.hasStripeSubscription &&
+    !isOneTime &&
+    status?.daysRemaining != null;
+
   const canChangePlan =
     status?.hasAccess &&
     !isOneTime &&
+    !complimentary &&
     (status.status === "trialing" || status.status === "active");
 
   const planAlreadySelected =
@@ -164,6 +172,9 @@ export function BillingSettingsSection() {
     statusBody = accessEndsLabel
       ? `Access ends ${accessEndsLabel} and will not renew.`
       : "This pass will not renew.";
+  } else if (complimentary) {
+    statusTitle = `Pro pass · ${status?.daysRemaining ?? "—"} day${status?.daysRemaining === 1 ? "" : "s"} left`;
+    statusBody = "No card on file. Access ends when the pass does, and you will not be charged.";
   } else if (status?.status === "active") {
     statusTitle = "Active subscription";
     statusBody = `Pro · ${planLabel}`;
@@ -280,7 +291,7 @@ export function BillingSettingsSection() {
         )}
 
         <div className="flex flex-wrap gap-3 border-t border-slate-100 pt-4 dark:border-slate-800">
-          {!isOneTime && (
+          {!isOneTime && !complimentary && (
             <ManageBillingButton label="Cancel or manage billing" variant="secondary" />
           )}
           <Link

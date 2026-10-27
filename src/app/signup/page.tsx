@@ -35,6 +35,7 @@ export default async function SignupPage({
   searchParams: Promise<{
     plan?: string;
     promo?: string;
+    code?: string;
     interval?: string;
     tier?: string;
     exam?: string;
@@ -64,6 +65,7 @@ export default async function SignupPage({
     <SignupScreen
       initialPlan={intent.plan}
       initialPromo={intent.promo}
+      initialPassCode={intent.passCode}
       initialInterval={intent.interval}
       initialTier={intent.tier}
       initialExam={intent.exam}

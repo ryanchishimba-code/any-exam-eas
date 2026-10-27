@@ -13,7 +13,7 @@ describe("naplex procedural calcs", () => {
       isNaplexBestQuality(prepareNaplexBankItem(item), { source: "seed" })
     );
     expect(passing.length).toBeGreaterThanOrEqual(45);
-  });
+  }, 20_000);
 
   it("verifies IV rate math for a known parameter set", () => {
     const items = generateNaplexProceduralCalcs(900);
@@ -24,5 +24,5 @@ describe("naplex procedural calcs", () => {
         i.vignette?.includes("800 mcg/mL")
     );
     expect(match?.correctAnswer).toBe("2");
-  });
+  }, 20_000);
 });

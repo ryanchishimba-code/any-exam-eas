@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest";
 import type { Subscription } from "@prisma/client";
 import {
+  accessRoleForSubscription,
+  applyCompOverlay,
+  type UserAccess,
+} from "@/lib/access-control";
+import { tierHasFeature, type SubscriptionFeature } from "@/lib/subscription-features";
+import { STUDY_USAGE_LIMITS, resolveStudyUsagePlan } from "@/lib/study/usage-limits";
+import {
   evaluateSubscriptionAccess,
   normalizeSubscriptionForRead,
 } from "@/lib/subscription-access";
@@ -80,6 +87,81 @@ describe("evaluateSubscriptionAccess", () => {
     );
     expect(access.hasAccess).toBe(true);
     expect(access.status).toBe("active");
+  });
+
+  it("unlocks every board for a pass with no Stripe subscription", () => {
+    const until = new Date(Date.now() + 30 * 86400000);
+    const access = evaluateSubscriptionAccess(
+      sub({
+        status: "inactive",
+        plan: "comp",
+        planTier: "pro",
+        compAccessUntil: until,
+        stripeCustomerId: null,
+        stripeSubscriptionId: null,
+      })
+    );
+    expect(access.hasAccess).toBe(true);
+    expect(access.hasFreeAccess).toBe(false);
+    expect(access.status).toBe("active");
+    expect(access.tier).toBe("pro");
+    expect(access.needsPaymentMethod).toBe(false);
+    expect(access.canStartCheckout).toBe(false);
+    expect(access.daysRemaining).toBe(30);
+    expect(accessRoleForSubscription(false, access)).toBe("subscriber");
+    expect(resolveStudyUsagePlan({ role: "subscriber" } as UserAccess)).toBe("pro");
+    expect(STUDY_USAGE_LIMITS.pro.trialLifetimeQuestions).toBeNull();
+    const features: SubscriptionFeature[] = [
+      "question_bank",
+      "practice_exams",
+      "roadmap_tools",
+      "lab_values",
+      "clinical_calculators",
+      "drug_database",
+      "deep_dive_modules",
+      "advanced_analytics",
+      "spaced_repetition",
+      "priority_updates",
+      "unlimited_mock_exams",
+      "exportable_notes",
+      "enhanced_explanations",
+      "flashcards",
+      "ai_tutor",
+      "anatomy_explorer",
+    ];
+    for (const feature of features) {
+      expect(tierHasFeature(access.tier, feature)).toBe(true);
+    }
+  });
+
+  it("falls back with no access and no card when a pass lapses", () => {
+    const access = evaluateSubscriptionAccess(
+      sub({
+        status: "inactive",
+        plan: "comp",
+        planTier: "pro",
+        compAccessUntil: new Date(Date.now() - 60_000),
+        stripeCustomerId: null,
+        stripeSubscriptionId: null,
+      })
+    );
+    expect(access.hasAccess).toBe(false);
+    expect(access.hasFreeAccess).toBe(false);
+    expect(access.status).toBe("inactive");
+    expect(access.needsPaymentMethod).toBe(false);
+    expect(access.canStartCheckout).toBe(true);
+    expect(access.daysRemaining).toBe(0);
+    expect(accessRoleForSubscription(false, access)).toBe("expired");
+
+    const base = evaluateSubscriptionAccess(
+      sub({ status: "inactive", compAccessUntil: new Date(Date.now() - 60_000) })
+    );
+    const overlay = applyCompOverlay(
+      sub({ compAccessUntil: new Date(Date.now() - 60_000) }),
+      base
+    );
+    expect(overlay.hasAccess).toBe(false);
+    expect(overlay.needsPaymentMethod).toBe(false);
   });
 
   it("denies past_due and canceled", () => {

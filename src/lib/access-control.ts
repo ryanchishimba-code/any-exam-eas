@@ -79,7 +79,7 @@ export function blocksUnverifiedTrialAccess(params: {
   );
 }
 
-function mapAccessRole(
+export function accessRoleForSubscription(
   staff: boolean,
   subscription: SubscriptionAccess
 ): UserAccessRole {
@@ -90,7 +90,12 @@ function mapAccessRole(
   return "expired";
 }
 
-function applyCompAndGrace(
+/**
+ * Safety overlay for getUserAccess. evaluateSubscriptionAccess already grants a
+ * future compAccessUntil and withholds it after the date. This keeps the same
+ * rule if a caller passes a base that has not applied it yet.
+ */
+export function applyCompOverlay(
   subscription: Subscription | null,
   base: SubscriptionAccess
 ): SubscriptionAccess {
@@ -99,12 +104,18 @@ function applyCompAndGrace(
   const now = new Date();
 
   if (subscription.compAccessUntil && subscription.compAccessUntil > now) {
+    const daysRemaining = Math.max(
+      0,
+      Math.ceil((subscription.compAccessUntil.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
+    );
     return {
       ...base,
       hasAccess: true,
       hasFreeAccess: false,
       status: "active",
       canStartCheckout: false,
+      needsPaymentMethod: false,
+      daysRemaining,
     };
   }
 
@@ -161,7 +172,7 @@ async function resolveUserAccess(userId: string): Promise<UserAccess> {
   const staff = isStaffRole(user.role);
   const sub = normalizeSubscriptionForRead(user.subscription);
   let subscription = evaluateSubscriptionAccess(sub);
-  subscription = applyCompAndGrace(sub, subscription);
+  subscription = applyCompOverlay(sub, subscription);
 
   if (staff) {
     subscription = { ...subscription, hasAccess: true, hasFreeAccess: false, canStartCheckout: false };
@@ -207,7 +218,7 @@ async function resolveUserAccess(userId: string): Promise<UserAccess> {
 
   return {
     userId: user.id,
-    role: mapAccessRole(staff, subscription),
+    role: accessRoleForSubscription(staff, subscription),
     accountStatus: user.accountStatus,
     emailVerified,
     subscription,
