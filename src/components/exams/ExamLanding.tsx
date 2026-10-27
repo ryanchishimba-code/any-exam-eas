@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
@@ -53,14 +52,6 @@ function liveBankLabel(
 export function ExamLanding({ slug }: Props) {
   const hub = getExamHub(slug);
   const { data: bankCounts } = useLiveBankCounts();
-
-  useEffect(() => {
-    void fetch("/api/user/exam-preference", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ examSlug: slug }),
-    });
-  }, [slug]);
 
   if (!hub) return null;
 

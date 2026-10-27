@@ -7,6 +7,7 @@ import { authConfig } from "@/auth.config";
 import { authenticateCredentials } from "@/lib/user-auth";
 import { loginSchema } from "@/lib/validators/auth";
 import { prisma } from "@/lib/prisma";
+import { captureBoardForUser, readServerBoardIntent } from "@/lib/auth/board-intent-server";
 import { findOrCreateGoogleUser, OAuthLinkBlockedError } from "@/lib/oauth-user";
 import { OAuthAccountDisabledError } from "@/lib/account-security";
 import {
@@ -124,6 +125,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const req = request as Request | undefined;
         const role = user.role ?? "user";
 
+        const incomingBoard = await readServerBoardIntent(req);
+        await captureBoardForUser(user.id, incomingBoard);
         const [ipCheck, loginRouting] = await Promise.all([
           checkAndRecordAccountIp(user.id, role, req, undefined, user.email),
           loadLoginRoutingSnapshot(user.id, user.email),
@@ -173,6 +176,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           user.id = linked.id;
           (user as { role?: string }).role = linked.role;
 
+          const incomingBoard = await readServerBoardIntent();
+          await captureBoardForUser(linked.id, incomingBoard);
           const [ipCheck, loginRouting] = await Promise.all([
             checkAndRecordAccountIp(
               linked.id,

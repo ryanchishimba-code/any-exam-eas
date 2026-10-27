@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { setUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { fullExamHref, ROUTES, type ExamRouteSlug } from "@/lib/routes";
 
@@ -30,7 +30,9 @@ export default async function PracticeExamRedirectPage({ params, searchParams }:
   const slug = exam as ExamRouteSlug;
   const session = await auth();
   if (session?.user?.id && isExamSlug(slug)) {
-    await setUserExamPreference(session.user.id, slug);
+    const pref = await getUserExamPreference(session.user.id);
+    if (!pref) redirect(ROUTES.selectExam);
+    if (pref.examSlug !== slug) redirect(ROUTES.dashboard);
   }
 
   const field = sp.field ?? FIELD_MAP[slug];

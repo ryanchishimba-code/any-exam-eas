@@ -1,3 +1,5 @@
+import { parseBoardSlug } from "@/lib/auth/board-intent";
+
 export const DEFAULT_AUTH_CALLBACK = "/dashboard";
 
 /**
@@ -31,7 +33,11 @@ export function sanitizeCallbackUrl(
 }
 
 /** OAuth and credential flows land here to run subscription-aware routing. */
-export function loginCompleteUrl(callbackUrl: string): string {
+export function loginCompleteUrl(callbackUrl: string, board?: string | null): string {
   const safe = sanitizeCallbackUrl(callbackUrl);
-  return `/login/complete?callbackUrl=${encodeURIComponent(safe)}`;
+  const params = new URLSearchParams();
+  params.set("callbackUrl", safe);
+  const slug = parseBoardSlug(board);
+  if (slug) params.set("board", slug);
+  return `/login/complete?${params.toString()}`;
 }

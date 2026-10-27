@@ -1,6 +1,6 @@
 import type { BillingInterval } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
-import { isExamSlug } from "@/lib/edtech/exams";
+import { parseBoardSlug } from "@/lib/auth/board-intent";
 import { parseSubscriptionTier, type SubscriptionTier } from "@/lib/subscription-tiers";
 import type { SignupPlan } from "@/lib/validators/auth";
 import type { ExamSlug } from "@/types/edtech";
@@ -21,13 +21,15 @@ export function resolveSignupIntent(input: {
   interval?: string | null;
   tier?: string | null;
   exam?: string | null;
+  board?: string | null;
   promo?: string | null;
 }): SignupIntent {
+  const exam = parseBoardSlug(input.board) ?? parseBoardSlug(input.exam) ?? "";
   return {
     plan: input.plan === "subscribe" ? "subscribe" : "trial",
     interval: parseBillingInterval(input.interval ?? undefined),
     tier: parseSubscriptionTier(input.tier ?? undefined),
-    exam: input.exam && isExamSlug(input.exam) ? input.exam : "",
+    exam,
     promo: input.promo?.trim() ?? "",
   };
 }
