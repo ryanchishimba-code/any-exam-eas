@@ -20,6 +20,7 @@ import {
   NCLEX_DELEGATION_SUBJECT_ID,
 } from "@/lib/exam-prep/nclex/delegation-balance";
 import { isGenericRiskBankItem } from "@/lib/engine/polish/nclex-generic-checks";
+import { buildOerNclexExplanation } from "@/lib/exam-prep/nclex/oer-import-polish";
 
 const NCLEX_PREFIX = /^NCLEX\s+\d+:\s*/i;
 
@@ -723,6 +724,7 @@ function detectTemplate(stem: string, subjectId: string, seed: number, blob?: st
     if (/therapeutic|communication|anxiety|grief|response/i.test(stem)) return "communication";
     if (/medication|insulin|dose|administer|pharm|drug/i.test(stem)) return "pharmacology";
     if (/teach|discharge|learning|education|screening|vaccine/i.test(stem)) return "teaching";
+    if (/which (?:assessment )?finding|finding should the nurse address/i.test(stem)) return "risk";
     if (/post-op|complication|diagnostic|lab|finding requires/i.test(stem)) return "risk";
     if (/first|priority|assessed first|see first|immediate follow-up/i.test(stem)) {
       return "prioritization";
@@ -735,6 +737,7 @@ function detectTemplate(stem: string, subjectId: string, seed: number, blob?: st
   if (/therapeutic|communication|anxiety|grief|response/i.test(stem)) return "communication";
   if (/medication|insulin|dose|administer|pharm|drug/i.test(stem)) return "pharmacology";
   if (/teach|discharge|learning|education|screening|vaccine/i.test(stem)) return "teaching";
+  if (/which (?:assessment )?finding|finding should the nurse address/i.test(stem)) return "risk";
   if (/post-op|complication|diagnostic|lab|finding requires/i.test(stem)) return "risk";
   if (/first|priority|assessed first|see first|immediate follow-up/i.test(stem)) {
     return "prioritization";
@@ -949,7 +952,7 @@ function buildCommunication(scenario: NursingScenario, subjectLabel: string, see
   const wrongs: [string, string, string] = [
     `"You shouldn't feel that way — other clients have worse problems."`,
     `"Let's not talk about that right now; you'll feel better tomorrow."`,
-    `"I'll tell the physician you're overreacting so they can adjust your medication."`,
+    `"Everything will be fine, so we can change the subject and talk about the weather."`,
   ];
   const slot = Math.abs(seed + 3) % 4;
   const vignette = [
@@ -976,7 +979,7 @@ function buildPharmacology(scenario: NursingScenario, subjectLabel: string, seed
   const wrongs: [string, string, string] = [
     `Hold ${med} indefinitely without notifying the provider or reassessing for contraindications`,
     `Administer ${med} using a prior-shift routine time without confirming today's order`,
-    `Proceed with ${med} after borrowing a similar dose from another client's profile`,
+    `Give ${med} thirty minutes early so the next nurse can skip the bedside identity check`,
   ];
   const slot = Math.abs(seed + 4) % 4;
   const vignette = [
@@ -1000,9 +1003,9 @@ function buildTeaching(scenario: NursingScenario, subjectLabel: string, seed: nu
   const correct =
     "Ask the client to teach back the discharge instructions in their own words before leaving the unit";
   const wrongs: [string, string, string] = [
-    "Assume understanding because the client nodded during the explanation",
+    "Ask the client to nod if the printed handout looks familiar",
     "Provide only written materials in English when the client prefers another language",
-    "Discourage questions to keep the discharge process efficient",
+    "Finish the packet quickly and tell the client to call later if a line is confusing",
   ];
   const slot = Math.abs(seed + 5) % 4;
   const vignette = [
@@ -1413,7 +1416,7 @@ function buildNclexExplanation(
       if (/without verifying|another client|before giving|ignore|wait|restrict all oral/i.test(opt)) {
         return `• ${opt}: Incorrect — violates safety standards, scope of practice, or delays necessary intervention for unstable findings.`;
       }
-      if (/shouldn't feel|not talk|overreacting/i.test(opt)) {
+      if (/shouldn't feel|not talk|overreacting|change the subject/i.test(opt)) {
         return `• ${opt}: Incorrect — non-therapeutic; dismisses the client's feelings and may increase anxiety or rupture trust.`;
       }
       if (/hand rub alone|negative-pressure|reuse|droplet only/i.test(opt)) {
@@ -1516,6 +1519,107 @@ function finalizePolishedBankItem(working: BankItem, subjectId: string): BankIte
   };
 }
 
+function leadFindingPhrase(findings: string): string {
+  const parts = findings
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+  let phrase = "";
+  for (const part of parts) {
+    phrase = phrase ? `${phrase}, ${part}` : part;
+    if (phrase.length >= 8) break;
+  }
+  return phrase.toLowerCase();
+}
+
+/** Prefer the scenario already written into a rich source item. */
+function scenarioMatchingSource(item: BankItem, template: string): NursingScenario | undefined {
+  const text = itemTextBlob(item);
+  if (!hasRichVignette(text)) return undefined;
+  const blob = text.toLowerCase();
+  const pool = template === "delegation" ? STABLE_DELEGATION_SCENARIOS : SCENARIOS;
+  return pool.find((scenario) => {
+    const dx = scenario.dx.toLowerCase();
+    const leadFinding = leadFindingPhrase(scenario.findings);
+    return dx.length >= 8 && blob.includes(dx) && leadFinding.length >= 8 && blob.includes(leadFinding);
+  });
+}
+
+function sourceCaseText(item: BankItem): string {
+  return `${item.vignette ?? ""} ${item.scenario ?? ""}`.trim();
+}
+
+const CONSISTENCY_STOPWORDS = new Set([
+  "about",
+  "after",
+  "again",
+  "against",
+  "alone",
+  "also",
+  "another",
+  "around",
+  "because",
+  "before",
+  "being",
+  "between",
+  "care",
+  "client",
+  "could",
+  "during",
+  "every",
+  "first",
+  "from",
+  "have",
+  "into",
+  "more",
+  "most",
+  "must",
+  "next",
+  "nurse",
+  "only",
+  "other",
+  "over",
+  "patient",
+  "place",
+  "should",
+  "than",
+  "that",
+  "their",
+  "them",
+  "then",
+  "there",
+  "these",
+  "they",
+  "this",
+  "through",
+  "under",
+  "using",
+  "when",
+  "where",
+  "which",
+  "while",
+  "with",
+  "within",
+  "without",
+  "would",
+]);
+
+/** True when the answer's clinical terms actually appear in the source case. */
+function answerConsistentWithSource(answer: string, source: string): boolean {
+  const blob = source.toLowerCase();
+  const tokens = [
+    ...new Set(
+      answer
+        .toLowerCase()
+        .split(/[^a-z0-9]+/)
+        .filter((token) => token.length >= 5 && !CONSISTENCY_STOPWORDS.has(token))
+    ),
+  ];
+  if (tokens.length < 2) return false;
+  const hits = tokens.filter((token) => blob.includes(token)).length;
+  return hits >= 2;
+}
+
 function buildPolishedItem(
   item: BankItem,
   subjectId: string,
@@ -1524,11 +1628,54 @@ function buildPolishedItem(
   template: string
 ): BankItem {
   const stem = stripPrefix(item.question);
-  const scenario = pickScenario(
-    seed + (subjectId?.length ?? 0) + stem.length + (item.correctAnswer?.length ?? 0),
-    template
-  );
+  const sourceBlob = sourceCaseText(item);
+  const richSource = hasRichVignette(sourceBlob);
+  const matched = richSource ? scenarioMatchingSource(item, template) : undefined;
+  // A rich source case is never replaced by an unrelated scenario.
+  if (richSource && !matched && answerConsistentWithSource(item.correctAnswer, sourceBlob)) {
+    return finalizePolishedBankItem(
+      {
+        ...item,
+        question: stem,
+        vignette: item.vignette ?? item.scenario,
+        scenario: item.scenario ?? item.vignette,
+        explanation: buildOerNclexExplanation({ ...item, question: stem }, false),
+      },
+      subjectId
+    );
+  }
+  const scenario =
+    matched ??
+    pickScenario(
+      seed + (subjectId?.length ?? 0) + stem.length + (item.correctAnswer?.length ?? 0),
+      template
+    );
   const rebuilt = rebuildFromTemplate(template, scenario, subjectLabel, seed);
+  if (
+    richSource &&
+    !answerConsistentWithSource(rebuilt.correctAnswer, sourceBlob) &&
+    answerConsistentWithSource(item.correctAnswer, sourceBlob)
+  ) {
+    return finalizePolishedBankItem(
+      {
+        ...item,
+        vignette: item.vignette ?? item.scenario,
+        scenario: item.scenario ?? item.vignette,
+        question: stem,
+        correctAnswer: item.correctAnswer,
+        explanation: buildOerNclexExplanation(
+          {
+            ...item,
+            question: stem,
+            vignette: item.vignette ?? item.scenario,
+            scenario: item.scenario ?? item.vignette,
+          },
+          false
+        ),
+      },
+      subjectId
+    );
+  }
 
   const working: BankItem = {
     ...item,

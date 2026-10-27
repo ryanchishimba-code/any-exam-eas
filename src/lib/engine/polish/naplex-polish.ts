@@ -507,9 +507,9 @@ function rebuildFromTemplate(
         question: "Which counseling point is most essential before the patient leaves the pharmacy?",
         options: [
           correct,
-          "Encourage sharing unused tablets with family members with similar symptoms",
-          `Advise stopping ${drug.generic} without calling anyone if any question arises`,
-          "State that no monitoring or follow-up is ever required for this medication",
+          `Take ${drug.generic} only on days symptoms return, and store it in a bathroom cabinet`,
+          `Double the next ${drug.generic} dose after a delayed meal without calling the pharmacy`,
+          `Use a household spoon for ${drug.generic} whenever the dosing device is in another room`,
         ],
         correctAnswer: correct,
       };
@@ -539,9 +539,9 @@ function rebuildFromTemplate(
         question: `Which medication is the most appropriate pharmacist-recommended therapy for this ${subjectLabel.toLowerCase()} presentation?`,
         options: [
           correct,
-          `${formatDrugOption(distractors[0]!)} — no evidence for this indication`,
-          `${formatDrugOption(distractors[1]!)} — maximum dose above labeled limits without justification`,
-          `${formatDrugOption(distractors[2]!)} — requires no monitoring in all patients`,
+          `${formatDrugOption(distractors[0]!)} — indicated for a different condition than this presentation`,
+          `${formatDrugOption(distractors[1]!)} — dose exceeds the usual labeled range without a documented reason`,
+          `${formatDrugOption(distractors[2]!)} — omits the follow-up labs this class needs after initiation`,
         ],
         correctAnswer: correct,
       };
@@ -575,9 +575,9 @@ function rebuildFromTemplate(
           question: "Which counseling point is most essential before the patient leaves the pharmacy?",
           options: [
             correct,
-            "Encourage sharing unused tablets with family members with similar symptoms",
-            `Advise stopping ${drug.generic} without calling anyone if any question arises`,
-            "State that no monitoring or follow-up is ever required for this medication",
+            `Take ${drug.generic} only on days symptoms return, and store it in a bathroom cabinet`,
+            `Double the next ${drug.generic} dose after a delayed meal without calling the pharmacy`,
+            `Use a household spoon for ${drug.generic} whenever the dosing device is in another room`,
           ],
           correctAnswer: correct,
         };
@@ -811,11 +811,11 @@ function buildNaplexExplanation(
   const incorrect = options.filter((o) => o !== correct);
 
   const templateIntro: Record<string, string> = {
-    moa: "The correct answer links the patient's presentation to the evidence-based mechanism of the selected agent.",
+    moa: `Mechanism: ${drug.generic} matches this presentation through its labeled action, not a neighboring drug class.`,
     interaction: "Pharmacists must resolve interaction risk, verify dosing, and document counseling before dispensing.",
-    counseling: "Person-centered care requires actionable counseling on benefits, adverse effects, adherence, and follow-up.",
+    counseling: `Counseling for ${drug.generic} covers what it does, side effects to report, how to take it, and when to call.`,
     adr: "Patients must recognize serious adverse effects and know when to hold therapy and seek care.",
-    therapy: "Therapeutic selection follows guidelines, patient-specific factors, and monitoring requirements.",
+    therapy: `Choose ${drug.generic} when the labeled indication, patient factors, and follow-up labs all fit this case.`,
     calculation: "Apply NAPLEX calculation competencies with correct units and patient parameters.",
     law: "Federal and state pharmacy law govern controlled substances, records, and patient confidentiality.",
     general: "Apply NAPLEX Medication Use Process and Person-Centered Care domains.",

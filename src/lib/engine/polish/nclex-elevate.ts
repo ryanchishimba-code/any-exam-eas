@@ -4,6 +4,7 @@ import { assessNclexItemQuality } from "@/lib/exam-prep/nclex-quality-gate";
 import { applyNclexStemRepairs } from "@/lib/engine/polish/nclex-generic-checks";
 import { enrichBankItemGuidelines } from "@/lib/exam-prep/enrich-guidelines";
 import { alignNaplexBankItemAnswers } from "@/lib/exam-prep/naplex-answer-align";
+import { buildOerNclexExplanation } from "@/lib/exam-prep/nclex/oer-import-polish";
 import { polishNclexBankItem, scoreNclexBankItem, type NclexPolishResult } from "./nclex-polish";
 
 function changed(b: BankItem, a: BankItem) {
@@ -22,7 +23,7 @@ function explain(item: BankItem): BankItem {
     if (!/does not reflect the highest-priority, safest nursing action/i.test(exp)) return item;
   }
   if (exp.includes("## Why this answer is correct") && exp.includes("## Clinical pearl")) return item;
-  return item;
+  return { ...item, explanation: buildOerNclexExplanation(item, false) };
 }
 
 function normalizePolishedItemType(item: BankItem): BankItem {
