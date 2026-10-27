@@ -42,8 +42,22 @@ if (!csvPath) {
 const codes = codesFromCsv(readFileSync(csvPath, "utf8"));
 console.log(`Would delete up to ${codes.length} PromoCode rows where currentUses = 0 and compDays is set.`);
 if (backupPath) {
-  const backup = JSON.parse(readFileSync(backupPath, "utf8")) as unknown[];
-  console.log(`Backup file has ${Array.isArray(backup) ? backup.length : 0} rows to restore manually if needed.`);
+  const backup = JSON.parse(readFileSync(backupPath, "utf8")) as
+    | unknown[]
+    | { promoCodes?: unknown[]; promoRedemptions?: unknown[] };
+  const promoCodes = Array.isArray(backup)
+    ? backup.length
+    : Array.isArray(backup.promoCodes)
+      ? backup.promoCodes.length
+      : 0;
+  const promoRedemptions = Array.isArray(backup)
+    ? 0
+    : Array.isArray(backup.promoRedemptions)
+      ? backup.promoRedemptions.length
+      : 0;
+  console.log(
+    `Backup file has ${promoCodes} promo codes and ${promoRedemptions} redemptions to restore manually if needed.`
+  );
 }
 console.log("Redeemed codes (currentUses > 0) are left in place.");
 

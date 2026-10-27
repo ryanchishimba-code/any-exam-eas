@@ -63,6 +63,7 @@ export const promoCodes = pgTable(
     stripeCouponId: text("stripeCouponId"),
     compDays: integer("compDays"),
     audience: text("audience"),
+    campaign: text("campaign"),
     active: boolean("active").default(true).notNull(),
     createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
     updatedAt: timestamp("updatedAt", { mode: "date" }).notNull(),

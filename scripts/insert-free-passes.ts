@@ -1,8 +1,8 @@
 /**
  * Prepare a production insert for free-pass codes.
  *
- * Default is a dry run: it reads the CSV and prints the backup query plus the
- * insert. It does not open a database connection.
+ * Default is a dry run: it counts the CSV and describes the backup. It does
+ * not open a database connection and it does not print codes.
  *
  * A real insert requires BOTH:
  *   --apply
@@ -15,6 +15,7 @@
  *   npx tsx scripts/insert-free-passes.ts --csv ./free-passes.csv --backup ./backup.json
  */
 import { readFileSync, writeFileSync } from "node:fs";
+import { freePassInsertData } from "../src/lib/promo/marketing-phase";
 
 function arg(name: string): string | undefined {
   const index = process.argv.indexOf(name);
@@ -30,17 +31,16 @@ function parseCsv(text: string): CsvRow[] {
   if (!header?.startsWith("code,audience,comp_days,max_uses")) {
     throw new Error("CSV header must be code,audience,comp_days,max_uses");
   }
-  return lines.slice(1).map((line) => {
-    const [code, audience, compDays, maxUses] = line.split(",");
-    if (!code || (audience !== "nursing" && audience !== "pharmacy")) {
-      throw new Error(`Bad CSV row: ${line}`);
+  return lines.slice(1).map((line, index) => {
+    const [rawCode, audience, compDays, maxUses] = line.split(",");
+    const code = rawCode?.trim().toUpperCase() ?? "";
+    const prefix = audience === "nursing" ? "RN-" : audience === "pharmacy" ? "RX-" : "";
+    const days = Number(compDays);
+    const uses = Number(maxUses);
+    if (!code || !prefix || !code.startsWith(prefix) || !Number.isFinite(days) || !Number.isFinite(uses)) {
+      throw new Error(`Bad CSV row at line ${index + 2}`);
     }
-    return {
-      code: code.trim().toUpperCase(),
-      audience,
-      compDays: Number(compDays),
-      maxUses: Number(maxUses),
-    };
+    return { code, audience, compDays: days, maxUses: uses };
   });
 }
 
@@ -56,27 +56,20 @@ if (!csvPath) {
 
 const rows = parseCsv(readFileSync(csvPath, "utf8"));
 const codes = rows.map((row) => row.code);
-console.log(`CSV has ${rows.length} codes.`);
-console.log(`Backup would be written to ${backupPath} from:`);
-console.log(`SELECT * FROM "PromoCode" WHERE code IN (${codes.length} codes) before insert.`);
-console.log("Insert is INSERT ... ON CONFLICT (code) DO NOTHING for compDays, audience, maxUses=1, active=true.");
-console.log("No Stripe coupon is created.");
-
-const undoSql = [
-  "-- Undo unused free passes. Refuses to delete a code that was already redeemed.",
-  "DELETE FROM \"PromoCode\"",
-  "WHERE code IN (",
-  codes.map((code) => `  '${code.replace(/'/g, "''")}'`).join(",\n"),
-  ")",
-  "AND \"currentUses\" = 0",
-  "AND \"compDays\" IS NOT NULL;",
-  "",
-].join("\n");
+const unique = new Set(codes);
+if (unique.size !== codes.length) {
+  throw new Error(`CSV has ${codes.length - unique.size} duplicate codes.`);
+}
+const nursing = rows.filter((row) => row.audience === "nursing").length;
+const pharmacy = rows.filter((row) => row.audience === "pharmacy").length;
+console.log(`CSV has ${rows.length} unique codes (${nursing} nursing, ${pharmacy} pharmacy).`);
+console.log("Each inserted row is tagged campaign Marketing Phase 1.");
+console.log(`Backup path: ${backupPath} (full PromoCode and PromoRedemption tables).`);
+console.log("Existing codes are left unchanged. No Stripe coupon is created.");
+console.log("Undo deletes only rows with currentUses = 0 and compDays set. Codes are not printed.");
 
 if (!apply) {
   console.log("Dry run: no database connection was opened.");
-  console.log("--- undo preview (first 12 lines) ---");
-  console.log(undoSql.split("\n").slice(0, 12).join("\n"));
   process.exit(0);
 }
 
@@ -87,23 +80,27 @@ if (process.env.CONFIRM_FREE_PASS_INSERT !== "insert-free-passes") {
 
 async function applyInsert() {
   const { prisma } = await import("../src/lib/prisma");
-  const existing = await prisma.promoCode.findMany({ where: { code: { in: codes } } });
-  writeFileSync(backupPath, JSON.stringify(existing, null, 2), "utf8");
-  console.log(`Backed up ${existing.length} existing rows to ${backupPath}`);
+  const [promoCodes, promoRedemptions] = await Promise.all([
+    prisma.promoCode.findMany(),
+    prisma.promoRedemption.findMany(),
+  ]);
+  writeFileSync(
+    backupPath,
+    JSON.stringify(
+      { takenAt: new Date().toISOString(), promoCodes, promoRedemptions },
+      null,
+      2
+    ),
+    "utf8"
+  );
+  console.log(
+    `Backed up ${promoCodes.length} promo codes and ${promoRedemptions.length} redemptions to ${backupPath}`
+  );
 
   let inserted = 0;
   for (const row of rows) {
     const result = await prisma.promoCode.createMany({
-      data: [
-        {
-          code: row.code,
-          compDays: row.compDays,
-          audience: row.audience,
-          maxUses: row.maxUses,
-          currentUses: 0,
-          active: true,
-        },
-      ],
+      data: [freePassInsertData(row)],
       skipDuplicates: true,
     });
     inserted += result.count;

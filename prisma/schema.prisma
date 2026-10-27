@@ -153,6 +153,8 @@ model PromoCode {
   compDays         Int?
   /// Tracking label only (nursing, pharmacy). Does not limit which boards unlock.
   audience         String?
+  /// Marketing campaign name. Nullable so older discount codes stay unlabeled.
+  campaign         String?
   active           Boolean   @default(true)
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt

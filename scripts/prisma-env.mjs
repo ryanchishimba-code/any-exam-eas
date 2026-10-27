@@ -31,9 +31,36 @@ export function ensureDatabaseUrl() {
   return true;
 }
 
+/** Production Neon endpoint. Preview and local builds must not migrate this host. */
+export const PRODUCTION_DATABASE_HOST_MARKER = "ep-small-resonance-apmf4kiq";
+
+export function databaseHostname(url = "") {
+  try {
+    return new URL(url).hostname.toLowerCase();
+  } catch {
+    return "";
+  }
+}
+
+export function isProductionDatabaseHost(url = "") {
+  return databaseHostname(url).includes(PRODUCTION_DATABASE_HOST_MARKER);
+}
+
+/**
+ * Preview (and any non-production Vercel env) must never migrate production.
+ * Production deploys are allowed. Local runs with no VERCEL_ENV are allowed
+ * only when the caller is not on Vercel; the build script still blocks them
+ * when VERCEL_ENV is preview.
+ */
+export function migrationBlockedBecauseProduction(url = "", vercelEnv = process.env.VERCEL_ENV ?? "") {
+  if (!vercelEnv || vercelEnv === "production") return false;
+  return isProductionDatabaseHost(url);
+}
+
 export function shouldRunMigrations() {
   if (process.env.PRISMA_DATABASE_URL_PLACEHOLDER === "1") return false;
   const url = process.env.DATABASE_URL ?? "";
   if (isPlaceholderDatabaseUrl(url)) return false;
+  if (migrationBlockedBecauseProduction(url)) return false;
   return /^postgres(ql)?:\/\//.test(url);
 }

@@ -1,5 +1,10 @@
 import { spawnSync } from "node:child_process";
-import { ensureDatabaseUrl, shouldRunMigrations } from "./prisma-env.mjs";
+import {
+  databaseHostname,
+  ensureDatabaseUrl,
+  migrationBlockedBecauseProduction,
+  shouldRunMigrations,
+} from "./prisma-env.mjs";
 
 /** Vercel builders have ~8GB RAM; leave headroom for webpack workers (SIGKILL = OOM). */
 function ensureBuildHeap() {
@@ -52,12 +57,7 @@ function runMigrateDeploy() {
       sleepMs(8000);
     }
   }
-  if (process.env.VERCEL) {
-    console.warn(
-      "migrate deploy failed after retries (Neon advisory lock / cold start). Continuing build — migrations are likely already applied."
-    );
-    return;
-  }
+  console.error("prisma migrate deploy failed after retries. Refusing to continue the build.");
   process.exit(1);
 }
 
@@ -66,8 +66,17 @@ ensureDatabaseUrl();
 ensurePreviewAuthEnv();
 run("npx", ["prisma", "generate"]);
 
+const migrationUrl = process.env.DATABASE_URL ?? "";
+const migrationHost = databaseHostname(migrationUrl);
+if (migrationBlockedBecauseProduction(migrationUrl)) {
+  console.error(
+    `[vercel-build] Refusing prisma migrate deploy. ${process.env.VERCEL_ENV} resolved the production database host ${migrationHost}.`
+  );
+  process.exit(1);
+}
+
 if (shouldRunMigrations()) {
-  console.log("Applying database migrations...");
+  console.log(`Applying database migrations to host ${migrationHost || "(unknown)"}...`);
   runMigrateDeploy();
   // Bulk sync (~78k rows) is too heavy for Vercel build; use cron or manual trigger after deploy.
   if (!process.env.VERCEL) {
