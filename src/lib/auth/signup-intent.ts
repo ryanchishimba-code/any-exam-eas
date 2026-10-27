@@ -14,6 +14,8 @@ export type SignupIntent = {
   tier: SubscriptionTier;
   exam: ExamSlug | "";
   promo: string;
+  /** Single-use pass from `?code=`. Empty when the visitor did not bring one. */
+  passCode: string;
 };
 
 export function resolveSignupIntent(input: {
@@ -23,6 +25,7 @@ export function resolveSignupIntent(input: {
   exam?: string | null;
   board?: string | null;
   promo?: string | null;
+  code?: string | null;
 }): SignupIntent {
   const exam = parseBoardSlug(input.board) ?? parseBoardSlug(input.exam) ?? "";
   return {
@@ -31,6 +34,7 @@ export function resolveSignupIntent(input: {
     tier: parseSubscriptionTier(input.tier ?? undefined),
     exam,
     promo: input.promo?.trim() ?? "",
+    passCode: input.code?.trim().toUpperCase() ?? "",
   };
 }
 

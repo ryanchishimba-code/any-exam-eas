@@ -53,6 +53,12 @@ export const signUpSchema = z.object({
     .refine((d) => !Number.isNaN(Date.parse(d)), "Enter a valid date.")
     .optional(),
   promoCode: z.string().trim().max(32).optional(),
+  passCode: z
+    .string()
+    .trim()
+    .max(40)
+    .optional()
+    .transform((value) => (value ? value : undefined)),
 });
 
 export const loginSchema = z.object({

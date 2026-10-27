@@ -61,6 +61,8 @@ export const promoCodes = pgTable(
     maxUses: integer("maxUses"),
     currentUses: integer("currentUses").default(0).notNull(),
     stripeCouponId: text("stripeCouponId"),
+    compDays: integer("compDays"),
+    audience: text("audience"),
     active: boolean("active").default(true).notNull(),
     createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
     updatedAt: timestamp("updatedAt", { mode: "date" }).notNull(),

@@ -44,6 +44,7 @@ export function SignupForm({
   plan,
   onPlanChange,
   initialPromo = "",
+  initialPassCode = "",
   initialInterval = "monthly",
   initialTier = "pro",
   initialExam = "",
@@ -51,6 +52,7 @@ export function SignupForm({
   plan: SignupPlan;
   onPlanChange: (plan: SignupPlan) => void;
   initialPromo?: string;
+  initialPassCode?: string;
   initialInterval?: BillingInterval;
   initialTier?: SubscriptionTier;
   initialExam?: ExamSlug | "";
@@ -68,6 +70,8 @@ export function SignupForm({
   const [testDate, setTestDate] = useState("");
   const [showTestDate, setShowTestDate] = useState(false);
   const [accepted, setAccepted] = useState(false);
+  const [passOpen, setPassOpen] = useState(Boolean(initialPassCode.trim()));
+  const [passCode, setPassCode] = useState(initialPassCode.trim());
   const [error, setError] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
@@ -182,10 +186,11 @@ export function SignupForm({
           examSlug,
           testDate: testDate || undefined,
           promoCode: initialPromo.trim() || undefined,
+          passCode: passCode.trim() || undefined,
         }),
       });
       const text = await res.text();
-      let data: { error?: string; plan?: SignupPlan } = {};
+      let data: { error?: string; plan?: SignupPlan | "pass"; passRedeemed?: boolean } = {};
       try {
         data = text ? JSON.parse(text) : {};
       } catch {
@@ -193,7 +198,14 @@ export function SignupForm({
           "Registration returned an unexpected response (server may be missing DATABASE_URL on Vercel)."
         );
       }
-      if (!res.ok) throw new Error(data.error ?? "Registration failed");
+      if (!res.ok) {
+        const message = data.error ?? "Registration failed";
+        if (/pass code|free pass/i.test(message)) {
+          setPassOpen(true);
+          setStep(1);
+        }
+        throw new Error(message);
+      }
 
       const signInRes = await signIn("credentials", {
         email: trimmedEmail,
@@ -221,7 +233,9 @@ export function SignupForm({
         { persist: false }
       );
 
-      if (plan === "subscribe") {
+      if (data.passRedeemed) {
+        window.location.href = examSlug ? `/dashboard?verify=1` : `/select-exam?verify=1`;
+      } else if (plan === "subscribe") {
         window.location.href = subscribeCheckoutPath;
       } else {
         markTrialWelcomePending(TRIAL_DAYS);
@@ -398,6 +412,36 @@ export function SignupForm({
                 })}
               </ul>
             </div>
+            {passOpen ? (
+              <div>
+                <label htmlFor="signup-pass-code" className="aee-auth-label">
+                  Pass code
+                </label>
+                <input
+                  id="signup-pass-code"
+                  name="passCode"
+                  data-testid="signup-pass-code"
+                  type="text"
+                  inputMode="text"
+                  autoComplete="off"
+                  autoCapitalize="characters"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  maxLength={40}
+                  placeholder="RN-7K4Q-2M"
+                  value={passCode}
+                  onChange={(e) => setPassCode(e.target.value.toUpperCase())}
+                  className="apple-input uppercase tracking-wide"
+                />
+                <p className="mt-1 text-sm text-[#334155]">
+                  30 days of Pro. No card. Each code works once.
+                </p>
+              </div>
+            ) : (
+              <button type="button" className="aee-auth-text-btn" onClick={() => setPassOpen(true)}>
+                Have a pass code?
+              </button>
+            )}
           </div>
         </div>
       ) : (
@@ -587,6 +631,8 @@ export function SignupForm({
           </>
         ) : step === 1 ? (
           "Continue"
+        ) : passCode.trim() ? (
+          "Create account"
         ) : plan === "trial" ? (
           TRIAL_CTA_LABEL
         ) : (

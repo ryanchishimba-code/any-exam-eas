@@ -21,6 +21,7 @@ import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
+import { redeemFreePassOnTx } from "@/lib/promo/redeem-free-pass";
 
 /** Outer wrap stays light — Prisma $extends already retries; stacking caused pool pile-up. */
 const REGISTER_RETRIES = 2;
@@ -150,7 +151,9 @@ export async function recordUserLogin(userId: string): Promise<void> {
 export async function registerUser(
   input: SignUpInput,
   options?: { signupSource?: string | null }
-): Promise<SafeUser & { plan: "trial" | "subscribe"; promoCode?: string }> {
+): Promise<
+  SafeUser & { plan: "trial" | "subscribe"; promoCode?: string; passRedeemed?: boolean }
+> {
   const parsed = signUpSchema.parse(input);
   assertPublicSignupEmailAllowed(parsed.email, {
     blockDisposable: parsed.plan === "trial",
@@ -167,29 +170,39 @@ export async function registerUser(
   const planTier = parseSubscriptionTier(parsed.tier);
   const planInterval = parseBillingInterval(parsed.interval);
 
-  if (parsed.plan === "trial" && (await hasConsumedTrial(parsed.email))) {
+  const passCode = parsed.passCode?.trim() || "";
+
+  if (parsed.plan === "trial" && !passCode && (await hasConsumedTrial(parsed.email))) {
     throw new Error(
       "This email has already used a free trial. Subscribe at the monthly rate instead."
     );
   }
 
-  const startsAppTrial = parsed.plan === "trial";
+  const startsAppTrial = parsed.plan === "trial" && !passCode;
 
-  const subscriptionData = startsAppTrial
+  const subscriptionData = passCode
     ? {
-        status: "trialing" as const,
-        trialEndsAt: trialEndsAtFromNow(),
-        plan: "trial" as const,
-        planTier,
-        planInterval,
-      }
-    : {
         status: "inactive" as const,
         trialEndsAt: null,
-        plan: parsed.plan,
-        planTier,
+        plan: "comp" as const,
+        planTier: "pro" as const,
         planInterval,
-      };
+      }
+    : startsAppTrial
+      ? {
+          status: "trialing" as const,
+          trialEndsAt: trialEndsAtFromNow(),
+          plan: "trial" as const,
+          planTier,
+          planInterval,
+        }
+      : {
+          status: "inactive" as const,
+          trialEndsAt: null,
+          plan: parsed.plan,
+          planTier,
+          planInterval,
+        };
 
   try {
     const user = await withRegisterRetry(() =>
@@ -202,7 +215,7 @@ export async function registerUser(
             throw new Error("An account with this email already exists.");
           }
 
-          return tx.user.create({
+          const created = await tx.user.create({
             data: {
               email: parsed.email,
               name:
@@ -214,6 +227,10 @@ export async function registerUser(
               subscription: { create: subscriptionData },
             },
           });
+          if (passCode) {
+            await redeemFreePassOnTx(tx, created.id, passCode);
+          }
+          return created;
         },
         { maxWait: 15_000, timeout: 45_000 }
       )
@@ -255,6 +272,7 @@ export async function registerUser(
       ...toSafeUser(user),
       plan: parsed.plan,
       promoCode: parsed.promoCode?.trim() || undefined,
+      passRedeemed: Boolean(passCode),
     };
   } catch (e) {
     if (

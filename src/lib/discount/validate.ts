@@ -18,6 +18,7 @@ type PromoRow = {
   currentUses: number;
   active: boolean;
   stripeCouponId: string | null;
+  compDays: number | null;
 };
 
 /** Short TTL so debounced typing doesn't hammer Neon on every keystroke. */
@@ -70,6 +71,7 @@ async function findPromoRow(code: string): Promise<PromoRow | null> {
     currentUses: row.currentUses,
     active: row.active,
     stripeCouponId: row.stripeCouponId,
+    compDays: row.compDays,
   };
   writePromoCache(code, mapped);
   return mapped;
@@ -120,6 +122,18 @@ export async function validateDiscount(
 
   if (!row.active) {
     return fail(code, "inactive", plan);
+  }
+
+  if (row.compDays != null && row.compDays > 0) {
+    return {
+      valid: false,
+      code,
+      errorCode: "invalid_code",
+      message:
+        "This is a free pass. Enter it in “Have a pass code?” on the sign-up page. It is not a checkout discount.",
+      plan,
+      fullAccessIncluded: true,
+    };
   }
 
   if (row.expiryDate && row.expiryDate < new Date()) {

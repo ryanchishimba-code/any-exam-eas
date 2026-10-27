@@ -38,6 +38,8 @@ describe("signup query intent", () => {
     expect(resolveSignupIntent({ exam: "usmle" }).exam).toBe("usmle");
     expect(resolveSignupIntent({ exam: "not-a-board" }).exam).toBe("");
     expect(resolveSignupIntent({}).exam).toBe("");
+    expect(resolveSignupIntent({ code: " rn-7k4q-2m " }).passCode).toBe("RN-7K4Q-2M");
+    expect(resolveSignupIntent({}).passCode).toBe("");
   });
 
   it("routes trial and skip-trial checkout without mixing the two paths", () => {

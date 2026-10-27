@@ -38,12 +38,14 @@ function SignupProof() {
 export function SignupScreen({
   initialPlan,
   initialPromo,
+  initialPassCode = "",
   initialInterval,
   initialTier,
   initialExam,
 }: {
   initialPlan: SignupPlan | "";
   initialPromo: string;
+  initialPassCode?: string;
   initialInterval: BillingInterval;
   initialTier: SubscriptionTier;
   initialExam: ExamSlug | "";
@@ -66,6 +68,7 @@ export function SignupScreen({
         plan={plan}
         onPlanChange={setPlan}
         initialPromo={initialPromo}
+        initialPassCode={initialPassCode}
         initialInterval={initialInterval}
         initialTier={initialTier}
         initialExam={initialExam}
