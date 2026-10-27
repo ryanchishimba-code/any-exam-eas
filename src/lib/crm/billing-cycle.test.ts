@@ -39,6 +39,40 @@ describe("summarizeBillingCycle", () => {
     expect(summary.detail).toMatch(/^Expires /);
   });
 
+  it("shows a paid renewal while a pass date is still stored", () => {
+    const end = new Date();
+    end.setUTCDate(end.getUTCDate() + 10);
+    const pass = new Date();
+    pass.setUTCDate(pass.getUTCDate() + 20);
+    const summary = summarizeBillingCycle({
+      status: "active",
+      plan: "subscribe",
+      planInterval: "monthly",
+      trialEndsAt: null,
+      currentPeriodEnd: end,
+      canceledAt: null,
+      compAccessUntil: pass,
+    });
+    expect(summary.label).toBe("Paid member");
+    expect(summary.detail).toMatch(/Monthly · renews/);
+  });
+
+  it("shows leftover complimentary days after cancel", () => {
+    const pass = new Date();
+    pass.setUTCDate(pass.getUTCDate() + 9);
+    const summary = summarizeBillingCycle({
+      status: "canceled",
+      plan: "subscribe",
+      planInterval: "monthly",
+      trialEndsAt: null,
+      currentPeriodEnd: null,
+      canceledAt: new Date(),
+      compAccessUntil: pass,
+    });
+    expect(summary.label).toBe("Comp access · 9d");
+    expect(summary.detail).toMatch(/^Complimentary until /);
+  });
+
   it("flags past due subscriptions", () => {
     const summary = summarizeBillingCycle({
       status: "past_due",

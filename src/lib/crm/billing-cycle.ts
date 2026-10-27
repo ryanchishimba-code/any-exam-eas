@@ -59,6 +59,19 @@ export function summarizeBillingCycle(sub: SubscriptionRow | null | undefined): 
     };
   }
 
+  if (sub.compAccessUntil && sub.compAccessUntil > now && sub.status !== "active" && sub.status !== "trialing") {
+    const days = daysBetween(now, sub.compAccessUntil);
+    return {
+      status: "comp",
+      planInterval: null,
+      renewsAt: sub.compAccessUntil.toISOString(),
+      daysUntil: days,
+      label: `Comp access · ${days}d`,
+      detail: `Complimentary until ${formatShortDate(sub.compAccessUntil)}`,
+      urgency: "calm",
+    };
+  }
+
   if (sub.status === "past_due") {
     return {
       status: sub.status,
@@ -146,19 +159,6 @@ export function summarizeBillingCycle(sub: SubscriptionRow | null | undefined): 
       label: sub.status === "trial_expired" ? "Trial expired" : "Canceled",
       detail: "No upcoming rebill",
       urgency: "none",
-    };
-  }
-
-  if (sub.compAccessUntil && sub.compAccessUntil > now) {
-    const days = daysBetween(now, sub.compAccessUntil);
-    return {
-      status: "comp",
-      planInterval: null,
-      renewsAt: sub.compAccessUntil.toISOString(),
-      daysUntil: days,
-      label: `Comp access · ${days}d`,
-      detail: `Complimentary until ${formatShortDate(sub.compAccessUntil)}`,
-      urgency: "calm",
     };
   }
 

@@ -25,6 +25,11 @@ export async function startCardFreeTrialForUser(params: {
   if (existing?.status === "active" || existing?.status === "trialing" || existing?.status === "past_due") {
     return { started: false };
   }
+  // A printed pass is the free window. Do not start the 5-day trial on top of
+  // it, including after the pass date has passed.
+  if (existing?.compAccessUntil) {
+    return { started: false };
+  }
 
   const data = {
     status: "trialing" as const,

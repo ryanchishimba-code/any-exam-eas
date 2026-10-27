@@ -613,8 +613,6 @@ export async function applySubscriptionFromStripe(
   stripeSub: Stripe.Subscription,
   stripeCustomerId?: string
 ) {
-  const isPremiumStatus =
-    stripeSub.status === "active" || stripeSub.status === "trialing";
   const pendingInterval = stripeSub.metadata?.pendingInterval?.trim();
   const pendingTier = stripeSub.metadata?.pendingTier?.trim();
   const priceId = subscriptionItemPriceId(stripeSub);
@@ -640,33 +638,75 @@ export async function applySubscriptionFromStripe(
     }
   }
 
-  const signupPlan = stripeSub.metadata?.plan === "trial" ? "trial" : "subscribe";
   const periodEnd = subscriptionCurrentPeriodEnd(stripeSub);
   const trialEndsAt = stripeUnixToDate(stripeSub.trial_end);
 
-  // Never elevate to premium from incomplete/unpaid Stripe states.
-  const nextStatus =
-    stripeSub.status === "canceled"
-      ? "canceled"
-      : isPremiumStatus
-        ? stripeSub.status
-        : stripeSub.status === "past_due"
-          ? "past_due"
-          : "inactive";
-
   await prisma.subscription.update({
     where: { userId },
-    data: {
-      ...(stripeCustomerId ? { stripeCustomerId } : {}),
-      stripeSubscriptionId: stripeSub.id,
-      status: nextStatus,
-      plan: signupPlan,
+    data: buildStripeSubscriptionWrite({
+      stripeSub,
+      stripeCustomerId,
       planTier,
       planInterval,
-      ...(periodEnd ? { currentPeriodEnd: periodEnd } : {}),
-      ...(trialEndsAt ? { trialEndsAt } : {}),
-      ...(isPremiumStatus ? { gracePeriodEndsAt: null, canceledAt: null } : {}),
-      ...(stripeSub.status === "canceled" ? { canceledAt: new Date() } : {}),
-    },
+      currentPeriodEnd: periodEnd,
+      trialEndsAt,
+    }),
   });
+}
+
+/**
+ * Columns a Stripe webhook may write. `compAccessUntil` is intentionally
+ * absent: checkout, subscription, and invoice events must not clear a pass.
+ * A canceled subscription drops its id so a leftover pass is not hidden
+ * behind a dead Stripe subscription.
+ */
+export function buildStripeSubscriptionWrite(input: {
+  stripeSub: Pick<Stripe.Subscription, "id" | "status" | "metadata">;
+  stripeCustomerId?: string | null;
+  planTier: SubscriptionTier;
+  planInterval: BillingInterval;
+  currentPeriodEnd?: Date | null;
+  trialEndsAt?: Date | null;
+  plan?: "trial" | "subscribe";
+}) {
+  const canceled = input.stripeSub.status === "canceled";
+  const premium =
+    input.stripeSub.status === "active" || input.stripeSub.status === "trialing";
+  const status = canceled
+    ? "canceled"
+    : premium
+      ? input.stripeSub.status
+      : input.stripeSub.status === "past_due"
+        ? "past_due"
+        : "inactive";
+  const plan =
+    input.plan ??
+    (input.stripeSub.metadata?.plan === "trial" ? "trial" : "subscribe");
+
+  const data = {
+    ...(input.stripeCustomerId ? { stripeCustomerId: input.stripeCustomerId } : {}),
+    stripeSubscriptionId: canceled ? null : input.stripeSub.id,
+    status,
+    plan,
+    planTier: input.planTier,
+    planInterval: input.planInterval,
+    ...(input.currentPeriodEnd ? { currentPeriodEnd: input.currentPeriodEnd } : {}),
+    ...(input.trialEndsAt ? { trialEndsAt: input.trialEndsAt } : {}),
+    ...(premium ? { gracePeriodEndsAt: null as null, canceledAt: null as null } : {}),
+    ...(canceled ? { canceledAt: new Date() } : {}),
+  };
+  assertStripeWritePreservesCompDate(data);
+  return data;
+}
+
+/** Invoice failure marks the row past due and must not touch a pass date. */
+export const invoicePaymentFailedWrite = {
+  status: "past_due" as const,
+  gracePeriodEndsAt: null,
+};
+
+export function assertStripeWritePreservesCompDate(data: object): void {
+  if (Object.prototype.hasOwnProperty.call(data, "compAccessUntil")) {
+    throw new Error("Stripe billing sync must not write compAccessUntil");
+  }
 }

@@ -82,6 +82,20 @@ export async function expireTrialIfNeeded(
   return prisma.subscription.findUnique({ where: { id: subscription.id } });
 }
 
+/**
+ * Paid access that should win over a complimentary window.
+ * A stored Stripe id is not enough: canceled and past-due rows keep the id
+ * without granting premium, and the pass resumes for any days still left.
+ */
+export function hasLivePaidEntitlement(subscription: Subscription | null): boolean {
+  if (!subscription) return false;
+  const stripeId = Boolean(subscription.stripeSubscriptionId?.trim());
+  const premiumStatus =
+    subscription.status === "active" || subscription.status === "trialing";
+  if (stripeId && premiumStatus) return true;
+  return oneTimeAccessActive(subscription);
+}
+
 function subscriptionMeta(subscription: Subscription | null): {
   tier: SubscriptionTier;
   planDuration: BillingInterval;
@@ -121,11 +135,13 @@ export function evaluateSubscriptionAccess(
   const compAccessValid = Boolean(compUntil && compUntil > new Date());
   const compLapsed = Boolean(compUntil && compUntil <= new Date());
   const oneTimeValid = oneTimeAccessActive(subscription);
+  const livePaid = hasLivePaidEntitlement(subscription);
 
-  // A pass or admin grant unlocks Pro with no Stripe subscription and no card.
-  // Stored status stays inactive so the window cannot outlive compAccessUntil.
-  // A live Stripe subscription or pay-once window keeps its own rules.
-  if (compAccessValid && compUntil && !hasStripeSubscription && !oneTimeValid) {
+  // A pass or admin grant unlocks Pro with no card. A live Stripe subscription
+  // or pay-once window is the only entitlement while it is actually premium:
+  // leftover pass days stay on the row and resume after that paid window ends.
+  // A canceled, deleted, or past-due Stripe id must not hide a future pass.
+  if (compAccessValid && compUntil && !livePaid) {
     return {
       hasAccess: true,
       hasFreeAccess: false,
@@ -287,6 +303,17 @@ export function isComplimentaryAccessWindow(
     access.daysRemaining != null &&
     access.canStartCheckout === false
   );
+}
+
+/**
+ * A pass with no live Stripe subscription may start paid Checkout.
+ * The pass date is kept; it is not added onto the paid period.
+ */
+export function compPassCanStartPaidCheckout(
+  access: Pick<SubscriptionAccess, "hasAccess" | "status" | "daysRemaining" | "canStartCheckout">,
+  stripeSubscriptionId: string | null | undefined
+): boolean {
+  return isComplimentaryAccessWindow(access) && !stripeSubscriptionId?.trim();
 }
 
 /** Feature gate for subscription tier (staff/comp should bypass upstream). */

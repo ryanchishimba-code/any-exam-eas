@@ -148,6 +148,22 @@ export async function recordUserLogin(userId: string): Promise<void> {
   });
 }
 
+/**
+ * A pass code skips the 5-day app trial and its welcome email. Verification
+ * still sends. The trial is not consumed and is not started later on top of
+ * the pass.
+ */
+export function resolveSignupEntitlement(plan: string, passCode: string | null | undefined) {
+  const code = passCode?.trim() ?? "";
+  const startsAppTrial = plan === "trial" && !code;
+  return {
+    passCode: code,
+    startsAppTrial,
+    sendsWelcomeTrialEmail: startsAppTrial,
+    sendsVerificationEmail: true as const,
+  };
+}
+
 export async function registerUser(
   input: SignUpInput,
   options?: { signupSource?: string | null }
@@ -170,7 +186,8 @@ export async function registerUser(
   const planTier = parseSubscriptionTier(parsed.tier);
   const planInterval = parseBillingInterval(parsed.interval);
 
-  const passCode = parsed.passCode?.trim() || "";
+  const entitlement = resolveSignupEntitlement(parsed.plan, parsed.passCode ?? "");
+  const passCode = entitlement.passCode;
 
   if (parsed.plan === "trial" && !passCode && (await hasConsumedTrial(parsed.email))) {
     throw new Error(
@@ -178,7 +195,7 @@ export async function registerUser(
     );
   }
 
-  const startsAppTrial = parsed.plan === "trial" && !passCode;
+  const startsAppTrial = entitlement.startsAppTrial;
 
   const subscriptionData = passCode
     ? {

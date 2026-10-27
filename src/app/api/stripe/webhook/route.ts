@@ -3,6 +3,8 @@ import {
   stripe,
   resolveUserIdFromStripeSubscription,
   applySubscriptionFromStripe,
+  buildStripeSubscriptionWrite,
+  invoicePaymentFailedWrite,
 } from "@/lib/stripe";
 import { stripeUnixToDate, subscriptionCurrentPeriodEnd } from "@/lib/stripe-period";
 import { stripeEventMatchesKeyMode } from "@/lib/stripe-livemode";
@@ -205,17 +207,15 @@ export async function POST(req: Request) {
 
         await prisma.subscription.update({
           where: { userId },
-          data: {
+          data: buildStripeSubscriptionWrite({
+            stripeSub,
             stripeCustomerId: String(session.customer),
-            stripeSubscriptionId: subscriptionId,
-            status: stripeSub.status,
-            plan: session.metadata?.plan === "trial" ? "trial" : "subscribe",
             planTier: parseSubscriptionTier(session.metadata?.tier),
             planInterval: parseBillingInterval(session.metadata?.interval),
-            ...(trialEndsAt ? { trialEndsAt } : {}),
-            ...(periodEnd ? { currentPeriodEnd: periodEnd } : {}),
-            canceledAt: null,
-          },
+            currentPeriodEnd: periodEnd,
+            trialEndsAt,
+            plan: session.metadata?.plan === "trial" ? "trial" : "subscribe",
+          }),
         });
 
         if (session.metadata?.plan === "trial") {
@@ -300,10 +300,7 @@ export async function POST(req: Request) {
         if (userId) {
           await prisma.subscription.update({
             where: { userId },
-            data: {
-              status: "past_due",
-              gracePeriodEndsAt: null,
-            },
+            data: invoicePaymentFailedWrite,
           });
           invalidateSubscriptionStatusCache(userId);
 

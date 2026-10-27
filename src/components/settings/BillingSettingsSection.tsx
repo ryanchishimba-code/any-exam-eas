@@ -193,7 +193,9 @@ export function BillingSettingsSection() {
           <p className="text-sm text-slate-700 dark:text-slate-300">
             {isOneTime
               ? "Your pay-once pass has ended."
-              : "Choose a plan to unlock study features."}
+              : status?.status === "inactive" && status.daysRemaining === 0
+                ? "Your complimentary pass has ended. Subscribe to keep studying. You are not charged until you pay."
+                : "Choose a plan to unlock study features."}
           </p>
           <UpgradeIntervalChoice value={interval} onChange={setInterval} tier={tier} />
           <Button
@@ -259,6 +261,15 @@ export function BillingSettingsSection() {
             </p>
           )}
         </div>
+
+        {complimentary && !paymentPastDue && (
+          <Button
+            href={`/checkout?plan=subscribe&interval=${currentInterval}&tier=${currentTier}`}
+            className="w-full"
+          >
+            Upgrade to a paid plan
+          </Button>
+        )}
 
         {isOneTime && !paymentPastDue && (
           <Button

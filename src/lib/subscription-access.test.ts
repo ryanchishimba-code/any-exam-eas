@@ -8,6 +8,7 @@ import {
 import { tierHasFeature, type SubscriptionFeature } from "@/lib/subscription-features";
 import { STUDY_USAGE_LIMITS, resolveStudyUsagePlan } from "@/lib/study/usage-limits";
 import {
+  compPassCanStartPaidCheckout,
   evaluateSubscriptionAccess,
   normalizeSubscriptionForRead,
 } from "@/lib/subscription-access";
@@ -167,6 +168,48 @@ describe("evaluateSubscriptionAccess", () => {
   it("denies past_due and canceled", () => {
     expect(evaluateSubscriptionAccess(sub({ status: "past_due" })).hasAccess).toBe(false);
     expect(evaluateSubscriptionAccess(sub({ status: "canceled" })).hasAccess).toBe(false);
+  });
+
+  it("keeps a paid subscription in front of leftover pass days", () => {
+    const until = new Date(Date.now() + 20 * 86400000);
+    const access = evaluateSubscriptionAccess(
+      sub({
+        status: "active",
+        plan: "subscribe",
+        stripeSubscriptionId: "sub_live_123",
+        compAccessUntil: until,
+      })
+    );
+    expect(access.hasAccess).toBe(true);
+    expect(access.daysRemaining).toBeNull();
+    expect(compPassCanStartPaidCheckout(access, "sub_live_123")).toBe(false);
+    const overlay = applyCompOverlay(
+      sub({
+        status: "active",
+        stripeSubscriptionId: "sub_live_123",
+        compAccessUntil: until,
+      }),
+      access
+    );
+    expect(overlay.daysRemaining).toBeNull();
+  });
+
+  it("resumes leftover pass days after a Stripe subscription is canceled or past due", () => {
+    const until = new Date(Date.now() + 12 * 86400000);
+    for (const status of ["canceled", "past_due"] as const) {
+      const access = evaluateSubscriptionAccess(
+        sub({
+          status,
+          plan: "subscribe",
+          stripeSubscriptionId: status === "canceled" ? null : "sub_live_123",
+          compAccessUntil: until,
+        })
+      );
+      expect(access.hasAccess).toBe(true);
+      expect(access.status).toBe("active");
+      expect(access.canStartCheckout).toBe(false);
+      expect(access.daysRemaining).toBe(12);
+    }
   });
 
   describe("one-time purchases", () => {

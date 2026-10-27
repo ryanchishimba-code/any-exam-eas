@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { isStaffRole } from "@/lib/permissions";
 import {
   evaluateSubscriptionAccess,
+  hasLivePaidEntitlement,
   normalizeSubscriptionForRead,
   subscriptionHasFeature,
   type SubscriptionAccess,
@@ -91,9 +92,9 @@ export function accessRoleForSubscription(
 }
 
 /**
- * Safety overlay for getUserAccess. evaluateSubscriptionAccess already grants a
- * future compAccessUntil and withholds it after the date. This keeps the same
- * rule if a caller passes a base that has not applied it yet.
+ * Safety overlay for getUserAccess. A future pass grants access when no live
+ * paid subscription or pay-once window is already the entitlement. It does not
+ * replace that paid window, and it does not clear compAccessUntil.
  */
 export function applyCompOverlay(
   subscription: Subscription | null,
@@ -102,6 +103,8 @@ export function applyCompOverlay(
   if (!subscription) return base;
 
   const now = new Date();
+
+  if (hasLivePaidEntitlement(subscription)) return base;
 
   if (subscription.compAccessUntil && subscription.compAccessUntil > now) {
     const daysRemaining = Math.max(

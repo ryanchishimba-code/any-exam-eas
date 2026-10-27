@@ -43,7 +43,10 @@ export async function getReactivationInfo(params: {
   subscription: Subscription | null;
   access: SubscriptionAccess;
 }): Promise<ReactivationInfo> {
-  const trialAvailable = !(await hasConsumedTrial(params.email));
+  // A pass does not consume the trial flag, but it is the free window. Do not
+  // offer another 5-day trial after the pass, or the two would stack.
+  const usedCompPass = Boolean(params.subscription?.compAccessUntil);
+  const trialAvailable = !usedCompPass && !(await hasConsumedTrial(params.email));
   const settingsPath = "/settings?reactivate=1";
 
   if (params.access.hasAccess) {
