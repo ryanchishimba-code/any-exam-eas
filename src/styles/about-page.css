@@ -1,0 +1,453 @@
+/* About page. Explicit pairs so light and dark both stay readable.
+   The page uses the preloaded display face only. Inter is the site body
+   font; leaving it on this page pulls a second font onto the first paint. */
+
+body:has(.aee-about) {
+  --font-body: var(--font-display);
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.aee-about {
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  --color-accent: #0f766e;
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  background: #f8fafc;
+  color: #0f172a;
+  color-scheme: light;
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.aee-about-hero.mkt-photo-hero,
+.aee-about-hero .mkt-photo-hero__sub,
+.aee-about-hero .mkt-hero-foot,
+.aee-about-hero.mkt-photo-hero .bl-hero-price {
+  color: #ffffff;
+  text-shadow: 0 1px 2px #061220;
+}
+
+.aee-about-hero .bl-button,
+.aee-about-hero .aee-flagship-cta {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.aee-about-hero {
+  color-scheme: light;
+}
+
+.aee-about .aee-about-hero.mkt-photo-hero h1 {
+  font-size: clamp(1.55rem, 4.15vw, 2.55rem);
+}
+
+.aee-about-hero .home-hero__line,
+.aee-about-hero .home-hero__accent {
+  display: block;
+}
+
+.aee-about-hero .home-hero__accent {
+  color: #5eead4;
+}
+
+.aee-about-hero .mkt-photo-hero__copy {
+  gap: 0.9rem;
+  max-width: 36rem;
+}
+
+.aee-about-hero.mkt-photo-hero .mkt-photo-hero__inner {
+  padding-top: calc(var(--nav-height, 3.5rem) + 0.85rem);
+}
+
+.aee-about-hero .bl-actions__primary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.aee-about-hero .bl-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .aee-about-hero .mkt-photo-hero__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(6, 18, 32, 0.92) 0%,
+      rgba(6, 18, 32, 0.88) 60%,
+      rgba(6, 18, 32, 0.32) 80%,
+      rgba(6, 18, 32, 0.58) 100%
+    );
+  }
+}
+
+.aee-about-hero .mkt-photo-hero__photo {
+  border-image-source: none;
+}
+
+.aee-about-hero.is-photo .mkt-photo-hero__photo {
+  border-image-source: var(--mkt-hero-mobile);
+}
+
+@media (min-width: 768px) {
+  .aee-about-hero.is-photo .mkt-photo-hero__photo {
+    border-image-source: var(--mkt-hero-desktop);
+  }
+}
+
+.aee-about-hero__card .mkt-hero-foot__by {
+  color: #ffffff;
+}
+
+.aee-about-hero__card .mkt-hero-foot__note {
+  color: #e2e8f0;
+}
+
+.aee-about-band {
+  background: #f8fafc;
+  color: #0f172a;
+  color-scheme: light;
+}
+
+.aee-about-band--mist {
+  background: #f1f5f9;
+}
+
+.aee-about-band__inner {
+  width: min(760px, calc(100% - 2rem));
+  margin-inline: auto;
+  padding: 2.75rem 0;
+}
+
+.aee-about-band h2,
+.aee-about-band h3 {
+  margin: 0;
+  color: #0f172a;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.65rem, 3vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.aee-about-band h3 {
+  margin-top: 2.25rem;
+  font-size: 1.2rem;
+}
+
+.aee-about-byline {
+  margin: 0.45rem 0 0;
+  color: #0f172a;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.aee-about-prose {
+  margin: 1rem 0 0;
+  color: #334155;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.aee-about-pull {
+  margin: 1.75rem 0 0.35rem;
+  padding: 0.15rem 0 0.15rem 1.15rem;
+  border-left: 3px solid #0f766e;
+}
+
+.aee-about-pull p {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(1.55rem, 3vw, 2.05rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.aee-about-pull p::before {
+  content: "\201C";
+}
+
+.aee-about-pull p::after {
+  content: "\201D";
+}
+
+.aee-about-features,
+.aee-about-reviewers {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aee-about-features {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.aee-about-features li {
+  padding-left: 0.9rem;
+  border-left: 2px solid #5eead4;
+  color: #0f172a;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.aee-about-reviewers {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.aee-about-reviewers li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+.aee-about-reviewer-name {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.aee-about-reviewers .aee-about-prose {
+  margin-top: 0.3rem;
+}
+
+.aee-about-facts {
+  margin: 1.15rem 0 0;
+}
+
+.aee-about-facts div {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.aee-about-facts dt {
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aee-about-facts dd {
+  margin: 0.3rem 0 0;
+  color: #0f172a;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.aee-about-trust {
+  margin-top: 1.25rem;
+}
+
+.aee-about-trust [data-purchase-trust] {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 40rem;
+  text-align: left;
+}
+
+.aee-about-lead,
+.aee-about-copy,
+.aee-about-contact,
+.aee-about-meta {
+  margin: 0.85rem 0 0;
+  color: #334155;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.aee-about-copy,
+.aee-about-meta {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.aee-about-offer {
+  margin: 0.85rem 0 0;
+  color: #0f172a;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.aee-about-band a {
+  color: #0f766e;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.aee-about-band a:hover {
+  color: #115e59;
+}
+
+.aee-about-exams {
+  display: grid;
+  gap: 0;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .aee-about-exams {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;
+  }
+}
+
+.aee-about-exams a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #0f172a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.aee-about-exams a:hover {
+  color: #0f766e;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .aee-about {
+    --color-ink: #f8fafc;
+    --color-ink-muted: #cbd5e1;
+    --color-accent: #5eead4;
+    --color-bg: #0b1220;
+    --color-surface: #111827;
+    --color-border: #334155;
+    background: #0b1220;
+    color: #f8fafc;
+    color-scheme: dark;
+  }
+
+  :root:not([data-theme="light"]) .aee-about-band {
+    background: #0b1220;
+    color: #f8fafc;
+    color-scheme: dark;
+  }
+
+  :root:not([data-theme="light"]) .aee-about-band--mist {
+    background: #111827;
+  }
+
+  :root:not([data-theme="light"]) .aee-about-band h2,
+  :root:not([data-theme="light"]) .aee-about-band h3,
+  :root:not([data-theme="light"]) .aee-about-offer,
+  :root:not([data-theme="light"]) .aee-about-exams a,
+  :root:not([data-theme="light"]) .aee-about-pull p,
+  :root:not([data-theme="light"]) .aee-about-features li,
+  :root:not([data-theme="light"]) .aee-about-reviewer-name,
+  :root:not([data-theme="light"]) .aee-about-facts dd {
+    color: #f8fafc;
+  }
+
+  :root:not([data-theme="light"]) .aee-about-lead,
+  :root:not([data-theme="light"]) .aee-about-copy,
+  :root:not([data-theme="light"]) .aee-about-prose,
+  :root:not([data-theme="light"]) .aee-about-contact,
+  :root:not([data-theme="light"]) .aee-about-meta,
+  :root:not([data-theme="light"]) .aee-about-facts dt {
+    color: #cbd5e1;
+  }
+
+  :root:not([data-theme="light"]) .aee-about-byline,
+  :root:not([data-theme="light"]) .aee-about-pull {
+    color: #f8fafc;
+    border-color: #5eead4;
+  }
+
+  :root:not([data-theme="light"]) .aee-about-facts div,
+  :root:not([data-theme="light"]) .aee-about-exams a {
+    border-color: #334155;
+  }
+
+  :root:not([data-theme="light"]) .aee-about-band a,
+  :root:not([data-theme="light"]) .aee-about-exams a:hover {
+    color: #5eead4;
+  }
+
+  :root:not([data-theme="light"]) .aee-about-exams a {
+    border-bottom-color: #334155;
+  }
+}
+
+[data-theme="dark"] .aee-about {
+  --color-ink: #f8fafc;
+  --color-ink-muted: #cbd5e1;
+  --color-accent: #5eead4;
+  --color-bg: #0b1220;
+  --color-surface: #111827;
+  --color-border: #334155;
+  background: #0b1220;
+  color: #f8fafc;
+  color-scheme: dark;
+}
+
+[data-theme="dark"] .aee-about-band {
+  background: #0b1220;
+  color: #f8fafc;
+  color-scheme: dark;
+}
+
+[data-theme="dark"] .aee-about-band--mist {
+  background: #111827;
+}
+
+[data-theme="dark"] .aee-about-band h2,
+[data-theme="dark"] .aee-about-band h3,
+[data-theme="dark"] .aee-about-offer,
+[data-theme="dark"] .aee-about-exams a,
+[data-theme="dark"] .aee-about-pull p,
+[data-theme="dark"] .aee-about-features li,
+[data-theme="dark"] .aee-about-reviewer-name,
+[data-theme="dark"] .aee-about-facts dd {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .aee-about-lead,
+[data-theme="dark"] .aee-about-copy,
+[data-theme="dark"] .aee-about-prose,
+[data-theme="dark"] .aee-about-contact,
+[data-theme="dark"] .aee-about-meta,
+[data-theme="dark"] .aee-about-facts dt {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .aee-about-byline,
+[data-theme="dark"] .aee-about-pull {
+  color: #f8fafc;
+  border-color: #5eead4;
+}
+
+[data-theme="dark"] .aee-about-facts div {
+  border-bottom-color: #334155;
+}
+
+[data-theme="dark"] .aee-about-band a,
+[data-theme="dark"] .aee-about-exams a:hover {
+  color: #5eead4;
+}
+
+[data-theme="dark"] .aee-about-exams a {
+  border-bottom-color: #334155;
+}

@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
-import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { NOT_FOR_PATIENT_CARE_LINE } from "@/lib/marketing/legal-copy";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
 import { MARKETING_BOARD_LINKS, ROUTES } from "@/lib/routes";
 import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER } from "@/lib/site";
 
 const EXPLORE_LINKS = [
+  { href: "/daily", label: "Question of the Day" },
   { href: ROUTES.blog, label: "Blog" },
   { href: ROUTES.freeGuides, label: "Free Guides" },
   { href: ROUTES.pricing, label: "Pricing" },
@@ -80,7 +80,6 @@ export function Footer() {
               >
                 {LEGAL_ENTITY.supportEmail}
               </a>
-              <SupportPhoneLink className="inline-flex min-h-6 items-center whitespace-nowrap transition hover:text-[var(--color-accent)]" />
             </p>
           </div>
           <FooterColumn title="Exams" label="Exam links" links={MARKETING_BOARD_LINKS} />

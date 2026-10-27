@@ -8,6 +8,7 @@ const SIGNUP_QUERY_KEYS = [
   "interval",
   "tier",
   "exam",
+  "board",
   "promo",
   "utm_source",
   "utm_medium",

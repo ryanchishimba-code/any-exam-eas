@@ -1,6 +1,6 @@
 import type { BillingInterval } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
-import { isExamSlug } from "@/lib/edtech/exams";
+import { parseBoardSlug } from "@/lib/auth/board-intent";
 import { parseSubscriptionTier, type SubscriptionTier } from "@/lib/subscription-tiers";
 import type { SignupPlan } from "@/lib/validators/auth";
 import type { ExamSlug } from "@/types/edtech";
@@ -21,15 +21,37 @@ export function resolveSignupIntent(input: {
   interval?: string | null;
   tier?: string | null;
   exam?: string | null;
+  board?: string | null;
   promo?: string | null;
 }): SignupIntent {
+  const exam = parseBoardSlug(input.board) ?? parseBoardSlug(input.exam) ?? "";
   return {
     plan: input.plan === "subscribe" ? "subscribe" : "trial",
     interval: parseBillingInterval(input.interval ?? undefined),
     tier: parseSubscriptionTier(input.tier ?? undefined),
-    exam: input.exam && isExamSlug(input.exam) ? input.exam : "",
+    exam,
     promo: input.promo?.trim() ?? "",
   };
+}
+
+/**
+ * A signed-in visitor who arrived with a plan query should reach checkout
+ * with that query. A bare /signup visit still goes to the dashboard.
+ */
+export function signedInSignupRedirect(input: {
+  plan?: string | null;
+  interval?: string | null;
+  tier?: string | null;
+  promo?: string | null;
+  exam?: string | null;
+}): string {
+  const next = new URLSearchParams();
+  for (const key of ["plan", "interval", "tier", "promo", "exam"] as const) {
+    const value = input[key]?.trim();
+    if (value) next.set(key, value);
+  }
+  const qs = next.toString();
+  return qs ? `/checkout?${qs}` : "/dashboard";
 }
 
 /** Paid path after account creation, or the OAuth return for Skip-trial. */

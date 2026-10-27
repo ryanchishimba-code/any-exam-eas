@@ -2,39 +2,33 @@ import { test, expect } from "@playwright/test";
 import { expectNoA11yViolations } from "./helpers/axe";
 
 /**
- * About Us page — public marketing page (no auth required).
- * Validates the key positioning content + the value "showdown" charts render,
- * and that the page is free of serious accessibility violations.
+ * About page — founder story. Public marketing page, no auth.
  */
 test.describe("About page", () => {
-  test("renders hero, mission, showdown charts, and verdict", async ({ page }) => {
+  test("renders the founder hero, pull quote, and price", async ({ page }) => {
     await page.goto("/about", { waitUntil: "domcontentloaded" });
 
-    // Hero
-    await expect(page.getByRole("heading", { level: 1, name: /premium board prep/i })).toBeVisible();
-    await expect(page.getByText(/built in the heart of texas/i)).toBeVisible();
-
-    // Showdown charts (Recharts renders in a real browser)
-    await expect(page.getByText(/one plan vs\. six subscriptions/i)).toBeVisible();
-    await expect(page.getByText(/value coverage, side by side/i)).toBeVisible();
-
-    // Verdict
-    await expect(page.getByText(/anyexameasy is the obvious clear winner/i)).toBeVisible();
-
-    // Trust + CTA
-    await expect(page.getByText(/12\+ years/i).first()).toBeVisible();
-    await expect(page.getByRole("link", { name: /free trial/i }).first()).toBeVisible();
+    await expect(
+      page.getByRole("heading", {
+        level: 1,
+        name: /any exam easy\s+exam prep from the founder/i,
+      })
+    ).toBeVisible();
+    await expect(page.getByText("This is my gift to my former self.").first()).toBeVisible();
+    await expect(page.getByText("$27.99").first()).toBeVisible();
+    await expect(page.getByText("883-6375")).toHaveCount(0);
+    await expect(page.getByRole("link", { name: /start free trial/i }).first()).toBeVisible();
   });
 
   test("trial CTA points at signup", async ({ page }) => {
     await page.goto("/about", { waitUntil: "domcontentloaded" });
-    const cta = page.getByRole("link", { name: /free trial/i }).first();
+    const cta = page.getByRole("link", { name: /start free trial/i }).first();
     await expect(cta).toHaveAttribute("href", /\/signup/);
   });
 
   test("has a descriptive document title", async ({ page }) => {
     await page.goto("/about", { waitUntil: "domcontentloaded" });
-    await expect(page).toHaveTitle(/about/i);
+    await expect(page).toHaveTitle("Any Exam Easy Exam Prep from the Founder");
   });
 
   test("passes serious axe checks", async ({ page }) => {

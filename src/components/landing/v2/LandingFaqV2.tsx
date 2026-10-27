@@ -10,13 +10,12 @@
 
 import type { ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
-import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { PRO_ANNUAL_SAVINGS_PERCENT } from "@/lib/pricing-defaults";
 import { formatMonthlyPrice, formatSignupTrialScope } from "@/lib/site";
 
-const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail} or call ${LEGAL_ENTITY.supportPhone.display}.`;
+const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail}.`;
 
 const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   {
@@ -72,8 +71,7 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
           className="font-semibold text-[var(--color-accent)] hover:underline"
         >
           {LEGAL_ENTITY.supportEmail}
-        </a>{" "}
-        or call <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.
+        </a>.
       </>
     ),
   },

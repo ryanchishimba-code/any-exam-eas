@@ -1,6 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
+import { BoardIntentBeacon } from "@/components/auth/BoardIntentBeacon";
 import { SessionProvider } from "@/components/SessionProvider";
 import { LoginModalRoot } from "@/components/auth/LoginModalRoot";
 import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
@@ -19,6 +20,9 @@ export function AppProviders({ children }: { children: ReactNode }) {
     <ThemeProvider>
       <AppQueryProvider>
         <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <BoardIntentBeacon />
+        </Suspense>
         <SessionProvider>
           <UserAccessProvider>
             <LoginModalRoot>

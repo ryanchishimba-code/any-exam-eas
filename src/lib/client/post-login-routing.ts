@@ -1,4 +1,5 @@
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
+import { isExamSlug } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
 
 export type PostLoginSubscriptionStatus = {
@@ -48,6 +49,21 @@ export function resolvePostLoginDestination(
     }
 
     return "/settings?reactivate=1";
+  }
+
+  // A saved board is the account's exam. Later logins open that dashboard
+  // instead of whichever board page, guide, or question-bank URL was open.
+  if (examSlug && isExamSlug(examSlug)) {
+    if (
+      safe.startsWith("/checkout") ||
+      safe.startsWith("/signup") ||
+      safe.startsWith("/pricing") ||
+      safe.startsWith("/settings") ||
+      safe.startsWith(ROUTES.dashboard)
+    ) {
+      return safe;
+    }
+    return ROUTES.dashboard;
   }
 
   if (

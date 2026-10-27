@@ -58,6 +58,20 @@ export async function getUserExamPreferenceFresh(
   return readUserExamPreferenceFromDb(userId);
 }
 
+/**
+ * First signup or first sign-in may set the board. A later visit must not.
+ * Returns true only when a new row was created.
+ */
+export async function assignBoardIfUnset(userId: string, examSlug: ExamSlug): Promise<boolean> {
+  const existing = await prisma.userExamPreference.findUnique({
+    where: { userId },
+    select: { userId: true },
+  });
+  if (existing) return false;
+  await setUserExamPreference(userId, examSlug);
+  return true;
+}
+
 export async function setUserExamPreference(userId: string, examSlug: ExamSlug): Promise<void> {
   await ensureBoardExam(examSlug);
 

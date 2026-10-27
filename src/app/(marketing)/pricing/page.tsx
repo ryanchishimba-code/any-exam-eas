@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { Suspense } from "react";
-import { Map, BookOpen, Timer } from "lucide-react";
 import { PricingTiers } from "@/components/pricing/PricingTiers";
-import { PricingBoardHeadline } from "@/components/pricing/PricingBoardHeadline";
-import { PageShell } from "@/components/PageShell";
-import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-metadata";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
+import { buildPricingJsonLd, buildPricingMetadata } from "@/lib/seo/marketing-metadata";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { formatMonthlyPrice } from "@/lib/site";
-import { ROUTES } from "@/lib/routes";
+import "@/styles/pricing-page.css";
 
 /**
- * Five-minute ISR. Query-string headlines and paywall notices render in
- * Suspense so this document can stay cached. The visible total is the live
- * bank-counts snapshot. The head uses a floor of that same total.
+ * Five-minute ISR. Query-string paywall notices render in their own Suspense
+ * boundary so the H1, price, and trial link stay in the cached document.
  */
 export const revalidate = 300;
 
@@ -25,90 +19,30 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildPricingMetadata(staticLabel || undefined);
 }
 
-const STUDY_PATH = [
-  {
-    icon: Map,
-    title: "Roadmap",
-    line: "A personalized study plan mapped to your exam's official blueprint.",
-  },
-  {
-    icon: BookOpen,
-    title: "Deep Dive",
-    line: "Structured review modules you open from missed questions.",
-  },
-  {
-    icon: Timer,
-    title: "Full Exam",
-    line: "Timed, full-length practice exams with board-day pacing.",
-  },
-] as const;
-
 const PricingQueryNotices = dynamic(() =>
   import("@/components/pricing/PricingQueryNotices").then((m) => m.PricingQueryNotices)
 );
 
 export default async function PricingPage() {
   const { exactLabel } = await loadPublicQuestionCounts({ dynamic: false });
+  const lede = exactLabel
+    ? `${exactLabel} questions across six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`
+    : `Six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`;
 
   return (
     <>
       <JsonLdScript data={buildPricingJsonLd(exactLabel || undefined)} />
-      <PageShell
-        title={
-          <Suspense fallback={<>Six boards. One monthly price.</>}>
-            <PricingBoardHeadline />
-          </Suspense>
-        }
-        description={
-          exactLabel
-            ? `${exactLabel} questions across six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`
-            : `Six boards. One plan from ${formatMonthlyPrice("pro")}/mo.`
-        }
-        align="center"
-        maxWidth="max-w-3xl"
-      >
+      <div className="aee-pricing">
+        <header className="aee-pricing-hero">
+          <p className="aee-pricing-kicker">Pro plan</p>
+          <h1>Six boards. One monthly price.</h1>
+          <p className="aee-pricing-lede">{lede}</p>
+        </header>
         <Suspense fallback={null}>
           <PricingQueryNotices />
         </Suspense>
-
-        <div className="mt-6" data-pricing-fold>
-          <Suspense fallback={null}>
-            <PricingTiers />
-          </Suspense>
-        </div>
-
-        <ol className="mx-auto mt-10 grid max-w-2xl gap-3 sm:grid-cols-3" role="list">
-          {STUDY_PATH.map((step, index) => (
-            <li
-              key={step.title}
-              className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-4 text-left"
-            >
-              <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-accent)]">
-                <step.icon className="h-3.5 w-3.5" aria-hidden />
-                {String(index + 1).padStart(2, "0")} {step.title}
-              </p>
-              <p className="mt-2 text-sm leading-snug text-[var(--color-ink-muted)]">{step.line}</p>
-            </li>
-          ))}
-        </ol>
-
-        <PurchaseTrustNotes className="mt-8" showTrialOffer={false} />
-        <p className="mx-auto mt-6 text-center text-sm">
-          <Link href={ROUTES.howQuestionsAreReviewed} className="font-semibold text-[var(--color-accent)] hover:underline">
-            How questions are built and reviewed
-          </Link>
-        </p>
-        <p className="mx-auto mt-4 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-          Study tool only — not a guarantee of exam results.{" "}
-          <Link href="/legal/terms" className="text-[var(--color-accent)] underline">
-            Terms
-          </Link>
-          {" · "}
-          <Link href="/legal/refunds" className="text-[var(--color-accent)] underline">
-            Refunds
-          </Link>
-        </p>
-      </PageShell>
+        <PricingTiers />
+      </div>
     </>
   );
 }

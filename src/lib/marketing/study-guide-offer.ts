@@ -31,7 +31,7 @@ export function studyGuideOfferCards(): StudyGuideOfferCard[] {
       title: config.title,
       body: offerBody(),
       trialHref: landingTrialHrefForExam(exam),
-      signInHref: `/login?callbackUrl=${encodeURIComponent(config.routeBase)}`,
+      signInHref: `/login?callbackUrl=${encodeURIComponent(config.routeBase)}&board=${exam}`,
     };
   });
 }

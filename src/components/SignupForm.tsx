@@ -271,6 +271,7 @@ export function SignupForm({
               {googleEnabled ? (
                 <GoogleSignInButton
                   large
+                  board={examSlug || undefined}
                   callbackUrl={oauthCallbackUrl}
                   onClick={() => {
                     const trimmedEmail = email.trim();
@@ -287,6 +288,7 @@ export function SignupForm({
               <SocialLoginButton
                 provider="linkedin"
                 large
+                board={examSlug || undefined}
                 callbackUrl={oauthCallbackUrl}
                 onClick={() => {
                   const trimmedEmail = email.trim();

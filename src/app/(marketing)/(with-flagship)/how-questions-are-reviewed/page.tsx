@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { ClinicalReviewers } from "@/components/marketing/ClinicalReviewers";
 import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSections";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
@@ -175,9 +174,7 @@ export default async function HowQuestionsAreReviewedPage() {
               href={`mailto:${LEGAL_ENTITY.supportEmail}?subject=${encodeURIComponent("Question issue")}`}
             >
               {LEGAL_ENTITY.supportEmail}
-            </a>{" "}
-            or call <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />
-            .
+            </a>.
           </p>
         </section>
 

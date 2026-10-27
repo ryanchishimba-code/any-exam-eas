@@ -47,6 +47,11 @@ const PAGES = [
     focalY: 0.42,
     lines: ["NPTE-PT practice", "written for physical therapists."],
   },
+  {
+    id: "about",
+    focalY: 0.42,
+    lines: ["Any Exam Easy", "exam prep from the founder"],
+  },
 ];
 
 function escapeXml(value) {
@@ -130,6 +135,11 @@ async function buildOne(page) {
 }
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
-for (const page of PAGES) {
+const only = process.argv[2];
+const pages = only ? PAGES.filter((page) => page.id === only) : PAGES;
+if (only && pages.length === 0) {
+  throw new Error(`Unknown share card: ${only}`);
+}
+for (const page of pages) {
   await buildOne(page);
 }

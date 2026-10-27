@@ -5,7 +5,6 @@ import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { GraduationCap, LogOut, Map } from "lucide-react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
-import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { AppearanceSettings } from "@/components/settings/AppearanceSettings";
 import { BillingSettingsSection } from "@/components/settings/BillingSettingsSection";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
@@ -86,8 +85,7 @@ export function SettingsClient({
             className="font-semibold text-[var(--color-accent)] hover:underline"
           >
             {LEGAL_ENTITY.supportEmail}
-          </a>{" "}
-          or call <SupportPhoneLink className="font-semibold text-[var(--color-accent)] hover:underline" />.
+          </a>.
         </p>
         <button
           type="button"

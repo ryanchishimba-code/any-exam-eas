@@ -23,8 +23,9 @@ import {
   formatMonthlyPrice,
   formatPricingCheckoutTrialOffer,
   formatTrialLabel,
-  formatTrialQuestionLimit,
 } from "@/lib/site";
+import { getBillingPlanTier } from "@/lib/billing-plans";
+import { pricingFaqItems } from "@/lib/marketing/pricing-faq";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { comparePageFaqJsonLdEntities } from "@/lib/seo/compare-faq";
 import { SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
@@ -35,7 +36,9 @@ import {
   enforceMetaTitle,
 } from "@/lib/seo/meta-budget";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
-import { clinicalReviewerPersonNodes } from "@/lib/marketing/company";
+import { ABOUT_FOUNDER } from "@/lib/marketing/about-copy";
+import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
+import { landingOgImage } from "@/lib/seo/landing-og-image";
 import { publicExamSeo } from "@/lib/marketing/public-format-copy";
 
 function baseOpenGraph(
@@ -202,14 +205,24 @@ export function buildCompareJsonLd() {
   };
 }
 
+const ABOUT_TITLE = "Any Exam Easy Exam Prep from the Founder";
+const ABOUT_DESCRIPTION =
+  "Any Exam Easy exam prep from founder Ryan Chishimba, PharmD. One plan for NCLEX, NAPLEX, USMLE, PANCE, FNP, and NPTE-PT. Start a 5-day free trial.";
+
 export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
-  const title = `About ${SITE_NAME} — 6-Board Qbank`;
+  const title = ABOUT_TITLE;
   // Description stays inside the meta budget without a bank-size slogan.
-  const description =
-    "Independent NCLEX and USMLE Qbank plus NAPLEX, PANCE, FNP and NPTE on one Pro plan. QA-gated items with Roadmap, Deep Dives, and sources when stored.";
+  const description = ABOUT_DESCRIPTION;
   void serveReadyTotalLabel;
+  const card = landingOgImage("about");
+  const base = baseOpenGraph(title, description, "/about", { absoluteTitle: true });
   return {
-    ...baseOpenGraph(title, description, "/about", { absoluteTitle: true }),
+    ...base,
+    authors: [{ name: SITE_NAME, url: getSiteUrl() }],
+    creator: LEGAL_ENTITY.companyName,
+    publisher: LEGAL_ENTITY.companyName,
+    openGraph: base.openGraph ? { ...base.openGraph, images: [card] } : undefined,
+    twitter: base.twitter ? { ...base.twitter, images: [card.url] } : undefined,
     keywords: [
       "about AnyExamEasy",
       "NCLEX question bank",
@@ -370,35 +383,37 @@ export function buildPricingJsonLd(totalLabel?: string) {
         image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
         brand: { "@type": "Brand", name: SITE_NAME },
         url,
-        offers: {
-          "@type": "Offer",
-          price: TIER_MONTHLY_USD.pro.toFixed(2),
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
-          url: absoluteUrl("/signup?plan=trial&tier=pro"),
-          description: formatPricingCheckoutTrialOffer(),
-        },
+        offers: (["monthly", "yearly"] as const).map((interval) => {
+          const plan = getBillingPlanTier("pro", interval);
+          return {
+            "@type": "Offer" as const,
+            name: interval === "monthly" ? `${SITE_NAME} Pro monthly` : `${SITE_NAME} Pro annual`,
+            price: plan.totalUsd.toFixed(2),
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+            url: absoluteUrl(`/signup?plan=trial&tier=pro&interval=${interval}`),
+            description: formatPricingCheckoutTrialOffer(),
+            priceSpecification: {
+              "@type": "UnitPriceSpecification" as const,
+              price: plan.totalUsd.toFixed(2),
+              priceCurrency: "USD",
+              unitCode: interval === "monthly" ? "MON" : "ANN",
+              referenceQuantity: {
+                "@type": "QuantitativeValue" as const,
+                value: 1,
+                unitCode: interval === "monthly" ? "MON" : "ANN",
+              },
+            },
+          };
+        }),
       },
       {
         "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Does AnyExamEasy cover multiple board exams on one plan?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: `Yes — ${SITE_NAME} Pro includes NCLEX, USMLE (Steps 1–3), NAPLEX, PANCE, AANP FNP, and NPTE-PT on one subscription at ${formatMonthlyPrice("pro")}/mo instead of buying separate single-exam products for each board.`,
-            },
-          },
-          {
-            "@type": "Question",
-            name: "What is included in the free trial?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: `${formatTrialLabel()} with ${formatTrialQuestionLimit()} across all six board exams — no payment method required.`,
-            },
-          },
-        ],
+        mainEntity: pricingFaqItems().map((item) => ({
+          "@type": "Question" as const,
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer" as const, text: item.answer },
+        })),
       },
     ],
   };
@@ -407,6 +422,23 @@ export function buildPricingJsonLd(totalLabel?: string) {
 export function buildAboutJsonLd() {
   const url = absoluteUrl("/about");
   const site = getSiteUrl();
+  const organizationId = `${site}#organization`;
+  const founderId = `${url}#founder`;
+  const nursing = CLINICAL_REVIEWERS.find((reviewer) => reviewer.id === "nursing");
+  const people = [
+    {
+      "@type": "Person" as const,
+      "@id": founderId,
+      name: ABOUT_FOUNDER.name,
+      jobTitle: ABOUT_FOUNDER.jobTitle,
+    },
+    {
+      "@type": "Person" as const,
+      "@id": `${url}#nursing`,
+      name: nursing?.displayName ?? "Ileen Chishimba, RN",
+      jobTitle: nursing?.jobTitle ?? "Nursing content review lead (NCLEX-RN/PN)",
+    },
+  ];
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -418,15 +450,28 @@ export function buildAboutJsonLd() {
         ],
       },
       {
+        "@type": "AboutPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: ABOUT_TITLE,
+        description: ABOUT_DESCRIPTION,
+        isPartOf: { "@type": "WebSite", name: SITE_NAME, url: site },
+        about: { "@id": organizationId },
+        mainEntity: { "@id": organizationId },
+        mentions: people.map((person) => ({ "@id": person["@id"] })),
+      },
+      {
         "@type": "Organization",
+        "@id": organizationId,
         name: LEGAL_ENTITY.companyName,
         url: site,
         logo: absoluteUrl("/icons/icon-192.png"),
         description: seoPlatformPitch(),
         foundingLocation: { "@type": "Place", name: "Texas, USA" },
+        founder: { "@id": founderId },
         contactPoint: organizationContactPoint(),
       },
-      ...clinicalReviewerPersonNodes(),
+      ...people,
     ],
   };
 }

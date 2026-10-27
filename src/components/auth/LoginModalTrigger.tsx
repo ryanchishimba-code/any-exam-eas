@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { MouseEvent, ReactNode } from "react";
+import { stampBoardIntentFromLocation } from "@/lib/auth/board-intent";
 import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
 import { useLoginModalOptional } from "./LoginModalProvider";
 
@@ -28,6 +29,7 @@ export function LoginModalTrigger({
       className={className}
       aria-label={ariaLabel}
       onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+        stampBoardIntentFromLocation();
         onClick?.();
         if (!modal) return;
         if (

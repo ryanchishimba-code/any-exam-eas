@@ -166,6 +166,12 @@ describe("checkout href helpers", () => {
     );
   });
 
+  it("keeps a board from pricing or checkout on the signup link", () => {
+    expect(
+      signupHrefFromCheckoutQuery({ ...trialQuery, board: "naplex", exam: "naplex" })
+    ).toBe("/signup?plan=trial&interval=monthly&tier=pro&exam=naplex&board=naplex");
+  });
+
   it("forces plan=subscribe on the paid fallback", () => {
     expect(paidSubscribeHrefFromCheckoutQuery(trialQuery)).toBe(
       "/checkout?plan=subscribe&interval=monthly&tier=pro&reactivate=1"
