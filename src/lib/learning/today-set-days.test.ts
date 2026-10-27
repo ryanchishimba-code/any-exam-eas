@@ -1,6 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { resetSharedDailyPackCache } from "@/lib/learning/daily-pack-serve";
 import {
   invalidateTodayServedCache,
+  loadReviewMissesSet,
   loadServedTodaySet,
   loadTodaySetPreview,
 } from "@/lib/learning/today-set-plan";
@@ -161,6 +163,7 @@ describe("consecutive local days for one student", () => {
     state.open = {};
     state.seen = {};
     state.fieldId = "nursing";
+    resetSharedDailyPackCache();
     await invalidateTodayServedCache(USER, "nursing", DAY_1);
     await invalidateTodayServedCache(USER, "pharmacy", DAY_1);
   });
@@ -188,27 +191,32 @@ describe("consecutive local days for one student", () => {
         timeZone: ZONE,
       });
 
-      expect(first.mix.ids).toHaveLength(25);
-      expect(first.mix.reviewCount).toBe(15);
-      expect(first.mix.newCount).toBe(10);
-      expect(first.mix.mixLine).toBe("15 to review · 10 new");
+      const prefix = board.fieldId === "pharmacy" ? "naplex" : "nclex";
+      expect(first.mix.reviewCount).toBe(0);
+      expect(first.mix.newCount).toBe(first.mix.ids.length);
+      expect(first.mix.mixLine).toBe(`${first.mix.ids.length} questions`);
       expect(preview.mixLine).toBe(first.mix.mixLine);
-      expect(preview.reviewCount).toBe(first.mix.reviewCount);
-      expect(preview.newCount).toBe(first.mix.newCount);
+      expect(preview.target).toBe(first.mix.ids.length);
       expect(first.mix.ids).not.toContain(board.hiddenId);
+      expect(first.mix.ids.every((id) => id.startsWith(`${prefix}-`))).toBe(true);
       expect(first.items.map((item) => item.id)).toEqual(first.mix.ids);
 
       const topicById = new Map(board.fresh.map((row) => [row.id, row.subjectId]));
-      const newTopics = new Set(first.mix.newIds.map((id) => topicById.get(id)));
-      expect(newTopics.size).toBeGreaterThan(1);
-      expect(first.mix.newIds.slice(0, 10).every((id) => id.includes("-a-"))).toBe(false);
+      const topics = new Set(first.mix.ids.map((id) => topicById.get(id)));
+      expect(topics.size).toBeGreaterThan(1);
 
-      const answeredNew = first.mix.newIds.slice(0, 3);
-      const answeredReview = first.mix.reviewIncorrectIds.slice(0, 2);
-      state.seen[board.fieldId] = [...answeredNew, ...answeredReview];
-      state.open[board.fieldId] = state.open[board.fieldId]!.filter(
-        (id) => !answeredReview.includes(id)
-      );
+      const review = await loadReviewMissesSet({
+        userId: USER,
+        examSlug: board.examSlug,
+        fieldId: board.fieldId,
+        size: 20,
+        now: DAY_1,
+        timeZone: ZONE,
+      });
+      expect(review.mix.mixLine).toBe("20 to review");
+      expect(review.mix.newCount).toBe(0);
+      expect(review.mix.ids).not.toContain(board.hiddenId);
+      expect(review.mix.ids.filter((id) => first.mix.ids.includes(id))).toEqual([]);
 
       await invalidateTodayServedCache(USER, board.fieldId, STILL_DAY_1);
       const laterSameDay = await loadServedTodaySet({
@@ -222,7 +230,6 @@ describe("consecutive local days for one student", () => {
       expect(laterSameDay.mix.ids).toEqual(first.mix.ids);
       expect(laterSameDay.mix.mixLine).toBe(first.mix.mixLine);
 
-      await invalidateTodayServedCache(USER, board.fieldId, DAY_2);
       const second = await loadServedTodaySet({
         userId: USER,
         examSlug: board.examSlug,
@@ -232,18 +239,13 @@ describe("consecutive local days for one student", () => {
         timeZone: ZONE,
       });
 
-      expect(second.mix.ids).toHaveLength(25);
-      expect(second.mix.reviewCount).toBe(15);
-      expect(second.mix.newCount).toBe(10);
-      expect(second.mix.mixLine).toBe("15 to review · 10 new");
+      const lengths = [first.mix.ids.length, second.mix.ids.length].sort((a, b) => a - b);
+      expect(lengths).toEqual([16, 20]);
       expect(second.mix.ids).not.toEqual(first.mix.ids);
       expect(second.mix.ids).not.toContain(board.hiddenId);
-      expect(second.mix.newIds.filter((id) => first.mix.newIds.includes(id))).toEqual([]);
-      expect(second.mix.newIds.filter((id) => answeredNew.includes(id))).toEqual([]);
-      expect(
-        second.mix.reviewIncorrectIds.filter((id) => first.mix.reviewIncorrectIds.includes(id))
-      ).toEqual([]);
-      expect(second.mix.reviewCount / second.mix.ids.length).toBeLessThanOrEqual(0.6);
+      expect(second.mix.ids.filter((id) => first.mix.ids.includes(id))).toEqual([]);
+      expect(new Set([...first.mix.ids, ...second.mix.ids]).size).toBe(36);
+      expect(second.mix.reviewCount).toBe(0);
     });
   }
 });

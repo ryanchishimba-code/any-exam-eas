@@ -4,6 +4,7 @@
  */
 
 import { ineligibleServedIds } from "@/lib/exam-prep/student-eligibility";
+import { excludeStep3FiledOnStep2 } from "@/lib/learning/daily-pack";
 import { prisma } from "@/lib/prisma";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
@@ -409,6 +410,7 @@ export async function buildUsmleTodayForUser(input: {
       fieldId,
       active: true,
       qaPassed: true,
+      ...excludeStep3FiledOnStep2(fieldId),
     },
     select: {
       id: true,

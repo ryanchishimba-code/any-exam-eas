@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Lock } from "lucide-react";
+import { ReviewMissesButton } from "@/components/dashboard/ReviewMissesButton";
 import { StartTodaySetButton } from "@/components/dashboard/StartTodaySetButton";
 import { TodayMixLine, TodaySessionProvider, TodayStartLive } from "@/components/dashboard/TodaySession";
 import { TodayGoalRing } from "@/components/dashboard/TodayGoalRing";
@@ -102,11 +103,14 @@ export function DashboardTodayBlock({
         ) : deferMix ? (
           <TodayStartLive fieldId={mixFieldId} />
         ) : (
-          <StartTodaySetButton
-            fieldId={mixFieldId}
-            disabled={startDisabled}
-            label={startLabel}
-          />
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+            <StartTodaySetButton
+              fieldId={mixFieldId}
+              disabled={startDisabled}
+              label={startLabel}
+            />
+            <ReviewMissesButton fieldId={mixFieldId} />
+          </div>
         )}
       </section>
     </div>

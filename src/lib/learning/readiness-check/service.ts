@@ -1,7 +1,8 @@
 import type { Prisma } from "@prisma/client";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { todayPracticeHref } from "@/lib/edtech/practice-links-core";
+import { dailySetPracticeHref, todayPracticeHref } from "@/lib/edtech/practice-links-core";
+import { examUsesSharedDailyPack } from "@/lib/learning/daily-pack";
 import { canonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
 import {
   getExamTestDate,
@@ -644,7 +645,9 @@ export async function loadReadinessPage(params: {
   return {
     ...card,
     examName: params.examName,
-    todayHref: todayPracticeHref(params.examSlug, 20, params.fieldId),
+    todayHref: examUsesSharedDailyPack(params.examSlug, params.fieldId)
+      ? dailySetPracticeHref(params.examSlug, params.fieldId)
+      : todayPracticeHref(params.examSlug, 20, params.fieldId),
     areas: latestAreas.map((row) => ({
       ...row,
       labelText: READINESS_LEVEL_LABEL[row.level],

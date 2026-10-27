@@ -331,7 +331,9 @@ describe("question-bank-setup", () => {
       })
     ).toBe("daily_set");
     expect(bankStyleHonorsLaunchStyle("adaptive", "daily_set")).toBe(false);
+    expect(bankStyleHonorsLaunchStyle("adaptive", "review_misses")).toBe(false);
     expect(deliberateFormatForLaunch("daily_set", "ngn")).toBeNull();
+    expect(deliberateFormatForLaunch("review_misses", "case")).toBeNull();
     expect(
       validateQuestionBankSession({
         subjectId: MIXED_SUBJECT_ID,
@@ -420,6 +422,9 @@ describe("effective question-bank style", () => {
     );
     expect(effectiveQuestionBankStyle("today", { subjectId: MIXED_SUBJECT_ID })).toBe("today");
     expect(effectiveQuestionBankStyle("daily_set", { subjectId: MIXED_SUBJECT_ID })).toBe("daily_set");
+    expect(effectiveQuestionBankStyle("review_misses", { subjectId: MIXED_SUBJECT_ID })).toBe(
+      "review_misses"
+    );
   });
 
   it("keeps a valid style when mixed topics changes back to one topic", () => {

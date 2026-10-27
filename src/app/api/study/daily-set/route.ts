@@ -1,10 +1,8 @@
 /**
  * POST /api/study/daily-set
  *
- * One sitting for the board in `field` (the question-bank page field, which
- * already prefers the URL over the saved exam). Mixes open remediation,
- * due spaced review, and unseen blueprint-weighted items. Review is capped
- * so a long miss list still leaves new questions in the set.
+ * One sitting for the board in `field`. Serves the shared daily pack for the
+ * Chicago date. Misses stay on POST /api/study/review-misses.
  */
 
 import { NextResponse } from "next/server";
@@ -14,7 +12,7 @@ import { trackConversionServer } from "@/lib/analytics/conversions";
 import { examSlugForFieldId } from "@/lib/edtech/exam-field-ids";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 import { getFieldMetaById } from "@/lib/fields";
-import { resolveTodaySetSize } from "@/lib/learning/today-set";
+import { DAILY_PACK_SIZE } from "@/lib/learning/daily-pack";
 import { loadServedTodaySet } from "@/lib/learning/today-set-plan";
 import { sealCatalogQuestionKey, sealStudentFacingIds } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
@@ -49,7 +47,7 @@ export async function POST(req: Request) {
     const access = await enforceQuestionBankFieldAccess(premium.userId, body.field);
     if (!access.ok) return access.response;
 
-    const target = resolveTodaySetSize();
+    const target = DAILY_PACK_SIZE;
     const { checkStudyQuestionUsage, recordStudyQuestionsServed } = await import(
       "@/lib/study/usage-limits"
     );

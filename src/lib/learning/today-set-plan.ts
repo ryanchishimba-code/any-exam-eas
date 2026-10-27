@@ -1,14 +1,8 @@
 /**
- * Loads the ids behind today's set.
- *
- * Review incorrect uses the shared open-remediation queue. Spaced review uses
- * QuestionMastery rows that are already due. New items are unseen, servable
- * bank rows, weighted by the blueprint and spread across topics. Enough new
- * rows are loaded to fill the slots the
- * review cap leaves open; compose backfills with more review when that pool
- * is short. The set is chosen once per local calendar day and then reused.
- * America/Chicago is the fallback zone. Every exam goes through this
- * function; the field id decides the bank.
+ * Today's set is the shared daily pack: one sequence per practice field,
+ * sliced by the America/Chicago date. Review misses is a separate sitting
+ * and still uses open remediation plus due QuestionMastery rows, on the
+ * student's calendar day.
  */
 
 import { questionBankHref } from "@/lib/edtech/practice-links-core";
@@ -48,6 +42,8 @@ import {
   recordDailyHabitDay,
 } from "@/lib/learning/today-set-preference";
 import { ineligibleServedIds } from "@/lib/exam-prep/student-eligibility";
+import { DAILY_PACK_SIZE } from "@/lib/learning/daily-pack";
+import { loadSharedDailyPack } from "@/lib/learning/daily-pack-serve";
 import { prisma } from "@/lib/prisma";
 import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import type { ExamSlug } from "@/types/edtech";
@@ -172,6 +168,7 @@ export async function invalidateTodayServedCache(
   void now;
   cacheDeleteMatching(`${cacheKey(["today-set-served-v2", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["today-set-served-v1", userId])}:`);
+  cacheDeleteMatching(`${cacheKey(["today-set-review-v1", userId])}:`);
 }
 
 function topicKeyForRow(row: {
@@ -336,13 +333,17 @@ export async function selectTodaySet(params: {
   calendarDate?: string | null;
   avoidReviewIds?: readonly string[];
   recentlyShownNewIds?: readonly string[];
+  /** Misses and due review only. Unseen bank rows stay out of this sitting. */
+  reviewOnly?: boolean;
+  targetOverride?: number;
 }): Promise<TodaySetSelection> {
   const now = params.now ?? new Date();
   const calendarDate =
     params.calendarDate && /^\d{4}-\d{2}-\d{2}$/.test(params.calendarDate)
       ? params.calendarDate
       : calendarDateKey(now, params.timeZone);
-  const target = resolveTodaySetSize(params.goals);
+  const target = params.targetOverride ?? resolveTodaySetSize(params.goals);
+  const reviewOnly = params.reviewOnly === true;
   const size = Math.max(0, Math.min(target, Math.round(params.size) || 0));
   const fieldIds = reviewFieldIdsForQuery(params.fieldId);
   const empty = composeTodaySet({
@@ -379,15 +380,17 @@ export async function selectTodaySet(params: {
       orderBy: { nextDue: "asc" },
       take: 300,
     }),
-    prisma.questionAttempt.findMany({
-      where: {
-        userId: params.userId,
-        fieldId: { in: fieldIds },
-        bankItemId: { not: null },
-      },
-      select: { bankItemId: true },
-      distinct: ["bankItemId"],
-    }),
+    reviewOnly
+      ? Promise.resolve([] as { bankItemId: string | null }[])
+      : prisma.questionAttempt.findMany({
+          where: {
+            userId: params.userId,
+            fieldId: { in: fieldIds },
+            bankItemId: { not: null },
+          },
+          select: { bankItemId: true },
+          distinct: ["bankItemId"],
+        }),
     Promise.all(fieldIds.map((id) => ineligibleServedIds(id))),
   ]);
 
@@ -403,14 +406,16 @@ export async function selectTodaySet(params: {
   const reviewAvailable = new Set(
     [...reviewIncorrectIds, ...spacedReviewIds].map((id) => id.trim()).filter(Boolean)
   ).size;
-  const candidates = await loadUnseenCandidates({
-    fieldId: params.fieldId,
-    fieldIds,
-    excluded: [...seenIds, ...reviewIncorrectIds, ...spacedReviewIds],
-    softExcluded: params.recentlyShownNewIds,
-    needed: todayUnseenNeeded(size, reviewAvailable),
-    random,
-  });
+  const candidates = reviewOnly
+    ? []
+    : await loadUnseenCandidates({
+        fieldId: params.fieldId,
+        fieldIds,
+        excluded: [...seenIds, ...reviewIncorrectIds, ...spacedReviewIds],
+        softExcluded: params.recentlyShownNewIds,
+        needed: todayUnseenNeeded(size, reviewAvailable),
+        random,
+      });
   const composition = composeTodaySet({
     size,
     reviewIncorrectIds,
@@ -427,7 +432,7 @@ export async function selectTodaySet(params: {
   return selectionFromComposition({
     examSlug: params.examSlug,
     fieldId: params.fieldId,
-    target,
+    target: reviewOnly ? composition.ids.length : target,
     composition,
   });
 }
@@ -483,19 +488,24 @@ type ServedParams = {
   timeZone?: string | null;
 };
 
+function packMixLine(count: number): string | null {
+  if (count <= 0) return null;
+  return count === 1 ? "1 question" : `${count} questions`;
+}
+
 /**
- * Same ids for this student, board, and local calendar day.
- * The first build is stored on the account so an answer does not reshuffle it.
- * The cache only avoids repeating that read. Hidden ids are dropped on recount.
+ * Personal misses and due review for one student, board, and local day.
+ * Kept off the shared pack. The snapshot key is separate from any older today-set history.
  */
-async function loadServedCore(params: ServedParams): Promise<CachedServed> {
+async function loadReviewServedCore(params: ServedParams): Promise<CachedServed> {
   const now = params.now ?? new Date();
   const zone = resolveStudyTimeZone(params.timeZone);
   const day = calendarDateKey(now, zone);
-  const key = todayServedCacheKey(params.userId, params.fieldId, day, params.size);
+  const snapshotFieldId = `review-misses:${params.fieldId}`;
+  const key = cacheKey(["today-set-review-v1", params.userId, params.fieldId, day, params.size]);
   const ttl = msUntilNextCalendarDay(now, zone);
   const options = { skipFreshL1: isUpstashRedisEnabled() };
-  const target = resolveTodaySetSize(params.goals);
+  const target = DAILY_PACK_SIZE;
 
   const finish = async (composition: TodaySetComposition): Promise<CachedServed> => {
     const fitted = fitTodayComposition(composition, params.size);
@@ -505,7 +515,7 @@ async function loadServedCore(params: ServedParams): Promise<CachedServed> {
     const selection = await selectionFromComposition({
       examSlug: params.examSlug,
       fieldId: params.fieldId,
-      target,
+      target: composition.ids.length,
       composition: mix,
     });
     return { requestedSize: params.size, selection, mix };
@@ -516,21 +526,24 @@ async function loadServedCore(params: ServedParams): Promise<CachedServed> {
     ttl,
     async () => {
       const metadata = await readTodaySetMetadata(params.userId);
-      const stored = readStoredTodaySetForDate(metadata, params.fieldId, day);
+      const stored = readStoredTodaySetForDate(metadata, snapshotFieldId, day);
       if (stored) {
         const full = compositionFromStored(stored);
         if (params.size <= full.ids.length || stored.requestedSize >= params.size) {
           return finish(full);
         }
       }
-      const prior = priorTodaySetIds(metadata, params.fieldId, day);
+      const prior = priorTodaySetIds(metadata, snapshotFieldId, day);
       const selection = await selectTodaySet({
         ...params,
+        size: target,
         now,
         timeZone: zone,
         calendarDate: day,
         avoidReviewIds: prior.reviewIds,
         recentlyShownNewIds: prior.newIds,
+        reviewOnly: true,
+        targetOverride: target,
       });
       const loaded = await loadBankItemsByIds(params.fieldId, selection.composition.ids);
       const loadedIds = new Set(
@@ -538,49 +551,80 @@ async function loadServedCore(params: ServedParams): Promise<CachedServed> {
       );
       const mix = recountTodayMix(selection.composition, loadedIds);
       const latest = await readTodaySetMetadata(params.userId);
-      const won = readStoredTodaySetForDate(latest, params.fieldId, day);
+      const won = readStoredTodaySetForDate(latest, snapshotFieldId, day);
       if (won && (params.size <= compositionFromStored(won).ids.length || won.requestedSize >= params.size)) {
         return finish(compositionFromStored(won));
       }
-      await persistTodaySetSnapshot(params.userId, params.fieldId, {
+      await persistTodaySetSnapshot(params.userId, snapshotFieldId, {
         date: day,
         timeZone: zone,
-        requestedSize: params.size,
+        requestedSize: target,
         reviewIncorrectIds: mix.reviewIncorrectIds,
         spacedReviewIds: mix.spacedReviewIds,
         newIds: mix.newIds,
       });
-      // Keep the pre-recount composition on `selection` so a second bank load
-      // drops the same ids the mix already dropped, instead of a new prefix.
-      return {
-        requestedSize: params.size,
-        selection,
-        mix,
-      };
+      return finish(mix);
     },
     options
   );
 }
 
 /**
- * The sitting `POST /api/study/daily-set` starts, and the mix line the
- * dashboard shows. Same ids, then the same bank load and recount. A line
- * from the composition alone can count a question the player will not get.
+ * Shared pack behind Today's set. The date is America/Chicago for every student.
+ * Misses stay on `loadReviewMissesSet`. A usage cap keeps a prefix of the same pack.
  */
 export async function loadServedTodaySet(params: ServedParams): Promise<{
   selection: TodaySetSelection;
   mix: TodaySetComposition;
   items: BankItem[];
 }> {
-  const core = await loadServedCore(params);
-  const loaded = await loadBankItemsByIds(params.fieldId, core.selection.composition.ids);
+  const now = params.now ?? new Date();
+  const pack = await loadSharedDailyPack({ fieldId: params.fieldId, now });
+  const fullIds = pack.ids;
+  const take = Math.max(0, Math.min(fullIds.length, Math.round(params.size) || 0));
+  const ids = fullIds.slice(0, take);
+  const byId = new Map(pack.items.map((item) => [item.id, item]));
+  const items = ids
+    .map((id) => byId.get(id))
+    .filter((item): item is BankItem => Boolean(item));
+  const servedIds = items.map((item) => item.id).filter((id): id is string => Boolean(id));
+  const composition: TodaySetComposition = {
+    requestedSize: take,
+    ids: servedIds,
+    reviewIncorrectIds: [],
+    spacedReviewIds: [],
+    newIds: servedIds,
+    reviewCount: 0,
+    newCount: servedIds.length,
+    mixLine: packMixLine(servedIds.length),
+  };
+  const selection = await selectionFromComposition({
+    examSlug: params.examSlug,
+    fieldId: params.fieldId,
+    target: fullIds.length,
+    composition,
+  });
+  return { selection, mix: composition, items };
+}
+
+/** Open misses, then due review. Not mixed into the shared pack. */
+export async function loadReviewMissesSet(params: ServedParams): Promise<{
+  selection: TodaySetSelection;
+  mix: TodaySetComposition;
+  items: BankItem[];
+}> {
+  const core = await loadReviewServedCore({
+    ...params,
+    size: Math.max(0, Math.min(DAILY_PACK_SIZE, Math.round(params.size) || 0)),
+  });
+  const loaded = await loadBankItemsByIds(params.fieldId, core.mix.ids);
   const loadedIds = new Set(loaded.map((item) => item.id).filter((id): id is string => Boolean(id)));
-  const mix = recountTodayMix(core.selection.composition, loadedIds);
+  const mix = recountTodayMix(core.mix, loadedIds);
   const byId = new Map(loaded.map((item) => [item.id, item]));
   const items = mix.ids
     .map((id) => byId.get(id))
     .filter((item): item is BankItem => Boolean(item));
-  return { selection: core.selection, mix, items };
+  return { selection: { ...core.selection, size: mix.ids.length }, mix, items };
 }
 
 export async function loadTodaySetPreview(params: {
@@ -610,10 +654,20 @@ export async function loadTodaySetPreview(params: {
   const usage =
     params.usage ??
     (params.access ? await getStudyUsageSnapshot(params.access, { includeMockCounters: false }) : null);
-  const target = resolveTodaySetSize(params.goals);
   const allowance = questionAllowanceFromUsage(usage);
-  const size = applyQuestionAllowance(target, allowance);
+  const size = applyQuestionAllowance(DAILY_PACK_SIZE, allowance);
   const questionsDone = Math.max(0, Math.round(params.questionsDone) || 0);
+
+  const served = await loadServedTodaySet({
+    userId: params.userId,
+    examSlug: params.examSlug,
+    fieldId: params.fieldId,
+    size,
+    goals: params.goals,
+    now,
+    timeZone: params.timeZone,
+  });
+  const target = served.selection.target;
   const targetMet = target > 0 && questionsDone >= target;
 
   let streakDays: number | null = habitReadable ? 0 : null;
@@ -656,16 +710,6 @@ export async function loadTodaySetPreview(params: {
       streakDays,
     };
   }
-
-  const served = await loadServedTodaySet({
-    userId: params.userId,
-    examSlug: params.examSlug,
-    fieldId: params.fieldId,
-    size,
-    goals: params.goals,
-    now,
-    timeZone: params.timeZone,
-  });
 
   return {
     examSlug: params.examSlug,

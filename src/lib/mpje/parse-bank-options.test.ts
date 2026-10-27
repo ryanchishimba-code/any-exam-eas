@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { eligibilityInputFromBankItem, isStudentEligible } from "@/lib/exam-prep/student-eligibility";
 import { enrichBankItemFromRow } from "./parse-bank-options";
 
 describe("case group id on bank rows", () => {
@@ -44,5 +45,26 @@ describe("case group id on bank rows", () => {
 
     expect(item.solutionSteps).toEqual(["Confirm the plan.", "Recheck the result."]);
     expect(item.tags).toEqual(["diabetes", "follow-up"]);
+    expect(item.active).toBe(true);
+  });
+
+  it("copies active so a retired row drops out of a reload", () => {
+    const item = enrichBankItemFromRow({
+      id: "retired-1",
+      subjectId: "cardiac",
+      fieldId: "nursing",
+      question: "Which action is first?",
+      options: JSON.stringify(["Hold", "Give", "Call", "Document"]),
+      correctAnswer: "Hold",
+      explanation: "Hold the dose.",
+      solutionSteps: null,
+      tags: null,
+      itemType: "mcq",
+      active: false,
+      qaPassed: true,
+    });
+
+    expect(item.active).toBe(false);
+    expect(isStudentEligible(eligibilityInputFromBankItem(item))).toBe(false);
   });
 });

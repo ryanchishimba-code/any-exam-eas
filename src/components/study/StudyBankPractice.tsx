@@ -21,6 +21,7 @@ import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { persistUsmleStepPreference } from "@/lib/edtech/actions";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { fieldIdForExamSlug } from "@/lib/edtech/exam-field-ids";
+import { masteryTodayExamSlug } from "@/lib/learning/daily-pack";
 import { takeDailySet } from "@/lib/learning/today-set-stash";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import {
@@ -421,7 +422,10 @@ export function StudyBankPractice({
   // Keep honoring the URL if state is still the remembered/default chip.
   const urlStyle = searchParams.get("style");
   const urlRemediationStyle =
-    urlStyle === "weak_areas" || urlStyle === "review_incorrect" || urlStyle === "daily_set"
+    urlStyle === "weak_areas" ||
+    urlStyle === "review_incorrect" ||
+    urlStyle === "daily_set" ||
+    urlStyle === "review_misses"
       ? (urlStyle as QuestionBankStyle)
       : null;
   const requestedBankStyle = urlRemediationStyle ?? bankStyle;
@@ -1533,17 +1537,26 @@ export function StudyBankPractice({
       const useAdaptive =
         !useArea && (activeStyle === "adaptive" || activeStyle === "weak_areas");
       const useReviewIncorrect = !useArea && activeStyle === "review_incorrect";
-      const useToday = !useArea && activeStyle === "today";
-      const useDailySet = !useArea && activeStyle === "daily_set";
+      const masteryExam = masteryTodayExamSlug(fieldId, examSlugFromFieldId(fieldId));
+      const useReviewMisses = !useArea && activeStyle === "review_misses";
+      const useSharedPack =
+        !useArea &&
+        (activeStyle === "daily_set" || (activeStyle === "today" && masteryExam == null));
+      const useToday = !useArea && activeStyle === "today" && masteryExam != null;
       const effectiveSubjectId = useReviewIncorrect
         ? reviewSubjectForLaunch(subjectId)
         : subjectId || subjects[0]?.id || MIXED_SUBJECT_ID || "";
-      if (!useArea && !useToday && !useDailySet && !effectiveSubjectId) {
+      if (!useArea && !useToday && !useSharedPack && !useReviewMisses && !effectiveSubjectId) {
         throw new Error("Choose a topic before starting practice.");
       }
 
-      if (useDailySet) {
-        const stashed = takeDailySet(fieldId);
+      if (useSharedPack || useReviewMisses) {
+        const sittingLabel = useReviewMisses ? "Review misses" : "Today's set";
+        const endpoint = useReviewMisses ? "/api/study/review-misses" : "/api/study/daily-set";
+        const fallbackRationale = useReviewMisses
+          ? "Review misses — open misses, then questions that are due."
+          : "Today's set.";
+        const stashed = takeDailySet(fieldId, useReviewMisses ? "review" : "daily");
         if (stashed) {
           const prepared = stashed.questions as {
             stem?: string;
@@ -1575,8 +1588,8 @@ export function StudyBankPractice({
           setAdaptiveMeta({
             sessionRationale:
               typeof stashed.mixLine === "string" && stashed.mixLine
-                ? `Today's set — ${stashed.mixLine}.`
-                : "Today's set — review first, then new questions.",
+                ? `${sittingLabel} — ${stashed.mixLine}.`
+                : fallbackRationale,
             todaySet: stashed.todaySet,
           });
           if (isStale()) return;
@@ -1584,7 +1597,7 @@ export function StudyBankPractice({
           return;
         }
 
-        const res = await fetch("/api/study/daily-set", {
+        const res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ field: fieldId }),
@@ -1593,7 +1606,7 @@ export function StudyBankPractice({
         if (!res.ok) {
           if (redirectToUpgradeIfTrialCapReached(data)) return;
           setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
-          throw new Error(studyLimitMessage(data) || data.error || "Could not build today's set");
+          throw new Error(studyLimitMessage(data) || data.error || `Could not build ${sittingLabel.toLowerCase()}`);
         }
         type DailyQ = {
           stem?: string;
@@ -1629,8 +1642,8 @@ export function StudyBankPractice({
         setAdaptiveMeta({
           sessionRationale:
             typeof data.mixLine === "string" && data.mixLine
-              ? `Today's set — ${data.mixLine}.`
-              : "Today's set — review first, then new questions.",
+              ? `${sittingLabel} — ${data.mixLine}.`
+              : fallbackRationale,
           todaySet: data.todaySet,
         });
         if (isStale()) return;
@@ -1638,21 +1651,14 @@ export function StudyBankPractice({
         return;
       }
 
-      if (useToday) {
-        const slug = examSlugFromFieldId(fieldId);
-        const todayExamSlug =
-          fieldId === "pharmacy" || slug === "naplex"
-            ? "naplex"
-            : slug === "usmle" || isUsmleFieldId(fieldId)
-              ? "usmle"
-              : "nclex";
+      if (useToday && masteryExam) {
         const res = await fetch("/api/study/today", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             size: limit === 20 || limit === 60 ? limit : 40,
-            examSlug: todayExamSlug,
-            fieldId: todayExamSlug === "usmle" ? fieldId : undefined,
+            examSlug: masteryExam,
+            fieldId: masteryExam === "usmle" ? fieldId : undefined,
           }),
         });
         const data = await res.json();
@@ -1694,17 +1700,17 @@ export function StudyBankPractice({
         }));
         setAdaptiveMeta({
           sessionRationale:
-            todayExamSlug === "naplex"
+            masteryExam === "naplex"
               ? `NAPLEX Today — ${raw.length} items weighted to the 2025 Content Outline (Domain 3 heaviest).`
-              : todayExamSlug === "usmle"
+              : masteryExam === "usmle"
                 ? `USMLE Today — ${raw.length} items across your organ-system Skill Cells.`
                 : `Today’s Mastery set — ${raw.length} items across your Skill Cells.`,
           questionReasoning: Object.fromEntries(
             raw.map((q) => [
               String(q.id),
-              todayExamSlug === "naplex"
+              masteryExam === "naplex"
                 ? "Queued by NAPLEX Mastery Engine for today’s focus."
-                : todayExamSlug === "usmle"
+                : masteryExam === "usmle"
                   ? "Queued by USMLE Mastery Engine for today’s organ-system focus."
                   : "Queued by Mastery Engine for today’s focus.",
             ])
@@ -2122,7 +2128,8 @@ export function StudyBankPractice({
       !subjectId &&
       !blueprintAreaId &&
       effectiveBankStyle !== "today" &&
-      effectiveBankStyle !== "daily_set"
+      effectiveBankStyle !== "daily_set" &&
+      effectiveBankStyle !== "review_misses"
     ) {
       return;
     }
@@ -2304,10 +2311,16 @@ export function StudyBankPractice({
           ? " · Uniform MPJE"
           : "";
     const formatTitle = launchFormat ? practiceFormatTitle(launchFormat, ngnLabel) : null;
+    const packTitle =
+      effectiveBankStyle === "daily_set" ||
+      (effectiveBankStyle === "today" &&
+        masteryTodayExamSlug(fieldId, examSlugFromFieldId(fieldId)) == null);
     const title =
-      effectiveBankStyle === "daily_set"
-        ? "Today's set"
-        : isTimedExam
+      effectiveBankStyle === "review_misses"
+        ? "Review misses"
+        : packTitle
+          ? "Today's set"
+          : isTimedExam
       ? `${field}${mpjeScope} · Timed exam · ${questions.length} questions`
       : `${field}${mpjeScope} · ${
           formatTitle ? `${formatTitle} · ${scopedTopicLabel}` : scopedTopicLabel
