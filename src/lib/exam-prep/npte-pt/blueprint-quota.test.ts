@@ -11,13 +11,15 @@ describe("NPTE-PT blueprint quotas", () => {
   it("allocates 6000 questions proportional to FSBPT content weights", () => {
     const quotas = computeNptePtContentQuotas(NPTE_PT_TARGET_TOTAL);
     const total = quotas.reduce((s, q) => s + q.targetCount, 0);
-    expect(total).toBeGreaterThanOrEqual(5990);
+    // Official range midpoints sum to 179 of 180 scored items, so the
+    // un-normalized allocator lands just under the 6000 target.
+    expect(total).toBe(5967);
     expect(total).toBeLessThanOrEqual(6010);
 
     const msk = quotas.find((q) => q.contentCategory === "musculoskeletal");
-    // Normalized midpoint of the 44–54 range (49/179 of 6000).
-    expect(msk?.targetCount).toBe(1642);
-    expect(msk?.weight).toBeCloseTo(0.2 / 0.72, 2);
+    // Midpoint of the 44–54 range is 49/180 of the target.
+    expect(msk?.targetCount).toBe(1633);
+    expect(msk?.weight).toBeCloseTo(49 / 180, 5);
   });
 
   it("covers all FSBPT process task categories", () => {
@@ -28,7 +30,7 @@ describe("NPTE-PT blueprint quotas", () => {
   });
 
   it("returns category target for musculoskeletal at largest body-system weight", () => {
-    expect(getNptePtCategoryTarget("musculoskeletal")).toBe(1642);
+    expect(getNptePtCategoryTarget("musculoskeletal")).toBe(1633);
   });
 
   it("detects blueprint misalignment", () => {

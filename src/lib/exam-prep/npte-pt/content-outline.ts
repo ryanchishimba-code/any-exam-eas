@@ -134,7 +134,7 @@ export const NPTE_PT_TASK_AREAS: NptePtTaskArea[] = [
 ];
 
 /** FSBPT body-system and non-system content areas (weights normalized from official outline). */
-const NPTE_PT_BODY_SYSTEMS_RAW: NptePtBodySystemArea[] = [
+export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = [
   {
     id: "musculoskeletal",
     label: "Musculoskeletal System",
@@ -353,19 +353,6 @@ const NPTE_PT_BODY_SYSTEMS_RAW: NptePtBodySystemArea[] = [
     subjectIds: ["research-evidence"],
   },
 ];
-
-/** Item-range midpoints sum to 179/180. Normalize so weights and quotas partition one exam. */
-const NPTE_PT_BODY_SYSTEM_WEIGHT_SUM = NPTE_PT_BODY_SYSTEMS_RAW.reduce(
-  (sum, area) => sum + area.weight,
-  0
-);
-
-export const NPTE_PT_BODY_SYSTEMS: NptePtBodySystemArea[] = NPTE_PT_BODY_SYSTEMS_RAW.map(
-  (area) => ({
-    ...area,
-    weight: area.weight / NPTE_PT_BODY_SYSTEM_WEIGHT_SUM,
-  })
-);
 
 /** Cross-cutting high-yield focus for study planning and marketing copy. */
 export const NPTE_PT_HIGH_YIELD_FOCUS_AREAS = [
