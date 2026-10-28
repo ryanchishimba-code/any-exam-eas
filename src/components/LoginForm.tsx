@@ -8,7 +8,8 @@ import { useSession } from "next-auth/react";
 import { StatusMessage } from "@/components/ui/StatusMessage";
 import { ForgotPasswordPanel } from "@/components/auth/ForgotPasswordPanel";
 import { LoginPanel } from "@/components/auth/LoginPanel";
-import { loadReturningUserHint } from "@/lib/client/returning-user";
+import { VerifyEmailLinkProblemNotice } from "@/components/auth/VerifyEmailLinkProblemNotice";
+import { loadReturningUserHint, maskEmail } from "@/lib/client/returning-user";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
 import { messageForSignInError } from "@/lib/auth-client";
@@ -40,6 +41,11 @@ export function LoginForm({
   }
   const [hintEmail, setHintEmail] = useState("");
   const resetSuccess = searchParams.get("reset") === "success";
+  const verifyLinkProblem = searchParams.get("verify");
+  const verifyProblemKind =
+    verifyLinkProblem === "invalid" || verifyLinkProblem === "missing"
+      ? verifyLinkProblem
+      : null;
   const authError = searchParams.get("error");
   const authCode = searchParams.get("code");
   const ipLimitError = authError === "too_many_ips" || authCode === "too_many_ips";
@@ -49,7 +55,8 @@ export function LoginForm({
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    setHintEmail(loadReturningUserHint()?.email ?? "");
+    const hint = loadReturningUserHint();
+    setHintEmail(hint?.email ?? "");
   }, []);
 
   useEffect(() => {
@@ -116,6 +123,13 @@ export function LoginForm({
             {messageForSignInError(authError, authCode)}
           </StatusMessage>
         )}
+
+      {verifyProblemKind && view === "login" ? (
+        <VerifyEmailLinkProblemNotice
+          kind={verifyProblemKind}
+          displayEmail={hintEmail ? maskEmail(hintEmail) : null}
+        />
+      ) : null}
 
       {isStudyGuideCallback(callbackUrl) && view === "login" ? (
         <p className="rounded-2xl border border-[color-mix(in_srgb,var(--color-accent)_35%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-surface))] px-4 py-3 text-sm leading-relaxed text-[var(--color-ink)]">

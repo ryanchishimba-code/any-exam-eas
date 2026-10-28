@@ -5,7 +5,9 @@ import {
   VERIFY_EMAIL_CHECK_LABEL,
   VERIFY_EMAIL_HEADLINE,
   VERIFY_EMAIL_NEXT_STEP,
+  formatVerifyEmailBody,
 } from "@/lib/auth/verify-email-copy";
+import { VerifyEmailSpamCallout } from "@/components/auth/VerifyEmailSpamCallout";
 import {
   formatTrialEntryPrice,
   formatTrialLabel,
@@ -38,9 +40,13 @@ export function PaywallNotice({
             : "Unlock the full exam prep platform"}
       </h2>
       {isVerify ? (
-        <p className="mx-auto mt-3 max-w-md text-sm text-[var(--color-ink-muted)]">
-          {VERIFY_EMAIL_NEXT_STEP}
-        </p>
+        <div className="mx-auto mt-3 max-w-md text-left text-sm text-[var(--color-ink-muted)]">
+          <p className="text-[15px] font-medium leading-snug text-[var(--color-ink)]">
+            {formatVerifyEmailBody("your email")}
+          </p>
+          <VerifyEmailSpamCallout resendHint="after-login" className="text-left" />
+          <p className="mt-3">{VERIFY_EMAIL_NEXT_STEP}</p>
+        </div>
       ) : null}
       {!isSuspended && !isVerify && (
         <>

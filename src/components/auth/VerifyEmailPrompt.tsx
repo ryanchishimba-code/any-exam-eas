@@ -12,6 +12,7 @@ import {
   VERIFY_EMAIL_HEADLINE,
   VERIFY_EMAIL_NEXT_STEP,
 } from "@/lib/auth/verify-email-copy";
+import { VerifyEmailSpamCallout } from "@/components/auth/VerifyEmailSpamCallout";
 import { cn } from "@/lib/utils";
 
 type VerifyEmailPromptProps = {
@@ -149,8 +150,9 @@ export function VerifyEmailPrompt({
           Please look for the verification link we sent to{" "}
           <span className="font-semibold text-teal-800 dark:text-teal-200">{displayEmail}</span>.
         </p>
-        <p className="mt-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-          {VERIFY_EMAIL_NEXT_STEP} If you do not see it, check your spam or junk folder.
+        <VerifyEmailSpamCallout resendHint="nearby-button" />
+        <p className="mt-3 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+          {VERIFY_EMAIL_NEXT_STEP}
         </p>
         <div className="mt-4 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
           <button

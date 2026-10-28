@@ -60,6 +60,7 @@ describe("TrialWelcomeScreen trial length", () => {
       screen.getByText(/100 practice questions across all six boards, plus Roadmap and Deep Dives/i)
     ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /show me around/i })).toBeInTheDocument();
+    expect(screen.getByText(/Don't see it\? Check your Spam or Junk folder\./i)).toBeInTheDocument();
     expect(screen.queryByText(/halfway/i)).not.toBeInTheDocument();
   });
 
