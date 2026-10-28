@@ -1096,6 +1096,7 @@
 }
 
 .home-bites__play,
+.home-bites__video-wrap,
 .home-bites__video {
   display: block;
   width: 100%;
@@ -1104,6 +1105,25 @@
   border-radius: 0.85rem;
   border: 1px solid rgba(10, 37, 64, 0.08);
   background: var(--home-navy);
+}
+
+.home-bites__video-wrap {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+
+.home-bites__video-wrap .home-bites__video {
+  margin-top: 0;
+  border: none;
+  border-radius: inherit;
+}
+
+.home-bites__pip-btn {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 2;
 }
 
 .home-bites__play {

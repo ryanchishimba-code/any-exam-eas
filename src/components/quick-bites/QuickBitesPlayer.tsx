@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { X } from "lucide-react";
 import { NextEpisodeButton, QuickBitesQuiz } from "@/components/quick-bites/QuickBitesQuiz";
+import { VideoPictureInPictureButton } from "@/components/media/VideoPictureInPictureButton";
 import {
   getQuickBiteBySlug,
   quickBitePoster,
@@ -15,6 +16,7 @@ import {
   type QuickBiteProgressClient,
   type QuickBiteResumeSnapshot,
 } from "@/lib/quick-bites/use-quick-bite-progress";
+import { useVideoPictureInPicture } from "@/lib/media/use-video-picture-in-picture";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 
@@ -96,6 +98,15 @@ export function QuickBitesPlayer({
   }, [quizOpen]);
   const known = episode ? (getQuickBiteBySlug(episode.slug) ?? episode) : null;
   const poster = known ? (posterOverride ?? quickBitePoster(known.slug)) : null;
+  const pipMetadata =
+    known && poster
+      ? { title: `${known.number}. ${known.title}`, artworkUrl: poster.webp }
+      : null;
+  const { pipSupported, enterPictureInPicture } = useVideoPictureInPicture({
+    video: videoElement,
+    metadata: pipMetadata,
+    enabled: state.status === "ready" && Boolean(known),
+  });
 
   useQuickBiteProgressReporter({
     slug,
@@ -233,6 +244,12 @@ export function QuickBitesPlayer({
                 </h3>
               </div>
               <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+                {pipSupported ? (
+                  <VideoPictureInPictureButton
+                    visible
+                    onEnter={enterPictureInPicture}
+                  />
+                ) : null}
                 {includeCaptionsTrack && state.status === "ready" && state.captionsUrl ? (
                   <button
                     type="button"
