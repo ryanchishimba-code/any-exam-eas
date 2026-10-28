@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { TRIAL_DAYS, type BillingInterval } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { resolveStoredTier, type SubscriptionFeature, tierHasFeature } from "@/lib/subscription-features";
+import { appTrialShouldExpire, expiredAppTrialWhere } from "@/lib/billing/expire-app-trials";
 import { oneTimeAccessActive } from "@/lib/billing/one-time-purchase";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 
@@ -58,28 +59,22 @@ export function normalizeSubscriptionForRead(
   return subscription;
 }
 
-/** Mark local app trial as expired when past trialEndsAt (cron/webhook/login paths). */
+/**
+ * Mark one card-free app trial expired when trialEndsAt is already past.
+ * Same rule as the daily cron: Stripe-linked rows and a future pass are left alone.
+ */
 export async function expireTrialIfNeeded(
-  subscription: Subscription | null
+  subscription: Subscription | null,
+  now = new Date()
 ): Promise<Subscription | null> {
-  if (!subscription) return null;
-  if (subscription.status !== "trialing" || !subscription.trialEndsAt) {
-    return subscription;
-  }
-  if (subscription.trialEndsAt > new Date()) {
-    return subscription;
-  }
+  if (!appTrialShouldExpire(subscription, now)) return subscription;
 
   await prisma.subscription.updateMany({
-    where: {
-      id: subscription.id,
-      status: "trialing",
-      trialEndsAt: { lte: new Date() },
-    },
+    where: { id: subscription!.id, ...expiredAppTrialWhere(now) },
     data: { status: "trial_expired" },
   });
 
-  return prisma.subscription.findUnique({ where: { id: subscription.id } });
+  return prisma.subscription.findUnique({ where: { id: subscription!.id } });
 }
 
 /**
