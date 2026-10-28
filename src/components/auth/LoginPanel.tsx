@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Lock, Loader2 } from "lucide-react";
 import {
   fetchAuthHealthWarning,
-  messageForSignInError,
   messageFromUnknownAuthError,
   resolveSignInFailure,
 } from "@/lib/auth-client";
