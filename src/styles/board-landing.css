@@ -2464,7 +2464,7 @@
   cursor: default;
 }
 
-/* —— Public free 10-question quiz (lazy-loaded on board hubs) —— */
+/* —— Public free quiz (lazy-loaded on board hubs) —— */
 .bl-free-quiz {
   scroll-margin-top: calc(var(--nav-height, 3.25rem) + 1rem);
 }

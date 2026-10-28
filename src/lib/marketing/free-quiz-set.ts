@@ -7,7 +7,7 @@ import type { BoardMarketingSlug } from "@/lib/landing/tokens";
 export const FREE_QUIZ_ROTATION_KEY = "fixed";
 
 /**
- * One fixed 10-question set per board.
+ * One fixed public free-quiz set per board (see FREE_QUIZ_QUESTION_COUNT).
  * Chosen 2026-10-24 with read-only SELECTs: active, qaPassed, reviewStatus approved,
  * not student-eligibility suppressed, not retired, not on the hidden key-review list,
  * vignette (single-select), text-only (no image/exhibit), full scenario, keyed option match.

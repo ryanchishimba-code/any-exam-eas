@@ -18,7 +18,7 @@ function boardHeroPriceTrialSuffix(): string {
   return `${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo after a ${TRIAL_DAYS}-day free trial.`;
 }
 
-export const BOARD_LANDING_HERO_QUIZ_LABEL = "Try 10 free questions";
+export const BOARD_LANDING_HERO_QUIZ_LABEL = "Try the free quiz";
 
 export const BOARD_LANDING_HERO_QUIZ_HREF = "#quiz";
 
