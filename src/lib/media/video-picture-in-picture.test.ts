@@ -78,7 +78,6 @@ describe("video picture-in-picture helpers", () => {
     const metadata = vi.fn();
     vi.stubGlobal("MediaMetadata", metadata);
     vi.stubGlobal("navigator", {
-      ...navigator,
       mediaSession: { metadata: null },
     });
     applyMediaSessionMetadata({ title: "Episode 1", artworkUrl: "/poster.webp" });
