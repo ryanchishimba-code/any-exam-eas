@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import type { Metadata } from "next";
+import { DailyTrialSticky } from "@/components/marketing/DailyTrialCta";
 import { QotdPractice } from "@/components/marketing/QotdPractice";
 import {
   getQotdForExam,
@@ -90,6 +91,7 @@ export default async function DailyExamDatedPage({ params }: Props) {
           absoluteShareUrl={absoluteShareUrl}
         />
       </div>
+      <DailyTrialSticky board={exam} />
     </div>
   );
 }

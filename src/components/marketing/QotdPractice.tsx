@@ -7,7 +7,6 @@ import { StudyUseNote } from "@/components/legal/StudyUseNote";
 import {
   DailyTrialLink,
   DailyTrialPitch,
-  DailyTrialSticky,
   trackDailyAnswer,
 } from "@/components/marketing/DailyTrialCta";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
@@ -205,8 +204,6 @@ export function QotdPractice({
       >
         Explore {examName} prep →
       </Link>
-
-      <DailyTrialSticky board={item.examSlug} />
 
       <div className="aee-qotd__share">
         <p className="aee-qotd__share-label">Share today’s question</p>
