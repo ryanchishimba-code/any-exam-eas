@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { StudyUseNote } from "@/components/legal/StudyUseNote";
-import { LandingCta } from "@/components/landing/LandingCta";
+import {
+  DailyTrialLink,
+  DailyTrialPitch,
+  trackDailyAnswer,
+} from "@/components/marketing/DailyTrialCta";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 import type { QotdPublicItem } from "@/lib/demo/qotd-public";
 import {
@@ -15,7 +19,6 @@ import {
   qotdShareCaption,
 } from "@/lib/demo/qotd-public";
 import { revealQotdAnswer } from "@/lib/demo/qotd-reveal";
-import { landingTrialHrefForExam } from "@/lib/landing/content";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -54,6 +57,7 @@ export function QotdPractice({
         return;
       }
       setReveal(result);
+      trackDailyAnswer(item.examSlug, result.isCorrect);
     } catch {
       setUnavailable(true);
     } finally {
@@ -179,30 +183,27 @@ export function QotdPractice({
         )}
       </article>
 
-      <div className="aee-qotd__cta">
-        <LandingCta
-          href={landingTrialHrefForExam(item.examSlug)}
-          ctaName={`qotd_trial_${item.examSlug}`}
-          location="qotd"
-          className="aee-flagship-cta--hero group"
-          icon={
-            <ArrowRight
-              className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-              aria-hidden
-            />
-          }
-        >
-          Try {examName} free
-        </LandingCta>
-        <Link
-          href={examMarketingHref(item.examSlug)}
-          prefetch={false}
-          className="aee-qotd__secondary"
-        >
-          Explore {examName} prep →
-        </Link>
-        <p className="aee-qotd__cta-meta">{formatPricingCheckoutTrialOffer()}</p>
-      </div>
+      {revealed ? (
+        <DailyTrialPitch board={item.examSlug} examName={examName} />
+      ) : (
+        <div className="aee-qotd__cta">
+          <DailyTrialLink
+            board={item.examSlug}
+            placement="below_question"
+            className="aee-flagship-cta aee-flagship-cta--primary aee-flagship-cta--hero"
+          >
+            Start 5-day free trial
+          </DailyTrialLink>
+          <p className="aee-qotd__cta-meta">{formatPricingCheckoutTrialOffer()}</p>
+        </div>
+      )}
+      <Link
+        href={examMarketingHref(item.examSlug)}
+        prefetch={false}
+        className="aee-qotd__secondary aee-qotd__secondary--block"
+      >
+        Explore {examName} prep →
+      </Link>
 
       <div className="aee-qotd__share">
         <p className="aee-qotd__share-label">Share today’s question</p>

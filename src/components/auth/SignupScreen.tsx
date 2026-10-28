@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
 import { AuthFocusLayout } from "@/components/auth/AuthFocusLayout";
 import { SignupForm } from "@/components/SignupForm";
 import { CONSENTED_TESTIMONIAL_SEEDS } from "@/lib/testimonials/consented-seed";
@@ -42,6 +43,7 @@ export function SignupScreen({
   initialInterval,
   initialTier,
   initialExam,
+  arrivedFromDaily = false,
 }: {
   initialPlan: SignupPlan | "";
   initialPromo: string;
@@ -49,9 +51,19 @@ export function SignupScreen({
   initialInterval: BillingInterval;
   initialTier: SubscriptionTier;
   initialExam: ExamSlug | "";
+  arrivedFromDaily?: boolean;
 }) {
   const [plan, setPlan] = useState<SignupPlan>(initialPlan === "subscribe" ? "subscribe" : "trial");
   const trial = plan === "trial";
+
+  useEffect(() => {
+    if (!arrivedFromDaily) return;
+    try {
+      track("signup_from_daily", { board: initialExam || "unset" });
+    } catch {
+      /* non-blocking */
+    }
+  }, [arrivedFromDaily, initialExam]);
 
   return (
     <AuthFocusLayout

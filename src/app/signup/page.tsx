@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { SignupScreen } from "@/components/auth/SignupScreen";
 import { parseBoardSlug } from "@/lib/auth/board-intent";
+import { isDailySignupArrival } from "@/lib/marketing/daily-trial";
 import { getCachedSession } from "@/lib/auth/session";
 import { resolveSignupIntent, signedInSignupRedirect } from "@/lib/auth/signup-intent";
 import { assignBoardIfUnset } from "@/lib/edtech/exam-preference";
@@ -40,6 +41,7 @@ export default async function SignupPage({
     tier?: string;
     exam?: string;
     board?: string;
+    utm_source?: string;
   }>;
 }) {
   const params = await searchParams;
@@ -69,6 +71,7 @@ export default async function SignupPage({
       initialInterval={intent.interval}
       initialTier={intent.tier}
       initialExam={intent.exam}
+      arrivedFromDaily={isDailySignupArrival(params.utm_source)}
     />
   );
 }

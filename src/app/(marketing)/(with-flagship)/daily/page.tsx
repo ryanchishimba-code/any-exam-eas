@@ -10,10 +10,9 @@ import {
   todayIsoCentral,
 } from "@/lib/demo/qotd";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
-import { landingTrialHrefForExam } from "@/lib/landing/content";
 import { getSiteUrl } from "@/lib/seo";
-import { LandingCta } from "@/components/landing/LandingCta";
 import { DailyInboxCapture } from "@/components/marketing/DailyInboxCapture";
+import { DailyTrialLink, DailyTrialSticky } from "@/components/marketing/DailyTrialCta";
 import type { ExamSlug } from "@/types/edtech";
 
 /**
@@ -71,14 +70,13 @@ export default function DailyHubPage() {
               Answer today&apos;s {featuredName} question
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <LandingCta
-              href={landingTrialHrefForExam(featured)}
-              ctaName={`qotd_hub_trial_${featured}`}
-              location="qotd_hub"
-              variant="secondary"
+            <DailyTrialLink
+              board={featured}
+              placement="below_question"
+              className="aee-flagship-cta aee-flagship-cta--secondary"
             >
-              Try {featuredName} free
-            </LandingCta>
+              Start 5-day free trial
+            </DailyTrialLink>
           </div>
         </section>
 
@@ -112,6 +110,7 @@ export default function DailyHubPage() {
           </ul>
         </section>
       </div>
+      <DailyTrialSticky board={featured} />
     </div>
   );
 }
