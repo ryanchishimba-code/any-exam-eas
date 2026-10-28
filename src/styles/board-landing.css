@@ -619,6 +619,7 @@
 }
 
 .board-landing .home-bites__play,
+.board-landing .home-bites__video-wrap,
 .board-landing .home-bites__video {
   display: block;
   width: 100%;
@@ -627,6 +628,25 @@
   border: 1px solid var(--bl-line);
   border-radius: 0.9rem;
   background: var(--bl-navy);
+}
+
+.board-landing .home-bites__video-wrap {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+
+.board-landing .home-bites__video-wrap .home-bites__video {
+  margin-top: 0;
+  border: none;
+  border-radius: inherit;
+}
+
+.board-landing .home-bites__pip-btn {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 2;
 }
 
 .board-landing .home-bites__play {

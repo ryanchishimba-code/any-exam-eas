@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { VideoPictureInPictureButton } from "@/components/media/VideoPictureInPictureButton";
+import { useVideoPictureInPicture } from "@/lib/media/use-video-picture-in-picture";
 
 type Phase = "poster" | "loading" | "ready" | "failed";
 
@@ -27,6 +29,16 @@ export function HomeSamplePlayer({
   const [videoUrl, setVideoUrl] = useState("");
   const [captionsUrl, setCaptionsUrl] = useState("");
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoElement, setVideoElement] = useState<HTMLVideoElement | null>(null);
+  const bindVideoRef = useCallback((node: HTMLVideoElement | null) => {
+    videoRef.current = node;
+    setVideoElement(node);
+  }, []);
+  const { pipSupported, enterPictureInPicture } = useVideoPictureInPicture({
+    video: videoElement,
+    metadata: phase === "ready" ? { title, artworkUrl: webp } : null,
+    enabled: phase === "ready",
+  });
 
   useEffect(() => {
     if (phase !== "ready") return;
@@ -58,22 +70,29 @@ export function HomeSamplePlayer({
 
   if (phase === "ready") {
     return (
-      <video
-        ref={videoRef}
-        className="home-bites__video"
-        controls
-        playsInline
-        preload="none"
-        poster={webp}
-        src={videoUrl}
-        width={1280}
-        height={720}
-        aria-label={`${title} video`}
-      >
-        {captions && captionsUrl ? (
-          <track kind="captions" src={captionsUrl} srcLang="en" label="English" />
-        ) : null}
-      </video>
+      <div className="home-bites__video-wrap">
+        <video
+          ref={bindVideoRef}
+          className="home-bites__video"
+          controls
+          playsInline
+          preload="none"
+          poster={webp}
+          src={videoUrl}
+          width={1280}
+          height={720}
+          aria-label={`${title} video`}
+        >
+          {captions && captionsUrl ? (
+            <track kind="captions" src={captionsUrl} srcLang="en" label="English" />
+          ) : null}
+        </video>
+        <VideoPictureInPictureButton
+          visible={pipSupported}
+          onEnter={enterPictureInPicture}
+          className="home-bites__pip-btn"
+        />
+      </div>
     );
   }
 
