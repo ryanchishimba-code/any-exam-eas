@@ -17,9 +17,9 @@ export function HomeFreeQuizSection() {
       className="home-section home-rise home-free-quiz"
       aria-labelledby="home-free-quiz-heading"
     >
-      <h2 id="home-free-quiz-heading">Try a free 10-question quiz</h2>
+      <h2 id="home-free-quiz-heading">Try a free quiz</h2>
       <p className="home-free-quiz__lede">
-        Open a board page, answer ten live sample items, and read rationales. No sign-up.
+        Open a board page, answer live sample items, and read rationales. No sign-up.
       </p>
       <ul className="home-free-quiz__boards">
         {BOARDS.map((board) => (

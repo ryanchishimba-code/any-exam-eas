@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { boardHeroMarketingCopy } from "@/lib/marketing/board-landing/board-hero-marketing";
+import { boardHeroMarketingCopy, BOARD_LANDING_HERO_QUIZ_LABEL } from "@/lib/marketing/board-landing/board-hero-marketing";
 
 describe("boardHeroMarketingCopy", () => {
   it("matches approved hero headlines and sublines", () => {
@@ -14,6 +14,7 @@ describe("boardHeroMarketingCopy", () => {
     );
     expect(boardHeroMarketingCopy("usmle").testimonial).toBeNull();
     expect(boardHeroMarketingCopy("npte-pt").testimonial).toBeNull();
+    expect(BOARD_LANDING_HERO_QUIZ_LABEL).toBe("Try the free quiz");
     expect(boardHeroMarketingCopy("pance").testimonial).toEqual({
       name: "N., PA",
       quote:

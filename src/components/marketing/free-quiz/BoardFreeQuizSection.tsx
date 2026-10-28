@@ -40,7 +40,7 @@ export function BoardFreeQuizSection({ board }: { board: FreeQuizBoardSlug }) {
       className="bl-section bl-section--tight bl-free-quiz"
       aria-labelledby={`${panelId}-heading`}
     >
-      <h2 id={`${panelId}-heading`}>Free 10-question quiz</h2>
+      <h2 id={`${panelId}-heading`}>Free quiz</h2>
       <p className="bl-section-lede">
         Student-eligible items from the live bank. No account required.
       </p>
