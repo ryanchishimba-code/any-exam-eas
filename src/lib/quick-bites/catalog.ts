@@ -6,6 +6,8 @@
  * and are never linked without a signature.
  */
 
+import { adjacentPlayableEpisode } from "@/lib/quick-bites/adjacent-playable";
+
 /** How long a playback URL stays valid. Long enough to watch, short enough to expire. */
 export const QUICK_BITES_URL_TTL_MS = 20 * 60 * 1000;
 
@@ -339,12 +341,19 @@ export function nextPlayableQuickBite(
   slug: string,
   canPlayLibrary: boolean
 ): QuickBiteEpisode | null {
-  const start = QUICK_BITE_EPISODES.findIndex((episode) => episode.slug === slug);
-  if (start < 0) return null;
-  for (const episode of QUICK_BITE_EPISODES.slice(start + 1)) {
-    if (isQuickBiteEpisodePlayable(episode, canPlayLibrary)) return episode;
-  }
-  return null;
+  return adjacentPlayableEpisode(QUICK_BITE_EPISODES, slug, "next", (episode) =>
+    isQuickBiteEpisodePlayable(episode, canPlayLibrary)
+  );
+}
+
+/** The previous released episode this viewer is allowed to play, if there is one. */
+export function previousPlayableQuickBite(
+  slug: string,
+  canPlayLibrary: boolean
+): QuickBiteEpisode | null {
+  return adjacentPlayableEpisode(QUICK_BITE_EPISODES, slug, "previous", (episode) =>
+    isQuickBiteEpisodePlayable(episode, canPlayLibrary)
+  );
 }
 
 function nursingMediaFolder(slug: string): string {

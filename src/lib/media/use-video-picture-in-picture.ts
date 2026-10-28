@@ -18,10 +18,14 @@ export function useVideoPictureInPicture({
   video,
   metadata,
   enabled,
+  onNextTrack,
+  onPreviousTrack,
 }: {
   video: HTMLVideoElement | null;
   metadata: VideoPictureInPictureMetadata | null;
   enabled: boolean;
+  onNextTrack?: (() => void) | null;
+  onPreviousTrack?: (() => void) | null;
 }) {
   const [pipSupported, setPipSupported] = useState(false);
 
@@ -67,6 +71,8 @@ export function useVideoPictureInPicture({
     setMediaSessionActionHandler("enterpictureinpicture", () => {
       void requestVideoPictureInPicture(video);
     });
+    setMediaSessionActionHandler("nexttrack", onNextTrack ?? null);
+    setMediaSessionActionHandler("previoustrack", onPreviousTrack ?? null);
 
     const onVisibility = () => {
       if (document.visibilityState !== "hidden") return;
@@ -80,9 +86,19 @@ export function useVideoPictureInPicture({
       setMediaSessionActionHandler("play", null);
       setMediaSessionActionHandler("pause", null);
       setMediaSessionActionHandler("enterpictureinpicture", null);
+      setMediaSessionActionHandler("nexttrack", null);
+      setMediaSessionActionHandler("previoustrack", null);
       applyMediaSessionMetadata(null);
     };
-  }, [enabled, metadata?.artist, metadata?.artworkUrl, metadata?.title, video]);
+  }, [
+    enabled,
+    metadata?.artist,
+    metadata?.artworkUrl,
+    metadata?.title,
+    onNextTrack,
+    onPreviousTrack,
+    video,
+  ]);
 
   return { pipSupported, enterPictureInPicture };
 }

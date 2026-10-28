@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { X } from "lucide-react";
-import { NextEpisodeButton, QuickBitesQuiz } from "@/components/quick-bites/QuickBitesQuiz";
+import { QuickBitesNextVideoButton, QuickBitesQuiz } from "@/components/quick-bites/QuickBitesQuiz";
 import { VideoPictureInPictureButton } from "@/components/media/VideoPictureInPictureButton";
 import {
   getQuickBiteBySlug,
@@ -30,6 +30,7 @@ export function QuickBitesPlayer({
   episode,
   onClose,
   onNext,
+  onPrevious,
   playbackNonce = 0,
   library,
   apiBase = "/api/quick-bites",
@@ -43,6 +44,7 @@ export function QuickBitesPlayer({
   episode: QuickBiteEpisode | null;
   onClose: () => void;
   onNext?: () => void;
+  onPrevious?: () => void;
   /** Changes when the student picks an episode. Resets the quiz without remounting the page. */
   playbackNonce?: number;
   library?: ReactNode;
@@ -102,13 +104,8 @@ export function QuickBitesPlayer({
     known && poster
       ? { title: `${known.number}. ${known.title}`, artworkUrl: poster.webp }
       : null;
-  const { pipSupported, enterPictureInPicture } = useVideoPictureInPicture({
-    video: videoElement,
-    metadata: pipMetadata,
-    enabled: state.status === "ready" && Boolean(known),
-  });
 
-  useQuickBiteProgressReporter({
+  const { flushProgress } = useQuickBiteProgressReporter({
     slug,
     apiBase,
     enabled: state.status === "ready" && Boolean(known),
@@ -117,6 +114,26 @@ export function QuickBitesPlayer({
     suppressProgressFlushRef,
     resumeSeekCompletedRef,
     onSaved: onProgressSaved,
+  });
+
+  const goNextVideo = useCallback(() => {
+    if (!onNext) return;
+    flushProgress();
+    onNext();
+  }, [flushProgress, onNext]);
+
+  const goPreviousVideo = useCallback(() => {
+    if (!onPrevious) return;
+    flushProgress();
+    onPrevious();
+  }, [flushProgress, onPrevious]);
+
+  const { pipSupported, enterPictureInPicture } = useVideoPictureInPicture({
+    video: videoElement,
+    metadata: pipMetadata,
+    enabled: state.status === "ready" && Boolean(known),
+    onNextTrack: onNext ? goNextVideo : null,
+    onPreviousTrack: onPrevious ? goPreviousVideo : null,
   });
 
   useEffect(() => {
@@ -275,9 +292,7 @@ export function QuickBitesPlayer({
                   {quizOpen ? "Close quiz" : "Take the quiz"}
                 </button>
                 {onNext && !quizOpen ? (
-                  <span className="hidden sm:inline-flex">
-                    <NextEpisodeButton onNext={onNext} emphasis="quiet" />
-                  </span>
+                  <QuickBitesNextVideoButton onClick={goNextVideo} />
                 ) : null}
                 <button
                   type="button"
@@ -365,7 +380,7 @@ export function QuickBitesPlayer({
       >
         <div className="p-4 sm:p-5">
           {known && quizOpen ? (
-            <QuickBitesQuiz slug={known.slug} apiBase={apiBase} onRewatch={rewatch} onNext={onNext} />
+            <QuickBitesQuiz slug={known.slug} apiBase={apiBase} onRewatch={rewatch} onNext={onNext ? goNextVideo : undefined} />
           ) : (
             <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
               {known
