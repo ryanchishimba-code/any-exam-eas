@@ -108,7 +108,7 @@ export function MarketingPhotoHero({
       }
     >
       <style href="mkt-photo-hero-critical" precedence="default">{`
-        .mkt-photo-hero{color:#f8fafc;background:#071422;font-family:var(--font-display),var(--font-body),system-ui,sans-serif;font-synthesis:none}
+        .mkt-photo-hero{box-sizing:border-box;height:100svh;min-height:100svh;overflow:hidden;color:#f8fafc;background:#071422;font-family:var(--font-display),var(--font-body),Arial,sans-serif;font-synthesis:none}
         .mkt-photo-hero h1{margin:0;color:#fff;font-weight:800;font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.05;letter-spacing:-0.035em}
         .mkt-photo-hero .mkt-photo-hero__sub{margin:0;color:#e2e8f0;font-weight:600;font-size:1.0625rem;line-height:1.45;letter-spacing:-0.011em}
         .mkt-hero-foot{position:absolute;z-index:3;left:0;right:0;bottom:1rem;height:9.75rem}

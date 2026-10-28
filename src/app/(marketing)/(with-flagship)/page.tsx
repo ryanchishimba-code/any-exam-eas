@@ -32,11 +32,6 @@ async function HomeJsonLdLive() {
   return <HomeJsonLd totalLabel={exactLabel || undefined} />;
 }
 
-async function HomeProofLive() {
-  const { bundle } = await loadPublicQuestionCounts({ dynamic: false });
-  return <HomeProofStrip facts={buildHomeProofFacts(siteCountsFromSnapshot(bundle.snapshot))} />;
-}
-
 export default async function HomePage() {
   const [{ display, bundle, exactLabel, staticLabel }, testimonials] = await Promise.all([
     loadPublicQuestionCounts({ dynamic: false }),
@@ -64,9 +59,7 @@ export default async function HomePage() {
           featureCards={homeFeatures}
           testimonialStories={testimonialStories}
           proof={
-            <Suspense fallback={null}>
-              <HomeProofLive />
-            </Suspense>
+            <HomeProofStrip facts={buildHomeProofFacts(siteCountsFromSnapshot(bundle.snapshot))} />
           }
         />
       </HomeExperience>
