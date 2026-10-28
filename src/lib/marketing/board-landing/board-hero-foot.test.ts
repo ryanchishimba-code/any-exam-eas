@@ -22,8 +22,9 @@ describe("board hero foot", () => {
       quote: "The drug cards were a game changer.",
       board: "NAPLEX",
     });
+    expect(boardHeroMarketingCopy("pance").testimonial?.name).toBe("N., PA");
     expect(boardHeroMarketingCopy("pance").testimonial?.quote).toBe(
-      "With everything premium becoming expensive, it's a welcome sight to see premium material."
+      "Great website to study for PANCE, with a question bank as well as videos for learning. I would recommend anyexameasy.com to all future PAs, and current PAs can use it to study for PANRE."
     );
     expect(boardHeroMarketingCopy("aanp-fnp").testimonial?.quote).toBe(
       "I couldn't believe the price for everything I got."

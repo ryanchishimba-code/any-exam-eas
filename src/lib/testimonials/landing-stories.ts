@@ -1,7 +1,11 @@
 import type { LandingSuccessStory } from "@/lib/landing/content";
 import { testimonialsForBoard } from "@/lib/marketing/why-trust-it";
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
-import { CONSENTED_TESTIMONIAL_SEEDS, FOUNDER_NOTE } from "@/lib/testimonials/consented-seed";
+import {
+  CONSENTED_TESTIMONIAL_SEEDS,
+  FOUNDER_NOTE,
+  PANCE_LANDING_HIDDEN_TESTIMONIAL_NAMES,
+} from "@/lib/testimonials/consented-seed";
 function initialsFor(name: string): string {
   return name
     .split(/\s+/)
@@ -66,7 +70,13 @@ export function landingTestimonialStories(
   examKey?: ExamSeoKey
 ): LandingTestimonialCard[] {
   const merged = mergeBoardTestimonials(published);
-  const pool =
+  let pool =
     examKey && examKey.length > 0 ? testimonialsForBoard(merged, examKey) : merged;
+  if (examKey === "pance") {
+    const hidden = new Set(
+      PANCE_LANDING_HIDDEN_TESTIMONIAL_NAMES.map((name) => name.trim().toLowerCase())
+    );
+    pool = pool.filter((story) => !hidden.has(story.name.trim().toLowerCase()));
+  }
   return pool.slice(0, 3).map(toCard);
 }

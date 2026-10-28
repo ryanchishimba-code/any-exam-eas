@@ -104,6 +104,15 @@ export function consentedSeedsForBatch(batchId: string): ConsentedTestimonialSee
   return CONSENTED_TESTIMONIAL_SEEDS.filter((row) => row.batchId === batchId);
 }
 
+export const PANCE_HERO_TESTIMONIAL_SEED_ID = "seed_testimonials_2026_10_28_n_pa";
+
+/** Seed rows kept for DB/admin but omitted from the public PANCE hub. */
+export const PANCE_LANDING_HIDDEN_TESTIMONIAL_NAMES: readonly string[] = ["Nick B."];
+
+export function consentedSeedById(id: string): ConsentedTestimonialSeed | undefined {
+  return CONSENTED_TESTIMONIAL_SEEDS.find((row) => row.id === id);
+}
+
 export const FOUNDER_NOTE = {
   kicker: "From our founder",
   quote: "Quality exam prep shouldn't be out of reach.",
