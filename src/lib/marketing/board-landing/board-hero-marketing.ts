@@ -2,6 +2,15 @@ import { TRIAL_DAYS } from "@/lib/billing-config";
 import { formatPlanUsd } from "@/lib/billing-plans";
 import type { BoardSlug } from "@/lib/marketing/board-landing/board-theme";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
+import {
+  PANCE_HERO_TESTIMONIAL_SEED_ID,
+  consentedSeedById,
+} from "@/lib/testimonials/consented-seed";
+
+const panceHeroTestimonialSeed = consentedSeedById(PANCE_HERO_TESTIMONIAL_SEED_ID);
+if (!panceHeroTestimonialSeed) {
+  throw new Error(`Missing consented seed: ${PANCE_HERO_TESTIMONIAL_SEED_ID}`);
+}
 
 export const BOARD_LANDING_HERO_TRIAL_LABEL = "Start 5-day free trial";
 
@@ -63,9 +72,8 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
     headline: "PANCE practice with every vignette explained.",
     subline: `Organ-system vignettes, explained rationales, and mocks. ${boardHeroPriceTrialSuffix()}`,
     testimonial: {
-      name: "Nick B.",
-      quote:
-        "With everything premium becoming expensive, it's a welcome sight to see premium material.",
+      name: panceHeroTestimonialSeed.name,
+      quote: panceHeroTestimonialSeed.quote,
       board: "PANCE",
     },
   },
