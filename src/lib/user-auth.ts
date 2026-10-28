@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/client";
 import type { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { executeWithRetry, isTransientDbError } from "@/lib/db-resilience";
+import { executeWithRetry } from "@/lib/db-resilience";
 import { isAtLeast18 } from "@/lib/age";
 import { AGE_ATTESTATION_PLACEHOLDER_DOB } from "@/lib/age-attestation";
 import {

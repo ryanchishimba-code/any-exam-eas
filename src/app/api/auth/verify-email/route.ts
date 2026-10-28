@@ -5,17 +5,21 @@ import {
   parseBoardSlug,
 } from "@/lib/auth/board-intent";
 import { captureBoardForUser, readServerBoardIntent } from "@/lib/auth/board-intent-server";
+import {
+  dashboardVerifiedUrl,
+  loginWithVerifyQuery,
+} from "@/lib/auth/verify-email-urls";
+import { appBaseUrl } from "@/lib/email/config";
 import { verifyEmailWithToken } from "@/lib/email-verification";
-import { ROUTES } from "@/lib/routes";
 
 export const runtime = "nodejs";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const token = url.searchParams.get("token");
-  const base = process.env.NEXTAUTH_URL ?? "http://localhost:3000";
+  const base = appBaseUrl();
   if (!token) {
-    return NextResponse.redirect(new URL("/login?verify=missing", base));
+    return NextResponse.redirect(new URL(loginWithVerifyQuery("missing"), base));
   }
 
   const result = await verifyEmailWithToken(token);
@@ -25,7 +29,7 @@ export async function GET(req: Request) {
     await captureBoardForUser(result.userId, board);
   }
 
-  const dest = result.ok ? `${ROUTES.dashboard}?verified=1` : "/login?verify=invalid";
+  const dest = result.ok ? dashboardVerifiedUrl() : loginWithVerifyQuery("invalid");
   const response = NextResponse.redirect(new URL(dest, base));
   if (result.ok && board) {
     response.cookies.set(BOARD_INTENT_COOKIE, board, {
