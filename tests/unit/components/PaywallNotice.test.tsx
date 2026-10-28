@@ -7,7 +7,7 @@ describe("PaywallNotice verify", () => {
   it("shows verify copy with spam callout", () => {
     render(<PaywallNotice reason="verify" />);
 
-    expect(screen.getByText(/verification link we sent to your email/i)).toBeInTheDocument();
+    expect(screen.getByText(/We sent a link to your email/i)).toBeInTheDocument();
     expect(screen.getByText(VERIFY_EMAIL_SPAM_CALLOUT_HEADLINE)).toBeInTheDocument();
   });
 });

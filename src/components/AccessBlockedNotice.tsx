@@ -1,6 +1,5 @@
-"use client";
-
-import { VerifyEmailPrompt } from "@/components/auth/VerifyEmailPrompt";
+import { VerifyEmailInboxCard } from "@/components/auth/verify-email/VerifyEmailInboxCard";
+import { maskEmail } from "@/lib/client/returning-user";
 
 export function AccessBlockedNotice({
   reason,
@@ -20,9 +19,11 @@ export function AccessBlockedNotice({
     );
   }
 
+  const displayEmail = email?.trim() ? maskEmail(email.trim()) : "your email";
+
   return (
-    <div className="mx-auto mt-10 w-full max-w-xl px-4">
-      <VerifyEmailPrompt email={email} required />
+    <div className="mx-auto flex min-h-[min(70vh,640px)] w-full max-w-lg flex-col items-center justify-center px-4 py-12">
+      <VerifyEmailInboxCard emailLabel={displayEmail} showChangeEmailLink />
     </div>
   );
 }

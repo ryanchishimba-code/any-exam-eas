@@ -54,12 +54,31 @@ export function appBaseUrl(): string {
   }
 
   const authUrl = trimSlash(process.env.NEXTAUTH_URL);
-  if (authUrl && !/localhost|127\.0\.0\.1/i.test(authUrl)) return authUrl;
+  if (authUrl && !/localhost|127\.0\.0\.1/i.test(authUrl)) {
+    return normalizeProductionSiteOrigin(authUrl);
+  }
 
   const siteUrl = trimSlash(process.env.NEXT_PUBLIC_SITE_URL);
-  if (siteUrl && !/localhost|127\.0\.0\.1/i.test(siteUrl)) return siteUrl;
+  if (siteUrl && !/localhost|127\.0\.0\.1/i.test(siteUrl)) {
+    return normalizeProductionSiteOrigin(siteUrl);
+  }
 
-  return getSiteUrl();
+  return normalizeProductionSiteOrigin(getSiteUrl());
+}
+
+/** Production emails and auth redirects should use www.anyexameasy.com, not bare apex. */
+function normalizeProductionSiteOrigin(url: string): string {
+  if (process.env.NODE_ENV !== "production") return url;
+  try {
+    const parsed = new URL(url.includes("://") ? url : `https://${url}`);
+    if (parsed.hostname === "anyexameasy.com") {
+      parsed.hostname = "www.anyexameasy.com";
+      return parsed.origin;
+    }
+    return parsed.origin;
+  } catch {
+    return url.replace(/\/$/, "");
+  }
 }
 
 /** Full reset link — `/reset-password` redirects to `/auth/reset-password` via next.config. */

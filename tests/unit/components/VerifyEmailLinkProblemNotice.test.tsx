@@ -7,9 +7,11 @@ describe("VerifyEmailLinkProblemNotice", () => {
   it("shows invalid link messaging and spam callout on login", () => {
     render(<VerifyEmailLinkProblemNotice kind="invalid" displayEmail="s***@example.com" />);
 
-    expect(screen.getByText(/invalid or has expired/i)).toBeInTheDocument();
+    expect(screen.getByText(/expired or was already used/i)).toBeInTheDocument();
     expect(screen.getByText(/s\*\*\*@example.com/)).toBeInTheDocument();
     expect(screen.getByText(VERIFY_EMAIL_SPAM_CALLOUT_HEADLINE)).toBeInTheDocument();
+    const loginLinks = screen.getAllByRole("link", { name: /log in/i });
+    expect(loginLinks.length).toBeGreaterThanOrEqual(1);
   });
 
   it("shows missing link messaging", () => {

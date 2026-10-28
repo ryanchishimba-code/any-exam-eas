@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { firstName } from "@/lib/client/returning-user";
 import { TrialFeatureShortcuts } from "@/components/dashboard/TrialFeatureShortcuts";
-import { VerifyEmailPrompt } from "@/components/auth/VerifyEmailPrompt";
+import { VerifyEmailInboxCard } from "@/components/auth/verify-email/VerifyEmailInboxCard";
+import { maskEmail } from "@/lib/client/returning-user";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { formatSignupTrialScope } from "@/lib/site";
 import {
@@ -52,6 +53,7 @@ export function TrialWelcomeScreen({
         transition={{ duration: 0.28, ease: [0.2, 0.8, 0.2, 1] }}
         className="aee-youre-in-overlay"
         data-tour-block="true"
+        data-verify-required={verifyRequired ? "true" : "false"}
       >
         <div className="aee-youre-in-panel">
           <p className="text-sm font-semibold tracking-[-0.01em] text-[#0f766e]">Trial active</p>
@@ -65,7 +67,7 @@ export function TrialWelcomeScreen({
             {formatSignupTrialScope()}
           </p>
           <div className="mt-8">
-            <VerifyEmailPrompt email={userEmail} required={verifyRequired} compact />
+            <VerifyEmailInboxCard emailLabel={userEmail?.trim() ? maskEmail(userEmail.trim()) : "your email"} />
           </div>
           <button type="button" className="aee-auth-submit" onClick={onDismiss}>
             Show me around

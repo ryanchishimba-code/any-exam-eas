@@ -1,30 +1,24 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { Check, ChevronDown, Mail } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 import { maskEmail } from "@/lib/client/returning-user";
 import { PLATFORM_EXAM_LIST_MIDDOT } from "@/lib/landing/content";
 import { formatMonthlyPrice } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
-import {
-  VERIFY_EMAIL_CHECK_LABEL,
-  VERIFY_EMAIL_HEADLINE,
-  VERIFY_EMAIL_NEXT_STEP,
-} from "@/lib/auth/verify-email-copy";
-import { VerifyEmailSpamCallout } from "@/components/auth/VerifyEmailSpamCallout";
+import { VerifyEmailInboxCard } from "@/components/auth/verify-email/VerifyEmailInboxCard";
 import { cn } from "@/lib/utils";
 
 type VerifyEmailPromptProps = {
   email?: string | null;
-  /** When true, study is locked until they verify. */
   required?: boolean;
-  /** Email check only — used inside the post-signup “You’re in” screen. */
   compact?: boolean;
   className?: string;
+  /** Optional marketing blocks below the card (off by default for a cleaner gate). */
+  showMarketingExtras?: boolean;
 };
 
-/** Product highlights only — no pricing or payment language. */
 const FEATURE_HIGHLIGHTS = [
   "Six boards in one place — USMLE, NCLEX, NAPLEX, PANCE, FNP & NPTE",
   "Roadmap that show what to study next",
@@ -33,7 +27,6 @@ const FEATURE_HIGHLIGHTS = [
   "Analytics that surface your gaps early",
 ] as const;
 
-/** Compact compare-style rows — features only, no money. */
 const COMPARE_ROWS = [
   {
     label: "Exam coverage",
@@ -57,223 +50,101 @@ const COMPARE_ROWS = [
   },
 ] as const;
 
-const RESEND_COOLDOWN_SEC = 60;
-
-/**
- * Calm post-signup direction: start prep → check email → verify.
- * Pricing stays collapsed under Upgrade so nothing about money is forced.
- */
 export function VerifyEmailPrompt({
   email,
-  required: _required = false,
+  required = false,
   compact = false,
   className,
+  showMarketingExtras = false,
 }: VerifyEmailPromptProps) {
-  const [message, setMessage] = useState<string | null>(null);
-  const [messageKind, setMessageKind] = useState<"success" | "error" | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [cooldownSec, setCooldownSec] = useState(0);
-  const [detailsOpen, setDetailsOpen] = useState(false);
-  const [upgradeOpen, setUpgradeOpen] = useState(false);
   const displayEmail = email?.trim() ? maskEmail(email.trim()) : "your email";
   const monthly = formatMonthlyPrice("pro");
-
-  useEffect(() => {
-    if (cooldownSec <= 0) return;
-    const id = window.setInterval(() => {
-      setCooldownSec((s) => (s <= 1 ? 0 : s - 1));
-    }, 1000);
-    return () => window.clearInterval(id);
-  }, [cooldownSec]);
-
-  const resend = useCallback(async () => {
-    if (cooldownSec > 0) return;
-    setLoading(true);
-    setMessage(null);
-    setMessageKind(null);
-    try {
-      const res = await fetch("/api/auth/resend-verification", { method: "POST" });
-      const data = (await res.json().catch(() => ({}))) as { message?: string; error?: string };
-      if (res.ok) {
-        setMessage(data.message ?? "Verification email sent. Check your inbox.");
-        setMessageKind("success");
-        setCooldownSec(RESEND_COOLDOWN_SEC);
-      } else {
-        setMessage(data.error ?? data.message ?? "Could not send email.");
-        setMessageKind("error");
-      }
-    } catch {
-      setMessage("Could not send email. Try again in a moment.");
-      setMessageKind("error");
-    } finally {
-      setLoading(false);
-    }
-  }, [cooldownSec]);
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
 
   return (
     <section
-      className={cn(
-        compact
-          ? "text-left"
-          : "relative overflow-hidden rounded-[22px] border border-black/[0.06] bg-white px-6 py-8 text-center shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_40px_rgba(15,23,42,0.06)]",
-        className
-      )}
-      aria-labelledby={compact ? undefined : "verify-email-heading"}
-      aria-label={compact ? VERIFY_EMAIL_CHECK_LABEL : undefined}
+      className={cn(compact ? "text-left" : "mx-auto w-full max-w-md", className)}
+      data-verify-required={required ? "true" : "false"}
     >
-      {compact ? null : (
+      <VerifyEmailInboxCard
+        emailLabel={displayEmail}
+        showChangeEmailLink={!compact}
+        resendHint="nearby-button"
+      />
+
+      {!compact && showMarketingExtras ? (
         <>
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[radial-gradient(ellipse_at_top,rgba(15,118,110,0.12),transparent_70%)]"
-            aria-hidden
-          />
-          <div className="relative mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#f0fdfa] text-[#0f766e]">
-            <Mail className="h-5 w-5" strokeWidth={1.75} aria-hidden />
+          <div className="relative mx-auto mt-8 max-w-md text-left">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
+              What&apos;s waiting for you
+            </p>
+            <ul className="mt-3 space-y-2.5">
+              {FEATURE_HIGHLIGHTS.map((item) => (
+                <li key={item} className="flex gap-2.5 text-[13.5px] leading-snug text-[var(--color-ink)]">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" strokeWidth={2.25} aria-hidden />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <h2
-            id="verify-email-heading"
-            className="relative mt-5 text-[22px] font-semibold tracking-[-0.03em] text-[#0f172a]"
-          >
-            {VERIFY_EMAIL_HEADLINE}
-          </h2>
+          <div className="relative mx-auto mt-6 max-w-md overflow-hidden rounded-2xl border border-black/[0.06] text-left">
+            <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 border-b border-black/[0.06] bg-slate-50/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+              <span>Feature</span>
+              <span className="text-teal-700">AnyExamEasy</span>
+              <span>Typical QBank</span>
+            </div>
+            {COMPARE_ROWS.map((row) => (
+              <div
+                key={row.label}
+                className="grid grid-cols-[1fr_1fr_1fr] gap-2 border-b border-black/[0.04] px-3 py-2.5 text-[11.5px] leading-snug last:border-0"
+              >
+                <span className="font-medium text-[var(--color-ink)]">{row.label}</span>
+                <span className="text-[var(--color-ink)]">{row.us}</span>
+                <span className="text-[var(--color-ink-muted)]">{row.them}</span>
+              </div>
+            ))}
+          </div>
+          <div className="relative mx-auto mt-5 max-w-md space-y-1 text-left">
+            <button
+              type="button"
+              onClick={() => setDetailsOpen((v) => !v)}
+              className="flex w-full items-center justify-between gap-2 rounded-xl px-1 py-2 text-left text-[13px] font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
+              aria-expanded={detailsOpen}
+            >
+              <span>Why verify?</span>
+              <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform", detailsOpen && "rotate-180")} aria-hidden />
+            </button>
+            {detailsOpen ? (
+              <p className="px-1 pb-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+                Verifying your email keeps your progress tied to you and lets us reach you if something
+                needs attention.
+              </p>
+            ) : null}
+            <button
+              type="button"
+              onClick={() => setUpgradeOpen((v) => !v)}
+              className="flex w-full items-center justify-between gap-2 rounded-xl px-1 py-2 text-left text-[13px] font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
+              aria-expanded={upgradeOpen}
+            >
+              <span>Upgrade</span>
+              <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform", upgradeOpen && "rotate-180")} aria-hidden />
+            </button>
+            {upgradeOpen ? (
+              <div className="rounded-xl border border-black/[0.06] bg-slate-50/80 px-3 py-3 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+                <p>
+                  When you&apos;re ready for unlimited practice, Pro is{" "}
+                  <span className="font-medium text-[var(--color-ink)]">{monthly}/mo</span> for all six
+                  boards.
+                </p>
+                <Link href={ROUTES.pricing} prefetch={false} className="mt-2 inline-flex text-[13px] font-semibold text-teal-700 hover:underline dark:text-teal-300">
+                  View plans
+                </Link>
+              </div>
+            ) : null}
+          </div>
         </>
-      )}
-
-      <div
-        className="relative mx-auto mt-5 max-w-md rounded-2xl border border-teal-500/25 bg-teal-50 px-4 py-4 text-left dark:border-teal-400/30 dark:bg-teal-950/40"
-        role="status"
-      >
-        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-teal-700 dark:text-teal-300">
-          {VERIFY_EMAIL_CHECK_LABEL}
-        </p>
-        <p className="mt-1.5 text-[15px] font-medium leading-snug text-[var(--color-ink)]">
-          Please look for the verification link we sent to{" "}
-          <span className="font-semibold text-teal-800 dark:text-teal-200">{displayEmail}</span>.
-        </p>
-        <VerifyEmailSpamCallout resendHint="nearby-button" />
-        <p className="mt-3 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-          {VERIFY_EMAIL_NEXT_STEP}
-        </p>
-        <div className="mt-4 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
-          <button
-            type="button"
-            disabled={loading || cooldownSec > 0}
-            onClick={() => void resend()}
-            className="inline-flex min-h-10 items-center justify-center rounded-full bg-teal-700 px-5 text-[13px] font-semibold text-white transition hover:bg-teal-800 disabled:opacity-50 dark:bg-teal-600 dark:hover:bg-teal-500"
-          >
-            {loading
-              ? "Sending…"
-              : cooldownSec > 0
-                ? `Resend in ${cooldownSec}s`
-                : "Resend email"}
-          </button>
-          {message ? (
-            <p
-              className={cn(
-                "text-[13px]",
-                messageKind === "error"
-                  ? "text-red-700 dark:text-red-300"
-                  : "text-teal-800 dark:text-teal-200"
-              )}
-              role="status"
-            >
-              {message}
-            </p>
-          ) : null}
-        </div>
-      </div>
-
-      {compact ? null : (
-      <div className="relative mx-auto mt-8 max-w-md text-left">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
-          What’s waiting for you
-        </p>
-        <ul className="mt-3 space-y-2.5">
-          {FEATURE_HIGHLIGHTS.map((item) => (
-            <li key={item} className="flex gap-2.5 text-[13.5px] leading-snug text-[var(--color-ink)]">
-              <Check
-                className="mt-0.5 h-4 w-4 shrink-0 text-teal-600"
-                strokeWidth={2.25}
-                aria-hidden
-              />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      )}
-
-      {compact ? null : (
-      <>
-      <div className="relative mx-auto mt-6 max-w-md overflow-hidden rounded-2xl border border-black/[0.06] text-left">
-        <div className="grid grid-cols-[1fr_1fr_1fr] gap-0 border-b border-black/[0.06] bg-slate-50/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-          <span>Feature</span>
-          <span className="text-teal-700">AnyExamEasy</span>
-          <span>Typical QBank</span>
-        </div>
-        {COMPARE_ROWS.map((row) => (
-          <div
-            key={row.label}
-            className="grid grid-cols-[1fr_1fr_1fr] gap-2 border-b border-black/[0.04] px-3 py-2.5 text-[11.5px] leading-snug last:border-0"
-          >
-            <span className="font-medium text-[var(--color-ink)]">{row.label}</span>
-            <span className="text-[var(--color-ink)]">{row.us}</span>
-            <span className="text-[var(--color-ink-muted)]">{row.them}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="relative mx-auto mt-5 max-w-md space-y-1 text-left">
-        <button
-          type="button"
-          onClick={() => setDetailsOpen((v) => !v)}
-          className="flex w-full items-center justify-between gap-2 rounded-xl px-1 py-2 text-left text-[13px] font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
-          aria-expanded={detailsOpen}
-        >
-          <span>Why verify?</span>
-          <ChevronDown
-            className={cn("h-4 w-4 shrink-0 transition-transform", detailsOpen && "rotate-180")}
-            aria-hidden
-          />
-        </button>
-        {detailsOpen ? (
-          <p className="px-1 pb-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-            Verifying your email keeps your progress tied to you and lets us reach you if something
-            needs attention. It takes a moment — then you can explore the product at your own pace.
-          </p>
-        ) : null}
-
-        <button
-          type="button"
-          onClick={() => setUpgradeOpen((v) => !v)}
-          className="flex w-full items-center justify-between gap-2 rounded-xl px-1 py-2 text-left text-[13px] font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
-          aria-expanded={upgradeOpen}
-        >
-          <span>Upgrade</span>
-          <ChevronDown
-            className={cn("h-4 w-4 shrink-0 transition-transform", upgradeOpen && "rotate-180")}
-            aria-hidden
-          />
-        </button>
-        {upgradeOpen ? (
-          <div className="rounded-xl border border-black/[0.06] bg-slate-50/80 px-3 py-3 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-            <p>
-              When you&apos;re ready for unlimited practice, Pro is{" "}
-              <span className="font-medium text-[var(--color-ink)]">{monthly}/mo</span> for all six
-              boards. No rush — verify and explore first.
-            </p>
-            <Link
-              href={ROUTES.pricing}
-              prefetch={false}
-              className="mt-2 inline-flex text-[13px] font-semibold text-teal-700 hover:underline dark:text-teal-300"
-            >
-              View plans
-            </Link>
-          </div>
-        ) : null}
-      </div>
-      </>
-      )}
+      ) : null}
     </section>
   );
 }

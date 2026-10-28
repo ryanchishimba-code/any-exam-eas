@@ -1,13 +1,8 @@
 import Link from "next/link";
 import { Button } from "./ui/Button";
+import { VerifyEmailInboxCard } from "@/components/auth/verify-email/VerifyEmailInboxCard";
+import { AUTH_LOGIN_PATH } from "@/lib/auth/verify-email-urls";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
-import {
-  VERIFY_EMAIL_CHECK_LABEL,
-  VERIFY_EMAIL_HEADLINE,
-  VERIFY_EMAIL_NEXT_STEP,
-  formatVerifyEmailBody,
-} from "@/lib/auth/verify-email-copy";
-import { VerifyEmailSpamCallout } from "@/components/auth/VerifyEmailSpamCallout";
 import {
   formatTrialEntryPrice,
   formatTrialLabel,
@@ -23,32 +18,28 @@ export function PaywallNotice({
   const isSuspended = reason === "suspended";
   const isVerify = reason === "verify";
 
+  if (isVerify) {
+    return (
+      <div className="mb-10 flex justify-center px-4">
+        <VerifyEmailInboxCard
+          emailLabel="your email"
+          showResend={false}
+          resendHint="after-login"
+          showBackToLoginLink
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="apple-bento mb-10 border-[var(--color-accent)]/20 bg-[var(--color-accent)]/5 text-center">
       <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
-        {isSuspended
-          ? "Account suspended"
-          : isVerify
-            ? VERIFY_EMAIL_CHECK_LABEL
-            : "Subscription required"}
+        {isSuspended ? "Account suspended" : "Subscription required"}
       </p>
       <h2 className="mt-2 text-xl font-semibold tracking-tight text-[var(--color-ink)]">
-        {isSuspended
-          ? "Contact support to restore access"
-          : isVerify
-            ? VERIFY_EMAIL_HEADLINE
-            : "Unlock the full exam prep platform"}
+        {isSuspended ? "Contact support to restore access" : "Unlock the full exam prep platform"}
       </h2>
-      {isVerify ? (
-        <div className="mx-auto mt-3 max-w-md text-left text-sm text-[var(--color-ink-muted)]">
-          <p className="text-[15px] font-medium leading-snug text-[var(--color-ink)]">
-            {formatVerifyEmailBody("your email")}
-          </p>
-          <VerifyEmailSpamCallout resendHint="after-login" className="text-left" />
-          <p className="mt-3">{VERIFY_EMAIL_NEXT_STEP}</p>
-        </div>
-      ) : null}
-      {!isSuspended && !isVerify && (
+      {!isSuspended && (
         <>
           <p className="mx-auto mt-3 max-w-md text-sm text-[var(--color-ink-muted)]">
             Question banks, timed practice exams, and analytics require an active subscription.{" "}
@@ -64,7 +55,7 @@ export function PaywallNotice({
           </div>
           <p className="mt-4 text-xs text-[var(--color-ink-muted)]">
             Already subscribed?{" "}
-            <Link href="/login" className="text-[var(--color-accent)] hover:underline">
+            <Link href={AUTH_LOGIN_PATH} className="text-[var(--color-accent)] hover:underline">
               Log in
             </Link>
             {" · "}
