@@ -148,7 +148,6 @@ export function resolveTimedExamLimit(
     }
     return full;
   }
-  const fieldId = resolveFieldId(fieldOrLabel);
   if (requestedLimit && SPRINT_EXAM_LIMITS.has(requestedLimit)) {
     return requestedLimit;
   }

@@ -178,7 +178,6 @@ export function buildArmBones(sx: -1 | 1, f: Figure, z: number): THREE.BufferGeo
 
   parts.push(...longBone(elbow, wrist, 0.01, { proximalR: 0.016, distalR: 0.014 }));
 
-  const ulnaDir = wrist.clone().sub(elbow).normalize();
   const ulnaOff = new THREE.Vector3(-sx * 0.012, 0, 0.008);
   parts.push(
     ...longBone(

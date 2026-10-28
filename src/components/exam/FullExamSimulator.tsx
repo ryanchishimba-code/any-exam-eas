@@ -9,7 +9,7 @@ import {
   ChevronRight,
   StickyNote,
   PanelRightClose,
-  PanelRightOpen,
+  PanelRightOpen
 } from "lucide-react";
 import { FloatingTimer } from "@/components/exam/FloatingTimer";
 import { ExamActionBar } from "@/components/exam/ExamActionBar";
@@ -19,25 +19,24 @@ import { Progress } from "@/components/ui/progress";
 import { QuestionRenderer } from "@/components/study/questions/QuestionRenderer";
 import {
   ReportQuestionDialog,
-  buildReportContext,
+  buildReportContext
 } from "@/components/study/ReportQuestionDialog";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
   deserializeExamSelection,
-  formatAnswerDisplay,
   serializeCorrectAnswer,
-  serializeExamSelection,
+  serializeExamSelection
 } from "@/lib/full-exam/answer-serialize";
 import {
   isNaturalCatStop,
   practiceResultsTotals,
-  practiceScorePercent,
+  practiceScorePercent
 } from "@/lib/full-exam/administered-score";
 import { fullExamResultsHref } from "@/lib/full-exam/config";
 import { nclexCatQuestionRange, nclexFullPracticeLengthLabel } from "@/lib/full-exam/nclex-length-label";
 import {
   fullExamSubmitEndedEarly,
-  shouldOfferFullExamReviewSubmit,
+  shouldOfferFullExamReviewSubmit
 } from "@/lib/full-exam/submit-intent";
 import { sittingAskKey, sittingCapEntityKey, sittingCapTags } from "@/lib/exam-prep/entity-cap";
 import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
@@ -61,13 +60,13 @@ import {
   initCatSession,
   updateCatSession,
   type CatDifficulty,
-  type CatSessionState,
+  type CatSessionState
 } from "@/lib/questions/cat-engine";
 import { mapDifficultyToCatBand, pickCatNext, type CatFormatHint } from "@/lib/questions/cat-select";
 import { cappedNgnTargetRatio } from "@/lib/full-exam/nclex-cat-ngn";
 import {
   catInExamTip,
-  catSessionStopSummary,
+  catSessionStopSummary
 } from "@/lib/questions/cat-psychology";
 import { analytics } from "@/lib/analytics";
 import type { RawQuestionInput, StudyQuestion } from "@/lib/questions/types";
@@ -75,7 +74,7 @@ import type { ExamSlug } from "@/types/edtech";
 import type {
   FullExamAnswerState,
   FullExamCatOutcome,
-  FullExamSessionConfig,
+  FullExamSessionConfig
 } from "@/types/full-exam";
 import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
 import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
@@ -120,8 +119,8 @@ function narrowTopicForQuestion(question: StudyQuestion): string | null {
     topicCategory: question.topicCategory,
     blueprintTopic: question.blueprintTopic,
     subjectId: question.subjectId,
-    tags: question.tags,
-  });
+    tags: question.tags
+});
 }
 
 function examOpenedAtMs(sessionId: string): number {
@@ -152,8 +151,8 @@ function catFormatFields(question: StudyQuestion): Pick<CatPoolItem, "ngn" | "se
       sequential ||
       dropdown,
     setId: sequential ? payload?.setId : undefined,
-    stepIndex: sequential ? payload?.stepIndex : undefined,
-  };
+    stepIndex: sequential ? payload?.stepIndex : undefined
+};
 }
 
 function catFormatHint(pool: CatPoolItem[], delivered: StudyQuestion[]): CatFormatHint {
@@ -172,10 +171,10 @@ function catFormatHint(pool: CatPoolItem[], delivered: StudyQuestion[]): CatForm
         drugKeys: tagged.drugKeys,
         conditionKey: tagged.conditionKey,
         conditionKeys: tagged.conditionKeys,
-        repeatKeys: tagged.repeatKeys,
-      };
-    }),
-  };
+        repeatKeys: tagged.repeatKeys
+};
+    })
+};
 }
 
 type Props = {
@@ -202,8 +201,8 @@ function questionTopicFields(q: StudyQuestion) {
     topicCategory: q.topicCategory || q.subjectId,
     subjectId: q.subjectId,
     blueprintDomain: q.blueprintDomain,
-    blueprintTopic: q.blueprintTopic,
-  };
+    blueprintTopic: q.blueprintTopic
+};
 }
 
 function initialRemainingSec(
@@ -223,8 +222,8 @@ function hydrateAnswers(records: ExamAnswerRecord[]): Record<number, FullExamAns
       selected: deserializeExamSelection(a.selected),
       eliminated: a.eliminated ?? [],
       flagged: a.flagged ?? false,
-      notes: a.notes ?? "",
-    };
+      notes: a.notes ?? ""
+};
   }
   return out;
 }
@@ -236,7 +235,7 @@ export function FullExamSimulator({
   config,
   initialAnswers = [],
   startedAt = null,
-  initialLockedThrough = 0,
+  initialLockedThrough = 0
 }: Props) {
   const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
@@ -369,8 +368,8 @@ export function FullExamSimulator({
         const raw: RawQuestionInput[] = apiQuestions.map((q, i) => ({
           ...q,
           field: fieldId,
-          bankItemId: bankIds[i] ?? q.bankItemId,
-        }));
+          bankItemId: bankIds[i] ?? q.bankItemId
+}));
         const prepared = mapApiQuestionsToStudy(raw, { shuffleOptions: false });
         const delivered = prepared.slice(0, expectedCount);
         if (isCatMode) {
@@ -388,8 +387,8 @@ export function FullExamSimulator({
           ...q,
           id: bankIds[i] ?? q.bankItemId ?? q.id,
           bankItemId: bankIds[i] ?? q.bankItemId,
-          field: fieldId,
-        }));
+          field: fieldId
+}));
       }
 
       function applyLoaded(items: StudyQuestion[]) {
@@ -401,8 +400,8 @@ export function FullExamSimulator({
               vignette: q.vignette,
               options: q.options,
               correctAnswer: q.correctAnswers.join("|||"),
-              explanation: q.explanation,
-            }))
+              explanation: q.explanation
+}))
           );
           const pool: CatPoolItem[] = items.map((q, i) => {
             const text = [q.vignette, q.stem].filter(Boolean).join("\n");
@@ -417,8 +416,8 @@ export function FullExamSimulator({
               blueprintTopic: q.blueprintTopic,
               tags: q.tags,
               ngnPayload: q.ngnPayload,
-              chartData: q.chartData,
-            };
+              chartData: q.chartData
+};
             return {
               ...q,
               ...catFormatFields(q),
@@ -427,8 +426,8 @@ export function FullExamSimulator({
               entityKey: sittingCapEntityKey(source, fieldId),
               askKey: sittingAskKey(q.stem) ?? sittingAskKey(text),
               clusterId: clusters[i],
-              ...sittingCapTags(source, fieldId),
-            };
+              ...sittingCapTags(source, fieldId)
+};
           });
           if (config.nclexExamMode) {
             setCatPool(isCatMode ? pool : []);
@@ -443,8 +442,8 @@ export function FullExamSimulator({
           const restored = restoreCatSessionFromAnswers({
             pool,
             records: initialAnswers,
-            bandForQuestion: (q) => mapDifficultyToCatBand(q.difficulty, 0),
-          });
+            bandForQuestion: (q) => mapDifficultyToCatBand(q.difficulty, 0)
+});
           if (restored) {
             Object.assign(serverCorrectRef.current, restored.serverCorrect);
             setCatState(restored.catState);
@@ -492,8 +491,8 @@ export function FullExamSimulator({
 
       try {
         const prefetchRes = await fetch(`/api/full-exam/${sessionId}/questions`, {
-          cache: "no-store",
-        });
+          cache: "no-store"
+});
         if (prefetchRes.ok) {
           const prefetchData = (await prefetchRes.json()) as {
             questions?: RawQuestionInput[];
@@ -559,8 +558,8 @@ export function FullExamSimulator({
         nowMs: Date.now(),
         pausedSec: pauseAccumSec.current,
         fallbackSec: 0,
-        openedAtMs: openedAtMs.current,
-      });
+        openedAtMs: openedAtMs.current
+});
       if (config.timed && config.timeLimitSec > 0) {
         const left = Math.max(0, config.timeLimitSec - used);
         setRemainingSec(left);
@@ -585,7 +584,7 @@ export function FullExamSimulator({
   }, [loading, submitting, paused, config.timed, config.timeLimitSec, startedAt]);
 
   const serverCorrectRef = useRef<Record<number, boolean>>({});
-  const [serverGradeTick, setServerGradeTick] = useState(0);
+  const [, setServerGradeTick] = useState(0);
 
   const persistAnswer = useCallback(
     async (qi: number, state: FullExamAnswerState): Promise<boolean | null> => {
@@ -608,9 +607,9 @@ export function FullExamSimulator({
           eliminated: state.eliminated,
           notes: state.notes,
           topicCategory: questionTopicFields(q).topicCategory,
-          persistSeq,
-        } satisfies Partial<ExamAnswerRecord>),
-      });
+          persistSeq
+} satisfies Partial<ExamAnswerRecord>)
+});
       if (!res.ok) return null;
       if (persistSeqRef.current[qi] !== persistSeq) return null;
       const data = (await res.json().catch(() => null)) as {
@@ -713,8 +712,8 @@ export function FullExamSimulator({
       const exhausted: CatSessionState = {
         ...state,
         isComplete: true,
-        stopReason: state.stopReason ?? "maximum",
-      };
+        stopReason: state.stopReason ?? "maximum"
+};
       goToCatReview(exhausted);
       return;
     }
@@ -725,7 +724,6 @@ export function FullExamSimulator({
     isCatMode,
     index,
     questions,
-    answers,
     catState,
     catCommittedCount,
     catPool,
@@ -748,7 +746,7 @@ export function FullExamSimulator({
     }
     setHasEnteredReview(true);
     setPhase("review");
-  }, [isCatMode, commitCatThrough, questions, catState, catCommittedCount, answers, serverGradeTick]);
+  }, [isCatMode, commitCatThrough, questions, catState, catCommittedCount, answers]);
 
   const toggleSelect = useCallback(
     (option: string) => {
@@ -853,11 +851,11 @@ export function FullExamSimulator({
         eliminated: st.eliminated,
         notes: st.notes,
         topicCategory: questionTopicFields(q).topicCategory,
-        answeredAt: firstAnsweredAt.current[i] ?? new Date().toISOString(),
-      });
+        answeredAt: firstAnsweredAt.current[i] ?? new Date().toISOString()
+});
     }
     return log;
-  }, [questions, serverGradeTick]);
+  }, [questions]);
 
   const submitExam = useCallback(
     async (endedEarly = false) => {
@@ -896,8 +894,8 @@ export function FullExamSimulator({
       const totals = practiceResultsTotals({
         delivered: scored.length,
         answers: log,
-        cat: isCatMode,
-      });
+        cat: isCatMode
+});
       const correctCount = log.filter((row) => row.correct && row.selected?.trim()).length;
       const score = practiceScorePercent(correctCount, totals.denominator || totals.answered);
       const topicBreakdown = buildTopicBreakdown(scored, log, { examSlug });
@@ -913,21 +911,21 @@ export function FullExamSimulator({
           ? Math.max(0, config.timeLimitSec - remainingSec)
           : elapsedSec,
         openedAtMs: openedAtMs.current,
-        answerTimes: log.map((answer) => answer.answeredAt),
-      });
+        answerTimes: log.map((answer) => answer.answeredAt)
+});
       const markEndedEarly = fullExamSubmitEndedEarly({
         requestedEarly: endedEarly,
         servedCount: questions.length,
         answeredCount: log.length,
         plannedCount: config.questionCount,
-        catNaturalStop: isCatMode && isNaturalCatStop(finalCatState.stopReason),
-      });
+        catNaturalStop: isCatMode && isNaturalCatStop(finalCatState.stopReason)
+});
 
       const catOutcome: FullExamCatOutcome | undefined = isCatMode
         ? {
             ...finalCatState,
-            practiceBand: catPracticeBand(finalCatState),
-          }
+            practiceBand: catPracticeBand(finalCatState)
+}
         : undefined;
 
       if (isCatMode && !catStoppedTracked.current) {
@@ -971,16 +969,16 @@ export function FullExamSimulator({
                       condition: bowTie.condition,
                       conditionOptions: bowTie.conditionOptions,
                       actions: bowTie.actions,
-                      monitors: bowTie.monitors,
-                    },
-                  }
+                      monitors: bowTie.monitors
+}
+}
                 : {}),
               ...(() => {
                 const step =
                   q.caseStep ?? (q.ngnPayload as { stepIndex?: number } | undefined)?.stepIndex;
                 return typeof step === "number" ? { caseStep: step } : {};
-              })(),
-            };
+              })()
+};
           }),
           endedEarly: markEndedEarly,
           summary: markEndedEarly
@@ -988,9 +986,9 @@ export function FullExamSimulator({
             : isCatMode
               ? `Completed ${exam.name} practice CAT — ${catSessionStopSummary(finalCatState)}`
               : `Completed ${exam.name} simulation.`,
-          ...(catOutcome ? { catOutcome } : {}),
-        },
-      };
+          ...(catOutcome ? { catOutcome } : {})
+}
+};
 
       try {
         setSubmitPhase("grading");
@@ -1018,7 +1016,7 @@ export function FullExamSimulator({
       catState,
       catCommittedCount,
       commitCatThrough,
-      answers,
+      index,
     ]
   );
 
@@ -1049,8 +1047,8 @@ export function FullExamSimulator({
       index,
       servedCount: questions.length,
       catAlreadyComplete: catState.isComplete,
-      catStopsAfterCurrent,
-    });
+      catStopsAfterCurrent
+});
   }, [
     answers,
     catCommittedCount,
@@ -1060,7 +1058,6 @@ export function FullExamSimulator({
     current,
     currentAnswer.selected,
     examMode,
-    serverGradeTick,
     index,
     isCatMode,
     questions,
@@ -1174,8 +1171,8 @@ export function FullExamSimulator({
     void fetch(`/api/exam-sessions/${sessionId}/answer`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ lockThrough: next.lockedThrough }),
-    });
+      body: JSON.stringify({ lockThrough: next.lockedThrough })
+});
     })();
   }
   examNextRef.current = goExamNext;
@@ -1613,8 +1610,8 @@ export function FullExamSimulator({
             sessionId,
             sessionMode: "full_exam",
             question: current,
-            selectedAnswer: serializeExamSelection(current, currentAnswer.selected),
-          })}
+            selectedAnswer: serializeExamSelection(current, currentAnswer.selected)
+})}
         />
       ) : null}
 
@@ -1629,7 +1626,7 @@ function ExamQuestionNav({
   total,
   currentIndex,
   answers,
-  onSelect,
+  onSelect
 }: {
   total: number;
   currentIndex: number;
@@ -1682,7 +1679,7 @@ function ReviewStatCard({
   emptyLabel,
   indices,
   tone,
-  onSelect,
+  onSelect
 }: {
   title: string;
   emptyLabel: string;

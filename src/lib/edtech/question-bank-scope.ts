@@ -3,7 +3,7 @@ import { getFieldMeta } from "@/lib/fields";
 import {
   examSlugForFieldId,
   fieldIdForExamSlug,
-  fieldMatchesExamSlug,
+  fieldMatchesExamSlug
 } from "@/lib/edtech/exam-field-ids";
 import { getUserExamPreferenceFresh, setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
@@ -11,19 +11,18 @@ import {
   defaultUsmleFieldId,
   isUsmleFieldId,
   resolveUsmleFieldId,
-  type UsmleFieldId,
+  type UsmleFieldId
 } from "@/lib/exam-prep/usmle/steps";
 import {
-  isExamFieldId,
   isPracticeFieldId,
-  normalizeFieldId,
+  normalizeFieldId
 } from "@/lib/subjects/field-ids";
 import type { ExamSlug } from "@/types/edtech";
 
 export {
   examSlugForFieldId,
   fieldIdForExamSlug,
-  fieldMatchesExamSlug,
+  fieldMatchesExamSlug
 } from "@/lib/edtech/exam-field-ids";
 
 /** Resolve API `field` query values (labels, aliases, ids) to a canonical exam field id. */
@@ -77,8 +76,8 @@ export async function enforceUserExamSlugAccess(
       response: NextResponse.json(
         { error: "Select an exam before practicing.", code: "NO_EXAM_PREFERENCE" },
         { status: 403 }
-      ),
-    };
+      )
+};
   }
   if (pref.examSlug !== examSlug) {
     return {
@@ -87,11 +86,11 @@ export async function enforceUserExamSlugAccess(
         {
           error: "That exam does not match your selected exam.",
           code: "EXAM_MISMATCH",
-          expectedExamSlug: pref.examSlug,
-        },
+          expectedExamSlug: pref.examSlug
+},
         { status: 403 }
-      ),
-    };
+      )
+};
   }
   return { ok: true, examSlug: pref.examSlug };
 }
@@ -133,8 +132,8 @@ export async function enforceQuestionBankFieldAccess(
       response: NextResponse.json(
         { error: "Select an exam before practicing.", code: "NO_EXAM_PREFERENCE" },
         { status: 403 }
-      ),
-    };
+      )
+};
   }
 
   const trusted = opts?.trustedSessionFieldId?.trim();
@@ -151,11 +150,11 @@ export async function enforceQuestionBankFieldAccess(
         {
           error: "That exam is not available for practice.",
           code: "UNKNOWN_EXAM_FIELD",
-          fieldId,
-        },
+          fieldId
+},
         { status: 400 }
-      ),
-    };
+      )
+};
   }
 
   if (!fieldMatchesExamSlug(fieldId, pref.examSlug)) {
@@ -165,11 +164,11 @@ export async function enforceQuestionBankFieldAccess(
         {
           error: "That field does not match your selected exam.",
           code: "EXAM_FIELD_MISMATCH",
-          expectedExamSlug: pref.examSlug,
-        },
+          expectedExamSlug: pref.examSlug
+},
         { status: 403 }
-      ),
-    };
+      )
+};
   }
 
   const canonicalFieldId = await resolveCanonicalPracticeFieldId(userId, pref.examSlug);
@@ -189,11 +188,11 @@ export async function enforceQuestionBankFieldAccess(
               : "That field does not match your selected exam.",
           code: pref.examSlug === "usmle" ? "USMLE_STEP_MISMATCH" : "EXAM_FIELD_MISMATCH",
           expectedExamSlug: pref.examSlug,
-          expectedFieldId: canonicalFieldId,
-        },
+          expectedFieldId: canonicalFieldId
+},
         { status: 403 }
-      ),
-    };
+      )
+};
   }
 
   return { ok: true, examSlug: pref.examSlug, fieldId: canonicalFieldId };
@@ -216,8 +215,8 @@ export async function resolveQuestionBankReadAccess(
       response: NextResponse.json(
         { error: "Select an exam before practicing.", code: "NO_EXAM_PREFERENCE" },
         { status: 403 }
-      ),
-    };
+      )
+};
   }
 
   const fieldId = resolveQuestionBankFieldId(field);
@@ -229,11 +228,11 @@ export async function resolveQuestionBankReadAccess(
         {
           error: "That exam is not available for practice.",
           code: "UNKNOWN_EXAM_FIELD",
-          fieldId,
-        },
+          fieldId
+},
         { status: 400 }
-      ),
-    };
+      )
+};
   }
 
   return { ok: true, examSlug: targetSlug, fieldId };

@@ -5,8 +5,6 @@ import {
   formatLandingHeroTrialLine,
   formatMonthlyPrice,
   formatPricingCheckoutTrialOffer,
-  formatTrialLabel,
-  formatTrialQuestionLimit,
 } from "@/lib/site";
 import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS, MONTHLY_PRICE_USD } from "@/lib/billing-config";

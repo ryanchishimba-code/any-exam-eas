@@ -3,8 +3,7 @@ import type { BankItem } from "@/lib/question-bank";
 import {
   selectSpreadBankItems,
   selectSpreadRawInputs,
-  spreadGroupKeyFromBankItem,
-  spreadStudyQuestions,
+  spreadStudyQuestions
 } from "./spread-session-order";
 import { prepareQuestionsForSession } from "./prepare";
 import type { RawQuestionInput } from "./types";
@@ -23,8 +22,8 @@ function bankItem(
     vignette,
     options,
     correctAnswer: options[0] ?? "A",
-    explanation: "Test",
-  };
+    explanation: "Test"
+};
 }
 
 describe("selectSpreadBankItems", () => {
@@ -59,8 +58,8 @@ describe("selectSpreadBankItems", () => {
       options: [`A-${i}`, `B-${i}`, `C-${i}`, `D-${i}`],
       correctAnswer: `A-${i}`,
       explanation: "Why.",
-      subjectId: i % 2 === 0 ? "assess" : "plan",
-    }));
+      subjectId: i % 2 === 0 ? "assess" : "plan"
+}));
     const selected = selectSpreadRawInputs(raw, 25);
     expect(selected).toHaveLength(25);
   });
@@ -145,8 +144,8 @@ describe("spreadStudyQuestions", () => {
         correctAnswer: "A",
         explanation: "s1",
         ngnPayload: { kind: "sequential", setId: "case-1", stepIndex: 1, totalSteps: 2 },
-        subjectId: "cardiology",
-      },
+        subjectId: "cardiology"
+},
       {
         id: 2,
         type: "multiple_choice",
@@ -156,8 +155,8 @@ describe("spreadStudyQuestions", () => {
         correctAnswer: "B",
         explanation: "s2",
         ngnPayload: { kind: "sequential", setId: "case-1", stepIndex: 2, totalSteps: 2 },
-        subjectId: "cardiology",
-      },
+        subjectId: "cardiology"
+},
       {
         id: 3,
         type: "multiple_choice",
@@ -166,8 +165,8 @@ describe("spreadStudyQuestions", () => {
         options: ["A", "B", "C", "D"],
         correctAnswer: "C",
         explanation: "renal",
-        subjectId: "nephrology",
-      },
+        subjectId: "nephrology"
+},
     ];
 
     const prepared = prepareQuestionsForSession(raw, { shuffleOrder: false });
@@ -192,8 +191,8 @@ describe("prepareQuestionsForSession count", () => {
       options: ["A", "B", "C", "D"],
       correctAnswer: "A",
       explanation: `Why ${i}`,
-      subjectId: i % 3 === 0 ? "cardiology" : i % 3 === 1 ? "nephrology" : "pulmonology",
-    }));
+      subjectId: i % 3 === 0 ? "cardiology" : i % 3 === 1 ? "nephrology" : "pulmonology"
+}));
 
     const prepared = prepareQuestionsForSession(raw, { shuffleOrder: true });
     expect(prepared).toHaveLength(15);
@@ -209,8 +208,8 @@ describe("prepareQuestionsForSession count", () => {
         options: ["A", "B", "C", "D"],
         correctAnswer: "A",
         explanation: "one",
-        subjectId: "cardiology",
-      },
+        subjectId: "cardiology"
+},
       {
         id: 2,
         type: "multiple_choice",
@@ -219,8 +218,8 @@ describe("prepareQuestionsForSession count", () => {
         options: ["A", "B", "C", "D"],
         correctAnswer: "B",
         explanation: "two",
-        subjectId: "cardiology",
-      },
+        subjectId: "cardiology"
+},
       {
         id: 3,
         type: "multiple_choice",
@@ -229,8 +228,8 @@ describe("prepareQuestionsForSession count", () => {
         options: ["IV fluids", "Diuretic", "Dialysis", "Stop nephrotoxin"],
         correctAnswer: "IV fluids",
         explanation: "three",
-        subjectId: "nephrology",
-      },
+        subjectId: "nephrology"
+},
     ];
 
     const prepared = prepareQuestionsForSession(raw, { shuffleOrder: true });

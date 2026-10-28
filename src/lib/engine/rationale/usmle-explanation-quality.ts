@@ -6,7 +6,6 @@ import type { ExpertStructuredRationale } from "./expert-rationale-types";
 import {
   validateStructuredRationale,
   type RationaleQualityIssue,
-  type RationaleQualityVerdict,
 } from "./validate-rationale";
 import { resolveUsmleExpertStepTone } from "../prompts/usmle-expert-rationale";
 
@@ -112,6 +111,6 @@ export function scoreUsmleExplanationQuality(
       !unique.includes("missing_step_reasoning") &&
       !unique.includes("thin_clinical_context"),
     score: Math.max(0, score),
-    issues: unique,
-  };
+    issues: unique
+};
 }

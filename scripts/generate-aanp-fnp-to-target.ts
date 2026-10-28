@@ -53,7 +53,7 @@ function parseArgs() {
   let metric: "active" | "qaPassed" = "active";
   let dryRun = false;
   let mode: RunMode = "auto";
-  let turbo = args.includes("--turbo");
+  const turbo = args.includes("--turbo");
 
   for (let i = 0; i < args.length; i++) {
     const a = args[i];

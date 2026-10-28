@@ -10,7 +10,7 @@ import {
 import { requireStripePriceId } from "@/lib/stripe-prices";
 import { isStripeConfigured } from "@/lib/payments";
 import { requireSessionGuard } from "@/lib/session-guard";
-import { parseSubscriptionTier, type SubscriptionTier } from "@/lib/subscription-tiers";
+import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import type { BillingInterval } from "@/lib/billing-config";
 
 export const runtime = "nodejs";

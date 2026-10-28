@@ -1,4 +1,3 @@
-import { TRIAL_DAYS } from "@/lib/billing-config";
 import { formatMonthlyPrice } from "@/lib/site";
 
 /** Primary hero button on home and board landing pages. */

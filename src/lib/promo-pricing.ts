@@ -72,7 +72,6 @@ export function buildPlanPricing(
   discountPercent?: number | null,
   discountAmount?: number | null
 ): PromoPricing {
-  const planTier = getBillingPlanTier(tier, interval);
   const periodTotal = intervalTotalUsd(tier, interval);
 
   if (plan === "trial") {

@@ -3,9 +3,8 @@
  */
 import {
   computeAanpFnpClinicalSystemWeightMap,
-  highYieldTopicsForSystem,
   pickAanpFnp2026BlueprintTopic,
-  pickAanpFnp2026ClinicalSystem,
+  pickAanpFnp2026ClinicalSystem
 } from "./blueprint-topics-2026";
 import type {
   AanpFnpAgeGroupQuotaRow,
@@ -14,7 +13,7 @@ import type {
   AanpFnpDomainQuotaRow,
   AanpFnpGenerationSlot,
   AanpFnpPatientAgeGroupId,
-  AanpFnpQuestionFormat,
+  AanpFnpQuestionFormat
 } from "./types";
 import {
   AANP_FNP_AGE_GROUP_LABELS,
@@ -22,7 +21,7 @@ import {
   AANP_FNP_DOMAIN_LABELS,
   AANP_FNP_DOMAIN_WEIGHTS,
   AANP_FNP_SELECT_ALL_MIX,
-  AANP_FNP_TARGET_TOTAL,
+  AANP_FNP_TARGET_TOTAL
 } from "./types";
 import { AANP_FNP_2026_TOPIC_GROUPS } from "./blueprint-topics-2026";
 
@@ -62,8 +61,8 @@ export function computeAanpFnpClinicalSystemQuotas(
       system,
       label: group?.label ?? system,
       weight: CLINICAL_SYSTEM_WEIGHTS[system],
-      targetCount: Math.round(total * CLINICAL_SYSTEM_WEIGHTS[system]),
-    };
+      targetCount: Math.round(total * CLINICAL_SYSTEM_WEIGHTS[system])
+};
   });
 }
 
@@ -80,8 +79,8 @@ export function computeAanpFnpTopicQuotas(
         topicSlug: topic.slug,
         label: topic.label,
         clinicalSystem: group.categoryId,
-        targetCount: perTopic,
-      });
+        targetCount: perTopic
+});
     }
   }
   return rows;
@@ -97,8 +96,8 @@ export function mergeAanpFnpClinicalSystemQuotaWithCounts(
     return {
       ...row,
       currentCount,
-      deficit: Math.max(0, row.targetCount - currentCount),
-    };
+      deficit: Math.max(0, row.targetCount - currentCount)
+};
   });
 }
 
@@ -112,8 +111,8 @@ export function mergeAanpFnpTopicQuotaWithCounts(
     return {
       ...row,
       currentCount,
-      deficit: Math.max(0, row.targetCount - currentCount),
-    };
+      deficit: Math.max(0, row.targetCount - currentCount)
+};
   });
 }
 
@@ -125,8 +124,8 @@ export function computeAanpFnpDomainQuotas(
     domain,
     label: AANP_FNP_DOMAIN_LABELS[domain],
     weight: AANP_FNP_DOMAIN_WEIGHTS[domain],
-    targetCount: Math.round(total * AANP_FNP_DOMAIN_WEIGHTS[domain]),
-  }));
+    targetCount: Math.round(total * AANP_FNP_DOMAIN_WEIGHTS[domain])
+}));
 }
 
 /** Per age-group targets (cross-cutting lifespan dimension). */
@@ -137,8 +136,8 @@ export function computeAanpFnpAgeGroupQuotas(
     ageGroup,
     label: AANP_FNP_AGE_GROUP_LABELS[ageGroup],
     weight: AANP_FNP_AGE_GROUP_WEIGHTS[ageGroup],
-    targetCount: Math.round(total * AANP_FNP_AGE_GROUP_WEIGHTS[ageGroup]),
-  }));
+    targetCount: Math.round(total * AANP_FNP_AGE_GROUP_WEIGHTS[ageGroup])
+}));
 }
 
 /** Target count for one domain at a given bank size. */
@@ -160,8 +159,8 @@ export function mergeAanpFnpDomainQuotaWithCounts(
     return {
       ...row,
       currentCount,
-      deficit: Math.max(0, row.targetCount - currentCount),
-    };
+      deficit: Math.max(0, row.targetCount - currentCount)
+};
   });
 }
 
@@ -175,8 +174,8 @@ export function mergeAanpFnpAgeGroupQuotaWithCounts(
     return {
       ...row,
       currentCount,
-      deficit: Math.max(0, row.targetCount - currentCount),
-    };
+      deficit: Math.max(0, row.targetCount - currentCount)
+};
   });
 }
 
@@ -286,8 +285,8 @@ export function planAanpFnpGenerationSlots(params: {
       patientAgeGroup,
       blueprintTopic,
       difficulty,
-      questionFormat,
-    });
+      questionFormat
+});
   }
 
   return slots;

@@ -24,10 +24,6 @@ const USP795 = {
   label: "USP <795> Pharmaceutical Compounding — Nonsterile Preparations",
   url: "https://www.usp.org",
 };
-const USP797 = {
-  label: "USP <797> Pharmaceutical Compounding — Sterile Preparations",
-  url: "https://www.usp.org",
-};
 const FDA = { label: "FDA prescribing information / Orange Book", url: "https://www.fda.gov/drugs" };
 const ICH = { label: "ICH Q stability / quality guidance", url: "https://www.ich.org" };
 const CGMP = {

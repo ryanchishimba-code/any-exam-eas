@@ -44,20 +44,6 @@ type ViewMode = "guide" | "browse";
 const GUIDE_EXAMS: ExamSlug[] = ["nclex", "naplex", "usmle"];
 const GUIDE_TOPIC_THRESHOLD = 12;
 
-function sortTopicsByUsmleDomain(
-  topics: HighYieldTopic[],
-  stepLabel?: string
-): HighYieldTopic[] {
-  const step = usmleStepFromShortLabel(stepLabel);
-  const domainOrder = new Map(getUsmleStudyDomains(step).map((d, i) => [d.id, i]));
-  return [...topics].sort((a, b) => {
-    const da = domainOrder.get(a.clientNeedsDomain ?? "") ?? 99;
-    const db = domainOrder.get(b.clientNeedsDomain ?? "") ?? 99;
-    if (da !== db) return da - db;
-    return a.title.localeCompare(b.title);
-  });
-}
-
 function sortTopicsByNaplexDomain(topics: HighYieldTopic[]): HighYieldTopic[] {
   const domainOrder = new Map<string, number>(
     NAPLEX_CONTENT_DOMAINS.map((d, i) => [d.id, i])

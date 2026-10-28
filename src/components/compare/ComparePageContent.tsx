@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import {
-  AEE_YEARLY,
   COMPARE_HONESTY_DISCLAIMER,
   COMPETITOR_MAY_WIN,
   EXAM_ONE_PAGER_LINKS,
   MASTER_FEATURE_ROWS,
-  PREP_APPROACH_PROFILES,
+  PREP_APPROACH_PROFILES
 } from "@/lib/seo/competitor-comparison";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
@@ -16,7 +15,7 @@ import { formatMonthlyPrice, formatPricingCheckoutTrialOffer, formatTrialCtaLabe
 
 function ComparisonTable({
   rows,
-  competitorHeader,
+  competitorHeader
 }: {
   rows: { feature: string; anyExamEasy: string; competitor: string }[];
   competitorHeader: string;
@@ -55,7 +54,7 @@ function ComparisonTable({
 
 export function ComparePageContent({
   questionCountLabel,
-  nclexFormats = null,
+  nclexFormats = null
 }: {
   questionCountLabel?: string;
   nclexFormats?: FormatCounts | null;

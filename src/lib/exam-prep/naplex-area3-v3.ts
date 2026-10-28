@@ -15,7 +15,6 @@ const A3 = "naplex-area3-treatment-planning" as const;
 const FDA = { label: "FDA prescribing information", url: "https://www.fda.gov/drugs" };
 const ADA = { label: "ADA Standards of Care in Diabetes", url: "https://diabetesjournals.org/care" };
 const ACCAHA = { label: "ACC/AHA Guideline", url: "https://www.acc.org" };
-const GOLD = { label: "GOLD COPD Report", url: "https://goldcopd.org" };
 
 export const NAPLEX_AREA3_V3: EnrichedBankItem[] = [
   naplexCase(

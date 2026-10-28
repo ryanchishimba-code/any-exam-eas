@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { FileCheck2, RefreshCw, ShieldCheck } from "lucide-react";
 import { InlineError } from "@/components/ui/StatusMessage";
@@ -93,7 +93,7 @@ export default function UserSearch({ showAdminColumns = false }: { showAdminColu
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function loadUsers(query: string) {
+  const loadUsers = useCallback(async (query: string) => {
     setLoading(true);
     setError(null);
     try {
@@ -109,12 +109,11 @@ export default function UserSearch({ showAdminColumns = false }: { showAdminColu
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   useEffect(() => {
     void loadUsers("");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loadUsers]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();

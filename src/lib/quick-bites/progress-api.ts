@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { UserAccess } from "@/lib/access-control";
 import { requireAuthenticatedApi } from "@/lib/api-access";
-import { canPlayQuickBites, canPlayQuickBiteEpisode } from "@/lib/quick-bites/access";
+import { canPlayQuickBites } from "@/lib/quick-bites/access";
 import { isOpenQuickBite } from "@/lib/quick-bites/catalog";
 import { isOpenFnpQuickBite } from "@/lib/quick-bites/fnp-catalog";
 import { isOpenPanceQuickBite } from "@/lib/quick-bites/pance-catalog";

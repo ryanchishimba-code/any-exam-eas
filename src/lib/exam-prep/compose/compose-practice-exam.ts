@@ -16,8 +16,7 @@ import {
   fillExamItemsToCount,
   maxGatherTierIndexForComposeTier,
   resolveComposePoolLimit,
-  resolveLiveComposePoolLimit,
-  resolveProgressivePullSize,
+  resolveProgressivePullSize
 } from "@/lib/exam-prep/progressive-exam-relaxation";
 import { dedupeItemsByClinicalCase, sessionDedupeKey } from "@/lib/exam-prep/diverse-session-selection";
 import { auditExamSimilarity } from "@/lib/exam-prep/exam-similarity";
@@ -28,7 +27,7 @@ import { sequenceItems } from "@/lib/exam-prep/sequencing/anti-cluster-sequencer
 import type {
   SequenceItem,
   SequencingConfig,
-  SequencingReport,
+  SequencingReport
 } from "@/lib/exam-prep/sequencing/types";
 import {
   conceptKeysFor,
@@ -36,21 +35,20 @@ import {
   normalizeBlueprintDomain,
   selectBlueprintBalancedSet,
   type DifficultyPreference,
-  type SelectionSummary,
+  type SelectionSummary
 } from "@/lib/exam-prep/naplex/blueprint-selection";
 import {
   resolveExamComposeConfig,
-  type ExamComposeConfig,
+  type ExamComposeConfig
 } from "./exam-compose-config";
 import {
   type ProgressiveComposeTier,
-  PROGRESSIVE_COMPOSE_TIERS,
   minQuestionsForTier,
   padToMinimum,
   sessionMeetsTierFill,
   startingTierIndex,
   tierByIndex,
-  userFacingComposeTiers,
+  userFacingComposeTiers
 } from "@/lib/exam-prep/progressive-compose";
 
 export type ComposeOutputFormat =
@@ -136,8 +134,8 @@ function toSequenceItem(item: BankItem, validIds: Set<string>): SequenceItem {
     concepts: conceptKeysFor(item),
     difficulty: item.difficulty ?? 3,
     format: item.itemType ?? "mcq",
-    answer: answerKeyFor(item),
-  };
+    answer: answerKeyFor(item)
+};
 }
 
 /** Scale anti-cluster windows down for short exams so constraints stay feasible. */
@@ -234,8 +232,8 @@ async function composeForConfigWithTier(
       ),
       maxRoundsPerTier: params.livePoolLimit ? 1 : undefined,
       excludeQuestionIds: excludeIds,
-      prepareItem: config.prepareItem,
-    })
+      prepareItem: config.prepareItem
+})
   ).filter((item) => item.id);
 
   if (pool.length < minCount) return null;
@@ -244,8 +242,8 @@ async function composeForConfigWithTier(
     numQuestions,
     focusAreas: params.focusAreas,
     difficultyPreference: params.difficultyPreference,
-    seed,
-  });
+    seed
+});
 
   const casePool = tier.dedupeClinicalCases
     ? dedupeItemsByClinicalCase(blueprintSelected)
@@ -263,13 +261,13 @@ async function composeForConfigWithTier(
       selected = selectUsmleSessionBankItems(casePool, numQuestions, {
         seed,
         stepLevel,
-        weakSystemIds: params.focusAreas,
-      });
+        weakSystemIds: params.focusAreas
+});
     } else {
       selected = finalizeExamSessionItems(casePool, numQuestions, {
         seed,
-        requestedCount: numQuestions,
-      });
+        requestedCount: numQuestions
+});
     }
   } else {
     selected = shuffleWithSeed(casePool, seed).slice(0, numQuestions);
@@ -300,8 +298,8 @@ async function composeForConfigWithTier(
       domainGapViolations: 0,
       conceptGapViolations: 0,
       passed: true,
-      notes: ["Live fast path — skipped anti-cluster sequencing."],
-    };
+      notes: ["Live fast path — skipped anti-cluster sequencing."]
+};
   } else {
     const sequenced = sequenceItems(
       finalItems,
@@ -334,15 +332,15 @@ async function composeForConfigWithTier(
         totalQuestions: total,
         estimatedMinutes: Math.round(total * config.minutesPerItem),
         boardReference: config.boardReference,
-        note: `Composed at tier "${tier.id}" (${tier.label}). Curated from serve-ready bank items with progressive quality thresholds.`,
-      },
+        note: `Composed at tier "${tier.id}" (${tier.label}). Curated from serve-ready bank items with progressive quality thresholds.`
+},
       format,
       questions,
       selectionSummary: summary,
       sequencingReport: report,
-      similarityFlags,
-    },
-  };
+      similarityFlags
+}
+};
 }
 
 function shuffleWithSeed<T>(items: T[], seed: number): T[] {
@@ -378,8 +376,8 @@ function shapeQuestion(
     subdomain: item.blueprintTopic ?? item.topicCategory ?? undefined,
     difficulty: difficultyBand(item.difficulty),
     format: item.itemType ?? "mcq",
-    answerKey: answerKeyFor(item),
-  };
+    answerKey: answerKeyFor(item)
+};
 
   if (format === "ids_only") return base;
 

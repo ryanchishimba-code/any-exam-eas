@@ -145,7 +145,7 @@ export async function runCurationPipeline(
     return d?.keep || d?.review;
   });
 
-  const { kept, dropped } = allocateToTarget(
+  const { kept, dropped: _dropped } = allocateToTarget(
     preBalanceCandidates.filter((item) => clusterDecisions.get(item.id)?.keep),
     opts.target
   );

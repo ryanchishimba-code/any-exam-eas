@@ -6,7 +6,6 @@ import {
   buildNsaidAceInteractionCounselingMcq,
   buildOpioidCnsSideEffectMcq,
   buildPenicillinAllergyAmoxicillinMcq,
-  buildSepsisRenalImpairmentMcq,
   buildSepsisIvAntibioticTherapyMcq,
   buildUtiAmoxicillinCounselingMcq,
   buildPregnancyTopicalAntibioticCounselingMcq,
@@ -21,7 +20,7 @@ import {
   isNsaidAceInteractionVignette,
   isPenicillinAllergyAmoxicillinCounselingVignette,
   isSepsisRenalAntibioticVignette,
-  vignetteSupportsCalculation,
+  vignetteSupportsCalculation
 } from "./naplex-format-coherence";
 import { resolveNaplexStem, resolveNaplexVignette } from "./naplex-bank-audit";
 
@@ -90,8 +89,8 @@ function buildBuprenorphineOudPainMcq(item: BankItem): BankItem {
     explanation:
       "Correct: Recommend non-opioid multimodal analgesia and coordinate with the buprenorphine prescriber — patients on buprenorphine for OUD need careful acute pain plans that avoid unsupervised full mu-agonist therapy and relapse risk. Stopping buprenorphine/naloxone can precipitate withdrawal and increase relapse risk. Full opioid agonists without coordination can antagonize treatment goals. Dispensing long-term opioids without prescriber collaboration is unsafe in OUD.",
     itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
 }
 
 function buildGenericClinicalRecommendationMcq(item: BankItem): BankItem {
@@ -112,8 +111,8 @@ function buildGenericClinicalRecommendationMcq(item: BankItem): BankItem {
     explanation:
       "Correct: Coordinate with the prescriber on a patient-specific plan — pharmacist recommendations for complex patients should be evidence-based and involve the prescribing team when therapy changes are needed. Unsupervised dose escalation, stopping prescribed therapy abruptly, and dispensing without assessment are unsafe.",
     itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
 }
 
 function isDiabetesHypertensionFollowUpVignette(text: string): boolean {
@@ -146,8 +145,8 @@ function buildDiabetesHypertensionFollowUpMcq(item: BankItem): BankItem {
     itemType: "vignette",
     ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
     subjectId: item.subjectId || "cardiovascular-rx",
-    topicCategory: item.topicCategory ?? "Diabetes Hypertension Follow-up",
-  };
+    topicCategory: item.topicCategory ?? "Diabetes Hypertension Follow-up"
+};
 }
 
 function isHyperkalemiaSpironolactoneVignette(text: string): boolean {
@@ -178,8 +177,8 @@ function buildHyperkalemiaSpironolactoneMcq(item: BankItem): BankItem {
     itemType: "vignette",
     ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
     subjectId: item.subjectId || "cardiovascular-rx",
-    topicCategory: item.topicCategory ?? "Hyperkalemia MRA",
-  };
+    topicCategory: item.topicCategory ?? "Hyperkalemia MRA"
+};
 }
 
 function isHydrocortisoneHydrocodoneAllergyVignette(text: string): boolean {
@@ -208,8 +207,8 @@ function buildHydrocortisoneHydrocodoneAllergyMcq(item: BankItem): BankItem {
     itemType: "vignette",
     ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
     subjectId: item.subjectId || "patient-counseling",
-    topicCategory: item.topicCategory ?? "Allergy Cross-Reactivity",
-  };
+    topicCategory: item.topicCategory ?? "Allergy Cross-Reactivity"
+};
 }
 
 function buildAlbuterolInhalerCounseling(item: BankItem): BankItem {
@@ -228,8 +227,8 @@ function buildAlbuterolInhalerCounseling(item: BankItem): BankItem {
     explanation:
       "Correct: Use a spacer with the MDI, shake the inhaler, and give 1–2 puffs every 4–6 hours as needed — pediatric albuterol MDI therapy is typically 90 mcg per actuation (1–2 puffs) every 4–6 hours as needed. Spacers improve drug delivery in children. Waiting for audible wheezing alone can delay treatment. Oral albuterol 4 mg hourly is not standard rescue therapy for MDI users. Rinsing after albuterol is unnecessary; that counseling applies to inhaled corticosteroids.",
     itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
 }
 
 function buildGenericInhalerCounseling(item: BankItem): BankItem {
@@ -250,8 +249,8 @@ function buildGenericInhalerCounseling(item: BankItem): BankItem {
     explanation:
       "Correct: Demonstrate proper inhaler technique — effective inhalation requires coordination, device-specific steps, and return demonstration. Rescue inhalers are used as needed, not on a fixed schedule. Maintenance therapy should not be stopped without prescriber guidance. Mouth rinsing after inhaled corticosteroids reduces thrush risk; it is not routinely required after short-acting beta-agonists alone.",
     itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
 }
 
 function buildAsthmaControlCounseling(item: BankItem): BankItem {
@@ -272,8 +271,8 @@ function buildAsthmaControlCounseling(item: BankItem): BankItem {
     explanation:
       "Correct: Rescue inhaler use more than twice weekly suggests poor control — guideline-based asthma care recommends controller therapy and follow-up when SABA use exceeds this threshold. Rescue dose should not be increased without prescriber evaluation. Controllers should not be stopped when symptoms briefly improve. Scheduled pre-meal rescue use is not standard asthma management.",
     itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
 }
 
 function buildAsthmaPoorControlMcq(item: BankItem): BankItem {
@@ -294,8 +293,8 @@ function buildAsthmaPoorControlMcq(item: BankItem): BankItem {
     explanation:
       "Correct: Recommend follow-up with the prescriber for step-up therapy and counsel against increasing controller use beyond the prescribed regimen — nocturnal symptoms and overuse of ICS/LABA suggest uncontrolled asthma; assess adherence, inhaler technique, triggers, and need for escalation per guidelines.",
     itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
 }
 
 function isAsthmaPoorControlVignette(text: string): boolean {
@@ -338,8 +337,8 @@ function buildPediatricAsthmaRescueOveruseMcq(item: BankItem): BankItem {
     itemType: "vignette",
     ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
     subjectId: item.subjectId || "respiratory-rx",
-    topicCategory: item.topicCategory ?? "Pediatric Asthma Control",
-  };
+    topicCategory: item.topicCategory ?? "Pediatric Asthma Control"
+};
 }
 
 function isAsthmaMonitoringVignette(text: string): boolean {
@@ -370,8 +369,8 @@ function buildAsthmaMonitoringMcq(item: BankItem): BankItem {
     explanation:
       "Correct: Rescue inhaler use more than twice per week and home peak expiratory flow trends — even when asthma seems well controlled, tracking SABA use and peak flow helps detect early loss of control and guides step-up therapy before exacerbations. Serum ICS trough levels are not routine outpatient monitoring. Weight and resting heart rate alone are nonspecific without an asthma action plan context.",
     itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
 }
 
 function buildAmoxicillinPediatricCounseling(item: BankItem): BankItem {
@@ -390,8 +389,8 @@ function buildAmoxicillinPediatricCounseling(item: BankItem): BankItem {
     explanation:
       "Correct: Shake the suspension well before each dose and complete the full course — reconstituted amoxicillin suspensions require resuspension for accurate dosing, and premature discontinuation increases treatment failure and resistance. Most suspensions require refrigeration after reconstitution for a limited beyond-use date. Missed doses should not be doubled without pharmacist or prescriber guidance.",
     itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
 }
 
 function buildEpinephrineCounseling(item: BankItem): BankItem {
@@ -410,8 +409,8 @@ function buildEpinephrineCounseling(item: BankItem): BankItem {
     explanation:
       "Correct: Inject into the outer thigh and call emergency services — epinephrine auto-injectors are for intramuscular anaphylaxis treatment, and patients need emergency evaluation after use. Oral epinephrine is not appropriate for anaphylaxis. Auto-injectors should be stored according to label temperature requirements. A second dose may be given per action plan if symptoms persist.",
     itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
 }
 
 function buildCounselingRepair(item: BankItem): BankItem | null {
@@ -475,8 +474,8 @@ function buildCounselingRepair(item: BankItem): BankItem | null {
         explanation:
           "Correct: Counsel not to exceed the prescribed maximum daily dose and contact the prescriber if pain is uncontrolled — PRN opioids still have maximum daily limits; extra doses increase respiratory depression risk, especially with gabapentin.",
         itemType: "vignette",
-        ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-      };
+        ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
     }
     if (/dizziness|confusion|constipation|sedation|somnolence/.test(text)) {
       return buildOpioidCnsSideEffectMcq(item);
@@ -563,8 +562,8 @@ function reclassifyToCalculation(item: BankItem): BankItem {
     ...item,
     question,
     itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload
+};
 }
 
 /** Repair clinical/counseling MCQ stems paired with bare numeric answer choices. */
@@ -591,8 +590,8 @@ export function repairClinicalNumericMismatch(item: BankItem): ClinicalNumericRe
       return {
         item: calc,
         changed: true,
-        note: `reclassified to calculation stem: ${resolveNaplexStem(calc).slice(0, 60)}…`,
-      };
+        note: `reclassified to calculation stem: ${resolveNaplexStem(calc).slice(0, 60)}…`
+};
     }
   }
 
@@ -601,8 +600,8 @@ export function repairClinicalNumericMismatch(item: BankItem): ClinicalNumericRe
   return {
     item: fallbackCounseling,
     changed: true,
-    note: "fallback counseling rewrite",
-  };
+    note: "fallback counseling rewrite"
+};
 }
 
 export function hasClinicalNumericMismatch(item: BankItem): boolean {

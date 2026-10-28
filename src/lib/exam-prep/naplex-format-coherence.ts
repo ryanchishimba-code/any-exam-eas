@@ -40,9 +40,6 @@ export const GENERIC_BLUEPRINT_CALC_STEMS = [
   "Calculate the concentration in mg/mL.",
 ] as const;
 
-const MCQ_CLINICAL_VIGNETTE =
-  /\b(?:addiction|substance abuse|non-opioid|concern about|exploring|counsel|counseling|alternative therap|most appropriate|next best step|which (?:recommendation|action|finding|medication|alternative)|patient asks|mother asks|expresses concern|monitoring parameter|drug interaction|therapeutic change|immediate follow-up)\b/i;
-
 const CALC_ORDER_CONTEXT =
   /\b(?:order(?:ed)?|Rx:|dispense|infus(?:e|ion)|prepare|compound|dilut|reconstitut|available (?:suspension|vial|stock|concentrate)|bag contains|mg\/kg|mcg\/kg|mg\/m²|mL\/hr|every \d+ hours?.*\d+\s*mg|q\d+h.*\d+\s*mg|round to (?:one|two|nearest))\b/i;
 

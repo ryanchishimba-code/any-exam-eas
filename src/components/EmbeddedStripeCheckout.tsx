@@ -46,10 +46,10 @@ export function EmbeddedStripeCheckout() {
   const reactivating = searchParams.get("reactivate") === "1";
 
   const [selectedPlan, setSelectedPlan] = useState<SignupPlan>(plan);
-  const [selectedTier, setSelectedTier] = useState<SubscriptionTier>(tier);
-  const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(interval);
-  const [selectedPaymentMode, setSelectedPaymentMode] = useState<PaymentMode>(paymentMode);
-  const [appliedDiscount, setAppliedDiscount] = useState<DiscountValidation | null>(null);
+  const [, setSelectedTier] = useState<SubscriptionTier>(tier);
+  const [, setSelectedInterval] = useState<BillingInterval>(interval);
+  const [, setSelectedPaymentMode] = useState<PaymentMode>(paymentMode);
+  const [, setAppliedDiscount] = useState<DiscountValidation | null>(null);
   const [configured, setConfigured] = useState(true);
   const [allIntervalsConfigured, setAllIntervalsConfigured] = useState(true);
   const [oneTimeAvailable, setOneTimeAvailable] = useState(false);

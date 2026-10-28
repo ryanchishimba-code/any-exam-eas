@@ -6,7 +6,6 @@
 import type { BankItem } from "@/lib/question-bank";
 import {
   clinicalCaseKey,
-  normalizeClinicalCaseText,
   resolveClinicalVignetteText,
   sessionDedupeKey,
 } from "@/lib/exam-prep/clinical-case-dedupe";
@@ -190,10 +189,6 @@ function stemLeadIn(item: BankItem): string {
     return full.slice(vignette.length).trim();
   }
   return full;
-}
-
-function normalizeAnswerConcept(answer: string): string {
-  return normalizeClinicalCaseText(answer).slice(0, 80);
 }
 
 /** Primary board concept — blocks two AKI, two COPD exacerbations, etc. in one exam. */

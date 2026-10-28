@@ -685,7 +685,7 @@ async function main() {
     await runNpmScript("scripts/fix-naplex-calculation-bank.ts", []);
   }
 
-  let genStats = { d1: 0, d2: 0, d3: 0, safety: 0, management: 0 };
+  const genStats = { d1: 0, d2: 0, d3: 0, safety: 0, management: 0 };
   if (!opts.skipGenerate) {
     // PK gate already cleared (~200); prefer Domain 3 + safety when foundations are healthy
     // (tough ratings keep docking medication-safety ~4 and treatment-planning coverage).

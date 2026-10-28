@@ -15,7 +15,7 @@ import { describe, expect, it, vi } from "vitest";
  *   4. a different field/subject never leaks into a topic's count.
  */
 
-type Row = {
+type _Row = {
   fieldId: string;
   subjectId: string;
   active: boolean;

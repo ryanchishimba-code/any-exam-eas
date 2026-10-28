@@ -5,7 +5,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Shield } from "lucide-react";
-import { messageForSignInError, resolveSignInFailure } from "@/lib/auth-client";
+import { resolveSignInFailure } from "@/lib/auth-client";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
 import { InlineError } from "@/components/ui/StatusMessage";

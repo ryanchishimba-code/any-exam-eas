@@ -45,7 +45,7 @@ export function LibraryHubNav({ examSlug }: { examSlug?: string }) {
     }
 
     return () => observers.forEach((o) => o.disconnect());
-  }, [examSlug]);
+  }, [examSlug, sections]);
 
   return (
     <nav aria-label="Library sections" className={libUi.chipRow}>

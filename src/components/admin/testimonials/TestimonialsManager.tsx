@@ -35,7 +35,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
+import { InlineError } from "@/components/ui/StatusMessage";
 import { compressImageToDataUrl } from "@/lib/images/compress-image";
 import {
   deriveInitials,

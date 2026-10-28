@@ -75,7 +75,7 @@ export function FullExamLauncher({
   const allOptions = useMemo(() => getLengthOptions(examSlug, fieldId), [examSlug, fieldId]);
   const options = useMemo(
     () => filterLengthOptionsForAccess(allOptions, mockAccess),
-    [allOptions, mockAccess.allowFullLengthMocks, mockAccess.allowShortMocks]
+    [allOptions, mockAccess]
   );
   const defaultPreset = defaultMockPresetForAccess(mockAccess);
   const lockedHint = mockPresetLockedMessage(mockAccess);

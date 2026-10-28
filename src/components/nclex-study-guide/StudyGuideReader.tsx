@@ -349,7 +349,7 @@ export function StudyGuideReader({
       setSelectionInfo(null);
       paintProgress(0);
     }
-  }, [initialChapter, paintProgress]);
+  }, [exam, initialChapter, paintProgress]);
   const persistToc = useStableCallback((open: boolean) => {
     try {
       localStorage.setItem(TOC_KEY, open ? "1" : "0");
@@ -445,7 +445,7 @@ export function StudyGuideReader({
 
   useEffect(() => {
     void restoreScroll(chapter);
-  }, [chapter.id, restoreScroll]);
+  }, [chapter, restoreScroll]);
 
   const flushProgress = useStableCallback((options?: { heartbeatSeconds?: number }) => {
     const pct = scrollPctRef.current;
@@ -538,7 +538,7 @@ export function StudyGuideReader({
   useEffect(() => {
     prefetchChapter(exam, chapter.prevSlug);
     prefetchChapter(exam, chapter.nextSlug);
-  }, [chapter.nextSlug, chapter.prevSlug]);
+  }, [exam, chapter.nextSlug, chapter.prevSlug]);
 
   useEffect(() => {
     tocActiveRef.current?.scrollIntoView({ block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
@@ -586,7 +586,7 @@ export function StudyGuideReader({
         setNavPending(false);
       }
     },
-    [flushProgress]
+    [config.routeBase, exam, flushProgress, guideTitle, paintProgress]
   );
 
   // Browser back/forward within the reader shell.

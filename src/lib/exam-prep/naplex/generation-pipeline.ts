@@ -183,7 +183,7 @@ Each question object MUST include:
 - tags (include "naplex-full-exam", "NAPLEX-2026", "curated", blueprint area slug)`;
 }
 
-function normalizeSpecialFormats(item: BankItem, slot: NaplexGenerationSlot): BankItem {
+function normalizeSpecialFormats(item: BankItem, _slot: NaplexGenerationSlot): BankItem {
   const itemType = item.itemType ?? "vignette";
   let working = item;
 

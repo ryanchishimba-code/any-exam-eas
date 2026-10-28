@@ -97,16 +97,7 @@ function VolumeOrganGltfInner({
   const { scene } = useGLTF(url);
   const prepared = useMemo(
     () => prepareScene(scene, targetSize, style),
-    [
-      scene,
-      targetSize,
-      style.color,
-      style.opacity,
-      style.emissive,
-      style.emissiveIntensity,
-      style.roughness,
-      style.metalness,
-    ]
+    [scene, targetSize, style]
   );
 
   return (

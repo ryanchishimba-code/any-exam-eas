@@ -157,7 +157,7 @@ function quickBitesLectureCard(): BoardFeatureCard {
   };
 }
 
-function explainedCard(boardShort: string): BoardFeatureCard {
+function explainedCard(_boardShort: string): BoardFeatureCard {
   return {
     id: "explained",
     title: "Every answer explained",

@@ -23,10 +23,7 @@ import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { fieldIdForExamSlug } from "@/lib/edtech/exam-field-ids";
 import { takeDailySet } from "@/lib/learning/today-set-stash";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
-import {
-  fullExamLaunchHref,
-  fullExamSessionHref,
-} from "@/lib/full-exam/config";
+import { fullExamSessionHref } from "@/lib/full-exam/config";
 import {
   assertExactQuestionCount,
   resolveLengthPresetForField,
@@ -445,6 +442,8 @@ export function StudyBankPractice({
   const [sessionEpoch, setSessionEpoch] = useState(0);
   const autostartRequested = searchParams.get("autostart") === "1";
   const autostartAttempted = useRef(false);
+  const syncPracticeUrlRef = useRef<(overrides?: object) => void>(() => undefined);
+  const startRef = useRef<() => Promise<void>>(async () => undefined);
   const zeroPoolFallbackAppliedRef = useRef(false);
   const fetchGenerationRef = useRef(0);
   const examScopeSeenRef = useRef<string | null>(null);
@@ -732,7 +731,7 @@ export function StudyBankPractice({
       qs.delete("pace");
       router.replace(`${practiceBase}?${qs.toString()}`);
     }
-  }, [isTimedExam, searchParams, router]);
+  }, [isTimedExam, practiceBase, searchParams, router]);
 
   useEffect(() => {
     const nclexParam = searchParams.get("nclexLength");
@@ -994,7 +993,7 @@ export function StudyBankPractice({
 
     if (fallback && fallback !== subjectId) {
       setSubjectId(fallback);
-      syncPracticeUrl({ subjectId: fallback });
+      syncPracticeUrlRef.current({ subjectId: fallback });
     }
   }, [
     isTimedExam,
@@ -1253,6 +1252,7 @@ export function StudyBankPractice({
     }
     router.replace(href, { scroll: false });
   }
+  syncPracticeUrlRef.current = syncPracticeUrl;
 
   function rememberLaunchOutcome(mode: RemediationMode | null) {
     if (typeof window === "undefined") return;
@@ -2069,6 +2069,7 @@ export function StudyBankPractice({
       }
     }
   }
+  startRef.current = start;
 
   useEffect(() => {
     autostartAttempted.current = false;
@@ -2128,7 +2129,7 @@ export function StudyBankPractice({
     }
     autostartAttempted.current = true;
     document.getElementById("practice-launcher")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    void start();
+    void startRef.current();
   }, [
     autostartRequested,
     isTimedExam,
@@ -2180,6 +2181,7 @@ export function StudyBankPractice({
       taskCategory,
       scopeFormats,
       ngnLabel,
+      topicPracticeLaunch,
     ]
   );
 

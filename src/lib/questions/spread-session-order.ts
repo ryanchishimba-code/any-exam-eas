@@ -3,13 +3,10 @@ import { bankItemDedupeKey, shuffleBankItems } from "@/lib/question-bank-db";
 import {
   clinicalCaseKey,
   normalizeClinicalCaseText,
-  resolveClinicalVignetteText,
+  resolveClinicalVignetteText
 } from "@/lib/exam-prep/clinical-case-dedupe";
 import {
-  hasWindowSimilarOptions,
-  optionsFromBankItem,
-  optionsFromRawInput,
-  optionsFromStudyQuestion,
+  hasWindowSimilarOptions
 } from "./session-quality";
 import type { RawQuestionInput, StudyQuestion } from "./types";
 import { buildQuestionBlocks } from "./sequential-sets";
@@ -35,8 +32,8 @@ function rawInputToBankItem(item: RawQuestionInput): BankItem {
     tags: item.tags,
     topicCategory: item.topicCategory,
     blueprintDomain: item.field,
-    ngnPayload: item.ngnPayload,
-  };
+    ngnPayload: item.ngnPayload
+};
 }
 
 function rawInputDedupeKey(item: RawQuestionInput): string {

@@ -9,7 +9,7 @@ import {
   USMLE_TOPIC_MODULES,
   modulesForStage,
 } from "@/lib/edtech/learning-hub";
-import { highYieldTopicsHref, deepDiveTopicHref, highYieldTopicHref, practiceTopicHref } from "@/lib/edtech/practice-links";
+import { highYieldTopicsHref, deepDiveTopicHref, highYieldTopicHref } from "@/lib/edtech/practice-links";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 

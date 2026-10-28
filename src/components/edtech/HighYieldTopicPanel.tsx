@@ -155,7 +155,7 @@ export function HighYieldTopicPanel({
     return () => {
       cancelled = true;
     };
-  }, [open, topic?.id, onReviewRecorded]);
+  }, [open, topic, onReviewRecorded]);
 
   useEffect(() => {
     if (!open) return;

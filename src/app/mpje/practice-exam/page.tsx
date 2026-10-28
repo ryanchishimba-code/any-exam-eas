@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import { ROUTES } from "@/lib/routes";
 
 /** Legacy MPJE URLs → PANCE (MPJE removed from product). */
 export default function MpjeLegacyRedirect({

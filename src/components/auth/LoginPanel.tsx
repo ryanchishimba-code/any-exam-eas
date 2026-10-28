@@ -7,9 +7,8 @@ import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Lock, Loader2 } from "lucide-react";
 import {
   fetchAuthHealthWarning,
-  messageForSignInError,
   messageFromUnknownAuthError,
-  resolveSignInFailure,
+  resolveSignInFailure
 } from "@/lib/auth-client";
 import { stampBoardIntentFromLocation } from "@/lib/auth/board-intent";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
@@ -22,7 +21,7 @@ import {
   rememberEmail,
   saveReturningUserHint,
   type LoginMethod,
-  type ReturningUserHint,
+  type ReturningUserHint
 } from "@/lib/client/returning-user";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { SocialLoginButton } from "@/components/social/SocialLoginButton";
@@ -47,7 +46,7 @@ export function LoginPanel({
   callbackUrl = ROUTES.dashboard,
   onSuccess,
   onForgotPassword,
-  forgotLinkClassName = "text-[var(--color-accent)] hover:underline",
+  forgotLinkClassName = "text-[var(--color-accent)] hover:underline"
 }: LoginPanelProps) {
   const router = useRouter();
   const emailId = useId();
@@ -106,8 +105,8 @@ export function LoginPanel({
       const res = await signIn("credentials", {
         email: trimmedEmail,
         password: password.trim(),
-        redirect: false,
-      });
+        redirect: false
+});
 
       if (!res) {
         setError("Sign-in service did not respond. Try again in a moment.");
@@ -128,8 +127,8 @@ export function LoginPanel({
         router,
         callbackUrl: safeCallbackUrl,
         email: trimmedEmail,
-        method: "email",
-      });
+        method: "email"
+});
       setRedirectMessage(
         result.isPremium
           ? "Welcome back! Opening your Study Hub…"

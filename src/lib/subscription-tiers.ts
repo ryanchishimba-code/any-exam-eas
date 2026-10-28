@@ -1,6 +1,4 @@
-import type { BillingInterval } from "@/lib/billing-config";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
-import { drugsDeckFeatureLine } from "@/lib/marketing/bank-stats";
 import { PRO_MONTHLY_PRICE_USD, PRO_YEARLY_PRICE_USD } from "@/lib/pricing-defaults";
 
 /** Single paid subscription tier — Pro only. */

@@ -19,7 +19,6 @@ import type {
   UserCellStateSnapshot,
 } from "./types";
 
-const PRIMED_MAX = 4; // < 5 → primed
 const STABLE_TUTOR_N = 12;
 const STABLE_TUTOR_PCT = 0.75;
 const STABLE_MIN_SESSIONS = 2;

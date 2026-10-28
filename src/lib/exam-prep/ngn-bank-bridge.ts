@@ -120,7 +120,7 @@ function splitStemAndVignette(item: BankItem): { vignette?: string; stem: string
 export function bankItemToExamQuestion(
   item: BankItem,
   index: number,
-  extras?: { field?: string; subjectId?: string }
+  _extras?: { field?: string; subjectId?: string }
 ): ExamQuestion {
   const { vignette, stem } = splitStemAndVignette(item);
   const chartData = ngnPayloadToChartData(item.ngnPayload);

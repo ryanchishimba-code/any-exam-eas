@@ -4,8 +4,7 @@ import {
   getApprovedNclexFigureById,
   NCLEX_FIGURE_CATALOG,
   attachNclexFigureRefToNgn,
-  nclexFigureFitsItem,
-  selectNclexFigureForItem,
+  selectNclexFigureForItem
 } from "./figure-assets";
 import { normalizeNclexExhibitPayload } from "./normalize-exhibit";
 import type { BankItem } from "@/lib/question-bank";
@@ -34,8 +33,8 @@ describe("NCLEX figure catalog", () => {
       vignette:
         "Four clients require attention. Room 354: diabetes, missed insulin 2 days. Room 360: chest pain.",
       question: "Which client is the highest priority for the nurse to see first?",
-      blueprintTopic: "endocrine-meds",
-    };
+      blueprintTopic: "endocrine-meds"
+};
     expect(selectNclexFigureForItem(item)).toBeUndefined();
   });
 
@@ -45,8 +44,8 @@ describe("NCLEX figure catalog", () => {
         vignette:
           "A pregnant client at 28 weeks presents for prenatal care. Fetal heart tones are 140 bpm.",
         question: "Which finding is the highest priority during this visit?",
-        blueprintTopic: "labor-fetal-monitoring",
-      })
+        blueprintTopic: "labor-fetal-monitoring"
+})
     ).toBeUndefined();
   });
 
@@ -56,8 +55,8 @@ describe("NCLEX figure catalog", () => {
         vignette:
           "Oxytocin is infusing. The fetal monitor shows late decelerations with each contraction.",
         question: "Which action should the nurse take first?",
-        blueprintTopic: "labor-fetal-monitoring",
-      })?.id
+        blueprintTopic: "labor-fetal-monitoring"
+})?.id
     ).toBe("nclex-fetal-late-decels");
   });
 
@@ -67,8 +66,8 @@ describe("NCLEX figure catalog", () => {
         vignette:
           "Client with DKA is on an insulin infusion. Blood glucose is 250 mg/dL.",
         question: "Which action should the nurse take first?",
-        blueprintTopic: "endocrine-meds",
-      })
+        blueprintTopic: "endocrine-meds"
+})
     ).toBeUndefined();
   });
 
@@ -78,8 +77,8 @@ describe("NCLEX figure catalog", () => {
         vignette: "Regular insulin was given at 0730.",
         question:
           "At which time is the client at greatest risk for hypoglycemia related to the peak effect?",
-        blueprintTopic: "endocrine-meds",
-      })?.id
+        blueprintTopic: "endocrine-meds"
+})?.id
     ).toBe("nclex-insulin-timing");
   });
 
@@ -88,8 +87,8 @@ describe("NCLEX figure catalog", () => {
       selectNclexFigureForItem({
         vignette: "Client with C. difficile is on contact precautions.",
         question: "Which room assignment is most appropriate?",
-        blueprintTopic: "ppe-donning-doffing",
-      })
+        blueprintTopic: "ppe-donning-doffing"
+})
     ).toBeUndefined();
   });
 
@@ -98,8 +97,8 @@ describe("NCLEX figure catalog", () => {
       selectNclexFigureForItem({
         vignette: "Nurse prepares to enter a contact-precaution room.",
         question: "In which order should the nurse don PPE?",
-        blueprintTopic: "ppe-donning-doffing",
-      })?.id
+        blueprintTopic: "ppe-donning-doffing"
+})?.id
     ).toBe("nclex-ppe-donning");
   });
 
@@ -123,8 +122,8 @@ describe("normalizeNclexExhibitPayload", () => {
       explanation: "test",
       itemType: "vignette",
       blueprintTopic: "cardiac-emergencies",
-      ngnPayload: { kind: "vignette" },
-    } as BankItem;
+      ngnPayload: { kind: "vignette" }
+} as BankItem;
 
     const next = normalizeNclexExhibitPayload(item);
     expect((next.ngnPayload?.media as { id: string }[])[0]?.id).toBe("nclex-ecg-vt-schematic");
@@ -140,8 +139,8 @@ describe("normalizeNclexExhibitPayload", () => {
       explanation: "test",
       itemType: "vignette",
       blueprintTopic: "cardiac-emergencies",
-      ngnPayload: { kind: "vignette" },
-    } as BankItem;
+      ngnPayload: { kind: "vignette" }
+} as BankItem;
 
     expect(selectNclexFigureForItem(item)).toBeUndefined();
     const next = normalizeNclexExhibitPayload(item);
@@ -170,15 +169,15 @@ describe("normalizeNclexExhibitPayload", () => {
             topics: [],
             license: "x",
             sourceNote: "x",
-            organSystem: "x",
-          },
+            organSystem: "x"
+},
         ],
         exhibit: {
           title: "Labs",
-          findings: [{ label: "K+", value: "2.8", reference: "3.5–5.0", abnormal: true }],
-        },
-      },
-    } as BankItem;
+          findings: [{ label: "K+", value: "2.8", reference: "3.5–5.0", abnormal: true }]
+}
+}
+} as BankItem;
 
     const next = normalizeNclexExhibitPayload(item);
     expect(next.ngnPayload?.kind).toBe("select_all");

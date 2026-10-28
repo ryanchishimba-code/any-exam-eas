@@ -2,7 +2,6 @@
  * Insert NAPLEX full-exam items and exam metadata into the database.
  */
 import type { PrismaClient } from "@prisma/client";
-import type { BankItem } from "@/lib/question-bank";
 import { bankItemContentHash } from "@/lib/sync-question-bank";
 import { planBankWrite } from "@/lib/questions/manual-correction";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";

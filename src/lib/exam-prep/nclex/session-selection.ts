@@ -1,12 +1,11 @@
 import type { BankItem } from "@/lib/question-bank";
 import {
   isNclexDelegationStem,
-  maxDelegationServeCount,
+  maxDelegationServeCount
 } from "@/lib/exam-prep/nclex/delegation-balance";
 import { finalizeExamSessionItems } from "@/lib/exam-prep/finalize-exam-selection";
 import {
-  dedupeItemsByClinicalCase,
-  selectDiverseSessionBankItems,
+  dedupeItemsByClinicalCase
 } from "@/lib/exam-prep/diverse-session-selection";
 
 export { dedupeItemsByClinicalCase as dedupeNclexItemsByClinicalCase };
@@ -30,6 +29,6 @@ export function selectNclexSessionBankItems(
         isNclexDelegationStem(row.question, row.vignette ?? row.scenario)
       ).length;
       return delegationCount < maxDelegationServeCount(limit);
-    },
-  });
+    }
+});
 }

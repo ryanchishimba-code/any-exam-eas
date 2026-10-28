@@ -4,9 +4,8 @@ import * as recommendations from "../recommendations";
 import type { RegionProvider } from "../regions/types";
 import {
   getActiveAnatomySurface,
-  getCatalogOnlySurface,
   resolveAnatomySurface,
-  type ResolvedAnatomySurface,
+  type ResolvedAnatomySurface
 } from "../surfaces";
 import type { AnatomySurfaceId } from "../surfaces/types";
 import * as teach from "../teach";
@@ -47,8 +46,8 @@ export function createAnatomyBundle(surfaceId?: AnatomySurfaceId): AnatomyBundle
     teach,
     recommendations,
     surface,
-    regionProvider: null,
-  };
+    regionProvider: null
+};
 }
 
 /** Full supportive stack: cartoon 3D + teach + links. */

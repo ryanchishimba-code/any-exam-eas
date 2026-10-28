@@ -1,4 +1,3 @@
-import { prisma } from "@/lib/prisma";
 import { recordUserLogin } from "@/lib/user-auth";
 import { logActivity, startUserSession, trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
