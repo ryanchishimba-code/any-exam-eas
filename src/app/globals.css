@@ -202,6 +202,12 @@ body:has([data-public-offer]) {
   --page-top: 1.25rem;
 }
 
+/* Same rule as the head style in the root layout. Kept here so a later
+   stylesheet cannot put the bar back into the photo-hero flow. */
+body:has([data-hero]) [data-public-offer] {
+  display: none;
+}
+
 html:has([data-public-offer]) {
   scroll-padding-top: calc(var(--nav-height) + 4.75rem);
 }
