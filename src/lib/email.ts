@@ -6,7 +6,11 @@ import {
   isResendSandboxFrom,
   type EmailDeliveryResult,
 } from "@/lib/email/config";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import { PASSWORD_RESET_EXPIRY_MINUTES } from "@/lib/validators/password-reset";
+
+export const VERIFICATION_EMAIL_SUBJECT = "Confirm your AnyExamEasy email";
+const VERIFICATION_EXPIRY_HOURS = 48;
 
 type PasswordResetEmailParams = {
   to: string;
@@ -149,19 +153,76 @@ type VerificationEmailParams = {
   verifyUrl: string;
 };
 
+export function verificationEmailHtml(verifyUrl: string): string {
+  return `<!DOCTYPE html>
+<html lang="en">
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#1d1d1f;margin:0;padding:0;background:#f5f5f7;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f7;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;padding:32px 28px;border:1px solid rgba(0,0,0,0.06);">
+          <tr>
+            <td>
+              <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;">AnyExamEasy</p>
+              <h1 style="margin:0 0 16px;font-size:22px;font-weight:600;color:#0f172a;">Confirm your email</h1>
+              <p style="margin:0 0 20px;font-size:15px;color:#475569;">Thanks for signing up. Tap the button below to confirm this address for your account.</p>
+              <p style="margin:0 0 24px;text-align:center;">
+                <a href="${verifyUrl}" style="display:inline-block;background:linear-gradient(135deg,#0e7490,#0891b2);color:#ffffff;text-decoration:none;font-weight:600;font-size:15px;padding:14px 28px;border-radius:12px;">Confirm email</a>
+              </p>
+              <p style="margin:0 0 12px;font-size:13px;color:#64748b;">This link expires in ${VERIFICATION_EXPIRY_HOURS} hours.</p>
+              <p style="margin:0;font-size:12px;color:#94a3b8;word-break:break-all;">Or copy this link into your browser:<br>${verifyUrl}</p>
+            </td>
+          </tr>
+        </table>
+        <p style="margin:16px 0 0;font-size:11px;color:#94a3b8;">© AnyExamEasy · anyexameasy.com</p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
+export function verificationEmailText(verifyUrl: string): string {
+  return [
+    "Confirm your AnyExamEasy email",
+    "",
+    "Thanks for signing up. Open the link below to confirm this address for your account:",
+    verifyUrl,
+    "",
+    `This link expires in ${VERIFICATION_EXPIRY_HOURS} hours.`,
+    "",
+    "If you did not create an account, you can ignore this email.",
+  ].join("\n");
+}
+
 export async function sendVerificationEmail({
   to,
   verifyUrl,
 }: VerificationEmailParams): Promise<EmailDeliveryResult> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   const from = getEmailFromAddress();
+  const toDomain = to.split("@")[1] ?? "unknown";
 
   if (!apiKey) {
     if (process.env.NODE_ENV === "production") {
-      console.error("[email] RESEND_API_KEY missing — verification email not sent.");
+      console.error("[email] RESEND_API_KEY is not set — verification email was not sent.", {
+        toDomain,
+        setup: getEmailSetupWarnings(),
+      });
+    } else {
+      console.warn("[email] RESEND_API_KEY not set — verification email skipped (dev).");
     }
     return { ok: false, reason: "not_configured" };
   }
+
+  if (isResendSandboxFrom()) {
+    console.warn(
+      "[email] EMAIL_FROM is unset — using Resend sandbox sender (Any Exam Easy <onboarding@resend.dev>). Verify anyexameasy.com in Resend and set EMAIL_FROM for production delivery.",
+      { from, toDomain }
+    );
+  }
+
+  const replyTo = LEGAL_ENTITY.supportEmail;
 
   try {
     const res = await fetch("https://api.resend.com/emails", {
@@ -173,27 +234,37 @@ export async function sendVerificationEmail({
       body: JSON.stringify({
         from,
         to: [to],
-        subject: "Ready to start your exam prep — verify your email",
-        html: `
-          <p><strong>Ready to start your exam prep</strong></p>
-          <p>Please look for the verification link below. Open that email link, verify, then come back to Any Exam Easy.</p>
-          <p><a href="${verifyUrl}">Verify email address</a></p>
-          <p>This link expires in 48 hours.</p>
-          <p style="color:#666;font-size:12px">${verifyUrl}</p>
-        `,
-        text: `Ready to start your exam prep\n\nPlease look for the verification link below. Open that email link, verify, then come back to Any Exam Easy.\n\n${verifyUrl}\n\nThis link expires in 48 hours.`,
+        reply_to: replyTo,
+        subject: VERIFICATION_EMAIL_SUBJECT,
+        html: verificationEmailHtml(verifyUrl),
+        text: verificationEmailText(verifyUrl),
       }),
     });
 
+    const bodyText = await res.text();
     if (!res.ok) {
-      const body = await res.text();
-      console.error("[email] Verification send failed:", res.status, body);
-      return { ok: false, reason: "send_failed", detail: body.slice(0, 200) };
+      console.error("[email] Verification send failed:", res.status, bodyText);
+      return {
+        ok: false,
+        reason: "send_failed",
+        detail: `${res.status}: ${bodyText.slice(0, 200)}`,
+      };
     }
 
-    return { ok: true, provider: "resend" };
+    let messageId: string | undefined;
+    try {
+      const parsed = JSON.parse(bodyText) as { id?: string };
+      messageId = parsed.id;
+    } catch {
+      /* ignore */
+    }
+
+    console.info("[email] Verification email sent via Resend", { toDomain, messageId });
+
+    return { ok: true, provider: "resend", messageId };
   } catch (err) {
     const detail = err instanceof Error ? err.message : String(err);
+    console.error("[email] Verification send error:", detail);
     return { ok: false, reason: "send_failed", detail };
   }
 }

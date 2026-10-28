@@ -19,6 +19,7 @@ import { joinPersonName, normalizeStoredName } from "@/lib/display-name";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
+import { scheduleSignupEmailVerification } from "@/lib/email-verification";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
 import { redeemFreePassOnTx } from "@/lib/promo/redeem-free-pass";
@@ -278,9 +279,7 @@ export async function registerUser(
       });
     }
 
-    void import("@/lib/email-verification").then((m) =>
-      m.sendEmailVerification(user.id, user.email, parsed.examSlug ?? null)
-    );
+    scheduleSignupEmailVerification(user.id, user.email, parsed.examSlug ?? null);
 
     // Do not redeem promo codes at signup — that blocked checkout reuse after
     // abandoned or mid-trial upgrades. Redemption happens on successful Stripe pay.
