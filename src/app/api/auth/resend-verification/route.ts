@@ -28,6 +28,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, message: "Email already verified." });
   }
 
-  await sendEmailVerification(session.user.id, user.email);
+  const result = await sendEmailVerification(session.user.id, user.email);
+  if (!result.ok) {
+    console.error("[resend-verify] delivery failed", {
+      reason: result.reason,
+      detail: result.detail,
+      userId: session.user.id,
+    });
+    return NextResponse.json(
+      { error: "Could not send verification email. Try again in a moment." },
+      { status: 503 }
+    );
+  }
+
   return NextResponse.json({ ok: true, message: "Verification email sent." });
 }

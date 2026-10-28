@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { Check, ChevronDown, Mail } from "lucide-react";
 import { maskEmail } from "@/lib/client/returning-user";
@@ -56,6 +56,8 @@ const COMPARE_ROWS = [
   },
 ] as const;
 
+const RESEND_COOLDOWN_SEC = 60;
+
 /**
  * Calm post-signup direction: start prep → check email → verify.
  * Pricing stays collapsed under Upgrade so nothing about money is forced.
@@ -67,27 +69,45 @@ export function VerifyEmailPrompt({
   className,
 }: VerifyEmailPromptProps) {
   const [message, setMessage] = useState<string | null>(null);
+  const [messageKind, setMessageKind] = useState<"success" | "error" | null>(null);
   const [loading, setLoading] = useState(false);
+  const [cooldownSec, setCooldownSec] = useState(0);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [upgradeOpen, setUpgradeOpen] = useState(false);
   const displayEmail = email?.trim() ? maskEmail(email.trim()) : "your email";
   const monthly = formatMonthlyPrice("pro");
 
-  async function resend() {
+  useEffect(() => {
+    if (cooldownSec <= 0) return;
+    const id = window.setInterval(() => {
+      setCooldownSec((s) => (s <= 1 ? 0 : s - 1));
+    }, 1000);
+    return () => window.clearInterval(id);
+  }, [cooldownSec]);
+
+  const resend = useCallback(async () => {
+    if (cooldownSec > 0) return;
     setLoading(true);
     setMessage(null);
+    setMessageKind(null);
     try {
       const res = await fetch("/api/auth/resend-verification", { method: "POST" });
       const data = (await res.json().catch(() => ({}))) as { message?: string; error?: string };
-      setMessage(
-        data.message ?? (res.ok ? "Verification email sent." : data.error ?? "Could not send email.")
-      );
+      if (res.ok) {
+        setMessage(data.message ?? "Verification email sent. Check your inbox.");
+        setMessageKind("success");
+        setCooldownSec(RESEND_COOLDOWN_SEC);
+      } else {
+        setMessage(data.error ?? data.message ?? "Could not send email.");
+        setMessageKind("error");
+      }
     } catch {
       setMessage("Could not send email. Try again in a moment.");
+      setMessageKind("error");
     } finally {
       setLoading(false);
     }
-  }
+  }, [cooldownSec]);
 
   return (
     <section
@@ -130,19 +150,31 @@ export function VerifyEmailPrompt({
           <span className="font-semibold text-teal-800 dark:text-teal-200">{displayEmail}</span>.
         </p>
         <p className="mt-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-          {VERIFY_EMAIL_NEXT_STEP}
+          {VERIFY_EMAIL_NEXT_STEP} If you do not see it, check your spam or junk folder.
         </p>
         <div className="mt-4 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
           <button
             type="button"
-            disabled={loading}
+            disabled={loading || cooldownSec > 0}
             onClick={() => void resend()}
             className="inline-flex min-h-10 items-center justify-center rounded-full bg-teal-700 px-5 text-[13px] font-semibold text-white transition hover:bg-teal-800 disabled:opacity-50 dark:bg-teal-600 dark:hover:bg-teal-500"
           >
-            {loading ? "Sending…" : "Resend email"}
+            {loading
+              ? "Sending…"
+              : cooldownSec > 0
+                ? `Resend in ${cooldownSec}s`
+                : "Resend email"}
           </button>
           {message ? (
-            <p className="text-[13px] text-teal-800 dark:text-teal-200" role="status">
+            <p
+              className={cn(
+                "text-[13px]",
+                messageKind === "error"
+                  ? "text-red-700 dark:text-red-300"
+                  : "text-teal-800 dark:text-teal-200"
+              )}
+              role="status"
+            >
               {message}
             </p>
           ) : null}
