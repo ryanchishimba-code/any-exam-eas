@@ -42,6 +42,8 @@ export default async function SignupPage({
     exam?: string;
     board?: string;
     utm_source?: string;
+    utm_medium?: string;
+    utm_campaign?: string;
   }>;
 }) {
   const params = await searchParams;
@@ -72,6 +74,9 @@ export default async function SignupPage({
       initialTier={intent.tier}
       initialExam={intent.exam}
       arrivedFromDaily={isDailySignupArrival(params.utm_source)}
+      utmSource={params.utm_source}
+      utmMedium={params.utm_medium}
+      utmCampaign={params.utm_campaign}
     />
   );
 }

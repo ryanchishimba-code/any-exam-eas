@@ -44,6 +44,9 @@ export function SignupScreen({
   initialTier,
   initialExam,
   arrivedFromDaily = false,
+  utmSource,
+  utmMedium,
+  utmCampaign,
 }: {
   initialPlan: SignupPlan | "";
   initialPromo: string;
@@ -52,6 +55,9 @@ export function SignupScreen({
   initialTier: SubscriptionTier;
   initialExam: ExamSlug | "";
   arrivedFromDaily?: boolean;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
 }) {
   const [plan, setPlan] = useState<SignupPlan>(initialPlan === "subscribe" ? "subscribe" : "trial");
   const trial = plan === "trial";
@@ -84,6 +90,7 @@ export function SignupScreen({
         initialInterval={initialInterval}
         initialTier={initialTier}
         initialExam={initialExam}
+        attribution={{ utmSource, utmMedium, utmCampaign }}
       />
     </AuthFocusLayout>
   );

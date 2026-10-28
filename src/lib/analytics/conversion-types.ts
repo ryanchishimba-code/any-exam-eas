@@ -20,6 +20,10 @@ export const CONVERSION_EVENTS = {
   /** Daily study set. Not an ad conversion — excluded from the marketing funnel charts. */
   TODAY_SET_STARTED: "today_set_started",
   TODAY_SET_COMPLETED: "today_set_completed",
+  /** Question of the Day. Not an ad conversion — counted on the marketing page only. */
+  DAILY_ANSWER: "daily_answer",
+  DAILY_TRIAL_CTA_CLICK: "daily_trial_cta_click",
+  SIGNUP_FROM_DAILY: "signup_from_daily",
 } as const;
 
 /** Marketing funnel cards. Product-tour events stay in the events table only. */
@@ -61,6 +65,14 @@ export type ConversionProperties = {
     correct: number;
     total: number;
     weakest_topic?: string;
+  };
+  daily_answer: { board: string; result: "correct" | "miss" };
+  daily_trial_cta_click: { board: string; location: "card" | "sticky" | "below_question" };
+  signup_from_daily: {
+    board: string;
+    utm_source: string;
+    utm_medium?: string;
+    utm_campaign?: string;
   };
 };
 

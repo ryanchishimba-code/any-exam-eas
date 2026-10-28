@@ -48,6 +48,7 @@ export function SignupForm({
   initialInterval = "monthly",
   initialTier = "pro",
   initialExam = "",
+  attribution,
 }: {
   plan: SignupPlan;
   onPlanChange: (plan: SignupPlan) => void;
@@ -56,6 +57,11 @@ export function SignupForm({
   initialInterval?: BillingInterval;
   initialTier?: SubscriptionTier;
   initialExam?: ExamSlug | "";
+  attribution?: {
+    utmSource?: string;
+    utmMedium?: string;
+    utmCampaign?: string;
+  };
 }) {
   const examLocked = Boolean(initialExam);
   const emailErrorId = useId();
@@ -187,6 +193,9 @@ export function SignupForm({
           testDate: testDate || undefined,
           promoCode: initialPromo.trim() || undefined,
           passCode: passCode.trim() || undefined,
+          utm_source: attribution?.utmSource,
+          utm_medium: attribution?.utmMedium,
+          utm_campaign: attribution?.utmCampaign,
         }),
       });
       const text = await res.text();

@@ -3,23 +3,28 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { track } from "@vercel/analytics";
-import { dailyTrialHref, dailyTrialQuote } from "@/lib/marketing/daily-trial";
+import { CONVERSION_EVENTS, trackConversion } from "@/lib/analytics";
+import { dailyCtaLocation, dailyTrialHref, dailyTrialQuote, type DailyCtaPlacement } from "@/lib/marketing/daily-trial";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
-function trackTrialClick(board: string, placement: "sticky" | "below_question" | "after_answer") {
+function trackTrialClick(board: string, placement: DailyCtaPlacement) {
+  const location = dailyCtaLocation(placement);
   try {
     track("daily_trial_cta_click", { board, placement });
   } catch {
     /* Analytics must not block the signup link. */
   }
+  trackConversion(CONVERSION_EVENTS.DAILY_TRIAL_CTA_CLICK, { board, location });
 }
 
 export function trackDailyAnswer(board: string, correct: boolean) {
+  const result = correct ? "correct" : "miss";
   try {
-    track("daily_answer", { board, result: correct ? "correct" : "miss" });
+    track("daily_answer", { board, result });
   } catch {
     /* non-blocking */
   }
+  trackConversion(CONVERSION_EVENTS.DAILY_ANSWER, { board, result });
 }
 
 export function DailyTrialLink({
@@ -29,7 +34,7 @@ export function DailyTrialLink({
   children,
 }: {
   board: string;
-  placement: "sticky" | "below_question" | "after_answer";
+  placement: DailyCtaPlacement;
   className?: string;
   children: ReactNode;
 }) {
