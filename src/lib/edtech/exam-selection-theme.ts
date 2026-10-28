@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Activity, Beaker, Bone, BookOpenCheck, HeartPulse, Pill, Stethoscope } from "lucide-react";
+import { Activity, Bone, BookOpenCheck, HeartPulse, Pill } from "lucide-react";
 import type { ExamSlug } from "@/types/edtech";
 
 /**

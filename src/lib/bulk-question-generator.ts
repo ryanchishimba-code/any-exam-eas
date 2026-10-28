@@ -4,9 +4,7 @@ import { TOP_500_DRUGS } from "./drugs300/catalog";
 import { polishNaplexBankItem } from "./engine/polish/naplex-polish";
 import { polishNclexBankItem } from "./engine/polish/nclex-polish";
 import { polishUsmleBankItem } from "./engine/polish/usmle-polish";
-import { polishMpjeBankItem } from "./engine/polish/mpje-polish";
 import { formatClinicalVignette } from "./engine/prompts/vignette";
-import { MIN_QUESTIONS_PER_SUBJECT } from "./question-bank/min-per-subject";
 import {
   normalizeUsmleBankItemFields,
   usmleBankItemHasClinicalScenario,
@@ -89,29 +87,6 @@ const NURSING_CLIENTS = [
   "client on continuous heparin infusion",
   "client with stage IV pressure injury",
   "client reporting domestic violence",
-];
-
-const DRUG_CLASSES = [
-  "ACE inhibitor",
-  "beta-blocker",
-  "loop diuretic",
-  "statin",
-  "PPI",
-  "SSRI",
-  "antipsychotic",
-  "insulin",
-  "oral hypoglycemic",
-  "anticoagulant",
-  "antiplatelet",
-  "bronchodilator",
-  "inhaled corticosteroid",
-  "opioid",
-  "benzodiazepine",
-  "antibiotic",
-  "antiviral",
-  "antifungal",
-  "chemotherapy agent",
-  "antiemetic",
 ];
 
 function pick<T>(arr: readonly T[], index: number, salt = 0): T {
@@ -624,39 +599,6 @@ function buildPharmacyQuestion(subject: FieldSubject, index: number): BankItem {
   }
 
   return polishNaplexBankItem(seed, subject.id, subject.label, index).item;
-}
-
-function buildMpjeQuestion(subject: FieldSubject, index: number): BankItem {
-  const concept = pick(expandConcepts(subject), index, 7);
-  const slot = index % 4;
-  const templates = [
-    `MPJE ${index + 1}: A pharmacist at a community pharmacy receives a questionable controlled substance prescription related to ${concept}. What is the required legal action?`,
-    `MPJE ${index + 1}: Which federal or state regulation governs ${concept} in this pharmacy practice scenario?`,
-    `MPJE ${index + 1}: A board inspector identifies a potential violation involving ${concept}. What standard applies?`,
-    `MPJE ${index + 1}: A patient requests confidential prescription information regarding ${concept}. Which privacy rule controls disclosure?`,
-    `MPJE ${index + 1}: A pharmacy technician's action raises a scope-of-practice concern about ${concept}. What is the pharmacist's legal obligation?`,
-  ];
-  const stem = templates[index % templates.length]!;
-
-  const seed: BankItem = item(
-    subject.id,
-    stem,
-    fourOptions(
-      `Apply the governing pharmacy law and board standard for ${concept}`,
-      [
-        "Ignore federal and state requirements when the prescriber insists",
-        "Allow technicians to perform all pharmacist duties without supervision",
-        "Share patient records with any requesting party without authorization",
-      ],
-      slot
-    ),
-    `Apply the governing pharmacy law and board standard for ${concept}`,
-    `MPJE jurisprudence: ${subject.textbookRefs}.`
-  );
-
-  return polishMpjeBankItem(seed, subject.id, subject.label, index, {
-    variant: "uniform",
-  }).item;
 }
 
 export function buildBulkQuestion(

@@ -17,7 +17,6 @@ import {
   seoTrialResourceParagraph,
   seoTrialTryNclexHeading,
 } from "@/lib/seo/trial-copy";
-import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { ADDITIONAL_RESOURCE_ARTICLES } from "@/lib/seo/additional-resource-articles";
 import { clampMetaDescription, clampMetaTitle } from "@/lib/seo/meta-budget";
 

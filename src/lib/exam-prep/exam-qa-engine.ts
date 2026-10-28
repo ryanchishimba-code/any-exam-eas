@@ -8,28 +8,27 @@ import type { BankItem } from "@/lib/question-bank";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import {
   auditBlockingExamSimilarity,
-  auditExamSimilarity,
   BLOCKING_SIMILARITY_CODES,
   candidateViolatesExamRules,
   resolveExamUniquenessPolicy,
-  type ExamSimilarityIssue,
+  type ExamSimilarityIssue
 } from "@/lib/exam-prep/exam-similarity";
 import {
   dedupeItemsByClinicalCase,
-  sessionDedupeKey,
+  sessionDedupeKey
 } from "@/lib/exam-prep/diverse-session-selection";
 import { finalizeExamSessionItems } from "@/lib/exam-prep/finalize-exam-selection";
 import {
-  type ComposedExam,
+  type ComposedExam
 } from "@/lib/exam-prep/compose/compose-practice-exam";
 import {
   resolveExamComposeConfig,
-  type ExamComposeConfig,
+  type ExamComposeConfig
 } from "@/lib/exam-prep/compose/exam-compose-config";
 import { bankItemMeetsStructuralBar } from "@/lib/exam-prep/exam-qa-serve-bar";
 import {
   selectBlueprintBalancedSet,
-  type DifficultyPreference,
+  type DifficultyPreference
 } from "@/lib/exam-prep/naplex/blueprint-selection";
 import { sequenceItems } from "@/lib/exam-prep/sequencing/anti-cluster-sequencer";
 import { gatherTimedExamBankItems } from "@/lib/questions/timed-exam-sampling";
@@ -147,8 +146,8 @@ function runFinalExamCheck(
     returned,
     similarityIssues,
     qualityIssues,
-    blueprintShortfalls,
-  };
+    blueprintShortfalls
+};
 }
 
 /** Remove indices flagged by similarity audit (keep lower index). */
@@ -179,8 +178,8 @@ function composeFromPool(
   const { items: blueprintSelected, summary } = selectBlueprintBalancedSet(pool, blueprint, {
     numQuestions,
     seed,
-    focusAreas,
-  });
+    focusAreas
+});
 
   const shortfalls = summary.rows
     .filter((r) => r.shortfall > 0)
@@ -189,21 +188,21 @@ function composeFromPool(
   const caseUnique = dedupeItemsByClinicalCase(blueprintSelected);
   let selected = finalizeExamSessionItems(caseUnique, numQuestions, {
     seed,
-    requestedCount: numQuestions,
-  });
+    requestedCount: numQuestions
+});
 
   if (selected.length < numQuestions) {
     const used = new Set(selected.map((i) => sessionDedupeKey(i)));
     const spare = pool.filter((i) => !used.has(sessionDedupeKey(i)));
     const extra = finalizeExamSessionItems(spare, numQuestions - selected.length, {
       seed: seed ^ 0xdeadbeef,
-      requestedCount: numQuestions,
-    });
+      requestedCount: numQuestions
+});
     selected = [...selected, ...extra].slice(0, numQuestions);
     selected = finalizeExamSessionItems(selected, numQuestions, {
       seed: seed ^ 0xcafe,
-      requestedCount: numQuestions,
-    });
+      requestedCount: numQuestions
+});
   }
 
   const { ordered } = sequenceItems(
@@ -214,8 +213,8 @@ function composeFromPool(
       concepts: item.tags ?? [],
       difficulty: item.difficulty ?? 3,
       format: item.itemType ?? "mcq",
-      answer: item.correctAnswer ?? "?",
-    }),
+      answer: item.correctAnswer ?? "?"
+}),
     sequencingConfigFor(selected.length),
     seed
   );
@@ -236,8 +235,8 @@ function buildValidatedComposedExam(
       totalQuestions: numQuestions,
       estimatedMinutes: Math.round(numQuestions * config.minutesPerItem),
       boardReference: config.boardReference,
-      note: "Passed mandatory final check: exact count, uniqueness, board bar, blueprint alignment.",
-    },
+      note: "Passed mandatory final check: exact count, uniqueness, board bar, blueprint alignment."
+},
     format: "full_exam_study",
     questions: selected.map((item, i) => ({
       position: i + 1,
@@ -257,16 +256,16 @@ function buildValidatedComposedExam(
       question: item.question,
       options: item.options,
       correctAnswer: item.correctAnswer,
-      explanation: item.explanation,
-    })),
+      explanation: item.explanation
+})),
     selectionSummary: {
       requested: numQuestions,
       selected: selected.length,
       rows: [],
       difficultyMix: { Easy: 0, Medium: 0, Hard: 0 },
       formatMix: {},
-      notes: fixes.length ? [`Self-healed ${fixes.length} issue(s).`] : ["Clean pass."],
-    },
+      notes: fixes.length ? [`Self-healed ${fixes.length} issue(s).`] : ["Clean pass."]
+},
     sequencingReport: {
       total: numQuestions,
       domainMinSeparation: Infinity,
@@ -277,10 +276,10 @@ function buildValidatedComposedExam(
       domainGapViolations: 0,
       conceptGapViolations: 0,
       passed: true,
-      notes: [],
-    },
-    similarityFlags: [],
-  };
+      notes: []
+},
+    similarityFlags: []
+};
 }
 
 function selfHealSelection(
@@ -302,8 +301,8 @@ function selfHealSelection(
     fixes.push({
       code: "replace_similar",
       message: `Removed item ${idx} due to similarity violation.`,
-      action: "backfill_from_pool",
-    });
+      action: "backfill_from_pool"
+});
   }
 
   const usedKeys = new Set(kept.map((i) => sessionDedupeKey(i)));
@@ -314,8 +313,8 @@ function selfHealSelection(
   const policy = resolveExamUniquenessPolicy(requested, pool);
   const additions = finalizeExamSessionItems(spare, need, {
     seed,
-    requestedCount: requested,
-  });
+    requestedCount: requested
+});
   const merged = [...kept];
   for (const item of additions) {
     const key = sessionDedupeKey(item);
@@ -326,8 +325,8 @@ function selfHealSelection(
     fixes.push({
       code: "backfill",
       message: `Added replacement item ${item.id}.`,
-      action: "pool_backfill",
-    });
+      action: "pool_backfill"
+});
     if (merged.length >= requested) break;
   }
 
@@ -348,40 +347,40 @@ function examTableForSlug(slug: string): {
       return {
         examTable: "nclex_full_practice_exams",
         linkTable: "nclex_full_practice_exam_questions",
-        examNumberCol: "examNumber",
-      };
+        examNumberCol: "examNumber"
+};
     case "naplex":
       return {
         examTable: "naplex_full_practice_exams",
         linkTable: "naplex_full_practice_exam_questions",
-        examNumberCol: "examNumber",
-      };
+        examNumberCol: "examNumber"
+};
     case "usmle-step-1":
     case "usmle-step-2":
     case "usmle-step-3":
       return {
         examTable: "usmle_full_practice_exams",
         linkTable: "usmle_full_practice_exam_questions",
-        examNumberCol: "examNumber",
-      };
+        examNumberCol: "examNumber"
+};
     case "npte-pt":
       return {
         examTable: "npte_pt_full_practice_exams",
         linkTable: "npte_pt_full_practice_exam_questions",
-        examNumberCol: "examNumber",
-      };
+        examNumberCol: "examNumber"
+};
     case "pance":
       return {
         examTable: "pance_full_practice_exams",
         linkTable: "pance_full_practice_exam_questions",
-        examNumberCol: "examNumber",
-      };
+        examNumberCol: "examNumber"
+};
     case "aanp-fnp":
       return {
         examTable: "aanp_fnp_full_practice_exams",
         linkTable: "aanp_fnp_full_practice_exam_questions",
-        examNumberCol: "examNumber",
-      };
+        examNumberCol: "examNumber"
+};
     default:
       return null;
   }
@@ -478,8 +477,8 @@ export async function composeValidatedExam(
     returned: 0,
     similarityIssues: [],
     qualityIssues: ["not_started"],
-    blueprintShortfalls: [],
-  };
+    blueprintShortfalls: []
+};
 
   const gateWithExclusions: typeof config.gate = (item) => {
     if (excludeIds?.size && item.id && excludeIds.has(item.id)) return false;
@@ -494,16 +493,16 @@ export async function composeValidatedExam(
       fieldId: config.fieldId,
       limit: poolLimit,
       filterFn: gateWithExclusions,
-      initialSampleCount: poolLimit,
-    });
+      initialSampleCount: poolLimit
+});
     pool = config.prepareItem ? rawPool.map(config.prepareItem) : rawPool;
 
     if (pool.length < numQuestions) {
       fixes.push({
         code: "pool_short",
         message: `Only ${pool.length}/${numQuestions} serve-ready items in pool (attempt ${attempt + 1}).`,
-        action: "expand_pool",
-      });
+        action: "expand_pool"
+});
       continue;
     }
 
@@ -526,8 +525,8 @@ export async function composeValidatedExam(
         fixes.push({
           code: "self_heal",
           message: `Attempt ${attempt + 1}: healed selection ${before} → ${selected.length} items.`,
-          action: "replace_similar_and_backfill",
-        });
+          action: "replace_similar_and_backfill"
+});
       }
       finalCheck = runFinalExamCheck(selected, numQuestions, config, composed.blueprintShortfalls);
       if (finalCheck.passed) break;
@@ -537,8 +536,8 @@ export async function composeValidatedExam(
       fixes.push({
         code: "board_bar",
         message: `Attempt ${attempt + 1}: swapped low-quality items via re-compose.`,
-        action: "recompose",
-      });
+        action: "recompose"
+});
     }
   }
 
@@ -558,8 +557,8 @@ export async function composeValidatedExam(
     questionCount: numQuestions,
     questionIds,
     status: passed ? "PASSED" : "FAILED",
-    fixes,
-  });
+    fixes
+});
 
   return {
     status: passed ? "PASSED" : "FAILED",
@@ -570,8 +569,8 @@ export async function composeValidatedExam(
     exam,
     fixes,
     finalCheck,
-    sql,
-  };
+    sql
+};
 }
 
 function summarizeBlueprint(items: BankItem[]): Record<string, number> {
@@ -611,8 +610,8 @@ export async function composeValidatedExamBatch(
       examSlug: config.slug,
       excludeQuestionIds: usedIds,
       examNumber,
-      seed: (baseSeed + examNumber * 0x9e3779b9) >>> 0,
-    });
+      seed: (baseSeed + examNumber * 0x9e3779b9) >>> 0
+});
 
     entries.push({
       examNumber,
@@ -626,8 +625,8 @@ export async function composeValidatedExamBatch(
           }, {})
         : {},
       fixes: result.fixes,
-      finalCheck: result.finalCheck,
-    });
+      finalCheck: result.finalCheck
+});
 
     if (result.status !== "PASSED" || !result.exam) {
       return {
@@ -637,8 +636,8 @@ export async function composeValidatedExamBatch(
         requestedExams: examCount,
         composedExams: entries.filter((e) => e.status === "PASSED").length,
         failedAtExamNumber: examNumber,
-        entries,
-      };
+        entries
+};
     }
 
     for (const q of result.exam.questions) {
@@ -652,8 +651,8 @@ export async function composeValidatedExamBatch(
     examName: config.examName,
     requestedExams: examCount,
     composedExams: entries.length,
-    entries,
-  };
+    entries
+};
 }
 
 export { summarizeBlueprint };
@@ -688,8 +687,8 @@ export function composeValidatedExamFromPool(
         fixes.push({
           code: "recompose",
           message: `Attempt ${attempt + 1}: recomposed from fresh pool.`,
-          action: "recompose",
-        });
+          action: "recompose"
+});
       }
     }
     finalCheck = runFinalExamCheck(selected, numQuestions, config, []);
@@ -714,7 +713,7 @@ export function composeValidatedExamFromPool(
       questionCount: numQuestions,
       questionIds,
       status: passed ? "PASSED" : "FAILED",
-      fixes,
-    }),
-  };
+      fixes
+})
+};
 }

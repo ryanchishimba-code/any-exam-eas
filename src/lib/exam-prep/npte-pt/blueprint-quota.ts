@@ -5,15 +5,14 @@ import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { NPTE_PT_TASK_CATEGORIES } from "@/lib/edtech/learning-hub/npte-pt-learning-paths";
 import {
   highYieldTopicsForCategory2026,
-  labelForNptePt2026TopicSlug,
-  pickNptePt2026BlueprintTopic,
+  pickNptePt2026BlueprintTopic
 } from "./blueprint-topics-2026";
 import type {
   NptePtContentCategoryId,
   NptePtGenerationSlot,
   NptePtQuotaRow,
   NptePtTaskCategoryId,
-  NptePtTaskQuotaRow,
+  NptePtTaskQuotaRow
 } from "./types";
 import { NPTE_PT_TARGET_TOTAL } from "./types";
 
@@ -21,7 +20,7 @@ export { NPTE_PT_BLUEPRINT_SOURCE } from "./types";
 export {
   highYieldTopicsForCategory2026,
   labelForNptePt2026TopicSlug,
-  pickNptePt2026BlueprintTopic,
+  pickNptePt2026BlueprintTopic
 } from "./blueprint-topics-2026";
 
 const NPTE_PT_BLUEPRINT = getExamBlueprint("npte-pt")!;
@@ -38,8 +37,8 @@ export function computeNptePtContentQuotas(
     contentCategory: cat.id as NptePtContentCategoryId,
     label: cat.label,
     weight: cat.weight,
-    targetCount: Math.round(total * cat.weight),
-  }));
+    targetCount: Math.round(total * cat.weight)
+}));
 }
 
 /** Per-task-area targets (NCCPA task dimension). */
@@ -50,8 +49,8 @@ export function computeNptePtTaskQuotas(
     taskCategory: task.id as NptePtTaskCategoryId,
     label: task.label,
     weight: task.weight,
-    targetCount: Math.round(total * task.weight),
-  }));
+    targetCount: Math.round(total * task.weight)
+}));
 }
 
 /** Target count for one content category at a given bank size. */
@@ -75,8 +74,8 @@ export function mergeNptePtQuotaWithCounts(
     return {
       ...row,
       currentCount,
-      deficit: Math.max(0, row.targetCount - currentCount),
-    };
+      deficit: Math.max(0, row.targetCount - currentCount)
+};
   });
 }
 
@@ -159,8 +158,8 @@ export function planNptePtGenerationSlots(params: {
       taskCategory,
       blueprintTopic,
       difficulty,
-      presentationHint,
-    });
+      presentationHint
+});
   }
 
   return slots;
@@ -181,8 +180,8 @@ export function assessBlueprintAlignment(
       category: q.contentCategory,
       expected,
       actual,
-      deltaPct,
-    };
+      deltaPct
+};
   });
   const aligned = deviations.every((d) => Math.abs(d.deltaPct) <= 5);
   return { aligned, deviations };
@@ -211,8 +210,8 @@ export function planNptePtFullExamSlots(params: {
         blueprintTopic: pickTopic(row.contentCategory, slotIndex, examSeed),
         difficulty: 2 + ((slotIndex + examSeed) % 4),
         presentationHint:
-          PRESENTATION_HINTS[(slotIndex + examSeed) % PRESENTATION_HINTS.length],
-      });
+          PRESENTATION_HINTS[(slotIndex + examSeed) % PRESENTATION_HINTS.length]
+});
     }
   }
 
@@ -225,8 +224,8 @@ export function planNptePtFullExamSlots(params: {
       blueprintTopic: pickTopic(contentCategory, slotIndex, examSeed),
       difficulty: 2 + ((slotIndex + examSeed) % 4),
       presentationHint:
-        PRESENTATION_HINTS[(slotIndex + examSeed) % PRESENTATION_HINTS.length],
-    });
+        PRESENTATION_HINTS[(slotIndex + examSeed) % PRESENTATION_HINTS.length]
+});
   }
 
   return slots.slice(0, questionCount);

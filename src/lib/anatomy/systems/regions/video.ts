@@ -1,5 +1,4 @@
 import { ANATOMY_STRUCTURES } from "../../structures";
-import { ANATOMY_SYSTEM_LABELS, type AnatomyLayer } from "../../types";
 import {
   ANATOMY_VIDEO_CYCLE_SEC,
   ANATOMY_VIDEO_HOTSPOTS,

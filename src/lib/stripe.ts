@@ -323,11 +323,6 @@ function resolvePlanFromStripe(sub: Stripe.Subscription): {
   return { tier: metaTier, interval: metaInterval };
 }
 
-/** @deprecated Use resolvePlanFromStripe */
-function resolvePlanIntervalFromStripe(sub: Stripe.Subscription): BillingInterval {
-  return resolvePlanFromStripe(sub).interval;
-}
-
 export type PlanChangeResult = {
   effective: "immediate" | "period_end";
   effectiveAt: Date | null;

@@ -17,8 +17,8 @@ type Props = {
 function PickProxy({
   zone,
   position,
-  highlighted,
-  selected,
+  highlighted: _highlighted,
+  selected: _selected,
   onSelect,
 }: {
   zone: StructuralPickZone;

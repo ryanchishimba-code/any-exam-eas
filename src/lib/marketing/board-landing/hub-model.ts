@@ -27,7 +27,7 @@ import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 import { absoluteUrl, dedupeKeywords, getSiteUrl } from "@/lib/seo";
 import { landingOgImage } from "@/lib/seo/landing-og-image";
-import { getExamSeoConfig, examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
+import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
 import {
   BOARD_LANDING_CONTENT_YEAR,
@@ -230,7 +230,6 @@ export function buildHubLandingModel(input: {
   testimonials?: LandingSuccessStory[];
   usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
 }): BoardLandingModel {
-  const config = getExamSeoConfig(input.examKey);
   const copy = HUB_COPY[input.examKey];
   const boardLabel = boardLandingBreadcrumbName(input.examKey);
   const units = liveUnits(input.units, input.degraded);

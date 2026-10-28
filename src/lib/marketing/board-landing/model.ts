@@ -41,7 +41,6 @@ import {
 import { withBoardHeroMarketing } from "@/lib/marketing/board-landing/board-hero-marketing";
 import { boardLandingTrustPills } from "@/lib/marketing/board-landing/hero";
 import { landingTestimonialStories } from "@/lib/testimonials/landing-stories";
-import { ROUTES } from "@/lib/routes";
 import { absoluteUrl, dedupeKeywords, getSiteUrl } from "@/lib/seo";
 import { landingOgImage } from "@/lib/seo/landing-og-image";
 import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
@@ -435,10 +434,6 @@ function nclexFaqs(units: BoardQuestionUnits | null): { question: string; answer
   ];
 }
 
-function nclexProofPoints(): string[] {
-  return ["Reviewed by RN and PharmD clinicians", "Every answer explained"];
-}
-
 function nclexHeroOffer(
   units: BoardQuestionUnits | null
 ): NonNullable<BoardLandingModel["heroOffer"]> {
@@ -511,7 +506,6 @@ export function buildNclexLandingModel(input: {
   const sample = input.sample ? landingQuestionFromPublic(input.sample) : fallbackNclexQuestion();
   const stories = landingTestimonialStories(input.testimonials ?? [], "nclex");
   const faqs = nclexFaqs(units);
-  const proofPoints = nclexProofPoints();
   const heroOffer = nclexHeroOffer(units);
   const heroChips = nclexHeroChips(heroOffer);
   const bankTypes = input.bankTypes ?? {};

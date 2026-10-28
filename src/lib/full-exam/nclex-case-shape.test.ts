@@ -11,8 +11,7 @@ import {
   arrangeNclexExamItems,
   nclexCaseWindowThirds,
   nclexShapeRole,
-  shapeNclexBankSitting,
-  type NclexShapeItem,
+  type NclexShapeItem
 } from "./nclex-exam-shape";
 
 const CATEGORIES = NCLEX_2026_CLIENT_NEEDS.map((category) => category.id);
@@ -28,16 +27,16 @@ function bank(id: string, itemType: string, category: string, extra?: Partial<Ba
     itemType,
     qaPassed: true,
     active: true,
-    ...extra,
-  } as BankItem;
+    ...extra
+} as BankItem;
 }
 
 function caseItems(setId: string): BankItem[] {
   return CATEGORIES.slice(0, NCLEX_CASE_LENGTH).map((category, index) =>
     bank(`${setId}-${index + 1}`, "case_study", category, {
       tags: ["published-ngn-catalog"],
-      ngnPayload: { kind: "sequential", setId, stepIndex: index + 1 },
-    })
+      ngnPayload: { kind: "sequential", setId, stepIndex: index + 1 }
+})
   );
 }
 
@@ -55,8 +54,8 @@ function clinicalPool(limit: number): BankItem[] {
   );
   const trends = Array.from({ length: 12 }, (_, index) =>
     bank(`trend-${limit}-${index}`, "trend", CATEGORIES[(index + 3) % CATEGORIES.length]!, {
-      ngnPayload: { kind: "trend", clinicalItemType: "trend" },
-    })
+      ngnPayload: { kind: "trend", clinicalItemType: "trend" }
+})
   );
   return [...bowTies, ...trends];
 }
@@ -65,8 +64,8 @@ function partialCase(setId: string): BankItem[] {
   return Array.from({ length: 5 }, (_, index) =>
     bank(`${setId}-${index + 1}`, "case_study", CATEGORIES[index % CATEGORIES.length]!, {
       tags: ["published-ngn-catalog"],
-      ngnPayload: { kind: "sequential", setId, stepIndex: index + 1 },
-    })
+      ngnPayload: { kind: "sequential", setId, stepIndex: index + 1 }
+})
   );
 }
 
@@ -117,8 +116,8 @@ describe("NCLEX case shape for every sitting length", () => {
         id: `${setId}-${index + 1}`,
         role: "case" as const,
         setId,
-        step: index + 1,
-      }))
+        step: index + 1
+}))
     );
     const arranged = arrangeNclexExamItems({
       cases,
@@ -126,8 +125,8 @@ describe("NCLEX case shape for every sitting length", () => {
       bowTies: Array.from({ length: 15 }, (_, index) => ({ id: `b${index}`, role: "bow_tie" as const })),
       trends: Array.from({ length: 10 }, (_, index) => ({ id: `t${index}`, role: "trend" as const })),
       length: 50,
-      seed: 50,
-    });
+      seed: 50
+});
     expect(arranged).not.toBeNull();
     if (!arranged) return;
     const asBank = arranged.map(
@@ -135,8 +134,8 @@ describe("NCLEX case shape for every sitting length", () => {
         ({
           id: item.id,
           ngnPayload: item.setId ? { setId: item.setId, stepIndex: item.step, kind: "sequential" } : undefined,
-          itemType: item.role === "bow_tie" ? "ngn_bowtie" : item.role === "trend" ? "trend" : "mcq",
-        }) as BankItem
+          itemType: item.role === "bow_tie" ? "ngn_bowtie" : item.role === "trend" ? "trend" : "mcq"
+}) as BankItem
     );
     assertWholeCases(asBank, 50, NCLEX_CASE_COUNT);
     expect(arranged.every((item) => item.role !== "bow_tie" && item.role !== "trend")).toBe(true);
@@ -148,8 +147,8 @@ describe("NCLEX case shape for every sitting length", () => {
       ...partialCase("partial-case"),
       bank("stray-step-1", "case_study", CATEGORIES[0]!, {
         tags: ["published-ngn-catalog"],
-        ngnPayload: { kind: "sequential", setId: "stray-step", stepIndex: 1 },
-      }),
+        ngnPayload: { kind: "sequential", setId: "stray-step", stepIndex: 1 }
+}),
       ...knowledgePool(limit),
       ...clinicalPool(limit),
     ];
@@ -159,8 +158,8 @@ describe("NCLEX case shape for every sitting length", () => {
       fieldId: "nursing",
       seed: limit,
       nclexCaseShape: true,
-      nclexExamMode: false,
-    });
+      nclexExamMode: false
+});
     assertWholeCases(sitting.items, limit, NCLEX_CASE_COUNT);
     expect(clientNeedsWithinRanges(sitting.items)).toBe(true);
     const used = new Set(sitting.items.flatMap((item) => {
@@ -189,8 +188,8 @@ describe("NCLEX case shape for every sitting length", () => {
         limit,
         fieldId: "nursing",
         seed: 4,
-        nclexCaseShape: true,
-      });
+        nclexCaseShape: true
+});
       assertWholeCases(sitting.items, limit, 1);
       expect(sitting.items.every((item) => sequentialSetId(item) !== "partial-case")).toBe(true);
       expect(clientNeedsWithinRanges(sitting.items)).toBe(true);
@@ -206,23 +205,23 @@ describe("NCLEX case shape for every sitting length", () => {
   it("keeps a 100-item case inside the first 85 items, one case in each of those thirds", () => {
     const knowledge: NclexShapeItem[] = Array.from({ length: 120 }, (_, index) => ({
       id: `k${index}`,
-      role: "knowledge",
-    }));
+      role: "knowledge"
+}));
     const arranged = arrangeNclexExamItems({
       cases: ["A", "B", "C"].map((setId) =>
         Array.from({ length: NCLEX_CASE_LENGTH }, (_, index) => ({
           id: `${setId}-${index + 1}`,
           role: "case" as const,
           setId,
-          step: index + 1,
-        }))
+          step: index + 1
+}))
       ),
       knowledge,
       bowTies: Array.from({ length: 20 }, (_, index) => ({ id: `b${index}`, role: "bow_tie" as const })),
       trends: Array.from({ length: 12 }, (_, index) => ({ id: `t${index}`, role: "trend" as const })),
       length: 100,
-      seed: 100,
-    });
+      seed: 100
+});
     expect(arranged).toHaveLength(100);
     const thirds = nclexCaseWindowThirds(100);
     expect(thirds).toEqual(nclexCaseWindowThirds(85));

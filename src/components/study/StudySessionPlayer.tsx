@@ -517,6 +517,10 @@ export function StudySessionPlayer({
     persist(next);
   }
 
+  const goNextRef = useRef<(from?: StudySessionState) => void>(() => undefined);
+  const goPrevRef = useRef<() => void>(() => undefined);
+  const toggleSelectRef = useRef<(option: string) => void>(() => undefined);
+
   function goNext(from?: StudySessionState) {
     const base = from ?? sessionState;
     const next = advanceSession(base, 1);
@@ -586,6 +590,10 @@ export function StudySessionPlayer({
     }
   }
 
+  goNextRef.current = goNext;
+  goPrevRef.current = goPrev;
+  toggleSelectRef.current = toggleSelect;
+
   function canSubmitSelection(): boolean {
     if (!current || selected.length === 0) return false;
     const correctCount = requiredSelectionCount(current);
@@ -647,11 +655,11 @@ export function StudySessionPlayer({
         const key = e.key.toLowerCase();
         if (key === "j" || key === "arrowright" || key === "l") {
           e.preventDefault();
-          goNext();
+          goNextRef.current();
         }
         if (key === "k" || key === "arrowleft" || key === "h") {
           e.preventDefault();
-          goPrev();
+          goPrevRef.current();
         }
         return;
       }
@@ -660,7 +668,7 @@ export function StudySessionPlayer({
       const num = Number(e.key);
       const optionCount = current.options?.length ?? 0;
       if (num >= 1 && num <= optionCount) {
-        toggleSelect(current.options[num - 1]);
+        toggleSelectRef.current(current.options[num - 1]);
       }
       if (e.key === "Enter" && selected.length > 0) {
         void revealAnswer(selected);
@@ -668,7 +676,7 @@ export function StudySessionPlayer({
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [answer?.revealed, current, selected, sessionState.currentIndex]);
+  }, [answer?.revealed, current, revealAnswer, selected, sessionState.currentIndex]);
 
   const runFlushRef = useRef(runFlush);
   runFlushRef.current = runFlush;

@@ -64,7 +64,7 @@ export function useDiscountValidation({
         setValidation(data);
         setStatus(data.valid ? "valid" : "invalid");
         return data;
-      } catch (e) {
+      } catch (_e) {
         if (controller.signal.aborted) return null;
         const fallback: DiscountValidation = {
           valid: false,

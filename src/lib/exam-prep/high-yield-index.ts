@@ -14,7 +14,6 @@ import { USMLE_STEP3_V3 } from "./usmle-step3-v3";
 import { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 import { NAPLEX_PHARMACEUTICS_BATCH_01 } from "@/lib/edtech/seeds/naplex-pharmaceutics-batch-01";
 import { NAPLEX_PHARMACEUTICS_BATCH_02 } from "@/lib/edtech/seeds/naplex-pharmaceutics-batch-02";
-import { PANCE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/pance-physician-educator-batch-01";
 import { collectPanceSeedItems } from "@/lib/edtech/seeds/pance-seed-registry";
 import { collectAanpFnpSeedItems } from "@/lib/edtech/seeds/aanp-fnp-seed-registry";
 import { collectNptePtSeedItems } from "@/lib/edtech/seeds/npte-pt-seed-registry";

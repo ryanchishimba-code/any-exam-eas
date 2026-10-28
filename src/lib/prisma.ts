@@ -1,6 +1,6 @@
 import type { PrismaClient } from "@prisma/client";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
-import { assertRuntimeDatabaseUrl, ensureDatabaseUrlEnv, isPostgresDatabaseUrl } from "@/lib/database-url";
+import { assertRuntimeDatabaseUrl, ensureDatabaseUrlEnv } from "@/lib/database-url";
 import { createResilientPrismaClient } from "@/lib/prisma-resilient-client";
 
 const isNextBuild = process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
@@ -83,7 +83,7 @@ export async function getReadyPrisma(): Promise<PrismaClient> {
 
 /** Lazy proxy so importing `@/lib/prisma` does not open a DB connection at module load. */
 export const prisma: PrismaClient = new Proxy({} as PrismaClient, {
-  get(_target, prop, receiver) {
+  get(_target, prop, _receiver) {
     const client = getPrisma();
     const value = Reflect.get(client, prop, client);
     return typeof value === "function" ? value.bind(client) : value;

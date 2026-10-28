@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { getFieldMeta } from "@/lib/fields";
 import { getFieldSubject } from "@/lib/field-subjects";
 import { withDbRetry } from "@/lib/db";
 import {
@@ -71,7 +70,6 @@ export async function GET(req: Request) {
     );
   }
 
-  const meta = getFieldMeta(field);
   const { resolveQuestionBankFieldId, enforceQuestionBankFieldAccess } = await import(
     "@/lib/edtech/question-bank-scope"
   );

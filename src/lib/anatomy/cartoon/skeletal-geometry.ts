@@ -10,8 +10,7 @@ import {
   buildArmBones,
   buildLegBones,
   buildPelvisParts,
-  buildSacrumBoneParts,
-  buildSingleScapulaParts,
+  buildSingleScapulaParts
 } from "./bone-geometry";
 import { buildSkullParts } from "./skull-geometry";
 
@@ -199,8 +198,8 @@ export function sternumAnchorY(f: Figure): { manubrium: number; body: number; xi
   return {
     manubrium: (t1 + t4) * 0.5 + 0.012,
     body: (t4 + t10) * 0.5 - 0.038,
-    xiphoid: t10 - 0.072,
-  };
+    xiphoid: t10 - 0.072
+};
 }
 
 export function buildSternumBoneParts(f: Figure, z: number, opts?: RibBuildOpts): THREE.BufferGeometry[] {

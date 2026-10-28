@@ -1,9 +1,8 @@
 import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import {
-  clinicalCaseKey,
   dedupeItemsByClinicalCase,
-  selectDiverseSessionBankItems,
+  selectDiverseSessionBankItems
 } from "./diverse-session-selection";
 import { hasAdjacentSimilarSpread, spreadGroupKeyFromBankItem } from "@/lib/questions/spread-session-order";
 import { selectSpreadBankItems } from "@/lib/questions/spread-session-order";
@@ -22,8 +21,8 @@ function item(
     vignette,
     options,
     correctAnswer: options[0] ?? "A",
-    explanation: "Test rationale with enough length for board review.",
-  };
+    explanation: "Test rationale with enough length for board review."
+};
 }
 
 describe("dedupeItemsByClinicalCase", () => {

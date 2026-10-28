@@ -47,7 +47,6 @@ const usd = (n: number) => `$${Math.round(n).toLocaleString()}`;
 
 // Brand-safe chart colors (read well on light AND dark elevated surfaces).
 const TEAL = "#14b8a6";
-const TEAL_SOFT = "#2dd4bf";
 const SLATE = "#94a3b8";
 
 type CostBar = { name: string; cost: number; label: string; highlight: boolean };

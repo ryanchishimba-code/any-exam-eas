@@ -8,7 +8,6 @@ import { UNIVERSAL_EXAM_SYSTEM } from "@/lib/engine/prompts/base";
 import { VIGNETTE_REQUIREMENTS } from "@/lib/engine/prompts/vignette";
 import { AANP_FNP_EXAM_SYSTEM_AUGMENTATION } from "@/lib/subjects/aanp-fnp/prompts";
 import { examQuestionToBankItem } from "@/lib/engine/curation/exam-to-bank";
-import { splitUsmleBankItem } from "../usmle-clinical-gate";
 import { runAanpFnpHybridGate } from "./hybrid-gate";
 import { dedupeBatchItems } from "./batch-diversity";
 import { attachAanpFnpStudyLinks } from "./study-links";

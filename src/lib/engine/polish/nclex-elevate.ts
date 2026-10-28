@@ -1,5 +1,5 @@
 import type { BankItem } from "@/lib/question-bank";
-import { auditNclexBankItem, normalizeNclexBankItemFields, resolveNclexVignette } from "@/lib/exam-prep/nclex-bank-audit";
+import { auditNclexBankItem, normalizeNclexBankItemFields } from "@/lib/exam-prep/nclex-bank-audit";
 import { assessNclexItemQuality } from "@/lib/exam-prep/nclex-quality-gate";
 import { applyNclexStemRepairs } from "@/lib/engine/polish/nclex-generic-checks";
 import { enrichBankItemGuidelines } from "@/lib/exam-prep/enrich-guidelines";

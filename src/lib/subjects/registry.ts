@@ -1,7 +1,7 @@
 import type {
   SubjectArea,
   SubjectCapabilities,
-  SubjectModule,
+  SubjectModule
 } from "./types";
 import { nursingModule } from "./nursing";
 import { pharmacyModule } from "./pharmacy";
@@ -12,9 +12,8 @@ import { usmleStep1Module } from "./usmle-step-1";
 import { usmleStep2Module } from "./usmle-step-2";
 import { usmleStep3Module } from "./usmle-step-3";
 import {
-  EXAM_FIELD_IDS,
   FIELD_ID_ALIASES,
-  normalizeFieldId,
+  normalizeFieldId
 } from "./field-ids";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 
@@ -26,7 +25,7 @@ const MODULES: Record<string, SubjectModule> = {
   pharmacy: pharmacyModule,
   pance: panceModule,
   "aanp-fnp": aanpFnpModule,
-  "npte-pt": nptePtModule,
+  "npte-pt": nptePtModule
 };
 
 /** Capability registry — controls generation behavior per discipline. */

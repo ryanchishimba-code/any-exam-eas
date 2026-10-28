@@ -29,7 +29,7 @@ function BoneMesh({
   bone,
   geometry,
   active,
-  selected,
+  selected: _selected,
   opacity,
   onSelect,
 }: {

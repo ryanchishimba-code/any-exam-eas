@@ -3,31 +3,29 @@ import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
   deepDiveTopicHref,
   highYieldTopicHref,
-  practiceTopicHref,
+  practiceTopicHref
 } from "@/lib/edtech/practice-links";
 import { ROUTES } from "@/lib/routes";
 import {
   USMLE_LEARNING_STAGES,
   USMLE_TOPIC_MODULES,
   getUsmleModuleBySlug,
-  modulesForStage,
+  modulesForStage
 } from "./usmle-learning-paths";
 import {
   PANCE_LEARNING_STAGES,
   PANCE_TOPIC_MODULES,
-  getPanceModuleBySlug,
-  panceModulesForStage,
+  panceModulesForStage
 } from "./pance-learning-paths";
 import {
   AANP_FNP_LEARNING_STAGES,
   AANP_FNP_TOPIC_MODULES,
-  aanpFnpModulesForStage,
-  getAanpFnpModuleBySlug,
+  aanpFnpModulesForStage
 } from "./aanp-fnp-learning-paths";
 import {
   NPTE_PT_LEARNING_STAGES,
   NPTE_PT_TOPIC_MODULES,
-  nptePtModulesForStage,
+  nptePtModulesForStage
 } from "./npte-pt-learning-paths";
 import { studyHubHref } from "@/lib/learning/exam-roadmap";
 
@@ -68,8 +66,8 @@ function weakAreaHref(examSlug: ExamSlug, count = 15): string {
     field: fieldId,
     mode: "bank",
     style: "weak_areas",
-    count: String(count),
-  });
+    count: String(count)
+});
   return `${ROUTES.questionBank}?${qs.toString()}`;
 }
 
@@ -80,8 +78,8 @@ function adaptiveHref(examSlug: ExamSlug, subjectId: string, count: number): str
     mode: "bank",
     style: "adaptive",
     subjectId,
-    count: String(count),
-  });
+    count: String(count)
+});
   return `${ROUTES.questionBank}?${qs.toString()}`;
 }
 
@@ -107,8 +105,8 @@ export function buildUsmleDailyAssignment(weakTopicSlugs: string[] = []): DailyA
       description: mod.overview,
       href: deepDiveTopicHref("usmle", mod.reviewTopicSlug),
       estimatedMinutes: Math.min(20, mod.estimatedMinutes),
-      meta: { system: mod.system },
-    });
+      meta: { system: mod.system }
+});
   } else {
     tasks.push({
       id: "review-topic",
@@ -117,8 +115,8 @@ export function buildUsmleDailyAssignment(weakTopicSlugs: string[] = []): DailyA
       description: mod.overview,
       href: highYieldTopicHref("usmle", mod.slug),
       estimatedMinutes: 10,
-      meta: { system: mod.system },
-    });
+      meta: { system: mod.system }
+});
   }
 
   tasks.push({
@@ -128,8 +126,8 @@ export function buildUsmleDailyAssignment(weakTopicSlugs: string[] = []): DailyA
     description: `${mod.questions.reviewCount} board-style vignettes with full rationales.`,
     href: practiceTopicHref("usmle", mod.questions.practiceTopicSlug, mod.questions.reviewCount),
     estimatedMinutes: Math.ceil(mod.questions.reviewCount * 1.5),
-    meta: { system: mod.system, questionCount: mod.questions.reviewCount },
-  });
+    meta: { system: mod.system, questionCount: mod.questions.reviewCount }
+});
 
   tasks.push({
     id: "weak-area",
@@ -142,8 +140,8 @@ export function buildUsmleDailyAssignment(weakTopicSlugs: string[] = []): DailyA
       ? adaptiveHref("usmle", weakSlug, 10)
       : weakAreaHref("usmle", 15),
     estimatedMinutes: 15,
-    meta: { questionCount: 10 },
-  });
+    meta: { questionCount: 10 }
+});
 
   if (stage.id === "board-crunch" && dayIndex() % 3 === 0) {
     tasks.push({
@@ -153,8 +151,8 @@ export function buildUsmleDailyAssignment(weakTopicSlugs: string[] = []): DailyA
       description: "25 questions under exam pacing (~35 min).",
       href: `${ROUTES.questionBank}?field=usmle-step-2&mode=bank&style=adaptive&count=25&pace=timed`,
       estimatedMinutes: 35,
-      meta: { questionCount: 25 },
-    });
+      meta: { questionCount: 25 }
+});
   }
 
   return {
@@ -162,8 +160,8 @@ export function buildUsmleDailyAssignment(weakTopicSlugs: string[] = []): DailyA
     date: new Date().toISOString().slice(0, 10),
     headline: `Today's plan · ${stage.label}`,
     stageLabel: stage.label,
-    tasks,
-  };
+    tasks
+};
 }
 
 export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyAssignmentPlan {
@@ -185,8 +183,8 @@ export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyA
       title: "PANCE Study Hub readiness",
       description: "NCCPA blueprint readiness across all 15 medical content categories.",
       href: studyHubHref("pance"),
-      estimatedMinutes: 10,
-    },
+      estimatedMinutes: 10
+},
     {
       id: "review-module",
       kind: "review",
@@ -196,8 +194,8 @@ export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyA
         ? deepDiveTopicHref("pance", mod.reviewTopicSlug)
         : highYieldTopicHref("pance", mod.slug),
       estimatedMinutes: Math.min(20, mod.estimatedMinutes),
-      meta: { system: mod.system },
-    },
+      meta: { system: mod.system }
+},
     {
       id: "curated-practice",
       kind: "practice",
@@ -205,8 +203,8 @@ export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyA
       description: `${mod.questions.reviewCount} PANCE-style vignettes with rationales.`,
       href: practiceTopicHref("pance", mod.questions.practiceTopicSlug, mod.questions.reviewCount),
       estimatedMinutes: Math.ceil(mod.questions.reviewCount * 1.5),
-      meta: { system: mod.system, questionCount: mod.questions.reviewCount },
-    },
+      meta: { system: mod.system, questionCount: mod.questions.reviewCount }
+},
     {
       id: "weak-area",
       kind: "weak-area",
@@ -218,8 +216,8 @@ export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyA
         ? adaptiveHref("pance", weakSlug, 10)
         : weakAreaHref("pance", 15),
       estimatedMinutes: 15,
-      meta: { questionCount: 10 },
-    },
+      meta: { questionCount: 10 }
+},
   ];
 
   if (stage.id === "board-crunch" && dayIndex() % 3 === 0) {
@@ -230,8 +228,8 @@ export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyA
       description: "50 questions under PANCE pacing (~60 min).",
       href: "/full-exam/pance?preset=50&autostart=1",
       estimatedMinutes: 60,
-      meta: { questionCount: 50 },
-    });
+      meta: { questionCount: 50 }
+});
   }
 
   return {
@@ -239,8 +237,8 @@ export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyA
     date: new Date().toISOString().slice(0, 10),
     headline: `Today's plan · ${stage.label}`,
     stageLabel: stage.label,
-    tasks,
-  };
+    tasks
+};
 }
 
 /** @deprecated Use buildPanceDailyAssignment */
@@ -267,8 +265,8 @@ export function buildAanpFnpDailyAssignment(weakTopicSlugs: string[] = []): Dail
       href: mod.reviewTopicSlug
         ? deepDiveTopicHref("aanp-fnp", mod.reviewTopicSlug)
         : highYieldTopicHref("aanp-fnp", mod.slug),
-      estimatedMinutes: mod.estimatedMinutes,
-    },
+      estimatedMinutes: mod.estimatedMinutes
+},
     {
       id: "practice",
       kind: "practice",
@@ -276,16 +274,16 @@ export function buildAanpFnpDailyAssignment(weakTopicSlugs: string[] = []): Dail
       description: `${mod.questions.reviewCount} questions · ${mod.system}`,
       href: practiceTopicHref("aanp-fnp", mod.questions.practiceTopicSlug),
       estimatedMinutes: 20,
-      meta: { system: mod.system, questionCount: mod.questions.reviewCount },
-    },
+      meta: { system: mod.system, questionCount: mod.questions.reviewCount }
+},
     {
       id: "study-hub",
       kind: "reference",
       title: "Study Hub readiness",
       description: "Readiness by Assess, Diagnose, Plan, and Evaluate domains.",
       href: studyHubHref("aanp-fnp"),
-      estimatedMinutes: 5,
-    },
+      estimatedMinutes: 5
+},
     {
       id: "weak-area",
       kind: "weak-area",
@@ -297,8 +295,8 @@ export function buildAanpFnpDailyAssignment(weakTopicSlugs: string[] = []): Dail
         ? adaptiveHref("aanp-fnp", weakSlug, 10)
         : weakAreaHref("aanp-fnp", 15),
       estimatedMinutes: 15,
-      meta: { questionCount: 10 },
-    },
+      meta: { questionCount: 10 }
+},
   ];
 
   if (stage!.id === "board-crunch" && dayIndex() % 3 === 0) {
@@ -309,8 +307,8 @@ export function buildAanpFnpDailyAssignment(weakTopicSlugs: string[] = []): Dail
       description: "50 questions under AANP FNP pacing (~60 min).",
       href: "/full-exam/aanp-fnp?preset=50&autostart=1",
       estimatedMinutes: 60,
-      meta: { questionCount: 50 },
-    });
+      meta: { questionCount: 50 }
+});
   }
 
   return {
@@ -318,8 +316,8 @@ export function buildAanpFnpDailyAssignment(weakTopicSlugs: string[] = []): Dail
     date: new Date().toISOString().slice(0, 10),
     headline: `Today's plan · ${stage!.label}`,
     stageLabel: stage!.label,
-    tasks,
-  };
+    tasks
+};
 }
 
 export function buildNptePtDailyAssignment(weakTopicSlugs: string[] = []): DailyAssignmentPlan {
@@ -341,8 +339,8 @@ export function buildNptePtDailyAssignment(weakTopicSlugs: string[] = []): Daily
       title: "NPTE-PT Study Hub readiness",
       description: "FSBPT blueprint readiness across body systems and non-systems categories.",
       href: studyHubHref("npte-pt"),
-      estimatedMinutes: 10,
-    },
+      estimatedMinutes: 10
+},
     {
       id: "review-module",
       kind: "review",
@@ -352,8 +350,8 @@ export function buildNptePtDailyAssignment(weakTopicSlugs: string[] = []): Daily
         ? deepDiveTopicHref("npte-pt", mod.reviewTopicSlug)
         : highYieldTopicHref("npte-pt", mod.slug),
       estimatedMinutes: Math.min(20, mod.estimatedMinutes),
-      meta: { system: mod.system },
-    },
+      meta: { system: mod.system }
+},
     {
       id: "curated-practice",
       kind: "practice",
@@ -361,8 +359,8 @@ export function buildNptePtDailyAssignment(weakTopicSlugs: string[] = []): Daily
       description: `${mod.questions.reviewCount} NPTE-PT vignettes with rationales.`,
       href: practiceTopicHref("npte-pt", mod.questions.practiceTopicSlug, mod.questions.reviewCount),
       estimatedMinutes: Math.ceil(mod.questions.reviewCount * 1.5),
-      meta: { system: mod.system, questionCount: mod.questions.reviewCount },
-    },
+      meta: { system: mod.system, questionCount: mod.questions.reviewCount }
+},
     {
       id: "weak-area",
       kind: "weak-area",
@@ -374,8 +372,8 @@ export function buildNptePtDailyAssignment(weakTopicSlugs: string[] = []): Daily
         ? adaptiveHref("npte-pt", weakSlug, 10)
         : weakAreaHref("npte-pt", 15),
       estimatedMinutes: 15,
-      meta: { questionCount: 10 },
-    },
+      meta: { questionCount: 10 }
+},
   ];
 
   if (stage!.id === "board-crunch" && dayIndex() % 3 === 0) {
@@ -386,8 +384,8 @@ export function buildNptePtDailyAssignment(weakTopicSlugs: string[] = []): Daily
       description: "50 questions under NPTE-PT pacing (~60 min).",
       href: "/full-exam/npte-pt?preset=50&autostart=1",
       estimatedMinutes: 60,
-      meta: { questionCount: 50 },
-    });
+      meta: { questionCount: 50 }
+});
   }
 
   return {
@@ -395,8 +393,8 @@ export function buildNptePtDailyAssignment(weakTopicSlugs: string[] = []): Daily
     date: new Date().toISOString().slice(0, 10),
     headline: `Today's plan · ${stage!.label}`,
     stageLabel: stage!.label,
-    tasks,
-  };
+    tasks
+};
 }
 
 export function buildDailyAssignment(
@@ -421,8 +419,8 @@ export function buildDailyAssignment(
         description: "Personalized question set from your exam bank.",
         href: `${ROUTES.questionBank}?field=${encodeURIComponent(fieldId)}&mode=bank&style=adaptive&count=20`,
         estimatedMinutes: 30,
-        meta: { questionCount: 20 },
-      },
+        meta: { questionCount: 20 }
+},
       {
         id: "weak",
         kind: "weak-area",
@@ -430,16 +428,16 @@ export function buildDailyAssignment(
         description: "Drill topics where accuracy is lowest.",
         href: weakAreaHref(examSlug, 15),
         estimatedMinutes: 20,
-        meta: { questionCount: 15 },
-      },
+        meta: { questionCount: 15 }
+},
       {
         id: "topics",
         kind: "review",
         title: "High-yield topics",
         description: "Textbook-style review modules.",
         href: "/dashboard/topics",
-        estimatedMinutes: 15,
-      },
-    ],
-  };
+        estimatedMinutes: 15
+},
+    ]
+};
 }

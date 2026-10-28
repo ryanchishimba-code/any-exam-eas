@@ -75,9 +75,8 @@ function sanitizeActions(actions: AnatomyAssistAction[]): AnatomyAssistAction[] 
 
 function fallbackReply(
   input: AnatomyAssistContextInput,
-  userMessage: string
+  _userMessage: string
 ): AnatomyAssistResult {
-  const ctx = buildAnatomyAssistContext(input);
   const selected = input.selectedStructureId
     ? getAnatomyStructure(input.selectedStructureId)
     : null;

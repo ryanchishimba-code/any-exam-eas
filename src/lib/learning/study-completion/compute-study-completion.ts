@@ -5,23 +5,22 @@ import { getPublishedGuide } from "@/lib/nclex-study-guide/queries";
 import type { ExamSlug } from "@/types/edtech";
 import {
   assertStudyCompletionExamSlug,
-  COMPLETION_RULES_V1,
   isStudyCompletionExamSlug,
   rulesForExam,
   STUDY_COMPLETION_EXAM_SLUGS,
   type CompletionRulesV1,
-  type StudyCompletionExamSlug,
+  type StudyCompletionExamSlug
 } from "./completion-rules-v1";
 import {
   COMPLETION_RULES_V2,
   isCompletionRulesV2,
   rulesForExamV2,
   type CompletionRulesV2,
-  type StudyCompletionPillarWeightId,
+  type StudyCompletionPillarWeightId
 } from "./completion-rules-v2";
 import {
   computeReadinessEstimate,
-  type ReadinessEstimateResult,
+  type ReadinessEstimateResult
 } from "./compute-readiness-estimate";
 
 export type StudyCompletionPillarId = StudyCompletionPillarWeightId;
@@ -120,8 +119,8 @@ export function buildStudyCompletionResult(
   rules: StudyCompletionRules = ACTIVE_COMPLETION_RULES,
   readinessEstimate: ReadinessEstimateResult = {
     status: "insufficient_data",
-    message: "Answer more questions to see your estimate.",
-  }
+    message: "Answer more questions to see your estimate."
+}
 ): StudyCompletionResult {
   const fieldId = EXAM_CATALOG[examSlug].fieldId;
   const v2 = isCompletionRulesV2(rules);
@@ -141,22 +140,22 @@ export function buildStudyCompletionResult(
       label: "Unique questions",
       done: metrics.distinctBankItemsAttempted,
       target: coverageTarget,
-      met: metrics.distinctBankItemsAttempted >= coverageTarget && coverageTarget > 0,
-    },
+      met: metrics.distinctBankItemsAttempted >= coverageTarget && coverageTarget > 0
+},
     {
       id: "full_length_exams",
       label: "Full-length practice exams",
       done: metrics.fullLengthExamsCompleted,
       target: thresholds.fullLengthExamsTarget,
-      met: metrics.fullLengthExamsCompleted >= thresholds.fullLengthExamsTarget,
-    },
+      met: metrics.fullLengthExamsCompleted >= thresholds.fullLengthExamsTarget
+},
     {
       id: "readiness_checks",
       label: "Readiness checks",
       done: metrics.readinessChecksCompleted,
       target: thresholds.readinessChecksTarget,
-      met: metrics.readinessChecksCompleted >= thresholds.readinessChecksTarget,
-    },
+      met: metrics.readinessChecksCompleted >= thresholds.readinessChecksTarget
+},
   ];
 
   if (v2 && metrics.quickBitesTotal > 0) {
@@ -165,8 +164,8 @@ export function buildStudyCompletionResult(
       label: "Quick Bites",
       done: metrics.quickBitesCompleted,
       target: metrics.quickBitesTotal,
-      met: metrics.quickBitesCompleted >= metrics.quickBitesTotal && metrics.quickBitesTotal > 0,
-    });
+      met: metrics.quickBitesCompleted >= metrics.quickBitesTotal && metrics.quickBitesTotal > 0
+});
   }
 
   if (v2 && metrics.studyGuideChaptersTotal > 0) {
@@ -177,8 +176,8 @@ export function buildStudyCompletionResult(
       target: metrics.studyGuideChaptersTotal,
       met:
         metrics.studyGuideChaptersCompleted >= metrics.studyGuideChaptersTotal &&
-        metrics.studyGuideChaptersTotal > 0,
-    });
+        metrics.studyGuideChaptersTotal > 0
+});
   }
 
   const overallPercent =
@@ -195,8 +194,8 @@ export function buildStudyCompletionResult(
     fastAttemptsExcluded: metrics.fastAttemptsExcluded,
     pillars,
     overallPercent,
-    readinessEstimate,
-  };
+    readinessEstimate
+};
 }
 
 async function loadStudyCompletionMetrics(
@@ -224,8 +223,8 @@ async function loadStudyCompletionMetrics(
     studyGuideChaptersCompleted,
   ] = await Promise.all([
     prisma.questionBankItem.count({
-      where: { fieldId, active: true, qaPassed: true },
-    }),
+      where: { fieldId, active: true, qaPassed: true }
+}),
     prisma.$queryRaw<{ count: bigint }[]>`
       SELECT COUNT(DISTINCT "bankItemId")::bigint AS count
       FROM "QuestionAttempt"
@@ -247,16 +246,16 @@ async function loadStudyCompletionMetrics(
         userId,
         examType: examSlug,
         status: "completed",
-        questionCount: fullLengthQuestionCount,
-      },
-    }),
+        questionCount: fullLengthQuestionCount
+}
+}),
     prisma.readinessCheck.count({
       where: {
         userId,
         examSlug,
-        status: "completed",
-      },
-    }),
+        status: "completed"
+}
+}),
     v2 && quickBiteSlugs.length > 0
       ? prisma.quickBiteProgress.count({
           where: {
@@ -265,9 +264,9 @@ async function loadStudyCompletionMetrics(
             OR: [
               { completedAt: { not: null } },
               { watchPct: { gte: thresholds!.quickBiteWatchPctComplete } },
-            ],
-          },
-        })
+            ]
+}
+})
       : Promise.resolve(0),
     v2 && guide
       ? prisma.sgChapter.count({ where: { guideId: guide.id } })
@@ -278,9 +277,9 @@ async function loadStudyCompletionMetrics(
             userId,
             scrollPct: { gte: thresholds!.chapterScrollPctComplete },
             verifiedSeconds: { gte: thresholds!.chapterVerifiedSecondsComplete },
-            chapter: { guideId: guide.id },
-          },
-        })
+            chapter: { guideId: guide.id }
+}
+})
       : Promise.resolve(0),
   ]);
 
@@ -293,8 +292,8 @@ async function loadStudyCompletionMetrics(
     quickBitesCompleted,
     quickBitesTotal: quickBiteSlugs.length,
     studyGuideChaptersCompleted,
-    studyGuideChaptersTotal,
-  };
+    studyGuideChaptersTotal
+};
 }
 
 export async function computeStudyCompletion(
@@ -309,8 +308,8 @@ export async function computeStudyCompletion(
     ? await computeReadinessEstimate(userId, slug, rules)
     : {
         status: "insufficient_data" as const,
-        message: "Answer more questions to see your estimate.",
-      };
+        message: "Answer more questions to see your estimate."
+};
   return buildStudyCompletionResult(slug, metrics, rules, readinessEstimate);
 }
 
@@ -328,8 +327,8 @@ export async function computeAdminStudyCompletionBreakdown(
         ? await computeReadinessEstimate(userId, examSlug, rules)
         : {
             status: "insufficient_data" as const,
-            message: "Answer more questions to see your estimate.",
-          };
+            message: "Answer more questions to see your estimate."
+};
       return buildStudyCompletionResult(examSlug, metrics, rules, readinessEstimate);
     })
   );

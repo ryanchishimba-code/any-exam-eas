@@ -6,7 +6,7 @@ import { canonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
 import {
   getExamTestDate,
   getUserEdtechMetadata,
-  setReadinessOfferSkipped,
+  setReadinessOfferSkipped
 } from "@/lib/edtech/user-metadata";
 import { assembleReadinessItems } from "@/lib/learning/readiness-check/assemble";
 import {
@@ -14,7 +14,7 @@ import {
   promptFromStudy,
   rationaleLead,
   toPlayableQuestion,
-  type ReadinessPrompt,
+  type ReadinessPrompt
 } from "@/lib/learning/readiness-check/present";
 import {
   compareAreaProgress,
@@ -22,8 +22,6 @@ import {
   readinessCardMode,
   retakeSuggestion,
   type AreaProgress,
-  type OutcomePromptMode,
-  type ReadinessCardMode,
 } from "@/lib/learning/readiness-check/progress";
 import { noteThinAreas, summarizeReadiness, type AreaScore } from "@/lib/learning/readiness-check/scoring";
 import {
@@ -33,7 +31,7 @@ import {
   READINESS_MIN_CHECK_ITEMS,
   READINESS_MIN_EVIDENCE,
   type ExamOutcomeResult,
-  type ReadinessLevel,
+  type ReadinessLevel
 } from "@/lib/learning/readiness-check/thresholds";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
@@ -59,8 +57,8 @@ export async function resolveReadinessBoard(userId: string): Promise<{
   const meta = await getUserEdtechMetadata(userId);
   return {
     examSlug: pref.examSlug,
-    fieldId: canonicalPracticeFieldId(pref.examSlug, meta.usmleFieldId),
-  };
+    fieldId: canonicalPracticeFieldId(pref.examSlug, meta.usmleFieldId)
+};
 }
 
 export function areaPracticeHref(fieldId: string, areaId: string): string {
@@ -68,8 +66,8 @@ export function areaPracticeHref(fieldId: string, areaId: string): string {
     field: fieldId,
     mode: "bank",
     blueprintArea: areaId,
-    count: "15",
-  });
+    count: "15"
+});
   return `${ROUTES.questionBank}?${qs.toString()}`;
 }
 
@@ -90,8 +88,8 @@ export function parseAreaSnapshot(value: unknown): AreaScore[] {
       answered: Number(record.answered) || 0,
       correct: Number(record.correct) || 0,
       level: level as ReadinessLevel,
-      ...(record.thinBank === true ? { thinBank: true } : {}),
-    });
+      ...(record.thinBank === true ? { thinBank: true } : {})
+});
   }
   return areas;
 }
@@ -117,8 +115,8 @@ function snapshotPayload(check: {
     summaryLine: check.summaryLine,
     areasOnTrack: check.areasOnTrack,
     areaCount: check.areaCount,
-    areas,
-  };
+    areas
+};
 }
 
 async function dropUnplayableItem(checkId: string, itemId: string) {
@@ -126,8 +124,8 @@ async function dropUnplayableItem(checkId: string, itemId: string) {
     prisma.readinessCheckItem.delete({ where: { id: itemId } }),
     prisma.readinessCheck.update({
       where: { id: checkId },
-      data: { itemCount: { decrement: 1 } },
-    }),
+      data: { itemCount: { decrement: 1 } }
+}),
   ]);
 }
 
@@ -136,9 +134,9 @@ async function loadOpenCheck(userId: string, examSlug: string) {
     where: { userId, examSlug, status: "in_progress" },
     orderBy: { createdAt: "desc" },
     include: {
-      items: { orderBy: { sortOrder: "asc" }, include: { question: true } },
-    },
-  });
+      items: { orderBy: { sortOrder: "asc" }, include: { question: true } }
+}
+});
 }
 
 type OpenCheck = NonNullable<Awaited<ReturnType<typeof loadOpenCheck>>>;
@@ -160,8 +158,8 @@ async function topUpShortCheck(check: OpenCheck): Promise<OpenCheck> {
     const extra = await assembleReadinessItems({
       fieldId: check.fieldId,
       hardExcludeIds: check.items.map((item) => item.questionBankItemId),
-      length: READINESS_CHECK_LENGTH - check.items.length,
-    });
+      length: READINESS_CHECK_LENGTH - check.items.length
+});
     if (!extra.length) return check;
 
     await prisma.$transaction(async (tx) => {
@@ -170,9 +168,9 @@ async function topUpShortCheck(check: OpenCheck): Promise<OpenCheck> {
         where: { id: check.id },
         select: {
           status: true,
-          items: { select: { sortOrder: true, questionBankItemId: true } },
-        },
-      });
+          items: { select: { sortOrder: true, questionBankItemId: true } }
+}
+});
       if (!current || current.status !== "in_progress") return;
       const room = READINESS_CHECK_LENGTH - current.items.length;
       if (room <= 0) return;
@@ -186,13 +184,13 @@ async function topUpShortCheck(check: OpenCheck): Promise<OpenCheck> {
           sortOrder: start + index,
           questionBankItemId: item.questionBankItemId,
           areaId: item.areaId,
-          areaLabel: item.areaLabel,
-        })),
-      });
+          areaLabel: item.areaLabel
+}))
+});
       await tx.readinessCheck.update({
         where: { id: check.id },
-        data: { itemCount: current.items.length + toAdd.length },
-      });
+        data: { itemCount: current.items.length + toAdd.length }
+});
     });
   } catch {
     return (await loadOpenCheck(check.userId, check.examSlug)) ?? check;
@@ -229,9 +227,9 @@ async function nextPrompt(
         index: answered + 1,
         total,
         areaId: item.areaId,
-        areaLabel: item.areaLabel,
-      }),
-    };
+        areaLabel: item.areaLabel
+})
+};
   }
   return null;
 }
@@ -246,27 +244,27 @@ export async function startReadinessCheck(params: {
   const existing = await prisma.readinessCheck.findFirst({
     where: { userId: params.userId, examSlug: params.examSlug, status: "in_progress" },
     orderBy: { createdAt: "desc" },
-    select: { id: true, itemCount: true },
-  });
+    select: { id: true, itemCount: true }
+});
   if (existing) {
     return { checkId: existing.id, resumed: true, itemCount: existing.itemCount };
   }
 
   const [completedCount, latest] = await Promise.all([
     prisma.readinessCheck.count({
-      where: { userId: params.userId, examSlug: params.examSlug, status: "completed" },
-    }),
+      where: { userId: params.userId, examSlug: params.examSlug, status: "completed" }
+}),
     prisma.readinessCheck.findFirst({
       where: { userId: params.userId, examSlug: params.examSlug, status: "completed" },
       orderBy: { completedAt: "desc" },
-      select: { items: { select: { questionBankItemId: true } } },
-    }),
+      select: { items: { select: { questionBankItemId: true } } }
+}),
   ]);
 
   const assembled = await assembleReadinessItems({
     fieldId: params.fieldId,
-    excludeIds: latest?.items.map((item) => item.questionBankItemId) ?? [],
-  });
+    excludeIds: latest?.items.map((item) => item.questionBankItemId) ?? []
+});
   if (assembled.length < READINESS_MIN_CHECK_ITEMS) {
     throw new ReadinessCheckError(
       `Not enough clean standard questions to build a ${READINESS_CHECK_LENGTH}-question check for this board yet. Flagged, retired, and non-multiple-choice items are left out.`,
@@ -289,12 +287,12 @@ export async function startReadinessCheck(params: {
           sortOrder: index,
           questionBankItemId: item.questionBankItemId,
           areaId: item.areaId,
-          areaLabel: item.areaLabel,
-        })),
-      },
-    },
-    select: { id: true, itemCount: true },
-  });
+          areaLabel: item.areaLabel
+}))
+}
+},
+    select: { id: true, itemCount: true }
+});
 
   return { checkId: check.id, resumed: false, itemCount: check.itemCount };
 }
@@ -305,8 +303,8 @@ export async function loadReadinessPrompt(userId: string, examSlug: string) {
     const completed = await prisma.readinessCheck.findFirst({
       where: { userId, examSlug, status: "completed" },
       orderBy: { completedAt: "desc" },
-      select: { id: true },
-    });
+      select: { id: true }
+});
     if (completed) return { done: true as const, checkId: completed.id };
     throw new ReadinessCheckError("No readiness check is in progress.", "no_check");
   }
@@ -316,8 +314,8 @@ export async function loadReadinessPrompt(userId: string, examSlug: string) {
 async function finishCheck(checkId: string) {
   const check = await prisma.readinessCheck.findUnique({
     where: { id: checkId },
-    include: { items: true },
-  });
+    include: { items: true }
+});
   if (!check || check.status === "completed") return check;
 
   const blueprint = getExamBlueprint(check.fieldId);
@@ -325,8 +323,8 @@ async function finishCheck(checkId: string) {
     areaId: category.id,
     label: category.label,
     answered: 0,
-    correct: 0,
-  }));
+    correct: 0
+}));
   const byId = new Map(tallies.map((row) => [row.areaId, row]));
   for (const item of check.items) {
     if (item.correct == null) continue;
@@ -355,10 +353,10 @@ async function finishCheck(checkId: string) {
       examSlug: check.examSlug,
       status: "completed",
       isBaseline: true,
-      id: { not: check.id },
-    },
-    select: { id: true },
-  });
+      id: { not: check.id }
+},
+    select: { id: true }
+});
 
   return prisma.readinessCheck.update({
     where: { id: check.id },
@@ -373,10 +371,10 @@ async function finishCheck(checkId: string) {
       areasScored: summary.areasScored,
       areaCount: summary.areaCount,
       summaryLine: summary.line,
-      areaSnapshot: summary.areas,
-    },
-    include: { items: true },
-  });
+      areaSnapshot: summary.areas
+},
+    include: { items: true }
+});
 }
 
 export async function answerReadinessItem(params: {
@@ -405,10 +403,10 @@ export async function answerReadinessItem(params: {
   const item = await prisma.readinessCheckItem.findFirst({
     where: {
       id: params.itemId,
-      check: { userId: params.userId, examSlug: params.examSlug, status: "in_progress" },
-    },
-    include: { check: true, question: true },
-  });
+      check: { userId: params.userId, examSlug: params.examSlug, status: "in_progress" }
+},
+    include: { check: true, question: true }
+});
   if (!item) throw new ReadinessCheckError("That question is not on an open check.", "no_check");
 
   const study = toPlayableQuestion(item.check.fieldId, enrichBankItemFromRow(item.question));
@@ -426,8 +424,8 @@ export async function answerReadinessItem(params: {
         overallLabel:
           finished?.overallLevel && LEVELS.has(finished.overallLevel as ReadinessLevel)
             ? READINESS_LEVEL_LABEL[finished.overallLevel as ReadinessLevel]
-            : null,
-      };
+            : null
+};
     }
     return {
       correct: false,
@@ -435,8 +433,8 @@ export async function answerReadinessItem(params: {
       done: false,
       prompt: prompt.prompt,
       answered: prompt.answered,
-      total: prompt.total,
-    };
+      total: prompt.total
+};
   }
 
   let correct = item.correct;
@@ -450,13 +448,13 @@ export async function answerReadinessItem(params: {
         data: {
           response: JSON.stringify(graded.selected),
           correct: graded.correct,
-          answeredAt: new Date(),
-        },
-      }),
+          answeredAt: new Date()
+}
+}),
       prisma.readinessCheck.update({
         where: { id: item.checkId },
-        data: { answeredCount: { increment: 1 } },
-      }),
+        data: { answeredCount: { increment: 1 } }
+}),
     ]);
   }
 
@@ -473,8 +471,8 @@ export async function answerReadinessItem(params: {
       overallLabel:
         finished?.overallLevel && LEVELS.has(finished.overallLevel as ReadinessLevel)
           ? READINESS_LEVEL_LABEL[finished.overallLevel as ReadinessLevel]
-          : null,
-    };
+          : null
+};
   }
 
   return {
@@ -483,8 +481,8 @@ export async function answerReadinessItem(params: {
     done: false,
     prompt: prompt.prompt,
     answered: prompt.answered,
-    total: prompt.total,
-  };
+    total: prompt.total
+};
 }
 
 function skippedAtFor(meta: Awaited<ReturnType<typeof getUserEdtechMetadata>>, examSlug: string): Date | null {
@@ -506,8 +504,8 @@ export async function loadReadinessCard(params: {
     prisma.readinessCheck.findFirst({
       where: { userId: params.userId, examSlug: params.examSlug, status: "in_progress" },
       orderBy: { createdAt: "desc" },
-      select: { id: true, answeredCount: true, itemCount: true },
-    }),
+      select: { id: true, answeredCount: true, itemCount: true }
+}),
     prisma.readinessCheck.findFirst({
       where: { userId: params.userId, examSlug: params.examSlug, status: "completed" },
       orderBy: { completedAt: "desc" },
@@ -516,14 +514,14 @@ export async function loadReadinessCard(params: {
         completedAt: true,
         overallLevel: true,
         summaryLine: true,
-        kind: true,
-      },
-    }),
+        kind: true
+}
+}),
     getUserEdtechMetadata(params.userId),
     prisma.examOutcome.findFirst({
       where: { userId: params.userId, examSlug: params.examSlug },
-      orderBy: { recordedAt: "desc" },
-    }),
+      orderBy: { recordedAt: "desc" }
+}),
   ]);
 
   const examDate = getExamTestDate(meta, params.examSlug);
@@ -533,18 +531,18 @@ export async function loadReadinessCard(params: {
       ? {
           result: outcome.result as ExamOutcomeResult,
           recordedAt: outcome.recordedAt,
-          examDate: outcome.examDate,
-        }
+          examDate: outcome.examDate
+}
       : null,
-    now,
-  });
+    now
+});
   const mode = readinessCardMode({
     hasInProgress: Boolean(inProgress),
     hasCompleted: Boolean(latest),
     skippedAt: skippedAtFor(meta, params.examSlug),
     outcomeLoud: prompt === "loud",
-    now,
-  });
+    now
+});
   const retake = latest?.completedAt ? retakeSuggestion(latest.completedAt, now) : null;
 
   return {
@@ -572,10 +570,10 @@ export async function loadReadinessCard(params: {
           completedAt: latest.completedAt?.toISOString() ?? null,
           kind: latest.kind,
           retakeDue: retake?.due ?? false,
-          daysUntilSuggest: retake?.daysUntilSuggest ?? null,
-        }
-      : null,
-  };
+          daysUntilSuggest: retake?.daysUntilSuggest ?? null
+}
+      : null
+};
 }
 
 export type ReadinessPageData = Awaited<ReturnType<typeof loadReadinessPage>>;
@@ -588,13 +586,12 @@ export async function loadReadinessPage(params: {
   hasStudyAccess: boolean;
   now?: Date;
 }) {
-  const now = params.now ?? new Date();
   const [card, baseline, history, latestFull] = await Promise.all([
     loadReadinessCard(params),
     prisma.readinessCheck.findFirst({
       where: { userId: params.userId, examSlug: params.examSlug, status: "completed", isBaseline: true },
-      orderBy: { completedAt: "asc" },
-    }),
+      orderBy: { completedAt: "asc" }
+}),
     prisma.readinessCheck.findMany({
       where: { userId: params.userId, examSlug: params.examSlug, status: "completed" },
       orderBy: { completedAt: "desc" },
@@ -607,13 +604,13 @@ export async function loadReadinessPage(params: {
         overallLevel: true,
         summaryLine: true,
         correctCount: true,
-        answeredCount: true,
-      },
-    }),
+        answeredCount: true
+}
+}),
     prisma.readinessCheck.findFirst({
       where: { userId: params.userId, examSlug: params.examSlug, status: "completed" },
-      orderBy: { completedAt: "desc" },
-    }),
+      orderBy: { completedAt: "desc" }
+}),
   ]);
 
   const latestAreas = parseAreaSnapshot(latestFull?.areaSnapshot);
@@ -648,14 +645,14 @@ export async function loadReadinessPage(params: {
     areas: latestAreas.map((row) => ({
       ...row,
       labelText: READINESS_LEVEL_LABEL[row.level],
-      practiceHref: areaPracticeHref(params.fieldId, row.areaId),
-    })),
+      practiceHref: areaPracticeHref(params.fieldId, row.areaId)
+})),
     progress,
     focus: focus.map((row) => ({
       ...row,
       labelText: READINESS_LEVEL_LABEL[row.level],
-      practiceHref: areaPracticeHref(params.fieldId, row.areaId),
-    })),
+      practiceHref: areaPracticeHref(params.fieldId, row.areaId)
+})),
     history: history.map((row) => ({
       id: row.id,
       kind: row.kind,
@@ -667,13 +664,13 @@ export async function loadReadinessPage(params: {
           : null,
       summaryLine: row.summaryLine,
       correctCount: row.correctCount,
-      answeredCount: row.answeredCount,
-    })),
+      answeredCount: row.answeredCount
+})),
     baselineSummary: baseline?.summaryLine ?? null,
     baselineCompletedAt: baseline?.completedAt?.toISOString() ?? null,
     showRestart: restartOpen,
-    length: READINESS_CHECK_LENGTH,
-  };
+    length: READINESS_CHECK_LENGTH
+};
 }
 
 export async function skipReadinessOffer(userId: string, examSlug: string, now = new Date()) {
@@ -697,8 +694,8 @@ export async function recordExamOutcome(params: {
 
   const latest = await prisma.readinessCheck.findFirst({
     where: { userId: params.userId, examSlug: params.examSlug, status: "completed" },
-    orderBy: { completedAt: "desc" },
-  });
+    orderBy: { completedAt: "desc" }
+});
 
   const outcome = await prisma.examOutcome.create({
     data: {
@@ -708,9 +705,9 @@ export async function recordExamOutcome(params: {
       examDate: params.examDate,
       result: params.result,
       readinessCheckId: latest?.id ?? null,
-      snapshot: latest ? snapshotPayload(latest) : undefined,
-    },
-  });
+      snapshot: latest ? snapshotPayload(latest) : undefined
+}
+});
 
   return { id: outcome.id, result: outcome.result };
 }
@@ -739,6 +736,6 @@ export async function countExamOutcomes(): Promise<OutcomeCountRow[]> {
     examSlug: row.examSlug,
     result: row.result,
     responses: Number(row.responses) || 0,
-    students: Number(row.students) || 0,
-  }));
+    students: Number(row.students) || 0
+}));
 }

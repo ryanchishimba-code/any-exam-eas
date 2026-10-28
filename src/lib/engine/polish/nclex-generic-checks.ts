@@ -1,7 +1,7 @@
 import type { BankItem } from "@/lib/question-bank";
 import { resolveNclexStem } from "@/lib/exam-prep/nclex-bank-audit";
 import { stripShiftNotes } from "@/lib/questions/shift-notes";
-import { dedupeVignetteStem, hasDuplicateVignette, stripEncounterBoilerplate } from "@/lib/engine/polish/usmle-polish";
+import { dedupeVignetteStem, stripEncounterBoilerplate } from "@/lib/engine/polish/usmle-polish";
 
 const GENERIC_RISK_OPTION = /^(?:Pain rated|Urine output|Temperature \d|Respiratory rate \d|Blood pressure \d)/i;
 

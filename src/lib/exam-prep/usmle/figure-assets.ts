@@ -137,7 +137,7 @@ export function getApprovedFigureById(id: string): UsmleFigureRef | undefined {
 
 export function findApprovedFiguresForTopic(
   topic: string | null | undefined,
-  organSystem?: string | null
+  _organSystem?: string | null
 ): UsmleFigureRef[] {
   const t = topic?.trim().toLowerCase() ?? "";
   return USMLE_FIGURE_CATALOG.filter((f) => {

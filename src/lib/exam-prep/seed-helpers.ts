@@ -3,7 +3,6 @@ import type { BlueprintDomain, ExamItemType, ExamReference } from "./types";
 import {
   enrichRelatedStudyMeta,
   relatedMetaFromPayload,
-  type RelatedStudyMeta,
   type StudyStructureContext,
 } from "./anatomy-study-meta";
 

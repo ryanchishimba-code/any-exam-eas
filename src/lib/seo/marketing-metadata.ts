@@ -29,8 +29,6 @@ import { pricingFaqItems } from "@/lib/marketing/pricing-faq";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { comparePageFaqJsonLdEntities } from "@/lib/seo/compare-faq";
 import { SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
-import { TRIAL_DAYS } from "@/lib/billing-config";
-import { formatUsd } from "@/lib/seo/competitor-comparison";
 import {
   enforceMetaDescription,
   enforceMetaTitle,

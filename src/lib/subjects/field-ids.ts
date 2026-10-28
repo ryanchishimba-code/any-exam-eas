@@ -1,7 +1,6 @@
 import {
-  USMLE_FIELD_IDS,
   resolveUsmleFieldId,
-  type UsmleFieldId,
+  type UsmleFieldId
 } from "@/lib/exam-prep/usmle/steps";
 
 export { USMLE_FIELD_IDS, type UsmleFieldId } from "@/lib/exam-prep/usmle/steps";
@@ -43,7 +42,7 @@ export const FIELD_ID_ALIASES: Record<string, ExamFieldId> = {
   "usmle-step-2": "usmle-step-2",
   "usmle-step-2-ck": "usmle-step-2",
   "usmle-step2": "usmle-step-2",
-  "step-2": "usmle-step-2",
+  "step-2": "usmle-step-2"
 };
 
 /** Fields removed from the product — data should be purged from the database. */

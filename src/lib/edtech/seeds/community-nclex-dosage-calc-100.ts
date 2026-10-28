@@ -183,7 +183,6 @@ function gttDistractors(gtt: number): [string, string, string] {
 }
 
 function signedMlDistractors(net: number): [string, string, string] {
-  const sign = net >= 0 ? "+" : "";
   const label = (n: number) => `${n >= 0 ? "+" : ""}${fmt(n)} mL`;
   const correct = label(net);
   const offsets = [50, 100, 150, 200, 250, 300];

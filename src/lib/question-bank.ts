@@ -8,7 +8,6 @@ import {
 } from "./field-subjects";
 import { sampleQuestionBankItems } from "./question-bank-db";
 import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
-import { toQuizletStyleQuestion } from "./question-format";
 import {
   bankItemToSessionRaw,
   prepareBankItemsForSession,
@@ -18,7 +17,6 @@ import {
   finalizeExamSessionQuestions,
 } from "./questions/finalize-exam-session";
 import { studyQuestionsToExamQuestions } from "./questions/prepare";
-import { coerceOptionList } from "./questions/option-coerce";
 import type { RawQuestionInput } from "./questions/types";
 import type { ExpertStructuredRationale } from "@/lib/engine/rationale/expert-rationale-types";
 
@@ -91,7 +89,7 @@ export type BankItem = {
 };
 
 /** High-yield items modeled after common study-set / board-style MCQs */
-const BANK: Record<string, BankItem[]> = {
+const _BANK: Record<string, BankItem[]> = {
   anatomy: ANATOMY_QUESTION_BANK,
   physiology: [
     {
@@ -377,7 +375,7 @@ const BANK: Record<string, BankItem[]> = {
   ],
 };
 
-const GENERAL_MEDICINE: BankItem[] = [
+const _GENERAL_MEDICINE: BankItem[] = [
   {
     question: "The primary tissue type of tendons and ligaments is:",
     options: ["Dense regular connective tissue", "Loose areolar tissue", "Adipose tissue", "Reticular tissue"],
@@ -393,29 +391,6 @@ const GENERAL_MEDICINE: BankItem[] = [
     tags: ["high-yield"],
   },
 ];
-
-function bankItemToQuestion(item: BankItem, id: number): ExamQuestion {
-  return toQuizletStyleQuestion({
-    id,
-    type: "multiple_choice",
-    question: String(item.question ?? "").trim() || "Board practice item",
-    options: coerceOptionList(item.options),
-    correctAnswer: item.correctAnswer,
-    explanation: item.explanation,
-    solutionSteps: item.solutionSteps,
-    tags: item.tags,
-    highYield: true,
-  });
-}
-
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
 
 export async function getBankQuestions(params: {
   field: string;

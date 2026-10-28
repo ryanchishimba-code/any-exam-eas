@@ -1,7 +1,7 @@
 /**
  * 15 TPN-focused NAPLEX calculation MCQs (kcal, mEq, rates, concentrations).
  */
-import { ASPEN_REF, buildCalcMcqBatch, NAPLEX_DISP, o } from "./naplex-calc-mcq-helpers";
+import { ASPEN_REF, buildCalcMcqBatch, o } from "./naplex-calc-mcq-helpers";
 
 export const NAPLEX_CALC_MCQ_TPN = buildCalcMcqBatch([
   {

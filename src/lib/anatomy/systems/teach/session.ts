@@ -109,7 +109,7 @@ export function finishTeachTour(state: TeachState): TeachState {
   return { ...createInitialTeachState() };
 }
 
-export function startTeachQuiz(state: TeachState): StructureSelectResult {
+export function startTeachQuiz(_state: TeachState): StructureSelectResult {
   return {
     state: {
       ...createInitialTeachState(),

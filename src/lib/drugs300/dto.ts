@@ -1,8 +1,6 @@
 import type { DrugClassId } from "./drug-classes";
 import type { ExamRelevance } from "./schema";
 import type { EnrichedDrugView } from "./enrichment";
-import type { ReviewGrade } from "./spaced-repetition";
-
 export type { DrugClassId } from "./drug-classes";
 export type { ReviewGrade } from "./spaced-repetition";
 

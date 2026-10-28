@@ -2,8 +2,7 @@ import { describe, expect, it } from "vitest";
 import { structurePracticeHref } from "@/lib/anatomy/structure-practice";
 import type { BankItem } from "@/lib/question-bank";
 import {
-  bankItemMatchesNclexBlueprintTopicTags,
-  filterItemsForNclexBlueprintTopics,
+  bankItemMatchesNclexBlueprintTopicTags
 } from "@/lib/exam-prep/nclex/topic-blueprint-match";
 import { filterItemsForNclexTopicPractice } from "@/lib/exam-prep/nclex/topic-practice-filter";
 import { practiceFormatScopeCounts } from "@/lib/study/practice-format";
@@ -18,7 +17,7 @@ const cardiacTagged = (id: string): BankItem => ({
   question: "Priority intervention?",
   options: ["A", "B", "C", "D"],
   correctAnswer: "A",
-  explanation: "Reperfusion therapy.",
+  explanation: "Reperfusion therapy."
 });
 
 const psychMddSertraline: BankItem = {
@@ -31,7 +30,7 @@ const psychMddSertraline: BankItem = {
   question: "Which nursing intervention is the priority?",
   options: ["A", "B", "C", "D"],
   correctAnswer: "A",
-  explanation: "Safety for suicide risk.",
+  explanation: "Safety for suicide risk."
 };
 
 describe("cardiac topic practice tag precision", () => {
@@ -41,8 +40,8 @@ describe("cardiac topic practice tag precision", () => {
     );
     expect(
       filterItemsForNclexTopicPractice([psychMddSertraline, cardiacTagged("c1")], {
-        blueprintTopics: cardiacTopics,
-      }).map((row) => row.id)
+        blueprintTopics: cardiacTopics
+}).map((row) => row.id)
     ).toEqual(["c1"]);
   });
 
@@ -65,8 +64,8 @@ describe("cardiac topic practice tag precision", () => {
     const scoped = practiceFormatScopeCounts({
       subjectId: "physiological-adaptation",
       formats: subjectFormats,
-      topicFormats: { "physiological-adaptation": subjectFormats },
-    });
+      topicFormats: { "physiological-adaptation": subjectFormats }
+});
     expect(scoped).toEqual(subjectFormats);
     expect(topicFormats).not.toEqual(scoped);
     expect(topicFormats.mcq + topicFormats.ngn + topicFormats.case).toBe(152);

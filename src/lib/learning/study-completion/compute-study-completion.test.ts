@@ -3,9 +3,8 @@ import {
   buildStudyCompletionResult,
   computeOverallPercent,
   computeWeightedOverallPercent,
-  coverageTargetQuestionCount,
   computeStudyCompletion,
-  pillarProgressPercent,
+  pillarProgressPercent
 } from "./compute-study-completion";
 import { COMPLETION_RULES_V1 } from "./completion-rules-v1";
 import { COMPLETION_RULES_V2 } from "./completion-rules-v2";
@@ -18,16 +17,16 @@ const { prismaMock } = vi.hoisted(() => ({
     quickBiteProgress: { count: vi.fn() },
     sgChapter: { count: vi.fn() },
     sgChapterProgress: { count: vi.fn() },
-    $queryRaw: vi.fn(),
-  },
+    $queryRaw: vi.fn()
+}
 }));
 
 vi.mock("@/lib/prisma", () => ({
-  prisma: prismaMock,
+  prisma: prismaMock
 }));
 
 vi.mock("@/lib/nclex-study-guide/queries", () => ({
-  getPublishedGuide: vi.fn(async () => ({ id: "guide_nclex" })),
+  getPublishedGuide: vi.fn(async () => ({ id: "guide_nclex" }))
 }));
 
 describe("buildStudyCompletionResult", () => {
@@ -41,13 +40,13 @@ describe("buildStudyCompletionResult", () => {
       quickBitesCompleted: 0,
       quickBitesTotal: 0,
       studyGuideChaptersCompleted: 0,
-      studyGuideChaptersTotal: 0,
-    });
+      studyGuideChaptersTotal: 0
+});
     expect(result.pillars[0]).toMatchObject({
       done: 800,
       target: 850,
-      met: false,
-    });
+      met: false
+});
     expect(result.coveragePercent).toBe(80);
     expect(result.ruleVersion).toBe("completion-rules-v2");
   });
@@ -62,8 +61,8 @@ describe("buildStudyCompletionResult", () => {
       quickBitesCompleted: 0,
       quickBitesTotal: 0,
       studyGuideChaptersCompleted: 10,
-      studyGuideChaptersTotal: 10,
-    });
+      studyGuideChaptersTotal: 10
+});
     const exams = result.pillars.find((p) => p.id === "full_length_exams");
     expect(exams).toMatchObject({ done: 10, target: 10, met: true });
   });
@@ -80,8 +79,8 @@ describe("buildStudyCompletionResult", () => {
         quickBitesCompleted: 0,
         quickBitesTotal: 10,
         studyGuideChaptersCompleted: 0,
-        studyGuideChaptersTotal: 20,
-      },
+        studyGuideChaptersTotal: 20
+},
       COMPLETION_RULES_V2
     );
     const manual = computeWeightedOverallPercent(
@@ -118,8 +117,8 @@ describe("computeOverallPercent (v1)", () => {
         quickBitesCompleted: 0,
         quickBitesTotal: 0,
         studyGuideChaptersCompleted: 0,
-        studyGuideChaptersTotal: 0,
-      },
+        studyGuideChaptersTotal: 0
+},
       COMPLETION_RULES_V1
     ).pillars;
     expect(computeOverallPercent(pillars)).toBeGreaterThan(0);
@@ -157,9 +156,9 @@ describe("computeStudyCompletion", () => {
           userId: "user_1",
           examType: "pance",
           status: "completed",
-          questionCount: 300,
-        }),
-      })
+          questionCount: 300
+})
+})
     );
   });
 

@@ -1,4 +1,4 @@
-import type { ExamQuestion, NgnQuestionFormat } from "@/lib/ai";
+import type { ExamQuestion } from "@/lib/ai";
 import type { StudyQuestionType } from "./types";
 
 export function inferStudyQuestionType(q: ExamQuestion): StudyQuestionType {

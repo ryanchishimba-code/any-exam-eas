@@ -50,7 +50,6 @@ export function BillingIntervalDropdown({
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const listboxId = useId();
-  const plan = getBillingPlanTier(tier, value);
   const tierPlans = getBillingPlanTiersForTier(tier);
 
   useEffect(() => {

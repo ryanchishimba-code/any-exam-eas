@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
 import { Check, ChevronDown } from "lucide-react";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
@@ -92,7 +100,7 @@ export function AnatomyScrollDropdown({
     setMounted(true);
   }, []);
 
-  const updateMenuPosition = () => {
+  const updateMenuPosition = useCallback(() => {
     const trigger = triggerRef.current;
     if (!trigger) return;
     const rect = trigger.getBoundingClientRect();
@@ -103,7 +111,7 @@ export function AnatomyScrollDropdown({
       top: openUp ? rect.top - MENU_GAP_PX : rect.bottom + MENU_GAP_PX,
       openUp,
     });
-  };
+  }, [menuHeight, placement]);
 
   useLayoutEffect(() => {
     if (!open) {
@@ -118,7 +126,7 @@ export function AnatomyScrollDropdown({
       window.removeEventListener("resize", onLayout);
       removeScroll();
     };
-  }, [open, menuHeight, placement]);
+  }, [open, updateMenuPosition]);
 
   useLayoutEffect(() => {
     if (!open || !value) return;

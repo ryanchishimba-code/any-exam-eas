@@ -26,7 +26,7 @@ import {
   summarizeExamBlueprint,
 } from "./blueprint-quota";
 import { buildNclex2026TopicCatalogBlock, labelForNclex2026TopicSlug } from "./blueprint-topics-2026";
-import { assessNclexFullExamItem, nclexFullExamItemPasses } from "./quality-gate";
+import { assessNclexFullExamItem } from "./quality-gate";
 import { repairGeneratedNclexNgnItem } from "../repair-generated-nclex-ngn";
 import { normalizeNclexExhibitPayload } from "./normalize-exhibit";
 import { maybeEnrichExpertBankItemRationale } from "@/lib/engine/rationale/generate-expert-rationale";
@@ -342,7 +342,6 @@ function normalizeGeneratedExplanation(item: BankItem): BankItem {
   if (!question.endsWith("?")) question += "?";
 
   let explanation = item.explanation?.trim() ?? "";
-  const wrongOptions = options.filter((o) => o.trim() !== correctAnswer.trim());
 
   if (item.distractorRationale && Object.keys(item.distractorRationale).length > 0) {
     const lines = Object.entries(item.distractorRationale)

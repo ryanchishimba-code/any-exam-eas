@@ -30,9 +30,6 @@ export type UsmleCalcMcqDef = {
 
 export const o = (a: string, b: string, c: string, d: string): CalcMcqOptions => [a, b, c, d];
 
-const CLINICAL_VIGNETTE =
-  /\d{1,3}[-‑]year|\d+\s*kg|mg\/|mEq|mmol|BP|Na\+|Cl-|HCO|creatinine|glucose|patient|Calculate|Order|Laboratory|Study|trial|sensitivity|specificity/i;
-
 export function ensureUsmleCalcVignette(vignette: string): string {
   let v = vignette.trim();
 

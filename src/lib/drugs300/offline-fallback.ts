@@ -25,7 +25,7 @@ function cycleDto() {
   };
 }
 
-function computeOfflineClassProgress(now: Date): DrugClassProgress[] {
+function computeOfflineClassProgress(_now: Date): DrugClassProgress[] {
   return DRUG_CLASSES.map((cls) => {
     const pool =
       cls.id === "all"

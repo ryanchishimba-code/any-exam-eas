@@ -39,7 +39,7 @@ function buildProOnlyChart(ledeSuffix: string): PrepPriceBarChartData {
   };
 }
 
-export function buildPrepPriceBarChartData(examKey: ExamSeoKey): PrepPriceBarChartData {
+export function buildPrepPriceBarChartData(_examKey: ExamSeoKey): PrepPriceBarChartData {
   return buildProOnlyChart("Six boards · one plan");
 }
 
