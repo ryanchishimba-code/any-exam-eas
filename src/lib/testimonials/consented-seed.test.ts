@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   CONSENTED_TESTIMONIAL_BATCH_ID,
   CONSENTED_TESTIMONIAL_BATCH_ID_2026_10_24,
+  CONSENTED_TESTIMONIAL_BATCH_ID_2026_10_28,
   CONSENTED_TESTIMONIAL_SEEDS,
   FOUNDER_NOTE,
   consentedSeedsForBatch,
@@ -29,6 +30,17 @@ describe("consented testimonial seed", () => {
       "With everything premium becoming expensive, it's a welcome sight to see premium material.",
     ]);
     expect(batch.every((row) => row.showOnHome === false)).toBe(true);
+  });
+
+  it("stores the Oct 28 PANCE batch with exact owner strings", () => {
+    const batch = consentedSeedsForBatch(CONSENTED_TESTIMONIAL_BATCH_ID_2026_10_28);
+    expect(batch).toHaveLength(1);
+    expect(batch[0]?.name).toBe("N., PA");
+    expect(batch[0]?.exam).toBe("PANCE student");
+    expect(batch[0]?.quote).toBe(
+      "Great website to study for PANCE, with a question bank as well as videos for learning. I would recommend anyexameasy.com to all future PAs, and current PAs can use it to study for PANRE."
+    );
+    expect(batch[0]?.showOnHome).toBe(false);
   });
 
   it("does not mix founder copy into student seeds", () => {

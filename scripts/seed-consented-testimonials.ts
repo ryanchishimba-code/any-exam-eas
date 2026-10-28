@@ -9,6 +9,7 @@
  *   npx tsx scripts/seed-consented-testimonials.ts --batch testimonials-2026-10-24
  *   npx tsx scripts/seed-consented-testimonials.ts --batch testimonials-2026-10-24 --apply --backup-dir scripts/backups/testimonials
  *   npx tsx scripts/seed-consented-testimonials.ts --remove --batch testimonials-2026-10-24 --apply
+ *   npx tsx scripts/undo-consented-testimonials.ts --batch testimonials-2026-10-28 --apply
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";

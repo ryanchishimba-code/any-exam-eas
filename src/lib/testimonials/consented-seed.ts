@@ -3,6 +3,8 @@ export const CONSENTED_TESTIMONIAL_BATCH_ID = "testimonials-2026-09-27";
 
 export const CONSENTED_TESTIMONIAL_BATCH_ID_2026_10_24 = "testimonials-2026-10-24";
 
+export const CONSENTED_TESTIMONIAL_BATCH_ID_2026_10_28 = "testimonials-2026-10-28";
+
 export type ConsentedTestimonialSeed = {
   id: string;
   name: string;
@@ -79,11 +81,23 @@ export const CONSENTED_TESTIMONIAL_SEEDS: readonly ConsentedTestimonialSeed[] = 
     sortOrder: 4,
     showOnHome: false,
   },
+  {
+    id: "seed_testimonials_2026_10_28_n_pa",
+    batchId: CONSENTED_TESTIMONIAL_BATCH_ID_2026_10_28,
+    consentedAt: "2026-10-28T00:00:00.000Z",
+    name: "N., PA",
+    exam: "PANCE student",
+    quote:
+      "Great website to study for PANCE, with a question bank as well as videos for learning. I would recommend anyexameasy.com to all future PAs, and current PAs can use it to study for PANRE.",
+    sortOrder: 1,
+    showOnHome: false,
+  },
 ];
 
 export const CONSENTED_TESTIMONIAL_BATCH_IDS = [
   CONSENTED_TESTIMONIAL_BATCH_ID,
   CONSENTED_TESTIMONIAL_BATCH_ID_2026_10_24,
+  CONSENTED_TESTIMONIAL_BATCH_ID_2026_10_28,
 ] as const;
 
 export function consentedSeedsForBatch(batchId: string): ConsentedTestimonialSeed[] {
