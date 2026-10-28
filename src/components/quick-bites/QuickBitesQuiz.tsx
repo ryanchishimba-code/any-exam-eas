@@ -54,6 +54,21 @@ export function NextEpisodeButton({
   );
 }
 
+/** Dashboard player control — skips to the next Quick Bite in the current board list. */
+export function QuickBitesNextVideoButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      aria-label="Next video"
+      onMouseDown={(event) => event.preventDefault()}
+      onClick={onClick}
+      className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[var(--color-border)] px-3 text-[13px] font-semibold text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] sm:px-4"
+    >
+      Next video
+    </button>
+  );
+}
+
 export function QuickBitesQuiz({
   slug,
   onRewatch,

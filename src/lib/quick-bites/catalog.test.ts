@@ -9,6 +9,7 @@ import {
   isOpenQuickBite,
   isQuickBiteEpisodePlayable,
   nextPlayableQuickBite,
+  previousPlayableQuickBite,
   quickBiteCaptionsPath,
   quickBitePoster,
   quickBiteVideoPath,
@@ -109,6 +110,10 @@ describe("Quick Bites catalog", () => {
     expect(QUICK_BITE_EPISODES.filter((episode) => isOpenQuickBite(episode.slug))).toHaveLength(1);
     expect(nextPlayableQuickBite(OPEN_QUICK_BITE_SLUG, true)?.slug).toBe("quick-bites-ep03-priority");
     expect(nextPlayableQuickBite(OPEN_QUICK_BITE_SLUG, false)).toBeNull();
+    expect(previousPlayableQuickBite("quick-bites-ep03-priority", true)?.slug).toBe(
+      OPEN_QUICK_BITE_SLUG
+    );
+    expect(previousPlayableQuickBite(OPEN_QUICK_BITE_SLUG, true)).toBeNull();
     expect(nextPlayableQuickBite("quick-bites-ep07-acid-base", true)?.slug).toBe(
       "quick-bites-ep19-kidneys-dialysis"
     );

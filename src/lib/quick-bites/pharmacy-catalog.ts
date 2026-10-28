@@ -7,6 +7,7 @@
  */
 
 import type { QuickBiteEpisode } from "@/lib/quick-bites/catalog";
+import { adjacentPlayableEpisode } from "@/lib/quick-bites/adjacent-playable";
 
 type EpisodeSeed = {
   slug: string;
@@ -219,12 +220,18 @@ export function nextPlayablePharmacyQuickBite(
   slug: string,
   canPlayLibrary: boolean
 ): QuickBiteEpisode | null {
-  const start = PHARMACY_QUICK_BITE_EPISODES.findIndex((episode) => episode.slug === slug);
-  if (start < 0) return null;
-  for (const episode of PHARMACY_QUICK_BITE_EPISODES.slice(start + 1)) {
-    if (isPharmacyQuickBitePlayable(episode, canPlayLibrary)) return episode;
-  }
-  return null;
+  return adjacentPlayableEpisode(PHARMACY_QUICK_BITE_EPISODES, slug, "next", (episode) =>
+    isPharmacyQuickBitePlayable(episode, canPlayLibrary)
+  );
+}
+
+export function previousPlayablePharmacyQuickBite(
+  slug: string,
+  canPlayLibrary: boolean
+): QuickBiteEpisode | null {
+  return adjacentPlayableEpisode(PHARMACY_QUICK_BITE_EPISODES, slug, "previous", (episode) =>
+    isPharmacyQuickBitePlayable(episode, canPlayLibrary)
+  );
 }
 
 function pharmacyMediaFolder(slug: string): string {

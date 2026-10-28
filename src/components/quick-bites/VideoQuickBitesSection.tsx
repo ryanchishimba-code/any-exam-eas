@@ -8,6 +8,7 @@ import {
   QUICK_BITE_GROUPS,
   isQuickBiteEpisodePlayable,
   nextPlayableQuickBite,
+  previousPlayableQuickBite,
   quickBitePoster,
   type QuickBiteEpisode,
 } from "@/lib/quick-bites/catalog";
@@ -16,17 +17,20 @@ import {
   fnpQuickBitePoster,
   isFnpQuickBitePlayable,
   nextPlayableFnpQuickBite,
+  previousPlayableFnpQuickBite,
 } from "@/lib/quick-bites/fnp-catalog";
 import {
   PANCE_QUICK_BITE_EPISODES,
   isPanceQuickBitePlayable,
   nextPlayablePanceQuickBite,
+  previousPlayablePanceQuickBite,
   panceQuickBitePoster,
 } from "@/lib/quick-bites/pance-catalog";
 import {
   PHARMACY_QUICK_BITE_EPISODES,
   isPharmacyQuickBitePlayable,
   nextPlayablePharmacyQuickBite,
+  previousPlayablePharmacyQuickBite,
   pharmacyQuickBitePoster,
 } from "@/lib/quick-bites/pharmacy-catalog";
 import {
@@ -53,6 +57,7 @@ type QuickBiteSeries = {
   captionsNote: string;
   isPlayable: (episode: QuickBiteEpisode, canPlayLibrary: boolean) => boolean;
   nextEpisode: (slug: string, canPlayLibrary: boolean) => QuickBiteEpisode | null;
+  previousEpisode: (slug: string, canPlayLibrary: boolean) => QuickBiteEpisode | null;
 };
 
 const NURSING_SERIES: QuickBiteSeries = {
@@ -69,6 +74,7 @@ const NURSING_SERIES: QuickBiteSeries = {
   captionsNote: "Captions are available from the player. They match the words already on screen.",
   isPlayable: isQuickBiteEpisodePlayable,
   nextEpisode: nextPlayableQuickBite,
+  previousEpisode: previousPlayableQuickBite,
 };
 
 const PHARMACY_SERIES: QuickBiteSeries = {
@@ -86,6 +92,7 @@ const PHARMACY_SERIES: QuickBiteSeries = {
   captionsNote: "Captions are already on the video.",
   isPlayable: isPharmacyQuickBitePlayable,
   nextEpisode: nextPlayablePharmacyQuickBite,
+  previousEpisode: previousPlayablePharmacyQuickBite,
 };
 
 const FNP_SERIES: QuickBiteSeries = {
@@ -103,6 +110,7 @@ const FNP_SERIES: QuickBiteSeries = {
   captionsNote: "Captions are burned into the video.",
   isPlayable: isFnpQuickBitePlayable,
   nextEpisode: nextPlayableFnpQuickBite,
+  previousEpisode: previousPlayableFnpQuickBite,
 };
 
 const PANCE_SERIES: QuickBiteSeries = {
@@ -120,6 +128,7 @@ const PANCE_SERIES: QuickBiteSeries = {
   captionsNote: "Captions are burned into the video.",
   isPlayable: isPanceQuickBitePlayable,
   nextEpisode: nextPlayablePanceQuickBite,
+  previousEpisode: previousPlayablePanceQuickBite,
 };
 
 function Poster({ poster }: { poster: { webp: string; jpg: string } }) {
@@ -228,6 +237,7 @@ export function VideoQuickBitesSection({
       .flatMap((group) => group.episodes)
       .find((episode) => episode.slug === activeSlug && config.isPlayable(episode, canPlay)) ?? null;
   const nextEpisode = active ? config.nextEpisode(active.slug, canPlay) : null;
+  const previousEpisode = active ? config.previousEpisode(active.slug, canPlay) : null;
   const { progress, mergeProgress, progressLoaded } = useQuickBiteProgressMap({
     apiBase: config.apiBase,
     enabled: canPlay,
@@ -251,6 +261,13 @@ export function VideoQuickBitesSection({
     if (!nextEpisode) return;
     scrollRequest.current = false;
     setActiveSlug(nextEpisode.slug);
+    setSession((current) => current + 1);
+  }
+
+  function selectPrevious() {
+    if (!previousEpisode) return;
+    scrollRequest.current = false;
+    setActiveSlug(previousEpisode.slug);
     setSession((current) => current + 1);
   }
 
@@ -310,6 +327,7 @@ export function VideoQuickBitesSection({
           episode={active}
           onClose={() => setActiveSlug(null)}
           onNext={nextEpisode ? selectNext : undefined}
+          onPrevious={previousEpisode ? selectPrevious : undefined}
           playbackNonce={session}
           apiBase={config.apiBase}
           poster={active ? config.poster(active.slug) : undefined}

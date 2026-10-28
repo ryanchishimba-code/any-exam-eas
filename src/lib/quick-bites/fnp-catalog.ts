@@ -4,6 +4,7 @@
  */
 
 import type { QuickBiteEpisode } from "@/lib/quick-bites/catalog";
+import { adjacentPlayableEpisode } from "@/lib/quick-bites/adjacent-playable";
 
 export const FNP_QUICK_BITES_MEDIA_VERSION = "v1-20261025";
 
@@ -174,12 +175,18 @@ export function nextPlayableFnpQuickBite(
   slug: string,
   canPlayLibrary: boolean
 ): QuickBiteEpisode | null {
-  const start = FNP_QUICK_BITE_EPISODES.findIndex((episode) => episode.slug === slug);
-  if (start < 0) return null;
-  for (const episode of FNP_QUICK_BITE_EPISODES.slice(start + 1)) {
-    if (isFnpQuickBitePlayable(episode, canPlayLibrary)) return episode;
-  }
-  return null;
+  return adjacentPlayableEpisode(FNP_QUICK_BITE_EPISODES, slug, "next", (episode) =>
+    isFnpQuickBitePlayable(episode, canPlayLibrary)
+  );
+}
+
+export function previousPlayableFnpQuickBite(
+  slug: string,
+  canPlayLibrary: boolean
+): QuickBiteEpisode | null {
+  return adjacentPlayableEpisode(FNP_QUICK_BITE_EPISODES, slug, "previous", (episode) =>
+    isFnpQuickBitePlayable(episode, canPlayLibrary)
+  );
 }
 
 function fnpMediaFolder(slug: string): string {

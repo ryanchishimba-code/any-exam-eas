@@ -278,6 +278,7 @@ export function useQuickBiteProgressReporter({
   const lastSentAtRef = useRef<number>(Date.now());
   const lastTimeupdateSentRef = useRef<number>(0);
   const lastMaxWatchPctRef = useRef(0);
+  const flushProgressRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     lastSentAtRef.current = Date.now();
@@ -360,6 +361,8 @@ export function useQuickBiteProgressReporter({
       else if (force) sendProgress(0, useKeepalive, true);
     };
 
+    flushProgressRef.current = () => flushElapsed(true, true);
+
     const tick = () => {
       if (!video.paused && !video.ended) flushElapsed();
     };
@@ -393,4 +396,10 @@ export function useQuickBiteProgressReporter({
       if (video.currentTime > 0.5) flushElapsed(true, true);
     };
   }, [enabled, sendProgress, slug, videoElement]);
+
+  const flushProgress = useCallback(() => {
+    flushProgressRef.current();
+  }, []);
+
+  return { flushProgress };
 }

@@ -4,6 +4,7 @@
  */
 
 import type { QuickBiteEpisode } from "@/lib/quick-bites/catalog";
+import { adjacentPlayableEpisode } from "@/lib/quick-bites/adjacent-playable";
 
 export const PANCE_QUICK_BITES_MEDIA_VERSION = "v1-20261025";
 
@@ -188,12 +189,18 @@ export function nextPlayablePanceQuickBite(
   slug: string,
   canPlayLibrary: boolean
 ): QuickBiteEpisode | null {
-  const start = PANCE_QUICK_BITE_EPISODES.findIndex((episode) => episode.slug === slug);
-  if (start < 0) return null;
-  for (const episode of PANCE_QUICK_BITE_EPISODES.slice(start + 1)) {
-    if (isPanceQuickBitePlayable(episode, canPlayLibrary)) return episode;
-  }
-  return null;
+  return adjacentPlayableEpisode(PANCE_QUICK_BITE_EPISODES, slug, "next", (episode) =>
+    isPanceQuickBitePlayable(episode, canPlayLibrary)
+  );
+}
+
+export function previousPlayablePanceQuickBite(
+  slug: string,
+  canPlayLibrary: boolean
+): QuickBiteEpisode | null {
+  return adjacentPlayableEpisode(PANCE_QUICK_BITE_EPISODES, slug, "previous", (episode) =>
+    isPanceQuickBitePlayable(episode, canPlayLibrary)
+  );
 }
 
 function panceMediaFolder(slug: string): string {
