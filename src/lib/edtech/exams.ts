@@ -52,7 +52,7 @@ export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
     shortName: "AANP FNP",
     fieldId: "aanp-fnp",
     description:
-      "NPCB blueprint primary care — Assess, Diagnose, Plan, Evaluate across the lifespan.",
+      "AANPCB blueprint primary care — Assess, Diagnose, Plan, Evaluate across the lifespan.",
     accentClass: "from-violet-500/15 to-purple-600/10 border-violet-200/70",
     simulatedDurationMin: 210,
     simulatedQuestionCount: 135,
