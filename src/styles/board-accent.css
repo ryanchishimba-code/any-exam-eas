@@ -82,22 +82,7 @@
   --board-pill-bg-hover: var(--board-accent-npte-pt-hover);
 }
 
-/* Compact row in the Exams dropdown — same tokens, smaller tap target. */
-.exams-dropdown__board-link.aee-board-pill {
-  display: block;
-  width: auto;
-  margin: 0.2rem 0.45rem;
-  min-height: 2.5rem;
-  padding: 0.45rem 0.75rem;
-  font-size: 0.875rem;
-  border-radius: 0.65rem;
-  text-align: left;
-}
-
-.exams-dropdown__board-link.aee-board-pill[aria-current="page"] {
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.85);
-}
-
+/* Compact row in the Exams dropdown — legacy multicolor pills (replaced by board-picker-menu.css). */
 /* Select-exam cards — gradient face uses board accent tokens (CSS only). */
 .exam-select-card__face--nclex {
   background: linear-gradient(

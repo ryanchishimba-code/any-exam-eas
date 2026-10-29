@@ -1,0 +1,111 @@
+/**
+ * Premium board picker menu — neutral surface, teal accent (#255 nav dropdown).
+ */
+
+@keyframes board-picker-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes board-picker-menu-enter {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.board-picker-menu-panel {
+  margin-top: 0.35rem;
+  padding: 0.35rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #fafafa;
+  background: color-mix(in srgb, #ffffff 96%, var(--study-accent, #0d9488) 4%);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 12px 32px rgba(15, 23, 42, 0.08);
+  animation: board-picker-menu-enter 0.2s ease-out;
+}
+
+.board-picker-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.board-picker-menu-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.65rem 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  color: #0f172a;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.board-picker-menu-link:hover {
+  background: color-mix(in srgb, var(--study-accent, #0d9488) 8%, #ffffff);
+}
+
+.board-picker-menu-link:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--study-accent, #0d9488) 55%, #ffffff);
+  outline-offset: 1px;
+}
+
+.board-picker-menu-link--active {
+  background: color-mix(in srgb, var(--study-accent, #0d9488) 10%, #ffffff);
+  color: #0f766e;
+  box-shadow: inset 3px 0 0 var(--study-accent, #0d9488);
+}
+
+.board-picker-menu-link__icon-well {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #ffffff;
+  color: var(--study-accent, #0d9488);
+}
+
+.board-picker-menu-link__label {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.board-picker-menu-link__check {
+  flex-shrink: 0;
+  color: var(--study-accent, #0d9488);
+}
+
+.board-picker-menu-link--mobile {
+  width: 100%;
+  min-height: 3rem;
+  padding-right: 0.85rem;
+}
