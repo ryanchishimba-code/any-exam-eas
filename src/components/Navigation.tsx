@@ -286,7 +286,11 @@ export function Navigation() {
               <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
                 Exams
               </p>
-              <nav aria-label="Exams" className="board-picker-menu-list">
+              <nav
+                aria-label="Exams"
+                className="board-picker-menu-panel board-picker-menu-panel--embedded"
+              >
+                <ul className="board-picker-menu-list">
                 {MARKETING_BOARD_LINKS.map((exam) => (
                   <BoardPickerMenuListItem key={exam.href}>
                     <BoardPickerMenuLink
@@ -298,6 +302,7 @@ export function Navigation() {
                     />
                   </BoardPickerMenuListItem>
                 ))}
+                </ul>
               </nav>
               <div className="my-3 border-t border-black/[0.06]" />
               {links.map((l) => {

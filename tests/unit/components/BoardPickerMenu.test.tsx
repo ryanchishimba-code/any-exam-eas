@@ -21,4 +21,10 @@ describe("BoardPickerMenuLink", () => {
     expect(link.className).not.toContain("aee-board-pill");
     expect(link.className).toContain("board-picker-menu-link");
   });
+
+  it("shows a prominent label and muted detail line", () => {
+    render(<BoardPickerMenuLink href="/nclex" label="NCLEX" />);
+    expect(screen.getByText("NCLEX")).toHaveClass("board-picker-menu-link__label");
+    expect(screen.getByText(/clinical judgment/i)).toHaveClass("board-picker-menu-link__detail");
+  });
 });

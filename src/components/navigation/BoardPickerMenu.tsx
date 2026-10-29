@@ -4,6 +4,7 @@ import type { KeyboardEventHandler, ReactNode, RefObject } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { boardAccentFromHref } from "@/lib/marketing/board-accent";
+import { boardPickerSubtitle } from "@/lib/navigation/board-picker-copy";
 import { boardPickerIcon } from "@/lib/navigation/board-picker-icons";
 import { cn } from "@/lib/utils";
 
@@ -30,6 +31,7 @@ export function BoardPickerMenuLink({
 }: BoardPickerMenuLinkProps) {
   const slug = boardAccentFromHref(href);
   const Icon = boardPickerIcon(slug);
+  const detail = boardPickerSubtitle(href);
 
   return (
     <Link
@@ -47,7 +49,10 @@ export function BoardPickerMenuLink({
       <span className="board-picker-menu-link__icon-well" aria-hidden>
         <Icon className="h-4 w-4" strokeWidth={2} />
       </span>
-      <span className="board-picker-menu-link__label">{label}</span>
+      <span className="board-picker-menu-link__text">
+        <span className="board-picker-menu-link__label">{label}</span>
+        <span className="board-picker-menu-link__detail">{detail}</span>
+      </span>
       {active ? (
         <Check className="board-picker-menu-link__check h-4 w-4" strokeWidth={2.25} aria-hidden />
       ) : null}
@@ -81,7 +86,7 @@ export function BoardPickerMenuPanel({
         role="menu"
         aria-label={ariaLabel}
         onKeyDown={onKeyDown}
-        className="board-picker-menu-list w-64 max-w-[calc(100vw-2rem)] sm:w-72"
+        className="board-picker-menu-list w-[min(100%,20rem)] sm:w-[22rem]"
       >
         {children}
       </ul>
