@@ -37,3 +37,37 @@ export function dailyTrialHref(examSlug: string): string {
 export function isDailySignupArrival(utmSource: string | null | undefined): boolean {
   return utmSource === "daily";
 }
+
+export type DailyCtaPlacement = "sticky" | "below_question" | "after_answer";
+export type DailyCtaLocation = "card" | "sticky" | "below_question";
+
+/** The pitch after an answer is the card. The other two placements keep their names. */
+export function dailyCtaLocation(placement: DailyCtaPlacement): DailyCtaLocation {
+  if (placement === "after_answer") return "card";
+  return placement;
+}
+
+export type DailySignupAttribution = {
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  board?: string;
+};
+
+/** Row written only when the new account arrived from the daily question. */
+export function signupFromDailyProperties(
+  input: DailySignupAttribution
+): {
+  board: string;
+  utm_source: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+} | null {
+  if (input.utmSource !== "daily") return null;
+  return {
+    board: input.board?.trim() || "unset",
+    utm_source: input.utmSource,
+    ...(input.utmMedium ? { utm_medium: input.utmMedium } : {}),
+    ...(input.utmCampaign ? { utm_campaign: input.utmCampaign } : {}),
+  };
+}

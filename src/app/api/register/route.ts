@@ -10,6 +10,8 @@ import { saveTypedConversion } from "@/lib/analytics/conversions";
 import { CONVERSION_EVENTS } from "@/lib/analytics/conversion-types";
 import { EVENT_TYPES } from "@/lib/analytics/types";
 import { ageAttestationDateIso } from "@/lib/age-attestation";
+import { readSignupUtms } from "@/lib/auth/signup-utms";
+import { signupFromDailyProperties } from "@/lib/marketing/daily-trial";
 
 export const runtime = "nodejs";
 
@@ -25,11 +27,12 @@ export async function POST(req: Request) {
     const input = carriedBoard ? { ...parsed, examSlug: carriedBoard } : parsed;
     const raw = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
     const text = (key: string) => (typeof raw[key] === "string" ? raw[key] : null);
+    const utms = readSignupUtms(raw);
     const user = await registerUser(input, {
       signupSource: formatTrialSource({
-        utmSource: text("utm_source") ?? text("utmSource"),
-        utmMedium: text("utm_medium") ?? text("utmMedium"),
-        utmCampaign: text("utm_campaign") ?? text("utmCampaign"),
+        utmSource: utms.utmSource,
+        utmMedium: utms.utmMedium,
+        utmCampaign: utms.utmCampaign,
         utmContent: text("utm_content") ?? text("utmContent"),
         referrer: text("referrer") ?? req.headers.get("referer"),
       }),
@@ -68,6 +71,16 @@ export async function POST(req: Request) {
       },
       { userId: user.id, req }
     );
+    const fromDaily = signupFromDailyProperties({
+      ...utms,
+      board: input.examSlug,
+    });
+    if (fromDaily) {
+      saveTypedConversion(CONVERSION_EVENTS.SIGNUP_FROM_DAILY, fromDaily, {
+        userId: user.id,
+        req,
+      });
+    }
     void logActivity({
       userId: user.id,
       action: "register",

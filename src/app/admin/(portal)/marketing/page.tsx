@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { countDailyQuestionEvents } from "@/lib/admin/daily-question-events";
 import { loadMarketingReport } from "@/lib/admin/marketing-report";
 import {
   filterMarketingPasses,
@@ -83,7 +84,10 @@ export default async function MarketingPhasePage({
   const params = await searchParams;
   const audience = params.audience === "nursing" || params.audience === "pharmacy" ? params.audience : "all";
   const status = params.status === "unused" || params.status === "redeemed" ? params.status : "all";
-  const report = await loadMarketingReport();
+  const [report, dailyEvents] = await Promise.all([
+    loadMarketingReport(),
+    countDailyQuestionEvents(),
+  ]);
   const totals = summarizeCampaign(report.passes);
   const rows = filterMarketingPasses(report.passes, { audience, status });
 
@@ -190,6 +194,18 @@ export default async function MarketingPhasePage({
               )}
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="text-lg font-semibold text-slate-950 dark:text-zinc-50">Daily question</h2>
+        <p className="text-sm text-slate-600 dark:text-zinc-300">
+          All-time counts stored in this app. Card is the offer after an answer. Sticky is the bar.
+        </p>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <Stat label="Answers" value={String(dailyEvents.daily_answer)} />
+          <Stat label="Trial clicks" value={String(dailyEvents.daily_trial_cta_click)} />
+          <Stat label="Signups from daily" value={String(dailyEvents.signup_from_daily)} />
         </div>
       </section>
 
