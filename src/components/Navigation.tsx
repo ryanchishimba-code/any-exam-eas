@@ -9,6 +9,10 @@ import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent a
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { AdminNavLink } from "@/components/navigation/AdminNavLink";
+import {
+  BoardPickerMenuLink,
+  BoardPickerMenuListItem,
+} from "@/components/navigation/BoardPickerMenu";
 import { ExamsDropdown } from "@/components/navigation/ExamsDropdown";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { useUserAccess } from "@/lib/client/use-user-access";
@@ -282,18 +286,23 @@ export function Navigation() {
               <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
                 Exams
               </p>
-              <nav aria-label="Exams">
+              <nav
+                aria-label="Exams"
+                className="board-picker-menu-panel board-picker-menu-panel--embedded"
+              >
+                <ul className="board-picker-menu-list">
                 {MARKETING_BOARD_LINKS.map((exam) => (
-                  <Link
-                    key={exam.href}
-                    href={exam.href}
-                    prefetch={false}
-                    className={`block max-w-full py-2 text-sm ${navClass(pathname === exam.href || pathname.startsWith(`${exam.href}/`))}`}
-                    onClick={closeMobile}
-                  >
-                    {exam.label}
-                  </Link>
+                  <BoardPickerMenuListItem key={exam.href}>
+                    <BoardPickerMenuLink
+                      href={exam.href}
+                      label={exam.label}
+                      active={pathname === exam.href || pathname.startsWith(`${exam.href}/`)}
+                      layout="mobile"
+                      onNavigate={closeMobile}
+                    />
+                  </BoardPickerMenuListItem>
                 ))}
+                </ul>
               </nav>
               <div className="my-3 border-t border-black/[0.06]" />
               {links.map((l) => {

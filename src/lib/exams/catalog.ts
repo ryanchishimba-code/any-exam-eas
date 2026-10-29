@@ -58,7 +58,7 @@ export const EXAM_HUBS: ExamHubConfig[] = [
   {
     slug: "aanp-fnp",
     title: "AANP FNP",
-    subtitle: "NPCB FNP blueprint · primary care vignettes across the lifespan.",
+    subtitle: "AANPCB FNP blueprint · primary care vignettes across the lifespan.",
     fieldId: "aanp-fnp",
     icon: HeartPulse,
     accentClass: "from-violet-500/20 to-purple-600/10 border-violet-200/60",

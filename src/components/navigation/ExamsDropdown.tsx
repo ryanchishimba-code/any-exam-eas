@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
@@ -11,7 +10,11 @@ import {
   examsMenuAfterHoverClose,
   examsMenuAfterPointerEnter,
 } from "@/components/navigation/exams-dropdown-logic";
-import { boardAccentFromHref, boardAccentPillClass } from "@/lib/marketing/board-accent";
+import {
+  BoardPickerMenuLink,
+  BoardPickerMenuListItem,
+  BoardPickerMenuPanel,
+} from "@/components/navigation/BoardPickerMenu";
 import { MARKETING_BOARD_LINKS } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -200,38 +203,27 @@ export function ExamsDropdown() {
         />
       </button>
       {open ? (
-        <div className="exams-dropdown__panel absolute left-0 top-full z-[100]">
-          <ul
-            ref={menuRef}
-            id={MENU_ID}
-            role="menu"
-            aria-label="Exams"
-            onKeyDown={onMenuKeyDown}
-            className="w-56 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-black/[0.08] bg-white py-1 shadow-[var(--shadow-apple-md)]"
-          >
-            {MARKETING_BOARD_LINKS.map((board) => {
-              const active = boardActive(pathname, board.href);
-              const slug = boardAccentFromHref(board.href);
-              return (
-                <li key={board.href} role="none">
-                  <Link
-                    href={board.href}
-                    role="menuitem"
-                    prefetch={false}
-                    aria-current={active ? "page" : undefined}
-                    className={cn(
-                      "exams-dropdown__board-link",
-                      slug ? boardAccentPillClass(slug) : "aee-board-pill"
-                    )}
-                    onClick={close}
-                  >
-                    {board.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <BoardPickerMenuPanel
+          id={MENU_ID}
+          menuRef={menuRef}
+          onKeyDown={onMenuKeyDown}
+          className="absolute left-0 top-full z-[100]"
+        >
+          {MARKETING_BOARD_LINKS.map((board) => {
+            const active = boardActive(pathname, board.href);
+            return (
+              <BoardPickerMenuListItem key={board.href}>
+                <BoardPickerMenuLink
+                  href={board.href}
+                  label={board.label}
+                  active={active}
+                  role="menuitem"
+                  onNavigate={close}
+                />
+              </BoardPickerMenuListItem>
+            );
+          })}
+        </BoardPickerMenuPanel>
       ) : null}
     </div>
   );

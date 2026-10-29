@@ -1,0 +1,157 @@
+/**
+ * Premium board picker menu — frosted glass surface, teal accent (#255 nav dropdown).
+ */
+
+@keyframes board-picker-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes board-picker-menu-enter {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.board-picker-menu-panel {
+  --board-picker-glass-bg: rgba(255, 255, 255, 0.94);
+  --board-picker-glass-border: rgba(15, 23, 42, 0.1);
+  margin-top: 0.35rem;
+  padding: 0.4rem;
+  border-radius: 1rem;
+  border: 1px solid var(--board-picker-glass-border);
+  background: var(--board-picker-glass-bg);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 16px 40px rgba(15, 23, 42, 0.12);
+  animation: board-picker-menu-enter 0.2s ease-out;
+  color-scheme: light;
+}
+
+@supports (
+  (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px))
+) {
+  .board-picker-menu-panel {
+    --board-picker-glass-bg: rgba(255, 255, 255, 0.78);
+    --board-picker-glass-border: rgba(255, 255, 255, 0.55);
+    background: var(--board-picker-glass-bg);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-color: color-mix(in srgb, #ffffff 55%, rgba(15, 23, 42, 0.14));
+  }
+}
+
+.board-picker-menu-panel--embedded {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.board-picker-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.board-picker-menu-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-height: 3.25rem;
+  padding: 0.55rem 0.7rem 0.55rem 0.8rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.board-picker-menu-link:hover {
+  background: color-mix(in srgb, var(--study-accent, #0d9488) 9%, rgba(255, 255, 255, 0.85));
+}
+
+.board-picker-menu-link:focus-visible {
+  outline: 2px solid var(--study-accent, #0f766e);
+  outline-offset: 2px;
+}
+
+.board-picker-menu-link--active {
+  background: color-mix(in srgb, var(--study-accent, #0d9488) 12%, rgba(255, 255, 255, 0.92));
+  box-shadow: inset 3px 0 0 var(--study-accent, #0f766e);
+}
+
+.board-picker-menu-link__icon-well {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.55rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--study-accent, #0f766e);
+}
+
+.board-picker-menu-link__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  text-align: left;
+}
+
+/* Primary: board name — WCAG AA on glass fallback (#0f172a on ~94% white). */
+.board-picker-menu-link__label {
+  color: #0f172a;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.board-picker-menu-link--active .board-picker-menu-link__label {
+  color: #0f172a;
+}
+
+/* Secondary: muted descriptor */
+.board-picker-menu-link__detail {
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.board-picker-menu-link__check {
+  flex-shrink: 0;
+  align-self: center;
+  color: var(--study-accent, #0f766e);
+}
+
+.board-picker-menu-link--mobile {
+  width: 100%;
+  min-height: 3.5rem;
+  padding-right: 0.9rem;
+}
+
+@media (max-width: 1023px) {
+  .board-picker-menu-link__label {
+    font-size: 1rem;
+  }
+}

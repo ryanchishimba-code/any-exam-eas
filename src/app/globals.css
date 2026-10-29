@@ -6,6 +6,7 @@
 @source not "../../docs";
 @import "../styles/a11y.css";
 @import "../styles/board-accent.css";
+@import "../styles/board-picker-menu.css";
 @import "../styles/marketing-type.css";
 @import "../styles/scroll-performance.css";
 
