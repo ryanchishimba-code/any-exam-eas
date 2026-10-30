@@ -44,6 +44,11 @@ describe("KEYFIX_BACKUP_TABLES", () => {
     expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_fix_20261025_backup");
     expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_loose_20261025_backup");
   });
+
+  it("includes the 2026-10-30 NCLEX MoC batch 2 and 3 backups", () => {
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_moc_b2b3_insert_20261030");
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_moc_b2b3_activate_20261030");
+  });
 });
 
 describe("decideSeedUpsert", () => {
