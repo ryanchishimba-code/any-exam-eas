@@ -31,6 +31,11 @@ export const KEYFIX_BACKUP_TABLES = [
   // nightly seed sync cannot overwrite those rows or insert the old stem.
   "qbi_nclex_fix_20261025_backup",
   "qbi_nclex_loose_20261025_backup",
+  // 2026-10-30 NCLEX MoC batches 2 and 3. Insert and activate backups hold the
+  // ids and content hashes so a later seed match cannot overwrite a held row.
+  // Tables are absent until an apply script runs.
+  "qbi_nclex_moc_b2b3_insert_20261030",
+  "qbi_nclex_moc_b2b3_activate_20261030",
 ] as const;
 
 export type SeedExistingRow = {
