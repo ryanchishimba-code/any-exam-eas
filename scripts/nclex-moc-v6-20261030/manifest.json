@@ -1,0 +1,552 @@
+{
+  "pilot": [
+    {
+      "n": 1,
+      "id": "cc32ad23631fdf5e61b7c7532",
+      "type": "mc",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "09d615c084756423f9efb377962214edf3dc4a3b7c4347a0138255ad654d6053"
+    },
+    {
+      "n": 2,
+      "id": "c07375bc6c73c8a35a86d34a4",
+      "type": "mc",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "9919ae6abef76b015f6106695dd6d00f7bf9f2d4e28a66360af302bf0ccc1840"
+    },
+    {
+      "n": 3,
+      "id": "cce68108de2a85d091037ef02",
+      "type": "sata",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "97a40ad9093153544527608442eaa8009379bd1b55135a691d14b25db9d4b62a"
+    },
+    {
+      "n": 4,
+      "id": "c33e391a46b05f148bcee19ce",
+      "type": "mc",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "82611bd031046cca8697f433998eaf44ccdba871e6536c96d65d9163236b6342"
+    },
+    {
+      "n": 5,
+      "id": "c56c89825597afcebe6c3d07d",
+      "type": "mc",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "8eeea199b8bb366e38f6d02289c2333c10c19f54dcad81821b7eb970fdd1bd97"
+    },
+    {
+      "n": 6,
+      "id": "c0e71d73dae1ebf4b29f96dd8",
+      "type": "mc",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "14eef8e1222231d46b230b108b5557f411a7cecbe21aeeecd810db8db8857559"
+    },
+    {
+      "n": 7,
+      "id": "cda49979c786ee698480a2c50",
+      "type": "ord",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "fed832de28bdb382d896e4f1bc3513fade9f976075ff9c08183ef61737a11e5d"
+    },
+    {
+      "n": 8,
+      "id": "cb5613a4a0ff6390172746769",
+      "type": "mc",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "ecc34da121344fd6332e572d038368b69c1e566bb943573de69370f23a7f5d9a"
+    },
+    {
+      "n": 9,
+      "id": "c3b42b4e57ed73c4e483ca8bf",
+      "type": "mc",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "938b29c117dc02df217da2c64c8acf4d4c28f414e69c303807fb2d65c72865a1"
+    },
+    {
+      "n": 10,
+      "id": "cd84ec2e33b301266b2fdb81e",
+      "type": "sata",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "cac380659337013da81abd37d6eb1de2bf399494a0906dc93ad1b7e29846fd7b"
+    },
+    {
+      "n": 11,
+      "id": "ca21e93236bf8bb5e03c81805",
+      "type": "mc",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "32e1b470574a3c03215f5dfc818def7bbb6a2635f43911fd250d757ef41fe546"
+    },
+    {
+      "n": 12,
+      "id": "c1c028fd663df54d67c162c00",
+      "type": "mc",
+      "subtopic": "Delegation",
+      "blueprintTopic": "delegation-assignment",
+      "contentHash": "7fb8411d05b0ba1026c1ebcc33cb08bd86ab0810564cb441f4dca00bd41ffa8a"
+    },
+    {
+      "n": 13,
+      "id": "cb2c6bfdbcd95ff94d6fd9fb3",
+      "type": "mc",
+      "subtopic": "Informed consent",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "0fba9c74ba49d541943033c01364fff5c7b00ca150ba06266ddedf6dcbc5a23e"
+    },
+    {
+      "n": 14,
+      "id": "c74d58795d8a23a732a7c086b",
+      "type": "sata",
+      "subtopic": "Informed consent",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "1b126a7a62b071e2605c7966bd97017888807b3f9fbb948e4c69d0e0a8a59446"
+    },
+    {
+      "n": 15,
+      "id": "c555870efe25d91e5847623a3",
+      "type": "mc",
+      "subtopic": "Informed consent",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "90aaa08b41cadc5ef22f03889807f040061a4a54860cef6c53331cffebad0321"
+    },
+    {
+      "n": 16,
+      "id": "c7edf5a2505d52c5aa881e359",
+      "type": "mc",
+      "subtopic": "Informed consent",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "062d807641e9d3b2c147b7ddc159317f2e3fa572db55cdca948ff149053c2cd7"
+    },
+    {
+      "n": 17,
+      "id": "c84953a9b935465c840121903",
+      "type": "mc",
+      "subtopic": "Informed consent",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "2242428c62be2f12696fca544f84e1825769ab2e5d015d0f6a808e5483198ecc"
+    },
+    {
+      "n": 18,
+      "id": "cf38870462969b0caf8df52d9",
+      "type": "mc",
+      "subtopic": "Informed consent",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "23f7a3da8cb1c07fc6a52a7ba7a733608a0e5d9b758ebb35e9feda61bbb6371c"
+    },
+    {
+      "n": 19,
+      "id": "c838aad32a852e85466dc34ad",
+      "type": "mc",
+      "subtopic": "Advance directives",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "9bae2ed8e888fbd76251c1278761680851782c94749aa3032ace871a4c24f484"
+    },
+    {
+      "n": 20,
+      "id": "c6ae4672605defeb29fc44589",
+      "type": "mc",
+      "subtopic": "Advance directives",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "9e3c431145e99f9d6d14f92cfcf141e5a836bf9d7659b5194cd31c275bff3e6c"
+    },
+    {
+      "n": 21,
+      "id": "c865c51fbb07fe12c643e0627",
+      "type": "sata",
+      "subtopic": "Advance directives",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "69c500db2a7d511bf58ef0d02dbdb94669dd75bab83aa2d3149c6f3a46e52339"
+    },
+    {
+      "n": 22,
+      "id": "cfe3ad49941a9576b112c13d5",
+      "type": "mc",
+      "subtopic": "Advance directives",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "b8006a4634deb3b4db41dfedf3b621f59de405d78382a4c2e459ee6ea8365d73"
+    },
+    {
+      "n": 23,
+      "id": "c407b78b5015c0f9095f00485",
+      "type": "mc",
+      "subtopic": "Advance directives",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "1e7a3ffae16df986a43ffd7ac773ef9a750d595656708252841ff08c63faf568"
+    },
+    {
+      "n": 24,
+      "id": "ce03ea29bc1e64249e4c9848a",
+      "type": "mc",
+      "subtopic": "Advance directives",
+      "blueprintTopic": "informed-consent-advance-directives",
+      "contentHash": "174f310a22f79e0f78c7f940d0b32727de3d0066066b11ccedbf00d910b0cd28"
+    },
+    {
+      "n": 25,
+      "id": "c62e77ea0c937450ea460baee",
+      "type": "mc",
+      "subtopic": "Client rights and advocacy",
+      "blueprintTopic": "client-advocacy-education",
+      "contentHash": "9d153a5a8dcbc69818ac2dd888036205d53e1fed1c80ee3efd9096e6f8040c98"
+    },
+    {
+      "n": 26,
+      "id": "c4d7ef9c9ac7188980f4b1557",
+      "type": "mc",
+      "subtopic": "Client rights and advocacy",
+      "blueprintTopic": "client-advocacy-education",
+      "contentHash": "4558a39e0598be10d4c9d1ffc70d7ad5555ffc051c3d7b6408a803648f08cb3b"
+    },
+    {
+      "n": 27,
+      "id": "c255a88eacd6d2b708c3782b7",
+      "type": "mc",
+      "subtopic": "Client rights and advocacy",
+      "blueprintTopic": "client-advocacy-education",
+      "contentHash": "18df47b634a5bab89cc94a4bc8a3df18cff67735337b546c5e2f2aad7187e800"
+    },
+    {
+      "n": 28,
+      "id": "c1e21bdb6035c9cfc38017f04",
+      "type": "mc",
+      "subtopic": "Client rights and advocacy",
+      "blueprintTopic": "client-advocacy-education",
+      "contentHash": "602a009acec35f939de2522c7541bdad6d49f4a7c24dd827fd0663b1e7e95402"
+    },
+    {
+      "n": 29,
+      "id": "c4552c4fa2434cdfd60827754",
+      "type": "sata",
+      "subtopic": "Client rights and advocacy",
+      "blueprintTopic": "client-advocacy-education",
+      "contentHash": "a358d87f213a95e50b314af57b3ffcd3b72da6d8f17ba79ba6e517aebf6f5851"
+    },
+    {
+      "n": 30,
+      "id": "cc02c17378aaeb4ec2e202b5f",
+      "type": "mc",
+      "subtopic": "Client rights and advocacy",
+      "blueprintTopic": "client-advocacy-education",
+      "contentHash": "802264d9adcd933e917a6bdfa7bc9160a7cae7a9532b3c1c23ec4d1caf3adb99"
+    },
+    {
+      "n": 31,
+      "id": "cceccd2112bb739d0845e5a46",
+      "type": "sata",
+      "subtopic": "Client rights and advocacy",
+      "blueprintTopic": "client-advocacy-education",
+      "contentHash": "259a58cd7c79b30c92dfca2b2ad08e7933534e1d8c4508d64444afe9b85f10aa"
+    },
+    {
+      "n": 32,
+      "id": "c29629af0189008b5c0d02b05",
+      "type": "mc",
+      "subtopic": "Client rights and advocacy",
+      "blueprintTopic": "client-advocacy-education",
+      "contentHash": "e41ec06da8227e9bfd4c3a777ac4d356484a89a8343f4bf476a0e7366f44a107"
+    },
+    {
+      "n": 33,
+      "id": "c3c1745f1388b1e92f829a752",
+      "type": "mc",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "legal-aspects",
+      "contentHash": "0cf1a9056faab956c8bebd469fbb90f5359a704c82f0115cc7192663e50f201e"
+    },
+    {
+      "n": 34,
+      "id": "c26a0ff7b922ace428fcdd745",
+      "type": "mc",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "legal-aspects",
+      "contentHash": "7bb34b5adcbc91f46cb518f8a38f9500ec4c76001650860c2a21de09bb4f20c4"
+    },
+    {
+      "n": 35,
+      "id": "c90bbcbfac0b05bf410b27e35",
+      "type": "mc",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "legal-aspects",
+      "contentHash": "2a35c78782e6686eebeb1c4569a6be923f2f33c684f78d07ccf5ae7c248b31bb"
+    },
+    {
+      "n": 36,
+      "id": "c7a08fdc5e8789a3897fbc660",
+      "type": "mc",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "legal-aspects",
+      "contentHash": "dcd74f19f031f47423bfcd3b431c7fd7d74b77b9e51a0e28eaac5bb32cb12fa0"
+    },
+    {
+      "n": 37,
+      "id": "c2041435416b32d85a96272e5",
+      "type": "mc",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "quality-improvement",
+      "contentHash": "6dabb06bdd52fe3e0f52bf4d5b75030ab8da6e10f28c36054c82ccd93d8d3331"
+    },
+    {
+      "n": 38,
+      "id": "cbad23a4c617f03ef9f1b684d",
+      "type": "sata",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "quality-improvement",
+      "contentHash": "db4ed9555c60ed43626983d69f25b392263c91fc54e195520edd48486cb4a0b2"
+    },
+    {
+      "n": 39,
+      "id": "c20d2179ba4b29f9570cdd364",
+      "type": "mc",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "legal-aspects",
+      "contentHash": "eba24aa3a22d96812e97db1b91f84f6298fd5eb19392e0893250664759db69fc"
+    },
+    {
+      "n": 40,
+      "id": "c5e6badbe7f0c33e317542d81",
+      "type": "mc",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "ethical-principles",
+      "contentHash": "1dd12e4bf4bcc5889056cb8872681f93e54d67daaa93262de42caa42f9aecf04"
+    },
+    {
+      "n": 41,
+      "id": "cb2c778a5199bb82ff75d38d5",
+      "type": "mc",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "ethical-principles",
+      "contentHash": "cf4f83718af474dc233704da9bf1a3e5fe9508144c47a5c9e4f8c89c81920bc5"
+    },
+    {
+      "n": 42,
+      "id": "c4515bbadefd5349f3cb97f50",
+      "type": "sata",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "legal-aspects",
+      "contentHash": "05a29fa436cbe93787231cf610282edaed64c5822222955b9ebbed18341bb4a8"
+    },
+    {
+      "n": 43,
+      "id": "c560c084939d3c7510af09c50",
+      "type": "mc",
+      "subtopic": "Ethics and legal",
+      "blueprintTopic": "legal-aspects",
+      "contentHash": "972696e755cc988bfd85c0f8d21c1188a4dd0d3a8bbe7192eba2103af8beab6c"
+    },
+    {
+      "n": 44,
+      "id": "cecb78f127bf979b43ebb0602",
+      "type": "mc",
+      "subtopic": "Handoff and continuity",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "60b18292fd607b00c7f88de52c2d91ce6f4df01ceee5c1fd1c7539cbaa8d0f3c"
+    },
+    {
+      "n": 45,
+      "id": "c1388cb5dd1c47e23f86692e5",
+      "type": "ord",
+      "subtopic": "Handoff and continuity",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "562399c13cb3b0ab9d5584a3fd551c6d7bf85ca8cd67c7a9166e5e2cfcda260e"
+    },
+    {
+      "n": 46,
+      "id": "cb41ebcd2c34e9c3cc8e66b2c",
+      "type": "mc",
+      "subtopic": "Handoff and continuity",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "431b8712bd0f6a9357ba2f31fd3c1856672f466e4ae0cfb825ed67ed8220e106"
+    },
+    {
+      "n": 47,
+      "id": "cd43a0cc1cd6439f5a91b942b",
+      "type": "sata",
+      "subtopic": "Handoff and continuity",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "4f7a2ec059d9586632fc6e6d5555aa35b37bd0d55d684663d8393fe9389e63e4"
+    },
+    {
+      "n": 48,
+      "id": "ca51cdf35a21f30091244c6fb",
+      "type": "mc",
+      "subtopic": "Handoff and continuity",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "a8258b5fd36e02b4263e3c05d484dd4b3db6696e3a37276d85e6839e4d8258fc"
+    },
+    {
+      "n": 49,
+      "id": "cbffa08bca993a371dc599498",
+      "type": "mc",
+      "subtopic": "Handoff and continuity",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "81f02abbc6cb314ec75ee49351ca3c3ff1c2ac3a240a49a7ca5c9eaa86485453"
+    },
+    {
+      "n": 50,
+      "id": "cd2051b57c974bcd1b3a5eeb5",
+      "type": "mc",
+      "subtopic": "Case management and referrals",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "5a9a14afb46022558e743c13c0c638a3792f3637c98b3d3b3c7f43e317807a23"
+    },
+    {
+      "n": 51,
+      "id": "cd51ffe710213cb4297548604",
+      "type": "mc",
+      "subtopic": "Case management and referrals",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "77b13e844963748753ac370d943cb901f6fb3f47056d1e0b800a2599a3e2d27d"
+    },
+    {
+      "n": 52,
+      "id": "cd8537a20bb0b1582b0517cd7",
+      "type": "mc",
+      "subtopic": "Case management and referrals",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "de77c5c297658600dea36d7fad5e3b02f2fc49cef06dbd2bb4dab57b5538838f"
+    },
+    {
+      "n": 53,
+      "id": "c771be3182abea75c31bbbb48",
+      "type": "sata",
+      "subtopic": "Case management and referrals",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "b284a25b75759ef641d2d80f2c44c89de3a5fff3c1be6a2622f7e8a5bb5a2a94"
+    },
+    {
+      "n": 54,
+      "id": "cf844cf91bac7d60384079071",
+      "type": "mc",
+      "subtopic": "Case management and referrals",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "6a96771b8213655cda8626215d5bdcfef8de4958cfb337a898c00390c1ef9bf1"
+    },
+    {
+      "n": 55,
+      "id": "c541fe4d1afc0890f2e466f33",
+      "type": "mc",
+      "subtopic": "Case management and referrals",
+      "blueprintTopic": "continuity-case-management",
+      "contentHash": "d44523514317960ad895df6871c6cc51ce47485ac8c87324499b4165264a5753"
+    },
+    {
+      "n": 56,
+      "id": "c970869c6399c66f8d554b3f5",
+      "type": "mc",
+      "subtopic": "Prioritization and performance improvement",
+      "blueprintTopic": "prioritization",
+      "contentHash": "7a7b9eb2bbc3c3546d8f082aa6b62057b8672b507a436389e90a79884650151a"
+    },
+    {
+      "n": 57,
+      "id": "cdee11f8f80ffaddee2848958",
+      "type": "ord",
+      "subtopic": "Prioritization and performance improvement",
+      "blueprintTopic": "prioritization",
+      "contentHash": "0a00e2633c9c7d80f74fb6926fd1b5d720311837dc6dcf44424bf928be273418"
+    },
+    {
+      "n": 58,
+      "id": "c840270eb5d38316dbe901b7e",
+      "type": "sata",
+      "subtopic": "Prioritization and performance improvement",
+      "blueprintTopic": "prioritization",
+      "contentHash": "272f2b5689c1def7588eb6968de034acc829d32e6ac52e306a8404c66dee446b"
+    },
+    {
+      "n": 59,
+      "id": "cab0faeb8590247422a27c126",
+      "type": "mc",
+      "subtopic": "Prioritization and performance improvement",
+      "blueprintTopic": "quality-improvement",
+      "contentHash": "cddca775b22284af712b1a0cfdbb46abe39712f533e62b3244dc5085d6360ae0"
+    },
+    {
+      "n": 60,
+      "id": "c0484e351a36e112c7f55bd17",
+      "type": "mc",
+      "subtopic": "Prioritization and performance improvement",
+      "blueprintTopic": "quality-improvement",
+      "contentHash": "38f8b57b9fbc36559cddf93952106a1e4466d558414e6bebe0435b08c7ed5f4c"
+    }
+  ],
+  "rewrites": [
+    {
+      "n": 1,
+      "id": "cmr10qu8s004b1y8a0dec0jwg",
+      "subjectId": "management-of-care",
+      "blueprintTopic": "prioritization",
+      "oldSubjectId": "safety-infection",
+      "oldContentHash": "13ccd40ece9c834149cf5c6d70675d90c34e143722b4bbf6986add4125df20f8",
+      "contentHash": "2436d3f949e2fa9033378d7b17779d9c12e1d956c9f32aa81700c5d47c91665d"
+    },
+    {
+      "n": 2,
+      "id": "cmr7h3beq00281yx37jhuz8o1",
+      "subjectId": "pharmacology-nursing",
+      "blueprintTopic": "endocrine-meds",
+      "oldSubjectId": "health-promotion",
+      "oldContentHash": "bba366f15bdd325c010ff2a2f05e591c09c0f1e065cda260e507e1570bc07430",
+      "contentHash": "064985e21183a667ae1661c2fad3d75e89fddba80ebe085a0b488c54b9042fcf"
+    },
+    {
+      "n": 3,
+      "id": "cmr77iubz010y1ywud6yfj667",
+      "subjectId": "pharmacology-nursing",
+      "blueprintTopic": "anti-infectives",
+      "oldSubjectId": "pharmacology-nursing",
+      "oldContentHash": "497358b93fa2f3078b43f20ed9390884ed04866ededc59b0230b179644548de4",
+      "contentHash": "17521cb98055c65ff8534d8bd09d3991d36af597f35ad371c578a8f7d46fd5f6"
+    },
+    {
+      "n": 4,
+      "id": "cmr8oj5p000221y5n2ejafia4",
+      "subjectId": "management-of-care",
+      "blueprintTopic": "continuity-case-management",
+      "oldSubjectId": "management-of-care",
+      "oldContentHash": "a3e6cd1e00b77191d9b677b90d0e99a52b2a0a2ddc43402f94bbfa6a5abe2853",
+      "contentHash": "843191ce565e49341f244aaba2a9cb5e3c2bd16c00142cdf715f1583f4c38b3a"
+    },
+    {
+      "n": 5,
+      "id": "cmr8qk18300b51yvfpi42yu14",
+      "subjectId": "health-promotion",
+      "blueprintTopic": "labor-fetal-monitoring",
+      "oldSubjectId": "psychosocial",
+      "oldContentHash": "f281a8acbbb8d4ef832139ff1147332bbcbb4d7279dd6ff8ec43a611aedc5f17",
+      "contentHash": "e3d9ce992cab15679a78db824cd4df7ef18d0666a5dd9fc2d454209ea378b57e"
+    },
+    {
+      "n": 6,
+      "id": "cmsex2vtw00c61y56oysbpti1",
+      "subjectId": "psychosocial",
+      "blueprintTopic": "suicide-risk",
+      "oldSubjectId": "fundamentals",
+      "oldContentHash": "ec09cd8bf9466dccad95842d96c6116d94fb19040cbf0106a58c41fd3e5fae6a",
+      "contentHash": "14dff837bd70fea2514cd24b338d1d44794e833a79f8ea7b142cd205fc15d7da"
+    }
+  ],
+  "hide": {
+    "id": "cmr8p5czr00a11y5nwf6lu2yu",
+    "content_hash": "50e1760f03c15a4605b16c631fbc8f08cdad4b44c141ea73f71f57d0cb6fc6ba",
+    "subject_id": "pharmacology-nursing",
+    "correct_answer": "Assess for signs of gastrointestinal bleeding."
+  },
+  "backupTables": [
+    "qbi_nclex_moc_v6_insert_20261030",
+    "qbi_nclex_item5_v6_rewrite_20261030",
+    "qbi_nclex_item5_ibu_hide_20261030",
+    "qbi_nclex_moc_v6_activate_20261030"
+  ]
+}
