@@ -44,6 +44,13 @@ describe("KEYFIX_BACKUP_TABLES", () => {
     expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_fix_20261025_backup");
     expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_loose_20261025_backup");
   });
+
+  it("includes the 2026-10-30 NCLEX MoC v6 backups", () => {
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_item5_v6_rewrite_20261030");
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_moc_v6_insert_20261030");
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_item5_ibu_hide_20261030");
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_moc_v6_activate_20261030");
+  });
 });
 
 describe("decideSeedUpsert", () => {
