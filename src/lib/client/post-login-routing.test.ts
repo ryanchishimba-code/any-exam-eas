@@ -95,6 +95,20 @@ describe("resolvePostLoginDestination", () => {
     ).toBe("/settings?billing=past_due");
   });
 
+  it("returns a learner to a board feed after sign-in", () => {
+    for (const path of [
+      "/study-tools/pance/feed",
+      "/study-tools/nclex/feed",
+      "/study-tools/naplex/feed",
+      "/study-tools/aanp-fnp/feed",
+    ]) {
+      expect(resolvePostLoginDestination(path, { hasAccess: true }, "nclex")).toBe(path);
+      expect(
+        resolvePostLoginDestination(path, { hasAccess: false, hasAppAccess: true, status: "trialing" }, "nclex")
+      ).toBe(path);
+    }
+  });
+
   it("returns a learner to the PANCE feed after sign-in", () => {
     expect(
       resolvePostLoginDestination("/study-tools/pance/feed", { hasAccess: true }, "pance")

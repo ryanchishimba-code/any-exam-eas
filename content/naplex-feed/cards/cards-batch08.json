@@ -1,0 +1,702 @@
+[
+ {
+  "id": "naplex-176",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Pediatrics: AOM amoxicillin high-dose, fever dosing APAP/ibuprofen",
+  "calculation": false,
+  "reused_from": "pance-146",
+  "front": "2-year-old, 12 kg, acute otitis media, no recent antibiotics. Dose? Fever options?",
+  "bottom": "High-dose amoxicillin 80–90 mg/kg/day divided BID.",
+  "bullets": {
+   "clue": "12 kg × 90 = 1080 mg/day → 540 mg BID. Amox/clav if amoxicillin in past 30 days.",
+   "treat": "Fever: acetaminophen 15 mg/kg q4–6h; ibuprofen 10 mg/kg q6–8h.",
+   "trap": "No ibuprofen under 6 months."
+  },
+  "back": "High-dose amoxicillin 80–90 mg/kg/day divided BID. Key clue: 12 kg × 90 = 1080 mg/day → 540 mg BID. Amox/clav if amoxicillin in past 30 days. Pharmacist move: Fever: acetaminophen 15 mg/kg q4–6h; ibuprofen 10 mg/kg q6–8h. Exam trap: No ibuprofen under 6 months.",
+  "word_count": 44,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "AAP 2013 AOM (latest AAP AOM guideline; due for AAP review)",
+   "year": "2013",
+   "url": "https://publications.aap.org/pediatrics/article/131/3/e964/30912/",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=152189e5-391c-42d3-a03b-c8364e2de6bf",
+   "recommendation": "AAP 2013 AOM guideline: amoxicillin 80–90 mg/kg/day in 2 divided doses first-line; amoxicillin-clavulanate if amoxicillin within 30 days, concurrent purulent conjunctivitis, or recurrent AOM unresponsive to amoxicillin; observation option for selected children. Labeling: acetaminophen 15 mg/kg q4–6h; ibuprofen 10 mg/kg q6–8h, not under 6 months without prescriber."
+  },
+  "verified": "Y – aap.org"
+ },
+ {
+  "id": "naplex-177",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Pregnancy: GDM insulin/metformin, HTN in pregnancy (labetalol, nifedipine), low-dose aspirin",
+  "calculation": false,
+  "reused_from": "pance-011",
+  "front": "Pregnant with chronic HTN (BP 145/92) and high preeclampsia risk. Drugs?",
+  "bottom": "Labetalol or nifedipine ER, plus aspirin 81 mg.",
+  "bullets": {
+   "clue": "Treat BP ≥140/90 in pregnancy (CHAP).",
+   "treat": "Aspirin 81 mg daily from 12 weeks until delivery; GDM: insulin preferred.",
+   "trap": "ACE inhibitors and ARBs are contraindicated in pregnancy."
+  },
+  "back": "Labetalol or nifedipine ER, plus aspirin 81 mg. Key clue: Treat BP ≥140/90 in pregnancy (CHAP). Pharmacist move: Aspirin 81 mg daily from 12 weeks until delivery; GDM: insulin preferred. Exam trap: ACE inhibitors and ARBs are contraindicated in pregnancy.",
+  "word_count": 40,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ACOG CPU 2024 GDM screening + PB 190 (reaffirmed); ACOG PB 222 2020 + 2022 CHAP advisory; USPSTF 2021 aspirin",
+   "year": "2020 / 2021 / 2022 / 2024",
+   "url": "https://www.acog.org/clinical/clinical-guidance/practice-advisory/articles/2022/04/clinical-guidance-for-the-integration-of-the-findings-of-the-chronic-hypertension-and-pregnancy-chap-study",
+   "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/low-dose-aspirin-use-for-the-prevention-of-morbidity-and-mortality-from-preeclampsia-preventive-medication",
+   "recommendation": "ACOG 2022 CHAP practice advisory: treat chronic hypertension in pregnancy at ≥140/90; labetalol and nifedipine preferred; ACOG PB 222. USPSTF 2021: low-dose aspirin 81 mg/day after 12 weeks for high preeclampsia risk. ACOG PB 190: insulin preferred for GDM pharmacotherapy. ACEi/ARBs contraindicated (fetotoxicity)."
+  },
+  "verified": "Y – acog.org, uspreventiveservicestaskforce.org"
+ },
+ {
+  "id": "naplex-178",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Pain: acetaminophen max dose, NSAID selection by GI/CV risk",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Arthritis patient with prior GI bleed and high CV risk asks about NSAIDs. Advice?",
+  "bottom": "Avoid NSAIDs: high GI and high CV risk.",
+  "bullets": {
+   "clue": "High GI risk alone: celecoxib plus a PPI. High CV risk alone: naproxen plus PPI if GI risk.",
+   "treat": "Acetaminophen max 4 g/day; lower (e.g., 3 g) with liver disease or heavy alcohol use.",
+   "trap": "Check OTC combination products for hidden acetaminophen."
+  },
+  "back": "Avoid NSAIDs: high GI and high CV risk. Key clue: High GI risk alone: celecoxib plus a PPI. High CV risk alone: naproxen plus PPI if GI risk. Pharmacist move: Acetaminophen max 4 g/day; lower (e.g., 3 g) with liver disease or heavy alcohol use. Exam trap: Check OTC combination products for hidden acetaminophen.",
+  "word_count": 54,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "Acetaminophen labeling; ACG 2009 NSAID-ulcer prevention (latest)",
+   "year": "2009",
+   "url": "https://journals.lww.com/ajg/fulltext/2009/03000/guidelines_for_prevention_of_nsaid_related_ulcer.36.aspx",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1622f694-4d63-4c56-8737-fae31f0ecfb7",
+   "recommendation": "ACG 2009 NSAID-related ulcer prevention: high GI risk—avoid NSAIDs or use COX-2 inhibitor plus PPI; CV risk requiring aspirin—naproxen plus PPI; high GI and CV risk—avoid NSAIDs. Acetaminophen labeling: max 4 g/day; liver warning with ≥3 alcoholic drinks/day; avoid duplicate acetaminophen products. CDC 2022: nonopioid therapies preferred."
+  },
+  "verified": "Y – gi.org, cdc.gov"
+ },
+ {
+  "id": "naplex-179",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3B",
+  "topic": "OTC self-care exclusions: cough/cold in <4 y, pseudoephedrine limits",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Parent wants OTC cough syrup for a 3-year-old and pseudoephedrine for themself. Rules?",
+  "bottom": "No OTC cough/cold under 4 (label); pseudoephedrine behind the counter.",
+  "bullets": {
+   "clue": "FDA: don't use under 2; labels say don't use under 4.",
+   "treat": "Pseudoephedrine: max 3.6 g/day and 9 g/30 days; photo ID and logbook.",
+   "trap": "Honey (age ≥1) is a non-drug option for cough."
+  },
+  "back": "No OTC cough/cold under 4 (label); pseudoephedrine behind the counter. Key clue: FDA: don't use under 2; labels say don't use under 4. Pharmacist move: Pseudoephedrine: max 3.6 g/day and 9 g/30 days; photo ID and logbook. Exam trap: Honey (age ≥1) is a non-drug option for cough.",
+  "word_count": 48,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA 2008 OTC pediatric; CMEA 2005",
+   "year": "2005 / 2008",
+   "url": "https://www.fda.gov/consumers/consumer-updates/should-you-give-kids-medicine-coughs-and-colds",
+   "alt_url": "https://www.deadiversion.usdoj.gov/",
+   "recommendation": "FDA 2008 public health advisory: OTC cough and cold products should not be used in children under 2; manufacturers voluntarily relabeled 'do not use in children under 4'. Combat Methamphetamine Epidemic Act 2005: pseudoephedrine behind counter, 3.6 g/day and 9 g/30-day purchase limits, ID and logbook."
+  },
+  "verified": "Y – fda.gov"
+ },
+ {
+  "id": "naplex-180",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3B",
+  "topic": "Dermatology: acne topical retinoid/BPO; isotretinoin",
+  "calculation": false,
+  "reused_from": "pance-190",
+  "front": "Moderate acne on topical clindamycin alone. What's wrong, and isotretinoin rules?",
+  "bottom": "Never use a topical antibiotic alone: add benzoyl peroxide.",
+  "bullets": {
+   "clue": "First-line: topical retinoid plus BPO, with or without topical antibiotic.",
+   "treat": "Isotretinoin: iPLEDGE REMS, pregnancy tests and two forms of contraception.",
+   "trap": "Limit oral doxycycline courses; always pair with topicals."
+  },
+  "back": "Never use a topical antibiotic alone: add benzoyl peroxide. Key clue: First-line: topical retinoid plus BPO, with or without topical antibiotic. Pharmacist move: Isotretinoin: iPLEDGE REMS, pregnancy tests and two forms of contraception. Exam trap: Limit oral doxycycline courses; always pair with topicals.",
+  "word_count": 43,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "AAD 2024 acne",
+   "year": "2024",
+   "url": "https://www.jaad.org/article/S0190-9622(23)03389-6/fulltext",
+   "alt_url": "https://ipledgeprogram.com/",
+   "recommendation": "AAD 2024 acne guideline: benzoyl peroxide, topical retinoids, topical antibiotics (combined with BPO, not monotherapy), oral doxycycline with limited duration; isotretinoin for severe/refractory acne. Isotretinoin labeling: iPLEDGE REMS, two forms of contraception and pregnancy testing."
+  },
+  "verified": "Y – jaad.org"
+ },
+ {
+  "id": "naplex-181",
+  "system": "Professional Practice",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 4A",
+  "topic": "Public health screening & pharmacist-prescribed naloxone/contraception",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Caregiver asks for naloxone without a patient-specific prescription. Can you provide it?",
+  "bottom": "Yes: via standing order/protocol, or OTC.",
+  "bullets": {
+   "clue": "Every state allows pharmacist naloxone access by standing order or protocol.",
+   "treat": "Hormonal contraception and other prescribing depend on state law.",
+   "trap": "Scope varies by state: check your board's protocol."
+  },
+  "back": "Yes: via standing order/protocol, or OTC. Key clue: Every state allows pharmacist naloxone access by standing order or protocol. Pharmacist move: Hormonal contraception and other prescribing depend on state law. Exam trap: Scope varies by state: check your board's protocol.",
+  "word_count": 40,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CDC 2022; USPSTF current recommendations; state protocols",
+   "year": "2022",
+   "url": "https://www.cdc.gov/overdose-prevention/",
+   "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/topic_search_results?topic_status=P",
+   "recommendation": "CDC 2022: offer naloxone to patients at increased overdose risk; all states permit pharmacist naloxone dispensing via standing orders, protocols or prescriptive authority; 4 mg nasal naloxone OTC since 2023. Pharmacist prescribing of hormonal contraception per state law. USPSTF current recommendations for screening."
+  },
+  "verified": "Y – cdc.gov, uspreventiveservicestaskforce.org"
+ },
+ {
+  "id": "naplex-182",
+  "system": "Professional Practice",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 4A",
+  "topic": "Medication take-back & safe disposal of opioids",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient brings leftover oxycodone to the counter. Can you take it?",
+  "bottom": "Only into an authorized collection receptacle.",
+  "bullets": {
+   "clue": "Pharmacies may register with DEA as collectors; it's voluntary.",
+   "treat": "No take-back nearby: FDA flush list drugs (e.g., fentanyl patches) can be flushed; otherwise mix with coffee grounds and seal.",
+   "trap": "Staff can't count, sort or handle receptacle contents."
+  },
+  "back": "Only into an authorized collection receptacle. Key clue: Pharmacies may register with DEA as collectors; it's voluntary. Pharmacist move: No take-back nearby: FDA flush list drugs (e.g., fentanyl patches) can be flushed; otherwise mix with coffee grounds and seal. Exam trap: Staff can't count, sort or handle receptacle contents.",
+  "word_count": 49,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "DEA Disposal Rule 21 CFR 1317; FDA flush list",
+   "year": "current edition",
+   "url": "https://www.ecfr.gov/current/title-21/chapter-II/part-1317",
+   "alt_url": "https://www.fda.gov/drugs/disposal-unused-medicines-what-you-should-know/drug-disposal-flush-potentially-dangerous-medicine",
+   "recommendation": "DEA Disposal Rule (21 CFR 1317): retail pharmacies may register as collectors and maintain collection receptacles; patients deposit controlled substances directly; staff may not count, sort or inventory contents. FDA: flush list for select high-risk medicines when take-back unavailable; otherwise mix with unappealing substance and seal in trash."
+  },
+  "verified": "Y – ecfr.gov"
+ },
+ {
+  "id": "naplex-183",
+  "system": "Professional Practice",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 4B",
+  "topic": "Patient privacy: HIPAA permitted disclosures",
+  "calculation": false,
+  "reused_from": "pance-158",
+  "front": "Patient's daughter picks up the Rx and asks what it's for. Can you share?",
+  "bottom": "Yes, if she's involved in care and the patient doesn't object.",
+  "bullets": {
+   "clue": "Treatment, payment and operations need no written authorization.",
+   "treat": "Minimum necessary applies, except for treatment disclosures.",
+   "trap": "The 2024 reproductive-health privacy rule was vacated in 2025."
+  },
+  "back": "Yes, if she's involved in care and the patient doesn't object. Key clue: Treatment, payment and operations need no written authorization. Pharmacist move: Minimum necessary applies, except for treatment disclosures. Exam trap: The 2024 reproductive-health privacy rule was vacated in 2025.",
+  "word_count": 41,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "HIPAA Privacy Rule 45 CFR 164 (2024 reproductive-health rule vacated Jun 2025)",
+   "year": "2024 / 2025",
+   "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/index.html",
+   "alt_url": null,
+   "recommendation": "HIPAA Privacy Rule (45 CFR 164.506, 164.510, 164.502(b)): disclosures for treatment, payment, health care operations without authorization; disclosures to family involved in care if patient does not object or professional judgment; minimum necessary standard (not applicable to treatment). 2024 reproductive health care privacy amendments vacated by federal court June 2025."
+  },
+  "verified": "Y – hhs.gov"
+ },
+ {
+  "id": "naplex-184",
+  "system": "Professional Practice",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 4B",
+  "topic": "Informed consent, autonomy & refusal of therapy",
+  "calculation": false,
+  "reused_from": "pance-166",
+  "front": "Competent patient refuses the statin you recommended. What do you do?",
+  "bottom": "Respect the refusal: autonomy.",
+  "bullets": {
+   "clue": "Explain benefits, risks and alternatives in plain language.",
+   "treat": "Document the discussion and inform the prescriber.",
+   "trap": "Pressure or deception violates the Code of Ethics."
+  },
+  "back": "Respect the refusal: autonomy. Key clue: Explain benefits, risks and alternatives in plain language. Pharmacist move: Document the discussion and inform the prescriber. Exam trap: Pressure or deception violates the Code of Ethics.",
+  "word_count": 33,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "APhA Code of Ethics",
+   "year": "current edition",
+   "url": "https://www.pharmacist.com/Code-of-Ethics",
+   "alt_url": null,
+   "recommendation": "APhA Code of Ethics: pharmacist respects the autonomy and dignity of each patient, promotes the right of self-determination, and encourages patients to participate in decisions about their health; informed decision-making requires disclosure of benefits, risks and alternatives."
+  },
+  "verified": "Y – pharmacist.com"
+ },
+ {
+  "id": "naplex-185",
+  "system": "Professional Practice",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 4B",
+  "topic": "Conscientious objection & duty to ensure access",
+  "calculation": false,
+  "reused_from": null,
+  "front": "You object to dispensing a medication on moral grounds. What's required?",
+  "bottom": "Step away, but ensure the patient still gets it.",
+  "bullets": {
+   "clue": "APhA policy: pharmacist may decline if a system ensures patient access.",
+   "treat": "Arrange transfer to a colleague or another pharmacy without delay.",
+   "trap": "State laws vary; never obstruct, lecture or withhold the prescription."
+  },
+  "back": "Step away, but ensure the patient still gets it. Key clue: APhA policy: pharmacist may decline if a system ensures patient access. Pharmacist move: Arrange transfer to a colleague or another pharmacy without delay. Exam trap: State laws vary; never obstruct, lecture or withhold the prescription.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "APhA Code of Ethics; APhA conscience policy (1998)",
+   "year": "1998",
+   "url": "https://www.pharmacist.com/Advocacy/Issues/Pharmacist-Conscience-Clause",
+   "alt_url": "https://www.pharmacist.com/Code-of-Ethics",
+   "recommendation": "APhA 1998 policy: recognizes the individual pharmacist's right to exercise conscientious refusal and supports systems to ensure the patient's access to legally prescribed therapy without compromising the pharmacist's right. State laws vary."
+  },
+  "verified": "Y – pharmacist.com"
+ },
+ {
+  "id": "naplex-186",
+  "system": "Professional Practice",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 4C",
+  "topic": "Medication error disclosure & reporting (MedWatch, ISMP MERP, VAERS)",
+  "calculation": false,
+  "reused_from": "pance-159",
+  "front": "Wrong drug dispensed; patient had a reaction. And a separate vaccine reaction. Where to report?",
+  "bottom": "Disclose to patient; MedWatch/ISMP for the error; VAERS for vaccine.",
+  "bullets": {
+   "clue": "ISMP MERP: voluntary, confidential error reporting.",
+   "treat": "MedWatch: serious adverse events and product problems.",
+   "trap": "Vaccine adverse events go to VAERS, not MedWatch."
+  },
+  "back": "Disclose to patient; MedWatch/ISMP for the error; VAERS for vaccine. Key clue: ISMP MERP: voluntary, confidential error reporting. Pharmacist move: MedWatch: serious adverse events and product problems. Exam trap: Vaccine adverse events go to VAERS, not MedWatch.",
+  "word_count": 37,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA MedWatch; ISMP MERP; VAERS 2026",
+   "year": "2026",
+   "url": "https://www.fda.gov/safety/medwatch-fda-safety-information-and-adverse-event-reporting-program",
+   "alt_url": "https://vaers.hhs.gov/",
+   "recommendation": "FDA MedWatch for serious adverse events, product quality problems and medication errors; ISMP National Medication Errors Reporting Program (MERP) voluntary reporting; VAERS for adverse events after vaccination (required reporting of certain events by providers). Disclosure of errors to patients is an ethical expectation."
+  },
+  "verified": "Y – ismp.org, fda.gov"
+ },
+ {
+  "id": "naplex-187",
+  "system": "Professional Practice",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 4C",
+  "topic": "Impaired colleague reporting",
+  "calculation": false,
+  "reused_from": "pance-167",
+  "front": "Coworker smells of alcohol and is checking prescriptions. Your duty?",
+  "bottom": "Act now: protect patients, then report.",
+  "bullets": {
+   "clue": "Remove the colleague from patient care; tell the supervisor or pharmacist-in-charge.",
+   "treat": "Refer to the state's pharmacist recovery (PRN) program or board per law.",
+   "trap": "Covering for a colleague puts patients at risk."
+  },
+  "back": "Act now: protect patients, then report. Key clue: Remove the colleague from patient care; tell the supervisor or pharmacist-in-charge. Pharmacist move: Refer to the state's pharmacist recovery (PRN) program or board per law. Exam trap: Covering for a colleague puts patients at risk.",
+  "word_count": 43,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "APhA Code of Ethics; state PRN programs",
+   "year": "current edition",
+   "url": "https://www.pharmacist.com/Code-of-Ethics",
+   "alt_url": null,
+   "recommendation": "APhA Code of Ethics: pharmacist acts with honesty and integrity and exposes, when necessary, incompetent or unethical conduct; state boards and pharmacist recovery network (PRN) programs provide pathways for impaired practitioners."
+  },
+  "verified": "Y – pharmacist.com"
+ },
+ {
+  "id": "naplex-188",
+  "system": "Professional Practice",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 4D",
+  "topic": "Health literacy, teach-back & limited English proficiency interpreters",
+  "calculation": false,
+  "reused_from": "pance-163",
+  "front": "Patient with limited English nods along. Best counseling approach?",
+  "bottom": "Qualified interpreter plus teach-back.",
+  "bullets": {
+   "clue": "Teach-back: patient explains in their own words how to take it.",
+   "treat": "Use plain language and focus on 2–3 key points.",
+   "trap": "Don't use family members or children as interpreters."
+  },
+  "back": "Qualified interpreter plus teach-back. Key clue: Teach-back: patient explains in their own words how to take it. Pharmacist move: Use plain language and focus on 2–3 key points. Exam trap: Don't use family members or children as interpreters.",
+  "word_count": 38,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "AHRQ Health Literacy Toolkit 2024; Title VI",
+   "year": "2024",
+   "url": "https://www.ahrq.gov/health-literacy/improve/precautions/index.html",
+   "alt_url": "https://www.hhs.gov/civil-rights/for-individuals/special-topics/limited-english-proficiency/index.html",
+   "recommendation": "AHRQ Health Literacy Universal Precautions Toolkit (3rd ed., 2024): teach-back, plain language, limit key messages; Title VI of the Civil Rights Act: language assistance for LEP individuals using qualified interpreters; avoid relying on family/minors."
+  },
+  "verified": "Y – ahrq.gov"
+ },
+ {
+  "id": "naplex-189",
+  "system": "Professional Practice",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 4D",
+  "topic": "Cultural/social determinants and adherence barriers",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient skips insulin doses because of cost. Which PPCP step finds this, and what next?",
+  "bottom": "Collect/Assess: ask about barriers, then plan.",
+  "bullets": {
+   "clue": "PPCP: Collect, Assess, Plan, Implement, Follow-up.",
+   "treat": "Address cost: lower-cost insulin, $35 Medicare cap, assistance programs.",
+   "trap": "Ask open-ended, nonjudgmental questions."
+  },
+  "back": "Collect/Assess: ask about barriers, then plan. Key clue: PPCP: Collect, Assess, Plan, Implement, Follow-up. Pharmacist move: Address cost: lower-cost insulin, $35 Medicare cap, assistance programs. Exam trap: Ask open-ended, nonjudgmental questions.",
+  "word_count": 31,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "JCPP Pharmacists' Patient Care Process",
+   "year": "current edition",
+   "url": "https://jcpp.net/patient-care-process/",
+   "alt_url": "https://www.cms.gov/",
+   "recommendation": "JCPP Pharmacists' Patient Care Process: Collect, Assess, Plan, Implement, Follow-up (monitor and evaluate), patient-centered and addressing social determinants and adherence barriers. Inflation Reduction Act: Medicare insulin cost-sharing capped at $35/month."
+  },
+  "verified": "Y – jcpp.net"
+ },
+ {
+  "id": "naplex-190",
+  "system": "Professional Practice",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 4E",
+  "topic": "Collaborative practice agreements & pharmacist prescribing scope",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Under a collaborative practice agreement, what can a pharmacist do?",
+  "bottom": "Functions defined in a written protocol with a prescriber.",
+  "bullets": {
+   "clue": "Often: initiate, modify or stop therapy and order labs.",
+   "treat": "Scope, patients and drugs depend on state law and the agreement.",
+   "trap": "A CPA isn't independent prescriptive authority."
+  },
+  "back": "Functions defined in a written protocol with a prescriber. Key clue: Often: initiate, modify or stop therapy and order labs. Pharmacist move: Scope, patients and drugs depend on state law and the agreement. Exam trap: A CPA isn't independent prescriptive authority.",
+  "word_count": 41,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "JCPP PPCP; state CPA laws (varies)",
+   "year": "current edition",
+   "url": "https://www.cdc.gov/dhdsp/pubs/guides/best-practices/pharmacist-cdtm.htm",
+   "alt_url": "https://jcpp.net/patient-care-process/",
+   "recommendation": "CDC collaborative practice resources; state CPA laws: written agreement between pharmacist and prescriber defining delegated functions (initiating, modifying, discontinuing therapy, ordering tests) under protocol; scope varies by state. JCPP PPCP."
+  },
+  "verified": "Y – jcpp.net"
+ },
+ {
+  "id": "naplex-191",
+  "system": "Pharmacy Management & Leadership",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 5A",
+  "topic": "Inventory: turnover rate, par levels, ABC analysis",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: annual cost of goods sold $1,800,000; inventory $160,000 at start, $140,000 at end. Turnover rate and days on hand?",
+  "bottom": "12 turns/year; ~30 days of inventory.",
+  "bullets": {
+   "clue": "Average inventory = (160,000 + 140,000) ÷ 2 = $150,000.",
+   "treat": "Turnover = 1,800,000 ÷ 150,000 = 12. Days = 365 ÷ 12 ≈ 30.4.",
+   "trap": "Use cost of goods sold, not sales revenue."
+  },
+  "back": "12 turns/year; ~30 days of inventory. Given: Average inventory = (160,000 + 140,000) ÷ 2 = $150,000. Work: Turnover = 1,800,000 ÷ 150,000 = 12. Days = 365 ÷ 12 ≈ 30.4. Exam trap: Use cost of goods sold, not sales revenue.",
+  "word_count": 42,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "Standard pharmacy management formulas",
+   "year": "current edition",
+   "url": "https://www.ashp.org/",
+   "alt_url": null,
+   "recommendation": "Standard pharmacy management formula: inventory turnover rate = cost of goods sold ÷ average inventory (at cost); average inventory = (beginning + ending) ÷ 2; days' supply on hand = 365 ÷ turnover rate."
+  },
+  "verified": "Y – ashp.org"
+ },
+ {
+  "id": "naplex-192",
+  "system": "Pharmacy Management & Leadership",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 5A",
+  "topic": "Drug shortages management",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Critical drug goes on shortage. Pharmacy's first steps?",
+  "bottom": "Assess supply and find alternatives.",
+  "bullets": {
+   "clue": "Check on-hand stock, usage rate, and FDA/ASHP shortage lists.",
+   "treat": "P&T sets therapeutic alternatives and allocation rules; communicate to prescribers.",
+   "trap": "Don't hoard or buy from unverified gray-market sellers."
+  },
+  "back": "Assess supply and find alternatives. Key clue: Check on-hand stock, usage rate, and FDA/ASHP shortage lists. Pharmacist move: P&T sets therapeutic alternatives and allocation rules; communicate to prescribers. Exam trap: Don't hoard or buy from unverified gray-market sellers.",
+  "word_count": 38,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ASHP Drug Shortages Guidelines 2018 (still current, latest = 2018)",
+   "year": "2018",
+   "url": "https://www.ashp.org/drug-shortages/shortage-resources/publications",
+   "alt_url": null,
+   "recommendation": "ASHP Guidelines on Managing Drug Product Shortages (2018): operational and therapeutic assessment, identify alternatives, P&T-approved allocation/conservation strategies, communication, avoid hoarding and purchasing from unauthorized sources."
+  },
+  "verified": "Y – ashp.org"
+ },
+ {
+  "id": "naplex-193",
+  "system": "Pharmacy Management & Leadership",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 5A",
+  "topic": "DSCSA traceability (enhanced security Nov 2024)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Suspect counterfeit product arrives. What does DSCSA require?",
+  "bottom": "Quarantine and investigate.",
+  "bullets": {
+   "clue": "Buy only from authorized trading partners; keep transaction data.",
+   "treat": "If illegitimate, notify FDA (Form 3911) and partners within 24 hours.",
+   "trap": "Small dispensers (≤25 FTE) are exempt from electronic interoperability until Nov 27, 2027."
+  },
+  "back": "Quarantine and investigate. Key clue: Buy only from authorized trading partners; keep transaction data. Pharmacist move: If illegitimate, notify FDA (Form 3911) and partners within 24 hours. Exam trap: Small dispensers (≤25 FTE) are exempt from electronic interoperability until Nov 27, 2027.",
+  "word_count": 42,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA DSCSA; small-dispenser exemption to Nov 27, 2027",
+   "year": "2027",
+   "url": "https://www.fda.gov/drugs/drug-supply-chain-integrity/drug-supply-chain-security-act-dscsa",
+   "alt_url": null,
+   "recommendation": "DSCSA: dispensers must transact with authorized trading partners, maintain transaction information, quarantine and investigate suspect product, notify FDA (Form 3911) and trading partners within 24 hours of determining illegitimate product; enhanced drug distribution security requirements from Nov 27, 2024 with FDA exemptions; small dispensers (≤25 full-time pharmacists/technicians) exempt until Nov 27, 2027."
+  },
+  "verified": "Y – fda.gov"
+ },
+ {
+  "id": "naplex-194",
+  "system": "Pharmacy Management & Leadership",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 5A",
+  "topic": "Recalls: Class I/II/III and pharmacy response",
+  "calculation": false,
+  "reused_from": null,
+  "front": "FDA recall: 'reasonable probability of serious harm or death.' Which class?",
+  "bottom": "Class I.",
+  "bullets": {
+   "clue": "Class II: temporary or reversible harm. Class III: unlikely to cause harm.",
+   "treat": "Pull affected lots; contact patients when the recall reaches consumer level.",
+   "trap": "Market withdrawal isn't a recall: no FDA violation."
+  },
+  "back": "Class I. Key clue: Class II: temporary or reversible harm. Class III: unlikely to cause harm. Pharmacist move: Pull affected lots; contact patients when the recall reaches consumer level. Exam trap: Market withdrawal isn't a recall: no FDA violation.",
+  "word_count": 39,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA 21 CFR 7",
+   "year": "current edition",
+   "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-7",
+   "alt_url": null,
+   "recommendation": "21 CFR 7.3: Class I—reasonable probability of serious adverse health consequences or death; Class II—temporary or medically reversible consequences, remote probability of serious harm; Class III—not likely to cause adverse health consequences; market withdrawal involves minor or no violation."
+  },
+  "verified": "Y – ecfr.gov"
+ },
+ {
+  "id": "naplex-195",
+  "system": "Pharmacy Management & Leadership",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 5B",
+  "topic": "Controlled substance ordering, DEA 222/CSOS, inventory, theft (Form 106)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Ordering oxycodone, taking inventory, and finding a theft. Which forms and rules?",
+  "bottom": "DEA Form 222 or CSOS; theft: Form 106.",
+  "bullets": {
+   "clue": "Biennial inventory: exact count for CII; estimate CIII–V unless container >1,000 units.",
+   "treat": "Report theft to the DEA field office within 1 business day, then file Form 106.",
+   "trap": "Keep controlled substance records at least 2 years."
+  },
+  "back": "DEA Form 222 or CSOS; theft: Form 106. Key clue: Biennial inventory: exact count for CII; estimate CIII–V unless container >1,000 units. Pharmacist move: Report theft to the DEA field office within 1 business day, then file Form 106. Exam trap: Keep controlled substance records at least 2 years.",
+  "word_count": 49,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "21 CFR 1304–1305; DEA",
+   "year": "current edition",
+   "url": "https://www.ecfr.gov/current/title-21/chapter-II/part-1305",
+   "alt_url": "https://www.ecfr.gov/current/title-21/chapter-II/part-1304",
+   "recommendation": "21 CFR 1305: Schedule I–II orders via DEA Form 222 or CSOS. 21 CFR 1304.11: biennial inventory—exact count for Schedule I–II, estimated count for III–V unless container holds >1,000 units; 1304.04: records kept 2 years. 21 CFR 1301.76(b): notify DEA in writing within one business day of discovering theft or significant loss and complete DEA Form 106."
+  },
+  "verified": "Y – ecfr.gov"
+ },
+ {
+  "id": "naplex-196",
+  "system": "Pharmacy Management & Leadership",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 5B",
+  "topic": "Pharmacoeconomics: CMA, CEA, CUA (QALY), CBA",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: Drug A costs $50,000 for 3.0 QALYs; Drug B $20,000 for 2.5 QALYs. ICER?",
+  "bottom": "$60,000 per QALY gained.",
+  "bullets": {
+   "clue": "ICER = ΔCost ÷ ΔQALY.",
+   "treat": "(50,000 − 20,000) ÷ (3.0 − 2.5) = 30,000 ÷ 0.5 = $60,000/QALY.",
+   "trap": "QALYs = cost-utility; outcomes in dollars = cost-benefit."
+  },
+  "back": "$60,000 per QALY gained. Given: ICER = ΔCost ÷ ΔQALY. Work: (50,000 − 20,000) ÷ (3.0 − 2.5) = 30,000 ÷ 0.5 = $60,000/QALY. Exam trap: QALYs = cost-utility; outcomes in dollars = cost-benefit.",
+  "word_count": 34,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ISPOR guidance",
+   "year": "current edition",
+   "url": "https://www.ispor.org/heor-resources/good-practices",
+   "alt_url": null,
+   "recommendation": "ISPOR good practices: incremental cost-effectiveness ratio = (Cost A − Cost B) ÷ (Effect A − Effect B); cost-utility analysis measures outcomes in QALYs; cost-benefit analysis values outcomes in monetary units; cost-minimization assumes equal outcomes."
+  },
+  "verified": "Y – ispor.org"
+ },
+ {
+  "id": "naplex-197",
+  "system": "Pharmacy Management & Leadership",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 5C",
+  "topic": "Quality improvement: PDSA, RCA, FMEA",
+  "calculation": false,
+  "reused_from": "pance-168",
+  "front": "Sentinel event vs a new process: which QI tool for each?",
+  "bottom": "RCA after the event; FMEA before the process.",
+  "bullets": {
+   "clue": "RCA is reactive; FMEA proactively ranks failure modes.",
+   "treat": "Test changes with small PDSA cycles.",
+   "trap": "RCA targets systems, not individual blame."
+  },
+  "back": "RCA after the event; FMEA before the process. Key clue: RCA is reactive; FMEA proactively ranks failure modes. Pharmacist move: Test changes with small PDSA cycles. Exam trap: RCA targets systems, not individual blame.",
+  "word_count": 34,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "IHI Model for Improvement; TJC Sentinel Event Policy 2025",
+   "year": "2025",
+   "url": "https://www.ihi.org/resources/how-improve-model-improvement",
+   "alt_url": "https://www.jointcommission.org/en-us/knowledge-library/sentinel-event",
+   "recommendation": "IHI Model for Improvement: Plan-Do-Study-Act cycles. Joint Commission Sentinel Event Policy (2025): comprehensive systematic analysis (e.g., root cause analysis) and action plan after sentinel events, focused on systems. FMEA is a proactive risk assessment tool."
+  },
+  "verified": "Y – ihi.org"
+ },
+ {
+  "id": "naplex-198",
+  "system": "Pharmacy Management & Leadership",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 5C",
+  "topic": "Medication reconciliation at transitions of care",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient admitted from home. Steps of medication reconciliation?",
+  "bottom": "Get the best possible list, compare, resolve discrepancies.",
+  "bullets": {
+   "clue": "Include OTCs, supplements and doses at every transition.",
+   "treat": "At discharge, give the patient an updated list and explain changes.",
+   "trap": "Reconcile at admission, transfer and discharge, not only once."
+  },
+  "back": "Get the best possible list, compare, resolve discrepancies. Key clue: Include OTCs, supplements and doses at every transition. Pharmacist move: At discharge, give the patient an updated list and explain changes. Exam trap: Reconcile at admission, transfer and discharge, not only once.",
+  "word_count": 42,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "Joint Commission National Performance Goals 2026 (NPG 14, replaces NPSG.03.06.01)",
+   "year": "2026",
+   "url": "https://www.jointcommission.org/en-us/standards/national-performance-goals",
+   "alt_url": null,
+   "recommendation": "Joint Commission National Performance Goals (effective Jan 1, 2026; NPG 14 Effectively Managing Medications, which carries over former NPSG.03.06.01): obtain and document current medications on admission, compare with ordered medications and resolve discrepancies, provide written updated medication information at discharge and educate the patient."
+  },
+  "verified": "Y – jointcommission.org"
+ },
+ {
+  "id": "naplex-199",
+  "system": "Pharmacy Management & Leadership",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 5C",
+  "topic": "Pharmacy quality measures (PDC ≥80%, star ratings)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Plan says a patient's statin adherence is PDC 75%. What's the threshold and formula?",
+  "bottom": "Adherent = PDC ≥80%.",
+  "bullets": {
+   "clue": "PDC = days covered ÷ days in the measurement period.",
+   "treat": "Diabetes, RAS antagonist and statin adherence drive Part D Star Ratings.",
+   "trap": "PDC doesn't double-count overlapping fills like MPR can."
+  },
+  "back": "Adherent = PDC ≥80%. Key clue: PDC = days covered ÷ days in the measurement period. Pharmacist move: Diabetes, RAS antagonist and statin adherence drive Part D Star Ratings. Exam trap: PDC doesn't double-count overlapping fills like MPR can.",
+  "word_count": 39,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "PQA measures 2026; CMS Star Ratings 2026",
+   "year": "2026",
+   "url": "https://www.pqaalliance.org/measures-overview",
+   "alt_url": "https://www.cms.gov/medicare/health-drug-plans/part-c-d-performance-data",
+   "recommendation": "PQA measures 2026: proportion of days covered (PDC) ≥80% defines adherence for diabetes medications, RAS antagonists and statins; PDC caps overlapping supply. CMS 2026 Star Ratings include these Part D adherence measures."
+  },
+  "verified": "Y – pqa.org"
+ },
+ {
+  "id": "naplex-200",
+  "system": "Pharmacy Management & Leadership",
+  "blueprint_weight": "5%",
+  "task_area": "NAPLEX 5D",
+  "topic": "Billing: Medicare Part B vs D, 340B basics",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Medicare patient: flu shot, Shingrix, and oral transplant immunosuppressant. Part B or D?",
+  "bottom": "Flu: Part B. Shingrix: Part D. Transplant drugs: Part B if Medicare paid for the transplant.",
+  "bullets": {
+   "clue": "Part B: flu, pneumococcal, hep B, COVID vaccines; drugs given incident to a physician service.",
+   "treat": "Part D covers ACIP vaccines at $0 cost-sharing; out-of-pocket cap $2,100 in 2026.",
+   "trap": "340B: no duplicate Medicaid discounts, no diversion to non-patients."
+  },
+  "back": "Flu: Part B. Shingrix: Part D. Transplant drugs: Part B if Medicare paid for the transplant. Key clue: Part B: flu, pneumococcal, hep B, COVID vaccines; drugs given incident to a physician service. Pharmacist move: Part D covers ACIP vaccines at $0 cost-sharing; out-of-pocket cap $2,100 in 2026. Exam trap: 340B: no duplicate Medicaid discounts, no diversion to non-patients.",
+  "word_count": 59,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CMS 2026; HRSA 340B",
+   "year": "2026",
+   "url": "https://www.cms.gov/",
+   "alt_url": "https://www.hrsa.gov/opa",
+   "recommendation": "CMS 2026: Part B covers influenza, pneumococcal, hepatitis B (risk-based) and COVID-19 vaccines, physician-administered drugs, immunosuppressants after Medicare-covered transplant; Part D covers other ACIP-recommended vaccines (e.g., shingles) with $0 cost-sharing (IRA); 2026 Part D annual out-of-pocket cap $2,100. HRSA 340B: prohibits duplicate discounts and diversion."
+  },
+  "verified": "Y – hrsa.gov"
+ }
+]

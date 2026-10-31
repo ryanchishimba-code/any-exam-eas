@@ -87,6 +87,7 @@ model User {
   examOutcomes       ExamOutcome[]
   examPassCheckIns   ExamPassCheckIn[]
   panceFeedProgress  PanceFeedProgress?
+  examFeedProgress   ExamFeedProgress[]
 }
 
 model Account {
@@ -1303,6 +1304,22 @@ model PanceFeedProgress {
   user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("pance_feed_progress")
+}
+
+/// Cross-device progress for NCLEX, NAPLEX, and FNP feeds.
+/// PANCE stays on pance_feed_progress so the two decks never overwrite each other.
+model ExamFeedProgress {
+  userId         String
+  examSlug       String
+  mastered       String[]  @default([])
+  reviewQueue    String[]  @default([])
+  lastSeenCardId String?
+  lastSeenAt     DateTime?
+  updatedAt      DateTime  @updatedAt
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, examSlug])
+  @@map("exam_feed_progress")
 }
 
 /// Per-memory-card mastery (got-it / need-review) for Reference Hub spaced study.

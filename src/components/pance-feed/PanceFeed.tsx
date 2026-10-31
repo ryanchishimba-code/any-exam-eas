@@ -6,6 +6,8 @@ import { Check, Maximize2, RotateCcw, Tag } from "lucide-react";
 import { feedOrder, REVIEW_GAP, sourceLine } from "@/lib/pance-feed/format";
 import type { PanceFeedCard } from "@/lib/pance-feed/load-cards";
 import { ROUTES } from "@/lib/routes";
+import { STUDY_FEEDS, type StudyFeedBoard } from "@/lib/study-feed/catalog";
+import { classifyFeedSwipe, feedHintStorageKey } from "@/lib/study-feed/gesture";
 import "./pance-feed.css";
 
 const RING = 100.53;
@@ -26,6 +28,30 @@ const TINT: Record<string, string> = {
   "Infectious Diseases": "#047857",
   Hematologic: "#b91c1c",
   "Professional Practice": "#475569",
+  GI: "#b45309",
+  Psych: "#9333ea",
+  MSK: "#4d7c0f",
+  ID: "#047857",
+  Derm: "#c2410c",
+  Neuro: "#6d28d9",
+  Heme: "#b91c1c",
+  Peds: "#0369a1",
+  Geriatrics: "#7c3aed",
+  Professional: "#475569",
+  Safety: "#b45309",
+  "Legal and ethical": "#4338ca",
+  "Infection control": "#047857",
+  "Mental health": "#9333ea",
+  Cardiac: "#be123c",
+  Communication: "#0e7490",
+  Respiratory: "#0369a1",
+  Maternity: "#c026d3",
+  "Health promotion": "#4d7c0f",
+  Nutrition: "#b45309",
+  "Person-Centered Assessment & Treatment Planning": "#0e7490",
+  "Foundational Knowledge": "#1d4ed8",
+  "Medication Use Process": "#047857",
+  "Pharmacy Management & Leadership": "#475569",
 };
 
 type Slide = { key: string; id: string; again: boolean };
@@ -66,7 +92,7 @@ function SvgFrame({
   return <div className="pf-dia" ref={ref} />;
 }
 
-export function PanceFeed() {
+export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoard }) {
   const feedRef = useRef<HTMLElement>(null);
   const [cards, setCards] = useState<PanceFeedCard[]>([]);
   const [slides, setSlides] = useState<Slide[]>([]);
@@ -88,6 +114,10 @@ export function PanceFeed() {
   const inflight = useRef(new Set<string>());
   const restored = useRef(false);
   const reducedMotion = useRef(false);
+  const gesture = useRef<{ x: number; y: number; pointerId: number; interactive: boolean } | null>(
+    null
+  );
+  const ignoreClick = useRef(false);
 
   const byId = useMemo(() => new Map(cards.map((card) => [card.id, card])), [cards]);
   const total = cards.length;
@@ -100,7 +130,7 @@ export function PanceFeed() {
       saveAbort.current?.abort();
       const ctrl = new AbortController();
       saveAbort.current = ctrl;
-      void fetch("/api/pance-feed/progress", {
+      void fetch(`${board.apiBase}/progress`, {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(progressRef.current),
@@ -108,13 +138,13 @@ export function PanceFeed() {
         signal: ctrl.signal,
       }).catch(() => undefined);
     }, 250);
-  }, []);
+  }, [board.apiBase]);
 
   const ensureSvg = useCallback(async (id: string) => {
     if (svgRef.current[id] || inflight.current.has(id)) return;
     inflight.current.add(id);
     try {
-      const res = await fetch(`/api/pance-feed/cards/${id}`);
+      const res = await fetch(`${board.apiBase}/cards/${id}`);
       if (!res.ok) return;
       const data = (await res.json()) as { svg?: string };
       if (!data.svg) return;
@@ -125,7 +155,7 @@ export function PanceFeed() {
     } finally {
       inflight.current.delete(id);
     }
-  }, []);
+  }, [board.apiBase]);
 
   useEffect(() => {
     reducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -135,12 +165,12 @@ export function PanceFeed() {
     void (async () => {
       try {
         const [cardRes, progRes] = await Promise.all([
-          fetch("/api/pance-feed/cards"),
-          fetch("/api/pance-feed/progress"),
+          fetch(`${board.apiBase}/cards`),
+          fetch(`${board.apiBase}/progress`),
         ]);
         if (cancel) return;
         if (cardRes.status === 401) {
-          window.location.assign(`/login?callbackUrl=${encodeURIComponent(ROUTES.panceFeed)}`);
+          window.location.assign(`/login?callbackUrl=${encodeURIComponent(board.href)}`);
           return;
         }
         if (!cardRes.ok || !progRes.ok) {
@@ -164,7 +194,11 @@ export function PanceFeed() {
           reviewQueue: nextQueue,
           lastSeenCardId: prog.lastSeenCardId,
         };
-        setHint(!prog.lastSeenCardId && nextMastered.length === 0);
+        try {
+          setHint(window.localStorage.getItem(feedHintStorageKey(board.exam)) !== "1");
+        } catch {
+          setHint(true);
+        }
         setStatus("");
         setReady(true);
       } catch {
@@ -176,7 +210,7 @@ export function PanceFeed() {
       document.body.style.overflow = prev;
       if (saveTimer.current) window.clearTimeout(saveTimer.current);
     };
-  }, []);
+  }, [board.apiBase, board.exam, board.href]);
 
   useEffect(() => {
     if (!ready || restored.current) return;
@@ -215,6 +249,49 @@ export function PanceFeed() {
     feed.querySelectorAll(".pf-slide[data-id]").forEach((node) => io.observe(node));
     return () => io.disconnect();
   }, [ready, slides, ensureSvg, publish]);
+
+  function dismissHint() {
+    setHint(false);
+    try {
+      window.localStorage.setItem(feedHintStorageKey(board.exam), "1");
+    } catch {
+      /* private mode still hides the hint for this visit */
+    }
+  }
+
+  function visibleSlide(): Slide | null {
+    const feed = feedRef.current;
+    if (!feed) return null;
+    const nodes = [...feed.querySelectorAll<HTMLElement>(".pf-slide[data-key]")];
+    const height = feed.clientHeight || 1;
+    const current = nodes[Math.round(feed.scrollTop / height)];
+    if (!current?.dataset.key) return null;
+    return slides.find((item) => item.key === current.dataset.key) ?? null;
+  }
+
+  function onPointerDown(event: React.PointerEvent<HTMLElement>) {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    const target = event.target as Element;
+    gesture.current = {
+      x: event.clientX,
+      y: event.clientY,
+      pointerId: event.pointerId,
+      interactive: Boolean(target.closest("button, a, [data-a]")),
+    };
+  }
+
+  function onPointerUp(event: React.PointerEvent<HTMLElement>) {
+    const start = gesture.current;
+    gesture.current = null;
+    if (!start || start.pointerId !== event.pointerId || start.interactive) return;
+    const action = classifyFeedSwipe(event.clientX - start.x, event.clientY - start.y);
+    if (!action) return;
+    dismissHint();
+    if (action === "next" || action === "prev") return;
+    ignoreClick.current = true;
+    const slide = visibleSlide();
+    if (slide) act(action === "got" ? "got" : "again", slide);
+  }
 
   function showToast(text: string) {
     setToast(text);
@@ -291,6 +368,7 @@ export function PanceFeed() {
   }
 
   function act(name: string, slide: Slide) {
+    dismissHint();
     if (name === "got") onGotIt(slide);
     else if (name === "again") onAgain(slide);
     else if (name === "labels") onLabels(slide);
@@ -319,16 +397,20 @@ export function PanceFeed() {
     const slide = slides.find((item) => item.key === current.dataset.key);
     if (!slide) return;
     const key = event.key.toLowerCase();
-    if (key === "f") setFlipped((state) => ({ ...state, [slide.key]: !state[slide.key] }));
-    else if (event.key === "2") act("got", slide);
+    if (key === "f") {
+      dismissHint();
+      setFlipped((state) => ({ ...state, [slide.key]: !state[slide.key] }));
+    } else if (event.key === "2") act("got", slide);
     else if (event.key === "1") act("again", slide);
     else if (key === "l") act("labels", slide);
     else if (key === "z") act("zoom", slide);
     else if (event.key === "ArrowDown" || key === "j") {
       event.preventDefault();
+      dismissHint();
       scrollToSlide(slide.key, 1);
     } else if (event.key === "ArrowUp" || key === "k") {
       event.preventDefault();
+      dismissHint();
       scrollToSlide(slide.key, -1);
     }
   };
@@ -340,6 +422,11 @@ export function PanceFeed() {
   }, []);
 
   function onClick(event: React.MouseEvent<HTMLElement>) {
+    if (ignoreClick.current) {
+      ignoreClick.current = false;
+      event.preventDefault();
+      return;
+    }
     const target = event.target as Element;
     if (target.closest(".pf-lb-x") || target.classList.contains("pf-lb")) {
       setLightbox(null);
@@ -363,11 +450,11 @@ export function PanceFeed() {
     if (!slide || !target.closest(".pf-card")) return;
     setFlipped((state) => ({ ...state, [slide.key]: !state[slide.key] }));
     void ensureSvg(slide.id);
-    setHint(false);
+    dismissHint();
   }
 
   return (
-    <div className="pance-feed" data-testid="pance-feed" onClick={onClick}>
+    <div className="pance-feed" data-testid={board.testId} onClick={onClick}>
       <header className="pf-top">
         <Link className="pf-back-link" href={ROUTES.dashboard} aria-label="Back to dashboard">
           ←
@@ -387,7 +474,7 @@ export function PanceFeed() {
           <span>{masteredCount}</span>
         </div>
         <div className="pf-ttl">
-          <b>PANCE Feed</b>
+          <b>{board.label}</b>
           <small>
             {masteredCount} of {total} mastered
           </small>
@@ -397,7 +484,16 @@ export function PanceFeed() {
         </div>
       </header>
       {status ? <p className="pf-status">{status}</p> : null}
-      <main ref={feedRef} className="pf-feed" aria-label="Flashcard feed. Swipe up for the next card.">
+      <main
+        ref={feedRef}
+        className="pf-feed"
+        aria-label="Flashcard feed. Swipe up for the next card, down for the previous card. Swipe right for Got it, left for Review again. Tap a card to flip it."
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerCancel={() => {
+          gesture.current = null;
+        }}
+      >
         {slides.map((slide, index) => {
           const card = byId.get(slide.id);
           if (!card) return null;
@@ -409,7 +505,7 @@ export function PanceFeed() {
               className={`pf-slide${flipped[slide.key] ? " flipped" : ""}${done ? " done" : ""}`}
               data-id={slide.id}
               data-key={slide.key}
-              data-testid="pance-feed-card"
+              data-testid={`${board.testId}-card`}
               style={{ ["--tint" as string]: TINT[card.system] ?? "#0f766e" }}
             >
               <div className="pf-bg" />
@@ -426,6 +522,7 @@ export function PanceFeed() {
                       event.preventDefault();
                       setFlipped((state) => ({ ...state, [slide.key]: !state[slide.key] }));
                       void ensureSvg(slide.id);
+                      dismissHint();
                     }
                   }}
                 >
@@ -513,10 +610,19 @@ export function PanceFeed() {
         ) : null}
       </main>
       {hint ? (
-        <button className="pf-hint-overlay" type="button" onClick={() => setHint(false)}>
-          <div>Swipe up for the next card</div>
-          <small>Tap a card to flip it</small>
-        </button>
+        <div
+          className="pf-gesture-hint"
+          role="region"
+          aria-label="How to move through cards"
+          data-testid="feed-gesture-hint"
+        >
+          <p>Swipe up for the next card. Swipe down for the previous card.</p>
+          <p>Swipe right for Got it. Swipe left for Review again.</p>
+          <p>Tap the card to flip it. The buttons on the right do the same as the side swipes.</p>
+          <button type="button" onClick={dismissHint}>
+            Dismiss
+          </button>
+        </div>
       ) : null}
       <div
         className={`pf-lb${lightbox ? " on" : ""}`}

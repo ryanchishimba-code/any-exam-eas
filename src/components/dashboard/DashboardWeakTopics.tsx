@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Layers, Target } from "lucide-react";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { analyticsHref, practiceTopicHref } from "@/lib/edtech/practice-links-core";
-import { ROUTES } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
@@ -34,13 +34,13 @@ export function DashboardWeakTopics({
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
-          {examSlug === "pance" ? (
+          {studyFeedForExam(examSlug) ? (
             <Link
-              href={ROUTES.panceFeed}
+              href={studyFeedForExam(examSlug)!.href}
               className="inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)] hover:underline"
             >
               <Layers className="h-3 w-3" aria-hidden />
-              PANCE Feed
+              {studyFeedForExam(examSlug)!.label}
             </Link>
           ) : null}
           <Link

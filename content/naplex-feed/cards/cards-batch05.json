@@ -1,0 +1,714 @@
+[
+ {
+  "id": "naplex-101",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "HTN: BP goal <130/80 and first-line classes (thiazide, ACEi/ARB, CCB)",
+  "calculation": false,
+  "reused_from": "pance-023",
+  "front": "Newly diagnosed BP 148/94, no comorbidities. Start meds? Which classes, and what goal?",
+  "bottom": "Yes: two first-line drugs, ideally one pill; goal <130/80.",
+  "bullets": {
+   "clue": "Drugs at ≥140/90, or ≥130/80 with CVD, diabetes, CKD or PREVENT risk ≥7.5%.",
+   "treat": "Thiazide-type, dihydropyridine CCB, ACEi or ARB. Stage 2: two drugs, ideally one pill.",
+   "trap": "Stage 2 (≥140/90) starts with two drugs; never combine an ACEi with an ARB."
+  },
+  "back": "Yes: two first-line drugs, ideally one pill; goal <130/80. Key clue: Drugs at ≥140/90, or ≥130/80 with CVD, diabetes, CKD or PREVENT risk ≥7.5%. Pharmacist move: Thiazide-type, dihydropyridine CCB, ACEi or ARB. Stage 2: two drugs, ideally one pill. Exam trap: Stage 2 (≥140/90) starts with two drugs; never combine an ACEi with an ARB.",
+  "word_count": 55,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ACC/AHA 2025 HTN",
+   "year": "2025",
+   "url": "https://doi.org/10.1161/hyp.0000000000000249",
+   "alt_url": null,
+   "recommendation": "2025 AHA/ACC High Blood Pressure guideline: goal <130/80; start medication at ≥140/90, or ≥130/80 with clinical CVD, diabetes, CKD or PREVENT 10-y risk ≥7.5%; first-line thiazide-type diuretic, long-acting DHP CCB, ACEi or ARB; stage 2: two first-line agents of different classes, preferably single-pill combination; avoid combined ACEi + ARB."
+  },
+  "verified": "Y – ahajournals.org"
+ },
+ {
+  "id": "naplex-102",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Hypertensive emergency vs urgency: IV agents and 25% reduction",
+  "calculation": false,
+  "reused_from": "pance-024",
+  "front": "BP 220/130 with chest pain and confusion. Which drugs, and how fast do you lower it?",
+  "bottom": "Hypertensive emergency: IV titratable agent.",
+  "bullets": {
+   "clue": "Organ damage defines emergency; no damage = urgency, treat orally.",
+   "treat": "IV nicardipine, clevidipine, labetalol or esmolol; lower ≤25% in the first hour.",
+   "trap": "Aortic dissection is the exception: SBP <120 within 20 minutes."
+  },
+  "back": "Hypertensive emergency: IV titratable agent. Key clue: Organ damage defines emergency; no damage = urgency, treat orally. Pharmacist move: IV nicardipine, clevidipine, labetalol or esmolol; lower ≤25% in the first hour. Exam trap: Aortic dissection is the exception: SBP <120 within 20 minutes.",
+  "word_count": 43,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ACC/AHA 2025 HTN",
+   "year": "2025",
+   "url": "https://doi.org/10.1161/hyp.0000000000000249",
+   "alt_url": null,
+   "recommendation": "2025 AHA/ACC High Blood Pressure guideline: hypertensive emergency with acute target-organ damage—ICU, IV titratable agents (e.g., nicardipine, clevidipine, labetalol, esmolol); reduce SBP by no more than 25% in the first hour, then to 160/100 over 2–6 h, then normal over 24–48 h; compelling conditions (aortic dissection) require SBP <120 within the first hour."
+  },
+  "verified": "Y – ahajournals.org"
+ },
+ {
+  "id": "naplex-103",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Compelling indications: CKD w/ albuminuria, HFrEF, post-MI",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Hypertension plus CKD with albuminuria, HFrEF, or recent MI. Which drug classes?",
+  "bottom": "Match the drug to the compelling indication.",
+  "bullets": {
+   "clue": "CKD with albuminuria: ACEi or ARB, titrated to max tolerated.",
+   "treat": "HFrEF: GDMT (ARNI/ACEi/ARB, beta-blocker, MRA, SGLT2i). Post-MI: beta-blocker plus ACEi/ARB.",
+   "trap": "Check potassium and creatinine 2–4 weeks after starting a RAS inhibitor."
+  },
+  "back": "Match the drug to the compelling indication. Key clue: CKD with albuminuria: ACEi or ARB, titrated to max tolerated. Pharmacist move: HFrEF: GDMT (ARNI/ACEi/ARB, beta-blocker, MRA, SGLT2i). Post-MI: beta-blocker plus ACEi/ARB. Exam trap: Check potassium and creatinine 2–4 weeks after starting a RAS inhibitor.",
+  "word_count": 44,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ACC/AHA 2025 HTN; KDIGO 2024",
+   "year": "2024 / 2025",
+   "url": "https://doi.org/10.1161/hyp.0000000000000249",
+   "alt_url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+   "recommendation": "2025 AHA/ACC HTN guideline: compelling indications guide drug choice (CKD with albuminuria—ACEi/ARB; HFrEF—GDMT; post-MI—beta-blocker and ACEi/ARB). KDIGO 2024 CKD: RASi titrated to maximum tolerated dose for CKD with albuminuria; monitor BP, creatinine and potassium within 2–4 weeks of starting or changing dose."
+  },
+  "verified": "Y – ahajournals.org, kdigo.org"
+ },
+ {
+  "id": "naplex-104",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "HFrEF GDMT four pillars & titration (ARNI, BB, MRA, SGLT2i)",
+  "calculation": false,
+  "reused_from": "pance-003",
+  "front": "New HFrEF (EF 30%). What are the four pillars, and how fast do you start them?",
+  "bottom": "ARNI, beta-blocker, MRA, SGLT2 inhibitor.",
+  "bullets": {
+   "clue": "Start all four quickly; order is flexible; titrate to target doses.",
+   "treat": "Switching ACEi to sacubitril/valsartan: 36-hour washout.",
+   "trap": "Beta-blocker must be carvedilol, metoprolol succinate or bisoprolol."
+  },
+  "back": "ARNI, beta-blocker, MRA, SGLT2 inhibitor. Key clue: Start all four quickly; order is flexible; titrate to target doses. Pharmacist move: Switching ACEi to sacubitril/valsartan: 36-hour washout. Exam trap: Beta-blocker must be carvedilol, metoprolol succinate or bisoprolol.",
+  "word_count": 36,
+  "mnemonic": null,
+  "diagram": {
+   "file": "svg/naplex-104.svg",
+   "alt": "HFrEF four pillars started together in any order: ARNI (or ACE inhibitor or ARB), evidence-based beta-blocker (carvedilol, metoprolol succinate, bisoprolol), MRA, SGLT2 inhibitor. 36-hour washout from ACE inhibitor before ARNI."
+  },
+  "source": {
+   "guideline": "2022 AHA/ACC/HFSA HF; 2024 ACC ECDP HFrEF",
+   "year": "2022 / 2024",
+   "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+   "alt_url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.11.022",
+   "recommendation": "2022 AHA/ACC/HFSA HF guideline: HFrEF GDMT—ARNI (or ACEi/ARB), evidence-based beta-blocker, MRA, SGLT2i (COR 1); ARNI not within 36 h of last ACEi dose. 2024 ACC Expert Consensus Decision Pathway for HFrEF: initiate GDMT rapidly, sequence flexible, titrate to target doses."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-105",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "HFrEF drugs to avoid (non-DHP CCB, TZDs, NSAIDs)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient with HFrEF gets diltiazem, pioglitazone and naproxen. Which ones worsen HF?",
+  "bottom": "All three: avoid in HFrEF.",
+  "bullets": {
+   "clue": "Non-DHP CCBs, thiazolidinediones, NSAIDs.",
+   "treat": "Also avoid cilostazol, dronedarone and class IC antiarrhythmics.",
+   "trap": "Amlodipine is neutral and OK for BP or angina."
+  },
+  "back": "All three: avoid in HFrEF. Key clue: Non-DHP CCBs, thiazolidinediones, NSAIDs. Pharmacist move: Also avoid cilostazol, dronedarone and class IC antiarrhythmics. Exam trap: Amlodipine is neutral and OK for BP or angina.",
+  "word_count": 32,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "2022 AHA/ACC/HFSA HF",
+   "year": "2022",
+   "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+   "alt_url": null,
+   "recommendation": "2022 AHA/ACC/HFSA HF guideline: in HFrEF, non-DHP calcium channel blockers, thiazolidinediones, NSAIDs, dronedarone and class IC antiarrhythmics are harmful; cilostazol labeling contraindicates use in HF. Amlodipine is neutral."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-106",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Acute decompensated HF: IV loop diuretic dosing",
+  "calculation": false,
+  "reused_from": "pance-026",
+  "front": "Admitted for decompensated HF on furosemide 40 mg PO daily. First IV loop dose?",
+  "bottom": "IV dose equal to or above the home oral dose.",
+  "bullets": {
+   "clue": "Per guideline, the IV dose should equal or exceed the total daily oral dose.",
+   "treat": "Give IV furosemide at least 40 mg; titrate to urine output and symptoms.",
+   "trap": "Equivalents: furosemide 40 PO = torsemide 20 = bumetanide 1."
+  },
+  "back": "IV dose equal to or above the home oral dose. Key clue: Per guideline, the IV dose should equal or exceed the total daily oral dose. Pharmacist move: Give IV furosemide at least 40 mg; titrate to urine output and symptoms. Exam trap: Equivalents: furosemide 40 PO = torsemide 20 = bumetanide 1.",
+  "word_count": 53,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "2022 AHA/ACC/HFSA HF",
+   "year": "2022",
+   "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+   "alt_url": null,
+   "recommendation": "2022 AHA/ACC/HFSA HF guideline: in hospitalized HF with congestion, IV loop diuretics promptly; initial IV dose should equal or exceed chronic oral daily dose, then adjust to response. Loop equivalence per labeling/standard references."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-107",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "ASCVD/dyslipidemia: statin intensity, LDL-C goals, add-on ezetimibe/PCSK9i, Lp(a)",
+  "calculation": false,
+  "reused_from": "pance-025",
+  "front": "Patient with recent MI and LDL-C 90 on max statin. What's the 2026 target, and what's next?",
+  "bottom": "Very high risk: LDL-C <55 mg/dL.",
+  "bullets": {
+   "clue": "Other ASCVD: LDL-C <70. Measure Lp(a) once in every adult.",
+   "treat": "Add ezetimibe, then a PCSK9 inhibitor if still above goal.",
+   "trap": "Lp(a) ≥125 nmol/L (50 mg/dL) is a risk enhancer."
+  },
+  "back": "Very high risk: LDL-C <55 mg/dL. Key clue: Other ASCVD: LDL-C <70. Measure Lp(a) once in every adult. Pharmacist move: Add ezetimibe, then a PCSK9 inhibitor if still above goal. Exam trap: Lp(a) ≥125 nmol/L (50 mg/dL) is a risk enhancer.",
+  "word_count": 41,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "2026 ACC/AHA multisociety Dyslipidemia guideline (replaces 2018 cholesterol)",
+   "year": "2018 / 2026",
+   "url": "https://doi.org/10.1161/cir.0000000000001423",
+   "alt_url": "https://www.jacc.org/doi/10.1016/j.jacc.2026.02.4872",
+   "recommendation": "2026 ACC/AHA multisociety Dyslipidemia guideline (replaces 2018): very-high-risk secondary prevention LDL-C goal <55 mg/dL (non-HDL-C <85); other ASCVD generally <70 mg/dL; add nonstatin therapy (ezetimibe, PCSK9 mAb) when above goal on maximally tolerated statin; measure Lp(a) at least once in all adults; Lp(a) ≥125 nmol/L (50 mg/dL) is a risk enhancer."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-108",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "ACS: DAPT, P2Y12 choice, duration",
+  "calculation": false,
+  "reused_from": "pance-021",
+  "front": "NSTEMI going to PCI. Which P2Y12 inhibitor, aspirin dose, and DAPT length?",
+  "bottom": "Ticagrelor or prasugrel over clopidogrel; aspirin 81 mg.",
+  "bullets": {
+   "clue": "DAPT usually 12 months; selected patients can drop aspirin after 1 month on ticagrelor.",
+   "treat": "Prasugrel: contraindicated after stroke or TIA; generally avoid ≥75; <60 kg consider 5 mg daily.",
+   "trap": "Aspirin >100 mg reduces ticagrelor's benefit."
+  },
+  "back": "Ticagrelor or prasugrel over clopidogrel; aspirin 81 mg. Key clue: DAPT usually 12 months; selected patients can drop aspirin after 1 month on ticagrelor. Pharmacist move: Prasugrel: contraindicated after stroke or TIA; generally avoid ≥75; <60 kg consider 5 mg daily. Exam trap: Aspirin >100 mg reduces ticagrelor's benefit.",
+  "word_count": 49,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ACC/AHA/ACEP 2025 ACS",
+   "year": "2025",
+   "url": "https://doi.org/10.1016/j.jacc.2024.11.009",
+   "alt_url": null,
+   "recommendation": "2025 ACC/AHA/ACEP/NAEMSP/SCAI ACS guideline: ticagrelor or prasugrel preferred over clopidogrel with PCI; DAPT 12 months default; transition to ticagrelor monotherapy after ≥1 month reasonable in selected patients to reduce bleeding; aspirin 75–100 mg maintenance; prasugrel contraindicated with prior stroke/TIA. Ticagrelor labeling: aspirin maintenance >100 mg reduces effectiveness."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-109",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "STEMI fibrinolysis contraindications",
+  "calculation": false,
+  "reused_from": "pance-001",
+  "front": "STEMI, PCI more than 2 hours away. Which patients can't get a fibrinolytic?",
+  "bottom": "Absolute: prior ICH, recent stroke, active bleeding, dissection.",
+  "bullets": {
+   "clue": "Ischemic stroke or significant head trauma within 3 months; intracranial tumor.",
+   "treat": "If eligible, give the lytic within 30 minutes of arrival.",
+   "trap": "BP >180/110 is relative, not absolute."
+  },
+  "back": "Absolute: prior ICH, recent stroke, active bleeding, dissection. Key clue: Ischemic stroke or significant head trauma within 3 months; intracranial tumor. Pharmacist move: If eligible, give the lytic within 30 minutes of arrival. Exam trap: BP >180/110 is relative, not absolute.",
+  "word_count": 41,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ACC/AHA/ACEP 2025 ACS",
+   "year": "2025",
+   "url": "https://doi.org/10.1016/j.jacc.2024.11.009",
+   "alt_url": null,
+   "recommendation": "2025 ACC/AHA/ACEP ACS guideline: fibrinolytic therapy when timely primary PCI (≤120 min from first medical contact) is not possible, door-to-needle ≤30 min; absolute contraindications include prior ICH, ischemic stroke within 3 months, known intracranial neoplasm/vascular lesion, active bleeding, suspected aortic dissection, significant closed head or facial trauma within 3 months; severe uncontrolled hypertension (>180/110) is relative."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-110",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Chronic coronary disease: antianginals, SL nitroglycerin counseling",
+  "calculation": false,
+  "reused_from": "pance-022",
+  "front": "Stable angina patient gets sublingual nitroglycerin. Counsel dose, timing and storage.",
+  "bottom": "0.4 mg every 5 minutes, up to 3 doses.",
+  "bullets": {
+   "clue": "Call 911 if pain isn't better 5 minutes after the first dose.",
+   "treat": "Keep in original glass bottle; long-acting nitrates need a 10–14 h nitrate-free interval.",
+   "trap": "No PDE5 inhibitors with nitrates."
+  },
+  "back": "0.4 mg every 5 minutes, up to 3 doses. Key clue: Call 911 if pain isn't better 5 minutes after the first dose. Pharmacist move: Keep in original glass bottle; long-acting nitrates need a 10–14 h nitrate-free interval. Exam trap: No PDE5 inhibitors with nitrates.",
+  "word_count": 45,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "AHA/ACC 2023 Chronic Coronary Disease",
+   "year": "2023",
+   "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001168",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9a52da75-d0af-4237-96c0-0b12adfa8636",
+   "recommendation": "2023 AHA/ACC Chronic Coronary Disease guideline: SL nitroglycerin for immediate relief; beta-blocker or CCB as first-line antianginal. Nitroglycerin SL labeling: 0.4 mg at onset, may repeat every 5 minutes up to 3 doses; seek emergency care if pain persists 5 minutes after first dose; store in original glass container; contraindicated with PDE5 inhibitors."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-111",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "AF: CHA2DS2-VASc and DOAC selection/dose reductions",
+  "calculation": false,
+  "reused_from": "pance-002",
+  "front": "AF patient, 72-year-old woman with hypertension. Anticoagulate? Which drug?",
+  "bottom": "Yes: CHA2DS2-VASc 3. DOAC over warfarin.",
+  "bullets": {
+   "clue": "Age 65–74 (1) + female (1) + hypertension (1) = 3.",
+   "treat": "Anticoagulate at ≥2 in men or ≥3 in women; dose DOACs by label criteria.",
+   "trap": "Mechanical valve or moderate-severe mitral stenosis: warfarin, not a DOAC."
+  },
+  "back": "Yes: CHA2DS2-VASc 3. DOAC over warfarin. Key clue: Age 65–74 (1) + female (1) + hypertension (1) = 3. Pharmacist move: Anticoagulate at ≥2 in men or ≥3 in women; dose DOACs by label criteria. Exam trap: Mechanical valve or moderate-severe mitral stenosis: warfarin, not a DOAC.",
+  "word_count": 47,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "2023 ACC/AHA/ACCP/HRS AF",
+   "year": "2023",
+   "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
+   "alt_url": null,
+   "recommendation": "2023 ACC/AHA/ACCP/HRS AF guideline: anticoagulation recommended for annual stroke risk ≥2% (CHA2DS2-VASc ≥2 men, ≥3 women); DOACs preferred over warfarin except with mechanical heart valves or moderate-to-severe mitral stenosis; dose per label."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-112",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "AF rate vs rhythm control drug choices",
+  "calculation": false,
+  "reused_from": "pance-035",
+  "front": "AF with rapid rate: what controls rate, and who can take flecainide?",
+  "bottom": "Rate: beta-blocker or diltiazem/verapamil.",
+  "bullets": {
+   "clue": "Avoid non-DHP CCBs in HFrEF.",
+   "treat": "Flecainide or propafenone only without structural heart disease; add an AV nodal blocker.",
+   "trap": "HFrEF rhythm control: amiodarone or dofetilide; ablation is often first-line."
+  },
+  "back": "Rate: beta-blocker or diltiazem/verapamil. Key clue: Avoid non-DHP CCBs in HFrEF. Pharmacist move: Flecainide or propafenone only without structural heart disease; add an AV nodal blocker. Exam trap: HFrEF rhythm control: amiodarone or dofetilide; ablation is often first-line.",
+  "word_count": 38,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "2023 ACC/AHA/ACCP/HRS AF",
+   "year": "2023",
+   "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
+   "alt_url": null,
+   "recommendation": "2023 ACC/AHA/ACCP/HRS AF guideline: rate control with beta-blockers or non-DHP CCBs (avoid non-DHP CCBs with LVEF <40%); class IC drugs (flecainide, propafenone) only without structural heart disease/ischemic heart disease, used with AV nodal blockade; amiodarone or dofetilide in HFrEF; catheter ablation first-line in selected patients including HFrEF."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-113",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "VTE treatment & duration; DOAC vs warfarin; cancer VTE",
+  "calculation": false,
+  "reused_from": "pance-034",
+  "front": "Provoked DVT treated with apixaban. Dose, and how long?",
+  "bottom": "10 mg BID for 7 days, then 5 mg BID; 3 months.",
+  "bullets": {
+   "clue": "Rivaroxaban: 15 mg BID for 21 days, then 20 mg daily with food.",
+   "treat": "Dabigatran and edoxaban need 5–10 days of parenteral lead-in.",
+   "trap": "Unprovoked VTE: reassess for extended therapy after 3 months."
+  },
+  "back": "10 mg BID for 7 days, then 5 mg BID; 3 months. Key clue: Rivaroxaban: 15 mg BID for 21 days, then 20 mg daily with food. Pharmacist move: Dabigatran and edoxaban need 5–10 days of parenteral lead-in. Exam trap: Unprovoked VTE: reassess for extended therapy after 3 months.",
+  "word_count": 49,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CHEST 2021 VTE (2024 compendium); 2026 AHA/ACC multisociety acute PE guideline",
+   "year": "2021 / 2024 / 2026",
+   "url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
+   "alt_url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001415",
+   "recommendation": "CHEST 2021 VTE: DOACs over VKA; 3 months for VTE provoked by transient risk factor; extended therapy for unprovoked VTE in many patients; cancer-associated VTE—apixaban, edoxaban or rivaroxaban. 2026 AHA/ACC acute PE guideline: DOAC over warfarin when appropriate. Dosing per labeling (apixaban 10 mg BID × 7 days then 5 mg BID; rivaroxaban 15 mg BID × 21 days then 20 mg daily with food; dabigatran/edoxaban after 5–10 days parenteral anticoagulation)."
+  },
+  "verified": "Y – ahajournals.org, journal.chestnet.org"
+ },
+ {
+  "id": "naplex-114",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "VTE prophylaxis in hospitalized patients",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Acutely ill medical inpatient, low bleeding risk. VTE prophylaxis pick?",
+  "bottom": "LMWH (e.g., enoxaparin 40 mg daily) over UFH.",
+  "bullets": {
+   "clue": "High bleeding risk: mechanical prophylaxis instead.",
+   "treat": "Stop at discharge; don't routinely extend.",
+   "trap": "ASH prefers LMWH over DOACs for inpatient medical prophylaxis."
+  },
+  "back": "LMWH (e.g., enoxaparin 40 mg daily) over UFH. Key clue: High bleeding risk: mechanical prophylaxis instead. Pharmacist move: Stop at discharge; don't routinely extend. Exam trap: ASH prefers LMWH over DOACs for inpatient medical prophylaxis.",
+  "word_count": 35,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ASH 2018 VTE prophylaxis; CHEST",
+   "year": "2018",
+   "url": "https://ashpublications.org/bloodadvances/article/2/22/3198/16125/",
+   "alt_url": "https://journal.chestnet.org/",
+   "recommendation": "ASH 2018 VTE prophylaxis in medical patients: pharmacological prophylaxis with LMWH (preferred over UFH) for acutely ill medical patients; mechanical prophylaxis when bleeding risk high; against extended-duration prophylaxis after discharge; against DOACs for inpatient prophylaxis."
+  },
+  "verified": "Y – journal.chestnet.org, hematology.org"
+ },
+ {
+  "id": "naplex-115",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "HIT: stop heparin, argatroban/bivalirudin",
+  "calculation": false,
+  "reused_from": "pance-172",
+  "front": "Platelets fell 60% on day 6 of heparin with a new clot. What now?",
+  "bottom": "Suspected HIT: stop all heparin.",
+  "bullets": {
+   "clue": "4Ts score; includes LMWH and heparin flushes.",
+   "treat": "Start a non-heparin anticoagulant: argatroban, bivalirudin, fondaparinux or a DOAC.",
+   "trap": "Don't start warfarin until platelets recover (≥150k); reverse warfarin with vitamin K if already on it."
+  },
+  "back": "Suspected HIT: stop all heparin. Key clue: 4Ts score; includes LMWH and heparin flushes. Pharmacist move: Start a non-heparin anticoagulant: argatroban, bivalirudin, fondaparinux or a DOAC. Exam trap: Don't start warfarin until platelets recover (≥150k); reverse warfarin with vitamin K if already on it.",
+  "word_count": 44,
+  "mnemonic": null,
+  "diagram": {
+   "file": "svg/naplex-115.svg",
+   "alt": "HIT algorithm: platelet fall over 50 percent at day 5 to 10 or new clot, calculate 4Ts; if intermediate or high, stop all heparin including flushes and LMWH, start a non-heparin anticoagulant, send the PF4 test; delay warfarin until platelets are at least 150,000 and give vitamin K if already on warfarin."
+  },
+  "source": {
+   "guideline": "ASH 2018 HIT",
+   "year": "2018",
+   "url": "https://ashpublications.org/bloodadvances/article/2/22/3360/16273/",
+   "alt_url": null,
+   "recommendation": "ASH 2018 HIT guideline: stop all heparin when HIT suspected (intermediate/high 4Ts); start non-heparin anticoagulant (argatroban, bivalirudin, danaparoid, fondaparinux, DOAC); do not start VKA until platelet recovery (usually ≥150 × 10⁹/L); give vitamin K if on VKA at diagnosis; avoid platelet transfusion unless bleeding."
+  },
+  "verified": "Y – hematology.org"
+ },
+ {
+  "id": "naplex-116",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "ACLS drugs: epinephrine, amiodarone, adenosine, atropine",
+  "calculation": false,
+  "reused_from": "pance-036",
+  "front": "Pulseless VF after 2 shocks. Which drugs and doses?",
+  "bottom": "Epinephrine 1 mg every 3–5 minutes.",
+  "bullets": {
+   "clue": "Refractory VF/pVT: amiodarone 300 mg, then 150 mg (or lidocaine).",
+   "treat": "Stable SVT: adenosine 6 mg rapid push, then 12 mg. Bradycardia: atropine 1 mg, max 3 mg.",
+   "trap": "Vasopressin isn't in the adult arrest algorithm."
+  },
+  "back": "Epinephrine 1 mg every 3–5 minutes. Key clue: Refractory VF/pVT: amiodarone 300 mg, then 150 mg (or lidocaine). Pharmacist move: Stable SVT: adenosine 6 mg rapid push, then 12 mg. Bradycardia: atropine 1 mg, max 3 mg. Exam trap: Vasopressin isn't in the adult arrest algorithm.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": {
+   "file": "svg/naplex-116.svg",
+   "alt": "Adult cardiac arrest, shockable rhythm: CPR and shock, epinephrine 1 mg every 3 to 5 minutes after the second shock, amiodarone 300 mg after the third shock then 150 mg, or lidocaine 1 to 1.5 mg/kg then 0.5 to 0.75 mg/kg."
+  },
+  "source": {
+   "guideline": "AHA 2025 CPR/ECC",
+   "year": "2025",
+   "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines",
+   "alt_url": null,
+   "recommendation": "AHA 2025 Guidelines for CPR and ECC: epinephrine 1 mg IV/IO every 3–5 minutes; amiodarone 300 mg then 150 mg or lidocaine for shock-refractory VF/pVT; adenosine 6 mg then 12 mg for stable regular narrow-complex tachycardia; atropine 1 mg every 3–5 minutes up to 3 mg for symptomatic bradycardia."
+  },
+  "verified": "Y – cpr.heart.org"
+ },
+ {
+  "id": "naplex-117",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "PAD: antiplatelet, cilostazol (HF contraindication), rivaroxaban 2.5",
+  "calculation": false,
+  "reused_from": "pance-033",
+  "front": "PAD with claudication and HFrEF: antithrombotics, and can you add cilostazol?",
+  "bottom": "No cilostazol: contraindicated in heart failure.",
+  "bullets": {
+   "clue": "Single antiplatelet (aspirin or clopidogrel) for symptomatic PAD.",
+   "treat": "Consider rivaroxaban 2.5 mg BID plus aspirin; high-intensity statin; supervised exercise.",
+   "trap": "Cilostazol boxed warning covers HF of any severity."
+  },
+  "back": "No cilostazol: contraindicated in heart failure. Key clue: Single antiplatelet (aspirin or clopidogrel) for symptomatic PAD. Pharmacist move: Consider rivaroxaban 2.5 mg BID plus aspirin; high-intensity statin; supervised exercise. Exam trap: Cilostazol boxed warning covers HF of any severity.",
+  "word_count": 39,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ACC/AHA 2024 PAD",
+   "year": "2024",
+   "url": "https://doi.org/10.1016/j.jacc.2024.02.013",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7c841eed-a98f-43c3-baaf-bf5502207a69",
+   "recommendation": "2024 ACC/AHA multisociety PAD guideline: single antiplatelet therapy for symptomatic PAD; low-dose rivaroxaban 2.5 mg BID plus aspirin to reduce MACE/MALE; high-intensity statin; cilostazol for claudication; supervised exercise. Cilostazol labeling: contraindicated in heart failure of any severity (boxed warning)."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-118",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "T2D: metformin plus GLP-1 RA/SGLT2i by comorbidity",
+  "calculation": false,
+  "reused_from": "pance-135",
+  "front": "T2D with HFrEF and CKD, A1c 7.2% on metformin. Add what?",
+  "bottom": "SGLT2 inhibitor, regardless of A1c.",
+  "bullets": {
+   "clue": "ASCVD: GLP-1 RA or SGLT2i with proven benefit.",
+   "treat": "Obesity: GLP-1 RA or tirzepatide for weight; CKD: SGLT2i plus consider GLP-1 RA.",
+   "trap": "Cardiorenal benefit is independent of A1c and metformin use."
+  },
+  "back": "SGLT2 inhibitor, regardless of A1c. Key clue: ASCVD: GLP-1 RA or SGLT2i with proven benefit. Pharmacist move: Obesity: GLP-1 RA or tirzepatide for weight; CKD: SGLT2i plus consider GLP-1 RA. Exam trap: Cardiorenal benefit is independent of A1c and metformin use.",
+  "word_count": 41,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ADA Standards of Care 2026",
+   "year": "2026",
+   "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+   "alt_url": null,
+   "recommendation": "ADA Standards of Care 2026 (Section 9): in T2D with HF or CKD, SGLT2i with demonstrated benefit; with ASCVD, GLP-1 RA and/or SGLT2i with demonstrated CV benefit; independent of A1c and metformin; GLP-1 RA or dual GIP/GLP-1 RA for weight management."
+  },
+  "verified": "Y – diabetesjournals.org"
+ },
+ {
+  "id": "naplex-119",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "T2D A1c goals and individualization; older adults",
+  "calculation": false,
+  "reused_from": null,
+  "front": "A1c goal for a healthy 50-year-old vs a frail 82-year-old with falls?",
+  "bottom": "Most adults <7%; frail older adults <8% or looser.",
+  "bullets": {
+   "clue": "Hypoglycemia risk, comorbidities and life expectancy drive the goal.",
+   "treat": "Deintensify insulin and sulfonylureas when hypoglycemia outweighs benefit.",
+   "trap": "Tighter isn't better when it causes hypoglycemia."
+  },
+  "back": "Most adults <7%; frail older adults <8% or looser. Key clue: Hypoglycemia risk, comorbidities and life expectancy drive the goal. Pharmacist move: Deintensify insulin and sulfonylureas when hypoglycemia outweighs benefit. Exam trap: Tighter isn't better when it causes hypoglycemia.",
+  "word_count": 39,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ADA Standards of Care 2026",
+   "year": "2026",
+   "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+   "alt_url": null,
+   "recommendation": "ADA Standards of Care 2026 (Sections 6 and 13): A1c <7% for many nonpregnant adults without significant hypoglycemia; less stringent goals (e.g., <8.0%) for older adults with complex health; deintensify hypoglycemia-causing agents in older adults."
+  },
+  "verified": "Y – diabetesjournals.org"
+ },
+ {
+  "id": "naplex-120",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Insulin initiation and titration (basal 10 U or 0.1–0.2 U/kg)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Starting basal insulin in T2D. Dose and titration?",
+  "bottom": "10 units or 0.1–0.2 units/kg daily.",
+  "bullets": {
+   "clue": "Titrate 2–4 units (or 10–15%) once or twice weekly to fasting 80–130.",
+   "treat": "Watch for overbasalization: basal >0.5 units/kg, bedtime-to-morning drop.",
+   "trap": "Above 0.5 units/kg: add prandial insulin or GLP-1 RA instead of more basal."
+  },
+  "back": "10 units or 0.1–0.2 units/kg daily. Key clue: Titrate 2–4 units (or 10–15%) once or twice weekly to fasting 80–130. Pharmacist move: Watch for overbasalization: basal >0.5 units/kg, bedtime-to-morning drop. Exam trap: Above 0.5 units/kg: add prandial insulin or GLP-1 RA instead of more basal.",
+  "word_count": 45,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ADA Standards of Care 2026",
+   "year": "2026",
+   "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+   "alt_url": null,
+   "recommendation": "ADA Standards of Care 2026 (Section 9): start basal insulin 10 units/day or 0.1–0.2 units/kg/day; adjust 10–15% or 2–4 units once or twice weekly to fasting target (typical 80–130 mg/dL); overbasalization signs include basal dose >0.5 units/kg/day, high bedtime-to-morning differential, hypoglycemia; consider GLP-1 RA or prandial insulin."
+  },
+  "verified": "Y – diabetesjournals.org"
+ },
+ {
+  "id": "naplex-121",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Hypoglycemia: rule of 15, glucagon forms",
+  "calculation": false,
+  "reused_from": "pance-136",
+  "front": "Glucose 58 mg/dL, patient awake. Treatment, and when is glucagon needed?",
+  "bottom": "15 g fast carbs, recheck in 15 minutes.",
+  "bullets": {
+   "clue": "Level 1 <70; level 2 <54; level 3 needs assistance.",
+   "treat": "Unable to swallow: glucagon (nasal 3 mg or injection); prescribe it for insulin users.",
+   "trap": "On acarbose, use glucose tablets: sucrose won't absorb fast."
+  },
+  "back": "15 g fast carbs, recheck in 15 minutes. Key clue: Level 1 <70; level 2 <54; level 3 needs assistance. Pharmacist move: Unable to swallow: glucagon (nasal 3 mg or injection); prescribe it for insulin users. Exam trap: On acarbose, use glucose tablets: sucrose won't absorb fast.",
+  "word_count": 47,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ADA Standards of Care 2026",
+   "year": "2026",
+   "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1ba7a072-03b0-41f2-be7a-101145bdef3a",
+   "recommendation": "ADA Standards of Care 2026 (Section 6): treat glucose <70 mg/dL with 15–20 g glucose, recheck in 15 min and repeat if needed; glucagon prescribed for those at risk of level 2 or 3 hypoglycemia. Acarbose labeling: treat hypoglycemia with glucose (dextrose), not sucrose."
+  },
+  "verified": "Y – diabetesjournals.org"
+ },
+ {
+  "id": "naplex-122",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "DKA/HHS: fluids, insulin, potassium thresholds",
+  "calculation": false,
+  "reused_from": "pance-012",
+  "front": "DKA with potassium 3.1. Start the insulin drip?",
+  "bottom": "No: replace potassium first; start insulin at K ≥3.5.",
+  "bullets": {
+   "clue": "Fluids first: isotonic crystalloid 1–1.5 L in the first hour.",
+   "treat": "Insulin 0.1 units/kg/h; add dextrose when glucose falls below 250.",
+   "trap": "Give SC basal insulin about 2 hours before stopping the drip."
+  },
+  "back": "No: replace potassium first; start insulin at K ≥3.5. Key clue: Fluids first: isotonic crystalloid 1–1.5 L in the first hour. Pharmacist move: Insulin 0.1 units/kg/h; add dextrose when glucose falls below 250. Exam trap: Give SC basal insulin about 2 hours before stopping the drip.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": {
+   "file": "svg/naplex-122.svg",
+   "alt": "DKA potassium gate: fluids first, 1 to 1.5 L isotonic crystalloid in hour one. Potassium below 3.5: hold insulin and replace potassium. 3.5 to 5: insulin 0.1 units/kg/h plus potassium in fluids. Above 5: insulin, no potassium, recheck. Add dextrose when glucose falls below 250; basal insulin about 2 hours before stopping the drip."
+  },
+  "source": {
+   "guideline": "ADA/international DKA-HHS consensus 2024",
+   "year": "2024",
+   "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/",
+   "alt_url": null,
+   "recommendation": "2024 ADA/EASD/JBDS/AACE/DTS hyperglycemic crises consensus: isotonic crystalloid 1–1.5 L first hour; hold insulin if K <3.5 mmol/L and replace potassium; IV insulin 0.1 units/kg/h; add dextrose 5–10% when glucose <250 mg/dL; give SC basal insulin 1–2 h before stopping IV insulin (ADA Standards of Care 2026: 2 h)."
+  },
+  "verified": "Y – diabetesjournals.org"
+ },
+ {
+  "id": "naplex-123",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "GLP-1 RA/GIP: adverse effects, pancreatitis, gastroparesis, obesity dosing",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Starting semaglutide for weight: counseling on side effects and titration?",
+  "bottom": "Slow titration limits GI effects.",
+  "bullets": {
+   "clue": "Nausea, vomiting, diarrhea, constipation; gallbladder disease; pancreatitis.",
+   "treat": "Stop and seek care for severe abdominal pain; don't combine with a DPP-4 inhibitor.",
+   "trap": "Boxed warning: no use with personal or family MTC or MEN 2."
+  },
+  "back": "Slow titration limits GI effects. Key clue: Nausea, vomiting, diarrhea, constipation; gallbladder disease; pancreatitis. Pharmacist move: Stop and seek care for severe abdominal pain; don't combine with a DPP-4 inhibitor. Exam trap: Boxed warning: no use with personal or family MTC or MEN 2.",
+  "word_count": 44,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ADA Standards 2026; FDA labeling",
+   "year": "2026",
+   "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ee06186f-2aa3-4990-a760-757579d8f77b",
+   "recommendation": "Semaglutide (Wegovy) labeling: dose escalation every 4 weeks to 2.4 mg weekly to reduce GI adverse reactions; warnings for acute pancreatitis, gallbladder disease; boxed warning for thyroid C-cell tumors. ADA Standards 2026: avoid combining GLP-1 RA with DPP-4 inhibitors."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov, diabetesjournals.org"
+ },
+ {
+  "id": "naplex-124",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Hypothyroidism: levothyroxine dosing, TSH timing, administration",
+  "calculation": false,
+  "reused_from": "pance-137",
+  "front": "New levothyroxine for an 80-year-old with CAD. Starting dose, administration and follow-up?",
+  "bottom": "Start low: 12.5–50 mcg daily.",
+  "bullets": {
+   "clue": "Healthy younger adults: about 1.6 mcg/kg/day.",
+   "treat": "Empty stomach 30–60 minutes before breakfast; recheck TSH in 6–8 weeks.",
+   "trap": "Separate from calcium and iron by 4 hours."
+  },
+  "back": "Start low: 12.5–50 mcg daily. Key clue: Healthy younger adults: about 1.6 mcg/kg/day. Pharmacist move: Empty stomach 30–60 minutes before breakfast; recheck TSH in 6–8 weeks. Exam trap: Separate from calcium and iron by 4 hours.",
+  "word_count": 36,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ATA 2014 hypothyroidism (still current, latest = 2014); ATA 2026 pregnancy guideline",
+   "year": "2014 / 2026",
+   "url": "https://www.liebertpub.com/doi/10.1089/thy.2014.0028",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1e11ad30-1041-4520-10b0-8f9d30d30fcc",
+   "recommendation": "ATA 2014 hypothyroidism guideline: full replacement ~1.6 mcg/kg/day; lower starting dose in elderly or CAD (e.g., 12.5–50 mcg); take on empty stomach 60 min before breakfast (or at bedtime 3 h after meal); TSH 6–8 weeks after dose change. Levothyroxine labeling: separate from calcium/iron by ≥4 hours."
+  },
+  "verified": "Y – thyroid.org"
+ },
+ {
+  "id": "naplex-125",
+  "system": "Person-Centered Assessment & Treatment Planning",
+  "blueprint_weight": "40%",
+  "task_area": "NAPLEX 3C",
+  "topic": "Hyperthyroidism: methimazole vs PTU (pregnancy T1)",
+  "calculation": false,
+  "reused_from": "pance-138",
+  "front": "Graves' disease: which antithyroid drug normally, and which in early pregnancy?",
+  "bottom": "Methimazole usually; PTU until 16 weeks of pregnancy.",
+  "bullets": {
+   "clue": "Switch methimazole to PTU as soon as pregnancy is confirmed.",
+   "treat": "Counsel: fever or sore throat on either drug means a CBC for agranulocytosis.",
+   "trap": "PTU has a boxed warning for severe liver injury."
+  },
+  "back": "Methimazole usually; PTU until 16 weeks of pregnancy. Key clue: Switch methimazole to PTU as soon as pregnancy is confirmed. Pharmacist move: Counsel: fever or sore throat on either drug means a CBC for agranulocytosis. Exam trap: PTU has a boxed warning for severe liver injury.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ATA 2016 hyperthyroidism; ATA 2026 pregnancy/postpartum thyroid guideline",
+   "year": "2016 / 2026",
+   "url": "https://doi.org/10.1089/thy.2016.0229",
+   "alt_url": "https://doi.org/10.1177/10507256261445624",
+   "recommendation": "ATA 2016 hyperthyroidism guideline: methimazole preferred except first trimester of pregnancy, thyroid storm, or methimazole intolerance; obtain CBC for fever/sore throat (agranulocytosis). ATA 2026 pregnancy/postpartum guideline: switch from methimazole to PTU (1:20 ratio) as soon as pregnancy confirmed if PTU available; treat with PTU until 16 weeks; consider stopping ATDs in low-risk women. PTU labeling: boxed warning for severe liver injury."
+  },
+  "verified": "Y – thyroid.org"
+ }
+]

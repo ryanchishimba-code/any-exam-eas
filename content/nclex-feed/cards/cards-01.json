@@ -1,0 +1,1352 @@
+[
+  {
+    "id": "nclex-001",
+    "system": "Prioritization",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client has noisy, gurgling respirations, another has a full bladder, and a third wants teaching: who comes first?",
+    "bottom": "Airway first, then breathing, then circulation.",
+    "bullets": {
+      "clue": "Any threat to airway or breathing outranks comfort, elimination or teaching needs.",
+      "treat": "Apply ABCs first, then Maslow: physiologic needs before safety and psychosocial needs.",
+      "trap": "Choosing pain or comfort when it does not signal a physiologic threat."
+    },
+    "back": "Airway first, then breathing, then circulation. Key clue: Any threat to airway or breathing outranks comfort, elimination or teaching needs. First-line: Apply ABCs first, then Maslow: physiologic needs before safety and psychosocial needs. Exam trap: Choosing pain or comfort when it does not signal a physiologic threat.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-001.svg",
+      "alt": "Priority ladder: airway, breathing, circulation, then Maslow levels from physiologic to self-actualization."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places prioritization in Management of Care. Nurses use airway, breathing and circulation first, then Maslow's hierarchy, addressing physiologic threats before safety, then love and belonging, esteem and self-actualization needs. Actual problems generally come before potential problems in priority questions."
+    }
+  },
+  {
+    "id": "nclex-002",
+    "system": "Prioritization",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "After shift report on four clients, which client should the nurse assess first: expected findings or a new change?",
+    "bottom": "See the unstable client or unexpected finding first.",
+    "bullets": {
+      "clue": "A new, acute or unexpected change; expected findings for the diagnosis can wait.",
+      "treat": "Rank acute over chronic, unstable over stable, and actual over potential problems.",
+      "trap": "Choosing the scariest diagnosis when its findings are expected and stable."
+    },
+    "back": "See the unstable client or unexpected finding first. Key clue: A new, acute or unexpected change; expected findings for the diagnosis can wait. First-line: Rank acute over chronic, unstable over stable, and actual over potential problems. Exam trap: Choosing the scariest diagnosis when its findings are expected and stable.",
+    "word_count": 49,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-002.svg",
+      "alt": "Decision tree: unexpected change goes first, then acute, then actual problem, then stable clients."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places prioritizing client care in Management of Care. The nurse sees the client with an unexpected or acute change first, because expected findings consistent with a known diagnosis are less urgent than new signs of deterioration or instability."
+    }
+  },
+  {
+    "id": "nclex-003",
+    "system": "Delegation",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "The RN is assigning tasks to assistive personnel on a busy unit: which tasks can be safely delegated?",
+    "bottom": "Routine tasks for stable clients with predictable outcomes.",
+    "bullets": {
+      "clue": "Vital signs, hygiene, ambulation, and intake and output for stable clients.",
+      "treat": "Delegate routine tasks; keep assessment, teaching, evaluation and clinical judgment with the RN.",
+      "trap": "Delegating the initial assessment or care of a new or unstable client."
+    },
+    "back": "Routine tasks for stable clients with predictable outcomes. Key clue: Vital signs, hygiene, ambulation, and intake and output for stable clients. First-line: Delegate routine tasks; keep assessment, teaching, evaluation and clinical judgment with the RN. Exam trap: Delegating the initial assessment or care of a new or unstable client.",
+    "word_count": 49,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-003.svg",
+      "alt": "Two columns: tasks assistive personnel can do and RN-only functions."
+    },
+    "source": {
+      "guideline": "NCSBN/ANA National Guidelines for Nursing Delegation 2019",
+      "year": "2019",
+      "url": "https://www.ncsbn.org/public-files/NGND-PosPaper_06.pdf",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The NCSBN/ANA National Guidelines for Nursing Delegation (2019) state the RN may delegate tasks within the delegatee's competence and the employer's policy, but retains accountability. Assessment, planning, evaluation and nursing judgment are not delegated, and the RN supervises the delegated care."
+    }
+  },
+  {
+    "id": "nclex-004",
+    "system": "Delegation",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "The RN is making assignments with an LPN/PN on the team: which clients and tasks fit the LPN/PN?",
+    "bottom": "LPN/PN cares for stable clients with predictable care needs.",
+    "bullets": {
+      "clue": "Reinforcing teaching, giving many routine medications, and collecting data on stable clients.",
+      "treat": "The RN keeps initial assessment, care planning, unstable clients and initial teaching.",
+      "trap": "Assigning initial teaching to the LPN/PN instead of reinforcement of RN teaching."
+    },
+    "back": "LPN/PN cares for stable clients with predictable care needs. Key clue: Reinforcing teaching, giving many routine medications, and collecting data on stable clients. First-line: The RN keeps initial assessment, care planning, unstable clients and initial teaching. Exam trap: Assigning initial teaching to the LPN/PN instead of reinforcement of RN teaching.",
+    "word_count": 50,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-004.svg",
+      "alt": "Scope comparison: RN, LPN/PN and assistive personnel responsibilities."
+    },
+    "source": {
+      "guideline": "NCSBN/ANA National Guidelines for Nursing Delegation 2019",
+      "year": "2019",
+      "url": "https://www.ncsbn.org/public-files/NGND-PosPaper_06.pdf",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The NCSBN/ANA National Guidelines for Nursing Delegation (2019) and state practice acts define what may be assigned to an LPN/PN. Generally, the LPN/PN cares for stable clients, collects data and reinforces teaching, while the RN performs initial assessment, care planning and evaluation."
+    }
+  },
+  {
+    "id": "nclex-005",
+    "system": "Delegation",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "Before delegating a task to assistive personnel, which five checks must the RN confirm?",
+    "bottom": "Right task, circumstance, person, direction and supervision.",
+    "bullets": {
+      "clue": "Every delegation question tests one or more of these five rights.",
+      "treat": "Confirm each right before handing off a task, then evaluate the outcome.",
+      "trap": "Believing that delegating a task also transfers accountability for it."
+    },
+    "back": "Right task, circumstance, person, direction and supervision. Key clue: Every delegation question tests one or more of these five rights. First-line: Confirm each right before handing off a task, then evaluate the outcome. Exam trap: Believing that delegating a task also transfers accountability for it.",
+    "word_count": 45,
+    "mnemonic": "Task, Circumstance, Person, Direction, Supervision",
+    "diagram": {
+      "file": "svg/nclex-005.svg",
+      "alt": "Five-step checklist for safe delegation."
+    },
+    "source": {
+      "guideline": "NCSBN/ANA National Guidelines for Nursing Delegation 2019",
+      "year": "2019",
+      "url": "https://www.ncsbn.org/public-files/NGND-PosPaper_06.pdf",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The NCSBN/ANA National Guidelines for Nursing Delegation (2019) describe the five rights of delegation: right task, circumstance, person, direction and communication, and supervision and evaluation. The delegating nurse remains accountable for the decision to delegate and for following up on the outcome."
+    }
+  },
+  {
+    "id": "nclex-006",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client scheduled for surgery asks the nurse about surgical risks before signing consent: who explains?",
+    "bottom": "The provider explains; the nurse verifies understanding and witnesses.",
+    "bullets": {
+      "clue": "The client must be competent, informed and signing voluntarily, without sedation.",
+      "treat": "Confirm understanding; if the client has questions, hold the signing and notify the provider.",
+      "trap": "Explaining surgical risks yourself or letting a sedated client sign."
+    },
+    "back": "The provider explains; the nurse verifies understanding and witnesses. Key clue: The client must be competent, informed and signing voluntarily, without sedation. First-line: Confirm understanding; if the client has questions, hold the signing and notify the provider. Exam trap: Explaining surgical risks yourself or letting a sedated client sign.",
+    "word_count": 49,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-006.svg",
+      "alt": "Consent flow: provider explains, client asks questions, nurse witnesses signature."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes informed consent in Management of Care. The provider performing the procedure explains risks, benefits and alternatives. The nurse confirms understanding, witnesses the signature, and notifies the provider when the client has unanswered questions or lacks capacity."
+    }
+  },
+  {
+    "id": "nclex-007",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A competent adult client refuses a prescribed blood transfusion after teaching: what should the nurse do?",
+    "bottom": "Respect the refusal; educate, document and notify the provider.",
+    "bullets": {
+      "clue": "Capacity means the client understands, appreciates, reasons and communicates a choice.",
+      "treat": "Explore the reason, explain consequences, notify the provider, and document the refusal.",
+      "trap": "Giving treatment against a capacitated adult's refusal, which can be battery."
+    },
+    "back": "Respect the refusal; educate, document and notify the provider. Key clue: Capacity means the client understands, appreciates, reasons and communicates a choice. First-line: Explore the reason, explain consequences, notify the provider, and document the refusal. Exam trap: Giving treatment against a capacitated adult's refusal, which can be battery.",
+    "word_count": 48,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-007.svg",
+      "alt": "Steps after a refusal: assess capacity, explore reasons, inform, notify, document."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes client rights in Management of Care. A competent adult may refuse any treatment. The nurse explores reasons, explains likely consequences, notifies the provider, and documents the discussion, while continuing to support and advocate for the client."
+    }
+  },
+  {
+    "id": "nclex-008",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client lost capacity, and the family disagrees with the written advance directive: which document guides care?",
+    "bottom": "A directive states wishes, a proxy decides, POLST is an order.",
+    "bullets": {
+      "clue": "The client loses capacity and family members disagree with the directive.",
+      "treat": "Follow the valid directive and the proxy; involve the provider and ethics team.",
+      "trap": "Letting family wishes override a valid advance directive."
+    },
+    "back": "A directive states wishes, a proxy decides, POLST is an order. Key clue: The client loses capacity and family members disagree with the directive. First-line: Follow the valid directive and the proxy; involve the provider and ethics team. Exam trap: Letting family wishes override a valid advance directive.",
+    "word_count": 48,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-008.svg",
+      "alt": "Three document types with who creates them and when they apply."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes advance directives in Management of Care. An advance directive records the client's wishes, a health care proxy makes decisions when the client cannot, and POLST is a medical order. A valid directive guides care despite family disagreement."
+    }
+  },
+  {
+    "id": "nclex-009",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A coworker not assigned to the client and a curious visitor ask about the client's diagnosis: who may know?",
+    "bottom": "Only people involved in care, on a need-to-know basis.",
+    "bullets": {
+      "clue": "A friend, coworker or relative asks about a client's condition.",
+      "treat": "Share for treatment with the care team; limit other uses to the minimum necessary.",
+      "trap": "Discussing clients in public areas, on social media, or with uninvolved staff."
+    },
+    "back": "Only people involved in care, on a need-to-know basis. Key clue: A friend, coworker or relative asks about a client's condition. First-line: Share for treatment with the care team; limit other uses to the minimum necessary. Exam trap: Discussing clients in public areas, on social media, or with uninvolved staff.",
+    "word_count": 50,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-009.svg",
+      "alt": "Information access: care team yes, curious staff and visitors no."
+    },
+    "source": {
+      "guideline": "HHS HIPAA Privacy Rule, minimum necessary standard (45 CFR 164.502(b), current 2026)",
+      "year": "2026",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/minimum-necessary-requirement/index.html",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "HHS states the HIPAA Privacy Rule minimum necessary standard limits protected health information use and disclosure to what is needed for the purpose. It does not apply to disclosures to providers for treatment. Nurses verify caller identity and avoid disclosing information to uninvolved people."
+    }
+  },
+  {
+    "id": "nclex-010",
+    "system": "Communication",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client who speaks limited English needs discharge teaching, and the client's teenage child offers to translate: what next?",
+    "bottom": "Use a trained medical interpreter.",
+    "bullets": {
+      "clue": "A family member or child offers to translate health information.",
+      "treat": "Request an in-person, video or phone interpreter, and speak directly to the client.",
+      "trap": "Using family members or minors as interpreters, which risks errors and privacy breaches."
+    },
+    "back": "Use a trained medical interpreter. Key clue: A family member or child offers to translate health information. First-line: Request an in-person, video or phone interpreter, and speak directly to the client. Exam trap: Using family members or minors as interpreters, which risks errors and privacy breaches.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-010.svg",
+      "alt": "Interpreter options ranked: trained interpreter first; family not used."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes communication in Management of Care. Trained medical interpreters reduce errors and protect privacy. The nurse speaks directly to the client, uses teach-back to confirm understanding, and documents interpreter use, avoiding family members and especially children as interpreters."
+    }
+  },
+  {
+    "id": "nclex-011",
+    "system": "Communication",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client's condition changes, and the nurse must call the provider: how should the SBAR call be organized?",
+    "bottom": "Situation, background, assessment, then a clear recommendation.",
+    "bullets": {
+      "clue": "Calling a provider about a change in a client's condition.",
+      "treat": "Have vital signs, labs, medications and allergies ready; state a clear request.",
+      "trap": "Opening the call with long history instead of the current problem."
+    },
+    "back": "Situation, background, assessment, then a clear recommendation. Key clue: Calling a provider about a change in a client's condition. First-line: Have vital signs, labs, medications and allergies ready; state a clear request. Exam trap: Opening the call with long history instead of the current problem.",
+    "word_count": 45,
+    "mnemonic": "SBAR: Situation, Background, Assessment, Recommendation",
+    "diagram": {
+      "file": "svg/nclex-011.svg",
+      "alt": "Four boxes of an SBAR call."
+    },
+    "source": {
+      "guideline": "Joint Commission National Performance Goals 2026",
+      "year": "2026",
+      "url": "https://www.jointcommission.org/en-us/standards/national-performance-goals",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "Joint Commission National Performance Goals (2026) emphasize effective communication among caregivers. SBAR gives a structured handoff: the current situation, relevant background, the nurse's assessment, and a specific recommendation or request. Having data ready and stating a clear request reduces delays and missed information."
+    }
+  },
+  {
+    "id": "nclex-012",
+    "system": "Communication",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A medication order conflicts with the client's allergy and kidney function: what should the nurse do first?",
+    "bottom": "Hold the medication and clarify with the prescriber.",
+    "bullets": {
+      "clue": "The dose, route or drug conflicts with the client's condition or allergy.",
+      "treat": "Do not give it; contact the prescriber; escalate through the chain of command if unresolved.",
+      "trap": "Following an unsafe order, which makes the nurse liable as well."
+    },
+    "back": "Hold the medication and clarify with the prescriber. Key clue: The dose, route or drug conflicts with the client's condition or allergy. First-line: Do not give it; contact the prescriber; escalate through the chain of command if unresolved. Exam trap: Following an unsafe order, which makes the nurse liable as well.",
+    "word_count": 51,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-012.svg",
+      "alt": "Escalation path: prescriber, then charge nurse, then supervisor."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes clarifying orders in Management of Care. The nurse holds a questionable order and contacts the prescriber. If the concern is unresolved, the nurse uses the chain of command, such as the charge nurse or supervisor, and documents actions taken."
+    }
+  },
+  {
+    "id": "nclex-013",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client fell while getting up alone and has a small bruise: what does the nurse do after the fall?",
+    "bottom": "Assess the client, chart facts, and file an incident report.",
+    "bullets": {
+      "clue": "A medication error or fall happened, with or without harm.",
+      "treat": "Assess the client first, notify the provider, chart facts, and file the report.",
+      "trap": "Documenting that an incident report was filed in the chart."
+    },
+    "back": "Assess the client, chart facts, and file an incident report. Key clue: A medication error or fall happened, with or without harm. First-line: Assess the client first, notify the provider, chart facts, and file the report. Exam trap: Documenting that an incident report was filed in the chart.",
+    "word_count": 48,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-013.svg",
+      "alt": "Event flow: check client, notify, chart facts, report to risk management."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes incident reporting in Management of Care. After an event, the nurse assesses the client, notifies the provider, documents objective facts in the chart, and files an incident report with risk management. The report itself is not mentioned in the record."
+    }
+  },
+  {
+    "id": "nclex-014",
+    "system": "Professional practice",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "During a shift, a coworker smells of alcohol and has slurred speech: what should the nurse do?",
+    "bottom": "Report to the charge nurse or supervisor right away.",
+    "bullets": {
+      "clue": "Slurred speech, alcohol odor, repeated errors or missing controlled substances.",
+      "treat": "Have the supervisor remove the colleague from client care, and follow facility policy.",
+      "trap": "Confronting the colleague alone or ignoring it, which puts clients at risk."
+    },
+    "back": "Report to the charge nurse or supervisor right away. Key clue: Slurred speech, alcohol odor, repeated errors or missing controlled substances. First-line: Have the supervisor remove the colleague from client care, and follow facility policy. Exam trap: Confronting the colleague alone or ignoring it, which puts clients at risk.",
+    "word_count": 49,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-014.svg",
+      "alt": "Reporting chain for impaired practice."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes professional responsibility in Management of Care. Suspected impairment is reported promptly to the charge nurse or supervisor, who removes the colleague from client care. Many boards of nursing offer alternative-to-discipline programs that support recovery while protecting the public."
+    }
+  },
+  {
+    "id": "nclex-015",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A child's injuries do not match the caregiver's story, but the nurse has no proof: what is required?",
+    "bottom": "Report reasonable suspicion; proof is not required.",
+    "bullets": {
+      "clue": "Injuries that do not match the history or the child's developmental stage.",
+      "treat": "Ensure safety, document objectively, and report to child protective services per state law.",
+      "trap": "Waiting for proof or confronting the caregiver before reporting."
+    },
+    "back": "Report reasonable suspicion; proof is not required. Key clue: Injuries that do not match the history or the child's developmental stage. First-line: Ensure safety, document objectively, and report to child protective services per state law. Exam trap: Waiting for proof or confronting the caregiver before reporting.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-015.svg",
+      "alt": "Steps: protect, document, report."
+    },
+    "source": {
+      "guideline": "CAPTA, as amended through P.L. 118-193 (2024)",
+      "year": "2024",
+      "url": "https://www.govinfo.gov/content/pkg/COMPS-805/pdf/COMPS-805.pdf",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "CAPTA, as amended through 2024, requires states to have mandated reporting of suspected child abuse and neglect. Nurses are mandated reporters who report reasonable suspicion, not proof. They protect the child, document objective findings and quotes, and follow the state reporting process."
+    }
+  },
+  {
+    "id": "nclex-016",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "An older adult with unexplained bruises seems afraid of the caregiver: what is the nurse's priority?",
+    "bottom": "Safety first; screen privately and document objectively.",
+    "bullets": {
+      "clue": "Fear of the caregiver, unexplained bruises, poor hygiene or missed care.",
+      "treat": "Interview alone, document findings, follow state reporting rules, and provide safety resources.",
+      "trap": "Interviewing the client in front of the suspected abuser."
+    },
+    "back": "Safety first; screen privately and document objectively. Key clue: Fear of the caregiver, unexplained bruises, poor hygiene or missed care. First-line: Interview alone, document findings, follow state reporting rules, and provide safety resources. Exam trap: Interviewing the client in front of the suspected abuser.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-016.svg",
+      "alt": "Private screening, safety plan, documentation."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes abuse and neglect in Management of Care. Nurses screen for elder abuse and intimate partner violence privately, document objective findings, follow state reporting laws, and give safety resources and referrals while respecting the competent adult's choices."
+    }
+  },
+  {
+    "id": "nclex-017",
+    "system": "Safety",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "An agitated client keeps pulling at a central line after other measures fail: what is needed for restraints?",
+    "bottom": "A provider order, least restrictive method, and frequent monitoring.",
+    "bullets": {
+      "clue": "Restraints are used only after less restrictive measures have failed.",
+      "treat": "Get an order; check circulation and skin; release, give fluids and toileting per policy.",
+      "trap": "Using PRN or standing restraint orders, which are not allowed."
+    },
+    "back": "A provider order, least restrictive method, and frequent monitoring. Key clue: Restraints are used only after less restrictive measures have failed. First-line: Get an order; check circulation and skin; release, give fluids and toileting per policy. Exam trap: Using PRN or standing restraint orders, which are not allowed.",
+    "word_count": 48,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-017.svg",
+      "alt": "Restraint checklist: order, alternatives, monitoring, release."
+    },
+    "source": {
+      "guideline": "CMS CoP 42 CFR 482.13(e) (current eCFR)",
+      "year": "current",
+      "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-482/subpart-B/section-482.13",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "CMS hospital Conditions of Participation at 42 CFR 482.13(e) allow restraint only to ensure immediate physical safety, using the least restrictive intervention. Orders cannot be PRN or standing, orders for violent behavior are time-limited, and the client is monitored and released as soon as possible."
+    }
+  },
+  {
+    "id": "nclex-018",
+    "system": "Care coordination",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A newly diagnosed client will need home oxygen and new medications after discharge: when does planning begin?",
+    "bottom": "Discharge planning begins at admission.",
+    "bullets": {
+      "clue": "The client has new needs at home, such as equipment, medications or follow-up.",
+      "treat": "Assess home support early; refer to case management, social work and home health.",
+      "trap": "Starting discharge planning on the day the client leaves."
+    },
+    "back": "Discharge planning begins at admission. Key clue: The client has new needs at home, such as equipment, medications or follow-up. First-line: Assess home support early; refer to case management, social work and home health. Exam trap: Starting discharge planning on the day the client leaves.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-018.svg",
+      "alt": "Discharge timeline beginning at admission."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes discharge planning in Management of Care. Planning starts at admission with assessment of home support, equipment and teaching needs. Early referrals to case management, social work and home health help ensure a safe transition and reduce readmissions."
+    }
+  },
+  {
+    "id": "nclex-019",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A nurse supports a client's informed choice even though the family disagrees: which ethical principle applies?",
+    "bottom": "Autonomy, beneficence, nonmaleficence and justice: choice, good, no harm, fairness.",
+    "bullets": {
+      "clue": "Ethics questions ask which principle is at stake in a decision.",
+      "treat": "Advocate for the client's informed choices and for safe, fair care.",
+      "trap": "Mistaking paternalism for beneficence by overriding the client's informed choice."
+    },
+    "back": "Autonomy, beneficence, nonmaleficence and justice: choice, good, no harm, fairness. Key clue: Ethics questions ask which principle is at stake in a decision. First-line: Advocate for the client's informed choices and for safe, fair care. Exam trap: Mistaking paternalism for beneficence by overriding the client's informed choice.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-019.svg",
+      "alt": "Four ethical principles with one-line examples."
+    },
+    "source": {
+      "guideline": "ANA Code of Ethics 2025",
+      "year": "2025",
+      "url": "https://www.nursingworld.org/practice-policy/nursing-excellence/ethics/code-of-ethics-for-nurses/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ANA Code of Ethics for Nurses (2025) calls for respect for persons and their right to self-determination. Autonomy respects informed choice, beneficence means doing good, nonmaleficence means avoiding harm, and justice means fair distribution of care and resources. Ethical dilemmas may be referred to the ethics committee."
+    }
+  },
+  {
+    "id": "nclex-020",
+    "system": "Professional practice",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A nurse is asked to perform a task the nurse was never trained for: what defines the scope?",
+    "bottom": "The state nurse practice act defines scope of practice.",
+    "bullets": {
+      "clue": "A request to perform a task outside training, competence or license.",
+      "treat": "Refuse tasks outside scope; seek training, help, or reassignment.",
+      "trap": "Thinking facility policy can expand practice beyond what state law allows."
+    },
+    "back": "The state nurse practice act defines scope of practice. Key clue: A request to perform a task outside training, competence or license. First-line: Refuse tasks outside scope; seek training, help, or reassignment. Exam trap: Thinking facility policy can expand practice beyond what state law allows.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-020.svg",
+      "alt": "Scope pyramid: law, then board rules, then facility policy."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes legal responsibilities in Management of Care. Each state's nurse practice act and board rules set the legal scope of practice. Facility policy can narrow but not expand that scope, and nurses decline tasks outside their competence."
+    }
+  },
+  {
+    "id": "nclex-021",
+    "system": "Emergency preparedness",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "At a mass-casualty scene, the nurse must tag clients quickly: what do the triage colors mean?",
+    "bottom": "Red immediate, yellow delayed, green minor, black expectant.",
+    "bullets": {
+      "clue": "Walking wounded are green; no breathing after opening the airway is black.",
+      "treat": "Treat red tags first, and reassess all clients often as conditions change.",
+      "trap": "Spending resources on expectant clients while immediate clients wait."
+    },
+    "back": "Red immediate, yellow delayed, green minor, black expectant. Key clue: Walking wounded are green; no breathing after opening the airway is black. First-line: Treat red tags first, and reassess all clients often as conditions change. Exam trap: Spending resources on expectant clients while immediate clients wait.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-021.svg",
+      "alt": "START triage flow with four color tags."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes emergency response planning in Management of Care. Mass-casualty triage aims to do the most good for the most people, so immediate clients with survivable injuries are treated first and all tags are reassessed as conditions change."
+    }
+  },
+  {
+    "id": "nclex-022",
+    "system": "Emergency preparedness",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "During a disaster surge, the hospital needs beds: which clients are safe to discharge early?",
+    "bottom": "Stable clients with support at home.",
+    "bullets": {
+      "clue": "A disaster creates an urgent need for inpatient beds.",
+      "treat": "Discharge stable, ambulatory clients; keep unstable clients and recent post-op clients.",
+      "trap": "Discharging a client who still needs close monitoring or IV therapy."
+    },
+    "back": "Stable clients with support at home. Key clue: A disaster creates an urgent need for inpatient beds. First-line: Discharge stable, ambulatory clients; keep unstable clients and recent post-op clients. Exam trap: Discharging a client who still needs close monitoring or IV therapy.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-022.svg",
+      "alt": "Discharge sort: stable versus unstable clients."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes emergency response planning in Management of Care. During a surge, nurses identify stable clients who can safely leave with home support and follow-up, while keeping clients who need close monitoring, frequent assessment or treatment that cannot be given at home."
+    }
+  },
+  {
+    "id": "nclex-023",
+    "system": "Communication",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client is moving from the ICU to a step-down unit: what must the transfer report include?",
+    "bottom": "Current status, recent changes, pending tests and risks.",
+    "bullets": {
+      "clue": "A client is moving to another unit or another facility.",
+      "treat": "Give a structured report including code status, allergies, lines and medications due.",
+      "trap": "Leaving out pending labs, recent changes or safety risks."
+    },
+    "back": "Current status, recent changes, pending tests and risks. Key clue: A client is moving to another unit or another facility. First-line: Give a structured report including code status, allergies, lines and medications due. Exam trap: Leaving out pending labs, recent changes or safety risks.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-023.svg",
+      "alt": "Transfer checklist of key report items."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes handoff communication in Management of Care. A structured transfer report covers current status, recent changes, code status, allergies, lines, medications due, pending tests and safety risks, with time for questions so the receiving nurse can safely continue care."
+    }
+  },
+  {
+    "id": "nclex-024",
+    "system": "Quality improvement",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A unit wants to reduce falls by testing a new hourly rounding plan: how does a PDSA cycle work?",
+    "bottom": "Plan, Do, Study, Act in small, measured tests.",
+    "bullets": {
+      "clue": "The unit wants to lower fall or CAUTI rates.",
+      "treat": "Test a small change, measure results, then adopt, adapt or abandon it.",
+      "trap": "Rolling out a large change without measuring its effect."
+    },
+    "back": "Plan, Do, Study, Act in small, measured tests. Key clue: The unit wants to lower fall or CAUTI rates. First-line: Test a small change, measure results, then adopt, adapt or abandon it. Exam trap: Rolling out a large change without measuring its effect.",
+    "word_count": 43,
+    "mnemonic": "PDSA: Plan, Do, Study, Act",
+    "diagram": {
+      "file": "svg/nclex-024.svg",
+      "alt": "Circular four-step PDSA cycle."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes performance improvement in Management of Care. PDSA cycles test small changes: plan the change and measure, do it on a small scale, study the results, and act by adopting, adapting or abandoning it before wider rollout."
+    }
+  },
+  {
+    "id": "nclex-025",
+    "system": "Evidence-based practice",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A unit committee is reviewing research to change a practice: which type of evidence is strongest?",
+    "bottom": "Systematic reviews of randomized controlled trials.",
+    "bullets": {
+      "clue": "Choosing a practice change based on published research.",
+      "treat": "Rank meta-analyses, then RCTs, cohort studies, case series, then expert opinion.",
+      "trap": "Treating a single expert opinion as strong evidence for changing practice."
+    },
+    "back": "Systematic reviews of randomized controlled trials. Key clue: Choosing a practice change based on published research. First-line: Rank meta-analyses, then RCTs, cohort studies, case series, then expert opinion. Exam trap: Treating a single expert opinion as strong evidence for changing practice.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-025.svg",
+      "alt": "Evidence pyramid from expert opinion to meta-analysis."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes evidence-based practice in Management of Care. Systematic reviews and meta-analyses of randomized trials sit at the top of the evidence hierarchy, while expert opinion sits at the bottom; nurses combine evidence with clinical expertise and client preferences."
+    }
+  },
+  {
+    "id": "nclex-026",
+    "system": "Care coordination",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client has a new swallowing problem, unsteady gait and unpaid bills: which team member gets each referral?",
+    "bottom": "Match each client need to the right discipline.",
+    "bullets": {
+      "clue": "Swallowing problems, mobility limits, home safety needs or financial concerns.",
+      "treat": "Speech for swallowing, PT for gait, OT for daily living, social work for resources.",
+      "trap": "Referring dysphagia to the dietitian instead of speech therapy first."
+    },
+    "back": "Match each client need to the right discipline. Key clue: Swallowing problems, mobility limits, home safety needs or financial concerns. First-line: Speech for swallowing, PT for gait, OT for daily living, social work for resources. Exam trap: Referring dysphagia to the dietitian instead of speech therapy first.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-026.svg",
+      "alt": "Need-to-discipline matching chart."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes collaboration and referrals in Management of Care. Speech-language pathology evaluates swallowing, physical therapy addresses gait and strength, occupational therapy supports daily living skills, and social work or case management helps with finances, housing and community resources."
+    }
+  },
+  {
+    "id": "nclex-027",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client on a ventilator is declared brain dead, and the family is at the bedside: who asks about donation?",
+    "bottom": "A designated requestor or the organ procurement organization asks.",
+    "bullets": {
+      "clue": "Imminent death or brain death has been declared.",
+      "treat": "Notify the organ procurement organization per policy, and support the grieving family.",
+      "trap": "Having the bedside nurse raise donation with the family alone."
+    },
+    "back": "A designated requestor or the organ procurement organization asks. Key clue: Imminent death or brain death has been declared. First-line: Notify the organ procurement organization per policy, and support the grieving family. Exam trap: Having the bedside nurse raise donation with the family alone.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-027.svg",
+      "alt": "Donation pathway: notify, requestor approaches family."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes organ donation in Management of Care. Hospitals notify the organ procurement organization of imminent or actual deaths per policy, and trained requestors approach the family. The nurse supports the family and maintains care while decisions are made."
+    }
+  },
+  {
+    "id": "nclex-028",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client is being admitted to a hospital that receives federal funding: what does the Self-Determination Act require?",
+    "bottom": "Ask about advance directives and give information at admission.",
+    "bullets": {
+      "clue": "Admission to a hospital or facility that receives Medicare or Medicaid funds.",
+      "treat": "Ask whether the client has a directive, give written information, and document.",
+      "trap": "Thinking the law requires every client to complete an advance directive."
+    },
+    "back": "Ask about advance directives and give information at admission. Key clue: Admission to a hospital or facility that receives Medicare or Medicaid funds. First-line: Ask whether the client has a directive, give written information, and document. Exam trap: Thinking the law requires every client to complete an advance directive.",
+    "word_count": 49,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-028.svg",
+      "alt": "Admission steps for advance directive information."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes advance directives in Management of Care. The federal Patient Self-Determination Act requires facilities to ask about advance directives, inform clients of their rights, and document the response. It does not require any client to complete one."
+    }
+  },
+  {
+    "id": "nclex-029",
+    "system": "Communication",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A provider calls the unit with a new medication order during an urgent situation: what does the nurse do next?",
+    "bottom": "Write the order down, then read it back.",
+    "bullets": {
+      "clue": "A telephone or verbal order is given by a provider.",
+      "treat": "Read back the full order, confirm drug, dose and route, and get it signed per policy.",
+      "trap": "Accepting verbal orders for routine, non-urgent situations."
+    },
+    "back": "Write the order down, then read it back. Key clue: A telephone or verbal order is given by a provider. First-line: Read back the full order, confirm drug, dose and route, and get it signed per policy. Exam trap: Accepting verbal orders for routine, non-urgent situations.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-029.svg",
+      "alt": "Read-back loop between nurse and provider."
+    },
+    "source": {
+      "guideline": "Joint Commission National Performance Goals 2026",
+      "year": "2026",
+      "url": "https://www.jointcommission.org/en-us/standards/national-performance-goals",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "Joint Commission National Performance Goals (2026) emphasize accurate communication. When a verbal or telephone order is necessary, the nurse writes it down, reads the complete order back to confirm it, and ensures it is authenticated per policy. Verbal orders are limited to urgent situations."
+    }
+  },
+  {
+    "id": "nclex-030",
+    "system": "Delegation",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "Assistive personnel report a new low blood pressure after the RN delegated vital signs: what is still the RN's job?",
+    "bottom": "Supervise, follow up and evaluate the delegated task.",
+    "bullets": {
+      "clue": "Assistive personnel report a change in vital signs or the client's condition.",
+      "treat": "Follow up promptly, reassess the client yourself, and give feedback to the delegatee.",
+      "trap": "Assuming the task went well without checking the outcome."
+    },
+    "back": "Supervise, follow up and evaluate the delegated task. Key clue: Assistive personnel report a change in vital signs or the client's condition. First-line: Follow up promptly, reassess the client yourself, and give feedback to the delegatee. Exam trap: Assuming the task went well without checking the outcome.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-030.svg",
+      "alt": "Delegation loop ending with evaluation."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN/ANA National Guidelines for Nursing Delegation (2019) state that the delegating nurse remains accountable and must supervise and evaluate the outcome. When assistive personnel report an abnormal finding, the RN reassesses the client, intervenes as needed, and gives feedback."
+    }
+  },
+  {
+    "id": "nclex-031",
+    "system": "Leadership",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "Two staff nurses argue loudly about assignments, and care is being delayed: what is the first step?",
+    "bottom": "Talk privately and directly with the people involved.",
+    "bullets": {
+      "clue": "Conflict between coworkers is affecting client care.",
+      "treat": "Use direct, respectful communication; escalate to the manager if it is unresolved.",
+      "trap": "Ignoring the conflict or venting about it to other staff."
+    },
+    "back": "Talk privately and directly with the people involved. Key clue: Conflict between coworkers is affecting client care. First-line: Use direct, respectful communication; escalate to the manager if it is unresolved. Exam trap: Ignoring the conflict or venting about it to other staff.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-031.svg",
+      "alt": "Conflict steps from private talk to escalation."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes conflict management in Management of Care. Conflict is addressed early, privately and directly with the people involved, focusing on the issue and client safety. Unresolved conflict is escalated through the chain of command, such as to the nurse manager."
+    }
+  },
+  {
+    "id": "nclex-032",
+    "system": "Staffing",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A float nurse from the medical unit arrives on a cardiac step-down unit: which client should be assigned?",
+    "bottom": "Assign a stable client with routine care needs.",
+    "bullets": {
+      "clue": "The float nurse is unfamiliar with the specialty unit.",
+      "treat": "Assign stable clients that match skills; pair for specialty tasks or devices.",
+      "trap": "Assigning the most complex or unstable client to the float nurse."
+    },
+    "back": "Assign a stable client with routine care needs. Key clue: The float nurse is unfamiliar with the specialty unit. First-line: Assign stable clients that match skills; pair for specialty tasks or devices. Exam trap: Assigning the most complex or unstable client to the float nurse.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-032.svg",
+      "alt": "Assignment match: competence to client acuity."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes assignment in Management of Care. Assignments match the nurse's competence to client acuity. Float nurses usually receive stable clients with predictable care, and staff support them with specialty equipment, unit routines and procedures they do not perform often."
+    }
+  },
+  {
+    "id": "nclex-033",
+    "system": "Informatics",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A coworker asks to chart under the nurse's login while the nurse steps away: how are records kept secure?",
+    "bottom": "Log out, lock screens and never share passwords.",
+    "bullets": {
+      "clue": "An unattended screen or a request to use another person's login.",
+      "treat": "Lock screens, follow downtime procedures, and protect or shred printouts.",
+      "trap": "Documenting under another nurse's login or sharing credentials."
+    },
+    "back": "Log out, lock screens and never share passwords. Key clue: An unattended screen or a request to use another person's login. First-line: Lock screens, follow downtime procedures, and protect or shred printouts. Exam trap: Documenting under another nurse's login or sharing credentials.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-033.svg",
+      "alt": "Security habits for EHR use."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes information technology in Management of Care. Nurses protect client data by never sharing credentials, logging out or locking unattended screens, following downtime procedures, and disposing of printed information securely, because every entry is linked to the user who logged in."
+    }
+  },
+  {
+    "id": "nclex-034",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A competent adult client insists on leaving against medical advice before treatment is finished: what does the nurse do?",
+    "bottom": "Notify the provider and inform the client of the risks.",
+    "bullets": {
+      "clue": "A competent adult insists on leaving before discharge.",
+      "treat": "Explain risks, notify the provider, ask the client to sign the AMA form, and document.",
+      "trap": "Physically stopping a competent client, which can be false imprisonment."
+    },
+    "back": "Notify the provider and inform the client of the risks. Key clue: A competent adult insists on leaving before discharge. First-line: Explain risks, notify the provider, ask the client to sign the AMA form, and document. Exam trap: Physically stopping a competent client, which can be false imprisonment.",
+    "word_count": 48,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-034.svg",
+      "alt": "AMA steps: inform, notify, document."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes client rights in Management of Care. A competent adult may leave against medical advice. The nurse explains risks, notifies the provider, requests the AMA form, documents the discussion, and cannot physically detain the client."
+    }
+  },
+  {
+    "id": "nclex-035",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "A client was harmed after a nurse skipped a required safety check: which four elements prove malpractice?",
+    "bottom": "Duty, breach of duty, causation and harm.",
+    "bullets": {
+      "clue": "An error by the nurse that injures a client.",
+      "treat": "Follow standards of care, and document care accurately and promptly.",
+      "trap": "Calling an error malpractice when no harm resulted."
+    },
+    "back": "Duty, breach of duty, causation and harm. Key clue: An error by the nurse that injures a client. First-line: Follow standards of care, and document care accurately and promptly. Exam trap: Calling an error malpractice when no harm resulted.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-035.svg",
+      "alt": "Four linked elements of negligence."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes legal responsibilities in Management of Care. Malpractice requires a duty to the client, a breach of the standard of care, a causal link between the breach and the injury, and actual harm. Accurate documentation supports the care given."
+    }
+  },
+  {
+    "id": "nclex-036",
+    "system": "Legal and ethical",
+    "blueprint_weight": "18%",
+    "task_area": "Management of Care",
+    "front": "An off-duty nurse stops to help at a roadside crash before EMS arrives: what offers legal protection?",
+    "bottom": "Good Samaritan laws, when acting within training.",
+    "bullets": {
+      "clue": "Off-duty emergency care given in good faith without pay.",
+      "treat": "Act within your skills, and stay until equal or higher-level help arrives.",
+      "trap": "Going beyond training, which can remove legal protection."
+    },
+    "back": "Good Samaritan laws, when acting within training. Key clue: Off-duty emergency care given in good faith without pay. First-line: Act within your skills, and stay until equal or higher-level help arrives. Exam trap: Going beyond training, which can remove legal protection.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-036.svg",
+      "alt": "Scope of emergency aid off duty."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes legal responsibilities in Management of Care. Good Samaritan laws vary by state but generally protect people who give emergency care in good faith without pay and within their training, and who do not abandon the person once care begins."
+    }
+  },
+  {
+    "id": "nclex-037",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "The nurse is about to examine a client with no known infection: what do standard precautions require?",
+    "bottom": "Hand hygiene and PPE based on expected exposure.",
+    "bullets": {
+      "clue": "Standard precautions apply to every client, every time.",
+      "treat": "Use alcohol rub before and after contact; wear gloves for body fluid contact.",
+      "trap": "Believing gloves can replace hand hygiene."
+    },
+    "back": "Hand hygiene and PPE based on expected exposure. Key clue: Standard precautions apply to every client, every time. First-line: Use alcohol rub before and after contact; wear gloves for body fluid contact. Exam trap: Believing gloves can replace hand hygiene.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-037.svg",
+      "alt": "Hand hygiene moments and PPE choices."
+    },
+    "source": {
+      "guideline": "CDC/HICPAC Isolation Precautions 2007 (Appendix A updated 2024)",
+      "year": "2024",
+      "url": "https://www.cdc.gov/infection-control/hcp/isolation-precautions/index.html",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CDC/HICPAC 2007 Guideline for Isolation Precautions, with Appendix A updated in 2024, describes standard precautions for all clients. These include hand hygiene, PPE chosen for expected exposure, respiratory hygiene, safe injection practices, and cleaning of equipment and the environment."
+    }
+  },
+  {
+    "id": "nclex-038",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client has MRSA in a draining wound: what does contact precautions care require?",
+    "bottom": "Gown and gloves, plus dedicated equipment.",
+    "bullets": {
+      "clue": "A resistant organism is present in a wound, urine or stool.",
+      "treat": "Private room or cohort, dedicated stethoscope, and cleaning of high-touch surfaces.",
+      "trap": "Carrying shared equipment into and out of the room."
+    },
+    "back": "Gown and gloves, plus dedicated equipment. Key clue: A resistant organism is present in a wound, urine or stool. First-line: Private room or cohort, dedicated stethoscope, and cleaning of high-touch surfaces. Exam trap: Carrying shared equipment into and out of the room.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-038.svg",
+      "alt": "Contact precaution room setup."
+    },
+    "source": {
+      "guideline": "CDC/HICPAC Isolation Precautions 2007 (Appendix A updated 2024)",
+      "year": "2024",
+      "url": "https://www.cdc.gov/infection-control/hcp/isolation-precautions/index.html",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CDC/HICPAC 2007 Guideline for Isolation Precautions, with Appendix A updated in 2024, uses contact precautions for organisms such as MRSA and VRE when indicated. Staff wear a gown and gloves, use dedicated equipment, and clean high-touch surfaces in the room."
+    }
+  },
+  {
+    "id": "nclex-039",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client has watery diarrhea after antibiotics and a positive C. difficile test: how does hand hygiene change?",
+    "bottom": "Wash with soap and water; alcohol does not kill spores.",
+    "bullets": {
+      "clue": "New watery diarrhea after recent antibiotic use.",
+      "treat": "Contact precautions, gown and gloves, and sporicidal cleaning such as bleach.",
+      "trap": "Relying on alcohol-based hand rub alone."
+    },
+    "back": "Wash with soap and water; alcohol does not kill spores. Key clue: New watery diarrhea after recent antibiotic use. First-line: Contact precautions, gown and gloves, and sporicidal cleaning such as bleach. Exam trap: Relying on alcohol-based hand rub alone.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-039.svg",
+      "alt": "Spore-forming organism and soap-and-water handwashing."
+    },
+    "source": {
+      "guideline": "IDSA/SHEA C. difficile focused update 2021",
+      "year": "2021",
+      "url": "https://www.idsociety.org/practice-guideline/clostridioides-difficile-2021-focused-update/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The IDSA/SHEA 2021 C. difficile focused update addresses treatment, and infection prevention guidance supports contact precautions and sporicidal cleaning. Soap and water is preferred during outbreaks or when contamination is likely, because alcohol does not reliably kill spores, and gloves reduce hand contamination."
+    }
+  },
+  {
+    "id": "nclex-040",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client is admitted with confirmed influenza: which precautions does the nurse use?",
+    "bottom": "Droplet precautions for influenza, pertussis, meningococcus and mumps.",
+    "bullets": {
+      "clue": "Large droplets spread within about 6 feet of the client.",
+      "treat": "Surgical mask and private room or cohort; the client wears a mask for transport.",
+      "trap": "Thinking an N95 respirator is required for droplet precautions."
+    },
+    "back": "Droplet precautions for influenza, pertussis, meningococcus and mumps. Key clue: Large droplets spread within about 6 feet of the client. First-line: Surgical mask and private room or cohort; the client wears a mask for transport. Exam trap: Thinking an N95 respirator is required for droplet precautions.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-040.svg",
+      "alt": "Droplet range and mask use."
+    },
+    "source": {
+      "guideline": "CDC/HICPAC Isolation Precautions 2007 (Appendix A updated 2024)",
+      "year": "2024",
+      "url": "https://www.cdc.gov/infection-control/hcp/isolation-precautions/index.html",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CDC/HICPAC 2007 Guideline for Isolation Precautions, with Appendix A updated in 2024, lists droplet precautions for diseases such as influenza, pertussis and meningococcal infection. Staff wear a mask in the room, and the client wears a mask during transport."
+    }
+  },
+  {
+    "id": "nclex-041",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client with cough, night sweats and a cavity on chest X-ray needs a room: which precautions apply?",
+    "bottom": "Airborne precautions for TB, measles and varicella.",
+    "bullets": {
+      "clue": "Small particles stay in the air and spread over long distances.",
+      "treat": "Negative-pressure room, fit-tested N95, door closed; the client masks for transport.",
+      "trap": "Wearing a surgical mask instead of an N95 for suspected TB."
+    },
+    "back": "Airborne precautions for TB, measles and varicella. Key clue: Small particles stay in the air and spread over long distances. First-line: Negative-pressure room, fit-tested N95, door closed; the client masks for transport. Exam trap: Wearing a surgical mask instead of an N95 for suspected TB.",
+    "word_count": 45,
+    "mnemonic": "My Chicken Has TB: Measles, Chickenpox, Herpes zoster (disseminated), TB",
+    "diagram": {
+      "file": "svg/nclex-041.svg",
+      "alt": "Airborne isolation room with negative pressure."
+    },
+    "source": {
+      "guideline": "CDC TB Infection Control in Health-Care Settings 2005",
+      "year": "2005",
+      "url": "https://www.cdc.gov/tb-healthcare-settings/hcp/infection-control/index.html",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CDC 2005 Guidelines for Preventing the Transmission of Mycobacterium tuberculosis in Health-Care Settings call for an airborne infection isolation room and fit-tested respirators for suspected or confirmed TB. The client wears a surgical mask when leaving the room. Measles and varicella also need airborne precautions."
+    }
+  },
+  {
+    "id": "nclex-042",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "The nurse is entering and leaving a contact and droplet isolation room: what is the PPE order?",
+    "bottom": "On: gown, mask, goggles, gloves. Off: gloves first.",
+    "bullets": {
+      "clue": "Putting on PPE before entering, and removing it when leaving an isolation room.",
+      "treat": "Remove gloves, goggles, gown, then mask; perform hand hygiene right after.",
+      "trap": "Removing the mask or respirator before the gloves and gown."
+    },
+    "back": "On: gown, mask, goggles, gloves. Off: gloves first. Key clue: Putting on PPE before entering, and removing it when leaving an isolation room. First-line: Remove gloves, goggles, gown, then mask; perform hand hygiene right after. Exam trap: Removing the mask or respirator before the gloves and gown.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-042.svg",
+      "alt": "PPE donning and doffing sequence."
+    },
+    "source": {
+      "guideline": "CDC Sequence for Donning and Doffing PPE (CDC Stacks record, 2014)",
+      "year": "2014",
+      "url": "https://stacks.cdc.gov/view/cdc/24767",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "CDC guidance on the sequence for donning and doffing PPE lists putting on a gown, mask or respirator, goggles or face shield, then gloves. Removal starts with gloves, then goggles or face shield, gown, and mask, with hand hygiene immediately after removing all PPE."
+    }
+  },
+  {
+    "id": "nclex-043",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "Only a few private rooms are open: which clients can safely share a room?",
+    "bottom": "Clients with the same organism, or uninfected low-risk clients.",
+    "bullets": {
+      "clue": "Limited private rooms are available for new admissions.",
+      "treat": "Cohort clients with the same infection; keep immunocompromised clients away from infection.",
+      "trap": "Rooming a neutropenic client with a client who has an infection."
+    },
+    "back": "Clients with the same organism, or uninfected low-risk clients. Key clue: Limited private rooms are available for new admissions. First-line: Cohort clients with the same infection; keep immunocompromised clients away from infection. Exam trap: Rooming a neutropenic client with a client who has an infection.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-043.svg",
+      "alt": "Room-assignment matrix."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes room assignment in Safety and Infection Prevention and Control. Clients with the same organism may be cohorted, while immunocompromised clients, such as those with neutropenia, are kept away from clients with infections and are often placed in private rooms."
+    }
+  },
+  {
+    "id": "nclex-044",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "The nurse sets up a sterile field for a dressing change: what breaks sterility?",
+    "bottom": "Anything nonsterile touching it, or turning your back.",
+    "bullets": {
+      "clue": "Edges of the field, items below the waist, or damp areas.",
+      "treat": "Keep the field in view and above the waist; the 1-inch border is not sterile.",
+      "trap": "Reaching across the sterile field."
+    },
+    "back": "Anything nonsterile touching it, or turning your back. Key clue: Edges of the field, items below the waist, or damp areas. First-line: Keep the field in view and above the waist; the 1-inch border is not sterile. Exam trap: Reaching across the sterile field.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-044.svg",
+      "alt": "Sterile field rules diagram."
+    },
+    "source": {
+      "guideline": "AORN Guidelines for Perioperative Practice 2026",
+      "year": "2026",
+      "url": "https://www.aorn.org/guidelines-resources/guidelines-for-perioperative-practice/eguidelines-plus",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "AORN Guidelines for Perioperative Practice (2026) describe sterile technique. Sterile items stay above waist level and in view, the outer edge of the field is considered nonsterile, moisture can wick contamination, and any item of doubtful sterility is considered contaminated."
+    }
+  },
+  {
+    "id": "nclex-045",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "The nurse gets a needlestick from a used needle while discarding it: what comes first?",
+    "bottom": "Wash with soap and water, then report right away.",
+    "bullets": {
+      "clue": "An exposure to blood or other body fluids occurred.",
+      "treat": "Report promptly, test the source, and start HIV PEP ideally within hours, by 72 hours.",
+      "trap": "Squeezing the wound or using bleach on the skin."
+    },
+    "back": "Wash with soap and water, then report right away. Key clue: An exposure to blood or other body fluids occurred. First-line: Report promptly, test the source, and start HIV PEP ideally within hours, by 72 hours. Exam trap: Squeezing the wound or using bleach on the skin.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-045.svg",
+      "alt": "Exposure steps: wash, report, evaluate, PEP timing."
+    },
+    "source": {
+      "guideline": "USPHS/CDC Occupational HIV PEP Guidelines 2025",
+      "year": "2025",
+      "url": "https://stacks.cdc.gov/view/cdc/183609",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "USPHS/CDC occupational HIV postexposure prophylaxis guidance (2025) supports immediate wound washing, prompt reporting and evaluation, and starting PEP as soon as possible, ideally within hours and no later than 72 hours after exposure, when indicated. Hepatitis B and C exposure follow-up is also arranged, and the exposure is documented per facility policy."
+    }
+  },
+  {
+    "id": "nclex-046",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "An older adult on a diuretic and a sleep aid is confused at night: how does the nurse prevent falls?",
+    "bottom": "Assess fall risk, then reduce hazards.",
+    "bullets": {
+      "clue": "Older age, sedation, diuretics, confusion or unsteady gait.",
+      "treat": "Bed low and locked, call light in reach, nonskid socks, and a toileting schedule.",
+      "trap": "Using restraints to prevent falls."
+    },
+    "back": "Assess fall risk, then reduce hazards. Key clue: Older age, sedation, diuretics, confusion or unsteady gait. First-line: Bed low and locked, call light in reach, nonskid socks, and a toileting schedule. Exam trap: Using restraints to prevent falls.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-046.svg",
+      "alt": "Fall-safe room checklist."
+    },
+    "source": {
+      "guideline": "Joint Commission National Performance Goals 2026",
+      "year": "2026",
+      "url": "https://www.jointcommission.org/en-us/standards/national-performance-goals",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "Joint Commission National Performance Goals (2026) emphasize reducing client harm, including falls. Nurses assess fall risk on admission and with changes, then apply interventions such as a low, locked bed, a toileting schedule, nonskid footwear, and frequent rounding rather than restraints."
+    }
+  },
+  {
+    "id": "nclex-047",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "Before giving a blood transfusion and drawing labs, how does the nurse confirm a client's identity?",
+    "bottom": "Use two identifiers, such as name and birth date.",
+    "bullets": {
+      "clue": "Giving medications or blood, or collecting specimens.",
+      "treat": "Check two identifiers against the order and the client's ID band.",
+      "trap": "Using the room number or bed location as an identifier."
+    },
+    "back": "Use two identifiers, such as name and birth date. Key clue: Giving medications or blood, or collecting specimens. First-line: Check two identifiers against the order and the client's ID band. Exam trap: Using the room number or bed location as an identifier.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-047.svg",
+      "alt": "Two-identifier check."
+    },
+    "source": {
+      "guideline": "Joint Commission National Performance Goals 2026",
+      "year": "2026",
+      "url": "https://www.jointcommission.org/en-us/standards/national-performance-goals",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "Joint Commission National Performance Goals (2026) require at least two client identifiers, such as name and date of birth, when giving medications or blood and collecting specimens. Room number and location are never used as identifiers. Identifiers are checked against the order and label at the bedside every time."
+    }
+  },
+  {
+    "id": "nclex-048",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client is about to have knee surgery: what steps prevent a wrong-site procedure?",
+    "bottom": "Verify, mark the site, then take a time-out.",
+    "bullets": {
+      "clue": "Pre-procedure verification before any invasive procedure.",
+      "treat": "The whole team stops for a time-out to confirm client, procedure and site.",
+      "trap": "Skipping the time-out because the procedure is short or routine."
+    },
+    "back": "Verify, mark the site, then take a time-out. Key clue: Pre-procedure verification before any invasive procedure. First-line: The whole team stops for a time-out to confirm client, procedure and site. Exam trap: Skipping the time-out because the procedure is short or routine.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-048.svg",
+      "alt": "Three steps: verify, mark, time-out."
+    },
+    "source": {
+      "guideline": "Joint Commission NPG.01.06.01-.03 (former Universal Protocol) 2026",
+      "year": "2026",
+      "url": "https://www.jointcommission.org/en-us/standards/national-performance-goals",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "Joint Commission 2026 hospital National Performance Goals NPG.01.06.01-.03 keep the former Universal Protocol: pre-procedure verification of the correct client, procedure and site, site marking when needed, and a standardized time-out with the procedure team immediately before starting. Every team member may speak up if any element cannot be confirmed."
+    }
+  },
+  {
+    "id": "nclex-049",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "Smoke is coming from a client's room on the unit: what should the nurse do first?",
+    "bottom": "Rescue the client in danger first, then follow RACE.",
+    "bullets": {
+      "clue": "Smoke or flame near a client or in a room.",
+      "treat": "Rescue, alarm, contain by closing doors, then extinguish or evacuate.",
+      "trap": "Using the elevator during a fire."
+    },
+    "back": "Rescue the client in danger first, then follow RACE. Key clue: Smoke or flame near a client or in a room. First-line: Rescue, alarm, contain by closing doors, then extinguish or evacuate. Exam trap: Using the elevator during a fire.",
+    "word_count": 40,
+    "mnemonic": "RACE: Rescue, Alarm, Contain, Extinguish; PASS: Pull, Aim, Squeeze, Sweep",
+    "diagram": {
+      "file": "svg/nclex-049.svg",
+      "alt": "Fire response steps."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes emergency response in Safety and Infection Prevention and Control. Nurses rescue clients in immediate danger, activate the alarm, contain the fire by closing doors, and extinguish or evacuate, using stairs rather than elevators."
+    }
+  },
+  {
+    "id": "nclex-050",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client with a seizure history is admitted, then has a tonic-clonic seizure: what must the nurse set up?",
+    "bottom": "Suction and oxygen at the bedside, with the bed low.",
+    "bullets": {
+      "clue": "A history of seizures or a new seizure risk.",
+      "treat": "Bed low; during a seizure, turn to side, time it, nothing in the mouth.",
+      "trap": "Restraining the client or inserting a tongue blade."
+    },
+    "back": "Suction and oxygen at the bedside, with the bed low. Key clue: A history of seizures or a new seizure risk. First-line: Bed low; during a seizure, turn to side, time it, nothing in the mouth. Exam trap: Restraining the client or inserting a tongue blade.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-050.svg",
+      "alt": "Seizure-safe bedside setup."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes seizure precautions in Safety and Infection Prevention and Control. Nurses keep suction and oxygen ready and the bed low. During a seizure, they protect the head, turn the client to the side, time the seizure, and never restrain the client."
+    }
+  }
+]

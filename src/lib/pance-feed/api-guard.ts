@@ -3,7 +3,7 @@ import { requireAuthenticatedApi, type ApiAuthResult } from "@/lib/api-access";
 import { canUsePanceFeed } from "@/lib/pance-feed/access";
 
 export const PANCE_FEED_LOCKED = {
-  error: "A paid plan is required for the PANCE feed.",
+  error: "A paid plan is required for this feed.",
   code: "PANCE_FEED_LOCKED",
 } as const;
 

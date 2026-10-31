@@ -1,0 +1,714 @@
+[
+ {
+  "id": "naplex-026",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C2",
+  "topic": "Days' supply: insulin pens, inhalers, eye drops (20 gtt/mL)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: insulin glargine 100 units/mL, five 3 mL pens; 30 units daily plus a 2-unit prime each injection. Days' supply?",
+  "bottom": "46 days.",
+  "bullets": {
+   "clue": "5 × 3 mL × 100 units = 1,500 units.",
+   "treat": "30 + 2 prime = 32 units/day; 1,500 ÷ 32 = 46.9 → 46 days.",
+   "trap": "Forgetting the prime overstates supply (50 days)."
+  },
+  "back": "46 days. Given: 5 × 3 mL × 100 units = 1,500 units. Work: 30 + 2 prime = 32 units/day; 1,500 ÷ 32 = 46.9 → 46 days. Exam trap: Forgetting the prime overstates supply (50 days).",
+  "word_count": 38,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "USP/ PBM days-supply conventions",
+   "year": "current edition",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d5e07a0c-7e14-4756-9152-9fea485d654a",
+   "alt_url": null,
+   "recommendation": "Insulin glargine labeling: 100 units/mL, 3 mL prefilled pens; perform a safety test (prime, typically 2 units) before each injection. Days' supply = total units ÷ units used per day, rounded down."
+  },
+  "verified": "Y – usp.org"
+ },
+ {
+  "id": "naplex-027",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C2",
+  "topic": "Weight-based peds dosing (mg/kg/day divided)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: 20 kg child, amoxicillin 90 mg/kg/day divided BID, 400 mg/5 mL. Volume per dose?",
+  "bottom": "11.25 mL twice daily.",
+  "bullets": {
+   "clue": "90 × 20 = 1,800 mg/day; 900 mg per dose.",
+   "treat": "900 mg ÷ 400 mg × 5 mL = 11.25 mL BID.",
+   "trap": "mg/kg/day is the daily total; divide before converting to mL."
+  },
+  "back": "11.25 mL twice daily. Given: 90 × 20 = 1,800 mg/day; 900 mg per dose. Work: 900 mg ÷ 400 mg × 5 mL = 11.25 mL BID. Exam trap: mg/kg/day is the daily total; divide before converting to mL.",
+  "word_count": 40,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "Lexicomp/peds labeling",
+   "year": "current edition",
+   "url": "https://publications.aap.org/pediatrics/article/131/3/e964/30912/",
+   "alt_url": null,
+   "recommendation": "AAP 2013 AOM: high-dose amoxicillin 80–90 mg/kg/day in 2 divided doses. Dose per administration = daily dose ÷ number of doses; volume = dose ÷ concentration."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-028",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C2",
+  "topic": "Enoxaparin dose by weight & CrCl <30",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: 100 kg patient with DVT, CrCl 25 mL/min. Enoxaparin treatment dose?",
+  "bottom": "100 mg SC once daily.",
+  "bullets": {
+   "clue": "Usual treatment: 1 mg/kg every 12 hours.",
+   "treat": "CrCl <30: 1 mg/kg once daily = 100 mg daily. Prophylaxis drops 40 to 30 mg daily.",
+   "trap": "Don't just halve each q12h dose; change the interval."
+  },
+  "back": "100 mg SC once daily. Given: Usual treatment: 1 mg/kg every 12 hours. Work: CrCl <30: 1 mg/kg once daily = 100 mg daily. Prophylaxis drops 40 to 30 mg daily. Exam trap: Don't just halve each q12h dose; change the interval.",
+  "word_count": 42,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CHEST 2021 VTE; labeling",
+   "year": "2021",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5017a927-2a24-4f27-89f9-27c805bf7d59",
+   "alt_url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
+   "recommendation": "Enoxaparin labeling: DVT treatment 1 mg/kg SC q12h (or 1.5 mg/kg daily for selected inpatients); CrCl <30 mL/min: treatment 1 mg/kg SC once daily, prophylaxis 30 mg once daily. CHEST 2021 VTE guideline supports LMWH as an anticoagulant option."
+  },
+  "verified": "Y – journal.chestnet.org"
+ },
+ {
+  "id": "naplex-029",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C3",
+  "topic": "IV infusion rate: mL/h and gtt/min with drop factor",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: 1,000 mL over 8 hours with a 15 gtt/mL set. mL/h and gtt/min?",
+  "bottom": "125 mL/h; 31 gtt/min.",
+  "bullets": {
+   "clue": "Rate = volume ÷ time; gtt/min = mL/h × drop factor ÷ 60.",
+   "treat": "1,000 ÷ 8 = 125 mL/h; 125 × 15 ÷ 60 = 31.25 → 31 gtt/min.",
+   "trap": "Microdrip sets are 60 gtt/mL: then gtt/min equals mL/h."
+  },
+  "back": "125 mL/h; 31 gtt/min. Given: Rate = volume ÷ time; gtt/min = mL/h × drop factor ÷ 60. Work: 1,000 ÷ 8 = 125 mL/h; 125 × 15 ÷ 60 = 31.25 → 31 gtt/min. Exam trap: Microdrip sets are 60 gtt/mL: then gtt/min equals mL/h.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "Standard flow-rate method",
+   "year": "current edition",
+   "url": "https://doi.usp.org/USPNF/USPNF_M99873_06_01.html",
+   "alt_url": null,
+   "recommendation": "USP <1160> Pharmaceutical Calculations in Pharmacy Practice includes IV flow-rate calculations: mL/h = total volume ÷ hours; drops/min = (mL/h × drop factor) ÷ 60."
+  },
+  "verified": "Y – usp.org"
+ },
+ {
+  "id": "naplex-030",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C3",
+  "topic": "Weight-based infusions (mcg/kg/min: norepinephrine, dopamine)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: norepinephrine 4 mg in 250 mL; 80 kg patient at 0.1 mcg/kg/min. Pump rate?",
+  "bottom": "30 mL/h.",
+  "bullets": {
+   "clue": "Concentration = 4,000 mcg ÷ 250 mL = 16 mcg/mL.",
+   "treat": "0.1 × 80 = 8 mcg/min × 60 = 480 mcg/h; 480 ÷ 16 = 30 mL/h.",
+   "trap": "Convert mg to mcg and minutes to hours before dividing."
+  },
+  "back": "30 mL/h. Given: Concentration = 4,000 mcg ÷ 250 mL = 16 mcg/mL. Work: 0.1 × 80 = 8 mcg/min × 60 = 480 mcg/h; 480 ÷ 16 = 30 mL/h. Exam trap: Convert mg to mcg and minutes to hours before dividing.",
+  "word_count": 43,
+  "mnemonic": null,
+  "diagram": {
+   "file": "svg/naplex-030.svg",
+   "alt": "Drip rate calculation: concentration 4 mg in 250 mL is 16 mcg/mL; dose 0.1 mcg/kg/min times 80 kg is 8 mcg/min, times 60 is 480 mcg/h; divided by 16 gives 30 mL/h."
+  },
+  "source": {
+   "guideline": "Standard mcg/kg/min method",
+   "year": "current edition",
+   "url": "https://doi.usp.org/USPNF/USPNF_M99873_06_01.html",
+   "alt_url": null,
+   "recommendation": "USP <1160>: infusion rate calculations. mL/h = (dose mcg/kg/min × weight kg × 60) ÷ concentration mcg/mL. Norepinephrine 4 mg/250 mL = 16 mcg/mL per labeling dilution."
+  },
+  "verified": "Y – usp.org"
+ },
+ {
+  "id": "naplex-031",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C3",
+  "topic": "Heparin weight-based nomogram rate adjustments",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: 90 kg patient starting the weight-based heparin nomogram for VTE; 25,000 units/500 mL. Bolus and rate?",
+  "bottom": "Bolus 7,200 units; 1,620 units/h = 32.4 mL/h.",
+  "bullets": {
+   "clue": "Raschke: 80 units/kg bolus, then 18 units/kg/h.",
+   "treat": "80 × 90 = 7,200; 18 × 90 = 1,620 units/h ÷ 50 units/mL = 32.4 mL/h.",
+   "trap": "Titrate to your lab's aPTT or anti-Xa range, not a fixed number."
+  },
+  "back": "Bolus 7,200 units; 1,620 units/h = 32.4 mL/h. Given: Raschke: 80 units/kg bolus, then 18 units/kg/h. Work: 80 × 90 = 7,200; 18 × 90 = 1,620 units/h ÷ 50 units/mL = 32.4 mL/h. Exam trap: Titrate to your lab's aPTT or anti-Xa range, not a fixed number.",
+  "word_count": 48,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CHEST 2021; institutional nomogram (Raschke)",
+   "year": "2021",
+   "url": "https://doi.org/10.7326/0003-4819-119-9-199311010-00002",
+   "alt_url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
+   "recommendation": "Raschke RA et al. Ann Intern Med 1993 weight-based nomogram: 80 units/kg bolus, 18 units/kg/h infusion, adjusted by aPTT. Target ranges are institution-specific (calibrated aPTT or anti-Xa)."
+  },
+  "verified": "Y – journal.chestnet.org, acpjournals.org"
+ },
+ {
+  "id": "naplex-032",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C4",
+  "topic": "Opioid conversion with MME and cross-tolerance reduction",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: oxycodone 30 mg every 6 hours. Total MME, and what if switching to morphine?",
+  "bottom": "180 MME/day.",
+  "bullets": {
+   "clue": "CDC factor: oxycodone 1.5. 30 × 4 = 120 mg/day.",
+   "treat": "120 × 1.5 = 180 MME. For a switch, reduce the new opioid 25–50% for incomplete cross-tolerance.",
+   "trap": "CDC: MME factors estimate overdose risk; they aren't a dosing conversion table. Methadone is nonlinear."
+  },
+  "back": "180 MME/day. Given: CDC factor: oxycodone 1.5. 30 × 4 = 120 mg/day. Work: 120 × 1.5 = 180 MME. For a switch, reduce the new opioid 25–50% for incomplete cross-tolerance. Exam trap: CDC: MME factors estimate overdose risk; they aren't a dosing conversion table. Methadone is nonlinear.",
+  "word_count": 48,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CDC Opioid Prescribing Guideline 2022",
+   "year": "2022",
+   "url": "https://www.cdc.gov/mmwr/volumes/71/rr/rr7103a1.htm",
+   "alt_url": null,
+   "recommendation": "CDC Clinical Practice Guideline for Prescribing Opioids for Pain 2022: conversion factors (oxycodone 1.5, hydrocodone 1, morphine 1, hydromorphone 5) estimate MME; they are not intended as dose-conversion tables; when switching opioids, reduce for incomplete cross-tolerance; methadone conversion is nonlinear. Use lowest effective dose and reassess before increasing."
+  },
+  "verified": "Y – cdc.gov"
+ },
+ {
+  "id": "naplex-033",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C4",
+  "topic": "Steroid equivalency (hydrocortisone, prednisone, dexamethasone)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: prednisone 40 mg daily needs to become dexamethasone. Equivalent dose?",
+  "bottom": "Dexamethasone 6 mg.",
+  "bullets": {
+   "clue": "Equivalents: hydrocortisone 20 = prednisone 5 = methylprednisolone 4 = dexamethasone 0.75 mg.",
+   "treat": "40 ÷ 5 = 8 units × 0.75 = 6 mg.",
+   "trap": "Dexamethasone has no mineralocorticoid effect; hydrocortisone does."
+  },
+  "back": "Dexamethasone 6 mg. Given: Equivalents: hydrocortisone 20 = prednisone 5 = methylprednisolone 4 = dexamethasone 0.75 mg. Work: 40 ÷ 5 = 8 units × 0.75 = 6 mg. Exam trap: Dexamethasone has no mineralocorticoid effect; hydrocortisone does.",
+  "word_count": 38,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "Standard glucocorticoid equivalence tables",
+   "year": "current edition",
+   "url": "https://www.ncbi.nlm.nih.gov/books/NBK531462/",
+   "alt_url": null,
+   "recommendation": "Standard glucocorticoid equivalence (anti-inflammatory potency): hydrocortisone 20 mg ≈ prednisone 5 mg ≈ methylprednisolone 4 mg ≈ dexamethasone 0.75 mg; dexamethasone has negligible mineralocorticoid activity."
+  },
+  "verified": "Y – ncbi.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-034",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C4",
+  "topic": "IV-to-PO conversions (levothyroxine, furosemide, levofloxacin)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: furosemide 40 mg PO BID and levofloxacin 750 mg IV daily. Convert each route.",
+  "bottom": "Furosemide 20 mg IV BID; levofloxacin 750 mg PO daily.",
+  "bullets": {
+   "clue": "Oral furosemide bioavailability is about 50%.",
+   "treat": "40 × 0.5 = 20 mg IV. Levofloxacin is about 99% bioavailable: 1:1.",
+   "trap": "Separate oral levofloxacin from Ca, Mg, Fe, Zn by at least 2 hours."
+  },
+  "back": "Furosemide 20 mg IV BID; levofloxacin 750 mg PO daily. Given: Oral furosemide bioavailability is about 50%. Work: 40 × 0.5 = 20 mg IV. Levofloxacin is about 99% bioavailable: 1:1. Exam trap: Separate oral levofloxacin from Ca, Mg, Fe, Zn by at least 2 hours.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling",
+   "year": "current edition",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2c9b4d8f-0770-482d-a9e6-9c616a440b1a",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ffa121b8-388f-4d7b-af48-d4aa8d9b5961",
+   "recommendation": "Furosemide labeling: oral bioavailability ~50% (range 10–100%), so IV dose is about half the oral dose. Levofloxacin labeling: oral bioavailability ~99%, oral and IV interchangeable; give oral doses at least 2 hours before or after antacids with Mg/Al, sucralfate, metal cations."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-035",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C4",
+  "topic": "Insulin conversions: IV drip to SC basal-bolus; NPH to glargine",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: NPH 20 units twice daily switching to once-daily glargine. Dose?",
+  "bottom": "Glargine 32 units once daily.",
+  "bullets": {
+   "clue": "Twice-daily NPH to glargine: reduce total by 20%.",
+   "treat": "20 + 20 = 40 units × 0.8 = 32 units.",
+   "trap": "Drip to SC: give basal insulin about 2 hours before stopping the IV infusion."
+  },
+  "back": "Glargine 32 units once daily. Given: Twice-daily NPH to glargine: reduce total by 20%. Work: 20 + 20 = 40 units × 0.8 = 32 units. Exam trap: Drip to SC: give basal insulin about 2 hours before stopping the IV infusion.",
+  "word_count": 42,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ADA Standards of Care 2026 (Sec 16)",
+   "year": "2026",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d5e07a0c-7e14-4756-9152-9fea485d654a",
+   "alt_url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+   "recommendation": "Insulin glargine labeling: when switching from twice-daily NPH, the initial glargine dose is 80% of total daily NPH dose. ADA Standards of Care 2026 (Section 16): when transitioning from IV to SC insulin, administer basal insulin 2 h before discontinuing the infusion."
+  },
+  "verified": "Y – diabetesjournals.org"
+ },
+ {
+  "id": "naplex-036",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C5",
+  "topic": "Ratio strength, % w/v, ppm",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: express epinephrine 1:1,000 as % w/v and mg/mL.",
+  "bottom": "0.1% w/v = 1 mg/mL.",
+  "bullets": {
+   "clue": "Ratio strength 1:1,000 = 1 g in 1,000 mL.",
+   "treat": "1 g/1,000 mL = 0.1 g/100 mL = 0.1%; = 1,000 mg/1,000 mL = 1 mg/mL.",
+   "trap": "Labels now state mg/mL: 1:10,000 is 0.1 mg/mL. 1 ppm = 0.0001%."
+  },
+  "back": "0.1% w/v = 1 mg/mL. Given: Ratio strength 1:1,000 = 1 g in 1,000 mL. Work: 1 g/1,000 mL = 0.1 g/100 mL = 0.1%; = 1,000 mg/1,000 mL = 1 mg/mL. Exam trap: Labels now state mg/mL: 1:10,000 is 0.1 mg/mL. 1 ppm = 0.0001%.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "USP <1160>",
+   "year": "current edition",
+   "url": "https://doi.usp.org/USPNF/USPNF_M99873_06_01.html",
+   "alt_url": null,
+   "recommendation": "USP <1160>: ratio strength, percentage and ppm calculations. USP labeling standards require single-entity epinephrine injections to express strength in mg/mL rather than ratio."
+  },
+  "verified": "Y – usp.org"
+ },
+ {
+  "id": "naplex-037",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C5",
+  "topic": "Dilution/concentration (C1V1 = C2V2)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: make 100 mL of 2% solution from a 10% stock. How much stock?",
+  "bottom": "20 mL stock + 80 mL diluent.",
+  "bullets": {
+   "clue": "C1V1 = C2V2.",
+   "treat": "10% × V1 = 2% × 100 mL; V1 = 20 mL.",
+   "trap": "Diluent is 80 mL, not 100 mL."
+  },
+  "back": "20 mL stock + 80 mL diluent. Given: C1V1 = C2V2. Work: 10% × V1 = 2% × 100 mL; V1 = 20 mL. Exam trap: Diluent is 80 mL, not 100 mL.",
+  "word_count": 33,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "USP <1160>",
+   "year": "current edition",
+   "url": "https://doi.usp.org/USPNF/USPNF_M99873_06_01.html",
+   "alt_url": null,
+   "recommendation": "USP <1160>: dilution and concentration calculations, (quantity1)(concentration1) = (quantity2)(concentration2)."
+  },
+  "verified": "Y – usp.org"
+ },
+ {
+  "id": "naplex-038",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C5",
+  "topic": "Alligation (alternate) to make intermediate strength",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: make 100 g of 40% ointment from 70% and 30% stocks. How much of each?",
+  "bottom": "25 g of 70% + 75 g of 30%.",
+  "bullets": {
+   "clue": "Alligation: parts of high = 40 − 30 = 10; parts of low = 70 − 40 = 30.",
+   "treat": "10/40 × 100 = 25 g; 30/40 × 100 = 75 g. Check: 17.5 + 22.5 = 40 g.",
+   "trap": "Parts come from the opposite corner of the grid."
+  },
+  "back": "25 g of 70% + 75 g of 30%. Given: Alligation: parts of high = 40 − 30 = 10; parts of low = 70 − 40 = 30. Work: 10/40 × 100 = 25 g; 30/40 × 100 = 75 g. Check: 17.5 + 22.5 = 40 g. Exam trap: Parts come from the opposite corner of the grid.",
+  "word_count": 60,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "USP <1160>",
+   "year": "current edition",
+   "url": "https://doi.usp.org/USPNF/USPNF_M99873_06_01.html",
+   "alt_url": null,
+   "recommendation": "USP <1160>: alligation alternate for mixing two strengths to obtain an intermediate strength."
+  },
+  "verified": "Y – usp.org"
+ },
+ {
+  "id": "naplex-039",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C5",
+  "topic": "Milliequivalents (KCl, NaHCO3, Ca salts)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: how many grams of KCl (MW 74.5) provide 20 mEq?",
+  "bottom": "1.49 g KCl.",
+  "bullets": {
+   "clue": "mEq = mg × valence ÷ MW; KCl valence 1.",
+   "treat": "20 × 74.5 ÷ 1 = 1,490 mg = 1.49 g.",
+   "trap": "Divalent ions (Ca, Mg): divide MW by 2 per mEq."
+  },
+  "back": "1.49 g KCl. Given: mEq = mg × valence ÷ MW; KCl valence 1. Work: 20 × 74.5 ÷ 1 = 1,490 mg = 1.49 g. Exam trap: Divalent ions (Ca, Mg): divide MW by 2 per mEq.",
+  "word_count": 38,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "USP <1160>",
+   "year": "current edition",
+   "url": "https://doi.usp.org/USPNF/USPNF_M99873_06_01.html",
+   "alt_url": null,
+   "recommendation": "USP <1160>: milliequivalent calculations, mEq = (mg × valence) / formula weight."
+  },
+  "verified": "Y – usp.org"
+ },
+ {
+  "id": "naplex-040",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C5",
+  "topic": "Milliosmoles and osmolarity of IV fluids (NS, D5W)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: osmolarity of 0.9% sodium chloride (MW 58.5)?",
+  "bottom": "About 308 mOsm/L.",
+  "bullets": {
+   "clue": "0.9% = 9 g/L; NaCl dissociates into 2 particles.",
+   "treat": "9 ÷ 58.5 = 0.154 mol/L × 2 = 308 mOsm/L.",
+   "trap": "Peripheral PN: keep osmolarity ≤900 mOsm/L."
+  },
+  "back": "About 308 mOsm/L. Given: 0.9% = 9 g/L; NaCl dissociates into 2 particles. Work: 9 ÷ 58.5 = 0.154 mol/L × 2 = 308 mOsm/L. Exam trap: Peripheral PN: keep osmolarity ≤900 mOsm/L.",
+  "word_count": 33,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "USP <1160>; ASPEN",
+   "year": "current edition",
+   "url": "https://doi.usp.org/USPNF/USPNF_M99873_06_01.html",
+   "alt_url": "https://aspenjournals.onlinelibrary.wiley.com/doi/10.1177/0148607113511992",
+   "recommendation": "USP <1160>: mOsmol/L = (g/L ÷ MW) × number of particles × 1000. ASPEN Parenteral Nutrition Safety Consensus Recommendations (2014): peripheral PN osmolarity limit 900 mOsm/L."
+  },
+  "verified": "Y – usp.org, aspenjournals.onlinelibrary.wiley.com"
+ },
+ {
+  "id": "naplex-041",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C5",
+  "topic": "Isotonicity: sodium chloride equivalents (E-value)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: 30 mL of a 1% ophthalmic drug (E = 0.18). How much NaCl makes it isotonic?",
+  "bottom": "Add 0.216 g NaCl.",
+  "bullets": {
+   "clue": "Isotonic = 0.9% NaCl: 30 mL needs 0.27 g.",
+   "treat": "Drug 0.3 g × 0.18 = 0.054 g NaCl equivalent; 0.27 − 0.054 = 0.216 g.",
+   "trap": "E-value = grams NaCl equivalent to 1 g drug."
+  },
+  "back": "Add 0.216 g NaCl. Given: Isotonic = 0.9% NaCl: 30 mL needs 0.27 g. Work: Drug 0.3 g × 0.18 = 0.054 g NaCl equivalent; 0.27 − 0.054 = 0.216 g. Exam trap: E-value = grams NaCl equivalent to 1 g drug.",
+  "word_count": 42,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "USP <1160>",
+   "year": "current edition",
+   "url": "https://doi.usp.org/USPNF/USPNF_M99873_06_01.html",
+   "alt_url": null,
+   "recommendation": "USP <1160>: isotonicity calculations using sodium chloride equivalents (E values)."
+  },
+  "verified": "Y – usp.org"
+ },
+ {
+  "id": "naplex-042",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C6",
+  "topic": "Specific gravity and weight/volume conversions",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: you need 50 g of glycerin (specific gravity 1.25). What volume?",
+  "bottom": "40 mL.",
+  "bullets": {
+   "clue": "Volume = weight ÷ specific gravity.",
+   "treat": "50 g ÷ 1.25 g/mL = 40 mL.",
+   "trap": "Multiply for weight, divide for volume."
+  },
+  "back": "40 mL. Given: Volume = weight ÷ specific gravity. Work: 50 g ÷ 1.25 g/mL = 40 mL. Exam trap: Multiply for weight, divide for volume.",
+  "word_count": 26,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "USP <1160>",
+   "year": "current edition",
+   "url": "https://doi.usp.org/USPNF/USPNF_M99873_06_01.html",
+   "alt_url": null,
+   "recommendation": "USP <1160>: specific gravity relates weight and volume; weight (g) = volume (mL) × specific gravity."
+  },
+  "verified": "Y – usp.org"
+ },
+ {
+  "id": "naplex-043",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1D",
+  "topic": "Clinical trial phases, EUA vs full approval, REMS basics",
+  "calculation": false,
+  "reused_from": null,
+  "front": "A drug gets an Emergency Use Authorization. Is it approved, and where do trial phases fit?",
+  "bottom": "No: EUA is not approval.",
+  "bullets": {
+   "clue": "Phase 1 safety and dosing; 2 efficacy and dose-finding; 3 large confirmatory trials; 4 postmarketing.",
+   "treat": "EUA under FD&C Act section 564 during a declared emergency; trials run under an IND (21 CFR 312).",
+   "trap": "REMS can be required at or after approval if labeling alone isn't enough."
+  },
+  "back": "No: EUA is not approval. Key clue: Phase 1 safety and dosing; 2 efficacy and dose-finding; 3 large confirmatory trials; 4 postmarketing. Pharmacist move: EUA under FD&C Act section 564 during a declared emergency; trials run under an IND (21 CFR 312). Exam trap: REMS can be required at or after approval if labeling alone isn't enough.",
+  "word_count": 57,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA 21 CFR 312; FDA EUA guidance",
+   "year": "current edition",
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/emergency-use-authorization-medical-products-and-related-authorities",
+   "alt_url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312",
+   "recommendation": "FDA EUA guidance: section 564 authorizes unapproved products or uses during a declared emergency; EUA is distinct from approval. 21 CFR 312.21 describes phases 1–3; phase 4 postmarketing studies. FDAAA 2007 lets FDA require a REMS."
+  },
+  "verified": "Y – fda.gov"
+ },
+ {
+  "id": "naplex-044",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C7",
+  "topic": "TPN: dextrose, amino acid, lipid kcal and total kcal",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: PN with dextrose 250 g, amino acids 100 g, 250 mL of 20% lipid. Total kcal?",
+  "bottom": "1,750 kcal.",
+  "bullets": {
+   "clue": "Dextrose 3.4 kcal/g; protein 4 kcal/g; 20% lipid 2 kcal/mL.",
+   "treat": "850 + 400 + 500 = 1,750 kcal.",
+   "trap": "Dextrose is 3.4 kcal/g, not 4."
+  },
+  "back": "1,750 kcal. Given: Dextrose 3.4 kcal/g; protein 4 kcal/g; 20% lipid 2 kcal/mL. Work: 850 + 400 + 500 = 1,750 kcal. Exam trap: Dextrose is 3.4 kcal/g, not 4.",
+  "word_count": 30,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ASPEN PN Safety Consensus 2014 + ASPEN Safe PN Care Transitions 2022",
+   "year": "2014 / 2022",
+   "url": "https://aspenjournals.onlinelibrary.wiley.com/doi/10.1177/0148607113511992",
+   "alt_url": "https://aspenjournals.onlinelibrary.wiley.com/doi/10.1002/ncp.10861",
+   "recommendation": "ASPEN PN Safety Consensus (2014): energy values used in PN: dextrose monohydrate 3.4 kcal/g, amino acids 4 kcal/g, 20% lipid emulsion 2 kcal/mL (10 kcal/g including glycerol and phospholipid)."
+  },
+  "verified": "Y – aspenjournals.onlinelibrary.wiley.com"
+ },
+ {
+  "id": "naplex-045",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C7",
+  "topic": "TPN nitrogen balance and protein needs (g/kg)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: patient gets 100 g protein/day; 24-hour UUN is 12 g. Nitrogen balance?",
+  "bottom": "Balance = 0 (neutral).",
+  "bullets": {
+   "clue": "N intake = protein ÷ 6.25; losses = UUN + 4.",
+   "treat": "100 ÷ 6.25 = 16 g in; 12 + 4 = 16 g out; balance 0.",
+   "trap": "Critically ill adults: protein 1.2–2.0 g/kg/day."
+  },
+  "back": "Balance = 0 (neutral). Given: N intake = protein ÷ 6.25; losses = UUN + 4. Work: 100 ÷ 6.25 = 16 g in; 12 + 4 = 16 g out; balance 0. Exam trap: Critically ill adults: protein 1.2–2.0 g/kg/day.",
+  "word_count": 41,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ASPEN/SCCM Critical Care Nutrition 2022",
+   "year": "2022",
+   "url": "https://aspenjournals.onlinelibrary.wiley.com/doi/10.1002/jpen.2267",
+   "alt_url": null,
+   "recommendation": "ASPEN 2022 adult critical care nutrition guideline: protein 1.2–2.0 g/kg/day; nitrogen balance = (protein g ÷ 6.25) − (UUN + 4) per standard nutrition assessment."
+  },
+  "verified": "Y – aspenjournals.onlinelibrary.wiley.com"
+ },
+ {
+  "id": "naplex-046",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C7",
+  "topic": "Fluid maintenance (Holliday-Segar 4-2-1)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: 25 kg child. Holliday-Segar maintenance fluids per day and per hour?",
+  "bottom": "1,600 mL/day; 65 mL/h.",
+  "bullets": {
+   "clue": "100 mL/kg first 10 kg; 50 mL/kg next 10; 20 mL/kg after.",
+   "treat": "1,000 + 500 + 100 = 1,600 mL/day. Hourly 4-2-1: 40 + 20 + 5 = 65 mL/h.",
+   "trap": "The 4-2-1 rule gives mL/h, not mL/day."
+  },
+  "back": "1,600 mL/day; 65 mL/h. Given: 100 mL/kg first 10 kg; 50 mL/kg next 10; 20 mL/kg after. Work: 1,000 + 500 + 100 = 1,600 mL/day. Hourly 4-2-1: 40 + 20 + 5 = 65 mL/h. Exam trap: The 4-2-1 rule gives mL/h, not mL/day.",
+  "word_count": 45,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "Holliday-Segar method",
+   "year": "current edition",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9651436/",
+   "alt_url": null,
+   "recommendation": "Holliday MA, Segar WE. Pediatrics 1957: maintenance water 100 mL/kg/day for first 10 kg, 50 mL/kg/day for next 10 kg, 20 mL/kg/day thereafter (hourly 4-2-1 mL/kg/h)."
+  },
+  "verified": "Y – pubmed.ncbi.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-047",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C8",
+  "topic": "NNT, ARR, RRR, OR vs RR",
+  "calculation": true,
+  "reused_from": "pance-164",
+  "front": "Calc: stroke rate 20% on placebo, 15% on drug. ARR, RRR, NNT?",
+  "bottom": "ARR 5%, RRR 25%, NNT 20.",
+  "bullets": {
+   "clue": "ARR = control − treatment rate; RRR = ARR ÷ control.",
+   "treat": "20 − 15 = 5%; 5 ÷ 20 = 25%; NNT = 1 ÷ 0.05 = 20.",
+   "trap": "Round NNT up; RRR looks bigger than ARR."
+  },
+  "back": "ARR 5%, RRR 25%, NNT 20. Given: ARR = control − treatment rate; RRR = ARR ÷ control. Work: 20 − 15 = 5%; 5 ÷ 20 = 25%; NNT = 1 ÷ 0.05 = 20. Exam trap: Round NNT up; RRR looks bigger than ARR.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": {
+   "file": "svg/naplex-047.svg",
+   "alt": "Risk calculation flow: control event rate 20 percent, treatment 15 percent. ARR 5 percent, RRR 25 percent, NNT 20."
+  },
+  "source": {
+   "guideline": "Standard EBM formulas",
+   "year": "current edition",
+   "url": "https://www.cebm.ox.ac.uk/resources/ebm-tools/glossary",
+   "alt_url": null,
+   "recommendation": "Standard EBM definitions (CEBM): ARR = CER − EER; RRR = (CER − EER)/CER; NNT = 1/ARR rounded up."
+  },
+  "verified": "Y – cebm.ox.ac.uk"
+ },
+ {
+  "id": "naplex-048",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C8",
+  "topic": "Sensitivity, specificity, PPV, NPV",
+  "calculation": true,
+  "reused_from": "pance-164",
+  "front": "Calc: TP 90, FN 10, FP 20, TN 180. Sensitivity, specificity, PPV, NPV?",
+  "bottom": "Sens 90%, spec 90%, PPV 82%, NPV 95%.",
+  "bullets": {
+   "clue": "Sens = TP/(TP+FN); spec = TN/(TN+FP).",
+   "treat": "90/100 = 90%; 180/200 = 90%; PPV 90/110 = 82%; NPV 180/190 = 95%.",
+   "trap": "PPV and NPV shift with prevalence; sensitivity and specificity don't."
+  },
+  "back": "Sens 90%, spec 90%, PPV 82%, NPV 95%. Given: Sens = TP/(TP+FN); spec = TN/(TN+FP). Work: 90/100 = 90%; 180/200 = 90%; PPV 90/110 = 82%; NPV 180/190 = 95%. Exam trap: PPV and NPV shift with prevalence; sensitivity and specificity don't.",
+  "word_count": 42,
+  "mnemonic": null,
+  "diagram": {
+   "file": "svg/naplex-048.svg",
+   "alt": "Two-by-two table: TP 90, FN 10, FP 20, TN 180. Sensitivity 90 over 100 is 90 percent, specificity 180 over 200 is 90 percent, PPV 90 over 110 is 82 percent, NPV 180 over 190 is 95 percent."
+  },
+  "source": {
+   "guideline": "Standard EBM formulas",
+   "year": "current edition",
+   "url": "https://www.cebm.ox.ac.uk/resources/ebm-tools/glossary",
+   "alt_url": null,
+   "recommendation": "Standard EBM definitions (CEBM): sensitivity, specificity, positive and negative predictive values; predictive values depend on prevalence."
+  },
+  "verified": "Y – cebm.ox.ac.uk"
+ },
+ {
+  "id": "naplex-049",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C9",
+  "topic": "Loading & maintenance doses: Vd, Cl, half-life, ke",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: Vd 0.5 L/kg, 70 kg, target 15 mg/L. Loading dose, and time to steady state without one?",
+  "bottom": "Loading dose 525 mg.",
+  "bullets": {
+   "clue": "LD = Vd × target concentration (F = 1).",
+   "treat": "0.5 × 70 = 35 L × 15 = 525 mg. Steady state takes 4–5 half-lives; t½ = 0.693 ÷ k.",
+   "trap": "Loading dose depends on Vd; maintenance depends on clearance."
+  },
+  "back": "Loading dose 525 mg. Given: LD = Vd × target concentration (F = 1). Work: 0.5 × 70 = 35 L × 15 = 525 mg. Steady state takes 4–5 half-lives; t½ = 0.693 ÷ k. Exam trap: Loading dose depends on Vd; maintenance depends on clearance.",
+  "word_count": 47,
+  "mnemonic": null,
+  "diagram": {
+   "file": "svg/naplex-049.svg",
+   "alt": "Loading dose versus accumulation: without a loading dose, drug reaches 50, 75, 88, 94 and 97 percent of steady state after 1 to 5 half-lives; a loading dose of Vd times target concentration reaches target at once."
+  },
+  "source": {
+   "guideline": "Applied clinical PK (Winter's)",
+   "year": "current edition",
+   "url": "https://www.ncbi.nlm.nih.gov/books/NBK557744/",
+   "alt_url": null,
+   "recommendation": "Applied clinical pharmacokinetics (Winter's Basic Clinical Pharmacokinetics): LD = Vd × Css ÷ (S × F); maintenance dose rate = CL × Css; t½ = 0.693/ke; ~4–5 half-lives to reach steady state."
+  },
+  "verified": "Y – pmc.ncbi.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-050",
+  "system": "Foundational Knowledge",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 1C9",
+  "topic": "Vancomycin AUC/MIC dosing (AUC 400–600)",
+  "calculation": true,
+  "reused_from": null,
+  "front": "Calc: serious MRSA infection, vancomycin CL 4 L/h, AUC target 500. Daily dose?",
+  "bottom": "2,000 mg/day.",
+  "bullets": {
+   "clue": "Target AUC 400–600 mg·h/L (MIC 1).",
+   "treat": "Daily dose = AUC × CL = 500 × 4 = 2,000 mg/day.",
+   "trap": "Trough-only dosing (15–20) is no longer recommended."
+  },
+  "back": "2,000 mg/day. Given: Target AUC 400–600 mg·h/L (MIC 1). Work: Daily dose = AUC × CL = 500 × 4 = 2,000 mg/day. Exam trap: Trough-only dosing (15–20) is no longer recommended.",
+  "word_count": 32,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ASHP/IDSA/PIDS/SIDP vancomycin 2020",
+   "year": "2020",
+   "url": "https://www.idsociety.org/practice-guideline/vancomycin/",
+   "alt_url": null,
+   "recommendation": "ASHP/IDSA/PIDS/SIDP 2020 vancomycin consensus: AUC/MIC 400–600 (assuming MIC 1) for serious MRSA infections, preferably Bayesian-guided; trough-only monitoring targeting 15–20 mg/L no longer recommended. Total daily dose = AUC24 × CL."
+  },
+  "verified": "Y – ashp.org, idsociety.org"
+ }
+]

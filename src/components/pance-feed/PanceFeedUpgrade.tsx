@@ -1,21 +1,21 @@
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
-
-const RETURN = encodeURIComponent(ROUTES.panceFeed);
+import { STUDY_FEEDS, type StudyFeedBoard } from "@/lib/study-feed/catalog";
 
 /** Signed-in learners without a paid plan. No card text is rendered here. */
-export function PanceFeedUpgrade() {
+export function PanceFeedUpgrade({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoard }) {
+  const back = encodeURIComponent(board.href);
   return (
-    <div className="pf-gate" data-testid="pance-feed-upgrade">
+    <div className="pf-gate" data-testid={`${board.testId}-upgrade`}>
       <div className="pf-gate-card">
         <p className="pf-gate-kicker">Paid plan</p>
-        <h1>PANCE Feed</h1>
+        <h1>{board.label}</h1>
         <p>
-          Swipe a full-screen deck of PANCE cards. Got it, Review again, and the card you
-          last saw stay in sync on every device with a paid plan.
+          Swipe a full-screen deck of {board.label.replace(" Feed", "")} cards. Got it, Review
+          again, and the card you last saw stay in sync on every device with a paid plan.
         </p>
         <div className="pf-gate-actions">
-          <Link className="pf-gate-primary" href={`${ROUTES.upgrade}?return=${RETURN}`}>
+          <Link className="pf-gate-primary" href={`${ROUTES.upgrade}?return=${back}`}>
             Upgrade
           </Link>
           <Link className="pf-gate-secondary" href={`${ROUTES.pricing}?paywall=1`}>

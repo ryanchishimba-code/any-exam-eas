@@ -32,6 +32,7 @@ import {
   getStudyGuideConfig,
 } from "@/lib/nclex-study-guide/guide-registry";
 import { ROUTES, fullExamHref } from "@/lib/routes";
+import { STUDY_FEEDS } from "@/lib/study-feed/catalog";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -117,10 +118,31 @@ const NAV_SECTIONS: NavSection[] = [
       },
       {
         id: "pance-feed",
-        href: ROUTES.panceFeed,
-        label: "PANCE Feed",
+        href: STUDY_FEEDS.pance.href,
+        label: STUDY_FEEDS.pance.label,
         icon: Layers,
         exams: ["pance"],
+      },
+      {
+        id: "nclex-feed",
+        href: STUDY_FEEDS.nclex.href,
+        label: STUDY_FEEDS.nclex.label,
+        icon: Layers,
+        exams: ["nclex"],
+      },
+      {
+        id: "naplex-feed",
+        href: STUDY_FEEDS.naplex.href,
+        label: STUDY_FEEDS.naplex.label,
+        icon: Layers,
+        exams: ["naplex"],
+      },
+      {
+        id: "fnp-feed",
+        href: STUDY_FEEDS["aanp-fnp"].href,
+        label: STUDY_FEEDS["aanp-fnp"].label,
+        icon: Layers,
+        exams: ["aanp-fnp"],
       },
     ],
   },

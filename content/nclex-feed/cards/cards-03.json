@@ -1,0 +1,1298 @@
+[
+  {
+    "id": "nclex-101",
+    "system": "Mobility",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client on bed rest for five days after hip surgery: which complications must the nurse prevent?",
+    "bottom": "Pressure injury, DVT, pneumonia, constipation and contractures.",
+    "bullets": {
+      "clue": "Immobility slows blood flow, breathing depth and bowel motility.",
+      "treat": "Reposition at least every 2 hours, mobilize early, cough and deep breathe.",
+      "trap": "Waiting for a complication to appear before starting prevention."
+    },
+    "back": "Pressure injury, DVT, pneumonia, constipation and contractures. Key clue: Immobility slows blood flow, breathing depth and bowel motility. First-line: Reposition at least every 2 hours, mobilize early, cough and deep breathe. Exam trap: Waiting for a complication to appear before starting prevention.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-101.svg",
+      "alt": "Body outline marking immobility risks to skin, veins, lungs and bowel."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places immobility care in Basic Care and Comfort. Prolonged bed rest raises risk for pressure injury, venous thromboembolism, pneumonia, constipation, contractures and muscle loss. Nurses reposition at least every 2 hours, mobilize early, encourage coughing and deep breathing, and maintain hydration and bowel routines."
+    }
+  },
+  {
+    "id": "nclex-102",
+    "system": "Nutrition",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A newly placed nasogastric feeding tube is in place: how is placement confirmed before the first feeding?",
+    "bottom": "Radiograph confirmation first; then pH checks and external length marking.",
+    "bullets": {
+      "clue": "New insertion, vomiting, coughing or a moved tube marking.",
+      "treat": "Mark the exit site, keep head of bed 30 to 45 degrees, flush as ordered.",
+      "trap": "Relying on the air-bolus auscultation method to confirm placement."
+    },
+    "back": "Radiograph confirmation first; then pH checks and external length marking. Key clue: New insertion, vomiting, coughing or a moved tube marking. First-line: Mark the exit site, keep head of bed 30 to 45 degrees, flush as ordered. Exam trap: Relying on the air-bolus auscultation method to confirm placement.",
+    "word_count": 48,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-102.svg",
+      "alt": "Nasogastric tube path with the exit-site mark at the nostril."
+    },
+    "source": {
+      "guideline": "ASPEN Safe Practices for Enteral Nutrition 2017",
+      "year": "2017",
+      "url": "https://aspenjournals.onlinelibrary.wiley.com/doi/full/10.1177/0148607116673053",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ASPEN 2017 safe practices for enteral nutrition recommend radiographic confirmation of blindly placed feeding tubes before the first feeding or medication. Afterward, nurses mark and check the external tube length, review aspirate appearance and pH, keep the head of bed raised 30 to 45 degrees, and avoid the auscultation method."
+    }
+  },
+  {
+    "id": "nclex-103",
+    "system": "Nutrition",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client who had a stroke coughs during meals: how does the nurse prevent aspiration?",
+    "bottom": "Keep NPO until the swallow screen; sit fully upright and request a speech evaluation.",
+    "bullets": {
+      "clue": "Coughing, choking, wet voice or pocketing food while eating.",
+      "treat": "After evaluation, give only the IDDSI texture ordered; use strategies such as chin tuck only if SLP directs.",
+      "trap": "Giving thin liquids or a straw without a swallow evaluation."
+    },
+    "back": "Keep NPO until the swallow screen; sit fully upright and request a speech evaluation. Key clue: Coughing, choking, wet voice or pocketing food while eating. First-line: After evaluation, give only the IDDSI texture ordered; use strategies such as chin tuck only if SLP directs. Exam trap: Giving thin liquids or a straw without a swallow evaluation.",
+    "word_count": 56,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-103.svg",
+      "alt": "IDDSI framework pyramid of drink and food levels."
+    },
+    "source": {
+      "guideline": "IDDSI Framework v2.2 (April 2026)",
+      "year": "2026",
+      "url": "https://www.iddsi.org/resources/framework-documents",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "IDDSI Framework v2.2 (April 2026) defines standardized levels for drinks, from thin to extremely thick, and for foods, from liquidised to regular. Nurses keep clients NPO until a swallow screen, sit them fully upright for any intake, request a speech-language pathology evaluation, give only the texture level ordered, and watch for coughing or a wet voice."
+    }
+  },
+  {
+    "id": "nclex-104",
+    "system": "Nutrition",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client with chronic kidney disease asks about a salt substitute: which diet teaching is correct?",
+    "bottom": "Renal diets limit potassium, phosphorus and sodium; most salt substitutes contain potassium.",
+    "bullets": {
+      "clue": "Kidney disease, high potassium, or a low-sodium cardiac diet.",
+      "treat": "Teach label reading and choose herbs and spices instead of salt.",
+      "trap": "Recommending potassium-based salt substitutes to a renal client."
+    },
+    "back": "Renal diets limit potassium, phosphorus and sodium; most salt substitutes contain potassium. Key clue: Kidney disease, high potassium, or a low-sodium cardiac diet. First-line: Teach label reading and choose herbs and spices instead of salt. Exam trap: Recommending potassium-based salt substitutes to a renal client.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-104.svg",
+      "alt": "Plate showing renal, cardiac and low-residue diet choices."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places therapeutic diets in Basic Care and Comfort. Renal diets limit potassium, phosphorus, sodium and sometimes fluid, cardiac diets limit sodium and saturated fat, and low-residue diets limit fiber. Many salt substitutes contain potassium chloride, which is unsafe for clients with kidney disease."
+    }
+  },
+  {
+    "id": "nclex-105",
+    "system": "Elimination",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client taking scheduled opioids after surgery has no stool for three days: what helps first?",
+    "bottom": "Fluids, fiber, activity and a regular toileting routine.",
+    "bullets": {
+      "clue": "Opioids, immobility and low fluid intake slow bowel motility.",
+      "treat": "Toilet after meals, encourage fluids, give stool softener or laxative as ordered.",
+      "trap": "Relying on long-term stimulant laxatives instead of a bowel routine."
+    },
+    "back": "Fluids, fiber, activity and a regular toileting routine. Key clue: Opioids, immobility and low fluid intake slow bowel motility. First-line: Toilet after meals, encourage fluids, give stool softener or laxative as ordered. Exam trap: Relying on long-term stimulant laxatives instead of a bowel routine.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-105.svg",
+      "alt": "Bowel routine timeline built around meals."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places elimination in Basic Care and Comfort. Bowel training uses a regular toileting time, often after meals, plus adequate fluids, fiber and activity. Opioids commonly cause constipation, so nurses monitor bowel patterns and give ordered stool softeners or laxatives rather than waiting several days."
+    }
+  },
+  {
+    "id": "nclex-106",
+    "system": "Elimination",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client has had an indwelling urinary catheter for four days: how does the nurse prevent CAUTI?",
+    "bottom": "Use catheters only when indicated and remove them as early as possible.",
+    "bullets": {
+      "clue": "Catheter duration is the main modifiable risk for CAUTI.",
+      "treat": "Aseptic insertion, closed drainage, bag below bladder, daily review of need.",
+      "trap": "Routine scheduled catheter changes or breaking the closed system."
+    },
+    "back": "Use catheters only when indicated and remove them as early as possible. Key clue: Catheter duration is the main modifiable risk for CAUTI. First-line: Aseptic insertion, closed drainage, bag below bladder, daily review of need. Exam trap: Routine scheduled catheter changes or breaking the closed system.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-106.svg",
+      "alt": "Catheter drainage bag hanging below the bladder level."
+    },
+    "source": {
+      "guideline": "CDC/HICPAC CAUTI 2009 (updated 2019)",
+      "year": "2019",
+      "url": "https://www.cdc.gov/infection-control/hcp/cauti/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CDC/HICPAC 2009 CAUTI guideline, updated 2019, recommends inserting catheters only for appropriate indications, using aseptic technique, keeping a closed drainage system with unobstructed flow and the bag below bladder level, and removing catheters as soon as possible. Routine scheduled catheter changes are not recommended."
+    }
+  },
+  {
+    "id": "nclex-107",
+    "system": "Elimination",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "On day one after colostomy surgery, the stoma looks dusky purple: what does the nurse do?",
+    "bottom": "A healthy stoma is moist and pink to red; dusky means ischemia.",
+    "bullets": {
+      "clue": "Pale, dusky, purple or black stoma color.",
+      "treat": "Report a dusky stoma promptly; size the pouch about 1/8 inch larger.",
+      "trap": "Treating a dusky or black stoma as normal postoperative swelling."
+    },
+    "back": "A healthy stoma is moist and pink to red; dusky means ischemia. Key clue: Pale, dusky, purple or black stoma color. First-line: Report a dusky stoma promptly; size the pouch about 1/8 inch larger. Exam trap: Treating a dusky or black stoma as normal postoperative swelling.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-107.svg",
+      "alt": "Stoma color chart from healthy red to dusky and black."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places ostomy care in Basic Care and Comfort. A healthy stoma is moist and pink to red. A pale, dusky, purple or black stoma suggests impaired blood flow and needs prompt reporting. Nurses size the pouch opening slightly larger than the stoma and protect surrounding skin."
+    }
+  },
+  {
+    "id": "nclex-108",
+    "system": "Elimination",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client leaks urine when sneezing; another dribbles constantly: which incontinence types are these?",
+    "bottom": "Stress leaks with coughing; urge has sudden need; overflow constantly dribbles.",
+    "bullets": {
+      "clue": "Leaking with sneezing, laughing or lifting suggests stress incontinence.",
+      "treat": "Kegels for stress, timed voiding for urge, bladder scan for overflow retention.",
+      "trap": "Treating overflow incontinence as urge incontinence without checking for retention."
+    },
+    "back": "Stress leaks with coughing; urge has sudden need; overflow constantly dribbles. Key clue: Leaking with sneezing, laughing or lifting suggests stress incontinence. First-line: Kegels for stress, timed voiding for urge, bladder scan for overflow retention. Exam trap: Treating overflow incontinence as urge incontinence without checking for retention.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-108.svg",
+      "alt": "Bladder diagrams comparing stress, urge and overflow incontinence."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places urinary elimination in Basic Care and Comfort. Stress incontinence occurs with coughing or sneezing, urge incontinence with sudden need, and overflow with constant dribbling from retention. Nurses teach pelvic floor exercises and timed voiding, and use bladder scans to check for retention."
+    }
+  },
+  {
+    "id": "nclex-109",
+    "system": "Comfort",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A hospitalized client reports poor sleep because of frequent night checks: what does the nurse do?",
+    "bottom": "Cluster care, dim lights, reduce noise and keep a bedtime routine.",
+    "bullets": {
+      "clue": "Interrupted sleep, fatigue, confusion or caffeine late in the day.",
+      "treat": "Group assessments and treatments to allow longer uninterrupted rest periods.",
+      "trap": "Waking a stable client for nonurgent routine tasks."
+    },
+    "back": "Cluster care, dim lights, reduce noise and keep a bedtime routine. Key clue: Interrupted sleep, fatigue, confusion or caffeine late in the day. First-line: Group assessments and treatments to allow longer uninterrupted rest periods. Exam trap: Waking a stable client for nonurgent routine tasks.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-109.svg",
+      "alt": "Night timeline showing clustered care and quiet periods."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places rest and sleep in Basic Care and Comfort. Nurses protect sleep by clustering care, reducing noise and light at night, limiting caffeine late in the day, supporting bedtime routines, and avoiding unnecessary interruptions for stable clients while still meeting ordered monitoring needs."
+    }
+  },
+  {
+    "id": "nclex-110",
+    "system": "Mobility",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client with a weak left leg is learning to walk with a cane: which side holds it?",
+    "bottom": "Hold the cane on the strong side; move it with the weak leg.",
+    "bullets": {
+      "clue": "Unilateral weakness after injury or stroke.",
+      "treat": "Advance the cane with the weak leg; on stairs, the strong leg leads up and the cane leads down.",
+      "trap": "Holding the cane on the weak side."
+    },
+    "back": "Hold the cane on the strong side; move it with the weak leg. Key clue: Unilateral weakness after injury or stroke. First-line: Advance the cane with the weak leg; on stairs, the strong leg leads up and the cane leads down. Exam trap: Holding the cane on the weak side.",
+    "word_count": 50,
+    "mnemonic": "Up with the good, down with the bad",
+    "diagram": {
+      "file": "svg/nclex-110.svg",
+      "alt": "Gait sequence of cane and weak leg moving together."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places assistive devices in Basic Care and Comfort. A cane is held on the stronger side and advanced with the weaker leg. On stairs, the stronger leg leads going up and the weaker leg with the cane leads going down. Nurses also check device height and fit."
+    }
+  },
+  {
+    "id": "nclex-111",
+    "system": "Mobility",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client after a stroke is at risk for contractures: how are ROM and positioning done?",
+    "bottom": "Active or passive range of motion and repositioning at least every 2 hours.",
+    "bullets": {
+      "clue": "Immobility, paralysis or prolonged bed rest.",
+      "treat": "Support joints, move slowly within comfort, use pillows to maintain alignment.",
+      "trap": "Forcing a joint past resistance or pain."
+    },
+    "back": "Active or passive range of motion and repositioning at least every 2 hours. Key clue: Immobility, paralysis or prolonged bed rest. First-line: Support joints, move slowly within comfort, use pillows to maintain alignment. Exam trap: Forcing a joint past resistance or pain.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-111.svg",
+      "alt": "Joint range-of-motion and side-lying positioning diagram."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places mobility in Basic Care and Comfort. Active or passive range-of-motion exercises, done slowly and only to the point of resistance, maintain joint function. Regular repositioning and pillows or splints for alignment help prevent contractures, pressure injuries and other complications of immobility."
+    }
+  },
+  {
+    "id": "nclex-112",
+    "system": "Comfort",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client receiving hospice care has dyspnea and pain: what is the nursing priority?",
+    "bottom": "Comfort, symptom relief and the goals the client and family choose.",
+    "bullets": {
+      "clue": "Terminal illness with a focus on comfort over cure.",
+      "treat": "Treat pain and dyspnea, provide mouth care, support the family.",
+      "trap": "Withholding opioids because of addiction fears at end of life."
+    },
+    "back": "Comfort, symptom relief and the goals the client and family choose. Key clue: Terminal illness with a focus on comfort over cure. First-line: Treat pain and dyspnea, provide mouth care, support the family. Exam trap: Withholding opioids because of addiction fears at end of life.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-112.svg",
+      "alt": "Comfort care plan wheel for symptoms and family support."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places palliative and comfort care in Basic Care and Comfort. Hospice care focuses on relieving pain, dyspnea and other symptoms, preserving dignity, and honoring the client's goals. Opioids are used to control pain and dyspnea at end of life, and families receive emotional support."
+    }
+  },
+  {
+    "id": "nclex-113",
+    "system": "Comfort",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client has just died and the family is arriving: how does the nurse provide postmortem care?",
+    "bottom": "Follow facility policy, respect culture and religion, and offer family time.",
+    "bullets": {
+      "clue": "Death has been pronounced and the family is arriving.",
+      "treat": "Lay flat, raise head slightly, close eyes, remove tubes unless an autopsy is expected.",
+      "trap": "Removing tubes or lines when an autopsy or coroner review is expected."
+    },
+    "back": "Follow facility policy, respect culture and religion, and offer family time. Key clue: Death has been pronounced and the family is arriving. First-line: Lay flat, raise head slightly, close eyes, remove tubes unless an autopsy is expected. Exam trap: Removing tubes or lines when an autopsy or coroner review is expected.",
+    "word_count": 51,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-113.svg",
+      "alt": "Postmortem care checklist."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places postmortem care in Basic Care and Comfort. Nurses follow facility policy and the client's cultural and religious practices, place the body supine with the head slightly raised, close the eyes, and leave tubes in place when an autopsy or coroner review is expected."
+    }
+  },
+  {
+    "id": "nclex-114",
+    "system": "Hygiene",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client with dementia resists bathing: how does the nurse adapt hygiene care?",
+    "bottom": "Keep a calm routine, give one simple step at a time, protect privacy.",
+    "bullets": {
+      "clue": "Cognitive impairment, agitation, or weakness during care.",
+      "treat": "Allow choices, keep the room warm, involve family, use simple cues.",
+      "trap": "Rushing or forcing care on an agitated client."
+    },
+    "back": "Keep a calm routine, give one simple step at a time, protect privacy. Key clue: Cognitive impairment, agitation, or weakness during care. First-line: Allow choices, keep the room warm, involve family, use simple cues. Exam trap: Rushing or forcing care on an agitated client.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-114.svg",
+      "alt": "Step-by-step hygiene cue cards."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places personal hygiene in Basic Care and Comfort. For clients with dementia or physical limits, nurses keep a familiar routine, explain one simple step at a time, offer choices, protect privacy and warmth, involve family when helpful, and stop and return later if the client becomes agitated."
+    }
+  },
+  {
+    "id": "nclex-115",
+    "system": "Mobility",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client with a new arm cast reports increasing pain and numb fingers: what is the concern?",
+    "bottom": "Compartment syndrome: notify the provider immediately; keep the arm at heart level.",
+    "bullets": {
+      "clue": "Pain out of proportion, pain with passive stretch, numbness, pallor.",
+      "treat": "Do not elevate or ice; loosen dressings and expect the cast bivalved per order.",
+      "trap": "Waiting for the absent pulse before reporting compartment syndrome."
+    },
+    "back": "Compartment syndrome: notify the provider immediately; keep the arm at heart level. Key clue: Pain out of proportion, pain with passive stretch, numbness, pallor. First-line: Do not elevate or ice; loosen dressings and expect the cast bivalved per order. Exam trap: Waiting for the absent pulse before reporting compartment syndrome.",
+    "word_count": 50,
+    "mnemonic": "6 Ps: Pain, Pallor, Pulselessness, Paresthesia, Paralysis, Poikilothermia",
+    "diagram": {
+      "file": "svg/nclex-115.svg",
+      "alt": "Neurovascular check points on a casted arm."
+    },
+    "source": {
+      "guideline": "StatPearls Acute Compartment Syndrome 2023 and BOAST 10",
+      "year": "2023",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448124/",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "Acute compartment syndrome is a surgical emergency. Pain out of proportion or with passive stretch is early, and pulselessness is late. The limb is kept level with the heart, not elevated, because elevation lowers arterial inflow. The provider is notified immediately, constricting dressings are loosened, and the cast is bivalved per order."
+    }
+  },
+  {
+    "id": "nclex-116",
+    "system": "Nutrition",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "An older client's intake has dropped: which findings show malnutrition risk?",
+    "bottom": "Unplanned weight loss, low intake and BMI changes show risk.",
+    "bullets": {
+      "clue": "Weight loss, poor intake, weakness or slow wound healing.",
+      "treat": "Screen nutrition, weigh regularly, record intake, refer to the dietitian.",
+      "trap": "Using albumin alone as the marker of nutrition status."
+    },
+    "back": "Unplanned weight loss, low intake and BMI changes show risk. Key clue: Weight loss, poor intake, weakness or slow wound healing. First-line: Screen nutrition, weigh regularly, record intake, refer to the dietitian. Exam trap: Using albumin alone as the marker of nutrition status.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-116.svg",
+      "alt": "BMI ranges and weight trend chart."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places nutrition assessment in Basic Care and Comfort. Unplanned weight loss, low intake, BMI changes and screening tools identify malnutrition risk. Albumin is affected by inflammation and fluid status, so it should not be used alone. Nurses weigh clients regularly and refer to the dietitian."
+    }
+  },
+  {
+    "id": "nclex-117",
+    "system": "Medications",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "The nurse prepares a scheduled medication: which checks happen before it is given?",
+    "bottom": "Right client, drug, dose, route, time, documentation, reason and response.",
+    "bullets": {
+      "clue": "Any medication administration step.",
+      "treat": "Use two identifiers and check the order against the MAR.",
+      "trap": "Skipping the check because the client is familiar."
+    },
+    "back": "Right client, drug, dose, route, time, documentation, reason and response. Key clue: Any medication administration step. First-line: Use two identifiers and check the order against the MAR. Exam trap: Skipping the check because the client is familiar.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-117.svg",
+      "alt": "Medication rights checklist."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places medication administration in Pharmacological and Parenteral Therapies. Nurses check the rights of administration, including right client, drug, dose, route, time, documentation, reason and response, use two client identifiers, compare the order with the MAR, and clarify anything unclear before giving the dose."
+    }
+  },
+  {
+    "id": "nclex-118",
+    "system": "Medications",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "The nurse prepares IV insulin and heparin: why do these need extra safeguards?",
+    "bottom": "Insulin, anticoagulants, opioids and IV potassium are high-alert medications.",
+    "bullets": {
+      "clue": "Errors with these drugs can cause significant client harm.",
+      "treat": "Use independent double checks and smart pumps per facility policy.",
+      "trap": "Treating high-alert drugs like routine medications."
+    },
+    "back": "Insulin, anticoagulants, opioids and IV potassium are high-alert medications. Key clue: Errors with these drugs can cause significant client harm. First-line: Use independent double checks and smart pumps per facility policy. Exam trap: Treating high-alert drugs like routine medications.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-118.svg",
+      "alt": "High-alert medication warning label."
+    },
+    "source": {
+      "guideline": "ISMP High-Alert Medications 2024",
+      "year": "2024",
+      "url": "https://www.ismp.org/recommendations/high-alert-medications-acute-list",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ISMP 2024 list of high-alert medications in acute care settings includes insulin, anticoagulants, opioids, and concentrated electrolytes such as IV potassium. These drugs carry a higher risk of serious harm when errors occur, so facilities use safeguards such as independent double checks, smart pumps and standardized concentrations."
+    }
+  },
+  {
+    "id": "nclex-119",
+    "system": "Medications",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client receives rapid-acting insulin at breakfast: when is hypoglycemia most likely?",
+    "bottom": "Rapid-acting begins in about 15 minutes and peaks in 1 to 2 hours.",
+    "bullets": {
+      "clue": "Sweating, shakiness or confusion after an insulin dose.",
+      "treat": "Give rapid-acting insulin with meals; check glucose before meals.",
+      "trap": "Giving rapid-acting insulin when the meal tray is delayed."
+    },
+    "back": "Rapid-acting begins in about 15 minutes and peaks in 1 to 2 hours. Key clue: Sweating, shakiness or confusion after an insulin dose. First-line: Give rapid-acting insulin with meals; check glucose before meals. Exam trap: Giving rapid-acting insulin when the meal tray is delayed.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-119.svg",
+      "alt": "Insulin action curves for rapid, short, intermediate and long acting."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care 2026",
+      "year": "2026",
+      "url": "https://diabetes.org/newsroom/press-releases/american-diabetes-association-releases-standards-care-diabetes-2026",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ADA Standards of Care in Diabetes 2026 describe insulin types and timing. Rapid-acting insulin begins working in about 15 minutes and peaks in about 1 to 2 hours, so it is given with meals. Nurses check glucose before meals and bedtime and hold or clarify doses when meals are delayed."
+    }
+  },
+  {
+    "id": "nclex-120",
+    "system": "Endocrine",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client's glucose is 60 mg/dL and the client is alert: what does the nurse do first?",
+    "bottom": "Give 15 g fast-acting carbohydrate, recheck in 15 minutes, repeat if needed.",
+    "bullets": {
+      "clue": "Glucose below 70 mg/dL with sweating, tremor or confusion.",
+      "treat": "If unable to swallow, give glucagon or IV dextrose as ordered.",
+      "trap": "Giving food or fluids by mouth to an unconscious client."
+    },
+    "back": "Give 15 g fast-acting carbohydrate, recheck in 15 minutes, repeat if needed. Key clue: Glucose below 70 mg/dL with sweating, tremor or confusion. First-line: If unable to swallow, give glucagon or IV dextrose as ordered. Exam trap: Giving food or fluids by mouth to an unconscious client.",
+    "word_count": 47,
+    "mnemonic": "Rule of 15",
+    "diagram": {
+      "file": "svg/nclex-120.svg",
+      "alt": "Rule of 15 cycle diagram."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care 2026",
+      "year": "2026",
+      "url": "https://diabetes.org/newsroom/press-releases/american-diabetes-association-releases-standards-care-diabetes-2026",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ADA Standards of Care in Diabetes 2026 recommend 15 to 20 g of fast-acting glucose for an alert client with glucose below 70 mg/dL, rechecking in 15 minutes and repeating if still low. Once glucose normalizes, a meal or snack prevents recurrence. Glucagon is used when the client cannot swallow safely."
+    }
+  },
+  {
+    "id": "nclex-121",
+    "system": "Hematology",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on heparin has platelets that dropped by half: what does the nurse suspect?",
+    "bottom": "Heparin-induced thrombocytopenia; stop heparin and notify the provider.",
+    "bullets": {
+      "clue": "Platelets fall more than 50% about 5 to 10 days after starting heparin.",
+      "treat": "Stop all heparin, including flushes and coated lines; expect a non-heparin anticoagulant.",
+      "trap": "Continuing heparin, including flushes, when HIT is suspected."
+    },
+    "back": "Heparin-induced thrombocytopenia; stop heparin and notify the provider. Key clue: Platelets fall more than 50% about 5 to 10 days after starting heparin. First-line: Stop all heparin, including flushes and coated lines; expect a non-heparin anticoagulant. Exam trap: Continuing heparin, including flushes, when HIT is suspected.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-121.svg",
+      "alt": "Platelet count drop on a heparin timeline."
+    },
+    "source": {
+      "guideline": "ASH VTE Guidelines: Heparin-Induced Thrombocytopenia 2018",
+      "year": "2018",
+      "url": "https://ashpublications.org/bloodadvances/article/2/22/3360/16129/American-Society-of-Hematology-2018-guidelines-for",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ASH 2018 heparin-induced thrombocytopenia guideline recommends stopping all heparin and starting a non-heparin anticoagulant, such as argatroban, bivalirudin or fondaparinux, as ordered. Routine platelet transfusion is avoided unless the client is bleeding or at high bleeding risk. HIT typically causes a platelet drop of more than 50% about 5 to 10 days after heparin starts."
+    }
+  },
+  {
+    "id": "nclex-122",
+    "system": "Hematology",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on warfarin has an INR of 5 with no bleeding: what is the nursing focus?",
+    "bottom": "Hold warfarin per order, notify the provider, and monitor for bleeding; vitamin K only if ordered.",
+    "bullets": {
+      "clue": "INR above the target range, bruising or bleeding.",
+      "treat": "Teach consistent vitamin K intake and regular INR checks.",
+      "trap": "Telling the client to avoid all green vegetables."
+    },
+    "back": "Hold warfarin per order, notify the provider, and monitor for bleeding; vitamin K only if ordered. Key clue: INR above the target range, bruising or bleeding. First-line: Teach consistent vitamin K intake and regular INR checks. Exam trap: Telling the client to avoid all green vegetables.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-122.svg",
+      "alt": "INR target range bar."
+    },
+    "source": {
+      "guideline": "CHEST VTE guideline 2021 update",
+      "year": "2021",
+      "url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CHEST 2021 VTE guideline describes warfarin management with INR monitoring, usually targeting an INR of 2 to 3. For a high INR without bleeding, warfarin is held per order and routine vitamin K is not advised; it is given only if ordered. Nurses report bleeding, teach consistent vitamin K intake, and keep regular INR checks."
+    }
+  },
+  {
+    "id": "nclex-123",
+    "system": "Hematology",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on apixaban falls and hits the head: what is the bleeding response?",
+    "bottom": "Hold the next dose, do neuro checks, and call the provider or rapid response.",
+    "bullets": {
+      "clue": "Head trauma, black stools or blood in urine on a DOAC.",
+      "treat": "Anticipate a stat head CT and 4F-PCC per institutional protocol for factor Xa inhibitors.",
+      "trap": "Using vitamin K to reverse a DOAC."
+    },
+    "back": "Hold the next dose, do neuro checks, and call the provider or rapid response. Key clue: Head trauma, black stools or blood in urine on a DOAC. First-line: Anticipate a stat head CT and 4F-PCC per institutional protocol for factor Xa inhibitors. Exam trap: Using vitamin K to reverse a DOAC.",
+    "word_count": 51,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-123.svg",
+      "alt": "DOAC reversal agent table."
+    },
+    "source": {
+      "guideline": "ACC ECDP Bleeding on Oral Anticoagulants 2020; FDA Andexxa safety update 2025",
+      "year": "2025",
+      "url": "https://www.acc.org/guidelines/guidelines/2020/07/14/08/32/management-of-bleeding-in-patients-on-oral-anticoagulants",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "After head trauma on apixaban, nurses hold the next dose, perform frequent neuro checks, and call the provider or rapid response, anticipating a stat head CT. Reversal follows institutional protocol, usually four-factor PCC for factor Xa inhibitors; andexanet alfa (Andexxa) left the US market on 22 Dec 2025. Idarucizumab reverses dabigatran, and vitamin K does not reverse DOACs."
+    }
+  },
+  {
+    "id": "nclex-124",
+    "system": "Cardiac",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "Before giving digoxin, the apical pulse is 54 and the client reports nausea: what does the nurse do?",
+    "bottom": "Hold digoxin and notify the provider; check potassium and digoxin level.",
+    "bullets": {
+      "clue": "Nausea, vision changes or bradycardia suggest toxicity.",
+      "treat": "Count the apical pulse for one full minute before each dose.",
+      "trap": "Ignoring low potassium, which raises the risk of toxicity."
+    },
+    "back": "Hold digoxin and notify the provider; check potassium and digoxin level. Key clue: Nausea, vision changes or bradycardia suggest toxicity. First-line: Count the apical pulse for one full minute before each dose. Exam trap: Ignoring low potassium, which raises the risk of toxicity.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-124.svg",
+      "alt": "Apical pulse site on the chest."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places cardiac medications in Pharmacological and Parenteral Therapies. Before digoxin, nurses count the apical pulse for one full minute and follow hold parameters. Nausea, vision changes and dysrhythmias suggest toxicity, and low potassium increases the risk, so potassium and digoxin levels are checked."
+    }
+  },
+  {
+    "id": "nclex-125",
+    "system": "Electrolytes",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "An order reads potassium chloride 20 mEq IV: how is it given safely?",
+    "bottom": "Always diluted, given by infusion pump, never IV push.",
+    "bullets": {
+      "clue": "Concentrated IV potassium is a high-alert medication.",
+      "treat": "Check kidney function and urine output; monitor ECG at higher rates.",
+      "trap": "Giving IV potassium by push, which can cause cardiac arrest."
+    },
+    "back": "Always diluted, given by infusion pump, never IV push. Key clue: Concentrated IV potassium is a high-alert medication. First-line: Check kidney function and urine output; monitor ECG at higher rates. Exam trap: Giving IV potassium by push, which can cause cardiac arrest.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-125.svg",
+      "alt": "IV infusion pump with a diluted potassium bag."
+    },
+    "source": {
+      "guideline": "ISMP 2024",
+      "year": "2024",
+      "url": "https://www.ismp.org/recommendations/high-alert-medications-acute-list",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ISMP 2024 high-alert medication list includes concentrated IV potassium. Potassium is always diluted and given by infusion pump, never by IV push, because rapid delivery can cause fatal dysrhythmias. Nurses check kidney function and urine output, follow maximum rate limits, and use cardiac monitoring for higher infusion rates."
+    }
+  },
+  {
+    "id": "nclex-126",
+    "system": "Hematology",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "Fifteen minutes into a blood transfusion, the client has fever, chills and back pain: what first?",
+    "bottom": "Stop the transfusion; keep the IV open with new tubing and saline.",
+    "bullets": {
+      "clue": "Reactions are most likely in the first 15 minutes.",
+      "treat": "Two-person verification before starting; stay with the client early on.",
+      "trap": "Slowing the transfusion instead of stopping it."
+    },
+    "back": "Stop the transfusion; keep the IV open with new tubing and saline. Key clue: Reactions are most likely in the first 15 minutes. First-line: Two-person verification before starting; stay with the client early on. Exam trap: Slowing the transfusion instead of stopping it.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-126.svg",
+      "alt": "Transfusion reaction response flowchart."
+    },
+    "source": {
+      "guideline": "AABB Standards 35th ed 2026",
+      "year": "2026",
+      "url": "https://www.aabb.org/standards-accreditation/standards/blood-banks-and-transfusion-services",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "AABB Standards for Blood Banks and Transfusion Services, 35th edition (2026), require identity verification before transfusion. Nurses stay with the client during the first 15 minutes, when reactions are most likely. If a reaction is suspected, they stop the transfusion, keep the IV open with saline and new tubing, and notify the provider."
+    }
+  },
+  {
+    "id": "nclex-127",
+    "system": "Fluids",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client with increased intracranial pressure has an IV order: which fluid type fits?",
+    "bottom": "Isotonic 0.9% saline; avoid hypotonic fluids, which can worsen cerebral edema.",
+    "bullets": {
+      "clue": "Hypotonic fluids can worsen cerebral edema.",
+      "treat": "0.9% saline for volume; hypertonic saline only with close monitoring.",
+      "trap": "Giving hypotonic fluid to a client with increased ICP."
+    },
+    "back": "Isotonic 0.9% saline; avoid hypotonic fluids, which can worsen cerebral edema. Key clue: Hypotonic fluids can worsen cerebral edema. First-line: 0.9% saline for volume; hypertonic saline only with close monitoring. Exam trap: Giving hypotonic fluid to a client with increased ICP.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-127.svg",
+      "alt": "Cell diagrams in isotonic, hypotonic and hypertonic fluid."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places IV fluids in Pharmacological and Parenteral Therapies. Isotonic fluids such as 0.9% saline expand volume, hypotonic fluids move water into cells and can worsen cerebral edema, and hypertonic fluids pull water out of cells and need close monitoring of sodium and neurologic status."
+    }
+  },
+  {
+    "id": "nclex-128",
+    "system": "IV therapy",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "The IV site is cool, pale and swollen; another site is red, warm and tender: which is which?",
+    "bottom": "Cool and pale is infiltration; red, warm and tender is phlebitis.",
+    "bullets": {
+      "clue": "Swelling, coolness, or redness along the vein.",
+      "treat": "Stop the infusion, remove the catheter, elevate the limb, and document.",
+      "trap": "Flushing a catheter that is infiltrated."
+    },
+    "back": "Cool and pale is infiltration; red, warm and tender is phlebitis. Key clue: Swelling, coolness, or redness along the vein. First-line: Stop the infusion, remove the catheter, elevate the limb, and document. Exam trap: Flushing a catheter that is infiltrated.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-128.svg",
+      "alt": "IV site pictures comparing infiltration, phlebitis and extravasation."
+    },
+    "source": {
+      "guideline": "INS Infusion Therapy Standards 2024",
+      "year": "2024",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38211609/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "INS 2024 Infusion Therapy Standards of Practice call for regular assessment of every vascular access site. Infiltration causes cool, pale swelling, phlebitis causes redness, warmth and tenderness along the vein, and extravasation is leakage of a vesicant. Nurses stop the infusion, remove the catheter as indicated, and follow protocol."
+    }
+  },
+  {
+    "id": "nclex-129",
+    "system": "IV therapy",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client has a central venous catheter: which steps prevent a bloodstream infection?",
+    "bottom": "Hand hygiene, chlorhexidine skin prep, and scrubbing the hub before each access.",
+    "bullets": {
+      "clue": "Fever or redness at a central line site.",
+      "treat": "Change the dressing per protocol and review the need for the line daily.",
+      "trap": "Leaving an unneeded central line in place."
+    },
+    "back": "Hand hygiene, chlorhexidine skin prep, and scrubbing the hub before each access. Key clue: Fever or redness at a central line site. First-line: Change the dressing per protocol and review the need for the line daily. Exam trap: Leaving an unneeded central line in place.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-129.svg",
+      "alt": "Central line bundle checklist."
+    },
+    "source": {
+      "guideline": "INS 2024; CDC Intravascular Catheter Infection 2011 (2017 update)",
+      "year": "2017",
+      "url": "https://www.cdc.gov/infection-control/hcp/intravascular-catheter-related-infection/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "INS 2024 standards and the CDC 2011 intravascular catheter guideline, updated 2017, support hand hygiene, chlorhexidine skin antisepsis, scrubbing the hub before each access, sterile dressing care, and daily review of whether the central line is still needed. Prompt removal of unneeded lines is a key step in preventing CLABSI."
+    }
+  },
+  {
+    "id": "nclex-130",
+    "system": "Nutrition",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client receiving TPN has a bag delayed from pharmacy: what does the nurse do?",
+    "bottom": "Hang 10% dextrose as ordered to prevent rebound hypoglycemia.",
+    "bullets": {
+      "clue": "TPN bag delayed or stopped suddenly.",
+      "treat": "Use a filter and pump; monitor glucose and the central line site.",
+      "trap": "Increasing the TPN rate to catch up."
+    },
+    "back": "Hang 10% dextrose as ordered to prevent rebound hypoglycemia. Key clue: TPN bag delayed or stopped suddenly. First-line: Use a filter and pump; monitor glucose and the central line site. Exam trap: Increasing the TPN rate to catch up.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-130.svg",
+      "alt": "TPN tubing with filter and infusion pump."
+    },
+    "source": {
+      "guideline": "ASPEN PN Safety Summit consensus 2024",
+      "year": "2024",
+      "url": "https://doi.org/10.1093/ajhp/zxae078",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ASPEN 2024 consensus on parenteral nutrition safety supports giving TPN by infusion pump through an appropriate filter and central line, monitoring glucose and electrolytes, and caring for the line. If TPN stops suddenly, dextrose is given as ordered to prevent rebound hypoglycemia, and rates are not increased to catch up."
+    }
+  },
+  {
+    "id": "nclex-131",
+    "system": "Calculations",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "Heparin is ordered at 18 units/kg/hour for an 80 kg client: what is the hourly dose?",
+    "bottom": "18 units/kg/hour x 80 kg = 1,440 units/hour.",
+    "bullets": {
+      "clue": "Any weight-based order or drip rate.",
+      "treat": "Use the client's current weight in kg and double-check the math.",
+      "trap": "Using pounds instead of kilograms."
+    },
+    "back": "18 units/kg/hour x 80 kg = 1,440 units/hour. Key clue: Any weight-based order or drip rate. First-line: Use the client's current weight in kg and double-check the math. Exam trap: Using pounds instead of kilograms.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-131.svg",
+      "alt": "Dosage calculation worked example."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places dosage calculation in Pharmacological and Parenteral Therapies. Weight-based doses use the client's current weight in kilograms: 80 kg times 18 units/kg/hour equals 1,440 units/hour. Nurses convert pounds to kilograms carefully, check units, and use independent double checks for high-alert drugs."
+    }
+  },
+  {
+    "id": "nclex-132",
+    "system": "Pain",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on IV morphine is very sleepy and breathing 8 times a minute: what first?",
+    "bottom": "Stimulate the client and support breathing; give naloxone as ordered.",
+    "bullets": {
+      "clue": "Sedation usually comes before respiratory depression.",
+      "treat": "Use a sedation scale and check respiratory rate and SpO2.",
+      "trap": "Ignoring rising sedation before the respiratory rate falls."
+    },
+    "back": "Stimulate the client and support breathing; give naloxone as ordered. Key clue: Sedation usually comes before respiratory depression. First-line: Use a sedation scale and check respiratory rate and SpO2. Exam trap: Ignoring rising sedation before the respiratory rate falls.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-132.svg",
+      "alt": "Sedation scale with matching respiratory rates."
+    },
+    "source": {
+      "guideline": "CDC Opioid Prescribing 2022",
+      "year": "2022",
+      "url": "https://www.cdc.gov/mmwr/volumes/71/rr/rr7103a1.htm",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CDC 2022 Clinical Practice Guideline for Prescribing Opioids for Pain addresses opioid risks, including respiratory depression. Increasing sedation usually comes before a falling respiratory rate, so nurses use a sedation scale, monitor respirations and oxygenation, stimulate and support breathing when needed, and give naloxone as ordered."
+    }
+  },
+  {
+    "id": "nclex-133",
+    "system": "Pain",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A family member keeps pressing the PCA button while the client sleeps: what does the nurse do?",
+    "bottom": "Only the client presses the PCA button.",
+    "bullets": {
+      "clue": "Family member using the button, or the client is very sleepy.",
+      "treat": "Teach the family not to press it; monitor sedation and breathing.",
+      "trap": "Letting family members dose the client by proxy."
+    },
+    "back": "Only the client presses the PCA button. Key clue: Family member using the button, or the client is very sleepy. First-line: Teach the family not to press it; monitor sedation and breathing. Exam trap: Letting family members dose the client by proxy.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-133.svg",
+      "alt": "PCA pump with a client-only button label."
+    },
+    "source": {
+      "guideline": "ISMP 2024",
+      "year": "2024",
+      "url": "https://www.ismp.org/recommendations/high-alert-medications-acute-list",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ISMP 2024 guidance on patient-controlled analgesia warns against PCA by proxy, when family or staff press the button for the client. Only the client should activate the PCA, because sedation normally stops self-dosing. Nurses teach families, monitor sedation and respiratory status, and double check pump programming."
+    }
+  },
+  {
+    "id": "nclex-134",
+    "system": "Cardiac",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client started on lisinopril has swollen lips and tongue: what does the nurse do?",
+    "bottom": "Protect the airway, call rapid response, and hold further ACE inhibitor doses per order.",
+    "bullets": {
+      "clue": "Swollen lips, tongue or face after starting an ACE inhibitor.",
+      "treat": "Teach that dry cough is common and to report swelling right away.",
+      "trap": "Treating swelling of the lips or tongue as a minor side effect."
+    },
+    "back": "Protect the airway, call rapid response, and hold further ACE inhibitor doses per order. Key clue: Swollen lips, tongue or face after starting an ACE inhibitor. First-line: Teach that dry cough is common and to report swelling right away. Exam trap: Treating swelling of the lips or tongue as a minor side effect.",
+    "word_count": 53,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-134.svg",
+      "alt": "Face showing ACE inhibitor angioedema."
+    },
+    "source": {
+      "guideline": "ACC/AHA Hypertension 2025",
+      "year": "2025",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2025 AHA/ACC high blood pressure guideline includes ACE inhibitors as a first-line option for many adults. A dry cough is a common side effect, but angioedema of the lips, tongue or face is a medical emergency. The drug is stopped, the airway is protected, and the provider is notified right away."
+    }
+  },
+  {
+    "id": "nclex-135",
+    "system": "Cardiac",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "Before giving metoprolol, the heart rate is 52 and BP is 88/50: what does the nurse do?",
+    "bottom": "Hold the dose and notify the provider if heart rate or BP is low.",
+    "bullets": {
+      "clue": "Bradycardia, hypotension, dizziness or fatigue.",
+      "treat": "Check apical pulse and BP before each dose; teach not to stop abruptly.",
+      "trap": "Stopping a beta blocker suddenly, which can cause rebound effects."
+    },
+    "back": "Hold the dose and notify the provider if heart rate or BP is low. Key clue: Bradycardia, hypotension, dizziness or fatigue. First-line: Check apical pulse and BP before each dose; teach not to stop abruptly. Exam trap: Stopping a beta blocker suddenly, which can cause rebound effects.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-135.svg",
+      "alt": "Pulse and blood pressure check before a beta blocker."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places cardiac medications in Pharmacological and Parenteral Therapies. Before giving a beta blocker, nurses check heart rate and BP and follow the hold parameters in the order. Clients are taught not to stop beta blockers abruptly, because rebound tachycardia, hypertension or angina can occur."
+    }
+  },
+  {
+    "id": "nclex-136",
+    "system": "Cardiac",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on IV furosemide reports leg cramps and ringing in the ears: what is the concern?",
+    "bottom": "Low potassium and ototoxicity are risks with loop diuretics.",
+    "bullets": {
+      "clue": "Weakness, cramps, or ringing in the ears.",
+      "treat": "Monitor potassium, daily weight, intake and output; give IV furosemide slowly.",
+      "trap": "Giving high-dose IV furosemide rapidly."
+    },
+    "back": "Low potassium and ototoxicity are risks with loop diuretics. Key clue: Weakness, cramps, or ringing in the ears. First-line: Monitor potassium, daily weight, intake and output; give IV furosemide slowly. Exam trap: Giving high-dose IV furosemide rapidly.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-136.svg",
+      "alt": "Electrolyte loss chart for loop diuretics."
+    },
+    "source": {
+      "guideline": "AHA/ACC/HFSA Heart Failure 2022",
+      "year": "2022",
+      "url": "https://hfsa.org/heart-failure-guidelines",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2022 AHA/ACC/HFSA heart failure guideline supports loop diuretics such as furosemide to relieve congestion. Nurses monitor potassium and other electrolytes, daily weight, intake and output, and BP. High doses given rapidly by IV can cause ototoxicity, so IV furosemide is given at the recommended rate."
+    }
+  },
+  {
+    "id": "nclex-137",
+    "system": "Psych meds",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on lithium has vomiting, diarrhea and a coarse tremor: what does the nurse suspect?",
+    "bottom": "Lithium toxicity; the usual maintenance range is about 0.6 to 1.2 mEq/L.",
+    "bullets": {
+      "clue": "Vomiting, diarrhea, coarse tremor or confusion.",
+      "treat": "Hold the dose, check a lithium level, and keep sodium and fluid intake steady.",
+      "trap": "Cutting dietary sodium, which raises lithium levels."
+    },
+    "back": "Lithium toxicity; the usual maintenance range is about 0.6 to 1.2 mEq/L. Key clue: Vomiting, diarrhea, coarse tremor or confusion. First-line: Hold the dose, check a lithium level, and keep sodium and fluid intake steady. Exam trap: Cutting dietary sodium, which raises lithium levels.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-137.svg",
+      "alt": "Lithium level range bar."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places psychiatric medications in Pharmacological and Parenteral Therapies. Lithium has a narrow therapeutic range, usually about 0.6 to 1.2 mEq/L for maintenance. Dehydration, low sodium intake and some drugs raise levels, so clients keep sodium and fluid intake steady and report vomiting or diarrhea."
+    }
+  },
+  {
+    "id": "nclex-138",
+    "system": "Psych meds",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on haloperidol develops high fever, rigid muscles and confusion: what does the nurse suspect?",
+    "bottom": "Neuroleptic malignant syndrome; hold further doses and notify the provider at once.",
+    "bullets": {
+      "clue": "Fever, rigidity, confusion and unstable vital signs.",
+      "treat": "Cool the client and support fluids per order or protocol; monitor vital signs closely.",
+      "trap": "Mistaking NMS for simple restlessness or akathisia."
+    },
+    "back": "Neuroleptic malignant syndrome; hold further doses and notify the provider at once. Key clue: Fever, rigidity, confusion and unstable vital signs. First-line: Cool the client and support fluids per order or protocol; monitor vital signs closely. Exam trap: Mistaking NMS for simple restlessness or akathisia.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-138.svg",
+      "alt": "Comparison of EPS types and NMS."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places antipsychotic medications in Pharmacological and Parenteral Therapies. Neuroleptic malignant syndrome causes high fever, severe muscle rigidity, confusion and unstable vital signs. It is a medical emergency: the drug is stopped, the client is cooled and supported, and the provider is notified promptly."
+    }
+  },
+  {
+    "id": "nclex-139",
+    "system": "Psych meds",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on phenelzine asks about foods: which items must be avoided?",
+    "bottom": "Avoid tyramine-rich foods such as aged cheese, cured meats and tap beer.",
+    "bullets": {
+      "clue": "Severe headache or high BP after a tyramine-rich meal.",
+      "treat": "Teach the food list and to avoid drug interactions.",
+      "trap": "Allowing aged cheese or cured meats."
+    },
+    "back": "Avoid tyramine-rich foods such as aged cheese, cured meats and tap beer. Key clue: Severe headache or high BP after a tyramine-rich meal. First-line: Teach the food list and to avoid drug interactions. Exam trap: Allowing aged cheese or cured meats.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-139.svg",
+      "alt": "Tyramine food list."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places psychiatric medications in Pharmacological and Parenteral Therapies. Clients taking MAOIs such as phenelzine must avoid tyramine-rich foods, including aged cheeses, cured meats and tap beer, because tyramine can trigger hypertensive crisis. Nurses also review interacting drugs, including some cold medicines."
+    }
+  },
+  {
+    "id": "nclex-140",
+    "system": "Psych meds",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on sertraline starts tramadol and becomes agitated, sweaty and tremulous: what is the concern?",
+    "bottom": "Serotonin syndrome; hold further serotonergic doses and notify the provider.",
+    "bullets": {
+      "clue": "Agitation, fever, sweating, tremor, clonus and diarrhea.",
+      "treat": "Review drug interactions; teach early warning signs.",
+      "trap": "Combining SSRIs with other serotonergic drugs without monitoring."
+    },
+    "back": "Serotonin syndrome; hold further serotonergic doses and notify the provider. Key clue: Agitation, fever, sweating, tremor, clonus and diarrhea. First-line: Review drug interactions; teach early warning signs. Exam trap: Combining SSRIs with other serotonergic drugs without monitoring.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-140.svg",
+      "alt": "Serotonin syndrome symptom chart."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places psychiatric medications in Pharmacological and Parenteral Therapies. Combining SSRIs with other serotonergic drugs, such as tramadol, triptans or MAOIs, raises the risk of serotonin syndrome, which causes agitation, fever, sweating, tremor, clonus and diarrhea. Nurses check for interactions and report symptoms promptly."
+    }
+  },
+  {
+    "id": "nclex-141",
+    "system": "Antibiotics",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client receives IV vancomycin and gentamicin: which monitoring keeps dosing safe?",
+    "bottom": "Monitor drug levels and kidney function as ordered.",
+    "bullets": {
+      "clue": "Rising creatinine, low urine output or hearing loss.",
+      "treat": "Time trough or AUC-based levels as ordered; watch for infusion reactions.",
+      "trap": "Drawing a level at the wrong time."
+    },
+    "back": "Monitor drug levels and kidney function as ordered. Key clue: Rising creatinine, low urine output or hearing loss. First-line: Time trough or AUC-based levels as ordered; watch for infusion reactions. Exam trap: Drawing a level at the wrong time.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-141.svg",
+      "alt": "Drug level timing chart."
+    },
+    "source": {
+      "guideline": "ASHP/IDSA vancomycin 2020",
+      "year": "2020",
+      "url": "https://www.idsociety.org/practice-guideline/vancomycin",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2020 ASHP/IDSA vancomycin consensus guideline prefers AUC-guided dosing, targeting an AUC of about 400 to 600 for serious MRSA infections, over trough-only monitoring. Nurses time drug levels correctly, monitor creatinine and urine output for kidney injury, and report hearing changes with aminoglycosides."
+    }
+  },
+  {
+    "id": "nclex-142",
+    "system": "Allergy",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "Minutes after an IV antibiotic, the client has hives, wheezing and low BP: what first?",
+    "bottom": "Stop the infusion and give IM epinephrine per order or protocol, 0.01 mg/kg, max 0.5 mg.",
+    "bullets": {
+      "clue": "Hives, wheezing or low BP after a drug dose.",
+      "treat": "Call for help, position the client, give oxygen and fluids.",
+      "trap": "Giving antihistamines first instead of epinephrine."
+    },
+    "back": "Stop the infusion and give IM epinephrine per order or protocol, 0.01 mg/kg, max 0.5 mg. Key clue: Hives, wheezing or low BP after a drug dose. First-line: Call for help, position the client, give oxygen and fluids. Exam trap: Giving antihistamines first instead of epinephrine.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-142.svg",
+      "alt": "Anaphylaxis response steps."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The AAAAI/ACAAI 2023 anaphylaxis practice parameter recommends prompt IM epinephrine, 0.01 mg/kg up to 0.5 mg in adults, as first-line treatment. The nurse stops the suspected drug, calls for help, positions the client, gives oxygen and IV fluids as ordered, and uses antihistamines only as adjuncts."
+    }
+  },
+  {
+    "id": "nclex-143",
+    "system": "Endocrine",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on long-term prednisone wants to stop it suddenly: what does the nurse teach?",
+    "bottom": "Taper as ordered; sudden stopping can cause adrenal crisis.",
+    "bullets": {
+      "clue": "Long-term steroid use.",
+      "treat": "Monitor glucose, BP and infection signs.",
+      "trap": "Stopping long-term steroids abruptly."
+    },
+    "back": "Taper as ordered; sudden stopping can cause adrenal crisis. Key clue: Long-term steroid use. First-line: Monitor glucose, BP and infection signs. Exam trap: Stopping long-term steroids abruptly.",
+    "word_count": 27,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-143.svg",
+      "alt": "Steroid taper calendar."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places corticosteroids in Pharmacological and Parenteral Therapies. Long-term steroids suppress the adrenal glands, so they are tapered rather than stopped abruptly to prevent adrenal crisis. Nurses monitor glucose, BP, weight and signs of infection, and teach clients to take doses with food."
+    }
+  },
+  {
+    "id": "nclex-144",
+    "system": "Endocrine",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client starting levothyroxine asks how to take it: what does the nurse teach?",
+    "bottom": "Take it on an empty stomach, 30 to 60 minutes before breakfast.",
+    "bullets": {
+      "clue": "Palpitations or tremor may mean the dose is too high.",
+      "treat": "Separate it from calcium and iron; check TSH as ordered.",
+      "trap": "Taking it with calcium or iron."
+    },
+    "back": "Take it on an empty stomach, 30 to 60 minutes before breakfast. Key clue: Palpitations or tremor may mean the dose is too high. First-line: Separate it from calcium and iron; check TSH as ordered. Exam trap: Taking it with calcium or iron.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-144.svg",
+      "alt": "Daily levothyroxine timing."
+    },
+    "source": {
+      "guideline": "ATA Hypothyroidism 2014",
+      "year": "2014",
+      "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2014 ATA hypothyroidism guideline supports taking levothyroxine consistently on an empty stomach, 30 to 60 minutes before breakfast, separated from calcium, iron and some other supplements. TSH is rechecked after dose changes, and palpitations, tremor or insomnia may signal that the dose is too high."
+    }
+  },
+  {
+    "id": "nclex-145",
+    "system": "Respiratory",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client with asthma uses only an albuterol inhaler: what does the nurse teach about inhalers?",
+    "bottom": "Albuterol relieves symptoms; controller inhalers with ICS reduce attacks.",
+    "bullets": {
+      "clue": "Using albuterol more often means asthma control is worse.",
+      "treat": "Use a spacer and rinse the mouth after inhaled corticosteroids.",
+      "trap": "Using SABA alone without a controller medication."
+    },
+    "back": "Albuterol relieves symptoms; controller inhalers with ICS reduce attacks. Key clue: Using albuterol more often means asthma control is worse. First-line: Use a spacer and rinse the mouth after inhaled corticosteroids. Exam trap: Using SABA alone without a controller medication.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-145.svg",
+      "alt": "Comparison of rescue and controller inhalers."
+    },
+    "source": {
+      "guideline": "GINA 2026",
+      "year": "2026",
+      "url": "https://ginasthma.org/2026-gina-strategy-report/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "GINA 2026 recommends ICS-containing therapy for adults and adolescents with asthma and does not recommend SABA-only treatment. Albuterol relieves symptoms, while inhaled corticosteroids reduce airway inflammation and attacks. Nurses teach spacer use, rinsing the mouth after inhaled steroids, and that frequent rescue use means poor control."
+    }
+  },
+  {
+    "id": "nclex-146",
+    "system": "Neuro",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on phenytoin has an unsteady gait and nystagmus: what does the nurse suspect?",
+    "bottom": "Phenytoin toxicity; the usual total level is about 10 to 20 mcg/mL.",
+    "bullets": {
+      "clue": "Ataxia, nystagmus or slurred speech.",
+      "treat": "Teach good oral hygiene to reduce gingival hyperplasia.",
+      "trap": "Mixing IV phenytoin with dextrose."
+    },
+    "back": "Phenytoin toxicity; the usual total level is about 10 to 20 mcg/mL. Key clue: Ataxia, nystagmus or slurred speech. First-line: Teach good oral hygiene to reduce gingival hyperplasia. Exam trap: Mixing IV phenytoin with dextrose.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-146.svg",
+      "alt": "Phenytoin level range bar."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places anticonvulsants in Pharmacological and Parenteral Therapies. Phenytoin has a usual total level of about 10 to 20 mcg/mL. Ataxia, nystagmus and slurred speech suggest toxicity. IV phenytoin is mixed only with normal saline, and clients are taught good oral hygiene for gingival hyperplasia."
+    }
+  },
+  {
+    "id": "nclex-147",
+    "system": "OB",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "A client on magnesium sulfate for preeclampsia has absent reflexes and slow breathing: what next?",
+    "bottom": "Stop the infusion and give calcium gluconate as ordered.",
+    "bullets": {
+      "clue": "Loss of reflexes, respiratory depression or low urine output.",
+      "treat": "Check reflexes, respirations and output often during the infusion.",
+      "trap": "Continuing the infusion when reflexes are absent."
+    },
+    "back": "Stop the infusion and give calcium gluconate as ordered. Key clue: Loss of reflexes, respiratory depression or low urine output. First-line: Check reflexes, respirations and output often during the infusion. Exam trap: Continuing the infusion when reflexes are absent.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-147.svg",
+      "alt": "Signs of magnesium toxicity checklist."
+    },
+    "source": {
+      "guideline": "ACOG Practice Bulletin 222 (2020, updated 2024)",
+      "year": "2024",
+      "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ACOG Practice Bulletin 222 supports magnesium sulfate for seizure prophylaxis in preeclampsia with severe features. Nurses monitor deep tendon reflexes, respiratory rate, urine output and level of consciousness. Loss of reflexes or respiratory depression signals toxicity, so the infusion is stopped and calcium gluconate is given as ordered."
+    }
+  },
+  {
+    "id": "nclex-148",
+    "system": "OB",
+    "blueprint_weight": "16%",
+    "task_area": "Pharmacological and Parenteral Therapies",
+    "front": "During oxytocin induction, the client has six contractions in 10 minutes and a category II tracing: what next?",
+    "bottom": "Reduce or stop the oxytocin, then notify the provider.",
+    "bullets": {
+      "clue": "Tachysystole is more than 5 contractions in 10 minutes, averaged over 30 minutes.",
+      "treat": "If it persists after pausing oxytocin, expect a rapid-acting uterine relaxant such as terbutaline.",
+      "trap": "Restarting oxytocin before the tracing is reassuring and tachysystole resolves."
+    },
+    "back": "Reduce or stop the oxytocin, then notify the provider. Key clue: Tachysystole is more than 5 contractions in 10 minutes, averaged over 30 minutes. First-line: If it persists after pausing oxytocin, expect a rapid-acting uterine relaxant such as terbutaline. Exam trap: Restarting oxytocin before the tracing is reassuring and tachysystole resolves.",
+    "word_count": 51,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-148.svg",
+      "alt": "Contraction pattern showing tachysystole."
+    },
+    "source": {
+      "guideline": "ACOG Clinical Practice Guideline No. 10 (2025)",
+      "year": "2025",
+      "url": "https://www.acog.org/clinical/guidance/clinical-practice-guideline/2025/10/intrapartum-fetal-heart-rate-monitoring-interpretation-and-management/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ACOG Clinical Practice Guideline No. 10 (October 2025) defines tachysystole as more than five contractions in 10 minutes averaged over 30 minutes. With category II or III tracings, reducing or stopping oxytocin is appropriate; a rapid-acting uterine relaxant is suggested if it persists. Restart is reasonable once reassuring."
+    }
+  }
+]

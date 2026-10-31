@@ -37,7 +37,8 @@ function isPrismaClientCurrent(client: PrismaClient | undefined): client is Pris
       typeof client.ngnImportBatch?.findUnique === "function" &&
       typeof client.blogPostRevision?.findUnique === "function" &&
       typeof client.examPassCheckIn?.findUnique === "function" &&
-      typeof client.panceFeedProgress?.findUnique === "function"
+      typeof client.panceFeedProgress?.findUnique === "function" &&
+      typeof client.examFeedProgress?.findUnique === "function"
   );
 }
 

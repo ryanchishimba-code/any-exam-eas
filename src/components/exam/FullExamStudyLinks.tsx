@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BookOpen, Layers, Sparkles } from "lucide-react";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { practiceTopicHref } from "@/lib/edtech/practice-links-core";
-import { ROUTES } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import {
   getExamTopicStudyLinks,
   getWeakTopicsFromBreakdown,
@@ -45,15 +45,15 @@ export function FullExamStudyLinks({
       </div>
       <p className={cn(feUi.sectionHint, "mt-1")}>
         Practice the topics you missed
-        {examSlug === "pance" ? ", or open the PANCE Feed." : "."}
+        {studyFeedForExam(examSlug) ? `, or open the ${studyFeedForExam(examSlug)!.label}.` : "."}
       </p>
-      {examSlug === "pance" ? (
+      {studyFeedForExam(examSlug) ? (
         <Link
-          href={ROUTES.panceFeed}
+          href={studyFeedForExam(examSlug)!.href}
           className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent)] hover:underline"
         >
           <Layers className="h-4 w-4" aria-hidden />
-          PANCE Feed
+          {studyFeedForExam(examSlug)!.label}
         </Link>
       ) : null}
 

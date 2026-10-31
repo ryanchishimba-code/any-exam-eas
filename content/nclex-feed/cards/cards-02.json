@@ -1,0 +1,1352 @@
+[
+  {
+    "id": "nclex-051",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A newly admitted client voices suicidal thoughts and is placed on precautions: how does the nurse make the room safe?",
+    "bottom": "Remove ligature points and any items usable for harm.",
+    "bullets": {
+      "clue": "Belts, cords, sharps, plastic bags, glass or stored medications.",
+      "treat": "Search belongings, use a ligature-resistant room, and observe per policy.",
+      "trap": "Leaving the client alone in the bathroom or with personal belongings."
+    },
+    "back": "Remove ligature points and any items usable for harm. Key clue: Belts, cords, sharps, plastic bags, glass or stored medications. First-line: Search belongings, use a ligature-resistant room, and observe per policy. Exam trap: Leaving the client alone in the bathroom or with personal belongings.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-051.svg",
+      "alt": "Room safety sweep for self-harm hazards."
+    },
+    "source": {
+      "guideline": "Joint Commission NPG 8 (suicide risk) 2026",
+      "year": "2026",
+      "url": "https://www.jointcommission.org/en-us/standards/national-performance-goals",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "Joint Commission 2026 National Performance Goals include reducing suicide risk. Nurses screen for risk, remove ligature points and items usable for self-harm, search belongings per policy, and maintain the ordered level of observation, including in bathrooms, while documenting environmental checks."
+    }
+  },
+  {
+    "id": "nclex-052",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client who cannot bear weight needs to move from bed to chair: how does the nurse move them?",
+    "bottom": "Use lift devices and enough trained staff.",
+    "bullets": {
+      "clue": "The client cannot bear weight or help with the transfer.",
+      "treat": "Use a mechanical lift or slide sheet, lock the wheels, and raise the bed.",
+      "trap": "Lifting a dependent adult manually without equipment."
+    },
+    "back": "Use lift devices and enough trained staff. Key clue: The client cannot bear weight or help with the transfer. First-line: Use a mechanical lift or slide sheet, lock the wheels, and raise the bed. Exam trap: Lifting a dependent adult manually without equipment.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-052.svg",
+      "alt": "Safe handling equipment choices."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes safe client handling in Safety and Infection Prevention and Control. Nurses assess mobility, then use mechanical lifts, slide sheets and enough staff for dependent clients, lock wheels, and adjust bed height to protect both clients and staff from injury."
+    }
+  },
+  {
+    "id": "nclex-053",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A confused older client keeps pulling at an IV line during the night: what does the nurse try first?",
+    "bottom": "Least restrictive alternatives before any restraint.",
+    "bullets": {
+      "clue": "A confused client is pulling at lines, tubes or dressings.",
+      "treat": "Reorient, use a sitter or bed alarm, cover lines, and schedule toileting.",
+      "trap": "Applying restraints as the first intervention."
+    },
+    "back": "Least restrictive alternatives before any restraint. Key clue: A confused client is pulling at lines, tubes or dressings. First-line: Reorient, use a sitter or bed alarm, cover lines, and schedule toileting. Exam trap: Applying restraints as the first intervention.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-053.svg",
+      "alt": "Alternatives ladder from reorientation to sitter."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes least restrictive care in Safety and Infection Prevention and Control. Nurses look for causes such as pain, hypoxia or a full bladder, then use reorientation, sitters, alarms and line protection before considering restraints, which require an order."
+    }
+  },
+  {
+    "id": "nclex-054",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client receiving chemotherapy has an absolute neutrophil count of 400: what does protective care include?",
+    "bottom": "Protect the client from infection sources.",
+    "bullets": {
+      "clue": "An absolute neutrophil count below about 1,000 cells/mm3.",
+      "treat": "Private room, strict hand hygiene, no fresh flowers or sick visitors; report fever.",
+      "trap": "Taking rectal temperatures or giving suppositories."
+    },
+    "back": "Protect the client from infection sources. Key clue: An absolute neutrophil count below about 1,000 cells/mm3. First-line: Private room, strict hand hygiene, no fresh flowers or sick visitors; report fever. Exam trap: Taking rectal temperatures or giving suppositories.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-054.svg",
+      "alt": "Protective environment checklist."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes protecting immunocompromised clients in Safety and Infection Prevention and Control. For neutropenia, nurses use strict hand hygiene, a private room, screening of visitors, avoidance of rectal procedures, and prompt reporting of fever, which can be the only sign of infection."
+    }
+  },
+  {
+    "id": "nclex-055",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A bag of IV chemotherapy leaks while the nurse is hanging it: how are hazardous drugs handled safely?",
+    "bottom": "Use chemo-rated gloves, gowns and a spill kit.",
+    "bullets": {
+      "clue": "Giving, spilling or disposing of a hazardous drug.",
+      "treat": "Wear double chemo gloves and a gown; use the spill kit; discard as hazardous waste.",
+      "trap": "Letting pregnant staff handle hazardous drugs without precautions."
+    },
+    "back": "Use chemo-rated gloves, gowns and a spill kit. Key clue: Giving, spilling or disposing of a hazardous drug. First-line: Wear double chemo gloves and a gown; use the spill kit; discard as hazardous waste. Exam trap: Letting pregnant staff handle hazardous drugs without precautions.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-055.svg",
+      "alt": "Hazardous drug PPE and disposal."
+    },
+    "source": {
+      "guideline": "USP <800> (official 2020)",
+      "year": "2020",
+      "url": "https://www.usp.org/compounding/general-chapter-hazardous-drugs-handling-healthcare",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "USP General Chapter 800 (official 2020) sets standards for handling hazardous drugs in health care. Staff wear chemotherapy-rated gloves and gowns, use closed-system devices when required, clean spills with a spill kit, and dispose of contaminated items as hazardous waste."
+    }
+  },
+  {
+    "id": "nclex-056",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client has a sealed radiation implant for cervical cancer: how does the nurse limit radiation exposure?",
+    "bottom": "Limit time, increase distance, and use shielding.",
+    "bullets": {
+      "clue": "A sealed internal implant, such as for brachytherapy.",
+      "treat": "Limit time in the room, stay back, use lead shielding; no pregnant visitors.",
+      "trap": "Picking up a dislodged implant by hand instead of using long forceps."
+    },
+    "back": "Limit time, increase distance, and use shielding. Key clue: A sealed internal implant, such as for brachytherapy. First-line: Limit time in the room, stay back, use lead shielding; no pregnant visitors. Exam trap: Picking up a dislodged implant by hand instead of using long forceps.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-056.svg",
+      "alt": "Radiation safety triad."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes radiation safety in Safety and Infection Prevention and Control. Nurses use time, distance and shielding, follow visitor limits, wear a dosimeter as required, and use long-handled forceps and a lead container if a sealed implant becomes dislodged."
+    }
+  },
+  {
+    "id": "nclex-057",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "An older adult lives alone with throw rugs and dim hallways: what home changes help prevent falls?",
+    "bottom": "Remove trip hazards; add lighting and grab bars.",
+    "bullets": {
+      "clue": "Throw rugs, clutter, poor lighting, stairs or no handrails.",
+      "treat": "Add night lights, grab bars, nonslip mats, and clear walkways.",
+      "trap": "Keeping throw rugs in walkways."
+    },
+    "back": "Remove trip hazards; add lighting and grab bars. Key clue: Throw rugs, clutter, poor lighting, stairs or no handrails. First-line: Add night lights, grab bars, nonslip mats, and clear walkways. Exam trap: Keeping throw rugs in walkways.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-057.svg",
+      "alt": "Home safety checklist."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes home safety in Safety and Infection Prevention and Control. Nurses teach older adults to remove throw rugs and clutter, improve lighting, install grab bars and handrails, use nonslip mats, and review medications that may cause dizziness."
+    }
+  },
+  {
+    "id": "nclex-058",
+    "system": "Emergency preparedness",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "During a bioterrorism event, which agent spreads person to person: anthrax or smallpox?",
+    "bottom": "Smallpox spreads between people; inhalation anthrax does not.",
+    "bullets": {
+      "clue": "A suspected bioterrorism event with several ill clients.",
+      "treat": "Smallpox needs airborne and contact precautions; anthrax needs standard precautions.",
+      "trap": "Placing an inhalation anthrax client on airborne precautions."
+    },
+    "back": "Smallpox spreads between people; inhalation anthrax does not. Key clue: A suspected bioterrorism event with several ill clients. First-line: Smallpox needs airborne and contact precautions; anthrax needs standard precautions. Exam trap: Placing an inhalation anthrax client on airborne precautions.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-058.svg",
+      "alt": "Comparison of two bioterrorism agents."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes emergency preparedness in Safety and Infection Prevention and Control. Smallpox spreads person to person and needs airborne and contact precautions. Inhalation anthrax is not spread between people, so standard precautions apply. Nurses also follow public health guidance on reporting and exposure."
+    }
+  },
+  {
+    "id": "nclex-059",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "The nurse needs to reposition a client in bed: which body mechanics protect the nurse's back?",
+    "bottom": "Wide base of support, bent knees, load kept close.",
+    "bullets": {
+      "clue": "Lifting, pulling or repositioning a client.",
+      "treat": "Use leg muscles, avoid twisting, and raise the bed to working height.",
+      "trap": "Bending at the waist to lift."
+    },
+    "back": "Wide base of support, bent knees, load kept close. Key clue: Lifting, pulling or repositioning a client. First-line: Use leg muscles, avoid twisting, and raise the bed to working height. Exam trap: Bending at the waist to lift.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-059.svg",
+      "alt": "Correct and incorrect lifting posture."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes ergonomics in Safety and Infection Prevention and Control. Nurses keep a wide base of support, bend at the knees, keep loads close, avoid twisting, raise the bed to a safe height, and use assistive devices and help when needed."
+    }
+  },
+  {
+    "id": "nclex-060",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "The nurse finds a frayed power cord on a client's cardiac monitor: what should the nurse do?",
+    "bottom": "Remove the equipment from use and report it.",
+    "bullets": {
+      "clue": "Damaged, sparking or ungrounded electrical equipment.",
+      "treat": "Tag the device out of service, and use grounded three-prong plugs.",
+      "trap": "Continuing to use the equipment until the end of the shift."
+    },
+    "back": "Remove the equipment from use and report it. Key clue: Damaged, sparking or ungrounded electrical equipment. First-line: Tag the device out of service, and use grounded three-prong plugs. Exam trap: Continuing to use the equipment until the end of the shift.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-060.svg",
+      "alt": "Equipment safety steps."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes equipment safety in Safety and Infection Prevention and Control. Damaged equipment is removed from service, labeled, and reported to biomedical engineering, and a working device is substituted so client monitoring is not interrupted."
+    }
+  },
+  {
+    "id": "nclex-061",
+    "system": "Safety",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client with spina bifida is scheduled for surgery and reports a banana allergy: what risk is this?",
+    "bottom": "Latex allergy risk is higher with certain food allergies.",
+    "bullets": {
+      "clue": "Spina bifida, many prior surgeries, or banana, avocado, kiwi or chestnut allergy.",
+      "treat": "Use a latex-free room and supplies, and flag the chart and band.",
+      "trap": "Assuming non-latex gloves alone make the room safe."
+    },
+    "back": "Latex allergy risk is higher with certain food allergies. Key clue: Spina bifida, many prior surgeries, or banana, avocado, kiwi or chestnut allergy. First-line: Use a latex-free room and supplies, and flag the chart and band. Exam trap: Assuming non-latex gloves alone make the room safe.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-061.svg",
+      "alt": "Latex risk factors and food cross-reactions."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes allergy precautions in Safety and Infection Prevention and Control. Clients with spina bifida, frequent surgeries, or certain food allergies have higher latex allergy risk and need a latex-safe environment with all supplies checked, not just gloves."
+    }
+  },
+  {
+    "id": "nclex-062",
+    "system": "Infection control",
+    "blueprint_weight": "13%",
+    "task_area": "Safety and Infection Prevention and Control",
+    "front": "A client is diagnosed with measles on the unit: who reports this notifiable disease to public health?",
+    "bottom": "The facility reports to the health department.",
+    "bullets": {
+      "clue": "TB, measles, syphilis, pertussis and other reportable diseases.",
+      "treat": "Follow facility policy for reporting, and maintain the correct precautions.",
+      "trap": "Assuming the provider always handles the report."
+    },
+    "back": "The facility reports to the health department. Key clue: TB, measles, syphilis, pertussis and other reportable diseases. First-line: Follow facility policy for reporting, and maintain the correct precautions. Exam trap: Assuming the provider always handles the report.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-062.svg",
+      "alt": "Reporting pathway to public health."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes reporting communicable diseases in Safety and Infection Prevention and Control. State law lists reportable diseases, and facilities have processes, often through infection prevention, to notify the health department while staff maintain precautions to limit spread."
+    }
+  },
+  {
+    "id": "nclex-063",
+    "system": "Growth and development",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A parent asks whether their 18-month-old's lack of words and pointing is normal: which milestones apply?",
+    "bottom": "At 18 months: says 3 or more words, points, walks alone; two-word phrases by 24 months.",
+    "bullets": {
+      "clue": "No words or pointing at 18 months is a warning sign.",
+      "treat": "Use CDC milestone checklists; refer for screening if a milestone is missed.",
+      "trap": "Waiting and watching after a missed milestone instead of referring."
+    },
+    "back": "At 18 months: says 3 or more words, points, walks alone; two-word phrases by 24 months. Key clue: No words or pointing at 18 months is a warning sign. First-line: Use CDC milestone checklists; refer for screening if a milestone is missed. Exam trap: Waiting and watching after a missed milestone instead of referring.",
+    "word_count": 54,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-063.svg",
+      "alt": "Milestone timeline from 2 months to 5 years."
+    },
+    "source": {
+      "guideline": "CDC/AAP Learn the Signs. Act Early. milestones 2022",
+      "year": "2022",
+      "url": "https://www.cdc.gov/act-early/milestones/index.html",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "CDC and AAP Learn the Signs. Act Early. milestones (2022) use milestones that most children, about 75%, reach by each age. At 18 months a child walks without holding on and says three or more words, and two-word phrases appear by 24 months. Missing one is a reason to request developmental screening rather than waiting."
+    }
+  },
+  {
+    "id": "nclex-064",
+    "system": "Growth and development",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A toddler wants to do everything alone, and a teen wants privacy: which Erikson stages apply?",
+    "bottom": "Toddler: autonomy versus shame and doubt. Teen: identity versus role confusion.",
+    "bullets": {
+      "clue": "A toddler seeks independence; a teen seeks identity.",
+      "treat": "Support each stage task: choices for toddlers, privacy and respect for teens.",
+      "trap": "Confusing initiative in preschool with industry in school age."
+    },
+    "back": "Toddler: autonomy versus shame and doubt. Teen: identity versus role confusion. Key clue: A toddler seeks independence; a teen seeks identity. First-line: Support each stage task: choices for toddlers, privacy and respect for teens. Exam trap: Confusing initiative in preschool with industry in school age.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-064.svg",
+      "alt": "Erikson stages listed by age."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes growth and development in Health Promotion and Maintenance. Erikson's stages include trust versus mistrust in infancy, autonomy in toddlers, initiative in preschoolers, industry in school age, identity in adolescence, and integrity in older adulthood."
+    }
+  },
+  {
+    "id": "nclex-065",
+    "system": "Immunizations",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A child arrives for scheduled vaccines with a mild cold and low fever: which signs mean the child should wait?",
+    "bottom": "A prior severe allergic reaction to that vaccine or component.",
+    "bullets": {
+      "clue": "A mild cold or low fever does not delay vaccination.",
+      "treat": "Follow the CDC schedule your facility uses; AAP publishes its own schedule; screen first.",
+      "trap": "Delaying vaccines for a mild illness such as a cold or low fever."
+    },
+    "back": "A prior severe allergic reaction to that vaccine or component. Key clue: A mild cold or low fever does not delay vaccination. First-line: Follow the CDC schedule your facility uses; AAP publishes its own schedule; screen first. Exam trap: Delaying vaccines for a mild illness such as a cold or low fever.",
+    "word_count": 52,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-065.svg",
+      "alt": "Vaccine screening questions."
+    },
+    "source": {
+      "guideline": "CDC child/adolescent schedule 2025 (addendum Jul 2025), operative after the Mar 2026 court stay; checked Oct 2026",
+      "year": "2025",
+      "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/child-adolescent-age.html",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CDC child and adolescent schedule (2025, July 2025 addendum) is the operative CDC schedule after a federal court stayed the January 2026 revision on 16 March 2026, checked October 2026. It lists a prior severe allergic reaction as a contraindication, while mild illness is not. AAP publishes its own schedule, so nurses follow the schedule their facility uses."
+    }
+  },
+  {
+    "id": "nclex-066",
+    "system": "Immunizations",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A healthy 50-year-old adult comes in for a routine visit: which vaccines should the nurse expect?",
+    "bottom": "Recombinant zoster, Tdap or Td, and yearly flu.",
+    "bullets": {
+      "clue": "A midlife adult at a routine wellness visit.",
+      "treat": "Follow the current CDC adult schedule; teach about expected arm soreness.",
+      "trap": "Skipping the zoster vaccine because the client already had shingles."
+    },
+    "back": "Recombinant zoster, Tdap or Td, and yearly flu. Key clue: A midlife adult at a routine wellness visit. First-line: Follow the current CDC adult schedule; teach about expected arm soreness. Exam trap: Skipping the zoster vaccine because the client already had shingles.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-066.svg",
+      "alt": "Adult vaccine checklist."
+    },
+    "source": {
+      "guideline": "CDC adult schedule 2025 (addendum Jul 2025), operative after the Mar 2026 court stay; checked Oct 2026",
+      "year": "2025",
+      "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-age.html",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CDC adult immunization schedule (2025, July 2025 addendum) remains posted on the CDC site after the March 2026 court stay (checked October 2026). It includes recombinant zoster from age 50, even after shingles, a Td or Tdap booster every 10 years, and yearly influenza. Nurses screen for contraindications and teach about expected arm soreness."
+    }
+  },
+  {
+    "id": "nclex-067",
+    "system": "Maternity",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A client in her second trimester comes for a routine prenatal visit: what does the nurse assess?",
+    "bottom": "Weight, BP, urine, fundal height and fetal heart tones.",
+    "bullets": {
+      "clue": "Second-trimester visits check fundal height, fetal heart tones, BP, urine and glucose screening at 24 to 28 weeks.",
+      "treat": "Teach warning signs: bleeding, severe headache, fluid leakage, or decreased movement.",
+      "trap": "Skipping glucose screening at 24 to 28 weeks."
+    },
+    "back": "Weight, BP, urine, fundal height and fetal heart tones. Key clue: Second-trimester visits check fundal height, fetal heart tones, BP, urine and glucose screening at 24 to 28 weeks. First-line: Teach warning signs: bleeding, severe headache, fluid leakage, or decreased movement. Exam trap: Skipping glucose screening at 24 to 28 weeks.",
+    "word_count": 51,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-067.svg",
+      "alt": "Prenatal visit timeline."
+    },
+    "source": {
+      "guideline": "ACOG Clinical Consensus: Tailored Prenatal Care Delivery 2025",
+      "year": "2025",
+      "url": "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2025/04/tailored-prenatal-care-delivery-for-pregnant-individuals",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ACOG's 2025 clinical consensus supports tailoring the prenatal visit schedule to each client's risk. Routine visits include weight, BP, urine checks, fundal height and fetal heart tones, with first-visit labs and glucose screening at 24 to 28 weeks. Clients are taught to report bleeding, severe headache or decreased fetal movement."
+    }
+  },
+  {
+    "id": "nclex-068",
+    "system": "Maternity",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A client's last menstrual period began on April 10: how does the nurse estimate the due date?",
+    "bottom": "First day of LMP, minus 3 months, plus 7 days.",
+    "bullets": {
+      "clue": "Fundal height in centimeters roughly equals weeks from 20 to 36.",
+      "treat": "Measure fundal height at each visit after 20 weeks.",
+      "trap": "Thinking the fundus at the umbilicus means 12 weeks, not 20."
+    },
+    "back": "First day of LMP, minus 3 months, plus 7 days. Key clue: Fundal height in centimeters roughly equals weeks from 20 to 36. First-line: Measure fundal height at each visit after 20 weeks. Exam trap: Thinking the fundus at the umbilicus means 12 weeks, not 20.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-068.svg",
+      "alt": "Due date calculation and fundal height landmarks."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes antepartum care in Health Promotion and Maintenance. Naegele's rule estimates the due date; for an LMP of April 10, it is January 17. The fundus reaches the umbilicus at about 20 weeks, and fundal height tracks fetal growth."
+    }
+  },
+  {
+    "id": "nclex-069",
+    "system": "Maternity",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A client has a positive home pregnancy test and nausea: which signs of pregnancy are positive signs?",
+    "bottom": "Fetal heart tones, examiner-felt movement and ultrasound.",
+    "bullets": {
+      "clue": "Presumptive: amenorrhea, nausea. Probable: positive test, Hegar sign.",
+      "treat": "Classify each sign as presumptive, probable or positive to answer certainty questions.",
+      "trap": "Calling a positive pregnancy test a positive sign rather than probable."
+    },
+    "back": "Fetal heart tones, examiner-felt movement and ultrasound. Key clue: Presumptive: amenorrhea, nausea. Probable: positive test, Hegar sign. First-line: Classify each sign as presumptive, probable or positive to answer certainty questions. Exam trap: Calling a positive pregnancy test a positive sign rather than probable.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-069.svg",
+      "alt": "Three columns: presumptive, probable, positive."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes antepartum care in Health Promotion and Maintenance. Presumptive signs are reported by the client, probable signs are observed by the examiner, and positive signs, such as fetal heart tones or ultrasound visualization, can only come from the fetus."
+    }
+  },
+  {
+    "id": "nclex-070",
+    "system": "Maternity",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A laboring client asks what to expect next: what are the four stages of labor?",
+    "bottom": "Dilation, birth of the baby, placenta, then recovery.",
+    "bullets": {
+      "clue": "Stage 1 ends at 10 cm; stage 4 is the first hours after birth.",
+      "treat": "Monitor contractions and fetal heart rate; check the fundus often in stage 4.",
+      "trap": "Encouraging pushing before the cervix is fully dilated."
+    },
+    "back": "Dilation, birth of the baby, placenta, then recovery. Key clue: Stage 1 ends at 10 cm; stage 4 is the first hours after birth. First-line: Monitor contractions and fetal heart rate; check the fundus often in stage 4. Exam trap: Encouraging pushing before the cervix is fully dilated.",
+    "word_count": 48,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-070.svg",
+      "alt": "Labor stages timeline."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes intrapartum care in Health Promotion and Maintenance. Stage 1 runs to full dilation, stage 2 ends with the birth, stage 3 ends with delivery of the placenta, and stage 4 is recovery, when nurses watch closely for hemorrhage."
+    }
+  },
+  {
+    "id": "nclex-071",
+    "system": "Maternity",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A client is two hours postpartum, and the fundus feels boggy and deviated to the right: what does the nurse do?",
+    "bottom": "Massage the boggy fundus and have the client void.",
+    "bullets": {
+      "clue": "A boggy or displaced fundus, or heavy lochia.",
+      "treat": "Massage the fundus, empty the bladder, and report continued heavy bleeding.",
+      "trap": "Missing a full bladder, which displaces the uterus and increases bleeding."
+    },
+    "back": "Massage the boggy fundus and have the client void. Key clue: A boggy or displaced fundus, or heavy lochia. First-line: Massage the fundus, empty the bladder, and report continued heavy bleeding. Exam trap: Missing a full bladder, which displaces the uterus and increases bleeding.",
+    "word_count": 44,
+    "mnemonic": "BUBBLE-HE: Breasts, Uterus, Bladder, Bowel, Lochia, Episiotomy, Hemorrhage, Emotions",
+    "diagram": {
+      "file": "svg/nclex-071.svg",
+      "alt": "Postpartum assessment checklist."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes postpartum care in Health Promotion and Maintenance. Postpartum checks cover breasts, uterus, bladder, bowels, lochia, the perineum, signs of hemorrhage and emotions. A boggy fundus is massaged, and a full bladder is emptied to help the uterus contract."
+    }
+  },
+  {
+    "id": "nclex-072",
+    "system": "Newborn",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A newborn has a heart rate of 110, weak cry and blue extremities at one minute: what does Apgar measure?",
+    "bottom": "Heart rate, respiratory effort, tone, reflex and color.",
+    "bullets": {
+      "clue": "Scores are given at 1 and 5 minutes after birth.",
+      "treat": "A score of 7 to 10 is reassuring; lower scores need support and repeat scoring.",
+      "trap": "Using the Apgar score to decide whether to start resuscitation."
+    },
+    "back": "Heart rate, respiratory effort, tone, reflex and color. Key clue: Scores are given at 1 and 5 minutes after birth. First-line: A score of 7 to 10 is reassuring; lower scores need support and repeat scoring. Exam trap: Using the Apgar score to decide whether to start resuscitation.",
+    "word_count": 48,
+    "mnemonic": "APGAR: Appearance, Pulse, Grimace, Activity, Respiration",
+    "diagram": {
+      "file": "svg/nclex-072.svg",
+      "alt": "Apgar scoring table."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes newborn assessment in Health Promotion and Maintenance. Apgar scores rate five signs from 0 to 2 at 1 and 5 minutes. Resuscitation begins based on breathing and heart rate, without waiting for the 1-minute score."
+    }
+  },
+  {
+    "id": "nclex-073",
+    "system": "Newborn",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A first-time parent asks how to tell whether a breastfed newborn is getting enough milk: what does the nurse teach?",
+    "bottom": "Feed on demand, about 8 to 12 times a day.",
+    "bullets": {
+      "clue": "Good latch, enough wet diapers and weight gain show adequate intake.",
+      "treat": "Exclusive breastfeeding for about 6 months, then continue with solid foods.",
+      "trap": "Routinely supplementing with formula in the first days without a medical reason."
+    },
+    "back": "Feed on demand, about 8 to 12 times a day. Key clue: Good latch, enough wet diapers and weight gain show adequate intake. First-line: Exclusive breastfeeding for about 6 months, then continue with solid foods. Exam trap: Routinely supplementing with formula in the first days without a medical reason.",
+    "word_count": 49,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-073.svg",
+      "alt": "Signs of good latch and intake."
+    },
+    "source": {
+      "guideline": "AAP Breastfeeding policy 2022",
+      "year": "2022",
+      "url": "https://publications.aap.org/pediatrics/article/150/1/e2022057988/188347/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The AAP 2022 breastfeeding policy recommends exclusive breastfeeding for about 6 months, with continued breastfeeding as complementary foods are added for as long as desired. Nurses teach feeding cues, latch, and intake signs such as wet diapers and weight gain."
+    }
+  },
+  {
+    "id": "nclex-074",
+    "system": "Health promotion",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A 38-year-old client who smokes a pack a day asks for birth control: which method should she avoid?",
+    "bottom": "Combined estrogen-containing methods.",
+    "bullets": {
+      "clue": "A smoker 35 or older, migraine with aura, or a history of blood clots.",
+      "treat": "Offer progestin-only pills, an IUD or an implant, and teach correct use.",
+      "trap": "Ignoring that combined pills raise stroke and clot risk in these clients."
+    },
+    "back": "Combined estrogen-containing methods. Key clue: A smoker 35 or older, migraine with aura, or a history of blood clots. First-line: Offer progestin-only pills, an IUD or an implant, and teach correct use. Exam trap: Ignoring that combined pills raise stroke and clot risk in these clients.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-074.svg",
+      "alt": "Contraception options by risk."
+    },
+    "source": {
+      "guideline": "CDC US MEC 2024",
+      "year": "2024",
+      "url": "https://www.cdc.gov/contraception/hcp/usmec/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "CDC US MEC 2024 classifies combined hormonal contraception as an unacceptable risk for clients 35 and older who smoke 15 or more cigarettes a day. Progestin-only methods, implants and IUDs are safer options, and nurses also offer smoking cessation support."
+    }
+  },
+  {
+    "id": "nclex-075",
+    "system": "Health promotion",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "An average-risk 45-year-old asks when routine cancer screenings should start: what does the nurse teach?",
+    "bottom": "Mammograms begin at 40; colorectal screening begins at 45.",
+    "bullets": {
+      "clue": "Adults at average risk with no symptoms or strong family history.",
+      "treat": "Mammography every 2 years from 40 to 74; colorectal screening from 45 to 75.",
+      "trap": "Waiting until age 50 to start colorectal screening."
+    },
+    "back": "Mammograms begin at 40; colorectal screening begins at 45. Key clue: Adults at average risk with no symptoms or strong family history. First-line: Mammography every 2 years from 40 to 74; colorectal screening from 45 to 75. Exam trap: Waiting until age 50 to start colorectal screening.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-075.svg",
+      "alt": "Screening ages timeline."
+    },
+    "source": {
+      "guideline": "USPSTF breast 2024; colorectal 2021",
+      "year": "2021",
+      "url": "https://www.usp.org/compounding/general-chapter-hazardous-drugs-handling-healthcare",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "USPSTF recommendations include biennial mammography for women 40 to 74 (2024) and colorectal cancer screening for adults 45 to 75 (2021). Clients with higher risk, such as a strong family history, may need earlier or more frequent screening per their provider."
+    }
+  },
+  {
+    "id": "nclex-076",
+    "system": "Aging",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "An 80-year-old client's daughter asks which of her mother's changes are normal aging: what does the nurse say?",
+    "bottom": "Less skin elasticity, slower reactions and presbyopia are normal.",
+    "bullets": {
+      "clue": "Sudden confusion is never a normal part of aging.",
+      "treat": "Teach safety for normal changes, and report acute changes right away.",
+      "trap": "Labeling new confusion or delirium as normal aging."
+    },
+    "back": "Less skin elasticity, slower reactions and presbyopia are normal. Key clue: Sudden confusion is never a normal part of aging. First-line: Teach safety for normal changes, and report acute changes right away. Exam trap: Labeling new confusion or delirium as normal aging.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-076.svg",
+      "alt": "Normal aging versus warning signs."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes the aging process in Health Promotion and Maintenance. Normal aging includes thinner skin, slower reaction time, presbyopia and some hearing loss, while sudden confusion, falls or functional decline suggest illness and need prompt evaluation."
+    }
+  },
+  {
+    "id": "nclex-077",
+    "system": "Newborn",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "Parents of a newborn ask about crib bumpers and side sleeping: how should the infant sleep?",
+    "bottom": "On the back, alone, on a firm, flat surface.",
+    "bullets": {
+      "clue": "A parent asks about bumpers, side sleeping or bed sharing.",
+      "treat": "Share a room without sharing a bed, and keep soft bedding out of the crib.",
+      "trap": "Using inclined sleepers, bumpers or side sleeping."
+    },
+    "back": "On the back, alone, on a firm, flat surface. Key clue: A parent asks about bumpers, side sleeping or bed sharing. First-line: Share a room without sharing a bed, and keep soft bedding out of the crib. Exam trap: Using inclined sleepers, bumpers or side sleeping.",
+    "word_count": 46,
+    "mnemonic": "ABCs of safe sleep: Alone, Back, Crib",
+    "diagram": {
+      "file": "svg/nclex-077.svg",
+      "alt": "Safe infant sleep setup."
+    },
+    "source": {
+      "guideline": "AAP Safe Sleep 2022",
+      "year": "2022",
+      "url": "https://publications.aap.org/pediatrics/article/150/1/e2022057990/188304/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The AAP 2022 safe sleep policy recommends placing infants on their backs on a firm, flat, non-inclined surface without soft bedding or bumpers. Room sharing without bed sharing is advised, ideally for at least the first 6 months, to reduce the risk of sleep-related deaths."
+    }
+  },
+  {
+    "id": "nclex-078",
+    "system": "Health promotion",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A parent asks when to turn a toddler's car seat forward-facing: when can a child switch car seats?",
+    "bottom": "Stay rear-facing as long as the seat allows.",
+    "bullets": {
+      "clue": "The toddler has reached the rear-facing height or weight limit.",
+      "treat": "Then use a forward harness, then a booster until the belt fits, about 4 feet 9 inches.",
+      "trap": "Moving the child to forward-facing too early."
+    },
+    "back": "Stay rear-facing as long as the seat allows. Key clue: The toddler has reached the rear-facing height or weight limit. First-line: Then use a forward harness, then a booster until the belt fits, about 4 feet 9 inches. Exam trap: Moving the child to forward-facing too early.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-078.svg",
+      "alt": "Car seat stages by size."
+    },
+    "source": {
+      "guideline": "AAP Child Passenger Safety (reaffirmed 2025)",
+      "year": "2025",
+      "url": "https://publications.aap.org/pediatrics/article/142/5/e20182460/38530/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The AAP child passenger safety policy (reaffirmed 2025) advises keeping children rear-facing as long as possible, up to the seat's limits, then using a harnessed forward-facing seat and a booster until the seat belt fits properly, usually at about 4 feet 9 inches tall."
+    }
+  },
+  {
+    "id": "nclex-079",
+    "system": "Health promotion",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "An adult client who smokes says they want to quit but have failed before: how does the nurse help?",
+    "bottom": "Ask, advise, and offer counseling plus medication.",
+    "bullets": {
+      "clue": "Any adult who uses tobacco, at any visit.",
+      "treat": "Combine behavioral support with FDA-approved medicine, and set a quit date.",
+      "trap": "Advising the client to quit without offering any help or follow-up."
+    },
+    "back": "Ask, advise, and offer counseling plus medication. Key clue: Any adult who uses tobacco, at any visit. First-line: Combine behavioral support with FDA-approved medicine, and set a quit date. Exam trap: Advising the client to quit without offering any help or follow-up.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-079.svg",
+      "alt": "Ask, advise, refer steps."
+    },
+    "source": {
+      "guideline": "USPSTF tobacco cessation 2021",
+      "year": "2021",
+      "url": "https://www.usp.org/compounding/general-chapter-hazardous-drugs-handling-healthcare",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The USPSTF 2021 tobacco cessation recommendation advises clinicians to ask all adults about tobacco use, advise them to stop, and provide behavioral interventions and FDA-approved medication for nonpregnant adults. Combining counseling and medication works better than either one alone. Follow-up visits support relapse prevention."
+    }
+  },
+  {
+    "id": "nclex-080",
+    "system": "Health promotion",
+    "blueprint_weight": "9%",
+    "task_area": "Health Promotion and Maintenance",
+    "front": "A client is treated for chlamydia and asks how to prevent another infection: what does the nurse teach?",
+    "bottom": "Condoms, routine testing and partner treatment.",
+    "bullets": {
+      "clue": "A positive chlamydia or gonorrhea test result.",
+      "treat": "Avoid sex until treatment is done and partners are treated; retest as advised.",
+      "trap": "Assuming the infection is gone because symptoms have cleared."
+    },
+    "back": "Condoms, routine testing and partner treatment. Key clue: A positive chlamydia or gonorrhea test result. First-line: Avoid sex until treatment is done and partners are treated; retest as advised. Exam trap: Assuming the infection is gone because symptoms have cleared.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-080.svg",
+      "alt": "STI prevention tips."
+    },
+    "source": {
+      "guideline": "CDC STI Treatment Guidelines 2021",
+      "year": "2021",
+      "url": "https://www.cdc.gov/std/treatment-guidelines/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CDC 2021 STI Treatment Guidelines advise treating partners, avoiding sex until treatment is complete and symptoms resolve, and retesting about three months after treatment for chlamydia or gonorrhea. Condoms used correctly and consistently lower the risk of many STIs."
+    }
+  },
+  {
+    "id": "nclex-081",
+    "system": "Communication",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client says, I just do not know how I will cope after this diagnosis: which responses are therapeutic?",
+    "bottom": "Open-ended questions, reflection and therapeutic silence.",
+    "bullets": {
+      "clue": "The client is sharing feelings, fears or worries.",
+      "treat": "Use statements like tell me more, restate feelings, and offer your presence.",
+      "trap": "Asking why questions, which can make clients defensive."
+    },
+    "back": "Open-ended questions, reflection and therapeutic silence. Key clue: The client is sharing feelings, fears or worries. First-line: Use statements like tell me more, restate feelings, and offer your presence. Exam trap: Asking why questions, which can make clients defensive.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-081.svg",
+      "alt": "Therapeutic techniques list."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes therapeutic communication in Psychosocial Integrity. Open-ended questions, reflection, restating, silence and offering self help clients express feelings, while why questions, advice and false reassurance can make the client feel judged or dismissed. Nurses also use teach-back to confirm understanding."
+    }
+  },
+  {
+    "id": "nclex-082",
+    "system": "Communication",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client is scared before surgery, and the nurse says Don't worry, everything will be fine: why is this a problem?",
+    "bottom": "False reassurance, advice and changing the subject block communication.",
+    "bullets": {
+      "clue": "The nurse dismisses fear with phrases like don't worry.",
+      "treat": "Acknowledge the client's feelings and explore the specific concerns.",
+      "trap": "Giving personal opinions or advice instead of exploring feelings."
+    },
+    "back": "False reassurance, advice and changing the subject block communication. Key clue: The nurse dismisses fear with phrases like don't worry. First-line: Acknowledge the client's feelings and explore the specific concerns. Exam trap: Giving personal opinions or advice instead of exploring feelings.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-082.svg",
+      "alt": "Common nontherapeutic responses."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes therapeutic communication in Psychosocial Integrity. False reassurance, giving advice, changing the subject, and offering personal opinions shut down discussion. The nurse acknowledges the client's feelings and asks open-ended questions to explore concerns. Silence can also be therapeutic."
+    }
+  },
+  {
+    "id": "nclex-083",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client with depression says, I just want to die: what is the nurse's priority?",
+    "bottom": "Ask directly about a plan, intent and means.",
+    "bullets": {
+      "clue": "Hopelessness, giving belongings away, or sudden calm after depression.",
+      "treat": "Ensure safety, provide 1:1 observation per policy, and notify the provider.",
+      "trap": "Fearing that asking directly about suicide will increase the risk."
+    },
+    "back": "Ask directly about a plan, intent and means. Key clue: Hopelessness, giving belongings away, or sudden calm after depression. First-line: Ensure safety, provide 1:1 observation per policy, and notify the provider. Exam trap: Fearing that asking directly about suicide will increase the risk.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-083.svg",
+      "alt": "Suicide risk screening flow."
+    },
+    "source": {
+      "guideline": "Joint Commission NPG 8 (suicide risk) 2026",
+      "year": "2026",
+      "url": "https://www.jointcommission.org/en-us/standards/national-performance-goals",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "Joint Commission 2026 National Performance Goals include screening for suicide risk with validated tools. Asking directly about suicide does not increase risk. Nurses ask about a plan, intent and access to means, keep the client safe, and notify the provider."
+    }
+  },
+  {
+    "id": "nclex-084",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client whose house just burned down cannot stop crying and cannot make decisions: what helps?",
+    "bottom": "Safety, a calm presence and short-term problem solving.",
+    "bullets": {
+      "clue": "Acute stress has overwhelmed the client's usual ways of coping.",
+      "treat": "Stay with the client, use short direct statements, and find support resources.",
+      "trap": "Exploring deep, long-term issues during the acute crisis."
+    },
+    "back": "Safety, a calm presence and short-term problem solving. Key clue: Acute stress has overwhelmed the client's usual ways of coping. First-line: Stay with the client, use short direct statements, and find support resources. Exam trap: Exploring deep, long-term issues during the acute crisis.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-084.svg",
+      "alt": "Crisis steps."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes crisis intervention in Psychosocial Integrity. Crisis care focuses on immediate safety, a calm presence, short clear statements, and helping the client identify supports and next steps, with deeper issues addressed after the crisis passes."
+    }
+  },
+  {
+    "id": "nclex-085",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client started an antidepressant two weeks ago and now has more energy: what does the nurse monitor?",
+    "bottom": "Safety, sleep, nutrition and self-care.",
+    "bullets": {
+      "clue": "Energy rises on antidepressants before mood fully lifts.",
+      "treat": "Watch suicide risk closely as energy returns, and give simple, achievable tasks.",
+      "trap": "Assuming that improved energy means lower suicide risk."
+    },
+    "back": "Safety, sleep, nutrition and self-care. Key clue: Energy rises on antidepressants before mood fully lifts. First-line: Watch suicide risk closely as energy returns, and give simple, achievable tasks. Exam trap: Assuming that improved energy means lower suicide risk.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-085.svg",
+      "alt": "Depression care priorities."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes mood disorders in Psychosocial Integrity. Suicide risk can rise as antidepressants restore energy before mood improves. Nurses monitor safety closely, along with sleep, nutrition and hygiene, and set small achievable goals. Clients are taught to report worsening thoughts immediately."
+    }
+  },
+  {
+    "id": "nclex-086",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client in acute mania has not slept for two days and will not sit to eat: what is the priority?",
+    "bottom": "Safety and nutrition come first.",
+    "bullets": {
+      "clue": "Hyperactivity, little sleep, poor intake and impulsive behavior.",
+      "treat": "Low stimulation, finger foods, firm limits; monitor lithium if it is prescribed.",
+      "trap": "Planning competitive group activities that increase stimulation."
+    },
+    "back": "Safety and nutrition come first. Key clue: Hyperactivity, little sleep, poor intake and impulsive behavior. First-line: Low stimulation, finger foods, firm limits; monitor lithium if it is prescribed. Exam trap: Planning competitive group activities that increase stimulation.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-086.svg",
+      "alt": "Mania care setup."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes mood disorders in Psychosocial Integrity. In acute mania, nurses reduce stimulation, offer high-calorie finger foods and fluids, set calm, consistent limits, and monitor for exhaustion, injury, and lithium levels when lithium is prescribed."
+    }
+  },
+  {
+    "id": "nclex-087",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client with schizophrenia says voices are telling them to hurt someone: how does the nurse respond?",
+    "bottom": "Acknowledge the experience, do not argue, and state reality.",
+    "bullets": {
+      "clue": "Command hallucinations directing the client to cause harm.",
+      "treat": "Ask what the voices say, assess for harm to self or others, and redirect.",
+      "trap": "Agreeing with the hallucination or arguing about it."
+    },
+    "back": "Acknowledge the experience, do not argue, and state reality. Key clue: Command hallucinations directing the client to cause harm. First-line: Ask what the voices say, assess for harm to self or others, and redirect. Exam trap: Agreeing with the hallucination or arguing about it.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-087.svg",
+      "alt": "Communication with a hallucinating client."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes psychotic disorders in Psychosocial Integrity. Command hallucinations need assessment for safety. The nurse acknowledges the client's experience without arguing, states that the nurse does not hear the voices, and focuses on reality and safety."
+    }
+  },
+  {
+    "id": "nclex-088",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client suddenly has a racing heart, chest tightness and intense fear during a panic attack: what does the nurse do?",
+    "bottom": "Stay with the client and use short, calm statements.",
+    "bullets": {
+      "clue": "A racing heart, chest tightness, shortness of breath and fear.",
+      "treat": "Move to a quiet room, and coach slow breathing.",
+      "trap": "Starting teaching during severe or panic-level anxiety."
+    },
+    "back": "Stay with the client and use short, calm statements. Key clue: A racing heart, chest tightness, shortness of breath and fear. First-line: Move to a quiet room, and coach slow breathing. Exam trap: Starting teaching during severe or panic-level anxiety.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-088.svg",
+      "alt": "Anxiety levels and nurse actions."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes anxiety in Psychosocial Integrity. During panic, the nurse stays with the client, lowers stimulation, uses brief, calm directions, and coaches slow breathing. Physical causes are ruled out as needed, and teaching waits until anxiety lessens."
+    }
+  },
+  {
+    "id": "nclex-089",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client with a history of assault has flashbacks and startles easily during care: what is trauma-informed care?",
+    "bottom": "Safety, trust, choice and collaboration in all care.",
+    "bullets": {
+      "clue": "Nightmares, flashbacks and hypervigilance after trauma.",
+      "treat": "Explain each step, offer choices, ask permission, and avoid known triggers.",
+      "trap": "Pushing the client to retell the trauma before they are ready."
+    },
+    "back": "Safety, trust, choice and collaboration in all care. Key clue: Nightmares, flashbacks and hypervigilance after trauma. First-line: Explain each step, offer choices, ask permission, and avoid known triggers. Exam trap: Pushing the client to retell the trauma before they are ready.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-089.svg",
+      "alt": "Trauma-informed principles."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes trauma care in Psychosocial Integrity. Trauma-informed care emphasizes safety, trustworthiness, choice, collaboration and empowerment. Nurses explain procedures, ask permission before touch, offer choices, and avoid forcing clients to retell traumatic events. Nurses also watch for their own secondary stress."
+    }
+  },
+  {
+    "id": "nclex-090",
+    "system": "Substance use",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client who drinks daily was admitted 30 hours ago and now has tremors and sweating: when does withdrawal peak?",
+    "bottom": "Delirium tremens peaks at 48 to 72 hours, so this client at 30 hours is high risk.",
+    "bullets": {
+      "clue": "Tremor, sweating, fast heart rate, anxiety and agitation.",
+      "treat": "Use CIWA-Ar, give benzodiazepines as ordered, and give thiamine before glucose.",
+      "trap": "Missing the delirium tremens window at 48 to 72 hours."
+    },
+    "back": "Delirium tremens peaks at 48 to 72 hours, so this client at 30 hours is high risk. Key clue: Tremor, sweating, fast heart rate, anxiety and agitation. First-line: Use CIWA-Ar, give benzodiazepines as ordered, and give thiamine before glucose. Exam trap: Missing the delirium tremens window at 48 to 72 hours.",
+    "word_count": 51,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-090.svg",
+      "alt": "Withdrawal timeline."
+    },
+    "source": {
+      "guideline": "ASAM Alcohol Withdrawal Management 2020",
+      "year": "2020",
+      "url": "https://www.asam.org/quality-care/clinical-guidelines",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ASAM 2020 Clinical Practice Guideline on Alcohol Withdrawal Management recommends benzodiazepines as first-line treatment and supports symptom-triggered dosing guided by a validated scale. Thiamine is given to prevent Wernicke encephalopathy, and seizures and delirium are monitored closely. Hydration and electrolytes are also monitored closely."
+    }
+  },
+  {
+    "id": "nclex-091",
+    "system": "Substance use",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client is found with pinpoint pupils and breathing 6 times a minute: what does the nurse do?",
+    "bottom": "Airway and breathing first: stimulate, open the airway, and bag-mask ventilate.",
+    "bullets": {
+      "clue": "Pinpoint pupils, slow breathing and decreased responsiveness.",
+      "treat": "Call rapid response; give naloxone per standing order or protocol; refer for OUD care.",
+      "trap": "Forgetting that sedation can return when naloxone wears off."
+    },
+    "back": "Airway and breathing first: stimulate, open the airway, and bag-mask ventilate. Key clue: Pinpoint pupils, slow breathing and decreased responsiveness. First-line: Call rapid response; give naloxone per standing order or protocol; refer for OUD care. Exam trap: Forgetting that sedation can return when naloxone wears off.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-091.svg",
+      "alt": "Overdose response steps."
+    },
+    "source": {
+      "guideline": "AHA 2025 CPR and ECC Guidelines, Part 10 Special Circumstances (opioids)",
+      "year": "2025",
+      "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001380",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2025 AHA CPR and ECC guidelines state that trained rescuers should give breaths or bag-mask ventilation to a client with suspected opioid overdose who has respiratory depression and a pulse, and that naloxone should be given for respiratory arrest. Nurses call rapid response, give naloxone per protocol, monitor for returning sedation, and refer for opioid use disorder care."
+    }
+  },
+  {
+    "id": "nclex-092",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client with anorexia nervosa and very low weight is starting nutrition: what is the danger when refeeding?",
+    "bottom": "Refeeding syndrome with low phosphate, potassium and magnesium.",
+    "bullets": {
+      "clue": "Anorexia with low weight, bradycardia or electrolyte problems.",
+      "treat": "Monitor phosphate, potassium, magnesium and heart rhythm, and advance feeding slowly.",
+      "trap": "Feeding rapidly without monitoring labs."
+    },
+    "back": "Refeeding syndrome with low phosphate, potassium and magnesium. Key clue: Anorexia with low weight, bradycardia or electrolyte problems. First-line: Monitor phosphate, potassium, magnesium and heart rhythm, and advance feeding slowly. Exam trap: Feeding rapidly without monitoring labs.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-092.svg",
+      "alt": "Refeeding monitoring plan."
+    },
+    "source": {
+      "guideline": "APA Eating Disorders 2023",
+      "year": "2023",
+      "url": "https://doi.org/10.1176/appi.books.9780890424865",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The APA 2023 Practice Guideline for the Treatment of Patients With Eating Disorders describes medical monitoring during nutritional rehabilitation. Refeeding can cause dangerous drops in phosphate, potassium and magnesium, so nurses monitor labs, vital signs, and heart rhythm closely. Feeding is advanced gradually."
+    }
+  },
+  {
+    "id": "nclex-093",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client whose spouse just died is angry one day and bargaining the next: what are the stages of grief?",
+    "bottom": "Denial, anger, bargaining, depression and acceptance.",
+    "bullets": {
+      "clue": "The stages do not happen in a fixed order.",
+      "treat": "Listen, be present, and support the client's cultural and spiritual rituals.",
+      "trap": "Telling the client how they should feel or what stage they are in."
+    },
+    "back": "Denial, anger, bargaining, depression and acceptance. Key clue: The stages do not happen in a fixed order. First-line: Listen, be present, and support the client's cultural and spiritual rituals. Exam trap: Telling the client how they should feel or what stage they are in.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-093.svg",
+      "alt": "Grief stages."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes grief and loss in Psychosocial Integrity. Grief may include denial, anger, bargaining, depression and acceptance, in any order and often more than once. Nurses listen, stay present, and support rituals without judging the client's grief."
+    }
+  },
+  {
+    "id": "nclex-094",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client brought in for a fall has injuries in several stages of healing and seems fearful: which signs suggest abuse?",
+    "bottom": "Injuries that do not match the history given.",
+    "bullets": {
+      "clue": "A fearful client, delayed care, or poor hygiene.",
+      "treat": "Ensure safety, document objectively, and report per state law.",
+      "trap": "Confronting the suspected abuser."
+    },
+    "back": "Injuries that do not match the history given. Key clue: A fearful client, delayed care, or poor hygiene. First-line: Ensure safety, document objectively, and report per state law. Exam trap: Confronting the suspected abuser.",
+    "word_count": 34,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-094.svg",
+      "alt": "Abuse signs list."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes abuse and neglect in Psychosocial Integrity. Warning signs include injuries that do not fit the story, injuries in different healing stages, delayed care and fear of a caregiver. Nurses keep the client safe, document objectively, and report as required."
+    }
+  },
+  {
+    "id": "nclex-095",
+    "system": "Neurocognitive",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "An older adult became confused overnight after surgery: is it delirium or dementia?",
+    "bottom": "Delirium is sudden and fluctuates; dementia develops slowly.",
+    "bullets": {
+      "clue": "A hospitalized older adult becomes confused overnight.",
+      "treat": "Look for causes such as infection, medications or hypoxia, and reorient the client.",
+      "trap": "Assuming new confusion is dementia."
+    },
+    "back": "Delirium is sudden and fluctuates; dementia develops slowly. Key clue: A hospitalized older adult becomes confused overnight. First-line: Look for causes such as infection, medications or hypoxia, and reorient the client. Exam trap: Assuming new confusion is dementia.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-095.svg",
+      "alt": "Delirium versus dementia comparison."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes cognitive disorders in Psychosocial Integrity. Delirium has a sudden onset, fluctuating attention, and often a treatable cause, such as infection, drugs, hypoxia or pain. Dementia develops gradually, so new confusion needs prompt evaluation."
+    }
+  },
+  {
+    "id": "nclex-096",
+    "system": "Mental health",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client praises some staff, criticizes others, and asks for special rules: how does the nurse respond?",
+    "bottom": "Set clear, consistent limits across all staff.",
+    "bullets": {
+      "clue": "The client splits staff into good and bad groups.",
+      "treat": "Use the same rules for all staff, and give calm, consistent consequences.",
+      "trap": "Bending unit rules for this one client."
+    },
+    "back": "Set clear, consistent limits across all staff. Key clue: The client splits staff into good and bad groups. First-line: Use the same rules for all staff, and give calm, consistent consequences. Exam trap: Bending unit rules for this one client.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-096.svg",
+      "alt": "Limit-setting approach."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes personality disorders in Psychosocial Integrity. Splitting and manipulative behavior are managed with a consistent team approach, clear limits explained in advance, calm enforcement of consequences, and regular team communication so all staff respond the same way."
+    }
+  },
+  {
+    "id": "nclex-097",
+    "system": "Legal and ethical",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client admitted involuntarily for psychiatric care asks which rights remain: what does the nurse say?",
+    "bottom": "Rights remain, including refusing treatment in most cases.",
+    "bullets": {
+      "clue": "The client is being held on an involuntary admission.",
+      "treat": "Inform the client of their rights, and follow the legal process for the hold.",
+      "trap": "Assuming involuntary status removes all of the client's rights."
+    },
+    "back": "Rights remain, including refusing treatment in most cases. Key clue: The client is being held on an involuntary admission. First-line: Inform the client of their rights, and follow the legal process for the hold. Exam trap: Assuming involuntary status removes all of the client's rights.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-097.svg",
+      "alt": "Admission types and rights."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes client rights in Psychosocial Integrity. Clients on voluntary or involuntary status keep their civil rights, including communication and, in most non-emergency situations, refusal of treatment, with state law governing holds, hearings and court-ordered treatment."
+    }
+  },
+  {
+    "id": "nclex-098",
+    "system": "Culture",
+    "blueprint_weight": "9%",
+    "task_area": "Psychosocial Integrity",
+    "front": "A client declines a meal tray and a treatment for religious reasons: how does the nurse meet cultural needs?",
+    "bottom": "Ask about beliefs and needs; do not assume.",
+    "bullets": {
+      "clue": "The client declines a food or treatment for religious reasons.",
+      "treat": "Respect practices, involve the chaplain or interpreter, and adjust the care plan.",
+      "trap": "Stereotyping the client based on background."
+    },
+    "back": "Ask about beliefs and needs; do not assume. Key clue: The client declines a food or treatment for religious reasons. First-line: Respect practices, involve the chaplain or interpreter, and adjust the care plan. Exam trap: Stereotyping the client based on background.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-098.svg",
+      "alt": "Cultural assessment steps."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes cultural and spiritual care in Psychosocial Integrity. Nurses ask clients about their beliefs, dietary practices and preferences, involve chaplains or interpreters when needed, and adjust care plans while avoiding assumptions based on culture or religion."
+    }
+  },
+  {
+    "id": "nclex-099",
+    "system": "Skin",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A bedbound client has a sacral wound with full-thickness skin loss and visible fat: what stage is it?",
+    "bottom": "Stage 3: full-thickness skin loss with visible fat; no bone, tendon or muscle exposed.",
+    "bullets": {
+      "clue": "A bedbound client with a sacral wound.",
+      "treat": "Reposition, use support surfaces, optimize nutrition, and stage the wound accurately.",
+      "trap": "Reverse-staging a healing wound, such as calling a stage 4 a stage 2."
+    },
+    "back": "Stage 3: full-thickness skin loss with visible fat; no bone, tendon or muscle exposed. Key clue: A bedbound client with a sacral wound. First-line: Reposition, use support surfaces, optimize nutrition, and stage the wound accurately. Exam trap: Reverse-staging a healing wound, such as calling a stage 4 a stage 2.",
+    "word_count": 50,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-099.svg",
+      "alt": "Pressure injury stages."
+    },
+    "source": {
+      "guideline": "International Pressure Ulcer/Injury Guideline 4th ed 2025 (NPIAP/EPUAP/PPPIA)",
+      "year": "2025",
+      "url": "https://www.internationalguideline.com/2025",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The International Pressure Ulcer/Injury Guideline, 4th edition (2025), describes staging from stage 1 nonblanchable redness to stage 4 full-thickness loss with exposed bone, tendon or muscle. A wound with visible fat but no exposed structures is stage 3, and healing wounds are not reverse-staged."
+    }
+  },
+  {
+    "id": "nclex-100",
+    "system": "Comfort",
+    "blueprint_weight": "9%",
+    "task_area": "Basic Care and Comfort",
+    "front": "A client cannot speak after a stroke and is grimacing and guarding the abdomen: how does the nurse assess pain?",
+    "bottom": "Use a valid pain scale, then reassess after treatment.",
+    "bullets": {
+      "clue": "The client cannot speak or self-report pain.",
+      "treat": "Use behavioral pain scales, and combine medication with nondrug methods.",
+      "trap": "Not reassessing pain after giving an intervention."
+    },
+    "back": "Use a valid pain scale, then reassess after treatment. Key clue: The client cannot speak or self-report pain. First-line: Use behavioral pain scales, and combine medication with nondrug methods. Exam trap: Not reassessing pain after giving an intervention.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-100.svg",
+      "alt": "Pain scales."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes pain management in Basic Care and Comfort. Self-report is preferred, but behavioral scales are used when clients cannot speak. Nurses combine medications with nondrug measures and reassess within the expected time after each intervention."
+    }
+  }
+]

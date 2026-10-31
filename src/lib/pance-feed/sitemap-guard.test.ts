@@ -8,6 +8,9 @@ describe("PANCE feed is not a public listing", () => {
     const sitemap = fs.readFileSync(path.join(root, "src/app/sitemap.ts"), "utf8");
     const robots = fs.readFileSync(path.join(root, "src/app/robots.ts"), "utf8");
     expect(sitemap).not.toContain("/study-tools/pance/feed");
+    expect(sitemap).not.toContain("/study-tools/nclex/feed");
+    expect(sitemap).not.toContain("/study-tools/naplex/feed");
+    expect(sitemap).not.toContain("/study-tools/aanp-fnp/feed");
     expect(robots).toContain("/study-tools/");
     expect(fs.existsSync(path.join(root, "public", "pance-feed"))).toBe(false);
   });

@@ -1,0 +1,714 @@
+[
+ {
+  "id": "naplex-051",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2A",
+  "topic": "Top 50 brand/generic names: cardiovascular",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Match the generics: Eliquis, Xarelto, Entresto, Brilinta, Toprol-XL.",
+  "bottom": "Apixaban, rivaroxaban, sacubitril/valsartan, ticagrelor, metoprolol succinate.",
+  "bullets": {
+   "clue": "Also: Lipitor atorvastatin, Crestor rosuvastatin, Plavix clopidogrel, Coreg carvedilol.",
+   "treat": "Confirm salt and release form when substituting.",
+   "trap": "Toprol-XL (succinate, ER) is not Lopressor (tartrate, IR)."
+  },
+  "back": "Apixaban, rivaroxaban, sacubitril/valsartan, ticagrelor, metoprolol succinate. Key clue: Also: Lipitor atorvastatin, Crestor rosuvastatin, Plavix clopidogrel, Coreg carvedilol. Pharmacist move: Confirm salt and release form when substituting. Exam trap: Toprol-XL (succinate, ER) is not Lopressor (tartrate, IR).",
+  "word_count": 36,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA Orange Book 2026",
+   "year": "2026",
+   "url": "https://www.fda.gov/drugs/drug-approvals-and-databases/approved-drug-products-therapeutic-equivalence-evaluations-orange-book",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+   "recommendation": "Brand/generic pairs per FDA labeling and Orange Book listings (2026). Metoprolol succinate ER and metoprolol tartrate IR are different products and not AB-substitutable for each other."
+  },
+  "verified": "Y – fda.gov"
+ },
+ {
+  "id": "naplex-052",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2A",
+  "topic": "Top brand/generic names: CNS & psych",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Match the generics: Lexapro, Wellbutrin, Abilify, Seroquel, Lamictal, Vyvanse.",
+  "bottom": "Escitalopram, bupropion, aripiprazole, quetiapine, lamotrigine, lisdexamfetamine.",
+  "bullets": {
+   "clue": "Also: Zoloft sertraline, Keppra levetiracetam, Adderall mixed amphetamine salts.",
+   "treat": "Verify indication on psych scripts to catch name mix-ups.",
+   "trap": "Lamictal (lamotrigine) vs Lamisil (terbinafine) is a classic mix-up."
+  },
+  "back": "Escitalopram, bupropion, aripiprazole, quetiapine, lamotrigine, lisdexamfetamine. Key clue: Also: Zoloft sertraline, Keppra levetiracetam, Adderall mixed amphetamine salts. Pharmacist move: Verify indication on psych scripts to catch name mix-ups. Exam trap: Lamictal (lamotrigine) vs Lamisil (terbinafine) is a classic mix-up.",
+  "word_count": 39,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA Orange Book 2026",
+   "year": "2026",
+   "url": "https://www.fda.gov/drugs/drug-approvals-and-databases/approved-drug-products-therapeutic-equivalence-evaluations-orange-book",
+   "alt_url": "https://www.ismp.org/system/files/resources/2023-07/ISMP_ConfusedDrugNames_2023.pdf",
+   "recommendation": "Brand/generic pairs per FDA labeling and Orange Book (2026). Lamictal/Lamisil appears on the ISMP List of Confused Drug Names (2023)."
+  },
+  "verified": "Y – fda.gov"
+ },
+ {
+  "id": "naplex-053",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2A",
+  "topic": "Top brand/generic names: endocrine & GLP-1/SGLT2",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Match the generics: Ozempic, Wegovy, Mounjaro, Zepbound, Jardiance, Farxiga.",
+  "bottom": "Semaglutide (x2), tirzepatide (x2), empagliflozin, dapagliflozin.",
+  "bullets": {
+   "clue": "Ozempic/Mounjaro: type 2 diabetes. Wegovy/Zepbound: chronic weight management.",
+   "treat": "Check the brand matches the indication billed and the dose strength.",
+   "trap": "Same molecule, different brand and doses: don't swap Ozempic and Wegovy pens."
+  },
+  "back": "Semaglutide (x2), tirzepatide (x2), empagliflozin, dapagliflozin. Key clue: Ozempic/Mounjaro: type 2 diabetes. Wegovy/Zepbound: chronic weight management. Pharmacist move: Check the brand matches the indication billed and the dose strength. Exam trap: Same molecule, different brand and doses: don't swap Ozempic and Wegovy pens.",
+  "word_count": 43,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA Orange Book 2026",
+   "year": "2026",
+   "url": "https://www.fda.gov/drugs/drug-approvals-and-databases/approved-drug-products-therapeutic-equivalence-evaluations-orange-book",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d2d7da5d-ad07-4228-955f-cf7e355c8cc0",
+   "recommendation": "FDA labeling (2026): Ozempic and Wegovy (semaglutide), Mounjaro and Zepbound (tirzepatide) carry different indications and dose strengths; Jardiance = empagliflozin, Farxiga = dapagliflozin."
+  },
+  "verified": "Y – fda.gov"
+ },
+ {
+  "id": "naplex-054",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2A",
+  "topic": "Biosimilars & interchangeability (insulin, adalimumab)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Can you swap a biosimilar for the reference biologic without calling the prescriber?",
+  "bottom": "Only if FDA designates it interchangeable (and state law allows).",
+  "bullets": {
+   "clue": "Biosimilar: no clinically meaningful differences from the reference.",
+   "treat": "Check the Purple Book for interchangeability; follow state substitution and notification rules.",
+   "trap": "Biologics live in the Purple Book, not the Orange Book."
+  },
+  "back": "Only if FDA designates it interchangeable (and state law allows). Key clue: Biosimilar: no clinically meaningful differences from the reference. Pharmacist move: Check the Purple Book for interchangeability; follow state substitution and notification rules. Exam trap: Biologics live in the Purple Book, not the Orange Book.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA Purple Book 2026",
+   "year": "2026",
+   "url": "https://purplebooksearch.fda.gov/",
+   "alt_url": null,
+   "recommendation": "FDA Purple Book (2026): lists licensed biological products with biosimilarity and interchangeability determinations. An interchangeable biosimilar may be substituted for the reference product without prescriber intervention, subject to state pharmacy law."
+  },
+  "verified": "Y – fda.gov"
+ },
+ {
+  "id": "naplex-055",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2B",
+  "topic": "Look-alike/sound-alike pairs and tall-man lettering",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Hydroxyzine vs hydralazine, Celebrex vs Celexa. How does the pharmacy prevent these errors?",
+  "bottom": "Look-alike/sound-alike: use tall-man letters plus checks.",
+  "bullets": {
+   "clue": "hydrOXYzine vs hydrALAZINE; CeleBREX vs CeleXA.",
+   "treat": "Put indication on the Rx, use brand and generic, barcode scanning, separate storage.",
+   "trap": "Tall-man lettering helps but isn't enough alone."
+  },
+  "back": "Look-alike/sound-alike: use tall-man letters plus checks. Key clue: hydrOXYzine vs hydrALAZINE; CeleBREX vs CeleXA. Pharmacist move: Put indication on the Rx, use brand and generic, barcode scanning, separate storage. Exam trap: Tall-man lettering helps but isn't enough alone.",
+  "word_count": 38,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ISMP LASA list 2023",
+   "year": "2023",
+   "url": "https://www.ismp.org/system/files/resources/2023-07/ISMP_ConfusedDrugNames_2023.pdf",
+   "alt_url": null,
+   "recommendation": "ISMP List of Confused Drug Names (2023) with FDA and ISMP tall-man letters; ISMP recommends adding the purpose of the medication to prescriptions, using both brand and generic names, and other safeguards."
+  },
+  "verified": "Y – ismp.org"
+ },
+ {
+  "id": "naplex-056",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2B",
+  "topic": "High-alert medications (insulin, opioids, K concentrates, MTX weekly)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Oral methotrexate is prescribed 'daily' for rheumatoid arthritis. What's the risk, and which drugs share high-alert status?",
+  "bottom": "Fatal overdose: nononcologic MTX is weekly.",
+  "bullets": {
+   "clue": "High-alert: insulin, opioids, concentrated potassium, anticoagulants, oral methotrexate.",
+   "treat": "Verify indication and weekly schedule; default systems to weekly; counsel with the day of the week.",
+   "trap": "High-alert doesn't mean errors are more common; harm is worse when they happen."
+  },
+  "back": "Fatal overdose: nononcologic MTX is weekly. Key clue: High-alert: insulin, opioids, concentrated potassium, anticoagulants, oral methotrexate. Pharmacist move: Verify indication and weekly schedule; default systems to weekly; counsel with the day of the week. Exam trap: High-alert doesn't mean errors are more common; harm is worse when they happen.",
+  "word_count": 49,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ISMP High-Alert List 2024",
+   "year": "2024",
+   "url": "https://www.ismp.org/recommendations/high-alert-medications-acute-list",
+   "alt_url": null,
+   "recommendation": "ISMP List of High-Alert Medications (2024): includes insulin, opioids, concentrated potassium chloride, anticoagulants, and oral methotrexate for nononcologic use; errors with these drugs are not necessarily more common but cause more devastating harm. ISMP recommends weekly-dosing defaults and patient counseling for oral methotrexate."
+  },
+  "verified": "Y – ismp.org"
+ },
+ {
+  "id": "naplex-057",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2B",
+  "topic": "Error-prone abbreviations (U, IU, QD, trailing zero)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "An order reads 'Insulin 10 U qd' and 'warfarin 5.0 mg'. What's wrong?",
+  "bottom": "Error-prone abbreviations and a trailing zero.",
+  "bullets": {
+   "clue": "'U' can read as 0 or 4; 'qd' as qid; '5.0' as 50.",
+   "treat": "Write 'units' and 'daily'; never a trailing zero; always a leading zero (0.5 mg).",
+   "trap": "'MS' or 'MSO4' can mean morphine or magnesium: spell it out."
+  },
+  "back": "Error-prone abbreviations and a trailing zero. Key clue: 'U' can read as 0 or 4; 'qd' as qid; '5.0' as 50. Pharmacist move: Write 'units' and 'daily'; never a trailing zero; always a leading zero (0.5 mg). Exam trap: 'MS' or 'MSO4' can mean morphine or magnesium: spell it out.",
+  "word_count": 50,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ISMP Error-Prone Abbreviations 2024 (replaces 2021); TJC Do Not Use list",
+   "year": "2021 / 2024",
+   "url": "https://www.ismp.org/system/files/resources/2024-04/ISMP_ErrorProneAbbreviation_List.pdf",
+   "alt_url": "https://www.jointcommission.org/",
+   "recommendation": "ISMP List of Error-Prone Abbreviations, Symbols, and Dose Designations (2024): avoid U, IU, QD, QOD, trailing zeros, naked decimal points, MS/MSO4/MgSO4. The Joint Commission 'Do Not Use' list includes U, IU, Q.D., Q.O.D., trailing zero, lack of leading zero, MS, MSO4, MgSO4."
+  },
+  "verified": "Y – ismp.org"
+ },
+ {
+  "id": "naplex-058",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2B",
+  "topic": "Valid prescription elements & controlled-substance Rx rules (C-II no refills)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Refill and transmission rules: how do C-II and C-III to V prescriptions differ?",
+  "bottom": "C-II: no refills. C-III/IV: up to 5 refills in 6 months.",
+  "bullets": {
+   "clue": "C-II needs a written or electronic Rx; emergency oral C-II allowed.",
+   "treat": "Emergency oral C-II: prescriber delivers the written Rx within 7 days. Multiple C-II Rxs can cover up to 90 days.",
+   "trap": "C-V refills follow state law and the prescriber, not the 5-in-6 rule."
+  },
+  "back": "C-II: no refills. C-III/IV: up to 5 refills in 6 months. Key clue: C-II needs a written or electronic Rx; emergency oral C-II allowed. Pharmacist move: Emergency oral C-II: prescriber delivers the written Rx within 7 days. Multiple C-II Rxs can cover up to 90 days. Exam trap: C-V refills follow state law and the prescriber, not the 5-in-6 rule.",
+  "word_count": 60,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "21 CFR 1306; DEA",
+   "year": "current edition",
+   "url": "https://www.ecfr.gov/current/title-21/chapter-II/part-1306",
+   "alt_url": null,
+   "recommendation": "21 CFR 1306: Schedule II—no refills (1306.12); emergency oral dispensing with written prescription within 7 days (1306.11(d)); multiple prescriptions up to 90-day supply (1306.12(b)). Schedules III–IV: refill up to 5 times within 6 months (1306.22). Schedule V refills as authorized (1306.23)."
+  },
+  "verified": "Y – ecfr.gov"
+ },
+ {
+  "id": "naplex-059",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2C1",
+  "topic": "Adult routine immunizations (Tdap, zoster RZV, pneumococcal PCV20/21)",
+  "calculation": false,
+  "reused_from": "pance-092",
+  "front": "A healthy 52-year-old asks what adult vaccines they're due for. Tdap, zoster, pneumococcal?",
+  "bottom": "RZV 2 doses; one pneumococcal conjugate; Td/Tdap every 10 years.",
+  "bullets": {
+   "clue": "RZV (Shingrix) at ≥50, or ≥19 if immunocompromised; 2 doses 2–6 months apart.",
+   "treat": "Pneumococcal at ≥50: PCV20 or PCV21 alone, or PCV15 then PPSV23.",
+   "trap": "Give RZV even after prior Zostavax or shingles."
+  },
+  "back": "RZV 2 doses; one pneumococcal conjugate; Td/Tdap every 10 years. Key clue: RZV (Shingrix) at ≥50, or ≥19 if immunocompromised; 2 doses 2–6 months apart. Pharmacist move: Pneumococcal at ≥50: PCV20 or PCV21 alone, or PCV15 then PPSV23. Exam trap: Give RZV even after prior Zostavax or shingles.",
+  "word_count": 48,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CDC/ACIP Adult Schedule 2025 (amended Apr 27, 2026 for RSV)",
+   "year": "2025 / 2026",
+   "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-age.html",
+   "alt_url": null,
+   "recommendation": "CDC/ACIP Adult Immunization Schedule 2025 (amended Apr 27, 2026 for RSV): Td/Tdap every 10 years after one Tdap; RZV 2 doses for ≥50 years and ≥19 years immunocompromised, regardless of prior herpes zoster or Zostavax; pneumococcal conjugate vaccine for all adults ≥50 (PCV20 or PCV21 alone, or PCV15 followed by PPSV23)."
+  },
+  "verified": "Y – cdc.gov",
+  "recheck": true,
+  "recheck_note": "Vaccine recommendations are volatile in 2025–26. Recheck the current CDC schedule and season-specific guidance before publishing."
+ },
+ {
+  "id": "naplex-060",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2C1",
+  "topic": "Influenza and COVID-19 vaccine product selection",
+  "calculation": false,
+  "reused_from": null,
+  "front": "A 70-year-old with egg allergy wants a flu shot. Which product, and any egg precautions?",
+  "bottom": "High-dose, adjuvanted or recombinant preferred at ≥65.",
+  "bullets": {
+   "clue": "Egg allergy: any age-appropriate flu vaccine; no extra precautions beyond usual.",
+   "treat": "Use the current-season formulation; COVID-19 vaccine by individual-based (shared) decision-making.",
+   "trap": "Live nasal flu vaccine (LAIV): not in pregnancy or immunocompromise, or ≥50."
+  },
+  "back": "High-dose, adjuvanted or recombinant preferred at ≥65. Key clue: Egg allergy: any age-appropriate flu vaccine; no extra precautions beyond usual. Pharmacist move: Use the current-season formulation; COVID-19 vaccine by individual-based (shared) decision-making. Exam trap: Live nasal flu vaccine (LAIV): not in pregnancy or immunocompromise, or ≥50.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CDC/ACIP influenza 2025–26 (carried into 2026–27); CDC 2025–26 COVID-19 guidance (individual-based decision-making, Oct 2025)",
+   "year": "2025 / 2026",
+   "url": "https://www.cdc.gov/flu/hcp/vax-summary/",
+   "alt_url": "https://www.cdc.gov/covid/hcp/vaccine-considerations/routine-guidance.html",
+   "recommendation": "CDC/ACIP influenza recommendations (2025–26, carried into 2026–27 with updated composition): ≥65 years preferentially receive high-dose inactivated, recombinant, or adjuvanted inactivated vaccine; persons with egg allergy may receive any age-appropriate vaccine; LAIV is for nonpregnant, immunocompetent persons 2–49 years. COVID-19: ACIP (Sept 19, 2025) recommended individual-based (shared clinical) decision-making for ages ≥6 months, adopted by CDC Oct 6, 2025; risk-benefit most favorable for ≥65 and those at increased risk."
+  },
+  "verified": "Y – cdc.gov",
+  "recheck": true,
+  "recheck_note": "Vaccine recommendations are volatile in 2025–26. Recheck the current CDC schedule and season-specific guidance before publishing."
+ },
+ {
+  "id": "naplex-061",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2C1",
+  "topic": "RSV: older-adult vaccines; maternal Abrysvo 32–36 wk vs infant nirsevimab/clesrovimab",
+  "calculation": false,
+  "reused_from": null,
+  "front": "RSV: who gets the older-adult vaccine, and how do you protect a newborn?",
+  "bottom": "Older adults: one dose. Infants: maternal vaccine or infant antibody.",
+  "bullets": {
+   "clue": "Adults ≥75; or 50–74 at increased risk; single lifetime dose for now.",
+   "treat": "Pregnancy: Abrysvo at 32–36 weeks (Sep–Jan). Otherwise infant nirsevimab or clesrovimab.",
+   "trap": "Most infants need one or the other, not both. Abrysvo is the only RSV vaccine for pregnancy."
+  },
+  "back": "Older adults: one dose. Infants: maternal vaccine or infant antibody. Key clue: Adults ≥75; or 50–74 at increased risk; single lifetime dose for now. Pharmacist move: Pregnancy: Abrysvo at 32–36 weeks (Sep–Jan). Otherwise infant nirsevimab or clesrovimab. Exam trap: Most infants need one or the other, not both. Abrysvo is the only RSV vaccine for pregnancy.",
+  "word_count": 56,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CDC/ACIP RSV 2024–2025 (+clesrovimab MMWR 2025)",
+   "year": "2024 / 2025",
+   "url": "https://www.cdc.gov/acip-recs/hcp/vaccine-specific/rsv.html",
+   "alt_url": "https://www.cdc.gov/mmwr/volumes/74/wr/mm7432a3.htm",
+   "recommendation": "CDC/ACIP RSV: single dose for adults ≥75 and adults 50–74 at increased risk (2025 expansion to 50–59; schedule amended Apr 2026); maternal Abrysvo (RSVpreF) 32–36 weeks during Sep–Jan in most of the continental US; infants <8 months entering first season receive nirsevimab or clesrovimab (2025 MMWR) if mother not vaccinated, status unknown, or birth <14 days after vaccination."
+  },
+  "verified": "Y – cdc.gov",
+  "recheck": true,
+  "recheck_note": "Vaccine recommendations are volatile in 2025–26. Recheck the current CDC schedule and season-specific guidance before publishing."
+ },
+ {
+  "id": "naplex-062",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2C2",
+  "topic": "Vaccine contraindications: live vaccines in pregnancy/immunosuppression; egg allergy",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Pregnant patient asks for MMR; another patient has a cold. Vaccinate either?",
+  "bottom": "No MMR in pregnancy; mild illness is fine.",
+  "bullets": {
+   "clue": "Live vaccines (MMR, varicella, LAIV): contraindicated in pregnancy and severe immunosuppression.",
+   "treat": "Screen before every dose; defer for moderate or severe illness only.",
+   "trap": "Severe allergic reaction to a prior dose or component is the universal contraindication."
+  },
+  "back": "No MMR in pregnancy; mild illness is fine. Key clue: Live vaccines (MMR, varicella, LAIV): contraindicated in pregnancy and severe immunosuppression. Pharmacist move: Screen before every dose; defer for moderate or severe illness only. Exam trap: Severe allergic reaction to a prior dose or component is the universal contraindication.",
+  "word_count": 49,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CDC/ACIP General Best Practices for Immunization (current web edition)",
+   "year": "current edition",
+   "url": "https://www.cdc.gov/vaccines/hcp/imz-best-practices/contraindications-precautions.html",
+   "alt_url": null,
+   "recommendation": "CDC/ACIP General Best Practices for Immunization: severe allergic reaction to a previous dose or component is a contraindication; live vaccines contraindicated in pregnancy and severe immunocompromise; moderate or severe acute illness is a precaution; mild illness is not a reason to defer."
+  },
+  "verified": "Y – cdc.gov",
+  "recheck": true,
+  "recheck_note": "Vaccine recommendations are volatile in 2025–26. Recheck the current CDC schedule and season-specific guidance before publishing."
+ },
+ {
+  "id": "naplex-063",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2C",
+  "topic": "Anaphylaxis after vaccination: epinephrine dose",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Minutes after a vaccine, an adult has hives, wheeze and hypotension. First drug and dose?",
+  "bottom": "IM epinephrine 1 mg/mL, 0.01 mg/kg.",
+  "bullets": {
+   "clue": "Adult max 0.5 mg per dose; autoinjector 0.3 mg.",
+   "treat": "Inject anterolateral thigh; repeat every 5–15 min; call 911.",
+   "trap": "Antihistamines are adjuncts: never instead of epinephrine."
+  },
+  "back": "IM epinephrine 1 mg/mL, 0.01 mg/kg. Key clue: Adult max 0.5 mg per dose; autoinjector 0.3 mg. Pharmacist move: Inject anterolateral thigh; repeat every 5–15 min; call 911. Exam trap: Antihistamines are adjuncts: never instead of epinephrine.",
+  "word_count": 37,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CDC/ACIP General Best Practices: preventing & managing adverse reactions",
+   "year": "current edition",
+   "url": "https://www.cdc.gov/vaccines/hcp/imz-best-practices/preventing-managing-adverse-reactions.html",
+   "alt_url": null,
+   "recommendation": "CDC/ACIP General Best Practices (preventing and managing adverse reactions): epinephrine 1 mg/mL IM 0.01 mg/kg (adult max 0.5 mg) in the anterolateral thigh, repeat every 5–15 minutes as needed; observe vaccinees 15 minutes (30 minutes if prior immediate reaction history)."
+  },
+  "verified": "Y – cdc.gov",
+  "recheck": true,
+  "recheck_note": "Vaccine recommendations are volatile in 2025–26. Recheck the current CDC schedule and season-specific guidance before publishing."
+ },
+ {
+  "id": "naplex-064",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: fluoroquinolones (tendon, neuropathy, CNS, MG)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Why is levofloxacin a poor pick for simple cystitis, and what does its boxed warning cover?",
+  "bottom": "Disabling tendon, nerve and CNS effects.",
+  "bullets": {
+   "clue": "Tendinitis/rupture, peripheral neuropathy, CNS effects, myasthenia gravis worsening.",
+   "treat": "Reserve for sinusitis, bronchitis exacerbation or uncomplicated UTI only when no alternative.",
+   "trap": "Highest tendon risk: age >60, corticosteroids, transplant."
+  },
+  "back": "Disabling tendon, nerve and CNS effects. Key clue: Tendinitis/rupture, peripheral neuropathy, CNS effects, myasthenia gravis worsening. Pharmacist move: Reserve for sinusitis, bronchitis exacerbation or uncomplicated UTI only when no alternative. Exam trap: Highest tendon risk: age >60, corticosteroids, transplant.",
+  "word_count": 39,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling 2016/2018",
+   "year": "2016 / 2018",
+   "url": "https://www.fda.gov/drugs/drug-safety-and-availability/drug-safety-communications",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ffa121b8-388f-4d7b-af48-d4aa8d9b5961",
+   "recommendation": "FDA 2016 fluoroquinolone safety communication and labeling: boxed warning for tendinitis/tendon rupture, peripheral neuropathy, CNS effects and exacerbation of myasthenia gravis; reserve for acute sinusitis, acute bronchitis exacerbation and uncomplicated UTI when no alternative. Tendon risk increased >60 years, with corticosteroids, and after organ transplant. 2018 labeling added hypoglycemia and mental health warnings."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-065",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: antidepressants and suicidality ≤24 y",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Starting sertraline in a 19-year-old: what does the boxed warning require you to counsel?",
+  "bottom": "Watch for suicidality, especially early.",
+  "bullets": {
+   "clue": "Boxed warning: children, adolescents and young adults through age 24.",
+   "treat": "Close follow-up in the first weeks and after dose changes; tell family to watch for agitation or mood change.",
+   "trap": "No increased risk over 24; reduced at 65+. Don't withhold needed therapy."
+  },
+  "back": "Watch for suicidality, especially early. Key clue: Boxed warning: children, adolescents and young adults through age 24. Pharmacist move: Close follow-up in the first weeks and after dose changes; tell family to watch for agitation or mood change. Exam trap: No increased risk over 24; reduced at 65+. Don't withhold needed therapy.",
+  "word_count": 52,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling (2007 BBW expansion to ages 18–24)",
+   "year": "2007",
+   "url": "https://www.nejm.org/doi/full/10.1056/NEJMp078015",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fda754f6-d0f3-4dce-a17a-927d64f912f7",
+   "recommendation": "Antidepressant labeling (FDA 2007 expansion): increased risk of suicidal thoughts and behaviors in children, adolescents and young adults (18–24) in short-term studies; not increased beyond 24, reduced at ≥65; monitor closely during initial months and dose changes."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-066",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: antipsychotics in dementia mortality",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Quetiapine requested for an 85-year-old with dementia and agitation. Boxed warning and guideline stance?",
+  "bottom": "Increased death in elderly dementia patients.",
+  "bullets": {
+   "clue": "Applies to all antipsychotics, typical and atypical; not approved for dementia psychosis.",
+   "treat": "Use only for severe, dangerous or distressing symptoms after nondrug measures; reassess in 4 weeks; taper if no benefit.",
+   "trap": "Mortality is mostly cardiovascular or infectious. Brexpiprazole is approved for Alzheimer's agitation but keeps the warning."
+  },
+  "back": "Increased death in elderly dementia patients. Key clue: Applies to all antipsychotics, typical and atypical; not approved for dementia psychosis. Pharmacist move: Use only for severe, dangerous or distressing symptoms after nondrug measures; reassess in 4 weeks; taper if no benefit. Exam trap: Mortality is mostly cardiovascular or infectious. Brexpiprazole is approved for Alzheimer's agitation but keeps the warning.",
+  "word_count": 59,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling 2005/2008; APA 2016 dementia antipsychotics",
+   "year": "2005 / 2008 / 2016",
+   "url": "https://psychiatryonline.org/doi/book/10.1176/appi.books.9780890426807",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0584dda8-bc3c-48fe-1a90-79608f78e8a0",
+   "recommendation": "Antipsychotic labeling (FDA 2005 atypicals; 2008 conventional): increased mortality in elderly patients with dementia-related psychosis, mostly cardiovascular or infectious. APA 2016 dementia guideline: nonemergency antipsychotics only for severe, dangerous or distressing symptoms; assess response within 4 weeks; taper and discontinue if no clinically significant response."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-067",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: NSAIDs CV/GI risk",
+  "calculation": false,
+  "reused_from": null,
+  "front": "NSAID boxed warning: what two risks, and who can't take them at all?",
+  "bottom": "Cardiovascular thrombosis and GI bleeding.",
+  "bullets": {
+   "clue": "CV risk can start in the first weeks and rises with dose.",
+   "treat": "Use lowest dose, shortest time; avoid in recent MI or heart failure when possible.",
+   "trap": "Contraindicated for pain right after CABG surgery."
+  },
+  "back": "Cardiovascular thrombosis and GI bleeding. Key clue: CV risk can start in the first weeks and rises with dose. Pharmacist move: Use lowest dose, shortest time; avoid in recent MI or heart failure when possible. Exam trap: Contraindicated for pain right after CABG surgery.",
+  "word_count": 44,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling 2015",
+   "year": "2015",
+   "url": "https://www.fda.gov/drugs/drug-safety-and-availability/drug-safety-communications",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2d6675e4-5859-4be2-8037-a20ce9f707aa",
+   "recommendation": "FDA 2015 NSAID labeling: boxed warning for serious cardiovascular thrombotic events (risk may occur early in treatment and increases with dose) and GI bleeding, ulceration and perforation; contraindicated in the setting of CABG surgery. Aspirin is excluded from the CV boxed warning."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-068",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: amiodarone (pulmonary, hepatic, arrhythmia)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Starting amiodarone: what's in the boxed warning, and what do you monitor?",
+  "bottom": "Boxed warning: life-threatening toxicity; reserve for serious arrhythmias.",
+  "bullets": {
+   "clue": "Baseline and every 6 months: TFTs and LFTs; baseline chest X-ray, PFTs and eye exam.",
+   "treat": "Cut warfarin dose by one-third to one-half and digoxin by half.",
+   "trap": "Effects build for weeks: interactions persist long after a dose change."
+  },
+  "back": "Boxed warning: life-threatening toxicity; reserve for serious arrhythmias. Key clue: Baseline and every 6 months: TFTs and LFTs; baseline chest X-ray, PFTs and eye exam. Pharmacist move: Cut warfarin dose by one-third to one-half and digoxin by half. Exam trap: Effects build for weeks: interactions persist long after a dose change.",
+  "word_count": 51,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling; 2023 ACC/AHA AF",
+   "year": "2023",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4c4ec9b0-13a5-49a8-b57b-b3f64e4316a7",
+   "alt_url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
+   "recommendation": "Amiodarone labeling: boxed warning for pulmonary toxicity, hepatic injury and worsened arrhythmia; indicated for life-threatening ventricular arrhythmias; reduce warfarin dose by 1/3 to 1/2 and digoxin by about half. 2023 ACC/AHA/ACCP/HRS AF guideline: monitor thyroid, liver, pulmonary function during therapy."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov, jacc.org"
+ },
+ {
+  "id": "naplex-069",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: methotrexate & leflunomide (hepatotox, teratogenic)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Methotrexate and leflunomide: shared boxed-warning themes and the key counseling?",
+  "bottom": "Embryo-fetal toxicity and hepatotoxicity.",
+  "bullets": {
+   "clue": "Methotrexate: once weekly with folic acid; daily dosing errors have been fatal.",
+   "treat": "Exclude pregnancy, use contraception, monitor CBC and LFTs.",
+   "trap": "Leflunomide lingers: cholestyramine washout before pregnancy."
+  },
+  "back": "Embryo-fetal toxicity and hepatotoxicity. Key clue: Methotrexate: once weekly with folic acid; daily dosing errors have been fatal. Pharmacist move: Exclude pregnancy, use contraception, monitor CBC and LFTs. Exam trap: Leflunomide lingers: cholestyramine washout before pregnancy.",
+  "word_count": 36,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling; ACR 2021 RA",
+   "year": "2021",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=320f63f2-fac3-4aee-aff8-85724e00ef52",
+   "alt_url": "https://www.rheumatology.org/Portals/0/Files/2021-ACR-Guideline-for-Treatment-of-Rheumatoid-Arthritis.pdf",
+   "recommendation": "Methotrexate labeling: boxed warning for embryo-fetal toxicity, serious adverse reactions including hepatotoxicity, and fatal toxicity from daily instead of weekly dosing. Leflunomide labeling: boxed warning for embryo-fetal toxicity and hepatotoxicity; accelerated drug elimination with cholestyramine. ACR 2021 RA: folic acid with methotrexate."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov, rheumatology.org"
+ },
+ {
+  "id": "naplex-070",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: clozapine neutropenia (REMS removed 2025)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Since 2025, what changed for dispensing clozapine, and what stayed the same?",
+  "bottom": "REMS gone; neutropenia warning and ANC monitoring remain.",
+  "bullets": {
+   "clue": "Boxed warning: severe neutropenia, orthostasis, seizures, myocarditis, dementia mortality.",
+   "treat": "No REMS enrollment or ANC check to dispense; follow label ANC monitoring.",
+   "trap": "Baseline ANC must be at least 1,500 to start (general population)."
+  },
+  "back": "REMS gone; neutropenia warning and ANC monitoring remain. Key clue: Boxed warning: severe neutropenia, orthostasis, seizures, myocarditis, dementia mortality. Pharmacist move: No REMS enrollment or ANC check to dispense; follow label ANC monitoring. Exam trap: Baseline ANC must be at least 1,500 to start (general population).",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA 2025 clozapine REMS elimination",
+   "year": "2025",
+   "url": "https://www.fda.gov/drugs/drug-safety-communications/fda-removes-risk-evaluation-and-mitigation-strategy-rems-program-antipsychotic-drug-clozapine",
+   "alt_url": null,
+   "recommendation": "FDA (effective 2025) eliminated the clozapine REMS; prescribers, pharmacies and patients no longer need to enroll or report ANC before dispensing. Labeling retains boxed warnings (severe neutropenia, orthostatic hypotension/bradycardia/syncope, seizures, myocarditis/cardiomyopathy, increased mortality in elderly with dementia) and ANC monitoring; baseline ANC ≥1500/μL for general population."
+  },
+  "verified": "Y – fda.gov"
+ },
+ {
+  "id": "naplex-071",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: opioid + benzodiazepine co-prescribing",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient fills oxycodone and alprazolam together. What's the boxed warning, and your move?",
+  "bottom": "Combined use: sedation, respiratory depression, death.",
+  "bullets": {
+   "clue": "Boxed warning on both opioids and benzodiazepines since 2016.",
+   "treat": "Talk to the prescriber about avoiding the combo; lowest doses; offer naloxone.",
+   "trap": "CDC 2022: use particular caution co-prescribing; consider tapering benzo when safe."
+  },
+  "back": "Combined use: sedation, respiratory depression, death. Key clue: Boxed warning on both opioids and benzodiazepines since 2016. Pharmacist move: Talk to the prescriber about avoiding the combo; lowest doses; offer naloxone. Exam trap: CDC 2022: use particular caution co-prescribing; consider tapering benzo when safe.",
+  "word_count": 44,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA 2016 opioid+benzo BBW; CDC 2022",
+   "year": "2016 / 2022",
+   "url": "https://www.fda.gov/drugs/food-and-drug-administration-overdose-prevention-framework/new-safety-measures-announced-opioid-analgesics-prescription-opioid-cough-products-and",
+   "alt_url": "https://www.cdc.gov/mmwr/volumes/71/rr/rr7103a1.htm",
+   "recommendation": "FDA 2016: boxed warnings on opioid analgesics, opioid cough products and benzodiazepines regarding profound sedation, respiratory depression, coma and death with concomitant use. CDC 2022: use particular caution when prescribing opioids with benzodiazepines; offer naloxone when risk is increased."
+  },
+  "verified": "Y – fda.gov, cdc.gov"
+ },
+ {
+  "id": "naplex-072",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: valproate (hepatotox, pancreatitis, teratogen)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Valproate for a 24-year-old woman with epilepsy: boxed warnings and guideline stance?",
+  "bottom": "Hepatotoxicity, pancreatitis, teratogenicity.",
+  "bullets": {
+   "clue": "Neural tube defects and lower IQ in exposed children.",
+   "treat": "AAN/AES 2024: avoid valproate when possible in people who could become pregnant; folic acid.",
+   "trap": "Contraindicated in pregnancy for migraine prevention; hepatotoxicity risk highest under age 2."
+  },
+  "back": "Hepatotoxicity, pancreatitis, teratogenicity. Key clue: Neural tube defects and lower IQ in exposed children. Pharmacist move: AAN/AES 2024: avoid valproate when possible in people who could become pregnant; folic acid. Exam trap: Contraindicated in pregnancy for migraine prevention; hepatotoxicity risk highest under age 2.",
+  "word_count": 44,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling; AAN/AES 2024 WWE",
+   "year": "2024",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=08a65cf4-7749-4ceb-6895-8f4805e2b01f",
+   "alt_url": "https://www.aan.com/Guidelines/",
+   "recommendation": "Valproate labeling: boxed warning for hepatotoxicity (highest risk <2 years, POLG mitochondrial disorders), fetal risk (neural tube defects, decreased IQ), pancreatitis; contraindicated in pregnancy for migraine prophylaxis. AAN/AES/SMFM 2024 practice guideline: avoid valproate in people of childbearing potential to minimize major congenital malformations and adverse neurodevelopmental outcomes; folic acid supplementation."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov, aesnet.org"
+ },
+ {
+  "id": "naplex-073",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: montelukast neuropsychiatric events",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Montelukast for allergic rhinitis: what boxed warning, and when is it still OK?",
+  "bottom": "Serious neuropsychiatric events, including suicidality.",
+  "bullets": {
+   "clue": "Agitation, nightmares, depression, suicidal thoughts.",
+   "treat": "Allergic rhinitis: only if other therapy fails or isn't tolerated.",
+   "trap": "Events can occur during treatment or after stopping."
+  },
+  "back": "Serious neuropsychiatric events, including suicidality. Key clue: Agitation, nightmares, depression, suicidal thoughts. Pharmacist move: Allergic rhinitis: only if other therapy fails or isn't tolerated. Exam trap: Events can occur during treatment or after stopping.",
+  "word_count": 34,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA 2020 labeling",
+   "year": "2020",
+   "url": "https://www.fda.gov/safety/medical-product-safety-information/singulair-montelukast-and-all-montelukast-generics-strengthened-boxed-warning-due-restricting-use",
+   "alt_url": null,
+   "recommendation": "FDA 2020: boxed warning for serious neuropsychiatric events with montelukast; for allergic rhinitis, reserve for patients with inadequate response or intolerance to alternative therapies."
+  },
+  "verified": "Y – fda.gov"
+ },
+ {
+  "id": "naplex-074",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Boxed warning: thyroid hormone not for weight loss; GLP-1 thyroid C-cell",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Levothyroxine and semaglutide each carry a boxed warning. What are they?",
+  "bottom": "Levothyroxine: not for weight loss. GLP-1 RA: thyroid C-cell tumors.",
+  "bullets": {
+   "clue": "GLP-1 RA: contraindicated with personal or family MTC or MEN 2.",
+   "treat": "Screen family history before GLP-1 RA; counsel neck lump, hoarseness, dysphagia.",
+   "trap": "Exenatide twice daily (Byetta) and lixisenatide lack this boxed warning."
+  },
+  "back": "Levothyroxine: not for weight loss. GLP-1 RA: thyroid C-cell tumors. Key clue: GLP-1 RA: contraindicated with personal or family MTC or MEN 2. Pharmacist move: Screen family history before GLP-1 RA; counsel neck lump, hoarseness, dysphagia. Exam trap: Exenatide twice daily (Byetta) and lixisenatide lack this boxed warning.",
+  "word_count": 48,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling",
+   "year": "current edition",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=adec4fd2-6858-4c99-91d4-531f5f2a2d79",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1e11ad30-1041-4520-10b0-8f9d30d30fcc",
+   "recommendation": "Levothyroxine labeling: boxed warning—not for treatment of obesity or weight loss; large doses may cause serious toxicity. Long-acting GLP-1 RA labeling (semaglutide, dulaglutide, liraglutide, exenatide ER, tirzepatide): boxed warning for thyroid C-cell tumors; contraindicated with personal/family history of MTC or MEN 2."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-075",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "Menopausal HT labeling: CV/breast cancer/dementia boxed warnings removed 2025–26; endometrial BBW kept (estrogen-alone)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Menopausal hormone therapy labels changed in 2025–26. Which boxed warning stays?",
+  "bottom": "Endometrial cancer for estrogen-alone therapy.",
+  "bullets": {
+   "clue": "FDA asked to remove boxed warnings on cardiovascular disease, breast cancer and probable dementia.",
+   "treat": "Women with a uterus need a progestogen with systemic estrogen.",
+   "trap": "Best benefit-risk when started under 60 or within 10 years of menopause."
+  },
+  "back": "Endometrial cancer for estrogen-alone therapy. Key clue: FDA asked to remove boxed warnings on cardiovascular disease, breast cancer and probable dementia. Pharmacist move: Women with a uterus need a progestogen with systemic estrogen. Exam trap: Best benefit-risk when started under 60 or within 10 years of menopause.",
+  "word_count": 47,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA HT labeling change Nov 2025 (first approvals Feb 2026); Menopause Society 2022",
+   "year": "2022 / 2025 / 2026",
+   "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-labeling-changes-menopausal-hormone-therapy-products",
+   "alt_url": "https://www.fda.gov/drugs/drug-safety-and-availability/menopausal-hormone-therapies-updated-prescribing-information",
+   "recommendation": "FDA (Nov 2025 request; first label approvals Feb 2026): remove boxed warnings for cardiovascular disease, breast cancer and probable dementia from menopausal hormone therapy labels; retain endometrial cancer boxed warning for systemic estrogen-alone products. Menopause Society 2022 position: for women <60 or within 10 years of menopause without contraindications, benefit-risk is most favorable."
+  },
+  "verified": "Y – fda.gov",
+  "recheck": true,
+  "recheck_note": "FDA is approving menopausal hormone therapy label changes product by product (first approvals Feb 2026). Confirm the specific product's current label before publishing."
+ }
+]

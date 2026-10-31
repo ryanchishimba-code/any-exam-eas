@@ -77,6 +77,16 @@ const nextConfig: NextConfig = {
     "/api/quick-bites-pharmacy/[slug]/quiz": ["./src/lib/quick-bites/quizzes-pharmacy/**/*"],
     "/api/pance-feed/cards": ["./content/pance-feed/**/*"],
     "/api/pance-feed/cards/[id]": ["./content/pance-feed/**/*"],
+    "/api/study-feed/[exam]/cards": [
+      "./content/nclex-feed/**/*",
+      "./content/naplex-feed/**/*",
+      "./content/fnp-feed/**/*",
+    ],
+    "/api/study-feed/[exam]/cards/[id]": [
+      "./content/nclex-feed/**/*",
+      "./content/naplex-feed/**/*",
+      "./content/fnp-feed/**/*",
+    ],
   },
   serverExternalPackages: ["stripe"],
   // CI runs lint + typecheck; skipping both on Vercel avoids build OOM on this app.

@@ -15,7 +15,7 @@ import { firstName } from "@/lib/client/returning-user";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/hrefs";
-import { ROUTES } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -40,13 +40,6 @@ const QUICK_ACTIONS = [
     href: (slug: ExamSlug) => questionBankHref(slug),
     icon: BookOpen,
   },
-  {
-    title: "PANCE Feed",
-    description: "Flashcards for paid plans",
-    href: () => ROUTES.panceFeed,
-    icon: Layers,
-    exams: ["pance"] as const,
-  },
 ] as const;
 
 export function SubscriberHome() {
@@ -54,6 +47,20 @@ export function SubscriberHome() {
   const { examSlug, loading: prefLoading } = useAppPreferences();
   const name = session?.user?.name ? firstName(session.user.name) : null;
   const activeExamSlug = examSlug ?? null;
+  const feed = studyFeedForExam(activeExamSlug);
+  const quickActions = [
+    ...QUICK_ACTIONS,
+    ...(feed
+      ? [
+          {
+            title: feed.label,
+            description: "Flashcards for paid plans",
+            href: (_slug: ExamSlug) => feed.href,
+            icon: Layers,
+          },
+        ]
+      : []),
+  ];
 
   return (
     <section className="bg-[var(--color-surface)] py-12 sm:py-16" aria-labelledby="subscriber-home-heading">
@@ -83,10 +90,7 @@ export function SubscriberHome() {
             <div className={dbUi.panelSection}>
               <h3 className={dbUi.sectionTitle}>Quick start</h3>
               <div className={cn(dbUi.chipRow, "mt-3")}>
-                {QUICK_ACTIONS.filter((action) => {
-                  if (!("exams" in action)) return true;
-                  return Boolean(activeExamSlug && (action.exams as readonly string[]).includes(activeExamSlug));
-                }).map((action) =>
+                {quickActions.map((action) =>
                   activeExamSlug ? (
                     <Link
                       key={action.title}
