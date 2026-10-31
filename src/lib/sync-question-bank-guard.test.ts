@@ -48,6 +48,10 @@ describe("KEYFIX_BACKUP_TABLES", () => {
   it("includes the 2026-10-30 NCLEX rewrite backup", () => {
     expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_fixes13_20261030_backup");
   });
+
+  it("includes the 2026-10-31 live-test backup", () => {
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_livetest_20261031_backup");
+  });
 });
 
 describe("decideSeedUpsert", () => {
